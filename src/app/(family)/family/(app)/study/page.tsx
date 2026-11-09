@@ -39,6 +39,7 @@ import { activeLinks, schoolStudyFor } from '@/lib/family/school';
 import { familyPageRead, firstStepsNext, requireFamilyPage } from '@/lib/family/server';
 import { UNDERSTAND_KEYS } from '@/lib/family/understand-words';
 import { tutorParts } from '@/lib/family/tutor-parts';
+import { bookFor, bookHref } from '@/lib/family/books';
 import { familyWords } from '@/lib/family/words';
 import { t, type MessageKey } from '@/lib/i18n';
 
@@ -135,8 +136,8 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
   const readableByKey = new Map(readable.map((c) => [c.key, c]));
   // Every chapter listed from the catalog comes from the version released to everyone: it is Published.
   const publishedBadge = <StatusBadge status="published" label={t(lang, STUDY_STATUS_KEY.published)} />;
-  const rows: SyllabusListChapter[] = [
-    ...(catalog?.chapters ?? []).map((c): SyllabusListChapter => {
+  type CatalogChapter = NonNullable<typeof catalog>['chapters'][number];
+  const catalogRow = (c: CatalogChapter): SyllabusListChapter => {
       const pack = packs?.get(c.key);
       return {
         key: c.key,
@@ -153,7 +154,20 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
           worksheet: worksheets ? { href: `/family/study/worksheet/${encodeURIComponent(tp.key)}`, label: t(lang, 'fam.worksheet.action'), ariaLabel: fill(t(lang, 'fam.worksheet.openFor'), { topic: tp.title }) } : undefined,
         })),
       };
+  };
+  // The child's book (founder, 9 Nov 2026; src/lib/family/books.ts): its chapters first, in the book's order, each
+  // opening the chapter reader, with the catalog chapter it teaches (Explain, topics, offline pack) on the same row.
+  const book = access.open && sourceShown(mode, 'catalog') ? bookFor({ board, classLevel: child.classLevel, subject }) : null;
+  const catalogByKey = new Map((catalog?.chapters ?? []).map((c) => [c.key, c]));
+  const inBook = new Set(book?.chapters.map((c) => c.catalogKey).filter((k): k is string => !!k && catalogByKey.has(k)) ?? []);
+  const rows: SyllabusListChapter[] = [
+    ...(book?.chapters ?? []).map((bc): SyllabusListChapter => {
+      const c = bc.catalogKey ? catalogByKey.get(bc.catalogKey) : undefined;
+      const reader = { href: bookHref(bc.key), label: readerLabel };
+      const title = bc.title[lang === 'hi' ? 'hi' : 'en'];
+      return c ? { ...catalogRow(c), key: bc.key, title, reader } : { key: bc.key, title, reader, status: publishedBadge, topics: [] };
     }),
+    ...(catalog?.chapters ?? []).filter((c) => !inBook.has(c.key)).map(catalogRow),
     // S1 (C374), S3 (C376): a published chapter to read and hear that is not in the catalog (the parent's own, the showcase).
     ...readable
       .filter((c) => !catalogKeys.has(c.key))
@@ -242,7 +256,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
                 chapters={own.chapters.map((c) => ({ title: c.title, href: ownHref(c.itemId), hrefLabel: t(lang, 'fam.study.understandChapter'), topics: c.topics.map((tp) => ({ title: tp.title, href: ownHref(tp.itemId) })) }))}
               />
             )}
-            {!catalog && !own && (
+            {!catalog && !own && !book && (
               <p data-family-no-catalog className="fam-surface bg-white p-5 text-base text-slate">
                 {t(lang, 'fam.study.noCatalog')}
               </p>

@@ -35,6 +35,19 @@ const nextConfig = {
         // Report cards with Hindi are drawn with these fonts, read at run time by a computed path (W17-B5).
         './public/fonts/**',
       ],
+      // The chapter reader and its labs, served to signed-in families (/family/learn/..., founder 9 Nov 2026): the
+      // pages, scripts, chapter data and images. Lab data only for the classes whose book is in the Family app
+      // (src/lib/family/books.ts: Class 10 today); add a class's folder when its book is added.
+      '/family/learn/**/*': [
+        './reader/index.html',
+        './reader/reader.js',
+        './reader/reader.css',
+        './reader/content/**',
+        './labs/*.{html,js,css,json}',
+        './labs/templates/**',
+        './labs/defs/c10/**',
+        './labs/assets/**',
+      ],
     },
   },
   // PDF.js's worker (AI marking's upload screen, C350) is a file the build copies into /_next/static/media. It is
