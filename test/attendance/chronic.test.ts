@@ -181,6 +181,12 @@ describe('the chronic absence list and "Tell the family"', () => {
   it('the principal tells the family: the notice, the Family app, the email and the audit row; a second tell within 7 days is refused', async () => {
     const done = await as(principal, (c) => tellFamily(c, queue, actor(principal), ASHA, TODAY));
     expect(done).toMatchObject({ ok: true, inApp: 1, byEmail: 1 });
+    // The notice is stamped by the database clock; pin it to the test's school day so the list's day count does not
+    // depend on the date the suite runs.
+    // (The once-decided guard is a trigger, so it is paused for this test-only fix-up.)
+    await q(`set session_replication_role = replica`);
+    await q(`update class_notices set decided_at = ($2::date + time '12:00') at time zone 'Asia/Kolkata' where student_id = $1`, [ASHA, TODAY]);
+    await q(`set session_replication_role = origin`);
     const [notice] = await q(`select kind, status, student_id, class_id, body from class_notices where student_id = $1`, [ASHA]);
     expect(notice).toMatchObject({ kind: 'chronic_absence', status: 'sent', student_id: ASHA, class_id: CLASS_6A });
     expect(notice.body).toContain('Asha has been absent on 4 of the last 10 school days.');
