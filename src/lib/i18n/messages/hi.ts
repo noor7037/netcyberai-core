@@ -11155,4 +11155,9 @@ export const hi: Record<keyof typeof en, string> = {
   'crt.req.err.not_open': 'यह अनुरोध पहले ही आगे बढ़ चुका है।',
   'crt.req.err.other': 'यह नहीं हो सका। शब्द जाँचिए और फिर कोशिश कीजिए।',
   // W21-M7 end
+  // w22-s3 begin
+  'fam.tutor.resume': 'आगे से सुनो',
+  'fam.tutor.readPercent': '{n}% सुना',
+  'fam.tutor.readingNow': 'पढ़कर सुना रहे हैं',
+  // w22-s3 end
 };

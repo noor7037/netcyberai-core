@@ -9,7 +9,7 @@ import { avatarState, setAvatarLevel, setAvatarMood } from '@/lib/family/avatar-
 // response is never cached. When the server voice is not set up, or the family's turns are used up, the rest of the
 // visit uses the phone's voice and the screen says so; a single failure reads that one line with the phone's voice.
 
-export type LineSource = { kind: 'chapter'; chapterKey: string; blockId: string; sentence: number } | { kind: 'live_line'; token: string } | { kind: 'live_turn'; sessionId: string; position: number } | { kind: 'call_line'; token: string } | { kind: 'tutor_answer'; messageId: string };
+export type LineSource = { kind: 'chapter'; chapterKey: string; blockId: string; sentence: number } | { kind: 'live_line'; token: string } | { kind: 'live_turn'; sessionId: string; position: number } | { kind: 'call_line'; token: string } | { kind: 'tutor_answer'; messageId: string; from?: number };
 export type VoiceMode = 'server' | 'phone';
 export type Spoken = { cancelled: boolean; mode: VoiceMode };
 

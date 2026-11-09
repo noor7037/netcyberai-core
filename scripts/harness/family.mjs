@@ -258,6 +258,9 @@ export const FAMILY_SCREENS = [
   // Then the parent area right after a child's class is saved: the "Saved" line (Asha is put back in Class 7 after).
   ['full', 'family-tutor-followup', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', prep: FOLLOW_UP_CHAT, reset: FOLLOW_UP_CHAT_GONE, answer: FOLLOW_UP_ANSWER, settle: '[data-tutor-rail]', steps: [{ fill: { field: '[data-tutor-window] textarea', value: 'Can you show it with an example?' }, tap: '[data-tutor-send]', wait: '[data-tutor-window][data-listed="science"] [data-feed-moved="science"]' }] }],
   ['full', 'family-parent-child-saved', '/family/parent#children', { parent: true, reset: CLASS_PUT_BACK, settle: '[data-parent-panel="children"]:not([hidden])', steps: [{ tap: '[data-child-edit]', wait: 'select[id$="-class"]' }, { select: { field: 'select[id$="-class"]', value: '3' }, tap: '[data-parent-panel="children"] form button[type="submit"]', wait: '[data-child-saved]' }] }],
+  // W22-S3: a kept answer read aloud, caught in the middle: the tutor's face stays at the top of the feed, the sentence is
+  // marked and kept on screen, and the read-aloud line says how much is read.
+  ['full', 'family-tutor-reading', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', speakStub: true, viewportShot: true, settle: '[data-tutor-turns] [data-feed-answer]', steps: [{ tap: '[data-feed-answer] [data-teach-me]', pause: 3300, wait: '[data-sticky-face]' }] }],
   // M2-5 (C279): the honest player under the response, before and after the tap that loads the embed.
   ['full', 'family-video', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-video-play]' }],
   ['full', 'family-video-playing', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-video-play]', tap: '[data-video-play]' }],
@@ -551,6 +554,25 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
           await context.addCookies(cookies.map((c) => ({ ...c, domain: '127.0.0.1', path: '/', httpOnly: true, sameSite: 'Lax' })));
           // A device setting the screen reads from the phone's storage (the data-saver, M2-9).
           if (opts.storage) await context.addInitScript((s) => Object.entries(s).forEach(([k, v]) => window.localStorage.setItem(k, v)), opts.storage);
+          // `speakStub` (W22-S3): a phone's speech engine that "reads" each sentence for 2.2 s and reports word boundaries,
+          // so a picture can be taken in the middle of a read-aloud (headless Chromium has no voice). The product code is untouched.
+          if (opts.speakStub)
+            await context.addInitScript(() => {
+              const voices = [{ lang: 'en-IN', name: 'stub' }, { lang: 'hi-IN', name: 'stub-hi' }];
+              let timer = 0;
+              const synth = {
+                getVoices: () => voices,
+                cancel: () => clearTimeout(timer),
+                speak: (u) => {
+                  u.onstart?.({});
+                  const words = [...u.text.matchAll(/\S+/g)];
+                  words.forEach((m, i) => setTimeout(() => u.onboundary?.({ charIndex: m.index }), (2200 * i) / Math.max(1, words.length)));
+                  timer = setTimeout(() => u.onend?.({}), 2200);
+                },
+              };
+              Object.defineProperty(window, 'speechSynthesis', { value: synth, configurable: true });
+              window.SpeechSynthesisUtterance = function (text) { this.text = text; };
+            });
           // The checked pages' pictures are drawn in the browser (marking-seed.mjs): the harness has no file store.
           if (opts.pictures) await routeScriptPictures(context);
           // `answer`: the tutor's answer, scripted (W10, C411): the harness calls no model, so a typed question's
@@ -646,7 +668,7 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
             return r.violations.filter((v) => v.impact === 'serious' || v.impact === 'critical').map((v) => `${v.id} (${v.nodes.length}) at ${v.nodes[0].target.join(' ')}: ${(v.nodes[0].any[0]?.message ?? '').slice(0, 140)}`);
           });
           const file = `${name}-${lang}-${motion === 'reduce' ? 'still' : 'motion'}-${width}.png`;
-          await page.screenshot({ path: path.join(out, file), fullPage: true });
+          await page.screenshot({ path: path.join(out, file), fullPage: !opts.viewportShot });
           const problems = [];
           if (response.status() !== 200) problems.push(`answered ${response.status()}`);
           if (seen.path !== route.split(/[?#]/)[0]) problems.push(`landed on ${seen.path}`);

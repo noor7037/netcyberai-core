@@ -16,6 +16,7 @@ import { classSubjects } from './catalog';
 import { openSubjects, reviewedOnlySubjects } from './learning';
 import { subjectAccess } from './modules';
 import { isSubject, type Subject } from './subjects';
+import { nameFiller, withoutName } from './name-token';
 
 // The Concept Resolver, "Understand" (docs/family-app/02 §4, 03 §6; M1-5, C251): a chapter, a topic or a typed
 // question in, typed blocks out, streamed one by one as each passes its checks.
@@ -256,8 +257,11 @@ type Teach = { ctx: PlanContext; call: PreparedText | null; passages: Passage[];
 export type Generated = {
   sent: SentText;
   subject: Subject | null;
-  // The blocks shown, in the order they passed.
+  // The blocks shown, in the order they passed. W22-S3: with the child's first name where a v12 answer addressed the
+  // learner by the token {{name}} (name-token.ts); these go to the child's own conversation.
   kept: Block[];
+  // The same blocks with no name in them: what a response kept for other children is made of.
+  shared: Block[];
   // For staff measuring the model (C318): how many JSON objects came, and the type of each one our checks refused
   // (or "unknown"). Types only, never the words.
   objects: number;
@@ -492,6 +496,9 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
   let error: unknown = null;
   const seen = new Set<BlockType>();
   const kept: Block[] = [];
+  const shared: Block[] = [];
+  // W22-S3: the name goes in here, on our server, after the safety check (which is the last call that sends words out).
+  const addName = nameFiller(ctx.child.firstName);
   // The plan the answer is written from (W9-B): the prepared default until the planner answers.
   let plan: Plan | null = p.plan;
   let objects = 0;
@@ -513,8 +520,10 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
   // were refused (a reason, never the words), for the log.
   const held: Block[] = [];
   let stepsRejected: string | null = null;
-  const show = (b: Block, s: Subject) => {
+  const show = (unnamed: Block, s: Subject) => {
+    const b = addName(unnamed);
     kept.push(b);
+    shared.push(withoutName(unnamed));
     if (kept.length === 1) emit({ t: 'meta', label: 'ai_made', cached: false, title: line?.title ?? null, subject: s, topicKey: line?.key ?? null });
     // Progress and the sealed items are keyed to the syllabus line; a typed question is kept against its subject.
     emit({ t: 'block', block: toPublic(b, ctx, line?.key ?? questionKey(ctx.child, s), s) });
@@ -626,7 +635,7 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
   };
   // A typed question is checked before it is sent: one found unsafe is never sent to the model (C314).
   if (p.moderation && p.question !== null && !(await safe({ user: p.question }))) {
-    return { sent: { result: { ok: false, reason: 'failed' }, record: async () => {} }, subject, kept, refusedByModel, stopped, error, objects, rejected, unclosed: false, droppedForSize: 0, plan };
+    return { sent: { result: { ok: false, reason: 'failed' }, record: async () => {} }, subject, kept, shared, refusedByModel, stopped, error, objects, rejected, unclosed: false, droppedForSize: 0, plan };
   }
   // W9-B: the teaching plan, one short call after the question passed the safety check and before the answer; the
   // answer's prompt is rewritten from it. Never blocks: the default plan stands when it cannot be had.
@@ -657,7 +666,7 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
         },
       }
     : answered;
-  return { sent, subject, kept, refusedByModel, stopped, error, objects, rejected, ...scan.dropped(), plan };
+  return { sent, subject, kept, shared, refusedByModel, stopped, error, objects, rejected, ...scan.dropped(), plan };
 }
 
 // 5. The writes after the call, in the caller's second transaction: the metering first, then the library line. Returns
@@ -681,7 +690,7 @@ export async function keep(db: Db, p: Pending, g: Generated): Promise<ResolverEv
   // The model never named the subject: nothing was shown, and no subject is guessed.
   if (!g.subject) return { t: 'refused', reason: 'failed', message: ctx.refusalWords(REFUSAL_MESSAGE.failed) };
   const cut = g.unclosed;
-  const complete = cut ? null : completeResponse(g.kept, core);
+  const complete = cut ? null : completeResponse(g.shared, core);
 
   // A complete topic or chapter response is kept for the next child, as AI-made, until the founder approves it. One
   // staff prepared (C313) names who prepared it, and no child is served it before it is checked.

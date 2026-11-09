@@ -30,6 +30,7 @@ export function markSentence(root: HTMLElement | null, text: string | null): voi
   const h = highlights();
   if (!h) return;
   h.registry.delete('nc-sentence');
+  h.registry.delete('nc-word');
   if (!root || !text) return;
   const found = findSentence(root, text, 0);
   if (!found) return;
@@ -37,4 +38,37 @@ export function markSentence(root: HTMLElement | null, text: string | null): voi
   r.setStart(found.node, found.at);
   r.setEnd(found.node, found.at + text.length);
   h.registry.set('nc-sentence', h.make(r));
+  keepInView(r);
+}
+
+// W22-S3: the word being spoken, when the voice reports word boundaries (`charIndex` in the sentence's own text): the
+// word from there to the next space, marked inside the sentence's mark. No boundaries, no word mark.
+export function markWord(root: HTMLElement | null, text: string | null, charIndex: number): void {
+  const h = highlights();
+  if (!h) return;
+  h.registry.delete('nc-word');
+  if (!root || !text || !Number.isFinite(charIndex) || charIndex < 0 || charIndex >= text.length) return;
+  const found = findSentence(root, text, 0);
+  if (!found) return;
+  const rest = text.slice(charIndex);
+  const len = rest.search(/\s/);
+  const r = document.createRange();
+  r.setStart(found.node, found.at + charIndex);
+  r.setEnd(found.node, found.at + charIndex + (len < 0 ? rest.length : len));
+  if (r.collapsed) return;
+  h.registry.set('nc-word', h.make(r));
+}
+
+// W22-S3: the line being read stays on screen without the child touching anything. If the sentence's first line is out of
+// the band between the top of the screen (under the tutor's face) and the bottom (above the composer), the nearest
+// scrolling parent moves it to the middle. Calm: instant under reduced motion, a short smooth scroll otherwise.
+const BAND = { top: 90, bottom: 140 };
+export function keepInView(r: Range): void {
+  if (typeof window === 'undefined') return;
+  const box = r.getClientRects()[0] ?? r.getBoundingClientRect();
+  if (!box || (box.width === 0 && box.height === 0)) return;
+  if (box.top >= BAND.top && box.bottom <= window.innerHeight - BAND.bottom) return;
+  const el = r.startContainer.parentElement;
+  const calm = typeof window.matchMedia === 'function' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  el?.scrollIntoView?.({ block: 'center', behavior: calm ? 'auto' : 'smooth' });
 }

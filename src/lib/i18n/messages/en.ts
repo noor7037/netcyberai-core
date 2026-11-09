@@ -11169,4 +11169,9 @@ export const en = {
   'crt.req.err.not_open': 'This request has moved on already.',
   'crt.req.err.other': 'That could not be done. Check the words and try again.',
   // W21-M7 end
+  // w22-s3 begin
+  'fam.tutor.resume': 'Carry on reading',
+  'fam.tutor.readPercent': '{n}% read',
+  'fam.tutor.readingNow': 'Reading aloud',
+  // w22-s3 end
 } as const;

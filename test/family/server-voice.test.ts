@@ -391,6 +391,22 @@ describe('a tutor’s answer read aloud (W17-B2)', () => {
     expect(said.endsWith('space.')).toBe(true);
   });
 
+  it('W22-S3: a long answer is read in parts, each starting at the sentence asked for, until the last sentence', async () => {
+    let from = 0;
+    const heard: string[] = [];
+    for (let guard = 0; guard < 20; guard++) {
+      expect((await speak({ kind: 'tutor_answer', messageId: longMsg, from })).status).toBe(200);
+      const part = spoken[spoken.length - 1];
+      expect(part.length).toBeLessThanOrEqual(600);
+      heard.push(part);
+      from += part.split(/(?<=\.)\s/).length;
+      if (part.endsWith('space.') && heard.join(' ').split(/(?<=\.)\s/).length >= 21) break;
+    }
+    // Every sentence of the answer (1 + 15 + 5 + 1 in this fixture) was spoken across the parts, none twice.
+    expect(heard.length).toBeGreaterThan(1);
+    expect(heard.join(' ').split(/(?<=\.)\s/).length).toBe(22);
+  });
+
   it('refuses the child’s own question, a sibling’s view, another family and an unknown message (404, nothing spoken)', async () => {
     const n = spoken.length;
     expect((await speak({ kind: 'tutor_answer', messageId: childMsg })).status).toBe(404);

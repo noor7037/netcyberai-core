@@ -13,14 +13,15 @@ import { CitationChip } from '../blocks/CitationChip';
 import { citationOf } from '@/lib/family/citation';
 import { AnswerBlock, DirectAnswerCard, UnderstandView, type TutorAsk, type UnderstandInput } from '../UnderstandView';
 import { Composer, type ComposerFile } from './Composer';
-import { TutorFace } from '../avatar/TutorFace';
+import { StickyTutorFace, TutorFace } from '../avatar/TutorFace';
 import { setAvatarMood } from '@/lib/family/avatar-state';
 
-import { ANSWER_SPOKEN_MAX, spokenSentences } from '@/lib/family/call';
+import { spokenSentences } from '@/lib/family/call';
 import { typedCheckIntentLight } from '@/lib/family/check-intent';
 import { readChildSettings } from '@/lib/family/child-settings';
 import { speakLine } from '../voice/lineVoice';
 // The speaker and Teach me load with the first answer drawn, off the Study page's first load (the family budget, W18).
+import type { Reading } from '../voice/AnswerSpeaker';
 const AnswerSpeaker = dynamic(() => import('../voice/AnswerSpeaker').then((m) => m.AnswerSpeaker));
 const TeachMe = dynamic(() => import('../voice/AnswerSpeaker').then((m) => m.TeachMe));
 
@@ -324,7 +325,7 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
             <ol data-tutor-turns className="flex flex-col gap-4">
               {turns.map((t) => (
                 <li key={t.id} data-turn={t.role} data-chat={t.chatId} className="flex flex-col">
-                  {t.role === 'child' ? <Question w={w} text={t.text} lang={t.lang} fromReader={!!t.chapterKey} files={t.files} /> : <KeptAnswer b={t.blocks} w={w} tone={tone} lang={t.lang} speak={{ id: t.id, serverVoice }} />}
+                  {t.role === 'child' ? <Question w={w} text={t.text} lang={t.lang} fromReader={!!t.chapterKey} files={t.files} /> : <KeptAnswer b={t.blocks} w={w} tone={tone} lang={t.lang} speak={{ id: t.id, serverVoice }} tutorKey={chosen?.key ?? null} subject={subject} />}
                 </li>
               ))}
             </ol>
@@ -437,25 +438,28 @@ function Question({ w, text, lang, fromReader = false, files = [] }: { w: Words;
 // was fresh. A check or practice is never kept (tutor.ts keptTutorBlocks), and one that somehow is stays out, as before.
 // The answer owns which sentence its voice is speaking: the read-aloud button and "Teach me" report it, and its boards
 // draw up to the step that sentence reaches.
-export function KeptAnswer({ b, w, tone, lang, speak }: { b: Block[]; w: Words; tone: string; lang: string; speak: { id: string; serverVoice: boolean } }) {
+export function KeptAnswer({ b, w, tone, lang, speak, tutorKey = null, subject = null }: { b: Block[]; w: Words; tone: string; lang: string; speak: { id: string; serverVoice: boolean }; tutorKey?: string | null; subject?: string | null }) {
   const [sentence, setSentence] = useState<number | undefined>(undefined);
+  // W22-S3: the tutor's face stays on screen while this answer is read aloud.
+  const [reading, setReading] = useState<Reading>({ speaking: false, percent: 0 });
   const root = useRef<HTMLDivElement>(null);
   const lead = b.find((x): x is Explanation => x.type === 'explanation');
   // W16-B2: a marked working names its chapter in a chip first (a general answer says nothing here).
   const cited = citationOf(b, false);
   const shown = b.filter((x): x is Exclude<Block, { type: 'check' } | { type: 'practice' }> => x.type !== 'check' && x.type !== 'practice' && !unfilled(x));
   // The same words the server voice speaks; an answer with nothing to say aloud (a picture alone) has no button.
-  const sentences = spokenSentences(b, ANSWER_SPOKEN_MAX);
-  const voice = { messageId: speak.id, sentences, lang: lang === 'hi' ? ('hi' as const) : ('en' as const), serverVoice: speak.serverVoice, onSentence: setSentence };
+  const sentences = spokenSentences(b, Infinity);
+  const voice = { messageId: speak.id, sentences, lang: lang === 'hi' ? ('hi' as const) : ('en' as const), serverVoice: speak.serverVoice, onSentence: setSentence, onReading: setReading };
   return (
     <div ref={root} lang={lang} data-feed-answer className="fam-lesson flex flex-col gap-3">
+      {reading.speaking && <StickyTutorFace tutorKey={tutorKey} subject={subject} label={w['fam.tutor.readingNow']} percent={reading.percent} />}
       {cited && <CitationChip w={w} c={cited} />}
       {lead && <DirectAnswerCard w={w} b={lead} />}
       {sentences.length > 0 && <TeachMe w={w} {...voice} root={root} />}
       {shown.map((x, i) => (
         <AnswerBlock key={i} b={x} w={w} tone={tone} lead={x === lead} onRetry={noRetry} sentence={sentence} sentences={sentences} />
       ))}
-      {sentences.length > 0 && <AnswerSpeaker w={w} {...voice} />}
+      {sentences.length > 0 && <AnswerSpeaker w={w} {...voice} root={root} />}
     </div>
   );
 }
