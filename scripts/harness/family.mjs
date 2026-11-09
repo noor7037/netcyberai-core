@@ -219,6 +219,10 @@ export const FAMILY_SCREENS = [
   // chapter opens the chapter reader inside the Family app (its topics, diagrams and labs). Put back in Class 7 after.
   ['full', 'family-book-study', '/family/study?subject=science', { prep: CLASS_10, reset: CLASS_PUT_BACK, settle: '#fam-chapters' }],
   ['full', 'family-book-chapter', '/family/study/book/u.c10.science.jesc1.ch01', { prep: CLASS_10, reset: CLASS_PUT_BACK, settle: '[data-book-chapter] iframe', steps: [{ pause: 5000 }] }],
+  // W22-S2: the reader's first topic with Teach me tapped (the page reads it, highlights the sentence and word, and scrolls to it),
+  // and the tutor opened over the chapter with the chapter and topic as its context.
+  ['full', 'family-book-teach', '/family/study/book/u.c10.science.jesc1.ch01', { prep: CLASS_10, reset: CLASS_PUT_BACK, speech: true, settle: '[data-book-chapter] iframe', steps: [{ frame: true, tap: '[data-topic="0"]:visible', wait: '[data-mode="teach"]' }, { frame: true, tap: '[data-mode="teach"]' }, { pause: 2600 }] }],
+  ['full', 'family-book-tutor', '/family/study/book/u.c10.science.jesc1.ch01', { prep: CLASS_10, reset: CLASS_PUT_BACK, speech: true, settle: '[data-book-chapter] iframe', steps: [{ frame: true, tap: '[data-topic="0"]:visible', wait: '[data-mode="teach"]' }, { tap: '[data-book-ask]', wait: '[data-tutor-window]' }, { pause: 600 }] }],
   ['full', 'family-understand', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="practice"]' }],
   // W8-AI: a v7 answer with a mind map (an SVG from 480 px, a vertical tree below) and a check that says why each wrong option is wrong.
   ['full', 'family-understand-mindmap', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch90.t07', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="mind_map"]' }],
@@ -571,6 +575,31 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
             await context.route('**/api/family/voice/speak', (r) => r.fulfill({ status: 503, contentType: 'application/json', body: JSON.stringify({ error: 'not_set_up' }) }));
             await context.route('**/api/family/voice/call/marks', (r) => r.fulfill({ status: 204 }));
           }
+          // `speech` (W22-S2): a speech engine that says each word every 420 ms and reports the word boundaries, so a picture can
+          // show the sentence and word being read (headless Chromium has no voices).
+          if (opts.speech) {
+            await context.addInitScript(() => {
+              const voices = [{ lang: 'en-IN', name: 'harness en' }, { lang: 'hi-IN', name: 'harness hi' }];
+              const ss = {
+                getVoices: () => voices, speaking: false, u: null, t: 0,
+                cancel() { clearTimeout(ss.t); ss.u = null; },
+                speak(u) {
+                  ss.u = u;
+                  if (u.onstart) u.onstart({});
+                  const words = [...u.text.matchAll(/\S+/g)];
+                  let i = 0;
+                  const tick = () => {
+                    if (ss.u !== u) return;
+                    if (i < words.length) { if (u.onboundary) u.onboundary({ charIndex: words[i].index, name: 'word' }); i++; ss.t = setTimeout(tick, 420); } else { ss.u = null; if (u.onend) u.onend({}); }
+                  };
+                  ss.t = setTimeout(tick, 30);
+                },
+                addEventListener() {}, removeEventListener() {},
+              };
+              Object.defineProperty(window, 'speechSynthesis', { value: ss, configurable: true });
+              window.SpeechSynthesisUtterance = function (text) { this.text = text; };
+            });
+          }
           const page = await context.newPage();
           const errors = [];
           page.on('pageerror', (e) => errors.push(e.message.slice(0, 160)));
@@ -594,7 +623,9 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
             // `fill` and `select` (W10, C411): words typed into a field, a value picked in a drop-down.
             if (step.fill) await page.locator(step.fill.field).first().fill(step.fill.value).catch(() => errors.push(`${step.fill.field} could not be filled`));
             if (step.select) await page.locator(step.select.field).first().selectOption(step.select.value).catch(() => errors.push(`${step.select.field} could not be chosen`));
-            if (step.tap) await page.locator(step.tap).first().click().catch(() => errors.push(`${step.tap} could not be tapped`));
+            // `frame` (W22-S2): the tap or wait is inside the chapter reader's frame.
+            const where = step.frame ? page.frameLocator('[data-book-chapter] iframe') : page;
+            if (step.tap) await where.locator(step.tap).first().click().catch(() => errors.push(`${step.tap} could not be tapped`));
             if (step.pause) await page.waitForTimeout(step.pause);
             // `choose`: a value in a drop-down when it shows (a phone), else a tap on the wide screen's own control (W9-A).
             if (step.choose) {
@@ -602,7 +633,7 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
               const done = (await field.isVisible().catch(() => false)) ? field.selectOption(step.choose.value) : page.locator(step.choose.or).first().click();
               await done.catch(() => errors.push(`${step.choose.field} could not be chosen`));
             }
-            if (step.wait) await page.locator(step.wait).first().waitFor({ timeout: 20000 }).catch(() => errors.push(`${step.wait} never appeared`));
+            if (step.wait) await where.locator(step.wait).first().waitFor({ timeout: 20000 }).catch(() => errors.push(`${step.wait} never appeared`));
           }
           // A full-page picture does not scroll, so a lazy picture below the fold would never load: load them all first.
           if (opts.pictures) {

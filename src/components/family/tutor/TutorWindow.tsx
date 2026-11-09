@@ -8,7 +8,7 @@ import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from 
 import { unfilled, type Block, type Explanation } from '@/lib/family/blocks';
 import { fill, type Words } from '@/lib/family/fill';
 import { isSubject, type Subject } from '@/lib/family/subjects';
-import { TUTOR_FILE_MAX_BYTES, TUTOR_FILES_PER_TURN, TUTOR_TEXT_MIN, sniffTutorFile, type FeedTurn, type TutorFile } from '@/lib/family/tutor-shape';
+import { TUTOR_FILE_MAX_BYTES, TUTOR_FILES_PER_TURN, TUTOR_TEXT_MAX, TUTOR_TEXT_MIN, sniffTutorFile, type FeedTurn, type TutorFile } from '@/lib/family/tutor-shape';
 import { CitationChip } from '../blocks/CitationChip';
 import { citationOf } from '@/lib/family/citation';
 import { AnswerBlock, DirectAnswerCard, UnderstandView, type TutorAsk, type UnderstandInput } from '../UnderstandView';
@@ -57,6 +57,10 @@ type Props = {
   call?: { href: string; label: string } | null;
   // W17-B2: the server voice is set up, so a tutor answer's speaker button uses it (else the phone's own voice).
   serverVoice?: boolean;
+  // W22-S2: the book page's context (the chapter and topic the child is on, a short line): shown as the chip and put in front of
+  // every question sent; and `ask`: a question made elsewhere on the page (a lab's tutor drawer), asked once per `n`.
+  about?: string | null;
+  ask?: { n: number; text: string } | null;
   children?: ReactNode;
 };
 
@@ -125,7 +129,7 @@ export function followHref(ask: FeedAsk | undefined, follow: boolean, tutorKey: 
   return follow && ask?.moved ? `/family/study?subject=${encodeURIComponent(ask.moved)}${tutorKey ? `&tutor=${encodeURIComponent(tutorKey)}` : ''}` : null;
 }
 
-export function TutorWindow({ w, subject, tone, voice = null, files = false, homework = false, reader = null, idPrefix = 'fam-tutor', pinned = 'dock', follow = false, tutor: chosen = null, call = null, serverVoice = false, children }: Props) {
+export function TutorWindow({ w, subject, tone, voice = null, files = false, homework = false, reader = null, idPrefix = 'fam-tutor', pinned = 'dock', follow = false, tutor: chosen = null, call = null, serverVoice = false, about = null, ask = null, children }: Props) {
   const router = useRouter();
   const [open, setOpen] = useState(true);
   const [text, setText] = useState('');
@@ -230,10 +234,15 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
     if (a.id) void fetch(`/api/family/tutor/files/${encodeURIComponent(a.id)}`, { method: 'DELETE', credentials: 'same-origin' }).catch(() => null);
   };
 
+  const withAbout = (asked: string) => {
+    if (!about) return asked;
+    const head = `(${about.slice(0, 120)}) `;
+    return head + asked.slice(0, Math.max(0, TUTOR_TEXT_MAX - head.length));
+  };
   // A question continues the subject's newest open chat (the server finds it; the first answer opens one).
   const submit = (asked: string, tutor: TutorAsk) => {
     const n = (asks.at(-1)?.n ?? 0) + 1;
-    setAsks((list) => [...list, { n, subject, text: asked, input: { kind: 'question', text: asked, tutor }, moved: null, chatId: null }]);
+    setAsks((list) => [...list, { n, subject, text: asked, input: { kind: 'question', text: withAbout(asked), tutor }, moved: null, chatId: null }]);
     setText('');
     setAttached([]);
     setChecking(false);
@@ -243,6 +252,13 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
     requestAnimationFrame(() => document.getElementById(`${ids.feed}-ask-${n}`)?.scrollIntoView({ block: 'start', behavior: stillMotion() ? 'auto' : 'smooth' }));
   };
   const base = { subject, ...(chosen ? { tutorKey: chosen.key } : {}), ...(reader ? { chapterKey: reader.chapterKey, blockId: reader.blockId } : {}) };
+  const askSeen = useRef(0);
+  useEffect(() => {
+    if (!ask || ask.n === askSeen.current || ask.text.trim().length < TUTOR_TEXT_MIN) return;
+    askSeen.current = ask.n;
+    submit(ask.text.trim(), { ...base, files: [] });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ask?.n]);
   const send = () => {
     if (!canSend) return;
     const asked = checking && text.trim().length < TUTOR_TEXT_MIN ? w['fam.check.sent'] : text.trim();
@@ -295,6 +311,11 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
           <Link href="/family/tutors" className="fam-press inline-flex min-h-[44px] items-center font-bold text-saffron-deep underline">
             {w['fam.tutors.change']}
           </Link>
+        </p>
+      )}
+      {about && !reader && (
+        <p data-tutor-context className="self-start rounded-full bg-white px-4 py-2 text-sm font-semibold text-ink ring-1 ring-ink/10">
+          {fill(w['fam.tutor.doubtAbout'], { section: about })}
         </p>
       )}
       {reader && (

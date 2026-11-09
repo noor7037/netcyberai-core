@@ -11169,4 +11169,7 @@ export const en = {
   'crt.req.err.not_open': 'This request has moved on already.',
   'crt.req.err.other': 'That could not be done. Check the words and try again.',
   // W21-M7 end
+  // w22-s2 begin
+  'fam.book.ask': 'Ask the tutor',
+  // w22-s2 end
 } as const;

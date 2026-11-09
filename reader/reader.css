@@ -234,3 +234,14 @@ textarea { width: 100%; min-height: 96px; border: 2px solid var(--line); border-
 .dgm svg { display: block; width: 100%; height: auto; max-height: 70vh; }
 .dgm svg text { font-family: var(--font-body); }
 .dgmcap { margin-top: 8px; font-weight: 600; }
+
+/* W22-S2: reading aloud. The sentence being read and its word are highlighted (the colours keep AA contrast with the ink),
+   the read progress sits under the topic title, and the outcomes fold away so the lesson starts on the first screen. */
+::highlight(nca-sent) { background-color: #FFE7A3; color: #1C1B1A; }
+::highlight(nca-word) { background-color: #F4A340; color: #1C1B1A; }
+.nca-reading { outline: 3px solid #F4A340; outline-offset: 4px; border-radius: 6px; }
+.readprog { margin-top: 10px; }
+.readprog .progressline { margin: 0 0 4px; }
+.outc { margin: 6px 0 2px; }
+.outc > summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; font-weight: 700; color: var(--ink-2); }
+.outc[open] > summary { min-height: 36px; }
