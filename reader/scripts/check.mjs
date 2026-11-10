@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url';
 const READER = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const ROOT = path.resolve(READER, '..');
 const arg = process.argv[2] ? path.resolve(process.argv[2]) : path.join(READER, 'content');
-const files = fs.statSync(arg).isDirectory() ? walk(arg).filter((f) => f.endsWith('.json') && path.basename(f) !== 'index.json') : [arg];
+const files = fs.statSync(arg).isDirectory() ? walk(arg).filter((f) => f.endsWith('.json') && !['index.json', 'book.json', 'books.json'].includes(path.basename(f))) : [arg];
 function walk(d) { return fs.readdirSync(d, { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? walk(path.join(d, e.name)) : [path.join(d, e.name)])); }
 
 const DEV = /[\u0900-\u097F]/;

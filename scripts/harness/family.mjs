@@ -208,7 +208,7 @@ export const FAMILY_SCREENS = [
   ['full', 'family-settings', '/family/settings', { settle: '[data-setting="readAloud"]' }],
   ['full', 'family-study', '/family/study', {}],
   // W16-B1: the Quick quiz card on the Study feed and on the home, and the quiz itself.
-  ['full', 'family-quiz-card-study', '/family/study?subject=science', { child: 'f0000000-0000-4000-8000-0000000fc002', prep: QUIZ_CARD, reset: FOLLOW_UP_CHAT_GONE, settle: '[data-quiz-card]' }],
+  ['full', 'family-quiz-card-study', '/family/study?subject=science', { child: 'f0000000-0000-4000-8000-0000000fc002', prep: QUIZ_CARD, reset: FOLLOW_UP_CHAT_GONE, settle: '[data-quiz-badge]' }],
   ['full', 'family-quiz-card-home', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002', prep: QUIZ_CARD, reset: FOLLOW_UP_CHAT_GONE, settle: '[data-quiz-card]' }],
   ['full', 'family-quiz-play', `/family/study/quiz/${QUIZ_ID}`, { child: 'f0000000-0000-4000-8000-0000000fc002', prep: QUIZ_CARD, reset: FOLLOW_UP_CHAT_GONE, settle: '[data-test-item]' }],
   // W16-A3: the Tutor Hall.
@@ -218,7 +218,14 @@ export const FAMILY_SCREENS = [
   // The child's book (founder, 9 Nov 2026): Asha in CBSE Class 10 sees NCERT Science's 13 chapters in Study, and a
   // chapter opens the chapter reader inside the Family app (its topics, diagrams and labs). Put back in Class 7 after.
   ['full', 'family-book-study', '/family/study?subject=science', { prep: CLASS_10, reset: CLASS_PUT_BACK, settle: '#fam-chapters' }],
+  // W22-S1: the quizzes page a subject chip's quiz badge opens, and the search in Study (a word typed, its results).
+  ['full', 'family-study-quizzes', '/family/study/quizzes?subject=science', { child: 'f0000000-0000-4000-8000-0000000fc002', prep: QUIZ_CARD, reset: FOLLOW_UP_CHAT_GONE, settle: '[data-quiz-card]' }],
+  ['full', 'family-study-search', '/family/study?subject=science', { prep: CLASS_10, reset: CLASS_PUT_BACK, settle: '[data-study-search-input]', steps: [{ fill: { field: '[data-study-search-input]', value: 'chemical' }, wait: '[data-search-results]' }] }],
   ['full', 'family-book-chapter', '/family/study/book/u.c10.science.jesc1.ch01', { prep: CLASS_10, reset: CLASS_PUT_BACK, settle: '[data-book-chapter] iframe', steps: [{ pause: 5000 }] }],
+  // W22-S2: the reader's first topic with Teach me tapped (the page reads it, highlights the sentence and word, and scrolls to it),
+  // and the tutor opened over the chapter with the chapter and topic as its context.
+  ['full', 'family-book-teach', '/family/study/book/u.c10.science.jesc1.ch01', { prep: CLASS_10, reset: CLASS_PUT_BACK, speech: true, settle: '[data-book-chapter] iframe', steps: [{ frame: true, tap: '[data-topic="0"]:visible', wait: '[data-mode="teach"]' }, { frame: true, tap: '[data-mode="teach"]' }, { pause: 2600 }] }],
+  ['full', 'family-book-tutor', '/family/study/book/u.c10.science.jesc1.ch01', { prep: CLASS_10, reset: CLASS_PUT_BACK, speech: true, settle: '[data-book-chapter] iframe', steps: [{ frame: true, tap: '[data-topic="0"]:visible', wait: '[data-mode="teach"]' }, { tap: '[data-book-ask]', wait: '[data-tutor-window]' }, { pause: 600 }] }],
   ['full', 'family-understand', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="practice"]' }],
   // W8-AI: a v7 answer with a mind map (an SVG from 480 px, a vertical tree below) and a check that says why each wrong option is wrong.
   ['full', 'family-understand-mindmap', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch90.t07', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="mind_map"]' }],
@@ -258,6 +265,9 @@ export const FAMILY_SCREENS = [
   // Then the parent area right after a child's class is saved: the "Saved" line (Asha is put back in Class 7 after).
   ['full', 'family-tutor-followup', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', prep: FOLLOW_UP_CHAT, reset: FOLLOW_UP_CHAT_GONE, answer: FOLLOW_UP_ANSWER, settle: '[data-tutor-rail]', steps: [{ fill: { field: '[data-tutor-window] textarea', value: 'Can you show it with an example?' }, tap: '[data-tutor-send]', wait: '[data-tutor-window][data-listed="science"] [data-feed-moved="science"]' }] }],
   ['full', 'family-parent-child-saved', '/family/parent#children', { parent: true, reset: CLASS_PUT_BACK, settle: '[data-parent-panel="children"]:not([hidden])', steps: [{ tap: '[data-child-edit]', wait: 'select[id$="-class"]' }, { select: { field: 'select[id$="-class"]', value: '3' }, tap: '[data-parent-panel="children"] form button[type="submit"]', wait: '[data-child-saved]' }] }],
+  // W22-S3: a kept answer read aloud, caught in the middle: the tutor's face stays at the top of the feed, the sentence is
+  // marked and kept on screen, and the read-aloud line says how much is read.
+  ['full', 'family-tutor-reading', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', speakStub: true, viewportShot: true, settle: '[data-tutor-turns] [data-feed-answer]', steps: [{ tap: '[data-feed-answer] [data-teach-me]', pause: 3300, wait: '[data-sticky-face]' }] }],
   // M2-5 (C279): the honest player under the response, before and after the tap that loads the embed.
   ['full', 'family-video', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-video-play]' }],
   ['full', 'family-video-playing', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-video-play]', tap: '[data-video-play]' }],
@@ -551,6 +561,25 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
           await context.addCookies(cookies.map((c) => ({ ...c, domain: '127.0.0.1', path: '/', httpOnly: true, sameSite: 'Lax' })));
           // A device setting the screen reads from the phone's storage (the data-saver, M2-9).
           if (opts.storage) await context.addInitScript((s) => Object.entries(s).forEach(([k, v]) => window.localStorage.setItem(k, v)), opts.storage);
+          // `speakStub` (W22-S3): a phone's speech engine that "reads" each sentence for 2.2 s and reports word boundaries,
+          // so a picture can be taken in the middle of a read-aloud (headless Chromium has no voice). The product code is untouched.
+          if (opts.speakStub)
+            await context.addInitScript(() => {
+              const voices = [{ lang: 'en-IN', name: 'stub' }, { lang: 'hi-IN', name: 'stub-hi' }];
+              let timer = 0;
+              const synth = {
+                getVoices: () => voices,
+                cancel: () => clearTimeout(timer),
+                speak: (u) => {
+                  u.onstart?.({});
+                  const words = [...u.text.matchAll(/\S+/g)];
+                  words.forEach((m, i) => setTimeout(() => u.onboundary?.({ charIndex: m.index }), (2200 * i) / Math.max(1, words.length)));
+                  timer = setTimeout(() => u.onend?.({}), 2200);
+                },
+              };
+              Object.defineProperty(window, 'speechSynthesis', { value: synth, configurable: true });
+              window.SpeechSynthesisUtterance = function (text) { this.text = text; };
+            });
           // The checked pages' pictures are drawn in the browser (marking-seed.mjs): the harness has no file store.
           if (opts.pictures) await routeScriptPictures(context);
           // `answer`: the tutor's answer, scripted (W10, C411): the harness calls no model, so a typed question's
@@ -570,6 +599,31 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
             await context.route('**/api/family/voice', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ text: CALL_WORDS[lang].heard, left: 100, maxSeconds: 30 }) }));
             await context.route('**/api/family/voice/speak', (r) => r.fulfill({ status: 503, contentType: 'application/json', body: JSON.stringify({ error: 'not_set_up' }) }));
             await context.route('**/api/family/voice/call/marks', (r) => r.fulfill({ status: 204 }));
+          }
+          // `speech` (W22-S2): a speech engine that says each word every 420 ms and reports the word boundaries, so a picture can
+          // show the sentence and word being read (headless Chromium has no voices).
+          if (opts.speech) {
+            await context.addInitScript(() => {
+              const voices = [{ lang: 'en-IN', name: 'harness en' }, { lang: 'hi-IN', name: 'harness hi' }];
+              const ss = {
+                getVoices: () => voices, speaking: false, u: null, t: 0,
+                cancel() { clearTimeout(ss.t); ss.u = null; },
+                speak(u) {
+                  ss.u = u;
+                  if (u.onstart) u.onstart({});
+                  const words = [...u.text.matchAll(/\S+/g)];
+                  let i = 0;
+                  const tick = () => {
+                    if (ss.u !== u) return;
+                    if (i < words.length) { if (u.onboundary) u.onboundary({ charIndex: words[i].index, name: 'word' }); i++; ss.t = setTimeout(tick, 420); } else { ss.u = null; if (u.onend) u.onend({}); }
+                  };
+                  ss.t = setTimeout(tick, 30);
+                },
+                addEventListener() {}, removeEventListener() {},
+              };
+              Object.defineProperty(window, 'speechSynthesis', { value: ss, configurable: true });
+              window.SpeechSynthesisUtterance = function (text) { this.text = text; };
+            });
           }
           const page = await context.newPage();
           const errors = [];
@@ -594,7 +648,9 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
             // `fill` and `select` (W10, C411): words typed into a field, a value picked in a drop-down.
             if (step.fill) await page.locator(step.fill.field).first().fill(step.fill.value).catch(() => errors.push(`${step.fill.field} could not be filled`));
             if (step.select) await page.locator(step.select.field).first().selectOption(step.select.value).catch(() => errors.push(`${step.select.field} could not be chosen`));
-            if (step.tap) await page.locator(step.tap).first().click().catch(() => errors.push(`${step.tap} could not be tapped`));
+            // `frame` (W22-S2): the tap or wait is inside the chapter reader's frame.
+            const where = step.frame ? page.frameLocator('[data-book-chapter] iframe') : page;
+            if (step.tap) await where.locator(step.tap).first().click().catch(() => errors.push(`${step.tap} could not be tapped`));
             if (step.pause) await page.waitForTimeout(step.pause);
             // `choose`: a value in a drop-down when it shows (a phone), else a tap on the wide screen's own control (W9-A).
             if (step.choose) {
@@ -602,7 +658,7 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
               const done = (await field.isVisible().catch(() => false)) ? field.selectOption(step.choose.value) : page.locator(step.choose.or).first().click();
               await done.catch(() => errors.push(`${step.choose.field} could not be chosen`));
             }
-            if (step.wait) await page.locator(step.wait).first().waitFor({ timeout: 20000 }).catch(() => errors.push(`${step.wait} never appeared`));
+            if (step.wait) await where.locator(step.wait).first().waitFor({ timeout: 20000 }).catch(() => errors.push(`${step.wait} never appeared`));
           }
           // A full-page picture does not scroll, so a lazy picture below the fold would never load: load them all first.
           if (opts.pictures) {
@@ -646,7 +702,7 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
             return r.violations.filter((v) => v.impact === 'serious' || v.impact === 'critical').map((v) => `${v.id} (${v.nodes.length}) at ${v.nodes[0].target.join(' ')}: ${(v.nodes[0].any[0]?.message ?? '').slice(0, 140)}`);
           });
           const file = `${name}-${lang}-${motion === 'reduce' ? 'still' : 'motion'}-${width}.png`;
-          await page.screenshot({ path: path.join(out, file), fullPage: true });
+          await page.screenshot({ path: path.join(out, file), fullPage: !opts.viewportShot });
           const problems = [];
           if (response.status() !== 200) problems.push(`answered ${response.status()}`);
           if (seen.path !== route.split(/[?#]/)[0]) problems.push(`landed on ${seen.path}`);

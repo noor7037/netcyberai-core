@@ -1,7 +1,7 @@
-import { existsSync, readFileSync } from 'fs';
+import { existsSync, readdirSync, readFileSync } from 'fs';
 import path from 'path';
 import { describe, expect, it } from 'vitest';
-import { BOOKS, bookChapter, bookFor, bookHref, readerSrc } from '@/lib/family/books';
+import { BOOKS, bookChapter, bookFor, bookHref, booksFromRegistry, readerSrc, type ReaderIndex } from '@/lib/family/books';
 import { allowedLearnFile } from '@/lib/family/learn-files';
 import { readCatalogCsv } from '@/lib/content/catalog-csv';
 
@@ -61,9 +61,52 @@ describe('the child’s book in Study (founder, 9 Nov 2026)', () => {
   });
 });
 
+describe('how a book reaches the app: the generated registry (W22-S4)', () => {
+  const content = path.join(ROOT, 'reader/content');
+  const folders = readdirSync(content, { withFileTypes: true })
+    .filter((e) => e.isDirectory() && /^c\d\d$/.test(e.name))
+    .flatMap((c) => readdirSync(path.join(content, c.name), { withFileTypes: true }).filter((s) => s.isDirectory() && existsSync(path.join(content, c.name, s.name, 'book.json'))).map((s) => ({ cls: +c.name.slice(1), subject: s.name })));
+
+  it('lists every book folder, each with its boards and its catalog chapter carried over from book.json', () => {
+    expect(folders.length).toBeGreaterThan(0);
+    expect(BOOKS.map((b) => `${b.classLevel}/${b.subject}`).sort()).toEqual(folders.map((f) => `${f.cls}/${f.subject}`).sort());
+    for (const b of BOOKS) expect(b.boards.length, b.id).toBeGreaterThan(0);
+    const sci = bookFor({ board: 'CBSE', classLevel: 10, subject: 'science' })!;
+    expect(sci.chapters.find((c) => c.number === 2)?.catalogKey).toBe('cbse.c10.science.u1.ch03');
+    expect(sci.chapters.every((c) => c.topicTitles!.length === c.topics)).toBe(true);
+  });
+
+  it('a second book in a registry resolves for its own class and board, and the first still resolves', () => {
+    const t = (en: string) => ({ en, hi: 'हिं' });
+    const fake: ReaderIndex = {
+      id: 'ncert.jemh1', class: 7, subject_id: 'mathematics', boards: ['CBSE', 'CISCE'],
+      chapters: [
+        { key: 'u.c07.mathematics.jemh1.ch01', number: 1, title: t('Integers'), file: 'c07/mathematics/u.c07.mathematics.jemh1.ch01.json', topics: 2, minutes: 30, topic_titles: [t('A'), t('B')], catalog_key: 'cbse.c7.mathematics.u1.ch01' },
+        { key: 'u.c07.mathematics.jemh1.ch02', number: 2, title: t('Fractions'), file: null, topics: 0, minutes: 0 },
+      ],
+    };
+    const books = booksFromRegistry({ books: [...(JSON.parse(readFileSync(path.join(ROOT, 'reader/content/books.json'), 'utf8')).books as ReaderIndex[]), fake] });
+    const hit = bookFor({ board: 'CISCE', classLevel: 7, subject: 'mathematics' }, books);
+    expect(hit?.id).toBe('ncert.jemh1');
+    // A planned chapter (no reader file) is not offered; the catalog key and topic titles come through.
+    expect(hit!.chapters.map((c) => c.number)).toEqual([1]);
+    expect(hit!.chapters[0].catalogKey).toBe('cbse.c7.mathematics.u1.ch01');
+    expect(hit!.chapters[0].topicTitles).toHaveLength(2);
+    expect(bookFor({ board: 'CBSE', classLevel: 10, subject: 'science' }, books)?.id).toBe('ncert.jesc1');
+    expect(bookFor({ board: 'ICSE', classLevel: 7, subject: 'mathematics' }, books)).toBeNull();
+  });
+
+  it('no book for a class without one', () => {
+    // Whichever classes the content team has not reached yet (this stays true as books are added), and a class no book can have.
+    for (const cls of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].filter((c) => !folders.some((f) => f.cls === c))) expect(bookFor({ board: 'CBSE', classLevel: cls, subject: 'science' }), `class ${cls}`).toBeNull();
+    expect(bookFor({ board: 'CBSE', classLevel: 99, subject: 'science' })).toBeNull();
+    expect(booksFromRegistry({ books: [] })).toEqual([]);
+  });
+});
+
 describe('the reader’s files served under /family/learn/', () => {
   it('serves the pages, scripts, chapter and lab data, and the images', () => {
-    for (const p of ['reader/index.html', 'reader/reader.js', 'reader/reader.css', 'reader/content/index.json', 'reader/content/c10/science/u.c10.science.jesc1.ch01.json', 'labs/index.html', 'labs/engine.js', 'labs/lib.js', 'labs/styles.css', 'labs/index.json', 'labs/templates/beaker.js', 'labs/defs/c10/science/u.c10.science.jesc1.ch01.json', 'labs/assets/manifest.json']) {
+    for (const p of ['reader/index.html', 'reader/reader.js', 'reader/reader.css', 'reader/content/books.json', 'reader/content/c10/science/index.json', 'reader/content/c10/science/u.c10.science.jesc1.ch01.json', 'labs/index.html', 'labs/engine.js', 'labs/lib.js', 'labs/styles.css', 'labs/index.json', 'labs/templates/beaker.js', 'labs/defs/c10/science/u.c10.science.jesc1.ch01.json', 'labs/assets/manifest.json']) {
       expect(allowedLearnFile(p.split('/')), p).toBe(p);
     }
     expect(allowedLearnFile(['labs', 'assets', 'c10', 'science', 'C10-SCI-CH01-01_hook-of-the-chapter.640.webp'])).not.toBeNull();

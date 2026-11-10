@@ -177,9 +177,10 @@ python3 scripts/check_family_boundary.py --self-test
 python3 scripts/check_family_boundary.py
 STEP
 
-run_step "Every lab template, lab file and chapter reader file passes its checker" <<'STEP'
+run_step "Every lab template, lab file, chapter reader file and book index passes its checker" <<'STEP'
 node labs/scripts/check.mjs
 node reader/scripts/check.mjs
+node reader/scripts/check_books.mjs
 STEP
 
 run_step "No secrets committed" <<'STEP'

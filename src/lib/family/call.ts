@@ -91,6 +91,20 @@ export function spokenSentences(blocks: readonly { type: string }[], max: number
   return out;
 }
 
+// W22-S3: the voice takes one request at a time (ANSWER_SPOKEN_MAX characters), so an answer is read in parts. The part
+// that starts at sentence `from`: whole sentences up to `max` characters; the index just past its last sentence. At least
+// one sentence is always taken (a longer one is cut by the server), so reading always moves on. The phone and the server
+// both use this, so they cut the answer in the same places.
+export function chunkEnd(sentences: readonly string[], from: number, max: number): number {
+  let end = from;
+  let length = -1;
+  while (end < sentences.length && (end === from || length + 1 + sentences[end].length <= max)) {
+    length += 1 + sentences[end].length;
+    end++;
+  }
+  return end;
+}
+
 // Which sentence a character of the spoken text (the sentences joined by one space, as spokenAnswer joins them) falls in,
 // from 0. A voice says where it is by character: the phone's word boundaries, or, for the server voice, which reports
 // none, how much of the audio has played turned into a character by the caller. The space after a sentence belongs to

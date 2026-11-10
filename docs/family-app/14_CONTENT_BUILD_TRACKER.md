@@ -49,7 +49,7 @@ Images to review (from the build): ionic crystal "34" has a baked-in checkerboar
 3. Confirm whether Class 12 needs a Physical Education book.
 4. A source for CBSE subjects with no NCERT book (Applied Maths, Engineering Graphics, Entrepreneurship, Legal Studies, Music, Dance, AI/skills).
 5. Review the 496 syllabus rows with no lab file (mostly PE, arts and activity lines); the 5 no-lab files are deliberate (reading-only and poetry).
-6. ~~Put `reader/` and `labs/` where students can open them~~ Done (C487): a CBSE Class 10 child's Study lists the 13 chapters and opens each in the reader inside the Family app; served to signed-in families only. Next: progress per child (today per device), and each new book added to `src/lib/family/books.ts` with its class's lab folder in `next.config.js`.
+6. ~~Put `reader/` and `labs/` where students can open them~~ Done (C487): a CBSE Class 10 child's Study lists the 13 chapters and opens each in the reader inside the Family app; served to signed-in families only. Books are now data (C491): add `book.json`, run `node reader/scripts/index.mjs` and `check_books.mjs`, merge; no app code or `next.config.js` edit (docs/family-app/12 §8a). Next: progress per child (today per device).
 7. GitHub Actions does not start any job: "recent account payments have failed or your spending limit needs to be increased" (annotation on run 42612986396). Noor: Billing & plans on the noor7037 account.
 8. Native-speaker read of the Hindi in every chapter: the agents read explanations sentence by sentence, but check-question pools and test options were partly fixed by word lists.
 10. Lab templates still carry a few bookish Hindi words of their own (e.g. अंडाणु, प्रतिलिपि in `cross`, नेफ्रॉन in `body`).

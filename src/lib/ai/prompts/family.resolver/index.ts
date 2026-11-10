@@ -9,6 +9,7 @@ import * as v8 from './v8';
 import * as v9 from './v9';
 import * as v10 from './v10';
 import * as v11 from './v11';
+import * as v12 from './v12';
 
 // The family.resolver prompt versions in this repository (docs/family-app/08 §7). Control chooses the active version
 // (control.ai_profiles.prompt_version); a version the code does not have falls back to the default (v10 since W18-P2, v9 since W16). A typed
@@ -64,6 +65,10 @@ const V10: ResolverPrompt = { version: v10.RESOLVER_PROMPT_VERSION, namesSubject
 // name; v10 stays the code-only fallback until the founder switches.
 const V11: ResolverPrompt = { version: v11.RESOLVER_PROMPT_VERSION, namesSubject: true, usesPlan: true, system: v11.resolverSystem, user: v11.resolverUser };
 
+// v12 (W22-S3): v11 with one line: address the learner by the literal token {{name}}, which the server swaps for the
+// child's first name after the answer returns (the name never reaches a provider). Chosen by Control by name.
+const V12: ResolverPrompt = { version: v12.RESOLVER_PROMPT_VERSION, namesSubject: true, usesPlan: true, system: v12.resolverSystem, user: v12.resolverUser };
+
 export const RESOLVER_PROMPTS: readonly ResolverPrompt[] = [
   { version: v1.RESOLVER_PROMPT_VERSION, namesSubject: false, system: (a) => v1.resolverSystem(withSubject(a)), user: (a) => v1.resolverUser(withSubject(a)) },
   { version: v2.RESOLVER_PROMPT_VERSION, namesSubject: true, system: (a) => v2.resolverSystem(asV2(a)), user: (a) => v2.resolverUser(asV2(a)) },
@@ -78,6 +83,7 @@ export const RESOLVER_PROMPTS: readonly ResolverPrompt[] = [
   V9,
   V10,
   V11,
+  V12,
 ];
 
 // The fallback for a version the code does not have, and for a typed question under a version that cannot name the

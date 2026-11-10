@@ -349,6 +349,16 @@ Each phase is one or a few PRs, in order. Sizes are rough.
 | **4 Interactive pieces** | a registry of our own SVG/canvas pieces chosen from the `visual_ideas` already collected (e.g. ray through glass, number line, fraction bar, circuit, balance), each with a fixed set of parameters and a diagram fallback; AI may only name a piece and its parameters | `src/components/family/interactive/` | runs smoothly on a low-cost phone; reduced motion respected |
 | **5 Personalised syllabus** | board and school syllabus versions map to universal keys; order and extras follow the school | content mapping table, Study | a CBSE and a state-board child see their own order over the same lessons |
 
+## 8a. How a book reaches the Family app
+
+A book (one class, one subject, one NCERT book) appears in the right child's Study by merging its files; no app code changes (W22-S4, C491).
+
+1. Add the chapter files `reader/content/c<NN>/<subject>/<chapter key>.json` and their lab files `labs/defs/c<NN>/<subject>/<chapter key>.json`.
+2. Add `reader/content/c<NN>/<subject>/book.json` once per book: `id` (e.g. `ncert.jesc1`), `boards` (the boards that read it, e.g. `["CBSE"]`) and, where the board's catalog has the chapter, `catalog` (`board` and `chapters`: book chapter number to catalog chapter key; chapters the catalog lacks are left out).
+3. Run `node reader/scripts/index.mjs`. It writes the book's `index.json` (chapters, topics, minutes, topic titles for search, catalog key) and the registry `reader/content/books.json` that the app reads (`src/lib/family/books.ts`).
+4. Run `node reader/scripts/check.mjs` (chapter quality) and `node reader/scripts/check_books.mjs` (the book: every chapter file in its index, indexes not stale, boards known, catalog keys real in `data/catalog/*.csv`, labs defs present and every lab named exists).
+5. Merge. The book's chapters show for a child whose board, class and subject match, the reader opens them (`reader/index.html#c<NN>/<subject>/<key>`, or `?book=c<NN>/<subject>` for its home), and `next.config.js` ships the class's lab files because it reads the registry. One book per class and subject folder.
+
 ## 9. Production order and size
 
 About 3,000–3,500 topics across Classes 1–12 (roughly 750 for 1–5, 1,400 for 6–10, 1,100 for 11–12), each about

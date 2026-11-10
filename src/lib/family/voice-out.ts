@@ -4,7 +4,7 @@ import { guarded, loadChapter } from './chapter-store';
 import { chapterView } from './chapters';
 import { activeChild, isPrePrimary, listChildren, type FamilyChild } from './children';
 import { callGate } from './call-gate';
-import { spokenAnswer } from './call';
+import { chunkEnd, spokenSentences } from './call';
 import { parseBlockLine, type Block } from './blocks';
 import { consentState } from './consent';
 import { LIVE_REPLY_MAX, isUuid, liveChild } from './english/live';
@@ -84,7 +84,7 @@ export function openCallLine(token: unknown, ctx: { accountId: string; childId: 
 
 // ---- what may be spoken ----------------------------------------------------------------------------------------------
 
-export type SpeakAsk = { kind: 'chapter'; chapterKey: string; blockId: string; sentence: number } | { kind: 'live_line'; token: string } | { kind: 'live_turn'; sessionId: string; position: number } | { kind: 'call_line'; token: string } | { kind: 'tutor_answer'; messageId: string };
+export type SpeakAsk = { kind: 'chapter'; chapterKey: string; blockId: string; sentence: number } | { kind: 'live_line'; token: string } | { kind: 'live_turn'; sessionId: string; position: number } | { kind: 'call_line'; token: string } | { kind: 'tutor_answer'; messageId: string; from?: number };
 
 // The request's body, checked for shape only (what it names is checked against the database below).
 export function speakAsk(body: Record<string, unknown>): SpeakAsk | null {
@@ -92,7 +92,12 @@ export function speakAsk(body: Record<string, unknown>): SpeakAsk | null {
     return { kind: 'chapter', chapterKey: body.chapterKey, blockId: body.blockId, sentence: body.sentence as number };
   if (body.kind === 'live_line' && typeof body.token === 'string') return { kind: 'live_line', token: body.token };
   if (body.kind === 'call_line' && typeof body.token === 'string') return { kind: 'call_line', token: body.token };
-  if (body.kind === 'tutor_answer' && isUuid(body.messageId)) return { kind: 'tutor_answer', messageId: body.messageId };
+  if (body.kind === 'tutor_answer' && isUuid(body.messageId)) {
+    // W22-S3: `from` is the sentence a part of a long answer starts at (the answer is read in parts, and resumes).
+    if (body.from === undefined) return { kind: 'tutor_answer', messageId: body.messageId };
+    if (Number.isInteger(body.from) && (body.from as number) >= 0 && (body.from as number) <= 500) return { kind: 'tutor_answer', messageId: body.messageId, from: body.from as number };
+    return null;
+  }
   if (body.kind === 'live_turn' && isUuid(body.sessionId) && Number.isInteger(body.position) && (body.position as number) >= 1) return { kind: 'live_turn', sessionId: body.sessionId, position: body.position as number };
   return null;
 }
@@ -138,7 +143,10 @@ export async function speakLine(db: Db, accountId: string, chosen: string | unde
     // Read back through the block checks, as the feed does; only the teaching text is spoken (never a title, a formula
     // or a question), cut at a sentence to the voice's limit.
     const blocks = (Array.isArray(rows[0].blocks) ? rows[0].blocks : []).map((b: unknown) => parseBlockLine(JSON.stringify(b))).filter((b: Block | null): b is Block => b !== null);
-    const text = spokenAnswer(blocks, VOICE_TEXT_MAX);
+    // W22-S3: the whole answer, read in parts: the part that starts at sentence `from`, the same cut the phone makes.
+    const all = spokenSentences(blocks, Number.MAX_SAFE_INTEGER);
+    const from = ask.from ?? 0;
+    const text = all.slice(from, chunkEnd(all, from, VOICE_TEXT_MAX)).join(' ').slice(0, VOICE_TEXT_MAX);
     if (!text) return { ok: false, status: 404, error: 'not_found' };
     return { ok: true, child, children, text, language: rows[0].lang === 'hi' ? 'hi' : 'en' };
   }

@@ -17,7 +17,7 @@ import { MindMapView } from './blocks/MindMapView';
 import { VideoPicks } from './VideoPicks';
 import { isSimScene, placeBlock, unfilled } from '@/lib/family/blocks';
 import { boardCursorFromSentence } from '@/lib/family/board';
-import { ANSWER_SPOKEN_MAX, spokenSentences } from '@/lib/family/call';
+import { spokenSentences } from '@/lib/family/call';
 
 import { citationOf } from '@/lib/family/citation';
 import { useTutorBoard } from './tutor/switches';
@@ -28,7 +28,8 @@ import { StepsView } from './blocks/StepsView';
 import { TimelineView } from './blocks/TimelineView';
 import { ImageView } from './blocks/ImageView';
 import { VideosView } from './blocks/VideosView';
-import { TutorFace } from './avatar/TutorFace';
+import { StickyTutorFace } from './avatar/TutorFace';
+import type { Reading } from './voice/AnswerSpeaker';
 import { avatarState, setAvatarMood } from '@/lib/family/avatar-state';
 // The speaker and Teach me load with the first answer drawn, off the Study page's first load (the family budget, W18).
 const AnswerSpeaker = dynamic(() => import('./voice/AnswerSpeaker').then((m) => m.AnswerSpeaker));
@@ -161,6 +162,8 @@ export function AnswerBlock({ b, w, tone, lead = false, onRetry, onOffline, sent
 export function UnderstandView({ w, input, tone, initial = null, offline = false, onDone, sentence, speak, tutorKey = null }: { w: Words; input: UnderstandInput; tone: string; initial?: ResolverEvent[] | null; offline?: boolean; onDone?: (chat?: { chatId: string; subject: string }) => void; sentence?: number; speak?: { serverVoice: boolean }; tutorKey?: string | null }) {
   const [messageId, setMessageId] = useState<string | null>(null);
   const [spokenAt, setSpokenAt] = useState<number | undefined>(undefined);
+  // W22-S3: whether the answer is being read aloud, so the tutor's face stays on screen while it is.
+  const [reading, setReading] = useState<Reading>({ speaking: false, percent: 0 });
   const [meta, setMeta] = useState<Meta | null>(() => initial?.find((e): e is Meta => e.t === 'meta') ?? null);
   const [blocks, setBlocks] = useState<PublicBlock[]>(() => (initial ?? []).flatMap((e) => (e.t === 'block' ? [e.block] : [])));
   const [state, setState] = useState<'loading' | 'streaming' | 'done' | 'incomplete' | 'refused'>(initial ? 'done' : 'loading');
@@ -295,8 +298,8 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
 
   // W18-P1: the kept answer's voice: the same words the server voice speaks for that message (call.ts spokenSentences),
   // only once the answer is complete and kept. An answer with nothing to say aloud has no buttons.
-  const sentences = speak && messageId && (state === 'done' || state === 'incomplete') ? spokenSentences(shown, ANSWER_SPOKEN_MAX) : [];
-  const voice = speak && messageId && sentences.length > 0 ? { messageId, sentences, serverVoice: speak.serverVoice, onSentence: setSpokenAt } : null;
+  const sentences = speak && messageId && (state === 'done' || state === 'incomplete') ? spokenSentences(shown, Infinity) : [];
+  const voice = speak && messageId && sentences.length > 0 ? { messageId, sentences, serverVoice: speak.serverVoice, onSentence: setSpokenAt, onReading: setReading } : null;
 
   // Keyed by the block's place in the response, so turning the data-saver on or off keeps each block's state.
   const draw = (b: PublicBlock) => {
@@ -306,6 +309,9 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
 
   return (
     <div ref={top} className="fam-lesson flex flex-col gap-3" aria-busy={state === 'loading' || state === 'streaming'}>
+      {(state === 'loading' || state === 'streaming' || reading.speaking) && (
+        <StickyTutorFace tutorKey={tutorKey} label={reading.speaking ? w['fam.tutor.readingNow'] : w['fam.understand.loading']} percent={reading.speaking ? reading.percent : undefined} />
+      )}
       {filesNote && (
         <p role="status" data-files-note className="rounded-2xl bg-white px-4 py-3 text-sm font-semibold text-slate ring-1 ring-slate/10">
           {filesNote}
@@ -345,17 +351,16 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
       )}
       {citation && <CitationChip w={w} c={citation} />}
       {lead && <DirectAnswerCard w={w} b={lead} />}
-      {voice && <TeachMe w={w} {...voice} root={top} tutorKey={tutorKey} />}
+      {voice && <TeachMe w={w} {...voice} root={top} />}
       {model && (
         <button type="button" data-show-model onClick={() => showModel(top.current)} className="fam-press fam-lesson-chip min-h-[44px] self-start rounded-full bg-white px-4 text-sm font-bold text-ink">
           {w['fam.understand.show3d']}
         </button>
       )}
       {drawn.filter((b) => b.type !== 'videos').map((b) => draw(b))}
-      {voice && <AnswerSpeaker w={w} {...voice} />}
+      {voice && <AnswerSpeaker w={w} {...voice} root={top} />}
       {(state === 'loading' || state === 'streaming') && (
         <div className="flex flex-col gap-3" aria-hidden="true">
-          <TutorFace size="md" tutorKey={tutorKey} className="self-center" />
           <div className="h-32 animate-pulse rounded-3xl bg-white motion-reduce:animate-none" />
           <div className="h-20 animate-pulse rounded-3xl bg-white motion-reduce:animate-none" />
         </div>

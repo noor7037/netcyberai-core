@@ -112,7 +112,7 @@ async function answer() {
     }
   });
   const plan = { questionType: 'concept', band: 'c6_8', depth: 'medium', blocks: ['explanation', 'check', 'practice'], visuals: [], lang: 'en' };
-  const g = { sent: { result: sent.result, record: async () => {} }, subject: 'science', kept, refusedByModel: false, stopped: false, error: null, objects: kept.length, rejected: [], ...scan.dropped(), plan } as unknown as Generated;
+  const g = { sent: { result: sent.result, record: async () => {} }, subject: 'science', kept, shared: kept, refusedByModel: false, stopped: false, error: null, objects: kept.length, rejected: [], ...scan.dropped(), plan } as unknown as Generated;
   const pending = { ctx: { refusalWords: (k: string) => k }, line: null, moderation: null, cacheable: false } as unknown as Pending;
   return { result: sent.result, kept: kept.map((b) => b.type), done: await keep({ query: async () => ({ rows: [] }) }, pending, g) };
 }

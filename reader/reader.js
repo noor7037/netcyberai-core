@@ -6,7 +6,7 @@
   const app = document.getElementById('app');
   const ROOT = 'content/';
   const STORE = 'nca.reader.v1.';
-  const S = { lang: 'en', idx: null, ch: null, view: 'home', ti: 0, mode: 'teach', listen: false, parentOpen: false, answers: {}, check: null, test: null, sheet: null };
+  const S = { lang: 'en', idx: null, ch: null, view: 'home', ti: 0, mode: 'teach', listen: false, parentOpen: false, answers: {}, check: null, test: null, sheet: null, host: false };
   try { const v = localStorage.getItem(STORE + 'lang'); if (v === 'en' || v === 'hi') S.lang = v; } catch (e) {}
   const qp = new URLSearchParams(location.search); if (qp.get('lang') === 'hi' || qp.get('lang') === 'en') S.lang = qp.get('lang');
 
@@ -99,6 +99,14 @@
       return esc(seg).replace(/\b((?:[A-Z][a-z]?\d*|\((?:[A-Z][a-z]?\d*)+\)\d+){2,})\b/g, (f) => (/\d/.test(f) ? f.replace(/([A-Za-z\)])(\d+)/g, '$1<sub>$2</sub>') : f));
     }).join('');
   }
+  Object.assign(U, {
+    readPct: { en: '{n}% read · {m}% left', hi: '{n}% पढ़ लिया · {m}% बाकी' },
+    chRead: { en: 'Chapter read so far', hi: 'चैप्टर अब तक' },
+    yourTurn: { en: 'Your turn. Answer, then tap the speaker to go on.', hi: 'अब तुम्हारी बारी। जवाब दो, फिर आगे सुनने के लिए स्पीकर दबाओ।' },
+    endTopic: { en: 'That is the whole topic. Try the check below.', hi: 'पूरा टॉपिक हो गया। अब नीचे चेक करके देखो।' },
+    noVoice: { en: 'This phone cannot read aloud right now.', hi: 'इस फ़ोन पर अभी पढ़कर सुनाना नहीं हो पा रहा।' },
+    pauseRead: { en: 'Pause reading', hi: 'पढ़ना रोको' },
+  });
   const L = (x) => `lang="${S.lang}"`;
 
   // ---------- storage ----------
@@ -115,21 +123,227 @@
   function save() { try { localStorage.setItem(key(), JSON.stringify(P())); } catch (e) {} }
   function setLang(l) { S.lang = l; try { localStorage.setItem(STORE + 'lang', l); } catch (e) {} document.documentElement.lang = l; document.querySelectorAll('iframe.labframe').forEach((f) => { try { f.contentWindow.postMessage({ source: 'nca-reader', type: 'lang', lang: l }, '*'); } catch (e) {} }); }
 
-  // ---------- speech ----------
+  // ---------- reading aloud (W22-S2) ----------
+  // Inside the Family app the page that frames this reader plays the sentences with the Family voice (the phone's own
+  // or the Android app's) and tells us which sentence, and which word, is being said: we highlight it, scroll to it and
+  // keep the place. Opened on its own, the browser's own speech engine reads the same sentences. No sentence is cut.
+  const CHILD = (qp.get('child') || '').replace(/[^0-9a-zA-Z-]/g, '').slice(0, 48);
   const canSpeak = 'speechSynthesis' in window;
-  function speak(text) {
-    if (!canSpeak || !text) return;
+  const post = (m) => { try { if (window.parent !== window) window.parent.postMessage(Object.assign({ source: 'nca-reader' }, m), location.origin); } catch (e) {} };
+  const canListen = () => S.host || canSpeak;
+  const SKIP_SEL = 'svg, iframe, textarea, input, script, style, .noread, .sheet, [aria-hidden="true"]';
+  const BLOCK_SEL = 'p, li, h1, h2, h3, h4, div, figcaption, td, th, section, button, summary';
+  const Say = { on: false, id: 0, tp: null, step: 0, q: null, el: null, once: false };
+
+  // The reading place and what has been read: on this device, for this child (the id comes in the address), per topic.
+  const readKey = () => STORE + 'read.' + (CHILD || 'device') + '.' + S.ch.chapter_key;
+  function readAll() {
+    if (S._read && S._read.k === readKey()) return S._read.v;
+    let v = {};
+    try { v = JSON.parse(localStorage.getItem(readKey()) || '{}') || {}; } catch (e) {}
+    S._read = { k: readKey(), v };
+    return v;
+  }
+  const saveRead = () => { try { if (S._read) localStorage.setItem(S._read.k, JSON.stringify(S._read.v)); } catch (e) {} };
+  const topicRead = (id) => { const a = readAll(); return a[id] || (a[id] = { done: [], step: 0, sent: 0, n: 0 }); };
+  // Share of a topic read: steps read to the end, plus the part of the step being read.
+  function topicShare(tp) {
+    const r = readAll()[tp.id]; if (!r) return 0;
+    const whole = r.done.filter((i) => i < tp.steps.length).length;
+    const part = !r.done.includes(r.step) && r.n ? Math.min(1, r.sent / r.n) : 0;
+    return Math.min(1, (whole + part) / tp.steps.length);
+  }
+  const chapterShare = () => {
+    const all = S.ch.topics.reduce((a, x) => a + x.steps.length, 0) || 1;
+    return Math.min(1, S.ch.topics.reduce((a, x) => a + topicShare(x) * x.steps.length, 0) / all);
+  };
+  const pct = (x) => Math.round(x * 100);
+  const pctWords = (x) => fill(t(U.readPct), { n: pct(x), m: 100 - pct(x) });
+  function updateProgress() {
+    if (!S.ch) return;
+    document.querySelectorAll('[data-readpct]').forEach((el) => {
+      const id = el.dataset.readpct;
+      const x = id === 'chapter' ? chapterShare() : topicShare(S.ch.topics.find((k) => k.id === id) || S.ch.topics[0]);
+      const bar = el.querySelector('i'); if (bar) bar.style.width = pct(x) + '%';
+      const lab = el.querySelector('.rp'); if (lab) lab.textContent = pctWords(x);
+    });
+    document.querySelectorAll('[data-topicpct]').forEach((el) => { const tp = S.ch.topics.find((k) => k.id === el.dataset.topicpct); if (tp) el.textContent = topicShare(tp) > 0 ? ' · ' + pctWords(topicShare(tp)) : ''; });
+  }
+  const readBar = (id, x) => `<div class="readprog" data-readpct="${esc(id)}"><div class="progressline"><i style="width:${pct(x)}%"></i></div><span class="rp mini">${esc(pctWords(x))}</span></div>`;
+
+  // Text of the part of the page being read, cut into sentences, each with where it sits in the page.
+  function sentSplit(line) {
+    const out = []; let st = 0;
+    for (let i = 0; i < line.length; i++) {
+      if (!'.!?।'.includes(line[i])) continue;
+      let j = i; while (j + 1 < line.length && '.!?।'.includes(line[j + 1])) j++;
+      const nx = line[j + 1];
+      if (nx === undefined || /[\s"')\]”’]/.test(nx)) {
+        let k = j + 1; while (k < line.length && /["')\]”’]/.test(line[k])) k++;
+        if (line[i] === '.' && /(?:^|\s)(?:e\.g|i\.e|Fig|Eq|vs|Dr|Mr|Mrs|No)$/i.test(line.slice(st, i))) { i = j; continue; }
+        out.push([st, k]); st = k; i = k - 1;
+      } else i = j;
+    }
+    if (st < line.length) out.push([st, line.length]);
+    // a very long sentence is read in parts, at a comma or semicolon
+    return out.flatMap(([a, b]) => {
+      const parts = []; let from = a;
+      while (b - from > 300) { const cut = Math.max(line.lastIndexOf(', ', from + 260), line.lastIndexOf('; ', from + 260)); if (cut <= from + 80) break; parts.push([from, cut + 1]); from = cut + 1; }
+      parts.push([from, b]); return parts;
+    });
+  }
+  function collect(root) {
+    const nodes = []; let text = ''; let last = null;
+    const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, { acceptNode(n) {
+      const p = n.parentElement;
+      if (!p || !n.nodeValue.trim() || p.closest(SKIP_SEL)) return NodeFilter.FILTER_REJECT;
+      const b = p.closest('button'); if (b && !b.closest('.opts')) return NodeFilter.FILTER_REJECT;
+      return NodeFilter.FILTER_ACCEPT;
+    } });
+    while (w.nextNode()) {
+      const n = w.currentNode; const blk = n.parentElement.closest(BLOCK_SEL);
+      if (nodes.length && blk !== last) text += '\n';
+      last = blk; nodes.push({ n, at: text.length }); text += n.nodeValue;
+    }
+    const items = []; const lines = /[^\n]+/g; let m;
+    while ((m = lines.exec(text))) {
+      for (const [a, b] of sentSplit(m[0])) {
+        const raw = m[0].slice(a, b); const body = raw.trim(); if (!/[\p{L}\p{N}]/u.test(body)) continue;
+        const s = m.index + a + (raw.length - raw.trimStart().length);
+        items.push({ s, e: s + body.length, text: body.replace(/\s+/g, ' ') });
+      }
+    }
+    return { nodes, text, items };
+  }
+  const startPos = (nodes, off) => { for (const o of nodes) { if (off < o.at + o.n.nodeValue.length) return [o.n, Math.max(0, off - o.at)]; } const o = nodes[nodes.length - 1]; return [o.n, o.n.nodeValue.length]; };
+  const endPos = (nodes, off) => { for (const o of nodes) { if (off > o.at && off <= o.at + o.n.nodeValue.length) return [o.n, off - o.at]; } const o = nodes[nodes.length - 1]; return [o.n, o.n.nodeValue.length]; };
+  const rawOff = (raw, c) => { let k = 0; for (let r = 0; r < raw.length; r++) { if (k >= c) return r; if (/\s/.test(raw[r])) { while (r + 1 < raw.length && /\s/.test(raw[r + 1])) r++; } k++; } return raw.length; };
+  const wordAt = (s, c) => { let a = Math.min(c, s.length); while (a > 0 && !/\s/.test(s[a - 1])) a--; let b = Math.min(c, s.length); while (b < s.length && !/\s/.test(s[b])) b++; return b > a ? { start: a, end: b } : null; };
+
+  // The highlight (CSS Custom Highlight API; a browser without it rings the block being read) and the scroll that keeps
+  // the sentence between the top bar and the bottom bar, instant under reduced motion.
+  const HL = typeof Highlight !== 'undefined' && window.CSS && CSS.highlights;
+  function clearPaint() {
+    if (HL) { CSS.highlights.delete('nca-sent'); CSS.highlights.delete('nca-word'); }
+    document.querySelectorAll('.nca-reading').forEach((x) => x.classList.remove('nca-reading'));
+  }
+  function follow(r) {
+    const box = r.getBoundingClientRect(); if (!box.height && !box.width) return;
+    const top = (document.getElementById('top') || { getBoundingClientRect: () => ({ bottom: 0 }) }).getBoundingClientRect().bottom + 12;
+    const bar = document.querySelector('.bottombar');
+    const bottom = (bar ? bar.getBoundingClientRect().top : window.innerHeight) - 16;
+    if (box.top < top || box.bottom > bottom) window.scrollTo({ top: Math.max(0, window.scrollY + box.top - Math.round(window.innerHeight * 0.3)), behavior: reduced() ? 'auto' : 'smooth' });
+  }
+  function ensureQ() { if (Say.el && !document.body.contains(Say.el)) { const el = Say.once ? null : document.getElementById('step-' + Say.step); if (el) { Say.el = el; Say.q = collect(el); } } return Say.q; }
+  function paint(i, word) {
+    clearPaint();
+    const q = ensureQ(); const it = q && q.items[i]; if (!it || !q.nodes.length) return;
     try {
-      speechSynthesis.cancel();
-      const u = new SpeechSynthesisUtterance(text);
-      u.lang = S.lang === 'hi' ? 'hi-IN' : 'en-IN';
-      const v = speechSynthesis.getVoices().find((x) => x.lang && x.lang.toLowerCase().startsWith(S.lang === 'hi' ? 'hi' : 'en-in')) || speechSynthesis.getVoices().find((x) => x.lang && x.lang.toLowerCase().startsWith(S.lang));
-      if (v) u.voice = v;
-      u.rate = 0.95;
-      speechSynthesis.speak(u);
+      const a = startPos(q.nodes, it.s), b = endPos(q.nodes, it.e);
+      const r = document.createRange(); r.setStart(a[0], a[1]); r.setEnd(b[0], b[1]);
+      if (HL) {
+        CSS.highlights.set('nca-sent', new Highlight(r));
+        if (word) {
+          const raw = q.text.slice(it.s, it.e);
+          const wa = startPos(q.nodes, it.s + rawOff(raw, word.start)), wb = endPos(q.nodes, it.s + rawOff(raw, word.end));
+          const wr = document.createRange(); wr.setStart(wa[0], wa[1]); wr.setEnd(wb[0], wb[1]);
+          CSS.highlights.set('nca-word', new Highlight(wr));
+        }
+      } else { const blk = a[0].parentElement.closest(BLOCK_SEL); if (blk) blk.classList.add('nca-reading'); }
+      follow(r);
     } catch (e) {}
   }
-  const sayEl = (el) => { if (el) speak(el.innerText.replace(/\s+/g, ' ').slice(0, 1800)); };
+
+  // The voice: the framing page's (hosted), else this browser's.
+  function localVoice() { const v = speechSynthesis.getVoices(); return v.find((x) => x.lang && x.lang.toLowerCase().startsWith(S.lang === 'hi' ? 'hi' : 'en-in')) || v.find((x) => x.lang && x.lang.toLowerCase().startsWith(S.lang)) || null; }
+  function localSay(id, sentences, offset) {
+    let i = 0;
+    const next = () => {
+      if (Say.id !== id) return;
+      if (i >= sentences.length) return onEnd(id);
+      const text = sentences[i]; onNow(id, offset + i, null);
+      try {
+        const u = new SpeechSynthesisUtterance(text); u.lang = S.lang === 'hi' ? 'hi-IN' : 'en-IN';
+        const v = localVoice(); if (v) u.voice = v; u.rate = 0.95;
+        u.onboundary = (e) => { if (Say.id === id && e.name !== 'sentence') onNow(id, offset + i, wordAt(text, e.charIndex)); };
+        u.onend = u.onerror = () => { i++; next(); };
+        speechSynthesis.speak(u);
+      } catch (e) { sayHalt(); }
+    };
+    try { speechSynthesis.cancel(); } catch (e) {}
+    next();
+  }
+  function voiceSay(id, sentences, offset) {
+    if (S.host) post({ type: 'speak', id, lang: S.lang, sentences, offset });
+    else localSay(id, sentences, offset);
+  }
+  function setListenUI(on) { document.querySelectorAll('[data-listen]').forEach((b) => b.setAttribute('aria-pressed', String(on))); }
+  // Stops the voice; the place stays where the last sentence was.
+  function sayHalt(fromHost) {
+    Say.id++; Say.on = false; Say.once = false;
+    if (S.host) { if (!fromHost) post({ type: 'stop' }); } else if (canSpeak) { try { speechSynthesis.cancel(); } catch (e) {} }
+    clearPaint(); setListenUI(false); S.listen = false;
+  }
+  const shownCount = (tp) => (S.mode === 'read' ? tp.steps.length : Math.min(tp.steps.length, (P().steps[tp.id] || 0) + 1));
+  function onNow(id, i, word) {
+    if (id !== Say.id || !Say.on) return;
+    if (!Say.once && Say.tp) {
+      const r = topicRead(Say.tp.id);
+      if (r.step !== Say.step || r.sent !== i) { r.step = Say.step; r.sent = i; r.n = Say.q.items.length; saveRead(); updateProgress(); }
+    }
+    paint(i, word);
+  }
+  function onEnd(id) {
+    if (id !== Say.id || !Say.on) return;
+    if (Say.once) { Say.once = false; Say.on = false; clearPaint(); if (S.listen) sayStart(); return; }
+    const tp = Say.tp, step = Say.step, r = topicRead(tp.id);
+    if (!r.done.includes(step)) r.done.push(step);
+    r.step = step + 1; r.sent = 0; r.n = 0;
+    const ns = step + 1;
+    if (ns >= tp.steps.length) { r.step = 0; saveRead(); updateProgress(); sayHalt(); toast(U.endTopic); const c = document.getElementById('check'); if (c) c.scrollIntoView({ behavior: reduced() ? 'auto' : 'smooth', block: 'start' }); return; }
+    saveRead(); updateProgress();
+    if (ns >= shownCount(tp)) {
+      if (needsAnswer(tp.steps[step], step, tp)) { Say.on = false; Say.id++; clearPaint(); setListenUI(false); toast(U.yourTurn); return; }
+      P().steps[tp.id] = ns; save(); renderTopic(false);
+    }
+    sayStep(ns, 0);
+  }
+  function sayStep(step, sent) {
+    const tp = S.ch.topics[S.ti]; const el = document.getElementById('step-' + step);
+    if (!el) return sayHalt();
+    const q = collect(el);
+    Say.on = true; Say.tp = tp; Say.step = step; Say.q = q; Say.el = el; Say.once = false; S.listen = true; setListenUI(true);
+    const id = ++Say.id;
+    if (!q.items.length) return onEnd(id);
+    if (sent >= q.items.length) sent = 0;
+    const r = topicRead(tp.id); r.step = step; r.sent = sent; r.n = q.items.length;
+    voiceSay(id, q.items.slice(sent).map((x) => x.text), sent);
+  }
+  // Starts or continues the topic: from where the child stopped, not from the top.
+  function sayStart() {
+    if (S.view !== 'topic') return;
+    const tp = S.ch.topics[S.ti]; const r = topicRead(tp.id);
+    let step = r.step || 0, sent = r.sent || 0;
+    if (step >= tp.steps.length) { step = 0; sent = 0; }
+    if (step >= shownCount(tp)) {
+      if (step > 0 && needsAnswer(tp.steps[step - 1], step - 1, tp)) { S.listen = true; toast(U.yourTurn); return; }
+      P().steps[tp.id] = step; save(); renderTopic(false);
+    }
+    sayStep(step, sent);
+  }
+  function sayWhy(el) {
+    const q = collect(el); if (!q.items.length) return sayStart();
+    Say.on = true; Say.once = true; Say.tp = null; Say.step = -1; Say.q = q; Say.el = el; S.listen = true;
+    const id = ++Say.id;
+    voiceSay(id, q.items.map((x) => x.text), 0);
+  }
+  const sayToggle = () => { if (Say.on) sayHalt(); else sayStart(); };
+  // Where the child is, for the tutor on the framing page.
+  function whereAmI() {
+    if (!S.ch) return;
+    const tp = S.view === 'topic' ? S.ch.topics[S.ti] : null;
+    post({ type: 'where', chapterKey: S.ch.chapter_key, chapter: t(S.ch.title), topicId: tp ? tp.id : '', topic: tp ? t(tp.title) : '', lang: S.lang });
+  }
 
   // ---------- images ----------
   const imgBase = () => `../labs/assets/c${String(S.ch.class).padStart(2, '0')}/${S.ch.subject_id}/`;
@@ -242,14 +456,27 @@
   const allPassed = () => S.ch.topics.every((x) => passed(x.id));
 
   // ---------- views ----------
-  async function loadIndex() { if (!S.idx) S.idx = await (await fetch(ROOT + 'index.json')).json(); return S.idx; }
+  // The book on show comes from the address: ?book=c10/science, or the folder at the start of the #chapter link;
+  // with neither, the first book in the registry (content/books.json, written by scripts/index.mjs).
+  const SUBJ = { english: ['English', 'अंग्रेज़ी'], hindi: ['Hindi', 'हिंदी'], mathematics: ['Mathematics', 'गणित'], sanskrit: ['Sanskrit', 'संस्कृत'], science: ['Science', 'विज्ञान'], social_science: ['Social Science', 'सामाजिक विज्ञान'] };
+  const hashBook = () => ((decodeURIComponent(location.hash.slice(1)).match(/^(c\d\d\/[a-z_]+)\//) || [])[1]) || '';
+  let BOOK = new URLSearchParams(location.search).get('book') || hashBook();
+  const subjName = (id) => { const e = SUBJ[id]; return e ? t({ en: e[0], hi: e[1] }) : String(id || '').replace(/_/g, ' ').replace(/^./, (c) => c.toUpperCase()); };
+  const bookLabel = () => { const m = BOOK.match(/^c(\d\d)\/(.+)$/); const i = S.idx; return i ? `${t(U.cls)} ${i.class} · ${subjName(i.subject_id)}` : m ? `${t(U.cls)} ${+m[1]} · ${subjName(m[2])}` : ''; };
+  async function loadIndex() {
+    if (S.idx) return S.idx;
+    if (!BOOK) { const b = (await (await fetch(ROOT + 'books.json')).json()).books[0]; BOOK = `c${String(b.class).padStart(2, '0')}/${b.subject_id}`; }
+    S.idx = await (await fetch(ROOT + BOOK + '/index.json')).json();
+    return S.idx;
+  }
   async function home() {
+    sayHalt();
     S.view = 'home'; S.ch = null; S._prog = null;
-    topbar({ title: t(U.brand), sub: `${t(U.cls)} 10 · ${t(U.science)}` });
+    topbar({ title: t(U.brand), sub: bookLabel() });
     app.innerHTML = `<div class="home"><p class="mini">${esc(t(U.loading))}</p></div>`;
     try {
       const idx = await loadIndex();
-      app.innerHTML = `<div class="home"><h1 style="margin:4px 0 14px">${esc(t(U.cls))} 10 · ${esc(t(U.science))}</h1><div class="chgrid">${idx.chapters.map((c) => `<button type="button" class="chcard" data-ch="${esc(c.file)}" ${c.file ? '' : 'disabled'}>${c.image ? `<img src="../labs/assets/c10/science/${esc(c.image)}.640.webp" alt="" loading="lazy">` : ''}<div class="in"><span class="chip">${esc(t(U.chapter))} ${c.number}</span><h3 ${L()}>${esc(t(c.title))}</h3><p class="mini">${c.file ? esc(fill(t(U.topicsN), { n: c.topics })) + ' · ' + c.minutes + ' ' + esc(t(U.min)) : esc(t(U.soon))}</p></div></button>`).join('')}</div></div>`;
+      app.innerHTML = `<div class="home"><h1 style="margin:4px 0 14px">${esc(bookLabel())}</h1><div class="chgrid">${idx.chapters.map((c) => `<button type="button" class="chcard" data-ch="${esc(c.file)}" ${c.file ? '' : 'disabled'}>${c.image ? `<img src="../labs/assets/${esc(BOOK)}/${esc(c.image)}.640.webp" alt="" loading="lazy">` : ''}<div class="in"><span class="chip">${esc(t(U.chapter))} ${c.number}</span><h3 ${L()}>${esc(t(c.title))}</h3><p class="mini">${c.file ? esc(fill(t(U.topicsN), { n: c.topics })) + ' · ' + c.minutes + ' ' + esc(t(U.min)) : esc(t(U.soon))}</p></div></button>`).join('')}</div></div>`;
     } catch (e) { app.innerHTML = `<div class="home"><p>${esc(t(U.failed))}</p></div>`; }
   }
   async function openChapter(file, ti) {
@@ -264,24 +491,26 @@
   function hash(h) { try { history.replaceState(null, '', '#' + h); } catch (e) {} }
 
   function overview() {
+    sayHalt();
     S.view = 'overview'; hash(S.chFile.replace(/\.json$/, ''));
     const ch = S.ch, p = P();
     topbar({ title: `${t(U.chapter)} ${ch.number}`, sub: t(ch.title), back: 'home' });
     const due = dueReview();
     const done = ch.topics.filter((x) => passed(x.id)).length;
     const body = `
-      <section class="hero">${ch.hook.image ? pic(ch.hook.image, '', true) : ''}<div class="in"><span class="chip">${esc(t(U.cls))} ${ch.class} · ${esc(t(U.science))} · ${esc(t(U.chapter))} ${ch.number}</span><h1 ${L()}>${esc(t(ch.title))}</h1><p ${L()}>${rt(ch.hook.scene)}</p><p class="q" ${L()}>${esc(t(U.hookQ))}: ${rt(ch.hook.question)}</p></div></section>
+      <section class="hero">${ch.hook.image ? pic(ch.hook.image, '', true) : ''}<div class="in"><span class="chip">${esc(t(U.cls))} ${ch.class} · ${esc(subjName(ch.subject_id))} · ${esc(t(U.chapter))} ${ch.number}</span><h1 ${L()}>${esc(t(ch.title))}</h1><p ${L()}>${rt(ch.hook.scene)}</p><p class="q" ${L()}>${esc(t(U.hookQ))}: ${rt(ch.hook.question)}</p></div></section>
       ${due ? `<section class="card remember"><h3>🧠 ${esc(t(U.remember))}</h3><p>${esc(fill(t(U.rememberNote), { t: t(due.short) }))}</p><div class="row"><button type="button" class="btn-go" data-review="${due.id}">${esc(t(U.rememberGo))}</button><button type="button" class="btn" data-later="${due.id}">${esc(t(U.later))}</button></div></section>` : ''}
       <section class="card"><div class="eyebrow">${esc(t(U.bigIdea))}</div><p style="font-weight:700" ${L()}>${rt(ch.big_idea)}</p><ul class="pts">${ch.outcomes.map((o) => `<li ${L()}>${rt(o)}</li>`).join('')}</ul></section>
-      <section class="card"><div class="eyebrow">${esc(t(U.topics))} · ${done}/${ch.topics.length}</div><div class="progressline"><i style="width:${Math.round((done / ch.topics.length) * 100)}%"></i></div>${topicList()}</section>
+      <section class="card"><div class="eyebrow">${esc(t(U.topics))} · ${done}/${ch.topics.length}</div><div class="progressline"><i style="width:${Math.round((done / ch.topics.length) * 100)}%"></i></div><p class="mini" style="margin:0 0 4px">${esc(t(U.chRead))}</p>${readBar('chapter', chapterShare())}${topicList()}</section>
       <section class="card"><h3>📝 ${esc(t(U.test))}</h3><p class="mini">${esc(t(U.testNote))}</p>${p.test ? `<p><b>${esc(fill(t(U.score), { a: p.test.got, b: p.test.of }))}</b> (${Math.round((p.test.got / p.test.of) * 100)}%)</p>` : ''}<div class="row"><button type="button" class="btn-go" data-test ${allPassed() || S.parentOpen ? '' : 'disabled'}>${esc(t(U.startTest))}</button>${allPassed() || S.parentOpen ? '' : `<span class="mini">${esc(t(U.testLocked))}</span>`}</div></section>
       <section class="card"><label class="parent"><input type="checkbox" data-parent ${S.parentOpen ? 'checked' : ''}><span>${esc(t(U.parent))}</span></label></section>`;
     layout(body, null);
+    whereAmI();
   }
   function topicList() {
     return `<ul class="tlist">${S.ch.topics.map((x, i) => {
       const st = passed(x.id) ? 'done' : unlocked(i) ? (i === S.ti && S.view === 'topic' ? 'now' : '') : '';
-      return `<li class="${st}"><button type="button" data-topic="${i}" ${unlocked(i) ? '' : 'disabled'} aria-label="${esc(t(U.topic))} ${i + 1}: ${esc(t(x.title))}${passed(x.id) ? ' (' + esc(t(U.done)) + ')' : ''}"><span class="n">${passed(x.id) ? '✓' : i + 1}</span><span class="tt" ${L()}>${esc(t(x.title))}<small>${x.minutes} ${esc(t(U.min))}${unlocked(i) ? '' : ' · 🔒'}</small></span></button></li>`;
+      return `<li class="${st}"><button type="button" data-topic="${i}" ${unlocked(i) ? '' : 'disabled'} aria-label="${esc(t(U.topic))} ${i + 1}: ${esc(t(x.title))}${passed(x.id) ? ' (' + esc(t(U.done)) + ')' : ''}"><span class="n">${passed(x.id) ? '✓' : i + 1}</span><span class="tt" ${L()}>${esc(t(x.title))}<small>${x.minutes} ${esc(t(U.min))}<span data-topicpct="${esc(x.id)}">${topicShare(x) > 0 ? ' · ' + esc(pctWords(topicShare(x))) : ''}</span>${unlocked(i) ? '' : ' · 🔒'}</small></span></button></li>`;
     }).join('')}</ul>`;
   }
   function termsHTML(tp) {
@@ -311,12 +540,14 @@
 
   function openTopic(i) {
     if (!unlocked(i)) return toast(U.locked);
+    sayHalt();
     S.view = 'topic'; S.ti = i; S.check = null; S.openLab = null;
     const tp = S.ch.topics[i];
     P().last = i; save();
     hash(`${S.chFile.replace(/\.json$/, '')}~${tp.id}`);
     topbar({ title: `${t(U.topic)} ${i + 1} ${t(U.of)} ${S.ch.topics.length}`, sub: t(tp.title), back: 'overview', topic: true });
     renderTopic(true);
+    whereAmI();
   }
   function renderTopic(top) {
     const tp = S.ch.topics[S.ti];
@@ -324,8 +555,8 @@
     const n = S.mode === 'read' ? tp.steps.length : Math.min(tp.steps.length, seen + 1);
     const lastStep = tp.steps[n - 1];
     const allShown = n >= tp.steps.length;
-    const body = `<header class="card"><div class="eyebrow">${esc(t(U.topic))} ${S.ti + 1} · ${tp.minutes} ${esc(t(U.min))}</div><h1 style="font-size:1.45rem" ${L()}>${esc(t(tp.title))}</h1><ul class="pts">${tp.outcomes.map((o) => `<li ${L()}>${rt(o)}</li>`).join('')}</ul>
-        <div class="row"><div class="lang" role="group" aria-label="mode" style="border-color:var(--line)"><button type="button" data-mode="teach" aria-pressed="${S.mode === 'teach'}" style="color:var(--ink)">${esc(t(U.teach))}</button><button type="button" data-mode="read" aria-pressed="${S.mode === 'read'}" style="color:var(--ink)">${esc(t(U.read))}</button></div></div></header>
+    const body = `<header class="card"><div class="eyebrow">${esc(t(U.topic))} ${S.ti + 1} · ${tp.minutes} ${esc(t(U.min))}</div><h1 style="font-size:1.45rem" ${L()}>${esc(t(tp.title))}</h1><details class="outc"><summary>${esc(t(U.bigIdea))}</summary><ul class="pts">${tp.outcomes.map((o) => `<li ${L()}>${rt(o)}</li>`).join('')}</ul></details>
+        <div class="row"><div class="lang" role="group" aria-label="mode" style="border-color:var(--line)"><button type="button" data-mode="teach" aria-pressed="${S.mode === 'teach'}" style="color:var(--ink)">${esc(t(U.teach))}</button><button type="button" data-mode="read" aria-pressed="${S.mode === 'read'}" style="color:var(--ink)">${esc(t(U.read))}</button></div></div>${readBar(tp.id, topicShare(tp))}</header>
       ${tp.steps.slice(0, n).map((s, si) => stepHTML(s, si, tp)).join('')}
       ${allShown ? checkHTML(tp) : `<div class="continue"><button type="button" class="btn-go" data-continue ${needsAnswer(lastStep, n - 1, tp) ? 'disabled' : ''}>${esc(t(U.cont))} →</button></div>`}`;
     const y = window.scrollY;
@@ -338,7 +569,7 @@
     p.steps[tp.id] = Math.min(tp.steps.length, (p.steps[tp.id] || 0) + 1); save();
     renderTopic(false);
     const el = document.getElementById(`step-${p.steps[tp.id]}`) || document.getElementById('check');
-    if (el) { el.scrollIntoView({ behavior: reduced() ? 'auto' : 'smooth', block: 'start' }); if (S.listen) sayEl(el); }
+    if (el) { el.scrollIntoView({ behavior: reduced() ? 'auto' : 'smooth', block: 'start' }); if (S.listen && !Say.on) sayStart(); }
   }
 
   // topic check: draw 5 of 8, prefer unseen items on a retry
@@ -426,7 +657,7 @@
       ${o.back ? `<button type="button" class="ib" data-back="${o.back}" aria-label="${esc(t(U.back))}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 5l-7 7 7 7"/></svg></button>` : `<span class="ib" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M6 7h9a3 3 0 0 1 3 3v15a2 2 0 0 0-2-2H6zM26 7h-6a3 3 0 0 0-3 3v15a2 2 0 0 1 2-2h7z" fill="none" stroke="#E8702A" stroke-width="2.2" stroke-linejoin="round"/></svg></span>`}
       <div class="title"><b ${L()}>${esc(o.title)}</b><span ${L()}>${esc(o.sub || '')}</span></div>
       ${o.topic ? `<button type="button" class="ib only-narrow" data-sheet="intopic" aria-label="${esc(t(U.inTopic))}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg></button><button type="button" class="ib only-narrow" data-sheet="terms" aria-label="${esc(t(U.terms))}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M8 7h7M8 11h7"/></svg></button>` : ''}
-      ${canSpeak && o.topic ? `<button type="button" class="ib" data-listen aria-pressed="${S.listen}" aria-label="${esc(t(U.listen))}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg></button>` : ''}
+      ${canListen() && o.topic ? `<button type="button" class="ib" data-listen aria-pressed="${S.listen}" aria-label="${esc(t(U.listen))}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg></button>` : ''}
       <div class="lang" role="group" aria-label="${esc(t(U.lang))}"><button type="button" data-lang="en" aria-pressed="${S.lang === 'en'}">EN</button><button type="button" data-lang="hi" aria-pressed="${S.lang === 'hi'}" lang="hi">हिं</button></div>
     </div>`;
   }
@@ -454,21 +685,21 @@
     if (d.closezoom !== undefined) { document.querySelectorAll('.lightbox').forEach((x) => x.remove()); return; }
     if (el.matches('img[data-zoom]')) return zoom(d.zoom);
     if (d.closesheet !== undefined) return closeSheet();
-    if (d.lang) { setLang(d.lang); closeSheet(); topbar(Object.assign({}, S.bar, S.view === 'topic' ? { title: `${t(U.topic)} ${S.ti + 1} ${t(U.of)} ${S.ch.topics.length}`, sub: t(S.ch.topics[S.ti].title) } : S.view === 'overview' ? { title: `${t(U.chapter)} ${S.ch.number}`, sub: t(S.ch.title) } : S.view === 'home' ? { title: t(U.brand), sub: `${t(U.cls)} 10 · ${t(U.science)}` } : {})); return rerender(); }
+    if (d.lang) { sayHalt(); setLang(d.lang); closeSheet(); topbar(Object.assign({}, S.bar, S.view === 'topic' ? { title: `${t(U.topic)} ${S.ti + 1} ${t(U.of)} ${S.ch.topics.length}`, sub: t(S.ch.topics[S.ti].title) } : S.view === 'overview' ? { title: `${t(U.chapter)} ${S.ch.number}`, sub: t(S.ch.title) } : S.view === 'home' ? { title: t(U.brand), sub: bookLabel() } : {})); rerender(); whereAmI(); return; }
     if (d.ch) return openChapter(d.ch);
-    if (d.back) { closeSheet(); if (canSpeak) speechSynthesis.cancel(); return d.back === 'home' ? (hash(''), home()) : overview(); }
+    if (d.back) { closeSheet(); sayHalt(); return d.back === 'home' ? (hash(''), home()) : overview(); }
     if (d.overview !== undefined) { closeSheet(); return overview(); }
     if (d.topic !== undefined) { closeSheet(); return openTopic(+d.topic); }
     if (d.sheet) return openSheet(d.sheet);
     if (d.nexttopic !== undefined) return openTopic(S.ti + 1);
     if (d.prevtopic !== undefined) return openTopic(S.ti - 1);
-    if (d.mode) { S.mode = d.mode; return renderTopic(false); }
+    if (d.mode) { sayHalt(); S.mode = d.mode; renderTopic(false); return sayStart(); }
     if (d.continue !== undefined) return revealNext();
-    if (d.listen !== undefined) { S.listen = !S.listen; el.setAttribute('aria-pressed', String(S.listen)); if (S.listen) { const steps = document.querySelectorAll('.step'); sayEl(steps[steps.length - 1]); } else if (canSpeak) speechSynthesis.cancel(); return; }
+    if (d.listen !== undefined) return sayToggle();
     if (d.jump !== undefined) { closeSheet(); const tgt = d.jump === 'check' ? document.getElementById('check') : document.getElementById(`step-${d.jump}`); if (tgt) tgt.scrollIntoView({ behavior: reduced() ? 'auto' : 'smooth', block: 'start' }); else if (d.jump === 'check') { S.mode = 'read'; renderTopic(false); const c = document.getElementById('check'); if (c) c.scrollIntoView(); } return; }
     if (d.frame) { S.frames[d.frame] = +d.f; return renderTopic(false); }
     if (d.hint) { S.hints[d.hint] = true; return renderTopic(false); }
-    if (d.openlab) { S.openLab = d.openlab; renderTopic(false); const f = document.querySelector('iframe.labframe'); if (f) f.scrollIntoView({ behavior: reduced() ? 'auto' : 'smooth', block: 'center' }); return; }
+    if (d.openlab) { sayHalt(); S.openLab = d.openlab; renderTopic(false); const f = document.querySelector('iframe.labframe'); if (f) f.scrollIntoView({ behavior: reduced() ? 'auto' : 'smooth', block: 'center' }); return; }
     if (d.closelab !== undefined) { S.openLab = null; return renderTopic(false); }
     if (d.item !== undefined && d.o !== undefined) {
       if (S.answers[d.item] != null) return;
@@ -479,7 +710,7 @@
         const part = d.item.includes('#') ? it.parts[+d.item.split('#')[1]] : it.type === 'ar' ? { options: U.arOpts, answer: it.answer, why: it.why } : it;
         const wrap = el.closest('.opts');
         wrap.outerHTML = optsHTML(part, d.item, +d.o);
-        if (S.listen) { const w = box && box.querySelector('.why'); sayEl(w); }
+        if (S.listen && !Say.on) { const w = box && box.querySelector('.why'); if (w) sayWhy(w); else sayStart(); }
       }
       afterAnswer(); return;
     }
@@ -501,11 +732,30 @@
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeSheet(); document.querySelectorAll('.lightbox').forEach((x) => x.remove()); } });
   window.addEventListener('message', (e) => {
     const m = e.data || {};
+    if (e.origin !== location.origin) return;
+    if (m.source === 'nca-book') {
+      if (m.type === 'hello') { S.host = true; S.tutor = !!m.tutor; if (S.bar) topbar(S.bar); whereAmI(); }
+      else if (m.type === 'now') onNow(m.id, m.i, m.word || null);
+      else if (m.type === 'end') onEnd(m.id);
+      else if (m.type === 'novoice') { if (Say.on) sayHalt(true); toast(U.noVoice); }
+      else if (m.type === 'stopped') { if (m.id === Say.id && Say.on) sayHalt(true); }
+      return;
+    }
     if (m.source !== 'nca-labs') return;
     const f = [...document.querySelectorAll('iframe.labframe')].find((x) => x.contentWindow === e.source);
     if (m.type === 'height' && f) f.style.height = Math.min(Math.max(560, m.height + 8), 1800) + 'px';
     if (m.type === 'done' && S.ch) { P().labs[m.id] = Date.now(); save(); const st = f && f.closest('.step'); if (st && !st.querySelector('.labdone')) st.insertAdjacentHTML('beforeend', `<p class="labdone">✓ ${esc(t(U.labDone))}</p>`); }
+    // A question from a lab's tutor drawer goes on to the Family tutor with where the child is.
+    if ((m.type === 'ask' || m.type === 'tutor') && f && S.ch && !(S.host && S.tutor)) { try { f.contentWindow.postMessage({ source: 'nca-reader', type: 'asked', ok: false }, location.origin); } catch (x) {} }
+    if ((m.type === 'ask' || m.type === 'tutor') && f && S.ch && S.host && S.tutor) {
+      const tp = S.ch.topics[S.ti];
+      post({ type: 'ask', open: m.type === 'tutor', question: String(m.question || '').slice(0, 400), context: String(m.context || '').slice(0, 400), lab: String(m.id || ''), chapterKey: S.ch.chapter_key, chapter: t(S.ch.title), topicId: tp ? tp.id : '', topic: tp ? t(tp.title) : '', lang: S.lang });
+      try { f.contentWindow.postMessage({ source: 'nca-reader', type: 'asked', ok: true }, location.origin); } catch (x) {}
+    }
   });
+  // Tell the framing page we are here (it may not be listening yet: say it again until it answers).
+  if (window.parent !== window) { let tries = 0; const hi = () => { if (S.host || tries++ > 12) return; post({ type: 'ready' }); setTimeout(hi, 700); }; hi(); }
+  window.addEventListener('pagehide', () => { try { if (canSpeak && !S.host) speechSynthesis.cancel(); } catch (e) {} });
 
   // ---------- start ----------
   document.documentElement.lang = S.lang;

@@ -104,10 +104,11 @@ jobs:
           python3 scripts/check_family_boundary.py --self-test
           python3 scripts/check_family_boundary.py
 
-      - name: Every lab template, lab file and chapter reader file passes its checker
+      - name: Every lab template, lab file, chapter reader file and book index passes its checker
         run: |
           node labs/scripts/check.mjs
           node reader/scripts/check.mjs
+          node reader/scripts/check_books.mjs
 
       - name: No secrets committed
         run: |
