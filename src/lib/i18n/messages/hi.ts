@@ -11160,4 +11160,7 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.tutor.readPercent': '{n}% सुना',
   'fam.tutor.readingNow': 'पढ़कर सुना रहे हैं',
   // w22-s3 end
+  // w22-s2 begin
+  'fam.book.ask': 'ट्यूटर से पूछो',
+  // w22-s2 end
 };

@@ -14,13 +14,17 @@
   const Q = new URLSearchParams(location.search);
   const EMBED = Q.get('embed') === '1';
   if (EMBED) { document.documentElement.classList.add('embed'); const ql = Q.get('lang'); if (ql === 'hi' || ql === 'en') S.lang = ql; }
-  const post = (msg) => { if (EMBED && window.parent !== window) { try { window.parent.postMessage(Object.assign({ source: 'nca-labs' }, msg), '*'); } catch (e) {} } };
+  const post = (msg) => { if (EMBED && window.parent !== window) { try { window.parent.postMessage(Object.assign({ source: 'nca-labs' }, msg), location.origin); } catch (e) {} } };
   if (EMBED) {
     let lastH = 0;
     const sendH = () => { const h = Math.ceil(document.documentElement.scrollHeight); if (Math.abs(h - lastH) > 2) { lastH = h; post({ type: 'height', height: h }); } };
     try { new ResizeObserver(sendH).observe(document.body); } catch (e) { setInterval(sendH, 500); }
     window.addEventListener('message', (e) => {
+      if (e.origin !== location.origin) return;
       const d = e.data || {};
+      // The reader says whether the question went on to the Family tutor (W22-S2).
+      if (d.source === 'nca-reader' && d.type === 'asked' && S.tutorWait && !d.ok) { S.tutorWait = false; tutor(true); }
+      else if (d.source === 'nca-reader' && d.type === 'asked') { S.tutorWait = false; const m = document.getElementById('tmsg'); if (m) m.textContent = t(d.ok ? U.tSent : U.notSent); if (d.ok) { const dr = document.querySelector('.drawer'); if (dr) setTimeout(() => dr.remove(), 900); } }
       if (d.source === 'nca-reader' && d.type === 'lang' && (d.lang === 'en' || d.lang === 'hi') && d.lang !== S.lang) {
         S.lang = d.lang; S.prevLang = null; syncLang();
         if (S.lab && document.getElementById('guide')) { document.getElementById('labtitle').textContent = t(S.lab.title); document.querySelectorAll('.mode [data-mode]').forEach((x) => (x.textContent = t(x.dataset.mode === 'guided' ? U.guided : U.explore))); renderGuide(); }
@@ -57,6 +61,8 @@
     tAsk: { en: 'Your question', hi: 'तुम्हारा सवाल' }, tSend: { en: 'Send', hi: 'भेजो' }, tClose: { en: 'Close', hi: 'बंद करो' },
     tProto: { en: 'Preview: nothing is sent from this page. In the app, your question goes to the tutor with everything listed above, in your language.', hi: 'प्रीव्यू: इस पेज से कुछ नहीं भेजा जाता। ऐप में तुम्हारा सवाल ऊपर दी गई सारी जानकारी के साथ, तुम्हारी भाषा में, ट्यूटर तक जाता है।' },
     notSent: { en: 'Not sent: this is the preview.', hi: 'नहीं भेजा गया: यह प्रीव्यू है।' },
+    tSent: { en: 'Sent. The tutor is opening.', hi: 'भेज दिया। ट्यूटर खुल रहा है।' }, tShort: { en: 'Write your question first.', hi: 'पहले अपना सवाल लिखो।' },
+    tLive: { en: 'Your question goes to the tutor with everything listed above, in your language.', hi: 'तुम्हारा सवाल ऊपर दी गई सारी जानकारी के साथ, तुम्हारी भाषा में, ट्यूटर के पास जाता है।' },
     loading: { en: 'Opening the lab…', hi: 'लैब खुल रही है…' }, failed: { en: 'This lab could not be opened. Go back and try another; we will fix this one.', hi: 'यह लैब नहीं खुल सकी। वापस जाकर दूसरी आज़माओ; इसे हम ठीक करेंगे।' },
   };
   const fill = (s, o) => s.replace(/\{(\w+)\}/g, (_, k) => o[k]);
@@ -327,10 +333,18 @@
   }
 
   // ---- tutor drawer ----
-  function tutor() {
+  // What the tutor is told about the lab: where the child is, the guess and what was done (short, in the child's language).
+  function labContext(s, go) {
+    return [t(S.lab.title), S.mode === 'explore' ? t(U.exploreHead) : S.done ? t(U.complete) : `${S.step + 1}. ${t(s.say || (s.items && s.items[0].q))}`, go ? `${t(U.tGuess)}: ${t(go)}` : '', S.log.length ? `${t(U.tDid)}: ${S.log.slice(-4).join('; ')}` : ''].filter(Boolean).join(' | ');
+  }
+  function tutor(force) {
     const s = cur();
     const pr = S.lab.steps.find((x) => x.kind === 'predict');
     const go = pr && S.guess ? pr.options.find((o) => o.id === S.guess) : null;
+    // Inside the reader the Family tutor itself opens over the chapter, with this lab as its context (the lab's own drawer is
+    // below the fold of a tall frame); the reader answers `asked` with ok: false when it is not in the Family app, and the
+    // drawer opens as a preview.
+    if (EMBED && !force) { S.tutorWait = true; post({ type: 'tutor', id: S.lab.id, context: labContext(s, go) }); return; }
     const d = document.createElement('div');
     d.className = 'drawer';
     d.innerHTML = `<div class="pane" role="dialog" aria-modal="true" aria-labelledby="th">
@@ -342,10 +356,17 @@
         <dt>${esc(t(U.tDid))}</dt><dd>${S.log.length ? `<ol>${S.log.map((l) => `<li>${esc(l)}</li>`).join('')}</ol>` : esc(t(U.tNone))}</dd></dl>
       <label for="q"><b>${esc(t(U.tAsk))}</b></label><textarea id="q" lang="${S.lang}"></textarea>
       <div class="row"><button type="button" class="btn-go" id="tsend">${esc(t(U.tSend))}</button><button type="button" class="btn" id="tclose">${esc(t(U.tClose))}</button></div>
-      <p class="muted" id="tmsg">${esc(t(U.tProto))}</p></div>`;
+      <p class="muted" id="tmsg" role="status">${esc(t(EMBED ? U.tLive : U.tProto))}</p></div>`;
     document.body.appendChild(d);
     const close = () => { d.remove(); const b = document.getElementById('tutor'); if (b) b.focus(); };
-    d.addEventListener('click', (e) => { if (e.target === d || e.target.id === 'tclose') close(); if (e.target.id === 'tsend') d.querySelector('#tmsg').textContent = t(U.notSent); });
+    d.addEventListener('click', (e) => { if (e.target === d || e.target.id === 'tclose') close(); if (e.target.id === 'tsend') {
+        const q = d.querySelector('#q').value.trim(), msg = d.querySelector('#tmsg');
+        if (q.length < 3) { msg.textContent = t(U.tShort); return; }
+        if (!EMBED) { msg.textContent = t(U.notSent); return; }
+        // What the tutor is told about the lab: where the child is, the guess and what was done (short, in the child's language).
+        const ctx = labContext(s, go);
+        post({ type: 'ask', id: S.lab.id, question: q, context: ctx });
+      } });
     d.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
     d.querySelector('#q').focus();
   }

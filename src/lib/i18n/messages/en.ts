@@ -11174,4 +11174,7 @@ export const en = {
   'fam.tutor.readPercent': '{n}% read',
   'fam.tutor.readingNow': 'Reading aloud',
   // w22-s3 end
+  // w22-s2 begin
+  'fam.book.ask': 'Ask the tutor',
+  // w22-s2 end
 } as const;
