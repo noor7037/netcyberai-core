@@ -1,3 +1,6 @@
+// The classes that have a chapter-reader book, from the registry reader/scripts/index.mjs writes (c10, ...).
+const bookClasses = [...new Set(require('./reader/content/books.json').books.map((b) => `c${String(b.class).padStart(2, '0')}`))];
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // tesseract.js (src/lib/capture/ocr.ts, Prompt F Task 3) spawns its
@@ -36,8 +39,9 @@ const nextConfig = {
         './public/fonts/**',
       ],
       // The chapter reader and its labs, served to signed-in families (/family/learn/..., founder 9 Nov 2026): the
-      // pages, scripts, chapter data and images. Lab data only for the classes whose book is in the Family app
-      // (src/lib/family/books.ts: Class 10 today); add a class's folder when its book is added.
+      // pages, scripts, chapter data and images. Lab data only for the classes that have a book (derived from the
+      // registry reader/content/books.json, so a new book needs no edit here; Class 10 is about 6 MB of the 48 MB of
+      // lab files for classes 1-12).
       '/family/learn/**/*': [
         './reader/index.html',
         './reader/reader.js',
@@ -45,7 +49,7 @@ const nextConfig = {
         './reader/content/**',
         './labs/*.{html,js,css,json}',
         './labs/templates/**',
-        './labs/defs/c10/**',
+        ...bookClasses.map((c) => `./labs/defs/${c}/**`),
         './labs/assets/**',
       ],
     },

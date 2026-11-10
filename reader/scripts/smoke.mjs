@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Headless check of the chapter reader in Chromium (Playwright from the repo's node_modules). For every chapter in
-// reader/content/index.json it opens the chapter page and every topic (read-all mode, every topic opened as a parent
+// the book index (SMOKE_BOOK=c10/science, the default) it opens the chapter page and every topic (read-all mode, every topic opened as a parent
 // would) and the chapter test, at 390 px and 1280 px, in English and Hindi, and reports page errors, failed requests,
 // images that did not load, and sideways scroll. Screenshots of each chapter page and its first topic go to
 // reader/.smoke/. Usage: node reader/scripts/smoke.mjs [chapter number …]
@@ -22,7 +22,7 @@ const server = http.createServer((req, res) => {
 });
 await new Promise((r) => server.listen(0, r));
 const base = `http://localhost:${server.address().port}/reader/`;
-const idx = JSON.parse(fs.readFileSync(path.join(READER, 'content/index.json'), 'utf8'));
+const idx = JSON.parse(fs.readFileSync(path.join(READER, 'content', process.env.SMOKE_BOOK || 'c10/science', 'index.json'), 'utf8'));
 const want = process.argv.slice(2).map(Number);
 const chapters = idx.chapters.filter((c) => c.file && (!want.length || want.includes(c.number)));
 fs.mkdirSync(path.join(READER, '.smoke'), { recursive: true });

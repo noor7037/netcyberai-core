@@ -242,14 +242,26 @@
   const allPassed = () => S.ch.topics.every((x) => passed(x.id));
 
   // ---------- views ----------
-  async function loadIndex() { if (!S.idx) S.idx = await (await fetch(ROOT + 'index.json')).json(); return S.idx; }
+  // The book on show comes from the address: ?book=c10/science, or the folder at the start of the #chapter link;
+  // with neither, the first book in the registry (content/books.json, written by scripts/index.mjs).
+  const SUBJ = { english: ['English', 'अंग्रेज़ी'], hindi: ['Hindi', 'हिंदी'], mathematics: ['Mathematics', 'गणित'], sanskrit: ['Sanskrit', 'संस्कृत'], science: ['Science', 'विज्ञान'], social_science: ['Social Science', 'सामाजिक विज्ञान'] };
+  const hashBook = () => ((decodeURIComponent(location.hash.slice(1)).match(/^(c\d\d\/[a-z_]+)\//) || [])[1]) || '';
+  let BOOK = new URLSearchParams(location.search).get('book') || hashBook();
+  const subjName = (id) => { const e = SUBJ[id]; return e ? t({ en: e[0], hi: e[1] }) : String(id || '').replace(/_/g, ' ').replace(/^./, (c) => c.toUpperCase()); };
+  const bookLabel = () => { const m = BOOK.match(/^c(\d\d)\/(.+)$/); const i = S.idx; return i ? `${t(U.cls)} ${i.class} · ${subjName(i.subject_id)}` : m ? `${t(U.cls)} ${+m[1]} · ${subjName(m[2])}` : ''; };
+  async function loadIndex() {
+    if (S.idx) return S.idx;
+    if (!BOOK) { const b = (await (await fetch(ROOT + 'books.json')).json()).books[0]; BOOK = `c${String(b.class).padStart(2, '0')}/${b.subject_id}`; }
+    S.idx = await (await fetch(ROOT + BOOK + '/index.json')).json();
+    return S.idx;
+  }
   async function home() {
     S.view = 'home'; S.ch = null; S._prog = null;
-    topbar({ title: t(U.brand), sub: `${t(U.cls)} 10 · ${t(U.science)}` });
+    topbar({ title: t(U.brand), sub: bookLabel() });
     app.innerHTML = `<div class="home"><p class="mini">${esc(t(U.loading))}</p></div>`;
     try {
       const idx = await loadIndex();
-      app.innerHTML = `<div class="home"><h1 style="margin:4px 0 14px">${esc(t(U.cls))} 10 · ${esc(t(U.science))}</h1><div class="chgrid">${idx.chapters.map((c) => `<button type="button" class="chcard" data-ch="${esc(c.file)}" ${c.file ? '' : 'disabled'}>${c.image ? `<img src="../labs/assets/c10/science/${esc(c.image)}.640.webp" alt="" loading="lazy">` : ''}<div class="in"><span class="chip">${esc(t(U.chapter))} ${c.number}</span><h3 ${L()}>${esc(t(c.title))}</h3><p class="mini">${c.file ? esc(fill(t(U.topicsN), { n: c.topics })) + ' · ' + c.minutes + ' ' + esc(t(U.min)) : esc(t(U.soon))}</p></div></button>`).join('')}</div></div>`;
+      app.innerHTML = `<div class="home"><h1 style="margin:4px 0 14px">${esc(bookLabel())}</h1><div class="chgrid">${idx.chapters.map((c) => `<button type="button" class="chcard" data-ch="${esc(c.file)}" ${c.file ? '' : 'disabled'}>${c.image ? `<img src="../labs/assets/${esc(BOOK)}/${esc(c.image)}.640.webp" alt="" loading="lazy">` : ''}<div class="in"><span class="chip">${esc(t(U.chapter))} ${c.number}</span><h3 ${L()}>${esc(t(c.title))}</h3><p class="mini">${c.file ? esc(fill(t(U.topicsN), { n: c.topics })) + ' · ' + c.minutes + ' ' + esc(t(U.min)) : esc(t(U.soon))}</p></div></button>`).join('')}</div></div>`;
     } catch (e) { app.innerHTML = `<div class="home"><p>${esc(t(U.failed))}</p></div>`; }
   }
   async function openChapter(file, ti) {
@@ -270,7 +282,7 @@
     const due = dueReview();
     const done = ch.topics.filter((x) => passed(x.id)).length;
     const body = `
-      <section class="hero">${ch.hook.image ? pic(ch.hook.image, '', true) : ''}<div class="in"><span class="chip">${esc(t(U.cls))} ${ch.class} · ${esc(t(U.science))} · ${esc(t(U.chapter))} ${ch.number}</span><h1 ${L()}>${esc(t(ch.title))}</h1><p ${L()}>${rt(ch.hook.scene)}</p><p class="q" ${L()}>${esc(t(U.hookQ))}: ${rt(ch.hook.question)}</p></div></section>
+      <section class="hero">${ch.hook.image ? pic(ch.hook.image, '', true) : ''}<div class="in"><span class="chip">${esc(t(U.cls))} ${ch.class} · ${esc(subjName(ch.subject_id))} · ${esc(t(U.chapter))} ${ch.number}</span><h1 ${L()}>${esc(t(ch.title))}</h1><p ${L()}>${rt(ch.hook.scene)}</p><p class="q" ${L()}>${esc(t(U.hookQ))}: ${rt(ch.hook.question)}</p></div></section>
       ${due ? `<section class="card remember"><h3>🧠 ${esc(t(U.remember))}</h3><p>${esc(fill(t(U.rememberNote), { t: t(due.short) }))}</p><div class="row"><button type="button" class="btn-go" data-review="${due.id}">${esc(t(U.rememberGo))}</button><button type="button" class="btn" data-later="${due.id}">${esc(t(U.later))}</button></div></section>` : ''}
       <section class="card"><div class="eyebrow">${esc(t(U.bigIdea))}</div><p style="font-weight:700" ${L()}>${rt(ch.big_idea)}</p><ul class="pts">${ch.outcomes.map((o) => `<li ${L()}>${rt(o)}</li>`).join('')}</ul></section>
       <section class="card"><div class="eyebrow">${esc(t(U.topics))} · ${done}/${ch.topics.length}</div><div class="progressline"><i style="width:${Math.round((done / ch.topics.length) * 100)}%"></i></div>${topicList()}</section>
@@ -454,7 +466,7 @@
     if (d.closezoom !== undefined) { document.querySelectorAll('.lightbox').forEach((x) => x.remove()); return; }
     if (el.matches('img[data-zoom]')) return zoom(d.zoom);
     if (d.closesheet !== undefined) return closeSheet();
-    if (d.lang) { setLang(d.lang); closeSheet(); topbar(Object.assign({}, S.bar, S.view === 'topic' ? { title: `${t(U.topic)} ${S.ti + 1} ${t(U.of)} ${S.ch.topics.length}`, sub: t(S.ch.topics[S.ti].title) } : S.view === 'overview' ? { title: `${t(U.chapter)} ${S.ch.number}`, sub: t(S.ch.title) } : S.view === 'home' ? { title: t(U.brand), sub: `${t(U.cls)} 10 · ${t(U.science)}` } : {})); return rerender(); }
+    if (d.lang) { setLang(d.lang); closeSheet(); topbar(Object.assign({}, S.bar, S.view === 'topic' ? { title: `${t(U.topic)} ${S.ti + 1} ${t(U.of)} ${S.ch.topics.length}`, sub: t(S.ch.topics[S.ti].title) } : S.view === 'overview' ? { title: `${t(U.chapter)} ${S.ch.number}`, sub: t(S.ch.title) } : S.view === 'home' ? { title: t(U.brand), sub: bookLabel() } : {})); return rerender(); }
     if (d.ch) return openChapter(d.ch);
     if (d.back) { closeSheet(); if (canSpeak) speechSynthesis.cancel(); return d.back === 'home' ? (hash(''), home()) : overview(); }
     if (d.overview !== undefined) { closeSheet(); return overview(); }
