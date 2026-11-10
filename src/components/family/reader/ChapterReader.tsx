@@ -1,5 +1,6 @@
 'use client';
 
+import { lastChildSettings } from '@/lib/family/child-settings';
 import dynamic from 'next/dynamic';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { sentences, type NarrationLine } from '@/lib/family/blocks';
@@ -191,7 +192,7 @@ export function ChapterReader({ chapterKey, lang, blocks, ids, script, start, re
     }
     const top = 72;
     const bottom = window.innerHeight - 280;
-    if (rect.top < top || rect.bottom > bottom) window.scrollTo({ top: window.scrollY + rect.top - Math.max(top, window.innerHeight * 0.25), behavior: reduced() ? 'auto' : 'smooth' });
+    if (lastChildSettings()?.autoScroll !== false && (rect.top < top || rect.bottom > bottom)) window.scrollTo({ top: window.scrollY + rect.top - Math.max(top, window.innerHeight * 0.25), behavior: reduced() ? 'auto' : 'smooth' });
   }, [index, started, line, script]);
 
   // The place is kept for this child a moment after it settles, and when the voice stops.

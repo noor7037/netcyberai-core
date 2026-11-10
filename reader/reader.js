@@ -228,7 +228,9 @@
     if (HL) { CSS.highlights.delete('nca-sent'); CSS.highlights.delete('nca-word'); }
     document.querySelectorAll('.nca-reading').forEach((x) => x.classList.remove('nca-reading'));
   }
+  const FOLLOW = qp.get('follow') !== '0'; // the Family app's "follow the voice" setting (W23)
   function follow(r) {
+    if (!FOLLOW) return;
     const box = r.getBoundingClientRect(); if (!box.height && !box.width) return;
     const top = (document.getElementById('top') || { getBoundingClientRect: () => ({ bottom: 0 }) }).getBoundingClientRect().bottom + 12;
     const bar = document.querySelector('.bottombar');

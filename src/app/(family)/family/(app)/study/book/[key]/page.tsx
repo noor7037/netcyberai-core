@@ -1,6 +1,7 @@
 import { notFound, redirect } from 'next/navigation';
 import { BookChapter } from '@/components/family/book/BookChapter';
 import { bookChapter, bookFor, readerSrc } from '@/lib/family/books';
+import { loadChildSettings } from '@/lib/family/child-settings';
 import { isPrePrimary, syllabusBoardOf } from '@/lib/family/children';
 import { readFamilySwitches, switchOn } from '@/lib/family/flags';
 import { openSubjects } from '@/lib/family/learning';
@@ -48,7 +49,9 @@ export default async function BookChapterPage({ params }: { params: { key: strin
   const files = tutorOn && TUTOR_READS_FILES && (await familyPageRead(page, (db) => photoGate(db, page.session.accountId, child))) === null;
   const w = familyWords(lang, ['fam.book.ask', 'fam.tutor.readAloud', 'fam.tutor.pause', 'fam.tutor.resume', 'fam.tutor.readPercent', ...WORD_MENU_KEYS, ...(tutorOn ? [...UNDERSTAND_KEYS, ...TUTOR_KEYS] : []), ...(voice ? VOICE_KEYS : [])]);
   // The reader keeps the child's place and what was read on this device, under this child's id (the address carries it).
-  const src = readerSrc(found.book, found.chapter, lang).replace('#', `&host=family&child=${encodeURIComponent(child.childId)}#`);
+  // W23: the child's "follow the voice" switch reaches the reader in its address.
+  const settings = await familyPageRead(page, (db) => loadChildSettings(db, page.session.accountId, child.childId));
+  const src = readerSrc(found.book, found.chapter, lang).replace('#', `&host=family&child=${encodeURIComponent(child.childId)}${settings.autoScroll ? '' : '&follow=0'}#`);
   return (
     <div lang={lang}>
       <BookChapter

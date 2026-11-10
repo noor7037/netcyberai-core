@@ -89,6 +89,10 @@ export async function saveChildSettings(db: Db, accountId: string, childId: stri
 // ---- client ---------------------------------------------------------------------------------------------------------
 
 let cached: Promise<ChildSettings> | null = null;
+// The settings as last read on this page (null until the first read finishes): the follow-the-voice scrolls check
+// `autoScroll` synchronously (W23).
+let last: ChildSettings | null = null;
+export const lastChildSettings = (): ChildSettings | null => last;
 
 // The active child's settings for a client screen: read once per page load from /api/family/settings (the defaults
 // when it cannot be read, so a screen never waits on it). `fresh` reads again.
@@ -96,12 +100,14 @@ export function readChildSettings(fresh = false): Promise<ChildSettings> {
   if (!cached || fresh) {
     cached = fetch('/api/family/settings', { credentials: 'same-origin' })
       .then(async (r) => (r.ok ? parseChildSettings(((await r.json()) as { settings?: unknown }).settings) : { ...DEFAULT_CHILD_SETTINGS }))
-      .catch(() => ({ ...DEFAULT_CHILD_SETTINGS }));
+      .catch(() => ({ ...DEFAULT_CHILD_SETTINGS }))
+      .then((s) => (last = s));
   }
   return cached;
 }
 
 // Called by the Settings screen after a save, so the next read on this page sees it.
 export function primeChildSettings(s: ChildSettings) {
+  last = s;
   cached = Promise.resolve(s);
 }
