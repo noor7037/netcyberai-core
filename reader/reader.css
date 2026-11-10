@@ -63,7 +63,7 @@ a { color: var(--royal); }
 .step.figure, .step.equation, .step.table, .step.hook { --tint: var(--lilac); --acc: var(--lilac-a); }
 .step.misconception { --tint: var(--blush); --acc: var(--blush-a); }
 .step.retrieve, .step.guided, .step.lab { --tint: var(--sky); --acc: var(--sky-a); }
-@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes rise { from { transform: translateY(8px); } to { transform: none; } } /* movement only: a paused or skipped animation never leaves a card invisible (W24) */
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
 .step h3 { font-size: 1.15rem; margin-bottom: 8px; }
 .step .tag { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-display); font-size: .95rem; font-weight: 800; padding: 0; margin-bottom: 8px; background: transparent; color: var(--acc); }

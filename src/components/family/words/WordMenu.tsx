@@ -151,15 +151,9 @@ export function WordMenu({ tap, w, onClose }: { tap: Tap; w: Words; onClose: () 
               <button type="button" data-word-translate aria-pressed={section === 'translate'} onClick={() => open('translate')} className={`${btn} bg-white text-ink ring-1 ring-ink/15 aria-pressed:bg-ink aria-pressed:text-white`}>
                 {w['fam.word.translate']}
               </button>
-            </>
-          )}
-        </div>
-        {help && section && (
-          <div className="flex flex-col gap-2 rounded-2xl bg-white p-3 ring-1 ring-ink/10" aria-live="polite">
-            {section === 'translate' && (
-              <label className="flex items-center gap-2 text-sm font-bold text-slate">
-                {w['fam.word.into']}
-                <select
+              {/* The language for the meaning and the translation, its own control beside them (founder, 10 Nov): changing it
+                  asks again in the new language when an answer is open. */}
+              <select
                   data-word-lang
                   value={lang}
                   onChange={(e) => {
@@ -167,7 +161,8 @@ export function WordMenu({ tap, w, onClose }: { tap: Tap; w: Words; onClose: () 
                     setLang(l);
                     saveLang(l);
                   }}
-                  className="min-h-[44px] rounded-full bg-off-white px-3 text-sm font-bold text-ink ring-1 ring-ink/15"
+                  aria-label={w['fam.word.into']}
+                  className="min-h-[44px] rounded-full bg-white px-3 text-sm font-bold text-ink ring-1 ring-ink/15"
                 >
                   {LANGS.map((l) => (
                     <option key={l.code} value={l.code}>
@@ -175,8 +170,11 @@ export function WordMenu({ tap, w, onClose }: { tap: Tap; w: Words; onClose: () 
                     </option>
                   ))}
                 </select>
-              </label>
-            )}
+            </>
+          )}
+        </div>
+        {help && section && (
+          <div className="flex flex-col gap-2 rounded-2xl bg-white p-3 ring-1 ring-ink/10" aria-live="polite">
             {answer(section === 'translate' ? 'translation' : 'meaning')}
           </div>
         )}
