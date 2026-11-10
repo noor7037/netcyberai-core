@@ -44,6 +44,7 @@ const InteractiveView = dynamic(() => import('./blocks/InteractiveViews').then((
 // W10-4: a 3D model, its own chunk too, only when an answer carries one.
 const Model3DView = dynamic(() => import('./blocks/Model3DView').then((m) => m.Model3DView));
 // W19-D: the model block's own small wrapper; the viewer and three.js are chunks it fetches when a model is shown.
+const LabBlockView = dynamic(() => import('./blocks/LabBlockView').then((m) => m.LabBlockView));
 const ModelBlockView = dynamic(() => import('./blocks/ModelBlockView').then((m) => m.ModelBlockView));
 // W16-A2: the drawing board and the Class 8 Science simulations, each its own chunk, only when an answer carries one.
 const BoardView = dynamic(() => import('./blocks/BoardView').then((m) => m.BoardView));
@@ -59,7 +60,7 @@ const SimView = dynamic(() => import('./blocks/SimView').then((m) => m.SimView))
 // A typed question carries no subject: the server decides it (F1-3). From the tutor window (S2, C375) it carries the
 // window's subject, the reader's chapter and block, and the files sent with it; the server checks each and keeps the
 // answered turn in the child's conversation.
-export type TutorAsk = { subject: string; chatId?: string; chapterKey?: string; blockId?: string; files?: string[]; mode?: 'check'; sketch?: true };
+export type TutorAsk = { subject: string; where?: { kind: string; key: string; topicId?: string; labId?: string }; chatId?: string; chapterKey?: string; blockId?: string; files?: string[]; mode?: 'check'; sketch?: true };
 export type UnderstandInput = { kind: 'topic' | 'chapter'; key: string } | { kind: 'question'; text: string; tutor?: TutorAsk };
 type Meta = Extract<ResolverEvent, { t: 'meta' }>;
 type GoTo = NonNullable<Extract<ResolverEvent, { t: 'refused' }>['goTo']>;
@@ -138,6 +139,8 @@ export function AnswerBlock({ b, w, tone, lead = false, onRetry, onOffline, sent
       return <FigureView b={b} tone={tone} />;
     case 'model_3d':
       return <Model3DView b={b} w={w} tone={tone} />;
+    case 'lab':
+      return <LabBlockView b={b} w={w} tone={tone} />;
     case 'model':
       return <ModelBlockView b={b} w={w} tone={tone} sentence={sentence} sentences={sentences} />;
     case 'steps':

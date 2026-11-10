@@ -64,9 +64,12 @@ export const FOLLOW_UPS: readonly FollowUp[] = ['simpler', 'another_example', 'd
 // planning call is made.
 // `sketch` (W18-P3): the attached picture is a drawing the child made on the sketch pad (one PNG or JPEG, checked by the
 // route); it reaches the prompt as `ResolverAsk.sketch`, so the tutor answers with a board that marks up the drawing.
+// W23-C: where the tutor was opened, built on the server from our own content (src/lib/family/tutor-context.ts): the short
+// line the planner reads, the text the tutor is told, and the labs it may show.
+export type QuestionScope = { about: string; text: string; labs: readonly { id: string; title: string; aim: string }[] };
 export type ResolveInput =
   | { kind: 'topic' | 'chapter'; key: string }
-  | { kind: 'question'; text: string; subject: Subject | null; about?: string; attached?: string; chapterKey?: string; windowSubject?: string; memory?: ChatMemory; check?: true; sketch?: true };
+  | { kind: 'question'; text: string; subject: Subject | null; about?: string; attached?: string; chapterKey?: string; windowSubject?: string; memory?: ChatMemory; check?: true; sketch?: true; scope?: QuestionScope };
 
 const withAttached = (text: string, attached: string | undefined) => (attached ? `${text}\n\nThe student attached files. What they say:\n${attached}` : text);
 
@@ -171,7 +174,7 @@ async function libraryEvents(db: Db, ctx: Seal, line: Line, promptVersion: strin
   const blocks = completeResponse(
     (cached.blocks as unknown[])
       .map((b) => parseStoredBlockLine(JSON.stringify(b)))
-      .filter((b): b is Block => b !== null && (b.type !== 'simulation' || simFits(b.sim, line.title)) && (!isSimScene(b) || sceneSimFits(b.sim, line.title)) && (b.type !== 'model' || modelFits(b.model, line.title))),
+      .filter((b): b is Block => b !== null && (b.type !== 'simulation' || simFits(b.sim, line.title)) && (!isSimScene(b) || sceneSimFits(b.sim, line.title)) && (b.type !== 'model' || modelFits(b.model, line.title)) && b.type !== 'lab'),
     core
   );
   if (!blocks) return null;
@@ -234,6 +237,8 @@ export type Pending = {
   moderation: PreparedModeration | null;
   asked: string;
   question: string | null;
+  // W23-C: the ids of the labs offered for this question; a lab block names one of them or is dropped.
+  labs?: readonly string[];
   // W9-B: the plan the prompt is written from (v8 on; null under an earlier prompt), and for a live answer the planning
   // call and the passages, the prompt rebuilt from the plan once it comes (null: the default plan stands).
   plan: Plan | null;
@@ -249,6 +254,15 @@ export type Pending = {
 export const CHECK_CORE: readonly BlockType[] = ['steps', 'check'];
 // Every block a marked working may show: the chapter, the verdicts, the corrected working and the similar question.
 const CHECK_TYPES: readonly BlockType[] = ['sources', 'steps', 'worked_example', 'check'];
+
+// Where the child opened the tutor, as one block in any prompt version's system text, before its closing rules (or at the
+// end when a version has none). The text is our own content, never the phone's.
+export function withScope(system: string, scope: string | undefined): string {
+  if (!scope) return system;
+  const line = `Where the student opened the tutor (our own lesson content: answer the question asked, teach from this and stay consistent with it, and do not read it out as a list): ${scope.replace(/\n/g, '\n   ')}`;
+  const at = system.indexOf('\nRules: ');
+  return at < 0 ? `${system}\n${line}` : `${system.slice(0, at)}\n${line}${system.slice(at)}`;
+}
 
 // The planning call (null: no route, the default plan), the library's passages, and the answer's request written from
 // a plan.
@@ -418,6 +432,7 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
     chapter: line?.chapterEn ?? null,
     topic: line?.topicEn ?? null,
     question: input.kind === 'question' ? withAttached(input.about ? `${input.text} (asked while reading: ${input.about})` : input.text, input.attached) : null,
+    ...(input.kind === 'question' && input.scope ? { scope: input.scope.text, labs: input.scope.labs } : {}),
     language: child.language,
     style: child.style,
     followUp,
@@ -434,7 +449,7 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
       const system = checkMarkSystem(a);
       return { system: withPersona(system, ctx.persona), messages: [{ role: 'user', content: checkMarkUser(a) }], responseFormat: undefined };
     }
-    return { system: withPersona(prompt.system(a), ctx.persona), messages: [{ role: 'user', content: prompt.user(a) }], responseFormat: undefined };
+    return { system: withPersona(withScope(prompt.system(a), a.scope), ctx.persona), messages: [{ role: 'user', content: prompt.user(a) }], responseFormat: undefined };
   };
   const prepared = await prepareText(db as never, { accountId: ctx.accountId, childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail, day: ctx.day, childId: ctx.child.childId }, profileId, build(plan)); // w16-b4
   if (!prepared.ok) {
@@ -443,7 +458,7 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
   }
   const question = input.kind === 'question' ? withAttached(input.text, input.attached) : null;
   const asked = question ?? `Explain "${line?.topicEn ?? line?.chapterEn ?? ''}" to a Class ${child.classLevel} student.`;
-  return { ctx, line, known, open, classSubjects: ofClass, cacheable, promptVersion: prompt.version, text: prepared.text, moderation, asked, question, plan, teach: teach ? { ...teach, build } : null, ...(isCheck ? { check: true as const, reading: input.kind === 'question' ? (input.attached ?? '') : '' } : {}) };
+  return { ctx, line, known, open, classSubjects: ofClass, cacheable, promptVersion: prompt.version, text: prepared.text, moderation, asked, question, labs: input.kind === 'question' && input.scope ? input.scope.labs.map((l) => l.id) : [], plan, teach: teach ? { ...teach, build } : null, ...(isCheck ? { check: true as const, reading: input.kind === 'question' ? (input.attached ?? '') : '' } : {}) };
 }
 
 // The planner reads the question and the start of what attached files say: enough to plan, not to answer.
@@ -478,7 +493,7 @@ async function prepareTeach(db: Db, ctx: ResolverContext, input: ResolveInput, l
     childId: child.childId,
   });
   const ai = { accountId: ctx.accountId, childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail, day: ctx.day };
-  const call = input.kind === 'question' && !input.check && misconception === null ? await preparePlan(db as never, ai, { ...planCtx, board: boardNameOf(child), chapter: input.about ?? null, passageTitles: passages.map((p) => p.title) }, withAttached(input.text, input.attached).slice(0, PLAN_QUESTION_MAX)) : null;
+  const call = input.kind === 'question' && !input.check && misconception === null ? await preparePlan(db as never, ai, { ...planCtx, board: boardNameOf(child), chapter: input.about ?? (input.kind === 'question' ? input.scope?.about : undefined) ?? null, passageTitles: passages.map((p) => p.title) }, withAttached(input.text, input.attached).slice(0, PLAN_QUESTION_MAX)) : null;
   return { ctx: planCtx, call, passages };
 }
 
@@ -569,6 +584,8 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
     // A 3D model only where the question or its syllabus line is about that thing (W19-D): a heart under a question about
     // friction is dropped. Not the block's own title, which always names the model.
     if (b.type === 'model' && !modelFits(b.model, `${p.asked} ${line?.title ?? ''}`)) return;
+    // A lab only from the labs offered for this question (W23-C): an id the model made up is never shown.
+    if (b.type === 'lab' && !(p.labs ?? []).includes(b.id)) return;
     // The safety check, before the block is shown or a subject is claimed (C314).
     if (p.moderation && !(await safe({ user: p.asked, assistant: blockText(b) }))) return;
     if (mustClaim && claim) {

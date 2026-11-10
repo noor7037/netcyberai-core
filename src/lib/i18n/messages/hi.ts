@@ -11208,4 +11208,11 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.word.err.daily_limit': 'आज के शब्द देखने के सारे मौके पूरे हो गए। कल फिर कोशिश करना।',
   'fam.word.err.failed': 'यह देखा नहीं जा सका। फिर से कोशिश करो।',
   // w23-a end
+  // w23-c begin
+  'fam.lab.title': 'लैब में करके देखो',
+  'fam.lab.open': 'लैब खोलो',
+  'fam.lab.close': 'लैब बंद करो',
+  'fam.lab.done': 'तुमने यह लैब पूरी कर ली',
+  'fam.lab.frame': 'लैब',
+  // w23-c end
 };

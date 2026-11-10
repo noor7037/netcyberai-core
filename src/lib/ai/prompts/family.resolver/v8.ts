@@ -39,6 +39,10 @@ export type ResolverAsk = V3Ask & {
   // W18-P3: the attached picture is the child's own drawing from the sketch pad. Declared here so the request can carry it;
   // the prompt version that reads it (v10) owns the rule. Earlier versions ignore it.
   sketch?: boolean;
+  // W23-C: where the child opened the tutor, from our own content (put in every version's system prompt by the resolver),
+  // and the ready-built labs the answer may show (id, title, aim; only v13 reads them). Earlier versions ignore them.
+  scope?: string;
+  labs?: readonly { id: string; title: string; aim: string }[];
 };
 
 const STYLE: Record<V3Ask['style'], string> = {

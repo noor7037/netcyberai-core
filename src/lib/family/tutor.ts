@@ -121,12 +121,34 @@ async function archiveOverflow(db: Db, accountId: string, childId: string, subje
   );
 }
 
+// W23-C: a chat belongs to a book chapter when its child turns were all asked in it (the turn's chapter_key is the book
+// chapter's key, u.c10.science.jesc1.ch01). Inside a chapter the tutor starts, and continues, only such a chat; outside
+// one, no question joins a chapter's chat. `scoped(n)`: the chat `c` is the chapter whose key is parameter $n.
+const BOOK_KEY = "'^u\\.c[0-9]{2}\\.'";
+const inBook = `exists (select 1 from family.tutor_messages k where k.conversation_id = c.conversation_id and k.role = 'child' and k.chapter_key ~ ${BOOK_KEY})`;
+const scoped = (n: number) =>
+  `exists (select 1 from family.tutor_messages k where k.conversation_id = c.conversation_id and k.role = 'child' and k.chapter_key = $${n})
+   and not exists (select 1 from family.tutor_messages k where k.conversation_id = c.conversation_id and k.role = 'child' and k.chapter_key is distinct from $${n})`;
+
+// The newest open chat of one book chapter (W23-C), or null.
+export async function scopedChat(db: Db, accountId: string, childId: string, chapterKey: string, tutorKey: string | null = null): Promise<string | null> {
+  const { rows } = await db.query(
+    `select c.conversation_id from family.tutor_conversations c
+      where c.account_id = $1 and c.child_id = $2 and c.status = 'open' and c.tutor_key is not distinct from $3 and ${scoped(4)}
+      order by c.last_at desc, c.created_at desc limit 1`,
+    [accountId, childId, tutorKey, chapterKey]
+  );
+  return rows[0] ? String(rows[0].conversation_id) : null;
+}
+
 // The newest open chat in a subject, or a new one.
 // W16-A3: a chat is with one tutor (or none): the newest open chat is the one with the same tutor.
-export async function openChat(db: Db, accountId: string, childId: string, subject: string, tutorKey: string | null = null): Promise<string> {
+// W23-C: with `scope` (a book chapter's key) the chapter's own chat; without, never one of a chapter's.
+export async function openChat(db: Db, accountId: string, childId: string, subject: string, tutorKey: string | null = null, scope: string | null = null): Promise<string> {
   if (!isSubject(subject)) throw new Error('not a subject');
+  if (scope) return (await scopedChat(db, accountId, childId, scope, tutorKey)) ?? newChat(db, accountId, childId, subject, tutorKey);
   const { rows } = await db.query(
-    `select conversation_id from family.tutor_conversations where account_id = $1 and child_id = $2 and subject = $3 and status = 'open' and tutor_key is not distinct from $4 ${NEWEST} limit 1`,
+    `select c.conversation_id from family.tutor_conversations c where c.account_id = $1 and c.child_id = $2 and c.subject = $3 and c.status = 'open' and c.tutor_key is not distinct from $4 and not ${inBook} order by c.last_at desc, c.created_at desc limit 1`,
     [accountId, childId, subject, tutorKey]
   );
   return rows[0] ? String(rows[0].conversation_id) : newChat(db, accountId, childId, subject, tutorKey);
@@ -201,16 +223,22 @@ export async function resolveChat(
   childId: string,
   subject: string,
   requested: unknown,
-  tutorKey: string | null = null
+  tutorKey: string | null = null,
+  scope: string | null = null
 ): Promise<{ chatId: string; full: boolean; memory: ResolverMemory | null; pinned: boolean; subject: string; tutorKey: string | null } | null> {
   if (!isSubject(subject)) return null;
   const pinned = await pinnedChat(db, accountId, childId, requested);
   let chat: TutorChat | null = pinned;
   if (!chat) {
-    const { rows } = await db.query(
-      `select ${CHAT_COLUMNS} from family.tutor_conversations where account_id = $1 and child_id = $2 and subject = $3 and status = 'open' and tutor_key is not distinct from $4 ${NEWEST} limit 1`,
-      [accountId, childId, subject, tutorKey]
-    );
+    const { rows } = scope
+      ? await db.query(
+          `select ${CHAT_COLUMNS} from family.tutor_conversations c where c.account_id = $1 and c.child_id = $2 and c.status = 'open' and c.tutor_key is not distinct from $3 and ${scoped(4)} ${NEWEST} limit 1`,
+          [accountId, childId, tutorKey, scope]
+        )
+      : await db.query(
+          `select ${CHAT_COLUMNS} from family.tutor_conversations c where c.account_id = $1 and c.child_id = $2 and c.subject = $3 and c.status = 'open' and c.tutor_key is not distinct from $4 and not ${inBook} ${NEWEST} limit 1`,
+          [accountId, childId, subject, tutorKey]
+        );
     chat = rows[0] ? chatOf(rows[0]) : null;
   }
   if (!chat) return null;
@@ -259,8 +287,28 @@ function turnOf(r: Record<string, unknown>): TutorTurn {
 // W10-4 (C413; docs/39 §5): a subject's feed, every turn of the child's chats in that subject (archived ones too: the
 // feed is the subject's last FEED_TURNS child turns, whatever chat they were kept in), oldest first, each with its
 // chat and the chat's subject.
-export function readFeed(db: Db, accountId: string, childId: string, subject: string): Promise<FeedTurn[]> {
+// W23-C: with `scope` (a book chapter's key) only that chapter's own chats' turns, whatever their subject; never another
+// chapter's or subject's.
+export function readFeed(db: Db, accountId: string, childId: string, subject: string, scope: string | null = null): Promise<FeedTurn[]> {
   if (!isSubject(subject)) return Promise.resolve([]);
+  if (scope) {
+    return guarded(
+      db,
+      async () => {
+        const { rows } = await db.query(
+          `select m.message_id, m.role, m.body, m.blocks, m.chapter_key, m.block_id, m.lang, m.created_at, m.conversation_id, c.subject,
+                  coalesce((select json_agg(json_build_object('id', a.attachment_id, 'mime', a.mime) order by a.created_at)
+                              from family.tutor_attachments a where a.message_id = m.message_id and a.status = 'ready'), '[]'::json) as files
+             from family.tutor_messages m join family.tutor_conversations c on c.conversation_id = m.conversation_id
+            where c.account_id = $1 and c.child_id = $2 and ${scoped(3)}
+            order by m.created_at desc, m.role desc limit $4`,
+          [accountId, childId, scope, TURNS_SHOWN]
+        );
+        return rows.reverse().map((r): FeedTurn => ({ ...turnOf(r), chatId: String(r.conversation_id), subject: String(r.subject) }));
+      },
+      []
+    );
+  }
   return guarded(
     db,
     async () => {
@@ -337,7 +385,7 @@ export async function sendableFiles(db: Db, accountId: string, childId: string, 
 }
 
 // `storage`: where the files of turns the feed lets go are removed from (the route's bucket; none in a test).
-type TurnInput = { accountId: string; childId: string; subject: string; text: string; chapterKey: string | null; blockId: string | null; files: string[]; blocks: readonly Block[]; lang?: string; storage?: DirectUploadStorage | null; tutorKey?: string | null };
+type TurnInput = { accountId: string; childId: string; subject: string; text: string; chapterKey: string | null; blockId: string | null; files: string[]; blocks: readonly Block[]; lang?: string; storage?: DirectUploadStorage | null; tutorKey?: string | null; scope?: string | null };
 
 // A turn: the child's words (and the reader's chapter and block, and the files sent with them), then the tutor's
 // answer as shown, without its check and practice items, in this child's chat. The chat's child turns go up by one, and
@@ -404,7 +452,7 @@ export async function saveTurn(db: Db, t: TurnInput & { chatId?: string | null }
     if (kept.ok) return { chatId: t.chatId, turnCount: kept.turnCount, subject: kept.subject, messageId: kept.messageId };
     if (kept.error === 'empty') return null;
   }
-  const chatId = await openChat(db, t.accountId, t.childId, t.subject, t.tutorKey ?? null);
+  const chatId = await openChat(db, t.accountId, t.childId, t.subject, t.tutorKey ?? null, t.scope ?? null);
   const kept = await appendTurn(db, { ...t, chatId });
   return kept.ok ? { chatId, turnCount: kept.turnCount, subject: kept.subject, messageId: kept.messageId } : null;
 }

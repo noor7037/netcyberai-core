@@ -187,13 +187,20 @@ export type ModelBlock = { type: 'model'; title: string; model: ModelKey; focus:
 export const MODEL_FOCUS_MAX = 6;
 export const MODEL_CAPTION_MAX = 160;
 
+// W23-C: a ready-built lab shown inside the tutor's answer (the labs/ catalogue, labs/index.json). Only an id and why it
+// helps: the lab itself is the founder's own definition, served to signed-in families. The server keeps the block only
+// when the id was one of the labs it offered for this question (resolver.ts); here the shape alone is checked.
+export type LabBlock = { type: 'lab'; id: string; why: string };
+export const LAB_ID = /^[a-z0-9][a-z0-9._-]{2,119}$/;
+export const LAB_WHY_MAX = 160;
+
 export type BlockMeta = { id?: string; tts_read_aloud?: boolean };
 
-export type Block = (Explanation | WorkedExample | KeyPoints | Diagram | MindMap | Check | Practice | EnglishMoment | Sources | Table | Interactive | Slider | Model3D | ChapterTest | Figure | Steps | Timeline | ImageBlock | Videos | Scene | SimScene | Chart | Board | ModelBlock) & BlockMeta;
+export type Block = (Explanation | WorkedExample | KeyPoints | Diagram | MindMap | Check | Practice | EnglishMoment | Sources | Table | Interactive | Slider | Model3D | ChapterTest | Figure | Steps | Timeline | ImageBlock | Videos | Scene | SimScene | Chart | Board | ModelBlock | LabBlock) & BlockMeta;
 export type BlockType = Block['type'];
 export const INTERACTIVE_TYPES: readonly BlockType[] = ['graph', 'number_line', 'fraction_model', 'geometry', 'simulation'];
 export const isInteractive = (t: BlockType) => INTERACTIVE_TYPES.includes(t);
-export const BLOCK_TYPES: readonly BlockType[] = ['explanation', 'worked_example', 'key_points', 'diagram', 'mind_map', 'check', 'practice', 'english_moment', 'sources', 'table', ...INTERACTIVE_TYPES, 'slider', 'model_3d', 'chapter_test', 'figure', 'steps', 'timeline', 'image', 'videos', 'scene', 'chart', 'board', 'model'];
+export const BLOCK_TYPES: readonly BlockType[] = ['explanation', 'worked_example', 'key_points', 'diagram', 'mind_map', 'check', 'practice', 'english_moment', 'sources', 'table', ...INTERACTIVE_TYPES, 'slider', 'model_3d', 'chapter_test', 'figure', 'steps', 'timeline', 'image', 'videos', 'scene', 'chart', 'board', 'model', 'lab'];
 // The blocks the server fills before they are kept (W9-C): a photograph and the videos.
 export const FILLED_TYPES: readonly BlockType[] = ['image', 'videos'];
 // Types only authored chapters carry; the model's answer never does.
@@ -535,6 +542,8 @@ function blockBody(o: Record<string, unknown>): Block | null {
       return boardBlock(o);
     case 'model':
       return modelBlock(o);
+    case 'lab':
+      return labBlock(o);
     default:
       return null;
   }
@@ -653,6 +662,14 @@ function modelBlock(o: Record<string, unknown>): ModelBlock | null {
     caption = c;
   }
   return { type: 'model', title, model, focus: raw as string[], ...(caption ? { caption } : {}) };
+}
+
+// A lab (W23-C): an id of the shape the lab catalogue uses and one short line on why doing it helps. Nothing else: a block
+// that names a field it should not have is not dropped for it, but only these two are kept.
+function labBlock(o: Record<string, unknown>): LabBlock | null {
+  if (typeof o.id !== 'string' || !LAB_ID.test(o.id)) return null;
+  const why = fits(o.why, LAB_WHY_MAX);
+  return why ? { type: 'lab', id: o.id, why } : null;
 }
 
 // ---- the board (W16-A2, docs/39 §6) ----
@@ -1327,7 +1344,7 @@ function parsed(line: string, stored: boolean): Block | null {
 // W9-C: a figure and steps after the explanation, the photograph after the figure, a timeline after the key points, the
 // videos last. W10-6: the scene after the figure, the chart after the key points. W16-A2: a board where a figure goes,
 // right after it. W19-D: a model after the board.
-const ORDER: BlockType[] = ['explanation', 'figure', 'board', 'model', 'scene', 'image', 'steps', 'worked_example', 'diagram', 'mind_map', ...INTERACTIVE_TYPES, 'key_points', 'chart', 'timeline', 'check', 'practice', 'english_moment', 'sources', 'videos'];
+const ORDER: BlockType[] = ['explanation', 'figure', 'board', 'model', 'scene', 'image', 'steps', 'worked_example', 'diagram', 'mind_map', ...INTERACTIVE_TYPES, 'key_points', 'chart', 'timeline', 'lab', 'check', 'practice', 'english_moment', 'sources', 'videos'];
 export function completeResponse(blocks: Block[], core: readonly BlockType[] = REQUIRED_BLOCKS): Block[] | null {
   const first = new Map<BlockType, Block>();
   let interactive = false;

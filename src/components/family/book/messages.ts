@@ -11,6 +11,8 @@ export type FromReader = {
   offset?: unknown;
   chapter?: unknown;
   topic?: unknown;
+  topicId?: unknown;
+  lab?: unknown;
   question?: unknown;
   context?: unknown;
   // W23-A: a tap on a word or a selection (text, context, rect in the frame, the step and sentence it fell in), and the

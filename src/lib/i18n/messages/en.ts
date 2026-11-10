@@ -11222,4 +11222,11 @@ export const en = {
   'fam.word.err.daily_limit': 'You have used all of today\'s word look-ups. Try again tomorrow.',
   'fam.word.err.failed': 'This could not be looked up. Try again.',
   // w23-a end
+  // w23-c begin
+  'fam.lab.title': 'Try it in a lab',
+  'fam.lab.open': 'Open the lab',
+  'fam.lab.close': 'Close the lab',
+  'fam.lab.done': 'You finished this lab',
+  'fam.lab.frame': 'Lab',
+  // w23-c end
 } as const;
