@@ -7,6 +7,7 @@ import type { Words } from '@/lib/family/fill';
 import type { Subject } from '@/lib/family/subjects';
 import { TutorFace } from '../avatar/TutorFace';
 import { TutorWindowLazy } from '../tutor/TutorWindowLazy';
+import type { TutorWhere } from '../tutor/TutorWindow';
 import { NO_VOICE_EVENT } from '../english/speech';
 import { speakLine, stopLine } from '../voice/lineVoice';
 import { aboutLine, cleanSpeak, wordAt, type FromReader } from './messages';
@@ -37,7 +38,7 @@ export function BookChapter({ src, title, chapterKey, subject, back, w, tutor }:
   const run = useRef(0);
   const last = useRef(0);
   const [open, setOpen] = useState(false);
-  const [where, setWhere] = useState<{ chapter: string; topic: string } | null>(null);
+  const [where, setWhere] = useState<{ chapter: string; topic: string; topicId: string; lab: string } | null>(null);
   const [ask, setAsk] = useState<{ n: number; text: string } | null>(null);
   const closeButton = useRef<HTMLButtonElement>(null);
   const opener = useRef<HTMLElement | null>(null);
@@ -83,7 +84,7 @@ export function BookChapter({ src, title, chapterKey, subject, back, w, tutor }:
       const m = e.data as FromReader | null;
       if (!m || m.source !== 'nca-reader') return;
       if (m.type === 'ready') to({ type: 'hello', tutor: !!tutor });
-      else if (m.type === 'where') setWhere({ chapter: String(m.chapter ?? '').slice(0, 100), topic: String(m.topic ?? '').slice(0, 100) });
+      else if (m.type === 'where') setWhere({ chapter: String(m.chapter ?? '').slice(0, 100), topic: String(m.topic ?? '').slice(0, 100), topicId: String(m.topicId ?? '').slice(0, 40), lab: '' });
       else if (m.type === 'stop') stop();
       else if (m.type === 'speak') {
         const say = cleanSpeak(m);
@@ -93,7 +94,7 @@ export function BookChapter({ src, title, chapterKey, subject, back, w, tutor }:
         const q = String(m.question ?? '').trim();
         const ctx = String(m.context ?? '').trim();
         // A question typed in the lab is asked at once; a bare tap on the lab's tutor button opens the tutor about that lab.
-        setWhere({ chapter: String(m.chapter ?? '').slice(0, 100), topic: q || !ctx ? String(m.topic ?? '').slice(0, 100) : `${String(m.topic ?? '').slice(0, 40)} / ${ctx.slice(0, 60)}` });
+        setWhere({ chapter: String(m.chapter ?? '').slice(0, 100), topic: q || !ctx ? String(m.topic ?? '').slice(0, 100) : `${String(m.topic ?? '').slice(0, 40)} / ${ctx.slice(0, 60)}`, topicId: String(m.topicId ?? '').slice(0, 40), lab: String(m.lab ?? '').slice(0, 120) });
         if (q.length >= 3) setAsk({ n: Date.now(), text: (ctx ? `${q} [${ctx}]` : q).slice(0, 380) });
         opener.current = document.activeElement as HTMLElement | null;
         setOpen(true);
@@ -121,6 +122,8 @@ export function BookChapter({ src, title, chapterKey, subject, back, w, tutor }:
     // The tutor and the reader do not talk at once.
     stop();
     to({ type: 'stopped', id: last.current });
+    // A tap on the tutor's face is about the topic the child is on, not the lab a question came from earlier.
+    setWhere((p) => (p && p.lab ? { ...p, lab: '' } : p));
     setOpen(true);
   };
   const hide = useCallback(() => {
@@ -144,6 +147,9 @@ export function BookChapter({ src, title, chapterKey, subject, back, w, tutor }:
   }, [open, hide]);
 
   const about = aboutLine(where?.chapter || title, where?.topic ?? '');
+  // W23-C: where the tutor is opened, as ids (the server reads the content itself and checks the child may open it): the
+  // topic the reader is on, or the lab the question came from. Nothing the reader says as text is sent.
+  const place: TutorWhere = where?.lab ? { kind: 'lab', key: chapterKey, labId: where.lab, ...(where.topicId ? { topicId: where.topicId } : {}) } : where?.topicId ? { kind: 'book_topic', key: chapterKey, topicId: where.topicId } : { kind: 'book_chapter', key: chapterKey };
   const face = <TutorFace size="sm" subject={subject} confetti={false} className="origin-center scale-[1.2]" />;
 
   return (
@@ -189,7 +195,7 @@ export function BookChapter({ src, title, chapterKey, subject, back, w, tutor }:
                 {w['fam.tutor.close']}
               </button>
             </div>
-            <TutorWindowLazy w={w} subject={subject} tone={subject} voice={tutor.voice} files={tutor.files} homework={tutor.homework} idPrefix="fam-book" pinned="sheet" about={about} ask={ask} />
+            <TutorWindowLazy w={w} subject={subject} tone={subject} voice={tutor.voice} files={tutor.files} homework={tutor.homework} idPrefix="fam-book" pinned="sheet" about={about} where={place} ask={ask} />
           </div>
         </div>
       )}

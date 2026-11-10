@@ -11192,4 +11192,11 @@ export const en = {
   // w22-s2 begin
   'fam.book.ask': 'Ask the tutor',
   // w22-s2 end
+  // w23-c begin
+  'fam.lab.title': 'Try it in a lab',
+  'fam.lab.open': 'Open the lab',
+  'fam.lab.close': 'Close the lab',
+  'fam.lab.done': 'You finished this lab',
+  'fam.lab.frame': 'Lab',
+  // w23-c end
 } as const;

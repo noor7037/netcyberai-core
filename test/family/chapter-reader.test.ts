@@ -56,6 +56,7 @@ const EVERY: Record<string, unknown> = {
   board: { type: 'board', title: MARK('board'), steps: [{ n: 1, say: `${MARK('board')} say.`, commands: [{ kind: 'label', at: [10, 10], text: MARK('board') }] }] },
   // W19-D: the 3D model is silent as well.
   model: { type: 'model', title: MARK('model'), model: 'brain', focus: ['cerebellum'], caption: `${MARK('model')} caption.` },
+  lab: { type: 'lab', id: 'c10-science-jesc1-ch01-signs', why: `${MARK('lab')} why.` },
 };
 
 describe('narration reads only teaching text (C374)', () => {

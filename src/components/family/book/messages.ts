@@ -11,6 +11,8 @@ export type FromReader = {
   offset?: unknown;
   chapter?: unknown;
   topic?: unknown;
+  topicId?: unknown;
+  lab?: unknown;
   question?: unknown;
   context?: unknown;
 };

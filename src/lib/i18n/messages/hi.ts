@@ -11178,4 +11178,11 @@ export const hi: Record<keyof typeof en, string> = {
   // w22-s2 begin
   'fam.book.ask': 'ट्यूटर से पूछो',
   // w22-s2 end
+  // w23-c begin
+  'fam.lab.title': 'लैब में करके देखो',
+  'fam.lab.open': 'लैब खोलो',
+  'fam.lab.close': 'लैब बंद करो',
+  'fam.lab.done': 'तुमने यह लैब पूरी कर ली',
+  'fam.lab.frame': 'लैब',
+  // w23-c end
 };

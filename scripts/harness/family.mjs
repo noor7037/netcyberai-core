@@ -124,6 +124,35 @@ const callAnswer = (lang) => {
     .map((e) => `${JSON.stringify(e)}\n`)
     .join('');
 };
+// W23-C: Asha (Class 10) has an older Science answer from Study ("How Human Reproduction Works") and one earlier question of her
+// own in Chemical Reactions; the chapter's tutor sheet shows the chapter's only, never the older one. The second picture is a
+// tutor answer with a ready-built lab (its id one the server offered), the lab opened inside the answer.
+const OLD_CHAT_ID = 'f0000000-0000-4000-8000-0000000fa311';
+const CH_CHAT_ID = 'f0000000-0000-4000-8000-0000000fa312';
+const ASHA = `'f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000fc001'`;
+const SCOPED_CHATS = `
+  update family.children set class_level = 10 where child_id = 'f0000000-0000-4000-8000-0000000fc001';
+  insert into family.tutor_conversations (conversation_id, account_id, child_id, subject, title, turn_count, status, updated_at, last_at) values
+    ('${OLD_CHAT_ID}', ${ASHA}, 'science', 'How does reproduction work?', 1, 'open', now(), now() - interval '1 hour'),
+    ('${CH_CHAT_ID}', ${ASHA}, 'science', 'What is a precipitate?', 1, 'open', now(), now() - interval '5 minutes') on conflict do nothing;
+  insert into family.tutor_messages (conversation_id, account_id, child_id, role, body, created_at) values
+    ('${OLD_CHAT_ID}', ${ASHA}, 'child', 'How does human reproduction work?', now() - interval '61 minutes');
+  insert into family.tutor_messages (conversation_id, account_id, child_id, role, blocks, created_at) values
+    ('${OLD_CHAT_ID}', ${ASHA}, 'tutor', '[{"type":"explanation","title":"How Human Reproduction Works","idea":"New life begins when two cells join.","paragraphs":["An egg cell and a sperm cell join, and the new cell grows into a baby."],"example":"Two cells join and one new cell starts to grow.","steps":["The egg cell and the sperm cell join.","The new cell divides and grows."],"terms":[]}]'::jsonb, now() - interval '60 minutes');
+  insert into family.tutor_messages (conversation_id, account_id, child_id, role, body, chapter_key, block_id, created_at) values
+    ('${CH_CHAT_ID}', ${ASHA}, 'child', 'What is a precipitate?', 'u.c10.science.jesc1.ch01', 't07', now() - interval '6 minutes');
+  insert into family.tutor_messages (conversation_id, account_id, child_id, role, blocks, created_at) values
+    ('${CH_CHAT_ID}', ${ASHA}, 'tutor', '[{"type":"explanation","title":"What a precipitate is","idea":"A precipitate is an insoluble solid that forms when two solutions react.","paragraphs":["When two clear solutions are mixed and a cloudy solid appears, that solid is the precipitate."],"example":"Silver nitrate with salt water gives a white cloudy solid.","steps":["Mix two clear solutions.","A cloudy solid appears: the precipitate."],"terms":[]}]'::jsonb, now() - interval '5 minutes');
+`;
+const SCOPED_CHATS_GONE = `delete from family.tutor_messages where conversation_id in ('${OLD_CHAT_ID}', '${CH_CHAT_ID}'); delete from family.tutor_conversations where conversation_id in ('${OLD_CHAT_ID}', '${CH_CHAT_ID}'); update family.children set class_level = 7 where child_id = 'f0000000-0000-4000-8000-0000000fc001';`;
+const LAB_ANSWER = [
+  { t: 'meta', label: 'ai_made', cached: false, title: null, subject: 'science', topicKey: null },
+  { t: 'block', block: { type: 'explanation', title: 'Why a solid forms', idea: 'In a double displacement reaction the ions swap partners, and one new pair cannot stay dissolved.', paragraphs: ['Lead nitrate and potassium iodide are both clear solutions. When they meet, lead and iodide ions pair up into lead iodide, which does not dissolve, so it appears as a yellow solid.'], example: 'Mixing lead nitrate and potassium iodide gives a bright yellow solid.', steps: ['Two clear solutions are mixed.', 'The ions swap partners.', 'The pair that cannot dissolve shows as a solid.'], terms: [] } },
+  { t: 'block', block: { type: 'lab', id: 'c10-science-jesc1-ch01-double-displacement', why: 'Mix the two clear solutions yourself and watch the yellow solid appear.' } },
+  { t: 'done', complete: true, missing: [], cut: false },
+]
+  .map((e) => `${JSON.stringify(e)}\n`)
+  .join('');
 const CLASS_PUT_BACK = `update family.children set class_level = 7 where child_id = 'f0000000-0000-4000-8000-0000000fc001'`;
 const CLASS_10 = `update family.children set class_level = 10 where child_id = 'f0000000-0000-4000-8000-0000000fc001'`;
 
@@ -226,6 +255,10 @@ export const FAMILY_SCREENS = [
   // and the tutor opened over the chapter with the chapter and topic as its context.
   ['full', 'family-book-teach', '/family/study/book/u.c10.science.jesc1.ch01', { prep: CLASS_10, reset: CLASS_PUT_BACK, speech: true, settle: '[data-book-chapter] iframe', steps: [{ frame: true, tap: '[data-topic="0"]:visible', wait: '[data-mode="teach"]' }, { frame: true, tap: '[data-mode="teach"]' }, { pause: 2600 }] }],
   ['full', 'family-book-tutor', '/family/study/book/u.c10.science.jesc1.ch01', { prep: CLASS_10, reset: CLASS_PUT_BACK, speech: true, settle: '[data-book-chapter] iframe', steps: [{ frame: true, tap: '[data-topic="0"]:visible', wait: '[data-mode="teach"]' }, { tap: '[data-book-ask]', wait: '[data-tutor-window]' }, { pause: 600 }] }],
+  // W23-C: the book chapter's tutor sheet is a fresh conversation scoped to the chapter (no older answer from elsewhere), and a
+  // tutor answer can show a ready-built lab, opened inside it.
+  ['full', 'family-book-tutor-fresh', '/family/study/book/u.c10.science.jesc1.ch01', { langs: ['en'], prep: SCOPED_CHATS, reset: SCOPED_CHATS_GONE, speech: true, settle: '[data-book-chapter] iframe', steps: [{ frame: true, tap: '[data-topic="0"]:visible', wait: '[data-mode="teach"]' }, { tap: '[data-book-ask]', wait: '[data-tutor-window] [data-feed-answer]' }, { pause: 600 }] }],
+  ['full', 'family-tutor-lab', '/family/study?subject=science', { langs: ['en'], prep: CLASS_10, reset: CLASS_PUT_BACK, answer: LAB_ANSWER, settle: '[data-tutor-window] textarea', steps: [{ fill: { field: '[data-tutor-window] textarea', value: 'Why does a yellow solid form when two clear solutions mix?' }, tap: '[data-tutor-send]', wait: '[data-block="lab"]' }, { tap: '[data-lab-open]', wait: '[data-block="lab"] iframe' }, { pause: 5000 }] }],
   ['full', 'family-understand', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="practice"]' }],
   // W8-AI: a v7 answer with a mind map (an SVG from 480 px, a vertical tree below) and a check that says why each wrong option is wrong.
   ['full', 'family-understand-mindmap', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch90.t07', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="mind_map"]' }],
