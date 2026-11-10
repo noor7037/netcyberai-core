@@ -30,7 +30,6 @@ import { ImageView } from './blocks/ImageView';
 import { VideosView } from './blocks/VideosView';
 import { StickyTutorFace } from './avatar/TutorFace';
 import type { Reading } from './voice/AnswerSpeaker';
-import { WordTapLayer } from './words/WordTapLayer';
 import { avatarState, setAvatarMood } from '@/lib/family/avatar-state';
 // The speaker and Teach me load with the first answer drawn, off the Study page's first load (the family budget, W18).
 const AnswerSpeaker = dynamic(() => import('./voice/AnswerSpeaker').then((m) => m.AnswerSpeaker));
@@ -44,6 +43,9 @@ const InteractiveView = dynamic(() => import('./blocks/InteractiveViews').then((
 // W10-4: a 3D model, its own chunk too, only when an answer carries one.
 const Model3DView = dynamic(() => import('./blocks/Model3DView').then((m) => m.Model3DView));
 // W19-D: the model block's own small wrapper; the viewer and three.js are chunks it fetches when a model is shown.
+// The tap layer (word menu, read from here) is loaded with the answer, not the page (W23 integration: the Study page's
+// first-load budget).
+const WordTapLayer = dynamic(() => import('./words/WordTapLayer').then((m) => m.WordTapLayer), { ssr: false });
 const LabBlockView = dynamic(() => import('./blocks/LabBlockView').then((m) => m.LabBlockView));
 const ModelBlockView = dynamic(() => import('./blocks/ModelBlockView').then((m) => m.ModelBlockView));
 // W16-A2: the drawing board and the Class 8 Science simulations, each its own chunk, only when an answer carries one.

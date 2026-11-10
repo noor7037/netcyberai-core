@@ -5,7 +5,12 @@ import type { Words } from '@/lib/family/fill';
 import { findSentence } from '../voice/highlight';
 import { readWordSettings } from './settings';
 import { cleanAsk, sentenceAtOffset, sentenceIndexIn, wordAtOffset } from './tapTarget';
-import { WordMenu, type Tap } from './WordMenu';
+import dynamic from 'next/dynamic';
+import type { Tap } from './WordMenu';
+
+// The menu is loaded on the first tap (W23 integration): every reading page carries the tap layer, few open the menu, and
+// the Study page has a 200 kB first-load budget.
+const WordMenu = dynamic(() => import('./WordMenu').then((m) => m.WordMenu), { ssr: false });
 
 // W23-A: makes the text under `root` tappable. A tap on a word, or a selected piece of text, opens the one tap menu
 // (WordMenu) for it. Nothing in the text is rewritten: the tap is found from the browser's caret at the point. A tap on a
