@@ -161,7 +161,7 @@ describe('the checks and the answer', () => {
     expect(p.user({ text: 'x', context: null, toEnglish: 'Hindi', toNative: 'हिन्दी', classLevel: null })).toContain('(not given)');
   });
   it('the profile: a child’s words, family audience, short call, follows the tutor’s chain, takes none of the tutor’s places', () => {
-    expect(PROFILES.find((p) => p.id === 'family.word_help')).toMatchObject({ carriesChildWords: true, capability: 'text', audience: 'family', callMs: 8_000, chainFrom: 'family.resolver', besideCall: true });
+    expect(PROFILES.find((p) => p.id === 'family.word_help')).toMatchObject({ carriesChildWords: true, capability: 'text', audience: 'family', callMs: 12_000, firstTextMs: 6_000, chainFrom: 'family.resolver', besideCall: true });
   });
 });
 

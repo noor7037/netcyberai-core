@@ -1,7 +1,8 @@
+import { createHash } from 'node:crypto';
 import { readFile, realpath } from 'node:fs/promises';
 import path from 'node:path';
 import { NextRequest, NextResponse } from 'next/server';
-import { LEARN_TYPES, allowedLearnFile } from '@/lib/family/learn-files';
+import { LEARN_TYPES, allowedLearnFile, learnCacheControl, sameTag } from '@/lib/family/learn-files';
 import { requireFamily } from '@/lib/family/request';
 
 // The chapter reader and its labs (reader/, labs/), served to a signed-in family only (founder, 9 Nov 2026). The two
@@ -24,14 +25,18 @@ export async function GET(req: NextRequest, { params }: { params: { path: string
     const top = rel.startsWith('reader/') ? 'reader' : 'labs';
     if (!file.startsWith(path.join(await realpath(path.join(ROOT, top)), path.sep))) return new NextResponse('Not found', { status: 404 });
     const body = await readFile(file);
-    return new NextResponse(body, {
-      headers: {
-        'Content-Type': type,
-        // Kept by this browser only; a page asks again after a day, an image or data file after a week.
-        'Cache-Control': rel.endsWith('.html') ? 'private, no-cache' : rel.endsWith('.webp') || rel.endsWith('.png') || rel.endsWith('.jpg') ? 'private, max-age=604800' : 'private, max-age=86400',
-        'X-Robots-Tag': 'noindex',
-      },
-    });
+    // A tag of the file's own bytes (W24): a browser asks again on every load and gets "not changed" (no body) while the
+    // file is the same, so a new reader or lab reaches every phone at once, with no version number to remember.
+    const etag = `"${createHash('sha1').update(body).digest('base64url')}"`;
+    const headers = {
+      'Content-Type': type,
+      ETag: etag,
+      // Pictures keep a week (their names change with their content); every page, script, style and data file is checked.
+      'Cache-Control': learnCacheControl(rel),
+      'X-Robots-Tag': 'noindex',
+    };
+    if (sameTag(req.headers.get('if-none-match'), etag)) return new NextResponse(null, { status: 304, headers });
+    return new NextResponse(body, { headers });
   } catch {
     return new NextResponse('Not found', { status: 404 });
   }
