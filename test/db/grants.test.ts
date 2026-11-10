@@ -639,3 +639,23 @@ describe('rights on the weekly parent report (W16-B3)', () => {
   });
 });
 // w16-b3 end
+
+// w23-b begin
+// Word help's shared answer cache (W23-B): the family role reads and adds, never changes or removes; nothing else of the
+// app's roles holds anything; row level security is forced.
+describe('rights on the word help cache (W23-B)', () => {
+  it('content.word_help: family_app select and insert, nca_super all, nobody else', async () => {
+    const held = await rows(
+      `select pg_get_userbyid(a.grantee) as role, string_agg(a.privilege_type, ',' order by a.privilege_type) as rights
+         from pg_class c, aclexplode(c.relacl) a
+        where c.oid = 'content.word_help'::regclass and a.grantee <> c.relowner group by 1 order by 1`
+    );
+    expect(held).toEqual([
+      { role: 'family_app', rights: 'INSERT,SELECT' },
+      { role: 'nca_super', rights: 'DELETE,INSERT,SELECT,UPDATE' },
+    ]);
+    const forced = await rows(`select relrowsecurity, relforcerowsecurity from pg_class where oid = 'content.word_help'::regclass`);
+    expect(forced).toEqual([{ relrowsecurity: true, relforcerowsecurity: true }]);
+  });
+});
+// w23-b end

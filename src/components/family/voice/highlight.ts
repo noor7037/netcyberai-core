@@ -1,3 +1,4 @@
+import { lastChildSettings } from '@/lib/family/child-settings';
 // The sentence being read aloud, highlighted in the text through the CSS Custom Highlight API (family.css
 // ::highlight(nc-sentence)): nothing moves and the text is never rewritten. Shared by the chapter reader (S1, C374) and an
 // answer's "Teach me" (W18-P1). A phone without the API still hears the voice and sees the board move.
@@ -65,6 +66,8 @@ export function markWord(root: HTMLElement | null, text: string | null, charInde
 const BAND = { top: 90, bottom: 140 };
 export function keepInView(r: Range): void {
   if (typeof window === 'undefined') return;
+  // The child switched following off in Settings (W23): the highlight still moves, the page does not.
+  if (lastChildSettings()?.autoScroll === false) return;
   const box = r.getClientRects()[0] ?? r.getBoundingClientRect();
   if (!box || (box.width === 0 && box.height === 0)) return;
   if (box.top >= BAND.top && box.bottom <= window.innerHeight - BAND.bottom) return;

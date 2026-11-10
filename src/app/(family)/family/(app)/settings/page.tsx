@@ -17,6 +17,8 @@ const KEYS: MessageKey[] = [
   'fam.w19.settings.readAloud', 'fam.w19.settings.readAloudNote', 'fam.w19.settings.tutorFace', 'fam.w19.settings.tutorFaceNote',
   'fam.w19.settings.motion', 'fam.w19.settings.motionNote', 'fam.w19.settings.handsFree', 'fam.w19.settings.handsFreeNote',
   'fam.w19.settings.speed', 'fam.w19.settings.slow', 'fam.w19.settings.normal', 'fam.w19.settings.saved',
+  'fam.w23.settings.readingTitle', 'fam.w23.settings.wordHelp', 'fam.w23.settings.wordHelpNote', 'fam.w23.settings.tapToRead', 'fam.w23.settings.tapToReadNote',
+  'fam.w23.settings.autoScroll', 'fam.w23.settings.autoScrollNote', 'fam.w23.settings.meaningLang', 'fam.w23.settings.meaningLangNote', 'fam.w23.settings.meaningLangApp',
   'fam.err.network', 'fam.err.not_signed_in', 'fam.lang.label', 'fam.lang.en', 'fam.lang.hi',
 ];
 

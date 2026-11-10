@@ -123,6 +123,8 @@ describe('who is let in', () => {
       // The call's realtime voice (W16-A4): a child's voice goes to the provider, so a children's-words profile; no provider yet.
       expect.objectContaining({ profileId: 'family.voice_call', carriesChildWords: true, needs: ['realtime'], providerId: null, enabled: true, usesPrompt: false }),
       expect.objectContaining({ profileId: 'family.voice_input', carriesChildWords: true, providerId: null, enabled: true }),
+      // W23-B (C494): the tap menu's word help reads a child's selection; no provider of its own (it follows the tutor's chain).
+      expect.objectContaining({ profileId: 'family.word_help', carriesChildWords: true, providerId: null, enabled: true, usesPrompt: true, chainFrom: 'family.resolver' }),
       expect.objectContaining({ profileId: 'parent_ai.home_help', carriesChildWords: false, providerId: null, enabled: true }),
       // W21-M5: a paper register page read into the student import: children's names; no service of its own, so it
       // follows the marking page reader's chain.

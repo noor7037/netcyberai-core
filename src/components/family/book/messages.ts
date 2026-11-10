@@ -4,15 +4,26 @@
 
 export type FromReader = {
   source: 'nca-reader';
-  type: 'ready' | 'where' | 'stop' | 'speak' | 'ask';
+  type: 'ready' | 'where' | 'stop' | 'speak' | 'ask' | 'tap' | 'state';
   id?: unknown;
   lang?: unknown;
   sentences?: unknown;
   offset?: unknown;
   chapter?: unknown;
   topic?: unknown;
+  topicId?: unknown;
+  lab?: unknown;
   question?: unknown;
   context?: unknown;
+  // W23-A: a tap on a word or a selection (text, context, rect in the frame, the step and sentence it fell in), and the
+  // reader's reading state for the bar (playing, percent, whether the screen can read).
+  text?: unknown;
+  rect?: unknown;
+  step?: unknown;
+  sent?: unknown;
+  playing?: unknown;
+  percent?: unknown;
+  can?: unknown;
 };
 
 export const MAX_SENTENCES = 120;
@@ -43,4 +54,29 @@ export function aboutLine(chapter: string, topic: string): string {
   const c = chapter.replace(/\s+/g, ' ').trim();
   const t = topic.replace(/\s+/g, ' ').trim();
   return (t ? `${c} / ${t}` : c).slice(0, 120);
+}
+
+// W23-A: a tap or selection in the reader, checked: the words (1 to 200 characters), the sentence they came from (up to
+// 400), where they sit in the frame, and, when the screen can read from there, the step and sentence to start at.
+export type ReaderTap = { text: string; context: string; lang: 'en' | 'hi'; rect: { left: number; top: number; width: number; height: number }; at: { step: number; sent: number } | null };
+const num = (v: unknown, lo: number, hi: number): number | null => (typeof v === 'number' && Number.isFinite(v) && v >= lo && v <= hi ? v : null);
+export function cleanTap(m: Pick<FromReader, 'text' | 'context' | 'lang' | 'rect' | 'step' | 'sent'>): ReaderTap | null {
+  if (typeof m.text !== 'string' || (m.lang !== 'en' && m.lang !== 'hi')) return null;
+  const text = m.text.replace(/\s+/g, ' ').trim().slice(0, 200);
+  if (!text || !/[\p{L}\p{N}]/u.test(text)) return null;
+  const context = typeof m.context === 'string' ? m.context.replace(/\s+/g, ' ').trim().slice(0, 400) : '';
+  const r = (m.rect ?? {}) as Record<string, unknown>;
+  const left = num(r.left, -10000, 20000);
+  const top = num(r.top, -10000, 20000);
+  const width = num(r.width, 0, 20000);
+  const height = num(r.height, 0, 20000);
+  if (left === null || top === null || width === null || height === null) return null;
+  const step = num(m.step, 0, 999);
+  const sent = num(m.sent, 0, 9999);
+  return { text, context, lang: m.lang, rect: { left, top, width, height }, at: step !== null && sent !== null && Number.isInteger(step) && Number.isInteger(sent) ? { step, sent } : null };
+}
+
+// The reader's reading state for the bar: playing or not, how much of the topic is read (0 to 100), and whether this screen reads.
+export function cleanState(m: Pick<FromReader, 'playing' | 'percent' | 'can'>): { playing: boolean; percent: number; can: boolean } {
+  return { playing: m.playing === true, percent: Math.round(num(m.percent, 0, 100) ?? 0), can: m.can === true };
 }

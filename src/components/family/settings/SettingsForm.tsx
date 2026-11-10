@@ -3,16 +3,24 @@
 import { useState } from 'react';
 import type { Words } from '@/lib/family/fill';
 import { primeChildSettings, type ChildSettings } from '@/lib/family/child-settings';
+import { LANGUAGES } from '@/lib/family/languages';
 import { errorWords, familyApi } from '../client';
 
 // W19-C: the child's own switches on /family/settings. Each change is saved at once (PATCH /api/family/settings) and
 // shown at once; a failed save puts the switch back and says so. A switch is a real button with role="switch" and
 // aria-checked, 44 px and more; the voice speed is two choices. Movement off also stills this page straight away.
-type SwitchKey = 'readAloud' | 'tutorFace' | 'motion' | 'handsFree';
+type SwitchKey = 'readAloud' | 'tutorFace' | 'motion' | 'handsFree' | 'wordHelp' | 'tapToRead' | 'autoScroll';
 const GROUPS: { title: string; keys: SwitchKey[] }[] = [
   { title: 'fam.w19.settings.voiceTitle', keys: ['readAloud', 'handsFree'] },
   { title: 'fam.w19.settings.lookTitle', keys: ['tutorFace', 'motion'] },
+  // w23-b begin
+  { title: 'fam.w23.settings.readingTitle', keys: ['wordHelp', 'tapToRead', 'autoScroll'] },
+  // w23-b end
 ];
+
+// The words of a switch: the reading switches (W23-B) have theirs under fam.w23, the older ones under fam.w19.
+const NEW_SWITCHES: readonly SwitchKey[] = ['wordHelp', 'tapToRead', 'autoScroll'];
+const wordsOf = (k: SwitchKey) => `fam.${NEW_SWITCHES.includes(k) ? 'w23' : 'w19'}.settings.${k}`;
 
 export function SettingsForm({ initial, w }: { initial: ChildSettings; w: Words }) {
   const [s, setS] = useState(initial);
@@ -43,9 +51,9 @@ export function SettingsForm({ initial, w }: { initial: ChildSettings; w: Words 
               <li key={k} className="flex items-center justify-between gap-4 rounded-xl bg-off-white px-4 py-3">
                 <span className="min-w-0">
                   <span id={`fam-set-${k}`} className="block text-base font-bold text-ink">
-                    {w[`fam.w19.settings.${k}`]}
+                    {w[wordsOf(k)]}
                   </span>
-                  <span className="block text-sm text-slate">{w[`fam.w19.settings.${k}Note`]}</span>
+                  <span className="block text-sm text-slate">{w[`${wordsOf(k)}Note`]}</span>
                 </span>
                 <button
                   type="button"
@@ -84,6 +92,44 @@ export function SettingsForm({ initial, w }: { initial: ChildSettings; w: Words 
                 </span>
               </li>
             )}
+            {/* w23-b begin */}
+            {gi === 2 && (
+              <li className="flex flex-col gap-3 rounded-xl bg-off-white px-4 py-3">
+                <span>
+                  <span id="fam-set-meaningLang" className="block text-base font-bold text-ink">
+                    {w['fam.w23.settings.meaningLang']}
+                  </span>
+                  <span className="block text-sm text-slate">{w['fam.w23.settings.meaningLangNote']}</span>
+                </span>
+                <span role="radiogroup" aria-labelledby="fam-set-meaningLang" className="flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    role="radio"
+                    aria-checked={s.meaningLang === null}
+                    data-meaning-lang="app"
+                    onClick={() => s.meaningLang !== null && save({ meaningLang: null })}
+                    className={`fam-press min-h-[44px] rounded-full px-4 text-sm font-bold ${s.meaningLang === null ? 'bg-ink text-white' : 'bg-white text-ink ring-1 ring-ink/20'}`}
+                  >
+                    {w['fam.w23.settings.meaningLangApp']}
+                  </button>
+                  {LANGUAGES.map((l) => (
+                    <button
+                      key={l.code}
+                      type="button"
+                      role="radio"
+                      lang={l.code}
+                      aria-checked={s.meaningLang === l.code}
+                      data-meaning-lang={l.code}
+                      onClick={() => s.meaningLang !== l.code && save({ meaningLang: l.code })}
+                      className={`fam-press min-h-[44px] rounded-full px-4 text-sm font-bold ${s.meaningLang === l.code ? 'bg-ink text-white' : 'bg-white text-ink ring-1 ring-ink/20'}`}
+                    >
+                      {l.native}
+                    </button>
+                  ))}
+                </span>
+              </li>
+            )}
+            {/* w23-b end */}
           </ul>
         </section>
       ))}

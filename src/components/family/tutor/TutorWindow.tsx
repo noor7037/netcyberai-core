@@ -8,7 +8,7 @@ import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from 
 import { unfilled, type Block, type Explanation } from '@/lib/family/blocks';
 import { fill, type Words } from '@/lib/family/fill';
 import { isSubject, type Subject } from '@/lib/family/subjects';
-import { TUTOR_FILE_MAX_BYTES, TUTOR_FILES_PER_TURN, TUTOR_TEXT_MAX, TUTOR_TEXT_MIN, sniffTutorFile, type FeedTurn, type TutorFile } from '@/lib/family/tutor-shape';
+import { TUTOR_FILE_MAX_BYTES, TUTOR_FILES_PER_TURN, TUTOR_TEXT_MIN, sniffTutorFile, type FeedTurn, type TutorFile } from '@/lib/family/tutor-shape';
 import { CitationChip } from '../blocks/CitationChip';
 import { citationOf } from '@/lib/family/citation';
 import { AnswerBlock, DirectAnswerCard, UnderstandView, type TutorAsk, type UnderstandInput } from '../UnderstandView';
@@ -22,6 +22,7 @@ import { readChildSettings } from '@/lib/family/child-settings';
 import { speakLine } from '../voice/lineVoice';
 // The speaker and Teach me load with the first answer drawn, off the Study page's first load (the family budget, W18).
 import type { Reading } from '../voice/AnswerSpeaker';
+import { WordTapLayer } from '../words/WordTapLayer';
 const AnswerSpeaker = dynamic(() => import('../voice/AnswerSpeaker').then((m) => m.AnswerSpeaker));
 const TeachMe = dynamic(() => import('../voice/AnswerSpeaker').then((m) => m.TeachMe));
 
@@ -37,6 +38,9 @@ const TeachMe = dynamic(() => import('../voice/AnswerSpeaker').then((m) => m.Tea
 // A file goes straight to the private store (the server gives a link for it, then reads and checks what arrived); it is
 // shown only through the app's own address, which answers with a link that works for one minute.
 
+// The shape only (type import: no server code reaches the phone).
+export type TutorWhere = { kind: 'book_topic' | 'book_chapter' | 'lab' | 'study_subject' | 'topic'; key: string; topicId?: string; labId?: string };
+const chapterScope = (w: TutorWhere | null): string | null => (w && (w.kind === 'book_topic' || w.kind === 'book_chapter' || w.kind === 'lab') ? w.key : null);
 export type TutorReaderContext = { chapterKey: string; blockId: string; section: string };
 type Props = {
   w: Words;
@@ -61,6 +65,11 @@ type Props = {
   // W22-S2: the book page's context (the chapter and topic the child is on, a short line): shown as the chip and put in front of
   // every question sent; and `ask`: a question made elsewhere on the page (a lab's tutor drawer), asked once per `n`.
   about?: string | null;
+  // W23-C: where the window was opened, sent with every question; the server checks it against what this child may open
+  // and reads the content itself (src/lib/family/tutor-context.ts). In a book chapter (book_topic, book_chapter, lab:
+  // `key` is the chapter) the feed is that chapter's own: a fresh conversation, never another chapter's or subject's.
+  // Absent on Study: the window says it is the subject's own Study page.
+  where?: TutorWhere | null;
   ask?: { n: number; text: string } | null;
   children?: ReactNode;
 };
@@ -130,7 +139,7 @@ export function followHref(ask: FeedAsk | undefined, follow: boolean, tutorKey: 
   return follow && ask?.moved ? `/family/study?subject=${encodeURIComponent(ask.moved)}${tutorKey ? `&tutor=${encodeURIComponent(tutorKey)}` : ''}` : null;
 }
 
-export function TutorWindow({ w, subject, tone, voice = null, files = false, homework = false, reader = null, idPrefix = 'fam-tutor', pinned = 'dock', follow = false, tutor: chosen = null, call = null, serverVoice = false, about = null, ask = null, children }: Props) {
+export function TutorWindow({ w, subject, tone, voice = null, files = false, homework = false, reader = null, idPrefix = 'fam-tutor', pinned = 'dock', follow = false, tutor: chosen = null, call = null, serverVoice = false, about = null, where: placed = null, ask = null, children }: Props) {
   const router = useRouter();
   const [open, setOpen] = useState(true);
   const [text, setText] = useState('');
@@ -145,6 +154,9 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
   const uid = useId().replace(/:/g, '');
   const ids = { title: `${idPrefix}-${uid}-title`, feed: `${idPrefix}-${uid}-feed`, q: `${idPrefix}-${uid}-q` };
   const subjectName = (s: string) => w[`fam.subject.${s}`] ?? s;
+  // W23-C: where it was opened; on Study the subject's own page. The old showcase reader's drawer names its chapter in `reader`.
+  const where: TutorWhere | null = placed ?? (reader ? null : { kind: 'study_subject', key: subject });
+  const scope = chapterScope(where);
 
   // The newest at the bottom: the feed box is scrolled to its end (the page itself does not move).
   // A question asked here at the top of the feed box (a moved one after the tab followed), its answer below it.
@@ -169,7 +181,7 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
     setTurns(null);
     setTurnsError(false);
     void (async () => {
-      const res = await fetch(`/api/family/tutor?subject=${encodeURIComponent(subject)}`, { credentials: 'same-origin', cache: 'no-store' }).catch(() => null);
+      const res = await fetch(`/api/family/tutor?subject=${encodeURIComponent(subject)}${scope ? `&chapterKey=${encodeURIComponent(scope)}` : ''}`, { credentials: 'same-origin', cache: 'no-store' }).catch(() => null);
       const data = res?.ok ? ((await res.json().catch(() => null)) as { turns?: FeedTurn[] } | null) : null;
       if (!live) return;
       if (!data || !Array.isArray(data.turns)) return setTurnsError(true);
@@ -180,7 +192,7 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
     return () => {
       live = false;
     };
-  }, [subject]);
+  }, [subject, scope]);
 
   // An answer kept: the server names the chat and its subject. Another subject than the tab's is said in the feed, and
   // on Study the tab follows it (the page is read again for that subject; this question stays on screen).
@@ -233,15 +245,10 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
     if (a.id) void fetch(`/api/family/tutor/files/${encodeURIComponent(a.id)}`, { method: 'DELETE', credentials: 'same-origin' }).catch(() => null);
   };
 
-  const withAbout = (asked: string) => {
-    if (!about) return asked;
-    const head = `(${about.slice(0, 120)}) `;
-    return head + asked.slice(0, Math.max(0, TUTOR_TEXT_MAX - head.length));
-  };
   // A question continues the subject's newest open chat (the server finds it; the first answer opens one).
   const submit = (asked: string, tutor: TutorAsk) => {
     const n = (asks.at(-1)?.n ?? 0) + 1;
-    setAsks((list) => [...list, { n, subject, text: asked, input: { kind: 'question', text: withAbout(asked), tutor }, moved: null, chatId: null }]);
+    setAsks((list) => [...list, { n, subject, text: asked, input: { kind: 'question', text: asked, tutor }, moved: null, chatId: null }]);
     setText('');
     setAttached([]);
     setChecking(false);
@@ -250,7 +257,7 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
     // The new question at the top of the feed box, its answer drawing below it.
     requestAnimationFrame(() => document.getElementById(`${ids.feed}-ask-${n}`)?.scrollIntoView({ block: 'start', behavior: stillMotion() ? 'auto' : 'smooth' }));
   };
-  const base = { subject, ...(chosen ? { tutorKey: chosen.key } : {}), ...(reader ? { chapterKey: reader.chapterKey, blockId: reader.blockId } : {}) };
+  const base = { subject, ...(where ? { where } : {}), ...(chosen ? { tutorKey: chosen.key } : {}), ...(reader ? { chapterKey: reader.chapterKey, blockId: reader.blockId } : {}) };
   const askSeen = useRef(0);
   useEffect(() => {
     if (!ask || ask.n === askSeen.current || ask.text.trim().length < TUTOR_TEXT_MIN) return;
@@ -442,7 +449,10 @@ export function KeptAnswer({ b, w, tone, lang, speak, tutorKey = null, subject =
   const voice = { messageId: speak.id, sentences, lang: lang === 'hi' ? ('hi' as const) : ('en' as const), serverVoice: speak.serverVoice, onSentence: setSentence, onReading: setReading };
   return (
     <div ref={root} lang={lang} data-feed-answer className="fam-lesson flex flex-col gap-3">
-      {reading.speaking && <StickyTutorFace tutorKey={tutorKey} subject={subject} label={w['fam.tutor.readingNow']} percent={reading.percent} />}
+      {(reading.speaking || reading.started) && (
+        <StickyTutorFace tutorKey={tutorKey} subject={subject} label={w[reading.speaking ? 'fam.tutor.readingNow' : 'fam.tutor.resume']} percent={reading.percent} speaking={reading.speaking} onToggle={reading.toggle} toggleLabel={w[reading.speaking ? 'fam.tutor.pause' : 'fam.tutor.resume']} />
+      )}
+      <WordTapLayer root={root} w={w} lang={lang === 'hi' ? 'hi' : 'en'} sentences={sentences} onReadFrom={reading.from} />
       {cited && <CitationChip w={w} c={cited} />}
       {lead && <DirectAnswerCard w={w} b={lead} />}
       {sentences.length > 0 && <TeachMe w={w} {...voice} root={root} />}

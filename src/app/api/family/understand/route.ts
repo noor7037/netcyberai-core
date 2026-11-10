@@ -4,7 +4,7 @@ import { callGate } from '@/lib/family/call-gate';
 import { sayEvent, type SayBudget } from '@/lib/family/call-say';
 import { dailyRequestsLeft, prepareModeration } from '@/lib/ai/platform';
 import { tutorTurn } from '@/lib/ai/agents/orchestrator';
-import { activeChild, boardNameOf, listChildren } from '@/lib/family/children';
+import { activeChild, boardNameOf, listChildren, type FamilyChild } from '@/lib/family/children';
 import { consentState } from '@/lib/family/consent';
 import { FamilySessionRevokedError, withFamilyContext, withFamilyGate, familyClaims } from '@/lib/family/db';
 import { familyModuleOn } from '@/lib/family/flags';
@@ -12,11 +12,13 @@ import { openItem } from '@/lib/family/items';
 import { claimSubject } from '@/lib/family/learning';
 import { SUBJECTS, type Subject } from '@/lib/family/modules';
 import { jsonBody, requireFamily } from '@/lib/family/request';
-import { FOLLOW_UPS, generate, keep, prepareResolve, type FollowUp, type Generated, type Pending, type ResolveInput, type ResolverEvent } from '@/lib/family/resolver';
+import { FOLLOW_UPS, generate, syllabusLine, keep, prepareResolve, type FollowUp, type Generated, type Pending, type ResolveInput, type ResolverEvent } from '@/lib/family/resolver';
 import { FAMILY_CHILD_COOKIE } from '@/lib/family/session';
 import { isTutorKey, resolvePersona } from '@/lib/family/tutors';
 import type { Persona } from '@/lib/family/persona';
 import { readerContext, refreshChatSummary, resolveChat, saveTurn, sendableFiles, tutorStorage } from '@/lib/family/tutor';
+import { buildScope, parseWhere, scopeKeyOf } from '@/lib/family/tutor-context';
+import { syllabusBoardOf } from '@/lib/family/children';
 import { attachedText, fetchFiles, filesToRead, givePhotoPlaceBack, preparePhotoReads, readFetched, type Unreadable } from '@/lib/family/tutor-read';
 import { TUTOR_READS_FILES } from '@/lib/family/tutor-shape';
 import { typedCheckReading } from '@/lib/family/check-work';
@@ -83,6 +85,10 @@ export async function POST(req: NextRequest) {
   if (!input && !retry) return NextResponse.json({ error: 'bad_request' }, { status: 400 });
   const tutorBody = input?.kind === 'question' && body.tutor && typeof body.tutor === 'object' && !Array.isArray(body.tutor) ? (body.tutor as Record<string, unknown>) : null;
   if (tutorBody && !isSubject(tutorBody.subject)) return NextResponse.json({ error: 'bad_request' }, { status: 400 });
+  // W23-C: where the window was opened (`tutor.where`, tutor-context.ts): the shape is checked here, whether this child may
+  // open it and what it says are decided on the server in the first transaction. A `where` that is not a place is a bad request.
+  const where = tutorBody && tutorBody.where !== undefined ? parseWhere(tutorBody.where) : null;
+  if (tutorBody && tutorBody.where !== undefined && !where) return NextResponse.json({ error: 'bad_request' }, { status: 400 });
   // Check my work: one photo, no follow-up, no retry; anything else is a bad request before anything is read.
   // W18-Q3: or no file at all, when the typed text is itself the working ("Check my work: 2+3×4=14", check-work.ts): its
   // reading is built here from the text, line by line, with no photo read and no vision call.
@@ -98,8 +104,18 @@ export async function POST(req: NextRequest) {
   const sketchMode = tutorBody?.sketch === true && !followUp && !retry;
   if (sketchMode && (checkMode || !(Array.isArray(tutorBody!.files) && tutorBody!.files.length === 1))) return NextResponse.json({ error: 'bad_request' }, { status: 400 });
   // What is kept once answered (null: nothing): filled in the first transaction, for the child it chose.
-  let keepTurn: { childId: string; text: string; chapterKey: string | null; blockId: string | null; files: string[]; windowSubject: string; lang: string } | null = null;
+  let keepTurn: { childId: string; text: string; chapterKey: string | null; blockId: string | null; files: string[]; windowSubject: string; lang: string; scope: string | null } | null = null;
   const chosen = req.cookies.get(FAMILY_CHILD_COOKIE)?.value;
+  // W23-C: what the tutor is told about where the window was opened (null: not a place this child may open).
+  const scopeOf = (db: Parameters<typeof syllabusLine>[0], child: FamilyChild, subject: string, question: string) =>
+    where
+      ? buildScope(where, { board: child.board, classLevel: child.classLevel, language: child.language, boardId: syllabusBoardOf(child) }, subject, question, {
+          topicLine: async (key) => {
+            const line = await syllabusLine(db, child, { kind: 'topic', key });
+            return line ? { subject: line.subject, chapterEn: line.chapterEn, topicEn: line.topicEn } : null;
+          },
+        })
+      : Promise.resolve(null);
   // W9-A (C406): the chat a tutor question is asked in (`tutor.chatId` when it is this child's own in the window's
   // subject, else the newest open one) and what the tutor is told of it (its summary and last turns). A new question in
   // a full chat is refused before anything is asked (409 chat_full); a follow-up still sees the chat.
@@ -114,7 +130,7 @@ export async function POST(req: NextRequest) {
   if (tutorBody && input?.kind === 'question' && !retry) {
     const chat = await withFamilyContext(claims, async (db) => {
       const child = activeChild(await listChildren(db, session.accountId), chosen);
-      return child ? resolveChat(db, session.accountId, child.childId, String(tutorBody.subject), tutorBody.chatId, isTutorKey(tutorBody.tutorKey) ? tutorBody.tutorKey : null) : null;
+      return child ? resolveChat(db, session.accountId, child.childId, String(tutorBody.subject), tutorBody.chatId, isTutorKey(tutorBody.tutorKey) ? tutorBody.tutorKey : null, where ? scopeKeyOf(where) : null) : null;
     }).catch(() => null);
     const asked = chat ? chat.tutorKey : isTutorKey(tutorBody.tutorKey) ? tutorBody.tutorKey : null;
     // W16-B5: with the Tutor Hall switched off, no tutor is chosen: the question is answered without a persona.
@@ -173,6 +189,7 @@ export async function POST(req: NextRequest) {
             if (photoRefused === 'photo_consent') return { refused: t(lang, 'fam.tutor.err.photo_consent') };
             if (photoRefused) return { refused: t(lang, 'fam.tutor.err.homework_off') };
             if (!(await familyModuleOn(db, 'understand', session.accountId))) return { refused: t(lang, 'fam.understand.off') };
+            if (where && !(await scopeOf(db, child, String(tutorBody!.subject), String(input && input.kind === 'question' ? input.text : '')))) return { refused: t(lang, 'fam.understand.notFound') };
             const files = await filesToRead(db, session.accountId, child.childId, String(tutorBody!.subject), fileIds);
             if (!files) return { refused: t(lang, 'fam.tutor.fileGone') };
             if (checkMode && files.some((f) => f.mime === 'application/pdf')) return { refused: t(lang, 'fam.check.err.photo_only') };
@@ -228,6 +245,10 @@ export async function POST(req: NextRequest) {
           if (tutorBody && target?.kind === 'question') {
             const subject = String(tutorBody.subject);
             let reader: ReturnType<typeof readerContext> = null;
+            // W23-C: where the window was opened, read from our own content; the question is filed under that chapter and topic.
+            const placed = where ? await scopeOf(db, child, subject, target.text) : null;
+            if (where && !placed) return stop({ t: 'refused', reason: 'not_found', message: words('fam.understand.notFound') });
+            if (placed) target = { ...target, scope: { about: placed.about, text: placed.text, labs: placed.labs } };
             if (tutorBody.chapterKey !== undefined) {
               reader = readerContext(subject, tutorBody.chapterKey, tutorBody.blockId, child.language);
               if (!reader) return stop({ t: 'refused', reason: 'not_found', message: words('fam.understand.notFound') });
@@ -241,7 +262,7 @@ export async function POST(req: NextRequest) {
             if (attached && target?.kind === 'question') target = { ...target, attached, ...(checkMode ? { check: true as const } : {}), ...(sketchMode ? { sketch: true as const } : {}) };
             const files = await sendableFiles(db, session.accountId, child.childId, subject, tutorBody.files);
             if (!files) return stop({ t: 'refused', reason: 'not_found', message: words('fam.tutor.fileGone') });
-            if (!followUp && !retry) keepTurn = { childId: child.childId, text: target.text, chapterKey: reader?.chapterKey ?? null, blockId: reader?.blockId ?? null, files, windowSubject: subject, lang: child.language };
+            if (!followUp && !retry) keepTurn = { childId: child.childId, text: target.text, chapterKey: placed?.chapterKey ?? reader?.chapterKey ?? null, blockId: placed?.blockId ?? reader?.blockId ?? null, files, windowSubject: subject, lang: child.language, scope: where ? scopeKeyOf(where) : null };
           }
           let misconception: string | null = null;
           if (retry) {
@@ -326,7 +347,7 @@ export async function POST(req: NextRequest) {
         if (turn && last?.t === 'done' && generated.subject && generated.kept.length > 0) {
           const subject = generated.subject;
           const same = subject === turn.windowSubject;
-          kept = await withFamilyContext(claims, (db) => saveTurn(db, { accountId: session.accountId, childId: turn.childId, chatId: same || pinned ? chatId : null, subject, text: turn.text, chapterKey: turn.chapterKey, blockId: turn.blockId, lang: turn.lang, files: same ? turn.files : [], blocks: generated.kept, storage: tutorStorage, tutorKey })).catch(() => null);
+          kept = await withFamilyContext(claims, (db) => saveTurn(db, { accountId: session.accountId, childId: turn.childId, chatId: same || pinned ? chatId : null, subject, text: turn.text, chapterKey: turn.chapterKey, blockId: turn.blockId, lang: turn.lang, files: same ? turn.files : [], blocks: generated.kept, storage: tutorStorage, tutorKey, scope: turn.scope })).catch(() => null);
         }
         if (last?.t === 'done' && kept && isSubject(kept.subject)) last = { ...last, chat: { chatId: kept.chatId, subject: kept.subject } };
         // W18-P1: the answer's own message id, just written for this child, so the window can read it aloud without a reload.

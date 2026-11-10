@@ -1,6 +1,3 @@
-// The classes that have a chapter-reader book, from the registry reader/scripts/index.mjs writes (c10, ...).
-const bookClasses = [...new Set(require('./reader/content/books.json').books.map((b) => `c${String(b.class).padStart(2, '0')}`))];
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // tesseract.js (src/lib/capture/ocr.ts, Prompt F Task 3) spawns its
@@ -39,9 +36,9 @@ const nextConfig = {
         './public/fonts/**',
       ],
       // The chapter reader and its labs, served to signed-in families (/family/learn/..., founder 9 Nov 2026): the
-      // pages, scripts, chapter data and images. Lab data only for the classes that have a book (derived from the
-      // registry reader/content/books.json, so a new book needs no edit here; Class 10 is about 6 MB of the 48 MB of
-      // lab files for classes 1-12).
+      // pages, scripts, chapter data and images. W23-C: lab data for every class 1-12 (about 48 MB in all; Class 10 is
+      // about 6 MB of it), not only the classes that have a book: the tutor can show a lab of the child's class
+      // anywhere, and the lab page loads its definition from here (/family/learn/labs/defs/...).
       '/family/learn/**/*': [
         './reader/index.html',
         './reader/reader.js',
@@ -49,9 +46,12 @@ const nextConfig = {
         './reader/content/**',
         './labs/*.{html,js,css,json}',
         './labs/templates/**',
-        ...bookClasses.map((c) => `./labs/defs/${c}/**`),
+        './labs/defs/**',
         './labs/assets/**',
       ],
+      // W23-C: the tutor's answer reads the chapter reader's content and the lab definitions on the server (where the
+      // window was opened, and the labs it may show: src/lib/family/tutor-context.ts), by a computed path.
+      '/api/family/understand': ['./reader/content/**', './labs/index.json', './labs/defs/**'],
     },
   },
   // PDF.js's worker (AI marking's upload screen, C350) is a file the build copies into /_next/static/media. It is

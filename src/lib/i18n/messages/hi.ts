@@ -11178,4 +11178,41 @@ export const hi: Record<keyof typeof en, string> = {
   // w22-s2 begin
   'fam.book.ask': 'ट्यूटर से पूछो',
   // w22-s2 end
+  // w23-b begin
+  'control.m6.sys.meaning.family_word_help_daily_requests': 'एक Family खाता एक दिन में छुए हुए शब्द का अर्थ और अनुवाद कितनी बार नया माँग सकता है। जो उत्तर पहले से रखे हैं, वे गिने नहीं जाते।',
+  'control.ai.profile.name.family.word_help': 'शब्द सहायता (छुए हुए शब्द का अर्थ और अनुवाद)',
+  'control.ai.profile.about.family.word_help': 'बच्चा जिस शब्द या वाक्य को छूता है, उसका अर्थ और अनुवाद बच्चे की चुनी भाषा में देती है। इसे छुआ हुआ पाठ और उसका वाक्य भेजा जाता है, कभी कोई नाम नहीं, और उत्तर सभी बच्चों के लिए रखे जाते हैं। यह बच्चे के अपने शब्द देखती है, इसलिए केवल बच्चों के लिए मंज़ूर की गई सेवा ही चुनी जा सकती है। अपनी सेवा न होने तक यह ट्यूटर की सेवा से चलती है।',
+  'fam.w23.settings.readingTitle': 'पढ़ना और शब्द',
+  'fam.w23.settings.wordHelp': 'शब्द सहायता',
+  'fam.w23.settings.wordHelpNote': 'किसी शब्द या वाक्य को छुओ, उसका मतलब देखो और अनुवाद पाओ।',
+  'fam.w23.settings.tapToRead': 'छूकर सुनो',
+  'fam.w23.settings.tapToReadNote': 'छुआ हुआ शब्द या वाक्य बोलकर सुनाया जाता है।',
+  'fam.w23.settings.autoScroll': 'आवाज़ के साथ चलो',
+  'fam.w23.settings.autoScrollNote': 'पढ़ते समय पन्ना अपने आप आगे खिसकता है।',
+  'fam.w23.settings.meaningLang': 'मतलब मेरी भाषा में',
+  'fam.w23.settings.meaningLangNote': 'मतलब और अनुवाद इसी भाषा में दिखेंगे।',
+  'fam.w23.settings.meaningLangApp': 'ऐप जैसी ही',
+  // w23-b end
+  // w23-a begin
+  'fam.word.menu': 'शब्द की मदद',
+  'fam.word.readFrom': 'यहाँ से पढ़ो',
+  'fam.word.say': 'बोलकर सुनाओ',
+  'fam.word.meaning': 'मतलब',
+  'fam.word.translate': 'अनुवाद',
+  'fam.word.into': 'किस भाषा में',
+  'fam.word.loading': 'देख रहे हैं…',
+  'fam.word.none': 'इसका जवाब नहीं मिला।',
+  'fam.word.close': 'बंद करो',
+  'fam.word.err.not_signed_in': 'शब्द देखने के लिए फिर से साइन इन करो।',
+  'fam.word.err.off': 'शब्द की मदद अभी उपलब्ध नहीं है।',
+  'fam.word.err.daily_limit': 'आज के शब्द देखने के सारे मौके पूरे हो गए। कल फिर कोशिश करना।',
+  'fam.word.err.failed': 'यह देखा नहीं जा सका। फिर से कोशिश करो।',
+  // w23-a end
+  // w23-c begin
+  'fam.lab.title': 'लैब में करके देखो',
+  'fam.lab.open': 'लैब खोलो',
+  'fam.lab.close': 'लैब बंद करो',
+  'fam.lab.done': 'तुमने यह लैब पूरी कर ली',
+  'fam.lab.frame': 'लैब',
+  // w23-c end
 };
