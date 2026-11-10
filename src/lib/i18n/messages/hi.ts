@@ -10587,6 +10587,21 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.quiz.verdict.wrong': 'अभी नहीं',
   'fam.quiz.verdict.unmarked': 'अभी इसकी जाँच नहीं हो सकी',
   // w16-b1 end
+  // w22-s1 begin
+  'fam.search.label': 'पढ़ाई में खोजें',
+  'fam.search.placeholder': 'कोई विषय, अध्याय या टॉपिक खोजें',
+  'fam.search.none': 'कुछ नहीं मिला। कोई दूसरा शब्द आज़माएँ।',
+  'fam.search.failed': 'अभी खोज नहीं हो सकी। फिर से कोशिश करें।',
+  'fam.search.clear': 'खोज मिटाएँ',
+  'fam.search.results': 'खोज के नतीजे',
+  'fam.search.kind.subject': 'विषय',
+  'fam.search.kind.chapter': 'अध्याय',
+  'fam.search.kind.topic': 'टॉपिक',
+  'fam.quiz.badge': '{subject} में इंतज़ार करती क्विज़: {n}',
+  'fam.quiz.listTitle': 'क्विज़',
+  'fam.quiz.listEmpty': 'अभी {subject} की कोई क्विज़ नहीं है।',
+  'fam.quiz.listBack': 'पढ़ाई पर वापस',
+  // w22-s1 end
   // W19-C start
   'fam.w19.mission.title': 'आज का मिशन',
   'fam.w19.mission.start': 'शुरू करें',

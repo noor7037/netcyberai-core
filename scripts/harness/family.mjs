@@ -208,7 +208,7 @@ export const FAMILY_SCREENS = [
   ['full', 'family-settings', '/family/settings', { settle: '[data-setting="readAloud"]' }],
   ['full', 'family-study', '/family/study', {}],
   // W16-B1: the Quick quiz card on the Study feed and on the home, and the quiz itself.
-  ['full', 'family-quiz-card-study', '/family/study?subject=science', { child: 'f0000000-0000-4000-8000-0000000fc002', prep: QUIZ_CARD, reset: FOLLOW_UP_CHAT_GONE, settle: '[data-quiz-card]' }],
+  ['full', 'family-quiz-card-study', '/family/study?subject=science', { child: 'f0000000-0000-4000-8000-0000000fc002', prep: QUIZ_CARD, reset: FOLLOW_UP_CHAT_GONE, settle: '[data-quiz-badge]' }],
   ['full', 'family-quiz-card-home', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002', prep: QUIZ_CARD, reset: FOLLOW_UP_CHAT_GONE, settle: '[data-quiz-card]' }],
   ['full', 'family-quiz-play', `/family/study/quiz/${QUIZ_ID}`, { child: 'f0000000-0000-4000-8000-0000000fc002', prep: QUIZ_CARD, reset: FOLLOW_UP_CHAT_GONE, settle: '[data-test-item]' }],
   // W16-A3: the Tutor Hall.
@@ -218,6 +218,9 @@ export const FAMILY_SCREENS = [
   // The child's book (founder, 9 Nov 2026): Asha in CBSE Class 10 sees NCERT Science's 13 chapters in Study, and a
   // chapter opens the chapter reader inside the Family app (its topics, diagrams and labs). Put back in Class 7 after.
   ['full', 'family-book-study', '/family/study?subject=science', { prep: CLASS_10, reset: CLASS_PUT_BACK, settle: '#fam-chapters' }],
+  // W22-S1: the quizzes page a subject chip's quiz badge opens, and the search in Study (a word typed, its results).
+  ['full', 'family-study-quizzes', '/family/study/quizzes?subject=science', { child: 'f0000000-0000-4000-8000-0000000fc002', prep: QUIZ_CARD, reset: FOLLOW_UP_CHAT_GONE, settle: '[data-quiz-card]' }],
+  ['full', 'family-study-search', '/family/study?subject=science', { prep: CLASS_10, reset: CLASS_PUT_BACK, settle: '[data-study-search-input]', steps: [{ fill: { field: '[data-study-search-input]', value: 'chemical' }, wait: '[data-search-results]' }] }],
   ['full', 'family-book-chapter', '/family/study/book/u.c10.science.jesc1.ch01', { prep: CLASS_10, reset: CLASS_PUT_BACK, settle: '[data-book-chapter] iframe', steps: [{ pause: 5000 }] }],
   // W22-S2: the reader's first topic with Teach me tapped (the page reads it, highlights the sentence and word, and scrolls to it),
   // and the tutor opened over the chapter with the chapter and topic as its context.

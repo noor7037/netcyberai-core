@@ -10601,6 +10601,21 @@ export const en = {
   'fam.quiz.verdict.wrong': 'Not yet',
   'fam.quiz.verdict.unmarked': 'Could not be marked just now',
   // w16-b1 end
+  // w22-s1 begin
+  'fam.search.label': 'Search in Study',
+  'fam.search.placeholder': 'Search a subject, chapter or topic',
+  'fam.search.none': 'Nothing found. Try another word.',
+  'fam.search.failed': 'The search did not work just now. Try again.',
+  'fam.search.clear': 'Clear the search',
+  'fam.search.results': 'Search results',
+  'fam.search.kind.subject': 'Subject',
+  'fam.search.kind.chapter': 'Chapter',
+  'fam.search.kind.topic': 'Topic',
+  'fam.quiz.badge': 'Quizzes waiting in {subject}: {n}',
+  'fam.quiz.listTitle': 'Quizzes',
+  'fam.quiz.listEmpty': 'No quiz in {subject} right now.',
+  'fam.quiz.listBack': 'Back to Study',
+  // w22-s1 end
   // W19-C start
   'fam.w19.mission.title': "Today's mission",
   'fam.w19.mission.start': 'Start',
