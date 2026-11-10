@@ -251,3 +251,22 @@ export function TutorFace({ size = 'md', tutorKey = null, subject = null, name, 
     </span>
   );
 }
+
+// W22-S3: the tutor's face kept on screen while it answers or reads. A slim strip stuck to the top of the scrolling
+// area (the feed, or the page) for as long as the answer that owns it is being made or read; it takes its own 48 px of
+// the answer's column (a 360 px phone has room for the face and a short line) and never floats over text or controls:
+// text scrolls under its solid background, not around it. Nothing animates here beyond the face (which stills itself
+// under prefers-reduced-motion).
+export function StickyTutorFace({ tutorKey = null, subject = null, label, percent }: { tutorKey?: string | null; subject?: string | null; label: string; percent?: number }) {
+  return (
+    <div data-sticky-face className="sticky top-0 z-10 flex min-h-[48px] items-center gap-3 rounded-2xl bg-white px-2 py-1 text-sm font-bold text-ink ring-1 ring-ink/10">
+      <TutorFace size="sm" tutorKey={tutorKey} subject={subject} confetti={false} />
+      <span className="min-w-0 flex-1 truncate">{label}</span>
+      {percent !== undefined && percent > 0 && (
+        <span data-sticky-percent className="shrink-0 text-xs font-bold tabular-nums text-ink">
+          {percent}%
+        </span>
+      )}
+    </div>
+  );
+}

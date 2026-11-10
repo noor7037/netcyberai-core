@@ -2,11 +2,10 @@
 
 import { useEffect, useId, useRef, useState, type RefObject } from 'react';
 import { readChildSettings } from '@/lib/family/child-settings';
-import type { Words } from '@/lib/family/fill';
-import { sentenceAtChar } from '@/lib/family/call';
+import { fill, type Words } from '@/lib/family/fill';
+import { ANSWER_SPOKEN_MAX, chunkEnd, sentenceAtChar } from '@/lib/family/call';
 import type { VoiceMode } from './lineVoice';
-import { markSentence } from './highlight';
-import { TutorFace } from '../avatar/TutorFace';
+import { markSentence, markWord } from './highlight';
 
 // W17-B2: a speaker button on a tutor's kept answer. It asks the server voice for the answer by its message id (the
 // words never leave the server), or, when the server voice is not set up, reads the same spoken text with the phone's
@@ -18,7 +17,15 @@ import { TutorFace } from '../avatar/TutorFace';
 
 const STARTED = 'fam:answer-speaking';
 
-type VoiceInput = { messageId: string; sentences: readonly string[]; lang?: 'en' | 'hi'; serverVoice: boolean; onSentence?: (i: number | undefined) => void; root?: RefObject<HTMLElement | null>; highlight?: boolean };
+// W22-S3: where each answer's reading stopped (the sentence), shared by both buttons of an answer and kept for the visit:
+// a tap after a stop goes on from there; a reading that ends clears it, so the next tap starts again from the top.
+const places = new Map<string, number>();
+
+type VoiceInput = { messageId: string; sentences: readonly string[]; lang?: 'en' | 'hi'; serverVoice: boolean; onSentence?: (i: number | undefined) => void; root?: RefObject<HTMLElement | null>; onReading?: (r: Reading) => void };
+
+// W22-S3: what the answer owner needs to keep the tutor's face on screen while the answer is read: whether the voice is
+// speaking, and how much of the answer has been read (0 to 100).
+export type Reading = { speaking: boolean; percent: number };
 
 // The answer's language: the one given, else the nearest `lang` on the page (an answer streamed this visit is drawn
 // inside the child's language).
@@ -27,12 +34,15 @@ function langOf(given: 'en' | 'hi' | undefined, el: HTMLElement | null): 'en' | 
   return el?.closest('[lang]')?.getAttribute('lang') === 'hi' ? 'hi' : 'en';
 }
 
-// The voice both buttons share. The server voice reads the answer as one line and reports no word boundaries, so the
-// sentence is found from how much of the audio has played (near enough to move a board, not to mark a word). The phone's
-// own voice reads one sentence at a time, so its place is exact even where the engine reports no word boundaries (the
-// Android app's).
-function useAnswerVoice({ messageId, sentences, lang, serverVoice, onSentence, root, highlight = false }: VoiceInput) {
+// The voice both buttons share. W22-S3: the whole answer is read. The voice takes about 600 characters a request, and
+// the answer used to be cut there (the rest was never read, and a second tap began again at the same place); now it is
+// read in parts of whole sentences (call.ts chunkEnd), each asked for by the sentence it starts at, so a stop can be
+// resumed from the sentence it reached. The server voice reports no word boundaries, so its sentence is found from how
+// much of the audio has played; the phone's own voice reads one sentence at a time and reports words where it can. The
+// sentence is highlighted (and its word, when known) and kept on screen.
+function useAnswerVoice({ messageId, sentences, lang, serverVoice, onSentence, root, onReading }: VoiceInput) {
   const [speaking, setSpeaking] = useState(false);
+  const [place, setPlace] = useState(() => places.get(messageId) ?? 0);
   // W19-C: the child's own switches: read aloud off hides the buttons; slow halves the pace.
   const [on, setOn] = useState(true);
   const prefs = useRef({ rate: 0.9 });
@@ -54,13 +64,20 @@ function useAnswerVoice({ messageId, sentences, lang, serverVoice, onSentence, r
   tell.current = onSentence;
   const el = useRef<HTMLDivElement>(null);
   const at = useRef<number | undefined>(undefined);
+  const total = sentences.reduce((n, t) => n + t.length + 1, 0);
+  const share = (i: number) => (total === 0 ? 0 : Math.min(100, Math.round((100 * sentences.slice(0, i).reduce((n, t) => n + t.length + 1, 0)) / total)));
 
   const reach = (i: number | undefined) => {
     if (at.current === i) return;
     at.current = i;
     tell.current?.(i);
-    if (highlight) markSentence(root?.current ?? null, i === undefined ? null : sentences[i] ?? null);
+    markSentence(root?.current ?? null, i === undefined ? null : sentences[i] ?? null);
+    if (i !== undefined) {
+      places.set(messageId, i);
+      setPlace(i);
+    }
   };
+  const word = (i: number, c: number) => markWord(root?.current ?? null, sentences[i] ?? null, c);
 
   useEffect(() => {
     const other = (e: Event) => {
@@ -74,14 +91,24 @@ function useAnswerVoice({ messageId, sentences, lang, serverVoice, onSentence, r
       window.removeEventListener(STARTED, other);
       // Leaving the screen while this answer is read stops it.
       if (run.current > 0) void import('./lineVoice').then((m) => m.stopLine());
-      if (highlight && at.current !== undefined) markSentence(null, null);
+      if (at.current !== undefined) markSentence(null, null);
     };
-  }, [me, highlight]);
+  }, [me]);
 
   const stop = async () => {
     run.current++;
     setSpeaking(false);
     (await import('./lineVoice')).stopLine();
+    // The place is kept (the sentence it reached); the mark goes, the board stays.
+    markSentence(null, null);
+  };
+
+  // Reading is finished: the next tap starts again at the top.
+  const finish = () => {
+    places.delete(messageId);
+    setPlace(0);
+    setSpeaking(false);
+    markSentence(null, null);
   };
 
   const start = async () => {
@@ -90,39 +117,61 @@ function useAnswerVoice({ messageId, sentences, lang, serverVoice, onSentence, r
     window.dispatchEvent(new CustomEvent(STARTED, { detail: me }));
     setSpeaking(true);
     const words = langOf(lang, el.current);
-    // A start always begins at the first sentence: the board draws from its first step again.
+    // A tap goes on from the sentence the last one stopped at (the first, for a new answer or one that was read to the end).
+    const saved = places.get(messageId) ?? 0;
+    let i = saved < sentences.length ? saved : 0;
     at.current = undefined;
-    reach(0);
+    reach(i);
     let used = mode;
-    if (used === 'server') {
-      const text = sentences.join(' ');
-      const spoken = await voice.speakLine('server', { kind: 'tutor_answer', messageId }, {
-        text,
-        lang: words,
-        rate: prefs.current.rate,
-        onProgress: (played) => run.current === mine && reach(sentenceAtChar(sentences, played * text.length)),
-        onWord: (c) => run.current === mine && reach(sentenceAtChar(sentences, c)),
-      });
-      if (run.current !== mine) return;
-      used = spoken.mode;
-    } else {
-      for (let i = 0; i < sentences.length; i++) {
-        reach(i);
-        const spoken = await voice.speakLine('phone', { kind: 'tutor_answer', messageId }, { text: sentences[i], lang: words, rate: prefs.current.rate });
+    while (i < sentences.length) {
+      if (used === 'server') {
+        const end = chunkEnd(sentences, i, ANSWER_SPOKEN_MAX);
+        const part = sentences.slice(i, end);
+        const text = part.join(' ');
+        const first = i;
+        const spoken = await voice.speakLine('server', { kind: 'tutor_answer', messageId, from: first }, {
+          text,
+          lang: words,
+          rate: prefs.current.rate,
+          onProgress: (played) => run.current === mine && reach(first + Math.max(0, sentenceAtChar(part, played * text.length))),
+        });
         if (run.current !== mine || spoken.cancelled) return;
+        if (spoken.mode === 'phone') {
+          // The server voice turned off or failed: this part was read by the phone's own voice, and the rest of the visit is.
+          used = 'phone';
+          setMode('phone');
+        }
+        i = end;
+        if (i < sentences.length) reach(i);
+      } else {
+        reach(i);
+        const at0 = i;
+        const spoken = await voice.speakLine('phone', { kind: 'tutor_answer', messageId, from: at0 }, { text: sentences[i], lang: words, rate: prefs.current.rate, onWord: (c) => run.current === mine && word(at0, c) });
+        if (run.current !== mine || spoken.cancelled) return;
+        i++;
       }
     }
-    // The server voice turned off or failed: the rest of the visit uses the phone's own voice, and the line says so.
-    if (used !== mode) setMode(used);
-    setSpeaking(false);
-    if (highlight) markSentence(null, null);
+    finish();
   };
 
-  return { speaking, mode, start, stop, el, on };
+  const percent = share(place);
+  const told = useRef(onReading);
+  told.current = onReading;
+  useEffect(() => {
+    told.current?.({ speaking, percent });
+  }, [speaking, percent]);
+  useEffect(
+    () => () => {
+      told.current?.({ speaking: false, percent: 0 });
+    },
+    [],
+  );
+
+  return { speaking, mode, start, stop, el, on, percent, started: place > 0 };
 }
 
-export function AnswerSpeaker({ w, messageId, sentences, lang, serverVoice, onSentence }: { w: Words } & Omit<VoiceInput, 'root' | 'highlight'>) {
-  const v = useAnswerVoice({ messageId, sentences, lang, serverVoice, onSentence });
+export function AnswerSpeaker({ w, messageId, sentences, lang, serverVoice, onSentence, root, onReading }: { w: Words } & VoiceInput) {
+  const v = useAnswerVoice({ messageId, sentences, lang, serverVoice, onSentence, root, onReading });
   if (!v.on) return null;
   return (
     <div ref={v.el} data-answer-speaker={messageId} className="flex flex-wrap items-center gap-x-3 gap-y-1">
@@ -130,7 +179,7 @@ export function AnswerSpeaker({ w, messageId, sentences, lang, serverVoice, onSe
         type="button"
         onClick={() => void (v.speaking ? v.stop() : v.start())}
         aria-pressed={v.speaking}
-        aria-label={w[v.speaking ? 'fam.tutor.stopAloud' : 'fam.tutor.readAloud']}
+        aria-label={w[v.speaking ? 'fam.tutor.stopAloud' : v.started ? 'fam.tutor.resume' : 'fam.tutor.readAloud']}
         className="flex h-11 min-w-[44px] items-center justify-center gap-2 rounded-full bg-grape-deep px-3 text-sm font-bold text-white"
       >
         <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
@@ -147,21 +196,25 @@ export function AnswerSpeaker({ w, messageId, sentences, lang, serverVoice, onSe
       <p data-voice-in-use={v.mode} className="text-xs text-slate/80">
         {w[v.mode === 'server' ? 'fam.voiceOut.server' : 'fam.voiceOut.phone']}
       </p>
+      {(v.speaking || v.started) && (
+        <p data-read-percent={v.percent} className="text-xs font-bold text-ink">
+          {fill(w['fam.tutor.readPercent'], { n: String(v.percent) })}
+        </p>
+      )}
     </div>
   );
 }
 
 // W18-P1: "Teach me": the answer read aloud with the sentence being spoken highlighted in its text (the chapter reader's
 // highlight) and the board moving with it. One button: Teach me, then Pause while it speaks (the voice stops; the board
-// and the highlight stay where they were), then Replay from the start. No animation.
-export function TeachMe({ w, messageId, sentences, lang, serverVoice, onSentence, root, tutorKey = null }: { w: Words; tutorKey?: string | null } & Omit<VoiceInput, 'highlight'>) {
-  const v = useAnswerVoice({ messageId, sentences, lang, serverVoice, onSentence, root, highlight: true });
+// and the highlight stay where they were), then Resume from that sentence, and Replay after the end. The tutor's face
+// stays on screen while it reads: the owner of the answer draws it (StickyTutorFace) from `onReading`. No animation.
+export function TeachMe({ w, messageId, sentences, lang, serverVoice, onSentence, root, onReading }: { w: Words; tutorKey?: string | null } & VoiceInput) {
+  const v = useAnswerVoice({ messageId, sentences, lang, serverVoice, onSentence, root, onReading });
   const [used, setUsed] = useState(false);
-  const label = v.speaking ? w['fam.tutor.pause'] : used ? w['fam.tutor.replay'] : w['fam.tutor.teachMe'];
+  const label = v.speaking ? w['fam.tutor.pause'] : v.started ? w['fam.tutor.resume'] : used ? w['fam.tutor.replay'] : w['fam.tutor.teachMe'];
   return (
     <div ref={v.el} className="flex flex-col items-start gap-2">
-      {/* W19-A: once Teach me is used, the tutor's face teaches: its mouth moves with the voice (lineVoice.ts). */}
-      {used && <TutorFace size="lg" tutorKey={tutorKey} className="self-center" />}
       <button
         type="button"
         data-teach-me={messageId}
@@ -183,6 +236,11 @@ export function TeachMe({ w, messageId, sentences, lang, serverVoice, onSentence
         </svg>
         {label}
       </button>
+      {(v.speaking || v.started) && (
+        <p data-read-percent={v.percent} className="text-xs font-bold text-ink">
+          {fill(w['fam.tutor.readPercent'], { n: String(v.percent) })}
+        </p>
+      )}
     </div>
   );
 }
