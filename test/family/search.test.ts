@@ -1,6 +1,5 @@
-import { readFileSync } from 'node:fs';
+import { BOOKS } from '@/lib/family/books';
 import { describe, expect, it } from 'vitest';
-import bookTopics from '@/lib/family/book-topics.json';
 import { MAX_HITS, normalize, rank, scoreTitles, type SearchEntry } from '@/lib/family/search';
 import { waitingBySubject } from '@/lib/family/quiz';
 
@@ -55,13 +54,8 @@ describe('quizzes waiting per subject', () => {
   });
 });
 
-describe('book topics file', () => {
-  it('matches the reader content (run node scripts/gen_book_topics.mjs when it changes)', () => {
-    const root = new URL('../../reader/content/', import.meta.url);
-    const index = JSON.parse(readFileSync(new URL('index.json', root), 'utf8')) as { chapters: { key: string; file?: string | null }[] };
-    for (const c of index.chapters.filter((x) => x.file)) {
-      const ch = JSON.parse(readFileSync(new URL(c.file!, root), 'utf8')) as { topics: { id: string; title: { en: string; hi: string } }[] };
-      expect((bookTopics as Record<string, { id: string; en: string; hi: string }[]>)[c.key]).toEqual(ch.topics.map((t) => ({ id: t.id, en: t.title.en, hi: t.title.hi })));
-    }
+describe('book topics in search', () => {
+  it('every book chapter carries its topic titles from its index (C491)', () => {
+    for (const book of BOOKS) for (const c of book.chapters) expect((c.topicTitles ?? []).length, c.key).toBe(c.topics);
   });
 });

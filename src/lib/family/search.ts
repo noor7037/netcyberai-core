@@ -1,7 +1,6 @@
 import { t, type Lang, type MessageKey } from '@/lib/i18n';
 import { indiaDate } from '@/lib/time/india';
 import { BOOKS, bookHref } from './books';
-import bookTopics from './book-topics.json';
 import { academicYearOf, classSubjects } from './catalog';
 import { syllabusBoardOf, type FamilyChild } from './children';
 import { openSubjects } from './learning';
@@ -103,13 +102,13 @@ export async function searchEntries(db: Db, child: FamilyChild, today = indiaDat
     entries.push({ kind: 'subject', subject: s, titles: [nameOf(s, 'en'), nameOf(s, 'hi'), ...(SUBJECT_ALIASES[s] ?? [])], title: subjectName(s), context: null, href: `/family/study?subject=${encodeURIComponent(s)}` });
   }
   const inBook = new Set<string>();
-  const topicsOf = bookTopics as Record<string, { id: string; en: string; hi: string }[]>;
   for (const book of BOOKS) {
     if (book.classLevel !== child.classLevel || !book.boards.includes(board) || !mine.some((s) => s === book.subject)) continue;
     for (const c of book.chapters) {
       if (c.catalogKey) inBook.add(c.catalogKey);
       entries.push({ kind: 'book_chapter', subject: book.subject, titles: [c.title.en, c.title.hi], title: c.title, context: subjectName(book.subject), href: bookHref(c.key) });
-      for (const tp of topicsOf[c.key] ?? []) {
+      // The book's topic titles come from its index (reader/scripts/index.mjs, C491).
+      for (const tp of c.topicTitles ?? []) {
         entries.push({ kind: 'book_topic', subject: book.subject, titles: [tp.en, tp.hi], title: { en: tp.en, hi: tp.hi || tp.en }, context: c.title, href: bookHref(c.key) });
       }
     }
