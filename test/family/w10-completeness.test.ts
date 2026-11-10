@@ -18,8 +18,9 @@ const plan = (blocks: string[]) => ({ questionType: 'concept', band: 'c6_8', dep
 
 const db = { query: async () => ({ rows: [] }) };
 const pending = { ctx: { refusalWords: (k: string) => k }, line: null, moderation: null, cacheable: false } as unknown as Pending;
+// `shared`: the name-free copy of the kept blocks (W22-S3, C490); with no name in these answers it is the kept blocks.
 const generated = (over: Partial<Generated>): Generated =>
-  ({ sent: { result: { ok: true, text: '', provider: 'anthropic', model: 'm' }, record: async () => {} }, subject: 'science', kept: [], refusedByModel: false, stopped: false, error: null, objects: 0, rejected: [], unclosed: false, droppedForSize: 0, plan: null, ...over }) as Generated;
+  ({ sent: { result: { ok: true, text: '', provider: 'anthropic', model: 'm' }, record: async () => {} }, subject: 'science', kept: [], refusedByModel: false, stopped: false, error: null, objects: 0, rejected: [], unclosed: false, droppedForSize: 0, plan: null, ...over, shared: over.shared ?? over.kept ?? [] }) as Generated;
 
 describe('the plan’s core blocks', () => {
   it('the explanation always; check and practice only when the plan asked; all three with no plan', () => {
