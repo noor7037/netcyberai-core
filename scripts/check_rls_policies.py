@@ -476,6 +476,8 @@ ALLOWED_PERMISSIVE = (
         ("content.topics", "topics_family_read"),
         ("content.responses", "responses_family_read"),
         ("content.responses", "responses_family_add"),
+        ("content.word_help", "word_help_family_read"),  # w23-b
+        ("content.word_help", "word_help_family_add"),  # w23-b
         ("content.tutors", "tutors_family_read"),  # w16-a3
         ("control.settings", "settings_family_read"),
         ("control.app_flags", "app_flags_family_read"),
@@ -1078,6 +1080,7 @@ REQUIRED_RESTRICTIVE = {
     ("content.chapters", "chapters_family_only"),
     ("content.topics", "topics_family_only"),
     ("content.responses", "responses_family_only"),
+    ("content.word_help", "word_help_family_only"),  # w23-b
     ("content.tutors", "tutors_family_only"),  # w16-a3
     ("control.preview_accounts", "preview_family_only"),
     # m1 end

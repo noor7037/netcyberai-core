@@ -11192,4 +11192,19 @@ export const en = {
   // w22-s2 begin
   'fam.book.ask': 'Ask the tutor',
   // w22-s2 end
+  // w23-b begin
+  'control.m6.sys.meaning.family_word_help_daily_requests': 'Fresh word helps (meaning and translation of a tapped word) one Family account may ask for in a day. Answers already kept are free.',
+  'control.ai.profile.name.family.word_help': 'Word help (meaning and translation of a tapped word)',
+  'control.ai.profile.about.family.word_help': 'Gives the meaning and the translation of a word or sentence a child taps, in the language the child chose. It is sent the tapped text and its sentence, never a name, and answers are kept for every child. It sees a child’s own words, so only a service cleared for children can be chosen. Until it has its own, it uses the tutor’s service.',
+  'fam.w23.settings.readingTitle': 'Reading and words',
+  'fam.w23.settings.wordHelp': 'Word help',
+  'fam.w23.settings.wordHelpNote': 'Tap a word or a sentence to see what it means and to translate it.',
+  'fam.w23.settings.tapToRead': 'Tap to hear',
+  'fam.w23.settings.tapToReadNote': 'A tapped word or sentence is read aloud.',
+  'fam.w23.settings.autoScroll': 'Follow the voice',
+  'fam.w23.settings.autoScrollNote': 'The page scrolls along while it is being read.',
+  'fam.w23.settings.meaningLang': 'Meanings in my language',
+  'fam.w23.settings.meaningLangNote': 'Meanings and translations are shown in this language.',
+  'fam.w23.settings.meaningLangApp': 'Same as the app',
+  // w23-b end
 } as const;

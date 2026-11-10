@@ -17,6 +17,7 @@ export const SETTING_SCREENS: Readonly<Record<string, string>> = {
   'ai.spend_alert_usd_per_day': '/control/ai',
   'family.ai.daily_requests': '/control/ai',
   'family.voice.daily_characters': '/control/family',
+  'family.word_help.daily_requests': '/control/family',
   'family.open_subjects': '/control/family',
   'family.reviewed_only_subjects': '/control/family',
   'family.plus_open': '/control/family',
@@ -40,6 +41,7 @@ export const EDITABLE_SETTINGS: readonly EditableSetting[] = [
   { key: 'ai.spend_alert_usd_per_day', kind: 'number', min: 0, max: SPEND_ALERT_MAX_USD, whole: false }, // 0: off (upkeep.ts)
   { key: 'family.ai.daily_requests', kind: 'number', min: 0, max: 1000, whole: true }, // src/lib/ai/control.ts writeCap
   { key: 'family.voice.daily_characters', kind: 'number', min: 0, max: VOICE_CHARS_MAX, whole: true },
+  { key: 'family.word_help.daily_requests', kind: 'number', min: 0, max: 5000, whole: true }, // src/lib/family/word-help.ts
   { key: 'family.plus_open', kind: 'switch', on: true, off: false },
   { key: 'family.tutor.text_turns_per_day', kind: 'number', min: 0, max: CAP_MAX, whole: true },
   { key: 'family.tutor.voice_minutes_per_day', kind: 'number', min: 0, max: CAP_MAX, whole: true },

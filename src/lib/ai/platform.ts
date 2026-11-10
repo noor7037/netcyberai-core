@@ -56,6 +56,7 @@ export type ProfileId =
   | 'family.quiz'
   | 'family.parent_report'
   | 'family.qc'
+  | 'family.word_help'
   | 'family.voice_call'
   | 'copilot.draft'
   | 'parent_ai.home_help'
@@ -118,6 +119,11 @@ export const PROFILES: readonly AiProfile[] = [
   { id: 'family.quiz', carriesChildWords: true, capability: 'text', audience: 'family', callMs: 20_000, chainFrom: 'family.resolver' },
   { id: 'family.parent_report', carriesChildWords: false, capability: 'text', audience: 'family', callMs: 30_000, chainFrom: 'family.resolver' },
   { id: 'family.qc', carriesChildWords: true, capability: 'text', audience: 'family', callMs: 10_000, besideCall: true },
+  // W23-B (C494): the tap menu's meaning and translation of a tapped word or sentence in the child's language. A selection
+  // can be the child's own words, so only a provider cleared for minors may serve it. It follows the tutor's chain until
+  // Control gives it one. besideCall: it takes no place in the family's daily AI requests (the tutor's); the route counts
+  // its own generous per-account allowance (family.ai_daily.word_helps) before it asks.
+  { id: 'family.word_help', carriesChildWords: true, capability: 'text', audience: 'family', callMs: 8_000, chainFrom: 'family.resolver', besideCall: true },
   // W16-A4: the call's realtime leg, a live two-way voice the phone opens straight to the provider with a token the
   // server mints (src/app/api/family/voice/call/token). The child's voice goes to that provider, so only one cleared for
   // minors may serve it. No provider today: the call then uses the chain (listen, answer, speak) and says nothing of it.
