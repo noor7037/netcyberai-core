@@ -253,6 +253,8 @@ export const FAMILY_SCREENS = [
   ['full', 'family-book-chapter', '/family/study/book/u.c10.science.jesc1.ch01', { prep: CLASS_10, reset: CLASS_PUT_BACK, settle: '[data-book-chapter] iframe', steps: [{ pause: 5000 }] }],
   // W22-S2: the reader's first topic with Teach me tapped (the page reads it, highlights the sentence and word, and scrolls to it),
   // and the tutor opened over the chapter with the chapter and topic as its context.
+  // W24: "Read all" with the voice going on a wide screen: the lesson must stay on screen (the founder saw only the side panels).
+  ['full', 'family-book-readall', '/family/study/book/u.c10.science.jesc1.ch01', { langs: ['en'], prep: CLASS_10, reset: CLASS_PUT_BACK, speech: true, settle: '[data-book-chapter] iframe', steps: [{ frame: true, tap: '[data-topic="0"]:visible', wait: '[data-mode="read"]' }, { frame: true, tap: '[data-mode="read"]' }, { pause: 8000 }] }],
   ['full', 'family-book-teach', '/family/study/book/u.c10.science.jesc1.ch01', { prep: CLASS_10, reset: CLASS_PUT_BACK, speech: true, settle: '[data-book-chapter] iframe', steps: [{ frame: true, tap: '[data-topic="0"]:visible', wait: '[data-mode="teach"]' }, { frame: true, tap: '[data-mode="teach"]' }, { pause: 2600 }] }],
   ['full', 'family-book-tutor', '/family/study/book/u.c10.science.jesc1.ch01', { prep: CLASS_10, reset: CLASS_PUT_BACK, speech: true, settle: '[data-book-chapter] iframe', steps: [{ frame: true, tap: '[data-topic="0"]:visible', wait: '[data-mode="teach"]' }, { tap: '[data-book-face]', wait: '[data-tutor-window]' }, { pause: 600 }] }],
   // W23-C: the book chapter's tutor sheet is a fresh conversation scoped to the chapter (no older answer from elsewhere), and a

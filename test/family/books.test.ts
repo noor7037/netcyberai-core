@@ -118,3 +118,15 @@ describe('the reader’s files served under /family/learn/', () => {
     }
   });
 });
+
+describe('the reader\'s files are never served stale (W24)', () => {
+  it('pages, scripts, styles and data are checked on every load; pictures keep a week', async () => {
+    const { learnCacheControl, sameTag } = await import('@/lib/family/learn-files');
+    for (const p of ['reader/reader.js', 'reader/index.html', 'reader/reader.css', 'reader/content/c10/science/index.json', 'labs/engine.js', 'labs/templates/beaker.js', 'labs/defs/c10/science/x.json']) expect(learnCacheControl(p), p).toBe('private, no-cache');
+    expect(learnCacheControl('labs/assets/c10/science/a.640.webp')).toBe('private, max-age=604800');
+    expect(sameTag('"abc"', '"abc"')).toBe(true);
+    expect(sameTag('W/"abc", "x"', '"abc"')).toBe(true);
+    expect(sameTag('"x"', '"abc"')).toBe(false);
+    expect(sameTag(null, '"abc"')).toBe(false);
+  });
+});

@@ -29,3 +29,18 @@ export function allowedLearnFile(parts: readonly string[]): string | null {
   return ALLOWED.some((re) => re.test(rel)) ? rel : null;
 }
 
+
+// How long a browser keeps a file before asking again (W24). Pictures: a week. Everything else (pages, scripts, styles,
+// chapter and lab data): asked again on every load with its tag, so an update never waits for a stale copy to expire.
+export function learnCacheControl(rel: string): string {
+  return /\.(webp|png|jpg)$/.test(rel) ? 'private, max-age=604800' : 'private, no-cache';
+}
+
+// The browser's If-None-Match names this tag (one of a list, or any).
+export function sameTag(ifNoneMatch: string | null, etag: string): boolean {
+  if (!ifNoneMatch) return false;
+  return ifNoneMatch.split(',').some((t) => {
+    const v = t.trim();
+    return v === '*' || v === etag || v === `W/${etag}`;
+  });
+}

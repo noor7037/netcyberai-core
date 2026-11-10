@@ -118,12 +118,12 @@ export const PROFILES: readonly AiProfile[] = [
   // so they work the moment the tutor does; each keeps its own switch, prompt and limits, and a service set here wins.
   { id: 'family.quiz', carriesChildWords: true, capability: 'text', audience: 'family', callMs: 20_000, chainFrom: 'family.resolver' },
   { id: 'family.parent_report', carriesChildWords: false, capability: 'text', audience: 'family', callMs: 30_000, chainFrom: 'family.resolver' },
-  { id: 'family.qc', carriesChildWords: true, capability: 'text', audience: 'family', callMs: 10_000, besideCall: true },
+  { id: 'family.qc', carriesChildWords: true, capability: 'text', audience: 'family', callMs: 10_000, firstTextMs: 6_000, besideCall: true },
   // W23-B (C494): the tap menu's meaning and translation of a tapped word or sentence in the child's language. A selection
   // can be the child's own words, so only a provider cleared for minors may serve it. It follows the tutor's chain until
   // Control gives it one. besideCall: it takes no place in the family's daily AI requests (the tutor's); the route counts
   // its own generous per-account allowance (family.ai_daily.word_helps) before it asks.
-  { id: 'family.word_help', carriesChildWords: true, capability: 'text', audience: 'family', callMs: 8_000, chainFrom: 'family.resolver', besideCall: true },
+  { id: 'family.word_help', carriesChildWords: true, capability: 'text', audience: 'family', callMs: 12_000, firstTextMs: 6_000, chainFrom: 'family.resolver', besideCall: true },
   // W16-A4: the call's realtime leg, a live two-way voice the phone opens straight to the provider with a token the
   // server mints (src/app/api/family/voice/call/token). The child's voice goes to that provider, so only one cleared for
   // minors may serve it. No provider today: the call then uses the chain (listen, answer, speak) and says nothing of it.
@@ -452,7 +452,7 @@ async function takeVoiceCap(db: Sql, ctx: AiContext, profile: AiProfile, first: 
 }
 
 // A provider is not tried on a profile's own time (callMs) with less than this left.
-const CHAIN_MIN_MS = 15_000;
+export const CHAIN_MIN_MS = 15_000;
 // W10: with a first-text deadline (firstTextMs), a provider reached by the one before it timing out is still tried with
 // this much left (a person is waiting; even a short try beats the default answer).
 const FIRST_TEXT_FLOOR_MS = 3_000;
