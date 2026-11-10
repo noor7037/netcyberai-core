@@ -30,6 +30,7 @@ import { ImageView } from './blocks/ImageView';
 import { VideosView } from './blocks/VideosView';
 import { StickyTutorFace } from './avatar/TutorFace';
 import type { Reading } from './voice/AnswerSpeaker';
+import { WordTapLayer } from './words/WordTapLayer';
 import { avatarState, setAvatarMood } from '@/lib/family/avatar-state';
 // The speaker and Teach me load with the first answer drawn, off the Study page's first load (the family budget, W18).
 const AnswerSpeaker = dynamic(() => import('./voice/AnswerSpeaker').then((m) => m.AnswerSpeaker));
@@ -309,9 +310,17 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
 
   return (
     <div ref={top} className="fam-lesson flex flex-col gap-3" aria-busy={state === 'loading' || state === 'streaming'}>
-      {(state === 'loading' || state === 'streaming' || reading.speaking) && (
-        <StickyTutorFace tutorKey={tutorKey} label={reading.speaking ? w['fam.tutor.readingNow'] : w['fam.understand.loading']} percent={reading.speaking ? reading.percent : undefined} />
+      {(state === 'loading' || state === 'streaming' || reading.speaking || reading.started) && (
+        <StickyTutorFace
+          tutorKey={tutorKey}
+          label={reading.speaking ? w['fam.tutor.readingNow'] : reading.started ? w['fam.tutor.resume'] : w['fam.understand.loading']}
+          percent={reading.speaking || reading.started ? reading.percent : undefined}
+          speaking={reading.speaking}
+          onToggle={reading.speaking || reading.started ? reading.toggle : undefined}
+          toggleLabel={w[reading.speaking ? 'fam.tutor.pause' : 'fam.tutor.resume']}
+        />
       )}
+      <WordTapLayer root={top} w={w} sentences={sentences} onReadFrom={reading.from} />
       {filesNote && (
         <p role="status" data-files-note className="rounded-2xl bg-white px-4 py-3 text-sm font-semibold text-slate ring-1 ring-slate/10">
           {filesNote}

@@ -22,6 +22,7 @@ import { readChildSettings } from '@/lib/family/child-settings';
 import { speakLine } from '../voice/lineVoice';
 // The speaker and Teach me load with the first answer drawn, off the Study page's first load (the family budget, W18).
 import type { Reading } from '../voice/AnswerSpeaker';
+import { WordTapLayer } from '../words/WordTapLayer';
 const AnswerSpeaker = dynamic(() => import('../voice/AnswerSpeaker').then((m) => m.AnswerSpeaker));
 const TeachMe = dynamic(() => import('../voice/AnswerSpeaker').then((m) => m.TeachMe));
 
@@ -442,7 +443,10 @@ export function KeptAnswer({ b, w, tone, lang, speak, tutorKey = null, subject =
   const voice = { messageId: speak.id, sentences, lang: lang === 'hi' ? ('hi' as const) : ('en' as const), serverVoice: speak.serverVoice, onSentence: setSentence, onReading: setReading };
   return (
     <div ref={root} lang={lang} data-feed-answer className="fam-lesson flex flex-col gap-3">
-      {reading.speaking && <StickyTutorFace tutorKey={tutorKey} subject={subject} label={w['fam.tutor.readingNow']} percent={reading.percent} />}
+      {(reading.speaking || reading.started) && (
+        <StickyTutorFace tutorKey={tutorKey} subject={subject} label={w[reading.speaking ? 'fam.tutor.readingNow' : 'fam.tutor.resume']} percent={reading.percent} speaking={reading.speaking} onToggle={reading.toggle} toggleLabel={w[reading.speaking ? 'fam.tutor.pause' : 'fam.tutor.resume']} />
+      )}
+      <WordTapLayer root={root} w={w} lang={lang === 'hi' ? 'hi' : 'en'} sentences={sentences} onReadFrom={reading.from} />
       {cited && <CitationChip w={w} c={cited} />}
       {lead && <DirectAnswerCard w={w} b={lead} />}
       {sentences.length > 0 && <TeachMe w={w} {...voice} root={root} />}
