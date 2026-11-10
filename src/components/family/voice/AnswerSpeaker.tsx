@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useId, useRef, useState, type RefObject } from 'react';
+import { useEffect, useId, useMemo, useRef, useState, type RefObject } from 'react';
 import { readChildSettings } from '@/lib/family/child-settings';
 import { fill, type Words } from '@/lib/family/fill';
 import { ANSWER_SPOKEN_MAX, chunkEnd, sentenceAtChar } from '@/lib/family/call';
@@ -25,7 +25,10 @@ type VoiceInput = { messageId: string; sentences: readonly string[]; lang?: 'en'
 
 // W22-S3: what the answer owner needs to keep the tutor's face on screen while the answer is read: whether the voice is
 // speaking, and how much of the answer has been read (0 to 100).
-export type Reading = { speaking: boolean; percent: number };
+// W23-A: also whether a reading was begun (so a pause keeps the controls), and the controls themselves: `toggle` plays or
+// pauses, `from(i)` reads from spoken sentence i (a tap on a word or paragraph). They are the same functions for the
+// life of the answer.
+export type Reading = { speaking: boolean; percent: number; started?: boolean; toggle?: () => void; from?: (sentence: number) => void };
 
 // The answer's language: the one given, else the nearest `lang` on the page (an answer streamed this visit is drawn
 // inside the child's language).
@@ -111,13 +114,14 @@ function useAnswerVoice({ messageId, sentences, lang, serverVoice, onSentence, r
     markSentence(null, null);
   };
 
-  const start = async () => {
+  const start = async (fromSentence?: number) => {
     const voice = await import('./lineVoice');
     const mine = ++run.current;
     window.dispatchEvent(new CustomEvent(STARTED, { detail: me }));
     setSpeaking(true);
     const words = langOf(lang, el.current);
     // A tap goes on from the sentence the last one stopped at (the first, for a new answer or one that was read to the end).
+    if (fromSentence !== undefined && fromSentence >= 0 && fromSentence < sentences.length) places.set(messageId, fromSentence);
     const saved = places.get(messageId) ?? 0;
     let i = saved < sentences.length ? saved : 0;
     at.current = undefined;
@@ -157,17 +161,28 @@ function useAnswerVoice({ messageId, sentences, lang, serverVoice, onSentence, r
   const percent = share(place);
   const told = useRef(onReading);
   told.current = onReading;
+  const started = place > 0;
+  const act = useRef({ speaking, start, stop });
+  act.current = { speaking, start, stop };
+  const controls = useMemo(
+    () => ({
+      toggle: () => void (act.current.speaking ? act.current.stop() : act.current.start()),
+      from: (i: number) => void act.current.start(i),
+    }),
+    [],
+  );
   useEffect(() => {
-    told.current?.({ speaking, percent });
-  }, [speaking, percent]);
+    // Read aloud switched off by the child: no controls, so no strip button and no "read from here".
+    told.current?.({ speaking, percent, started, ...(on ? controls : {}) });
+  }, [speaking, percent, started, controls, on]);
   useEffect(
     () => () => {
-      told.current?.({ speaking: false, percent: 0 });
+      told.current?.({ speaking: false, percent: 0, started: false });
     },
     [],
   );
 
-  return { speaking, mode, start, stop, el, on, percent, started: place > 0 };
+  return { speaking, mode, start, stop, el, on, percent, started };
 }
 
 export function AnswerSpeaker({ w, messageId, sentences, lang, serverVoice, onSentence, root, onReading }: { w: Words } & VoiceInput) {

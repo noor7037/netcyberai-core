@@ -1,8 +1,10 @@
 import type { MessageKey } from '@/lib/i18n';
+import { WORD_MENU_KEYS } from './word-menu-words';
 import { SUBJECT_IDS } from './subjects';
 
 // The words the shared tutor window and the Learning Vault need on the phone (S2, C375), picked on the server.
 export const TUTOR_KEYS: MessageKey[] = [
+  ...WORD_MENU_KEYS,
   'fam.tutor.title', 'fam.tutor.tabConversation', 'fam.tutor.question', 'fam.tutor.send', 'fam.tutor.attachMenu', 'fam.homework.studyLink', 'fam.homework.studyLead',
   'fam.check.menu', 'fam.check.menuLead', 'fam.check.sent', 'fam.check.err.photo_only', 'fam.tutor.attach', 'fam.tutor.filePhoto', 'fam.tutor.filePdf', 'fam.tutor.fileSending', 'fam.tutor.fileChecking',
   'fam.tutor.removeFile', 'fam.tutor.openFile', 'fam.tutor.err.file_too_large', 'fam.tutor.err.file_type', 'fam.tutor.err.file_empty',

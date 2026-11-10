@@ -14,7 +14,7 @@ import { readChildSettings } from '@/lib/family/child-settings';
 // the tab is hidden. Each platform tutor wears its subject's tint and one accessory. Motion is CSS transforms only;
 // under prefers-reduced-motion nothing moves and a mood is a still expression.
 
-export type FaceSize = 'sm' | 'md' | 'lg';
+export type FaceSize = 'sm' | 'md' | 'xl' | 'lg';
 type Gear = 'glasses' | 'pencil' | 'book' | 'flower' | 'globe' | 'spark';
 type Look = { body: string; tint: string; gear: Gear };
 
@@ -31,7 +31,7 @@ const BY_KEY: Record<string, string> = { maths: 'maths', science: 'science', eng
 
 export const lookOf = (tutorKey?: string | null, subject?: string | null): string => BY_KEY[tutorKey ?? ''] ?? BY_SUBJECT[subject ?? ''] ?? 'plain';
 
-const PX: Record<FaceSize, string> = { sm: 'h-10 w-10', md: 'h-24 w-24', lg: 'h-[200px] w-[200px]' };
+const PX: Record<FaceSize, string> = { sm: 'h-10 w-10', xl: 'h-16 w-16', md: 'h-24 w-24', lg: 'h-[200px] w-[200px]' };
 
 // The mouth for a mood; when speaking, `open` (0 to 1) opens it.
 export function mouthPath(mood: AvatarMood, open: number): string {
@@ -252,20 +252,34 @@ export function TutorFace({ size = 'md', tutorKey = null, subject = null, name, 
   );
 }
 
-// W22-S3: the tutor's face kept on screen while it answers or reads. A slim strip stuck to the top of the scrolling
-// area (the feed, or the page) for as long as the answer that owns it is being made or read; it takes its own 48 px of
-// the answer's column (a 360 px phone has room for the face and a short line) and never floats over text or controls:
-// text scrolls under its solid background, not around it. Nothing animates here beyond the face (which stills itself
-// under prefers-reduced-motion).
-export function StickyTutorFace({ tutorKey = null, subject = null, label, percent }: { tutorKey?: string | null; subject?: string | null; label: string; percent?: number }) {
+// W22-S3: the tutor's face kept on screen while it answers or reads. W23-A: a 64 px face, and the reading controls in the
+// same strip (Play or Pause, and the percent read), so they never scroll away. A solid strip stuck to the top of the
+// scrolling area (the feed, or the page) for as long as the answer that owns it is being made or read; it takes its own
+// height of the answer's column and never floats over text or controls: text scrolls under its solid background.
+// Nothing animates here beyond the face (which stills itself under prefers-reduced-motion).
+export function StickyTutorFace({ tutorKey = null, subject = null, label, percent, speaking = false, onToggle, toggleLabel }: { tutorKey?: string | null; subject?: string | null; label: string; percent?: number; speaking?: boolean; onToggle?: () => void; toggleLabel?: string }) {
   return (
-    <div data-sticky-face className="sticky top-0 z-10 flex min-h-[48px] items-center gap-3 rounded-2xl bg-white px-2 py-1 text-sm font-bold text-ink ring-1 ring-ink/10">
-      <TutorFace size="sm" tutorKey={tutorKey} subject={subject} confetti={false} />
+    <div data-sticky-face className="sticky top-0 z-10 flex min-h-[72px] items-center gap-3 rounded-2xl bg-white px-2 py-1 text-sm font-bold text-ink ring-1 ring-ink/10">
+      <TutorFace size="xl" tutorKey={tutorKey} subject={subject} confetti={false} />
       <span className="min-w-0 flex-1 truncate">{label}</span>
       {percent !== undefined && percent > 0 && (
-        <span data-sticky-percent className="shrink-0 text-xs font-bold tabular-nums text-ink">
+        <span data-sticky-percent className="shrink-0 text-sm font-bold tabular-nums text-ink">
           {percent}%
         </span>
+      )}
+      {onToggle && (
+        <button type="button" data-sticky-toggle aria-pressed={speaking} aria-label={toggleLabel} onClick={onToggle} className="fam-press flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-grape-deep text-white">
+          <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor">
+            {speaking ? (
+              <>
+                <rect x="6" y="5" width="4" height="14" rx="1" />
+                <rect x="14" y="5" width="4" height="14" rx="1" />
+              </>
+            ) : (
+              <path d="M7 5v14l12-7z" />
+            )}
+          </svg>
+        </button>
       )}
     </div>
   );

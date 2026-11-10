@@ -18,6 +18,7 @@ import { VideoList } from '../VideoPicks';
 import { useDataSaver } from '../useDataSaver';
 import { TutorDrawer } from '../tutor/TutorDrawer';
 import type { TutorReaderContext } from '../tutor/TutorWindow';
+import { WordTapLayer } from '../words/WordTapLayer';
 import type { Subject } from '@/lib/family/subjects';
 
 // The chapter reader (S1, C374; docs/37 §4 Wave 2): the chapter's blocks in order through the block renderer, and
@@ -78,6 +79,7 @@ export function ChapterReader({ chapterKey, lang, blocks, ids, script, start, re
   const run = useRef(0);
   const stoppedAt = useRef(0);
   const blockEls = useRef(new Map<string, HTMLElement>());
+  const rootEl = useRef<HTMLDivElement>(null);
   const total = script.length;
   const line = script[index];
   // W18-P1: each board's owner, the readable block just before it, and how many of its sentences come before its
@@ -251,8 +253,16 @@ export function ChapterReader({ chapterKey, lang, blocks, ids, script, start, re
   const pct = started || resumed ? progressPercent(index, total) : 0;
   const playLabel = playing ? w['fam.reader.pause'] : done ? w['fam.reader.again'] : resumed && !started ? w['fam.reader.resume'] : started ? w['fam.reader.continue'] : w['fam.reader.listen'];
 
+  // W23-A: a tap on a word or paragraph opens the tap menu; "Read from here" starts the voice at the sentence tapped.
+  const texts = useMemo(() => script.map((l) => l.text), [script]);
+  const readFrom = (i: number) => {
+    seek(i);
+    setPlaying(true);
+  };
+
   return (
-    <div className="flex flex-col gap-4">
+    <div ref={rootEl} lang={lang} className="flex flex-col gap-4">
+      <WordTapLayer root={rootEl} w={w} lang={lang} sentences={texts} onReadFrom={total > 0 ? readFrom : undefined} />
       {total > 0 && (
         <p data-reader-silent className="rounded-2xl bg-white px-4 py-3 text-sm text-slate ring-1 ring-slate/10">
           {w['fam.reader.silentNote']}

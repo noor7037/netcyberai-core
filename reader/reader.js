@@ -168,6 +168,7 @@
       const lab = el.querySelector('.rp'); if (lab) lab.textContent = pctWords(x);
     });
     document.querySelectorAll('[data-topicpct]').forEach((el) => { const tp = S.ch.topics.find((k) => k.id === el.dataset.topicpct); if (tp) el.textContent = topicShare(tp) > 0 ? ' · ' + pctWords(topicShare(tp)) : ''; });
+    postState();
   }
   const readBar = (id, x) => `<div class="readprog" data-readpct="${esc(id)}"><div class="progressline"><i style="width:${pct(x)}%"></i></div><span class="rp mini">${esc(pctWords(x))}</span></div>`;
 
@@ -277,7 +278,20 @@
     if (S.host) post({ type: 'speak', id, lang: S.lang, sentences, offset });
     else localSay(id, sentences, offset);
   }
-  function setListenUI(on) { document.querySelectorAll('[data-listen]').forEach((b) => b.setAttribute('aria-pressed', String(on))); }
+  // W23-A: the Listen button in the top bar is the play and pause control: it shows Pause while the voice reads, and the
+  // framing page's bar is told (playing, percent of the topic) so its own Play and Pause follows.
+  const ICO_SPEAK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg>';
+  const ICO_PAUSE = '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
+  const listenBtn = (on) => `<button type="button" class="ib" data-listen aria-pressed="${on}" aria-label="${esc(t(on ? U.pauseRead : U.listen))}">${on ? ICO_PAUSE : ICO_SPEAK}</button>`;
+  function postState() {
+    if (!S.host) return;
+    const tp = S.view === 'topic' && S.ch ? S.ch.topics[S.ti] : null;
+    post({ type: 'state', playing: !!Say.on, percent: tp ? pct(topicShare(tp)) : 0, can: !!tp });
+  }
+  function setListenUI(on) {
+    document.querySelectorAll('[data-listen]').forEach((b) => { b.setAttribute('aria-pressed', String(on)); b.setAttribute('aria-label', t(on ? U.pauseRead : U.listen)); b.innerHTML = on ? ICO_PAUSE : ICO_SPEAK; });
+    postState();
+  }
   // Stops the voice; the place stays where the last sentence was.
   function sayHalt(fromHost) {
     Say.id++; Say.on = false; Say.once = false;
@@ -344,6 +358,62 @@
     const tp = S.view === 'topic' ? S.ch.topics[S.ti] : null;
     post({ type: 'where', chapterKey: S.ch.chapter_key, chapter: t(S.ch.title), topicId: tp ? tp.id : '', topic: tp ? t(tp.title) : '', lang: S.lang });
   }
+
+  // ---------- a tap on a word (W23-A) ----------
+  // Inside the Family app a tap on a word, or a selected piece of text, is sent to the framing page with the sentence it
+  // came from and, on a topic screen, the step and sentence it fell in: the page shows the tap menu (read from here, say
+  // it, meaning, translate) and answers "read from here" with that step and sentence. Opened on its own there is no menu.
+  const LET = /[\p{L}\p{N}\p{M}]/u;
+  const TAP_SKIP = 'button, a, input, textarea, select, label, summary, iframe, svg, .sheet, .sheet-back, .lightbox, .toast, .top, .bottombar, [data-no-word-tap]';
+  function wordIn(s, off) {
+    const inW = (i) => i >= 0 && i < s.length && (LET.test(s[i]) || ((s[i] === "'" || s[i] === '’' || s[i] === '-') && i > 0 && i < s.length - 1 && LET.test(s[i - 1]) && LET.test(s[i + 1])));
+    let a = Math.min(Math.max(off, 0), s.length);
+    if (!inW(a)) { if (inW(a - 1)) a--; else return null; }
+    let b = a; while (a > 0 && inW(a - 1)) a--; while (b < s.length && inW(b)) b++;
+    return b > a ? [a, b] : null;
+  }
+  const caretAt = (x, y) => {
+    let n = null, o = 0;
+    if (document.caretPositionFromPoint) { const p = document.caretPositionFromPoint(x, y); if (p) { n = p.offsetNode; o = p.offset; } }
+    else if (document.caretRangeFromPoint) { const r = document.caretRangeFromPoint(x, y); if (r) { n = r.startContainer; o = r.startOffset; } }
+    return n && n.nodeType === 3 ? { n, o } : null;
+  };
+  function postTap(node, off, text, box) {
+    const own = (node.nodeValue || '');
+    const sp = sentSplit(own).find(([a, b]) => off >= a && off <= b);
+    const context = (sp ? own.slice(sp[0], sp[1]) : own).replace(/\s+/g, ' ').trim().slice(0, 400);
+    let step = null, sent = null;
+    const stepEl = node.parentElement && node.parentElement.closest('.step');
+    if (S.view === 'topic' && stepEl && S.ch) {
+      const q = collect(stepEl), e = q.nodes.find((o) => o.n === node);
+      if (e) {
+        const g = e.at + off;
+        let k = q.items.findIndex((it) => g >= it.s && g <= it.e); if (k < 0) k = q.items.findIndex((it) => it.s >= g);
+        if (k >= 0) { step = +stepEl.dataset.si; sent = k; }
+      }
+    }
+    post({ type: 'tap', text: text.slice(0, 200), context, lang: S.lang, rect: { left: box.left, top: box.top, width: box.width, height: box.height }, step, sent });
+  }
+  document.addEventListener('click', (e) => {
+    if (!S.host || e.defaultPrevented || !app.contains(e.target) || e.target.closest(TAP_SKIP)) return;
+    const sel = window.getSelection(); if (sel && sel.toString().trim()) return;
+    const c = caretAt(e.clientX, e.clientY); if (!c || !app.contains(c.n)) return;
+    const w = wordIn(c.n.nodeValue, c.o); if (!w) return;
+    const r = document.createRange(); r.setStart(c.n, w[0]); r.setEnd(c.n, w[1]);
+    postTap(c.n, c.o, c.n.nodeValue.slice(w[0], w[1]), r.getBoundingClientRect());
+  });
+  let selTimer = 0;
+  document.addEventListener('selectionchange', () => {
+    clearTimeout(selTimer);
+    selTimer = setTimeout(() => {
+      if (!S.host) return;
+      const sel = window.getSelection(); if (!sel || sel.isCollapsed || !sel.rangeCount) return;
+      const r = sel.getRangeAt(0), text = sel.toString();
+      if (!app.contains(r.startContainer) || !app.contains(r.endContainer) || r.startContainer.nodeType !== 3 || !text.trim() || text.length > 200) return;
+      if (r.startContainer.parentElement && r.startContainer.parentElement.closest(TAP_SKIP)) return;
+      postTap(r.startContainer, r.startOffset, text, r.getBoundingClientRect());
+    }, 500);
+  });
 
   // ---------- images ----------
   const imgBase = () => `../labs/assets/c${String(S.ch.class).padStart(2, '0')}/${S.ch.subject_id}/`;
@@ -651,13 +721,13 @@
 
   // ---------- chrome ----------
   function topbar(o) {
-    S.bar = o;
+    S.bar = o; setTimeout(postState, 0);
     const top = document.getElementById('top');
     top.innerHTML = `<div class="in">
       ${o.back ? `<button type="button" class="ib" data-back="${o.back}" aria-label="${esc(t(U.back))}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 5l-7 7 7 7"/></svg></button>` : `<span class="ib" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M6 7h9a3 3 0 0 1 3 3v15a2 2 0 0 0-2-2H6zM26 7h-6a3 3 0 0 0-3 3v15a2 2 0 0 1 2-2h7z" fill="none" stroke="#E8702A" stroke-width="2.2" stroke-linejoin="round"/></svg></span>`}
       <div class="title"><b ${L()}>${esc(o.title)}</b><span ${L()}>${esc(o.sub || '')}</span></div>
       ${o.topic ? `<button type="button" class="ib only-narrow" data-sheet="intopic" aria-label="${esc(t(U.inTopic))}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg></button><button type="button" class="ib only-narrow" data-sheet="terms" aria-label="${esc(t(U.terms))}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M8 7h7M8 11h7"/></svg></button>` : ''}
-      ${canListen() && o.topic ? `<button type="button" class="ib" data-listen aria-pressed="${S.listen}" aria-label="${esc(t(U.listen))}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg></button>` : ''}
+      ${canListen() && o.topic ? listenBtn(!!(S.listen && Say.on)) : ''}
       <div class="lang" role="group" aria-label="${esc(t(U.lang))}"><button type="button" data-lang="en" aria-pressed="${S.lang === 'en'}">EN</button><button type="button" data-lang="hi" aria-pressed="${S.lang === 'hi'}" lang="hi">हिं</button></div>
     </div>`;
   }
@@ -734,11 +804,13 @@
     const m = e.data || {};
     if (e.origin !== location.origin) return;
     if (m.source === 'nca-book') {
-      if (m.type === 'hello') { S.host = true; S.tutor = !!m.tutor; if (S.bar) topbar(S.bar); whereAmI(); }
+      if (m.type === 'hello') { S.host = true; S.tutor = !!m.tutor; if (S.bar) topbar(S.bar); whereAmI(); postState(); }
       else if (m.type === 'now') onNow(m.id, m.i, m.word || null);
       else if (m.type === 'end') onEnd(m.id);
       else if (m.type === 'novoice') { if (Say.on) sayHalt(true); toast(U.noVoice); }
       else if (m.type === 'stopped') { if (m.id === Say.id && Say.on) sayHalt(true); }
+      else if (m.type === 'toggle') { if (S.view === 'topic') sayToggle(); }
+      else if (m.type === 'readfrom') { if (S.view === 'topic' && S.ch && Number.isInteger(m.step) && Number.isInteger(m.sent) && m.step >= 0 && m.sent >= 0) sayStep(m.step, m.sent); }
       return;
     }
     if (m.source !== 'nca-labs') return;

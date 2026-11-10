@@ -225,7 +225,7 @@ export const FAMILY_SCREENS = [
   // W22-S2: the reader's first topic with Teach me tapped (the page reads it, highlights the sentence and word, and scrolls to it),
   // and the tutor opened over the chapter with the chapter and topic as its context.
   ['full', 'family-book-teach', '/family/study/book/u.c10.science.jesc1.ch01', { prep: CLASS_10, reset: CLASS_PUT_BACK, speech: true, settle: '[data-book-chapter] iframe', steps: [{ frame: true, tap: '[data-topic="0"]:visible', wait: '[data-mode="teach"]' }, { frame: true, tap: '[data-mode="teach"]' }, { pause: 2600 }] }],
-  ['full', 'family-book-tutor', '/family/study/book/u.c10.science.jesc1.ch01', { prep: CLASS_10, reset: CLASS_PUT_BACK, speech: true, settle: '[data-book-chapter] iframe', steps: [{ frame: true, tap: '[data-topic="0"]:visible', wait: '[data-mode="teach"]' }, { tap: '[data-book-ask]', wait: '[data-tutor-window]' }, { pause: 600 }] }],
+  ['full', 'family-book-tutor', '/family/study/book/u.c10.science.jesc1.ch01', { prep: CLASS_10, reset: CLASS_PUT_BACK, speech: true, settle: '[data-book-chapter] iframe', steps: [{ frame: true, tap: '[data-topic="0"]:visible', wait: '[data-mode="teach"]' }, { tap: '[data-book-face]', wait: '[data-tutor-window]' }, { pause: 600 }] }],
   ['full', 'family-understand', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="practice"]' }],
   // W8-AI: a v7 answer with a mind map (an SVG from 480 px, a vertical tree below) and a check that says why each wrong option is wrong.
   ['full', 'family-understand-mindmap', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch90.t07', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="mind_map"]' }],
@@ -267,6 +267,8 @@ export const FAMILY_SCREENS = [
   ['full', 'family-parent-child-saved', '/family/parent#children', { parent: true, reset: CLASS_PUT_BACK, settle: '[data-parent-panel="children"]:not([hidden])', steps: [{ tap: '[data-child-edit]', wait: 'select[id$="-class"]' }, { select: { field: 'select[id$="-class"]', value: '3' }, tap: '[data-parent-panel="children"] form button[type="submit"]', wait: '[data-child-saved]' }] }],
   // W22-S3: a kept answer read aloud, caught in the middle: the tutor's face stays at the top of the feed, the sentence is
   // marked and kept on screen, and the read-aloud line says how much is read.
+  ['full', 'family-tutor-word', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', speakStub: true, wordHelp: true, viewportShot: true, settle: '[data-tutor-turns] [data-feed-answer]', steps: [{ word: '[data-feed-answer] li' }, { wait: '[data-word-menu]' }, { tap: '[data-word-translate]' }, { select: { field: '[data-word-lang]', value: 'hi' } }, { wait: '[data-word-answer]' }, { pause: 300 }] }],
+  ['full', 'family-book-word', '/family/study/book/u.c10.science.jesc1.ch01', { prep: CLASS_10, reset: CLASS_PUT_BACK, speech: true, wordHelp: true, settle: '[data-book-chapter] iframe', steps: [{ frame: true, tap: '[data-topic="0"]:visible', wait: '[data-mode="teach"]' }, { frame: true, word: '.step p' }, { wait: '[data-word-menu]' }, { tap: '[data-word-meaning]' }, { wait: '[data-word-answer]' }, { pause: 300 }] }],
   ['full', 'family-tutor-reading', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', speakStub: true, viewportShot: true, settle: '[data-tutor-turns] [data-feed-answer]', steps: [{ tap: '[data-feed-answer] [data-teach-me]', pause: 3300, wait: '[data-sticky-face]' }] }],
   // M2-5 (C279): the honest player under the response, before and after the tap that loads the embed.
   ['full', 'family-video', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-video-play]' }],
@@ -585,6 +587,13 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
           // `answer`: the tutor's answer, scripted (W10, C411): the harness calls no model, so a typed question's
           // NDJSON stream is answered here; what follows it (the chats read again) is the app's own.
           if (opts.answer) await context.route('**/api/family/understand', (r) => r.fulfill({ status: 200, contentType: 'application/x-ndjson; charset=utf-8', body: typeof opts.answer === 'function' ? opts.answer(lang) : opts.answer }));
+          // `wordHelp` (W23-A): the word-help call, scripted: a meaning and a translation in the language asked for.
+          if (opts.wordHelp)
+            await context.route('**/api/family/word-help', (r) => {
+              const to = JSON.parse(r.request().postData() ?? '{}').to ?? 'en';
+              const says = { en: 'Making food from light', hi: 'प्रकाश से भोजन बनाना', ta: 'ஒளியிலிருந்து உணவு தயாரித்தல்' };
+              r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ meaning: 'How green plants make their own food from sunlight, water and air.', translation: says[to] ?? says.hi, lang: says[to] ? to : 'hi' }) });
+            });
           // `call` (W16-A4): the call's hearing and speaking, scripted: the recording "hears" the scripted question, the speak
           // route says the server voice is not set up (so the phone's own voice reads), and the marks are taken without a log.
           if (opts.call) {
@@ -650,6 +659,26 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
             if (step.select) await page.locator(step.select.field).first().selectOption(step.select.value).catch(() => errors.push(`${step.select.field} could not be chosen`));
             // `frame` (W22-S2): the tap or wait is inside the chapter reader's frame.
             const where = step.frame ? page.frameLocator('[data-book-chapter] iframe') : page;
+            // `word` (W23-A): a tap on the middle of the first long word under the selector.
+            if (step.word) {
+              const loc = where.locator(step.word).first();
+              const pos = await loc.evaluate((el) => {
+                const walk = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+                for (let n = walk.nextNode(); n; n = walk.nextNode()) {
+                  const m = /[A-Za-z\u0900-\u097F]{6,}/.exec(n.data);
+                  if (!m) continue;
+                  const r = document.createRange();
+                  r.setStart(n, m.index + 1);
+                  r.setEnd(n, m.index + 3);
+                  const b = r.getBoundingClientRect();
+                  const e = el.getBoundingClientRect();
+                  return { x: b.left - e.left + b.width / 2, y: b.top - e.top + b.height / 2 };
+                }
+                return null;
+              }).catch(() => null);
+              if (pos) await loc.click({ position: pos }).catch(() => errors.push(`${step.word} word could not be tapped`));
+              else errors.push(`${step.word} has no word to tap`);
+            }
             if (step.tap) await where.locator(step.tap).first().click().catch(() => errors.push(`${step.tap} could not be tapped`));
             if (step.pause) await page.waitForTimeout(step.pause);
             // `choose`: a value in a drop-down when it shows (a phone), else a tap on the wide screen's own control (W9-A).

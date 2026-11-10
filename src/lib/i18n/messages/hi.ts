@@ -11193,4 +11193,19 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.w23.settings.meaningLangNote': 'मतलब और अनुवाद इसी भाषा में दिखेंगे।',
   'fam.w23.settings.meaningLangApp': 'ऐप जैसी ही',
   // w23-b end
+  // w23-a begin
+  'fam.word.menu': 'शब्द की मदद',
+  'fam.word.readFrom': 'यहाँ से पढ़ो',
+  'fam.word.say': 'बोलकर सुनाओ',
+  'fam.word.meaning': 'मतलब',
+  'fam.word.translate': 'अनुवाद',
+  'fam.word.into': 'किस भाषा में',
+  'fam.word.loading': 'देख रहे हैं…',
+  'fam.word.none': 'इसका जवाब नहीं मिला।',
+  'fam.word.close': 'बंद करो',
+  'fam.word.err.not_signed_in': 'शब्द देखने के लिए फिर से साइन इन करो।',
+  'fam.word.err.off': 'शब्द की मदद अभी उपलब्ध नहीं है।',
+  'fam.word.err.daily_limit': 'आज के शब्द देखने के सारे मौके पूरे हो गए। कल फिर कोशिश करना।',
+  'fam.word.err.failed': 'यह देखा नहीं जा सका। फिर से कोशिश करो।',
+  // w23-a end
 };

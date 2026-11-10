@@ -11207,4 +11207,19 @@ export const en = {
   'fam.w23.settings.meaningLangNote': 'Meanings and translations are shown in this language.',
   'fam.w23.settings.meaningLangApp': 'Same as the app',
   // w23-b end
+  // w23-a begin
+  'fam.word.menu': 'Word help',
+  'fam.word.readFrom': 'Read from here',
+  'fam.word.say': 'Say it',
+  'fam.word.meaning': 'Meaning',
+  'fam.word.translate': 'Translate',
+  'fam.word.into': 'Into',
+  'fam.word.loading': 'Looking it up…',
+  'fam.word.none': 'No answer for this one.',
+  'fam.word.close': 'Close',
+  'fam.word.err.not_signed_in': 'Sign in again to look up words.',
+  'fam.word.err.off': 'Word help is not available right now.',
+  'fam.word.err.daily_limit': 'You have used all of today\'s word look-ups. Try again tomorrow.',
+  'fam.word.err.failed': 'This could not be looked up. Try again.',
+  // w23-a end
 } as const;
