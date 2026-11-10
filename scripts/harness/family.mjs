@@ -401,7 +401,8 @@ export const FAMILY_SCREENS = [
   ),
 ];
 
-export const FAMILY_WIDTHS = [360, 390, 1440];
+// HARNESS_FAMILY_WIDTHS=2000 (comma-separated) shoots other widths, e.g. a wide desktop screen (W24).
+export const FAMILY_WIDTHS = process.env.HARNESS_FAMILY_WIDTHS ? process.env.HARNESS_FAMILY_WIDTHS.split(',').map(Number).filter((n) => n > 0) : [360, 390, 1440];
 export const FAMILY_LANGS = ['en', 'hi'];
 export const FAMILY_MOTIONS = ['reduce', 'no-preference'];
 

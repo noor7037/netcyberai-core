@@ -11213,7 +11213,7 @@ export const en = {
   'fam.word.say': 'Say it',
   'fam.word.meaning': 'Meaning',
   'fam.word.translate': 'Translate',
-  'fam.word.into': 'Into',
+  'fam.word.into': 'Language',
   'fam.word.loading': 'Looking it up…',
   'fam.word.none': 'No answer for this one.',
   'fam.word.close': 'Close',

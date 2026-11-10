@@ -11199,7 +11199,7 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.word.say': 'बोलकर सुनाओ',
   'fam.word.meaning': 'मतलब',
   'fam.word.translate': 'अनुवाद',
-  'fam.word.into': 'किस भाषा में',
+  'fam.word.into': 'भाषा',
   'fam.word.loading': 'देख रहे हैं…',
   'fam.word.none': 'इसका जवाब नहीं मिला।',
   'fam.word.close': 'बंद करो',
