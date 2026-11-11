@@ -21,7 +21,21 @@ describe('the child’s book in Study (founder, 9 Nov 2026)', () => {
   it('no other board, class or subject gets it', () => {
     expect(bookFor({ board: 'CISCE', classLevel: 10, subject: 'science' })).toBeNull();
     expect(bookFor({ board: 'CBSE', classLevel: 9, subject: 'science' })).toBeNull();
-    expect(bookFor({ board: 'CBSE', classLevel: 10, subject: 'mathematics' })).toBeNull();
+    expect(bookFor({ board: 'CISCE', classLevel: 10, subject: 'mathematics' })).toBeNull();
+  });
+
+  it('a CBSE Class 10 child gets NCERT Mathematics with the chapters that are written, each on its CBSE catalog chapter', () => {
+    const book = bookFor({ board: 'CBSE', classLevel: 10, subject: 'mathematics' });
+    expect(book?.id).toBe('ncert.jemh1');
+    expect(book!.chapters.map((c) => c.number)).toContain(4);
+    expect(book!.chapters.find((c) => c.number === 4)?.catalogKey).toBe('cbse.c10.mathematics.u2.ch03');
+    const text = readFileSync(path.join(ROOT, 'data/catalog/cbse-2026-27-maths-science.csv'), 'utf8');
+    const chapters = new Map(readCatalogCsv(text, '2026-11-11').lines.filter((l) => l.board === 'CBSE' && l.classLevel === 10 && l.subject === 'mathematics' && l.level === 'chapter').map((l) => [l.key, l.titleEn]));
+    const word = (s: string) => s.toLowerCase().replace(/[^a-z]/g, '').slice(0, 7);
+    for (const c of book!.chapters) {
+      expect(chapters.has(c.catalogKey!), c.key).toBe(true);
+      expect(word(chapters.get(c.catalogKey!)!), c.key).toBe(word(c.title.en));
+    }
   });
 
   it('every chapter opens a reader file that exists, in the child’s language', () => {
