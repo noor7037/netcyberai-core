@@ -11,8 +11,8 @@ Every image is a **concept image**: a student who looks at it understands the wh
   cross-sections for the inside, exploded views for how parts fit, sequences of frames for a process, before/after
   pairs, real Indian scenes for applications.
 - Exact: right geometry and proportions, true colours, correct anatomy and apparatus, correct directions.
-- No words, numbers, letters or labels in any image; leave clear space around the parts the app will label with
-  numbered pins.
+- At most a few short English labels (3–5 words) where a word makes the logic click (Noor, 11 Nov 2026); never
+  paragraphs; leave clear space around the parts the app will label with numbered pins.
 - Plain light background for models and diagrams; natural light for photos; Indian settings; any gender in any role;
   no logos; no close-up faces of children.
 - Several files of one set share the same object, style, light and camera distance.

@@ -63,7 +63,7 @@ chapters and Noor's feedback parts 1 and 2.
 
 ## D. Visuals and images
 
-25. **Words baked into a picture** (an SVG with "Mg + O₂ → MgO" drawn in). Rule: every word is a `data-t` label; images
+25. **Words baked into a diagram** (an SVG with "Mg + O₂ → MgO" drawn in). Rule: every word is a `data-t` label; images
     carry no text.
 26. **A diagram's animation name clashed with the page** (`@keyframes rise` blanked chapter 1). Rule: prefix every
     class and keyframe with the diagram's own id.
@@ -81,3 +81,22 @@ chapters and Noor's feedback parts 1 and 2.
     simulation really does.
 32. **A topic left without the lab it needs because no template existed.** Rule (Noor, 11 Nov 2026): build the new
     template (PROMPT §2a) as a general, reusable type; it joins the library for every later class.
+
+## F. From the Class 10 Mathematics review (11 Nov 2026)
+
+33. **Diagrams that are only boxes of words** (flowcharts) are not visuals. Show the mathematics itself: area/tile
+    models, plotted graphs from computed points, number lines, constructions, solids, charts to scale.
+34. **A viewBox wider than ~360 shrinks every label** (720 wide → labels at half size). Keep the viewBox ~360 wide and
+    labels 13+ (checker: never under ~11 at phone width).
+35. **Half the topics without a lab** — maths has something to do in almost every topic (plot, drag, build, measure,
+    simulate). At most 30% of a chapter's topics may go without (checker).
+36. **Leaving the starter labs file unchanged.** Rewrite it for your topics, in spoken Hindi.
+37. **Lab check items in the wrong shape** (`answer: "a"`, `why` as an array). Lab items use `answer: <index>`,
+    `why: {en, hi}`, `wrong: ["", {en, hi}, …]`; read `assets/example-labs.json`.
+38. **Targets and events the template does not declare** (they make the guided lab freeze). Check every `do` step
+    against the template's `keys()` for YOUR config (modes change them).
+39. **Units in Hindi words** (सेमी). Units and digits stay exactly as in English (cm, m, km/h, 4).
+40. **Referencing planned image names that the founder made differently.** Use the files that actually exist in
+    `labs/assets/<class>/<subject>/` (a set may be one combined image; there may be extra "master poster" images) and
+    use all of them.
+
