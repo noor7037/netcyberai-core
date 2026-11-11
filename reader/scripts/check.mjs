@@ -21,7 +21,7 @@ function walk(d) { return fs.readdirSync(d, { withFileTypes: true }).flatMap((e)
 
 const DEV = /[\u0900-\u097F]/;
 // A text that is only formulas, equations, numbers or symbols reads the same in both languages.
-const formulaOnly = (s) => !/[a-z]{3,}/.test(s.replace(/\{\{eq:[^}]*\}\}/g, '').replace(/\((s|l|g|aq)\)/g, ''));
+const formulaOnly = (s) => !/[a-z]{3,}/.test(s.replace(/\{\{eq:[^}]*\}\}/g, '').replace(/\((s|l|g|aq)\)/g, '').replace(/\b(sin|cos|tan|cot|sec|cosec|log|lim|max|min|mod|HCF|LCM)\b/gi, ''));
 const STEP_TYPES = new Set(['retrieve', 'hook', 'explain', 'diagram', 'figure', 'equation', 'table', 'activity', 'worked', 'lab', 'guided', 'misconception', 'keypoints', 'examtip', 'close']);
 const REQUIRED = ['retrieve', 'explain', 'worked', 'guided', 'misconception', 'keypoints'];
 const BLOOM = new Set(['remember', 'understand', 'apply', 'analyse', 'evaluate', 'create']);
@@ -33,6 +33,7 @@ let total = 0;
 
 for (const file of files) {
   const P = [];
+  const W = [];
   const bad = (m) => P.push(m);
   let ch;
   try { ch = JSON.parse(fs.readFileSync(file, 'utf8')); } catch (e) { console.log(`${rel(file)}: not valid JSON: ${e.message}`); total++; continue; }
@@ -91,6 +92,10 @@ for (const file of files) {
   };
   const marksOf = (it) => (it.type === 'case' ? (it.parts || []).length : it.type === 'short' || it.type === 'long' ? it.marks || 0 : 1);
 
+  // A published draft ("status": "draft") must pass every correctness rule; the quality bars that its writer is still
+  // meeting (label size at phone width, the lab share, unused images) are reported as warnings until it is upgraded.
+  const DRAFT = ch.status === 'draft';
+  const soft = (m) => (DRAFT ? W.push(m) : bad(m));
   for (const k of ['chapter_key', 'class', 'subject_id', 'number']) if (ch[k] == null) bad(`missing ${k}`);
   if (path.basename(file) !== `${ch.chapter_key}.json`) bad(`file name must be ${ch.chapter_key}.json`);
   T(ch.title, 'title'); T(ch.big_idea, 'big_idea'); TA(ch.outcomes, 'outcomes', 3);
@@ -132,7 +137,7 @@ for (const file of files) {
           const fonts = [...svg.matchAll(/font-size\s*[=:]\s*"?([\d.]+)/g)].map((m) => +m[1]).filter((v) => v >= 2);
           const vbw = +((svg.match(/viewBox\s*=\s*"[\d.\s-]*?([\d.]+)\s+[\d.]+\s*"/) || [])[1] || 360);
           const eff = fonts.length ? (Math.min(...fonts) * 360) / vbw : 99;
-          if (eff < 11) bad(`${sw}: the smallest label is ${Math.min(...fonts)} on a ${vbw}-wide viewBox, about ${eff.toFixed(1)} at phone width (keep the viewBox about 360 wide and labels 13+, never under 11)`);
+          if (eff < 11) soft(`${sw}: the smallest label is ${Math.min(...fonts)} on a ${vbw}-wide viewBox, about ${eff.toFixed(1)} at phone width (keep the viewBox about 360 wide and labels 13+, never under 11)`);
           if (svg.length > 14000) bad(`${sw}: svg is ${svg.length} characters (keep it under about 12 KB)`);
           const keys = [...svg.matchAll(/data-t="([^"]+)"/g)].map((m) => m[1]);
           if (!keys.length) bad(`${sw}: svg has no <text data-t> labels; a full-topic diagram needs its words`);
@@ -175,7 +180,7 @@ for (const file of files) {
 
   // A lab wherever the topic needs one: at most 30% of a chapter's topics may go without (each with its reason).
   const noLab = topics.filter((t) => !(t.steps || []).some((x) => x.type === 'lab'));
-  if (topics.length && noLab.length > Math.ceil(0.3 * topics.length)) bad(`${noLab.length} of ${topics.length} topics have no lab (${noLab.map((t) => t.id).join(', ')}); at most ${Math.ceil(0.3 * topics.length)} may go without — build or reuse a lab (labs/CONTRACT.md, skill §6)`);
+  if (topics.length && noLab.length > Math.ceil(0.3 * topics.length)) soft(`${noLab.length} of ${topics.length} topics have no lab (${noLab.map((t) => t.id).join(', ')}); at most ${Math.ceil(0.3 * topics.length)} may go without — build or reuse a lab (labs/CONTRACT.md, skill §6)`);
   const test = (ch.test && ch.test.items) || [];
   if (test.length !== 20) bad(`test: needs 20 items, has ${test.length}`);
   if (!ch.test || ch.test.pass !== 0.7) bad('test.pass must be 0.7');
@@ -197,6 +202,7 @@ for (const file of files) {
     if (!x || typeof x !== 'object') return;
     if (typeof x.hi === 'string' && typeof x.en === 'string') {
       for (const w of BANNED_HI) if (x.hi.includes(w)) bad(`${where}: Hindi uses "${w}" (see CONTRACT §1)`);
+      for (const lang of ['en', 'hi']) { const m = String(x[lang]).match(/\\[A-Za-z]+|[\^_]\{/); if (m) bad(`${where}: LaTeX "${m[0]}" in ${lang}; write maths as plain symbols (π, ×, ², √, ∠, θ, °)`); }
       const bare = x.hi.replace(/\{\{eq:[^}]*\}\}/g, '').replace(/\([^)]*[A-Za-z][^)]*\)/g, '');
       if (BARE_EN.test(bare)) bad(`${where}: English word "${bare.match(BARE_EN)[0]}" left in Hindi prose`);
     }
@@ -208,11 +214,11 @@ for (const file of files) {
     if (top > 0.35) bad(`answer spread: one option index holds ${Math.round(top * 100)}% of MCQ answers (${c.join('/')}); keep each under 35%`);
   }
   const unused = fs.existsSync(assetDir) ? fs.readdirSync(assetDir).filter((f) => new RegExp(`^C${String(ch.class).padStart(2, '0')}-[A-Z]+-CH${String(ch.number).padStart(2, '0')}-`).test(f) && f.endsWith('.webp') && !f.endsWith('.640.webp')).map((f) => f.slice(0, -5)).filter((nm) => !usedImages.has(nm)) : [];
-  if (unused.length) bad(`images of this chapter not used: ${unused.join(', ')}`);
+  if (unused.length) soft(`images of this chapter not used: ${unused.join(', ')}`);
 
   total += P.length;
   const counts = `${topics.length} topics, ${topics.reduce((a, t) => a + ((t.check && t.check.items) || []).length, 0)} topic items, ${test.length} test items (${marks} marks), ${usedImages.size} images`;
-  console.log(`${rel(file)}: ${P.length ? P.length + ' problems' : 'ok'} — ${counts}`);
+  console.log(`${rel(file)}: ${P.length ? P.length + ' problems' : 'ok'}${DRAFT ? ` (draft, ${W.length} quality warnings)` : ''} — ${counts}`);
   P.slice(0, 60).forEach((m) => console.log('  - ' + m));
   if (P.length > 60) console.log(`  … ${P.length - 60} more`);
 }

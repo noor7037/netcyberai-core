@@ -59,6 +59,10 @@ digits after an element or `)` become subscripts, a leading number is a coeffici
 }
 ```
 
+- `status`: optional. `"draft"` marks a published chapter that passes every correctness rule but is still being
+  upgraded to the quality bars (labels readable at phone width, the lab share, every image used); the checker reports
+  those as warnings for a draft. The writer removes `status` when the chapter meets every rule (Noor, 11 Nov 2026:
+  publish the Class 10 Mathematics drafts so every chapter is visible while they are improved).
 - `big_idea` is the competency in child language (an outcome, not a section title). `outcomes` are 3–6 "can do"
   lines in NCERT Learning Outcome style.
 - `hook.answered_in` names the topic whose `close` step answers the chapter hook. Every hook asked anywhere must be

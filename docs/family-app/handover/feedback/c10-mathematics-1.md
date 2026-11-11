@@ -58,6 +58,13 @@ triangle" (sin 30°), t06 "sand squares" (a² + b² = c², sin²θ + cos²θ = 1
 chapter 12 t02 "tent canvas" (2πrh + πrl). Keep them (ids prefixed `m8d8-`, `m8d9-`, `m8d10-`, `m12d3-`) when you
 upgrade those chapters. The founder's images keep their short English labels (decision of 11 Nov 2026).
 
+## Published as drafts (Noor, 11 Nov 2026)
+
+The 13 chapters are now live as drafts (`"status": "draft"`) so students can see every chapter. Claude Code re-solved
+their answer keys before publishing and placed the master posters and the missing views. Upgrade them from the copies in
+your inbox (they include these fixes) and **remove `"status": "draft"`** from a chapter only when it passes every rule
+with no warnings.
+
 ## Answer keys
 
 Rebuilding chapter 4 found a **wrong answer key** in your draft (topic 1: the item asking which equation is NOT
