@@ -134,6 +134,10 @@ language, so labels and equations switch with the toggle. A `<text>` may hold on
 under reduced motion); no `<script>`, no `on…=` attributes, no `<foreignObject>`, no `<image>`, no external links.
 Keep each diagram under about 12 KB.
 
+**Words in images (Noor, 11 Nov 2026):** the founder's images may carry a few short English labels where they teach
+(3–5 words, never paragraphs); they stay English in Hindi mode. Diagrams (`diagram` steps) still carry no baked words.
+Captions, `notice` and pins must match what the image really shows and need not repeat its own labels.
+
 Image names are the file names in `labs/assets/<class>/<subject>/` without the extension (the reader loads
 `<name>.640.webp` on phones and `<name>.webp` on wide screens). Images carry no words; all words live in the JSON
 (caption, labels, notice), so they switch language. Label pins are numbered on the image with a bilingual legend

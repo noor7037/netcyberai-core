@@ -7,6 +7,8 @@ supervisor and Noor. Newest first inside each section. Update it at the end of e
 
 | Date | Decision | Source |
 | --- | --- | --- |
+| 11 Nov 2026 | Founder images may keep short English labels (3–5 words) where they teach; they stay English in Hindi mode. SVG diagrams stay fully bilingual. | Noor |
+| 11 Nov 2026 | Outside AIs never get GitHub access; they work in the plain copy `Downloads/NetCyber-Content`, and Claude Code reviews and publishes. Every topic gets the lab it needs; a missing lab type is built as a reusable template. | Noor |
 | 9 Nov 2026 | Every topic: a visual that explains the whole topic (everything defined, everything visual) and its own lab where the topic needs one, or a one-line reason; Hindi is everyday spoken Hindi with English words, NCERT terms kept. Enforced by `reader/scripts/check.mjs`. | Noor |
 | 9 Nov 2026 | Learning pages (chapter reader, labs, every chapter and syllabus page) use the Family app's lesson colours: warm paper, ink, saffron actions, teal progress, plum AI, one pastel tint per section kind; no navy, no gradients. | Noor |
 | 9 Nov 2026 | The age-band framework in the feedback file §5 (and `AGE-BAND-PEDAGOGY-RESEARCH.md`) governs every syllabus slice, topic, lab, image and question. | Noor |

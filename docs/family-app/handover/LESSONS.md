@@ -63,7 +63,7 @@ chapters and Noor's feedback parts 1 and 2.
 
 ## D. Visuals and images
 
-25. **Words baked into a picture** (an SVG with "Mg + O₂ → MgO" drawn in). Rule: every word is a `data-t` label; images
+25. **Words baked into a diagram** (an SVG with "Mg + O₂ → MgO" drawn in). Rule: every word is a `data-t` label; images
     carry no text.
 26. **A diagram's animation name clashed with the page** (`@keyframes rise` blanked chapter 1). Rule: prefix every
     class and keyframe with the diagram's own id.

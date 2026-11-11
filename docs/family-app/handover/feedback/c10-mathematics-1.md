@@ -51,6 +51,13 @@ Then upgrade chapters 1–3 and 5–14 to the level of the model chapter.
 - Clean topic splits that follow NCERT sections.
 - Tests in the 50/20/30 mix with real-mistake distractors.
 
+## Keep these four new visuals
+
+Claude Code added four animated diagrams in place of image sets the founder did not make: chapter 8 t04 "half a
+triangle" (sin 30°), t06 "sand squares" (a² + b² = c², sin²θ + cos²θ = 1), t02 "knotted rope" (3-4-5 right angle), and
+chapter 12 t02 "tent canvas" (2πrh + πrl). Keep them (ids prefixed `m8d8-`, `m8d9-`, `m8d10-`, `m12d3-`) when you
+upgrade those chapters. The founder's images keep their short English labels (decision of 11 Nov 2026).
+
 ## Answer keys
 
 Rebuilding chapter 4 found a **wrong answer key** in your draft (topic 1: the item asking which equation is NOT
