@@ -11,7 +11,7 @@ const hi = (x) => (x && typeof x === 'object' ? x.hi : '') || '';
 const clip = (s, n = 140) => String(s).replace(/\s+/g, ' ').slice(0, n);
 const L = [];
 L.push(`# Digest: ${ch.chapter_key} — ${en(ch.title)} / ${hi(ch.title)}`, '', `Big idea: ${en(ch.big_idea)}`, `Hook: ${clip(en(ch.hook && ch.hook.question))} → answered in ${ch.hook && ch.hook.answered_in}`, '');
-L.push('| Topic | Steps | Diagrams | Figures (images) | Labs | why_no_lab | Terms | Check items | Bloom spread |', '|---|---|---|---|---|---|---|---|---|');
+L.push('| Topic | Steps | Diagrams (shapes each) | Figures (images) | Labs | why_no_lab | Terms | Check items | Bloom spread |', '|---|---|---|---|---|---|---|---|---|');
 const answers = [0, 0, 0, 0];
 const allItems = [];
 for (const t of ch.topics || []) {
@@ -21,7 +21,8 @@ for (const t of ch.topics || []) {
   const labs = st.filter((s) => s.type === 'lab').map((s) => s.lab.split('-').slice(-2).join('-'));
   const items = (t.check && t.check.items) || [];
   const bloom = {}; items.forEach((i) => { bloom[i.bloom] = (bloom[i.bloom] || 0) + 1; });
-  L.push(`| ${t.id} ${clip(en(t.title), 50)} | ${st.length} | ${c('diagram')} | ${c('figure')} (${imgs}) | ${labs.join(', ') || '—'} | ${t.why_no_lab ? clip(en(t.why_no_lab), 60) : ''} | ${(t.terms || []).length} | ${items.length} | ${Object.entries(bloom).map(([k, v]) => k.slice(0, 3) + v).join(' ')} |`);
+  const shapes = st.filter((s) => s.type === 'diagram').map((s) => (String(s.svg).match(/<(path|line|circle|ellipse|polygon|polyline)\b/g) || []).length);
+  L.push(`| ${t.id} ${clip(en(t.title), 50)} | ${st.length} | ${c('diagram')} (${shapes.map((n) => (n < 6 ? n + '⚠' : n)).join(', ')}) | ${c('figure')} (${imgs}) | ${labs.join(', ') || '—'} | ${t.why_no_lab ? clip(en(t.why_no_lab), 60) : ''} | ${(t.terms || []).length} | ${items.length} | ${Object.entries(bloom).map(([k, v]) => k.slice(0, 3) + v).join(' ')} |`);
   st.forEach((s) => { if (s.item) allItems.push([`${t.id} ${s.type}`, s.item]); if (s.faded && s.faded.item) allItems.push([`${t.id} faded`, s.faded.item]); });
   items.forEach((i) => allItems.push([`${t.id} check`, i]));
 }

@@ -398,6 +398,80 @@
       "subjects": "arts 3–8, maths (symmetry), evs",
       "config": "{ mode: 'mix'|'rangoli'|'symmetry'|'art-form', art_form?: 'madhubani'|'warli'|'gond'|'kalamkari'|'pattachitra' }",
       "targets": ["colour:<name>", "canvas", "tool:<name>", "answer"], "events": ["mixed:<colour>", "drawn", "answered:right", "answered:wrong"],
-      "notes": "Primary/secondary colour mixing true (paint model)." }
+      "notes": "Primary/secondary colour mixing true (paint model)." },
+      {
+        "id": "story-equation",
+        "colour": "#E8702A",
+        "tier": "hard",
+        "status": "built",
+        "name": {
+          "en": "Story to equation",
+          "hi": "स्टोरी से समीकरण"
+        },
+        "about": {
+          "en": "Turn a word problem into a quadratic equation by trying it: slide the unknown, watch the story's areas, products or journey times, write the equation step by step, then find the roots and see which ones the story accepts.",
+          "hi": "स्टोरी वाले सवाल को आज़माकर द्विघात समीकरण में बदलो: अज्ञात को खिसकाओ, क्षेत्रफल, गुणनफल या सफ़र का समय देखो, समीकरण स्टेप-दर-स्टेप लिखो, फिर मूल निकालो और देखो स्टोरी कौन-सा मूल मानती है।"
+        },
+        "subjects": "maths 9–11 (quadratic equations, word problems, modelling; also areas, ages, consecutive numbers, speed-time)",
+        "config": "{ situations: [{ id, kind: 'product'|'journey', title: {en,hi}, story: {en,hi}, unknown: {en,hi}, p: [c0, c1], q: [c0, c1], pName, qName, result: {en,hi}, target: number (product); distance, slower, extra (journey); min, max: whole numbers; solve?: boolean }] }",
+        "targets": [
+          "slider:x",
+          "equation",
+          "solve",
+          "sit:<id>",
+          "reset"
+        ],
+        "events": [
+          "moved",
+          "hit",
+          "equation",
+          "solved",
+          "rejected",
+          "impossible",
+          "repeated",
+          "picked:<id>"
+        ],
+        "notes": "All arithmetic exact for whole numbers: product (p0 + p1 x)(q0 + q1 x) = target, or distance/(x - slower) - distance/x = extra. The equation is derived and reduced by the template; roots by the quadratic formula; a root that makes x, a side or a speed zero or negative is rejected, D < 0 means the story is impossible."
+      },
+      {
+        "id": "quad-machine",
+        "colour": "#0F766E",
+        "tier": "mid",
+        "status": "built",
+        "name": {
+          "en": "Quadratic machine",
+          "hi": "द्विघात मशीन"
+        },
+        "about": {
+          "en": "Choose a, b and c, then run the quadratic formula one stage at a time: read a, b, c; compute the discriminant; read what it says; get the roots and check them. A parabola drawn from computed points shows the roots on the x-axis.",
+          "hi": "a, b और c चुनो, फिर द्विघात सूत्र को एक-एक स्टेप में चलाओ: a, b, c पढ़ो; विविक्तकर निकालो; देखो वह क्या बताता है; मूल निकालो और जाँचो। गणना किए बिंदुओं से बना परवलय मूलों को x-अक्ष पर दिखाता है।"
+        },
+        "subjects": "maths 10–11 (quadratic formula, discriminant, nature of roots)",
+        "config": "{ equations: [{ id, a: -5..5 not 0, b: -12..12, c: -12..12, name?: {en,hi} }], steppers?: boolean }",
+        "targets": [
+          "a:+",
+          "a:-",
+          "b:+",
+          "b:-",
+          "c:+",
+          "c:-",
+          "next",
+          "eq:<id>",
+          "reset"
+        ],
+        "events": [
+          "changed",
+          "stage:1",
+          "stage:2",
+          "stage:3",
+          "stage:4",
+          "solved",
+          "distinct",
+          "equal",
+          "none",
+          "picked:<id>"
+        ],
+        "notes": "D = b^2 - 4ac exact; perfect-square roots shown as exact fractions, others to 2 decimals; every root is put back into the equation to check; a is never 0."
+      }
   ]
 }
