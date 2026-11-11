@@ -99,4 +99,17 @@ chapters and Noor's feedback parts 1 and 2.
 40. **Referencing planned image names that the founder made differently.** Use the files that actually exist in
     `labs/assets/<class>/<subject>/` (a set may be one combined image; there may be extra "master poster" images) and
     use all of them.
+41. **Assertion-reason keys that contradict their own `why`** (4 in chapters 12–13: the why says "both true, R
+    explains A" but the key was 2 or 3). Rule: after writing an AR item, read its `why` and set the key to match;
+    re-solve every AR.
+42. **Two correct options** (ch02 −3/6 and −1/2; ch06 x = 5 and x = 6 both valid). Rule: check that exactly one option
+    is right; add a condition to the question if needed.
+43. **Impossible givens** (a rhombus with sides 6 and diagonals 8 and 10; ∠A = 45° and ∠B = 30° in triangles stated
+    similar; a river-width figure that cannot be drawn). Rule: build the figure or the numbers yourself before writing
+    the question; check Pythagoras, angle sums and similarity before you use the data.
+44. **Arithmetic slips in long calculations** (a wiper arc 2530/63 instead of 6325/126). Rule: recompute every number
+    in test items a second way.
+45. **LaTeX in the text** (`\frac{22}{7}`, `\times`, `^\circ`, `\text{cm}` — about 1,800 in chapters 9–13). The reader
+    shows it as raw code and it overflows a phone. Rule: write maths as plain Unicode — 22/7, ×, ², ³, √, π, θ, ∠, °,
+    ≈, ⇒, ≤ — and never wrap maths in `{{eq:…}}` (that notation is for chemical equations). The checker rejects LaTeX.
 
