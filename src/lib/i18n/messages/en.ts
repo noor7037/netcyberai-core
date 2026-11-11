@@ -10613,6 +10613,12 @@ export const en = {
   'fam.search.kind.topic': 'Topic',
   'fam.quiz.badge': 'Quizzes waiting in {subject}: {n}',
   'fam.quiz.listTitle': 'Quizzes',
+  'fam.quiz.chip': 'Quiz',
+  'fam.quiz.badgeNone': 'Quizzes and chapter tests in {subject}',
+  'fam.quiz.tests': 'Chapter tests',
+  'fam.quiz.testsNote': 'A board-pattern test for each chapter of your book: 20 questions, marked as you go.',
+  'fam.quiz.testOf': 'Chapter {n}: {title}',
+  'fam.quiz.howTo': 'A quick quiz is made after you study with the tutor in this subject. Ask the tutor a question, then come back.',
   'fam.quiz.listEmpty': 'No quiz in {subject} right now.',
   'fam.quiz.listBack': 'Back to Study',
   // w22-s1 end

@@ -288,7 +288,7 @@
   function postState() {
     if (!S.host) return;
     const tp = S.view === 'topic' && S.ch ? S.ch.topics[S.ti] : null;
-    post({ type: 'state', playing: !!Say.on, percent: tp ? pct(topicShare(tp)) : 0, can: !!tp });
+    post({ type: 'state', playing: !!Say.on, percent: tp ? pct(topicShare(tp)) : 0, can: !!tp || S.view === 'overview' });
   }
   function setListenUI(on) {
     document.querySelectorAll('[data-listen]').forEach((b) => { b.setAttribute('aria-pressed', String(on)); b.setAttribute('aria-label', t(on ? U.pauseRead : U.listen)); b.innerHTML = on ? ICO_PAUSE : ICO_SPEAK; });
@@ -296,7 +296,7 @@
   }
   // Stops the voice; the place stays where the last sentence was.
   function sayHalt(fromHost) {
-    Say.id++; Say.on = false; Say.once = false;
+    Say.id++; Say.on = false; Say.once = false; Say.after = null;
     if (S.host) { if (!fromHost) post({ type: 'stop' }); } else if (canSpeak) { try { speechSynthesis.cancel(); } catch (e) {} }
     clearPaint(); setListenUI(false); S.listen = false;
   }
@@ -311,7 +311,7 @@
   }
   function onEnd(id) {
     if (id !== Say.id || !Say.on) return;
-    if (Say.once) { Say.once = false; Say.on = false; clearPaint(); if (S.listen) sayStart(); return; }
+    if (Say.once) { const after = Say.after; Say.after = null; Say.once = false; Say.on = false; clearPaint(); if (S.listen) (after || sayStart)(); return; }
     const tp = Say.tp, step = Say.step, r = topicRead(tp.id);
     if (!r.done.includes(step)) r.done.push(step);
     r.step = step + 1; r.sent = 0; r.n = 0;
@@ -336,7 +336,22 @@
     voiceSay(id, q.items.slice(sent).map((x) => x.text), sent);
   }
   // Starts or continues the topic: from where the child stopped, not from the top.
+  // W24 (founder): reading starts on the chapter home. It reads the home (the scene, the big idea, what you will be able
+  // to do), then opens the topic the child is on (the first not yet passed) and carries on there.
+  function sayHome() {
+    const el = document.querySelector('#app .content'); if (!el) return;
+    const q = collect(el); if (!q.items.length) return goOn();
+    Say.on = true; Say.once = true; Say.tp = null; Say.step = -1; Say.q = q; Say.el = el; S.listen = true; Say.after = goOn;
+    setListenUI(true);
+    const id = ++Say.id;
+    voiceSay(id, q.items.map((x) => x.text), 0);
+    function goOn() {
+      const i = Math.max(0, S.ch.topics.findIndex((x, k) => unlocked(k) && !passed(x.id)));
+      openTopic(i); S.listen = true; sayStart();
+    }
+  }
   function sayStart() {
+    if (S.view === 'overview') return sayHome();
     if (S.view !== 'topic') return;
     const tp = S.ch.topics[S.ti]; const r = topicRead(tp.id);
     let step = r.step || 0, sent = r.sent || 0;
@@ -510,8 +525,36 @@
   }
   // A diagram's SVG comes from our own content; still strip anything active, then fill every <text data-t="key"> with
   // the current language's words so labels and equations switch with the toggle.
+  // A diagram's own <style> is kept inside that diagram (W24): its rules are prefixed with the diagram's id and its
+  // animation names made unique, so nothing it says can reach the page. (Its "@keyframes rise" once replaced the reader's
+  // own card animation and faded every lesson card out.)
+  let dgmSeq = 0;
+  function scopeCss(css, id) {
+    const names = {};
+    css.replace(/@keyframes\s+([\w-]+)/g, (_, n) => { names[n] = `${id}-${n}`; return _; });
+    const rename = (v) => v.replace(/[\w-]+/g, (w) => names[w] || w);
+    const scopeSel = (sel) => sel.split(',').map((x) => { const t0 = x.trim(); if (!t0) return t0; return /^svg\b/.test(t0) ? t0.replace(/^svg/, `#${id}`) : `#${id} ${t0}`; }).join(',');
+    let out = '', i = 0;
+    while (i < css.length) {
+      const open = css.indexOf('{', i);
+      if (open < 0) { out += css.slice(i); break; }
+      const head = css.slice(i, open).trim();
+      // the block's end, nested braces included
+      let depth = 1, j = open + 1;
+      while (j < css.length && depth > 0) { if (css[j] === '{') depth++; else if (css[j] === '}') depth--; j++; }
+      const inner = css.slice(open + 1, j - 1);
+      if (/^@keyframes/.test(head)) out += `@keyframes ${names[head.replace(/^@keyframes\s+/, '')] || head.replace(/^@keyframes\s+/, '')}{${inner}}`;
+      else if (/^@media|^@supports/.test(head)) out += `${head}{${scopeCss(inner, id)}}`;
+      else if (head.startsWith('@')) out += '';
+      else out += `${scopeSel(head)}{${inner.replace(/(animation(?:-name)?\s*:\s*)([^;]*)/g, (_, a, v) => a + rename(v))}}`;
+      i = j;
+    }
+    return out;
+  }
   function svgFill(s) {
     let svg = String(s.svg || '').replace(/<script[\s\S]*?<\/script>/gi, '').replace(/<foreignObject[\s\S]*?<\/foreignObject>/gi, '').replace(/\son\w+\s*=\s*("[^"]*"|'[^']*')/gi, '').replace(/(href|xlink:href)\s*=\s*("(?!#)[^"]*"|'(?!#)[^']*')/gi, '');
+    const id = `dgm${++dgmSeq}`;
+    svg = svg.replace(/<svg\b([^>]*?)\sid="[^"]*"/i, '<svg$1').replace(/<svg\b/i, `<svg id="${id}"`).replace(/<style>([\s\S]*?)<\/style>/gi, (_, css) => `<style>${scopeCss(css, id)}</style>`);
     return svg.replace(/<text([^>]*?)\sdata-t="([^"]+)"([^>]*?)(\/>|>\s*<\/text>)/g, (_, a, k, b) => `<text${a} data-t="${k}"${b}>${esc(t((s.texts || {})[k]))}</text>`);
   }
   const stepTitle = (s) => t(s.title || s.caption || U[s.type] || { en: s.type, hi: s.type });
@@ -566,7 +609,7 @@
     sayHalt();
     S.view = 'overview'; hash(S.chFile.replace(/\.json$/, ''));
     const ch = S.ch, p = P();
-    topbar({ title: `${t(U.chapter)} ${ch.number}`, sub: t(ch.title), back: 'home' });
+    topbar({ title: `${t(U.chapter)} ${ch.number}`, sub: t(ch.title), back: 'home', listen: true });
     const due = dueReview();
     const done = ch.topics.filter((x) => passed(x.id)).length;
     const body = `
@@ -729,7 +772,7 @@
       ${o.back ? `<button type="button" class="ib" data-back="${o.back}" aria-label="${esc(t(U.back))}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 5l-7 7 7 7"/></svg></button>` : `<span class="ib" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M6 7h9a3 3 0 0 1 3 3v15a2 2 0 0 0-2-2H6zM26 7h-6a3 3 0 0 0-3 3v15a2 2 0 0 1 2-2h7z" fill="none" stroke="#E8702A" stroke-width="2.2" stroke-linejoin="round"/></svg></span>`}
       <div class="title"><b ${L()}>${esc(o.title)}</b><span ${L()}>${esc(o.sub || '')}</span></div>
       ${o.topic ? `<button type="button" class="ib only-narrow" data-sheet="intopic" aria-label="${esc(t(U.inTopic))}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg></button><button type="button" class="ib only-narrow" data-sheet="terms" aria-label="${esc(t(U.terms))}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M8 7h7M8 11h7"/></svg></button>` : ''}
-      ${canListen() && o.topic ? listenBtn(!!(S.listen && Say.on)) : ''}
+      ${canListen() && (o.topic || o.listen) ? listenBtn(!!(S.listen && Say.on)) : ''}
       <div class="lang" role="group" aria-label="${esc(t(U.lang))}"><button type="button" data-lang="en" aria-pressed="${S.lang === 'en'}">EN</button><button type="button" data-lang="hi" aria-pressed="${S.lang === 'hi'}" lang="hi">हिं</button></div>
     </div>`;
   }
@@ -811,7 +854,7 @@
       else if (m.type === 'end') onEnd(m.id);
       else if (m.type === 'novoice') { if (Say.on) sayHalt(true); toast(U.noVoice); }
       else if (m.type === 'stopped') { if (m.id === Say.id && Say.on) sayHalt(true); }
-      else if (m.type === 'toggle') { if (S.view === 'topic') sayToggle(); }
+      else if (m.type === 'toggle') { if (S.view === 'topic' || S.view === 'overview') sayToggle(); }
       else if (m.type === 'readfrom') { if (S.view === 'topic' && S.ch && Number.isInteger(m.step) && Number.isInteger(m.sent) && m.step >= 0 && m.sent >= 0) sayStep(m.step, m.sent); }
       return;
     }

@@ -233,7 +233,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
                     </svg>
                   )}
                 </Link>
-                {waiting[s] > 0 && <QuizBadge href={`/family/study/quizzes?subject=${s}`} count={waiting[s]} label={fill(t(lang, 'fam.quiz.badge'), { n: waiting[s], subject: t(lang, `fam.subject.${s}`) })} on={on} />}
+                <QuizBadge href={`/family/study/quizzes?subject=${s}`} count={waiting[s] ?? 0} word={t(lang, 'fam.quiz.chip')} label={waiting[s] > 0 ? fill(t(lang, 'fam.quiz.badge'), { n: waiting[s], subject: t(lang, `fam.subject.${s}`) }) : fill(t(lang, 'fam.quiz.badgeNone'), { subject: t(lang, `fam.subject.${s}`) })} />
               </div>
             );
           })}
@@ -244,8 +244,9 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
             {t(lang, 'fam.subject.notOpen')}
           </p>
         ) : (
-          // S2 (C375), W6-A (C395): the tutor window holds the chapters, so its composer stays pinned while they scroll.
-          <TutorWindow w={w} subject={subject} tone={tone} voice={voice} files={files} homework={homeworkOn} serverVoice={serverVoice} follow tutor={tutorHere} call={callOn ? { href: callHref, label: fill(w['fam.tutors.callWith'], { name: tutorHere?.name ?? w['fam.call.tutorDefault'] }) } : null}>
+          // S2 (C375), W6-A (C395): the tutor window holds the chapters, so its composer stays pinned while they scroll. W24: one
+          // page scroll, the answers then the chapters (no inner box).
+          <TutorWindow w={w} subject={subject} tone={tone} voice={voice} files={files} homework={homeworkOn} serverVoice={serverVoice} follow pageScroll tutor={tutorHere} call={callOn ? { href: callHref, label: fill(w['fam.tutors.callWith'], { name: tutorHere?.name ?? w['fam.call.tutorDefault'] }) } : null}>
             {school.tonight.length > 0 && <TonightPractice w={w} topics={school.tonight} tone={tone} />}
             {rows.length > 0 && <SyllabusList id="fam-chapters" title={t(lang, 'fam.study.chapters')} tone={subject} chapters={rows} openKey={searchParams.chapter} />}
             {schoolChapters && <SchoolSyllabus w={w} chapters={schoolChapters} tone={tone} />}
