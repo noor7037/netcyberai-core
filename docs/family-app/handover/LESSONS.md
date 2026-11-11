@@ -79,3 +79,5 @@ chapters and Noor's feedback parts 1 and 2.
 30. **Lab Hindi different from the reader's Hindi.** Rule: the same terms in both.
 31. **Labs claiming more than the template shows** (a pH reaching 7 after one spoon). Rule: describe only what the
     simulation really does.
+32. **A topic left without the lab it needs because no template existed.** Rule (Noor, 11 Nov 2026): build the new
+    template (PROMPT §2a) as a general, reusable type; it joins the library for every later class.

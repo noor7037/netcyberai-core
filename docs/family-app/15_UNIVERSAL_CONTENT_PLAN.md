@@ -32,7 +32,7 @@ rules (`12_CONTENT_FACTORY.md` band table, feedback §5) change the format for y
 
 | Role | Who | Does | Never does |
 | --- | --- | --- | --- |
-| Writer | One outside AI per subject (Google Antigravity first choice; ChatGPT or Gemini for chat-only work) | Writes the chapter files to the contract, runs the checker if it can, fixes until it passes | Pushes to GitHub, edits engine code, invents images or lab templates |
+| Writer | One outside AI per subject (Google Antigravity first choice; ChatGPT or Gemini for chat-only work) | Writes the chapter files to the contract, runs the checkers, fixes until they pass; builds any new lab template a topic needs (new files only) | Pushes to GitHub, edits existing engine code or templates, invents images |
 | Second reader | A different AI from the writer | Reads science/maths accuracy and the Hindi with `prompts/content-factory/REVIEW.md` | Rewrites the chapter |
 | Images | Noor | Generates the images from the subject's image plan, names them exactly | Hands images to the writer AI |
 | Lead | Claude Code | Image plans, review, fixes, image placement, new lab templates, publishing PRs, the feedback file | Writes whole chapters again (only fixes) |
@@ -116,8 +116,12 @@ wave starts (topic minutes, gate, test size and mix, item types, Bloom mix).
 | New interaction | A new template (like `balance` and `scatter` in Class 10 Science) | Writer AI lists it in `lab_requests`; Claude Code builds it |
 | 3D object | The `solids`, `molecule`, `atom`, `body`, `globe` templates, or a multi-view image set | Image plan + writer |
 
-The writer AI never writes JavaScript. If no template fits, it writes a `lab_requests` entry (what the child would do,
-what they should see, which NCERT activity) and gives the topic a `why_no_lab` until the template exists.
+**Rule (Noor, 11 Nov 2026): no topic goes without the lab it needs.** If no template in the library can model it, the
+builder (Antigravity, or Claude Code for chat-only writers) builds the new template at once, as a general reusable
+type, following `labs/CONTRACT.md` §2 and `handover/PROMPT_BUILD_CHAPTER.md` §2a, tests it, and it joins the library
+for every later class. Claude Code reviews every new template before it is published (honest science, safety, 360 px,
+both languages, no network). The existing light lab defs of a chapter are upgraded or replaced when that chapter is
+built.
 
 ## 8. Research the writer AI must do (and must not)
 

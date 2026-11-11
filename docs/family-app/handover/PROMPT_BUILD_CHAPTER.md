@@ -11,7 +11,8 @@ teacher who loves the subject and knows Indian classrooms.
 - `LESSONS.md` — mistakes earlier writers made and the rule for each. Read it fully; repeating one is a failure.
 - The latest `feedback/<subject>-<n>.md`, if any — fix-before-you-write notes from the last review.
 - `example-topic.json`, `example-labs.json` — approved models of the depth, voice and Hindi expected.
-- `templates.md` — the lab templates you may use (you may not invent templates).
+- `templates.md` — the lab library (every template already built); `labs/CONTRACT.md` — the rules for labs and for
+  building a new template when the library has none that fits (§2a).
 - The subject's image plan (CSV rows for this chapter) — the ONLY images you may reference, by `file_name` without
   the extension, using its `pin_targets` for labels.
 - The NCERT textbook chapter (current 2025-26 edition) and, if available, the CBSE curriculum for the session, NCERT
@@ -56,12 +57,41 @@ Follow `reader/CONTRACT.md` exactly. The essentials (the contract has the full l
   and **every class name and keyframe name must start with a prefix unique to that diagram** (for example
   `m1t3d2-`), because a shared name like `rise` once blanked a whole chapter; no script, no `<image>`, no external
   links; under 12 KB; geometry and science exact.
-- **Labs:** use templates from `templates.md` only, with their exact config keys, targets and events; 5–12 steps
-  (predict → do → explain → check → explore); bilingual; every wrong check option explained. If no template fits,
-  add an entry to `lab_requests` (what the student does, what they see, which NCERT activity) and give the topic
-  `why_no_lab`.
+- **Labs:** every topic that has an NCERT activity, a natural experiment, a process to explore, a skill to practise or
+  anything a student understands better by doing gets its own lab, whatever kind it is (chemistry bench, circuit,
+  geometry construction, graph, probability, human body, brain and mind, computer and code, map, economy, language
+  practice …). First look in `templates.md`: use a template with its exact config keys, targets and events; 5–12
+  steps (predict → do → explain → check → explore); bilingual; every wrong check option explained. **If no template can
+  model it honestly, build the new lab template now** (§2a) and use it — do not leave the topic without the lab it
+  needs. `why_no_lab` is only for a topic where doing something would not teach more than the diagrams (one line,
+  both languages).
 - **Images:** reference only planned names; captions, `notice` lines and `labels` in both languages; place pins on the
   `pin_targets` the plan lists (approximate x/y; Claude Code corrects them on the real image).
+
+## 2a. Building a new lab template (when the library has none that fits)
+
+The lab library grows with every chapter: a template you build is reused by every later class and subject, so build it
+general (configurable), not for one question.
+
+1. Read `labs/CONTRACT.md` §2 (the template contract) and study two existing templates as models, for example
+   `labs/templates/balance.js` (equation balancer) and `labs/templates/scatter.js` (light scattering), plus the one
+   closest to your idea.
+2. Check that no existing template already does it with a different config (read `templates.md` again). Prefer
+   extending your idea into a general template (for example "construct with compass and ruler" for all geometry
+   constructions, not "construct a tangent").
+3. Write `labs/templates/<new-id>.js` (a NEW file only; never edit an existing template): plain browser JavaScript, no
+   libraries, no network, `NCA_T.register({ id, css, validate, keys, demo, mount })`; every visible word bilingual via
+   `api.t`; every control a button or input with `data-key`, at least 44 px, keyboard usable; `api.allowed`,
+   `api.emit`, `api.nudge` used as the contract says; CSS classes prefixed with the template id; the Family colours;
+   motion off under reduced motion; works at 360 px; honest physics/maths/biology (compute it, do not fake it).
+4. Add its catalogue entry to `content-inbox/c<NN>-<subject>/catalogue-additions.json` (same fields as
+   `labs/catalogue.json`).
+5. Test it: `node labs/scripts/check.mjs --templates-only` (0 problems) and `node labs/scripts/smoke.mjs <new-id>`
+   (mounts at 390 and 1280 px in English and Hindi, no errors). Look at the screenshots in `labs/.smoke/`.
+6. Write the lab(s) that use it in your chapter's labs file, and list the new template in `DONE-chNN.md`.
+
+Sensitive themes stay educational and age-appropriate (for example a "surgery" idea becomes "how a doctor finds the
+problem" with a body model, never graphic). Never build a template that collects personal data or contacts the internet.
 
 ## 3. Language
 
@@ -92,7 +122,8 @@ node labs/scripts/check.mjs content-inbox/c<NN>-<subject>/labs/<chapter key>.jso
 node reader/scripts/check.mjs content-inbox/c<NN>-<subject>/<chapter key>.json --labs content-inbox/c<NN>-<subject>/labs/<chapter key>.json --plan data/content/universal/image-plans/<Class>-<Subject>-images.csv
 ```
 
-Do not run git. Do not edit anything outside `content-inbox/`.
+Do not run git. Do not edit anything outside `content-inbox/`, except NEW files in `labs/templates/` for new lab
+templates (§2a).
 
 **Chat mode (replies):** reply in parts, each one complete JSON in a single code block, and say the file name above it:
 1. `PLAN.md` (the research and plan from §1) and `chapter.json` (everything except `topics[].steps`,
@@ -112,5 +143,5 @@ at a step boundary and continue in the next reply.
 - [ ] Every answer key solved twice; every number, unit, formula, label and arrow direction checked.
 - [ ] Every Hindi string reads as natural spoken Hindi; no banned word from LESSONS; no English left in Hindi prose.
 - [ ] Every diagram's classes and keyframes carry its unique prefix.
-- [ ] Only planned image names; only existing lab templates.
+- [ ] Only planned image names; every topic that needs a lab has one (new templates built, tested, listed).
 - [ ] (Antigravity) both checkers report 0 problems.
