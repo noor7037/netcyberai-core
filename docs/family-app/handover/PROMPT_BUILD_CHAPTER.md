@@ -1,5 +1,9 @@
 # Prompt: write one NetCyberAI chapter (master prompt for the writer AI)
 
+> Agents that can open the repository (Antigravity, Claude Code) use the **netcyber-content skill**
+> (`skills/netcyber-content/SKILL.md`), which includes everything here plus the work queue, the scripts and the
+> references. This file stays for chat-only AIs (ChatGPT, Gemini).
+
 You are writing one chapter of NetCyberAI's universal curriculum: a bilingual (English and Hindi) interactive chapter
 for Indian school students that is fundamentally different from a textbook. You write data, not code. A strict
 checker will test your files; a reviewer will re-solve every answer and read every Hindi sentence. Write as an expert
@@ -10,8 +14,8 @@ teacher who loves the subject and knows Indian classrooms.
 - `reader/CONTRACT.md` — the exact JSON format and rules. **It overrides anything else.** Read it fully.
 - `LESSONS.md` — mistakes earlier writers made and the rule for each. Read it fully; repeating one is a failure.
 - The latest `feedback/<subject>-<n>.md`, if any — fix-before-you-write notes from the last review.
-- `example-topic.json`, `example-labs.json` — approved models of the depth, voice and Hindi expected.
-- `templates.md` — the lab library (every template already built); `labs/CONTRACT.md` — the rules for labs and for
+- `skills/netcyber-content/assets/example-topic.json`, `example-labs.json` — approved models of the depth, voice and Hindi expected.
+- `skills/netcyber-content/references/lab-library.md` — the lab library (every template already built); `labs/CONTRACT.md` — the rules for labs and for
   building a new template when the library has none that fits (§2a).
 - The subject's image plan (CSV rows for this chapter) — the ONLY images you may reference, by `file_name` without
   the extension, using its `pin_targets` for labels.
@@ -60,7 +64,7 @@ Follow `reader/CONTRACT.md` exactly. The essentials (the contract has the full l
 - **Labs:** every topic that has an NCERT activity, a natural experiment, a process to explore, a skill to practise or
   anything a student understands better by doing gets its own lab, whatever kind it is (chemistry bench, circuit,
   geometry construction, graph, probability, human body, brain and mind, computer and code, map, economy, language
-  practice …). First look in `templates.md`: use a template with its exact config keys, targets and events; 5–12
+  practice …). First look in `skills/netcyber-content/references/lab-library.md`: use a template with its exact config keys, targets and events; 5–12
   steps (predict → do → explain → check → explore); bilingual; every wrong check option explained. **If no template can
   model it honestly, build the new lab template now** (§2a) and use it — do not leave the topic without the lab it
   needs. `why_no_lab` is only for a topic where doing something would not teach more than the diagrams (one line,
@@ -76,7 +80,7 @@ general (configurable), not for one question.
 1. Read `labs/CONTRACT.md` §2 (the template contract) and study two existing templates as models, for example
    `labs/templates/balance.js` (equation balancer) and `labs/templates/scatter.js` (light scattering), plus the one
    closest to your idea.
-2. Check that no existing template already does it with a different config (read `templates.md` again). Prefer
+2. Check that no existing template already does it with a different config (read `skills/netcyber-content/references/lab-library.md` again). Prefer
    extending your idea into a general template (for example "construct with compass and ruler" for all geometry
    constructions, not "construct a tangent").
 3. Write `labs/templates/<new-id>.js` (a NEW file only; never edit an existing template): plain browser JavaScript, no
