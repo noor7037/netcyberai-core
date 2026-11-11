@@ -510,8 +510,36 @@
   }
   // A diagram's SVG comes from our own content; still strip anything active, then fill every <text data-t="key"> with
   // the current language's words so labels and equations switch with the toggle.
+  // A diagram's own <style> is kept inside that diagram (W24): its rules are prefixed with the diagram's id and its
+  // animation names made unique, so nothing it says can reach the page. (Its "@keyframes rise" once replaced the reader's
+  // own card animation and faded every lesson card out.)
+  let dgmSeq = 0;
+  function scopeCss(css, id) {
+    const names = {};
+    css.replace(/@keyframes\s+([\w-]+)/g, (_, n) => { names[n] = `${id}-${n}`; return _; });
+    const rename = (v) => v.replace(/[\w-]+/g, (w) => names[w] || w);
+    const scopeSel = (sel) => sel.split(',').map((x) => { const t0 = x.trim(); if (!t0) return t0; return /^svg\b/.test(t0) ? t0.replace(/^svg/, `#${id}`) : `#${id} ${t0}`; }).join(',');
+    let out = '', i = 0;
+    while (i < css.length) {
+      const open = css.indexOf('{', i);
+      if (open < 0) { out += css.slice(i); break; }
+      const head = css.slice(i, open).trim();
+      // the block's end, nested braces included
+      let depth = 1, j = open + 1;
+      while (j < css.length && depth > 0) { if (css[j] === '{') depth++; else if (css[j] === '}') depth--; j++; }
+      const inner = css.slice(open + 1, j - 1);
+      if (/^@keyframes/.test(head)) out += `@keyframes ${names[head.replace(/^@keyframes\s+/, '')] || head.replace(/^@keyframes\s+/, '')}{${inner}}`;
+      else if (/^@media|^@supports/.test(head)) out += `${head}{${scopeCss(inner, id)}}`;
+      else if (head.startsWith('@')) out += '';
+      else out += `${scopeSel(head)}{${inner.replace(/(animation(?:-name)?\s*:\s*)([^;]*)/g, (_, a, v) => a + rename(v))}}`;
+      i = j;
+    }
+    return out;
+  }
   function svgFill(s) {
     let svg = String(s.svg || '').replace(/<script[\s\S]*?<\/script>/gi, '').replace(/<foreignObject[\s\S]*?<\/foreignObject>/gi, '').replace(/\son\w+\s*=\s*("[^"]*"|'[^']*')/gi, '').replace(/(href|xlink:href)\s*=\s*("(?!#)[^"]*"|'(?!#)[^']*')/gi, '');
+    const id = `dgm${++dgmSeq}`;
+    svg = svg.replace(/<svg\b([^>]*?)\sid="[^"]*"/i, '<svg$1').replace(/<svg\b/i, `<svg id="${id}"`).replace(/<style>([\s\S]*?)<\/style>/gi, (_, css) => `<style>${scopeCss(css, id)}</style>`);
     return svg.replace(/<text([^>]*?)\sdata-t="([^"]+)"([^>]*?)(\/>|>\s*<\/text>)/g, (_, a, k, b) => `<text${a} data-t="${k}"${b}>${esc(t((s.texts || {})[k]))}</text>`);
   }
   const stepTitle = (s) => t(s.title || s.caption || U[s.type] || { en: s.type, hi: s.type });

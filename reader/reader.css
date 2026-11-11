@@ -57,13 +57,13 @@ a { color: var(--royal); }
 .card { background: var(--surface); border: 0; border-radius: var(--r); padding: 16px 18px; margin: 0 0 16px; box-shadow: var(--shadow); }
 .eyebrow { font-size: .78rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 4px; }
 .content { counter-reset: sec; }
-.step { --tint: var(--mint); --acc: var(--mint-a); background: var(--tint); border: 0; border-radius: var(--r); padding: 16px 18px; margin: 0 0 16px; box-shadow: var(--shadow); animation: rise .18s cubic-bezier(.2,.8,.2,1) both; counter-increment: sec; }
+.step { --tint: var(--mint); --acc: var(--mint-a); background: var(--tint); border: 0; border-radius: var(--r); padding: 16px 18px; margin: 0 0 16px; box-shadow: var(--shadow); animation: nca-reader-rise .18s cubic-bezier(.2,.8,.2,1) both; counter-increment: sec; }
 .step > .tag::before { content: counter(sec); display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--acc); color: #fff; font-size: .75rem; }
 .step.worked, .step.keypoints, .step.examtip, .step.close, .step.activity { --tint: var(--butter); --acc: var(--butter-a); }
 .step.figure, .step.equation, .step.table, .step.hook { --tint: var(--lilac); --acc: var(--lilac-a); }
 .step.misconception { --tint: var(--blush); --acc: var(--blush-a); }
 .step.retrieve, .step.guided, .step.lab { --tint: var(--sky); --acc: var(--sky-a); }
-@keyframes rise { from { transform: translateY(8px); } to { transform: none; } } /* movement only: a paused or skipped animation never leaves a card invisible (W24) */
+@keyframes nca-reader-rise { from { transform: translateY(8px); } to { transform: none; } } /* movement only: a paused or skipped animation never leaves a card invisible (W24) */
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
 .step h3 { font-size: 1.15rem; margin-bottom: 8px; }
 .step .tag { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-display); font-size: .95rem; font-weight: 800; padding: 0; margin-bottom: 8px; background: transparent; color: var(--acc); }

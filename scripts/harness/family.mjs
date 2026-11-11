@@ -253,6 +253,8 @@ export const FAMILY_SCREENS = [
   ['full', 'family-book-chapter', '/family/study/book/u.c10.science.jesc1.ch01', { prep: CLASS_10, reset: CLASS_PUT_BACK, settle: '[data-book-chapter] iframe', steps: [{ pause: 5000 }] }],
   // W22-S2: the reader's first topic with Teach me tapped (the page reads it, highlights the sentence and word, and scrolls to it),
   // and the tutor opened over the chapter with the chapter and topic as its context.
+  // W24: a topic opened again after reading with the voice (saved progress): its lesson must show (the founder saw only the header).
+  ['full', 'family-book-return', '/family/study/book/u.c10.science.jesc1.ch01', { langs: ['en'], prep: CLASS_10, reset: CLASS_PUT_BACK, speech: true, settle: '[data-book-chapter] iframe', steps: [{ frame: true, tap: '[data-topic="0"]:visible', wait: '[data-mode="teach"]' }, { frame: true, tap: '[data-mode="teach"]' }, { pause: 5000 }, { reload: true }, { wait: '[data-book-chapter] iframe' }, { pause: 2500 }, { frame: true, tap: '[data-topic="0"]:visible' }, { pause: 2500 }] }],
   // W24: "Read all" with the voice going on a wide screen: the lesson must stay on screen (the founder saw only the side panels).
   ['full', 'family-book-readall', '/family/study/book/u.c10.science.jesc1.ch01', { langs: ['en'], prep: CLASS_10, reset: CLASS_PUT_BACK, speech: true, settle: '[data-book-chapter] iframe', steps: [{ frame: true, tap: '[data-topic="0"]:visible', wait: '[data-mode="read"]' }, { frame: true, tap: '[data-mode="read"]' }, { pause: 8000 }] }],
   ['full', 'family-book-teach', '/family/study/book/u.c10.science.jesc1.ch01', { prep: CLASS_10, reset: CLASS_PUT_BACK, speech: true, settle: '[data-book-chapter] iframe', steps: [{ frame: true, tap: '[data-topic="0"]:visible', wait: '[data-mode="teach"]' }, { frame: true, tap: '[data-mode="teach"]' }, { pause: 2600 }] }],
@@ -693,6 +695,8 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
             // `fill` and `select` (W10, C411): words typed into a field, a value picked in a drop-down.
             if (step.fill) await page.locator(step.fill.field).first().fill(step.fill.value).catch(() => errors.push(`${step.fill.field} could not be filled`));
             if (step.select) await page.locator(step.select.field).first().selectOption(step.select.value).catch(() => errors.push(`${step.select.field} could not be chosen`));
+            // `reload` (W24): the page loaded again, as a child coming back to it (saved progress kept).
+            if (step.reload) await page.reload({ waitUntil: 'load' }).catch(() => errors.push('the page could not be reloaded'));
             // `frame` (W22-S2): the tap or wait is inside the chapter reader's frame.
             const where = step.frame ? page.frameLocator('[data-book-chapter] iframe') : page;
             // `word` (W23-A): a tap on the middle of the first long word under the selector.
