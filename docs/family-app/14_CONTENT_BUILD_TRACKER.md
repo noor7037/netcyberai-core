@@ -28,6 +28,14 @@ subject.
 
 Images to review (from the build): ionic crystal "34" has a baked-in checkerboard; yeast f4 shows flatworms; planaria "cut" shows whole worms; endocrine glands show only a male outline; the opened heart is drawn mirror-wise; rainbow photo has the sun inside the arc; the two pupil photos are different eyes; house wires are red/blue/green-yellow, not NCERT's red/black/green.
 
+## Next: universal content (plan of 11 Nov 2026)
+
+`15_UNIVERSAL_CONTENT_PLAN.md` sets the order (Class 10 Mathematics next, then Social Science, English, Hindi; then
+Class 9; 11–12; 6–8; 3–5; 1–2), the roles (an outside AI writes, Noor makes images, Claude Code reviews and publishes,
+the supervisor merges and wires books into the Family app), and the decisions (no GitHub access for outside AIs;
+images go to Claude Code). The handover pack is `handover/`; the Class 10 Mathematics image plan is in
+`data/content/universal/image-plans/`.
+
 ## Built and merged
 
 - PRs #406–#409 (9 Nov 2026): content-factory docs and prompts; universal syllabus 1–12 (164 books, 1,827 chapter rows);

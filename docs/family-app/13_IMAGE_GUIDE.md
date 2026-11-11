@@ -1,5 +1,12 @@
 # 13 — Image guide for NetCyberAI lessons and labs
 
+> **Concept-image standard (Noor, 9–11 Nov 2026) — supersedes the "simple image" briefs below where they differ.**
+> Every image explains a whole idea: 3D objects as a set of views (front, side, three-quarter, top), cutaways and
+> exploded views for insides, frames for processes, real Indian scenes for applications; exact geometry and colours;
+> no words in any image. Plans use the columns in `handover/PROMPT_IMAGE_PLAN.md`; the first such plan is
+> `data/content/universal/image-plans/Class-10-Mathematics-images.csv`.
+
+
 **Who / for whom / what:** the build lead for Noor, who makes the images. Every chapter's image plan (one row per
 image, in `data/content/universal/image-plans/`) follows these rules, so the images look like one product, teach
 the idea, and drop straight into the reader and the labs.
