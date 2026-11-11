@@ -7,7 +7,15 @@ import { fileURLToPath } from 'node:url';
 
 const READER = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const ROOT = path.resolve(READER, '..');
-const arg = process.argv[2] ? path.resolve(process.argv[2]) : path.join(READER, 'content');
+// Options for a chapter that is not in the repository yet (an outside AI's delivery in content-inbox/):
+//   --labs <file>   the chapter's labs file (labs/defs format) instead of labs/defs/…
+//   --plan <csv>    the subject's image plan; planned file names count as existing images
+const opt = (k) => { const i = process.argv.indexOf(k); return i > 0 ? process.argv[i + 1] : null; };
+const LABS_OVERRIDE = opt('--labs') ? path.resolve(opt('--labs')) : null;
+const PLANNED = new Set();
+if (opt('--plan')) for (const line of fs.readFileSync(path.resolve(opt('--plan')), 'utf8').split(/\r?\n/).slice(1)) { const f = line.replace(/^\uFEFF/, '').split(',')[0].trim(); if (f) PLANNED.add(f.replace(/\.(png|jpe?g|webp)$/i, '')); }
+const positional = process.argv.slice(2).filter((a, i, all) => !a.startsWith('--') && !(i > 0 && all[i - 1].startsWith('--')));
+const arg = positional[0] ? path.resolve(positional[0]) : path.join(READER, 'content');
 const files = fs.statSync(arg).isDirectory() ? walk(arg).filter((f) => f.endsWith('.json') && !['index.json', 'book.json', 'books.json'].includes(path.basename(f))) : [arg];
 function walk(d) { return fs.readdirSync(d, { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? walk(path.join(d, e.name)) : [path.join(d, e.name)])); }
 
@@ -29,7 +37,7 @@ for (const file of files) {
   let ch;
   try { ch = JSON.parse(fs.readFileSync(file, 'utf8')); } catch (e) { console.log(`${rel(file)}: not valid JSON: ${e.message}`); total++; continue; }
   const assetDir = path.join(ROOT, 'labs', 'assets', `c${String(ch.class).padStart(2, '0')}`, ch.subject_id || '');
-  const labFile = path.join(ROOT, 'labs', 'defs', `c${String(ch.class).padStart(2, '0')}`, ch.subject_id || '', `${ch.chapter_key}.json`);
+  const labFile = LABS_OVERRIDE || path.join(ROOT, 'labs', 'defs', `c${String(ch.class).padStart(2, '0')}`, ch.subject_id || '', `${ch.chapter_key}.json`);
   let labIds = new Set();
   try { labIds = new Set(JSON.parse(fs.readFileSync(labFile, 'utf8')).labs.map((l) => l.id)); } catch (e) { bad(`no labs/defs file at ${rel(labFile)}`); }
   const ids = new Set();
@@ -47,7 +55,7 @@ for (const file of files) {
   const img = (name, where) => {
     if (typeof name !== 'string') return bad(`${where}: image name must be a string`);
     usedImages.add(name);
-    if (!fs.existsSync(path.join(assetDir, `${name}.webp`))) bad(`${where}: image ${name} not found in ${rel(assetDir)}`);
+    if (!PLANNED.has(name) && !fs.existsSync(path.join(assetDir, `${name}.webp`))) bad(`${where}: image ${name} not found in ${rel(assetDir)}`);
   };
   const mcqParts = (o, where) => {
     T(o.q, `${where}.q`);

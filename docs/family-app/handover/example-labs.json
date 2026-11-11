@@ -1,0 +1,323 @@
+{
+ "_note": "Two approved labs (balance template and beaker template). A labs file also has chapter_key, class, subject_id, title, source, topics [{n,title,labs,why_no_lab}], labs, images — see labs/CONTRACT.md.",
+ "labs": [
+  {
+   "id": "c10-science-jesc1-ch01-displacement",
+   "topic": "1.2",
+   "template": "beaker",
+   "title": {
+    "en": "Iron and copper sulphate: displacement",
+    "hi": "आयरन और कॉपर सल्फ़ेट: विस्थापन"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     "cuso4",
+     "nail",
+     "feso4",
+     "copperwire"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:cuso4",
+     "expect": "pick:cuso4",
+     "say": {
+      "en": "Pick up the blue copper sulphate solution.",
+      "hi": "नीला कॉपर सल्फ़ेट विलयन उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:cuso4",
+     "say": {
+      "en": "Pour it into the beaker.",
+      "hi": "इसे बीकर में डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You will drop an iron nail into it. What do you think will happen?",
+      "hi": "तुम इसमें आयरन (लोहा) की कील डालोगे। तुम्हें क्या लगता है, क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "coat",
+       "en": "The nail turns brown and the blue fades",
+       "hi": "कील भूरी होगी और नीला रंग फीका पड़ेगा"
+      },
+      {
+       "id": "none",
+       "en": "Nothing",
+       "hi": "कुछ नहीं"
+      },
+      {
+       "id": "gas",
+       "en": "It fizzes",
+       "hi": "बुलबुले उठेंगे"
+      }
+     ],
+     "answer": "coat"
+    },
+    {
+     "kind": "do",
+     "target": "pick:nail",
+     "expect": "pick:nail",
+     "say": {
+      "en": "Pick up the iron nail.",
+      "hi": "आयरन की कील उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "reacted",
+     "say": {
+      "en": "Drop it into the beaker. Watch the nail and the colour of the solution.",
+      "hi": "इसे बीकर में डालो। कील और विलयन के रंग पर नज़र रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Iron is more reactive than copper, so it pushes copper out of copper sulphate. The copper coats the nail, reddish-brown. The solution becomes pale green iron sulphate. This is a displacement reaction.",
+      "hi": "आयरन, कॉपर (ताँबा) से अधिक अभिक्रियाशील है, इसलिए वह कॉपर सल्फ़ेट से कॉपर को हटा देता है। कॉपर कील पर लाल-भूरी परत बनकर चढ़ जाता है। विलयन हल्का हरा आयरन सल्फ़ेट बन जाता है। यह विस्थापन अभिक्रिया है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A copper wire is put in iron sulphate solution. What happens?",
+        "hi": "आयरन सल्फ़ेट विलयन में कॉपर का तार डाला जाता है। क्या होगा?"
+       },
+       "options": [
+        {
+         "en": "Iron coats the wire",
+         "hi": "तार पर आयरन चढ़ जाएगा"
+        },
+        {
+         "en": "Nothing happens",
+         "hi": "कुछ नहीं होगा"
+        },
+        {
+         "en": "The solution turns blue at once",
+         "hi": "विलयन तुरंत नीला हो जाएगा"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Copper is less reactive than iron, so it cannot push iron out. Try it in Explore.",
+        "hi": "कॉपर आयरन से कम अभिक्रियाशील है, इसलिए आयरन को नहीं हटा सकता। खोजो वाले स्टेप में आज़माकर देखो।"
+       },
+       "wrong": [
+        {
+         "en": "That would need copper to be more reactive than iron; it is not.",
+         "hi": "इसके लिए कॉपर को आयरन से अधिक अभिक्रियाशील होना चाहिए; ऐसा नहीं है।"
+        },
+        "",
+        {
+         "en": "Blue copper sulphate forms only if copper reacts, and it does not.",
+         "hi": "नीला कॉपर सल्फ़ेट तभी बनेगा जब कॉपर अभिक्रिया करे, और ऐसा नहीं होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: clean the beaker, pour iron sulphate, and drop in the copper wire. Does anything happen?",
+      "hi": "खोजो: बीकर साफ़ करो, आयरन सल्फ़ेट डालो और कॉपर का तार डालो। क्या कुछ होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch01-balancer",
+   "topic": "1.1",
+   "template": "balance",
+   "title": {
+    "en": "Balance it yourself",
+    "hi": "ख़ुद बैलेंस करो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "equations": [
+     {
+      "id": "water",
+      "left": [
+       "H2",
+       "O2"
+      ],
+      "right": [
+       "H2O"
+      ]
+     },
+     {
+      "id": "magnesium",
+      "left": [
+       "Mg",
+       "O2"
+      ],
+      "right": [
+       "MgO"
+      ]
+     },
+     {
+      "id": "iron-steam",
+      "left": [
+       "Fe",
+       "H2O"
+      ],
+      "right": [
+       "Fe3O4",
+       "H2"
+      ]
+     },
+     {
+      "id": "methane",
+      "left": [
+       "CH4",
+       "O2"
+      ],
+      "right": [
+       "CO2",
+       "H2O"
+      ]
+     },
+     {
+      "id": "lime",
+      "left": [
+       "Ca(OH)2",
+       "CO2"
+      ],
+      "right": [
+       "CaCO3",
+       "H2O"
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Hydrogen burns in oxygen to make water: H2 + O2 → H2O. Count the oxygen atoms on each side. Is it balanced now?",
+      "hi": "हाइड्रोजन ऑक्सीजन में जलकर पानी बनाती है: H2 + O2 → H2O। दोनों तरफ़ ऑक्सीजन के परमाणु गिनो। क्या यह अभी बैलेंस है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No: 2 oxygen atoms on the left, 1 on the right",
+       "hi": "नहीं: बाईं तरफ़ ऑक्सीजन के 2 परमाणु, दाईं तरफ़ 1"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, it is already balanced",
+       "hi": "हाँ, यह पहले से बैलेंस है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "inc:2",
+     "expect": "changed",
+     "say": {
+      "en": "Oxygen is short on the right. Tap + next to H2O to make it 2H2O.",
+      "hi": "दाईं तरफ़ ऑक्सीजन कम है। H2O के पास + पर टैप करके इसे 2H2O बनाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "inc:0",
+     "expect": "balanced:water",
+     "say": {
+      "en": "Now hydrogen is 2 on the left and 4 on the right. Tap + next to H2 until the counter turns green.",
+      "hi": "अब हाइड्रोजन बाईं तरफ़ 2 और दाईं तरफ़ 4 है। H2 के पास + पर टैप करो, जब तक काउंटर हरा न हो जाए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "2H2 + O2 → 2H2O. Every atom is counted on both sides: 4 hydrogen and 2 oxygen. You changed only the big numbers in front (coefficients). Changing the small number inside H2O would make a different substance.",
+      "hi": "2H2 + O2 → 2H2O। दोनों तरफ़ हर परमाणु गिना गया: 4 हाइड्रोजन और 2 ऑक्सीजन। तुमने सिर्फ़ आगे लिखी बड़ी संख्याएँ (गुणांक) बदलीं। H2O के अंदर की छोटी संख्या बदलने से पदार्थ ही बदल जाता।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "eq:magnesium",
+     "expect": "picked:magnesium",
+     "say": {
+      "en": "Now pick Mg + O2 → MgO.",
+      "hi": "अब Mg + O2 → MgO चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "inc:*",
+     "expect": "balanced:magnesium",
+     "say": {
+      "en": "Balance it on your own with the + buttons. The counter turns green when it is right.",
+      "hi": "+ बटनों से इसे ख़ुद बैलेंस करो। सही होने पर काउंटर हरा हो जाएगा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why may you not write H2O2 to balance the oxygen in H2 + O2 → H2O?",
+        "hi": "H2 + O2 → H2O में ऑक्सीजन बैलेंस करने के लिए H2O2 क्यों नहीं लिख सकते?"
+       },
+       "options": [
+        {
+         "en": "H2O2 is a different substance (hydrogen peroxide), not water",
+         "hi": "H2O2 एक अलग पदार्थ (हाइड्रोजन पेरॉक्साइड) है, पानी नहीं"
+        },
+        {
+         "en": "Because it makes the equation too long",
+         "hi": "क्योंकि इससे समीकरण बहुत लंबा हो जाता है"
+        },
+        {
+         "en": "Because oxygen cannot be counted",
+         "hi": "क्योंकि ऑक्सीजन गिनी नहीं जा सकती"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The small numbers (subscripts) fix what the substance is. Only the coefficients in front may change when you balance.",
+        "hi": "छोटी संख्याएँ (सबस्क्रिप्ट) तय करती हैं कि पदार्थ कौन-सा है। बैलेंस करते समय सिर्फ़ आगे के गुणांक बदल सकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Length is not the problem; the formula of water would change.",
+         "hi": "लंबाई की दिक़्क़त नहीं है; पानी का फ़ॉर्मूला ही बदल जाता।"
+        },
+        {
+         "en": "Oxygen atoms can be counted like any others.",
+         "hi": "ऑक्सीजन के परमाणु भी बाक़ी परमाणुओं की तरह गिने जा सकते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try iron with steam, methane burning and lime water with carbon dioxide. Always end with the smallest whole numbers.",
+      "hi": "आयरन (लोहा) और भाप, मीथेन का जलना और चूने के पानी के साथ कार्बन डाइऑक्साइड भी आज़माओ। हमेशा सबसे छोटी पूरी संख्याओं पर ख़त्म करो।"
+     }
+    }
+   ]
+  }
+ ]
+}
