@@ -10599,6 +10599,12 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.search.kind.topic': 'टॉपिक',
   'fam.quiz.badge': '{subject} में इंतज़ार करती क्विज़: {n}',
   'fam.quiz.listTitle': 'क्विज़',
+  'fam.quiz.chip': 'क्विज़',
+  'fam.quiz.badgeNone': '{subject} की क्विज़ और चैप्टर टेस्ट',
+  'fam.quiz.tests': 'चैप्टर टेस्ट',
+  'fam.quiz.testsNote': 'तुम्हारी किताब के हर चैप्टर का बोर्ड पैटर्न वाला टेस्ट: 20 सवाल, साथ-साथ जाँचे जाते हैं।',
+  'fam.quiz.testOf': 'चैप्टर {n}: {title}',
+  'fam.quiz.howTo': 'इस विषय में ट्यूटर के साथ पढ़ने के बाद एक छोटी क्विज़ बनती है। ट्यूटर से कोई सवाल पूछो, फिर यहाँ लौटो।',
   'fam.quiz.listEmpty': 'अभी {subject} की कोई क्विज़ नहीं है।',
   'fam.quiz.listBack': 'पढ़ाई पर वापस',
   // w22-s1 end

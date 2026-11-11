@@ -56,6 +56,9 @@ type Props = {
   pinned?: 'dock' | 'sheet';
   // Study: the subject tab follows a question the server kept in another subject.
   follow?: boolean;
+  // W24 (founder): the Study page scrolls as one page: the answers and then the chapters below them, with no inner box
+  // of its own. Off (the chapter's tutor sheet), the feed keeps its own scrolling box.
+  pageScroll?: boolean;
   // W16-A3: the tutor chosen in the Tutor Hall; every question carries its key, and the window says who is answering.
   tutor?: { key: string; name: string } | null;
   // W16-B5: the call affordance in the composer (Study, while the call is switched on and the child may speak).
@@ -139,7 +142,7 @@ export function followHref(ask: FeedAsk | undefined, follow: boolean, tutorKey: 
   return follow && ask?.moved ? `/family/study?subject=${encodeURIComponent(ask.moved)}${tutorKey ? `&tutor=${encodeURIComponent(tutorKey)}` : ''}` : null;
 }
 
-export function TutorWindow({ w, subject, tone, voice = null, files = false, homework = false, reader = null, idPrefix = 'fam-tutor', pinned = 'dock', follow = false, tutor: chosen = null, call = null, serverVoice = false, about = null, where: placed = null, ask = null, children }: Props) {
+export function TutorWindow({ w, subject, tone, voice = null, files = false, homework = false, reader = null, idPrefix = 'fam-tutor', pinned = 'dock', follow = false, pageScroll = false, tutor: chosen = null, call = null, serverVoice = false, about = null, where: placed = null, ask = null, children }: Props) {
   const router = useRouter();
   const [open, setOpen] = useState(true);
   const [text, setText] = useState('');
@@ -164,12 +167,14 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
     requestAnimationFrame(() => {
       const box = feed.current;
       const ask = box?.querySelector<HTMLElement>(`[data-tutor-ask="${n}"]`);
-      if (box && ask) box.scrollTop = ask.offsetTop - 8;
+      if (pageScroll) ask?.scrollIntoView({ block: 'start', behavior: stillMotion() ? 'auto' : 'smooth' });
+      else if (box && ask) box.scrollTop = ask.offsetTop - 8;
     });
   const toNewest = () =>
     requestAnimationFrame(() => {
       const box = feed.current;
-      if (box) box.scrollTop = box.scrollHeight;
+      // On one page scroll the page stays where the child is: the chapters stay reachable below the answers.
+      if (box && !pageScroll) box.scrollTop = box.scrollHeight;
     });
 
   // The subject's feed, read again whenever the subject changes; a question the tab followed stays below it.
@@ -325,7 +330,7 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
         role="log"
         aria-label={fill(w['fam.chat.feed'], { subject: subjectName(subject) })}
         aria-busy={turns === null && !turnsError}
-        className={`fam-feed relative max-h-[70vh] flex-col gap-4 overflow-y-auto overscroll-contain ${open && shown ? 'flex' : 'hidden'}`}
+        className={`fam-feed relative flex-col gap-4 ${pageScroll ? '' : 'max-h-[70vh] overflow-y-auto overscroll-contain'} ${open && shown ? 'flex' : 'hidden'}`}
       >
         {turnsError && (
           <p role="status" className="fam-surface bg-white p-4 text-sm text-ink">

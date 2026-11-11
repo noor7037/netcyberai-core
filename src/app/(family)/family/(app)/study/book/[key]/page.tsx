@@ -28,7 +28,7 @@ import { t } from '@/lib/i18n';
 // open to this child, the voice and photo gates.
 export const dynamic = 'force-dynamic';
 
-export default async function BookChapterPage({ params }: { params: { key: string } }) {
+export default async function BookChapterPage({ params, searchParams }: { params: { key: string }; searchParams?: { part?: string } }) {
   const page = await requireFamilyPage();
   if (!page) redirect('/family/sign-in');
   const next = firstStepsNext(page);
@@ -51,7 +51,8 @@ export default async function BookChapterPage({ params }: { params: { key: strin
   // The reader keeps the child's place and what was read on this device, under this child's id (the address carries it).
   // W23: the child's "follow the voice" switch reaches the reader in its address.
   const settings = await familyPageRead(page, (db) => loadChildSettings(db, page.session.accountId, child.childId));
-  const src = readerSrc(found.book, found.chapter, lang).replace('#', `&host=family&child=${encodeURIComponent(child.childId)}${settings.autoScroll ? '' : '&follow=0'}#`);
+  // W24: ?part=test opens the chapter's own test (the Quizzes page's chapter tests); the reader takes "~test" after the chapter.
+  const src = `${readerSrc(found.book, found.chapter, lang).replace('#', `&host=family&child=${encodeURIComponent(child.childId)}${settings.autoScroll ? '' : '&follow=0'}#`)}${searchParams?.part === 'test' ? '~test' : ''}`;
   return (
     <div lang={lang}>
       <BookChapter

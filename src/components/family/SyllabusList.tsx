@@ -71,10 +71,19 @@ export function SyllabusList({ title, chapters, tone, id = 'fam-syllabus', start
             </>
           );
           const empty = !c.href && !c.reader && !c.extra && c.topics.length === 0;
+          // W24 (founder): a row whose only choice is opening the chapter opens it on the first tap (no drop-down).
+          const direct = !!c.reader && !c.href && !c.extra && c.topics.length === 0;
           return (
             <li key={c.key ?? `${i}:${c.title}`} id={c.key ? `ch-${c.key}` : undefined} data-chapter-row={c.key ?? ''} {...(c.data ? { [c.data]: '' } : {})} className="fam-surface scroll-mt-4 bg-white">
               {empty ? (
                 <p className="flex min-h-[60px] items-center gap-3 px-3 py-2">{head}</p>
+              ) : direct ? (
+                <SaverLink href={c.reader!.href} data-reader-link data-chapter-direct className="fam-press flex min-h-[60px] items-center gap-3 rounded-2xl px-3 py-2">
+                  {head}
+                  <svg aria-hidden="true" viewBox="0 0 24 24" className={`h-5 w-5 shrink-0 ${theme.ink}`} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                    <path d="M9 6l6 6-6 6" />
+                  </svg>
+                </SaverLink>
               ) : (
                 <details name={CHAPTER_GROUP} open={openKey !== undefined && c.key === openKey ? true : undefined} className="fam-acc">
                   <summary className="flex min-h-[60px] items-center gap-3 rounded-2xl px-3 py-2">
