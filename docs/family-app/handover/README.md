@@ -3,6 +3,9 @@
 For Noor. This folder is everything an outside AI needs to write a subject's chapters to the NetCyberAI standard.
 The plan behind it is `docs/family-app/15_UNIVERSAL_CONTENT_PLAN.md`.
 
+**First use: the factory pilot.** Class 10 Mathematics chapters 1–3 go through this pack first (strategy
+`16_CONTENT_FACTORY_STRATEGY.md` §7). Their measured cost and review findings decide how the rest is built.
+
 ## Files in this pack
 
 | File | What it is | Give it to |

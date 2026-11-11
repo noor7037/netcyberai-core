@@ -5,6 +5,11 @@ universal content gets built after the Class 10 Science pilot (PRs #406–#417):
 reviews, how it is published, and what each outside AI is given. The handover pack for the outside AIs is in
 `docs/family-app/handover/`.
 
+> **Read with `16_CONTENT_FACTORY_STRATEGY.md`.** It changes the unit of work from the chapter to the reusable
+> concept card, adds five shared libraries (term bank, misconception bank, diagram and question generators, shared
+> image library) and puts code in front of AI for mechanical work. Where the two differ, 16 wins; the roles, the
+> no-GitHub rule, the image hand-over and the quality gates here stay.
+
 ## 1. What "done" looks like (the Class 10 Science standard, now the standard for everything)
 
 Every chapter is one bilingual JSON file in `reader/content/c<NN>/<subject>/<chapter key>.json` that passes
