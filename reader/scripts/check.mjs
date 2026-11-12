@@ -41,8 +41,11 @@ for (const file of files) {
   const bad = (m) => P.push(m);
   let ch;
   try { ch = JSON.parse(fs.readFileSync(file, 'utf8')); } catch (e) { console.log(`${rel(file)}: not valid JSON: ${e.message}`); total++; continue; }
+  // Founder (12 Nov 2026): nothing in a chapter points outside the app: no web address in any text, picture or credit
+  // (the SVG namespace is the only address allowed). A photo's credit names the author, site and licence as words.
+  { const outside = JSON.stringify(ch).replace(/http:\/\/www\.w3\.org\/[0-9]{4}\/(svg|xlink)/g, '').match(/https?:\/\/[^\s"'<>]+|\bwww\.[a-z0-9-]+\.[a-z]/i); if (outside) bad(`a web address "${outside[0].slice(0, 60)}" in the chapter: nothing may link outside the app`); }
   if (ch.class === 1 || ch.class === 2) {
-    const issues = [];
+    const issues = [...P];
     const bad = (m) => issues.push(m);
     const pair = (v, at) => { if (!v || typeof v !== 'object' || typeof v.en !== 'string' || typeof v.hi !== 'string' || !v.en.trim() || !v.hi.trim()) bad(at + ': expected non-empty {en, hi}'); };
     const itemIds = new Set(), blooms = new Set(['remember','understand','apply']);

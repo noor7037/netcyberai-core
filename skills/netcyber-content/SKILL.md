@@ -127,6 +127,10 @@ after Phase 2 — never before; the plan keeps the chapter coherent.
 9. **No topic without the lab it needs.** Missing lab type → build it (§6).
 10. **Safe and kind:** age-appropriate, no fear or coaching language, any gender in any role, rotated festivals and
     contexts, no stereotypes, no personal data, nothing that calls the internet.
+11. **No web address anywhere** (text, captions, credits, SVG other than its namespace): nothing links out of the app;
+    a credit is words ("Author, Wikimedia Commons, CC BY 4.0"). The checker refuses it.
+12. **No greetings, names or screen notes in content.** The reader adds the teacher's lines and the child's first name
+    itself and never reads screen notes (`docs/family-app/17_PERSONAL_TEACHER_FRAMEWORK.md`).
 
 ## 5. Writing well (the craft, in short)
 

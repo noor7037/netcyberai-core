@@ -31,11 +31,13 @@ type Props = {
   w: Words;
   // The tutor's gates, decided on the server (the same as the chapter page's); null: no tutor here.
   tutor: { voice: { secondsLeft: number } | null; files: boolean; homework: boolean } | null;
+  // The child's first name: "Teach me" greets the child by it (founder, 12 Nov 2026). Sent to our own reader only.
+  childName?: string;
 };
 
 const SRC = { kind: 'chapter' as const, chapterKey: '', blockId: '', sentence: 0 };
 
-export function BookChapter({ src, title, chapterKey, subject, back, w, tutor }: Props) {
+export function BookChapter({ src, title, chapterKey, subject, back, w, tutor, childName }: Props) {
   const frame = useRef<HTMLIFrameElement>(null);
   const run = useRef(0);
   const last = useRef(0);
@@ -88,7 +90,7 @@ export function BookChapter({ src, title, chapterKey, subject, back, w, tutor }:
       if (e.origin !== window.location.origin || e.source !== frame.current?.contentWindow) return;
       const m = e.data as FromReader | null;
       if (!m || m.source !== 'nca-reader') return;
-      if (m.type === 'ready') to({ type: 'hello', tutor: !!tutor });
+      if (m.type === 'ready') to({ type: 'hello', tutor: !!tutor, name: childName ?? '' });
       else if (m.type === 'where') setWhere({ chapter: String(m.chapter ?? '').slice(0, 100), topic: String(m.topic ?? '').slice(0, 100), topicId: String(m.topicId ?? '').slice(0, 40), lab: '' });
       else if (m.type === 'stop') stop();
       else if (m.type === 'state') setReader(cleanState(m));
@@ -132,7 +134,7 @@ export function BookChapter({ src, title, chapterKey, subject, back, w, tutor }:
       stopLine();
       setAvatarMood('idle');
     };
-  }, [play, stop, to, tutor]);
+  }, [play, stop, to, tutor, childName]);
 
   const show = () => {
     opener.current = document.activeElement as HTMLElement | null;

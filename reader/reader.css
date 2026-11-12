@@ -245,3 +245,8 @@ textarea { width: 100%; min-height: 96px; border: 2px solid var(--line); border-
 .outc { margin: 6px 0 2px; }
 .outc > summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; font-weight: 700; color: var(--ink-2); }
 .outc[open] > summary { min-height: 36px; }
+
+/* The teacher's line in "Teach me" (founder, 12 Nov 2026): a short spoken lead-in, the child's name in it. */
+.teach { margin: 0 0 8px; padding: 8px 12px; border-radius: 12px; background: var(--sun-t); color: var(--ink); font-weight: 600; }
+.hero .teach { display: inline-block; margin-bottom: 10px; }
+.teach .ico { margin-right: 6px; }

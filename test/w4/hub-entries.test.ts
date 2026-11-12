@@ -131,7 +131,7 @@ describe('what a family sees', () => {
     expect(await seen('careers', 6, null)).not.toContain('band-6-8');
   });
 
-  it('the hub page shows the title, the text, a Source link opening safely and the day it was checked; Hindi where it exists', async () => {
+  it('the hub page shows the title, the text, the site of the source as words (no outside link) and the day it was checked; Hindi where it exists', async () => {
     await db.pg.query(
       `insert into content.hub_entries (hub, title_en, title_hi, body_en, body_hi, scope, class_from, class_to, source_url, verified_on, review_on, status, created_by, updated_by)
        values ('careers', 'Page entry', 'पृष्ठ प्रविष्टि', 'English text', 'हिंदी पाठ', 'national', 1, 12, 'https://example.invalid/page-entry', '2026-10-01', $1, 'published', $2, $2),
@@ -143,8 +143,10 @@ describe('what a family sees', () => {
       const child = { childId: u(9), firstName: 'Asha', classLevel: 8, board: 'CBSE', language: lang, style: lang, stateCode: 'IN-UP', freeSubject: null };
       state.page = { session: { accountId: ACCOUNT, tokenVersion: 0 }, account: { hasPin: true }, consents: { study_core: true }, children: [child], child, parentMode: false, childLang: lang, parentLang: 'en' };
       const html = renderToStaticMarkup(await HubShell({ module: 'careers' }));
-      expect(html).toContain('href="https://example.invalid/page-entry"');
-      expect(html).toMatch(/<a [^>]*target="_blank"[^>]*rel="noopener noreferrer"|<a [^>]*rel="noopener noreferrer"[^>]*target="_blank"/);
+      // Founder (12 Nov 2026, C501): no link leaves the app; the source's site is named as words.
+      expect(html).not.toContain('href="https://example.invalid');
+      expect(html).not.toContain('target="_blank"');
+      expect(html).toContain('example.invalid');
       expect(html).toContain(lang === 'hi' ? 'स्रोत' : 'Source');
       expect(html).toContain(lang === 'hi' ? 'अक्तू॰ 2026' : '1 Oct 2026');
       expect(html).toContain('Only English');

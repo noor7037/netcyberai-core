@@ -1,5 +1,4 @@
 import { redirect } from 'next/navigation';
-import { FamIcon } from '@/components/family/FamIcon';
 import { SubPageHeader } from '@/components/family/SubPageHeader';
 import { LinkRow } from '@/components/family/ui/LinkRow';
 import { familyModuleOn } from '@/lib/family/flags';
@@ -8,6 +7,15 @@ import { HUB_PRESENTATION, hubSections, hubText, loadHubEntries, type HubEntry }
 import { familyPageRead, firstStepsNext, requireFamilyPage } from '@/lib/family/server';
 import { familyStates } from '@/lib/family/states';
 import { t } from '@/lib/i18n';
+
+// The site a source is on ("india.gov.in"); named as words, never a link out of the app.
+const hostOf = (url: string): string => {
+  try {
+    return new URL(url).hostname.replace(/^www\./, '');
+  } catch {
+    return '';
+  }
+};
 import { sameInkOnBothSides } from '@/lib/family/day-text';
 
 // One hub of the Future tab (H1): its sections and the entries Control publishes (W4-3, C387). Server-rendered, no
@@ -51,10 +59,10 @@ function Section({ id, title, entries, empty, path, lang }: { id: 'national' | '
                   {x.body}
                 </p>
                 <p className="flex flex-wrap items-center gap-x-3 text-xs font-semibold">
-                  <a href={e.sourceUrl} target="_blank" rel="noopener noreferrer" data-hub-source className="inline-flex min-h-[44px] items-center gap-1 text-ink underline underline-offset-4">
-                    <FamIcon name="next" className="h-3.5 w-3.5" />
-                    {t(lang, 'fam.hub.source')}
-                  </a>
+                  {/* Founder (12 Nov 2026): no link out of the app; the source's site is named as words. */}
+                  <span data-hub-source className="inline-flex min-h-[44px] items-center gap-1 text-ink">
+                    {t(lang, 'fam.hub.source')}: {hostOf(e.sourceUrl)}
+                  </span>
                   <span className="fam-pill bg-white text-slate ring-1 ring-slate/15">{fill(t(lang, 'fam.hub.checked'), { date: dayText(lang, e.verifiedOn) })}</span>
                 </p>
               </li>
