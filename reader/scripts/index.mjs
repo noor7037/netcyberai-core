@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Writes every book's reader/content/c<NN>/<subject>/index.json and the registry reader/content/books.json from the
+// Writes every book's reader/content/c<NN>/<subject>/index.json, its search.json (the tutor's topic search) and the registry reader/content/books.json from the
 // chapter files, lab defs and each book's book.json (see books-lib.mjs). Run it after adding or changing a chapter.
 // Usage: node reader/scripts/index.mjs
 import fs from 'node:fs';

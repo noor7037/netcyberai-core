@@ -16,7 +16,7 @@ const PLANNED = new Set();
 if (opt('--plan')) for (const line of fs.readFileSync(path.resolve(opt('--plan')), 'utf8').split(/\r?\n/).slice(1)) { const f = line.replace(/^\uFEFF/, '').split(',')[0].trim(); if (f) PLANNED.add(f.replace(/\.(png|jpe?g|webp)$/i, '')); }
 const positional = process.argv.slice(2).filter((a, i, all) => !a.startsWith('--') && !(i > 0 && all[i - 1].startsWith('--')));
 const arg = positional[0] ? path.resolve(positional[0]) : path.join(READER, 'content');
-const files = fs.statSync(arg).isDirectory() ? walk(arg).filter((f) => f.endsWith('.json') && !['index.json', 'book.json', 'books.json'].includes(path.basename(f))) : [arg];
+const files = fs.statSync(arg).isDirectory() ? walk(arg).filter((f) => f.endsWith('.json') && !['index.json', 'search.json', 'book.json', 'books.json'].includes(path.basename(f))) : [arg];
 function walk(d) { return fs.readdirSync(d, { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? walk(path.join(d, e.name)) : [path.join(d, e.name)])); }
 
 const DEV = /[\u0900-\u097F]/;
