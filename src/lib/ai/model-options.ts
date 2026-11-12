@@ -25,13 +25,35 @@ export type Group = { provider: string; models: string[] };
 // The groups to offer: the given providers in order, each with the model ids its latest list holds (none when the list
 // failed or was never fetched; nothing is guessed). A provider the slot already holds but the choices lack is added so
 // the saved route can always be shown.
-export function groupsFor(providers: string[], lists: Record<string, ModelList>, current: string[] = [], need: Need | null = null): Group[] {
+export function groupsFor(
+  providers: string[],
+  lists: Record<string, ModelList>,
+  current: string[] = [],
+  need: Need | null = null,
+  short: { keep: string[] } | null = null,
+): Group[] {
   const all = [...providers, ...current.filter((p) => p && !providers.includes(p))];
   return all.map((provider) => {
     const list = lists[provider];
-    return { provider, models: list?.ok ? list.models.filter((m) => fitsNeed(provider, need, m)) : [] };
+    const fit = list?.ok ? list.models.filter((m) => fitsNeed(provider, need, m)) : [];
+    return { provider, models: short ? shortModels(fit, list?.proven ?? [], short.keep) : fit };
   });
 }
+
+// The short list (C502): only the ids that have answered lately or sit in a route, plus what this slot holds. A provider
+// with none yet (a new key) keeps its whole list, or there would be nothing to pick.
+export function shortModels(fit: string[], proven: string[], keep: string[]): string[] {
+  const want = new Set([...proven, ...keep]);
+  const few = fit.filter((m) => want.has(m));
+  return few.length > 0 ? few : fit;
+}
+export const hasMore = (providers: string[], lists: Record<string, ModelList>, need: Need | null) =>
+  providers.some((p) => {
+    const l = lists[p];
+    if (!l?.ok) return false;
+    const fit = l.models.filter((m) => fitsNeed(p, need, m));
+    return shortModels(fit, l.proven ?? [], []).length < fit.length;
+  });
 
 // W18 (2 Nov): a provider's one model list serves every picker, but a vendor that sells voices, speech to text and text
 // under one key (Sarvam, ElevenLabs, Gemini, OpenRouter, OpenAI) would otherwise show a voice to the text picker and a chat

@@ -378,10 +378,25 @@ export async function recordModelList(db: Sql, providerId: string, models: strin
   );
 }
 
-export type ModelList = { models: string[]; ok: boolean; fetchedAt: string };
+// `proven` (C502): the ids that answered in the last 30 days or sit in a saved route. The pickers show these first, so a
+// vendor's list of hundreds of ids (most never tried, some dead) is not what the founder chooses from.
+export type ModelList = { models: string[]; ok: boolean; fetchedAt: string; proven?: string[] };
 export async function loadModelLists(db: Sql): Promise<Record<string, ModelList>> {
-  const { rows } = await db.query(`select provider_id, models, ok, fetched_at from control.ai_model_lists`);
-  return Object.fromEntries(rows.map((r) => [String(r.provider_id), { models: (r.models as string[]) ?? [], ok: r.ok === true, fetchedAt: iso(r.fetched_at) as string }]));
+  const { rows } = await db.query(
+    `select l.provider_id, l.models, l.ok, l.fetched_at,
+            coalesce((select array_agg(distinct x.m) from (
+               select u.model as m from control.ai_usage_ledger u
+                where u.provider_id = l.provider_id and u.outcome = 'ok' and u.at > now() - interval '30 days'
+               union
+               select p.model from control.ai_profiles p where p.provider_id = l.provider_id) x), '{}') as proven
+       from control.ai_model_lists l`,
+  );
+  return Object.fromEntries(
+    rows.map((r) => [
+      String(r.provider_id),
+      { models: (r.models as string[]) ?? [], ok: r.ok === true, fetchedAt: iso(r.fetched_at) as string, proven: (r.proven as string[]) ?? [] },
+    ]),
+  );
 }
 
 // ---- the founder's address for the OpenAI-compatible adapter (G1, C369) ---------------------------------------------

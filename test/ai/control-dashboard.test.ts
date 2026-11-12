@@ -3,7 +3,7 @@ import type { Counts, ModelList } from '@/lib/ai/control';
 import { flatRows, nextSort, sortRows, type FlatRow } from '@/lib/ai/lab/rows';
 import type { LabResult } from '@/lib/ai/lab/store';
 import { labTable } from '@/lib/ai/lab/table';
-import { fitsNeed, groupsFor, hasDuplicate, optionValue, otherValue, parseOption, selectedValue, validModel } from '@/lib/ai/model-options';
+import { fitsNeed, groupsFor, hasMore, shortModels, hasDuplicate, optionValue, otherValue, parseOption, selectedValue, validModel } from '@/lib/ai/model-options';
 import { splitUsage, totals } from '@/lib/ai/usage-view';
 import { en } from '@/lib/i18n/messages/en';
 import { hi } from '@/lib/i18n/messages/hi';
@@ -167,5 +167,19 @@ describe('a picker keeps the ids shaped for its feature (W18)', () => {
     expect(fitsNeed('gemini', 'realtime', 'gemini-3.8-live')).toBe(true);
     expect(fitsNeed('gemini', 'text', 'gemini-3.8-live')).toBe(false);
     expect(fitsNeed('gemini', 'text', 'gemini-3.8-flash')).toBe(true);
+  });
+});
+
+describe('the short model list (C502)', () => {
+  const lists = { nv: { models: ['a', 'b', 'c'], ok: true, fetchedAt: '', proven: ['b'] }, fresh: { models: ['x', 'y'], ok: true, fetchedAt: '', proven: [] } };
+  it('offers only the ids that work or are in use, plus what the slot holds', () => {
+    expect(groupsFor(['nv'], lists, [], null, { keep: [] })[0].models).toEqual(['b']);
+    expect(groupsFor(['nv'], lists, [], null, { keep: ['c'] })[0].models).toEqual(['b', 'c']);
+    expect(groupsFor(['nv'], lists)[0].models).toEqual(['a', 'b', 'c']);
+  });
+  it('keeps the whole list for a provider nothing has answered on yet', () => {
+    expect(shortModels(['x', 'y'], [], [])).toEqual(['x', 'y']);
+    expect(hasMore(['fresh'], lists, null)).toBe(false);
+    expect(hasMore(['nv'], lists, null)).toBe(true);
   });
 });

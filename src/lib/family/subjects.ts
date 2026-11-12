@@ -41,3 +41,24 @@ export function subjectsOfClass(classLevel: number, catalogSubjects: readonly st
   const extra = SUBJECT_IDS.filter((s) => catalogSubjects.includes(s) && !stage.includes(s) && !whole.includes(s));
   return [...stage, ...extra];
 }
+
+// C503: a subject the model named that this class does not list is taught as the nearest one the class has, never
+// refused: Science and EVS are one family (with Physics, Chemistry, Biology), Social Science another (with EVS, History,
+// Geography, Civics, Economics). The tab the child is in wins inside a family, and is the answer when the class has
+// none of the family (Classes 1 and 2 have no EVS: a curious question is taught in the open subject). null: nothing near.
+const FAMILIES: readonly (readonly Subject[])[] = [
+  ['science', 'evs', 'physics', 'chemistry', 'biology'],
+  ['social_science', 'evs', 'history', 'geography', 'political_science', 'economics'],
+];
+export function nearSubject(named: Subject, ofClass: readonly Subject[], tab?: string | null): Subject | null {
+  if (ofClass.includes(named)) return named;
+  let inFamily = false;
+  for (const family of FAMILIES) {
+    if (!family.includes(named)) continue;
+    inFamily = true;
+    const here = family.filter((s) => ofClass.includes(s));
+    if (here.length > 0) return here.find((s) => s === tab) ?? here[0];
+  }
+  // Only a Science or Social Science question falls back to the open tab; Accountancy in Class 5 is still another subject.
+  return inFamily ? (ofClass.find((s) => s === tab) ?? null) : null;
+}
