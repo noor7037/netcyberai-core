@@ -43,6 +43,8 @@ export type ResolverAsk = V3Ask & {
   // and the ready-built labs the answer may show (id, title, aim; only v13 reads them). Earlier versions ignore them.
   scope?: string;
   labs?: readonly { id: string; title: string; aim: string }[];
+  // C503: the subject tab or tutor the child typed the question in (a hint, not a rule; only v14 reads it).
+  tab?: string;
 };
 
 const STYLE: Record<V3Ask['style'], string> = {

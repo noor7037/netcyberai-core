@@ -15,7 +15,7 @@ import { sealItem, type PublicItem } from './items';
 import { classSubjects } from './catalog';
 import { openSubjects, reviewedOnlySubjects } from './learning';
 import { subjectAccess } from './modules';
-import { isSubject, type Subject } from './subjects';
+import { isSubject, nearSubject, type Subject } from './subjects';
 import { nameFiller, withoutName } from './name-token';
 
 // The Concept Resolver, "Understand" (docs/family-app/02 §4, 03 §6; M1-5, C251): a chapter, a topic or a typed
@@ -230,6 +230,8 @@ export type Pending = {
   open: Subject[];
   // The subjects of the child's class (C264): a named subject outside them is "another subject".
   classSubjects: Subject[];
+  // C503: the subject tab the question was typed in (null: none).
+  tab?: Subject | null;
   cacheable: boolean;
   promptVersion: string;
   text: PreparedText;
@@ -423,12 +425,14 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
   const isCheck = input.kind === 'question' && input.check === true;
   const teach = (prompt.usesPlan || isCheck) && !ctx.preparing ? await prepareTeach(db, ctx, input, line, known, misconception) : null;
   // 3. The AI platform's checks (profile, minors, key, daily cap) and the cleaned request, still in this transaction.
+  const tab = input.kind === 'question' && isSubject(input.windowSubject) ? input.windowSubject : null;
   const ask: ResolverAsk = {
     board: boardNameOf(child),
     classLevel: child.classLevel,
     subject: known,
     openSubjects: open,
     classSubjects: ofClass,
+    ...(tab ? { tab } : {}),
     chapter: line?.chapterEn ?? null,
     topic: line?.topicEn ?? null,
     question: input.kind === 'question' ? withAttached(input.about ? `${input.text} (asked while reading: ${input.about})` : input.text, input.attached) : null,
@@ -458,7 +462,7 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
   }
   const question = input.kind === 'question' ? withAttached(input.text, input.attached) : null;
   const asked = question ?? `Explain "${line?.topicEn ?? line?.chapterEn ?? ''}" to a Class ${child.classLevel} student.`;
-  return { ctx, line, known, open, classSubjects: ofClass, cacheable, promptVersion: prompt.version, text: prepared.text, moderation, asked, question, labs: input.kind === 'question' && input.scope ? input.scope.labs.map((l) => l.id) : [], plan, teach: teach ? { ...teach, build } : null, ...(isCheck ? { check: true as const, reading: input.kind === 'question' ? (input.attached ?? '') : '' } : {}) };
+  return { ctx, line, known, open, classSubjects: ofClass, tab, cacheable, promptVersion: prompt.version, text: prepared.text, moderation, asked, question, labs: input.kind === 'question' && input.scope ? input.scope.labs.map((l) => l.id) : [], plan, teach: teach ? { ...teach, build } : null, ...(isCheck ? { check: true as const, reading: input.kind === 'question' ? (input.attached ?? '') : '' } : {}) };
 }
 
 // The planner reads the question and the start of what attached files say: enough to plan, not to answer.
@@ -549,8 +553,10 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
     if (/"type"\s*:\s*"refuse"/.test(text) && isRefusal(text)) refusedByModel = true;
     if (!subject) {
       // Nothing is shown until the subject is named, and only a subject this child may use is answered.
-      const named = namedSubject(text);
-      if (named === null) return;
+      const said = namedSubject(text);
+      if (said === null) return;
+      // C503: a subject this class does not list is taught as the nearest one it has (Science as EVS in Class 4).
+      const named = said === 'other' ? said : (nearSubject(said, p.classSubjects, p.tab) ?? said);
       if (named === 'other' || !p.classSubjects.includes(named)) {
         stopped = true;
         emit({ t: 'refused', reason: 'other_subject', message: words('fam.understand.otherSubject', { subjects: p.classSubjects.map((x) => words(`fam.subject.${x}`)).join(', ') }) });
