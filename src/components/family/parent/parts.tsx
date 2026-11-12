@@ -1,8 +1,7 @@
 import type { ReactNode } from 'react';
 import { colors } from '@/lib/design-tokens';
 
-// The visual parts of the parent area's approved design (C506), shared by the real screens and the development
-// mock-ups: icons, the progress ring, the 7-day row, a stat chip, the bar chart, a meter, the timeline and the bottom
+// The visual parts of the parent area's approved design (C506): icons, the progress ring, the 7-day row, a stat chip, the bar chart, a meter, the timeline and the bottom
 // bar. They hold no data of their own; every number and word comes in as a prop.
 
 export type IconName = 'home' | 'kids' | 'school' | 'me' | 'link' | 'shield' | 'clock' | 'check' | 'book' | 'chat' | 'star' | 'flask' | 'flame' | 'chevron' | 'plus';
