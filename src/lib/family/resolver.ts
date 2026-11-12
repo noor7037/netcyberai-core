@@ -9,7 +9,7 @@ import { verdictsFromReading, verifyVerdicts } from './arithmetic-check';
 import { sceneSimFits, simFits } from './interactive';
 import { modelFits } from './models/fit';
 import { retrievePassages, type Passage } from '@/lib/ai/teaching/retrieve';
-import { bookPassages } from './book-search';
+import { bookPassages, bookSubjects } from './book-search';
 import { BLOCK_SCHEMA_VERSION, completeResponse, coreBlocks, isInteractive, isSimScene, jsonObjectScanner, parseBlockLine, parseStoredBlockLine, type Block, type BlockType } from './blocks';
 import { boardNameOf, isPrePrimary, syllabusBoardOf, type FamilyChild } from './children';
 import { sealItem, type PublicItem } from './items';
@@ -424,7 +424,7 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
   // W9-B (docs/39 §3): the library's passages and the planning call, for a live answer under a prompt that takes a plan.
   // Neither ever refuses: no passage is a general answer, no planner is the band's default plan.
   const isCheck = input.kind === 'question' && input.check === true;
-  const teach = (prompt.usesPlan || isCheck) && !ctx.preparing ? await prepareTeach(db, ctx, input, line, known, misconception, ofClass) : null;
+  const teach = (prompt.usesPlan || isCheck) && !ctx.preparing ? await prepareTeach(db, ctx, input, line, known, misconception, ofClass, prompt.visualFirst === true) : null;
   // 3. The AI platform's checks (profile, minors, key, daily cap) and the cleaned request, still in this transaction.
   const tab = input.kind === 'question' && isSubject(input.windowSubject) ? input.windowSubject : null;
   const ask: ResolverAsk = {
@@ -445,9 +445,11 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
     ...(teach ? { passages: teach.passages } : {}),
     ...(input.kind === 'question' && input.memory ? { memory: input.memory } : {}),
     ...(input.kind === 'question' && input.sketch ? { sketch: true } : {}),
+    // C509: which of the class's subjects have a published book, so the answer says "not from your book" only where one exists.
+    ...(input.kind === 'question' ? { bookSubjects: bookSubjects({ classLevel: child.classLevel, board: syllabusBoardOf(child), subjects: ofClass }) } : {}),
   };
   // The default plan (v8's own rule: a question at medium depth, a chapter or topic whole) until the planner answers.
-  const plan = prompt.usesPlan || isCheck ? defaultPlan({ classLevel: child.classLevel, subject: teach?.ctx.subject ?? known, lang: child.language }, input.kind === 'question' ? 'medium' : 'full') : null;
+  const plan = prompt.usesPlan || isCheck ? defaultPlan({ classLevel: child.classLevel, subject: teach?.ctx.subject ?? known, lang: child.language, ...(prompt.visualFirst ? { visualFirst: true } : {}) }, input.kind === 'question' ? 'medium' : 'full') : null;
   const build = (p: Plan | null): AiRequest => {
     const a: ResolverAsk = p ? { ...ask, plan: p } : ask;
     if (isCheck) {
@@ -472,10 +474,11 @@ const PLAN_QUESTION_MAX = 2000;
 // The passages and the planning call for a live answer (W9-B), in the first transaction. The child's own syllabus
 // chapters (family.child_syllabus_items, by title) lead the passages after the open chapter. A typed question's plan is
 // asked for; a chapter or topic, and a wrong answer's retry, are taught on the band's default plan.
-async function prepareTeach(db: Db, ctx: ResolverContext, input: ResolveInput, line: Line | null, known: Subject | null, misconception: string | null, ofClass: readonly Subject[]): Promise<Omit<Teach, 'build'>> {
+async function prepareTeach(db: Db, ctx: ResolverContext, input: ResolveInput, line: Line | null, known: Subject | null, misconception: string | null, ofClass: readonly Subject[], visualFirst = false): Promise<Omit<Teach, 'build'>> {
   const child = ctx.child;
   const hint: Subject | null = known ?? (input.kind === 'question' && isSubject(input.windowSubject) ? input.windowSubject : null);
-  const planCtx: PlanContext = { classLevel: child.classLevel, subject: hint, lang: child.language };
+  // C509: under a prompt that draws first (v15), the youngest children's plan is the board, the explanation and the check.
+  const planCtx: PlanContext = { classLevel: child.classLevel, subject: hint, lang: child.language, ...(visualFirst ? { visualFirst: true } : {}) };
   const titles = (
     await db.query(
       `select i.title from family.child_syllabus_items i join family.child_syllabi s on s.syllabus_id = i.syllabus_id

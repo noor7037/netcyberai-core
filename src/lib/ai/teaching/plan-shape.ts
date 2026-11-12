@@ -26,8 +26,13 @@ export const INTERACTIVE_BLOCKS = ['graph', 'number_line', 'fraction_model', 'ge
 export const PLAN_BLOCKS = ['explanation', 'worked_example', 'key_points', 'diagram', 'mind_map', 'check', 'practice', 'english_moment', 'figure', 'steps', 'timeline', 'image', 'videos', 'scene', 'chart', ...INTERACTIVE_BLOCKS] as const;
 export type PlanBlock = (typeof PLAN_BLOCKS)[number];
 
+// C509: the drawing board, named only in the youngest children's plan under a prompt that draws first (v15). Not one of
+// the blocks the planner may choose (PLAN_BLOCKS is unchanged, so family.plan's prompt and its checker are too).
+export const BOARD_BLOCK = 'board' as const;
+export type PlannedBlock = PlanBlock | typeof BOARD_BLOCK;
+
 export type Visual = { kind: VisualKind; about: string };
-export type Plan = { questionType: QuestionType; band: Band; depth: Depth; blocks: PlanBlock[]; visuals: Visual[]; lang: 'en' | 'hi' };
+export type Plan = { questionType: QuestionType; band: Band; depth: Depth; blocks: PlannedBlock[]; visuals: Visual[]; lang: 'en' | 'hi' };
 
 // The question types that may carry an interactive block, and the subjects (docs/39 §3: Mathematics or Science). Biology
 // is left out on purpose: none of the interactive blocks (graphs, number lines, fractions, geometry, the four physics
@@ -73,13 +78,20 @@ export function blocksFor(band: Band, depth: Depth): PlanBlock[] {
   return depth === 'short' ? ['explanation', 'check'] : [...BAND_BLOCKS[band][depth]];
 }
 
-export type PlanContext = { classLevel: number; subject: string | null; lang: 'en' | 'hi' };
+// `visualFirst` (C509): the prompt draws the answer first for the youngest children (v15); absent under every other.
+export type PlanContext = { classLevel: number; subject: string | null; lang: 'en' | 'hi'; visualFirst?: boolean };
+
+// C509: the youngest band of a prompt that draws first, LKG to Class 2: a board, one very short explanation, one check.
+// No worked example, no key points, no practice: a child who may not read yet hears the answer, sees it drawn and taps.
+export const YOUNG_VISUAL_MAX_CLASS = 2;
+export const YOUNG_VISUAL_BLOCKS: readonly PlannedBlock[] = [BOARD_BLOCK, 'explanation', 'check'];
+export const isYoungVisual = (classLevel: number, visualFirst: boolean | undefined): boolean => visualFirst === true && classLevel <= YOUNG_VISUAL_MAX_CLASS;
 
 // The plan used when there is no planner, or its answer failed a check: the band's usual blocks at medium depth
 // (a chapter or topic taught whole asks for `full`).
 export function defaultPlan(ctx: PlanContext, depth: Depth = 'medium', questionType: QuestionType = 'concept'): Plan {
   const band = bandOf(ctx.classLevel);
-  return { questionType, band, depth, blocks: bounded(withContentVisuals(blocksFor(band, depth), questionType, ctx.subject, NO_FLAGS), band), visuals: [], lang: ctx.lang };
+  return { questionType, band, depth, blocks: bounded(withContentVisuals(blocksFor(band, depth), questionType, ctx.subject, NO_FLAGS), band, ctx), visuals: [], lang: ctx.lang };
 }
 
 // ---- the visual matches the content (W10-6, founder 30 Oct, docs/39 §5) ----
@@ -87,7 +99,7 @@ export function defaultPlan(ctx: PlanContext, depth: Depth = 'medium', questionT
 // visual its content calls for. None of these is an interactive block, so the interactive rule above is untouched.
 
 // The visuals a Mathematics answer may carry; at least one in every answer (steps, the animated working, when none).
-export const MATHS_VISUALS: readonly PlanBlock[] = ['number_line', 'graph', 'geometry', 'fraction_model', 'steps'];
+export const MATHS_VISUALS: readonly PlannedBlock[] = ['number_line', 'graph', 'geometry', 'fraction_model', 'steps'];
 // The question types a thing with parts is asked as (with the plan's own `hasParts` flag): a scene, tap-able part by part.
 const PARTS_TYPES: readonly QuestionType[] = ['process', 'experiment', 'concept'];
 
@@ -121,7 +133,9 @@ export function withContentVisuals(blocks: readonly PlanBlock[], questionType: Q
 
 // The plan's length (MAX_BLOCKS, the check kept last) and LKG to Class 1's one picture (docs/39 "Bands"): at most 60
 // words and one picture, whatever else was asked.
-function bounded(list: PlanBlock[], band: Band): PlanBlock[] {
+// C509: under a prompt that draws first, LKG to Class 2 is the board, the explanation and the check, whatever was asked.
+function bounded(list: PlanBlock[], band: Band, ctx: PlanContext): PlannedBlock[] {
+  if (isYoungVisual(ctx.classLevel, ctx.visualFirst)) return [...YOUNG_VISUAL_BLOCKS];
   let blocks = list.slice(0, MAX_BLOCKS);
   if (!blocks.includes('check')) blocks[blocks.length - 1] = 'check';
   if (band === 'lkg_1') blocks = ['explanation', blocks.find((b) => b === 'figure' || b === 'image') ?? 'image', 'check'];
@@ -159,9 +173,9 @@ export function checkPlan(raw: unknown, ctx: PlanContext): { plan: Plan; fromMod
   const band = keptBand(bandOf(ctx.classLevel), p.band);
   const mayInteract = interactiveAllowed(questionType, ctx.subject);
   const flags: ContentFlags = { hasParts: p.hasParts === true, hasNumbers: p.hasNumbers === true };
-  let blocks: PlanBlock[];
+  let blocks: PlannedBlock[];
   // W10-6: even a short answer (one explanation and one check) carries the visual its content calls for.
-  if (depth === 'short') blocks = bounded(withContentVisuals(blocksFor(band, 'short'), questionType, ctx.subject, flags), band);
+  if (depth === 'short') blocks = bounded(withContentVisuals(blocksFor(band, 'short'), questionType, ctx.subject, flags), band, ctx);
   else {
     blocks = [];
     for (const b of p.blocks as PlanBlock[]) {
@@ -175,7 +189,7 @@ export function checkPlan(raw: unknown, ctx: PlanContext): { plan: Plan; fromMod
     if (!blocks.includes('check')) blocks.push('check');
     // A visual the plan describes has its block.
     for (const v of visuals) if (!blocks.includes(VISUAL_BLOCK[v.kind])) blocks.push(VISUAL_BLOCK[v.kind]);
-    blocks = bounded(withContentVisuals(blocks, questionType, ctx.subject, flags), band);
+    blocks = bounded(withContentVisuals(blocks as PlanBlock[], questionType, ctx.subject, flags), band, ctx);
   }
   const kept = visuals.filter((v) => blocks.includes(VISUAL_BLOCK[v.kind]));
   return { plan: { questionType, band, depth, blocks, visuals: kept, lang: ctx.lang }, fromModel: true };

@@ -168,8 +168,8 @@ describe('the citation chip', () => {
     expect(citationOf([{ ...ex, paragraphs: ['From your chapter Friction: it opposes motion.'] } as { type: string }], true)).toBeNull();
     expect(html(h(CitationChip, { w, c: { kind: 'chapter', title: 'Force and Pressure', unit: 'Liquids' } }))).toContain('From your chapter: Force and Pressure · Liquids');
     expect(html(h(CitationChip, { w, c: { kind: 'chapter', title: 'Sound' } }))).toContain('From your chapter: Sound<');
-    expect(html(h(CitationChip, { w, c: { kind: 'general' } }))).toContain('General knowledge, not from your chapter');
-    expect(html(h(CitationChip, { w: hi, c: { kind: 'general' } }))).toContain('सामान्य जानकारी');
+    expect(html(h(CitationChip, { w, c: { kind: 'general' } }))).toContain('Not from your book');
+    expect(html(h(CitationChip, { w: hi, c: { kind: 'general' } }))).toContain('आपकी किताब से नहीं');
   });
 
   it('citationProblems: one sources block naming a passage when passages were given, none otherwise', () => {

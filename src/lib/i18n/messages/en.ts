@@ -9839,7 +9839,7 @@ export const en = {
   'fam.board.picture': 'Drawing: {title}',
   'fam.cite.chapter': 'From your chapter: {title}',
   'fam.cite.chapterUnit': 'From your chapter: {title} · {unit}',
-  'fam.cite.general': 'General knowledge, not from your chapter',
+  'fam.cite.general': 'Not from your book',
   'fam.sim.pressure_depth.depth': 'Depth',
   'fam.sim.pressure_depth.readout': 'Pressure from the water at {depth} m: {pa} pascals ({kpa} kPa)',
   'fam.sim.pressure_depth.formula': 'p = ρ × g × h = 1000 × 9.8 × {depth}',

@@ -9825,7 +9825,7 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.board.picture': 'चित्र: {title}',
   'fam.cite.chapter': 'आपके अध्याय से: {title}',
   'fam.cite.chapterUnit': 'आपके अध्याय से: {title} · {unit}',
-  'fam.cite.general': 'सामान्य जानकारी, आपके अध्याय से नहीं',
+  'fam.cite.general': 'आपकी किताब से नहीं',
   'fam.sim.pressure_depth.depth': 'गहराई',
   'fam.sim.pressure_depth.readout': '{depth} m गहराई पर पानी का दाब: {pa} पास्कल ({kpa} kPa)',
   'fam.sim.pressure_depth.formula': 'दाब p = ρ × g × h = 1000 × 9.8 × {depth}',
