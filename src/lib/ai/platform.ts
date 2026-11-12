@@ -360,7 +360,12 @@ async function checkProfile(db: Sql, ctx: AiContext, profileId: ProfileId, capab
     chain = from ? chainOf(from) : null;
   }
   if (!row || !row.enabled || !chain) return { ok: false, reason: 'not_switched_on' };
+  const gated = await gateChain(db, profile, row, chain, capability, env, testing);
+  return gated.ok ? { ok: true, profile, row, chain, providers: gated.providers } : gated;
+}
 
+// 2 and the capability check, on one chain (the profile's own, or its paid one, C504): the same gate for both.
+async function gateChain(db: Sql, profile: AiProfile, row: ProfileRow, chain: Link[], capability: Capability, env: Record<string, string | undefined>, testing: boolean): Promise<{ ok: true; providers: Map<string, ProviderRow> } | { ok: false; reason: AiRefusal }> {
   // 2. The minors check, on the whole chain, before anything else is looked at.
   const { rows: providerRows } = await db.query(`select provider_id, cleared_for_minors, enabled, base_url from control.ai_providers where provider_id = any($1::text[])`, [chain.map((l) => l.provider)]);
   const providers = new Map((providerRows as ProviderRow[]).map((p) => [p.provider_id, p]));
@@ -375,7 +380,39 @@ async function checkProfile(db: Sql, ctx: AiContext, profileId: ProfileId, capab
   // The capability check (G1, C369), on the whole chain: a provider whose adapter lacks what the profile needs is a
   // refusal with its own reason, never a call sent to fail or a provider quietly skipped.
   if (chain.some((l) => missingCapabilities(profile.id, l.provider, env).length > 0)) return { ok: false, reason: 'not_capable' };
-  return { ok: true, profile, row, chain, providers };
+  return { ok: true, providers };
+}
+
+// The paid route (C504): a paying customer's text call runs on the profile's paid chain when the database grants it
+// (control.ai_paid_take: a paying caller, an enabled paid route, every link priced, and the chain's worst-case cost
+// held within this India month's limit). It must then pass the same minors and capability gate as the normal chain.
+// Anything short of that is the normal chain, silently: never a refusal. A profile that follows another's chain
+// (chainFrom) follows that one's paid chain too.
+type PaidHold = { holdId: string; chain: Link[]; providers: Map<string, ProviderRow> };
+// The token bound a hold is priced at: at least PAID_HOLD_MIN_TOKENS_IN in (a later request can carry a longer
+// prompt), three per character of the request, and each photo; out, the profile's own limit.
+export const PAID_HOLD_MIN_TOKENS_IN = 32_000;
+const PAID_HOLD_PHOTO_TOKENS = 3_000;
+export function paidTokensIn(request: AiRequest): number {
+  const chars = request.system.length + request.messages.reduce((n, m) => n + m.content.length, 0);
+  const photos = request.messages.reduce((n, m) => n + (m.images?.length ?? 0), 0);
+  return Math.max(PAID_HOLD_MIN_TOKENS_IN, 3 * chars) + photos * PAID_HOLD_PHOTO_TOKENS;
+}
+async function takePaid(db: Sql, profile: AiProfile, row: ProfileRow, capability: Capability, env: Record<string, string | undefined>, testing: boolean, tokens: { in: number; out: number }): Promise<PaidHold | null> {
+  const routeOf = !chainOf(row) && profile.chainFrom ? profile.chainFrom : profile.id;
+  const { rows } = await db.query(`select hold_id, provider_id, model, fallback from control.ai_paid_take($1::text, $2::bigint, $3::bigint)`, [routeOf, Math.ceil(tokens.in), Math.ceil(tokens.out)]);
+  const r = rows[0] as { hold_id: string; provider_id: string; model: string; fallback: unknown } | undefined;
+  if (!r) return null;
+  const chain = chainOf(r);
+  const gated = chain ? await gateChain(db, profile, row, chain, capability, env, testing) : null;
+  if (!chain || !gated?.ok) {
+    await releasePaid(db, r.hold_id);
+    return null;
+  }
+  return { holdId: r.hold_id, chain, providers: gated.providers };
+}
+async function releasePaid(db: Sql, holdId: string | null): Promise<void> {
+  if (holdId) await db.query(`select control.ai_paid_release($1::uuid)`, [holdId]);
 }
 
 // Whether a profile could serve a call now, without taking a daily-cap place or sending anything (E1, C382): steps 1–3
@@ -484,22 +521,45 @@ async function textRun(db: Sql, ctx: AiContext, profileId: ProfileId, request: A
   const testing = await testingModeOn(db);
   const checked = await checkProfile(db, ctx, profileId, 'text', env, testing);
   if (!checked.ok) return checked;
-  const { profile, row, chain, providers } = checked;
+  const { profile, row } = checked;
 
   // 3. A provider that can answer (and, for a request with photos, that can see them).
   const withPhotos = request.messages.some((m) => (m.images?.length ?? 0) > 0);
-  const usable = (await usableLinks(db, chain, providers, env, (p) => adapterFor(p, env))).filter((r) => !withPhotos || r.adapter.capabilities.vision);
-  if (usable.length === 0) return { ok: false, reason: 'not_switched_on' };
+  const usableOf = async (chain: Link[], providers: Map<string, ProviderRow>) => (await usableLinks(db, chain, providers, env, (p) => adapterFor(p, env))).filter((r) => !withPhotos || r.adapter.capabilities.vision);
   const ledger = ledgerOf(ctx, profile, row);
-  // Every provider of the route has its circuit open: nothing is sent and no cap place is taken.
-  const { admitted: ready, skipped } = await gateLinks(db, usable);
-  if (ready.length === 0) {
-    await recordAttempts(db, ledger, skipped, run.source);
-    return { ok: false, reason: 'failed' };
+  // C504: a paying customer's live call tries the paid chain first; one with no usable or admitted provider gives its
+  // hold back and the normal chain serves.
+  let paid: PaidHold | null = run.source === 'live' ? await takePaid(db, profile, row, 'text', env, testing, { in: paidTokensIn(request), out: row.max_output_tokens }) : null;
+  let gatedPaid: Gated<TextAdapter> | null = null;
+  if (paid) {
+    const usablePaid = await usableOf(paid.chain, paid.providers);
+    gatedPaid = usablePaid.length > 0 ? await gateLinks(db, usablePaid) : null;
+    if (!gatedPaid || gatedPaid.admitted.length === 0) {
+      await releasePaid(db, paid.holdId);
+      paid = null;
+      gatedPaid = null;
+    }
   }
+  let ready: Gated<TextAdapter>['admitted'];
+  let skipped: Attempt[];
+  if (gatedPaid) ({ admitted: ready, skipped } = gatedPaid);
+  else {
+    const usable = await usableOf(checked.chain, checked.providers);
+    if (usable.length === 0) return { ok: false, reason: 'not_switched_on' };
+    // Every provider of the route has its circuit open: nothing is sent and no cap place is taken.
+    ({ admitted: ready, skipped } = await gateLinks(db, usable));
+    if (ready.length === 0) {
+      await recordAttempts(db, ledger, skipped, run.source);
+      return { ok: false, reason: 'failed' };
+    }
+  }
+  const holdId = paid?.holdId ?? null;
 
   // 4. The family's daily cap (a school or Control profile's limit is checked by its caller).
-  if (!run.uncapped && !(await takeCap(db, ctx, profile, ready[0].link, testing))) return { ok: false, reason: 'cap_reached' };
+  if (!run.uncapped && !(await takeCap(db, ctx, profile, ready[0].link, testing))) {
+    await releasePaid(db, holdId);
+    return { ok: false, reason: 'cap_reached' };
+  }
 
   // 5. Nothing that names a child leaves the server (a request given at send time is cleaned there, the same way).
   const cleanOf = (r: AiRequest) => scrubRequest(r, { childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail });
@@ -514,7 +574,9 @@ async function textRun(db: Sql, ctx: AiContext, profileId: ProfileId, request: A
     run.watch?.(attempts);
     const record = async (tx: Sql) => {
       for (const u of usage) await count(tx, ctx.day, profile.id, u.link, u.counts);
-      await recordAttempts(tx, ledger, attempts, run.source);
+      await recordAttempts(tx, ledger, attempts, run.source, holdId !== null);
+      // The hold goes in the same transaction as the ledger rows that replace it (C504).
+      await releasePaid(tx, holdId);
     };
     // One cap place, one request: a prepared call never goes out twice.
     if (sent) return { result: { ok: false, reason: 'failed' }, record };
