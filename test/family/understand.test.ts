@@ -277,10 +277,13 @@ describe('a typed question’s subject, decided on the server', () => {
     expect(namedSubject('{"type":"subject","subject":7}')).toBeNull();
   });
 
-  it('a known subject outside the child\u2019s class is "another subject" (C264): Physics for a Class 9 child', async () => {
+  it('a subject outside the child\u2019s class is read as the nearest one the class has (C503): Physics for a Class 9 child is Science', async () => {
     ai.lines = answer('physics');
     const ev = await ask('What is momentum?', jar, 'mathematics');
-    expect(ev).toEqual([{ t: 'refused', reason: 'other_subject', message: expect.any(String) }]);
+    // Science, which this child has not opened: sent there, not told "another subject" (C264 said that until C503).
+    expect(ev).toEqual([{ t: 'refused', reason: 'not_open', message: expect.any(String), goTo: { subject: 'science', label: 'Go to Science' } }]);
+    ai.lines = answer('accountancy');
+    expect(await ask('What is a ledger?', jar, 'mathematics')).toEqual([{ t: 'refused', reason: 'other_subject', message: expect.any(String) }]);
   });
 
   it('answers in the detected subject, not the one the screen sent', async () => {
@@ -310,9 +313,9 @@ describe('a typed question’s subject, decided on the server', () => {
 
   it('another school subject, not school study, or no subject named: said plainly, nothing shown', async () => {
     const { en } = await import('@/lib/i18n/messages/en');
-    ai.lines = [named('history'), ...GOOD.map((g) => JSON.stringify(g))];
+    ai.lines = [named('accountancy'), ...GOOD.map((g) => JSON.stringify(g))];
     // The refusal names the class's own subjects (2 Nov), never "Mathematics or Science" alone.
-    const other = await ask('Who built the Red Fort?', jar, 'mathematics');
+    const other = await ask('What is a balance sheet?', jar, 'mathematics');
     expect(other).toEqual([{ t: 'refused', reason: 'other_subject', message: expect.stringMatching(/^This question is not about a subject your tutor teaches in your class \(.+\)\. Ask about one of those\.$/) }]);
     expect((other[0] as { message: string }).message).toContain(en['fam.subject.mathematics']);
     ai.lines = ['{"type":"refuse"}'];

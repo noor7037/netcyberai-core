@@ -52,11 +52,13 @@ const FAMILIES: readonly (readonly Subject[])[] = [
 ];
 export function nearSubject(named: Subject, ofClass: readonly Subject[], tab?: string | null): Subject | null {
   if (ofClass.includes(named)) return named;
+  let inFamily = false;
   for (const family of FAMILIES) {
     if (!family.includes(named)) continue;
+    inFamily = true;
     const here = family.filter((s) => ofClass.includes(s));
-    if (here.length === 0) continue;
-    return here.find((s) => s === tab) ?? here[0];
+    if (here.length > 0) return here.find((s) => s === tab) ?? here[0];
   }
-  return ofClass.find((s) => s === tab) ?? null;
+  // Only a Science or Social Science question falls back to the open tab; Accountancy in Class 5 is still another subject.
+  return inFamily ? (ofClass.find((s) => s === tab) ?? null) : null;
 }
