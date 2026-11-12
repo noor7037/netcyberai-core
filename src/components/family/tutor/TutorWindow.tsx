@@ -19,7 +19,7 @@ import { setAvatarMood } from '@/lib/family/avatar-state';
 import { spokenSentences } from '@/lib/family/call';
 import { typedCheckIntentLight } from '@/lib/family/check-intent';
 import { readChildSettings } from '@/lib/family/child-settings';
-import { speakLine } from '../voice/lineVoice';
+import { speakLine, unlockVoice } from '../voice/lineVoice';
 // The speaker and Teach me load with the first answer drawn, off the Study page's first load (the family budget, W18).
 import type { Reading } from '../voice/AnswerSpeaker';
 import { WordTapLayer } from '../words/WordTapLayer';
@@ -125,6 +125,18 @@ export function withoutCarried(turns: FeedTurn[], carried: Pick<FeedAsk, 'text' 
   if (i < 0) return turns;
   const answer = turns[i + 1]?.role === 'tutor' ? i + 1 : -1;
   return turns.filter((_, k) => k !== i && k !== answer);
+}
+
+// C508: the kept questions with no answer yet: a child turn whose next turn in its chat is not the tutor's (an answer
+// that failed on our side). Each shows "No answer yet" and Try again.
+export function unansweredIds(turns: FeedTurn[]): Set<string> {
+  const out = new Set<string>();
+  turns.forEach((t, k) => {
+    if (t.role !== 'child') return;
+    const next = turns.slice(k + 1).find((x) => x.chatId === t.chatId);
+    if (!next || next.role !== 'tutor') out.add(t.id);
+  });
+  return out;
 }
 
 // What a kept answer does to the asks on screen: the chat it was kept in, and the subject it moved to when that is not
@@ -272,6 +284,8 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
   }, [ask?.n]);
   const send = () => {
     if (!canSend) return;
+    // C508: inside the tap, so a young child's answer may be read aloud by itself when it comes.
+    unlockVoice();
     const asked = checking && text.trim().length < TUTOR_TEXT_MIN ? w['fam.check.sent'] : text.trim();
     // W18-Q3: typed working ("Check my work: 2+3×4=14", no file) is marked, not taught: the same mode as the photo.
     const typedCheck = !checking && attached.length === 0 && typedCheckIntentLight(asked);
@@ -292,6 +306,15 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
     submit(text.trim().length >= TUTOR_TEXT_MIN ? text.trim() : w['fam.sketch.ask'], { ...base, files: [up.id], sketch: true });
     return null;
   };
+
+  // C508: Try again on a kept question with no answer yet: the same words asked again in its chat, drawn live below;
+  // the kept one leaves the feed (the server's answer takes its place).
+  const tryAgain = (t: Extract<FeedTurn, { role: 'child' }>) => {
+    unlockVoice();
+    setTurns((list) => (list ?? []).filter((x) => x.id !== t.id));
+    submit(t.text, { ...base, chatId: t.chatId, retryOf: t.id, files: [] });
+  };
+  const noAnswer = turns ? unansweredIds(turns) : new Set<string>();
 
   const shown = (turns?.length ?? 0) + asks.length > 0 || turnsError;
   // W19-A: the window closed or left, the tutor rests.
@@ -345,7 +368,12 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
             <ol data-tutor-turns className="flex flex-col gap-4">
               {turns.map((t) => (
                 <li key={t.id} data-turn={t.role} data-chat={t.chatId} className="flex flex-col">
-                  {t.role === 'child' ? <Question w={w} text={t.text} lang={t.lang} fromReader={!!t.chapterKey} files={t.files} /> : <KeptAnswer b={t.blocks} w={w} tone={tone} lang={t.lang} speak={{ id: t.id, serverVoice }} tutorKey={chosen?.key ?? null} subject={subject} />}
+                  {t.role === 'child' ? (
+                    <>
+                      <Question w={w} text={t.text} lang={t.lang} fromReader={!!t.chapterKey} files={t.files} />
+                      {noAnswer.has(t.id) && <NoAnswerYet w={w} id={t.id} onTry={() => tryAgain(t)} />}
+                    </>
+                  ) : <KeptAnswer b={t.blocks} w={w} tone={tone} lang={t.lang} speak={{ id: t.id, serverVoice }} tutorKey={chosen?.key ?? null} subject={subject} />}
                 </li>
               ))}
             </ol>
@@ -359,7 +387,7 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
                 {fill(w['fam.chat.moved'], { subject: subjectName(a.moved) })}
               </p>
             )}
-            <UnderstandView w={w} input={a.input} tone={tone} onDone={(chat) => onAnswered(a.n, chat)} speak={{ serverVoice }} tutorKey={chosen?.key ?? null} />
+            <UnderstandView w={w} input={a.input} tone={tone} onDone={(chat) => onAnswered(a.n, chat)} speak={{ serverVoice }} tutorKey={chosen?.key ?? null} onTap={unlockVoice} />
           </div>
         ))}
       </div>
@@ -406,6 +434,18 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
         }}
       />
     </section>
+  );
+}
+
+// C508: under a kept question whose answer failed: the plain state and Try again (44 px), no error words.
+function NoAnswerYet({ w, id, onTry }: { w: Words; id: string; onTry: () => void }) {
+  return (
+    <div data-no-answer={id} className="mt-2 flex flex-wrap items-center gap-3 self-start rounded-2xl bg-white px-4 py-2 ring-1 ring-ink/10">
+      <p className="text-sm font-bold text-ink">{w['fam.tutor.noAnswerYet']}</p>
+      <button type="button" data-try-again onClick={onTry} className="fam-press min-h-[44px] min-w-[44px] rounded-2xl bg-saffron px-4 text-sm font-bold text-ink">
+        {w['fam.tutor.tryAgain']}
+      </button>
+    </div>
   );
 }
 

@@ -384,8 +384,62 @@ export async function sendableFiles(db: Db, accountId: string, childId: string, 
   return rows.length === ids.length ? (ids as string[]) : null;
 }
 
+// C508: a question with no answer yet. When an answer fails on our side (the provider failed or timed out, or the
+// stream ended with nothing shown) after the question passed the safety check, the child's words are kept alone, so
+// after a reload the feed still shows them, with "No answer yet" and Try again. No column marks it: a child message
+// whose next message in its chat is not the tutor's IS that state (`m` is the message). Only a plain typed question
+// (no files, not Check my work, not a sketch, not a call) is kept this way. Try again names the message (`retryOf`):
+// the server reads its words back, and an answer that then comes takes its place, so there is one question row.
+const UNANSWERED = `coalesce((select n.role from family.tutor_messages n where n.conversation_id = m.conversation_id and (n.created_at, n.role) > (m.created_at, m.role)
+                              order by n.created_at, n.role limit 1), 'child') = 'child'
+                    and not exists (select 1 from family.tutor_attachments a where a.message_id = m.message_id)`;
+
+export type Unanswered = { messageId: string; chatId: string; text: string };
+
+// One of this child's own questions with no answer yet, in a listed chat (null: answered, another child's, gone).
+export async function unansweredQuestion(db: Db, accountId: string, childId: string, messageId: unknown): Promise<Unanswered | null> {
+  if (!isUuid(messageId)) return null;
+  const { rows } = await db.query(
+    `select m.message_id, m.conversation_id, m.body from family.tutor_messages m join family.tutor_conversations c on c.conversation_id = m.conversation_id
+      where m.message_id = $1 and m.account_id = $2 and m.child_id = $3 and m.role = 'child' and c.status in ('open', 'full') and ${UNANSWERED}`,
+    [messageId, accountId, childId]
+  );
+  return rows[0] ? { messageId: String(rows[0].message_id), chatId: String(rows[0].conversation_id), text: String(rows[0].body ?? '') } : null;
+}
+
+// Keeps a question whose answer failed (C508): in the chat it was asked in while that chat is open, else the subject's
+// newest open chat (a new one when there is none). The chat's child turns are not counted up (no answer was kept); the
+// subject's feed still keeps its last FEED_TURNS child turns. A failed Try again keeps nothing new: the question is
+// already there. Returns the question's message id, or null when nothing was kept.
+export async function saveUnanswered(
+  db: Db,
+  t: { accountId: string; childId: string; subject: string; text: string; chapterKey: string | null; blockId: string | null; lang?: string; chatId?: string | null; tutorKey?: string | null; scope?: string | null; retryOf?: string | null; storage?: DirectUploadStorage | null }
+): Promise<{ chatId: string; messageId: string } | null> {
+  if (t.retryOf) {
+    const was = await unansweredQuestion(db, t.accountId, t.childId, t.retryOf);
+    if (was) return { chatId: was.chatId, messageId: was.messageId };
+  }
+  const text = t.text.trim().slice(0, TUTOR_TEXT_MAX);
+  if (!text || !isSubject(t.subject)) return null;
+  let chatId: string | null = null;
+  if (isUuid(t.chatId)) {
+    const { rows } = await db.query(`select conversation_id from family.tutor_conversations where conversation_id = $1 and account_id = $2 and child_id = $3 and status = 'open' for update`, [t.chatId, t.accountId, t.childId]);
+    chatId = rows[0] ? String(rows[0].conversation_id) : null;
+  }
+  chatId ??= await openChat(db, t.accountId, t.childId, t.subject, t.tutorKey ?? null, t.scope ?? null);
+  const { rows } = await db.query(
+    `insert into family.tutor_messages (conversation_id, account_id, child_id, role, body, chapter_key, block_id, lang, created_at) values ($1, $2, $3, 'child', $4, $5, $6, $7, clock_timestamp()) returning message_id`,
+    [chatId, t.accountId, t.childId, text, t.chapterKey, t.blockId, t.lang === 'hi' ? 'hi' : 'en']
+  );
+  const { rows: chat } = await db.query(`update family.tutor_conversations set last_at = clock_timestamp(), updated_at = now() where conversation_id = $1 returning subject`, [chatId]);
+  await trimFeed(db, t.accountId, t.childId, String(chat[0].subject), t.storage ?? null);
+  return { chatId, messageId: String(rows[0].message_id) };
+}
+
 // `storage`: where the files of turns the feed lets go are removed from (the route's bucket; none in a test).
-type TurnInput = { accountId: string; childId: string; subject: string; text: string; chapterKey: string | null; blockId: string | null; files: string[]; blocks: readonly Block[]; lang?: string; storage?: DirectUploadStorage | null; tutorKey?: string | null; scope?: string | null };
+// C508: `retryOf`, the question with no answer yet that this turn answers (Try again): it goes, and the turn's own
+// question row takes its place, so the chat holds the question once, next to its answer.
+type TurnInput = { accountId: string; childId: string; subject: string; text: string; chapterKey: string | null; blockId: string | null; files: string[]; blocks: readonly Block[]; lang?: string; storage?: DirectUploadStorage | null; tutorKey?: string | null; scope?: string | null; retryOf?: string | null };
 
 // A turn: the child's words (and the reader's chapter and block, and the files sent with them), then the tutor's
 // answer as shown, without its check and practice items, in this child's chat. The chat's child turns go up by one, and
@@ -410,6 +464,9 @@ export async function appendTurn(db: Db, t: TurnInput & { chatId: string }): Pro
   const chatSubject = moved ? t.subject : String(chat[0].subject);
   const lang = t.lang === 'hi' ? 'hi' : 'en';
   const conversationId = t.chatId;
+  if (isUuid(t.retryOf)) {
+    await db.query(`delete from family.tutor_messages m where m.message_id = $1 and m.account_id = $2 and m.child_id = $3 and m.role = 'child' and ${UNANSWERED}`, [t.retryOf, t.accountId, t.childId]);
+  }
   const asked = await db.query(
     `insert into family.tutor_messages (conversation_id, account_id, child_id, role, body, chapter_key, block_id, lang, created_at) values ($1, $2, $3, 'child', $4, $5, $6, $7, clock_timestamp()) returning message_id`,
     [conversationId, t.accountId, t.childId, text, t.chapterKey, t.blockId, lang]

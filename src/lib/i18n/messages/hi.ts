@@ -8057,6 +8057,8 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.tutor.tutorSaid': 'ट्यूटर',
   'fam.tutor.readAloud': 'इसे पढ़कर सुनाओ',
   'fam.tutor.stopAloud': 'रुको',
+  'fam.tutor.noAnswerYet': 'अभी जवाब नहीं आया',
+  'fam.tutor.tryAgain': 'फिर से पूछो',
   'fam.tutor.teachMe': 'मुझे सिखाओ',
   'fam.tutor.pause': 'थोड़ा रुको',
   'fam.tutor.replay': 'फिर से सुनो',
