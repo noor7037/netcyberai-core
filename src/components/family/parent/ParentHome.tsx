@@ -12,7 +12,7 @@ import { DayRow, Icon, ProgressRing, StatChip, type IconName } from './parts';
 export type HomeNeed = { key: string; icon: IconName; tone: 'action' | 'trust' | 'product'; text: string; onOpen: () => void };
 export type HomeChild = { childId: string; firstName: string; classLevel: number; week: ParentWeek | null; calm: { right: number; topics: number; mastered: number } | null; goalDays: number | null };
 
-const TONE = { action: 'bg-tangerine text-slate', trust: 'bg-sapphire text-white', product: 'bg-royal text-white' } as const;
+const TONE = { action: 'bg-tangerine text-slate', trust: 'bg-emerald text-white', product: 'bg-grape text-white' } as const;
 
 // Short day names in the parent's language (the days are India dates, read as plain calendar days).
 export function dayNames(days: { day: string }[], lang: Lang): string[] {
@@ -40,7 +40,7 @@ export function ParentHome({ w, lang, needs, kids, onSeeChild, onAddChild, noNee
                   <Icon name={n.icon} />
                 </span>
                 <span className="min-w-0 flex-1 break-words text-sm font-bold text-slate">{n.text}</span>
-                <button type="button" onClick={n.onOpen} className="fam-press min-h-[44px] shrink-0 rounded-full px-3 text-sm font-bold text-royal-deep">
+                <button type="button" onClick={n.onOpen} className="fam-press min-h-[44px] shrink-0 rounded-full px-3 text-sm font-bold text-emerald">
                   {w['fam.parent.needs.open']}
                 </button>
               </li>
@@ -53,7 +53,7 @@ export function ParentHome({ w, lang, needs, kids, onSeeChild, onAddChild, noNee
         {kids.length === 0 ? (
           <div data-parent-empty className="flex flex-col items-start gap-3 fam-card p-4">
             <p className="text-base font-semibold text-slate">{w['fam.parent.app.noKids']}</p>
-            <button type="button" onClick={onAddChild} className="fam-press inline-flex min-h-[44px] items-center gap-1 rounded-full bg-royal px-5 text-sm font-bold text-white">
+            <button type="button" onClick={onAddChild} className="fam-press inline-flex min-h-[44px] items-center gap-1 rounded-full bg-emerald px-5 text-sm font-bold text-white">
               <Icon name="plus" size={18} />
               {w['fam.child.add']}
             </button>
@@ -99,7 +99,7 @@ function ChildCard({ w, lang, kid, onSee }: { w: Words; lang: Lang; kid: HomeChi
           </div>
         </>
       )}
-      <button type="button" onClick={onSee} className="fam-press mt-4 flex min-h-[48px] w-full items-center justify-center gap-1 rounded-full bg-royal px-3 text-base font-bold text-white">
+      <button type="button" onClick={onSee} className="fam-press mt-4 flex min-h-[48px] w-full items-center justify-center gap-1 rounded-full bg-emerald px-3 text-base font-bold text-white">
         {fill(w['fam.parent.app.seeWeek'], { name: kid.firstName })}
         <Icon name="chevron" size={18} />
       </button>

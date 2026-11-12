@@ -8,7 +8,7 @@ import { Icon, Meter, Timeline, WeekBars, type MeterColor, type TimelineItem } f
 // What opens for one child (C506, design B): the child switcher, the week as bars of answers checked each day, the
 // share of answers right per subject, and the latest topics practised. Counts only: the app records no minutes.
 
-const COLORS: MeterColor[] = ['royal', 'turquoise', 'grape', 'tangerine'];
+const COLORS: MeterColor[] = ['emerald', 'turquoise', 'grape', 'tangerine'];
 
 export function ChildSwitcherBar({ w, kids, activeId, onSelect, onAdd }: { w: Words; kids: HomeChild[]; activeId: string | null; onSelect: (childId: string) => void; onAdd: () => void }) {
   // The bar bleeds to the screen edges inside the page's 16 px gutter; scroll-px keeps the first chip off the edge.
@@ -18,8 +18,8 @@ export function ChildSwitcherBar({ w, kids, activeId, onSelect, onAdd }: { w: Wo
         const on = k.childId === activeId;
         return (
           <li key={k.childId} className="shrink-0 snap-start">
-            <button type="button" aria-pressed={on} data-parent-switch={k.childId} onClick={() => onSelect(k.childId)} className={`fam-press flex min-h-[56px] items-center gap-2 whitespace-nowrap rounded-full py-1.5 pl-1.5 pr-4 ${on ? 'bg-royal text-white' : 'bg-white text-slate ring-1 ring-slate/15'}`}>
-              <span aria-hidden="true" className={`flex h-11 w-11 items-center justify-center rounded-full text-base font-bold ${on ? 'bg-white text-royal-deep' : 'bg-lesson-lilac text-grape-deep'}`}>
+            <button type="button" aria-pressed={on} data-parent-switch={k.childId} onClick={() => onSelect(k.childId)} className={`fam-press flex min-h-[56px] items-center gap-2 whitespace-nowrap rounded-full py-1.5 pl-1.5 pr-4 ${on ? 'bg-emerald text-white' : 'bg-white text-slate ring-1 ring-slate/15'}`}>
+              <span aria-hidden="true" className={`flex h-11 w-11 items-center justify-center rounded-full text-base font-bold ${on ? 'bg-white text-emerald' : 'bg-lesson-lilac text-grape-deep'}`}>
                 {k.firstName.slice(0, 1).toUpperCase()}
               </span>
               <span className="text-left">
@@ -31,7 +31,7 @@ export function ChildSwitcherBar({ w, kids, activeId, onSelect, onAdd }: { w: Wo
         );
       })}
       <li className="shrink-0 snap-start">
-        <button type="button" onClick={onAdd} className="fam-press flex min-h-[56px] items-center gap-1 whitespace-nowrap rounded-full bg-white px-4 text-sm font-bold text-royal-deep ring-1 ring-slate/15">
+        <button type="button" onClick={onAdd} className="fam-press flex min-h-[56px] items-center gap-1 whitespace-nowrap rounded-full bg-white px-4 text-sm font-bold text-emerald ring-1 ring-slate/15">
           <Icon name="plus" size={18} />
           {w['fam.child.add']}
         </button>
@@ -59,7 +59,7 @@ export function ChildWeek({ w, lang, kid, week }: { w: Words; lang: Lang; kid: H
         <div className="flex items-baseline justify-between gap-2">
           <h2 className="text-lg font-bold text-slate">{w['fam.parent.app.thisWeek']}</h2>
           <p className="text-sm font-semibold text-slate">
-            <span className="text-xl font-bold text-royal-deep">{total}</span> {w['fam.parent.app.answersUnit']}
+            <span className="text-xl font-bold text-emerald">{total}</span> {w['fam.parent.app.answersUnit']}
           </p>
         </div>
         <p className="mb-2 text-xs text-slate">{w['fam.parent.app.answersPerDay']}</p>

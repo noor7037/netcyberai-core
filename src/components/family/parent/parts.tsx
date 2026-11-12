@@ -40,7 +40,7 @@ export function ProgressRing({ value, goal, centre, sub, label }: { value: numbe
   return (
     <svg width="88" height="88" viewBox="0 0 88 88" role="img" aria-label={label} className="shrink-0">
       <circle cx="44" cy="44" r={r} fill="none" stroke={colors.slate} strokeOpacity="0.12" strokeWidth="9" />
-      <circle cx="44" cy="44" r={r} fill="none" stroke={colors.royal} strokeWidth="9" strokeLinecap="round" strokeDasharray={c} strokeDashoffset={c * (1 - pct)} transform="rotate(-90 44 44)" className="pa-ring" />
+      <circle cx="44" cy="44" r={r} fill="none" stroke={colors.emerald} strokeWidth="9" strokeLinecap="round" strokeDasharray={c} strokeDashoffset={c * (1 - pct)} transform="rotate(-90 44 44)" className="pa-ring" />
       <text x="44" y="46" textAnchor="middle" fontSize="20" fontWeight="700" fill={colors.slate}>{centre}</text>
       <text x="44" y="61" textAnchor="middle" fontSize="10" fontWeight="600" fill={colors.slate}>{sub}</text>
     </svg>
@@ -93,7 +93,7 @@ export function WeekBars({ values, labels, label }: { values: number[]; labels: 
         const x = i * (bw + gap);
         return (
           <g key={i}>
-            <rect x={x} y={H - h} width={bw} height={h} rx="7" fill={colors.royal} fillOpacity={i === values.length - 1 ? 1 : 0.45} className="pa-bar" style={{ animationDelay: `${i * 50}ms` }} />
+            <rect x={x} y={H - h} width={bw} height={h} rx="7" fill={colors.emerald} fillOpacity={i === values.length - 1 ? 1 : 0.45} className="pa-bar" style={{ animationDelay: `${i * 50}ms` }} />
             <text x={x + bw / 2} y={H - h - 5} textAnchor="middle" fontSize="11" fontWeight="700" fill={colors.slate}>{m}</text>
             <text x={x + bw / 2} y={H + 16} textAnchor="middle" fontSize="11" fontWeight="600" fill={colors.slate}>{labels[i]}</text>
           </g>
@@ -103,7 +103,7 @@ export function WeekBars({ values, labels, label }: { values: number[]; labels: 
   );
 }
 
-export const meterColors = { royal: colors.royal, turquoise: colors.turquoise, grape: colors.grape, tangerine: colors.tangerine } as const;
+export const meterColors = { emerald: colors.emerald, turquoise: colors.turquoise, grape: colors.grape, tangerine: colors.tangerine } as const;
 export type MeterColor = keyof typeof meterColors;
 
 /** A labelled meter, 0 to 100. `detail` (optional) is a small line under it. */
@@ -149,8 +149,8 @@ export function BottomTabs({ tabs, active, onSelect, label, position = 'fixed' }
           const on = t.id === active;
           return (
             <li key={t.id} className="min-w-0">
-              <button type="button" data-parent-tab={t.id} aria-current={on ? 'page' : undefined} onClick={onSelect ? () => onSelect(t.id) : undefined} className={`flex min-h-[56px] w-full flex-col items-center justify-center gap-0.5 text-xs font-semibold ${on ? 'text-royal-deep' : 'text-slate'}`}>
-                <span className={`flex h-7 w-12 items-center justify-center rounded-full ${on ? 'bg-royal/10' : ''}`}>
+              <button type="button" data-parent-tab={t.id} aria-current={on ? 'page' : undefined} onClick={onSelect ? () => onSelect(t.id) : undefined} className={`flex min-h-[56px] w-full flex-col items-center justify-center gap-0.5 text-xs font-semibold ${on ? 'text-emerald' : 'text-slate'}`}>
+                <span className={`flex h-7 w-12 items-center justify-center rounded-full ${on ? 'bg-emerald/10' : ''}`}>
                   <Icon name={t.icon} size={22} />
                 </span>
                 {t.label}
