@@ -12,11 +12,12 @@ const QUOTES_CHAPTER = /from your chapter|आपके अध्याय|aapke 
 
 // The chip for an answer's blocks: its chapter as soon as the sources block names one; once the answer is complete
 // (`done`) and none did, "general knowledge", unless its explanation quotes a chapter in its own words. null: no chip
-// (still arriving, or nothing to say).
-export function citationOf(blocks: readonly { type: string }[], done: boolean): Citation | null {
+// (still arriving, or nothing to say). C509: `hasBook` false (the class has no published book in the answer's subject):
+// no "not from your book" chip, since there is no book to be from.
+export function citationOf(blocks: readonly { type: string }[], done: boolean, hasBook = true): Citation | null {
   const s = blocks.find(isChapterSource);
   if (s?.chapter) return { kind: 'chapter', title: s.chapter, ...(s.unit ? { unit: s.unit } : {}) };
-  if (!done) return null;
+  if (!done || !hasBook) return null;
   const e = blocks.find((b): b is Explanation => b.type === 'explanation');
   if (!e) return null;
   if (QUOTES_CHAPTER.test([e.idea, ...(e.paragraphs ?? [])].join(' '))) return null;
