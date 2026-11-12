@@ -2,10 +2,10 @@ import { randomBytes } from 'crypto';
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 // @ts-expect-error -- a plain .mjs development script, no types
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
-import { prepareText, streamText, type AiContext, type AiRequest, type ProfileId } from '@/lib/ai/platform';
+import { PROFILES, paidWindowMs, prepareText, streamText, type AiContext, type AiRequest, type ProfileId } from '@/lib/ai/platform';
 import { sealAiKey, aiEncryptionKey } from '@/lib/ai/credentials';
 import { setPaidCustomer, setPaidLimit, setPaidRoute, undoChange } from '@/lib/ai/control';
-import { anthropicOk } from './streams';
+import { anthropicOk, httpError } from './streams';
 
 // C504: the paid route on the real migrations (PGlite). A paying customer's call runs on the profile's paid chain only
 // while the caller is paying, the route is on, every link is priced and the month's paid spend (with live holds) stays
@@ -240,5 +240,102 @@ describe('the paid route (C504)', () => {
       ])
         expect(await refused(() => asRole(role, (tx) => tx.query(sql), settings)), `${role}: ${sql}`).toMatch(/permission denied/);
     }
+  });
+});
+
+// C507: a paid chain that shows no text hands the call to the normal chain in the same call; one that has shown text does
+// not. The resolver's first-text time is shortened here so the test runs in a moment (the window's floor is 3 s).
+describe('paid then normal (C507)', () => {
+  const resolver = PROFILES.find((p) => p.id === 'family.resolver') as { firstTextMs?: number };
+  const saved = resolver.firstTextMs;
+  const rows = () => q(`select provider_id, outcome, paid from control.ai_usage_ledger order by attempt_id`);
+  const sse = (events: unknown[], end: boolean, signal?: AbortSignal) =>
+    new Response(
+      new ReadableStream({
+        start(c) {
+          const enc = new TextEncoder();
+          signal?.addEventListener('abort', () => c.error(new DOMException('aborted', 'AbortError')));
+          for (const e of events) c.enqueue(enc.encode(`data: ${JSON.stringify(e)}\n\n`));
+          if (end) c.close();
+        },
+      }),
+      { status: 200, headers: { 'content-type': 'text/event-stream' } }
+    );
+  const started = { type: 'message_start', message: { usage: { input_tokens: 5, output_tokens: 1 } } };
+  const paidAs = (answer: (signal?: AbortSignal) => Response) =>
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async (url: string, init?: RequestInit) => {
+        const host = new URL(String(url)).hostname;
+        hosts.push(host);
+        return host.includes('anthropic') ? answer(init?.signal ?? undefined) : workersOk();
+      })
+    );
+  beforeEach(() => {
+    resolver.firstTextMs = 300;
+  });
+  afterEach(() => {
+    resolver.firstTextMs = saved;
+  });
+
+  it('the paid link says nothing in its first-text time: the normal chain answers; one failed paid row, one ok unpaid row, no hold', async () => {
+    // A stream that starts and then never sends text (left open until the call is aborted).
+    paidAs((signal) => sse([started], false, signal));
+    const r = await run(PAYING);
+    expect(r).toMatchObject({ ok: true, provider: 'workers-ai', text: 'From the free model.' });
+    expect(await rows()).toEqual([
+      { provider_id: 'anthropic', outcome: 'upstream_timeout', paid: true },
+      { provider_id: 'workers-ai', outcome: 'ok', paid: false },
+    ]);
+    expect(await holds()).toBe(0);
+    // The circuit counts the paid model's timeout as a failure.
+    const h = await q(`select consecutive_failures from control.ai_provider_health where provider_id = 'anthropic' and model = 'claude-paid-model'`);
+    expect(Number(h[0].consecutive_failures)).toBe(1);
+    await q(`delete from control.ai_provider_health`);
+  });
+
+  it('the paid link errors: the normal chain answers, the same rows', async () => {
+    paidAs(() => httpError(500));
+    expect(await run(PAYING)).toMatchObject({ ok: true, provider: 'workers-ai' });
+    expect(await rows()).toEqual([
+      { provider_id: 'anthropic', outcome: 'upstream_unavailable', paid: true },
+      { provider_id: 'workers-ai', outcome: 'ok', paid: false },
+    ]);
+    expect(await holds()).toBe(0);
+    await q(`delete from control.ai_provider_health`);
+  });
+
+  it('the paid link shows some text then fails: no switch, the answer ends there', async () => {
+    const shown: string[] = [];
+    paidAs(() => sse([started, { type: 'content_block_delta', index: 0, delta: { type: 'text_delta', text: 'The sky ' } }], true));
+    const r = await asFamily(PAYING, (tx) => streamText(tx as never, ctxOf(PAYING), 'family.resolver', ask, (t) => shown.push(t)));
+    expect(r).toMatchObject({ ok: false, reason: 'failed' });
+    expect(shown.join('')).toBe('The sky ');
+    expect(hosts.every((h) => h.includes('anthropic'))).toBe(true);
+    expect(await rows()).toEqual([{ provider_id: 'anthropic', outcome: 'cut_short', paid: true }]);
+    expect(await holds()).toBe(0);
+    await q(`delete from control.ai_provider_health`);
+  });
+
+  it('the paid link answers: the normal chain is never called', async () => {
+    expect(await run(PAYING)).toMatchObject({ ok: true, provider: 'anthropic' });
+    expect(hosts.every((h) => h.includes('anthropic'))).toBe(true);
+    expect(await rows()).toEqual([{ provider_id: 'anthropic', outcome: 'ok', paid: true }]);
+    expect(await holds()).toBe(0);
+  });
+
+  it('the paid window leaves the normal chain a real share of the deadline', () => {
+    // The resolver and homework: one first-text wait (12 s), 28 s left for the normal chain.
+    expect(paidWindowMs({ callMs: 40_000, firstTextMs: 12_000 })).toBe(12_000);
+    // A short profile: the paid link is given less so the normal chain keeps 4 s.
+    expect(paidWindowMs({ callMs: 10_000, firstTextMs: 6_000 })).toBe(6_000);
+    expect(paidWindowMs({ callMs: 8_000, firstTextMs: 6_000 })).toBe(4_000);
+    // Never zero: at least the 3 s floor, and never more than the deadline.
+    expect(paidWindowMs({ callMs: 5_000, firstTextMs: 6_000 })).toBe(3_000);
+    expect(paidWindowMs({ callMs: 2_000, firstTextMs: 6_000 })).toBe(2_000);
+    // No first-text deadline: the deadline less one 15 s share, at least 15 s.
+    expect(paidWindowMs({ callMs: 30_000, firstTextMs: null })).toBe(15_000);
+    expect(paidWindowMs({ callMs: 20_000, firstTextMs: null })).toBe(15_000);
+    expect(paidWindowMs({ callMs: 60_000, firstTextMs: null })).toBe(45_000);
   });
 });
