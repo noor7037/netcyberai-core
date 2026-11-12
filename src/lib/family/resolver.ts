@@ -9,6 +9,7 @@ import { verdictsFromReading, verifyVerdicts } from './arithmetic-check';
 import { sceneSimFits, simFits } from './interactive';
 import { modelFits } from './models/fit';
 import { retrievePassages, type Passage } from '@/lib/ai/teaching/retrieve';
+import { bookPassages } from './book-search';
 import { BLOCK_SCHEMA_VERSION, completeResponse, coreBlocks, isInteractive, isSimScene, jsonObjectScanner, parseBlockLine, parseStoredBlockLine, type Block, type BlockType } from './blocks';
 import { boardNameOf, isPrePrimary, syllabusBoardOf, type FamilyChild } from './children';
 import { sealItem, type PublicItem } from './items';
@@ -423,7 +424,7 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
   // W9-B (docs/39 §3): the library's passages and the planning call, for a live answer under a prompt that takes a plan.
   // Neither ever refuses: no passage is a general answer, no planner is the band's default plan.
   const isCheck = input.kind === 'question' && input.check === true;
-  const teach = (prompt.usesPlan || isCheck) && !ctx.preparing ? await prepareTeach(db, ctx, input, line, known, misconception) : null;
+  const teach = (prompt.usesPlan || isCheck) && !ctx.preparing ? await prepareTeach(db, ctx, input, line, known, misconception, ofClass) : null;
   // 3. The AI platform's checks (profile, minors, key, daily cap) and the cleaned request, still in this transaction.
   const tab = input.kind === 'question' && isSubject(input.windowSubject) ? input.windowSubject : null;
   const ask: ResolverAsk = {
@@ -471,7 +472,7 @@ const PLAN_QUESTION_MAX = 2000;
 // The passages and the planning call for a live answer (W9-B), in the first transaction. The child's own syllabus
 // chapters (family.child_syllabus_items, by title) lead the passages after the open chapter. A typed question's plan is
 // asked for; a chapter or topic, and a wrong answer's retry, are taught on the band's default plan.
-async function prepareTeach(db: Db, ctx: ResolverContext, input: ResolveInput, line: Line | null, known: Subject | null, misconception: string | null): Promise<Omit<Teach, 'build'>> {
+async function prepareTeach(db: Db, ctx: ResolverContext, input: ResolveInput, line: Line | null, known: Subject | null, misconception: string | null, ofClass: readonly Subject[]): Promise<Omit<Teach, 'build'>> {
   const child = ctx.child;
   const hint: Subject | null = known ?? (input.kind === 'question' && isSubject(input.windowSubject) ? input.windowSubject : null);
   const planCtx: PlanContext = { classLevel: child.classLevel, subject: hint, lang: child.language };
@@ -486,7 +487,7 @@ async function prepareTeach(db: Db, ctx: ResolverContext, input: ResolveInput, l
   // "Check my work": the chapter is searched on the question the photo showed (the reading's first line), so the passages
   // match the chapter the working belongs to (its content words, check-work.ts); none when the reading has no question line.
   const checkQuestion = input.kind === 'question' && input.check ? questionOfReading(input.attached ?? '') : null;
-  const passages = await retrievePassages(db, {
+  const library = await retrievePassages(db, {
     question: input.kind === 'question' ? (input.check ? checkSearchQuery(checkQuestion ?? '') : input.text) : (line?.topicEn ?? line?.chapterEn ?? ''),
     subject: hint,
     classLevel: child.classLevel,
@@ -496,6 +497,14 @@ async function prepareTeach(db: Db, ctx: ResolverContext, input: ResolveInput, l
     syllabusTitles: titles,
     childId: child.childId,
   });
+  // C505: a question typed with no chapter open, which the library did not answer, is searched in the child's own
+  // published book (book-search.ts): only the books their board and class read, in the subjects their class has. Its
+  // passages reach the prompt exactly as the library's do, as quoted data, each named by its chapter and topic.
+  const typedFree = input.kind === 'question' && !input.check && !input.chapterKey && !input.scope;
+  const passages =
+    library.length === 0 && typedFree
+      ? await bookPassages({ question: input.text, classLevel: child.classLevel, board: syllabusBoardOf(child), subject: hint, lang: child.language, subjects: ofClass })
+      : library;
   const ai = { accountId: ctx.accountId, childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail, day: ctx.day };
   const call = input.kind === 'question' && !input.check && misconception === null ? await preparePlan(db as never, ai, { ...planCtx, board: boardNameOf(child), chapter: input.about ?? (input.kind === 'question' ? input.scope?.about : undefined) ?? null, passageTitles: passages.map((p) => p.title) }, withAttached(input.text, input.attached).slice(0, PLAN_QUESTION_MAX)) : null;
   return { ctx: planCtx, call, passages };

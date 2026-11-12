@@ -221,11 +221,11 @@ export const FAMILY_SCREENS = [
   ['full', 'family-hub-schemes', '/family/future/schemes', { child: 'f0000000-0000-4000-8000-0000000fc001', settle: '[data-hub-section="state"]' }],
   ['full', 'family-parent-gate', '/family/parent', {}],
   ['full', 'family-parent-area', '/family/parent', { parent: true }],
-  // W6-F (docs/38 §6): the parent area is six sections; the hash opens one (privacy has its own screens below).
+  // W6-F (docs/38 §6), C506: the parent area is four tabs (Home, Children, School, Me); the hash opens one (privacy has its own screens below).
   ['full', 'family-parent-area-children', '/family/parent#children', { parent: true, settle: '[data-parent-panel="children"]:not([hidden])' }],
   ['full', 'family-parent-area-school', '/family/parent#school', { parent: true, settle: '[data-parent-panel="school"]:not([hidden])' }],
-  ['full', 'family-parent-area-learning', '/family/parent#learning', { parent: true, settle: '[data-parent-panel="learning"]:not([hidden])' }],
-  ['full', 'family-parent-area-account', '/family/parent#account', { parent: true, settle: '[data-parent-panel="account"]:not([hidden])' }],
+  ['full', 'family-parent-area-learning', '/family/parent#learning', { parent: true, settle: '[data-parent-panel="me"]:not([hidden])' }],
+  ['full', 'family-parent-area-account', '/family/parent#account', { parent: true, settle: '[data-parent-panel="me"]:not([hidden])' }],
   // S3 (C376): asking for a chapter and the source choice, in the parent area; Study lists the requests with their badges.
   ['full', 'family-parent-chapter-request', '/family/parent#learning', { parent: true, settle: '[data-chapter-request] [data-request-list]' }],
   ['full', 'family-study-requests', '/family/study?subject=science', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-chapter-requests]' }],
@@ -303,7 +303,7 @@ export const FAMILY_SCREENS = [
   // it in Science, the feed says "Moved to Science" above the answer and the subject tab follows to Science.
   // Then the parent area right after a child's class is saved: the "Saved" line (Asha is put back in Class 7 after).
   ['full', 'family-tutor-followup', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', prep: FOLLOW_UP_CHAT, reset: FOLLOW_UP_CHAT_GONE, answer: FOLLOW_UP_ANSWER, settle: '[data-tutor-rail]', steps: [{ fill: { field: '[data-tutor-window] textarea', value: 'Can you show it with an example?' }, tap: '[data-tutor-send]', wait: '[data-tutor-window][data-listed="science"] [data-feed-moved="science"]' }] }],
-  ['full', 'family-parent-child-saved', '/family/parent#children', { parent: true, reset: CLASS_PUT_BACK, settle: '[data-parent-panel="children"]:not([hidden])', steps: [{ tap: '[data-child-edit]', wait: 'select[id$="-class"]' }, { select: { field: 'select[id$="-class"]', value: '3' }, tap: '[data-parent-panel="children"] form button[type="submit"]', wait: '[data-child-saved]' }] }],
+  ['full', 'family-parent-child-saved', '/family/parent#manage', { parent: true, reset: CLASS_PUT_BACK, settle: '[data-parent-panel="children"]:not([hidden])', steps: [{ tap: '[data-child-edit]', wait: 'select[id$="-class"]' }, { select: { field: 'select[id$="-class"]', value: '3' }, tap: '[data-parent-panel="children"] form button[type="submit"]', wait: '[data-child-saved]' }] }],
   // W22-S3: a kept answer read aloud, caught in the middle: the tutor's face stays at the top of the feed, the sentence is
   // marked and kept on screen, and the read-aloud line says how much is read.
   ['full', 'family-tutor-word', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', speakStub: true, wordHelp: true, viewportShot: true, settle: '[data-tutor-turns] [data-feed-answer]', steps: [{ word: '[data-feed-answer] li' }, { wait: '[data-word-menu]' }, { tap: '[data-word-translate]' }, { select: { field: '[data-word-lang]', value: 'hi' } }, { wait: '[data-word-answer]' }, { pause: 300 }] }],
@@ -341,9 +341,9 @@ export const FAMILY_SCREENS = [
   ['full', 'family-understand-saver', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-saver-note]', storage: { 'ncf.dataSaver': '1' } }],
   // m2-3: the week, the badges and the reward jar on the home; the parent's habit section (C277).
   ['full', 'family-home-habit', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-family-jar]' }],
-  ['full', 'family-parent-habit', '/family/parent', { parent: true, settle: '[data-habit-child]' }],
+  ['full', 'family-parent-habit', '/family/parent#habit', { parent: true, settle: '[data-habit-child]' }],
   // m2b-2, reversed: children's own phones in the parent area, where the parent types the phone's code (C342, C346).
-  ['full', 'family-parent-phones', '/family/parent#children', { parent: true, flags: { focus_lock: true }, settle: '[data-child-phone-link]' }],
+  ['full', 'family-parent-phones', '/family/parent#phones', { parent: true, flags: { focus_lock: true }, settle: '[data-child-phone-link]' }],
   // m3-7: the parent's home plan after a parent-teacher meeting, and tonight's night on the child's home (C337).
   ['full', 'family-parent-home-plan', '/family/parent#school', { parent: true, settle: '[data-home-plan-nights]' }],
   ['full', 'family-home-meeting', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-home-plan-tonight]' }],
@@ -367,7 +367,7 @@ export const FAMILY_SCREENS = [
   ['english', 'family-english-live-voice', '/family/english/live', { ai: true, voice: true, prep: LIVE_TALK, reset: LIVE_TALK_GONE, settle: '[data-voice-in-use="server"]' }],
   ['english', 'family-parent-english-live', '/family/parent/english/f0000000-0000-4000-8000-0000000fc005', { parent: true, prep: LIVE_TALK, reset: LIVE_TALK_GONE, settle: '[data-live-parent-session]' }],
   // m2b-1 (C305): the parent area's Focus Lock section, two phones of the English family, one with notices to look at.
-  ['english', 'family-parent-focus', '/family/parent#children', { parent: true, settle: '[data-focus-section]' }],
+  ['english', 'family-parent-focus', '/family/parent#phones', { parent: true, settle: '[data-focus-section]' }],
   // m2-8 begin: the interactive blocks (C282), each from an illustrative cached response in harness-seed.sql.
   // AM-4 (C351): the checked paper in the parent area, the child's own results and paper, and the private report link.
   ['linked', 'family-parent-checked-paper', `/family/parent/results/${LINKED_CHILD}/${MK.paper}`, { parent: true, child: LINKED_CHILD, settle: '[data-marked-script] img', pictures: true }],
