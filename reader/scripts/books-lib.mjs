@@ -33,7 +33,11 @@ export function buildBook(folder, { labsRoot = path.join(ROOT, 'labs/defs') } = 
   const defsDir = path.join(labsRoot, folder.cls, folder.subject);
   const re = new RegExp(`^u\\.${folder.cls}\\.${folder.subject}\\.${code}\\.ch\\d\\d\\.json$`);
   const catalog = (meta.catalog && meta.catalog.chapters) || {};
-  const chapters = (fs.existsSync(defsDir) ? fs.readdirSync(defsDir) : []).filter((f) => re.test(f)).sort().map((f) => {
+  const chapterDefs = (fs.existsSync(defsDir) ? fs.readdirSync(defsDir) : []).filter((f) => re.test(f)).sort();
+  // For Class 1, only expose a chapter after its complete reader lesson file exists. Other grades retain their
+  // current syllabus-first index behaviour.
+  const visibleDefs = folder.cls === 'c01' ? chapterDefs.filter((f) => fs.existsSync(path.join(folder.dir, f))) : chapterDefs;
+  const chapters = visibleDefs.map((f) => {
     const def = readJson(path.join(defsDir, f));
     const number = +f.match(/ch(\d\d)/)[1];
     const rel = `${folder.rel}/${f}`;

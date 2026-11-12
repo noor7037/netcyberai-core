@@ -10,6 +10,20 @@ The rules behind this contract are in `docs/family-app/12_CONTENT_FACTORY.md` (b
 (feedback §5): Rosenshine topic flow, worked example then fade, concept first and board format second, CBSE 50/20/30
 for Classes 9–12, misconception distractors, no shame, audio and offline.
 
+## Foundational reader: Classes 1–2
+
+Class 1 is a play-led, formative learning experience. The secondary/senior CBSE exam structure below does not apply.
+
+- Topics are 4–8 minutes, with a short hook, simple explanation, original visual, guided prompt, 2–4 key points and a close.
+- Every visible explanation, prompt, option, hint, feedback line, caption and diagram label has English and Hindi.
+- Use 2–3 answer choices. A check is practice and feedback, never permission to unlock the next topic.
+- Each topic has four picture-word/oral checks; the reader draws three. Record practice, not pass/fail.
+- No chapter test, timed exam, assertion–reason item, long written answer or progression gate.
+- Every topic has a useful bilingual diagram. Keep SVG inline, with data-t labels; no scripts, handlers, external resources, embedded images or foreignObject.
+- Add a lab when interaction genuinely improves learning. Otherwise give a bilingual why_no_lab reason and suggest a real-world activity.
+- Reuse exact lab IDs from labs/defs/c01/<subject>/<chapter_key>.json, and ensure the lab topic matches topic.ncert[0].
+- The same authenticated, child-scoped Family reader and existing content route must be used; do not introduce a parallel player or content store.
+
 ## 1. Text
 
 Every text a child sees is an object `{ "en": "...", "hi": "..." }` (written `T` below). Both languages are complete:
