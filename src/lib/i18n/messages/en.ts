@@ -8067,6 +8067,8 @@ export const en = {
   'fam.tutor.tutorSaid': 'Tutor',
   'fam.tutor.readAloud': 'Read this aloud',
   'fam.tutor.stopAloud': 'Stop',
+  'fam.tutor.noAnswerYet': 'No answer yet',
+  'fam.tutor.tryAgain': 'Try again',
   'fam.tutor.teachMe': 'Teach me',
   'fam.tutor.pause': 'Pause',
   'fam.tutor.replay': 'Replay',

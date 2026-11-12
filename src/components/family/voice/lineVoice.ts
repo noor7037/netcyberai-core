@@ -101,6 +101,34 @@ function drop() {
   playing = null;
 }
 
+// C508: whether a voice is reading now (a server line, a call's line or the phone's own): an answer read aloud by
+// itself never starts over it.
+export function voiceBusy(): boolean {
+  try {
+    return playing !== null || (typeof window !== 'undefined' && 'speechSynthesis' in window && window.speechSynthesis.speaking);
+  } catch {
+    return false;
+  }
+}
+
+// C508: called inside the child's own tap (Send, Try again). A phone that lets sound start only from a tap (iOS) then
+// lets the answer's voice start by itself when it arrives: the phone's voice speaks an empty line, the audio context
+// resumes. Silent; nothing here may break the tap.
+export function unlockVoice() {
+  try {
+    const s = typeof window !== 'undefined' && 'speechSynthesis' in window ? window.speechSynthesis : null;
+    if (s && !s.speaking && typeof SpeechSynthesisUtterance === 'function') {
+      const blank = new SpeechSynthesisUtterance('');
+      blank.volume = 0;
+      s.speak(blank);
+    }
+    const m = getMeter();
+    if (m && m.ctx.state !== 'running') void m.ctx.resume().catch(() => undefined);
+  } catch {
+    // A phone with no voice engine: the Read aloud button stays.
+  }
+}
+
 // Stops whatever is being read, by either voice; a line still on its way is not played.
 export function stopLine() {
   generation++;

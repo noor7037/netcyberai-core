@@ -22,6 +22,9 @@ const STARTED = 'fam:answer-speaking';
 const places = new Map<string, number>();
 
 type VoiceInput = { messageId: string; sentences: readonly string[]; lang?: 'en' | 'hi'; serverVoice: boolean; onSentence?: (i: number | undefined) => void; root?: RefObject<HTMLElement | null>; onReading?: (r: Reading) => void };
+// C508: `auto`, a fresh answer for a young child: read aloud once by itself as soon as the child's settings are read,
+// when read aloud is on and no other voice is reading. If it cannot start, the button below stays as always.
+export const startsByItself = (a: { auto: boolean; readAloud: boolean; sentences: number; busy: boolean }) => a.auto && a.readAloud && a.sentences > 0 && !a.busy;
 
 // W22-S3: what the answer owner needs to keep the tutor's face on screen while the answer is read: whether the voice is
 // speaking, and how much of the answer has been read (0 to 100).
@@ -43,8 +46,9 @@ function langOf(given: 'en' | 'hi' | undefined, el: HTMLElement | null): 'en' | 
 // resumed from the sentence it reached. The server voice reports no word boundaries, so its sentence is found from how
 // much of the audio has played; the phone's own voice reads one sentence at a time and reports words where it can. The
 // sentence is highlighted (and its word, when known) and kept on screen.
-function useAnswerVoice({ messageId, sentences, lang, serverVoice, onSentence, root, onReading }: VoiceInput) {
+function useAnswerVoice({ messageId, sentences, lang, serverVoice, onSentence, root, onReading, auto = false }: VoiceInput & { auto?: boolean }) {
   const [speaking, setSpeaking] = useState(false);
+  const [ready, setReady] = useState(false);
   const [place, setPlace] = useState(() => places.get(messageId) ?? 0);
   // W19-C: the child's own switches: read aloud off hides the buttons; slow halves the pace.
   const [on, setOn] = useState(true);
@@ -55,6 +59,7 @@ function useAnswerVoice({ messageId, sentences, lang, serverVoice, onSentence, r
       if (!live) return;
       setOn(s.readAloud);
       prefs.current = { rate: s.voiceSpeed === 'slow' ? 0.75 : 0.9 };
+      setReady(true);
     });
     return () => {
       live = false;
@@ -158,6 +163,17 @@ function useAnswerVoice({ messageId, sentences, lang, serverVoice, onSentence, r
     finish();
   };
 
+  // C508: once, for this answer only.
+  const autoDone = useRef(false);
+  useEffect(() => {
+    if (!auto || !ready || autoDone.current) return;
+    autoDone.current = true;
+    void import('./lineVoice').then((m) => {
+      if (startsByItself({ auto, readAloud: on, sentences: sentences.length, busy: m.voiceBusy() })) void start();
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [auto, ready, on, sentences.length]);
+
   const percent = share(place);
   const told = useRef(onReading);
   told.current = onReading;
@@ -185,8 +201,8 @@ function useAnswerVoice({ messageId, sentences, lang, serverVoice, onSentence, r
   return { speaking, mode, start, stop, el, on, percent, started };
 }
 
-export function AnswerSpeaker({ w, messageId, sentences, lang, serverVoice, onSentence, root, onReading }: { w: Words } & VoiceInput) {
-  const v = useAnswerVoice({ messageId, sentences, lang, serverVoice, onSentence, root, onReading });
+export function AnswerSpeaker({ w, messageId, sentences, lang, serverVoice, onSentence, root, onReading, auto = false }: { w: Words; auto?: boolean } & VoiceInput) {
+  const v = useAnswerVoice({ messageId, sentences, lang, serverVoice, onSentence, root, onReading, auto });
   if (!v.on) return null;
   return (
     <div ref={v.el} data-answer-speaker={messageId} className="flex flex-wrap items-center gap-x-3 gap-y-1">
@@ -207,6 +223,8 @@ export function AnswerSpeaker({ w, messageId, sentences, lang, serverVoice, onSe
             </>
           )}
         </svg>
+        {/* C508: while it reads, the Stop is said in words too, so a child who did not tap it sees how to stop it. */}
+        {v.speaking && <span data-speaker-stop>{w['fam.tutor.stopAloud']}</span>}
       </button>
       <p data-voice-in-use={v.mode} className="text-xs text-slate/80">
         {w[v.mode === 'server' ? 'fam.voiceOut.server' : 'fam.voiceOut.phone']}
