@@ -2,7 +2,7 @@
 // Checks the chapter reader's books (reader/content/c<NN>/<subject>/) the way the Family app uses them. Fails when:
 //   - a book folder has chapter files but no valid book.json (id like ncert.jesc1, boards, optional catalog)
 //   - a chapter file is not named for its book, or is missing from the book's index
-//   - an index or books.json differs from what index.mjs writes from the files now (stale: run `node reader/scripts/index.mjs`)
+//   - an index, a search.json or books.json differs from what index.mjs writes from the files now (stale: run `node reader/scripts/index.mjs`)
 //   - a board is not one of the boards in data/catalog/*.csv
 //   - a catalog key is not a chapter of the catalog's board, class and subject, or is named twice
 //   - a chapter has no labs/defs file, or names a lab its defs file lacks
