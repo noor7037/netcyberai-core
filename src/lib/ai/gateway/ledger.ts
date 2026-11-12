@@ -21,14 +21,15 @@ export type Attempt = {
   streamed: boolean;
 };
 
+// C504: `paid` marks an attempt on a paid route; its cost counts toward the month's paid limit.
 // W17-B1: what made the call. 'live' is a child's or staff member's own request; 'smoke' the smoke test (C316) and
 // 'try_it' Control's Try it, both on made-up inputs, kept apart so their times and outcomes never read as live use.
 export type LedgerSource = 'live' | 'smoke' | 'try_it';
 
-export async function recordAttempts(db: Sql, a: { day: string; profileId: string; revisionId: string | null }, attempts: readonly Attempt[], origin: LedgerSource = 'live'): Promise<void> {
+export async function recordAttempts(db: Sql, a: { day: string; profileId: string; revisionId: string | null }, attempts: readonly Attempt[], origin: LedgerSource = 'live', paid = false): Promise<void> {
   for (const t of attempts) {
     await db.query(
-      `select control.record_ai_attempt($1::date, $2::text, $3::text, $4::text, $5::bigint, $6::int, $7::text, $8::int, $9::bigint, $10::bigint, $11::boolean, $12::text, $13::int, $14::text)`,
+      `select control.record_ai_attempt($1::date, $2::text, $3::text, $4::text, $5::bigint, $6::int, $7::text, $8::int, $9::bigint, $10::bigint, $11::boolean, $12::text, $13::int, $14::text, $15::boolean)`,
       [
         a.day,
         a.profileId,
@@ -44,6 +45,7 @@ export async function recordAttempts(db: Sql, a: { day: string; profileId: strin
         t.circuit,
         CIRCUIT_OPEN_AFTER,
         origin,
+        paid,
       ]
     );
   }

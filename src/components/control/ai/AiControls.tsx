@@ -17,6 +17,7 @@ import type { MessageKey } from "@/lib/i18n";
 import Link from "next/link";
 import { LedgerView } from "./LedgerView";
 import { Panel } from "./Panel";
+import { PaidCustomers } from "./PaidCustomers";
 import { PriceList } from "./PriceList";
 import { TestingModeBanner } from "./TestingModeBanner";
 import { ProviderList } from "./ProviderList";
@@ -65,6 +66,9 @@ const ERRORS = [
   "no_revision",
   "price",
   "spend",
+  "paid_limit",
+  "customer",
+  "paid_text_only",
 ];
 // M2-5: a content provider's key test (their words are under control.video.ai.err.*).
 const TEST_ERRORS = ["no_key", "not_testable"];
@@ -198,6 +202,7 @@ export function AiControls({ initial }: { initial: Data }) {
     return { states, lastAttempt };
   }, [data, readAt]);
 
+  const priced = useMemo(() => new Set(data.prices.map((p) => `${p.providerId}|${p.model}`)), [data.prices]);
   const name = (n: string | null) => n ?? t("control.ai.someone");
   const { today } = totals(data.usage);
   // The overview: counts of what the server holds, nothing else.
@@ -313,6 +318,8 @@ export function AiControls({ initial }: { initial: Data }) {
                   setDraft={(d) =>
                     setDrafts((all) => ({ ...all, [p.profileId]: d }))
                   }
+                  paidRoute={data.paidRoutes.find((r) => r.profileId === p.profileId) ?? null}
+                  priced={priced}
                 />
               ))}
             </div>
@@ -337,6 +344,11 @@ export function AiControls({ initial }: { initial: Data }) {
         <div className="flex min-w-0 flex-col gap-4">
           <Panel marker="data-ai-prices" title={t("control.ai.price.title")} how={t("control.ai.price.how")}>
             <PriceList data={data} busy={busy} send={send} t={t} />
+          </Panel>
+
+          {/* C504: the paid route's monthly limit and who is paying. */}
+          <Panel marker="data-ai-paid-panel" title={t("control.ai.paid.title")} how={t("control.ai.paid.how")}>
+            <PaidCustomers data={data} busy={busy} send={send} t={t} />
           </Panel>
 
           <Panel marker="data-ai-cap" title={t("control.ai.cap.title")} how={t("control.ai.cap.how")}>

@@ -9,7 +9,7 @@ import { testYoutubeKey } from './adapters/youtube';
 import { aiEncryptionKey, sealAiKey, unsealAiKey, type SealedRow } from './credentials';
 import { DAILY_REQUESTS_SETTING, TESTING_MODE_SETTING, testingModeOn } from './daily-cap';
 import { SPEND_ALERT_MAX_USD, SPEND_ALERT_SETTING, spendAlertUsd, spentOn } from './gateway/upkeep';
-import { capableAdapter, chainOf, missingCapabilities, PROFILES, profileById, profileNeeds } from './platform';
+import { capableAdapter, chainOf, missingCapabilities, PROFILES, profileById, profileNeeds, type AiProfile as AiProfileDef } from './platform';
 import { activated, activating, loadRouteRevisions, revisionToRestore } from './gateway/revisions';
 import { loadProviderHealth } from './gateway/circuit';
 import { loadUsageLedger } from './gateway/ledger';
@@ -71,7 +71,12 @@ export type ChangeError =
   | 'base_url_dns'
   | 'no_base_url'
   // G5 (C373): a price outside 0 to 1000 US dollars per million tokens, or not a number.
-  | 'price';
+  | 'price'
+  // C504: the monthly paid limit outside 0.01 to PAID_LIMIT_MAX_USD; a customer that is not found (an email with no
+  // family account, a school that does not exist); a paid route on a feature that is not a text feature.
+  | 'paid_limit'
+  | 'customer'
+  | 'paid_text_only';
 
 export type AiOverview = {
   keyReady: boolean;
@@ -116,12 +121,22 @@ export type AiOverview = {
   modelLists: Record<string, ModelList>;
   // W8-AI: the testing-phase switch (no daily caps, no safety pre-check, every provider cleared for testing).
   testingMode: boolean;
+  // C504: the paid routes (one per text feature, off until switched on), who is paying, the month's limit (null: the
+  // paid route is off for everyone) and this India month's paid spend; the schools, for the customer picker.
+  paidRoutes: PaidRoute[];
+  paidCustomers: PaidCustomer[];
+  paidLimit: number | null;
+  paidSpentMonth: number;
+  schools: { schoolId: string; name: string }[];
 };
+export type PaidRouteSettings = { providerId: string | null; model: string | null; fallback: Link[]; enabled: boolean };
+export type PaidRoute = PaidRouteSettings & { profileId: string };
+export type PaidCustomer = { kind: 'family' | 'school'; customerId: string; label: string | null; since: string };
 export type ModelPrice = { providerId: string; model: string; inUsd: number; outUsd: number; setAt: string; setByName: string | null };
 export type PriceEntry = { inUsd: number; outUsd: number };
 export type Counts = { requests: number; failures: number; capRefusals: number; tokensIn: number; tokensOut: number };
 
-const ACTIONS = ['ai.credential_set', 'ai.provider_clearance', 'ai.endpoint_changed', 'ai.profile_changed', 'ai.cap_changed', 'ai.price_set', 'ai.spend_alert_changed', 'ai.testing_mode_changed'] as const;
+const ACTIONS = ['ai.credential_set', 'ai.provider_clearance', 'ai.endpoint_changed', 'ai.profile_changed', 'ai.cap_changed', 'ai.price_set', 'ai.spend_alert_changed', 'ai.testing_mode_changed', 'ai.paid_route_changed', 'ai.paid_customer_changed', 'ai.paid_limit_changed'] as const;
 type Action = (typeof ACTIONS)[number];
 // A model id as the vendor names it; Workers AI ids start with "@" (C230-U). The database holds the same rule.
 const MODEL = /^@?[A-Za-z0-9._:/-]{1,80}$/;
@@ -258,6 +273,7 @@ export async function loadAiOverview(db: Sql): Promise<AiOverview> {
     })),
     modelLists: await loadModelLists(db),
     testingMode: await testingModeOn(db),
+    ...(await loadPaid(db)),
     prices: prices.rows.map((r) => ({
       providerId: r.provider_id,
       model: r.model,
@@ -513,29 +529,36 @@ async function profileSettings(db: Sql, profileId: string): Promise<ProfileSetti
   return { providerId: r.provider_id ?? null, model: r.model ?? null, promptVersion: r.prompt_version, enabled: r.enabled === true, fallback: (chainOf({ provider_id: 'x', model: 'x', fallback: r.fallback }) ?? []).slice(1) };
 }
 
-// `how`: an undo names the audit row it undoes; a rollback names the revision it restores.
-async function writeProfile(db: Sql, by: By, profileId: string, next: ProfileSettings, how: { undoOf?: string; rollbackOf?: string } = {}): Promise<ChangeResult> {
-  const profile = profileById(profileId);
-  if (!profile) return { ok: false, code: 'profile' };
+// The checks every saved route passes, the profile's own or its paid one (C504).
+function routeError(profile: AiProfileDef, next: { providerId: string | null; model: string | null; fallback: Link[] }): ChangeError | null {
   const providers = [next.providerId, ...next.fallback.map((f) => f.provider)].filter((p): p is string => p !== null);
   // A provider must have an adapter of the profile's capability: voice input (speech_to_text, C281) takes only a provider
   // that can hear, so Anthropic cannot be chosen for it.
   // A route is Primary, Backup 1 and Backup 2 (docs/37 §3.3): at most two backups.
-  if (next.fallback.length > 2 || providers.some((p) => !knownProvider(p) || capableAdapter(profile.id, p) === null)) return { ok: false, code: 'provider' };
-  if ((next.model !== null && !MODEL.test(next.model)) || next.fallback.some((f) => !MODEL.test(f.model))) return { ok: false, code: 'model' };
+  if (next.fallback.length > 2 || providers.some((p) => !knownProvider(p) || capableAdapter(profile.id, p) === null)) return 'provider';
+  if ((next.model !== null && !MODEL.test(next.model)) || next.fallback.some((f) => !MODEL.test(f.model))) return 'model';
   // Workers AI names its models "@cf/<vendor>/<model>" (C230-U); any other id for it would fail every call, so it is
   // refused here, where the founder sees it.
   const links = [{ provider: next.providerId, model: next.model }, ...next.fallback];
-  if (links.some((l) => l.provider === 'workers-ai' && (l.model === null || !workersModelLooksRight(l.model)))) return { ok: false, code: 'model' };
+  if (links.some((l) => l.provider === 'workers-ai' && (l.model === null || !workersModelLooksRight(l.model)))) return 'model';
   // A Vertex AI model id becomes part of its address (adapters/vertex-ai.ts): any other shape is refused here too.
-  if (links.some((l) => l.provider === 'vertex_ai' && (l.model === null || !vertexModelLooksRight(l.model)))) return { ok: false, code: 'model' };
+  if (links.some((l) => l.provider === 'vertex_ai' && (l.model === null || !vertexModelLooksRight(l.model)))) return 'model';
   // The server voice (C386): a voice's model id may become part of the vendor's voice name (Google: "Neural2-A").
   if (profile.capability === 'text_to_speech' && links.some((l) => l.provider !== null && l.model !== null && voiceAdapterFor(l.provider)?.modelLooksRight(l.model) === false)) {
     // Google's voices take the app's own language prefix, so a wrong one gets its own words (W17).
-    return { ok: false, code: links.some((l) => l.provider === 'google_tts') ? 'voice_model' : 'model' };
+    return links.some((l) => l.provider === 'google_tts') ? 'voice_model' : 'model';
   }
   // G1 (C369): every provider in the chain must declare what the profile needs (photos for AI marking, for example).
-  if (providers.some((p) => missingCapabilities(profile.id, p).length > 0)) return { ok: false, code: 'capability' };
+  if (providers.some((p) => missingCapabilities(profile.id, p).length > 0)) return 'capability';
+  return null;
+}
+
+// `how`: an undo names the audit row it undoes; a rollback names the revision it restores.
+async function writeProfile(db: Sql, by: By, profileId: string, next: ProfileSettings, how: { undoOf?: string; rollbackOf?: string } = {}): Promise<ChangeResult> {
+  const profile = profileById(profileId);
+  if (!profile) return { ok: false, code: 'profile' };
+  const refused = routeError(profile, next);
+  if (refused) return { ok: false, code: refused };
   if (!PROMPT_VERSION.test(next.promptVersion)) return { ok: false, code: 'prompt_version' };
   if ((next.providerId === null) !== (next.model === null) || (next.enabled && next.providerId === null)) return { ok: false, code: 'incomplete' };
   const before = await profileSettings(db, profileId);
@@ -658,6 +681,118 @@ async function writeTestingMode(db: Sql, by: By, on: boolean, undoOf?: string): 
   return { ok: true };
 }
 
+// ---- the paid route (C504) ------------------------------------------------------------------------------------------
+
+// The limit for a month of paid answers, in US dollars of known cost: no setting row means the paid route is off.
+export const PAID_LIMIT_SETTING = 'ai.paid_limit_usd_per_month';
+export const PAID_LIMIT_MAX_USD = 10_000;
+const paidLimitOk = (v: unknown): v is number => typeof v === 'number' && Number.isFinite(v) && v >= 0.01 && v <= PAID_LIMIT_MAX_USD;
+const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+const routeOfRow = (fallback: unknown) => (chainOf({ provider_id: 'x', model: 'x', fallback }) ?? []).slice(1);
+
+async function loadPaid(db: Sql): Promise<Pick<AiOverview, 'paidRoutes' | 'paidCustomers' | 'paidLimit' | 'paidSpentMonth' | 'schools'>> {
+  const routes = await db.query(`select profile_id, provider_id, model, fallback, enabled from control.ai_paid_routes order by profile_id`);
+  const customers = await db.query(`select kind, customer_id, label, since from control.ai_paid_customer_list()`);
+  const spent = await db.query(`select control.ai_paid_spend_usd() as usd`);
+  const schools = await db.query(`select school_id, name from schools order by name limit 500`);
+  return {
+    paidRoutes: routes.rows.map((r) => ({ profileId: r.profile_id, providerId: r.provider_id ?? null, model: r.model ?? null, fallback: routeOfRow(r.fallback), enabled: r.enabled === true })),
+    paidCustomers: customers.rows.map((r) => ({ kind: r.kind === 'school' ? 'school' : 'family', customerId: String(r.customer_id), label: r.label ?? null, since: iso(r.since) as string })),
+    paidLimit: await paidLimitUsd(db),
+    paidSpentMonth: Number(spent.rows[0]?.usd ?? 0),
+    schools: schools.rows.map((r) => ({ schoolId: String(r.school_id), name: String(r.name) })),
+  };
+}
+
+async function paidLimitUsd(db: Sql): Promise<number | null> {
+  const v = (await db.query(`select value from control.settings where key = $1`, [PAID_LIMIT_SETTING])).rows[0]?.value;
+  return typeof v === 'number' ? v : null;
+}
+
+async function paidRouteSettings(db: Sql, profileId: string): Promise<PaidRouteSettings | null> {
+  const r = (await db.query(`select provider_id, model, fallback, enabled from control.ai_paid_routes where profile_id = $1`, [profileId])).rows[0];
+  return r ? { providerId: r.provider_id ?? null, model: r.model ?? null, fallback: routeOfRow(r.fallback), enabled: r.enabled === true } : null;
+}
+
+// A feature's paid chain: the same checks as its own route (routeError), a text feature only, and the database's
+// minors check on save. Off (enabled false) keeps the chain for later.
+export async function setPaidRoute(db: Sql, by: By, profileId: string, next: PaidRouteSettings): Promise<ChangeResult> {
+  return writePaidRoute(db, by, profileId, next);
+}
+
+async function writePaidRoute(db: Sql, by: By, profileId: string, next: PaidRouteSettings, undoOf?: string): Promise<ChangeResult> {
+  const profile = profileById(profileId);
+  if (!profile) return { ok: false, code: 'profile' };
+  if (profile.capability !== 'text') return { ok: false, code: 'paid_text_only' };
+  const refused = routeError(profile, next);
+  if (refused) return { ok: false, code: refused };
+  if ((next.providerId === null) !== (next.model === null) || (next.enabled && next.providerId === null)) return { ok: false, code: 'incomplete' };
+  const before = (await paidRouteSettings(db, profileId)) ?? { providerId: null, model: null, fallback: [], enabled: false };
+  try {
+    await db.query(
+      `insert into control.ai_paid_routes (profile_id, provider_id, model, fallback, enabled, updated_by) values ($1, $2, $3, $4::jsonb, $5, $6)
+       on conflict (profile_id) do update set provider_id = excluded.provider_id, model = excluded.model, fallback = excluded.fallback, enabled = excluded.enabled, updated_at = now(), updated_by = excluded.updated_by`,
+      [profileId, next.providerId, next.model, JSON.stringify(next.fallback), next.enabled, by.userId]
+    );
+  } catch (err) {
+    if (isCheckViolation(err)) return { ok: false, code: 'not_cleared_for_minors', ...refusedProvider(err) };
+    throw err;
+  }
+  await audit(db, by, 'ai.paid_route_changed', profileId, before, { ...next, ...(undoOf ? { undoOf } : {}) });
+  return { ok: true };
+}
+
+// Who pays: a family by the email of its account, or a school by its id; `listed` false takes it off the list.
+export type PaidCustomerRef = { kind: 'family'; email: string } | { kind: 'school'; schoolId: string } | { kind: 'family' | 'school'; customerId: string };
+export async function setPaidCustomer(db: Sql, by: By, ref: PaidCustomerRef, listed: boolean): Promise<ChangeResult> {
+  let id: string | null = null;
+  if ('email' in ref) {
+    const email = ref.email.trim().toLowerCase();
+    if (email.length < 3 || email.length > 254 || !email.includes('@')) return { ok: false, code: 'customer' };
+    id = ((await db.query(`select control.ai_paid_family_id($1) as id`, [email])).rows[0]?.id as string | null) ?? null;
+  } else if ('schoolId' in ref) {
+    id = UUID.test(ref.schoolId) && (await db.query(`select 1 from schools where school_id = $1::uuid`, [ref.schoolId])).rows[0] ? ref.schoolId : null;
+  } else {
+    id = UUID.test(ref.customerId) ? ref.customerId : null;
+  }
+  if (!id) return { ok: false, code: 'customer' };
+  return writePaidCustomer(db, by, ref.kind, id, listed);
+}
+
+async function writePaidCustomer(db: Sql, by: By, kind: 'family' | 'school', customerId: string, listed: boolean, undoOf?: string): Promise<ChangeResult> {
+  const was = (await db.query(`select 1 from control.ai_paid_customers where kind = $1 and customer_id = $2::uuid`, [kind, customerId])).rows.length > 0;
+  if (listed && !was) {
+    try {
+      await db.query(`insert into control.ai_paid_customers (kind, customer_id, set_by) values ($1, $2::uuid, $3)`, [kind, customerId, by.userId]);
+    } catch (err) {
+      if ((err as { code?: string })?.code === '23503') return { ok: false, code: 'customer' };
+      throw err;
+    }
+  } else if (!listed && was) {
+    await db.query(`delete from control.ai_paid_customers where kind = $1 and customer_id = $2::uuid`, [kind, customerId]);
+  }
+  // Ids only: never a family's email.
+  await audit(db, by, 'ai.paid_customer_changed', customerId, { kind, customerId, listed: was }, { kind, customerId, listed, ...(undoOf ? { undoOf } : {}) });
+  return { ok: true };
+}
+
+// The month's limit, US dollars from 0.01 to PAID_LIMIT_MAX_USD; null removes it (the paid route off for everyone).
+export async function setPaidLimit(db: Sql, by: By, value: number | null): Promise<ChangeResult> {
+  if (value !== null && !paidLimitOk(value)) return { ok: false, code: 'paid_limit' };
+  return writePaidLimit(db, by, value === null ? null : Math.round(value * 100) / 100);
+}
+
+async function writePaidLimit(db: Sql, by: By, value: number | null, undoOf?: string): Promise<ChangeResult> {
+  const before = await paidLimitUsd(db);
+  // Off is a JSON null (the platform role may not delete a setting); the database reads anything but a number as off.
+  await db.query(
+    `insert into control.settings (key, value, updated_by) values ($1, $2::jsonb, $3) on conflict (key) do update set value = excluded.value, updated_at = now(), updated_by = excluded.updated_by`,
+    [PAID_LIMIT_SETTING, JSON.stringify(value), by.userId]
+  );
+  await audit(db, by, 'ai.paid_limit_changed', PAID_LIMIT_SETTING, { key: PAID_LIMIT_SETTING, value: before }, { key: PAID_LIMIT_SETTING, value, ...(undoOf ? { undoOf } : {}) });
+  return { ok: true };
+}
+
 // One step back: the change's before state, restored and itself audited (so an undo can be undone).
 export async function undoChange(db: Sql, by: By, auditId: string): Promise<ChangeResult> {
   if (!/^\d{1,18}$/.test(auditId)) return { ok: false, code: 'not_found' };
@@ -690,6 +825,20 @@ export async function undoChange(db: Sql, by: By, auditId: string): Promise<Chan
       return before.value === 'on' || before.value === 'off' ? writeTestingMode(db, by, before.value === 'on', auditId) : { ok: false, code: 'not_found' };
     case 'ai.spend_alert_changed':
       return before.value === null || spendOk(before.value) ? writeSpendAlert(db, by, (before.value as number | null) ?? null, auditId) : { ok: false, code: 'not_found' };
+    case 'ai.paid_route_changed':
+      return writePaidRoute(
+        db,
+        by,
+        String(row.target_id),
+        { providerId: (before.providerId as string) ?? null, model: (before.model as string) ?? null, fallback: Array.isArray(before.fallback) ? (before.fallback as Link[]) : [], enabled: before.enabled === true },
+        auditId
+      );
+    case 'ai.paid_customer_changed':
+      return (before.kind === 'family' || before.kind === 'school') && typeof before.customerId === 'string' && UUID.test(before.customerId)
+        ? writePaidCustomer(db, by, before.kind, before.customerId, before.listed === true, auditId)
+        : { ok: false, code: 'not_found' };
+    case 'ai.paid_limit_changed':
+      return before.value === null || paidLimitOk(before.value) ? writePaidLimit(db, by, (before.value as number | null) ?? null, auditId) : { ok: false, code: 'not_found' };
     case 'ai.price_set': {
       const p = before.price as PriceEntry | null;
       return typeof before.providerId === 'string' && typeof before.model === 'string'

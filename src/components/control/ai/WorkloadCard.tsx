@@ -4,7 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { StatusPill } from "@/components/app-ui/StatusPill";
 import { Input } from "@/components/ui/Input";
 import { Switch } from "@/components/ui/Switch";
-import type { ModelList } from "@/lib/ai/control";
+import type { ModelList, PaidRoute as PaidRouteRow } from "@/lib/ai/control";
+import { PaidRoute } from "./PaidRoute";
 import { promote, type Slot } from "@/lib/ai/ledger-view";
 import { hasDuplicate, validModel, type Need } from "@/lib/ai/model-options";
 import type { ProviderStateResult } from "@/lib/ai/provider-state";
@@ -81,6 +82,9 @@ type Props = {
   t: T;
   draft: Draft;
   setDraft: (d: Draft) => void;
+  // C504: the feature's paid route (text features only) and the priced "provider|model" pairs.
+  paidRoute?: PaidRouteRow | null;
+  priced?: Set<string>;
 };
 
 export function WorkloadCard({
@@ -94,6 +98,8 @@ export function WorkloadCard({
   t,
   draft: d,
   setDraft,
+  paidRoute = null,
+  priced = new Set<string>(),
 }: Props) {
   // The rollback waiting for the founder's yes: null (the previous revision) or a revision id.
   const [confirm, setConfirm] = useState<{ revisionId: string | null } | null>(
@@ -304,6 +310,21 @@ export function WorkloadCard({
           {t("control.ai.route.rollback")}
         </button>
       </div>
+
+      {/* C504: the paid route, for paying customers only (a text feature). Remounted when the saved route changes. */}
+      {p.usesPrompt && (
+        <PaidRoute
+          key={JSON.stringify(paidRoute)}
+          profileId={p.profileId}
+          route={paidRoute}
+          providerChoices={providerChoices}
+          modelLists={modelLists}
+          priced={priced}
+          busy={busy}
+          send={send}
+          t={t}
+        />
+      )}
 
       {/* W17-B1: one live call of the route as saved, on made-up inputs; the answer shows here. */}
       <TryIt profileId={p.profileId} t={t} />
