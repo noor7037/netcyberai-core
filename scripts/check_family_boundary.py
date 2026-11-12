@@ -98,6 +98,10 @@ EXTERNAL_OK = re.compile(r"^(react|react-dom|next|jose|crypto|util|pg$|node:|pdf
 
 # Outside the family area, these files may import exactly these family modules.
 OUTSIDE_MAY_IMPORT_FAMILY = {
+    # The two development-only parent home mock-ups (C506) draw with the parent area's own visual parts (no data, no SQL).
+    "src/app/(dev)/mock/MockParts.tsx": {"@/components/family/parent/parts"},
+    "src/app/(dev)/mock/parent-a/page.tsx": {"@/components/family/parent/parts"},
+    "src/app/(dev)/mock/parent-b/page.tsx": {"@/components/family/parent/parts"},
     "src/middleware.ts": {"@/lib/family/session"},
     # The preparing job (C316) runs the prepare tool's step with no browser open; staff only, see the file.
     "src/lib/jobs/ai-jobs.ts": {"@/lib/family/prepare"},

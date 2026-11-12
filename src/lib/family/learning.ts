@@ -128,3 +128,41 @@ export async function calmCard(db: Db, accountId: string, childId: string, today
     practisedTitles: progress.slice(0, 3).map((p) => p.title),
   };
 }
+
+// The parent's week for one child (C506): answers checked on each of the last seven India days (oldest first, today
+// last), the share right per subject so far, and the latest topics practised. Counts of what the child did; the app
+// does not record minutes, so none are shown or guessed.
+export type ParentWeek = {
+  childId: string;
+  days: { day: string; answers: number }[];
+  subjects: { subject: Subject; answered: number; correct: number }[];
+  latest: { title: string; subject: Subject; answered: number; correct: number; mastered: boolean; lastOn: string | null }[];
+};
+
+export async function parentWeek(db: Db, accountId: string, childId: string, today: string, lang: 'en' | 'hi'): Promise<ParentWeek> {
+  const { rows } = await db.query(
+    `select answered_on::text as day, count(*)::int as n from family.attempts
+      where account_id = $1 and child_id = $2 and answered_on > $3::date - 7 and answered_on <= $3::date group by answered_on`,
+    [accountId, childId, today]
+  );
+  const per = new Map(rows.map((r) => [String(r.day).slice(0, 10), Number(r.n)]));
+  const base = Date.parse(`${today}T00:00:00Z`);
+  const days = Array.from({ length: 7 }, (_, i) => {
+    const day = new Date(base + (i - 6) * 86_400_000).toISOString().slice(0, 10);
+    return { day, answers: per.get(day) ?? 0 };
+  });
+  const progress = (await childProgress(db, accountId, childId, lang)).filter((p) => p.answered > 0);
+  const bySubject = new Map<Subject, { answered: number; correct: number }>();
+  for (const p of progress) {
+    const s = bySubject.get(p.subject) ?? { answered: 0, correct: 0 };
+    s.answered += p.answered;
+    s.correct += p.correct;
+    bySubject.set(p.subject, s);
+  }
+  return {
+    childId,
+    days,
+    subjects: [...bySubject].map(([subject, v]) => ({ subject, ...v })),
+    latest: progress.slice(0, 5).map((p) => ({ title: p.title, subject: p.subject, answered: p.answered, correct: p.correct, mastered: p.mastered, lastOn: p.lastCorrectOn })),
+  };
+}
