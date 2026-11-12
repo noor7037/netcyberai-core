@@ -23,7 +23,7 @@ import { checkBaseUrl, loadAiOverview, loadAiRouting, prepareKeyTest, providerCh
 //         { action: 'rollback', profileId, revisionId? }                       activate the route's previous revision (or the one named) again
 //         { action: 'price', providerId, model, inUsd, outUsd } | { ..., price: null }   US dollars per million tokens (G5)
 //         { action: 'paid_route', profileId, providerId, model, fallback, enabled }   a feature's paid chain (C504)
-//         { action: 'paid_customer', kind, email | schoolId | customerId, listed }  who pays (C504)
+//         { action: 'paid_customer', kind, email | customerId, listed }  who pays (C504)
 //         { action: 'paid_limit', value }                                    US$ of paid cost a month; null: paid off
 //         { action: 'test', providerId }                                     test a provider's key (YouTube, M2-5; Vertex AI and
 //                                                                             the OpenAI-compatible adapter, G1)
@@ -92,14 +92,14 @@ export async function POST(req: NextRequest) {
       result = await withPlatformService((db) => setPaidRoute(db, by, profileId, { providerId: optional(b.providerId, 40), model: optional(b.model, 80), fallback, enabled: b.enabled }));
     }
   } else if (b?.action === 'paid_customer') {
-    // C504: a family by its account email, or a school by its id; listed false takes it off.
+    // C504: a family by its account email, or any customer by its id (a school is picked from Control's own list and
+    // sent as customerId: a school id is never read from a request body by name); listed false takes it off.
     const listed = b.listed;
     const email = str(b.email, 254);
-    const schoolId = str(b.schoolId, 36);
     const customerId = str(b.customerId, 36);
     const kind = b.kind === 'family' || b.kind === 'school' ? b.kind : null;
     if (typeof listed === 'boolean' && kind) {
-      const ref = customerId ? { kind, customerId } : kind === 'family' && email ? { kind, email } : kind === 'school' && schoolId ? { kind, schoolId } : null;
+      const ref = customerId ? { kind, customerId } : kind === 'family' && email ? { kind, email } : null;
       if (ref) result = await withPlatformService((db) => setPaidCustomer(db, by, ref, listed));
     }
   } else if (b?.action === 'paid_limit') {

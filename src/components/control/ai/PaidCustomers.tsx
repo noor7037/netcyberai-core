@@ -135,7 +135,7 @@ export function PaidCustomers({ data, busy, send, t }: Props) {
           data-ai-paid-add-school
           disabled={busy || !schoolId}
           className={`${TAP} sm:justify-self-start`}
-          onClick={() => void send({ action: "paid_customer", kind: "school", schoolId, listed: true }, "control.ai.saved", () => setSchoolId(""))}
+          onClick={() => void send({ action: "paid_customer", kind: "school", customerId: schoolId, listed: true }, "control.ai.saved", () => setSchoolId(""))}
         >
           {t("control.ai.paid.customers.add")}
         </button>
