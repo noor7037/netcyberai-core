@@ -505,6 +505,17 @@ export function chainShareMs(a: { left: number; behind: number; reserveMs: numbe
   return Math.min(a.left, Math.max(a.reserveMs, a.left - hold));
 }
 
+// C507: the time a paid chain may use before it shows text; the rest of the deadline is the normal chain's, should the
+// paid chain end with nothing shown. With a first-text deadline the paid chain gets one first-text wait (as generous as a
+// normal link's), shortened only to leave the normal chain NORMAL_AFTER_PAID_MS, and never under FIRST_TEXT_FLOOR_MS.
+// Without one, it gets the deadline less one CHAIN_MIN_MS share, and at least CHAIN_MIN_MS. On the resolver (40 s, first
+// text 12 s): 12 s for the paid chain, 28 s left for the normal chain.
+export const NORMAL_AFTER_PAID_MS = 4_000;
+export function paidWindowMs(a: { callMs: number; firstTextMs: number | null }): number {
+  const want = a.firstTextMs === null ? Math.max(CHAIN_MIN_MS, a.callMs - CHAIN_MIN_MS) : Math.max(FIRST_TEXT_FLOOR_MS, Math.min(a.firstTextMs, a.callMs - NORMAL_AFTER_PAID_MS));
+  return Math.max(0, Math.min(a.callMs, want));
+}
+
 // Who a call is for (W17-B1). LIVE: a child's or staff member's own request, every step as above. TRY_IT: Control's
 // Try it, the same chain walked the same way on made-up inputs, but it takes no family's daily place (no family asked)
 // and its ledger rows say 'try_it'. `watch` is handed each send's attempts as they are made, so Try it can say which
@@ -542,8 +553,14 @@ async function textRun(db: Sql, ctx: AiContext, profileId: ProfileId, request: A
   }
   let ready: Gated<TextAdapter>['admitted'];
   let skipped: Attempt[];
-  if (gatedPaid) ({ admitted: ready, skipped } = gatedPaid);
-  else {
+  // C507: behind a paid chain, the profile's normal chain, gated here (same minors, capability and circuit checks) for
+  // a paid call that ends before any text.
+  let normal: Gated<TextAdapter> | null = null;
+  if (gatedPaid) {
+    ({ admitted: ready, skipped } = gatedPaid);
+    const usable = await usableOf(checked.chain, checked.providers);
+    normal = usable.length > 0 ? await gateLinks(db, usable) : null;
+  } else {
     const usable = await usableOf(checked.chain, checked.providers);
     if (usable.length === 0) return { ok: false, reason: 'not_switched_on' };
     // Every provider of the route has its circuit open: nothing is sent and no cap place is taken.
@@ -572,9 +589,13 @@ async function textRun(db: Sql, ctx: AiContext, profileId: ProfileId, request: A
     const usage: { link: Link; counts: Counts }[] = [];
     const attempts: Attempt[] = [];
     run.watch?.(attempts);
+    // C507: the attempts on the paid chain come first; those from normalFrom on ran on the normal chain (paid = false).
+    let normalFrom = holdId === null ? 0 : -1;
     const record = async (tx: Sql) => {
       for (const u of usage) await count(tx, ctx.day, profile.id, u.link, u.counts);
-      await recordAttempts(tx, ledger, attempts, run.source, holdId !== null);
+      const split = normalFrom < 0 ? attempts.length : normalFrom;
+      await recordAttempts(tx, ledger, attempts.slice(0, split), run.source, true);
+      await recordAttempts(tx, ledger, attempts.slice(split), run.source, false);
       // The hold goes in the same transaction as the ledger rows that replace it (C504).
       await releasePaid(tx, holdId);
     };
@@ -597,61 +618,84 @@ async function textRun(db: Sql, ctx: AiContext, profileId: ProfileId, request: A
     const firstTextMs = profile.callMs && profile.firstTextMs ? profile.firstTextMs : null;
     const reserveMs = firstTextMs === null ? CHAIN_MIN_MS : Math.min(CHAIN_MIN_MS, Math.max(FIRST_TEXT_FLOOR_MS, (profile.callMs ?? 0) - firstTextMs));
     const floorMs = firstTextMs === null ? CHAIN_MIN_MS : FIRST_TEXT_FLOOR_MS;
-    // 6. Down the chain until one answers, or a failure that may not go on to the next.
-    for (const [i, r] of ready.entries()) {
-      const { link, adapter, apiKey, baseUrl } = r;
-      const left = deadline === null ? null : deadline - Date.now();
-      if (left !== null && left < floorMs) {
-        attempts.push(...ready.slice(i).map((x) => skippedAttempt(x, 'skipped_deadline')));
-        break;
+    // C507: a paid chain may use only its window (paidWindowMs) before it shows text, so the normal chain behind it
+    // keeps a real share of the deadline; once paid text flows it may use what is left, as any link may.
+    const paidWindowEnd = holdId !== null && deadline !== null && profile.callMs ? Date.now() + paidWindowMs({ callMs: profile.callMs, firstTextMs }) : null;
+    type Walked = { answer: SentText['result'] } | { next: boolean };
+    // 6. Down one chain until one answers, or a failure that may not go on to the next. `next`: the chain ended with no
+    // text shown and no vendor refusal, so a chain behind it may still answer.
+    const walk = async (chain: Gated<TextAdapter>['admitted'], end: number | null): Promise<Walked> => {
+      let next = true;
+      for (const [i, r] of chain.entries()) {
+        const { link, adapter, apiKey, baseUrl } = r;
+        const left = deadline === null ? null : deadline - Date.now();
+        const windowLeft = left === null || end === null ? left : Math.min(left, end - Date.now());
+        if (left !== null && windowLeft !== null && windowLeft < floorMs) {
+          attempts.push(...chain.slice(i).map((x) => skippedAttempt(x, 'skipped_deadline')));
+          break;
+        }
+        const limitMs = windowLeft === null ? null : chainShareMs({ left: windowLeft, behind: chain.length - 1 - i, reserveMs, firstTextMs, streams: adapter.capabilities.stream });
+        // W10: a streaming provider must send answer text within its first-text time (never more than its share above);
+        // once text flows no backup may take over, so it may then use what is left of the route's time. A provider that
+        // answers in one piece (Workers AI) has no first text before its whole answer and keeps its share as its limit.
+        const watchMs = firstTextMs !== null && left !== null && limitMs !== null && adapter.capabilities.stream ? Math.min(firstTextMs, limitMs) : null;
+        const sendMs = watchMs !== null ? left : limitMs;
+        let streamed = false;
+        let gaveUp = false;
+        let result: AdapterResult | { ok: false; failure: 'timeout' };
+        const began = Date.now();
+        const abort = new AbortController();
+        let timer: ReturnType<typeof setTimeout> | undefined;
+        try {
+          const timeout = sendMs === null ? {} : { timeoutMs: sendMs };
+          const call = adapter.streamText({ apiKey, model: link.model, system: clean.system, messages: clean.messages, maxTokens, responseFormat, ...(typeof temperature === 'number' && Number.isFinite(temperature) ? { temperature } : {}), ...timeout, ...(baseUrl ? { baseUrl } : {}), ...(watchMs !== null ? { signal: abort.signal } : {}) }, (piece) => {
+            // Words from an attempt already given up never reach the caller (an adapter that ignores the abort).
+            if (gaveUp) return;
+            // W10: only words count as text shown (and as the first text); blank pieces a model sends first do not.
+            if (watchMs === null || piece.trim()) streamed = true;
+            onDelta(piece);
+          });
+          // No answer text by the first-text time (thinking is not text): the attempt is aborted and counted a timeout.
+          const firstText = watchMs === null ? null : new Promise<{ ok: false; failure: 'timeout' }>((resolve) => {
+            timer = setTimeout(() => {
+              if (streamed) return;
+              gaveUp = true;
+              abort.abort();
+              resolve({ ok: false, failure: 'timeout' });
+            }, watchMs);
+          });
+          result = firstText ? await Promise.race([call, firstText]) : await call;
+        } catch {
+          // An adapter never throws by design; if one did (or the caller's onDelta did), the call is still counted.
+          result = { ok: false, failure: 'network' };
+        } finally {
+          clearTimeout(timer);
+        }
+        const tried = attemptOf(r, result, { streamed, elapsedMs: Date.now() - began, limitMs: sendMs ?? CALL_TIMEOUT_MS });
+        attempts.push(tried.attempt);
+        if (result.ok) {
+          usage.push({ link, counts: { requests: 1, tokensIn: result.tokensIn, tokensOut: result.tokensOut } });
+          return { answer: { ok: true, text: result.text, tokensIn: result.tokensIn, tokensOut: result.tokensOut, provider: link.provider, model: link.model, ...(result.finish ? { finish: result.finish } : {}) } };
+        }
+        usage.push({ link, counts: { requests: 1, failures: 1 } });
+        // A refusal, a wrong key or request, or text already shown (a second provider's answer would be stitched onto
+        // it): the answer ends here.
+        if (!tried.retryable) {
+          next = !streamed && tried.attempt.outcome !== 'content_rejected';
+          break;
+        }
       }
-      const limitMs = left === null ? null : chainShareMs({ left, behind: ready.length - 1 - i, reserveMs, firstTextMs, streams: adapter.capabilities.stream });
-      // W10: a streaming provider must send answer text within its first-text time (never more than its share above);
-      // once text flows no backup may take over, so it may then use what is left of the route's time. A provider that
-      // answers in one piece (Workers AI) has no first text before its whole answer and keeps its share as its limit.
-      const watchMs = firstTextMs !== null && left !== null && limitMs !== null && adapter.capabilities.stream ? Math.min(firstTextMs, limitMs) : null;
-      const sendMs = watchMs !== null ? left : limitMs;
-      let streamed = false;
-      let gaveUp = false;
-      let result: AdapterResult | { ok: false; failure: 'timeout' };
-      const began = Date.now();
-      const abort = new AbortController();
-      let timer: ReturnType<typeof setTimeout> | undefined;
-      try {
-        const timeout = sendMs === null ? {} : { timeoutMs: sendMs };
-        const call = adapter.streamText({ apiKey, model: link.model, system: clean.system, messages: clean.messages, maxTokens, responseFormat, ...(typeof temperature === 'number' && Number.isFinite(temperature) ? { temperature } : {}), ...timeout, ...(baseUrl ? { baseUrl } : {}), ...(watchMs !== null ? { signal: abort.signal } : {}) }, (piece) => {
-          // Words from an attempt already given up never reach the caller (an adapter that ignores the abort).
-          if (gaveUp) return;
-          // W10: only words count as text shown (and as the first text); blank pieces a model sends first do not.
-          if (watchMs === null || piece.trim()) streamed = true;
-          onDelta(piece);
-        });
-        // No answer text by the first-text time (thinking is not text): the attempt is aborted and counted a timeout.
-        const firstText = watchMs === null ? null : new Promise<{ ok: false; failure: 'timeout' }>((resolve) => {
-          timer = setTimeout(() => {
-            if (streamed) return;
-            gaveUp = true;
-            abort.abort();
-            resolve({ ok: false, failure: 'timeout' });
-          }, watchMs);
-        });
-        result = firstText ? await Promise.race([call, firstText]) : await call;
-      } catch {
-        // An adapter never throws by design; if one did (or the caller's onDelta did), the call is still counted.
-        result = { ok: false, failure: 'network' };
-      } finally {
-        clearTimeout(timer);
-      }
-      const tried = attemptOf(r, result, { streamed, elapsedMs: Date.now() - began, limitMs: sendMs ?? CALL_TIMEOUT_MS });
-      attempts.push(tried.attempt);
-      if (result.ok) {
-        usage.push({ link, counts: { requests: 1, tokensIn: result.tokensIn, tokensOut: result.tokensOut } });
-        return { result: { ok: true, text: result.text, tokensIn: result.tokensIn, tokensOut: result.tokensOut, provider: link.provider, model: link.model, ...(result.finish ? { finish: result.finish } : {}) }, record };
-      }
-      usage.push({ link, counts: { requests: 1, failures: 1 } });
-      // A refusal, a wrong key or request, or text already shown (a second provider's answer would be stitched onto
-      // it): the answer ends here.
-      if (!tried.retryable) break;
+      return { next };
+    };
+    const first = await walk(ready, paidWindowEnd);
+    if ('answer' in first) return { result: first.answer, record };
+    // C507: a paid chain that showed no text (every link failed, timed out or was out of time) hands the call to the
+    // profile's normal chain, inside the same deadline. A vendor's refusal or text already shown ends it, as above.
+    if (holdId !== null && normal && first.next) {
+      normalFrom = attempts.length;
+      attempts.push(...normal.skipped);
+      const second = await walk(normal.admitted, null);
+      if ('answer' in second) return { result: second.answer, record };
     }
     return { result: { ok: false, reason: 'failed' }, record };
   };
