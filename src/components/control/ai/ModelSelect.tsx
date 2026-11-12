@@ -43,7 +43,7 @@ export function ModelSelect({
   t: T;
 }) {
   const [typing, setTyping] = useState(false);
-  // C501: the short list first (ids that work or are in use); the vendor's whole list only on request.
+  // C502: the short list first (ids that work or are in use); the vendor's whole list only on request.
   const [all, setAll] = useState(false);
   const groups = groupsFor(providers, lists, [value.provider], need ?? null, all ? null : { keep: [value.model.trim()] });
   const more = hasMore(providers, lists, need ?? null);

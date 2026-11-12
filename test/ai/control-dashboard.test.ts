@@ -170,7 +170,7 @@ describe('a picker keeps the ids shaped for its feature (W18)', () => {
   });
 });
 
-describe('the short model list (C501)', () => {
+describe('the short model list (C502)', () => {
   const lists = { nv: { models: ['a', 'b', 'c'], ok: true, fetchedAt: '', proven: ['b'] }, fresh: { models: ['x', 'y'], ok: true, fetchedAt: '', proven: [] } };
   it('offers only the ids that work or are in use, plus what the slot holds', () => {
     expect(groupsFor(['nv'], lists, [], null, { keep: [] })[0].models).toEqual(['b']);

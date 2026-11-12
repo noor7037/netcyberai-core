@@ -378,7 +378,7 @@ export async function recordModelList(db: Sql, providerId: string, models: strin
   );
 }
 
-// `proven` (C501): the ids that answered in the last 30 days or sit in a saved route. The pickers show these first, so a
+// `proven` (C502): the ids that answered in the last 30 days or sit in a saved route. The pickers show these first, so a
 // vendor's list of hundreds of ids (most never tried, some dead) is not what the founder chooses from.
 export type ModelList = { models: string[]; ok: boolean; fetchedAt: string; proven?: string[] };
 export async function loadModelLists(db: Sql): Promise<Record<string, ModelList>> {

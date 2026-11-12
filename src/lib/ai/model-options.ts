@@ -40,7 +40,7 @@ export function groupsFor(
   });
 }
 
-// The short list (C501): only the ids that have answered lately or sit in a route, plus what this slot holds. A provider
+// The short list (C502): only the ids that have answered lately or sit in a route, plus what this slot holds. A provider
 // with none yet (a new key) keeps its whole list, or there would be nothing to pick.
 export function shortModels(fit: string[], proven: string[], keep: string[]): string[] {
   const want = new Set([...proven, ...keep]);
