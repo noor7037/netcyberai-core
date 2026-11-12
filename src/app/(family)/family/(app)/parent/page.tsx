@@ -8,6 +8,7 @@ import { FamIcon } from '@/components/family/FamIcon';
 import { GateFrame } from '@/components/family/GateFrame';
 import { FocusSection } from '@/components/family/FocusSection';
 import { ParentArea, type ParentNeed } from '@/components/family/ParentArea';
+import { PARENT_APP_KEYS } from '@/components/family/parent/keys';
 import { ChildPhoneSection } from '@/components/family/ChildPhoneSection';
 import { HomePlanSection, type PlanSubject } from '@/components/family/HomePlanSection';
 import { NotifySection } from '@/components/family/NotifySection';
@@ -30,7 +31,7 @@ import { listSyllabi } from '@/lib/family/child-syllabus';
 import { isPrePrimary, listFamilyBoards, syllabusBoardOf } from '@/lib/family/children';
 import { SUBJECT_IDS } from '@/lib/family/subjects';
 import type { Subject } from '@/lib/contracts/subjects';
-import { calmCard, openSubjects } from '@/lib/family/learning';
+import { calmCard, openSubjects, parentWeek } from '@/lib/family/learning';
 import { readFamilySwitches, switchOn } from '@/lib/family/flags';
 import { focusTimeLabel, parentFocus } from '@/lib/family/focus';
 import { parentHabit } from '@/lib/family/habit';
@@ -67,7 +68,7 @@ const AREA_KEYS: MessageKey[] = [
   'fam.parent.title', 'fam.parent.back', 'fam.parent.children', 'fam.parent.edit', 'fam.parent.childSaved', 'fam.parent.remove', 'fam.parent.removeConfirm', 'fam.parent.removeYes',
   'fam.parent.answersShow', 'fam.parent.answersNone', 'fam.parent.answerRight', 'fam.parent.answerWrong', 'fam.parent.delete', 'fam.parent.deleteAll',
   'fam.parent.privacy', 'fam.parent.privacyIntro',
-  'fam.parent.tabs', 'fam.parent.tab.overview', 'fam.parent.tab.children', 'fam.parent.tab.school', 'fam.parent.tab.learning', 'fam.parent.tab.privacy', 'fam.parent.tab.account',
+  'fam.parent.tab.learning', ...PARENT_APP_KEYS,
   'fam.parent.needs.title', 'fam.parent.needs.none', 'fam.parent.needs.open', 'fam.parent.needs.requestsDeclined', 'fam.parent.needs.requestsOpen', 'fam.parent.needs.renew', 'fam.parent.needs.consent', 'fam.parent.needs.meeting',
   'fam.parent.learningEmpty', 'fam.parent.goChildren',
   ...SCHOOL_PTM_KEYS,
@@ -151,6 +152,8 @@ export default async function FamilyParentPage() {
     );
   }
   const calm = await familyPageRead(page, async (db) => Promise.all(page.children.map((c) => calmCard(db, page.session.accountId, c.childId, indiaDate(), lang))));
+  // Each child's week (C506): answers checked per day, per subject, and the latest topics. Counts only.
+  const weeks = await familyPageRead(page, (db) => Promise.all(page.children.map((c) => parentWeek(db, page.session.accountId, c.childId, indiaDate(), lang))));
   // Each child's class subjects (C264), for the free-subject choice; a subject open to every child (C298) is open
   // already, so it is not offered.
   const subjects = await familyPageRead(page, async (db) => {
@@ -256,6 +259,7 @@ export default async function FamilyParentPage() {
         offers={{ granted: page.consents.offers }}
         habit={habit}
         calm={calm}
+        weeks={weeks}
         w={familyWords(lang, [...AREA_KEYS, ...CHILD_FORM_KEYS])}
         lang={lang}
         children={page.children.map((c, i) => ({ subjects: subjects[i], childId: c.childId, firstName: c.firstName, classLevel: c.classLevel, board: c.board, language: c.language, style: c.style, stateCode: c.stateCode, stream: c.stream ?? undefined, freeSubject: c.freeSubject }))}
@@ -286,7 +290,9 @@ export default async function FamilyParentPage() {
             )}
             </>
           ),
-          children: (
+          // The phones row shows only when there is something in it.
+          children:
+            (page.children.length > 0 && (phoneLinking || phones.length > 0)) || focus ? (
             <>
             {/* Behind the Focus Lock's switch (C230-AF): with it off, only phones already linked are listed, to remove. */}
             {page.children.length > 0 && (phoneLinking || phones.length > 0) && (
@@ -294,7 +300,7 @@ export default async function FamilyParentPage() {
             )}
             {focus && <FocusSection w={familyWords(lang, FOCUS_KEYS)} devices={focus.devices} notices={focus.notices} />}
             </>
-          ),
+            ) : null,
           school: (
             <>
             <SchoolSection w={familyWords(lang, [...AREA_KEYS, ...CHILD_FORM_KEYS, ...SCHOOL_FEES_KEYS])} lang={lang} links={schools} children={page.children.map((c) => ({ childId: c.childId, firstName: c.firstName }))} />
