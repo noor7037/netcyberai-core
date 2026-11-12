@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { requireStepUp } from '@/lib/auth/step-up';
 import { withPlatformService } from '@/lib/auth/db';
 import { requireAiControl } from '@/lib/ai/control-guard';
-import { checkBaseUrl, loadAiOverview, loadAiRouting, prepareKeyTest, providerChoices, recordKeyTest, rollbackRoute, setCap, setClearance, setCredential, setEndpoint, setPrice, setProfile, setSpendAlert, setTestingMode, setWorkersCredential, undoChange, type ChangeResult, type Link } from '@/lib/ai/control';
+import { checkBaseUrl, loadAiOverview, loadAiRouting, prepareKeyTest, providerChoices, recordKeyTest, rollbackRoute, setCap, setClearance, setCredential, setEndpoint, setPaidCustomer, setPaidLimit, setPaidRoute, setPrice, setProfile, setSpendAlert, setTestingMode, setWorkersCredential, undoChange, type ChangeResult, type Link } from '@/lib/ai/control';
 
 // Control → AI (docs/family-app/10 §3, C249). The founder only, with the authenticator (aal2).
 //   GET   providers and their clearance for minors, each key's last four characters (never a key), the profiles, usage
@@ -22,7 +22,10 @@ import { checkBaseUrl, loadAiOverview, loadAiRouting, prepareKeyTest, providerCh
 //         { action: 'undo', auditId }                                         restore the state before that change
 //         { action: 'rollback', profileId, revisionId? }                       activate the route's previous revision (or the one named) again
 //         { action: 'price', providerId, model, inUsd, outUsd } | { ..., price: null }   US dollars per million tokens (G5)
-//         { action: 'test', providerId }                                      test a provider's key (YouTube, M2-5; Vertex AI and
+//         { action: 'paid_route', profileId, providerId, model, fallback, enabled }   a feature's paid chain (C504)
+//         { action: 'paid_customer', kind, email | customerId, listed }  who pays (C504)
+//         { action: 'paid_limit', value }                                    US$ of paid cost a month; null: paid off
+//         { action: 'test', providerId }                                     test a provider's key (YouTube, M2-5; Vertex AI and
 //                                                                             the OpenAI-compatible adapter, G1)
 // No response carries a key, and nothing here logs the request body.
 export const dynamic = 'force-dynamic';
@@ -81,6 +84,26 @@ export async function POST(req: NextRequest) {
     if (profileId && fallback && promptVersion && typeof b.enabled === 'boolean') {
       result = await withPlatformService((db) => setProfile(db, by, profileId, { providerId: optional(b.providerId, 40), model: optional(b.model, 80), promptVersion, enabled: b.enabled, fallback }));
     }
+  } else if (b?.action === 'paid_route') {
+    // C504: a feature's paid chain (Primary and up to two backups) and its switch.
+    const profileId = str(b.profileId, 60);
+    const fallback: Link[] | null = Array.isArray(b.fallback) && b.fallback.length <= 3 ? b.fallback.map((f: unknown) => ({ provider: str((f as Link)?.provider, 40) ?? '', model: str((f as Link)?.model, 80) ?? '' })) : b.fallback === undefined ? [] : null;
+    if (profileId && fallback && typeof b.enabled === 'boolean') {
+      result = await withPlatformService((db) => setPaidRoute(db, by, profileId, { providerId: optional(b.providerId, 40), model: optional(b.model, 80), fallback, enabled: b.enabled }));
+    }
+  } else if (b?.action === 'paid_customer') {
+    // C504: a family by its account email, or any customer by its id (a school is picked from Control's own list and
+    // sent as customerId: a school id is never read from a request body by name); listed false takes it off.
+    const listed = b.listed;
+    const email = str(b.email, 254);
+    const customerId = str(b.customerId, 36);
+    const kind = b.kind === 'family' || b.kind === 'school' ? b.kind : null;
+    if (typeof listed === 'boolean' && kind) {
+      const ref = customerId ? { kind, customerId } : kind === 'family' && email ? { kind, email } : null;
+      if (ref) result = await withPlatformService((db) => setPaidCustomer(db, by, ref, listed));
+    }
+  } else if (b?.action === 'paid_limit') {
+    if (typeof b.value === 'number' || b.value === null) result = await withPlatformService((db) => setPaidLimit(db, by, b.value));
   } else if (b?.action === 'cap') {
     if (typeof b.value === 'number') result = await withPlatformService((db) => setCap(db, by, b.value));
   } else if (b?.action === 'spend_alert') {
