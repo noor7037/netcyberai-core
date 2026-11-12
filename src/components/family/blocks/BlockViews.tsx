@@ -280,16 +280,26 @@ export function EnglishMomentView({ b, w, tone }: { b: EnglishMoment; w: Words; 
   );
 }
 
+// The site a source is on ("ncert.nic.in"), shown beside its name; never a link.
+const siteOf = (url: string): string => {
+  try {
+    return new URL(url).hostname.replace(/^www\./, '');
+  } catch {
+    return '';
+  }
+};
+
 export function SourcesView({ b, w, tone }: { b: Sources; w: Words; tone: string }) {
   return (
     <Card title={w['fam.block.sources']} tone={tone} tag="sources">
       <ul className="flex flex-col gap-2">
         {b.links.map((l, i) => (
           <li key={i}>
-            <a href={l.url} target="_blank" rel="noopener noreferrer" className="flex min-h-[44px] items-center justify-between gap-2 rounded-2xl bg-off-white px-4 text-sm font-semibold text-ink hover:bg-slate/10">
+            {/* Founder (12 Nov 2026): no link out of the app. The source is named, with its site, as words. */}
+            <p data-source className="flex min-h-[44px] flex-wrap items-center gap-x-2 rounded-2xl bg-off-white px-4 py-2 text-sm font-semibold text-ink">
               <span>{l.label}</span>
-              <span aria-hidden="true">↗</span>
-            </a>
+              <span className="text-xs font-normal text-slate">{siteOf(l.url)}</span>
+            </p>
           </li>
         ))}
       </ul>

@@ -5,7 +5,7 @@ import { fill, type Words } from '@/lib/family/fill';
 import { Card } from './BlockViews';
 
 // A real photograph (W9-C, docs/39 §3): a licensed Wikimedia Commons file the server found and checked, with its caption
-// and its credit ("Photo: <author> · <licence> · Wikimedia Commons", linking to the file's page). A block the server
+// and its credit ("Photo: <author> · <licence> · Wikimedia Commons", as words: no link leaves the app). A block the server
 // has not filled (no address) is never drawn. The picture loads lazily, sends no referrer, and sits in a fixed box, so
 // the page never jumps when it arrives. Nothing here is generated.
 export function ImageView({ b, w, tone }: { b: ImageBlock; w: Words; tone: string }) {
@@ -19,9 +19,10 @@ export function ImageView({ b, w, tone }: { b: ImageBlock; w: Words; tone: strin
         </div>
         <figcaption className="flex flex-col gap-1">
           <span className="text-base text-slate">{b.caption}</span>
-          <a href={b.source} target="_blank" rel="noopener noreferrer" data-photo-credit className="inline-flex min-h-[44px] items-center self-start text-sm font-semibold text-ink underline underline-offset-4">
+          {/* Founder (12 Nov 2026): nothing in the app opens a page outside it. The credit is shown as words, not a link. */}
+          <span data-photo-credit className="text-sm font-semibold text-slate">
             {fill(w['fam.block.photoCredit'], { author: b.credit, licence: b.licence })}
-          </a>
+          </span>
         </figcaption>
       </figure>
     </Card>

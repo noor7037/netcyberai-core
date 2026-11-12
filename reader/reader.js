@@ -5,7 +5,7 @@
   const app = document.getElementById('app');
   const ROOT = 'content/';
   const STORE = 'nca.reader.v1.';
-  const S = { lang: 'en', idx: null, ch: null, view: 'home', ti: 0, mode: 'teach', listen: false, parentOpen: false, answers: {}, check: null, test: null, sheet: null, host: false };
+  const S = { lang: 'en', idx: null, ch: null, view: 'home', ti: 0, mode: 'teach', name: '', listen: false, parentOpen: false, answers: {}, check: null, test: null, sheet: null, host: false };
   try { const v = localStorage.getItem(STORE + 'lang'); if (v === 'en' || v === 'hi') S.lang = v; } catch (e) {}
   const qp = new URLSearchParams(location.search); if (qp.get('lang') === 'hi' || qp.get('lang') === 'en') S.lang = qp.get('lang');
 
@@ -134,7 +134,9 @@
   const canSpeak = 'speechSynthesis' in window;
   const post = (m) => { try { if (window.parent !== window) window.parent.postMessage(Object.assign({ source: 'nca-reader' }, m), location.origin); } catch (e) {} };
   const canListen = () => S.host || canSpeak;
-  const SKIP_SEL = 'svg, iframe, textarea, input, script, style, .noread, .sheet, [aria-hidden="true"]';
+  // Screen furniture is never read aloud (founder, 12 Nov 2026): step tags, chips, progress, pins, credits, the lab's
+  // download note and "tap to zoom". The teacher's line (.teach) and the lesson itself are read.
+  const SKIP_SEL = 'svg, iframe, textarea, input, script, style, .noread, .sheet, [aria-hidden="true"], .tag, .chip, .eyebrow, .readprog, .pin, .frames, .legend b, .labdone';
   const BLOCK_SEL = 'p, li, h1, h2, h3, h4, div, figcaption, td, th, section, button, summary';
   const Say = { on: false, id: 0, tp: null, step: 0, q: null, el: null, once: false };
 
@@ -484,11 +486,62 @@
     return all.find((x) => x.id === iid);
   };
 
+  // ---------- the teacher's voice (founder, 12 Nov 2026) ----------
+  // "Teach me" teaches like a one-to-one teacher: it greets the child by first name, says why each step is there and what
+  // to do next. The name comes from the Family app (hello.name); opened on its own the lines work without a name.
+  // Hindi is home Hindi and gender-neutral (no करोगे/करोगी), so it fits every child.
+  const TEACH = {
+    start: [{ en: '{n}, today we will learn: {t}. Let us begin.', hi: '{n}, आज हम सीखेंगे: {t}। चलो शुरू करते हैं।' },
+      { en: 'Ready, {n}? This topic is about {t}.', hi: 'तैयार हो, {n}? यह टॉपिक है: {t}।' }],
+    hook: [{ en: 'Let us start with something you have seen, {n}.', hi: '{n}, चलो एक ऐसी चीज़ से शुरू करते हैं जो तुमने देखी है।' },
+      { en: 'Look at this, {n}, and think for a moment.', hi: 'यह देखो, {n}, और एक पल सोचो।' }],
+    explain: [{ en: 'Now the main idea, {n}. Listen carefully.', hi: 'अब असली बात, {n}। ध्यान से सुनो।' },
+      { en: 'Here is how it works, {n}.', hi: 'देखो, {n}, यह ऐसे होता है।' }],
+    diagram: [{ en: 'Look at this picture, {n}. It shows the whole idea.', hi: '{n}, यह तस्वीर देखो। इसमें पूरी बात दिखाई गई है।' },
+      { en: 'Watch the picture closely, {n}.', hi: 'तस्वीर को ध्यान से देखो, {n}।' }],
+    figure: [{ en: 'Look closely, {n}. Tap the picture to see it bigger.', hi: 'ध्यान से देखो, {n}। बड़ा देखना हो तो तस्वीर पर टैप करो।' }],
+    equation: [{ en: 'Let us write the idea in short, {n}.', hi: '{n}, अब इसी बात को छोटे में लिखते हैं।' }],
+    table: [{ en: 'This table puts it all side by side, {n}.', hi: '{n}, इस टेबल में सब कुछ साथ-साथ दिखा है।' }],
+    activity: [{ en: 'Try this at home too, {n}.', hi: '{n}, यह घर पर भी करके देखना।' }],
+    worked: [{ en: 'Let us solve one together, {n}, step by step.', hi: 'चलो {n}, एक सवाल साथ में स्टेप बाय स्टेप हल करते हैं।' }],
+    lab: [{ en: 'Now try it yourself, {n}. Open the lab when you are ready.', hi: 'अब ख़ुद करके देखो, {n}। तैयार हो तो लैब खोलो।' },
+      { en: 'Your turn to play with it, {n}.', hi: '{n}, अब तुम्हारी बारी, ख़ुद करके देखो।' }],
+    guided: [{ en: 'Try this one, {n}. Take your time.', hi: '{n}, यह सवाल करके देखो। आराम से सोचो।' }],
+    retrieve: [{ en: 'First, a quick question from before, {n}.', hi: '{n}, पहले पिछली बात का एक छोटा-सा सवाल।' }],
+    misconception: [{ en: 'Many children slip here, {n}. Let us make sure you do not.', hi: '{n}, यहाँ बहुत से बच्चे गड़बड़ कर देते हैं। चलो देखें कि तुमसे न हो।' }],
+    keypoints: [{ en: 'Let us remember the main points, {n}.', hi: 'चलो {n}, मुख्य बातें याद कर लेते हैं।' }],
+    examtip: [{ en: 'Here is how the board paper asks this, {n}.', hi: '{n}, देखो बोर्ड के पेपर में यह कैसे पूछा जाता है।' }],
+    close: [{ en: 'Well done, {n}!', hi: 'बहुत बढ़िया, {n}!' }],
+    check: [{ en: 'Now let us see how much you understood, {n}.', hi: 'अब देखते हैं तुमने कितना समझा, {n}।' }],
+    home: [{ en: 'Hello {n}! In this chapter we will learn about {t}.', hi: 'नमस्ते {n}! इस चैप्टर में हम {t} के बारे में सीखेंगे।' }],
+  };
+  // A first name only: letters, marks, a space, dot, hyphen or apostrophe; at most 24 characters.
+  const cleanName = (x) => (typeof x === 'string' ? x : '').replace(/[^\p{L}\p{M} .'-]/gu, '').trim().split(/\s+/)[0].slice(0, 24);
+  // Puts the child's name in, or leaves it out cleanly ("Well done, {n}!" → "Well done!").
+  function named(str, o, quiet) {
+    const n = quiet ? '' : S.name || '';
+    let x = n ? str.replace(/\{n\}/g, n) : str.replace(/,\s*\{n\}(?=[\s.!?।])/g, '').replace(/\{n\}\s*[,!]?\s*/g, '').replace(/\s+\{n\}/g, '');
+    x = x.replace(/\{t\}/g, (o && o.t) || '');
+    return x.charAt(0).toUpperCase() + x.slice(1);
+  }
+  function teachSay(kind, k, o, quiet) {
+    const list = TEACH[kind]; if (!list) return '';
+    return named(t(list[k % list.length]), o, quiet);
+  }
+  const teachBox = (x) => (x.trim() ? `<p class="teach" ${L()}><span class="ico" aria-hidden="true">🧑‍🏫</span>${esc(x.trim())}</p>` : '');
+  const teachLine = (kind, k, o, quiet) => teachBox(teachSay(kind, k, o, quiet));
+
   // ---------- steps ----------
   const tag = (u, extra) => `<span class="tag">${esc(t(u))}${extra ? ' · ' + esc(extra) : ''}</span>`;
   function stepHTML(s, si, tp) {
     const ns = `${tp.id}.s${si}`;
-    const w = (cls, inner) => `<section class="step ${cls}" id="step-${si}" data-si="${si}" ${L()}>${inner}</section>`;
+    // A teacher uses the name now and then, not in every sentence: in the topic's opening line and every third step after.
+    // The same kind of step twice in a row gets no second line; a kind that comes back gets its next variant.
+    const kth = tp.steps.slice(0, si).filter((x) => x.type === s.type).length;
+    const again = si > 0 && tp.steps[si - 1].type === s.type;
+    const lead = S.mode !== 'teach' ? '' : si === 0 ? teachBox([teachSay('start', S.ti, { t: t(tp.title) }), s.type === 'hook' ? '' : teachSay(s.type, kth, null, true)].join(' '))
+      : again ? '' : teachLine(s.type, kth + S.ti, null, si % 3 !== 0);
+    const w = (cls, inner) => `<section class="step ${cls}" id="step-${si}" data-si="${si}" ${L()}>${inner.replace(/^(<span class="tag">.*?<\/span>)/, (m) => m + lead)}</section>`;
     switch (s.type) {
       case 'retrieve': return w('retrieve', `${tag(U.retrieve)}<p class="mini">${rt(s.from)}</p>${itemHTML(s.item, ns)}`);
       case 'hook': return w('hook', `${tag(U.hook)}${s.image ? `<div class="hookimg">${pic(s.image, '')}</div>` : ''}<p>${rt(s.scene)}</p><p class="q">${rt(s.question)}</p>`);
@@ -499,7 +552,7 @@
         return w('figure', `${tag(U.figure)}<figure class="fig"><div class="frame" data-zoomwrap>${pic(s.images[fi], t(s.alt))}${labels.map((l) => `<span class="pin" style="left:${l.x}%;top:${l.y}%">${l.n}</span>`).join('')}</div>
           ${s.images.length > 1 ? `<div class="frames" role="group" aria-label="${esc(t(U.frame))}">${s.images.map((_, i) => `<button type="button" data-frame="${esc(ns)}" data-f="${i}" aria-pressed="${i === fi}" aria-label="${esc(t(U.frame))} ${i + 1}">${i + 1}</button>`).join('')}</div>` : ''}
           ${labels.length ? `<ol class="legend">${labels.map((l) => `<li><b>${l.n}</b><span>${rt(l.text)}</span></li>`).join('')}</ol>` : ''}
-          <figcaption>${rt(s.caption)}</figcaption>${s.credit ? `<p class="mini">${esc(s.credit)}</p>` : ''}<p class="mini">${esc(t(U.tapZoom))}</p></figure>
+          <figcaption>${rt(s.caption)}</figcaption>${s.credit ? `<p class="mini noread">${esc(s.credit)}</p>` : ''}<p class="mini noread">${esc(t(U.tapZoom))}</p></figure>
           <div class="notice"><b>${esc(t(U.notice))}</b><ul class="pts">${s.notice.map((n) => `<li>${rt(n)}</li>`).join('')}</ul></div>`);
       }
       case 'diagram': return w('diagram', `${tag(U.diagram)}<h3>${rt(s.title)}</h3><div class="dgm" role="img" aria-label="${esc(t(s.alt))}">${svgFill(s)}</div><p class="dgmcap">${rt(s.caption)}</p>${s.notice && s.notice.length ? `<div class="notice"><b>${esc(t(U.notice))}</b><ul class="pts">${s.notice.map((n) => `<li>${rt(n)}</li>`).join('')}</ul></div>` : ''}`);
@@ -511,7 +564,7 @@
       case 'lab': {
         const st = P().labs[s.lab];
         const open = S.openLab === s.lab;
-        return w('lab', `${tag(U.lab)}<p>${rt(s.before)}</p>${open ? `<iframe class="labframe" title="${esc(t(U.lab))}" src="../labs/index.html?embed=1&lang=${S.lang}#${encodeURIComponent(s.lab)}" data-lab="${esc(s.lab)}"></iframe><div class="row"><button type="button" class="btn" data-closelab>${esc(t(U.closeLab))}</button></div>` : `<div class="row"><button type="button" class="btn-go" data-openlab="${esc(s.lab)}">${esc(t(U.openLab))}</button><span class="mini">${esc(t(U.labData))}</span></div>`}
+        return w('lab', `${tag(U.lab)}<p>${rt(s.before)}</p>${open ? `<iframe class="labframe" title="${esc(t(U.lab))}" src="../labs/index.html?embed=1&lang=${S.lang}#${encodeURIComponent(s.lab)}" data-lab="${esc(s.lab)}"></iframe><div class="row"><button type="button" class="btn" data-closelab>${esc(t(U.closeLab))}</button></div>` : `<div class="row"><button type="button" class="btn-go" data-openlab="${esc(s.lab)}">${esc(t(U.openLab))}</button><span class="mini noread">${esc(t(U.labData))}</span></div>`}
           ${st ? `<p class="labdone">✓ ${esc(t(U.labDone))}</p>` : ''}${st || open ? `<div class="notice"><b>${esc(t(U.labAfter))}</b><p>${rt(s.after)}</p></div>` : ''}`);
       }
       case 'guided': {
@@ -616,12 +669,12 @@
     const due = ch.class <= 2 ? null : dueReview();
     const done = ch.topics.filter((x) => passed(x.id)).length;
     const body = `
-      <section class="hero">${ch.hook.image ? pic(ch.hook.image, '', true) : ''}<div class="in"><span class="chip">${esc(t(U.cls))} ${ch.class} · ${esc(subjName(ch.subject_id))} · ${esc(t(U.chapter))} ${ch.number}</span><h1 ${L()}>${esc(t(ch.title))}</h1><p ${L()}>${rt(ch.hook.scene)}</p><p class="q" ${L()}>${esc(t(U.hookQ))}: ${rt(ch.hook.question)}</p></div></section>
-      ${due ? `<section class="card remember"><h3>🧠 ${esc(t(U.remember))}</h3><p>${esc(fill(t(U.rememberNote), { t: t(due.short) }))}</p><div class="row"><button type="button" class="btn-go" data-review="${due.id}">${esc(t(U.rememberGo))}</button><button type="button" class="btn" data-later="${due.id}">${esc(t(U.later))}</button></div></section>` : ''}
+      <section class="hero">${ch.hook.image ? pic(ch.hook.image, '', true) : ''}<div class="in">${teachLine('home', 0, { t: t(ch.title) })}<span class="chip">${esc(t(U.cls))} ${ch.class} · ${esc(subjName(ch.subject_id))} · ${esc(t(U.chapter))} ${ch.number}</span><h1 class="noread" ${L()}>${esc(t(ch.title))}</h1><p ${L()}>${rt(ch.hook.scene)}</p><p class="q" ${L()}>${esc(t(U.hookQ))}: ${rt(ch.hook.question)}</p></div></section>
+      ${due ? `<section class="card remember noread"><h3>🧠 ${esc(t(U.remember))}</h3><p>${esc(fill(t(U.rememberNote), { t: t(due.short) }))}</p><div class="row"><button type="button" class="btn-go" data-review="${due.id}">${esc(t(U.rememberGo))}</button><button type="button" class="btn" data-later="${due.id}">${esc(t(U.later))}</button></div></section>` : ''}
       <section class="card"><div class="eyebrow">${esc(t(U.bigIdea))}</div><p style="font-weight:700" ${L()}>${rt(ch.big_idea)}</p><ul class="pts">${ch.outcomes.map((o) => `<li ${L()}>${rt(o)}</li>`).join('')}</ul></section>
-      <section class="card"><div class="eyebrow">${esc(t(U.topics))} · ${done}/${ch.topics.length}</div><div class="progressline"><i style="width:${Math.round((done / ch.topics.length) * 100)}%"></i></div><p class="mini" style="margin:0 0 4px">${esc(t(U.chRead))}</p>${readBar('chapter', chapterShare())}${topicList()}</section>
-      ${ch.class <= 2 ? `<section class="card"><h3>🌱 ${esc(t(U.bigIdea))}</h3><p class="mini">${esc(t(U.formativeNoTest))}</p></section>` : `<section class="card"><h3>📝 ${esc(t(U.test))}</h3><p class="mini">${esc(t(U.testNote))}</p>${p.test ? `<p><b>${esc(fill(t(U.score), { a: p.test.got, b: p.test.of }))}</b> (${Math.round((p.test.got / p.test.of) * 100)}%)</p>` : ''}<div class="row"><button type="button" class="btn-go" data-test ${allPassed() || S.parentOpen ? '' : 'disabled'}>${esc(t(U.startTest))}</button>${allPassed() || S.parentOpen ? '' : `<span class="mini">${esc(t(U.testLocked))}</span>`}</div></section>`}
-      <section class="card"><label class="parent"><input type="checkbox" data-parent ${S.parentOpen ? 'checked' : ''}><span>${esc(t(U.parent))}</span></label></section>`;
+      <section class="card noread"><div class="eyebrow">${esc(t(U.topics))} · ${done}/${ch.topics.length}</div><div class="progressline"><i style="width:${Math.round((done / ch.topics.length) * 100)}%"></i></div><p class="mini" style="margin:0 0 4px">${esc(t(U.chRead))}</p>${readBar('chapter', chapterShare())}${topicList()}</section>
+      ${ch.class <= 2 ? `<section class="card noread"><h3>🌱 ${esc(t(U.bigIdea))}</h3><p class="mini">${esc(t(U.formativeNoTest))}</p></section>` : `<section class="card noread"><h3>📝 ${esc(t(U.test))}</h3><p class="mini">${esc(t(U.testNote))}</p>${p.test ? `<p><b>${esc(fill(t(U.score), { a: p.test.got, b: p.test.of }))}</b> (${Math.round((p.test.got / p.test.of) * 100)}%)</p>` : ''}<div class="row"><button type="button" class="btn-go" data-test ${allPassed() || S.parentOpen ? '' : 'disabled'}>${esc(t(U.startTest))}</button>${allPassed() || S.parentOpen ? '' : `<span class="mini">${esc(t(U.testLocked))}</span>`}</div></section>`}
+      <section class="card noread"><label class="parent"><input type="checkbox" data-parent ${S.parentOpen ? 'checked' : ''}><span>${esc(t(U.parent))}</span></label></section>`;
     layout(body, null);
     whereAmI();
   }
@@ -706,7 +759,7 @@
       const done = passed(tp.id);
       const note = foundation ? U.formativeTried : U.passed;
       const next = foundation || done;
-      return '<section class="card" id="check"><h3>✅ ' + esc(t(U.check)) + '</h3><p class="mini">' + esc(prompt) + '</p>' +
+      return '<section class="card" id="check"><h3>✅ ' + esc(t(U.check)) + '</h3>' + teachLine('check', 0) + '<p class="mini">' + esc(prompt) + '</p>' +
         (done ? '<p class="labdone">✓ ' + esc(t(note)) + '</p>' : '') +
         '<div class="row"><button type="button" class="btn-go" data-startcheck>' + esc(t(U.startCheck)) + '</button>' +
         (next && S.ti < S.ch.topics.length - 1 ? '<button type="button" class="btn" data-nexttopic>' + esc(t(U.next)) + ' →</button>' : '') +
@@ -873,7 +926,12 @@
     const m = e.data || {};
     if (e.origin !== location.origin) return;
     if (m.source === 'nca-book') {
-      if (m.type === 'hello') { S.host = true; S.tutor = !!m.tutor; if (S.bar) topbar(S.bar); whereAmI(); postState(); }
+      if (m.type === 'hello') {
+        S.host = true; S.tutor = !!m.tutor;
+        const nm = cleanName(m.name);
+        if (nm !== S.name) { S.name = nm; if (S.view === 'overview') overview(); else if (S.view === 'topic') renderTopic(false); }
+        if (S.bar) topbar(S.bar); whereAmI(); postState();
+      }
       else if (m.type === 'now') onNow(m.id, m.i, m.word || null);
       else if (m.type === 'end') onEnd(m.id);
       else if (m.type === 'novoice') { if (Say.on) sayHalt(true); toast(U.noVoice); }

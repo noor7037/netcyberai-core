@@ -4,6 +4,27 @@ From Claude Code (build lead), 12 Nov 2026, for the ChatGPT agent that has read 
 pull requests. This is the single instruction file. Read it in full, then the files in §2, then work through §4 without
 stopping until the scope is complete. Your first slice (PR #421) was reviewed: what to keep and change is in §3.
 
+## 0. Every decision is already made: build, do not ask
+
+Noor does not relay questions. Everything you might ask is answered here; when something is still unclear, choose the
+safer option, write it under "Unsure" in the PR description, and keep building.
+
+| You might ask | The answer |
+| --- | --- |
+| I have no checkout / no `labs/.work/txt/` | Unpack `netcyberai-workspace.tar.gz` (Noor attaches it). It is the repository at the commit named in its `WORKSPACE.txt`, without `.git`, `node_modules`, `.next` or `.env*`, plus the NCERT text of every Class 1–3 book in `labs/.work/txt/<book code><chapter>.txt` (for example `aejm101.txt`). Read those texts; never copy them into a repository file. |
+| I cannot run the checkers | `node reader/scripts/check.mjs …` and `node labs/scripts/check.mjs …` need only Node 18+ (no install). Run them. |
+| I cannot run the smoke test | It needs Playwright. If you cannot install it, skip it and write "smoke not run" in the PR; Claude Code runs it. |
+| I cannot run anything | Build anyway. Check every chapter by hand against §4–§8 and `LESSONS.md`, and write "checkers not run" in the PR. Never stop. |
+| I cannot open a pull request | Deliver one `.zip` per subject holding the changed files at their repository paths (`reader/content/c01/…`, `labs/defs/c01/…`, `labs/assets/c01/…`). Noor drops it in Downloads; Claude Code applies it. |
+| Where are the image plans for Classes 1–3? | There are none and none are needed. Draw animated SVG scenes (§5.1); add an open-licence photo (§5.2) only where the real thing matters. Never name a founder image (`C01-…`) that does not exist. |
+| Which chapters? | Only the rows of `data/content/universal/syllabus/chapters.csv` for the book codes in §1, in order. Class 3 EVS is `ceev1` "Our Wondrous World". |
+| Language of a language book | English book (Mridang, Santoor): the English words being taught stay English in both modes; the Hindi mode explains around them in home Hindi. Hindi book (Sarangi, Veena): the Hindi being taught stays Hindi in both modes; the English mode explains in simple English. Maths and EVS: fully bilingual. |
+| Greeting the child, names | Do not write greetings, the child's name or "Hello child" into content. The reader adds the teacher's lines and the child's first name by itself (founder, 12 Nov 2026). Write every step to "तुम" / "you". |
+| Screen notes ("tap to zoom", "open the lab", "loading") | Never write them into content. The reader shows its own and never reads them aloud. |
+| Links | **No web address anywhere** in a chapter or a lab: not in text, captions, pictures or credits. A credit is words only: `"credit": "Author Name, Wikimedia Commons, CC BY 4.0"`. The source URL goes only into `CREDITS.csv`. The checker refuses a chapter with a web address. |
+| A lab template does not fit | Build a new general template (skill §6) and add it to `labs/catalogue.json`. Do not skip the lab. |
+| Class 3 contract | Write it as §4 says, in its own small PR (or zip) first, then continue with Class 3 chapters on top of it without waiting. |
+
 ## 1. The goal and the order
 
 Build every chapter of every subject of **Class 1, then Class 2, then Class 3** (NCERT, current editions) as
@@ -13,8 +34,8 @@ in everyday Hindi, with pictures, voice, play and labs. Not a textbook.
 | Order | Scope | Books (from `data/content/universal/syllabus/books.csv`, scope `core`) |
 | --- | --- | --- |
 | 1 | Class 1: English, Hindi, Mathematics | `aemr1` Mridang, `ahsr1` Sarangi, `aejm1` Joyful Mathematics |
-| 2 | Class 2: English, Hindi, Mathematics | the Class 2 rows of `books.csv` |
-| 3 | Class 3: English, Hindi, Mathematics, The World Around Us (EVS) | the Class 3 rows of `books.csv` |
+| 2 | Class 2: English, Hindi, Mathematics | `bemr1` Mridang, `bhsr1` Sarangi, `bejm1` Joyful Mathematics |
+| 3 | Class 3: English, Hindi, Mathematics, EVS | `cesa1` Santoor, `chve1` Veena, `cemm1` Maths Mela, `ceev1` Our Wondrous World |
 
 The chapter list for a scope comes **only** from `data/content/universal/syllabus/chapters.csv` (run
 `node skills/netcyber-content/scripts/queue.mjs init --class 1` to print it). Never invent, merge or skip a chapter;
@@ -98,8 +119,8 @@ Every topic needs visuals a child can understand **without reading** — the sce
    from Google Images or random websites** — most are copyrighted and a paid app cannot use them. Never use photos of
    identifiable children, logos or brand packaging. Download the original, convert to WebP (1280 px and a 640 px copy,
    the same way as `labs/assets/c10/science/`), save as `labs/assets/c0N/<subject>/PH-c0N-<subject>-chNN-<slug>.webp`
-   (and `.640.webp`), and give the figure a `"credit": "<author>, <source>, <licence>"` (the checker refuses a `PH-`
-   photo without it). List every photo in `labs/assets/c0N/<subject>/CREDITS.csv` (`file, source_url, author, licence`).
+   (and `.640.webp`), and give the figure a `"credit": "<author>, <source name>, <licence>"` — words only, no web
+   address (the checker refuses a `PH-` photo without a credit, and any chapter with a web address). List every photo in `labs/assets/c0N/<subject>/CREDITS.csv` (`file, source_url, author, licence`).
 3. Founder-made images may appear later; when an image plan exists for a subject, use its file names.
 
 ## 6. Language: everyday Hindi, the way a Delhi family talks at home

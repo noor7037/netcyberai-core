@@ -291,14 +291,14 @@ describe('the views', () => {
     for (const e of TIMELINE.items) expect(out).toContain(e.when);
   });
 
-  it('a photograph: lazy, in a fixed box, with its caption and its credit linking to the file page; an unfilled one is not drawn', () => {
+  it('a photograph: lazy, in a fixed box, with its caption and its credit as words (no link leaves the app); an unfilled one is not drawn', () => {
     const out = html(h(ImageView, { b: PHOTO as ImageBlock, w, tone: 'science' }));
     expect(out).toContain('loading="lazy"');
     expect(out).toContain('aspect-[4/3]');
     expect(out).toContain(`alt="${PHOTO.caption}"`);
     expect(out).toContain('Photo: A. Maker · CC BY-SA 4.0 · Wikimedia Commons');
-    expect(out).toContain(`href="${PHOTO.source}"`);
-    expect(out).toContain('min-h-[44px]');
+    expect(out).not.toContain('href=');
+    expect(out).not.toContain('target="_blank"');
     expect(html(h(ImageView, { b: IMAGE as ImageBlock, w, tone: 'science' }))).toBe('');
     const hi = familyWords('hi', UNDERSTAND_KEYS);
     expect(html(h(ImageView, { b: PHOTO as ImageBlock, w: hi, tone: 'science' }))).toContain('Wikimedia Commons');

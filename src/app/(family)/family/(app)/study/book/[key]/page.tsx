@@ -62,6 +62,7 @@ export default async function BookChapterPage({ params, searchParams }: { params
         subject={subject ?? 'science'}
         back={{ href: `/family/study?subject=${found.book.subject}`, label: t(lang, 'fam.study.title') }}
         w={w}
+        childName={child.firstName}
         tutor={tutorOn ? { voice, files, homework: switchOn(switches, 'homework') } : null}
       />
     </div>
