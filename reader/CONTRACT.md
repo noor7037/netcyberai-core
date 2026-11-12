@@ -30,7 +30,7 @@ Every text a child sees is an object `{ "en": "...", "hi": "..." }` (written `T`
 a child must understand the topic from either one alone, with no outside help. Original words only: never copy NCERT
 sentences, figures or exercise wording.
 
-**Hindi is everyday spoken Hindi (aam bolchaal) with common English words, never shuddh or literary Hindi** (founder,
+**Hindi is everyday spoken Hindi (aam bolchaal) — the way a Delhi family talks at home — with common English words, never shuddh or literary Hindi** (founder,
 9 Nov 2026; feedback part 2 §2–§8). Write the way a Class 10 student and teacher talk:
 - Everyday words stay English, in Devanagari: गेट, पेंट (never रंग for paint), टेस्ट, स्टेप, टॉपिक, चैप्टर, मार्क्स,
   लैब, मॉडल आंसर, रिज़ल्ट, पास, डेटा, प्लेट, पाउडर, ग्रे, लाइन, टेबल, सेट-अप, एयरटाइट, फ़्रिज, बॉइलिंग ट्यूब, वॉच
@@ -49,7 +49,8 @@ sentences, figures or exercise wording.
 - No calques ("follow the oxygen" → देखो ऑक्सीजन कहाँ गई), no clause wedged before a postposition (split it), every
   sentence has a complete verb that fits its subject. Never add words to a Hindi MCQ option that the English lacks.
 - No bare English words in Hindi prose (ऊष्मा, not heat); keep digits as in the English (4, not चार); one style for
-  units (g, mL, kg) everywhere. The checker greps for the banned words.
+  units (g, mL, kg) everywhere. The checker greps for the banned words and for the bookish words in
+  `skills/netcyber-content/references/hindi.md` (a failure for Classes 1–8, a counted advisory for 9–12).
 
 Reading level: write below the class label (one idea per sentence, short paragraphs), then give the precise board
 wording. Contexts are Indian and varied (kitchen, market, monsoon, rotate festivals, any gender in any role).

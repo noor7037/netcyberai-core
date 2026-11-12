@@ -28,6 +28,10 @@ const BLOOM = new Set(['remember', 'understand', 'apply', 'analyse', 'evaluate',
 const AUTO = new Set(['mcq', 'ar', 'case']);
 // Bookish or wrong Hindi the founder ruled out (feedback part 2 §2–§8): never in a "hi" string.
 const BANNED_HI = ['फाटक', 'प्रयोगशाला', 'अध्याय परीक्षा', 'आदर्श उत्तर', 'हल-और-परीक्षण', 'धूसर', 'तश्तरी', 'प्रायः', 'गहरी बोतल', 'रंग का रंग', 'अधोलेख', 'चकाचौंध', 'स्वयं', 'आवश्यक', 'वायुरोधी', 'धूम-कक्ष', 'धुआँ-कक्ष', 'बहुविकल्पी', 'उत्तीर्ण', 'सम्पर्क', 'गतिविधि', 'किग्रा', 'पीछा करो', 'शुभ संख्या', 'रेफ़्रिजरेटर'];
+// Everyday Delhi-household Hindi (Noor, 12 Nov 2026): bookish words with their spoken form. A failure for Classes 1–8;
+// a counted advisory for Classes 9–12 until those chapters get their clean-up pass.
+const SPOKEN_HI = { 'केवल': 'सिर्फ़', 'प्रत्येक': 'हर', 'अधिक': 'ज़्यादा', 'सरल': 'आसान', 'कठिन': 'मुश्किल', 'भोजन': 'खाना', 'वृक्ष': 'पेड़', 'पुष्प': 'फूल', 'नेत्र': 'आँख', 'विद्यालय': 'स्कूल', 'पाठशाला': 'स्कूल', 'सहायता': 'मदद', 'प्रयास': 'कोशिश', 'आरंभ': 'शुरू', 'समाप्त': 'ख़त्म', 'एवं': 'और', 'तथा': 'और', 'किंतु': 'लेकिन', 'परंतु': 'लेकिन', 'अतः': 'इसलिए', 'द्वारा': 'से', 'उपरोक्त': 'ऊपर वाला', 'निम्नलिखित': 'नीचे दिए', 'यद्यपि': 'हालाँकि', 'अत्यंत': 'बहुत', 'हेतु': 'के लिए', 'संपूर्ण': 'पूरा' };
+const spokenHits = (hi) => Object.keys(SPOKEN_HI).filter((w) => new RegExp(`(?<![\u0900-\u097F])${w}(?![\u0900-\u097F])`).test(hi));
 const BARE_EN = /\b(heat|sunlight|grey|gray|energy|light)\b/i;
 let total = 0;
 
@@ -37,7 +41,7 @@ for (const file of files) {
   const bad = (m) => P.push(m);
   let ch;
   try { ch = JSON.parse(fs.readFileSync(file, 'utf8')); } catch (e) { console.log(`${rel(file)}: not valid JSON: ${e.message}`); total++; continue; }
-  if (ch.class === 1) {
+  if (ch.class === 1 || ch.class === 2) {
     const issues = [];
     const bad = (m) => issues.push(m);
     const pair = (v, at) => { if (!v || typeof v !== 'object' || typeof v.en !== 'string' || typeof v.hi !== 'string' || !v.en.trim() || !v.hi.trim()) bad(at + ': expected non-empty {en, hi}'); };
@@ -103,6 +107,31 @@ for (const file of files) {
       pool.forEach((v,i)=>checkItem(v,w+'.check.items['+i+']'));
     });
     if (ch.hook && ch.hook.answered_in) { const last=topics.find(t=>t.id===ch.hook.answered_in); if(!last || !last.steps.some(s=>s.type==='close' && s.answers==='chapter')) bad('the final hook must be answered by a chapter close step'); }
+    // Shared rules every band follows: spoken Hindi, no LaTeX, no bare English in Hindi prose, readable diagram
+    // labels at phone width, images that exist, and a credit for every open-licensed photo (PH- names).
+    const assetDirF = path.join(ROOT, 'labs', 'assets', `c${String(ch.class).padStart(2, '0')}`, ch.subject_id || '');
+    (function sweep(x, where) {
+      if (Array.isArray(x)) return x.forEach((v, i) => sweep(v, `${where}[${i}]`));
+      if (!x || typeof x !== 'object') return;
+      if (typeof x.hi === 'string' && typeof x.en === 'string') {
+        for (const w of BANNED_HI) if (x.hi.includes(w)) bad(`${where}: Hindi uses "${w}" (spoken Hindi: CONTRACT §1)`);
+        for (const w of spokenHits(x.hi)) bad(`${where}: say "${SPOKEN_HI[w]}", not "${w}" (everyday Hindi)`);
+        for (const lang of ['en', 'hi']) { const m = String(x[lang]).match(/\\[A-Za-z]+|[\^_]\{/); if (m) bad(`${where}: LaTeX "${m[0]}" in ${lang}`); }
+      }
+      if (x.type === 'diagram' && typeof x.svg === 'string') {
+        const fonts = [...x.svg.matchAll(/font-size\s*[=:]\s*"?([\d.]+)/g)].map((m) => +m[1]).filter((v) => v >= 2);
+        const vbw = +((x.svg.match(/viewBox\s*=\s*"[\d.\s-]*?([\d.]+)\s+[\d.]+\s*"/) || [])[1] || 360);
+        if (fonts.length && (Math.min(...fonts) * 360) / vbw < 13) bad(`${where}: diagram labels too small for a young child at phone width (keep the viewBox about 360 wide, labels 15+)`);
+      }
+      if (x.type === 'figure' || x.type === 'hook' || x.image) {
+        const names = x.type === 'figure' ? x.images || [] : x.image ? [x.image] : [];
+        for (const n of names) {
+          if (!fs.existsSync(path.join(assetDirF, `${n}.webp`))) bad(`${where}: image ${n} not found in labs/assets/c${String(ch.class).padStart(2, '0')}/${ch.subject_id}/`);
+          if (/^PH-/.test(n) && !(typeof x.credit === 'string' && /CC0|CC BY|Public domain|Unsplash|Pexels|Pixabay|GODL|NASA/i.test(x.credit))) bad(`${where}: open-licensed photo ${n} needs "credit": "<author>, <source>, <licence>" (allowed: CC0, CC BY, CC BY-SA, public domain, Unsplash, Pexels, Pixabay licence)`);
+        }
+      }
+      for (const [k, v] of Object.entries(x)) if (k !== 'svg' && k !== 'en') sweep(v, `${where}.${k}`);
+    })(ch, 'chapter');
     total += issues.length;
     console.log(file.replace(ROOT + path.sep,'') + ': ' + (issues.length ? issues.length+' problems' : 'ok') + ' — ' + topics.length + ' short topics, ' + topics.reduce((n,t)=>n+((t.check&&t.check.items)||[]).length,0) + ' formative items, no chapter test');
     issues.forEach(m=>console.log('  - '+m));
@@ -273,6 +302,7 @@ for (const file of files) {
     if (!x || typeof x !== 'object') return;
     if (typeof x.hi === 'string' && typeof x.en === 'string') {
       for (const w of BANNED_HI) if (x.hi.includes(w)) bad(`${where}: Hindi uses "${w}" (see CONTRACT §1)`);
+      for (const w of spokenHits(x.hi)) { if (ch.class <= 8) bad(`${where}: say "${SPOKEN_HI[w]}", not "${w}" (everyday Hindi)`); else W.push(`spoken Hindi: "${w}" → "${SPOKEN_HI[w]}"`); }
       for (const lang of ['en', 'hi']) { const m = String(x[lang]).match(/\\[A-Za-z]+|[\^_]\{/); if (m) bad(`${where}: LaTeX "${m[0]}" in ${lang}; write maths as plain symbols (π, ×, ², √, ∠, θ, °)`); }
       const bare = x.hi.replace(/\{\{eq:[^}]*\}\}/g, '').replace(/\([^)]*[A-Za-z][^)]*\)/g, '');
       if (BARE_EN.test(bare)) bad(`${where}: English word "${bare.match(BARE_EN)[0]}" left in Hindi prose`);
@@ -289,7 +319,8 @@ for (const file of files) {
 
   total += P.length;
   const counts = `${topics.length} topics, ${topics.reduce((a, t) => a + ((t.check && t.check.items) || []).length, 0)} topic items, ${test.length} test items (${marks} marks), ${usedImages.size} images`;
-  console.log(`${rel(file)}: ${P.length ? P.length + ' problems' : 'ok'}${DRAFT ? ` (draft, ${W.length} quality warnings)` : ''} — ${counts}`);
+  const spokenW = W.filter((w) => w.startsWith('spoken Hindi')).length;
+  console.log(`${rel(file)}: ${P.length ? P.length + ' problems' : 'ok'}${DRAFT ? ` (draft, ${W.length - spokenW} quality warnings)` : ''}${spokenW ? ` [${spokenW} bookish Hindi words to clean]` : ''} — ${counts}`);
   P.slice(0, 60).forEach((m) => console.log('  - ' + m));
   if (P.length > 60) console.log(`  … ${P.length - 60} more`);
 }

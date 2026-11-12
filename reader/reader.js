@@ -499,7 +499,7 @@
         return w('figure', `${tag(U.figure)}<figure class="fig"><div class="frame" data-zoomwrap>${pic(s.images[fi], t(s.alt))}${labels.map((l) => `<span class="pin" style="left:${l.x}%;top:${l.y}%">${l.n}</span>`).join('')}</div>
           ${s.images.length > 1 ? `<div class="frames" role="group" aria-label="${esc(t(U.frame))}">${s.images.map((_, i) => `<button type="button" data-frame="${esc(ns)}" data-f="${i}" aria-pressed="${i === fi}" aria-label="${esc(t(U.frame))} ${i + 1}">${i + 1}</button>`).join('')}</div>` : ''}
           ${labels.length ? `<ol class="legend">${labels.map((l) => `<li><b>${l.n}</b><span>${rt(l.text)}</span></li>`).join('')}</ol>` : ''}
-          <figcaption>${rt(s.caption)}</figcaption><p class="mini">${esc(t(U.tapZoom))}</p></figure>
+          <figcaption>${rt(s.caption)}</figcaption>${s.credit ? `<p class="mini">${esc(s.credit)}</p>` : ''}<p class="mini">${esc(t(U.tapZoom))}</p></figure>
           <div class="notice"><b>${esc(t(U.notice))}</b><ul class="pts">${s.notice.map((n) => `<li>${rt(n)}</li>`).join('')}</ul></div>`);
       }
       case 'diagram': return w('diagram', `${tag(U.diagram)}<h3>${rt(s.title)}</h3><div class="dgm" role="img" aria-label="${esc(t(s.alt))}">${svgFill(s)}</div><p class="dgmcap">${rt(s.caption)}</p>${s.notice && s.notice.length ? `<div class="notice"><b>${esc(t(U.notice))}</b><ul class="pts">${s.notice.map((n) => `<li>${rt(n)}</li>`).join('')}</ul></div>` : ''}`);
@@ -743,7 +743,6 @@
     renderTest(true);
   }
   function renderTest(top, showResult) {
-    if (!S.ch || !Array.isArray(S.ch.test?.items) || !S.ch.test.items.length) return overview();
     const items = S.ch.test.items, ns = S.test.ns;
     const scores = items.map((it) => itemScore(it, ns));
     const left = scores.filter((s) => !s.done).length;
