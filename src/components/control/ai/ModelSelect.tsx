@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
 import type { ModelList } from "@/lib/ai/control";
-import { groupsFor, optionValue, otherValue, parseOption, selectedValue, validModel, type Need } from '@/lib/ai/model-options';
+import { groupsFor, hasMore, optionValue, otherValue, parseOption, selectedValue, validModel, type Need } from '@/lib/ai/model-options';
 import type { MessageKey } from "@/lib/i18n";
 
 // The model picker (G6, C379; one drop-down since W6-C, C397): a single "provider · model" select built from the
@@ -43,7 +43,10 @@ export function ModelSelect({
   t: T;
 }) {
   const [typing, setTyping] = useState(false);
-  const groups = groupsFor(providers, lists, [value.provider], need ?? null);
+  // C501: the short list first (ids that work or are in use); the vendor's whole list only on request.
+  const [all, setAll] = useState(false);
+  const groups = groupsFor(providers, lists, [value.provider], need ?? null, all ? null : { keep: [value.model.trim()] });
+  const more = hasMore(providers, lists, need ?? null);
   const shown = selectedValue(groups, value, typing);
   const other = parseOption(shown)?.model === null;
   const list = lists[value.provider];
@@ -92,6 +95,12 @@ export function ModelSelect({
           </optgroup>
         ))}
       </Select>
+      {more && (
+        <label className="flex min-h-[44px] items-center gap-2 text-xs text-slate/80" data-model-all>
+          <input type="checkbox" className="h-4 w-4" checked={all} disabled={disabled} onChange={(e) => setAll(e.target.checked)} />
+          {t("control.ai.pick.all")}
+        </label>
+      )}
       {other && (
         <>
           <Input

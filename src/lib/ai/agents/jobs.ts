@@ -1,5 +1,3 @@
-import { log } from '@/lib/observability/log';
-import type { JobHandler } from '@/lib/jobs/types';
 
 // The Tutor's slow work (W16-A1, the proposal's M3): job types on the one job queue (src/lib/jobs), never a second
 // runner. A1 registers them as stubs that only say they ran; W16-B fills them:
@@ -15,11 +13,3 @@ export const TUTOR_PARENT_REPORT_JOB = 'tutor.parent_report';
 export const AI_OPS_DAILY_JOB = 'ai.ops_daily';
 export const TUTOR_JOB_TYPES = [TUTOR_QUIZ_JOB, TUTOR_PARENT_REPORT_JOB, AI_OPS_DAILY_JOB] as const;
 export type TutorJobType = (typeof TUTOR_JOB_TYPES)[number];
-
-// The stub: it logs its type and attempt (never the payload) and finishes, removing nothing.
-export function tutorStubHandler(type: TutorJobType): JobHandler {
-  return async (job) => {
-    log('info', 'tutor.job_ran', { type, attempts: job.attempts, stub: true });
-    return { redact: [] };
-  };
-}

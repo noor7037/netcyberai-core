@@ -9221,6 +9221,7 @@ export const hi: Record<keyof typeof en, string> = {
   'control.ai.stat.usd': '{value} अमेरिकी डॉलर',
   'control.ai.pick.choose': 'मॉडल चुनें…',
   'control.ai.pick.other': 'अन्य…',
+  'control.ai.pick.all': 'सेवा के सभी मॉडल दिखाएँ (छोटी सूची में वही हैं जो चलते हैं या काम में हैं)',
   'control.ai.pick.otherField': 'मॉडल की पहचान ({provider})',
   'control.ai.pick.badModel': 'मॉडल की पहचान में खाली जगह नहीं होती: केवल अक्षर, अंक और . _ : / -।',
   'control.ai.slot.duplicate': 'दो जगह एक ही सेवा और मॉडल है। एक बदलें।',

@@ -9235,6 +9235,7 @@ export const en = {
   'control.ai.stat.usd': 'US${value}',
   'control.ai.pick.choose': 'Choose a model…',
   'control.ai.pick.other': 'Other…',
+  'control.ai.pick.all': 'Show every model the service lists (the short list holds the ones that work or are in use)',
   'control.ai.pick.otherField': 'Model id ({provider})',
   'control.ai.pick.badModel': 'A model id has no spaces: letters, digits and . _ : / - only.',
   'control.ai.slot.duplicate': 'The same service and model are in two slots. Change one.',

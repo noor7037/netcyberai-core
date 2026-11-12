@@ -15,7 +15,7 @@ import { whatsappSendHandler, WHATSAPP_SEND_JOB } from '@/lib/whatsapp/gate';
 import { AI_SMOKE_JOB, CONTENT_PREPARE_JOB, aiSmokeHandler, contentPrepareHandler } from './ai-jobs';
 import { AI_HEALTH_PROBE_JOB, aiHealthProbeHandler } from '@/lib/ai/gateway/probe';
 import { AI_UPKEEP_JOB, aiUpkeepHandler } from '@/lib/ai/gateway/upkeep';
-import { AI_OPS_DAILY_JOB, TUTOR_PARENT_REPORT_JOB, TUTOR_QUIZ_JOB, tutorStubHandler } from '@/lib/ai/agents/jobs';
+import { AI_OPS_DAILY_JOB, TUTOR_PARENT_REPORT_JOB, TUTOR_QUIZ_JOB } from '@/lib/ai/agents/jobs';
 import { aiOpsDailyHandler } from '@/lib/ai/ops-daily';
 import { enqueueWeeklyReports, parentReportHandler } from '@/lib/family/parent-report';
 import { log } from '@/lib/observability/log';
