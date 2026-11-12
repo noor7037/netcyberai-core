@@ -204,7 +204,7 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
   const model = drawn.some((b) => b.type === 'model_3d');
   // W16-A2: where the answer comes from, first: its chapter as soon as the sources block names it, else, once complete,
   // general knowledge.
-  const citation = citationOf(shown, state === 'done' || state === 'incomplete');
+  const citation = citationOf(shown, state === 'done' || state === 'incomplete', meta?.hasBook !== false);
   // Only the latest request may draw: an earlier one (a follow-up tapped twice, React's double run in development) is
   // aborted and anything it still sends is ignored.
   const current = useRef<AbortController | null>(null);

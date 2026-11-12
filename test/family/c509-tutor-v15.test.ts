@@ -164,3 +164,18 @@ describe('the resolver gate for a board (C509)', () => {
     expect(await run('v14', 'english', ['explanation', 'image', 'check'])).toEqual(['board', 'explanation']);
   });
 });
+
+describe('a board-first answer stays board first when stored; no book, no chip (C509)', () => {
+  it('keeps the board first only when it was written first', async () => {
+    const { completeResponse } = await import('@/lib/family/blocks');
+    const { citationOf } = await import('@/lib/family/citation');
+    const board = { type: 'board' } as never;
+    const explanation = { type: 'explanation', idea: 'x', paragraphs: [] } as never;
+    const check = { type: 'check' } as never;
+    const core = ['explanation'] as never;
+    expect(completeResponse([board, explanation, check], core)!.map((b) => b.type)).toEqual(['board', 'explanation', 'check']);
+    expect(completeResponse([explanation, board, check], core)!.map((b) => b.type)).toEqual(['explanation', 'board', 'check']);
+    expect(citationOf([explanation], true, false)).toBeNull();
+    expect(citationOf([explanation], true, true)).toEqual({ kind: 'general' });
+  });
+});

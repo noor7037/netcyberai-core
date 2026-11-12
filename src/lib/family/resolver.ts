@@ -76,7 +76,9 @@ const withAttached = (text: string, attached: string | undefined) => (attached ?
 
 export type PublicBlock = Exclude<Block, { type: 'check' } | { type: 'practice' }> | { type: 'check' | 'practice'; items: PublicItem[] };
 export type ResolverEvent =
-  | { t: 'meta'; label: 'ai_made' | 'checked'; cached: boolean; title: string | null; subject: string; topicKey: string | null }
+  // hasBook (C509): false when the child's class has no published book in the answer's subject, so no "not from your
+  // book" chip is shown; absent on older stored answers (read as true).
+  | { t: 'meta'; label: 'ai_made' | 'checked'; cached: boolean; title: string | null; subject: string; topicKey: string | null; hasBook?: boolean }
   | { t: 'block'; block: PublicBlock }
   // W10 (C411): `missing`, the core blocks the plan asked for that never came (coreBlocks); `cut`, the answer ended
   // early (the call failed or timed out after some blocks, or the model stopped inside a block). `complete`: neither.
@@ -233,6 +235,8 @@ export type Pending = {
   classSubjects: Subject[];
   // C503: the subject tab the question was typed in (null: none).
   tab?: Subject | null;
+  // C509: the subjects the child's class has a published book in (a typed question only).
+  bookSubjects?: readonly string[];
   cacheable: boolean;
   promptVersion: string;
   text: PreparedText;
@@ -465,7 +469,7 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
   }
   const question = input.kind === 'question' ? withAttached(input.text, input.attached) : null;
   const asked = question ?? `Explain "${line?.topicEn ?? line?.chapterEn ?? ''}" to a Class ${child.classLevel} student.`;
-  return { ctx, line, known, open, classSubjects: ofClass, tab, cacheable, promptVersion: prompt.version, text: prepared.text, moderation, asked, question, labs: input.kind === 'question' && input.scope ? input.scope.labs.map((l) => l.id) : [], plan, teach: teach ? { ...teach, build } : null, ...(isCheck ? { check: true as const, reading: input.kind === 'question' ? (input.attached ?? '') : '' } : {}) };
+  return { ctx, line, known, open, classSubjects: ofClass, tab, ...(ask.bookSubjects ? { bookSubjects: ask.bookSubjects } : {}), cacheable, promptVersion: prompt.version, text: prepared.text, moderation, asked, question, labs: input.kind === 'question' && input.scope ? input.scope.labs.map((l) => l.id) : [], plan, teach: teach ? { ...teach, build } : null, ...(isCheck ? { check: true as const, reading: input.kind === 'question' ? (input.attached ?? '') : '' } : {}) };
 }
 
 // The planner reads the question and the start of what attached files say: enough to plan, not to answer.
@@ -555,7 +559,7 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
     const b = addName(unnamed);
     kept.push(b);
     shared.push(withoutName(unnamed));
-    if (kept.length === 1) emit({ t: 'meta', label: 'ai_made', cached: false, title: line?.title ?? null, subject: s, topicKey: line?.key ?? null });
+    if (kept.length === 1) emit({ t: 'meta', label: 'ai_made', cached: false, title: line?.title ?? null, subject: s, topicKey: line?.key ?? null, ...(p.bookSubjects ? { hasBook: p.bookSubjects.includes(s) } : {}) });
     // Progress and the sealed items are keyed to the syllabus line; a typed question is kept against its subject.
     emit({ t: 'block', block: toPublic(b, ctx, line?.key ?? questionKey(ctx.child, s), s) });
   };
