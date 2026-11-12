@@ -4,6 +4,14 @@ The founder's rule (9 Nov 2026): write the way a Class 10 student and teacher ac
 the English words students use, written in Devanagari — and keep the NCERT Hindi-medium science/maths terms that the
 board paper uses. Full lists: `docs/family-app/handover/LESSONS.md` §C and `reader/CONTRACT.md` §1.
 
+**Sharpened (Noor, 12 Nov 2026): Hindi as a Delhi family talks at home** — simple, warm, everyday words, English
+words where people actually use them; never shuddh, literary or textbook Hindi. Words the checker refuses for Classes
+1–8 (and counts for 9–12): केवल → सिर्फ़, प्रत्येक → हर, अधिक → ज़्यादा, सरल → आसान, कठिन → मुश्किल, भोजन → खाना,
+वृक्ष → पेड़, पुष्प → फूल, नेत्र → आँख, विद्यालय/पाठशाला → स्कूल, सहायता → मदद, प्रयास → कोशिश, आरंभ → शुरू, समाप्त →
+ख़त्म, एवं/तथा → और, किंतु/परंतु → लेकिन, अतः → इसलिए, द्वारा → से, उपरोक्त → ऊपर वाला, निम्नलिखित → नीचे दिए,
+यद्यपि → हालाँकि, अत्यंत → बहुत, हेतु → के लिए, संपूर्ण → पूरा. NCERT subject terms (उपचयन, द्विघात समीकरण …) stay,
+with the English in brackets once per topic; everything around them is home Hindi.
+
 ## How to write each Hindi string
 
 1. Read the English idea, then **write the Hindi fresh** as you would say it to a student. Never translate word by word.

@@ -1,7 +1,6 @@
-// NetCyberAI chapter reader. Teaches a chapter topic by topic (reader/CONTRACT.md): retrieve → hook → explain →
-// figures → worked example and "your turn" → lab → guided practice → misconception → key points → exam tip → close,
-// then a 5-question check drawn from 8 (4 of 5 opens the next topic, retry without shame), a 20-item chapter test in the
-// CBSE mix, and a 7-day "remember it?" card. English or Hindi, read aloud, offline-friendly, progress on this device.
+// NetCyberAI chapter reader. Each age band follows its own content contract.
+// Foundational classes use short, play-led topics and formative checks without pass gates or chapter exams.
+// Older classes retain their current reader flow. English or Hindi, read aloud, offline-friendly, progress on this device.
 (() => {
   const app = document.getElementById('app');
   const ROOT = 'content/';
@@ -40,6 +39,10 @@
     ],
     writeHere: { en: 'Write your answer here (optional), then compare.', hi: 'अपना जवाब यहाँ लिखो (चाहो तो), फिर मिलाओ।' }, showModel: { en: 'Show the model answer', hi: 'मॉडल आंसर दिखाओ' }, model: { en: 'Model answer', hi: 'मॉडल आंसर' }, tick: { en: 'Tick each point your answer has. One mark each.', hi: 'तुम्हारे उत्तर में जो पॉइंट हैं, उन पर टिक लगाओ। हर पॉइंट का एक मार्क।' },
     check: { en: 'Check your understanding', hi: 'अपनी समझ चेक करो' }, checkNote: { en: '5 questions. Get 4 right to open the next topic. You can try again as often as you like.', hi: '5 सवाल। अगला टॉपिक खोलने के लिए 4 सही करो। जितनी बार चाहो, फिर से कोशिश कर सकते हो।' },
+    formativeNote: { en: 'Try three picture questions. There is no pass mark and no lock. Look, think and keep learning.', hi: 'चित्र वाले तीन सवाल आज़माओ। यहाँ पास होने की शर्त या ताला नहीं है। देखो, सोचो और सीखते रहो।' },
+    formativeDone: { en: 'You tried every question. Good work! Play again or move on when you are ready.', hi: 'तुमने हर सवाल आज़माया। बढ़िया! फिर से खेलो या तैयार होने पर आगे बढ़ो।' },
+    formativeNoTest: { en: 'There is no chapter exam here. Learning grows through play, talk, drawing and trying things.', hi: 'यहाँ चैप्टर का एग्ज़ाम नहीं है। खेल, बातचीत, चित्र बनाने और कोशिश करने से सीखना बढ़ता है।' },
+    formativeTried: { en: 'You have tried this picture check.', hi: 'तुमने यह चित्र वाला अभ्यास किया है।' },
     startCheck: { en: 'Start the check', hi: 'चेक शुरू करो' }, score: { en: 'You got {a} of {b}.', hi: 'तुमने {b} में से {a} सही किए।' },
     passed: { en: 'Topic complete. The next topic is open.', hi: 'टॉपिक पूरा हुआ। अगला टॉपिक खुल गया है।' }, again: { en: 'Not yet. Read the explanations above, then try a fresh set. Every try helps you learn.', hi: 'अभी नहीं। ऊपर के जवाब और समझाने वाली बातें पढ़ो, फिर नए सवालों के साथ फिर कोशिश करो। हर कोशिश से कुछ सीखते हो।' },
     tryFresh: { en: 'Try a fresh set', hi: 'नए सवालों से फिर करो' }, reviewTopic: { en: 'Go over the topic again', hi: 'टॉपिक फिर से देखो' },
@@ -477,7 +480,7 @@
     const iid = rest.split('#')[0];
     const all = [];
     S.ch.topics.forEach((tp) => { tp.steps.forEach((s) => { if (s.item) all.push(s.item); if (s.faded && s.faded.item) all.push(s.faded.item); }); (tp.check.items || []).forEach((x) => all.push(x)); });
-    S.ch.test.items.forEach((x) => all.push(x));
+    (S.ch.test?.items || []).forEach((x) => all.push(x));
     return all.find((x) => x.id === iid);
   };
 
@@ -496,7 +499,7 @@
         return w('figure', `${tag(U.figure)}<figure class="fig"><div class="frame" data-zoomwrap>${pic(s.images[fi], t(s.alt))}${labels.map((l) => `<span class="pin" style="left:${l.x}%;top:${l.y}%">${l.n}</span>`).join('')}</div>
           ${s.images.length > 1 ? `<div class="frames" role="group" aria-label="${esc(t(U.frame))}">${s.images.map((_, i) => `<button type="button" data-frame="${esc(ns)}" data-f="${i}" aria-pressed="${i === fi}" aria-label="${esc(t(U.frame))} ${i + 1}">${i + 1}</button>`).join('')}</div>` : ''}
           ${labels.length ? `<ol class="legend">${labels.map((l) => `<li><b>${l.n}</b><span>${rt(l.text)}</span></li>`).join('')}</ol>` : ''}
-          <figcaption>${rt(s.caption)}</figcaption><p class="mini">${esc(t(U.tapZoom))}</p></figure>
+          <figcaption>${rt(s.caption)}</figcaption>${s.credit ? `<p class="mini">${esc(s.credit)}</p>` : ''}<p class="mini">${esc(t(U.tapZoom))}</p></figure>
           <div class="notice"><b>${esc(t(U.notice))}</b><ul class="pts">${s.notice.map((n) => `<li>${rt(n)}</li>`).join('')}</ul></div>`);
       }
       case 'diagram': return w('diagram', `${tag(U.diagram)}<h3>${rt(s.title)}</h3><div class="dgm" role="img" aria-label="${esc(t(s.alt))}">${svgFill(s)}</div><p class="dgmcap">${rt(s.caption)}</p>${s.notice && s.notice.length ? `<div class="notice"><b>${esc(t(U.notice))}</b><ul class="pts">${s.notice.map((n) => `<li>${rt(n)}</li>`).join('')}</ul></div>` : ''}`);
@@ -567,7 +570,7 @@
 
   // ---------- gates ----------
   const passed = (id) => !!P().passed[id];
-  const unlocked = (i) => S.parentOpen || i === 0 || passed(S.ch.topics[i - 1].id);
+  const unlocked = (i) => S.ch.class <= 2 || S.parentOpen || i === 0 || passed(S.ch.topics[i - 1].id);
   const allPassed = () => S.ch.topics.every((x) => passed(x.id));
 
   // ---------- views ----------
@@ -610,14 +613,14 @@
     S.view = 'overview'; hash(S.chFile.replace(/\.json$/, ''));
     const ch = S.ch, p = P();
     topbar({ title: `${t(U.chapter)} ${ch.number}`, sub: t(ch.title), back: 'home', listen: true });
-    const due = dueReview();
+    const due = ch.class <= 2 ? null : dueReview();
     const done = ch.topics.filter((x) => passed(x.id)).length;
     const body = `
       <section class="hero">${ch.hook.image ? pic(ch.hook.image, '', true) : ''}<div class="in"><span class="chip">${esc(t(U.cls))} ${ch.class} · ${esc(subjName(ch.subject_id))} · ${esc(t(U.chapter))} ${ch.number}</span><h1 ${L()}>${esc(t(ch.title))}</h1><p ${L()}>${rt(ch.hook.scene)}</p><p class="q" ${L()}>${esc(t(U.hookQ))}: ${rt(ch.hook.question)}</p></div></section>
       ${due ? `<section class="card remember"><h3>🧠 ${esc(t(U.remember))}</h3><p>${esc(fill(t(U.rememberNote), { t: t(due.short) }))}</p><div class="row"><button type="button" class="btn-go" data-review="${due.id}">${esc(t(U.rememberGo))}</button><button type="button" class="btn" data-later="${due.id}">${esc(t(U.later))}</button></div></section>` : ''}
       <section class="card"><div class="eyebrow">${esc(t(U.bigIdea))}</div><p style="font-weight:700" ${L()}>${rt(ch.big_idea)}</p><ul class="pts">${ch.outcomes.map((o) => `<li ${L()}>${rt(o)}</li>`).join('')}</ul></section>
       <section class="card"><div class="eyebrow">${esc(t(U.topics))} · ${done}/${ch.topics.length}</div><div class="progressline"><i style="width:${Math.round((done / ch.topics.length) * 100)}%"></i></div><p class="mini" style="margin:0 0 4px">${esc(t(U.chRead))}</p>${readBar('chapter', chapterShare())}${topicList()}</section>
-      <section class="card"><h3>📝 ${esc(t(U.test))}</h3><p class="mini">${esc(t(U.testNote))}</p>${p.test ? `<p><b>${esc(fill(t(U.score), { a: p.test.got, b: p.test.of }))}</b> (${Math.round((p.test.got / p.test.of) * 100)}%)</p>` : ''}<div class="row"><button type="button" class="btn-go" data-test ${allPassed() || S.parentOpen ? '' : 'disabled'}>${esc(t(U.startTest))}</button>${allPassed() || S.parentOpen ? '' : `<span class="mini">${esc(t(U.testLocked))}</span>`}</div></section>
+      ${ch.class <= 2 ? `<section class="card"><h3>🌱 ${esc(t(U.bigIdea))}</h3><p class="mini">${esc(t(U.formativeNoTest))}</p></section>` : `<section class="card"><h3>📝 ${esc(t(U.test))}</h3><p class="mini">${esc(t(U.testNote))}</p>${p.test ? `<p><b>${esc(fill(t(U.score), { a: p.test.got, b: p.test.of }))}</b> (${Math.round((p.test.got / p.test.of) * 100)}%)</p>` : ''}<div class="row"><button type="button" class="btn-go" data-test ${allPassed() || S.parentOpen ? '' : 'disabled'}>${esc(t(U.startTest))}</button>${allPassed() || S.parentOpen ? '' : `<span class="mini">${esc(t(U.testLocked))}</span>`}</div></section>`}
       <section class="card"><label class="parent"><input type="checkbox" data-parent ${S.parentOpen ? 'checked' : ''}><span>${esc(t(U.parent))}</span></label></section>`;
     layout(body, null);
     whereAmI();
@@ -697,7 +700,18 @@
     return pick;
   }
   function checkHTML(tp) {
-    if (!S.check || S.check.tp !== tp.id) return `<section class="card" id="check"><h3>✅ ${esc(t(U.check))}</h3><p class="mini">${esc(t(U.checkNote))}</p>${passed(tp.id) ? `<p class="labdone">✓ ${esc(t(U.passed))}</p>` : ''}<div class="row"><button type="button" class="btn-go" data-startcheck>${esc(t(U.startCheck))}</button>${passed(tp.id) && S.ti < S.ch.topics.length - 1 ? `<button type="button" class="btn" data-nexttopic>${esc(t(U.next))} →</button>` : ''}</div></section>`;
+    const foundation = S.ch.class <= 2;
+    const prompt = t(foundation ? U.formativeNote : U.checkNote);
+    if (!S.check || S.check.tp !== tp.id) {
+      const done = passed(tp.id);
+      const note = foundation ? U.formativeTried : U.passed;
+      const next = foundation || done;
+      return '<section class="card" id="check"><h3>✅ ' + esc(t(U.check)) + '</h3><p class="mini">' + esc(prompt) + '</p>' +
+        (done ? '<p class="labdone">✓ ' + esc(t(note)) + '</p>' : '') +
+        '<div class="row"><button type="button" class="btn-go" data-startcheck>' + esc(t(U.startCheck)) + '</button>' +
+        (next && S.ti < S.ch.topics.length - 1 ? '<button type="button" class="btn" data-nexttopic>' + esc(t(U.next)) + ' →</button>' : '') +
+        '</div></section>';
+    }
     const c = S.check;
     const scores = c.items.map((it) => itemScore(it, c.ns));
     const finished = scores.every((s) => s.done);
@@ -705,14 +719,24 @@
     let res = '';
     if (finished) {
       const ok = got >= tp.check.pass;
-      if (ok && !passed(tp.id)) { P().passed[tp.id] = Date.now(); save(); }
-      res = `<div class="card result" aria-live="polite"><div class="big">${got}/${c.items.length}</div><p><b>${esc(fill(t(U.score), { a: got, b: c.items.length }))}</b></p><p>${esc(t(ok ? U.passed : U.again))}</p><div class="row" style="justify-content:center">${ok ? (S.ti < S.ch.topics.length - 1 ? `<button type="button" class="btn-go" data-nexttopic>${esc(t(U.next))} →</button>` : `<button type="button" class="btn-go" data-overview>${esc(t(U.chOverview))}</button>`) : `<button type="button" class="btn-go" data-startcheck>${esc(t(U.tryFresh))}</button><button type="button" class="btn" data-jump="0">${esc(t(U.reviewTopic))}</button>`}</div></div>`;
+      if ((foundation || ok) && !passed(tp.id)) { P().passed[tp.id] = Date.now(); save(); }
+      const message = foundation ? U.formativeDone : (ok ? U.passed : U.again);
+      let actions = '';
+      if (foundation) {
+        actions = (S.ti < S.ch.topics.length - 1 ? '<button type="button" class="btn-go" data-nexttopic>' + esc(t(U.next)) + ' →</button>' : '<button type="button" class="btn-go" data-overview>' + esc(t(U.chOverview)) + '</button>') +
+          '<button type="button" class="btn" data-startcheck>' + esc(t(U.tryFresh)) + '</button>';
+      } else if (ok) {
+        actions = S.ti < S.ch.topics.length - 1 ? '<button type="button" class="btn-go" data-nexttopic>' + esc(t(U.next)) + ' →</button>' : '<button type="button" class="btn-go" data-overview>' + esc(t(U.chOverview)) + '</button>';
+      } else {
+        actions = '<button type="button" class="btn-go" data-startcheck>' + esc(t(U.tryFresh)) + '</button><button type="button" class="btn" data-jump="0">' + esc(t(U.reviewTopic)) + '</button>';
+      }
+      res = '<div class="card result" aria-live="polite"><div class="big">' + got + '/' + c.items.length + '</div><p><b>' + esc(fill(t(U.score), { a: got, b: c.items.length })) + '</b></p><p>' + esc(t(message)) + '</p><div class="row" style="justify-content:center">' + actions + '</div></div>';
     }
-    return `<section class="card" id="check"><h3>✅ ${esc(t(U.check))}</h3>${c.items.map((it, i) => `<div style="margin-top:12px"><span class="chip">${i + 1}/${c.items.length}</span>${itemHTML(it, c.ns)}</div>`).join('')}</section>${res}`;
+    return '<section class="card" id="check"><h3>✅ ' + esc(t(U.check)) + '</h3>' + c.items.map((it, i) => '<div style="margin-top:12px"><span class="chip">' + (i + 1) + '/' + c.items.length + '</span>' + itemHTML(it, c.ns) + '</div>').join('') + '</section>' + res;
   }
-
   // chapter test and the 7-day review
   function openTest() {
+    if (!S.ch || !Array.isArray(S.ch.test?.items) || !S.ch.test.items.length) return overview();
     S.view = 'test'; S.test = { ns: 'test' + Date.now() };
     hash(`${S.chFile.replace(/\.json$/, '')}~test`);
     topbar({ title: t(U.test), sub: t(S.ch.title), back: 'overview' });

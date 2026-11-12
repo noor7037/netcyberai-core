@@ -28,6 +28,10 @@ const BLOOM = new Set(['remember', 'understand', 'apply', 'analyse', 'evaluate',
 const AUTO = new Set(['mcq', 'ar', 'case']);
 // Bookish or wrong Hindi the founder ruled out (feedback part 2 §2–§8): never in a "hi" string.
 const BANNED_HI = ['फाटक', 'प्रयोगशाला', 'अध्याय परीक्षा', 'आदर्श उत्तर', 'हल-और-परीक्षण', 'धूसर', 'तश्तरी', 'प्रायः', 'गहरी बोतल', 'रंग का रंग', 'अधोलेख', 'चकाचौंध', 'स्वयं', 'आवश्यक', 'वायुरोधी', 'धूम-कक्ष', 'धुआँ-कक्ष', 'बहुविकल्पी', 'उत्तीर्ण', 'सम्पर्क', 'गतिविधि', 'किग्रा', 'पीछा करो', 'शुभ संख्या', 'रेफ़्रिजरेटर'];
+// Everyday Delhi-household Hindi (Noor, 12 Nov 2026): bookish words with their spoken form. A failure for Classes 1–8;
+// a counted advisory for Classes 9–12 until those chapters get their clean-up pass.
+const SPOKEN_HI = { 'केवल': 'सिर्फ़', 'प्रत्येक': 'हर', 'अधिक': 'ज़्यादा', 'सरल': 'आसान', 'कठिन': 'मुश्किल', 'भोजन': 'खाना', 'वृक्ष': 'पेड़', 'पुष्प': 'फूल', 'नेत्र': 'आँख', 'विद्यालय': 'स्कूल', 'पाठशाला': 'स्कूल', 'सहायता': 'मदद', 'प्रयास': 'कोशिश', 'आरंभ': 'शुरू', 'समाप्त': 'ख़त्म', 'एवं': 'और', 'तथा': 'और', 'किंतु': 'लेकिन', 'परंतु': 'लेकिन', 'अतः': 'इसलिए', 'द्वारा': 'से', 'उपरोक्त': 'ऊपर वाला', 'निम्नलिखित': 'नीचे दिए', 'यद्यपि': 'हालाँकि', 'अत्यंत': 'बहुत', 'हेतु': 'के लिए', 'संपूर्ण': 'पूरा' };
+const spokenHits = (hi) => Object.keys(SPOKEN_HI).filter((w) => new RegExp(`(?<![\u0900-\u097F])${w}(?![\u0900-\u097F])`).test(hi));
 const BARE_EN = /\b(heat|sunlight|grey|gray|energy|light)\b/i;
 let total = 0;
 
@@ -37,6 +41,102 @@ for (const file of files) {
   const bad = (m) => P.push(m);
   let ch;
   try { ch = JSON.parse(fs.readFileSync(file, 'utf8')); } catch (e) { console.log(`${rel(file)}: not valid JSON: ${e.message}`); total++; continue; }
+  if (ch.class === 1 || ch.class === 2) {
+    const issues = [];
+    const bad = (m) => issues.push(m);
+    const pair = (v, at) => { if (!v || typeof v !== 'object' || typeof v.en !== 'string' || typeof v.hi !== 'string' || !v.en.trim() || !v.hi.trim()) bad(at + ': expected non-empty {en, hi}'); };
+    const itemIds = new Set(), blooms = new Set(['remember','understand','apply']);
+    const labPath = path.join(ROOT,'labs','defs','c01',ch.subject_id || '',(ch.chapter_key || '') + '.json');
+    let labMap = new Map();
+    try { for (const l of JSON.parse(fs.readFileSync(labPath,'utf8')).labs || []) labMap.set(l.id,l); } catch { bad('missing or invalid Class 1 lab definition'); }
+    for (const k of ['chapter_key','subject_id','book','number']) if (ch[k] == null) bad('missing ' + k);
+    if (path.basename(file) !== (ch.chapter_key + '.json')) bad('file name must match chapter_key');
+    pair(ch.title,'title'); pair(ch.big_idea,'big_idea');
+    if (!Array.isArray(ch.outcomes) || ch.outcomes.length < 3) bad('outcomes: need at least 3'); else ch.outcomes.forEach((v,i)=>pair(v,'outcomes['+i+']'));
+    if (!ch.hook) bad('chapter hook missing'); else { pair(ch.hook.scene,'hook.scene'); pair(ch.hook.question,'hook.question'); }
+    if (ch.test != null) bad('Class 1 must not include a chapter test');
+    const topics = Array.isArray(ch.topics) ? ch.topics : [];
+    if (topics.length < 3 || topics.length > 8) bad('Class 1 chapter needs 3–8 short topics');
+    if (ch.hook && !topics.some(t=>t.id===ch.hook.answered_in)) bad('hook.answered_in must name a topic');
+    const checkItem = (it,where) => {
+      if (!it || it.type !== 'mcq') { bad(where + ': Class 1 checks use picture-word MCQs'); return; }
+      if (!it.id || itemIds.has(it.id)) bad(where + ': missing or duplicate id'); else itemIds.add(it.id);
+      if (!blooms.has(it.bloom)) bad(where + ': bloom must be remember, understand or apply');
+      pair(it.q,where+'.q');
+      if (!Array.isArray(it.options) || it.options.length < 2 || it.options.length > 3) bad(where + ': needs 2 or 3 options'); else it.options.forEach((v,i)=>pair(v,where+'.options['+i+']'));
+      if (!Number.isInteger(it.answer) || it.answer < 0 || it.answer >= (it.options || []).length) bad(where + ': answer index invalid');
+      if (!Array.isArray(it.why) || it.why.length !== (it.options || []).length) bad(where + ': why must explain each option'); else it.why.forEach((v,i)=>pair(v,where+'.why['+i+']'));
+    };
+    topics.forEach((t,ti)=>{
+      const w='topics['+ti+'] '+t.id, steps=Array.isArray(t.steps)?t.steps:[], types=steps.map(s=>s.type);
+      if (!/^t\d\d$/.test(t.id || '')) bad(w + ': id must look like t01');
+      pair(t.title,w+'.title'); pair(t.short,w+'.short');
+      if (!(t.minutes >= 4 && t.minutes <= 8)) bad(w + ': duration must be 4–8 minutes');
+      if (!Array.isArray(t.outcomes) || !t.outcomes.length) bad(w + ': needs an outcome'); else t.outcomes.forEach((v,i)=>pair(v,w+'.outcomes['+i+']'));
+      if (!Array.isArray(t.terms) || !t.terms.length) bad(w + ': needs key terms'); else t.terms.forEach((v,i)=>{ if(!v.en || !v.hi) bad(w+'.terms['+i+']: needs en and hi'); pair(v.gloss,w+'.terms['+i+'].gloss'); });
+      for (const required of ['hook','explain','diagram','guided','keypoints','close']) if (!types.includes(required)) bad(w + ': missing ' + required + ' step');
+      if (!types.includes('lab')) pair(t.why_no_lab,w+'.why_no_lab');
+      const diagramWords=[];
+      steps.forEach((s,si)=>{
+        const sw=w+'.steps['+si+'] '+s.type;
+        if (s.type==='hook') { pair(s.scene,sw+'.scene'); pair(s.question,sw+'.question'); }
+        if (s.type==='explain') { pair(s.title,sw+'.title'); pair(s.plain,sw+'.plain'); if(!Array.isArray(s.body)||!s.body.length) bad(sw+': needs short explanation lines'); else s.body.forEach((v,i)=>pair(v,sw+'.body['+i+']')); }
+        if (s.type==='diagram') {
+          pair(s.title,sw+'.title'); pair(s.caption,sw+'.caption'); pair(s.alt,sw+'.alt');
+          const svg=String(s.svg||'');
+          if (!/^\s*<svg[\s>]/.test(svg) || !/<\/svg>\s*$/.test(svg) || !/viewBox=/.test(svg)) bad(sw+': needs one inline SVG with viewBox');
+          if (/<script|<foreignObject|<image|\son\w+\s*=|href\s*=\s*["'](?!#)/i.test(svg)) bad(sw+': unsafe SVG content');
+          if (svg.length > 14000) bad(sw+': SVG exceeds 14 KB');
+          const keys=[...svg.matchAll(/data-t="([^"]+)"/g)].map(m=>m[1]);
+          if (!keys.length) bad(sw+': needs bilingual data-t labels');
+          keys.forEach(k=>{ if(!s.texts || !s.texts[k]) bad(sw+': missing text binding '+k); else { pair(s.texts[k],sw+'.texts.'+k); diagramWords.push(String(s.texts[k].en||'').toLowerCase()); } });
+        }
+        if (s.type==='lab') {
+          pair(s.before,sw+'.before'); pair(s.after,sw+'.after');
+          const def=labMap.get(s.lab);
+          if (!def) bad(sw+': lab id not found in chapter definition');
+          else if (Array.isArray(t.ncert) && t.ncert.length && def.topic !== t.ncert[0]) bad(sw+': lab topic does not match syllabus topic');
+        }
+        if (s.type==='guided') { checkItem(s.item,sw+'.item'); pair(s.hint,sw+'.hint'); }
+        if (s.type==='keypoints') { if(!Array.isArray(s.points)||s.points.length<2||s.points.length>4) bad(sw+': needs 2–4 key points'); else s.points.forEach((v,i)=>pair(v,sw+'.points['+i+']')); }
+        if (s.type==='close') { if(!['hook','chapter'].includes(s.answers)) bad(sw+': close answers must be hook or chapter'); pair(s.text,sw+'.text'); }
+      });
+      for (const term of (t.terms || [])) if (term.en && !diagramWords.some(w=>w.includes(String(term.en).toLowerCase()))) bad(w+': key term '+term.en+' is missing from the diagram');
+      const pool=(t.check && t.check.items)||[];
+      if (pool.length !== 4 || !t.check || t.check.draw !== 3 || t.check.pass !== 2) bad(w+'.check: needs 4 questions, draw 3, feedback target 2; progress is never locked');
+      pool.forEach((v,i)=>checkItem(v,w+'.check.items['+i+']'));
+    });
+    if (ch.hook && ch.hook.answered_in) { const last=topics.find(t=>t.id===ch.hook.answered_in); if(!last || !last.steps.some(s=>s.type==='close' && s.answers==='chapter')) bad('the final hook must be answered by a chapter close step'); }
+    // Shared rules every band follows: spoken Hindi, no LaTeX, no bare English in Hindi prose, readable diagram
+    // labels at phone width, images that exist, and a credit for every open-licensed photo (PH- names).
+    const assetDirF = path.join(ROOT, 'labs', 'assets', `c${String(ch.class).padStart(2, '0')}`, ch.subject_id || '');
+    (function sweep(x, where) {
+      if (Array.isArray(x)) return x.forEach((v, i) => sweep(v, `${where}[${i}]`));
+      if (!x || typeof x !== 'object') return;
+      if (typeof x.hi === 'string' && typeof x.en === 'string') {
+        for (const w of BANNED_HI) if (x.hi.includes(w)) bad(`${where}: Hindi uses "${w}" (spoken Hindi: CONTRACT §1)`);
+        for (const w of spokenHits(x.hi)) bad(`${where}: say "${SPOKEN_HI[w]}", not "${w}" (everyday Hindi)`);
+        for (const lang of ['en', 'hi']) { const m = String(x[lang]).match(/\\[A-Za-z]+|[\^_]\{/); if (m) bad(`${where}: LaTeX "${m[0]}" in ${lang}`); }
+      }
+      if (x.type === 'diagram' && typeof x.svg === 'string') {
+        const fonts = [...x.svg.matchAll(/font-size\s*[=:]\s*"?([\d.]+)/g)].map((m) => +m[1]).filter((v) => v >= 2);
+        const vbw = +((x.svg.match(/viewBox\s*=\s*"[\d.\s-]*?([\d.]+)\s+[\d.]+\s*"/) || [])[1] || 360);
+        if (fonts.length && (Math.min(...fonts) * 360) / vbw < 13) bad(`${where}: diagram labels too small for a young child at phone width (keep the viewBox about 360 wide, labels 15+)`);
+      }
+      if (x.type === 'figure' || x.type === 'hook' || x.image) {
+        const names = x.type === 'figure' ? x.images || [] : x.image ? [x.image] : [];
+        for (const n of names) {
+          if (!fs.existsSync(path.join(assetDirF, `${n}.webp`))) bad(`${where}: image ${n} not found in labs/assets/c${String(ch.class).padStart(2, '0')}/${ch.subject_id}/`);
+          if (/^PH-/.test(n) && !(typeof x.credit === 'string' && /CC0|CC BY|Public domain|Unsplash|Pexels|Pixabay|GODL|NASA/i.test(x.credit))) bad(`${where}: open-licensed photo ${n} needs "credit": "<author>, <source>, <licence>" (allowed: CC0, CC BY, CC BY-SA, public domain, Unsplash, Pexels, Pixabay licence)`);
+        }
+      }
+      for (const [k, v] of Object.entries(x)) if (k !== 'svg' && k !== 'en') sweep(v, `${where}.${k}`);
+    })(ch, 'chapter');
+    total += issues.length;
+    console.log(file.replace(ROOT + path.sep,'') + ': ' + (issues.length ? issues.length+' problems' : 'ok') + ' — ' + topics.length + ' short topics, ' + topics.reduce((n,t)=>n+((t.check&&t.check.items)||[]).length,0) + ' formative items, no chapter test');
+    issues.forEach(m=>console.log('  - '+m));
+    continue;
+  }
   const assetDir = path.join(ROOT, 'labs', 'assets', `c${String(ch.class).padStart(2, '0')}`, ch.subject_id || '');
   const labFile = LABS_OVERRIDE || path.join(ROOT, 'labs', 'defs', `c${String(ch.class).padStart(2, '0')}`, ch.subject_id || '', `${ch.chapter_key}.json`);
   let labIds = new Set();
@@ -202,6 +302,7 @@ for (const file of files) {
     if (!x || typeof x !== 'object') return;
     if (typeof x.hi === 'string' && typeof x.en === 'string') {
       for (const w of BANNED_HI) if (x.hi.includes(w)) bad(`${where}: Hindi uses "${w}" (see CONTRACT §1)`);
+      for (const w of spokenHits(x.hi)) { if (ch.class <= 8) bad(`${where}: say "${SPOKEN_HI[w]}", not "${w}" (everyday Hindi)`); else W.push(`spoken Hindi: "${w}" → "${SPOKEN_HI[w]}"`); }
       for (const lang of ['en', 'hi']) { const m = String(x[lang]).match(/\\[A-Za-z]+|[\^_]\{/); if (m) bad(`${where}: LaTeX "${m[0]}" in ${lang}; write maths as plain symbols (π, ×, ², √, ∠, θ, °)`); }
       const bare = x.hi.replace(/\{\{eq:[^}]*\}\}/g, '').replace(/\([^)]*[A-Za-z][^)]*\)/g, '');
       if (BARE_EN.test(bare)) bad(`${where}: English word "${bare.match(BARE_EN)[0]}" left in Hindi prose`);
@@ -218,7 +319,8 @@ for (const file of files) {
 
   total += P.length;
   const counts = `${topics.length} topics, ${topics.reduce((a, t) => a + ((t.check && t.check.items) || []).length, 0)} topic items, ${test.length} test items (${marks} marks), ${usedImages.size} images`;
-  console.log(`${rel(file)}: ${P.length ? P.length + ' problems' : 'ok'}${DRAFT ? ` (draft, ${W.length} quality warnings)` : ''} — ${counts}`);
+  const spokenW = W.filter((w) => w.startsWith('spoken Hindi')).length;
+  console.log(`${rel(file)}: ${P.length ? P.length + ' problems' : 'ok'}${DRAFT ? ` (draft, ${W.length - spokenW} quality warnings)` : ''}${spokenW ? ` [${spokenW} bookish Hindi words to clean]` : ''} — ${counts}`);
   P.slice(0, 60).forEach((m) => console.log('  - ' + m));
   if (P.length > 60) console.log(`  … ${P.length - 60} more`);
 }

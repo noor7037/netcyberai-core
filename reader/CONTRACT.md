@@ -10,13 +10,27 @@ The rules behind this contract are in `docs/family-app/12_CONTENT_FACTORY.md` (b
 (feedback §5): Rosenshine topic flow, worked example then fade, concept first and board format second, CBSE 50/20/30
 for Classes 9–12, misconception distractors, no shame, audio and offline.
 
+## Foundational reader: Classes 1–2
+
+Class 1 is a play-led, formative learning experience. The secondary/senior CBSE exam structure below does not apply.
+
+- Topics are 4–8 minutes, with a short hook, simple explanation, original visual, guided prompt, 2–4 key points and a close.
+- Every visible explanation, prompt, option, hint, feedback line, caption and diagram label has English and Hindi.
+- Use 2–3 answer choices. A check is practice and feedback, never permission to unlock the next topic.
+- Each topic has four picture-word/oral checks; the reader draws three. Record practice, not pass/fail.
+- No chapter test, timed exam, assertion–reason item, long written answer or progression gate.
+- Every topic has a useful bilingual diagram. Keep SVG inline, with data-t labels; no scripts, handlers, external resources, embedded images or foreignObject.
+- Add a lab when interaction genuinely improves learning. Otherwise give a bilingual why_no_lab reason and suggest a real-world activity.
+- Reuse exact lab IDs from labs/defs/c01/<subject>/<chapter_key>.json, and ensure the lab topic matches topic.ncert[0].
+- The same authenticated, child-scoped Family reader and existing content route must be used; do not introduce a parallel player or content store.
+
 ## 1. Text
 
 Every text a child sees is an object `{ "en": "...", "hi": "..." }` (written `T` below). Both languages are complete:
 a child must understand the topic from either one alone, with no outside help. Original words only: never copy NCERT
 sentences, figures or exercise wording.
 
-**Hindi is everyday spoken Hindi (aam bolchaal) with common English words, never shuddh or literary Hindi** (founder,
+**Hindi is everyday spoken Hindi (aam bolchaal) — the way a Delhi family talks at home — with common English words, never shuddh or literary Hindi** (founder,
 9 Nov 2026; feedback part 2 §2–§8). Write the way a Class 10 student and teacher talk:
 - Everyday words stay English, in Devanagari: गेट, पेंट (never रंग for paint), टेस्ट, स्टेप, टॉपिक, चैप्टर, मार्क्स,
   लैब, मॉडल आंसर, रिज़ल्ट, पास, डेटा, प्लेट, पाउडर, ग्रे, लाइन, टेबल, सेट-अप, एयरटाइट, फ़्रिज, बॉइलिंग ट्यूब, वॉच
@@ -35,7 +49,8 @@ sentences, figures or exercise wording.
 - No calques ("follow the oxygen" → देखो ऑक्सीजन कहाँ गई), no clause wedged before a postposition (split it), every
   sentence has a complete verb that fits its subject. Never add words to a Hindi MCQ option that the English lacks.
 - No bare English words in Hindi prose (ऊष्मा, not heat); keep digits as in the English (4, not चार); one style for
-  units (g, mL, kg) everywhere. The checker greps for the banned words.
+  units (g, mL, kg) everywhere. The checker greps for the banned words and for the bookish words in
+  `skills/netcyber-content/references/hindi.md` (a failure for Classes 1–8, a counted advisory for 9–12).
 
 Reading level: write below the class label (one idea per sentence, short paragraphs), then give the precise board
 wording. Contexts are Indian and varied (kitchen, market, monsoon, rotate festivals, any gender in any role).
