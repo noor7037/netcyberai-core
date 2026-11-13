@@ -116,6 +116,13 @@ COLOR_HEX = {
     "lesson-blush-deep": "#B42318",
     "lesson-sky": "#E3EEF9",
     "lesson-sky-deep": "#0369A1",
+    # C513: the Draw tab's art table (tailwind.config.ts `art`; src/lib/design-tokens.ts artColors). Ink text on each.
+    "art-coral": "#FFB4A2",
+    "art-sky": "#A9D6F5",
+    "art-mint": "#B8E6CF",
+    "art-butter": "#FFE7A3",
+    "art-lavender": "#D9CCF6",
+    "art-table": "#F4EADB",
     "white": "#FFFFFF",
     "black": "#000000",
     "red-600": "#DC2626",

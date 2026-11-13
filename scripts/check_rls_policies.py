@@ -524,6 +524,8 @@ ALLOWED_PERMISSIVE = (
         ("family.push_sent", "push_sent_own"),
         # S1 (C374): where a child stopped listening to a chapter; own account only (restrictive twin below).
         ("family.chapter_reading", "chapter_reading_own"),
+        # C514: a child's completed drawing templates (ids and a time only); own account only (restrictive twins below).
+        ("family.draw_completions", "draw_completions_own"),
         # S3 (C376): published chapters (or the family's own upload), the family's own requests, and its subject sources.
         ("content.chapter_contents", "chapter_contents_family_read"),
         ("content.chapter_requests", "chapter_requests_family_read"),
@@ -1122,6 +1124,9 @@ REQUIRED_RESTRICTIVE = {
     # S1 (C374): own account only.
     ("family.chapter_reading", "chapter_reading_own_only"),
     ("family.chapter_reading", "chapter_reading_one_child"),
+    # C514: own account only, and on a child's own phone that child only.
+    ("family.draw_completions", "draw_completions_own_only"),
+    ("family.draw_completions", "draw_completions_one_child"),
     # S3 (C376): the chapters, the requests and the subject sources are held to the family's own account.
     ("content.chapter_contents", "chapter_contents_family_only"),
     ("content.chapter_requests", "chapter_requests_family_only"),

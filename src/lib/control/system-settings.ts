@@ -1,7 +1,7 @@
 import type { Sql } from '@/lib/jobs/types';
 import { writeAuditLog } from '@/lib/audit/log';
 import { SPEND_ALERT_MAX_USD } from '@/lib/ai/gateway/upkeep';
-import { TUTOR_CAP_MAX as CAP_MAX, TUTOR_MULTIPLIER_MAX as MULTIPLIER_MAX, VOICE_CHARS_MAX } from '@/lib/control/family-settings';
+import { DRAW_DAILY_MAX, TUTOR_CAP_MAX as CAP_MAX, TUTOR_MULTIPLIER_MAX as MULTIPLIER_MAX, VOICE_CHARS_MAX } from '@/lib/control/family-settings';
 
 // Control → System Settings: the register of the platform's own settings (control.settings), each with the Control
 // screen that owns it. W21-M6: the plain settings the code reads (a switch, a word or a number) are edited here as a
@@ -18,6 +18,7 @@ export const SETTING_SCREENS: Readonly<Record<string, string>> = {
   'family.ai.daily_requests': '/control/ai',
   'family.voice.daily_characters': '/control/family',
   'family.word_help.daily_requests': '/control/family',
+  'family.draw.daily_creations': '/control/family',
   'family.open_subjects': '/control/family',
   'family.reviewed_only_subjects': '/control/family',
   'family.plus_open': '/control/family',
@@ -42,6 +43,7 @@ export const EDITABLE_SETTINGS: readonly EditableSetting[] = [
   { key: 'family.ai.daily_requests', kind: 'number', min: 0, max: 1000, whole: true }, // src/lib/ai/control.ts writeCap
   { key: 'family.voice.daily_characters', kind: 'number', min: 0, max: VOICE_CHARS_MAX, whole: true },
   { key: 'family.word_help.daily_requests', kind: 'number', min: 0, max: 5000, whole: true }, // src/lib/family/word-help.ts
+  { key: 'family.draw.daily_creations', kind: 'number', min: 0, max: DRAW_DAILY_MAX, whole: true }, // src/lib/family/draw-daily.ts (C513)
   { key: 'family.plus_open', kind: 'switch', on: true, off: false },
   { key: 'family.tutor.text_turns_per_day', kind: 'number', min: 0, max: CAP_MAX, whole: true },
   { key: 'family.tutor.voice_minutes_per_day', kind: 'number', min: 0, max: CAP_MAX, whole: true },

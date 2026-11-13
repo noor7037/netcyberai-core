@@ -7,7 +7,7 @@
 // Entitlement classes (03 §2): `school_info` always free to a linked family; `learning` per child per subject (free for
 // one subject per child; Family Plus or a school's sponsorship later for the rest); `public` free; `plus` Plus only.
 
-export type FamilyTab = 'home' | 'study' | 'english' | 'future' | 'family';
+export type FamilyTab = 'home' | 'study' | 'english' | 'draw' | 'future' | 'family';
 export type Entitlement = 'school_info' | 'learning' | 'public' | 'plus';
 // `addOn`: the module only extends others on its tab (M2-9's offline packs extend Understand), so it never shows a tab
 // by itself.
@@ -54,4 +54,7 @@ export const FAMILY_MODULES: readonly FamilyModule[] = [
   { id: 'tutor_board', tab: 'study', flag: 'tutor_board', entitlement: 'learning', built: true, milestone: 'W16' },
   { id: 'tutor_quiz', tab: 'study', flag: 'tutor_quiz', entitlement: 'learning', built: true, milestone: 'W16' },
   { id: 'tutor_reports', tab: 'family', flag: 'tutor_reports', entitlement: 'public', built: true, milestone: 'W16' },
+  // C513: the Draw tab, a free art table (its own tab between English and Future). Free, on by default like the others;
+  // pre-primary children may use it. Its drawings stay on the device.
+  { id: 'draw', tab: 'draw', flag: 'draw', entitlement: 'public', built: true, milestone: 'C513' },
 ];

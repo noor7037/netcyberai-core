@@ -1,10 +1,10 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, type ComponentProps } from 'react';
 import type { Words } from '@/lib/family/fill';
 import type { Subject } from '@/lib/family/subjects';
-import type { TutorReaderContext } from './TutorWindow';
+import type { TutorReaderContext, TutorWindow as Window } from './TutorWindow';
 
 // The chapter reader's doubt drawer (S2, C375): the same tutor window as Study, opened over the chapter with its
 // subject, chapter and the block the child was on (board and class are the child's own, read on the server). The window
@@ -20,14 +20,17 @@ type Props = {
   w: Words;
   subject: Subject;
   tone: string;
-  reader: TutorReaderContext;
+  // Absent from the Draw tab (C513): the window is the subject's own, not a chapter's.
+  reader?: TutorReaderContext | null;
+  // C513: the Draw tab's drawing, asked about through the window's own path once per `n`.
+  sketchFirst?: ComponentProps<typeof Window>['sketchFirst'];
   voice?: { secondsLeft: number } | null;
   files?: boolean;
   homework?: boolean;
   serverVoice?: boolean;
 };
 
-export function TutorDrawer({ open, onClose, w, subject, tone, reader, voice = null, files = false, homework = false, serverVoice = false }: Props) {
+export function TutorDrawer({ open, onClose, w, subject, tone, reader = null, sketchFirst = null, voice = null, files = false, homework = false, serverVoice = false }: Props) {
   const closeButton = useRef<HTMLButtonElement>(null);
   const panel = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -82,7 +85,7 @@ export function TutorDrawer({ open, onClose, w, subject, tone, reader, voice = n
             {w['fam.tutor.close']}
           </button>
         </div>
-        <TutorWindow w={w} subject={subject} tone={tone} voice={voice} files={files} homework={homework} serverVoice={serverVoice} reader={reader} idPrefix="fam-doubt" pinned="sheet" />
+        <TutorWindow w={w} subject={subject} tone={tone} voice={voice} files={files} homework={homework} serverVoice={serverVoice} reader={reader} sketchFirst={sketchFirst} idPrefix="fam-doubt" pinned="sheet" />
       </div>
     </div>
   );

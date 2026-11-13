@@ -18,6 +18,7 @@ import { openSubjects, reviewedOnlySubjects } from './learning';
 import { subjectAccess } from './modules';
 import { isSubject, nearSubject, type Subject } from './subjects';
 import { nameFiller, withoutName } from './name-token';
+import { drawTutorLine } from './draw-templates';
 
 // The Concept Resolver, "Understand" (docs/family-app/02 §4, 03 §6; M1-5, C251): a chapter, a topic or a typed
 // question in, typed blocks out, streamed one by one as each passes its checks.
@@ -70,7 +71,7 @@ export const FOLLOW_UPS: readonly FollowUp[] = ['simpler', 'another_example', 'd
 export type QuestionScope = { about: string; text: string; labs: readonly { id: string; title: string; aim: string }[] };
 export type ResolveInput =
   | { kind: 'topic' | 'chapter'; key: string }
-  | { kind: 'question'; text: string; subject: Subject | null; about?: string; attached?: string; chapterKey?: string; windowSubject?: string; memory?: ChatMemory; check?: true; sketch?: true; scope?: QuestionScope };
+  | { kind: 'question'; text: string; subject: Subject | null; about?: string; attached?: string; chapterKey?: string; windowSubject?: string; memory?: ChatMemory; check?: true; sketch?: true; scope?: QuestionScope; drawTemplate?: string };
 
 const withAttached = (text: string, attached: string | undefined) => (attached ? `${text}\n\nThe student attached files. What they say:\n${attached}` : text);
 
@@ -271,6 +272,16 @@ export function withScope(system: string, scope: string | undefined): string {
   return at < 0 ? `${system}\n${line}` : `${system.slice(0, at)}\n${line}${system.slice(at)}`;
 }
 
+// C514: a sketch made on one of our drawing templates. The line is written from our registry by the template's id (the
+// phone sends only the id, inside its question's marker), never from text the phone sent: what the template is, and to
+// answer the ideas only, never the art.
+export function withDrawTemplate(system: string, templateId: string | undefined): string {
+  const line = templateId ? drawTutorLine(templateId) : null;
+  if (!line) return system;
+  const at = system.indexOf('\nRules: ');
+  return at < 0 ? `${system}\n${line}` : `${system.slice(0, at)}\n${line}${system.slice(at)}`;
+}
+
 // The planning call (null: no route, the default plan), the library's passages, and the answer's request written from
 // a plan.
 type Teach = { ctx: PlanContext; call: PreparedText | null; passages: Passage[]; build: (plan: Plan) => AiRequest };
@@ -460,7 +471,7 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
       const system = checkMarkSystem(a);
       return { system: withPersona(system, ctx.persona), messages: [{ role: 'user', content: checkMarkUser(a) }], responseFormat: undefined };
     }
-    return { system: withPersona(withScope(prompt.system(a), a.scope), ctx.persona), messages: [{ role: 'user', content: prompt.user(a) }], responseFormat: undefined };
+    return { system: withPersona(withDrawTemplate(withScope(prompt.system(a), a.scope), input.kind === 'question' && input.sketch ? input.drawTemplate : undefined), ctx.persona), messages: [{ role: 'user', content: prompt.user(a) }], responseFormat: undefined };
   };
   const prepared = await prepareText(db as never, { accountId: ctx.accountId, childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail, day: ctx.day, childId: ctx.child.childId }, profileId, build(plan)); // w16-b4
   if (!prepared.ok) {

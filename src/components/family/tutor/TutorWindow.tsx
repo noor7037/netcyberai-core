@@ -23,6 +23,7 @@ import { speakLine, unlockVoice } from '../voice/lineVoice';
 // The speaker and Teach me load with the first answer drawn, off the Study page's first load (the family budget, W18).
 import type { Reading } from '../voice/AnswerSpeaker';
 import { WordTapLayer } from '../words/WordTapLayer';
+import { sendErrorKey, sendWithRetry, type UploadAnswer } from '@/lib/family/draw-send';
 const AnswerSpeaker = dynamic(() => import('../voice/AnswerSpeaker').then((m) => m.AnswerSpeaker));
 const TeachMe = dynamic(() => import('../voice/AnswerSpeaker').then((m) => m.TeachMe));
 
@@ -74,6 +75,9 @@ type Props = {
   // Absent on Study: the window says it is the subject's own Study page.
   where?: TutorWhere | null;
   ask?: { n: number; text: string } | null;
+  // C513: a drawing from the Draw tab's studio, sent through this window's own path once per `n`; `done` hears the
+  // words of an error, or null once it was asked.
+  sketchFirst?: { n: number; file: File; question: string; done: (error: string | null) => void } | null;
   children?: ReactNode;
 };
 
@@ -101,17 +105,23 @@ function sendToStore(url: string, file: File, contentType: string): Promise<bool
 // The file door's three steps (ask for a link, send the file to it, confirm): shared by Attach and the sketch pad, so both
 // meet the same checks on the server. `step` lets Attach show where it is. Resolves with the attachment's id, or the code
 // of what refused.
-async function uploadTutorFile(subject: string, file: File, mime: string, step?: { ticket?: (id: string) => void; stored?: () => void }): Promise<{ id: string } | { code: string }> {
+// C513: a refusal after the ticket was given carries the attachment's id, so the sketch pad can take it back.
+async function uploadTutorFile(subject: string, file: File, mime: string, step?: { ticket?: (id: string) => void; stored?: () => void }): Promise<UploadAnswer> {
   const askRes = await postJson('/api/family/tutor/files', { subject, mime, size: file.size, name: file.name });
   if (!askRes?.ok) return { code: await errorOf(askRes) };
   const ticket = (await askRes.json().catch(() => null)) as { attachmentId?: string; uploadUrl?: string; contentType?: string } | null;
   if (!ticket?.attachmentId || !ticket.uploadUrl) return { code: 'network' };
   step?.ticket?.(ticket.attachmentId);
-  if (!(await sendToStore(ticket.uploadUrl, file, ticket.contentType ?? mime))) return { code: 'storage_unavailable' };
+  if (!(await sendToStore(ticket.uploadUrl, file, ticket.contentType ?? mime))) return { code: 'storage_unavailable', id: ticket.attachmentId };
   step?.stored?.();
   const confirmed = await postJson(`/api/family/tutor/files/${encodeURIComponent(ticket.attachmentId)}`, {});
-  if (!confirmed?.ok) return { code: await errorOf(confirmed) };
+  if (!confirmed?.ok) return { code: await errorOf(confirmed), id: ticket.attachmentId };
   return { id: ticket.attachmentId };
+}
+
+// Takes an unsent attachment back (C513); true when it is gone, a 404 included.
+async function removeTutorFile(id: string): Promise<boolean> {
+  return fetch(`/api/family/tutor/files/${encodeURIComponent(id)}`, { method: 'DELETE' }).then((r) => r.ok || r.status === 404, () => false);
 }
 
 // The feed read from the server, less the turn a carried question already draws live (the question the tab followed:
@@ -154,12 +164,13 @@ export function followHref(ask: FeedAsk | undefined, follow: boolean, tutorKey: 
   return follow && ask?.moved ? `/family/study?subject=${encodeURIComponent(ask.moved)}${tutorKey ? `&tutor=${encodeURIComponent(tutorKey)}` : ''}` : null;
 }
 
-export function TutorWindow({ w, subject, tone, voice = null, files = false, homework = false, reader = null, idPrefix = 'fam-tutor', pinned = 'dock', follow = false, pageScroll = false, tutor: chosen = null, call = null, serverVoice = false, about = null, where: placed = null, ask = null, children }: Props) {
+export function TutorWindow({ w, subject, tone, voice = null, files = false, homework = false, reader = null, idPrefix = 'fam-tutor', pinned = 'dock', follow = false, pageScroll = false, tutor: chosen = null, call = null, serverVoice = false, about = null, where: placed = null, ask = null, sketchFirst = null, children }: Props) {
   const router = useRouter();
   const [open, setOpen] = useState(true);
   const [text, setText] = useState('');
   const [asks, setAsks] = useState<FeedAsk[]>([]);
   const [attached, setAttached] = useState<Attached[]>([]);
+  const sketchLeftovers = useRef(new Set<string>());
   // W16-B2: the attached photo is the child's own working, to be checked ("Check my work"), not asked about.
   const [checking, setChecking] = useState(false);
   const [fileError, setFileError] = useState<string | null>(null);
@@ -259,7 +270,7 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
   const remove = (a: Attached) => {
     setAttached((list) => list.filter((x) => x.key !== a.key));
     setChecking(false);
-    if (a.id) void fetch(`/api/family/tutor/files/${encodeURIComponent(a.id)}`, { method: 'DELETE', credentials: 'same-origin' }).catch(() => null);
+    if (a.id) void fetch(`/api/family/tutor/files/${encodeURIComponent(a.id)}`, { method: 'DELETE' }).catch(() => null);
   };
 
   // A question continues the subject's newest open chat (the server finds it; the first answer opens one).
@@ -302,12 +313,21 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
     if (file.size > TUTOR_FILE_MAX_BYTES) return w['fam.tutor.err.file_too_large'];
     const mime = sniffTutorFile(new Uint8Array(await file.slice(0, 16).arrayBuffer()));
     if (mime !== 'image/png' && mime !== 'image/jpeg') return w['fam.tutor.err.file_type'];
-    const up = await uploadTutorFile(subject, file, mime);
-    if ('code' in up) return w[`fam.tutor.err.${up.code}`] ?? w['fam.err.network'];
+    // C513: a failed try takes its file back; "too many files" takes back this window's leftovers and tries again.
+    const up = await sendWithRetry({ upload: () => uploadTutorFile(subject, file, mime), remove: removeTutorFile, leftovers: sketchLeftovers.current });
+    if (!up.ok) return w[sendErrorKey(up.code)] ?? w['fam.err.network'];
     const asked = question.trim().slice(0, TUTOR_TEXT_MAX);
     submit(asked.length >= TUTOR_TEXT_MIN ? asked : w['fam.sketch.ask'], { ...base, files: [up.id], sketch: true });
     return null;
   };
+  // C513: a drawing sent from the Draw tab opens this window (in its drawer) to ask about it, once per `n`.
+  const sketchSeen = useRef(0);
+  useEffect(() => {
+    if (!sketchFirst || sketchFirst.n === sketchSeen.current) return;
+    sketchSeen.current = sketchFirst.n;
+    void sendSketch(sketchFirst.file, sketchFirst.question).then(sketchFirst.done, () => sketchFirst.done(w['fam.err.network']));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sketchFirst?.n]);
 
   // C508: Try again on a kept question with no answer yet: the same words asked again in its chat, drawn live below;
   // the kept one leaves the feed (the server's answer takes its place).

@@ -105,7 +105,7 @@ OUTSIDE_MAY_IMPORT_FAMILY = {
     "src/lib/jobs/handlers.ts": {"@/lib/family/push", "@/lib/family/parent-report", "@/lib/family/quiz", "@/lib/family/certificate-ready"},
     # W16-B4: the gateway meters and caps a child's text turns by the family's cap numbers; Control's Family settings write them.
     "src/lib/ai/platform.ts": {"@/lib/family/tutor-meter"},
-    "src/lib/control/family-settings.ts": {"@/lib/family/tutor-meter"},
+    "src/lib/control/family-settings.ts": {"@/lib/family/tutor-meter", "@/lib/family/draw-contract"},
     # The school's view of the tutor (W16-B3) names a chapter and a topic from the showcase chapters' titles (data only).
     "src/lib/parent-ai/doubts.ts": {"@/lib/family/chapters"},
     # The content studio (S3, C376): chapters are the family's one block schema, checked by the family's own checker, and

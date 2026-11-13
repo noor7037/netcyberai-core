@@ -10,7 +10,8 @@ export type Point = { x: number; y: number };
 
 // ---- tools -------------------------------------------------------------------------------------------------------
 
-export const FREEHAND_TOOLS = ['pencil', 'brush', 'marker', 'highlighter', 'eraser'] as const;
+// C513 adds the crayon (textured) and the watercolour (see-through, darker at its edges); src/lib/family/draw-brush.ts.
+export const FREEHAND_TOOLS = ['pencil', 'brush', 'marker', 'highlighter', 'crayon', 'watercolour', 'eraser'] as const;
 export const SHAPE_TOOLS = ['line', 'rect', 'ellipse', 'triangle', 'star', 'arrow'] as const;
 export type FreehandTool = (typeof FREEHAND_TOOLS)[number];
 export type ShapeTool = (typeof SHAPE_TOOLS)[number];
@@ -58,6 +59,10 @@ export function inkStyle(tool: FreehandTool, size: number): InkStyle {
       return { width: size * 1.5, alpha: 1, cap: 'square', blur: 0, erase: false };
     case 'highlighter':
       return { width: size * 2.5 + 4, alpha: 0.35, cap: 'butt', blur: 0, erase: false };
+    case 'crayon':
+      return { width: size * 1.6, alpha: 0.95, cap: 'round', blur: 0, erase: false };
+    case 'watercolour':
+      return { width: size * 2.2, alpha: 0.5, cap: 'round', blur: size * 0.4, erase: false };
     case 'eraser':
       return { width: size * 2.5 + 4, alpha: 1, cap: 'round', blur: 0, erase: true };
   }
@@ -146,17 +151,19 @@ export function hexToRgba(hex: string, alpha = 255): Rgba {
 // at a bounded number of times: it cannot hang on a large drawing. `maxPixels` caps the area (the whole drawing by
 // default); `stopped` says the cap was reached. Fully see-through pixels count as one colour whatever their RGB.
 export type FillResult = { filled: number; stopped: boolean };
-export function floodFill(data: Uint8ClampedArray, width: number, height: number, x: number, y: number, rgba: Rgba, tolerance = 40, maxPixels = width * height): FillResult {
+// C513: `read`, when given, is what the fill looks at to find its edges (the drawing with a template's outline over it),
+// while the colour still goes into `data` (the drawing alone): the outline stops the paint and is never painted on.
+export function floodFill(data: Uint8ClampedArray, width: number, height: number, x: number, y: number, rgba: Rgba, tolerance = 40, maxPixels = width * height, read: Uint8ClampedArray = data): FillResult {
   const sx = Math.floor(x);
   const sy = Math.floor(y);
-  if (sx < 0 || sy < 0 || sx >= width || sy >= height || data.length < width * height * 4) return { filled: 0, stopped: false };
+  if (sx < 0 || sy < 0 || sx >= width || sy >= height || data.length < width * height * 4 || read.length < width * height * 4) return { filled: 0, stopped: false };
   const s = (sy * width + sx) * 4;
-  const seed: Rgba = [data[s], data[s + 1], data[s + 2], data[s + 3]];
+  const seed: Rgba = [read[s], read[s + 1], read[s + 2], read[s + 3]];
   const tol = Math.max(0, Math.min(255, tolerance));
   const same = (i: number) => {
-    const a = data[i + 3];
+    const a = read[i + 3];
     if (seed[3] === 0 && a === 0) return true;
-    return Math.abs(data[i] - seed[0]) <= tol && Math.abs(data[i + 1] - seed[1]) <= tol && Math.abs(data[i + 2] - seed[2]) <= tol && Math.abs(a - seed[3]) <= tol;
+    return Math.abs(read[i] - seed[0]) <= tol && Math.abs(read[i + 1] - seed[1]) <= tol && Math.abs(read[i + 2] - seed[2]) <= tol && Math.abs(a - seed[3]) <= tol;
   };
   // Filling with the colour already there changes nothing.
   if (seed[0] === rgba[0] && seed[1] === rgba[1] && seed[2] === rgba[2] && seed[3] === rgba[3]) return { filled: 0, stopped: false };

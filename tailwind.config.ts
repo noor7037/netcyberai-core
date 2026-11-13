@@ -1,5 +1,5 @@
 import type { Config } from 'tailwindcss';
-import { colors, deepColors, accessibleTextColors, onAccentColors, lessonColors, lessonTints } from './src/lib/design-tokens';
+import { colors, deepColors, accessibleTextColors, onAccentColors, lessonColors, lessonTints, artColors } from './src/lib/design-tokens';
 
 const config: Config = {
   content: ['./src/**/*.{ts,tsx}'],
@@ -36,6 +36,8 @@ const config: Config = {
             [`${name}-deep`, v.accent],
           ]),
         ),
+        // C513: the Draw tab's art table (bg-art-coral, bg-art-sky, bg-art-mint, bg-art-butter, bg-art-lavender, bg-art-table).
+        art: artColors,
       },
       // The phone menu slides in from the left (F1-2); `motion-reduce:animate-none` takes the slide away.
       // The English course's motion (docs/family-app/12 §10): short, explaining, and off under reduced motion

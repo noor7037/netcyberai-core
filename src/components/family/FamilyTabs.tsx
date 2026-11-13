@@ -5,16 +5,18 @@ import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 import type { DockTab } from '@/lib/family/modules';
 
-// The four tabs (Home, Study, English, Future; C391 removed Family, its slot stays for Explore), each shown only when
+// The tabs (Home, Study, English, Draw, Future; C391 removed Family, C513 added Draw), each shown only when
 // its first module is live (M1-6, C252). Hidden during the parent's first steps. Fixed at the bottom, 44 px and more,
 // above the phone's home bar.
 // W19-C: the dark pill of the founder's reference: an ink dock, each tab a 56 px round button, the open tab on a lilac
 // circle with a saffron dot and its name beside it; the other names stay for screen readers (aria-current kept).
-const HREF: Record<DockTab, string> = { home: '/family', study: '/family/study', english: '/family/english', future: '/family/future' };
+const HREF: Record<DockTab, string> = { home: '/family', study: '/family/study', english: '/family/english', draw: '/family/draw', future: '/family/future' };
 const ICON: Record<DockTab, string> = {
   home: 'M4 10l8-6 8 6v10H4zM9 15q3 3 6 0',
   study: 'M6 4h12v16H7a1 1 0 0 1-1-1zM6 17h12M10 8h5',
   english: 'M4 5h16v11h-8l-5 4v-4H4zM9 13l3-6 3 6',
+  // C513: a brush over a dab of paint.
+  draw: 'M4 20l1-4L16 5l3 3L8 19zM14 7l3 3',
   future: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM15.5 8.5l-2 5-5 2 2-5z',
 };
 
@@ -46,7 +48,8 @@ export function FamilyTabs({ tabs, labels, navLabel }: { tabs: DockTab[]; labels
   const active = (t: DockTab) => (t === 'home' ? path === '/family' || path.startsWith('/family/progress') : t === 'study' ? path.startsWith('/family/study') || path.startsWith('/family/understand') || path.startsWith('/family/tutors') : path.startsWith(HREF[t]));
   return (
     <nav aria-label={navLabel} className="fixed inset-x-0 bottom-0 z-30 px-4 pb-[calc(var(--fam-bottom,0px)+0.75rem)]">
-      <ul className="fam-dock mx-auto flex w-fit max-w-full items-center gap-1 rounded-full bg-ink p-1.5">
+      {/* C513: five tabs pack tighter on a narrow phone (data-count; family.css): still 48 px and more each. */}
+      <ul data-count={tabs.length} className="fam-dock mx-auto flex w-fit max-w-full items-center gap-1 rounded-full bg-ink p-1.5">
         {tabs.map((t) => {
           const on = active(t);
           return (

@@ -3,8 +3,9 @@ import { ModulePage } from '@/components/app-ui/ModulePage';
 import { FamilyCountsView } from '@/components/control/apps/FamilyCountsView';
 import { PlusOpenForm } from '@/components/control/apps/PlusOpenForm';
 import { VoiceAllowanceForm } from '@/components/control/apps/VoiceAllowanceForm';
+import { DrawDailyForm } from '@/components/control/apps/DrawDailyForm';
 import { SubjectListForm } from '@/components/control/apps/SubjectListForm';
-import { readPlatformTutors, readPlusOpen, readSubjectList, readTutorCaps, readVoiceAllowance } from '@/lib/control/family-settings';
+import { readDrawDaily, readPlatformTutors, readPlusOpen, readSubjectList, readTutorCaps, readVoiceAllowance } from '@/lib/control/family-settings';
 import { TutorCapsForm } from '@/components/control/apps/TutorCapsForm';
 import { TutorsPanel } from '@/components/control/apps/TutorsPanel';
 import { SUBJECT_IDS } from '@/lib/contracts/subjects';
@@ -19,7 +20,8 @@ import { WordsProvider } from '@/components/app-shell/Words';
 // Control → Family (docs/family-app/10 §9, M1-7): counts of the Family app, read only. They come from
 // family.control_counts(), the only door Control has to family data; no name, child, answer or email is read. Below
 // them, the two lists of subjects Control holds: open to every child (C298), and checked explanations only (C300);
-// whether Family Plus is open to every family for a pilot (C337); and the daily voice allowance per family (C388). A
+// whether Family Plus is open to every family for a pilot (C337); the daily voice allowance per family (C388); and the
+// Draw tab's new drawings per child per day (C513). A
 // link leads to the people who use the app (C230-V, /control/family/people).
 
 export const dynamic = 'force-dynamic';
@@ -29,7 +31,7 @@ export default async function ControlFamilyPage() {
   const { lang } = getLang(session?.sub ?? '');
   // One transaction as the signed-in founder (the layout has already refused anyone else).
   const data = session
-    ? await withTenantContext(session, async (db) => ({ counts: await loadFamilyCounts(db), lists: { open: await readSubjectList(db, 'open'), reviewed: await readSubjectList(db, 'reviewed_only'), plusOpen: await readPlusOpen(db), voiceChars: await readVoiceAllowance(db), tutorCaps: await readTutorCaps(db) }, tutors: await readPlatformTutors(db) }))
+    ? await withTenantContext(session, async (db) => ({ counts: await loadFamilyCounts(db), lists: { open: await readSubjectList(db, 'open'), reviewed: await readSubjectList(db, 'reviewed_only'), plusOpen: await readPlusOpen(db), voiceChars: await readVoiceAllowance(db), tutorCaps: await readTutorCaps(db), drawDaily: await readDrawDaily(db) }, tutors: await readPlatformTutors(db) }))
     : null;
   const counts = data?.counts ?? null;
   const lists = data?.lists ?? null;
@@ -52,6 +54,7 @@ export default async function ControlFamilyPage() {
           <PlusOpenForm initial={lists.plusOpen} />
           <VoiceAllowanceForm initial={lists.voiceChars} />
           <TutorCapsForm initial={lists.tutorCaps} />
+          <DrawDailyForm initial={lists.drawDaily} />
         </div>
         </WordsProvider>
       )}

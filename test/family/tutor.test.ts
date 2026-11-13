@@ -217,6 +217,21 @@ describe('files (C375)', () => {
     const bad = await GET(new NextRequest('http://localhost/api/family/tutor/files/x', { headers: { cookie: await cookies(ACCOUNT, CHILD) } }), { params: { attachmentId: '../../etc' } });
     expect(bad.status).toBe(404);
   });
+  it('files stored and never sent stop counting after an hour (C512): the next upload is not refused for ever', async () => {
+    const s = new MemoryFileStorage();
+    for (let i = 0; i < 3; i++) {
+      const a = await ask(s, 'application/pdf', PDF.length, 'science');
+      if (!a.ok) throw new Error(a.reason);
+      await s.receive(a.uploadUrl, PDF, 'application/pdf');
+      expect(await confirm(s, a.attachmentId)).toEqual({ ok: true });
+    }
+    expect(await ask(s, 'application/pdf', PDF.length, 'science')).toEqual({ ok: false, reason: 'too_many_files' });
+    await fam((c) => c.query(`update family.tutor_attachments set created_at = now() - interval '2 hours' where account_id = $1 and message_id is null and kept_for is null`, [ACCOUNT]));
+    const next = await ask(s, 'application/pdf', PDF.length, 'science');
+    expect(next.ok).toBe(true);
+    expect(s.files.size).toBe(0);
+    await fam((c) => c.query(`delete from family.tutor_attachments where account_id = $1 and message_id is null and kept_for is null`, [ACCOUNT]));
+  });
   it('accepts a PDF; at most three unsent files a question', async () => {
     const s = new MemoryFileStorage();
     const ids: string[] = [];

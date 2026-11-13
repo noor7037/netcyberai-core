@@ -3,7 +3,7 @@ import { requireSuperAdmin } from '@/lib/auth/require-super-admin';
 import { withTenantContext } from '@/lib/auth/db';
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import { loadFamilyCounts } from '@/lib/control/family-counts';
-import { readPlatformTutors, readPlusOpen, readSubjectList, readTutorCaps, readVoiceAllowance, savePlatformTutor, setPlusOpen, setSubjectList, setTutorCaps, setVoiceAllowance } from '@/lib/control/family-settings';
+import { readDrawDaily, readPlatformTutors, readPlusOpen, readSubjectList, readTutorCaps, readVoiceAllowance, savePlatformTutor, setDrawDaily, setPlusOpen, setSubjectList, setTutorCaps, setVoiceAllowance } from '@/lib/control/family-settings';
 import { requireAiControl } from '@/lib/ai/control-guard';
 
 // Control → Family: counts only, through family.control_counts(). The founder only.
@@ -14,6 +14,7 @@ import { requireAiControl } from '@/lib/ai/control-guard';
 //         way
 //   POST  { action: 'voice_allowance', chars: n }  the daily voice allowance per family, in characters (C388); the
 //         same way
+//   POST  { action: 'draw_daily', drawings: n }  the Draw tab's new drawings per child per day (C513); the same way
 //   POST  { action: 'tutor_caps', textTurns, voiceMinutes, photoDoubts, plusMultiplier, reason }  the tutor's daily caps
 //         per child and the Plus multiplier (W16-B4); the same way, with the founder's reason in the audit row
 // Both run in the founder's own transaction (the platform role, the account checked live), as the counts do.
@@ -22,7 +23,7 @@ export async function GET(req: NextRequest) {
   if ('error' in guard) return guard.error;
   try {
     return NextResponse.json(
-      await withTenantContext(guard.claims, async (db) => ({ ...(await loadFamilyCounts(db)), openSubjects: await readSubjectList(db, 'open'), reviewedOnly: await readSubjectList(db, 'reviewed_only'), plusOpen: await readPlusOpen(db), voiceChars: await readVoiceAllowance(db), tutorCaps: await readTutorCaps(db) }))
+      await withTenantContext(guard.claims, async (db) => ({ ...(await loadFamilyCounts(db)), openSubjects: await readSubjectList(db, 'open'), reviewedOnly: await readSubjectList(db, 'reviewed_only'), plusOpen: await readPlusOpen(db), voiceChars: await readVoiceAllowance(db), tutorCaps: await readTutorCaps(db), drawDaily: await readDrawDaily(db) }))
     );
   } catch (err) {
     const res = sessionErrorResponse(err);
@@ -35,12 +36,14 @@ export async function POST(req: NextRequest) {
   const guard = await requireAiControl(req);
   if ('error' in guard) return guard.error;
   const b = await req.json().catch(() => null);
-  if (b?.action === 'plus_open' || b?.action === 'voice_allowance') {
+  if (b?.action === 'plus_open' || b?.action === 'voice_allowance' || b?.action === 'draw_daily') {
     try {
       const result =
         b.action === 'plus_open'
           ? await withTenantContext(guard.claims, (db) => setPlusOpen(db, { userId: guard.claims.sub }, b.open))
-          : await withTenantContext(guard.claims, (db) => setVoiceAllowance(db, { userId: guard.claims.sub }, b.chars));
+          : b.action === 'draw_daily'
+            ? await withTenantContext(guard.claims, (db) => setDrawDaily(db, { userId: guard.claims.sub }, b.drawings))
+            : await withTenantContext(guard.claims, (db) => setVoiceAllowance(db, { userId: guard.claims.sub }, b.chars));
       return result.ok ? NextResponse.json(result) : NextResponse.json({ error: result.code }, { status: 400 });
     } catch (err) {
       const res = sessionErrorResponse(err);

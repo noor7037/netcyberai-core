@@ -60,7 +60,8 @@ type Props = {
 };
 
 // W18-P3: the sketch pad is loaded only when a child opens it, so the Study bundle does not carry it.
-const SketchPad = dynamic(() => import('./SketchPad').then((m) => m.SketchPad), { ssr: false });
+// C513: the studio lives with the Draw tab (src/components/family/draw/Studio.tsx), still its own chunk.
+const SketchPad = dynamic(() => import('../draw/Studio').then((m) => m.Studio), { ssr: false });
 
 const ICON = { viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const };
 const ROUND = 'fam-press flex h-11 w-11 shrink-0 items-center justify-center rounded-full';

@@ -1,5 +1,9 @@
 import { notFound, redirect } from 'next/navigation';
 import { BookChapter } from '@/components/family/book/BookChapter';
+import { DrawItCard } from '@/components/family/draw/templates/DrawItCard';
+import { drawAllowed } from '@/lib/family/draw-done';
+import { DRAW_MODULE, templateForChapter } from '@/lib/family/draw-templates';
+import { DRAW_TEMPLATE_KEYS } from '@/lib/family/draw-template-words';
 import { bookChapter, bookFor, readerSrc } from '@/lib/family/books';
 import { loadChildSettings } from '@/lib/family/child-settings';
 import { isPrePrimary, syllabusBoardOf } from '@/lib/family/children';
@@ -52,6 +56,9 @@ export default async function BookChapterPage({ params, searchParams }: { params
   // W23: the child's "follow the voice" switch reaches the reader in its address.
   const settings = await familyPageRead(page, (db) => loadChildSettings(db, page.session.accountId, child.childId));
   // W24: ?part=test opens the chapter's own test (the Quizzes page's chapter tests); the reader takes "~test" after the chapter.
+  // C514: the chapter's own drawing template (by the book chapter's key or its catalog chapter), when the board is on.
+  const drawing = switchOn(switches, DRAW_MODULE) ? templateForChapter([found.chapter.key, found.chapter.catalogKey], child.classLevel) : null;
+  const drawOpen = drawing && drawing.parentGate ? await familyPageRead(page, (db) => drawAllowed(db, page.session.accountId, child.childId)) : true;
   const src = `${readerSrc(found.book, found.chapter, lang).replace('#', `&host=family&child=${encodeURIComponent(child.childId)}${settings.autoScroll ? '' : '&follow=0'}#`)}${searchParams?.part === 'test' ? '~test' : ''}`;
   return (
     <div lang={lang}>
@@ -64,6 +71,11 @@ export default async function BookChapterPage({ params, searchParams }: { params
         w={w}
         childName={child.firstName}
         tutor={tutorOn ? { voice, files, homework: switchOn(switches, 'homework') } : null}
+        draw={
+          drawing ? (
+            <DrawItCard variant="pill" childId={child.childId} classLevel={child.classLevel} lang={lang === 'hi' ? 'hi' : 'en'} templateId={drawing.id} subject={found.book.subject} allowed={drawOpen} w={familyWords(lang, DRAW_TEMPLATE_KEYS)} />
+          ) : null
+        }
       />
     </div>
   );

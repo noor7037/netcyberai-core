@@ -46,7 +46,7 @@ import { checkBlock, type Timeline } from '@/lib/family/blocks';
 import { TimelineView } from '@/components/family/blocks/TimelineView';
 import { Composer } from '@/components/family/tutor/Composer';
 import { CAMERA_ACCEPT, GALLERY_ACCEPT, PhotoSheet } from '@/components/family/tutor/PhotoSheet';
-import { StudioToolbar } from '@/components/family/tutor/StudioToolbar';
+import { StudioToolbar } from '@/components/family/draw/StudioToolbar';
 import { en } from '@/lib/i18n/messages/en';
 import { hi } from '@/lib/i18n/messages/hi';
 
@@ -57,8 +57,9 @@ import { hi } from '@/lib/i18n/messages/hi';
 const SRC = (p: string) => readFileSync(path.join(__dirname, '../../src', p), 'utf8');
 
 describe('the tools', () => {
-  it('has five freehand tools, six shapes and five sizes', () => {
-    expect(FREEHAND_TOOLS).toEqual(['pencil', 'brush', 'marker', 'highlighter', 'eraser']);
+  // C513 adds the crayon and the watercolour.
+  it('has seven freehand tools, six shapes and five sizes', () => {
+    expect(FREEHAND_TOOLS).toEqual(['pencil', 'brush', 'marker', 'highlighter', 'crayon', 'watercolour', 'eraser']);
     expect(SHAPE_TOOLS).toEqual(['line', 'rect', 'ellipse', 'triangle', 'star', 'arrow']);
     expect(SKETCH_SIZES).toHaveLength(5);
   });
@@ -349,32 +350,34 @@ describe('the composer and the studio', () => {
     expect(renderToStaticMarkup(h(Composer, { ...withSketch, locked: true }))).not.toContain('data-sketch-open');
     expect(renderToStaticMarkup(h(Composer, props))).not.toContain('data-sketch-open');
   });
-  it('the tool bar has every tool and panel, each a labelled 44 px button saying whether it is on', () => {
+  // C513: the art table's tool blocks are 48 px.
+  it('the tool bar has every tool and panel, each a labelled 48 px button saying whether it is on', () => {
     const out = renderToStaticMarkup(h(StudioToolbar, { w, tool: 'brush', colour: '#E8702A', panel: null, onTool: () => undefined, onPanel: () => undefined, onClear: () => undefined }));
     expect(out).toContain('role="toolbar"');
-    for (const t of ['pencil', 'brush', 'marker', 'highlighter', 'eraser', 'fill', 'text']) expect(out).toContain(`data-studio-tool="${t}"`);
+    for (const t of ['pencil', 'brush', 'marker', 'highlighter', 'crayon', 'watercolour', 'eraser', 'fill', 'text']) expect(out).toContain(`data-studio-tool="${t}"`);
     for (const p of ['shapes', 'stickers', 'colours', 'paper']) expect(out).toContain(`data-studio-panel="${p}"`);
     expect(out).toContain('data-studio-clear');
     expect(out).toMatch(/data-studio-tool="brush" aria-pressed="true" aria-label="Brush"/);
     expect(out).toMatch(/data-studio-tool="pencil" aria-pressed="false" aria-label="Pencil"/);
     const buttons = out.match(/<button[^>]*>/g) ?? [];
-    expect(buttons.length).toBe(12);
+    expect(buttons.length).toBe(14);
     for (const b of buttons) {
       expect(b).toMatch(/aria-label="[^"]+"/);
-      expect(b).toMatch(/h-11 w-11/);
+      expect(b).toMatch(/h-12 w-12/);
     }
     expect(out).toContain('background-color:#E8702A');
   });
+  // C513: the studio lives with the Draw tab and reads a stylus's pressure (draw-brush.ts usablePressure).
   it('the studio: a lazy import, full screen, safe-area aware, touch-action none, pointer events, no confirm() and no library', () => {
-    expect(SRC('components/family/tutor/Composer.tsx')).toMatch(/dynamic\(\(\) => import\('\.\/SketchPad'\)/);
-    const pad = SRC('components/family/tutor/SketchPad.tsx');
+    expect(SRC('components/family/tutor/Composer.tsx')).toMatch(/dynamic\(\(\) => import\('\.\.\/draw\/Studio'\)/);
+    const pad = SRC('components/family/draw/Studio.tsx');
     expect(pad).toMatch(/fixed inset-0 z-50/);
     expect(pad).toContain('safe-area-inset-top');
     expect(pad).toMatch(/touchAction: 'none'/);
     expect(pad).toContain('onPointerDown={down}');
     expect(pad).toContain('getCoalescedEvents');
     expect(pad).not.toMatch(/\bconfirm\(/);
-    expect(pad).not.toMatch(/\.pressure\b/);
+    expect(pad).toMatch(/pressure: e\.pressure/);
     expect(pad).toContain('devicePixelRatio');
     expect(pad).toContain('data-sketch-clear-yes');
     for (const s of ['sending', 'sent', 'failed']) expect(pad).toContain(`data-sketch-state="${s}"`);
