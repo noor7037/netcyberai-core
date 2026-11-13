@@ -1,5 +1,6 @@
 'use client';
 
+import { drawMarker } from '@/lib/family/draw-templates';
 import { createPortal } from 'react-dom';
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type PointerEvent as ReactPointerEvent } from 'react';
 import { fill, type Words } from '@/lib/family/fill';
@@ -729,7 +730,7 @@ export function Studio({ w, onSend, onClose, question: initialQuestion = '', ope
       if (!file) return setSend({ state: 'failed', error: w['fam.tutor.err.file_too_large'] });
       let failed: string | null;
       try {
-        failed = await onSend(file, question);
+        failed = await onSend(file, template ? drawMarker(template.id) + question : question);
       } catch {
         failed = w['fam.err.network'];
       }

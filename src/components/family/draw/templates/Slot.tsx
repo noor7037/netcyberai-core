@@ -23,6 +23,8 @@ export type DrawTemplatesSlotProps = {
   subjects: readonly string[];
   // familyWords(lang, DRAW_TEMPLATE_KEYS) from src/lib/family/draw-template-words.ts.
   w: Words;
+  // The page's own Send to tutor, when this child may send a picture.
+  onSend?: (file: File, question: string) => Promise<string | null>;
 };
 
 const STATE_KEY = (childId: string) => `ncf.draw.state.${childId}`;
@@ -51,7 +53,7 @@ export function DrawTemplatesSlot(props: Partial<DrawTemplatesSlotProps>) {
 }
 export default DrawTemplatesSlot;
 
-export function TemplatesSection({ childId, classLevel, lang, subjects, w }: DrawTemplatesSlotProps) {
+export function TemplatesSection({ childId, classLevel, lang, subjects, w, onSend }: DrawTemplatesSlotProps) {
   const online = useOnline();
   const list = useMemo(() => templatesFor(classLevel, subjects), [classLevel, subjects]);
   const groups = useMemo(() => groupBySubject(list, subjects), [list, subjects]);
@@ -96,7 +98,7 @@ export function TemplatesSection({ childId, classLevel, lang, subjects, w }: Dra
     },
     [childId, markDone, subjectOf]
   );
-  const studio = useTemplateStudio({ lang, classLevel, w, onEvent });
+  const studio = useTemplateStudio({ lang, classLevel, w, onEvent, onSend });
 
   const open = (t: DrawTemplateEntry) => {
     if (isLocked(t, known.allowed)) return setNote(w['fam.draw.t.lockedNote']);
@@ -148,7 +150,7 @@ export function TemplateCard({ t, lang, done, locked, w, onOpen }: { t: DrawTemp
       data-done={done ? '' : undefined}
       data-locked={locked ? '' : undefined}
       onClick={onOpen}
-      aria-label={[t.title[lang], done ? w['fam.draw.t.done'] : '', locked ? w['fam.draw.t.locked'] : ''].filter(Boolean).join(', ')}
+      aria-label={[locked ? w['fam.draw.t.locked'] : '', t.title[lang], done ? w['fam.draw.t.done'] : ''].filter(Boolean).join(', ')}
       className="fam-card fam-press relative flex min-h-[44px] w-full flex-col gap-2 bg-white p-2 text-left"
     >
       <span className="relative block aspect-square w-full overflow-hidden rounded-xl bg-paper">

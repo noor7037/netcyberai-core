@@ -7,6 +7,7 @@ import { familyPageRead, firstStepsNext, requireFamilyPage } from '@/lib/family/
 import { familyWords } from '@/lib/family/words';
 import { DRAW_PAGE_KEYS } from '@/lib/family/draw-words';
 import { readDrawDaily } from '@/lib/family/draw-daily';
+import { DRAW_TEMPLATE_KEYS } from '@/lib/family/draw-template-words';
 import { SKETCH_KEYS } from '@/lib/family/sketch-words';
 import { TUTOR_KEYS } from '@/lib/family/tutor-words';
 import { TUTOR_READS_FILES } from '@/lib/family/tutor-shape';
@@ -36,6 +37,7 @@ export default async function FamilyDrawPage() {
   const switches = await familyPageRead(page, (db) => readFamilySwitches(db, page.session.accountId));
   if (!switches || !switchOn(switches, 'draw')) redirect('/family');
   const limit = await familyPageRead(page, (db) => readDrawDaily(db));
+  const subjects = await familyPageRead(page, (db) => classSubjects(db, { board: syllabusBoardOf(child), classLevel: child.classLevel, stream: child.stream }));
   let tutor: { subject: string; tone: string; homework: boolean } | null = null;
   if (!isPrePrimary(child.classLevel) && page.consents.study_core && TUTOR_READS_FILES) {
     const [subjects, openToAll] = await familyPageRead(page, (db) => Promise.all([classSubjects(db, { board: syllabusBoardOf(child), classLevel: child.classLevel, stream: child.stream }), openSubjects(db)]));
@@ -43,13 +45,13 @@ export default async function FamilyDrawPage() {
     const photos = subject && subjectAccess(child, subject, openToAll).open ? (await familyPageRead(page, (db) => photoGate(db, page.session.accountId, child))) === null : false;
     if (subject && photos) tutor = { subject, tone: subject, homework: switchOn(switches, 'homework') };
   }
-  const w = familyWords(lang, [...DRAW_PAGE_KEYS, ...(tutor ? TUTOR_KEYS : SKETCH_KEYS)]);
+  const w = familyWords(lang, [...DRAW_PAGE_KEYS, ...DRAW_TEMPLATE_KEYS, ...SKETCH_KEYS, ...(tutor ? TUTOR_KEYS : [])]);
   const childTag = createHash('sha256').update(`ncf-draw:${child.childId}`).digest('hex').slice(0, 24);
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
       <SubPageHeader back="/family" backLabel={t(lang, 'fam.nav.home')} title={t(lang, 'fam.draw.title')} />
       <main className="fam-page">
-        <DrawHome w={w} limit={limit} child={childTag} tutor={tutor} classLevel={child.classLevel} />
+        <DrawHome w={w} limit={limit} child={childTag} tutor={tutor} classLevel={child.classLevel} childId={child.childId} lang={lang} subjects={subjects} />
       </main>
     </div>
   );

@@ -1,29 +1,20 @@
 'use client';
 
-// The one place the templates open the drawing studio (C514). Today the studio is the tutor window's sketch pad
-// (src/components/family/tutor/SketchPad.tsx); when the studio moves, only the import below changes. It is given the
-// contract's StudioOpen (the template and where the child came from) and an onEvent for its events, which today's pad
-// does not read yet: a template's Done reaches us as { t: 'done' } once the studio sends it.
-import { Suspense, lazy, useCallback, useEffect, useState, type ComponentType } from 'react';
+// The one place the templates open the drawing studio (C514, joined with the studio in C513). It is given the
+// contract's StudioOpen (the template and where the child came from) and an onEvent for its events: a template's Done
+// reaches us as { t: 'done' }. Send to tutor is the page's own path when it has one; the studio marks the question.
+import { Suspense, lazy, useCallback, useEffect, useState } from 'react';
 import type { StudioEvent, StudioOpen } from '@/lib/family/draw-contract';
 import type { Words } from '@/lib/family/fill';
 import { drawTemplate, toStudioTemplate, type DrawLang } from '@/lib/family/draw-templates';
 import { outlineOf } from './template-cache';
 
-type StudioProps = {
-  w: Words;
-  onSend: (file: File, question: string) => Promise<string | null>;
-  onClose: () => void;
-  open?: StudioOpen;
-  onEvent?: (e: StudioEvent) => void;
-};
-
-const Studio = lazy(() => import('@/components/family/tutor/SketchPad').then((m) => ({ default: m.SketchPad as unknown as ComponentType<StudioProps> })));
+const Studio = lazy(() => import('@/components/family/draw/Studio').then((m) => ({ default: m.Studio })));
 
 // What a card asks for: the template (by id), the subject its class studies it under, and where the child came from.
 export type OpenAsk = { templateId: string; subject: string; from: StudioOpen['from'] };
 
-export function useTemplateStudio({ lang, classLevel, w, onEvent }: { lang: DrawLang; classLevel: number; w: Words; onEvent: (e: StudioEvent) => void }) {
+export function useTemplateStudio({ lang, classLevel, w, onEvent, onSend }: { lang: DrawLang; classLevel: number; w: Words; onEvent: (e: StudioEvent) => void; onSend?: (file: File, question: string) => Promise<string | null> }) {
   const [open, setOpen] = useState<StudioOpen | null>(null);
   const [failed, setFailed] = useState(false);
   const start = useCallback(
@@ -43,8 +34,8 @@ export function useTemplateStudio({ lang, classLevel, w, onEvent }: { lang: Draw
   }, [onEvent]);
   const node = open ? (
     <Suspense fallback={null}>
-      {/* Today's pad sends to the tutor only from inside the tutor window; from here the child is told where to send it. */}
-      <Studio w={w} open={open} onEvent={onEvent} onClose={close} onSend={async () => w['fam.draw.t.sendLater'] ?? ''} />
+      {/* Without a send path of its own (a card in Study) the child is told where to send it. */}
+      <Studio w={w} open={open} onEvent={onEvent} onClose={close} onSend={onSend ?? (async () => w['fam.draw.t.sendLater'] ?? '')} />
     </Suspense>
   ) : null;
   return { start, node, failed, isOpen: open !== null };

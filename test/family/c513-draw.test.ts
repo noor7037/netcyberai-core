@@ -56,7 +56,7 @@ describe('the Draw module', () => {
     expect(home).toContain("import { DrawTemplatesSlot } from './templates/Slot'");
     expect(home).toContain('<DrawTemplatesSlot');
     expect(home).toMatch(/dynamic\(\(\) => import\('\.\/Studio'\)/);
-    expect(renderToStaticMarkup(h(DrawTemplatesSlot, { classLevel: 3, onOpen: () => undefined }))).toBe('');
+    expect(renderToStaticMarkup(h(DrawTemplatesSlot, { classLevel: 3 }))).toBe('');
   });
 });
 

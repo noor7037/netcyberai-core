@@ -105,7 +105,10 @@ The join is not finished and the type check is expected to fail until these are 
 4. `DRAW_MODULE` in `src/lib/family/draw-templates.ts`: `'tutor_board'` becomes `'draw'`.
 5. Add row **C513** to `docs/10_DECISION_LOG.md` (reasons in section 5 above).
 6. `npx tsc --noEmit -p .`, then the Draw tests, then `bash scripts/ci_local.sh --no-install` once.
-7. Apply `supabase/migrations/20261113120000_c514_draw_completions.sql` to project `unodnyyfqhxrbusbkite` after
+7. **Before the PR (founder, 13 Nov):** the studio build stopped before its final report, so its visual spec
+   (pressure brush, watercolour, radial colour wheel, rotating stickers, paper texture) is unverified. Once the join
+   compiles, take phone-size (390 px) pictures of the studio, show them to Noor, and fix what is missing first.
+8. Apply `supabase/migrations/20261113120000_c514_draw_completions.sql` to project `unodnyyfqhxrbusbkite` after
    the checks pass (see section 7 for how, on the Mac). Then open one PR to `main`.
 
 Noor said on 13 Nov: skip anything that overcomplicates the code. Keep the daily drawing limit on the Draw tab only;
@@ -152,6 +155,9 @@ The cloud session had connectors the terminal may not have. Check before relying
 
 ## 10. The queue after Draw
 
+0. **Classes 9 and 10 art-integrated templates (founder, 13 Nov).** Classes 9 to 10 have only three templates (cell,
+   circuit, growing pattern) and no CBSE art-integrated ones. Add them right after the Draw join is merged, through the
+   same registry (`src/lib/family/draw-templates.ts`) and `public/draw/templates/`.
 1. **One tutor call instead of three.** Biggest remaining complaint: the wait. Start in
    `src/app/api/family/understand/route.ts` and `src/lib/family/resolver.ts` (safety check, plan call, answer).
 2. **Class 10 Maths out of draft**, with images made inside the pipeline (Noor must stop hand-making images).

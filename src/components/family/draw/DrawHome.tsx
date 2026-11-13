@@ -11,6 +11,7 @@ import { isSubject } from '@/lib/family/subjects';
 import { TutorDrawer } from '../tutor/TutorDrawer';
 import { DrawLimit } from './DrawLimit';
 import { DrawTemplatesSlot } from './templates/Slot';
+import type { DrawLang } from '@/lib/family/draw-templates';
 
 // The Draw tab's page (C513): the "Start drawing" hero, the templates' slot, and My drawings from this phone as a grid
 // (newest first; a tap opens one). The studio is its own chunk, loaded when the child opens it, so the page's first load
@@ -24,7 +25,7 @@ type Tutor = { subject: string; tone: string; homework: boolean };
 type Open = { n: number; open: StudioOpen; startWith: SavedDrawing | null };
 type Ask = { n: number; file: File; question: string; done: (error: string | null) => void };
 
-export function DrawHome({ w, limit, child, tutor, classLevel = 0 }: { w: Words; limit: number; child: string; tutor: Tutor | null; classLevel?: number }) {
+export function DrawHome({ w, limit, child, tutor, classLevel = 0, childId = '', lang = 'en', subjects = [] }: { w: Words; limit: number; child: string; tutor: Tutor | null; classLevel?: number; childId?: string; lang?: DrawLang; subjects?: readonly string[] }) {
   const [list, setList] = useState<SavedDrawing[] | null>(null);
   const [noStore, setNoStore] = useState(false);
   const [count, setCount] = useState<number | null>(null);
@@ -95,7 +96,7 @@ export function DrawHome({ w, limit, child, tutor, classLevel = 0 }: { w: Words;
         {left !== null && <p data-draw-left className="relative mt-2 text-sm font-semibold text-ink">{fill(w['fam.draw.left'], { n: left })}</p>}
       </section>
 
-      <DrawTemplatesSlot classLevel={classLevel} onOpen={(open) => void start(open)} />
+      <DrawTemplatesSlot childId={childId} classLevel={classLevel} lang={lang} subjects={subjects} w={w} onSend={onSend} />
 
       <section aria-labelledby="draw-mine" data-draw-mine className="flex flex-col gap-3">
         <h2 id="draw-mine" className="text-xl font-extrabold text-ink">

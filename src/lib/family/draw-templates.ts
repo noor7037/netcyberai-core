@@ -25,7 +25,7 @@ export type DrawTemplateEntry = {
 
 // The Control switch the templates live under: the drawing board's (W16). The studio slice may give drawing its own
 // module; then this one name changes.
-export const DRAW_MODULE = 'tutor_board';
+export const DRAW_MODULE = 'draw';
 
 export const DRAW_TEMPLATE_ID =/^[a-z0-9][a-z0-9.-]{2,79}$/;
 export const templateSrc = (id: string) => `/draw/templates/${id}.svg`;
