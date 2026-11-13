@@ -1,4 +1,5 @@
 import type { MessageKey } from '@/lib/i18n';
+import { DRAW_PARENT_KEYS } from '@/lib/family/draw-template-words';
 
 // The words of the parent area's four-tab design (C506), read by the page for the client.
 export const PARENT_APP_KEYS: MessageKey[] = [
@@ -8,4 +9,5 @@ export const PARENT_APP_KEYS: MessageKey[] = [
   'fam.parent.app.chooseChild', 'fam.parent.app.thisWeek', 'fam.parent.app.answersPerDay', 'fam.parent.app.answersUnit', 'fam.parent.app.weekAria',
   'fam.parent.app.subjects', 'fam.parent.app.subjectsLead', 'fam.parent.app.subjectsNone', 'fam.parent.app.meterAria', 'fam.parent.app.meterDetail',
   'fam.parent.app.latest', 'fam.parent.app.latestNone', 'fam.parent.app.itemMastered', 'fam.parent.app.manage', 'fam.parent.app.phones', 'fam.parent.app.schoolNone',
+  ...DRAW_PARENT_KEYS,
 ];

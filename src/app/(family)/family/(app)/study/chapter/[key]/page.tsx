@@ -3,6 +3,10 @@ import { TUTOR_READS_FILES } from '@/lib/family/tutor-shape';
 import { notFound, redirect } from 'next/navigation';
 import { SubPageHeader } from '@/components/family/SubPageHeader';
 import { ChapterReader } from '@/components/family/reader/ChapterReader';
+import { DrawItCard } from '@/components/family/draw/templates/DrawItCard';
+import { drawAllowed } from '@/lib/family/draw-done';
+import { DRAW_MODULE, templateForChapter } from '@/lib/family/draw-templates';
+import { DRAW_TEMPLATE_KEYS } from '@/lib/family/draw-template-words';
 import { loadChapter, readableChapters } from '@/lib/family/chapter-store';
 import { readerBlocks } from '@/lib/family/chapter-tests';
 import { chapterView, resumeIndex } from '@/lib/family/chapters';
@@ -59,7 +63,11 @@ export default async function ChapterPage({ params }: { params: { key: string } 
   // W6-A (C395): Attach shows only when the photo gate (the same rules the server applies to every photo) lets a photo through.
   const files = tutorOn && TUTOR_READS_FILES && (await familyPageRead(page, (db) => photoGate(db, page.session.accountId, child))) === null;
   const tutor = tutorOn && subject ? { subject, voice, files, homework: switchOn(switches, 'homework') } : null;
+  // C514: the chapter's own drawing template, when the drawing board is switched on.
+  const drawing = switchOn(switches, DRAW_MODULE) ? templateForChapter([chapter.key], child.classLevel) : null;
+  const drawOpen = drawing && drawing.parentGate ? await familyPageRead(page, (db) => drawAllowed(db, page.session.accountId, child.childId)) : true;
   const w = familyWords(lang, [...UNDERSTAND_KEYS, ...READER_KEYS, ...(tutor ? TUTOR_KEYS : []), ...(voice ? VOICE_KEYS : [])]);
+  const drawWords = drawing ? familyWords(lang, DRAW_TEMPLATE_KEYS) : null;
   // C386: the server voice reads the narration when Control has set one up; else the phone's own voice.
   const serverVoice = await familyPageRead(page, (db) => serverVoiceReady(db, page.session.accountId));
   const others = (await familyPageRead(page, (db) => readableChapters(db, { board: syllabusBoardOf(child), classLevel: child.classLevel, subject: chapter.subject, childId: child.childId }))).filter((c) => c.key !== chapter.key);
@@ -68,6 +76,7 @@ export default async function ChapterPage({ params }: { params: { key: string } 
       <SubPageHeader back={`/family/study?subject=${chapter.subject}`} backLabel={t(lang, 'fam.study.title')} kicker={t(lang, 'fam.reader.kicker')} title={view.title} subject={chapter.subject} />
       <main data-chapter-reader={chapter.key} lang={view.lang} className="relative mx-auto -mt-8 flex w-full max-w-xl flex-1 flex-col gap-4 px-4 pb-28">
         <ChapterReader chapterKey={chapter.key} lang={view.lang} blocks={blocks} ids={view.ids} script={view.script} start={start} resumed={saved !== null && start > 0} w={w} tone={chapter.subject} chapterTitle={view.title} tutor={tutor} videos={videos} serverVoice={serverVoice} />
+        {drawing && drawWords && <DrawItCard childId={child.childId} classLevel={child.classLevel} lang={lang === 'hi' ? 'hi' : 'en'} templateId={drawing.id} subject={chapter.subject} allowed={drawOpen} w={drawWords} />}
         {others.length > 0 && (
           <nav aria-labelledby="fam-reader-more" className="flex flex-col gap-2">
             <h2 id="fam-reader-more" className="px-1 text-lg font-extrabold text-slate">
