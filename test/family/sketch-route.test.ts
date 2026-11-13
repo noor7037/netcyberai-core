@@ -8,7 +8,7 @@ import { startHarnessDb } from '../../scripts/harness/db.mjs';
 // On the real migrations (PGlite) and the real route; the AI platform's calls and the private bucket are stood in for.
 // The ask is read where the prompt version builds its text (the prompt module is wrapped to record each ask).
 
-const ai = vi.hoisted(() => ({ asked: [] as { profile: string; images: number }[], asks: [] as { sketch?: boolean; question: string | null }[] }));
+const ai = vi.hoisted(() => ({ asked: [] as { profile: string; images: number; system: string }[], asks: [] as { sketch?: boolean; question: string | null }[], read: null as string | null }));
 vi.mock('@/lib/ai/prompts/family.resolver', async (original) => {
   const m = await original<typeof import('@/lib/ai/prompts/family.resolver')>();
   return {
@@ -22,10 +22,10 @@ vi.mock('@/lib/ai/prompts/family.resolver', async (original) => {
 vi.mock('@/lib/ai/platform', async (original) => ({
   ...(await original<typeof import('@/lib/ai/platform')>()),
   activePromptVersion: async (_db: unknown, profile: string) => (profile === 'family.homework' ? 'v2' : profile === 'family.resolver' ? 'v9' : 'v1'),
-  prepareText: async (_db: unknown, _ctx: unknown, profile: string, request: { messages: { content: string; images?: unknown[] }[] }) => {
+  prepareText: async (_db: unknown, _ctx: unknown, profile: string, request: { system: string; messages: { content: string; images?: unknown[] }[] }) => {
     const m = request.messages[request.messages.length - 1];
-    ai.asked.push({ profile, images: m.images?.length ?? 0 });
-    const lines = profile === 'family.homework' ? ['A drawing of a plant cell: a box with a round nucleus and no labels.'] : profile === 'family.resolver' ? [JSON.stringify({ type: 'subject', subject: 'science' })] : ['{}'];
+    ai.asked.push({ profile, images: m.images?.length ?? 0, system: String(request.system) });
+    const lines = profile === 'family.homework' ? [ai.read ?? 'A drawing of a plant cell: a box with a round nucleus and no labels.'] : profile === 'family.resolver' ? [JSON.stringify({ type: 'subject', subject: 'science' })] : ['{}'];
     return {
       ok: true,
       text: {
@@ -98,6 +98,7 @@ afterAll(async () => {
 beforeEach(() => {
   ai.asked = [];
   ai.asks = [];
+  ai.read = null;
 });
 
 const ask = async (files: string[], tutor: Record<string, unknown> = { sketch: true }, text = 'Here is my drawing.') => {
@@ -153,6 +154,23 @@ describe('tutor.sketch on the understand route', () => {
   it('cannot be combined with Check my work', async () => {
     const { status } = await ask([id(6)], { sketch: true, mode: 'check' });
     expect(status).toBe(400);
+    expect(ai.asks).toEqual([]);
+  });
+
+  // C510: the drawing is described (shapes, lines, labels), not transcribed: the words-only read answered UNREADABLE for
+  // a drawing with no words, so the sketch flag and the drawing never reached the tutor.
+  it('reads a drawing with the describe-the-drawing request, and an ordinary photo with the words read', async () => {
+    await ask([id(1)]);
+    expect(ai.asked.find((a) => a.profile === 'family.homework')?.system).toMatch(/^You look at one drawing/);
+    ai.asked = [];
+    await ask([id(2)], {});
+    expect(ai.asked.find((a) => a.profile === 'family.homework')?.system).toMatch(/^You read one picture/);
+  });
+
+  it('a drawing the read could not describe is refused in words, not answered as if nothing were sent', async () => {
+    ai.read = 'UNREADABLE';
+    const { events } = await ask([id(1)]);
+    expect(events.find((e) => e.t === 'refused')?.message).toBe('The tutor could not make out the drawing. Try bolder lines and send it again.');
     expect(ai.asks).toEqual([]);
   });
 });

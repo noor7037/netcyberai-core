@@ -62,7 +62,16 @@ const SimView = dynamic(() => import('./blocks/SimView').then((m) => m.SimView))
 // A typed question carries no subject: the server decides it (F1-3). From the tutor window (S2, C375) it carries the
 // window's subject, the reader's chapter and block, and the files sent with it; the server checks each and keeps the
 // answered turn in the child's conversation.
-export type TutorAsk = { subject: string; where?: { kind: string; key: string; topicId?: string; labId?: string }; chatId?: string; chapterKey?: string; blockId?: string; files?: string[]; mode?: 'check'; sketch?: true };
+// C508: `retryOf`, Try again on a question kept with no answer yet (its message id): the server asks its own words again.
+export type TutorAsk = { subject: string; where?: { kind: string; key: string; topicId?: string; labId?: string }; chatId?: string; chapterKey?: string; blockId?: string; files?: string[]; mode?: 'check'; sketch?: true; retryOf?: string };
+// The tutor route's own additions to the resolver's lines (C508): the question kept with no answer yet, and a fresh
+// answer to read aloud by itself (a child in Class 3 or below).
+type RouteLine = ResolverEvent & { unanswered?: unknown; autoRead?: unknown };
+
+// C508: the same question asked again, naming the kept question it answers.
+export function retried(input: UnderstandInput, messageId: string): UnderstandInput {
+  return input.kind === 'question' && input.tutor ? { ...input, tutor: { ...input.tutor, retryOf: messageId, files: [] } } : input;
+}
 export type UnderstandInput = { kind: 'topic' | 'chapter'; key: string } | { kind: 'question'; text: string; tutor?: TutorAsk };
 type Meta = Extract<ResolverEvent, { t: 'meta' }>;
 type GoTo = NonNullable<Extract<ResolverEvent, { t: 'refused' }>['goTo']>;
@@ -165,8 +174,12 @@ export function AnswerBlock({ b, w, tone, lead = false, onRetry, onOffline, sent
 
 // `speak` (W18-P1, the tutor window): once the answer is kept (the done line names its message id), "Teach me" and the
 // read-aloud button appear under it at once, without a reload, and its boards follow their voice.
-export function UnderstandView({ w, input, tone, initial = null, offline = false, onDone, sentence, speak, tutorKey = null }: { w: Words; input: UnderstandInput; tone: string; initial?: ResolverEvent[] | null; offline?: boolean; onDone?: (chat?: { chatId: string; subject: string }) => void; sentence?: number; speak?: { serverVoice: boolean }; tutorKey?: string | null }) {
+// C508: `onTap`, run inside the child's Try again tap (the tutor window unlocks the voice there).
+export function UnderstandView({ w, input, tone, initial = null, offline = false, onDone, sentence, speak, tutorKey = null, onTap }: { w: Words; input: UnderstandInput; tone: string; initial?: ResolverEvent[] | null; offline?: boolean; onDone?: (chat?: { chatId: string; subject: string }) => void; sentence?: number; speak?: { serverVoice: boolean }; tutorKey?: string | null; onTap?: () => void }) {
   const [messageId, setMessageId] = useState<string | null>(null);
+  // C508: the question kept with no answer yet (its message id), and whether this fresh answer is read aloud by itself.
+  const [unanswered, setUnanswered] = useState<string | null>(null);
+  const [autoRead, setAutoRead] = useState(false);
   const [spokenAt, setSpokenAt] = useState<number | undefined>(undefined);
   // W22-S3: whether the answer is being read aloud, so the tutor's face stays on screen while it is.
   const [reading, setReading] = useState<Reading>({ speaking: false, percent: 0 });
@@ -191,7 +204,7 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
   const model = drawn.some((b) => b.type === 'model_3d');
   // W16-A2: where the answer comes from, first: its chapter as soon as the sources block names it, else, once complete,
   // general knowledge.
-  const citation = citationOf(shown, state === 'done' || state === 'incomplete');
+  const citation = citationOf(shown, state === 'done' || state === 'incomplete', meta?.hasBook !== false);
   // Only the latest request may draw: an earlier one (a follow-up tapped twice, React's double run in development) is
   // aborted and anything it still sends is ignored.
   const current = useRef<AbortController | null>(null);
@@ -213,6 +226,8 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
     setNoInternet(false);
     setMessageId(null);
     setSpokenAt(undefined);
+    setAutoRead(false);
+    setUnanswered(null);
     if (offline && navigator.onLine === false) {
       setNoInternet(true);
       return setState('refused');
@@ -248,7 +263,7 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
           buf = buf.slice(nl + 1);
           nl = buf.indexOf('\n');
           if (!line.trim() || current.current !== mine) continue;
-          const e = JSON.parse(line) as ResolverEvent;
+          const e = JSON.parse(line) as RouteLine;
           if (e.t === 'meta') {
             setMeta(e);
             setState('streaming');
@@ -260,9 +275,12 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
             setGap({ missing, cut: e.cut === true });
             setState(missing.length > 0 || e.cut === true ? 'incomplete' : 'done');
             if (typeof e.messageId === 'string') setMessageId(e.messageId);
+            setAutoRead(e.autoRead === true && typeof e.messageId === 'string');
+            setUnanswered(null);
             answered.current?.(e.chat);
           }
           else if (e.t === 'refused') {
+            if (typeof e.unanswered === 'string') setUnanswered(e.unanswered);
             setRefusal(e.message);
             setGoTo(e.goTo && (SUBJECTS as readonly string[]).includes(e.goTo.subject) ? e.goTo : null);
             setState('refused');
@@ -351,6 +369,22 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
       {state === 'refused' && !noInternet && (
         <section role="status" className="fam-card flex flex-col gap-3 bg-white p-5 text-base text-slate">
           <p>{refusal}</p>
+          {unanswered && (
+            <div data-no-answer={unanswered} className="flex flex-wrap items-center gap-3">
+              <p className="text-sm font-bold text-ink">{w['fam.tutor.noAnswerYet']}</p>
+              <button
+                type="button"
+                data-try-again
+                onClick={() => {
+                  onTap?.();
+                  again({ input: retried(input, unanswered) });
+                }}
+                className="fam-press min-h-[44px] min-w-[44px] rounded-2xl bg-saffron px-4 text-sm font-bold text-ink"
+              >
+                {w['fam.tutor.tryAgain']}
+              </button>
+            </div>
+          )}
           {goTo && (
             <Link href={`/family/study?subject=${goTo.subject}`} prefetch={saving ? false : undefined} className="inline-flex min-h-[44px] items-center self-start rounded-2xl px-1 font-bold text-ink underline decoration-saffron decoration-2 underline-offset-4">
               {goTo.label} <span aria-hidden="true">→</span>
@@ -372,7 +406,7 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
         </button>
       )}
       {drawn.filter((b) => b.type !== 'videos').map((b) => draw(b))}
-      {voice && <AnswerSpeaker w={w} {...voice} root={top} />}
+      {voice && <AnswerSpeaker w={w} {...voice} root={top} auto={autoRead && saver.ready && !saver.state.on} />}
       {(state === 'loading' || state === 'streaming') && (
         <div className="flex flex-col gap-3" aria-hidden="true">
           <div className="h-32 animate-pulse rounded-3xl bg-white motion-reduce:animate-none" />

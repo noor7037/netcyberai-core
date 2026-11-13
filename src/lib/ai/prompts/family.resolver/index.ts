@@ -12,6 +12,7 @@ import * as v11 from './v11';
 import * as v12 from './v12';
 import * as v13 from './v13';
 import * as v14 from './v14';
+import * as v15 from './v15';
 
 // The family.resolver prompt versions in this repository (docs/family-app/08 §7). Control chooses the active version
 // (control.ai_profiles.prompt_version); a version the code does not have falls back to the default (v10 since W18-P2, v9 since W16). A typed
@@ -35,6 +36,8 @@ export type ResolverPrompt = {
   // Whether the prompt is written from a teaching plan (v8 on, W9-B): the server plans the answer and keeps an
   // interactive block only where the plan names one.
   usesPlan?: boolean;
+  // C509: the youngest children's answer is drawn first (v15): their plan names the board before the explanation.
+  visualFirst?: boolean;
   system: (a: v10.ResolverAsk) => string;
   user: (a: v10.ResolverAsk) => string;
 };
@@ -79,6 +82,11 @@ const V13: ResolverPrompt = { version: v13.RESOLVER_PROMPT_VERSION, namesSubject
 // taught, not refused. Code only: Control chooses it by name; v10 stays the code-only fallback.
 const V14: ResolverPrompt = { version: v14.RESOLVER_PROMPT_VERSION, namesSubject: true, usesPlan: true, system: v14.resolverSystem, user: v14.resolverUser };
 
+// v15 (C509): v14 with the youngest children's answer drawn first and built to be heard (board, a 40-word explanation, a
+// check of single-word options), a memory that refers back only on the same topic, varied openings, and an honest book
+// line. Code only: Control chooses it by name; v10 stays the code-only fallback.
+const V15: ResolverPrompt = { version: v15.RESOLVER_PROMPT_VERSION, namesSubject: true, usesPlan: true, visualFirst: true, system: v15.resolverSystem, user: v15.resolverUser };
+
 export const RESOLVER_PROMPTS: readonly ResolverPrompt[] = [
   { version: v1.RESOLVER_PROMPT_VERSION, namesSubject: false, system: (a) => v1.resolverSystem(withSubject(a)), user: (a) => v1.resolverUser(withSubject(a)) },
   { version: v2.RESOLVER_PROMPT_VERSION, namesSubject: true, system: (a) => v2.resolverSystem(asV2(a)), user: (a) => v2.resolverUser(asV2(a)) },
@@ -96,6 +104,7 @@ export const RESOLVER_PROMPTS: readonly ResolverPrompt[] = [
   V12,
   V13,
   V14,
+  V15,
 ];
 
 // The fallback for a version the code does not have, and for a typed question under a version that cannot name the

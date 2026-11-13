@@ -5,8 +5,12 @@ import { VOICE_KEYS } from './voice-words';
 // The words the call screen needs (W16-A4), picked on the server: its own, the voice input's (the microphone's refusals
 // are the same ones, in the same words), which voice speaks, and what the board's blocks draw with.
 export const CALL_KEYS: MessageKey[] = [
-  'fam.call.title', 'fam.call.with', 'fam.call.withDefault', 'fam.call.tutorDefault', 'fam.call.end', 'fam.call.mic.talk', 'fam.call.mic.done', 'fam.call.mic.thinking',
-  'fam.call.mic.speaking', 'fam.call.you', 'fam.call.captions', 'fam.call.board', 'fam.call.empty', 'fam.call.boardEmpty', 'fam.call.hold', 'fam.call.notHeard',
+  'fam.call.title', 'fam.call.tutorDefault', 'fam.call.end', 'fam.call.mic.talk', 'fam.call.mic.done', 'fam.call.mic.thinking',
+  'fam.call.you', 'fam.call.captions', 'fam.call.board', 'fam.call.empty', 'fam.call.boardEmpty', 'fam.call.notHeard',
+  // C511: the open microphone's states and the call bar (the W19-B states were never picked here, so they showed blank).
+  'fam.call.listening', 'fam.call.connecting', 'fam.call.hearing', 'fam.call.speaking', 'fam.call.muted', 'fam.call.ended', 'fam.call.again',
+  'fam.call.mute', 'fam.call.unmute', 'fam.call.speakerLoud', 'fam.call.speakerQuiet', 'fam.call.type', 'fam.call.typeLabel', 'fam.call.send',
+  'fam.call.timer', 'fam.call.wake', 'fam.call.controls',
   'fam.chat.full', 'fam.voiceOut.server', 'fam.voiceOut.phone',
   ...VOICE_KEYS,
   ...UNDERSTAND_KEYS,

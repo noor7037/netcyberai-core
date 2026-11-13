@@ -1354,7 +1354,11 @@ export function completeResponse(blocks: Block[], core: readonly BlockType[] = R
     first.set(b.type, b);
   }
   if (!core.every((t) => first.has(t))) return null;
-  return ORDER.filter((t) => first.has(t)).map((t) => first.get(t)!);
+  const ordered = ORDER.filter((t) => first.has(t)).map((t) => first.get(t)!);
+  // C509: an answer whose very first block is the board (a young child's, under prompt v15) keeps its board first when it is
+  // stored and read again, as it arrived live.
+  const boardLed = blocks[0]?.type === 'board';
+  return boardLed ? [first.get('board')!, ...ordered.filter((b) => b.type !== 'board')] : ordered;
 }
 
 // ---- narration (S1, C374) ------------------------------------------------------------------------------------------

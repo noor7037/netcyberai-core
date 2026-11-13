@@ -22,7 +22,7 @@ import { INTERACTIVE_LINES } from './v4';
 import { SUBJECT_LINE, type ResolverAsk as V3Ask } from './v3';
 import { JSON_LINES_RULE, NO_DOUBLE_QUOTES_RULE } from './v6';
 import { ITEM_EXAMPLE, MIND_MAP_LINE } from './v7';
-import { defaultPlan, isInteractiveBlock, VISUAL_BLOCK, type Band, type Plan, type PlanBlock, type QuestionType } from '@/lib/ai/teaching/plan-shape';
+import { defaultPlan, isInteractiveBlock, VISUAL_BLOCK, type Band, type Plan, type PlannedBlock, type QuestionType } from '@/lib/ai/teaching/plan-shape';
 import type { Passage } from '@/lib/ai/teaching/retrieve';
 
 export const RESOLVER_PROMPT_VERSION = 'v8';
@@ -45,6 +45,9 @@ export type ResolverAsk = V3Ask & {
   labs?: readonly { id: string; title: string; aim: string }[];
   // C503: the subject tab or tutor the child typed the question in (a hint, not a rule; only v14 reads it).
   tab?: string;
+  // C509: the class's subjects that have a published book for this child's board (only v15 reads it, to say honestly
+  // whether an answer is "not from your book" or to say nothing about a book at all).
+  bookSubjects?: readonly string[];
 };
 
 const STYLE: Record<V3Ask['style'], string> = {
@@ -118,12 +121,12 @@ function namesSubject(a: V3Ask): boolean {
 // A text from outside the prompt (a passage, a turn of the chat), on one line, without double quotation marks.
 const inline = (s: string, max: number) => s.replace(/"/g, "'").replace(/\s+/g, ' ').trim().slice(0, max);
 
-const about = (plan: Plan, block: PlanBlock) => {
+const about = (plan: Plan, block: PlannedBlock) => {
   const v = plan.visuals.find((x) => VISUAL_BLOCK[x.kind] === block);
   return v ? ` It shows: ${inline(v.about, 80)}.` : '';
 };
 
-function blockLine(block: PlanBlock, plan: Plan, a: ResolverAsk): string[] {
+function blockLine(block: PlannedBlock, plan: Plan, a: ResolverAsk): string[] {
   const small = plan.band === 'lkg_1' || plan.band === 'c2_5';
   switch (block) {
     case 'explanation':
@@ -157,6 +160,9 @@ function blockLine(block: PlanBlock, plan: Plan, a: ResolverAsk): string[] {
       return [`Exactly ${VIDEOS_LINE}: the server adds the chapter's checked videos, or leaves it out.`];
     case 'scene':
       return [`The thing and its parts, tap-able part by part: ${SCENE_LINE} with 2 to 12 parts, each id unique, each label up to 30 characters and each text (what the part does) up to 220; links only between the ids given, each label up to 20; colour 1 to 8. Example: ${SCENE_EXAMPLE}.${about(plan, block)}`, `   ${SCENE_RULES}`];
+    case 'board':
+      // C509: only the youngest children's plan under v15 names the board; v15 gives its shape and commands below the list.
+      return ['A board block, drawn step by step as the words are said: its shape, its commands and its rules are given below.'];
     case 'chart':
       return [`The numbers as a chart: ${CHART_LINE} with 2 to 12 labels (each up to 12 characters) and 1 to 3 series, each with exactly one number per label; a pie is one series. Example: ${CHART_EXAMPLE}.${about(plan, block)}`, `   ${CHART_RULES}`];
     default: {

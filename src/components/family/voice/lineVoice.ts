@@ -1,6 +1,6 @@
 'use client';
 
-import { speak, stopSpeaking } from '../english/speech';
+import { setSpeechVolume, speak, stopSpeaking } from '../english/speech';
 import { avatarState, setAvatarLevel, setAvatarMood } from '@/lib/family/avatar-state';
 
 // Which voice reads a line aloud (C386): the server voice when Control has set one up, else the phone's own (speech.ts).
@@ -15,6 +15,15 @@ export type Spoken = { cancelled: boolean; mode: VoiceMode };
 
 let generation = 0;
 let playing: { audio: HTMLAudioElement; url: string } | null = null;
+
+// C511: the call's Speaker button: loud (1) or quiet. Applies to the server voice's audio, the line playing now included,
+// and to the phone's own voice (speech.ts).
+let volume = 1;
+export function setLineVolume(v: number) {
+  volume = Math.max(0, Math.min(1, v));
+  if (playing) playing.audio.volume = volume;
+  setSpeechVolume(volume);
+}
 
 // W19-A: the tutor's mouth follows the voice. The server voice is measured: one AudioContext and AnalyserNode for the
 // visit (made on the first line, resumed on each), each line's <audio> routed through it, and the loudness (RMS) handed
@@ -101,6 +110,34 @@ function drop() {
   playing = null;
 }
 
+// C508: whether a voice is reading now (a server line, a call's line or the phone's own): an answer read aloud by
+// itself never starts over it.
+export function voiceBusy(): boolean {
+  try {
+    return playing !== null || (typeof window !== 'undefined' && 'speechSynthesis' in window && window.speechSynthesis.speaking);
+  } catch {
+    return false;
+  }
+}
+
+// C508: called inside the child's own tap (Send, Try again). A phone that lets sound start only from a tap (iOS) then
+// lets the answer's voice start by itself when it arrives: the phone's voice speaks an empty line, the audio context
+// resumes. Silent; nothing here may break the tap.
+export function unlockVoice() {
+  try {
+    const s = typeof window !== 'undefined' && 'speechSynthesis' in window ? window.speechSynthesis : null;
+    if (s && !s.speaking && typeof SpeechSynthesisUtterance === 'function') {
+      const blank = new SpeechSynthesisUtterance('');
+      blank.volume = 0;
+      s.speak(blank);
+    }
+    const m = getMeter();
+    if (m && m.ctx.state !== 'running') void m.ctx.resume().catch(() => undefined);
+  } catch {
+    // A phone with no voice engine: the Read aloud button stays.
+  }
+}
+
 // Stops whatever is being read, by either voice; a line still on its way is not played.
 export function stopLine() {
   generation++;
@@ -129,6 +166,7 @@ async function playServer(source: LineSource, rate: number, mine: number, onPlay
   const url = URL.createObjectURL(blob);
   const audio = new Audio(url);
   audio.playbackRate = rate;
+  audio.volume = volume;
   playing = { audio, url };
   return new Promise<Played>((resolve) => {
     const end = (how: Played) => {

@@ -267,7 +267,8 @@ describe('a verdict is guaranteed', () => {
     const logged = verdictLog(spy).at(-1)!;
     expect(logged).toMatchObject({ from: 'arithmetic', stepsRejected: 'too_many_items' });
     // A count and a reason: none of the child's working is in the log.
-    expect(JSON.stringify(logged)).not.toContain('32');
+    // (The log line's own timestamp is left out: its seconds can read 32.)
+    expect(JSON.stringify({ ...(logged as object), ts: undefined })).not.toContain('32');
     spy.mockRestore();
   });
 

@@ -327,6 +327,12 @@ export function childBooks(q: { classLevel: number; board: string; subject: stri
   return wanted.map((subject) => bookFor({ board: q.board, classLevel: q.classLevel, subject }, books)).filter((b): b is Book => !!b);
 }
 
+// C509: the subjects of the class that have a published book for this child's board: an answer in one of them that no
+// passage matched is honestly "not from your book"; in any other subject there is no book to name, so nothing is said.
+export function bookSubjects(q: { classLevel: number; board: string; subjects: readonly string[] }, books: readonly Book[] = BOOKS): string[] {
+  return childBooks({ ...q, subject: null }, books).map((b) => b.subject);
+}
+
 // Each file is read once per source of files (the disk, or a test's).
 let caches = new WeakMap<Files, Map<string, Promise<SearchIndex | null>>>();
 export function resetBookSearch(): void {

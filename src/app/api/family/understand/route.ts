@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { accountSummary } from '@/lib/family/account';
 import { callGate } from '@/lib/family/call-gate';
 import { sayEvent, type SayBudget } from '@/lib/family/call-say';
-import { dailyRequestsLeft, prepareModeration } from '@/lib/ai/platform';
+import { REFUSAL_MESSAGE, dailyRequestsLeft, prepareModeration } from '@/lib/ai/platform';
 import { tutorTurn } from '@/lib/ai/agents/orchestrator';
 import { activeChild, boardNameOf, listChildren, type FamilyChild } from '@/lib/family/children';
 import { consentState } from '@/lib/family/consent';
@@ -16,7 +16,7 @@ import { FOLLOW_UPS, generate, syllabusLine, keep, prepareResolve, type FollowUp
 import { FAMILY_CHILD_COOKIE } from '@/lib/family/session';
 import { isTutorKey, resolvePersona } from '@/lib/family/tutors';
 import type { Persona } from '@/lib/family/persona';
-import { readerContext, refreshChatSummary, resolveChat, saveTurn, sendableFiles, tutorStorage } from '@/lib/family/tutor';
+import { isUuid, readerContext, refreshChatSummary, resolveChat, saveTurn, saveUnanswered, sendableFiles, tutorStorage, unansweredQuestion } from '@/lib/family/tutor';
 import { buildScope, parseWhere, scopeKeyOf } from '@/lib/family/tutor-context';
 import { syllabusBoardOf } from '@/lib/family/children';
 import { attachedText, fetchFiles, filesToRead, givePhotoPlaceBack, preparePhotoReads, readFetched, type Unreadable } from '@/lib/family/tutor-read';
@@ -59,7 +59,18 @@ import { isMessageKey, t, type MessageKey } from '@/lib/i18n';
 //
 // No database connection is held while the AI answers (F1-3): the checks and reads in one short transaction, the call
 // with no connection, then the writes (metering, the library line) in a second one.
+//
+// C508: a plain typed tutor question whose answer then fails on our side (the provider failed or timed out, or nothing
+// was shown), after it passed the safety check, is kept alone (tutor.ts saveUnanswered) and the refused line names it
+// (`unanswered`), so the window shows "No answer yet" and Try again, after a reload too. Try again sends
+// `tutor.retryOf`: the server reads that question's own words back and answers them in its chat; the answer takes its
+// place (one question row). A safety refusal, an off-subject or not-study refusal keeps nothing, as before.
+// The done line says `autoRead` for a child in Class 3 or below, so the window starts reading a fresh answer aloud.
 export const dynamic = 'force-dynamic';
+
+// The tutor window's own additions to the resolver's lines (C508).
+type TutorLine = ResolverEvent | (Extract<ResolverEvent, { t: 'refused' }> & { unanswered?: string }) | (Extract<ResolverEvent, { t: 'done' }> & { autoRead?: true });
+const AUTO_READ_UPTO = 3;
 
 const UNREADABLE_WORDS: Record<Unreadable, MessageKey> = {
   no_text: 'fam.tutor.files.no_text',
@@ -103,8 +114,12 @@ export async function POST(req: NextRequest) {
   // or a retry; the file's type (PNG or JPEG) is checked below, once the stored file is known.
   const sketchMode = tutorBody?.sketch === true && !followUp && !retry;
   if (sketchMode && (checkMode || !(Array.isArray(tutorBody!.files) && tutorBody!.files.length === 1))) return NextResponse.json({ error: 'bad_request' }, { status: 400 });
-  // What is kept once answered (null: nothing): filled in the first transaction, for the child it chose.
-  let keepTurn: { childId: string; text: string; chapterKey: string | null; blockId: string | null; files: string[]; windowSubject: string; lang: string; scope: string | null } | null = null;
+  // C508: Try again on a question with no answer yet: only a plain typed question (no files, no mode, not a call).
+  const retryOf = tutorBody && !followUp && !retry && !checkMode && !sketchMode && body.call !== true && noFiles && isUuid(tutorBody.retryOf) ? tutorBody.retryOf : null;
+  if (tutorBody && tutorBody.retryOf !== undefined && !retryOf) return NextResponse.json({ error: 'bad_request' }, { status: 400 });
+  // What is kept once answered (null: nothing): filled in the first transaction, for the child it chose. `plain`: a
+  // question that may be kept with no answer yet (C508); `young`: Class 3 or below (the answer is read aloud by itself).
+  let keepTurn: { childId: string; text: string; chapterKey: string | null; blockId: string | null; files: string[]; windowSubject: string; lang: string; scope: string | null; plain: boolean; young: boolean } | null = null;
   const chosen = req.cookies.get(FAMILY_CHILD_COOKIE)?.value;
   // W23-C: what the tutor is told about where the window was opened (null: not a place this child may open).
   const scopeOf = (db: Parameters<typeof syllabusLine>[0], child: FamilyChild, subject: string, question: string) =>
@@ -128,6 +143,17 @@ export async function POST(req: NextRequest) {
   let pinned = false;
   let chatSubject: string | null = null;
   if (tutorBody && input?.kind === 'question' && !retry) {
+    // C508: Try again asks the kept question's own words again, in its own chat; one already answered (or not this
+    // child's) is not asked again.
+    if (retryOf) {
+      const again = await withFamilyContext(claims, async (db) => {
+        const child = activeChild(await listChildren(db, session.accountId), chosen);
+        return child ? unansweredQuestion(db, session.accountId, child.childId, retryOf) : null;
+      }).catch(() => null);
+      if (!again) return NextResponse.json({ error: 'not_found' }, { status: 404 });
+      input = { ...input, text: again.text };
+      tutorBody.chatId = again.chatId;
+    }
     const chat = await withFamilyContext(claims, async (db) => {
       const child = activeChild(await listChildren(db, session.accountId), chosen);
       return child ? resolveChat(db, session.accountId, child.childId, String(tutorBody.subject), tutorBody.chatId, isTutorKey(tutorBody.tutorKey) ? tutorBody.tutorKey : null, where ? scopeKeyOf(where) : null) : null;
@@ -158,8 +184,8 @@ export async function POST(req: NextRequest) {
   const encoder = new TextEncoder();
   const stream = new ReadableStream<Uint8Array>({
     async start(controller) {
-      const write = (e: ResolverEvent) => controller.enqueue(encoder.encode(`${JSON.stringify(e)}\n`));
-      const send = (e: ResolverEvent) => {
+      const write = (e: TutorLine) => controller.enqueue(encoder.encode(`${JSON.stringify(e)}\n`));
+      const send = (e: TutorLine) => {
         write(e);
         if (callChild && e.t === 'block') {
           const say = sayEvent(e.block, { accountId: session.accountId, childId: callChild }, spoken);
@@ -169,6 +195,18 @@ export async function POST(req: NextRequest) {
       const stop = (e: ResolverEvent): null => {
         send(e);
         return null;
+      };
+      // C508: what decides whether a failed answer's question is kept: the question passed the safety check, and the
+      // answer was not stopped by a check (a safety or subject refusal).
+      let questionPassed = false;
+      let stoppedByCheck = false;
+      const keepUnanswered = async (): Promise<string | null> => {
+        const turn = keepTurn as typeof keepTurn;
+        if (!turn || !turn.plain || !questionPassed || stoppedByCheck) return null;
+        const kept = await withFamilyContext(claims, (db) =>
+          saveUnanswered(db, { accountId: session.accountId, childId: turn.childId, chatId, subject: turn.windowSubject, text: turn.text, chapterKey: turn.chapterKey, blockId: turn.blockId, lang: turn.lang, tutorKey, scope: turn.scope, retryOf, storage: tutorStorage })
+        ).catch(() => null);
+        return kept?.messageId ?? null;
       };
       try {
         // 0. The files sent with a tutor question, read before it is asked (W4-1). Not for a follow-up or a retry. A typed
@@ -207,7 +245,7 @@ export async function POST(req: NextRequest) {
           });
           if ('refused' in asked) return void send({ t: 'refused', reason: 'not_found', message: asked.refused! });
           const fetched = await fetchFiles(asked.files, (key) => tutorStorage.get(key));
-          const calls = await withFamilyContext(claims, (db) => preparePhotoReads(db, asked.ai, asked.childId, fetched, checkMode ? asked.check : undefined));
+          const calls = await withFamilyContext(claims, (db) => preparePhotoReads(db, asked.ai, asked.childId, fetched, checkMode ? asked.check : sketchMode ? 'sketch' : undefined));
           const { reads, sent } = await readFetched(fetched, calls);
           await withFamilyContext(claims, async (db) => {
             for (const s of sent) {
@@ -222,6 +260,8 @@ export async function POST(req: NextRequest) {
           send({ t: 'files', message: lines.join(' ') });
           // Check my work with a photo that could not be read: there is no working to mark, and the line above says why.
           if (checkMode && !attached) return void send({ t: 'refused', reason: 'not_found', message: t(asked.lang, 'fam.check.err.unreadable') });
+          // C510: a drawing the tutor could not describe would be answered as if nothing were sent; say so instead.
+          if (sketchMode && !attached) return void send({ t: 'refused', reason: 'not_found', message: t(asked.lang, 'fam.sketch.err.unreadable') });
         }
         // W16-A1: the turn runs through the orchestrator (src/lib/ai/agents/orchestrator.ts), which calls the same three
         // steps below in the same order and logs each handoff; nothing it sends or keeps differs. No queue is given: a
@@ -262,7 +302,19 @@ export async function POST(req: NextRequest) {
             if (attached && target?.kind === 'question') target = { ...target, attached, ...(checkMode ? { check: true as const } : {}), ...(sketchMode ? { sketch: true as const } : {}) };
             const files = await sendableFiles(db, session.accountId, child.childId, subject, tutorBody.files);
             if (!files) return stop({ t: 'refused', reason: 'not_found', message: words('fam.tutor.fileGone') });
-            if (!followUp && !retry) keepTurn = { childId: child.childId, text: target.text, chapterKey: placed?.chapterKey ?? reader?.chapterKey ?? null, blockId: placed?.blockId ?? reader?.blockId ?? null, files, windowSubject: subject, lang: child.language, scope: where ? scopeKeyOf(where) : null };
+            if (!followUp && !retry)
+              keepTurn = {
+                childId: child.childId,
+                text: target.text,
+                chapterKey: placed?.chapterKey ?? reader?.chapterKey ?? null,
+                blockId: placed?.blockId ?? reader?.blockId ?? null,
+                files,
+                windowSubject: subject,
+                lang: child.language,
+                scope: where ? scopeKeyOf(where) : null,
+                plain: files.length === 0 && !checkMode && !sketchMode && !callMode && !attached,
+                young: child.classLevel >= 1 && child.classLevel <= AUTO_READ_UPTO,
+              };
           }
           let misconception: string | null = null;
           if (retry) {
@@ -302,7 +354,20 @@ export async function POST(req: NextRequest) {
         // typed question's subject just before its first block is shown, in a short transaction of its own.
         const answer = async (pending: Pending) => {
           const childId = pending.ctx.child.childId;
+          // C508: whether the typed question itself passed the safety check (the first check, the child's words alone):
+          // only then may it be kept with no answer yet.
+          const checker = pending.moderation;
+          if (checker)
+            pending.moderation = {
+              check: async (turns) => {
+                const verdict = await checker.check(turns);
+                if (turns.assistant === undefined && verdict?.safe === true) questionPassed = true;
+                return verdict;
+              },
+              record: (db) => checker.record(db),
+            };
           const generated = await generate(pending, send, (subject) => withFamilyContext(claims, (db) => claimSubject(db, session.accountId, childId, subject)));
+          stoppedByCheck = generated.stopped;
           const unfilled = generated.kept;
           const unfilledShared = generated.shared;
           if (!generated.stopped && generated.error === null) generated.kept = await fillVisuals((fn) => withFamilyContext(claims, fn), generated.kept, { chapterKey: pending.line?.key ?? null, lang: pending.ctx.child.language, ...(pending.line && !checkMode && !sketchMode ? { videos: { line: pending.line, child: pending.ctx.child, accountId: session.accountId } } : {}), emit: (block) => send({ t: 'block', block }) });
@@ -344,19 +409,28 @@ export async function POST(req: NextRequest) {
         // W10-4 (C413): the subject's feed keeps its last 30 child turns; the oldest go with this write (tutor.ts trimFeed).
         const turn = keepTurn as typeof keepTurn;
         let kept: Awaited<ReturnType<typeof saveTurn>> = null;
+        let failed: TutorLine | null = null;
         if (turn && last?.t === 'done' && generated.subject && generated.kept.length > 0) {
           const subject = generated.subject;
           const same = subject === turn.windowSubject;
-          kept = await withFamilyContext(claims, (db) => saveTurn(db, { accountId: session.accountId, childId: turn.childId, chatId: same || pinned ? chatId : null, subject, text: turn.text, chapterKey: turn.chapterKey, blockId: turn.blockId, lang: turn.lang, files: same ? turn.files : [], blocks: generated.kept, storage: tutorStorage, tutorKey, scope: turn.scope })).catch(() => null);
+          kept = await withFamilyContext(claims, (db) => saveTurn(db, { accountId: session.accountId, childId: turn.childId, chatId: same || pinned ? chatId : null, subject, text: turn.text, chapterKey: turn.chapterKey, blockId: turn.blockId, lang: turn.lang, files: same ? turn.files : [], blocks: generated.kept, storage: tutorStorage, tutorKey, scope: turn.scope, retryOf })).catch(() => null);
+        } else if (turn && ((last?.t === 'done' && turn.plain) || (last?.t === 'refused' && last.reason === 'failed'))) {
+          // C508: the answer failed on our side (or a plain question's ended with nothing shown): the question is kept
+          // with no answer yet.
+          const unanswered = await keepUnanswered();
+          failed = { t: 'refused', reason: 'failed', message: last.t === 'refused' ? last.message : t(turn.lang === 'hi' ? 'hi' : 'en', REFUSAL_MESSAGE.failed), ...(unanswered ? { unanswered } : {}) };
         }
         if (last?.t === 'done' && kept && isSubject(kept.subject)) last = { ...last, chat: { chatId: kept.chatId, subject: kept.subject } };
         // W18-P1: the answer's own message id, just written for this child, so the window can read it aloud without a reload.
-        // Nothing else of the turn leaves the server.
-        if (last?.t === 'done' && kept) last = { ...last, messageId: kept.messageId };
-        if (last) send(last);
+        // Nothing else of the turn leaves the server. C508: `autoRead`, a child in Class 3 or below hears a fresh answer.
+        if (last?.t === 'done' && kept) last = { ...last, messageId: kept.messageId, ...(turn?.young ? { autoRead: true as const } : {}) };
+        const final: TutorLine | null = failed ?? last;
+        if (final) send(final);
         if (kept) await refreshChatSummary((fn) => withFamilyContext(claims, fn), pending.ctx, kept.chatId, kept.turnCount).catch(() => false);
       } catch (err) {
-        send({ t: 'refused', reason: err instanceof FamilySessionRevokedError ? 'not_found' : 'failed', message: t('en', 'fam.err.network') });
+        const revoked = err instanceof FamilySessionRevokedError;
+        const unanswered = revoked ? null : await keepUnanswered().catch(() => null);
+        send({ t: 'refused', reason: revoked ? 'not_found' : 'failed', message: t('en', 'fam.err.network'), ...(unanswered ? { unanswered } : {}) });
       } finally {
         controller.close();
       }

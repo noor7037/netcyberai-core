@@ -1,5 +1,6 @@
 import type { MessageKey } from '@/lib/i18n';
 import { WORD_MENU_KEYS } from './word-menu-words';
+import { PHOTO_SHEET_KEYS, SKETCH_KEYS } from './sketch-words';
 import { SUBJECT_IDS } from './subjects';
 
 // The words the shared tutor window and the Learning Vault need on the phone (S2, C375), picked on the server.
@@ -16,11 +17,13 @@ export const TUTOR_KEYS: MessageKey[] = [
   'fam.chat.feed', 'fam.chat.kept', 'fam.chat.moved', 'fam.chat.full',
   // W16-B1: "Done for now" ends the session and its quick quiz is made.
   'fam.quiz.done', 'fam.quiz.doneThanks', 'fam.quiz.doneNoQuiz',
-  // W18-P3: the sketch pad.
-  'fam.sketch.open', 'fam.sketch.pen', 'fam.sketch.eraser', 'fam.sketch.undo', 'fam.sketch.clear', 'fam.sketch.clearSure', 'fam.sketch.send', 'fam.sketch.cancel', 'fam.sketch.ask',
-  'fam.sketch.colour.ink', 'fam.sketch.colour.blue', 'fam.sketch.colour.coral',
+  // W18-P3, C510: the drawing studio, and the photo sheet (Take a photo / Choose from gallery).
+  ...SKETCH_KEYS,
+  ...PHOTO_SHEET_KEYS,
   // W17-B2: read a tutor's answer aloud, and which voice reads it.
   'fam.tutor.readAloud', 'fam.tutor.stopAloud', 'fam.voiceOut.server', 'fam.voiceOut.phone',
+  // C508: a question kept with no answer yet.
+  'fam.tutor.noAnswerYet', 'fam.tutor.tryAgain',
   // W18-P1: "Teach me" on an answer (the board's words come with UNDERSTAND_KEYS on every page that has the window).
   'fam.tutor.teachMe', 'fam.tutor.pause', 'fam.tutor.replay',
   // W22-S3: resume where the reading stopped, how much is read, and the tutor's face line while it reads.

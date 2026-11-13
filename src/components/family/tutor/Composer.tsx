@@ -2,10 +2,11 @@
 
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
+import { useCallback, useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import { fill, type Words } from '@/lib/family/fill';
 import { TUTOR_FILES_PER_TURN, TUTOR_FILE_TYPES, TUTOR_TEXT_MAX, type TutorFileType } from '@/lib/family/tutor-shape';
 import { useVoiceRecorder, type VoiceAck } from '../voice/useVoiceRecorder';
+import { PhotoSheet } from './PhotoSheet';
 import { useKeyboardInset } from './useKeyboardInset';
 
 // The tutor's composer (W6-A, C395): one rounded field for every question a child types, on Study and in the chapter
@@ -15,7 +16,8 @@ import { useKeyboardInset } from './useKeyboardInset';
 // questions. No helper paragraphs: a limit (a file too big, the day's speaking time used up) is one short line, shown
 // only when it is hit. With homework on, the photo action in the Attach menu offers two things: "Ask about this" (a photo
 // of a question, hints first; the homework helper) and "Check my work" (W16-B2: a photo of the child's own answer,
-// marked step by step). The textarea grows with the question; Enter sends on a keyboard with a mouse, and makes a new
+// marked step by step). C510: each of those two opens the photo sheet (Take a photo, the camera; Choose from gallery),
+// since a child photographs the notebook; "Ask about this" attaches the photo to this question. The textarea grows with the question; Enter sends on a keyboard with a mouse, and makes a new
 // line on a phone. Pinned above the tab dock on Study, at the drawer's foot in the reader.
 
 export type ComposerFile = { key: string; name: string; mime: TutorFileType; state: 'sending' | 'checking' | 'ready'; id: string | null };
@@ -41,9 +43,9 @@ type Props = {
   onCheck: (file: File) => void;
   checking: boolean;
   onRemove: (file: ComposerFile) => void;
-  // W18-P3: Draw: the sketch pad's picture goes to the tutor through the file door. Resolves with the words of an error, or
-  // null once sent. Absent: no Draw button.
-  onSketch?: (file: File) => Promise<string | null>;
+  // W18-P3: Draw: the drawing studio's picture (and the child's optional question) goes to the tutor through the file
+  // door. Resolves with the words of an error, or null once sent. Absent: no Draw button.
+  onSketch?: (file: File, question: string) => Promise<string | null>;
   fileError: string | null;
   voice: { secondsLeft: number } | null;
   // W16-B5: "Call <tutor>": the same composer, a second way in. Opens the call on this subject, keeping the chat.
@@ -67,12 +69,18 @@ export function Composer(p: Props) {
   const { w, id } = p;
   const box = useRef<HTMLTextAreaElement>(null);
   const fileInput = useRef<HTMLInputElement>(null);
-  const checkInput = useRef<HTMLInputElement>(null);
   const menuWrap = useRef<HTMLDivElement>(null);
   const clip = useRef<HTMLButtonElement>(null);
   const [menu, setMenu] = useState(false);
+  // C510: the photo sheet open from the menu: for Check my work, or for Ask about this.
+  const [sheet, setSheet] = useState<'check' | 'ask' | null>(null);
   const [sketching, setSketching] = useState(false);
   const drawButton = useRef<HTMLButtonElement>(null);
+  // Stable, so the studio's own effects (focus, Escape) do not run again each time the composer draws.
+  const closeSketch = useCallback(() => {
+    setSketching(false);
+    requestAnimationFrame(() => drawButton.current?.focus());
+  }, []);
   const voice = useVoiceRecorder({
     w,
     secondsLeft: p.voice?.secondsLeft,
@@ -101,21 +109,24 @@ export function Composer(p: Props) {
 
   // The attach menu closes on Escape (focus back on the clip) and on a tap outside it.
   useEffect(() => {
-    if (!menu) return;
+    if (!menu && !sheet) return;
     const away = (e: PointerEvent) => {
-      if (!menuWrap.current?.contains(e.target as Node)) setMenu(false);
+      if (!menuWrap.current?.contains(e.target as Node)) {
+        setMenu(false);
+        setSheet(null);
+      }
     };
     document.addEventListener('pointerdown', away);
     return () => document.removeEventListener('pointerdown', away);
-  }, [menu]);
+  }, [menu, sheet]);
 
   const pick = () => {
     setMenu(false);
     fileInput.current?.click();
   };
-  const pickCheck = () => {
+  const openSheet = (which: 'check' | 'ask') => {
     setMenu(false);
-    checkInput.current?.click();
+    setSheet(which);
   };
   const full = p.attached.length >= TUTOR_FILES_PER_TURN;
 
@@ -196,9 +207,10 @@ export function Composer(p: Props) {
             <div className="flex items-end gap-0.5 p-1">
               {p.files && (
                 <div ref={menuWrap} className="relative shrink-0" onKeyDown={(e) => {
-                  if (e.key === 'Escape' && menu) {
+                  if (e.key === 'Escape' && (menu || sheet)) {
                     e.stopPropagation();
                     setMenu(false);
+                    setSheet(null);
                     clip.current?.focus();
                   }
                 }}>
@@ -215,20 +227,6 @@ export function Composer(p: Props) {
                       if (f) p.onAttach(f);
                     }}
                   />
-                  <input
-                    ref={checkInput}
-                    type="file"
-                    accept="image/png,image/jpeg,image/webp"
-                    className="sr-only"
-                    tabIndex={-1}
-                    aria-hidden="true"
-                    data-tutor-check-input
-                    onChange={(e) => {
-                      const f = e.target.files?.[0];
-                      e.target.value = '';
-                      if (f) p.onCheck(f);
-                    }}
-                  />
                   <button
                     ref={clip}
                     type="button"
@@ -237,7 +235,11 @@ export function Composer(p: Props) {
                     aria-expanded={p.homework ? menu : undefined}
                     aria-controls={p.homework ? `${id}-attach-menu` : undefined}
                     disabled={p.locked || (!p.homework && full)}
-                    onClick={() => (p.homework ? setMenu((m) => !m) : pick())}
+                    onClick={() => {
+                      if (!p.homework) return pick();
+                      setSheet(null);
+                      setMenu((m) => !m);
+                    }}
                     className={`${ROUND} text-ink hover:bg-off-white disabled:opacity-50`}
                   >
                     <svg aria-hidden="true" className="h-[22px] w-[22px]" {...ICON}>
@@ -255,7 +257,7 @@ export function Composer(p: Props) {
                         </span>
                         {w['fam.tutor.attach']}
                       </button>
-                      <button type="button" onClick={pickCheck} disabled={p.attached.length > 0} data-tutor-check-pick className="flex min-h-[48px] items-center gap-3 rounded-xl px-3 py-1.5 text-left hover:bg-off-white disabled:opacity-50">
+                      <button type="button" onClick={() => openSheet('check')} disabled={p.attached.length > 0} data-tutor-check-pick aria-haspopup="dialog" className="flex min-h-[48px] items-center gap-3 rounded-xl px-3 py-1.5 text-left hover:bg-off-white disabled:opacity-50">
                         <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-emerald/15 text-ink">
                           <svg className="h-5 w-5" {...ICON}>
                             <path d="M4 5h16v14H4z" />
@@ -267,7 +269,7 @@ export function Composer(p: Props) {
                           <span className="text-xs text-slate">{w['fam.check.menuLead']}</span>
                         </span>
                       </button>
-                      <Link href="/family/study/homework" data-homework-link onClick={() => setMenu(false)} className="flex min-h-[48px] items-center gap-3 rounded-xl px-3 py-1.5 text-left hover:bg-off-white">
+                      <button type="button" data-homework-link data-tutor-ask-pick aria-haspopup="dialog" onClick={() => openSheet('ask')} disabled={full || p.checking} className="flex min-h-[48px] items-center gap-3 rounded-xl px-3 py-1.5 text-left hover:bg-off-white disabled:opacity-50">
                         <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-sunshine/30 text-gold-deep">
                           <svg className="h-5 w-5" {...ICON}>
                             <path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" />
@@ -276,10 +278,28 @@ export function Composer(p: Props) {
                         </span>
                         <span className="flex min-w-0 flex-col">
                           <span className="text-base font-bold text-slate">{w['fam.homework.studyLink']}</span>
-                          <span className="text-xs text-slate">{w['fam.homework.studyLead']}</span>
+                          <span className="text-xs text-slate">{w['fam.photo.askLead']}</span>
                         </span>
-                      </Link>
+                      </button>
                     </div>
+                  )}
+                  {sheet && (
+                    <PhotoSheet
+                      w={w}
+                      id={`${id}-photo-sheet`}
+                      title={sheet === 'check' ? w['fam.check.menu'] : w['fam.homework.studyLink']}
+                      lead={sheet === 'check' ? w['fam.check.menuLead'] : w['fam.photo.askLead']}
+                      onClose={() => {
+                        setSheet(null);
+                        clip.current?.focus();
+                      }}
+                      onPick={(f) => {
+                        const which = sheet;
+                        setSheet(null);
+                        if (which === 'check') p.onCheck(f);
+                        else p.onAttach(f);
+                      }}
+                    />
                   )}
                 </div>
               )}
@@ -359,10 +379,8 @@ export function Composer(p: Props) {
         <SketchPad
           w={w}
           onSend={p.onSketch}
-          onClose={() => {
-            setSketching(false);
-            requestAnimationFrame(() => drawButton.current?.focus());
-          }}
+          question={p.value}
+          onClose={closeSketch}
         />
       )}
     </div>

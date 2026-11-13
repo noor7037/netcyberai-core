@@ -324,8 +324,9 @@ export const FAMILY_SCREENS = [
   ['full', 'family-study-voice-recording', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-voice-input]', mic: true }],
   // W16-A4: the call, waiting for the first question, and after one turn (the question heard, the answer on the board with its
   // captions, the phone's own voice reading because no server voice is set up). The turn is scripted (`call`).
-  ['full', 'family-call', '/family/call?tutor=maths&subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', call: true, settle: '[data-call-mic]' }],
-  ['full', 'family-call-answer', '/family/call?tutor=maths&subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', call: true, answer: callAnswer, settle: '[data-call-mic]', steps: [{ tap: '[data-call-mic]', wait: '[data-voice-state="recording"]' }, { pause: 1300 }, { tap: '[data-call-mic]', wait: '[data-call-caption]' }, { wait: '[data-call-board] [data-block="explanation"]' }, { wait: '[data-voice-in-use]' }] }],
+  // C511: the microphone is open from the start (no Talk tap); the scripted voice (`call` below) is one question, then quiet.
+  ['full', 'family-call', '/family/call?tutor=maths&subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', call: true, settle: '[data-call-bar]' }],
+  ['full', 'family-call-answer', '/family/call?tutor=maths&subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', call: true, callVoice: true, answer: callAnswer, settle: '[data-call-bar]', steps: [{ wait: '[data-call-caption]' }, { wait: '[data-call-board] [data-block="explanation"]' }, { wait: '[data-voice-in-use]' }] }],
   // C230-AP: a photo yes given on the older notice is asked again, and the row says why.
   ['full', 'family-parent-photo-notice', '/family/parent#privacy', { parent: true, settle: '[data-consent-changed="photo_input"]', prep: "insert into family.consents (account_id, purpose, granted, verification_method, notice_version, created_at) values ('f0000000-0000-4000-8000-0000000f0004', 'photo_input', true, 'parent_tap', 'fam-notice-2', now() + interval '1 day')", reset: "delete from family.consents where notice_version = 'fam-notice-2'" }],
   ['full', 'family-parent-area-voice', '/family/parent#privacy', { parent: true, settle: '[data-consent-voice]' }],
@@ -639,12 +640,17 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
           if (opts.call) {
             // W18: the recorder measures the microphone before sending (voice-energy.ts) and Chromium's fake device is
             // near silent, so the analyser is told a steady voice-level signal here; the product code is untouched.
-            await context.addInitScript(() => {
-              const loud = (arr) => {
-                for (let i = 0; i < arr.length; i++) arr[i] = 0.2 * Math.sin(i / 7);
+            // C511: the call's open microphone hears a quiet room; with `callVoice`, one second and a half of voice after the
+            // first second (one question), then quiet again, so the turn ends by itself.
+            await context.addInitScript((voice) => {
+              let t0 = 0;
+              const fill = (arr) => {
+                const t = performance.now() - (t0 ||= performance.now());
+                const a = voice && t > 1000 && t < 2500 ? 0.2 : 0.001;
+                for (let i = 0; i < arr.length; i++) arr[i] = a * Math.sin(i / 7);
               };
-              if (typeof AnalyserNode !== 'undefined') AnalyserNode.prototype.getFloatTimeDomainData = function (arr) { loud(arr); };
-            });
+              if (typeof AnalyserNode !== 'undefined') AnalyserNode.prototype.getFloatTimeDomainData = function (arr) { fill(arr); };
+            }, Boolean(opts.callVoice));
             await context.route('**/api/family/voice', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ text: CALL_WORDS[lang].heard, left: 100, maxSeconds: 30 }) }));
             await context.route('**/api/family/voice/speak', (r) => r.fulfill({ status: 503, contentType: 'application/json', body: JSON.stringify({ error: 'not_set_up' }) }));
             await context.route('**/api/family/voice/call/marks', (r) => r.fulfill({ status: 204 }));
