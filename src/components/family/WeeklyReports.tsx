@@ -26,6 +26,7 @@ export function WeeklyReports({ reports, w, lang }: { reports: readonly StoredRe
           ];
           if (c.quizAverage !== null) tiles.push([w['fam.report.tile.quiz'], `${c.quizAverage}%`]);
           if (c.voiceMinutes > 0) tiles.push([w['fam.report.tile.voice'], String(c.voiceMinutes)]);
+          if (c.drawings) tiles.push([w['fam.report.tile.drawings'], String(c.drawings)]);
           if (c.school && c.school.markedDays > 0) tiles.push([w['fam.report.tile.school'], fill(w['fam.report.tile.schoolValue'], { present: c.school.presentDays, marked: c.school.markedDays })]);
           return (
             <article key={r.weekStart} data-weekly-report={r.weekStart} className="fam-card flex flex-col gap-3 bg-white p-4 text-slate">

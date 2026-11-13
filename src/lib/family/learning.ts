@@ -3,6 +3,7 @@ import { noteRevisits } from './plan';
 import type { ItemSecret } from './items';
 import { SUBJECT_LIST_KEYS, subjectListOf } from '@/lib/contracts/subjects';
 import { SUBJECTS, canChangeFreeSubject, type Subject } from './modules';
+import { doneCounts, drawAllowed } from './draw-done';
 
 // Learning records (docs/family-app/02 §4.1–4.2; M1-6, C252). Progress moves only on checked answers: an answer is
 // checked on the server against the sealed key, recorded as an attempt, and the topic's progress is recomputed from
@@ -137,6 +138,9 @@ export type ParentWeek = {
   days: { day: string; answers: number }[];
   subjects: { subject: Subject; answered: number; correct: number }[];
   latest: { title: string; subject: Subject; answered: number; correct: number; mastered: boolean; lastOn: string | null }[];
+  // C514: drawing templates completed (a count only, never a score) in the same seven India days and in all, and whether
+  // the parent allowed all drawing activities for the child.
+  draw: { week: number; all: number; allowed: boolean };
 };
 
 export async function parentWeek(db: Db, accountId: string, childId: string, today: string, lang: 'en' | 'hi'): Promise<ParentWeek> {
@@ -164,5 +168,6 @@ export async function parentWeek(db: Db, accountId: string, childId: string, tod
     days,
     subjects: [...bySubject].map(([subject, v]) => ({ subject, ...v })),
     latest: progress.slice(0, 5).map((p) => ({ title: p.title, subject: p.subject, answered: p.answered, correct: p.correct, mastered: p.mastered, lastOn: p.lastCorrectOn })),
+    draw: { ...(await doneCounts(db, accountId, childId, `${days[0].day}T00:00:00+05:30`, `${new Date(base + 86_400_000).toISOString().slice(0, 10)}T00:00:00+05:30`)), allowed: await drawAllowed(db, accountId, childId) },
   };
 }
