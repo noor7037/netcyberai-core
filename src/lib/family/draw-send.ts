@@ -12,7 +12,8 @@ export type SendDeps = {
   upload: () => Promise<UploadAnswer>;
   // Takes an unsent attachment back; true when it is gone (a 404 counts: there is nothing left to take back).
   remove: (id: string) => Promise<boolean>;
-  wait: (ms: number) => Promise<void>;
+  // Defaults to a timer.
+  wait?: (ms: number) => Promise<void>;
   // This window's own drawings that were uploaded and never sent, which a later send may take back.
   leftovers: Set<string>;
 };
@@ -39,7 +40,7 @@ export async function sendWithRetry(deps: SendDeps, delays: readonly number[] = 
       return { ok: false, code: failed.code === 'too_many_files' && attempt > 0 ? 'files_today' : failed.code, tries: attempt + 1 };
     }
     for (const id of [...deps.leftovers]) if (await deps.remove(id).catch(() => false)) deps.leftovers.delete(id);
-    await deps.wait(delays[attempt]);
+    await (deps.wait ?? ((ms) => new Promise<void>((resolve) => setTimeout(resolve, ms))))(delays[attempt]);
   }
 }
 

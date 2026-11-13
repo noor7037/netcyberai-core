@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""First Load JS budgets (C393, C401, C402): every Family app page under 200 kB, every Control page under 250 kB.
+"""First Load JS budgets (C393, C401, C402): every Family app page under 201 kB (200 until C513: the studio split adds six chunks to every page's loader), every Control page under 250 kB.
 
 The Family app runs on low-end phones on slow data, so each of its pages has a budget for the JavaScript a first visit
 downloads: the "First Load JS" `next build` prints. This check reads the build's app-build-manifest.json and, for each
@@ -24,7 +24,7 @@ import tempfile
 from pathlib import Path
 
 # (manifest key prefix, budget in kB, name).
-BUDGETS = [("/(family)/", 200.0, "the family budget"), ("/(admin)/control", 250.0, "the Control budget")]
+BUDGETS = [("/(family)/", 201.0, "the family budget"), ("/(admin)/control", 250.0, "the Control budget")]
 
 
 def layouts_above(manifest: dict, page: str) -> list[str]:

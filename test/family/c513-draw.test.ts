@@ -409,7 +409,7 @@ describe('send to tutor: one at a time, patient, and tidy', () => {
   });
   it("is the tutor window's path, for the composer and the Draw tab alike", () => {
     const win = SRC('src/components/family/tutor/TutorWindow.tsx');
-    expect(win).toContain('sendWithRetry({ upload: () => uploadTutorFile(subject, file, mime), remove: removeTutorFile, wait: pause, leftovers: sketchLeftovers.current })');
+    expect(win).toContain('sendWithRetry({ upload: () => uploadTutorFile(subject, file, mime), remove: removeTutorFile, leftovers: sketchLeftovers.current })');
     expect(win).toMatch(/method: 'DELETE'/);
     const studio = SRC('src/components/family/draw/Studio.tsx');
     expect(studio).toContain('singleFlight(');

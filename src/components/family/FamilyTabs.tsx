@@ -16,7 +16,7 @@ const ICON: Record<DockTab, string> = {
   study: 'M6 4h12v16H7a1 1 0 0 1-1-1zM6 17h12M10 8h5',
   english: 'M4 5h16v11h-8l-5 4v-4H4zM9 13l3-6 3 6',
   // C513: a brush over a dab of paint.
-  draw: 'M14.5 4.5l5 5-7.5 7.5-5-5zM7 12l-2.6 2.6a2.5 2.5 0 0 0 0 3.5l1 1a2.5 2.5 0 0 0 3.5 0L11.5 16.5M4 21h5',
+  draw: 'M4 20l1-4L16 5l3 3L8 19zM14 7l3 3',
   future: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM15.5 8.5l-2 5-5 2 2-5z',
 };
 

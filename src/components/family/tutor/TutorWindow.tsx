@@ -121,10 +121,8 @@ async function uploadTutorFile(subject: string, file: File, mime: string, step?:
 
 // Takes an unsent attachment back (C513); true when it is gone, a 404 included.
 async function removeTutorFile(id: string): Promise<boolean> {
-  const res = await fetch(`/api/family/tutor/files/${encodeURIComponent(id)}`, { method: 'DELETE', credentials: 'same-origin' }).catch(() => null);
-  return !!res && (res.ok || res.status === 404);
+  return fetch(`/api/family/tutor/files/${encodeURIComponent(id)}`, { method: 'DELETE' }).then((r) => r.ok || r.status === 404, () => false);
 }
-const pause = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));
 
 // The feed read from the server, less the turn a carried question already draws live (the question the tab followed:
 // its turn was kept before the new subject's feed was read).
@@ -272,7 +270,7 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
   const remove = (a: Attached) => {
     setAttached((list) => list.filter((x) => x.key !== a.key));
     setChecking(false);
-    if (a.id) void fetch(`/api/family/tutor/files/${encodeURIComponent(a.id)}`, { method: 'DELETE', credentials: 'same-origin' }).catch(() => null);
+    if (a.id) void fetch(`/api/family/tutor/files/${encodeURIComponent(a.id)}`, { method: 'DELETE' }).catch(() => null);
   };
 
   // A question continues the subject's newest open chat (the server finds it; the first answer opens one).
@@ -316,7 +314,7 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
     const mime = sniffTutorFile(new Uint8Array(await file.slice(0, 16).arrayBuffer()));
     if (mime !== 'image/png' && mime !== 'image/jpeg') return w['fam.tutor.err.file_type'];
     // C513: a failed try takes its file back; "too many files" takes back this window's leftovers and tries again.
-    const up = await sendWithRetry({ upload: () => uploadTutorFile(subject, file, mime), remove: removeTutorFile, wait: pause, leftovers: sketchLeftovers.current });
+    const up = await sendWithRetry({ upload: () => uploadTutorFile(subject, file, mime), remove: removeTutorFile, leftovers: sketchLeftovers.current });
     if (!up.ok) return w[sendErrorKey(up.code)] ?? w['fam.err.network'];
     const asked = question.trim().slice(0, TUTOR_TEXT_MAX);
     submit(asked.length >= TUTOR_TEXT_MIN ? asked : w['fam.sketch.ask'], { ...base, files: [up.id], sketch: true });
