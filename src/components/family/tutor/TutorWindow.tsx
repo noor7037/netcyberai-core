@@ -8,7 +8,7 @@ import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from 
 import { unfilled, type Block, type Explanation } from '@/lib/family/blocks';
 import { fill, type Words } from '@/lib/family/fill';
 import { isSubject, type Subject } from '@/lib/family/subjects';
-import { TUTOR_FILE_MAX_BYTES, TUTOR_FILES_PER_TURN, TUTOR_TEXT_MIN, sniffTutorFile, type FeedTurn, type TutorFile } from '@/lib/family/tutor-shape';
+import { TUTOR_FILE_MAX_BYTES, TUTOR_FILES_PER_TURN, TUTOR_TEXT_MAX, TUTOR_TEXT_MIN, sniffTutorFile, type FeedTurn, type TutorFile } from '@/lib/family/tutor-shape';
 import { CitationChip } from '../blocks/CitationChip';
 import { citationOf } from '@/lib/family/citation';
 import { AnswerBlock, DirectAnswerCard, UnderstandView, type TutorAsk, type UnderstandInput } from '../UnderstandView';
@@ -295,15 +295,17 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
   // W18-P3: the sketch pad's PNG goes through the same file door as Attach, then is asked about with `sketch: true`: the
   // tutor answers with a board that marks up the drawing. The words are what the child typed, else a fixed line. Resolves
   // with the words of an error to show in the pad, or null once asked.
-  const sendSketch = async (file: File): Promise<string | null> => {
+  // C510: the studio's own question box (prefilled with what the composer held) comes with the picture; a PNG or a JPEG.
+  const sendSketch = async (file: File, question = ''): Promise<string | null> => {
     if (attached.length > 0 || checking) return w['fam.tutor.err.too_many_files'];
     if (file.size === 0) return w['fam.tutor.err.file_empty'];
     if (file.size > TUTOR_FILE_MAX_BYTES) return w['fam.tutor.err.file_too_large'];
     const mime = sniffTutorFile(new Uint8Array(await file.slice(0, 16).arrayBuffer()));
-    if (mime !== 'image/png') return w['fam.tutor.err.file_type'];
+    if (mime !== 'image/png' && mime !== 'image/jpeg') return w['fam.tutor.err.file_type'];
     const up = await uploadTutorFile(subject, file, mime);
     if ('code' in up) return w[`fam.tutor.err.${up.code}`] ?? w['fam.err.network'];
-    submit(text.trim().length >= TUTOR_TEXT_MIN ? text.trim() : w['fam.sketch.ask'], { ...base, files: [up.id], sketch: true });
+    const asked = question.trim().slice(0, TUTOR_TEXT_MAX);
+    submit(asked.length >= TUTOR_TEXT_MIN ? asked : w['fam.sketch.ask'], { ...base, files: [up.id], sketch: true });
     return null;
   };
 
