@@ -40,6 +40,8 @@ export const tutorStorage: DirectUploadStorage = familyTutorFileStorage;
 export const SIGNED_READ_SECONDS = 60;
 // A pending upload stops after fifteen minutes; its row and file are removed by the next ask of the same account.
 export const PENDING_MINUTES = 15;
+// C512: how long a stored file may wait unsent before it is removed.
+export const UNSENT_MINUTES = 60;
 // At most this many files a child may attach in a day: a guard on the bucket, not a teaching limit.
 export const FILES_PER_DAY = 30;
 const TURNS_SHOWN = 60;
@@ -596,6 +598,15 @@ export async function askTutorUpload(
   const stale = new Date(now() - PENDING_MINUTES * 60_000);
   await db.query(`delete from family.tutor_attachments where account_id = $1 and status = 'pending' and created_at < $2`, [who.accountId, stale]);
   await storage.removeOlderThan(tutorPendingFolder(who.accountId), stale).catch(() => 0);
+  // C512: a file that was stored and then never sent (a drawing whose question failed, a photo the child walked away
+  // from) used to count against the three files a turn for ever, so the fourth upload was refused as "too many" with no
+  // way out. After an hour unsent it is removed, its file too (best effort).
+  const abandoned = new Date(now() - UNSENT_MINUTES * 60_000);
+  const { rows: left } = await db.query(
+    `delete from family.tutor_attachments where account_id = $1 and status = 'ready' and message_id is null and kept_for is null and created_at < $2 returning storage_key`,
+    [who.accountId, abandoned]
+  );
+  for (const r of left) if (r.storage_key) await storage.remove(String(r.storage_key)).catch(() => undefined);
   const conversationId = await conversationFor(db, who.accountId, who.childId, input.subject);
   const { rows: counts } = await db.query(
     `select count(*) filter (where message_id is null and kept_for is null and conversation_id = $3)::int as unsent, count(*) filter (where created_at > $4)::int as today
