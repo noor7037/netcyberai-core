@@ -67,7 +67,7 @@ export default async function FamilyAppLayout({ children }: { children: React.Re
         <TutorSwitches board={tutorParts(switches).board}>{children}</TutorSwitches>
       </div>
       <NoVoiceNotice inApp={shellVersion(headers().get('user-agent')) !== null} words={{ app: t(lang, 'fam.voice.needsApp'), browser: t(lang, 'fam.voice.noBrowserVoice'), close: t(lang, 'fam.voice.close') }} />
-      <FamilyTabs tabs={tabs} navLabel={t(lang, 'fam.tab.nav')} labels={{ home: t(lang, 'fam.tab.home'), study: t(lang, 'fam.tab.study'), english: t(lang, 'fam.tab.english'), future: t(lang, 'fam.tab.future') }} />
+      <FamilyTabs tabs={tabs} navLabel={t(lang, 'fam.tab.nav')} labels={{ home: t(lang, 'fam.tab.home'), study: t(lang, 'fam.tab.study'), english: t(lang, 'fam.tab.english'), draw: t(lang, 'fam.tab.draw'), future: t(lang, 'fam.tab.future') }} />
     </>
   );
 }

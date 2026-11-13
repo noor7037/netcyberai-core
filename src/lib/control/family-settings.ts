@@ -4,6 +4,7 @@ import { VOICE_CHARS_SETTING, voiceCharLimit } from '@/lib/ai/daily-cap';
 import { CAP_MAX, MULTIPLIER_MAX, PHOTO_DOUBTS_SETTING, PLUS_MULTIPLIER_SETTING, TEXT_TURNS_SETTING, VOICE_MINUTES_SETTING, plusMultiplier, tutorBaseCaps, type TutorCaps } from '@/lib/family/tutor-meter';
 import { SUBJECT_IDS, SUBJECT_LIST_KEYS, subjectListOf, type Subject, type SubjectList } from '@/lib/contracts/subjects';
 import { tintFor } from '@/lib/ai-tutors/index';
+import { DRAW_DAILY_SETTING } from '@/lib/family/draw-contract';
 
 // Control → Family's settings: two lists of subjects. `open` (C298): open to every child, whatever their free subject
 // is. `reviewed_only` (C300): a chapter or topic shows only an explanation NetCyberAI has checked. The first pilot sets
@@ -97,6 +98,36 @@ export async function setVoiceAllowance(db: Sql, by: { userId: string }, raw: un
     afterState: { chars: raw },
   });
   return { ok: true, chars: raw };
+}
+
+// C513: the Draw tab's daily creation limit (new drawings a child may start in an India day; counted on the child's
+// phone). A whole number from 0 (no new drawings) to DRAW_DAILY_MAX; never set reads as DRAW_DAILY_DEFAULT on the phone;
+// audited.
+export const DRAW_DAILY_MAX = 200;
+export async function readDrawDaily(db: Sql): Promise<number | null> {
+  const { rows } = await db.query(`select value from control.settings where key = $1`, [DRAW_DAILY_SETTING]);
+  const v = rows[0]?.value;
+  const n = typeof v === 'number' ? v : typeof v === 'string' && /^\d+$/.test(v) ? Number(v) : NaN;
+  return Number.isInteger(n) && n >= 0 && n <= DRAW_DAILY_MAX ? n : null;
+}
+export async function setDrawDaily(db: Sql, by: { userId: string }, raw: unknown): Promise<{ ok: true; drawings: number } | { ok: false; code: 'bad_value' }> {
+  if (typeof raw !== 'number' || !Number.isInteger(raw) || raw < 0 || raw > DRAW_DAILY_MAX) return { ok: false, code: 'bad_value' };
+  const before = await readDrawDaily(db);
+  await db.query(
+    `insert into control.settings (key, value, updated_by) values ($1, $2::jsonb, $3) on conflict (key) do update set value = excluded.value, updated_at = now(), updated_by = excluded.updated_by`,
+    [DRAW_DAILY_SETTING, JSON.stringify(raw), by.userId]
+  );
+  await writeAuditLog(db, {
+    schoolId: null,
+    actorUserId: by.userId,
+    actorRole: 'super_admin',
+    eventAction: 'family.draw_daily_set',
+    targetType: 'control_setting',
+    targetId: DRAW_DAILY_SETTING,
+    beforeState: { drawings: before },
+    afterState: { drawings: raw },
+  });
+  return { ok: true, drawings: raw };
 }
 
 // W16-A3 begin

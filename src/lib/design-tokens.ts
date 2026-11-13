@@ -148,3 +148,15 @@ export const lessonType = {
 
 // 8-point spacing, 16 px card radii, and the one entry/feedback duration (off under prefers-reduced-motion).
 export const lessonShape = { space: 8, radius: 16, enterMs: 180 } as const;
+
+// C513: the Draw tab's art table. Five soft paints for its surfaces and tool blocks (bg-art-coral, ...), each with ink
+// text (lessonColors.ink), and the table under the paper. Contrast, by scripts/check_contrast.py's contrast_ratio(): ink
+// on coral 10.4:1, on sky 11.9:1, on mint 13.4:1, on butter 15.1:1, on lavender 11.5:1, on the table 14.6:1.
+export const artColors = {
+  coral: '#FFB4A2',
+  sky: '#A9D6F5',
+  mint: '#B8E6CF',
+  butter: '#FFE7A3',
+  lavender: '#D9CCF6',
+  table: '#F4EADB',
+} as const;

@@ -89,7 +89,7 @@ describe('the Progress screen’s parts', () => {
 describe('the dock and the mascot', () => {
   it('keeps aria-current and every tab’s name, on an ink pill with 56 px tabs', async () => {
     const { FamilyTabs } = await import('@/components/family/FamilyTabs');
-    const html = renderToStaticMarkup(h(FamilyTabs, { tabs: ['home', 'study', 'english', 'future'], navLabel: 'Main menu', labels: { home: 'Home', study: 'Study', english: 'English', future: 'Future' } }));
+    const html = renderToStaticMarkup(h(FamilyTabs, { tabs: ['home', 'study', 'english', 'future'], navLabel: 'Main menu', labels: { home: 'Home', study: 'Study', english: 'English', draw: 'Draw', future: 'Future' } }));
     expect(html).toContain('bg-ink');
     expect(html.match(/aria-current="page"/g)?.length).toBe(1);
     expect(html).toMatch(/aria-current="page"[^>]*href="\/family"|href="\/family"[^>]*aria-current="page"/);
