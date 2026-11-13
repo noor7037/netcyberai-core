@@ -67,6 +67,7 @@ import { inks, liveOpacity, paintLive, paintPaper, paintRibbon, paintStep, stepW
 import { StudioToolbar, ToolIcon, TOOL_BTN, type StudioPanel } from './StudioToolbar';
 import { RadialPicker } from './RadialPicker';
 import { DrawLimit } from './DrawLimit';
+import { canAdvance, guidedSteps, playSfx, readSoundOn, readStep, speak, stopSpeaking, writeSoundOn, writeStep, type Sfx } from '@/lib/family/draw-engage';
 
 // The child's drawing studio (W18-P3, rebuilt in C510, made an art table in C513). Full screen above the app (a portal
 // into the body), safe-area aware, on a warm table: a top bar (close, undo, redo, save, Send to tutor), the paper as a
@@ -97,6 +98,11 @@ type Props = {
   daily?: { limit: number; child: string } | null;
   // Keep the drawing in My drawings when the studio closes (the Draw tab), instead of only on Save.
   keepOnClose?: boolean;
+  // C517: the guided studio for LKG to Class 4 (sounds, the phone's voice, one step at a time); the child's language for
+  // the voice; and the child's tag on this phone, under which the step a template stopped at is kept.
+  engage?: boolean;
+  lang?: 'en' | 'hi';
+  child?: string;
 };
 
 type Sheet = 'send' | 'save' | 'mine' | 'clear' | null;
@@ -154,7 +160,7 @@ async function imageOf(blob: Blob): Promise<CanvasImageSource | null> {
 const newId = () => (typeof crypto !== 'undefined' && 'randomUUID' in crypto ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(36).slice(2)}`);
 const rawOf = (e: { clientX: number; clientY: number; timeStamp: number; pressure: number; pointerType: string }, at: Point): RawPoint => ({ x: at.x, y: at.y, t: e.timeStamp, pressure: e.pressure, pen: e.pointerType === 'pen' });
 
-export function Studio({ w, onSend, onClose, question: initialQuestion = '', open: opened = { from: 'free' }, onEvent, startWith = null, daily = null, keepOnClose = false }: Props) {
+export function Studio({ w, onSend, onClose, question: initialQuestion = '', open: opened = { from: 'free' }, onEvent, startWith = null, daily = null, keepOnClose = false, engage = false, lang = 'en', child }: Props) {
   const area = useRef<HTMLDivElement>(null);
   const paperC = useRef<HTMLCanvasElement>(null);
   const layerC = useRef<HTMLCanvasElement>(null);
@@ -195,6 +201,43 @@ export function Studio({ w, onSend, onClose, question: initialQuestion = '', ope
   const [placing, setPlacing] = useState<string | null>(null);
   const [wheel, setWheelState] = useState<Wheel>(null);
   const [note, setNote] = useState<Note>(null);
+  // C517: engagement mode. Sound is on unless turned off on this phone; a template is walked one step at a time, and the
+  // next step opens only after the child drew on this one.
+  const [soundOn, setSoundOn] = useState(true);
+  useEffect(() => setSoundOn(readSoundOn()), []);
+  const guide = useMemo(
+    () => (engage && opened.template ? guidedSteps(opened.template, { colourIt: w['fam.draw.g.colourIt'], finish: w['fam.draw.g.finish'] }) : null),
+    [engage, opened.template, w]
+  );
+  const stepTag = child ?? daily?.child ?? null;
+  const [stepAt, setStepAt] = useState(0);
+  const [drew, setDrew] = useState(false);
+  useEffect(() => {
+    if (guide && opened.template && stepTag) setStepAt(Math.min(readStep(stepTag, opened.template.classLevel, opened.template.id), guide.length - 1));
+  }, [guide, opened.template, stepTag]);
+  const sfx = (k: Sfx) => engage && playSfx(k, soundOn);
+  const say = (text: string) => engage && speak(text, lang, soundOn);
+  useEffect(() => {
+    if (!engage) return;
+    say(guide ? guide[stepAt]?.text ?? '' : w['fam.draw.g.hello']);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [engage, guide, stepAt]);
+  useEffect(() => () => stopSpeaking(), []);
+  const nextStep = () => {
+    if (!guide || !canAdvance(stepAt, guide.length, drew)) return;
+    const n = stepAt + 1;
+    setStepAt(n);
+    setDrew(false);
+    sfx('step');
+    if (stepTag && opened.template) writeStep(stepTag, opened.template.classLevel, opened.template.id, n);
+  };
+  const toggleSound = () => {
+    const on = !soundOn;
+    setSoundOn(on);
+    writeSoundOn(on);
+    if (!on) stopSpeaking();
+    else playSfx('tap', true);
+  };
   const [send, setSend] = useState<SendState>({ state: 'idle' });
   const [question, setQuestion] = useState(initialQuestion.slice(0, TUTOR_TEXT_MAX));
   const [, setVersion] = useState(0);
@@ -581,6 +624,10 @@ export function Studio({ w, onSend, onClose, question: initialQuestion = '', ope
     styleTop(null);
     const ctx = ctxOf(layerC.current);
     if (!ctx) return;
+    if (engage && l.kind !== 'tap') {
+      sfx('stroke');
+      setDrew(true);
+    }
     if (l.kind === 'ink') {
       l.builder.finish(rawOf(e.nativeEvent, toDoc(e.clientX, e.clientY)));
       paintStep(ctx, l.step, doc.width, doc.height);
@@ -736,6 +783,7 @@ export function Studio({ w, onSend, onClose, question: initialQuestion = '', ope
       }
       if (failed) return setSend({ state: 'failed', error: failed });
       setSend({ state: 'sent' });
+      sfx('success');
       onEvent?.({ t: 'sent', templateId: template?.id ?? null });
       setTimeout(() => closeRef.current(), 1800);
     });
@@ -872,6 +920,8 @@ export function Studio({ w, onSend, onClose, question: initialQuestion = '', ope
   const canUndo = history.current.done.length > 0 && !busy;
   const canRedo = history.current.undone.length > 0 && !busy;
   const chooseTool = (t: SketchTool) => {
+    sfx('tap');
+    say(w[`fam.sketch.tool.${t}`] ?? '');
     setTool(t);
     setPanel(null);
     setPlacing(null);
@@ -932,7 +982,54 @@ export function Studio({ w, onSend, onClose, question: initialQuestion = '', ope
         )}
       </div>
 
-      {template && (
+      {engage && (
+        <div data-draw-guide className="draw-tray-in mx-2 mb-2 flex shrink-0 flex-col gap-2 rounded-2xl bg-art-butter px-3 py-2 text-ink">
+          <div className="flex items-start gap-2">
+          <button type="button" data-draw-guide-listen aria-label={w['fam.draw.g.listen']} title={w['fam.draw.g.listen']} onClick={() => speak(guide ? guide[stepAt]?.text ?? '' : w['fam.draw.g.hello'], lang, true)} className={`${TOOL_BTN} shrink-0 bg-white text-ink`}>
+            <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 9v6h4l5 4V5L8 9zM16 9a4 4 0 010 6M19 6a8 8 0 010 12" /></svg>
+          </button>
+          <div className="min-w-0 flex-1">
+            {guide && template && <p className="truncate text-sm font-bold text-ink">{template.title}</p>}
+            <p data-draw-guide-text aria-live="polite" className="text-lg font-extrabold leading-snug text-ink">{guide ? guide[stepAt]?.text : w['fam.draw.g.hello']}</p>
+          </div>
+          <button type="button" data-draw-sound aria-pressed={soundOn} aria-label={soundOn ? w['fam.draw.g.soundOff'] : w['fam.draw.g.soundOn']} title={soundOn ? w['fam.draw.g.soundOff'] : w['fam.draw.g.soundOn']} onClick={toggleSound} className={`${TOOL_BTN} shrink-0 bg-white text-ink`}>
+            <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">{soundOn ? <path d="M9 18V6l10-2v12M9 18a3 3 0 11-3-3 3 3 0 013 3zM19 16a3 3 0 11-3-3 3 3 0 013 3z" /> : <path d="M9 18V6l10-2v12M9 18a3 3 0 11-3-3 3 3 0 013 3zM3 3l18 18" />}</svg>
+          </button>
+          </div>
+          {guide && template && (
+            <div className="flex items-center justify-between gap-2">
+            {guide && (
+              <div data-draw-guide-progress role="img" aria-label={fill(w['fam.draw.g.step'], { n: stepAt + 1, total: guide.length })} className="flex gap-1.5">
+                {guide.map((_, i) => (
+                  <span key={i} aria-hidden="true" className={`h-2.5 w-2.5 rounded-full ${i <= stepAt ? 'bg-art-coral' : 'bg-white ring-1 ring-ink/20'}`} />
+                ))}
+              </div>
+            )}
+          {guide && template && stepAt < guide.length - 1 && (
+            <button type="button" data-draw-guide-next disabled={!drew} onClick={nextStep} className={`${PILL} fam-cta shrink-0 bg-ink text-white shadow-md disabled:opacity-40`}>
+              {drew ? w['fam.draw.g.next'] : w['fam.draw.g.drawFirst']}
+            </button>
+          )}
+          {guide && template && stepAt === guide.length - 1 && (
+            <button
+              type="button"
+              data-draw-done
+              onClick={() => {
+                onEvent?.({ t: 'done', templateId: template.id });
+                sfx('success');
+                say(w['fam.draw.g.yay']);
+                setNote({ text: w['fam.draw.doneSaid'], alert: false });
+              }}
+              className={`${PILL} fam-cta shrink-0 bg-ink text-white shadow-md`}
+            >
+              {w['fam.draw.done']}
+            </button>
+          )}
+            </div>
+          )}
+        </div>
+      )}
+      {!engage && template && (
         <div data-draw-template-bar className="draw-tray-in mx-2 mb-2 flex shrink-0 items-center gap-3 rounded-2xl bg-art-mint px-3 py-2 text-ink">
           <div className="min-w-0 flex-1">
             <p className="truncate text-base font-extrabold text-ink">{template.title}</p>
@@ -972,7 +1069,13 @@ export function Studio({ w, onSend, onClose, question: initialQuestion = '', ope
       )}
 
       <div ref={area} data-sketch-area className="relative mx-3 flex min-h-0 flex-1 items-center justify-center">
-        <div className="draw-sheet relative overflow-hidden rounded-[1.25rem] ring-1 ring-ink/10" style={box ? { width: box.w, height: box.h } : { width: '100%', height: '100%' }}>
+        {/* C517: the template's background context, faint, behind the paper: never over the drawing, never touched. */}
+        {template?.context && (
+          <p data-draw-context aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 flex select-none items-start justify-center overflow-hidden p-2 text-center text-2xl font-extrabold leading-tight text-ink opacity-20">
+            {template.context}
+          </p>
+        )}
+        <div className="draw-sheet relative z-10 overflow-hidden rounded-[1.25rem] ring-1 ring-ink/10" style={box ? { width: box.w, height: box.h } : { width: '100%', height: '100%' }}>
           <canvas ref={paperC} aria-hidden="true" data-draw-paper className="absolute inset-0 h-full w-full" />
           <canvas ref={layerC} aria-hidden="true" data-sketch-canvas className="absolute inset-0 h-full w-full" />
           <canvas

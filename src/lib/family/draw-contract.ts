@@ -20,6 +20,10 @@ export type DrawTemplate = {
   subject: string;
   classLevel: number;
   chapterKey: string | null;
+  // C517: the guided steps for the youngest (engagement mode), in the child's language; absent: built from the task
+  // and labels. And a line of background context shown faintly behind the paper.
+  steps?: readonly { text: string; at?: { x: number; y: number } }[];
+  context?: string;
 };
 
 // What the studio is opened with. No template: the free canvas.

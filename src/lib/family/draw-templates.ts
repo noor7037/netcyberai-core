@@ -21,6 +21,9 @@ export type DrawTemplateEntry = {
   palette: readonly string[];
   // A parent turns on "Allow all drawing activities" for the child before this one opens.
   parentGate: boolean;
+  // C517: guided steps for LKG to Class 4 (engagement mode), and a line of background context; both optional.
+  steps?: readonly { en: string; hi: string; at?: { x: number; y: number } }[];
+  context?: Words;
 };
 
 // The Control switch the templates live under: the drawing board's (W16). The studio slice may give drawing its own
@@ -346,7 +349,11 @@ export const isLocked = (t: DrawTemplateEntry, allowed: boolean) => t.parentGate
 
 // The template in the shape the studio takes (the contract), in the child's language, with its outline's text.
 export function toStudioTemplate(t: DrawTemplateEntry, lang: DrawLang, outlineSvg: string, subject: string, classLevel: number): DrawTemplate {
-  return { id: t.id, title: t.title[lang], task: t.task[lang], outlineSvg, palette: t.palette, labels: t.labels[lang], subject, classLevel, chapterKey: t.chapterKey };
+  return {
+    id: t.id, title: t.title[lang], task: t.task[lang], outlineSvg, palette: t.palette, labels: t.labels[lang], subject, classLevel, chapterKey: t.chapterKey,
+    ...(t.steps ? { steps: t.steps.map((x) => ({ text: x[lang], ...(x.at ? { at: x.at } : {}) })) } : {}),
+    ...(t.context ? { context: t.context[lang] } : {}),
+  };
 }
 
 // ---- the tutor ----------------------------------------------------------------------------------------------------------

@@ -6,6 +6,7 @@ import { DRAW_SEND_CODES } from './draw-send';
 export const DRAW_STUDIO_KEYS: MessageKey[] = [
   'fam.draw.stick', 'fam.draw.stickerTip', 'fam.draw.turnLeft', 'fam.draw.turnRight', 'fam.draw.handle', 'fam.draw.removeSticker', 'fam.draw.sticker',
   'fam.draw.done', 'fam.draw.doneSaid', 'fam.draw.labels', 'fam.draw.labelHint', 'fam.draw.templateColours', 'fam.draw.recent', 'fam.draw.allColours',
+  'fam.draw.g.hello', 'fam.draw.g.colourIt', 'fam.draw.g.finish', 'fam.draw.g.next', 'fam.draw.g.drawFirst', 'fam.draw.g.step', 'fam.draw.g.listen', 'fam.draw.g.soundOn', 'fam.draw.g.soundOff', 'fam.draw.g.yay',
   'fam.draw.wheelTip', 'fam.draw.limitTitle', 'fam.draw.limitBody', 'fam.draw.limitOpen', 'fam.draw.limitClose',
   ...DRAW_SEND_CODES.map((c) => `fam.draw.err.${c}` as MessageKey),
 ];

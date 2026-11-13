@@ -11,6 +11,7 @@ import { isSubject } from '@/lib/family/subjects';
 import { TutorDrawer } from '../tutor/TutorDrawer';
 import { DrawLimit } from './DrawLimit';
 import { DrawTemplatesSlot } from './templates/Slot';
+import { engageMode } from '@/lib/family/draw-engage';
 import type { DrawLang } from '@/lib/family/draw-templates';
 
 // The Draw tab's page (C513): the "Start drawing" hero, the templates' slot, and My drawings from this phone as a grid
@@ -127,6 +128,8 @@ export function DrawHome({ w, limit, child, tutor, classLevel = 0, childId = '',
           startWith={studio.startWith}
           daily={{ limit, child }}
           keepOnClose
+          engage={engageMode(classLevel)}
+          lang={lang}
           onSend={onSend}
           onClose={() => {
             setStudio(null);
