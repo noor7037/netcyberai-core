@@ -8,8 +8,8 @@ it can be picked up without re-reading anything. **Rules:** `CLAUDE.md`; nothing
 | Branch | What it holds | State |
 |---|---|---|
 | `main` | Everything up to PR #426 (C507–C511) | Merged by Noor |
-| `claude/jolly-volta-3y6vps` | main + C512 (unsent files cleared after an hour) + the Draw contract + the templates (C514) | Pushed. No PR open |
-| `claude/draw-studio` | All of the above + the Draw tab and art-table studio (C513), joined by a merge | Pushed. **Continue here** |
+| `claude/jolly-volta-3y6vps` | main + C512 + the Draw contract + the templates (C514) + the Draw tab and studio (C513), joined by a merge, + the handover notes | Pushed. No PR open. **Continue here** |
+| `claude/draw-studio` | The same work without the full handover | Ignore |
 | `claude/draw-templates` | The templates slice alone | Already merged into both branches above |
 
 ## Done and checked
@@ -25,7 +25,7 @@ it can be picked up without re-reading anything. **Rules:** `CLAUDE.md`; nothing
 
 ## Not done: the join (start here)
 
-After `git merge origin/claude/jolly-volta-3y6vps` into `claude/draw-studio` (done, conflict in `Slot.tsx` resolved by
+After the studio and the templates were merged (done, conflict in `Slot.tsx` resolved by
 keeping the templates' file), these are still to do. **tsc has not been run since the join and is expected to fail.**
 
 1. `src/components/family/draw/templates/openStudio.tsx`: change the lazy import from
@@ -44,8 +44,7 @@ keeping the templates' file), these are still to do. **tsc has not been run sinc
 6. Run `npx tsc --noEmit -p .`, the Draw tests (`test/family/c513-draw.test.ts`, the C514 tests), then
    `bash scripts/ci_local.sh --no-install` once. Watch the 200 kB Family page budget (step 27) and the page-words test.
 7. Apply the migration `supabase/migrations/20261113120000_c514_draw_completions.sql` to project
-   `unodnyyfqhxrbusbkite` only after the full checks pass. Then open ONE PR from `claude/draw-studio` (or fast-forward
-   `claude/jolly-volta-3y6vps` to it and open from there) and unsubscribe from PR activity on both tools.
+   `unodnyyfqhxrbusbkite` only after the full checks pass. Then open ONE PR from `claude/jolly-volta-3y6vps` and unsubscribe from PR activity on both tools.
 
 ## Simplify where it helps (founder, 13 Nov)
 
