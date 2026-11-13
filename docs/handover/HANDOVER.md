@@ -155,9 +155,7 @@ The cloud session had connectors the terminal may not have. Check before relying
 
 ## 10. The queue after Draw
 
-0. **Classes 9 and 10 art-integrated templates (founder, 13 Nov).** Classes 9 to 10 have only three templates (cell,
-   circuit, growing pattern) and no CBSE art-integrated ones. Add them right after the Draw join is merged, through the
-   same registry (`src/lib/family/draw-templates.ts`) and `public/draw/templates/`.
+0. ~~Classes 9 and 10 art-integrated templates~~ built as C515 (8 templates), on branch `claude/draw-class9-10-art`.
 1. **One tutor call instead of three.** Biggest remaining complaint: the wait. Start in
    `src/app/api/family/understand/route.ts` and `src/lib/family/resolver.ts` (safety check, plan call, answer).
 2. **Class 10 Maths out of draft**, with images made inside the pipeline (Noor must stop hand-making images).

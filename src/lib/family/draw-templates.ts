@@ -236,6 +236,63 @@ export const DRAW_TEMPLATES: readonly DrawTemplateEntry[] = [
     labels: L(['Cell wall', 'Cell membrane', 'Nucleus', 'Cytoplasm', 'Vacuole', 'Chloroplast', 'Mitochondrion'], ['कोशिका भित्ति', 'कोशिका झिल्ली', 'केंद्रक', 'कोशिकाद्रव्य', 'रिक्तिका', 'हरितलवक', 'सूत्रकणिका']),
     palette: ['#2E7D32', '#A5D6A7', '#F48FB1', '#7E57C2', '#FFCC80', '#4FC3F7'],
   },
+  // ---- Art-integrated, Classes 9 and 10 (CBSE art-integrated learning) -----------------------------------------------------
+  {
+    id: 'c09.maths.jali-tile', classes: [9, 9], subject: 'mathematics', chapterKey: 'cbse.c9.mathematics.u4.ch04', parentGate: false,
+    title: { en: 'A jali tile of quadrilaterals', hi: 'चतुर्भुजों की जाली टाइल' },
+    task: { en: 'Join the midpoints of a rectangle to get a rhombus, then of the rhombus to get a rectangle. Name each shape, colour the tile like a jali, and name the two shapes below.', hi: 'आयत की भुजाओं के मध्य-बिंदु जोड़ने पर समचतुर्भुज बनता है, उसके मध्य-बिंदु जोड़ने पर फिर आयत। हर आकार का नाम लिखो, टाइल को जाली की तरह रंगो और नीचे के दो आकारों के नाम लिखो।' },
+    labels: L(['Rectangle', 'Rhombus', 'Parallelogram', 'Trapezium'], ['आयत', 'समचतुर्भुज', 'समांतर चतुर्भुज', 'समलंब चतुर्भुज']),
+    palette: ['#00897B', '#F9A825', '#8E24AA', '#E53935', '#3949AB'],
+  },
+  {
+    id: 'c09.science.sound-wave', classes: [9, 9], subject: 'science', chapterKey: 'cbse.c9.science.u3.ch04', parentGate: false,
+    title: { en: 'Draw and label a sound wave', hi: 'ध्वनि तरंग बनाओ और नाम लिखो' },
+    task: { en: 'Colour the wave like a ribbon. Label a crest, a trough, the amplitude and the wavelength. What happens to the wave when the sound is louder?', hi: 'तरंग को रिबन की तरह रंगो। शिखर, गर्त, आयाम और तरंगदैर्ध्य के नाम लिखो। ध्वनि तेज़ होने पर तरंग का क्या होता है?' },
+    labels: L(['Crest', 'Trough', 'Amplitude', 'Wavelength'], ['शिखर', 'गर्त', 'आयाम', 'तरंगदैर्ध्य']),
+    palette: ['#1E88E5', '#00ACC1', '#FDD835', '#E53935', '#7E57C2'],
+  },
+  {
+    id: 'c09.science.states-of-matter', classes: [9, 9], subject: 'science', chapterKey: 'cbse.c9.science.u2.ch01', parentGate: false,
+    title: { en: 'Particles in solid, liquid and gas', hi: 'ठोस, द्रव और गैस के कण' },
+    task: { en: 'Colour the particles of each box. Write the state under each one. Which box has the particles closest together, and which the farthest apart?', hi: 'हर डिब्बे के कणों में रंग भरो। हर एक के नीचे अवस्था का नाम लिखो। किसमें कण सबसे पास हैं और किसमें सबसे दूर?' },
+    labels: L(['Solid', 'Liquid', 'Gas'], ['ठोस', 'द्रव', 'गैस']),
+    palette: ['#E53935', '#1E88E5', '#43A047', '#FB8C00', '#8E24AA'],
+  },
+  {
+    id: 'c09.english.poem-storyboard', classes: [9, 10], subject: 'english', chapterKey: null, parentGate: false,
+    title: { en: 'A poem or story in four pictures', hi: 'चार चित्रों में कविता या कहानी' },
+    task: { en: 'Pick a poem or a story from your book. Draw its four main moments in order, and write one line under each picture.', hi: 'अपनी किताब की कोई कविता या कहानी चुनो। उसके चार मुख्य क्षण क्रम से बनाओ और हर चित्र के नीचे एक पंक्ति लिखो।' },
+    labels: L(['Beginning', 'Problem', 'Turning point', 'Ending'], ['शुरुआत', 'समस्या', 'मोड़', 'अंत']),
+    palette: ['#EF5350', '#FFCA28', '#26A69A', '#5C6BC0', '#8D6E63'],
+  },
+  {
+    id: 'c10.maths.circle-rangoli', classes: [10, 10], subject: 'mathematics', chapterKey: 'cbse.c10.mathematics.u4.ch02', parentGate: false,
+    title: { en: 'A circle rangoli with tangents', hi: 'स्पर्श रेखाओं वाली वृत्त रंगोली' },
+    task: { en: 'Label the centre, a radius, the chord, the two tangents, the points of contact and the outside point. Measure the two tangents from the outside point. Colour it as a rangoli.', hi: 'केंद्र, त्रिज्या, जीवा, दोनों स्पर्श रेखाएँ, स्पर्श बिंदु और बाहर का बिंदु पहचानकर नाम लिखो। बाहर के बिंदु से दोनों स्पर्श रेखाओं की लंबाई नापो। इसे रंगोली की तरह रंगो।' },
+    labels: L(['Centre', 'Radius', 'Chord', 'Tangent', 'Point of contact', 'External point'], ['केंद्र', 'त्रिज्या', 'जीवा', 'स्पर्श रेखा', 'स्पर्श बिंदु', 'बाहरी बिंदु']),
+    palette: ['#E53935', '#FB8C00', '#FDD835', '#43A047', '#1E88E5', '#8E24AA'],
+  },
+  {
+    id: 'c10.science.convex-lens', classes: [10, 10], subject: 'science', chapterKey: 'cbse.c10.science.u3', parentGate: false,
+    title: { en: 'Ray diagram of a convex lens', hi: 'उत्तल लेंस का किरण आरेख' },
+    task: { en: 'The object is at 2F. Finish the ray through the optical centre, find where the rays meet, and draw the image there. Is it real or virtual, and inverted or upright?', hi: 'वस्तु 2F पर है। प्रकाश केंद्र से जाने वाली किरण पूरी करो, देखो किरणें कहाँ मिलती हैं और वहाँ प्रतिबिंब बनाओ। वह वास्तविक है या आभासी, उलटा है या सीधा?' },
+    labels: L(['Convex lens', 'Principal axis', 'Optical centre', 'Principal focus F', '2F', 'Object', 'Image'], ['उत्तल लेंस', 'मुख्य अक्ष', 'प्रकाश केंद्र', 'मुख्य फोकस F', '2F', 'वस्तु', 'प्रतिबिंब']),
+    palette: ['#1565C0', '#E53935', '#FDD835', '#43A047', '#424242'],
+  },
+  {
+    id: 'c10.science.human-eye', classes: [10, 10], subject: 'science', chapterKey: 'cbse.c10.science.u3', parentGate: false,
+    title: { en: 'The human eye', hi: 'मानव नेत्र' },
+    task: { en: 'Colour the eye and label its parts. Draw the path of light from the cornea to the retina with arrows. Where is the image formed?', hi: 'आँख में रंग भरो और उसके भागों के नाम लिखो। कॉर्निया से दृष्टिपटल तक प्रकाश का मार्ग तीरों से बनाओ। प्रतिबिंब कहाँ बनता है?' },
+    labels: L(['Cornea', 'Iris', 'Pupil', 'Lens', 'Ciliary muscles', 'Retina', 'Optic nerve'], ['कॉर्निया', 'परितारिका', 'पुतली', 'नेत्र लेंस', 'पक्ष्माभी पेशियाँ', 'दृष्टिपटल', 'दृक् तंत्रिका']),
+    palette: ['#6D4C41', '#1E88E5', '#212121', '#F48FB1', '#EF5350', '#FFCC80'],
+  },
+  {
+    id: 'c10.social.resource-poster', classes: [10, 10], subject: 'social_science', chapterKey: 'cbse.c10.social_science.u2.ch01', parentGate: false,
+    title: { en: 'A poster to save resources', hi: 'संसाधन बचाने का पोस्टर' },
+    task: { en: 'Write a slogan in the banner. Draw three ways to save or reuse a resource in the circles and write a line under each.', hi: 'बैनर में एक नारा लिखो। तीनों गोलों में किसी संसाधन को बचाने या दोबारा काम में लाने के तीन तरीके बनाओ और हर एक के नीचे एक पंक्ति लिखो।' },
+    labels: L(['Slogan', 'Save', 'Reuse', 'Replace'], ['नारा', 'बचाओ', 'दोबारा उपयोग', 'बदलो']),
+    palette: ['#2E7D32', '#8BC34A', '#FFB300', '#1E88E5', '#E53935'],
+  },
 ];
 
 // A template's subject may be taught under another name in a class (EVS until Class 5; Physics or Biology for ICSE
