@@ -34,11 +34,17 @@ const noVoice = () => {
   window.dispatchEvent(new Event(NO_VOICE_EVENT));
 };
 
+// C511: the call's Speaker button (loud or quiet) sets the volume every line is spoken at, 0 to 1.
+let speechVolume = 1;
+export function setSpeechVolume(v: number) {
+  speechVolume = Math.max(0, Math.min(1, v));
+}
+
 // Speaks a line; `rate` slows it for young learners. Returns when it ends (or at once without a speech engine).
 export function speak(text: string, lang: 'en' | 'hi' = 'en', rate = 0.9, onWord?: (charIndex: number) => void): Promise<void> {
   if (!text || typeof window === 'undefined') return Promise.resolve();
   if (nativeVoice()) {
-    return NativeTts.speak({ text, lang: lang === 'hi' ? 'hi-IN' : 'en-IN', rate, pitch: 1, volume: 1, category: 'ambient' }).catch(() => {
+    return NativeTts.speak({ text, lang: lang === 'hi' ? 'hi-IN' : 'en-IN', rate, pitch: 1, volume: speechVolume, category: 'ambient' }).catch(() => {
       noVoice();
     });
   }
@@ -53,6 +59,7 @@ export function speak(text: string, lang: 'en' | 'hi' = 'en', rate = 0.9, onWord
     if (v) u.voice = v;
     u.lang = v?.lang ?? (lang === 'hi' ? 'hi-IN' : 'en-IN');
     u.rate = rate;
+    u.volume = speechVolume;
     // A browser with the API but no voice never starts: say so rather than wait in silence.
     let started = false;
     const silent = window.setTimeout(() => {

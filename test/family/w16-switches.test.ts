@@ -112,7 +112,7 @@ describe('a switched-off part hides its routes', () => {
     const html = renderToStaticMarkup(await Page({ searchParams: { tutor: 'maths' } }));
     expect(html).toContain('data-call-refused');
     expect(html).toContain('Calling a tutor is switched off for now.');
-    expect(html).not.toContain('data-call-mic');
+    expect(html).not.toContain('data-call-bar');
     state.page = pageFor('hi');
     expect(renderToStaticMarkup(await Page({ searchParams: {} }))).toContain('ट्यूटर को कॉल करना अभी बंद है।');
   });
@@ -122,7 +122,8 @@ describe('a switched-off part hides its routes', () => {
     state.switches = off('tutor_hall');
     const html = renderToStaticMarkup(await Page({ searchParams: { tutor: 'maths', subject: 'science' } }));
     expect(html).toContain('data-call');
-    expect(html).toContain('Talking with your tutor');
+    // C511: the header chip names the default tutor.
+    expect(html).toContain('Your tutor');
     expect(html).not.toContain('Maths Tutor');
     expect(html).toContain('href="/family/study?subject=science"');
   });
