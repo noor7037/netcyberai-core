@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
 import { setAvatarMood } from '@/lib/family/avatar-state';
 import type { Words } from '@/lib/family/fill';
 import type { Subject } from '@/lib/family/subjects';
@@ -33,11 +33,13 @@ type Props = {
   tutor: { voice: { secondsLeft: number } | null; files: boolean; homework: boolean } | null;
   // The child's first name: "Teach me" greets the child by it (founder, 12 Nov 2026). Sent to our own reader only.
   childName?: string;
+  // C514: the chapter's "Draw it" button (a drawing template of this chapter), in the bar; absent when it has none.
+  draw?: ReactNode;
 };
 
 const SRC = { kind: 'chapter' as const, chapterKey: '', blockId: '', sentence: 0 };
 
-export function BookChapter({ src, title, chapterKey, subject, back, w, tutor, childName }: Props) {
+export function BookChapter({ src, title, chapterKey, subject, back, w, tutor, childName, draw }: Props) {
   const frame = useRef<HTMLIFrameElement>(null);
   const run = useRef(0);
   const last = useRef(0);
@@ -210,6 +212,7 @@ export function BookChapter({ src, title, chapterKey, subject, back, w, tutor, c
             </button>
           </>
         )}
+        {draw}
         {tutor ? (
           <>
             <button type="button" onClick={show} data-book-ask className="fam-press hidden min-h-[44px] shrink-0 items-center rounded-full sm:flex bg-white px-4 text-sm font-bold text-ink ring-1 ring-ink/15">

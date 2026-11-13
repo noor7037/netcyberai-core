@@ -6,6 +6,7 @@ import { indiaDate } from '@/lib/time/india';
 import { guarded } from './chapter-store';
 import { showcaseChapter } from './chapters';
 import { familyClaims, withFamilyContext, type FamilyClaims } from './db';
+import { doneByChild } from './draw-done';
 import { fill } from './fill';
 import { activeLinks, notifyOff, schoolWeekFor, type FamilySchoolLink, type SchoolWeek } from './school';
 
@@ -62,12 +63,14 @@ export type ReportCounts = {
   weak: string[];
   voiceMinutes: number;
   school: SchoolWeek | null;
+  // C514: drawing templates completed in the week (a count only, never a score). Absent in reports written before it.
+  drawings?: number;
 };
 
 // A session is a conversation on one India day with at least one question; chapters are those asked about from the
 // reader and those quizzed; a chapter is weak when its last quiz of the week is under WEAK_PERCENT or it was asked about three
 // times or more.
-export function buildCounts(input: { asked: readonly AskedRow[]; quizzes: readonly QuizRow[]; voiceSeconds: number; name: (key: string) => string; school: SchoolWeek | null }): ReportCounts {
+export function buildCounts(input: { asked: readonly AskedRow[]; quizzes: readonly QuizRow[]; voiceSeconds: number; name: (key: string) => string; school: SchoolWeek | null; drawings?: number }): ReportCounts {
   const sessions = new Set(input.asked.map((r) => `${r.conversationId}:${r.day}`)).size;
   const questions = input.asked.reduce((n, r) => n + r.n, 0);
   const askedBy = new Map<string, number>();
@@ -89,6 +92,7 @@ export function buildCounts(input: { asked: readonly AskedRow[]; quizzes: readon
     weak: [...new Set(weak)].slice(0, MAX_CHAPTERS),
     voiceMinutes: Math.round(Math.max(0, input.voiceSeconds) / 60),
     school: input.school,
+    ...(input.drawings ? { drawings: Math.max(0, Math.floor(input.drawings)) } : {}),
   };
 }
 
@@ -119,7 +123,7 @@ function allowedNumbers(c: ReportCounts): Set<string> {
   const add = (v: number | null | undefined) => {
     if (typeof v === 'number' && Number.isFinite(v)) n.add(String(v));
   };
-  [c.sessions, c.questions, c.voiceMinutes, c.quizAverage, c.quizzes.length, c.chapters.length].forEach(add);
+  [c.sessions, c.questions, c.voiceMinutes, c.quizAverage, c.quizzes.length, c.chapters.length, c.drawings].forEach(add);
   c.quizzes.forEach((q) => add(q.percent));
   if (c.school) {
     add(c.school.presentDays);
@@ -152,7 +156,7 @@ export type ReportBody = { v: 1; lang: Lang; source: 'ai' | 'rules'; counts: Rep
 
 // ---- the family's own reads (in its own session) -----------------------------------------------------------------------
 type ChildRow = { childId: string; firstName: string };
-type AccountWeek = { email: string; lang: Lang; off: string[]; children: ChildRow[]; asked: Map<string, AskedRow[]>; quizzes: Map<string, QuizRow[]>; voice: Map<string, number>; titles: Map<string, { en: string; hi: string }>; links: FamilySchoolLink[] };
+type AccountWeek = { email: string; lang: Lang; off: string[]; children: ChildRow[]; asked: Map<string, AskedRow[]>; quizzes: Map<string, QuizRow[]>; voice: Map<string, number>; drawings: Map<string, number>; titles: Map<string, { en: string; hi: string }>; links: FamilySchoolLink[] };
 
 const push = <V>(m: Map<string, V[]>, k: string, v: V) => m.set(k, [...(m.get(k) ?? []), v]);
 
@@ -191,7 +195,7 @@ async function readAccountWeek(db: Db, accountId: string, weekStart: string): Pr
     for (const r of (await db.query(`select distinct on (chapter_key) chapter_key, title_en, title_hi from content.chapter_contents where chapter_key = any($1::text[]) order by chapter_key, version_no desc`, [keys])).rows as { chapter_key: string; title_en: string; title_hi: string }[])
       titles.set(r.chapter_key, { en: r.title_en, hi: r.title_hi });
   }
-  return { email: String(account.email), lang: account.ui_language === 'hi' ? 'hi' : 'en', off: await notifyOff(db, accountId), children, asked, quizzes, voice, titles, links: await activeLinks(db, accountId) };
+  return { email: String(account.email), lang: account.ui_language === 'hi' ? 'hi' : 'en', off: await notifyOff(db, accountId), children, asked, quizzes, voice, drawings: await doneByChild(db, accountId, w.from, w.to), titles, links: await activeLinks(db, accountId) };
 }
 
 // A chapter's name in the family's language: a published chapter's title, else the showcase chapter's, else the key
@@ -245,7 +249,7 @@ export async function writeWeeklyReports(deps: ReportDeps, accountId: string, we
     for (const child of week.children) {
       const asked = week.asked.get(child.childId) ?? [];
       if (asked.length === 0) continue;
-      const counts = buildCounts({ asked, quizzes: week.quizzes.get(child.childId) ?? [], voiceSeconds: week.voice.get(child.childId) ?? 0, name: (k) => chapterName(k, week.lang, week.titles), school: schoolOf.get(child.childId) ?? null });
+      const counts = buildCounts({ asked, quizzes: week.quizzes.get(child.childId) ?? [], voiceSeconds: week.voice.get(child.childId) ?? 0, name: (k) => chapterName(k, week.lang, week.titles), school: schoolOf.get(child.childId) ?? null, drawings: week.drawings.get(child.childId) ?? 0 });
       const ask = askOf(counts, week.lang);
       const p = { system: prompt.system(week.lang), user: prompt.user(ask) };
       const prepared = deps.write ? null : await prepareText(db as never, ctxOf(week), 'family.parent_report', { system: p.system, messages: [{ role: 'user', content: p.user }], maxTokens: 400, temperature: 0.2 });

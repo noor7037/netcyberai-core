@@ -27,6 +27,7 @@ import { isSubject } from '@/lib/family/subjects';
 import { fillVisuals } from '@/lib/family/visuals/fill';
 import { indiaDate } from '@/lib/time/india';
 import { isMessageKey, t, type MessageKey } from '@/lib/i18n';
+import { readDrawMarker } from '@/lib/family/draw-templates';
 
 // Understand (M1-5, C251): POST { kind: 'topic' | 'chapter', key } or { kind: 'question', text }, with an optional
 // followUp ('simpler', 'another_example', 'differently', 'practise_more') or retry { token, choice } (a wrong answer:
@@ -71,6 +72,8 @@ export const dynamic = 'force-dynamic';
 // The tutor window's own additions to the resolver's lines (C508).
 type TutorLine = ResolverEvent | (Extract<ResolverEvent, { t: 'refused' }> & { unanswered?: string }) | (Extract<ResolverEvent, { t: 'done' }> & { autoRead?: true });
 const AUTO_READ_UPTO = 3;
+// C514: the question of a template drawing sent with no words of its own.
+const DRAWING_QUESTION = 'Please look at my drawing.';
 
 const UNREADABLE_WORDS: Record<Unreadable, MessageKey> = {
   no_text: 'fam.tutor.files.no_text',
@@ -88,9 +91,15 @@ export async function POST(req: NextRequest) {
   const followUp = FOLLOW_UPS.includes(body.followUp as FollowUp) ? (body.followUp as FollowUp) : null;
   let input: ResolveInput | null = null;
   if ((body.kind === 'topic' || body.kind === 'chapter') && typeof body.key === 'string') input = { kind: body.kind, key: body.key };
+  // C514: a drawing made on one of our templates opens its question with the template's marker ("[draw:<id>] "): only
+  // the id is read (and only for a sketch, below); the marker never reaches the tutor or the kept question.
+  let drawTemplateId: string | null = null;
   if (body.kind === 'question' && typeof body.text === 'string') {
-    const text = body.text.trim().slice(0, 500);
+    const marked = readDrawMarker(body.text.trim());
+    drawTemplateId = marked.templateId;
+    const text = marked.text.trim().slice(0, 500);
     if (text.length >= 3) input = { kind: 'question', text, subject: null };
+    else if (drawTemplateId) input = { kind: 'question', text: DRAWING_QUESTION, subject: null };
   }
   const retry = body.retry && typeof body.retry === 'object' ? (body.retry as { token?: unknown; choice?: unknown }) : null;
   if (!input && !retry) return NextResponse.json({ error: 'bad_request' }, { status: 400 });
@@ -299,7 +308,7 @@ export async function POST(req: NextRequest) {
             // decide the answer's subject. W10 (C411): in a chat with turns, the chat's own subject steers them (a follow-up
             // in a Science chat opened from the Mathematics tab is taught from Science passages).
             target = { ...target, windowSubject: chatSubject ?? subject, ...(reader ? { chapterKey: reader.chapterKey } : {}) };
-            if (attached && target?.kind === 'question') target = { ...target, attached, ...(checkMode ? { check: true as const } : {}), ...(sketchMode ? { sketch: true as const } : {}) };
+            if (attached && target?.kind === 'question') target = { ...target, attached, ...(checkMode ? { check: true as const } : {}), ...(sketchMode ? { sketch: true as const, ...(drawTemplateId ? { drawTemplate: drawTemplateId } : {}) } : {}) };
             const files = await sendableFiles(db, session.accountId, child.childId, subject, tutorBody.files);
             if (!files) return stop({ t: 'refused', reason: 'not_found', message: words('fam.tutor.fileGone') });
             if (!followUp && !retry)

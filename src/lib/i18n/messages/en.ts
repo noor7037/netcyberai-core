@@ -11449,6 +11449,26 @@ export const en = {
   'fam.word.err.daily_limit': 'You have used all of today\'s word look-ups. Try again tomorrow.',
   'fam.word.err.failed': 'This could not be looked up. Try again.',
   // w23-a end
+  // c514 begin
+  'fam.report.tile.drawings': 'Drawings completed',
+  'fam.draw.t.title': 'Draw what you are learning',
+  'fam.draw.t.lead': 'Pick a page, draw on it and tap Done when you finish.',
+  'fam.draw.t.done': 'Done',
+  'fam.draw.t.locked': 'Ask a parent',
+  'fam.draw.t.lockedNote': 'A parent can turn this on in the parent area.',
+  'fam.draw.t.offline': 'You are offline. Pages saved on this phone still open. The tutor needs the internet.',
+  'fam.draw.t.none': 'No drawing pages for your class yet.',
+  'fam.draw.t.drawIt': 'Draw it',
+  'fam.draw.t.drawItLead': 'Draw and label what this lesson is about.',
+  'fam.draw.t.sendLater': 'Open the tutor to send this drawing.',
+  'fam.draw.t.loadFailed': 'This page could not be opened. Try again when you are online.',
+  'fam.draw.p.title': 'Drawings',
+  'fam.draw.p.week': 'Drawings completed this week: {n}',
+  'fam.draw.p.all': 'Drawings completed in all: {n}',
+  'fam.draw.p.allow': 'Allow all drawing activities',
+  'fam.draw.p.allowNote': 'Some drawing pages ask about family or show clothes from history. They stay locked until you allow them.',
+  'fam.draw.p.countOnly': 'Only finished drawings are counted. A drawing is never marked or scored.',
+  // c514 end
   // w23-c begin
   'fam.lab.title': 'Try it in a lab',
   'fam.lab.open': 'Open the lab',

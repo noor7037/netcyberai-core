@@ -4,6 +4,7 @@ import type { ParentWeek } from '@/lib/family/learning';
 import type { Lang } from '@/lib/i18n';
 import { dayNames, type HomeChild } from './ParentHome';
 import { Icon, Meter, Timeline, WeekBars, type MeterColor, type TimelineItem } from './parts';
+import { ParentDrawPanel } from '../draw/templates/ParentDrawPanel';
 
 // What opens for one child (C506, design B): the child switcher, the week as bars of answers checked each day, the
 // share of answers right per subject, and the latest topics practised. Counts only: the app records no minutes.
@@ -91,6 +92,8 @@ export function ChildWeek({ w, lang, kid, week }: { w: Words; lang: Lang; kid: H
           </ul>
         )}
       </section>
+
+      {week?.draw && <ParentDrawPanel w={w} childId={kid.childId} draw={week.draw} className={card} />}
 
       <section aria-label={w['fam.parent.app.latest']} className={card}>
         <h2 className="mb-3 text-lg font-bold text-slate">{w['fam.parent.app.latest']}</h2>
