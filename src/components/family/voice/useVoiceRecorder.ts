@@ -13,7 +13,7 @@ import { familyApi } from '../client';
 // microphone only with the parent's voice consent and the module on; the server checks both again.
 
 export const VOICE_MAX_SECONDS = 60;
-const TYPES = ['audio/webm;codecs=opus', 'audio/webm', 'audio/ogg;codecs=opus', 'audio/mp4'];
+export const RECORDING_TYPES = ['audio/webm;codecs=opus', 'audio/webm', 'audio/ogg;codecs=opus', 'audio/mp4'];
 
 const ERROR_KEY: Record<string, string> = {
   ai_not_switched_on: 'ai.not_switched_on',
@@ -25,12 +25,15 @@ const ERROR_KEY: Record<string, string> = {
   nothing_heard: 'fam.voice.nothingHeard',
 };
 
+// The voice route's refusal in the child's words (the call says them the same way, C511).
+export const voiceSay = (w: Words, code: string) => fill(w[ERROR_KEY[code] ?? `fam.voice.err.${code}`] ?? w['fam.err.network']);
+
 // Shorter than this is a tap, not a question (W17-B4).
 const MIN_RECORDING_MS = 600;
 // How often the sound is measured while recording.
 const SAMPLE_MS = 100;
 
-async function toBase64(blob: Blob): Promise<string> {
+export async function toBase64(blob: Blob): Promise<string> {
   const bytes = new Uint8Array(await blob.arrayBuffer());
   let binary = '';
   for (let i = 0; i < bytes.length; i += 0x8000) binary += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
@@ -58,7 +61,7 @@ export function useVoiceRecorder({ w, onText, secondsLeft = VOICE_MAX_SECONDS, e
   // Set by cancel(): the recording that is stopping is thrown away, not sent (the call's Pause).
   const discard = useRef(false);
 
-  const say = (code: string) => fill(w[ERROR_KEY[code] ?? `fam.voice.err.${code}`] ?? w['fam.err.network']);
+  const say = (code: string) => voiceSay(w, code);
 
   const release = () => {
     if (timer.current) clearInterval(timer.current);
@@ -131,7 +134,7 @@ export function useVoiceRecorder({ w, onText, secondsLeft = VOICE_MAX_SECONDS, e
       return fail('denied');
     }
     const max = Math.max(1, limit);
-    const mimeType = TYPES.find((t) => MediaRecorder.isTypeSupported(t));
+    const mimeType = RECORDING_TYPES.find((t) => MediaRecorder.isTypeSupported(t));
     let rec: MediaRecorder;
     try {
       rec = new MediaRecorder(stream.current, mimeType ? { mimeType } : undefined);

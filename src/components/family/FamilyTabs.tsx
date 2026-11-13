@@ -2,6 +2,8 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useEffect } from 'react';
+import { installCallPrime, releasePrimedMic } from './call/callMic';
 import type { DockTab } from '@/lib/family/modules';
 
 // The four tabs (Home, Study, English, Future; C391 removed Family, its slot stays for Explore), each shown only when
@@ -19,6 +21,12 @@ const ICON: Record<DockTab, string> = {
 
 export function FamilyTabs({ tabs, labels, navLabel }: { tabs: DockTab[]; labels: Record<DockTab, string>; navLabel: string }) {
   const path = usePathname() ?? '';
+  // C511: a tap on any Call link opens the microphone in that tap (callMic.ts), so the call is ready when its screen is.
+  useEffect(() => installCallPrime(), []);
+  // Away from the call, a microphone primed and not taken is closed.
+  useEffect(() => {
+    if (!path.startsWith('/family/call')) releasePrimedMic();
+  }, [path]);
   // Hidden during the first steps, and inside an English lesson or check (C230-Y): a lesson is one task with its own
   // close button and its Next button where the tabs would be.
   // The call (W16-A4) is a full-screen task too.
