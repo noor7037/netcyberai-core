@@ -375,7 +375,7 @@ describe('the first-text deadline (W10)', () => {
     const of = (id: string) => PROFILES.find((p) => p.id === id);
     expect(saved).toBe(12_000);
     expect(of('family.homework')).toMatchObject({ callMs: 40_000, firstTextMs: 12_000 });
-    expect(of('family.plan')).toMatchObject({ callMs: 10_000, firstTextMs: 6_000 });
+    expect(of('family.plan')).toMatchObject({ callMs: 3_500, firstTextMs: 2_500 }); // C516
     expect(of('family.summary')).toMatchObject({ callMs: 15_000, firstTextMs: 6_000 });
     expect(resolver.callMs).toBe(40_000);
   });
