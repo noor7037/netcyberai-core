@@ -75,6 +75,19 @@ export const photoRequest = (mediaType: Exclude<TutorFileType, 'application/pdf'
   maxTokens: 800,
 });
 
+// C510: a drawing from the drawing studio is described, not transcribed. The words-only read above answered UNREADABLE
+// for a drawing with no words (most of them), so the tutor never learned what was drawn and the drawing seemed not to
+// arrive. The description (the shapes, lines, labels and where they are) joins the question as a photo's words do.
+const SKETCH_READ_SYSTEM =
+  'You look at one drawing a school student made on a drawing pad and sent with a study question. Describe plainly what is drawn, so a teacher who cannot see it can help: each shape, line, arrow, number, label and word, where it is in the picture, how the parts connect, and their colours, at most 1500 characters. Copy any words or numbers exactly as written. Do not answer, explain or judge anything. Leave out any name, phone number, address or ID number. If the drawing is blank, reply with the single word ' +
+  UNREADABLE +
+  '.';
+export const sketchPhotoRequest = (mediaType: Exclude<TutorFileType, 'application/pdf'>, base64: string) => ({
+  system: SKETCH_READ_SYSTEM,
+  messages: [{ role: 'user' as const, content: 'Describe this drawing.', images: [{ mediaType, base64 }] }],
+  maxTokens: 800,
+});
+
 // W16-B2 (Check my work): the same photo read, but asked for the question and each line of the child's own working as
 // written (family.homework prompt v2), so what was read can be shown and marked. The class and board only; no name.
 export type CheckRead = { classLevel: number; board: string };
@@ -105,7 +118,7 @@ export type PhotoCall = { attachmentId: string; prepared: PreparedText } | { att
 
 // Step 3 (in the caller's transaction): each photo's day place, then its read through the vision profile with every
 // platform check (minors gate, key, daily cap); a place is given back when the read cannot be asked.
-export async function preparePhotoReads(db: Sql, ctx: AiContext, childId: string, fetched: readonly Fetched[], check?: CheckRead): Promise<PhotoCall[]> {
+export async function preparePhotoReads(db: Sql, ctx: AiContext, childId: string, fetched: readonly Fetched[], check?: CheckRead | 'sketch'): Promise<PhotoCall[]> {
   const calls: PhotoCall[] = [];
   for (const { file, bytes } of fetched) {
     if (file.mime === 'application/pdf' || !bytes) continue;
@@ -115,7 +128,7 @@ export async function preparePhotoReads(db: Sql, ctx: AiContext, childId: string
       continue;
     }
     const b64 = Buffer.from(bytes).toString('base64');
-    const prepared = await prepareText(db as never, ctx, 'family.homework', check ? checkPhotoRequest(mime, b64, check) : photoRequest(mime, b64));
+    const prepared = await prepareText(db as never, ctx, 'family.homework', check === 'sketch' ? sketchPhotoRequest(mime, b64) : check ? checkPhotoRequest(mime, b64, check) : photoRequest(mime, b64));
     if (!prepared.ok) {
       await givePhotoPlaceBack(db, ctx.accountId, childId, ctx.day);
       calls.push({ attachmentId: file.attachmentId, unreadable: 'not_set_up' });

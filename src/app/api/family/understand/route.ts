@@ -245,7 +245,7 @@ export async function POST(req: NextRequest) {
           });
           if ('refused' in asked) return void send({ t: 'refused', reason: 'not_found', message: asked.refused! });
           const fetched = await fetchFiles(asked.files, (key) => tutorStorage.get(key));
-          const calls = await withFamilyContext(claims, (db) => preparePhotoReads(db, asked.ai, asked.childId, fetched, checkMode ? asked.check : undefined));
+          const calls = await withFamilyContext(claims, (db) => preparePhotoReads(db, asked.ai, asked.childId, fetched, checkMode ? asked.check : sketchMode ? 'sketch' : undefined));
           const { reads, sent } = await readFetched(fetched, calls);
           await withFamilyContext(claims, async (db) => {
             for (const s of sent) {
@@ -260,6 +260,8 @@ export async function POST(req: NextRequest) {
           send({ t: 'files', message: lines.join(' ') });
           // Check my work with a photo that could not be read: there is no working to mark, and the line above says why.
           if (checkMode && !attached) return void send({ t: 'refused', reason: 'not_found', message: t(asked.lang, 'fam.check.err.unreadable') });
+          // C510: a drawing the tutor could not describe would be answered as if nothing were sent; say so instead.
+          if (sketchMode && !attached) return void send({ t: 'refused', reason: 'not_found', message: t(asked.lang, 'fam.sketch.err.unreadable') });
         }
         // W16-A1: the turn runs through the orchestrator (src/lib/ai/agents/orchestrator.ts), which calls the same three
         // steps below in the same order and logs each handoff; nothing it sends or keeps differs. No queue is given: a
