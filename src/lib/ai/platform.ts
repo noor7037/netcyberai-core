@@ -93,8 +93,9 @@ export const PROFILES: readonly AiProfile[] = [
   { id: 'family.moderation', carriesChildWords: true, capability: 'moderation', audience: 'family' },
   // W9-B (docs/39 §3): the teaching plan, one short call before the answer that says how to teach a child's question
   // (its type, the depth, the blocks and visuals). It reads the child's question, so only a provider cleared for minors
-  // may serve it; it takes no daily place of its own, as it runs only beside the answer's call.
-  { id: 'family.plan', carriesChildWords: true, capability: 'text', audience: 'family', callMs: 10_000, firstTextMs: 6_000, besideCall: true },
+  // may serve it; it takes no daily place of its own, as it runs only beside the answer's call. C516: held to 3.5 s (its
+  // typical answer is 1.3 s, the slowest one in ten 2.7 s); past that the default plan stands, never a 10 s stall.
+  { id: 'family.plan', carriesChildWords: true, capability: 'text', audience: 'family', callMs: 3_500, firstTextMs: 2_500, besideCall: true },
   // C230-AB: a parent's photos of a book's contents pages, read for the chapter and topic names of their child's own
   // syllabus (parent mode). A printed book's titles, never a child's words; the parent checks every line before use.
   { id: 'family.syllabus_extract', carriesChildWords: false, capability: 'text', audience: 'family', needs: ['vision'] },
