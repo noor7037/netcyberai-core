@@ -117,6 +117,15 @@ export const VISUAL_TITLE_MAX = 120;
 // The hosts a filled photograph may come from: the file itself, and the file's page on Commons (its credit link).
 export const PHOTO_HOST = 'upload.wikimedia.org';
 export const PHOTO_PAGE_HOST = 'commons.wikimedia.org';
+// C526: the second licensed source, Openverse, used only when Commons finds nothing: the file is Openverse's own small
+// thumbnail of it (its address names the image's id) and the page is the image's page on openverse.org (its credit).
+export const OPENVERSE_IMAGE_HOST = 'api.openverse.org';
+export const OPENVERSE_PAGE_HOST = 'openverse.org';
+const OPENVERSE_ID = '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}';
+export const OPENVERSE_THUMB_PATH = new RegExp(`^/v1/images/${OPENVERSE_ID}/thumb/$`);
+export const OPENVERSE_PAGE_PATH = new RegExp(`^/image/${OPENVERSE_ID}$`);
+// The page of the image an Openverse thumbnail address names.
+export const openversePage = (thumb: string): string => `https://${OPENVERSE_PAGE_HOST}/image/${new URL(thumb).pathname.split('/')[3]}`;
 // The licences a photograph may carry, any version (and a port such as "de"): CC0, CC BY, CC BY-SA, public domain.
 export const PHOTO_LICENCE = /^(?:CC0(?: 1\.0)?|CC BY(?:-SA)?(?: \d\.\d)?(?: [A-Za-z]{2,3})?|Public domain)$/i;
 
@@ -987,9 +996,12 @@ function imageBlock(o: Record<string, unknown>, stored: boolean): ImageBlock | n
     const query = fits(o.query, 80);
     return query && o.url === undefined ? { type: 'image', query, caption } : null;
   }
-  // A kept photograph: a Commons file, its page, an allowed licence and a credit, or nothing.
-  const url = onHost(o.url, PHOTO_HOST);
-  const source = onHost(o.source, PHOTO_PAGE_HOST, /^\/wiki\/File:/);
+  // A kept photograph: a Commons file and its page, or (C526) an Openverse thumbnail and its page, both of one image,
+  // an allowed licence and a credit, or nothing.
+  const commonsUrl = onHost(o.url, PHOTO_HOST);
+  const url = commonsUrl ?? onHost(o.url, OPENVERSE_IMAGE_HOST, OPENVERSE_THUMB_PATH);
+  const page = url && !commonsUrl ? openversePage(url) : null;
+  const source = commonsUrl ? onHost(o.source, PHOTO_PAGE_HOST, /^\/wiki\/File:/) : page && onHost(o.source, OPENVERSE_PAGE_HOST, OPENVERSE_PAGE_PATH) === page ? page : null;
   const licence = typeof o.licence === 'string' && PHOTO_LICENCE.test(o.licence.trim()) ? o.licence.trim() : null;
   const credit = fits(o.credit, 120);
   return url && source && licence && credit ? { type: 'image', url, caption, credit, licence, source } : null;
@@ -1021,10 +1033,13 @@ function videosBlock(o: Record<string, unknown>, stored: boolean): Videos | null
 export const unfilled = (b: { type: string }): boolean => (b.type === 'image' && !('url' in b)) || (b.type === 'videos' && !Array.isArray((b as { items?: unknown }).items));
 
 // A block arriving on the phone: a filled photograph or video list takes the place of the unfilled one the model wrote
-// (so it shows where the answer put it); anything else is added at the end.
+// (so it shows where the answer put it); anything else is added at the end. C526: a filled photograph the model never
+// asked for (the youngest children's, visuals/young.ts) goes right after the board, as it is kept.
 export function placeBlock<B extends { type: string }>(list: readonly B[], b: B): B[] {
   const at = unfilled(b) ? -1 : list.findIndex((x) => x.type === b.type && unfilled(x));
-  return at >= 0 ? list.map((x, i) => (i === at ? b : x)) : [...list, b];
+  if (at >= 0) return list.map((x, i) => (i === at ? b : x));
+  const board = b.type === 'image' && !unfilled(b) ? list.findIndex((x) => x.type === 'board') : -1;
+  return board >= 0 ? [...list.slice(0, board + 1), b, ...list.slice(board + 1)] : [...list, b];
 }
 
 // ---- slider, 3D model and chapter test (S5, C378) ----

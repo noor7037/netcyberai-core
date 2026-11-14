@@ -10101,6 +10101,7 @@ export const en = {
   'fam.block.mindMap': 'Mind map',
   'fam.block.photo': 'A real photo',
   'fam.block.photoCredit': 'Photo: {author} · {licence} · Wikimedia Commons',
+  'fam.block.photoCreditOpenverse': 'Photo: {author} · {licence} · via Openverse',
   'fam.block.sceneTap': 'Tap a part to read what it does.',
   'fam.block.chartCaption': 'Figures as given in this answer',
   'fam.block.chartUnit': 'Unit: {unit}',
