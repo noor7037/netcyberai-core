@@ -172,7 +172,7 @@ describe('the dry run', () => {
   it('the principal saves overrides with a reason; the list is kept, audited, and shown as exceptions', async () => {
     expect(await override(principal, { studentId: BILAL, decision: 'repeat' })).toMatchObject({ status: 400, body: { code: 'promotion_reason' } });
     expect(await override(principal, { studentId: CHIRAG, decision: 'move_section', reason: 'Asked by parents' })).toMatchObject({ status: 400, body: { code: 'promotion_section' } });
-    expect(await override(principal, { studentId: BILAL, decision: 'repeat', reason: 'Card 1234 5678 9012' })).toMatchObject({ status: 400, body: { code: 'promotion_reason_aadhaar' } });
+    expect(await override(principal, { studentId: BILAL, decision: 'repeat', reason: 'Card 2345 6789 0124' })).toMatchObject({ status: 400, body: { code: 'promotion_reason_aadhaar' } });
     expect(await override(principal, { studentId: B_KID, decision: 'leave', reason: 'Moving' })).toMatchObject({ status: 404 });
     expect(await override(principal, { studentId: HARI, decision: 'leave', reason: 'Moving' })).toMatchObject({ status: 404 });
     for (const [studentId, decision, extra] of [

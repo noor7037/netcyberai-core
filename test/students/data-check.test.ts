@@ -36,20 +36,20 @@ describe('the rules, the free tool’s own', () => {
   });
 
   it('a twelve-digit number is refused by the app, however it is written; ten digits and dates are not', () => {
-    for (const v of ['123456789012', '1234 5678 9012', '1234-5678-9012', '१२३४ ५६७८ ९०१२', 'Ravi 123456789012', 'Ravi 1234 5678 9012 Kumar']) expect(hasAadhaarNumber(v), v).toBe(true);
+    for (const v of ['234567890124', '2345 6789 0124', '2345-6789-0124', '२३४५ ६७८९ ०१२४', 'Ravi 234567890124', 'Ravi 2345 6789 0124 Kumar']) expect(hasAadhaarNumber(v), v).toBe(true);
     for (const v of ['Ravi Kumar', '9800000001', '2015-03-05', 'Called on 10:30 about 2 details']) expect(hasAadhaarNumber(v), v).toBe(false);
     // The free tool's own rule is asked first: a value that IS twelve digits.
-    expect(looksLikeAadhaarNumber('1234 5678 9012')).toBe(true);
-    expect(readPrinted({ name: '1234 5678 9012', dob: '', gender: '' }, '2026-10-14')).toEqual({ ok: false, reason: 'aadhaar_number' });
+    expect(looksLikeAadhaarNumber('2345 6789 0124')).toBe(true);
+    expect(readPrinted({ name: '2345 6789 0124', dob: '', gender: '' }, '2026-10-14')).toEqual({ ok: false, reason: 'aadhaar_number' });
     expect(readPrinted({ name: '', dob: '2030-01-01', gender: '' }, '2026-10-14')).toEqual({ ok: false, reason: 'dob' });
     expect(readPrinted({ name: '', dob: '2015-02-30', gender: '' }, '2026-10-14')).toEqual({ ok: false, reason: 'dob' });
     expect(readPrinted({ name: '', dob: '', gender: 'other' }, '2026-10-14')).toEqual({ ok: false, reason: 'gender' });
     expect(readPrinted({ name: '  ', dob: '', gender: '' }, '2026-10-14')).toEqual({ ok: false, reason: 'empty' });
     expect(readPrinted({ name: ' Arif   Khan ', dob: '2015-03-05', gender: 'male' }, '2026-10-14')).toEqual({ ok: true, values: { name: 'Arif Khan', dob: '2015-03-05', gender: 'male' } });
     expect(readCorrection('gender', 'not_given', '2026-10-14')).toEqual({ ok: false, reason: 'value' });
-    expect(readCorrection('name', 'Arif 123456789012', '2026-10-14')).toEqual({ ok: false, reason: 'aadhaar_number' });
+    expect(readCorrection('name', 'Arif 234567890124', '2026-10-14')).toEqual({ ok: false, reason: 'aadhaar_number' });
     expect(readNote('x'.repeat(301), 300)).toEqual({ ok: false, reason: 'value' });
-    expect(hideAadhaarNumbers('Her number is 1234 5678 9012, thank you', '#')).toBe('Her number is #, thank you');
+    expect(hideAadhaarNumbers('Her number is 2345 6789 0124, thank you', '#')).toBe('Her number is #, thank you');
     expect(hideAadhaarNumbers('Call 9800000001', '#')).toBe('Call 9800000001');
   });
 
@@ -187,13 +187,13 @@ describe('on the real schema, as the app’s own role', () => {
   });
 
   it('a twelve-digit number is refused by the app and by the database, in every column that holds words', async () => {
-    for (const name of ['123456789012', '1234 5678 9012', '1234-5678-9012', '१२३४ ५६७८ ९०१२', 'Neel 1234 5678 9012']) {
+    for (const name of ['234567890124', '2345 6789 0124', '2345-6789-0124', '२३४५ ६७८९ ०१२४', 'Neel 2345 6789 0124']) {
       expect(await as(admin, (c) => savePrinted(c, actor(admin), NEEL, { name, dob: '', gender: '' }))).toEqual({ ok: false, reason: 'aadhaar_number' });
       await expect(as(admin, (c) => c.query(`insert into student_id_as_printed (school_id, student_id, printed_name, typed_by) values ($1, $2, $3, $4)`, [A, NEEL, name, ADMIN]))).rejects.toThrow(/student_id_as_printed_no_aadhaar_number/);
     }
-    await expect(as(admin, (c) => c.query(`update student_id_as_printed set printed_name = 'Asha 123456789012', typed_by = $2 where student_id = $1`, [ASHA, ADMIN]))).rejects.toThrow(/no_aadhaar_number/);
+    await expect(as(admin, (c) => c.query(`update student_id_as_printed set printed_name = 'Asha 234567890124', typed_by = $2 where student_id = $1`, [ASHA, ADMIN]))).rejects.toThrow(/no_aadhaar_number/);
     for (const col of ['school_value', 'printed_value']) {
-      await expect(as(admin, (c) => c.query(`insert into data_check_requests (school_id, student_id, field, ${col}, finding, parent_id, asked_by) values ($1, $2, 'name', '1234 5678 9012', 'different', $3, $4)`, [A, ASHA, G_ASHA, ADMIN]))).rejects.toThrow(/data_check_requests_no_aadhaar_number/);
+      await expect(as(admin, (c) => c.query(`insert into data_check_requests (school_id, student_id, field, ${col}, finding, parent_id, asked_by) values ($1, $2, 'name', '2345 6789 0124', 'different', $3, $4)`, [A, ASHA, G_ASHA, ADMIN]))).rejects.toThrow(/data_check_requests_no_aadhaar_number/);
     }
     expect((await db.pg.query(`select count(*)::int as n from student_id_as_printed where student_id = $1`, [NEEL])).rows[0].n).toBe(0);
     expect((await db.pg.query(`select count(*)::int as n from student_id_as_printed where printed_name ~ '[0-9]'`)).rows[0].n).toBe(0);
@@ -318,7 +318,7 @@ describe('on the real schema, as the app’s own role', () => {
     // Another guardian writes: not Arif's reply.
     await writes('+919000000004', 'Asha will be late today.');
     expect((await requestsOf(ARIF)).every((r: { reply_message_id: string | null }) => r.reply_message_id === null)).toBe(true);
-    await writes('+919000000001', 'The Aadhaar is right: Mohammad Arif Khan, born 3 May 2015. His Aadhaar is 1234 5678 9012.');
+    await writes('+919000000001', 'The Aadhaar is right: Mohammad Arif Khan, born 3 May 2015. His Aadhaar is 2345 6789 0124.');
     const rows = await requestsOf(ARIF);
     REPLY = rows[0].reply_message_id;
     expect(REPLY).toBeTruthy();
@@ -349,12 +349,12 @@ describe('on the real schema, as the app’s own role', () => {
 
   it('an answer that came another way is attached once; the office corrects the record (audited) or closes the request; a decided request never changes', async () => {
     const [diya] = await requestsOf(DIYA);
-    expect(await as(admin, (c) => noteAnswer(c, actor(admin), diya.request_id, 'Her number is 123456789012'))).toEqual({ ok: false, reason: 'aadhaar_number' });
+    expect(await as(admin, (c) => noteAnswer(c, actor(admin), diya.request_id, 'Her number is 234567890124'))).toEqual({ ok: false, reason: 'aadhaar_number' });
     expect(await as(tara, (c) => noteAnswer(c, actor(tara), diya.request_id, 'The mother came in'))).toEqual({ ok: false, reason: 'not_allowed' });
     ok(await as(admin, (c) => noteAnswer(c, actor(admin), diya.request_id, 'The mother came in: the school record is right, Aadhaar will be corrected.')));
     expect(await as(admin, (c) => noteAnswer(c, actor(admin), diya.request_id, 'Again'))).toEqual({ ok: false, reason: 'noted_already' });
     await expect(as(admin, (c) => c.query(`update data_check_requests set office_note = 'Changed', office_note_by = $2 where request_id = $1`, [diya.request_id, ADMIN]))).rejects.toThrow(/attached once/);
-    await expect(as(principal, (c) => c.query(`update data_check_requests set office_note = '1234 5678 9012', office_note_by = $2 where student_id = $1 and field = 'gender'`, [ARIF, PRINCIPAL]))).rejects.toThrow(/no_aadhaar_number/);
+    await expect(as(principal, (c) => c.query(`update data_check_requests set office_note = '2345 6789 0124', office_note_by = $2 where student_id = $1 and field = 'gender'`, [ARIF, PRINCIPAL]))).rejects.toThrow(/no_aadhaar_number/);
     // My Day: the children whose answers wait for the office (Arif's one reply about three details, Diya, Farah).
     const card = TODAY_PROVIDERS.find((p) => p.type === 'data-check-answers')!;
     const ctx = (who: Who) => ({ schoolId: A, userId: who.user, role: who.role as never, sunday: false });
@@ -362,7 +362,7 @@ describe('on the real schema, as the app’s own role', () => {
     expect(card.roles).toEqual(['principal', 'school_admin']);
 
     const arif = Object.fromEntries((await requestsOf(ARIF)).map((r: { field: string; request_id: string }) => [r.field, r.request_id]));
-    expect(await as(admin, (c) => correctRecord(c, actor(admin), arif.name, '1234 5678 9012'))).toEqual({ ok: false, reason: 'aadhaar_number' });
+    expect(await as(admin, (c) => correctRecord(c, actor(admin), arif.name, '2345 6789 0124'))).toEqual({ ok: false, reason: 'aadhaar_number' });
     expect(await as(admin, (c) => correctRecord(c, actor(admin), arif.gender, 'not_given'))).toEqual({ ok: false, reason: 'value' });
     expect(await as(admin, (c) => correctRecord(c, actor(admin), arif.dob, '2099-01-01'))).toEqual({ ok: false, reason: 'value' });
     expect(await as(tara, (c) => correctRecord(c, actor(tara), arif.name, 'Mohammad Arif Khan'))).toEqual({ ok: false, reason: 'not_allowed' });

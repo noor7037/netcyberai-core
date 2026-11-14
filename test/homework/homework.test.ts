@@ -205,7 +205,7 @@ describe('a photo or a file', () => {
     // A picture that reads as an Aadhaar card, or shows an Aadhaar number, is refused and never stored (C232 part A).
     ocr.text = 'Government of India\nAadhaar';
     expect(await as(t1, (c) => addHomeworkFile(c, storage, actor(t1), hw, { name: 'page.png', bytes: PNG }))).toEqual({ ok: false, reason: 'upload_aadhaar_card' });
-    ocr.text = 'Roll 7: 1234 5678 9012';
+    ocr.text = 'Roll 7: 2345 6789 0124';
     expect(await as(t1, (c) => addHomeworkFile(c, storage, actor(t1), hw, { name: 'page.png', bytes: PNG }))).toEqual({ ok: false, reason: 'upload_aadhaar_number' });
     ocr.text = '';
     expect(storage.files.size).toBe(1);

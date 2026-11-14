@@ -145,11 +145,11 @@ describe('teacher qualifications and TET', () => {
   });
 
   it('the database holds the rules too: no Aadhaar number, no TET paper or date without a TET, no certificate after today, no end before the start, teaching staff only', async () => {
-    expect(await as(principal, (c) => saveQualification(c, actor(principal), TEACHER, row({ stage: 'primary', degree: 'B.A. 1234 5678 9012' })))).toMatchObject({ ok: false, reason: 'aadhaar', field: 'degree' });
+    expect(await as(principal, (c) => saveQualification(c, actor(principal), TEACHER, row({ stage: 'primary', degree: 'B.A. 2345 6789 0124' })))).toMatchObject({ ok: false, reason: 'aadhaar', field: 'degree' });
     const insert = (cols: Record<string, string>) =>
       as(principal, (c) => c.query(`insert into staff_qualifications (school_id, user_id, updated_by, ${Object.keys(cols).join(', ')}) values ($1, $2, $3, ${Object.keys(cols).map((_, i) => `$${i + 4}`).join(', ')})`, [A, COORDINATOR, PRINCIPAL, ...Object.values(cols)]));
-    await expect(insert({ degree: 'B.Ed 123456789012' })).rejects.toThrow(/check/);
-    await expect(insert({ subjects: 'Maths १२३४ ५६७८ ९०१२' })).rejects.toThrow(/check/);
+    await expect(insert({ degree: 'B.Ed 234567890124' })).rejects.toThrow(/check/);
+    await expect(insert({ subjects: 'Maths २३४५ ६७८९ ०१२४' })).rejects.toThrow(/check/);
     await expect(insert({ tet_paper: 'I' })).rejects.toThrow(/check/);
     await expect(insert({ tet_type: 'CTET', tet_certificate_date: addDays(TODAY, 1) })).rejects.toThrow(/a day that has come/);
     await expect(insert({ tet_type: 'CTET', tet_certificate_date: '2024-01-01', tet_valid_until: '2023-01-01' })).rejects.toThrow(/check/);
@@ -162,7 +162,7 @@ describe('teacher qualifications and TET', () => {
   it('the CSV import in the tool’s own columns: a preview saves nothing; saving keeps only the lines that are ready, each audited', async () => {
     const csv = teachersToCsv([
       { ...blankTeacher(), name: 'tanvi  teacher', stage: 'upper', degree: 'B.Sc.', professional: 'B.Ed', tetType: 'CTET', tetPaper: 'II', tetDate: '2021-09-10' },
-      { ...blankTeacher(), name: 'Kiran Coordinator', stage: 'secondary', degree: 'M.A. 1234-5678-9012' },
+      { ...blankTeacher(), name: 'Kiran Coordinator', stage: 'secondary', degree: 'M.A. 2345-6789-0124' },
       { ...blankTeacher(), name: 'Nobody Here', stage: 'pre' },
       { ...blankTeacher(), name: 'Anil Accountant', stage: 'pre' },
     ]);
@@ -236,9 +236,9 @@ describe('the mandatory public disclosure', () => {
   });
 
   it('never an Aadhaar number, by the app and by the database; the office only', async () => {
-    expect(await as(principal, (c) => saveDisclosure(c, actor(principal), { itemId: null, heading: 'Trust registration', value: 'Registered; trustee Aadhaar 1234 5678 9012', source: 'Trust deed' }))).toEqual({ ok: false, reason: 'aadhaar', field: 'value' });
+    expect(await as(principal, (c) => saveDisclosure(c, actor(principal), { itemId: null, heading: 'Trust registration', value: 'Registered; trustee Aadhaar 2345 6789 0124', source: 'Trust deed' }))).toEqual({ ok: false, reason: 'aadhaar', field: 'value' });
     expect(await as(principal, (c) => saveDisclosure(c, actor(principal), { itemId: null, heading: ' ', value: 'x', source: 'y' }))).toMatchObject({ ok: false, reason: 'heading' });
-    await expect(as(principal, (c) => c.query(`insert into disclosure_entries (school_id, item_id, heading, value, source, changed_by) values ($1, gen_random_uuid(), 'Trust', 'Trustee 123412341234', 'Deed', $2)`, [A, PRINCIPAL]))).rejects.toThrow(/check/);
+    await expect(as(principal, (c) => c.query(`insert into disclosure_entries (school_id, item_id, heading, value, source, changed_by) values ($1, gen_random_uuid(), 'Trust', 'Trustee 234567890124', 'Deed', $2)`, [A, PRINCIPAL]))).rejects.toThrow(/check/);
     for (const who of OUTSIDE) {
       expect(await as(who, (c) => loadDisclosure(c, actor(who))), who.role).toBeNull();
       expect((await as(who, (c) => c.query(`select * from disclosure_entries`))).rows, who.role).toEqual([]);
@@ -284,10 +284,10 @@ describe('SQAAF evidence', () => {
   });
 
   it('never an Aadhaar number in a note or a file’s name; never a file that is not a photo or a PDF; never another school’s folder', async () => {
-    expect(await as(principal, (c) => addSqaafNote(c, actor(principal), { standardCode: '1.6.1', note: 'Child 1234 5678 9012 attended' }))).toEqual({ ok: false, reason: 'aadhaar' });
-    await expect(as(principal, (c) => c.query(`insert into sqaaf_evidence (school_id, standard_code, note, added_by) values ($1, '1.6.1', 'id 123456789012', $2)`, [A, PRINCIPAL]))).rejects.toThrow(/check/);
+    expect(await as(principal, (c) => addSqaafNote(c, actor(principal), { standardCode: '1.6.1', note: 'Child 2345 6789 0124 attended' }))).toEqual({ ok: false, reason: 'aadhaar' });
+    await expect(as(principal, (c) => c.query(`insert into sqaaf_evidence (school_id, standard_code, note, added_by) values ($1, '1.6.1', 'id 234567890124', $2)`, [A, PRINCIPAL]))).rejects.toThrow(/check/);
     // A file whose name holds an Aadhaar number is refused before anything is stored (C232 part A: the upload check).
-    expect(await as(principal, (c) => addSqaafFile(c, storage, actor(principal), { standardCode: '1.6.1', note: 'Attendance register', name: 'aadhaar 1234 5678 9012.pdf', bytes: PDF }, () => 'f9'))).toEqual({ ok: false, reason: 'upload_aadhaar_number' });
+    expect(await as(principal, (c) => addSqaafFile(c, storage, actor(principal), { standardCode: '1.6.1', note: 'Attendance register', name: 'aadhaar 2345 6789 0124.pdf', bytes: PDF }, () => 'f9'))).toEqual({ ok: false, reason: 'upload_aadhaar_number' });
     expect(storage.files.has(`${A}/sqaaf/f9.pdf`)).toBe(false);
     // A name with nothing usable in it becomes a plain one.
     const named = await as(principal, (c) => addSqaafFile(c, storage, actor(principal), { standardCode: '1.6.1', note: 'Attendance register', name: '<>', bytes: PDF }, () => 'f2'));
@@ -349,7 +349,7 @@ describe('review of C227', () => {
 
   it('a Hindi file name keeps its vowel signs; an Aadhaar number in it is still refused', () => {
     expect(fileLabel('प्रमाणपत्र सूची.pdf', 'application/pdf')).toBe('प्रमाणपत्र सूची.pdf');
-    expect(fileLabel('card 1234 5678 9012.pdf', 'application/pdf')).toBe('evidence.pdf');
+    expect(fileLabel('card 2345 6789 0124.pdf', 'application/pdf')).toBe('evidence.pdf');
   });
 
   it('Form 6: the filing deadline day itself is not past in India; the day after is', async () => {

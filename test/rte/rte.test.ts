@@ -85,7 +85,7 @@ describe('the rules, with no database', () => {
   it('every free-text field of the desk takes the one Aadhaar rule: a longer UTR passes, a twelve-digit IMPS reference is refused', () => {
     expect(typedText('UTR 1234567890123456', 1, 80)).toEqual({ ok: true, text: 'UTR 1234567890123456' });
     expect(typedText('  PFMS/HR/2026/0042  ', 1, 80)).toEqual({ ok: true, text: 'PFMS/HR/2026/0042' });
-    for (const s of ['IMPS 123456789012', '1234 5678 9012', '1234  5678  9012', 'Aadhaar १२३४ ५६७८ ९०१२ seen']) expect(typedText(s, 1, 300), s).toEqual({ ok: false, reason: 'aadhaar' });
+    for (const s of ['IMPS 234567890124', '2345 6789 0124', '2345  6789  0124', 'Aadhaar २३४५ ६७८९ ०१२४ seen']) expect(typedText(s, 1, 300), s).toEqual({ ok: false, reason: 'aadhaar' });
     expect(typedText('  ', 1, 80)).toEqual({ ok: false, reason: 'length' });
     expect(minorToPlainRupees(1935150)).toBe('19351.50');
     expect(minorToPlainRupees(5)).toBe('0.05');
@@ -209,7 +209,7 @@ describe('on the real schema', () => {
     const type = (who: Who, rate: string, source: string, sessionId = Y_THIS) => as(who, (c) => typeRate(c, actor(who), { sessionId, rate, source }));
     expect(await type(accountant, '0', 'Haryana notification')).toEqual({ ok: false, reason: 'rate' });
     expect(await type(accountant, '12500', '  ')).toEqual({ ok: false, reason: 'source' });
-    expect(await type(accountant, '12500', 'Notification 1234 5678 9012')).toEqual({ ok: false, reason: 'aadhaar' });
+    expect(await type(accountant, '12500', 'Notification 2345 6789 0124')).toEqual({ ok: false, reason: 'aadhaar' });
     expect(await type(teacher, '12500', 'Haryana notification')).toEqual({ ok: false, reason: 'not_allowed' });
     const made = await type(accountant, '12,500', 'Haryana RTE notification, Annexure A');
     expect(made.ok).toBe(true);
@@ -217,7 +217,7 @@ describe('on the real schema', () => {
     expect((await desk(principal, Y_THIS)).rate).toMatchObject({ rate_minor: 1250000, source: 'Haryana RTE notification, Annexure A', typed_by: 'Anil Accountant' });
     await expect(as(accountant, (c) => c.query(`update rte_rates set rate_minor = 1 where rate_id = $1`, [rates.thisFirst]))).rejects.toThrow(/permission denied/);
     // The one rule in the database: twelve digits inside a sentence are refused now, a longer number passes.
-    await expect(as(accountant, (c) => c.query(`insert into rte_rates (school_id, session_id, rate_minor, source, typed_by) values ($1, $2, 100, 'Order 123456789012 of the state', $3)`, [A, Y_LAST, ACCOUNTANT]))).rejects.toThrow(/rte_rates_source_check/);
+    await expect(as(accountant, (c) => c.query(`insert into rte_rates (school_id, session_id, rate_minor, source, typed_by) values ($1, $2, 100, 'Order 234567890124 of the state', $3)`, [A, Y_LAST, ACCOUNTANT]))).rejects.toThrow(/rte_rates_source_check/);
     expect((await audit('rte.rate_typed')).map((r: { after_state: unknown }) => r.after_state)).toEqual([{ session: THIS.label, rateMinor: 1250000 }]);
   });
 
@@ -301,7 +301,7 @@ describe('on the real schema', () => {
     expect(await pay(accountant, asha, '13000.01', `${CY}-01-15`, 'PFMS/1')).toEqual({ ok: false, reason: 'over' });
     expect(await pay(accountant, asha, '5000', `${CY - 1}-05-31`, 'PFMS/1')).toEqual({ ok: false, reason: 'received_on' });
     expect(await pay(accountant, asha, '5000', addDays(TODAY, 1), 'PFMS/1')).toEqual({ ok: false, reason: 'received_on' });
-    expect(await pay(accountant, asha, '5000', `${CY}-01-15`, 'IMPS 123456789012')).toEqual({ ok: false, reason: 'aadhaar' });
+    expect(await pay(accountant, asha, '5000', `${CY}-01-15`, 'IMPS 234567890124')).toEqual({ ok: false, reason: 'aadhaar' });
     expect(await pay(accountant, asha, '5000', `${CY}-01-15`, ' ')).toEqual({ ok: false, reason: 'reference' });
     expect(await pay(teacher, asha, '5000', `${CY}-01-15`, 'PFMS/1')).toEqual({ ok: false, reason: 'not_allowed' });
     expect(await pay(accountant, asha, '5,000', `${CY}-01-15`, 'PFMS/HR/0042')).toEqual({ ok: true, state: 'raised', dueMinor: 800000 });
@@ -356,8 +356,8 @@ describe('on the real schema', () => {
     // 5,000 comes; the rest will not: written off with a note, which never holds an Aadhaar number.
     expect(await pay(accountant, esha, '5000', `${CY}-01-20`, 'PFMS/HR/0061')).toMatchObject({ ok: true, dueMinor: 800000 });
     expect(await act(accountant, esha, { action: 'write_off', note: ' ' })).toEqual({ ok: false, reason: 'note' });
-    expect(await act(accountant, esha, { action: 'write_off', note: 'Parent gave Aadhaar 1234  5678  9012' })).toEqual({ ok: false, reason: 'aadhaar' });
-    await expect(as(accountant, (c) => c.query(`update rte_claims set state = 'written_off', write_off_note = 'Aadhaar १२३४ ५६७८ ९०१२', settled_by = $2 where claim_id = $1`, [esha, ACCOUNTANT]))).rejects.toThrow(/check constraint/);
+    expect(await act(accountant, esha, { action: 'write_off', note: 'Parent gave Aadhaar 2345  6789  0124' })).toEqual({ ok: false, reason: 'aadhaar' });
+    await expect(as(accountant, (c) => c.query(`update rte_claims set state = 'written_off', write_off_note = 'Aadhaar २३४५ ६७८९ ०१२४', settled_by = $2 where claim_id = $1`, [esha, ACCOUNTANT]))).rejects.toThrow(/check constraint/);
     await expect(as(accountant, (c) => c.query(`update rte_claims set state = 'written_off', settled_by = $2 where claim_id = $1`, [esha, ACCOUNTANT]))).rejects.toThrow(/with a note/);
     expect(await act(accountant, esha, { action: 'write_off', note: 'The district paid five thousand only, by its order of January.' })).toEqual({ ok: true, state: 'written_off', dueMinor: 0 });
     const year = (await desk(accountant, Y_LAST)).ageing.find((y) => y.label === LAST.label)!;
@@ -373,7 +373,7 @@ describe('on the real schema', () => {
     await expect(as(accountant, (c) => c.query(`update rte_claims set state = 'raised', reopen_reason = 'x', reopened_by = $2 where claim_id = $1`, [esha, ACCOUNTANT]))).rejects.toThrow(/only the principal or the school admin reopens/);
     await expect(as(principal, (c) => c.query(`update rte_claims set state = 'raised', reopen_reason = 'x', reopened_by = $2 where claim_id = $1`, [esha, ADMIN]))).rejects.toThrow(/row-level security/);
     expect(await act(principal, esha, { action: 'reopen', reason: '  ' })).toEqual({ ok: false, reason: 'reason' });
-    expect(await act(principal, esha, { action: 'reopen', reason: 'Parent sent 123456789012' })).toEqual({ ok: false, reason: 'aadhaar' });
+    expect(await act(principal, esha, { action: 'reopen', reason: 'Parent sent 234567890124' })).toEqual({ ok: false, reason: 'aadhaar' });
     expect(await act(principal, asha, { action: 'reopen', reason: 'Paid already' })).toEqual({ ok: false, reason: 'not_written_off' });
     await expect(as(principal, (c) => c.query(`update rte_claims set state = 'raised', reopen_reason = 'x', reopened_by = $2 where claim_id = $1`, [asha, PRINCIPAL]))).rejects.toThrow(/paid claim stays as it is/);
     expect(await act(principal, esha, { action: 'reopen', reason: 'The district will pay the rest after its revised order.' })).toEqual({ ok: true, state: 'raised', dueMinor: 800000 });
@@ -407,7 +407,7 @@ describe('on the real schema', () => {
     const add = (who: Who, input: Partial<{ studentId: string; kind: string; documentId: string | null; note: string | null }>) => as(who, (c) => addEvidence(c, actor(who), { studentId: S.asha, kind: 'admission_order', documentId: null, note: null, ...input }));
     expect(await add(accountant, {})).toEqual({ ok: false, reason: 'nothing' });
     expect(await add(accountant, { kind: 'passport', note: 'x' })).toEqual({ ok: false, reason: 'kind' });
-    expect(await add(accountant, { note: 'Aadhaar 1234-5678-9012 seen' })).toEqual({ ok: false, reason: 'aadhaar' });
+    expect(await add(accountant, { note: 'Aadhaar 2345-6789-0124 seen' })).toEqual({ ok: false, reason: 'aadhaar' });
     expect(await add(accountant, { documentId: DOC.ashaAadhaar })).toEqual({ ok: false, reason: 'document' });
     expect(await add(accountant, { studentId: S.chetan, note: 'Not RTE' })).toEqual({ ok: false, reason: 'not_rte' });
     expect(await add(teacher, { note: 'x' })).toEqual({ ok: false, reason: 'not_allowed' });
@@ -415,7 +415,7 @@ describe('on the real schema', () => {
     const income = await add(admin, { kind: 'income_or_category', note: 'Income certificate seen by the office.' });
     expect(income.ok).toBe(true);
     await expect(as(accountant, (c) => c.query(`insert into rte_evidence (school_id, student_id, kind, document_id, added_by) values ($1, $2, 'other', $3, $4)`, [A, S.asha, DOC.ashaAadhaar, ACCOUNTANT]))).rejects.toThrow(/never an Aadhaar card/);
-    await expect(as(accountant, (c) => c.query(`insert into rte_evidence (school_id, student_id, kind, note, added_by) values ($1, $2, 'other', 'Seen 1234 5678 9012 3456', $3)`, [A, S.asha, ACCOUNTANT]))).rejects.toThrow(/rte_evidence_note_check/);
+    await expect(as(accountant, (c) => c.query(`insert into rte_evidence (school_id, student_id, kind, note, added_by) values ($1, $2, 'other', 'Seen 2345 6789 0124 3', $3)`, [A, S.asha, ACCOUNTANT]))).rejects.toThrow(/rte_evidence_note_check/);
     expect(child(await desk(accountant, Y_THIS), S.asha).evidence.map((e) => e.kind)).toEqual(['lottery', 'income_or_category']);
     expect(await as(principal, (c) => removeEvidence(c, actor(principal), (income as { evidenceId: string }).evidenceId))).toEqual({ ok: true });
     expect(JSON.stringify(await audit('rte.evidence_added'))).not.toContain('Lottery list');
@@ -510,7 +510,7 @@ describe('on the real schema', () => {
     const outcome = await db.pg.transaction(async (tx: any) => {
       await tx.query(`alter table rte_evidence drop constraint rte_evidence_note_check`);
       await tx.query(`set local session_replication_role = replica`);
-      await tx.query(`insert into rte_evidence (school_id, student_id, kind, note, added_by) values ($1, $2, 'other', 'Seen 1234 5678 9012', $3)`, [A, S.asha, ACCOUNTANT]);
+      await tx.query(`insert into rte_evidence (school_id, student_id, kind, note, added_by) values ($1, $2, 'other', 'Seen 2345 6789 0124', $3)`, [A, S.asha, ACCOUNTANT]);
       const failed = await tx.exec(check).then(() => null, (e: Error) => e.message);
       throw Object.assign(new Error('roll back'), { failed });
     }).catch((e: { failed?: string }) => e.failed);

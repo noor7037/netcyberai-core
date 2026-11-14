@@ -91,7 +91,7 @@ describe('the one rule, on what a file says', () => {
     ]) expect(readsAsAadhaarCard(card), card).toBe(true);
     for (const other of ['Birth certificate\nGovernment of India\nRegistrar of Births and Deaths', 'Aadhaar seeding report for the school', 'Transfer certificate\nEnrolment No. A-12', '']) expect(readsAsAadhaarCard(other), other).toBe(false);
     expect(textProblem('Government of India\nAadhaar\nXXXX XXXX 0000')).toBe('upload_aadhaar_card');
-    expect(textProblem('Government of India\nAadhaar\n1234 5678 9012')).toBe('upload_aadhaar_number');
+    expect(textProblem('Government of India\nAadhaar\n2345 6789 0124')).toBe('upload_aadhaar_number');
   });
 
   it('each refusal is a rule of the error catalogue, in English and Hindi', () => {
@@ -106,7 +106,7 @@ describe('the one rule, on what a file says', () => {
 
 describe('checkUpload: a photo through the OCR', () => {
   it('a photo is read: an Aadhaar number or card in it is refused, a photo without one (or without words) passes', async () => {
-    ocr.text = 'Name: Dev Mehta\nAadhaar 1234 5678 9012';
+    ocr.text = 'Name: Dev Mehta\nAadhaar 2345 6789 0124';
     expect(await checkUpload({ bytes: PNG, name: 'scan.png' })).toEqual({ ok: false, reason: 'upload_aadhaar_number' });
     ocr.text = 'GOVERNMENT OF INDIA\nAadhaar\nXXXX XXXX 0000';
     expect(await checkUpload({ bytes: PNG, name: 'scan.png' })).toEqual({ ok: false, reason: 'upload_aadhaar_card' });
@@ -123,13 +123,13 @@ describe('checkUpload: a photo through the OCR', () => {
   });
 
   it('the file’s own bytes decide what it is: a PDF claimed to be a photo is read as a PDF; anything else is refused', async () => {
-    expect(await checkUpload({ bytes: pdf(page(text('Aadhaar 1234 5678 9012'))), name: 'photo.jpg' })).toEqual({ ok: false, reason: 'upload_aadhaar_number' });
+    expect(await checkUpload({ bytes: pdf(page(text('Aadhaar 2345 6789 0124'))), name: 'photo.jpg' })).toEqual({ ok: false, reason: 'upload_aadhaar_number' });
     expect(await checkUpload({ bytes: new Uint8Array([0x4d, 0x5a, 1, 2, 3]), name: 'x.png' })).toEqual({ ok: false, reason: 'upload_unreadable' });
   });
 
   it('the file’s name is checked too, before anything is read', async () => {
-    expect(await checkUpload({ bytes: PNG, name: 'aadhaar 1234 5678 9012.png' })).toEqual({ ok: false, reason: 'upload_aadhaar_number' });
-    expect(await checkUpload({ bytes: PNG, name: 'card_1234_5678_9012.jpg' })).toEqual({ ok: false, reason: 'upload_aadhaar_number' });
+    expect(await checkUpload({ bytes: PNG, name: 'aadhaar 2345 6789 0124.png' })).toEqual({ ok: false, reason: 'upload_aadhaar_number' });
+    expect(await checkUpload({ bytes: PNG, name: 'card_2345_6789_0124.jpg' })).toEqual({ ok: false, reason: 'upload_aadhaar_number' });
     expect(ocr.seen).toHaveLength(0);
     expect(await checkUpload({ bytes: PNG, name: 'IMG_20261015_104530.jpg' })).toMatchObject({ ok: true });
   });
@@ -137,7 +137,7 @@ describe('checkUpload: a photo through the OCR', () => {
 
 describe('checkUpload: a PDF, read without a PDF library', () => {
   it('its text layer, written plainly or compressed, goes through the rule', async () => {
-    expect(await checkUpload({ bytes: pdf(page(text('Student list: Dev Mehta 1234 5678 9012'))), name: 'list.pdf' })).toEqual({ ok: false, reason: 'upload_aadhaar_number' });
+    expect(await checkUpload({ bytes: pdf(page(text('Student list: Dev Mehta 2345 6789 0124'))), name: 'list.pdf' })).toEqual({ ok: false, reason: 'upload_aadhaar_number' });
     expect(await checkUpload({ bytes: pdf(page(text('Unique Identification Authority of India - Government of India', true))), name: 'letter.pdf' })).toEqual({ ok: false, reason: 'upload_aadhaar_card' });
     expect(await checkUpload({ bytes: pdf(page(text('Fire safety certificate 2026-27', true))), name: 'fire-noc.pdf' })).toEqual({ ok: true, read: 'pdf_text', ocr: null });
     expect(readPdf(pdf(page(text('Fire safety certificate 2026-27', true)))).text).toBe('Fire safety certificate 2026-27');
@@ -146,11 +146,11 @@ describe('checkUpload: a PDF, read without a PDF library', () => {
   it('a font that writes glyph codes is read through its ToUnicode map', async () => {
     // Digits as codes 0x0010-0x0019 and the space as 0x0003, the way a subset font writes them.
     const cmap = Buffer.from('/CIDInit /ProcSet findresource begin 12 dict begin begincmap 1 begincodespacerange <0000> <FFFF> endcodespacerange 1 beginbfchar <0003> <0020> endbfchar 1 beginbfrange <0010> <0019> <0030> endbfrange endcmap end end', 'latin1');
-    const codes = '1234 5678 9012'.split('').map((ch) => (ch === ' ' ? '0003' : (0x10 + Number(ch)).toString(16).padStart(4, '0'))).join('');
+    const codes = '2345 6789 0124'.split('').map((ch) => (ch === ' ' ? '0003' : (0x10 + Number(ch)).toString(16).padStart(4, '0'))).join('');
     const content: Obj = { dict: '/Filter /FlateDecode', data: deflateSync(Buffer.from(`BT /F1 11 Tf <${codes}> Tj ET`, 'latin1')) };
     const font: Obj = { dict: '/Type /Font /Subtype /Type0 /BaseFont /ABCDEF+Arial /Encoding /Identity-H /ToUnicode 6 0 R' };
     const bytes = pdf([...page(content, font), { dict: '/Filter /FlateDecode', data: deflateSync(cmap) }]);
-    expect(readPdf(bytes).text).toBe('1234 5678 9012');
+    expect(readPdf(bytes).text).toBe('2345 6789 0124');
     expect(await checkUpload({ bytes, name: 'udise.pdf' })).toEqual({ ok: false, reason: 'upload_aadhaar_number' });
     expect(parseCMap(cmap.toString('latin1'))?.map.get(0x19)).toBe('9');
   });
@@ -180,7 +180,7 @@ describe('the capture flow: checked before anything is stored', () => {
     ocr.text = 'Government of India\nAadhaar\nXXXX XXXX 0000';
     expect(await captureDocument(claims, 'student', 'address_proof', Buffer.from(PNG), 'image/png', null, 'proof.png')).toEqual({ refused: 'upload_aadhaar_card' });
     expect(calls).toEqual({ tenant: 0, uploads: [] });
-    ocr.text = 'Name: Dev Mehta\n1234-5678-9012';
+    ocr.text = 'Name: Dev Mehta\n2345-6789-0124';
     expect(await captureDocument(claims, 'student', 'previous_school_tc', Buffer.from(PNG), 'image/png', null, 'tc.png')).toEqual({ refused: 'upload_aadhaar_number' });
     ocr.text = new Error('no worker');
     expect(await captureDocument(claims, 'student', 'birth_certificate', Buffer.from(PNG), 'image/png', null, 'birth.png')).toEqual({ refused: 'upload_unreadable' });
@@ -196,7 +196,7 @@ describe('the capture flow: checked before anything is stored', () => {
   });
 
   it('the guardian ID keeps its own path: read for the last four digits and a name match, never stored, not refused', async () => {
-    ocr.text = 'Government of India\nAadhaar\n1234 5678 9012\nDev Mehta';
+    ocr.text = 'Government of India\nAadhaar\n2345 6789 0124\nDev Mehta';
     const out = await captureDocument(claims, 'student', 'guardian_id', Buffer.from(PNG), 'image/png', null, 'id.png');
     expect(out && 'document' in out).toBe(true);
     expect(calls.uploads).toEqual([]);

@@ -362,7 +362,7 @@ describe('a PDF of the contents, through the route (C230-AB)', () => {
 
   it('a PDF whose words hold an Aadhaar number is refused before any AI call', async () => {
     const calls = ai.requests.length;
-    const r = await call('/api/family/syllabus/read', 'POST', { childId: CHILD, subject: 'social_science', pdf: pdf(['Contents', 'Aadhaar 4123 4567 8901']) });
+    const r = await call('/api/family/syllabus/read', 'POST', { childId: CHILD, subject: 'social_science', pdf: pdf(['Contents', 'Aadhaar 4123 4567 8902']) });
     expect(r).toMatchObject({ status: 422, body: { error: 'personal_info' } });
     expect(ai.requests.length).toBe(calls);
   });

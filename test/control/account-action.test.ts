@@ -136,7 +136,7 @@ describe('a person seeded with no sign-in account (W14-B a)', () => {
 describe('deactivate and reactivate (W14-B b)', () => {
   it('a reason is required, and an Aadhaar number in it is refused', async () => {
     expect((await act(ASHA, { action: 'deactivate', membershipId: membership.ashaA })).status).toBe(400);
-    const aadhaar = await act(ASHA, { action: 'deactivate', membershipId: membership.ashaA, reason: 'Card 1234 5678 9012' });
+    const aadhaar = await act(ASHA, { action: 'deactivate', membershipId: membership.ashaA, reason: 'Card 2345 6789 0124' });
     expect(await aadhaar.json()).toMatchObject({ error: 'reason', code: 'aadhaar' });
     expect((await q(`select is_active from memberships where membership_id = $1`, [membership.ashaA]))[0].is_active).toBe(true);
   });

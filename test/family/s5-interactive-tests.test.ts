@@ -237,7 +237,7 @@ describe('a chapter test records real attempts only (C378)', () => {
   it('a written answer holding an Aadhaar number is refused, and the database refuses an invented score', async () => {
     const s = await sealedTest();
     const [t1, t2] = s.test.items.filter((i) => i.kind === 'mcq');
-    const r = await send([{ itemId: 'q1', token: t1.token, choice: 0 }, { itemId: 'q2', token: t2.token, choice: 0 }, { itemId: 'q3', text: 'My number is 2345 6789 0123' }]);
+    const r = await send([{ itemId: 'q1', token: t1.token, choice: 0 }, { itemId: 'q2', token: t2.token, choice: 0 }, { itemId: 'q3', text: 'My number is 2345 6789 0124' }]);
     expect(r.status).toBe(422);
     expect(await attempts()).toBe(1);
     await expect(q(`insert into family.chapter_test_attempts (account_id, child_id, chapter_key, block_id, mcq_total, mcq_correct) values ($1, $2, $3, 'ef-test', 2, 3)`, [ACCOUNT, CHILD, KEY])).rejects.toThrow(/check/);

@@ -137,7 +137,7 @@ describe('the desk’s routes, as each person', () => {
     expect(ok).toMatchObject({ status: 200, body: { changed: ['stage', 'tet_type', 'tet_paper', 'tet_certificate_date'] } });
     expect((await call(admin, saveRoute, '/api/app/compliance/qualifications/x', 'POST', blankRow, { userId: 'x' })).status).toBe(400);
     expect((await call(admin, saveRoute, `/api/app/compliance/qualifications/${TEACHER}`, 'POST', '[1]', { userId: TEACHER })).status).toBe(400);
-    expect(await call(admin, saveRoute, `/api/app/compliance/qualifications/${TEACHER}`, 'POST', { ...blankRow, degree: 'B.A. 1234 5678 9012' }, { userId: TEACHER })).toMatchObject({ status: 400, body: { code: 'aadhaar', field: 'degree' } });
+    expect(await call(admin, saveRoute, `/api/app/compliance/qualifications/${TEACHER}`, 'POST', { ...blankRow, degree: 'B.A. 2345 6789 0124' }, { userId: TEACHER })).toMatchObject({ status: 400, body: { code: 'aadhaar', field: 'degree' } });
     expect((await call(admin, saveRoute, `/api/app/compliance/qualifications/${ACCOUNTANT}`, 'POST', blankRow, { userId: ACCOUNTANT })).status).toBe(404);
     for (const w of OUTSIDE) expect((await call(w, saveRoute, `/api/app/compliance/qualifications/${TEACHER}`, 'POST', blankRow, { userId: TEACHER })).status, w.role).toBe(403);
   });
@@ -184,7 +184,7 @@ describe('the desk’s routes, as each person', () => {
   it('SQAAF evidence: a note and a PDF, each tagged to a standard; a short-lived link after the row is read; removal takes the file away', async () => {
     const note = await call(principal, noteRoute, '/api/app/compliance/sqaaf', 'POST', { standardCode: '5.7.1', note: 'Admission register and fee ledger kept in the app.' });
     expect(note.status).toBe(201);
-    expect(await call(principal, noteRoute, '/api/app/compliance/sqaaf', 'POST', { standardCode: '5.7.1', note: 'Aadhaar 1234 5678 9012' })).toMatchObject({ status: 400, body: { code: 'aadhaar' } });
+    expect(await call(principal, noteRoute, '/api/app/compliance/sqaaf', 'POST', { standardCode: '5.7.1', note: 'Aadhaar 2345 6789 0124' })).toMatchObject({ status: 400, body: { code: 'aadhaar' } });
     expect(await call(principal, noteRoute, '/api/app/compliance/sqaaf', 'POST', { standardCode: '8.1.1', note: 'x' })).toMatchObject({ status: 400, body: { code: 'unknown_standard' } });
     const form = new FormData();
     form.set('file', new File([new Uint8Array([0x25, 0x50, 0x44, 0x46, 0x2d, 0x31])], 'record policy.pdf', { type: 'application/pdf' }));
