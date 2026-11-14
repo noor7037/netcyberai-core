@@ -2,6 +2,7 @@
 // Redrawing a chapter's diagrams without reading the whole chapter file (C527).
 //   node reader/scripts/diagram-tool.mjs digest <chapter.json>             what each topic teaches, in short
 //   node reader/scripts/diagram-tool.mjs apply  <chapter.json> <patchDir>  put the new diagrams in
+//   node reader/scripts/diagram-tool.mjs extract <chapter.json> <patchDir> write each topic's present diagrams out as patches
 // A patch is <patchDir>/<topic id>.json: one diagram step, or a list of them, in reader/CONTRACT.md's shape
 // ({ type: "diagram", title, svg, texts, caption, alt, notice }). `apply` replaces the topic's diagram steps with the
 // patch (at the place of the first one) and refuses a patch that breaks the contract's diagram rules.
@@ -9,7 +10,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const [cmd, file, patchDir] = process.argv.slice(2);
-if (!['digest', 'apply'].includes(cmd) || !file || (cmd === 'apply' && !patchDir)) {
+if (!['digest', 'apply', 'extract'].includes(cmd) || !file || (cmd !== 'digest' && !patchDir)) {
   console.error('usage: diagram-tool.mjs digest <chapter.json> | apply <chapter.json> <patchDir>');
   process.exit(2);
 }
@@ -39,6 +40,13 @@ if (cmd === 'digest') {
       else if (['hook', 'explain', 'keypoints', 'worked', 'activity'].includes(s.type)) console.log(`- ${s.type}: ${cut(texts(s).map((x) => x.en).join(' '), s.type === 'explain' ? 700 : 300)}`);
     }
   }
+  process.exit(0);
+}
+
+if (cmd === 'extract') {
+  fs.mkdirSync(patchDir, { recursive: true });
+  for (const t of chapter.topics) fs.writeFileSync(path.join(patchDir, `${t.id}.json`), `${JSON.stringify(t.steps.filter((s) => s.type === 'diagram'), null, 1)}\n`);
+  console.log(`${chapter.chapter_key}: ${chapter.topics.length} topic(s) written to ${patchDir}`);
   process.exit(0);
 }
 
