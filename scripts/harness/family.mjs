@@ -153,6 +153,17 @@ const LAB_ANSWER = [
 ]
   .map((e) => `${JSON.stringify(e)}\n`)
   .join('');
+const scripted = (title, idea, paragraphs, example, steps) =>
+  [
+    { t: 'meta', label: 'ai_made', cached: false, title: null, subject: 'mathematics', topicKey: null },
+    { t: 'block', block: { type: 'explanation', title, idea, paragraphs, example, steps, terms: [] } },
+    { t: 'done', complete: true, missing: [], cut: false },
+  ]
+    .map((e) => `${JSON.stringify(e)}\n`)
+    .join('');
+const PHOTO_ANSWER = scripted('Question 1: 3/4 or 2/3', 'On your page, question 1 asks which fraction is bigger.', ['Make both fractions share a bottom number: 3/4 becomes 9/12 and 2/3 becomes 8/12.', 'Nine twelfths is more than eight twelfths, so 3/4 is bigger.'], 'Cut two same-size rotis: 3 of 4 equal pieces is more than 2 of 3 equal pieces.', ['Find a common bottom number: 12.', 'Change both fractions to twelfths.', 'Compare the top numbers: 9 is more than 8.']);
+// C519 (prompt v17): the question was typed in Hinglish, so the answer mixes Hindi and English the same way, in Roman script.
+const MIXED_ANSWER = scripted('Kaun sa bada hai: 3/4 ya 2/3?', 'Dono fractions ko same denominator par laao, phir compare karo.', ['3/4 ko 12 ke denominator par likho to 9/12 banta hai, aur 2/3 ka 8/12 banta hai.', '9/12, 8/12 se bada hai, isliye 3/4 bada fraction hai.'], 'Do same size ki roti lo: 4 mein se 3 tukde, 3 mein se 2 tukdon se zyada hote hain.', ['Denominator 12 chuno.', 'Dono fractions ko twelfths mein badlo.', 'Numerator compare karo: 9 bada hai 8 se.']);
 const CLASS_PUT_BACK = `update family.children set class_level = 7 where child_id = 'f0000000-0000-4000-8000-0000000fc001'`;
 const CLASS_10 = `update family.children set class_level = 10 where child_id = 'f0000000-0000-4000-8000-0000000fc001'`;
 
@@ -338,6 +349,13 @@ export const FAMILY_SCREENS = [
   // W6-A (C395): the homework helper's link is in the composer's Attach menu.
   ['full', 'family-study-homework-link', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-attach]', steps: [{ tap: '[data-tutor-attach]', wait: '[data-homework-link]' }] }],
   // W16-B2: the Attach menu's two photo actions (Ask about this, Check my work), and a marked working kept in the feed.
+  // C519: a photo picked from the gallery and asked about; the visuals answer with its real photo and credit; the video cards
+  // with their See video buttons; a question typed in Hinglish answered in the mixed language of the prompt.
+  ['full', 'family-tutor-photo-upload', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', photoStore: true, answer: PHOTO_ANSWER, viewportShot: true, settle: '[data-tutor-attach]', steps: [{ tap: '[data-tutor-attach]', wait: '[data-tutor-ask-pick]' }, { tap: '[data-tutor-ask-pick]', wait: '[data-photo-gallery]' }, { upload: '[data-photo-gallery]' }, { pause: 1500 }, { fill: { field: '[data-tutor-window] textarea', value: 'Please help me with question 1 on this page.' }, tap: '[data-tutor-send]', wait: '[data-tutor-turns] [data-feed-answer]' }, { pause: 600 }] }],
+  ['full', 'family-tutor-photo-attached', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', photoStore: true, viewportShot: true, settle: '[data-tutor-attach]', steps: [{ tap: '[data-tutor-attach]', wait: '[data-tutor-ask-pick]' }, { tap: '[data-tutor-ask-pick]', wait: '[data-photo-gallery]' }, { upload: '[data-photo-gallery]' }, { pause: 1500 }] }],
+  ['full', 'family-understand-photo-visuals', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch90.t08', { child: 'f0000000-0000-4000-8000-0000000fc002', weigh: true, settle: '[data-block="videos"]', steps: [{ pause: 1500 }] }],
+  ['full', 'family-understand-see-video', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch90.t08', { child: 'f0000000-0000-4000-8000-0000000fc002', viewportShot: true, settle: '[data-block="videos"]', steps: [{ scroll: '[data-video-see]' }, { pause: 800 }] }],
+  ['full', 'family-tutor-mixed-language', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', answer: MIXED_ANSWER, viewportShot: true, settle: '[data-tutor-window] textarea', steps: [{ fill: { field: '[data-tutor-window] textarea', value: 'Bhai, 3/4 aur 2/3 mein se kaun sa bada hai? Samjhao.' }, tap: '[data-tutor-send]', wait: '[data-tutor-turns] [data-feed-answer]' }, { pause: 600 }] }],
   ['full', 'family-study-check-menu', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-attach]', steps: [{ tap: '[data-tutor-attach]', wait: '[data-tutor-check-pick]' }] }],
   ['full', 'family-check-my-work', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', prep: CHECK_CHAT, reset: CHECK_CHAT_GONE, settle: '[data-feed-answer] [data-steps]' }],
   // m2-7: the microphone beside the typed question, and the recording state (C281; a fake microphone, see `mic`).
@@ -430,7 +448,7 @@ export const FAMILY_SCREENS = [
 // HARNESS_FAMILY_WIDTHS=2000 (comma-separated) shoots other widths, e.g. a wide desktop screen (W24).
 export const FAMILY_WIDTHS = process.env.HARNESS_FAMILY_WIDTHS ? process.env.HARNESS_FAMILY_WIDTHS.split(',').map(Number).filter((n) => n > 0) : [360, 390, 1440];
 export const FAMILY_LANGS = ['en', 'hi'];
-export const FAMILY_MOTIONS = ['reduce', 'no-preference'];
+export const FAMILY_MOTIONS = process.env.HARNESS_FAMILY_MOTIONS ? process.env.HARNESS_FAMILY_MOTIONS.split(',') : ['reduce', 'no-preference'];
 
 const sign = (typ, sub, claims, secret) =>
   new SignJWT({ ...claims, typ }).setProtectedHeader({ alg: 'HS256' }).setSubject(sub).setAudience('nca-family').setIssuedAt().setExpirationTime('2h').sign(new TextEncoder().encode(secret));
@@ -649,6 +667,16 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
           // `answer`: the tutor's answer, scripted (W10, C411): the harness calls no model, so a typed question's
           // NDJSON stream is answered here; what follows it (the chats read again) is the app's own.
           if (opts.answer) await context.route('**/api/family/understand', (r) => r.fulfill({ status: 200, contentType: 'application/x-ndjson; charset=utf-8', body: typeof opts.answer === 'function' ? opts.answer(lang) : opts.answer }));
+          // `photoStore` (C519): the file door's three steps, scripted (the harness has no file store), so a photo can be
+          // picked and shown attached; the answer to it is `answer`.
+          if (opts.photoStore) {
+            await context.route('**/harness-store/**', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: '{}' }));
+            await context.route('**/api/family/tutor/files**', (r) => {
+              const req = r.request();
+              if (req.method() === 'POST' && !/files\/[^/]+$/.test(req.url())) return r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ attachmentId: 'f0000000-0000-4000-8000-00000000a519', uploadUrl: `${new URL(req.url()).origin}/harness-store/a519`, contentType: 'image/jpeg' }) });
+              return r.fulfill({ status: 200, contentType: 'application/json', body: '{}' });
+            });
+          }
           // `wordHelp` (W23-A): the word-help call, scripted: a meaning and a translation in the language asked for.
           if (opts.wordHelp)
             await context.route('**/api/family/word-help', (r) => {
@@ -742,10 +770,19 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
               await context.route('**/api/family/voice/speak', (r) => r.fulfill({ status: 200, contentType: 'audio/wav', body: Buffer.concat([head, data]) }));
             }
           }
+          const weight = {};
           const page = await context.newPage();
           const errors = [];
           const snaps = {};
           const sound = () => page.evaluate(() => ({ speak: window.__c519.speak.filter((x) => x.text.trim()), primed: window.__c519.speak.filter((x) => !x.text.trim()).length, fetches: window.__c519.fetches, osc: window.__c519.oscStarted, states: window.__c519.ctxs.map((c) => c.state) }));
+          if (opts.weigh) {
+            weight.total = 0; weight.nonScript = 0;
+            page.on('response', async (r) => {
+              const n = (await r.body().catch(() => Buffer.alloc(0))).length;
+              weight.total += n;
+              if (!/javascript|css|font/.test(r.headers()['content-type'] ?? '')) weight.nonScript += n;
+            });
+          }
           page.on('pageerror', (e) => errors.push(e.message.slice(0, 160)));
           page.on('response', (r) => {
             if (r.url().includes('/api/') && r.status() >= 400 && !(opts.call && r.url().endsWith('/api/family/voice/speak'))) errors.push(`${r.request().method()} ${new URL(r.url()).pathname} answered ${r.status()}`);
@@ -766,6 +803,23 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
           for (const step of opts.steps ?? []) {
             // `fill` and `select` (W10, C411): words typed into a field, a value picked in a drop-down.
             if (step.fill) await page.locator(step.fill.field).first().fill(step.fill.value).catch(() => errors.push(`${step.fill.field} could not be filled`));
+            // `upload` (C519): a textbook-like page drawn on a canvas, given to a file input (no image file is committed).
+            if (step.upload) {
+              const dataUrl = await page.evaluate(() => {
+                const c = document.createElement('canvas');
+                c.width = 1200; c.height = 900;
+                const g = c.getContext('2d');
+                g.fillStyle = '#fbf8ef'; g.fillRect(0, 0, 1200, 900);
+                g.fillStyle = '#222'; g.font = 'bold 54px sans-serif'; g.fillText('Chapter 4: Fractions', 80, 120);
+                g.font = '40px sans-serif';
+                ['1. Which is bigger, 3/4 or 2/3?', '2. Add: 1/2 + 1/4 = ?', '3. Shade 2/5 of the shape.'].forEach((t, i) => g.fillText(t, 80, 250 + i * 110));
+                g.strokeStyle = '#222'; g.lineWidth = 4; g.strokeRect(780, 520, 300, 220);
+                g.fillStyle = '#9bb'; g.fillRect(780, 520, 120, 220);
+                return c.toDataURL('image/jpeg', 0.85);
+              });
+              await page.locator(step.upload).first().setInputFiles({ name: 'textbook-page.jpg', mimeType: 'image/jpeg', buffer: Buffer.from(dataUrl.split(',')[1], 'base64') }).catch(() => errors.push(`${step.upload} could not take the photo`));
+            }
+            if (step.scroll) await page.locator(step.scroll).first().scrollIntoViewIfNeeded().catch(() => errors.push(`${step.scroll} could not be scrolled to`));
             if (step.select) await page.locator(step.select.field).first().selectOption(step.select.value).catch(() => errors.push(`${step.select.field} could not be chosen`));
             // `reload` (W24): the page loaded again, as a child coming back to it (saved progress kept).
             if (step.reload) await page.reload({ waitUntil: 'load' }).catch(() => errors.push('the page could not be reloaded'));
@@ -873,6 +927,7 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
             const r = await window.axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'] } });
             return r.violations.filter((v) => v.impact === 'serious' || v.impact === 'critical').map((v) => `${v.id} (${v.nodes.length}) at ${v.nodes[0].target.join(' ')}: ${(v.nodes[0].any[0]?.message ?? '').slice(0, 140)}`);
           });
+          if (opts.weigh) console.log(`harness: weight ${name} ${lang} ${width}: all ${weight.total} bytes, without script/css/font ${weight.nonScript} bytes`);
           const file = `${name}-${lang}-${motion === 'reduce' ? 'still' : 'motion'}-${width}.png`;
           await page.screenshot({ path: path.join(out, file), fullPage: !opts.viewportShot });
           const problems = [];
