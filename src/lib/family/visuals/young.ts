@@ -1,0 +1,101 @@
+import type { ImageQuery } from '@/lib/family/blocks';
+
+// The youngest children's photograph (C526). LKG to Class 2 under a prompt that draws first get the board, a very short
+// explanation and a check (plan-shape.ts YOUNG_VISUAL_BLOCKS). When the question is about a real thing a small child
+// knows (an animal, a plant, a fruit, the sky, a vehicle) or a shape (a circle, a cube), the answer also shows a real
+// photograph of it after the animated board: the drawing explains, the photo says "this is the real one".
+//
+// Deterministic, with no AI call: the child's question and the board's title are matched against this list, and the
+// search words and the caption are the list's own (never the child's words), in the child's language. A shape is shown
+// by a real object of that shape. No match, or an answer that already has a photo, adds nothing.
+
+type Thing = { match: RegExp; hi: RegExp | null; query: string; en: string; hiCaption: string };
+
+const T = (en: string, roman: string[], hi: string[], query: string, enCaption: string, hiCaption: string): Thing => ({
+  match: new RegExp(`\\b(?:${[en, ...roman].join('|')})(?:s|es)?\\b`, 'i'),
+  // A Hindi word standing alone, or with a plural or oblique ending (पेड़ों, कुत्ते is listed whole); never inside a
+  // longer word.
+  hi: hi.length ? new RegExp(`(?<![\\u0900-\\u097F])(?:${hi.join('|')})(?:ों|ें|े)?(?![\\u0900-\\u097F])`) : null,
+  query,
+  en: enCaption,
+  hiCaption,
+});
+
+export const YOUNG_THINGS: readonly Thing[] = [
+  // Animals and birds.
+  T('cow', ['gaay', 'gai'], ['गाय'], 'cow', 'A real cow.', 'असली गाय।'),
+  T('dog', ['kutta'], ['कुत्ता', 'कुत्ते'], 'dog', 'A real dog.', 'असली कुत्ता।'),
+  T('cat', ['billi'], ['बिल्ली'], 'cat', 'A real cat.', 'असली बिल्ली।'),
+  T('elephant', ['hathi', 'haathi'], ['हाथी'], 'elephant', 'A real elephant.', 'असली हाथी।'),
+  T('lion', ['sher'], ['शेर'], 'lion', 'A real lion.', 'असली शेर।'),
+  T('tiger', ['baagh', 'bagh'], ['बाघ'], 'tiger', 'A real tiger.', 'असली बाघ।'),
+  T('horse', ['ghoda'], ['घोड़ा', 'घोड़े'], 'horse', 'A real horse.', 'असली घोड़ा।'),
+  T('camel', ['oont', 'unt'], ['ऊँट', 'ऊंट'], 'camel', 'A real camel.', 'असली ऊँट।'),
+  T('monkey', ['bandar'], ['बंदर'], 'monkey', 'A real monkey.', 'असली बंदर।'),
+  T('parrot', ['tota'], ['तोता', 'तोते'], 'parrot', 'A real parrot.', 'असली तोता।'),
+  T('peacock', ['mor'], ['मोर'], 'peacock', 'A real peacock.', 'असली मोर।'),
+  T('sparrow', ['chidiya', 'gauraiya'], ['गौरैया', 'चिड़िया'], 'sparrow bird', 'A real sparrow.', 'असली गौरैया।'),
+  T('hen', ['murgi'], ['मुर्गी'], 'hen chicken', 'A real hen.', 'असली मुर्गी।'),
+  T('fish', ['machli', 'machhli'], ['मछली'], 'fish', 'A real fish.', 'असली मछली।'),
+  T('frog', ['mendhak'], ['मेंढक'], 'frog', 'A real frog.', 'असली मेंढक।'),
+  T('butterfly', ['titli'], ['तितली'], 'butterfly', 'A real butterfly.', 'असली तितली।'),
+  T('ant', ['cheenti', 'chinti'], ['चींटी'], 'ant', 'A real ant.', 'असली चींटी।'),
+  T('honeybee', ['bee', 'madhumakhi'], ['मधुमक्खी'], 'honey bee', 'A real honeybee.', 'असली मधुमक्खी।'),
+  // Plants and food.
+  T('tree', ['ped', 'pedh'], ['पेड़'], 'tree', 'A real tree.', 'असली पेड़।'),
+  T('flower', ['phool'], ['फूल'], 'flower', 'A real flower.', 'असली फूल।'),
+  T('leaf', ['leaves', 'patta', 'patti'], ['पत्ता', 'पत्ती', 'पत्ते'], 'green leaf', 'A real leaf.', 'असली पत्ता।'),
+  T('lotus', ['kamal'], ['कमल'], 'lotus flower', 'A real lotus.', 'असली कमल।'),
+  T('sunflower', ['surajmukhi'], ['सूरजमुखी'], 'sunflower', 'A real sunflower.', 'असली सूरजमुखी।'),
+  T('mango', [], [], 'mango fruit', 'A real mango.', 'असली आम।'),
+  T('banana', ['kela'], ['केला', 'केले'], 'banana fruit', 'A real banana.', 'असली केला।'),
+  T('apple', ['seb'], ['सेब'], 'apple fruit', 'A real apple.', 'असली सेब।'),
+  T('coconut', ['nariyal'], ['नारियल'], 'coconut', 'A real coconut.', 'असली नारियल।'),
+  T('seed', ['beej'], ['बीज'], 'seeds', 'Real seeds.', 'असली बीज।'),
+  // The sky, water and land.
+  T('sun', ['suraj', 'sooraj'], ['सूरज', 'सूर्य'], 'sun sky', 'The real Sun in the sky.', 'आसमान में असली सूरज।'),
+  T('moon', ['chand', 'chaand'], ['चाँद', 'चांद', 'चंद्रमा'], 'full moon', 'The real Moon.', 'असली चाँद।'),
+  T('rainbow', ['indradhanush'], ['इंद्रधनुष'], 'rainbow', 'A real rainbow.', 'असली इंद्रधनुष।'),
+  T('cloud', ['badal', 'baadal'], ['बादल'], 'clouds sky', 'Real clouds.', 'असली बादल।'),
+  T('river', ['nadi'], ['नदी'], 'river', 'A real river.', 'असली नदी।'),
+  T('mountain', ['pahad', 'parvat'], ['पहाड़', 'पर्वत'], 'mountain', 'A real mountain.', 'असली पहाड़।'),
+  T('sea', ['ocean', 'samudra', 'samundar'], ['समुद्र'], 'sea beach', 'The real sea.', 'असली समुद्र।'),
+  // Things around the child.
+  T('bus', [], [], 'bus', 'A real bus.', 'असली बस।'),
+  T('train', ['rail'], ['रेलगाड़ी', 'ट्रेन'], 'train', 'A real train.', 'असली रेलगाड़ी।'),
+  T('aeroplane', ['airplane', 'plane', 'hawai jahaz'], ['हवाई जहाज़', 'हवाई जहाज'], 'airplane', 'A real aeroplane.', 'असली हवाई जहाज़।'),
+  T('boat', ['naav'], ['नाव'], 'boat', 'A real boat.', 'असली नाव।'),
+  T('bicycle', ['saikil'], ['साइकिल'], 'bicycle', 'A real bicycle.', 'असली साइकिल।'),
+  T('kite', ['patang'], ['पतंग'], 'kite flying', 'A real kite.', 'असली पतंग।'),
+  T('umbrella', ['chhata', 'chhatri'], ['छाता'], 'umbrella', 'A real umbrella.', 'असली छाता।'),
+  T('clock', ['ghadi'], ['घड़ी'], 'clock', 'A real clock.', 'असली घड़ी।'),
+  // Shapes: shown by a real object of that shape.
+  T('circle', ['gol'], ['वृत्त', 'गोल'], 'wheel', 'A wheel is round like a circle.', 'पहिया वृत्त जैसा गोल है।'),
+  T('triangle', ['tribhuj'], ['त्रिभुज'], 'triangle road sign', 'A real thing shaped like a triangle.', 'त्रिभुज के आकार की असली चीज़।'),
+  T('square', ['varg'], ['वर्ग'], 'chessboard', 'A chessboard is made of squares.', 'शतरंज की बिसात वर्गों से बनी है।'),
+  T('rectangle', ['aayat'], ['आयत'], 'door', 'A door is shaped like a rectangle.', 'दरवाज़ा आयत के आकार का है।'),
+  T('cube', [], [], 'dice', 'A dice is shaped like a cube.', 'पासा घन के आकार का है।'),
+  T('sphere', ['ball'], ['गोला', 'गेंद'], 'football ball', 'A ball is shaped like a sphere.', 'गेंद गोले के आकार की है।'),
+  T('cylinder', ['belan'], ['बेलन'], 'tin can', 'A tin is shaped like a cylinder.', 'डिब्बा बेलन के आकार का है।'),
+  T('cone', ['shanku'], ['शंकु'], 'traffic cone', 'A traffic cone is shaped like a cone.', 'यह शंकु के आकार का है।'),
+];
+
+// The thing the question (then the board's title) names first, or null.
+export function youngThing(texts: readonly string[]): Thing | null {
+  for (const text of texts) {
+    if (!text) continue;
+    let best: { thing: Thing; at: number } | null = null;
+    for (const thing of YOUNG_THINGS) {
+      const at = Math.min(thing.match.exec(text)?.index ?? Infinity, thing.hi?.exec(text)?.index ?? Infinity);
+      if (at !== Infinity && (!best || at < best.at)) best = { thing, at };
+    }
+    if (best) return best.thing;
+  }
+  return null;
+}
+
+// The photo the youngest child's answer asks for: an image block with the list's search words and caption, or null.
+export function youngPhotoQuery(texts: readonly string[], lang: string): ImageQuery | null {
+  const thing = youngThing(texts);
+  return thing ? { type: 'image', query: thing.query, caption: lang === 'hi' ? thing.hiCaption : thing.en } : null;
+}

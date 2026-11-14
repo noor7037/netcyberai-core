@@ -67,7 +67,7 @@ import { inks, liveOpacity, paintLive, paintPaper, paintRibbon, paintStep, stepW
 import { StudioToolbar, ToolIcon, TOOL_BTN, type StudioPanel } from './StudioToolbar';
 import { RadialPicker } from './RadialPicker';
 import { DrawLimit } from './DrawLimit';
-import { canAdvance, guidedSteps, playSfx, readSoundOn, readStep, speak, stopSpeaking, writeSoundOn, writeStep, type Sfx } from '@/lib/family/draw-engage';
+import { canAdvance, guidedSteps, onSpeaking, playSfx, readSoundOn, readStep, speak, startMusic, stopMusic, stopSpeaking, unlockSound, watchVisibility, writeSoundOn, writeStep, type DrawLineAsk, type Sfx } from '@/lib/family/draw-engage';
 
 // The child's drawing studio (W18-P3, rebuilt in C510, made an art table in C513). Full screen above the app (a portal
 // into the body), safe-area aware, on a warm table: a top bar (close, undo, redo, save, Send to tutor), the paper as a
@@ -218,13 +218,45 @@ export function Studio({ w, onSend, onClose, question: initialQuestion = '', ope
     if (guide && opened.template && stepTag) setStepAt(Math.min(readStep(stepTag, opened.template.classLevel, opened.template.id), guide.length - 1));
   }, [guide, opened.template, stepTag]);
   const sfx = (k: Sfx) => engage && playSfx(k, soundOn);
-  const say = (text: string) => engage && speak(text, lang, soundOn);
+  // C519: phones allow sound only after a tap. The first tap in the studio unlocks the audio and the voice (nothing is
+  // spoken before it); from then on each step is read aloud when it opens.
+  const [audioReady, setAudioReady] = useState(false);
+  const [speaking, setSpeaking] = useState(false);
+  const [noVoice, setNoVoice] = useState(false);
+  const unlock = () => {
+    if (engage && unlockSound()) setAudioReady(true);
+  };
+  const stepAsk = (): DrawLineAsk | null => (guide && opened.template ? { templateId: opened.template.id, step: stepAt, lang } : null);
+  // Speaks a line (a template step goes to the server voice when the phone has none); tells the child when no sound is possible.
+  const speakLine = (text: string, ask: DrawLineAsk | null, force = false) => {
+    if (!engage || !(soundOn || force)) return;
+    void speak(text, lang, true, ask).then((o) => {
+      if (o === 'none') setNoVoice(true);
+      else if (o !== 'locked') setNoVoice(false);
+    });
+  };
+  const say = (text: string) => speakLine(text, null);
   useEffect(() => {
-    if (!engage) return;
-    say(guide ? guide[stepAt]?.text ?? '' : w['fam.draw.g.hello']);
+    if (!engage || !audioReady) return;
+    speakLine(guide ? guide[stepAt]?.text ?? '' : w['fam.draw.g.hello'], stepAsk());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [engage, guide, stepAt]);
-  useEffect(() => () => stopSpeaking(), []);
+  useEffect(() => onSpeaking(setSpeaking), []);
+  useEffect(() => {
+    if (engage && audioReady && soundOn) startMusic();
+    else stopMusic();
+  }, [engage, audioReady, soundOn]);
+  const soundRef = useRef(soundOn);
+  soundRef.current = soundOn;
+  useEffect(() => {
+    if (!engage) return;
+    const off = watchVisibility(() => soundRef.current);
+    return () => {
+      off();
+      stopMusic();
+      stopSpeaking();
+    };
+  }, [engage]);
   const nextStep = () => {
     if (!guide || !canAdvance(stepAt, guide.length, drew)) return;
     const n = stepAt + 1;
@@ -237,6 +269,7 @@ export function Studio({ w, onSend, onClose, question: initialQuestion = '', ope
     const on = !soundOn;
     setSoundOn(on);
     writeSoundOn(on);
+    unlock();
     if (!on) stopSpeaking();
     else playSfx('tap', true);
   };
@@ -954,7 +987,7 @@ export function Studio({ w, onSend, onClose, question: initialQuestion = '', ope
   );
 
   return createPortal(
-    <div role="dialog" aria-modal="true" aria-label={template?.title ?? w['fam.sketch.title']} data-sketch-pad data-draw-template={template?.id ?? undefined} style={safe} className="draw-table fixed inset-0 z-50 flex select-none flex-col">
+    <div role="dialog" aria-modal="true" aria-label={template?.title ?? w['fam.sketch.title']} data-sketch-pad data-draw-template={template?.id ?? undefined} style={safe} onPointerUpCapture={unlock} onClickCapture={unlock} onTouchEndCapture={unlock} className="draw-table fixed inset-0 z-50 flex select-none flex-col">
       <div className="flex h-16 shrink-0 items-center gap-1 px-2">
         <button ref={closeBtn} type="button" data-sketch-close aria-label={w['fam.sketch.close']} title={w['fam.sketch.close']} onClick={() => void close()} className={BAR_BTN}>
           <svg aria-hidden="true" className="h-7 w-7" {...ICON} strokeWidth={2.5}>
@@ -989,12 +1022,13 @@ export function Studio({ w, onSend, onClose, question: initialQuestion = '', ope
       {engage && (
         <div data-draw-guide className="draw-tray-in mx-2 mb-2 flex shrink-0 flex-col gap-2 rounded-2xl bg-art-butter px-3 py-2 text-ink">
           <div className="flex items-start gap-2">
-          <button type="button" data-draw-guide-listen aria-label={w['fam.draw.g.listen']} title={w['fam.draw.g.listen']} onClick={() => speak(guide ? guide[stepAt]?.text ?? '' : w['fam.draw.g.hello'], lang, true)} className={`${TOOL_BTN} shrink-0 bg-white text-ink`}>
-            <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 9v6h4l5 4V5L8 9zM16 9a4 4 0 010 6M19 6a8 8 0 010 12" /></svg>
+          <button type="button" data-draw-guide-listen aria-label={w['fam.draw.g.listen']} title={w['fam.draw.g.listen']} aria-pressed={speaking} data-draw-speaking={speaking ? 'true' : 'false'} onClick={() => { unlock(); speakLine(guide ? guide[stepAt]?.text ?? '' : w['fam.draw.g.hello'], stepAsk(), true); }} className={`${TOOL_BTN} shrink-0 ${speaking ? 'bg-art-coral' : 'bg-white'} text-ink`}>
+            <svg aria-hidden="true" viewBox="0 0 24 24" className={`h-6 w-6 ${speaking ? 'motion-safe:animate-pulse' : ''}`} fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 9v6h4l5 4V5L8 9zM16 9a4 4 0 010 6M19 6a8 8 0 010 12" /></svg>
           </button>
           <div className="min-w-0 flex-1">
             {guide && template && <p className="truncate text-sm font-bold text-ink">{template.title}</p>}
             <p data-draw-guide-text aria-live="polite" className="text-lg font-extrabold leading-snug text-ink">{guide ? guide[stepAt]?.text : w['fam.draw.g.hello']}</p>
+            {noVoice && <p data-draw-no-voice role="status" className="mt-1 text-sm font-bold text-ink">{w['fam.draw.g.noVoice']}</p>}
           </div>
           <button type="button" data-draw-sound aria-pressed={soundOn} aria-label={soundOn ? w['fam.draw.g.soundOff'] : w['fam.draw.g.soundOn']} title={soundOn ? w['fam.draw.g.soundOff'] : w['fam.draw.g.soundOn']} onClick={toggleSound} className={`${TOOL_BTN} shrink-0 bg-white text-ink`}>
             <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">{soundOn ? <path d="M9 18V6l10-2v12M9 18a3 3 0 11-3-3 3 3 0 013 3zM19 16a3 3 0 11-3-3 3 3 0 013 3z" /> : <path d="M9 18V6l10-2v12M9 18a3 3 0 11-3-3 3 3 0 013 3zM3 3l18 18" />}</svg>

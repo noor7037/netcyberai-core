@@ -3,6 +3,7 @@
 import { useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { fill, type Words } from '@/lib/family/fill';
+import { blobBase64, shrinkPhoto } from '@/lib/family/photo-shrink';
 import type { StoredSyllabus } from '@/lib/family/child-syllabus';
 import { errorWords, familyApi } from './client';
 import { FamIcon } from './FamIcon';
@@ -41,21 +42,8 @@ function Glyph({ d }: { d: string }) {
 
 // A JPEG no larger than 2000 px on its longer side, as base64: small print stays readable, and the request stays under
 // the server's limit.
-async function shrink(file: File): Promise<string> {
-  const bitmap = await createImageBitmap(file);
-  const scale = Math.min(1, MAX_SIDE / Math.max(bitmap.width, bitmap.height));
-  const canvas = document.createElement('canvas');
-  canvas.width = Math.round(bitmap.width * scale);
-  canvas.height = Math.round(bitmap.height * scale);
-  canvas.getContext('2d')!.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
-  bitmap.close();
-  const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, 'image/jpeg', 0.85));
-  if (!blob) throw new Error('no image');
-  const bytes = new Uint8Array(await blob.arrayBuffer());
-  let binary = '';
-  for (let i = 0; i < bytes.length; i += 0x8000) binary += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
-  return btoa(binary);
-}
+// The one phone shrink (src/lib/family/photo-shrink.ts, C525), as base64.
+const shrink = async (file: File): Promise<string> => blobBase64(await shrinkPhoto(file, { maxSide: MAX_SIDE, quality: 0.85 }));
 
 const swap = <T,>(list: T[], i: number, by: -1 | 1): T[] => {
   const j = i + by;

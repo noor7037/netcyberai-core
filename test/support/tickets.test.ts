@@ -315,7 +315,7 @@ describe('screenshots', () => {
     const rows = async () => (await db.query(`select count(*)::int n from support_ticket_attachments where ticket_id = $1`, [id])).rows[0].n;
     expect(await add(new TextEncoder().encode('<svg xmlns="http://www.w3.org/2000/svg"/>'))).toMatchObject({ ok: false, status: 400 });
     // A screenshot that shows an Aadhaar number is refused before it is stored (C232 part A: the founder reads these).
-    ocr.text = 'Student 1234 5678 9012';
+    ocr.text = 'Student 2345 6789 0124';
     expect(await add(PNG)).toMatchObject({ ok: false, status: 400, code: 'upload_aadhaar_number' });
     ocr.text = '';
     expect(own.files.size).toBe(0);

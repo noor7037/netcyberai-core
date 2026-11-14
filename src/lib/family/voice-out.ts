@@ -10,6 +10,7 @@ import { consentState } from './consent';
 import { LIVE_REPLY_MAX, isUuid, liveChild } from './english/live';
 import { familyHashKey } from './secret';
 import { indiaDate } from '@/lib/time/india';
+import { drawStepText } from './draw-voice';
 
 // The server voice (C386; C230-AR item 2): which line the speak route may read aloud. It speaks only text this server
 // holds, never text a phone sends, so it is no open text-to-speech service:
@@ -84,12 +85,15 @@ export function openCallLine(token: unknown, ctx: { accountId: string; childId: 
 
 // ---- what may be spoken ----------------------------------------------------------------------------------------------
 
-export type SpeakAsk = { kind: 'chapter'; chapterKey: string; blockId: string; sentence: number } | { kind: 'live_line'; token: string } | { kind: 'live_turn'; sessionId: string; position: number } | { kind: 'call_line'; token: string } | { kind: 'tutor_answer'; messageId: string; from?: number };
+export type SpeakAsk = { kind: 'chapter'; chapterKey: string; blockId: string; sentence: number } | { kind: 'live_line'; token: string } | { kind: 'live_turn'; sessionId: string; position: number } | { kind: 'call_line'; token: string } | { kind: 'tutor_answer'; messageId: string; from?: number } | { kind: 'draw'; templateId: string; step: number; lang: 'en' | 'hi' };
 
 // The request's body, checked for shape only (what it names is checked against the database below).
 export function speakAsk(body: Record<string, unknown>): SpeakAsk | null {
   if (body.kind === 'chapter' && typeof body.chapterKey === 'string' && body.chapterKey.length <= 200 && typeof body.blockId === 'string' && body.blockId.length <= 100 && Number.isInteger(body.sentence) && (body.sentence as number) >= 0)
     return { kind: 'chapter', chapterKey: body.chapterKey, blockId: body.blockId, sentence: body.sentence as number };
+  // C519: a step of a Draw template's guide, by template id, step place and language; the server holds the words.
+  if (body.kind === 'draw' && typeof body.templateId === 'string' && body.templateId.length <= 80 && Number.isInteger(body.step) && (body.step as number) >= 0 && (body.step as number) <= 60 && (body.lang === 'en' || body.lang === 'hi'))
+    return { kind: 'draw', templateId: body.templateId, step: body.step as number, lang: body.lang };
   if (body.kind === 'live_line' && typeof body.token === 'string') return { kind: 'live_line', token: body.token };
   if (body.kind === 'call_line' && typeof body.token === 'string') return { kind: 'call_line', token: body.token };
   if (body.kind === 'tutor_answer' && isUuid(body.messageId)) {
@@ -126,6 +130,15 @@ export async function speakLine(db: Db, accountId: string, chosen: string | unde
     const line = view.script.find((l) => l.blockId === ask.blockId && l.sentence === ask.sentence);
     if (!line) return { ok: false, status: 404, error: 'not_found' };
     return { ok: true, child, children, text: line.text, language: view.lang };
+  }
+  if (ask.kind === 'draw') {
+    // C519: the Draw guide, for the child this phone has chosen. The words are the template manifest's own, so nothing
+    // a phone sends is spoken.
+    const children = await listChildren(db as never, accountId);
+    const child = activeChild(children, chosen);
+    const text = child ? drawStepText(ask.templateId, ask.step, ask.lang) : null;
+    if (!child || !text) return { ok: false, status: 404, error: 'not_found' };
+    return { ok: true, child, children, text, language: ask.lang };
   }
   if (ask.kind === 'tutor_answer') {
     // W17-B2: the tutor's own answer to this child (Study's gate: a child Class 1 up and the parent's yes to learning),

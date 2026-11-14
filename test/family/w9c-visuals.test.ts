@@ -190,11 +190,13 @@ describe('fillVisuals', () => {
     const line = { subject: 'science' as const, key: TOPIC, chapterEn: 'Nutrition in plants', topicEn: 'Cells', title: 'Cells' };
     const child = { childId: 'f9c00000-0000-4000-8000-0000000000c1', classLevel: 7, language: 'en' } as unknown as FamilyChild;
     const plain = [checkBlock({ type: 'explanation', title: 'Cells', idea: 'An idea.', example: 'An example.', steps: ['One.', 'Two.'], terms: [] }) as Block];
-    const out = await fillVisuals(asFamily, plain, { chapterKey: TOPIC, lang: 'en', videos: { line, child, accountId: ACCOUNT } });
+    const out = await fillVisuals(asFamily, plain, { chapterKey: TOPIC, lang: 'en', videos: { line, child, accountId: ACCOUNT, language: 'en' } });
     expect(out.map((b) => b.type)).toEqual(['explanation', 'videos']);
     expect((out[1] as Videos).items!.map((v) => v.videoId)).toEqual(['pinnedvid01', 'autovideo01', 'autovideo02', 'autovideo03']);
-    // Not for another topic's line, and not without the topic: the answer stays as it was.
-    expect(await fillVisuals(asFamily, plain, { chapterKey: 'cbse.c7.science.ch02.t02', lang: 'en', videos: { line, child, accountId: ACCOUNT } })).toEqual(plain);
+    // C522: the block names the cache line it came from (the "See video" tap is checked against it).
+    expect(out[1]).toMatchObject({ topicKey: TOPIC, lang: 'en' });
+    // A topic with no picks (and no key to search with), and no topic at all: the answer stays as it was.
+    expect(await fillVisuals(asFamily, plain, { chapterKey: TOPIC, lang: 'en', videos: { line: { ...line, key: 'cbse.c7.science.ch02.t02' }, child, accountId: ACCOUNT, language: 'en' } })).toEqual(plain);
     expect(await fillVisuals(asFamily, plain, { chapterKey: null, lang: 'en' })).toEqual(plain);
   });
 

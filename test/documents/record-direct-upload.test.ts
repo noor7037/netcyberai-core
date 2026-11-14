@@ -225,9 +225,9 @@ describe('the ask', () => {
     expect(await refused(newPaper({ sizeBytes: 0 }))).toEqual([400, 'file_empty']);
     expect(await refused(newPaper({ sizeBytes: '2000' }))).toEqual([400, 'not_sent_properly']);
     expect(await refused(newPaper({ fileName: '' }))).toEqual([400, 'not_sent_properly']);
-    expect(await refused(newPaper({ fileName: 'scan 1234 5678 9012.png' }))).toEqual([400, 'upload_aadhaar_number']);
+    expect(await refused(newPaper({ fileName: 'scan 2345 6789 0124.png' }))).toEqual([400, 'upload_aadhaar_number']);
     expect(await refused(newPaper({ kind: 'passport' }))).toEqual([400, 'choose_one']);
-    expect(await refused(newPaper({ title: 'ID 1234 5678 9012' }))).toEqual([400, 'title_aadhaar']);
+    expect(await refused(newPaper({ title: 'ID 2345 6789 0124' }))).toEqual([400, 'title_aadhaar']);
     expect(await refused(newPaper({ documentId: 'not-a-paper' }))).toEqual([400, 'not_sent_properly']);
     expect(await refused('not json')).toEqual([400, 'not_sent_properly']);
     expect(store().uploadLinks.size).toBe(links);
@@ -289,7 +289,7 @@ describe('the confirmation', () => {
   });
 
   it('refuses a file that shows an Aadhaar number or card (C232 part A)', async () => {
-    ocr.text = 'Government of India  Aadhaar  1234 5678 9012';
+    ocr.text = 'Government of India  Aadhaar  2345 6789 0124';
     expect(await refusedAndGone({ fileName: 'guardian.jpg', mimeType: 'image/jpeg', sizeBytes: JPEG.length }, JPEG)).toEqual([400, 'upload_aadhaar_number']);
     ocr.text = 'Unique Identification Authority of India  Government of India  Enrolment No';
     expect(await refusedAndGone({}, png(2000))).toEqual([400, 'upload_aadhaar_card']);
@@ -468,7 +468,7 @@ describe('the screen’s sender (src/components/documents/send-record-file.ts), 
     FakeXhr.answer = 0;
     expect(await sendRecordFile(staffBase, file, 'image/png', { kind: 'other', title: 'Letter' }, () => undefined)).toEqual({ ok: false, step: 'send', tooLarge: false });
     FakeXhr.answer = 200;
-    ocr.text = 'Government of India  Aadhaar  1234 5678 9012';
+    ocr.text = 'Government of India  Aadhaar  2345 6789 0124';
     const refused = await sendRecordFile(staffBase, file, 'image/png', { kind: 'other', title: 'Letter' }, () => undefined);
     expect(refused.ok === false && refused.step === 'confirm' && refused.res?.status).toBe(400);
   });

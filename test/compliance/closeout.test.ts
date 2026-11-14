@@ -248,7 +248,7 @@ describe('B3: the CPI and the filing deadline, entered with their source and the
     expect(readFigure({ figure: 'cpi', clear: true }, TODAY)).toEqual({ ok: true, value: { figure: 'cpi', clear: true } });
     expect(readFigure({ figure: 'fees', clear: true }, TODAY)).toEqual({ ok: false, reason: 'figure' });
     for (const source of ['http://statistics.example.invalid/cpi', 'https://localhost/cpi', 'statistics.example.invalid', 'https://a.example/ x', `https://a.example/${'x'.repeat(500)}`, '', 'javascript:alert(1)']) expect(readSource(source), source).toEqual({ ok: false, reason: 'source' });
-    expect(readSource('https://a.example/notice?id=1234 5678 9012'.replace(/ /g, '-'))).toEqual({ ok: false, reason: 'aadhaar' });
+    expect(readSource('https://a.example/notice?id=2345 6789 0124'.replace(/ /g, '-'))).toEqual({ ok: false, reason: 'aadhaar' });
     // A phone's capital letter at the start is kept in small letters, as the database's rule reads the scheme.
     expect(readSource('Https://statistics.example.invalid/CPI')).toEqual({ ok: true, source: 'https://statistics.example.invalid/CPI' });
   });
@@ -287,7 +287,7 @@ describe('B3: the CPI and the filing deadline, entered with their source and the
   it('the database holds the rule whenever a figure changes, and records who entered it itself', async () => {
     const change = (sql: string, params: unknown[] = []) => as(principal, (c) => c.query(`update compliance_config set ${sql} where school_id = $1`, [A, ...params]));
     await expect(change(`cpi_source = 'http://statistics.example.invalid/cpi'`)).rejects.toThrow(/https address/);
-    await expect(change(`cpi_source = 'https://a.example/1234-5678-9012'`)).rejects.toThrow(/https address/);
+    await expect(change(`cpi_source = 'https://a.example/2345-6789-0124'`)).rejects.toThrow(/https address/);
     await expect(change(`cpi_read_on = $2`, [TOMORROW])).rejects.toThrow(/a day that has come/);
     await expect(change(`cpi_percent = 4.855`)).rejects.toThrow(/two decimal places/);
     await expect(change(`cpi_percent = 100`)).rejects.toThrow(/below 100/);

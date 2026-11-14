@@ -102,18 +102,18 @@ describe('student data check: reading the list', () => {
     expect(r.missingColumns).toEqual([]);
   });
   it('never keeps a column that looks like Aadhaar numbers', () => {
-    const csv = `${HEAD},aadhaar\nADM-1,5A,Aarav,05-04-2015,M,Aarav,05-04-2015,M,2345 6789 0123\nA2,5A,Riya,05-04-2015,F,Riya,05-04-2015,F,\n`;
+    const csv = `${HEAD},aadhaar\nADM-1,5A,Aarav,05-04-2015,M,Aarav,05-04-2015,M,2345 6789 0124\nA2,5A,Riya,05-04-2015,F,Riya,05-04-2015,F,\n`;
     const r = parseStudentList(csv);
     expect(r.droppedColumns).toEqual(['aadhaar']);
     expect(r.unknownColumns).toEqual([]);
     expect(JSON.stringify(r.students)).not.toContain('2345');
     expect(studentsToCsv(r.students)).not.toContain('2345');
-    expect(looksLikeAadhaarNumber('234567890123')).toBe(true);
-    expect(looksLikeAadhaarNumber('2345-6789-0123')).toBe(true);
+    expect(looksLikeAadhaarNumber('234567890124')).toBe(true);
+    expect(looksLikeAadhaarNumber('2345-6789-0124')).toBe(true);
     expect(looksLikeAadhaarNumber('98765 43210')).toBe(false);
   });
   it('drops even a known column holding a 12-digit number, so it is reported missing', () => {
-    const r = parseStudentList(`${HEAD}\n234567890123,5A,Aarav,05-04-2015,M,Aarav,05-04-2015,M\n`);
+    const r = parseStudentList(`${HEAD}\n234567890124,5A,Aarav,05-04-2015,M,Aarav,05-04-2015,M\n`);
     expect(r.droppedColumns).toEqual(['admission_no']);
     expect(r.missingColumns).toEqual(['admission_no']);
   });

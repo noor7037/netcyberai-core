@@ -172,7 +172,7 @@ describe('the profile’s fields', () => {
     expect(checkProfileInput({ staff_code: 'T 01 !' }, '2026-10-18')).toEqual({ ok: false, problem: { field: 'staff_code', reason: 'invalid' } });
     expect(checkProfileInput({ employment_type: 'forever' }, '2026-10-18')).toEqual({ ok: false, problem: { field: 'employment_type', reason: 'invalid' } });
     expect(checkProfileInput({ date_of_birth: '2027-01-01' }, '2026-10-18')).toEqual({ ok: false, problem: { field: 'date_of_birth', reason: 'date' } });
-    expect(checkProfileInput({ address: 'House 2, 2345 6789 0123' }, '2026-10-18')).toEqual({ ok: false, problem: { field: 'address', reason: 'aadhaar' } });
+    expect(checkProfileInput({ address: 'House 2, 2345 6789 0124' }, '2026-10-18')).toEqual({ ok: false, problem: { field: 'address', reason: 'aadhaar' } });
   });
 });
 
@@ -204,9 +204,9 @@ describe('who edits a profile', () => {
   });
 
   it('refuses a field the database would refuse, an unknown person, and a parent', async () => {
-    let r = await save(principal, TEACHER, { ...FULL, emergency_contact: 'Ravi 2345 6789 0123' });
+    let r = await save(principal, TEACHER, { ...FULL, emergency_contact: 'Ravi 2345 6789 0124' });
     expect([r.status, r.body.code, r.body.field, r.body.problem]).toEqual([400, 'field', 'emergency_contact', 'aadhaar']);
-    expect(await fails(principal, `update staff_profiles set address = 'House 234567890123', updated_by = $3 where school_id = $1 and user_id = $2`, [A, TEACHER, PRINCIPAL])).toMatch(/check constraint/);
+    expect(await fails(principal, `update staff_profiles set address = 'House 234567890124', updated_by = $3 where school_id = $1 and user_id = $2`, [A, TEACHER, PRINCIPAL])).toMatch(/check constraint/);
     r = await save(principal, PARENT, FULL);
     expect([r.status, r.body.code]).toEqual([404, 'not_found']);
     expect(await fails(principal, `insert into staff_profiles (school_id, user_id, updated_by) values ($1, $2, $3)`, [A, PARENT, PRINCIPAL])).toMatch(/member of the school's staff/);

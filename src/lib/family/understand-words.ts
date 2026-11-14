@@ -7,7 +7,7 @@ export const UNDERSTAND_KEYS: MessageKey[] = [
   ...WORD_MENU_KEYS,
   'fam.label.aiMade', 'fam.label.checked', 'fam.ai.notice.aiMade', 'fam.ai.notice.checked', 'fam.ai.notice.link', 'fam.block.example', 'fam.block.terms', 'fam.block.worked', 'fam.block.answer', 'fam.block.keyPoints',
   'fam.block.english', 'fam.block.pattern', 'fam.block.sayIt', 'fam.block.readAloud', 'fam.block.deviceVoice', 'fam.block.sources', 'fam.block.check',
-  'fam.block.practice', 'fam.check.hint', 'fam.check.hintLabel', 'fam.check.right', 'fam.check.notYet', 'fam.check.notThis', 'fam.check.correct', 'fam.check.explainAgain', 'fam.block.mindMap', 'fam.block.photo', 'fam.block.photoCredit',
+  'fam.block.practice', 'fam.check.hint', 'fam.check.hintLabel', 'fam.check.right', 'fam.check.notYet', 'fam.check.notThis', 'fam.check.correct', 'fam.check.explainAgain', 'fam.block.mindMap', 'fam.block.photo', 'fam.block.photoCredit', 'fam.block.photoCreditOpenverse',
   // W10-6: the scene, the chart and the steps' replay.
   'fam.block.sceneTap', 'fam.block.chartCaption', 'fam.block.chartUnit', 'fam.block.chartTable', 'fam.block.replay',
   // W16-A2: the drawing board, the citation chip and the Class 8 Science simulations.
@@ -27,5 +27,5 @@ export const UNDERSTAND_KEYS: MessageKey[] = [
   'fam.followUp.differently', 'fam.followUp.practise_more', 'fam.err.network', 'fam.plan.comesBack',
   ...INTERACTIVE_KEYS,
   // M2-5: the honest player under a topic's response.
-  'fam.video.title', 'fam.video.note', 'fam.video.play', 'fam.video.length', 'fam.video.by', 'fam.video.frame',
+  'fam.video.title', 'fam.video.note', 'fam.video.play', 'fam.video.length', 'fam.video.by', 'fam.video.frame', 'fam.video.see', 'fam.video.answer', 'fam.video.fallback', 'fam.video.failed',
 ];

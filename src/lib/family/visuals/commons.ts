@@ -1,4 +1,5 @@
 import { PHOTO_HOST, PHOTO_LICENCE, PHOTO_PAGE_HOST, plain } from '@/lib/family/blocks';
+import { PHOTO_WIDE_WIDTH, PHOTO_WIDTH } from './photo-size';
 
 // Licensed photographs from Wikimedia Commons (W9-C, docs/39 §3). The server, never the phone, asks Commons' search for
 // the model's words and keeps only a file whose licence is CC0, CC BY, CC BY-SA (any version) or public domain, with an
@@ -12,11 +13,13 @@ import { PHOTO_HOST, PHOTO_LICENCE, PHOTO_PAGE_HOST, plain } from '@/lib/family/
 export type CommonsPhoto = { url: string; pageUrl: string; author: string; licence: string; licenceUrl: string | null };
 
 export const COMMONS_API = 'https://commons.wikimedia.org/w/api.php';
-const TIMEOUT_MS = 4000;
-const WIDTH = 960;
+export const TIMEOUT_MS = 4000;
+// C526: Commons' standard thumbnail step nearest 480 px (its edge cache keeps the standard steps), so a photograph costs
+// a phone tens of kilobytes; ImageView asks for the 960 px step only on a wide screen (photo-size.ts).
+export const WIDTH = PHOTO_WIDTH;
 const MAX_BYTES = 2 * 1024 * 1024;
 const ASSESSED = 'incategory:Quality_images|Featured_pictures_on_Wikimedia_Commons|Valued_images';
-const NOT_FOR_CHILDREN = /\b(nud(e|ity)|naked|sex(ual)?|erotic|porn|corpse|dead body|autopsy|gore|wound|injur(y|ies)|surgery|execution|lynch|tortur|genital|weapon|gun|drug)/i;
+export const NOT_FOR_CHILDREN = /\b(nud(e|ity)|naked|sex(ual)?|erotic|porn|corpse|dead body|autopsy|gore|wound|injur(y|ies)|surgery|execution|lynch|tortur|genital|weapon|gun|drug)/i;
 
 export function commonsSearchUrl(query: string): string {
   const q = new URLSearchParams({
@@ -37,7 +40,7 @@ export function commonsSearchUrl(query: string): string {
 
 const ENTITIES: Record<string, string> = { '&amp;': '&', '&quot;': '"', '&#39;': "'", '&lt;': '<', '&gt;': '>', '&nbsp;': ' ' };
 // Commons gives the author as HTML (often a link to the user's page): the words only.
-const words = (html: unknown, max: number): string | null => {
+export const words = (html: unknown, max: number): string | null => {
   if (typeof html !== 'string') return null;
   const text = plain(html.replace(/<[^>]*>/g, ' ').replace(/&(amp|quot|#39|lt|gt|nbsp);/g, (e) => ENTITIES[e] ?? ' '), 2000);
   return text && text.length <= max ? text : null;
@@ -50,7 +53,7 @@ export function allowedLicence(v: unknown): string | null {
   return PHOTO_LICENCE.test(s) ? s : null;
 }
 
-const onHost = (v: unknown, host: string): string | null => {
+export const onHost = (v: unknown, host: string): string | null => {
   if (typeof v !== 'string') return null;
   try {
     const u = new URL(v);
@@ -59,6 +62,19 @@ const onHost = (v: unknown, host: string): string | null => {
     return null;
   }
 };
+
+// C526: Commons now names a scaled copy on thumb.wikimedia.org, with tracking words after a "?". The same copy is at the
+// same path on the upload host the phone is allowed to load, so the address kept is that one, with nothing after it.
+export function commonsThumb(v: unknown): string | null {
+  if (typeof v !== 'string') return null;
+  try {
+    const u = new URL(v);
+    if (u.protocol !== 'https:' || u.port || u.username || (u.hostname !== PHOTO_HOST && u.hostname !== 'thumb.wikimedia.org')) return null;
+    return /^\/wikipedia\/commons\/thumb\/[^?#]+\/\d{2,4}px-[^/?#]+$/.test(u.pathname) ? `https://${PHOTO_HOST}${u.pathname}` : null;
+  } catch {
+    return null;
+  }
+}
 
 type Page = { title?: unknown; index?: unknown; imageinfo?: { url?: unknown; thumburl?: unknown; descriptionurl?: unknown; mime?: unknown; size?: unknown; width?: unknown; height?: unknown; extmetadata?: Record<string, { value?: unknown } | undefined> }[] };
 
@@ -77,7 +93,8 @@ export function pickPhoto(answer: unknown): CommonsPhoto | null {
     const author = words(meta.Artist?.value, 120);
     const restricted = typeof meta.Restrictions?.value === 'string' && meta.Restrictions.value.trim() !== '';
     const about = `${typeof p.title === 'string' ? p.title : ''} ${typeof meta.Categories?.value === 'string' ? meta.Categories.value : ''}`;
-    const url = onHost(ii.thumburl, PHOTO_HOST) ?? onHost(ii.url, PHOTO_HOST);
+    // C526: the original only when it is no wider than the wide step (a full-size original can be megabytes).
+    const url = commonsThumb(ii.thumburl) ?? (Number(ii.width) <= PHOTO_WIDE_WIDTH ? onHost(ii.url, PHOTO_HOST) : null);
     const pageUrl = onHost(ii.descriptionurl, PHOTO_PAGE_HOST);
     if (!licence || !author || restricted || NOT_FOR_CHILDREN.test(about) || !url || !pageUrl || !new URL(pageUrl).pathname.startsWith('/wiki/File:')) continue;
     const licenceUrl = onHost(meta.LicenseUrl?.value, 'creativecommons.org');

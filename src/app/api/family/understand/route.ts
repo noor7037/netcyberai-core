@@ -25,6 +25,8 @@ import { typedCheckReading } from '@/lib/family/check-work';
 import { photoGate } from '@/lib/family/photo-gate';
 import { isSubject } from '@/lib/family/subjects';
 import { fillVisuals } from '@/lib/family/visuals/fill';
+import { BOARD_BLOCK, isYoungVisual } from '@/lib/ai/teaching/plan-shape';
+import { videoTopicOf } from '@/lib/family/answer-videos';
 import { indiaDate } from '@/lib/time/india';
 import { isMessageKey, t, type MessageKey } from '@/lib/i18n';
 import { readDrawMarker } from '@/lib/family/draw-templates';
@@ -379,7 +381,9 @@ export async function POST(req: NextRequest) {
           stoppedByCheck = generated.stopped;
           const unfilled = generated.kept;
           const unfilledShared = generated.shared;
-          if (!generated.stopped && generated.error === null) generated.kept = await fillVisuals((fn) => withFamilyContext(claims, fn), generated.kept, { chapterKey: pending.line?.key ?? null, lang: pending.ctx.child.language, ...(pending.line && !checkMode && !sketchMode ? { videos: { line: pending.line, child: pending.ctx.child, accountId: session.accountId } } : {}), emit: (block) => send({ t: 'block', block }) });
+          // C522: the answer's video topic (typed, photo or drawing question), named from what the pipeline already has.
+          const videos = generated.stopped || generated.error !== null ? null : await withFamilyContext(claims, (db) => videoTopicOf(db, { line: pending.line, passages: pending.teach?.passages ?? [], drawTemplate: sketchMode ? drawTemplateId : null, child: pending.ctx.child, accountId: session.accountId })).catch(() => null);
+          if (!generated.stopped && generated.error === null) generated.kept = await fillVisuals((fn) => withFamilyContext(claims, fn), generated.kept, { chapterKey: pending.line?.key ?? null, lang: pending.ctx.child.language, ...(videos ? { videos } : {}), ...(isYoungVisual(pending.ctx.child.classLevel, pending.plan?.blocks.includes(BOARD_BLOCK)) ? { young: { question: pending.asked } } : {}), emit: (block) => send({ t: 'block', block }) });
           // W22-S3: a block the fill left alone keeps its name-free twin (for a response kept for other children); a filled one has no text of the child's.
           if (generated.kept !== unfilled) generated.shared = generated.kept.map((blk) => { const i = unfilled.indexOf(blk); return i >= 0 ? unfilledShared[i] : blk; });
           return generated;

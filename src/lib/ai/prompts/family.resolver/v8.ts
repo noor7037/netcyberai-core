@@ -48,6 +48,10 @@ export type ResolverAsk = V3Ask & {
   // C509: the class's subjects that have a published book for this child's board (only v15 reads it, to say honestly
   // whether an answer is "not from your book" or to say nothing about a book at all).
   bookSubjects?: readonly string[];
+  // C521: the language the child's question was asked in (a word-help language code or 'hinglish') and the child's mother
+  // tongue (the parent's word-help language for the child). Only v17 reads them; earlier versions keep the style setting.
+  replyLang?: string;
+  motherTongue?: string;
 };
 
 const STYLE: Record<V3Ask['style'], string> = {

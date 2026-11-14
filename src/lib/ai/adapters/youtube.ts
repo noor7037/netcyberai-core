@@ -25,7 +25,8 @@ export type VideoCandidate = {
   language: string | null;
   chapters: VideoChapter[];
 };
-export type VideoSearch = { query: string; language: 'en' | 'hi'; channelId?: string; maxResults?: number };
+// C522: any two-letter ISO 639-1 code (YouTube's relevanceLanguage); anything else searches as English.
+export type VideoSearch = { query: string; language: string; channelId?: string; maxResults?: number };
 export type VideoFailure = 'http' | 'network' | 'bad_answer';
 type Got<T> = { ok: true; value: T } | { ok: false; failure: VideoFailure; status?: number };
 
@@ -94,7 +95,7 @@ export async function searchVideoIds(apiKey: string, s: VideoSearch): Promise<Go
     type: 'video',
     videoEmbeddable: 'true',
     safeSearch: 'strict',
-    relevanceLanguage: s.language,
+    relevanceLanguage: /^[a-z]{2}$/.test(s.language) ? s.language : 'en',
     regionCode: 'IN',
     maxResults: String(Math.min(Math.max(1, s.maxResults ?? 10), 10)),
     q: s.query.slice(0, 200),

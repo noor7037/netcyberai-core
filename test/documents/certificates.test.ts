@@ -46,13 +46,13 @@ describe('the words and the rules', () => {
     expect(readTyped('transfer', {}, TODAY)).toEqual({ ok: false, reason: 'missing', field: 'reason' });
     expect(readTyped('transfer', { reason: 'Moving to Pune', conduct: 'Brilliant' }, TODAY)).toEqual({ ok: false, reason: 'option', field: 'conduct' });
     expect(readTyped('transfer', { reason: 'Moving to Pune', lastAttendance: '2999-01-01' }, TODAY)).toEqual({ ok: false, reason: 'date', field: 'lastAttendance' });
-    expect(readTyped('transfer', { reason: 'Aadhaar 1234 5678 9012 given' }, TODAY)).toEqual({ ok: false, reason: 'aadhaar', field: 'reason' });
+    expect(readTyped('transfer', { reason: 'Aadhaar 2345 6789 0124 given' }, TODAY)).toEqual({ ok: false, reason: 'aadhaar', field: 'reason' });
     expect(readTyped('transfer', { reason: 'x'.repeat(91) }, TODAY)).toEqual({ ok: false, reason: 'too_long', field: 'reason' });
     expect(readTyped('transfer', { reason: '  Moving   to Pune ', conduct: 'Good', ignored: 'x' }, TODAY)).toEqual({ ok: true, values: { reason: 'Moving to Pune', conduct: 'Good' } });
     expect(readTyped('bonafide', {}, TODAY)).toEqual({ ok: false, reason: 'missing', field: 'purpose' });
     expect(readTyped('character', { period: '2019-20 to 2025-26' }, TODAY)).toEqual({ ok: false, reason: 'missing', field: 'conduct' });
     expect(readReason('  ')).toEqual({ ok: false, reason: 'reason' });
-    expect(readReason('Card 1234-5678-9012')).toEqual({ ok: false, reason: 'aadhaar' });
+    expect(readReason('Card 2345-6789-0124')).toEqual({ ok: false, reason: 'aadhaar' });
     expect(certificateNumber('transfer', 7)).toBe('TC/0007');
     expect(certificateFileName('TC/0007')).toBe('certificate-TC-0007.pdf');
   });
@@ -67,7 +67,7 @@ describe('the words and the rules', () => {
     expect(composePrinted('transfer', { ...child, dob: null }, { reason: 'Moving' }, ctx)).toEqual({ ok: false, reason: 'incomplete', fields: ['dob'] });
     expect(composePrinted('bonafide', { ...child, guardians: [] }, { purpose: 'Bank' }, { ...ctx, year: null })).toEqual({ ok: false, reason: 'incomplete', fields: ['parentName', 'year'] });
     // A record that holds an Aadhaar-shaped number (an admission number written as one) is never printed or kept.
-    expect(composePrinted('transfer', { ...child, admissionNo: '1234 5678 9012' }, { reason: 'Moving' }, ctx)).toEqual({ ok: false, reason: 'aadhaar' });
+    expect(composePrinted('transfer', { ...child, admissionNo: '2345 6789 0124' }, { reason: 'Moving' }, ctx)).toEqual({ ok: false, reason: 'aadhaar' });
   });
 
   it('the PDF is the studio’s own drawing, with the number, the day, and a QR code of the verification address only', () => {
@@ -149,7 +149,7 @@ describe('on the real schema', () => {
         ('${EKTA}', '${A}', 'A-5', 'Ekta Jain', 'active', '${CLASS_5A}', '5', null, 'female'),
         ('${FARAH}', '${A}', 'A-6', 'Farah Khan', 'active', '${CLASS_5A}', '6', '2015-06-16', 'female'),
         ('${B_KID}', '${B}', 'B-1', 'Bablu Roy', 'active', '${CLASS_B}', '1', '2014-01-01', 'male'),
-        ('${GITA}', '${A}', '1234 5678 9012', 'Gita Bose', 'active', '${CLASS_5A}', '7', '2015-07-17', 'female');
+        ('${GITA}', '${A}', '2345 6789 0124', 'Gita Bose', 'active', '${CLASS_5A}', '7', '2015-07-17', 'female');
       insert into parents (parent_id, school_id, name, phone, relation) values ('${G_ASHA}', '${A}', 'Ravi Singh', '9000000001', 'Father'), ('${G_BINA}', '${A}', 'Meena Rao', 'not given', 'Mother'), ('${G_B}', '${B}', 'Bimal Roy', '9000000009', 'Father');
       insert into parent_student_map (school_id, parent_id, student_id) values ('${A}', '${G_ASHA}', '${ASHA}'), ('${A}', '${G_BINA}', '${BINA}'), ('${A}', '${G_ASHA}', '${CHETAN}'), ('${A}', '${G_ASHA}', '${DEV}'), ('${A}', '${G_ASHA}', '${EKTA}'), ('${A}', '${G_ASHA}', '${FARAH}'), ('${B}', '${G_B}', '${B_KID}');
       insert into fees_ledger (school_id, student_id, amount_minor, due_date, status) values ('${A}', '${BINA}', 450000, '2026-07-10', 'overdue'), ('${A}', '${CHETAN}', 300000, '2026-07-10', 'overdue'), ('${A}', '${DEV}', 200000, '2026-07-10', 'partial'), ('${A}', '${FARAH}', 100000, '2026-07-10', 'paid');
@@ -454,7 +454,7 @@ describe('on the real schema', () => {
     expect(made.ok && made.issued.map((x) => [x.studentId, x.number])).toEqual([[FARAH, 'CC/0001']]);
     expect((await db.pg.query(`select count(*)::int as n from certificates_issued where student_id = $1`, [GITA])).rows[0].n).toBe(0);
     // The database refuses one too, whoever writes it.
-    await expect(as(admin, (c) => c.query(`insert into certificates_issued (school_id, cert_type, student_id, issued_by, purpose, printed) values ($1, 'study', $2, $3, 'Library', '{"studentName":"Gita Bose","admissionNo":"1234 5678 9012"}')`, [A, GITA, ADMIN]))).rejects.toThrow(/never an Aadhaar number/);
+    await expect(as(admin, (c) => c.query(`insert into certificates_issued (school_id, cert_type, student_id, issued_by, purpose, printed) values ($1, 'study', $2, $3, 'Library', '{"studentName":"Gita Bose","admissionNo":"2345 6789 0124"}')`, [A, GITA, ADMIN]))).rejects.toThrow(/never an Aadhaar number/);
   });
 
   it('the family’s link opens the PDF for 30 days from the send, then answers nothing', async () => {

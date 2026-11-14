@@ -32,8 +32,8 @@ describe('the reason for a "View as" (C232 part B)', () => {
     expect(viewAsReason(undefined)).toEqual({ ok: false, code: 'reason' });
     expect(viewAsReason('x'.repeat(301))).toEqual({ ok: false, code: 'reason' });
     expect(viewAsReason('x'.repeat(300))).toMatchObject({ ok: true });
-    expect(viewAsReason('Checking the card 1234 5678 9012')).toEqual({ ok: false, code: 'aadhaar' });
-    expect(viewAsReason('Ticket about payment 412345678901')).toEqual({ ok: false, code: 'aadhaar' });
+    expect(viewAsReason('Checking the card 2345 6789 0124')).toEqual({ ok: false, code: 'aadhaar' });
+    expect(viewAsReason('Ticket about payment 412345678902')).toEqual({ ok: false, code: 'aadhaar' });
     expect(viewAsReason('Call from +91 98765 43210 about fees')).toMatchObject({ ok: true });
   });
 });
@@ -132,7 +132,7 @@ describe('on the real schema', () => {
 
     it('both or neither: a viewing the database refuses leaves no audit row either', async () => {
       const W = 'c1000000-0000-4000-8000-0000000000e3';
-      await expect(start(W, 'Card 1234 5678 9012')).rejects.toThrow(/check/);
+      await expect(start(W, 'Card 2345 6789 0124')).rejects.toThrow(/check/);
       await expect(start(W, '   ')).rejects.toThrow(/check/);
       expect((await db.pg.query(`select count(*)::int as n from audit_log where after_state ->> 'impersonationId' = $1`, [W])).rows[0].n).toBe(0);
       expect((await db.pg.query(`select count(*)::int as n from impersonation_sessions where impersonation_id = $1`, [W])).rows[0].n).toBe(0);

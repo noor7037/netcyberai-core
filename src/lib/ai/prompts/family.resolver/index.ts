@@ -14,6 +14,7 @@ import * as v13 from './v13';
 import * as v14 from './v14';
 import * as v15 from './v15';
 import * as v16 from './v16';
+import * as v17 from './v17';
 
 // The family.resolver prompt versions in this repository (docs/family-app/08 §7). Control chooses the active version
 // (control.ai_profiles.prompt_version); a version the code does not have falls back to the default (v10 since W18-P2, v9 since W16). A typed
@@ -39,6 +40,8 @@ export type ResolverPrompt = {
   usesPlan?: boolean;
   // C509: the youngest children's answer is drawn first (v15): their plan names the board before the explanation.
   visualFirst?: boolean;
+  // C521: the answer follows the question's language (v17): the server sets the ask's replyLang and motherTongue.
+  readsLanguage?: boolean;
   system: (a: v10.ResolverAsk) => string;
   user: (a: v10.ResolverAsk) => string;
 };
@@ -90,6 +93,9 @@ const V15: ResolverPrompt = { version: v15.RESOLVER_PROMPT_VERSION, namesSubject
 // v16 (C516): v15 with a one-or-two-sentence answer first (a key_points block) for Classes 3 and up, so the first words
 // show sooner. Opt-in by name.
 const V16: ResolverPrompt = { version: v16.RESOLVER_PROMPT_VERSION, namesSubject: true, usesPlan: true, visualFirst: true, system: v16.resolverSystem, user: v16.resolverUser };
+// v17 (C521): v16 with the photo question named, shown in one fitting visual and taught as answer, why, worked example
+// and check, and the answer in the language the question was asked in. Opt-in by name.
+const V17: ResolverPrompt = { version: v17.RESOLVER_PROMPT_VERSION, namesSubject: true, usesPlan: true, visualFirst: true, readsLanguage: true, system: v17.resolverSystem, user: v17.resolverUser };
 
 export const RESOLVER_PROMPTS: readonly ResolverPrompt[] = [
   { version: v1.RESOLVER_PROMPT_VERSION, namesSubject: false, system: (a) => v1.resolverSystem(withSubject(a)), user: (a) => v1.resolverUser(withSubject(a)) },
@@ -110,6 +116,7 @@ export const RESOLVER_PROMPTS: readonly ResolverPrompt[] = [
   V14,
   V15,
   V16,
+  V17,
 ];
 
 // The fallback for a version the code does not have, and for a typed question under a version that cannot name the

@@ -8,6 +8,7 @@ import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from 
 import { unfilled, type Block, type Explanation } from '@/lib/family/blocks';
 import { fill, type Words } from '@/lib/family/fill';
 import { isSubject, type Subject } from '@/lib/family/subjects';
+import { attachPlan, preparePhoto } from '@/lib/family/photo-shrink';
 import { TUTOR_FILE_MAX_BYTES, TUTOR_FILES_PER_TURN, TUTOR_TEXT_MAX, TUTOR_TEXT_MIN, sniffTutorFile, type FeedTurn, type TutorFile } from '@/lib/family/tutor-shape';
 import { CitationChip } from '../blocks/CitationChip';
 import { citationOf } from '@/lib/family/citation';
@@ -248,10 +249,10 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
   const attach = async (file: File, check = false) => {
     setFileError(null);
     if (attached.length >= TUTOR_FILES_PER_TURN || (check && attached.length > 0) || checking) return setFileError(w['fam.tutor.err.too_many_files']);
-    if (file.size === 0) return setFileError(w['fam.tutor.err.file_empty']);
-    if (file.size > TUTOR_FILE_MAX_BYTES) return setFileError(w['fam.tutor.err.file_too_large']);
-    const mime = sniffTutorFile(new Uint8Array(await file.slice(0, 16).arrayBuffer()));
-    if (!mime) return setFileError(w['fam.tutor.err.file_type']);
+    // C525: a photo (an iPhone HEIC too) is drawn again on the phone at 1600 px as a JPEG before it is sent
+    // (src/lib/family/photo-shrink.ts); a PDF goes as it is. Every refusal says what to do next.
+    const plan = attachPlan(new Uint8Array(await file.slice(0, 16).arrayBuffer()), file.size);
+    if (!plan.ok) return setFileError(w[`fam.tutor.err.${plan.code}`] ?? w['fam.err.network']);
     const key = `${Date.now()}-${Math.random()}`;
     const update = (patch: Partial<Attached>) => setAttached((list) => list.map((a) => (a.key === key ? { ...a, ...patch } : a)));
     const drop = (code: string) => {
@@ -259,10 +260,13 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
       setAttached((list) => list.filter((a) => a.key !== key));
       setFileError(w[`fam.tutor.err.${code}`] ?? w['fam.err.network']);
     };
-    if (check && mime === 'application/pdf') return setFileError(w['fam.check.err.photo_only']);
+    if (check && plan.mime === 'application/pdf') return setFileError(w['fam.check.err.photo_only']);
     if (check) setChecking(true);
-    setAttached((list) => [...list, { key, name: file.name, mime, state: 'sending', id: null }]);
-    const up = await uploadTutorFile(subject, file, mime, { ticket: (id) => update({ id }), stored: () => update({ state: 'checking' }) });
+    setAttached((list) => [...list, { key, name: file.name, mime: plan.mime === 'image/heic' ? 'image/jpeg' : plan.mime, state: 'sending', id: null }]);
+    const ready = plan.shrink ? await preparePhoto(file, plan.mime) : { ok: true as const, file, mime: plan.mime };
+    if (!ready.ok) return drop(ready.code);
+    update({ mime: ready.mime });
+    const up = await uploadTutorFile(subject, ready.file, ready.mime, { ticket: (id) => update({ id }), stored: () => update({ state: 'checking' }) });
     if ('code' in up) return drop(up.code);
     update({ state: 'ready' });
   };

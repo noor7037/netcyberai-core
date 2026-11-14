@@ -39,6 +39,7 @@
     ],
     writeHere: { en: 'Write your answer here (optional), then compare.', hi: 'अपना जवाब यहाँ लिखो (चाहो तो), फिर मिलाओ।' }, showModel: { en: 'Show the model answer', hi: 'मॉडल आंसर दिखाओ' }, model: { en: 'Model answer', hi: 'मॉडल आंसर' }, tick: { en: 'Tick each point your answer has. One mark each.', hi: 'तुम्हारे उत्तर में जो पॉइंट हैं, उन पर टिक लगाओ। हर पॉइंट का एक मार्क।' },
     check: { en: 'Check your understanding', hi: 'अपनी समझ चेक करो' }, checkNote: { en: '5 questions. Get 4 right to open the next topic. You can try again as often as you like.', hi: '5 सवाल। अगला टॉपिक खोलने के लिए 4 सही करो। जितनी बार चाहो, फिर से कोशिश कर सकते हो।' },
+    prepCheckNote: { en: '5 questions. Get 3 right to open the next topic. You can try again as often as you like.', hi: '5 सवाल। अगला टॉपिक खोलने के लिए 3 सही करो। जितनी बार चाहो, फिर से कोशिश कर सकते हो।' },
     formativeNote: { en: 'Try three picture questions. There is no pass mark and no lock. Look, think and keep learning.', hi: 'चित्र वाले तीन सवाल आज़माओ। यहाँ पास होने की शर्त या ताला नहीं है। देखो, सोचो और सीखते रहो।' },
     formativeDone: { en: 'You tried every question. Good work! Play again or move on when you are ready.', hi: 'तुमने हर सवाल आज़माया। बढ़िया! फिर से खेलो या तैयार होने पर आगे बढ़ो।' },
     formativeNoTest: { en: 'There is no chapter exam here. Learning grows through play, talk, drawing and trying things.', hi: 'यहाँ चैप्टर का एग्ज़ाम नहीं है। खेल, बातचीत, चित्र बनाने और कोशिश करने से सीखना बढ़ता है।' },
@@ -48,6 +49,8 @@
     tryFresh: { en: 'Try a fresh set', hi: 'नए सवालों से फिर करो' }, reviewTopic: { en: 'Go over the topic again', hi: 'टॉपिक फिर से देखो' },
     locked: { en: 'Finish the topic before to open this one.', hi: 'इसे खोलने के लिए पिछला टॉपिक पूरा करो।' }, done: { en: 'Done', hi: 'पूरा' }, open: { en: 'Open', hi: 'खुला' },
     test: { en: 'Chapter test', hi: 'चैप्टर टेस्ट' }, testNote: { en: '20 questions in the board pattern: case-based, assertion-reason, multiple choice, short and long answers. 70% passes. Mark your written answers honestly against the model.', hi: 'बोर्ड पैटर्न में 20 सवाल: केस-बेस्ड, अभिकथन-कारण, MCQ, छोटे और लंबे उत्तर। 70% पर पास। अपने लिखे उत्तरों को मॉडल आंसर से ईमानदारी से मिलाओ।' },
+    chapterCheck: { en: 'Chapter Check', hi: 'चैप्टर चेक' }, chapterCheckNote: { en: 'A short check on what you learned in this chapter. Try your best!', hi: 'इस चैप्टर में सीखी बातों का एक छोटा अभ्यास। अपनी समझ से करो!' },
+    startChapterCheck: { en: 'Start the chapter check', hi: 'चैप्टर चेक शुरू करो' },
     testLocked: { en: 'Opens when every topic is complete.', hi: 'सारे टॉपिक पूरे होने पर खुलेगा।' }, startTest: { en: 'Start the chapter test', hi: 'चैप्टर टेस्ट शुरू करो' }, finishTest: { en: 'See my result', hi: 'मेरा रिज़ल्ट दिखाओ' },
     testPass: { en: 'Chapter complete. You understood this chapter.', hi: 'चैप्टर पूरा हुआ। तुमने यह चैप्टर समझ लिया।' }, testAgain: { en: 'Not yet. Look at the explanations, revisit the topics you missed, and try again.', hi: 'अभी नहीं। जवाब समझो, जो टॉपिक कमज़ोर रहे उन्हें दोबारा पढ़ो, और फिर कोशिश करो।' },
     answerAll: { en: 'Answer every question first ({n} left).', hi: 'पहले सारे सवालों के जवाब दो ({n} बाक़ी)।' },
@@ -629,14 +632,23 @@
   // ---------- views ----------
   // The book on show comes from the address: ?book=c10/science, or the folder at the start of the #chapter link;
   // with neither, the first book in the registry (content/books.json, written by scripts/index.mjs).
-  const SUBJ = { english: ['English', 'अंग्रेज़ी'], hindi: ['Hindi', 'हिंदी'], mathematics: ['Mathematics', 'गणित'], sanskrit: ['Sanskrit', 'संस्कृत'], science: ['Science', 'विज्ञान'], social_science: ['Social Science', 'सामाजिक विज्ञान'] };
+  const SUBJ = { english: ['English', 'अंग्रेज़ी'], hindi: ['Hindi', 'हिंदी'], mathematics: ['Mathematics', 'गणित'], sanskrit: ['Sanskrit', 'संस्कृत'], science: ['Science', 'विज्ञान'], social_science: ['Social Science', 'सामाजिक विज्ञान'], evs: ['Environmental Studies (EVS)', 'पर्यावरण अध्ययन (EVS)'] };
   const hashBook = () => ((decodeURIComponent(location.hash.slice(1)).match(/^(c\d\d\/[a-z_]+)\//) || [])[1]) || '';
   let BOOK = new URLSearchParams(location.search).get('book') || hashBook();
   const subjName = (id) => { const e = SUBJ[id]; return e ? t({ en: e[0], hi: e[1] }) : String(id || '').replace(/_/g, ' ').replace(/^./, (c) => c.toUpperCase()); };
   const bookLabel = () => { const m = BOOK.match(/^c(\d\d)\/(.+)$/); const i = S.idx; return i ? `${t(U.cls)} ${i.class} · ${subjName(i.subject_id)}` : m ? `${t(U.cls)} ${+m[1]} · ${subjName(m[2])}` : ''; };
+  let ALL_BOOKS = null;
+  async function loadBooks() {
+    if (ALL_BOOKS) return ALL_BOOKS;
+    try {
+      const bData = await (await fetch(ROOT + 'books.json')).json();
+      ALL_BOOKS = bData.books || [];
+    } catch (e) { ALL_BOOKS = []; }
+    return ALL_BOOKS;
+  }
   async function loadIndex() {
     if (S.idx) return S.idx;
-    if (!BOOK) { const b = (await (await fetch(ROOT + 'books.json')).json()).books[0]; BOOK = `c${String(b.class).padStart(2, '0')}/${b.subject_id}`; }
+    if (!BOOK) { const b = (await loadBooks())[0]; BOOK = `c${String(b.class).padStart(2, '0')}/${b.subject_id}`; }
     S.idx = await (await fetch(ROOT + BOOK + '/index.json')).json();
     return S.idx;
   }
@@ -646,8 +658,14 @@
     topbar({ title: t(U.brand), sub: bookLabel() });
     app.innerHTML = `<div class="home"><p class="mini">${esc(t(U.loading))}</p></div>`;
     try {
-      const idx = await loadIndex();
-      app.innerHTML = `<div class="home"><h1 style="margin:4px 0 14px">${esc(bookLabel())}</h1><div class="chgrid">${idx.chapters.map((c) => `<button type="button" class="chcard" data-ch="${esc(c.file)}" ${c.file ? '' : 'disabled'}>${c.image ? `<img src="../labs/assets/${esc(BOOK)}/${esc(c.image)}.640.webp" alt="" loading="lazy">` : ''}<div class="in"><span class="chip">${esc(t(U.chapter))} ${c.number}</span><h3 ${L()}>${esc(t(c.title))}</h3><p class="mini">${c.file ? esc(fill(t(U.topicsN), { n: c.topics })) + ' · ' + c.minutes + ' ' + esc(t(U.min)) : esc(t(U.soon))}</p></div></button>`).join('')}</div></div>`;
+      const [idx, books] = await Promise.all([loadIndex(), loadBooks()]);
+      const bookOpts = (books || []).map((b) => {
+        const k = `c${String(b.class).padStart(2, '0')}/${b.subject_id}`;
+        const lbl = `${t(U.cls)} ${b.class} · ${subjName(b.subject_id)}`;
+        return `<option value="${esc(k)}" ${k === BOOK ? 'selected' : ''}>${esc(lbl)}</option>`;
+      }).join('');
+      const picker = bookOpts ? `<div style="margin:4px 0 16px;display:flex;align-items:center;gap:10px;"><label for="book-select" style="font-weight:700;font-size:0.95rem;">${esc(t(U.cls))}:</label><select id="book-select" style="padding:6px 14px;border-radius:8px;border:1.5px solid #d4d0c8;font-size:0.95rem;background:#fff;cursor:pointer;font-family:inherit;">${bookOpts}</select></div>` : '';
+      app.innerHTML = `<div class="home">${picker}<h1 style="margin:4px 0 14px">${esc(bookLabel())}</h1><div class="chgrid">${idx.chapters.map((c) => `<button type="button" class="chcard" data-ch="${esc(c.file)}" ${c.file ? '' : 'disabled'}>${c.image ? `<img src="../labs/assets/${esc(BOOK)}/${esc(c.image)}.640.webp" alt="" loading="lazy">` : ''}<div class="in"><span class="chip">${esc(t(U.chapter))} ${c.number}</span><h3 ${L()}>${esc(t(c.title))}</h3><p class="mini">${c.file ? esc(fill(t(U.topicsN), { n: c.topics })) + ' · ' + c.minutes + ' ' + esc(t(U.min)) : esc(t(U.soon))}</p></div></button>`).join('')}</div></div>`;
     } catch (e) { app.innerHTML = `<div class="home"><p>${esc(t(U.failed))}</p></div>`; }
   }
   async function openChapter(file, ti) {
@@ -673,7 +691,7 @@
       ${due ? `<section class="card remember noread"><h3>🧠 ${esc(t(U.remember))}</h3><p>${esc(fill(t(U.rememberNote), { t: t(due.short) }))}</p><div class="row"><button type="button" class="btn-go" data-review="${due.id}">${esc(t(U.rememberGo))}</button><button type="button" class="btn" data-later="${due.id}">${esc(t(U.later))}</button></div></section>` : ''}
       <section class="card"><div class="eyebrow">${esc(t(U.bigIdea))}</div><p style="font-weight:700" ${L()}>${rt(ch.big_idea)}</p><ul class="pts">${ch.outcomes.map((o) => `<li ${L()}>${rt(o)}</li>`).join('')}</ul></section>
       <section class="card noread"><div class="eyebrow">${esc(t(U.topics))} · ${done}/${ch.topics.length}</div><div class="progressline"><i style="width:${Math.round((done / ch.topics.length) * 100)}%"></i></div><p class="mini" style="margin:0 0 4px">${esc(t(U.chRead))}</p>${readBar('chapter', chapterShare())}${topicList()}</section>
-      ${ch.class <= 2 ? `<section class="card noread"><h3>🌱 ${esc(t(U.bigIdea))}</h3><p class="mini">${esc(t(U.formativeNoTest))}</p></section>` : `<section class="card noread"><h3>📝 ${esc(t(U.test))}</h3><p class="mini">${esc(t(U.testNote))}</p>${p.test ? `<p><b>${esc(fill(t(U.score), { a: p.test.got, b: p.test.of }))}</b> (${Math.round((p.test.got / p.test.of) * 100)}%)</p>` : ''}<div class="row"><button type="button" class="btn-go" data-test ${allPassed() || S.parentOpen ? '' : 'disabled'}>${esc(t(U.startTest))}</button>${allPassed() || S.parentOpen ? '' : `<span class="mini">${esc(t(U.testLocked))}</span>`}</div></section>`}
+      ${ch.class <= 2 ? `<section class="card noread"><h3>🌱 ${esc(t(U.bigIdea))}</h3><p class="mini">${esc(t(U.formativeNoTest))}</p></section>` : ch.class === 3 ? `<section class="card noread"><h3>📝 ${esc(t(U.chapterCheck))}</h3><p class="mini">${esc(t(U.chapterCheckNote))}</p>${p.test ? `<p><b>${esc(fill(t(U.score), { a: p.test.got, b: p.test.of }))}</b> (${Math.round((p.test.got / p.test.of) * 100)}%)</p>` : ''}<div class="row"><button type="button" class="btn-go" data-test ${allPassed() || S.parentOpen ? '' : 'disabled'}>${esc(t(U.startChapterCheck))}</button>${allPassed() || S.parentOpen ? '' : `<span class="mini">${esc(t(U.testLocked))}</span>`}</div></section>` : `<section class="card noread"><h3>📝 ${esc(t(U.test))}</h3><p class="mini">${esc(t(U.testNote))}</p>${p.test ? `<p><b>${esc(fill(t(U.score), { a: p.test.got, b: p.test.of }))}</b> (${Math.round((p.test.got / p.test.of) * 100)}%)</p>` : ''}<div class="row"><button type="button" class="btn-go" data-test ${allPassed() || S.parentOpen ? '' : 'disabled'}>${esc(t(U.startTest))}</button>${allPassed() || S.parentOpen ? '' : `<span class="mini">${esc(t(U.testLocked))}</span>`}</div></section>`}
       <section class="card noread"><label class="parent"><input type="checkbox" data-parent ${S.parentOpen ? 'checked' : ''}><span>${esc(t(U.parent))}</span></label></section>`;
     layout(body, null);
     whereAmI();
@@ -754,7 +772,8 @@
   }
   function checkHTML(tp) {
     const foundation = S.ch.class <= 2;
-    const prompt = t(foundation ? U.formativeNote : U.checkNote);
+    const prep = S.ch.class === 3;
+    const prompt = t(foundation ? U.formativeNote : prep ? U.prepCheckNote : U.checkNote);
     if (!S.check || S.check.tp !== tp.id) {
       const done = passed(tp.id);
       const note = foundation ? U.formativeTried : U.passed;
@@ -792,7 +811,8 @@
     if (!S.ch || !Array.isArray(S.ch.test?.items) || !S.ch.test.items.length) return overview();
     S.view = 'test'; S.test = { ns: 'test' + Date.now() };
     hash(`${S.chFile.replace(/\.json$/, '')}~test`);
-    topbar({ title: t(U.test), sub: t(S.ch.title), back: 'overview' });
+    const title = S.ch.class === 3 ? t(U.chapterCheck) : t(U.test);
+    topbar({ title, sub: t(S.ch.title), back: 'overview' });
     renderTest(true);
   }
   function renderTest(top, showResult) {
@@ -806,7 +826,9 @@
       const p = P(); if (!p.test || got / of > p.test.got / p.test.of) { p.test = { got, of, at: Date.now() }; save(); }
       res = `<div class="card result" id="result" aria-live="polite"><div class="big">${Math.round((got / of) * 100)}%</div><p><b>${esc(fill(t(U.score), { a: got, b: of }))}</b></p><p>${esc(t(ok ? U.testPass : U.testAgain))}</p><div class="row" style="justify-content:center"><button type="button" class="btn-go" data-overview>${esc(t(U.chOverview))}</button></div></div>`;
     }
-    const body = `<header class="card"><h1 style="font-size:1.45rem">📝 ${esc(t(U.test))}</h1><p class="mini">${esc(t(U.testNote))}</p></header>
+    const headerTitle = S.ch.class === 3 ? esc(t(U.chapterCheck)) : esc(t(U.test));
+    const headerNote = S.ch.class === 3 ? esc(t(U.chapterCheckNote)) : esc(t(U.testNote));
+    const body = `<header class="card"><h1 style="font-size:1.45rem">📝 ${headerTitle}</h1><p class="mini">${headerNote}</p></header>
       ${items.map((it, i) => `<section class="card"><span class="chip">${i + 1}/${items.length} · ${esc(it.type === 'ar' ? 'A–R' : it.type)}</span>${itemHTML(it, ns)}</section>`).join('')}
       ${res || `<div class="continue"><button type="button" class="btn-go" data-finishtest>${esc(t(U.finishTest))}</button></div>${left && showResult ? `<p class="mini" style="text-align:center">${esc(fill(t(U.answerAll), { n: left }))}</p>` : ''}`}`;
     const y = window.scrollY;
@@ -914,6 +936,15 @@
     if (d.later) { P().reviewed[d.later] = Date.now() - 6 * 864e5; save(); return overview(); }
   });
   document.addEventListener('input', (e) => { const ta = e.target.closest('[data-ta]'); if (ta) { const a = S.answers[ta.dataset.ta] || (S.answers[ta.dataset.ta] = { ticks: [] }); a.text = ta.value; } });
+  document.addEventListener('change', (e) => {
+    if (e.target && e.target.id === 'book-select') {
+      sayHalt();
+      BOOK = e.target.value;
+      S.idx = null;
+      history.replaceState(null, '', '?book=' + encodeURIComponent(BOOK));
+      return home();
+    }
+  });
   function afterAnswer(rerenderAll) {
     if (S.view === 'topic') {
       const c = document.querySelector('[data-continue]'); if (c) c.disabled = false;

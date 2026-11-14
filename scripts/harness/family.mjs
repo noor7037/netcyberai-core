@@ -153,6 +153,17 @@ const LAB_ANSWER = [
 ]
   .map((e) => `${JSON.stringify(e)}\n`)
   .join('');
+const scripted = (title, idea, paragraphs, example, steps) =>
+  [
+    { t: 'meta', label: 'ai_made', cached: false, title: null, subject: 'mathematics', topicKey: null },
+    { t: 'block', block: { type: 'explanation', title, idea, paragraphs, example, steps, terms: [] } },
+    { t: 'done', complete: true, missing: [], cut: false },
+  ]
+    .map((e) => `${JSON.stringify(e)}\n`)
+    .join('');
+const PHOTO_ANSWER = scripted('Question 1: 3/4 or 2/3', 'On your page, question 1 asks which fraction is bigger.', ['Make both fractions share a bottom number: 3/4 becomes 9/12 and 2/3 becomes 8/12.', 'Nine twelfths is more than eight twelfths, so 3/4 is bigger.'], 'Cut two same-size rotis: 3 of 4 equal pieces is more than 2 of 3 equal pieces.', ['Find a common bottom number: 12.', 'Change both fractions to twelfths.', 'Compare the top numbers: 9 is more than 8.']);
+// C519 (prompt v17): the question was typed in Hinglish, so the answer mixes Hindi and English the same way, in Roman script.
+const MIXED_ANSWER = scripted('Kaun sa bada hai: 3/4 ya 2/3?', 'Dono fractions ko same denominator par laao, phir compare karo.', ['3/4 ko 12 ke denominator par likho to 9/12 banta hai, aur 2/3 ka 8/12 banta hai.', '9/12, 8/12 se bada hai, isliye 3/4 bada fraction hai.'], 'Do same size ki roti lo: 4 mein se 3 tukde, 3 mein se 2 tukdon se zyada hote hain.', ['Denominator 12 chuno.', 'Dono fractions ko twelfths mein badlo.', 'Numerator compare karo: 9 bada hai 8 se.']);
 const CLASS_PUT_BACK = `update family.children set class_level = 7 where child_id = 'f0000000-0000-4000-8000-0000000fc001'`;
 const CLASS_10 = `update family.children set class_level = 10 where child_id = 'f0000000-0000-4000-8000-0000000fc001'`;
 
@@ -306,6 +317,14 @@ export const FAMILY_SCREENS = [
   // C517: a Class 3 child's guided studio (engagement mode): the free canvas's hello, and a template one step at a time.
   ['full', 'family-draw-young', '/family/draw', { prep: `update family.children set class_level = 3 where child_id = 'f0000000-0000-4000-8000-0000000fc001'`, reset: CLASS_PUT_BACK, settle: '[data-draw-start]', steps: [{ tap: '[data-draw-start]', wait: '[data-draw-guide]' }] }],
   ['full', 'family-draw-young-template', '/family/draw', { prep: `update family.children set class_level = 3 where child_id = 'f0000000-0000-4000-8000-0000000fc001'`, reset: CLASS_PUT_BACK, settle: '[data-draw-template]', steps: [{ tap: '[data-draw-template]', wait: '[data-draw-guide-progress]' }] }],
+  // C519: the guide's sound, spied: the phone's own voice, and the server voice when the phone has none.
+  ...['phone', 'server'].map((mode) => ['full', `family-draw-sound-${mode}`, '/family/draw', { prep: `update family.children set class_level = 3 where child_id = 'f0000000-0000-4000-8000-0000000fc001'`, reset: CLASS_PUT_BACK, drawSound: mode, settle: '[data-draw-template]', steps: [
+    { tap: '[data-draw-template]', wait: '[data-draw-guide-progress]' }, { pause: 700 }, { snap: 'before' },
+    { tap: '[data-draw-guide-listen]', pause: 2600 }, { snap: 'first' },
+    { drag: true, pause: 200 }, { tap: '[data-draw-guide-next]', pause: 1500 }, { snap: 'second' },
+    { tap: '[data-draw-sound]', pause: 700 }, { snap: 'offA' }, { pause: 2200 }, { snap: 'offB' },
+    { tap: '[data-draw-sound]', pause: 1800 }, { snap: 'musicOn' }, { tap: '[data-draw-guide-listen]', pause: 700 },
+  ] }]),
   // C518: the template list for Nursery, LKG, Class 4 and Class 5
   ['full', 'family-draw-list-nursery', '/family/draw', { prep: `update family.children set class_level = -2 where child_id = 'f0000000-0000-4000-8000-0000000fc001'`, reset: CLASS_PUT_BACK, settle: '[data-draw-templates]' }],
   ['full', 'family-draw-list-lkg', '/family/draw', { prep: `update family.children set class_level = -1 where child_id = 'f0000000-0000-4000-8000-0000000fc001'`, reset: CLASS_PUT_BACK, settle: '[data-draw-templates]' }],
@@ -330,6 +349,13 @@ export const FAMILY_SCREENS = [
   // W6-A (C395): the homework helper's link is in the composer's Attach menu.
   ['full', 'family-study-homework-link', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-attach]', steps: [{ tap: '[data-tutor-attach]', wait: '[data-homework-link]' }] }],
   // W16-B2: the Attach menu's two photo actions (Ask about this, Check my work), and a marked working kept in the feed.
+  // C519: a photo picked from the gallery and asked about; the visuals answer with its real photo and credit; the video cards
+  // with their See video buttons; a question typed in Hinglish answered in the mixed language of the prompt.
+  ['full', 'family-tutor-photo-upload', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', photoStore: true, answer: PHOTO_ANSWER, viewportShot: true, settle: '[data-tutor-attach]', steps: [{ tap: '[data-tutor-attach]', wait: '[data-tutor-ask-pick]' }, { tap: '[data-tutor-ask-pick]', wait: '[data-photo-gallery]' }, { upload: '[data-photo-gallery]' }, { pause: 1500 }, { fill: { field: '[data-tutor-window] textarea', value: 'Please help me with question 1 on this page.' }, tap: '[data-tutor-send]', wait: '[data-tutor-turns] [data-feed-answer]' }, { pause: 600 }] }],
+  ['full', 'family-tutor-photo-attached', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', photoStore: true, viewportShot: true, settle: '[data-tutor-attach]', steps: [{ tap: '[data-tutor-attach]', wait: '[data-tutor-ask-pick]' }, { tap: '[data-tutor-ask-pick]', wait: '[data-photo-gallery]' }, { upload: '[data-photo-gallery]' }, { pause: 1500 }] }],
+  ['full', 'family-understand-photo-visuals', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch90.t08', { child: 'f0000000-0000-4000-8000-0000000fc002', weigh: true, settle: '[data-block="videos"]', steps: [{ pause: 1500 }] }],
+  ['full', 'family-understand-see-video', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch90.t08', { child: 'f0000000-0000-4000-8000-0000000fc002', viewportShot: true, settle: '[data-block="videos"]', steps: [{ scroll: '[data-video-see]' }, { pause: 800 }] }],
+  ['full', 'family-tutor-mixed-language', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', answer: MIXED_ANSWER, viewportShot: true, settle: '[data-tutor-window] textarea', steps: [{ fill: { field: '[data-tutor-window] textarea', value: 'Bhai, 3/4 aur 2/3 mein se kaun sa bada hai? Samjhao.' }, tap: '[data-tutor-send]', wait: '[data-tutor-turns] [data-feed-answer]' }, { pause: 600 }] }],
   ['full', 'family-study-check-menu', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-attach]', steps: [{ tap: '[data-tutor-attach]', wait: '[data-tutor-check-pick]' }] }],
   ['full', 'family-check-my-work', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', prep: CHECK_CHAT, reset: CHECK_CHAT_GONE, settle: '[data-feed-answer] [data-steps]' }],
   // m2-7: the microphone beside the typed question, and the recording state (C281; a fake microphone, see `mic`).
@@ -422,7 +448,7 @@ export const FAMILY_SCREENS = [
 // HARNESS_FAMILY_WIDTHS=2000 (comma-separated) shoots other widths, e.g. a wide desktop screen (W24).
 export const FAMILY_WIDTHS = process.env.HARNESS_FAMILY_WIDTHS ? process.env.HARNESS_FAMILY_WIDTHS.split(',').map(Number).filter((n) => n > 0) : [360, 390, 1440];
 export const FAMILY_LANGS = ['en', 'hi'];
-export const FAMILY_MOTIONS = ['reduce', 'no-preference'];
+export const FAMILY_MOTIONS = process.env.HARNESS_FAMILY_MOTIONS ? process.env.HARNESS_FAMILY_MOTIONS.split(',') : ['reduce', 'no-preference'];
 
 const sign = (typ, sub, claims, secret) =>
   new SignJWT({ ...claims, typ }).setProtectedHeader({ alg: 'HS256' }).setSubject(sub).setAudience('nca-family').setIssuedAt().setExpirationTime('2h').sign(new TextEncoder().encode(secret));
@@ -641,6 +667,16 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
           // `answer`: the tutor's answer, scripted (W10, C411): the harness calls no model, so a typed question's
           // NDJSON stream is answered here; what follows it (the chats read again) is the app's own.
           if (opts.answer) await context.route('**/api/family/understand', (r) => r.fulfill({ status: 200, contentType: 'application/x-ndjson; charset=utf-8', body: typeof opts.answer === 'function' ? opts.answer(lang) : opts.answer }));
+          // `photoStore` (C519): the file door's three steps, scripted (the harness has no file store), so a photo can be
+          // picked and shown attached; the answer to it is `answer`.
+          if (opts.photoStore) {
+            await context.route('**/harness-store/**', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: '{}' }));
+            await context.route('**/api/family/tutor/files**', (r) => {
+              const req = r.request();
+              if (req.method() === 'POST' && !/files\/[^/]+$/.test(req.url())) return r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ attachmentId: 'f0000000-0000-4000-8000-00000000a519', uploadUrl: `${new URL(req.url()).origin}/harness-store/a519`, contentType: 'image/jpeg' }) });
+              return r.fulfill({ status: 200, contentType: 'application/json', body: '{}' });
+            });
+          }
           // `wordHelp` (W23-A): the word-help call, scripted: a meaning and a translation in the language asked for.
           if (opts.wordHelp)
             await context.route('**/api/family/word-help', (r) => {
@@ -693,8 +729,60 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
               window.SpeechSynthesisUtterance = function (text) { this.text = text; };
             });
           }
+          // `drawSound` (C519): the Draw guide's sound, spied (headless Chromium has no audio device or voices). 'phone': the phone
+          // has an en-IN and a hi-IN voice; 'server': it has none, so the guide asks the speak route (answered with a six second WAV).
+          // The spy records the speech lines, the speak-route calls, the AudioContext states and the oscillators started.
+          if (opts.drawSound) {
+            await context.addInitScript((mode) => {
+              const log = { speak: [], fetches: [], oscStarted: 0, resumed: 0, ctxs: [] };
+              window.__c519 = log;
+              const voices = mode === 'phone' ? [{ lang: 'en-IN', name: 'harness en' }, { lang: 'hi-IN', name: 'harness hi' }] : [];
+              let timer = 0;
+              const ss = {
+                getVoices: () => voices,
+                cancel: () => clearTimeout(timer),
+                speak: (u) => {
+                  log.speak.push({ text: u.text, lang: u.lang ?? null, voice: u.voice?.lang ?? null, volume: u.volume ?? null });
+                  if (!u.text.trim()) return;
+                  u.onstart?.({});
+                  timer = setTimeout(() => u.onend?.({}), 6000);
+                },
+                addEventListener() {},
+                removeEventListener() {},
+              };
+              Object.defineProperty(window, 'speechSynthesis', { value: ss, configurable: true });
+              window.SpeechSynthesisUtterance = function (text) { this.text = text; };
+              const start = OscillatorNode.prototype.start;
+              OscillatorNode.prototype.start = function (...a) { log.oscStarted++; return start.apply(this, a); };
+              const resume = AudioContext.prototype.resume;
+              AudioContext.prototype.resume = function (...a) { log.resumed++; if (!log.ctxs.includes(this)) log.ctxs.push(this); return resume.apply(this, a); };
+              const mk = BaseAudioContext.prototype.createGain;
+              BaseAudioContext.prototype.createGain = function (...a) { if (!log.ctxs.includes(this)) log.ctxs.push(this); return mk.apply(this, a); };
+              const f = window.fetch;
+              window.fetch = (u, o) => { if (String(u).includes('/api/family/voice/speak')) log.fetches.push(JSON.parse(o?.body ?? '{}')); return f(u, o); };
+            }, opts.drawSound);
+            if (opts.drawSound === 'server') {
+              const rate = 8000;
+              const data = Buffer.alloc(rate * 6, 0x80);
+              const head = Buffer.alloc(44);
+              head.write('RIFF', 0); head.writeUInt32LE(36 + data.length, 4); head.write('WAVEfmt ', 8); head.writeUInt32LE(16, 16); head.writeUInt16LE(1, 20); head.writeUInt16LE(1, 22);
+              head.writeUInt32LE(rate, 24); head.writeUInt32LE(rate, 28); head.writeUInt16LE(1, 32); head.writeUInt16LE(8, 34); head.write('data', 36); head.writeUInt32LE(data.length, 40);
+              await context.route('**/api/family/voice/speak', (r) => r.fulfill({ status: 200, contentType: 'audio/wav', body: Buffer.concat([head, data]) }));
+            }
+          }
+          const weight = {};
           const page = await context.newPage();
           const errors = [];
+          const snaps = {};
+          const sound = () => page.evaluate(() => ({ speak: window.__c519.speak.filter((x) => x.text.trim()), primed: window.__c519.speak.filter((x) => !x.text.trim()).length, fetches: window.__c519.fetches, osc: window.__c519.oscStarted, states: window.__c519.ctxs.map((c) => c.state) }));
+          if (opts.weigh) {
+            weight.total = 0; weight.nonScript = 0;
+            page.on('response', async (r) => {
+              const n = (await r.body().catch(() => Buffer.alloc(0))).length;
+              weight.total += n;
+              if (!/javascript|css|font/.test(r.headers()['content-type'] ?? '')) weight.nonScript += n;
+            });
+          }
           page.on('pageerror', (e) => errors.push(e.message.slice(0, 160)));
           page.on('response', (r) => {
             if (r.url().includes('/api/') && r.status() >= 400 && !(opts.call && r.url().endsWith('/api/family/voice/speak'))) errors.push(`${r.request().method()} ${new URL(r.url()).pathname} answered ${r.status()}`);
@@ -715,6 +803,23 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
           for (const step of opts.steps ?? []) {
             // `fill` and `select` (W10, C411): words typed into a field, a value picked in a drop-down.
             if (step.fill) await page.locator(step.fill.field).first().fill(step.fill.value).catch(() => errors.push(`${step.fill.field} could not be filled`));
+            // `upload` (C519): a textbook-like page drawn on a canvas, given to a file input (no image file is committed).
+            if (step.upload) {
+              const dataUrl = await page.evaluate(() => {
+                const c = document.createElement('canvas');
+                c.width = 1200; c.height = 900;
+                const g = c.getContext('2d');
+                g.fillStyle = '#fbf8ef'; g.fillRect(0, 0, 1200, 900);
+                g.fillStyle = '#222'; g.font = 'bold 54px sans-serif'; g.fillText('Chapter 4: Fractions', 80, 120);
+                g.font = '40px sans-serif';
+                ['1. Which is bigger, 3/4 or 2/3?', '2. Add: 1/2 + 1/4 = ?', '3. Shade 2/5 of the shape.'].forEach((t, i) => g.fillText(t, 80, 250 + i * 110));
+                g.strokeStyle = '#222'; g.lineWidth = 4; g.strokeRect(780, 520, 300, 220);
+                g.fillStyle = '#9bb'; g.fillRect(780, 520, 120, 220);
+                return c.toDataURL('image/jpeg', 0.85);
+              });
+              await page.locator(step.upload).first().setInputFiles({ name: 'textbook-page.jpg', mimeType: 'image/jpeg', buffer: Buffer.from(dataUrl.split(',')[1], 'base64') }).catch(() => errors.push(`${step.upload} could not take the photo`));
+            }
+            if (step.scroll) await page.locator(step.scroll).first().scrollIntoViewIfNeeded().catch(() => errors.push(`${step.scroll} could not be scrolled to`));
             if (step.select) await page.locator(step.select.field).first().selectOption(step.select.value).catch(() => errors.push(`${step.select.field} could not be chosen`));
             // `reload` (W24): the page loaded again, as a child coming back to it (saved progress kept).
             if (step.reload) await page.reload({ waitUntil: 'load' }).catch(() => errors.push('the page could not be reloaded'));
@@ -740,6 +845,17 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
               if (pos) await loc.click({ position: pos }).catch(() => errors.push(`${step.word} word could not be tapped`));
               else errors.push(`${step.word} has no word to tap`);
             }
+            // `drag` (C519): a short stroke across the paper, so the guide's next step can open. `snap`: the sound spy's state, kept by name.
+            if (step.drag) {
+              const box = await page.locator('[data-sketch-top]').first().boundingBox();
+              if (box) {
+                await page.mouse.move(box.x + box.width * 0.3, box.y + box.height * 0.4);
+                await page.mouse.down();
+                await page.mouse.move(box.x + box.width * 0.6, box.y + box.height * 0.5, { steps: 8 });
+                await page.mouse.up();
+              }
+            }
+            if (step.snap) snaps[step.snap] = await sound();
             if (step.tap) await where.locator(step.tap).first().click().catch(() => errors.push(`${step.tap} could not be tapped`));
             if (step.pause) await page.waitForTimeout(step.pause);
             // `choose`: a value in a drop-down when it shows (a phone), else a tap on the wide screen's own control (W9-A).
@@ -754,6 +870,26 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
           if (opts.pictures) {
             await page.evaluate(() => document.querySelectorAll('img[loading="lazy"]').forEach((img) => (img.loading = 'eager')));
             await page.waitForFunction(() => [...document.querySelectorAll('[data-script-page] img')].every((img) => img.complete && img.naturalWidth > 0), null, { timeout: 15000 }).catch(() => errors.push('a page picture never loaded'));
+          }
+          // C519: what the spy saw must show the guide read aloud after the first tap (and not before), the music running, then off, then on.
+          if (opts.drawSound) {
+            const end = await sound();
+            const { before, first, second, offA, offB, musicOn } = snaps;
+            const spoke = (a) => a.speak.map((x) => x.text);
+            const why = [];
+            if (before.speak.length || before.fetches.length || before.osc) why.push('sound before the first tap');
+            if (first.speak.length + first.fetches.length < 1) why.push('the speaker tap read nothing');
+            if (opts.drawSound === 'phone' && (!first.speak[0] || first.speak[0].voice !== (lang === 'hi' ? 'hi-IN' : 'en-IN'))) why.push(`phone voice not used: ${JSON.stringify(first.speak)}`);
+            if (opts.drawSound === 'server' && (first.speak.length || !first.fetches[0] || first.fetches[0].kind !== 'draw' || first.fetches[0].lang !== lang || 'text' in first.fetches[0])) why.push(`server voice not asked for by id: ${JSON.stringify(first.fetches)}`);
+            if (opts.drawSound === 'phone' && !(second.speak.length > first.speak.length && spoke(second).at(-1) !== spoke(first).at(-1))) why.push('the next step was not read');
+            if (opts.drawSound === 'server' && !(second.fetches.length > first.fetches.length && second.fetches.at(-1).step === first.fetches[0].step + 1)) why.push('the next step was not asked for');
+            if (!first.states.length || first.states.some((x) => x !== 'running')) why.push(`audio not running: ${first.states}`);
+            if (!(first.osc > 0 && second.osc > first.osc)) why.push(`music oscillators not started: ${first.osc} then ${second.osc}`);
+            if (offB.osc !== offA.osc || musicOn.osc <= offB.osc || end.osc <= musicOn.osc) why.push(`music toggle: off ${offA.osc} then ${offB.osc}, on ${musicOn.osc}, end ${end.osc}`);
+            if (end.fetches.length > 2 && opts.drawSound === 'server') why.push(`more than one fetch per line: ${JSON.stringify(end.fetches)}`);
+            if (why.length) errors.push(`drawSound: ${why.join('; ')}`);
+            await page.screenshot({ path: path.join(out, `${name}-${lang}-${motion}-${width}.viewport.png`) });
+            writeFileSync(path.join(out, `${name}-${lang}-${width}.sound.json`), JSON.stringify({ before, first, second, offA, offB, musicOn, end }, null, 1));
           }
           await page.waitForTimeout(400);
           const seen = await page.evaluate(() => {
@@ -791,6 +927,7 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
             const r = await window.axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'] } });
             return r.violations.filter((v) => v.impact === 'serious' || v.impact === 'critical').map((v) => `${v.id} (${v.nodes.length}) at ${v.nodes[0].target.join(' ')}: ${(v.nodes[0].any[0]?.message ?? '').slice(0, 140)}`);
           });
+          if (opts.weigh) console.log(`harness: weight ${name} ${lang} ${width}: all ${weight.total} bytes, without script/css/font ${weight.nonScript} bytes`);
           const file = `${name}-${lang}-${motion === 'reduce' ? 'still' : 'motion'}-${width}.png`;
           await page.screenshot({ path: path.join(out, file), fullPage: !opts.viewportShot });
           const problems = [];

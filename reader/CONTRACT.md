@@ -12,7 +12,7 @@ for Classes 9–12, misconception distractors, no shame, audio and offline.
 
 ## Foundational reader: Classes 1–2
 
-Class 1 is a play-led, formative learning experience. The secondary/senior CBSE exam structure below does not apply.
+Class 1 and 2 are a play-led, formative learning experience. The secondary/senior CBSE exam structure below does not apply.
 
 - Topics are 4–8 minutes, with a short hook, simple explanation, original visual, guided prompt, 2–4 key points and a close.
 - Every visible explanation, prompt, option, hint, feedback line, caption and diagram label has English and Hindi.
@@ -21,8 +21,23 @@ Class 1 is a play-led, formative learning experience. The secondary/senior CBSE 
 - No chapter test, timed exam, assertion–reason item, long written answer or progression gate.
 - Every topic has a useful bilingual diagram. Keep SVG inline, with data-t labels; no scripts, handlers, external resources, embedded images or foreignObject.
 - Add a lab when interaction genuinely improves learning. Otherwise give a bilingual why_no_lab reason and suggest a real-world activity.
-- Reuse exact lab IDs from labs/defs/c01/<subject>/<chapter_key>.json, and ensure the lab topic matches topic.ncert[0].
+- Reuse exact lab IDs from labs/defs/c01/<subject>/<chapter_key>.json (or c02), and ensure the lab topic matches topic.ncert[0].
 - The same authenticated, child-scoped Family reader and existing content route must be used; do not introduce a parallel player or content store.
+
+## Preparatory reader: Class 3 (Classes 3–5)
+
+Class 3 is the Preparatory stage (NCF-SE 2023 / NEP 2020, ages 8–11). It bridges early foundational play to conceptual reasoning with a concrete–pictorial–abstract (CPA) progression. High-stakes secondary board exam mechanisms do not apply.
+
+- **Topic length**: 8–15 minutes tap time per topic. 3–10 topics per chapter.
+- **Language**: Short sentences of 8–12 words. Delhi household spoken Hindi (`तुम` register, English loanwords where natural in Devanagari, zero banned bookish Sanskritised words).
+- **Topic steps**: `hook`, `explain`, `diagram` (or `figure`), `lab` (or `why_no_lab`), `guided`, `keypoints`, `close`. No `examtip` step (never scare young children with board exam talk).
+- **Diagrams**: Flat, modern, bilingual SVG scenes (`viewBox` ~360 wide, fonts $\ge 14$, `data-t` attributes bound to `{ en, hi }` text objects).
+- **Labs**: Predict–observe–explain interactive labs matched to NCERT topics in `labs/defs/c03/<subject>/`. If a topic has no digital lab, provide a practical bilingual `why_no_lab` activity.
+- **Topic check**: Pool of exactly **8 formative items** per topic. The reader draws **5 items**, with a gentle mastery target of **3 of 5** to open the next topic.
+- **Calm retry**: If fewer than 3 items are correct, the child receives warm feedback ("Not yet. Every try helps you learn.") with an unlimited, calm retry without penalty or lock out.
+- **Item format**: Picture-supported MCQs with 3–4 options. Bloom levels: `remember`, `understand`, `apply`, `analyse`. Every option must have a helpful, encouraging `why` explanation.
+- **Chapter check (never "exam")**: Up to **10 items** (`test.items`, length $\le 10$) auto-marked or simple rubrics. Pass target 60% (`pass: 0.6`). Presented gently as "Chapter Check" / "चैप्टर चेक" rather than an examination.
+- **No external links or LaTeX**: Pure Unicode mathematical symbols (₹, ➕, ➖, ×, ÷, ½); strictly no external URLs.
 
 ## 1. Text
 

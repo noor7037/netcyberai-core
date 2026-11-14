@@ -27,14 +27,49 @@ import type { UploadProblem } from './upload-problems';
 //     read at all), a picture inside a PDF the OCR could not read, and a file that is neither a photo nor a PDF.
 // A PDF with no text layer and no JPEG picture (drawn only, or a scan in another format) passes on its name alone:
 // that is said plainly as `read: 'name_only'` and kept in the upload's audit row.
+//
+// C525, a time limit (opt-in, `timeoutMs`): every OCR read of one upload shares one deadline; when it passes, the OCR is
+// stopped (its worker ended through the AbortSignal) and the file is refused as `upload_unreadable` with
+// `timedOut: true`, so a caller can say "try again" rather than "unclear". FAIL-CLOSED, on purpose: a file the check
+// could not finish reading is never kept, because a kept tutor photo is stored, shown again in the Learning Vault and
+// sent whole to the vision model (src/lib/family/tutor-read.ts); the scrub there only hides a number in the words that
+// come back, never the picture itself. So a timeout must not become "nothing found". What keeps this from being a dead
+// end is upstream: the phone sends a downscaled JPEG (src/lib/family/photo-shrink.ts), which reads in a few seconds,
+// and the refusal tells the child to take the photo again, closer and in good light.
 
 export { UPLOAD_PROBLEMS, isUploadProblem, type UploadProblem } from './upload-problems';
 export type UploadRead = 'image_text' | 'pdf_text' | 'name_only';
-export type UploadCheck = { ok: true; read: UploadRead; ocr: OcrResult | null } | { ok: false; reason: UploadProblem };
-export type OcrImage = (image: Buffer) => Promise<OcrResult>;
+export type UploadCheck = { ok: true; read: UploadRead; ocr: OcrResult | null } | { ok: false; reason: UploadProblem; timedOut?: true };
+export type OcrImage = (image: Buffer, signal?: AbortSignal) => Promise<OcrResult>;
+export type CheckOptions = { timeoutMs?: number };
 
 // The capture OCR, loaded only when a picture is read (tesseract is large).
-const captureOcr: OcrImage = async (image) => (await import('@/lib/capture/ocr')).runOcr(image);
+const captureOcr: OcrImage = async (image, signal) => (await import('@/lib/capture/ocr')).runOcr(image, signal);
+
+class OcrTimeout extends Error {}
+
+// One deadline for every OCR read of one upload: a read still running when it passes is stopped and rejects.
+function ocrWithin(ocr: OcrImage, timeoutMs: number | undefined): OcrImage {
+  if (timeoutMs === undefined) return ocr;
+  const stop = new AbortController();
+  const ends = Date.now() + timeoutMs;
+  return (image) => {
+    const left = ends - Date.now();
+    if (left <= 0) return Promise.reject(new OcrTimeout());
+    return new Promise<OcrResult>((resolve, reject) => {
+      const timer = setTimeout(() => {
+        stop.abort();
+        reject(new OcrTimeout());
+      }, left);
+      ocr(image, stop.signal).then(
+        (r) => (clearTimeout(timer), resolve(r)),
+        (e) => (clearTimeout(timer), reject(e))
+      );
+    });
+  };
+}
+
+const unreadable = (e: unknown): UploadCheck => (e instanceof OcrTimeout ? { ok: false, reason: 'upload_unreadable', timedOut: true } : { ok: false, reason: 'upload_unreadable' });
 
 const MENTION = /\b(?:uidai|aadh?aa?r|adhaar)\b|unique\s+identification\s+authority|आधार/i;
 const MARKER = /government\s+of\s+india|भारत\s+सरकार|\benrol?l?ment\b|\bvid\b|virtual\s+id|uidai\.gov\.in|मेरा\s+आधार/i;
@@ -49,7 +84,8 @@ export function textProblem(text: string): UploadProblem | null {
 
 const isPdf = (b: Uint8Array) => b.length >= 5 && b[0] === 0x25 && b[1] === 0x50 && b[2] === 0x44 && b[3] === 0x46 && b[4] === 0x2d;
 
-export async function checkUpload(file: { bytes: Uint8Array; name: string }, ocr: OcrImage = captureOcr): Promise<UploadCheck> {
+export async function checkUpload(file: { bytes: Uint8Array; name: string }, ocrImage: OcrImage = captureOcr, options: CheckOptions = {}): Promise<UploadCheck> {
+  const ocr = ocrWithin(ocrImage, options.timeoutMs);
   const named = textProblem(file.name.replace(/[_.]+/g, ' '));
   if (named) return { ok: false, reason: named };
   const buffer = Buffer.from(file.bytes.buffer, file.bytes.byteOffset, file.bytes.byteLength);
@@ -57,8 +93,8 @@ export async function checkUpload(file: { bytes: Uint8Array; name: string }, ocr
     let read: OcrResult;
     try {
       read = await ocr(buffer);
-    } catch {
-      return { ok: false, reason: 'upload_unreadable' };
+    } catch (e) {
+      return unreadable(e);
     }
     const problem = textProblem(read.rawText ?? '');
     return problem ? { ok: false, reason: problem } : { ok: true, read: 'image_text', ocr: read };
@@ -70,8 +106,8 @@ export async function checkUpload(file: { bytes: Uint8Array; name: string }, ocr
   for (const jpeg of pdf.jpegs) {
     try {
       texts.push((await ocr(Buffer.from(jpeg.buffer, jpeg.byteOffset, jpeg.byteLength))).rawText ?? '');
-    } catch {
-      return { ok: false, reason: 'upload_unreadable' };
+    } catch (e) {
+      return unreadable(e);
     }
   }
   const problem = textProblem(texts.join('\n'));

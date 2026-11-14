@@ -10,6 +10,7 @@ export const TUTOR_KEYS: MessageKey[] = [
   'fam.check.menu', 'fam.check.menuLead', 'fam.check.sent', 'fam.check.err.photo_only', 'fam.tutor.attach', 'fam.tutor.filePhoto', 'fam.tutor.filePdf', 'fam.tutor.fileSending', 'fam.tutor.fileChecking',
   'fam.tutor.removeFile', 'fam.tutor.openFile', 'fam.tutor.err.file_too_large', 'fam.tutor.err.file_type', 'fam.tutor.err.file_empty',
   'fam.tutor.err.too_many_files', 'fam.tutor.err.upload_aadhaar_number', 'fam.tutor.err.upload_aadhaar_card', 'fam.tutor.err.upload_unreadable',
+  'fam.tutor.err.upload_check_timeout', 'fam.tutor.err.heic_unreadable',
   'fam.tutor.err.photo_consent',
   'fam.tutor.err.homework_off', 'fam.tutor.err.storage_unavailable', 'fam.tutor.empty', 'fam.tutor.loading', 'fam.tutor.you', 'fam.tutor.tutorSaid',
   'fam.tutor.fromReader', 'fam.tutor.doubt', 'fam.tutor.doubtAbout', 'fam.tutor.close', 'fam.err.network',

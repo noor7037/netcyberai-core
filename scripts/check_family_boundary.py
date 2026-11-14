@@ -113,6 +113,10 @@ OUTSIDE_MAY_IMPORT_FAMILY = {
     "src/lib/content/chapter-studio.ts": {"@/lib/family/blocks", "@/lib/family/chapters"},
     # The quality-check rules (W16-A5) judge an answer by the family's one block schema (types only; no data, no SQL).
     "src/lib/ai/qc/rules.ts": {"@/lib/family/blocks"},
+    # The Quality Lab's tutor v16 and v17 set (C521) reads a question's language with the tutor's own detector, so the Lab
+    # shows what a child would get (pure functions and types: no data, no SQL).
+    "src/lib/ai/lab/cases.ts": {"@/lib/family/question-language"},
+    "src/lib/ai/lab/tutor-v17.ts": {"@/lib/family/question-language", "@/lib/family/languages"},
     "src/app/(admin)/control/content/studio/page.tsx": {
         "@/components/family/reader/ChapterReader",
         "@/lib/family/chapter-test-shape",
@@ -158,7 +162,8 @@ TABLE_REF = re.compile(r"\b(?:from|join|into|update)\s+(?P<name>[a-z_][a-z0-9_]*
 FAMILY_CALL = re.compile(r"\bfamily\.(?P<fn>[a-z_][a-z0-9_]*)\s*\(", re.IGNORECASE)
 # Control's doors to the numbers (definer functions that return counts only, M1-7 and M2-11): any file may call them.
 # W16-B4: the day's tutor totals (counts only) for Control's tile row and the daily ops job.
-NUMBER_DOORS = {"control_counts", "m2_counts", "tutor_day_totals"}
+# C522: the children's "See video" taps (totals only) for Control's health tiles.
+NUMBER_DOORS = {"control_counts", "m2_counts", "tutor_day_totals", "video_click_summary"}
 FAMILY_TABLE_REF = re.compile(r"\b(?:from|join|into|update)\s+family\.(?P<table>[a-z_][a-z0-9_]*)\s*(?P<call>\()?", re.IGNORECASE)
 SQL_WORDS = {"select", "set", "lateral", "unnest", "jsonb_array_elements", "jsonb_to_recordset", "generate_series", "jsonb_each", "jsonb_object_keys"}
 

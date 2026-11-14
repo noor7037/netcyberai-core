@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { fill, type Words } from '@/lib/family/fill';
-import type { VideoPick } from '@/lib/family/videos';
+import { isLangCode, languageInfo, type LangCode } from '@/lib/family/languages';
+import { embedUrl, type VideoPick } from '@/lib/family/videos';
 import { FamIcon } from './FamIcon';
 import { BLOCK_TONE } from './blocks/BlockViews';
 
@@ -27,10 +28,16 @@ const length = (s: number) => {
 // The provider's words (a title, a channel's name) are marked with their own script's language.
 const script = (text: string) => (/[ऀ-ॿ]/.test(text) ? 'hi' : 'en');
 
-export function embedUrl(p: Pick<VideoPick, 'videoId' | 'startS'>): string {
-  const q = new URLSearchParams({ rel: '0', modestbranding: '1' });
-  if (p.startS > 0) q.set('start', String(Math.floor(p.startS)));
-  return `https://www.youtube-nocookie.com/embed/${p.videoId}?${q.toString()}`;
+export { embedUrl };
+
+// C522: an answer's cards ask the server first ("See video", POST /api/family/videos/click): the tap is counted for the
+// child and the embed comes back. Only the privacy-enhanced embed is ever loaded, whatever the answer says.
+const EMBED = /^https:\/\/www\.youtube-nocookie\.com\/embed\/[A-Za-z0-9_-]{11}(\?[A-Za-z0-9=&_-]*)?$/;
+export type SeeVideo = { topicKey: string; lang: LangCode };
+async function askEmbed(see: SeeVideo, videoId: string): Promise<string | null> {
+  const r = await fetch('/api/family/videos/click', { method: 'POST', headers: { 'Content-Type': 'application/json' }, cache: 'no-store', body: JSON.stringify({ topicKey: see.topicKey, videoId, lang: see.lang }) }).catch(() => null);
+  const got = r?.ok ? ((await r.json().catch(() => null)) as { embed?: unknown } | null) : null;
+  return typeof got?.embed === 'string' && EMBED.test(got.embed) ? got.embed : null;
 }
 
 export function VideoPicks({ w, topicKey }: { w: Words; topicKey: string }) {
@@ -52,9 +59,25 @@ export function VideoPicks({ w, topicKey }: { w: Words; topicKey: string }) {
 // passed in). `saver`: the data-saver is on; the card is drawn here and nothing of the video loads until the tap, so
 // the note only says so. `title`: a heading other than the topic's.
 // `tag`: drawn as an answer's block (W9-C), with that block type's colour bar.
-export function VideoList({ w, videos, saver = false, title, tag }: { w: Words; videos: VideoPick[]; saver?: boolean; title?: string; tag?: string }) {
+// `see`: an answer's block (C522): each card has a "See video" button, and the tap is counted on the server first.
+// `wanted`: the child's language had too few videos, so these are in `see.lang`; the note says so.
+export function VideoList({ w, videos, saver = false, title, tag, see, wanted }: { w: Words; videos: VideoPick[]; saver?: boolean; title?: string; tag?: string; see?: SeeVideo; wanted?: LangCode }) {
   const [playing, setPlaying] = useState<string | null>(null);
+  const [embed, setEmbed] = useState<string | null>(null);
+  const [failed, setFailed] = useState<string | null>(null);
+  const [busy, setBusy] = useState<string | null>(null);
   if (!videos.length) return null;
+  const open = async (v: VideoPick) => {
+    if (!see) return setPlaying(v.videoId);
+    if (busy) return;
+    setBusy(v.videoId);
+    setFailed(null);
+    const url = await askEmbed(see, v.videoId);
+    setBusy(null);
+    if (!url) return setFailed(v.videoId);
+    setEmbed(url);
+    setPlaying(v.videoId);
+  };
   return (
     <section data-videos data-block={tag} className={`fam-card fam-rise flex flex-col gap-3 bg-white p-5 text-slate ${tag && BLOCK_TONE[tag] ? `border-l-[6px] ${BLOCK_TONE[tag].bar}` : ''}`} aria-labelledby="videos-title">
       <h2 id="videos-title" className="flex items-center gap-3 text-lg font-extrabold">
@@ -66,6 +89,11 @@ export function VideoList({ w, videos, saver = false, title, tag }: { w: Words; 
       <p data-video-note className="text-sm">
         {w['fam.video.note']}
       </p>
+      {wanted && see && isLangCode(wanted) && (
+        <p data-video-fallback className="text-sm font-semibold">
+          {fill(w['fam.video.fallback'], { wanted: languageInfo(wanted).native, shown: languageInfo(see.lang).native })}
+        </p>
+      )}
       {saver && (
         <p data-video-saver className="text-sm font-semibold">
           {w['fam.video.saver']}
@@ -79,7 +107,7 @@ export function VideoList({ w, videos, saver = false, title, tag }: { w: Words; 
                 <iframe
                   data-video-frame
                   className="absolute inset-0 h-full w-full"
-                  src={embedUrl(v)}
+                  src={see && embed ? embed : embedUrl(v)}
                   title={fill(w['fam.video.frame'], { title: v.title })}
                   allow="encrypted-media; picture-in-picture; fullscreen"
                   allowFullScreen
@@ -91,7 +119,7 @@ export function VideoList({ w, videos, saver = false, title, tag }: { w: Words; 
               <button
                 type="button"
                 data-video-play
-                onClick={() => setPlaying(v.videoId)}
+                onClick={() => void open(v)}
                 className="fam-press group relative isolate block aspect-video w-full overflow-hidden rounded-2xl bg-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-ink/60"
               >
                 <span className="sr-only">
@@ -109,6 +137,22 @@ export function VideoList({ w, videos, saver = false, title, tag }: { w: Words; 
             <p className="font-bold" lang={script(v.title)}>
               {v.title}
             </p>
+            {see && playing !== v.videoId && (
+              <button
+                type="button"
+                data-video-see={v.videoId}
+                onClick={() => void open(v)}
+                disabled={busy === v.videoId}
+                className="fam-press min-h-[44px] self-start rounded-2xl bg-ink px-5 py-2 text-base font-extrabold text-white disabled:cursor-not-allowed disabled:opacity-60 focus:outline-none focus-visible:ring-4 focus-visible:ring-ink/60"
+              >
+                {w['fam.video.see']}
+              </button>
+            )}
+            {failed === v.videoId && (
+              <p data-video-failed role="status" className="text-sm font-semibold">
+                {w['fam.video.failed']}
+              </p>
+            )}
             <p className="text-sm">
               {w['fam.video.by']}{' '}
               <span lang={script(v.channelTitle)}>{v.channelTitle}</span> · {fill(w['fam.video.length'], { length: length(v.durationS) })}

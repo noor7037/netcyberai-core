@@ -1,391 +1,398 @@
 {
-  "chapter_key": "u.c02.hindi.bhsr1.ch21",
-  "class": 2,
-  "subject_id": "hindi",
-  "title": "हाथी साइकिल चला रहा था",
-  "source": "https://ncert.nic.in/textbook.php?bhsr1=0-26",
-  "topics": [
-    {
-      "n": "21.1",
-      "title": "The poem and the story hidden in it",
-      "labs": [
-        "c02-hindi-bhsr1-ch21-panels",
-        "c02-hindi-bhsr1-ch21-events"
-      ],
-      "why_no_lab": null
+ "chapter_key": "u.c02.hindi.bhsr1.ch21",
+ "class": 2,
+ "subject_id": "hindi",
+ "title": "हाथी साइकिल चला रहा था",
+ "source": "https://ncert.nic.in/textbook.php?bhsr1=0-26",
+ "topics": [
+  {
+   "n": "21.1",
+   "title": "The poem and the story hidden in it",
+   "labs": [
+    "c02-hindi-bhsr1-ch21-panels"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "21.2",
+   "title": "Events of the cycle ride",
+   "labs": [
+    "c02-hindi-bhsr1-ch21-events"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "21.3",
+   "title": "My story: finish the story from pictures",
+   "labs": [],
+   "why_no_lab": "The child tells and writes their own story from the pictures; a screen should not decide the story."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c02-hindi-bhsr1-ch21-panels",
+   "topic": "21.1",
+   "template": "reader",
+   "title": {
+    "en": "Elephant on a cycle",
+    "hi": "साइकिल पर हाथी"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "panels",
+    "lang": "hi",
+    "passage": {
+     "title": {
+      "en": "The elephant and the ant",
+      "hi": "हाथी और चींटी"
+     },
+     "lines": [
+      "हाथी साइकिल चला रहा था और चींटी पीछे बैठी थी।",
+      "हाथी हवा में झूम रहा था।",
+      "तभी सामने सीधी चढ़ाई आ गई।",
+      "हाथी दद्दा हाँफने लगे और साइकिल रुक गई।",
+      "चींटी कूदकर उतरी और बोली, घबराओ मत!",
+      "आप पैडल मारो, मैं धक्का देती हूँ।"
+     ]
     },
-    {
-      "n": "21.2",
-      "title": "My story: finish the story from pictures",
-      "labs": [],
-      "why_no_lab": "The child tells and writes their own story from the pictures; a screen should not decide the story."
+    "question": {
+     "q": {
+      "en": "Who helped when the cycle stopped on the slope?",
+      "hi": "ढलान पर साइकिल रुकी तो किसने मदद की?"
+     },
+     "options": [
+      {
+       "en": "The ant",
+       "hi": "चींटी"
+      },
+      {
+       "en": "The elephant",
+       "hi": "हाथी"
+      },
+      {
+       "en": "The wind",
+       "hi": "हवा"
+      }
+     ],
+     "answer": 0,
+     "why": {
+      "en": "The small ant jumped down and pushed the cycle.",
+      "hi": "छोटी चींटी ने कूदकर साइकिल को धक्का दिया।"
+     }
     }
-  ],
-  "labs": [
+   },
+   "steps": [
     {
-      "id": "c02-hindi-bhsr1-ch21-panels",
-      "topic": "21.1",
-      "template": "reader",
-      "title": {
-        "en": "Elephant on a cycle",
-        "hi": "साइकिल पर हाथी"
-      },
-      "minutes": 5,
-      "level": "core",
-      "config": {
-        "mode": "panels",
-        "lang": "hi",
-        "passage": {
-          "title": {
-            "en": "The elephant and the ant",
-            "hi": "हाथी और चींटी"
-          },
-          "lines": [
-            "हाथी साइकिल चला रहा था और चींटी पीछे बैठी थी।",
-            "हाथी हवा में झूम रहा था।",
-            "तभी सामने सीधी चढ़ाई आ गई।",
-            "हाथी दद्दा हाँफने लगे और साइकिल रुक गई।",
-            "चींटी कूदकर उतरी और बोली, घबराओ मत!",
-            "आप पैडल मारो, मैं धक्का देती हूँ।"
-          ]
-        },
-        "question": {
-          "q": {
-            "en": "Who helped when the cycle stopped on the slope?",
-            "hi": "ढलान पर साइकिल रुकी तो किसने मदद की?"
-          },
-          "options": [
-            {
-              "en": "The ant",
-              "hi": "चींटी"
-            },
-            {
-              "en": "The elephant",
-              "hi": "हाथी"
-            },
-            {
-              "en": "The wind",
-              "hi": "हवा"
-            }
-          ],
-          "answer": 0,
-          "why": {
-            "en": "The small ant jumped down and pushed the cycle.",
-            "hi": "छोटी चींटी ने कूदकर साइकिल को धक्का दिया।"
-          }
-        }
-      },
-      "steps": [
-        {
-          "kind": "do",
-          "target": "play",
-          "expect": "played",
-          "say": {
-            "en": "Press Play and watch the story in pictures.",
-            "hi": "चलाओ दबाओ और चित्रों में कहानी देखो।"
-          }
-        },
-        {
-          "kind": "predict",
-          "say": {
-            "en": "The cycle stopped on the slope. Who will help the elephant?",
-            "hi": "ढलान पर साइकिल रुक गई। हाथी की मदद कौन करेगा?"
-          },
-          "options": [
-            {
-              "id": "ant",
-              "en": "The little ant",
-              "hi": "नन्ही चींटी"
-            },
-            {
-              "id": "lion",
-              "en": "A lion",
-              "hi": "एक शेर"
-            },
-            {
-              "id": "none",
-              "en": "Nobody",
-              "hi": "कोई नहीं"
-            }
-          ],
-          "answer": "ant"
-        },
-        {
-          "kind": "do",
-          "target": "line:4",
-          "expect": "line:4",
-          "say": {
-            "en": "Tap the fifth picture to see what the ant did.",
-            "hi": "पाँचवाँ चित्र दबाकर देखो कि चींटी ने क्या किया।"
-          }
-        },
-        {
-          "kind": "explain",
-          "say": {
-            "en": "The elephant was big and strong, yet he got tired on the slope. The small ant came to help. Nobody is too small to help. A kind word and a push can make a big difference.",
-            "hi": "हाथी बड़ा और ताक़तवर था, फिर भी चढ़ाई पर थक गया। छोटी चींटी मदद के लिए आई। कोई भी इतना छोटा नहीं कि मदद न कर सके। एक अच्छी बात और एक धक्का बड़ा फ़र्क़ ला सकता है।"
-          }
-        },
-        {
-          "kind": "check",
-          "items": [
-            {
-              "q": {
-                "en": "What does the poem teach?",
-                "hi": "यह कविता क्या सिखाती है?"
-              },
-              "options": [
-                {
-                  "en": "Even a small friend can help a big one",
-                  "hi": "छोटा दोस्त भी बड़े की मदद कर सकता है"
-                },
-                {
-                  "en": "Only big ones can help",
-                  "hi": "सिर्फ़ बड़े ही मदद कर सकते हैं"
-                },
-                {
-                  "en": "Never ride a cycle",
-                  "hi": "कभी साइकिल मत चलाओ"
-                }
-              ],
-              "answer": 0,
-              "why": {
-                "en": "The ant is tiny, but she gave the elephant courage and a push.",
-                "hi": "चींटी छोटी है, पर उसने हाथी को हिम्मत और धक्का दिया।"
-              },
-              "wrong": [
-                "",
-                {
-                  "en": "The tiny ant was the one who helped, so being small does not stop us.",
-                  "hi": "मदद तो नन्ही चींटी ने ही की, इसलिए छोटा होना रुकावट नहीं है।"
-                },
-                {
-                  "en": "The poem does not tell us to stop cycling.",
-                  "hi": "कविता साइकिल चलाना बंद करने को नहीं कहती।"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "kind": "explore",
-          "say": {
-            "en": "Tap other pictures and listen to each line. Add what happens next: does the cycle go up the slope?",
-            "hi": "दूसरे चित्र दबाकर हर पंक्ति सुनो। आगे क्या हुआ, यह जोड़ो: क्या साइकिल चढ़ाई पर चढ़ गई?"
-          }
-        }
-      ]
+     "kind": "do",
+     "target": "play",
+     "expect": "played",
+     "say": {
+      "en": "Press Play and watch the story in pictures.",
+      "hi": "चलाओ दबाओ और चित्रों में कहानी देखो।"
+     }
     },
     {
-      "id": "c02-hindi-bhsr1-ch21-events",
-      "topic": "21.1",
-      "template": "sequence",
-      "title": {
-        "en": "Up the slope",
-        "hi": "चढ़ाई पर"
+     "kind": "predict",
+     "say": {
+      "en": "The cycle stopped on the slope. Who will help the elephant?",
+      "hi": "ढलान पर साइकिल रुक गई। हाथी की मदद कौन करेगा?"
+     },
+     "options": [
+      {
+       "id": "ant",
+       "en": "The little ant",
+       "hi": "नन्ही चींटी"
       },
-      "minutes": 3,
-      "level": "core",
-      "config": {
-        "items": [
-          {
-            "id": "ride",
-            "text": {
-              "en": "The elephant rides, and the ant sits behind.",
-              "hi": "हाथी साइकिल चलाता है, चींटी पीछे बैठती है।"
-            }
-          },
-          {
-            "id": "slope",
-            "text": {
-              "en": "A steep slope comes.",
-              "hi": "सीधी चढ़ाई आती है।"
-            }
-          },
-          {
-            "id": "tired",
-            "text": {
-              "en": "The elephant pants and the cycle slides back.",
-              "hi": "हाथी हाँफता है और साइकिल पीछे सरकती है।"
-            }
-          },
-          {
-            "id": "jump",
-            "text": {
-              "en": "The ant jumps off and says, Do not worry!",
-              "hi": "चींटी कूद पड़ती है और कहती है, घबराओ मत!"
-            }
-          },
-          {
-            "id": "push",
-            "text": {
-              "en": "The elephant pedals and the ant pushes.",
-              "hi": "हाथी पैडल मारता है और चींटी धक्का देती है।"
-            }
-          }
-        ]
+      {
+       "id": "lion",
+       "en": "A lion",
+       "hi": "एक शेर"
       },
-      "steps": [
+      {
+       "id": "none",
+       "en": "Nobody",
+       "hi": "कोई नहीं"
+      }
+     ],
+     "answer": "ant"
+    },
+    {
+     "kind": "do",
+     "target": "line:4",
+     "expect": "line:4",
+     "say": {
+      "en": "Tap the fifth picture to see what the ant did.",
+      "hi": "पाँचवाँ चित्र दबाकर देखो कि चींटी ने क्या किया।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The elephant was big and strong, yet he got tired on the slope. The small ant came to help. Nobody is too small to help. A kind word and a push can make a big difference.",
+      "hi": "हाथी बड़ा और ताक़तवर था, फिर भी चढ़ाई पर थक गया। छोटी चींटी मदद के लिए आई। कोई भी इतना छोटा नहीं कि मदद न कर सके। एक अच्छी बात और एक धक्का बड़ा फ़र्क़ ला सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does the poem teach?",
+        "hi": "यह कविता क्या सिखाती है?"
+       },
+       "options": [
         {
-          "kind": "do",
-          "target": "item:ride",
-          "expect": "placed:ride",
-          "say": {
-            "en": "What is the elephant doing at the start? Tap that card and put it in slot 1.",
-            "hi": "शुरू में हाथी क्या कर रहा है? वह कार्ड दबाकर पहली जगह पर रखो।"
-          }
+         "en": "Even a small friend can help a big one",
+         "hi": "छोटा दोस्त भी बड़े की मदद कर सकता है"
         },
         {
-          "kind": "predict",
-          "say": {
-            "en": "What will the ant do after the cycle slides back?",
-            "hi": "साइकिल पीछे सरकने पर चींटी क्या करेगी?"
-          },
-          "options": [
-            {
-              "id": "jump",
-              "en": "The ant jumps off and says, Do not worry!",
-              "hi": "चींटी कूद पड़ती है और कहती है, घबराओ मत!"
-            },
-            {
-              "id": "ride",
-              "en": "The elephant rides, and the ant sits behind.",
-              "hi": "हाथी साइकिल चलाता है, चींटी पीछे बैठती है।"
-            },
-            {
-              "id": "slope",
-              "en": "A steep slope comes.",
-              "hi": "सीधी चढ़ाई आती है।"
-            }
-          ],
-          "answer": "jump"
+         "en": "Only big ones can help",
+         "hi": "सिर्फ़ बड़े ही मदद कर सकते हैं"
         },
         {
-          "kind": "do",
-          "target": "item:push",
-          "expect": "placed:push",
-          "say": {
-            "en": "Now put the last card in its place.",
-            "hi": "अब आख़िरी कार्ड को उसकी जगह पर रखो।"
-          }
-        },
-        {
-          "kind": "do",
-          "target": "check",
-          "expect": "ordered",
-          "say": {
-            "en": "Place all the cards in order, then tap Check.",
-            "hi": "सब कार्ड क्रम से रखो, फिर जाँचो दबाओ।"
-          }
-        },
-        {
-          "kind": "explain",
-          "say": {
-            "en": "The story hides inside the poem. First the ride is easy, then a problem comes, then a friend helps. Many stories have this shape.",
-            "hi": "कविता के अंदर कहानी छिपी है। पहले सवारी आसान है, फिर समस्या आती है, फिर दोस्त मदद करता है। कई कहानियों का यही ढाँचा होता है।"
-          }
-        },
-        {
-          "kind": "check",
-          "items": [
-            {
-              "q": {
-                "en": "What was the problem?",
-                "hi": "समस्या क्या थी?"
-              },
-              "options": [
-                {
-                  "en": "A steep slope",
-                  "hi": "सीधी चढ़ाई"
-                },
-                {
-                  "en": "A broken wheel",
-                  "hi": "टूटा पहिया"
-                },
-                {
-                  "en": "Rain",
-                  "hi": "बारिश"
-                }
-              ],
-              "answer": 0,
-              "why": {
-                "en": "The cycle slid back on the steep slope.",
-                "hi": "चढ़ाई पर साइकिल पीछे सरकने लगी।"
-              },
-              "wrong": [
-                "",
-                {
-                  "en": "The wheel was not broken.",
-                  "hi": "पहिया टूटा नहीं था।"
-                },
-                {
-                  "en": "The poem does not mention rain.",
-                  "hi": "कविता में बारिश की बात नहीं है।"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "kind": "explore",
-          "say": {
-            "en": "Write the next two sentences of the story in your notebook.",
-            "hi": "कहानी के अगले दो वाक्य अपनी कॉपी में लिखो।"
-          }
+         "en": "Never ride a cycle",
+         "hi": "कभी साइकिल मत चलाओ"
         }
-      ]
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The ant is tiny, but she gave the elephant courage and a push.",
+        "hi": "चींटी छोटी है, पर उसने हाथी को हिम्मत और धक्का दिया।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The tiny ant was the one who helped, so being small does not stop us.",
+         "hi": "मदद तो नन्ही चींटी ने ही की, इसलिए छोटा होना रुकावट नहीं है।"
+        },
+        {
+         "en": "The poem does not tell us to stop cycling.",
+         "hi": "कविता साइकिल चलाना बंद करने को नहीं कहती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap other pictures and listen to each line. Add what happens next: does the cycle go up the slope?",
+      "hi": "दूसरे चित्र दबाकर हर पंक्ति सुनो। आगे क्या हुआ, यह जोड़ो: क्या साइकिल चढ़ाई पर चढ़ गई?"
+     }
     }
-  ],
-  "images": [
+   ]
+  },
+  {
+   "id": "c02-hindi-bhsr1-ch21-events",
+   "topic": "21.2",
+   "template": "sequence",
+   "title": {
+    "en": "Up the slope",
+    "hi": "चढ़ाई पर"
+   },
+   "minutes": 3,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "ride",
+      "text": {
+       "en": "The elephant rides, and the ant sits behind.",
+       "hi": "हाथी साइकिल चलाता है, चींटी पीछे बैठती है।"
+      }
+     },
+     {
+      "id": "slope",
+      "text": {
+       "en": "A steep slope comes.",
+       "hi": "सीधी चढ़ाई आती है।"
+      }
+     },
+     {
+      "id": "tired",
+      "text": {
+       "en": "The elephant pants and the cycle slides back.",
+       "hi": "हाथी हाँफता है और साइकिल पीछे सरकती है।"
+      }
+     },
+     {
+      "id": "jump",
+      "text": {
+       "en": "The ant jumps off and says, Do not worry!",
+       "hi": "चींटी कूद पड़ती है और कहती है, घबराओ मत!"
+      }
+     },
+     {
+      "id": "push",
+      "text": {
+       "en": "The elephant pedals and the ant pushes.",
+       "hi": "हाथी पैडल मारता है और चींटी धक्का देती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
     {
-      "n": 1,
-      "kind": "SCN",
-      "topic": "21.1",
-      "use": "Opens the poem",
-      "shows": "A real elephant calmly walking along a village road in daylight",
-      "view": "Wide, side view",
-      "right": "A plain road photo with space for the app to add the cycle and the ant",
-      "avoid": "A person riding the elephant"
+     "kind": "do",
+     "target": "item:ride",
+     "expect": "placed:ride",
+     "say": {
+      "en": "What is the elephant doing at the start? Tap that card and put it in slot 1.",
+      "hi": "शुरू में हाथी क्या कर रहा है? वह कार्ड दबाकर पहली जगह पर रखो।"
+     }
     },
     {
-      "n": 2,
-      "kind": "OBJ",
-      "topic": "21.1",
-      "use": "Characters",
-      "shows": "A real bicycle with a back seat, and a red ant on a leaf",
-      "view": "Side view, each alone",
-      "right": "Bicycle with pedals and chain; ant very sharp macro",
-      "avoid": "Brand logos"
+     "kind": "predict",
+     "say": {
+      "en": "What will the ant do after the cycle slides back?",
+      "hi": "साइकिल पीछे सरकने पर चींटी क्या करेगी?"
+     },
+     "options": [
+      {
+       "id": "jump",
+       "en": "The ant jumps off and says, Do not worry!",
+       "hi": "चींटी कूद पड़ती है और कहती है, घबराओ मत!"
+      },
+      {
+       "id": "ride",
+       "en": "The elephant rides, and the ant sits behind.",
+       "hi": "हाथी साइकिल चलाता है, चींटी पीछे बैठती है।"
+      },
+      {
+       "id": "slope",
+       "en": "A steep slope comes.",
+       "hi": "सीधी चढ़ाई आती है।"
+      }
+     ],
+     "answer": "jump"
     },
     {
-      "n": 3,
-      "kind": "MAC",
-      "topic": "21.1",
-      "use": "Strong ant",
-      "shows": "An ant carrying a crumb many times its size",
-      "view": "Macro, sharp",
-      "right": "True colours; the crumb is big against the ant",
-      "avoid": "Any harm to the ant"
+     "kind": "do",
+     "target": "item:push",
+     "expect": "placed:push",
+     "say": {
+      "en": "Now put the last card in its place.",
+      "hi": "अब आख़िरी कार्ड को उसकी जगह पर रखो।"
+     }
     },
     {
-      "n": 4,
-      "kind": "SCN",
-      "topic": "21.1",
-      "use": "The steep road",
-      "shows": "A village road going up a hill in the morning",
-      "view": "Low angle, looking uphill",
-      "right": "A clear slope, trees on both sides",
-      "avoid": "Vehicles"
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place all the cards in order, then tap Check.",
+      "hi": "सब कार्ड क्रम से रखो, फिर जाँचो दबाओ।"
+     }
     },
     {
-      "n": 5,
-      "kind": "SEQ",
-      "topic": "21.2",
-      "use": "Story pictures",
-      "shows": "Four frames of a bicycle on a flat road, a slope, stopped on the slope and moving up again",
-      "view": "Same road, same light",
-      "right": "Only the bicycle (no people) to leave room for imagination",
-      "avoid": "Any rider"
+     "kind": "explain",
+     "say": {
+      "en": "The story hides inside the poem. First the ride is easy, then a problem comes, then a friend helps. Many stories have this shape.",
+      "hi": "कविता के अंदर कहानी छिपी है। पहले सवारी आसान है, फिर समस्या आती है, फिर दोस्त मदद करता है। कई कहानियों का यही ढाँचा होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What was the problem?",
+        "hi": "समस्या क्या थी?"
+       },
+       "options": [
+        {
+         "en": "A steep slope",
+         "hi": "सीधी चढ़ाई"
+        },
+        {
+         "en": "A broken wheel",
+         "hi": "टूटा पहिया"
+        },
+        {
+         "en": "Rain",
+         "hi": "बारिश"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The cycle slid back on the steep slope.",
+        "hi": "चढ़ाई पर साइकिल पीछे सरकने लगी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The wheel was not broken.",
+         "hi": "पहिया टूटा नहीं था।"
+        },
+        {
+         "en": "The poem does not mention rain.",
+         "hi": "कविता में बारिश की बात नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write the next two sentences of the story in your notebook.",
+      "hi": "कहानी के अगले दो वाक्य अपनी कॉपी में लिखो।"
+     }
     }
-  ]
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "21.1",
+   "use": "Opens the poem",
+   "shows": "A real elephant calmly walking along a village road in daylight",
+   "view": "Wide, side view",
+   "right": "A plain road photo with space for the app to add the cycle and the ant",
+   "avoid": "A person riding the elephant"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "21.1",
+   "use": "Characters",
+   "shows": "A real bicycle with a back seat, and a red ant on a leaf",
+   "view": "Side view, each alone",
+   "right": "Bicycle with pedals and chain; ant very sharp macro",
+   "avoid": "Brand logos"
+  },
+  {
+   "n": 3,
+   "kind": "MAC",
+   "topic": "21.1",
+   "use": "Strong ant",
+   "shows": "An ant carrying a crumb many times its size",
+   "view": "Macro, sharp",
+   "right": "True colours; the crumb is big against the ant",
+   "avoid": "Any harm to the ant"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "21.1",
+   "use": "The steep road",
+   "shows": "A village road going up a hill in the morning",
+   "view": "Low angle, looking uphill",
+   "right": "A clear slope, trees on both sides",
+   "avoid": "Vehicles"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "21.2",
+   "use": "Story pictures",
+   "shows": "Four frames of a bicycle on a flat road, a slope, stopped on the slope and moving up again",
+   "view": "Same road, same light",
+   "right": "Only the bicycle (no people) to leave room for imagination",
+   "avoid": "Any rider"
+  }
+ ]
 }

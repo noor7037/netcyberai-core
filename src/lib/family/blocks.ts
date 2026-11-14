@@ -23,6 +23,7 @@
 import { FRACTION_MAX_DENOMINATOR, GRAPH_FNS, GRAPH_PARAMS, PARAM_LIMIT, SIM_INPUTS, SIM_KINDS, X_LIMIT, isTriangle, type Fraction, type GraphFn, type SimKind } from './interactive';
 import { SOLID_INPUTS, SOLID_KINDS, type SolidKind } from './solids';
 import { SCENE_SIMS, simStart, type SceneSim } from './visuals/sims';
+import { isLangCode, type LangCode } from './languages';
 
 export const BLOCK_SCHEMA_VERSION = 1;
 
@@ -84,9 +85,12 @@ export type Timeline = { type: 'timeline'; title: string; items: { when: string;
 export type ImageQuery = { type: 'image'; query: string; caption: string };
 export type ImagePhoto = { type: 'image'; url: string; caption: string; credit: string; licence: string; source: string };
 export type ImageBlock = ImageQuery | ImagePhoto;
-export type VideoItem = { videoId: string; title: string; channel: string; seconds: number };
-// As written: `{ type: 'videos' }`; filled: up to four of the chapter's picks.
-export type Videos = { type: 'videos'; items?: VideoItem[] };
+// C522: `start` is where the video starts (the chapter matching the topic; absent is 0).
+export type VideoItem = { videoId: string; title: string; channel: string; seconds: number; start?: number };
+// As written: `{ type: 'videos' }`; filled: up to four of the chapter's picks. C522: `topicKey` and `lang` name the cached
+// picks they came from (the "See video" tap is checked against them); `wanted` is the child's language when too few
+// videos were found in it and `lang` is the fallback shown instead.
+export type Videos = { type: 'videos'; items?: VideoItem[]; topicKey?: string; lang?: LangCode; wanted?: LangCode };
 // W10-6 (docs/39 §5, final shapes): a tap-able scene of real parts, each in its own palette colour, and a chart of the
 // figures the answer states. Both are drawn by our own code (SceneView, ChartView); never an image, never a library.
 export const SCENE_LAYOUTS = ['row', 'ring', 'stack', 'free'] as const;
@@ -113,6 +117,15 @@ export const VISUAL_TITLE_MAX = 120;
 // The hosts a filled photograph may come from: the file itself, and the file's page on Commons (its credit link).
 export const PHOTO_HOST = 'upload.wikimedia.org';
 export const PHOTO_PAGE_HOST = 'commons.wikimedia.org';
+// C526: the second licensed source, Openverse, used only when Commons finds nothing: the file is Openverse's own small
+// thumbnail of it (its address names the image's id) and the page is the image's page on openverse.org (its credit).
+export const OPENVERSE_IMAGE_HOST = 'api.openverse.org';
+export const OPENVERSE_PAGE_HOST = 'openverse.org';
+const OPENVERSE_ID = '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}';
+export const OPENVERSE_THUMB_PATH = new RegExp(`^/v1/images/${OPENVERSE_ID}/thumb/$`);
+export const OPENVERSE_PAGE_PATH = new RegExp(`^/image/${OPENVERSE_ID}$`);
+// The page of the image an Openverse thumbnail address names.
+export const openversePage = (thumb: string): string => `https://${OPENVERSE_PAGE_HOST}/image/${new URL(thumb).pathname.split('/')[3]}`;
 // The licences a photograph may carry, any version (and a port such as "de"): CC0, CC BY, CC BY-SA, public domain.
 export const PHOTO_LICENCE = /^(?:CC0(?: 1\.0)?|CC BY(?:-SA)?(?: \d\.\d)?(?: [A-Za-z]{2,3})?|Public domain)$/i;
 
@@ -983,15 +996,19 @@ function imageBlock(o: Record<string, unknown>, stored: boolean): ImageBlock | n
     const query = fits(o.query, 80);
     return query && o.url === undefined ? { type: 'image', query, caption } : null;
   }
-  // A kept photograph: a Commons file, its page, an allowed licence and a credit, or nothing.
-  const url = onHost(o.url, PHOTO_HOST);
-  const source = onHost(o.source, PHOTO_PAGE_HOST, /^\/wiki\/File:/);
+  // A kept photograph: a Commons file and its page, or (C526) an Openverse thumbnail and its page, both of one image,
+  // an allowed licence and a credit, or nothing.
+  const commonsUrl = onHost(o.url, PHOTO_HOST);
+  const url = commonsUrl ?? onHost(o.url, OPENVERSE_IMAGE_HOST, OPENVERSE_THUMB_PATH);
+  const page = url && !commonsUrl ? openversePage(url) : null;
+  const source = commonsUrl ? onHost(o.source, PHOTO_PAGE_HOST, /^\/wiki\/File:/) : page && onHost(o.source, OPENVERSE_PAGE_HOST, OPENVERSE_PAGE_PATH) === page ? page : null;
   const licence = typeof o.licence === 'string' && PHOTO_LICENCE.test(o.licence.trim()) ? o.licence.trim() : null;
   const credit = fits(o.credit, 120);
   return url && source && licence && credit ? { type: 'image', url, caption, credit, licence, source } : null;
 }
 
 const VIDEO_ID = /^[A-Za-z0-9_-]{11}$/;
+const VIDEO_TOPIC = /^[a-z0-9][a-z0-9._-]{2,119}$/;
 function videosBlock(o: Record<string, unknown>, stored: boolean): Videos | null {
   if (!stored) return { type: 'videos' };
   const raw = exactly(o.items, 1, 4);
@@ -1003,19 +1020,26 @@ function videosBlock(o: Record<string, unknown>, stored: boolean): Videos | null
     const channel = plain(v.channel, 120);
     const seconds = Number(v.seconds);
     if (typeof v.videoId !== 'string' || !VIDEO_ID.test(v.videoId) || !title || !channel || !Number.isInteger(seconds) || seconds < 1 || seconds > 36000) return null;
-    items.push({ videoId: v.videoId, title, channel, seconds });
+    const start = Number(v.start);
+    items.push({ videoId: v.videoId, title, channel, seconds, ...(Number.isInteger(start) && start > 0 && start < seconds ? { start } : {}) });
   }
-  return { type: 'videos', items };
+  const topicKey = typeof o.topicKey === 'string' && VIDEO_TOPIC.test(o.topicKey) ? o.topicKey : null;
+  const lang = isLangCode(o.lang) ? o.lang : null;
+  const wanted = lang && isLangCode(o.wanted) && o.wanted !== lang ? o.wanted : null;
+  return { type: 'videos', items, ...(topicKey && lang ? { topicKey, lang, ...(wanted ? { wanted } : {}) } : {}) };
 }
 
 // A photograph or video list still waiting for the server (as the model wrote it): never drawn.
 export const unfilled = (b: { type: string }): boolean => (b.type === 'image' && !('url' in b)) || (b.type === 'videos' && !Array.isArray((b as { items?: unknown }).items));
 
 // A block arriving on the phone: a filled photograph or video list takes the place of the unfilled one the model wrote
-// (so it shows where the answer put it); anything else is added at the end.
+// (so it shows where the answer put it); anything else is added at the end. C526: a filled photograph the model never
+// asked for (the youngest children's, visuals/young.ts) goes right after the board, as it is kept.
 export function placeBlock<B extends { type: string }>(list: readonly B[], b: B): B[] {
   const at = unfilled(b) ? -1 : list.findIndex((x) => x.type === b.type && unfilled(x));
-  return at >= 0 ? list.map((x, i) => (i === at ? b : x)) : [...list, b];
+  if (at >= 0) return list.map((x, i) => (i === at ? b : x));
+  const board = b.type === 'image' && !unfilled(b) ? list.findIndex((x) => x.type === 'board') : -1;
+  return board >= 0 ? [...list.slice(0, board + 1), b, ...list.slice(board + 1)] : [...list, b];
 }
 
 // ---- slider, 3D model and chapter test (S5, C378) ----

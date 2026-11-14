@@ -1311,7 +1311,8 @@ export async function streamText(db: Sql, ctx: AiContext, profileId: ProfileId, 
 
 export type { VideoCandidate, VideoChapter, VideoKind } from './adapters/youtube';
 export type VideoChannel = { channelId: string; kind: VideoKind };
-export type VideoPlan = { query: string; language: 'en' | 'hi'; channelIds: string[] };
+// C522: language is a two-letter ISO 639-1 code (the child's chosen language; the adapter checks it).
+export type VideoPlan = { query: string; language: string; channelIds: string[] };
 export type FoundVideos = { ok: true; candidates: VideoCandidate[] } | { ok: false };
 export type PreparedVideos = { ok: true; searches: number; find: () => Promise<FoundVideos> } | { ok: false; reason: 'no_key' | 'quota' };
 

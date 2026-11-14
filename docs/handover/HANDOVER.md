@@ -123,6 +123,29 @@ leave the homework link out.
    colour wheel, rotating stickers and paper texture are unverified. After the join compiles, take 390 px pictures of
    the studio and show Noor **before** opening the PR (same as step 7 above).
 
+### 6b. The run of 14 November (branch `claude/tutor-draw-content-nov14`, not pushed)
+
+**Done and committed on the branch** (Decision Log C519 to C527):
+- Draw: read-aloud after the first tap, server voice when the phone has none, music icon plays a soft melody (C519).
+- Ask Tutor photos: shrunk on the phone, HEIC accepted, OCR time limit, clear refusals; the Aadhaar rule no longer
+  refuses textbook number lines (C520, C525).
+- Tutor prompt v17: names the photo's question, picks the visual that shows the meaning, answers in the question's
+  own language with the mother tongue alongside (C521). Off until chosen in Control.
+- Videos for every answer with See video taps counted; low-data photos with Openverse as second source (C522, C526).
+- Classes 1 to 3: all 147 chapters (613 topics) have their pictures redrawn to show the meaning, each class had one
+  reviewer pass (61 pictures corrected), and all are in the app's book list (`docs/content/C1-3-REVIEW.md`). No real
+  photos, no new labs, and the chapter text itself is not rewritten.
+
+**Noor must do:** (1) test on his phone: Draw sound, a book-page photo, a Hinglish question, a See video tap;
+(2) in Control → AI run the Lab area "tutor v16 and v17", then switch "Tutor answers" to v17; (3) say when the two
+migrations may go to production: `20261114120000_c520_aadhaar_verhoeff.sql`, then
+`20261114130000_c522_video_clicks.sql` (neither is applied).
+
+**Left:** everything in `docs/launch/PRE-LAUNCH-PENDING.md`. Checks on this branch: `tsc` clean; `ci_local.sh` steps
+1 to 23 pass; unit tests 5823 of 5824 (the one failure, `c514-draw-templates`, also fails on `main`); build passes;
+the page budget fails on the chapter page as it does on `main`; the SEO audit was not run (port 3000 was in use).
+Screenshots: `docs/screenshots/c519/`.
+
 ## 7. What is different on the Mac
 
 The cloud session had connectors the terminal may not have. Check before relying on any of them.

@@ -557,6 +557,7 @@ export type FileRefusal =
   | 'upload_aadhaar_number'
   | 'upload_aadhaar_card'
   | 'upload_unreadable'
+  | 'upload_check_timeout'
   | 'upload_missing'
   | 'upload_expired'
   | 'upload_changed'
@@ -641,6 +642,10 @@ export async function pendingUpload(db: Db, who: { accountId: string; childId: s
   return (rows[0] as PendingRow | undefined) ?? null;
 }
 
+// C525: the photo's read must end well inside the route's 60 s (src/app/api/family/tutor/files/[attachmentId]/route.ts),
+// leaving time for the store's read before it and the move after it.
+export const TUTOR_OCR_MS = 30_000;
+
 export type Arrival = { ok: true; row: PendingRow; bytes: Uint8Array } | { ok: false; reason: FileRefusal; discard: boolean };
 
 // Step 3, second part (no transaction held: the check reads a photo's words, which takes seconds).
@@ -668,8 +673,10 @@ export async function readTutorArrival(storage: DirectUploadStorage, row: Pendin
   if (bytes.length === 0) return refuse('file_empty');
   if (bytes.length > TUTOR_FILE_MAX_BYTES) return refuse('file_too_large');
   if (sniffTutorFile(bytes) !== row.mime) return refuse('file_type');
-  const checked = await checkUpload({ bytes, name: `file.${EXT[row.mime]}` }, ocr);
-  if (!checked.ok) return refuse(checked.reason as FileRefusal);
+  const checked = await checkUpload({ bytes, name: `file.${EXT[row.mime]}` }, ocr, { timeoutMs: TUTOR_OCR_MS });
+  // C525: fail-closed (src/lib/privacy/upload-check.ts): a photo the check could not finish reading is not kept; the
+  // child is told to take it again (closer, good light), not that it was "not readable" with no way on.
+  if (!checked.ok) return refuse(checked.timedOut ? 'upload_check_timeout' : (checked.reason as FileRefusal));
   return { ok: true, row, bytes };
 }
 
