@@ -8531,6 +8531,7 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.draw.g.next': 'आगे',
   'fam.draw.g.drawFirst': 'पहले बनाओ',
   'fam.draw.g.step': '{total} में से चरण {n}',
+  'fam.draw.g.noVoice': 'अभी इस फ़ोन पर आवाज़ नहीं आ सकती। तुम शब्द पढ़ सकते हो।',
   'fam.draw.g.listen': 'फिर से सुनो',
   'fam.draw.g.soundOn': 'आवाज़ चालू करो',
   'fam.draw.g.soundOff': 'आवाज़ बंद करो',

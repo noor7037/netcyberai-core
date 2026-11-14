@@ -11,7 +11,9 @@ import { prepareSpeak, type PreparedVoice } from '@/lib/ai/platform';
 //   { kind: 'live_line', token }                          a live English reply's checked sentence, sealed by the live route;
 //   { kind: 'live_turn', sessionId, position }            a kept live English reply of the child's own session;
 //   { kind: 'tutor_answer', messageId }                   W17-B2: the teaching text of a kept tutor answer of the child's own.
-//   { kind: 'call_line', token }                          W16-A4: a sentence of a call's answer, sealed by the understand
+//   { kind: 'draw', templateId, step, lang }              C519: one step of a Draw template's guide; the words are the
+//                                                          template manifest's, never the phone's.
+//   { kind: 'call_line', token }                        W16-A4: a sentence of a call's answer, sealed by the understand
 //                                                          route, behind the voice input's gate (call-gate.ts).
 // It speaks only text the server holds (src/lib/family/voice-out.ts), for the child this phone has chosen, behind the
 // gate of the screen it belongs to. The answer is the audio itself (mp3), never cached and never stored. A voice that

@@ -8544,6 +8544,7 @@ export const en = {
   'fam.draw.g.next': 'Next',
   'fam.draw.g.drawFirst': 'Draw first',
   'fam.draw.g.step': 'Step {n} of {total}',
+  'fam.draw.g.noVoice': 'Sound is not available on this phone right now. You can still read the words.',
   'fam.draw.g.listen': 'Say it again',
   'fam.draw.g.soundOn': 'Turn sound on',
   'fam.draw.g.soundOff': 'Turn sound off',
