@@ -10710,6 +10710,7 @@ export const hi: Record<keyof typeof en, string> = {
   'control.ai.latency.status.over': 'लक्ष्य से ऊपर',
   'control.ai.latency.status.none': 'तुलना के लिए कुछ नहीं',
   'control.ai.lab.area.class8_science': 'कक्षा 8 विज्ञान (नियमों से जाँचा गया)',
+  'control.ai.lab.area.tutor_v17': 'ट्यूटर v16 और v17 साथ-साथ (फ़ोटो और भाषा)',
   'control.ai.lab.class8.only': 'सिर्फ़ कक्षा 8 विज्ञान चलाएँ ({count} प्रश्न)',
   'control.ai.lab.class8.score': 'नियमों से ग्रेड {score} में से 100',
   'control.ai.lab.class8.problem.no_citation': 'अंत में अध्याय का नाम नहीं',

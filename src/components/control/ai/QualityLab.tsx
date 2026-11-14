@@ -22,7 +22,7 @@ import type { MessageKey } from '@/lib/i18n';
 
 export type LabData = LabSetup & { cases: LabCaseSummary[]; runs: LabRunSummary[]; curriculumTotal?: number; scopes?: Scope[] };
 
-const AREAS: LabCaseArea[] = ['maths', 'science', 'humanities', 'hindi', 'english_roleplay', 'multi_turn', 'edge', 'curriculum', 'class8_science'];
+const AREAS: LabCaseArea[] = ['maths', 'science', 'humanities', 'hindi', 'english_roleplay', 'multi_turn', 'edge', 'curriculum', 'class8_science', 'tutor_v17'];
 // A run takes at most 200 cases (the route's limit). The cases built from the syllabus are many, so a run takes the
 // hand-written ones chosen first and then curriculum cases spread evenly across what is listed.
 const RUN_MAX = 200;
@@ -37,7 +37,7 @@ const day = (v: string) => new Date(v).toLocaleString('en-IN', { day: 'numeric',
 export function QualityLab({ initial }: { initial: LabData }) {
   const { t } = useWords();
   const [data, setData] = useState<LabData>(initial);
-  const [areas, setAreas] = useState<Set<LabCaseArea>>(() => new Set(AREAS.filter((a) => a !== 'curriculum' && a !== 'class8_science')));
+  const [areas, setAreas] = useState<Set<LabCaseArea>>(() => new Set(AREAS.filter((a) => a !== 'curriculum' && a !== 'class8_science' && a !== 'tutor_v17')));
   const first = initial.suggestions;
   const [models, setModels] = useState<LabLink[]>(() => {
     const pick = (i: number): LabLink => first[i] ?? { provider: initial.providers[Math.min(i, initial.providers.length - 1)] ?? '', model: '' };
