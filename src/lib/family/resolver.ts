@@ -19,6 +19,8 @@ import { subjectAccess } from './modules';
 import { isSubject, nearSubject, type Subject } from './subjects';
 import { nameFiller, withoutName } from './name-token';
 import { drawTutorLine } from './draw-templates';
+import { loadChildSettings, meaningLangOf } from './child-settings';
+import { questionLanguage, settingLang } from './question-language';
 
 // The Concept Resolver, "Understand" (docs/family-app/02 §4, 03 §6; M1-5, C251): a chapter, a topic or a typed
 // question in, typed blocks out, streamed one by one as each passes its checks.
@@ -407,6 +409,8 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
   const open: Subject[] = known ? [known] : ofClass.filter((s) => !ctx.claimSubject || subjectAccess(child, s, openToAll).open);
   const profileId = ctx.preparing ? 'content.prepare' : 'family.resolver';
   const prompt = resolverPrompt(await activePromptVersion(db as never, profileId), known === null);
+  // C521: a prompt that answers in the question's language (v17) is told it, with the child's mother tongue.
+  const lang = prompt.readsLanguage && input.kind === 'question' && !ctx.preparing ? await askLanguage(db, ctx, input.text) : null;
   const cacheable = input.kind !== 'question' && followUp === null && misconception === null;
 
   // 2. The shared library. In a "checked explanations only" subject (C300) a chapter or topic is served a checked
@@ -462,6 +466,7 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
     ...(input.kind === 'question' && input.sketch ? { sketch: true } : {}),
     // C509: which of the class's subjects have a published book, so the answer says "not from your book" only where one exists.
     ...(input.kind === 'question' ? { bookSubjects: bookSubjects({ classLevel: child.classLevel, board: syllabusBoardOf(child), subjects: ofClass }) } : {}),
+    ...(lang ?? {}),
   };
   // The default plan (v8's own rule: a question at medium depth, a chapter or topic whole) until the planner answers.
   const plan = prompt.usesPlan || isCheck ? defaultPlan({ classLevel: child.classLevel, subject: teach?.ctx.subject ?? known, lang: child.language, ...(prompt.visualFirst ? { visualFirst: true } : {}) }, input.kind === 'question' ? 'medium' : 'full') : null;
@@ -471,7 +476,9 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
       const system = checkMarkSystem(a);
       return { system: withPersona(system, ctx.persona), messages: [{ role: 'user', content: checkMarkUser(a) }], responseFormat: undefined };
     }
-    return { system: withPersona(withDrawTemplate(withScope(prompt.system(a), a.scope), input.kind === 'question' && input.sketch ? input.drawTemplate : undefined), ctx.persona), messages: [{ role: 'user', content: prompt.user(a) }], responseFormat: undefined };
+    // C521: under v17 a tutor persona speaks the question's language, not a fixed one.
+    const persona = lang && ctx.persona ? { ...ctx.persona, language: 'both' as const } : ctx.persona;
+    return { system: withPersona(withDrawTemplate(withScope(prompt.system(a), a.scope), input.kind === 'question' && input.sketch ? input.drawTemplate : undefined), persona), messages: [{ role: 'user', content: prompt.user(a) }], responseFormat: undefined };
   };
   const prepared = await prepareText(db as never, { accountId: ctx.accountId, childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail, day: ctx.day, childId: ctx.child.childId }, profileId, build(plan)); // w16-b4
   if (!prepared.ok) {
@@ -481,6 +488,13 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
   const question = input.kind === 'question' ? withAttached(input.text, input.attached) : null;
   const asked = question ?? `Explain "${line?.topicEn ?? line?.chapterEn ?? ''}" to a Class ${child.classLevel} student.`;
   return { ctx, line, known, open, classSubjects: ofClass, tab, ...(ask.bookSubjects ? { bookSubjects: ask.bookSubjects } : {}), cacheable, promptVersion: prompt.version, text: prepared.text, moderation, asked, question, labs: input.kind === 'question' && input.scope ? input.scope.labs.map((l) => l.id) : [], plan, teach: teach ? { ...teach, build } : null, ...(isCheck ? { check: true as const, reading: input.kind === 'question' ? (input.attached ?? '') : '' } : {}) };
+}
+
+// C521: the language the child typed the question in (their own words, not a photo's reading) and the child's mother
+// tongue: the word-help language the parent chose for the child, else the app language.
+export async function askLanguage(db: Db, ctx: Pick<ResolverContext, 'accountId' | 'child'>, text: string): Promise<{ replyLang: string; motherTongue: string }> {
+  const motherTongue = meaningLangOf(await loadChildSettings(db as never, ctx.accountId, ctx.child.childId), ctx.child.language);
+  return { replyLang: questionLanguage(text, settingLang(ctx.child), motherTongue).lang, motherTongue };
 }
 
 // The planner reads the question and the start of what attached files say: enough to plan, not to answer.

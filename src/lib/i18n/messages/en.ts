@@ -10725,6 +10725,7 @@ export const en = {
   'control.ai.latency.status.over': 'Over target',
   'control.ai.latency.status.none': 'Nothing to compare',
   'control.ai.lab.area.class8_science': 'Class 8 Science (graded by rules)',
+  'control.ai.lab.area.tutor_v17': 'Tutor v16 and v17 side by side (photo and language)',
   'control.ai.lab.class8.only': 'Run only Class 8 Science ({count} questions)',
   'control.ai.lab.class8.score': 'Rules grade {score} of 100',
   'control.ai.lab.class8.problem.no_citation': 'No chapter named at the end',

@@ -7,6 +7,8 @@ import englishRoleplay from '../../../../data/ai-lab/english-roleplay.json';
 import multiTurn from '../../../../data/ai-lab/multi-turn.json';
 import edge from '../../../../data/ai-lab/edge.json';
 import { class8LabCases, type RulesGrade } from './class8-science';
+import { tutorV17LabCases } from './tutor-v17';
+import type { ReplyLang } from '@/lib/family/question-language';
 
 // The Quality Lab's cases (G4, C372): NetCyber-authored, made-up questions and personas, kept in the repository
 // (data/ai-lab/*.json) and never in the database. Each is a system prompt, the conversation so far, what kind of answer
@@ -19,13 +21,15 @@ export const LAB_AREAS = ['maths', 'science', 'humanities', 'hindi', 'english_ro
 export type LabArea = (typeof LAB_AREAS)[number];
 // The cases built from the syllabus (W9-D, curriculum-cases.ts) are a further area; they live in the database.
 // The Class 8 Science set (W16-A5, class8-science.ts) is a further one, written in the code and graded by rules.
-export type LabCaseArea = LabArea | 'curriculum' | 'class8_science';
+// The tutor v17 set (C521, tutor-v17.ts) is one more, written in the code: each question under v16 and under v17.
+export type LabCaseArea = LabArea | 'curriculum' | 'class8_science' | 'tutor_v17';
 export type LabCaseTags = { board: string; classLevel: number; subject: string; unit: string; type: string; band: string };
 
 export type LabCase = {
   id: string;
   area: LabCaseArea;
-  language: 'en' | 'hi' | 'hinglish';
+  // The file cases are English, Hindi or Hinglish; the tutor v17 set adds the other Indian languages (C521).
+  language: ReplyLang;
   system: string;
   messages: { role: 'user' | 'assistant'; content: string }[];
   expect: 'json' | 'text';
@@ -88,7 +92,7 @@ let cached: { cases: LabCase[]; version: string } | null = null;
 
 export function labDataset(): { cases: LabCase[]; version: string } {
   if (cached) return cached;
-  const cases = [...FILES.flatMap(parseCaseFile), ...class8LabCases()];
+  const cases = [...FILES.flatMap(parseCaseFile), ...class8LabCases(), ...tutorV17LabCases()];
   const ids = new Set<string>();
   for (const c of cases) {
     if (ids.has(c.id)) throw new Error(`lab case ${c.id} appears twice`);
