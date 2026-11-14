@@ -121,3 +121,29 @@ export const TEXTBOOK_PASS_CASES: readonly AadhaarCase[] = [
   { input: 'Rainfall (mm): Jan 20  Feb 25  Mar 18  Apr 12  May 30  Jun 210', refused: false, why: 'a rainfall table' },
   { input: 'Year: 2001 2011 2021\nPopulation: 1028 1210 1390 (millions)', refused: false, why: 'a census table with four-digit columns' },
 ];
+
+// C525: whole pages as the upload check's OCR would read them (several lines, OCR's own spacing). A textbook or
+// notebook page must be kept; a page that shows an Aadhaar number or card must still be refused. Every number is made up.
+export type PageCase = { text: string; why: string };
+
+export const TEXTBOOK_PAGES: readonly PageCase[] = [
+  { text: 'Chapter 2\nPOLYNOMIALS\n2.1 Introduction\nIn Class IX, you have studied polynomials in one variable and their degrees.\nExample 1: Find the zeroes of x² + 7x + 10.\nPage 21', why: 'a mathematics page with a page number' },
+  { text: 'Exercise 1.1\n1. Use Euclid’s division algorithm to find the HCF of 135 and 225.\n2. Show that any positive odd integer is of the form 6q + 1, 6q + 3 or 6q + 5.\nReprint 2025-26', why: 'an exercise with the reprint year range' },
+  { text: 'Population of India (Census 2011): 1,21,08,54,977\nArea: 32,87,263 sq km\nDensity: 382 persons per sq km', why: 'a geography table with Indian grouping' },
+  { text: 'Write in words: 9,87,65,43,210\nPlace value of 7 in 4,73,912 is 70,000\n8 + 7 = 15   12 x 12 = 144', why: 'large numbers to read aloud' },
+  { text: 'ISBN 978-81-7450-634-4\n© National Council of Educational Research and Training, 2006\nPrinted at 1234 Press, Delhi 110092', why: 'the copyright page: an ISBN and a PIN code' },
+  { text: 'अध्याय 3\nसमय\n1 घंटा = 60 मिनट\n1 दिन = 24 घंटे\nप्रश्न 4: 2345 को शब्दों में लिखो।\n6789 + 124 = ?', why: 'a Hindi maths page with four-digit numbers on separate lines' },
+  { text: 'Homework 14-11-2026\nQ1. 2345 x 6789 = 15920205\nQ2. 0124 / 4 = 31\nPhone sir: 98765 43210', why: 'a notebook: groups of four apart on their own lines, and a phone number' },
+  { text: 'Light travels at 3,00,000 km per second.\nThe Sun is about 15,00,00,000 km away.\nTime taken = 500 s', why: 'a science page with big numbers' },
+  { text: '', why: 'a photo with no words (a drawing)' },
+];
+
+export const AADHAAR_PAGES: readonly PageCase[] = [
+  { text: 'भारत सरकार\nGOVERNMENT OF INDIA\nDev Mehta\nजन्म तिथि / DOB: 14/04/2014\nपुरुष / MALE\n2345 6789 0124\nमेरा आधार, मेरी पहचान', why: 'the front of a card' },
+  { text: 'Unique Identification Authority of India\nAddress: S/O Ravi Mehta, 12 Park Road, Pune 411001\n1947\nhelp@uidai.gov.in   www.uidai.gov.in', why: 'the back of a card, no number read' },
+  { text: 'Enrolment No.: 1234/56789/01234\nTo\nDev Mehta\nYour Aadhaar No. :\n3456 7890 1238\nVID : 9123 4567 8901 2345', why: 'an e-Aadhaar letter' },
+  { text: 'Admission form\nName of student: Dev Mehta\nAadhaar of student 4567 8901 2341\nClass: 5', why: 'a form with the number written in' },
+  { text: 'Notebook page\nMy Aadhaar: 5271-8306-4926\n3 x 4 = 12', why: 'a number written in a notebook, with hyphens' },
+  { text: 'Science homework\nQ3 answer\n२३४५ ६७८९ ०१२४', why: 'Devanagari digits' },
+  { text: 'Government of India\nAsha Mehta\nDOB: 02/09/2015\nFEMALE\nXXXX XXXX 0124\nAadhaar - Aam Aadmi ka Adhikar', why: 'a masked Aadhaar: no full number, still a card' },
+];
