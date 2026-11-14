@@ -432,7 +432,8 @@ export function watchVisibility(musicWanted: () => boolean): () => void {
 
 // Where the child stopped in a template's steps, so it opens on the same step next time. Completed templates are counted
 // by the server already (family.draw_completions, C514) and sent when the phone is online (done-queue.ts).
-const STEP_KEY = (child: string, classLevel: number) => `ncf.draw.steps.${child}.${classLevel}`;
+// Joined, not a template: the page-words check reads a template that starts with a dotted name as a built word key.
+const STEP_KEY = (child: string, classLevel: number) => ['ncf.draw.steps', child, classLevel].join('.');
 
 export function readStep(child: string, classLevel: number, templateId: string): number {
   try {
