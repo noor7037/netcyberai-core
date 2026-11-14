@@ -60,56 +60,56 @@ Made by `reader/scripts/diagram-tool.mjs` (digest, apply, extract) and `diagram-
 | `u.c01.mathematics.aejm1.ch11` | How Many Times? (Multiplication) | 5 of 5 | 4 | redrawn, reviewed, in the app |
 | `u.c01.mathematics.aejm1.ch12` | How Much Can We Spend? (Money) | 6 of 6 | 5 | redrawn, reviewed, in the app |
 | `u.c01.mathematics.aejm1.ch13` | So Many Toys (Data Handling) | 6 of 6 | 5 | redrawn, reviewed, in the app |
-| `u.c02.english.bemr1.ch01` | My Bicycle | 7 of 7 | 4 | redrawn, in the app, review pending |
-| `u.c02.english.bemr1.ch02` | Picture Reading | 6 of 6 | 3 | redrawn, in the app, review pending |
-| `u.c02.english.bemr1.ch03` | It is Fun | 7 of 7 | 3 | redrawn, in the app, review pending |
-| `u.c02.english.bemr1.ch04` | Seeing without Seeing | 6 of 6 | 5 | redrawn, in the app, review pending |
-| `u.c02.english.bemr1.ch05` | Come Back Soon | 6 of 6 | 3 | redrawn, in the app, review pending |
-| `u.c02.english.bemr1.ch06` | Between Home and School | 8 of 8 | 4 | redrawn, in the app, review pending |
-| `u.c02.english.bemr1.ch07` | This is My Town | 8 of 8 | 4 | redrawn, in the app, review pending |
-| `u.c02.english.bemr1.ch08` | A Show of Clouds | 5 of 5 | 4 | redrawn, in the app, review pending |
-| `u.c02.english.bemr1.ch09` | My Name | 7 of 7 | 5 | redrawn, in the app, review pending |
-| `u.c02.english.bemr1.ch10` | The Crow | 6 of 6 | 4 | redrawn, in the app, review pending |
-| `u.c02.english.bemr1.ch11` | The Smart Monkey | 7 of 7 | 4 | redrawn, in the app, review pending |
-| `u.c02.english.bemr1.ch12` | Little Drops of Water | 7 of 7 | 3 | redrawn, in the app, review pending |
-| `u.c02.english.bemr1.ch13` | We are all Indians | 10 of 10 | 7 | redrawn, in the app, review pending |
-| `u.c02.hindi.bhsr1.ch01` | Neema's Dadi | 3 of 3 | 2 | redrawn, in the app, review pending |
-| `u.c02.hindi.bhsr1.ch02` | Home | 3 of 3 | 2 | redrawn, in the app, review pending |
-| `u.c02.hindi.bhsr1.ch03` | Mala's Silver Anklet | 3 of 3 | 2 | redrawn, in the app, review pending |
-| `u.c02.hindi.bhsr1.ch04` | Mother | 3 of 3 | 2 | redrawn, in the app, review pending |
-| `u.c02.hindi.bhsr1.ch05` | Thathu and I | 3 of 3 | 2 | redrawn, in the app, review pending |
-| `u.c02.hindi.bhsr1.ch06` | The Ant | 3 of 3 | 2 | redrawn, in the app, review pending |
-| `u.c02.hindi.bhsr1.ch07` | Tillu Goes to School | 3 of 3 | 2 | redrawn, in the app, review pending |
-| `u.c02.hindi.bhsr1.ch08` | Three Friends | 3 of 3 | 2 | redrawn, in the app, review pending |
-| `u.c02.hindi.bhsr1.ch09` | The World is Colourful | 3 of 3 | 2 | redrawn, in the app, review pending |
-| `u.c02.hindi.bhsr1.ch10` | Who? | 3 of 3 | 2 | redrawn, in the app, review pending |
-| `u.c02.hindi.bhsr1.ch11` | Purple Jojo | 3 of 3 | 2 | redrawn, in the app, review pending |
-| `u.c02.hindi.bhsr1.ch12` | Toshia's Dream | 3 of 3 | 2 | redrawn, in the app, review pending |
-| `u.c02.hindi.bhsr1.ch13` | The Pond | 3 of 3 | 1 | redrawn, in the app, review pending |
-| `u.c02.hindi.bhsr1.ch14` | The Seed | 3 of 3 | 2 | redrawn, in the app, review pending |
-| `u.c02.hindi.bhsr1.ch15` | The Farmer | 3 of 3 | 2 | redrawn, in the app, review pending |
-| `u.c02.hindi.bhsr1.ch16` | The Radish | 4 of 4 | 3 | redrawn, in the app, review pending |
-| `u.c02.hindi.bhsr1.ch17` | Rain and Frog | 4 of 4 | 3 | redrawn, in the app, review pending |
-| `u.c02.hindi.bhsr1.ch18` | Friendship of Lion and Mouse | 6 of 6 | 5 | redrawn, in the app, review pending |
-| `u.c02.hindi.bhsr1.ch19` | Out | 4 of 4 | 3 | redrawn, in the app, review pending |
-| `u.c02.hindi.bhsr1.ch20` | Hide and Seek | 4 of 4 | 3 | redrawn, in the app, review pending |
-| `u.c02.hindi.bhsr1.ch21` | The Elephant was Riding a Bicycle | 3 of 3 | 2 | redrawn, in the app, review pending |
-| `u.c02.hindi.bhsr1.ch22` | Four Directions | 3 of 3 | 3 | redrawn, in the app, review pending |
-| `u.c02.hindi.bhsr1.ch23` | Uncle Moon | 4 of 4 | 3 | redrawn, in the app, review pending |
-| `u.c02.hindi.bhsr1.ch24` | Uncle Moon Fell in the Pond | 3 of 3 | 3 | redrawn, in the app, review pending |
-| `u.c02.hindi.bhsr1.ch25` | The Biggest Umbrella | 4 of 4 | 3 | redrawn, in the app, review pending |
-| `u.c02.hindi.bhsr1.ch26` | Clouds | 5 of 5 | 4 | redrawn, in the app, review pending |
-| `u.c02.mathematics.bejm1.ch01` | A Day at the Beach (Counting in Groups) | 5 of 5 | 5 | redrawn, in the app, review pending |
-| `u.c02.mathematics.bejm1.ch02` | Shapes Around Us (3D Shapes) | 4 of 4 | 3 | redrawn, in the app, review pending |
-| `u.c02.mathematics.bejm1.ch03` | Fun with Numbers (Numbers 1 to 100) | 5 of 5 | 4 | redrawn, in the app, review pending |
-| `u.c02.mathematics.bejm1.ch04` | Shadow Story (Togalu) (2D Shapes) | 5 of 5 | 3 | redrawn, in the app, review pending |
-| `u.c02.mathematics.bejm1.ch05` | Playing with Lines (Orientations of a line) | 4 of 4 | 2 | redrawn, in the app, review pending |
-| `u.c02.mathematics.bejm1.ch06` | Decoration for Festival (Addition and Subtraction) | 5 of 5 | 5 | redrawn, in the app, review pending |
-| `u.c02.mathematics.bejm1.ch07` | Rani’s Gift (Measurement) | 5 of 5 | 3 | redrawn, in the app, review pending |
-| `u.c02.mathematics.bejm1.ch08` | Grouping and Sharing (Multiplication and Division) | 5 of 5 | 5 | redrawn, in the app, review pending |
-| `u.c02.mathematics.bejm1.ch09` | Which Season is it? (Measurement of Time) | 6 of 6 | 3 | redrawn, in the app, review pending |
-| `u.c02.mathematics.bejm1.ch10` | Fun at the Fair (Money) | 7 of 7 | 5 | redrawn, in the app, review pending |
-| `u.c02.mathematics.bejm1.ch11` | Data Handling | 5 of 5 | 4 | redrawn, in the app, review pending |
+| `u.c02.english.bemr1.ch01` | My Bicycle | 7 of 7 | 4 | redrawn, reviewed, in the app |
+| `u.c02.english.bemr1.ch02` | Picture Reading | 6 of 6 | 3 | redrawn, reviewed, in the app |
+| `u.c02.english.bemr1.ch03` | It is Fun | 7 of 7 | 3 | redrawn, reviewed, in the app |
+| `u.c02.english.bemr1.ch04` | Seeing without Seeing | 6 of 6 | 5 | redrawn, reviewed, in the app |
+| `u.c02.english.bemr1.ch05` | Come Back Soon | 6 of 6 | 3 | redrawn, reviewed, in the app |
+| `u.c02.english.bemr1.ch06` | Between Home and School | 8 of 8 | 4 | redrawn, reviewed, in the app |
+| `u.c02.english.bemr1.ch07` | This is My Town | 8 of 8 | 4 | redrawn, reviewed, in the app |
+| `u.c02.english.bemr1.ch08` | A Show of Clouds | 5 of 5 | 4 | redrawn, reviewed, in the app |
+| `u.c02.english.bemr1.ch09` | My Name | 7 of 7 | 5 | redrawn, reviewed, in the app |
+| `u.c02.english.bemr1.ch10` | The Crow | 6 of 6 | 4 | redrawn, reviewed, in the app |
+| `u.c02.english.bemr1.ch11` | The Smart Monkey | 7 of 7 | 4 | redrawn, reviewed, in the app |
+| `u.c02.english.bemr1.ch12` | Little Drops of Water | 7 of 7 | 3 | redrawn, reviewed, in the app |
+| `u.c02.english.bemr1.ch13` | We are all Indians | 10 of 10 | 7 | redrawn, reviewed, in the app |
+| `u.c02.hindi.bhsr1.ch01` | Neema's Dadi | 3 of 3 | 2 | redrawn, reviewed, in the app |
+| `u.c02.hindi.bhsr1.ch02` | Home | 3 of 3 | 2 | redrawn, reviewed, in the app |
+| `u.c02.hindi.bhsr1.ch03` | Mala's Silver Anklet | 3 of 3 | 2 | redrawn, reviewed, in the app |
+| `u.c02.hindi.bhsr1.ch04` | Mother | 3 of 3 | 2 | redrawn, reviewed, in the app |
+| `u.c02.hindi.bhsr1.ch05` | Thathu and I | 3 of 3 | 2 | redrawn, reviewed, in the app |
+| `u.c02.hindi.bhsr1.ch06` | The Ant | 3 of 3 | 2 | redrawn, reviewed, in the app |
+| `u.c02.hindi.bhsr1.ch07` | Tillu Goes to School | 3 of 3 | 2 | redrawn, reviewed, in the app |
+| `u.c02.hindi.bhsr1.ch08` | Three Friends | 3 of 3 | 2 | redrawn, reviewed, in the app |
+| `u.c02.hindi.bhsr1.ch09` | The World is Colourful | 3 of 3 | 2 | redrawn, reviewed, in the app |
+| `u.c02.hindi.bhsr1.ch10` | Who? | 3 of 3 | 2 | redrawn, reviewed, in the app |
+| `u.c02.hindi.bhsr1.ch11` | Purple Jojo | 3 of 3 | 2 | redrawn, reviewed, in the app |
+| `u.c02.hindi.bhsr1.ch12` | Toshia's Dream | 3 of 3 | 2 | redrawn, reviewed, in the app |
+| `u.c02.hindi.bhsr1.ch13` | The Pond | 3 of 3 | 1 | redrawn, reviewed, in the app |
+| `u.c02.hindi.bhsr1.ch14` | The Seed | 3 of 3 | 2 | redrawn, reviewed, in the app |
+| `u.c02.hindi.bhsr1.ch15` | The Farmer | 3 of 3 | 2 | redrawn, reviewed, in the app |
+| `u.c02.hindi.bhsr1.ch16` | The Radish | 4 of 4 | 3 | redrawn, reviewed, in the app |
+| `u.c02.hindi.bhsr1.ch17` | Rain and Frog | 4 of 4 | 3 | redrawn, reviewed, in the app |
+| `u.c02.hindi.bhsr1.ch18` | Friendship of Lion and Mouse | 6 of 6 | 5 | redrawn, reviewed, in the app |
+| `u.c02.hindi.bhsr1.ch19` | Out | 4 of 4 | 3 | redrawn, reviewed, in the app |
+| `u.c02.hindi.bhsr1.ch20` | Hide and Seek | 4 of 4 | 3 | redrawn, reviewed, in the app |
+| `u.c02.hindi.bhsr1.ch21` | The Elephant was Riding a Bicycle | 3 of 3 | 2 | redrawn, reviewed, in the app |
+| `u.c02.hindi.bhsr1.ch22` | Four Directions | 3 of 3 | 3 | redrawn, reviewed, in the app |
+| `u.c02.hindi.bhsr1.ch23` | Uncle Moon | 4 of 4 | 3 | redrawn, reviewed, in the app |
+| `u.c02.hindi.bhsr1.ch24` | Uncle Moon Fell in the Pond | 3 of 3 | 3 | redrawn, reviewed, in the app |
+| `u.c02.hindi.bhsr1.ch25` | The Biggest Umbrella | 4 of 4 | 3 | redrawn, reviewed, in the app |
+| `u.c02.hindi.bhsr1.ch26` | Clouds | 5 of 5 | 4 | redrawn, reviewed, in the app |
+| `u.c02.mathematics.bejm1.ch01` | A Day at the Beach (Counting in Groups) | 5 of 5 | 5 | redrawn, reviewed, in the app |
+| `u.c02.mathematics.bejm1.ch02` | Shapes Around Us (3D Shapes) | 4 of 4 | 3 | redrawn, reviewed, in the app |
+| `u.c02.mathematics.bejm1.ch03` | Fun with Numbers (Numbers 1 to 100) | 5 of 5 | 4 | redrawn, reviewed, in the app |
+| `u.c02.mathematics.bejm1.ch04` | Shadow Story (Togalu) (2D Shapes) | 5 of 5 | 3 | redrawn, reviewed, in the app |
+| `u.c02.mathematics.bejm1.ch05` | Playing with Lines (Orientations of a line) | 4 of 4 | 2 | redrawn, reviewed, in the app |
+| `u.c02.mathematics.bejm1.ch06` | Decoration for Festival (Addition and Subtraction) | 5 of 5 | 5 | redrawn, reviewed, in the app |
+| `u.c02.mathematics.bejm1.ch07` | Rani’s Gift (Measurement) | 5 of 5 | 3 | redrawn, reviewed, in the app |
+| `u.c02.mathematics.bejm1.ch08` | Grouping and Sharing (Multiplication and Division) | 5 of 5 | 5 | redrawn, reviewed, in the app |
+| `u.c02.mathematics.bejm1.ch09` | Which Season is it? (Measurement of Time) | 6 of 6 | 3 | redrawn, reviewed, in the app |
+| `u.c02.mathematics.bejm1.ch10` | Fun at the Fair (Money) | 7 of 7 | 5 | redrawn, reviewed, in the app |
+| `u.c02.mathematics.bejm1.ch11` | Data Handling | 5 of 5 | 4 | redrawn, reviewed, in the app |
 | `u.c03.english.cesa1.ch01` | Colours | 0 of 6 | - | not started |
 | `u.c03.english.cesa1.ch02` | Badal and Moti | 0 of 6 | - | not started |
 | `u.c03.english.cesa1.ch03` | Best Friends | 0 of 5 | - | not started |

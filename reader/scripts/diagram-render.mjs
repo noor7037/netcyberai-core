@@ -11,6 +11,6 @@ const html = `<body style="margin:0;background:#fff;display:flex;flex-wrap:wrap;
 const b = await chromium.launch();
 const pg = await b.newPage({ viewport: { width: sheet ? 752 : 376, height: 400 }, deviceScaleFactor: sheet ? 1 : 2 });
 await pg.setContent(html);
-await pg.waitForTimeout(Number(process.env.WAIT ?? 5200));
+await pg.waitForTimeout(Number(process.env.WAIT ?? 14000));
 await pg.screenshot({ path: out, fullPage: true });
 await b.close();
