@@ -24,7 +24,7 @@ describe('a new login from Control', () => {
 
   it('names the first thing that is wrong', () => {
     expect(parseNewLogin({ ...good, name: 'P' })).toEqual({ ok: false, problem: 'name' });
-    expect(parseNewLogin({ ...good, name: 'Priya 1234 5678 9012' })).toEqual({ ok: false, problem: 'name' });
+    expect(parseNewLogin({ ...good, name: 'Priya 2345 6789 0124' })).toEqual({ ok: false, problem: 'name' });
     expect(parseNewLogin({ ...good, role: 'super_admin' })).toEqual({ ok: false, problem: 'role' });
     expect(parseNewLogin({ ...good, role: 'parent' })).toEqual({ ok: false, problem: 'guardian' });
     expect(parseNewLogin({ ...good, role: 'parent', parentId: 'not-an-id' })).toEqual({ ok: false, problem: 'guardian' });
