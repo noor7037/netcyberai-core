@@ -4598,7 +4598,7 @@ const dataCheckScreen = async (page) => {
   await page.selectOption('#dc-show', 'untyped');
   const aarav = page.locator(`[data-dc-child="${DC_AARAV}"]`);
   await aarav.locator('[data-dc-type]').click();
-  await page.locator(`#dc-name-${DC_AARAV}`).fill('1234 5678 9012');
+  await page.locator(`#dc-name-${DC_AARAV}`).fill('2345 6789 0124');
   const refused = (await aarav.locator('[data-dc-save]').isDisabled()) && (await aarav.getByText('That looks like an Aadhaar number').count()) > 0;
   await page.locator(`#dc-name-${DC_AARAV}`).fill('Aarav Example');
   await page.locator(`#dc-dob-${DC_AARAV}`).fill('2015-04-18');

@@ -205,7 +205,7 @@ describe('a file on a record', () => {
 
   it('is refused when it shows an Aadhaar card or number, and is never stored (C232 part A)', async () => {
     const before = store().files.size;
-    ocr.text = 'Government of India  Aadhaar  1234 5678 9012';
+    ocr.text = 'Government of India  Aadhaar  2345 6789 0124';
     const r = await call(principal, studentAdd, studentUrl(S5), { studentId: S5 }, 'POST', form(JPEG, 'guardian.jpg', { kind: 'government_id', title: 'Guardian ID' }));
     expect([r.status, r.body.code]).toEqual([400, 'upload_aadhaar_number']);
     ocr.text = 'Unique Identification Authority of India  Government of India  Enrolment No';
@@ -221,7 +221,7 @@ describe('a file on a record', () => {
     expect([r.status, r.body.code]).toEqual([400, 'choose_one']);
     r = await call(principal, staffAdd, staffUrl(TEACHER), p, 'POST', form(PNG, 'a.png', { kind: 'other', title: '   ' }));
     expect([r.status, r.body.code]).toEqual([400, 'required']);
-    r = await call(principal, staffAdd, staffUrl(TEACHER), p, 'POST', form(PNG, 'a.png', { kind: 'other', title: 'ID 1234 5678 9012' }));
+    r = await call(principal, staffAdd, staffUrl(TEACHER), p, 'POST', form(PNG, 'a.png', { kind: 'other', title: 'ID 2345 6789 0124' }));
     expect([r.status, r.body.code]).toEqual([400, 'title_aadhaar']);
     r = await call(principal, staffAdd, staffUrl(TEACHER), p, 'POST', form(PNG, 'a.png', { kind: 'other', title: 'x'.repeat(121) }));
     expect([r.status, r.body.code]).toEqual([400, 'title_too_long']);
@@ -415,7 +415,7 @@ describe('the database’s own rules on the papers', () => {
   });
 
   it('keeps an Aadhaar number out of a name, a file outside the school’s prefix out, and numbers the versions itself', async () => {
-    expect(await fails(principal, `insert into record_documents (school_id, staff_user_id, kind, title, created_by) values ($1, $2, 'other', 'No 123456789012', $3)`, [A, TEACHER, PRINCIPAL])).toMatch(/check constraint/);
+    expect(await fails(principal, `insert into record_documents (school_id, staff_user_id, kind, title, created_by) values ($1, $2, 'other', 'No 234567890124', $3)`, [A, TEACHER, PRINCIPAL])).toMatch(/check constraint/);
     expect(await fails(principal, `insert into record_document_versions (school_id, document_id, version_no, storage_key, mime_type, size_bytes, uploaded_by) values ($1, $2, 1, $3, 'image/png', 10, $4)`, [A, staffDoc, `${B}/record-documents/x.png`, PRINCIPAL])).toMatch(/check constraint/);
     expect(await fails(principal, `insert into record_document_versions (school_id, document_id, version_no, storage_key, mime_type, size_bytes, uploaded_by) values ($1, $2, 1, $3, 'image/webp', 10, $4)`, [A, staffDoc, `${A}/record-documents/y.webp`, PRINCIPAL])).toMatch(/check constraint/);
     expect(await fails(principal, `insert into record_document_versions (school_id, document_id, version_no, storage_key, mime_type, size_bytes, uploaded_by) values ($1, $2, 1, $3, 'image/png', 10485761, $4)`, [A, staffDoc, `${A}/record-documents/z.png`, PRINCIPAL])).toMatch(/check constraint/);

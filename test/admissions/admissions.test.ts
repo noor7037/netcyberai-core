@@ -48,10 +48,10 @@ describe('one rule in one place: the website tracker’s', () => {
   });
 
   it('an Aadhaar number is found in any text by the one rule of P7 (C224); a ten-digit phone number or a date is not', () => {
-    for (const s of ['1234 5678 9012', 'called, number 2345-6789-0123', '234567890123', 'Aadhaar:234567890123.']) expect(hasAadhaarNumber(s), s).toBe(true);
+    for (const s of ['2345 6789 0124', 'called, number 2345-6789-0124', '234567890124', 'Aadhaar:234567890124.']) expect(hasAadhaarNumber(s), s).toBe(true);
     for (const s of ['98765 43210', 'Visit on 14/10/2026', 'Class 5-A, roll 12']) expect(hasAadhaarNumber(s), s).toBe(false);
     // Whatever the website's own check calls an Aadhaar number, this finds too.
-    for (const s of ['1234 5678 9012', '1234-5678-9012', '123456789012']) expect(looksLikeAadhaarNumber(s) && hasAadhaarNumber(s), s).toBe(true);
+    for (const s of ['2345 6789 0124', '2345-6789-0124', '234567890124']) expect(looksLikeAadhaarNumber(s) && hasAadhaarNumber(s), s).toBe(true);
   });
 });
 
@@ -200,16 +200,16 @@ describe('on the real schema', () => {
     });
 
     it('never an Aadhaar number: refused by the app and by the database, in every field', async () => {
-      expect(await as(admin, (c) => recordEnquiry(c, actor(admin), { ...base, note: 'Aadhaar 2345 6789 0123 shown' }))).toEqual({ ok: false, reason: 'aadhaar' });
-      expect(await as(admin, (c) => recordEnquiry(c, actor(admin), { ...base, nextStep: 'check 234567890123' }))).toEqual({ ok: false, reason: 'aadhaar' });
-      expect(await as(admin, (c) => recordEnquiry(c, actor(admin), { ...base, phone: '234567890123' }))).toEqual({ ok: false, reason: 'phone' });
-      expect(await as(admin, (c) => recordOutcome(c, actor(admin), RIYA, { note: 'her number is 2345-6789-0123', stage: 'visited', nextStep: '', followUp: '', reason: '' }))).toEqual({ ok: false, reason: 'aadhaar' });
-      expect(await as(admin, (c) => admit(c, actor(admin), RIYA, { admissionNo: '234567890123', dob: null }))).toEqual({ ok: false, reason: 'admission_no' });
+      expect(await as(admin, (c) => recordEnquiry(c, actor(admin), { ...base, note: 'Aadhaar 2345 6789 0124 shown' }))).toEqual({ ok: false, reason: 'aadhaar' });
+      expect(await as(admin, (c) => recordEnquiry(c, actor(admin), { ...base, nextStep: 'check 234567890124' }))).toEqual({ ok: false, reason: 'aadhaar' });
+      expect(await as(admin, (c) => recordEnquiry(c, actor(admin), { ...base, phone: '234567890124' }))).toEqual({ ok: false, reason: 'phone' });
+      expect(await as(admin, (c) => recordOutcome(c, actor(admin), RIYA, { note: 'her number is 2345-6789-0124', stage: 'visited', nextStep: '', followUp: '', reason: '' }))).toEqual({ ok: false, reason: 'aadhaar' });
+      expect(await as(admin, (c) => admit(c, actor(admin), RIYA, { admissionNo: '234567890124', dob: null }))).toEqual({ ok: false, reason: 'admission_no' });
       const insert = (col: string, v: string) => as(admin, (c) => c.query(`insert into admission_enquiries (school_id, child_name, guardian_name, phone, class_id, source, owner_id, created_by, ${col}) values ($1, 'Z', 'Z', '+919800000109', $2, 'other', $3, $3, $4)`, [A, C5A, ADMIN, v]));
-      await expect(insert('next_step', 'card 2345 6789 0123')).rejects.toThrow(/check constraint/);
-      await expect(as(admin, (c) => c.query(`insert into admission_enquiries (school_id, child_name, guardian_name, phone, class_id, source, owner_id, created_by) values ($1, 'Z 234567890123', 'Z', '+919800000109', $2, 'other', $3, $3)`, [A, C5A, ADMIN]))).rejects.toThrow(/check constraint/);
-      await expect(as(admin, (c) => c.query(`insert into admission_enquiries (school_id, child_name, guardian_name, phone, class_id, source, owner_id, created_by) values ($1, 'Z', 'Z', '234567890123', $2, 'other', $3, $3)`, [A, C5A, ADMIN]))).rejects.toThrow(/check constraint/);
-      await expect(as(admin, (c) => c.query(`insert into admission_events (school_id, enquiry_id, kind, note, by_user) values ($1, $2, 'note', 'number 2345 6789 0123', $3)`, [A, RIYA, ADMIN]))).rejects.toThrow(/check constraint/);
+      await expect(insert('next_step', 'card 2345 6789 0124')).rejects.toThrow(/check constraint/);
+      await expect(as(admin, (c) => c.query(`insert into admission_enquiries (school_id, child_name, guardian_name, phone, class_id, source, owner_id, created_by) values ($1, 'Z 234567890124', 'Z', '+919800000109', $2, 'other', $3, $3)`, [A, C5A, ADMIN]))).rejects.toThrow(/check constraint/);
+      await expect(as(admin, (c) => c.query(`insert into admission_enquiries (school_id, child_name, guardian_name, phone, class_id, source, owner_id, created_by) values ($1, 'Z', 'Z', '234567890124', $2, 'other', $3, $3)`, [A, C5A, ADMIN]))).rejects.toThrow(/check constraint/);
+      await expect(as(admin, (c) => c.query(`insert into admission_events (school_id, enquiry_id, kind, note, by_user) values ($1, $2, 'note', 'number 2345 6789 0124', $3)`, [A, RIYA, ADMIN]))).rejects.toThrow(/check constraint/);
       expect((await db.pg.query(`select count(*)::int as n from admission_events where note ~ '[0-9]{4}[ -]?[0-9]{4}[ -]?[0-9]{4}'`)).rows[0].n).toBe(0);
     });
   });

@@ -86,7 +86,7 @@ describe('reading what the office typed', () => {
     expect(readQualification(base, TODAY)).toEqual({ ok: true, value: q({ stage: 'primary', subjects: 'EVS', degree: 'B.A.', professional_qualification: 'D.El.Ed', tet_type: 'CTET', tet_paper: 'I', tet_certificate_date: '2023-01-20' }) });
   });
   it('refuses an Aadhaar number, a field too long, a stage or a TET it does not know, a date that is not real, and dates in the wrong order', () => {
-    expect(readQualification({ ...base, degree: 'B.A. 1234 5678 9012' }, TODAY)).toMatchObject({ ok: false, reason: 'aadhaar', field: 'degree' });
+    expect(readQualification({ ...base, degree: 'B.A. 2345 6789 0124' }, TODAY)).toMatchObject({ ok: false, reason: 'aadhaar', field: 'degree' });
     expect(readQualification({ ...base, subjects: 'x'.repeat(81) }, TODAY)).toMatchObject({ ok: false, reason: 'length' });
     expect(readQualification({ ...base, stage: 'college' }, TODAY)).toMatchObject({ ok: false, reason: 'stage' });
     expect(readQualification({ ...base, tet_type: 'HTET' }, TODAY)).toMatchObject({ ok: false, reason: 'tet_type' });
@@ -115,7 +115,7 @@ describe('the CSV import, in the tool’s own columns', () => {
   it('reads a file the website tool writes, matches each teacher with one account by name, and says why a line is left out', () => {
     const teachers: Teacher[] = [
       { ...blankTeacher(), name: 'asha example', stage: 'primary', degree: 'B.A.', tetType: 'CTET', tetPaper: 'I', tetDate: '2022-03-01' },
-      { ...blankTeacher(), name: 'Bina Example', stage: 'upper', degree: 'B.Sc. 1234 5678 9012' },
+      { ...blankTeacher(), name: 'Bina Example', stage: 'upper', degree: 'B.Sc. 2345 6789 0124' },
       { ...blankTeacher(), name: 'Ravi Example', stage: 'senior' },
       { ...blankTeacher(), name: 'Nobody Here', stage: 'pre' },
       { ...blankTeacher(), name: 'Tara Example', stage: 'pre' },

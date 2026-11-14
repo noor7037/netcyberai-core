@@ -158,7 +158,7 @@ describe('the online enquiry form (W21-M1)', () => {
     expect((await send(formKeyFor(A), { ...noHoneypot, childName: 'Bot' })).body).toEqual({ error: 'rejected' });
     expect((await send(formKeyFor(A), null, undefined, JSON.stringify({ ...family, childName: 'x'.repeat(3000) }))).status).toBe(413);
     expect((await send(formKeyFor(A), { ...family, phone: '12345' })).body.code).toBe('phone');
-    expect((await send(formKeyFor(A), { ...family, childName: 'Ira 1234 5678 9012' })).body.code).toBe('aadhaar');
+    expect((await send(formKeyFor(A), { ...family, childName: 'Ira 2345 6789 0124' })).body.code).toBe('aadhaar');
     expect((await send(formKeyFor(A), { ...family, childName: 'A name far too long for the first name field of the form' })).body.code).toBe('child_name');
     expect((await send(formKeyFor(A), { ...family, classId: C1A.replace(/1$/, '9') })).status).toBe(404);
     // Refused before the limits: none of those counted against the family.

@@ -175,7 +175,7 @@ describe('A3: a prefix and a starting number per school, set once', () => {
     expect(readNumbering({ prefix: '', startAt: '12' })).toEqual({ ok: true, value: { prefix: null, startAt: 12 } });
     expect(readNumbering({ prefix: 'SVM/26', startAt: 1 })).toEqual({ ok: false, reason: 'prefix' });
     expect(readNumbering({ prefix: 'ABCDEFGHIJKLM', startAt: 1 })).toEqual({ ok: false, reason: 'prefix' });
-    expect(readNumbering({ prefix: '123456789012', startAt: 1 })).toEqual({ ok: false, reason: 'aadhaar' });
+    expect(readNumbering({ prefix: '234567890124', startAt: 1 })).toEqual({ ok: false, reason: 'aadhaar' });
     expect(readNumbering({ prefix: null, startAt: 0 })).toEqual({ ok: false, reason: 'start' });
     expect(readNumbering({ prefix: null, startAt: 2.5 })).toEqual({ ok: false, reason: 'start' });
     expect(readNumbering({ prefix: null, startAt: 1_000_000 })).toEqual({ ok: false, reason: 'start' });

@@ -52,8 +52,8 @@ describe('reading a recording', () => {
     expect(leastSeconds(wav, 'audio/wav')).toBe(4);
   });
   it('takes an Aadhaar-like number out and keeps the words to 500 characters', () => {
-    expect(cleanTranscript('My number is 2345 6789 0123, what is a fraction?')).toBe('My number is , what is a fraction?');
-    expect(cleanTranscript('What is २३४५६७८९०१२३ times two?')).toBe('What is times two?');
+    expect(cleanTranscript('My number is 2345 6789 0124, what is a fraction?')).toBe('My number is , what is a fraction?');
+    expect(cleanTranscript('What is २३४५६७८९०१२४ times two?')).toBe('What is times two?');
     expect(cleanTranscript('What is 12 times 14?')).toBe('What is 12 times 14?');
     expect(cleanTranscript('a '.repeat(400)).length).toBeLessThanOrEqual(500);
     // A longer number cut at the end must not leave twelve digits behind.
@@ -207,7 +207,7 @@ describe('the voice route', () => {
   });
 
   it('an Aadhaar-like number heard is taken out before it is returned', async () => {
-    reply = heard('My Aadhaar is 2345 6789 0123. What is a prime number?');
+    reply = heard('My Aadhaar is 2345 6789 0124. What is a prime number?');
     const r = await post({ audio: B64, seconds: 4 });
     expect(r.body.text).toBe('My Aadhaar is . What is a prime number?');
     expect(JSON.stringify(r.body)).not.toMatch(/\d{4}\s?\d{4}\s?\d{4}/);
@@ -234,7 +234,7 @@ describe('the voice route', () => {
   });
 
   it('no words heard (or only an ID number): the seconds are given back', async () => {
-    reply = heard('  2345 6789 0123 ');
+    reply = heard('  2345 6789 0124 ');
     expect(await post({ audio: B64, seconds: 9 })).toEqual({ status: 422, body: { error: 'not_heard', left: 120, maxSeconds: 60 } });
     expect(await seconds()).toBe(0);
   });

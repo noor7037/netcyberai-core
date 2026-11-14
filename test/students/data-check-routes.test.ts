@@ -155,7 +155,7 @@ describe('POST /api/app/students/data-check/[studentId]', () => {
     ] as const;
     for (const [id, body] of refused) expect(await child(principal, id, body), JSON.stringify(body)).toMatchObject({ status: 400, body: { code: 'not_sent_properly' } });
     // What the rules refuse is said by its own code.
-    expect(await child(principal, FARAH, { action: 'printed', name: 'Farah 1234 5678 9012', dob: '', gender: '' })).toMatchObject({ status: 400, body: { code: 'aadhaar_number' } });
+    expect(await child(principal, FARAH, { action: 'printed', name: 'Farah 2345 6789 0124', dob: '', gender: '' })).toMatchObject({ status: 400, body: { code: 'aadhaar_number' } });
     expect(await child(principal, FARAH, { action: 'printed', name: '', dob: '2099-01-01', gender: '' })).toMatchObject({ status: 400, body: { code: 'dob' } });
     expect(await child(principal, FARAH, { action: 'printed', name: '', dob: '', gender: 'other' })).toMatchObject({ status: 400, body: { code: 'gender' } });
     expect(await child(principal, FARAH, { action: 'ask', parentId: G_FARAH, fields: ['name'] })).toMatchObject({ status: 409, body: { code: 'not_typed' } });
@@ -197,7 +197,7 @@ describe('POST /api/app/students/data-check/requests/[requestId]', () => {
       ['not-an-id', { action: 'close', text: 'x' }],
     ] as const;
     for (const [id, body] of refused) expect(await request(principal, id, body), JSON.stringify(body)).toMatchObject({ status: 400, body: { code: 'not_sent_properly' } });
-    expect(await request(principal, open, { action: 'note', text: 'Number 1234 5678 9012' })).toMatchObject({ status: 400, body: { code: 'aadhaar_number' } });
+    expect(await request(principal, open, { action: 'note', text: 'Number 2345 6789 0124' })).toMatchObject({ status: 400, body: { code: 'aadhaar_number' } });
     expect(await request(principal, open, { action: 'correct', value: '2099-01-01' })).toMatchObject({ status: 400, body: { code: 'value' } });
     expect((await request(principal, u(98), { action: 'close', text: 'x' })).status).toBe(404);
     expect((await owner(`select outcome from data_check_requests where request_id = $1`, [open]))[0].outcome).toBeNull();

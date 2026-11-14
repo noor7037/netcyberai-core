@@ -114,7 +114,7 @@ describe('W21-M7: a guardian asks for a certificate for their own child', () => 
     // Another family's child, a kind that does not exist, an Aadhaar-shaped reason, a reason too long, the same ask twice.
     expect(await requestFamilyCertificate(claims(ACC2), L2, { studentId: S1, kind: 'bonafide', reason: 'x' })).toEqual({ ok: false, reason: 'not_found' });
     expect(await requestFamilyCertificate(claims(ACC2), L2, { studentId: S2, kind: 'passport', reason: 'x' })).toEqual({ ok: false, reason: 'kind' });
-    expect(await requestFamilyCertificate(claims(ACC2), L2, { studentId: S2, kind: 'study', reason: 'My number 1234 5678 9012' })).toEqual({ ok: false, reason: 'aadhaar' });
+    expect(await requestFamilyCertificate(claims(ACC2), L2, { studentId: S2, kind: 'study', reason: 'My number 2345 6789 0124' })).toEqual({ ok: false, reason: 'aadhaar' });
     expect(await requestFamilyCertificate(claims(ACC2), L2, { studentId: S2, kind: 'study', reason: 'x'.repeat(91) })).toEqual({ ok: false, reason: 'reason' });
     expect(await requestFamilyCertificate(claims(ACC2), L2, { studentId: S2, kind: 'bonafide', reason: ' opening a bank account ' })).toEqual({ ok: false, reason: 'duplicate' });
     // The request is audited with ids and the kind, and no words of the family.
