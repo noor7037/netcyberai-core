@@ -3,6 +3,7 @@ import { canAdvance, engageMode, guidedSteps, readSoundOn, SFX, writeSoundOn } f
 import { DRAW_TEMPLATES, toStudioTemplate } from '@/lib/family/draw-templates';
 import { DRAW_STUDIO_KEYS } from '@/lib/family/draw-words';
 import { t } from '@/lib/i18n';
+import { STICKERS, STICKER_GROUPS } from '@/lib/family/sketch-stickers';
 
 // The phone's storage, in memory (the runner has no browser).
 const store = new Map<string, string>();
@@ -49,6 +50,20 @@ describe('engagement mode (C517)', () => {
     for (const k of DRAW_STUDIO_KEYS.filter((k) => k.startsWith('fam.draw.g.'))) {
       expect(t('en', k)).not.toBe(k);
       expect(t('hi', k)).not.toBe(k);
+    }
+  });
+});
+
+describe('the sticker groups (C517)', () => {
+  it('has about a hundred stickers in ten groups, each sticker in exactly one, each group named in both languages', () => {
+    expect(STICKERS.length).toBeGreaterThanOrEqual(100);
+    expect(STICKER_GROUPS.length).toBe(10);
+    const grouped = STICKER_GROUPS.flatMap((g) => g.stickers);
+    expect(new Set(grouped).size).toBe(grouped.length);
+    expect([...grouped].sort()).toEqual(STICKERS.map((s) => s.id).sort());
+    for (const g of STICKER_GROUPS) {
+      expect(g.stickers.length).toBeGreaterThanOrEqual(8);
+      for (const lang of ['en', 'hi'] as const) expect(t(lang, `fam.sketch.group.${g.id}` as never)).not.toBe(`fam.sketch.group.${g.id}`);
     }
   });
 });

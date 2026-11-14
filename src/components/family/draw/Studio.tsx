@@ -59,7 +59,7 @@ import { sanitiseOutline, outlineDataUrl } from '@/lib/family/draw-svg';
 import { canStartNew, dayKey } from '@/lib/family/draw-daily';
 import { singleFlight } from '@/lib/family/draw-send';
 import type { StudioEvent, StudioOpen } from '@/lib/family/draw-contract';
-import { STICKERS, STICKER_BOX, STICKER_LINE, stickerById } from '@/lib/family/sketch-stickers';
+import { STICKER_BOX, STICKER_GROUPS, STICKER_LINE, stickerById } from '@/lib/family/sketch-stickers';
 import { bumpDayCount, deleteDrawing, listDrawings, putDrawing, readDayCount, type SavedDrawing } from '@/lib/family/sketch-store';
 import { TUTOR_FILE_MAX_BYTES, TUTOR_TEXT_MAX } from '@/lib/family/tutor-shape';
 import { lessonColors } from '@/lib/design-tokens';
@@ -201,6 +201,8 @@ export function Studio({ w, onSend, onClose, question: initialQuestion = '', ope
   const [placing, setPlacing] = useState<string | null>(null);
   const [wheel, setWheelState] = useState<Wheel>(null);
   const [note, setNote] = useState<Note>(null);
+  // C517: the sticker tray's open group.
+  const [stickerGroup, setStickerGroup] = useState(STICKER_GROUPS[0].id);
   // C517: engagement mode. Sound is on unless turned off on this phone; a template is walked one step at a time, and the
   // next step opens only after the child drew on this one.
   const [soundOn, setSoundOn] = useState(true);
@@ -679,6 +681,8 @@ export function Studio({ w, onSend, onClose, question: initialQuestion = '', ope
 
   const pickSticker = (id: string) => {
     if (!doc) return;
+    sfx('tap');
+    say(w[`fam.sketch.sticker.${id}`] ?? '');
     setPanel(null);
     const key = newId();
     const px = Math.min(STICKER_START * doc.scale, Math.min(doc.width, doc.height) * 0.6);
@@ -1185,8 +1189,26 @@ export function Studio({ w, onSend, onClose, question: initialQuestion = '', ope
             {panel === 'stickers' && (
               <div className="flex flex-col gap-2">
                 <p className="text-sm font-bold text-ink">{w['fam.sketch.stickers']}</p>
+                <div role="group" aria-label={w['fam.sketch.stickers']} data-sketch-sticker-groups className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1 [scrollbar-width:none]">
+                  {STICKER_GROUPS.map((g) => (
+                    <button
+                      key={g.id}
+                      type="button"
+                      data-sketch-sticker-group={g.id}
+                      aria-pressed={stickerGroup === g.id}
+                      onClick={() => {
+                        setStickerGroup(g.id);
+                        sfx('tap');
+                        say(w[`fam.sketch.group.${g.id}`] ?? '');
+                      }}
+                      className={`draw-tool fam-press shrink-0 whitespace-nowrap px-3 text-sm font-bold ${stickerGroup === g.id ? 'bg-art-butter text-ink' : 'bg-white text-ink ring-1 ring-ink/15'}`}
+                    >
+                      {w[`fam.sketch.group.${g.id}`]}
+                    </button>
+                  ))}
+                </div>
                 <div className="grid grid-cols-5 gap-2 sm:grid-cols-8">
-                  {STICKERS.map((s) => (
+                  {(STICKER_GROUPS.find((g) => g.id === stickerGroup)?.stickers ?? []).map((id) => stickerById(id)!).filter(Boolean).map((s) => (
                     <button key={s.id} type="button" data-sketch-sticker={s.id} aria-label={w[`fam.sketch.sticker.${s.id}`]} title={w[`fam.sketch.sticker.${s.id}`]} onClick={() => pickSticker(s.id)} className="draw-tool fam-press h-14 w-full bg-art-lavender text-ink">
                       <svg aria-hidden="true" viewBox={`0 0 ${STICKER_BOX} ${STICKER_BOX}`} className="h-10 w-10" strokeWidth={STICKER_LINE} strokeLinecap="round" strokeLinejoin="round">
                         {s.parts.map((part, i) => (

@@ -1,6 +1,6 @@
 import type { MessageKey } from '@/lib/i18n';
 import { FREEHAND_TOOLS, PAPERS, SHAPE_TOOLS, SKETCH_PALETTE } from './sketch';
-import { STICKERS } from './sketch-stickers';
+import { STICKERS, STICKER_GROUPS } from './sketch-stickers';
 import { DRAW_STUDIO_KEYS } from './draw-words';
 
 // The drawing studio's words and the photo sheet's (C510), picked for the tutor window (TUTOR_KEYS).
@@ -22,6 +22,7 @@ export const SKETCH_KEYS: MessageKey[] = [
   ...PAPERS.map((p) => `fam.sketch.paper.${p}` as MessageKey),
   ...SKETCH_PALETTE.map((c) => `fam.sketch.colour.${c.id}` as MessageKey),
   ...STICKERS.map((s) => `fam.sketch.sticker.${s.id}` as MessageKey),
+  ...STICKER_GROUPS.map((g) => `fam.sketch.group.${g.id}` as MessageKey),
   // C513: the art table's own words (stickers as objects, templates, the colour wheel, the daily limit, send errors).
   ...DRAW_STUDIO_KEYS,
 ];
