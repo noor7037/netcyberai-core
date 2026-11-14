@@ -75,12 +75,13 @@ export function HealthView({ health, lang }: { health: Health; lang: Lang }) {
           </div>
         )}
       </AppCard>
-      <div className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-5">
+      <div className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-6">
         <StatTile icon="calendar" tone="royal" label={t(lang, 'control.health.plansDone7d')} value={`${count(c.plansDone7d)} / ${count(c.plansBuilt7d)}`} attrs={{ 'data-count': 'plans_done_7d' }} />
         <StatTile icon="student" tone="emerald" label={t(lang, 'control.health.childrenPlanDone7d')} value={count(c.childrenPlanDone7d)} attrs={{ 'data-count': 'children_plan_done_7d' }} />
         <StatTile icon="reports" tone="amber" label={t(lang, 'control.health.revisitsDue')} value={count(c.revisitsDue)} attrs={{ 'data-count': 'revisits_due' }} />
         <StatTile icon="exams" tone="grape" label={t(lang, 'control.health.photoQuestions7d')} value={count(c.photoQuestions7d)} attrs={{ 'data-count': 'photo_questions_7d' }} />
         <StatTile icon="pulse" tone="violet" label={t(lang, 'control.health.videoSearchesToday')} value={`${count(health.video.used)} / ${count(health.video.limit)}`} attrs={{ 'data-count': 'video_searches_today' }} />
+        <StatTile icon="student" tone="royal" label={t(lang, 'control.health.videoClicks7d')} value={count(health.videoClicks.week)} attrs={{ 'data-count': 'video_clicks_7d' }} />
       </div>
     </div>
   );

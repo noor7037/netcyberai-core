@@ -27,7 +27,8 @@ export type Alert =
   | { kind: 'key_test_failed'; providerId: string }
   | { kind: 'video_quota'; used: number; limit: number }
   | { kind: 'review_queue'; oldestDays: number; targetDays: number };
-export type Health = { day: string; profiles: ProfileHealth[]; failedKeys: string[]; video: { used: number; limit: number }; queue: { oldestDays: number | null; targetDays: number }; counts: M2Counts; alerts: Alert[] };
+// C522: `videoClicks`, the children's "See video" taps over the seven India days to `day` (totals only).
+export type Health = { day: string; profiles: ProfileHealth[]; failedKeys: string[]; video: { used: number; limit: number }; videoClicks: { week: number; children: number }; queue: { oldestDays: number | null; targetDays: number }; counts: M2Counts; alerts: Alert[] };
 
 const num = (v: unknown) => {
   const n = Number(v ?? 0);
@@ -52,7 +53,7 @@ export function readM2Counts(raw: unknown): M2Counts {
 
 // The alerts, from today's numbers and Control's thresholds. A profile's failures alert only past a minimum of
 // requests, so one failed call in the morning is not an alarm.
-export function alertsOf(h: Omit<Health, 'alerts' | 'day' | 'counts' | 'queue'> & { queue?: Health['queue'] }, t: Thresholds): Alert[] {
+export function alertsOf(h: Omit<Health, 'alerts' | 'day' | 'counts' | 'queue' | 'videoClicks'> & { queue?: Health['queue'] }, t: Thresholds): Alert[] {
   const out: Alert[] = [];
   for (const p of h.profiles) {
     if (p.requestsToday >= t.aiMinRequests && p.failuresToday / p.requestsToday >= t.aiFailureShare) out.push({ kind: 'ai_failures', profileId: p.profileId, failures: p.failuresToday, requests: p.requestsToday });
@@ -83,6 +84,7 @@ export async function loadHealth(db: Sql, day: string = indiaDate()): Promise<He
   const keys = await db.query(`select provider_id from control.ai_credentials where test_ok = false order by provider_id`);
   const searches = await db.query(`select searches from content.video_searches where day = $1::date`, [day]);
   const counts = await db.query(`select family.m2_counts() as c`);
+  const clicks = ((await db.query(`select family.video_click_summary($1::date) as s`, [day])).rows[0]?.s ?? {}) as Record<string, unknown>;
   const base = {
     profiles: usage.rows.map((r: Record<string, unknown>) => ({
       profileId: String(r.profile_id),
@@ -101,5 +103,5 @@ export async function loadHealth(db: Sql, day: string = indiaDate()): Promise<He
     aiMinRequests: await settingNumber(db, 'control.alert.ai_min_requests', 10),
     videoQuotaShare: await settingNumber(db, 'control.alert.video_quota_share', 0.8),
   };
-  return { day, ...base, counts: readM2Counts(counts.rows[0]?.c), alerts: alertsOf(base, thresholds) };
+  return { day, ...base, videoClicks: { week: num(clicks.week), children: num(clicks.childrenWeek) }, counts: readM2Counts(counts.rows[0]?.c), alerts: alertsOf(base, thresholds) };
 }

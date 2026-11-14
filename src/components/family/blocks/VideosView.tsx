@@ -10,5 +10,17 @@ import { VideoList } from '../VideoPicks';
 // thumbnail. A block the server has not filled is never drawn.
 export function VideosView({ b, w, saver = false }: { b: Videos; w: Words; saver?: boolean }) {
   if (!b.items?.length) return null;
-  return <VideoList w={w} saver={saver} tag="videos" videos={b.items.map((v) => ({ videoId: v.videoId, title: v.title, channelTitle: v.channel, durationS: v.seconds, startS: 0 }))} />;
+  // C522: a block that names its cache line gets "See video" (the tap counted on the server) and the fallback note.
+  const see = b.topicKey && b.lang ? { topicKey: b.topicKey, lang: b.lang } : undefined;
+  return (
+    <VideoList
+      w={w}
+      saver={saver}
+      tag="videos"
+      see={see}
+      wanted={see ? b.wanted : undefined}
+      title={see ? w['fam.video.answer'] : undefined}
+      videos={b.items.map((v) => ({ videoId: v.videoId, title: v.title, channelTitle: v.channel, durationS: v.seconds, startS: v.start ?? 0 }))}
+    />
+  );
 }
