@@ -145,36 +145,46 @@
     {
      "type": "diagram",
      "title": {
-      "en": "Nested Places: Town to Basket",
-      "hi": "एक के अंदर एक जगहें: कस्बे से टोकरी तक"
+      "en": "This is my town: look closer and closer",
+      "hi": "यह है मेरा कस्बा: और पास से देखो"
      },
-     "caption": {
-      "en": "Town contains street, street has house, house has room, room has bed, bed has basket.",
-      "hi": "कस्बे में सड़क है, सड़क पर घर, घर में कमरा, कमरे में बिस्तर और बिस्तर पर टोकरी।"
-     },
-     "alt": {
-      "en": "Diagram showing town, street, house, and basket nested together.",
-      "hi": "कस्बा, सड़क, घर और टोकरी को एक साथ दिखाता चित्र।"
-     },
-     "svg": "<svg viewBox=\"0 0 360 240\" width=\"100%\" height=\"100%\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"600\" height=\"320\" fill=\"#f0fdf4\" rx=\"16\"/>\n  <rect x=\"30\" y=\"30\" width=\"540\" height=\"260\" rx=\"16\" fill=\"#bbf7d0\" stroke=\"#16a34a\" stroke-width=\"3\"/>\n  <text x=\"50\" y=\"65\" font-size=\"20\" font-weight=\"bold\" fill=\"#14532d\" data-t=\"lbl_town\">Town</text>\n  <rect x=\"70\" y=\"80\" width=\"460\" height=\"190\" rx=\"14\" fill=\"#fed7aa\" stroke=\"#ea580c\" stroke-width=\"3\"/>\n  <text x=\"90\" y=\"115\" font-size=\"18\" font-weight=\"bold\" fill=\"#7c2d12\" data-t=\"lbl_street\">Street</text>\n  <rect x=\"110\" y=\"130\" width=\"380\" height=\"125\" rx=\"12\" fill=\"#e0e7ff\" stroke=\"#4f46e5\" stroke-width=\"3\"/>\n  <text x=\"130\" y=\"165\" font-size=\"17\" font-weight=\"bold\" fill=\"#312e81\" data-t=\"lbl_house\">House</text>\n  <rect x=\"250\" y=\"180\" width=\"200\" height=\"60\" rx=\"10\" fill=\"#fef08a\" stroke=\"#ca8a04\" stroke-width=\"2\"/>\n  <text x=\"270\" y=\"218\" font-size=\"16\" font-weight=\"bold\" fill=\"#713f12\" data-t=\"lbl_basket\">Basket</text>\n</svg>",
+     "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 224\"><style>@keyframes t01-in{from{opacity:0}to{opacity:1}}@keyframes t01-bob{0%,100%{transform:none}50%{transform:translateY(-3px)}}@keyframes t01-sway{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}@keyframes t01-slide{0%,100%{transform:translateX(-4px)}50%{transform:translateX(4px)}}@keyframes t01-pulse{0%,100%{opacity:.35}50%{opacity:1}}@keyframes t01-pop{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}.t01-c{animation:t01-in .6s both}.t01-bob{animation:t01-bob 2.8s ease-in-out infinite}.t01-sway{animation:t01-sway 3s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 90%}.t01-slide{animation:t01-slide 3.2s ease-in-out infinite}.t01-pulse{animation:t01-pulse 2.8s ease-in-out infinite}.t01-pop{animation:t01-pop 3s ease-in-out infinite;transform-box:fill-box;transform-origin:center}</style><rect width=\"360\" height=\"224\" rx=\"18\" fill=\"#FBF7EF\"/><g transform=\"translate(8,8)\"><g class=\"t01-c\" style=\"animation-delay:0.0s\"><rect x=\"0\" y=\"0\" width=\"168\" height=\"100\" rx=\"14\" fill=\"#FFFDF9\" stroke=\"#E7E1D6\" stroke-width=\"1.3\"/><g transform=\"translate(84,39)\"><g transform=\"translate(-22,-8) scale(0.5)\"><rect x=\"-18\" y=\"-2\" width=\"36\" height=\"26\" rx=\"2\" fill=\"#FBF1D3\" stroke=\"#1C1B1A\" stroke-width=\"2.5\"/><path d=\"M-23 -2L0 -22L23 -2z\" fill=\"#C0392B\" stroke=\"#1C1B1A\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><rect x=\"-5\" y=\"8\" width=\"10\" height=\"16\" rx=\"1\" fill=\"#0369A1\"/><rect x=\"8\" y=\"4\" width=\"7\" height=\"7\" rx=\"0\" fill=\"#E3EEF9\" stroke=\"#1C1B1A\" stroke-width=\"1.5\"/></g><g transform=\"translate(0,-14) scale(0.5)\"><rect x=\"-18\" y=\"-2\" width=\"36\" height=\"26\" rx=\"2\" fill=\"#FBF1D3\" stroke=\"#1C1B1A\" stroke-width=\"2.5\"/><path d=\"M-23 -2L0 -22L23 -2z\" fill=\"#C0392B\" stroke=\"#1C1B1A\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><rect x=\"-5\" y=\"8\" width=\"10\" height=\"16\" rx=\"1\" fill=\"#0369A1\"/><rect x=\"8\" y=\"4\" width=\"7\" height=\"7\" rx=\"0\" fill=\"#E3EEF9\" stroke=\"#1C1B1A\" stroke-width=\"1.5\"/></g><g transform=\"translate(22,-8) scale(0.5)\"><rect x=\"-18\" y=\"-2\" width=\"36\" height=\"26\" rx=\"2\" fill=\"#FBF1D3\" stroke=\"#1C1B1A\" stroke-width=\"2.5\"/><path d=\"M-23 -2L0 -22L23 -2z\" fill=\"#C0392B\" stroke=\"#1C1B1A\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><rect x=\"-5\" y=\"8\" width=\"10\" height=\"16\" rx=\"1\" fill=\"#0369A1\"/><rect x=\"8\" y=\"4\" width=\"7\" height=\"7\" rx=\"0\" fill=\"#E3EEF9\" stroke=\"#1C1B1A\" stroke-width=\"1.5\"/></g><g transform=\"translate(-12,14) scale(0.5)\"><rect x=\"-18\" y=\"-2\" width=\"36\" height=\"26\" rx=\"2\" fill=\"#FBF1D3\" stroke=\"#1C1B1A\" stroke-width=\"2.5\"/><path d=\"M-23 -2L0 -22L23 -2z\" fill=\"#C0392B\" stroke=\"#1C1B1A\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><rect x=\"-5\" y=\"8\" width=\"10\" height=\"16\" rx=\"1\" fill=\"#0369A1\"/><rect x=\"8\" y=\"4\" width=\"7\" height=\"7\" rx=\"0\" fill=\"#E3EEF9\" stroke=\"#1C1B1A\" stroke-width=\"1.5\"/></g><g transform=\"translate(12,14) scale(0.5)\"><rect x=\"-18\" y=\"-2\" width=\"36\" height=\"26\" rx=\"2\" fill=\"#FBF1D3\" stroke=\"#1C1B1A\" stroke-width=\"2.5\"/><path d=\"M-23 -2L0 -22L23 -2z\" fill=\"#C0392B\" stroke=\"#1C1B1A\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><rect x=\"-5\" y=\"8\" width=\"10\" height=\"16\" rx=\"1\" fill=\"#0369A1\"/><rect x=\"8\" y=\"4\" width=\"7\" height=\"7\" rx=\"0\" fill=\"#E3EEF9\" stroke=\"#1C1B1A\" stroke-width=\"1.5\"/></g></g><circle cx=\"14\" cy=\"14\" r=\"10\" fill=\"#E8702A\"/><text x=\"14\" y=\"19\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#fff\">1</text><text data-t=\"town\" x=\"84\" y=\"90\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#1C1B1A\"></text></g><path d=\"M168 42l8 8-8 8\" fill=\"none\" stroke=\"#E8702A\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g><g transform=\"translate(184,8)\"><g class=\"t01-c\" style=\"animation-delay:0.6s\"><rect x=\"0\" y=\"0\" width=\"168\" height=\"100\" rx=\"14\" fill=\"#FFFDF9\" stroke=\"#E7E1D6\" stroke-width=\"1.3\"/><g transform=\"translate(84,39)\"><path d=\"M-34 20h68\" fill=\"none\" stroke=\"#9A9A9A\" stroke-width=\"8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><g transform=\"translate(-24,0) scale(0.6)\"><rect x=\"-18\" y=\"-2\" width=\"36\" height=\"26\" rx=\"2\" fill=\"#FBF1D3\" stroke=\"#1C1B1A\" stroke-width=\"2.5\"/><path d=\"M-23 -2L0 -22L23 -2z\" fill=\"#C0392B\" stroke=\"#1C1B1A\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><rect x=\"-5\" y=\"8\" width=\"10\" height=\"16\" rx=\"1\" fill=\"#0369A1\"/><rect x=\"8\" y=\"4\" width=\"7\" height=\"7\" rx=\"0\" fill=\"#E3EEF9\" stroke=\"#1C1B1A\" stroke-width=\"1.5\"/></g><g transform=\"translate(0,0) scale(0.6)\"><rect x=\"-18\" y=\"-2\" width=\"36\" height=\"26\" rx=\"2\" fill=\"#FBF1D3\" stroke=\"#1C1B1A\" stroke-width=\"2.5\"/><path d=\"M-23 -2L0 -22L23 -2z\" fill=\"#C0392B\" stroke=\"#1C1B1A\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><rect x=\"-5\" y=\"8\" width=\"10\" height=\"16\" rx=\"1\" fill=\"#0369A1\"/><rect x=\"8\" y=\"4\" width=\"7\" height=\"7\" rx=\"0\" fill=\"#E3EEF9\" stroke=\"#1C1B1A\" stroke-width=\"1.5\"/></g><g transform=\"translate(24,0) scale(0.6)\"><rect x=\"-18\" y=\"-2\" width=\"36\" height=\"26\" rx=\"2\" fill=\"#FBF1D3\" stroke=\"#1C1B1A\" stroke-width=\"2.5\"/><path d=\"M-23 -2L0 -22L23 -2z\" fill=\"#C0392B\" stroke=\"#1C1B1A\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><rect x=\"-5\" y=\"8\" width=\"10\" height=\"16\" rx=\"1\" fill=\"#0369A1\"/><rect x=\"8\" y=\"4\" width=\"7\" height=\"7\" rx=\"0\" fill=\"#E3EEF9\" stroke=\"#1C1B1A\" stroke-width=\"1.5\"/></g></g><circle cx=\"14\" cy=\"14\" r=\"10\" fill=\"#E8702A\"/><text x=\"14\" y=\"19\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#fff\">2</text><text data-t=\"street\" x=\"84\" y=\"90\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#1C1B1A\"></text></g></g><g transform=\"translate(8,116)\"><g class=\"t01-c\" style=\"animation-delay:1.2s\"><rect x=\"0\" y=\"0\" width=\"168\" height=\"100\" rx=\"14\" fill=\"#FFFDF9\" stroke=\"#E7E1D6\" stroke-width=\"1.3\"/><g transform=\"translate(84,39)\"><g transform=\"translate(0,2) scale(1.1)\"><rect x=\"-18\" y=\"-2\" width=\"36\" height=\"26\" rx=\"2\" fill=\"#FBF1D3\" stroke=\"#1C1B1A\" stroke-width=\"2.5\"/><path d=\"M-23 -2L0 -22L23 -2z\" fill=\"#C0392B\" stroke=\"#1C1B1A\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><rect x=\"-5\" y=\"8\" width=\"10\" height=\"16\" rx=\"1\" fill=\"#0369A1\"/><rect x=\"8\" y=\"4\" width=\"7\" height=\"7\" rx=\"0\" fill=\"#E3EEF9\" stroke=\"#1C1B1A\" stroke-width=\"1.5\"/></g></g><circle cx=\"14\" cy=\"14\" r=\"10\" fill=\"#E8702A\"/><text x=\"14\" y=\"19\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#fff\">3</text><text data-t=\"house\" x=\"84\" y=\"90\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#1C1B1A\"></text></g><path d=\"M168 42l8 8-8 8\" fill=\"none\" stroke=\"#E8702A\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g><g transform=\"translate(184,116)\"><g class=\"t01-c\" style=\"animation-delay:1.8s\"><rect x=\"0\" y=\"0\" width=\"168\" height=\"100\" rx=\"14\" fill=\"#FFFDF9\" stroke=\"#E7E1D6\" stroke-width=\"1.3\"/><g transform=\"translate(84,39)\"><g transform=\"translate(0,4) scale(1.3)\"><path d=\"M-18 -4h36l-5 22h-26z\" fill=\"#D69E2E\" stroke=\"#1C1B1A\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M-14 6h28M-18 -4q18-18 36 0\" fill=\"none\" stroke=\"#1C1B1A\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></g><circle cx=\"14\" cy=\"14\" r=\"10\" fill=\"#E8702A\"/><text x=\"14\" y=\"19\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#fff\">4</text><text data-t=\"basket\" x=\"84\" y=\"90\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#1C1B1A\"></text></g></g></svg>",
      "texts": {
-      "lbl_town": {
+      "town": {
        "en": "town",
        "hi": "कस्बा"
       },
-      "lbl_street": {
+      "street": {
        "en": "street",
        "hi": "सड़क"
       },
-      "lbl_house": {
+      "house": {
        "en": "house",
        "hi": "घर"
       },
-      "lbl_basket": {
+      "basket": {
        "en": "basket",
        "hi": "टोकरी"
       }
-     }
+     },
+     "caption": {
+      "en": "A town has streets, a street has houses, and a house has a basket.",
+      "hi": "कस्बे में सड़कें हैं, सड़क पर घर हैं और घर में टोकरी है।"
+     },
+     "alt": {
+      "en": "Four pictures going closer: a town of many small houses; a street with a row of houses; one house; a basket.",
+      "hi": "और पास जाते चार चित्र: छोटे घरों वाला कस्बा; घरों की कतार वाली सड़क; एक घर; एक टोकरी।"
+     },
+     "notice": [
+      {
+       "en": "A town is big and has many streets.",
+       "hi": "कस्बा बड़ा होता है और उसमें कई सड़कें होती हैं।"
+      },
+      {
+       "en": "A street has many houses, and a house has a basket in it.",
+       "hi": "सड़क पर कई घर होते हैं और घर में एक टोकरी होती है।"
+      }
+     ]
     },
     {
      "type": "guided",
@@ -472,36 +482,50 @@
     {
      "type": "diagram",
      "title": {
-      "en": "Position Words in Action",
-      "hi": "स्थान शब्दों का चित्र"
+      "en": "Where is it? In or on",
+      "hi": "यह कहाँ है? अंदर या ऊपर"
      },
-     "caption": {
-      "en": "Flowers are in the box; a cat sits on the roof in this picture.",
-      "hi": "डिब्बे के अंदर फूल हैं (in); छत के ऊपर बिल्ली है (on)।"
-     },
-     "alt": {
-      "en": "Illustration showing in, on, there, and picture in context.",
-      "hi": "In, on, there और picture को दिखाता रेखाचित्र।"
-     },
-     "svg": "<svg viewBox=\"0 0 360 240\" width=\"100%\" height=\"100%\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"600\" height=\"300\" fill=\"#fefce8\" rx=\"16\"/>\n  <rect x=\"50\" y=\"50\" width=\"220\" height=\"200\" rx=\"12\" fill=\"#dbeafe\" stroke=\"#2563eb\" stroke-width=\"3\"/>\n  <circle cx=\"160\" cy=\"150\" r=\"40\" fill=\"#60a5fa\"/>\n  <text x=\"145\" y=\"157\" font-size=\"22\" font-weight=\"bold\" fill=\"#1e3a8a\" data-t=\"lbl_in\">in</text>\n  <rect x=\"330\" y=\"150\" width=\"220\" height=\"100\" rx=\"8\" fill=\"#fde68a\" stroke=\"#d97706\" stroke-width=\"3\"/>\n  <circle cx=\"440\" cy=\"110\" r=\"30\" fill=\"#f59e0b\"/>\n  <text x=\"425\" y=\"117\" font-size=\"20\" font-weight=\"bold\" fill=\"#78350f\" data-t=\"lbl_on\">on</text>\n  <text x=\"130\" y=\"275\" font-size=\"16\" fill=\"#1e293b\" data-t=\"lbl_picture\">picture</text>\n  <text x=\"410\" y=\"275\" font-size=\"16\" fill=\"#1e293b\" data-t=\"lbl_there\">there</text>\n</svg>",
+     "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 224\"><style>@keyframes t02-in{from{opacity:0}to{opacity:1}}@keyframes t02-bob{0%,100%{transform:none}50%{transform:translateY(-3px)}}@keyframes t02-sway{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}@keyframes t02-slide{0%,100%{transform:translateX(-4px)}50%{transform:translateX(4px)}}@keyframes t02-pulse{0%,100%{opacity:.35}50%{opacity:1}}@keyframes t02-pop{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}.t02-c{animation:t02-in .6s both}.t02-bob{animation:t02-bob 2.8s ease-in-out infinite}.t02-sway{animation:t02-sway 3s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 90%}.t02-slide{animation:t02-slide 3.2s ease-in-out infinite}.t02-pulse{animation:t02-pulse 2.8s ease-in-out infinite}.t02-pop{animation:t02-pop 3s ease-in-out infinite;transform-box:fill-box;transform-origin:center}</style><rect width=\"360\" height=\"224\" rx=\"18\" fill=\"#FBF7EF\"/><g transform=\"translate(8,8)\"><g class=\"t02-c\" style=\"animation-delay:0.0s\"><rect x=\"0\" y=\"0\" width=\"168\" height=\"100\" rx=\"14\" fill=\"#FFFDF9\" stroke=\"#E7E1D6\" stroke-width=\"1.3\"/><g transform=\"translate(84,39)\"><g transform=\"translate(0,4) scale(1.3)\"><path d=\"M-18 -4h36l-5 22h-26z\" fill=\"#D69E2E\" stroke=\"#1C1B1A\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M-14 6h28M-18 -4q18-18 36 0\" fill=\"none\" stroke=\"#1C1B1A\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g><path d=\"M-18 -4h36\" fill=\"none\" stroke=\"#E8702A\" stroke-width=\"0\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><g class=\"t02-bob\"><circle cx=\"0\" cy=\"-8\" r=\"8\" fill=\"#E8702A\" stroke=\"#1C1B1A\" stroke-width=\"2\"/></g><path d=\"M-18 -4h4M14 -4h4\" fill=\"none\" stroke=\"#1C1B1A\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g><text data-t=\"in\" x=\"84\" y=\"90\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#1C1B1A\"></text></g></g><g transform=\"translate(184,8)\"><g class=\"t02-c\" style=\"animation-delay:0.6s\"><rect x=\"0\" y=\"0\" width=\"168\" height=\"100\" rx=\"14\" fill=\"#FFFDF9\" stroke=\"#E7E1D6\" stroke-width=\"1.3\"/><g transform=\"translate(84,39)\"><g transform=\"translate(0,8) scale(1.5)\"><rect x=\"-22\" y=\"0\" width=\"44\" height=\"5\" rx=\"0\" fill=\"#8B5A2B\"/><path d=\"M-18 5L-18 22\" fill=\"none\" stroke=\"#8B5A2B\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M18 5L18 22\" fill=\"none\" stroke=\"#8B5A2B\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><rect x=\"-12\" y=\"-14\" width=\"24\" height=\"14\" rx=\"2\" fill=\"#E8702A\" stroke=\"#1C1B1A\" stroke-width=\"2\"/><path d=\"M0 -14L0 0\" fill=\"none\" stroke=\"#1C1B1A\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></g><text data-t=\"on\" x=\"84\" y=\"90\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#1C1B1A\"></text></g></g><g transform=\"translate(8,116)\"><g class=\"t02-c\" style=\"animation-delay:1.2s\"><rect x=\"0\" y=\"0\" width=\"168\" height=\"100\" rx=\"14\" fill=\"#FFFDF9\" stroke=\"#E7E1D6\" stroke-width=\"1.3\"/><g transform=\"translate(84,39)\"><g transform=\"translate(-14,2) scale(0.8)\"><circle cx=\"0\" cy=\"-18\" r=\"7\" fill=\"#E8B98A\" stroke=\"#1C1B1A\" stroke-width=\"1.8\"/><path d=\"M0 -11L0 6\" fill=\"none\" stroke=\"#0369A1\" stroke-width=\"5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M0 6L-5 22\" fill=\"none\" stroke=\"#1C1B1A\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M0 6L5 22\" fill=\"none\" stroke=\"#1C1B1A\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M0 -8L-9 2\" fill=\"none\" stroke=\"#0369A1\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M0 -8L10 -16\" fill=\"none\" stroke=\"#0369A1\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g><g transform=\"translate(18,0) scale(0.6)\"><rect x=\"-18\" y=\"-2\" width=\"36\" height=\"26\" rx=\"2\" fill=\"#FBF1D3\" stroke=\"#1C1B1A\" stroke-width=\"2.5\"/><path d=\"M-23 -2L0 -22L23 -2z\" fill=\"#C0392B\" stroke=\"#1C1B1A\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><rect x=\"-5\" y=\"8\" width=\"10\" height=\"16\" rx=\"1\" fill=\"#0369A1\"/><rect x=\"8\" y=\"4\" width=\"7\" height=\"7\" rx=\"0\" fill=\"#E3EEF9\" stroke=\"#1C1B1A\" stroke-width=\"1.5\"/></g><path d=\"M0 -14h12\" fill=\"none\" stroke=\"#E8702A\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><g class=\"t02-slide\"><path d=\"M12 -14l-4-4M12 -14l-4 4\" fill=\"none\" stroke=\"#E8702A\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></g><text data-t=\"there\" x=\"84\" y=\"90\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#1C1B1A\"></text></g></g><g transform=\"translate(184,116)\"><g class=\"t02-c\" style=\"animation-delay:1.8s\"><rect x=\"0\" y=\"0\" width=\"168\" height=\"100\" rx=\"14\" fill=\"#FFFDF9\" stroke=\"#E7E1D6\" stroke-width=\"1.3\"/><g transform=\"translate(84,39)\"><g transform=\"translate(0,2) scale(1.1)\"><rect x=\"-24\" y=\"-18\" width=\"48\" height=\"38\" rx=\"3\" fill=\"#FFFDF9\" stroke=\"#1C1B1A\" stroke-width=\"3\"/><path d=\"M-22 16L-8 -4L4 16z\" fill=\"#0F766E\"/><path d=\"M-2 16L12 2L22 16z\" fill=\"#4CAF50\"/><circle cx=\"12\" cy=\"-8\" r=\"5\" fill=\"#E8702A\"/></g></g><text data-t=\"picture\" x=\"84\" y=\"90\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#1C1B1A\"></text></g></g></svg>",
      "texts": {
-      "lbl_in": {
+      "in": {
        "en": "in",
        "hi": "अंदर"
       },
-      "lbl_on": {
+      "on": {
        "en": "on",
        "hi": "ऊपर"
       },
-      "lbl_there": {
+      "there": {
        "en": "there",
        "hi": "वहाँ"
       },
-      "lbl_picture": {
+      "picture": {
        "en": "picture",
        "hi": "चित्र"
       }
-     }
+     },
+     "caption": {
+      "en": "In means inside; on means touching the top. A picture can show it and there tells where.",
+      "hi": "in का मतलब अंदर और on का मतलब ऊपर टिका हुआ। वहाँ बताता है कि चीज़ कहाँ है।"
+     },
+     "alt": {
+      "en": "A ball in a basket; a book on a table; a child pointing to a house over there; and a picture frame.",
+      "hi": "टोकरी के अंदर गेंद; मेज़ के ऊपर किताब; वहाँ घर की ओर इशारा करता बच्चा; और तस्वीर का चौखटा।"
+     },
+     "notice": [
+      {
+       "en": "In: the ball is inside the basket.",
+       "hi": "in: गेंद टोकरी के अंदर है।"
+      },
+      {
+       "en": "On: the book sits on top of the table.",
+       "hi": "on: किताब मेज़ के ऊपर रखी है।"
+      },
+      {
+       "en": "There: it is far from us, over there.",
+       "hi": "वहाँ: वह हमसे दूर, उस तरफ़ है।"
+      }
+     ]
     },
     {
      "type": "guided",
@@ -791,36 +815,46 @@
     {
      "type": "diagram",
      "title": {
-      "en": "Parts of a Postal Address",
-      "hi": "डाक के पते के हिस्से"
+      "en": "My home address",
+      "hi": "मेरे घर का पता"
      },
-     "caption": {
-      "en": "Envelope showing name, address, state, and pincode.",
-      "hi": "लिफ़ाफ़े पर नाम, पता, राज्य और पिन कोड।"
-     },
-     "alt": {
-      "en": "Illustration of a letter envelope with address lines.",
-      "hi": "पते की पंक्तियों वाला डाक लिफ़ाफ़ा।"
-     },
-     "svg": "<svg viewBox=\"0 0 360 240\" width=\"100%\" height=\"100%\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"600\" height=\"300\" fill=\"#f8fafc\" rx=\"16\"/>\n  <rect x=\"60\" y=\"40\" width=\"480\" height=\"220\" rx=\"12\" fill=\"#fff\" stroke=\"#94a3b8\" stroke-width=\"3\"/>\n  <rect x=\"440\" y=\"60\" width=\"70\" height=\"80\" rx=\"4\" fill=\"#fee2e2\" stroke=\"#ef4444\" stroke-width=\"2\"/>\n  <text x=\"460\" y=\"105\" font-size=\"16\" fill=\"#991b1b\">STAMP</text>\n  <text x=\"100\" y=\"100\" font-size=\"18\" font-weight=\"bold\" fill=\"#1e293b\" data-t=\"lbl_name\">name: Tina</text>\n  <text x=\"100\" y=\"140\" font-size=\"16\" fill=\"#334155\" data-t=\"lbl_address\">address: 12 Rose Street</text>\n  <text x=\"100\" y=\"180\" font-size=\"16\" fill=\"#334155\" data-t=\"lbl_state\">state: Punjab</text>\n  <rect x=\"100\" y=\"210\" width=\"160\" height=\"35\" rx=\"6\" fill=\"#ecfdf5\" stroke=\"#10b981\" stroke-width=\"2\"/>\n  <text x=\"110\" y=\"234\" font-size=\"16\" font-weight=\"bold\" fill=\"#065f46\" data-t=\"lbl_pincode\">pincode: 144001</text>\n</svg>",
+     "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 224\"><style>@keyframes t03-in{from{opacity:0}to{opacity:1}}@keyframes t03-bob{0%,100%{transform:none}50%{transform:translateY(-3px)}}@keyframes t03-sway{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}@keyframes t03-slide{0%,100%{transform:translateX(-4px)}50%{transform:translateX(4px)}}@keyframes t03-pulse{0%,100%{opacity:.35}50%{opacity:1}}@keyframes t03-pop{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}.t03-c{animation:t03-in .6s both}.t03-bob{animation:t03-bob 2.8s ease-in-out infinite}.t03-sway{animation:t03-sway 3s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 90%}.t03-slide{animation:t03-slide 3.2s ease-in-out infinite}.t03-pulse{animation:t03-pulse 2.8s ease-in-out infinite}.t03-pop{animation:t03-pop 3s ease-in-out infinite;transform-box:fill-box;transform-origin:center}</style><rect width=\"360\" height=\"224\" rx=\"18\" fill=\"#FBF7EF\"/><g transform=\"translate(8,8)\"><g class=\"t03-c\" style=\"animation-delay:0.0s\"><rect x=\"0\" y=\"0\" width=\"168\" height=\"100\" rx=\"14\" fill=\"#FFFDF9\" stroke=\"#E7E1D6\" stroke-width=\"1.3\"/><g transform=\"translate(84,39)\"><rect x=\"-26\" y=\"-14\" width=\"52\" height=\"32\" rx=\"4\" fill=\"#FFFDF9\" stroke=\"#0369A1\" stroke-width=\"2.5\"/><circle cx=\"-14\" cy=\"-2\" r=\"6\" fill=\"#E8B98A\" stroke=\"#1C1B1A\" stroke-width=\"1.5\"/><path d=\"M-4 -4h22M-4 4h16\" fill=\"none\" stroke=\"#0369A1\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g><text data-t=\"name\" x=\"84\" y=\"90\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#1C1B1A\"></text></g></g><g transform=\"translate(184,8)\"><g class=\"t03-c\" style=\"animation-delay:0.6s\"><rect x=\"0\" y=\"0\" width=\"168\" height=\"100\" rx=\"14\" fill=\"#FFFDF9\" stroke=\"#E7E1D6\" stroke-width=\"1.3\"/><g transform=\"translate(84,39)\"><rect x=\"-26\" y=\"-16\" width=\"52\" height=\"36\" rx=\"3\" fill=\"#FBF1D3\" stroke=\"#1C1B1A\" stroke-width=\"2\"/><g transform=\"translate(0,2) scale(0.6)\"><rect x=\"-18\" y=\"-2\" width=\"36\" height=\"26\" rx=\"2\" fill=\"#FBF1D3\" stroke=\"#1C1B1A\" stroke-width=\"2.5\"/><path d=\"M-23 -2L0 -22L23 -2z\" fill=\"#C0392B\" stroke=\"#1C1B1A\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><rect x=\"-5\" y=\"8\" width=\"10\" height=\"16\" rx=\"1\" fill=\"#0369A1\"/><rect x=\"8\" y=\"4\" width=\"7\" height=\"7\" rx=\"0\" fill=\"#E3EEF9\" stroke=\"#1C1B1A\" stroke-width=\"1.5\"/></g><path d=\"M14 -22q-8 0-8 8 0 6 8 14 8-8 8-14 0-8-8-8z\" fill=\"#E8702A\" stroke=\"#1C1B1A\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g><text data-t=\"address\" x=\"84\" y=\"90\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#1C1B1A\"></text></g></g><g transform=\"translate(8,116)\"><g class=\"t03-c\" style=\"animation-delay:1.2s\"><rect x=\"0\" y=\"0\" width=\"168\" height=\"100\" rx=\"14\" fill=\"#FFFDF9\" stroke=\"#E7E1D6\" stroke-width=\"1.3\"/><g transform=\"translate(84,39)\"><rect x=\"-33.0\" y=\"-8\" width=\"10\" height=\"16\" rx=\"2\" fill=\"#FBF1D3\" stroke=\"#E8702A\" stroke-width=\"2\"/><rect x=\"-21.5\" y=\"-8\" width=\"10\" height=\"16\" rx=\"2\" fill=\"#FBF1D3\" stroke=\"#E8702A\" stroke-width=\"2\"/><rect x=\"-10.0\" y=\"-8\" width=\"10\" height=\"16\" rx=\"2\" fill=\"#FBF1D3\" stroke=\"#E8702A\" stroke-width=\"2\"/><rect x=\"1.5\" y=\"-8\" width=\"10\" height=\"16\" rx=\"2\" fill=\"#FBF1D3\" stroke=\"#E8702A\" stroke-width=\"2\"/><rect x=\"13.0\" y=\"-8\" width=\"10\" height=\"16\" rx=\"2\" fill=\"#FBF1D3\" stroke=\"#E8702A\" stroke-width=\"2\"/><rect x=\"24.5\" y=\"-8\" width=\"10\" height=\"16\" rx=\"2\" fill=\"#FBF1D3\" stroke=\"#E8702A\" stroke-width=\"2\"/></g><text data-t=\"pincode\" x=\"84\" y=\"90\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#1C1B1A\"></text></g></g><g transform=\"translate(184,116)\"><g class=\"t03-c\" style=\"animation-delay:1.8s\"><rect x=\"0\" y=\"0\" width=\"168\" height=\"100\" rx=\"14\" fill=\"#FFFDF9\" stroke=\"#E7E1D6\" stroke-width=\"1.3\"/><g transform=\"translate(84,39)\"><path d=\"M-14 -20l16-2 14 8-2 14 8 10-14 8-10-6-12 4-4-14z\" fill=\"#E4F3EA\" stroke=\"#0F766E\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><circle cx=\"2\" cy=\"-2\" r=\"4\" fill=\"#E8702A\"/></g><text data-t=\"state\" x=\"84\" y=\"90\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#1C1B1A\"></text></g></g></svg>",
      "texts": {
-      "lbl_name": {
+      "name": {
        "en": "name",
        "hi": "नाम"
       },
-      "lbl_address": {
+      "address": {
        "en": "address",
        "hi": "पता"
       },
-      "lbl_state": {
-       "en": "state",
-       "hi": "राज्य"
-      },
-      "lbl_pincode": {
+      "pincode": {
        "en": "pincode",
        "hi": "पिन कोड"
+      },
+      "state": {
+       "en": "state",
+       "hi": "राज्य"
       }
-     }
+     },
+     "caption": {
+      "en": "An address has a name, the house and street, the state and a pincode.",
+      "hi": "पते में नाम, घर और सड़क, राज्य और पिन कोड होता है।"
+     },
+     "alt": {
+      "en": "Four pictures: a name card; a house on a map with a pin for the address; a row of six boxes for the pincode; the outline of a state with a dot.",
+      "hi": "चार चित्र: नाम का कार्ड; पते की पिन वाला नक्शे पर घर; पिन कोड के छह डिब्बे; बिंदु वाला राज्य का आकार।"
+     },
+     "notice": [
+      {
+       "en": "An address says who lives where.",
+       "hi": "पता बताता है कि कौन कहाँ रहता है।"
+      },
+      {
+       "en": "The pincode is a number of six digits.",
+       "hi": "पिन कोड छह अंकों की संख्या होती है।"
+      }
+     ]
     },
     {
      "type": "guided",
@@ -1102,36 +1136,50 @@
     {
      "type": "diagram",
      "title": {
-      "en": "Building Blocks of Language",
-      "hi": "भाषा की सीढ़ियाँ"
+      "en": "Letters make words, words make sentences",
+      "hi": "अक्षरों से शब्द, शब्दों से वाक्य"
      },
-     "caption": {
-      "en": "Letter b-e-d makes word 'bed', which helps make sentence 'This is a bed.'",
-      "hi": "Letter मिलकर word बनाते हैं, और word मिलकर sentence बनाते हैं।"
-     },
-     "alt": {
-      "en": "Steps showing letter, word, sentence, and make.",
-      "hi": "अक्षर, शब्द, वाक्य और बनाना दिखाता आरेख।"
-     },
-     "svg": "<svg viewBox=\"0 0 360 240\" width=\"100%\" height=\"100%\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"600\" height=\"300\" fill=\"#f8fafc\" rx=\"16\"/>\n  <rect x=\"40\" y=\"60\" width=\"140\" height=\"80\" rx=\"10\" fill=\"#dbeafe\" stroke=\"#3b82f6\" stroke-width=\"2\"/>\n  <text x=\"70\" y=\"105\" font-size=\"20\" font-weight=\"bold\" fill=\"#1e40af\" data-t=\"lbl_letter\">letter: B</text>\n  <path d=\"M 190 100 L 230 100\" stroke=\"#3b82f6\" stroke-width=\"3\" marker-end=\"url(#arrow)\"/>\n  <rect x=\"240\" y=\"60\" width=\"150\" height=\"80\" rx=\"10\" fill=\"#dcfce7\" stroke=\"#22c55e\" stroke-width=\"2\"/>\n  <text x=\"270\" y=\"105\" font-size=\"20\" font-weight=\"bold\" fill=\"#15803d\" data-t=\"lbl_word\">word: BED</text>\n  <path d=\"M 400 100 L 440 100\" stroke=\"#22c55e\" stroke-width=\"3\"/>\n  <rect x=\"70\" y=\"180\" width=\"460\" height=\"80\" rx=\"10\" fill=\"#fef3c7\" stroke=\"#f59e0b\" stroke-width=\"2\"/>\n  <text x=\"90\" y=\"225\" font-size=\"18\" font-weight=\"bold\" fill=\"#b45309\" data-t=\"lbl_sentence\">sentence: The bed is neat.</text>\n  <text x=\"470\" y=\"225\" font-size=\"16\" fill=\"#78350f\" data-t=\"lbl_make\">make</text>\n</svg>",
+     "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 224\"><style>@keyframes t04-in{from{opacity:0}to{opacity:1}}@keyframes t04-bob{0%,100%{transform:none}50%{transform:translateY(-3px)}}@keyframes t04-sway{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}@keyframes t04-slide{0%,100%{transform:translateX(-4px)}50%{transform:translateX(4px)}}@keyframes t04-pulse{0%,100%{opacity:.35}50%{opacity:1}}@keyframes t04-pop{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}.t04-c{animation:t04-in .6s both}.t04-bob{animation:t04-bob 2.8s ease-in-out infinite}.t04-sway{animation:t04-sway 3s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 90%}.t04-slide{animation:t04-slide 3.2s ease-in-out infinite}.t04-pulse{animation:t04-pulse 2.8s ease-in-out infinite}.t04-pop{animation:t04-pop 3s ease-in-out infinite;transform-box:fill-box;transform-origin:center}</style><rect width=\"360\" height=\"224\" rx=\"18\" fill=\"#FBF7EF\"/><g transform=\"translate(8,8)\"><g class=\"t04-c\" style=\"animation-delay:0.0s\"><rect x=\"0\" y=\"0\" width=\"168\" height=\"100\" rx=\"14\" fill=\"#FFFDF9\" stroke=\"#E7E1D6\" stroke-width=\"1.3\"/><g transform=\"translate(84,39)\"><g transform=\"translate(0,0) scale(2.2)\"><rect x=\"-9\" y=\"-9\" width=\"18\" height=\"18\" rx=\"3\" fill=\"#E8702A\" stroke=\"#0369A1\" stroke-width=\"2\"/></g></g><text data-t=\"letter\" x=\"84\" y=\"90\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#1C1B1A\"></text></g></g><g transform=\"translate(184,8)\"><g class=\"t04-c\" style=\"animation-delay:0.6s\"><rect x=\"0\" y=\"0\" width=\"168\" height=\"100\" rx=\"14\" fill=\"#FFFDF9\" stroke=\"#E7E1D6\" stroke-width=\"1.3\"/><g transform=\"translate(84,39)\"><rect x=\"-32\" y=\"-10\" width=\"64\" height=\"20\" rx=\"4\" fill=\"#E4F3EA\" stroke=\"#0F766E\" stroke-width=\"2\"/><rect x=\"-29\" y=\"-9\" width=\"18\" height=\"18\" rx=\"3\" fill=\"#FBF1D3\" stroke=\"#0369A1\" stroke-width=\"2\"/><rect x=\"-9\" y=\"-9\" width=\"18\" height=\"18\" rx=\"3\" fill=\"#E3EEF9\" stroke=\"#0369A1\" stroke-width=\"2\"/><rect x=\"11\" y=\"-9\" width=\"18\" height=\"18\" rx=\"3\" fill=\"#FBE6E3\" stroke=\"#0369A1\" stroke-width=\"2\"/></g><text data-t=\"word\" x=\"84\" y=\"90\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#1C1B1A\"></text></g></g><g transform=\"translate(8,116)\"><g class=\"t04-c\" style=\"animation-delay:1.2s\"><rect x=\"0\" y=\"0\" width=\"168\" height=\"100\" rx=\"14\" fill=\"#FFFDF9\" stroke=\"#E7E1D6\" stroke-width=\"1.3\"/><g transform=\"translate(84,39)\"><rect x=\"-28.5\" y=\"-4\" width=\"9\" height=\"8\" rx=\"2\" fill=\"#E3EEF9\" stroke=\"#0369A1\" stroke-width=\"1.5\"/><rect x=\"-16.5\" y=\"-4\" width=\"9\" height=\"8\" rx=\"2\" fill=\"#E3EEF9\" stroke=\"#0369A1\" stroke-width=\"1.5\"/><rect x=\"-4.5\" y=\"-4\" width=\"9\" height=\"8\" rx=\"2\" fill=\"#E3EEF9\" stroke=\"#0369A1\" stroke-width=\"1.5\"/><rect x=\"7.5\" y=\"-4\" width=\"9\" height=\"8\" rx=\"2\" fill=\"#E3EEF9\" stroke=\"#0369A1\" stroke-width=\"1.5\"/><rect x=\"19.5\" y=\"-4\" width=\"9\" height=\"8\" rx=\"2\" fill=\"#E3EEF9\" stroke=\"#0369A1\" stroke-width=\"1.5\"/><circle cx=\"34\" cy=\"4\" r=\"2.5\" fill=\"#1C1B1A\"/></g><text data-t=\"sentence\" x=\"84\" y=\"90\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#1C1B1A\"></text></g></g><g transform=\"translate(184,116)\"><g class=\"t04-c\" style=\"animation-delay:1.8s\"><rect x=\"0\" y=\"0\" width=\"168\" height=\"100\" rx=\"14\" fill=\"#FFFDF9\" stroke=\"#E7E1D6\" stroke-width=\"1.3\"/><g transform=\"translate(84,39)\"><rect x=\"-39\" y=\"-9\" width=\"18\" height=\"18\" rx=\"3\" fill=\"#FBF1D3\" stroke=\"#0369A1\" stroke-width=\"2\"/><text x=\"-14\" y=\"5\" font-size=\"16\" font-weight=\"700\" fill=\"#1C1B1A\">+</text><rect x=\"-7\" y=\"-9\" width=\"18\" height=\"18\" rx=\"3\" fill=\"#E3EEF9\" stroke=\"#0369A1\" stroke-width=\"2\"/><text x=\"14\" y=\"5\" font-size=\"16\" font-weight=\"700\" fill=\"#1C1B1A\">=</text><rect x=\"22\" y=\"-9\" width=\"18\" height=\"18\" rx=\"3\" fill=\"#E8702A\" stroke=\"#1C1B1A\" stroke-width=\"2\"/></g><text data-t=\"make\" x=\"84\" y=\"90\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#1C1B1A\"></text></g></g></svg>",
      "texts": {
-      "lbl_letter": {
+      "letter": {
        "en": "letter",
        "hi": "अक्षर"
       },
-      "lbl_word": {
+      "word": {
        "en": "word",
        "hi": "शब्द"
       },
-      "lbl_sentence": {
+      "sentence": {
        "en": "sentence",
        "hi": "वाक्य"
       },
-      "lbl_make": {
+      "make": {
        "en": "make",
        "hi": "बनाना"
       }
-     }
+     },
+     "caption": {
+      "en": "Join letters to make a word, join words to make a sentence.",
+      "hi": "अक्षरों को जोड़कर शब्द बनाओ और शब्दों को जोड़कर वाक्य।"
+     },
+     "alt": {
+      "en": "One tile for a letter; three tiles joined for a word; five blocks and a dot for a sentence; and a plus-and-equals picture showing how we make a word.",
+      "hi": "एक अक्षर का टुकड़ा; शब्द के लिए जुड़े तीन टुकड़े; वाक्य के लिए पाँच ब्लॉक और बिंदु; और शब्द बनाने का जमा-बराबर का चित्र।"
+     },
+     "notice": [
+      {
+       "en": "One tile is a letter.",
+       "hi": "एक टुकड़ा एक अक्षर है।"
+      },
+      {
+       "en": "Letters joined together make a word.",
+       "hi": "जुड़े हुए अक्षर मिलकर शब्द बनाते हैं।"
+      },
+      {
+       "en": "Words in a line make a sentence.",
+       "hi": "एक कतार में शब्द मिलकर वाक्य बनाते हैं।"
+      }
+     ]
     },
     {
      "type": "guided",
@@ -1413,36 +1461,46 @@
     {
      "type": "diagram",
      "title": {
-      "en": "Sound Pairs: Fan vs Fin, Wall vs Well",
-      "hi": "ध्वनियों के जोड़े: fan और fin, wall और well"
+      "en": "Word pairs: fan and fin, wall and well",
+      "hi": "शब्दों के जोड़े: fan और fin, wall और well"
      },
-     "caption": {
-      "en": "Fan blows air, fin helps fish swim; wall stands tall, well holds water.",
-      "hi": "Fan हवा देता है, fin तैरने में मदद करता है; wall दीवार है और well कुआँ।"
-     },
-     "alt": {
-      "en": "Diagram contrasting fan and fin, wall and well.",
-      "hi": "Fan, fin, wall और well की तुलना करता चित्र।"
-     },
-     "svg": "<svg viewBox=\"0 0 360 240\" width=\"100%\" height=\"100%\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"600\" height=\"300\" fill=\"#f1f5f9\" rx=\"16\"/>\n  <rect x=\"40\" y=\"40\" width=\"240\" height=\"100\" rx=\"12\" fill=\"#e0f2fe\" stroke=\"#0284c7\" stroke-width=\"2\"/>\n  <text x=\"60\" y=\"95\" font-size=\"22\" font-weight=\"bold\" fill=\"#0369a1\" data-t=\"lbl_fan\">fan (air)</text>\n  <rect x=\"320\" y=\"40\" width=\"240\" height=\"100\" rx=\"12\" fill=\"#e0e7ff\" stroke=\"#4f46e5\" stroke-width=\"2\"/>\n  <text x=\"340\" y=\"95\" font-size=\"22\" font-weight=\"bold\" fill=\"#3730a3\" data-t=\"lbl_fin\">fin (fish)</text>\n  <rect x=\"40\" y=\"160\" width=\"240\" height=\"100\" rx=\"12\" fill=\"#ffedd5\" stroke=\"#ea580c\" stroke-width=\"2\"/>\n  <text x=\"60\" y=\"215\" font-size=\"22\" font-weight=\"bold\" fill=\"#c2410c\" data-t=\"lbl_wall\">wall (brick)</text>\n  <rect x=\"320\" y=\"160\" width=\"240\" height=\"100\" rx=\"12\" fill=\"#dcfce7\" stroke=\"#16a34a\" stroke-width=\"2\"/>\n  <text x=\"340\" y=\"215\" font-size=\"22\" font-weight=\"bold\" fill=\"#15803d\" data-t=\"lbl_well\">well (water)</text>\n</svg>",
+     "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 224\"><style>@keyframes t05-in{from{opacity:0}to{opacity:1}}@keyframes t05-bob{0%,100%{transform:none}50%{transform:translateY(-3px)}}@keyframes t05-sway{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}@keyframes t05-slide{0%,100%{transform:translateX(-4px)}50%{transform:translateX(4px)}}@keyframes t05-pulse{0%,100%{opacity:.35}50%{opacity:1}}@keyframes t05-pop{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}.t05-c{animation:t05-in .6s both}.t05-bob{animation:t05-bob 2.8s ease-in-out infinite}.t05-sway{animation:t05-sway 3s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 90%}.t05-slide{animation:t05-slide 3.2s ease-in-out infinite}.t05-pulse{animation:t05-pulse 2.8s ease-in-out infinite}.t05-pop{animation:t05-pop 3s ease-in-out infinite;transform-box:fill-box;transform-origin:center}</style><rect width=\"360\" height=\"224\" rx=\"18\" fill=\"#FBF7EF\"/><g transform=\"translate(8,8)\"><g class=\"t05-c\" style=\"animation-delay:0.0s\"><rect x=\"0\" y=\"0\" width=\"168\" height=\"100\" rx=\"14\" fill=\"#FFFDF9\" stroke=\"#E7E1D6\" stroke-width=\"1.3\"/><g transform=\"translate(84,39)\"><g class=\"t05-pop\"><g transform=\"translate(0,16)\"><path d=\"M0 -24L0 -14\" fill=\"none\" stroke=\"#1C1B1A\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><g transform=\"rotate(0 0 -10)\"><ellipse cx=\"0\" cy=\"-20\" rx=\"5\" ry=\"12\" fill=\"#0369A1\" stroke=\"#1C1B1A\" stroke-width=\"1.5\"/></g><g transform=\"rotate(120 0 -10)\"><ellipse cx=\"0\" cy=\"-20\" rx=\"5\" ry=\"12\" fill=\"#0369A1\" stroke=\"#1C1B1A\" stroke-width=\"1.5\"/></g><g transform=\"rotate(240 0 -10)\"><ellipse cx=\"0\" cy=\"-20\" rx=\"5\" ry=\"12\" fill=\"#0369A1\" stroke=\"#1C1B1A\" stroke-width=\"1.5\"/></g><circle cx=\"0\" cy=\"-10\" r=\"4\" fill=\"#E8702A\" stroke=\"#1C1B1A\" stroke-width=\"1.5\"/></g></g></g><text data-t=\"fan\" x=\"84\" y=\"90\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#1C1B1A\"></text></g></g><g transform=\"translate(184,8)\"><g class=\"t05-c\" style=\"animation-delay:0.6s\"><rect x=\"0\" y=\"0\" width=\"168\" height=\"100\" rx=\"14\" fill=\"#FFFDF9\" stroke=\"#E7E1D6\" stroke-width=\"1.3\"/><g transform=\"translate(84,39)\"><g transform=\"translate(0,2) scale(1.4)\"><ellipse cx=\"-4\" cy=\"2\" rx=\"18\" ry=\"11\" fill=\"#E3EEF9\" stroke=\"#0369A1\" stroke-width=\"2.5\"/><path d=\"M12 2L26 -9L26 13z\" fill=\"#E3EEF9\" stroke=\"#0369A1\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><circle cx=\"-14\" cy=\"-1\" r=\"1.5\" fill=\"#1C1B1A\"/><path d=\"M-8 -8q6-18 14-4\" fill=\"#E8702A\" stroke=\"#1C1B1A\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></g><text data-t=\"fin\" x=\"84\" y=\"90\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#1C1B1A\"></text></g></g><g transform=\"translate(8,116)\"><g class=\"t05-c\" style=\"animation-delay:1.2s\"><rect x=\"0\" y=\"0\" width=\"168\" height=\"100\" rx=\"14\" fill=\"#FFFDF9\" stroke=\"#E7E1D6\" stroke-width=\"1.3\"/><g transform=\"translate(84,39)\"><g transform=\"translate(0,2) scale(1.1)\"><rect x=\"-26\" y=\"-20\" width=\"18\" height=\"10\" rx=\"0\" fill=\"#D9534F\" stroke=\"#FFFDF9\" stroke-width=\"1.5\"/><rect x=\"-8\" y=\"-20\" width=\"18\" height=\"10\" rx=\"0\" fill=\"#C0392B\" stroke=\"#FFFDF9\" stroke-width=\"1.5\"/><rect x=\"10\" y=\"-20\" width=\"18\" height=\"10\" rx=\"0\" fill=\"#D9534F\" stroke=\"#FFFDF9\" stroke-width=\"1.5\"/><rect x=\"-35\" y=\"-10\" width=\"18\" height=\"10\" rx=\"0\" fill=\"#C0392B\" stroke=\"#FFFDF9\" stroke-width=\"1.5\"/><rect x=\"-17\" y=\"-10\" width=\"18\" height=\"10\" rx=\"0\" fill=\"#D9534F\" stroke=\"#FFFDF9\" stroke-width=\"1.5\"/><rect x=\"1\" y=\"-10\" width=\"18\" height=\"10\" rx=\"0\" fill=\"#C0392B\" stroke=\"#FFFDF9\" stroke-width=\"1.5\"/><rect x=\"-26\" y=\"0\" width=\"18\" height=\"10\" rx=\"0\" fill=\"#D9534F\" stroke=\"#FFFDF9\" stroke-width=\"1.5\"/><rect x=\"-8\" y=\"0\" width=\"18\" height=\"10\" rx=\"0\" fill=\"#C0392B\" stroke=\"#FFFDF9\" stroke-width=\"1.5\"/><rect x=\"10\" y=\"0\" width=\"18\" height=\"10\" rx=\"0\" fill=\"#D9534F\" stroke=\"#FFFDF9\" stroke-width=\"1.5\"/><rect x=\"-35\" y=\"10\" width=\"18\" height=\"10\" rx=\"0\" fill=\"#C0392B\" stroke=\"#FFFDF9\" stroke-width=\"1.5\"/><rect x=\"-17\" y=\"10\" width=\"18\" height=\"10\" rx=\"0\" fill=\"#D9534F\" stroke=\"#FFFDF9\" stroke-width=\"1.5\"/><rect x=\"1\" y=\"10\" width=\"18\" height=\"10\" rx=\"0\" fill=\"#C0392B\" stroke=\"#FFFDF9\" stroke-width=\"1.5\"/></g></g><text data-t=\"wall\" x=\"84\" y=\"90\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#1C1B1A\"></text></g></g><g transform=\"translate(184,116)\"><g class=\"t05-c\" style=\"animation-delay:1.8s\"><rect x=\"0\" y=\"0\" width=\"168\" height=\"100\" rx=\"14\" fill=\"#FFFDF9\" stroke=\"#E7E1D6\" stroke-width=\"1.3\"/><g transform=\"translate(84,39)\"><g transform=\"translate(0,4) scale(1.1)\"><rect x=\"-16\" y=\"0\" width=\"32\" height=\"22\" rx=\"2\" fill=\"#9A9A9A\" stroke=\"#1C1B1A\" stroke-width=\"2.5\"/><path d=\"M-14 0h28\" fill=\"none\" stroke=\"#1C1B1A\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M-14 -20L-14 0\" fill=\"none\" stroke=\"#8B5A2B\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M14 -20L14 0\" fill=\"none\" stroke=\"#8B5A2B\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><rect x=\"-18\" y=\"-24\" width=\"36\" height=\"6\" rx=\"2\" fill=\"#E8702A\" stroke=\"#1C1B1A\" stroke-width=\"2\"/><path d=\"M0 -18L0 -6\" fill=\"none\" stroke=\"#1C1B1A\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><rect x=\"-5\" y=\"-6\" width=\"10\" height=\"8\" rx=\"1\" fill=\"#E3EEF9\" stroke=\"#0369A1\" stroke-width=\"2\"/></g></g><text data-t=\"well\" x=\"84\" y=\"90\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#1C1B1A\"></text></g></g></svg>",
      "texts": {
-      "lbl_fan": {
+      "fan": {
        "en": "fan",
        "hi": "पंखा"
       },
-      "lbl_fin": {
+      "fin": {
        "en": "fin",
        "hi": "मीनपंख"
       },
-      "lbl_wall": {
+      "wall": {
        "en": "wall",
        "hi": "दीवार"
       },
-      "lbl_well": {
+      "well": {
        "en": "well",
        "hi": "कुआँ"
       }
-     }
+     },
+     "caption": {
+      "en": "Fan and fin sound almost alike, and so do wall and well.",
+      "hi": "fan और fin की आवाज़ लगभग एक-सी है, और wall और well की भी।"
+     },
+     "alt": {
+      "en": "Four pictures: a ceiling fan; a fish with its fin in orange; a brick wall; a village well with a bucket.",
+      "hi": "चार चित्र: छत का पंखा; नारंगी पंख वाली मछली; ईंट की दीवार; बाल्टी वाला गाँव का कुआँ।"
+     },
+     "notice": [
+      {
+       "en": "Fan and fin: one blows air and the other helps a fish swim.",
+       "hi": "fan और fin: एक हवा देता है और दूसरा मछली को तैरने में मदद करता है।"
+      },
+      {
+       "en": "Wall and well: one is made of bricks and the other holds water.",
+       "hi": "wall और well: एक ईंटों से बनी है और दूसरे में पानी रहता है।"
+      }
+     ]
     },
     {
      "type": "guided",
@@ -1724,36 +1782,46 @@
     {
      "type": "diagram",
      "title": {
-      "en": "Counting Letters and Spotting Clues",
-      "hi": "अक्षर गिनना और संकेत पहचानना"
+      "en": "Count and spot the difference",
+      "hi": "गिनो और अंतर पहचानो"
      },
-     "caption": {
-      "en": "Count letters on page; spot every tiny difference.",
-      "hi": "पन्ने पर अक्षर गिनो और हर छोटा अंतर पहचानो।"
-     },
-     "alt": {
-      "en": "Diagram showing count, spot, difference, and page.",
-      "hi": "गिनना, पहचानना, अंतर और पन्ना दिखाता चित्र।"
-     },
-     "svg": "<svg viewBox=\"0 0 360 240\" width=\"100%\" height=\"100%\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"600\" height=\"300\" fill=\"#fdf4ff\" rx=\"16\"/>\n  <rect x=\"50\" y=\"40\" width=\"230\" height=\"210\" rx=\"12\" fill=\"#fff\" stroke=\"#c084fc\" stroke-width=\"2\"/>\n  <text x=\"80\" y=\"90\" font-size=\"20\" font-weight=\"bold\" fill=\"#7e22ce\" data-t=\"lbl_page\">page 1</text>\n  <text x=\"80\" y=\"140\" font-size=\"18\" fill=\"#4a044e\" data-t=\"lbl_count\">count: 6 letters</text>\n  <rect x=\"320\" y=\"40\" width=\"230\" height=\"210\" rx=\"12\" fill=\"#fff\" stroke=\"#c084fc\" stroke-width=\"2\"/>\n  <text x=\"350\" y=\"90\" font-size=\"20\" font-weight=\"bold\" fill=\"#7e22ce\" data-t=\"lbl_spot\">spot: clue</text>\n  <text x=\"350\" y=\"140\" font-size=\"18\" fill=\"#4a044e\" data-t=\"lbl_diff\">difference</text>\n</svg>",
+     "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 224\"><style>@keyframes t06-in{from{opacity:0}to{opacity:1}}@keyframes t06-bob{0%,100%{transform:none}50%{transform:translateY(-3px)}}@keyframes t06-sway{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}@keyframes t06-slide{0%,100%{transform:translateX(-4px)}50%{transform:translateX(4px)}}@keyframes t06-pulse{0%,100%{opacity:.35}50%{opacity:1}}@keyframes t06-pop{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}.t06-c{animation:t06-in .6s both}.t06-bob{animation:t06-bob 2.8s ease-in-out infinite}.t06-sway{animation:t06-sway 3s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 90%}.t06-slide{animation:t06-slide 3.2s ease-in-out infinite}.t06-pulse{animation:t06-pulse 2.8s ease-in-out infinite}.t06-pop{animation:t06-pop 3s ease-in-out infinite;transform-box:fill-box;transform-origin:center}</style><rect width=\"360\" height=\"224\" rx=\"18\" fill=\"#FBF7EF\"/><g transform=\"translate(8,8)\"><g class=\"t06-c\" style=\"animation-delay:0.0s\"><rect x=\"0\" y=\"0\" width=\"168\" height=\"100\" rx=\"14\" fill=\"#FFFDF9\" stroke=\"#E7E1D6\" stroke-width=\"1.3\"/><g transform=\"translate(84,39)\"><rect x=\"-49\" y=\"-9\" width=\"18\" height=\"18\" rx=\"3\" fill=\"#FBF1D3\" stroke=\"#0369A1\" stroke-width=\"2\"/><text x=\"-40\" y=\"5\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#1C1B1A\">1</text><rect x=\"-29\" y=\"-9\" width=\"18\" height=\"18\" rx=\"3\" fill=\"#FBF1D3\" stroke=\"#0369A1\" stroke-width=\"2\"/><text x=\"-20\" y=\"5\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#1C1B1A\">2</text><rect x=\"-9\" y=\"-9\" width=\"18\" height=\"18\" rx=\"3\" fill=\"#FBF1D3\" stroke=\"#0369A1\" stroke-width=\"2\"/><text x=\"0\" y=\"5\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#1C1B1A\">3</text><rect x=\"11\" y=\"-9\" width=\"18\" height=\"18\" rx=\"3\" fill=\"#FBF1D3\" stroke=\"#0369A1\" stroke-width=\"2\"/><text x=\"20\" y=\"5\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#1C1B1A\">4</text><rect x=\"31\" y=\"-9\" width=\"18\" height=\"18\" rx=\"3\" fill=\"#FBF1D3\" stroke=\"#0369A1\" stroke-width=\"2\"/><text x=\"40\" y=\"5\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#1C1B1A\">5</text></g><text data-t=\"count\" x=\"84\" y=\"90\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#1C1B1A\"></text></g></g><g transform=\"translate(184,8)\"><g class=\"t06-c\" style=\"animation-delay:0.6s\"><rect x=\"0\" y=\"0\" width=\"168\" height=\"100\" rx=\"14\" fill=\"#FFFDF9\" stroke=\"#E7E1D6\" stroke-width=\"1.3\"/><g transform=\"translate(84,39)\"><g transform=\"translate(0,2) scale(1.3)\"><circle cx=\"-6\" cy=\"-6\" r=\"13\" fill=\"#E3EEF9\" stroke=\"#1C1B1A\" stroke-width=\"3\"/><path d=\"M4 4L20 20\" fill=\"none\" stroke=\"#1C1B1A\" stroke-width=\"5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></g><text data-t=\"spot\" x=\"84\" y=\"90\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#1C1B1A\"></text></g></g><g transform=\"translate(8,116)\"><g class=\"t06-c\" style=\"animation-delay:1.2s\"><rect x=\"0\" y=\"0\" width=\"168\" height=\"100\" rx=\"14\" fill=\"#FFFDF9\" stroke=\"#E7E1D6\" stroke-width=\"1.3\"/><g transform=\"translate(84,39)\"><rect x=\"-34\" y=\"-14\" width=\"30\" height=\"30\" rx=\"3\" fill=\"#FFFDF9\" stroke=\"#1C1B1A\" stroke-width=\"2\"/><circle cx=\"-19\" cy=\"0\" r=\"6\" fill=\"#0369A1\"/><rect x=\"4\" y=\"-14\" width=\"30\" height=\"30\" rx=\"3\" fill=\"#FFFDF9\" stroke=\"#1C1B1A\" stroke-width=\"2\"/><circle cx=\"19\" cy=\"0\" r=\"6\" fill=\"#0369A1\"/><g class=\"t06-pulse\"><circle cx=\"26\" cy=\"8\" r=\"4\" fill=\"#E8702A\"/></g></g><text data-t=\"difference\" x=\"84\" y=\"90\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#1C1B1A\"></text></g></g><g transform=\"translate(184,116)\"><g class=\"t06-c\" style=\"animation-delay:1.8s\"><rect x=\"0\" y=\"0\" width=\"168\" height=\"100\" rx=\"14\" fill=\"#FFFDF9\" stroke=\"#E7E1D6\" stroke-width=\"1.3\"/><g transform=\"translate(84,39)\"><path d=\"M-24 -18h48v38h-48zM0 -18v38\" fill=\"#FFFDF9\" stroke=\"#1C1B1A\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M-18 -8h14M-18 0h14M-18 8h10M6 -8h14M6 0h14M6 8h10\" fill=\"none\" stroke=\"#E7E1D6\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g><text data-t=\"page\" x=\"84\" y=\"90\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#1C1B1A\"></text></g></g></svg>",
      "texts": {
-      "lbl_count": {
+      "count": {
        "en": "count",
        "hi": "गिनना"
       },
-      "lbl_spot": {
+      "spot": {
        "en": "spot",
        "hi": "पहचानना"
       },
-      "lbl_diff": {
+      "difference": {
        "en": "difference",
        "hi": "अंतर"
       },
-      "lbl_page": {
+      "page": {
        "en": "page",
        "hi": "पन्ना"
       }
-     }
+     },
+     "caption": {
+      "en": "Count the letters, then spot what is different between two pages.",
+      "hi": "अक्षर गिनो, फिर दो पन्नों में अंतर पहचानो।"
+     },
+     "alt": {
+      "en": "Five boxes numbered 1 to 5 for counting; a magnifying glass for spotting; two pictures where one has an extra orange ball for the difference; an open page.",
+      "hi": "गिनती के लिए 1 से 5 तक क्रम वाले पाँच डिब्बे; पहचानने के लिए आवर्धक शीशा; दो चित्र जिनमें एक में अतिरिक्त नारंगी गेंद, यानी अंतर; खुला पन्ना।"
+     },
+     "notice": [
+      {
+       "en": "Count one by one: 1, 2, 3, 4, 5.",
+       "hi": "एक-एक करके गिनो: 1, 2, 3, 4, 5।"
+      },
+      {
+       "en": "Look carefully to spot what changed.",
+       "hi": "ध्यान से देखकर पहचानो कि क्या बदला।"
+      }
+     ]
     },
     {
      "type": "guided",
@@ -2035,36 +2103,46 @@
     {
      "type": "diagram",
      "title": {
-      "en": "Lines, Shapes and Colours",
-      "hi": "लकीरें, आकृतियाँ और रंग"
+      "en": "Draw and colour the town",
+      "hi": "कस्बे का चित्र बनाओ और रंग भरो"
      },
-     "caption": {
-      "en": "Draw clean line, add bright colour, finish the picture.",
-      "hi": "साफ़ रेखा खींचो, सुंदर रंग भरो और चित्र पूरा करो।"
-     },
-     "alt": {
-      "en": "Diagram showing draw, colour, line, and picture.",
-      "hi": "चित्र बनाना, रंग, रेखा और तस्वीर दिखाता आरेख।"
-     },
-     "svg": "<svg viewBox=\"0 0 360 240\" width=\"100%\" height=\"100%\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"600\" height=\"300\" fill=\"#ecfeff\" rx=\"16\"/>\n  <line x1=\"80\" y1=\"150\" x2=\"220\" y2=\"150\" stroke=\"#0891b2\" stroke-width=\"6\" stroke-linecap=\"round\"/>\n  <text x=\"110\" y=\"190\" font-size=\"18\" font-weight=\"bold\" fill=\"#0e7490\" data-t=\"lbl_line\">line</text>\n  <rect x=\"260\" y=\"70\" width=\"120\" height=\"120\" rx=\"12\" fill=\"#fbbf24\" stroke=\"#d97706\" stroke-width=\"3\"/>\n  <text x=\"280\" y=\"140\" font-size=\"18\" font-weight=\"bold\" fill=\"#78350f\" data-t=\"lbl_colour\">colour</text>\n  <circle cx=\"480\" cy=\"130\" r=\"50\" fill=\"#a7f3d0\" stroke=\"#059669\" stroke-width=\"3\"/>\n  <text x=\"450\" y=\"137\" font-size=\"16\" font-weight=\"bold\" fill=\"#065f46\" data-t=\"lbl_draw\">draw</text>\n  <text x=\"250\" y=\"260\" font-size=\"18\" font-weight=\"bold\" fill=\"#155e75\" data-t=\"lbl_pic\">picture</text>\n</svg>",
+     "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 224\"><style>@keyframes t07-in{from{opacity:0}to{opacity:1}}@keyframes t07-bob{0%,100%{transform:none}50%{transform:translateY(-3px)}}@keyframes t07-sway{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}@keyframes t07-slide{0%,100%{transform:translateX(-4px)}50%{transform:translateX(4px)}}@keyframes t07-pulse{0%,100%{opacity:.35}50%{opacity:1}}@keyframes t07-pop{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}.t07-c{animation:t07-in .6s both}.t07-bob{animation:t07-bob 2.8s ease-in-out infinite}.t07-sway{animation:t07-sway 3s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 90%}.t07-slide{animation:t07-slide 3.2s ease-in-out infinite}.t07-pulse{animation:t07-pulse 2.8s ease-in-out infinite}.t07-pop{animation:t07-pop 3s ease-in-out infinite;transform-box:fill-box;transform-origin:center}</style><rect width=\"360\" height=\"224\" rx=\"18\" fill=\"#FBF7EF\"/><g transform=\"translate(8,8)\"><g class=\"t07-c\" style=\"animation-delay:0.0s\"><rect x=\"0\" y=\"0\" width=\"168\" height=\"100\" rx=\"14\" fill=\"#FFFDF9\" stroke=\"#E7E1D6\" stroke-width=\"1.3\"/><g transform=\"translate(84,39)\"><g transform=\"translate(0,0) scale(1.1)\"><rect x=\"-20\" y=\"-22\" width=\"40\" height=\"44\" rx=\"2\" fill=\"#FFFDF9\" stroke=\"#1C1B1A\" stroke-width=\"2\"/><path d=\"M-12 -8h24M-12 2h24M-12 12h14\" fill=\"none\" stroke=\"#E7E1D6\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M-10 4q6-10 12 0t8-6\" fill=\"none\" stroke=\"#E8702A\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g><g transform=\"translate(16,10) scale(0.7)\"><path d=\"M-22 22L12 -12\" fill=\"none\" stroke=\"#F2C94C\" stroke-width=\"8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M12 -18L20 -10L16 -6L8 -14z\" fill=\"#FBE6E3\" stroke=\"#1C1B1A\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M-24 26L-22 18L-16 24z\" fill=\"#1C1B1A\"/></g></g><text data-t=\"draw\" x=\"84\" y=\"90\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#1C1B1A\"></text></g></g><g transform=\"translate(184,8)\"><g class=\"t07-c\" style=\"animation-delay:0.6s\"><rect x=\"0\" y=\"0\" width=\"168\" height=\"100\" rx=\"14\" fill=\"#FFFDF9\" stroke=\"#E7E1D6\" stroke-width=\"1.3\"/><g transform=\"translate(84,39)\"><g transform=\"translate(0,4) scale(1.1)\"><g transform=\"rotate(-24)\"><rect x=\"-4\" y=\"-22\" width=\"8\" height=\"34\" rx=\"2\" fill=\"#E8702A\" stroke=\"#1C1B1A\" stroke-width=\"1.5\"/><path d=\"M-4 -22L4 -22L0 -30z\" fill=\"#E8702A\" stroke=\"#1C1B1A\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g><g transform=\"rotate(0)\"><rect x=\"-4\" y=\"-22\" width=\"8\" height=\"34\" rx=\"2\" fill=\"#0369A1\" stroke=\"#1C1B1A\" stroke-width=\"1.5\"/><path d=\"M-4 -22L4 -22L0 -30z\" fill=\"#0369A1\" stroke=\"#1C1B1A\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g><g transform=\"rotate(24)\"><rect x=\"-4\" y=\"-22\" width=\"8\" height=\"34\" rx=\"2\" fill=\"#0F766E\" stroke=\"#1C1B1A\" stroke-width=\"1.5\"/><path d=\"M-4 -22L4 -22L0 -30z\" fill=\"#0F766E\" stroke=\"#1C1B1A\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></g></g><text data-t=\"colour\" x=\"84\" y=\"90\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#1C1B1A\"></text></g></g><g transform=\"translate(8,116)\"><g class=\"t07-c\" style=\"animation-delay:1.2s\"><rect x=\"0\" y=\"0\" width=\"168\" height=\"100\" rx=\"14\" fill=\"#FFFDF9\" stroke=\"#E7E1D6\" stroke-width=\"1.3\"/><g transform=\"translate(84,39)\"><path d=\"M-30 8h24\" fill=\"none\" stroke=\"#1C1B1A\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-dasharray=\"3 5\"/><path d=\"M-6 8h36\" fill=\"none\" stroke=\"#E8702A\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g><text data-t=\"line\" x=\"84\" y=\"90\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#1C1B1A\"></text></g></g><g transform=\"translate(184,116)\"><g class=\"t07-c\" style=\"animation-delay:1.8s\"><rect x=\"0\" y=\"0\" width=\"168\" height=\"100\" rx=\"14\" fill=\"#FFFDF9\" stroke=\"#E7E1D6\" stroke-width=\"1.3\"/><g transform=\"translate(84,39)\"><g transform=\"translate(0,2) scale(1.1)\"><rect x=\"-24\" y=\"-18\" width=\"48\" height=\"38\" rx=\"3\" fill=\"#FFFDF9\" stroke=\"#1C1B1A\" stroke-width=\"3\"/><rect x=\"-20\" y=\"2\" width=\"40\" height=\"16\" rx=\"0\" fill=\"#E4F3EA\"/><circle cx=\"14\" cy=\"-8\" r=\"5\" fill=\"#E8702A\"/><path d=\"M-14 2L-4 -8L6 2z\" fill=\"#C0392B\"/><rect x=\"-12\" y=\"2\" width=\"16\" height=\"8\" rx=\"0\" fill=\"#FBF1D3\"/></g></g><text data-t=\"picture\" x=\"84\" y=\"90\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#1C1B1A\"></text></g></g></svg>",
      "texts": {
-      "lbl_draw": {
+      "draw": {
        "en": "draw",
        "hi": "चित्र बनाना"
       },
-      "lbl_colour": {
+      "colour": {
        "en": "colour",
        "hi": "रंग"
       },
-      "lbl_line": {
+      "line": {
        "en": "line",
        "hi": "रेखा"
       },
-      "lbl_pic": {
+      "picture": {
        "en": "picture",
        "hi": "तस्वीर"
       }
-     }
+     },
+     "caption": {
+      "en": "Draw a line, colour it in, and the town picture is complete.",
+      "hi": "रेखा खींचो, रंग भरो और कस्बे का चित्र पूरा हो जाएगा।"
+     },
+     "alt": {
+      "en": "A pencil drawing; crayons; a dotted line becoming a solid line; a finished picture of a house with a sun.",
+      "hi": "चित्र बनाती पेंसिल; क्रेयॉन; बिंदुओं वाली रेखा जो पक्की रेखा बन रही है; घर और सूरज का पूरा चित्र।"
+     },
+     "notice": [
+      {
+       "en": "Draw: use a pencil to make lines.",
+       "hi": "चित्र बनाना: पेंसिल से रेखाएँ खींचो।"
+      },
+      {
+       "en": "Colour the picture with crayons.",
+       "hi": "क्रेयॉन से चित्र में रंग भरो।"
+      }
+     ]
     },
     {
      "type": "guided",
@@ -2354,36 +2432,46 @@
     {
      "type": "diagram",
      "title": {
-      "en": "Words with the 'sh' Sound",
-      "hi": "'sh' ध्वनि वाले शब्द"
+      "en": "The sh sound",
+      "hi": "sh की आवाज़"
      },
-     "caption": {
-      "en": "Shirt, shell, shoe, and shop all begin with sh.",
-      "hi": "Shirt, shell, shoe और shop सब 'sh' से शुरू होते हैं।"
-     },
-     "alt": {
-      "en": "Diagram showing shirt, shell, shoe, and shop.",
-      "hi": "Shirt, shell, shoe और shop को दिखाता चित्र।"
-     },
-     "svg": "<svg viewBox=\"0 0 360 240\" width=\"100%\" height=\"100%\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"600\" height=\"300\" fill=\"#fdf2f8\" rx=\"16\"/>\n  <rect x=\"40\" y=\"40\" width=\"240\" height=\"100\" rx=\"12\" fill=\"#fff\" stroke=\"#ec4899\" stroke-width=\"2\"/>\n  <text x=\"60\" y=\"95\" font-size=\"22\" font-weight=\"bold\" fill=\"#be185d\" data-t=\"lbl_shirt\">shirt 👔</text>\n  <rect x=\"320\" y=\"40\" width=\"240\" height=\"100\" rx=\"12\" fill=\"#fff\" stroke=\"#ec4899\" stroke-width=\"2\"/>\n  <text x=\"340\" y=\"95\" font-size=\"22\" font-weight=\"bold\" fill=\"#be185d\" data-t=\"lbl_shell\">shell 🐚</text>\n  <rect x=\"40\" y=\"160\" width=\"240\" height=\"100\" rx=\"12\" fill=\"#fff\" stroke=\"#ec4899\" stroke-width=\"2\"/>\n  <text x=\"60\" y=\"215\" font-size=\"22\" font-weight=\"bold\" fill=\"#be185d\" data-t=\"lbl_shoe\">shoe 👞</text>\n  <rect x=\"320\" y=\"160\" width=\"240\" height=\"100\" rx=\"12\" fill=\"#fff\" stroke=\"#ec4899\" stroke-width=\"2\"/>\n  <text x=\"340\" y=\"215\" font-size=\"22\" font-weight=\"bold\" fill=\"#be185d\" data-t=\"lbl_shop\">shop 🏪</text>\n</svg>",
+     "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 224\"><style>@keyframes t08-in{from{opacity:0}to{opacity:1}}@keyframes t08-bob{0%,100%{transform:none}50%{transform:translateY(-3px)}}@keyframes t08-sway{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}@keyframes t08-slide{0%,100%{transform:translateX(-4px)}50%{transform:translateX(4px)}}@keyframes t08-pulse{0%,100%{opacity:.35}50%{opacity:1}}@keyframes t08-pop{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}.t08-c{animation:t08-in .6s both}.t08-bob{animation:t08-bob 2.8s ease-in-out infinite}.t08-sway{animation:t08-sway 3s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 90%}.t08-slide{animation:t08-slide 3.2s ease-in-out infinite}.t08-pulse{animation:t08-pulse 2.8s ease-in-out infinite}.t08-pop{animation:t08-pop 3s ease-in-out infinite;transform-box:fill-box;transform-origin:center}</style><rect width=\"360\" height=\"224\" rx=\"18\" fill=\"#FBF7EF\"/><g transform=\"translate(8,8)\"><g class=\"t08-c\" style=\"animation-delay:0.0s\"><rect x=\"0\" y=\"0\" width=\"168\" height=\"100\" rx=\"14\" fill=\"#FFFDF9\" stroke=\"#E7E1D6\" stroke-width=\"1.3\"/><g transform=\"translate(84,39)\"><g transform=\"translate(0,2) scale(1.1)\"><path d=\"M-10 -18l-18 10 6 10 8-4v26h28v-26l8 4 6-10-18-10q-8 6-20 0z\" fill=\"#0369A1\" stroke=\"#1C1B1A\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></g><text data-t=\"shirt\" x=\"84\" y=\"90\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#1C1B1A\"></text></g></g><g transform=\"translate(184,8)\"><g class=\"t08-c\" style=\"animation-delay:0.6s\"><rect x=\"0\" y=\"0\" width=\"168\" height=\"100\" rx=\"14\" fill=\"#FFFDF9\" stroke=\"#E7E1D6\" stroke-width=\"1.3\"/><g transform=\"translate(84,39)\"><g transform=\"translate(0,4) scale(1.3)\"><path d=\"M-20 14q-4-30 20-30t20 30z\" fill=\"#FBE6E3\" stroke=\"#1C1B1A\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M0 -16v30M-10 -12l4 26M10 -12l-4 26\" fill=\"none\" stroke=\"#1C1B1A\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></g><text data-t=\"shell\" x=\"84\" y=\"90\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#1C1B1A\"></text></g></g><g transform=\"translate(8,116)\"><g class=\"t08-c\" style=\"animation-delay:1.2s\"><rect x=\"0\" y=\"0\" width=\"168\" height=\"100\" rx=\"14\" fill=\"#FFFDF9\" stroke=\"#E7E1D6\" stroke-width=\"1.3\"/><g transform=\"translate(84,39)\"><g transform=\"translate(0,4) scale(1.3)\"><path d=\"M-24 14v-14l10-4 8 6h22q10 2 10 12z\" fill=\"#E8702A\" stroke=\"#1C1B1A\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M-24 14h42\" fill=\"none\" stroke=\"#1C1B1A\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M-10 0l4 5M-4 -2l4 5\" fill=\"none\" stroke=\"#FFFDF9\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></g><text data-t=\"shoe\" x=\"84\" y=\"90\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#1C1B1A\"></text></g></g><g transform=\"translate(184,116)\"><g class=\"t08-c\" style=\"animation-delay:1.8s\"><rect x=\"0\" y=\"0\" width=\"168\" height=\"100\" rx=\"14\" fill=\"#FFFDF9\" stroke=\"#E7E1D6\" stroke-width=\"1.3\"/><g transform=\"translate(84,39)\"><g transform=\"translate(0,2) scale(1.2)\"><rect x=\"-24\" y=\"-4\" width=\"48\" height=\"26\" rx=\"0\" fill=\"#FBF1D3\" stroke=\"#1C1B1A\" stroke-width=\"2.5\"/><path d=\"M-28 -4h56l-4-14h-48z\" fill=\"#E8702A\" stroke=\"#1C1B1A\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><rect x=\"-16\" y=\"6\" width=\"14\" height=\"16\" rx=\"1\" fill=\"#0369A1\"/><rect x=\"4\" y=\"6\" width=\"14\" height=\"10\" rx=\"0\" fill=\"#E3EEF9\" stroke=\"#1C1B1A\" stroke-width=\"1.5\"/></g></g><text data-t=\"shop\" x=\"84\" y=\"90\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\" fill=\"#1C1B1A\"></text></g></g></svg>",
      "texts": {
-      "lbl_shirt": {
+      "shirt": {
        "en": "shirt",
        "hi": "कमीज़"
       },
-      "lbl_shell": {
+      "shell": {
        "en": "shell",
-       "hi": "शंख"
+       "hi": "शंख या सीप"
       },
-      "lbl_shoe": {
+      "shoe": {
        "en": "shoe",
        "hi": "जूता"
       },
-      "lbl_shop": {
+      "shop": {
        "en": "shop",
        "hi": "दुकान"
       }
-     }
+     },
+     "caption": {
+      "en": "Shirt, shell, shoe and shop all have the sh sound.",
+      "hi": "shirt, shell, shoe और shop सबमें sh की आवाज़ है।"
+     },
+     "alt": {
+      "en": "Four pictures: a shirt; a shell; a shoe; a shop.",
+      "hi": "चार चित्र: कमीज़; शंख; जूता; दुकान।"
+     },
+     "notice": [
+      {
+       "en": "Put your finger on your lips and say sh.",
+       "hi": "होंठों पर उँगली रखकर sh बोलो।"
+      },
+      {
+       "en": "Shirt, shell, shoe and shop all begin with sh.",
+       "hi": "shirt, shell, shoe और shop सब sh से शुरू होते हैं।"
+      }
+     ]
     },
     {
      "type": "guided",
