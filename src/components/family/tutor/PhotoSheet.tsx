@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import type { Words } from '@/lib/family/fill';
+import { PHOTO_PICK_ACCEPT } from '@/lib/family/photo-shrink';
 
 // The photo sheet (C510): "Check my work" and "Ask about this" in the composer's attach menu open this small sheet with
 // two big buttons. Take a photo opens the device camera (`capture="environment"`: the back camera, since a child
@@ -10,7 +11,8 @@ import type { Words } from '@/lib/family/fill';
 // the window's attach step unchanged, so the photo gate, the size limit and the type check apply as before.
 
 export const CAMERA_ACCEPT = 'image/*';
-export const GALLERY_ACCEPT = 'image/png,image/jpeg,image/webp';
+// C525: the gallery offers an iPhone's HEIC too; the window's attach step turns it into a JPEG on the phone.
+export const GALLERY_ACCEPT = PHOTO_PICK_ACCEPT;
 
 type Props = {
   w: Words;

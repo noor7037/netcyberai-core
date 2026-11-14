@@ -37,17 +37,24 @@ export interface OcrResult {
 // function, and the caller decides separately (see the upload route)
 // whether the source bytes get persisted to Storage at all -- for
 // guardian-ID documents, per the Aadhaar constraint, they must not.
-export async function runOcr(image: Buffer): Promise<OcrResult> {
+// C525: `signal` stops the read: when it aborts, the worker is ended, so a read past the upload check's time limit
+// does not keep running (and holding memory) after the check has already refused the file.
+export async function runOcr(image: Buffer, signal?: AbortSignal): Promise<OcrResult> {
+  if (signal?.aborted) throw new Error('ocr stopped');
   const worker = await createWorker(LANGUAGE, 1, {
     cachePath: '/tmp', // the only guaranteed-writable path in a Vercel serverless function
     logger: () => {},
   });
+  const stop = () => void worker.terminate().catch(() => undefined);
+  signal?.addEventListener('abort', stop, { once: true });
   try {
+    if (signal?.aborted) throw new Error('ocr stopped');
     const { data } = await worker.recognize(image);
     const words: OcrWord[] = (data.words ?? []).map((w) => ({ text: w.text, confidence: w.confidence }));
     return { rawText: data.text, words };
   } finally {
-    await worker.terminate();
+    signal?.removeEventListener('abort', stop);
+    await worker.terminate().catch(() => undefined);
   }
 }
 

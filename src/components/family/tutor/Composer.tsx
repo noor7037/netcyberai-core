@@ -4,7 +4,8 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import { fill, type Words } from '@/lib/family/fill';
-import { TUTOR_FILES_PER_TURN, TUTOR_FILE_TYPES, TUTOR_TEXT_MAX, type TutorFileType } from '@/lib/family/tutor-shape';
+import { FILE_PICK_ACCEPT } from '@/lib/family/photo-shrink';
+import { TUTOR_FILES_PER_TURN, TUTOR_TEXT_MAX, type TutorFileType } from '@/lib/family/tutor-shape';
 import { useVoiceRecorder, type VoiceAck } from '../voice/useVoiceRecorder';
 import { PhotoSheet } from './PhotoSheet';
 import { useKeyboardInset } from './useKeyboardInset';
@@ -218,7 +219,7 @@ export function Composer(p: Props) {
                   <input
                     ref={fileInput}
                     type="file"
-                    accept={TUTOR_FILE_TYPES.join(',')}
+                    accept={FILE_PICK_ACCEPT}
                     className="sr-only"
                     tabIndex={-1}
                     aria-hidden="true"
