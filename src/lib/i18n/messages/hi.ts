@@ -10087,6 +10087,7 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.block.mindMap': 'माइंड मैप',
   'fam.block.photo': 'असली फ़ोटो',
   'fam.block.photoCredit': 'फ़ोटो: {author} · {licence} · Wikimedia Commons',
+  'fam.block.photoCreditOpenverse': 'फ़ोटो: {author} · {licence} · Openverse से',
   'fam.block.sceneTap': 'किसी हिस्से पर टैप करें और पढ़ें कि वह क्या करता है।',
   'fam.block.chartCaption': 'इस उत्तर में दिए गए आँकड़े',
   'fam.block.chartUnit': 'इकाई: {unit}',
