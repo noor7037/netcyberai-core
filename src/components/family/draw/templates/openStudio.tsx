@@ -8,13 +8,14 @@ import type { StudioEvent, StudioOpen } from '@/lib/family/draw-contract';
 import type { Words } from '@/lib/family/fill';
 import { drawTemplate, toStudioTemplate, type DrawLang } from '@/lib/family/draw-templates';
 import { outlineOf } from './template-cache';
+import { engageMode } from '@/lib/family/draw-engage';
 
 const Studio = lazy(() => import('@/components/family/draw/Studio').then((m) => ({ default: m.Studio })));
 
 // What a card asks for: the template (by id), the subject its class studies it under, and where the child came from.
 export type OpenAsk = { templateId: string; subject: string; from: StudioOpen['from'] };
 
-export function useTemplateStudio({ lang, classLevel, w, onEvent, onSend }: { lang: DrawLang; classLevel: number; w: Words; onEvent: (e: StudioEvent) => void; onSend?: (file: File, question: string) => Promise<string | null> }) {
+export function useTemplateStudio({ lang, classLevel, w, onEvent, onSend, child }: { lang: DrawLang; classLevel: number; w: Words; child?: string; onEvent: (e: StudioEvent) => void; onSend?: (file: File, question: string) => Promise<string | null> }) {
   const [open, setOpen] = useState<StudioOpen | null>(null);
   const [failed, setFailed] = useState(false);
   const start = useCallback(
@@ -35,7 +36,7 @@ export function useTemplateStudio({ lang, classLevel, w, onEvent, onSend }: { la
   const node = open ? (
     <Suspense fallback={null}>
       {/* Without a send path of its own (a card in Study) the child is told where to send it. */}
-      <Studio w={w} open={open} onEvent={onEvent} onClose={close} onSend={onSend ?? (async () => w['fam.draw.t.sendLater'] ?? '')} />
+      <Studio w={w} open={open} onEvent={onEvent} onClose={close} engage={engageMode(classLevel)} lang={lang} child={child} onSend={onSend ?? (async () => w['fam.draw.t.sendLater'] ?? '')} />
     </Suspense>
   ) : null;
   return { start, node, failed, isOpen: open !== null };

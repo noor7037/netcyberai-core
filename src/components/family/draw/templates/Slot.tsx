@@ -8,7 +8,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { StudioEvent } from '@/lib/family/draw-contract';
 import type { Words } from '@/lib/family/fill';
-import { groupBySubject, isLocked, templateSrc, templatesFor, type DrawLang, type DrawTemplateEntry } from '@/lib/family/draw-templates';
+import { DRAW_CATEGORY_LABEL, groupBySubject, isLocked, templateSrc, templatesFor, type DrawCategory, type DrawLang, type DrawTemplateEntry } from '@/lib/family/draw-templates';
 import { familyApi } from '../../client';
 import { flushDone, sendDone, waitingFor } from './done-queue';
 import { useOnline, useTemplateStudio } from './openStudio';
@@ -48,7 +48,7 @@ function writeKnown(childId: string, k: Known) {
 
 export function DrawTemplatesSlot(props: Partial<DrawTemplatesSlotProps>) {
   // Rendered with no props until the Draw tab passes them: nothing to show yet.
-  if (!props.childId || !props.classLevel || !props.lang || !props.subjects || !props.w) return null;
+  if (!props.childId || props.classLevel === undefined || !props.lang || !props.subjects || !props.w) return null;
   return <TemplatesSection {...(props as DrawTemplatesSlotProps)} />;
 }
 export default DrawTemplatesSlot;
@@ -98,7 +98,7 @@ export function TemplatesSection({ childId, classLevel, lang, subjects, w, onSen
     },
     [childId, markDone, subjectOf]
   );
-  const studio = useTemplateStudio({ lang, classLevel, w, onEvent, onSend });
+  const studio = useTemplateStudio({ lang, classLevel, w, onEvent, onSend, child: childId });
 
   const open = (t: DrawTemplateEntry) => {
     if (isLocked(t, known.allowed)) return setNote(w['fam.draw.t.lockedNote']);
@@ -127,7 +127,7 @@ export function TemplatesSection({ childId, classLevel, lang, subjects, w, onSen
       {groups.length === 0 && <p className="text-sm text-slate">{w['fam.draw.t.none']}</p>}
       {groups.map((g) => (
         <div key={g.subject} data-draw-subject={g.subject} className="flex flex-col gap-2">
-          <h3 className="px-1 text-base font-bold text-slate">{w[`fam.subject.${g.subject}`] ?? g.subject}</h3>
+          <h3 className="px-1 text-base font-bold text-slate">{DRAW_CATEGORY_LABEL[g.subject as DrawCategory]?.[lang] ?? w[`fam.subject.${g.subject}`] ?? g.subject}</h3>
           <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
             {g.templates.map((t) => (
               <li key={t.id}>
@@ -150,7 +150,6 @@ export function TemplateCard({ t, lang, done, locked, w, onOpen }: { t: DrawTemp
       data-done={done ? '' : undefined}
       data-locked={locked ? '' : undefined}
       onClick={onOpen}
-      aria-label={[locked ? w['fam.draw.t.locked'] : '', t.title[lang], done ? w['fam.draw.t.done'] : ''].filter(Boolean).join(', ')}
       className="fam-card fam-press relative flex min-h-[44px] w-full flex-col gap-2 bg-white p-2 text-left"
     >
       <span className="relative block aspect-square w-full overflow-hidden rounded-xl bg-paper">
@@ -169,8 +168,8 @@ export function TemplateCard({ t, lang, done, locked, w, onOpen }: { t: DrawTemp
           </span>
         )}
         {locked && (
-          <span aria-hidden="true" className="absolute inset-x-2 bottom-2 flex items-center justify-center gap-1 rounded-full bg-ink px-2 py-1 text-xs font-bold text-white">
-            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5">
+          <span className="absolute inset-x-2 bottom-2 flex items-center justify-center gap-1 rounded-full bg-ink px-2 py-1 text-xs font-bold text-white">
+            <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5">
               <rect x="5" y="11" width="14" height="9" rx="2" />
               <path d="M8 11V8a4 4 0 018 0v3" />
             </svg>
@@ -181,6 +180,8 @@ export function TemplateCard({ t, lang, done, locked, w, onOpen }: { t: DrawTemp
       <span lang={lang} className="px-1 pb-1 text-sm font-bold leading-snug text-ink">
         {t.title[lang]}
       </span>
+      {/* The name is what the card shows (its lock line, then its title); a Done tick is said, not only drawn. */}
+      {done && <span className="sr-only">{w['fam.draw.t.done']}</span>}
     </button>
   );
 }

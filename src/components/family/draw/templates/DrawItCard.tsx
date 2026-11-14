@@ -26,7 +26,7 @@ export function DrawItCard({ childId, classLevel, lang, templateId, subject, all
     },
     [childId, templateId]
   );
-  const studio = useTemplateStudio({ lang, classLevel, w, onEvent });
+  const studio = useTemplateStudio({ lang, classLevel, w, onEvent, child: childId });
   useEffect(() => {
     void keepForOffline([templateId]);
   }, [templateId]);
