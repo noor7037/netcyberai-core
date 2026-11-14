@@ -306,6 +306,14 @@ export const FAMILY_SCREENS = [
   // C517: a Class 3 child's guided studio (engagement mode): the free canvas's hello, and a template one step at a time.
   ['full', 'family-draw-young', '/family/draw', { prep: `update family.children set class_level = 3 where child_id = 'f0000000-0000-4000-8000-0000000fc001'`, reset: CLASS_PUT_BACK, settle: '[data-draw-start]', steps: [{ tap: '[data-draw-start]', wait: '[data-draw-guide]' }] }],
   ['full', 'family-draw-young-template', '/family/draw', { prep: `update family.children set class_level = 3 where child_id = 'f0000000-0000-4000-8000-0000000fc001'`, reset: CLASS_PUT_BACK, settle: '[data-draw-template]', steps: [{ tap: '[data-draw-template]', wait: '[data-draw-guide-progress]' }] }],
+  // C519: the guide's sound, spied: the phone's own voice, and the server voice when the phone has none.
+  ...['phone', 'server'].map((mode) => ['full', `family-draw-sound-${mode}`, '/family/draw', { prep: `update family.children set class_level = 3 where child_id = 'f0000000-0000-4000-8000-0000000fc001'`, reset: CLASS_PUT_BACK, drawSound: mode, settle: '[data-draw-template]', steps: [
+    { tap: '[data-draw-template]', wait: '[data-draw-guide-progress]' }, { pause: 700 }, { snap: 'before' },
+    { tap: '[data-draw-guide-listen]', pause: 2600 }, { snap: 'first' },
+    { drag: true, pause: 200 }, { tap: '[data-draw-guide-next]', pause: 1500 }, { snap: 'second' },
+    { tap: '[data-draw-sound]', pause: 700 }, { snap: 'offA' }, { pause: 2200 }, { snap: 'offB' },
+    { tap: '[data-draw-sound]', pause: 1800 }, { snap: 'musicOn' }, { tap: '[data-draw-guide-listen]', pause: 700 },
+  ] }]),
   // C518: the template list for Nursery, LKG, Class 4 and Class 5
   ['full', 'family-draw-list-nursery', '/family/draw', { prep: `update family.children set class_level = -2 where child_id = 'f0000000-0000-4000-8000-0000000fc001'`, reset: CLASS_PUT_BACK, settle: '[data-draw-templates]' }],
   ['full', 'family-draw-list-lkg', '/family/draw', { prep: `update family.children set class_level = -1 where child_id = 'f0000000-0000-4000-8000-0000000fc001'`, reset: CLASS_PUT_BACK, settle: '[data-draw-templates]' }],
@@ -693,8 +701,51 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
               window.SpeechSynthesisUtterance = function (text) { this.text = text; };
             });
           }
+          // `drawSound` (C519): the Draw guide's sound, spied (headless Chromium has no audio device or voices). 'phone': the phone
+          // has an en-IN and a hi-IN voice; 'server': it has none, so the guide asks the speak route (answered with a six second WAV).
+          // The spy records the speech lines, the speak-route calls, the AudioContext states and the oscillators started.
+          if (opts.drawSound) {
+            await context.addInitScript((mode) => {
+              const log = { speak: [], fetches: [], oscStarted: 0, resumed: 0, ctxs: [] };
+              window.__c519 = log;
+              const voices = mode === 'phone' ? [{ lang: 'en-IN', name: 'harness en' }, { lang: 'hi-IN', name: 'harness hi' }] : [];
+              let timer = 0;
+              const ss = {
+                getVoices: () => voices,
+                cancel: () => clearTimeout(timer),
+                speak: (u) => {
+                  log.speak.push({ text: u.text, lang: u.lang ?? null, voice: u.voice?.lang ?? null, volume: u.volume ?? null });
+                  if (!u.text.trim()) return;
+                  u.onstart?.({});
+                  timer = setTimeout(() => u.onend?.({}), 6000);
+                },
+                addEventListener() {},
+                removeEventListener() {},
+              };
+              Object.defineProperty(window, 'speechSynthesis', { value: ss, configurable: true });
+              window.SpeechSynthesisUtterance = function (text) { this.text = text; };
+              const start = OscillatorNode.prototype.start;
+              OscillatorNode.prototype.start = function (...a) { log.oscStarted++; return start.apply(this, a); };
+              const resume = AudioContext.prototype.resume;
+              AudioContext.prototype.resume = function (...a) { log.resumed++; if (!log.ctxs.includes(this)) log.ctxs.push(this); return resume.apply(this, a); };
+              const mk = BaseAudioContext.prototype.createGain;
+              BaseAudioContext.prototype.createGain = function (...a) { if (!log.ctxs.includes(this)) log.ctxs.push(this); return mk.apply(this, a); };
+              const f = window.fetch;
+              window.fetch = (u, o) => { if (String(u).includes('/api/family/voice/speak')) log.fetches.push(JSON.parse(o?.body ?? '{}')); return f(u, o); };
+            }, opts.drawSound);
+            if (opts.drawSound === 'server') {
+              const rate = 8000;
+              const data = Buffer.alloc(rate * 6, 0x80);
+              const head = Buffer.alloc(44);
+              head.write('RIFF', 0); head.writeUInt32LE(36 + data.length, 4); head.write('WAVEfmt ', 8); head.writeUInt32LE(16, 16); head.writeUInt16LE(1, 20); head.writeUInt16LE(1, 22);
+              head.writeUInt32LE(rate, 24); head.writeUInt32LE(rate, 28); head.writeUInt16LE(1, 32); head.writeUInt16LE(8, 34); head.write('data', 36); head.writeUInt32LE(data.length, 40);
+              await context.route('**/api/family/voice/speak', (r) => r.fulfill({ status: 200, contentType: 'audio/wav', body: Buffer.concat([head, data]) }));
+            }
+          }
           const page = await context.newPage();
           const errors = [];
+          const snaps = {};
+          const sound = () => page.evaluate(() => ({ speak: window.__c519.speak.filter((x) => x.text.trim()), primed: window.__c519.speak.filter((x) => !x.text.trim()).length, fetches: window.__c519.fetches, osc: window.__c519.oscStarted, states: window.__c519.ctxs.map((c) => c.state) }));
           page.on('pageerror', (e) => errors.push(e.message.slice(0, 160)));
           page.on('response', (r) => {
             if (r.url().includes('/api/') && r.status() >= 400 && !(opts.call && r.url().endsWith('/api/family/voice/speak'))) errors.push(`${r.request().method()} ${new URL(r.url()).pathname} answered ${r.status()}`);
@@ -740,6 +791,17 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
               if (pos) await loc.click({ position: pos }).catch(() => errors.push(`${step.word} word could not be tapped`));
               else errors.push(`${step.word} has no word to tap`);
             }
+            // `drag` (C519): a short stroke across the paper, so the guide's next step can open. `snap`: the sound spy's state, kept by name.
+            if (step.drag) {
+              const box = await page.locator('[data-sketch-top]').first().boundingBox();
+              if (box) {
+                await page.mouse.move(box.x + box.width * 0.3, box.y + box.height * 0.4);
+                await page.mouse.down();
+                await page.mouse.move(box.x + box.width * 0.6, box.y + box.height * 0.5, { steps: 8 });
+                await page.mouse.up();
+              }
+            }
+            if (step.snap) snaps[step.snap] = await sound();
             if (step.tap) await where.locator(step.tap).first().click().catch(() => errors.push(`${step.tap} could not be tapped`));
             if (step.pause) await page.waitForTimeout(step.pause);
             // `choose`: a value in a drop-down when it shows (a phone), else a tap on the wide screen's own control (W9-A).
@@ -754,6 +816,26 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
           if (opts.pictures) {
             await page.evaluate(() => document.querySelectorAll('img[loading="lazy"]').forEach((img) => (img.loading = 'eager')));
             await page.waitForFunction(() => [...document.querySelectorAll('[data-script-page] img')].every((img) => img.complete && img.naturalWidth > 0), null, { timeout: 15000 }).catch(() => errors.push('a page picture never loaded'));
+          }
+          // C519: what the spy saw must show the guide read aloud after the first tap (and not before), the music running, then off, then on.
+          if (opts.drawSound) {
+            const end = await sound();
+            const { before, first, second, offA, offB, musicOn } = snaps;
+            const spoke = (a) => a.speak.map((x) => x.text);
+            const why = [];
+            if (before.speak.length || before.fetches.length || before.osc) why.push('sound before the first tap');
+            if (first.speak.length + first.fetches.length < 1) why.push('the speaker tap read nothing');
+            if (opts.drawSound === 'phone' && (!first.speak[0] || first.speak[0].voice !== (lang === 'hi' ? 'hi-IN' : 'en-IN'))) why.push(`phone voice not used: ${JSON.stringify(first.speak)}`);
+            if (opts.drawSound === 'server' && (first.speak.length || !first.fetches[0] || first.fetches[0].kind !== 'draw' || first.fetches[0].lang !== lang || 'text' in first.fetches[0])) why.push(`server voice not asked for by id: ${JSON.stringify(first.fetches)}`);
+            if (opts.drawSound === 'phone' && !(second.speak.length > first.speak.length && spoke(second).at(-1) !== spoke(first).at(-1))) why.push('the next step was not read');
+            if (opts.drawSound === 'server' && !(second.fetches.length > first.fetches.length && second.fetches.at(-1).step === first.fetches[0].step + 1)) why.push('the next step was not asked for');
+            if (!first.states.length || first.states.some((x) => x !== 'running')) why.push(`audio not running: ${first.states}`);
+            if (!(first.osc > 0 && second.osc > first.osc)) why.push(`music oscillators not started: ${first.osc} then ${second.osc}`);
+            if (offB.osc !== offA.osc || musicOn.osc <= offB.osc || end.osc <= musicOn.osc) why.push(`music toggle: off ${offA.osc} then ${offB.osc}, on ${musicOn.osc}, end ${end.osc}`);
+            if (end.fetches.length > 2 && opts.drawSound === 'server') why.push(`more than one fetch per line: ${JSON.stringify(end.fetches)}`);
+            if (why.length) errors.push(`drawSound: ${why.join('; ')}`);
+            await page.screenshot({ path: path.join(out, `${name}-${lang}-${motion}-${width}.viewport.png`) });
+            writeFileSync(path.join(out, `${name}-${lang}-${width}.sound.json`), JSON.stringify({ before, first, second, offA, offB, musicOn, end }, null, 1));
           }
           await page.waitForTimeout(400);
           const seen = await page.evaluate(() => {

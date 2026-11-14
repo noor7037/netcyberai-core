@@ -251,17 +251,21 @@ export async function speakWith(deps: SpeechDeps, text: string, lang: LangCode, 
 const hasSynth = (): boolean => typeof window !== 'undefined' && 'speechSynthesis' in window;
 
 let voiceCache: SpeechSynthesisVoice[] = [];
-// Chrome lists its voices a moment after the page starts: wait for `voiceschanged`, but not for ever.
+let voicesWaited = false;
+// Chrome lists its voices a moment after the page starts: wait for `voiceschanged` once, but not for ever (a phone with no
+// voice at all is not waited for again on the next line).
 function loadVoices(timeoutMs = 1500): Promise<VoiceLike[]> {
   if (!hasSynth()) return Promise.resolve([]);
   const s = window.speechSynthesis;
   if (voiceCache.length > 0) return Promise.resolve(voiceCache);
   const now = s.getVoices();
   if (now.length > 0) return Promise.resolve((voiceCache = now));
+  if (voicesWaited) return Promise.resolve([]);
   return new Promise((resolve) => {
     let timer: ReturnType<typeof setTimeout> | null = null;
     const done = () => {
       if (timer) clearTimeout(timer);
+      voicesWaited = true;
       s.removeEventListener?.('voiceschanged', done);
       resolve((voiceCache = s.getVoices()));
     };
