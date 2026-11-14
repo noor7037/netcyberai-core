@@ -120,10 +120,10 @@ describe('the registry (C514)', () => {
       expect(t.palette.length).toBeLessThanOrEqual(8);
       for (const c of t.palette) expect(c).toMatch(/^#[0-9A-Fa-f]{6}$/);
       expect(new Set(t.palette).size).toBe(t.palette.length);
-      expect(t.classes[0]).toBeGreaterThanOrEqual(1);
+      expect(t.classes[0]).toBeGreaterThanOrEqual(-1);
       expect(t.classes[1]).toBeLessThanOrEqual(12);
       expect(t.classes[0]).toBeLessThanOrEqual(t.classes[1]);
-      expect(Number(t.id.slice(1, 3))).toBe(t.classes[0]);
+      expect(Number(/^c(-?\d+)\./.exec(t.id)![1])).toBe(t.classes[0]);
       if (t.chapterKey !== null) {
         expect(catalogKeys.has(t.chapterKey)).toBe(true);
         const cls = Number(/\.c(\d+)\./.exec(t.chapterKey)![1]);
@@ -146,7 +146,7 @@ describe('the registry (C514)', () => {
 describe('the class filter (C514)', () => {
   it('a Class 3 child sees EVS life cycles under EVS, maths, and nothing above the class', () => {
     const subjects = stageSubjects(3);
-    const got = templatesFor(3, subjects);
+    const got = templatesFor(3, subjects).filter((x) => !x.template.cat);
     expect(got.length).toBeGreaterThan(8);
     for (const x of got) expect(x.template.classes[0] <= 3 && x.template.classes[1] >= 3).toBe(true);
     expect(got.find((x) => x.template.id === 'c03.science.frog-life-cycle')?.subject).toBe('evs');
@@ -154,8 +154,15 @@ describe('the class filter (C514)', () => {
     expect(groupBySubject(got, subjects).map((g) => g.subject)).toEqual(['mathematics', 'evs', 'english'].filter((s) => got.some((x) => x.subject === s)).sort((a, b) => subjects.indexOf(a as never) - subjects.indexOf(b as never)));
   });
   it('a Class 1 child has no EVS, so sees only maths and English templates', () => {
-    const got = templatesFor(1, stageSubjects(1));
+    const got = templatesFor(1, stageSubjects(1)).filter((x) => !x.template.cat);
     expect(new Set(got.map((x) => x.subject))).toEqual(new Set(['mathematics', 'english']));
+  });
+  it('Colour, Learn, Play and Art templates show under their kind, in that order, after the subjects (C517)', () => {
+    const got = templatesFor(1, stageSubjects(1));
+    const keys = groupBySubject(got, stageSubjects(1)).map((g) => g.subject);
+    expect(keys.filter((k) => ['colour', 'learn', 'play', 'art'].includes(k))).toEqual(['colour', 'learn', 'play', 'art'].filter((k) => keys.includes(k)));
+    expect(keys.indexOf('colour')).toBeGreaterThan(keys.indexOf('mathematics'));
+    expect(templatesFor(-1, stageSubjects(1)).length).toBeGreaterThan(0);
   });
   it('a Class 7 child sees the frog under Science and the Mughal templates under Social Science', () => {
     const got = templatesFor(7, stageSubjects(7));

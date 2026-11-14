@@ -8,7 +8,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { StudioEvent } from '@/lib/family/draw-contract';
 import type { Words } from '@/lib/family/fill';
-import { groupBySubject, isLocked, templateSrc, templatesFor, type DrawLang, type DrawTemplateEntry } from '@/lib/family/draw-templates';
+import { DRAW_CATEGORY_LABEL, groupBySubject, isLocked, templateSrc, templatesFor, type DrawCategory, type DrawLang, type DrawTemplateEntry } from '@/lib/family/draw-templates';
 import { familyApi } from '../../client';
 import { flushDone, sendDone, waitingFor } from './done-queue';
 import { useOnline, useTemplateStudio } from './openStudio';
@@ -48,7 +48,7 @@ function writeKnown(childId: string, k: Known) {
 
 export function DrawTemplatesSlot(props: Partial<DrawTemplatesSlotProps>) {
   // Rendered with no props until the Draw tab passes them: nothing to show yet.
-  if (!props.childId || !props.classLevel || !props.lang || !props.subjects || !props.w) return null;
+  if (!props.childId || props.classLevel === undefined || !props.lang || !props.subjects || !props.w) return null;
   return <TemplatesSection {...(props as DrawTemplatesSlotProps)} />;
 }
 export default DrawTemplatesSlot;
@@ -127,7 +127,7 @@ export function TemplatesSection({ childId, classLevel, lang, subjects, w, onSen
       {groups.length === 0 && <p className="text-sm text-slate">{w['fam.draw.t.none']}</p>}
       {groups.map((g) => (
         <div key={g.subject} data-draw-subject={g.subject} className="flex flex-col gap-2">
-          <h3 className="px-1 text-base font-bold text-slate">{w[`fam.subject.${g.subject}`] ?? g.subject}</h3>
+          <h3 className="px-1 text-base font-bold text-slate">{DRAW_CATEGORY_LABEL[g.subject as DrawCategory]?.[lang] ?? w[`fam.subject.${g.subject}`] ?? g.subject}</h3>
           <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
             {g.templates.map((t) => (
               <li key={t.id}>

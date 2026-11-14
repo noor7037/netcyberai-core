@@ -8,6 +8,14 @@
 import type { DrawTemplate } from './draw-contract';
 
 export type DrawLang = 'en' | 'hi';
+export type DrawCategory = 'colour' | 'learn' | 'play' | 'art';
+export const DRAW_CATEGORIES: readonly DrawCategory[] = ['colour', 'learn', 'play', 'art'];
+export const DRAW_CATEGORY_LABEL: Record<DrawCategory, { en: string; hi: string }> = {
+  colour: { en: 'Colour', hi: 'रंग भरो' },
+  learn: { en: 'Learn', hi: 'सीखो' },
+  play: { en: 'Play', hi: 'खेलो' },
+  art: { en: 'Art', hi: 'कला' },
+};
 type Words = { en: string; hi: string };
 
 export type DrawTemplateEntry = {
@@ -24,6 +32,8 @@ export type DrawTemplateEntry = {
   // C517: guided steps for LKG to Class 4 (engagement mode), and a line of background context; both optional.
   steps?: readonly { en: string; hi: string; at?: { x: number; y: number } }[];
   context?: Words;
+  // C517: an activity kind. Such a template shows under its kind (for every class in range), not under a school subject.
+  cat?: DrawCategory;
 };
 
 // The Control switch the templates live under: the drawing board's (W16). The studio slice may give drawing its own
@@ -296,6 +306,400 @@ export const DRAW_TEMPLATES: readonly DrawTemplateEntry[] = [
     labels: L(['Slogan', 'Save', 'Reuse', 'Replace'], ['नारा', 'बचाओ', 'दोबारा उपयोग', 'बदलो']),
     palette: ['#2E7D32', '#8BC34A', '#FFB300', '#1E88E5', '#E53935'],
   },
+  // ---- C517: Colour, Learn, Play and Art activities (LKG to Class 12), grouped by kind, not by subject -----------------
+  {
+    id: 'c-1.colour.big-apple', classes: [-1, 2], subject: 'colour', cat: 'colour', chapterKey: null, parentGate: false,
+    title: { en: 'A big red apple', hi: 'एक बड़ा लाल सेब' },
+    task: { en: 'Colour the apple red and its leaf green.', hi: 'सेब को लाल और उसकी पत्ती को हरा रंगो।' },
+    labels: L([], []),
+    palette: ['#E53935', '#43A047', '#8D6E63', '#FDD835', '#FB8C00'],
+    steps: [{ en: 'Colour the apple red.', hi: 'सेब को लाल रंगो।' }, { en: 'Colour the leaf green.', hi: 'पत्ती को हरा रंगो।' }, { en: 'Colour the stem brown.', hi: 'डंठल को भूरा रंगो।' }],
+    context: { en: 'A is for apple', hi: 'अ से अनार, A से apple' },
+  },
+  {
+    id: 'c-1.colour.happy-sun', classes: [-1, 2], subject: 'colour', cat: 'colour', chapterKey: null, parentGate: false,
+    title: { en: 'The happy sun', hi: 'खुश सूरज' },
+    task: { en: 'Colour the sun yellow and its rays orange.', hi: 'सूरज को पीला और उसकी किरणों को नारंगी रंगो।' },
+    labels: L([], []),
+    palette: ['#FDD835', '#FB8C00', '#E53935', '#29B6F6', '#43A047'],
+    steps: [{ en: 'Colour the round sun yellow.', hi: 'गोल सूरज को पीला रंगो।' }, { en: 'Colour every ray orange.', hi: 'हर किरण को नारंगी रंगो।' }, { en: 'Draw a blue sky around it.', hi: 'उसके चारों ओर नीला आसमान बनाओ।' }],
+    context: { en: 'Good morning, sun!', hi: 'सुप्रभात, सूरज!' },
+  },
+  {
+    id: 'c-1.colour.fish-bowl', classes: [-1, 2], subject: 'colour', cat: 'colour', chapterKey: null, parentGate: false,
+    title: { en: 'A fish in a bowl', hi: 'कटोरे में मछली' },
+    task: { en: 'Colour the fish, the water and the plants.', hi: 'मछली, पानी और पौधों में रंग भरो।' },
+    labels: L([], []),
+    palette: ['#FB8C00', '#29B6F6', '#43A047', '#FDD835', '#8E24AA'],
+    steps: [{ en: 'Colour the fish orange.', hi: 'मछली को नारंगी रंगो।' }, { en: 'Colour the water light blue.', hi: 'पानी को हल्का नीला रंगो।' }, { en: 'Colour the plants green.', hi: 'पौधों को हरा रंगो।' }, { en: 'Draw one more fish.', hi: 'एक और मछली बनाओ।' }],
+    context: { en: 'Swim, little fish!', hi: 'तैरो, नन्ही मछली!' },
+  },
+  {
+    id: 'c-1.colour.balloon-bunch', classes: [-1, 2], subject: 'colour', cat: 'colour', chapterKey: null, parentGate: false,
+    title: { en: 'Three balloons', hi: 'तीन गुब्बारे' },
+    task: { en: 'Colour each balloon a different colour.', hi: 'हर गुब्बारे को अलग रंग से रंगो।' },
+    labels: L([], []),
+    palette: ['#E53935', '#FDD835', '#1E88E5', '#43A047', '#EC407A', '#8E24AA'],
+    steps: [{ en: 'Colour the first balloon red.', hi: 'पहले गुब्बारे को लाल रंगो।' }, { en: 'Colour the middle balloon yellow.', hi: 'बीच वाले गुब्बारे को पीला रंगो।' }, { en: 'Colour the last balloon blue.', hi: 'आख़िरी गुब्बारे को नीला रंगो।' }],
+    context: { en: 'One, two, three balloons', hi: 'एक, दो, तीन गुब्बारे' },
+  },
+  {
+    id: 'c-1.colour.ice-cream', classes: [-1, 2], subject: 'colour', cat: 'colour', chapterKey: null, parentGate: false,
+    title: { en: 'An ice cream cone', hi: 'आइसक्रीम कोन' },
+    task: { en: 'Colour the scoops, the cone and the cherry.', hi: 'आइसक्रीम, कोन और चेरी में रंग भरो।' },
+    labels: L([], []),
+    palette: ['#F48FB1', '#FFF59D', '#A1887F', '#E53935', '#81C784'],
+    steps: [{ en: 'Colour the top scoop pink.', hi: 'ऊपर वाली आइसक्रीम को गुलाबी रंगो।' }, { en: 'Colour the bottom scoop your favourite colour.', hi: 'नीचे वाली को अपने मनपसंद रंग से रंगो।' }, { en: 'Colour the cone brown.', hi: 'कोन को भूरा रंगो।' }, { en: 'Colour the cherry red.', hi: 'चेरी को लाल रंगो।' }],
+    context: { en: 'Yummy!', hi: 'वाह, स्वादिष्ट!' },
+  },
+  {
+    id: 'c00.colour.butterfly', classes: [0, 3], subject: 'colour', cat: 'colour', chapterKey: null, parentGate: false,
+    title: { en: 'A pretty butterfly', hi: 'सुंदर तितली' },
+    task: { en: 'Colour both wings the same, like a mirror.', hi: 'दोनों पंख एक जैसे रंगो, जैसे शीशे में।' },
+    labels: L([], []),
+    palette: ['#8E24AA', '#EC407A', '#FDD835', '#29B6F6', '#43A047', '#FB8C00'],
+    steps: [{ en: 'Colour the left top wing.', hi: 'बाईं ओर का ऊपर वाला पंख रंगो।' }, { en: 'Colour the right top wing the same.', hi: 'दाईं ओर का ऊपर वाला पंख भी वैसा ही रंगो।' }, { en: 'Colour the two small wings.', hi: 'दोनों छोटे पंख रंगो।' }, { en: 'Colour the spots.', hi: 'धब्बों में रंग भरो।' }],
+    context: { en: 'Flutter, flutter!', hi: 'फुर्र, फुर्र!' },
+  },
+  {
+    id: 'c00.colour.house-garden', classes: [0, 3], subject: 'colour', cat: 'colour', chapterKey: null, parentGate: false,
+    title: { en: 'My house and garden', hi: 'मेरा घर और बगीचा' },
+    task: { en: 'Colour the house, the tree, the flowers and the sun.', hi: 'घर, पेड़, फूल और सूरज में रंग भरो।' },
+    labels: L([], []),
+    palette: ['#E53935', '#FFCC80', '#43A047', '#8D6E63', '#FDD835', '#29B6F6'],
+    steps: [{ en: 'Colour the roof red.', hi: 'छत को लाल रंगो।' }, { en: 'Colour the walls and the door.', hi: 'दीवारों और दरवाज़े में रंग भरो।' }, { en: 'Colour the tree and the flowers.', hi: 'पेड़ और फूलों में रंग भरो।' }, { en: 'Colour the sun yellow.', hi: 'सूरज को पीला रंगो।' }],
+    context: { en: 'Home, sweet home', hi: 'मेरा प्यारा घर' },
+  },
+  {
+    id: 'c00.colour.rainbow-clouds', classes: [0, 3], subject: 'colour', cat: 'colour', chapterKey: null, parentGate: false,
+    title: { en: 'A rainbow', hi: 'इंद्रधनुष' },
+    task: { en: 'Colour the rainbow: red on the outside, then orange, yellow and green.', hi: 'इंद्रधनुष रंगो: सबसे बाहर लाल, फिर नारंगी, पीला और हरा।' },
+    labels: L([], []),
+    palette: ['#E53935', '#FB8C00', '#FDD835', '#43A047', '#1E88E5', '#8E24AA'],
+    steps: [{ en: 'Colour the outside band red.', hi: 'सबसे बाहर की पट्टी लाल रंगो।' }, { en: 'Colour the next band orange.', hi: 'अगली पट्टी नारंगी रंगो।' }, { en: 'Colour the next band yellow.', hi: 'अगली पट्टी पीली रंगो।' }, { en: 'Colour the inside band green.', hi: 'सबसे अंदर की पट्टी हरी रंगो।' }],
+    context: { en: 'After the rain', hi: 'बारिश के बाद' },
+  },
+  {
+    id: 'c01.colour.elephant', classes: [1, 4], subject: 'colour', cat: 'colour', chapterKey: null, parentGate: false,
+    title: { en: 'A big elephant', hi: 'बड़ा हाथी' },
+    task: { en: 'Colour the elephant grey and draw where it lives.', hi: 'हाथी को स्लेटी रंगो और बनाओ कि वह कहाँ रहता है।' },
+    labels: L(['Trunk', 'Ear', 'Tail', 'Tusk'], ['सूँड़', 'कान', 'पूँछ', 'दाँत']),
+    palette: ['#90A4AE', '#F48FB1', '#43A047', '#8D6E63', '#29B6F6'],
+    steps: [{ en: 'Colour the elephant grey.', hi: 'हाथी को स्लेटी रंगो।' }, { en: 'Colour the inside of its ear pink.', hi: 'उसके कान के अंदर गुलाबी रंग भरो।' }, { en: 'Draw grass and trees around it.', hi: 'उसके चारों ओर घास और पेड़ बनाओ।' }],
+    context: { en: 'The elephant has a long trunk', hi: 'हाथी की सूँड़ लंबी होती है' },
+  },
+  {
+    id: 'c01.colour.train', classes: [1, 4], subject: 'colour', cat: 'colour', chapterKey: null, parentGate: false,
+    title: { en: 'Choo-choo train', hi: 'छुक-छुक रेलगाड़ी' },
+    task: { en: 'Colour the engine, the coach and the wheels.', hi: 'इंजन, डिब्बे और पहियों में रंग भरो।' },
+    labels: L(['Engine', 'Coach', 'Wheel', 'Smoke'], ['इंजन', 'डिब्बा', 'पहिया', 'धुआँ']),
+    palette: ['#E53935', '#FDD835', '#1E88E5', '#424242', '#90A4AE'],
+    steps: [{ en: 'Colour the engine red.', hi: 'इंजन को लाल रंगो।' }, { en: 'Colour the coach yellow.', hi: 'डिब्बे को पीला रंगो।' }, { en: 'Colour the wheels black.', hi: 'पहियों को काला रंगो।' }, { en: 'Colour the smoke grey.', hi: 'धुएँ को स्लेटी रंगो।' }],
+    context: { en: 'Choo-choo!', hi: 'छुक-छुक!' },
+  },
+  {
+    id: 'c01.colour.peacock', classes: [1, 4], subject: 'colour', cat: 'colour', chapterKey: null, parentGate: false,
+    title: { en: 'The peacock', hi: 'मोर' },
+    task: { en: 'Colour our national bird. Its feathers are blue and green.', hi: 'हमारे राष्ट्रीय पक्षी में रंग भरो। उसके पंख नीले और हरे होते हैं।' },
+    labels: L(['Feathers', 'Crest', 'Beak'], ['पंख', 'कलगी', 'चोंच']),
+    palette: ['#1565C0', '#00897B', '#43A047', '#FDD835', '#8E24AA'],
+    steps: [{ en: 'Colour the body blue.', hi: 'शरीर को नीला रंगो।' }, { en: 'Colour the feathers green.', hi: 'पंखों को हरा रंगो।' }, { en: 'Colour the eye spots blue and yellow.', hi: 'पंखों की आँखों को नीला और पीला रंगो।' }],
+    context: { en: 'Our national bird', hi: 'हमारा राष्ट्रीय पक्षी' },
+  },
+  {
+    id: 'c-1.learn.trace-lines', classes: [-1, 1], subject: 'learn', cat: 'learn', chapterKey: null, parentGate: false,
+    title: { en: 'Trace the lines', hi: 'रेखाओं पर चलो' },
+    task: { en: 'Start at each big dot and follow the dotted line to the end.', hi: 'हर बड़े बिंदु से शुरू करो और बिंदु वाली रेखा पर अंत तक चलो।' },
+    labels: L([], []),
+    palette: ['#E53935', '#1E88E5', '#43A047', '#FB8C00', '#8E24AA'],
+    steps: [{ en: 'Trace the straight line.', hi: 'सीधी रेखा पर चलो।' }, { en: 'Trace the zigzag line.', hi: 'टेढ़ी-मेढ़ी रेखा पर चलो।' }, { en: 'Trace the wavy line.', hi: 'लहर वाली रेखा पर चलो।' }, { en: 'Trace the hills.', hi: 'पहाड़ों वाली रेखा पर चलो।' }],
+    context: { en: 'Slow and steady', hi: 'धीरे-धीरे, आराम से' },
+  },
+  {
+    id: 'c-1.learn.trace-shapes', classes: [-1, 1], subject: 'learn', cat: 'learn', chapterKey: null, parentGate: false,
+    title: { en: 'Trace the shapes', hi: 'आकारों पर चलो' },
+    task: { en: 'Trace each shape on its dots, then colour it.', hi: 'हर आकार के बिंदुओं पर चलो, फिर उसमें रंग भरो।' },
+    labels: L(['Circle', 'Square', 'Triangle', 'Star'], ['गोला', 'वर्ग', 'त्रिभुज', 'तारा']),
+    palette: ['#E53935', '#1E88E5', '#43A047', '#FDD835', '#8E24AA'],
+    steps: [{ en: 'Trace the circle.', hi: 'गोले पर चलो।' }, { en: 'Trace the square.', hi: 'वर्ग पर चलो।' }, { en: 'Trace the triangle.', hi: 'त्रिभुज पर चलो।' }, { en: 'Trace the star.', hi: 'तारे पर चलो।' }],
+    context: { en: 'Shapes all around', hi: 'चारों ओर आकार' },
+  },
+  {
+    id: 'c00.learn.trace-numbers', classes: [0, 2], subject: 'learn', cat: 'learn', chapterKey: null, parentGate: false,
+    title: { en: 'Numbers 1 to 5', hi: '1 से 5 तक गिनती' },
+    task: { en: 'Trace each number, then colour that many circles under it.', hi: 'हर संख्या पर चलो, फिर उसके नीचे उतने ही गोले रंगो।' },
+    labels: L([], []),
+    palette: ['#E53935', '#FB8C00', '#FDD835', '#43A047', '#1E88E5'],
+    steps: [{ en: 'Trace 1 and colour one circle.', hi: '1 पर चलो और एक गोला रंगो।' }, { en: 'Trace 2 and colour two circles.', hi: '2 पर चलो और दो गोले रंगो।' }, { en: 'Trace 3 and colour three circles.', hi: '3 पर चलो और तीन गोले रंगो।' }, { en: 'Trace 4 and 5 and colour their circles.', hi: '4 और 5 पर चलो और उनके गोले रंगो।' }],
+    context: { en: 'Count with me', hi: 'मेरे साथ गिनो' },
+  },
+  {
+    id: 'c00.learn.trace-letters', classes: [0, 2], subject: 'learn', cat: 'learn', chapterKey: null, parentGate: false,
+    title: { en: 'A, B, C', hi: 'अक्षर A, B, C' },
+    task: { en: 'Trace A, B and C, then colour the apple, the ball and the cat.', hi: 'A, B और C पर चलो, फिर सेब, गेंद और बिल्ली में रंग भरो।' },
+    labels: L(['Apple', 'Ball', 'Cat'], ['सेब', 'गेंद', 'बिल्ली']),
+    palette: ['#E53935', '#1E88E5', '#FB8C00', '#43A047', '#8E24AA'],
+    steps: [{ en: 'Trace A. A is for apple.', hi: 'A पर चलो। A से apple, यानी सेब।' }, { en: 'Trace B. B is for ball.', hi: 'B पर चलो। B से ball, यानी गेंद।' }, { en: 'Trace C. C is for cat.', hi: 'C पर चलो। C से cat, यानी बिल्ली।' }, { en: 'Colour the apple, the ball and the cat.', hi: 'सेब, गेंद और बिल्ली में रंग भरो।' }],
+    context: { en: 'A B C', hi: 'A B C' },
+  },
+  {
+    id: 'c01.learn.big-small', classes: [1, 2], subject: 'learn', cat: 'learn', chapterKey: null, parentGate: false,
+    title: { en: 'Big and small', hi: 'बड़ा और छोटा' },
+    task: { en: 'Trace the big ball and the small ball. Then draw one big thing and one small thing.', hi: 'बड़ी और छोटी गेंद पर चलो। फिर एक बड़ी और एक छोटी चीज़ बनाओ।' },
+    labels: L(['Big', 'Small'], ['बड़ा', 'छोटा']),
+    palette: ['#E53935', '#1E88E5', '#FDD835', '#43A047', '#8D6E63'],
+    steps: [{ en: 'Trace the big ball.', hi: 'बड़ी गेंद पर चलो।' }, { en: 'Trace the small ball.', hi: 'छोटी गेंद पर चलो।' }, { en: 'Draw a big tree and a small flower.', hi: 'एक बड़ा पेड़ और एक छोटा फूल बनाओ।' }],
+    context: { en: 'Big or small?', hi: 'बड़ा या छोटा?' },
+  },
+  {
+    id: 'c01.learn.my-body', classes: [1, 3], subject: 'learn', cat: 'learn', chapterKey: null, parentGate: false,
+    title: { en: 'My body', hi: 'मेरा शरीर' },
+    task: { en: 'Draw the face and clothes, then label the parts of the body.', hi: 'चेहरा और कपड़े बनाओ, फिर शरीर के भागों के नाम लिखो।' },
+    labels: L(['Head', 'Eyes', 'Nose', 'Mouth', 'Hands', 'Legs', 'Feet'], ['सिर', 'आँखें', 'नाक', 'मुँह', 'हाथ', 'पैर', 'पंजे']),
+    palette: ['#FFCC80', '#8D6E63', '#E53935', '#1E88E5', '#43A047'],
+    steps: [{ en: 'Draw the eyes, nose and mouth.', hi: 'आँखें, नाक और मुँह बनाओ।' }, { en: 'Draw your clothes.', hi: 'अपने कपड़े बनाओ।' }, { en: 'Put the word Head on the head.', hi: 'सिर पर Head शब्द रखो।' }, { en: 'Put Hands and Legs in their places.', hi: 'Hands और Legs सही जगह पर रखो।' }],
+    context: { en: 'This is me!', hi: 'यह मैं हूँ!' },
+  },
+  {
+    id: 'c02.learn.weather-chart', classes: [2, 4], subject: 'learn', cat: 'learn', chapterKey: null, parentGate: false,
+    title: { en: 'Weather chart', hi: 'मौसम चार्ट' },
+    task: { en: 'Colour each kind of weather. Draw what you wear in it.', hi: 'हर तरह के मौसम में रंग भरो। उसमें तुम क्या पहनते हो, वह बनाओ।' },
+    labels: L(['Sunny', 'Cloudy', 'Rainy', 'Windy'], ['धूप', 'बादल', 'बारिश', 'तेज़ हवा']),
+    palette: ['#FDD835', '#90A4AE', '#29B6F6', '#43A047', '#FB8C00'],
+    steps: [{ en: 'Colour the sunny box.', hi: 'धूप वाला डिब्बा रंगो।' }, { en: 'Colour the cloudy box.', hi: 'बादल वाला डिब्बा रंगो।' }, { en: 'Colour the rainy box.', hi: 'बारिश वाला डिब्बा रंगो।' }, { en: 'Colour the windy box.', hi: 'तेज़ हवा वाला डिब्बा रंगो।' }],
+    context: { en: 'What is the weather today?', hi: 'आज मौसम कैसा है?' },
+  },
+  {
+    id: 'c03.learn.land-water-air', classes: [3, 5], subject: 'learn', cat: 'learn', chapterKey: null, parentGate: false,
+    title: { en: 'Land, water and air', hi: 'ज़मीन, पानी और हवा' },
+    task: { en: 'Draw one thing that moves in the sky, one on the road and one on the water.', hi: 'आसमान में, सड़क पर और पानी पर चलने वाली एक-एक चीज़ बनाओ।' },
+    labels: L(['Air', 'Land', 'Water'], ['हवा', 'ज़मीन', 'पानी']),
+    palette: ['#29B6F6', '#90A4AE', '#1565C0', '#E53935', '#FDD835'],
+    steps: [{ en: 'Draw something that flies in the sky.', hi: 'आसमान में उड़ने वाली कोई चीज़ बनाओ।' }, { en: 'Draw something on the road.', hi: 'सड़क पर चलने वाली कोई चीज़ बनाओ।' }, { en: 'Draw something on the water.', hi: 'पानी पर चलने वाली कोई चीज़ बनाओ।' }],
+    context: { en: 'How do we travel?', hi: 'हम कैसे सफ़र करते हैं?' },
+  },
+  {
+    id: 'c00.art.draw-face', classes: [0, 3], subject: 'art', cat: 'art', chapterKey: null, parentGate: false,
+    title: { en: 'Draw a face', hi: 'चेहरा बनाओ' },
+    task: { en: 'Draw the eyes, nose, mouth and hair. Make it happy, silly or surprised!', hi: 'आँखें, नाक, मुँह और बाल बनाओ। चेहरा खुश, मज़ेदार या हैरान बनाओ!' },
+    labels: L([], []),
+    palette: ['#FFCC80', '#8D6E63', '#212121', '#E53935', '#1E88E5', '#F48FB1'],
+    steps: [{ en: 'Draw two eyes.', hi: 'दो आँखें बनाओ।' }, { en: 'Draw a nose.', hi: 'नाक बनाओ।' }, { en: 'Draw a big smile.', hi: 'बड़ी मुस्कान बनाओ।' }, { en: 'Draw the hair.', hi: 'बाल बनाओ।' }],
+    context: { en: 'Who is this?', hi: 'यह कौन है?' },
+  },
+  {
+    id: 'c01.art.dot-to-dot-star', classes: [1, 4], subject: 'art', cat: 'art', chapterKey: null, parentGate: false,
+    title: { en: 'Join the dots', hi: 'बिंदु मिलाओ' },
+    task: { en: 'Join the dots to make a big star, then colour it.', hi: 'बिंदुओं को मिलाकर बड़ा तारा बनाओ, फिर उसमें रंग भरो।' },
+    labels: L([], []),
+    palette: ['#FDD835', '#FB8C00', '#1E88E5', '#8E24AA', '#E53935'],
+    steps: [{ en: 'Start at the top dot and join to the next.', hi: 'सबसे ऊपर के बिंदु से शुरू करके अगले से मिलाओ।' }, { en: 'Keep joining all the way round.', hi: 'पूरा घूमते हुए मिलाते रहो।' }, { en: 'Colour your star.', hi: 'अपने तारे में रंग भरो।' }],
+    context: { en: 'Twinkle, twinkle', hi: 'टिमटिम तारे' },
+  },
+  {
+    id: 'c01.art.rangoli-grid', classes: [1, 5], subject: 'art', cat: 'art', chapterKey: null, parentGate: false,
+    title: { en: 'Dot rangoli', hi: 'बिंदु रंगोली' },
+    task: { en: 'Join the dots around the dotted petals to make your own rangoli, then colour it.', hi: 'बिंदु वाली पंखुड़ियों के चारों ओर बिंदु मिलाकर अपनी रंगोली बनाओ, फिर रंग भरो।' },
+    labels: L([], []),
+    palette: ['#E53935', '#FDD835', '#43A047', '#1E88E5', '#EC407A', '#FB8C00'],
+    steps: [{ en: 'Trace the dotted petals.', hi: 'बिंदु वाली पंखुड़ियों पर चलो।' }, { en: 'Join more dots to make a pattern.', hi: 'और बिंदु मिलाकर पैटर्न बनाओ।' }, { en: 'Colour your rangoli brightly.', hi: 'अपनी रंगोली को चटकीले रंगों से भरो।' }],
+    context: { en: 'Happy festivals', hi: 'त्योहार मुबारक' },
+  },
+  {
+    id: 'c02.art.diya', classes: [2, 5], subject: 'art', cat: 'art', chapterKey: null, parentGate: false,
+    title: { en: 'Decorate a diya', hi: 'दीया सजाओ' },
+    task: { en: 'Colour the flame and decorate the diya with your own pattern.', hi: 'लौ में रंग भरो और दीये को अपने पैटर्न से सजाओ।' },
+    labels: L([], []),
+    palette: ['#FB8C00', '#FDD835', '#E53935', '#8D6E63', '#8E24AA'],
+    steps: [{ en: 'Colour the flame yellow and orange.', hi: 'लौ को पीला और नारंगी रंगो।' }, { en: 'Colour the diya.', hi: 'दीये में रंग भरो।' }, { en: 'Add dots and lines to decorate it.', hi: 'सजाने के लिए बिंदु और रेखाएँ बनाओ।' }],
+    context: { en: 'A light for Diwali', hi: 'दिवाली का दीया' },
+  },
+  {
+    id: 'c02.art.kite-festival', classes: [2, 5], subject: 'art', cat: 'art', chapterKey: null, parentGate: false,
+    title: { en: 'Kite festival', hi: 'पतंग उत्सव' },
+    task: { en: 'Decorate the two kites and draw a third one flying with them.', hi: 'दोनों पतंगों को सजाओ और उनके साथ उड़ती एक तीसरी पतंग बनाओ।' },
+    labels: L([], []),
+    palette: ['#E53935', '#FDD835', '#43A047', '#1E88E5', '#8E24AA', '#FB8C00'],
+    steps: [{ en: 'Colour the first kite.', hi: 'पहली पतंग में रंग भरो।' }, { en: 'Colour the second kite.', hi: 'दूसरी पतंग में रंग भरो।' }, { en: 'Draw one more kite in the sky.', hi: 'आसमान में एक और पतंग बनाओ।' }],
+    context: { en: 'Makar Sankranti', hi: 'मकर संक्रांति' },
+  },
+  {
+    id: 'c03.art.mandala', classes: [3, 8], subject: 'art', cat: 'art', chapterKey: null, parentGate: false,
+    title: { en: 'A mandala', hi: 'मंडला' },
+    task: { en: 'Colour the mandala ring by ring. Use the same colour all the way round each ring.', hi: 'मंडला को घेरा-दर-घेरा रंगो। हर घेरे में पूरा एक ही रंग भरो।' },
+    labels: L([], []),
+    palette: ['#8E24AA', '#1E88E5', '#00897B', '#FDD835', '#FB8C00', '#E53935'],
+    steps: [{ en: 'Colour the centre.', hi: 'बीच वाले हिस्से में रंग भरो।' }, { en: 'Colour the petals.', hi: 'पंखुड़ियों में रंग भरो।' }, { en: 'Colour the outer ring.', hi: 'बाहरी घेरे में रंग भरो।' }],
+    context: { en: 'Round and round', hi: 'गोल-गोल' },
+  },
+  {
+    id: 'c04.art.underwater-scene', classes: [4, 7], subject: 'art', cat: 'art', chapterKey: null, parentGate: false,
+    title: { en: 'Under the sea', hi: 'समुद्र के नीचे' },
+    task: { en: 'Colour the sea and add more sea animals: a crab, a turtle or an octopus.', hi: 'समुद्र में रंग भरो और और समुद्री जीव जोड़ो: केकड़ा, कछुआ या ऑक्टोपस।' },
+    labels: L([], []),
+    palette: ['#1565C0', '#29B6F6', '#FB8C00', '#43A047', '#F48FB1', '#FDD835'],
+    steps: [{ en: 'Colour the two fish.', hi: 'दोनों मछलियों में रंग भरो।' }, { en: 'Colour the seaweed and the coral.', hi: 'समुद्री घास और मूँगे में रंग भरो।' }, { en: 'Draw one more sea animal.', hi: 'एक और समुद्री जीव बनाओ।' }],
+    context: { en: 'Deep blue sea', hi: 'गहरा नीला समुद्र' },
+  },
+  {
+    id: 'c-1.play.maze-bunny', classes: [-1, 2], subject: 'play', cat: 'play', chapterKey: null, parentGate: false,
+    title: { en: 'Help the bunny', hi: 'खरगोश की मदद करो' },
+    task: { en: 'Draw a line from the bunny to the carrot without touching the walls.', hi: 'दीवारों को छुए बिना खरगोश से गाजर तक रेखा बनाओ।' },
+    labels: L([], []),
+    palette: ['#E53935', '#43A047', '#FB8C00', '#1E88E5', '#8E24AA'],
+    steps: [{ en: 'Put your finger on the bunny.', hi: 'अपनी उँगली खरगोश पर रखो।' }, { en: 'Draw a line along the paths to the carrot.', hi: 'रास्तों पर चलते हुए गाजर तक रेखा बनाओ।' }, { en: 'Colour the carrot orange.', hi: 'गाजर को नारंगी रंगो।' }],
+    context: { en: 'Hop, hop, hop!', hi: 'फुदक, फुदक!' },
+  },
+  {
+    id: 'c00.play.match-pairs', classes: [0, 2], subject: 'play', cat: 'play', chapterKey: null, parentGate: false,
+    title: { en: 'Match the shapes', hi: 'आकार मिलाओ' },
+    task: { en: 'Draw a line from each shape to the same shape on the other side.', hi: 'हर आकार से दूसरी ओर के उसी आकार तक रेखा बनाओ।' },
+    labels: L([], []),
+    palette: ['#E53935', '#1E88E5', '#43A047', '#FDD835', '#8E24AA'],
+    steps: [{ en: 'Join the circle to the circle.', hi: 'गोले को गोले से मिलाओ।' }, { en: 'Join the square to the square.', hi: 'वर्ग को वर्ग से मिलाओ।' }, { en: 'Join the triangle and the star.', hi: 'त्रिभुज और तारे को मिलाओ।' }],
+    context: { en: 'Find the twin', hi: 'जुड़वाँ ढूँढो' },
+  },
+  {
+    id: 'c01.play.maze-bigger', classes: [1, 4], subject: 'play', cat: 'play', chapterKey: null, parentGate: false,
+    title: { en: 'The long maze', hi: 'लंबी भूलभुलैया' },
+    task: { en: 'Start at the star and find the way to the flag.', hi: 'तारे से शुरू करो और झंडे तक का रास्ता ढूँढो।' },
+    labels: L([], []),
+    palette: ['#E53935', '#1E88E5', '#43A047', '#FDD835', '#8E24AA'],
+    steps: [{ en: 'Start at the star.', hi: 'तारे से शुरू करो।' }, { en: 'Go down and up through the gaps.', hi: 'खुली जगहों से नीचे-ऊपर जाओ।' }, { en: 'Reach the flag!', hi: 'झंडे तक पहुँचो!' }],
+    context: { en: 'Which way?', hi: 'किधर जाएँ?' },
+  },
+  {
+    id: 'c02.play.tic-tac-toe', classes: [2, 6], subject: 'play', cat: 'play', chapterKey: null, parentGate: false,
+    title: { en: 'Noughts and crosses', hi: 'काटा-गोला' },
+    task: { en: 'Play with someone at home: one draws X, the other draws O. Three in a row wins!', hi: 'घर पर किसी के साथ खेलो: एक X बनाए, दूसरा O। एक लाइन में तीन बनाने वाला जीतता है!' },
+    labels: L(['X', 'O'], ['X', 'O']),
+    palette: ['#E53935', '#1E88E5', '#43A047', '#FDD835', '#424242'],
+    steps: [{ en: 'Pick X or O.', hi: 'X या O चुनो।' }, { en: 'Take turns to draw in the boxes.', hi: 'बारी-बारी से खानों में बनाओ।' }, { en: 'Play all four games!', hi: 'चारों खेल खेलो!' }],
+    context: { en: 'Your turn!', hi: 'तुम्हारी बारी!' },
+  },
+  {
+    id: 'c03.play.design-tshirt', classes: [3, 8], subject: 'play', cat: 'play', chapterKey: null, parentGate: false,
+    title: { en: 'Design a T-shirt', hi: 'टी-शर्ट डिज़ाइन करो' },
+    task: { en: 'Colour the T-shirt and draw your own design in the dotted box.', hi: 'टी-शर्ट में रंग भरो और बिंदु वाले डिब्बे में अपना डिज़ाइन बनाओ।' },
+    labels: L([], []),
+    palette: ['#1E88E5', '#E53935', '#FDD835', '#43A047', '#212121', '#EC407A'],
+    steps: [{ en: 'Colour the T-shirt.', hi: 'टी-शर्ट में रंग भरो।' }, { en: 'Draw a picture in the box.', hi: 'डिब्बे में एक चित्र बनाओ।' }, { en: 'Add stickers if you like.', hi: 'चाहो तो स्टिकर लगाओ।' }],
+    context: { en: 'My style', hi: 'मेरा अंदाज़' },
+  },
+  {
+    id: 'c03.play.comic-strip', classes: [3, 8], subject: 'play', cat: 'play', chapterKey: null, parentGate: false,
+    title: { en: 'Make a comic', hi: 'कॉमिक बनाओ' },
+    task: { en: 'Tell a short story in three pictures. Write what the characters say in the bubbles.', hi: 'तीन चित्रों में एक छोटी कहानी बताओ। बुलबुलों में लिखो कि पात्र क्या कहते हैं।' },
+    labels: L([], []),
+    palette: ['#FDD835', '#E53935', '#1E88E5', '#43A047', '#FFCC80', '#424242'],
+    steps: [{ en: 'Draw the start of your story.', hi: 'अपनी कहानी की शुरुआत बनाओ।' }, { en: 'Draw what happens next.', hi: 'आगे क्या हुआ, वह बनाओ।' }, { en: 'Draw the ending.', hi: 'कहानी का अंत बनाओ।' }, { en: 'Write words in the bubbles.', hi: 'बुलबुलों में शब्द लिखो।' }],
+    context: { en: 'Once upon a time', hi: 'एक बार की बात है' },
+  },
+  {
+    id: 'c04.play.design-robot', classes: [4, 8], subject: 'play', cat: 'play', chapterKey: null, parentGate: false,
+    title: { en: 'Design a robot', hi: 'रोबोट डिज़ाइन करो' },
+    task: { en: 'Give your robot buttons, lights and a job. What does it help with?', hi: 'अपने रोबोट को बटन, बत्तियाँ और एक काम दो। वह किस काम में मदद करता है?' },
+    labels: L([], []),
+    palette: ['#90A4AE', '#1E88E5', '#E53935', '#FDD835', '#43A047', '#424242'],
+    steps: [{ en: 'Colour the robot.', hi: 'रोबोट में रंग भरो।' }, { en: 'Draw buttons in the dotted box.', hi: 'बिंदु वाले डिब्बे में बटन बनाओ।' }, { en: 'Give it a name.', hi: 'उसे एक नाम दो।' }],
+    context: { en: 'Beep boop!', hi: 'बीप-बूप!' },
+  },
+  {
+    id: 'c06.art.perspective-street', classes: [6, 10], subject: 'art', cat: 'art', chapterKey: null, parentGate: false,
+    title: { en: 'One-point perspective street', hi: 'एक-बिंदु परिप्रेक्ष्य वाली सड़क' },
+    task: { en: 'Use the dotted guides to the vanishing point to draw buildings on both sides of the street.', hi: 'विलोप बिंदु तक जाती बिंदु-रेखाओं की मदद से सड़क के दोनों ओर इमारतें बनाओ।' },
+    labels: L(['Horizon line', 'Vanishing point'], ['क्षितिज रेखा', 'विलोप बिंदु']),
+    palette: ['#90A4AE', '#8D6E63', '#29B6F6', '#FDD835', '#424242'],
+
+  },
+  {
+    id: 'c06.art.portrait-proportions', classes: [6, 12], subject: 'art', cat: 'art', chapterKey: null, parentGate: false,
+    title: { en: 'Draw a face in proportion', hi: 'अनुपात में चेहरा बनाओ' },
+    task: { en: 'The eyes sit on the middle line, the nose on the next and the mouth below. Draw a face using the guides.', hi: 'आँखें बीच की रेखा पर, नाक अगली पर और मुँह उसके नीचे आता है। रेखाओं की मदद से चेहरा बनाओ।' },
+    labels: L(['Eyes', 'Nose', 'Mouth', 'Hairline'], ['आँखें', 'नाक', 'मुँह', 'बालों की रेखा']),
+    palette: ['#FFCC80', '#8D6E63', '#E57373', '#212121', '#5D4037'],
+
+  },
+  {
+    id: 'c07.art.zentangle', classes: [7, 12], subject: 'art', cat: 'art', chapterKey: null, parentGate: false,
+    title: { en: 'Zentangle patterns', hi: 'ज़ेनटैंगल पैटर्न' },
+    task: { en: 'Fill each section with a different repeating pattern: lines, dots, circles, waves.', hi: 'हर हिस्से में अलग दोहराता पैटर्न भरो: रेखाएँ, बिंदु, गोले, लहरें।' },
+    labels: L([], []),
+    palette: ['#212121', '#5C6BC0', '#00897B', '#E53935', '#FDD835'],
+
+  },
+  {
+    id: 'c06.art.cartoon-construction', classes: [6, 10], subject: 'art', cat: 'art', chapterKey: null, parentGate: false,
+    title: { en: 'Draw a cartoon character', hi: 'कार्टून पात्र बनाओ' },
+    task: { en: 'Build your character on the circles and guide lines, then add a face, clothes and colour.', hi: 'गोलों और रेखाओं पर अपना पात्र बनाओ, फिर चेहरा, कपड़े और रंग जोड़ो।' },
+    labels: L([], []),
+    palette: ['#FFCC80', '#1E88E5', '#E53935', '#FDD835', '#43A047', '#424242'],
+
+  },
+  {
+    id: 'c06.play.comic-six', classes: [6, 12], subject: 'play', cat: 'play', chapterKey: null, parentGate: false,
+    title: { en: 'Six-panel comic', hi: 'छह खानों का कॉमिक' },
+    task: { en: 'Plan a story with a beginning, a problem and an ending across six panels.', hi: 'छह खानों में शुरुआत, समस्या और अंत वाली कहानी बनाओ।' },
+    labels: L([], []),
+    palette: ['#FDD835', '#E53935', '#1E88E5', '#43A047', '#FFCC80', '#424242'],
+
+  },
+  {
+    id: 'c06.play.board-game', classes: [6, 10], subject: 'play', cat: 'play', chapterKey: null, parentGate: false,
+    title: { en: 'Design a board game', hi: 'बोर्ड गेम डिज़ाइन करो' },
+    task: { en: 'Number the squares, add more ladders and snakes, and write the rules of your game.', hi: 'खानों पर नंबर लिखो, और सीढ़ियाँ और साँप जोड़ो, और अपने खेल के नियम लिखो।' },
+    labels: L(['Start', 'Finish'], ['शुरू', 'अंत']),
+    palette: ['#E53935', '#43A047', '#FDD835', '#1E88E5', '#8D6E63', '#8E24AA'],
+
+  },
+  {
+    id: 'c08.play.event-poster', classes: [8, 12], subject: 'play', cat: 'play', chapterKey: null, parentGate: false,
+    title: { en: 'Make an event poster', hi: 'कार्यक्रम का पोस्टर बनाओ' },
+    task: { en: 'Plan a poster for a school event: a big title, a picture in the dotted box, and the date, time and place.', hi: 'स्कूल के किसी कार्यक्रम का पोस्टर बनाओ: बड़ा शीर्षक, बिंदु वाले डिब्बे में चित्र, और तारीख़, समय और जगह।' },
+    labels: L(['Title', 'Date', 'Time', 'Place'], ['शीर्षक', 'तारीख़', 'समय', 'जगह']),
+    palette: ['#E53935', '#1E88E5', '#FDD835', '#43A047', '#212121'],
+
+  },
+  {
+    id: 'c09.play.app-screen', classes: [9, 12], subject: 'play', cat: 'play', chapterKey: null, parentGate: false,
+    title: { en: 'Design an app screen', hi: 'ऐप की स्क्रीन डिज़ाइन करो' },
+    task: { en: 'Design one screen of an app that helps your class. Name it, draw its buttons and say what each one does.', hi: 'अपनी कक्षा की मदद करने वाले ऐप की एक स्क्रीन बनाओ। उसका नाम लिखो, बटन बनाओ और बताओ कि हर बटन क्या करता है।' },
+    labels: L([], []),
+    palette: ['#1E88E5', '#00897B', '#FDD835', '#E53935', '#424242'],
+
+  },
+  {
+    id: 'c11.art.still-life', classes: [11, 12], subject: 'art', cat: 'art', chapterKey: null, parentGate: false,
+    title: { en: 'Still life: light and shade', hi: 'स्थिर चित्र: प्रकाश और छाया' },
+    task: { en: 'Pick where the light comes from. Shade each solid darker on the side away from the light and draw its shadow.', hi: 'तय करो कि रोशनी कहाँ से आ रही है। हर ठोस को रोशनी से दूर वाली तरफ़ गहरा करो और उसकी छाया बनाओ।' },
+    labels: L(['Light', 'Shadow'], ['प्रकाश', 'छाया']),
+    palette: ['#424242', '#757575', '#BDBDBD', '#8D6E63', '#FFCC80'],
+
+  },
+  {
+    id: 'c06.learn.pixel-art', classes: [6, 12], subject: 'learn', cat: 'learn', chapterKey: null, parentGate: false,
+    title: { en: 'Pixel art', hi: 'पिक्सेल आर्ट' },
+    task: { en: 'Colour whole squares to make a picture: a heart, a face or a game character.', hi: 'पूरे खाने रंगकर एक चित्र बनाओ: दिल, चेहरा या किसी खेल का पात्र।' },
+    labels: L([], []),
+    palette: ['#E53935', '#FDD835', '#43A047', '#1E88E5', '#212121', '#FFCC80'],
+
+  },
+  {
+    id: 'c07.learn.mind-map', classes: [7, 12], subject: 'learn', cat: 'learn', chapterKey: null, parentGate: false,
+    title: { en: 'Mind map', hi: 'माइंड मैप' },
+    task: { en: 'Write a chapter or topic in the middle and six ideas around it. Add pictures to remember them.', hi: 'बीच में कोई अध्याय या विषय लिखो और उसके चारों ओर छह बातें। याद रखने के लिए चित्र जोड़ो।' },
+    labels: L([], []),
+    palette: ['#1E88E5', '#00897B', '#FDD835', '#E53935', '#8E24AA', '#FB8C00'],
+
+  },
+  {
+    id: 'c11.learn.flowchart', classes: [11, 12], subject: 'learn', cat: 'learn', chapterKey: null, parentGate: false,
+    title: { en: 'Draw a flowchart', hi: 'फ़्लोचार्ट बनाओ' },
+    task: { en: 'Write the steps of a process in the boxes: start, a step, a yes/no question, two results and the end.', hi: 'किसी प्रक्रिया के चरण डिब्बों में लिखो: शुरू, एक चरण, हाँ/ना वाला प्रश्न, दो परिणाम और अंत।' },
+    labels: L(['Start', 'Yes', 'No', 'End'], ['शुरू', 'हाँ', 'ना', 'अंत']),
+    palette: ['#1E88E5', '#43A047', '#E53935', '#FDD835', '#424242'],
+
+  },
 ];
 
 // A template's subject may be taught under another name in a class (EVS until Class 5; Physics or Biology for ICSE
@@ -315,6 +719,7 @@ export const fitsClass = (t: DrawTemplateEntry, classLevel: number) => classLeve
 
 // The subject this class studies the template under, or null when the class has none of its names.
 export function subjectFor(t: DrawTemplateEntry, classSubjects: readonly string[]): string | null {
+  if (t.cat) return t.cat;
   return (SUBJECT_ALIASES[t.subject] ?? [t.subject]).find((s) => classSubjects.includes(s)) ?? null;
 }
 
@@ -334,7 +739,8 @@ export function groupBySubject(list: { template: DrawTemplateEntry; subject: str
   const order = [...classSubjects];
   const groups = new Map<string, DrawTemplateEntry[]>();
   for (const x of list) groups.set(x.subject, [...(groups.get(x.subject) ?? []), x.template]);
-  return [...groups].sort((a, b) => order.indexOf(a[0]) - order.indexOf(b[0])).map(([subject, templates]) => ({ subject, templates }));
+  const rank = (k: string) => (DRAW_CATEGORIES.includes(k as DrawCategory) ? 1000 + DRAW_CATEGORIES.indexOf(k as DrawCategory) : order.indexOf(k));
+  return [...groups].sort((a, b) => rank(a[0]) - rank(b[0])).map(([subject, templates]) => ({ subject, templates }));
 }
 
 // The one "Draw it" template for a lesson: the template whose chapter is this one, else (for a lesson with no template of
