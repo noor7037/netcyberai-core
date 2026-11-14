@@ -24,7 +24,7 @@ first real school, sorted by how much it blocks launch, each with its proof and 
 |---|---|---|---|
 | 1 | No real photos in Class 1 to 3 chapters | `reader/content/c0[123]/**` has no `figure` step | Add licensed low-data photos per chapter into `labs/assets` with `manifest.json` |
 | 2 | No new practice labs were built; about 40 topics need one | `docs/content/C1-3-REVIEW.md` (lab list) | Build settings-only labs in `labs/defs` from existing templates first |
-| 3 | Class 3 visuals had no reviewer pass if the table says "review pending" | `docs/content/C1-3-REVIEW.md` status column | One reviewer pass, as for Classes 1 and 2 |
+| 3 | About 20 chapter pictures are still weak, and Class 3 Hindi labels are below the 14 px rule in about 40 topics | `docs/content/C1-3-REVIEW.md` (last section) | Redraw those topics; re-lay out the Class 3 Hindi panels |
 | 4 | Draw read-aloud speaks only English and Hindi | `src/lib/family/draw-voice.ts` (`DrawVoiceLang`) | Add languages when the app language list grows beyond en and hi |
 | 5 | Read-aloud of a Tamil or Punjabi answer may use the wrong voice | `src/lib/family/voice-out.ts` (voice by app language) | Pick the voice from the answer's `replyLang` |
 | 6 | Openverse photos are kept in memory only, and Openverse answered 504 during the build | `src/lib/family/visuals/` (Openverse adapter); the photo store accepts Commons only | A small migration to let the store hold Openverse; re-test when the service is up |

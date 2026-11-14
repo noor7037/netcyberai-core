@@ -132,7 +132,9 @@ leave the homework link out.
 - Tutor prompt v17: names the photo's question, picks the visual that shows the meaning, answers in the question's
   own language with the mother tongue alongside (C521). Off until chosen in Control.
 - Videos for every answer with See video taps counted; low-data photos with Openverse as second source (C522, C526).
-- Classes 1 to 3: every chapter listed in `docs/content/C1-3-REVIEW.md` has its pictures redrawn and is in the app.
+- Classes 1 to 3: all 147 chapters (613 topics) have their pictures redrawn to show the meaning, each class had one
+  reviewer pass (61 pictures corrected), and all are in the app's book list (`docs/content/C1-3-REVIEW.md`). No real
+  photos, no new labs, and the chapter text itself is not rewritten.
 
 **Noor must do:** (1) test on his phone: Draw sound, a book-page photo, a Hinglish question, a See video tap;
 (2) in Control → AI run the Lab area "tutor v16 and v17", then switch "Tutor answers" to v17; (3) say when the two

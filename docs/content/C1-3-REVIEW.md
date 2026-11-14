@@ -110,62 +110,62 @@ Made by `reader/scripts/diagram-tool.mjs` (digest, apply, extract) and `diagram-
 | `u.c02.mathematics.bejm1.ch09` | Which Season is it? (Measurement of Time) | 6 of 6 | 3 | redrawn, reviewed, in the app |
 | `u.c02.mathematics.bejm1.ch10` | Fun at the Fair (Money) | 7 of 7 | 5 | redrawn, reviewed, in the app |
 | `u.c02.mathematics.bejm1.ch11` | Data Handling | 5 of 5 | 4 | redrawn, reviewed, in the app |
-| `u.c03.english.cesa1.ch01` | Colours | 6 of 6 | 5 | redrawn, in the app, review pending |
-| `u.c03.english.cesa1.ch02` | Badal and Moti | 6 of 6 | 5 | redrawn, in the app, review pending |
-| `u.c03.english.cesa1.ch03` | Best Friends | 5 of 5 | 4 | redrawn, in the app, review pending |
-| `u.c03.english.cesa1.ch04` | Out in the Garden | 5 of 5 | 3 | redrawn, in the app, review pending |
-| `u.c03.english.cesa1.ch05` | Talking Toys | 6 of 6 | 3 | redrawn, in the app, review pending |
-| `u.c03.english.cesa1.ch06` | Paper Boats | 6 of 6 | 3 | redrawn, in the app, review pending |
-| `u.c03.english.cesa1.ch07` | The Big Laddoo | 7 of 7 | 4 | redrawn, in the app, review pending |
-| `u.c03.english.cesa1.ch08` | Thank God | 5 of 5 | 3 | redrawn, in the app, review pending |
-| `u.c03.english.cesa1.ch09` | Madhu's Wish | 5 of 5 | 4 | redrawn, in the app, review pending |
-| `u.c03.english.cesa1.ch10` | Night | 6 of 6 | 4 | redrawn, in the app, review pending |
-| `u.c03.english.cesa1.ch11` | Chanda Mama Counts the Stars | 4 of 4 | 3 | redrawn, in the app, review pending |
-| `u.c03.english.cesa1.ch12` | Chandrayaan | 6 of 6 | 4 | redrawn, in the app, review pending |
-| `u.c03.evs.ceev1.ch01` | Family and Friends | 3 of 3 | 3 | redrawn, in the app, review pending |
-| `u.c03.evs.ceev1.ch02` | Going to the Mela | 3 of 3 | 2 | redrawn, in the app, review pending |
-| `u.c03.evs.ceev1.ch03` | Celebrating Festivals | 3 of 3 | 2 | redrawn, in the app, review pending |
-| `u.c03.evs.ceev1.ch04` | Getting to Know Plants | 3 of 3 | 3 | redrawn, in the app, review pending |
-| `u.c03.evs.ceev1.ch05` | Plants and Animals Live Together | 3 of 3 | 2 | redrawn, in the app, review pending |
-| `u.c03.evs.ceev1.ch06` | Living in Harmony | 3 of 3 | 3 | redrawn, in the app, review pending |
-| `u.c03.evs.ceev1.ch07` | Water: A Precious Gift | 3 of 3 | 3 | redrawn, in the app, review pending |
-| `u.c03.evs.ceev1.ch08` | Food We Eat | 3 of 3 | 3 | redrawn, in the app, review pending |
-| `u.c03.evs.ceev1.ch09` | Staying Healthy and Happy | 3 of 3 | 2 | redrawn, in the app, review pending |
-| `u.c03.evs.ceev1.ch10` | This World of Things | 3 of 3 | 3 | redrawn, in the app, review pending |
-| `u.c03.evs.ceev1.ch11` | Making Things | 3 of 3 | 3 | redrawn, in the app, review pending |
-| `u.c03.evs.ceev1.ch12` | Taking Charge of Waste | 3 of 3 | 3 | redrawn, in the app, review pending |
-| `u.c03.hindi.chve1.ch01` | Learn from Nature | 3 of 3 | 2 | redrawn, in the app, review pending |
-| `u.c03.hindi.chve1.ch02` | The Ant | 4 of 4 | 3 | redrawn, in the app, review pending |
-| `u.c03.hindi.chve1.ch03` | How Many Legs? | 3 of 3 | 2 | redrawn, in the app, review pending |
-| `u.c03.hindi.chve1.ch04` | The Weaver Bird, Our Bird Queen! | 3 of 3 | 3 | redrawn, in the app, review pending |
-| `u.c03.hindi.chve1.ch05` | The Mango Tree | 3 of 3 | 3 | redrawn, in the app, review pending |
-| `u.c03.hindi.chve1.ch06` | Birbal's Khichdi | 3 of 3 | 2 | redrawn, in the app, review pending |
-| `u.c03.hindi.chve1.ch07` | A Letter to a Friend | 3 of 3 | 2 | redrawn, in the app, review pending |
-| `u.c03.hindi.chve1.ch08` | The Clever Jackal | 3 of 3 | 3 | redrawn, in the app, review pending |
-| `u.c03.hindi.chve1.ch09` | Nature Festival: Phooldei | 3 of 3 | 2 | redrawn, in the app, review pending |
-| `u.c03.hindi.chve1.ch10` | Tug of War | 3 of 3 | 2 | redrawn, in the app, review pending |
-| `u.c03.hindi.chve1.ch11` | A Magic Box | 3 of 3 | 2 | redrawn, in the app, review pending |
-| `u.c03.hindi.chve1.ch12` | Each to His Own Work | 3 of 3 | 2 | redrawn, in the app, review pending |
-| `u.c03.hindi.chve1.ch13` | Mother of Trees, Thimmakka | 3 of 3 | 2 | redrawn, in the app, review pending |
-| `u.c03.hindi.chve1.ch14` | The Farmer's Cleverness | 3 of 3 | 2 | redrawn, in the app, review pending |
-| `u.c03.hindi.chve1.ch15` | India | 3 of 3 | 2 | redrawn, in the app, review pending |
-| `u.c03.hindi.chve1.ch16` | Chandrayaan Dialogue | 3 of 3 | 2 | redrawn, in the app, review pending |
-| `u.c03.hindi.chve1.ch17` | The Talking Den | 3 of 3 | 2 | redrawn, in the app, review pending |
-| `u.c03.hindi.chve1.ch18` | Many Yet One | 3 of 3 | 2 | redrawn, in the app, review pending |
-| `u.c03.mathematics.cemm1.ch01` | What’s in a Name? | 3 of 3 | 3 | redrawn, in the app, review pending |
-| `u.c03.mathematics.cemm1.ch02` | Toy Joy | 3 of 3 | 2 | redrawn, in the app, review pending |
-| `u.c03.mathematics.cemm1.ch03` | Double Century | 3 of 3 | 3 | redrawn, in the app, review pending |
-| `u.c03.mathematics.cemm1.ch04` | Vacation with My Nani Maa | 3 of 3 | 3 | redrawn, in the app, review pending |
-| `u.c03.mathematics.cemm1.ch05` | Fun with Shapes | 3 of 3 | 3 | redrawn, in the app, review pending |
-| `u.c03.mathematics.cemm1.ch06` | House of Hundreds–I | 3 of 3 | 3 | redrawn, in the app, review pending |
-| `u.c03.mathematics.cemm1.ch07` | Raksha Bandhan | 3 of 3 | 3 | redrawn, in the app, review pending |
-| `u.c03.mathematics.cemm1.ch08` | Fair Share | 3 of 3 | 3 | redrawn, in the app, review pending |
-| `u.c03.mathematics.cemm1.ch09` | House of Hundreds–II | 3 of 3 | 3 | redrawn, in the app, review pending |
-| `u.c03.mathematics.cemm1.ch10` | Fun at Class Party! | 3 of 3 | 3 | redrawn, in the app, review pending |
-| `u.c03.mathematics.cemm1.ch11` | Filling and Lifting | 3 of 3 | 3 | redrawn, in the app, review pending |
-| `u.c03.mathematics.cemm1.ch12` | Give and Take | 3 of 3 | 3 | redrawn, in the app, review pending |
-| `u.c03.mathematics.cemm1.ch13` | Time Goes On | 3 of 3 | 3 | redrawn, in the app, review pending |
-| `u.c03.mathematics.cemm1.ch14` | The Surajkund Fair | 3 of 3 | 3 | redrawn, in the app, review pending |
+| `u.c03.english.cesa1.ch01` | Colours | 6 of 6 | 5 | redrawn, reviewed, in the app |
+| `u.c03.english.cesa1.ch02` | Badal and Moti | 6 of 6 | 5 | redrawn, reviewed, in the app |
+| `u.c03.english.cesa1.ch03` | Best Friends | 5 of 5 | 4 | redrawn, reviewed, in the app |
+| `u.c03.english.cesa1.ch04` | Out in the Garden | 5 of 5 | 3 | redrawn, reviewed, in the app |
+| `u.c03.english.cesa1.ch05` | Talking Toys | 6 of 6 | 3 | redrawn, reviewed, in the app |
+| `u.c03.english.cesa1.ch06` | Paper Boats | 6 of 6 | 3 | redrawn, reviewed, in the app |
+| `u.c03.english.cesa1.ch07` | The Big Laddoo | 7 of 7 | 4 | redrawn, reviewed, in the app |
+| `u.c03.english.cesa1.ch08` | Thank God | 5 of 5 | 3 | redrawn, reviewed, in the app |
+| `u.c03.english.cesa1.ch09` | Madhu's Wish | 5 of 5 | 4 | redrawn, reviewed, in the app |
+| `u.c03.english.cesa1.ch10` | Night | 6 of 6 | 4 | redrawn, reviewed, in the app |
+| `u.c03.english.cesa1.ch11` | Chanda Mama Counts the Stars | 4 of 4 | 3 | redrawn, reviewed, in the app |
+| `u.c03.english.cesa1.ch12` | Chandrayaan | 6 of 6 | 4 | redrawn, reviewed, in the app |
+| `u.c03.evs.ceev1.ch01` | Family and Friends | 3 of 3 | 3 | redrawn, reviewed, in the app |
+| `u.c03.evs.ceev1.ch02` | Going to the Mela | 3 of 3 | 2 | redrawn, reviewed, in the app |
+| `u.c03.evs.ceev1.ch03` | Celebrating Festivals | 3 of 3 | 2 | redrawn, reviewed, in the app |
+| `u.c03.evs.ceev1.ch04` | Getting to Know Plants | 3 of 3 | 3 | redrawn, reviewed, in the app |
+| `u.c03.evs.ceev1.ch05` | Plants and Animals Live Together | 3 of 3 | 2 | redrawn, reviewed, in the app |
+| `u.c03.evs.ceev1.ch06` | Living in Harmony | 3 of 3 | 3 | redrawn, reviewed, in the app |
+| `u.c03.evs.ceev1.ch07` | Water: A Precious Gift | 3 of 3 | 3 | redrawn, reviewed, in the app |
+| `u.c03.evs.ceev1.ch08` | Food We Eat | 3 of 3 | 3 | redrawn, reviewed, in the app |
+| `u.c03.evs.ceev1.ch09` | Staying Healthy and Happy | 3 of 3 | 2 | redrawn, reviewed, in the app |
+| `u.c03.evs.ceev1.ch10` | This World of Things | 3 of 3 | 3 | redrawn, reviewed, in the app |
+| `u.c03.evs.ceev1.ch11` | Making Things | 3 of 3 | 3 | redrawn, reviewed, in the app |
+| `u.c03.evs.ceev1.ch12` | Taking Charge of Waste | 3 of 3 | 3 | redrawn, reviewed, in the app |
+| `u.c03.hindi.chve1.ch01` | Learn from Nature | 3 of 3 | 2 | redrawn, reviewed, in the app |
+| `u.c03.hindi.chve1.ch02` | The Ant | 4 of 4 | 3 | redrawn, reviewed, in the app |
+| `u.c03.hindi.chve1.ch03` | How Many Legs? | 3 of 3 | 2 | redrawn, reviewed, in the app |
+| `u.c03.hindi.chve1.ch04` | The Weaver Bird, Our Bird Queen! | 3 of 3 | 3 | redrawn, reviewed, in the app |
+| `u.c03.hindi.chve1.ch05` | The Mango Tree | 3 of 3 | 3 | redrawn, reviewed, in the app |
+| `u.c03.hindi.chve1.ch06` | Birbal's Khichdi | 3 of 3 | 2 | redrawn, reviewed, in the app |
+| `u.c03.hindi.chve1.ch07` | A Letter to a Friend | 3 of 3 | 2 | redrawn, reviewed, in the app |
+| `u.c03.hindi.chve1.ch08` | The Clever Jackal | 3 of 3 | 3 | redrawn, reviewed, in the app |
+| `u.c03.hindi.chve1.ch09` | Nature Festival: Phooldei | 3 of 3 | 2 | redrawn, reviewed, in the app |
+| `u.c03.hindi.chve1.ch10` | Tug of War | 3 of 3 | 2 | redrawn, reviewed, in the app |
+| `u.c03.hindi.chve1.ch11` | A Magic Box | 3 of 3 | 2 | redrawn, reviewed, in the app |
+| `u.c03.hindi.chve1.ch12` | Each to His Own Work | 3 of 3 | 2 | redrawn, reviewed, in the app |
+| `u.c03.hindi.chve1.ch13` | Mother of Trees, Thimmakka | 3 of 3 | 2 | redrawn, reviewed, in the app |
+| `u.c03.hindi.chve1.ch14` | The Farmer's Cleverness | 3 of 3 | 2 | redrawn, reviewed, in the app |
+| `u.c03.hindi.chve1.ch15` | India | 3 of 3 | 2 | redrawn, reviewed, in the app |
+| `u.c03.hindi.chve1.ch16` | Chandrayaan Dialogue | 3 of 3 | 2 | redrawn, reviewed, in the app |
+| `u.c03.hindi.chve1.ch17` | The Talking Den | 3 of 3 | 2 | redrawn, reviewed, in the app |
+| `u.c03.hindi.chve1.ch18` | Many Yet One | 3 of 3 | 2 | redrawn, reviewed, in the app |
+| `u.c03.mathematics.cemm1.ch01` | What’s in a Name? | 3 of 3 | 3 | redrawn, reviewed, in the app |
+| `u.c03.mathematics.cemm1.ch02` | Toy Joy | 3 of 3 | 2 | redrawn, reviewed, in the app |
+| `u.c03.mathematics.cemm1.ch03` | Double Century | 3 of 3 | 3 | redrawn, reviewed, in the app |
+| `u.c03.mathematics.cemm1.ch04` | Vacation with My Nani Maa | 3 of 3 | 3 | redrawn, reviewed, in the app |
+| `u.c03.mathematics.cemm1.ch05` | Fun with Shapes | 3 of 3 | 3 | redrawn, reviewed, in the app |
+| `u.c03.mathematics.cemm1.ch06` | House of Hundreds–I | 3 of 3 | 3 | redrawn, reviewed, in the app |
+| `u.c03.mathematics.cemm1.ch07` | Raksha Bandhan | 3 of 3 | 3 | redrawn, reviewed, in the app |
+| `u.c03.mathematics.cemm1.ch08` | Fair Share | 3 of 3 | 3 | redrawn, reviewed, in the app |
+| `u.c03.mathematics.cemm1.ch09` | House of Hundreds–II | 3 of 3 | 3 | redrawn, reviewed, in the app |
+| `u.c03.mathematics.cemm1.ch10` | Fun at Class Party! | 3 of 3 | 3 | redrawn, reviewed, in the app |
+| `u.c03.mathematics.cemm1.ch11` | Filling and Lifting | 3 of 3 | 3 | redrawn, reviewed, in the app |
+| `u.c03.mathematics.cemm1.ch12` | Give and Take | 3 of 3 | 3 | redrawn, reviewed, in the app |
+| `u.c03.mathematics.cemm1.ch13` | Time Goes On | 3 of 3 | 3 | redrawn, reviewed, in the app |
+| `u.c03.mathematics.cemm1.ch14` | The Surajkund Fair | 3 of 3 | 3 | redrawn, reviewed, in the app |
 
 ## Chapter text that does not match NCERT (found while drawing; the text is NOT yet corrected)
 
@@ -196,3 +196,10 @@ The pictures follow NCERT. The words of these topics still need a rewrite from t
 Class 1: Hindi ch06 and ch10 (matras ि/ी, ु/ू), ch09 (उ and ऊ); English ch02 t03, ch03 t04, ch04 t03, ch07 t02, ch09 t01; Maths ch12 t05, ch13 t04, ch13 t06.
 Class 2: Maths ch02 t04, ch04 t01/t04/t05, ch05 t02, ch07 t03, ch10 t04 to t07, ch11 t05; English blends and sounds topics, ch06 t07; Hindi ch14 t01, ch22, ch26 t02.
 Class 3: Maths ch09 t03, ch13 t03; EVS ch03 t01, ch07 t02, ch09 t03, ch12 t02; English ch07 t05, ch08 t02, ch12 t06.
+
+## Pictures the reviewers judged still weak (not wrong; next pass)
+
+- Class 1: English ch02 t01 (Namaste hands), ch05 t02 (the "animal" outline), ch09 t03 (icon cards); Hindi ch19 t02 (a label touches the moon).
+- Class 2: English ch02 (share cell), ch04 ("walk"), ch07 and ch13 (abstract grammar cells); Hindi ch09 (rose), ch15 (plough).
+- Class 3: EVS ch12 t01 (bottle), ch12 t02 (paper hard to see); English ch01 t06 (basketball), ch07 t03 ("blue"), ch07 t04 (peahen); Maths ch07 t01 (counted objects unclear); Hindi ch15 t01 and t02 (the India map outline is crude).
+- Class 3 Hindi: labels are size 12 to 13 (the contract asks for 14) in about 40 topics; they fit and read clearly, and need a new layout, not a size change.
