@@ -49,7 +49,7 @@ for (const file of files) {
     const bad = (m) => issues.push(m);
     const pair = (v, at) => { if (!v || typeof v !== 'object' || typeof v.en !== 'string' || typeof v.hi !== 'string' || !v.en.trim() || !v.hi.trim()) bad(at + ': expected non-empty {en, hi}'); };
     const itemIds = new Set(), blooms = new Set(['remember','understand','apply']);
-    const labPath = path.join(ROOT,'labs','defs','c01',ch.subject_id || '',(ch.chapter_key || '') + '.json');
+    const labPath = path.join(ROOT,'labs','defs', 'c' + String(ch.class).padStart(2, '0'), ch.subject_id || '', (ch.chapter_key || '') + '.json');
     let labMap = new Map();
     try { for (const l of JSON.parse(fs.readFileSync(labPath,'utf8')).labs || []) labMap.set(l.id,l); } catch { bad('missing or invalid Class 1 lab definition'); }
     for (const k of ['chapter_key','subject_id','book','number']) if (ch[k] == null) bad('missing ' + k);
@@ -59,7 +59,7 @@ for (const file of files) {
     if (!ch.hook) bad('chapter hook missing'); else { pair(ch.hook.scene,'hook.scene'); pair(ch.hook.question,'hook.question'); }
     if (ch.test != null) bad('Class 1 must not include a chapter test');
     const topics = Array.isArray(ch.topics) ? ch.topics : [];
-    if (topics.length < 3 || topics.length > 8) bad('Class 1 chapter needs 3–8 short topics');
+    if (topics.length < 3 || topics.length > 10) bad('Foundational chapter needs 3–10 short topics');
     if (ch.hook && !topics.some(t=>t.id===ch.hook.answered_in)) bad('hook.answered_in must name a topic');
     const checkItem = (it,where) => {
       if (!it || it.type !== 'mcq') { bad(where + ': Class 1 checks use picture-word MCQs'); return; }
@@ -137,6 +137,114 @@ for (const file of files) {
     })(ch, 'chapter');
     total += issues.length;
     console.log(file.replace(ROOT + path.sep,'') + ': ' + (issues.length ? issues.length+' problems' : 'ok') + ' — ' + topics.length + ' short topics, ' + topics.reduce((n,t)=>n+((t.check&&t.check.items)||[]).length,0) + ' formative items, no chapter test');
+    issues.forEach(m=>console.log('  - '+m));
+    continue;
+  }
+  else if (ch.class === 3) {
+    const issues = [...P];
+    const bad = (m) => issues.push(m);
+    const pair = (v, at) => { if (!v || typeof v !== 'object' || typeof v.en !== 'string' || typeof v.hi !== 'string' || !v.en.trim() || !v.hi.trim()) bad(at + ': expected non-empty {en, hi}'); };
+    const itemIds = new Set(), blooms = new Set(['remember','understand','apply','analyse']);
+    const labPath = path.join(ROOT,'labs','defs', 'c' + String(ch.class).padStart(2, '0'), ch.subject_id || '', (ch.chapter_key || '') + '.json');
+    let labMap = new Map();
+    try { for (const l of JSON.parse(fs.readFileSync(labPath,'utf8')).labs || []) labMap.set(l.id,l); } catch { bad('missing or invalid Class 3 lab definition'); }
+    for (const k of ['chapter_key','subject_id','book','number']) if (ch[k] == null) bad('missing ' + k);
+    if (path.basename(file) !== (ch.chapter_key + '.json')) bad('file name must match chapter_key');
+    pair(ch.title,'title'); pair(ch.big_idea,'big_idea');
+    if (!Array.isArray(ch.outcomes) || ch.outcomes.length < 3) bad('outcomes: need at least 3'); else ch.outcomes.forEach((v,i)=>pair(v,'outcomes['+i+']'));
+    if (!ch.hook) bad('chapter hook missing'); else { pair(ch.hook.scene,'hook.scene'); pair(ch.hook.question,'hook.question'); }
+
+    const checkItem = (it, where) => {
+      if (!it || it.type !== 'mcq') { bad(where + ': Class 3 checks use MCQs'); return; }
+      if (!it.id || itemIds.has(it.id)) bad(where + ': missing or duplicate id'); else itemIds.add(it.id);
+      if (!blooms.has(it.bloom)) bad(where + ': bloom must be remember, understand, apply or analyse');
+      pair(it.q, where + '.q');
+      if (!Array.isArray(it.options) || it.options.length < 2 || it.options.length > 4) bad(where + ': needs 2, 3 or 4 options'); else it.options.forEach((v,i)=>pair(v,where+'.options['+i+']'));
+      if (!Number.isInteger(it.answer) || it.answer < 0 || it.answer >= (it.options || []).length) bad(where + ': answer index invalid');
+      if (!Array.isArray(it.why) || it.why.length !== (it.options || []).length) bad(where + ': why must explain each option'); else it.why.forEach((v,i)=>pair(v,where+'.why['+i+']'));
+    };
+
+    // Class 3 Chapter Check (≤ 10 items, never called "exam")
+    if (!ch.test || !Array.isArray(ch.test.items) || ch.test.items.length < 3 || ch.test.items.length > 10) {
+      bad('Class 3 chapter check (test.items) needs 3–10 items');
+    } else {
+      if (typeof ch.test.pass !== 'number' || ch.test.pass < 0.5 || ch.test.pass > 0.8) bad('test.pass must be a number between 0.5 and 0.8 (e.g. 0.6)');
+      ch.test.items.forEach((it, i) => checkItem(it, 'test.items[' + i + ']'));
+    }
+
+    const topics = Array.isArray(ch.topics) ? ch.topics : [];
+    if (topics.length < 3 || topics.length > 10) bad('Preparatory chapter needs 3–10 topics');
+    if (ch.hook && !topics.some(t=>t.id===ch.hook.answered_in)) bad('hook.answered_in must name a topic');
+
+    topics.forEach((t,ti)=>{
+      const w='topics['+ti+'] '+t.id, steps=Array.isArray(t.steps)?t.steps:[], types=steps.map(s=>s.type);
+      if (!/^t\d\d$/.test(t.id || '')) bad(w + ': id must look like t01');
+      pair(t.title,w+'.title'); pair(t.short,w+'.short');
+      if (!(t.minutes >= 6 && t.minutes <= 15)) bad(w + ': duration must be 6–15 minutes');
+      if (!Array.isArray(t.outcomes) || !t.outcomes.length) bad(w + ': needs an outcome'); else t.outcomes.forEach((v,i)=>pair(v,w+'.outcomes['+i+']'));
+      if (!Array.isArray(t.terms) || !t.terms.length) bad(w + ': needs key terms'); else t.terms.forEach((v,i)=>{ if(!v.en || !v.hi) bad(w+'.terms['+i+']: needs en and hi'); pair(v.gloss,w+'.terms['+i+'].gloss'); });
+      for (const required of ['hook','explain','diagram','guided','keypoints','close']) if (!types.includes(required)) bad(w + ': missing ' + required + ' step');
+      if (types.includes('examtip')) bad(w + ': Class 3 must not include exam tips');
+      if (!types.includes('lab')) pair(t.why_no_lab,w+'.why_no_lab');
+      const diagramWords=[];
+      steps.forEach((s,si)=>{
+        const sw=w+'.steps['+si+'] '+s.type;
+        if (s.type==='hook') { pair(s.scene,sw+'.scene'); pair(s.question,sw+'.question'); }
+        if (s.type==='explain') { pair(s.title,sw+'.title'); pair(s.plain,sw+'.plain'); if(!Array.isArray(s.body)||!s.body.length) bad(sw+': needs short explanation lines'); else s.body.forEach((v,i)=>pair(v,sw+'.body['+i+']')); }
+        if (s.type==='diagram') {
+          pair(s.title,sw+'.title'); pair(s.caption,sw+'.caption'); pair(s.alt,sw+'.alt');
+          const svg=String(s.svg||'');
+          if (!/^\s*<svg[\s>]/.test(svg) || !/<\/svg>\s*$/.test(svg) || !/viewBox=/.test(svg)) bad(sw+': needs one inline SVG with viewBox');
+          if (/<script|<foreignObject|<image|\son\w+\s*=|href\s*=\s*["'](?!#)/i.test(svg)) bad(sw+': unsafe SVG content');
+          if (svg.length > 14000) bad(sw+': SVG exceeds 14 KB');
+          const keys=[...svg.matchAll(/data-t="([^"]+)"/g)].map(m=>m[1]);
+          if (!keys.length) bad(sw+': needs bilingual data-t labels');
+          keys.forEach(k=>{ if(!s.texts || !s.texts[k]) bad(sw+': missing text binding '+k); else { pair(s.texts[k],sw+'.texts.'+k); diagramWords.push(String(s.texts[k].en||'').toLowerCase()); } });
+        }
+        if (s.type==='lab') {
+          pair(s.before,sw+'.before'); pair(s.after,sw+'.after');
+          const def=labMap.get(s.lab);
+          if (!def) bad(sw+': lab id not found in chapter definition');
+          else if (Array.isArray(t.ncert) && t.ncert.length && def.topic !== t.ncert[0]) bad(sw+': lab topic does not match syllabus topic');
+        }
+        if (s.type==='guided') { checkItem(s.item,sw+'.item'); pair(s.hint,sw+'.hint'); }
+        if (s.type==='keypoints') { if(!Array.isArray(s.points)||s.points.length<2||s.points.length>4) bad(sw+': needs 2–4 key points'); else s.points.forEach((v,i)=>pair(v,sw+'.points['+i+']')); }
+        if (s.type==='close') { if(!['hook','chapter'].includes(s.answers)) bad(sw+': close answers must be hook or chapter'); pair(s.text,sw+'.text'); }
+      });
+      for (const term of (t.terms || [])) if (term.en && !diagramWords.some(w=>w.includes(String(term.en).toLowerCase()))) bad(w+': key term '+term.en+' is missing from the diagram');
+      const pool=(t.check && t.check.items)||[];
+      if (pool.length !== 8 || !t.check || t.check.draw !== 5 || t.check.pass !== 3) bad(w+'.check: needs 8 questions, draw 5, pass target 3; gentle mastery with calm retry');
+      pool.forEach((v,i)=>checkItem(v,w+'.check.items['+i+']'));
+    });
+    if (ch.hook && ch.hook.answered_in) { const last=topics.find(t=>t.id===ch.hook.answered_in); if(!last || !last.steps.some(s=>s.type==='close' && s.answers==='chapter')) bad('the final hook must be answered by a chapter close step'); }
+
+    // Shared rules: spoken Hindi, no LaTeX, diagram labels, images exist, photo credits
+    const assetDirP = path.join(ROOT, 'labs', 'assets', `c${String(ch.class).padStart(2, '0')}`, ch.subject_id || '');
+    (function sweep(x, where) {
+      if (Array.isArray(x)) return x.forEach((v, i) => sweep(v, `${where}[${i}]`));
+      if (!x || typeof x !== 'object') return;
+      if (typeof x.hi === 'string' && typeof x.en === 'string') {
+        for (const w of BANNED_HI) if (x.hi.includes(w)) bad(`${where}: Hindi uses "${w}" (spoken Hindi: CONTRACT §1)`);
+        for (const w of spokenHits(x.hi)) bad(`${where}: say "${SPOKEN_HI[w]}", not "${w}" (everyday Hindi)`);
+        for (const lang of ['en', 'hi']) { const m = String(x[lang]).match(/\\[A-Za-z]+|[\^_]\{/); if (m) bad(`${where}: LaTeX "${m[0]}" in ${lang}`); }
+      }
+      if (x.type === 'diagram' && typeof x.svg === 'string') {
+        const fonts = [...x.svg.matchAll(/font-size\s*[=:]\s*"?([\d.]+)/g)].map((m) => +m[1]).filter((v) => v >= 2);
+        const vbw = +((x.svg.match(/viewBox\s*=\s*"[\d.\s-]*?([\d.]+)\s+[\d.]+\s*"/) || [])[1] || 360);
+        if (fonts.length && (Math.min(...fonts) * 360) / vbw < 12) bad(`${where}: diagram labels too small for a child at phone width`);
+      }
+      if (x.type === 'figure' || x.type === 'hook' || x.image) {
+        const names = x.type === 'figure' ? x.images || [] : x.image ? [x.image] : [];
+        for (const n of names) {
+          if (!fs.existsSync(path.join(assetDirP, `${n}.webp`))) bad(`${where}: image ${n} not found in labs/assets/c${String(ch.class).padStart(2, '0')}/${ch.subject_id}/`);
+          if (/^PH-/.test(n) && !(typeof x.credit === 'string' && /CC0|CC BY|Public domain|Unsplash|Pexels|Pixabay|GODL|NASA/i.test(x.credit))) bad(`${where}: open-licensed photo ${n} needs credit`);
+        }
+      }
+      for (const [k, v] of Object.entries(x)) if (k !== 'svg' && k !== 'en') sweep(v, `${where}.${k}`);
+    })(ch, 'chapter');
+
+    total += issues.length;
+    console.log(file.replace(ROOT + path.sep,'') + ': ' + (issues.length ? issues.length+' problems' : 'ok') + ' — ' + topics.length + ' topics, ' + topics.reduce((n,t)=>n+((t.check&&t.check.items)||[]).length,0) + ' formative items, ' + ((ch.test && ch.test.items) ? ch.test.items.length : 0) + ' chapter check items');
     issues.forEach(m=>console.log('  - '+m));
     continue;
   }
