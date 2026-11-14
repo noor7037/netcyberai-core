@@ -132,10 +132,12 @@ afterAll(async () => {
   await h.db?.stop();
 });
 
-beforeEach(() => {
+beforeEach(async () => {
   yt.seen = [];
   yt.fail = false;
   forgetSearches();
+  // C522: the shared search claims (the negative cache) start empty for each case, as the in-process one does.
+  if (h.db) await q(`delete from content.video_topic_searches`);
 });
 
 const get = (topic: string, cookie = jar) => new NextRequest(`http://localhost/api/family/videos?topic=${topic}`, { headers: { cookie } });
@@ -184,9 +186,9 @@ describe('ranking, on metadata only', () => {
     expect(rankVideos([cand('ooooooooooo')], { topicTitles: ['Rational numbers'], language: 'en', channels: [] })).toEqual([]);
   });
 
-  it('puts official before approved before others, and keeps three', () => {
-    const r = rank([cand('ooooooooooo'), cand('aaaaaaaaaaa', { channelId: 'UCapproved000000000004' }), cand('fffffffffff', { channelId: OFFICIAL }), cand('ppppppppppp')]);
-    expect(r.map((p) => p.video_id)).toEqual(['fffffffffff', 'aaaaaaaaaaa', 'ooooooooooo']);
+  it('puts official before approved before others, and keeps four (C522)', () => {
+    const r = rank([cand('ooooooooooo'), cand('aaaaaaaaaaa', { channelId: 'UCapproved000000000004' }), cand('fffffffffff', { channelId: OFFICIAL }), cand('ppppppppppp'), cand('qqqqqqqqqqq')]);
+    expect(r.map((p) => p.video_id)).toEqual(['fffffffffff', 'aaaaaaaaaaa', 'ooooooooooo', 'ppppppppppp']);
   });
 
   it('never keeps a blocked channel, a video that may not be embedded, is private or age-restricted, or does not match the topic', () => {
@@ -203,7 +205,7 @@ describe('ranking, on metadata only', () => {
   });
 
   it('prefers 2 to 25 minutes, captions and the child’s language', () => {
-    const r = rank([cand('lllllllllll', { durationS: 3600 }), cand('nnnnnnnnnnn', { captions: false }), cand('hhhhhhhhhhh', { language: 'hi' }), cand('ggggggggggg')]);
+    const r = rank([cand('lllllllllll', { durationS: 3600 }), cand('nnnnnnnnnnn', { captions: false }), cand('hhhhhhhhhhh', { language: 'hi' }), cand('ggggggggggg'), cand('jjjjjjjjjjj')]);
     expect(r[0].video_id).toBe('ggggggggggg');
     expect(r.map((p) => p.video_id)).not.toContain('lllllllllll');
     expect(rank([cand('hhhhhhhhhhh', { language: 'hi' }), cand('ggggggggggg')], 'hi')[0].video_id).toBe('hhhhhhhhhhh');
@@ -283,17 +285,17 @@ describe('the family route', () => {
     await q(`update content.video_picks set fetched_at = now() - interval '40 days' where topic_key = $1`, [TOPIC]);
     yt.wide = ['ooooooooooo', 'qqqqqqqqqqq'];
     yt.videos.push(item('qqqqqqqqqqq', OTHER, 'Rational numbers for class 9'));
-    // One pinned is fewer than three: the automatic ones are searched again, and the pinned one is still first.
+    // One pinned is fewer than four (C522): the automatic ones are searched again, and the pinned one is still first.
     const got = await videos();
     expect(yt.seen.filter((s) => s.url.pathname.endsWith('/search'))).toHaveLength(2);
-    expect(got.map((v) => v.videoId)).toEqual(['nnnnnnnnnnn', 'fffffffffff', 'ooooooooooo']);
+    expect(got.map((v) => v.videoId)).toEqual(['nnnnnnnnnnn', 'fffffffffff', 'ooooooooooo', 'qqqqqqqqqqq']);
     expect((await q(`select count(*)::int as n from content.video_picks where topic_key = $1 and status = 'auto' and fetched_at < now() - interval '1 day'`, [TOPIC]))[0].n).toBe(0);
   });
 
-  it('with three pinned, nothing is searched, however old they are', async () => {
-    await q(`update content.video_picks set status = 'pinned', reviewed_by = $2, reviewed_at = now() where topic_key = $1 and video_id in ('fffffffffff', 'ooooooooooo')`, [TOPIC, FOUNDER]);
+  it('with four pinned, nothing is searched, however old they are', async () => {
+    await q(`update content.video_picks set status = 'pinned', reviewed_by = $2, reviewed_at = now() where topic_key = $1 and video_id in ('fffffffffff', 'ooooooooooo', 'qqqqqqqqqqq')`, [TOPIC, FOUNDER]);
     await q(`update content.video_picks set fetched_at = now() - interval '40 days' where topic_key = $1`, [TOPIC]);
-    expect((await videos()).map((v) => v.videoId).sort()).toEqual(['fffffffffff', 'nnnnnnnnnnn', 'ooooooooooo']);
+    expect((await videos()).map((v) => v.videoId).sort()).toEqual(['fffffffffff', 'nnnnnnnnnnn', 'ooooooooooo', 'qqqqqqqqqqq']);
     expect(yt.seen).toHaveLength(0);
     await q(`update content.video_picks set status = 'auto', reviewed_by = null, reviewed_at = null where topic_key = $1 and video_id <> 'ooooooooooo'`, [TOPIC]);
   });

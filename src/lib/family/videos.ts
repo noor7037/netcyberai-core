@@ -1,5 +1,6 @@
 import type { VideoCandidate, VideoChannel, VideoPlan } from '@/lib/ai/platform';
 import type { FamilyChild } from './children';
+import { languageInfo, type LangCode } from './languages';
 import type { Line } from './resolver';
 
 // The video finder's ranking and its cache (docs/family-app/02 §5, 03 §8; M2-5, C279). Ranked in code on what the
@@ -10,12 +11,20 @@ import type { Line } from './resolver';
 
 type Db = { query: (sql: string, params?: unknown[]) => Promise<{ rows: Record<string, unknown>[] }> };
 
-export type VideoLanguage = 'en' | 'hi';
+// C522: any language a child can choose (languages.ts); YouTube's relevanceLanguage takes the same ISO 639-1 codes.
+export type VideoLanguage = LangCode;
 // What the phone gets: enough to draw the card and the embed, nothing else.
 export type VideoPick = { videoId: string; title: string; channelTitle: string; durationS: number; startS: number };
+// YouTube's privacy-enhanced embed: no autoplay, no related videos from other channels, starting at the matched chapter.
+export function embedUrl(p: Pick<VideoPick, 'videoId' | 'startS'>): string {
+  const q = new URLSearchParams({ rel: '0', modestbranding: '1' });
+  if (p.startS > 0) q.set('start', String(Math.floor(p.startS)));
+  return `https://www.youtube-nocookie.com/embed/${p.videoId}?${q.toString()}`;
+}
 export type RankedPick = { video_id: string; channel_id: string; channel_title: string; title: string; duration_s: number; start_s: number; captions: boolean; score: number };
 
-export const KEEP = 3;
+// C522: up to four per topic and language (an answer shows two to four).
+export const KEEP = 4;
 const MIN_S = 120;
 const MAX_S = 25 * 60;
 
@@ -51,26 +60,43 @@ const SUBJECT_WORDS: Record<string, { en: string; hi: string }> = {
 };
 
 // The search: the topic's title, its subject and the class, from the catalog only. In Hindi, the Hindi title when the
-// catalog has one, and the word "Hindi" so the provider prefers videos in it.
-export function videoQuery(line: Pick<Line, 'subject' | 'topicEn' | 'title'>, child: Pick<FamilyChild, 'classLevel' | 'language'>): string {
-  const hi = child.language === 'hi';
+// catalog has one, and the word "Hindi" so the provider prefers videos in it. C522: in another Indian language, the
+// English title with that language's English name ("Tamil"), and the provider asked for that language.
+export function videoQuery(line: Pick<Line, 'subject' | 'topicEn' | 'title'>, child: Pick<FamilyChild, 'classLevel' | 'language'>, language: VideoLanguage = child.language): string {
+  const hi = language === 'hi';
   const title = hi ? line.title : (line.topicEn ?? line.title);
   const subject = SUBJECT_WORDS[line.subject]?.[hi ? 'hi' : 'en'] ?? line.subject.replace(/_/g, ' ');
   const cls = child.classLevel >= 1 ? (hi ? `कक्षा ${child.classLevel}` : `class ${child.classLevel}`) : '';
-  return [title, subject, cls, hi ? 'Hindi' : ''].filter(Boolean).join(' ').replace(/\s+/g, ' ').trim().slice(0, 200);
+  const named = hi ? 'Hindi' : language === 'en' ? '' : languageInfo(language).english;
+  return [title, subject, cls, named].filter(Boolean).join(' ').replace(/\s+/g, ' ').trim().slice(0, 200);
+}
+
+// The script each regional language is written in (Hindi and Marathi share Devanagari, Bengali and Assamese theirs).
+const SCRIPT: Partial<Record<VideoLanguage, RegExp>> = {
+  bn: /[\u0980-\u09FF]/, as: /[\u0980-\u09FF]/, te: /[\u0C00-\u0C7F]/, ta: /[\u0B80-\u0BFF]/, gu: /[\u0A80-\u0AFF]/, kn: /[\u0C80-\u0CFF]/,
+  ml: /[\u0D00-\u0D7F]/, or: /[\u0B00-\u0B7F]/, pa: /[\u0A00-\u0A7F]/, ur: /[\u0600-\u06FF]/, mr: /[\u0900-\u097F]/,
+};
+// Whether a candidate is in a regional language: its audio or default language says so, or (with none given) its title
+// is in that language's script (Marathi also names itself, as Devanagari alone may be Hindi). English and Hindi keep
+// the ranking's own preference and filter nothing.
+export function inLanguage(c: Pick<VideoCandidate, 'language' | 'title'>, language: VideoLanguage): boolean {
+  if (language === 'en' || language === 'hi') return true;
+  if (c.language) return c.language.startsWith(language);
+  if (language === 'mr') return /marathi|मराठी/i.test(c.title);
+  return SCRIPT[language]?.test(c.title) ?? false;
 }
 
 // Official channels first, then approved; each list turned by the topic, so with more listed channels than a refresh
 // searches (CHANNEL_SEARCHES in the AI platform), different topics search different ones.
-export function videoPlan(line: Line, child: FamilyChild, channels: VideoChannel[]): VideoPlan {
+export function videoPlan(line: Line, child: FamilyChild, channels: VideoChannel[], language: VideoLanguage = child.language): VideoPlan {
   let h = 0;
   for (const ch of line.key) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
   const turn = <T,>(list: T[]) => (list.length ? [...list.slice(h % list.length), ...list.slice(0, h % list.length)] : list);
   const preferred = [...turn(channels.filter((c) => c.kind === 'official')), ...turn(channels.filter((c) => c.kind === 'approved'))];
-  return { query: videoQuery(line, child), language: child.language === 'hi' ? 'hi' : 'en', channelIds: preferred.map((c) => c.channelId) };
+  return { query: videoQuery(line, child, language), language, channelIds: preferred.map((c) => c.channelId) };
 }
 
-// Ranks what the provider returned and keeps the best three. Only official and approved channels, unless Control turns
+// Ranks what the provider returned and keeps the best four (C522; three before). Only official and approved channels, unless Control turns
 // on the wider catalogue (family.video_wider_catalogue; off for the pilot, C230-R: an automatic pick reaches a child
 // before any person has seen it, so an unlisted channel waits until it is listed). Never: a blocked channel, a video that may not be embedded,
 // is not public or is age-restricted, one shorter than 30 seconds or longer than ten hours, or one whose title and

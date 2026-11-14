@@ -27,5 +27,5 @@ export const UNDERSTAND_KEYS: MessageKey[] = [
   'fam.followUp.differently', 'fam.followUp.practise_more', 'fam.err.network', 'fam.plan.comesBack',
   ...INTERACTIVE_KEYS,
   // M2-5: the honest player under a topic's response.
-  'fam.video.title', 'fam.video.note', 'fam.video.play', 'fam.video.length', 'fam.video.by', 'fam.video.frame',
+  'fam.video.title', 'fam.video.note', 'fam.video.play', 'fam.video.length', 'fam.video.by', 'fam.video.frame', 'fam.video.see', 'fam.video.answer', 'fam.video.fallback', 'fam.video.failed',
 ];

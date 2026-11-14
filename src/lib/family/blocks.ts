@@ -23,6 +23,7 @@
 import { FRACTION_MAX_DENOMINATOR, GRAPH_FNS, GRAPH_PARAMS, PARAM_LIMIT, SIM_INPUTS, SIM_KINDS, X_LIMIT, isTriangle, type Fraction, type GraphFn, type SimKind } from './interactive';
 import { SOLID_INPUTS, SOLID_KINDS, type SolidKind } from './solids';
 import { SCENE_SIMS, simStart, type SceneSim } from './visuals/sims';
+import { isLangCode, type LangCode } from './languages';
 
 export const BLOCK_SCHEMA_VERSION = 1;
 
@@ -84,9 +85,12 @@ export type Timeline = { type: 'timeline'; title: string; items: { when: string;
 export type ImageQuery = { type: 'image'; query: string; caption: string };
 export type ImagePhoto = { type: 'image'; url: string; caption: string; credit: string; licence: string; source: string };
 export type ImageBlock = ImageQuery | ImagePhoto;
-export type VideoItem = { videoId: string; title: string; channel: string; seconds: number };
-// As written: `{ type: 'videos' }`; filled: up to four of the chapter's picks.
-export type Videos = { type: 'videos'; items?: VideoItem[] };
+// C522: `start` is where the video starts (the chapter matching the topic; absent is 0).
+export type VideoItem = { videoId: string; title: string; channel: string; seconds: number; start?: number };
+// As written: `{ type: 'videos' }`; filled: up to four of the chapter's picks. C522: `topicKey` and `lang` name the cached
+// picks they came from (the "See video" tap is checked against them); `wanted` is the child's language when too few
+// videos were found in it and `lang` is the fallback shown instead.
+export type Videos = { type: 'videos'; items?: VideoItem[]; topicKey?: string; lang?: LangCode; wanted?: LangCode };
 // W10-6 (docs/39 §5, final shapes): a tap-able scene of real parts, each in its own palette colour, and a chart of the
 // figures the answer states. Both are drawn by our own code (SceneView, ChartView); never an image, never a library.
 export const SCENE_LAYOUTS = ['row', 'ring', 'stack', 'free'] as const;
@@ -992,6 +996,7 @@ function imageBlock(o: Record<string, unknown>, stored: boolean): ImageBlock | n
 }
 
 const VIDEO_ID = /^[A-Za-z0-9_-]{11}$/;
+const VIDEO_TOPIC = /^[a-z0-9][a-z0-9._-]{2,119}$/;
 function videosBlock(o: Record<string, unknown>, stored: boolean): Videos | null {
   if (!stored) return { type: 'videos' };
   const raw = exactly(o.items, 1, 4);
@@ -1003,9 +1008,13 @@ function videosBlock(o: Record<string, unknown>, stored: boolean): Videos | null
     const channel = plain(v.channel, 120);
     const seconds = Number(v.seconds);
     if (typeof v.videoId !== 'string' || !VIDEO_ID.test(v.videoId) || !title || !channel || !Number.isInteger(seconds) || seconds < 1 || seconds > 36000) return null;
-    items.push({ videoId: v.videoId, title, channel, seconds });
+    const start = Number(v.start);
+    items.push({ videoId: v.videoId, title, channel, seconds, ...(Number.isInteger(start) && start > 0 && start < seconds ? { start } : {}) });
   }
-  return { type: 'videos', items };
+  const topicKey = typeof o.topicKey === 'string' && VIDEO_TOPIC.test(o.topicKey) ? o.topicKey : null;
+  const lang = isLangCode(o.lang) ? o.lang : null;
+  const wanted = lang && isLangCode(o.wanted) && o.wanted !== lang ? o.wanted : null;
+  return { type: 'videos', items, ...(topicKey && lang ? { topicKey, lang, ...(wanted ? { wanted } : {}) } : {}) };
 }
 
 // A photograph or video list still waiting for the server (as the model wrote it): never drawn.

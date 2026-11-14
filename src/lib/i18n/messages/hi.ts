@@ -8354,6 +8354,10 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.video.length': 'लंबाई {length}',
   'fam.video.by': 'चैनल:',
   'fam.video.frame': 'YouTube वीडियो: {title}',
+  'fam.video.see': 'वीडियो देखो',
+  'fam.video.answer': 'इस सवाल के वीडियो',
+  'fam.video.fallback': '{wanted} में अभी काफ़ी वीडियो नहीं हैं, इसलिए ये {shown} में हैं।',
+  'fam.video.failed': 'यह वीडियो नहीं खुला। थोड़ी देर बाद फिर कोशिश करो।',
   'control.video.title': 'वीडियो',
   'control.video.how': 'वीडियो खोजक पहले आधिकारिक और स्वीकृत चैनलों में खोजता है, फिर बाकी YouTube में, और हर विषय व भाषा के लिए सबसे अच्छे तीन वीडियो रखता है। किसी वीडियो को रखने और सबसे पहले दिखाने के लिए उसे पिन करें। किसी को अस्वीकार करें तो वह उस विषय पर कभी नहीं दिखेगा।',
   'control.video.searchesToday': 'आज इस्तेमाल हुई खोजें: {n}',
@@ -8857,6 +8861,7 @@ export const hi: Record<keyof typeof en, string> = {
   'control.health.revisitsDue': 'अभी दोहराने वाले विषय',
   'control.health.photoQuestions7d': 'फ़ोटो प्रश्न, पिछले 7 दिन',
   'control.health.videoSearchesToday': 'आज वीडियो खोज',
+  'control.health.videoClicks7d': 'वीडियो टैप, पिछले 7 दिन',
   'control.health.alert.reviewQueue': 'परिवारों के माँगे सबसे पुराने उत्तर को समीक्षा के लिए {days} दिन हो गए (लक्ष्य {target})। Control → Content में कतार साफ़ करें।',
   // m2-11 end
   // m2-12 begin

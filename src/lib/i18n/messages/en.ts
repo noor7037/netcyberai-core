@@ -8367,6 +8367,10 @@ export const en = {
   'fam.video.length': '{length} long',
   'fam.video.by': 'Channel:',
   'fam.video.frame': 'YouTube video: {title}',
+  'fam.video.see': 'See video',
+  'fam.video.answer': 'Videos for this question',
+  'fam.video.fallback': 'Not enough videos in {wanted} yet, so these are in {shown}.',
+  'fam.video.failed': 'This video could not open. Try again in a moment.',
   'control.video.title': 'Videos',
   'control.video.how': 'The video finder searches official and approved channels first, then the rest of YouTube, and keeps the best three videos per topic and language. Pin a video to keep it and show it first. Reject one so it is never shown for that topic.',
   'control.video.searchesToday': 'Searches used today: {n}',
@@ -8870,6 +8874,7 @@ export const en = {
   'control.health.revisitsDue': 'Revisits due now',
   'control.health.photoQuestions7d': 'Photo questions, last 7 days',
   'control.health.videoSearchesToday': 'Video searches today',
+  'control.health.videoClicks7d': 'Video taps, last 7 days',
   'control.health.alert.reviewQueue': 'The oldest response families asked for has waited {days} days for review (target {target}). Clear the queue in Control → Content.',
   // m2-11 end
   // m2-12 begin
