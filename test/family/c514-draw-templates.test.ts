@@ -120,7 +120,7 @@ describe('the registry (C514)', () => {
       expect(t.palette.length).toBeLessThanOrEqual(8);
       for (const c of t.palette) expect(c).toMatch(/^#[0-9A-Fa-f]{6}$/);
       expect(new Set(t.palette).size).toBe(t.palette.length);
-      expect(t.classes[0]).toBeGreaterThanOrEqual(-1);
+      expect(t.classes[0]).toBeGreaterThanOrEqual(-2);
       expect(t.classes[1]).toBeLessThanOrEqual(12);
       expect(t.classes[0]).toBeLessThanOrEqual(t.classes[1]);
       expect(Number(/^c(-?\d+)\./.exec(t.id)![1])).toBe(t.classes[0]);

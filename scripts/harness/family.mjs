@@ -306,6 +306,11 @@ export const FAMILY_SCREENS = [
   // C517: a Class 3 child's guided studio (engagement mode): the free canvas's hello, and a template one step at a time.
   ['full', 'family-draw-young', '/family/draw', { prep: `update family.children set class_level = 3 where child_id = 'f0000000-0000-4000-8000-0000000fc001'`, reset: CLASS_PUT_BACK, settle: '[data-draw-start]', steps: [{ tap: '[data-draw-start]', wait: '[data-draw-guide]' }] }],
   ['full', 'family-draw-young-template', '/family/draw', { prep: `update family.children set class_level = 3 where child_id = 'f0000000-0000-4000-8000-0000000fc001'`, reset: CLASS_PUT_BACK, settle: '[data-draw-template]', steps: [{ tap: '[data-draw-template]', wait: '[data-draw-guide-progress]' }] }],
+  // C518: the template list for Nursery, LKG, Class 4 and Class 5
+  ['full', 'family-draw-list-nursery', '/family/draw', { prep: `update family.children set class_level = -2 where child_id = 'f0000000-0000-4000-8000-0000000fc001'`, reset: CLASS_PUT_BACK, settle: '[data-draw-templates]' }],
+  ['full', 'family-draw-list-lkg', '/family/draw', { prep: `update family.children set class_level = -1 where child_id = 'f0000000-0000-4000-8000-0000000fc001'`, reset: CLASS_PUT_BACK, settle: '[data-draw-templates]' }],
+  ['full', 'family-draw-list-class4', '/family/draw', { prep: `update family.children set class_level = 4 where child_id = 'f0000000-0000-4000-8000-0000000fc001'`, reset: CLASS_PUT_BACK, settle: '[data-draw-templates]' }],
+  ['full', 'family-draw-list-class5', '/family/draw', { prep: `update family.children set class_level = 5 where child_id = 'f0000000-0000-4000-8000-0000000fc001'`, reset: CLASS_PUT_BACK, settle: '[data-draw-templates]' }],
   ['full', 'family-tutor-vault', '/family/parent/vault', { parent: true, settle: '[data-vault-conversation]' }],
   // W10 (C411), W10-4 (C413): a follow-up typed with the Mathematics tab selected, about photosynthesis: the server keeps
   // it in Science, the feed says "Moved to Science" above the answer and the subject tab follows to Science.

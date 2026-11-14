@@ -114,6 +114,15 @@ The join is not finished and the type check is expected to fail until these are 
 Noor said on 13 Nov: skip anything that overcomplicates the code. Keep the daily drawing limit on the Draw tab only;
 leave the homework link out.
 
+### 6a. Two founder additions (14 Nov)
+
+1. **Classes 9 and 10 art-integrated templates.** Only three existed (cell, circuit, growing pattern). After the Draw
+   join is merged, add CBSE art-integrated templates for Classes 9 and 10. The queue (section 10, item 0) records 8
+   built as C515 on `claude/draw-class9-10-art`; check that branch is merged before treating this as done.
+2. **Studio visual check.** The studio build stopped before its final report, so pressure brush, watercolour, radial
+   colour wheel, rotating stickers and paper texture are unverified. After the join compiles, take 390 px pictures of
+   the studio and show Noor **before** opening the PR (same as step 7 above).
+
 ## 7. What is different on the Mac
 
 The cloud session had connectors the terminal may not have. Check before relying on any of them.
