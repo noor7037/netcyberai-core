@@ -17,6 +17,7 @@ import { AI_HEALTH_PROBE_JOB, aiHealthProbeHandler } from '@/lib/ai/gateway/prob
 import { AI_UPKEEP_JOB, aiUpkeepHandler } from '@/lib/ai/gateway/upkeep';
 import { AI_OPS_DAILY_JOB, TUTOR_PARENT_REPORT_JOB, TUTOR_QUIZ_JOB } from '@/lib/ai/agents/jobs';
 import { aiOpsDailyHandler } from '@/lib/ai/ops-daily';
+import { FUTURE_EXPIRE_JOB, futureExpireHandler } from '@/lib/future/expire';
 import { enqueueWeeklyReports, parentReportHandler } from '@/lib/family/parent-report';
 import { log } from '@/lib/observability/log';
 import { DEMO_SETUP_JOB, demoSetupHandler } from './demo-setup';
@@ -103,6 +104,9 @@ export function productionHandlers(): Record<string, JobHandler> {
     // W16-B4: the daily look at the tutor's use (src/lib/ai/ops-daily.ts), each night after midnight in India. On a Sunday
     // it also queues the week's parent reports (W16-B3's enqueueWeeklyReports), after its own work.
     [AI_OPS_DAILY_JOB]: aiOpsDailyHandler({ platform, queue: jobQueue, weeklyReports: (db, queue, week) => enqueueWeeklyReports({ platform: async (fn) => fn(db), queue }, week) }),
+    // Future tab (15 Nov 2026): each night after midnight in India, listings move on from their dates, closed ones are archived
+    // (never deleted) and yearly series are copied forward as 'expected' for review (src/lib/future/expire.ts).
+    [FUTURE_EXPIRE_JOB]: futureExpireHandler({ platform }),
     // W16-B1: a quiz from a session at its end, in the conversation's own family session (src/lib/family/quiz.ts). The log
     // line holds the outcome and the attempt, nothing of the child's.
     [TUTOR_QUIZ_JOB]: quizJobHandler({ platform, note: (facts) => log('info', 'tutor.quiz', facts) }),

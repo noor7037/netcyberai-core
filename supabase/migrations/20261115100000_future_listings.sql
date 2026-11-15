@@ -54,6 +54,8 @@ create table content.future_listings (
   last_verified_at date not null,
   confidence numeric(3, 2) not null check (confidence between 0 and 1),
   notes text check (notes is null or length(notes) <= 2000),
+  -- A yearly series: when its cycle ends the daily job copies it forward as 'expected' (pending review).
+  recurring boolean not null default true,
   status text not null default 'draft' check (status in ('draft', 'expected', 'upcoming', 'open', 'closing_soon', 'closed', 'in_progress', 'archived', 'withdrawn')),
   review_state text not null default 'pending' check (review_state in ('pending', 'approved', 'rejected', 'changes_flagged')),
   review_note text check (review_note is null or length(review_note) <= 1000),

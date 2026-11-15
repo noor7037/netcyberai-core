@@ -62,6 +62,8 @@ export function toRow(l: SeedListing, today: string) {
     documents: l.documents.map((en) => ({ en, hi: null })), prepare_steps: l.prepare_steps.map((en) => ({ en, hi: null })),
     classes: l.classes_eligible, prepare_classes: split.prepare, future_classes: split.future, states: l.states.map(mapState),
     apply_url: https(l.apply_url), source_url: https(l.source_url) as string, last_verified_at: l.last_verified, confidence: l.confidence, notes: l.notes,
+    // A scheme with no dates at all (open-ended or discontinued) is not a yearly series; the daily job never copies it forward.
+    recurring: keyDates.length > 0 || Boolean(l.last_date) || l.status === 'expected',
     status: computeStatus({ status: stored, keyDates, lastDate: l.last_date }, today),
   };
 }
@@ -75,12 +77,12 @@ export async function importSeed(db: Sql, listings: readonly SeedListing[], toda
     const res = await db.query(
       `insert into content.future_listings (seed_id, hub, category, provider_type, provider, series_key, cycle, title_en, title_hi, summary_en, eligibility_en, benefit_en, fee_en,
          key_dates, last_date, documents, prepare_steps, classes, prepare_classes, future_classes, states, apply_url, source_url, last_verified_at, confidence, notes,
-         status, review_state, created_by, updated_by)
-       values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14::jsonb,$15,$16::jsonb,$17::jsonb,$18::smallint[],$19::smallint[],$20::smallint[],$21::text[],$22,$23,$24,$25,$26,$27,'pending',$28,$28)
+         status, recurring, review_state, created_by, updated_by)
+       values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14::jsonb,$15,$16::jsonb,$17::jsonb,$18::smallint[],$19::smallint[],$20::smallint[],$21::text[],$22,$23,$24,$25,$26,$27,$28,'pending',$29,$29)
        on conflict (seed_id) do nothing`,
       [r.seed_id, r.hub, r.category, r.provider_type, r.provider, r.series_key, r.cycle, r.title_en, r.title_hi, r.summary_en, r.eligibility_en, r.benefit_en, r.fee_en,
         JSON.stringify(r.key_dates), r.last_date, JSON.stringify(r.documents), JSON.stringify(r.prepare_steps), r.classes, r.prepare_classes, r.future_classes, r.states,
-        r.apply_url, r.source_url, r.last_verified_at, r.confidence, r.notes, r.status, by]
+        r.apply_url, r.source_url, r.last_verified_at, r.confidence, r.notes, r.status, r.recurring, by]
     );
     inserted += res.rowCount ?? 0;
   }
