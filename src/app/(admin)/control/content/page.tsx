@@ -41,6 +41,9 @@ export default async function ContentPage() {
           <Link href="/control/content/hubs" data-hubs-link className="inline-flex min-h-[44px] items-center text-sm font-semibold text-sapphire underline">
             {t(lang, 'control.content.hubsLink')}
           </Link>
+          <Link href="/control/content/future" data-future-link className="inline-flex min-h-[44px] items-center text-sm font-semibold text-sapphire underline">
+            {t(lang, 'control.content.futureLink')}
+          </Link>
         </div>
       }
     >

@@ -71,15 +71,15 @@ create table content.future_listings (
 create index idx_future_listings_family on content.future_listings (hub, review_state, status);
 create index idx_future_listings_series on content.future_listings (series_key, cycle);
 
--- Families read approved listings that are still alive. The app computes the status again from the dates on every read,
+-- Families read approved listings that are still alive (and ones the agent flagged for a changed value: the approved values stay live until a person decides). The app computes the status again from the dates on every read,
 -- so a status the daily job has not yet moved on never shows a closed item as open.
 alter table content.future_listings enable row level security;
 alter table content.future_listings force row level security;
 revoke all on content.future_listings from public, anon, authenticated, service_role, app_user;
 create policy future_listings_family_read on content.future_listings as permissive for select to family_app
-  using (review_state = 'approved' and status in ('expected', 'upcoming', 'open', 'closing_soon', 'in_progress'));
+  using (review_state in ('approved', 'changes_flagged') and status in ('expected', 'upcoming', 'open', 'closing_soon', 'in_progress'));
 create policy future_listings_family_only on content.future_listings as restrictive for all to family_app
-  using (review_state = 'approved' and status in ('expected', 'upcoming', 'open', 'closing_soon', 'in_progress')) with check (false);
+  using (review_state in ('approved', 'changes_flagged') and status in ('expected', 'upcoming', 'open', 'closing_soon', 'in_progress')) with check (false);
 grant select on content.future_listings to family_app;
 grant select, insert, update on content.future_listings to nca_super;
 
