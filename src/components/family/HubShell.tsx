@@ -63,7 +63,7 @@ function Section({ id, title, entries, empty, path, lang }: { id: 'national' | '
                 </p>
                 <p className="flex flex-wrap items-center gap-x-3 text-xs font-semibold">
                   {/* Hub entries: the source's site is named as words (12 Nov rule). Apply links of Future listings: FutureHub. */}
-                  <span data-hub-source className="inline-flex min-h-[44px] items-center gap-1 text-ink">
+                  <span data-hub-source data-host className="inline-flex min-h-[44px] items-center gap-1 text-ink">
                     {t(lang, 'fam.hub.source')}: {hostOf(e.sourceUrl)}
                   </span>
                   <span className="fam-pill bg-white text-slate ring-1 ring-slate/15">{fill(t(lang, 'fam.hub.checked'), { date: dayText(lang, e.verifiedOn) })}</span>

@@ -139,7 +139,7 @@ export function FutureCardView({ c, lang, classLevel, plan = false }: { c: Futur
           <Listing items={c.documents} label={t(lang, 'fam.future.documents')} lang={lang} tick />
           <Listing items={c.prepareSteps} label={t(lang, 'fam.future.prepare')} lang={lang} tick={false} />
           {english && <p className="text-xs font-semibold text-slate">{t(lang, 'fam.future.englishOnly')}</p>}
-          <p data-hub-source className="text-xs font-semibold">
+          <p data-hub-source data-host className="text-xs font-semibold">
             {t(lang, 'fam.hub.source')}: {new URL(c.sourceUrl).hostname.replace(/^www\./, '')}
           </p>
         </div>
@@ -149,7 +149,7 @@ export function FutureCardView({ c, lang, classLevel, plan = false }: { c: Futur
           <a data-future-apply={applyable ? 'apply' : 'official'} href={c.applyUrl!} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-ink px-4 text-sm font-extrabold text-white">
             {applyable ? t(lang, 'fam.future.apply') : t(lang, 'fam.future.official')}
           </a>
-          <span className="text-xs font-semibold">{fill(t(lang, 'fam.future.opens'), { site: c.applyHost! })}</span>
+          <span data-host className="text-xs font-semibold">{fill(t(lang, 'fam.future.opens'), { site: c.applyHost! })}</span>
           {applyable && <span className="text-xs">{t(lang, 'fam.future.askParent')}</span>}
         </div>
       )}
