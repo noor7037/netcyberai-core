@@ -149,3 +149,18 @@ describe('the review queue', () => {
     await expect(familyTx((tx) => tx.query(`select content.future_submit_candidate($1, null, '{}'::jsonb, '{}'::jsonb, 0.5)`, [id]))).rejects.toThrow();
   });
 });
+
+describe('the hooks for the weekly agent (no scraper)', () => {
+  it('keeps only changed fields that carry a source sentence', async () => {
+    const { diffReadings, runWeeklyAgent, submitCandidate } = await import('@/lib/future/agent-hooks');
+    expect(diffReadings({ last_date: '2026-11-22', apply_url: 'https://a.gov.in' }, { last_date: '2026-12-01', apply_url: 'https://a.gov.in', fee_en: '₹100' }, { last_date: 'Last date extended to 1 December 2026', fee_en: '' })).toEqual({
+      last_date: { old: '2026-11-22', new: '2026-12-01', quote: 'Last date extended to 1 December 2026' },
+    });
+    await expect(runWeeklyAgent()).rejects.toThrow(/not built/);
+    const id = await idOf('nta.jee_main.2027.s2');
+    const cand = await staffTx((tx) => submitCandidate(tx, { listingId: id, sourceId: null, payload: { last_date: '2027-02-10' }, diff: { last_date: { old: '2027-02-03', new: '2027-02-10', quote: 'q' } }, confidence: 0.9 }));
+    expect((await db.pg.query(`select state, listing_id from content.future_candidates where candidate_id = $1`, [cand])).rows[0]).toEqual({ state: 'pending', listing_id: id });
+    // The registry exists and is empty: nothing is fetched in step 1.
+    expect((await db.pg.query(`select count(*)::int as n from content.future_sources`)).rows[0].n).toBe(0);
+  });
+});
