@@ -137,6 +137,12 @@ describe('roadmap', () => {
     expect(html).toContain('सॉफ्टवेयर इंजीनियर');
     expect(html).toContain('सामान्य मार्गदर्शन, आधिकारिक सूचना जाँचें');
     expect(html).toContain('stroke-dasharray');
+    expect(html).toContain('data-stepper');
+    expect(html).toContain('md:hidden');
+    expect(html).toContain('data-mindmap');
+    expect(html).toContain('hidden md:block');
+    expect(html).toContain('min-h-[28px]');
+    expect(html).toContain('min-w-[28px]');
     expect(html).toContain('data-lane="entrance"');
     const enHtml = renderToStaticMarkup(createElement(RoadmapView, { roadmap: map, lang: 'en', openLane: 'during_10' }));
     expect(enHtml).toContain('Software engineer');
