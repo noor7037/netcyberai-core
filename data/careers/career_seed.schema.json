@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Career Hub seed",
+  "type": "object",
+  "required": ["batch", "basis", "rows"],
+  "properties": {
+    "batch": { "type": "string" },
+    "basis": { "const": "general_knowledge" },
+    "rows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["table", "key", "reviewDue", "hash", "write"],
+        "properties": {
+          "table": { "type": "string" },
+          "key": { "type": "string" },
+          "reviewDue": { "type": "string" },
+          "hash": { "type": "string", "minLength": 64, "maxLength": 64 }
+        }
+      }
+    }
+  }
+}

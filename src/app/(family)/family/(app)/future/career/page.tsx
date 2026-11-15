@@ -1,8 +1,8 @@
-import { HubShell } from '@/components/family/HubShell';
+import { CareerHome } from '@/components/family/careers/CareerHome';
 
-// A hub of the Future tab: the child's class and state decide what shows (src/components/family/FutureHub.tsx). `?q=` is the search.
+// Career Hub: the explorer, then Step 1's entrance listings (FutureHub) on the same page.
 export const dynamic = 'force-dynamic';
-export default function Page({ searchParams }: { searchParams: { q?: string | string[] } }) {
-  const { q } = searchParams;
-  return <HubShell module="careers" q={(Array.isArray(q) ? q[0] : q ?? '').slice(0, 80)} />;
+
+export default function Page({ searchParams }: { searchParams: { q?: string | string[]; s?: string | string[]; field?: string | string[]; level?: string | string[] } }) {
+  return <CareerHome search={searchParams} />;
 }

@@ -107,6 +107,11 @@ OUTSIDE_MAY_IMPORT_FAMILY = {
     "src/lib/future/review.ts": {"@/lib/family/future-listings", "@/lib/family/future-status"},
     "src/lib/future/seed-import.ts": {"@/lib/family/future-status"},
     "src/lib/future/expire.ts": {"@/lib/family/future-listings", "@/lib/family/future-status"},
+    # Career Hub (15 Nov 2026): Control reviews and imports the same career rows the family reads. The queue writes the
+    # audit log, so it lives outside the family module and is allowed to import the family's hash, types and due-date rule.
+    "src/lib/content/career-review.ts": {"@/lib/family/careers/hash", "@/lib/family/careers/sql", "@/lib/family/careers/types", "@/lib/family/careers/visibility"},
+    "src/app/(admin)/control/content/careers/page.tsx": {"@/lib/family/careers/catalog", "@/lib/family/careers/labels"},
+    "src/app/api/control/content/careers/route.ts": {"@/lib/family/careers/catalog", "@/lib/family/careers/importer"},
     # The push job (M3-8b, C339) is registered with the others; it runs inside each account's own family session.
     "src/lib/jobs/handlers.ts": {"@/lib/family/push", "@/lib/family/parent-report", "@/lib/family/quiz", "@/lib/family/certificate-ready"},
     # W16-B4: the gateway meters and caps a child's text turns by the family's cap numbers; Control's Family settings write them.
