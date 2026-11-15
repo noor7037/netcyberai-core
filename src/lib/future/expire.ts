@@ -1,8 +1,8 @@
 import type { Sql } from '@/lib/jobs/types';
 import { PermanentJobError, type JobHandler } from '@/lib/jobs/types';
 import { indiaDate, isIsoDate } from '@/lib/time/india';
-import { listingOf } from './listings';
-import { computeStatus } from './status';
+import { listingOf } from '@/lib/family/future-listings';
+import { computeStatus } from '@/lib/family/future-status';
 
 // The daily expiry (founder plan §3.5; 00:15 in India, queued by public.future_expire_enqueue). No scraping and no AI.
 //   - Moves each listing's status on from its dates: upcoming → open → closing_soon → closed, or in_progress while an exam

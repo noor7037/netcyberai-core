@@ -1,6 +1,6 @@
 import type { Sql } from '@/lib/jobs/types';
 import hiDocuments from '../../../data/future/documents_hi.json';
-import { computeStatus, type FutureStatus, type KeyDate } from './status';
+import { computeStatus, type FutureStatus, type KeyDate } from '@/lib/family/future-status';
 
 // The Hindi names of the documents (data/future/documents_hi.json) are written by hand; everything else the seed holds in English
 // only (eligibility, benefit, steps) stays English with a note on the card until a reviewer adds the Hindi in Control.

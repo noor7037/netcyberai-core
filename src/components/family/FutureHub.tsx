@@ -1,14 +1,14 @@
 import { fill, classText } from '@/lib/family/fill';
 import { familyStates } from '@/lib/family/states';
 import { sameInkOnBothSides } from '@/lib/family/day-text';
-import { groupCards, inProgress, matchesSearch, TYPE_OF, type Bilingual, type FutureCard, type GroupId, type TypeId } from '@/lib/future/listings';
-import type { KeyDate } from '@/lib/future/status';
+import { groupCards, inProgress, matchesSearch, TYPE_OF, type Bilingual, type FutureCard, type GroupId, type TypeId } from '@/lib/family/future-listings';
+import type { KeyDate } from '@/lib/family/future-status';
 import { t, type MessageKey } from '@/lib/i18n';
 
 // The Future tab's body for one hub (founder, 15 Nov 2026): the child's class and state decide what is here; two levels of
 // grouping (who runs it, then the type); status chips; a "Plan ahead" row; a "Your exams" part for forms already closed;
 // search. Server-rendered with no script: a card opens and closes with the browser's own details control, and the
-// documents list is plain tick boxes that keep nothing. Apply opens an official site in a new tab (src/lib/future/domains.ts).
+// documents list is plain tick boxes that keep nothing. Apply opens an official site in a new tab (src/lib/family/future-domains.ts).
 
 type Lang = 'en' | 'hi';
 const pick = (lang: Lang, en: string | null, hi: string | null): { text: string; lang: Lang } => (lang === 'hi' && hi ? { text: hi, lang: 'hi' } : { text: en ?? '', lang: 'en' });

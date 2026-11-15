@@ -5,7 +5,7 @@ import { NextRequest } from 'next/server';
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
 import { GET, POST } from '@/app/api/control/content/future/route';
 import { importSeed, type SeedListing } from '@/lib/future/seed-import';
-import { loadFutureCards } from '@/lib/future/listings';
+import { loadFutureCards } from '@/lib/family/future-listings';
 import { listForReview } from '@/lib/future/review';
 
 // The founder's review queue (Control → Content → Future), on the real migrations: staff only; nothing approved by the

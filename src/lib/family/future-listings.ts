@@ -1,11 +1,12 @@
-import type { Sql } from '@/lib/jobs/types';
-import { applyHostOk } from './domains';
-import { computeStatus, daysLeft, nextEvent, VISIBLE, type FutureStatus, type KeyDate } from './status';
+import type { PoolClient } from 'pg';
+import { applyHostOk } from './future-domains';
+import { computeStatus, daysLeft, nextEvent, VISIBLE, type FutureStatus, type KeyDate } from './future-status';
 
 // What a family sees in the Future tab (step 1, 15 Nov 2026). Reading is done as the family role, so the table's own
 // policy already holds back anything not approved; this file adds the child's class and state, recomputes the status
 // from the dates (a closed item can never show as open, whatever the job has or has not run), and groups for the page.
 
+type Sql = Pick<PoolClient, 'query'>;
 export type Bilingual = { en: string; hi: string | null };
 export type FutureListing = {
   id: string; hub: string; category: string; providerType: string; provider: string;

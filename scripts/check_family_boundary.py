@@ -101,6 +101,12 @@ OUTSIDE_MAY_IMPORT_FAMILY = {
     "src/middleware.ts": {"@/lib/family/session"},
     # The preparing job (C316) runs the prepare tool's step with no browser open; staff only, see the file.
     "src/lib/jobs/ai-jobs.ts": {"@/lib/family/prepare"},
+    # Future tab (15 Nov 2026): the review queue, the seed importer and the daily expiry work on the same listing rows the family
+    # reads, and use the family's one status rule and row reader, so a closed item can never be open on one side and closed on
+    # the other. Staff only; no family table is named.
+    "src/lib/future/review.ts": {"@/lib/family/future-listings", "@/lib/family/future-status"},
+    "src/lib/future/seed-import.ts": {"@/lib/family/future-status"},
+    "src/lib/future/expire.ts": {"@/lib/family/future-listings", "@/lib/family/future-status"},
     # The push job (M3-8b, C339) is registered with the others; it runs inside each account's own family session.
     "src/lib/jobs/handlers.ts": {"@/lib/family/push", "@/lib/family/parent-report", "@/lib/family/quiz", "@/lib/family/certificate-ready"},
     # W16-B4: the gateway meters and caps a child's text turns by the family's cap numbers; Control's Family settings write them.

@@ -5,10 +5,10 @@ import { createElement } from 'react';
 // @ts-expect-error -- a plain .mjs development script, no types
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
 import { FutureHub } from '@/components/family/FutureHub';
-import { applyHostOk } from '@/lib/future/domains';
-import { groupCards, loadFutureCards, matchesSearch } from '@/lib/future/listings';
+import { applyHostOk } from '@/lib/family/future-domains';
+import { groupCards, loadFutureCards, matchesSearch } from '@/lib/family/future-listings';
 import { importSeed, mapCategory, mapState, toRow, type SeedListing } from '@/lib/future/seed-import';
-import { computeStatus } from '@/lib/future/status';
+import { computeStatus } from '@/lib/family/future-status';
 
 // Future tab, step 1 (founder, 15 Nov 2026), on the real migrations (PGlite): the 54 government listings from the seed file
 // are imported as pending, approved by the test (standing in for the founder), and for EVERY class from Nursery to 12 and

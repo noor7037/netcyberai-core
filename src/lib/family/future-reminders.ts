@@ -1,6 +1,6 @@
 import type { FamilyChild } from './children';
-import { forState, listingOf, type FutureListing } from '@/lib/future/listings';
-import { computeStatus, daysLeft } from '@/lib/future/status';
+import { forState, listingOf, type FutureListing } from './future-listings';
+import { computeStatus, daysLeft } from './future-status';
 
 // Future tab reminders (founder, 15 Nov 2026), through the web push and the notifications centre that already exist.
 //   future_deadline: 30, 7 and 1 day before a listing's last date, for a child whose class and state match it (the apply-now

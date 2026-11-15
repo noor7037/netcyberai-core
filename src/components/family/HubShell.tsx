@@ -4,14 +4,14 @@ import { familyModuleOn } from '@/lib/family/flags';
 import { fill } from '@/lib/family/fill';
 import { HUB_PRESENTATION, hubSections, hubText, loadHubEntries, type HubEntry } from '@/lib/family/hubs';
 import { FutureHub } from '@/components/family/FutureHub';
-import { loadFutureCards } from '@/lib/future/listings';
+import { loadFutureCards } from '@/lib/family/future-listings';
 import { indiaDate } from '@/lib/time/india';
 import { familyPageRead, firstStepsNext, requireFamilyPage } from '@/lib/family/server';
 import { familyStates } from '@/lib/family/states';
 import { t } from '@/lib/i18n';
 
 // The site a source is on ("india.gov.in"); named as words. Only the Future listings' Apply button links out, and only to
-// official sites (src/lib/future/domains.ts, founder 15 Nov 2026); a hub entry's source stays words.
+// official sites (src/lib/family/future-domains.ts, founder 15 Nov 2026); a hub entry's source stays words.
 const hostOf = (url: string): string => {
   try {
     return new URL(url).hostname.replace(/^www\./, '');
