@@ -3,7 +3,7 @@ import { requireSuperAdmin } from '@/lib/auth/require-super-admin';
 import { asLiveStaff } from '@/lib/control/billing-route';
 import { buildBundle } from '@/lib/family/careers/catalog';
 import { importSeed } from '@/lib/family/careers/importer';
-import { editCareerText, setCareerReview } from '@/lib/content/career-review';
+import { approveAllPending, editCareerText, setCareerReview } from '@/lib/content/career-review';
 
 export const dynamic = 'force-dynamic';
 
@@ -24,6 +24,10 @@ export async function POST(req: NextRequest) {
         officialUrl: String(form.get('officialUrl') ?? ''),
         reviewDue: String(form.get('reviewDue') ?? ''),
       });
+    }
+    if (action === 'approve-all' && form.get('confirm') === 'approve-pending') {
+      await approveAllPending(db, guard.claims.sub);
+      return { ok: true as const };
     }
     if (action === 'import' && form.get('confirm') === 'load-pending-seed') {
       await importSeed(db, guard.claims.sub, buildBundle());

@@ -28,6 +28,7 @@ const config: Config = {
         // W10-4 (C413): the lesson identity on every Family screen (src/lib/design-tokens.ts lessonColors).
         ink: lessonColors.ink,
         paper: lessonColors.paper,
+        card: lessonColors.card,
         saffron: { DEFAULT: lessonColors.saffron, deep: lessonColors.saffronDeep },
         // W12-E (C419): the five lesson tints and their accents as classes (bg-lesson-mint, bg-lesson-mint-deep, ...).
         lesson: Object.fromEntries(

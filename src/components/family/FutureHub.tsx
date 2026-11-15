@@ -27,7 +27,7 @@ const STATUS_CHIP: Record<string, string> = {
   open: 'bg-lesson-mint text-lesson-mint-deep ring-1 ring-lesson-mint-deep',
   closing_soon: 'bg-lesson-blush text-lesson-blush-deep ring-1 ring-lesson-blush-deep',
   upcoming: 'bg-lesson-sky text-lesson-sky-deep ring-1 ring-lesson-sky-deep',
-  expected: 'bg-off-white text-slate ring-1 ring-slate/30',
+  expected: 'bg-paper text-ink ring-1 ring-slate/30',
   in_progress: 'bg-lesson-butter text-lesson-butter-deep ring-1 ring-lesson-butter-deep',
 };
 
@@ -35,19 +35,19 @@ const dateKind = (k: string) => (k.startsWith('exam') ? 'exam' : ['form_open', '
 const eventKind = (k: string) => (k.startsWith('exam') ? 'exam' : ['result', 'admit_card', 'correction'].includes(k) ? k : 'other');
 
 function Deadline({ c, lang }: { c: FutureCard; lang: Lang }) {
-  if (c.shown === 'expected') return <span data-future-note className="text-xs font-semibold text-slate">{t(lang, 'fam.future.expectedNote')}</span>;
+  if (c.shown === 'expected') return <span data-future-note className="text-xs font-semibold text-ink">{t(lang, 'fam.future.expectedNote')}</span>;
   if (c.shown === 'upcoming') {
     const open = c.keyDates.find((d) => d.kind === 'form_open');
-    return open ? <span data-future-note className="text-xs font-semibold text-slate">{fill(t(lang, 'fam.future.formOpens'), { date: dayText(lang, open.date) })}</span> : null;
+    return open ? <span data-future-note className="text-xs font-semibold text-ink">{fill(t(lang, 'fam.future.formOpens'), { date: dayText(lang, open.date) })}</span> : null;
   }
   if (c.shown === 'in_progress' && c.next) {
     const when = dayText(lang, c.next.date);
-    return <span data-future-next className="text-xs font-semibold text-slate">{fill(t(lang, key(`fam.future.ev.${eventKind(c.next.kind)}`)), { date: c.next.approx ? fill(t(lang, 'fam.future.approx'), { date: when }) : when })}</span>;
+    return <span data-future-next className="text-xs font-semibold text-ink">{fill(t(lang, key(`fam.future.ev.${eventKind(c.next.kind)}`)), { date: c.next.approx ? fill(t(lang, 'fam.future.approx'), { date: when }) : when })}</span>;
   }
   if (c.daysLeft === null) return null;
   const text = c.daysLeft === 0 ? t(lang, 'fam.future.days.today') : c.daysLeft === 1 ? t(lang, 'fam.future.days.one') : fill(t(lang, 'fam.future.days.left'), { n: c.daysLeft });
   return (
-    <span data-future-days={c.daysLeft} className={`fam-pill ${c.daysLeft <= 7 ? 'bg-lesson-blush text-lesson-blush-deep' : 'bg-white text-slate ring-1 ring-slate/20'}`}>
+    <span data-future-days={c.daysLeft} className={`fam-pill ${c.daysLeft <= 7 ? 'bg-lesson-blush text-lesson-blush-deep' : 'bg-card text-ink ring-1 ring-slate/20'}`}>
       {text}
     </span>
   );
@@ -58,8 +58,8 @@ const Para = ({ label, value, lang, hi }: { label: string; value: string | null;
   if (!p.text) return null;
   return (
     <div>
-      <p className="text-xs font-extrabold uppercase tracking-wide text-slate">{label}</p>
-      <p lang={p.lang} className="whitespace-pre-line text-sm text-slate">{p.text}</p>
+      <p className="text-xs font-extrabold text-saffron-deep">{label}</p>
+      <p lang={p.lang} className="whitespace-pre-line text-sm text-ink">{p.text}</p>
     </div>
   );
 };
@@ -68,13 +68,13 @@ function Listing({ items, label, lang, tick }: { items: Bilingual[]; label: stri
   if (items.length === 0) return null;
   return (
     <div>
-      <p className="text-xs font-extrabold uppercase tracking-wide text-slate">{label}</p>
-      {tick && <p className="text-xs text-slate">{t(lang, 'fam.future.documentsHint')}</p>}
-      <ul className="mt-1 flex flex-col gap-1">
+      <p className="text-xs font-extrabold text-saffron-deep">{label}</p>
+      {tick && <p className="text-xs text-ink">{t(lang, 'fam.future.documentsHint')}</p>}
+      <ul className="mt-2 flex flex-col gap-2">
         {items.map((it, i) => {
           const p = pick(lang, it.en, it.hi);
           return (
-            <li key={i} lang={p.lang} className="text-sm text-slate">
+            <li key={i} lang={p.lang} className="text-sm text-ink">
               {tick ? (
                 <label className="flex min-h-[44px] items-center gap-2">
                   <input type="checkbox" className="h-5 w-5" />
@@ -103,13 +103,13 @@ export function FutureCardView({ c, lang, classLevel, plan = false }: { c: Futur
   const official = c.officialHost && c.applyUrl && c.shown !== 'expected' && !applyable;
   const english = (lang === 'hi' && (!c.titleHi || !c.eligibilityHi)) || false;
   return (
-    <li data-future-card={c.id} data-status={c.shown} data-type={type} className={`rounded-xl border-l-4 bg-white text-sm text-slate ring-1 ring-slate/10 ${TINT[type].edge} ${plan ? 'min-w-[17rem] snap-start' : ''}`}>
+    <li data-future-card={c.id} data-status={c.shown} data-type={type} className={`rounded-2xl border-l-4 bg-card text-sm text-ink ring-1 ring-slate/10 ${TINT[type].edge} ${plan ? 'min-w-[17rem] snap-start' : ''}`}>
       <details>
         <summary className="flex min-h-[44px] cursor-pointer list-none flex-col gap-1.5 px-3 py-3">
           <span className="flex flex-wrap items-center gap-1.5">
             <span data-future-type-badge className={`fam-pill ${TINT[type].badge}`}>{t(lang, key(`fam.future.type.${type}`))}</span>
             <span data-future-status-chip className={`fam-pill ${STATUS_CHIP[c.shown]}`}>{t(lang, key(`fam.future.status.${c.shown}`))}</span>
-            {ownClass && <span className="fam-pill bg-off-white text-slate ring-1 ring-slate/20">{fill(t(lang, 'fam.future.forClass'), { class: classText(word, classLevel) })}</span>}
+            {ownClass && <span className="fam-pill bg-lesson-sky text-ink">{fill(t(lang, 'fam.future.forClass'), { class: classText(word, classLevel) })}</span>}
           </span>
           <span lang={title.lang} className="text-base font-extrabold">{title.text}</span>
           {summary.text && <span lang={summary.lang} className="text-sm">{summary.text}</span>}
@@ -125,7 +125,7 @@ export function FutureCardView({ c, lang, classLevel, plan = false }: { c: Futur
           <Para label={t(lang, 'fam.future.fee')} value={c.feeEn} hi={c.feeHi} lang={lang} />
           {c.keyDates.length > 0 && (
             <div>
-              <p className="text-xs font-extrabold uppercase tracking-wide text-slate">{t(lang, 'fam.future.dates')}</p>
+              <p className="text-xs font-extrabold text-saffron-deep">{t(lang, 'fam.future.dates')}</p>
               <ul className="mt-1 flex flex-col gap-0.5">
                 {c.keyDates.map((d: KeyDate, i) => (
                   <li key={i} className="text-sm">
@@ -138,7 +138,7 @@ export function FutureCardView({ c, lang, classLevel, plan = false }: { c: Futur
           )}
           <Listing items={c.documents} label={t(lang, 'fam.future.documents')} lang={lang} tick />
           <Listing items={c.prepareSteps} label={t(lang, 'fam.future.prepare')} lang={lang} tick={false} />
-          {english && <p className="text-xs font-semibold text-slate">{t(lang, 'fam.future.englishOnly')}</p>}
+          {english && <p className="text-xs font-semibold text-ink">{t(lang, 'fam.future.englishOnly')}</p>}
           <p data-hub-source data-host className="text-xs font-semibold">
             {t(lang, 'fam.hub.source')}: {new URL(c.sourceUrl).hostname.replace(/^www\./, '')}
           </p>
@@ -146,7 +146,7 @@ export function FutureCardView({ c, lang, classLevel, plan = false }: { c: Futur
       </details>
       {(applyable || official) && (
         <div className="flex flex-col gap-1 px-3 pb-3">
-          <a data-future-apply={applyable ? 'apply' : 'official'} href={c.applyUrl!} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-ink px-4 text-sm font-extrabold text-white">
+          <a data-future-apply={applyable ? 'apply' : 'official'} href={c.applyUrl!} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center justify-center rounded-2xl bg-saffron px-4 text-sm font-extrabold text-ink">
             {applyable ? t(lang, 'fam.future.apply') : t(lang, 'fam.future.official')}
           </a>
           <span data-host className="text-xs font-semibold">{fill(t(lang, 'fam.future.opens'), { site: c.applyHost! })}</span>
@@ -171,21 +171,21 @@ export function FutureHub({ cards, planAhead, lang, classLevel, stateCode, q, pa
   const none = groups.length === 0 && exams.length === 0 && plan.length === 0;
   const word = (k: string) => t(lang, k as MessageKey);
   return (
-    <div className="flex flex-col gap-4" data-future-hub>
+    <div className="fam-future flex flex-col gap-4" data-future-hub>
       <form method="get" action={path} role="search" className="flex gap-2">
         <label className="sr-only" htmlFor="future-q">{t(lang, 'fam.future.search.label')}</label>
-        <input id="future-q" name="q" type="search" defaultValue={q} placeholder={t(lang, 'fam.future.search.placeholder')} className="min-h-[44px] flex-1 rounded-xl border border-slate/30 bg-white px-3 text-sm text-slate" />
-        <button type="submit" className="min-h-[44px] rounded-xl bg-ink px-4 text-sm font-extrabold text-white">{t(lang, 'fam.future.search.label')}</button>
+        <input id="future-q" name="q" type="search" defaultValue={q} placeholder={t(lang, 'fam.future.search.placeholder')} className="min-h-[44px] flex-1 rounded-2xl border border-slate/20 bg-card px-3 text-sm text-ink" />
+        <button type="submit" className="min-h-[44px] rounded-2xl bg-saffron px-4 text-sm font-extrabold text-ink">{t(lang, 'fam.future.search.label')}</button>
         {q && <a href={path} className="inline-flex min-h-[44px] items-center text-sm font-semibold text-ink underline">{t(lang, 'fam.future.search.clear')}</a>}
       </form>
       {none && (
-        <p data-future-empty className="fam-row bg-off-white text-sm font-semibold text-slate">
+        <p data-future-empty className="rounded-2xl bg-lesson-butter px-4 py-3 text-sm font-semibold text-ink">
           {q ? t(lang, 'fam.future.search.none') : fill(t(lang, 'fam.future.empty'), { class: classText((k) => word(k), classLevel) })}
         </p>
       )}
       {groups.map((g) => (
-        <section key={g.id} data-future-group={g.id} aria-labelledby={`fg-${g.id}`} className="fam-card fam-section bg-white">
-          <h2 id={`fg-${g.id}`} className="fam-h2 text-slate">{GROUP_TITLE(lang, g.id, stateCode)}</h2>
+        <section key={g.id} data-future-group={g.id} aria-labelledby={`fg-${g.id}`} className="fam-card fam-section">
+          <h2 id={`fg-${g.id}`} className="fam-h2 text-ink">{GROUP_TITLE(lang, g.id, stateCode)}</h2>
           {g.types.map((ty) => (
             <div key={ty.id} data-future-type={ty.id} className="flex flex-col gap-2">
               <h3 className={`fam-pill self-start ${TINT[ty.id].badge}`}>{t(lang, key(`fam.future.type.${ty.id}`))}</h3>
@@ -195,16 +195,16 @@ export function FutureHub({ cards, planAhead, lang, classLevel, stateCode, q, pa
         </section>
       ))}
       {exams.length > 0 && (
-        <section data-future-exams aria-labelledby="fg-exams" className="fam-card fam-section bg-white">
-          <h2 id="fg-exams" className="fam-h2 text-slate">{t(lang, 'fam.future.yourExams')}</h2>
-          <p className="text-xs text-slate">{t(lang, 'fam.future.yourExamsHint')}</p>
+        <section data-future-exams aria-labelledby="fg-exams" className="fam-card fam-section">
+          <h2 id="fg-exams" className="fam-h2 text-ink">{t(lang, 'fam.future.yourExams')}</h2>
+          <p className="text-xs text-ink">{t(lang, 'fam.future.yourExamsHint')}</p>
           <ul className="flex flex-col gap-2">{exams.map((c) => <FutureCardView key={c.id} c={c} lang={lang} classLevel={classLevel} />)}</ul>
         </section>
       )}
       {plan.length > 0 && (
-        <section data-future-plan aria-labelledby="fg-plan" className="fam-card fam-section bg-white">
-          <h2 id="fg-plan" className="fam-h2 text-slate">{t(lang, 'fam.future.planAhead')}</h2>
-          <p className="text-xs text-slate">{t(lang, 'fam.future.planAheadHint')}</p>
+        <section data-future-plan aria-labelledby="fg-plan" className="fam-card fam-section">
+          <h2 id="fg-plan" className="fam-h2 text-ink">{t(lang, 'fam.future.planAhead')}</h2>
+          <p className="text-xs text-ink">{t(lang, 'fam.future.planAheadHint')}</p>
           <ul className="flex snap-x gap-3 overflow-x-auto pb-2">{plan.map((c) => <FutureCardView key={c.id} c={c} lang={lang} classLevel={classLevel} plan />)}</ul>
         </section>
       )}

@@ -199,6 +199,14 @@
   max-width: 36rem;
   padding: 0 1rem 6rem;
 }
+@media (min-width: 768px) {
+  .fam-page.fam-roadmap { max-width: 72rem; }
+}
+/* Future tabs (exams, schemes, scholarships) use the lesson card, not the global white card. */
+.fam-future .fam-card {
+  background-color: #fffdf9;
+  border-radius: 16px;
+}
 
 /* A card section: title row, then content. */
 .fam-section {

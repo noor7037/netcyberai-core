@@ -1,3 +1,4 @@
+import { coursesForField } from './courses';
 import { contentHash } from './hash';
 import type { DesiredRow } from './import-plan';
 import type { ActionType, CareerLevel, Cost, Effort, StreamSlug } from './types';
@@ -178,7 +179,13 @@ function act(c: CareerSpec, stage: ActionOut['stage'], type: ActionType, title: 
 
 function actionsFor(c: CareerSpec): ActionOut[] {
   const pack = PACKS[c.pack];
-  return pack.map((p) => act(c, p.stage, p.type, p.title, p.detail, p.effort, p.cost, p.url));
+  const base = pack.map((p) => act(c, p.stage, p.type, p.title, p.detail, p.effort, p.cost, p.url));
+  const courses = coursesForField(c.field).map((course) => act(
+    c, course.stage, 'certification', course.title,
+    [`${course.provider[0]}. ${course.duration[0]}. ${course.note[0]}`, `${course.provider[1]}. ${course.duration[1]}. ${course.note[1]}`],
+    course.effort, course.cost, course.url,
+  ));
+  return [...base, ...courses];
 }
 
 type PackAction = { stage: ActionOut['stage']; type: ActionType; title: Bi; detail: Bi; effort: Effort; cost: Cost; url?: string };
