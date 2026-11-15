@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { useWords } from '@/components/app-shell/Words';
-import { PRIMARY, SECTION, TAP } from '@/components/exams/SchemeParts';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
 import { Textarea } from '@/components/ui/Textarea';
@@ -13,6 +12,11 @@ import type { MessageKey } from '@/lib/i18n';
 // every date, and the state of its Apply link; the founder approves, edits or rejects. A low-confidence listing
 // (under 0.8) is marked and can be filtered to; approving one needs a note saying what was checked. Nothing shows to a
 // family until approved. Every action goes to the Control API, which checks the session, validates and audits.
+
+// The same look as the other Control forms (components/exams/SchemeParts), kept here so this page picks only its own words.
+const TAP = 'inline-flex min-h-[44px] items-center justify-center gap-2 rounded-md border border-slate/20 bg-white px-4 text-sm font-semibold text-slate disabled:opacity-60';
+const PRIMARY = 'inline-flex min-h-[44px] items-center justify-center gap-2 rounded-md bg-sapphire px-5 text-sm font-semibold text-white disabled:opacity-60';
+const SECTION = 'rounded-lg border border-slate/15 bg-white p-4';
 
 const FILTERS: { id: ReviewFilter; key: MessageKey }[] = [
   { id: 'pending', key: 'control.future.filter.pending' },

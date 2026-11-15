@@ -46,7 +46,7 @@ export async function listDomains(db: Sql): Promise<DomainRow[]> {
 const audit = (db: Sql, by: By, action: string, id: string, before: unknown, after: unknown, type = 'content.future_listings') =>
   writeAuditLog(db, { schoolId: null, actorUserId: by.userId, actorRole: 'super_admin', eventAction: action, targetType: type, targetId: id, beforeState: before ?? undefined, afterState: after });
 
-const snap = (r: ReviewRow) => ({ title_en: r.titleEn, title_hi: r.titleHi, summary_en: r.summaryEn, eligibility_en: r.eligibilityEn, benefit_en: r.benefitEn, apply_url: r.applyUrl, last_date: r.lastDate, classes: r.classes, states: r.states, review_state: r.reviewState, status: r.status, review_note: r.reviewNote });
+const snap = (r: ReviewRow) => ({ title_en: r.titleEn, title_hi: r.titleHi, summary_en: r.summaryEn, eligibility_en: r.eligibilityEn, benefit_en: r.benefitEn, apply_url: r.applyUrl, last_date: r.lastDate, classes: r.classes, states: r.states, review_state: r.reviewState, status: r.status, note_given: Boolean(r.reviewNote) });
 
 async function current(db: Sql, id: unknown): Promise<ReviewRow | null> {
   if (typeof id !== 'string' || !/^[0-9a-f-]{36}$/i.test(id)) return null;
@@ -123,7 +123,7 @@ export async function approveListing(db: Sql, by: By, id: unknown, note: unknown
   if (before.low && !n) return { ok: false, reason: 'note_needed' };
   const status = computeStatus({ status: before.status, keyDates: before.keyDates, lastDate: before.lastDate }, indiaDate());
   await db.query(`update content.future_listings set review_state = 'approved', review_note = $2, status = $3, reviewed_by = $4, reviewed_at = now(), updated_by = $4, updated_at = now() where listing_id = $1`, [before.id, n || null, status, by.userId]);
-  await audit(db, by, 'content.future_listing_approved', before.id, snap(before), { ...snap(before), review_state: 'approved', status, review_note: n || null });
+  await audit(db, by, 'content.future_listing_approved', before.id, snap(before), { ...snap(before), review_state: 'approved', status, note_given: Boolean(n) });
   return { ok: true, changed: before.reviewState !== 'approved' };
 }
 
@@ -133,7 +133,7 @@ export async function rejectListing(db: Sql, by: By, id: unknown, note: unknown)
   const n = oneLine(note).slice(0, 1000);
   if (!n) return { ok: false, reason: 'note_needed' };
   await db.query(`update content.future_listings set review_state = 'rejected', review_note = $2, reviewed_by = $3, reviewed_at = now(), updated_by = $3, updated_at = now() where listing_id = $1`, [before.id, n, by.userId]);
-  await audit(db, by, 'content.future_listing_rejected', before.id, snap(before), { ...snap(before), review_state: 'rejected', review_note: n });
+  await audit(db, by, 'content.future_listing_rejected', before.id, snap(before), { ...snap(before), review_state: 'rejected', note_given: true });
   return { ok: true, changed: before.reviewState !== 'rejected' };
 }
 

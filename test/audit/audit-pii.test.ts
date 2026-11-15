@@ -65,6 +65,10 @@ const ALLOWED: Record<string, Record<string, string>> = {
   'src/lib/exams/exams.ts': { 'key:name': 'an exam’s name (Half-yearly), set by the school' },
   'src/lib/exams/boards.ts': { 'key:name': 'a board’s name (CBSE)', 'key:source_title': 'the title of the public document a grading preset cites' },
   'src/lib/content/family-boards.ts': { 'key:name_en': 'a family board’s English name (Central Board of Secondary Education)', 'key:name_hi': 'the same board’s name in Hindi' },
+  'src/lib/future/review.ts': {
+    'opaque:snap(before)': 'a Future listing: its titles, short line, public links, last date, classes, states, review state, status and whether a reviewer note exists (the note itself is never audited); no personal data',
+    'opaque:snap(after)': 'a Future listing: its titles, short line, public links, last date, classes, states, review state, status and whether a reviewer note exists (the note itself is never audited); no personal data',
+  },
   'src/lib/content/hub-entries.ts': {
     "opaque:snapshot(before, before.status)": 'an entry of a family hub: its title, text, scope, class band, public source link and dates (no personal data)',
     "opaque:snapshot(e, 'draft')": 'an entry of a family hub: its title, text, scope, class band, public source link and dates (no personal data)',
