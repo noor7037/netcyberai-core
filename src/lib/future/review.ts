@@ -127,6 +127,27 @@ export async function approveListing(db: Sql, by: By, id: unknown, note: unknown
   return { ok: true, changed: before.reviewState !== 'approved' };
 }
 
+export async function countPending(db: Sql): Promise<number> {
+  return Number((await db.query(`select count(*)::int as n from content.future_listings where review_state = 'pending'`)).rows[0]?.n ?? 0);
+}
+
+// Approve every pending listing in one step. The confirm modal is the check. A low-confidence row does not need its
+// own note here: the founder is approving the whole queue on purpose. Rejected and flagged rows stay as they are.
+// A second run changes nothing.
+export async function approveAllPending(db: Sql, by: By): Promise<{ approved: number }> {
+  const pending = await countPending(db);
+  const res = await db.query(
+    `update content.future_listings set review_state = 'approved', reviewed_by = $1, reviewed_at = now(), updated_by = $1, updated_at = now() where review_state = 'pending'`,
+    [by.userId],
+  );
+  const approved = Number(res.rowCount ?? 0);
+  await writeAuditLog(db, {
+    schoolId: null, actorUserId: by.userId, actorRole: 'super_admin', eventAction: 'content.future_listing_approve_all', targetType: 'content.future_listings',
+    beforeState: { pending }, afterState: { approved },
+  });
+  return { approved };
+}
+
 export async function rejectListing(db: Sql, by: By, id: unknown, note: unknown): Promise<Result> {
   const before = await current(db, id);
   if (!before) return { ok: false, reason: 'not_found' };

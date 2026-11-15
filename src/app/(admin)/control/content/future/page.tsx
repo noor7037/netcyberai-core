@@ -3,7 +3,7 @@ import { ModulePage } from '@/components/app-ui/ModulePage';
 import { FutureReviewView } from '@/components/control/content/FutureReviewView';
 import { withTenantContext } from '@/lib/auth/db';
 import { getServerSession } from '@/lib/auth/server-session';
-import { listDomains, listForReview } from '@/lib/future/review';
+import { countPending, listDomains, listForReview } from '@/lib/future/review';
 import { t } from '@/lib/i18n';
 import { getLang } from '@/lib/i18n/server';
 import { WordsProvider } from '@/components/app-shell/Words';
@@ -16,7 +16,7 @@ export const dynamic = 'force-dynamic';
 export default async function FuturePage() {
   const session = await getServerSession();
   const { lang } = getLang(session?.sub ?? '');
-  const data = session ? await withTenantContext(session, async (db) => ({ listings: await listForReview(db, 'pending'), domains: await listDomains(db) })) : null;
+  const data = session ? await withTenantContext(session, async (db) => ({ listings: await listForReview(db, 'pending'), domains: await listDomains(db), pendingCount: await countPending(db) })) : null;
   return (
     <ModulePage title={t(lang, 'control.future.title')} purpose={t(lang, 'control.future.purpose')} about={t(lang, 'control.future.about')} icon="academics" tone="royal" eyebrow={t(lang, 'control.content.title')} headerLang={lang}
       more={
@@ -25,7 +25,7 @@ export default async function FuturePage() {
         </Link>
       }
     >
-      <WordsProvider words={pageWords(lang, '/control/content/future')}>{data && <FutureReviewView initial={data.listings} domains={data.domains} />}</WordsProvider>
+      <WordsProvider words={pageWords(lang, '/control/content/future')}>{data && <FutureReviewView initial={data.listings} domains={data.domains} pendingCount={data.pendingCount} />}</WordsProvider>
     </ModulePage>
   );
 }

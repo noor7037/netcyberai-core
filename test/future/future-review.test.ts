@@ -150,6 +150,36 @@ describe('the review queue', () => {
   });
 });
 
+describe('approve all pending', () => {
+  const counts = async () => Object.fromEntries((await db.pg.query(`select review_state, count(*)::int as n from content.future_listings group by 1`)).rows.map((r: { review_state: string; n: number }) => [r.review_state, r.n]));
+
+  it('approves only pending rows, once, and writes one audit entry', async () => {
+    expect((await post(null, { action: 'approve-all', confirm: 'approve-pending' })).status).toBe(401);
+    expect((await post(claims('principal', PRINCIPAL, SCHOOL), { action: 'approve-all', confirm: 'approve-pending' })).status).toBe(403);
+    const before = await counts();
+    expect(before.pending).toBeGreaterThan(0);
+    expect((await post(staff, { action: 'approve-all' })).status).toBe(400);
+    expect((await post(staff, { action: 'approve-all', confirm: 'no' })).status).toBe(400);
+    expect(await counts()).toEqual(before);
+    expect((await post(staff, { action: 'approve-all', confirm: 'approve-pending' })).status).toBe(200);
+    const after = await counts();
+    expect(after.pending ?? 0).toBe(0);
+    expect(after.approved).toBe((before.approved ?? 0) + before.pending);
+    expect(after.rejected ?? 0).toBe(before.rejected ?? 0);
+    expect(after.changes_flagged ?? 0).toBe(before.changes_flagged ?? 0);
+    const reviewed = (await db.pg.query(`select count(*)::int as n from content.future_listings where review_state = 'approved' and reviewed_by = $1 and reviewed_at is not null`, [STAFF])).rows[0].n;
+    expect(reviewed).toBe(after.approved);
+    expect((await post(staff, { action: 'approve-all', confirm: 'approve-pending' })).status).toBe(200);
+    expect(await counts()).toEqual(after);
+    const rows = (await db.pg.query(`select before_state, after_state, actor_user_id from audit_log where event_action = 'content.future_listing_approve_all' order by audit_id`)).rows;
+    expect(rows).toHaveLength(2);
+    expect(rows[0].actor_user_id).toBe(STAFF);
+    expect(rows[0].before_state).toEqual({ pending: before.pending });
+    expect(rows[0].after_state).toEqual({ approved: before.pending });
+    expect(rows[1].after_state).toEqual({ approved: 0 });
+  });
+});
+
 describe('the hooks for the weekly agent (no scraper)', () => {
   it('keeps only changed fields that carry a source sentence', async () => {
     const { diffReadings, runWeeklyAgent, submitCandidate } = await import('@/lib/future/agent-hooks');
