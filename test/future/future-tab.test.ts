@@ -207,6 +207,9 @@ describe('status, expiry and the screen', () => {
     expect(hi).toContain('दिन बचे हैं');
     expect(hi).toContain('आवेदन करें');
     expect(hi).not.toContain('Open now');
+    // The documents checklist is in Hindi (written by hand); tick boxes, no upload.
+    expect(hi).toContain('हस्ताक्षर');
+    expect(hi).toContain('type="checkbox"');
   });
 
   it('an expected listing has no Apply button and says the dates are not out', async () => {

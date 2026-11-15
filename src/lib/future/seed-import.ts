@@ -1,5 +1,9 @@
 import type { Sql } from '@/lib/jobs/types';
+import hiDocuments from '../../../data/future/documents_hi.json';
 import { computeStatus, type FutureStatus, type KeyDate } from './status';
+
+// The Hindi names of the documents (data/future/documents_hi.json) are written by hand; everything else the seed holds in English
+// only (eligibility, benefit, steps) stays English with a note on the card until a reviewer adds the Hindi in Control.
 
 // The importer for the reviewed-by-nobody seed file (data/future/future_listings_seed.json, government listings only).
 // It writes every row as review_state = 'pending': nothing is approved, nothing shows to a family. It is idempotent: a
@@ -59,7 +63,7 @@ export function toRow(l: SeedListing, today: string) {
     seed_id: l.id, hub: l.hub, category: mapCategory(l), provider_type: l.provider_type, provider: l.provider, series_key: l.series_key, cycle: l.cycle,
     title_en: l.title_en, title_hi: l.title_hi, summary_en: summaryOf(l), eligibility_en: l.eligibility, benefit_en: l.benefit, fee_en: l.fee,
     key_dates: keyDates, last_date: l.last_date,
-    documents: l.documents.map((en) => ({ en, hi: null })), prepare_steps: l.prepare_steps.map((en) => ({ en, hi: null })),
+    documents: l.documents.map((en) => ({ en, hi: (hiDocuments as Record<string, string>)[en] ?? null })), prepare_steps: l.prepare_steps.map((en) => ({ en, hi: null })),
     classes: l.classes_eligible, prepare_classes: split.prepare, future_classes: split.future, states: l.states.map(mapState),
     apply_url: https(l.apply_url), source_url: https(l.source_url) as string, last_verified_at: l.last_verified, confidence: l.confidence, notes: l.notes,
     // A scheme with no dates at all (open-ended or discontinued) is not a yearly series; the daily job never copies it forward.
