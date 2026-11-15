@@ -24,13 +24,20 @@ export type SeedListing = {
 export const mapState = (s: string): string => (s === 'ALL' ? 'ALL' : s.startsWith('IN-') ? s : `IN-${s}`);
 
 // Seed category → the table's category. Board exams are told apart by their series; schemes by who runs them.
+// A row may already use the table's own category name (the Haryana file does); those pass through unchanged.
 export function mapCategory(l: Pick<SeedListing, 'category' | 'series_key' | 'provider_type'>): string {
   switch (l.category) {
     case 'scholarship': return 'scholarship';
     case 'admission_exam': return /board/.test(l.series_key) ? 'board_exam' : 'admission';
-    case 'olympiad_talent': return 'olympiad';
+    case 'admission': return 'admission';
+    case 'board_exam': return 'board_exam';
+    case 'olympiad_talent':
+    case 'olympiad': return 'olympiad';
     case 'scheme_benefit': return l.provider_type === 'state' ? 'state_scheme' : 'central_scheme';
-    case 'career_entrance': return 'entrance_exam';
+    case 'state_scheme': return 'state_scheme';
+    case 'central_scheme': return 'central_scheme';
+    case 'career_entrance':
+    case 'entrance_exam': return 'entrance_exam';
     default: throw new Error(`unknown seed category ${l.category}`);
   }
 }
@@ -58,7 +65,7 @@ const https = (u: string | null): string | null => (u ? u.replace(/^http:\/\//, 
 export function toRow(l: SeedListing, today: string) {
   const keyDates = toKeyDates(l);
   const split = splitPlanAhead(l.classes_eligible, l.classes_plan_ahead);
-  const stored = (['expected', 'upcoming', 'open', 'closing_soon', 'closed'] as const).includes(l.status as 'open') ? (l.status as FutureStatus) : 'draft';
+  const stored = (['expected', 'upcoming', 'open', 'closing_soon', 'closed', 'in_progress', 'withdrawn'] as const).includes(l.status as 'open') ? (l.status as FutureStatus) : 'draft';
   return {
     seed_id: l.id, hub: l.hub, category: mapCategory(l), provider_type: l.provider_type, provider: l.provider, series_key: l.series_key, cycle: l.cycle,
     title_en: l.title_en, title_hi: l.title_hi, summary_en: summaryOf(l), eligibility_en: l.eligibility, benefit_en: l.benefit, fee_en: l.fee,
