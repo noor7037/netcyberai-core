@@ -1,3 +1,4 @@
+import { parseRedirect, type Redirect } from './redirect';
 import { type Persona, withPersona } from './persona';
 import { REFUSAL_MESSAGE, activePromptVersion, prepareModeration, prepareText, type AiRefusal, type AiRequest, type PreparedModeration, type PreparedText, type SentText } from '@/lib/ai/platform';
 import { resolverPrompt, type ChatMemory, type ResolverAsk } from '@/lib/ai/prompts/family.resolver';
@@ -94,7 +95,7 @@ export type ResolverEvent =
   // W16-A4: only in a call's answer (`call: true`): the sentences of the block just sent that are spoken, each with the
   // seal the server voice reads it from (src/lib/family/call-say.ts). The words are the block's own, cleaned.
   | { t: 'say'; lines: { text: string; token: string }[] }
-  | { t: 'refused'; reason: AiRefusal | 'not_found' | 'not_school_study' | 'not_open' | 'other_subject' | 'not_ready' | 'unsafe'; message: string; goTo?: { subject: Subject; label: string } };
+  | { t: 'refused'; reason: AiRefusal | 'not_found' | 'not_school_study' | 'not_open' | 'other_subject' | 'not_ready' | 'unsafe'; message: string; goTo?: { subject: Subject; label: string }; redirect?: Redirect };
 
 type Db = { query: (sql: string, params?: unknown[]) => Promise<{ rows: Record<string, unknown>[] }> };
 export type ResolverContext = {
@@ -305,6 +306,8 @@ export type Generated = {
   unclosed: boolean;
   droppedForSize: number;
   refusedByModel: boolean;
+  // Prompt v18: the nearest school topic and two questions to tap, when the model gave them (src/lib/family/redirect.ts).
+  redirect: Redirect | null;
   // A refusal already sent while streaming (a typed question in another subject): nothing more is said.
   stopped: boolean;
   // Drawing the answer failed (the phone went away, or a fault): the call is still metered by keep(), then this is
@@ -552,6 +555,7 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
   let subject: Subject | null = p.known;
   let stopped = false;
   let refusedByModel = false;
+  let redirect: Redirect | null = null;
   let mustClaim = p.known === null && !ctx.child.freeSubject && claim !== undefined;
   let error: unknown = null;
   const seen = new Set<BlockType>();
@@ -591,7 +595,10 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
   const take = async (text: string) => {
     if (stopped) return;
     // The model's own refusal is a whole block of type "refuse" (a nested field of that name is not).
-    if (/"type"\s*:\s*"refuse"/.test(text) && isRefusal(text)) refusedByModel = true;
+    if (/"type"\s*:\s*"refuse"/.test(text) && isRefusal(text)) {
+      refusedByModel = true;
+      redirect = parseRedirect(text);
+    }
     if (!subject) {
       // Nothing is shown until the subject is named, and only a subject this child may use is answered.
       const said = namedSubject(text);
@@ -699,7 +706,7 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
   };
   // A typed question is checked before it is sent: one found unsafe is never sent to the model (C314).
   if (p.moderation && p.question !== null && !(await safe({ user: p.question }))) {
-    return { sent: { result: { ok: false, reason: 'failed' }, record: async () => {} }, subject, kept, shared, refusedByModel, stopped, error, objects, rejected, unclosed: false, droppedForSize: 0, plan };
+    return { sent: { result: { ok: false, reason: 'failed' }, record: async () => {} }, subject, kept, shared, refusedByModel, redirect: null, stopped, error, objects, rejected, unclosed: false, droppedForSize: 0, plan };
   }
   // W9-B: the teaching plan, one short call after the question passed the safety check and before the answer; the
   // answer's prompt is rewritten from it. Never blocks: the default plan stands when it cannot be had.
@@ -730,7 +737,7 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
         },
       }
     : answered;
-  return { sent, subject, kept, shared, refusedByModel, stopped, error, objects, rejected, ...scan.dropped(), plan };
+  return { sent, subject, kept, shared, refusedByModel, redirect, stopped, error, objects, rejected, ...scan.dropped(), plan };
 }
 
 // 5. The writes after the call, in the caller's second transaction: the metering first, then the library line. Returns
@@ -750,7 +757,12 @@ export async function keep(db: Db, p: Pending, g: Generated): Promise<ResolverEv
   // backup that took over from a Primary given up at its first-text time, a stream that closes without its end mark)
   // shows every block it sent whole: that answer is not cut, and a block it never sent is named by `missing`.
   if (!result.ok) return g.kept.length > 0 ? { t: 'done', complete: false, missing, cut: g.unclosed } : { t: 'refused', reason: result.reason, message: ctx.refusalWords(REFUSAL_MESSAGE[result.reason]) };
-  if (g.refusedByModel && g.kept.length === 0) return { t: 'refused', reason: 'not_school_study', message: ctx.refusalWords('fam.understand.notStudy') };
+  // Not a learning question: a friendly line, and with prompt v18 the nearest school topic and two questions to tap.
+  if (g.refusedByModel && g.kept.length === 0) {
+    return g.redirect
+      ? { t: 'refused', reason: 'not_school_study', message: ctx.refusalWords('fam.understand.notStudyNear', { topic: g.redirect.topic }), redirect: g.redirect }
+      : { t: 'refused', reason: 'not_school_study', message: ctx.refusalWords('fam.understand.notStudy') };
+  }
   // The model never named the subject: nothing was shown, and no subject is guessed.
   if (!g.subject) return { t: 'refused', reason: 'failed', message: ctx.refusalWords(REFUSAL_MESSAGE.failed) };
   const cut = g.unclosed;

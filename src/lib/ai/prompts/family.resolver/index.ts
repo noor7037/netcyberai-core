@@ -15,6 +15,7 @@ import * as v14 from './v14';
 import * as v15 from './v15';
 import * as v16 from './v16';
 import * as v17 from './v17';
+import * as v18 from './v18';
 
 // The family.resolver prompt versions in this repository (docs/family-app/08 §7). Control chooses the active version
 // (control.ai_profiles.prompt_version); a version the code does not have falls back to the default (v10 since W18-P2, v9 since W16). A typed
@@ -96,6 +97,9 @@ const V16: ResolverPrompt = { version: v16.RESOLVER_PROMPT_VERSION, namesSubject
 // v17 (C521): v16 with the photo question named, shown in one fitting visual and taught as answer, why, worked example
 // and check, and the answer in the language the question was asked in. Opt-in by name.
 const V17: ResolverPrompt = { version: v17.RESOLVER_PROMPT_VERSION, namesSubject: true, usesPlan: true, visualFirst: true, readsLanguage: true, system: v17.resolverSystem, user: v17.resolverUser };
+// v18 (founder, 15 Nov 2026): v17 with the bare refusal replaced by a redirect: the nearest school topic and two questions
+// the child can tap. Opt-in by name; Control chooses it in Control → AI.
+const V18: ResolverPrompt = { version: v18.RESOLVER_PROMPT_VERSION, namesSubject: true, usesPlan: true, visualFirst: true, readsLanguage: true, system: v18.resolverSystem, user: v18.resolverUser };
 
 export const RESOLVER_PROMPTS: readonly ResolverPrompt[] = [
   { version: v1.RESOLVER_PROMPT_VERSION, namesSubject: false, system: (a) => v1.resolverSystem(withSubject(a)), user: (a) => v1.resolverUser(withSubject(a)) },
@@ -117,6 +121,7 @@ export const RESOLVER_PROMPTS: readonly ResolverPrompt[] = [
   V15,
   V16,
   V17,
+  V18,
 ];
 
 // The fallback for a version the code does not have, and for a typed question under a version that cannot name the

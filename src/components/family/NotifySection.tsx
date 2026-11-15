@@ -8,7 +8,7 @@ import { familyApi } from './client';
 
 // What the app tells the parent about (M3-8a, C338): the school's new homework, notices and results, and tonight's
 // practice and plan. An off kind is not counted as new on the home, and is never pushed.
-const KINDS = ['homework', 'notices', 'results', 'tonight'] as const;
+const KINDS = ['homework', 'notices', 'results', 'tonight', 'future_deadline', 'future_new'] as const;
 
 // This browser's notifications (M3-8b, C339): Web Push where the browser has it (not inside the Android app, until its
 // own push arrives with Firebase). The service worker for /family carries them (public/sw.js).

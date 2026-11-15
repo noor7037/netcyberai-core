@@ -23,6 +23,8 @@ export const FAMILY = {
   linked: 'f0000000-0000-4000-8000-0000000f0006',
   // W10-3 (C412): the lesson identity preview's family, six children at the classes of its six answers.
   identity: 'f0000000-0000-4000-8000-0000000f0a10',
+  // The Future tab's family: children in Class 1, 8, 10 and 12, each in English and Hindi (harness-seed.sql).
+  future: 'f0000000-0000-4000-8000-0000000f0b10',
 };
 
 // AM-4 (C351): a family linked to the illustrative school, whose child is matched to Aarav Example A of 5-A, with the
@@ -226,6 +228,12 @@ export const FAMILY_SCREENS = [
   ['full', 'family-profile', '/family/profile', { settle: '[data-parent-space]' }],
   ['full', 'family-notifications', '/family/notifications', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-notify-list]' }],
   ['english', 'family-notifications-empty', '/family/notifications', { settle: '[data-notify-empty]' }],
+  // Future tab (15 Nov 2026): the three sections for a child of Class 1, 8, 10 and 12, in English and Hindi.
+  ...[['c1', 1], ['c8', 3], ['c10', 5], ['c12', 7]].flatMap(([cls, n]) =>
+    [['en', 0], ['hi', 1]].flatMap(([lang, off]) =>
+      [['career', 'career'], ['schemes', 'schemes'], ['exams', 'exams']].map(([hub, path]) => ['future', `future-${cls}-${hub}-${lang}`, `/family/future/${path}`, { child: `f0000000-0000-4000-8000-0000000fcb0${n + off}`, settle: '[data-future-hub]' }])
+    )
+  ),
   ['full', 'family-hub-future', '/family/future', { settle: '[data-hub-list]' }],
   ['full', 'family-hub-career', '/family/future/career', { settle: '[data-hub-section="national"]' }],
   ['full', 'family-hub-exams', '/family/future/exams', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-hub-section="state"]' }],
@@ -908,6 +916,7 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
             copy.style.position = 'absolute';
             copy.style.left = '-99999px';
             const text = copy.innerText;
+            const hostWords = new Set([...document.querySelectorAll('[data-host]')].flatMap((e) => (e.textContent.match(/[A-Za-z]{4,}/g) ?? []).map((w) => w.toLowerCase())));
             copy.remove();
             return {
               path: location.pathname,
@@ -919,7 +928,8 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
               devanagari: /[ऀ-ॿ]/.test(text),
               // Words left in English on a Hindi screen. Product names (NetCyberAI, Family Plus), the language names the seeded children's
               // first names (data, not words of the app) do not count.
-              latinWords: (text.match(/\b[A-Za-z]{4,}\b/g) ?? []).filter((w) => !['netcyberai', 'cbse', 'english', 'hinglish', 'delete', 'asha', 'kabir', 'meena', 'aarav', 'family', 'plus', 'water', 'moves', 'from', 'book', 'polynomials'].includes(w.toLowerCase())),
+              // An official site's name (data-host: the Apply line, a source) is an address, not a word to translate.
+              latinWords: (text.match(/\b[A-Za-z]{4,}\b/g) ?? []).filter((w) => !hostWords.has(w.toLowerCase())).filter((w) => !['netcyberai', 'cbse', 'english', 'hinglish', 'delete', 'asha', 'kabir', 'meena', 'aarav', 'family', 'plus', 'water', 'moves', 'from', 'book', 'polynomials'].includes(w.toLowerCase())),
             };
           });
           await page.addScriptTag({ path: AXE });

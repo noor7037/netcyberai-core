@@ -127,6 +127,30 @@ describe('a failed tutor answer keeps its question, with Try again (C508)', () =
     const off = await ask(older, 'Tell me a joke about cricket');
     expect(off.ev.at(-1)).toMatchObject({ t: 'refused', reason: 'not_school_study' });
     expect((await rows(OLDER)).length).toBe(before);
+    // The bare refusal now gets a friendly line (no scolding) and no buttons.
+    expect(off.ev.at(-1)).not.toHaveProperty('redirect');
+    expect((off.ev.at(-1) as { message: string }).message).toMatch(/love to help with your school subjects/);
+  });
+
+  it('prompt v18: a refusal that names the nearest school topic and two questions becomes a friendly redirect with two tappable questions; nothing is kept', async () => {
+    reset();
+    const before = (await rows(OLDER)).length;
+    ai.lines = ['{"type":"refuse","nearest":"How a cricket ball swings in the air","examples":["Why does a ball curve when it spins?","What is air resistance?"]}'];
+    const off = await ask(older, 'Tell me a joke about cricket');
+    expect(off.ev.at(-1)).toMatchObject({
+      t: 'refused',
+      reason: 'not_school_study',
+      message: 'That is not a school question, but here is something close that you can learn: How a cricket ball swings in the air.',
+      redirect: { topic: 'How a cricket ball swings in the air', examples: ['Why does a ball curve when it spins?', 'What is air resistance?'] },
+    });
+    expect((await rows(OLDER)).length).toBe(before);
+    // Unsafe markup, a link or a single example gives the plain friendly line instead.
+    for (const bad of ['{"type":"refuse","nearest":"<b>x</b>","examples":["Why is the sky blue?","What is light?"]}', '{"type":"refuse","nearest":"Light","examples":["See https://x.example now","What is light?"]}', '{"type":"refuse","nearest":"Light","examples":["What is light?"]}']) {
+      ai.lines = [bad];
+      const r = await ask(older, 'Tell me a joke');
+      expect(r.ev.at(-1)).not.toHaveProperty('redirect');
+      expect((r.ev.at(-1) as { message: string }).message).toMatch(/love to help with your school subjects/);
+    }
   });
 
   it('an answer that ends with nothing shown is a failure too: the question is kept with no answer yet', async () => {

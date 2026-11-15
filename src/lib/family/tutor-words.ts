@@ -24,7 +24,7 @@ export const TUTOR_KEYS: MessageKey[] = [
   // W17-B2: read a tutor's answer aloud, and which voice reads it.
   'fam.tutor.readAloud', 'fam.tutor.stopAloud', 'fam.voiceOut.server', 'fam.voiceOut.phone',
   // C508: a question kept with no answer yet.
-  'fam.tutor.noAnswerYet', 'fam.tutor.tryAgain',
+  'fam.tutor.noAnswerYet', 'fam.tutor.tryAgain', 'fam.understand.tryAsking',
   // W18-P1: "Teach me" on an answer (the board's words come with UNDERSTAND_KEYS on every page that has the window).
   'fam.tutor.teachMe', 'fam.tutor.pause', 'fam.tutor.replay',
   // W22-S3: resume where the reading stopped, how much is read, and the tutor's face line while it reads.

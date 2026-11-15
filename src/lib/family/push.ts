@@ -3,6 +3,7 @@ import { familyClaims, withFamilyContext, type FamilyClaims } from './db';
 import { homePlan, plusOpen } from './home-plan';
 import { familyModuleOn } from './flags';
 import { activeLinks, NEWS_KINDS, notifyOff, readSchoolNewsFor, schoolTodayFor, type NotifyKind } from './school';
+import { dueDeadlines, FUTURE_PAGE, newListings } from './future-reminders';
 import { pushEndpointAllowed, sendWebPush, subscriptionKeysOk, type PushOutcome, type PushSender } from './web-push';
 
 // Telling a family, on its browsers, of what is new (M3-8b, C339; 07 M3-8: new homework, a sent notice, a published
@@ -24,7 +25,7 @@ export const DROP_AFTER_FAILURES = 5;
 const TONIGHT_FROM_MINUTES = 18 * 60 + 30; // 18:30 in India
 
 // The page each kind opens: the school's part is in the parent area (behind the PIN); tonight's is the child's home.
-export const PUSH_PAGE: Record<NotifyKind, string> = { homework: '/family/parent', notices: '/family/parent', results: '/family/parent', tonight: '/family' };
+export const PUSH_PAGE: Record<NotifyKind, string> = { homework: '/family/parent', notices: '/family/parent', results: '/family/parent', tonight: '/family', future_deadline: FUTURE_PAGE, future_new: FUTURE_PAGE };
 
 export type SubscribeResult = { ok: true } | { ok: false; reason: 'bad_subscription' };
 
@@ -89,7 +90,13 @@ export async function pushForAccount(claims: FamilyClaims, at: Date, send: PushS
     if (!off.includes('tonight') && (await familyModuleOn(db, 'home_plan', accountId)) && (await plusOpen(db, accountId))) {
       for (const c of await listChildren(db, accountId)) if ((await homePlan(db, accountId, c, today, c.language))?.tonight) planTonight = true;
     }
-    return { subs, off, links, marks, planTonight };
+    // The Future tab: the account's children's classes and states, and what is due for them (src/lib/family/future-reminders.ts).
+    const kids = await listChildren(db, accountId);
+    const evening = indiaMinutes(at) >= TONIGHT_FROM_MINUTES;
+    const deadlines = !off.includes('future_deadline') && evening ? await dueDeadlines(db, kids, today) : [];
+    const futureMark = marks.find((m) => m.scope === 'future' && m.kind === 'future_new')?.upto ?? null;
+    const fresh = !off.includes('future_new') && evening && futureMark !== null ? await newListings(db, kids, futureMark, today) : [];
+    return { subs, off, links, marks, planTonight, deadlines, fresh };
   });
   if (!state.subs.length) return { kinds: [], sent: 0, gone: 0, failed: 0 };
   const markOf = (scope: string, kind: NotifyKind) => state.marks.find((m) => m.scope === scope && m.kind === kind)?.upto ?? null;
@@ -114,6 +121,17 @@ export async function pushForAccount(claims: FamilyClaims, at: Date, send: PushS
       kinds.add('tonight');
       newMarks.push({ scope: 'tonight', kind: 'tonight', upto: `${today}T13:00:00.000Z` });
     }
+  }
+
+  // 3b. The Future tab: a deadline step not yet sent (30, 7 or 1 day), and something new for a child's class since the last
+  // look. The first look only sets the mark, so no pile of old listings arrives with the first push.
+  if (state.deadlines.some((d) => markOf(d.scope, 'future_deadline') === null)) {
+    kinds.add('future_deadline');
+    for (const d of state.deadlines) if (markOf(d.scope, 'future_deadline') === null) newMarks.push({ scope: d.scope, kind: 'future_deadline', upto: scanAt });
+  }
+  if (!state.off.includes('future_new') && indiaMinutes(at) >= TONIGHT_FROM_MINUTES) {
+    if (markOf('future', 'future_new') === null || state.fresh.length > 0) newMarks.push({ scope: 'future', kind: 'future_new', upto: scanAt });
+    if (state.fresh.length > 0) kinds.add('future_new');
   }
 
   // 4. The pushes, with no database connection held.

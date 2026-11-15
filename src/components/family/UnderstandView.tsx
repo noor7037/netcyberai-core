@@ -190,6 +190,8 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
   // W4-1 (C385): what became of the files sent with a tutor question.
   const [filesNote, setFilesNote] = useState('');
   const [goTo, setGoTo] = useState<GoTo | null>(null);
+  // Prompt v18: the nearest school topic's two questions, shown as buttons under the friendly line.
+  const [redirect, setRedirect] = useState<{ topic: string; examples: string[] } | null>(null);
   const [gap, setGap] = useState<{ missing: BlockType[]; cut: boolean }>({ missing: [], cut: false });
   const [noInternet, setNoInternet] = useState(false);
   const saver = useDataSaver();
@@ -223,6 +225,7 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
     setGap({ missing: [], cut: false });
     setRefusal('');
     setGoTo(null);
+    setRedirect(null);
     setNoInternet(false);
     setMessageId(null);
     setSpokenAt(undefined);
@@ -283,6 +286,7 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
             if (typeof e.unanswered === 'string') setUnanswered(e.unanswered);
             setRefusal(e.message);
             setGoTo(e.goTo && (SUBJECTS as readonly string[]).includes(e.goTo.subject) ? e.goTo : null);
+            setRedirect(e.redirect && e.redirect.examples?.length ? e.redirect : null);
             setState('refused');
           }
         }
@@ -383,6 +387,25 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
               >
                 {w['fam.tutor.tryAgain']}
               </button>
+            </div>
+          )}
+          {redirect && (
+            <div data-redirect className="flex flex-col gap-2">
+              <p className="text-sm font-bold text-ink">{w['fam.understand.tryAsking']}</p>
+              {redirect.examples.map((q) => (
+                <button
+                  key={q}
+                  type="button"
+                  data-redirect-example
+                  onClick={() => {
+                    onTap?.();
+                    again({ input: input.kind === 'question' ? { ...input, text: q, tutor: input.tutor ? { ...input.tutor, retryOf: undefined, files: [] } : undefined } : { kind: 'question', text: q } });
+                  }}
+                  className="fam-press min-h-[44px] rounded-2xl bg-saffron px-4 py-2 text-start text-sm font-bold text-ink"
+                >
+                  {q}
+                </button>
+              ))}
             </div>
           )}
           {goTo && (
