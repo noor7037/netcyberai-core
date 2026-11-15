@@ -1,14 +1,17 @@
 import { redirect } from 'next/navigation';
 import { SubPageHeader } from '@/components/family/SubPageHeader';
-import { LinkRow } from '@/components/family/ui/LinkRow';
 import { familyModuleOn } from '@/lib/family/flags';
 import { fill } from '@/lib/family/fill';
 import { HUB_PRESENTATION, hubSections, hubText, loadHubEntries, type HubEntry } from '@/lib/family/hubs';
+import { FutureHub } from '@/components/family/FutureHub';
+import { loadFutureCards } from '@/lib/future/listings';
+import { indiaDate } from '@/lib/time/india';
 import { familyPageRead, firstStepsNext, requireFamilyPage } from '@/lib/family/server';
 import { familyStates } from '@/lib/family/states';
 import { t } from '@/lib/i18n';
 
-// The site a source is on ("india.gov.in"); named as words, never a link out of the app.
+// The site a source is on ("india.gov.in"); named as words. Only the Future listings' Apply button links out, and only to
+// official sites (src/lib/future/domains.ts, founder 15 Nov 2026); a hub entry's source stays words.
 const hostOf = (url: string): string => {
   try {
     return new URL(url).hostname.replace(/^www\./, '');
@@ -59,7 +62,7 @@ function Section({ id, title, entries, empty, path, lang }: { id: 'national' | '
                   {x.body}
                 </p>
                 <p className="flex flex-wrap items-center gap-x-3 text-xs font-semibold">
-                  {/* Founder (12 Nov 2026): no link out of the app; the source's site is named as words. */}
+                  {/* Hub entries: the source's site is named as words (12 Nov rule). Apply links of Future listings: FutureHub. */}
                   <span data-hub-source className="inline-flex min-h-[44px] items-center gap-1 text-ink">
                     {t(lang, 'fam.hub.source')}: {hostOf(e.sourceUrl)}
                   </span>
@@ -77,7 +80,7 @@ function Section({ id, title, entries, empty, path, lang }: { id: 'national' | '
 // The state's name in the child's language (src/lib/family/states.ts).
 export const stateName = (lang: 'en' | 'hi', code: string, fallback: string) => familyStates(lang).find((s) => s.code === code)?.name ?? fallback;
 
-export async function HubShell({ module }: { module: 'careers' | 'exams_portal' | 'opportunities' }) {
+export async function HubShell({ module, q = '' }: { module: 'careers' | 'exams_portal' | 'opportunities'; q?: string }) {
   const hub = HUB_PRESENTATION[module];
   const page = await requireFamilyPage();
   if (!page) redirect('/family/sign-in');
@@ -86,22 +89,19 @@ export async function HubShell({ module }: { module: 'careers' | 'exams_portal' 
   const lang = page.childLang;
   const on = await familyPageRead(page, (db) => familyModuleOn(db, hub.module, page.session.accountId));
   if (!on) redirect('/family/future');
-  // The entries of this child's class band: the national ones and, where the hub has a state part, the child's state.
   const child = page.child;
+  // The approved Future listings for this child's class and state (the plan, step 1), and any older hub entries still published.
+  const future = child ? await familyPageRead(page, (db) => loadFutureCards(db, hub.module, child.classLevel, child.stateCode ?? null, indiaDate())) : { main: [], planAhead: [] };
   const entries = child ? await familyPageRead(page, (db) => loadHubEntries(db, hub.module, child.classLevel, hub.withState ? (child.stateCode ?? null) : null)) : [];
   const sections = hubSections(entries, child?.stateCode, hub.withState);
-  const empty = t(lang, 'fam.hub.empty');
+  const hasEntries = sections.national.length > 0 || (sections.state?.entries.length ?? 0) > 0;
   return (
     <div lang={lang} data-hub={hub.module} className="flex min-h-screen flex-col">
       <SubPageHeader back="/family/future" backLabel={t(lang, 'fam.tab.future')} title={t(lang, hub.title)} />
       <main className="fam-page">
-        <Section id="national" title={t(lang, 'fam.hub.national')} entries={sections.national} empty={empty} path={hub.path} lang={lang} />
-        {sections.state && <Section id="state" title={fill(t(lang, 'fam.hub.yourState'), { state: stateName(lang, sections.state.code, sections.state.name) })} entries={sections.state.entries} empty={empty} path={hub.path} lang={lang} />}
-        {sections.national.length === 0 && (!sections.state || sections.state.entries.length === 0) && (
-          <LinkRow href="/family/future" icon="explore">
-            {t(lang, 'fam.tab.future')}
-          </LinkRow>
-        )}
+        {child && <FutureHub cards={future.main} planAhead={future.planAhead} lang={lang} classLevel={child.classLevel} stateCode={child.stateCode ?? null} q={q} path={hub.path} />}
+        {hasEntries && <Section id="national" title={t(lang, 'fam.hub.national')} entries={sections.national} empty={t(lang, 'fam.hub.empty')} path={hub.path} lang={lang} />}
+        {hasEntries && sections.state && <Section id="state" title={fill(t(lang, 'fam.hub.yourState'), { state: stateName(lang, sections.state.code, sections.state.name) })} entries={sections.state.entries} empty={t(lang, 'fam.hub.empty')} path={hub.path} lang={lang} />}
       </main>
     </div>
   );

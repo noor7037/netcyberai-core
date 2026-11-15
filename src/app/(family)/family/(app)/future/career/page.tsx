@@ -1,6 +1,8 @@
 import { HubShell } from '@/components/family/HubShell';
 
-// The Career Hub (H1): a shell, national only; entries come later from official sources.
-export default function CareerHubPage() {
-  return <HubShell module="careers" />;
+// A hub of the Future tab: the child's class and state decide what shows (src/components/family/FutureHub.tsx). `?q=` is the search.
+export const dynamic = 'force-dynamic';
+export default function Page({ searchParams }: { searchParams: { q?: string | string[] } }) {
+  const { q } = searchParams;
+  return <HubShell module="careers" q={(Array.isArray(q) ? q[0] : q ?? '').slice(0, 80)} />;
 }
