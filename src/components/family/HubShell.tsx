@@ -34,19 +34,19 @@ const dayText = (lang: 'en' | 'hi', iso: string) => sameInkOnBothSides(new Date(
 
 function Section({ id, title, entries, empty, path, lang }: { id: 'national' | 'state'; title: string; entries: HubEntry[]; empty: string; path: string; lang: 'en' | 'hi' }) {
   return (
-    <section data-hub-section={id} aria-labelledby={`hub-${id}`} className="fam-card fam-section fam-rise bg-white" style={{ ['--d' as string]: id === 'state' ? '80ms' : '0ms' } as React.CSSProperties}>
+    <section data-hub-section={id} aria-labelledby={`hub-${id}`} className="fam-card fam-section fam-rise" style={{ ['--d' as string]: id === 'state' ? '80ms' : '0ms' } as React.CSSProperties}>
       <div className="flex items-center gap-3">
-        <span aria-hidden="true" className="fam-chip-icon bg-ink text-white">
+        <span aria-hidden="true" className="fam-chip-icon bg-saffron text-ink">
           <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d={glyph[id]} />
           </svg>
         </span>
-        <h2 id={`hub-${id}`} className="fam-h2 text-slate">
+        <h2 id={`hub-${id}`} className="fam-h2 text-ink">
           {title}
         </h2>
       </div>
       {entries.length === 0 ? (
-        <p data-hub-empty className="fam-row bg-off-white text-sm font-semibold text-slate">
+        <p data-hub-empty className="rounded-2xl bg-lesson-butter px-4 py-3 text-sm font-semibold text-ink">
           {empty}
         </p>
       ) : (
@@ -54,7 +54,7 @@ function Section({ id, title, entries, empty, path, lang }: { id: 'national' | '
           {entries.map((e) => {
             const x = hubText(e, lang);
             return (
-              <li key={e.id} data-hub-entry={e.id} className="flex flex-col gap-1.5 rounded-xl bg-off-white px-3 py-3 text-sm text-slate">
+              <li key={e.id} data-hub-entry={e.id} className="flex flex-col gap-2 rounded-2xl bg-paper px-3 py-3 text-sm text-ink">
                 <h3 lang={x.titleLang} className="text-base font-extrabold">
                   {x.title}
                 </h3>
@@ -66,7 +66,7 @@ function Section({ id, title, entries, empty, path, lang }: { id: 'national' | '
                   <span data-hub-source data-host className="inline-flex min-h-[44px] items-center gap-1 text-ink">
                     {t(lang, 'fam.hub.source')}: {hostOf(e.sourceUrl)}
                   </span>
-                  <span className="fam-pill bg-white text-slate ring-1 ring-slate/15">{fill(t(lang, 'fam.hub.checked'), { date: dayText(lang, e.verifiedOn) })}</span>
+                  <span className="fam-pill bg-lesson-mint text-ink">{fill(t(lang, 'fam.hub.checked'), { date: dayText(lang, e.verifiedOn) })}</span>
                 </p>
               </li>
             );
@@ -96,7 +96,7 @@ export async function HubShell({ module, q = '' }: { module: 'careers' | 'exams_
   const sections = hubSections(entries, child?.stateCode, hub.withState);
   const hasEntries = sections.national.length > 0 || (sections.state?.entries.length ?? 0) > 0;
   return (
-    <div lang={lang} data-hub={hub.module} className="flex min-h-screen flex-col">
+    <div lang={lang} data-hub={hub.module} className="fam-future flex min-h-screen flex-col">
       <SubPageHeader back="/family/future" backLabel={t(lang, 'fam.tab.future')} title={t(lang, hub.title)} />
       <main className="fam-page">
         {child && <FutureHub cards={future.main} planAhead={future.planAhead} lang={lang} classLevel={child.classLevel} stateCode={child.stateCode ?? null} q={q} path={hub.path} />}

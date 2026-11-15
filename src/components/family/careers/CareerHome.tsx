@@ -51,7 +51,7 @@ export async function CareerHome({ search, stream }: { search: { q?: string | st
     <div lang={lang} data-career-home className="flex min-h-screen flex-col">
       <SubPageHeader back={back} backLabel={backLabel} title={title} />
       <main className="fam-page flex flex-col gap-4">
-        <section data-opens-now className="fam-card bg-white p-4">
+        <section data-opens-now className="rounded-2xl bg-lesson-butter p-4">
           <h2 className="fam-h2 text-ink">{t(lang, 'fam.career.opensNowTitle')}</h2>
           <p className="text-sm font-semibold text-slate">{fill(t(lang, 'fam.career.opensNowChild'), { name: child.firstName, className: classText(word, child.classLevel) })}</p>
           <p className="text-sm text-slate">{t(lang, now.kind === 'plan_ahead' ? 'fam.career.opensAhead' : now.kind === 'stream_choice' ? 'fam.career.opensStream' : 'fam.career.opensEntrance')}</p>
@@ -60,8 +60,8 @@ export async function CareerHome({ search, stream }: { search: { q?: string | st
         <section id="streams">
           <h2 className="mb-2 text-sm font-extrabold text-ink">{t(lang, 'fam.career.chooseStream')}</h2>
           <div className="flex flex-wrap gap-2">
-            {STREAMS.map((id) => (
-              <Link key={id} href={`/family/future/career/stream/${id}`} className="inline-flex min-h-[44px] items-center rounded-full bg-white px-4 text-sm font-extrabold text-ink ring-1 ring-slate/20">{t(lang, STREAM_KEY[id])}</Link>
+            {STREAMS.map((id, i) => (
+              <Link key={id} href={`/family/future/career/stream/${id}`} className={`inline-flex min-h-[44px] items-center rounded-full px-4 text-sm font-extrabold text-ink ${['bg-lesson-butter', 'bg-lesson-mint', 'bg-lesson-sky', 'bg-lesson-lilac', 'bg-lesson-blush'][i]}`}>{t(lang, STREAM_KEY[id])}</Link>
             ))}
           </div>
         </section>
@@ -77,7 +77,7 @@ export async function CareerHome({ search, stream }: { search: { q?: string | st
             <div className="flex flex-wrap gap-2">
               <Link href={`/family/future/career${keep(q, s, '', level)}`} className="inline-flex min-h-[44px] items-center rounded-full bg-off-white px-3 text-sm font-bold text-ink">{t(lang, 'fam.career.allFields')}</Link>
               {home.fields.map((f) => (
-                <Link key={f.id} href={`/family/future/career${keep(q, s, f.id, level)}`} className="inline-flex min-h-[44px] items-center rounded-full bg-white px-3 text-sm font-bold text-ink ring-1 ring-slate/15">{lang === 'hi' ? f.name.hi : f.name.en}</Link>
+                <Link key={f.id} href={`/family/future/career${keep(q, s, f.id, level)}`} className="inline-flex min-h-[44px] items-center rounded-full bg-lesson-sky px-3 text-sm font-bold text-ink">{lang === 'hi' ? f.name.hi : f.name.en}</Link>
               ))}
             </div>
             <p className="text-xs font-extrabold text-slate">{t(lang, 'fam.career.levels')}</p>
@@ -94,9 +94,9 @@ export async function CareerHome({ search, stream }: { search: { q?: string | st
           <ul className="flex flex-col gap-2">
             {home.cards.map((c) => (
               <li key={c.slug}>
-                <Link href={`/family/future/career/${c.slug}`} className="flex min-h-[44px] flex-col justify-center rounded-xl bg-white px-3 py-3">
+                <Link href={`/family/future/career/${c.slug}`} className="flex min-h-[44px] flex-col justify-center rounded-xl bg-paper px-3 py-3 ring-1 ring-lesson-lilac-deep/20">
                   <span lang={lang} className="text-base font-extrabold text-ink">{lang === 'hi' ? c.title.hi : c.title.en}</span>
-                  <span className="text-xs font-semibold text-slate">{t(lang, LEVEL_KEY[c.level])}</span>
+                  <span className="mt-1 inline-flex w-fit whitespace-nowrap rounded-full bg-lesson-lilac px-2 py-1 text-xs font-extrabold text-ink">{t(lang, LEVEL_KEY[c.level])}</span>
                 </Link>
               </li>
             ))}
@@ -106,17 +106,19 @@ export async function CareerHome({ search, stream }: { search: { q?: string | st
           <section>
             <h2 className="mb-2 text-sm font-extrabold text-ink">{t(lang, 'fam.career.switchFrom')}</h2>
             {crosses.map((c) => (
-              <div key={c.key} data-cross className="mb-2 rounded-xl border border-dashed border-slate px-3 py-3 text-sm text-slate">
+              <div key={c.key} data-cross className="mb-2 rounded-xl border-2 border-dashed border-lesson-lilac-deep bg-lesson-lilac px-3 py-3 text-sm text-ink">
                 <p lang={lang} className="font-extrabold text-ink">{lang === 'hi' ? c.via.hi : c.via.en}</p>
                 <p lang={lang}>{lang === 'hi' ? c.conditions.hi : c.conditions.en}</p>
               </div>
             ))}
           </section>
         )}
-        <section data-exams-strip>
-          <h2 className="mb-2 text-sm font-extrabold text-ink">{t(lang, 'fam.career.examsStrip')}</h2>
-          <FutureHub cards={future.main} planAhead={future.planAhead} lang={lang} classLevel={child.classLevel} stateCode={child.stateCode ?? null} q={q} path={hub.path} />
-        </section>
+        {(q || future.main.length > 0 || future.planAhead.length > 0) && (
+          <section data-exams-strip>
+            <h2 className="mb-2 text-sm font-extrabold text-ink">{t(lang, 'fam.career.examsStrip')}</h2>
+            <FutureHub cards={future.main} planAhead={future.planAhead} lang={lang} classLevel={child.classLevel} stateCode={child.stateCode ?? null} q={q} path={hub.path} />
+          </section>
+        )}
         {entries.length > 0 && (
           <section data-hub-entries={hub.path}>
             <h2 className="mb-2 text-sm font-extrabold text-ink">{t(lang, 'fam.hub.national')}</h2>

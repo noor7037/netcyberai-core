@@ -68,7 +68,8 @@ export async function loadRoadmap(db: Sql, slug: string, today: string): Promise
   if (!career) return null;
   const steps = projectForFamily(await loadSteps(db, slug), today);
   const actions = projectForFamily(await loadActions(db, slug), today);
-  const crosses = crossesForCareer(career.streams, career.minLevel, career.slug, projectForFamily(await loadCrosses(db), today));
+  const fieldOf = new Map(cards.map((c) => [c.slug, c.fieldId]));
+  const crosses = crossesForCareer(career, projectForFamily(await loadCrosses(db), today), (slug) => fieldOf.get(slug));
   const laterals = projectForFamily(await loadLaterals(db, slug), today);
   return { career, lanes: buildLanes({ steps, actions, laterals }), crosses };
 }

@@ -20,7 +20,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
       <SubPageHeader back="/family/future/career" backLabel={t(lang, 'fam.hub.career')} title={lang === 'hi' ? roadmap.career.title.hi : roadmap.career.title.en} />
-      <main className="fam-page">
+      <main className="fam-page fam-roadmap">
         <RoadmapView roadmap={roadmap} lang={lang} openLane={now.openLane} />
       </main>
     </div>

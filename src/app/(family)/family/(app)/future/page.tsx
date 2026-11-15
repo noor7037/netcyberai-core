@@ -24,12 +24,12 @@ export default async function FamilyFuturePage() {
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
       <SubPageHeader back="/family" backLabel={t(lang, 'fam.nav.home')} title={t(lang, 'fam.tab.future')} />
-      <main className="fam-page">
+      <main className="fam-page fam-future">
         <ul data-hub-list className="flex flex-col gap-3">
           {hubs.map((h, n) => (
             <li key={h.module} className="fam-rise" style={{ ['--d' as string]: `${n * 60}ms` } as React.CSSProperties}>
-              <Link href={h.path} data-hub-link={h.module} className="fam-card fam-press flex min-h-[72px] items-center gap-4 bg-white p-4 text-slate">
-                <span aria-hidden="true" className="fam-chip-icon h-12 w-12 bg-ink text-white">
+              <Link href={h.path} data-hub-link={h.module} className="fam-card fam-press flex min-h-[72px] items-center gap-4 p-4 text-ink">
+                <span aria-hidden="true" className="fam-chip-icon h-12 w-12 bg-saffron text-ink">
                   <FamIcon name={ICON[h.module] ?? 'explore'} className="h-6 w-6" />
                 </span>
                 <span className="min-w-0 flex-1 text-lg font-extrabold leading-snug">{t(lang, h.title)}</span>

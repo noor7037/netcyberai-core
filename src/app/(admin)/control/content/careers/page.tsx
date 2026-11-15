@@ -4,7 +4,8 @@ import { pageWords } from '@/components/app-shell/page-words';
 import { ModulePage } from '@/components/app-ui/ModulePage';
 import { withTenantContext } from '@/lib/auth/db';
 import { getServerSession } from '@/lib/auth/server-session';
-import { listCareerQueue } from '@/lib/content/career-review';
+import { ApproveAll } from '@/components/control/careers/ApproveAll';
+import { countPending, listCareerQueue } from '@/lib/content/career-review';
 import { buildBundle, SEED_BATCH } from '@/lib/family/careers/catalog';
 import { LEVEL_KEY } from '@/lib/family/careers/labels';
 import { t } from '@/lib/i18n';
@@ -19,6 +20,7 @@ export default async function CareersControlPage({ searchParams }: { searchParam
   const session = await getServerSession();
   const { lang } = getLang(session?.sub ?? '');
   const state = STATES.includes(searchParams.state as (typeof STATES)[number]) ? searchParams.state! : 'pending';
+  const pending = session ? await withTenantContext(session, (db) => countPending(db)) : null;
   const rows = session
     ? await withTenantContext(session, (db) => listCareerQueue(db, {
         state: state === 'all' || state === 'due' ? undefined : state,
@@ -50,6 +52,22 @@ export default async function CareersControlPage({ searchParams }: { searchParam
           </label>
           <button type="submit" className="min-h-[44px] rounded-lg bg-ink px-3 text-sm font-extrabold text-white">{word('fam.career.searchGo')}</button>
         </form>
+        {pending && (
+          <ApproveAll counts={pending} words={{
+            open: word('control.careers.approveAll'),
+            title: word('control.careers.approveAllTitle'),
+            body: word('control.careers.approveAllBody'),
+            confirm: word('control.careers.confirm'),
+            cancel: word('control.careers.cancel'),
+            careers: word('control.careers.careersCount'),
+            fields: word('control.careers.fieldsCount'),
+            steps: word('control.careers.steps'),
+            actions: word('control.careers.actions'),
+            courses: word('control.careers.courses'),
+            crosses: word('control.careers.crosses'),
+            laterals: word('control.careers.laterals'),
+          }} />
+        )}
         <form method="post" action="/api/control/content/careers" className="mt-4 rounded-xl bg-off-white p-3">
           <h2 className="text-sm font-extrabold text-ink">{word('control.careers.importer')}</h2>
           <p className="text-sm text-slate">{word('control.careers.importHelp')}</p>

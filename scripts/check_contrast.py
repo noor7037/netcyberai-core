@@ -103,6 +103,7 @@ COLOR_HEX = {
     # W10-4 (C413): the lesson identity (src/lib/design-tokens.ts lessonColors).
     "ink": "#1C1B1A",
     "paper": "#FBF8F3",
+    "card": "#FFFDF9",
     "saffron": "#E8702A",
     "saffron-deep": "#C2410C",
     # W12-E (C419): the five lesson tints and their accents (tailwind.config.ts `lesson`; src/lib/design-tokens.ts lessonTints).
