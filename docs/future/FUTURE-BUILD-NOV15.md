@@ -47,7 +47,7 @@ Government listings only (Central, Delhi, Haryana, CBSE, NCERT). Nothing was pus
 | Class 12 | 27 / 0 | 28 / 1 | 26 / 0 |
 
 - Screenshots (Class 1, 8, 10, 12; English and Hindi; the three sections; 390 px): `docs/screenshots/future/`. They use illustrative test listings in the throwaway harness database, never the real seed.
-- Full `ci_local.sh` (once): all 23 checker, type-check and secret steps passed; unit tests 5,872 passed, 3 failed. Two were mine and are fixed and re-run green (the audit-privacy test: reviewer notes are no longer written to the audit log, only whether one exists; the picked-words test for the new Control page). The third is the old parent-report test above. `next build` is not part of `ci_local.sh` unit step order after tests, so it was not reached by that run; see below.
+- Full `ci_local.sh` (once): all 23 checker, type-check and secret steps passed; unit tests 5,872 passed, 3 failed. Two were mine and are fixed and re-run green (the audit-privacy test: reviewer notes are no longer written to the audit log, only whether one exists; the picked-words test for the new Control page). The third is the old parent-report test above. `next build` passes (it needs `NEXT_PUBLIC_WHATSAPP_NUMBER` set, as in production; I used a dummy value).
 - Harness: 288 phone/desktop pictures of the 24 requested screens rendered with 0 problems (no sideways scroll, targets 44 px, axe, Hindi complete).
 
 ## Known gaps
