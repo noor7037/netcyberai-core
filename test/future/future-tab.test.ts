@@ -82,7 +82,7 @@ describe('the importer', () => {
 
   it('keeps the pre-primary codes: the five pre-primary seed rows reach only a child of class -2, -1 or 0', () => {
     const pre = SEED.filter((l) => l.classes_eligible.some((c) => c <= 0)).map((l) => l.id);
-    expect([...pre].sort()).toEqual(['dl.doe.ews_dg.2027', 'dl.doe.nursery_general.2027', 'kvs.admission.2027', 'mof.sukanya_samriddhi', 'moe.pm_poshan']);
+    expect([...pre].sort()).toEqual(['dl.doe.ews_dg.2027', 'dl.doe.nursery_general.2027', 'kvs.admission.2027', 'moe.pm_poshan', 'mof.sukanya_samriddhi']);
   });
 });
 
