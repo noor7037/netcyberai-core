@@ -22,6 +22,7 @@ export const PAGE_WORDS = {
   '/control/content': ['control.content.', 'control.english.', 'control.import.', 'control.queue.', 'control.video.', 'fam.english.track.'],
   '/control/content/coverage': ['control.coverage.', 'fam.subject.'],
   '/control/content/future': ['control.future.', 'fam.class.'],
+  '/control/content/careers': ['control.careers.', 'fam.career.'],
   '/control/content/hubs': ['fam.class.', 'fam.hub.', 'gs.', 'hubs.'],
   '/control/content/responses': ['control.content.', 'control.prepare.', 'control.queue.', 'fam.subject.'],
   // The studio shows a chapter as the Family reader does, so it picks the reader's words too.

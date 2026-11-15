@@ -559,6 +559,14 @@ ALLOWED_PERMISSIVE = (
         # Future tab (15 Nov 2026): families read approved, live listings and the founder's switched-on apply sites, never write.
         ("content.future_listings", "future_listings_family_read"),
         ("content.future_apply_domains", "future_apply_domains_family_read"),
+        # Career Hub (15 Nov 2026): families read approved, in-date career rows, never write.
+        ("content.career_fields", "career_fields_family_read"),
+        ("content.careers", "careers_family_read"),
+        ("content.career_steps", "career_steps_family_read"),
+        ("content.career_parallel_actions", "career_parallel_actions_family_read"),
+        ("content.career_cross_pathways", "career_cross_pathways_family_read"),
+        ("content.career_lateral_routes", "career_lateral_routes_family_read"),
+        ("content.career_region_notes", "career_region_notes_family_read"),
         # m2-10: school staff read the two school AI profiles and the provider list (C284).
         ("control.ai_profiles", "ai_profiles_staff_read"),
         ("control.ai_providers", "ai_providers_staff_read"),
@@ -1165,6 +1173,13 @@ REQUIRED_RESTRICTIVE = {
     ("content.hub_entries", "hub_entries_family_only"),
     ("content.future_listings", "future_listings_family_only"),
     ("content.future_apply_domains", "future_apply_domains_family_only"),
+    ("content.career_fields", "career_fields_family_only"),
+    ("content.careers", "careers_family_only"),
+    ("content.career_steps", "career_steps_family_only"),
+    ("content.career_parallel_actions", "career_parallel_actions_family_only"),
+    ("content.career_cross_pathways", "career_cross_pathways_family_only"),
+    ("content.career_lateral_routes", "career_lateral_routes_family_only"),
+    ("content.career_region_notes", "career_region_notes_family_only"),
     # m2-10: staff never write the AI settings.
     ("control.ai_profiles", "ai_profiles_staff_only"),
     ("control.ai_providers", "ai_providers_staff_only"),
