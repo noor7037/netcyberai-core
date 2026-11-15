@@ -65,7 +65,7 @@ export async function setCareerReview(db: Sql, actorId: string, slug: string, ac
     `update content.careers set review_state=$2, reviewed_by=$3, reviewed_at=now(), reject_reason=$4, updated_by=$3, updated_at=now() where slug=$1`,
     [slug, state, actorId, action === 'reject' ? reason!.trim() : null],
   );
-  await writeAuditLog(db, { schoolId: null, actorUserId: actorId, actorRole: 'super_admin', eventAction: action === 'approve' ? 'content.career_approved' : 'content.career_rejected', targetType: 'content.careers', targetId: slug, beforeState: before, afterState: { review_state: state } });
+  await writeAuditLog(db, { schoolId: null, actorUserId: actorId, actorRole: 'super_admin', eventAction: action === 'approve' ? 'content.career_approved' : 'content.career_rejected', targetType: 'content.careers', targetId: slug, beforeState: { review_state: before.reviewState }, afterState: { review_state: state } });
   return { ok: true };
 }
 
@@ -88,7 +88,7 @@ export async function editCareerText(db: Sql, actorId: string, slug: string, pat
     `update content.careers set title_en=$2, title_hi=$3, summary_en=$4, summary_hi=$5, official_url=$6, review_due=$7, content_hash=$8, updated_by=$9, updated_at=now() where slug=$1`,
     [slug, titleEn, titleHi, summaryEn, summaryHi, url || null, patch.reviewDue, hash, actorId],
   );
-  await writeAuditLog(db, { schoolId: null, actorUserId: actorId, actorRole: 'super_admin', eventAction: 'content.career_edited', targetType: 'content.careers', targetId: slug, beforeState: before, afterState: { title_en: titleEn, review_due: patch.reviewDue } });
+  await writeAuditLog(db, { schoolId: null, actorUserId: actorId, actorRole: 'super_admin', eventAction: 'content.career_edited', targetType: 'content.careers', targetId: slug, beforeState: { review_due: before.reviewDue }, afterState: { review_due: patch.reviewDue } });
   return { ok: true };
 }
 

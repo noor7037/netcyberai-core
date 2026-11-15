@@ -7,7 +7,7 @@ export function buildLanes(input: { steps: readonly RoadStep[]; actions: readonl
     id,
     steps: input.steps.filter((s) => s.lane === id).sort((a, b) => a.sort - b.sort),
     actions: input.actions.filter((a) => stageLane(a.stage) === id),
-    laterals: id === 'growth' ? [...input.laterals] : [],
+    laterals: id === 'years' ? [...input.laterals] : [],
   }));
 }
 

@@ -8115,7 +8115,7 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.hub.source': 'स्रोत',
   'fam.hub.checked': '{date} को जाँचा गया',
   'fam.career.opensNowTitle': 'मेरे लिए अभी क्या खुलता है',
-  'fam.career.opensNowChild': '{name} · {className}',
+  'fam.career.opensNowChild': '{name} की {className}',
   'fam.career.opensAhead': 'आप आगे की योजना देख रहे हैं। अगला बड़ा चुनाव कक्षा 10 के बाद की धारा है।',
   'fam.career.opensStream': 'अगला चुनाव कक्षा 10 के बाद की धारा है। हर धारा अलग करियर खोलती है।',
   'fam.career.opensEntrance': 'अपने रास्ते की प्रवेश और दाखिले की परीक्षा देखें, और वे करियर जो वह रास्ता दिखाता है।',

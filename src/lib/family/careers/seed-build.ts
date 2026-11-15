@@ -70,7 +70,7 @@ export type LateralSpec = {
 type StepOut = {
   key: string;
   career: string;
-  lane: 'after_10' | 'entrance' | 'bachelor' | 'first_job' | 'growth';
+  lane: 'after_10' | 'entrance' | 'bachelor' | 'first_job' | 'years';
   sort: number;
   en: string;
   hi: string;
@@ -116,7 +116,7 @@ export function expandCareer(c: CareerSpec): { steps: StepOut[]; actions: Action
   steps.push(step(c, 'first_job', 1, `${c.first[0]} This card does not quote a salary.`, `${c.first[1]} इस कार्ड पर वेतन नहीं लिखा है।`, undefined, c.url));
   c.roles.forEach((role, i) => {
     const band = Bands[i]!;
-    steps.push(step(c, 'growth', i + 1,
+    steps.push(step(c, 'years', i + 1,
       `${band[0]}: a typical role is ${role[0]}. This is a common stage, not a guaranteed promotion.`,
       `${band[1]}: आम भूमिका ${role[1]} होती है। यह आम पड़ाव है, पदोन्नति का वादा नहीं।`,
       undefined, c.url));

@@ -62,7 +62,7 @@ create table content.career_steps (
   step_id uuid primary key default gen_random_uuid(),
   step_key text not null unique check (length(step_key) between 1 and 120),
   career_id uuid not null references content.careers (career_id),
-  lane text not null check (lane in ('after_10', 'entrance', 'bachelor', 'first_job', 'growth')),
+  lane text not null check (lane in ('after_10', 'entrance', 'bachelor', 'first_job', 'years')),
   sort smallint not null check (sort between 1 and 20),
   requirement_en text not null check (length(requirement_en) between 1 and 900 and requirement_en !~ '[<>]'),
   requirement_hi text not null check (length(requirement_hi) between 1 and 900 and requirement_hi !~ '[<>]'),

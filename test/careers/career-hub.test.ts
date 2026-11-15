@@ -122,7 +122,7 @@ describe('roadmap', () => {
       actions: [{ key: 'p', stage: 'during_bachelor', type: 'portfolio', title: { en: 'Public code', hi: 'सार्वजनिक कोड' }, detail: { en: 'Show finished work.', hi: 'तैयार काम दिखाएँ।' }, effort: 'medium', cost: 'free', officialUrl: null }],
       laterals: [],
     });
-    expect(lanes.map((l) => l.id)).toEqual(['during_10', 'after_10', 'during_12', 'entrance', 'bachelor', 'first_job', 'growth']);
+    expect(lanes.map((l) => l.id)).toEqual(['during_10', 'after_10', 'during_12', 'entrance', 'bachelor', 'first_job', 'years']);
     expect(lanes.find((l) => l.id === 'bachelor')!.actions).toHaveLength(1);
     expect(crossesForStream('arts', [cross])).toHaveLength(1);
     const map: Roadmap = { career: card({}), lanes, crosses: [cross] };

@@ -25,7 +25,7 @@ export const LANE_KEY: Record<LaneId, MessageKey> = {
   entrance: 'fam.career.lane.entrance',
   bachelor: 'fam.career.lane.bachelor',
   first_job: 'fam.career.lane.firstJob',
-  growth: 'fam.career.lane.growth',
+  years: 'fam.career.lane.growth',
 };
 
 export const TYPE_KEY: Record<ActionType, MessageKey> = {

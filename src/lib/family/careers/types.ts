@@ -7,7 +7,7 @@ export type CareerLevel = (typeof LEVELS)[number];
 export const STREAMS = ['science-pcm', 'science-pcb', 'commerce', 'arts', 'vocational'] as const;
 export type StreamSlug = (typeof STREAMS)[number];
 
-export const LANES = ['during_10', 'after_10', 'during_12', 'entrance', 'bachelor', 'first_job', 'growth'] as const;
+export const LANES = ['during_10', 'after_10', 'during_12', 'entrance', 'bachelor', 'first_job', 'years'] as const;
 export type LaneId = (typeof LANES)[number];
 
 export const ACTION_TYPES = ['skill', 'project', 'competition', 'olympiad', 'hackathon', 'certification', 'internship', 'apprenticeship', 'portfolio'] as const;
@@ -41,7 +41,7 @@ export type CareerCard = {
 
 export type RoadStep = {
   key: string;
-  lane: 'after_10' | 'entrance' | 'bachelor' | 'first_job' | 'growth';
+  lane: 'after_10' | 'entrance' | 'bachelor' | 'first_job' | 'years';
   sort: number;
   requirement: Bi;
   examName: Bi | null;
