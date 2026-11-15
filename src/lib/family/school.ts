@@ -277,8 +277,9 @@ export async function schoolStudyFor(
 // ---- what is new from the school, and what the parent hears of (M3-8a, C338) ------------------------------------------
 
 export const NEWS_KINDS: readonly SchoolNewsKind[] = ['homework', 'notices', 'results'];
-// The kinds a parent can turn off: the school's three, and tonight's practice and plan (pushed in M3-8b).
-export const NOTIFY_KINDS = ['homework', 'notices', 'results', 'tonight'] as const;
+// The kinds a parent can turn off: the school's three, tonight's practice and plan (pushed in M3-8b), and the two Future
+// tab messages (a deadline coming, something new for the child's class).
+export const NOTIFY_KINDS = ['homework', 'notices', 'results', 'tonight', 'future_deadline', 'future_new'] as const;
 export type NotifyKind = (typeof NOTIFY_KINDS)[number];
 export type { SchoolNews, SchoolWeek };
 

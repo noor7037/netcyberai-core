@@ -50,6 +50,8 @@ const PUSH_WORDS = {
     notices: 'A new notice from school',
     results: 'A result from school',
     tonight: 'Tonight’s practice is ready',
+    future_deadline: 'A form is about to close',
+    future_new: 'Something new for your class',
     body: 'Open NetCyberAI Family to see it.',
   },
   hi: {
@@ -57,10 +59,12 @@ const PUSH_WORDS = {
     notices: 'स्कूल की नई सूचना',
     results: 'स्कूल से रिज़ल्ट',
     tonight: 'आज रात का अभ्यास तैयार है',
+    future_deadline: 'एक फ़ॉर्म जल्द बंद होने वाला है',
+    future_new: 'आपकी कक्षा के लिए कुछ नया',
     body: 'देखने के लिए NetCyberAI Family खोलें।',
   },
 };
-const PUSH_PAGES = ['/family', '/family/parent'];
+const PUSH_PAGES = ['/family', '/family/parent', '/family/future'];
 
 // A push message, as shown: the kind's fixed words in the parent's language, and an app page to open (only the
 // Family app's own pages; anything else opens its home). Nothing from the message is shown as it came.

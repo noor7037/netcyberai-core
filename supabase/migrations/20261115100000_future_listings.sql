@@ -194,3 +194,6 @@ begin
     perform cron.schedule('future-expire-daily', '45 18 * * *', 'select public.future_expire_enqueue()');
   end if;
 end $$;
+-- A push mark for the Future tab: 'future' (new for the class), or a listing id and its step ('<uuid>:30', ':7', ':1').
+alter table family.push_sent drop constraint push_sent_scope_check;
+alter table family.push_sent add constraint push_sent_scope_check check (scope in ('tonight', 'future') or scope ~ '^[0-9a-f-]{36}(:(1|7|30))?$');

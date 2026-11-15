@@ -5,6 +5,8 @@ import type { FamilyChild } from './children';
 import type { RequestStatus } from './chapter-request-types';
 import { activeLinks, notifyOff, readSeen, schoolNewsFor, schoolFeeRemindersFor, schoolNoticesFor, schoolCertificateFeedFor, schoolPtmFeedFor, schoolSubjectIs, schoolTodayFor } from './school';
 import { SUBJECT_IDS } from './subjects';
+import { dueDeadlines, FUTURE_PAGE, NEW_WINDOW_DAYS, newListings } from './future-reminders';
+import { indiaDate } from '@/lib/time/india';
 import { latestReportFor } from './parent-report';
 import type { MessageKey } from '@/lib/i18n';
 
@@ -28,6 +30,8 @@ export type NotificationItem =
   // W21-M7: a certificate the school made ready for this child (the PDF is in the parent area, School).
   | { id: string; kind: 'certificate'; certKind: string; number: string | null; href: string }
   // W20-A: a fee reminder the school sent; what is still owed of it and by when. Opens the parent area's school part.
+  // Future tab: a form of the child's class and state closing within 30 days, or a listing approved in the last week.
+  | { id: string; kind: 'future'; future: 'deadline' | 'new'; titleEn: string; titleHi: string | null; left: number | null; href: string }
   | { id: string; kind: 'fee'; school: string; amountMinor: number; dueDate: string; href: string };
 
 export type NotificationInput = {
@@ -44,6 +48,7 @@ export type NotificationInput = {
   certificates?: readonly { requestId: string; kind: string; number: string | null }[];
   // W20-A: the school's fee reminders for this child's family (still owed, by when).
   fees?: readonly { id: string; schoolName: string; amountMinor: number; dueDate: string }[];
+  future?: readonly { id: string; future: 'deadline' | 'new'; titleEn: string; titleHi: string | null; left: number | null }[];
 };
 
 export const NEWS_TEXT: Record<'homework' | 'notices' | 'results', MessageKey> = { homework: 'fam.news.homework', notices: 'fam.news.notices', results: 'fam.news.results' };
@@ -66,6 +71,7 @@ export function buildNotifications(input: NotificationInput): NotificationItem[]
   for (const c of input.certificates ?? []) out.push({ id: `certificate.${c.requestId}`, kind: 'certificate', certKind: c.kind, number: c.number, href: '/family/parent' });
   for (const f of input.fees ?? []) out.push({ id: `fee.${f.id}`, kind: 'fee', school: f.schoolName, amountMinor: f.amountMinor, dueDate: f.dueDate, href: '/family/parent' });
   if (input.report) out.push({ id: `report.${input.report.weekStart}`, kind: 'report', weekStart: input.report.weekStart, href: `/family/parent/progress/${encodeURIComponent(input.report.childId)}` });
+  for (const f of input.future ?? []) out.push({ id: `future.${f.id}`, kind: 'future', future: f.future, titleEn: f.titleEn, titleHi: f.titleHi, left: f.left, href: FUTURE_PAGE });
   for (const n of input.notices ?? []) out.push({ id: `notice.${n.noticeId}`, kind: 'notice', school: n.schoolName, body: n.body, href: '/family/parent' });
   for (const s of input.tonight) out.push({ id: `tonight.${s}`, kind: 'tonight', subject: s, href: `/family/study?subject=${encodeURIComponent(s)}` });
   for (const r of input.requests) {
@@ -94,7 +100,7 @@ async function recentRequests(db: PoolClient, accountId: string, childId: string
 
 // Reads the sources for the active child, in the account's own transaction (`db`) and the school through the guardian's
 // claims. The kinds the parent turned off are left out, as everywhere.
-export async function readNotifications(db: PoolClient, claims: FamilyClaims, accountId: string, child: Pick<FamilyChild, 'childId'>): Promise<NotificationItem[]> {
+export async function readNotifications(db: PoolClient, claims: FamilyClaims, accountId: string, child: Pick<FamilyChild, 'childId'> & Partial<Pick<FamilyChild, 'classLevel' | 'stateCode'>>): Promise<NotificationItem[]> {
   const links = await activeLinks(db, accountId);
   const seen = await readSeen(db, accountId);
   const off = await notifyOff(db, accountId);
@@ -107,5 +113,12 @@ export async function readNotifications(db: PoolClient, claims: FamilyClaims, ac
   const ptm = mine.length ? await schoolPtmFeedFor(claims, mine, off) : [];
   const certificates = mine.length ? (await schoolCertificateFeedFor(claims, mine, off)).map((c) => ({ requestId: c.requestId, kind: c.kind, number: c.number })) : [];
   const fees = mine.length ? await schoolFeeRemindersFor(claims, mine, off) : [];
-  return buildNotifications({ news, notices, fees, tonight, requests: await recentRequests(db, accountId, child.childId), report: report ? { childId: child.childId, weekStart: report.weekStart } : null, ptm, certificates });
+  // The Future tab (deadlines inside 30 days; new in the last week), for this child's class and state, as the parent allows.
+  const today = indiaDate();
+  const weekAgo = new Date(Date.now() - NEW_WINDOW_DAYS * 86_400_000).toISOString();
+  const future: NonNullable<NotificationInput['future']>[number][] = [];
+  const kid = child.classLevel === undefined ? [] : [{ classLevel: child.classLevel, stateCode: child.stateCode ?? '' }];
+  if (!off.includes('future_deadline')) for (const d of await dueDeadlines(db, kid, today)) future.push({ id: `deadline.${d.scope}`, future: 'deadline', titleEn: d.listing.titleEn, titleHi: d.listing.titleHi, left: d.left });
+  if (!off.includes('future_new')) for (const l of await newListings(db, kid, weekAgo, today)) future.push({ id: `new.${l.id}`, future: 'new', titleEn: l.titleEn, titleHi: l.titleHi, left: null });
+  return buildNotifications({ news, notices, fees, future, tonight, requests: await recentRequests(db, accountId, child.childId), report: report ? { childId: child.childId, weekStart: report.weekStart } : null, ptm, certificates });
 }

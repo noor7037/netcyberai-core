@@ -96,6 +96,9 @@ describe('the standard parts (C339)', () => {
   it('the service worker says only fixed words, and opens only the app’s own pages', () => {
     expect(sw.pushNotice({ k: 'homework', u: '/family/parent', l: 'en' })).toEqual({ title: 'New homework from school', body: 'Open NetCyberAI Family to see it.', url: '/family/parent', tag: 'nca-homework' });
     expect(sw.pushNotice({ k: 'tonight', u: '/family', l: 'hi' }).title).toBe('आज रात का अभ्यास तैयार है');
+    // The Future tab's two kinds: fixed words in both languages, and its page is one a push may open.
+    expect(sw.pushNotice({ k: 'future_deadline', u: '/family/future', l: 'en' })).toMatchObject({ title: 'A form is about to close', url: '/family/future' });
+    expect(sw.pushNotice({ k: 'future_new', u: '/family/future', l: 'hi' })).toMatchObject({ title: 'आपकी कक्षा के लिए कुछ नया', url: '/family/future' });
     expect(sw.pushNotice({ k: '<b>Aarav got 12/50</b>', u: 'https://evil.example', l: 'en' })).toEqual({ title: 'NetCyberAI Family', body: 'Open NetCyberAI Family to see it.', url: '/family', tag: 'nca-news' });
     expect(sw.pushNotice({ k: 'body', u: '/family' }).title).toBe('NetCyberAI Family');
     expect(sw.pushNotice(null).url).toBe('/family');
@@ -274,3 +277,85 @@ describe('a family’s browsers (C339)', () => {
     expect((await scan(evening('19:30'))).kinds).toEqual([]);
   });
 });
+
+// ---- the Future tab's two kinds (founder, 15 Nov 2026) ----------------------------------------------------------------
+
+describe('the Future tab’s reminders', () => {
+  const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kolkata' }).format(new Date());
+  const at = (hhmm: string) => new Date(`${today}T${hhmm}:00+05:30`);
+  const day = (n: number) => new Date(new Date(`${today}T00:00:00Z`).getTime() + n * 86_400_000).toISOString().slice(0, 10);
+  let n = 0;
+  // An approved listing for Class 6 (or the classes given) with its last date n days from today.
+  const listing = async (o: { left: number | null; classes?: number[]; states?: string[]; status?: string; review?: string; reviewedAt?: string }) => {
+    const id = `f9000000-0000-4000-8000-00000000f${String(++n).padStart(3, '0')}`;
+    const kd = o.left === null ? [] : [{ kind: 'last_date', date: day(o.left), quote: 'q' }];
+    await q(
+      `insert into content.future_listings (listing_id, hub, category, provider_type, provider, series_key, cycle, title_en, key_dates, last_date, classes, states, source_url, last_verified_at, confidence, status, review_state, reviewed_at)
+       values ($1, 'opportunities', 'scholarship', 'central', 'Illustrative body', $2, '2026-27', $3, $4::jsonb, $5, $6::smallint[], $7::text[], 'https://example.gov.in/x', $8, 0.9, $9, $10, $11)`,
+      [id, `test.future.${n}`, `Future ${n}`, JSON.stringify(kd), o.left === null ? null : day(o.left), o.classes ?? [6], o.states ?? ['ALL'], today, o.status ?? 'open', o.review ?? 'approved', o.reviewedAt ?? `${today}T10:00:00+05:30`]
+    );
+    return id;
+  };
+  const sentKinds = () => sent.map((x) => x.payload.k);
+
+  it('30, 7 and 1 days before the last date, once each, from 18:30; a page and a kind only', async () => {
+    await q(`delete from family.push_sent where account_id = $1 and kind in ('future_deadline', 'future_new')`, [ACCOUNT]);
+    const l = await listing({ left: 25 });
+    sent.length = 0;
+    expect((await scan(at('18:10'))).kinds).not.toContain('future_deadline');
+    expect((await scan(at('18:40'))).kinds).toContain('future_deadline');
+    expect(sent.find((x) => x.payload.k === 'future_deadline')?.payload).toEqual({ k: 'future_deadline', u: '/family/future', l: 'en' });
+    expect((await scan(at('19:40'))).kinds).not.toContain('future_deadline');
+    // The same listing, now 5 days from its last date, is step 7: one more, once.
+    await q(`update content.future_listings set last_date = $2, key_dates = $3::jsonb where listing_id = $1`, [l, day(5), JSON.stringify([{ kind: 'last_date', date: day(5) }])]);
+    expect((await scan(at('18:41'))).kinds).toContain('future_deadline');
+    expect((await scan(at('18:50'))).kinds).not.toContain('future_deadline');
+    await q(`update content.future_listings set last_date = $2, key_dates = $3::jsonb where listing_id = $1`, [l, day(1), JSON.stringify([{ kind: 'last_date', date: day(1) }])]);
+    expect((await scan(at('18:42'))).kinds).toContain('future_deadline');
+    expect((await q(`select scope from family.push_sent where account_id = $1 and kind = 'future_deadline' order by scope`, [ACCOUNT])).map((r: { scope: string }) => r.scope)).toEqual([`${l}:1`, `${l}:30`, `${l}:7`]);
+  });
+
+  it('nothing for a closed, withdrawn, unapproved, expected, other-class or other-state listing, or beyond 30 days', async () => {
+    await listing({ left: -1, status: 'closed' });
+    await listing({ left: 3, status: 'withdrawn' });
+    await listing({ left: 3, review: 'pending' });
+    await listing({ left: null, status: 'expected' });
+    await listing({ left: 3, classes: [12] });
+    await listing({ left: 3, states: ['IN-DL'] });
+    await listing({ left: 40 });
+    sent.length = 0;
+    expect((await scan(at('20:00'))).kinds).not.toContain('future_deadline');
+    expect(sentKinds()).not.toContain('future_deadline');
+  });
+
+  it('a deadline moved later starts the steps again; a listing closed in between sends nothing', async () => {
+    const l = await listing({ left: 0 });
+    sent.length = 0;
+    expect((await scan(at('20:10'))).kinds).toContain('future_deadline');
+    await q(`update content.future_listings set status = 'closed', last_date = $2 where listing_id = $1`, [l, day(-2)]);
+    expect((await scan(at('20:20'))).kinds).not.toContain('future_deadline');
+  });
+
+  it('something new for the child’s class: the first look only sets the mark; a listing approved after it is told once', async () => {
+    await q(`delete from family.push_sent where account_id = $1 and kind = 'future_new'`, [ACCOUNT]);
+    await listing({ left: null, status: 'open', reviewedAt: `${today}T11:00:00+05:30` });
+    sent.length = 0;
+    expect((await scan(at('21:00'))).kinds).not.toContain('future_new');
+    await listing({ left: null, status: 'open', reviewedAt: `${today}T21:10:00+05:30` });
+    expect((await scan(at('21:30'))).kinds).toContain('future_new');
+    expect(sent.find((x) => x.payload.k === 'future_new')?.payload).toEqual({ k: 'future_new', u: '/family/future', l: 'en' });
+    expect((await scan(at('21:40'))).kinds).not.toContain('future_new');
+    // Another class's listing is not new for this child.
+    await listing({ left: null, status: 'open', classes: [12], reviewedAt: `${today}T21:45:00+05:30` });
+    expect((await scan(at('21:50'))).kinds).not.toContain('future_new');
+  });
+
+  it('a kind the parent turned off is never pushed', async () => {
+    await q(`insert into family.notify_off (account_id, kind) values ($1, 'future_deadline'), ($1, 'future_new') on conflict do nothing`, [ACCOUNT]);
+    await listing({ left: 2, reviewedAt: `${today}T22:00:00+05:30` });
+    sent.length = 0;
+    expect((await scan(at('22:30'))).kinds).toEqual([]);
+    await q(`delete from family.notify_off where account_id = $1`, [ACCOUNT]);
+  });
+});
+

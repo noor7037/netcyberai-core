@@ -61,7 +61,7 @@ const PHONE_KEYS: MessageKey[] = [
   'fam.phone.remove', 'fam.phone.tooMany', 'fam.school.saveError',
 ];
 const NOTIFY_KEYS: MessageKey[] = [
-  'fam.notify.title', 'fam.notify.lead', 'fam.notify.homework', 'fam.notify.notices', 'fam.notify.results', 'fam.notify.tonight', 'fam.notify.on', 'fam.notify.off', 'fam.school.saveError',
+  'fam.notify.title', 'fam.notify.lead', 'fam.notify.homework', 'fam.notify.notices', 'fam.notify.results', 'fam.notify.tonight', 'fam.notify.future_deadline', 'fam.notify.future_new', 'fam.notify.on', 'fam.notify.off', 'fam.school.saveError',
   'fam.push.title', 'fam.push.unsupported', 'fam.push.blocked', 'fam.push.isOn', 'fam.push.turnOn', 'fam.push.turnOff',
 ];
 const AREA_KEYS: MessageKey[] = [
