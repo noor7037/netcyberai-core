@@ -89,10 +89,9 @@ beforeAll(async () => {
   R = { click: await import('@/app/api/family/videos/click/route'), health: await import('@/lib/control/health') };
   vi.stubGlobal('fetch', async (input: string | URL) => {
     const url = new URL(String(input));
-    yt.seen.push(url);
     if (url.hostname === 'sponsor.ajay.app') return new Response('Not Found', { status: 404 });
-      yt.seen.push(url);
-      if (url.pathname.endsWith('/search')) return Response.json({ items: yt.ids.map((videoId) => ({ id: { kind: 'youtube#video', videoId } })) });
+    yt.seen.push(url);
+    if (url.pathname.endsWith('/search')) return Response.json({ items: yt.ids.map((videoId) => ({ id: { kind: 'youtube#video', videoId } })) });
     if (url.pathname.endsWith('/videos')) return Response.json({ items: (url.searchParams.get('id') ?? '').split(',').map((id) => item(id, `Photosynthesis ${id}`)) });
     return new Response('{}', { status: 404 });
   });
