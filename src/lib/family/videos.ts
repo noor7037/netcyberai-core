@@ -1,11 +1,11 @@
-import type { VideoCandidate, VideoChannel, VideoPlan } from '@/lib/ai/platform';
+import { VIDEO_REVIEW_MIN, videoReviewHides, type VideoCandidate, type VideoChannel, type VideoPlan } from '@/lib/ai/platform';
 import type { FamilyChild } from './children';
 import { languageInfo, type LangCode } from './languages';
 import type { Line } from './resolver';
 
 // The video finder's ranking and its cache (docs/family-app/02 §5, 03 §8; M2-5, C279). Ranked in code on what the
 // provider gives — channel, embedding, duration, captions, language and the title's words — with no AI call. The best
-// three per topic and language are kept in content.video_picks (through content.save_video_picks), served while fresh
+// two (KEEP) per topic and language are kept in content.video_picks (through content.save_video_picks), served while fresh
 // (family.video_pick_days; a reviewer's pinned pick always), refreshed when stale, and never shown when rejected or
 // from a blocked channel. The search words come from the catalog line, never from a child.
 
@@ -21,10 +21,19 @@ export function embedUrl(p: Pick<VideoPick, 'videoId' | 'startS'>): string {
   if (p.startS > 0) q.set('start', String(Math.floor(p.startS)));
   return `https://www.youtube-nocookie.com/embed/${p.videoId}?${q.toString()}`;
 }
-export type RankedPick = { video_id: string; channel_id: string; channel_title: string; title: string; duration_s: number; start_s: number; captions: boolean; score: number };
+export type RankedPick = { video_id: string; channel_id: string; channel_title: string; title: string; duration_s: number; start_s: number; captions: boolean; score: number; promo_share?: number | null };
 
-// C522: up to four per topic and language (an answer shows two to four).
-export const KEEP = 4;
+// Two per topic and language (Noor, 16 Nov 2026; four since C522, three before): an answer shows two.
+export const KEEP = 2;
+// The quality gate's defaults: Control's family.video_min_views, and the youngest video shown (a new upload has had no
+// time to be seen, liked or reported).
+export const MIN_VIEWS = 5000;
+export const MIN_AGE_DAYS = 30;
+// SponsorBlock (sponsorblock.ts): a video whose sponsor, self-promotion and "subscribe" segments are more than this
+// share of it is skipped; a lighter one loses promoShare × PROMO_PENALTY points and starts after an opening sponsor.
+export const PROMO_SKIP = 0.15;
+export const PROMO_PENALTY = 50;
+export type Promo = { promoShare: number; startAfterS: number };
 const MIN_S = 120;
 const MAX_S = 25 * 60;
 
@@ -96,54 +105,89 @@ export function videoPlan(line: Line, child: FamilyChild, channels: VideoChannel
   return { query: videoQuery(line, child, language), language, channelIds: preferred.map((c) => c.channelId) };
 }
 
-// Ranks what the provider returned and keeps the best four (C522; three before). Only official and approved channels, unless Control turns
+// Ranks what the provider returned and keeps the best KEEP. Only official and approved channels, unless Control turns
 // on the wider catalogue (family.video_wider_catalogue; off for the pilot, C230-R: an automatic pick reaches a child
 // before any person has seen it, so an unlisted channel waits until it is listed). Never: a blocked channel, a video that may not be embedded,
 // is not public or is age-restricted, one shorter than 30 seconds or longer than ten hours, or one whose title and
 // chapters share no word with the topic.
-export function rankVideos(candidates: VideoCandidate[], a: { topicTitles: string[]; language: VideoLanguage; channels: VideoChannel[]; wider?: boolean }): RankedPick[] {
+//
+// The quality gate (Noor, 16 Nov 2026): never a video with a declared paid product placement; never one published in
+// the last MIN_AGE_DAYS days or seen fewer than `minViews` times (Control's family.video_min_views), unless a person
+// chose it (`curated`, content.curated_topic_videos: listed or not, any title, always first). A video made for kids and
+// one from a channel Control marked as running no ads rank first; a high like-to-view share ranks higher. `promo`:
+// SponsorBlock's answer per video (looked up by the caller for the top few; none known is no change). `keep`: how many
+// are kept (the caller ranks once wider, to look up the top few's promotions).
+export function rankVideos(
+  candidates: VideoCandidate[],
+  a: { topicTitles: string[]; language: VideoLanguage; channels: VideoChannel[]; wider?: boolean; minViews?: number; curated?: ReadonlySet<string>; promo?: ReadonlyMap<string, Promo>; now?: number; keep?: number }
+): RankedPick[] {
   const kind = new Map(a.channels.map((c) => [c.channelId, c.kind]));
+  const noAds = new Set(a.channels.filter((c) => c.noAds && c.kind !== 'blocked').map((c) => c.channelId));
   const topicWords = Array.from(new Set(a.topicTitles.flatMap(words)));
+  const minViews = Math.max(0, a.minViews ?? MIN_VIEWS);
+  const youngest = (a.now ?? Date.now()) - MIN_AGE_DAYS * 86_400_000;
   const ranked: RankedPick[] = [];
   for (const c of candidates) {
     const k = kind.get(c.channelId);
-    if (k === 'blocked' || (!k && !a.wider) || !c.embeddable || !c.isPublic || c.ageRestricted) continue;
+    const curated = a.curated?.has(c.videoId) === true;
+    if (k === 'blocked' || !c.embeddable || !c.isPublic || c.ageRestricted || c.hasPaidPlacement) continue;
+    if (!k && !a.wider && !curated) continue;
     if (c.durationS < 30 || c.durationS > 36000 || !c.title) continue;
+    if (!curated) {
+      if ((c.viewCount ?? 0) < minViews) continue;
+      if (c.publishedAt && Date.parse(c.publishedAt) > youngest) continue;
+    }
+    const promo = a.promo?.get(c.videoId);
+    if (promo && promo.promoShare > PROMO_SKIP) continue;
     const inTitle = overlap(topicWords, c.title);
     const chapters = c.chapters.filter((ch) => ch.s < c.durationS).map((ch) => ({ ...ch, fit: overlap(topicWords, ch.title) }));
     const best = chapters.reduce<(typeof chapters)[number] | null>((b, ch) => (ch.fit > (b?.fit ?? 0) ? ch : b), null);
-    if (inTitle === 0 && !best) continue;
-    let score = 0;
+    if (inTitle === 0 && !best && !curated) continue;
+    let score = curated ? 200 : 0;
     score += k === 'official' ? 40 : k === 'approved' ? 25 : 0;
     score += 30 * inTitle + 10 * (best?.fit ?? 0);
     score += c.durationS >= MIN_S && c.durationS <= MAX_S ? 15 : c.durationS >= 60 && c.durationS <= 45 * 60 ? 3 : -10;
     score += c.captions ? 8 : 0;
     if (c.language) score += c.language.startsWith(a.language) ? 8 : -6;
-    score += c.madeForKids ? 2 : 0;
+    // Ad-safe first: made for kids (YouTube shows no personalised ads on it) and a channel Control marked as ad-free.
+    score += c.madeForKids ? 45 : 0;
+    score += noAds.has(c.channelId) ? 35 : 0;
+    // Liked by those who watched it: up to 10 points at one like in twenty views.
+    if (c.viewCount && c.likeCount !== null && c.viewCount > 0) score += Math.min(10, (c.likeCount / c.viewCount) * 200);
+    if (promo) score -= promo.promoShare * PROMO_PENALTY;
+    const chapterStart = best && best.s > 0 ? best.s : 0;
+    const start = Math.max(chapterStart, promo ? Math.floor(promo.startAfterS) : 0);
     ranked.push({
       video_id: c.videoId,
       channel_id: c.channelId,
       channel_title: (c.channelTitle || c.channelId).slice(0, 120),
       title: c.title.slice(0, 200),
       duration_s: c.durationS,
-      start_s: best && best.s > 0 ? best.s : 0,
+      start_s: start < c.durationS - 1 ? start : chapterStart,
       captions: c.captions,
       score: Math.round(score * 100) / 100,
+      promo_share: promo ? Math.round(promo.promoShare * 1000) / 1000 : null,
     });
   }
-  return ranked.sort((x, y) => y.score - x.score || x.video_id.localeCompare(y.video_id)).slice(0, KEEP);
+  return ranked.sort((x, y) => y.score - x.score || x.video_id.localeCompare(y.video_id)).slice(0, Math.max(0, a.keep ?? KEEP));
 }
 
 // The topic's picks a family may see (a rejected one is hidden by the table's own rule): pinned first, then by score.
-// Shown: the pinned and the automatic ones fetched within `days`. An older automatic pick is never shown; it is replaced
+// Shown: the pinned and the automatic ones fetched within `days`, less any Gemini's review hides. An older automatic pick is never shown; it is replaced
 // at the next refresh, or dropped when none can run. A refresh is due when no automatic pick is fresh and fewer than
-// three are pinned.
+// KEEP are pinned.
+// Gemini's review (video-review.ts): a video judged less than safe for a child or wrong is never shown, pinned or not
+// (the same rule as content.video_hidden, which the family's reads use).
+export const REVIEW_MIN_SAFETY = VIDEO_REVIEW_MIN.childSafety;
+export const REVIEW_MIN_ACCURACY = VIDEO_REVIEW_MIN.accuracy;
+export const reviewHides = videoReviewHides;
 export type CachedPicks = { picks: VideoPick[]; refreshDue: boolean; staleAuto: number };
 export async function readPicks(db: Db, topicKey: string, language: VideoLanguage, days: number): Promise<CachedPicks> {
   const { rows } = await db.query(
     `select video_id, title, channel_title, duration_s, start_s, status, (fetched_at >= now() - make_interval(days => $3::int)) as fresh
-       from content.video_picks
+       from content.video_picks p
       where topic_key = $1 and language = $2 and status <> 'rejected'
+        and not content.video_hidden(p.video_id)
       order by (status = 'pinned') desc, score desc, video_id`,
     [topicKey, language, Math.max(0, Math.floor(days))]
   );

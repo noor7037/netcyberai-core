@@ -7,7 +7,7 @@ import { indiaDate } from '@/lib/time/india';
 // Control → Content → Videos (M2-5, C279). NetCyberAI staff with the authenticator, as every Control content route.
 //   GET   ?topic=<key or its start>   the video finder's picks, the channel lists and today's searches
 //   POST  { action: 'pin' | 'reject', topicKey, language, videoId }
-//         { action: 'channel', channelId, title, kind: 'official' | 'approved' | 'blocked' }
+//         { action: 'channel', channelId, title, kind: 'official' | 'approved' | 'blocked', noAds?: boolean }
 //         { action: 'remove_channel', channelId }
 //         { action: 'chapter', chapterKey, language, videoId, channelId, channelTitle, title, durationS, startS? }   a reviewer's pick for a chapter (S5, C378)
 export const dynamic = 'force-dynamic';
@@ -46,7 +46,7 @@ export async function POST(req: NextRequest) {
         startS: b.startS === undefined ? 0 : Number(b.startS),
       });
     }
-    if (action === 'channel') return setVideoChannel(db, actor, { channelId: str(b.channelId, 40), title: str(b.title, 200), kind: str(b.kind, 10) });
+    if (action === 'channel') return setVideoChannel(db, actor, { channelId: str(b.channelId, 40), title: str(b.title, 200), kind: str(b.kind, 10), ...(b.noAds === undefined ? {} : { noAds: b.noAds }) });
     return removeVideoChannel(db, actor, str(b.channelId, 40));
   });
   if ('refused' in run) return run.refused;

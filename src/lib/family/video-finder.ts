@@ -2,7 +2,10 @@ import { prepareVideoSearch, videoChannels, type PreparedVideos } from '@/lib/ai
 import type { FamilyChild } from '@/lib/family/children';
 import { setting } from '@/lib/family/learning';
 import type { Line } from '@/lib/family/resolver';
-import { inLanguage, noteSearch, rankVideos, readPicks, savePicks, searchedEmptyLately, videoPlan, type VideoLanguage, type VideoPick } from '@/lib/family/videos';
+import { curatedFor } from '@/lib/family/curated-videos';
+import { promoFor } from '@/lib/family/sponsorblock';
+import { scheduleReviews } from '@/lib/family/video-review';
+import { KEEP, MIN_VIEWS, inLanguage, noteSearch, rankVideos, readPicks, savePicks, searchedEmptyLately, videoPlan, type VideoLanguage, type VideoPick } from '@/lib/family/videos';
 import { indiaDate } from '@/lib/time/india';
 
 // The video finder's one path (M2-5, C279; W19-F, C472): the topic's picks while they are fresh, else a refresh from
@@ -16,15 +19,24 @@ import { indiaDate } from '@/lib/time/india';
 // through content.video_topic_searches: a refresh runs only after this request claims the topic (so two children asking
 // the same thing at once spend one search), and a topic whose search found nothing is not searched again for
 // EMPTY_DAYS (the negative cache). Every path takes its searches from the same daily quota (prepareVideoSearch).
+//
+// The quality pass (Noor, 16 Nov 2026): a person's curated videos for the topic are read first (curated-videos.ts) and,
+// with enough of them, no search is spent; the quality gate drops paid placements, new uploads and little-seen videos
+// (family.video_min_views); SponsorBlock's marked promotions skip or lower the top few and start a video after an opening
+// sponsor; a video Gemini judged unsafe or wrong is never kept; and Gemini judges the kept ones in the background.
 // The family transaction's client (what prepareVideoSearch takes); the picks' own reads take any query function.
 type Db = Parameters<typeof prepareVideoSearch>[0];
 export type WithDb = <T>(fn: (db: Db) => Promise<T>) => Promise<T>;
 
 export const EMPTY_DAYS = 7;
 
-type Refresh = { language: VideoLanguage; days: number; perDay: number; wider: boolean; cached: VideoPick[]; staleAuto: number };
+type Refresh = { language: VideoLanguage; days: number; perDay: number; wider: boolean; minViews: number; curated: string[]; cached: VideoPick[]; staleAuto: number };
+// The outside services, injectable for tests: SponsorBlock's fetch and the background review.
+export type FinderDeps = { sponsorFetch?: typeof fetch; review?: (videoIds: string[]) => void };
+// SponsorBlock is asked about this many of the best candidates.
+const PROMO_LOOKUPS = 6;
 
-export async function topicVideos(withDb: WithDb, line: Line, child: FamilyChild, language: VideoLanguage = child.language): Promise<VideoPick[]> {
+export async function topicVideos(withDb: WithDb, line: Line, child: FamilyChild, language: VideoLanguage = child.language, deps: FinderDeps = {}): Promise<VideoPick[]> {
   // 1. The cached picks, and whether a refresh is due and this request may run it.
   const found = await withDb(async (db): Promise<{ cached: VideoPick[] } | { refresh: Refresh }> => {
     const days = await setting(db, 'family.video_pick_days', 30);
@@ -33,16 +45,20 @@ export async function topicVideos(withDb: WithDb, line: Line, child: FamilyChild
     const perDay = await setting(db, 'family.video_searches_per_day', 90);
     // Videos from channels Control has not listed only when Control turns them on (C230-R; off unless set to 1).
     const wider = (await setting(db, 'family.video_wider_catalogue', 0)) === 1;
+    const minViews = await setting(db, 'family.video_min_views', MIN_VIEWS);
     const claimed = (await db.query(`select content.claim_video_topic($1, $2, $3) as ok`, [line.key, language, EMPTY_DAYS])).rows[0]?.ok === true;
     if (!claimed) return { cached: cached.picks };
-    return { refresh: { language, days, perDay, wider, cached: cached.picks, staleAuto: cached.staleAuto } };
+    const curated = await curatedFor(db, line, child, language).catch(() => []);
+    return { refresh: { language, days, perDay, wider, minViews, curated, cached: cached.picks, staleAuto: cached.staleAuto } };
   });
   if ('cached' in found) return found.cached;
 
   // 2. A refresh: the channels Control listed, then the key and the day's searches.
   const r = found.refresh;
   const channels = await videoChannels();
-  const prepared = await withDb((db): Promise<PreparedVideos> => prepareVideoSearch(db, { day: indiaDate(), perDay: r.perDay, plan: videoPlan(line, child, channels, r.language) }));
+  // With KEEP curated videos for the topic, they are only read (one details call): no search is spent.
+  const plan = { ...videoPlan(line, child, channels, r.language), curatedIds: r.curated, searchOff: r.curated.length >= KEEP };
+  const prepared = await withDb((db): Promise<PreparedVideos> => prepareVideoSearch(db, { day: indiaDate(), perDay: r.perDay, plan }));
   if (!prepared.ok) {
     await finish(withDb, line, r.language, null);
     return dropStale(withDb, line, r);
@@ -55,15 +71,35 @@ export async function topicVideos(withDb: WithDb, line: Line, child: FamilyChild
     // The claim is kept: no request searches this topic again for ten minutes while the provider is down.
     return dropStale(withDb, line, r);
   }
-  const ranked = rankVideos(result.candidates.filter((c) => inLanguage(c, r.language)), { topicTitles: [line.topicEn ?? '', line.title], language: r.language, channels, wider: r.wider });
+  // A video Gemini already judged unsafe or wrong is never kept (content.video_hidden).
+  const ids = result.candidates.map((c) => c.videoId);
+  const hidden = new Set(
+    ids.length
+      ? await withDb(async (db) => (await db.query(`select v as video_id from unnest($1::text[]) as v where content.video_hidden(v)`, [ids])).rows.map((x) => String(x.video_id))).catch(() => ids)
+      : []
+  );
+  const curated = new Set(r.curated);
+  const candidates = result.candidates.filter((c) => !hidden.has(c.videoId) && (curated.has(c.videoId) || inLanguage(c, r.language)));
+  const how = { topicTitles: [line.topicEn ?? '', line.title], language: r.language, channels, wider: r.wider, minViews: r.minViews, curated };
+  // SponsorBlock for the best few at once (none known: unchanged), then the final ranking.
+  const top = rankVideos(candidates, { ...how, keep: PROMO_LOOKUPS });
+  const promo = await promoFor(top.map((p) => ({ videoId: p.video_id, durationS: p.duration_s })), deps.sponsorFetch).catch(() => new Map());
+  const ranked = rankVideos(candidates, { ...how, promo });
   noteSearch(line.key, r.language, { found: ranked.length });
 
   // 4. Saved (a reviewer's pinned and rejected picks stay as they are) and read back as the family sees them.
-  return withDb(async (db) => {
+  const saved = await withDb(async (db) => {
     await savePicks(db, line.key, r.language, ranked);
     await db.query(`select content.finish_video_topic($1, $2, $3)`, [line.key, r.language, ranked.length]);
     return (await readPicks(db, line.key, r.language, r.days)).picks;
   });
+  // 5. Gemini judges what is shown, in the background: the child never waits, and nothing it does can fail this.
+  try {
+    (deps.review ?? scheduleReviews)(saved.map((p) => p.videoId));
+  } catch {
+    // never the child's problem
+  }
+  return saved;
 }
 
 // No refresh could run (no key, the day's searches spent, the provider down): the pinned picks are still shown, and
