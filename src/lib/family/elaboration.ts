@@ -1,14 +1,17 @@
 import { plain, SHOWCASE_SVG_MAX, SVG_UNSAFE } from "./blocks";
+import { modelUrl, photoUrl } from "./visuals/photo-hosts";
 
 // The NetCyberAI Elaboration Framework (founder, 16 Nov 2026). Every tutor answer is five steps, in this order:
 //   1 Definition  what was asked, in one clear line
 //   2 Three levels  Basic, Intermediate, Advanced (the child's class sets which level leads)
 //   3 Real life  one scene the child sees every day
-//   4 Try it  a small question the child answers, with instant feedback
+//   4 Try it  a small open task the child thinks about (no choices), with a hint and the answer on a tap
 //   5 Future line  where the topic is useful later
 // Each step has all three formats: a picture to see (`pics`, drawn by the server, never by the model), the text to read,
 // and the voice line to listen to (`say`, which the read-aloud and Teach me speak in this order). One block holds the
 // whole answer, so the order can never be broken by a block the model forgot or put in another place.
+// Multiple-choice questions come only AFTER step 5, as `checks` (one to three by how complex the topic is). They are never
+// an answer by themselves, never before step 5 and never inside a step: a block with checks and no five steps is rejected.
 
 export const ELAB_KEYS = [
   "definition",
@@ -21,10 +24,27 @@ export type ElabKey = (typeof ELAB_KEYS)[number];
 export const LEVELS = ["basic", "intermediate", "advanced"] as const;
 export type Level = (typeof LEVELS)[number];
 
+// A step's picture: an authored diagram of the open chapter, a licensed photograph the server found, a 3D model (with a
+// still photograph for Data saver and weak phones), or, only when nothing better was found, a card the server drew.
+// `credit`, `licence` and `source` stay in the data for the Picture credits page and are never drawn.
+export type ElabModel = { format: "glb" | "sdf" | "pdb"; url: string };
 export type ElabPic = {
   svg: string;
   caption: string;
-  kind: "diagram" | "card";
+  kind: "diagram" | "card" | "photo" | "model3d";
+  url?: string;
+  credit?: string;
+  licence?: string;
+  source?: string;
+  from?: string;
+  model?: ElabModel;
+};
+export type ElabCheck = {
+  question: string;
+  options: string[];
+  answer: number;
+  right: string;
+  hint: string;
 };
 export type Elaboration = {
   type: "elaboration";
@@ -40,18 +60,26 @@ export type Elaboration = {
     say: string;
   };
   real_life: { text: string; say: string; icon?: string };
-  try_it: {
-    question: string;
-    options: string[];
-    answer: number;
-    right: string;
-    hint: string;
-    say: string;
-  };
+  // Step 4 is an open task: the child thinks, may ask for the hint, then sees the answer (`right`). No choices here.
+  try_it: { question: string; right: string; hint: string; say: string };
   future: { text: string; say: string; icon?: string };
+  // One to three multiple-choice questions, shown after step 5 only.
+  checks: ElabCheck[];
+  // Up to five search words for a photograph of each step (server use only; never shown).
+  queries: string[];
   // One picture per step, in step order, filled by the server (null only before the server has filled them).
   pics: (ElabPic | null)[];
 };
+
+export const MAX_CHECKS = 3;
+// How many multiple-choice questions a topic earns (1 to 3): the youngest classes one; from Class 6 two; three when the
+// class is 9 or higher or the question and the advanced level show a many-part topic.
+export function checkCount(classLevel: number, question: string, advanced: string): number {
+  if (classLevel <= 2) return 1;
+  let n = classLevel >= 6 ? 2 : 1;
+  if (classLevel >= 9 || (question.split(/\s+/).length >= 9 && advanced.length > 360)) n += 1;
+  return Math.min(MAX_CHECKS, n);
+}
 
 // LKG to Class 5 lead with Basic, Classes 6 to 10 with Intermediate, Classes 11 and 12 with Advanced.
 export const leadLevel = (classLevel: number): Level =>
@@ -70,17 +98,54 @@ const icon = (v: unknown): string | undefined =>
     ? v
     : undefined;
 
-function pic(v: unknown): ElabPic | null {
-  const o = obj(v);
-  const svg = typeof o.svg === "string" ? o.svg.trim() : "";
-  const caption = plain(o.caption, 240);
+function check(v: unknown): ElabCheck | null {
+  const t = obj(v);
+  const question = plain(t.question, 220);
+  const options = Array.isArray(t.options)
+    ? t.options
+        .slice(0, 4)
+        .map((x) => plain(x, 90))
+        .filter((x): x is string => x !== null)
+    : [];
+  const answer =
+    typeof t.answer === "number" && Number.isInteger(t.answer) ? t.answer : -1;
+  const right = plain(t.right, 220);
+  const hint = plain(t.hint, 220);
+  if (!question || !right || !hint) return null;
   if (
-    !svg.startsWith("<svg") ||
-    svg.length > SHOWCASE_SVG_MAX ||
-    SVG_UNSAFE.test(svg) ||
-    !caption
+    options.length < 2 ||
+    answer < 0 ||
+    answer >= options.length ||
+    new Set(options).size !== options.length
   )
     return null;
+  return { question, options, answer, right, hint };
+}
+
+function pic(v: unknown): ElabPic | null {
+  const o = obj(v);
+  const caption = plain(o.caption, 240);
+  if (!caption) return null;
+  if (o.kind === "photo" || o.kind === "model3d") {
+    const url = photoUrl(o.url);
+    if (!url) return null;
+    const out: ElabPic = {
+      svg: "",
+      caption,
+      kind: "photo",
+      url,
+      ...(plain(o.credit, 120) ? { credit: plain(o.credit, 120)! } : {}),
+      ...(plain(o.licence, 40) ? { licence: plain(o.licence, 40)! } : {}),
+      ...(typeof o.source === "string" && o.source.startsWith("https://") && o.source.length < 400 ? { source: o.source } : {}),
+      ...(plain(o.from, 30) ? { from: plain(o.from, 30)! } : {}),
+    };
+    const m = obj(o.model);
+    const mu = modelUrl(m.url);
+    if (o.kind === "model3d" && mu && (m.format === "glb" || m.format === "sdf" || m.format === "pdb")) return { ...out, kind: "model3d", model: { format: m.format, url: mu } };
+    return o.kind === "model3d" ? null : out;
+  }
+  const svg = typeof o.svg === "string" ? o.svg.trim() : "";
+  if (!svg.startsWith("<svg") || svg.length > SHOWCASE_SVG_MAX || SVG_UNSAFE.test(svg)) return null;
   return { svg, caption, kind: o.kind === "diagram" ? "diagram" : "card" };
 }
 
@@ -102,16 +167,15 @@ export function elaborationBlock(
   const advanced = plain(l.advanced, 620);
   const real = plain(r.text, 420);
   const question = plain(t.question, 220);
-  const options = Array.isArray(t.options)
-    ? t.options
-        .slice(0, 4)
-        .map((x) => plain(x, 90))
-        .filter((x): x is string => x !== null)
-    : [];
-  const answer =
-    typeof t.answer === "number" && Number.isInteger(t.answer) ? t.answer : -1;
-  const right = plain(t.right, 220);
+  const right = plain(t.right, 320);
   const hint = plain(t.hint, 220);
+  // The multiple-choice questions after step 5. A stored block from before this shape had its choices inside step 4:
+  // they are moved here.
+  const rawChecks = Array.isArray(o.checks) ? o.checks : Array.isArray(t.options) ? [t] : [];
+  const checks = rawChecks
+    .slice(0, MAX_CHECKS)
+    .map(check)
+    .filter((c): c is ElabCheck => c !== null);
   const future = plain(f.text, 320);
   if (
     !term ||
@@ -126,13 +190,8 @@ export function elaborationBlock(
     !future
   )
     return null;
-  if (
-    options.length < 2 ||
-    answer < 0 ||
-    answer >= options.length ||
-    new Set(options).size !== options.length
-  )
-    return null;
+  // Questions after step 5 are required from the model; a stored block may predate them.
+  if (!checks.length && !stored) return null;
   const pics =
     Array.isArray(o.pics) && stored
       ? ELAB_KEYS.map((_, i) => pic((o.pics as unknown[])[i]))
@@ -157,8 +216,6 @@ export function elaborationBlock(
     },
     try_it: {
       question,
-      options,
-      answer,
       right,
       hint,
       say: plain(t.say, 260) ?? question,
@@ -168,6 +225,8 @@ export function elaborationBlock(
       say: plain(f.say, 360) ?? future,
       ...(icon(f.icon) ? { icon: icon(f.icon) } : {}),
     },
+    checks,
+    queries: [d.q, l.q, r.q, t.q, f.q].map((x) => plain(x, 60) ?? ""),
     pics,
   };
 }

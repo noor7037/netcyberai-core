@@ -61,10 +61,13 @@ export function Card({ title, tone, children, tag }: { title: string; tone: stri
     <section data-block={tag} data-tint={tag ? (LESSON_TINT_OF[tag] ?? 'mint') : undefined} className={`fam-card fam-rise overflow-hidden bg-white ${kind ? `border-l-[6px] ${kind.bar}` : ''}`}>
       <div data-card-bar className={`h-2 ${SUBJECT_TONE[tone]?.bar ?? 'bg-ink'}`} aria-hidden="true" />
       <div className="flex flex-col gap-3 p-4 sm:p-5">
-        <h2 data-block-head className={`flex items-center gap-2 text-lg font-extrabold text-slate ${kind ? `rounded-xl px-3 py-1.5 ${kind.head}` : ''}`}>
-          <span aria-hidden="true" data-badge className={`h-2.5 w-2.5 shrink-0 rounded-full ${kind ? kind.dot : (SUBJECT_TONE[tone]?.chip ?? 'bg-ink')}`} />
-          {title}
-        </h2>
+        {/* A picture's card has no heading: a photo is just a photo, never labelled (16 Nov 2026). */}
+        {title ? (
+          <h2 data-block-head className={`flex items-center gap-2 text-lg font-extrabold text-slate ${kind ? `rounded-xl px-3 py-1.5 ${kind.head}` : ''}`}>
+            <span aria-hidden="true" data-badge className={`h-2.5 w-2.5 shrink-0 rounded-full ${kind ? kind.dot : (SUBJECT_TONE[tone]?.chip ?? 'bg-ink')}`} />
+            {title}
+          </h2>
+        ) : null}
         {children}
       </div>
     </section>

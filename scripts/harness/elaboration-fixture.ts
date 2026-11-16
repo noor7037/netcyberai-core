@@ -4,6 +4,7 @@
 // the chapter's own diagrams, and the events are what the stream carries. Prints { en, hi } NDJSON. Run by family.mjs.
 import { parseBlockLine } from "../../src/lib/family/blocks";
 import { withPics } from "../../src/lib/family/elaboration-pics";
+import { fillElaboration } from "../../src/lib/family/visuals/elab-fill";
 import { chapterDiagrams } from "../../src/lib/family/tutor-context";
 
 const KEY = "u.c03.mathematics.cemm1.ch08";
@@ -36,8 +37,6 @@ const LINES = {
       },
       try_it: {
         question: "Priya eats 2/4 of a roti and Rohan eats 1/2. Who ate more?",
-        options: ["Priya", "Rohan", "They ate the same"],
-        answer: 2,
         right: "Two quarters make one half, so they ate the same.",
         hint: "Draw the roti and cut each half into two. Count the quarters.",
         say: "Priya eats two quarters and Rohan eats one half. Who ate more?",
@@ -47,6 +46,9 @@ const LINES = {
         say: "Equal fractions help you add fractions, read percentages and measure in science.",
         icon: "🚀",
       },
+      checks: [
+        { question: "Which fraction is equal to 1/2?", options: ["1/3", "2/4", "3/5"], answer: 1, right: "2/4 is 1/2 written another way.", hint: "Multiply the top and the bottom of 1/2 by 2." },
+      ],
     },
   },
   hi: {
@@ -74,8 +76,6 @@ const LINES = {
       },
       try_it: {
         question: "प्रिया 2/4 रोटी खाती है और रोहन 1/2। किसने ज़्यादा खाई?",
-        options: ["प्रिया ने", "रोहन ने", "दोनों ने बराबर"],
-        answer: 2,
         right: "दो चौथाई मिलकर एक आधा बनते हैं, इसलिए दोनों ने बराबर खाई।",
         hint: "रोटी बनाकर हर आधे के दो टुकड़े करो और चौथाई गिनो।",
         say: "प्रिया दो चौथाई खाती है और रोहन एक आधा। किसने ज़्यादा खाई?",
@@ -85,23 +85,55 @@ const LINES = {
         say: "बराबर भिन्न से आप भिन्न जोड़ना, प्रतिशत पढ़ना और विज्ञान में नापना सीखेंगे।",
         icon: "🚀",
       },
+      checks: [
+        { question: "1/2 के बराबर कौन-सा भिन्न है?", options: ["1/3", "2/4", "3/5"], answer: 1, right: "2/4 वही 1/2 है, दूसरे रूप में।", hint: "1/2 के ऊपर और नीचे दोनों को 2 से गुणा करो।" },
+      ],
+    },
+  },
+  // The founder's live test question (16 Nov 2026): the model's own line, then the app's real code, with the pictures
+  // found live (keyless sources: Commons, NASA, iNaturalist, Openverse).
+  photo: {
+    question: "how photosynthesis work and why trees die",
+    line: {
+      type: "elaboration",
+      term: "Photosynthesis and why trees die",
+      icon: "🌳",
+      definition: { text: "Photosynthesis is how green plants use sunlight, water and air to make their own food.", say: "Photosynthesis is how green plants use sunlight, water and air to make their own food.", q: "green leaf sunlight" },
+      levels: {
+        basic: "A leaf catches sunlight and uses it to make food for the tree.",
+        intermediate: "Leaves take in carbon dioxide from the air and roots take in water. Chlorophyll uses sunlight to turn them into glucose and oxygen.",
+        advanced: "6CO2 + 6H2O + light gives C6H12O6 + 6O2. Light reactions in the thylakoids make ATP; the Calvin cycle in the stroma builds glucose.",
+        say: "Basic: a leaf catches sunlight to make food. Intermediate: leaves take in air and roots take in water, and chlorophyll makes glucose and oxygen. Advanced: six carbon dioxide plus six water plus light gives glucose and six oxygen.",
+        q: "chlorophyll leaf cells",
+      },
+      real_life: { text: "The big tree outside your school gives shade and fresh air because its leaves are busy making food in the sun.", say: "The big tree outside your school gives shade and fresh air because its leaves make food in the sun.", icon: "🏫", q: "banyan tree village" },
+      try_it: { question: "Keep one potted plant in the sun and one in a dark cupboard for a week. What do you think happens to the leaves?", right: "The leaves in the cupboard turn pale and weak, because without light the plant cannot make food.", hint: "Think about what the leaf needs to make its food.", say: "Keep one potted plant in sun and one in a dark cupboard. What happens to the leaves?", q: "wilted plant leaves" },
+      future: { text: "Trees die when they lose water, light or healthy roots, and protecting forests keeps our air clean and our climate steady.", say: "Trees die when they lose water, light or healthy roots, and protecting forests keeps our air clean.", icon: "🌍", q: "dead tree drought" },
+      checks: [
+        { question: "What do leaves use to make food?", options: ["Sunlight, water and air", "Only soil", "Only wind"], answer: 0, right: "Leaves use sunlight, water and carbon dioxide.", hint: "Think of the three things in the first line." },
+        { question: "Which gas does a tree give out in photosynthesis?", options: ["Oxygen", "Smoke", "Nitrogen"], answer: 0, right: "Trees give out oxygen.", hint: "It is the gas we breathe in." },
+      ],
     },
   },
 } as const;
 
-async function build(lang: "en" | "hi") {
+async function build(lang: "en" | "hi" | "photo") {
   const { question, line } = LINES[lang];
   const parsed = parseBlockLine(JSON.stringify(line));
   if (parsed?.type !== "elaboration")
     throw new Error(
       `harness: the ${lang} elaboration line was refused by the block checker`,
     );
-  const block = withPics(
+  const built = withPics(
     parsed,
-    await chapterDiagrams(KEY, lang),
+    lang === "photo" ? [] : await chapterDiagrams(KEY, lang),
     question,
     CLASS,
   );
+  const block =
+    lang === "photo"
+      ? await fillElaboration(built, { subject: "science" })
+      : built;
   const events = [
     {
       t: "meta",
@@ -123,6 +155,6 @@ async function build(lang: "en" | "hi") {
 
 void (async () => {
   process.stdout.write(
-    JSON.stringify({ en: await build("en"), hi: await build("hi") }),
+    JSON.stringify({ en: await build("en"), hi: await build("hi"), photo: await build("photo") }),
   );
 })();

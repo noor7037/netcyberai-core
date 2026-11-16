@@ -186,7 +186,7 @@ describe('the youngest children: a real photo beside the animated board', () => 
     const blocks = [board(), explanation()];
     const out = withYoungPhoto(blocks, { question: 'What does a cow eat?' }, 'hi');
     expect(out.map((b) => b.type)).toEqual(['board', 'image', 'explanation']);
-    expect(out[1]).toEqual({ type: 'image', query: 'cow', caption: 'असली गाय।' });
+    expect(out[1]).toEqual({ type: 'image', query: 'cow', caption: 'गाय।' });
     expect(checkBlock(out[1])).toEqual(out[1]);
     expect(withYoungPhoto(blocks, undefined, 'en')).toBe(blocks);
     const sums = [board('Two and two'), explanation()];
@@ -202,7 +202,7 @@ describe('the youngest children: a real photo beside the animated board', () => 
     const emitted: Block[] = [];
     const out = await fillVisuals(withDb, [board(), explanation()], { chapterKey: null, lang: 'en', young: { question: 'Why is a cow big?' }, search: async () => OPENVERSE, emit: (b) => emitted.push(b) });
     expect(out.map((b) => b.type)).toEqual(['board', 'image', 'explanation']);
-    expect(out[1]).toMatchObject({ url: THUMB, source: PAGE, credit: 'B. Maker', licence: 'CC0 1.0', caption: 'A real cow.' });
+    expect(out[1]).toMatchObject({ url: THUMB, source: PAGE, credit: 'B. Maker', licence: 'CC0 1.0', caption: 'Cow.' });
     // An Openverse photo is not written to the Commons cache table.
     expect(queries.some((q) => q.includes('save_image_pick'))).toBe(false);
     // Live, the photo arrives after the answer's blocks and is placed after the board.

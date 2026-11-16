@@ -4,6 +4,7 @@ import {
   type LessonTint,
 } from "@/lib/design-tokens";
 import {
+  checkCount,
   ELAB_KEYS,
   leadLevel,
   type ElabKey,
@@ -115,5 +116,7 @@ export function withPics(
       kind: "card",
     };
   });
-  return { ...b, lead: leadLevel(classLevel), pics };
+  // One to three multiple-choice questions by the topic's complexity, after step 5 only.
+  const checks = b.checks.slice(0, checkCount(classLevel, question, b.levels.advanced));
+  return { ...b, lead: leadLevel(classLevel), checks, pics };
 }

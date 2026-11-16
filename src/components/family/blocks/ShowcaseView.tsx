@@ -17,7 +17,7 @@ export function ShowcaseView({ b, w, tone }: { b: Showcase; w: Words; tone: stri
   const reduced = useReducedMotion();
   const svg = reduced ? b.svg.replace(/(<svg[^>]*>)/, (open) => `${open}${STILL}`) : b.svg;
   return (
-    <Card title={b.title || w['fam.block.photo']} tone={tone} tag="showcase">
+    <Card title={b.title} tone={tone} tag="showcase">
       <figure data-showcase className="flex flex-col gap-2">
         <div className="relative w-full overflow-hidden rounded-2xl bg-white ring-1 ring-slate/10">
           {/* eslint-disable-next-line @next/next/no-img-element -- our own authored SVG as a data URL */}

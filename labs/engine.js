@@ -190,7 +190,7 @@
   function photosHTML(lab) {
     const ph = (lab.photos || []).map((p) => ({ src: api.asset(p.img), cap: p.caption })).filter((p) => p.src);
     if (!ph.length) return '';
-    return `<div class="labphotos" role="group" aria-label="${esc(t({ en: 'Real photos', hi: 'असली फ़ोटो' }))}">${ph.map((p) => `<figure><img src="${esc(p.src)}" alt="${esc(t(p.cap))}" loading="lazy" decoding="async"><figcaption>${esc(t(p.cap))}</figcaption></figure>`).join('')}</div>`;
+    return `<div class="labphotos" role="group" aria-label="${esc(t({ en: 'Photos', hi: 'फ़ोटो' }))}">${ph.map((p) => `<figure><img src="${esc(p.src)}" alt="${esc(t(p.cap))}" loading="lazy" decoding="async"><figcaption>${esc(t(p.cap))}</figcaption></figure>`).join('')}</div>`;
   }
   const cur = () => S.lab && S.lab.steps[S.step];
   const api = {

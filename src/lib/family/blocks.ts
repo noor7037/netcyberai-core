@@ -1042,6 +1042,8 @@ export const unfilled = (b: { type: string }): boolean => (b.type === 'image' &&
 // (so it shows where the answer put it); anything else is added at the end. C526: a filled photograph the model never
 // asked for (the youngest children's, visuals/young.ts) goes right after the board, as it is kept.
 export function placeBlock<B extends { type: string }>(list: readonly B[], b: B): B[] {
+  // The elaboration the server has filled with its step pictures takes the place of the one already shown.
+  if (b.type === 'elaboration' && list.some((x) => x.type === 'elaboration')) return list.map((x) => (x.type === 'elaboration' ? b : x));
   const at = unfilled(b) ? -1 : list.findIndex((x) => x.type === b.type && unfilled(x));
   if (at >= 0) return list.map((x, i) => (i === at ? b : x));
   const board = b.type === 'image' && !unfilled(b) ? list.findIndex((x) => x.type === 'board') : -1;

@@ -658,6 +658,8 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
     }
     // The Elaboration Framework: the answer is the one elaboration block; any other block the model adds is not shown.
     if (p.elaborate && parsedBlock.type !== 'elaboration') return;
+    // A multiple-choice check is never an answer by itself and never comes before the explanation: held back until the lesson it checks has been shown (founder, 16 Nov 2026).
+    if (!p.check && parsedBlock.type === 'check' && !seen.has('explanation') && !seen.has('elaboration')) return;
     // A marked working (Check my work): a verdict that restates a plain sum is settled by our own arithmetic (2 Nov).
     const b = p.check && parsedBlock.type === 'steps' ? verifyVerdicts(parsedBlock, ctx.child.language === 'hi' ? 'hi' : 'en') : parsedBlock;
     // A marked working is only what the marking prompt asks for (W18-Q3): a lesson the model adds is not shown.

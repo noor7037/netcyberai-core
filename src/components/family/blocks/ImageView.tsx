@@ -44,7 +44,7 @@ export function ImageView({ b, w, tone }: { b: ImageBlock; w: Words; tone: strin
   // C526: gentle motion: the photo fades in and settles when it arrives; still under prefers-reduced-motion.
   const motion = reduced ? '' : `transition-[opacity,transform] duration-500 ease-out ${loaded ? 'opacity-100 scale-100' : 'opacity-0 scale-[1.03]'}`;
   return (
-    <Card title={w['fam.block.photo']} tone={tone} tag="image">
+    <Card title="" tone={tone} tag="image">
       <figure data-photo className="flex flex-col gap-2">
         {/* A tint box until the photo arrives: no extra request, and the page never jumps (4:3, its size given). */}
         <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-off-white ring-1 ring-slate/10">
