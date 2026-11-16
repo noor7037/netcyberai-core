@@ -15,7 +15,6 @@ import { speakLine, stopLine, type VoiceMode } from '../voice/lineVoice';
 import { SPEEDS, boardSentence, occurrence, progressPercent, rateOf, wordAt, type Speed } from './narration';
 import { findSentence, highlights } from '../voice/highlight';
 import { TableView } from './TableView';
-import { VideoList } from '../VideoPicks';
 import { useDataSaver } from '../useDataSaver';
 import { TutorDrawer } from '../tutor/TutorDrawer';
 import type { TutorReaderContext } from '../tutor/TutorWindow';
@@ -32,6 +31,7 @@ import type { Subject } from '@/lib/family/subjects';
 // none); nothing is timed or guessed. The page scrolls to the sentence being
 // read, without smooth motion under prefers-reduced-motion. The interactive blocks load only when the chapter has one.
 
+const VideoList = dynamic(() => import('../VideoPicks').then((m) => m.VideoList));
 const InteractiveView = dynamic(() => import('../blocks/InteractiveViews').then((m) => m.InteractiveView));
 // S5 (C378): the 3D model (whose WebGL is a further chunk, fetched only on the child's tap) and the chapter test load only
 // when the chapter has one; neither is part of the reader's first load.

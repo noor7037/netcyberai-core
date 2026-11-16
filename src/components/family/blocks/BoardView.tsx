@@ -6,7 +6,7 @@ import { BOARD_TEXT, boardAxes, boardBox, boardFrame, boardItems, boardStepOnSpo
 import { lessonColors, lessonTints } from '@/lib/design-tokens';
 import { fill, type Words } from '@/lib/family/fill';
 import { Card } from './BlockViews';
-import { useReducedMotion } from './InteractiveViews';
+import { useReducedMotion } from './motion';
 
 // The live drawing board (W16-A2, docs/39 §6): the board block's steps drawn one after another on a paper grid, by our
 // own code (no canvas library, no markup from the model). Its own chunk, loaded only when an answer carries a board.

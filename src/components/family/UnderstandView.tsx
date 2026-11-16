@@ -13,7 +13,6 @@ import { DiagramView, DirectAnswer, EnglishMomentView, ExplanationView, KeyPoint
 import dynamic from 'next/dynamic';
 import { QuizView } from './blocks/QuizView';
 import { MindMapView } from './blocks/MindMapView';
-import { VideoPicks } from './VideoPicks';
 import { isSimScene, placeBlock, unfilled } from '@/lib/family/blocks';
 import { boardCursorFromSentence } from '@/lib/family/board';
 import { spokenSentences } from '@/lib/family/call';
@@ -21,14 +20,6 @@ import { spokenSentences } from '@/lib/family/call';
 import { citationOf } from '@/lib/family/citation';
 import { useTutorBoard } from './tutor/switches';
 import { CitationChip } from './blocks/CitationChip';
-import { SceneView } from './blocks/SceneView';
-import { ChartView } from './blocks/ChartView';
-import { StepsView } from './blocks/StepsView';
-import { TimelineView } from './blocks/TimelineView';
-import { ImageView } from './blocks/ImageView';
-import { ElaborationView } from './blocks/ElaborationView';
-import { ShowcaseView } from './blocks/ShowcaseView';
-import { VideosView } from './blocks/VideosView';
 import { StickyTutorFace } from './avatar/TutorFace';
 import type { Reading } from './voice/AnswerSpeaker';
 import { avatarState, setAvatarMood } from '@/lib/family/avatar-state';
@@ -40,6 +31,16 @@ const TeachMe = dynamic(() => import('./voice/AnswerSpeaker').then((m) => m.Teac
 const FigureView = dynamic(() => import('./blocks/FigureView').then((m) => m.FigureView));
 
 // The interactive blocks (M2-8) come as their own chunk, only when a response carries one (09 §4: first-load budget).
+// Loaded on demand (the first answer to arrive, or the first video card), so a first visit does not download them.
+const ElaborationView = dynamic(() => import('./blocks/ElaborationView').then((m) => m.ElaborationView));
+const SceneView = dynamic(() => import('./blocks/SceneView').then((m) => m.SceneView));
+const ChartView = dynamic(() => import('./blocks/ChartView').then((m) => m.ChartView));
+const StepsView = dynamic(() => import('./blocks/StepsView').then((m) => m.StepsView));
+const TimelineView = dynamic(() => import('./blocks/TimelineView').then((m) => m.TimelineView));
+const ImageView = dynamic(() => import('./blocks/ImageView').then((m) => m.ImageView));
+const ShowcaseView = dynamic(() => import('./blocks/ShowcaseView').then((m) => m.ShowcaseView));
+const VideosView = dynamic(() => import('./blocks/VideosView').then((m) => m.VideosView));
+const VideoPicks = dynamic(() => import('./VideoPicks').then((m) => m.VideoPicks));
 const InteractiveView = dynamic(() => import('./blocks/InteractiveViews').then((m) => m.InteractiveView));
 // W10-4: a 3D model, its own chunk too, only when an answer carries one.
 const Model3DView = dynamic(() => import('./blocks/Model3DView').then((m) => m.Model3DView));
