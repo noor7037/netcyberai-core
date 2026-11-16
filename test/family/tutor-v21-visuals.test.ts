@@ -115,7 +115,7 @@ describe('shared cache', () => {
     ) as unknown as Elaboration;
     const asked = new Map<string, number>();
     const search = async (query: string) => (asked.set(query, (asked.get(query) ?? 0) + 1), null);
-    await fillElaboration({ ...elab, pics: [null, null, null, null, null] }, { subject: 'civics', classLevel: 7, search, model: async () => null, withDb: asFamily });
+    await fillElaboration({ ...elab, pics: [null, null, null, null, null] }, { subject: 'civics', classLevel: 7, search, rich: async () => [], withDb: asFamily });
     expect([...asked.values()].every((c) => c === 1)).toBe(true);
     expect(asked.size).toBeLessThanOrEqual(2);
   });

@@ -1,7 +1,7 @@
 import type { ElabPic, Elaboration } from '@/lib/family/elaboration';
-import { find3d, type Model3d } from './models3d';
 import { runVisualAnswer, type WithDb } from './limits';
 import { cachedVisual, classBand, forgetVisualCache } from './shared-cache';
+import { richPic, richSteps, type Rich } from './models3d';
 import { searchSources, type Photo } from './sources';
 
 // The server's half of the Elaboration Framework's pictures (founder, 16 Nov 2026): every step gets a real visual. A step
@@ -20,7 +20,8 @@ export type ElabFillOptions = {
   classLevel?: number | null;
   withDb?: WithDb;
   search?: (query: string, subject: string | null) => Promise<Photo | null>;
-  model?: (words: string, term: string) => Promise<Model3d | null>;
+  // v21: the 3D model or animation of each step from the tutor's English `q3d` terms (models3d.ts).
+  rich?: (q3d: readonly string[], keep: readonly boolean[]) => Promise<(Rich | null)[]>;
 };
 
 const ALT = ['', 'types', 'everyday', 'activity', 'uses'];
@@ -60,9 +61,10 @@ async function fill(b: Elaboration, o: ElabFillOptions): Promise<Elaboration> {
     else p = null;
     found[i] = p;
   }
-  const three = await (o.model ?? ((w, t) => find3d(w, t)))(`${b.levels.basic} ${b.levels.intermediate} ${queryOf(1)}`, topicQ).catch(() => null);
+  // v21 3D: the tutor's English term per step (an older block without `q3d` asks with its English topic on step 2 only).
+  const rich = await (o.rich ?? richSteps)(b.q3d ?? ['', b.topic?.en ?? '', '', '', ''], b.pics.map((p) => p?.kind === 'diagram')).catch(() => []);
   const pics = b.pics.map((p, i): ElabPic | null => {
-    if (i === 1 && three && p?.kind !== 'diagram') return { svg: '', kind: 'model3d', url: three.still, caption: captionOf(texts[i]), credit: three.credit, licence: three.licence, source: three.page, from: three.from, model: three.model };
+    if (rich[i] && p?.kind !== 'diagram') return richPic(rich[i]!, captionOf(texts[i]));
     if (p?.kind === 'diagram') return p;
     const hit = found[i];
     return hit ? photoPic(hit, texts[i]) : p;
