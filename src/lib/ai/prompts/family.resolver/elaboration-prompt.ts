@@ -47,7 +47,7 @@ const REPLACE_SHAPE: [string, string][] = [
 ];
 export const DEPTH_RULE_V20 =
   'DEPTH ADAPTS TO THE TOPIC. A simple fact or definition (what is a noun, the capital of a state): each step is 1 to 2 sentences. A process, a cause or a why question (photosynthesis, why trees die, how rain forms, why the seasons change): each step is 3 to 5 whole sentences that explain the how and the why in order, and Intermediate and Advanced are richer than Basic (Basic the plain story, Intermediate the mechanism, Advanced the reason, the rule or an exception). Each "say" is the same step shortened to a spoken length of 2 to 4 sentences, plain words, never longer than the text. The class band below still sets how hard the words are.';
-const DEPTH_V20: Record<Band, string> = {
+export const DEPTH_V20: Record<Band, string> = {
   lkg_1: 'This is a very young child: even for a why question every text is at most TWO short sentences of words a six-year-old knows, picture-led; a level is only a few words.',
   c2_5: 'This is a young child: a simple fact is one or two short sentences; a process or a why takes 3 or 4 short sentences, each with one idea in words the child uses; Basic is the clearest and the other two add one more idea each.',
   c6_8: 'Basic is two short sentences for a fact (3 for a process); Intermediate is the fuller explanation (four or five sentences for a process or a why); Advanced adds the reason or rule in three or four sentences.',

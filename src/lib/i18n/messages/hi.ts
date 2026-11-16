@@ -8458,7 +8458,7 @@ export const hi: Record<keyof typeof en, string> = {
   // m2-5 begin
   // The video finder and the honest player (M2-5, C279).
   'fam.video.title': 'इस विषय पर एक वीडियो',
-  'fam.video.note': 'यह वीडियो YouTube से है। इसमें विज्ञापन और दूसरे वीडियो के सुझाव दिख सकते हैं। जब तक आप चलाएँ पर टैप नहीं करते, इसका कुछ भी लोड नहीं होता।',
+  'fam.video.note': 'यह वीडियो YouTube से है। इसमें विज्ञापन और दूसरे वीडियो के सुझाव दिख सकते हैं।',
   'fam.video.play': 'वीडियो चलाएँ:',
   'fam.video.length': 'लंबाई {length}',
   'fam.video.by': 'चैनल:',
@@ -10214,10 +10214,18 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.elab.hint': 'संकेत दिखाओ',
   'fam.elab.showAnswer': 'जवाब दिखाओ',
   'fam.elab.checks': 'खुद को जाँचो',
+  'fam.elab.extras': 'और जानो',
+  'fam.elab.extra.home': 'घर पर करके देखो',
+  'fam.elab.extra.fact': 'मज़ेदार बात',
+  'fam.elab.extra.india': 'भारत में',
+  'fam.elab.extra.trick': 'याद रखने की तरकीब',
+  'fam.elab.extra.whatif': 'अगर ऐसा हो तो क्या होगा?',
   'fam.elab.view3d': 'उंगली से घुमाओ, ज़ूम के लिए पिंच करो',
   'fam.elab.trySim': 'खुद करके देखो',
   'fam.elab.simOpen': 'सिमुलेशन खोलो',
   'fam.elab.simFrom': 'सिमुलेशन का स्रोत:',
+  'fam.elab.labOpen': 'लैब खोलो',
+  'fam.elab.labNote': 'यह लैब अपनी साइट पर, नए टैब में खुलती है।',
   'fam.elab.simLoading': 'सिमुलेशन खुल रहा है...',
   'fam.block.mindMap': 'माइंड मैप',
   'fam.block.sceneTap': 'किसी हिस्से पर टैप करें और पढ़ें कि वह क्या करता है।',
@@ -11119,6 +11127,8 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.w19.settings.normal': 'सामान्य',
   'fam.w19.settings.voiceTitle': 'आवाज़',
   'fam.w19.settings.lookTitle': 'रूप',
+  'fam.parent.autoPlay.title': 'जवाब अपने आप पढ़कर सुनाओ',
+  'fam.parent.autoPlay.lead': 'ट्यूटर का जवाब आते ही एक बार पढ़कर सुनाया जाता है। बच्चा "फिर से सुनो" दबाकर दोबारा सुन सकता है।',
   'fam.w19.settings.saved': 'सेव हो गया',
   // W19-C end
   // W20-E start

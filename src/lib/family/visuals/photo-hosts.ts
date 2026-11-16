@@ -15,7 +15,20 @@ export const PHOTO_HOSTS: Record<string, readonly string[]> = {
   pubchem: ['pubchem.ncbi.nlm.nih.gov'],
   pdb: ['cdn.rcsb.org'],
   polypizza: ['static.poly.pizza'],
+  // v21 sources (models3d.ts and the adapters beside it): the still picture of a 3D model, and the new picture sources.
+  sketchfab: ['media.sketchfab.com'],
+  nasa3d: ['assets.science.nasa.gov'],
+  smithsonian3d: ['3d-api.si.edu'],
+  polyhaven: ['cdn.polyhaven.com'],
+  khronos: ['raw.githubusercontent.com'],
+  met: ['images.metmuseum.org'],
+  cleveland: ['openaccess-cdn.clevelandart.org'],
+  iconify: ['api.iconify.design'],
+  earthobs: ['assets.science.nasa.gov'],
 };
+// A host shared by many owners is kept to one owner's path (raw.githubusercontent.com: the Khronos glTF samples only).
+export const HOST_PATH: Record<string, string> = { 'raw.githubusercontent.com': '/KhronosGroup/glTF-Sample-Assets/' };
+const pathOk = (u: URL): boolean => !HOST_PATH[u.hostname] || u.pathname.startsWith(HOST_PATH[u.hostname]);
 export const ALL_PHOTO_HOSTS: ReadonlySet<string> = new Set(Object.values(PHOTO_HOSTS).flat());
 
 // An https address on one of the picture hosts, with no user name, password or port; null otherwise.
@@ -23,19 +36,20 @@ export function photoUrl(v: unknown): string | null {
   if (typeof v !== 'string' || v.length > 1000) return null;
   try {
     const u = new URL(v);
-    return u.protocol === 'https:' && !u.username && !u.password && !u.port && ALL_PHOTO_HOSTS.has(u.hostname) ? u.toString() : null;
+    return u.protocol === 'https:' && !u.username && !u.password && !u.port && ALL_PHOTO_HOSTS.has(u.hostname) && pathOk(u) ? u.toString() : null;
   } catch {
     return null;
   }
 }
 
 // The 3D model hosts (a glTF binary the viewer may load) and the structure files for molecules.
-export const MODEL_HOSTS: ReadonlySet<string> = new Set(['static.poly.pizza', 'media.sketchfab.com', 'pubchem.ncbi.nlm.nih.gov', 'files.rcsb.org']);
+// v21: Sketchfab's signed download host, NASA 3D Resources, Smithsonian 3D, Poly Haven and the Khronos glTF samples.
+export const MODEL_HOSTS: ReadonlySet<string> = new Set(['static.poly.pizza', 'media.sketchfab.com', 'sketchfab-prod-media.s3.amazonaws.com', 'pubchem.ncbi.nlm.nih.gov', 'files.rcsb.org', 'assets.science.nasa.gov', '3d-api.si.edu', 'dl.polyhaven.org', 'raw.githubusercontent.com']);
 export function modelUrl(v: unknown): string | null {
   if (typeof v !== 'string' || v.length > 1000) return null;
   try {
     const u = new URL(v);
-    return u.protocol === 'https:' && !u.username && !u.password && !u.port && MODEL_HOSTS.has(u.hostname) ? u.toString() : null;
+    return u.protocol === 'https:' && !u.username && !u.password && !u.port && MODEL_HOSTS.has(u.hostname) && pathOk(u) ? u.toString() : null;
   } catch {
     return null;
   }

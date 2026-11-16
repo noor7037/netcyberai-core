@@ -74,6 +74,24 @@ export function callSpeech(block: PublicBlock): string[] {
 export const ANSWER_SPOKEN_MAX = 600;
 // The first part of a reading is short (whole sentences up to about this many characters), so speech starts fast.
 export const ANSWER_FIRST_MAX = 200;
+// v21: the parts after the first are kept near its size (docs/notes/read-aloud-stutter-v21.md): the voice takes about
+// 2.5 s plus 16 ms a character to make a part, so a 600-character part (about 12 s) was often not ready when a short
+// first part (4 to 15 s of speech) ended: the silence between parts.
+export const ANSWER_NEXT_MAX = 350;
+
+// v21: the parts a reading from sentence `from` is cut into: [from, end) and the `max` each is asked for with (the
+// server cuts by the same number, so the phone's prefetch key and the server's part always match).
+export function answerParts(sentences: readonly string[], from: number): { from: number; end: number; max: number }[] {
+  const out: { from: number; end: number; max: number }[] = [];
+  let i = Math.max(0, from);
+  while (i < sentences.length) {
+    const max = out.length === 0 ? ANSWER_FIRST_MAX : ANSWER_NEXT_MAX;
+    const end = chunkEnd(sentences, i, max);
+    out.push({ from: i, end, max });
+    i = end;
+  }
+  return out;
+}
 
 // The words read aloud for a kept tutor answer (W17-B2): what a call would say, whole sentences only, within `max`
 // characters. One helper for the server (what the voice speaks) and the phone (what its own voice reads when the server

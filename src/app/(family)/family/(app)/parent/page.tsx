@@ -10,6 +10,9 @@ import { FocusSection } from '@/components/family/FocusSection';
 import { ParentArea, type ParentNeed } from '@/components/family/ParentArea';
 import { PARENT_APP_KEYS } from '@/components/family/parent/keys';
 import { ChildPhoneSection } from '@/components/family/ChildPhoneSection';
+import { AutoPlaySection } from '@/components/family/AutoPlaySection';
+import { AUTOPLAY_KEYS } from '@/lib/family/autoplay-words';
+import { loadChildSettings } from '@/lib/family/child-settings';
 import { HomePlanSection, type PlanSubject } from '@/components/family/HomePlanSection';
 import { NotifySection } from '@/components/family/NotifySection';
 import { vapidPublicKey } from '@/lib/family/web-push';
@@ -241,6 +244,12 @@ export default async function FamilyParentPage() {
       multiplier: day.limits.plus ? day.limits.multiplier : 1,
     }));
   // w16-b4 end
+  // v21: each child's "read answers aloud by themselves" (the parent's switch, on by default). One child after the other.
+  const autoPlay = await familyPageRead(page, async (db) => {
+    const out: { childId: string; firstName: string; autoPlay: boolean }[] = [];
+    for (const c of page.children) out.push({ childId: c.childId, firstName: c.firstName, autoPlay: (await loadChildSettings(db, page.session.accountId, c.childId)).autoPlay });
+    return out;
+  });
   // What needs the parent now (W6-F): one line and one action each.
   const needs: ParentNeed[] = [];
   const declined = own.requests.filter((r) => r.status === 'declined').length;
@@ -309,8 +318,9 @@ export default async function FamilyParentPage() {
             </>
           ),
           learning:
-            own.childList.length > 0 ? (
+            own.childList.length > 0 || page.children.length > 0 ? (
               <>
+            {page.children.length > 0 && <AutoPlaySection w={familyWords(lang, AUTOPLAY_KEYS)} children={autoPlay} />}
             {own.childList.length > 0 && page.consents.study_core && (
               <ChapterRequestPanel w={familyWords(lang, [...REQUEST_KEYS, ...SUBJECT_IDS.map((id) => `fam.subject.${id}` as MessageKey)])} childList={own.childList} requests={own.requests} modes={own.modes} />
             )}

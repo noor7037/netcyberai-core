@@ -1,4 +1,5 @@
 import * as v1 from './v1';
+import * as v2 from './v2';
 
 // The family.quiz prompt versions in this repository (docs/family-app/08 §7). Control chooses the active version; a
 // version the code does not have falls back to the latest.
@@ -9,7 +10,10 @@ export { markSystem, markUser } from './mark-v1';
 export type { MarkAsk, MarkItem } from './mark-v1';
 export type QuizPrompt = { version: string; system: () => string; user: (a: v1.QuizAsk) => string };
 
-const PROMPTS: readonly QuizPrompt[] = [{ version: v1.QUIZ_PROMPT_VERSION, system: v1.quizSystem, user: v1.quizUser }];
+const PROMPTS: readonly QuizPrompt[] = [
+  { version: v1.QUIZ_PROMPT_VERSION, system: v1.quizSystem, user: v1.quizUser },
+  { version: v2.QUIZ_PROMPT_VERSION, system: v2.quizSystem, user: v2.quizUser },
+];
 
 export function quizPrompt(chosen: string | null): QuizPrompt {
   return PROMPTS.find((p) => p.version === chosen) ?? PROMPTS[PROMPTS.length - 1];

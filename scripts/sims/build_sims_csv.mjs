@@ -5,7 +5,8 @@
 // preview picture is saved small into public/sims/ (so no third-party picture loads before a child taps).
 import { execFileSync } from 'node:child_process';
 import { mkdirSync, writeFileSync, existsSync, readFileSync, rmSync } from 'node:fs';
-import { GEOGEBRA, NASA_EYES, PHET } from './candidates.mjs';
+import { NASA_EYES, PHET } from './candidates.mjs';
+import { OLABS_KEYWORDS, PHET_MORE, TOPIC_HI, VLABS } from './candidates-v21.mjs';
 
 const UA = 'Mozilla/5.0 (compatible; NetCyberAI-sim-check/1.0)';
 const out = new URL('../seed/curated_sims.csv', import.meta.url).pathname;
@@ -30,7 +31,13 @@ const q = (v) => `"${String(v).replace(/"/g, '""')}"`;
 const rows = [];
 const dropped = [];
 const COLS = ['class', 'subject', 'chapter_number', 'chapter_name', 'topic', 'language', 'source', 'title', 'embed_url', 'page_url', 'licence', 'preview'];
-const add = (r) => rows.push(COLS.map((c) => q(r[c] ?? '')).join(','));
+const seen = new Set();
+const add = (r) => {
+  const key = [r.embed_url, r.class, r.subject, r.topic, r.language].join("|");
+  if (seen.has(key)) return;
+  seen.add(key);
+  rows.push(COLS.map((c) => q(r[c] ?? "")).join(","));
+};
 const pageTitle = (html, fallback) => {
   const m = /<title>([^<]{3,120})<\/title>/i.exec(html ?? '');
   if (!m) return fallback;
@@ -66,34 +73,35 @@ async function phet(slug) {
   return v;
 }
 
-for (const [slug, title, cls, subject, chapter, topics] of PHET) {
+for (const [slug, title, cls, subject, chapter, topics] of [...PHET, ...PHET_MORE]) {
   const p = await phet(slug);
   if (!p.en.ok) { dropped.push(`phet ${slug}: ${p.en.why}`); continue; }
+  const enTitle = pageTitle(p.en.text, title);
   for (const topic of topics) {
     const common = { class: cls, subject, chapter_name: chapter, topic, source: 'phet', licence: 'CC BY 4.0 (PhET Interactive Simulations, University of Colorado Boulder)', preview: p.preview, page_url: `https://phet.colorado.edu/en/simulations/${slug}` };
-    add({ ...common, language: 'en', title, embed_url: `${p.base}_en.html` });
-    if (p.hi.ok) add({ ...common, language: 'hi', title: p.titleHi || title, embed_url: `${p.base}_hi.html` });
+    add({ ...common, language: 'en', title: enTitle, embed_url: `${p.base}_en.html` });
+    if (p.hi.ok) {
+      add({ ...common, language: 'hi', title: p.titleHi || enTitle, embed_url: `${p.base}_hi.html` });
+      if (TOPIC_HI[topic]) add({ ...common, topic: TOPIC_HI[topic], language: 'hi', title: p.titleHi || enTitle, embed_url: `${p.base}_hi.html` });
+    }
   }
+}
+for (const [url, title, cls, subject, chapter, topics] of VLABS) {
+  const r = await embeddable(url);
+  if (!r.ok) { dropped.push(`virtual labs ${url}: ${r.why}`); continue; }
+  for (const topic of topics) add({ class: cls, subject, chapter_name: chapter, topic, language: 'en', source: 'vlabs', title, embed_url: url, page_url: url, licence: 'Virtual Labs, Amrita Vishwa Vidyapeetham (MoE NMEICT)' });
+}
+// OLabs: link cards (the site refuses framing and answers scripts with 403, so its own lab listing, saved in olabs-listing.json, is trusted as it is).
+const olabs = JSON.parse(readFileSync(new URL('./olabs-listing.json', import.meta.url), 'utf8'));
+for (const [subject, cls, query, title] of olabs) {
+  const url = `https://www.olabs.edu.in/?${query}`;
+  const topics = [...new Set([title.slice(0, 190), ...OLABS_KEYWORDS.filter(([re]) => re.test(title)).map(([, t]) => t)])];
+  for (const topic of topics) add({ class: String(cls), subject, chapter_name: '', topic, language: 'en', source: 'olabs', title: title.slice(0, 150), embed_url: url, page_url: url, licence: 'OLabs, CDAC and Amrita Vishwa Vidyapeetham (MoE)' });
 }
 for (const [url, title, cls, subject, chapter, topics] of NASA_EYES) {
   const r = await embeddable(url);
   if (!r.ok) { dropped.push(`nasa eyes ${url}: ${r.why}`); continue; }
   for (const topic of topics) add({ class: cls, subject, chapter_name: chapter, topic, language: 'en', source: 'nasa_eyes', title, embed_url: url, page_url: url, licence: 'NASA, public domain (NASA Eyes)' });
-}
-for (const [query, cls, subject, chapter, topics] of GEOGEBRA) {
-  let picked = null;
-  try {
-    const res = await fetch('https://www.geogebra.org/api/json.php', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ request: { '-api': '1.0.0', task: { '-type': 'fetch', fields: { field: [{ '-name': 'title' }, { '-name': 'id' }] }, filters: { field: [{ '-name': 'search', '#text': query }] }, order: { '-by': 'relevance', '-type': 'desc' }, limit: { '-num': '8' } } } }), signal: AbortSignal.timeout(25000) });
-    const items = (await res.json())?.responses?.response?.item ?? [];
-    const key = query.split(' ').filter((w) => w.length > 3);
-    for (const it of items) {
-      if (!it?.id || !it?.title || !key.some((k) => it.title.toLowerCase().includes(k.toLowerCase().slice(0, 5)))) continue;
-      const r = await embeddable(`https://www.geogebra.org/m/${it.id}`);
-      if (r.ok) { picked = it; break; }
-    }
-  } catch { /* dropped below */ }
-  if (!picked) { dropped.push(`geogebra "${query}": none verified`); continue; }
-  for (const topic of topics) add({ class: cls, subject, chapter_name: chapter, topic, language: 'en', source: 'geogebra', title: picked.title, embed_url: `https://www.geogebra.org/m/${picked.id}`, page_url: `https://www.geogebra.org/m/${picked.id}`, licence: 'GeoGebra (embedded in its own player; materials CC BY-NC-SA unless the author says otherwise)' });
 }
 // HHMI BioInteractive: its pages refuse to be embedded and answer scripts with a block page, so none is kept.
 const hhmi = await embeddable('https://www.biointeractive.org/classroom-resources/photosynthesis');

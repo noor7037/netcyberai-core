@@ -40,7 +40,7 @@ beforeEach(() => forgetElabPhotos());
 describe('photosynthesis answer', () => {
   it('is five steps in order, a real picture on each, and the questions only after step 5', async () => {
     const built = withPics(parse(LINE), [], QUESTION, 9);
-    const b = await fillElaboration(built, { subject: 'science', search: stub, model: async () => null });
+    const b = await fillElaboration(built, { subject: 'science', search: stub, rich: async () => [] });
     expect(b.pics).toHaveLength(5);
     expect(b.pics.every((p) => p?.kind === 'photo' && p.url && p.svg === '')).toBe(true);
     expect(new Set(b.pics.map((p) => p?.url)).size).toBe(5);
@@ -61,7 +61,7 @@ describe('photosynthesis answer', () => {
     expect(html.match(/data-elab-img="photo"/g)?.length).toBeGreaterThanOrEqual(5);
   });
   it('shows no label, badge, caption prefix or credit on any picture', async () => {
-    const b = await fillElaboration(withPics(parse(LINE), [], QUESTION, 9), { subject: 'science', search: stub, model: async () => null });
+    const b = await fillElaboration(withPics(parse(LINE), [], QUESTION, 9), { subject: 'science', search: stub, rich: async () => [] });
     const html = renderToStaticMarkup(h(ElaborationView, { b, w: words, tone: 'science' }));
     expect(html).not.toMatch(FORBIDDEN);
     expect(html).not.toContain('A. Author');

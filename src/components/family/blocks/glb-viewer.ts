@@ -7,6 +7,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { colors } from '@/lib/design-tokens';
+import { gltfLoader } from './gltf-resources';
 
 export type ViewerHandle = { destroy: () => void };
 export type ViewerModel = { format: 'glb' | 'sdf' | 'pdb'; url: string };
@@ -100,7 +101,7 @@ export async function startViewer(canvasHost: HTMLElement, model: ViewerModel, o
     const res = await fetch(model.url, { referrerPolicy: 'no-referrer' });
     if (!res.ok) throw new Error(String(res.status));
     let obj: THREE.Object3D;
-    if (model.format === 'glb') obj = (await new GLTFLoader().parseAsync(await res.arrayBuffer(), '')).scene;
+    if (model.format === 'glb') obj = (await gltfLoader(model.url).parseAsync(await res.arrayBuffer(), model.url.slice(0, model.url.lastIndexOf('/') + 1))).scene;
     else obj = model.format === 'sdf' ? molecule(await res.text()) : backbone(await res.text());
     if (dead) return { destroy };
     const box = new THREE.Box3().setFromObject(obj);
@@ -116,8 +117,7 @@ export async function startViewer(canvasHost: HTMLElement, model: ViewerModel, o
     size();
     canvasHost.appendChild(renderer.domElement);
     renderer.domElement.style.touchAction = 'none';
-    renderer.domElement.style.width = '100%';
-    renderer.domElement.style.height = '100%';
+    Object.assign(renderer.domElement.style, { width: '100%', height: '100%' });
     const tick = () => {
       if (dead) return;
       controls.update();

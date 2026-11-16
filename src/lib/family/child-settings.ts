@@ -21,10 +21,13 @@ export type ChildSettings = {
   autoScroll: boolean; // the reader scrolls to follow the voice
   meaningLang: LangCode | null; // the language meanings and translations are shown in; null follows the app's language
   // w23-b end
+  // v21: a fresh tutor answer is read aloud by itself, for every class. Set by the parent only (the parent area, behind
+  // the PIN; /api/family/children/[childId]/settings); the child's own PATCH cannot change it (checkSettingsPatch).
+  autoPlay: boolean;
 };
 export const CHILD_SETTING_KEYS = ['readAloud', 'tutorFace', 'motion', 'handsFree', 'voiceSpeed', 'wordHelp', 'tapToRead', 'autoScroll', 'meaningLang'] as const;
 export type ChildSettingKey = (typeof CHILD_SETTING_KEYS)[number];
-export const DEFAULT_CHILD_SETTINGS: ChildSettings = { readAloud: true, tutorFace: true, motion: true, handsFree: false, voiceSpeed: 'normal', wordHelp: true, tapToRead: true, autoScroll: true, meaningLang: null };
+export const DEFAULT_CHILD_SETTINGS: ChildSettings = { readAloud: true, tutorFace: true, motion: true, handsFree: false, voiceSpeed: 'normal', wordHelp: true, tapToRead: true, autoScroll: true, meaningLang: null, autoPlay: true };
 
 const SWITCHES = ['readAloud', 'tutorFace', 'motion', 'handsFree', 'wordHelp', 'tapToRead', 'autoScroll'] as const;
 type SwitchKey = (typeof SWITCHES)[number];
@@ -37,7 +40,18 @@ export function parseChildSettings(v: unknown): ChildSettings {
   for (const k of SWITCHES) if (typeof o[k] === 'boolean') out[k] = o[k] as boolean;
   if (SPEEDS.includes(o.voiceSpeed as VoiceSpeed)) out.voiceSpeed = o.voiceSpeed as VoiceSpeed;
   if (isLangCode(o.meaningLang)) out.meaningLang = o.meaningLang;
+  if (typeof o.autoPlay === 'boolean') out.autoPlay = o.autoPlay;
   return out;
+}
+
+// v21: the parent's change (the parent area): only `autoPlay`, a boolean; anything else is refused.
+export const PARENT_SETTING_KEYS = ['autoPlay'] as const;
+export function checkParentSettingsPatch(v: unknown): Pick<ChildSettings, 'autoPlay'> | null {
+  if (!v || typeof v !== 'object' || Array.isArray(v)) return null;
+  const o = v as Record<string, unknown>;
+  const keys = Object.keys(o);
+  if (keys.length !== 1 || keys[0] !== 'autoPlay' || typeof o.autoPlay !== 'boolean') return null;
+  return { autoPlay: o.autoPlay };
 }
 
 // The language meanings are shown in: the child's choice, else the app's language.

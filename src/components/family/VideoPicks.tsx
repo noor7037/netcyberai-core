@@ -131,7 +131,6 @@ export function VideoList({ w, videos, saver = false, title, tag, see, wanted }:
                     <FamIcon name="play" className="ml-1 h-7 w-7" />
                   </span>
                 </span>
-                <span aria-hidden="true" className="absolute bottom-2 right-2 rounded-md bg-slate px-2 py-0.5 text-xs font-bold text-white">{length(v.durationS)}</span>
               </button>
             )}
             <p className="font-bold" lang={script(v.title)}>
@@ -153,10 +152,6 @@ export function VideoList({ w, videos, saver = false, title, tag, see, wanted }:
                 {w['fam.video.failed']}
               </p>
             )}
-            <p className="text-sm">
-              {w['fam.video.by']}{' '}
-              <span lang={script(v.channelTitle)}>{v.channelTitle}</span> · {fill(w['fam.video.length'], { length: length(v.durationS) })}
-            </p>
           </li>
         ))}
       </ul>

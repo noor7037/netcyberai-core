@@ -2,20 +2,22 @@
 
 import { useState } from 'react';
 import type { Words } from '@/lib/family/fill';
-import type { ElabSim } from '@/lib/family/sim-hosts';
+import { simMode, type ElabSim } from '@/lib/family/sim-hosts';
+import { LabLinkCard } from './LabLinkCard';
 
 // "Try it yourself" (Noor, 16 Nov 2026): a curated simulation in step 4 of an answer, beside the photos and never instead of them.
 // The card is drawn here first (a small picture of our own, or a drawn card); nothing from the simulation's site loads, not even a
 // picture, until the child taps. Then the site's own page runs in a sandboxed frame. The frame's host is one the Family app's
 // Content-Security-Policy allows (next.config.js, from src/lib/family/sim-hosts.ts).
 const NAMES: Record<string, string> = {
-  phet: 'PhET', geogebra: 'GeoGebra', nasa_eyes: 'NASA Eyes', hhmi: 'HHMI BioInteractive', labxchange: 'LabXchange', concord: 'Concord Consortium',
+  phet: 'PhET', vlabs: 'Virtual Labs', olabs: 'OLabs', nasa_eyes: 'NASA Eyes', hhmi: 'HHMI BioInteractive', labxchange: 'LabXchange', concord: 'Concord Consortium',
   desmos: 'Desmos', smithsonian3d: 'Smithsonian 3D', googlearts: 'Google Arts and Culture', wolfram: 'Wolfram Demonstrations',
 };
 
 export function SimCard({ sim, w }: { sim: ElabSim; w: Words }) {
   const [open, setOpen] = useState(false);
   const from = NAMES[sim.source] ?? sim.source;
+  if (simMode(sim) === 'link') return <LabLinkCard sim={sim} from={from} w={w} />;
   return (
     <section data-elab-sim={sim.source} aria-label={w['fam.elab.trySim']} className="flex flex-col gap-2 rounded-2xl bg-white p-2 ring-1 ring-ink/10">
       <h4 className="px-1 text-sm font-extrabold text-slate">{w['fam.elab.trySim']}</h4>

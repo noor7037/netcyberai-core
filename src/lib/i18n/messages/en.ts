@@ -8471,7 +8471,7 @@ export const en = {
   // m2-5 begin
   // The video finder and the honest player (M2-5, C279).
   'fam.video.title': 'A video on this topic',
-  'fam.video.note': 'This video comes from YouTube. YouTube may show ads and suggest other videos. Nothing from YouTube loads until you tap play.',
+  'fam.video.note': 'This video comes from YouTube. YouTube may show ads and suggest other videos.',
   'fam.video.play': 'Play the video:',
   'fam.video.length': '{length} long',
   'fam.video.by': 'Channel:',
@@ -10228,10 +10228,18 @@ export const en = {
   'fam.elab.hint': 'Show a hint',
   'fam.elab.showAnswer': 'Show the answer',
   'fam.elab.checks': 'Check yourself',
+  'fam.elab.extras': 'More to explore',
+  'fam.elab.extra.home': 'Try it at home',
+  'fam.elab.extra.fact': 'Fun fact',
+  'fam.elab.extra.india': 'In India',
+  'fam.elab.extra.trick': 'Memory trick',
+  'fam.elab.extra.whatif': 'What would happen if...?',
   'fam.elab.view3d': 'Turn it with your finger, pinch to zoom',
   'fam.elab.trySim': 'Try it yourself',
   'fam.elab.simOpen': 'Open the simulation',
   'fam.elab.simFrom': 'Simulation from',
+  'fam.elab.labOpen': 'Open lab',
+  'fam.elab.labNote': 'This lab opens on its own site, in a new tab.',
   'fam.elab.simLoading': 'Loading the simulation...',
   'fam.block.mindMap': 'Mind map',
   'fam.block.sceneTap': 'Tap a part to read what it does.',
@@ -11133,6 +11141,8 @@ export const en = {
   'fam.w19.settings.normal': 'Normal',
   'fam.w19.settings.voiceTitle': 'Voice',
   'fam.w19.settings.lookTitle': 'Look',
+  'fam.parent.autoPlay.title': 'Read answers aloud by themselves',
+  'fam.parent.autoPlay.lead': 'When a tutor answer arrives, it is read aloud once. Your child can tap Replay to hear it again.',
   'fam.w19.settings.saved': 'Saved',
   // W19-C end
   // W20-E start

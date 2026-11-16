@@ -68,11 +68,12 @@ describe('read aloud without gaps', () => {
   it('the speaker asks for part 2 while part 1 plays, before part 1 ends', async () => {
     const g = globalThis as Record<string, unknown>;
     const audios: { onplaying: (() => void) | null; onended: (() => void) | null }[] = [];
+    let plays = 0;
     class FakeAudio {
       playbackRate = 1; paused = true; currentTime = 0; duration = 1;
       onplaying: (() => void) | null = null; onended: (() => void) | null = null;
       constructor() { audios.push(this); }
-      play() { this.paused = false; queueMicrotask(() => this.onplaying?.()); return Promise.resolve(); }
+      play() { plays++; this.paused = false; queueMicrotask(() => this.onplaying?.()); return Promise.resolve(); }
       pause() { this.paused = true; }
       removeAttribute() {}
     }
@@ -91,14 +92,16 @@ describe('read aloud without gaps', () => {
     await part1;
     const before = asked.length;
     const part2 = v.speakLine('server', { kind: 'tutor_answer', messageId: 'm', from: 3 }, { text: 'Two.', lang: 'en', rate: 1 });
-    await vi.waitFor(() => expect(audios.length).toBe(2));
+    // v21: the same <audio> element plays part 2 (one element for the visit).
+    await vi.waitFor(() => expect(plays).toBe(2));
+    expect(audios.length).toBe(1);
     expect(asked.length).toBe(before);
-    audios[1].onended?.();
+    audios[0].onended?.();
     await part2;
   });
   it('the speaker uses the short first part and the prefetch', () => {
     const src = readFileSync('src/components/family/voice/AnswerSpeaker.tsx', 'utf8');
-    expect(src).toContain('ANSWER_FIRST_MAX');
+    expect(src).toContain('answerParts(');
     expect(src).toContain('voice.prefetchLine(');
   });
 });
@@ -112,8 +115,8 @@ describe('simulations', () => {
     expect(matchSim(rows, { subject: 'science', term: "Ohm's law" }, { classLevel: 10 })?.source).toBe('phet');
     expect(matchSim(rows, { subject: 'science', term: "Ohm's law" }, { classLevel: 3 })).toBeNull();
     expect(matchSim(rows, { subject: 'science', term: 'photosynthesis' }, { classLevel: 10 })).toBeNull();
-    expect(EMBED_ORDER.slice(0, 4)).toEqual(['phet', 'geogebra', 'nasa_eyes', 'hhmi']);
-    expect(EMBED_ORDER[EMBED_ORDER.length - 1]).toBe('wolfram');
+    expect(EMBED_ORDER.slice(0, 4)).toEqual(['phet', 'nasa_eyes', 'hhmi', 'vlabs']);
+    expect(EMBED_ORDER).not.toContain('geogebra');
   });
   it('a stored card must be on its source\'s own host', () => {
     expect(checkSim({ source: 'phet', title: 't', embed: 'https://evil.example/x', page: 'https://phet.colorado.edu/a' })).toBeNull();

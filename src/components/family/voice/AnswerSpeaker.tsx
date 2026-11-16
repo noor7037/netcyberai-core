@@ -3,7 +3,7 @@
 import { useEffect, useId, useMemo, useRef, useState, type RefObject } from 'react';
 import { readChildSettings } from '@/lib/family/child-settings';
 import { fill, type Words } from '@/lib/family/fill';
-import { ANSWER_FIRST_MAX, ANSWER_SPOKEN_MAX, chunkEnd, sentenceAtChar } from '@/lib/family/call';
+import { answerParts, sentenceAtChar } from '@/lib/family/call';
 import type { VoiceMode } from './lineVoice';
 import { markSentence, markWord } from './highlight';
 
@@ -22,9 +22,10 @@ const STARTED = 'fam:answer-speaking';
 const places = new Map<string, number>();
 
 type VoiceInput = { messageId: string; sentences: readonly string[]; lang?: 'en' | 'hi'; serverVoice: boolean; onSentence?: (i: number | undefined) => void; root?: RefObject<HTMLElement | null>; onReading?: (r: Reading) => void };
-// C508: `auto`, a fresh answer for a young child: read aloud once by itself as soon as the child's settings are read,
-// when read aloud is on and no other voice is reading. If it cannot start, the button below stays as always.
-export const startsByItself = (a: { auto: boolean; readAloud: boolean; sentences: number; busy: boolean }) => a.auto && a.readAloud && a.sentences > 0 && !a.busy;
+// C508: `auto`, a fresh answer: read aloud once by itself as soon as the child's settings are read, when read aloud is on
+// and no other voice is reading. If it cannot start, the button stays as always. v21: every class (Class 3 and below as
+// before), unless the parent switched it off (`autoPlay`, the parent area).
+export const startsByItself = (a: { auto: boolean; readAloud: boolean; sentences: number; busy: boolean; autoPlay?: boolean }) => a.auto && a.readAloud && a.autoPlay !== false && a.sentences > 0 && !a.busy;
 
 // W22-S3: what the answer owner needs to keep the tutor's face on screen while the answer is read: whether the voice is
 // speaking, and how much of the answer has been read (0 to 100).
@@ -46,18 +47,22 @@ function langOf(given: 'en' | 'hi' | undefined, el: HTMLElement | null): 'en' | 
 // resumed from the sentence it reached. The server voice reports no word boundaries, so its sentence is found from how
 // much of the audio has played; the phone's own voice reads one sentence at a time and reports words where it can. The
 // sentence is highlighted (and its word, when known) and kept on screen.
-function useAnswerVoice({ messageId, sentences, lang, serverVoice, onSentence, root, onReading, auto = false }: VoiceInput & { auto?: boolean }) {
+function useAnswerVoice({ messageId, sentences, lang, serverVoice, onSentence, root, onReading, auto = false, onAutoStart }: VoiceInput & { auto?: boolean; onAutoStart?: () => void }) {
   const [speaking, setSpeaking] = useState(false);
   const [ready, setReady] = useState(false);
   const [place, setPlace] = useState(() => places.get(messageId) ?? 0);
   // W19-C: the child's own switches: read aloud off hides the buttons; slow halves the pace.
   const [on, setOn] = useState(true);
+  const [autoPlay, setAutoPlay] = useState(true);
+  // v21: the browser would not start the sound by itself (no tap): the button pulses until it is tapped.
+  const [blocked, setBlocked] = useState(false);
   const prefs = useRef({ rate: 0.9 });
   useEffect(() => {
     let live = true;
     void readChildSettings().then((s) => {
       if (!live) return;
       setOn(s.readAloud);
+      setAutoPlay(s.autoPlay !== false);
       prefs.current = { rate: s.voiceSpeed === 'slow' ? 0.75 : 0.9 };
       setReady(true);
     });
@@ -122,6 +127,7 @@ function useAnswerVoice({ messageId, sentences, lang, serverVoice, onSentence, r
   const start = async (fromSentence?: number) => {
     const voice = await import('./lineVoice');
     const mine = ++run.current;
+    setBlocked(false);
     window.dispatchEvent(new CustomEvent(STARTED, { detail: me }));
     setSpeaking(true);
     const words = langOf(lang, el.current);
@@ -132,33 +138,44 @@ function useAnswerVoice({ messageId, sentences, lang, serverVoice, onSentence, r
     at.current = undefined;
     reach(i);
     let used = mode;
-    // The first part of a reading is short (about 200 characters of whole sentences) so speech starts fast.
-    let firstPart = true;
+    // The first part of a reading is short (about 200 characters of whole sentences) so speech starts fast; the rest are
+    // near its size (call.ts answerParts). v21: two parts ahead are asked for: the next one with this one, and while this
+    // one plays the one after, so a part is ready when the one before it ends (no silent gap).
+    const parts = answerParts(sentences, i);
+    const ask = (q: { from: number; max: number }) => ({ kind: 'tutor_answer' as const, messageId, from: q.from, max: q.max });
+    let k = 0;
     while (i < sentences.length) {
-      if (used === 'server') {
-        const cap = firstPart ? ANSWER_FIRST_MAX : ANSWER_SPOKEN_MAX;
-        const end = chunkEnd(sentences, i, cap);
+      if (used === 'server' && parts[k]?.from === i) {
+        const p = parts[k];
+        const end = p.end;
         const part = sentences.slice(i, end);
         const text = part.join(' ');
         const first = i;
-        const source = (from: number, max: number | undefined) => ({ kind: 'tutor_answer' as const, messageId, from, ...(max ? { max } : {}) });
-        // While this part plays, the next part's audio is asked for, so it starts the moment this one ends (no silent gap).
-        const spoken = await voice.speakLine('server', source(first, firstPart ? ANSWER_FIRST_MAX : undefined), {
+        const ahead = k;
+        if (parts[ahead + 1]) voice.prefetchLine(ask(parts[ahead + 1]));
+        const spoken = await voice.speakLine('server', ask(p), {
           text,
           lang: words,
           rate: prefs.current.rate,
           onPlaying: () => {
-            if (end < sentences.length && run.current === mine) voice.prefetchLine(source(end, undefined));
+            if (run.current === mine) for (const q of parts.slice(ahead + 1, ahead + 3)) voice.prefetchLine(ask(q));
           },
           onProgress: (played) => run.current === mine && reach(first + Math.max(0, sentenceAtChar(part, played * text.length))),
         });
         if (run.current !== mine || spoken.cancelled) return;
+        if (spoken.blocked) {
+          // Nothing was read: the place stays, the button pulses and a tap starts it.
+          setSpeaking(false);
+          setBlocked(true);
+          markSentence(null, null);
+          return;
+        }
         if (spoken.mode === 'phone') {
           // The server voice turned off or failed: this part was read by the phone's own voice, and the rest of the visit is.
           used = 'phone';
           setMode('phone');
         }
-        firstPart = false;
+        k++;
         i = end;
         if (i < sentences.length) reach(i);
       } else {
@@ -174,14 +191,19 @@ function useAnswerVoice({ messageId, sentences, lang, serverVoice, onSentence, r
 
   // C508: once, for this answer only.
   const autoDone = useRef(false);
+  const onAuto = useRef(onAutoStart);
+  onAuto.current = onAutoStart;
   useEffect(() => {
     if (!auto || !ready || autoDone.current) return;
     autoDone.current = true;
     void import('./lineVoice').then((m) => {
-      if (startsByItself({ auto, readAloud: on, sentences: sentences.length, busy: m.voiceBusy() })) void start();
+      if (startsByItself({ auto, readAloud: on, autoPlay, sentences: sentences.length, busy: m.voiceBusy() })) {
+        onAuto.current?.();
+        void start();
+      }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [auto, ready, on, sentences.length]);
+  }, [auto, ready, on, autoPlay, sentences.length]);
 
   const percent = share(place);
   const told = useRef(onReading);
@@ -207,7 +229,7 @@ function useAnswerVoice({ messageId, sentences, lang, serverVoice, onSentence, r
     [],
   );
 
-  return { speaking, mode, start, stop, el, on, percent, started };
+  return { speaking, mode, start, stop, el, on, percent, started, blocked };
 }
 
 export function AnswerSpeaker({ w, messageId, sentences, lang, serverVoice, onSentence, root, onReading, auto = false }: { w: Words; auto?: boolean } & VoiceInput) {
@@ -250,21 +272,25 @@ export function AnswerSpeaker({ w, messageId, sentences, lang, serverVoice, onSe
 // W18-P1: "Teach me": the answer read aloud with the sentence being spoken highlighted in its text (the chapter reader's
 // highlight) and the board moving with it. One button: Teach me, then Pause while it speaks (the voice stops; the board
 // and the highlight stay where they were), then Resume from that sentence, and Replay after the end. The tutor's face
-// stays on screen while it reads: the owner of the answer draws it (StickyTutorFace) from `onReading`. No animation.
-export function TeachMe({ w, messageId, sentences, lang, serverVoice, onSentence, root, onReading }: { w: Words; tutorKey?: string | null } & VoiceInput) {
-  const v = useAnswerVoice({ messageId, sentences, lang, serverVoice, onSentence, root, onReading });
+// stays on screen while it reads: the owner of the answer draws it (StickyTutorFace) from `onReading`.
+// v21: the answer's one listen button. `auto`: a fresh answer is read once by itself (every class, unless the parent
+// switched it off), and the button then says Replay ("फिर से सुनो"). When the browser will not start sound without a
+// tap, the button pulses gently (none under reduced motion) and no error is shown.
+export function TeachMe({ w, messageId, sentences, lang, serverVoice, onSentence, root, onReading, auto = false }: { w: Words; tutorKey?: string | null; auto?: boolean } & VoiceInput) {
   const [used, setUsed] = useState(false);
+  const v = useAnswerVoice({ messageId, sentences, lang, serverVoice, onSentence, root, onReading, auto, onAutoStart: () => setUsed(true) });
   const label = v.speaking ? w['fam.tutor.pause'] : v.started ? w['fam.tutor.resume'] : used ? w['fam.tutor.replay'] : w['fam.tutor.teachMe'];
   return (
     <div ref={v.el} className="flex flex-col items-start gap-2">
       <button
         type="button"
         data-teach-me={messageId}
+        data-voice-blocked={v.blocked || undefined}
         onClick={() => {
           setUsed(true);
           void (v.speaking ? v.stop() : v.start());
         }}
-        className="fam-press inline-flex min-h-[44px] min-w-[44px] items-center gap-2 rounded-full bg-saffron px-4 text-sm font-bold text-ink"
+        className={`fam-press inline-flex min-h-[44px] min-w-[44px] items-center gap-2 rounded-full bg-saffron px-4 text-sm font-bold text-ink${v.blocked ? ' animate-pulse ring-4 ring-saffron/40 motion-reduce:animate-none' : ''}`}
       >
         <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor">
           {v.speaking ? (

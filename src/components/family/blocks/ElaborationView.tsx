@@ -2,12 +2,10 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
-import { stopSpeaking, speak } from "@/components/family/english/speech";
 import {
   ELAB_KEYS,
   LEVELS,
   stepAtSentence,
-  stepSay,
   type ElabCheck,
   type ElabKey,
   type ElabPic,
@@ -18,15 +16,16 @@ import { type Words } from "@/lib/family/fill";
 import { useReducedMotion } from "./InteractiveViews";
 import { showcaseSrc } from "./ShowcaseView";
 import { Model3dPic } from "./Model3dPic";
+
+// v21: our own SVG animation for a step, in its own small chunk (only an answer that has one loads it).
+const AnimPic = dynamic(() => import("./AnimPic").then((m) => m.AnimPic));
 import { WIDE_MEDIA, photoSizes } from "@/lib/family/visuals/photo-size";
 
 // The NetCyberAI Elaboration Framework's answer (founder, 16 Nov 2026): five steps in order. Every step has a picture to
 // see, the text to read and a voice line to listen to. On a phone each step is a card with its picture on top; from 1024 px
 // the conversation (the five steps) sits beside a whiteboard that shows the picture of the step being read, heard or
 // tapped. The answer's own read-aloud and Teach me speak the same lines in the same order (`sentence` names the one being
-// spoken, so the board follows the voice); each step's Listen button speaks that step alone.
-
-const isHindi = (s: string) => /[ऀ-ॿ]/.test(s);
+// spoken, so the board follows the voice). v21: no Listen button on each step; the answer's one button at the top reads it.
 
 function Pic({
   pic,
@@ -44,6 +43,7 @@ function Pic({
   void n;
   // A 3D model (a still picture stays on Data saver and weak phones).
   if (pic.kind === "model3d") return <Model3dPic pic={pic} w={w} className={className} />;
+  if (pic.kind === "animation") return <AnimPic pic={pic} className={className} />;
   // A licensed photograph: just the picture. Never a label on it.
   if (pic.kind === "photo" && pic.url) {
     const sizes = photoSizes(pic.url);
@@ -66,6 +66,7 @@ function Pic({
   );
 }
 
+const ElabExtrasView = dynamic(() => import("./ElabExtrasView").then((m) => m.ElabExtrasView));
 // Loaded only when an answer carries a simulation, so a first visit does not download it.
 const SimCard = dynamic(() => import("./SimCard").then((m) => m.SimCard));
 
@@ -155,8 +156,6 @@ export function ElaborationView({
   sentences?: readonly string[];
 }) {
   const [tapped, setTapped] = useState(0);
-  const [listening, setListening] = useState<number | null>(null);
-  const says = stepSay(b);
   const spoken =
     sentence !== undefined
       ? stepAtSentence(b, sentences ?? [], sentence)
@@ -179,20 +178,6 @@ export function ElaborationView({
     el.querySelectorAll("[data-elab-step]").forEach((s) => seen.observe(s));
     return () => seen.disconnect();
   }, []);
-  useEffect(() => () => stopSpeaking(), []);
-  const listen = (i: number) => {
-    setTapped(i);
-    if (listening === i) {
-      stopSpeaking();
-      setListening(null);
-      return;
-    }
-    stopSpeaking();
-    setListening(i);
-    void speak(says[i], isHindi(says[i]) ? "hi" : "en", 0.9).finally(() =>
-      setListening((now) => (now === i ? null : now)),
-    );
-  };
   const label = (k: ElabKey) => w[`fam.elab.step.${k}`];
   const body = (k: ElabKey): React.ReactNode => {
     switch (k) {
@@ -319,31 +304,6 @@ export function ElaborationView({
                   <h3 className="min-w-0 flex-1 break-words text-base font-extrabold text-slate">
                     {label(k)}
                   </h3>
-                  {
-                    <button
-                      type="button"
-                      data-elab-listen={i + 1}
-                      aria-pressed={listening === i}
-                      onClick={() => listen(i)}
-                      className="fam-press flex min-h-[44px] shrink-0 items-center gap-1.5 rounded-full bg-grape-deep px-3 text-sm font-bold text-white"
-                    >
-                      <svg
-                        aria-hidden="true"
-                        viewBox="0 0 24 24"
-                        className="h-4 w-4"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                      >
-                        <path d="M4 9v6h4l5 4V5L8 9H4z" />
-                        <path d="M16 9a3 3 0 0 1 0 6" />
-                      </svg>
-                      {listening === i
-                        ? w["fam.elab.stop"]
-                        : w["fam.elab.listen"]}
-                      <span className="sr-only"> {label(k)}</span>
-                    </button>
-                  }
                 </div>
                 <div className="overflow-hidden rounded-2xl bg-white lg:hidden">
                   <Pic pic={b.pics[i] ?? null} n={i + 1} w={w} />
@@ -364,6 +324,7 @@ export function ElaborationView({
           </div>
         )}
       </div>
+      {b.extras && <ElabExtrasView extras={b.extras} w={w} />}
       <span hidden data-tone={tone} />
     </section>
   );
