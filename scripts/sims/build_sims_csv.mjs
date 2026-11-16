@@ -33,7 +33,10 @@ const COLS = ['class', 'subject', 'chapter_number', 'chapter_name', 'topic', 'la
 const add = (r) => rows.push(COLS.map((c) => q(r[c] ?? '')).join(','));
 const pageTitle = (html, fallback) => {
   const m = /<title>([^<]{3,120})<\/title>/i.exec(html ?? '');
-  return m ? m[1].replace(/\s+/g, ' ').trim() : fallback;
+  if (!m) return fallback;
+  // PhET writes its titles as HTML entities with direction marks and sometimes a version number; a debug title is never used.
+  const t = m[1].replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n))).replace(/&nbsp;/g, ' ').replace(/[\u202a-\u202e\u200e\u200f\u00a0]/g, ' ').replace(/\s*\d+\.\d+\.\d+\s*$/, '').replace(/\s+/g, ' ').trim();
+  return !t || /scenery|debug/i.test(t) ? fallback : t;
 };
 
 const phetCache = new Map();

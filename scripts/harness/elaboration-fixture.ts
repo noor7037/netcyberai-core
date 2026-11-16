@@ -184,9 +184,31 @@ const LINES = {
       checks: [{ question: "आधा को किस भिन्न से लिखते हैं?", options: ["1/2", "2/1"], answer: 0, right: "आधा = 1/2।", hint: "ऊपर एक हिस्सा, नीचे दो हिस्से।" }],
     },
   },
+  simfracEn: {
+    question: "Why must the parts of a fraction be equal?",
+    line: {
+      type: "elaboration",
+      term: "Fractions",
+      topic_en: "fractions",
+      topic_local: null,
+      icon: "🫓",
+      definition: { text: "A fraction names one equal part of a whole, so the parts must all be the same size.", say: "A fraction names one equal part of a whole, so the parts must all be the same size.", q: "fraction roti" },
+      levels: {
+        basic: "If a roti is cut into two unequal pieces, 'half' would not be fair.",
+        intermediate: "The bottom number tells how many equal parts the whole is cut into. If the parts are not equal, the top number cannot say how much we have, because one part could be big and another small. So we first cut the whole into equal parts, then count the parts we take.",
+        advanced: "A fraction a/b is defined as a parts out of b equal parts of one whole. Equal parts are what let us compare fractions, add them and place them on a number line, because every part then measures the same amount.",
+        say: "Basic: unequal pieces are not fair. Intermediate: the bottom number counts equal parts. Advanced: equal parts let us compare and add fractions.",
+        q: "fraction pie",
+      },
+      real_life: { text: "When three friends share a pizza, each must get an equal slice, or one friend gets more.", say: "When three friends share a pizza, each must get an equal slice.", icon: "🍕", q: "pizza slices" },
+      try_it: { question: "Cut a paper into 4 parts, but make them unequal. Can you call one part a quarter?", right: "No. A quarter needs four equal parts.", hint: "Fold the paper in half, then in half again.", say: "Cut a paper into four unequal parts. Can you call one a quarter?", q: "paper fold" },
+      future: { text: "Equal parts help you later with decimals, percentages and ratios.", say: "Equal parts help you later with decimals and percentages.", icon: "🚀", q: "percentage chart" },
+      checks: [{ question: "Why do we cut a roti into equal parts for a fraction?", options: ["So each part is the same size", "So it looks nice"], answer: 0, right: "Equal parts make each fraction mean the same amount.", hint: "Think of sharing fairly." }],
+    },
+  },
 } as const;
 
-async function build(lang: "en" | "hi" | "photo" | "photoHi" | "intent" | "simfrac") {
+async function build(lang: "en" | "hi" | "photo" | "photoHi" | "intent" | "simfrac" | "simfracEn") {
   const { question, line } = LINES[lang];
   const parsed = parseBlockLine(JSON.stringify(line));
   if (parsed?.type !== "elaboration")
@@ -202,13 +224,13 @@ async function build(lang: "en" | "hi" | "photo" | "photoHi" | "intent" | "simfr
   const block =
     lang === "en" || lang === "hi"
       ? built
-      : await fillElaboration(built, { subject: lang === "simfrac" ? "mathematics" : "science" });
+      : await fillElaboration(built, { subject: lang === "simfrac" || lang === "simfracEn" ? "mathematics" : "science" });
   // The app's own intent step and match: the key and queries printed for the report, the simulation from the seed file.
   const child = { classLevel: CLASS, firstName: "Aarav", language: "hi" } as never;
-  const intent = intentOf({ question, child, subject: lang === "simfrac" ? "mathematics" : "evs", replyLang: "hinglish", model: block.topic ? { en: block.topic.en, local: block.topic.local } : null });
+  const intent = intentOf({ question, child, subject: lang === "simfrac" || lang === "simfracEn" ? "mathematics" : "evs", replyLang: lang === "simfracEn" ? "en" : "hinglish", model: block.topic ? { en: block.topic.en, local: block.topic.local } : null });
   const topicLine = intentLine(intent);
   const sim =
-    lang === "intent" || lang === "simfrac"
+    lang === "intent" || lang === "simfrac" || lang === "simfracEn"
       ? matchSim(simRowsFromCsv(readFileSync(new URL("../seed/curated_sims.csv", import.meta.url), "utf8")).rows.filter((r) => r.language === "hi" || r.language === "en"), { subject: intent.subject, term: block.term, topicEn: block.topic?.en }, { classLevel: CLASS })
       : null;
   if (sim) (block as unknown as Record<string, unknown>).sim = sim;
@@ -239,6 +261,6 @@ async function build(lang: "en" | "hi" | "photo" | "photoHi" | "intent" | "simfr
 
 void (async () => {
   process.stdout.write(
-    JSON.stringify({ en: await build("en"), hi: await build("hi"), photo: await build("photo"), photoHi: await build("photoHi"), intent: await build("intent"), simfrac: await build("simfrac") }),
+    JSON.stringify({ en: await build("en"), hi: await build("hi"), photo: await build("photo"), photoHi: await build("photoHi"), intent: await build("intent"), simfrac: await build("simfrac"), simfracEn: await build("simfracEn") }),
   );
 })();

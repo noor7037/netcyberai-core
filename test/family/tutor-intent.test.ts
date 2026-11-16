@@ -1,4 +1,5 @@
 import { randomBytes } from 'node:crypto';
+import { readFileSync } from 'node:fs';
 import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 
 // Noor, 16 Nov 2026: the video finder's quality pass, on the real migrations (PGlite): a person's curated video first,
@@ -190,5 +191,28 @@ describe('the finder, on the real migrations', () => {
     const named = intentLine(asked('Kachra prabandhan', { en: 'dry waste', local: 'सूखा कचरा' }, { classLevel: 4 }))!;
     await topicVideos(asFamily as never, named as never, kid({ classLevel: 4 }), 'hi', { review: () => undefined });
     expect(searchedEmptyLately(named.key, 'hi')).toBe(true);
+  });
+});
+
+describe('the simulations table and the clearing migration, on the real migrations', () => {
+  const ins = (embed: string, approved: boolean) =>
+    q(
+      `insert into content.curated_topic_sims (class, subject, topic, language, source, title, embed_url, page_url, approved)
+       values ('3', 'Maths', 'fractions', 'hi', 'phet', 'Fractions', $1, $1, $2)`,
+      [embed, approved],
+    );
+  it('content.curated_sims() returns approved rows of the language only, to the family role', async () => {
+    await ins('https://phet.colorado.edu/sims/html/fractions-intro/latest/fractions-intro_hi.html', true);
+    await ins('https://phet.colorado.edu/sims/html/build-a-fraction/latest/build-a-fraction_hi.html', false);
+    const rows = await asFamily((db) => db.query(`select embed_url from content.curated_sims('hi')`)).then((r: any) => r.rows);
+    expect(rows.map((r: any) => r.embed_url)).toEqual(['https://phet.colorado.edu/sims/html/fractions-intro/latest/fractions-intro_hi.html']);
+    expect(await asFamily((db) => db.query(`select embed_url from content.curated_sims('en')`)).then((r: any) => r.rows)).toEqual([]);
+    await expect(asFamily((db) => db.query('select * from content.curated_topic_sims'))).rejects.toThrow();
+  });
+  it('the clearing migration removes the empty free. searches and nothing else', async () => {
+    await q(`insert into content.video_topic_searches (topic_key, language, found) values ('free.c3.kachra-prabandhan', 'hi', 0), ('free.c3.waste-management', 'hi', 2), ('cbse.c3.evs.ch01.t01', 'hi', 0)`);
+    await q(readFileSync('supabase/migrations/20261116160000_clear_romanised_empty_video_searches.sql', 'utf8'));
+    const left = (await q(`select topic_key from content.video_topic_searches where topic_key in ('free.c3.kachra-prabandhan','free.c3.waste-management','cbse.c3.evs.ch01.t01') order by 1`)).map((r: any) => r.topic_key);
+    expect(left).toEqual(['cbse.c3.evs.ch01.t01', 'free.c3.waste-management']);
   });
 });
