@@ -47,7 +47,8 @@ const OFFICIAL = 'UCofficial0000000000001';
 const yt = vi.hoisted(() => ({ seen: [] as URL[], ids: [] as string[], lang: 'en' }));
 const item = (id: string, title: string) => ({
   id,
-  snippet: { channelId: 'UCofficial0000000000001', channelTitle: 'Official Science', title, description: '', defaultAudioLanguage: yt.lang },
+  snippet: { channelId: 'UCofficial0000000000001', channelTitle: 'Official Science', title, description: '', defaultAudioLanguage: yt.lang, publishedAt: '2020-01-01T00:00:00Z' },
+  statistics: { viewCount: '100000', likeCount: '2000' },
   contentDetails: { duration: 'PT8M', caption: 'true' },
   status: { embeddable: true, privacyStatus: 'public', madeForKids: false },
 });
@@ -89,7 +90,9 @@ beforeAll(async () => {
   vi.stubGlobal('fetch', async (input: string | URL) => {
     const url = new URL(String(input));
     yt.seen.push(url);
-    if (url.pathname.endsWith('/search')) return Response.json({ items: yt.ids.map((videoId) => ({ id: { kind: 'youtube#video', videoId } })) });
+    if (url.hostname === 'sponsor.ajay.app') return new Response('Not Found', { status: 404 });
+      yt.seen.push(url);
+      if (url.pathname.endsWith('/search')) return Response.json({ items: yt.ids.map((videoId) => ({ id: { kind: 'youtube#video', videoId } })) });
     if (url.pathname.endsWith('/videos')) return Response.json({ items: (url.searchParams.get('id') ?? '').split(',').map((id) => item(id, `Photosynthesis ${id}`)) });
     return new Response('{}', { status: 404 });
   });
@@ -125,6 +128,7 @@ describe('language: the child’s chosen one, then a visible fallback', () => {
     vi.unstubAllGlobals();
     vi.stubGlobal('fetch', async (input: string | URL) => {
       const url = new URL(String(input));
+      if (url.hostname === 'sponsor.ajay.app') return new Response('Not Found', { status: 404 });
       yt.seen.push(url);
       if (url.pathname.endsWith('/search')) return Response.json({ items: yt.ids.map((videoId) => ({ id: { kind: 'youtube#video', videoId } })) });
       if (url.pathname.endsWith('/videos')) return Response.json({ items: (url.searchParams.get('id') ?? '').split(',').map((id) => item(id, `Photosynthesis ${id}`)) });
@@ -140,10 +144,10 @@ describe('language: the child’s chosen one, then a visible fallback', () => {
     expect(inLanguage({ language: 'en', title: 'x' }, 'hi')).toBe(true);
   });
 
-  it('ranks the best four, official channels first', () => {
-    const c = (videoId: string, channelId = 'UCother000000000000000002') => ({ videoId, channelId, channelTitle: 'C', title: 'Photosynthesis explained', durationS: 600, captions: true, embeddable: true, madeForKids: false, isPublic: true, ageRestricted: false, language: 'en', chapters: [] });
+  it('ranks the best two, official channels first', () => {
+    const c = (videoId: string, channelId = 'UCother000000000000000002') => ({ videoId, channelId, channelTitle: 'C', title: 'Photosynthesis explained', durationS: 600, captions: true, embeddable: true, madeForKids: false, isPublic: true, ageRestricted: false, language: 'en', chapters: [], viewCount: 100000, likeCount: 2000, publishedAt: '2020-01-01T00:00:00Z', hasPaidPlacement: false });
     const r = rankVideos([c('aaaaaaaaaaa'), c('bbbbbbbbbbb'), c('ccccccccccc'), c('ddddddddddd'), c('fffffffffff', OFFICIAL)], { topicTitles: ['Photosynthesis'], language: 'en', channels: [{ channelId: OFFICIAL, kind: 'official' }], wider: true });
-    expect(r.map((p) => p.video_id)).toEqual(['fffffffffff', 'aaaaaaaaaaa', 'bbbbbbbbbbb', 'ccccccccccc']);
+    expect(r.map((p) => p.video_id)).toEqual(['fffffffffff', 'aaaaaaaaaaa']);
   });
 
   it('Tamil chosen, none found in Tamil: English picks, marked with the wanted language; then no search again', async () => {
