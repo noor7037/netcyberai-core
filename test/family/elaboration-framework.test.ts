@@ -249,7 +249,7 @@ describe("the reply on screen: five steps, each with a picture, text and voice",
     expect(steps.map((m) => m[1])).toEqual(["1", "2", "3", "4", "5"]);
     for (const m of steps) {
       expect(m[0]).toMatch(/<img [^>]*data-elab-img/); // a picture to see
-      expect(m[0]).toMatch(/data-elab-listen="\d"/); // a voice line to listen to
+      expect(m[0]).not.toMatch(/data-elab-listen/); // v21: read by the answer's one button at the top
       expect(m[0].replace(/<[^>]+>/g, " ").trim().length).toBeGreaterThan(20); // text to read
     }
     // the three levels, in order, and the one for this class leads

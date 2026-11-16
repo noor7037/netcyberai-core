@@ -284,7 +284,9 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
             setGap({ missing, cut: e.cut === true });
             setState(missing.length > 0 || e.cut === true ? 'incomplete' : 'done');
             if (typeof e.messageId === 'string') setMessageId(e.messageId);
-            setAutoRead(e.autoRead === true && typeof e.messageId === 'string');
+            // v21: every fresh answer is read aloud once by itself (C508's Class 3 and below, `autoRead`, now every class);
+            // the child's read-aloud switch and the parent's auto-play switch decide on the phone (AnswerSpeaker).
+            setAutoRead(typeof e.messageId === 'string');
             setUnanswered(null);
             answered.current?.(e.chat);
           }
@@ -420,14 +422,14 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
       )}
       {citation && <CitationChip w={w} c={citation} />}
       {lead && <DirectAnswerCard w={w} b={lead} />}
-      {voice && <TeachMe w={w} {...voice} root={top} />}
+      {voice && <TeachMe w={w} {...voice} root={top} auto={autoRead && saver.ready && !saver.state.on} />}
       {model && (
         <button type="button" data-show-model onClick={() => showModel(top.current)} className="fam-press fam-lesson-chip min-h-[44px] self-start rounded-full bg-white px-4 text-sm font-bold text-ink">
           {w['fam.understand.show3d']}
         </button>
       )}
       {drawn.filter((b) => b.type !== 'videos').map((b) => draw(b))}
-      {voice && <AnswerSpeaker w={w} {...voice} root={top} auto={autoRead && saver.ready && !saver.state.on} />}
+      {voice && <AnswerSpeaker w={w} {...voice} root={top} />}
       {(state === 'loading' || state === 'streaming') && (
         <div className="flex flex-col gap-3" aria-hidden="true">
           <div className="h-32 animate-pulse rounded-3xl bg-white motion-reduce:animate-none" />

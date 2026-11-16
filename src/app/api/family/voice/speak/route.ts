@@ -46,8 +46,14 @@ export async function POST(req: NextRequest) {
       return fail(prepared.reason === 'failed' ? 'failed' : 'not_set_up', 503);
     });
     if (plan instanceof NextResponse) return plan;
-    // 2. The vendor speaks, with no database connection held.
+    // 2. The vendor speaks, with no database connection held. v21: how long it took is sent back (Server-Timing, the
+    //    read-aloud's gap measurement) and logged once per request in development or with FAMILY_VOICE_TIMING=1; never the words.
+    const began = Date.now();
     const sent = await plan.send();
+    const genMs = Date.now() - began;
+    if (process.env.NODE_ENV === 'development' || process.env.FAMILY_VOICE_TIMING === '1') {
+      console.info('[voice] tts', { kind: ask.kind, from: ask.kind === 'tutor_answer' ? ask.from ?? 0 : null, max: ask.kind === 'tutor_answer' ? ask.max ?? null : null, genMs, ok: sent.result.ok });
+    }
     // 3. The metering (counts, characters and the ledger), in a second transaction; still once if signed out between.
     try {
       await withFamilyContext(claims, (db) => sent.record(db));
@@ -59,7 +65,7 @@ export async function POST(req: NextRequest) {
     if (!sent.result.ok) return fail('failed', 503);
     return new Response(Buffer.from(sent.result.audio), {
       status: 200,
-      headers: { 'Content-Type': sent.result.mediaType, 'Cache-Control': 'no-store, private', 'X-Content-Type-Options': 'nosniff', 'Content-Length': String(sent.result.audio.length) },
+      headers: { 'Content-Type': sent.result.mediaType, 'Cache-Control': 'no-store, private', 'X-Content-Type-Options': 'nosniff', 'Content-Length': String(sent.result.audio.length), 'Server-Timing': `tts;dur=${genMs}` },
     });
   } catch (err) {
     if (err instanceof FamilySessionRevokedError) return fail('not_signed_in', 401);
