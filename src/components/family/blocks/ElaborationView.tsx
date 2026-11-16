@@ -66,6 +66,7 @@ function Pic({
   );
 }
 
+const ElabExtrasView = dynamic(() => import("./ElabExtrasView").then((m) => m.ElabExtrasView));
 // Loaded only when an answer carries a simulation, so a first visit does not download it.
 const SimCard = dynamic(() => import("./SimCard").then((m) => m.SimCard));
 
@@ -364,6 +365,7 @@ export function ElaborationView({
           </div>
         )}
       </div>
+      {b.extras && <ElabExtrasView extras={b.extras} w={w} />}
       <span hidden data-tone={tone} />
     </section>
   );
