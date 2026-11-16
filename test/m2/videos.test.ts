@@ -117,6 +117,7 @@ beforeAll(async () => {
   vi.stubGlobal('fetch', async (input: string | URL, init?: RequestInit) => {
     const url = new URL(String(input));
     if (url.hostname === 'sponsor.ajay.app') return new Response('Not Found', { status: 404 });
+    if (url.pathname === '/oembed') return Response.json({ title: 't' });
     const key = new Headers(init?.headers).get('x-goog-api-key');
     yt.seen.push({ url, key });
     if (yt.fail) return new Response('{}', { status: 503 });
