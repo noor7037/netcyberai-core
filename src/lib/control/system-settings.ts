@@ -50,6 +50,8 @@ export const EDITABLE_SETTINGS: readonly EditableSetting[] = [
   { key: 'family.tutor.photo_doubts_per_day', kind: 'number', min: 0, max: CAP_MAX, whole: true },
   { key: 'family.plus.multiplier', kind: 'number', min: 1, max: MULTIPLIER_MAX, whole: false },
   { key: 'family.video_searches_per_day', kind: 'number', min: 0, max: 10_000, whole: true }, // src/lib/control/health.ts
+  { key: 'family.video_min_views', kind: 'number', min: 0, max: 100_000_000, whole: true }, // src/lib/family/video-finder.ts
+  { key: 'family.video_reviews_per_day', kind: 'number', min: 0, max: 5000, whole: true }, // src/lib/ai/platform.ts prepareVideoReview
   { key: 'leads.auto_reply', kind: 'switch', on: 'on', off: 'off' },
   { key: 'control.alert.queue_days', kind: 'number', min: 1, max: 365, whole: true }, // src/lib/content/response-queue.ts
   { key: 'control.alert.ai_failure_share', kind: 'number', min: 0, max: 1, whole: false },

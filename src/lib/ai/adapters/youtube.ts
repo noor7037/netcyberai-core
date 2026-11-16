@@ -1,6 +1,7 @@
 // The YouTube Data API v3 (docs/family-app/03 §8; M2-5, C279): the video finder's content adapter. Not a text model:
-// it is never a choice for an AI profile, and nothing a child typed or said ever reaches it. A search sends a topic's
-// title with its subject and class words, built by the server from the catalog (src/lib/family/videos.ts).
+// it is never a choice for an AI profile. A search sends a topic's title with its subject and class words, built by the
+// server from the catalog (src/lib/family/videos.ts); for a typed question with no catalog topic, a few of its subject
+// words only, after the safety check passed it, with no name, number, address or contact (answer-videos.ts freeLine).
 //
 // The key is handed in already opened by the platform and goes in the X-Goog-Api-Key header, so no request address
 // carries it. Nothing is stored, logged or thrown: a failure says only what kind it was. The description is read here
@@ -24,6 +25,12 @@ export type VideoCandidate = {
   ageRestricted: boolean;
   language: string | null;
   chapters: VideoChapter[];
+  // The quality gate (videos.ts rankVideos): the public counts (null when YouTube gives none), when it was published
+  // (ISO-8601, or null) and whether the creator declared a paid product placement in it.
+  viewCount: number | null;
+  likeCount: number | null;
+  publishedAt: string | null;
+  hasPaidPlacement: boolean;
 };
 // C522: any two-letter ISO 639-1 code (YouTube's relevanceLanguage); anything else searches as English.
 export type VideoSearch = { query: string; language: string; channelId?: string; maxResults?: number };
@@ -107,17 +114,25 @@ export async function searchVideoIds(apiKey: string, s: VideoSearch): Promise<Go
   return { ok: true, value: Array.from(new Set(ids)) };
 }
 
-// videos.list: one batch (up to 50 ids) for the duration, captions, embedding, made for kids and the language.
+const count = (v: unknown): number | null => {
+  const n = typeof v === 'string' && /^\d{1,15}$/.test(v) ? Number(v) : typeof v === 'number' && Number.isInteger(v) && v >= 0 ? v : NaN;
+  return Number.isFinite(n) ? n : null;
+};
+const when = (v: unknown): string | null => (typeof v === 'string' && v.length <= 40 && Number.isFinite(Date.parse(v)) ? new Date(Date.parse(v)).toISOString() : null);
+
+// videos.list: one batch (up to 50 ids) for the duration, captions, embedding, made for kids, the language, the public
+// counts, the publish date and a declared paid product placement (the quality gate).
 export async function videoDetails(apiKey: string, ids: string[]): Promise<Got<VideoCandidate[]>> {
   const clean = Array.from(new Set(ids.filter((v) => VIDEO_ID.test(v)))).slice(0, 50);
   if (!clean.length) return { ok: true, value: [] };
-  const got = await get('videos', { part: 'snippet,contentDetails,status', id: clean.join(','), maxResults: '50' }, apiKey);
+  const got = await get('videos', { part: 'snippet,contentDetails,status,statistics,paidProductPlacementDetails', id: clean.join(','), maxResults: '50' }, apiKey);
   if (!got.ok) return got;
   const out: VideoCandidate[] = [];
   for (const i of items(got.value)) {
     const snippet = obj(i.snippet);
     const details = obj(i.contentDetails);
     const status = obj(i.status);
+    const stats = obj(i.statistics);
     const videoId = typeof i.id === 'string' ? i.id : '';
     const channelId = typeof snippet.channelId === 'string' ? snippet.channelId : '';
     if (!VIDEO_ID.test(videoId) || !CHANNEL_ID.test(channelId)) continue;
@@ -135,6 +150,10 @@ export async function videoDetails(apiKey: string, ids: string[]): Promise<Got<V
       ageRestricted: obj(details.contentRating).ytRating === 'ytAgeRestricted',
       language: lang ? lang.toLowerCase() : null,
       chapters: parseChapters(snippet.description),
+      viewCount: count(stats.viewCount),
+      likeCount: count(stats.likeCount),
+      publishedAt: when(snippet.publishedAt),
+      hasPaidPlacement: obj(i.paidProductPlacementDetails).hasPaidProductPlacement === true,
     });
   }
   return { ok: true, value: out };

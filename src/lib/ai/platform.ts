@@ -5,6 +5,7 @@ import { adapterFor, moderationAdapterFor, realtimeAdapterFor, speechAdapterFor,
 import { probeWorkersTransports } from './adapters/workers-ai';
 import { resolverPrompt } from './prompts/family.resolver';
 import { searchVideoIds, videoDetails, type VideoCandidate, type VideoKind } from './adapters/youtube';
+import { watchYoutubeVideo, type VideoScores } from './adapters/gemini-video';
 import { aiEncryptionKey, unsealAiKey, type SealedRow } from './credentials';
 import { UNCAPPED_LEFT, countDailyRequest, countVoiceChars, dailyLimit, dailyRequestsUsed, giveVoiceCharsBack, takeDailyRequest, takeVoiceChars, testingModeOn, voiceCharLimit, voiceCharsLeft } from './daily-cap';
 import { takeTextTurn, tutorLimits } from '@/lib/family/tutor-meter';
@@ -58,6 +59,7 @@ export type ProfileId =
   | 'family.qc'
   | 'family.word_help'
   | 'family.voice_call'
+  | 'family.video_review'
   | 'copilot.draft'
   | 'parent_ai.home_help'
   | 'content.syllabus_extract'
@@ -129,6 +131,11 @@ export const PROFILES: readonly AiProfile[] = [
   // server mints (src/app/api/family/voice/call/token). The child's voice goes to that provider, so only one cleared for
   // minors may serve it. No provider today: the call then uses the chain (listen, answer, speak) and says nothing of it.
   { id: 'family.voice_call', carriesChildWords: true, capability: 'realtime', audience: 'family' },
+  // The video finder's judge (src/lib/family/video-review.ts): Gemini watches a public YouTube video once ever and scores
+  // it for accuracy, clarity, class fit, clickbait and child safety. Sent the video's address only, never a child's words
+  // or anything about a family. It runs in the background after a search, so no one waits for it; its own daily limit
+  // is family.video_reviews_per_day. Only Gemini can watch a YouTube address, so another provider set here is not used.
+  { id: 'family.video_review', carriesChildWords: false, capability: 'text', audience: 'control', callMs: 90_000 },
   // M2-10 (C284): Copilot and Parent AI. Their requests name a class level, subject and topic, never a person.
   { id: 'copilot.draft', carriesChildWords: false, capability: 'text', audience: 'school' },
   { id: 'parent_ai.home_help', carriesChildWords: false, capability: 'text', audience: 'school' },
@@ -1310,9 +1317,12 @@ export async function streamText(db: Sql, ctx: AiContext, profileId: ProfileId, 
 // a topic's title with its subject and class words — never from anything a child typed or said.
 
 export type { VideoCandidate, VideoChapter, VideoKind } from './adapters/youtube';
-export type VideoChannel = { channelId: string; kind: VideoKind };
+// noAds: Control marked the channel as one that runs no ads on its videos (ranked first; nothing in code strips ads).
+export type VideoChannel = { channelId: string; kind: VideoKind; noAds?: boolean };
 // C522: language is a two-letter ISO 639-1 code (the child's chosen language; the adapter checks it).
-export type VideoPlan = { query: string; language: string; channelIds: string[] };
+// curatedIds: videos a person chose for this topic (content.curated_topic_videos), read with the search's results so
+// they pass the same live checks (embedding, privacy, age, paid placement); searchOff: enough curated ones, no search.
+export type VideoPlan = { query: string; language: string; channelIds: string[]; curatedIds?: string[]; searchOff?: boolean };
 export type FoundVideos = { ok: true; candidates: VideoCandidate[] } | { ok: false };
 export type PreparedVideos = { ok: true; searches: number; find: () => Promise<FoundVideos> } | { ok: false; reason: 'no_key' | 'quota' };
 
@@ -1324,8 +1334,8 @@ const CHANNEL_SEARCHES = 2;
 // The channels Control listed (official, approved, blocked). Control's own table: families have no read of it, so it is
 // read here with the platform role, in a short transaction of its own (ids and kinds only; no family data is near it).
 export async function videoChannels(): Promise<VideoChannel[]> {
-  const rows = await withPlatformService(async (db) => (await db.query(`select channel_id, kind from content.video_channels order by kind, added_at`)).rows);
-  return rows.map((r) => ({ channelId: String(r.channel_id), kind: r.kind as VideoKind }));
+  const rows = await withPlatformService(async (db) => (await db.query(`select channel_id, kind, no_ads from content.video_channels order by kind, added_at`)).rows);
+  return rows.map((r) => ({ channelId: String(r.channel_id), kind: r.kind as VideoKind, noAds: r.no_ads === true }));
 }
 
 // In the caller's transaction: the provider's key (none, or one that does not open → nothing is searched and no quota
@@ -1342,16 +1352,18 @@ export async function prepareVideoSearch(db: Sql, a: { day: string; perDay: numb
   } catch {
     return { ok: false, reason: 'no_key' };
   }
-  const channels = a.plan.channelIds.slice(0, CHANNEL_SEARCHES);
+  const curatedIds = (a.plan.curatedIds ?? []).slice(0, 10);
+  const channels = a.plan.searchOff ? [] : a.plan.channelIds.slice(0, CHANNEL_SEARCHES);
   let searches = 0;
-  for (let i = 0; i < 1 + channels.length; i++) {
+  for (let i = 0; !a.plan.searchOff && i < 1 + channels.length; i++) {
     const took = await db.query(`select content.take_video_search($1::date, $2::int) as ok`, [a.day, Math.max(0, Math.floor(a.perDay))]);
     if (took.rows[0]?.ok !== true) break;
     searches++;
   }
-  if (searches === 0) return { ok: false, reason: 'quota' };
+  // No search left: curated videos are still read (one details call, not a search), or nothing is.
+  if (searches === 0 && !curatedIds.length) return { ok: false, reason: 'quota' };
   // Fewer searches left than planned: the wider catalogue keeps its one, the channel searches give way.
-  const channelIds = channels.slice(0, searches - 1);
+  const channelIds = channels.slice(0, Math.max(0, searches - 1));
   const { query, language } = a.plan;
   let used = false;
   return {
@@ -1362,14 +1374,75 @@ export async function prepareVideoSearch(db: Sql, a: { day: string; perDay: numb
       if (used) return { ok: false };
       used = true;
       // The channel searches and the wider one at once (one round trip); the channels' results come first.
-      const results = await Promise.all([
+      const results = searches === 0 ? [] : await Promise.all([
         ...channelIds.map((channelId) => searchVideoIds(apiKey, { query, language, channelId, maxResults: 5 })),
         searchVideoIds(apiKey, { query, language, maxResults: 10 }),
       ]);
-      if (!results.some((r) => r.ok)) return { ok: false };
-      const ids = results.flatMap((r) => (r.ok ? r.value : []));
+      if (results.length && !results.some((r) => r.ok) && !curatedIds.length) return { ok: false };
+      const ids = [...curatedIds, ...results.flatMap((r) => (r.ok ? r.value : []))];
       const details = await videoDetails(apiKey, Array.from(new Set(ids)));
       return details.ok ? { ok: true, candidates: details.value } : { ok: false };
     },
   };
+}
+
+// ---- the video judge (family.video_review; src/lib/family/video-review.ts) --------------------------------------------
+//
+// Gemini watches a public YouTube video and scores it. Not a text call through the chain: only Gemini takes a YouTube
+// address as the video, so the profile's own provider must be Gemini (Control can switch it off or change its model).
+// The key is Control's stored Gemini connection, else the server's GEMINI_API_KEY; never in code. The day's reviews
+// are limited by family.video_reviews_per_day (India day), checked here in the caller's transaction.
+export type PreparedVideoReview = { ok: true; model: string; apiKey: string; left: number } | { ok: false; reason: 'not_switched_on' | 'no_key' | 'cap_reached' };
+const REVIEW_PROVIDER = 'gemini';
+const REVIEW_MODEL = 'gemini-3.8-flash';
+export async function prepareVideoReview(db: Sql, env: Record<string, string | undefined> = process.env): Promise<PreparedVideoReview> {
+  const profile = await profileRow(db, 'family.video_review');
+  if (!profile || !profile.enabled || (profile.provider_id !== null && profile.provider_id !== REVIEW_PROVIDER)) return { ok: false, reason: 'not_switched_on' };
+  const cap = Number((await db.query(`select value from control.settings where key = 'family.video_reviews_per_day'`)).rows[0]?.value ?? 100);
+  const done = Number((await db.query(`select count(*)::int as n from content.video_reviews where (reviewed_at at time zone 'Asia/Kolkata')::date = (now() at time zone 'Asia/Kolkata')::date`)).rows[0]?.n ?? 0);
+  const left = (Number.isFinite(cap) && cap >= 0 ? Math.floor(cap) : 100) - done;
+  if (left <= 0) return { ok: false, reason: 'cap_reached' };
+  let apiKey: string | null = null;
+  const k = aiEncryptionKey(env);
+  const { rows } = await db.query(`select ciphertext, iv, tag, key_version from control.ai_sealed_credential($1)`, [REVIEW_PROVIDER]);
+  if (k && rows[0]) {
+    try {
+      apiKey = unsealAiKey(k, REVIEW_PROVIDER, rows[0] as SealedRow);
+    } catch {
+      apiKey = null;
+    }
+  }
+  apiKey ??= env.GEMINI_API_KEY?.trim() || null;
+  if (!apiKey) return { ok: false, reason: 'no_key' };
+  return { ok: true, model: profile.model && /^[A-Za-z0-9._-]{1,80}$/.test(profile.model) ? profile.model : REVIEW_MODEL, apiKey, left };
+}
+
+// A video below 4 for child safety or below 3 for accuracy is never shown (the same rule as content.video_hidden).
+export const VIDEO_REVIEW_MIN = { childSafety: 4, accuracy: 3 } as const;
+export const videoReviewHides = (r: { child_safety: number; accuracy: number }): boolean => r.child_safety < VIDEO_REVIEW_MIN.childSafety || r.accuracy < VIDEO_REVIEW_MIN.accuracy;
+export type { VideoScores };
+export type VideoReviewOutcome = { ok: true; scores: VideoScores; hidden: boolean } | { ok: false; reason: 'bad_request' | 'not_switched_on' | 'no_key' | 'cap_reached' | 'failed' | 'already' };
+type PlatformDb = <T>(fn: (db: Sql) => Promise<T>) => Promise<T>;
+
+// One video judged now, once ever: the profile and key opened in a short platform transaction, Gemini called with no
+// connection held, the scores kept in a second (a video already judged is left as it is).
+export async function reviewVideoNow(videoId: string, deps: { fetch?: typeof fetch; withDb?: PlatformDb } = {}): Promise<VideoReviewOutcome> {
+  if (!/^[A-Za-z0-9_-]{11}$/.test(videoId)) return { ok: false, reason: 'bad_request' };
+  const withDb: PlatformDb = deps.withDb ?? ((fn) => withPlatformService((c) => fn(c as unknown as Sql)));
+  const prepared = await withDb(async (db): Promise<PreparedVideoReview | { ok: false; reason: 'already' }> => {
+    if ((await db.query(`select 1 from content.video_reviews where video_id = $1`, [videoId])).rows.length) return { ok: false, reason: 'already' };
+    return prepareVideoReview(db);
+  });
+  if (!prepared.ok) return { ok: false, reason: prepared.reason };
+  const watched = await watchYoutubeVideo(prepared.apiKey, prepared.model, videoId, deps.fetch);
+  if (!watched.ok) return { ok: false, reason: 'failed' };
+  const s = watched.scores;
+  await withDb((db) =>
+    db.query(
+      `insert into content.video_reviews (video_id, accuracy, clarity, class_fit, clickbait, child_safety, reason, model) values ($1, $2, $3, $4, $5, $6, $7, $8)
+       on conflict (video_id) do nothing`,
+      [videoId, s.accuracy, s.clarity, s.class_fit, s.clickbait, s.child_safety, s.reason, prepared.model]
+    )
+  );
+  return { ok: true, scores: s, hidden: videoReviewHides(s) };
 }
