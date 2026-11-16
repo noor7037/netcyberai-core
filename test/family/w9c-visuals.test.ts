@@ -315,8 +315,9 @@ describe('the views', () => {
     const out = html(h(VideosView, { b, w }));
     expect(out).toContain('data-block="videos"');
     expect(out).toContain('Cells, pinned');
-    expect(out).toContain('A made-up channel');
-    expect(out).toContain('5:00');
+    // v21: the card names neither the channel nor the length.
+    expect(out).not.toContain('A made-up channel');
+    expect(out).not.toContain('5:00');
     expect(out).not.toContain('<iframe');
     expect(out).not.toContain('ytimg');
     expect(html(h(VideosView, { b: { type: 'videos' }, w }))).toBe('');
