@@ -5,6 +5,7 @@ import { searchOpenverse } from './openverse';
 import { youngPhotoQuery } from './young';
 import { fillElaboration } from './elab-fill';
 import type { Elaboration } from '@/lib/family/elaboration';
+import { KEEP } from '@/lib/family/videos';
 import { answerVideos, type AnswerVideos, type VideoTopic } from '@/lib/family/answer-videos';
 import { familyModuleOn } from '@/lib/family/flags';
 
@@ -127,7 +128,7 @@ export async function fillVisuals(withDb: WithDb, original: Block[], opts: FillO
       if (found && new URL(found.url).hostname === PHOTO_HOST) await withDb((db) => db.query(`select content.save_image_pick($1, $2, $3, $4, $5, $6)`, [key, found.url, found.pageUrl, found.author, found.licence, found.licenceUrl])).catch(() => {});
     }
     const filledImage = image && photo ? photoBlock(image, photo) : null;
-    const filledVideos = answered ? answerBlock(answered) : topic ? videosBlock(first.items) : null;
+    const filledVideos = answered ? answerBlock(answered) : topic ? videosBlock(first.items.slice(0, KEEP)) : null;
     const out: Block[] = [];
     for (const b of blocks) {
       if (b.type === 'image') {

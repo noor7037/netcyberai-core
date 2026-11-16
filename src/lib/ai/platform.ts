@@ -6,6 +6,7 @@ import { probeWorkersTransports } from './adapters/workers-ai';
 import { resolverPrompt } from './prompts/family.resolver';
 import { searchVideoIds, videoDetails, type VideoCandidate, type VideoKind } from './adapters/youtube';
 import { watchYoutubeVideo, type VideoScores } from './adapters/gemini-video';
+import { VIDEO_REVIEW_MIN, videoReviewHides } from './video-review-rule';
 import { aiEncryptionKey, unsealAiKey, type SealedRow } from './credentials';
 import { UNCAPPED_LEFT, countDailyRequest, countVoiceChars, dailyLimit, dailyRequestsUsed, giveVoiceCharsBack, takeDailyRequest, takeVoiceChars, testingModeOn, voiceCharLimit, voiceCharsLeft } from './daily-cap';
 import { takeTextTurn, tutorLimits } from '@/lib/family/tutor-meter';
@@ -1417,9 +1418,7 @@ export async function prepareVideoReview(db: Sql, env: Record<string, string | u
   return { ok: true, model: profile.model && /^[A-Za-z0-9._-]{1,80}$/.test(profile.model) ? profile.model : REVIEW_MODEL, apiKey, left };
 }
 
-// A video below 4 for child safety or below 3 for accuracy is never shown (the same rule as content.video_hidden).
-export const VIDEO_REVIEW_MIN = { childSafety: 4, accuracy: 3 } as const;
-export const videoReviewHides = (r: { child_safety: number; accuracy: number }): boolean => r.child_safety < VIDEO_REVIEW_MIN.childSafety || r.accuracy < VIDEO_REVIEW_MIN.accuracy;
+export { VIDEO_REVIEW_MIN, videoReviewHides };
 export type { VideoScores };
 export type VideoReviewOutcome = { ok: true; scores: VideoScores; hidden: boolean } | { ok: false; reason: 'bad_request' | 'not_switched_on' | 'no_key' | 'cap_reached' | 'failed' | 'already' };
 type PlatformDb = <T>(fn: (db: Sql) => Promise<T>) => Promise<T>;

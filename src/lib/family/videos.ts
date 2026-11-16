@@ -1,4 +1,5 @@
-import { VIDEO_REVIEW_MIN, videoReviewHides, type VideoCandidate, type VideoChannel, type VideoPlan } from '@/lib/ai/platform';
+import type { VideoCandidate, VideoChannel, VideoPlan } from '@/lib/ai/platform';
+import { VIDEO_REVIEW_MIN, videoReviewHides } from '@/lib/ai/video-review-rule';
 import type { FamilyChild } from './children';
 import { languageInfo, type LangCode } from './languages';
 import type { Line } from './resolver';
