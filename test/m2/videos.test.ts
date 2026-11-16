@@ -286,6 +286,12 @@ describe('the family route', () => {
     expect(yt.seen).toHaveLength(0);
   });
 
+  it('videos work on free and paid alike: a child whose one free subject is another still gets them', async () => {
+    await q(`update family.children set free_subject = 'science', free_subject_set_at = now()`);
+    expect((await videos()).map((v) => v.videoId)).toEqual(['fffffffffff', 'ooooooooooo']);
+    await q(`update family.children set free_subject = null, free_subject_set_at = null`);
+  });
+
   it('refreshes stale picks, keeping a pinned one first', async () => {
     expect((await R.control.POST(control({ action: 'pin', topicKey: TOPIC, language: 'en', videoId: 'ooooooooooo' }))).status).toBe(200);
     await q(`update content.video_picks set fetched_at = now() - interval '40 days' where topic_key = $1`, [TOPIC]);
