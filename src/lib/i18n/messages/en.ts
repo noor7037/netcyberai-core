@@ -10238,6 +10238,8 @@ export const en = {
   'fam.elab.trySim': 'Try it yourself',
   'fam.elab.simOpen': 'Open the simulation',
   'fam.elab.simFrom': 'Simulation from',
+  'fam.elab.labOpen': 'Open lab',
+  'fam.elab.labNote': 'This lab opens on its own site, in a new tab.',
   'fam.elab.simLoading': 'Loading the simulation...',
   'fam.block.mindMap': 'Mind map',
   'fam.block.sceneTap': 'Tap a part to read what it does.',

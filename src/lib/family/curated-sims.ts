@@ -53,18 +53,53 @@ export function simUpsertSql(rows: readonly SimRow[]): string {
 // ---- matching -----------------------------------------------------------------------------------------------------
 
 export type SimAsk = { subject: Subject | null; term: string; topicEn?: string | null; title?: string | null; chapterEn?: string | null };
-export const SIM_MIN_FIT = 0.5;
+type Cand = Pick<SimRow, 'class' | 'subject' | 'chapter_name' | 'topic' | 'source' | 'title' | 'embed_url' | 'page_url' | 'licence' | 'preview'>;
 
-// The best approved simulation for the topic: the class and subject fit, the topic words fit (as the curated videos do), then the
-// source's place in EMBED_ORDER, then the order they were added. null when none fits.
-export function matchSim(rows: readonly Pick<SimRow, 'class' | 'subject' | 'chapter_name' | 'topic' | 'source' | 'title' | 'embed_url' | 'page_url' | 'licence' | 'preview'>[], ask: SimAsk, child: Pick<FamilyChild, 'classLevel'>): ElabSim | null {
+// The topic words must fit this much for an exact or nearby-class match (the curated videos' own bar).
+export const SIM_MIN_FIT = 0.5;
+// The lower bar of the last tier only: the topic's words found in the parent chapter or the intent's topic (a third of them, 0.33).
+export const SIM_BROAD_FIT = 0.33;
+// "Nearby" is the child's class plus or minus this many classes.
+export const SIM_NEAR_CLASSES = 2;
+// A simulation whose lowest class is more than this many classes above the child's class is never shown.
+export const SIM_MAX_ABOVE = 3;
+// A "generic" simulation covers at least this many classes (a 1-8 PhET sim), so it may serve a class outside its band.
+export const SIM_GENERIC_SPAN = 4;
+
+type Tier = { name: string; near: number; min: number; generic?: true };
+// Tried in order, each in Hindi then English (simFor): the exact class band, then the child's class plus or minus two, then a generic
+// simulation of any band, then the parent topic or chapter at the lower bar within two classes. The subject always has to fit.
+export const SIM_TIERS: readonly Tier[] = [
+  { name: 'exact', near: 0, min: SIM_MIN_FIT },
+  { name: 'near class', near: SIM_NEAR_CLASSES, min: SIM_MIN_FIT },
+  { name: 'generic', near: Infinity, min: SIM_MIN_FIT, generic: true },
+  { name: 'parent topic', near: SIM_NEAR_CLASSES, min: SIM_BROAD_FIT },
+];
+
+const STAGES: Record<string, number> = { nursery: -2, prenursery: -3, lkg: -1, ukg: 0 };
+const level = (v: string): number | null => {
+  const s = v.trim().toLowerCase().replace(/^class\s*/, '').replace(/[^a-z0-9]/g, '');
+  return /^\d{1,2}$/.test(s) ? Number(s) : (STAGES[s] ?? null);
+};
+export function classSpan(cls: string): [number, number] | null {
+  const [a, b] = cls.split(/\s*[-–]\s*/);
+  const lo = level(a ?? '');
+  const hi = b === undefined ? lo : level(b ?? '');
+  return lo === null || hi === null ? null : [Math.min(lo, hi), Math.max(lo, hi)];
+}
+// How many classes the band is from the child's class (0 when it holds it).
+const gap = (span: [number, number], c: number) => (c < span[0] ? span[0] - c : c > span[1] ? c - span[1] : 0);
+
+function matchTier(rows: readonly Cand[], ask: SimAsk, child: Pick<FamilyChild, 'classLevel'>, tier: Tier): ElabSim | null {
   if (!ask.subject) return null;
   const line = { topicEn: ask.topicEn ?? ask.term, title: [ask.term, ask.title ?? ''].join(' ').trim(), chapterEn: ask.chapterEn ?? '' };
   const fits = rows
-    .filter((r) => classFits(r.class, child.classLevel) && subjectFits(r.subject, ask.subject!))
-    .map((r, order) => ({ r, order, fit: curatedFit({ topic: r.topic, chapterName: r.chapter_name }, line), rank: EMBED_ORDER.indexOf(r.source) }))
-    .filter((x) => x.fit >= SIM_MIN_FIT)
-    .sort((a, b) => b.fit - a.fit || (a.rank < 0 ? 99 : a.rank) - (b.rank < 0 ? 99 : b.rank) || a.order - b.order);
+    .map((r, order) => ({ r, order, span: classSpan(r.class) }))
+    .filter((x): x is typeof x & { span: [number, number] } => !!x.span && subjectFits(x.r.subject, ask.subject!) && x.span[0] <= child.classLevel + SIM_MAX_ABOVE)
+    .filter((x) => (tier.generic ? x.span[1] - x.span[0] + 1 >= SIM_GENERIC_SPAN : true) && gap(x.span, child.classLevel) <= tier.near)
+    .map((x) => ({ ...x, gap: gap(x.span, child.classLevel), fit: curatedFit({ topic: x.r.topic, chapterName: x.r.chapter_name }, line), rank: EMBED_ORDER.indexOf(x.r.source) }))
+    .filter((x) => x.fit >= tier.min)
+    .sort((a, b) => b.fit - a.fit || a.gap - b.gap || (a.rank < 0 ? 99 : a.rank) - (b.rank < 0 ? 99 : b.rank) || a.order - b.order);
   for (const { r } of fits) {
     const card = checkSim({ source: r.source, title: r.title, embed: r.embed_url, page: r.page_url, licence: r.licence, preview: r.preview ?? undefined });
     if (card) return card;
@@ -72,19 +107,41 @@ export function matchSim(rows: readonly Pick<SimRow, 'class' | 'subject' | 'chap
   return null;
 }
 
-// Hindi first when the answer is Hindi, else (or when none fits) English. A table not created yet reads as none.
+// The best approved simulation for the topic over the tiers above. null when none fits.
+export function matchSim(rows: readonly Cand[], ask: SimAsk, child: Pick<FamilyChild, 'classLevel'>): ElabSim | null {
+  for (const tier of SIM_TIERS) {
+    const hit = matchTier(rows, ask, child, tier);
+    if (hit) return hit;
+  }
+  return null;
+}
+
+// Each tier in Hindi first when the answer is Hindi, then English. A table not created yet reads as none.
 export async function simFor(db: Db, ask: SimAsk, child: Pick<FamilyChild, 'classLevel'>, language: string): Promise<ElabSim | null> {
-  for (const lang of language === 'en' ? ['en'] : [language, 'en']) {
+  const langs = language === 'en' ? ['en'] : [language, 'en'];
+  const loaded = new Map<string, Cand[]>();
+  const rowsOf = async (lang: string): Promise<Cand[] | null> => {
+    const have = loaded.get(lang);
+    if (have) return have;
     await db.query('savepoint curated_sims');
     try {
       const { rows } = await db.query('select class, subject, chapter_name, topic, source, title, embed_url, page_url, licence, preview from content.curated_sims($1)', [lang]);
       await db.query('release savepoint curated_sims');
-      const hit = matchSim(rows as never, ask, child);
-      if (hit) return hit;
+      loaded.set(lang, rows as never);
+      return rows as never;
     } catch {
       await db.query('rollback to savepoint curated_sims').catch(() => undefined);
       return null;
     }
+  };
+  for (const tier of SIM_TIERS) {
+    for (const lang of langs) {
+      const rows = await rowsOf(lang);
+      if (!rows) return null;
+      const hit = matchTier(rows, ask, child, tier);
+      if (hit) return hit;
+    }
   }
   return null;
 }
+

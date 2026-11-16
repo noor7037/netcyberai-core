@@ -10224,6 +10224,8 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.elab.trySim': 'खुद करके देखो',
   'fam.elab.simOpen': 'सिमुलेशन खोलो',
   'fam.elab.simFrom': 'सिमुलेशन का स्रोत:',
+  'fam.elab.labOpen': 'लैब खोलो',
+  'fam.elab.labNote': 'यह लैब अपनी साइट पर, नए टैब में खुलती है।',
   'fam.elab.simLoading': 'सिमुलेशन खुल रहा है...',
   'fam.block.mindMap': 'माइंड मैप',
   'fam.block.sceneTap': 'किसी हिस्से पर टैप करें और पढ़ें कि वह क्या करता है।',

@@ -115,8 +115,8 @@ describe('simulations', () => {
     expect(matchSim(rows, { subject: 'science', term: "Ohm's law" }, { classLevel: 10 })?.source).toBe('phet');
     expect(matchSim(rows, { subject: 'science', term: "Ohm's law" }, { classLevel: 3 })).toBeNull();
     expect(matchSim(rows, { subject: 'science', term: 'photosynthesis' }, { classLevel: 10 })).toBeNull();
-    expect(EMBED_ORDER.slice(0, 4)).toEqual(['phet', 'geogebra', 'nasa_eyes', 'hhmi']);
-    expect(EMBED_ORDER[EMBED_ORDER.length - 1]).toBe('wolfram');
+    expect(EMBED_ORDER.slice(0, 4)).toEqual(['phet', 'nasa_eyes', 'hhmi', 'vlabs']);
+    expect(EMBED_ORDER).not.toContain('geogebra');
   });
   it('a stored card must be on its source\'s own host', () => {
     expect(checkSim({ source: 'phet', title: 't', embed: 'https://evil.example/x', page: 'https://phet.colorado.edu/a' })).toBeNull();
