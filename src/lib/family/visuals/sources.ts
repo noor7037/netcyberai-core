@@ -232,7 +232,6 @@ export const SOURCES: readonly SourceDef[] = [
   // Embedded simulations (Noor, 16 Nov 2026): never searched by the AI; each is approved by a person into content.curated_topic_sims
   // (scripts/seed_curated_sims.ts) and shown in step 4 of an answer as a tap-to-load "Try it yourself" card. Their order of preference
   // is EMBED_ORDER (embed-order.ts); a source whose pages block embedding is not seeded.
-  S('geogebra', 'GeoGebra', 'embed', null, 'GeoGebra terms; materials CC BY-NC-SA unless the author says otherwise', 'maths interactive, Classes 3 to 12'),
   S('nasa_eyes', 'NASA Eyes', 'embed', null, 'Public domain', 'planets, Earth and space in 3D'),
   S('hhmi', 'HHMI BioInteractive', 'embed', null, 'CC BY-NC-ND for most resources', 'biology interactive'),
   S('labxchange', 'LabXchange', 'embed', null, 'CC BY, per resource', 'biology, Classes 9 to 12'),
