@@ -82,6 +82,9 @@ export function DirectAnswer({ b }: { b: Explanation }) {
   );
 }
 
+// A term whose local word is the English word again (case and spacing aside) is shown once: no "addition — addition".
+export const termSame = (t: { en: string; local: string }): boolean => !t.local.trim() || t.local.trim().toLowerCase() === t.en.trim().toLowerCase();
+
 export function ExplanationView({ b, w, tone, lead = false }: { b: Explanation; w: Words; tone: string; lead?: boolean }) {
   return (
     <Card title={b.title} tone={tone} tag="explanation">
@@ -111,8 +114,8 @@ export function ExplanationView({ b, w, tone, lead = false }: { b: Explanation; 
             <li key={i} className="rounded-full bg-slate/5 px-3 py-1 text-sm text-slate">
               <span lang="en" className="font-semibold">
                 {t.en}
-              </span>{' '}
-              — {t.local}
+              </span>
+              {termSame(t) ? null : <> — {t.local}</>}
             </li>
           ))}
         </ul>
