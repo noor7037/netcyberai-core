@@ -90,6 +90,7 @@ beforeAll(async () => {
   vi.stubGlobal('fetch', async (input: string | URL) => {
     const url = new URL(String(input));
     if (url.hostname === 'sponsor.ajay.app') return new Response('Not Found', { status: 404 });
+    if (url.pathname === '/oembed') return Response.json({ title: 't' });
     yt.seen.push(url);
     if (url.pathname.endsWith('/search')) return Response.json({ items: yt.ids.map((videoId) => ({ id: { kind: 'youtube#video', videoId } })) });
     if (url.pathname.endsWith('/videos')) return Response.json({ items: (url.searchParams.get('id') ?? '').split(',').map((id) => item(id, `Photosynthesis ${id}`)) });
@@ -128,6 +129,7 @@ describe('language: the child’s chosen one, then a visible fallback', () => {
     vi.stubGlobal('fetch', async (input: string | URL) => {
       const url = new URL(String(input));
       if (url.hostname === 'sponsor.ajay.app') return new Response('Not Found', { status: 404 });
+    if (url.pathname === '/oembed') return Response.json({ title: 't' });
       yt.seen.push(url);
       if (url.pathname.endsWith('/search')) return Response.json({ items: yt.ids.map((videoId) => ({ id: { kind: 'youtube#video', videoId } })) });
       if (url.pathname.endsWith('/videos')) return Response.json({ items: (url.searchParams.get('id') ?? '').split(',').map((id) => item(id, `Photosynthesis ${id}`)) });
