@@ -80,17 +80,20 @@ export async function topicVideos(withDb: WithDb, line: Line, child: FamilyChild
   );
   const curated = new Set(r.curated);
   const candidates = result.candidates.filter((c) => !hidden.has(c.videoId) && (curated.has(c.videoId) || inLanguage(c, r.language)));
-  const how = { topicTitles: [line.topicEn ?? '', line.title], language: r.language, channels, wider: r.wider, minViews: r.minViews, curated };
+  const how = { topicTitles: [line.topicEn ?? '', line.title, line.forms?.en ?? '', line.forms?.local ?? '', ...(line.forms?.typed ?? [])], language: r.language, channels, wider: r.wider, minViews: r.minViews, curated };
   // SponsorBlock for the best few at once (none known: unchanged), then the final ranking.
   const top = rankVideos(candidates, { ...how, keep: PROMO_LOOKUPS });
   const promo = await promoFor(top.map((p) => ({ videoId: p.video_id, durationS: p.duration_s })), deps.sponsorFetch).catch(() => new Map());
   const ranked = rankVideos(candidates, { ...how, promo });
-  noteSearch(line.key, r.language, { found: ranked.length });
+  // A topic named only by romanised or untranslated words is never remembered as empty: its words may be the reason nothing matched.
+  const raw = line.forms?.raw === true;
+  if (!(raw && ranked.length === 0)) noteSearch(line.key, r.language, { found: ranked.length });
 
   // 4. Saved (a reviewer's pinned and rejected picks stay as they are) and read back as the family sees them.
   const saved = await withDb(async (db) => {
     await savePicks(db, line.key, r.language, ranked);
-    await db.query(`select content.finish_video_topic($1, $2, $3)`, [line.key, r.language, ranked.length]);
+    // Raw and empty: the claim is left open (not written as found = 0), so it frees itself after ten minutes instead of staying empty for days.
+    if (!(raw && ranked.length === 0)) await db.query(`select content.finish_video_topic($1, $2, $3)`, [line.key, r.language, ranked.length]);
     return (await readPicks(db, line.key, r.language, r.days)).picks;
   });
   // 5. Gemini judges what is shown, in the background: the child never waits, and nothing it does can fail this.

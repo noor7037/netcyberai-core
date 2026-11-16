@@ -38,6 +38,7 @@ export function elaborationLines(band: Band): string[] {
 // v19 forced ONE sentence per step. v20 keeps the five steps and the class band, and lets a process, a cause or a why
 // question take 3 to 5 sentences per step. Written as replacements of v19's lines, so v19 stays as it was.
 const REPLACE_SHAPE: [string, string][] = [
+  ['"term":"the thing asked, up to 6 words"', '"term":"the thing asked, up to 6 words, in the answer language","topic_en":"the topic as a plain English search phrase of 2 to 4 words, always English letters (waste management)","topic_local":"the same topic in the answer language and its own script (कचरा प्रबंधन); the same as topic_en when the answer is in English"'],
   ['"text":"STEP 1, what the student asked answered in ONE clear sentence"', '"text":"STEP 1, what the student asked answered clearly (see DEPTH)"'],
   ['"say":"the three levels written to be spoken"', '"say":"the three levels, shortened to be spoken (about 4 to 8 sentences for a deep topic, 2 to 3 for a simple one)"'],
   ['"text":"STEP 3, one real scene the child sees every day"', '"text":"STEP 3, one real scene the child sees every day (see DEPTH)"'],

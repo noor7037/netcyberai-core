@@ -72,9 +72,13 @@ const SUBJECT_WORDS: Record<string, { en: string; hi: string }> = {
 // The search: the topic's title, its subject and the class, from the catalog only. In Hindi, the Hindi title when the
 // catalog has one, and the word "Hindi" so the provider prefers videos in it. C522: in another Indian language, the
 // English title with that language's English name ("Tamil"), and the provider asked for that language.
-export function videoQuery(line: Pick<Line, 'subject' | 'topicEn' | 'title'>, child: Pick<FamilyChild, 'classLevel' | 'language'>, language: VideoLanguage = child.language): string {
+// A topic with forms (a typed question the tutor named, src/lib/family/intent.ts): the search uses the term in the language's own script when there
+// is one (Hindi: the Devanagari term), and the English term otherwise, never the typed letters when the tutor named the topic.
+export function videoQuery(line: Pick<Line, 'subject' | 'topicEn' | 'title'> & { forms?: Line['forms'] }, child: Pick<FamilyChild, 'classLevel' | 'language'>, language: VideoLanguage = child.language): string {
   const hi = language === 'hi';
-  const title = hi ? line.title : (line.topicEn ?? line.title);
+  const local = line.forms?.local;
+  const scripted = !!local && (language === 'en' ? false : (SCRIPT[language] ?? /[ऀ-ॿ]/).test(local));
+  const title = scripted ? local! : line.forms?.en ? line.forms.en : hi ? line.title : (line.topicEn ?? line.title);
   const subject = SUBJECT_WORDS[line.subject]?.[hi ? 'hi' : 'en'] ?? line.subject.replace(/_/g, ' ');
   const cls = child.classLevel >= 1 ? (hi ? `कक्षा ${child.classLevel}` : `class ${child.classLevel}`) : '';
   const named = hi ? 'Hindi' : language === 'en' ? '' : languageInfo(language).english;
@@ -125,6 +129,7 @@ export function rankVideos(
   const kind = new Map(a.channels.map((c) => [c.channelId, c.kind]));
   const noAds = new Set(a.channels.filter((c) => c.noAds && c.kind !== 'blocked').map((c) => c.channelId));
   const topicWords = Array.from(new Set(a.topicTitles.flatMap(words)));
+  // A title that matches ANY form of the topic (English term, the child's script, the typed words) counts: they are all in topicTitles.
   const minViews = Math.max(0, a.minViews ?? MIN_VIEWS);
   const youngest = (a.now ?? Date.now()) - MIN_AGE_DAYS * 86_400_000;
   const ranked: RankedPick[] = [];

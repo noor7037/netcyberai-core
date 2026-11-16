@@ -6,6 +6,11 @@ import { parseBlockLine } from "../../src/lib/family/blocks";
 import { withPics } from "../../src/lib/family/elaboration-pics";
 import { fillElaboration } from "../../src/lib/family/visuals/elab-fill";
 import { chapterDiagrams } from "../../src/lib/family/tutor-context";
+import { readFileSync } from "node:fs";
+import { intentLine, intentOf } from "../../src/lib/family/intent";
+import { matchSim, simRowsFromCsv } from "../../src/lib/family/curated-sims";
+import { videoQuery } from "../../src/lib/family/videos";
+
 
 const KEY = "u.c03.mathematics.cemm1.ch08";
 const CLASS = 3;
@@ -137,9 +142,51 @@ const LINES = {
       ],
     },
   },
+
+  // The intent proof (16 Nov 2026): a Class 3 child typed "Kachra prabandhan" (Hindi in Roman letters). The tutor answers in Hindi and names the
+  // topic itself (topic_en, topic_local); the app's real code makes the topic key, the video queries, the photos and the simulation.
+  intent: {
+    question: "Kachra prabandhan",
+    line: {
+      type: "elaboration",
+      term: "कचरा प्रबंधन",
+      topic_en: "waste management",
+      topic_local: "कचरा प्रबंधन",
+      icon: "♻️",
+      definition: { text: "कचरा प्रबंधन का मतलब है कचरे को सही तरह से इकट्ठा करना, अलग करना और दोबारा काम में लाना।", say: "कचरा प्रबंधन का मतलब है कचरे को सही तरह से इकट्ठा करना, अलग करना और दोबारा काम में लाना।", q: "waste segregation bins" },
+      levels: {
+        basic: "हम गीला और सूखा कचरा अलग-अलग डिब्बों में डालते हैं।",
+        intermediate: "गीले कचरे से खाद बनती है और सूखे कचरे से प्लास्टिक और कागज़ दोबारा इस्तेमाल होते हैं। इससे शहर साफ़ रहता है और बीमारियाँ कम फैलती हैं।",
+        advanced: "कचरा प्रबंधन में चार कदम हैं: इकट्ठा करना, अलग करना, दोबारा इस्तेमाल या रीसायकल करना और बचे हुए कचरे को सुरक्षित जगह डालना।",
+        say: "आसान: गीला और सूखा कचरा अलग डिब्बों में डालो। बीच का: गीले से खाद बनती है और सूखा दोबारा इस्तेमाल होता है। आगे का: इकट्ठा करो, अलग करो, रीसायकल करो और बचा कचरा सुरक्षित डालो।",
+        q: "recycling plastic paper",
+      },
+      real_life: { text: "सुबह कचरे वाली गाड़ी आती है तो हम हरे और नीले डिब्बे का कचरा अलग-अलग देते हैं।", say: "सुबह कचरे वाली गाड़ी आती है तो हम हरे और नीले डिब्बे का कचरा अलग-अलग देते हैं।", icon: "🚛", q: "garbage truck india" },
+      try_it: { question: "तुम्हारे घर में आज कौन-कौन सा कचरा निकला? उसे गीले और सूखे में बाँटो।", right: "सब्ज़ी के छिलके गीले कचरे में और पुराना कागज़ सूखे कचरे में जाता है।", hint: "सोचो, कौन-सा कचरा सड़ जाता है?", say: "तुम्हारे घर में आज कौन-कौन सा कचरा निकला? उसे गीले और सूखे में बाँटो।", q: "compost kitchen waste" },
+      future: { text: "आगे चलकर तुम पर्यावरण विज्ञान में प्रदूषण रोकना और रीसायकल करना सीखोगे।", say: "आगे चलकर तुम पर्यावरण विज्ञान में प्रदूषण रोकना और रीसायकल करना सीखोगे।", icon: "🌍", q: "recycling symbol" },
+      checks: [{ question: "सब्ज़ी के छिलके किस कचरे में जाते हैं?", options: ["गीले कचरे में", "सूखे कचरे में"], answer: 0, right: "छिलके गीले कचरे में जाते हैं।", hint: "कौन-सा कचरा सड़ जाता है?" }],
+    },
+  },
+  // A topic with an approved simulation: Class 3 fractions (PhET, from the seeded table's file), to show the tap-to-load card.
+  simfrac: {
+    question: "bhinn kya hota hai",
+    line: {
+      type: "elaboration",
+      term: "भिन्न",
+      topic_en: "fractions",
+      topic_local: "भिन्न",
+      icon: "🫓",
+      definition: { text: "भिन्न किसी पूरी चीज़ का एक हिस्सा बताती है।", say: "भिन्न किसी पूरी चीज़ का एक हिस्सा बताती है।", q: "fraction roti" },
+      levels: { basic: "आधी रोटी का मतलब है एक बटा दो।", intermediate: "नीचे की संख्या बताती है कि पूरा कितने बराबर हिस्सों में बँटा है, और ऊपर की संख्या कि हमारे पास कितने हिस्से हैं।", advanced: "भिन्न a/b में b शून्य नहीं हो सकता, क्योंकि शून्य हिस्सों में बाँटना संभव नहीं।", say: "आसान: आधी रोटी एक बटा दो है। बीच का: नीचे वाली संख्या कुल हिस्से बताती है। आगे का: b शून्य नहीं हो सकता।", q: "fraction pie" },
+      real_life: { text: "पिज़्ज़ा के आठ टुकड़ों में से तीन खाओ तो तुमने तीन बटा आठ खाया।", say: "पिज़्ज़ा के आठ टुकड़ों में से तीन खाओ तो तुमने तीन बटा आठ खाया।", icon: "🍕", q: "pizza slices" },
+      try_it: { question: "एक चॉकलेट के चार बराबर टुकड़े हैं। दो खाओ तो कितना भाग खाया?", right: "दो बटा चार, यानी आधा।", hint: "कुल टुकड़े नीचे और खाए हुए ऊपर लिखो।", say: "एक चॉकलेट के चार बराबर टुकड़े हैं। दो खाओ तो कितना भाग खाया?", q: "chocolate bar pieces" },
+      future: { text: "भिन्न से आगे दशमलव और प्रतिशत सीखना आसान हो जाता है।", say: "भिन्न से आगे दशमलव और प्रतिशत सीखना आसान हो जाता है।", icon: "🚀", q: "percentage chart" },
+      checks: [{ question: "आधा को किस भिन्न से लिखते हैं?", options: ["1/2", "2/1"], answer: 0, right: "आधा = 1/2।", hint: "ऊपर एक हिस्सा, नीचे दो हिस्से।" }],
+    },
+  },
 } as const;
 
-async function build(lang: "en" | "hi" | "photo" | "photoHi") {
+async function build(lang: "en" | "hi" | "photo" | "photoHi" | "intent" | "simfrac") {
   const { question, line } = LINES[lang];
   const parsed = parseBlockLine(JSON.stringify(line));
   if (parsed?.type !== "elaboration")
@@ -148,14 +195,27 @@ async function build(lang: "en" | "hi" | "photo" | "photoHi") {
     );
   const built = withPics(
     parsed,
-    lang === "photo" || lang === "photoHi" ? [] : await chapterDiagrams(KEY, lang),
+    lang === "en" || lang === "hi" ? await chapterDiagrams(KEY, lang) : [],
     question,
     CLASS,
   );
   const block =
-    lang === "photo" || lang === "photoHi"
-      ? await fillElaboration(built, { subject: "science" })
-      : built;
+    lang === "en" || lang === "hi"
+      ? built
+      : await fillElaboration(built, { subject: lang === "simfrac" ? "mathematics" : "science" });
+  // The app's own intent step and match: the key and queries printed for the report, the simulation from the seed file.
+  const child = { classLevel: CLASS, firstName: "Aarav", language: "hi" } as never;
+  const intent = intentOf({ question, child, subject: lang === "simfrac" ? "mathematics" : "evs", replyLang: "hinglish", model: block.topic ? { en: block.topic.en, local: block.topic.local } : null });
+  const topicLine = intentLine(intent);
+  const sim =
+    lang === "intent" || lang === "simfrac"
+      ? matchSim(simRowsFromCsv(readFileSync(new URL("../seed/curated_sims.csv", import.meta.url), "utf8")).rows.filter((r) => r.language === "hi" || r.language === "en"), { subject: intent.subject, term: block.term, topicEn: block.topic?.en }, { classLevel: CLASS })
+      : null;
+  if (sim) (block as unknown as Record<string, unknown>).sim = sim;
+  const videos =
+    lang === "intent" && topicLine
+      ? { type: "videos", topicKey: topicLine.key, lang: "hi", items: [{ videoId: "dQw4w9WgXcQ", title: "कचरा प्रबंधन क्या है (harness stand-in)", channel: "Harness", seconds: 420 }, { videoId: "9bZkp7q19f0", title: "Waste Management for kids (harness stand-in)", channel: "Harness", seconds: 360 }] }
+      : null;
   const events = [
     {
       t: "meta",
@@ -166,17 +226,19 @@ async function build(lang: "en" | "hi" | "photo" | "photoHi") {
       topicKey: null,
     },
     { t: "block", block },
+    ...(videos ? [{ t: "block", block: videos }] : []),
     { t: "done", complete: true, missing: [], cut: false },
   ];
   return {
     question,
     body: events.map((e) => `${JSON.stringify(e)}\n`).join(""),
     diagrams: block.pics.filter((p) => p?.kind === "diagram").length,
+    proof: { key: topicLine?.key ?? null, queryHi: topicLine ? videoQuery(topicLine, { classLevel: CLASS, language: "hi" }, "hi") : null, queryEn: topicLine ? videoQuery(topicLine, { classLevel: CLASS, language: "hi" }, "en") : null, sim: sim ? sim.title : null, photos: block.pics.filter((p) => p?.kind === "photo").length },
   };
 }
 
 void (async () => {
   process.stdout.write(
-    JSON.stringify({ en: await build("en"), hi: await build("hi"), photo: await build("photo"), photoHi: await build("photoHi") }),
+    JSON.stringify({ en: await build("en"), hi: await build("hi"), photo: await build("photo"), photoHi: await build("photoHi"), intent: await build("intent"), simfrac: await build("simfrac") }),
   );
 })();

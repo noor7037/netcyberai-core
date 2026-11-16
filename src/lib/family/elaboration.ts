@@ -1,6 +1,7 @@
 import { plain, SHOWCASE_SVG_MAX, SVG_UNSAFE } from "./blocks";
 import { modelUrl, photoUrl } from "./visuals/photo-hosts";
 import { checkSim, type ElabSim } from "./sim-hosts";
+import { cleanEnglish, cleanLocal } from "./topic-words";
 
 // The NetCyberAI Elaboration Framework (founder, 16 Nov 2026). Every tutor answer is five steps, in this order:
 //   1 Definition  what was asked, in one clear line
@@ -72,6 +73,8 @@ export type Elaboration = {
   pics: (ElabPic | null)[];
   // A curated simulation for the topic (content.curated_topic_sims), shown in step 4 as a "Try it yourself" card beside the photos, never instead of them. Set by the server only.
   sim?: ElabSim;
+  // The topic as the tutor named it (src/lib/family/intent.ts): in English (a search phrase) and in the answer's own script. Server use only.
+  topic?: { en: string; local: string | null };
 };
 
 export const MAX_CHECKS = 3;
@@ -150,6 +153,14 @@ function pic(v: unknown): ElabPic | null {
   const svg = typeof o.svg === "string" ? o.svg.trim() : "";
   if (!svg.startsWith("<svg") || svg.length > SHOWCASE_SVG_MAX || SVG_UNSAFE.test(svg)) return null;
   return { svg, caption, kind: o.kind === "diagram" ? "diagram" : "card" };
+}
+
+// The tutor's own name for the topic: `topic_en` (plain English letters, 3 to 60) and `topic_local` from the model's line, or `topic` from a stored block.
+function topicOf(o: Record<string, unknown>): { en: string; local: string | null } | null {
+  const t = obj(o.topic);
+  const en = cleanEnglish(o.topic_en ?? t.en);
+  if (!en) return null;
+  return { en, local: cleanLocal(o.topic_local ?? t.local) };
 }
 
 // The model's line (or a stored block) as an elaboration, or null when any of the five steps is missing or too long.
@@ -232,6 +243,7 @@ export function elaborationBlock(
     queries: [d.q, l.q, r.q, t.q, f.q].map((x) => plain(x, 60) ?? ""),
     pics,
     ...(stored && checkSim(o.sim) ? { sim: checkSim(o.sim)! } : {}),
+    ...(topicOf(o) ? { topic: topicOf(o)! } : {}),
   };
 }
 

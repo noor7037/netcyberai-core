@@ -12,21 +12,17 @@ import { resolverSystem as v19System, resolverUser as v19User, isElaboration, ty
 import { LANGUAGE_NAMES, languageRule, withLanguage } from './v17';
 import { defaultPlan } from '@/lib/ai/teaching/plan-shape';
 import { toV20 } from './elaboration-prompt';
-import { looksRomanHindi } from '@/lib/family/question-language';
+import { answerLanguage } from '@/lib/family/question-language';
 
 export const RESOLVER_PROMPT_VERSION = 'v20';
 export type { ResolverAsk };
 
 export const ROMAN_HINDI_LINE =
-  'LANGUAGE OF THE WHOLE BLOCK: Hindi written in Roman letters (for example "kachra prabandhan") and Hinglish are Hindi: answer in Hindi in Devanagari script. When you cannot tell the language of the question, use the language of the student\'s profile. The definition, the three levels, the real-life scene, the task with its hint and answer, the future line, every "say" and every check are all in that one language; English only for the key school words the language rule allows. Only the "q" photograph words stay in English.';
+  'LANGUAGE OF THE WHOLE BLOCK: Hindi written in Roman letters (for example "kachra prabandhan") and Hinglish are Hindi: answer in Hindi in Devanagari script. When you cannot tell the language of the question, use the language of the student\'s profile. The definition, the three levels, the real-life scene, the task with its hint and answer, the future line, every "say" and every check are all in that one language; English only for the key school words the language rule allows. Only the "q" photograph words stay in English. WHAT WAS ASKED: whatever the student typed (Hindi in Devanagari, Hindi in Roman letters, mixed Hindi and English, English or another language), first work out the topic they mean, then name it properly in topic_en and topic_local; never copy the typed letters into them.';
 
 // The language the answer is in: what the question was asked in, except that Roman-letter Hindi and Hinglish are Hindi, and a short Latin
 // question with no English word in it is the profile language (Hindi for a Hindi profile).
-export function elaborationLang(a: Pick<ResolverAsk, 'replyLang' | 'language' | 'question'>): string | undefined {
-  if (a.replyLang === 'hinglish') return 'hi';
-  if (a.replyLang === 'en' && a.language === 'hi' && a.question && looksRomanHindi(a.question)) return 'hi';
-  return a.replyLang;
-}
+export const elaborationLang = (a: Pick<ResolverAsk, 'replyLang' | 'language' | 'question'>): string | undefined => answerLanguage(a);
 
 export const resolverSystem = (a: ResolverAsk): string => {
   const base = v19System(a);

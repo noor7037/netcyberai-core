@@ -115,3 +115,11 @@ export function looksRomanHindi(text: string): boolean {
   if (!words.every((w) => scriptOf(w[0]) === 'latin')) return false;
   return !words.some((w) => ENGLISH_WORDS.has(w.toLowerCase()));
 }
+
+// The language an answer is written in (prompt v20): the question's language, except that Roman-letter Hindi and Hinglish are Hindi, and a short
+// Latin question with no English word in it takes the child's profile language when that is Hindi. Else what the question was asked in.
+export function answerLanguage(a: { replyLang?: string | null; language?: string | null; question?: string | null }): string | undefined {
+  if (a.replyLang === 'hinglish') return 'hi';
+  if ((a.replyLang === 'en' || !a.replyLang) && a.language === 'hi' && a.question && looksRomanHindi(a.question)) return 'hi';
+  return a.replyLang ?? undefined;
+}

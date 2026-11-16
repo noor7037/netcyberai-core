@@ -42,7 +42,7 @@ export function SimCard({ sim, w }: { sim: ElabSim; w: Words }) {
       )}
       <p className="px-1 text-xs text-slate/80">
         {w['fam.elab.simFrom']}{' '}
-        <a href={sim.page} target="_blank" rel="noopener noreferrer" className="underline">
+        <a href={sim.page} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center px-1 underline">
           {from}
         </a>
         {sim.licence ? ` · ${sim.licence}` : ''}
