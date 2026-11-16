@@ -379,7 +379,7 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
         role="log"
         aria-label={fill(w['fam.chat.feed'], { subject: subjectName(subject) })}
         aria-busy={turns === null && !turnsError}
-        className={`fam-feed relative flex-col gap-4 ${pageScroll ? '' : 'max-h-[70vh] overflow-y-auto overscroll-contain'} ${open && shown ? 'flex' : 'hidden'}`}
+        className={`fam-feed relative flex-col gap-4 scroll-mb-[calc(var(--fam-bottom,0px)+9rem)] ${pageScroll ? '' : 'max-h-[70vh] overflow-y-auto overscroll-contain'} ${open && shown ? 'flex' : 'hidden'}`}
       >
         {turnsError && (
           <p role="status" className="fam-surface bg-white p-4 text-sm text-ink">

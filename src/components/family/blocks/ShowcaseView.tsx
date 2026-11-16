@@ -18,7 +18,7 @@ export function ShowcaseView({ b, w, tone }: { b: Showcase; w: Words; tone: stri
       <figure data-showcase className="flex flex-col gap-2">
         <div className="relative w-full overflow-hidden rounded-2xl bg-white ring-1 ring-slate/10">
           {/* eslint-disable-next-line @next/next/no-img-element -- our own authored SVG as a data URL */}
-          <img src={`data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`} alt={b.caption} className="mx-auto block h-auto max-h-[60vh] w-full object-contain" />
+          <img src={`data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`} alt={b.caption} className="mx-auto block h-auto max-h-[42vh] md:max-h-[60vh] w-full object-contain" />
         </div>
         <figcaption className="text-base text-slate">{b.caption}</figcaption>
       </figure>

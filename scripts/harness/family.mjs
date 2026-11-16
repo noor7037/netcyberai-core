@@ -90,6 +90,23 @@ const QUIZ_CARD = `${FOLLOW_UP_CHAT}
   select '${QUIZ_ID}', account_id, child_id, conversation_id, (now() at time zone 'Asia/Kolkata')::date, 'science', 'en', 'Quick quiz', '${JSON.stringify(QUIZ_ITEMS).replace(/'/g, "''")}'::jsonb,
          array[(now() at time zone 'Asia/Kolkata')::date + 1, (now() at time zone 'Asia/Kolkata')::date + 3, (now() at time zone 'Asia/Kolkata')::date + 7]
     from family.tutor_conversations where conversation_id = '${FOLLOW_CHAT_ID}' on conflict do nothing;`;
+// Tutor overhaul (16 Nov 2026): a typed Study question answered as one stage: the chapter's own animated diagram (read from
+// reader/content, the same file the server reads), the explanation and the key points. Scripted, so no model is called.
+const STAGE_SVG = (() => {
+  const ch = JSON.parse(readFileSync(path.join(path.dirname(new URL(import.meta.url).pathname), '../../reader/content/c10/science/u.c10.science.jesc1.ch01.json'), 'utf8'));
+  for (const t of ch.topics) for (const st of t.steps) if (st.type === 'diagram' && st.svg) return { title: st.title.en, svg: st.svg, caption: st.caption?.en ?? st.title.en };
+  throw new Error('harness: no diagram found');
+})();
+const STAGE_ANSWER = [
+  { t: 'meta', label: 'ai_made', cached: false, title: null, subject: 'mathematics', topicKey: null },
+  { t: 'block', block: { type: 'showcase', title: STAGE_SVG.title, caption: STAGE_SVG.caption, svg: STAGE_SVG.svg } },
+  { t: 'block', block: { type: 'explanation', title: 'Equal fractions', idea: 'Equal fractions name the same part of a whole.', paragraphs: ['Half of a roti is the same as two quarters. Cut it again and nothing is lost.'], example: 'Priya shares a roti: 1/2 is the same as 2/4 and the same as 3/6.', steps: ['Cut the roti in two: each piece is 1/2.', 'Cut each half again: now there are 4 pieces.', 'Two of the four pieces are the same amount as one half.'], terms: [{ en: 'fraction', local: 'fraction' }, { en: 'equal', local: 'बराबर' }] } },
+  { t: 'block', block: { type: 'key_points', points: ['Same part of a whole, different names.', 'Multiply top and bottom by the same number.', 'Check by drawing the roti.'] } },
+  { t: 'done', complete: true, missing: [], cut: false },
+]
+  .map((e) => `${JSON.stringify(e)}\n`)
+  .join('');
+
 const FOLLOW_UP_ANSWER = [
   { t: 'meta', label: 'ai_made', cached: false, title: null, subject: 'science', topicKey: null },
   { t: 'block', block: { type: 'explanation', title: 'Photosynthesis in a money plant', idea: 'The leaves we talked about make food the same way in a plant at home.', paragraphs: ['A money plant near a sunny window grows towards the light: its leaves use the sunlight, the water you pour in and the air around it to make sugar, as explained above.'], example: 'Keep one plant in the sun and one in a dark cupboard for a week: the one in the dark turns pale.', steps: [], terms: [] } },
@@ -343,6 +360,8 @@ export const FAMILY_SCREENS = [
   // it in Science, the feed says "Moved to Science" above the answer and the subject tab follows to Science.
   // Then the parent area right after a child's class is saved: the "Saved" line (Asha is put back in Class 7 after).
   ['full', 'family-tutor-followup', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', prep: FOLLOW_UP_CHAT, reset: FOLLOW_UP_CHAT_GONE, answer: FOLLOW_UP_ANSWER, settle: '[data-tutor-rail]', steps: [{ fill: { field: '[data-tutor-window] textarea', value: 'Can you show it with an example?' }, tap: '[data-tutor-send]', wait: '[data-tutor-window][data-listed="science"] [data-feed-moved="science"]' }] }],
+  ['full', 'family-tutor-stage', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', langs: ['en'], answer: STAGE_ANSWER, viewportShot: true, settle: '[data-tutor-rail]', steps: [{ fill: { field: '[data-tutor-window] textarea', value: 'What are equal fractions?' }, tap: '[data-tutor-send]', wait: '[data-showcase]' }, { pause: 800 }, { scroll: '[data-showcase]' }, { pause: 600 }] }],
+  ['full', 'family-tutor-stage-end', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', langs: ['en'], answer: STAGE_ANSWER, viewportShot: true, settle: '[data-tutor-rail]', steps: [{ fill: { field: '[data-tutor-window] textarea', value: 'What are equal fractions?' }, tap: '[data-tutor-send]', wait: '[data-showcase]' }, { pause: 800 }, { end: true }, { pause: 600 }] }],
   ['full', 'family-parent-child-saved', '/family/parent#manage', { parent: true, reset: CLASS_PUT_BACK, settle: '[data-parent-panel="children"]:not([hidden])', steps: [{ tap: '[data-child-edit]', wait: 'select[id$="-class"]' }, { select: { field: 'select[id$="-class"]', value: '3' }, tap: '[data-parent-panel="children"] form button[type="submit"]', wait: '[data-child-saved]' }] }],
   // W22-S3: a kept answer read aloud, caught in the middle: the tutor's face stays at the top of the feed, the sentence is
   // marked and kept on screen, and the read-aloud line says how much is read.
@@ -827,6 +846,7 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
               });
               await page.locator(step.upload).first().setInputFiles({ name: 'textbook-page.jpg', mimeType: 'image/jpeg', buffer: Buffer.from(dataUrl.split(',')[1], 'base64') }).catch(() => errors.push(`${step.upload} could not take the photo`));
             }
+            if (step.end) await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
             if (step.scroll) await page.locator(step.scroll).first().scrollIntoViewIfNeeded().catch(() => errors.push(`${step.scroll} could not be scrolled to`));
             if (step.select) await page.locator(step.select.field).first().selectOption(step.select.value).catch(() => errors.push(`${step.select.field} could not be chosen`));
             // `reload` (W24): the page loaded again, as a child coming back to it (saved progress kept).

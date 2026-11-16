@@ -20,3 +20,12 @@ describe('tutor showcase', () => {
     expect(b?.type).toBe('showcase');
   });
 });
+
+import { citationOf } from '@/lib/family/citation';
+describe('grounding', () => {
+  it('a showcase answer is never "not from your book"', () => {
+    const blocks = [{ type: 'showcase' }, { type: 'explanation', idea: 'x', paragraphs: [] }] as never;
+    expect(citationOf(blocks, true)).toBeNull();
+    expect(citationOf([{ type: 'explanation', idea: 'x', paragraphs: [] }] as never, true)).toEqual({ kind: 'general' });
+  });
+});

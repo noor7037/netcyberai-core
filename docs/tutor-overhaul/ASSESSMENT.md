@@ -30,3 +30,21 @@ Built from `.claude/commands/tutor-overhaul.md`, checked against the code.
 | Layout | One stage: the feed reserves bottom space equal to the composer plus dock. |
 | Latency | Start the planner and the passage search together, and skip the planner when the v19 shape is known. Guard stays on the question and every block. |
 | Left alone | Control row, v10 fallback, Llama Guard, v15-v18 files, curated video system. |
+
+## What shipped, and what did not (end of the run)
+
+Shipped: showcase block and routing (chapter key from `where`), reader book searched inside an open chapter, no credit text on
+photos, prompt v19 (registered only), one-stage plan shape, planner skipped for LKG to Class 5, showcase shown before the model
+writes, labs offered to free questions, terms dedupe, "not from your book" chip hidden when the chapter's diagram is shown,
+scroll margin and a shorter diagram on phones, harness screens `family-tutor-stage` and `family-tutor-stage-end`.
+
+Not done (needs a design pass, not a patch):
+- The composer is still sticky and floats over the answer while the child scrolls through it. At the end of the page nothing is
+  covered (see `family-tutor-stage-end-*`). A true single-board stage that steps with the voice is a bigger rebuild of
+  `UnderstandView`.
+- `PLAN_BLOCKS` is unchanged: `lab` and `model` are not gated by the plan, so v19 asks for them in the resolver prompt instead.
+- Lab and 3D model blocks are not auto-added from the chapter; only the diagram is. Chapter `figure` images need the
+  `labs/assets` manifest and a served route.
+- FigureView and BoardView code is untouched; v19 and the server drop the model's board or figure when a showcase is present.
+- Planner and resolver are not run together: the planner receives the child's words, so it must follow the safety check.
+- No new fetching of free licensed videos or stills beyond the existing Commons and Openverse fill.

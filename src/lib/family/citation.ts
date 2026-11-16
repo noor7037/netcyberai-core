@@ -18,6 +18,8 @@ export function citationOf(blocks: readonly { type: string }[], done: boolean, h
   const s = blocks.find(isChapterSource);
   if (s?.chapter) return { kind: 'chapter', title: s.chapter, ...(s.unit ? { unit: s.unit } : {}) };
   if (!done || !hasBook) return null;
+  // Tutor overhaul: the chapter's own diagram is shown, so the answer is grounded in the open chapter: never "not from your book".
+  if (blocks.some((b) => b.type === 'showcase')) return null;
   const e = blocks.find((b): b is Explanation => b.type === 'explanation');
   if (!e) return null;
   if (QUOTES_CHAPTER.test([e.idea, ...(e.paragraphs ?? [])].join(' '))) return null;
