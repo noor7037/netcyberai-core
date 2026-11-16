@@ -6,22 +6,21 @@
 import { Suspense, lazy, useCallback, useEffect, useState } from 'react';
 import type { StudioEvent, StudioOpen } from '@/lib/family/draw-contract';
 import type { Words } from '@/lib/family/fill';
-import { drawTemplate, toStudioTemplate, type DrawLang } from '@/lib/family/draw-templates';
+import { toStudioTemplate, type DrawLang, type DrawTemplateEntry } from '@/lib/family/draw-template-entry';
 import { outlineOf } from './template-cache';
 import { engageMode } from '@/lib/family/draw-engage';
 
 const Studio = lazy(() => import('@/components/family/draw/Studio').then((m) => ({ default: m.Studio })));
 
 // What a card asks for: the template (by id), the subject its class studies it under, and where the child came from.
-export type OpenAsk = { templateId: string; subject: string; from: StudioOpen['from'] };
+export type OpenAsk = { template: DrawTemplateEntry; subject: string; from: StudioOpen['from'] };
 
 export function useTemplateStudio({ lang, classLevel, w, onEvent, onSend, child }: { lang: DrawLang; classLevel: number; w: Words; child?: string; onEvent: (e: StudioEvent) => void; onSend?: (file: File, question: string) => Promise<string | null> }) {
   const [open, setOpen] = useState<StudioOpen | null>(null);
   const [failed, setFailed] = useState(false);
   const start = useCallback(
     async (ask: OpenAsk) => {
-      const t = drawTemplate(ask.templateId);
-      if (!t) return;
+      const t = ask.template;
       setFailed(false);
       const svg = await outlineOf(t.id);
       if (!svg) return setFailed(true);

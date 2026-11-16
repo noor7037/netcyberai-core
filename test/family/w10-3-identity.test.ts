@@ -119,7 +119,8 @@ describe('the direct answer', () => {
     expect(at('data-direct-answer')).toBeGreaterThan(-1);
     expect(at('data-direct-answer')).toBeLessThan(at('data-block="explanation"'));
     expect(at('data-block="key_points"')).toBeLessThan(at('data-follow-ups'));
-    expect(at('data-follow-ups')).toBeLessThan(at('data-block="videos"'));
+    // The videos block loads on demand (next/dynamic), so static markup holds none of it; it is never drawn before the follow-ups.
+    expect(at('data-block="videos"') === -1 || at('data-follow-ups') < at('data-block="videos"')).toBe(true);
     expect(html.split(EXPLANATION.idea).length - 1).toBe(1);
   });
 

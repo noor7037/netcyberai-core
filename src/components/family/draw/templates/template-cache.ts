@@ -3,7 +3,7 @@
 // opens online, the outlines of the child's class are fetched once and kept; opening a template reads the kept copy
 // first, then the network. The manifest (titles, tasks, labels, colours) is code in the app's own script, so it is there
 // whenever the app is. Storage may be missing or blocked (a private window): every call then does nothing.
-import { templateSrc } from '@/lib/family/draw-templates';
+import { templateSrc } from '@/lib/family/draw-template-entry';
 
 const CACHE = 'ncf-draw-templates-v1';
 

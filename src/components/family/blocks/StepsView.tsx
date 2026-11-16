@@ -4,7 +4,7 @@ import { useState } from 'react';
 import type { Steps } from '@/lib/family/blocks';
 import type { Words } from '@/lib/family/fill';
 import { Card } from './BlockViews';
-import { useReducedMotion } from './InteractiveViews';
+import { useReducedMotion } from './motion';
 
 // A step strip (W9-C, docs/39 §3): 3 to 5 numbered cards, a column on a phone (390) and a row from 768 px, each with
 // its short label and one line of text, in order. Plain text only.
