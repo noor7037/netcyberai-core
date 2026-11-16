@@ -9,7 +9,6 @@ import { SUBJECTS } from '@/lib/family/modules';
 import { dataSaverBlocks, droppedCount } from '@/lib/family/data-saver';
 import { queueAnswer } from './offline/store';
 import { useDataSaver } from './useDataSaver';
-import { AiNotice } from './AiNotice';
 import { DiagramView, DirectAnswer, EnglishMomentView, ExplanationView, KeyPointsView, SourcesView, WorkedExampleView } from './blocks/BlockViews';
 import dynamic from 'next/dynamic';
 import { QuizView } from './blocks/QuizView';
@@ -27,6 +26,8 @@ import { ChartView } from './blocks/ChartView';
 import { StepsView } from './blocks/StepsView';
 import { TimelineView } from './blocks/TimelineView';
 import { ImageView } from './blocks/ImageView';
+import { ElaborationView } from './blocks/ElaborationView';
+import { ShowcaseView } from './blocks/ShowcaseView';
 import { VideosView } from './blocks/VideosView';
 import { StickyTutorFace } from './avatar/TutorFace';
 import type { Reading } from './voice/AnswerSpeaker';
@@ -150,6 +151,10 @@ export function AnswerBlock({ b, w, tone, lead = false, onRetry, onOffline, sent
       return <FigureView b={b} tone={tone} />;
     case 'model_3d':
       return <Model3DView b={b} w={w} tone={tone} />;
+    case 'showcase':
+      return <ShowcaseView b={b} w={w} tone={tone} />;
+    case 'elaboration':
+      return <ElaborationView b={b} w={w} tone={tone} sentence={sentence} sentences={sentences} />;
     case 'lab':
       return <LabBlockView b={b} w={w} tone={tone} />;
     case 'model':
@@ -352,14 +357,6 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
         <p role="status" data-files-note className="rounded-2xl bg-white px-4 py-3 text-sm font-semibold text-slate ring-1 ring-slate/10">
           {filesNote}
         </p>
-      )}
-      {meta && (
-        <div className="flex flex-wrap items-center gap-2">
-          <span data-label={meta.label} className={`rounded-full px-3 py-1 text-xs font-bold ${meta.label === 'checked' ? 'bg-emerald text-white' : 'bg-grape-deep text-white'}`}>
-            {meta.label === 'checked' ? w['fam.label.checked'] : w['fam.label.aiMade']}
-          </span>
-          <AiNotice w={w} made={meta.label} />
-        </div>
       )}
       {state === 'refused' && noInternet && (
         <section role="status" data-needs-internet className="fam-card flex flex-col gap-2 bg-white p-5 text-base text-slate">

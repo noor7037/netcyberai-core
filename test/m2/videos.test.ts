@@ -62,6 +62,10 @@ const cand = (videoId: string, o: Partial<VideoCandidate> = {}): VideoCandidate 
   ageRestricted: false,
   language: 'en',
   chapters: [],
+  viewCount: 100000,
+  likeCount: 2000,
+  publishedAt: '2020-01-01T00:00:00Z',
+  hasPaidPlacement: false,
   ...o,
 });
 
@@ -69,7 +73,8 @@ const cand = (videoId: string, o: Partial<VideoCandidate> = {}): VideoCandidate 
 const yt = vi.hoisted(() => ({ seen: [] as { url: URL; key: string | null }[], videos: [] as Record<string, unknown>[], byChannel: {} as Record<string, string[]>, wide: [] as string[], fail: false }));
 const item = (id: string, channelId: string, title: string, extra: { duration?: string; description?: string; embeddable?: boolean } = {}) => ({
   id,
-  snippet: { channelId, channelTitle: channelId === OFFICIAL ? 'Official Maths' : 'Other Maths', title, description: extra.description ?? '', defaultAudioLanguage: 'en' },
+  snippet: { channelId, channelTitle: channelId === OFFICIAL ? 'Official Maths' : 'Other Maths', title, description: extra.description ?? '', defaultAudioLanguage: 'en', publishedAt: '2020-01-01T00:00:00Z' },
+  statistics: { viewCount: '100000', likeCount: '2000' },
   contentDetails: { duration: extra.duration ?? 'PT9M30S', caption: 'true' },
   status: { embeddable: extra.embeddable ?? true, privacyStatus: 'public', madeForKids: false },
 });
@@ -111,6 +116,7 @@ beforeAll(async () => {
 
   vi.stubGlobal('fetch', async (input: string | URL, init?: RequestInit) => {
     const url = new URL(String(input));
+    if (url.hostname === 'sponsor.ajay.app') return new Response('Not Found', { status: 404 });
     const key = new Headers(init?.headers).get('x-goog-api-key');
     yt.seen.push({ url, key });
     if (yt.fail) return new Response('{}', { status: 503 });
@@ -186,9 +192,9 @@ describe('ranking, on metadata only', () => {
     expect(rankVideos([cand('ooooooooooo')], { topicTitles: ['Rational numbers'], language: 'en', channels: [] })).toEqual([]);
   });
 
-  it('puts official before approved before others, and keeps four (C522)', () => {
+  it('puts official before approved before others, and keeps two (Noor, 16 Nov 2026)', () => {
     const r = rank([cand('ooooooooooo'), cand('aaaaaaaaaaa', { channelId: 'UCapproved000000000004' }), cand('fffffffffff', { channelId: OFFICIAL }), cand('ppppppppppp'), cand('qqqqqqqqqqq')]);
-    expect(r.map((p) => p.video_id)).toEqual(['fffffffffff', 'aaaaaaaaaaa', 'ooooooooooo', 'ppppppppppp']);
+    expect(r.map((p) => p.video_id)).toEqual(['fffffffffff', 'aaaaaaaaaaa']);
   });
 
   it('never keeps a blocked channel, a video that may not be embedded, is private or age-restricted, or does not match the topic', () => {
@@ -254,7 +260,7 @@ describe('the family route', () => {
       item('nnnnnnnnnnn', OTHER, 'Rational numbers revision', { duration: 'PT1M' }),
     ];
     const got = await videos();
-    expect(got.map((v) => v.videoId)).toEqual(['fffffffffff', 'ooooooooooo', 'nnnnnnnnnnn']);
+    expect(got.map((v) => v.videoId)).toEqual(['fffffffffff', 'ooooooooooo']);
     expect(got[0].startS).toBe(320);
     // Two searches (the official channel, then everything) and one details batch.
     expect(yt.seen.map((s) => s.url.pathname.split('/').pop())).toEqual(['search', 'search', 'videos']);
@@ -272,30 +278,36 @@ describe('the family route', () => {
       expect(s.key).toBe(KEY);
     }
     expect(await searchesToday()).toBe(2);
-    expect((await q(`select count(*)::int as n from content.video_picks where topic_key = $1`, [TOPIC]))[0].n).toBe(3);
+    expect((await q(`select count(*)::int as n from content.video_picks where topic_key = $1`, [TOPIC]))[0].n).toBe(2);
   });
 
   it('serves fresh picks from the cache without a search', async () => {
-    expect((await videos()).map((v) => v.videoId)).toEqual(['fffffffffff', 'ooooooooooo', 'nnnnnnnnnnn']);
+    expect((await videos()).map((v) => v.videoId)).toEqual(['fffffffffff', 'ooooooooooo']);
     expect(yt.seen).toHaveLength(0);
   });
 
+  it('videos work on free and paid alike: a child whose one free subject is another still gets them', async () => {
+    await q(`update family.children set free_subject = 'science', free_subject_set_at = now()`);
+    expect((await videos()).map((v) => v.videoId)).toEqual(['fffffffffff', 'ooooooooooo']);
+    await q(`update family.children set free_subject = null, free_subject_set_at = null`);
+  });
+
   it('refreshes stale picks, keeping a pinned one first', async () => {
-    expect((await R.control.POST(control({ action: 'pin', topicKey: TOPIC, language: 'en', videoId: 'nnnnnnnnnnn' }))).status).toBe(200);
+    expect((await R.control.POST(control({ action: 'pin', topicKey: TOPIC, language: 'en', videoId: 'ooooooooooo' }))).status).toBe(200);
     await q(`update content.video_picks set fetched_at = now() - interval '40 days' where topic_key = $1`, [TOPIC]);
     yt.wide = ['ooooooooooo', 'qqqqqqqqqqq'];
     yt.videos.push(item('qqqqqqqqqqq', OTHER, 'Rational numbers for class 9'));
-    // One pinned is fewer than four (C522): the automatic ones are searched again, and the pinned one is still first.
+    // One pinned is fewer than two: the automatic ones are searched again, and the pinned one is still first.
     const got = await videos();
     expect(yt.seen.filter((s) => s.url.pathname.endsWith('/search'))).toHaveLength(2);
-    expect(got.map((v) => v.videoId)).toEqual(['nnnnnnnnnnn', 'fffffffffff', 'ooooooooooo', 'qqqqqqqqqqq']);
+    expect(got.map((v) => v.videoId)).toEqual(['ooooooooooo', 'fffffffffff']);
     expect((await q(`select count(*)::int as n from content.video_picks where topic_key = $1 and status = 'auto' and fetched_at < now() - interval '1 day'`, [TOPIC]))[0].n).toBe(0);
   });
 
-  it('with four pinned, nothing is searched, however old they are', async () => {
-    await q(`update content.video_picks set status = 'pinned', reviewed_by = $2, reviewed_at = now() where topic_key = $1 and video_id in ('fffffffffff', 'ooooooooooo', 'qqqqqqqqqqq')`, [TOPIC, FOUNDER]);
+  it('with two pinned, nothing is searched, however old they are', async () => {
+    await q(`update content.video_picks set status = 'pinned', reviewed_by = $2, reviewed_at = now() where topic_key = $1 and video_id in ('fffffffffff', 'ooooooooooo')`, [TOPIC, FOUNDER]);
     await q(`update content.video_picks set fetched_at = now() - interval '40 days' where topic_key = $1`, [TOPIC]);
-    expect((await videos()).map((v) => v.videoId).sort()).toEqual(['fffffffffff', 'nnnnnnnnnnn', 'ooooooooooo', 'qqqqqqqqqqq']);
+    expect((await videos()).map((v) => v.videoId).sort()).toEqual(['fffffffffff', 'ooooooooooo']);
     expect(yt.seen).toHaveLength(0);
     await q(`update content.video_picks set status = 'auto', reviewed_by = null, reviewed_at = null where topic_key = $1 and video_id <> 'ooooooooooo'`, [TOPIC]);
   });

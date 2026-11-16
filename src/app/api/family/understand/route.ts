@@ -309,7 +309,7 @@ export async function POST(req: NextRequest) {
             // teaching plan (src/lib/family/resolver.ts plans the answer and retrieves before the answer call). They never
             // decide the answer's subject. W10 (C411): in a chat with turns, the chat's own subject steers them (a follow-up
             // in a Science chat opened from the Mathematics tab is taught from Science passages).
-            target = { ...target, windowSubject: chatSubject ?? subject, ...(reader ? { chapterKey: reader.chapterKey } : {}) };
+            target = { ...target, windowSubject: chatSubject ?? subject, ...(reader ? { chapterKey: reader.chapterKey } : placed?.chapterKey ? { chapterKey: placed.chapterKey } : {}) };
             if (attached && target?.kind === 'question') target = { ...target, attached, ...(checkMode ? { check: true as const } : {}), ...(sketchMode ? { sketch: true as const, ...(drawTemplateId ? { drawTemplate: drawTemplateId } : {}) } : {}) };
             const files = await sendableFiles(db, session.accountId, child.childId, subject, tutorBody.files);
             if (!files) return stop({ t: 'refused', reason: 'not_found', message: words('fam.tutor.fileGone') });
@@ -381,9 +381,10 @@ export async function POST(req: NextRequest) {
           stoppedByCheck = generated.stopped;
           const unfilled = generated.kept;
           const unfilledShared = generated.shared;
-          // C522: the answer's video topic (typed, photo or drawing question), named from what the pipeline already has.
-          const videos = generated.stopped || generated.error !== null ? null : await withFamilyContext(claims, (db) => videoTopicOf(db, { line: pending.line, passages: pending.teach?.passages ?? [], drawTemplate: sketchMode ? drawTemplateId : null, child: pending.ctx.child, accountId: session.accountId })).catch(() => null);
-          if (!generated.stopped && generated.error === null) generated.kept = await fillVisuals((fn) => withFamilyContext(claims, fn), generated.kept, { chapterKey: pending.line?.key ?? null, lang: pending.ctx.child.language, ...(videos ? { videos } : {}), ...(isYoungVisual(pending.ctx.child.classLevel, pending.plan?.blocks.includes(BOARD_BLOCK)) ? { young: { question: pending.asked } } : {}), emit: (block) => send({ t: 'block', block }) });
+          // C522: the answer's video topic (typed, photo or drawing question), named from what the pipeline already has; a typed
+          // question with no catalog topic gives its own subject words, only once the safety check passed it.
+          const videos = generated.stopped || generated.error !== null ? null : await withFamilyContext(claims, (db) => videoTopicOf(db, { line: pending.line, passages: pending.teach?.passages ?? [], drawTemplate: sketchMode ? drawTemplateId : null, child: pending.ctx.child, accountId: session.accountId, asked: questionPassed && !sketchMode ? pending.asked : null, subject: generated.subject ?? pending.known ?? pending.tab ?? null })).catch(() => null);
+          if (!generated.stopped && generated.error === null) generated.kept = await fillVisuals((fn) => withFamilyContext(claims, fn), generated.kept, { chapterKey: pending.line?.key ?? null, subject: generated.subject ?? pending.line?.subject ?? null, lang: pending.ctx.child.language, ...(videos ? { videos } : {}), ...(isYoungVisual(pending.ctx.child.classLevel, pending.plan?.blocks.includes(BOARD_BLOCK)) ? { young: { question: pending.asked } } : {}), emit: (block) => send({ t: 'block', block }) });
           // W22-S3: a block the fill left alone keeps its name-free twin (for a response kept for other children); a filled one has no text of the child's.
           if (generated.kept !== unfilled) generated.shared = generated.kept.map((blk) => { const i = unfilled.indexOf(blk); return i >= 0 ? unfilledShared[i] : blk; });
           return generated;

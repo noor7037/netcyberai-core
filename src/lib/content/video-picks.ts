@@ -1,5 +1,6 @@
 import { writeAuditLog } from '@/lib/audit/log';
 import type { Sql } from '@/lib/jobs/types';
+import { videoReviewHides } from '@/lib/ai/platform';
 import type { ContentActor } from './library';
 
 // Control → Content → Videos (docs/family-app/03 §8; M2-5, C279). A reviewer reads the video finder's picks per topic,
@@ -23,8 +24,13 @@ export type ControlVideoPick = {
   score: number;
   status: 'auto' | 'pinned' | 'rejected';
   fetchedAt: string;
+  // SponsorBlock's marked promotion share (0 to 1), when known.
+  promoShare: number | null;
+  // Gemini's review (src/lib/family/video-review.ts), or null before one; `hidden`: it keeps the video from families.
+  review: { accuracy: number; clarity: number; classFit: number; clickbait: number; childSafety: number; reason: string; model: string; reviewedAt: string; hidden: boolean } | null;
 };
-export type ControlVideoChannel = { channelId: string; title: string; kind: VideoChannelKind; addedAt: string };
+// noAds: the channel runs no ads on its videos (Control's word); the finder ranks it first.
+export type ControlVideoChannel = { channelId: string; title: string; kind: VideoChannelKind; noAds: boolean; addedAt: string };
 export type VideoReview = { picks: ControlVideoPick[]; channels: ControlVideoChannel[]; searchesToday: number };
 export type VideoChange = { ok: true } | { ok: false; reason: 'not_found' | 'bad_request' | 'blocked_channel' };
 
@@ -38,14 +44,15 @@ const iso = (v: unknown) => (v instanceof Date ? v.toISOString() : String(v));
 export async function listVideoReview(db: Sql, a: { topic?: string; today: string }): Promise<VideoReview> {
   const filter = a.topic && /^[a-z0-9._-]{1,120}$/.test(a.topic) ? a.topic : null;
   const picks = await db.query(
-    `select topic_key, language, video_id, channel_id, channel_title, title, duration_s, start_s, captions, score, status, fetched_at
-       from content.video_picks
-      where ($1::text is null or topic_key like replace(replace($1, '_', '\\_'), '%', '\\%') || '%')
-      order by max(fetched_at) over (partition by topic_key, language) desc, topic_key, language, (status = 'pinned') desc, (status = 'rejected'), score desc, video_id
+    `select p.topic_key, p.language, p.video_id, p.channel_id, p.channel_title, p.title, p.duration_s, p.start_s, p.captions, p.score, p.status, p.fetched_at, p.promo_share,
+            r.accuracy, r.clarity, r.class_fit, r.clickbait, r.child_safety, r.reason, r.model, r.reviewed_at
+       from content.video_picks p left join content.video_reviews r on r.video_id = p.video_id
+      where ($1::text is null or p.topic_key like replace(replace($1, '_', '\\_'), '%', '\\%') || '%')
+      order by max(p.fetched_at) over (partition by p.topic_key, p.language) desc, p.topic_key, p.language, (p.status = 'pinned') desc, (p.status = 'rejected'), p.score desc, p.video_id
       limit 300`,
     [filter]
   );
-  const channels = await db.query(`select channel_id, title, kind, added_at from content.video_channels order by kind, title`);
+  const channels = await db.query(`select channel_id, title, kind, no_ads, added_at from content.video_channels order by kind, title`);
   const searches = await db.query(`select searches from content.video_searches where day = $1::date`, [a.today]);
   return {
     picks: picks.rows.map((r: Record<string, unknown>) => ({
@@ -61,8 +68,23 @@ export async function listVideoReview(db: Sql, a: { topic?: string; today: strin
       score: Number(r.score),
       status: r.status as ControlVideoPick['status'],
       fetchedAt: iso(r.fetched_at),
+      promoShare: r.promo_share === null || r.promo_share === undefined ? null : Number(r.promo_share),
+      review:
+        r.child_safety === null || r.child_safety === undefined
+          ? null
+          : {
+              accuracy: Number(r.accuracy),
+              clarity: Number(r.clarity),
+              classFit: Number(r.class_fit),
+              clickbait: Number(r.clickbait),
+              childSafety: Number(r.child_safety),
+              reason: String(r.reason ?? ''),
+              model: String(r.model ?? ''),
+              reviewedAt: iso(r.reviewed_at),
+              hidden: videoReviewHides({ child_safety: Number(r.child_safety), accuracy: Number(r.accuracy) }),
+            },
     })),
-    channels: channels.rows.map((r: Record<string, unknown>) => ({ channelId: String(r.channel_id), title: String(r.title), kind: r.kind as VideoChannelKind, addedAt: iso(r.added_at) })),
+    channels: channels.rows.map((r: Record<string, unknown>) => ({ channelId: String(r.channel_id), title: String(r.title), kind: r.kind as VideoChannelKind, noAds: r.no_ads === true, addedAt: iso(r.added_at) })),
     searchesToday: Number(searches.rows[0]?.searches ?? 0),
   };
 }
@@ -131,14 +153,17 @@ export async function pinChapterVideo(db: Sql, actor: ContentActor, p: ChapterVi
 }
 
 // Add a channel to a list, or move it to another. Blocking a channel rejects every pick of it at once.
-export async function setVideoChannel(db: Sql, actor: ContentActor, c: { channelId: string; title: string; kind: string }): Promise<VideoChange> {
+// `noAds`: whether the channel runs no ads (left out: kept as it was; a new channel: no).
+export async function setVideoChannel(db: Sql, actor: ContentActor, c: { channelId: string; title: string; kind: string; noAds?: boolean }): Promise<VideoChange> {
   const title = typeof c.title === 'string' ? c.title.replace(/\s+/g, ' ').trim() : '';
   if (!CHANNEL_ID.test(c.channelId) || !KINDS.includes(c.kind as VideoChannelKind) || title.length < 1 || title.length > 120) return { ok: false, reason: 'bad_request' };
-  const before = (await db.query(`select kind from content.video_channels where channel_id = $1 for update`, [c.channelId])).rows[0] as { kind: VideoChannelKind } | undefined;
+  if (c.noAds !== undefined && typeof c.noAds !== 'boolean') return { ok: false, reason: 'bad_request' };
+  const before = (await db.query(`select kind, no_ads from content.video_channels where channel_id = $1 for update`, [c.channelId])).rows[0] as { kind: VideoChannelKind; no_ads: boolean } | undefined;
   await db.query(
-    `insert into content.video_channels (channel_id, title, kind, added_by) values ($1, $2, $3, $4)
-     on conflict (channel_id) do update set title = excluded.title, kind = excluded.kind, added_by = excluded.added_by, added_at = now()`,
-    [c.channelId, title, c.kind, actor.userId]
+    `insert into content.video_channels (channel_id, title, kind, added_by, no_ads) values ($1, $2, $3, $4, coalesce($5::boolean, false))
+     on conflict (channel_id) do update set title = excluded.title, kind = excluded.kind, added_by = excluded.added_by, added_at = now(),
+       no_ads = coalesce($5::boolean, content.video_channels.no_ads)`,
+    [c.channelId, title, c.kind, actor.userId, c.noAds ?? null]
   );
   let rejected = 0;
   if (c.kind === 'blocked') {
@@ -153,8 +178,8 @@ export async function setVideoChannel(db: Sql, actor: ContentActor, c: { channel
     eventAction: 'content.video.channel_set',
     targetType: 'content_video_channel',
     targetId: c.channelId,
-    beforeState: before ? { kind: before.kind } : null,
-    afterState: { kind: c.kind === 'official' ? 'official' : c.kind === 'approved' ? 'approved' : 'blocked', picksRejected: rejected },
+    beforeState: before ? { kind: before.kind, noAds: before.no_ads === true } : null,
+    afterState: { kind: c.kind === 'official' ? 'official' : c.kind === 'approved' ? 'approved' : 'blocked', noAds: c.noAds ?? before?.no_ads === true, picksRejected: rejected },
   });
   return { ok: true };
 }
@@ -171,6 +196,24 @@ export async function removeVideoChannel(db: Sql, actor: ContentActor, channelId
     targetType: 'content_video_channel',
     targetId: channelId,
     beforeState: { kind: gone.kind === 'official' ? 'official' : gone.kind === 'approved' ? 'approved' : 'blocked' },
+    afterState: null,
+  });
+  return { ok: true };
+}
+
+// Control's Re-review (the review itself runs after this transaction, src/lib/family/video-review.ts): the old
+// judgement is removed and the change audited (ids only).
+export async function clearVideoReview(db: Sql, actor: ContentActor, videoId: string): Promise<VideoChange> {
+  if (!VIDEO_ID.test(videoId)) return { ok: false, reason: 'bad_request' };
+  const gone = (await db.query(`delete from content.video_reviews where video_id = $1 returning child_safety, accuracy`, [videoId])).rows[0] as { child_safety: number; accuracy: number } | undefined;
+  await writeAuditLog(db, {
+    schoolId: null,
+    actorUserId: actor.userId,
+    actorRole: 'super_admin',
+    eventAction: 'content.video.rereview',
+    targetType: 'content_video_review',
+    targetId: videoId,
+    beforeState: gone ? { childSafety: Number(gone.child_safety), accuracy: Number(gone.accuracy) } : null,
     afterState: null,
   });
   return { ok: true };

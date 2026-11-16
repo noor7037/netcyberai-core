@@ -7,7 +7,7 @@ import { PHOTO_WIDE_WIDTH, PHOTO_WIDTH } from './photo-size';
 //
 // The address is fixed here (as the YouTube adapter's is), a redirect is a failure, and every address in the answer is
 // checked for its host before it is kept. For a child's screen the search looks only among the pictures Commons'
-// reviewers have assessed (quality, featured and valued images), skips a file with a personality or other restriction,
+// reviewers have assessed (quality, featured and valued images) first, skips a file with a personality or other restriction,
 // and skips one whose title or categories name something not for children.
 
 export type CommonsPhoto = { url: string; pageUrl: string; author: string; licence: string; licenceUrl: string | null };
@@ -18,7 +18,8 @@ export const TIMEOUT_MS = 4000;
 // a phone tens of kilobytes; ImageView asks for the 960 px step only on a wide screen (photo-size.ts).
 export const WIDTH = PHOTO_WIDTH;
 const MAX_BYTES = 2 * 1024 * 1024;
-const ASSESSED = 'incategory:Quality_images|Featured_pictures_on_Wikimedia_Commons|Valued_images';
+// Files Commons' reviewers have assessed (quality, featured and valued images) rank first; they are a bonus, never a filter.
+const ASSESSED = /quality images|featured pictures|valued images/i;
 export const NOT_FOR_CHILDREN = /\b(nud(e|ity)|naked|sex(ual)?|erotic|porn|corpse|dead body|autopsy|gore|wound|injur(y|ies)|surgery|execution|lynch|tortur|genital|weapon|gun|drug)/i;
 
 export function commonsSearchUrl(query: string): string {
@@ -29,7 +30,7 @@ export function commonsSearchUrl(query: string): string {
     generator: 'search',
     gsrnamespace: '6',
     gsrlimit: '10',
-    gsrsearch: `${query} filetype:bitmap ${ASSESSED}`,
+    gsrsearch: `${query} filetype:bitmap`,
     prop: 'imageinfo',
     iiprop: 'url|size|mime|extmetadata',
     iiurlwidth: String(WIDTH),
@@ -101,7 +102,8 @@ export function pickPhoto(answer: unknown): CommonsPhoto | null {
     const landscape = Number(ii.width) >= Number(ii.height);
     const small = Number(ii.size) > 0 && Number(ii.size) < MAX_BYTES;
     const order = typeof p.index === 'number' ? p.index : found.length;
-    found.push({ photo: { url, pageUrl, author, licence, licenceUrl }, rank: (landscape ? 0 : 2000) + (small ? 0 : 1000) + order });
+    const assessed = typeof meta.Categories?.value === 'string' && ASSESSED.test(meta.Categories.value);
+    found.push({ photo: { url, pageUrl, author, licence, licenceUrl }, rank: (landscape ? 0 : 2000) + (small ? 0 : 1000) + (assessed ? 0 : 500) + order });
   }
   found.sort((a, b) => a.rank - b.rank);
   return found[0]?.photo ?? null;

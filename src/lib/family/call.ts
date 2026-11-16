@@ -1,3 +1,4 @@
+import { elaborationSpeech } from './elaboration';
 import type { PublicBlock } from './resolver';
 
 // The call (W16-A4): a child talks to a tutor and hears the answer. Pure helpers, safe for the phone (no database, no
@@ -62,6 +63,8 @@ export function callSpeech(block: PublicBlock): string[] {
       return [block.idea, ...(block.paragraphs ?? []), block.example].filter((t) => typeof t === 'string' && t.trim().length > 0);
     case 'worked_example':
       return [block.problem, ...block.steps.map((s) => s.text), block.answer].filter((t) => typeof t === 'string' && t.trim().length > 0);
+    case 'elaboration':
+      return elaborationSpeech(block);
     default:
       return [];
   }

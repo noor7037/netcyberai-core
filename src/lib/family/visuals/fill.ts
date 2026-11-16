@@ -3,6 +3,9 @@ import { setting } from '@/lib/family/learning';
 import { searchCommons, type CommonsPhoto } from './commons';
 import { searchOpenverse } from './openverse';
 import { youngPhotoQuery } from './young';
+import { fillElaboration } from './elab-fill';
+import type { Elaboration } from '@/lib/family/elaboration';
+import { KEEP } from '@/lib/family/videos';
 import { answerVideos, type AnswerVideos, type VideoTopic } from '@/lib/family/answer-videos';
 import { familyModuleOn } from '@/lib/family/flags';
 
@@ -25,7 +28,9 @@ export type FillOptions = {
   // for one, two to four of the topic's picks, refreshed from the provider when they are stale. Only with Control's
   // `videos` module on for this family; never from a child's words (the search is our own catalog text).
   videos?: VideoTopic;
-  emit?: (b: ImagePhoto | Videos) => void;
+  emit?: (b: ImagePhoto | Videos | (Elaboration & Block)) => void;
+  // The answer's subject: it decides which picture sources an elaboration's steps ask first (sources.ts routeFor).
+  subject?: string | null;
   // The photo search (default: Commons, then Openverse); a test passes its own.
   search?: (query: string) => Promise<CommonsPhoto | null>;
   // C526: the youngest children's answer (LKG to Class 2 under a prompt that draws first): the child's question. An
@@ -84,7 +89,18 @@ const videosBlock = (items: VideoItem[]): Videos | null => (items.length ? (chec
 
 const withoutVisuals = (blocks: Block[]) => blocks.filter((b) => !FILLED_TYPES.includes(b.type));
 
-export async function fillVisuals(withDb: WithDb, written: Block[], opts: FillOptions): Promise<Block[]> {
+export async function fillVisuals(withDb: WithDb, original: Block[], opts: FillOptions): Promise<Block[]> {
+  // The Elaboration Framework: each step gets a real picture (a licensed photograph, or a 3D model), sent to the phone to
+  // replace the block it already shows. A failure keeps the block as it was.
+  let written = original;
+  const elab = original.find((b): b is Elaboration & Block => b.type === 'elaboration');
+  if (elab) {
+    const filled = await fillElaboration(elab, { subject: opts.subject ?? null }).catch(() => elab);
+    if (filled !== elab) {
+      written = original.map((b) => (b === elab ? { ...filled, ...(elab.id ? { id: elab.id } : {}) } : b)) as Block[];
+      opts.emit?.(written.find((b) => b.type === 'elaboration') as Elaboration & Block);
+    }
+  }
   const blocks = withYoungPhoto(written, opts.young, opts.lang);
   const image = blocks.find((b): b is ImageQuery & Block => b.type === 'image' && 'query' in b);
   const asked = blocks.some((b) => b.type === 'videos');
@@ -112,7 +128,7 @@ export async function fillVisuals(withDb: WithDb, written: Block[], opts: FillOp
       if (found && new URL(found.url).hostname === PHOTO_HOST) await withDb((db) => db.query(`select content.save_image_pick($1, $2, $3, $4, $5, $6)`, [key, found.url, found.pageUrl, found.author, found.licence, found.licenceUrl])).catch(() => {});
     }
     const filledImage = image && photo ? photoBlock(image, photo) : null;
-    const filledVideos = answered ? answerBlock(answered) : topic ? videosBlock(first.items) : null;
+    const filledVideos = answered ? answerBlock(answered) : topic ? videosBlock(first.items.slice(0, KEEP)) : null;
     const out: Block[] = [];
     for (const b of blocks) {
       if (b.type === 'image') {

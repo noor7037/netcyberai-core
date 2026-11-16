@@ -44,7 +44,7 @@ export function SyllabusList({ title, chapters, tone, id = 'fam-syllabus', start
           {title}
         </h2>
       )}
-      <ol className="flex flex-col gap-2">
+      <ol className="flex flex-col gap-2 lg:grid lg:grid-cols-2 lg:items-start">
         {chapters.map((c, i) => {
           const mark = c.mark ?? 'number';
           if (mark === 'number') n += 1;

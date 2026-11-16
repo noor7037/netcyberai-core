@@ -3,6 +3,7 @@
 // this, and the cookies are signed with the run's own secret, worthless anywhere else.
 import { createHash, randomUUID } from 'node:crypto';
 import path from 'node:path';
+import { execFileSync } from 'node:child_process';
 import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { SignJWT } from 'jose';
@@ -90,6 +91,15 @@ const QUIZ_CARD = `${FOLLOW_UP_CHAT}
   select '${QUIZ_ID}', account_id, child_id, conversation_id, (now() at time zone 'Asia/Kolkata')::date, 'science', 'en', 'Quick quiz', '${JSON.stringify(QUIZ_ITEMS).replace(/'/g, "''")}'::jsonb,
          array[(now() at time zone 'Asia/Kolkata')::date + 1, (now() at time zone 'Asia/Kolkata')::date + 3, (now() at time zone 'Asia/Kolkata')::date + 7]
     from family.tutor_conversations where conversation_id = '${FOLLOW_CHAT_ID}' on conflict do nothing;`;
+// The NetCyberAI Elaboration Framework (16 Nov 2026): a typed Study question answered in five steps, for a real Class 3
+// Mathematics chapter ("Fair Share", equal fractions). The model's line is scripted (the harness calls no model); the block
+// checker, the five pictures and the lead level are the app's own code (elaboration-fixture.ts). Prompt v19 is made the
+// resolver's prompt in the harness database only (throwaway; never in Control's real database).
+const HERE = path.dirname(new URL(import.meta.url).pathname);
+const ELAB = JSON.parse(execFileSync(path.join(HERE, '../../node_modules/.bin/tsx'), [path.join(HERE, 'elaboration-fixture.ts')], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 }));
+const CLASS_3 = `update family.children set class_level = 3 where child_id = 'f0000000-0000-4000-8000-0000000fc001'; update control.ai_profiles set prompt_version = 'v19' where profile_id = 'family.resolver'`;
+const ELAB_STEPS = (lang) => [{ fill: { field: '[data-tutor-window] textarea', value: ELAB[lang].question }, tap: '[data-tutor-send]', wait: '[data-elab-step="5"]' }, { pause: 900 }];
+
 const FOLLOW_UP_ANSWER = [
   { t: 'meta', label: 'ai_made', cached: false, title: null, subject: 'science', topicKey: null },
   { t: 'block', block: { type: 'explanation', title: 'Photosynthesis in a money plant', idea: 'The leaves we talked about make food the same way in a plant at home.', paragraphs: ['A money plant near a sunny window grows towards the light: its leaves use the sunlight, the water you pour in and the air around it to make sugar, as explained above.'], example: 'Keep one plant in the sun and one in a dark cupboard for a week: the one in the dark turns pale.', steps: [], terms: [] } },
@@ -343,6 +353,22 @@ export const FAMILY_SCREENS = [
   // it in Science, the feed says "Moved to Science" above the answer and the subject tab follows to Science.
   // Then the parent area right after a child's class is saved: the "Saved" line (Asha is put back in Class 7 after).
   ['full', 'family-tutor-followup', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', prep: FOLLOW_UP_CHAT, reset: FOLLOW_UP_CHAT_GONE, answer: FOLLOW_UP_ANSWER, settle: '[data-tutor-rail]', steps: [{ fill: { field: '[data-tutor-window] textarea', value: 'Can you show it with an example?' }, tap: '[data-tutor-send]', wait: '[data-tutor-window][data-listed="science"] [data-feed-moved="science"]' }] }],
+  // The five-step answer, English and Hindi: from the top (the question and the first step), from the middle, and the whole page.
+  ...['en', 'hi'].flatMap((l) => [
+    ['full', `family-tutor-elab-${l}`, '/family/study?subject=mathematics', { langs: [l], prep: CLASS_3, reset: CLASS_PUT_BACK, answer: () => ELAB[l].body, viewportShot: true, settle: '[data-tutor-rail]', steps: [...ELAB_STEPS(l), { scroll: '[data-tutor-ask]' }, { pause: 500 }] }],
+    ['full', `family-tutor-elab-steps-${l}`, '/family/study?subject=mathematics', { langs: [l], prep: CLASS_3, reset: CLASS_PUT_BACK, answer: () => ELAB[l].body, viewportShot: true, settle: '[data-tutor-rail]', steps: [...ELAB_STEPS(l), { scroll: '[data-elab-step="3"]' }, { pause: 500 }] }],
+    ['full', `family-tutor-elab-full-${l}`, '/family/study?subject=mathematics', { langs: [l], prep: CLASS_3, reset: CLASS_PUT_BACK, answer: () => ELAB[l].body, settle: '[data-tutor-rail]', steps: [...ELAB_STEPS(l), { style: '[data-tutor-composer]{position:static!important}.fam-dock{visibility:hidden}' }, { pause: 400 }] }],
+  ]),
+  // The founder's live question ("how photosynthesis work and why trees die"): five real pictures, the checks after step 5.
+  ['full', 'family-tutor-elab-photo', '/family/study?subject=mathematics', { langs: ['en'], prep: CLASS_3, reset: CLASS_PUT_BACK, answer: () => ELAB.photo.body, viewportShot: true, settle: '[data-tutor-rail]', steps: [...ELAB_STEPS('photo'), { scroll: '[data-elab-step="3"]' }, { pause: 800 }] }],
+  ['full', 'family-tutor-elab-phototop', '/family/study?subject=mathematics', { langs: ['en'], prep: CLASS_3, reset: CLASS_PUT_BACK, answer: () => ELAB.photo.body, viewportShot: true, settle: '[data-tutor-rail]', steps: [...ELAB_STEPS('photo'), { scroll: '[data-elab-step="1"]' }, { top: true }, { pause: 800 }] }],
+  ['full', 'family-tutor-elab-photohitop', '/family/study?subject=mathematics', { langs: ['hi'], prep: CLASS_3, reset: CLASS_PUT_BACK, answer: () => ELAB.photoHi.body, viewportShot: true, settle: '[data-tutor-rail]', steps: [...ELAB_STEPS('photoHi'), { scroll: '[data-elab-step="1"]' }, { top: true }, { pause: 800 }] }],
+  // The end of the page: the last step and the checks clear the Draw button and the Ask bar (nothing is covered).
+  ['full', 'family-tutor-elab-photoend', '/family/study?subject=mathematics', { langs: ['en'], prep: CLASS_3, reset: CLASS_PUT_BACK, answer: () => ELAB.photo.body, viewportShot: true, settle: '[data-tutor-rail]', steps: [...ELAB_STEPS('photo'), { bottom: true }, { pause: 800 }] }],
+  ['full', 'family-tutor-elab-photohiend', '/family/study?subject=mathematics', { langs: ['hi'], prep: CLASS_3, reset: CLASS_PUT_BACK, answer: () => ELAB.photoHi.body, viewportShot: true, settle: '[data-tutor-rail]', steps: [...ELAB_STEPS('photoHi'), { bottom: true }, { pause: 800 }] }],
+  ['full', 'family-tutor-elab-photo-full', '/family/study?subject=mathematics', { langs: ['en'], prep: CLASS_3, reset: CLASS_PUT_BACK, answer: () => ELAB.photo.body, settle: '[data-tutor-rail]', steps: [...ELAB_STEPS('photo'), { style: '[data-tutor-composer]{position:static!important}.fam-dock{visibility:hidden}' }, { pause: 1200 }] }],
+  ['full', 'family-tutor-elab-photohi-full', '/family/study?subject=mathematics', { langs: ['hi'], prep: CLASS_3, reset: CLASS_PUT_BACK, answer: () => ELAB.photoHi.body, settle: '[data-tutor-rail]', steps: [...ELAB_STEPS('photoHi'), { style: '[data-tutor-composer]{position:static!important}.fam-dock{visibility:hidden}' }, { pause: 1200 }] }],
+  ['full', 'family-tutor-elab-photohi', '/family/study?subject=mathematics', { langs: ['hi'], prep: CLASS_3, reset: CLASS_PUT_BACK, answer: () => ELAB.photoHi.body, viewportShot: true, settle: '[data-tutor-rail]', steps: [...ELAB_STEPS('photoHi'), { scroll: '[data-elab-step="3"]' }, { pause: 800 }] }],
   ['full', 'family-parent-child-saved', '/family/parent#manage', { parent: true, reset: CLASS_PUT_BACK, settle: '[data-parent-panel="children"]:not([hidden])', steps: [{ tap: '[data-child-edit]', wait: 'select[id$="-class"]' }, { select: { field: 'select[id$="-class"]', value: '3' }, tap: '[data-parent-panel="children"] form button[type="submit"]', wait: '[data-child-saved]' }] }],
   // W22-S3: a kept answer read aloud, caught in the middle: the tutor's face stays at the top of the feed, the sentence is
   // marked and kept on screen, and the read-aloud line says how much is read.
@@ -827,6 +853,10 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
               });
               await page.locator(step.upload).first().setInputFiles({ name: 'textbook-page.jpg', mimeType: 'image/jpeg', buffer: Buffer.from(dataUrl.split(',')[1], 'base64') }).catch(() => errors.push(`${step.upload} could not take the photo`));
             }
+            if (step.top) await page.evaluate(() => window.scrollTo(0, 0));
+            if (step.bottom) await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+            if (step.style) await page.addStyleTag({ content: step.style });
+            if (step.end) await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
             if (step.scroll) await page.locator(step.scroll).first().scrollIntoViewIfNeeded().catch(() => errors.push(`${step.scroll} could not be scrolled to`));
             if (step.select) await page.locator(step.select.field).first().selectOption(step.select.value).catch(() => errors.push(`${step.select.field} could not be chosen`));
             // `reload` (W24): the page loaded again, as a child coming back to it (saved progress kept).

@@ -2,8 +2,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import { activeChild, listChildren, type FamilyChild } from '@/lib/family/children';
 import { consentState } from '@/lib/family/consent';
 import { familyModuleOn } from '@/lib/family/flags';
-import { openSubjects } from '@/lib/family/learning';
-import { subjectAccess } from '@/lib/family/modules';
 import { familyRead, requireFamily } from '@/lib/family/request';
 import { syllabusLine, type Line } from '@/lib/family/resolver';
 import { FAMILY_CHILD_COOKIE } from '@/lib/family/session';
@@ -13,7 +11,7 @@ import type { VideoPick } from '@/lib/family/videos';
 // The video finder (M2-5, C279): GET ?topic=<topic key> → { videos: [...] } for the child using the app now, at most
 // three. A video is extra: anything missing — the module off, no key, the day's searches spent, the provider down —
 // answers the pinned picks or an empty list, never an error the family sees. Needs the parent's study_core consent and
-// the subject open to this child (as Understand checks it; reading a video never claims a free subject).
+// (no plan or free-subject filter: videos work on free and paid alike).
 //
 // No database connection is held while YouTube answers (F1-3): the checks and the cached picks in one short
 // transaction; when a refresh is due, Control's channel list (platform role) and the key and the day's searches in a
@@ -40,7 +38,8 @@ export async function GET(req: NextRequest) {
     if (!(await consentState(db, session.accountId)).study_core) return null;
     if (!(await familyModuleOn(db, 'videos', session.accountId))) return null;
     const line = await syllabusLine(db, child, { kind: 'topic', key: topic });
-    if (!line || !subjectAccess(child, line.subject, await openSubjects(db)).open) return null;
+    // Videos work on every plan (Noor, 16 Nov 2026): a free child's one open subject is a limit on the tutor, not on videos.
+    if (!line) return null;
     return { line, child };
   });
   if (!found) return answer([]);

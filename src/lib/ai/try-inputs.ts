@@ -50,6 +50,8 @@ export const TRY_INPUTS: Record<ProfileId, TrySample> = {
   'family.qc': JSON_TEXT,
   'family.word_help': JSON_TEXT,
   'family.voice_call': { kind: 'token' },
+  // The video judge's own call watches a YouTube address (video-review.ts); Try it checks the chain answers JSON.
+  'family.video_review': JSON_TEXT,
   'copilot.draft': plain('Suggest one short classroom activity for a teacher.', 'Class 6 science, chapter Exploring Magnets.'),
   'parent_ai.home_help': plain('Give a parent one short tip to help with this topic at home.', 'Class 6 science, chapter Exploring Magnets.'),
   'content.syllabus_extract': JSON_TEXT,

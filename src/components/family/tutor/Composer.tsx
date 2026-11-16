@@ -155,7 +155,7 @@ export function Composer(p: Props) {
     <div
       data-tutor-composer
       style={dockStyle}
-      className={`fam-composer-dock sticky z-20 -mx-2 px-2 pb-1 pt-4 ${lifted ? 'bottom-0' : p.pinned === 'dock' ? 'bottom-[calc(var(--fam-bottom,0px)+5.25rem)]' : 'bottom-0'}`}
+      className={`fam-composer-dock sticky z-20 -mx-2 px-2 pb-1 pt-2 ${p.pinned === 'dock' ? 'lg:mr-auto lg:w-5/12' : ''} ${lifted ? 'bottom-0' : p.pinned === 'dock' ? 'bottom-[calc(var(--fam-bottom,0px)+5.25rem)]' : 'bottom-0'}`}
     >
       <form
         data-tutor-rail

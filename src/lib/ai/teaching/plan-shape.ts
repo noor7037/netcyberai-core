@@ -29,7 +29,11 @@ export type PlanBlock = (typeof PLAN_BLOCKS)[number];
 // C509: the drawing board, named only in the youngest children's plan under a prompt that draws first (v15). Not one of
 // the blocks the planner may choose (PLAN_BLOCKS is unchanged, so family.plan's prompt and its checker are too).
 export const BOARD_BLOCK = 'board' as const;
-export type PlannedBlock = PlanBlock | typeof BOARD_BLOCK;
+// The NetCyberAI Elaboration Framework (16 Nov 2026, prompt v19): the whole answer is ONE block holding the five steps in
+// order (definition, three levels, real life, try it, future line), each with a picture, text and a voice line. Under a
+// prompt that elaborates, the plan is this block alone, whatever the planner or the band said.
+export const ELABORATION_BLOCK = 'elaboration' as const;
+export type PlannedBlock = PlanBlock | typeof BOARD_BLOCK | typeof ELABORATION_BLOCK;
 
 export type Visual = { kind: VisualKind; about: string };
 export type Plan = { questionType: QuestionType; band: Band; depth: Depth; blocks: PlannedBlock[]; visuals: Visual[]; lang: 'en' | 'hi' };
@@ -79,7 +83,7 @@ export function blocksFor(band: Band, depth: Depth): PlanBlock[] {
 }
 
 // `visualFirst` (C509): the prompt draws the answer first for the youngest children (v15); absent under every other.
-export type PlanContext = { classLevel: number; subject: string | null; lang: 'en' | 'hi'; visualFirst?: boolean };
+export type PlanContext = { classLevel: number; subject: string | null; lang: 'en' | 'hi'; visualFirst?: boolean; oneBoard?: boolean; elaborate?: boolean };
 
 // C509: the youngest band of a prompt that draws first, LKG to Class 2: a board, one very short explanation, one check.
 // No worked example, no key points, no practice: a child who may not read yet hears the answer, sees it drawn and taps.
@@ -134,8 +138,19 @@ export function withContentVisuals(blocks: readonly PlanBlock[], questionType: Q
 // The plan's length (MAX_BLOCKS, the check kept last) and LKG to Class 1's one picture (docs/39 "Bands"): at most 60
 // words and one picture, whatever else was asked.
 // C509: under a prompt that draws first, LKG to Class 2 is the board, the explanation and the check, whatever was asked.
+// Tutor overhaul (v19, `oneBoard`): one stage, not a wall of cards: the explanation (title, a few steps, one example), a
+// worked example only when the plan carries one, ONE visual (the first drawn or interactive block of the plan) and the
+// check. No practice, no key points, no mind map, no second visual.
+const NOT_VISUAL: readonly PlanBlock[] = ['explanation', 'worked_example', 'key_points', 'check', 'practice', 'english_moment', 'mind_map', 'videos'];
+export function oneBoardBlocks(list: readonly PlanBlock[]): PlanBlock[] {
+  const visual = list.find((b) => !NOT_VISUAL.includes(b));
+  return ['explanation', ...(list.includes('worked_example') ? (['worked_example'] as const) : []), ...(visual ? [visual] : []), 'check'];
+}
+
 function bounded(list: PlanBlock[], band: Band, ctx: PlanContext): PlannedBlock[] {
+  if (ctx.elaborate) return [ELABORATION_BLOCK];
   if (isYoungVisual(ctx.classLevel, ctx.visualFirst)) return [...YOUNG_VISUAL_BLOCKS];
+  if (ctx.oneBoard) list = oneBoardBlocks(list);
   let blocks = list.slice(0, MAX_BLOCKS);
   if (!blocks.includes('check')) blocks[blocks.length - 1] = 'check';
   if (band === 'lkg_1') blocks = ['explanation', blocks.find((b) => b === 'figure' || b === 'image') ?? 'image', 'check'];
