@@ -192,7 +192,7 @@ describe('fillVisuals', () => {
     const plain = [checkBlock({ type: 'explanation', title: 'Cells', idea: 'An idea.', example: 'An example.', steps: ['One.', 'Two.'], terms: [] }) as Block];
     const out = await fillVisuals(asFamily, plain, { chapterKey: TOPIC, lang: 'en', videos: { line, child, accountId: ACCOUNT, language: 'en' } });
     expect(out.map((b) => b.type)).toEqual(['explanation', 'videos']);
-    expect((out[1] as Videos).items!.map((v) => v.videoId)).toEqual(['pinnedvid01', 'autovideo01', 'autovideo02', 'autovideo03']);
+    expect((out[1] as Videos).items!.map((v) => v.videoId)).toEqual(['pinnedvid01', 'autovideo01']);
     // C522: the block names the cache line it came from (the "See video" tap is checked against it).
     expect(out[1]).toMatchObject({ topicKey: TOPIC, lang: 'en' });
     // A topic with no picks (and no key to search with), and no topic at all: the answer stays as it was.
@@ -207,9 +207,9 @@ describe('fillVisuals', () => {
     expect(out.map((b) => b.type)).toEqual(['explanation', 'figure', 'image', 'videos']);
     const photo = out[2] as ImageBlock;
     expect(photo).toEqual({ type: 'image', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Onion_cells.jpg/960px-Onion_cells.jpg', caption: IMAGE.caption, credit: 'A. Maker', licence: 'CC BY-SA 4.0', source: 'https://commons.wikimedia.org/wiki/File:Onion_cells.jpg' });
-    // Up to four: the pinned pick first, never the rejected one, only this language.
+    // Up to two (Noor, 16 Nov 2026): the pinned pick first, never the rejected one, only this language.
     const videos = (out[3] as Videos).items!;
-    expect(videos.map((v) => v.videoId)).toEqual(['pinnedvid01', 'autovideo01', 'autovideo02', 'autovideo03']);
+    expect(videos.map((v) => v.videoId)).toEqual(['pinnedvid01', 'autovideo01']);
     expect(videos[0]).toEqual({ videoId: 'pinnedvid01', title: 'Cells, pinned', channel: 'A made-up channel', seconds: 300 });
     expect(emitted.map((b) => b.type)).toEqual(['image', 'videos']);
     // Kept per query: the next answer with the same words (spaced differently) does not search again.
