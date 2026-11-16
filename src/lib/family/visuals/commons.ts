@@ -34,7 +34,7 @@ export function commonsSearchUrl(query: string): string {
     prop: 'imageinfo',
     iiprop: 'url|size|mime|extmetadata',
     iiurlwidth: String(WIDTH),
-    iiextmetadatafilter: 'LicenseShortName|LicenseUrl|Artist|Restrictions|Categories',
+    iiextmetadatafilter: 'LicenseShortName|LicenseUrl|Artist|Restrictions|Categories|ImageDescription',
   });
   return `${COMMONS_API}?${q.toString()}`;
 }
@@ -81,8 +81,8 @@ type Page = { title?: unknown; index?: unknown; imageinfo?: { url?: unknown; thu
 
 // The best licensed photograph in one search answer, or null: a JPEG or PNG with an allowed licence, an author, no
 // restriction and nothing in its title or categories that is not for children; a landscape picture under 2 MB first,
-// then Commons' own order.
-export function pickPhoto(answer: unknown): CommonsPhoto | null {
+// then Commons' own order. `accept` (v21, relevance.ts): the file's title, categories and description must fit the search.
+export function pickPhoto(answer: unknown, accept?: (about: string) => boolean): CommonsPhoto | null {
   const pages = (answer as { query?: { pages?: unknown } } | null)?.query?.pages;
   if (!Array.isArray(pages)) return null;
   const found: { photo: CommonsPhoto; rank: number }[] = [];
@@ -98,6 +98,7 @@ export function pickPhoto(answer: unknown): CommonsPhoto | null {
     const url = commonsThumb(ii.thumburl) ?? (Number(ii.width) <= PHOTO_WIDE_WIDTH ? onHost(ii.url, PHOTO_HOST) : null);
     const pageUrl = onHost(ii.descriptionurl, PHOTO_PAGE_HOST);
     if (!licence || !author || restricted || NOT_FOR_CHILDREN.test(about) || !url || !pageUrl || !new URL(pageUrl).pathname.startsWith('/wiki/File:')) continue;
+    if (accept && !accept(`${about} ${words(meta.ImageDescription?.value, 2000) ?? ''}`)) continue;
     const licenceUrl = onHost(meta.LicenseUrl?.value, 'creativecommons.org');
     const landscape = Number(ii.width) >= Number(ii.height);
     const small = Number(ii.size) > 0 && Number(ii.size) < MAX_BYTES;

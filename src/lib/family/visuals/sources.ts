@@ -1,14 +1,19 @@
 import { PHOTO_LICENCE } from '@/lib/family/blocks';
-import { NOT_FOR_CHILDREN, searchCommons, type CommonsPhoto } from './commons';
-import { searchOpenverse } from './openverse';
+import { NOT_FOR_CHILDREN, commonsSearchUrl, pickPhoto, type CommonsPhoto } from './commons';
+import { openverseSearchUrl, pickOpenverse } from './openverse';
 import { photoUrl } from './photo-hosts';
+import { RateLimited, guarded, hasKey, retryAfterS, withEnv } from './limits';
+import { LIVING, relevantTo } from './relevance';
+import { PHOTO_KEYED_ORDER, limitFor } from './source-limits';
 
 // The registry of picture sources (founder, 16 Nov 2026; .claude/commands/visual-sources.md): free for commercial use
 // only. Every source is listed with how it is reached (LIVE: searched on the server at answer time; BULK: downloaded
 // once by a script; EMBED; CODE), the key it needs and the licence it is filtered to. A LIVE source with an adapter below
 // is asked in the order its subject routes (`route`); a source whose key is not in the environment is skipped silently,
 // as is one that fails, answers late or has nothing. Wikimedia's "assessed" files are a ranking bonus in commons.ts, not a
-// filter. Nothing here is shown to a child with a label: the author, licence and page stay in the data for the one
+// filter. v21: every adapter keeps only a picture whose own title, tags or description fit the search words
+// (relevance.ts), and every call goes through the gate (limits.ts: key, per-source limits, 429 pause, per-answer cap);
+// a 429 throws RateLimited so the gate pauses that source for every server. Nothing here is shown to a child with a label: the author, licence and page stay in the data for the one
 // Picture credits page.
 
 export type SourceId = string;
@@ -24,6 +29,7 @@ const UA = 'NetCyberAI-Family/1.0 (licensed picture lookup, server side)';
 
 async function getJson(url: string, fetcher: Fetcher, headers: Record<string, string> = {}): Promise<unknown> {
   const res = await fetcher(url, { headers: { accept: 'application/json', 'User-Agent': UA, ...headers }, redirect: 'error', signal: AbortSignal.timeout(TIMEOUT_MS) });
+  if (res.status === 429) throw new RateLimited(retryAfterS(res.headers.get('retry-after')));
   if (!res.ok) throw new Error(String(res.status));
   return res.json();
 }
@@ -42,6 +48,7 @@ const httpsPage = (v: unknown, host: RegExp): string | null => {
 
 // NASA Image and Video Library: public domain; Earth, space, weather. Items marked otherwise (a copyright line) are skipped.
 export const nasa: Adapter = async (q, _env, f) => {
+  const fits = relevantTo(q);
   const body = rec(rec(await getJson(`https://images-api.nasa.gov/search?q=${clean(q)}&media_type=image&page_size=10`, f)).collection);
   for (const it of arr(body.items)) {
     const d = rec(arr(it.data)[0]);
@@ -49,7 +56,7 @@ export const nasa: Adapter = async (q, _env, f) => {
     const id = str(d.nasa_id, 60);
     const url = photoUrl(link?.href);
     const title = `${d.title ?? ''} ${d.description ?? ''}`;
-    if (!id || !url || NOT_FOR_CHILDREN.test(title) || /copyright|courtesy|©/i.test(String(d.description ?? ''))) continue;
+    if (!id || !url || NOT_FOR_CHILDREN.test(title) || !fits(`${title} ${arr(d.keywords).join(' ')}`) || /copyright|courtesy|©/i.test(String(d.description ?? ''))) continue;
     return { url, pageUrl: `https://images.nasa.gov/details/${encodeURIComponent(id)}`, author: str(d.secondary_creator) ?? str(d.photographer) ?? str(d.center, 40) ?? 'NASA', licence: 'Public domain', licenceUrl: null };
   }
   return null;
@@ -57,6 +64,7 @@ export const nasa: Adapter = async (q, _env, f) => {
 
 // iNaturalist: research-grade observations with a CC0 or CC BY photograph (animals, plants).
 export const inaturalist: Adapter = async (q, _env, f) => {
+  const fits = relevantTo(q);
   const body = rec(await getJson(`https://api.inaturalist.org/v1/observations?q=${clean(q)}&per_page=10&quality_grade=research&photos=true&photo_license=cc0,cc-by&order_by=votes`, f));
   for (const o of arr(body.results)) {
     const p = rec(arr(o.photos)[0]);
@@ -65,6 +73,8 @@ export const inaturalist: Adapter = async (q, _env, f) => {
     const url = photoUrl(typeof p.url === 'string' ? p.url.replace('/square.', '/medium.') : null);
     const author = str(p.attribution, 120) ?? str(rec(o.user).login, 60);
     const page = httpsPage(o.uri, /(^|\.)inaturalist\.org$/);
+    const taxon = rec(o.taxon);
+    if (!fits(`${o.species_guess ?? ''} ${taxon.name ?? ''} ${taxon.preferred_common_name ?? ''} ${taxon.iconic_taxon_name ?? ''}`)) continue;
     if (licence && url && author && page && PHOTO_LICENCE.test(licence)) return { url, pageUrl: page, author, licence, licenceUrl: null };
   }
   return null;
@@ -72,6 +82,7 @@ export const inaturalist: Adapter = async (q, _env, f) => {
 
 // Wellcome Collection: public domain, CC0 or CC BY only (their IIIF image at 640 px).
 export const wellcome: Adapter = async (q, _env, f) => {
+  const fits = relevantTo(q);
   const body = rec(await getJson(`https://api.wellcomecollection.org/catalogue/v2/images?query=${clean(q)}&pageSize=10&locations.license=pdm,cc0,cc-by`, f));
   for (const r of arr(body.results)) {
     const loc = rec(arr(r.locations)[0]);
@@ -81,7 +92,7 @@ export const wellcome: Adapter = async (q, _env, f) => {
     const url = photoUrl(base ? `${base}/full/640,/0/default.jpg` : null);
     const src = rec(r.source);
     const title = str(src.title, 200) ?? '';
-    if (!licence || !url || NOT_FOR_CHILDREN.test(title) || !str(r.id, 20)) continue;
+    if (!licence || !url || NOT_FOR_CHILDREN.test(title) || !fits(title) || !str(r.id, 20)) continue;
     return { url, pageUrl: `https://wellcomecollection.org/works/${encodeURIComponent(String(src.id ?? r.id))}`, author: str(loc.credit) ?? 'Wellcome Collection', licence, licenceUrl: null };
   }
   return null;
@@ -91,10 +102,11 @@ export const wellcome: Adapter = async (q, _env, f) => {
 export const pixabay: Adapter = async (q, env, f) => {
   const key = env.PIXABAY_API_KEY;
   if (!key) return null;
+  const fits = relevantTo(q);
   const body = rec(await getJson(`https://pixabay.com/api/?key=${encodeURIComponent(key)}&q=${clean(q)}&image_type=photo&safesearch=true&per_page=10&orientation=horizontal`, f));
   for (const h of arr(body.hits)) {
     const url = photoUrl(h.webformatURL);
-    if (url && !NOT_FOR_CHILDREN.test(String(h.tags ?? ''))) return { url, pageUrl: httpsPage(h.pageURL, /(^|\.)pixabay\.com$/) ?? 'https://pixabay.com', author: str(h.user, 60) ?? 'Pixabay', licence: 'CC0 1.0', licenceUrl: null };
+    if (url && !NOT_FOR_CHILDREN.test(String(h.tags ?? '')) && fits(String(h.tags ?? ''))) return { url, pageUrl: httpsPage(h.pageURL, /(^|\.)pixabay\.com$/) ?? 'https://pixabay.com', author: str(h.user, 60) ?? 'Pixabay', licence: 'CC0 1.0', licenceUrl: null };
   }
   return null;
 };
@@ -103,10 +115,11 @@ export const pixabay: Adapter = async (q, env, f) => {
 export const pexels: Adapter = async (q, env, f) => {
   const key = env.PEXELS_API_KEY;
   if (!key) return null;
+  const fits = relevantTo(q);
   const body = rec(await getJson(`https://api.pexels.com/v1/search?query=${clean(q)}&per_page=10&orientation=landscape`, f, { Authorization: key }));
   for (const p of arr(body.photos)) {
     const url = photoUrl(rec(p.src).large);
-    if (url && !NOT_FOR_CHILDREN.test(String(p.alt ?? ''))) return { url, pageUrl: httpsPage(p.url, /(^|\.)pexels\.com$/) ?? 'https://www.pexels.com', author: str(p.photographer, 60) ?? 'Pexels', licence: 'CC0 1.0', licenceUrl: null };
+    if (url && !NOT_FOR_CHILDREN.test(String(p.alt ?? '')) && fits(String(p.alt ?? ''))) return { url, pageUrl: httpsPage(p.url, /(^|\.)pexels\.com$/) ?? 'https://www.pexels.com', author: str(p.photographer, 60) ?? 'Pexels', licence: 'CC0 1.0', licenceUrl: null };
   }
   return null;
 };
@@ -116,10 +129,12 @@ export const unsplash: Adapter = async (q, env, f) => {
   const key = env.UNSPLASH_ACCESS_KEY;
   if (!key) return null;
   const auth = { Authorization: `Client-ID ${key}` };
+  const fits = relevantTo(q);
   const body = rec(await getJson(`https://api.unsplash.com/search/photos?query=${clean(q)}&per_page=10&orientation=landscape&content_filter=high`, f, auth));
   for (const p of arr(body.results)) {
     const url = photoUrl(rec(p.urls).regular);
-    if (!url || NOT_FOR_CHILDREN.test(`${p.alt_description ?? ''} ${p.description ?? ''}`)) continue;
+    const about = `${p.alt_description ?? ''} ${p.description ?? ''} ${arr(p.tags).map((t) => String(t.title ?? '')).join(' ')}`;
+    if (!url || NOT_FOR_CHILDREN.test(about) || !fits(about)) continue;
     const ping = httpsPage(rec(p.links).download_location, /^api\.unsplash\.com$/);
     if (ping) void getJson(ping, f, auth).catch(() => {});
     return { url, pageUrl: httpsPage(rec(p.links).html, /(^|\.)unsplash\.com$/) ?? 'https://unsplash.com', author: str(rec(p.user).name, 60) ?? 'Unsplash', licence: 'CC0 1.0', licenceUrl: null };
@@ -131,6 +146,7 @@ export const unsplash: Adapter = async (q, env, f) => {
 export const smithsonian: Adapter = async (q, env, f) => {
   const key = env.SMITHSONIAN_API_KEY ?? env.DATA_GOV_API_KEY;
   if (!key) return null;
+  const fits = relevantTo(q);
   const body = rec(rec(await getJson(`https://api.si.edu/openaccess/api/v1.0/search?q=${clean(`${q} AND online_media_type:"Images"`)}&rows=10&api_key=${encodeURIComponent(key)}`, f)).response);
   for (const row of arr(body.rows)) {
     const c = rec(row.content);
@@ -138,32 +154,34 @@ export const smithsonian: Adapter = async (q, env, f) => {
     const url = photoUrl(media?.content);
     const title = str(rec(rec(c.descriptiveNonRepeating).title).content, 200) ?? '';
     const page = httpsPage(rec(c.descriptiveNonRepeating).record_link, /(^|\.)si\.edu$/);
-    if (url && page && !NOT_FOR_CHILDREN.test(title)) return { url, pageUrl: page, author: str(rec(c.descriptiveNonRepeating).data_source, 80) ?? 'Smithsonian', licence: 'CC0 1.0', licenceUrl: null };
+    if (url && page && !NOT_FOR_CHILDREN.test(title) && fits(title)) return { url, pageUrl: page, author: str(rec(c.descriptiveNonRepeating).data_source, 80) ?? 'Smithsonian', licence: 'CC0 1.0', licenceUrl: null };
   }
   return null;
 };
 
 // Art Institute of Chicago: public-domain works only (history and art).
 export const aic: Adapter = async (q, _env, f) => {
+  const fits = relevantTo(q);
   const body = rec(await getJson(`https://api.artic.edu/api/v1/artworks/search?q=${clean(q)}&limit=10&fields=id,title,image_id,is_public_domain,artist_title&query[term][is_public_domain]=true`, f));
   for (const a of arr(body.data)) {
     const image = str(a.image_id, 80);
-    if (a.is_public_domain !== true || !image || !/^[A-Za-z0-9-]+$/.test(image) || NOT_FOR_CHILDREN.test(String(a.title ?? ''))) continue;
+    if (a.is_public_domain !== true || !image || !/^[A-Za-z0-9-]+$/.test(image) || NOT_FOR_CHILDREN.test(String(a.title ?? '')) || !fits(String(a.title ?? ''))) continue;
     const url = photoUrl(`https://www.artic.edu/iiif/2/${image}/full/843,/0/default.jpg`);
     if (url) return { url, pageUrl: `https://www.artic.edu/artworks/${Number(a.id)}`, author: str(a.artist_title, 80) ?? 'Art Institute of Chicago', licence: 'CC0 1.0', licenceUrl: null };
   }
   return null;
 };
 
-const wrapCommons: Adapter = (q, _e, f) => searchCommons(q, f);
-const wrapOpenverse: Adapter = (q, _e, f) => searchOpenverse(q, f);
+// Commons and Openverse through this file's fetch (a 429 pauses them), with the relevance check.
+export const commons: Adapter = async (q, _e, f) => pickPhoto(await getJson(commonsSearchUrl(q), f), relevantTo(q));
+export const openverse: Adapter = async (q, _e, f) => pickOpenverse(await getJson(openverseSearchUrl(q.toLowerCase().replace(/\s+/g, ' ').trim().slice(0, 80)), f), relevantTo(q));
 
 const S = (id: string, name: string, access: Access, key: string | null, licence: string, content: string, adapter?: Adapter, note?: string): SourceDef => ({ id, name, access, key, licence, content, ...(adapter ? { adapter } : {}), ...(note ? { note } : {}) });
 // The 50 sources of visual-sources.md (rows 1 to 50), then the embedded simulation sources added 16 Nov 2026. Those with an adapter are LIVE here; the others are listed for the
 // bulk scripts and the embeds, and are never searched at answer time.
 export const SOURCES: readonly SourceDef[] = [
-  S('commons', 'Wikimedia Commons', 'live', null, 'PD, CC0, CC BY, CC BY-SA', 'photo, diagram', wrapCommons),
-  S('openverse', 'Openverse', 'live', null, 'PD, CC0, CC BY, CC BY-SA', 'photo, illustration', wrapOpenverse),
+  S('commons', 'Wikimedia Commons', 'live', null, 'PD, CC0, CC BY, CC BY-SA', 'photo, diagram', commons),
+  S('openverse', 'Openverse', 'live', null, 'PD, CC0, CC BY, CC BY-SA', 'photo, illustration', openverse),
   S('unsplash', 'Unsplash', 'live', 'UNSPLASH_ACCESS_KEY', 'Unsplash licence', 'photo', unsplash),
   S('pexels', 'Pexels', 'live', 'PEXELS_API_KEY', 'Pexels licence', 'photo', pexels),
   S('pixabay', 'Pixabay', 'live', 'PIXABAY_API_KEY', 'Pixabay licence', 'photo, illustration', pixabay),
@@ -224,39 +242,42 @@ export const SOURCES: readonly SourceDef[] = [
   S('katex', 'Mermaid, KaTeX', 'code', null, 'MIT', 'diagrams, equations'),
 ];
 
-// The order each subject asks the live sources (the first with a photograph wins). A query that is about space or
-// Earth goes to NASA first, whatever the subject.
+// The order a step's photograph is asked (v21): the free keyless sources first, then the keyed ones (Pexels, Pixabay,
+// Smithsonian), Unsplash last, one at a time, stopping at the first picture that fits the words. The English search
+// words decide, so it is the same in every input language: iNaturalist only for a living thing (an abstract idea such as
+// energy, force, fractions or democracy goes to Commons and Openverse diagrams), Wellcome for the body, NASA for space
+// and Earth, the Art Institute of Chicago for history subjects.
 const SPACE = /\b(planet|moon|sun|star|galaxy|space|earth|orbit|eclipse|cloud|storm|cyclone|monsoon|volcano|glacier|satellite|atmosphere|climate)\b/i;
-const NATURE: SourceId[] = ['inaturalist', 'commons', 'openverse', 'pixabay', 'pexels', 'unsplash'];
-const BODY: SourceId[] = ['wellcome', 'commons', 'openverse', 'pixabay', 'pexels'];
-const PAST: SourceId[] = ['commons', 'smithsonian', 'aic', 'openverse', 'unsplash', 'pexels'];
-const GENERAL: SourceId[] = ['commons', 'openverse', 'pixabay', 'pexels', 'unsplash'];
-const ROUTE: Record<string, SourceId[]> = {
-  biology: NATURE, evs: NATURE, science: NATURE, physics: GENERAL, chemistry: GENERAL, geography: ['nasa', ...GENERAL],
-  history: PAST, social_science: PAST, political_science: PAST, economics: GENERAL, civics: PAST,
-};
 const BODYWORDS = /\b(heart|lung|brain|kidney|blood|bone|muscle|digest|stomach|organ|cell|body|skin|eye|ear)\b/i;
+const PAST_SUBJECTS = new Set(['history', 'social_science', 'political_science', 'civics']);
 
 export function routeFor(subject: string | null, query: string): SourceId[] {
-  const base = ROUTE[subject ?? ''] ?? GENERAL;
-  const order = BODYWORDS.test(query) && NATURE.includes(base[0]) ? BODY : base;
-  return SPACE.test(query) ? ['nasa', ...order.filter((s) => s !== 'nasa')] : [...order];
+  const lead: SourceId[] = [];
+  if (SPACE.test(query)) lead.push('nasa');
+  if (BODYWORDS.test(query)) lead.push('wellcome');
+  if (LIVING.test(query)) lead.push('inaturalist');
+  const free: SourceId[] = ['commons', 'openverse', ...(PAST_SUBJECTS.has(subject ?? '') ? ['aic'] : [])];
+  return [...lead, ...free, ...PHOTO_KEYED_ORDER];
 }
 
 // The sources that can be asked now: a LIVE adapter, with its key in the environment (or none needed).
+// A keyed source's key may be any of the names source-limits.ts lists (Smithsonian: its own or the api.data.gov key).
 export function askable(ids: readonly SourceId[], env: Env): SourceDef[] {
-  return ids.map((id) => SOURCES.find((s) => s.id === id)).filter((s): s is SourceDef => !!s && s.access === 'live' && !!s.adapter && (!s.key || !!env[s.key]));
+  return ids.map((id) => SOURCES.find((s) => s.id === id)).filter((s): s is SourceDef => !!s && s.access === 'live' && !!s.adapter && (limitFor(s.id).keys ? hasKey(s.id, env) : !s.key || !!env[s.key]));
 }
 
-// One picture for a query: the routed sources in order, each with its own time limit; one that fails, is late or has no
-// key is skipped without a word. null when none has one.
+// One picture for a query: the routed sources in order, one at a time, each through the gate (limits.ts) and with its own
+// time limit; one that is skipped, fails, is late or has nothing that fits is passed over without a word. null when none
+// has one. A source with no key is never asked (the gate logs that once).
 export async function searchSources(query: string, opts: { subject: string | null; env?: Env; fetcher?: Fetcher; budgetMs?: number } = { subject: null }): Promise<Photo | null> {
   const env = opts.env ?? (process.env as Env);
   const fetcher = opts.fetcher ?? fetch;
   const until = Date.now() + (opts.budgetMs ?? 8000);
-  for (const s of askable(routeFor(opts.subject, query), env)) {
+  for (const id of routeFor(opts.subject, query)) {
+    const s = SOURCES.find((x) => x.id === id);
+    if (!s?.adapter || s.access !== 'live') continue;
     if (Date.now() > until) break;
-    const hit = await s.adapter!(query, env, fetcher).catch(() => null);
+    const hit = await withEnv(env, () => guarded(s.id, () => s.adapter!(query, env, fetcher)));
     if (hit) return { ...hit, source: s.id };
   }
   return null;

@@ -1,5 +1,7 @@
 import type { ElabPic, Elaboration } from '@/lib/family/elaboration';
 import { find3d, type Model3d } from './models3d';
+import { runVisualAnswer, type WithDb } from './limits';
+import { cachedVisual, classBand, forgetVisualCache } from './shared-cache';
 import { searchSources, type Photo } from './sources';
 
 // The server's half of the Elaboration Framework's pictures (founder, 16 Nov 2026): every step gets a real visual. A step
@@ -7,28 +9,23 @@ import { searchSources, type Photo } from './sources';
 // the step's own search words (the routed sources of sources.ts, the subject deciding the order), and the second step a 3D
 // model where 3D teaches better (a molecule, a protein, a solid thing). A card the server drew stays only for a step
 // where no source had anything. No label goes on any picture; the credit stays in the pic's data.
+//
+// v21: every search goes through the shared cache (shared-cache.ts: this server's memory, then content.visual_cache when
+// `withDb` is given, by words, subject and class band), so the steps of one answer asking the same words, or many
+// children asking at once, spend one search; the whole answer runs under one cap of outside calls (limits.ts). A step
+// whose words found nothing that fits keeps its authored diagram or card (never a random photograph).
 
 export type ElabFillOptions = {
   subject: string | null;
+  classLevel?: number | null;
+  withDb?: WithDb;
   search?: (query: string, subject: string | null) => Promise<Photo | null>;
   model?: (words: string, term: string) => Promise<Model3d | null>;
 };
 
 const ALT = ['', 'types', 'everyday', 'activity', 'uses'];
-const HIT_MS = 24 * 60 * 60 * 1000;
-const MISS_MS = 60 * 60 * 1000;
-const cache = new Map<string, { at: number; photo: Photo | null }>();
 
-const cached = async (q: string, subject: string | null, search: NonNullable<ElabFillOptions['search']>): Promise<Photo | null> => {
-  const key = `${subject ?? ''}|${q.toLowerCase()}`;
-  const hit = cache.get(key);
-  if (hit && Date.now() - hit.at < (hit.photo ? HIT_MS : MISS_MS)) return hit.photo;
-  const photo = await search(q, subject).catch(() => null);
-  if (cache.size > 500) cache.clear();
-  cache.set(key, { at: Date.now(), photo });
-  return photo;
-};
-export const forgetElabPhotos = (): void => cache.clear();
+export const forgetElabPhotos = (): void => forgetVisualCache();
 
 // A caption is the step's first sentences up to 240 characters, whole: a long step (a process or a why answer) is never cut mid-word.
 export const captionOf = (text: string): string => {
@@ -41,8 +38,14 @@ export const captionOf = (text: string): string => {
 };
 const photoPic = (p: Photo, caption: string): ElabPic => ({ svg: '', kind: 'photo', url: p.url, caption: captionOf(caption), credit: p.author, licence: p.licence, source: p.pageUrl, from: p.source });
 
-export async function fillElaboration(b: Elaboration, o: ElabFillOptions): Promise<Elaboration> {
+export function fillElaboration(b: Elaboration, o: ElabFillOptions): Promise<Elaboration> {
+  return runVisualAnswer({ withDb: o.withDb }, () => fill(b, o));
+}
+
+async function fill(b: Elaboration, o: ElabFillOptions): Promise<Elaboration> {
   const search = o.search ?? ((q, subject) => searchSources(q, { subject }));
+  const band = classBand(o.classLevel);
+  const cached = (q: string, subject: string | null, s: NonNullable<ElabFillOptions['search']>): Promise<Photo | null> => cachedVisual('photo', q, subject, band, () => s(q, subject));
   const texts = [b.definition.text, b.levels.basic, b.real_life.text, b.try_it.question, b.future.text];
   // The step's own words first, then the English topic (the tutor named it), then the term: a source with nothing for one form is asked with the next.
   const topicQ = (b.topic?.en ?? b.term).trim();

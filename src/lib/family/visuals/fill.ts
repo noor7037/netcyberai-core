@@ -99,7 +99,7 @@ export async function fillVisuals(withDb: WithDb, original: Block[], opts: FillO
   let written = original;
   const elab = original.find((b): b is Elaboration & Block => b.type === 'elaboration');
   if (elab) {
-    let filled = await fillElaboration(elab, { subject: opts.subject ?? null }).catch(() => elab);
+    let filled = await fillElaboration(elab, { subject: opts.subject ?? null, classLevel: opts.sims?.classLevel ?? null, withDb }).catch(() => elab);
     // The simulation is looked up in the approved table only (never searched for): a miss, or a table not made yet, leaves the answer as it was.
     const subject = isSubject(opts.subject) ? opts.subject : null;
     const sim = opts.sims && subject ? await withDb((db) => simFor(db, { subject, term: elab.term, topicEn: elab.topic?.en ?? opts.sims!.topicEn, title: opts.sims!.title, chapterEn: opts.sims!.chapterEn }, { classLevel: opts.sims!.classLevel }, opts.lang)).catch(() => null) : null;
