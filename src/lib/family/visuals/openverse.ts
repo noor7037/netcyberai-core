@@ -41,7 +41,7 @@ const tagWords = (tags: unknown): string => (Array.isArray(tags) ? tags.map((t) 
 
 // The best licensed photograph in one Openverse answer, or null: an allowed licence, an author, not mature, nothing in
 // its title or tags not for children; a landscape picture first, then Openverse's own order.
-export function pickOpenverse(answer: unknown): CommonsPhoto | null {
+export function pickOpenverse(answer: unknown, accept?: (about: string) => boolean): CommonsPhoto | null {
   const results = (answer as { results?: unknown } | null)?.results;
   if (!Array.isArray(results)) return null;
   const found: { photo: CommonsPhoto; rank: number }[] = [];
@@ -50,7 +50,7 @@ export function pickOpenverse(answer: unknown): CommonsPhoto | null {
     const licence = openverseLicence(r.license, r.license_version);
     const author = words(r.creator, 120);
     const about = `${typeof r.title === 'string' ? r.title : ''} ${tagWords(r.tags)}`;
-    if (!licence || !author || NOT_FOR_CHILDREN.test(about)) return;
+    if (!licence || !author || NOT_FOR_CHILDREN.test(about) || (accept && !accept(about))) return;
     const url = onHost(`https://${OPENVERSE_IMAGE_HOST}/v1/images/${r.id}/thumb/`, OPENVERSE_IMAGE_HOST);
     if (!url) return;
     const pageUrl = openversePage(url);
