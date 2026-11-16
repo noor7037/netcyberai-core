@@ -120,7 +120,7 @@ export const PROFILES: readonly AiProfile[] = [
   // question, beside the answer's call. The voice call's profile is below (W16-A4).
   // chainFrom (2 Nov): with no service of its own, the quiz and the weekly report follow the tutor's chain (family.resolver),
   // so they work the moment the tutor does; each keeps its own switch, prompt and limits, and a service set here wins.
-  { id: 'family.quiz', carriesChildWords: true, capability: 'text', audience: 'family', callMs: 20_000, chainFrom: 'family.resolver' },
+  { id: 'family.quiz', carriesChildWords: true, capability: 'text', audience: 'family', callMs: 45_000, firstTextMs: 10_000, chainFrom: 'family.resolver' },
   { id: 'family.parent_report', carriesChildWords: false, capability: 'text', audience: 'family', callMs: 30_000, chainFrom: 'family.resolver' },
   { id: 'family.qc', carriesChildWords: true, capability: 'text', audience: 'family', callMs: 10_000, firstTextMs: 6_000, besideCall: true },
   // W23-B (C494): the tap menu's meaning and translation of a tapped word or sentence in the child's language. A selection
@@ -499,6 +499,7 @@ async function takeVoiceCap(db: Sql, ctx: AiContext, profile: AiProfile, first: 
 
 // A provider is not tried on a profile's own time (callMs) with less than this left.
 export const CHAIN_MIN_MS = 15_000;
+const CHAIN_GRACE_MS = 1_500;
 // W10: with a first-text deadline (firstTextMs), a provider reached by the one before it timing out is still tried with
 // this much left (a person is waiting; even a short try beats the default answer).
 const FIRST_TEXT_FLOOR_MS = 3_000;
@@ -626,7 +627,9 @@ async function textRun(db: Sql, ctx: AiContext, profileId: ProfileId, request: A
     // first-text wait (at most CHAIN_MIN_MS), so a Primary that says nothing in time leaves its backup that much.
     const firstTextMs = profile.callMs && profile.firstTextMs ? profile.firstTextMs : null;
     const reserveMs = firstTextMs === null ? CHAIN_MIN_MS : Math.min(CHAIN_MIN_MS, Math.max(FIRST_TEXT_FLOOR_MS, (profile.callMs ?? 0) - firstTextMs));
-    const floorMs = firstTextMs === null ? CHAIN_MIN_MS : FIRST_TEXT_FLOOR_MS;
+    // A backup is tried when it still has CHAIN_MIN_MS less a grace: a Primary that used exactly its share leaves its backup a few
+    // milliseconds under CHAIN_MIN_MS, which used to skip it (skipped_deadline) on every profile whose time is under two shares.
+    const floorMs = firstTextMs === null ? CHAIN_MIN_MS - CHAIN_GRACE_MS : FIRST_TEXT_FLOOR_MS;
     // C507: a paid chain may use only its window (paidWindowMs) before it shows text, so the normal chain behind it
     // keeps a real share of the deadline; once paid text flows it may use what is left, as any link may.
     const paidWindowEnd = holdId !== null && deadline !== null && profile.callMs ? Date.now() + paidWindowMs({ callMs: profile.callMs, firstTextMs }) : null;
