@@ -18,6 +18,9 @@ import { type Words } from "@/lib/family/fill";
 import { useReducedMotion } from "./InteractiveViews";
 import { showcaseSrc } from "./ShowcaseView";
 import { Model3dPic } from "./Model3dPic";
+
+// v21: our own SVG animation for a step, in its own small chunk (only an answer that has one loads it).
+const AnimPic = dynamic(() => import("./AnimPic").then((m) => m.AnimPic));
 import { WIDE_MEDIA, photoSizes } from "@/lib/family/visuals/photo-size";
 
 // The NetCyberAI Elaboration Framework's answer (founder, 16 Nov 2026): five steps in order. Every step has a picture to
@@ -44,6 +47,7 @@ function Pic({
   void n;
   // A 3D model (a still picture stays on Data saver and weak phones).
   if (pic.kind === "model3d") return <Model3dPic pic={pic} w={w} className={className} />;
+  if (pic.kind === "animation") return <AnimPic pic={pic} className={className} />;
   // A licensed photograph: just the picture. Never a label on it.
   if (pic.kind === "photo" && pic.url) {
     const sizes = photoSizes(pic.url);

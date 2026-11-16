@@ -33,7 +33,7 @@ export type ElabModel = { format: "glb" | "sdf" | "pdb"; url: string };
 export type ElabPic = {
   svg: string;
   caption: string;
-  kind: "diagram" | "card" | "photo" | "model3d";
+  kind: "diagram" | "card" | "photo" | "model3d" | "animation";
   url?: string;
   credit?: string;
   licence?: string;
@@ -155,6 +155,20 @@ function pic(v: unknown): ElabPic | null {
     const mu = modelUrl(m.url);
     if (o.kind === "model3d" && mu && (m.format === "glb" || m.format === "sdf" || m.format === "pdb")) return { ...out, kind: "model3d", model: { format: m.format, url: mu } };
     return o.kind === "model3d" ? null : out;
+  }
+  // v21: one of our own animations in public/anim (models3d.ts, anim-source.ts), by its same-site address only.
+  if (o.kind === "animation") {
+    const url = typeof o.url === "string" && /^\/anim\/[a-z0-9-]{1,60}\.svg$/.test(o.url) ? o.url : null;
+    if (!url) return null;
+    return {
+      svg: "",
+      caption,
+      kind: "animation",
+      url,
+      ...(plain(o.credit, 120) ? { credit: plain(o.credit, 120)! } : {}),
+      ...(plain(o.licence, 40) ? { licence: plain(o.licence, 40)! } : {}),
+      from: "anim",
+    };
   }
   const svg = typeof o.svg === "string" ? o.svg.trim() : "";
   if (!svg.startsWith("<svg") || svg.length > SHOWCASE_SVG_MAX || SVG_UNSAFE.test(svg)) return null;

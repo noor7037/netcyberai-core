@@ -13,7 +13,9 @@ import { photoUrl } from './photo-hosts';
 
 export type SourceId = string;
 export type Access = 'live' | 'bulk' | 'embed' | 'code';
-export type SourceDef = { id: SourceId; name: string; access: Access; key: string | null; licence: string; content: string; adapter?: Adapter; note?: string };
+// `served`: a 3D or animation source asked by models3d.ts (not a photograph adapter). `planned`: listed, no adapter yet
+// (the note says why). Every row has an adapter, is served elsewhere (model3d, animation, embed, code) or is planned.
+export type SourceDef = { id: SourceId; name: string; access: Access; key: string | null; licence: string; content: string; adapter?: Adapter; note?: string; served?: 'model3d' | 'animation'; planned?: true };
 export type Photo = CommonsPhoto & { source: SourceId };
 export type Env = Record<string, string | undefined>;
 export type Fetcher = typeof fetch;
@@ -155,6 +157,14 @@ export const aic: Adapter = async (q, _env, f) => {
   return null;
 };
 
+// v21 picture adapters, each in its own file and loaded with import() on first use.
+const metAdapter: Adapter = async (q, _e, f) => (await import('./pic-met')).metPhoto(q, f);
+const clevelandAdapter: Adapter = async (q, _e, f) => (await import('./pic-cleveland')).clevelandPhoto(q, f);
+const iconifyAdapter: Adapter = async (q, _e, f) => (await import('./pic-iconify')).iconifyPicture(q, f);
+const earthObsAdapter: Adapter = async (q, _e, f) => (await import('./pic-earthobs')).earthObsPhoto(q, f);
+const P = (d: SourceDef, note: string): SourceDef => ({ ...d, planned: true, note });
+const M = (d: SourceDef, note?: string): SourceDef => ({ ...d, served: 'model3d', ...(note ? { note } : {}) });
+
 const wrapCommons: Adapter = (q, _e, f) => searchCommons(q, f);
 const wrapOpenverse: Adapter = (q, _e, f) => searchOpenverse(q, f);
 
@@ -169,46 +179,46 @@ export const SOURCES: readonly SourceDef[] = [
   S('pixabay', 'Pixabay', 'live', 'PIXABAY_API_KEY', 'Pixabay licence', 'photo, illustration', pixabay),
   S('nasa', 'NASA Image and Video Library', 'live', null, 'Public domain', 'space, Earth', nasa),
   S('smithsonian', 'Smithsonian Open Access', 'live', 'SMITHSONIAN_API_KEY', 'CC0', 'photo', smithsonian),
-  S('met', 'The Met Museum', 'live', null, 'Public domain', 'history, art', undefined, 'The Met retired its /search endpoint on 2026-10-01; no adapter until the new one is verified.'),
+  S('met', 'The Met Museum', 'live', null, 'Public domain (CC0)', 'history, art', metAdapter, 'v1/search retired 2026-10-01; v1.1/search plus v1/objects (isPublicDomain checked per object).'),
   S('aic', 'Art Institute of Chicago', 'live', null, 'Public domain', 'history, art', aic),
-  S('cleveland', 'Cleveland Museum of Art', 'live', null, 'CC0', 'photo'),
-  S('rijksmuseum', 'Rijksmuseum', 'live', 'RIJKSMUSEUM_API_KEY', 'CC0', 'photo'),
-  S('europeana', 'Europeana', 'live', 'EUROPEANA_API_KEY', 'CC0, PD, CC BY, CC BY-SA', 'photo'),
-  S('loc', 'Library of Congress', 'live', null, 'PD', 'photo, map'),
-  S('nypl', 'NYPL Digital Collections', 'live', 'NYPL_API_KEY', 'PD', 'illustration, map'),
-  S('dpla', 'Digital Public Library of America', 'live', 'DPLA_API_KEY', 'PD, CC0', 'photo'),
-  S('flickr', 'Flickr', 'live', 'FLICKR_API_KEY', 'PD, CC0', 'photo'),
+  S('cleveland', 'Cleveland Museum of Art', 'live', null, 'CC0', 'photo', clevelandAdapter),
+  P(S('rijksmuseum', 'Rijksmuseum', 'live', 'RIJKSMUSEUM_API_KEY', 'CC0', 'photo'), 'Not built in v21.'),
+  P(S('europeana', 'Europeana', 'live', 'EUROPEANA_API_KEY', 'CC0, PD, CC BY, CC BY-SA', 'photo'), 'Not built in v21.'),
+  P(S('loc', 'Library of Congress', 'live', null, 'PD', 'photo, map'), 'loc.gov answers automated requests with a bot challenge (403, 16 Nov 2026); no adapter.'),
+  P(S('nypl', 'NYPL Digital Collections', 'live', 'NYPL_API_KEY', 'PD', 'illustration, map'), 'Not built in v21.'),
+  P(S('dpla', 'Digital Public Library of America', 'live', 'DPLA_API_KEY', 'PD, CC0', 'photo'), 'Not built in v21.'),
+  P(S('flickr', 'Flickr', 'live', 'FLICKR_API_KEY', 'PD, CC0', 'photo'), 'Not built in v21.'),
   S('inaturalist', 'iNaturalist', 'live', null, 'CC0, CC BY', 'animals, plants', inaturalist),
   S('wellcome', 'Wellcome Collection', 'live', null, 'PD, CC0, CC BY', 'body, medicine', wellcome),
-  S('bhl', 'Biodiversity Heritage Library', 'live', 'BHL_API_KEY', 'PD', 'nature illustration'),
-  S('pubchem', 'PubChem', 'live', null, 'PD', '2D and 3D molecules'),
-  S('pdb', 'RCSB Protein Data Bank', 'live', null, 'CC0', '3D molecules'),
-  S('cdc', 'CDC Public Health Image Library', 'bulk', null, 'PD items only', 'health'),
-  S('earthobs', 'NASA Earth Observatory', 'bulk', null, 'PD', 'geography, weather'),
-  S('esa', 'ESA / Hubble / Webb', 'bulk', null, 'CC BY', 'space'),
-  S('naturalearth', 'Natural Earth', 'bulk', null, 'PD', 'map data'),
-  S('iconify', 'Iconify', 'live', null, 'MIT, Apache, CC0 sets', 'icon'),
-  S('emoji', 'Fluent / Noto Emoji', 'bulk', null, 'MIT, Apache', 'emoji'),
-  S('peeps', 'Open Peeps, Humaaans', 'bulk', null, 'CC0', 'illustration'),
-  S('undraw', 'unDraw', 'bulk', null, 'unDraw licence', 'illustration'),
-  S('openclipart', 'Openclipart', 'bulk', null, 'CC0', 'clipart'),
-  S('servier', 'Servier Medical Art', 'bulk', null, 'CC BY 4.0', 'biology diagram'),
-  S('openstax', 'OpenStax figures', 'bulk', null, 'CC BY 4.0', 'Class 11-12 science'),
-  S('rawpixel', 'Rawpixel public domain', 'bulk', null, 'CC0', 'illustration, photo'),
-  S('oldbook', 'Old Book Illustrations', 'bulk', null, 'PD', 'illustration'),
-  S('getty', 'Getty Open Content', 'bulk', null, 'Getty open content', 'art, history'),
-  S('lottie', 'LottieFiles', 'live', 'LOTTIEFILES_API_KEY', 'Lottie Simple', 'animation'),
-  S('mixkit', 'Mixkit, Coverr', 'bulk', null, 'their free licences', 'short video'),
-  S('nasa3d', 'NASA 3D Resources', 'bulk', null, 'PD', '3D glTF'),
-  S('smithsonian3d', 'Smithsonian 3D', 'bulk', null, 'CC0', '3D'),
-  S('nih3d', 'NIH 3D', 'bulk', null, 'CC0, CC BY', '3D body, cells'),
-  S('bodyparts3d', 'BodyParts3D / Z-Anatomy', 'bulk', null, 'CC BY-SA', '3D anatomy'),
-  S('polypizza', 'Poly Pizza', 'live', 'POLY_PIZZA_API_KEY', 'CC0, CC BY', '3D low-poly'),
-  S('sketchfab', 'Sketchfab', 'live', 'SKETCHFAB_TOKEN', 'CC0, CC BY, downloadable only', '3D'),
-  S('polyhaven', 'Poly Haven', 'live', null, 'CC0', '3D models, textures'),
-  S('ambientcg', 'ambientCG', 'live', null, 'CC0', '3D textures'),
-  S('kenney', 'Kenney, Quaternius, KayKit', 'bulk', null, 'CC0', '3D and 2D for young classes'),
-  S('khronos', 'Khronos glTF samples', 'bulk', null, 'CC0, CC BY per model', '3D'),
+  P(S('bhl', 'Biodiversity Heritage Library', 'live', 'BHL_API_KEY', 'PD', 'nature illustration'), 'Not built in v21.'),
+  M(S('pubchem', 'PubChem', 'live', null, 'PD', '2D and 3D molecules')),
+  M(S('pdb', 'RCSB Protein Data Bank', 'live', null, 'CC0', '3D molecules')),
+  P(S('cdc', 'CDC Public Health Image Library', 'bulk', null, 'PD items only', 'health'), 'No public JSON API (the old address redirects to the website); a person would pick PD items by hand.'),
+  S('earthobs', 'NASA Earth Observatory', 'live', null, 'PD', 'geography, weather', earthObsAdapter),
+  P(S('esa', 'ESA / Hubble / Webb', 'bulk', null, 'CC BY', 'space'), 'esahubble.org and esawebb.org have no JSON search; a bulk pick is needed.'),
+  P(S('naturalearth', 'Natural Earth', 'bulk', null, 'PD', 'map data'), 'Map data for drawn maps, not a picture search.'),
+  S('iconify', 'Iconify', 'live', null, 'Apache 2.0, MIT, CC BY 4.0 (three emoji sets)', 'icon', iconifyAdapter),
+  P(S('emoji', 'Fluent / Noto Emoji', 'bulk', null, 'MIT, Apache', 'emoji'), 'Reached live through Iconify (noto, fluent-emoji-flat).'),
+  P(S('peeps', 'Open Peeps, Humaaans', 'bulk', null, 'CC0', 'illustration'), 'No API; a bulk pick is needed.'),
+  P(S('undraw', 'unDraw', 'bulk', null, 'unDraw licence', 'illustration'), 'Only an undocumented site search; its licence forbids building a collection of its illustrations. Not called.'),
+  P(S('openclipart', 'Openclipart', 'bulk', null, 'CC0', 'clipart'), 'Its JSON search is gone (redirects to the home page, 16 Nov 2026).'),
+  P(S('servier', 'Servier Medical Art', 'bulk', null, 'CC BY 4.0', 'biology diagram'), 'No public search API; a bulk pick of its CC BY slides is needed.'),
+  P(S('openstax', 'OpenStax figures', 'bulk', null, 'CC BY 4.0', 'Class 11-12 science'), 'No figure API; a bulk pick is needed.'),
+  P(S('rawpixel', 'Rawpixel public domain', 'bulk', null, 'CC0', 'illustration, photo'), 'No API; a bulk pick is needed.'),
+  P(S('oldbook', 'Old Book Illustrations', 'bulk', null, 'PD', 'illustration'), 'No API; a bulk pick is needed.'),
+  P(S('getty', 'Getty Open Content', 'bulk', null, 'Getty open content', 'art, history'), 'Not built in v21.'),
+  { ...S('anim', 'Animation set (our own SVG animations, public/anim)', 'live', null, 'CC0 (own work)', 'animation'), served: 'animation', note: 'LottieFiles has no public key and is never called; our own set in public/anim/index.json.' },
+  P(S('mixkit', 'Mixkit, Coverr', 'bulk', null, 'their free licences', 'short video'), 'No API; video is not used in an answer step.'),
+  M(S('nasa3d', 'NASA 3D Resources', 'live', null, 'PD', '3D glTF'), 'No API: data/nasa3d.json lists 95 models from science.nasa.gov/3d-resources.'),
+  M(S('smithsonian3d', 'Smithsonian 3D', 'live', 'SMITHSONIAN_API_KEY', 'CC0', '3D')),
+  P(S('nih3d', 'NIH 3D', 'bulk', null, 'CC0, CC BY', '3D body, cells'), 'No documented public search API found (16 Nov 2026).'),
+  P(S('bodyparts3d', 'BodyParts3D / Z-Anatomy', 'bulk', null, 'CC BY-SA', '3D anatomy'), 'OBJ bulk files only; would need converting to glTF.'),
+  M(S('polypizza', 'Poly Pizza', 'live', 'POLY_PIZZA_API_KEY', 'CC0, CC BY', '3D low-poly')),
+  M(S('sketchfab', 'Sketchfab', 'live', 'SKETCHFAB_TOKEN', 'CC0, CC BY, CC BY-SA; downloadable only', '3D')),
+  M(S('polyhaven', 'Poly Haven', 'live', null, 'CC0', '3D models')),
+  P(S('ambientcg', 'ambientCG', 'live', null, 'CC0', '3D textures'), 'Textures and materials only, not a model a step can show.'),
+  P(S('kenney', 'Kenney, Quaternius, KayKit', 'bulk', null, 'CC0', '3D and 2D for young classes'), 'Zip packs only, no per-model address; a bulk pick into storage is needed.'),
+  M(S('khronos', 'Khronos glTF samples', 'live', null, 'CC0, CC BY per model', '3D'), 'Five curated models referenced by their raw addresses (model-khronos.ts).'),
   S('phet', 'PhET Interactive Simulations', 'embed', null, 'CC BY 4.0', 'interactive'),
   S('concord', 'Concord Consortium', 'embed', null, 'CC BY, MIT', 'interactive'),
   // Embedded simulations (Noor, 16 Nov 2026): never searched by the AI; each is approved by a person into content.curated_topic_sims
