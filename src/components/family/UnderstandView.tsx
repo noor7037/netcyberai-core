@@ -27,6 +27,7 @@ import { ChartView } from './blocks/ChartView';
 import { StepsView } from './blocks/StepsView';
 import { TimelineView } from './blocks/TimelineView';
 import { ImageView } from './blocks/ImageView';
+import { ShowcaseView } from './blocks/ShowcaseView';
 import { VideosView } from './blocks/VideosView';
 import { StickyTutorFace } from './avatar/TutorFace';
 import type { Reading } from './voice/AnswerSpeaker';
@@ -150,6 +151,8 @@ export function AnswerBlock({ b, w, tone, lead = false, onRetry, onOffline, sent
       return <FigureView b={b} tone={tone} />;
     case 'model_3d':
       return <Model3DView b={b} w={w} tone={tone} />;
+    case 'showcase':
+      return <ShowcaseView b={b} w={w} tone={tone} />;
     case 'lab':
       return <LabBlockView b={b} w={w} tone={tone} />;
     case 'model':

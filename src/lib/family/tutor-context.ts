@@ -302,3 +302,26 @@ export async function buildScope(where: TutorWhere, child: ScopeChild & { boardI
   }
   return { about, text: within([head, chapterText(ch, lang)], BOOK_CHAPTER_CHARS + 200), labs, chapterKey: found.chapter.key, blockId: null };
 }
+
+// ---- the chapter's own animated diagrams (tutor overhaul, slice 1) ---------------------------------------------------
+
+export type ChapterDiagram = { title: string; svg: string; caption: string; text: string };
+
+// The authored animated diagrams of one reader chapter, in the child's language: title, the SVG as authored, and the words
+// around it (title, topic title) used to match a question. Empty when the chapter is not in a book or has none.
+export async function chapterDiagrams(chapterKey: string, lang: Lang, files: Files = diskFiles): Promise<ChapterDiagram[]> {
+  const found = bookChapter(chapterKey);
+  if (!found) return [];
+  const ch = await jsonOf(files, chapterFile(found.book, found.chapter));
+  if (!ch) return [];
+  const out: ChapterDiagram[] = [];
+  for (const t of list(ch.topics).map(obj)) {
+    const topicTitle = tx(t.title as T, 'en');
+    for (const s of list(t.steps).map(obj)) {
+      if (s.type !== 'diagram' || typeof s.svg !== 'string') continue;
+      const title = tx(s.title as T, lang) || tx(s.title as T, 'en');
+      out.push({ title, svg: s.svg, caption: tx(s.caption as T, lang) || title, text: `${tx(s.title as T, 'en')} ${topicTitle} ${tx(s.caption as T, 'en')}` });
+    }
+  }
+  return out;
+}

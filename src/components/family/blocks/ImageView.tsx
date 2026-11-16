@@ -1,9 +1,9 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { OPENVERSE_IMAGE_HOST, type ImageBlock } from '@/lib/family/blocks';
+import { type ImageBlock } from '@/lib/family/blocks';
 import { PHOTO_HEIGHT, PHOTO_WIDTH, WIDE_MEDIA, photoSizes } from '@/lib/family/visuals/photo-size';
-import { fill, type Words } from '@/lib/family/fill';
+import type { Words } from '@/lib/family/fill';
 import { Card } from './BlockViews';
 import { useReducedMotion } from './InteractiveViews';
 
@@ -56,20 +56,9 @@ export function ImageView({ b, w, tone }: { b: ImageBlock; w: Words; tone: strin
         </div>
         <figcaption className="flex flex-col gap-1">
           <span className="text-base text-slate">{b.caption}</span>
-          {/* Founder (12 Nov 2026): nothing in the app opens a page outside it. The credit is shown as words, not a link. */}
-          <span data-photo-credit className="text-sm font-semibold text-slate">
-            {fill(w[fromOpenverse(b.url) ? 'fam.block.photoCreditOpenverse' : 'fam.block.photoCredit'], { author: b.credit, licence: b.licence })}
-          </span>
+          {/* Tutor overhaul (16 Nov 2026): the student sees the picture and its caption only. The author, licence and source stay in the block's data and the image cache, never drawn. */}
         </figcaption>
       </figure>
     </Card>
   );
 }
-
-const fromOpenverse = (url: string): boolean => {
-  try {
-    return new URL(url).hostname === OPENVERSE_IMAGE_HOST;
-  } catch {
-    return false;
-  }
-};

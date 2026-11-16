@@ -309,7 +309,7 @@ export async function POST(req: NextRequest) {
             // teaching plan (src/lib/family/resolver.ts plans the answer and retrieves before the answer call). They never
             // decide the answer's subject. W10 (C411): in a chat with turns, the chat's own subject steers them (a follow-up
             // in a Science chat opened from the Mathematics tab is taught from Science passages).
-            target = { ...target, windowSubject: chatSubject ?? subject, ...(reader ? { chapterKey: reader.chapterKey } : {}) };
+            target = { ...target, windowSubject: chatSubject ?? subject, ...(reader ? { chapterKey: reader.chapterKey } : placed?.chapterKey ? { chapterKey: placed.chapterKey } : {}) };
             if (attached && target?.kind === 'question') target = { ...target, attached, ...(checkMode ? { check: true as const } : {}), ...(sketchMode ? { sketch: true as const, ...(drawTemplateId ? { drawTemplate: drawTemplateId } : {}) } : {}) };
             const files = await sendableFiles(db, session.accountId, child.childId, subject, tutorBody.files);
             if (!files) return stop({ t: 'refused', reason: 'not_found', message: words('fam.tutor.fileGone') });

@@ -11,6 +11,7 @@ import { sceneSimFits, simFits } from './interactive';
 import { modelFits } from './models/fit';
 import { retrievePassages, type Passage } from '@/lib/ai/teaching/retrieve';
 import { bookPassages, bookSubjects } from './book-search';
+import { showcaseFor } from './visuals/showcase';
 import { BLOCK_SCHEMA_VERSION, completeResponse, coreBlocks, isInteractive, isSimScene, jsonObjectScanner, parseBlockLine, parseStoredBlockLine, type Block, type BlockType } from './blocks';
 import { boardNameOf, isPrePrimary, syllabusBoardOf, type FamilyChild } from './children';
 import { sealItem, type PublicItem } from './items';
@@ -250,6 +251,9 @@ export type Pending = {
   question: string | null;
   // W23-C: the ids of the labs offered for this question; a lab block names one of them or is dropped.
   labs?: readonly string[];
+  // Tutor overhaul: the open chapter's own animated diagram for this question (server-chosen); shown first, and it stands in
+  // for the model's own board or figure.
+  showcase?: Block | null;
   // W9-B: the plan the prompt is written from (v8 on; null under an earlier prompt), and for a live answer the planning
   // call and the passages, the prompt rebuilt from the plan once it comes (null: the default plan stands).
   plan: Plan | null;
@@ -488,9 +492,10 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
     emit({ t: 'refused', reason: prepared.reason, message: ctx.refusalWords(REFUSAL_MESSAGE[prepared.reason]) });
     return null;
   }
+  const showcase = input.kind === 'question' && !input.check && !input.sketch && !ctx.preparing ? await showcaseFor(input.chapterKey ?? null, input.text, child.language) : null;
   const question = input.kind === 'question' ? withAttached(input.text, input.attached) : null;
   const asked = question ?? `Explain "${line?.topicEn ?? line?.chapterEn ?? ''}" to a Class ${child.classLevel} student.`;
-  return { ctx, line, known, open, classSubjects: ofClass, tab, ...(ask.bookSubjects ? { bookSubjects: ask.bookSubjects } : {}), cacheable, promptVersion: prompt.version, text: prepared.text, moderation, asked, question, labs: input.kind === 'question' && input.scope ? input.scope.labs.map((l) => l.id) : [], plan, teach: teach ? { ...teach, build } : null, ...(isCheck ? { check: true as const, reading: input.kind === 'question' ? (input.attached ?? '') : '' } : {}) };
+  return { ctx, line, known, open, classSubjects: ofClass, tab, ...(ask.bookSubjects ? { bookSubjects: ask.bookSubjects } : {}), cacheable, promptVersion: prompt.version, text: prepared.text, moderation, asked, question, labs: input.kind === 'question' && input.scope ? input.scope.labs.map((l) => l.id) : [], showcase, plan, teach: teach ? { ...teach, build } : null, ...(isCheck ? { check: true as const, reading: input.kind === 'question' ? (input.attached ?? '') : '' } : {}) };
 }
 
 // C521: the language the child typed the question in (their own words, not a photo's reading) and the child's mother
@@ -537,7 +542,7 @@ async function prepareTeach(db: Db, ctx: ResolverContext, input: ResolveInput, l
   // passages reach the prompt exactly as the library's do, as quoted data, each named by its chapter and topic.
   const typedFree = input.kind === 'question' && !input.check && !input.chapterKey && !input.scope;
   const passages =
-    library.length === 0 && typedFree
+    library.length === 0 && (typedFree || (input.kind === 'question' && !input.check))
       ? await bookPassages({ question: input.text, classLevel: child.classLevel, board: syllabusBoardOf(child), subject: hint, lang: child.language, subjects: ofClass })
       : library;
   const ai = { accountId: ctx.accountId, childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail, day: ctx.day };
@@ -592,6 +597,13 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
     // Progress and the sealed items are keyed to the syllabus line; a typed question is kept against its subject.
     emit({ t: 'block', block: toPublic(b, ctx, line?.key ?? questionKey(ctx.child, s), s) });
   };
+  // The showcase leads once the subject is known; a board or figure the model drew is then dropped (the chapter's own drawing stands in).
+  let led = false;
+  const lead = (s: Subject) => {
+    if (led || !p.showcase) return;
+    led = true;
+    show(p.showcase, s);
+  };
   const take = async (text: string) => {
     if (stopped) return;
     // The model's own refusal is a whole block of type "refuse" (a nested field of that name is not).
@@ -616,6 +628,10 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
     }
     const s: Subject = subject;
     const parsedBlock = parseBlockLine(text);
+    if (parsedBlock && p.showcase && (parsedBlock.type === 'board' || parsedBlock.type === 'figure')) {
+      objects += 1;
+      return;
+    }
     objects += 1;
     if (!parsedBlock) {
       const type = typeOf(text);
@@ -652,6 +668,7 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
       held.push(b);
       return;
     }
+    lead(s);
     show(b, s);
     if (p.check && b.type === 'steps') for (const h of held.splice(0)) show(h, s);
   };

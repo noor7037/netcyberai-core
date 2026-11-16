@@ -56,6 +56,7 @@ const EVERY: Record<string, unknown> = {
   board: { type: 'board', title: MARK('board'), steps: [{ n: 1, say: `${MARK('board')} say.`, commands: [{ kind: 'label', at: [10, 10], text: MARK('board') }] }] },
   // W19-D: the 3D model is silent as well.
   model: { type: 'model', title: MARK('model'), model: 'brain', focus: ['cerebellum'], caption: `${MARK('model')} caption.` },
+  showcase: { type: 'showcase', title: 'A diagram', caption: 'A diagram.', svg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 4"><circle cx="2" cy="2" r="1"/></svg>' },
   lab: { type: 'lab', id: 'c10-science-jesc1-ch01-signs', why: `${MARK('lab')} why.` },
 };
 

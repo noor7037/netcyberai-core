@@ -298,12 +298,16 @@ describe('the views', () => {
     expect(out).toContain('loading="lazy"');
     expect(out).toContain('aspect-[4/3]');
     expect(out).toContain(`alt="${PHOTO.caption}"`);
-    expect(out).toContain('Photo: A. Maker · CC BY-SA 4.0 · Wikimedia Commons');
+    // 16 Nov 2026: no author, licence or source is shown to the student; they stay in the block's data.
+    expect(out).not.toContain('A. Maker');
+    expect(out).not.toContain('CC BY-SA');
+    expect(out).not.toContain('Wikimedia');
     expect(out).not.toContain('href=');
     expect(out).not.toContain('target="_blank"');
     expect(html(h(ImageView, { b: IMAGE as ImageBlock, w, tone: 'science' }))).toBe('');
     const hi = familyWords('hi', UNDERSTAND_KEYS);
-    expect(html(h(ImageView, { b: PHOTO as ImageBlock, w: hi, tone: 'science' }))).toContain('Wikimedia Commons');
+    expect(html(h(ImageView, { b: PHOTO as ImageBlock, w: hi, tone: 'science' }))).not.toContain('Wikimedia');
+    expect(PHOTO.credit).toBe('A. Maker');
   });
 
   it('videos: drawn cards with title, channel and length, nothing loaded from YouTube before a tap; an unfilled block is not drawn', () => {

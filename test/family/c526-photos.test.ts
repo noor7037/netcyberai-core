@@ -60,13 +60,15 @@ describe('a low-data photo', () => {
     expect(html).toContain('bg-off-white');
     // The first paint is still (motion starts only once the browser says motion is allowed).
     expect(html).not.toContain('opacity-0');
-    expect(html).toContain('Photo: A. Maker · CC BY 4.0 · Wikimedia Commons');
+    expect(html).not.toContain('A. Maker');
+    expect(commons).toMatchObject({ credit: 'A. Maker', licence: 'CC BY 4.0' });
     const ov = checkStoredBlock({ type: 'image', url: THUMB, caption: 'A cow.', credit: 'B. Maker', licence: 'CC0 1.0', source: PAGE }) as ImageBlock;
     const ovHtml = renderToStaticMarkup(h(ImageView, { b: ov, w, tone: 'blue' }));
     expect(ovHtml).toContain(`src="${THUMB}"`);
     expect(ovHtml).not.toContain('<source');
-    expect(ovHtml).toContain('Photo: B. Maker · CC0 1.0 · via Openverse');
-    expect(renderToStaticMarkup(h(ImageView, { b: ov, w: familyWords('hi', UNDERSTAND_KEYS), tone: 'blue' }))).toContain('Openverse से');
+    expect(ovHtml).not.toContain('B. Maker');
+    expect(ovHtml).not.toContain('Openverse');
+    expect(ov).toMatchObject({ credit: 'B. Maker', licence: 'CC0 1.0' });
   });
 });
 

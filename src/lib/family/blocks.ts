@@ -209,15 +209,16 @@ export const LAB_WHY_MAX = 160;
 
 export type BlockMeta = { id?: string; tts_read_aloud?: boolean };
 
-export type Block = (Explanation | WorkedExample | KeyPoints | Diagram | MindMap | Check | Practice | EnglishMoment | Sources | Table | Interactive | Slider | Model3D | ChapterTest | Figure | Steps | Timeline | ImageBlock | Videos | Scene | SimScene | Chart | Board | ModelBlock | LabBlock) & BlockMeta;
+export type Showcase = { type: 'showcase'; title: string; caption: string; svg: string };
+export type Block = (Explanation | WorkedExample | KeyPoints | Diagram | MindMap | Check | Practice | EnglishMoment | Sources | Table | Interactive | Slider | Model3D | ChapterTest | Figure | Steps | Timeline | ImageBlock | Videos | Scene | SimScene | Chart | Board | ModelBlock | LabBlock | Showcase) & BlockMeta;
 export type BlockType = Block['type'];
 export const INTERACTIVE_TYPES: readonly BlockType[] = ['graph', 'number_line', 'fraction_model', 'geometry', 'simulation'];
 export const isInteractive = (t: BlockType) => INTERACTIVE_TYPES.includes(t);
-export const BLOCK_TYPES: readonly BlockType[] = ['explanation', 'worked_example', 'key_points', 'diagram', 'mind_map', 'check', 'practice', 'english_moment', 'sources', 'table', ...INTERACTIVE_TYPES, 'slider', 'model_3d', 'chapter_test', 'figure', 'steps', 'timeline', 'image', 'videos', 'scene', 'chart', 'board', 'model', 'lab'];
+export const BLOCK_TYPES: readonly BlockType[] = ['explanation', 'worked_example', 'key_points', 'diagram', 'mind_map', 'check', 'practice', 'english_moment', 'sources', 'table', ...INTERACTIVE_TYPES, 'slider', 'model_3d', 'chapter_test', 'figure', 'steps', 'timeline', 'image', 'videos', 'scene', 'chart', 'board', 'model', 'lab', 'showcase'];
 // The blocks the server fills before they are kept (W9-C): a photograph and the videos.
 export const FILLED_TYPES: readonly BlockType[] = ['image', 'videos'];
 // Types only authored chapters carry; the model's answer never does.
-export const CHAPTER_ONLY_TYPES: readonly BlockType[] = ['table', 'slider', 'model_3d', 'chapter_test'];
+export const CHAPTER_ONLY_TYPES: readonly BlockType[] = ['table', 'slider', 'model_3d', 'chapter_test', 'showcase'];
 
 // Every response must teach, check and give practice (08 §7); the others come when they fit.
 export const REQUIRED_BLOCKS: readonly BlockType[] = ['explanation', 'check', 'practice'];
@@ -557,6 +558,8 @@ function blockBody(o: Record<string, unknown>): Block | null {
       return modelBlock(o);
     case 'lab':
       return labBlock(o);
+    case 'showcase':
+      return showcaseBlock(o);
     default:
       return null;
   }
@@ -1454,4 +1457,16 @@ export function narrationScript(blocks: readonly Block[]): NarrationLine[] {
     for (const t of spokenTexts(b)) for (const s of sentences(t)) out.push({ blockId: ids[i], sentence: n++, text: s });
   });
   return out;
+}
+
+// Tutor overhaul: a chapter's own animated diagram (server-added, never model-written: CHAPTER_ONLY_TYPES). It is drawn as
+// an <img> (no script runs in an image), and is refused here anyway when it holds script, a reference or a handler.
+export const SHOWCASE_SVG_MAX = 40_000;
+const SVG_UNSAFE = /<script|<foreignObject|<iframe|<image\b|<use\b|<a\b|\bon[a-z]+\s*=|javascript:|data:|href\s*=|@import|url\(\s*['"]?(?!#)|<!ENTITY|<!DOCTYPE/i;
+function showcaseBlock(o: Record<string, unknown>): Showcase | null {
+  const title = plain(o.title, 120);
+  const caption = plain(o.caption, 240) ?? title;
+  const svg = typeof o.svg === 'string' ? o.svg.trim() : '';
+  if (!title || !caption || !svg.startsWith('<svg') || svg.length > SHOWCASE_SVG_MAX || SVG_UNSAFE.test(svg)) return null;
+  return { type: 'showcase', title, caption, svg };
 }
