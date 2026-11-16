@@ -244,8 +244,8 @@ export const SOURCE_HOSTS: readonly string[] = ['ncert.nic.in', 'cbseacademic.ni
 export function plain(v: unknown, max: number): string | null {
   if (typeof v !== 'string') return null;
   const s = v
-    .replace(/<[^>]*>/g, ' ')
-    .replace(/[<>]/g, ' ')
+    // Tags out; a comparison sign (x < 5, a > b, 3 <= 4) stays: React shows it as text, and maths questions need it.
+    .replace(/<\/?[A-Za-z!][^>]*>/g, ' ')
     .replace(/\*\*|__|`+|^#{1,6}\s+/gm, '')
     .replace(/\[([^\]]*)\]\(([^)]*)\)/g, (_link: string, label: string) => label)
     .replace(/\s+/g, ' ')
