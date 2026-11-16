@@ -5,7 +5,7 @@ import { type ImageBlock } from '@/lib/family/blocks';
 import { PHOTO_HEIGHT, PHOTO_WIDTH, WIDE_MEDIA, photoSizes } from '@/lib/family/visuals/photo-size';
 import type { Words } from '@/lib/family/fill';
 import { Card } from './BlockViews';
-import { useReducedMotion } from './InteractiveViews';
+import { useReducedMotion } from './motion';
 
 // A real photograph (W9-C, docs/39 §3): a licensed Wikimedia Commons file the server found and checked, with its caption
 // and its credit ("Photo: <author> · <licence> · Wikimedia Commons", as words: no link leaves the app). A block the server

@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import type { ElabPic } from '@/lib/family/elaboration';
 import { fill, type Words } from '@/lib/family/fill';
 import { useDataSaver } from '../useDataSaver';
-import { useReducedMotion } from './InteractiveViews';
+import { useReducedMotion } from './motion';
 import type { ViewerHandle } from './glb-viewer';
 
 // A 3D picture of a step (founder, 16 Nov 2026): the still picture shows first and stays when the phone cannot or should

@@ -6,7 +6,7 @@ import { COIL_TURNS, MAX_CLIPS, SIM_TEMPLATES, simMax, simReadout, simStart, typ
 import { lessonColors, lessonTints } from '@/lib/design-tokens';
 import { fill, type Words } from '@/lib/family/fill';
 import { Card } from './BlockViews';
-import { useReducedMotion } from './InteractiveViews';
+import { useReducedMotion } from './motion';
 
 // A Science simulation in a scene block (W16-A2, docs/39 §6; W18-P2 adds the circuit, the motor, the electromagnet and the
 // magnet's field lines): the child taps a choice (a depth, a surface and a speed, a frequency and an amplitude, a battery and

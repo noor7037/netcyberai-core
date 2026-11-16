@@ -3,7 +3,7 @@
 import type { Showcase } from '@/lib/family/blocks';
 import type { Words } from '@/lib/family/fill';
 import { Card } from './BlockViews';
-import { useReducedMotion } from './InteractiveViews';
+import { useReducedMotion } from './motion';
 
 // Tutor overhaul: the open chapter's own animated diagram. Drawn as an <img> with a data URL: a browser runs no script in
 // an image, and the diagram's own CSS animation still plays. Under prefers-reduced-motion the animation is switched off

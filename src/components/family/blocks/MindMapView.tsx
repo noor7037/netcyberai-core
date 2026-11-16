@@ -4,7 +4,7 @@ import type { MindMap } from '@/lib/family/blocks';
 import { colors, deepColors, lessonColors } from '@/lib/design-tokens';
 import type { Words } from '@/lib/family/fill';
 import { Card } from './BlockViews';
-import { useReducedMotion } from './InteractiveViews';
+import { useReducedMotion } from './motion';
 
 const BRANCH_DELAY_MS = 300;
 // A branch's reveal: CSS only (nca-pop), each branch after the one before; none when still.

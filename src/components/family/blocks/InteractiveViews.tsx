@@ -25,6 +25,7 @@ import {
   type Fraction,
 } from '@/lib/family/interactive';
 import { subjectTheme } from '@/lib/family/subject-theme';
+import { toneColor, useReducedMotion } from './motion';
 import { Card } from './BlockViews';
 
 // The interactive blocks (M2-8, C282): SVG drawn by React from the checked fields, every value computed by our code
@@ -36,7 +37,7 @@ const ink = colors.slate;
 // F2 on D1 (C230-Q), on the lesson identity (W12-E, C419): a drawing takes its subject's solid accent (`hex` in
 // src/lib/family/subject-theme.ts, AA on white), so a line or a filled part stands out on the white card. The second
 // colour is deep saffron, or plum when the subject is saffron itself, so the two never look alike.
-export const toneColor = (tone: string): string => subjectTheme(tone).hex;
+export { toneColor, useReducedMotion };
 export const secondColor = (tone: string): string => (toneColor(tone) === lessonColors.saffronDeep ? lessonTints.lilac.accent : lessonColors.saffronDeep);
 // SVG path data from its commands and numbers.
 const svgPath = (...parts: (string | number)[]) => parts.join(' ');
@@ -48,19 +49,6 @@ const SLIDER =
   '[&::-webkit-slider-thumb]:-mt-[18px] [&::-webkit-slider-thumb]:h-11 [&::-webkit-slider-thumb]:w-11 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-[10px] [&::-webkit-slider-thumb]:border-solid [&::-webkit-slider-thumb]:border-transparent [&::-webkit-slider-thumb]:bg-ink [&::-webkit-slider-thumb]:bg-clip-padding ' +
   '[&::-moz-range-track]:h-2 [&::-moz-range-track]:rounded-full [&::-moz-range-track]:bg-slate/20 ' +
   '[&::-moz-range-thumb]:h-11 [&::-moz-range-thumb]:w-11 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-[10px] [&::-moz-range-thumb]:border-solid [&::-moz-range-thumb]:border-transparent [&::-moz-range-thumb]:bg-ink [&::-moz-range-thumb]:bg-clip-padding';
-
-export function useReducedMotion(): boolean {
-  // Still until the browser says otherwise: the first paint never moves.
-  const [reduced, setReduced] = useState(true);
-  useEffect(() => {
-    const m = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const on = () => setReduced(m.matches);
-    on();
-    m.addEventListener('change', on);
-    return () => m.removeEventListener('change', on);
-  }, []);
-  return reduced;
-}
 
 // Seconds since play was pressed, while playing; 0 when stopped.
 function useClock(playing: boolean): number {

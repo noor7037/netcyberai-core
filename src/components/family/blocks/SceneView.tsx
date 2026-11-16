@@ -5,7 +5,7 @@ import type { Scene, ScenePart, SceneShape } from '@/lib/family/blocks';
 import { colors, lessonColors } from '@/lib/design-tokens';
 import type { Words } from '@/lib/family/fill';
 import { Card } from './BlockViews';
-import { useReducedMotion } from './InteractiveViews';
+import { useReducedMotion } from './motion';
 import { wrapLabel } from './MindMapView';
 
 // A scene (W10-6, docs/39 §5): a thing and its real parts, drawn by our own code from checked data

@@ -103,7 +103,7 @@ export function TemplatesSection({ childId, classLevel, lang, subjects, w, onSen
   const open = (t: DrawTemplateEntry) => {
     if (isLocked(t, known.allowed)) return setNote(w['fam.draw.t.lockedNote']);
     setNote(null);
-    void studio.start({ templateId: t.id, subject: subjectOf.get(t.id) ?? t.subject, from: 'lesson' });
+    void studio.start({ template: t, subject: subjectOf.get(t.id) ?? t.subject, from: 'lesson' });
   };
 
   return (

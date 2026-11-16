@@ -76,7 +76,7 @@ export default async function ChapterPage({ params }: { params: { key: string } 
       <SubPageHeader back={`/family/study?subject=${chapter.subject}`} backLabel={t(lang, 'fam.study.title')} kicker={t(lang, 'fam.reader.kicker')} title={view.title} subject={chapter.subject} />
       <main data-chapter-reader={chapter.key} lang={view.lang} className="relative mx-auto -mt-8 flex w-full max-w-xl flex-1 flex-col gap-4 px-4 pb-28">
         <ChapterReader chapterKey={chapter.key} lang={view.lang} blocks={blocks} ids={view.ids} script={view.script} start={start} resumed={saved !== null && start > 0} w={w} tone={chapter.subject} chapterTitle={view.title} tutor={tutor} videos={videos} serverVoice={serverVoice} />
-        {drawing && drawWords && <DrawItCard childId={child.childId} classLevel={child.classLevel} lang={lang === 'hi' ? 'hi' : 'en'} templateId={drawing.id} subject={chapter.subject} allowed={drawOpen} w={drawWords} />}
+        {drawing && drawWords && <DrawItCard childId={child.childId} classLevel={child.classLevel} lang={lang === 'hi' ? 'hi' : 'en'} template={drawing} subject={chapter.subject} allowed={drawOpen} w={drawWords} />}
         {others.length > 0 && (
           <nav aria-labelledby="fam-reader-more" className="flex flex-col gap-2">
             <h2 id="fam-reader-more" className="px-1 text-lg font-extrabold text-slate">

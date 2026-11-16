@@ -5,10 +5,12 @@
 // of the board's catalog is the template's own), words in English and Hindi, themed colours and whether a parent must
 // allow it first. A completion is counted, never the drawing; nothing here scores art.
 
-import type { DrawTemplate } from './draw-contract';
+import type { DrawCategory, DrawLang, DrawTemplateEntry } from './draw-template-entry';
+import { isLocked, templateSrc, toStudioTemplate } from './draw-template-entry';
 
-export type DrawLang = 'en' | 'hi';
-export type DrawCategory = 'colour' | 'learn' | 'play' | 'art';
+export type { DrawCategory, DrawLang, DrawTemplateEntry };
+export { isLocked, templateSrc, toStudioTemplate };
+
 export const DRAW_CATEGORIES: readonly DrawCategory[] = ['colour', 'learn', 'play', 'art'];
 export const DRAW_CATEGORY_LABEL: Record<DrawCategory, { en: string; hi: string }> = {
   colour: { en: 'Colour', hi: 'रंग भरो' },
@@ -16,33 +18,11 @@ export const DRAW_CATEGORY_LABEL: Record<DrawCategory, { en: string; hi: string 
   play: { en: 'Play', hi: 'खेलो' },
   art: { en: 'Art', hi: 'कला' },
 };
-type Words = { en: string; hi: string };
-
-export type DrawTemplateEntry = {
-  id: string;
-  classes: readonly [number, number];
-  subject: string;
-  chapterKey: string | null;
-  title: Words;
-  task: Words;
-  labels: { en: readonly string[]; hi: readonly string[] };
-  palette: readonly string[];
-  // A parent turns on "Allow all drawing activities" for the child before this one opens.
-  parentGate: boolean;
-  // C517: guided steps for LKG to Class 4 (engagement mode), and a line of background context; both optional.
-  steps?: readonly { en: string; hi: string; at?: { x: number; y: number } }[];
-  context?: Words;
-  // C517: an activity kind. Such a template shows under its kind (for every class in range), not under a school subject.
-  cat?: DrawCategory;
-};
-
 // The Control switch the templates live under: the drawing board's (W16). The studio slice may give drawing its own
 // module; then this one name changes.
 export const DRAW_MODULE = 'draw';
 
 export const DRAW_TEMPLATE_ID =/^[a-z0-9][a-z0-9.-]{2,79}$/;
-export const templateSrc = (id: string) => `/draw/templates/${id}.svg`;
-
 const L = (en: string[], hi: string[]) => ({ en, hi });
 
 export const DRAW_TEMPLATES: readonly DrawTemplateEntry[] = [
@@ -1052,18 +1032,6 @@ export function groupBySubject(list: { template: DrawTemplateEntry; subject: str
 export function templateForChapter(keys: readonly (string | null | undefined)[], classLevel: number): DrawTemplateEntry | null {
   const wanted = keys.filter((k): k is string => !!k);
   return DRAW_TEMPLATES.find((t) => t.chapterKey !== null && wanted.includes(t.chapterKey) && fitsClass(t, classLevel)) ?? null;
-}
-
-// Locked until a parent allows drawing activities for the child.
-export const isLocked = (t: DrawTemplateEntry, allowed: boolean) => t.parentGate && !allowed;
-
-// The template in the shape the studio takes (the contract), in the child's language, with its outline's text.
-export function toStudioTemplate(t: DrawTemplateEntry, lang: DrawLang, outlineSvg: string, subject: string, classLevel: number): DrawTemplate {
-  return {
-    id: t.id, title: t.title[lang], task: t.task[lang], outlineSvg, palette: t.palette, labels: t.labels[lang], subject, classLevel, chapterKey: t.chapterKey,
-    ...(t.steps ? { steps: t.steps.map((x) => ({ text: x[lang], ...(x.at ? { at: x.at } : {}) })) } : {}),
-    ...(t.context ? { context: t.context[lang] } : {}),
-  };
 }
 
 // ---- the tutor ----------------------------------------------------------------------------------------------------------

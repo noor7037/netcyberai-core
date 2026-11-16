@@ -8,7 +8,7 @@ import { num } from '@/lib/family/interactive';
 import { modelView, solidMesh, solidSurface, solidVolume, type Mesh, type Vec } from '@/lib/family/solids';
 import { useDataSaver } from '../useDataSaver';
 import { Card } from './BlockViews';
-import { toneColor } from './InteractiveViews';
+import { toneColor } from './motion';
 
 // A 3D model with a 2D drawing (S5, C378; docs/37 §3 decision 7). The drawing is the default and the fallback: it is
 // the same mesh as the 3D view, projected and shaded in SVG, with the same computed volume and surface area, and a text

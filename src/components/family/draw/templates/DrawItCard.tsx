@@ -7,7 +7,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import type { StudioEvent } from '@/lib/family/draw-contract';
 import type { Words } from '@/lib/family/fill';
-import { drawTemplate, isLocked, templateSrc, type DrawLang } from '@/lib/family/draw-templates';
+import { isLocked, templateSrc, type DrawLang, type DrawTemplateEntry } from '@/lib/family/draw-template-entry';
 import { sendDone } from './done-queue';
 import { useTemplateStudio } from './openStudio';
 import { keepForOffline } from './template-cache';
@@ -15,10 +15,11 @@ import { keepForOffline } from './template-cache';
 const OPEN_BTN = 'fam-press min-h-[44px] rounded-full bg-grape-deep px-4 text-base font-bold text-white';
 const LOCKED_BTN = 'fam-press min-h-[44px] rounded-full bg-ink px-4 text-base font-bold text-white';
 
-type Props = { childId: string; classLevel: number; lang: DrawLang; templateId: string; subject: string; allowed: boolean; w: Words; variant?: 'card' | 'pill' };
+// The server picks the chapter's one template and passes only that, so the whole manifest is not in this page's script.
+type Props = { childId: string; classLevel: number; lang: DrawLang; template: DrawTemplateEntry; subject: string; allowed: boolean; w: Words; variant?: 'card' | 'pill' };
 
-export function DrawItCard({ childId, classLevel, lang, templateId, subject, allowed, w, variant = 'card' }: Props) {
-  const t = drawTemplate(templateId);
+export function DrawItCard({ childId, classLevel, lang, template: t, subject, allowed, w, variant = 'card' }: Props) {
+  const templateId = t.id;
   const [note, setNote] = useState<string | null>(null);
   const onEvent = useCallback(
     (e: StudioEvent) => {
@@ -30,12 +31,11 @@ export function DrawItCard({ childId, classLevel, lang, templateId, subject, all
   useEffect(() => {
     void keepForOffline([templateId]);
   }, [templateId]);
-  if (!t) return null;
   const locked = isLocked(t, allowed);
   const open = () => {
     if (locked) return setNote(w['fam.draw.t.lockedNote']);
     setNote(null);
-    void studio.start({ templateId, subject, from: 'lesson' });
+    void studio.start({ template: t, subject, from: 'lesson' });
   };
   const said = note ?? (studio.failed ? w['fam.draw.t.loadFailed'] : null);
 

@@ -73,7 +73,7 @@ export default async function BookChapterPage({ params, searchParams }: { params
         tutor={tutorOn ? { voice, files, homework: switchOn(switches, 'homework') } : null}
         draw={
           drawing ? (
-            <DrawItCard variant="pill" childId={child.childId} classLevel={child.classLevel} lang={lang === 'hi' ? 'hi' : 'en'} templateId={drawing.id} subject={found.book.subject} allowed={drawOpen} w={familyWords(lang, DRAW_TEMPLATE_KEYS)} />
+            <DrawItCard variant="pill" childId={child.childId} classLevel={child.classLevel} lang={lang === 'hi' ? 'hi' : 'en'} template={drawing} subject={found.book.subject} allowed={drawOpen} w={familyWords(lang, DRAW_TEMPLATE_KEYS)} />
           ) : null
         }
       />
