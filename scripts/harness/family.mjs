@@ -361,7 +361,14 @@ export const FAMILY_SCREENS = [
   ]),
   // The founder's live question ("how photosynthesis work and why trees die"): five real pictures, the checks after step 5.
   ['full', 'family-tutor-elab-photo', '/family/study?subject=mathematics', { langs: ['en'], prep: CLASS_3, reset: CLASS_PUT_BACK, answer: () => ELAB.photo.body, viewportShot: true, settle: '[data-tutor-rail]', steps: [...ELAB_STEPS('photo'), { scroll: '[data-elab-step="3"]' }, { pause: 800 }] }],
+  ['full', 'family-tutor-elab-phototop', '/family/study?subject=mathematics', { langs: ['en'], prep: CLASS_3, reset: CLASS_PUT_BACK, answer: () => ELAB.photo.body, viewportShot: true, settle: '[data-tutor-rail]', steps: [...ELAB_STEPS('photo'), { scroll: '[data-elab-step="1"]' }, { top: true }, { pause: 800 }] }],
+  ['full', 'family-tutor-elab-photohitop', '/family/study?subject=mathematics', { langs: ['hi'], prep: CLASS_3, reset: CLASS_PUT_BACK, answer: () => ELAB.photoHi.body, viewportShot: true, settle: '[data-tutor-rail]', steps: [...ELAB_STEPS('photoHi'), { scroll: '[data-elab-step="1"]' }, { top: true }, { pause: 800 }] }],
+  // The end of the page: the last step and the checks clear the Draw button and the Ask bar (nothing is covered).
+  ['full', 'family-tutor-elab-photoend', '/family/study?subject=mathematics', { langs: ['en'], prep: CLASS_3, reset: CLASS_PUT_BACK, answer: () => ELAB.photo.body, viewportShot: true, settle: '[data-tutor-rail]', steps: [...ELAB_STEPS('photo'), { bottom: true }, { pause: 800 }] }],
+  ['full', 'family-tutor-elab-photohiend', '/family/study?subject=mathematics', { langs: ['hi'], prep: CLASS_3, reset: CLASS_PUT_BACK, answer: () => ELAB.photoHi.body, viewportShot: true, settle: '[data-tutor-rail]', steps: [...ELAB_STEPS('photoHi'), { bottom: true }, { pause: 800 }] }],
   ['full', 'family-tutor-elab-photo-full', '/family/study?subject=mathematics', { langs: ['en'], prep: CLASS_3, reset: CLASS_PUT_BACK, answer: () => ELAB.photo.body, settle: '[data-tutor-rail]', steps: [...ELAB_STEPS('photo'), { style: '[data-tutor-composer]{position:static!important}.fam-dock{visibility:hidden}' }, { pause: 1200 }] }],
+  ['full', 'family-tutor-elab-photohi-full', '/family/study?subject=mathematics', { langs: ['hi'], prep: CLASS_3, reset: CLASS_PUT_BACK, answer: () => ELAB.photoHi.body, settle: '[data-tutor-rail]', steps: [...ELAB_STEPS('photoHi'), { style: '[data-tutor-composer]{position:static!important}.fam-dock{visibility:hidden}' }, { pause: 1200 }] }],
+  ['full', 'family-tutor-elab-photohi', '/family/study?subject=mathematics', { langs: ['hi'], prep: CLASS_3, reset: CLASS_PUT_BACK, answer: () => ELAB.photoHi.body, viewportShot: true, settle: '[data-tutor-rail]', steps: [...ELAB_STEPS('photoHi'), { scroll: '[data-elab-step="3"]' }, { pause: 800 }] }],
   ['full', 'family-parent-child-saved', '/family/parent#manage', { parent: true, reset: CLASS_PUT_BACK, settle: '[data-parent-panel="children"]:not([hidden])', steps: [{ tap: '[data-child-edit]', wait: 'select[id$="-class"]' }, { select: { field: 'select[id$="-class"]', value: '3' }, tap: '[data-parent-panel="children"] form button[type="submit"]', wait: '[data-child-saved]' }] }],
   // W22-S3: a kept answer read aloud, caught in the middle: the tutor's face stays at the top of the feed, the sentence is
   // marked and kept on screen, and the read-aloud line says how much is read.
@@ -846,6 +853,8 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
               });
               await page.locator(step.upload).first().setInputFiles({ name: 'textbook-page.jpg', mimeType: 'image/jpeg', buffer: Buffer.from(dataUrl.split(',')[1], 'base64') }).catch(() => errors.push(`${step.upload} could not take the photo`));
             }
+            if (step.top) await page.evaluate(() => window.scrollTo(0, 0));
+            if (step.bottom) await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
             if (step.style) await page.addStyleTag({ content: step.style });
             if (step.end) await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
             if (step.scroll) await page.locator(step.scroll).first().scrollIntoViewIfNeeded().catch(() => errors.push(`${step.scroll} could not be scrolled to`));

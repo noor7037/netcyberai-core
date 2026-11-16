@@ -115,9 +115,31 @@ const LINES = {
       ],
     },
   },
+  photoHi: {
+    question: "प्रकाश संश्लेषण कैसे होता है और पेड़ क्यों मर जाते हैं",
+    line: {
+      type: "elaboration",
+      term: "प्रकाश संश्लेषण और पेड़ों का मरना",
+      icon: "🌳",
+      definition: { text: "प्रकाश संश्लेषण वह तरीका है जिससे हरे पौधे धूप, पानी और हवा से अपना खाना बनाते हैं।", say: "प्रकाश संश्लेषण वह तरीका है जिससे हरे पौधे धूप, पानी और हवा से अपना खाना बनाते हैं।", q: "green leaf sunlight" },
+      levels: {
+        basic: "पत्ती धूप पकड़कर पेड़ के लिए खाना बनाती है।",
+        intermediate: "पत्तियाँ हवा से कार्बन डाइऑक्साइड और जड़ें मिट्टी से पानी लेती हैं। क्लोरोफ़िल धूप की मदद से इनसे ग्लूकोज़ और ऑक्सीजन बनाता है।",
+        advanced: "6CO2 + 6H2O + प्रकाश से C6H12O6 + 6O2 बनता है। प्रकाश अभिक्रिया में ATP बनता है और केल्विन चक्र में ग्लूकोज़।",
+        say: "आसान: पत्ती धूप से खाना बनाती है। बीच का: पत्तियाँ हवा और जड़ें पानी लेती हैं, क्लोरोफ़िल ग्लूकोज़ बनाता है। आगे का: छह कार्बन डाइऑक्साइड और छह पानी प्रकाश में ग्लूकोज़ और ऑक्सीजन बनाते हैं।",
+        q: "chlorophyll leaf cells",
+      },
+      real_life: { text: "स्कूल के बाहर का बड़ा पेड़ छाया और ताज़ी हवा देता है, क्योंकि उसकी पत्तियाँ धूप में खाना बनाने में लगी रहती हैं।", say: "स्कूल के बाहर का बड़ा पेड़ छाया और ताज़ी हवा देता है।", icon: "🏫", q: "big tree school" },
+      try_it: { question: "एक गमले का पौधा धूप में और एक अँधेरी अलमारी में एक हफ़्ते रखो। पत्तियों का क्या होगा?", right: "अलमारी वाली पत्तियाँ पीली और कमज़ोर हो जाती हैं, क्योंकि धूप के बिना खाना नहीं बनता।", hint: "सोचो कि पत्ती को खाना बनाने के लिए क्या चाहिए।", say: "एक पौधा धूप में और एक अलमारी में रखो। पत्तियों का क्या होगा?" },
+      future: { text: "पेड़ तब मरते हैं जब उन्हें पानी, धूप या स्वस्थ जड़ें नहीं मिलतीं। जंगल बचाने से हवा साफ़ रहती है।", say: "पेड़ पानी, धूप या स्वस्थ जड़ों के बिना मर जाते हैं। जंगल बचाओ।", icon: "🌍", q: "dead tree drought" },
+      checks: [
+        { question: "पत्तियाँ खाना बनाने के लिए क्या इस्तेमाल करती हैं?", options: ["धूप, पानी और हवा", "सिर्फ़ मिट्टी", "सिर्फ़ हवा का झोंका"], answer: 0, right: "पत्तियाँ धूप, पानी और कार्बन डाइऑक्साइड इस्तेमाल करती हैं।", hint: "तीन चीज़ें सोचो जो पौधे को चाहिए।" },
+      ],
+    },
+  },
 } as const;
 
-async function build(lang: "en" | "hi" | "photo") {
+async function build(lang: "en" | "hi" | "photo" | "photoHi") {
   const { question, line } = LINES[lang];
   const parsed = parseBlockLine(JSON.stringify(line));
   if (parsed?.type !== "elaboration")
@@ -126,12 +148,12 @@ async function build(lang: "en" | "hi" | "photo") {
     );
   const built = withPics(
     parsed,
-    lang === "photo" ? [] : await chapterDiagrams(KEY, lang),
+    lang === "photo" || lang === "photoHi" ? [] : await chapterDiagrams(KEY, lang),
     question,
     CLASS,
   );
   const block =
-    lang === "photo"
+    lang === "photo" || lang === "photoHi"
       ? await fillElaboration(built, { subject: "science" })
       : built;
   const events = [
@@ -155,6 +177,6 @@ async function build(lang: "en" | "hi" | "photo") {
 
 void (async () => {
   process.stdout.write(
-    JSON.stringify({ en: await build("en"), hi: await build("hi"), photo: await build("photo") }),
+    JSON.stringify({ en: await build("en"), hi: await build("hi"), photo: await build("photo"), photoHi: await build("photoHi") }),
   );
 })();
