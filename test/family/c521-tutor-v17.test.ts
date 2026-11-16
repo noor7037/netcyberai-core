@@ -81,8 +81,8 @@ describe('prompt v17 (C521): registered, opt-in, v16 unchanged', () => {
     expect(versions.indexOf('v17')).toBe(versions.indexOf('v16') + 1);
     expect(resolverPrompt('v17', true).version).toBe('v17');
     expect(resolverPrompt('v16', true).readsLanguage).toBeUndefined();
-    // v18 is v17 with the redirect line, so it reads the language too (test/family/future-tutor-v18.test.ts).
-    expect(RESOLVER_PROMPTS.filter((p) => p.readsLanguage).map((p) => p.version)).toEqual(['v17', 'v18']);
+    // v18 is v17 with the redirect line and v19 is v18 with one stage, so both read the language too.
+    expect(RESOLVER_PROMPTS.filter((p) => p.readsLanguage).map((p) => p.version)).toEqual(['v17', 'v18', 'v19']);
   });
   it('v16 ignores the language fields', () => {
     const a = ask(4, 'Why?');
