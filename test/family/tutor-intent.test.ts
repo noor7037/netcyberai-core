@@ -40,7 +40,7 @@ const KEY = `AIza${'T'.repeat(31)}TEST`; // made up: the shape of a Google key, 
 const DAY = 86_400_000;
 
 type Vid = { id: string; title?: string; channel?: string; views?: string; likes?: string; published?: string; paid?: boolean; duration?: string };
-const yt = vi.hoisted(() => ({ seen: [] as URL[], ids: [] as string[], vids: [] as Record<string, unknown>[], sponsor: {} as Record<string, unknown[]>, sponsorDown: false }));
+const yt = vi.hoisted(() => ({ seen: [] as URL[], ids: [] as string[], vids: [] as Record<string, unknown>[], sponsor: {} as Record<string, unknown[]>, sponsorDown: false, gone: [] as string[] }));
 const vid = (v: Vid) => ({
   id: v.id,
   snippet: { channelId: v.channel ?? OFFICIAL, channelTitle: 'Official Science', title: v.title ?? `Linear equations ${v.id}`, description: '', defaultAudioLanguage: 'en', publishedAt: v.published ?? '2020-01-01T00:00:00Z' },
@@ -85,6 +85,7 @@ beforeAll(async () => {
       const segs = yt.sponsor[url.searchParams.get('videoID') ?? ''];
       return segs ? Response.json(segs) : new Response('Not Found', { status: 404 });
     }
+    if (url.hostname === 'www.youtube.com' && url.pathname === '/oembed') return yt.gone.includes(new URL(url.searchParams.get('url') ?? 'https://x/').searchParams.get('v') ?? '') ? new Response('{}', { status: 404 }) : Response.json({ title: 't' });
     yt.seen.push(url);
     if (url.pathname.endsWith('/search')) return Response.json({ items: yt.ids.map((videoId) => ({ id: { kind: 'youtube#video', videoId } })) });
     if (url.pathname.endsWith('/videos')) {
@@ -105,6 +106,7 @@ beforeEach(async () => {
   yt.seen = [];
   yt.sponsor = {};
   yt.sponsorDown = false;
+  yt.gone = [];
   forgetSearches();
   await q(`delete from content.video_topic_searches`);
 });
@@ -214,5 +216,36 @@ describe('the simulations table and the clearing migration, on the real migratio
     await q(readFileSync('supabase/migrations/20261116160000_clear_romanised_empty_video_searches.sql', 'utf8'));
     const left = (await q(`select topic_key from content.video_topic_searches where topic_key in ('free.c3.kachra-prabandhan','free.c3.waste-management','cbse.c3.evs.ch01.t01') order by 1`)).map((r: any) => r.topic_key);
     expect(left).toEqual(['cbse.c3.evs.ch01.t01', 'free.c3.waste-management']);
+  });
+});
+
+describe('the video cache: reuse, removed videos, counts (follow-up)', () => {
+  const pick = (key: string, id: string, extra = '') =>
+    q(`insert into content.video_picks (topic_key, language, video_id, channel_id, channel_title, title, duration_s, captions, score, status ${extra ? ',' + extra.split('=')[0] : ''}) values ($1, 'en', $2, 'UCabcdefghij', 'Official Science', 'Waste', 600, true, 5, 'auto' ${extra ? ',' + extra.split('=')[1] : ''})`, [key, id]);
+  const counts = async () => (await q(`select coalesce(sum(hits),0)::int as hits, coalesce(sum(misses),0)::int as misses from content.video_cache_hours`))[0];
+  it('serves cached picks with no YouTube call, counts a hit, and a removed video is marked dead and dropped', async () => {
+    const l = line('Waste'); await pick(l.key, 'aaaaaaaaa01'); await pick(l.key, 'aaaaaaaaa02');
+    const before = await counts();
+    yt.gone = ['aaaaaaaaa02'];
+    expect(await ids(l)).toEqual(['aaaaaaaaa01']);
+    expect(yt.seen).toEqual([]);
+    expect((await counts()).hits).toBe(before.hits + 1);
+    expect(await q(`select video_id from content.video_picks where topic_key = $1 and dead_at is not null`, [l.key])).toEqual([{ video_id: 'aaaaaaaaa02' }]);
+    expect(await ids(l)).toEqual(['aaaaaaaaa01']);
+  });
+  it('a pick checked within 7 days is not checked again; an older one is', async () => {
+    const l = line('Waste2'); await pick(l.key, 'bbbbbbbbb01'); await q(`update content.video_picks set checked_at = now() where topic_key = $1`, [l.key]);
+    yt.gone = ['bbbbbbbbb01'];
+    expect(await ids(l)).toEqual(['bbbbbbbbb01']);
+    await q(`update content.video_picks set checked_at = now() - interval '8 days' where topic_key = $1`, [l.key]);
+    expect(await ids(l)).toEqual([]);
+  });
+  it('a free topic with no picks of its own uses the same topic in its class band, never another topic', async () => {
+    const { bandOf } = await import('@/lib/family/video-cache');
+    expect(bandOf('free.c4.waste-management')).toEqual({ slug: 'waste-management', classes: [3, 5] });
+    expect(bandOf('cbse.c9.mathematics.ch01.t01')).toBeNull();
+    await pick('free.c3.compost-heaps', 'ccccccccc01'); await pick('free.c3.water-cycle', 'ccccccccc02');
+    const l = { ...line('Waste'), key: 'free.c4.compost-heaps' } as Line;
+    expect(await ids(l)).toEqual(['ccccccccc01']);
   });
 });

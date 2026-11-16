@@ -7,6 +7,7 @@ import { promoFor } from '@/lib/family/sponsorblock';
 import { scheduleReviews } from '@/lib/family/video-review';
 import { KEEP, MIN_VIEWS, inLanguage, noteSearch, rankVideos, readPicks, savePicks, searchedEmptyLately, videoPlan, type VideoLanguage, type VideoPick } from '@/lib/family/videos';
 import { indiaDate } from '@/lib/time/india';
+import { bandPicks, dropDead, noteCache } from '@/lib/family/video-cache';
 
 // The video finder's one path (M2-5, C279; W19-F, C472): the topic's picks while they are fresh, else a refresh from
 // the provider, searched with the catalog line only (never a child's words), ranked in code, saved and read back. Used
@@ -30,28 +31,38 @@ export type WithDb = <T>(fn: (db: Db) => Promise<T>) => Promise<T>;
 
 export const EMPTY_DAYS = 7;
 
-type Refresh = { language: VideoLanguage; days: number; perDay: number; wider: boolean; minViews: number; curated: string[]; cached: VideoPick[]; staleAuto: number };
+type Refresh = { checkDue: string[]; language: VideoLanguage; days: number; perDay: number; wider: boolean; minViews: number; curated: string[]; cached: VideoPick[]; staleAuto: number };
 // The outside services, injectable for tests: SponsorBlock's fetch and the background review.
-export type FinderDeps = { sponsorFetch?: typeof fetch; review?: (videoIds: string[]) => void };
+export type FinderDeps = { sponsorFetch?: typeof fetch; review?: (videoIds: string[]) => void; oembedFetch?: typeof fetch };
 // SponsorBlock is asked about this many of the best candidates.
 const PROMO_LOOKUPS = 6;
 
 export async function topicVideos(withDb: WithDb, line: Line, child: FamilyChild, language: VideoLanguage = child.language, deps: FinderDeps = {}): Promise<VideoPick[]> {
   // 1. The cached picks, and whether a refresh is due and this request may run it.
-  const found = await withDb(async (db): Promise<{ cached: VideoPick[] } | { refresh: Refresh }> => {
+  const found = await withDb(async (db): Promise<{ cached: VideoPick[]; due: string[]; days: number } | { refresh: Refresh }> => {
     const days = await setting(db, 'family.video_pick_days', 30);
     const cached = await readPicks(db, line.key, language, days);
-    if (!cached.refreshDue || searchedEmptyLately(line.key, language)) return { cached: cached.picks };
+    // A free topic with no picks of its own: the same topic in the same class band, if it has some (no search, no claim).
+    if (cached.picks.length === 0 && cached.refreshDue) {
+      const near = await bandPicks(db, line.key, language, days);
+      if (near.picks.length > 0) return { cached: near.picks, due: near.due, days };
+    }
+    if (!cached.refreshDue || searchedEmptyLately(line.key, language)) return { cached: cached.picks, due: cached.checkDue, days };
     const perDay = await setting(db, 'family.video_searches_per_day', 90);
     // Videos from channels Control has not listed only when Control turns them on (C230-R; off unless set to 1).
     const wider = (await setting(db, 'family.video_wider_catalogue', 0)) === 1;
     const minViews = await setting(db, 'family.video_min_views', MIN_VIEWS);
     const claimed = (await db.query(`select content.claim_video_topic($1, $2, $3) as ok`, [line.key, language, EMPTY_DAYS])).rows[0]?.ok === true;
-    if (!claimed) return { cached: cached.picks };
+    if (!claimed) return { cached: cached.picks, due: cached.checkDue, days };
     const curated = await curatedFor(db, line, child, language).catch(() => []);
-    return { refresh: { language, days, perDay, wider, minViews, curated, cached: cached.picks, staleAuto: cached.staleAuto } };
+    return { refresh: { checkDue: cached.checkDue, language, days, perDay, wider, minViews, curated, cached: cached.picks, staleAuto: cached.staleAuto } };
   });
-  if ('cached' in found) return found.cached;
+  if ('cached' in found) {
+    // Served from the cache: no YouTube search. A pick not checked for a week is checked once now (oEmbed); a dead one is dropped.
+    const picks = await dropDead(withDb, found.cached, found.due, deps.oembedFetch);
+    if (picks.length > 0) await noteCache(withDb, 'hit', line.key, language);
+    return picks;
+  }
 
   // 2. A refresh: the channels Control listed, then the key and the day's searches.
   const r = found.refresh;
@@ -64,7 +75,8 @@ export async function topicVideos(withDb: WithDb, line: Line, child: FamilyChild
     return dropStale(withDb, line, r);
   }
 
-  // 3. The provider, with no connection held.
+  // 3. The provider, with no connection held. A cache miss: this one spends a YouTube search.
+  await noteCache(withDb, 'miss', line.key, r.language);
   const result = await prepared.find();
   if (!result.ok) {
     noteSearch(line.key, r.language, { failed: true });

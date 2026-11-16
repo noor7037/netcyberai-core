@@ -190,15 +190,18 @@ export function rankVideos(
 export const REVIEW_MIN_SAFETY = VIDEO_REVIEW_MIN.childSafety;
 export const REVIEW_MIN_ACCURACY = VIDEO_REVIEW_MIN.accuracy;
 export const reviewHides = videoReviewHides;
-export type CachedPicks = { picks: VideoPick[]; refreshDue: boolean; staleAuto: number };
+// `checkDue`: served picks not checked against YouTube for CHECK_DAYS (checked lightly, when served, never in bulk).
+export const CHECK_DAYS = 7;
+export type CachedPicks = { picks: VideoPick[]; refreshDue: boolean; staleAuto: number; checkDue: string[] };
 export async function readPicks(db: Db, topicKey: string, language: VideoLanguage, days: number): Promise<CachedPicks> {
   const { rows } = await db.query(
-    `select video_id, title, channel_title, duration_s, start_s, status, (fetched_at >= now() - make_interval(days => $3::int)) as fresh
+    `select video_id, title, channel_title, duration_s, start_s, status, (fetched_at >= now() - make_interval(days => $3::int)) as fresh,
+            (checked_at is null or checked_at < now() - make_interval(days => $4::int)) as check_due
        from content.video_picks p
-      where topic_key = $1 and language = $2 and status <> 'rejected'
+      where topic_key = $1 and language = $2 and status <> 'rejected' and dead_at is null
         and not content.video_hidden(p.video_id)
       order by (status = 'pinned') desc, score desc, video_id`,
-    [topicKey, language, Math.max(0, Math.floor(days))]
+    [topicKey, language, Math.max(0, Math.floor(days)), CHECK_DAYS]
   );
   const shown = rows.filter((r) => r.status === 'pinned' || r.fresh === true);
   const pinned = rows.filter((r) => r.status === 'pinned').length;
@@ -207,6 +210,7 @@ export async function readPicks(db: Db, topicKey: string, language: VideoLanguag
     picks: shown.slice(0, KEEP).map((r) => ({ videoId: String(r.video_id), title: String(r.title), channelTitle: String(r.channel_title), durationS: Number(r.duration_s), startS: Number(r.start_s) })),
     refreshDue: freshAuto === 0 && pinned < KEEP,
     staleAuto: rows.filter((r) => r.status === 'auto' && r.fresh !== true).length,
+    checkDue: shown.slice(0, KEEP).filter((r) => r.check_due === true).map((r) => String(r.video_id)),
   };
 }
 
