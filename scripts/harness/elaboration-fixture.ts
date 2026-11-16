@@ -13,6 +13,10 @@ import { videoQuery } from "../../src/lib/family/videos";
 import { nameFiller } from "../../src/lib/family/name-token";
 
 
+// The visual sources print a summary line with console.log; the harness reads stdout as JSON, so logs go to stderr.
+console.log = console.error;
+console.info = console.error;
+
 const KEY = "u.c03.mathematics.cemm1.ch08";
 const CLASS = 3;
 
@@ -367,7 +371,7 @@ const V21S: Record<string, V21> = {
       q3d: ["inclined plane", "", "", "", ""],
       checks: [
         chk("The normal force on the block is", ["mg cos θ", "mg sin θ", "mg"], 0, "The component perpendicular to the slope.", "Step 1."),
-        chk("The block slides when", ["tan θ > μs", "tan θ < μs", "θ = 0"], 0, "mg sin θ exceeds the maximum friction.", "Compare the two forces."),
+        chk("The block slides when", ["tan θ is greater than μs", "tan θ is less than μs", "θ is zero"], 0, "mg sin θ exceeds the maximum friction.", "Compare the two forces."),
       ],
     },
   },
