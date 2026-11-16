@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { rankVideos } from '@/lib/family/videos';
-import en from '@/lib/i18n/messages/en';
-import hi from '@/lib/i18n/messages/hi';
+import { en } from '@/lib/i18n/messages/en';
+import { hi } from '@/lib/i18n/messages/hi';
 
 const OFFICIAL = 'UCofficial0000000000001';
 const cand = (id: string, title: string, durationS: number) => ({ videoId: id, channelId: OFFICIAL, channelTitle: 'Official', title, durationS, embeddable: true, isPublic: true, ageRestricted: false, hasPaidPlacement: false, captions: true, madeForKids: false, language: 'hi', viewCount: 100000, likeCount: 2000, publishedAt: '2024-01-01T00:00:00Z', chapters: [] }) as never;
