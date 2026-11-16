@@ -258,3 +258,16 @@ describe('the chat keeps its subject and the follow-up stays in it (W10, C411)',
     await q(`update control.settings set value = '[]'::jsonb where key = 'family.open_subjects'`);
   });
 });
+
+describe('a kept answer reads back whole (v21 follow-up)', () => {
+  it('the saved videos, with their picks, come back in the subject feed after the answer was kept', async () => {
+    const t = await import('@/lib/family/tutor');
+    const videos: Block = { type: 'videos', topicKey: 'free.c3.waste-management', lang: 'hi', items: [{ videoId: 'abcdefghijk', title: 'Waste management', channel: 'Official', seconds: 540 }] } as Block;
+    const chat = await fam((c) => t.newChat(c, ACCOUNT, CHILD, 'science'));
+    await fam((c) => t.appendTurn(c, { ...turnInput(chat, 7), blocks: [explanation(7), videos] }));
+    const feed = await fam((c) => t.readFeed(c, ACCOUNT, CHILD, 'science'));
+    const answers = feed.flatMap((x) => ('blocks' in x ? (x as { blocks: Block[] }).blocks : [])) as Array<Block & { items?: { videoId: string }[]; topicKey?: string }>;
+    const back = answers.find((b) => b.type === 'videos' && b.topicKey === 'free.c3.waste-management');
+    expect(back?.items?.map((v) => v.videoId)).toEqual(['abcdefghijk']);
+  });
+});

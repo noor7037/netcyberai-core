@@ -5,7 +5,7 @@ import { checkUpload, textProblem, type OcrImage } from '@/lib/privacy/upload-ch
 import { FileStorageUnavailableError, type DirectUploadStorage } from '@/lib/storage/file-storage';
 import { familyTutorFileStorage } from '@/lib/storage/supabase-file-storage';
 import type { Block } from './blocks';
-import { parseBlockLine } from './blocks';
+import { parseStoredBlockLine } from './blocks';
 import { chapterView, showcaseChapter } from './chapters';
 import { activeChild, isPrePrimary, listChildren, type FamilyChild } from './children';
 import { consentState } from './consent';
@@ -282,7 +282,8 @@ function turnOf(r: Record<string, unknown>): TutorTurn {
     return { id: String(r.message_id), role: 'child', lang, text: String(r.body), chapterKey: (r.chapter_key as string | null) ?? null, blockId: (r.block_id as string | null) ?? null, files: files.filter((f) => isTutorFileType(f.mime)).map((f) => ({ id: String(f.id), mime: f.mime as TutorFileType })), at };
   }
   // Read back through the block checks, so only a block the renderer knows is ever drawn.
-  const blocks = (Array.isArray(r.blocks) ? r.blocks : []).map((b) => parseBlockLine(JSON.stringify(b))).filter((b): b is Block => b !== null);
+  // Stored: the server's own filled blocks (a video's picks, a photograph's address, an elaboration's pictures) read back whole, never as the bare line the model wrote.
+  const blocks = (Array.isArray(r.blocks) ? r.blocks : []).map((b) => parseStoredBlockLine(JSON.stringify(b))).filter((b): b is Block => b !== null);
   return { id: String(r.message_id), role: 'tutor', lang, blocks: keptTutorBlocks(blocks), at };
 }
 
