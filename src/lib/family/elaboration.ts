@@ -1,5 +1,7 @@
 import { plain, SHOWCASE_SVG_MAX, SVG_UNSAFE } from "./blocks";
 import { modelUrl, photoUrl } from "./visuals/photo-hosts";
+import { checkSim, type ElabSim } from "./sim-hosts";
+import { cleanEnglish, cleanLocal } from "./topic-words";
 
 // The NetCyberAI Elaboration Framework (founder, 16 Nov 2026). Every tutor answer is five steps, in this order:
 //   1 Definition  what was asked, in one clear line
@@ -69,6 +71,10 @@ export type Elaboration = {
   queries: string[];
   // One picture per step, in step order, filled by the server (null only before the server has filled them).
   pics: (ElabPic | null)[];
+  // A curated simulation for the topic (content.curated_topic_sims), shown in step 4 as a "Try it yourself" card beside the photos, never instead of them. Set by the server only.
+  sim?: ElabSim;
+  // The topic as the tutor named it (src/lib/family/intent.ts): in English (a search phrase) and in the answer's own script. Server use only.
+  topic?: { en: string; local: string | null };
 };
 
 export const MAX_CHECKS = 3;
@@ -100,7 +106,7 @@ const icon = (v: unknown): string | undefined =>
 
 function check(v: unknown): ElabCheck | null {
   const t = obj(v);
-  const question = plain(t.question, 220);
+  const question = plain(t.question, 400);
   const options = Array.isArray(t.options)
     ? t.options
         .slice(0, 4)
@@ -124,7 +130,7 @@ function check(v: unknown): ElabCheck | null {
 
 function pic(v: unknown): ElabPic | null {
   const o = obj(v);
-  const caption = plain(o.caption, 240);
+  const caption = plain(o.caption, 300);
   if (!caption) return null;
   if (o.kind === "photo" || o.kind === "model3d") {
     const url = photoUrl(o.url);
@@ -149,6 +155,14 @@ function pic(v: unknown): ElabPic | null {
   return { svg, caption, kind: o.kind === "diagram" ? "diagram" : "card" };
 }
 
+// The tutor's own name for the topic: `topic_en` (plain English letters, 3 to 60) and `topic_local` from the model's line, or `topic` from a stored block.
+function topicOf(o: Record<string, unknown>): { en: string; local: string | null } | null {
+  const t = obj(o.topic);
+  const en = cleanEnglish(o.topic_en ?? t.en);
+  if (!en) return null;
+  return { en, local: cleanLocal(o.topic_local ?? t.local) };
+}
+
 // The model's line (or a stored block) as an elaboration, or null when any of the five steps is missing or too long.
 // `stored`: the server's own pictures and lead level are kept; from the model they are never taken.
 export function elaborationBlock(
@@ -161,13 +175,13 @@ export function elaborationBlock(
   const r = obj(o.real_life);
   const t = obj(o.try_it);
   const f = obj(o.future);
-  const definition = plain(d.text, 240);
-  const basic = plain(l.basic, 420);
-  const intermediate = plain(l.intermediate, 520);
-  const advanced = plain(l.advanced, 620);
-  const real = plain(r.text, 420);
-  const question = plain(t.question, 220);
-  const right = plain(t.right, 320);
+  const definition = plain(d.text, 700);
+  const basic = plain(l.basic, 900);
+  const intermediate = plain(l.intermediate, 1300);
+  const advanced = plain(l.advanced, 1500);
+  const real = plain(r.text, 900);
+  const question = plain(t.question, 400);
+  const right = plain(t.right, 800);
   const hint = plain(t.hint, 220);
   // The multiple-choice questions after step 5. A stored block from before this shape had its choices inside step 4:
   // they are moved here.
@@ -176,7 +190,7 @@ export function elaborationBlock(
     .slice(0, MAX_CHECKS)
     .map(check)
     .filter((c): c is ElabCheck => c !== null);
-  const future = plain(f.text, 320);
+  const future = plain(f.text, 700);
   if (
     !term ||
     !definition ||
@@ -202,32 +216,34 @@ export function elaborationBlock(
     ...(icon(o.icon) ? { icon: icon(o.icon) } : {}),
     lead:
       stored && LEVELS.includes(o.lead as Level) ? (o.lead as Level) : "basic",
-    definition: { text: definition, say: plain(d.say, 260) ?? definition },
+    definition: { text: definition, say: plain(d.say, 520) ?? definition },
     levels: {
       basic,
       intermediate,
       advanced,
-      say: plain(l.say, 700) ?? `${basic} ${intermediate} ${advanced}`,
+      say: plain(l.say, 1400) ?? `${basic} ${intermediate} ${advanced}`,
     },
     real_life: {
       text: real,
-      say: plain(r.say, 460) ?? real,
+      say: plain(r.say, 760) ?? real,
       ...(icon(r.icon) ? { icon: icon(r.icon) } : {}),
     },
     try_it: {
       question,
       right,
       hint,
-      say: plain(t.say, 260) ?? question,
+      say: plain(t.say, 400) ?? question,
     },
     future: {
       text: future,
-      say: plain(f.say, 360) ?? future,
+      say: plain(f.say, 600) ?? future,
       ...(icon(f.icon) ? { icon: icon(f.icon) } : {}),
     },
     checks,
     queries: [d.q, l.q, r.q, t.q, f.q].map((x) => plain(x, 60) ?? ""),
     pics,
+    ...(stored && checkSim(o.sim) ? { sim: checkSim(o.sim)! } : {}),
+    ...(topicOf(o) ? { topic: topicOf(o)! } : {}),
   };
 }
 

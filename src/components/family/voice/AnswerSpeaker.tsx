@@ -3,7 +3,7 @@
 import { useEffect, useId, useMemo, useRef, useState, type RefObject } from 'react';
 import { readChildSettings } from '@/lib/family/child-settings';
 import { fill, type Words } from '@/lib/family/fill';
-import { ANSWER_SPOKEN_MAX, chunkEnd, sentenceAtChar } from '@/lib/family/call';
+import { ANSWER_FIRST_MAX, ANSWER_SPOKEN_MAX, chunkEnd, sentenceAtChar } from '@/lib/family/call';
 import type { VoiceMode } from './lineVoice';
 import { markSentence, markWord } from './highlight';
 
@@ -132,16 +132,24 @@ function useAnswerVoice({ messageId, sentences, lang, serverVoice, onSentence, r
     at.current = undefined;
     reach(i);
     let used = mode;
+    // The first part of a reading is short (about 200 characters of whole sentences) so speech starts fast.
+    let firstPart = true;
     while (i < sentences.length) {
       if (used === 'server') {
-        const end = chunkEnd(sentences, i, ANSWER_SPOKEN_MAX);
+        const cap = firstPart ? ANSWER_FIRST_MAX : ANSWER_SPOKEN_MAX;
+        const end = chunkEnd(sentences, i, cap);
         const part = sentences.slice(i, end);
         const text = part.join(' ');
         const first = i;
-        const spoken = await voice.speakLine('server', { kind: 'tutor_answer', messageId, from: first }, {
+        const source = (from: number, max: number | undefined) => ({ kind: 'tutor_answer' as const, messageId, from, ...(max ? { max } : {}) });
+        // While this part plays, the next part's audio is asked for, so it starts the moment this one ends (no silent gap).
+        const spoken = await voice.speakLine('server', source(first, firstPart ? ANSWER_FIRST_MAX : undefined), {
           text,
           lang: words,
           rate: prefs.current.rate,
+          onPlaying: () => {
+            if (end < sentences.length && run.current === mine) voice.prefetchLine(source(end, undefined));
+          },
           onProgress: (played) => run.current === mine && reach(first + Math.max(0, sentenceAtChar(part, played * text.length))),
         });
         if (run.current !== mine || spoken.cancelled) return;
@@ -150,6 +158,7 @@ function useAnswerVoice({ messageId, sentences, lang, serverVoice, onSentence, r
           used = 'phone';
           setMode('phone');
         }
+        firstPart = false;
         i = end;
         if (i < sentences.length) reach(i);
       } else {

@@ -30,25 +30,36 @@ const cached = async (q: string, subject: string | null, search: NonNullable<Ela
 };
 export const forgetElabPhotos = (): void => cache.clear();
 
-const photoPic = (p: Photo, caption: string): ElabPic => ({ svg: '', kind: 'photo', url: p.url, caption, credit: p.author, licence: p.licence, source: p.pageUrl, from: p.source });
+// A caption is the step's first sentences up to 240 characters, whole: a long step (a process or a why answer) is never cut mid-word.
+export const captionOf = (text: string): string => {
+  const t = text.replace(/\s+/g, ' ').trim();
+  if (t.length <= 240) return t;
+  const parts = t.match(/[^.!?।]+[.!?।]+/g) ?? [];
+  let out = '';
+  for (const s of parts) if ((out + s).trim().length <= 240) out = `${out}${s}`;
+  return (out.trim() || t.slice(0, 240).trimEnd());
+};
+const photoPic = (p: Photo, caption: string): ElabPic => ({ svg: '', kind: 'photo', url: p.url, caption: captionOf(caption), credit: p.author, licence: p.licence, source: p.pageUrl, from: p.source });
 
 export async function fillElaboration(b: Elaboration, o: ElabFillOptions): Promise<Elaboration> {
   const search = o.search ?? ((q, subject) => searchSources(q, { subject }));
   const texts = [b.definition.text, b.levels.basic, b.real_life.text, b.try_it.question, b.future.text];
-  const queryOf = (i: number) => (b.queries[i] || b.term).trim();
-  const found = await Promise.all(b.pics.map((p, i) => (p?.kind === 'diagram' ? Promise.resolve(null) : cached(queryOf(i), o.subject, search).then((hit) => hit ?? (queryOf(i) !== b.term ? cached(b.term, o.subject, search) : null)))));
+  // The step's own words first, then the English topic (the tutor named it), then the term: a source with nothing for one form is asked with the next.
+  const topicQ = (b.topic?.en ?? b.term).trim();
+  const queryOf = (i: number) => (b.queries[i] || b.topic?.en || b.term).trim();
+  const found = await Promise.all(b.pics.map((p, i) => (p?.kind === 'diagram' ? Promise.resolve(null) : cached(queryOf(i), o.subject, search).then((hit) => hit ?? (queryOf(i) !== topicQ ? cached(topicQ, o.subject, search) : null)).then((hit) => hit ?? (topicQ !== b.term ? cached(b.term, o.subject, search) : null)))));
   // No picture twice: a step that found a photograph an earlier step already shows looks again with its own angle.
   const seen = new Set<string>();
   for (let i = 0; i < found.length; i++) {
     let p = found[i];
-    if (p && seen.has(p.url)) p = (await cached(`${b.term} ${ALT[i]}`.trim(), o.subject, search)) ?? null;
+    if (p && seen.has(p.url)) p = (await cached(`${topicQ} ${ALT[i]}`.trim(), o.subject, search)) ?? null;
     if (p && !seen.has(p.url)) seen.add(p.url);
     else p = null;
     found[i] = p;
   }
-  const three = await (o.model ?? ((w, t) => find3d(w, t)))(`${b.levels.basic} ${b.levels.intermediate} ${queryOf(1)}`, b.term).catch(() => null);
+  const three = await (o.model ?? ((w, t) => find3d(w, t)))(`${b.levels.basic} ${b.levels.intermediate} ${queryOf(1)}`, topicQ).catch(() => null);
   const pics = b.pics.map((p, i): ElabPic | null => {
-    if (i === 1 && three && p?.kind !== 'diagram') return { svg: '', kind: 'model3d', url: three.still, caption: texts[i], credit: three.credit, licence: three.licence, source: three.page, from: three.from, model: three.model };
+    if (i === 1 && three && p?.kind !== 'diagram') return { svg: '', kind: 'model3d', url: three.still, caption: captionOf(texts[i]), credit: three.credit, licence: three.licence, source: three.page, from: three.from, model: three.model };
     if (p?.kind === 'diagram') return p;
     const hit = found[i];
     return hit ? photoPic(hit, texts[i]) : p;

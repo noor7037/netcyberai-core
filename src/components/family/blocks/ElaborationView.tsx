@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 import { stopSpeaking, speak } from "@/components/family/english/speech";
 import {
@@ -65,6 +66,9 @@ function Pic({
   );
 }
 
+// Loaded only when an answer carries a simulation, so a first visit does not download it.
+const SimCard = dynamic(() => import("./SimCard").then((m) => m.SimCard));
+
 // Step 4: an open task. The child thinks; a hint and the answer are one tap each. No choices here.
 function TryIt({ b, w }: { b: Elaboration; w: Words }) {
   const [hint, setHint] = useState(false);
@@ -94,6 +98,7 @@ function TryIt({ b, w }: { b: Elaboration; w: Words }) {
           {b.try_it.right}
         </p>
       )}
+      {b.sim && <SimCard sim={b.sim} w={w} />}
     </div>
   );
 }

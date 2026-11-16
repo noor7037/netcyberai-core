@@ -4,6 +4,8 @@ import { searchCommons, type CommonsPhoto } from './commons';
 import { searchOpenverse } from './openverse';
 import { youngPhotoQuery } from './young';
 import { fillElaboration } from './elab-fill';
+import { simFor } from '../curated-sims';
+import { isSubject } from '../subjects';
 import type { Elaboration } from '@/lib/family/elaboration';
 import { KEEP } from '@/lib/family/videos';
 import { answerVideos, type AnswerVideos, type VideoTopic } from '@/lib/family/answer-videos';
@@ -36,6 +38,8 @@ export type FillOptions = {
   // C526: the youngest children's answer (LKG to Class 2 under a prompt that draws first): the child's question. An
   // answer with no photo whose question or board names a real thing or a shape gets one (young.ts), after the board.
   young?: { question: string };
+  // A curated simulation for the answer's topic (curated-sims.ts), shown in step 4 of an elaboration. The topic words are the catalog's own.
+  sims?: { classLevel: number; topicEn?: string | null; title?: string | null; chapterEn?: string | null };
 };
 
 // C526: Commons first (its assessed pictures, cached in content.image_picks); Openverse only when Commons has nothing.
@@ -95,7 +99,11 @@ export async function fillVisuals(withDb: WithDb, original: Block[], opts: FillO
   let written = original;
   const elab = original.find((b): b is Elaboration & Block => b.type === 'elaboration');
   if (elab) {
-    const filled = await fillElaboration(elab, { subject: opts.subject ?? null }).catch(() => elab);
+    let filled = await fillElaboration(elab, { subject: opts.subject ?? null }).catch(() => elab);
+    // The simulation is looked up in the approved table only (never searched for): a miss, or a table not made yet, leaves the answer as it was.
+    const subject = isSubject(opts.subject) ? opts.subject : null;
+    const sim = opts.sims && subject ? await withDb((db) => simFor(db, { subject, term: elab.term, topicEn: elab.topic?.en ?? opts.sims!.topicEn, title: opts.sims!.title, chapterEn: opts.sims!.chapterEn }, { classLevel: opts.sims!.classLevel }, opts.lang)).catch(() => null) : null;
+    if (sim) filled = { ...filled, sim };
     if (filled !== elab) {
       written = original.map((b) => (b === elab ? { ...filled, ...(elab.id ? { id: elab.id } : {}) } : b)) as Block[];
       opts.emit?.(written.find((b) => b.type === 'elaboration') as Elaboration & Block);

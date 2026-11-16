@@ -85,7 +85,7 @@ export function openCallLine(token: unknown, ctx: { accountId: string; childId: 
 
 // ---- what may be spoken ----------------------------------------------------------------------------------------------
 
-export type SpeakAsk = { kind: 'chapter'; chapterKey: string; blockId: string; sentence: number } | { kind: 'live_line'; token: string } | { kind: 'live_turn'; sessionId: string; position: number } | { kind: 'call_line'; token: string } | { kind: 'tutor_answer'; messageId: string; from?: number } | { kind: 'draw'; templateId: string; step: number; lang: 'en' | 'hi' };
+export type SpeakAsk = { kind: 'chapter'; chapterKey: string; blockId: string; sentence: number } | { kind: 'live_line'; token: string } | { kind: 'live_turn'; sessionId: string; position: number } | { kind: 'call_line'; token: string } | { kind: 'tutor_answer'; messageId: string; from?: number; max?: number } | { kind: 'draw'; templateId: string; step: number; lang: 'en' | 'hi' };
 
 // The request's body, checked for shape only (what it names is checked against the database below).
 export function speakAsk(body: Record<string, unknown>): SpeakAsk | null {
@@ -99,7 +99,12 @@ export function speakAsk(body: Record<string, unknown>): SpeakAsk | null {
   if (body.kind === 'tutor_answer' && isUuid(body.messageId)) {
     // W22-S3: `from` is the sentence a part of a long answer starts at (the answer is read in parts, and resumes).
     if (body.from === undefined) return { kind: 'tutor_answer', messageId: body.messageId };
-    if (Number.isInteger(body.from) && (body.from as number) >= 0 && (body.from as number) <= 500) return { kind: 'tutor_answer', messageId: body.messageId, from: body.from as number };
+    if (Number.isInteger(body.from) && (body.from as number) >= 0 && (body.from as number) <= 500) {
+      // `max`: how many characters this part may hold (the first part of a reading is short, so speech starts fast); the phone and the server cut by the same number.
+      const max = body.max;
+      if (max === undefined) return { kind: 'tutor_answer', messageId: body.messageId, from: body.from as number };
+      if (Number.isInteger(max) && (max as number) >= 100 && (max as number) <= 600) return { kind: 'tutor_answer', messageId: body.messageId, from: body.from as number, max: max as number };
+    }
     return null;
   }
   if (body.kind === 'live_turn' && isUuid(body.sessionId) && Number.isInteger(body.position) && (body.position as number) >= 1) return { kind: 'live_turn', sessionId: body.sessionId, position: body.position as number };
@@ -159,7 +164,7 @@ export async function speakLine(db: Db, accountId: string, chosen: string | unde
     // W22-S3: the whole answer, read in parts: the part that starts at sentence `from`, the same cut the phone makes.
     const all = spokenSentences(blocks, Number.MAX_SAFE_INTEGER);
     const from = ask.from ?? 0;
-    const text = all.slice(from, chunkEnd(all, from, VOICE_TEXT_MAX)).join(' ').slice(0, VOICE_TEXT_MAX);
+    const text = all.slice(from, chunkEnd(all, from, Math.min(ask.max ?? VOICE_TEXT_MAX, VOICE_TEXT_MAX))).join(' ').slice(0, VOICE_TEXT_MAX);
     if (!text) return { ok: false, status: 404, error: 'not_found' };
     return { ok: true, child, children, text, language: rows[0].lang === 'hi' ? 'hi' : 'en' };
   }

@@ -2,6 +2,7 @@ import { loadChildSettings, meaningLangOf } from './child-settings';
 import type { FamilyChild } from './children';
 import { drawTemplate } from './draw-templates';
 import { syllabusLine, type Line } from './resolver';
+import { intentLine, intentOf, type ModelTopic } from './intent';
 import { isSubject, type Subject } from './subjects';
 import { topicVideos, type WithDb } from './video-finder';
 import { words, type VideoLanguage, type VideoPick } from './videos';
@@ -31,12 +32,22 @@ const TOPIC = /^[a-z0-9][a-z0-9._-]{2,119}$/;
 // knows for it (the line's, the window's), else science.
 export async function videoTopicOf(
   db: Db,
-  a: { line: Line | null; passages: readonly { chapterKey: string; score: number }[]; drawTemplate: string | null; child: FamilyChild; accountId: string; asked?: string | null; subject?: Subject | null }
+  a: { line: Line | null; passages: readonly { chapterKey: string; score: number }[]; drawTemplate: string | null; child: FamilyChild; accountId: string; asked?: string | null; subject?: Subject | null; elab?: ModelTopic | null; replyLang?: string | null }
 ): Promise<VideoTopic | null> {
   const language = meaningLangOf(await loadChildSettings(db, a.accountId, a.child.childId), a.child.language);
-  const line = a.line ?? (await drawLine(db, a.drawTemplate, a.child)) ?? (await passageLine(db, a.passages, a.child)) ?? freeLine(a.asked ?? null, a.subject ?? null, a.child);
+  const line = a.line ?? (await drawLine(db, a.drawTemplate, a.child)) ?? (await passageLine(db, a.passages, a.child)) ?? (await freeTopic(a));
   return line && TOPIC.test(line.key) ? { line, child: a.child, accountId: a.accountId, language } : null;
 }
+
+// A typed question none of the catalog's lines named: its topic from the intent step (src/lib/family/intent.ts), named by the tutor's own answer (the
+// English term and the term in the child's script), so "Kachra prabandhan", "कचरा प्रबंधन" and "what is waste management" share one key and one search.
+// Without the tutor's term, the typed words stand in (freeLine), marked raw.
+function freeTopic(a: { asked?: string | null; subject?: Subject | null; child: FamilyChild; elab?: ModelTopic | null; replyLang?: string | null }): Line | null {
+  if (!a.asked) return null;
+  if (!a.elab?.en) return freeLine(a.asked, a.subject ?? null, a.child) && withRaw(freeLine(a.asked, a.subject ?? null, a.child)!, a.asked, a);
+  return intentLine(intentOf({ question: a.asked, child: a.child, subject: a.subject ?? null, replyLang: a.replyLang, model: a.elab }));
+}
+const withRaw = (line: Line, asked: string, a: { child: FamilyChild }): Line => ({ ...line, forms: { en: null, local: null, typed: freeWords(asked, a.child.firstName ?? ''), raw: true } });
 
 // Words that say who or where someone is, or how to reach them, never a topic: what follows them is dropped too.
 const W = String.raw`[\p{L}\p{M}.'-]+`;
@@ -124,9 +135,14 @@ export function videoLanguages(wanted: VideoLanguage, app: 'en' | 'hi'): VideoLa
 // The answer's videos: the first language with at least MIN_SHOWN picks (cached, else one claimed refresh from the
 // day's quota), or null. `wanted` is set when a fallback language is shown.
 export async function answerVideos(withDb: WithDb, t: VideoTopic): Promise<AnswerVideos | null> {
+  // Every available video is shown (Noor, 16 Nov 2026): a language with MIN_SHOWN or more wins; else the language with the most, even one.
+  let best: AnswerVideos | null = null;
   for (const language of videoLanguages(t.language, t.child.language)) {
     const picks = await topicVideos(withDb, t.line, t.child, language).catch(() => []);
-    if (picks.length >= MIN_SHOWN) return { picks, topicKey: t.line.key, language, wanted: language === t.language ? null : t.language };
+    if (!picks.length) continue;
+    const got = { picks, topicKey: t.line.key, language, wanted: language === t.language ? null : t.language };
+    if (picks.length >= MIN_SHOWN) return got;
+    if (!best || picks.length > best.picks.length) best = got;
   }
-  return null;
+  return best;
 }

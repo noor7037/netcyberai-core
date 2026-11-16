@@ -17,7 +17,7 @@ const CLASSES = [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 describe('prompt v18', () => {
   it('is registered by name, after v17, and v17 is untouched', () => {
     expect(RESOLVER_PROMPT_VERSION).toBe('v18');
-    expect(RESOLVER_PROMPTS.map((p) => p.version).slice(-3, -1)).toEqual(['v17', 'v18']);
+    expect(RESOLVER_PROMPTS.map((p) => p.version).slice(-4, -2)).toEqual(['v17', 'v18']);
     expect(resolverPrompt('v18', true).version).toBe('v18');
     expect(resolverPrompt('v17', true).version).toBe('v17');
     expect(v17User(ask(8))).toContain(LEARNING_LINE);

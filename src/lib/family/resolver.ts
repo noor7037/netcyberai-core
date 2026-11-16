@@ -126,7 +126,10 @@ type Seal = Pick<ResolverContext, 'accountId' | 'child'>;
 
 const KEY = /^[a-z0-9][a-z0-9._-]{2,119}$/;
 
-export type Line = { subject: Subject; key: string; chapterEn: string; topicEn: string | null; title: string };
+// `forms` (a typed question no catalog line named): the topic in every form the search and the title match use: the English term, the term in the
+// child's script, and the typed words; `raw` is set when the topic is only the typed letters (romanised or untranslated), so an empty search is never remembered.
+export type TopicForms = { en: string | null; local: string | null; typed: string[]; raw: boolean };
+export type Line = { subject: Subject; key: string; chapterEn: string; topicEn: string | null; title: string; forms?: TopicForms };
 
 // The syllabus line for a key, from the version released to everyone for this child's board and class.
 export async function syllabusLine(db: Db, child: FamilyChild, input: { kind: 'topic' | 'chapter'; key: string }): Promise<Line | null> {

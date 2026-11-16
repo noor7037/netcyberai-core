@@ -159,7 +159,7 @@ const wrapCommons: Adapter = (q, _e, f) => searchCommons(q, f);
 const wrapOpenverse: Adapter = (q, _e, f) => searchOpenverse(q, f);
 
 const S = (id: string, name: string, access: Access, key: string | null, licence: string, content: string, adapter?: Adapter, note?: string): SourceDef => ({ id, name, access, key, licence, content, ...(adapter ? { adapter } : {}), ...(note ? { note } : {}) });
-// The 50 sources of visual-sources.md (rows 1 to 50). Those with an adapter are LIVE here; the others are listed for the
+// The 50 sources of visual-sources.md (rows 1 to 50), then the embedded simulation sources added 16 Nov 2026. Those with an adapter are LIVE here; the others are listed for the
 // bulk scripts and the embeds, and are never searched at answer time.
 export const SOURCES: readonly SourceDef[] = [
   S('commons', 'Wikimedia Commons', 'live', null, 'PD, CC0, CC BY, CC BY-SA', 'photo, diagram', wrapCommons),
@@ -211,6 +211,16 @@ export const SOURCES: readonly SourceDef[] = [
   S('khronos', 'Khronos glTF samples', 'bulk', null, 'CC0, CC BY per model', '3D'),
   S('phet', 'PhET Interactive Simulations', 'embed', null, 'CC BY 4.0', 'interactive'),
   S('concord', 'Concord Consortium', 'embed', null, 'CC BY, MIT', 'interactive'),
+  // Embedded simulations (Noor, 16 Nov 2026): never searched by the AI; each is approved by a person into content.curated_topic_sims
+  // (scripts/seed_curated_sims.ts) and shown in step 4 of an answer as a tap-to-load "Try it yourself" card. Their order of preference
+  // is EMBED_ORDER (embed-order.ts); a source whose pages block embedding is not seeded.
+  S('geogebra', 'GeoGebra', 'embed', null, 'GeoGebra terms; materials CC BY-NC-SA unless the author says otherwise', 'maths interactive, Classes 3 to 12'),
+  S('nasa_eyes', 'NASA Eyes', 'embed', null, 'Public domain', 'planets, Earth and space in 3D'),
+  S('hhmi', 'HHMI BioInteractive', 'embed', null, 'CC BY-NC-ND for most resources', 'biology interactive'),
+  S('labxchange', 'LabXchange', 'embed', null, 'CC BY, per resource', 'biology, Classes 9 to 12'),
+  S('desmos', 'Desmos', 'embed', null, 'Desmos terms', 'graphs, higher classes'),
+  S('googlearts', 'Google Arts and Culture', 'embed', null, 'Google terms', 'history, Indian heritage'),
+  S('wolfram', 'Wolfram Demonstrations', 'embed', null, 'CC BY-NC-SA (heavy: last choice)', 'interactive demonstrations'),
   S('katex', 'Mermaid, KaTeX', 'code', null, 'MIT', 'diagrams, equations'),
 ];
 
