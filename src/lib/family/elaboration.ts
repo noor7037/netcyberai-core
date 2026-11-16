@@ -75,7 +75,13 @@ export type Elaboration = {
   sim?: ElabSim;
   // The topic as the tutor named it (src/lib/family/intent.ts): in English (a search phrase) and in the answer's own script. Server use only.
   topic?: { en: string; local: string | null };
+  // v21: a short English search term for a 3D model of each step (server use only; "" = none for that step). Five entries.
+  q3d?: string[];
+  // v21: short sections after the five steps (try it at home, a fun fact, India, a memory trick, a what-if), all in the answer's language.
+  extras?: ElabExtras;
 };
+
+export type ElabExtras = { home?: string; fact?: string; india?: string; trick?: string; whatif?: string };
 
 export const MAX_CHECKS = 3;
 // How many multiple-choice questions a topic earns (1 to 3): the youngest classes one; from Class 6 two; three when the
