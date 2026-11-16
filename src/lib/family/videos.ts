@@ -37,6 +37,7 @@ export const PROMO_PENALTY = 50;
 export type Promo = { promoShare: number; startAfterS: number };
 const MIN_S = 120;
 const MAX_S = 25 * 60;
+const FOCUSED_MAX_S = 15 * 60;
 
 const STOP = new Set([
   'the', 'and', 'for', 'with', 'from', 'into', 'its', 'their', 'our', 'your', 'are', 'was', 'were', 'how', 'what', 'why', 'when', 'which', 'who',
@@ -152,7 +153,9 @@ export function rankVideos(
     let score = curated ? 200 : 0;
     score += k === 'official' ? 40 : k === 'approved' ? 25 : 0;
     score += 30 * inTitle + 10 * (best?.fit ?? 0);
-    score += c.durationS >= MIN_S && c.durationS <= MAX_S ? 15 : c.durationS >= 60 && c.durationS <= 45 * 60 ? 3 : -10;
+    // Focused videos of about 2 to 15 minutes first; a long chapter lecture only as a last resort, unless it has a chapter that
+    // matches the topic (then it starts there).
+    score += c.durationS >= MIN_S && c.durationS <= FOCUSED_MAX_S ? 30 : c.durationS <= MAX_S && c.durationS >= 60 ? 8 : c.durationS < 60 ? -10 : best && best.fit > 0 ? 0 : c.durationS <= 45 * 60 ? -8 : -30;
     score += c.captions ? 8 : 0;
     if (c.language) score += c.language.startsWith(a.language) ? 8 : -6;
     // Ad-safe first: made for kids (YouTube shows no personalised ads on it) and a channel Control marked as ad-free.

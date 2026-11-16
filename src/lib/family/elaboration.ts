@@ -84,7 +84,6 @@ export type Elaboration = {
   topic?: { en: string; local: string | null };
 };
 
-export type ElabExtras = { home?: string; fact?: string; india?: string; trick?: string; whatif?: string };
 
 // Up to five questions are kept (prompt v21 asks for two to five); an older prompt's block is cut back to its class count (checkCount).
 export const MAX_CHECKS = 5;

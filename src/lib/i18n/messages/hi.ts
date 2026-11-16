@@ -8458,7 +8458,7 @@ export const hi: Record<keyof typeof en, string> = {
   // m2-5 begin
   // The video finder and the honest player (M2-5, C279).
   'fam.video.title': 'इस विषय पर एक वीडियो',
-  'fam.video.note': 'यह वीडियो YouTube से है। इसमें विज्ञापन और दूसरे वीडियो के सुझाव दिख सकते हैं। जब तक आप चलाएँ पर टैप नहीं करते, इसका कुछ भी लोड नहीं होता।',
+  'fam.video.note': 'यह वीडियो YouTube से है। इसमें विज्ञापन और दूसरे वीडियो के सुझाव दिख सकते हैं।',
   'fam.video.play': 'वीडियो चलाएँ:',
   'fam.video.length': 'लंबाई {length}',
   'fam.video.by': 'चैनल:',

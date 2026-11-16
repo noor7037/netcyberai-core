@@ -8471,7 +8471,7 @@ export const en = {
   // m2-5 begin
   // The video finder and the honest player (M2-5, C279).
   'fam.video.title': 'A video on this topic',
-  'fam.video.note': 'This video comes from YouTube. YouTube may show ads and suggest other videos. Nothing from YouTube loads until you tap play.',
+  'fam.video.note': 'This video comes from YouTube. YouTube may show ads and suggest other videos.',
   'fam.video.play': 'Play the video:',
   'fam.video.length': '{length} long',
   'fam.video.by': 'Channel:',
