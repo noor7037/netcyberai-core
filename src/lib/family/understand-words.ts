@@ -5,7 +5,7 @@ import { INTERACTIVE_KEYS } from './interactive-words';
 // The words Understand needs on the phone (M1-5, C251), picked on the server.
 export const UNDERSTAND_KEYS: MessageKey[] = [
   ...WORD_MENU_KEYS,
-  'fam.label.aiMade', 'fam.label.checked', 'fam.ai.notice.aiMade', 'fam.ai.notice.checked', 'fam.ai.notice.link', 'fam.block.example', 'fam.block.terms', 'fam.block.worked', 'fam.block.answer', 'fam.block.keyPoints',
+  'fam.label.aiMade', 'fam.label.checked', 'fam.block.example', 'fam.block.terms', 'fam.block.worked', 'fam.block.answer', 'fam.block.keyPoints',
   'fam.block.english', 'fam.block.pattern', 'fam.block.sayIt', 'fam.block.readAloud', 'fam.block.deviceVoice', 'fam.block.sources', 'fam.block.check',
   'fam.block.practice', 'fam.check.hint', 'fam.check.hintLabel', 'fam.check.right', 'fam.check.notYet', 'fam.check.notThis', 'fam.check.correct', 'fam.check.explainAgain', 'fam.block.mindMap', 
   // The Elaboration Framework (16 Nov 2026): the five steps' names, the levels, listen and the try-it feedback.

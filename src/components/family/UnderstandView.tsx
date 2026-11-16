@@ -9,7 +9,6 @@ import { SUBJECTS } from '@/lib/family/modules';
 import { dataSaverBlocks, droppedCount } from '@/lib/family/data-saver';
 import { queueAnswer } from './offline/store';
 import { useDataSaver } from './useDataSaver';
-import { AiNotice } from './AiNotice';
 import { DiagramView, DirectAnswer, EnglishMomentView, ExplanationView, KeyPointsView, SourcesView, WorkedExampleView } from './blocks/BlockViews';
 import dynamic from 'next/dynamic';
 import { QuizView } from './blocks/QuizView';
@@ -358,12 +357,6 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
         <p role="status" data-files-note className="rounded-2xl bg-white px-4 py-3 text-sm font-semibold text-slate ring-1 ring-slate/10">
           {filesNote}
         </p>
-      )}
-      {meta && (
-        // One mark, not two (founder, 16 Nov): "Made by AI" (or "Made by AI, then checked by NetCyberAI"), the pill that opens how the AI works.
-        <div data-made={meta.label} className="flex flex-wrap items-center gap-2">
-          <AiNotice w={w} made={meta.label} />
-        </div>
       )}
       {state === 'refused' && noInternet && (
         <section role="status" data-needs-internet className="fam-card flex flex-col gap-2 bg-white p-5 text-base text-slate">

@@ -102,7 +102,7 @@ export const lessonColors = {
   saffron: '#E8702A', // primary actions (ink text on it, never white)
   saffronDeep: '#C2410C', // saffron as text or an outline on paper (the founder's review, 30 Oct)
   teal: '#0F766E', // progress, a correct answer, the subject chip (white text 5.47:1)
-  plum: '#6D28D9', // the tutor avatar, "Made by AI", AI marks (white text 7.10:1)
+  plum: '#6D28D9', // the tutor avatar, AI marks (white text 7.10:1)
 } as const;
 
 export type LessonTint = 'mint' | 'butter' | 'lilac' | 'blush' | 'sky';
