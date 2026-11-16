@@ -8,6 +8,8 @@ export const UNDERSTAND_KEYS: MessageKey[] = [
   'fam.label.aiMade', 'fam.label.checked', 'fam.ai.notice.aiMade', 'fam.ai.notice.checked', 'fam.ai.notice.link', 'fam.block.example', 'fam.block.terms', 'fam.block.worked', 'fam.block.answer', 'fam.block.keyPoints',
   'fam.block.english', 'fam.block.pattern', 'fam.block.sayIt', 'fam.block.readAloud', 'fam.block.deviceVoice', 'fam.block.sources', 'fam.block.check',
   'fam.block.practice', 'fam.check.hint', 'fam.check.hintLabel', 'fam.check.right', 'fam.check.notYet', 'fam.check.notThis', 'fam.check.correct', 'fam.check.explainAgain', 'fam.block.mindMap', 'fam.block.photo', 'fam.block.photoCredit', 'fam.block.photoCreditOpenverse',
+  // The Elaboration Framework (16 Nov 2026): the five steps' names, the levels, listen and the try-it feedback.
+  'fam.elab.step.definition', 'fam.elab.step.levels', 'fam.elab.step.real_life', 'fam.elab.step.try_it', 'fam.elab.step.future', 'fam.elab.level.basic', 'fam.elab.level.intermediate', 'fam.elab.level.advanced', 'fam.elab.yourLevel', 'fam.elab.listen', 'fam.elab.stop', 'fam.elab.board', 'fam.elab.steps', 'fam.elab.pick', 'fam.elab.right', 'fam.elab.wrong', 'fam.elab.again', 'fam.elab.picture',
   // W10-6: the scene, the chart and the steps' replay.
   'fam.block.sceneTap', 'fam.block.chartCaption', 'fam.block.chartUnit', 'fam.block.chartTable', 'fam.block.replay',
   // W16-A2: the drawing board, the citation chip and the Class 8 Science simulations.

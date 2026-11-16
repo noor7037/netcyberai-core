@@ -10,9 +10,12 @@ import { useReducedMotion } from './InteractiveViews';
 // by the browser's image rules only when the SVG asks for it, so the picture is drawn once as a still (see `still`).
 const STILL = '<style>*{animation:none!important;transition:none!important}</style>';
 
+// The picture's source: our own SVG as a data URL; under reduced motion a still.
+export const showcaseSrc = (svg: string, reduced: boolean): string => `data:image/svg+xml;charset=utf-8,${encodeURIComponent(reduced ? svg.replace(/(<svg[^>]*>)/, (open) => `${open}${STILL}`) : svg)}`;
+
 export function ShowcaseView({ b, w, tone }: { b: Showcase; w: Words; tone: string }) {
   const reduced = useReducedMotion();
-  const svg = reduced ? b.svg.replace(/(<svg[^>]*>)/, `$1${STILL}`) : b.svg;
+  const svg = reduced ? b.svg.replace(/(<svg[^>]*>)/, (open) => `${open}${STILL}`) : b.svg;
   return (
     <Card title={b.title || w['fam.block.photo']} tone={tone} tag="showcase">
       <figure data-showcase className="flex flex-col gap-2">

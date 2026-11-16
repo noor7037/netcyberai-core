@@ -27,6 +27,7 @@ import { ChartView } from './blocks/ChartView';
 import { StepsView } from './blocks/StepsView';
 import { TimelineView } from './blocks/TimelineView';
 import { ImageView } from './blocks/ImageView';
+import { ElaborationView } from './blocks/ElaborationView';
 import { ShowcaseView } from './blocks/ShowcaseView';
 import { VideosView } from './blocks/VideosView';
 import { StickyTutorFace } from './avatar/TutorFace';
@@ -153,6 +154,8 @@ export function AnswerBlock({ b, w, tone, lead = false, onRetry, onOffline, sent
       return <Model3DView b={b} w={w} tone={tone} />;
     case 'showcase':
       return <ShowcaseView b={b} w={w} tone={tone} />;
+    case 'elaboration':
+      return <ElaborationView b={b} w={w} tone={tone} sentence={sentence} sentences={sentences} />;
     case 'lab':
       return <LabBlockView b={b} w={w} tone={tone} />;
     case 'model':
@@ -357,10 +360,8 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
         </p>
       )}
       {meta && (
-        <div className="flex flex-wrap items-center gap-2">
-          <span data-label={meta.label} className={`rounded-full px-3 py-1 text-xs font-bold ${meta.label === 'checked' ? 'bg-emerald text-white' : 'bg-grape-deep text-white'}`}>
-            {meta.label === 'checked' ? w['fam.label.checked'] : w['fam.label.aiMade']}
-          </span>
+        // One mark, not two (founder, 16 Nov): "Made by AI" (or "Made by AI, then checked by NetCyberAI"), the pill that opens how the AI works.
+        <div data-made={meta.label} className="flex flex-wrap items-center gap-2">
           <AiNotice w={w} made={meta.label} />
         </div>
       )}

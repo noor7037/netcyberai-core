@@ -406,7 +406,7 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
           </>
         )}
         {asks.map((a) => (
-          <div key={a.n} id={`${ids.feed}-ask-${a.n}`} data-tutor-ask={a.n} className="flex scroll-mt-2 flex-col gap-3">
+          <div key={a.n} id={`${ids.feed}-ask-${a.n}`} data-tutor-ask={a.n} className="flex scroll-mt-6 flex-col gap-3">
             <Question w={w} text={a.text} />
             {a.moved && (
               <p role="status" data-feed-moved={a.moved} className="fam-acc-in self-center rounded-full bg-emerald px-4 py-1.5 text-sm font-bold text-white">

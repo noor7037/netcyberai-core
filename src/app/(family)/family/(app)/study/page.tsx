@@ -12,7 +12,7 @@ import { SyllabusList, type SyllabusListChapter } from '@/components/family/Syll
 import { StatusBadge } from '@/components/family/StatusBadge';
 import { SubjectGlyph } from '@/components/family/ui/SubjectGlyph';
 import { classSubjects, readFamilyCatalog } from '@/lib/family/catalog';
-import { readableChapters } from '@/lib/family/chapter-store';
+import { chapterFitsClass, readableChapters } from '@/lib/family/chapter-store';
 import { listRequests, readSourceModes, requestStudyStatus, sourceShown } from '@/lib/family/chapter-requests';
 import { readOwnSyllabus } from '@/lib/family/child-syllabus';
 import { isPrePrimary, syllabusBoardOf } from '@/lib/family/children';
@@ -136,8 +136,9 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
   const readerLabel = t(lang, 'fam.study.openChapter');
   const catalogKeys = new Set(catalog?.chapters.map((c) => c.key) ?? []);
   const readableByKey = new Map(readable.map((c) => [c.key, c]));
-  // Every chapter listed from the catalog comes from the version released to everyone: it is Published.
-  const publishedBadge = <StatusBadge status="published" label={t(lang, STUDY_STATUS_KEY.published)} />;
+  // Every chapter listed from the catalog is released to everyone. "Published" is a staff word: a family sees no badge on a
+  // chapter it can open, only on one it asked for (below).
+  const publishedBadge = undefined;
   type CatalogChapter = NonNullable<typeof catalog>['chapters'][number];
   const catalogRow = (c: CatalogChapter): SyllabusListChapter => {
       const pack = packs?.get(c.key);
@@ -172,9 +173,11 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
     }),
     ...(catalog?.chapters ?? []).filter((c) => !inBook.has(c.key)).map(catalogRow),
     // S1 (C374), S3 (C376): a published chapter to read and hear that is not in the catalog (the parent's own, the showcase).
+    // Only the child's own chapters, and published ones of this class: a sample or test chapter of another class (or with
+    // no class) is not listed (founder, 16 Nov: the list showed a harness chapter and mixed classes).
     ...readable
-      .filter((c) => !catalogKeys.has(c.key))
-      .map((c): SyllabusListChapter => ({ key: c.key, title: c.title[lang === 'hi' ? 'hi' : 'en'], mark: 'book', reader: { href: readerHref(c.key), label: readerLabel }, status: publishedBadge, topics: [] })),
+      .filter((c) => !catalogKeys.has(c.key) && (c.own || chapterFitsClass(c.key, child.classLevel)))
+      .map((c): SyllabusListChapter => ({ key: c.key, title: c.title[lang === 'hi' ? 'hi' : 'en'], reader: { href: readerHref(c.key), label: readerLabel }, status: publishedBadge, topics: [] })),
     // S3 (C376): the chapters the parent asked for, with the queue's badge (Received, Digitizing) or "Not possible".
     ...subjectRequests.map((r): SyllabusListChapter => {
       const st = requestStudyStatus(r.status);
@@ -199,7 +202,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
   const w = familyWords(lang, [...UNDERSTAND_KEYS, ...TUTOR_KEYS, 'fam.tutors.chattingWith', 'fam.tutors.change', 'fam.tutors.callWith', 'fam.call.tutorDefault', 'fam.tutor.askShort', 'fam.school.syllabusTitle', 'fam.school.syllabusAsk', 'fam.school.tonightTitle', 'fam.school.tonightLead', 'fam.school.tonightAsk', ...(voice ? VOICE_KEYS : [])] as MessageKey[]);
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
-      <SubPageHeader back="/family" backLabel={t(lang, 'fam.nav.home')} kicker={kicker} title={t(lang, 'fam.study.title')} subject={subject}
+      <SubPageHeader back="/family" backLabel={t(lang, 'fam.nav.home')} kicker={kicker} title={t(lang, 'fam.study.title')} subject={subject} wide
         aside={
           parts.hall ? (
             <Link href="/family/tutors" data-tutors-link className="fam-press inline-flex min-h-[44px] items-center rounded-full bg-white px-4 text-sm font-bold text-ink ring-1 ring-ink/10">
@@ -208,7 +211,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
           ) : undefined
         }
       />
-      <main className="relative mx-auto -mt-8 flex w-full max-w-xl flex-1 flex-col gap-4 px-4 pb-24">
+      <main data-study-main className="relative mx-auto -mt-8 flex w-full max-w-xl flex-1 flex-col gap-4 px-4 pb-[calc(var(--fam-bottom,0px)+5.25rem)] lg:max-w-6xl">
         <StudySearch w={familyWords(lang, SEARCH_KEYS)} />
         <nav aria-label={t(lang, 'fam.study.subjects')} className="fam-surface relative -mx-1 flex gap-2 overflow-x-auto bg-white p-2">
           {subjects.map((s) => {

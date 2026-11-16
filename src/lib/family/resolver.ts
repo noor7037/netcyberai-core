@@ -11,8 +11,9 @@ import { sceneSimFits, simFits } from './interactive';
 import { modelFits } from './models/fit';
 import { retrievePassages, type Passage } from '@/lib/ai/teaching/retrieve';
 import { bookPassages, bookSubjects } from './book-search';
-import { showcaseFor } from './visuals/showcase';
-import { diskFiles, labsFor, type LabOffer } from './tutor-context';
+import { inScope, showcaseFor } from './visuals/showcase';
+import { withPics } from './elaboration-pics';
+import { chapterDiagrams, diskFiles, labsFor, type ChapterDiagram, type LabOffer } from './tutor-context';
 import { BLOCK_SCHEMA_VERSION, completeResponse, coreBlocks, isInteractive, isSimScene, jsonObjectScanner, parseBlockLine, parseStoredBlockLine, type Block, type BlockType } from './blocks';
 import { boardNameOf, isPrePrimary, syllabusBoardOf, type FamilyChild } from './children';
 import { sealItem, type PublicItem } from './items';
@@ -255,6 +256,9 @@ export type Pending = {
   // Tutor overhaul: the open chapter's own animated diagram for this question (server-chosen); shown first, and it stands in
   // for the model's own board or figure.
   showcase?: Block | null;
+  // The Elaboration Framework: this answer is one elaboration block, and the open chapter's diagrams its pictures may use.
+  elaborate?: boolean;
+  diagrams?: readonly ChapterDiagram[];
   // W9-B: the plan the prompt is written from (v8 on; null under an earlier prompt), and for a live answer the planning
   // call and the passages, the prompt rebuilt from the plan once it comes (null: the default plan stands).
   plan: Plan | null;
@@ -451,7 +455,9 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
   // W9-B (docs/39 §3): the library's passages and the planning call, for a live answer under a prompt that takes a plan.
   // Neither ever refuses: no passage is a general answer, no planner is the band's default plan.
   const isCheck = input.kind === 'question' && input.check === true;
-  const teach = (prompt.usesPlan || isCheck) && !ctx.preparing ? await prepareTeach(db, ctx, input, line, known, misconception, ofClass, prompt.visualFirst === true, prompt.oneBoard === true) : null;
+  // The NetCyberAI Elaboration Framework (prompt v19): a typed or spoken question is answered as one five-step elaboration.
+  const elaborate = prompt.elaborate === true && input.kind === 'question' && !input.check && !input.sketch;
+  const teach = (prompt.usesPlan || isCheck) && !ctx.preparing ? await prepareTeach(db, ctx, input, line, known, misconception, ofClass, prompt.visualFirst === true, prompt.oneBoard === true, elaborate) : null;
   // 3. The AI platform's checks (profile, minors, key, daily cap) and the cleaned request, still in this transaction.
   const tab = input.kind === 'question' && isSubject(input.windowSubject) ? input.windowSubject : null;
   // v19: a typed question with no window place (no scope) is still offered the labs of the child's class and subject that fit its words.
@@ -479,7 +485,7 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
     ...(lang ?? {}),
   };
   // The default plan (v8's own rule: a question at medium depth, a chapter or topic whole) until the planner answers.
-  const plan = prompt.usesPlan || isCheck ? defaultPlan({ classLevel: child.classLevel, subject: teach?.ctx.subject ?? known, lang: child.language, ...(prompt.visualFirst ? { visualFirst: true } : {}), ...(prompt.oneBoard ? { oneBoard: true } : {}) }, input.kind === 'question' ? 'medium' : 'full') : null;
+  const plan = prompt.usesPlan || isCheck ? defaultPlan({ classLevel: child.classLevel, subject: teach?.ctx.subject ?? known, lang: child.language, ...(prompt.visualFirst ? { visualFirst: true } : {}), ...(prompt.oneBoard ? { oneBoard: true } : {}), ...(elaborate ? { elaborate: true } : {}) }, input.kind === 'question' ? 'medium' : 'full') : null;
   const build = (p: Plan | null): AiRequest => {
     const a: ResolverAsk = p ? { ...ask, plan: p } : ask;
     if (isCheck) {
@@ -495,10 +501,14 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
     emit({ t: 'refused', reason: prepared.reason, message: ctx.refusalWords(REFUSAL_MESSAGE[prepared.reason]) });
     return null;
   }
-  const showcase = input.kind === 'question' && !input.check && !input.sketch && !ctx.preparing ? await showcaseFor(input.chapterKey ?? null, input.text, child.language) : null;
+  const chapterKey = input.kind === 'question' ? (input.chapterKey ?? null) : null;
+  const scope = { classLevel: child.classLevel, subject: known ?? tab };
+  const showcase = input.kind === 'question' && !input.check && !input.sketch && !ctx.preparing && !elaborate ? await showcaseFor(chapterKey, input.text, child.language, undefined, scope) : null;
+  // The elaboration's step pictures: the open chapter's own diagrams, only a chapter of this child's class and subject.
+  const diagrams = elaborate && chapterKey && inScope(chapterKey, scope) ? await chapterDiagrams(chapterKey, child.language === 'hi' ? 'hi' : 'en').catch(() => []) : [];
   const question = input.kind === 'question' ? withAttached(input.text, input.attached) : null;
   const asked = question ?? `Explain "${line?.topicEn ?? line?.chapterEn ?? ''}" to a Class ${child.classLevel} student.`;
-  return { ctx, line, known, open, classSubjects: ofClass, tab, ...(ask.bookSubjects ? { bookSubjects: ask.bookSubjects } : {}), cacheable, promptVersion: prompt.version, text: prepared.text, moderation, asked, question, labs: input.kind === 'question' && input.scope ? input.scope.labs.map((l) => l.id) : freeLabs.map((l) => l.id), showcase, plan, teach: teach ? { ...teach, build } : null, ...(isCheck ? { check: true as const, reading: input.kind === 'question' ? (input.attached ?? '') : '' } : {}) };
+  return { ctx, line, known, open, classSubjects: ofClass, tab, ...(ask.bookSubjects ? { bookSubjects: ask.bookSubjects } : {}), cacheable, promptVersion: prompt.version, elaborate, diagrams, text: prepared.text, moderation, asked, question, labs: input.kind === 'question' && input.scope ? input.scope.labs.map((l) => l.id) : freeLabs.map((l) => l.id), showcase, plan, teach: teach ? { ...teach, build } : null, ...(isCheck ? { check: true as const, reading: input.kind === 'question' ? (input.attached ?? '') : '' } : {}) };
 }
 
 // C521: the language the child typed the question in (their own words, not a photo's reading) and the child's mother
@@ -514,11 +524,11 @@ const PLAN_QUESTION_MAX = 2000;
 // The passages and the planning call for a live answer (W9-B), in the first transaction. The child's own syllabus
 // chapters (family.child_syllabus_items, by title) lead the passages after the open chapter. A typed question's plan is
 // asked for; a chapter or topic, and a wrong answer's retry, are taught on the band's default plan.
-async function prepareTeach(db: Db, ctx: ResolverContext, input: ResolveInput, line: Line | null, known: Subject | null, misconception: string | null, ofClass: readonly Subject[], visualFirst = false, oneBoard = false): Promise<Omit<Teach, 'build'>> {
+async function prepareTeach(db: Db, ctx: ResolverContext, input: ResolveInput, line: Line | null, known: Subject | null, misconception: string | null, ofClass: readonly Subject[], visualFirst = false, oneBoard = false, elaborate = false): Promise<Omit<Teach, 'build'>> {
   const child = ctx.child;
   const hint: Subject | null = known ?? (input.kind === 'question' && isSubject(input.windowSubject) ? input.windowSubject : null);
   // C509: under a prompt that draws first (v15), the youngest children's plan is the board, the explanation and the check.
-  const planCtx: PlanContext = { classLevel: child.classLevel, subject: hint, lang: child.language, ...(visualFirst ? { visualFirst: true } : {}), ...(oneBoard ? { oneBoard: true } : {}) };
+  const planCtx: PlanContext = { classLevel: child.classLevel, subject: hint, lang: child.language, ...(visualFirst ? { visualFirst: true } : {}), ...(oneBoard ? { oneBoard: true } : {}), ...(elaborate ? { elaborate: true } : {}) };
   const titles = (
     await db.query(
       `select i.title from family.child_syllabus_items i join family.child_syllabi s on s.syllabus_id = i.syllabus_id
@@ -550,7 +560,7 @@ async function prepareTeach(db: Db, ctx: ResolverContext, input: ResolveInput, l
       : library;
   const ai = { accountId: ctx.accountId, childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail, day: ctx.day };
   // v19 (oneBoard): LKG to Class 5 have a fixed shape (the planner only picks their visual), so its call is skipped: one model call less before the first word.
-  const shapeKnown = oneBoard && child.classLevel <= 5;
+  const shapeKnown = elaborate || (oneBoard && child.classLevel <= 5);
   const call = input.kind === 'question' && !input.check && misconception === null && !shapeKnown ? await preparePlan(db as never, ai, { ...planCtx, board: boardNameOf(child), chapter: input.about ?? (input.kind === 'question' ? input.scope?.about : undefined) ?? null, passageTitles: passages.map((p) => p.title) }, withAttached(input.text, input.attached).slice(0, PLAN_QUESTION_MAX)) : null;
   return { ctx: planCtx, call, passages };
 }
@@ -632,7 +642,9 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
       return;
     }
     const s: Subject = subject;
-    const parsedBlock = parseBlockLine(text);
+    let parsedBlock = parseBlockLine(text);
+    // The Elaboration Framework: the server draws the five step pictures and sets the level that leads for this class.
+    if (parsedBlock?.type === 'elaboration') parsedBlock = withPics(parsedBlock, p.diagrams ?? [], p.asked, ctx.child.classLevel);
     if (parsedBlock && p.showcase && (parsedBlock.type === 'board' || parsedBlock.type === 'figure')) {
       objects += 1;
       return;
@@ -644,6 +656,8 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
       if (p.check && type === 'steps' && stepsRejected === null) stepsRejected = stepsRejectReason(text);
       return;
     }
+    // The Elaboration Framework: the answer is the one elaboration block; any other block the model adds is not shown.
+    if (p.elaborate && parsedBlock.type !== 'elaboration') return;
     // A marked working (Check my work): a verdict that restates a plain sum is settled by our own arithmetic (2 Nov).
     const b = p.check && parsedBlock.type === 'steps' ? verifyVerdicts(parsedBlock, ctx.child.language === 'hi' ? 'hi' : 'en') : parsedBlock;
     // A marked working is only what the marking prompt asks for (W18-Q3): a lesson the model adds is not shown.

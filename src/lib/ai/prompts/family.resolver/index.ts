@@ -46,6 +46,8 @@ export type ResolverPrompt = {
   readsLanguage?: boolean;
   // Tutor overhaul (v19): the answer is one board: the server shapes the plan to one visual and one check, and skips the planner for LKG to Class 5.
   oneBoard?: boolean;
+  // The NetCyberAI Elaboration Framework (v19): every answer is one `elaboration` block of five steps.
+  elaborate?: boolean;
   system: (a: v10.ResolverAsk) => string;
   user: (a: v10.ResolverAsk) => string;
 };
@@ -105,7 +107,7 @@ const V17: ResolverPrompt = { version: v17.RESOLVER_PROMPT_VERSION, namesSubject
 const V18: ResolverPrompt = { version: v18.RESOLVER_PROMPT_VERSION, namesSubject: true, usesPlan: true, visualFirst: true, readsLanguage: true, system: v18.resolverSystem, user: v18.resolverUser };
 // v19 (tutor overhaul, 16 Nov 2026): v18 with one stage instead of a wall of cards, the visual rule, no repeated terms, an honest
 // grounding line and labs for a free question. Opt-in by name; Control switches it after the merge.
-const V19: ResolverPrompt = { version: v19.RESOLVER_PROMPT_VERSION, namesSubject: true, usesPlan: true, visualFirst: true, readsLanguage: true, oneBoard: true, system: v19.resolverSystem, user: v19.resolverUser };
+const V19: ResolverPrompt = { version: v19.RESOLVER_PROMPT_VERSION, namesSubject: true, usesPlan: true, visualFirst: true, readsLanguage: true, oneBoard: true, elaborate: true, system: v19.resolverSystem, user: v19.resolverUser };
 
 export const RESOLVER_PROMPTS: readonly ResolverPrompt[] = [
   { version: v1.RESOLVER_PROMPT_VERSION, namesSubject: false, system: (a) => v1.resolverSystem(withSubject(a)), user: (a) => v1.resolverUser(withSubject(a)) },

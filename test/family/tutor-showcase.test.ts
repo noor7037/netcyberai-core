@@ -16,8 +16,24 @@ describe('tutor showcase', () => {
   });
   it('needs a chapter key', async () => expect(await showcaseFor(null, 'magnesium', 'en')).toBeNull());
   it('reads a real chapter from disk', async () => {
-    const b = await showcaseFor('u.c10.science.jesc1.ch01', 'what happens when magnesium burns in air', 'en');
+    const b = await showcaseFor('u.c10.science.jesc1.ch01', 'what is a precipitate when two solutions mix', 'en');
     expect(b?.type).toBe('showcase');
+    expect(b && 'title' in b ? b.title : '').toBe('Two clear solutions, one white solid');
+  });
+  // Bug 1 (founder, 16 Nov): an Equal-fractions question showed the chemistry diagram "From reactants to product".
+  it('shows nothing when the chapter has no diagram about the question', async () => {
+    expect(await showcaseFor('u.c10.science.jesc1.ch01', 'What are equal fractions?', 'en')).toBeNull();
+    expect(await showcaseFor('u.c10.science.jesc1.ch01', 'what is the capital of france', 'en')).toBeNull();
+  });
+  it('shows nothing from a chapter of another class or subject', async () => {
+    expect(await showcaseFor('u.c10.science.jesc1.ch01', 'what is a precipitate when two solutions mix', 'en', undefined, { classLevel: 3 })).toBeNull();
+    expect(await showcaseFor('u.c10.science.jesc1.ch01', 'what is a precipitate when two solutions mix', 'en', undefined, { classLevel: 10, subject: 'mathematics' })).toBeNull();
+    expect(await showcaseFor('u.c10.science.jesc1.ch01', 'what is a precipitate when two solutions mix', 'en', undefined, { classLevel: 10, subject: 'science' })).not.toBeNull();
+  });
+  it('needs two shared words, or a bare keyword that is in the title', () => {
+    expect(bestDiagram([d('Photosynthesis in a leaf')], 'what is a leaf in the garden')).toBeNull();
+    expect(bestDiagram([d('Photosynthesis in a leaf')], 'photosynthesis')?.title).toBe('Photosynthesis in a leaf');
+    expect(bestDiagram([{ ...d('Water cycle'), text: 'Water cycle rain clouds leaf' }], 'leaf')).toBeNull();
   });
 });
 

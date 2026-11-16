@@ -24,6 +24,7 @@ import { FRACTION_MAX_DENOMINATOR, GRAPH_FNS, GRAPH_PARAMS, PARAM_LIMIT, SIM_INP
 import { SOLID_INPUTS, SOLID_KINDS, type SolidKind } from './solids';
 import { SCENE_SIMS, simStart, type SceneSim } from './visuals/sims';
 import { isLangCode, type LangCode } from './languages';
+import { elaborationBlock, type Elaboration } from './elaboration';
 
 export const BLOCK_SCHEMA_VERSION = 1;
 
@@ -210,11 +211,11 @@ export const LAB_WHY_MAX = 160;
 export type BlockMeta = { id?: string; tts_read_aloud?: boolean };
 
 export type Showcase = { type: 'showcase'; title: string; caption: string; svg: string };
-export type Block = (Explanation | WorkedExample | KeyPoints | Diagram | MindMap | Check | Practice | EnglishMoment | Sources | Table | Interactive | Slider | Model3D | ChapterTest | Figure | Steps | Timeline | ImageBlock | Videos | Scene | SimScene | Chart | Board | ModelBlock | LabBlock | Showcase) & BlockMeta;
+export type Block = (Explanation | WorkedExample | KeyPoints | Diagram | MindMap | Check | Practice | EnglishMoment | Sources | Table | Interactive | Slider | Model3D | ChapterTest | Figure | Steps | Timeline | ImageBlock | Videos | Scene | SimScene | Chart | Board | ModelBlock | LabBlock | Showcase | Elaboration) & BlockMeta;
 export type BlockType = Block['type'];
 export const INTERACTIVE_TYPES: readonly BlockType[] = ['graph', 'number_line', 'fraction_model', 'geometry', 'simulation'];
 export const isInteractive = (t: BlockType) => INTERACTIVE_TYPES.includes(t);
-export const BLOCK_TYPES: readonly BlockType[] = ['explanation', 'worked_example', 'key_points', 'diagram', 'mind_map', 'check', 'practice', 'english_moment', 'sources', 'table', ...INTERACTIVE_TYPES, 'slider', 'model_3d', 'chapter_test', 'figure', 'steps', 'timeline', 'image', 'videos', 'scene', 'chart', 'board', 'model', 'lab', 'showcase'];
+export const BLOCK_TYPES: readonly BlockType[] = ['explanation', 'worked_example', 'key_points', 'diagram', 'mind_map', 'check', 'practice', 'english_moment', 'sources', 'table', ...INTERACTIVE_TYPES, 'slider', 'model_3d', 'chapter_test', 'figure', 'steps', 'timeline', 'image', 'videos', 'scene', 'chart', 'board', 'model', 'lab', 'showcase', 'elaboration'];
 // The blocks the server fills before they are kept (W9-C): a photograph and the videos.
 export const FILLED_TYPES: readonly BlockType[] = ['image', 'videos'];
 // Types only authored chapters carry; the model's answer never does.
@@ -228,6 +229,8 @@ export const REQUIRED_BLOCKS: readonly BlockType[] = ['explanation', 'check', 'p
 // prompt): all three.
 export function coreBlocks(planned?: readonly string[] | null): BlockType[] {
   if (!planned) return [...REQUIRED_BLOCKS];
+  // The Elaboration Framework: the one elaboration block is the whole answer (its five steps include the check).
+  if (planned.includes('elaboration')) return ['elaboration'];
   return REQUIRED_BLOCKS.filter((t) => t === 'explanation' || planned.includes(t));
 }
 
@@ -411,7 +414,7 @@ export function checkStoredBlock(raw: unknown): Block | null {
 
 function checked(raw: unknown, stored: boolean): Block | null {
   const o = (raw ?? {}) as Record<string, unknown>;
-  const b = o.type === 'image' ? imageBlock(o, stored) : o.type === 'videos' ? videosBlock(o, stored) : blockBody(o);
+  const b = o.type === 'image' ? imageBlock(o, stored) : o.type === 'videos' ? videosBlock(o, stored) : o.type === 'elaboration' ? elaborationBlock(o, stored) : blockBody(o);
   if (!b) return null;
   const meta: BlockMeta = {};
   if (typeof o.id === 'string' && BLOCK_ID.test(o.id)) meta.id = o.id;
@@ -1371,7 +1374,7 @@ function parsed(line: string, stored: boolean): Block | null {
 // W9-C: a figure and steps after the explanation, the photograph after the figure, a timeline after the key points, the
 // videos last. W10-6: the scene after the figure, the chart after the key points. W16-A2: a board where a figure goes,
 // right after it. W19-D: a model after the board.
-const ORDER: BlockType[] = ['explanation', 'figure', 'board', 'model', 'scene', 'image', 'steps', 'worked_example', 'diagram', 'mind_map', ...INTERACTIVE_TYPES, 'key_points', 'chart', 'timeline', 'lab', 'check', 'practice', 'english_moment', 'sources', 'videos'];
+const ORDER: BlockType[] = ['elaboration', 'explanation', 'figure', 'board', 'model', 'scene', 'image', 'steps', 'worked_example', 'diagram', 'mind_map', ...INTERACTIVE_TYPES, 'key_points', 'chart', 'timeline', 'lab', 'check', 'practice', 'english_moment', 'sources', 'videos'];
 export function completeResponse(blocks: Block[], core: readonly BlockType[] = REQUIRED_BLOCKS): Block[] | null {
   const first = new Map<BlockType, Block>();
   let interactive = false;
@@ -1462,7 +1465,7 @@ export function narrationScript(blocks: readonly Block[]): NarrationLine[] {
 // Tutor overhaul: a chapter's own animated diagram (server-added, never model-written: CHAPTER_ONLY_TYPES). It is drawn as
 // an <img> (no script runs in an image), and is refused here anyway when it holds script, a reference or a handler.
 export const SHOWCASE_SVG_MAX = 40_000;
-const SVG_UNSAFE = /<script|<foreignObject|<iframe|<image\b|<use\b|<a\b|\bon[a-z]+\s*=|javascript:|data:|href\s*=|@import|url\(\s*['"]?(?!#)|<!ENTITY|<!DOCTYPE/i;
+export const SVG_UNSAFE = /<script|<foreignObject|<iframe|<image\b|<use\b|<a\b|\bon[a-z]+\s*=|javascript:|data:|href\s*=|@import|url\(\s*['"]?(?!#)|<!ENTITY|<!DOCTYPE/i;
 function showcaseBlock(o: Record<string, unknown>): Showcase | null {
   const title = plain(o.title, 120);
   const caption = plain(o.caption, 240) ?? title;

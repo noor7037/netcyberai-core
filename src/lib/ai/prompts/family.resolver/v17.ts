@@ -106,7 +106,7 @@ export function languageRule(a: Pick<ResolverAsk, 'replyLang' | 'motherTongue'>)
   return `simple ${name}, mostly, in ${name} script, because the student asked in ${name}: keep the key English school words and teach each one beside its ${name} word (the English word and what it means), so the student grows at ease with English.`;
 }
 
-function withLanguage(base: string, rule: string): string {
+export function withLanguage(base: string, rule: string): string {
   const nl = base.indexOf('\n');
   const first = nl < 0 ? base : base.slice(0, nl);
   const at = first.indexOf(' Explain in ');

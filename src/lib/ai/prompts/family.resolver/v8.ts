@@ -22,6 +22,7 @@ import { INTERACTIVE_LINES } from './v4';
 import { SUBJECT_LINE, type ResolverAsk as V3Ask } from './v3';
 import { JSON_LINES_RULE, NO_DOUBLE_QUOTES_RULE } from './v6';
 import { ITEM_EXAMPLE, MIND_MAP_LINE } from './v7';
+import { elaborationLines } from './elaboration-prompt';
 import { defaultPlan, isInteractiveBlock, VISUAL_BLOCK, type Band, type Plan, type PlannedBlock, type QuestionType } from '@/lib/ai/teaching/plan-shape';
 import type { Passage } from '@/lib/ai/teaching/retrieve';
 
@@ -133,6 +134,9 @@ const about = (plan: Plan, block: PlannedBlock) => {
 function blockLine(block: PlannedBlock, plan: Plan, a: ResolverAsk): string[] {
   const small = plan.band === 'lkg_1' || plan.band === 'c2_5';
   switch (block) {
+    // The NetCyberAI Elaboration Framework (prompt v19): the whole answer is the one elaboration block.
+    case 'elaboration':
+      return elaborationLines(plan.band);
     case 'explanation':
       return [`{"type":"explanation","title":"...","idea":"the idea in one plain sentence","paragraphs":["${small ? '1 or 2 short paragraphs' : '2 to 5 short paragraphs of 2 to 4 sentences each'}"],"example":"an everyday Indian example or analogy","steps":["${small ? '2 or 3 short steps' : '3 to 6 short steps'}"],"terms":[{"en":"English term","local":"the same term in the explanation language"}]}. The idea, paragraphs, example and steps together are ${explanationLength(plan.band, plan.depth)}.`];
     case 'worked_example':

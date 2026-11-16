@@ -58,6 +58,8 @@ const EVERY: Record<string, unknown> = {
   model: { type: 'model', title: MARK('model'), model: 'brain', focus: ['cerebellum'], caption: `${MARK('model')} caption.` },
   showcase: { type: 'showcase', title: 'A diagram', caption: 'A diagram.', svg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 4"><circle cx="2" cy="2" r="1"/></svg>' },
   lab: { type: 'lab', id: 'c10-science-jesc1-ch01-signs', why: `${MARK('lab')} why.` },
+  // The Elaboration Framework: the tutor's answer, spoken by the tutor's own voice (call.ts), silent in the chapter reader.
+  elaboration: { type: 'elaboration', term: MARK('elaboration'), definition: { text: 'One.', say: 'One.' }, levels: { basic: 'One.', intermediate: 'Two.', advanced: 'Three.', say: 'Levels.' }, real_life: { text: 'At the shop.', say: 'At the shop.' }, try_it: { question: 'Which?', options: ['A', 'B'], answer: 0, right: 'Yes.', hint: 'Look again.', say: 'Which?' }, future: { text: 'Later.', say: 'Later.' } },
 };
 
 describe('narration reads only teaching text (C374)', () => {
