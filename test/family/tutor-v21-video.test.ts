@@ -23,3 +23,21 @@ describe('video card and choice (v21)', () => {
     expect(m(hi as never)).toContain('YouTube');
   });
 });
+
+import { chainShareMs, CHAIN_MIN_MS, PROFILES } from '@/lib/ai/platform';
+import { quizPrompt } from '@/lib/ai/prompts/family.quiz';
+
+describe('the quiz route (v21)', () => {
+  const quiz = PROFILES.find((p) => p.id === 'family.quiz')!;
+  it('the primary is watched for its first text, and the backup keeps a real slot of the route time', () => {
+    expect(quiz.firstTextMs).toBeGreaterThan(0);
+    expect(quiz.callMs!).toBeGreaterThanOrEqual(2 * CHAIN_MIN_MS);
+    const primary = chainShareMs({ left: quiz.callMs!, behind: 1, reserveMs: CHAIN_MIN_MS, firstTextMs: quiz.firstTextMs!, streams: true });
+    expect(quiz.callMs! - Math.min(primary, quiz.firstTextMs!)).toBeGreaterThanOrEqual(CHAIN_MIN_MS);
+  });
+  it('the shorter quiz prompt (v2) is the latest, so an unknown Control version falls back to it', () => {
+    expect(quizPrompt('v10').version).toBe('v2');
+    expect(quizPrompt('v1').version).toBe('v1');
+    expect(quizPrompt('v2').system()).toContain('twelve words');
+  });
+});
