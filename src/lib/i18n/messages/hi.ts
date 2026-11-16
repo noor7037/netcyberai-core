@@ -11119,6 +11119,8 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.w19.settings.normal': 'सामान्य',
   'fam.w19.settings.voiceTitle': 'आवाज़',
   'fam.w19.settings.lookTitle': 'रूप',
+  'fam.parent.autoPlay.title': 'जवाब अपने आप पढ़कर सुनाओ',
+  'fam.parent.autoPlay.lead': 'ट्यूटर का जवाब आते ही एक बार पढ़कर सुनाया जाता है। बच्चा "फिर से सुनो" दबाकर दोबारा सुन सकता है।',
   'fam.w19.settings.saved': 'सेव हो गया',
   // W19-C end
   // W20-E start

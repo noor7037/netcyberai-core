@@ -11133,6 +11133,8 @@ export const en = {
   'fam.w19.settings.normal': 'Normal',
   'fam.w19.settings.voiceTitle': 'Voice',
   'fam.w19.settings.lookTitle': 'Look',
+  'fam.parent.autoPlay.title': 'Read answers aloud by themselves',
+  'fam.parent.autoPlay.lead': 'When a tutor answer arrives, it is read aloud once. Your child can tap Replay to hear it again.',
   'fam.w19.settings.saved': 'Saved',
   // W19-C end
   // W20-E start
