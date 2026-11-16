@@ -53,7 +53,7 @@ export function covers(term: string, text: string): boolean {
 }
 
 // Free for a commercial children's product: public domain, CC0, CC BY, CC BY-SA. Never NC (non-commercial) or ND (no
-// changes: the viewer re-lights and frames the model), never a store's own "standard" or "editorial" licence.
+// changes: the viewer re-lights and frames the model), never a store's own plain or editorial licence.
 export function freeLicence(label: unknown): string | null {
   const s = String(label ?? '').toLowerCase().replace(/[_\s]+/g, '-');
   if (!s || /nc|non-?commercial|nd|no-?deriv|editorial|standard|free-st|^st$|^ed$/.test(s)) return null;

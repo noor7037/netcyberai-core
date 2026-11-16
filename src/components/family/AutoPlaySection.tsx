@@ -2,13 +2,11 @@
 
 import { useState } from 'react';
 import type { Words } from '@/lib/family/fill';
-import type { MessageKey } from '@/lib/i18n';
 import { errorWords, familyApi } from './client';
 
 // v21: the parent's switch, one per child: the tutor reads a fresh answer aloud by itself (on by default, every class).
 // Saved at once (PATCH /api/family/children/[childId]/settings); a failed save puts the switch back and says so. A real
 // button with role="switch", 44 px and more; no motion under reduced motion.
-export const AUTOPLAY_KEYS: MessageKey[] = ['fam.parent.autoPlay.title', 'fam.parent.autoPlay.lead', 'fam.w19.settings.saved', 'fam.err.network', 'fam.err.parent_pin_required', 'fam.err.not_found', 'fam.err.bad_request'];
 
 export type AutoPlayChild = { childId: string; firstName: string; autoPlay: boolean };
 

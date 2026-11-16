@@ -40,7 +40,7 @@ describe('the agent registry', () => {
     const ids = new Set(PROFILES.map((p) => p.id));
     for (const a of AGENTS) if (a.profileId !== null) expect(ids.has(a.profileId), a.id).toBe(true);
     const of = (id: string) => PROFILES.find((p) => p.id === id);
-    expect(of('family.quiz')).toMatchObject({ capability: 'text', carriesChildWords: true, callMs: 20_000 });
+    expect(of('family.quiz')).toMatchObject({ capability: 'text', carriesChildWords: true, callMs: 45_000, firstTextMs: 10_000 });
     expect(of('family.parent_report')).toMatchObject({ capability: 'text', carriesChildWords: false, callMs: 30_000 });
     expect(of('family.qc')).toMatchObject({ capability: 'text', carriesChildWords: true, callMs: 10_000 });
     expect(of('family.voice_call')).toMatchObject({ capability: 'realtime', carriesChildWords: true });
