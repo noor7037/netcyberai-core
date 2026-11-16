@@ -1,4 +1,20 @@
 /** @type {import('next').NextConfig} */
+const FAMILY_FRAME_HOSTS = [
+  'www.youtube-nocookie.com',
+  'phet.colorado.edu',
+  'www.geogebra.org',
+  'eyes.nasa.gov',
+  'www.biointeractive.org',
+  'www.labxchange.org',
+  'concord.org',
+  'lab.concord.org',
+  'models-resources.concord.org',
+  'www.desmos.com',
+  '3d.si.edu',
+  'artsandculture.google.com',
+  'demonstrations.wolfram.com',
+];
+
 const nextConfig = {
   // tesseract.js (src/lib/capture/ocr.ts, Prompt F Task 3) spawns its
   // Node worker via `new Worker(workerPath)` with a path computed at
@@ -93,6 +109,13 @@ const nextConfig = {
           { key: 'X-Content-Type-Options', value: 'nosniff' },
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
         ],
+      },
+      // The Family app's frames (Noor, 16 Nov 2026): its own pages (labs, book readers), YouTube's privacy-enhanced player and the
+      // approved simulation sites, and no other site. Only frame-src is set. The simulation hosts are the ones in
+      // src/lib/family/sim-hosts.ts (test/family/sims.test.ts keeps the two lists equal).
+      {
+        source: '/family/:path*',
+        headers: [{ key: 'Content-Security-Policy', value: `frame-src 'self' blob: data: ${FAMILY_FRAME_HOSTS.map((h) => `https://${h}`).join(' ')}` }],
       },
       {
         source: '/results/:path*',

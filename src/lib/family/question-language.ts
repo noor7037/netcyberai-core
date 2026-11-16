@@ -102,3 +102,16 @@ export function questionLanguage(text: string, setting: ReplyLang, motherTongue:
 export function settingLang(child: { style: string }): ReplyLang {
   return child.style === 'hinglish' ? 'hinglish' : child.style === 'hi' ? 'hi' : 'en';
 }
+
+// Prompt v20: a short question in Latin letters with no English function word in it ("Kachra prabandhan") is Hindi in Roman
+// letters, not English, when the child's profile language is Hindi. Ordinary English questions always carry one of these.
+const ENGLISH_WORDS = new Set([
+  'a', 'an', 'the', 'is', 'are', 'was', 'were', 'be', 'what', 'why', 'how', 'when', 'where', 'who', 'which', 'do', 'does', 'did', 'of', 'in', 'on', 'at', 'to', 'for', 'from', 'with', 'and', 'or', 'not', 'can', 'it', 'this', 'that',
+  'explain', 'tell', 'me', 'about', 'define', 'meaning', 'difference', 'between', 'example', 'give', 'my', 'i', 'you', 'we', 'they', 'water', 'plant', 'plants', 'light', 'energy', 'force', 'cell', 'air', 'earth', 'sun', 'moon',
+]);
+export function looksRomanHindi(text: string): boolean {
+  const words = text.normalize('NFC').match(/[\p{L}\p{M}]+/gu) ?? [];
+  if (words.length === 0 || words.length > 6) return false;
+  if (!words.every((w) => scriptOf(w[0]) === 'latin')) return false;
+  return !words.some((w) => ENGLISH_WORDS.has(w.toLowerCase()));
+}

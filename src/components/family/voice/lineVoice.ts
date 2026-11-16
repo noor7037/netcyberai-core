@@ -9,7 +9,7 @@ import { avatarState, setAvatarLevel, setAvatarMood } from '@/lib/family/avatar-
 // response is never cached. When the server voice is not set up, or the family's turns are used up, the rest of the
 // visit uses the phone's voice and the screen says so; a single failure reads that one line with the phone's voice.
 
-export type LineSource = { kind: 'chapter'; chapterKey: string; blockId: string; sentence: number } | { kind: 'live_line'; token: string } | { kind: 'live_turn'; sessionId: string; position: number } | { kind: 'call_line'; token: string } | { kind: 'tutor_answer'; messageId: string; from?: number };
+export type LineSource = { kind: 'chapter'; chapterKey: string; blockId: string; sentence: number } | { kind: 'live_line'; token: string } | { kind: 'live_turn'; sessionId: string; position: number } | { kind: 'call_line'; token: string } | { kind: 'tutor_answer'; messageId: string; from?: number; max?: number };
 export type VoiceMode = 'server' | 'phone';
 export type Spoken = { cancelled: boolean; mode: VoiceMode };
 
@@ -140,6 +140,10 @@ export function unlockVoice() {
 
 // Stops whatever is being read, by either voice; a line still on its way is not played.
 export function stopLine() {
+  prefetched.clear();
+  halt();
+}
+function halt() {
   generation++;
   drop();
   stopSpeaking();
@@ -147,21 +151,37 @@ export function stopLine() {
 
 type Played = 'played' | 'off' | 'failed' | 'cancelled';
 
-async function playServer(source: LineSource, rate: number, mine: number, onPlaying?: () => void, onProgress?: (played: number) => void): Promise<Played> {
+// The next part's audio, asked for while the current part plays, so there is no silent gap between parts. Keyed by the line's
+// source; taken (and removed) by playServer; dropped by stopLine.
+type Got = { blob: Blob } | { off: true } | { failed: true };
+const prefetched = new Map<string, Promise<Got>>();
+async function getAudio(source: LineSource): Promise<Got> {
   let res: Response;
   try {
     res = await fetch('/api/family/voice/speak', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(source), credentials: 'same-origin', cache: 'no-store' });
   } catch {
-    return generation === mine ? 'failed' : 'cancelled';
+    return { failed: true };
   }
-  if (generation !== mine) return 'cancelled';
   if (!res.ok || !/^audio\//.test(res.headers.get('content-type') ?? '')) {
     const error = (await res.json().catch(() => ({})))?.error;
-    return error === 'not_set_up' || error === 'voice_allowance_reached' ? 'off' : 'failed';
+    return error === 'not_set_up' || error === 'voice_allowance_reached' ? { off: true } : { failed: true };
   }
   const blob = await res.blob().catch(() => null);
+  return blob ? { blob } : { failed: true };
+}
+export function prefetchLine(source: LineSource): void {
+  const key = JSON.stringify(source);
+  if (!prefetched.has(key)) prefetched.set(key, getAudio(source));
+}
+
+async function playServer(source: LineSource, rate: number, mine: number, onPlaying?: () => void, onProgress?: (played: number) => void): Promise<Played> {
+  const key = JSON.stringify(source);
+  const got = await (prefetched.get(key) ?? getAudio(source));
+  prefetched.delete(key);
   if (generation !== mine) return 'cancelled';
-  if (!blob) return 'failed';
+  if ('off' in got) return 'off';
+  if ('failed' in got) return 'failed';
+  const blob = got.blob;
   drop();
   const url = URL.createObjectURL(blob);
   const audio = new Audio(url);
@@ -199,7 +219,7 @@ async function playServer(source: LineSource, rate: number, mine: number, onPlay
 // Reads one line: with the server voice when `mode` is 'server', else (or when it cannot) with the phone's own.
 // Resolves when the line ends, with the voice to use for the next line; `cancelled` when stopLine() came first.
 export async function speakLine(mode: VoiceMode, source: LineSource, phone: { text: string; lang: 'en' | 'hi'; rate: number; onWord?: (charIndex: number) => void; onPlaying?: () => void; onProgress?: (played: number) => void }): Promise<Spoken> {
-  stopLine();
+  halt();
   const mine = generation;
   let next: VoiceMode = mode;
   if (mode === 'server') {

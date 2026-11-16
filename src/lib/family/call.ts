@@ -72,6 +72,8 @@ export function callSpeech(block: PublicBlock): string[] {
 
 // The voice's limit for one request (the family app may not import the adapters; a test holds the two equal).
 export const ANSWER_SPOKEN_MAX = 600;
+// The first part of a reading is short (whole sentences up to about this many characters), so speech starts fast.
+export const ANSWER_FIRST_MAX = 200;
 
 // The words read aloud for a kept tutor answer (W17-B2): what a call would say, whole sentences only, within `max`
 // characters. One helper for the server (what the voice speaks) and the phone (what its own voice reads when the server

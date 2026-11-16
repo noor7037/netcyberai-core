@@ -17,6 +17,7 @@ import * as v16 from './v16';
 import * as v17 from './v17';
 import * as v18 from './v18';
 import * as v19 from './v19';
+import * as v20 from './v20';
 
 // The family.resolver prompt versions in this repository (docs/family-app/08 §7). Control chooses the active version
 // (control.ai_profiles.prompt_version); a version the code does not have falls back to the default (v10 since W18-P2, v9 since W16). A typed
@@ -108,6 +109,8 @@ const V18: ResolverPrompt = { version: v18.RESOLVER_PROMPT_VERSION, namesSubject
 // v19 (tutor overhaul, 16 Nov 2026): v18 with one stage instead of a wall of cards, the visual rule, no repeated terms, an honest
 // grounding line and labs for a free question. Opt-in by name; Control switches it after the merge.
 const V19: ResolverPrompt = { version: v19.RESOLVER_PROMPT_VERSION, namesSubject: true, usesPlan: true, visualFirst: true, readsLanguage: true, oneBoard: true, elaborate: true, system: v19.resolverSystem, user: v19.resolverUser };
+// v20 (live testing, 16 Nov 2026): v19 with Roman-letter Hindi answered in Hindi and a depth that adapts to the topic. Opt-in by name; Control switches it after the merge.
+const V20: ResolverPrompt = { version: v20.RESOLVER_PROMPT_VERSION, namesSubject: true, usesPlan: true, visualFirst: true, readsLanguage: true, oneBoard: true, elaborate: true, system: v20.resolverSystem, user: v20.resolverUser };
 
 export const RESOLVER_PROMPTS: readonly ResolverPrompt[] = [
   { version: v1.RESOLVER_PROMPT_VERSION, namesSubject: false, system: (a) => v1.resolverSystem(withSubject(a)), user: (a) => v1.resolverUser(withSubject(a)) },
@@ -131,6 +134,7 @@ export const RESOLVER_PROMPTS: readonly ResolverPrompt[] = [
   V17,
   V18,
   V19,
+  V20,
 ];
 
 // The fallback for a version the code does not have, and for a typed question under a version that cannot name the

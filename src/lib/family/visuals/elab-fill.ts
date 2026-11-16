@@ -30,7 +30,16 @@ const cached = async (q: string, subject: string | null, search: NonNullable<Ela
 };
 export const forgetElabPhotos = (): void => cache.clear();
 
-const photoPic = (p: Photo, caption: string): ElabPic => ({ svg: '', kind: 'photo', url: p.url, caption, credit: p.author, licence: p.licence, source: p.pageUrl, from: p.source });
+// A caption is the step's first sentences up to 240 characters, whole: a long step (a process or a why answer) is never cut mid-word.
+export const captionOf = (text: string): string => {
+  const t = text.replace(/\s+/g, ' ').trim();
+  if (t.length <= 240) return t;
+  const parts = t.match(/[^.!?।]+[.!?।]+/g) ?? [];
+  let out = '';
+  for (const s of parts) if ((out + s).trim().length <= 240) out = `${out}${s}`;
+  return (out.trim() || t.slice(0, 240).trimEnd());
+};
+const photoPic = (p: Photo, caption: string): ElabPic => ({ svg: '', kind: 'photo', url: p.url, caption: captionOf(caption), credit: p.author, licence: p.licence, source: p.pageUrl, from: p.source });
 
 export async function fillElaboration(b: Elaboration, o: ElabFillOptions): Promise<Elaboration> {
   const search = o.search ?? ((q, subject) => searchSources(q, { subject }));
@@ -48,7 +57,7 @@ export async function fillElaboration(b: Elaboration, o: ElabFillOptions): Promi
   }
   const three = await (o.model ?? ((w, t) => find3d(w, t)))(`${b.levels.basic} ${b.levels.intermediate} ${queryOf(1)}`, b.term).catch(() => null);
   const pics = b.pics.map((p, i): ElabPic | null => {
-    if (i === 1 && three && p?.kind !== 'diagram') return { svg: '', kind: 'model3d', url: three.still, caption: texts[i], credit: three.credit, licence: three.licence, source: three.page, from: three.from, model: three.model };
+    if (i === 1 && three && p?.kind !== 'diagram') return { svg: '', kind: 'model3d', url: three.still, caption: captionOf(texts[i]), credit: three.credit, licence: three.licence, source: three.page, from: three.from, model: three.model };
     if (p?.kind === 'diagram') return p;
     const hit = found[i];
     return hit ? photoPic(hit, texts[i]) : p;
