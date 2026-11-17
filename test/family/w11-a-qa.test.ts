@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { describe, expect, it, vi } from 'vitest';
-import { keyboardInset, watchKeyboard, type KeyboardWindow } from '@/components/family/tutor/useKeyboardInset';
+import { KEYBOARD_MIN, isTyping, keyboardInset, watchKeyboard, type KeyboardWindow } from '@/components/family/tutor/useKeyboardInset';
 
 // W11-A (C416): the Family app QA fixes of 30-31 Oct.
 vi.mock('next/navigation', () => ({
@@ -58,6 +58,43 @@ describe('the composer above the keyboard', () => {
     expect(seen).toEqual([0, 300, 260, 0]);
     stop();
     expect(vv.count()).toBe(0);
+  });
+
+  it('takes the larger layout height, so an iOS that shrinks innerHeight is not read as no keyboard; a bar settling is 0', () => {
+    // innerHeight already shrunk to the visible part, the layout viewport (clientHeight) still full: the keyboard is there.
+    expect(keyboardInset(500, { height: 500, offsetTop: 0, scale: 1 }, 800)).toBe(300);
+    // Android Chrome with resizes-content: the page itself shrank, both heights agree: nothing to add (no double offset).
+    expect(keyboardInset(500, { height: 500, offsetTop: 0, scale: 1 }, 500)).toBe(0);
+    // A browser toolbar growing by 56 px is not a keyboard.
+    expect(keyboardInset(800, { height: 744, offsetTop: 0, scale: 1 })).toBe(0);
+    expect(keyboardInset(800, { height: 800 - KEYBOARD_MIN, offsetTop: 0, scale: 1 })).toBe(KEYBOARD_MIN);
+  });
+
+  it('is 0 with no text field focused, and reads again when the focus moves (iOS reports a closed keyboard late)', () => {
+    vi.useFakeTimers();
+    const vv = fakeViewport(500);
+    const on = new Map<string, () => void>();
+    let typing = true;
+    const win = { innerHeight: 800, visualViewport: vv, addEventListener: (t: string, f: () => void) => void on.set(t, f), removeEventListener: (t: string) => void on.delete(t) } as unknown as KeyboardWindow;
+    const seen: number[] = [];
+    const stop = watchKeyboard(win, (px) => seen.push(px), () => typing);
+    expect(seen).toEqual([300]);
+    typing = false;
+    on.get('focusout')?.();
+    vi.advanceTimersByTime(100);
+    expect(seen).toEqual([300, 0]);
+    stop();
+    expect(on.size).toBe(0);
+    vi.useRealTimers();
+  });
+
+  it('counts a textarea and a text input as typing, not a button or a checkbox', () => {
+    const el = (tagName: string, type = '') => ({ tagName, type }) as unknown as Element;
+    expect(isTyping(el('TEXTAREA'))).toBe(true);
+    expect(isTyping(el('INPUT', 'text'))).toBe(true);
+    expect(isTyping(el('INPUT', 'checkbox'))).toBe(false);
+    expect(isTyping(el('BUTTON'))).toBe(false);
+    expect(isTyping(null)).toBe(false);
   });
 
   it('does nothing where the browser has no visualViewport', () => {

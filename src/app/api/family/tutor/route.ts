@@ -4,6 +4,7 @@ import { FAMILY_CHILD_COOKIE } from '@/lib/family/session';
 import { isSubject } from '@/lib/family/subjects';
 import { ownsBookChapter } from '@/lib/family/tutor-context';
 import { listChats, newChat, readFeed, tutorChild } from '@/lib/family/tutor';
+import { listConversations } from '@/lib/family/tutor-conversations';
 
 // The shared tutor window's chats (S2, C375; W9-A, C406). The child is the one this phone chose, never one the request
 // names: a sibling's chat is never read or made here.
@@ -17,9 +18,22 @@ import { listChats, newChat, readFeed, tutorChild } from '@/lib/family/tutor';
 //        recently used.
 export const dynamic = 'force-dynamic';
 
+//   GET  ?conversations=1 → { conversations }: the history (founder, 17 Nov 2026): every listed chat of this child in
+//        every subject, with its subject, its book chapter (when all its questions were asked in one) and when it was
+//        last used, newest first (src/lib/family/tutor-conversations.ts).
 export async function GET(req: NextRequest) {
   const g = await requireFamily(req);
   if (g.error) return g.error;
+  if (req.nextUrl.searchParams.get('conversations') === '1') {
+    const chosenChild = req.cookies.get(FAMILY_CHILD_COOKIE)?.value;
+    return familyRun(g.session, async (db) => {
+      const who = await tutorChild(db, g.session.accountId, chosenChild);
+      if (!who.ok) return NextResponse.json({ error: who.error }, { status: who.status });
+      const res = NextResponse.json({ conversations: await listConversations(db, g.session.accountId, who.child.childId) });
+      res.headers.set('Cache-Control', 'no-store');
+      return res;
+    });
+  }
   const subject = req.nextUrl.searchParams.get('subject');
   if (!isSubject(subject)) return NextResponse.json({ error: 'bad_request' }, { status: 400 });
   const chosen = req.cookies.get(FAMILY_CHILD_COOKIE)?.value;
