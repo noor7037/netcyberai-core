@@ -6,6 +6,8 @@ import { intentLine, intentOf, type ModelTopic } from './intent';
 import { isSubject, type Subject } from './subjects';
 import { topicVideos, type WithDb } from './video-finder';
 import { words, type VideoLanguage, type VideoPick } from './videos';
+import { isLangCode, type LangCode } from './languages';
+import { answerLanguage, questionLanguage, settingLang } from './question-language';
 
 // C522: two to four videos under any tutor answer, typed, photo or drawing, whenever a topic can be named from what the
 // pipeline already has, with no AI call and never from a child's words (the search is our own catalog text):
@@ -15,8 +17,11 @@ import { words, type VideoLanguage, type VideoPick } from './videos';
 //   4. (Noor, 16 Nov 2026) a typed question none of these name: a few of its own subject words (freeLine below), only
 //      once the safety check passed the question (the route passes `asked` only then), with no name, number, address or
 //      contact, under a `free.` key shared by every child who asks the same words.
-// The videos are in the language the child's settings name for meanings (meaningLang, all of languages.ts; else the
-// app's language); when that language has too few, the app's language (English or Hindi) is used and the card says so.
+// The videos are in the language the question was asked in (Noor, 17 Nov 2026: a Hindi question once got Telugu videos
+// because the child's word-help language was Telugu): Hinglish and Roman-letter Hindi are Hindi; with no words (a photo,
+// a drawing) the child's reply setting. The word-help language (meaningLang) only reads a script two languages share,
+// as askLanguage does for the answer. Too few in that language: Hindi falls back to English, a regional question to the
+// app's language; English stays English; never another regional language. The card says when a fallback is shown.
 
 export const MIN_SHOWN = 2;
 
@@ -32,9 +37,10 @@ const TOPIC = /^[a-z0-9][a-z0-9._-]{2,119}$/;
 // knows for it (the line's, the window's), else science.
 export async function videoTopicOf(
   db: Db,
-  a: { line: Line | null; passages: readonly { chapterKey: string; score: number }[]; drawTemplate: string | null; child: FamilyChild; accountId: string; asked?: string | null; subject?: Subject | null; elab?: ModelTopic | null; replyLang?: string | null }
+  a: { line: Line | null; passages: readonly { chapterKey: string; score: number }[]; drawTemplate: string | null; child: FamilyChild; accountId: string; asked?: string | null; subject?: Subject | null; elab?: ModelTopic | null; replyLang?: string | null; question?: string | null }
 ): Promise<VideoTopic | null> {
-  const language = meaningLangOf(await loadChildSettings(db, a.accountId, a.child.childId), a.child.language);
+  const motherTongue = meaningLangOf(await loadChildSettings(db, a.accountId, a.child.childId), a.child.language);
+  const language = videoLanguageOf({ question: a.question ?? a.asked ?? null, replyLang: a.replyLang, motherTongue, child: a.child });
   const line = a.line ?? (await drawLine(db, a.drawTemplate, a.child)) ?? (await passageLine(db, a.passages, a.child)) ?? (await freeTopic(a));
   return line && TOPIC.test(line.key) ? { line, child: a.child, accountId: a.accountId, language } : null;
 }
@@ -124,12 +130,23 @@ async function passageLine(db: Db, passages: readonly { chapterKey: string; scor
   return null;
 }
 
-// The languages tried, in order: the chosen one, then the app's (English or Hindi), then English after Hindi.
+// The video language for a question: the language it is asked in (questionLanguage, with the word-help language only for
+// a shared script), Hinglish and Roman-letter Hindi as Hindi (answerLanguage); no question: `replyLang`, else the child's
+// reply setting. Anything that is not a word-help language: the app's language.
+export function videoLanguageOf(a: { question?: string | null; replyLang?: string | null; motherTongue?: LangCode | null; child: Pick<FamilyChild, 'language' | 'style'> }): VideoLanguage {
+  const app: VideoLanguage = a.child.language === 'hi' ? 'hi' : 'en';
+  const asked = a.question?.trim() ? a.question : null;
+  const reply = asked ? questionLanguage(asked, settingLang(a.child), a.motherTongue ?? null).lang : (a.replyLang ?? settingLang(a.child));
+  const lang = answerLanguage({ replyLang: reply, language: a.child.language, question: asked });
+  return isLangCode(lang) ? lang : app;
+}
+
+// The languages tried, in order: Hindi, then English; English alone; a regional language (a question asked in it), then
+// the app's (English or Hindi), then English after Hindi. Never a regional language the question was not asked in.
 export function videoLanguages(wanted: VideoLanguage, app: 'en' | 'hi'): VideoLanguage[] {
-  const out: VideoLanguage[] = [wanted];
-  if (wanted !== app) out.push(app);
-  else if (wanted === 'hi') out.push('en');
-  return out;
+  if (wanted === 'en') return ['en'];
+  if (wanted === 'hi') return ['hi', 'en'];
+  return app === 'hi' ? [wanted, 'hi', 'en'] : [wanted, 'en'];
 }
 
 // The answer's videos: the first language with at least MIN_SHOWN picks (cached, else one claimed refresh from the

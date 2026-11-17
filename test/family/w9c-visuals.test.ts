@@ -1,9 +1,11 @@
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 import { createElement as h } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 // @ts-expect-error -- a plain .mjs development script, no types
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
-import { FIGURE_SHAPES, checkBlock, checkStoredBlock, completeResponse, parseBlockLine, parseStoredBlockLine, placeBlock, unfilled, type Block, type Figure, type ImageBlock, type Steps, type Timeline, type Videos } from '@/lib/family/blocks';
+import { FIGURE_SHAPES, checkBlock, checkStoredBlock, completeResponse, parseBlockLine, parseStoredBlockLine, placeBlock, teaches, unfilled, videosLast, type Block, type Figure, type ImageBlock, type Steps, type Timeline, type Videos } from '@/lib/family/blocks';
 import { allowedLicence, pickPhoto, searchCommons } from '@/lib/family/visuals/commons';
 import { fillVisuals, queryKey, type WithDb } from '@/lib/family/visuals/fill';
 import type { FamilyChild } from '@/lib/family/children';
@@ -89,6 +91,42 @@ describe('the checker: figure, steps, timeline, image and videos (docs/39 §3)',
     expect(placed.map((b) => b.type)).toEqual(['figure', 'image', 'steps']);
     expect(placed[1]).toEqual(PHOTO);
     expect(placeBlock(list, checkBlock(TIMELINE) as Block).map((b) => b.type)).toEqual(['figure', 'image', 'steps', 'timeline']);
+  });
+
+  // 17 Nov 2026: at every entry point (a typed question, a chapter or topic, a lab, a homework check, a call) the teaching
+  // comes first and the videos last, and an answer with nothing that teaches shows no videos.
+  const FILLED: Block = { type: 'videos', items: [{ videoId: 'pinnedvid01', title: 'T', channel: 'C', seconds: 60 }] } as Block;
+  const arrive = (events: Block[]) => events.reduce<Block[]>((list, b) => placeBlock(list, b), []);
+  it.each([
+    ['ask (elaboration)', [{ type: 'elaboration' }, { type: 'explanation' }]],
+    ['chapter or topic', [{ type: 'explanation' }, { type: 'key_points' }, { type: 'check' }]],
+    ['lab', [{ type: 'lab' }, { type: 'steps' }]],
+    ['homework check', [{ type: 'steps' }]],
+  ] as const)('%s: a video list the model wrote first, or that arrived before the teaching, is drawn last', (_where, teaching) => {
+    const body = teaching.map((b) => ({ ...b }) as unknown as Block);
+    // The model's unfilled video line first, then the teaching, then the server's filled list.
+    const live = arrive([{ type: 'videos' } as Block, ...body, FILLED]);
+    expect(live.map((b) => b.type)).toEqual([...teaching.map((b) => b.type), 'videos']);
+    // The filled list arriving before a late teaching block (the elaboration's own refill, a last block): still last.
+    const early = arrive([body[0], FILLED, ...body.slice(1)]);
+    expect(early.at(-1)).toBe(FILLED);
+    expect(videosLast(early).at(-1)).toBe(FILLED);
+  });
+
+  it('videos-only is dropped: no teaching block, no videos drawn (sources and a photograph teach nothing alone)', () => {
+    expect(teaches([FILLED])).toBe(false);
+    expect(teaches([{ type: 'sources' }, PHOTO as Block, FILLED])).toBe(false);
+    expect(teaches([{ type: 'explanation' } as Block])).toBe(true);
+    expect(videosLast([FILLED])).toEqual([]);
+    expect(videosLast([{ type: 'sources' } as Block, FILLED]).map((b) => b.type)).toEqual(['sources']);
+    expect(videosLast(arrive([FILLED, { type: 'steps' } as Block])).map((b) => b.type)).toEqual(['steps', 'videos']);
+  });
+
+  it('a call orders its blocks the same way (useCall: placeBlock, then videosLast)', () => {
+    const src = readFileSync(resolve(__dirname, '../../src/components/family/call/useCall.ts'), 'utf8');
+    expect(src).toMatch(/setBlocks\(\(b\) => placeBlock\(b, e\.block\)\)/);
+    expect(src).toMatch(/videosLast\(blocks\)/);
+    expect(src).toMatch(/blocks: shownBlocks/);
   });
 });
 
@@ -239,6 +277,18 @@ describe('fillVisuals', () => {
     };
     const out = await fillVisuals(broken, answerBlocks(), { chapterKey: TOPIC, lang: 'en' });
     expect(out.map((b) => b.type)).toEqual(['explanation', 'figure']);
+  });
+
+  it('videos-only: with no teaching block, no videos are looked up or kept, whatever the model wrote', async () => {
+    const line = { subject: 'science' as const, key: TOPIC, chapterEn: 'Nutrition in plants', topicEn: 'Cells', title: 'Cells' };
+    const child = { childId: 'f9c00000-0000-4000-8000-0000000000c1', classLevel: 7, language: 'en' } as unknown as FamilyChild;
+    const emitted: Block[] = [];
+    const out = await fillVisuals(asFamily, [checkBlock({ type: 'videos' }) as Block], { chapterKey: TOPIC, lang: 'en', videos: { line, child, accountId: ACCOUNT, language: 'en' }, emit: (b) => emitted.push(b) });
+    expect(out).toEqual([]);
+    expect(emitted).toEqual([]);
+    // The model wrote its video line first: the filled list follows the teaching.
+    const first = await fillVisuals(asFamily, [checkBlock({ type: 'videos' }), checkBlock({ type: 'explanation', title: 'Cells', idea: 'An idea.', example: 'An example.', steps: ['One.', 'Two.'], terms: [] })] as Block[], { chapterKey: TOPIC, lang: 'en' });
+    expect(first.map((b) => b.type)).toEqual(['explanation', 'videos']);
   });
 
   it('an answer without a photograph or videos is returned as it is, with no database call', async () => {

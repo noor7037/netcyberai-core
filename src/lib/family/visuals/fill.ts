@@ -1,4 +1,4 @@
-import { FILLED_TYPES, PHOTO_HOST, checkStoredBlock, type Block, type ImagePhoto, type ImageQuery, type VideoItem, type Videos } from '@/lib/family/blocks';
+import { FILLED_TYPES, PHOTO_HOST, checkStoredBlock, teaches, type Block, type ImagePhoto, type ImageQuery, type VideoItem, type Videos } from '@/lib/family/blocks';
 import { setting } from '@/lib/family/learning';
 import { searchCommons, type CommonsPhoto } from './commons';
 import { searchOpenverse } from './openverse';
@@ -111,8 +111,10 @@ export async function fillVisuals(withDb: WithDb, original: Block[], opts: FillO
   }
   const blocks = withYoungPhoto(written, opts.young, opts.lang);
   const image = blocks.find((b): b is ImageQuery & Block => b.type === 'image' && 'query' in b);
-  const asked = blocks.some((b) => b.type === 'videos');
-  const follow = !!opts.videos;
+  // Videos only under an answer that teaches (17 Nov 2026): with no teaching block, none is looked up, kept or sent.
+  const teach = teaches(blocks);
+  const asked = teach && blocks.some((b) => b.type === 'videos');
+  const follow = teach && !!opts.videos;
   if (!blocks.some((b) => FILLED_TYPES.includes(b.type)) && !follow) return written;
   try {
     const language = opts.lang === 'hi' ? 'hi' : 'en';
@@ -121,12 +123,12 @@ export async function fillVisuals(withDb: WithDb, original: Block[], opts: FillO
     const topic = asked && !follow && opts.chapterKey && TOPIC.test(opts.chapterKey) ? opts.chapterKey : null;
     const first = await withDb(async (db) => ({
       cached: key ? await readImagePick(db, key) : null,
-      on: opts.videos ? await familyModuleOn(db, 'videos', opts.videos.accountId) : false,
+      on: follow && opts.videos ? await familyModuleOn(db, 'videos', opts.videos.accountId) : false,
       items: topic ? await readVideoItems(db, topic, language) : [],
     }));
     // The answer's topic: its picks in the child's language, else the fallback (a search from the day's quota when due).
     // The fill's `withDb` opens the family's own transaction client, which is what the finder's provider step takes.
-    const answered: AnswerVideos | null = opts.videos && first.on ? await answerVideos(withDb as unknown as Parameters<typeof answerVideos>[0], opts.videos).catch(() => null) : null;
+    const answered: AnswerVideos | null = follow && opts.videos && first.on ? await answerVideos(withDb as unknown as Parameters<typeof answerVideos>[0], opts.videos).catch(() => null) : null;
     let photo = first.cached;
     if (image && key && !photo) {
       photo = await (opts.search ?? searchPhoto)(image.query).catch(() => null);
@@ -141,12 +143,11 @@ export async function fillVisuals(withDb: WithDb, original: Block[], opts: FillO
     for (const b of blocks) {
       if (b.type === 'image') {
         if (b === image && filledImage) out.push({ ...filledImage, ...(b.id ? { id: b.id } : {}) });
-      } else if (b.type === 'videos') {
-        if (filledVideos && !out.some((x) => x.type === 'videos')) out.push({ ...filledVideos, ...(b.id ? { id: b.id } : {}) });
-      } else out.push(b);
+      } else if (b.type !== 'videos') out.push(b);
     }
-    // The answer did not ask for videos: the topic's follow the last block.
-    if (!asked && filledVideos) out.push(filledVideos);
+    // The videos follow the last block, wherever the model wrote its video line (keeping that line's id).
+    const wrote = blocks.find((b) => b.type === 'videos');
+    if (filledVideos) out.push({ ...filledVideos, ...(wrote?.id ? { id: wrote.id } : {}) });
     if (filledImage) opts.emit?.(filledImage);
     if (filledVideos) opts.emit?.(filledVideos);
     return out;

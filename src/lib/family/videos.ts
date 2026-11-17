@@ -1,7 +1,7 @@
 import type { VideoCandidate, VideoChannel, VideoPlan } from '@/lib/ai/platform';
 import { VIDEO_REVIEW_MIN, videoReviewHides } from '@/lib/ai/video-review-rule';
 import type { FamilyChild } from './children';
-import { languageInfo, type LangCode } from './languages';
+import { isLangCode, languageInfo, type LangCode } from './languages';
 import type { Line } from './resolver';
 
 // The video finder's ranking and its cache (docs/family-app/02 §5, 03 §8; M2-5, C279). Ranked in code on what the
@@ -91,11 +91,18 @@ const SCRIPT: Partial<Record<VideoLanguage, RegExp>> = {
   bn: /[\u0980-\u09FF]/, as: /[\u0980-\u09FF]/, te: /[\u0C00-\u0C7F]/, ta: /[\u0B80-\u0BFF]/, gu: /[\u0A80-\u0AFF]/, kn: /[\u0C80-\u0CFF]/,
   ml: /[\u0D00-\u0D7F]/, or: /[\u0B00-\u0B7F]/, pa: /[\u0A00-\u0A7F]/, ur: /[\u0600-\u06FF]/, mr: /[\u0900-\u097F]/,
 };
-// Whether a candidate is in a regional language: its audio or default language says so, or (with none given) its title
-// is in that language's script (Marathi also names itself, as Devanagari alone may be Hindi). English and Hindi keep
-// the ranking's own preference and filter nothing.
-export function inLanguage(c: Pick<VideoCandidate, 'language' | 'title'>, language: VideoLanguage): boolean {
-  if (language === 'en' || language === 'hi') return true;
+// A script no English or Hindi video is titled in: Bengali to Malayalam's blocks (and Sinhala), and Arabic.
+const OTHER_SCRIPT = /[\u0980-\u0DFF\u0600-\u06FF\u0750-\u077F]/;
+// Whether a candidate is in the language searched. A regional language: its audio or default language says so, or (with
+// none given) its title is in that language's script (Marathi also names itself, as Devanagari alone may be Hindi).
+// English and Hindi (17 Nov 2026): either is kept, but never a video whose audio is another word-help language, nor one
+// whose title or channel is in another script (a Telugu or Tamil video found by a Hindi search).
+export function inLanguage(c: Pick<VideoCandidate, 'language' | 'title'> & { channelTitle?: string }, language: VideoLanguage): boolean {
+  if (language === 'en' || language === 'hi') {
+    const said = c.language?.toLowerCase().split(/[-_]/)[0] ?? '';
+    if (said && said !== 'en' && said !== 'hi' && isLangCode(said)) return false;
+    return !OTHER_SCRIPT.test(c.title) && !OTHER_SCRIPT.test(c.channelTitle ?? '');
+  }
   if (c.language) return c.language.startsWith(language);
   if (language === 'mr') return /marathi|मराठी/i.test(c.title);
   return SCRIPT[language]?.test(c.title) ?? false;
@@ -193,6 +200,10 @@ export const reviewHides = videoReviewHides;
 // `checkDue`: served picks not checked against YouTube for CHECK_DAYS (checked lightly, when served, never in bulk).
 export const CHECK_DAYS = 7;
 export type CachedPicks = { picks: VideoPick[]; refreshDue: boolean; staleAuto: number; checkDue: string[] };
+// A cached automatic English or Hindi pick is served only while its title and channel pass inLanguage (one saved before
+// that check was strict is never shown); a person's pinned pick, or a regional language's, as it is.
+export const keptFor = (r: { title?: unknown; channel_title?: unknown }, language: VideoLanguage): boolean =>
+  (language !== 'en' && language !== 'hi') || inLanguage({ language: null, title: String(r.title ?? ''), channelTitle: String(r.channel_title ?? '') }, language);
 export async function readPicks(db: Db, topicKey: string, language: VideoLanguage, days: number): Promise<CachedPicks> {
   const { rows } = await db.query(
     `select video_id, title, channel_title, duration_s, start_s, status, (fetched_at >= now() - make_interval(days => $3::int)) as fresh,
@@ -203,7 +214,7 @@ export async function readPicks(db: Db, topicKey: string, language: VideoLanguag
       order by (status = 'pinned') desc, score desc, video_id`,
     [topicKey, language, Math.max(0, Math.floor(days)), CHECK_DAYS]
   );
-  const shown = rows.filter((r) => r.status === 'pinned' || r.fresh === true);
+  const shown = rows.filter((r) => r.status === 'pinned' || (r.fresh === true && keptFor(r, language)));
   const pinned = rows.filter((r) => r.status === 'pinned').length;
   const freshAuto = rows.filter((r) => r.status === 'auto' && r.fresh === true).length;
   return {

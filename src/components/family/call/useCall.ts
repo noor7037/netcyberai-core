@@ -1,8 +1,8 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { fill, type Words } from '@/lib/family/fill';
-import { placeBlock } from '@/lib/family/blocks';
+import { placeBlock, videosLast } from '@/lib/family/blocks';
 import type { PublicBlock, ResolverEvent } from '@/lib/family/resolver';
 import { avatarState, setAvatarLevel, setAvatarMood } from '@/lib/family/avatar-state';
 import { heardNothing } from '@/lib/family/call-heard';
@@ -624,5 +624,7 @@ export function useCall({ w, subject, lang, secondsLeft, tutorKey = null }: { w:
 
   // W18-P1: the sentence being spoken, by its place in the turn's say lines; the board draws up to the step it reaches.
   const sentence = current >= 0 ? current : undefined;
-  return { status, phase, heard, lines, current, sentence, blocks, refusal, problem, voice, ack, muted, loud, recording, stopped, elapsed, levelOf, end, again, wakeUp, toggleMute, toggleLoud, talk, typed };
+  // The same order as the typed answer (placeBlock, videosLast): the teaching first, the videos last, none without teaching.
+  const shownBlocks = useMemo(() => videosLast(blocks), [blocks]);
+  return { status, phase, heard, lines, current, sentence, blocks: shownBlocks, refusal, problem, voice, ack, muted, loud, recording, stopped, elapsed, levelOf, end, again, wakeUp, toggleMute, toggleLoud, talk, typed };
 }

@@ -1038,17 +1038,33 @@ function videosBlock(o: Record<string, unknown>, stored: boolean): Videos | null
 // A photograph or video list still waiting for the server (as the model wrote it): never drawn.
 export const unfilled = (b: { type: string }): boolean => (b.type === 'image' && !('url' in b)) || (b.type === 'videos' && !Array.isArray((b as { items?: unknown }).items));
 
-// A block arriving on the phone: a filled photograph or video list takes the place of the unfilled one the model wrote
-// (so it shows where the answer put it); anything else is added at the end. C526: a filled photograph the model never
-// asked for (the youngest children's, visuals/young.ts) goes right after the board, as it is kept.
+// The blocks that teach nothing on their own: the videos, the sources and a photograph. An answer with none of the others
+// (an explanation, steps, an elaboration, a check...) is not an answer: its videos are never shown (Noor, 17 Nov 2026).
+const NOT_TEACHING: ReadonlySet<string> = new Set(['videos', 'sources', 'image']);
+export const teaches = (list: readonly { type: string }[]): boolean => list.some((b) => !NOT_TEACHING.has(b.type) && !unfilled(b));
+// Every entry point's order (ask, a chapter or topic, a book, a lab, a homework check, a call): the teaching first, the
+// videos last; and no videos at all while nothing teaches.
+export function videosLast<B extends { type: string }>(list: readonly B[]): B[] {
+  const videos = list.filter((b) => b.type === 'videos');
+  if (videos.length === 0) return [...list];
+  const rest = list.filter((b) => b.type !== 'videos');
+  return teaches(rest) ? [...rest, ...videos] : rest;
+}
+
+// A block arriving on the phone: a filled photograph takes the place of the unfilled one the model wrote (so it shows
+// where the answer put it); anything else is added at the end, and the videos always stay last (videosLast: a video list
+// the model wrote first, or one that arrives before the teaching, never leads). C526: a filled photograph the model
+// never asked for (the youngest children's, visuals/young.ts) goes right after the board, as it is kept.
 export function placeBlock<B extends { type: string }>(list: readonly B[], b: B): B[] {
   // The elaboration the server has filled with its step pictures takes the place of the one already shown.
   if (b.type === 'elaboration' && list.some((x) => x.type === 'elaboration')) return list.map((x) => (x.type === 'elaboration' ? b : x));
   const at = unfilled(b) ? -1 : list.findIndex((x) => x.type === b.type && unfilled(x));
-  if (at >= 0) return list.map((x, i) => (i === at ? b : x));
+  if (at >= 0) return lastVideos(list.map((x, i) => (i === at ? b : x)));
   const board = b.type === 'image' && !unfilled(b) ? list.findIndex((x) => x.type === 'board') : -1;
-  return board >= 0 ? [...list.slice(0, board + 1), b, ...list.slice(board + 1)] : [...list, b];
+  return lastVideos(board >= 0 ? [...list.slice(0, board + 1), b, ...list.slice(board + 1)] : [...list, b]);
 }
+// The list kept on the phone keeps a video list that came early (it is drawn once the teaching arrives: videosLast).
+const lastVideos = <B extends { type: string }>(list: B[]): B[] => [...list.filter((x) => x.type !== 'videos'), ...list.filter((x) => x.type === 'videos')];
 
 // ---- slider, 3D model and chapter test (S5, C378) ----
 
