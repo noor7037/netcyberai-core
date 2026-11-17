@@ -111,15 +111,17 @@ describe('the gates', () => {
     const c = await res.json();
     expect(c.track).toBe('b');
     expect(c.units.map((u: { key: string }) => u.key)).toEqual(['b.u01', 'b.u02']);
-    expect(c.units[0].lessons.map((l: { state: string }) => l.state)).toEqual(['open', 'locked', 'locked', 'locked', 'locked']);
+    expect(c.units[0].lessons.map((l: { state: string }) => l.state)).toEqual(['open', 'open', 'open', 'open', 'open']);
+    expect(c.units[1].lessons.every((l: { state: string }) => l.state === 'locked')).toBe(true);
     expect(c.today).toEqual({ newLessons: 0, perDay: 2 });
     expect(c.assessments[0]).toMatchObject({ kind: 'day0', open: true, result: null });
   });
 });
 
 describe('lessons', () => {
-  it('opens only in order; the phone never gets an answer', async () => {
-    expect((await lessonGet('b.u01.l2')).status).toBe(403);
+  it('opens the whole unit, not the next unit; the phone never gets an answer', async () => {
+    expect((await lessonGet('b.u01.l2')).status).toBe(200);
+    expect((await lessonGet('b.u02.l1')).status).toBe(403);
     const res = await lessonGet('b.u01.l1');
     expect(res.status).toBe(200);
     const body = await res.json();
@@ -140,11 +142,10 @@ describe('lessons', () => {
     expect(words).toBe(6);
   });
 
-  it('the day allows two new lessons; the third rests until tomorrow', async () => {
+  it('the day limit is soft: a third new lesson still opens', async () => {
     const l2 = await (await lessonPost('b.u01.l2', { answers: rightAnswers('b.u01.l2') })).json();
-    expect(l2).toMatchObject({ stars: 3, passed: true, next: { key: 'b.u01.l3', state: 'rest' } });
-    expect((await lessonGet('b.u01.l3')).status).toBe(403);
-    expect(await (await lessonGet('b.u01.l3')).json()).toEqual({ error: 'rest' });
+    expect(l2).toMatchObject({ stars: 3, passed: true, next: { key: 'b.u01.l3', state: 'open' } });
+    expect((await lessonGet('b.u01.l3')).status).toBe(200);
     // Done lessons stay open to revise.
     expect((await lessonGet('b.u01.l1')).status).toBe(200);
     // The next day.
@@ -215,9 +216,14 @@ describe('the rules', () => {
   });
   it('locks, placement and assessments', () => {
     const s = lessonStates('b', new Set(['b.u01.l1']), 1, 0, 2);
-    expect([s['b.u01.l1'], s['b.u01.l2'], s['b.u01.l3']]).toEqual(['done', 'open', 'locked']);
+    expect([s['b.u01.l1'], s['b.u01.l2'], s['b.u01.l3']]).toEqual(['done', 'open', 'open']);
+    const all = new Set(['l1', 'l2', 'l3', 'l4', 'l5'].map((l) => `b.u01.${l}`));
+    const nu = lessonStates('b', all, 1, 0, 2);
+    expect(['l1', 'l5'].map((l) => nu[`b.u02.${l}`])).toEqual(['open', 'open']);
+    expect(nu['b.u03.l1']).toBe('locked');
+    expect(lessonStates('b', new Set(['b.u01.l1']), 1, 0, 2)['b.u02.l1']).toBe('locked');
     const placed = lessonStates('b', new Set(), 4, 0, 2);
-    expect([placed['b.u03.l5'], placed['b.u04.l1'], placed['b.u04.l2']]).toEqual(['placed', 'open', 'locked']);
+    expect([placed['b.u03.l5'], placed['b.u04.l1'], placed['b.u04.l2']]).toEqual(['placed', 'open', 'open']);
     expect([placedUnitFor('b', 85), placedUnitFor('b', 65), placedUnitFor('b', 10), placedUnitFor('a', 100)]).toEqual([7, 4, 1, 1]);
     expect(assessmentOpen('b', 'day45', new Set(['b.u09.l5']))).toBe(true);
     expect(assessmentOpen('b', 'day0', new Set(['b.u01.l1']))).toBe(false);

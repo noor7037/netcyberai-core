@@ -74,7 +74,7 @@ export function EnglishCourse({ w, lang }: { w: Words; lang: 'en' | 'hi' }) {
   const t = (en: string, hi: string) => (lang === 'hi' ? hi : en);
   const current = data.units.find((u) => u.lessons.some((l) => l.state === 'open' || l.state === 'rest')) ?? data.units[data.units.length - 1];
   const shown = openUnit ?? current?.key;
-  const restToday = data.units.some((u) => u.lessons.some((l) => l.state === 'rest'));
+  const restToday = data.today.newLessons >= data.today.perDay;
   const checks = data.assessments.filter((a) => a.open || a.result);
 
   return (
