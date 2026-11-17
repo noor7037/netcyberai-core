@@ -337,18 +337,14 @@ describe('the composer and the studio', () => {
     w, id: 'q', value: '', onChange: () => undefined, onSend: () => undefined, canSend: false, pinned: 'dock' as const, files: true, homework: false, attached: [],
     onAttach: () => undefined, onCheck: () => undefined, checking: false, onRemove: () => undefined, fileError: null, voice: null, historyOpen: false, historyFor: 'f', onHistory: () => undefined,
   };
-  const withSketch = { ...props, onSketch: async () => null };
-  it('shows a Draw button (44 px) when photos are allowed and the window can send a drawing', () => {
-    const out = renderToStaticMarkup(h(Composer, withSketch));
-    expect(out).toMatch(/data-sketch-open[^>]*class="[^"]*min-h-\[44px\]/);
-    expect(out).toContain('>Draw<');
+  // 17 Nov 2026 (founder): the Ask bar has no Draw button; drawing lives in the Draw tab.
+  it('the Ask bar is attach, the question, the microphone, Call and Conversation: no Draw button', () => {
+    const out = renderToStaticMarkup(h(Composer, { ...props, voice: { secondsLeft: 60 }, call: { href: '/family/call', label: 'Call' } }));
+    expect(out).not.toContain('data-sketch-open');
+    expect(out).not.toContain('>Draw<');
     expect(out).not.toContain('data-sketch-pad');
-  });
-  it("shows no Draw button without the parent's photo consent, once a file is attached, or when the chat is locked", () => {
-    expect(renderToStaticMarkup(h(Composer, { ...withSketch, files: false }))).not.toContain('data-sketch-open');
-    expect(renderToStaticMarkup(h(Composer, { ...withSketch, attached: [{ key: 'a', name: 'a.png', mime: 'image/png' as const, state: 'ready' as const, id: 'x' }] }))).not.toContain('data-sketch-open');
-    expect(renderToStaticMarkup(h(Composer, { ...withSketch, locked: true }))).not.toContain('data-sketch-open');
-    expect(renderToStaticMarkup(h(Composer, props))).not.toContain('data-sketch-open');
+    for (const part of ['data-tutor-attach', '<textarea', 'data-voice-input', 'data-tutor-call-link', 'data-tutor-history']) expect(out).toContain(part);
+    expect(SRC('components/family/tutor/Composer.tsx')).not.toMatch(/onSketch|SketchPad|import\('\.\.\/draw\/Studio'\)/);
   });
   // C513: the art table's tool blocks are 48 px.
   it('the tool bar has every tool and panel, each a labelled 48 px button saying whether it is on', () => {
@@ -369,7 +365,7 @@ describe('the composer and the studio', () => {
   });
   // C513: the studio lives with the Draw tab and reads a stylus's pressure (draw-brush.ts usablePressure).
   it('the studio: a lazy import, full screen, safe-area aware, touch-action none, pointer events, no confirm() and no library', () => {
-    expect(SRC('components/family/tutor/Composer.tsx')).toMatch(/dynamic\(\(\) => import\('\.\.\/draw\/Studio'\)/);
+    expect(SRC('components/family/draw/DrawHome.tsx')).toMatch(/dynamic\(\(\) => import\('\.\/Studio'\)/);
     const pad = SRC('components/family/draw/Studio.tsx');
     expect(pad).toMatch(/fixed inset-0 z-50/);
     expect(pad).toContain('safe-area-inset-top');

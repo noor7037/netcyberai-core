@@ -10,6 +10,8 @@ import { fill, type Words } from '@/lib/family/fill';
 import { isSubject, type Subject } from '@/lib/family/subjects';
 import { attachPlan, preparePhoto } from '@/lib/family/photo-shrink';
 import { TUTOR_FILE_MAX_BYTES, TUTOR_FILES_PER_TURN, TUTOR_TEXT_MAX, TUTOR_TEXT_MIN, sniffTutorFile, type FeedTurn, type TutorFile } from '@/lib/family/tutor-shape';
+import { boxFarFromEnd, conversationHref, indiaWhen, newestBelow, qaGroups, questionChips, type QuestionChip } from '@/lib/family/tutor-feed-view';
+import { ConversationList } from './ConversationList';
 import { CitationChip } from '../blocks/CitationChip';
 import { citationOf } from '@/lib/family/citation';
 import { AnswerBlock, DirectAnswerCard, UnderstandView, type TutorAsk, type UnderstandInput } from '../UnderstandView';
@@ -34,9 +36,13 @@ const TeachMe = dynamic(() => import('../voice/AnswerSpeaker').then((m) => m.Tea
 // scroll. W10-4 (C413; docs/39 §5 "Chat, final rule"): above them, the subject's feed, like the chat products: every
 // question and answer of the subject in order, newest at the bottom, scrolled to the newest on opening, then each new
 // question and its answer drawn as it streams (through Understand: the same consent, module switch, safety check and
-// daily cap). No list of chats: the server keeps the subject's last 30 child turns and a question continues the
+// daily cap). The list of chats is the history sheet (Conversation, below); the server keeps the subject's last 30 child turns and a question continues the
 // subject's newest open chat. When the server decides a question belongs to another subject, the feed says so ("Moved
 // to Science") and, on Study (`follow`), the subject tab follows it.
+// 17 Nov 2026 (founder): one question and its answer are one bounded card, the answer opened by its "Question #N" chip
+// (N counts the feed, the oldest #1), each turn with its time; a sticky header names the subject and, in a chapter, the
+// place; under it the navigator strip of the last 30 questions (tap one to jump to it); a "Jump to latest" arrow while
+// the newest answer is out of sight below; and Conversation in the composer lists every conversation of this child.
 // A file goes straight to the private store (the server gives a link for it, then reads and checks what arrived); it is
 // shown only through the app's own address, which answers with a link that works for one minute.
 
@@ -85,7 +91,7 @@ type Props = {
 type Attached = ComposerFile;
 // A question asked on this screen, drawn live below the feed read from the server. `moved`: the subject the server kept
 // it in, when not the tab's; `chatId`: the chat it was kept in.
-export type FeedAsk = { n: number; subject: Subject; text: string; input: UnderstandInput; moved: Subject | null; chatId: string | null };
+export type FeedAsk = { n: number; subject: Subject; text: string; input: UnderstandInput; moved: Subject | null; chatId: string | null; at?: string };
 
 const postJson = (url: string, body: unknown) => fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin', body: JSON.stringify(body) }).catch(() => null);
 const errorOf = async (res: Response | null) => (res ? String(((await res.json().catch(() => ({}))) as { error?: unknown }).error ?? 'network') : 'network');
@@ -167,7 +173,13 @@ export function followHref(ask: FeedAsk | undefined, follow: boolean, tutorKey: 
 
 export function TutorWindow({ w, subject, tone, voice = null, files = false, homework = false, reader = null, idPrefix = 'fam-tutor', pinned = 'dock', follow = false, pageScroll = false, tutor: chosen = null, call = null, serverVoice = false, about = null, where: placed = null, ask = null, sketchFirst = null, children }: Props) {
   const router = useRouter();
-  const [open, setOpen] = useState(true);
+  // The conversation history sheet (Conversation in the composer).
+  const [history, setHistory] = useState(false);
+  // The question the navigator jumped to, lit for a moment; whether the newest answer is out of sight below.
+  const [lit, setLit] = useState<number | null>(null);
+  const [jump, setJump] = useState(false);
+  const [lang, setLang] = useState<'en' | 'hi'>('en');
+  const root = useRef<HTMLElement>(null);
   const [text, setText] = useState('');
   const [asks, setAsks] = useState<FeedAsk[]>([]);
   const [attached, setAttached] = useState<Attached[]>([]);
@@ -179,7 +191,7 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
   const [turnsError, setTurnsError] = useState(false);
   const feed = useRef<HTMLDivElement>(null);
   const uid = useId().replace(/:/g, '');
-  const ids = { title: `${idPrefix}-${uid}-title`, feed: `${idPrefix}-${uid}-feed`, q: `${idPrefix}-${uid}-q` };
+  const ids = { title: `${idPrefix}-${uid}-title`, feed: `${idPrefix}-${uid}-feed`, q: `${idPrefix}-${uid}-q`, history: `${idPrefix}-${uid}-history` };
   const subjectName = (s: string) => w[`fam.subject.${s}`] ?? s;
   // W23-C: where it was opened; on Study the subject's own page. The old showcase reader's drawer names its chapter in `reader`.
   const where: TutorWhere | null = placed ?? (reader ? null : { kind: 'study_subject', key: subject });
@@ -280,12 +292,11 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
   // A question continues the subject's newest open chat (the server finds it; the first answer opens one).
   const submit = (asked: string, tutor: TutorAsk) => {
     const n = (asks.at(-1)?.n ?? 0) + 1;
-    setAsks((list) => [...list, { n, subject, text: asked, input: { kind: 'question', text: asked, tutor }, moved: null, chatId: null }]);
+    setAsks((list) => [...list, { n, subject, text: asked, input: { kind: 'question', text: asked, tutor }, moved: null, chatId: null, at: new Date().toISOString() }]);
     setText('');
     setAttached([]);
     setChecking(false);
     setFileError(null);
-    setOpen(true);
     // The new question at the top of the feed box, its answer drawing below it.
     requestAnimationFrame(() => document.getElementById(`${ids.feed}-ask-${n}`)?.scrollIntoView({ block: 'start', behavior: stillMotion() ? 'auto' : 'smooth' }));
   };
@@ -343,13 +354,80 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
   const noAnswer = turns ? unansweredIds(turns) : new Set<string>();
 
   const shown = (turns?.length ?? 0) + asks.length > 0 || turnsError;
-  // W19-A: the window closed or left, the tutor rests.
+  const groups = turns ? qaGroups(turns) : [];
+  const chips = questionChips(groups, asks);
+  // The place the header names: in a chapter (or the reader) its chapter and topic line; on Study the subject alone.
+  const place = reader?.section ?? (scope ? about : null);
+  // This feed's own address, so the history marks it and a tap on it only closes the list.
+  const here = conversationHref({ subject, chapterKey: scope });
+
   useEffect(() => {
-    if (!open) setAvatarMood('idle');
-  }, [open]);
+    const l = root.current?.closest('[lang]')?.getAttribute('lang');
+    setLang(l === 'hi' ? 'hi' : 'en');
+  }, []);
+  // The tutor rests when the window leaves.
   useEffect(() => () => setAvatarMood('idle'), []);
+
+  // "Jump to latest": shown while the newest question-and-answer is out of sight below (the page on Study: above the
+  // composer; the feed's own box in a drawer), hidden at the end.
+  useEffect(() => {
+    const box = feed.current;
+    if (!box || !shown) return setJump(false);
+    let frame = 0;
+    const check = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const all = box.querySelectorAll<HTMLElement>('[data-qa]');
+        const last = all[all.length - 1];
+        if (!last) return setJump(false);
+        if (!pageScroll) return setJump(boxFarFromEnd(box.scrollHeight, box.scrollTop, box.clientHeight));
+        const dock = root.current?.querySelector<HTMLElement>('[data-tutor-composer]');
+        const visibleBottom = dock ? dock.getBoundingClientRect().top : window.innerHeight;
+        setJump(newestBelow(last.getBoundingClientRect().bottom, visibleBottom));
+      });
+    };
+    const scroller: Window | HTMLElement = pageScroll ? window : box;
+    scroller.addEventListener('scroll', check, { passive: true });
+    window.addEventListener('resize', check);
+    const grows = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(check);
+    grows?.observe(box);
+    check();
+    return () => {
+      cancelAnimationFrame(frame);
+      scroller.removeEventListener('scroll', check);
+      window.removeEventListener('resize', check);
+      grows?.disconnect();
+    };
+  }, [pageScroll, shown]);
+
+  const closeHistory = useCallback(() => {
+    setHistory(false);
+    requestAnimationFrame(() => root.current?.querySelector<HTMLElement>('[data-tutor-history]')?.focus());
+  }, []);
+  const motion = (): ScrollBehavior => (stillMotion() ? 'auto' : 'smooth');
+  const toLatest = () => {
+    const box = feed.current;
+    const all = box?.querySelectorAll<HTMLElement>('[data-qa]');
+    const last = all?.[all.length - 1];
+    if (pageScroll) last?.scrollIntoView({ block: 'end', behavior: motion() });
+    else box?.scrollTo({ top: box.scrollHeight, behavior: motion() });
+  };
+  // The navigator: to that question's card, lit for a moment.
+  const lightTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const toQuestion = (n: number) => {
+    const el = feed.current?.querySelector<HTMLElement>(`[data-qa="${n}"]`);
+    if (!el) return;
+    el.scrollIntoView({ block: 'start', behavior: motion() });
+    el.focus({ preventScroll: true });
+    setLit(n);
+    if (lightTimer.current) clearTimeout(lightTimer.current);
+    lightTimer.current = setTimeout(() => setLit(null), 2200);
+  };
+  useEffect(() => () => void (lightTimer.current && clearTimeout(lightTimer.current)), []);
+
+  const card = (n: number) => `fam-qa flex scroll-mb-[calc(var(--fam-bottom,0px)+11rem)] scroll-mt-32 flex-col gap-3 rounded-3xl bg-white p-3 outline-none sm:p-4 ${lit === n ? 'ring-2 ring-saffron-deep' : 'ring-1 ring-ink/10'}`;
   return (
-    <section data-tutor-window data-subject={subject} data-listed={subject} aria-labelledby={ids.title} className="flex flex-col gap-4">
+    <section ref={root} data-tutor-window data-subject={subject} data-listed={subject} aria-labelledby={ids.title} className="flex flex-col gap-4">
       <h2 id={ids.title} className="sr-only">
         {w['fam.tutor.title']}
       </h2>
@@ -362,16 +440,6 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
           </Link>
         </p>
       )}
-      {about && !reader && (
-        <p data-tutor-context className="self-start rounded-full bg-white px-4 py-2 text-sm font-semibold text-ink ring-1 ring-ink/10">
-          {fill(w['fam.tutor.doubtAbout'], { section: about })}
-        </p>
-      )}
-      {reader && (
-        <p data-tutor-context className="self-start rounded-full bg-white px-4 py-2 text-sm font-semibold text-ink ring-1 ring-ink/10">
-          {fill(w['fam.tutor.doubtAbout'], { section: reader.section })}
-        </p>
-      )}
       <div
         id={ids.feed}
         ref={feed}
@@ -379,43 +447,67 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
         role="log"
         aria-label={fill(w['fam.chat.feed'], { subject: subjectName(subject) })}
         aria-busy={turns === null && !turnsError}
-        className={`fam-feed relative flex-col gap-4 scroll-mb-[calc(var(--fam-bottom,0px)+9rem)] ${pageScroll ? '' : 'max-h-[70vh] overflow-y-auto overscroll-contain'} ${open && shown ? 'flex' : 'hidden'}`}
+        className={`fam-feed relative flex-col gap-4 scroll-mb-[calc(var(--fam-bottom,0px)+9rem)] ${pageScroll ? '' : 'max-h-[70vh] overflow-y-auto overscroll-contain'} ${shown || place ? 'flex' : 'hidden'}`}
       >
+        <div data-chat-header className={`sticky z-10 -mx-1 flex flex-col gap-2 bg-off-white px-1 pb-2 pt-1 ${pageScroll ? 'top-[var(--fam-top,0px)]' : 'top-0'}`}>
+          <p className="flex min-w-0 flex-wrap items-baseline gap-x-2 text-sm font-extrabold text-ink">
+            <span data-chat-subject>{subjectName(subject)}</span>
+            {place && (
+              <>
+                <span aria-hidden="true">·</span>
+                <span data-tutor-context className="min-w-0 font-semibold">
+                  {place}
+                </span>
+              </>
+            )}
+          </p>
+          {chips.length > 0 && <QuestionNavigator w={w} chips={chips} lit={lit} onGo={toQuestion} />}
+        </div>
         {turnsError && (
           <p role="status" className="fam-surface bg-white p-4 text-sm text-ink">
             {w['fam.err.network']}
           </p>
         )}
-        {turns && turns.length > 0 && (
+        {groups.length > 0 && (
           <>
             <p data-feed-kept className="text-center text-xs font-semibold text-ink">
               {w['fam.chat.kept']}
             </p>
             <ol data-tutor-turns className="flex flex-col gap-4">
-              {turns.map((t) => (
-                <li key={t.id} data-turn={t.role} data-chat={t.chatId} className="flex flex-col">
-                  {t.role === 'child' ? (
-                    <>
-                      <Question w={w} text={t.text} lang={t.lang} fromReader={!!t.chapterKey} files={t.files} />
-                      {noAnswer.has(t.id) && <NoAnswerYet w={w} id={t.id} onTry={() => tryAgain(t)} />}
-                    </>
-                  ) : <KeptAnswer b={t.blocks} w={w} tone={tone} lang={t.lang} speak={{ id: t.id, serverVoice }} tutorKey={chosen?.key ?? null} subject={subject} />}
+              {groups.map((g) => (
+                <li key={g.key} data-qa={g.n} data-chat={g.chatId} tabIndex={-1} className={card(g.n)}>
+                  {g.ask && (
+                    <div data-turn="child" className="flex flex-col">
+                      <Question w={w} text={g.ask.text} lang={g.ask.lang} fromReader={!!g.ask.chapterKey} files={g.ask.files} at={g.ask.at} uiLang={lang} />
+                      {noAnswer.has(g.ask.id) && <NoAnswerYet w={w} id={g.ask.id} onTry={() => g.ask && tryAgain(g.ask)} />}
+                    </div>
+                  )}
+                  {g.answers.map((t) => (
+                    <div key={t.id} data-turn="tutor" className="flex flex-col gap-2">
+                      <ReplyHead w={w} n={g.n} at={t.at} uiLang={lang} />
+                      <KeptAnswer b={t.blocks} w={w} tone={tone} lang={t.lang} speak={{ id: t.id, serverVoice }} tutorKey={chosen?.key ?? null} subject={subject} />
+                    </div>
+                  ))}
                 </li>
               ))}
             </ol>
           </>
         )}
-        {asks.map((a) => (
-          <div key={a.n} id={`${ids.feed}-ask-${a.n}`} data-tutor-ask={a.n} className="flex scroll-mt-6 flex-col gap-3">
-            <Question w={w} text={a.text} />
-            {a.moved && (
-              <p role="status" data-feed-moved={a.moved} className="fam-acc-in self-center rounded-full bg-emerald px-4 py-1.5 text-sm font-bold text-white">
-                {fill(w['fam.chat.moved'], { subject: subjectName(a.moved) })}
-              </p>
-            )}
-            <UnderstandView w={w} input={a.input} tone={tone} onDone={(chat) => onAnswered(a.n, chat)} speak={{ serverVoice }} tutorKey={chosen?.key ?? null} onTap={unlockVoice} />
-          </div>
-        ))}
+        {asks.map((a, i) => {
+          const n = groups.length + i + 1;
+          return (
+            <div key={a.n} id={`${ids.feed}-ask-${a.n}`} data-tutor-ask={a.n} data-qa={n} tabIndex={-1} className={card(n)}>
+              <Question w={w} text={a.text} at={a.at} uiLang={lang} />
+              {a.moved && (
+                <p role="status" data-feed-moved={a.moved} className="fam-acc-in self-center rounded-full bg-emerald px-4 py-1.5 text-sm font-bold text-white">
+                  {fill(w['fam.chat.moved'], { subject: subjectName(a.moved) })}
+                </p>
+              )}
+              <ReplyHead w={w} n={n} uiLang={lang} />
+              <UnderstandView w={w} input={a.input} tone={tone} onDone={(chat) => onAnswered(a.n, chat)} speak={{ serverVoice }} tutorKey={chosen?.key ?? null} onTap={unlockVoice} />
+            </div>
+          );
+        })}
       </div>
       {children}
       <Composer
@@ -431,7 +523,6 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
         attached={attached}
         onAttach={(f) => void attach(f)}
         onCheck={(f) => void attach(f, true)}
-        onSketch={sendSketch}
         checking={checking}
         onRemove={remove}
         fileError={fileError}
@@ -452,13 +543,32 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
           submit(asked, { ...base, ...(typedCheckIntentLight(asked) ? { mode: 'check' as const } : {}) });
         }}
         call={call}
-        historyOpen={open && shown}
-        historyFor={ids.feed}
-        onHistory={() => {
-          setOpen((o) => !o);
-          if (!open) toNewest();
-        }}
+        historyOpen={history}
+        historyFor={ids.history}
+        onHistory={() => setHistory((o) => !o)}
+        above={
+          jump ? (
+            <button type="button" data-tutor-jump onClick={toLatest} aria-label={w['fam.tutor.jumpLatest']} title={w['fam.tutor.jumpLatest']} className="fam-press pointer-events-auto flex h-11 w-11 items-center justify-center rounded-full bg-ink text-white shadow-lg">
+              <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 5v14M5 12l7 7 7-7" />
+              </svg>
+            </button>
+          ) : null
+        }
       />
+      {history && (
+        <ConversationList
+          w={w}
+          id={ids.history}
+          lang={lang}
+          here={here}
+          onClose={closeHistory}
+          onHere={() => {
+            closeHistory();
+            toNewest();
+          }}
+        />
+      )}
     </section>
   );
 }
@@ -476,10 +586,13 @@ function NoAnswerYet({ w, id, onTry }: { w: Words; id: string; onTry: () => void
 }
 
 // A question in the feed: the child's words, on the right, in ink.
-function Question({ w, text, lang, fromReader = false, files = [] }: { w: Words; text: string; lang?: string; fromReader?: boolean; files?: TutorFile[] }) {
+function Question({ w, text, lang, fromReader = false, files = [], at, uiLang = 'en' }: { w: Words; text: string; lang?: string; fromReader?: boolean; files?: TutorFile[]; at?: string; uiLang?: string }) {
   return (
     <div data-feed-question className="ml-6 flex flex-col gap-2 self-end rounded-2xl rounded-br-md bg-ink p-4 text-white sm:ml-16">
-      <p className="text-xs font-bold uppercase tracking-wide text-white">{w['fam.tutor.you']}</p>
+      <p className="flex flex-wrap items-baseline justify-between gap-x-3 text-xs font-bold text-white">
+        <span className="uppercase tracking-wide">{w['fam.tutor.you']}</span>
+        {at && <time dateTime={at} className="font-semibold">{indiaWhen(at, uiLang, true)}</time>}
+      </p>
       <p lang={lang} className="whitespace-pre-wrap break-words text-base">
         {text}
       </p>
@@ -497,6 +610,53 @@ function Question({ w, text, lang, fromReader = false, files = [] }: { w: Words;
         </ul>
       )}
     </div>
+  );
+}
+
+// The head of every reply: its "Question #N" chip (the same N as the navigator's), and when it was answered.
+function ReplyHead({ w, n, at, uiLang }: { w: Words; n: number; at?: string; uiLang: string }) {
+  return (
+    <p data-reply-head className="flex flex-wrap items-center gap-x-3 gap-y-1">
+      <span data-question-chip={n} className="rounded-full bg-sunshine px-3 py-1 text-sm font-extrabold text-slate">
+        {fill(w['fam.tutor.questionN'], { n })}
+      </span>
+      {at && (
+        <time dateTime={at} className="text-xs font-semibold text-slate">
+          {indiaWhen(at, uiLang, true)}
+        </time>
+      )}
+    </p>
+  );
+}
+
+// The question navigator: the last 30 questions as chips, oldest first, scrolled so the latest five show; the strip
+// scrolls sideways on its own. A tap goes to that question's card.
+function QuestionNavigator({ w, chips, lit, onGo }: { w: Words; chips: QuestionChip[]; lit: number | null; onGo: (n: number) => void }) {
+  const strip = useRef<HTMLOListElement>(null);
+  const newest = chips.at(-1)?.n ?? 0;
+  useEffect(() => {
+    const el = strip.current;
+    if (el) el.scrollLeft = el.scrollWidth;
+  }, [newest]);
+  return (
+    <nav aria-label={w['fam.tutor.navigator']} data-question-nav>
+      <ol ref={strip} className="flex snap-x gap-2 overflow-x-auto overscroll-x-contain pb-1 [scrollbar-width:none]">
+        {chips.map((c) => (
+          <li key={c.n} className="shrink-0 snap-end">
+            <button
+              type="button"
+              data-nav-chip={c.n}
+              onClick={() => onGo(c.n)}
+              aria-label={fill(w['fam.tutor.goToQuestion'], { n: c.n, text: c.text })}
+              title={c.text}
+              className={`fam-press flex h-11 min-w-[3.5rem] items-center justify-center rounded-full px-3 text-sm font-extrabold ${lit === c.n ? 'bg-ink text-white' : 'bg-white text-ink ring-1 ring-ink/15'}`}
+            >
+              #{c.n}
+            </button>
+          </li>
+        ))}
+      </ol>
+    </nav>
   );
 }
 

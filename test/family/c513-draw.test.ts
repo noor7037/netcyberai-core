@@ -70,16 +70,15 @@ describe('the dock with five tabs', () => {
     expect(html).toContain('>Draw<');
     expect(html).toContain('data-count="5"');
   });
-  it('fits a 360 px phone with tabs of 48 px and more', () => {
+  // 17 Nov 2026: edge to edge on a phone, five equal columns, each its icon over its name.
+  it('fits a 360 px phone with five equal tabs of 56 px and more', () => {
     const css = SRC('src/app/(family)/family/family.css');
-    const block = css.slice(css.indexOf("@media (max-width: 430px)"), css.indexOf('/* ---- the Draw tab'));
-    expect(block).toMatch(/\.fam-dock\[data-count='5'\] \.fam-tab \{\s*min-width: 52px;/);
-    expect(block).toMatch(/flex-direction: column/);
+    expect(css).toMatch(/\.fam-tab \{[^}]*flex-direction: column/);
     expect(css).toMatch(/\.fam-tab \{[^}]*min-height: 56px/);
-    // 360 px less the 16 px gutters; four tabs of 52 px, the open one about 60 px with its name under the icon, four gaps
-    // of 2 px and the pill's 6 px padding each side.
-    const width = 4 * 52 + 60 + 4 * 2 + 2 * 6;
-    expect(width).toBeLessThanOrEqual(360 - 32);
+    const html = renderToStaticMarkup(h(FamilyTabs, { tabs: [...TABS], navLabel: 'Main menu', labels }));
+    expect(html.match(/class="min-w-0 flex-1"/g)?.length).toBe(5);
+    // 360 px less the dock's 4 px sides: each of the five columns is wider than 56 px.
+    expect((360 - 2 * 4) / 5).toBeGreaterThan(56);
   });
 });
 

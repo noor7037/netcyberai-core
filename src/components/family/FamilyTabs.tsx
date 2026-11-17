@@ -8,9 +8,19 @@ import type { DockTab } from '@/lib/family/modules';
 // The tabs (Home, Study, English, Draw, Future; C391 removed Family, C513 added Draw), each shown only when
 // its first module is live (M1-6, C252). Hidden during the parent's first steps. Fixed at the bottom, 44 px and more,
 // above the phone's home bar.
-// W19-C: the dark pill of the founder's reference: an ink dock, each tab a 56 px round button, the open tab on a lilac
-// circle with a saffron dot and its name beside it; the other names stay for screen readers (aria-current kept).
+// W19-C: the ink dock of the founder's reference. 17 Nov 2026 (founder): on a phone it runs edge to edge (still above the
+// home bar), every tab shows its full name under its icon, and each tab has its own logo colour: its icon in that colour,
+// the open tab's icon on a disc of it with its name in it too. On a wide screen the dock is a pill in the same centred
+// column as the Study composer (max-w-3xl).
 const HREF: Record<DockTab, string> = { home: '/family', study: '/family/study', english: '/family/english', draw: '/family/draw', future: '/family/future' };
+// Each tab's own colour (logo tokens, design-tokens.ts): bright hues, each at least 4.5:1 on the ink dock.
+export const TAB_TONE: Record<DockTab, { text: string; disc: string }> = {
+  home: { text: 'text-tangerine', disc: 'bg-tangerine' },
+  study: { text: 'text-sunshine', disc: 'bg-sunshine' },
+  english: { text: 'text-cyan', disc: 'bg-cyan' },
+  draw: { text: 'text-coral', disc: 'bg-coral' },
+  future: { text: 'text-leaf', disc: 'bg-leaf' },
+};
 const ICON: Record<DockTab, string> = {
   home: 'M4 10l8-6 8 6v10H4zM9 15q3 3 6 0',
   study: 'M6 4h12v16H7a1 1 0 0 1-1-1zM6 17h12M10 8h5',
@@ -47,20 +57,20 @@ export function FamilyTabs({ tabs, labels, navLabel }: { tabs: DockTab[]; labels
   if (path.startsWith('/family/welcome') || path.startsWith('/family/english/lesson') || path.startsWith('/family/english/check') || path.startsWith('/family/call') || path.startsWith('/family/study/book/')) return null;
   const active = (t: DockTab) => (t === 'home' ? path === '/family' || path.startsWith('/family/progress') : t === 'study' ? path.startsWith('/family/study') || path.startsWith('/family/understand') || path.startsWith('/family/tutors') : path.startsWith(HREF[t]));
   return (
-    <nav aria-label={navLabel} className="fixed inset-x-0 bottom-0 z-30 px-4 pb-[calc(var(--fam-bottom,0px)+0.75rem)]">
-      {/* C513: five tabs pack tighter on a narrow phone (data-count; family.css): still 48 px and more each. */}
-      <ul data-count={tabs.length} className="fam-dock mx-auto flex w-fit max-w-full items-center gap-1 rounded-full bg-ink p-1.5">
+    <nav aria-label={navLabel} data-fam-dock className="fixed inset-x-0 bottom-0 z-30 lg:px-4 lg:pb-3">
+      <ul data-count={tabs.length} className="fam-dock mx-auto flex w-full items-stretch rounded-t-3xl bg-ink px-1 pb-[calc(var(--fam-bottom,0px)+0.375rem)] pt-1.5 lg:max-w-3xl lg:rounded-full lg:p-1.5">
         {tabs.map((t) => {
           const on = active(t);
+          const tone = TAB_TONE[t];
           return (
-            <li key={t}>
+            <li key={t} data-tab={t} className="min-w-0 flex-1">
               <Link href={HREF[t]} aria-current={on ? 'page' : undefined} className="fam-press fam-tab">
-                <span className="fam-tab-ico">
+                <span className={`fam-tab-ico ${on ? `${tone.disc} text-ink` : tone.text}`}>
                   <svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinejoin="round" strokeLinecap="round">
                     <path d={ICON[t]} />
                   </svg>
                 </span>
-                <span className={on ? undefined : 'sr-only'}>{labels[t]}</span>
+                <span data-tab-label className={`fam-tab-label ${on ? tone.text : 'text-white'}`}>{labels[t]}</span>
               </Link>
             </li>
           );
