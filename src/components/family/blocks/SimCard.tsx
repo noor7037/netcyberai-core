@@ -19,7 +19,7 @@ export function SimCard({ sim, w }: { sim: ElabSim; w: Words }) {
   const from = NAMES[sim.source] ?? sim.source;
   if (simMode(sim) === 'link') return <LabLinkCard sim={sim} from={from} w={w} />;
   return (
-    <section data-elab-sim={sim.source} aria-label={w['fam.elab.trySim']} className="flex flex-col gap-2 rounded-2xl bg-white p-2 ring-1 ring-ink/10">
+    <section data-elab-sim={sim.source} aria-label={w['fam.elab.trySim']} className="flex flex-col gap-2 rounded-2xl bg-white p-2 ring-1 ring-ink/10 lg:p-3">
       <h4 className="px-1 text-sm font-extrabold text-slate">{w['fam.elab.trySim']}</h4>
       {open ? (
         <iframe
@@ -30,10 +30,10 @@ export function SimCard({ sim, w }: { sim: ElabSim; w: Words }) {
           sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
           referrerPolicy="no-referrer"
           allow="fullscreen"
-          className="h-[360px] w-full rounded-xl border-0 bg-paper sm:h-[440px]"
+          className="h-[420px] w-full rounded-xl border-0 bg-paper sm:h-[560px] lg:h-[640px]"
         />
       ) : (
-        <button type="button" data-elab-sim-open onClick={() => setOpen(true)} className="fam-press relative flex min-h-[180px] w-full flex-col items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-br from-grape-deep to-ink p-3 text-center text-white">
+        <button type="button" data-elab-sim-open onClick={() => setOpen(true)} className="fam-press relative flex min-h-[260px] sm:min-h-[320px] w-full flex-col items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-br from-grape-deep to-ink p-3 text-center text-white">
           {sim.preview && (
             // eslint-disable-next-line @next/next/no-img-element -- our own small picture, kept in /public/sims
             <img src={sim.preview} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-70" />
