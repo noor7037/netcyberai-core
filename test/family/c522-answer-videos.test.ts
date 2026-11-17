@@ -27,7 +27,7 @@ vi.mock('@/lib/auth/db', async (importOriginal) => {
 // @ts-expect-error -- a plain .mjs development script, no types
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
 import { searchVideoIds } from '@/lib/ai/adapters/youtube';
-import { answerVideos, videoLanguages } from '@/lib/family/answer-videos';
+import { answerVideos, videoLanguageOf, videoLanguages, videoTopicOf } from '@/lib/family/answer-videos';
 import type { FamilyChild } from '@/lib/family/children';
 import type { Line } from '@/lib/family/resolver';
 import { CLICKS_PER_DAY, checkClick } from '@/lib/family/video-clicks';
@@ -110,11 +110,55 @@ beforeEach(() => {
 });
 
 describe('language: the child’s chosen one, then a visible fallback', () => {
-  it('tries the chosen language, then the app’s, then English after Hindi', () => {
+  it('tries the question’s language, then a sensible fallback: Hindi then English, English alone, never another regional language', () => {
     expect(videoLanguages('ta', 'en')).toEqual(['ta', 'en']);
-    expect(videoLanguages('bn', 'hi')).toEqual(['bn', 'hi']);
+    expect(videoLanguages('bn', 'hi')).toEqual(['bn', 'hi', 'en']);
     expect(videoLanguages('hi', 'hi')).toEqual(['hi', 'en']);
+    expect(videoLanguages('hi', 'en')).toEqual(['hi', 'en']);
     expect(videoLanguages('en', 'en')).toEqual(['en']);
+    expect(videoLanguages('en', 'hi')).toEqual(['en']);
+  });
+
+  // 17 Nov 2026: a Hindi question got Telugu videos, from the child's word-help language. The question decides.
+  it('the video language is the question’s, never the word-help language (meaningLang) when they differ', () => {
+    const kid = { language: 'en', style: 'en' } as const;
+    const hiKid = { language: 'hi', style: 'hi' } as const;
+    expect(videoLanguageOf({ question: 'विद्युत धारा क्या है?', motherTongue: 'te', child: kid })).toBe('hi');
+    expect(videoLanguages(videoLanguageOf({ question: 'विद्युत धारा क्या है?', motherTongue: 'te', child: kid }), 'en')).toEqual(['hi', 'en']);
+    expect(videoLanguageOf({ question: 'bijli ka current kya hota hai', motherTongue: 'ta', child: kid })).toBe('hi'); // Hinglish
+    expect(videoLanguageOf({ question: 'Kachra prabandhan', motherTongue: 'te', child: hiKid })).toBe('hi'); // Roman-letter Hindi
+    expect(videoLanguageOf({ question: 'What is electric current?', motherTongue: 'te', child: hiKid })).toBe('en');
+    // A question really asked in Telugu or Tamil may use that language; a shared script follows the mother tongue.
+    expect(videoLanguageOf({ question: 'విద్యుత్ ప్రవాహం అంటే ఏమిటి?', motherTongue: 'en', child: kid })).toBe('te');
+    expect(videoLanguageOf({ question: 'मला विद्युत धारा सांगा', motherTongue: 'mr', child: kid })).toBe('mr');
+    // No words (a photo, a drawing): the reply setting, never the word-help language.
+    expect(videoLanguageOf({ question: null, motherTongue: 'te', child: hiKid })).toBe('hi');
+    expect(videoLanguageOf({ question: '', replyLang: 'hinglish', motherTongue: 'te', child: kid })).toBe('hi');
+    expect(videoLanguageOf({ question: null, motherTongue: 'ta', child: kid })).toBe('en');
+  });
+
+  it('a Hindi question from a child whose word-help language is Telugu: hi then en, never the Telugu picks already cached', async () => {
+    const key = 'free.c10.electric-current-circuit';
+    await q(`delete from family.child_settings where account_id = $1`, [ACCOUNT]);
+    await q(`insert into family.child_settings (account_id, child_id, settings) values ($1, $2, '{"meaningLang":"te"}'::jsonb)`, [ACCOUNT, CHILD]);
+    await q(
+      `insert into content.video_picks (topic_key, language, video_id, channel_id, channel_title, title, duration_s, start_s, captions, score, status, fetched_at)
+       values ($1, 'te', 'telugupick1', $2, 'Official Science', 'విద్యుత్ ప్రవాహం 1', 300, 0, true, 50, 'auto', now()),
+              ($1, 'te', 'telugupick2', $2, 'Official Science', 'విద్యుత్ ప్రవాహం 2', 300, 0, true, 49, 'auto', now()),
+              ($1, 'hi', 'hindipick01', $2, 'Official Science', 'विद्युत धारा', 300, 0, true, 50, 'auto', now()),
+              ($1, 'hi', 'hindipick02', $2, 'Official Science', 'Electric current Hindi', 300, 0, true, 48, 'auto', now()),
+              ($1, 'hi', 'hindiwrong1', $2, 'తెలుగు చానెల్', 'Electric current', 300, 0, true, 60, 'auto', now())`,
+      [key, OFFICIAL]
+    );
+    const kid = { ...child, classLevel: 10, firstName: 'Asha', style: 'en' } as unknown as FamilyChild;
+    const freeLine = { subject: 'science', key, chapterEn: 'Electric current', topicEn: 'Electric current', title: 'Electric current' } as Line;
+    const topic = await asFamily((db) => videoTopicOf(db, { line: freeLine, passages: [], drawTemplate: null, child: kid, accountId: ACCOUNT, question: 'विद्युत धारा और परिपथ क्या है?' }));
+    expect(topic?.language).toBe('hi');
+    const got = await answerVideos(asFamily as never, topic!);
+    expect(got).toMatchObject({ language: 'hi', wanted: null });
+    // Only Hindi rows, and never one whose channel is in Telugu script.
+    expect(got!.picks.map((p) => p.videoId).sort()).toEqual(['hindipick01', 'hindipick02']);
+    await q(`delete from family.child_settings where account_id = $1`, [ACCOUNT]);
   });
 
   it('names the language in the search and asks YouTube for it; anything odd searches as English', async () => {
@@ -143,6 +187,14 @@ describe('language: the child’s chosen one, then a visible fallback', () => {
     expect(inLanguage({ language: null, title: 'ஒளிச்சேர்க்கை' }, 'ta')).toBe(true);
     expect(inLanguage({ language: null, title: 'Photosynthesis' }, 'ta')).toBe(false);
     expect(inLanguage({ language: 'en', title: 'x' }, 'hi')).toBe(true);
+    // English and Hindi are strict (17 Nov 2026): no Telugu or Tamil audio, title or channel.
+    expect(inLanguage({ language: 'hi', title: 'विद्युत धारा' }, 'hi')).toBe(true);
+    expect(inLanguage({ language: 'te', title: 'Electric current' }, 'hi')).toBe(false);
+    expect(inLanguage({ language: 'ta-IN', title: 'Electric current' }, 'en')).toBe(false);
+    expect(inLanguage({ language: null, title: 'విద్యుత్ ప్రవాహం' }, 'hi')).toBe(false);
+    expect(inLanguage({ language: null, title: 'மின்னோட்டம்' }, 'en')).toBe(false);
+    expect(inLanguage({ language: 'en', title: 'Electric current', channelTitle: 'தமிழ் அறிவியல்' }, 'en')).toBe(false);
+    expect(inLanguage({ language: 'en-IN', title: 'Electric current', channelTitle: 'Science Hindi' }, 'en')).toBe(true);
   });
 
   it('ranks the best two, official channels first', () => {

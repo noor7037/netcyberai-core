@@ -29,16 +29,18 @@ export const lessonOfItem = (itemKey: string): string => itemKey.split('.').slic
 // done: open in order; placed: before the unit the day-0 check placed the child at, open and not needed; open: the next
 // lesson; rest: the next lesson, but today's new lessons are used up; locked: later.
 export type LessonState = 'done' | 'placed' | 'open' | 'rest' | 'locked';
-export function lessonStates(track: Track, done: ReadonlySet<string>, placedUnit: number, newToday: number, perDay: number): Record<string, LessonState> {
+// All five lessons of the current unit are open together; the next unit opens when all five are done. The day's
+// new-lesson count is a soft limit (a gentle rest note in the app) and never locks a lesson, so 'rest' is no longer
+// produced here (the type keeps it for older clients).
+export function lessonStates(track: Track, done: ReadonlySet<string>, placedUnit: number, _newToday: number, _perDay: number): Record<string, LessonState> {
   const states: Record<string, LessonState> = {};
-  let nextFound = false;
-  for (const key of courseLessons(track)) {
+  const keys = courseLessons(track);
+  const first = keys.find((k) => !done.has(k) && unitOf(k) >= placedUnit);
+  const currentUnit = first ? unitOf(first) : Infinity;
+  for (const key of keys) {
     if (done.has(key)) states[key] = 'done';
     else if (unitOf(key) < placedUnit) states[key] = 'placed';
-    else if (!nextFound) {
-      states[key] = newToday >= perDay ? 'rest' : 'open';
-      nextFound = true;
-    } else states[key] = 'locked';
+    else states[key] = unitOf(key) === currentUnit ? 'open' : 'locked';
   }
   return states;
 }

@@ -1,8 +1,7 @@
 'use client';
 
-import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { useCallback, useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import { fill, type Words } from '@/lib/family/fill';
 import { FILE_PICK_ACCEPT } from '@/lib/family/photo-shrink';
 import { TUTOR_FILES_PER_TURN, TUTOR_TEXT_MAX, type TutorFileType } from '@/lib/family/tutor-shape';
@@ -19,7 +18,8 @@ import { useKeyboardInset } from './useKeyboardInset';
 // of a question, hints first; the homework helper) and "Check my work" (W16-B2: a photo of the child's own answer,
 // marked step by step). C510: each of those two opens the photo sheet (Take a photo, the camera; Choose from gallery),
 // since a child photographs the notebook; "Ask about this" attaches the photo to this question. The textarea grows with the question; Enter sends on a keyboard with a mouse, and makes a new
-// line on a phone. Pinned above the tab dock on Study, at the drawer's foot in the reader.
+// line on a phone. Pinned above the tab dock on Study, at the drawer's foot in the reader. On a wide screen the Study
+// composer and the tab dock share one centred column (max-w-3xl), so they line up.
 
 export type ComposerFile = { key: string; name: string; mime: TutorFileType; state: 'sending' | 'checking' | 'ready'; id: string | null };
 
@@ -44,9 +44,6 @@ type Props = {
   onCheck: (file: File) => void;
   checking: boolean;
   onRemove: (file: ComposerFile) => void;
-  // W18-P3: Draw: the drawing studio's picture (and the child's optional question) goes to the tutor through the file
-  // door. Resolves with the words of an error, or null once sent. Absent: no Draw button.
-  onSketch?: (file: File, question: string) => Promise<string | null>;
   fileError: string | null;
   voice: { secondsLeft: number } | null;
   // W16-B5: "Call <tutor>": the same composer, a second way in. Opens the call on this subject, keeping the chat.
@@ -58,11 +55,13 @@ type Props = {
   locked?: boolean;
   // Shown above the field, inside the pinned composer (the full chat's message and its action).
   notice?: ReactNode;
+  // Drawn just above the composer, at its right (the feed's "Jump to latest"): it moves with the dock, so it never covers
+  // the field or the tab dock.
+  above?: ReactNode;
 };
 
-// W18-P3: the sketch pad is loaded only when a child opens it, so the Study bundle does not carry it.
-// C513: the studio lives with the Draw tab (src/components/family/draw/Studio.tsx), still its own chunk.
-const SketchPad = dynamic(() => import('../draw/Studio').then((m) => m.Studio), { ssr: false });
+// 17 Nov 2026 (founder): no Draw button in the Ask bar; drawing lives in the Draw tab and its studio
+// (src/components/family/draw/Studio.tsx), which still sends its picture through the tutor window's own path.
 
 const ICON = { viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const };
 const ROUND = 'fam-press flex h-11 w-11 shrink-0 items-center justify-center rounded-full';
@@ -76,13 +75,6 @@ export function Composer(p: Props) {
   const [menu, setMenu] = useState(false);
   // C510: the photo sheet open from the menu: for Check my work, or for Ask about this.
   const [sheet, setSheet] = useState<'check' | 'ask' | null>(null);
-  const [sketching, setSketching] = useState(false);
-  const drawButton = useRef<HTMLButtonElement>(null);
-  // Stable, so the studio's own effects (focus, Escape) do not run again each time the composer draws.
-  const closeSketch = useCallback(() => {
-    setSketching(false);
-    requestAnimationFrame(() => drawButton.current?.focus());
-  }, []);
   const voice = useVoiceRecorder({
     w,
     secondsLeft: p.voice?.secondsLeft,
@@ -154,9 +146,12 @@ export function Composer(p: Props) {
   return (
     <div
       data-tutor-composer
+      data-pinned={p.pinned}
+      data-lifted={lifted || undefined}
       style={dockStyle}
-      className={`fam-composer-dock sticky z-20 -mx-2 px-2 pb-1 pt-2 ${p.pinned === 'dock' ? 'lg:mr-auto lg:w-5/12' : ''} ${lifted ? 'bottom-0' : p.pinned === 'dock' ? 'bottom-[calc(var(--fam-bottom,0px)+5.25rem)]' : 'bottom-0'}`}
+      className={`fam-composer-dock sticky z-20 -mx-2 px-2 pb-1 pt-2 ${p.pinned === 'dock' ? 'lg:mx-auto lg:w-full lg:max-w-3xl' : ''} ${lifted ? 'bottom-0' : p.pinned === 'dock' ? 'bottom-[calc(var(--fam-bottom,0px)+4.5rem)] lg:bottom-[calc(var(--fam-bottom,0px)+5.25rem)]' : 'bottom-0'}`}
     >
+      {p.above && <div className="pointer-events-none absolute bottom-full right-2 mb-1 flex justify-end">{p.above}</div>}
       <form
         data-tutor-rail
         className="flex flex-col gap-2"
@@ -171,23 +166,6 @@ export function Composer(p: Props) {
             {voice.state === 'recording' && <span aria-hidden="true" className="h-2.5 w-2.5 shrink-0 animate-pulse rounded-full bg-coral-deep motion-reduce:animate-none" />}
             {line.text}
           </p>
-        )}
-        {p.files && p.onSketch && !p.locked && p.attached.length === 0 && (
-          <div className="mx-1 flex">
-            <button
-              ref={drawButton}
-              type="button"
-              data-sketch-open
-              aria-haspopup="dialog"
-              onClick={() => setSketching(true)}
-              className="fam-press flex min-h-[44px] items-center gap-2 rounded-full bg-white px-4 text-sm font-bold text-ink shadow-sm ring-1 ring-ink/15"
-            >
-              <svg aria-hidden="true" className="h-5 w-5" {...ICON}>
-                <path d="M4 20l1-4L16 5l3 3L8 19z" />
-              </svg>
-              {w['fam.sketch.open']}
-            </button>
-          </div>
         )}
         <div className="flex items-end gap-2">
           <div className="fam-composer flex min-w-0 flex-1 flex-col rounded-2xl bg-white">
@@ -377,14 +355,6 @@ export function Composer(p: Props) {
           </button>
         </div>
       </form>
-      {sketching && p.onSketch && (
-        <SketchPad
-          w={w}
-          onSend={p.onSketch}
-          question={p.value}
-          onClose={closeSketch}
-        />
-      )}
     </div>
   );
 }

@@ -142,6 +142,14 @@ function Check({ c, i, w }: { c: ElabCheck; i: number; w: Words }) {
   );
 }
 
+// Which step is active: the child's pick wins until the voice moves to a different step. `spoken` is the step the read-aloud is
+// on (null when nothing is being read); `pick` remembers what the child chose and which spoken step it was chosen over.
+export type ElabPick = { step: number; over: number | null };
+export function activeElabStep(spoken: number | null, pick: ElabPick | null): number {
+  if (pick && pick.over === spoken) return pick.step;
+  return spoken ?? 0;
+}
+
 export function ElaborationView({
   b,
   w,
@@ -155,12 +163,15 @@ export function ElaborationView({
   sentence?: number;
   sentences?: readonly string[];
 }) {
-  const [tapped, setTapped] = useState(0);
+  const [pick, setPick] = useState<ElabPick | null>(null);
   const spoken =
     sentence !== undefined
       ? stepAtSentence(b, sentences ?? [], sentence)
       : null;
-  const shown = spoken ?? tapped;
+  const shown = activeElabStep(spoken, pick);
+  const spokenRef = useRef(spoken);
+  spokenRef.current = spoken;
+  const choose = (step: number) => setPick({ step, over: spokenRef.current });
   const root = useRef<HTMLElement>(null);
   // From 1024 px the whiteboard follows the step the child scrolls to.
   useEffect(() => {
@@ -171,7 +182,8 @@ export function ElaborationView({
         es.forEach(
           (e) =>
             e.isIntersecting &&
-            setTapped(Number((e.target as HTMLElement).dataset.elabStep) - 1),
+            spokenRef.current === null &&
+            setPick({ step: Number((e.target as HTMLElement).dataset.elabStep) - 1, over: null }),
         ),
       { rootMargin: `-${Math.round(window.innerHeight * 0.35)}px 0px -${Math.round(window.innerHeight * 0.55)}px 0px` },
     );
@@ -260,7 +272,11 @@ export function ElaborationView({
             aria-label={w["fam.elab.board"]}
             className="hidden self-start rounded-3xl bg-off-white p-3 ring-1 ring-slate/10 lg:sticky lg:top-4 lg:flex lg:flex-col lg:gap-2"
           >
-            <div className="overflow-hidden rounded-2xl bg-white">
+            <div
+              data-whiteboard-pic
+              className="cursor-pointer overflow-hidden rounded-2xl bg-white"
+              onClick={() => choose((shown + 1) % ELAB_KEYS.length)}
+            >
               <Pic
                 pic={b.pics[shown] ?? null}
                 n={shown + 1}
@@ -271,12 +287,19 @@ export function ElaborationView({
             <figcaption className="text-base font-semibold text-slate">
               {b.pics[shown]?.caption}
             </figcaption>
-            <div className="flex gap-1.5" aria-hidden="true">
+            <div className="flex" role="group" aria-label={w["fam.elab.steps"]}>
               {ELAB_KEYS.map((k, i) => (
-                <span
+                <button
                   key={k}
-                  className={`h-1.5 flex-1 rounded-full ${i === shown ? "bg-grape-deep" : "bg-slate/15"}`}
-                />
+                  type="button"
+                  data-whiteboard-dot={i + 1}
+                  aria-label={`${i + 1}. ${label(k)}`}
+                  aria-current={i === shown ? "step" : undefined}
+                  onClick={() => choose(i)}
+                  className="fam-press group flex min-h-[44px] flex-1 items-center px-0.5"
+                >
+                  <span className={`h-2 w-full rounded-full group-focus-visible:ring-2 group-focus-visible:ring-ink ${i === shown ? "bg-grape-deep" : "bg-slate/15"}`} />
+                </button>
               ))}
             </div>
           </figure>
@@ -292,7 +315,7 @@ export function ElaborationView({
                 data-elab-key={k}
                 data-active={shown === i || undefined}
                 className={`flex flex-col gap-2 rounded-3xl p-3 ring-1 transition-colors ${shown === i ? "bg-lesson-lilac ring-grape/40" : "bg-off-white ring-slate/10"}`}
-                onClick={() => setTapped(i)}
+                onClick={() => choose(i)}
               >
                 <div className="flex items-center gap-2">
                   <span

@@ -23,7 +23,7 @@ import { jsonBody } from '@/lib/family/request';
 // GET: the lesson as the phone may hold it (check items without answers) and up to three review items due today.
 // POST { answers: { [itemKey]: choice | sentence }, warmup: { [itemKey]: … }, done: true }: scored here, never on the
 // phone. The lesson is done at a score of 80 or more, PASS_SCORE (track A: the grown-up's "we did it", `done: true`); the review boxes move;
-// the next lesson opens. A lesson opens only in order and within the day's new lessons.
+// the next lesson opens. The unit's lessons are all open; the next unit opens when all five are done.
 
 const KEY = /^[a-d]\.u[0-9]{2}\.l[1-5]$/;
 
@@ -46,7 +46,6 @@ export async function GET(req: NextRequest, { params }: { params: { key: string 
   return withEnglish(req, async (ctx) => {
     if (!key.startsWith(`${ctx.track}.`)) return englishError('not_found', 404);
     const { state } = await gate(ctx, key);
-    if (state === 'rest') return englishError('rest', 403);
     if (!mayOpen(state)) return englishError('locked', 403);
     const lesson = (await lessonBodies(ctx.db, ctx.versionId, [key])).get(key);
     if (!lesson) return englishError('not_found', 404);
@@ -65,7 +64,6 @@ export async function POST(req: NextRequest, { params }: { params: { key: string
   return withEnglish(req, async (ctx) => {
     if (!key.startsWith(`${ctx.track}.`)) return englishError('not_found', 404);
     const { done, state } = await gate(ctx, key);
-    if (state === 'rest') return englishError('rest', 403);
     if (!mayOpen(state)) return englishError('locked', 403);
     const lesson = (await lessonBodies(ctx.db, ctx.versionId, [key])).get(key);
     if (!lesson) return englishError('not_found', 404);

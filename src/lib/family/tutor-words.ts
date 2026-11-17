@@ -23,6 +23,9 @@ export const TUTOR_KEYS: MessageKey[] = [
   ...PHOTO_SHEET_KEYS,
   // W17-B2: read a tutor's answer aloud, and which voice reads it.
   'fam.tutor.readAloud', 'fam.tutor.stopAloud', 'fam.voiceOut.server', 'fam.voiceOut.phone',
+  // 17 Nov 2026: the conversation history, the Question #N chips, the question navigator and Jump to latest.
+  'fam.tutor.history.title', 'fam.tutor.history.loading', 'fam.tutor.history.empty', 'fam.tutor.history.questions', 'fam.tutor.history.untitled',
+  'fam.tutor.history.here', 'fam.tutor.history.study', 'fam.tutor.questionN', 'fam.tutor.jumpLatest', 'fam.tutor.navigator', 'fam.tutor.goToQuestion',
   // C508: a question kept with no answer yet.
   'fam.tutor.noAnswerYet', 'fam.tutor.tryAgain', 'fam.understand.tryAsking',
   // W18-P1: "Teach me" on an answer (the board's words come with UNDERSTAND_KEYS on every page that has the window).

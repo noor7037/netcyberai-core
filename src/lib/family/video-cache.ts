@@ -1,5 +1,5 @@
 import type { WithDb } from '@/lib/family/video-finder';
-import { CHECK_DAYS, KEEP, type VideoLanguage, type VideoPick } from '@/lib/family/videos';
+import { CHECK_DAYS, KEEP, keptFor, type VideoLanguage, type VideoPick } from '@/lib/family/videos';
 
 // The video cache's extras (follow-up of 16 Nov 2026), on the tables the finder already has (content.video_picks,
 // content.video_topic_searches): removed or private videos are marked dead and never served again, a pick is checked
@@ -58,7 +58,8 @@ export async function bandPicks(db: Q, topicKey: string, language: VideoLanguage
     )
     .then((r) => r.rows, () => []);
   const seen = new Set<string>();
-  const unique = rows.filter((r) => (seen.has(String(r.video_id)) ? false : (seen.add(String(r.video_id)), true))).slice(0, KEEP);
+  // The same language only (the query's), and an English or Hindi pick never in another script (keptFor).
+  const unique = rows.filter((r) => keptFor(r, language) && (seen.has(String(r.video_id)) ? false : (seen.add(String(r.video_id)), true))).slice(0, KEEP);
   return {
     picks: unique.map((r) => ({ videoId: String(r.video_id), title: String(r.title), channelTitle: String(r.channel_title), durationS: Number(r.duration_s), startS: Number(r.start_s) })),
     due: unique.filter((r) => r.check_due === true).map((r) => String(r.video_id)),
