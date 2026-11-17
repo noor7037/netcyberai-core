@@ -1,3 +1,4 @@
+import { sameInkOnBothSides } from './day-text';
 import type { FeedTurn } from './tutor-shape';
 
 // How the tutor window lays out its feed and the child's conversations (founder, 17 Nov 2026). Pure, so the phone and
@@ -80,11 +81,11 @@ export function conversationHref(c: Pick<TutorConversation, 'subject' | 'chapter
 export function indiaWhen(iso: string, lang: string, time = false): string {
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return '';
-  return new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', {
+  return sameInkOnBothSides(new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', {
     timeZone: 'Asia/Kolkata',
     day: 'numeric',
     month: 'short',
     year: 'numeric',
     ...(time ? { hour: 'numeric', minute: '2-digit' } : {}),
-  }).format(d);
+  }).format(d));
 }
