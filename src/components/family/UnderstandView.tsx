@@ -13,7 +13,7 @@ import { DiagramView, DirectAnswer, EnglishMomentView, ExplanationView, KeyPoint
 import dynamic from 'next/dynamic';
 import { QuizView } from './blocks/QuizView';
 import { MindMapView } from './blocks/MindMapView';
-import { isSimScene, placeBlock, unfilled } from '@/lib/family/blocks';
+import { isSimScene, placeBlock, teaches, unfilled } from '@/lib/family/blocks';
 import { boardCursorFromSentence } from '@/lib/family/board';
 import { spokenSentences } from '@/lib/family/call';
 
@@ -450,10 +450,10 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
           ))}
         </nav>
       )}
-      {/* W10-3: the videos come last, after the follow-ups. */}
-      {drawn.filter((b) => b.type === 'videos').map((b) => draw(b))}
+      {/* W10-3: the videos come last, after the follow-ups; never under an answer with nothing that teaches (17 Nov 2026). */}
+      {teaches(drawn) && drawn.filter((b) => b.type === 'videos').map((b) => draw(b))}
       {/* M2-5: a topic's video, when the finder has one; the response never depends on it. */}
-      {input.kind === 'topic' && (state === 'done' || state === 'incomplete') && !shown.some((b) => b.type === 'videos') && <VideoPicks w={w} topicKey={input.key} />}
+      {input.kind === 'topic' && (state === 'done' || state === 'incomplete') && teaches(shown) && !shown.some((b) => b.type === 'videos') && <VideoPicks w={w} topicKey={input.key} />}
     </div>
   );
 }

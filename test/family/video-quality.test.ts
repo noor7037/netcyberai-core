@@ -145,6 +145,22 @@ describe('what a family is shown', () => {
     expect(got).toHaveLength(2);
   });
 
+  // 17 Nov 2026: a Hindi question got Telugu suggestions. A Hindi search keeps Hindi and English videos only.
+  it('a Hindi search never keeps a Telugu or Tamil video, whatever the search returned', async () => {
+    const l = line('Linear equations');
+    serve(['hindivideo1', 'telugvideo1', 'tamilvideo1', 'englivideo1'], [
+      { id: 'hindivideo1', title: 'Linear equations रेखीय समीकरण' },
+      { id: 'telugvideo1', title: 'Linear equations రేఖీయ సమీకరణాలు' },
+      { id: 'tamilvideo1', title: 'Linear equations நேரியல் சமன்பாடுகள்' },
+      { id: 'englivideo1', title: 'Linear equations explained' },
+    ]);
+    const got = (await topicVideos(asFamily as never, l, child, 'hi', { review: () => undefined })).map((v) => v.videoId);
+    expect(got.length).toBeGreaterThan(0);
+    expect(got).not.toContain('telugvideo1');
+    expect(got).not.toContain('tamilvideo1');
+    expect((await q(`select distinct language from content.video_picks where topic_key = $1`, [l.key])).map((r) => r.language)).toEqual(['hi']);
+  });
+
   it('a typed question the catalog has no topic for gets videos from its own subject words', async () => {
     const l = freeLine('why do trees die?', 'science', child);
     expect(l).not.toBeNull();

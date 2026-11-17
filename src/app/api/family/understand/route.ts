@@ -27,6 +27,7 @@ import { isSubject } from '@/lib/family/subjects';
 import { fillVisuals } from '@/lib/family/visuals/fill';
 import { BOARD_BLOCK, isYoungVisual } from '@/lib/ai/teaching/plan-shape';
 import { videoTopicOf } from '@/lib/family/answer-videos';
+import { teaches } from '@/lib/family/blocks';
 import { questionLanguage, settingLang } from '@/lib/family/question-language';
 import type { Elaboration } from '@/lib/family/elaboration';
 import { indiaDate } from '@/lib/time/india';
@@ -384,8 +385,9 @@ export async function POST(req: NextRequest) {
           const unfilled = generated.kept;
           const unfilledShared = generated.shared;
           // C522: the answer's video topic (typed, photo or drawing question), named from what the pipeline already has; a typed
-          // question with no catalog topic gives its own subject words, only once the safety check passed it.
-          const videos = generated.stopped || generated.error !== null ? null : await withFamilyContext(claims, (db) => videoTopicOf(db, { line: pending.line, passages: pending.teach?.passages ?? [], drawTemplate: sketchMode ? drawTemplateId : null, child: pending.ctx.child, accountId: session.accountId, asked: questionPassed && !sketchMode ? pending.asked : null, subject: generated.subject ?? pending.known ?? pending.tab ?? null, elab: elabTopicOf(generated.kept), replyLang: pending.asked ? questionLanguage(pending.asked, settingLang(pending.ctx.child)).lang : null })).catch(() => null);
+          // question with no catalog topic gives its own subject words, only once the safety check passed it. In the
+          // question's own language (videoLanguageOf), and only under an answer that teaches (no videos-only reply).
+          const videos = generated.stopped || generated.error !== null || !teaches(generated.kept) ? null : await withFamilyContext(claims, (db) => videoTopicOf(db, { line: pending.line, passages: pending.teach?.passages ?? [], drawTemplate: sketchMode ? drawTemplateId : null, child: pending.ctx.child, accountId: session.accountId, asked: questionPassed && !sketchMode ? pending.asked : null, subject: generated.subject ?? pending.known ?? pending.tab ?? null, elab: elabTopicOf(generated.kept), replyLang: pending.asked ? questionLanguage(pending.asked, settingLang(pending.ctx.child)).lang : null, question: pending.asked ?? null })).catch(() => null);
           if (!generated.stopped && generated.error === null) generated.kept = await fillVisuals((fn) => withFamilyContext(claims, fn), generated.kept, { chapterKey: pending.line?.key ?? null, subject: generated.subject ?? pending.line?.subject ?? null, lang: pending.ctx.child.language, ...(videos ? { videos } : {}), ...(isYoungVisual(pending.ctx.child.classLevel, pending.plan?.blocks.includes(BOARD_BLOCK)) ? { young: { question: pending.asked } } : {}), sims: { classLevel: pending.ctx.child.classLevel, topicEn: pending.line?.topicEn ?? null, title: pending.line?.title ?? null, chapterEn: pending.line?.chapterEn ?? null }, emit: (block) => send({ t: 'block', block }) });
           // W22-S3: a block the fill left alone keeps its name-free twin (for a response kept for other children); a filled one has no text of the child's.
           if (generated.kept !== unfilled) generated.shared = generated.kept.map((blk) => { const i = unfilled.indexOf(blk); return i >= 0 ? unfilledShared[i] : blk; });
