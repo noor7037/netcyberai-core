@@ -379,3 +379,16 @@ describe("the plan, the prompt and the block order", () => {
   it("is not on for older prompts", () =>
     expect(resolverPrompt("v18", false).elaborate).toBeUndefined());
 });
+
+import { activeElabStep } from "@/components/family/blocks/ElaborationView";
+describe("active step precedence", () => {
+  it("follows the voice when nothing is picked, step 0 when silent", () => {
+    expect(activeElabStep(2, null)).toBe(2);
+    expect(activeElabStep(null, null)).toBe(0);
+  });
+  it("a pick wins until the spoken step changes", () => {
+    expect(activeElabStep(1, { step: 3, over: 1 })).toBe(3);
+    expect(activeElabStep(2, { step: 3, over: 1 })).toBe(2);
+    expect(activeElabStep(null, { step: 4, over: null })).toBe(4);
+  });
+});
