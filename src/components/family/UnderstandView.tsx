@@ -14,6 +14,7 @@ import dynamic from 'next/dynamic';
 import { QuizView } from './blocks/QuizView';
 import { MindMapView } from './blocks/MindMapView';
 import { isSimScene, placeBlock, teaches, unfilled } from '@/lib/family/blocks';
+import { solutionFirst } from '@/lib/family/maths-solve';
 import { boardCursorFromSentence } from '@/lib/family/board';
 import { spokenSentences } from '@/lib/family/call';
 
@@ -117,14 +118,15 @@ function showModel(root: HTMLElement | null) {
 // `sentence` (W16-A2): the explanation's sentence being spoken (the call screen); the board draws up to the step that
 // sentence reaches. Absent: the board starts at its first step and the child steps through it.
 // `sentences` (W19-D): the answer's spoken sentences, so a model lights the part the sentence `sentence` names.
-export function AnswerBlock({ b, w, tone, lead = false, onRetry, onOffline, sentence, sentences }: { b: PublicBlock; w: Words; tone: string; lead?: boolean; onRetry: (token: string, choice: number) => void; onOffline?: typeof queueAnswer; sentence?: number; sentences?: readonly string[] }) {
+// `onAsk` (§8 maths): a sum's quick replies send their follow-up question into the same chat; absent, none is drawn.
+export function AnswerBlock({ b, w, tone, lead = false, onRetry, onOffline, sentence, sentences, onAsk }: { b: PublicBlock; w: Words; tone: string; lead?: boolean; onRetry: (token: string, choice: number) => void; onOffline?: typeof queueAnswer; sentence?: number; sentences?: readonly string[]; onAsk?: (text: string) => void }) {
   // W16-B5: with the Tutor's board switched off in Control, the drawing board and the simulations are left out.
   const boardOn = useTutorBoard();
   switch (b.type) {
     case 'explanation':
       return <ExplanationView b={b} w={w} tone={tone} lead={lead} />;
     case 'worked_example':
-      return <WorkedExampleView b={b} w={w} tone={tone} />;
+      return <WorkedExampleView b={b} w={w} tone={tone} onAsk={onAsk} />;
     case 'key_points':
       return <KeyPointsView b={b} w={w} tone={tone} />;
     case 'diagram':
@@ -181,7 +183,9 @@ export function AnswerBlock({ b, w, tone, lead = false, onRetry, onOffline, sent
 // `speak` (W18-P1, the tutor window): once the answer is kept (the done line names its message id), "Teach me" and the
 // read-aloud button appear under it at once, without a reload, and its boards follow their voice.
 // C508: `onTap`, run inside the child's Try again tap (the tutor window unlocks the voice there).
-export function UnderstandView({ w, input, tone, initial = null, offline = false, onDone, sentence, speak, tutorKey = null, onTap }: { w: Words; input: UnderstandInput; tone: string; initial?: ResolverEvent[] | null; offline?: boolean; onDone?: (chat?: { chatId: string; subject: string }) => void; sentence?: number; speak?: { serverVoice: boolean }; tutorKey?: string | null; onTap?: () => void }) {
+// `onAsk` (§8 maths): how a quick reply under a sum's solution is asked (the tutor window may pass its own); by default it
+// is asked here, as a new question in the same chat, the way a suggested question is.
+export function UnderstandView({ w, input, tone, initial = null, offline = false, onDone, sentence, speak, tutorKey = null, onTap, onAsk }: { w: Words; input: UnderstandInput; tone: string; initial?: ResolverEvent[] | null; offline?: boolean; onDone?: (chat?: { chatId: string; subject: string }) => void; sentence?: number; speak?: { serverVoice: boolean }; tutorKey?: string | null; onTap?: () => void; onAsk?: (text: string) => void }) {
   const [messageId, setMessageId] = useState<string | null>(null);
   // C508: the question kept with no answer yet (its message id), and whether this fresh answer is read aloud by itself.
   const [unanswered, setUnanswered] = useState<string | null>(null);
@@ -207,7 +211,8 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
   const top = useRef<HTMLDivElement>(null);
   // W10-3 (C412), W10-4 (C413): every answer wears the lesson identity (`.fam-lesson`, family.css), a typed question too:
   // a direct-answer card first, the numbered sections, the follow-ups, then the videos.
-  const drawn = dataSaverBlocks(shown, saving);
+  // §8 maths: a sum's solution first, then the elaboration and the rest (the videos stay last, below).
+  const drawn = solutionFirst(dataSaverBlocks(shown, saving));
   const lead = drawn.find((b): b is ExplanationBlock => b.type === 'explanation');
   const model = drawn.some((b) => b.type === 'model_3d');
   // W16-A2: where the answer comes from, first: its chapter as soon as the sources block names it, else, once complete,
@@ -338,9 +343,13 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
   const voice = speak && messageId && sentences.length > 0 ? { messageId, sentences, serverVoice: speak.serverVoice, onSentence: setSpokenAt, onReading: setReading } : null;
 
   // Keyed by the block's place in the response, so turning the data-saver on or off keeps each block's state.
+  const askHere = (q: string) => {
+    onTap?.();
+    again({ input: input.kind === 'question' ? { ...input, text: q, tutor: input.tutor ? { ...input.tutor, retryOf: undefined, files: [], mode: undefined, sketch: undefined } : undefined } : { kind: 'question', text: q } });
+  };
   const draw = (b: PublicBlock) => {
     const i = blocks.indexOf(b);
-    return <AnswerBlock key={i} b={b} w={w} tone={tone} lead={b === lead} onRetry={(token, choice) => again({ input, retry: { token, choice } })} onOffline={offline ? queueAnswer : undefined} sentence={sentence ?? spokenAt} sentences={sentences} />;
+    return <AnswerBlock key={i} b={b} w={w} tone={tone} lead={b === lead} onRetry={(token, choice) => again({ input, retry: { token, choice } })} onOffline={offline ? queueAnswer : undefined} sentence={sentence ?? spokenAt} sentences={sentences} onAsk={onAsk ?? askHere} />;
   };
 
   return (

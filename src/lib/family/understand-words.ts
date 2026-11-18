@@ -27,6 +27,8 @@ export const UNDERSTAND_KEYS: MessageKey[] = [
   // W19-D: the 3D model of what the answer explains.
   'fam.mdl.parts', 'fam.mdl.hint', 'fam.mdl.hint2d', 'fam.mdl.ask', 'fam.mdl.aria', 'fam.mdl.saver', 'fam.mdl.credit', 'fam.model.see3d', 'fam.model.back2d', 'fam.model.noGl', 'fam.model.loading', 'fam.model.failed',
   'fam.followUp.differently', 'fam.followUp.practise_more', 'fam.err.network', 'fam.plan.comesBack',
+  // §8 maths: a sum's solution and its quick replies.
+  'fam.solve.title', 'fam.solve.given', 'fam.solve.find', 'fam.solve.steps', 'fam.solve.because', 'fam.solve.answer', 'fam.solve.check', 'fam.solve.understood', 'fam.solve.reply.yes', 'fam.solve.reply.differently', 'fam.solve.reply.simpler', 'fam.solve.reply.similar', 'fam.solve.ask.yes', 'fam.solve.ask.differently', 'fam.solve.ask.simpler', 'fam.solve.ask.similar',
   ...INTERACTIVE_KEYS,
   // M2-5: the honest player under a topic's response.
   'fam.video.title', 'fam.video.note', 'fam.video.play', 'fam.video.length', 'fam.video.by', 'fam.video.frame', 'fam.video.see', 'fam.video.answer', 'fam.video.fallback', 'fam.video.failed',

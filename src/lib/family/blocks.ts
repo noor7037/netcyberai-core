@@ -25,13 +25,18 @@ import { SOLID_INPUTS, SOLID_KINDS, type SolidKind } from './solids';
 import { SCENE_SIMS, simStart, type SceneSim } from './visuals/sims';
 import { isLangCode, type LangCode } from './languages';
 import { elaborationBlock, type Elaboration } from './elaboration';
+import { solutionFirst } from './maths-solve';
 
 export const BLOCK_SCHEMA_VERSION = 1;
 
 // `paragraphs` (W8-AI, resolver v7): the longer explanation in short paragraphs; optional, so older content stays valid.
 export type Explanation = { type: 'explanation'; title: string; idea: string; paragraphs?: string[]; example: string; steps: string[]; terms: { en: string; local: string }[] };
-export type WorkedStep = { text: string; expression?: string; result?: string };
-export type WorkedExample = { type: 'worked_example'; problem: string; steps: WorkedStep[]; answer: string };
+export type WorkedStep = { text: string; why?: string; expression?: string; result?: string };
+// §8 maths (18 Nov 2026): a sum's solution is a worked example with what is given, what is to be found, an optional table
+// (a speed that grows each minute), and a quick check, whose arithmetic is recomputed as every step's is.
+export type WorkedExample = { type: 'worked_example'; problem: string; given?: string[]; find?: string[]; steps: WorkedStep[]; table?: { columns: string[]; rows: string[][] }; answer: string; check?: WorkedStep };
+// A worked example in its solution form (Given and To find listed): the "Did you understand?" replies follow it.
+export const isSolution = (b: { type: string; given?: unknown; find?: unknown }): boolean => b.type === 'worked_example' && Array.isArray(b.given) && Array.isArray(b.find);
 export type KeyPoints = { type: 'key_points'; points: string[] };
 export type Diagram = { type: 'diagram'; title: string; kind: 'flow' | 'cycle'; nodes: { id: string; label: string }[]; edges: { from: string; to: string; label?: string }[] };
 // W8-AI (resolver v7): a mind map, the idea in the centre with 2 to 6 branches of 0 to 4 leaves; every label short.
@@ -422,6 +427,41 @@ function checked(raw: unknown, stored: boolean): Block | null {
   return Object.keys(meta).length ? { ...b, ...meta } : b;
 }
 
+// One worked step: its text, its reason, and arithmetic that is recomputed; one that does not hold drops the whole
+// example (03 §6 step 6). null: not a step.
+function workedStep(s: unknown): WorkedStep | null {
+  const st = (s ?? {}) as Record<string, unknown>;
+  const text = plain(st.text, 400);
+  if (!text) return null;
+  const step: WorkedStep = { text };
+  const why = st.why === undefined ? null : plain(st.why, 240);
+  if (why) step.why = why;
+  if (typeof st.expression === 'string' && st.expression.trim()) {
+    const value = calc(st.expression);
+    const stated = typeof st.result === 'string' || typeof st.result === 'number' ? statedNumber(String(st.result)) : null;
+    if (value === null || stated === null || !sameNumber(value, stated)) return null;
+    step.expression = st.expression.slice(0, 120);
+    step.result = String(st.result).slice(0, 40);
+  }
+  return step;
+}
+
+// A solution's table: 2 to 5 columns, 1 to 12 rows of as many cells. null: not a table.
+function workedTable(v: unknown): { columns: string[]; rows: string[][] } | null {
+  const t = (v ?? {}) as Record<string, unknown>;
+  if (!Array.isArray(t.columns) || t.columns.length < 2 || t.columns.length > 5 || !Array.isArray(t.rows) || t.rows.length < 1 || t.rows.length > 12) return null;
+  const columns = t.columns.map((c) => plain(c, 40));
+  if (columns.some((c) => c === null)) return null;
+  const rows: string[][] = [];
+  for (const r of t.rows) {
+    if (!Array.isArray(r) || r.length !== columns.length) return null;
+    const cells = r.map((c) => (typeof c === 'number' ? String(c) : plain(c, 40)));
+    if (cells.some((c) => c === null)) return null;
+    rows.push(cells as string[]);
+  }
+  return { columns: columns as string[], rows };
+}
+
 function blockBody(o: Record<string, unknown>): Block | null {
   switch (o.type) {
     case 'explanation': {
@@ -440,25 +480,22 @@ function blockBody(o: Record<string, unknown>): Block | null {
     }
     case 'worked_example': {
       const problem = plain(o.problem, 500);
-      const answer = plain(o.answer, 200);
+      const answer = plain(o.answer, 300);
       const rawSteps = Array.isArray(o.steps) ? o.steps.slice(0, 8) : [];
       const steps: WorkedStep[] = [];
       for (const s of rawSteps) {
-        const st = (s ?? {}) as Record<string, unknown>;
-        const text = plain(st.text, 400);
-        if (!text) return null;
-        const step: WorkedStep = { text };
-        if (typeof st.expression === 'string' && st.expression.trim()) {
-          // Every numeric step is recomputed; one that does not hold drops the whole example (03 §6 step 6).
-          const value = calc(st.expression);
-          const stated = typeof st.result === 'string' || typeof st.result === 'number' ? statedNumber(String(st.result)) : null;
-          if (value === null || stated === null || !sameNumber(value, stated)) return null;
-          step.expression = st.expression.slice(0, 120);
-          step.result = String(st.result).slice(0, 40);
-        }
+        const step = workedStep(s);
+        if (!step) return null;
         steps.push(step);
       }
-      return problem && answer && steps.length >= 1 ? { type: 'worked_example', problem, steps, answer } : null;
+      if (!problem || !answer || steps.length < 1) return null;
+      // §8: the solution form's parts, each optional; a check whose arithmetic does not hold drops the whole example too.
+      const given = o.given === undefined ? undefined : list(o.given, 1, 8, (x) => plain(x, 200));
+      const find = o.find === undefined ? undefined : list(o.find, 1, 4, (x) => plain(x, 200));
+      const table = o.table === undefined ? undefined : workedTable(o.table);
+      const check = o.check === undefined ? undefined : workedStep(o.check);
+      if (given === null || find === null || table === null || check === null) return null;
+      return { type: 'worked_example', problem, ...(given ? { given } : {}), ...(find ? { find } : {}), steps, ...(table ? { table } : {}), answer, ...(check ? { check } : {}) };
     }
     case 'key_points': {
       // Up to 8 (v7 asks for 4 to 8; older content gave 2 to 6).
@@ -1402,7 +1439,8 @@ export function completeResponse(blocks: Block[], core: readonly BlockType[] = R
     first.set(b.type, b);
   }
   if (!core.every((t) => first.has(t))) return null;
-  const ordered = ORDER.filter((t) => first.has(t)).map((t) => first.get(t)!);
+  // §8 maths: a sum's solution leads the elaboration, kept and read again as it arrived live.
+  const ordered = solutionFirst(ORDER.filter((t) => first.has(t)).map((t) => first.get(t)!));
   // C509: an answer whose very first block is the board (a young child's, under prompt v15) keeps its board first when it is
   // stored and read again, as it arrived live; C516: so does the quick answer (key points) prompt v16 writes first.
   const lead = blocks[0]?.type === 'board' || blocks[0]?.type === 'key_points' ? blocks[0].type : null;
@@ -1457,7 +1495,7 @@ function spokenTexts(b: Block): string[] {
     case 'explanation':
       return [b.title, b.idea, ...(b.paragraphs ?? []), b.example, ...b.steps];
     case 'worked_example':
-      return [b.problem, ...b.steps.map((s) => s.text), b.answer];
+      return [b.problem, ...b.steps.flatMap((s) => (s.why ? [s.text, s.why] : [s.text])), b.answer, ...(b.check ? [b.check.text] : [])];
     case 'key_points':
       return [...b.points];
     default:

@@ -10,6 +10,7 @@ import type { Elaboration } from '@/lib/family/elaboration';
 import { KEEP } from '@/lib/family/videos';
 import { answerVideos, type AnswerVideos, type VideoTopic } from '@/lib/family/answer-videos';
 import { familyModuleOn } from '@/lib/family/flags';
+import { fitsSum, gradeFits } from '@/lib/family/maths-solve';
 
 // The server's half of the visual blocks (W9-C, docs/39 §3), run once on an answer's checked blocks before they are
 // kept: an `image` block becomes its licensed photograph (content.image_picks, else one Commons search, then Openverse
@@ -40,6 +41,10 @@ export type FillOptions = {
   young?: { question: string };
   // A curated simulation for the answer's topic (curated-sims.ts), shown in step 4 of an elaboration. The topic words are the catalog's own.
   sims?: { classLevel: number; topicEn?: string | null; title?: string | null; chapterEn?: string | null };
+  // §8 maths: the answer is a sum's (resolver Pending.solve): its simulation must share a word with the sum itself, and its
+  // videos a word with the sum or the tutor's topic and the child's class (an area model under a speed sum, a GCSE
+  // video for Class 3, is left out).
+  sum?: { question: string; classLevel: number };
 };
 
 // C526: Commons first (its assessed pictures, cached in content.image_picks); Openverse only when Commons has nothing.
@@ -104,6 +109,10 @@ export async function fillVisuals(withDb: WithDb, original: Block[], opts: FillO
     const subject = isSubject(opts.subject) ? opts.subject : null;
     const sim = !filled.sim && opts.sims && subject ? await withDb((db) => simFor(db, { subject, term: elab.term, topicEn: elab.topic?.en ?? opts.sims!.topicEn, title: opts.sims!.title, chapterEn: opts.sims!.chapterEn }, { classLevel: opts.sims!.classLevel }, opts.lang)).catch(() => null) : null;
     if (sim) filled = { ...filled, sim };
+    if (opts.sum && filled.sim && !fitsSum(filled.sim.title, opts.sum.question)) {
+      const { sim: _off, ...rest } = filled;
+      filled = rest as typeof filled;
+    }
     if (filled !== elab) {
       written = original.map((b) => (b === elab ? { ...filled, ...(elab.id ? { id: elab.id } : {}) } : b)) as Block[];
       opts.emit?.(written.find((b) => b.type === 'elaboration') as Elaboration & Block);
@@ -138,7 +147,10 @@ export async function fillVisuals(withDb: WithDb, original: Block[], opts: FillO
       if (found && new URL(found.url).hostname === PHOTO_HOST) await withDb((db) => db.query(`select content.save_image_pick($1, $2, $3, $4, $5, $6)`, [key, found.url, found.pageUrl, found.author, found.licence, found.licenceUrl])).catch(() => {});
     }
     const filledImage = image && photo ? photoBlock(image, photo) : null;
-    const filledVideos = answered ? answerBlock(answered) : topic ? videosBlock(first.items.slice(0, KEEP)) : null;
+    // §8: a sum's videos are about the sum and made for the child's class.
+    const about = opts.sum ? `${opts.sum.question} ${elab?.topic?.en ?? ''}` : '';
+    const fits = (title: string) => !opts.sum || (fitsSum(title, about) && gradeFits(title, opts.sum.classLevel));
+    const filledVideos = answered ? answerBlock({ ...answered, picks: answered.picks.filter((p) => fits(p.title)) }) : topic ? videosBlock(first.items.filter((v) => fits(v.title)).slice(0, KEEP)) : null;
     const out: Block[] = [];
     for (const b of blocks) {
       if (b.type === 'image') {
