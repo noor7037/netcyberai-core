@@ -517,7 +517,7 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
                 </p>
               )}
               <ReplyHead w={w} n={n} uiLang={lang} />
-              <UnderstandView w={w} input={a.input} tone={tone} onDone={(chat) => onAnswered(a.n, chat)} speak={{ serverVoice }} tutorKey={chosen?.key ?? null} onTap={unlockVoice} />
+              <UnderstandView w={w} input={a.input} tone={tone} onDone={(chat) => onAnswered(a.n, chat)} speak={{ serverVoice }} tutorKey={chosen?.key ?? null} onTap={unlockVoice} onAsk={(q) => submit(q, { ...base, files: [] })} />
             </div>
           );
         })}

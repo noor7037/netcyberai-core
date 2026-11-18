@@ -17,7 +17,9 @@ const EXPRESSION = /[0-9०-९]\s*[-+×x*/÷^=]\s*[0-9०-९]/;
 export function isMathsSum(subject: string | null | undefined, text: string): boolean {
   const t = text.slice(0, 2000);
   const numbers = (t.match(DIGITS) ?? []).length;
-  const asks = FIND_CUE.test(t) || EXPRESSION.test(t);
+  // A "why is 1/2 the same as 2/4" is a concept to explain, not a sum to solve, unless it also asks to find something.
+  const concept = /^\s*(why|how\s+does|how\s+do\s+we\s+know|explain|क्यों|समझा)/i.test(t);
+  const asks = FIND_CUE.test(t) || (EXPRESSION.test(t) && !concept);
   if (subject === 'mathematics') return numbers >= 1 && asks;
   return numbers >= 2 && FIND_CUE.test(t);
 }
