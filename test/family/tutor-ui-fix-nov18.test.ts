@@ -1,4 +1,5 @@
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { execSync } from 'node:child_process';
 import { describe, expect, it } from 'vitest';
 import { HIDE_AFTER_MS, TOP_ZONE, chromeOnScroll, isPageTap, mayAutoHide, scrollIntent } from '@/lib/family/focus-reading';
@@ -79,24 +80,19 @@ describe('§4 §5 full-bleed and the Ask pill', () => {
   });
 });
 
-describe('§6 §7 fullscreen video and lab', () => {
-  const stage = SRC('src/components/family/FullscreenStage.tsx');
-  it('asks for real fullscreen and landscape, unlocks on exit, and has a way out', () => {
-    expect(stage).toContain('requestFullscreen');
-    expect(stage).toContain("lock('landscape')");
-    expect(stage).toContain('unlock');
-    expect(stage).toContain('data-fullscreen-exit');
-    expect(stage).toContain('fam.media.turnPhone');
-    expect(stage).toContain('aspect-video');
-  });
-  it('the video and the sim use it, full width 16:9, and the sim has no tall fixed box', () => {
+describe('§6 §7 video and lab frame (no Full screen overlay, 18 Nov 2026 fourth report)', () => {
+  it('the video and the sim use a plain 16:9 frame with no overlay button, no handler and no strings', () => {
     const sim = SRC('src/components/family/blocks/SimCard.tsx');
     const vid = SRC('src/components/family/VideoPicks.tsx');
-    expect(sim).toContain('FullscreenStage');
-    expect(sim).toContain('stage.enter()');
+    const frame = SRC('src/components/family/MediaFrame.tsx');
+    expect(frame).toContain('aspect-video');
+    expect(frame).not.toContain('<button');
+    expect(sim).toContain('MediaFrame');
     expect(sim).not.toMatch(/min-h-\[(260|320)px\]|h-\[(420|560|640)px\]/);
     expect(sim).toContain('sandbox="allow-scripts allow-same-origin allow-popups allow-forms"');
-    expect(vid).toContain('FullscreenStage');
+    expect(vid).toContain('MediaFrame');
     expect(vid).toContain('allowFullScreen');
+    expect(existsSync(join(process.cwd(), 'src/components/family/FullscreenStage.tsx'))).toBe(false);
+    for (const f of ['src/lib/i18n/messages/en.ts', 'src/lib/i18n/messages/hi.ts', 'src/lib/family/understand-words.ts']) expect(SRC(f)).not.toMatch(/fam\.media\.(fullscreen|exit|turnPhone)/);
   });
 });

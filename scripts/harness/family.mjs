@@ -320,7 +320,7 @@ export const FAMILY_SCREENS = [
   ['full', 'family-chapter-science', '/family/study/chapter/nc.showcase.water-cycle', { settle: '[data-reader-controls]' }],
   // S2 (C375): the shared tutor window on Study (its input rail, then its Conversation tab), the reader's doubt drawer,
   // and the parent's Learning Vault.
-  ['full', 'family-tutor-keyboard-visual', '/family/study?subject=mathematics', { langs: ['en'], android: true, keyboard: 'visual', child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-rail]', steps: [{ kbOpen: 320 }, { kbClose: true }, { kbOpen: 280 }, { kbClose: true }] }],
+  ['full', 'family-tutor-keyboard-visual', '/family/study?subject=mathematics', { langs: ['en'], android: true, keyboard: 'visual', child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-rail]', steps: [{ kbOpen: 320 }, { kbCompact: true }, { kbHide: true }, { kbClose: true }, { kbOpen: 280 }, { kbSend: true }] }],
   ['full', 'family-tutor-keyboard-open', '/family/study?subject=mathematics', { langs: ['en'], android: true, keyboard: 'visual', viewportShot: true, child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-rail]', steps: [{ kbOpen: 320 }] }],
   ['full', 'family-tutor-keyboard-silent', '/family/study?subject=mathematics', { langs: ['en'], android: true, keyboard: 'silent', child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-rail]', steps: [{ kbOpen: 320 }, { kbClose: true }] }],
   ['full', 'family-tutor-window', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-rail]' }],
@@ -882,6 +882,49 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
                 if (m.field.bottom > m.keysTop || m.field.top < 0) errors.push(`keyboard open: the Ask field (${Math.round(m.field.top)}-${Math.round(m.field.bottom)}) is not above the keys at ${m.keysTop} px`);
                 if (m.dockUnderKeys) errors.push('keyboard open: the tab bar is under the keyboard');
               }
+            }
+            // 18 Nov 2026 (fourth report). `kbCompact`: with the field focused the side buttons are gone and the field has the bar's width.
+            if (step.kbCompact) {
+              const m = await page.evaluate(() => {
+                const bar = document.querySelector('[data-tutor-composer] form')?.getBoundingClientRect();
+                const ta = document.querySelector('[data-tutor-composer] textarea')?.getBoundingClientRect();
+                const gone = ['[data-tutor-attach]', '[data-voice-input]', '[data-tutor-call-link]', '[data-tutor-pill-toggle]', '[data-tutor-history]'].filter((q) => document.querySelector(q));
+                return { bar: bar?.width ?? 0, ta: ta?.width ?? 0, gone };
+              });
+              if (m.gone.length) errors.push('keyboard compact: still showing ' + m.gone.join(', '));
+              if (m.ta < m.bar * 0.7) errors.push('keyboard compact: the field is ' + Math.round(m.ta) + ' px of a ' + Math.round(m.bar) + ' px bar (a thin column)');
+            }
+            // `kbSend`: one real touch tap on Send must send: the field keeps the focus until the click, and the page does not move.
+            if (step.kbSend) {
+              await page.locator('[data-tutor-composer] textarea').first().fill('what is 2 + 2').catch(() => errors.push('the Ask field could not be filled'));
+              await page.evaluate(() => {
+                window.__send = { clicks: 0, focusAtDown: null, url: location.href };
+                const b = document.querySelector('[data-tutor-send]');
+                b?.addEventListener('pointerdown', () => { window.__send.focusAtDown = document.activeElement?.tagName; });
+                b?.addEventListener('click', () => { window.__send.clicks += 1; window.__send.focusAtClick = document.activeElement?.tagName; });
+              });
+              const box = await page.locator('[data-tutor-send]').first().boundingBox();
+              if (!box) errors.push('keyboard send: Send was not found');
+              else {
+                await page.touchscreen.tap(box.x + box.width / 2, box.y + box.height / 2);
+                await page.waitForTimeout(500);
+                const sent = await page.evaluate(() => ({ ...window.__send, now: location.href, path: location.pathname }));
+                if (sent.clicks !== 1) errors.push('keyboard send: one tap on Send did not send (clicks: ' + sent.clicks + ')');
+                if (sent.focusAtClick !== 'TEXTAREA') errors.push('keyboard send: the field lost the focus before the click (' + sent.focusAtClick + ')');
+                if (!sent.now.includes('/family/study')) errors.push('keyboard send: the tap landed elsewhere: ' + sent.now);
+              }
+            }
+            // `kbHide`: the keys close but the field keeps the focus (Android's Back key): the Ask bar must drop back to the tab bar.
+            if (step.kbHide) {
+              if (opts.keyboard === 'visual') await page.evaluate(() => window.__kbSet(0));
+              await page.waitForTimeout(700);
+              const m = await page.evaluate(() => {
+                const bar = document.querySelector('[data-tutor-composer]')?.getBoundingClientRect();
+                const dock = document.querySelector('[data-fam-dock] ul')?.getBoundingClientRect() ?? document.querySelector('[data-fam-dock]')?.getBoundingClientRect();
+                return { barBottom: bar?.bottom, dockTop: dock?.top, focused: document.activeElement?.tagName };
+              });
+              if (m.barBottom === undefined || m.dockTop === undefined) errors.push('keyboard hidden: the Ask bar or the tab bar was not found');
+              else if (m.barBottom < m.dockTop - 24) errors.push('keyboard hidden with the focus kept: the Ask bar stays ' + Math.round(m.dockTop - m.barBottom) + ' px up');
             }
             if (step.kbClose) {
               await page.evaluate(() => document.activeElement instanceof HTMLElement && document.activeElement.blur());

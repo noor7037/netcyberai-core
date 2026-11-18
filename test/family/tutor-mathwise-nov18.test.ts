@@ -14,7 +14,7 @@ const { rows: ALL } = simRowsFromCsv(SRC('scripts/seed/curated_sims.csv'));
 const lang = (l: string) => ALL.filter((r) => r.language === l);
 
 describe('keyboard: the Ask pill above the keys (root cause and fix)', () => {
-  const base: LiftInput = { typing: true, innerHeight: 800, baseline: 800, vvHeight: 800, vvOffsetTop: 0, scale: 1, phone: true, settled: false, lastKnown: 0 };
+  const base: LiftInput = { typing: true, innerHeight: 800, baseline: 800, vvHeight: 800, vvOffsetTop: 0, scale: 1, phone: true, settled: false, lastKnown: 0, trusted: false };
   it('visual viewport smaller than the page: lift by exactly the covered part', () => {
     expect(keyboardLift({ ...base, vvHeight: 480 })).toEqual({ open: true, lift: 320, source: 'visual' });
     expect(keyboardLift({ ...base, vvHeight: 480, vvOffsetTop: 100 })).toEqual({ open: true, lift: 220, source: 'visual' });
@@ -184,7 +184,7 @@ describe('verify still works (PR #441 and #442)', () => {
     expect(page).toMatch(/data-study-main[^>]*px-2 [^>]*sm:px-3/);
     const css = SRC('src/app/(family)/family/family.css');
     expect(css).toContain('padding: 0.5rem 0.25rem;');
-    expect(css).toContain("[data-fullscreen-stage='off']");
+    expect(css).toContain("[data-media-frame]");
     expect(css).toContain('width: calc(100% + 0.5rem);');
   });
 });
