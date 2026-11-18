@@ -107,7 +107,7 @@ describe('the dock and the mascot', () => {
     expect(html).not.toContain('sr-only');
     expect(html.match(/data-tab-label/g)?.length).toBe(5);
     expect(html).toMatch(/<nav[^>]*class="fixed inset-x-0 bottom-0[^"]*"/);
-    expect(html).toMatch(/class="fam-dock mx-auto flex w-full[^"]*pb-\[calc\(var\(--fam-bottom,0px\)[^"]*lg:max-w-3xl/);
+    expect(html).toMatch(/class="fam-dock mx-auto flex w-full[^"]*pb-\[calc\(var\(--fam-bottom,0px\)[^"]*lg:max-w-\[68rem\]/);
     // Five distinct colours, all logo tokens (tailwind.config.ts maps them to design-tokens.ts).
     const tones = Object.values(TAB_TONE).map((t) => t.text);
     expect(new Set(tones).size).toBe(5);

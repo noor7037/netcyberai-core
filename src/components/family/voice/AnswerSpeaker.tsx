@@ -222,10 +222,16 @@ function useAnswerVoice({ messageId, sentences, lang, serverVoice, onSentence, r
     // Read aloud switched off by the child: no controls, so no strip button and no "read from here".
     told.current?.({ speaking, percent, started, ...(on ? controls : {}) });
   }, [speaking, percent, started, controls, on]);
+  // Focus Reading (useFocusReading) rests the bars while any answer is read aloud: it listens for this.
+  useEffect(() => {
+    window.dispatchEvent(new CustomEvent('fam-reading', { detail: { id: messageId, speaking } }));
+  }, [speaking, messageId]);
   useEffect(
     () => () => {
       told.current?.({ speaking: false, percent: 0, started: false });
+      window.dispatchEvent(new CustomEvent('fam-reading', { detail: { id: messageId, speaking: false } }));
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
   );
 

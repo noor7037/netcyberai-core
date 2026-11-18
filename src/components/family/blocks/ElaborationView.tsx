@@ -109,7 +109,7 @@ function Check({ c, i, w }: { c: ElabCheck; i: number; w: Words }) {
   const [picked, setPicked] = useState<number | null>(null);
   const right = picked === c.answer;
   return (
-    <li data-elab-check={i + 1} className="flex flex-col gap-2 rounded-3xl bg-off-white p-3 ring-1 ring-slate/10">
+    <li data-elab-check={i + 1} className="flex flex-col gap-2 rounded-2xl bg-off-white px-2 py-3 ring-1 ring-slate/10 sm:rounded-3xl sm:p-3">
       <p className="text-base font-bold text-slate">{c.question}</p>
       <ul className="flex flex-col gap-2" aria-label={w["fam.elab.pick"]}>
         {c.options.map((o, j) => {
@@ -257,7 +257,7 @@ export function ElaborationView({
       aria-label={b.term}
       className="fam-card fam-rise overflow-hidden bg-white"
     >
-      <div className="flex flex-col gap-4 p-4 sm:p-5">
+      <div className="flex flex-col gap-4 py-2 sm:p-5">
         <h2
           data-elab-term
           className="flex items-center gap-2 text-xl font-extrabold text-ink"
@@ -314,7 +314,7 @@ export function ElaborationView({
                 data-elab-step={i + 1}
                 data-elab-key={k}
                 data-active={shown === i || undefined}
-                className={`flex flex-col gap-2 rounded-3xl p-3 ring-1 transition-colors ${shown === i ? "bg-lesson-lilac ring-grape/40" : "bg-off-white ring-slate/10"}`}
+                className={`flex flex-col gap-2 rounded-2xl px-2 py-3 ring-1 transition-colors sm:rounded-3xl sm:p-3 ${shown === i ? "bg-lesson-lilac ring-grape/40" : "bg-off-white ring-slate/10"}`}
                 onClick={() => choose(i)}
               >
                 <div className="flex items-center gap-2">
