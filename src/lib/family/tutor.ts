@@ -11,7 +11,7 @@ import { activeChild, isPrePrimary, listChildren, type FamilyChild } from './chi
 import { consentState } from './consent';
 import { photoGate } from './photo-gate';
 import { isSubject } from './subjects';
-import { explanationText, TUTOR_FILE_MAX_BYTES, TUTOR_FILES_PER_TURN, TUTOR_TEXT_MAX, isTutorFileType, keptTutorBlocks, sniffTutorFile, type FeedTurn, type TutorFileType, type TutorTurn } from './tutor-shape';
+import { explanationText, WORKED_MARK, TUTOR_FILE_MAX_BYTES, TUTOR_FILES_PER_TURN, TUTOR_TEXT_MAX, isTutorFileType, keptTutorBlocks, sniffTutorFile, type FeedTurn, type TutorFileType, type TutorTurn } from './tutor-shape';
 
 // The shared tutor window's history and files (S2, C375; docs/37 §4 Wave 2), on the family's own transaction (the
 // family_app role; every tutor table's policies keep each row to its own account, and on a child's own phone to that
@@ -83,8 +83,11 @@ export const CHATS_KEPT = 15;
 export const CHAT_TURNS = 30;
 // The child turns a subject's feed keeps (docs/39 §5): the 31st deletes the oldest.
 export const FEED_TURNS = 30;
-export const MEMORY_TURNS = 6;
+export const MEMORY_TURNS = 10;
 export const MEMORY_TEXT = 600;
+// 18 Nov 2026: a solved sum keeps its working (problem, given, steps, answer) whole, so a follow-up is taught from it.
+export const WORKED_TEXT = 1600;
+const clipTutor = (t: string) => clip(t, t.startsWith(WORKED_MARK) ? WORKED_TEXT : MEMORY_TEXT);
 export const SUMMARY_EVERY = 5;
 const TITLE_MAX = 60;
 // At most this many child turns are read into one summary rewrite (the turns since the last one, normally five).
@@ -194,7 +197,7 @@ async function rememberedTurns(db: Db, chatId: string, n: number): Promise<Resol
   const { rows } = await db.query(`select role, body, blocks from family.tutor_messages where conversation_id = $1 order by created_at desc, role desc limit $2`, [chatId, n]);
   return rows
     .reverse()
-    .map((r) => ({ role: r.role === 'tutor' ? ('tutor' as const) : ('child' as const), text: clip(r.role === 'tutor' ? explanationText(r.blocks) : String(r.body ?? '').trim(), MEMORY_TEXT) }))
+    .map((r) => ({ role: r.role === 'tutor' ? ('tutor' as const) : ('child' as const), text: r.role === 'tutor' ? clipTutor(explanationText(r.blocks)) : clip(String(r.body ?? '').trim(), MEMORY_TEXT) }))
     .filter((t) => t.text.length > 0);
 }
 

@@ -320,6 +320,9 @@ export const FAMILY_SCREENS = [
   ['full', 'family-chapter-science', '/family/study/chapter/nc.showcase.water-cycle', { settle: '[data-reader-controls]' }],
   // S2 (C375): the shared tutor window on Study (its input rail, then its Conversation tab), the reader's doubt drawer,
   // and the parent's Learning Vault.
+  ['full', 'family-tutor-keyboard-visual', '/family/study?subject=mathematics', { langs: ['en'], android: true, keyboard: 'visual', child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-rail]', steps: [{ kbOpen: 320 }, { kbClose: true }, { kbOpen: 280 }, { kbClose: true }] }],
+  ['full', 'family-tutor-keyboard-open', '/family/study?subject=mathematics', { langs: ['en'], android: true, keyboard: 'visual', viewportShot: true, child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-rail]', steps: [{ kbOpen: 320 }] }],
+  ['full', 'family-tutor-keyboard-silent', '/family/study?subject=mathematics', { langs: ['en'], android: true, keyboard: 'silent', child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-rail]', steps: [{ kbOpen: 320 }, { kbClose: true }] }],
   ['full', 'family-tutor-window', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-rail]' }],
   // W6-A (C395): Study's chapter accordion with its first chapter open (topics, worksheets, explain, offline pack).
   ['full', 'family-study-accordion', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-chapter-row] summary', steps: [{ tap: '[data-chapter-row] summary', wait: '[data-chapter-row] details[open] .fam-acc-body' }] }],
@@ -684,10 +687,19 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
           const voiceOff = opts.voice ? await serverVoiceOn(db, aiKey) : null;
           for (const [module, on] of Object.entries(opts.flags ?? {}))
             await db.pg.query(`insert into control.app_flags (app, module, enabled, reason) values ('family', $1, $2, 'harness screen') on conflict (app, module) do nothing`, [module, on]);
-          const context = await browser.newContext({ viewport: { width, height: width < 768 ? 800 : 900 }, reducedMotion: motion, deviceScaleFactor: 1, ...(opts.mic || opts.call ? { permissions: ['microphone'] } : {}) });
+          const context = await browser.newContext({ viewport: { width, height: width < 768 ? 800 : 900 }, reducedMotion: motion, deviceScaleFactor: 1, ...(opts.android ? { isMobile: true, hasTouch: true, userAgent: 'Mozilla/5.0 (Linux; Android 14; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Mobile Safari/537.36' } : {}), ...(opts.mic || opts.call ? { permissions: ['microphone'] } : {}) });
           const cookies = who ? await familyCookies(FAMILY[who], opts.parent, secret, opts.child) : [];
           cookies.push({ name: 'ncf_lang', value: lang });
           await context.addCookies(cookies.map((c) => ({ ...c, domain: '127.0.0.1', path: '/', httpOnly: true, sameSite: 'Lax' })));
+          // 18 Nov 2026 (keyboard test): 'visual' fakes a phone's keyboard lying over the page: the visual viewport shrinks, the layout
+          // viewport does not (Android Chrome, iOS Safari). 'silent' is a web view that tells the page nothing at all.
+          if (opts.keyboard === 'visual')
+            await context.addInitScript(() => {
+              const t = new EventTarget();
+              const fake = { get height() { return window.innerHeight - (window.__kb || 0); }, get width() { return window.innerWidth; }, offsetTop: 0, offsetLeft: 0, pageTop: 0, pageLeft: 0, scale: 1, addEventListener: (...a) => t.addEventListener(...a), removeEventListener: (...a) => t.removeEventListener(...a), dispatchEvent: (e) => t.dispatchEvent(e) };
+              Object.defineProperty(window, 'visualViewport', { value: fake, configurable: true });
+              window.__kbSet = (px) => { window.__kb = px; t.dispatchEvent(new Event('resize')); };
+            });
           // A device setting the screen reads from the phone's storage (the data-saver, M2-9).
           if (opts.storage) await context.addInitScript((s) => Object.entries(s).forEach(([k, v]) => window.localStorage.setItem(k, v)), opts.storage);
           // `speakStub` (W22-S3): a phone's speech engine that "reads" each sentence for 2.2 s and reports word boundaries,
@@ -849,6 +861,45 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
           // `steps`: taps in turn, each waiting for what it brings (AQ-4's test screens).
           for (const step of opts.steps ?? []) {
             // `fill` and `select` (W10, C411): words typed into a field, a value picked in a drop-down.
+            // `kbOpen` (px): the keyboard of that height opens over the page with the Ask field focused; the field and its whole bar must sit
+            // above the keys, and the tab bar must not be under them. `kbClose`: it closes; the bar is back on the tab bar.
+            if (step.kbOpen) {
+              await page.locator('[data-tutor-composer] textarea').first().click().catch(() => errors.push('the Ask field could not be tapped'));
+              if (opts.keyboard === 'visual') await page.evaluate((px) => window.__kbSet(px), step.kbOpen);
+              await page.waitForTimeout(600);
+              const m = await page.evaluate((px) => {
+                const r = (sel) => document.querySelector(sel)?.getBoundingClientRect();
+                const bar = r('[data-tutor-composer]');
+                const field = r('[data-tutor-composer] textarea');
+                const dock = document.querySelector('[data-fam-dock]');
+                const dr = dock?.getBoundingClientRect();
+                const dockShown = !!dock && getComputedStyle(dock).display !== 'none' && getComputedStyle(dock).visibility !== 'hidden';
+                return { keysTop: window.innerHeight - px, bar: bar && { top: bar.top, bottom: bar.bottom }, field: field && { top: field.top, bottom: field.bottom }, dockUnderKeys: dockShown && !!dr && dr.bottom > window.innerHeight - px };
+              }, step.kbOpen);
+              if (!m.bar || !m.field) errors.push('keyboard open: the Ask bar was not found');
+              else {
+                if (m.bar.bottom > m.keysTop + 1) errors.push(`keyboard open: the Ask bar's foot is at ${Math.round(m.bar.bottom)} px, under the keyboard that starts at ${m.keysTop} px`);
+                if (m.field.bottom > m.keysTop || m.field.top < 0) errors.push(`keyboard open: the Ask field (${Math.round(m.field.top)}-${Math.round(m.field.bottom)}) is not above the keys at ${m.keysTop} px`);
+                if (m.dockUnderKeys) errors.push('keyboard open: the tab bar is under the keyboard');
+              }
+            }
+            if (step.kbClose) {
+              await page.evaluate(() => document.activeElement instanceof HTMLElement && document.activeElement.blur());
+              if (opts.keyboard === 'visual') await page.evaluate(() => window.__kbSet(0));
+              await page.waitForTimeout(700);
+              const m = await page.evaluate(() => {
+                const bar = document.querySelector('[data-tutor-composer]')?.getBoundingClientRect();
+                const dock = document.querySelector('[data-fam-dock] ul')?.getBoundingClientRect() ?? document.querySelector('[data-fam-dock]')?.getBoundingClientRect();
+                const shown = !!dock && dock.height > 0 && getComputedStyle(document.querySelector('[data-fam-dock]')).display !== 'none';
+                return { bar: bar && { bottom: bar.bottom }, dock: dock && { top: dock.top, bottom: dock.bottom }, shown, h: window.innerHeight };
+              });
+              if (!m.bar || !m.dock) errors.push('keyboard closed: the Ask bar or the tab bar was not found');
+              else {
+                if (!m.shown) errors.push('keyboard closed: the tab bar did not come back');
+                if (m.bar.bottom > m.dock.top + 4) errors.push(`keyboard closed: the Ask bar's foot (${Math.round(m.bar.bottom)}) is not above the tab bar (${Math.round(m.dock.top)})`);
+                if (m.bar.bottom < m.dock.top - 24) errors.push(`keyboard closed: the Ask bar floats ${Math.round(m.dock.top - m.bar.bottom)} px above the tab bar`);
+              }
+            }
             if (step.fill) await page.locator(step.fill.field).first().fill(step.fill.value).catch(() => errors.push(`${step.fill.field} could not be filled`));
             // `upload` (C519): a textbook-like page drawn on a canvas, given to a file input (no image file is committed).
             if (step.upload) {

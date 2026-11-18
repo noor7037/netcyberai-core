@@ -158,7 +158,10 @@ describe('a maths sum is solved first (§8)', () => {
       expect([...html.matchAll(/data-solve-reply="(\w+)"/g)].map((m) => m[1])).toEqual(['yes', 'differently', 'simpler', 'similar']);
       for (const r of ['yes', 'differently', 'simpler', 'similar']) {
         expect(w[`fam.solve.reply.${r}`]).toBeTruthy();
-        expect(w[`fam.solve.ask.${r}`]).toContain('{problem}');
+        // "Explain differently" and "Show simpler steps" are the teacher's moves on the same sum (maths-moves.ts): the chat holds
+        // the sum, so they do not paste it; "Yes" and "Give me a similar one" carry it.
+        if (r === 'yes' || r === 'similar') expect(w[`fam.solve.ask.${r}`]).toContain('{problem}');
+        else expect(w[`fam.solve.ask.${r}`]).not.toContain('{problem}');
       }
     }
     // Without a way to ask (a kept answer in the history) no reply chip is drawn.
@@ -174,8 +177,8 @@ describe('a maths sum is solved first (§8)', () => {
     const buttons = (el.props.children[1].props.children as { props: { onClick: () => void } }[]);
     for (const b of buttons) b.props.onClick();
     expect(asked).toHaveLength(4);
-    expect(asked[1]).toBe(`Please explain this sum in a different way: ${solution.problem}`);
-    for (const q of asked) expect(q).toContain(solution.problem);
+    expect(asked[1]).toBe(w['fam.solve.ask.differently']);
+    for (const i of [0, 3]) expect(asked[i]).toContain(solution.problem);
   });
 
   const simRow = { class: '3-5', subject: 'Maths', chapter_name: '', topic: 'multiplication', source: 'phet', title: 'Area Model Introduction', embed_url: 'https://phet.colorado.edu/sims/html/area-model-introduction/latest/area-model-introduction_en.html', page_url: 'https://phet.colorado.edu/en/simulations/area-model-introduction', licence: 'CC BY 4.0 (PhET Interactive Simulations, University of Colorado Boulder)', preview: null };

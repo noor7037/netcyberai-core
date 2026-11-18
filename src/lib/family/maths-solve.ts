@@ -9,7 +9,7 @@
 const DIGITS = /[0-9०-९]+(?:[.,][0-9०-९]+)?/g;
 // What a word problem asks for (English and Hindi), or a sum written out.
 const FIND_CUE =
-  /\b(how\s+(many|much|long|far|fast|old)|after\s+how|find|calculate|work\s+out|solve|evaluate|simplify|what\s+is\s+the\s+(total|sum|difference|product|value|speed|distance|time|area|perimeter|cost|price|profit|loss|average)|total\s+(distance|cost|time))\b|कितन|ज्ञात|हल\s*कर|निकाल|गणना/i;
+  /\b(how\s+(many|much|long|far|fast|old)|after\s+how|find|calculate|work\s+out|solve|evaluate|simplify|what\s+is\s+the\s+(total|sum|difference|product|value|speed|distance|time|area|perimeter|cost|price|profit|loss|average)|total\s+(distance|cost|time)|when\s+(will|do|does|would)|where\s+(will|do|does|would)|at\s+what\s+(time|speed|distance)|catch(es)?\s+(up|the)|overtake|meet)\b|कितन|ज्ञात|हल\s*कर|निकाल|गणना|कब\s|कहाँ|पकड़|मिलेंग|मिलेगा/i;
 const EXPRESSION = /[0-9०-९]\s*[-+×x*/÷^=]\s*[0-9०-९]/;
 
 // A sum: a mathematics question with a number and something to find (or a sum written out), or, in any subject, a word
