@@ -1,6 +1,6 @@
 'use client';
 
-import { FullscreenStage } from './FullscreenStage';
+import { MediaFrame } from './MediaFrame';
 import { useEffect, useState } from 'react';
 import { fill, type Words } from '@/lib/family/fill';
 import { isLangCode, languageInfo, type LangCode } from '@/lib/family/languages';
@@ -104,7 +104,7 @@ export function VideoList({ w, videos, saver = false, title, tag, see, wanted }:
         {videos.map((v) => (
           <li key={v.videoId} data-video={v.videoId} className="flex flex-col gap-2">
             {playing === v.videoId ? (
-              <FullscreenStage w={w} label={v.title}>
+              <MediaFrame>
                 <iframe
                   data-video-frame
                   className="absolute inset-0 h-full w-full"
@@ -115,7 +115,7 @@ export function VideoList({ w, videos, saver = false, title, tag, see, wanted }:
                   referrerPolicy="strict-origin-when-cross-origin"
                   loading="lazy"
                 />
-              </FullscreenStage>
+              </MediaFrame>
             ) : (
               <button
                 type="button"
