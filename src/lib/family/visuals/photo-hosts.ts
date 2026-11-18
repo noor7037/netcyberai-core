@@ -26,7 +26,7 @@ export const PHOTO_HOSTS: Record<string, readonly string[]> = {
   iconify: ['api.iconify.design'],
   earthobs: ['assets.science.nasa.gov'],
 };
-// A host shared by many owners is kept to one owner's path (raw.githubusercontent.com: the Khronos glTF samples only).
+// A host shared by many owners is kept to one owner's path (raw.githubusercontent.com: the Khronos glTF models only).
 export const HOST_PATH: Record<string, string> = { 'raw.githubusercontent.com': '/KhronosGroup/glTF-Sample-Assets/' };
 const pathOk = (u: URL): boolean => !HOST_PATH[u.hostname] || u.pathname.startsWith(HOST_PATH[u.hostname]);
 export const ALL_PHOTO_HOSTS: ReadonlySet<string> = new Set(Object.values(PHOTO_HOSTS).flat());
@@ -43,7 +43,7 @@ export function photoUrl(v: unknown): string | null {
 }
 
 // The 3D model hosts (a glTF binary the viewer may load) and the structure files for molecules.
-// v21: Sketchfab's signed download host, NASA 3D Resources, Smithsonian 3D, Poly Haven and the Khronos glTF samples.
+// v21: Sketchfab's signed download host, NASA 3D Resources, Smithsonian 3D, Poly Haven and the Khronos glTF models.
 export const MODEL_HOSTS: ReadonlySet<string> = new Set(['static.poly.pizza', 'media.sketchfab.com', 'sketchfab-prod-media.s3.amazonaws.com', 'pubchem.ncbi.nlm.nih.gov', 'files.rcsb.org', 'assets.science.nasa.gov', '3d-api.si.edu', 'dl.polyhaven.org', 'raw.githubusercontent.com']);
 export function modelUrl(v: unknown): string | null {
   if (typeof v !== 'string' || v.length > 1000) return null;

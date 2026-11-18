@@ -173,7 +173,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
     }),
     ...(catalog?.chapters ?? []).filter((c) => !inBook.has(c.key)).map(catalogRow),
     // S1 (C374), S3 (C376): a published chapter to read and hear that is not in the catalog (the parent's own, the showcase).
-    // Only the child's own chapters, and published ones of this class: a sample or test chapter of another class (or with
+    // Only the child's own chapters, and published ones of this class: a trial or test chapter of another class (or with
     // no class) is not listed (founder, 16 Nov: the list showed a harness chapter and mixed classes).
     ...readable
       .filter((c) => !catalogKeys.has(c.key) && (c.own || chapterFitsClass(c.key, child.classLevel)))

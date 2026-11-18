@@ -12,6 +12,8 @@ import { computeStatus } from '@/lib/family/future-status';
 
 type By = { userId: string };
 export const LOW_CONFIDENCE = 0.8;
+// A reviewer note says what was checked: a stray key press ("1") is not one (C530).
+export const NOTE_MIN = 10;
 export type ReviewFilter = 'all' | 'pending' | 'low' | 'approved' | 'rejected';
 export const REVIEW_FILTERS: readonly ReviewFilter[] = ['all', 'pending', 'low', 'approved', 'rejected'];
 
@@ -120,7 +122,7 @@ export async function approveListing(db: Sql, by: By, id: unknown, note: unknown
   const before = await current(db, id);
   if (!before) return { ok: false, reason: 'not_found' };
   const n = oneLine(note).slice(0, 1000);
-  if (before.low && !n) return { ok: false, reason: 'note_needed' };
+  if (before.low && n.length < NOTE_MIN) return { ok: false, reason: 'note_needed' };
   const status = computeStatus({ status: before.status, keyDates: before.keyDates, lastDate: before.lastDate }, indiaDate());
   await db.query(`update content.future_listings set review_state = 'approved', review_note = $2, status = $3, reviewed_by = $4, reviewed_at = now(), updated_by = $4, updated_at = now() where listing_id = $1`, [before.id, n || null, status, by.userId]);
   await audit(db, by, 'content.future_listing_approved', before.id, snap(before), { ...snap(before), review_state: 'approved', status, note_given: Boolean(n) });
@@ -131,16 +133,19 @@ export async function countPending(db: Sql): Promise<number> {
   return Number((await db.query(`select count(*)::int as n from content.future_listings where review_state = 'pending'`)).rows[0]?.n ?? 0);
 }
 
-// Approve every pending listing in one step. The confirm modal is the check. A low-confidence row does not need its
-// own note here: the founder is approving the whole queue on purpose. Rejected and flagged rows stay as they are.
-// A second run changes nothing.
+// Approve every pending listing in one click (founder, 15 and 18 Nov 2026: he verifies the listings himself). Each row
+// goes through approveListing, so its status is worked out from its dates (a listing whose date has passed is not shown
+// as open) and it is audited on its own. A low-confidence row carries the note APPROVE_ALL_NOTE, so the record says who
+// vouched for it. Rejected and flagged rows stay as they are. A second run changes nothing (C530).
+export const APPROVE_ALL_NOTE = 'Verified by the founder; approved with Approve all.';
 export async function approveAllPending(db: Sql, by: By): Promise<{ approved: number }> {
   const pending = await countPending(db);
-  const res = await db.query(
-    `update content.future_listings set review_state = 'approved', reviewed_by = $1, reviewed_at = now(), updated_by = $1, updated_at = now() where review_state = 'pending'`,
-    [by.userId],
-  );
-  const approved = Number(res.rowCount ?? 0);
+  const { rows } = await db.query(`select listing_id::text as id from content.future_listings where review_state = 'pending' order by listing_id`);
+  let approved = 0;
+  for (const r of rows as { id: string }[]) {
+    const res = await approveListing(db, by, r.id, APPROVE_ALL_NOTE);
+    if (res.ok && res.changed) approved += 1;
+  }
   await writeAuditLog(db, {
     schoolId: null, actorUserId: by.userId, actorRole: 'super_admin', eventAction: 'content.future_listing_approve_all', targetType: 'content.future_listings',
     beforeState: { pending }, afterState: { approved },

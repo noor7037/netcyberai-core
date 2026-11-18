@@ -62,7 +62,7 @@ export function QuestionPuck({ w, chips, feed, pageScroll, onGo }: { w: Words; c
   if (!many || (!active && !open)) return null;
   const shown = cur || chips.at(-1)?.n || 0;
   return (
-    <div ref={wrap} data-question-puck className="fixed right-2 top-[42%] z-20 flex flex-col items-center rounded-full bg-ink p-1 text-white shadow-lg">
+    <div ref={wrap} data-question-puck className="fixed right-2 top-[42vh] z-20 flex flex-col items-center rounded-full bg-ink p-1 text-white shadow-lg">
       {open && (
         <nav aria-label={w['fam.tutor.navigator']} data-question-nav>
           <ol ref={list} style={{ maxHeight: ROW * 3 }} className="flex flex-col overflow-y-auto overscroll-contain [scrollbar-width:none]">

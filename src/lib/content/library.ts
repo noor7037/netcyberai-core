@@ -315,6 +315,34 @@ export async function approveVersion(db: Sql, actor: ContentActor, versionId: st
   return { ok: true, versionId };
 }
 
+// C530 (founder, 18 Nov 2026: one click approves all content). Every version waiting (in review, or in staff preview)
+// is approved and released to everyone in one step, each through approveVersion and releaseVersion, so each is locked,
+// audited and supersedes the version before it exactly as one by one. The two-person rule stays (the database also
+// enforces it): a version this account imported itself is left waiting and counted. A second run changes nothing.
+export async function approveAllWaiting(db: Sql, actor: ContentActor): Promise<{ released: number; ownImports: number }> {
+  const { rows } = await db.query(
+    `select version_id::text as id from content.syllabus_versions
+      where status = 'in_review' or (status = 'published' and audience = 'staff_preview')
+      order by board_id, class_level, subject, academic_year, version_no`
+  );
+  let released = 0;
+  let ownImports = 0;
+  for (const { id } of rows as { id: string }[]) {
+    const v = (await db.query(`select status from content.syllabus_versions where version_id = $1`, [id])).rows[0] as { status: VersionStatus } | undefined;
+    if (v?.status === 'in_review') {
+      const a = await approveVersion(db, actor, id);
+      if (!a.ok) {
+        if (a.reason === 'own_import') ownImports += 1;
+        continue;
+      }
+    }
+    const r = await releaseVersion(db, actor, id);
+    if (r.ok) released += 1;
+  }
+  await writeAuditLog(db, { schoolId: null, actorUserId: actor.userId, actorRole: 'super_admin', eventAction: 'content.syllabus.approve_all', targetType: 'content_syllabus_version', afterState: { released, ownImports } });
+  return { released, ownImports };
+}
+
 export async function rejectVersion(db: Sql, actor: ContentActor, versionId: string, note: string): Promise<ReviewResult> {
   const text = typeof note === 'string' ? note.trim() : '';
   if (text.length < 1 || text.length > 1000) return { ok: false, reason: 'note_needed' };

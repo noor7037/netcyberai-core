@@ -83,6 +83,19 @@ export function ContentView({ initial }: { initial: ControlVersion[] }) {
     await load();
   }
 
+  // C530: one click approves and releases every waiting version (one the account imported itself stays waiting).
+  const waiting = versions.filter((v) => v.status === 'in_review' || (v.status === 'published' && v.audience === 'staff_preview')).length;
+  async function approveAll() {
+    setBusy(true);
+    setNote(null);
+    const res = await fetch('/api/control/content', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'approve-all', confirm: 'approve-waiting' }) }).catch(() => null);
+    const got = res?.ok ? ((await res.json().catch(() => null)) as { released: number; ownImports: number } | null) : null;
+    setBusy(false);
+    if (!got) return setNote({ ok: false, text: t('control.content.err.failed') });
+    setNote({ ok: true, text: t('control.content.approveAllDone', { n: got.released, own: got.ownImports }) });
+    await load();
+  }
+
   async function showPreview(versionId: string) {
     if (shown?.kind === 'preview' && shown.versionId === versionId) return setShown(null);
     const res = await fetch(`/api/control/content/versions/${versionId}`, { cache: 'no-store' }).catch(() => null);
@@ -192,6 +205,11 @@ export function ContentView({ initial }: { initial: ControlVersion[] }) {
       <section className={SECTION} data-content-versions>
         <h2 className="text-base font-bold">{t('control.content.versions.title')}</h2>
         <p>{t('control.content.versions.how')}</p>
+        <div className="flex flex-wrap items-center gap-3">
+          <button type="button" data-content-approve-all disabled={busy || waiting === 0} onClick={() => void approveAll()} className={PRIMARY_ACTION}>
+            {t('control.content.approveAll', { n: waiting })}
+          </button>
+        </div>
         {groups.length === 0 && <p className="text-slate/70">{t('control.content.versions.none')}</p>}
         {groups.map((g) => (
           <div key={g.id} data-syllabus={g.id} className="flex flex-col gap-3 border-t border-slate/10 pt-3">

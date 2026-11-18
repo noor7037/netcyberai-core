@@ -236,7 +236,7 @@ export const SOURCES: readonly SourceDef[] = [
   M(S('polyhaven', 'Poly Haven', 'live', null, 'CC0', '3D models')),
   P(S('ambientcg', 'ambientCG', 'live', null, 'CC0', '3D textures'), 'Textures and materials only, not a model a step can show.'),
   P(S('kenney', 'Kenney, Quaternius, KayKit', 'bulk', null, 'CC0', '3D and 2D for young classes'), 'Zip packs only, no per-model address; a bulk pick into storage is needed.'),
-  M(S('khronos', 'Khronos glTF samples', 'live', null, 'CC0, CC BY per model', '3D'), 'Five curated models referenced by their raw addresses (model-khronos.ts).'),
+  M(S('khronos', 'Khronos glTF models', 'live', null, 'CC0, CC BY per model', '3D'), 'Five curated models referenced by their raw addresses (model-khronos.ts).'),
   S('phet', 'PhET Interactive Simulations', 'embed', null, 'CC BY 4.0', 'interactive'),
   S('concord', 'Concord Consortium', 'embed', null, 'CC BY, MIT', 'interactive'),
   // Embedded simulations (Noor, 16 Nov 2026): never searched by the AI; each is approved by a person into content.curated_topic_sims

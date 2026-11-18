@@ -119,9 +119,12 @@ jobs:
           # from the mock/dummy check above: a real non-match, not a path
           # carve-out for a genuine risk. process.env.SOME_SECRET_NAME is the
           # same kind of reference, for optional settings (C99).
+          # api_key=${encodeURIComponent(name)} is a query parameter filled from a
+          # variable at run time (the key itself lives in the settings), C530.
           if grep -rn 'sk_\|api_key\|SECRET\|PRIVATE_KEY' src/ \
               | grep -v "required('[A-Z0-9_]\+')" \
-              | grep -v "process\.env\.[A-Z0-9_]*\(SECRET\|PRIVATE_KEY\)[A-Z0-9_]*"; then
+              | grep -v "process\.env\.[A-Z0-9_]*\(SECRET\|PRIVATE_KEY\)[A-Z0-9_]*" \
+              | grep -v "api_key=\${encodeURIComponent([a-zA-Z]\+)}"; then
             echo "::error::Possible secret found in src/."
             exit 1
           fi

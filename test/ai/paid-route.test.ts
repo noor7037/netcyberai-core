@@ -305,6 +305,24 @@ describe('paid then normal (C507)', () => {
     await q(`delete from control.ai_provider_health`);
   });
 
+  it('a busy machine (the clock moves between reads) still tries the paid link before the normal chain (C530)', async () => {
+    paidAs(() => httpError(500));
+    const real = Date.now.bind(Date);
+    let drift = 0;
+    const clock = vi.spyOn(Date, 'now').mockImplementation(() => real() + (drift += 15));
+    try {
+      expect(await run(PAYING)).toMatchObject({ ok: true, provider: 'workers-ai' });
+    } finally {
+      clock.mockRestore();
+    }
+    expect(await rows()).toEqual([
+      { provider_id: 'anthropic', outcome: 'upstream_unavailable', paid: true },
+      { provider_id: 'workers-ai', outcome: 'ok', paid: false },
+    ]);
+    expect(await holds()).toBe(0);
+    await q(`delete from control.ai_provider_health`);
+  });
+
   it('the paid link shows some text then fails: no switch, the answer ends there', async () => {
     const shown: string[] = [];
     paidAs(() => sse([started, { type: 'content_block_delta', index: 0, delta: { type: 'text_delta', text: 'The sky ' } }], true));

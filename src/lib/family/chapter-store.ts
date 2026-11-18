@@ -87,7 +87,7 @@ export type ReadableChapter = {
 // The chapters a child can open for a subject: published for the child's board and class (or for any), or made from this
 // child's own upload; then the showcase chapters of the subject that the database does not replace.
 // A chapter key that names a class (u.c10.science..., cbse.c9.mathematics...) belongs to that class only; one that names none
-// (a sample, a test, a parent's own) is not a class's chapter and is listed only for its owner.
+// (a trial, a test, a parent's own) is not a class's chapter and is listed only for its owner.
 export function chapterFitsClass(key: string, classLevel: number): boolean {
   const m = /(?:^|\.)c(\d+)\./.exec(key);
   return m !== null && Number(m[1]) === classLevel;
