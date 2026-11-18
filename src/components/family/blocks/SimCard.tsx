@@ -4,7 +4,7 @@ import { useState } from 'react';
 import type { Words } from '@/lib/family/fill';
 import { simMode, type ElabSim } from '@/lib/family/sim-hosts';
 import { LabLinkCard } from './LabLinkCard';
-import { FullscreenStage } from '../FullscreenStage';
+import { MediaFrame } from '../MediaFrame';
 
 // "Try it yourself" (Noor, 16 Nov 2026): a curated simulation in step 4 of an answer, beside the photos and never instead of them.
 // The card is drawn here first (a small picture of our own, or a drawn card); nothing from the simulation's site loads, not even a
@@ -22,10 +22,9 @@ export function SimCard({ sim, w }: { sim: ElabSim; w: Words }) {
   return (
     <section data-elab-sim={sim.source} aria-label={w['fam.elab.trySim']} className="flex flex-col gap-2">
       <h4 className="text-sm font-extrabold text-slate">{w['fam.elab.trySim']}</h4>
-      {/* 18 Nov 2026: a wide 16:9 lab, never a tall box. Open runs it full screen, landscape where the phone allows it, with one Close. */}
-      <FullscreenStage w={w} label={sim.title}>
-        {(stage) =>
-          open ? (
+      {/* 18 Nov 2026: a wide 16:9 lab, never a tall box. */}
+      <MediaFrame>
+        {open ? (
             <iframe
               data-elab-sim-frame
               title={sim.title}
@@ -40,10 +39,7 @@ export function SimCard({ sim, w }: { sim: ElabSim; w: Words }) {
             <button
               type="button"
               data-elab-sim-open
-              onClick={() => {
-                setOpen(true);
-                void stage.enter();
-              }}
+              onClick={() => setOpen(true)}
               className="fam-press absolute inset-0 flex w-full flex-col items-center justify-center gap-2 overflow-hidden bg-gradient-to-br from-grape-deep to-ink p-3 text-center text-white"
             >
               {sim.preview && (
@@ -53,9 +49,8 @@ export function SimCard({ sim, w }: { sim: ElabSim; w: Words }) {
               <span className="relative rounded-full bg-white px-4 py-2 text-base font-extrabold text-ink">{w['fam.elab.simOpen']}</span>
               <span className="relative text-sm font-bold [text-shadow:0_1px_3px_rgba(0,0,0,0.7)]">{sim.title}</span>
             </button>
-          )
-        }
-      </FullscreenStage>
+          )}
+      </MediaFrame>
       <p className="text-xs text-slate/80">
         {w['fam.elab.simFrom']}{' '}
         <a href={sim.page} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center px-1 underline">

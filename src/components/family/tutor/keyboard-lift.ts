@@ -21,6 +21,8 @@ import { isTyping, keyboardInset } from './useKeyboardInset';
 export const LIFT_SETTLE_MS = 180;
 export const TYPICAL_KEYBOARD = 0.42;
 export const MIN_ESTIMATE = 200;
+export const PRESS_GRACE_MS = 350;
+export const RESET_EVENT = 'fam-kb-reset';
 const STORE = 'fam.kb.h';
 
 export type LiftInput = {
@@ -37,6 +39,9 @@ export type LiftInput = {
   settled: boolean;
   // The keyboard height last measured on this phone, 0 when none.
   lastKnown: number;
+  // This phone's browser has been seen to report the keyboard (a shrunk visual viewport or layout): when it now reports none,
+  // the keyboard is closed even if a field still holds the focus (Android's Back key closes the keys and keeps the focus).
+  trusted: boolean;
 };
 export type Lift = { open: boolean; lift: number; source: 'none' | 'visual' | 'resized' | 'estimate' };
 const CLOSED: Lift = { open: false, lift: 0, source: 'none' };
@@ -48,6 +53,7 @@ export function keyboardLift(i: LiftInput): Lift {
     if (covered > 0) return { open: true, lift: covered, source: 'visual' };
   }
   if (i.baseline > 0 && i.baseline - i.innerHeight >= 120) return { open: true, lift: 0, source: 'resized' };
+  if (i.trusted) return CLOSED;
   if (i.phone && i.settled) {
     const guess = i.lastKnown >= MIN_ESTIMATE ? i.lastKnown : Math.round(i.innerHeight * TYPICAL_KEYBOARD);
     return { open: true, lift: Math.min(Math.max(guess, MIN_ESTIMATE), Math.round(i.innerHeight * 0.55)), source: 'estimate' };
@@ -76,6 +82,7 @@ export function useKeyboardLift(): Lift {
   useEffect(() => {
     let baseline = 0;
     let focusedAt = 0;
+    let seen = readKnown() > 0;
     let timer: ReturnType<typeof setTimeout> | undefined;
     const vv = window.visualViewport ?? null;
     const phone = () => window.matchMedia?.('(pointer: coarse) and (max-width: 1023px)').matches === true;
@@ -84,6 +91,8 @@ export function useKeyboardLift(): Lift {
       const typing = isTyping(document.activeElement);
       // With no field focused the page is unobstructed: its height now is the one a shrunk page is compared with.
       if (!typing) baseline = layoutHeight();
+      const vvCovered = vv ? keyboardInset(layoutHeight(), { height: vv.height, offsetTop: vv.offsetTop, scale: vv.scale }) : 0;
+      if (typing && (vvCovered > 0 || (baseline > 0 && baseline - layoutHeight() >= 120))) seen = true;
       const next = keyboardLift({
         typing,
         innerHeight: layoutHeight(),
@@ -94,6 +103,7 @@ export function useKeyboardLift(): Lift {
         phone: phone(),
         settled: typing && Date.now() - focusedAt >= LIFT_SETTLE_MS,
         lastKnown: readKnown(),
+        trusted: seen,
       });
       if (next.source === 'visual' && next.lift >= MIN_ESTIMATE) remember(next.lift);
       setState((prev) => (prev.open === next.open && prev.lift === next.lift && prev.source === next.source ? prev : next));
@@ -105,10 +115,28 @@ export function useKeyboardLift(): Lift {
       if (isTyping(document.activeElement)) focusedAt = Date.now();
       read();
     };
-    const onFocusOut = () => void setTimeout(read, 60);
+    // A field that lost the focus (Send, a tap elsewhere, Done) lets the dock drop at once, and again once the page has settled.
+    // But a tap on something else (a quick reply, a tab) blurs the field before its click arrives: if the dock dropped in
+    // between, the page would shift under the finger and the tap would land elsewhere. So a blur caused by a tap waits for the
+    // click (PRESS_GRACE_MS); Send and the page's own blur ask for the reset at once (RESET_EVENT).
+    let pressedAt = 0;
+    const onPress = () => {
+      pressedAt = Date.now();
+    };
+    const onFocusOut = () => {
+      const wait = Math.max(0, PRESS_GRACE_MS - (Date.now() - pressedAt));
+      setTimeout(read, wait);
+      setTimeout(read, wait + 80);
+    };
+    const onReset = () => {
+      setTimeout(read, 0);
+      setTimeout(read, 80);
+    };
     baseline = layoutHeight();
     window.addEventListener('focusin', onFocusIn);
     window.addEventListener('focusout', onFocusOut);
+    window.addEventListener('pointerdown', onPress, true);
+    window.addEventListener(RESET_EVENT, onReset);
     window.addEventListener('resize', read);
     window.addEventListener('orientationchange', read);
     vv?.addEventListener('resize', read);
@@ -118,6 +146,8 @@ export function useKeyboardLift(): Lift {
       clearTimeout(timer);
       window.removeEventListener('focusin', onFocusIn);
       window.removeEventListener('focusout', onFocusOut);
+      window.removeEventListener('pointerdown', onPress, true);
+      window.removeEventListener(RESET_EVENT, onReset);
       window.removeEventListener('resize', read);
       window.removeEventListener('orientationchange', read);
       vv?.removeEventListener('resize', read);

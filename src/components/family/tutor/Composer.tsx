@@ -7,7 +7,7 @@ import { FILE_PICK_ACCEPT } from '@/lib/family/photo-shrink';
 import { TUTOR_FILES_PER_TURN, TUTOR_TEXT_MAX, type TutorFileType } from '@/lib/family/tutor-shape';
 import { useVoiceRecorder, type VoiceAck } from '../voice/useVoiceRecorder';
 import { PhotoSheet } from './PhotoSheet';
-import { useKeyboardLift } from './keyboard-lift';
+import { RESET_EVENT, useKeyboardLift } from './keyboard-lift';
 
 // The tutor's composer (W6-A, C395): one rounded field for every question a child types, on Study and in the chapter
 // reader's doubt drawer. Inside the field: Attach on the left (only when the photo gate lets photos through: the page
@@ -78,6 +78,8 @@ export function Composer(p: Props) {
   const [menu, setMenu] = useState(false);
   const dock = useRef<HTMLDivElement>(null);
   const [expanded, setExpanded] = useState(false);
+  // The field holds the focus (the keys are up): on Study the side buttons step aside and the field takes the whole bar.
+  const [focused, setFocused] = useState(false);
   // C510: the photo sheet open from the menu: for Check my work, or for Ask about this.
   const [sheet, setSheet] = useState<'check' | 'ask' | null>(null);
   const voice = useVoiceRecorder({
@@ -90,12 +92,12 @@ export function Composer(p: Props) {
     },
   });
 
-  // The field grows with the question, up to about six lines, then scrolls.
+  // The field grows with the question, up to five lines, then scrolls.
   useEffect(() => {
     const el = box.current;
     if (!el) return;
     el.style.height = 'auto';
-    el.style.height = `${Math.min(el.scrollHeight, 152)}px`;
+    el.style.height = `${Math.min(el.scrollHeight, 140)}px`;
   }, [p.value]);
 
   // While the keyboard is open the field is kept in view: when the keyboard opens under it, and when it is tapped again.
@@ -140,6 +142,7 @@ export function Composer(p: Props) {
   const full = p.attached.length >= TUTOR_FILES_PER_TURN;
   // The pill only on Study (the dock); the drawer's composer is always the full one. A file, a recording or a notice keeps it open.
   const pill = p.pinned === 'dock';
+  const compact = pill && focused && voice.state === 'idle';
   const open = !pill || expanded || p.attached.length > 0 || voice.state !== 'idle' || !!p.notice || !!p.locked;
   useEffect(() => {
     if (!expanded) return;
@@ -149,12 +152,19 @@ export function Composer(p: Props) {
     document.addEventListener('pointerdown', away);
     return () => document.removeEventListener('pointerdown', away);
   }, [expanded]);
+  // A tap on a button here must not take the focus from the field: the keys would close, the dock drop and the page shift under
+  // the finger, so the tap would land on the tab bar (Send needed two taps). The click still fires.
+  const keepFocus = (e: { target: EventTarget; preventDefault: () => void }) => {
+    if (document.activeElement === box.current && (e.target as HTMLElement).closest?.('button, a')) e.preventDefault();
+  };
   const send = () => {
     if (!p.canSend) return;
     p.onSend();
     // After a send the pill shrinks so the new answer has the room.
     setExpanded(false);
     box.current?.blur();
+    // The keyboard's lift is cleared at once, not after the page has settled.
+    window.dispatchEvent(new Event(RESET_EVENT));
   };
 
   // One short line at a time, only when something needs saying.
@@ -187,6 +197,8 @@ export function Composer(p: Props) {
       data-open={open || undefined}
       data-lifted={lifted || undefined}
       style={dockStyle}
+      onPointerDown={keepFocus}
+      onMouseDown={keepFocus}
       className={`fam-composer-dock z-20 px-1 pb-0.5 pt-1.5 ${fixed ? 'fixed inset-x-0 bottom-[var(--fam-dock-h,calc(var(--fam-bottom,0px)+4.5rem))] mx-auto w-full lg:max-w-[68rem]' : 'sticky bottom-0 -mx-1'}`}
     >
       {p.above && <div className="pointer-events-none absolute bottom-full right-2 mb-1 flex justify-end">{p.above}</div>}
@@ -223,7 +235,7 @@ export function Composer(p: Props) {
               </ul>
             )}
             <div className="flex items-end gap-0.5 p-1">
-              {open && p.files && (
+              {open && p.files && !compact && (
                 <div ref={menuWrap} className="relative shrink-0" onKeyDown={(e) => {
                   if (e.key === 'Escape' && (menu || sheet)) {
                     e.stopPropagation();
@@ -333,7 +345,9 @@ export function Composer(p: Props) {
                 value={p.value}
                 placeholder={p.call || !open ? w['fam.tutor.askShort'] : w['fam.tutor.title']}
                 onChange={(e) => p.onChange(e.target.value)}
+                onBlur={() => setFocused(false)}
                 onFocus={() => {
+                  setFocused(true);
                   if (pill) setExpanded(true);
                   keepInView();
                 }}
@@ -343,9 +357,9 @@ export function Composer(p: Props) {
                     send();
                   }
                 }}
-                className={`block min-h-[44px] min-w-0 flex-1 resize-none bg-transparent disabled:cursor-not-allowed py-[0.625rem] text-base leading-6 text-slate placeholder:text-slate/80 focus:outline-none ${open && p.files ? 'px-1' : 'px-3'} ${open ? '' : 'max-h-11 overflow-hidden'}`}
+                className={`block min-h-[44px] min-w-0 flex-1 resize-none bg-transparent disabled:cursor-not-allowed py-[0.625rem] text-base leading-6 text-slate placeholder:text-slate/80 focus:outline-none ${open && p.files && !compact ? 'px-1' : 'px-3'} ${open ? '' : 'max-h-11 overflow-hidden'}`}
               />
-              {p.voice && (
+              {p.voice && !compact && (
                 <button
                   type="button"
                   data-voice-input
@@ -366,14 +380,14 @@ export function Composer(p: Props) {
                   )}
                 </button>
               )}
-              {open && p.call && !p.locked && (
+              {open && p.call && !p.locked && !compact && (
                 <Link href={p.call.href} data-tutor-call-link aria-label={p.call.label} title={p.call.label} className={`${ROUND} text-ink hover:bg-off-white`}>
                   <svg aria-hidden="true" className="h-[22px] w-[22px]" {...ICON}>
                     <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" />
                   </svg>
                 </Link>
               )}
-              {pill && (
+              {pill && !compact && (
                 <button type="button" data-tutor-pill-toggle aria-expanded={open} aria-label={open ? w['fam.tutor.askClose'] : w['fam.tutor.askOpen']} onClick={() => (open ? (setExpanded(false), box.current?.blur()) : (setExpanded(true), box.current?.focus()))} className={`${ROUND} text-ink hover:bg-off-white`}>
                   <svg aria-hidden="true" className="h-5 w-5" {...ICON} strokeWidth={2.5}>
                     <path d={open ? 'M6 9l6 6 6-6' : 'M6 15l6-6 6 6'} />
@@ -389,7 +403,7 @@ export function Composer(p: Props) {
               )}
             </div>
           </div>
-          <button
+          {!compact && <button
             type="button"
             data-tutor-history
             aria-label={w['fam.tutor.tabConversation']}
@@ -402,7 +416,7 @@ export function Composer(p: Props) {
               <path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z" />
               <path d="M12 8v4l2.5 1.5" />
             </svg>
-          </button>
+          </button>}
         </div>
       </form>
     </div>
