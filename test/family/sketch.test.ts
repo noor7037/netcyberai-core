@@ -339,7 +339,7 @@ describe('the composer and the studio', () => {
   };
   // 17 Nov 2026 (founder): the Ask bar has no Draw button; drawing lives in the Draw tab.
   it('the Ask bar is attach, the question, the microphone, Call and Conversation: no Draw button', () => {
-    const out = renderToStaticMarkup(h(Composer, { ...props, voice: { secondsLeft: 60 }, call: { href: '/family/call', label: 'Call' } }));
+    const out = renderToStaticMarkup(h(Composer, { ...props, pinned: 'sheet' as const, voice: { secondsLeft: 60 }, call: { href: '/family/call', label: 'Call' } }));
     expect(out).not.toContain('data-sketch-open');
     expect(out).not.toContain('>Draw<');
     expect(out).not.toContain('data-sketch-pad');

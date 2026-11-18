@@ -10,8 +10,9 @@ import { fill, type Words } from '@/lib/family/fill';
 import { isSubject, type Subject } from '@/lib/family/subjects';
 import { attachPlan, preparePhoto } from '@/lib/family/photo-shrink';
 import { TUTOR_FILE_MAX_BYTES, TUTOR_FILES_PER_TURN, TUTOR_TEXT_MAX, TUTOR_TEXT_MIN, sniffTutorFile, type FeedTurn, type TutorFile } from '@/lib/family/tutor-shape';
-import { boxFarFromEnd, conversationHref, indiaWhen, newestBelow, qaGroups, questionChips, type QuestionChip } from '@/lib/family/tutor-feed-view';
-import { ConversationList } from './ConversationList';
+import { boxFarFromEnd, indiaWhen, newestBelow, qaGroups, questionChips } from '@/lib/family/tutor-feed-view';
+import { QuestionPuck } from './QuestionPuck';
+import { useFocusReading } from './useFocusReading';
 import { CitationChip } from '../blocks/CitationChip';
 import { citationOf } from '@/lib/family/citation';
 import { AnswerBlock, DirectAnswerCard, UnderstandView, type TutorAsk, type UnderstandInput } from '../UnderstandView';
@@ -174,7 +175,10 @@ export function followHref(ask: FeedAsk | undefined, follow: boolean, tutorKey: 
 export function TutorWindow({ w, subject, tone, voice = null, files = false, homework = false, reader = null, idPrefix = 'fam-tutor', pinned = 'dock', follow = false, pageScroll = false, tutor: chosen = null, call = null, serverVoice = false, about = null, where: placed = null, ask = null, sketchFirst = null, children }: Props) {
   const router = useRouter();
   // The conversation history sheet (Conversation in the composer).
-  const [history, setHistory] = useState(false);
+  // The Conversation button (data-tutor-history) is a view toggle, as before 17 Nov: one tap shows the chat, the next shows the
+  // chapters again (the `children`, below the feed). Restored 18 Nov 2026 from 1e666aae.
+  const [open, setOpen] = useState(true);
+  const [speakingIds, setSpeakingIds] = useState<string[]>([]);
   // The question the navigator jumped to, lit for a moment; whether the newest answer is out of sight below.
   const [lit, setLit] = useState<number | null>(null);
   const [jump, setJump] = useState(false);
@@ -191,7 +195,7 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
   const [turnsError, setTurnsError] = useState(false);
   const feed = useRef<HTMLDivElement>(null);
   const uid = useId().replace(/:/g, '');
-  const ids = { title: `${idPrefix}-${uid}-title`, feed: `${idPrefix}-${uid}-feed`, q: `${idPrefix}-${uid}-q`, history: `${idPrefix}-${uid}-history` };
+  const ids = { title: `${idPrefix}-${uid}-title`, feed: `${idPrefix}-${uid}-feed`, q: `${idPrefix}-${uid}-q` };
   const subjectName = (s: string) => w[`fam.subject.${s}`] ?? s;
   // W23-C: where it was opened; on Study the subject's own page. The old showcase reader's drawer names its chapter in `reader`.
   const where: TutorWhere | null = placed ?? (reader ? null : { kind: 'study_subject', key: subject });
@@ -297,6 +301,7 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
     setAttached([]);
     setChecking(false);
     setFileError(null);
+    setOpen(true);
     // The new question at the top of the feed box, its answer drawing below it.
     requestAnimationFrame(() => document.getElementById(`${ids.feed}-ask-${n}`)?.scrollIntoView({ block: 'start', behavior: stillMotion() ? 'auto' : 'smooth' }));
   };
@@ -358,15 +363,26 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
   const chips = questionChips(groups, asks);
   // The place the header names: in a chapter (or the reader) its chapter and topic line; on Study the subject alone.
   const place = reader?.section ?? (scope ? about : null);
-  // This feed's own address, so the history marks it and a tap on it only closes the list.
-  const here = conversationHref({ subject, chapterKey: scope });
 
   useEffect(() => {
     const l = root.current?.closest('[lang]')?.getAttribute('lang');
     setLang(l === 'hi' ? 'hi' : 'en');
   }, []);
-  // The tutor rests when the window leaves.
+  // W19-A: the window closed or left, the tutor rests.
+  useEffect(() => {
+    if (!open) setAvatarMood('idle');
+  }, [open]);
   useEffect(() => () => setAvatarMood('idle'), []);
+  // Focus Reading: which answers are being read aloud (AnswerSpeaker tells the window).
+  useEffect(() => {
+    const on = (e: Event) => {
+      const { id, speaking } = (e as CustomEvent<{ id: string; speaking: boolean }>).detail;
+      setSpeakingIds((list) => (speaking ? (list.includes(id) ? list : [...list, id]) : list.filter((x) => x !== id)));
+    };
+    window.addEventListener('fam-reading', on);
+    return () => window.removeEventListener('fam-reading', on);
+  }, []);
+  const focus = useFocusReading({ enabled: pageScroll && open && shown, reading: speakingIds.length > 0 });
 
   // "Jump to latest": shown while the newest question-and-answer is out of sight below (the page on Study: above the
   // composer; the feed's own box in a drawer), hidden at the end.
@@ -400,10 +416,6 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
     };
   }, [pageScroll, shown]);
 
-  const closeHistory = useCallback(() => {
-    setHistory(false);
-    requestAnimationFrame(() => root.current?.querySelector<HTMLElement>('[data-tutor-history]')?.focus());
-  }, []);
   const motion = (): ScrollBehavior => (stillMotion() ? 'auto' : 'smooth');
   const toLatest = () => {
     const box = feed.current;
@@ -425,7 +437,9 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
   };
   useEffect(() => () => void (lightTimer.current && clearTimeout(lightTimer.current)), []);
 
-  const card = (n: number) => `fam-qa flex scroll-mb-[calc(var(--fam-bottom,0px)+11rem)] scroll-mt-32 flex-col gap-3 rounded-3xl bg-white p-3 outline-none sm:p-4 ${lit === n ? 'ring-2 ring-saffron-deep' : 'ring-1 ring-ink/10'}`;
+  // 18 Nov 2026: one surface. On a phone a question and its answer are the page itself (no card, no ring, no gutter of their own),
+  // divided from the next by a line; from 1024 px up a card on the wide column.
+  const card = (n: number) => `fam-qa flex scroll-mb-[calc(var(--fam-bottom,0px)+11rem)] scroll-mt-4 flex-col gap-3 border-t border-ink/10 py-4 outline-none first:border-t-0 lg:rounded-3xl lg:border-0 lg:bg-white lg:p-4 ${lit === n ? 'rounded-2xl bg-sunshine/25 ring-2 ring-saffron-deep' : 'lg:ring-1 lg:ring-ink/10'}`;
   return (
     <section ref={root} data-tutor-window data-subject={subject} data-listed={subject} aria-labelledby={ids.title} className="flex flex-col gap-4">
       <h2 id={ids.title} className="sr-only">
@@ -447,9 +461,9 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
         role="log"
         aria-label={fill(w['fam.chat.feed'], { subject: subjectName(subject) })}
         aria-busy={turns === null && !turnsError}
-        className={`fam-feed relative flex-col gap-4 scroll-mb-[calc(var(--fam-bottom,0px)+9rem)] ${pageScroll ? '' : 'max-h-[70vh] overflow-y-auto overscroll-contain'} ${shown || place ? 'flex' : 'hidden'}`}
+        className={`fam-feed relative flex-col gap-4 scroll-mb-[calc(var(--fam-bottom,0px)+9rem)] ${pageScroll ? '' : 'max-h-[70vh] overflow-y-auto overscroll-contain'} ${open && (shown || place) ? 'flex' : 'hidden'}`}
       >
-        <div data-chat-header className={`sticky z-10 -mx-1 flex flex-col gap-2 bg-off-white px-1 pb-2 pt-1 ${pageScroll ? 'top-[var(--fam-top,0px)]' : 'top-0'}`}>
+        <div data-chat-header className="flex flex-col gap-2">
           <p className="flex min-w-0 flex-wrap items-baseline gap-x-2 text-sm font-extrabold text-ink">
             <span data-chat-subject>{subjectName(subject)}</span>
             {place && (
@@ -461,7 +475,6 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
               </>
             )}
           </p>
-          {chips.length > 0 && <QuestionNavigator w={w} chips={chips} lit={lit} onGo={toQuestion} />}
         </div>
         {turnsError && (
           <p role="status" className="fam-surface bg-white p-4 text-sm text-ink">
@@ -504,7 +517,7 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
                 </p>
               )}
               <ReplyHead w={w} n={n} uiLang={lang} />
-              <UnderstandView w={w} input={a.input} tone={tone} onDone={(chat) => onAnswered(a.n, chat)} speak={{ serverVoice }} tutorKey={chosen?.key ?? null} onTap={unlockVoice} />
+              <UnderstandView w={w} input={a.input} tone={tone} onDone={(chat) => onAnswered(a.n, chat)} speak={{ serverVoice }} tutorKey={chosen?.key ?? null} onTap={unlockVoice} onAsk={(q) => submit(q, { ...base, files: [] })} />
             </div>
           );
         })}
@@ -543,9 +556,12 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
           submit(asked, { ...base, ...(typedCheckIntentLight(asked) ? { mode: 'check' as const } : {}) });
         }}
         call={call}
-        historyOpen={history}
-        historyFor={ids.history}
-        onHistory={() => setHistory((o) => !o)}
+        historyOpen={open && shown}
+        historyFor={ids.feed}
+        onHistory={() => {
+          setOpen((o) => !o);
+          if (!open) toNewest();
+        }}
         above={
           jump ? (
             <button type="button" data-tutor-jump onClick={toLatest} aria-label={w['fam.tutor.jumpLatest']} title={w['fam.tutor.jumpLatest']} className="fam-press pointer-events-auto flex h-11 w-11 items-center justify-center rounded-full bg-ink text-white shadow-lg">
@@ -556,19 +572,15 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
           ) : null
         }
       />
-      {history && (
-        <ConversationList
-          w={w}
-          id={ids.history}
-          lang={lang}
-          here={here}
-          onClose={closeHistory}
-          onHere={() => {
-            closeHistory();
-            toNewest();
-          }}
-        />
+      {pageScroll && open && <QuestionPuck w={w} chips={chips} feed={feed} pageScroll={pageScroll} onGo={toQuestion} />}
+      {pageScroll && focus.reduced && open && shown && (
+        <button type="button" data-focus-toggle aria-pressed={focus.hidden} onClick={focus.toggle} style={{ bottom: focus.hidden ? 'calc(var(--fam-bottom,0px) + 0.75rem)' : 'calc(var(--fam-dock-h, 4.5rem) + 4.5rem)' }} className="fam-press fixed left-3 z-30 flex min-h-[44px] items-center rounded-full bg-ink px-4 text-sm font-bold text-white shadow-lg">
+          {focus.hidden ? w['fam.focus.off'] : w['fam.focus.on']}
+        </button>
       )}
+      <p role="status" aria-live="polite" className="sr-only">
+        {focus.said === 'on' ? w['fam.focus.hidden'] : focus.said === 'off' ? w['fam.focus.shown'] : ''}
+      </p>
     </section>
   );
 }
@@ -626,37 +638,6 @@ function ReplyHead({ w, n, at, uiLang }: { w: Words; n: number; at?: string; uiL
         </time>
       )}
     </p>
-  );
-}
-
-// The question navigator: the last 30 questions as chips, oldest first, scrolled so the latest five show; the strip
-// scrolls sideways on its own. A tap goes to that question's card.
-function QuestionNavigator({ w, chips, lit, onGo }: { w: Words; chips: QuestionChip[]; lit: number | null; onGo: (n: number) => void }) {
-  const strip = useRef<HTMLOListElement>(null);
-  const newest = chips.at(-1)?.n ?? 0;
-  useEffect(() => {
-    const el = strip.current;
-    if (el) el.scrollLeft = el.scrollWidth;
-  }, [newest]);
-  return (
-    <nav aria-label={w['fam.tutor.navigator']} data-question-nav>
-      <ol ref={strip} className="flex snap-x gap-2 overflow-x-auto overscroll-x-contain pb-1 [scrollbar-width:none]">
-        {chips.map((c) => (
-          <li key={c.n} className="shrink-0 snap-end">
-            <button
-              type="button"
-              data-nav-chip={c.n}
-              onClick={() => onGo(c.n)}
-              aria-label={fill(w['fam.tutor.goToQuestion'], { n: c.n, text: c.text })}
-              title={c.text}
-              className={`fam-press flex h-11 min-w-[3.5rem] items-center justify-center rounded-full px-3 text-sm font-extrabold ${lit === c.n ? 'bg-ink text-white' : 'bg-white text-ink ring-1 ring-ink/15'}`}
-            >
-              #{c.n}
-            </button>
-          </li>
-        ))}
-      </ol>
-    </nav>
   );
 }
 

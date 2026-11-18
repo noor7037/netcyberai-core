@@ -1294,3 +1294,53 @@ div.fam-lesson {
     }
   }
 }
+
+/* ---- Focus Reading and the full-bleed feed (founder, 18 Nov 2026) ----------------------------------------------- */
+/* While the child reads (scrolling down, or an answer read aloud) the Ask pill and the tab dock rest out of the way and the page
+   gives its bottom room back; a tap or a scroll up returns them (components/family/tutor/useFocusReading.ts). With reduced
+   motion nothing moves by itself and nothing animates; the Focus button does it on purpose. */
+html[data-fam-chrome='hidden'] [data-fam-dock] {
+  transform: translateY(105%);
+  visibility: hidden;
+}
+html[data-fam-chrome='hidden'] [data-tutor-composer][data-pinned='dock'] {
+  transform: translateY(calc(100% + var(--fam-dock-h, 4.5rem) + 1rem));
+  visibility: hidden;
+}
+html[data-fam-chrome='hidden'] [data-family-settings] {
+  padding-bottom: var(--fam-bottom, 0px);
+}
+html[data-fam-chrome='hidden'] [data-study-main] {
+  padding-bottom: calc(var(--fam-bottom, 0px) + 0.5rem);
+}
+@media (prefers-reduced-motion: no-preference) {
+  [data-fam-dock],
+  .fam-composer-dock {
+    transition:
+      transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1),
+      visibility 0s;
+  }
+  html[data-fam-chrome='hidden'] [data-fam-dock],
+  html[data-fam-chrome='hidden'] [data-tutor-composer][data-pinned='dock'] {
+    transition:
+      transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1),
+      visibility 0s 220ms;
+  }
+  [data-fam-motion='off'] [data-fam-dock],
+  [data-fam-motion='off'] .fam-composer-dock {
+    transition: none;
+  }
+}
+/* One surface: on a phone and a tablet the answer's blocks are the page itself, not cards in a card (the page gives the
+   12-16 px inset). A block with a tone bar keeps its bar and a little room beside it. From 1024 px the cards return. */
+@media (max-width: 1023px) {
+  [data-tutor-feed] .fam-card {
+    border-radius: 0;
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0.5rem 0;
+  }
+  [data-tutor-feed] .fam-card[class*='border-l-'] {
+    padding-left: 0.75rem;
+  }
+}

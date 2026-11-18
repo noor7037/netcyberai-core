@@ -13,6 +13,7 @@ import { retrievePassages, type Passage } from '@/lib/ai/teaching/retrieve';
 import { bookPassages, bookSubjects } from './book-search';
 import { inScope, showcaseFor } from './visuals/showcase';
 import { withPics } from './elaboration-pics';
+import { isMathsSum, withMathsSolve } from './maths-solve';
 import { chapterDiagrams, diskFiles, labsFor, type ChapterDiagram, type LabOffer } from './tutor-context';
 import { BLOCK_SCHEMA_VERSION, completeResponse, coreBlocks, isInteractive, isSimScene, jsonObjectScanner, parseBlockLine, parseStoredBlockLine, type Block, type BlockType } from './blocks';
 import { boardNameOf, isPrePrimary, syllabusBoardOf, type FamilyChild } from './children';
@@ -262,6 +263,9 @@ export type Pending = {
   // The Elaboration Framework: this answer is one elaboration block, and the open chapter's diagrams its pictures may use.
   elaborate?: boolean;
   diagrams?: readonly ChapterDiagram[];
+  // §8 maths (18 Nov 2026): the question is a sum (maths-solve.ts isMathsSum). Its solution, a worked example, is asked
+  // for in code and shown first; everything else waits for it.
+  solve?: boolean;
   // W9-B: the plan the prompt is written from (v8 on; null under an earlier prompt), and for a live answer the planning
   // call and the passages, the prompt rebuilt from the plan once it comes (null: the default plan stands).
   plan: Plan | null;
@@ -463,6 +467,7 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
   const teach = (prompt.usesPlan || isCheck) && !ctx.preparing ? await prepareTeach(db, ctx, input, line, known, misconception, ofClass, prompt.visualFirst === true, prompt.oneBoard === true, elaborate) : null;
   // 3. The AI platform's checks (profile, minors, key, daily cap) and the cleaned request, still in this transaction.
   const tab = input.kind === 'question' && isSubject(input.windowSubject) ? input.windowSubject : null;
+  const solve = input.kind === 'question' && !input.check && !input.sketch && isMathsSum(known ?? tab, input.text);
   // v19: a typed question with no window place (no scope) is still offered the labs of the child's class and subject that fit its words.
   const freeLabs: LabOffer[] = prompt.oneBoard && input.kind === 'question' && !input.scope && !input.check && (known ?? tab) ? await labsFor(diskFiles, { classLevel: child.classLevel, subject: (known ?? tab) as string, lang: child.language === 'hi' ? 'hi' : 'en', chapterKey: input.chapterKey ?? null, about: input.about ?? '', question: input.text }).catch(() => []) : [];
   const ask: ResolverAsk = {
@@ -497,7 +502,7 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
     }
     // C521: under v17 a tutor persona speaks the question's language, not a fixed one.
     const persona = lang && ctx.persona ? { ...ctx.persona, language: 'both' as const } : ctx.persona;
-    return { system: withPersona(withDrawTemplate(withScope(prompt.system(a), a.scope), input.kind === 'question' && input.sketch ? input.drawTemplate : undefined), persona), messages: [{ role: 'user', content: prompt.user(a) }], responseFormat: undefined };
+    return { system: withPersona(withDrawTemplate(withMathsSolve(withScope(prompt.system(a), a.scope), solve), input.kind === 'question' && input.sketch ? input.drawTemplate : undefined), persona), messages: [{ role: 'user', content: prompt.user(a) }], responseFormat: undefined };
   };
   const prepared = await prepareText(db as never, { accountId: ctx.accountId, childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail, day: ctx.day, childId: ctx.child.childId }, profileId, build(plan)); // w16-b4
   if (!prepared.ok) {
@@ -506,12 +511,12 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
   }
   const chapterKey = input.kind === 'question' ? (input.chapterKey ?? null) : null;
   const scope = { classLevel: child.classLevel, subject: known ?? tab };
-  const showcase = input.kind === 'question' && !input.check && !input.sketch && !ctx.preparing && !elaborate ? await showcaseFor(chapterKey, input.text, child.language, undefined, scope) : null;
+  const showcase = input.kind === 'question' && !input.check && !input.sketch && !ctx.preparing && !elaborate && !solve ? await showcaseFor(chapterKey, input.text, child.language, undefined, scope) : null;
   // The elaboration's step pictures: the open chapter's own diagrams, only a chapter of this child's class and subject.
   const diagrams = elaborate && chapterKey && inScope(chapterKey, scope) ? await chapterDiagrams(chapterKey, child.language === 'hi' ? 'hi' : 'en').catch(() => []) : [];
   const question = input.kind === 'question' ? withAttached(input.text, input.attached) : null;
   const asked = question ?? `Explain "${line?.topicEn ?? line?.chapterEn ?? ''}" to a Class ${child.classLevel} student.`;
-  return { ctx, line, known, open, classSubjects: ofClass, tab, ...(ask.bookSubjects ? { bookSubjects: ask.bookSubjects } : {}), cacheable, promptVersion: prompt.version, elaborate, diagrams, text: prepared.text, moderation, asked, question, labs: input.kind === 'question' && input.scope ? input.scope.labs.map((l) => l.id) : freeLabs.map((l) => l.id), showcase, plan, teach: teach ? { ...teach, build } : null, ...(isCheck ? { check: true as const, reading: input.kind === 'question' ? (input.attached ?? '') : '' } : {}) };
+  return { ctx, line, known, open, classSubjects: ofClass, tab, ...(ask.bookSubjects ? { bookSubjects: ask.bookSubjects } : {}), cacheable, promptVersion: prompt.version, elaborate, diagrams, ...(solve ? { solve: true } : {}), text: prepared.text, moderation, asked, question, labs: input.kind === 'question' && input.scope ? input.scope.labs.map((l) => l.id) : freeLabs.map((l) => l.id), showcase, plan, teach: teach ? { ...teach, build } : null, ...(isCheck ? { check: true as const, reading: input.kind === 'question' ? (input.attached ?? '') : '' } : {}) };
 }
 
 // C521: the language the child typed the question in (their own words, not a photo's reading) and the child's mother
@@ -606,6 +611,8 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
   // Check my work (W18-Q3): blocks that came before the verdicts, held until they are shown; and why the model's verdicts
   // were refused (a reason, never the words), for the log.
   const held: Block[] = [];
+  // §8: a sum's blocks that came before its solution, held until it is shown.
+  const unsolved: Block[] = [];
   let stepsRejected: string | null = null;
   const show = (unnamed: Block, s: Subject) => {
     const b = addName(unnamed);
@@ -660,7 +667,8 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
       return;
     }
     // The Elaboration Framework: the answer is the one elaboration block; any other block the model adds is not shown.
-    if (p.elaborate && parsedBlock.type !== 'elaboration') return;
+    // §8: a sum's solution (a worked example) is the one other block it keeps.
+    if (p.elaborate && parsedBlock.type !== 'elaboration' && !(p.solve && parsedBlock.type === 'worked_example')) return;
     // A multiple-choice check is never an answer by itself and never comes before the explanation: held back until the lesson it checks has been shown (founder, 16 Nov 2026).
     if (!p.check && parsedBlock.type === 'check' && !seen.has('explanation') && !seen.has('elaboration')) return;
     // A marked working (Check my work): a verdict that restates a plain sum is settled by our own arithmetic (2 Nov).
@@ -687,6 +695,11 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
       if (!(await claim(s))) return refuseSubject(s);
     }
     seen.add(b.type);
+    // §8: a sum's solution leads; anything that passed before it waits for it (or for the end, when none comes).
+    if (p.solve && b.type !== 'worked_example' && !seen.has('worked_example')) {
+      unsolved.push(b);
+      return;
+    }
     // A marked working shows its verdicts first (W18-Q3): the corrected working and the similar question wait for them.
     if (p.check && b.type !== 'steps' && b.type !== 'sources' && !seen.has('steps')) {
       held.push(b);
@@ -695,6 +708,7 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
     lead(s);
     show(b, s);
     if (p.check && b.type === 'steps') for (const h of held.splice(0)) show(h, s);
+    if (b.type === 'worked_example') for (const h of unsolved.splice(0)) show(h, s);
   };
   // Check my work always gives a verdict (W18-Q3). When the model's verdicts never passed (no steps line, or one our checks
   // refused), our own arithmetic marks every working line that is a plain equation, and that block is shown first. Its
@@ -769,6 +783,12 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
   }, late);
   await queue;
   if (p.check) await markWithoutModel();
+  // §8: no solution came (the model wrote none, or our arithmetic refused it): what passed is still shown, and the done
+  // line names the missing worked example (keep).
+  if (!stopped && subject && unsolved.length > 0) {
+    const s: Subject = subject;
+    for (const h of unsolved.splice(0)) show(h, s);
+  }
   // The plan's call is metered with the answer's, in the same transaction.
   const both = planSent;
   const sent: SentText = both
@@ -793,7 +813,7 @@ export async function keep(db: Db, p: Pending, g: Generated): Promise<ResolverEv
   const result = g.sent.result;
   // W10 (C411): the core blocks this answer's plan asked for (all three under a prompt that takes no plan), and those
   // that never came. The notice names them; an answer missing none and not cut shows none.
-  const core = p.check ? [...CHECK_CORE] : coreBlocks(g.plan?.blocks ?? null);
+  const core = p.check ? [...CHECK_CORE] : [...(p.solve ? (['worked_example'] as BlockType[]) : []), ...coreBlocks(g.plan?.blocks ?? null)];
   const missing = core.filter((t) => !g.kept.some((k) => k.type === t));
   // W10-4 (C413): `cut` says the child's answer stopped inside a block (the scanner ended in an object that never
   // closed), never how the call ended. A call that fails after its last block closed (the route's deadline reached by a

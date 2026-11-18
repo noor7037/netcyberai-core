@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import type { DockTab } from '@/lib/family/modules';
 
 // The tabs (Home, Study, English, Draw, Future; C391 removed Family, C513 added Draw), each shown only when
@@ -10,8 +10,9 @@ import type { DockTab } from '@/lib/family/modules';
 // above the phone's home bar.
 // W19-C: the ink dock of the founder's reference. 17 Nov 2026 (founder): on a phone it runs edge to edge (still above the
 // home bar), every tab shows its full name under its icon, and each tab has its own logo colour: its icon in that colour,
-// the open tab's icon on a disc of it with its name in it too. On a wide screen the dock is a pill in the same centred
-// column as the Study composer (max-w-3xl).
+// the open tab's icon on a disc of it with its name in it too. On a wide screen the dock is a pill in the same wide
+// column as the Study composer (68rem). 18 Nov 2026: it tells the page its own height (--fam-dock-h) so the Ask pill sits right on it,
+// and Focus Reading tucks it away while the child reads (family.css, html[data-fam-chrome]).
 const HREF: Record<DockTab, string> = { home: '/family', study: '/family/study', english: '/family/english', draw: '/family/draw', future: '/family/future' };
 // Each tab's own colour (logo tokens, design-tokens.ts): bright hues, each at least 4.5:1 on the ink dock.
 export const TAB_TONE: Record<DockTab, { text: string; disc: string }> = {
@@ -32,6 +33,20 @@ const ICON: Record<DockTab, string> = {
 
 export function FamilyTabs({ tabs, labels, navLabel }: { tabs: DockTab[]; labels: Record<DockTab, string>; navLabel: string }) {
   const path = usePathname() ?? '';
+  const nav = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const el = nav.current;
+    if (!el || typeof ResizeObserver === 'undefined') return;
+    const root = document.documentElement;
+    const set = () => root.style.setProperty('--fam-dock-h', `${Math.round(el.getBoundingClientRect().height)}px`);
+    const ro = new ResizeObserver(set);
+    ro.observe(el);
+    set();
+    return () => {
+      ro.disconnect();
+      root.style.removeProperty('--fam-dock-h');
+    };
+  });
   // C511: a tap on any Call link opens the microphone in that tap (callMic.ts), so the call is ready when its screen is.
   // The helper arrives as its own chunk after the page is up, so no page's first load carries it.
   useEffect(() => {
@@ -57,8 +72,8 @@ export function FamilyTabs({ tabs, labels, navLabel }: { tabs: DockTab[]; labels
   if (path.startsWith('/family/welcome') || path.startsWith('/family/english/lesson') || path.startsWith('/family/english/check') || path.startsWith('/family/call') || path.startsWith('/family/study/book/')) return null;
   const active = (t: DockTab) => (t === 'home' ? path === '/family' || path.startsWith('/family/progress') : t === 'study' ? path.startsWith('/family/study') || path.startsWith('/family/understand') || path.startsWith('/family/tutors') : path.startsWith(HREF[t]));
   return (
-    <nav aria-label={navLabel} data-fam-dock className="fixed inset-x-0 bottom-0 z-30 lg:px-4 lg:pb-3">
-      <ul data-count={tabs.length} className="fam-dock mx-auto flex w-full items-stretch rounded-t-3xl bg-ink px-1 pb-[calc(var(--fam-bottom,0px)+0.375rem)] pt-1.5 lg:max-w-3xl lg:rounded-full lg:p-1.5">
+    <nav ref={nav} aria-label={navLabel} data-fam-dock className="fixed inset-x-0 bottom-0 z-30 lg:px-4 lg:pb-3">
+      <ul data-count={tabs.length} className="fam-dock mx-auto flex w-full items-stretch rounded-t-3xl bg-ink px-1 pb-[calc(var(--fam-bottom,0px)+0.375rem)] pt-1.5 lg:max-w-[68rem] lg:rounded-full lg:p-1.5">
         {tabs.map((t) => {
           const on = active(t);
           const tone = TAB_TONE[t];

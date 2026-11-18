@@ -122,33 +122,18 @@ describe('the conversation history', () => {
     expect(route.indexOf("get('conversations') === '1'")).toBeLessThan(route.indexOf("get('subject')"));
     expect(route).toContain('listConversations(db, g.session.accountId, who.child.childId)');
   });
-  it('lists the groups with their dates, marks the one open now, and has an empty state', async () => {
-    const { ConversationGroups } = await import('@/components/family/tutor/ConversationList');
-    const w = familyWords('en', TUTOR_KEYS);
-    const list = [c('a', 'science', '2026-11-16T05:00:00.000Z'), c('d', 'science', '2026-11-15T05:00:00.000Z', 'u.c10.science.jesc1.ch01')];
-    const html = renderToStaticMarkup(h(ConversationGroups, { w, lang: 'en', here: '/family/study?subject=science', onHere: () => undefined, list, failed: false }));
-    expect(html.match(/data-history-group=/g)?.length).toBe(2);
-    expect(html).toContain('Study page');
-    expect(html).toContain('Light');
-    expect(html).toContain('href="/family/study/book/u.c10.science.jesc1.ch01"');
-    expect(html).toMatch(/aria-current="true"[^>]*>|data-history-chat="a"[^>]*aria-current="true"/);
-    expect(html).toContain('<time dateTime="2026-11-16T05:00:00.000Z">');
-    expect(html).toContain('2 questions');
-    const empty = renderToStaticMarkup(h(ConversationGroups, { w, lang: 'en', here: '', onHere: () => undefined, list: [], failed: false }));
-    expect(empty).toContain('data-tutor-history-empty');
-    expect(empty).toContain(w['fam.tutor.history.empty']);
-  });
 });
 
 describe('the feed cards and words', () => {
-  it('draws each question and answer as one card, the reply opened by its Question #N chip, under a sticky header', () => {
+  it('draws each question and answer as one card, the reply opened by its Question #N chip, with nothing pinned at the top', () => {
     const win = SRC('src/components/family/tutor/TutorWindow.tsx');
     expect(win).toMatch(/data-qa=\{g\.n\}/);
     expect(win).toMatch(/data-qa=\{n\}/);
     expect(win).toContain("fill(w['fam.tutor.questionN'], { n })");
-    expect(win).toMatch(/data-chat-header className=\{`sticky/);
-    expect(win).toContain('<QuestionNavigator');
-    expect(win).toMatch(/overflow-x-auto/);
+    expect(win).toMatch(/data-chat-header className="flex/);
+    expect(win).not.toMatch(/data-chat-header[^>]*sticky/);
+    expect(win).not.toContain('QuestionNavigator');
+    expect(win).toContain('<QuestionPuck');
   });
   it('has every new word in English and Hindi, and on the phone', async () => {
     const { en } = await import('@/lib/i18n/messages/en');

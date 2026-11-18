@@ -144,7 +144,8 @@ describe('a switched-off part hides its entry points', () => {
   });
 
   it('the Study composer shows the call link only when given one, naming the tutor', () => {
-    const props = { w, subject: 'mathematics' as const, tone: 'mathematics', voice: { secondsLeft: 300 }, tutor: { key: 'maths', name: 'Maths Tutor' } };
+    // 18 Nov 2026: Call shows in the open composer (the Ask pill opens into it; the drawer's is always open).
+    const props = { w, subject: 'mathematics' as const, tone: 'mathematics', pinned: 'sheet' as const, voice: { secondsLeft: 300 }, tutor: { key: 'maths', name: 'Maths Tutor' } };
     const withCall = renderToStaticMarkup(h(TutorWindow, { ...props, call: { href: '/family/call?tutor=maths&subject=mathematics', label: 'Call Maths Tutor' } }));
     expect(withCall).toContain('data-tutor-call-link');
     expect(withCall).toContain('aria-label="Call Maths Tutor"');

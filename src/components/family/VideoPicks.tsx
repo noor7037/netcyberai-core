@@ -1,5 +1,6 @@
 'use client';
 
+import { FullscreenStage } from './FullscreenStage';
 import { useEffect, useState } from 'react';
 import { fill, type Words } from '@/lib/family/fill';
 import { isLangCode, languageInfo, type LangCode } from '@/lib/family/languages';
@@ -79,7 +80,7 @@ export function VideoList({ w, videos, saver = false, title, tag, see, wanted }:
     setPlaying(v.videoId);
   };
   return (
-    <section data-videos data-block={tag} className={`fam-card fam-rise flex flex-col gap-3 bg-white p-5 text-slate ${tag && BLOCK_TONE[tag] ? `border-l-[6px] ${BLOCK_TONE[tag].bar}` : ''}`} aria-labelledby="videos-title">
+    <section data-videos data-block={tag} className={`fam-card fam-rise flex flex-col gap-3 bg-white p-3 text-slate sm:p-5 ${tag && BLOCK_TONE[tag] ? `border-l-[6px] ${BLOCK_TONE[tag].bar}` : ''}`} aria-labelledby="videos-title">
       <h2 id="videos-title" className="flex items-center gap-3 text-lg font-extrabold">
         <span aria-hidden="true" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-coral-deep bg-gradient-to-br from-coral-deep to-grape-deep text-white shadow-md">
           <FamIcon name="video" className="h-5 w-5" />
@@ -103,7 +104,7 @@ export function VideoList({ w, videos, saver = false, title, tag, see, wanted }:
         {videos.map((v) => (
           <li key={v.videoId} data-video={v.videoId} className="flex flex-col gap-2">
             {playing === v.videoId ? (
-              <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-slate">
+              <FullscreenStage w={w} label={v.title}>
                 <iframe
                   data-video-frame
                   className="absolute inset-0 h-full w-full"
@@ -114,13 +115,13 @@ export function VideoList({ w, videos, saver = false, title, tag, see, wanted }:
                   referrerPolicy="strict-origin-when-cross-origin"
                   loading="lazy"
                 />
-              </div>
+              </FullscreenStage>
             ) : (
               <button
                 type="button"
                 data-video-play
                 onClick={() => void open(v)}
-                className="fam-press group relative isolate block aspect-video w-full overflow-hidden rounded-2xl bg-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-ink/60"
+                className="fam-press group relative isolate block aspect-video w-full overflow-hidden bg-ink sm:rounded-2xl focus:outline-none focus-visible:ring-4 focus-visible:ring-ink/60"
               >
                 <span className="sr-only">
                   {w['fam.video.play']} <span lang={script(v.title)}>{v.title}</span>

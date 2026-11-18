@@ -110,6 +110,6 @@ describe('the composer above the keyboard', () => {
     expect(src).toMatch(/paddingBottom: 'calc\(var\(--fam-keyboard\) \+ 0\.25rem\)'/);
     expect(src).toMatch(/\$\{lifted \? 'bottom-0' : p\.pinned === 'dock'/);
     expect(src).toMatch(/scrollIntoView\(\{ block: 'nearest' \}\)/);
-    expect(src).toMatch(/onFocus=\{keepInView\}/);
+    expect(src).toMatch(/onFocus=\{\(\) => \{[^}]*keepInView\(\);/);
   });
 });

@@ -18,8 +18,11 @@ import { useKeyboardInset } from './useKeyboardInset';
 // of a question, hints first; the homework helper) and "Check my work" (W16-B2: a photo of the child's own answer,
 // marked step by step). C510: each of those two opens the photo sheet (Take a photo, the camera; Choose from gallery),
 // since a child photographs the notebook; "Ask about this" attaches the photo to this question. The textarea grows with the question; Enter sends on a keyboard with a mouse, and makes a new
-// line on a phone. Pinned above the tab dock on Study, at the drawer's foot in the reader. On a wide screen the Study
-// composer and the tab dock share one centred column (max-w-3xl), so they line up.
+// line on a phone. Pinned above the tab dock on Study, at the drawer's foot in the reader.
+// 18 Nov 2026 (founder): on Study the composer is the Ask pill: one slim row (the field's "Ask…", the microphone, a chevron, and
+// the Conversation button) docked right on the tab bar as one cluster. A tap on the field or the chevron opens it into the full
+// composer (attach, Call, Send): the same surface, not a second panel. A tap outside, Send or the chevron shrinks it again.
+// The drawer's composer is always open. Focus Reading (useFocusReading) tucks the cluster away while the child reads.
 
 export type ComposerFile = { key: string; name: string; mime: TutorFileType; state: 'sending' | 'checking' | 'ready'; id: string | null };
 
@@ -73,6 +76,8 @@ export function Composer(p: Props) {
   const menuWrap = useRef<HTMLDivElement>(null);
   const clip = useRef<HTMLButtonElement>(null);
   const [menu, setMenu] = useState(false);
+  const dock = useRef<HTMLDivElement>(null);
+  const [expanded, setExpanded] = useState(false);
   // C510: the photo sheet open from the menu: for Check my work, or for Ask about this.
   const [sheet, setSheet] = useState<'check' | 'ask' | null>(null);
   const voice = useVoiceRecorder({
@@ -123,6 +128,24 @@ export function Composer(p: Props) {
     setSheet(which);
   };
   const full = p.attached.length >= TUTOR_FILES_PER_TURN;
+  // The pill only on Study (the dock); the drawer's composer is always the full one. A file, a recording or a notice keeps it open.
+  const pill = p.pinned === 'dock';
+  const open = !pill || expanded || p.attached.length > 0 || voice.state !== 'idle' || !!p.notice || !!p.locked;
+  useEffect(() => {
+    if (!expanded) return;
+    const away = (e: PointerEvent) => {
+      if (!dock.current?.contains(e.target as Node)) setExpanded(false);
+    };
+    document.addEventListener('pointerdown', away);
+    return () => document.removeEventListener('pointerdown', away);
+  }, [expanded]);
+  const send = () => {
+    if (!p.canSend) return;
+    p.onSend();
+    // After a send the pill shrinks so the new answer has the room.
+    setExpanded(false);
+    box.current?.blur();
+  };
 
   // One short line at a time, only when something needs saying.
   const line =
@@ -145,11 +168,13 @@ export function Composer(p: Props) {
 
   return (
     <div
+      ref={dock}
       data-tutor-composer
       data-pinned={p.pinned}
+      data-open={open || undefined}
       data-lifted={lifted || undefined}
       style={dockStyle}
-      className={`fam-composer-dock sticky z-20 -mx-2 px-2 pb-1 pt-2 ${p.pinned === 'dock' ? 'lg:mx-auto lg:w-full lg:max-w-3xl' : ''} ${lifted ? 'bottom-0' : p.pinned === 'dock' ? 'bottom-[calc(var(--fam-bottom,0px)+4.5rem)] lg:bottom-[calc(var(--fam-bottom,0px)+5.25rem)]' : 'bottom-0'}`}
+      className={`fam-composer-dock sticky z-20 -mx-1 px-1 pb-0.5 pt-1.5 ${p.pinned === 'dock' ? 'lg:mx-auto lg:w-full lg:max-w-[68rem]' : ''} ${lifted ? 'bottom-0' : p.pinned === 'dock' ? 'bottom-[var(--fam-dock-h,calc(var(--fam-bottom,0px)+4.5rem))]' : 'bottom-0'}`}
     >
       {p.above && <div className="pointer-events-none absolute bottom-full right-2 mb-1 flex justify-end">{p.above}</div>}
       <form
@@ -157,7 +182,7 @@ export function Composer(p: Props) {
         className="flex flex-col gap-2"
         onSubmit={(e) => {
           e.preventDefault();
-          p.onSend();
+          send();
         }}
       >
         {p.notice}
@@ -185,7 +210,7 @@ export function Composer(p: Props) {
               </ul>
             )}
             <div className="flex items-end gap-0.5 p-1">
-              {p.files && (
+              {open && p.files && (
                 <div ref={menuWrap} className="relative shrink-0" onKeyDown={(e) => {
                   if (e.key === 'Escape' && (menu || sheet)) {
                     e.stopPropagation();
@@ -293,16 +318,19 @@ export function Composer(p: Props) {
                 disabled={p.locked}
                 maxLength={TUTOR_TEXT_MAX}
                 value={p.value}
-                placeholder={p.call ? w['fam.tutor.askShort'] : w['fam.tutor.title']}
+                placeholder={p.call || !open ? w['fam.tutor.askShort'] : w['fam.tutor.title']}
                 onChange={(e) => p.onChange(e.target.value)}
-                onFocus={keepInView}
+                onFocus={() => {
+                  if (pill) setExpanded(true);
+                  keepInView();
+                }}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' && !e.shiftKey && !e.nativeEvent.isComposing && window.matchMedia('(pointer: fine)').matches) {
                     e.preventDefault();
-                    p.onSend();
+                    send();
                   }
                 }}
-                className={`block min-h-[44px] min-w-0 flex-1 resize-none bg-transparent disabled:cursor-not-allowed py-[0.625rem] text-base leading-6 text-slate placeholder:text-slate/80 focus:outline-none ${p.files ? 'px-1' : 'px-3'}`}
+                className={`block min-h-[44px] min-w-0 flex-1 resize-none bg-transparent disabled:cursor-not-allowed py-[0.625rem] text-base leading-6 text-slate placeholder:text-slate/80 focus:outline-none ${open && p.files ? 'px-1' : 'px-3'} ${open ? '' : 'max-h-11 overflow-hidden'}`}
               />
               {p.voice && (
                 <button
@@ -325,18 +353,27 @@ export function Composer(p: Props) {
                   )}
                 </button>
               )}
-              {p.call && !p.locked && (
+              {open && p.call && !p.locked && (
                 <Link href={p.call.href} data-tutor-call-link aria-label={p.call.label} title={p.call.label} className={`${ROUND} text-ink hover:bg-off-white`}>
                   <svg aria-hidden="true" className="h-[22px] w-[22px]" {...ICON}>
                     <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" />
                   </svg>
                 </Link>
               )}
-              <button type="submit" disabled={!p.canSend} data-tutor-send aria-label={w['fam.tutor.send']} className={`${ROUND} fam-cta bg-saffron text-ink shadow-md disabled:opacity-50`}>
-                <svg aria-hidden="true" className="h-5 w-5" {...ICON} strokeWidth={2.5}>
-                  <path d="M12 19V5M5 12l7-7 7 7" />
-                </svg>
-              </button>
+              {pill && (
+                <button type="button" data-tutor-pill-toggle aria-expanded={open} aria-label={open ? w['fam.tutor.askClose'] : w['fam.tutor.askOpen']} onClick={() => (open ? (setExpanded(false), box.current?.blur()) : (setExpanded(true), box.current?.focus()))} className={`${ROUND} text-ink hover:bg-off-white`}>
+                  <svg aria-hidden="true" className="h-5 w-5" {...ICON} strokeWidth={2.5}>
+                    <path d={open ? 'M6 9l6 6 6-6' : 'M6 15l6-6 6 6'} />
+                  </svg>
+                </button>
+              )}
+              {open && (
+                <button type="submit" disabled={!p.canSend} data-tutor-send aria-label={w['fam.tutor.send']} className={`${ROUND} fam-cta bg-saffron text-ink shadow-md disabled:opacity-50`}>
+                  <svg aria-hidden="true" className="h-5 w-5" {...ICON} strokeWidth={2.5}>
+                    <path d="M12 19V5M5 12l7-7 7 7" />
+                  </svg>
+                </button>
+              )}
             </div>
           </div>
           <button

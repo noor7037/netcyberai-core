@@ -1,7 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import type { Diagram, EnglishMoment, Explanation, KeyPoints, Sources, WorkedExample } from '@/lib/family/blocks';
+import { isSolution, type Diagram, type EnglishMoment, type Explanation, type KeyPoints, type Sources, type WorkedExample, type WorkedStep } from '@/lib/family/blocks';
+import { SolveReplies } from './SolveReplies';
 import { fill, type Words } from '@/lib/family/fill';
 import { SUBJECT_THEME } from '@/lib/family/subject-theme';
 import { speak } from '@/components/family/english/speech';
@@ -127,23 +128,92 @@ export function ExplanationView({ b, w, tone, lead = false }: { b: Explanation; 
   );
 }
 
-export function WorkedExampleView({ b, w, tone }: { b: WorkedExample; w: Words; tone: string }) {
+// §8 maths: a sum's solution (Given and To find listed) is titled "Solution" and shows each part in order: Given, To find,
+// the working with each step's reason, the table, the final answer marked, the quick check, then the quick replies.
+const Working = ({ s }: { s: WorkedStep }) =>
+  s.expression ? (
+    <p className="mt-1 font-mono text-sm text-slate/80" lang="en">
+      {s.expression} = {s.result}
+    </p>
+  ) : null;
+
+export function WorkedExampleView({ b, w, tone, onAsk }: { b: WorkedExample; w: Words; tone: string; onAsk?: (text: string) => void }) {
+  const solution = isSolution(b);
   return (
-    <Card title={w['fam.block.worked']} tone={tone} tag="worked_example">
+    <Card title={w[solution ? 'fam.solve.title' : 'fam.block.worked']} tone={tone} tag="worked_example">
       <p className="text-base font-semibold text-slate">{b.problem}</p>
-      <ol className="flex flex-col gap-2">
+      {b.given && (
+        <div data-solve-given>
+          <h3 className="text-sm font-extrabold text-slate">{w['fam.solve.given']}</h3>
+          <ul className="list-disc ps-5 text-base text-slate">
+            {b.given.map((g, i) => (
+              <li key={i}>{g}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {b.find && (
+        <div data-solve-find>
+          <h3 className="text-sm font-extrabold text-slate">{w['fam.solve.find']}</h3>
+          <ul className="list-disc ps-5 text-base text-slate">
+            {b.find.map((f, i) => (
+              <li key={i}>{f}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {solution && <h3 className="text-sm font-extrabold text-slate">{w['fam.solve.steps']}</h3>}
+      <ol data-solve-steps className="flex flex-col gap-2">
         {b.steps.map((s, i) => (
           <li key={i} className="rounded-2xl bg-off-white p-3 text-base text-slate">
             <p>{s.text}</p>
-            {s.expression && (
-              <p className="mt-1 font-mono text-sm text-slate/80" lang="en">
-                {s.expression} = {s.result}
-              </p>
-            )}
+            {s.why && <p className="mt-1 text-sm text-slate">{fill(w['fam.solve.because'], { why: s.why })}</p>}
+            <Working s={s} />
           </li>
         ))}
       </ol>
-      <p className="text-base font-bold text-slate">{fill(w['fam.block.answer'], { answer: b.answer })}</p>
+      {b.table && (
+        <div data-solve-table className="overflow-x-auto">
+          <table className="w-full border-collapse text-sm text-slate">
+            <thead>
+              <tr>
+                {b.table.columns.map((c, i) => (
+                  <th key={i} scope="col" className="border-b border-slate/20 px-2 py-1 text-start font-bold">
+                    {c}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {b.table.rows.map((r, i) => (
+                <tr key={i}>
+                  {r.map((c, j) => (
+                    <td key={j} className="border-b border-slate/10 px-2 py-1">
+                      {c}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+      {solution ? (
+        <div data-solve-answer className="rounded-2xl bg-off-white p-3 ring-2 ring-saffron">
+          <h3 className="text-sm font-extrabold text-slate">{w['fam.solve.answer']}</h3>
+          <p className="text-base font-bold text-slate">{b.answer}</p>
+        </div>
+      ) : (
+        <p className="text-base font-bold text-slate">{fill(w['fam.block.answer'], { answer: b.answer })}</p>
+      )}
+      {b.check && (
+        <div data-solve-check className="rounded-2xl bg-off-white p-3 text-base text-slate">
+          <h3 className="text-sm font-extrabold text-slate">{w['fam.solve.check']}</h3>
+          <p>{b.check.text}</p>
+          <Working s={b.check} />
+        </div>
+      )}
+      {solution && <SolveReplies w={w} problem={b.problem} onAsk={onAsk} />}
     </Card>
   );
 }

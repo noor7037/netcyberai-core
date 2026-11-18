@@ -9,7 +9,7 @@ export const UNDERSTAND_KEYS: MessageKey[] = [
   'fam.block.english', 'fam.block.pattern', 'fam.block.sayIt', 'fam.block.readAloud', 'fam.block.deviceVoice', 'fam.block.sources', 'fam.block.check',
   'fam.block.practice', 'fam.check.hint', 'fam.check.hintLabel', 'fam.check.right', 'fam.check.notYet', 'fam.check.notThis', 'fam.check.correct', 'fam.check.explainAgain', 'fam.block.mindMap', 
   // The Elaboration Framework (16 Nov 2026): the five steps' names, the levels, listen and the try-it feedback.
-  'fam.elab.step.definition', 'fam.elab.step.levels', 'fam.elab.step.real_life', 'fam.elab.step.try_it', 'fam.elab.step.future', 'fam.elab.level.basic', 'fam.elab.level.intermediate', 'fam.elab.level.advanced', 'fam.elab.yourLevel', 'fam.elab.listen', 'fam.elab.stop', 'fam.elab.board', 'fam.elab.steps', 'fam.elab.pick', 'fam.elab.right', 'fam.elab.wrong', 'fam.elab.again', 'fam.elab.picture', 'fam.elab.hint', 'fam.elab.showAnswer', 'fam.elab.checks', 'fam.elab.extras', 'fam.elab.extra.home', 'fam.elab.extra.fact', 'fam.elab.extra.india', 'fam.elab.extra.trick', 'fam.elab.extra.whatif', 'fam.elab.view3d', 'fam.elab.trySim', 'fam.elab.simOpen', 'fam.elab.simFrom', 'fam.elab.simLoading', 'fam.elab.labOpen', 'fam.elab.labNote',
+  'fam.elab.step.definition', 'fam.elab.step.levels', 'fam.elab.step.real_life', 'fam.elab.step.try_it', 'fam.elab.step.future', 'fam.elab.level.basic', 'fam.elab.level.intermediate', 'fam.elab.level.advanced', 'fam.elab.yourLevel', 'fam.elab.listen', 'fam.elab.stop', 'fam.elab.board', 'fam.elab.steps', 'fam.elab.pick', 'fam.elab.right', 'fam.elab.wrong', 'fam.elab.again', 'fam.elab.picture', 'fam.elab.hint', 'fam.elab.showAnswer', 'fam.elab.checks', 'fam.elab.extras', 'fam.elab.extra.home', 'fam.elab.extra.fact', 'fam.elab.extra.india', 'fam.elab.extra.trick', 'fam.elab.extra.whatif', 'fam.elab.view3d', 'fam.elab.trySim', 'fam.elab.simOpen', 'fam.media.fullscreen', 'fam.media.exit', 'fam.media.turnPhone', 'fam.elab.simFrom', 'fam.elab.simLoading', 'fam.elab.labOpen', 'fam.elab.labNote',
   // W10-6: the scene, the chart and the steps' replay.
   'fam.block.sceneTap', 'fam.block.chartCaption', 'fam.block.chartUnit', 'fam.block.chartTable', 'fam.block.replay',
   // W16-A2: the drawing board, the citation chip and the Class 8 Science simulations.
@@ -27,6 +27,8 @@ export const UNDERSTAND_KEYS: MessageKey[] = [
   // W19-D: the 3D model of what the answer explains.
   'fam.mdl.parts', 'fam.mdl.hint', 'fam.mdl.hint2d', 'fam.mdl.ask', 'fam.mdl.aria', 'fam.mdl.saver', 'fam.mdl.credit', 'fam.model.see3d', 'fam.model.back2d', 'fam.model.noGl', 'fam.model.loading', 'fam.model.failed',
   'fam.followUp.differently', 'fam.followUp.practise_more', 'fam.err.network', 'fam.plan.comesBack',
+  // §8 maths: a sum's solution and its quick replies.
+  'fam.solve.title', 'fam.solve.given', 'fam.solve.find', 'fam.solve.steps', 'fam.solve.because', 'fam.solve.answer', 'fam.solve.check', 'fam.solve.understood', 'fam.solve.reply.yes', 'fam.solve.reply.differently', 'fam.solve.reply.simpler', 'fam.solve.reply.similar', 'fam.solve.ask.yes', 'fam.solve.ask.differently', 'fam.solve.ask.simpler', 'fam.solve.ask.similar',
   ...INTERACTIVE_KEYS,
   // M2-5: the honest player under a topic's response.
   'fam.video.title', 'fam.video.note', 'fam.video.play', 'fam.video.length', 'fam.video.by', 'fam.video.frame', 'fam.video.see', 'fam.video.answer', 'fam.video.fallback', 'fam.video.failed',
