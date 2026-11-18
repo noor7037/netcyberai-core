@@ -51,6 +51,10 @@ export const keptTutorBlocks = (blocks: readonly Block[]): Block[] => blocks.fil
 export function explanationText(blocks: unknown): string {
   const list = Array.isArray(blocks) ? blocks : [];
   const b = list.find((x) => x && typeof x === 'object' && (x as { type?: unknown }).type === 'explanation') as { idea?: unknown; paragraphs?: unknown } | undefined;
+  // 18 Nov 2026 (follow-ups): a solved sum is remembered by its working (problem, given, to find, each step, answer), so
+  // "what if the policeman started 5 minutes later?" is taught from the numbers already found, not from nothing.
+  const w = list.find((x) => x && typeof x === 'object' && (x as { type?: unknown }).type === 'worked_example' && Array.isArray((x as { given?: unknown }).given)) as WorkedLike | undefined;
+  if (w) return workedText(w);
   // W16-B2: a marked working (Check my work) has no explanation: it is remembered by its verdicts, so a follow-up such as
   // "why was step 2 wrong?" sees what was said.
   if (!b) {
@@ -60,4 +64,17 @@ export function explanationText(blocks: unknown): string {
   }
   const paragraphs = Array.isArray(b.paragraphs) ? b.paragraphs.filter((x): x is string => typeof x === 'string') : [];
   return (paragraphs.length ? paragraphs.join(' ') : typeof b.idea === 'string' ? b.idea : '').replace(/\s+/g, ' ').trim();
+}
+
+type WorkedLike = { problem?: unknown; given?: unknown; find?: unknown; steps?: unknown; answer?: unknown };
+export const WORKED_MARK = 'SOLVED SUM: ';
+const strs = (v: unknown): string[] => (Array.isArray(v) ? v.filter((x): x is string => typeof x === 'string' && x.trim().length > 0) : []);
+// A worked example as one remembered line. It starts with WORKED_MARK, which the memory reader keeps whole (a longer clip).
+export function workedText(w: WorkedLike): string {
+  const steps = (Array.isArray(w.steps) ? w.steps : []).map((s) => {
+    const o = (s ?? {}) as { text?: unknown; expression?: unknown; result?: unknown };
+    return [typeof o.text === 'string' ? o.text : '', typeof o.expression === 'string' ? o.expression : '', typeof o.result === 'string' ? `= ${o.result}` : ''].filter(Boolean).join(' ');
+  });
+  const parts = [`Problem: ${typeof w.problem === 'string' ? w.problem : ''}`, `Given: ${strs(w.given).join('; ')}`, `To find: ${strs(w.find).join('; ')}`, ...steps.map((s, i) => `Step ${i + 1}: ${s}`), `Answer: ${typeof w.answer === 'string' ? w.answer : ''}`];
+  return `${WORKED_MARK}${parts.join(' | ')}`.replace(/\s+/g, ' ').trim();
 }

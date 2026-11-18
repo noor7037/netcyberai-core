@@ -1,7 +1,7 @@
 import type { FamilyChild } from './children';
-import { classFits, curatedFit, parseCsv, subjectFits } from './curated-videos';
+import { classFits, parseCsv, subjectFits } from './curated-videos';
+import { words } from './videos';
 import type { Subject } from './subjects';
-import { EMBED_ORDER } from './visuals/embed-order';
 import { checkSim, SIM_SOURCES, type ElabSim } from './sim-hosts';
 
 // Curated simulations (Noor, 16 Nov 2026): the AI never searches the web for one. A person approved each, per class, subject, topic
@@ -55,10 +55,10 @@ export function simUpsertSql(rows: readonly SimRow[]): string {
 export type SimAsk = { subject: Subject | null; term: string; topicEn?: string | null; title?: string | null; chapterEn?: string | null };
 type Cand = Pick<SimRow, 'class' | 'subject' | 'chapter_name' | 'topic' | 'source' | 'title' | 'embed_url' | 'page_url' | 'licence' | 'preview'>;
 
-// The topic words must fit this much for an exact or nearby-class match (the curated videos' own bar).
-export const SIM_MIN_FIT = 0.5;
-// The lower bar of the last tier only: the topic's words found in the parent chapter or the intent's topic (a third of them, 0.33).
-export const SIM_BROAD_FIT = 0.33;
+// 18 Nov 2026 (tight match): a simulation is shown only when its approved topic's words are in the question's own words
+// (two of every three, so a two-word topic needs both). The parent chapter never lends a fit, a word is its own or its plural
+// only ("time" is not "times tables"), and no match means no simulation: a wrong one is worse than none.
+export const SIM_MIN_FIT = 0.67;
 // "Nearby" is the child's class plus or minus this many classes.
 export const SIM_NEAR_CLASSES = 2;
 // A simulation whose lowest class is more than this many classes above the child's class is never shown.
@@ -68,12 +68,11 @@ export const SIM_GENERIC_SPAN = 4;
 
 type Tier = { name: string; near: number; min: number; generic?: true };
 // Tried in order, each in Hindi then English (simFor): the exact class band, then the child's class plus or minus two, then a generic
-// simulation of any band, then the parent topic or chapter at the lower bar within two classes. The subject always has to fit.
+// simulation of any band. The subject always has to fit, and the topic has to fit tightly in every tier.
 export const SIM_TIERS: readonly Tier[] = [
   { name: 'exact', near: 0, min: SIM_MIN_FIT },
   { name: 'near class', near: SIM_NEAR_CLASSES, min: SIM_MIN_FIT },
   { name: 'generic', near: Infinity, min: SIM_MIN_FIT, generic: true },
-  { name: 'parent topic', near: SIM_NEAR_CLASSES, min: SIM_BROAD_FIT },
 ];
 
 const STAGES: Record<string, number> = { nursery: -2, prenursery: -3, lkg: -1, ukg: 0 };
@@ -87,19 +86,34 @@ export function classSpan(cls: string): [number, number] | null {
   const hi = b === undefined ? lo : level(b ?? '');
   return lo === null || hi === null ? null : [Math.min(lo, hi), Math.max(lo, hi)];
 }
+const SIM_COMMON_WORDS = new Set(['angle', 'number', 'time', 'speed', 'distance', 'length', 'shape', 'line', 'point', 'unit', 'value', 'rate', 'sum', 'problem', 'question', 'model', 'introduction', 'basic', 'arithmetic']);
+const stem = (w: string) => (w.length > 3 && w.endsWith('es') && /(s|x|ch|sh)es$/.test(w) ? w.slice(0, -2) : w.length > 3 && w.endsWith('s') ? w.slice(0, -1) : w);
+// The share of the row's topic words that are, as whole words (or plurals), among the question's own words (0 to 1).
+export function tightFit(topic: string, text: string): number {
+  const t = Array.from(new Set(words(topic).map(stem)));
+  if (!t.length) return 0;
+  const seen = new Set(words(text).map(stem));
+  // A one-word topic is shown only when the question is about that word (at most three content words) and the word is not an
+  // everyday one that sits in any sum ("angle", "time", "speed"): "time" in a question is not a reason for any simulation.
+  if (t.length === 1 && (seen.size > 3 || SIM_COMMON_WORDS.has(t[0]!))) return 0;
+  return t.filter((w) => seen.has(w)).length / t.length;
+}
 // How many classes the band is from the child's class (0 when it holds it).
 const gap = (span: [number, number], c: number) => (c < span[0] ? span[0] - c : c > span[1] ? c - span[1] : 0);
 
 function matchTier(rows: readonly Cand[], ask: SimAsk, child: Pick<FamilyChild, 'classLevel'>, tier: Tier): ElabSim | null {
   if (!ask.subject) return null;
-  const line = { topicEn: ask.topicEn ?? ask.term, title: [ask.term, ask.title ?? ''].join(' ').trim(), chapterEn: ask.chapterEn ?? '' };
+  // The question's own words only: the chapter it sits in is never a reason to show a simulation.
+  const own = [ask.term, ask.topicEn ?? '', ask.title ?? ''].join(' ');
   const fits = rows
     .map((r, order) => ({ r, order, span: classSpan(r.class) }))
     .filter((x): x is typeof x & { span: [number, number] } => !!x.span && subjectFits(x.r.subject, ask.subject!) && x.span[0] <= child.classLevel + SIM_MAX_ABOVE)
     .filter((x) => (tier.generic ? x.span[1] - x.span[0] + 1 >= SIM_GENERIC_SPAN : true) && gap(x.span, child.classLevel) <= tier.near)
-    .map((x) => ({ ...x, gap: gap(x.span, child.classLevel), fit: curatedFit({ topic: x.r.topic, chapterName: x.r.chapter_name }, line), rank: EMBED_ORDER.indexOf(x.r.source) }))
+    .map((x) => ({ ...x, gap: gap(x.span, child.classLevel), fit: tightFit(x.r.topic, own), titleFit: tightFit(x.r.title, own) }))
     .filter((x) => x.fit >= tier.min)
-    .sort((a, b) => b.fit - a.fit || a.gap - b.gap || (a.rank < 0 ? 99 : a.rank) - (b.rank < 0 ? 99 : b.rank) || a.order - b.order);
+    // Best topic fit, then the title that also names it, then the nearest class band. The source is not a ranking: PhET, OLabs,
+    // Virtual Labs and NASA Eyes compete on how well they fit the topic, and only on the database's own order when all else ties.
+    .sort((a, b) => b.fit - a.fit || b.titleFit - a.titleFit || a.gap - b.gap || a.order - b.order);
   for (const { r } of fits) {
     const card = checkSim({ source: r.source, title: r.title, embed: r.embed_url, page: r.page_url, licence: r.licence, preview: r.preview ?? undefined });
     if (card) return card;

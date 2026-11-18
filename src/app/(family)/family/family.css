@@ -410,15 +410,18 @@
 .fam-tab-on {
   animation: fam-pop 380ms cubic-bezier(0.2, 0.9, 0.3, 1.3) both;
 }
-/* While the child types on a phone, the tab dock steps aside and the Ask bar sits right on the keyboard (where the page
-   shrinks for the keyboard; where it does not, useKeyboardInset lifts the bar by the keyboard's height instead). */
-@media (pointer: coarse) and (max-width: 1023px) {
-  body:has([data-tutor-composer] textarea:focus) [data-fam-dock] {
-    display: none;
-  }
-  body:has([data-tutor-composer][data-pinned='dock'] textarea:focus) [data-tutor-composer][data-pinned='dock']:not([data-lifted]) {
-    bottom: 0 !important;
-  }
+/* While the child types, the tab dock steps aside and the Ask pill sits right on the keyboard. The pill is FIXED (not sticky), and
+   keyboard-lift.ts measures the keyboard (the visual viewport, a shrunk page, or a phone's typical keyboard) and writes
+   html[data-fam-kb] and --fam-kb-lift: the pill's foot is that many pixels above the layout viewport's foot. Back to the tab
+   bar's place the moment the field loses its focus. */
+html[data-fam-kb='open'] [data-fam-dock] {
+  display: none;
+}
+html[data-fam-kb='open'] body [data-tutor-composer][data-pinned='dock'] {
+  bottom: var(--fam-kb-lift, 0px);
+  padding-bottom: 0.25rem;
+  transform: none;
+  visibility: visible;
 }
 
 /* ---- the Draw tab's art table (C513) ------------------------------------------------------------------------------ */
@@ -1331,14 +1334,21 @@ html[data-fam-chrome='hidden'] [data-study-main] {
     transition: none;
   }
 }
-/* One surface: on a phone and a tablet the answer's blocks are the page itself, not cards in a card (the page gives the
-   12-16 px inset). A block with a tone bar keeps its bar and a little room beside it. From 1024 px the cards return. */
+/* One surface: on a phone and a tablet the answer's blocks are the page itself, not cards in a card. 18 Nov 2026 (third report):
+   8 px outer margin (the page), 12 px text inset (the card's 4 px more), and a picture, a diagram, a video or a lab runs the
+   card's full width, to its 8 px edge, not a further padded island. A block with a tone bar keeps its bar and a little room
+   beside it. From 1024 px the cards return. */
 @media (max-width: 1023px) {
   [data-tutor-feed] .fam-card {
     border-radius: 0;
     background-color: transparent;
     box-shadow: none;
-    padding: 0.5rem 0;
+    padding: 0.5rem 0.25rem;
+  }
+  [data-tutor-feed] .fam-card :is(img, video, iframe, [data-elab-img], [data-board-svg], [data-fullscreen-stage='off']) {
+    width: calc(100% + 0.5rem);
+    max-width: none;
+    margin-inline: -0.25rem;
   }
   [data-tutor-feed] .fam-card[class*='border-l-'] {
     padding-left: 0.75rem;

@@ -134,22 +134,26 @@ describe('chats (C406)', () => {
     expect(kept?.turnCount).toBe(1);
   });
 
-  it('memoryFor gives the summary and the last 6 turns, with the tutor’s explanation paragraphs only', async () => {
+  it('memoryFor gives the summary and the last 10 turns (18 Nov 2026: was 6), with the tutor’s explanation paragraphs only', async () => {
     const t = await import('@/lib/family/tutor');
     const chat = await fam((c) => t.newChat(c, ACCOUNT, CHILD, 'hindi'));
     await fam(async (c) => {
-      for (let n = 1; n <= 4; n++) await t.appendTurn(c, { ...turnInput(chat, n), subject: 'hindi' });
+      for (let n = 1; n <= 7; n++) await t.appendTurn(c, { ...turnInput(chat, n), subject: 'hindi' });
     });
     await q(`update family.tutor_conversations set summary = 'Earlier: questions one and two.' where conversation_id = $1`, [chat]);
     const memory = await fam((c) => t.memoryFor(c, chat));
     expect(memory.summary).toBe('Earlier: questions one and two.');
     expect(memory.turns).toEqual([
-      { role: 'child', text: 'Question 2?' },
-      { role: 'tutor', text: 'Paragraph 2 one. Paragraph 2 two.' },
       { role: 'child', text: 'Question 3?' },
       { role: 'tutor', text: 'Paragraph 3 one. Paragraph 3 two.' },
       { role: 'child', text: 'Question 4?' },
       { role: 'tutor', text: 'Paragraph 4 one. Paragraph 4 two.' },
+      { role: 'child', text: 'Question 5?' },
+      { role: 'tutor', text: 'Paragraph 5 one. Paragraph 5 two.' },
+      { role: 'child', text: 'Question 6?' },
+      { role: 'tutor', text: 'Paragraph 6 one. Paragraph 6 two.' },
+      { role: 'child', text: 'Question 7?' },
+      { role: 'tutor', text: 'Paragraph 7 one. Paragraph 7 two.' },
     ]);
     expect(JSON.stringify(memory)).not.toContain('key point');
     // Each remembered turn is at most 600 characters.

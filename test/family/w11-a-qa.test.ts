@@ -105,10 +105,12 @@ describe('the composer above the keyboard', () => {
 
   it('the dock sets --fam-keyboard, rises by it in both pinned modes, and keeps the field in view', () => {
     const src = readFileSync(path.join(__dirname, '../../src/components/family/tutor/Composer.tsx'), 'utf8');
-    expect(src).toMatch(/const keyboard = useKeyboardInset\(\)/);
+    // 18 Nov 2026: the Study dock is fixed and driven by keyboard-lift.ts; the sheet keeps its padding.
+    expect(src).toMatch(/const kb = useKeyboardLift\(\)/);
+    expect(src).toMatch(/const keyboard = kb\.lift/);
     expect(src).toMatch(/'--fam-keyboard': `\$\{keyboard\}px`/);
     expect(src).toMatch(/paddingBottom: 'calc\(var\(--fam-keyboard\) \+ 0\.25rem\)'/);
-    expect(src).toMatch(/\$\{lifted \? 'bottom-0' : p\.pinned === 'dock'/);
+    expect(src).toMatch(/fixed \? 'fixed inset-x-0 bottom-\[var\(--fam-dock-h,/);
     expect(src).toMatch(/scrollIntoView\(\{ block: 'nearest' \}\)/);
     expect(src).toMatch(/onFocus=\{\(\) => \{[^}]*keepInView\(\);/);
   });

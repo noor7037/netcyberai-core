@@ -80,14 +80,15 @@ describe('the broader match chain', () => {
     const narrow = [row({ class: '3-5', topic: 'magnets' })];
     expect(matchSim(narrow, { subject: 'science', term: 'magnets' }, { classLevel: 11 })).toBeNull();
   });
-  it('the parent topic: a third of a long topic found in the intent topic or the chapter, within two classes', () => {
+  // 18 Nov 2026: the parent-topic tier is gone. A third of a topic's words, or the chapter's, is not a reason to show a
+  // simulation: a wrong one is worse than none (an area model under a speed sum).
+  it('no parent-topic tier: a loose fit through the chapter or a third of the topic shows nothing', () => {
     const parent = [row({ class: '6-7', topic: 'electric circuit symbols', title: 'Circuit Kit' })];
     const ask = { subject: 'science' as const, term: 'wires', topicEn: 'electric current in wires', chapterEn: 'Electricity' };
-    expect(matchSim(parent, ask, { classLevel: 6 })?.title).toBe('Circuit Kit');
-    expect(matchSim(parent, { ...ask, topicEn: 'photosynthesis', chapterEn: 'Plants' }, { classLevel: 6 })).toBeNull();
-    expect(SIM_TIERS.map((t) => t.name)).toEqual(['exact', 'near class', 'generic', 'parent topic']);
-    expect(SIM_TIERS[0].min).toBe(0.5);
-    expect(SIM_TIERS[3].min).toBeLessThan(0.5);
+    expect(matchSim(parent, ask, { classLevel: 6 })).toBeNull();
+    expect(matchSim(parent, { subject: 'science' as const, term: 'electric circuit symbols' }, { classLevel: 6 })?.title).toBe('Circuit Kit');
+    expect(SIM_TIERS.map((t) => t.name)).toEqual(['exact', 'near class', 'generic']);
+    expect(SIM_TIERS.every((t) => t.min >= 0.67)).toBe(true);
   });
   it('never a different subject', () => {
     const maths = [row({ subject: 'Maths', class: '1-8', topic: 'magnets' })];

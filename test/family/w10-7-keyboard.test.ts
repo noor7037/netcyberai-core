@@ -15,9 +15,9 @@ describe('the Family layout viewport (C415)', () => {
   // keyboard closes (the field loses the focus) the bar is back above the dock.
   it('hides the tab dock while the composer is typed in on a touch phone, and drops the bar to the keyboard', () => {
     const css = readFileSync(path.join(__dirname, '../../src/app/(family)/family/family.css'), 'utf8');
-    const block = css.slice(css.indexOf('@media (pointer: coarse) and (max-width: 1023px)'));
-    expect(block).toMatch(/body:has\(\[data-tutor-composer\] textarea:focus\) \[data-fam-dock\] \{\s*display: none;/);
-    expect(block).toMatch(/\[data-tutor-composer\]\[data-pinned='dock'\]:not\(\[data-lifted\]\) \{\s*bottom: 0 !important;/);
+    // 18 Nov 2026: html[data-fam-kb] (keyboard-lift.ts) replaces :has(textarea:focus) + bottom: 0, which left the bar under the keys.
+    expect(css).toMatch(/html\[data-fam-kb='open'\] \[data-fam-dock\] \{\s*display: none;/);
+    expect(css).toMatch(/html\[data-fam-kb='open'\] body \[data-tutor-composer\]\[data-pinned='dock'\] \{\s*bottom: var\(--fam-kb-lift, 0px\);/);
     const tabs = readFileSync(path.join(__dirname, '../../src/components/family/FamilyTabs.tsx'), 'utf8');
     expect(tabs).toContain('data-fam-dock');
     const composer = readFileSync(path.join(__dirname, '../../src/components/family/tutor/Composer.tsx'), 'utf8');

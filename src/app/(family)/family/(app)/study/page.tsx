@@ -211,7 +211,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
           ) : undefined
         }
       />
-      <main data-study-main className="relative mx-auto -mt-8 flex w-full max-w-none flex-1 flex-col gap-4 px-3 pb-[calc(var(--fam-bottom,0px)+5.25rem)] sm:px-4 lg:max-w-[68rem]">
+      <main data-study-main className="relative mx-auto -mt-8 flex w-full max-w-none flex-1 flex-col gap-4 px-2 pb-[calc(var(--fam-bottom,0px)+5.25rem)] sm:px-3 lg:max-w-[68rem]">
         <StudySearch w={familyWords(lang, SEARCH_KEYS)} />
         <nav aria-label={t(lang, 'fam.study.subjects')} className="fam-surface relative -mx-1 flex gap-2 overflow-x-auto bg-white p-2">
           {subjects.map((s) => {

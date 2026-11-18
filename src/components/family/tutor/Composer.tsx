@@ -7,7 +7,7 @@ import { FILE_PICK_ACCEPT } from '@/lib/family/photo-shrink';
 import { TUTOR_FILES_PER_TURN, TUTOR_TEXT_MAX, type TutorFileType } from '@/lib/family/tutor-shape';
 import { useVoiceRecorder, type VoiceAck } from '../voice/useVoiceRecorder';
 import { PhotoSheet } from './PhotoSheet';
-import { useKeyboardInset } from './useKeyboardInset';
+import { useKeyboardLift } from './keyboard-lift';
 
 // The tutor's composer (W6-A, C395): one rounded field for every question a child types, on Study and in the chapter
 // reader's doubt drawer. Inside the field: Attach on the left (only when the photo gate lets photos through: the page
@@ -99,12 +99,22 @@ export function Composer(p: Props) {
   }, [p.value]);
 
   // While the keyboard is open the field is kept in view: when the keyboard opens under it, and when it is tapped again.
-  const keyboard = useKeyboardInset();
+  const kb = useKeyboardLift();
+  const keyboard = kb.lift;
   const keepInView = () => {
-    if (keyboard > 0 && box.current && document.activeElement === box.current) box.current.scrollIntoView({ block: 'nearest' });
+    if (kb.open && box.current && document.activeElement === box.current) box.current.scrollIntoView({ block: 'nearest' });
   };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(keepInView, [keyboard]);
+  useEffect(keepInView, [kb.open, kb.lift]);
+  // The dock is fixed (below), so the page keeps its room for it with a spacer as tall as the dock is.
+  const [dockH, setDockH] = useState(112);
+  useEffect(() => {
+    const el = dock.current;
+    if (!el || typeof ResizeObserver === 'undefined') return;
+    const ro = new ResizeObserver(() => setDockH(Math.round(el.getBoundingClientRect().height)));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   // The attach menu closes on Escape (focus back on the clip) and on a tap outside it.
   useEffect(() => {
@@ -159,14 +169,17 @@ export function Composer(p: Props) {
             ? { alert: true, text: p.fileError }
             : null;
 
-  // W11-A (C416): where the page keeps its height under the keyboard (the Android app, iOS), the dock rises with it: it
-  // sits at the foot of the page and its bottom padding is the keyboard's height, so the field is just above the keys
-  // and, scrolled to the end, the last message is still above the dock. The tab bar is under the keyboard then, so its
-  // room is not added.
-  const lifted = keyboard > 0;
-  const dockStyle = { '--fam-keyboard': `${keyboard}px`, ...(lifted ? { paddingBottom: 'calc(var(--fam-keyboard) + 0.25rem)' } : {}) } as CSSProperties;
+  // 18 Nov 2026 (third report): the Study dock is FIXED to the layout viewport, never sticky, and the keyboard's measured height
+  // (keyboard-lift.ts: the visual viewport, a shrunk page, or a phone's typical keyboard) raises it by exactly that (the
+  // stylesheet, html[data-fam-kb]), with the tab bar tucked away, so the field is just above the keys and comes back to the
+  // tab bar when they close. The doubt drawer's sheet stays at its own foot and pads by the keyboard as before.
+  const fixed = p.pinned === 'dock';
+  const lifted = kb.open;
+  const dockStyle = { '--fam-keyboard': `${keyboard}px`, ...(!fixed && lifted ? { paddingBottom: 'calc(var(--fam-keyboard) + 0.25rem)' } : {}) } as CSSProperties;
 
   return (
+    <>
+    {fixed && <div aria-hidden="true" data-composer-spacer style={{ height: dockH + (lifted ? keyboard : 0) }} />}
     <div
       ref={dock}
       data-tutor-composer
@@ -174,7 +187,7 @@ export function Composer(p: Props) {
       data-open={open || undefined}
       data-lifted={lifted || undefined}
       style={dockStyle}
-      className={`fam-composer-dock sticky z-20 -mx-1 px-1 pb-0.5 pt-1.5 ${p.pinned === 'dock' ? 'lg:mx-auto lg:w-full lg:max-w-[68rem]' : ''} ${lifted ? 'bottom-0' : p.pinned === 'dock' ? 'bottom-[var(--fam-dock-h,calc(var(--fam-bottom,0px)+4.5rem))]' : 'bottom-0'}`}
+      className={`fam-composer-dock z-20 px-1 pb-0.5 pt-1.5 ${fixed ? 'fixed inset-x-0 bottom-[var(--fam-dock-h,calc(var(--fam-bottom,0px)+4.5rem))] mx-auto w-full lg:max-w-[68rem]' : 'sticky bottom-0 -mx-1'}`}
     >
       {p.above && <div className="pointer-events-none absolute bottom-full right-2 mb-1 flex justify-end">{p.above}</div>}
       <form
@@ -393,5 +406,6 @@ export function Composer(p: Props) {
         </div>
       </form>
     </div>
+    </>
   );
 }

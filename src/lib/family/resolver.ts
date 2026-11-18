@@ -14,6 +14,7 @@ import { bookPassages, bookSubjects } from './book-search';
 import { inScope, showcaseFor } from './visuals/showcase';
 import { withPics } from './elaboration-pics';
 import { isMathsSum, withMathsSolve } from './maths-solve';
+import { movesSolve, teachingMove, withTeachingMove } from './maths-moves';
 import { chapterDiagrams, diskFiles, labsFor, type ChapterDiagram, type LabOffer } from './tutor-context';
 import { BLOCK_SCHEMA_VERSION, completeResponse, coreBlocks, isInteractive, isSimScene, jsonObjectScanner, parseBlockLine, parseStoredBlockLine, type Block, type BlockType } from './blocks';
 import { boardNameOf, isPrePrimary, syllabusBoardOf, type FamilyChild } from './children';
@@ -463,11 +464,15 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
   // Neither ever refuses: no passage is a general answer, no planner is the band's default plan.
   const isCheck = input.kind === 'question' && input.check === true;
   // The NetCyberAI Elaboration Framework (prompt v19): a typed or spoken question is answered as one five-step elaboration.
-  const elaborate = prompt.elaborate === true && input.kind === 'question' && !input.check && !input.sketch;
+  // 18 Nov 2026: a sum is SOLVED, and a "mujhe nhi pata" / "pura samjhao" / "what if" in a chat that is working one is a teacher's move
+  // on the same sum; neither is answered as the five-step elaboration (a story card and a hint where the working should be).
+  const tab = input.kind === 'question' && isSubject(input.windowSubject) ? input.windowSubject : null;
+  const plainQuestion = input.kind === 'question' && !input.check && !input.sketch;
+  const move = plainQuestion ? teachingMove(input.text, input.memory) : null;
+  const solve = plainQuestion && (movesSolve(move) || (move === null && isMathsSum(known ?? tab, input.text)));
+  const elaborate = prompt.elaborate === true && plainQuestion && !solve && move === null;
   const teach = (prompt.usesPlan || isCheck) && !ctx.preparing ? await prepareTeach(db, ctx, input, line, known, misconception, ofClass, prompt.visualFirst === true, prompt.oneBoard === true, elaborate) : null;
   // 3. The AI platform's checks (profile, minors, key, daily cap) and the cleaned request, still in this transaction.
-  const tab = input.kind === 'question' && isSubject(input.windowSubject) ? input.windowSubject : null;
-  const solve = input.kind === 'question' && !input.check && !input.sketch && isMathsSum(known ?? tab, input.text);
   // v19: a typed question with no window place (no scope) is still offered the labs of the child's class and subject that fit its words.
   const freeLabs: LabOffer[] = prompt.oneBoard && input.kind === 'question' && !input.scope && !input.check && (known ?? tab) ? await labsFor(diskFiles, { classLevel: child.classLevel, subject: (known ?? tab) as string, lang: child.language === 'hi' ? 'hi' : 'en', chapterKey: input.chapterKey ?? null, about: input.about ?? '', question: input.text }).catch(() => []) : [];
   const ask: ResolverAsk = {
@@ -502,7 +507,7 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
     }
     // C521: under v17 a tutor persona speaks the question's language, not a fixed one.
     const persona = lang && ctx.persona ? { ...ctx.persona, language: 'both' as const } : ctx.persona;
-    return { system: withPersona(withDrawTemplate(withMathsSolve(withScope(prompt.system(a), a.scope), solve), input.kind === 'question' && input.sketch ? input.drawTemplate : undefined), persona), messages: [{ role: 'user', content: prompt.user(a) }], responseFormat: undefined };
+    return { system: withPersona(withDrawTemplate(withTeachingMove(withMathsSolve(withScope(prompt.system(a), a.scope), solve), move), input.kind === 'question' && input.sketch ? input.drawTemplate : undefined), persona), messages: [{ role: 'user', content: prompt.user(a) }], responseFormat: undefined };
   };
   const prepared = await prepareText(db as never, { accountId: ctx.accountId, childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail, day: ctx.day, childId: ctx.child.childId }, profileId, build(plan)); // w16-b4
   if (!prepared.ok) {
