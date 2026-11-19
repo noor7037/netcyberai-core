@@ -130,6 +130,8 @@ jobs:
           fi
 
       - name: Typecheck
+        env:
+          NODE_OPTIONS: "--max-old-space-size=6144"
         run: npx tsc --noEmit
 
       - name: Unit tests (kept regression suite, Decision Log C70)

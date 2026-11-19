@@ -202,7 +202,7 @@ if grep -rn 'sk_\|api_key\|SECRET\|PRIVATE_KEY' src/ \
 fi
 STEP
 
-run_step "Typecheck" <<'STEP'
+run_step "Typecheck" NODE_OPTIONS=--max-old-space-size=6144 <<'STEP'
 npx tsc --noEmit
 STEP
 
