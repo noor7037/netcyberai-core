@@ -258,7 +258,10 @@ export function Composer(p: Props) {
                 ))}
               </ul>
             )}
-            <div className="flex items-end gap-0.5 p-1">
+            {/* 19 Nov 2026: open, the field takes the whole top line and the buttons sit on the line below it (attach, microphone and
+                Call on the left; the chevron and Send on the right), so no button hides and the field is never a thin column. The
+                shape changes only when the bar opens, never on Send's tap. */}
+            <div data-composer-rows={open || undefined} className={`flex items-end gap-0.5 p-1 ${open ? 'flex-wrap' : ''}`}>
               {open && p.files && (
                 <div ref={menuWrap} className="relative shrink-0" onKeyDown={(e) => {
                   if (e.key === 'Escape' && (menu || sheet)) {
@@ -379,7 +382,7 @@ export function Composer(p: Props) {
                     send();
                   }
                 }}
-                className={`block min-h-[44px] min-w-0 flex-1 resize-none bg-transparent disabled:cursor-not-allowed py-[0.625rem] text-base leading-6 text-slate placeholder:text-slate/80 focus:outline-none ${open && p.files ? 'px-1' : 'px-3'} ${open ? '' : 'max-h-11 overflow-hidden'}`}
+                className={`block min-h-[44px] min-w-0 flex-1 resize-none bg-transparent disabled:cursor-not-allowed py-[0.625rem] text-base leading-6 text-slate placeholder:text-slate/80 focus:outline-none px-3 ${open ? 'order-first basis-full' : 'max-h-11 overflow-hidden'}`}
               />
               {p.voice && (
                 <button
@@ -409,6 +412,7 @@ export function Composer(p: Props) {
                   </svg>
                 </Link>
               )}
+              {open && <span aria-hidden="true" className="flex-1" />}
               {pill && (
                 <button type="button" data-tutor-pill-toggle aria-expanded={open} aria-label={open ? w['fam.tutor.askClose'] : w['fam.tutor.askOpen']} onClick={() => (open ? (setExpanded(false), box.current?.blur()) : (setExpanded(true), box.current?.focus()))} className={`${ROUND} text-ink hover:bg-off-white`}>
                   <svg aria-hidden="true" className="h-5 w-5" {...ICON} strokeWidth={2.5}>

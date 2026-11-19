@@ -893,7 +893,7 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
                 return { bar: bar?.width ?? 0, ta: ta?.width ?? 0, missing };
               });
               if (m.missing.length) errors.push('keyboard open: hiding ' + m.missing.join(', '));
-              if (m.ta < m.bar * 0.3) errors.push('keyboard open: the field is ' + Math.round(m.ta) + ' px of a ' + Math.round(m.bar) + ' px bar (a thin column)');
+              if (m.ta < m.bar * 0.7) errors.push('keyboard open: the field is ' + Math.round(m.ta) + ' px of a ' + Math.round(m.bar) + ' px bar (a thin column)');
             }
             // `kbSend`: one real touch tap on Send must send: the field keeps the focus until the click, and the page does not move.
             if (step.kbSend) {
