@@ -9,7 +9,7 @@ import { approveAllPending, approveListing, countPending, editListing, listDomai
 //   POST  { action: 'approve' | 'reject', listingId, note }
 //         { action: 'edit', listingId, ...fields }
 //         { action: 'domain', domain, enabled }
-//         { action: 'approve-all', confirm: 'approve-pending' }   every pending listing, one transaction
+//         { action: 'approve-all', confirm: 'approve-pending' }   every pending listing, one click (C530)
 // Nothing is deleted. Each change is audited with who, when and the listing before and after.
 export const dynamic = 'force-dynamic';
 

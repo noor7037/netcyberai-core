@@ -14,7 +14,7 @@ import { bookPassages, bookSubjects } from './book-search';
 import { inScope, showcaseFor } from './visuals/showcase';
 import { withPics } from './elaboration-pics';
 import { isMathsSum, withMathsSolve } from './maths-solve';
-import { movesSolve, teachingMove, withTeachingMove } from './maths-moves';
+import { followUpFrame, movesSolve, teachingMove, withTeachingMove, type TeachingMove } from './maths-moves';
 import { chapterDiagrams, diskFiles, labsFor, type ChapterDiagram, type LabOffer } from './tutor-context';
 import { BLOCK_SCHEMA_VERSION, completeResponse, coreBlocks, isInteractive, isSimScene, jsonObjectScanner, parseBlockLine, parseStoredBlockLine, type Block, type BlockType } from './blocks';
 import { boardNameOf, isPrePrimary, syllabusBoardOf, type FamilyChild } from './children';
@@ -264,9 +264,11 @@ export type Pending = {
   // The Elaboration Framework: this answer is one elaboration block, and the open chapter's diagrams its pictures may use.
   elaborate?: boolean;
   diagrams?: readonly ChapterDiagram[];
-  // §8 maths (18 Nov 2026): the question is a sum (maths-solve.ts isMathsSum). Its solution, a worked example, is asked
-  // for in code and shown first; everything else waits for it.
+  // §8 maths: the question is a sum (maths-solve.ts isMathsSum). Its solution, a worked example, is asked for in code;
+  // 19 Nov 2026: it comes after the elaboration (the concept), not instead of it.
   solve?: boolean;
+  // A teacher's move on the problem already in the chat (maths-moves.ts): no new videos or simulation are searched for it.
+  move?: TeachingMove;
   // W9-B: the plan the prompt is written from (v8 on; null under an earlier prompt), and for a live answer the planning
   // call and the passages, the prompt rebuilt from the plan once it comes (null: the default plan stands).
   plan: Plan | null;
@@ -470,7 +472,11 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
   const plainQuestion = input.kind === 'question' && !input.check && !input.sketch;
   const move = plainQuestion ? teachingMove(input.text, input.memory) : null;
   const solve = plainQuestion && (movesSolve(move) || (move === null && isMathsSum(known ?? tab, input.text)));
-  const elaborate = prompt.elaborate === true && plainQuestion && !solve && move === null;
+  // 19 Nov 2026 (founder): a sum is TAUGHT and then SOLVED: the elaboration (the concept, with its pictures, simulation and
+  // videos) first, then the full step-by-step solution. A teacher's move on a sum already taught gets neither again.
+  const elaborate = prompt.elaborate === true && plainQuestion && move === null;
+  // The problem the chat is on, at the top of the message the model answers (maths-moves.ts followUpFrame).
+  const frame = plainQuestion ? followUpFrame(input.text, input.memory, move) : '';
   const teach = (prompt.usesPlan || isCheck) && !ctx.preparing ? await prepareTeach(db, ctx, input, line, known, misconception, ofClass, prompt.visualFirst === true, prompt.oneBoard === true, elaborate) : null;
   // 3. The AI platform's checks (profile, minors, key, daily cap) and the cleaned request, still in this transaction.
   // v19: a typed question with no window place (no scope) is still offered the labs of the child's class and subject that fit its words.
@@ -507,7 +513,7 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
     }
     // C521: under v17 a tutor persona speaks the question's language, not a fixed one.
     const persona = lang && ctx.persona ? { ...ctx.persona, language: 'both' as const } : ctx.persona;
-    return { system: withPersona(withDrawTemplate(withTeachingMove(withMathsSolve(withScope(prompt.system(a), a.scope), solve), move), input.kind === 'question' && input.sketch ? input.drawTemplate : undefined), persona), messages: [{ role: 'user', content: prompt.user(a) }], responseFormat: undefined };
+    return { system: withPersona(withDrawTemplate(withTeachingMove(withMathsSolve(withScope(prompt.system(a), a.scope), solve, elaborate), move), input.kind === 'question' && input.sketch ? input.drawTemplate : undefined), persona), messages: [{ role: 'user', content: `${frame}${prompt.user(a)}` }], responseFormat: undefined };
   };
   const prepared = await prepareText(db as never, { accountId: ctx.accountId, childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail, day: ctx.day, childId: ctx.child.childId }, profileId, build(plan)); // w16-b4
   if (!prepared.ok) {
@@ -521,7 +527,7 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
   const diagrams = elaborate && chapterKey && inScope(chapterKey, scope) ? await chapterDiagrams(chapterKey, child.language === 'hi' ? 'hi' : 'en').catch(() => []) : [];
   const question = input.kind === 'question' ? withAttached(input.text, input.attached) : null;
   const asked = question ?? `Explain "${line?.topicEn ?? line?.chapterEn ?? ''}" to a Class ${child.classLevel} student.`;
-  return { ctx, line, known, open, classSubjects: ofClass, tab, ...(ask.bookSubjects ? { bookSubjects: ask.bookSubjects } : {}), cacheable, promptVersion: prompt.version, elaborate, diagrams, ...(solve ? { solve: true } : {}), text: prepared.text, moderation, asked, question, labs: input.kind === 'question' && input.scope ? input.scope.labs.map((l) => l.id) : freeLabs.map((l) => l.id), showcase, plan, teach: teach ? { ...teach, build } : null, ...(isCheck ? { check: true as const, reading: input.kind === 'question' ? (input.attached ?? '') : '' } : {}) };
+  return { ctx, line, known, open, classSubjects: ofClass, tab, ...(ask.bookSubjects ? { bookSubjects: ask.bookSubjects } : {}), cacheable, promptVersion: prompt.version, elaborate, diagrams, ...(solve ? { solve: true } : {}), ...(move ? { move } : {}), text: prepared.text, moderation, asked, question, labs: input.kind === 'question' && input.scope ? input.scope.labs.map((l) => l.id) : freeLabs.map((l) => l.id), showcase, plan, teach: teach ? { ...teach, build } : null, ...(isCheck ? { check: true as const, reading: input.kind === 'question' ? (input.attached ?? '') : '' } : {}) };
 }
 
 // C521: the language the child typed the question in (their own words, not a photo's reading) and the child's mother
@@ -616,8 +622,6 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
   // Check my work (W18-Q3): blocks that came before the verdicts, held until they are shown; and why the model's verdicts
   // were refused (a reason, never the words), for the log.
   const held: Block[] = [];
-  // §8: a sum's blocks that came before its solution, held until it is shown.
-  const unsolved: Block[] = [];
   let stepsRejected: string | null = null;
   const show = (unnamed: Block, s: Subject) => {
     const b = addName(unnamed);
@@ -700,11 +704,6 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
       if (!(await claim(s))) return refuseSubject(s);
     }
     seen.add(b.type);
-    // §8: a sum's solution leads; anything that passed before it waits for it (or for the end, when none comes).
-    if (p.solve && b.type !== 'worked_example' && !seen.has('worked_example')) {
-      unsolved.push(b);
-      return;
-    }
     // A marked working shows its verdicts first (W18-Q3): the corrected working and the similar question wait for them.
     if (p.check && b.type !== 'steps' && b.type !== 'sources' && !seen.has('steps')) {
       held.push(b);
@@ -713,7 +712,6 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
     lead(s);
     show(b, s);
     if (p.check && b.type === 'steps') for (const h of held.splice(0)) show(h, s);
-    if (b.type === 'worked_example') for (const h of unsolved.splice(0)) show(h, s);
   };
   // Check my work always gives a verdict (W18-Q3). When the model's verdicts never passed (no steps line, or one our checks
   // refused), our own arithmetic marks every working line that is a plain equation, and that block is shown first. Its
@@ -788,12 +786,6 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
   }, late);
   await queue;
   if (p.check) await markWithoutModel();
-  // §8: no solution came (the model wrote none, or our arithmetic refused it): what passed is still shown, and the done
-  // line names the missing worked example (keep).
-  if (!stopped && subject && unsolved.length > 0) {
-    const s: Subject = subject;
-    for (const h of unsolved.splice(0)) show(h, s);
-  }
   // The plan's call is metered with the answer's, in the same transaction.
   const both = planSent;
   const sent: SentText = both

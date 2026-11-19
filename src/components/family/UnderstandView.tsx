@@ -14,7 +14,7 @@ import dynamic from 'next/dynamic';
 import { QuizView } from './blocks/QuizView';
 import { MindMapView } from './blocks/MindMapView';
 import { isSimScene, placeBlock, teaches, unfilled } from '@/lib/family/blocks';
-import { solutionFirst } from '@/lib/family/maths-solve';
+import { conceptThenSolution } from '@/lib/family/maths-solve';
 import { boardCursorFromSentence } from '@/lib/family/board';
 import { spokenSentences } from '@/lib/family/call';
 
@@ -212,7 +212,7 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
   // W10-3 (C412), W10-4 (C413): every answer wears the lesson identity (`.fam-lesson`, family.css), a typed question too:
   // a direct-answer card first, the numbered sections, the follow-ups, then the videos.
   // §8 maths: a sum's solution first, then the elaboration and the rest (the videos stay last, below).
-  const drawn = solutionFirst(dataSaverBlocks(shown, saving));
+  const drawn = conceptThenSolution(dataSaverBlocks(shown, saving));
   const lead = drawn.find((b): b is ExplanationBlock => b.type === 'explanation');
   const model = drawn.some((b) => b.type === 'model_3d');
   // W16-A2: where the answer comes from, first: its chapter as soon as the sources block names it, else, once complete,

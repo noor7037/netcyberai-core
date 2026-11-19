@@ -1,4 +1,4 @@
-// Maths tutoring (§8, 18 Nov 2026): a sum is SOLVED first. A Class 3 child asked the thief-and-policeman sum and got a
+// Maths tutoring (§8, 18 Nov 2026; order changed 19 Nov: the concept first, then the solution): a sum is SOLVED. A Class 3 child asked the thief-and-policeman sum and got a
 // story, a wrong simulation and videos, with no working. For a maths question with quantities to find, the answer now
 // opens with one worked_example block in its solution form (Given, To find, each step with its reason, the final answer,
 // a quick check), then the "Did you understand?" quick replies; the elaboration, pictures, a simulation and videos may
@@ -38,10 +38,34 @@ export const MATHS_SOLVE_LINE =
   'When two things are asked, the answer gives both. The check shows the answer works (for example, both distances are equal at the catch). ' +
   'Only after the solution line, write the rest of the answer; its numbers agree with the solution, and a story or picture never replaces the working.';
 
-export function withMathsSolve(system: string, solve: boolean): string {
+// 19 Nov 2026 (founder): "You replaced the explanation with a bare solution. WRONG." A sum under the Elaboration Framework
+// is taught first and solved second, in this order: the elaboration line (the CONCEPT the sum uses, with pictures, a
+// simulation and videos that fit THIS sum's topic), then the solution line, Mathwise style. The quick replies under the
+// solution ask "Samajh aaya? Ya dobara alag tareeke se samjhaun?".
+export const MATHS_TEACH_THEN_SOLVE_LINE =
+  'THIS QUESTION IS A SUM: TEACH THE CONCEPT, THEN SOLVE IT. After the subject line write TWO JSON lines, in this order. ' +
+  'FIRST the elaboration line described above, teaching the CONCEPT this sum uses (for a time and speed sum: speed, distance, time and catching up; ' +
+  'for a sum about area: area), with its examples, pictures, 3D terms and checks about THIS sum\'s topic only. It does not solve this sum. ' +
+  'THEN the solution line, Mathwise style, of this shape: ' +
+  '{"type":"worked_example","problem":"the sum in one or two short lines","given":["each fact given, with its unit"],"find":["each quantity asked for"],' +
+  '"steps":[{"text":"what this step does","why":"why we do it","expression":"plain arithmetic, for example 100 + 110 + 120","result":"its value"}],' +
+  '"table":{"columns":["Minute","Thief (m)","Policeman (m)"],"rows":[["1","100","0"]]},' +
+  '"answer":"the final answer to EVERY part asked, with units, stated clearly","check":{"text":"a quick check that the answer is right","expression":"plain arithmetic","result":"its value"}}. ' +
+  'Each step is ONE small operation a child of this class can follow (numbered micro-steps, 3 to 10 of them); every expression is numbers with + - × ÷ ( ) only and its result is exactly right: one wrong step drops the whole solution. ' +
+  'Use "table" (at most 12 rows) as the labelled figure of the working whenever a quantity changes step by step or two things are compared side by side. ' +
+  'When two things are asked, the answer gives both. The two lines agree on every number.';
+
+export function withMathsSolve(system: string, solve: boolean, elaborate = false): string {
   if (!solve) return system;
-  const at = system.indexOf('\nRules: ');
-  return at < 0 ? `${system}\n${MATHS_SOLVE_LINE}` : `${system.slice(0, at)}\n${MATHS_SOLVE_LINE}${system.slice(at)}`;
+  let base = system;
+  let line = MATHS_SOLVE_LINE;
+  if (elaborate) {
+    // The elaboration's own "ONE line only" gives way to the two lines this sum needs.
+    base = base.replace('(every field required, ONE line only)', '(every field required)');
+    line = MATHS_TEACH_THEN_SOLVE_LINE;
+  }
+  const at = base.indexOf('\nRules: ');
+  return at < 0 ? `${base}\n${line}` : `${base.slice(0, at)}\n${line}${base.slice(at)}`;
 }
 
 // ---- attachment guards ----------------------------------------------------------------------------------------------
@@ -73,12 +97,15 @@ export function gradeFits(title: string, classLevel: number): boolean {
 
 // ---- order ----------------------------------------------------------------------------------------------------------
 
-// The solution leads an answer that has one: every worked example before the elaboration and anything else (the videos
-// keep their own place, last, wherever the caller puts them).
-export function solutionFirst<B extends { type: string }>(list: readonly B[]): B[] {
+// 19 Nov 2026 (founder): the concept first, then the solution. An answer with an elaboration and a worked example shows
+// the elaboration, then the worked example straight after it, then the rest (the videos keep their own place, last,
+// wherever the caller puts them). Any other answer keeps its order.
+export function conceptThenSolution<B extends { type: string }>(list: readonly B[]): B[] {
+  const at = list.findIndex((b) => b.type === 'elaboration');
   const solved = list.filter((b) => b.type === 'worked_example');
-  if (solved.length === 0 || list[0]?.type === 'worked_example' || !list.some((b) => b.type === 'elaboration')) return [...list];
-  return [...solved, ...list.filter((b) => b.type !== 'worked_example')];
+  if (at < 0 || solved.length === 0) return [...list];
+  const rest = list.filter((b) => b.type !== 'worked_example' && b.type !== 'elaboration');
+  return [list[at], ...solved, ...rest];
 }
 
 // ---- the quick replies under a solution ---------------------------------------------------------------------------

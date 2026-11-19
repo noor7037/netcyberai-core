@@ -6,7 +6,7 @@ import { startHarnessDb } from '../../scripts/harness/db.mjs';
 // @ts-expect-error -- a plain .mjs script, no types
 import { catalogSql } from '../../scripts/content/catalog-sql.mjs';
 import { CATALOG_COLUMNS } from '@/lib/content/catalog-csv';
-import { approveVersion, diffVersions, importCatalog, listVersions, previewVersion, rejectVersion, releaseVersion, rollBackVersion } from '@/lib/content/library';
+import { approveAllWaiting, approveVersion, diffVersions, importCatalog, listVersions, previewVersion, rejectVersion, releaseVersion, rollBackVersion } from '@/lib/content/library';
 import type { Sql } from '@/lib/jobs/types';
 import { readFamilyCatalog } from '@/lib/family/catalog';
 
@@ -323,5 +323,30 @@ describe('the committed NCERT catalog (classes 6 to 8), loaded from the reposito
     const m8 = await asFamily((tx) => readFamilyCatalog(tx, { board: 'CBSE', classLevel: 8, subject: 'mathematics', lang: 'en', today: TODAY }));
     expect(m8!.chapters.map((c) => c.unitTitle)).toEqual([...Array(7).fill('Part-I'), ...Array(7).fill('Part-II')]);
     expect(m8!.chapters.slice(6, 8).map((c) => c.title)).toEqual(['Proportional Reasoning-1', 'Fractions in Disguise']);
+  });
+});
+
+describe('one click approves and releases everything waiting (C530)', () => {
+  it('releases every waiting version to families, leaves one the clicker imported, and changes nothing a second time', async () => {
+    const G = (o: Record<string, string>) => line({ class: '6', subject: 'english', ...o });
+    const g6 = file(
+      G({ level: 'unit', key: 'cbse.c6.english.u1', title_en: 'Stories' }),
+      G({ level: 'chapter', key: 'cbse.c6.english.u1.ch01', parent_key: 'cbse.c6.english.u1', title_en: 'A friend' })
+    );
+    const imported = await asStaff(SECOND, (tx) => importCatalog(tx, { userId: SECOND }, g6, { preview: false, today: TODAY }));
+    expect(imported).toMatchObject({ committed: true, problems: [] });
+    const waiting = async () => Number((await owner(`select count(*)::int as n from content.syllabus_versions where status = 'in_review' or (status = 'published' and audience = 'staff_preview')`))[0].n);
+    const before = await waiting();
+    expect(before).toBeGreaterThan(0);
+    // The importer's own click leaves its own import waiting (two people).
+    const own = await asStaff(SECOND, (tx) => approveAllWaiting(tx, { userId: SECOND }));
+    expect(own.ownImports).toBeGreaterThan(0);
+    const r = await asStaff(FOUNDER, (tx) => approveAllWaiting(tx, { userId: FOUNDER }));
+    expect(r.released).toBeGreaterThan(0);
+    expect(await waiting()).toBe(0);
+    const c6 = await asFamily((tx) => readFamilyCatalog(tx, { board: 'CBSE', classLevel: 6, subject: 'english', lang: 'en', today: TODAY }));
+    expect(c6!.chapters.map((c) => c.title)).toEqual(['A friend']);
+    expect(await asStaff(FOUNDER, (tx) => approveAllWaiting(tx, { userId: FOUNDER }))).toEqual({ released: 0, ownImports: 0 });
+    expect((await auditActions()).filter((a) => a.event_action === 'content.syllabus.approve_all')).toHaveLength(3);
   });
 });

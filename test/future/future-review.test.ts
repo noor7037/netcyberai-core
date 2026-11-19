@@ -88,6 +88,8 @@ describe('the review queue', () => {
     const refused = await post(staff, { action: 'approve', listingId: lowId, note: '  ' });
     expect(refused.status).toBe(400);
     expect(refused.body.code).toBe('note_needed');
+    // A stray key press is not a note (C530: 36 rows were approved with the note "1").
+    expect((await post(staff, { action: 'approve', listingId: lowId, note: '1' })).body.code).toBe('note_needed');
     expect((await post(staff, { action: 'approve', listingId: lowId, note: 'Checked edudel page 15 Nov: no 2027 dates yet.' })).status).toBe(200);
     expect((await audits(high)).map((a: { event_action: string }) => a.event_action)).toEqual(['content.future_listing_approved']);
     expect((await audits(lowId))[0].actor_user_id).toBe(STAFF);
@@ -127,7 +129,7 @@ describe('the review queue', () => {
 
   it('the founder’s switch turns Apply on for exactly one extra site, and back off', async () => {
     const id = await idOf('hr.bseh.board.2027');
-    await post(staff, { action: 'approve', listingId: id, note: 'ok' });
+    await post(staff, { action: 'approve', listingId: id, note: 'Checked the BSEH page: dates match.' });
     const apply = async () => (await familyTx((tx) => loadFutureCards(tx, 'exams_portal', 10, 'IN-HR', TODAY))).main.find((c) => c.id === id)?.applyHost ?? null;
     expect(await apply()).toBeNull();
     expect((await post(staff, { action: 'domain', domain: 'bseh.org.in', enabled: true })).status).toBe(200);
@@ -153,11 +155,13 @@ describe('the review queue', () => {
 describe('approve all pending', () => {
   const counts = async () => Object.fromEntries((await db.pg.query(`select review_state, count(*)::int as n from content.future_listings group by 1`)).rows.map((r: { review_state: string; n: number }) => [r.review_state, r.n]));
 
-  it('approves only pending rows, once, and writes one audit entry', async () => {
+  it('approves every pending row in one click, once; low-confidence rows carry the founder\'s note (C530)', async () => {
     expect((await post(null, { action: 'approve-all', confirm: 'approve-pending' })).status).toBe(401);
     expect((await post(claims('principal', PRINCIPAL, SCHOOL), { action: 'approve-all', confirm: 'approve-pending' })).status).toBe(403);
     const before = await counts();
     expect(before.pending).toBeGreaterThan(0);
+    const low = (await db.pg.query(`select count(*)::int as n from content.future_listings where review_state = 'pending' and coalesce(confidence, 0) < 0.8`)).rows[0].n;
+    expect(low).toBeGreaterThan(0);
     expect((await post(staff, { action: 'approve-all' })).status).toBe(400);
     expect((await post(staff, { action: 'approve-all', confirm: 'no' })).status).toBe(400);
     expect(await counts()).toEqual(before);
@@ -165,6 +169,9 @@ describe('approve all pending', () => {
     const after = await counts();
     expect(after.pending ?? 0).toBe(0);
     expect(after.approved).toBe((before.approved ?? 0) + before.pending);
+    // Every low-confidence row says who vouched for it.
+    const unsigned = (await db.pg.query(`select count(*)::int as n from content.future_listings where review_state = 'approved' and coalesce(confidence, 0) < 0.8 and coalesce(length(review_note), 0) < 10`)).rows[0].n;
+    expect(unsigned).toBe(0);
     expect(after.rejected ?? 0).toBe(before.rejected ?? 0);
     expect(after.changes_flagged ?? 0).toBe(before.changes_flagged ?? 0);
     const reviewed = (await db.pg.query(`select count(*)::int as n from content.future_listings where review_state = 'approved' and reviewed_by = $1 and reviewed_at is not null`, [STAFF])).rows[0].n;

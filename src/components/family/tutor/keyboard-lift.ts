@@ -42,11 +42,18 @@ export type LiftInput = {
   // This phone's browser has been seen to report the keyboard (a shrunk visual viewport or layout): when it now reports none,
   // the keyboard is closed even if a field still holds the focus (Android's Back key closes the keys and keeps the focus).
   trusted: boolean;
+  // The Android app's own keyboard height (IME_EVENT), null when this app has never reported one (a browser, an older APK).
+  native?: number | null;
 };
-export type Lift = { open: boolean; lift: number; source: 'none' | 'visual' | 'resized' | 'estimate' };
+export type Lift = { open: boolean; lift: number; source: 'none' | 'native' | 'visual' | 'resized' | 'estimate' };
+// 19 Nov 2026: the Android app (MainActivity, from APK 3) reports the keyboard itself: `fam-ime` with its height in CSS
+// pixels above the page's foot, on every open, close and resize. Once one has come, that report is the only truth: the
+// keyboard closed by the Back gesture (the field keeps the focus) drops the pill at once, which the estimate never could.
+export const IME_EVENT = 'fam-ime';
 const CLOSED: Lift = { open: false, lift: 0, source: 'none' };
 
 export function keyboardLift(i: LiftInput): Lift {
+  if (i.native !== null && i.native !== undefined) return i.native > 0 && i.typing ? { open: true, lift: Math.round(i.native), source: 'native' } : CLOSED;
   if (!i.typing || i.scale > 1.01) return CLOSED;
   if (i.vvHeight !== null) {
     const covered = keyboardInset(i.innerHeight, { height: i.vvHeight, offsetTop: i.vvOffsetTop, scale: i.scale });
@@ -83,6 +90,7 @@ export function useKeyboardLift(): Lift {
     let baseline = 0;
     let focusedAt = 0;
     let seen = readKnown() > 0;
+    let native: number | null = null;
     let timer: ReturnType<typeof setTimeout> | undefined;
     const vv = window.visualViewport ?? null;
     const phone = () => window.matchMedia?.('(pointer: coarse) and (max-width: 1023px)').matches === true;
@@ -104,6 +112,7 @@ export function useKeyboardLift(): Lift {
         settled: typing && Date.now() - focusedAt >= LIFT_SETTLE_MS,
         lastKnown: readKnown(),
         trusted: seen,
+        native,
       });
       if (next.source === 'visual' && next.lift >= MIN_ESTIMATE) remember(next.lift);
       setState((prev) => (prev.open === next.open && prev.lift === next.lift && prev.source === next.source ? prev : next));
@@ -132,11 +141,19 @@ export function useKeyboardLift(): Lift {
       setTimeout(read, 0);
       setTimeout(read, 80);
     };
+    const onIme = (e: Event) => {
+      const h = Number((e as CustomEvent<{ height?: unknown }>).detail?.height);
+      if (!Number.isFinite(h) || h < 0) return;
+      native = h;
+      if (h >= MIN_ESTIMATE) remember(h);
+      read();
+    };
     baseline = layoutHeight();
     window.addEventListener('focusin', onFocusIn);
     window.addEventListener('focusout', onFocusOut);
     window.addEventListener('pointerdown', onPress, true);
     window.addEventListener(RESET_EVENT, onReset);
+    window.addEventListener(IME_EVENT, onIme);
     window.addEventListener('resize', read);
     window.addEventListener('orientationchange', read);
     vv?.addEventListener('resize', read);
@@ -148,6 +165,7 @@ export function useKeyboardLift(): Lift {
       window.removeEventListener('focusout', onFocusOut);
       window.removeEventListener('pointerdown', onPress, true);
       window.removeEventListener(RESET_EVENT, onReset);
+      window.removeEventListener(IME_EVENT, onIme);
       window.removeEventListener('resize', read);
       window.removeEventListener('orientationchange', read);
       vv?.removeEventListener('resize', read);

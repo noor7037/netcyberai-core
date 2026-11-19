@@ -293,7 +293,7 @@ export function ElaborationView({
                   key={k}
                   type="button"
                   data-whiteboard-dot={i + 1}
-                  aria-label={`${i + 1}. ${label(k)}`}
+                  aria-label={[String(i + 1), label(k)].join('. ')}
                   aria-current={i === shown ? "step" : undefined}
                   onClick={() => choose(i)}
                   className="fam-press group flex min-h-[44px] flex-1 items-center px-0.5"

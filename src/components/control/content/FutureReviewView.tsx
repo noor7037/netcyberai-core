@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { useWords } from '@/components/app-shell/Words';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
@@ -44,7 +44,6 @@ const FIELDS: [string, MessageKey, boolean][] = [
 
 export function FutureReviewView({ initial, domains: initialDomains, pendingCount: initialPending }: { initial: ReviewRow[]; domains: DomainRow[]; pendingCount: number }) {
   const { t } = useWords();
-  const approveAll = useRef<HTMLDialogElement>(null);
   const [filter, setFilter] = useState<ReviewFilter>('pending');
   const [rows, setRows] = useState<ReviewRow[]>(initial);
   const [domains, setDomains] = useState<DomainRow[]>(initialDomains);
@@ -95,19 +94,9 @@ export function FutureReviewView({ initial, domains: initialDomains, pendingCoun
         ))}
       </div>
       <div>
-        <button type="button" data-approve-all className={PRIMARY} disabled={busy || pendingCount === 0} onClick={() => approveAll.current?.showModal()}>
+        <button type="button" data-approve-all className={PRIMARY} disabled={busy || pendingCount === 0} onClick={() => void send({ action: 'approve-all', confirm: 'approve-pending' })}>
           {t('control.future.approveAll').replace('{n}', String(pendingCount))}
         </button>
-        <dialog ref={approveAll} className="w-[min(24rem,92vw)] rounded-lg border border-slate/15 bg-white p-4 text-slate">
-          <h2 className="text-base font-extrabold text-slate">{t('control.future.approveAllTitle')}</h2>
-          <p className="mt-1 text-sm text-slate">{t('control.future.approveAllBody').replace('{n}', String(pendingCount))}</p>
-          <div className="mt-4 flex flex-wrap gap-2">
-            <button type="button" className={PRIMARY} disabled={busy} onClick={async () => { if (await send({ action: 'approve-all', confirm: 'approve-pending' })) approveAll.current?.close(); }}>
-              {t('control.future.approveAllConfirm')}
-            </button>
-            <button type="button" className={TAP} onClick={() => approveAll.current?.close()}>{t('control.future.approveAllCancel')}</button>
-          </div>
-        </dialog>
       </div>
       {note && (
         <p role="status" className={`text-sm font-semibold ${note.ok ? 'text-emerald-text' : 'text-red-800'}`}>

@@ -8,7 +8,7 @@ import type { Anim } from './anim-source';
 // English search term per step (`q3d`, "" for a step that needs none), so this works for an answer in any language: no
 // word lists in Hindi or English decide whether a step gets 3D. Every 3D source is asked with the term in turn:
 //   PubChem (molecules) and the Protein Data Bank first, only when the term looks like a compound or a protein name;
-//   then NASA 3D Resources and the Khronos samples (local lists, no request); then Smithsonian 3D, Sketchfab and Poly
+//   then NASA 3D Resources and the Khronos glTF models (local lists, no request); then Smithsonian 3D, Sketchfab and Poly
 //   Pizza (each with its own key) and Poly Haven (keyless).
 // A source with no key is skipped (one log line), a failing or late one is skipped, and HTTP 429 pauses it (`guarded`).
 // When no source has a model for a step, the repo's own animation set may answer instead. At most two such pictures an

@@ -2,7 +2,7 @@ import { covers } from './adapter-kit';
 import { modelUrl, photoUrl } from './photo-hosts';
 import type { Model3d } from './models3d';
 
-// Khronos glTF sample models (github.com/KhronosGroup/glTF-Sample-Assets): a small curated set with a free licence that
+// Khronos glTF models (github.com/KhronosGroup/glTF-Sample-Assets): a small curated set with a free licence that
 // a child may meet in a lesson, referenced at their stable raw addresses (not copied: the set is 0.2 to 5.8 MB a model).
 // Licences read from each model's metadata.json on 16 Nov 2026. Matched locally by tags.
 const BASE = 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/';

@@ -5,10 +5,13 @@ import type { LaneId, Roadmap } from '@/lib/family/careers/types';
 const text = (lang: Lang, en: string, hi: string) => (lang === 'hi' ? hi : en);
 const TINT = ['bg-lesson-butter', 'bg-lesson-mint', 'bg-lesson-sky', 'bg-lesson-lilac', 'bg-lesson-blush', 'bg-lesson-butter', 'bg-lesson-mint'];
 const DEEP = ['bg-lesson-butter-deep', 'bg-lesson-mint-deep', 'bg-lesson-sky-deep', 'bg-lesson-lilac-deep', 'bg-lesson-blush-deep', 'bg-lesson-butter-deep', 'bg-lesson-mint-deep'];
+// The stage number is white on its lane's accent: 5.4:1 (sky) to 7.1:1 (lilac), all above the 4.5:1 floor
+// (test/careers/career-hub.test.ts proves it). The pair is kept together because the accent is chosen at run time.
+const BADGE = DEEP.map((bg) => `${bg} text-white`);
 
 function StageBadge({ n, deep }: { n: number; deep: string }) {
   return (
-    <span className={`inline-flex h-8 w-8 min-h-[28px] min-w-[28px] shrink-0 items-center justify-center rounded-full text-sm font-extrabold text-white ${deep}`}>{n}</span>
+    <span className={`inline-flex h-8 w-8 min-h-[28px] min-w-[28px] shrink-0 items-center justify-center rounded-full text-sm font-extrabold ${deep}`}>{n}</span>
   );
 }
 
@@ -34,7 +37,7 @@ export function RoadmapView({ roadmap, lang, openLane }: { roadmap: Roadmap; lan
           <details key={lane.id} data-lane={lane.id} open={lane.id === openLane} className={`rounded-2xl ${TINT[i]}`}>
             <summary className="flex min-h-[44px] cursor-pointer items-center gap-3 px-3 text-sm font-extrabold text-ink">
               <span aria-hidden="true" className={`h-8 w-1 shrink-0 rounded-full ${DEEP[i]}`} />
-              <StageBadge n={i + 1} deep={DEEP[i]} />
+              <StageBadge n={i + 1} deep={BADGE[i]} />
               <span className="min-w-0">{t(lang, LANE_KEY[lane.id])}</span>
             </summary>
             <LaneBody lane={lane} lang={lang} />
@@ -60,7 +63,7 @@ export function RoadmapView({ roadmap, lang, openLane }: { roadmap: Roadmap; lan
             {lanes.map((lane, i) => (
               <section key={lane.id} data-lane={lane.id} className={`w-64 shrink-0 rounded-2xl ${TINT[i]} p-3`}>
                 <div className="flex items-center gap-3">
-                  <StageBadge n={i + 1} deep={DEEP[i]} />
+                  <StageBadge n={i + 1} deep={BADGE[i]} />
                   <h3 className="min-w-0 text-sm font-extrabold text-ink">{t(lang, LANE_KEY[lane.id])}</h3>
                 </div>
                 <LaneBody lane={lane} lang={lang} />

@@ -21,7 +21,7 @@ vi.mock('@/lib/family/answer-videos', () => ({
 
 import { checkBlock, completeResponse, type Block, type WorkedExample } from '@/lib/family/blocks';
 import { elaborationBlock } from '@/lib/family/elaboration';
-import { fitsSum, gradeFits, isMathsSum, MATHS_SOLVE_LINE, solutionFirst, withMathsSolve } from '@/lib/family/maths-solve';
+import { fitsSum, gradeFits, isMathsSum, MATHS_SOLVE_LINE, conceptThenSolution, withMathsSolve } from '@/lib/family/maths-solve';
 import { generate } from '@/lib/family/resolver';
 import { fillVisuals } from '@/lib/family/visuals/fill';
 import { WorkedExampleView } from '@/components/family/blocks/BlockViews';
@@ -126,19 +126,19 @@ describe('a maths sum is solved first (§8)', () => {
     return { g, shown: events.filter((e) => e.t === 'block').map((e) => e.block!.type) };
   };
 
-  it('shows the solution before the elaboration, even when the model wrote the elaboration first', async () => {
+  it('shows the concept (elaboration) first, then the solution (founder, 19 Nov 2026)', async () => {
     const { g, shown } = await run([elaboration, solution]);
-    expect(shown).toEqual(['worked_example', 'elaboration']);
-    expect(g.kept.map((b) => b.type)).toEqual(['worked_example', 'elaboration']);
+    expect(shown).toEqual(['elaboration', 'worked_example']);
+    expect(g.kept.map((b) => b.type)).toEqual(['elaboration', 'worked_example']);
   });
 
-  it('still shows the elaboration when no solution came, and a stored answer keeps the solution first', async () => {
+  it('still shows the elaboration when no solution came, and a stored answer keeps the concept first', async () => {
     const { shown } = await run([elaboration]);
     expect(shown).toEqual(['elaboration']);
     const elab = elaborationBlock(elaboration, false)!;
     const stored = completeResponse([elab as Block, checkBlock(solution)!], ['elaboration']);
-    expect(stored?.map((b) => b.type)).toEqual(['worked_example', 'elaboration']);
-    expect(solutionFirst([{ type: 'elaboration' }, { type: 'worked_example' }, { type: 'videos' }]).map((b) => b.type)).toEqual(['worked_example', 'elaboration', 'videos']);
+    expect(stored?.map((b) => b.type)).toEqual(['elaboration', 'worked_example']);
+    expect(conceptThenSolution([{ type: 'worked_example' }, { type: 'elaboration' }, { type: 'videos' }]).map((b: { type: string }) => b.type)).toEqual(['elaboration', 'worked_example', 'videos']);
   });
 
   it('draws Given, To find, the working, the answer, the check, then the four quick replies, wired', () => {

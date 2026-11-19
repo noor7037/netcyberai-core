@@ -59,7 +59,7 @@ describe('§2 Focus Reading rules', () => {
 describe('§3 the number puck', () => {
   const puck = SRC('src/components/family/tutor/QuestionPuck.tsx');
   it('floats mid-right, shows while scrolling, lists three at a time and goes to a question', () => {
-    expect(puck).toContain('fixed right-2 top-[42%]');
+    expect(puck).toContain('fixed right-2 top-[42vh]');
     expect(puck).toContain("addEventListener('scroll'");
     expect(puck).toContain('ROW * 3');
     expect(puck).toContain('onGo(c.n)');

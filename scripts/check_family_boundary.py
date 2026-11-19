@@ -89,6 +89,9 @@ FAMILY_DOORS = {
     "@/lib/marking/checked-pdf": {"src/components/family/CheckedPaperPdf.tsx"},
     # The call's latency marks (W16-A4): one structured log line of numbers, from this one route; no account, child or words.
     "@/lib/observability/log": {"src/app/api/family/voice/call/marks/route.ts"},
+    # Tutor videos (C522; C530 records it): the hide rule for a reviewed video, the same rule as content.video_hidden.
+    # Constants and one pure function, no server code, so the phone's bundle can use it.
+    "@/lib/ai/video-review-rule": {"src/lib/family/videos.ts"},
 }
 # Packages and the framework, allowed everywhere.
 # pdfjs-dist (W4-1, C385): the tutor reads an attached PDF's text layer on the server. A file parser, not a vendor: no
@@ -128,6 +131,8 @@ OUTSIDE_MAY_IMPORT_FAMILY = {
     # shows what a child would get (pure functions and types: no data, no SQL).
     "src/lib/ai/lab/cases.ts": {"@/lib/family/question-language"},
     "src/lib/ai/lab/tutor-v17.ts": {"@/lib/family/question-language", "@/lib/family/languages"},
+    # Tutor prompt v20 (C530 records it) names the answer's language with the tutor's own detector (a pure function).
+    "src/lib/ai/prompts/family.resolver/v20.ts": {"@/lib/family/question-language"},
     "src/app/(admin)/control/content/studio/page.tsx": {
         "@/components/family/reader/ChapterReader",
         "@/lib/family/chapter-test-shape",
@@ -244,6 +249,10 @@ def check_sources(root: Path) -> list[str]:
                         # The chapter reader's own content data (founder, 9 Nov 2026): a JSON file under reader/content/
                         # holds chapter text only, no code; src/lib/family/books.ts reads the book's index from it.
                         if landed.startswith("reader/content/") and landed.endswith(".json"):
+                            continue
+                        # The tutor's animation list (v21; C530 records it): public/anim/index.json names the app's own
+                        # animation files and their tags, data only; src/lib/family/visuals/anim-source.ts reads it.
+                        if landed == "public/anim/index.json":
                             continue
                         problems.append(f"{rel}: family code may not import {mod}")
                         continue

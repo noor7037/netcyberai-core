@@ -8,6 +8,7 @@ import { TUTOR_FILES_PER_TURN, TUTOR_TEXT_MAX, type TutorFileType } from '@/lib/
 import { useVoiceRecorder, type VoiceAck } from '../voice/useVoiceRecorder';
 import { PhotoSheet } from './PhotoSheet';
 import { RESET_EVENT, useKeyboardLift } from './keyboard-lift';
+import { useBackClose } from '../useBackClose';
 
 // The tutor's composer (W6-A, C395): one rounded field for every question a child types, on Study and in the chapter
 // reader's doubt drawer. Inside the field: Attach on the left (only when the photo gate lets photos through: the page
@@ -78,8 +79,6 @@ export function Composer(p: Props) {
   const [menu, setMenu] = useState(false);
   const dock = useRef<HTMLDivElement>(null);
   const [expanded, setExpanded] = useState(false);
-  // The field holds the focus (the keys are up): on Study the side buttons step aside and the field takes the whole bar.
-  const [focused, setFocused] = useState(false);
   // C510: the photo sheet open from the menu: for Check my work, or for Ask about this.
   const [sheet, setSheet] = useState<'check' | 'ask' | null>(null);
   const voice = useVoiceRecorder({
@@ -131,6 +130,12 @@ export function Composer(p: Props) {
     return () => document.removeEventListener('pointerdown', away);
   }, [menu, sheet]);
 
+  // The phone's Back closes the attach menu or the photo sheet before it leaves the page.
+  useBackClose(menu || sheet !== null, () => {
+    setMenu(false);
+    setSheet(null);
+  });
+
   const pick = () => {
     setMenu(false);
     fileInput.current?.click();
@@ -142,7 +147,10 @@ export function Composer(p: Props) {
   const full = p.attached.length >= TUTOR_FILES_PER_TURN;
   // The pill only on Study (the dock); the drawer's composer is always the full one. A file, a recording or a notice keeps it open.
   const pill = p.pinned === 'dock';
-  const compact = pill && focused && voice.state === 'idle';
+  // 19 Nov 2026 (founder): the side buttons (attach, microphone, Call, the chevron, Conversation) never step aside while the
+  // field has the focus. They used to, and came back the moment it lost the focus: a tap on Send blurred the field first, the
+  // row re-laid out under the finger (Send moved about 50 px left), the pill dropped, and the tap landed on the Study tab.
+  // A row that never changes shape under a finger is the fix at its root; `keepFocus` below stays as a second guard.
   const open = !pill || expanded || p.attached.length > 0 || voice.state !== 'idle' || !!p.notice || !!p.locked;
   useEffect(() => {
     if (!expanded) return;
@@ -152,6 +160,22 @@ export function Composer(p: Props) {
     document.addEventListener('pointerdown', away);
     return () => document.removeEventListener('pointerdown', away);
   }, [expanded]);
+  // 19 Nov 2026 (founder: "after the keyboard closes the bar STAYS up"). Where the phone reports nothing about the keyboard
+  // (the Android app before APK 3), Back closes the keys and leaves the focus in the field, so nothing says they closed. A tap
+  // or a scroll outside the bar now lets go of the field: the keys close (if they were still up) and the bar returns to the tab
+  // bar. A tap on a button there still lands (the drop waits for its click, keyboard-lift.ts PRESS_GRACE_MS).
+  useEffect(() => {
+    if (!pill || !kb.open) return;
+    const letGo = (e: Event) => {
+      if (document.activeElement === box.current && !dock.current?.contains(e.target as Node)) box.current?.blur();
+    };
+    document.addEventListener('pointerdown', letGo, true);
+    document.addEventListener('touchmove', letGo, { capture: true, passive: true });
+    return () => {
+      document.removeEventListener('pointerdown', letGo, true);
+      document.removeEventListener('touchmove', letGo, true);
+    };
+  }, [pill, kb.open]);
   // A tap on a button here must not take the focus from the field: the keys would close, the dock drop and the page shift under
   // the finger, so the tap would land on the tab bar (Send needed two taps). The click still fires.
   const keepFocus = (e: { target: EventTarget; preventDefault: () => void }) => {
@@ -234,8 +258,11 @@ export function Composer(p: Props) {
                 ))}
               </ul>
             )}
-            <div className="flex items-end gap-0.5 p-1">
-              {open && p.files && !compact && (
+            {/* 19 Nov 2026: open, the field takes the whole top line and the buttons sit on the line below it (attach, microphone and
+                Call on the left; the chevron and Send on the right), so no button hides and the field is never a thin column. The
+                shape changes only when the bar opens, never on Send's tap. */}
+            <div data-composer-rows={open || undefined} className={`flex items-end gap-0.5 p-1 ${open ? 'flex-wrap' : ''}`}>
+              {open && p.files && (
                 <div ref={menuWrap} className="relative shrink-0" onKeyDown={(e) => {
                   if (e.key === 'Escape' && (menu || sheet)) {
                     e.stopPropagation();
@@ -345,9 +372,7 @@ export function Composer(p: Props) {
                 value={p.value}
                 placeholder={p.call || !open ? w['fam.tutor.askShort'] : w['fam.tutor.title']}
                 onChange={(e) => p.onChange(e.target.value)}
-                onBlur={() => setFocused(false)}
                 onFocus={() => {
-                  setFocused(true);
                   if (pill) setExpanded(true);
                   keepInView();
                 }}
@@ -357,9 +382,9 @@ export function Composer(p: Props) {
                     send();
                   }
                 }}
-                className={`block min-h-[44px] min-w-0 flex-1 resize-none bg-transparent disabled:cursor-not-allowed py-[0.625rem] text-base leading-6 text-slate placeholder:text-slate/80 focus:outline-none ${open && p.files && !compact ? 'px-1' : 'px-3'} ${open ? '' : 'max-h-11 overflow-hidden'}`}
+                className={`block min-h-[44px] min-w-0 flex-1 resize-none bg-transparent disabled:cursor-not-allowed py-[0.625rem] text-base leading-6 text-slate placeholder:text-slate/80 focus:outline-none px-3 ${open ? 'order-first basis-full' : 'max-h-11 overflow-hidden'}`}
               />
-              {p.voice && !compact && (
+              {p.voice && (
                 <button
                   type="button"
                   data-voice-input
@@ -380,14 +405,15 @@ export function Composer(p: Props) {
                   )}
                 </button>
               )}
-              {open && p.call && !p.locked && !compact && (
+              {open && p.call && !p.locked && (
                 <Link href={p.call.href} data-tutor-call-link aria-label={p.call.label} title={p.call.label} className={`${ROUND} text-ink hover:bg-off-white`}>
                   <svg aria-hidden="true" className="h-[22px] w-[22px]" {...ICON}>
                     <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" />
                   </svg>
                 </Link>
               )}
-              {pill && !compact && (
+              {open && <span aria-hidden="true" className="flex-1" />}
+              {pill && (
                 <button type="button" data-tutor-pill-toggle aria-expanded={open} aria-label={open ? w['fam.tutor.askClose'] : w['fam.tutor.askOpen']} onClick={() => (open ? (setExpanded(false), box.current?.blur()) : (setExpanded(true), box.current?.focus()))} className={`${ROUND} text-ink hover:bg-off-white`}>
                   <svg aria-hidden="true" className="h-5 w-5" {...ICON} strokeWidth={2.5}>
                     <path d={open ? 'M6 9l6 6 6-6' : 'M6 15l6-6 6 6'} />
@@ -403,7 +429,7 @@ export function Composer(p: Props) {
               )}
             </div>
           </div>
-          {!compact && <button
+          <button
             type="button"
             data-tutor-history
             aria-label={w['fam.tutor.tabConversation']}
@@ -416,7 +442,7 @@ export function Composer(p: Props) {
               <path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z" />
               <path d="M12 8v4l2.5 1.5" />
             </svg>
-          </button>}
+          </button>
         </div>
       </form>
     </div>

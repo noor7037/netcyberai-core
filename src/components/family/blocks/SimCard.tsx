@@ -5,15 +5,13 @@ import type { Words } from '@/lib/family/fill';
 import { simMode, type ElabSim } from '@/lib/family/sim-hosts';
 import { LabLinkCard } from './LabLinkCard';
 import { MediaFrame } from '../MediaFrame';
+import { SIM_SOURCE_NAMES } from '@/lib/family/sim-names';
 
 // "Try it yourself" (Noor, 16 Nov 2026): a curated simulation in step 4 of an answer, beside the photos and never instead of them.
 // The card is drawn here first (a small picture of our own, or a drawn card); nothing from the simulation's site loads, not even a
 // picture, until the child taps. Then the site's own page runs in a sandboxed frame. The frame's host is one the Family app's
 // Content-Security-Policy allows (next.config.js, from src/lib/family/sim-hosts.ts).
-const NAMES: Record<string, string> = {
-  phet: 'PhET', vlabs: 'Virtual Labs', olabs: 'OLabs', nasa_eyes: 'NASA Eyes', hhmi: 'HHMI BioInteractive', labxchange: 'LabXchange', concord: 'Concord Consortium',
-  desmos: 'Desmos', smithsonian3d: 'Smithsonian 3D', googlearts: 'Google Arts and Culture', wolfram: 'Wolfram Demonstrations',
-};
+const NAMES = SIM_SOURCE_NAMES;
 
 export function SimCard({ sim, w }: { sim: ElabSim; w: Words }) {
   const [open, setOpen] = useState(false);

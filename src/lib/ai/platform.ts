@@ -503,6 +503,8 @@ const CHAIN_GRACE_MS = 1_500;
 // W10: with a first-text deadline (firstTextMs), a provider reached by the one before it timing out is still tried with
 // this much left (a person is waiting; even a short try beats the default answer).
 const FIRST_TEXT_FLOOR_MS = 3_000;
+// The time a paid window may be short of the floor before its link is skipped (C530).
+const WINDOW_GRACE_MS = 500;
 
 // A provider's share of the route's remaining time (`left`), with `behind` providers still after it. A streaming
 // provider holds reserveMs for each one behind (their first-text wait, at most CHAIN_MIN_MS). C421: a provider that
@@ -642,7 +644,10 @@ async function textRun(db: Sql, ctx: AiContext, profileId: ProfileId, request: A
         const { link, adapter, apiKey, baseUrl } = r;
         const left = deadline === null ? null : deadline - Date.now();
         const windowLeft = left === null || end === null ? left : Math.min(left, end - Date.now());
-        if (left !== null && windowLeft !== null && windowLeft < floorMs) {
+        // A paid window can be exactly the floor (FIRST_TEXT_FLOOR_MS), so the milliseconds spent before its first link
+        // would skip that link every time; the window alone is held to the floor less WINDOW_GRACE_MS.
+        const windowShort = end !== null && end - Date.now() < floorMs - WINDOW_GRACE_MS;
+        if (left !== null && (left < floorMs || windowShort)) {
           attempts.push(...chain.slice(i).map((x) => skippedAttempt(x, 'skipped_deadline')));
           break;
         }

@@ -10,6 +10,7 @@ import { buildLanes, crossesForCareer, crossesForStream } from '@/lib/family/car
 import { opensNow } from '@/lib/family/careers/opens-now';
 import { seedRows } from '@/lib/family/careers/seed-build';
 import { projectForFamily, visibleToFamily } from '@/lib/family/careers/visibility';
+import { lessonTints } from '@/lib/design-tokens';
 import { en } from '@/lib/i18n/messages/en';
 import { hi } from '@/lib/i18n/messages/hi';
 import type { CareerCard, CrossPath, Roadmap } from '@/lib/family/careers/types';
@@ -171,5 +172,19 @@ describe('career words', () => {
       expect(text.includes('example.invalid')).toBe(false);
       expect(text.includes('TEST ·')).toBe(false);
     }
+  });
+});
+
+describe('the stage number stays readable (C530)', () => {
+  const lum = (hex: string) => {
+    const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255).map((c) => (c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4));
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  };
+  it('white on every lesson accent is at least 4.5:1', () => {
+    for (const { accent } of Object.values(lessonTints)) expect((1.05 / (lum(accent) + 0.05))).toBeGreaterThanOrEqual(4.5);
+  });
+  it('every badge pairs its accent with white text', () => {
+    const src = readFileSync('src/components/family/careers/RoadmapView.tsx', 'utf8');
+    expect(src).toContain('const BADGE = DEEP.map((bg) => `${bg} text-white`);');
   });
 });

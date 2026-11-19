@@ -83,6 +83,12 @@ COLOR_HEX = {
     "gold": "#F5B90A",
     # v4 (2026-09-25): the full logo spectrum -- see src/lib/design-tokens.ts.
     "midnight": "#061233",
+    # C530: the five lesson tints and their accents (src/lib/design-tokens.ts lessonTints; bg-lesson-*, bg-lesson-*-deep).
+    "lesson-mint": "#E4F3EA", "lesson-mint-deep": "#0F766E",
+    "lesson-butter": "#FBF1D3", "lesson-butter-deep": "#8A5300",
+    "lesson-lilac": "#EFE9FB", "lesson-lilac-deep": "#6D28D9",
+    "lesson-blush": "#FBE6E3", "lesson-blush-deep": "#B42318",
+    "lesson-sky": "#E3EEF9", "lesson-sky-deep": "#0369A1",
     "royal": "#1D4ED8",
     "royal-deep": "#1E3A8A",
     "electric": "#2563EB",
