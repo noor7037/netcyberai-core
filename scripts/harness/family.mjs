@@ -883,16 +883,17 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
                 if (m.dockUnderKeys) errors.push('keyboard open: the tab bar is under the keyboard');
               }
             }
-            // 18 Nov 2026 (fourth report). `kbCompact`: with the field focused the side buttons are gone and the field has the bar's width.
+            // `kbCompact` (19 Nov 2026, founder: the reverse of 18 Nov): with the field focused the side buttons STAY (hiding them moved
+            // Send under the finger on blur, so Send needed two taps), and the field still has a usable width.
             if (step.kbCompact) {
               const m = await page.evaluate(() => {
                 const bar = document.querySelector('[data-tutor-composer] form')?.getBoundingClientRect();
                 const ta = document.querySelector('[data-tutor-composer] textarea')?.getBoundingClientRect();
-                const gone = ['[data-tutor-attach]', '[data-voice-input]', '[data-tutor-call-link]', '[data-tutor-pill-toggle]', '[data-tutor-history]'].filter((q) => document.querySelector(q));
-                return { bar: bar?.width ?? 0, ta: ta?.width ?? 0, gone };
+                const missing = ['[data-tutor-pill-toggle]', '[data-tutor-history]', '[data-tutor-send]'].filter((q) => !document.querySelector(q));
+                return { bar: bar?.width ?? 0, ta: ta?.width ?? 0, missing };
               });
-              if (m.gone.length) errors.push('keyboard compact: still showing ' + m.gone.join(', '));
-              if (m.ta < m.bar * 0.7) errors.push('keyboard compact: the field is ' + Math.round(m.ta) + ' px of a ' + Math.round(m.bar) + ' px bar (a thin column)');
+              if (m.missing.length) errors.push('keyboard open: hiding ' + m.missing.join(', '));
+              if (m.ta < m.bar * 0.3) errors.push('keyboard open: the field is ' + Math.round(m.ta) + ' px of a ' + Math.round(m.bar) + ' px bar (a thin column)');
             }
             // `kbSend`: one real touch tap on Send must send: the field keeps the focus until the click, and the page does not move.
             if (step.kbSend) {
