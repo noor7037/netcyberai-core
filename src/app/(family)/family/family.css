@@ -529,8 +529,15 @@ html[data-fam-kb='open'] body [data-tutor-composer][data-pinned='dock'] {
     0 10px 30px -12px rgb(28 27 26 / 0.22),
     inset 0 0 0 1px rgb(30 41 59 / 0.08);
 }
+/* 19 Nov 2026 (founder: the Ask bar is hard to see on the paper page). At rest the field wears a 2 px teal ring (the Family
+   app's primary colour, #0F766E, 5.5:1 on the page) and a deeper shadow, so it reads at a glance as the place to ask; while
+   typing it takes the saffron ring below. */
 .fam-composer {
   transition: box-shadow 160ms ease;
+  box-shadow:
+    0 2px 4px rgb(30 41 59 / 0.08),
+    0 12px 32px -12px rgb(15 118 110 / 0.35),
+    inset 0 0 0 2px #0f766e; /* teal */
 }
 .fam-composer:focus-within {
   box-shadow:
