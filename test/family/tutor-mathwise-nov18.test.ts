@@ -121,7 +121,7 @@ describe('maths: the teacher\'s moves keep the same sum (Mathwise patterns)', ()
   });
   it('each move says: same sum, warm first or by reasons, no story card, no video', () => {
     for (const m of ['dontknow', 'restart', 'full', 'whatif'] as const) {
-      expect(MOVE_LINES[m]).toContain('SAME sum');
+      expect(MOVE_LINES[m]).toContain('SAME problem or topic');
       expect(MOVE_LINES[m]).toMatch(/no (elaboration|new story)/i);
     }
     expect(MOVE_LINES.dontknow).toContain('Koi baat nahi, main hoon na');
@@ -132,7 +132,8 @@ describe('maths: the teacher\'s moves keep the same sum (Mathwise patterns)', ()
   });
   it('the resolver takes a sum or a move out of the elaboration, and the live sums are sums', () => {
     const r = SRC('src/lib/family/resolver.ts');
-    expect(r).toContain('const elaborate = prompt.elaborate === true && plainQuestion && !solve && move === null;');
+    // 19 Nov 2026: a fresh sum keeps its elaboration (the concept) and adds the solution; only a move leaves it out.
+    expect(r).toContain('const elaborate = prompt.elaborate === true && plainQuestion && move === null;');
     expect(r).toContain('withTeachingMove(withMathsSolve(');
     expect(isMathsSum('mathematics', 'एक चोर 90 km/h की चाल से भाग रहा है। पुलिसवाला 5 मिनट बाद 108 km/h से पीछे दौड़ता है। वह चोर को कितनी देर में पकड़ेगा?')).toBe(true);
     expect(isMathsSum('mathematics', 'A cyclist rides at 10 km/h. His friend leaves half an hour later at 15 km/h. When will the friend catch him?')).toBe(true);

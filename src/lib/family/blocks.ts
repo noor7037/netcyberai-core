@@ -25,7 +25,7 @@ import { SOLID_INPUTS, SOLID_KINDS, type SolidKind } from './solids';
 import { SCENE_SIMS, simStart, type SceneSim } from './visuals/sims';
 import { isLangCode, type LangCode } from './languages';
 import { elaborationBlock, type Elaboration } from './elaboration';
-import { solutionFirst } from './maths-solve';
+import { conceptThenSolution } from './maths-solve';
 
 export const BLOCK_SCHEMA_VERSION = 1;
 
@@ -1439,8 +1439,8 @@ export function completeResponse(blocks: Block[], core: readonly BlockType[] = R
     first.set(b.type, b);
   }
   if (!core.every((t) => first.has(t))) return null;
-  // §8 maths: a sum's solution leads the elaboration, kept and read again as it arrived live.
-  const ordered = solutionFirst(ORDER.filter((t) => first.has(t)).map((t) => first.get(t)!));
+  // §8 maths (19 Nov 2026): the concept (elaboration) first, then the sum's solution, kept and read again as shown live.
+  const ordered = conceptThenSolution(ORDER.filter((t) => first.has(t)).map((t) => first.get(t)!));
   // C509: an answer whose very first block is the board (a young child's, under prompt v15) keeps its board first when it is
   // stored and read again, as it arrived live; C516: so does the quick answer (key points) prompt v16 writes first.
   const lead = blocks[0]?.type === 'board' || blocks[0]?.type === 'key_points' ? blocks[0].type : null;
