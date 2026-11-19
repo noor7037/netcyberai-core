@@ -64,6 +64,15 @@ jobs:
         working-directory: android
         run: ./gradlew --no-daemon assembleDebug
 
+      # The APK to install on a phone (founder, 19 Nov 2026): kept 30 days on the run's page under "Artifacts".
+      - name: Keep the APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: netcyberai-family-debug-apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+          retention-days: 30
+
       - name: Keep the test report when a test fails
         if: failure()
         uses: actions/upload-artifact@v4
