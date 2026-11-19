@@ -215,6 +215,12 @@ describe('the chronic absence list and "Tell the family"', () => {
     const { activeLinks, schoolNoticesFor } = await import('@/lib/family/school');
     const { withFamilyContext } = await import('@/lib/auth/db');
     const claims = { accountId: ACCOUNT, tokenVersion: 0 };
+    // The family's feed shows the last NOTICE_FEED_DAYS (14) days counted from the real clock; the notice above was dated to the
+    // fixed TODAY (5 Nov), which fell out of that window on 19 Nov 2026 (C531). Sent now, it is in the feed on any day.
+    // (The once-decided guard is a trigger, paused for this test-only fix-up as above.)
+    await q(`set session_replication_role = replica`);
+    await q(`update class_notices set decided_at = now() where student_id = $1 and kind = 'chronic_absence'`, [ASHA]);
+    await q(`set session_replication_role = origin`);
     const links = await withFamilyContext(claims, (c) => activeLinks(c, ACCOUNT));
     const shown = await schoolNoticesFor(claims, links, []);
     expect(shown.map((n) => n.body)).toHaveLength(1);
