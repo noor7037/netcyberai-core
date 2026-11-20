@@ -43,7 +43,7 @@ export const pageMeta = {
     path: '/',
     title: 'NetCyberAI — The Connected School Platform for India',
     description:
-      'NetCyberAI connects every role in an Indian school on one validated record: WhatsApp learning updates for parents, a Today screen for teachers, school health.',
+      'NetCyberAI: a school app for principals and teachers, and a Family app with an AI tutor for children and parents, connected on one validated record in India.',
     absoluteTitle: true,
   },
   feeRecovery: {
