@@ -24,7 +24,7 @@ One ecosystem, three connected apps on one validated record:
    - **Draw:** a drawing studio with guided templates tied to what the child studies; drawings stay on the phone.
    - **Future:** careers (step-by-step roadmaps), entrance exams, and scholarships and government schemes, each entry
      reviewed before families see it.
-   - **Parent area:** the child's progress, daily limits and switches, consent, and the child's own data controls.
+   - **Parent area:** the child's progress and the questions they asked (Learning Vault), consent switches per purpose (learning, English course, photos and files, voice), read-aloud, and the child's own data controls. A parent sets NO daily limits: the one daily limit (new drawings in Draw) is set by NetCyberAI for everyone, and which modules are on is NetCyberAI's switch.
    - **School Link:** a family whose school uses NetCyberAI connects with a one-time code from the school and sees that
      child's attendance, homework, notices, marks and timetable, read under the school's own rules.
    - On the web at /family and as an Android app. Do not name an app store.

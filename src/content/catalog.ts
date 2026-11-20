@@ -219,7 +219,7 @@ export const products: CatalogPage[] = [
       'The NetCyberAI Family app: an AI tutor that explains in your child’s language, study chapters, spoken English and a parent area, on the web and on Android.',
     heroTitle: 'A tutor at home that speaks your child’s language',
     heroLead:
-      'The NetCyberAI Family app is for any family, with or without a NetCyberAI school. A child types, speaks or photographs a book page, and the AI tutor answers in English, Hindi or Hinglish, with pictures and short videos. Parents see progress and set limits. It runs on the web and on Android.',
+      'The NetCyberAI Family app is for any family, with or without a NetCyberAI school. A child types, speaks or photographs a book page, and the AI tutor answers in English, Hindi or Hinglish, with pictures and short videos. Parents see progress and choose what is switched on. It runs on the web and on Android.',
     problem: [
       'A child gets stuck on a homework sum at night, and nobody at home can explain it.',
       'Explanations in a language the child does not think in do not stick.',
@@ -228,7 +228,7 @@ export const products: CatalogPage[] = [
     solution: [
       'The child asks by typing, speaking or photographing a page, and gets an answer in their own language.',
       'A sum is explained first, then solved step by step, and the tutor remembers the chat so it can explain again another way.',
-      'A parent area shows progress, daily limits and switches, consent and the child’s own data controls.',
+      'A parent area shows progress and the Learning Vault, with consent switches for each purpose (learning, English, photos, voice) and the child’s own data controls.',
     ],
     workflow: [
       { title: 'Ask', detail: 'Type, speak or photograph a page or homework' },
@@ -240,7 +240,7 @@ export const products: CatalogPage[] = [
     benefits: ['Help in the child’s own language', 'Study chapters with animated diagrams and labs', 'A spoken-English course in short daily lessons', 'Parent controls and the child’s own data controls'],
     users: [
       { role: 'Child', value: 'Asks, studies, practises English and draws' },
-      { role: 'Parent', value: 'Sees progress, sets daily limits and manages consent' },
+      { role: 'Parent', value: 'Sees progress and chooses what is switched on, purpose by purpose' },
       { role: 'Family with a NetCyberAI school', value: 'Connects with a one-time code from the school through School Link' },
     ],
     screen: 'student',
@@ -875,13 +875,13 @@ export const solutions: CatalogPage[] = [
     name: 'Parents and families',
     tone: 'intelligence',
     icon: 'parent',
-    menuBlurb: 'The Family app for each child, progress, limits and school updates.',
+    menuBlurb: 'The Family app for each child, progress, consent and school updates.',
     title: 'For Parents and Families',
     description:
       'For parents: the NetCyberAI Family app for each child, with progress and limits, School Link when the school uses NetCyberAI, and school updates on WhatsApp.',
     heroTitle: 'Help at home, and a clear view of how your child is doing',
     heroLead:
-      'Parents want to know what their child studied today. The NetCyberAI Family app gives each child an AI tutor that explains in English, Hindi or Hinglish, plus study chapters and spoken English. You see progress and set daily limits. School updates arrive on WhatsApp, and School Link connects the Family app when the school uses NetCyberAI.',
+      'Parents want to know what their child studied today. The NetCyberAI Family app gives each child an AI tutor that explains in English, Hindi or Hinglish, plus study chapters and spoken English. You see progress and choose what is switched on. School updates arrive on WhatsApp, and School Link connects the Family app when the school uses NetCyberAI.',
     problem: [
       'Homework gets stuck at night, and nobody at home can explain it.',
       'Parents cannot see what their child studied or how much time goes to study.',
@@ -889,7 +889,7 @@ export const solutions: CatalogPage[] = [
     ],
     solution: [
       'Each child gets the Family app, with an AI tutor that explains in their own language.',
-      'A parent area shows progress, daily limits and consent.',
+      'A parent area shows progress and lets the parent choose what is switched on.',
       'School updates arrive on WhatsApp, and School Link connects the Family app when the school uses NetCyberAI.',
     ],
     workflow: [
@@ -898,9 +898,9 @@ export const solutions: CatalogPage[] = [
       { title: 'See progress', detail: 'In the parent area, with limits the family sets' },
       { title: 'Connect the school', detail: 'With a one-time code, if the school uses NetCyberAI' },
     ],
-    benefits: ['Help in the child’s own language', 'Progress and daily limits in one place', 'School updates on WhatsApp', 'Works with or without a NetCyberAI school'],
+    benefits: ['Help in the child’s own language', 'Progress and consent in one place', 'School updates on WhatsApp', 'Works with or without a NetCyberAI school'],
     users: [
-      { role: 'Parent', value: 'Sees progress, sets limits and manages consent' },
+      { role: 'Parent', value: 'Sees progress and manages consent, purpose by purpose' },
       { role: 'Child', value: 'Asks the tutor, studies and practises English' },
       { role: 'School', value: 'Sends updates; School Link connects it when it uses NetCyberAI' },
     ],
@@ -914,7 +914,7 @@ export const solutions: CatalogPage[] = [
       { question: 'Do I need to install anything?', answer: 'No. The Family app works on the web, and there is an Android app.' },
       { question: 'Do I need a NetCyberAI school?', answer: 'No. Any family can use the Family app. School Link is for families whose school uses NetCyberAI.' },
       { question: 'How do I connect to my child’s school?', answer: 'The school gives a one-time code, and you enter it in the Family app.' },
-      { question: 'What can I control?', answer: 'You see progress, set daily limits and switches, and manage consent for your child.' },
+      { question: 'What can I control?', answer: 'You see your child’s progress and the questions they asked, switch each purpose on or off (learning, the English course, photos and files, voice), turn read-aloud on or off, and can delete your child’s data.' },
       { question: 'How much does it cost?', answer: 'Ask us about Family plans.' },
     ],
   },

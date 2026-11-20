@@ -28,7 +28,7 @@ const faqs = [
   {
     question: 'What is the NetCyberAI Family app?',
     answer:
-      'The Family app is for a child and their parent: an AI tutor that explains in the child’s own language, interactive study chapters, a spoken-English course, a drawing studio, careers, entrance exams and scholarships, and a parent area for progress, daily limits and consent. It runs on the web and as an Android app, and works for any family. If the child’s school uses NetCyberAI, School Link connects them with a one-time code from the school, so the family also sees that child’s attendance, homework, notices, marks and timetable. Ask us about Family plans.',
+      'The Family app is for a child and their parent: an AI tutor that explains in the child’s own language, interactive study chapters, a spoken-English course, a drawing studio, careers, entrance exams and scholarships, and a parent area for progress, consent switches and the child’s data. It runs on the web and as an Android app, and works for any family. If the child’s school uses NetCyberAI, School Link connects them with a one-time code from the school, so the family also sees that child’s attendance, homework, notices, marks and timetable. Ask us about Family plans.',
   },
   {
     question: 'Which modules are live today?',

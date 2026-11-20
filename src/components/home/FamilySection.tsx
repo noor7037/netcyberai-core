@@ -70,7 +70,7 @@ export function FamilySection() {
               href="/features/parent-controls-progress"
               className="inline-flex min-h-[44px] items-center font-semibold text-sapphire underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-royal"
             >
-              How parents see progress and set limits
+              How parents see progress and choose what is switched on
             </Link>
           </p>
           <p className="text-slate">Ask us about Family plans.</p>
