@@ -10,7 +10,7 @@ export const features: FeatureDetail[] = [
     blurb: 'Ask by typing, speaking or a photo',
     icon: 'tutor',
     tone: 'intelligence',
-    title: 'An AI tutor that answers in your child’s own language',
+    title: 'An AI tutor in your child’s own language',
     lead:
       'Your child types, speaks or photographs a book page, and the tutor explains it in English, Hindi or Hinglish. A concept comes with pictures, simulations and short videos chosen for that topic, and a sum is explained first, then solved step by step.',
     metaDescription:
@@ -51,7 +51,7 @@ export const features: FeatureDetail[] = [
     blurb: 'Your own working, marked step by step',
     icon: 'check',
     tone: 'success',
-    title: 'Check my work: a photo of your own working, marked',
+    title: 'Check my work: a photo of your working, marked',
     lead:
       'Your child photographs the working they wrote by hand and the app marks it line by line. It shows which steps are right and where the first mistake is, so they learn from it instead of just seeing a tick or a cross.',
     metaDescription:
@@ -89,9 +89,8 @@ export const features: FeatureDetail[] = [
     blurb: 'Interactive chapters, tests and revision',
     icon: 'academics',
     tone: 'product',
-    title: 'Interactive chapters, labs and tests in one place',
-    lead:
-      'Study has chapters your child can read, listen to and explore, with animated diagrams, labs and simulations. Today it covers Classes 1, 2 and 3, and Class 10 Science and Mathematics, and more classes are being added.',
+    title: 'Interactive chapters, labs and tests',
+    lead: 'Study has chapters your child can read, listen to and explore, with animated diagrams, labs and simulations. Today it covers Classes 1, 2 and 3, and Class 10 Science and Mathematics, and more classes are being added. A doubt can be asked right where they are reading.',
     metaDescription:
       'Interactive chapters with animated diagrams, labs and simulations, chapter tests, quizzes and revision. Works with a data saver and chapters saved for offline.',
     howItWorks: [
@@ -130,11 +129,10 @@ export const features: FeatureDetail[] = [
     blurb: 'Add your child’s own school syllabus',
     icon: 'timetable',
     tone: 'action',
-    title: 'Add your child’s own syllabus, or ask for a chapter',
+    title: 'Add your child’s syllabus, or ask for a chapter',
     lead:
       'If your child’s class or board is not in the app yet, a parent can add the chapters of their own books, read from a PDF of the contents or from photos. Your child then sees them in Study and can ask the tutor to explain any chapter or topic.',
-    metaDescription:
-      'Add your child’s own syllabus from a PDF or photos of the contents pages, or ask us for a missing chapter. Your child studies it in the app.',
+    metaDescription: 'Add your child’s own syllabus from a PDF or photos of the contents pages, or ask us for a missing chapter. Your child studies it in Study, with the tutor.',
     howItWorks: [
       { title: 'Choose child and subject', detail: 'In the parent area, pick the child and the subject the syllabus is for.' },
       { title: 'Add the contents', detail: 'Upload a PDF of the contents or syllabus pages, take photos of the contents pages, or type the chapters yourself.' },
@@ -169,11 +167,9 @@ export const features: FeatureDetail[] = [
     blurb: 'Short daily lessons and live talk',
     icon: 'chat',
     tone: 'communication',
-    title: 'Spoken English in short lessons, and live practice',
-    lead:
-      'The English course teaches speaking in short daily lessons, grouped into units, at a level for your child’s age. Live practice lets your child talk with an English partner on everyday topics and hear the reply.',
-    metaDescription:
-      'A spoken-English course in short daily lessons and units, with live conversation practice on everyday topics. A parent switches it on and sees progress.',
+    title: 'Spoken English in short lessons and practice',
+    lead: 'The English course teaches speaking in short daily lessons, grouped into units, at a level for your child’s age. A quick starting check places your child at the right unit. Conversation practice lets your child talk with an English partner on everyday topics and hear the reply.',
+    metaDescription: 'An English course in short daily lessons and units, with conversation practice on everyday topics. A parent switches it on, sets a weekly goal, sees progress.',
     howItWorks: [
       { title: 'Start with a check', detail: 'A quick starting check places your child at the right unit, and later checks show how far they have come.' },
       { title: 'One short lesson a day', detail: 'Lessons mix new words, sentence patterns, listening, speaking and review. A unit opens after the one before it.' },

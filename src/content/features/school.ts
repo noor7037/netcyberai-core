@@ -11,10 +11,9 @@ export const features: FeatureDetail[] = [
     blurb: 'Handwritten scripts, marked for you',
     icon: 'sparkle',
     tone: 'intelligence',
-    title: 'AI marking of handwritten answer sheets, approved by the teacher',
-    lead: 'The AI reads each child’s handwritten answer sheet and marks it against the questions, answer key and marking steps the teacher entered. Its marks are drafts: nothing counts until the teacher has checked and approved it.',
-    metaDescription:
-      'Upload a class’s handwritten answer sheets, let the AI read and mark them against your answer key, then check and approve each script yourself.',
+    title: 'AI marks handwritten scripts, teacher approves',
+    lead: 'The AI reads each child’s handwritten answer sheet and marks it against the questions, answer key and marking steps the teacher entered. Pages that look wrong are flagged, not marked. Its marks are drafts: nothing counts until the teacher has checked and approved it.',
+    metaDescription: 'Upload a class’s handwritten answer sheets, let the AI read and mark them against your answer key and marking steps, then check and approve each script.',
     howItWorks: [
       { title: 'List the questions once', detail: 'The teacher enters each question’s marks, the chapter it tests and the answer key, and the AI marks against that.' },
       { title: 'Scan or upload the sheets', detail: 'Take each child’s pages with the phone camera in roll order, or choose PDFs and photos; no scanner is needed.' },
@@ -51,10 +50,9 @@ export const features: FeatureDetail[] = [
     blurb: 'Print, scan and mark choice questions',
     icon: 'check',
     tone: 'action',
-    title: 'Bubble sheets for choice questions, read on a phone',
-    lead: 'Print one bubble sheet for each child, with their name and roll number on it, and read the filled sheets with a phone or from a scanned PDF. Marks follow the answer key and wait for the teacher’s approval.',
-    metaDescription:
-      'Print a bubble sheet for each child, read the filled sheets on a phone or from a scan, and get marks from your answer key for the teacher to approve.',
+    title: 'Choice-question bubble sheets read on a phone',
+    lead: 'Print one bubble sheet for each child, with their name and roll number on it, and read the filled sheets with a phone or from a scanned PDF. Marks follow the answer key and wait for the teacher’s approval before they count.',
+    metaDescription: 'Print a bubble sheet for each child, read the filled sheets on a phone or from a scanned PDF, and get marks from your answer key for the teacher to approve.',
     howItWorks: [
       { title: 'Choose bubble sheet for the paper', detail: 'The teacher adds choice questions with their options and correct answers, then picks the bubble sheet for the paper.' },
       { title: 'Print the sheets', detail: 'One sheet per child in roll order, with name, roll number and exam number printed and the sheet’s own number already shaded.' },
@@ -93,7 +91,7 @@ export const features: FeatureDetail[] = [
     icon: 'exams',
     tone: 'product',
     title: 'Online tests children sit on a phone',
-    lead: 'A teacher can set a paper to be sat online. Children of families linked through the Family app take it on a phone, in child mode, with one try each and every answer saved as it is given.',
+    lead: 'A teacher can set a paper to be sat online instead of in an answer book. Children of families linked through the Family app take it on a phone, in child mode, with one try each and every answer saved as it is given.',
     metaDescription:
       'Open a paper as an online test: children sit it in the Family app with one try, saved answers and the school’s own clock. Teachers review before marks count.',
     howItWorks: [
@@ -174,8 +172,8 @@ export const features: FeatureDetail[] = [
     blurb: 'Your grading scheme, your card',
     icon: 'certificate',
     tone: 'achievement',
-    title: 'Report cards on your own grading scheme, and the Holistic Progress Card',
-    lead: 'Set your board and grading scheme once, and every mark gets its grade from it. Publish a class’s result, download report cards, and give each child a Holistic Progress Card that goes beyond marks.',
+    title: 'Report cards and the Holistic Progress Card',
+    lead: 'Set your board and grading scheme once, and every mark gets its grade from it. Publish a class’s result, download report cards, and give each child a Holistic Progress Card that goes beyond marks. Children are never ranked against each other.',
     metaDescription:
       'Report cards graded by your school’s own scheme and frozen on publishing, plus a Holistic Progress Card with co-scholastic grades, health and teacher’s words.',
     howItWorks: [

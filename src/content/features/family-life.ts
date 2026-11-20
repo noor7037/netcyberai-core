@@ -14,8 +14,8 @@ export const features: FeatureDetail[] = [
     icon: 'sparkle',
     tone: 'achievement',
     title: 'A drawing studio that stays on the phone',
-    lead: 'The Draw tab is a painting and drawing table with pencils, brushes, crayons, watercolour, shapes, stickers and layers. Guided pages tie drawing to what the child is studying, and the drawings stay on the child’s own phone.',
-    metaDescription: 'The Family app’s Draw tab: brushes, colours, stickers and layers, guided drawing pages tied to what a child studies. Drawings stay on the phone.',
+    lead: 'The Draw tab is a painting and drawing table with pencils, brushes, crayons, watercolour, shapes, stickers and layers. Guided pages tie drawing to what the child is studying, and the drawings stay on the child’s own phone. Finished work is saved in My drawings, and the child can send it to the tutor with a question.',
+    metaDescription: 'The Family app’s Draw tab: pencils, brushes, crayons, watercolour, stickers and layers, and guided pages tied to a child’s studies. Drawings stay on the phone.',
     howItWorks: [
       { title: 'Open the Draw tab', detail: 'The child opens a free page and picks a pencil, brush, marker, highlighter, crayon or watercolour, a colour of their own choosing, and a paper: plain, ruled, squared or dotted.' },
       { title: 'Add shapes, words and stickers', detail: 'Lines, boxes, circles, triangles, stars and arrows, a fill for colouring areas, a word placed on the page, and stickers that can be moved, turned and resized.' },
@@ -51,8 +51,8 @@ export const features: FeatureDetail[] = [
     blurb: 'Careers, entrance exams, scholarships',
     icon: 'career',
     tone: 'intelligence',
-    title: 'Careers, entrance exams and scholarships in one place',
-    lead: 'The Future tab shows careers with step-by-step roadmaps from the child’s class, entrance exams, and scholarships and government schemes. Every entry is reviewed by a person before families see it.',
+    title: 'Careers, entrance exams and scholarships',
+    lead: 'The Future tab shows careers with step-by-step roadmaps from the child’s class, entrance exams, and scholarships and government schemes. Every entry is reviewed by a person before families see it. Each card links to the official site, so families can check the notice themselves.',
     metaDescription: 'The Family app’s Future tab: career roadmaps from your child’s class, entrance exams, scholarships and government schemes, each reviewed before it shows.',
     howItWorks: [
       { title: 'Start from the child’s class', detail: 'The tab uses the class and state saved for the child, so a younger child sees what to prepare for and an older child sees what is open now.' },
@@ -90,8 +90,8 @@ export const features: FeatureDetail[] = [
     icon: 'parent',
     tone: 'trust',
     title: 'The parent area: progress, consent and control',
-    lead: 'One family account holds several children, each with their own class, language and profile. A parent PIN opens the parent area, where the family sees progress, reports and the child’s saved work, and decides what is switched on.',
-    metaDescription: 'The Family app’s parent area: one account for several children, progress and weekly reports, consent switches, the Learning Vault and data deletion.',
+    lead: 'One family account holds several children, each with their own class, language and profile. A parent PIN opens the parent area, where the family sees progress, reports and the child’s saved work, and decides what is switched on. A six-digit PIN keeps settings and account deletion with the parent.',
+    metaDescription: 'The Family app’s parent area, opened by PIN: one account for several children, progress, weekly reports, consent switches, the Learning Vault and data deletion.',
     howItWorks: [
       { title: 'One account, several children', detail: 'Add each child with a first name, class, board, state and language. Switch between children in the parent area.' },
       { title: 'A parent PIN', detail: 'A six-digit PIN keeps settings, children and deleting the account for the parent only, even when the child uses the same phone. A forgotten PIN is reset by a code sent to the parent’s email.' },
@@ -128,7 +128,7 @@ export const features: FeatureDetail[] = [
     icon: 'link',
     tone: 'communication',
     title: 'Connect the Family app to your child’s school',
-    lead: 'A family whose school uses NetCyberAI connects with a one-time code from the school and sees that child’s attendance, homework, notices, marks and timetable. The school’s own rules decide what a parent may see.',
+    lead: 'A family whose school uses NetCyberAI connects with a one-time code from the school and sees that child’s attendance, homework, notices, marks and timetable. The school’s own rules decide what a parent may see. The school office makes the code for one guardian, and it works only once.',
     metaDescription: 'School Link connects the Family app to a NetCyberAI school with a one-time code: attendance, homework, notices, marks and timetable, under the school’s rules.',
     howItWorks: [
       { title: 'The school gives a code', detail: 'The school office makes a single-use code for one guardian. It works one time and then it is spent.' },
