@@ -8,10 +8,44 @@ import { GapDetection } from '@/components/home/GapDetection';
 import { PersonalBestJourney } from '@/components/home/PersonalBestJourney';
 import { CTASection } from '@/components/home/CTASection';
 import { featurePages, products } from '@/content/catalog';
+import { familyFeatureDetails, schoolFeatureDetails } from '@/content/features';
+import type { IconName } from '@/components/visual/Icons';
+import type { Tone } from '@/lib/semantic';
 import { tones } from '@/lib/semantic';
 import { breadcrumbListJsonLd, buildMetadata, pageMeta, serializeJsonLd } from '@/lib/seo';
 
 export const metadata = buildMetadata(pageMeta.features);
+
+type Item = { href: string; name: string; blurb: string; tone: Tone; icon: IconName };
+
+const schoolItems: Item[] = [
+  ...featurePages,
+  ...schoolFeatureDetails.map((f) => ({ href: `/features/${f.slug}`, name: f.name, blurb: f.blurb, tone: f.tone, icon: f.icon })),
+];
+const familyItems: Item[] = familyFeatureDetails.map((f) => ({ href: `/features/${f.slug}`, name: f.name, blurb: f.blurb, tone: f.tone, icon: f.icon }));
+
+function FeatureGrid({ items }: { items: Item[] }) {
+  return (
+    <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {items.map((f) => (
+        <li key={f.href}>
+          <Link href={f.href} className="block h-full rounded-3xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-royal">
+            <SpotlightCard className="flex h-full flex-col gap-3 rounded-3xl border border-slate/10 bg-white p-5">
+              <span className={`flex h-12 w-12 items-center justify-center rounded-2xl ${tones[f.tone].solid}`}>
+                <Icon name={f.icon} className="h-6 w-6" />
+              </span>
+              <p className="text-lg font-extrabold text-slate">{f.name}</p>
+              <p className="text-sm text-slate/70">{f.blurb}</p>
+              <span className="mt-auto inline-flex min-h-[44px] items-center gap-1.5 text-sm font-bold text-royal">
+                Read more <Icon name="arrow" className="h-4 w-4" />
+              </span>
+            </SpotlightCard>
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
+}
 
 export default function FeaturesPage() {
   return (
@@ -41,26 +75,17 @@ export default function FeaturesPage() {
       </section>
 
       <section className="bg-off-white">
-        <Container wide className="flex flex-col gap-8 py-16">
-          <SectionHeading eyebrow="Feature guides" tone="product" title="Explore each feature in depth" />
-          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {featurePages.map((f) => (
-              <li key={f.href}>
-                <Link href={f.href} className="block h-full rounded-3xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-royal">
-                  <SpotlightCard className="flex h-full flex-col gap-3 rounded-3xl border border-slate/10 bg-white p-5">
-                    <span className={`flex h-12 w-12 items-center justify-center rounded-2xl ${tones[f.tone].solid}`}>
-                      <Icon name={f.icon} className="h-6 w-6" />
-                    </span>
-                    <p className="text-lg font-extrabold text-slate">{f.name}</p>
-                    <p className="text-sm text-slate/70">{f.blurb}</p>
-                    <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-bold text-royal">
-                      Read more <Icon name="arrow" className="h-4 w-4" />
-                    </span>
-                  </SpotlightCard>
-                </Link>
-              </li>
-            ))}
-          </ul>
+        <Container wide className="flex flex-col gap-12 py-16">
+          <div className="flex flex-col gap-8">
+            <SectionHeading eyebrow="For schools" tone="product" title="Features for your school" />
+            <FeatureGrid items={schoolItems} />
+          </div>
+          {familyItems.length > 0 ? (
+            <div className="flex flex-col gap-8">
+              <SectionHeading eyebrow="For families" tone="communication" title="Features for your family" />
+              <FeatureGrid items={familyItems} />
+            </div>
+          ) : null}
         </Container>
       </section>
 
