@@ -121,9 +121,8 @@ function Line({ rows, tone, title }: { rows: Row[]; tone: ColorToken; title: str
         <path key={run[0].label} d={run.map((p, k) => `${k ? 'L' : 'M'}${x(p.i).toFixed(1)} ${y(p.value).toFixed(1)}`).join('')} fill="none" stroke={color} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
       ))}
       {real.map((p) => (
-        <circle key={p.label} cx={x(p.i)} cy={y(p.value)} r={p === last ? 4 : 3} fill={color}>
-          <title>{`${p.label}: ${p.text}`}</title>
-        </circle>
+        // The svg's aria-label reads every point; a <title> per point would be a second page title to search engines.
+        <circle key={p.label} cx={x(p.i)} cy={y(p.value)} r={p === last ? 4 : 3} fill={color} />
       ))}
       {last && (
         <text x={Math.min(W - 4, x(last.i) + 8)} y={y(last.value) + 4} fontSize={12} fontWeight={700} fill={colors.slate}>

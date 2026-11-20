@@ -28,22 +28,12 @@ const faqs = [
   {
     question: 'What is the NetCyberAI Family app?',
     answer:
-      'The Family app is for a child and their parent: an AI tutor that explains in the child’s own language, interactive study chapters, a spoken-English course, a drawing studio, careers, entrance exams and scholarships, and a parent area for progress, daily limits and consent. It runs on the web and as an Android app. Ask us about Family plans.',
-  },
-  {
-    question: 'Can a family use it without a NetCyberAI school?',
-    answer:
-      'Yes. The Family app works for any family. If the child’s school does use NetCyberAI, School Link connects them with a one-time code from the school, and the family then sees that child’s attendance, homework, notices, marks and timetable, under the school’s own rules.',
+      'The Family app is for a child and their parent: an AI tutor that explains in the child’s own language, interactive study chapters, a spoken-English course, a drawing studio, careers, entrance exams and scholarships, and a parent area for progress, daily limits and consent. It runs on the web and as an Android app, and works for any family. If the child’s school uses NetCyberAI, School Link connects them with a one-time code from the school, so the family also sees that child’s attendance, homework, notices, marks and timetable. Ask us about Family plans.',
   },
   {
     question: 'Which modules are live today?',
     answer:
       'The status of every module is kept in one place and shown on the products and pricing pages, so it never drifts from the real product. WhatsApp messages to parents start once a school’s own WhatsApp number is switched on. The screens on this site show example data, and nothing is sold to a school as live until it is.',
-  },
-  {
-    question: 'Does it rank teachers or students publicly?',
-    answer:
-      'No. Teachers get a private Impact Card visible only to them and their principal. Students are recognised mainly for Personal Bests against their own past; class top-3 lists are optional and off by default.',
   },
   {
     question: `What does ${companyName} cost?`,
