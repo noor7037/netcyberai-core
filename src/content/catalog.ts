@@ -870,6 +870,54 @@ export const solutions: CatalogPage[] = [
       { question: 'Do messages come in Hindi?', answer: 'Parent messages default to simple Hinglish.' },
     ],
   },
+  {
+    slug: 'families',
+    name: 'Parents and families',
+    tone: 'intelligence',
+    icon: 'parent',
+    menuBlurb: 'The Family app for each child, progress, limits and school updates.',
+    title: 'For Parents and Families',
+    description:
+      'For parents: the NetCyberAI Family app for each child, with progress and limits, School Link when the school uses NetCyberAI, and school updates on WhatsApp.',
+    heroTitle: 'Help at home, and a clear view of how your child is doing',
+    heroLead:
+      'Parents want to know what their child studied today. The NetCyberAI Family app gives each child an AI tutor that explains in English, Hindi or Hinglish, plus study chapters and spoken English. You see progress and set daily limits. School updates arrive on WhatsApp, and School Link connects the Family app when the school uses NetCyberAI.',
+    problem: [
+      'Homework gets stuck at night, and nobody at home can explain it.',
+      'Parents cannot see what their child studied or how much time goes to study.',
+      'School news arrives in several groups and is easy to miss.',
+    ],
+    solution: [
+      'Each child gets the Family app, with an AI tutor that explains in their own language.',
+      'A parent area shows progress, daily limits and consent.',
+      'School updates arrive on WhatsApp, and School Link connects the Family app when the school uses NetCyberAI.',
+    ],
+    workflow: [
+      { title: 'Add each child', detail: 'Sign in and add each child to the Family app' },
+      { title: 'Learn', detail: 'The child works with the tutor and Study' },
+      { title: 'See progress', detail: 'In the parent area, with limits the family sets' },
+      { title: 'Connect the school', detail: 'With a one-time code, if the school uses NetCyberAI' },
+    ],
+    benefits: ['Help in the child’s own language', 'Progress and daily limits in one place', 'School updates on WhatsApp', 'Works with or without a NetCyberAI school'],
+    users: [
+      { role: 'Parent', value: 'Sees progress, sets limits and manages consent' },
+      { role: 'Child', value: 'Asks the tutor, studies and practises English' },
+      { role: 'School', value: 'Sends updates; School Link connects it when it uses NetCyberAI' },
+    ],
+    screen: 'parent',
+    secondaryScreen: 'student',
+    chart: 'parents',
+    automation: ['The tutor remembers the chat, so a follow-up continues the same problem', 'Parents see progress in one place','School updates arrive on WhatsApp'],
+    outcomes: ['Parents see what was studied', 'Children get help in their own language', 'One place for the school link and the family’s limits'],
+    related: ['principal', 'teacher'],
+    faqs: [
+      { question: 'Do I need to install anything?', answer: 'No. The Family app works on the web, and there is an Android app.' },
+      { question: 'Do I need a NetCyberAI school?', answer: 'No. Any family can use the Family app. School Link is for families whose school uses NetCyberAI.' },
+      { question: 'How do I connect to my child’s school?', answer: 'The school gives a one-time code, and you enter it in the Family app.' },
+      { question: 'What can I control?', answer: 'You see progress, set daily limits and switches, and manage consent for your child.' },
+      { question: 'How much does it cost?', answer: 'Ask us about Family plans.' },
+    ],
+  },
 ];
 
 export function findProduct(slug: string) {
