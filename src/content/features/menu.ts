@@ -9,4 +9,5 @@ const toItem = (f: FeatureDetail) => ({ href: `/features/${f.slug}`, name: f.nam
 export const featureMenu = (): FeatureMenu => ({ school: [...featurePages, ...schoolFeatureDetails.map(toItem)], family: familyFeatureDetails.map(toItem) });
 
 // The breadcrumb's names for the same pages, by path.
-export const featureNames = (): Record<string, string> => Object.fromEntries([...schoolFeatureDetails, ...familyFeatureDetails].map((f) => [`/features/${f.slug}`, f.name]));
+// A list of [path, name] pairs: it crosses from the server layout to the client breadcrumb as plain data.
+export const featureNames = (): [string, string][] => [...schoolFeatureDetails, ...familyFeatureDetails].map((f) => [`/features/${f.slug}`, f.name]);
