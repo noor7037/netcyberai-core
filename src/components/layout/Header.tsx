@@ -7,7 +7,6 @@ import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
 import { Icon } from '@/components/visual/Icons';
 import { featurePages, products, solutions } from '@/content/catalog';
-import { familyFeatureDetails, schoolFeatureDetails } from '@/content/features';
 import { KIND_LABELS, freeTools, toolsOfKind, type FreeToolKind } from '@/content/free-tools';
 import { tones } from '@/lib/semantic';
 import { useFinePointer } from '@/lib/hooks';
@@ -142,14 +141,14 @@ function SolutionsPanel({ onNavigate }: { onNavigate: () => void }) {
   );
 }
 
-type FeatureItem = { href: string; name: string; blurb: string; tone: (typeof featurePages)[number]['tone']; icon: (typeof featurePages)[number]['icon'] };
-const toItem = (f: (typeof schoolFeatureDetails)[number]): FeatureItem => ({ href: `/features/${f.slug}`, name: f.name, blurb: f.blurb, tone: f.tone, icon: f.icon });
-const SCHOOL_FEATURE_ITEMS: FeatureItem[] = [...featurePages, ...schoolFeatureDetails.map(toItem)];
-const FAMILY_FEATURE_ITEMS: FeatureItem[] = familyFeatureDetails.map(toItem);
+// The Features menu's items, built on the server (src/app/layout.tsx, src/content/features/menu.ts) and handed in: this
+// header runs in every page's browser bundle, the Family app's too, so the feature pages' full text must not be imported here.
+export type FeatureItem = { href: string; name: string; blurb: string; tone: (typeof featurePages)[number]['tone']; icon: (typeof featurePages)[number]['icon'] };
+export type FeatureMenu = { school: FeatureItem[]; family: FeatureItem[] };
 
 const groupOf = (it: object): string | undefined => (it as { group?: string }).group;
 
-function FeaturesPanel({ onNavigate }: { onNavigate: () => void }) {
+function FeaturesPanel({ onNavigate, menu: { school: SCHOOL_FEATURE_ITEMS, family: FAMILY_FEATURE_ITEMS } }: { onNavigate: () => void; menu: FeatureMenu }) {
   const column = (title: string, items: FeatureItem[], cols: string) => (
     <div>
       <p className="mb-3 text-xs font-bold uppercase tracking-wider text-slate/70">{title}</p>
@@ -228,7 +227,8 @@ function ToolsPanel({ onNavigate }: { onNavigate: () => void }) {
   );
 }
 
-export function Header() {
+export function Header({ features }: { features: FeatureMenu }) {
+  const { school: SCHOOL_FEATURE_ITEMS, family: FAMILY_FEATURE_ITEMS } = features;
   const pathname = usePathname();
   const [menu, setMenu] = useState<MenuKey | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -401,7 +401,7 @@ export function Header() {
             <Container wide className="py-6">
               {m.key === 'products' && <ProductsPanel onNavigate={close} />}
               {m.key === 'solutions' && <SolutionsPanel onNavigate={close} />}
-              {m.key === 'features' && <FeaturesPanel onNavigate={close} />}
+              {m.key === 'features' && <FeaturesPanel onNavigate={close} menu={features} />}
               {m.key === 'tools' && <ToolsPanel onNavigate={close} />}
             </Container>
           </div>

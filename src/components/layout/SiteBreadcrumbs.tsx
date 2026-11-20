@@ -12,14 +12,15 @@ const NavDepthTracker = dynamic(() => import('@/components/app-ui/NavDepthTracke
 
 const isUnder = (pathname: string, root: string) => pathname === root || pathname.startsWith(`${root}/`);
 
-export function SiteBreadcrumbs() {
+// `featureNames`: the data-drawn feature pages' short names by path, built on the server (src/content/features/menu.ts).
+export function SiteBreadcrumbs({ featureNames = {} }: { featureNames?: Record<string, string> }) {
   const pathname = usePathname() ?? '';
   const family = isUnder(pathname, '/family');
   const app = family || isUnder(pathname, '/app') || isUnder(pathname, '/control') || isUnder(pathname, '/parent') || isUnder(pathname, '/results') || isUnder(pathname, '/enquire') || pathname.startsWith('/design-system/shell') || pathname.startsWith('/free-tools/');
   return (
     <>
       {!family && <NavDepthTracker />}
-      {!app && <SiteTrail />}
+      {!app && <SiteTrail featureNames={featureNames} />}
     </>
   );
 }

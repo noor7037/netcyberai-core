@@ -13,15 +13,15 @@ import { siteTrail } from '@/lib/nav/breadcrumbs';
 const LABELS = { nav: 'Where you are', back: 'Back', backTo: 'Back to {name}' };
 
 // A page below a section, by its name in the site's own catalog.
-function nameOf(path: string): string | undefined {
+function nameOf(path: string, featureNames: Record<string, string>): string | undefined {
   const [, section, slug] = path.split('/');
   if (section === 'products') return findProduct(slug)?.name;
   if (section === 'solutions') return findSolution(slug)?.name;
-  if (section === 'features') return featurePages.find((f) => f.href === path)?.name;
+  if (section === 'features') return featurePages.find((f) => f.href === path)?.name ?? featureNames[path];
   return undefined;
 }
 
-export function SiteTrail() {
+export function SiteTrail({ featureNames = {} }: { featureNames?: Record<string, string> }) {
   const pathname = usePathname();
   // A blog post's title is long and lives with the post: the page's own heading names the last level once it is shown.
   const [heading, setHeading] = useState<{ path: string; text: string } | null>(null);
@@ -33,7 +33,7 @@ export function SiteTrail() {
   // The same places the site header and footer are not drawn (components/layout/Header.tsx).
   if (!pathname || pathname.startsWith('/control') || pathname.startsWith('/app') || pathname === '/family' || pathname.startsWith('/family/') || pathname === '/parent' || pathname.startsWith('/parent/') || pathname.startsWith('/design-system/shell') || pathname.startsWith('/results/') || pathname.startsWith('/enquire/')) return null;
   if (pathname.startsWith('/free-tools/')) return null;
-  const trail = siteTrail(pathname, (p) => nameOf(p) ?? (p === pathname && heading?.path === pathname ? heading.text : undefined));
+  const trail = siteTrail(pathname, (p) => nameOf(p, featureNames) ?? (p === pathname && heading?.path === pathname ? heading.text : undefined));
   if (!trail) return null;
   return (
     <Container className="py-2">
