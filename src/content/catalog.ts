@@ -168,7 +168,7 @@ export const products: CatalogPage[] = [
     menuBlurb: 'The Daily Learning Pulse on WhatsApp, with one-tap replies.',
     title: 'Parent Engagement',
     description:
-      'Parent engagement on WhatsApp with no app to install: a Daily Learning Pulse from verified class activity, one-tap replies, and a weekly brief parents read.',
+      'Parent engagement on WhatsApp, no app for school updates: a Daily Learning Pulse from verified class activity, one-tap replies and a weekly brief parents read.',
     heroTitle: 'Parents who know what happened in class today',
     heroLead:
       'Every school day, NetCyberAI builds a Daily Learning Pulse from verified class activity: what was taught, the homework, attendance and any note from the school. The teacher approves it, parents read it on WhatsApp, and a one-tap reply tells the teacher who understood and who may need a call. No app download is required.',
@@ -202,10 +202,65 @@ export const products: CatalogPage[] = [
     outcomes: ['Parents who can talk about school at home', 'Fewer “what happened today?” calls', 'Teachers who know who to follow up with'],
     related: ['communication', 'academics', 'attendance-safety'],
     faqs: [
-      { question: 'Do parents need a smartphone app?', answer: 'No. Everything is built to arrive on WhatsApp, which parents already use. Parents never need an app or a login.' },
+      { question: 'Do parents need a smartphone app?', answer: 'No. Parents need no app for school updates: they arrive on WhatsApp, which parents already use. Families who want more for their child at home use the NetCyberAI Family app.' },
       { question: 'Can the Pulse contain something the teacher did not record?', answer: 'No. It is built only from verified class activity, and the teacher approves it before it is sent.' },
       { question: 'What language is it in?', answer: 'Simple Hinglish by default, written for parents with a range of English reading comfort.' },
       { question: 'What if a parent has not consented?', answer: 'Nothing is sent to them. The send gate checks consent and quiet hours for every message.' },
+    ],
+  },
+  {
+    slug: 'family-app',
+    name: 'NetCyberAI Family app',
+    tone: 'intelligence',
+    icon: 'student',
+    menuBlurb: 'An AI tutor, study chapters, English and a parent area for the whole family.',
+    title: 'NetCyberAI Family App',
+    description:
+      'The NetCyberAI Family app: an AI tutor that explains in your child’s language, study chapters, spoken English and a parent area, on the web and on Android.',
+    heroTitle: 'A tutor at home that speaks your child’s language',
+    heroLead:
+      'The NetCyberAI Family app is for any family, with or without a NetCyberAI school. A child types, speaks or photographs a book page, and the AI tutor answers in English, Hindi or Hinglish, with pictures and short videos. Parents see progress and set limits. It runs on the web and on Android.',
+    problem: [
+      'A child gets stuck on a homework sum at night, and nobody at home can explain it.',
+      'Explanations in a language the child does not think in do not stick.',
+      'Parents cannot tell what their child studied, or how much screen time is for study.',
+    ],
+    solution: [
+      'The child asks by typing, speaking or photographing a page, and gets an answer in their own language.',
+      'A sum is explained first, then solved step by step, and the tutor remembers the chat so it can explain again another way.',
+      'A parent area shows progress, daily limits and switches, consent and the child’s own data controls.',
+    ],
+    workflow: [
+      { title: 'Ask', detail: 'Type, speak or photograph a page or homework' },
+      { title: 'Explained', detail: 'In English, Hindi or Hinglish, with pictures and short videos' },
+      { title: 'Solved step by step', detail: 'Explained first, then worked through, ending with “Samajh aaya?”' },
+      { title: 'Remembered', detail: '“Samajh nahi aaya” re-explains the same problem another way' },
+      { title: 'Parent sees progress', detail: 'In the parent area, with limits the family sets' },
+    ],
+    benefits: ['Help in the child’s own language', 'Study chapters with animated diagrams and labs', 'A spoken-English course in short daily lessons', 'Parent controls and the child’s own data controls'],
+    users: [
+      { role: 'Child', value: 'Asks, studies, practises English and draws' },
+      { role: 'Parent', value: 'Sees progress, sets daily limits and manages consent' },
+      { role: 'Family with a NetCyberAI school', value: 'Connects with a one-time code from the school through School Link' },
+    ],
+    screen: 'student',
+    secondaryScreen: 'parent',
+    chart: 'growth',
+    automation: [
+      'The tutor remembers the chat, so a follow-up continues the same problem',
+      'Study: interactive chapters for Classes 1, 2 and 3, and Class 10 Science and Mathematics, with more classes being added',
+      'Draw, a studio with guided templates tied to what the child studies; drawings stay on the phone',
+      'Future: careers, entrance exams, and scholarships and government schemes, each entry reviewed before families see it',
+      'School Link shows that child’s attendance, homework, notices, marks and timetable, read under the school’s own rules',
+    ],
+    outcomes: ['A child who can get unstuck at home', 'Parents who see progress and stay in control', 'A family connected to the school, if the school uses NetCyberAI'],
+    related: ['parent-engagement', 'academics', 'school-management'],
+    faqs: [
+      { question: 'Does a family need a NetCyberAI school to use it?', answer: 'No. The Family app works for any family. If the school uses NetCyberAI, School Link adds that child’s school information.' },
+      { question: 'How does a family connect to the school?', answer: 'The school gives a one-time code. Once connected, the family sees the child’s attendance, homework, notices, marks and timetable, read under the school’s own rules.' },
+      { question: 'Which classes does Study cover today?', answer: 'Classes 1, 2 and 3, and Class 10 Science and Mathematics. More classes are being added.' },
+      { question: 'Where does it run?', answer: 'On the web at /family and as an Android app.' },
+      { question: 'What does it cost?', answer: 'There is no published price yet. Ask us about Family plans through the enquiry page and we will reply.' },
     ],
   },
   {
