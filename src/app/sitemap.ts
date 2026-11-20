@@ -4,6 +4,7 @@ import type { MetadataRoute } from 'next';
 import { blogPosts } from '@/content/blog';
 import { products, solutions } from '@/content/catalog';
 import { resourceSections } from '@/content/resources';
+import { featureDetails } from '@/content/features';
 import { freeTools } from '@/content/free-tools';
 import { absoluteUrl } from '@/lib/seo';
 import pageDates from '@/content/page-dates.json';
@@ -54,6 +55,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...solutions.map((s) => `/solutions/${s.slug}`),
     ...resourceSections.filter((r) => r.status !== 'coming').map((r) => `/resources/${r.slug}`),
     ...freeTools.map((t) => `/free-tools/${t.slug}`),
+    ...featureDetails.map((f) => `/features/${f.slug}`),
   ].map(entry);
 
   return [...pages, ...catalog, ...posts];

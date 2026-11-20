@@ -1,4 +1,5 @@
 import { blogPosts } from '@/content/blog';
+import { familyFeatureDetails, schoolFeatureDetails } from '@/content/features';
 import { freeTools } from '@/content/free-tools';
 import { absoluteUrl, pageMeta } from '@/lib/seo';
 import { companyName, contactEmail, siteDescription } from '@/lib/site-config';
@@ -41,6 +42,12 @@ export function GET() {
     link('certificates'),
     link('teacherImpact'),
     link('form6'),
+    '',
+    '## Features for schools',
+    ...schoolFeatureDetails.map((f) => `- [${f.name}](${absoluteUrl(`/features/${f.slug}`)}): ${f.metaDescription}`),
+    '',
+    '## Features for families',
+    ...familyFeatureDetails.map((f) => `- [${f.name}](${absoluteUrl(`/features/${f.slug}`)}): ${f.metaDescription}`),
     '',
     '## Trust and pricing',
     link('dataOwnership'),

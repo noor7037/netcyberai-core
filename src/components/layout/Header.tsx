@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
 import { Icon } from '@/components/visual/Icons';
 import { featurePages, products, solutions } from '@/content/catalog';
+import { familyFeatureDetails, schoolFeatureDetails } from '@/content/features';
 import { KIND_LABELS, freeTools, toolsOfKind, type FreeToolKind } from '@/content/free-tools';
 import { tones } from '@/lib/semantic';
 import { useFinePointer } from '@/lib/hooks';
@@ -141,12 +142,17 @@ function SolutionsPanel({ onNavigate }: { onNavigate: () => void }) {
   );
 }
 
+type FeatureItem = { href: string; name: string; blurb: string; tone: (typeof featurePages)[number]['tone']; icon: (typeof featurePages)[number]['icon'] };
+const toItem = (f: (typeof schoolFeatureDetails)[number]): FeatureItem => ({ href: `/features/${f.slug}`, name: f.name, blurb: f.blurb, tone: f.tone, icon: f.icon });
+const SCHOOL_FEATURE_ITEMS: FeatureItem[] = [...featurePages, ...schoolFeatureDetails.map(toItem)];
+const FAMILY_FEATURE_ITEMS: FeatureItem[] = familyFeatureDetails.map(toItem);
+
 function FeaturesPanel({ onNavigate }: { onNavigate: () => void }) {
-  return (
+  const column = (title: string, items: FeatureItem[], cols: string) => (
     <div>
-      <p className="mb-3 text-xs font-bold uppercase tracking-wider text-slate/70">Features</p>
-      <ul className="grid grid-cols-3 gap-2">
-        {featurePages.map((f) => (
+      <p className="mb-3 text-xs font-bold uppercase tracking-wider text-slate/70">{title}</p>
+      <ul className={`grid gap-2 ${cols}`}>
+        {items.map((f) => (
           <li key={f.href}>
             <Link
               href={f.href}
@@ -164,6 +170,14 @@ function FeaturesPanel({ onNavigate }: { onNavigate: () => void }) {
           </li>
         ))}
       </ul>
+    </div>
+  );
+  return (
+    <div>
+      <div className={`grid gap-8 ${FAMILY_FEATURE_ITEMS.length > 0 ? 'grid-cols-2' : 'grid-cols-1'}`}>
+        {column('For schools', SCHOOL_FEATURE_ITEMS, FAMILY_FEATURE_ITEMS.length > 0 ? 'grid-cols-1' : 'grid-cols-3')}
+        {FAMILY_FEATURE_ITEMS.length > 0 ? column('For families', FAMILY_FEATURE_ITEMS, 'grid-cols-1') : null}
+      </div>
       <Link href="/features" onClick={onNavigate} className="mt-3 inline-flex min-h-[40px] items-center gap-1.5 text-sm font-bold text-royal hover:underline">
         Explore all features <Icon name="arrow" className="h-4 w-4" />
       </Link>
@@ -404,7 +418,7 @@ export function Header() {
                   : m.key === 'solutions'
                     ? solutions.map((s) => ({ href: `/solutions/${s.slug}`, name: s.name, blurb: s.menuBlurb, tone: s.tone, icon: s.icon }))
                     : m.key === 'features'
-                      ? featurePages.map((f) => ({ href: f.href, name: f.name, blurb: f.blurb, tone: f.tone, icon: f.icon }))
+                      ? [...SCHOOL_FEATURE_ITEMS.map((f) => ({ ...f, group: 'For schools' })), ...FAMILY_FEATURE_ITEMS.map((f) => ({ ...f, group: 'For families' }))]
                       : freeTools.map((t) => ({ href: `/free-tools/${t.slug}`, name: t.name, blurb: t.menuBlurb, tone: t.tone, icon: t.icon }));
               return (
                 <div key={m.key} className="border-b border-slate/10">
@@ -419,8 +433,11 @@ export function Header() {
                   </button>
                   {open && (
                     <ul className="flex flex-col gap-1 px-3 pb-3">
-                      {items.map((it) => (
+                      {items.map((it, i) => (
                         <li key={it.href}>
+                          {'group' in it && it.group && (i === 0 || (items[i - 1] as { group?: string }).group !== it.group) ? (
+                            <p className="px-2.5 pb-1 pt-2 text-xs font-bold uppercase tracking-wider text-slate/70">{it.group}</p>
+                          ) : null}
                           <Link href={it.href} className="flex items-center gap-3 rounded-xl p-2.5 hover:bg-off-white">
                             <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${tones[it.tone].solid}`}>
                               <Icon name={it.icon} className="h-4 w-4" />
