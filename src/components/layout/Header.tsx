@@ -147,6 +147,8 @@ const toItem = (f: (typeof schoolFeatureDetails)[number]): FeatureItem => ({ hre
 const SCHOOL_FEATURE_ITEMS: FeatureItem[] = [...featurePages, ...schoolFeatureDetails.map(toItem)];
 const FAMILY_FEATURE_ITEMS: FeatureItem[] = familyFeatureDetails.map(toItem);
 
+const groupOf = (it: object): string | undefined => (it as { group?: string }).group;
+
 function FeaturesPanel({ onNavigate }: { onNavigate: () => void }) {
   const column = (title: string, items: FeatureItem[], cols: string) => (
     <div>
@@ -435,8 +437,8 @@ export function Header() {
                     <ul className="flex flex-col gap-1 px-3 pb-3">
                       {items.map((it, i) => (
                         <li key={it.href}>
-                          {'group' in it && it.group && (i === 0 || (items[i - 1] as { group?: string }).group !== it.group) ? (
-                            <p className="px-2.5 pb-1 pt-2 text-xs font-bold uppercase tracking-wider text-slate/70">{it.group}</p>
+                          {groupOf(it) && (i === 0 || groupOf(items[i - 1]) !== groupOf(it)) ? (
+                            <p className="px-2.5 pb-1 pt-2 text-xs font-bold uppercase tracking-wider text-slate/70">{groupOf(it)}</p>
                           ) : null}
                           <Link href={it.href} className="flex items-center gap-3 rounded-xl p-2.5 hover:bg-off-white">
                             <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${tones[it.tone].solid}`}>
