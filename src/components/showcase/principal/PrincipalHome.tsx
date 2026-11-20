@@ -1,479 +1,375 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
+import { AppCard } from '@/components/app-ui/Card';
+import { ModuleIcon } from '@/components/app-ui/ModuleIcon';
+import { TOKEN_TONES } from '@/components/app-ui/tones';
 import { Icon } from '@/components/visual/Icons';
-import { tones } from '@/lib/semantic';
+import type { ColorToken } from '@/lib/contracts/modules';
+import { colors } from '@/lib/design-tokens';
 import {
-  AI_CORE,
-  AI_FLOW,
-  AI_STATS,
-  ATT_CLASS,
-  ATT_TOP3,
-  ATT_WEEKS,
-  DASH_KPIS,
-  DELAYED_FEES,
-  ECO_SIGNALS,
-  EVENTS_UPCOMING,
-  FEE_SUMMARY,
-  ONTIME_FEES,
+  ATTENDANCE_TODAY,
+  FEES_OWED,
+  HERO,
+  HOMEWORK_CHECKED,
+  HOMEWORK_DUE,
+  MESSAGE_PARTS,
+  PRESENT_RATE_SERIES,
   QUICK_ACTIONS,
-  RECENT_ACTIVITY,
-  SCHOOL,
-  TIMETABLE_TODAY,
-  attendanceBands,
-  classPct,
-  type ActivityKind,
-  type ModuleId,
-} from '@/demo-fixture/principal-dashboard';
-import { Card, Chip, Progress, Ring, fillOf } from './bits';
+  RANGES,
+  TILE_GROUPS,
+  UNMARKED,
+  type RangeId,
+  type Tile,
+  type Unit,
+} from '@/demo-fixture/principal-showcase';
+import { SCHOOL, type ModuleId } from '@/demo-fixture/principal-dashboard';
 
-// The reference dashboard's home page, every panel in its order:
-// greeting, KPIs, attendance overview, fee collection, quick actions,
-// the intelligence loop, K–12 attendance, timetable, events, activity,
-// and the ten-module AI core.
+// The home page of the principal's dashboard preview, in the order of the
+// real office dashboard (OfficeDashboardView): the hero band, the days
+// switch and the CSV download, the "Today" numbers, "Needs your attention",
+// the other number groups (Money, Learning, Parents, Running the school),
+// the charts, each with a table view, and the quick actions. Titles are the
+// product's own. Fixture data only; nothing is saved or downloaded.
 
-type WeekKey = keyof typeof ATT_WEEKS;
+const inr = new Intl.NumberFormat('en-IN');
+const say = (n: number, unit: Unit) => (unit === 'rupees' ? `₹${inr.format(n)}` : unit === 'percent' ? `${n}%` : inr.format(n));
 
-function AttendanceOverview() {
-  const [week, setWeek] = useState<WeekKey>('This Week');
-  const data = ATT_WEEKS[week];
-  const present = ATT_CLASS.reduce((a, c) => a + c.present, 0);
-  const total = ATT_CLASS.reduce((a, c) => a + c.total, 0);
-  const today = classPct(present, total);
+const TAP = 'inline-flex min-h-[44px] items-center';
+const FOCUS = 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal';
+
+// "Why this?": a small info button; the answer opens under it.
+function Why({ children, className = '' }: { children: ReactNode; className?: string }) {
   return (
-    <Card
-      title="Attendance Overview"
-      aside={
-        <label className="text-xs text-slate">
-          <span className="sr-only">Attendance period</span>
-          <select value={week} onChange={(e) => setWeek(e.target.value as WeekKey)} className="min-h-[32px] rounded-lg border border-slate/20 bg-white px-2 text-xs font-semibold text-slate">
-            {(Object.keys(ATT_WEEKS) as WeekKey[]).map((k) => (
-              <option key={k}>{k}</option>
-            ))}
-          </select>
-        </label>
-      }
-    >
-      <div className="grid grid-cols-[auto_1fr] items-center gap-3 rounded-lg bg-off-white p-3">
-        <Ring segments={[[today, 'success']]} size={76} stroke={9} label={`${today}% present today`}>
-          <span className="text-sm font-extrabold text-slate">{`${today}%`}</span>
-        </Ring>
-        <div className="flex flex-col gap-1">
-          <p className="text-sm font-extrabold text-slate">{`${today}% · ${present.toLocaleString('en-IN')} / ${total.toLocaleString('en-IN')} present`}</p>
-          <ul className="grid grid-cols-3 gap-2">
-            {attendanceBands().map((b) => (
-              <li key={b.band} className="flex flex-col gap-0.5">
-                <span className="text-[10px] font-bold text-slate/70">{b.band}</span>
-                <span className="text-sm font-extrabold text-slate">{`${b.pct}%`}</span>
-                <Progress value={b.pct} />
-                <span className="text-[10px] text-slate/70">{b.note}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-      <div>
-        <p className="mb-1 text-[11px] font-bold text-slate/70">Top-3 attendance · opt-in families only</p>
-        <ol className="grid grid-cols-3 gap-2">
-          {ATT_TOP3.map((t) => (
-            <li key={t.rank} className="nca-lift flex flex-col rounded-lg border border-gold/40 bg-gold/10 px-2 py-1.5">
-              <span className="text-[10px] font-extrabold text-gold-deep">{`#${t.rank}`}</span>
-              <span className="truncate text-xs font-bold text-slate">{t.name}</span>
-              <span className="truncate text-[10px] text-slate/70">{t.note}</span>
-            </li>
-          ))}
-        </ol>
-      </div>
-      <div className="flex h-28 items-end gap-3" role="img" aria-label={data.map((d) => `${d.day}: ${d.present} present, ${d.absent} absent`).join('; ')}>
-        {data.map((d) => (
-          <div key={d.day} className="flex h-full flex-1 flex-col items-center justify-end gap-1">
-            <div className="flex h-full w-full items-end justify-center gap-1">
-              <span title={`${d.day} · present ${d.present}`} className="w-3 rounded-t bg-turquoise transition-opacity hover:opacity-75" style={{ height: `${(d.present / total) * 100}%` }} />
-              <span title={`${d.day} · absent ${d.absent}`} className="w-3 rounded-t bg-coral transition-opacity hover:opacity-75" style={{ height: `${Math.max(6, (d.absent / 120) * 100)}%` }} />
-            </div>
-            <span className="text-[10px] font-semibold text-slate/70">{d.day}</span>
-          </div>
-        ))}
-      </div>
-      <p className="flex gap-4 text-[11px] font-semibold text-slate">
-        <span className="flex items-center gap-1.5">
-          <span aria-hidden="true" className="h-2.5 w-2.5 rounded-sm bg-turquoise" /> Present (share of 1,240)
-        </span>
-        <span className="flex items-center gap-1.5">
-          <span aria-hidden="true" className="h-2.5 w-2.5 rounded-sm bg-coral" /> Absent (out of 120)
-        </span>
-      </p>
-    </Card>
+    <details className={`text-sm text-slate ${className}`}>
+      <summary title="Why this?" className={`flex h-11 w-11 shrink-0 cursor-pointer list-none items-center justify-center rounded-full text-slate/70 hover:bg-slate/5 hover:text-slate ${FOCUS} [&::-webkit-details-marker]:hidden`}>
+        <Icon name="info" className="h-5 w-5" />
+        <span className="sr-only">Why this?</span>
+      </summary>
+      <p className="mt-1 rounded-lg bg-off-white p-3 text-sm text-slate">{children}</p>
+    </details>
   );
 }
 
-function FeeCollection() {
-  const max = 12.4;
+function FactTile({ tile, tone, range, open }: { tile: Tile; tone: ColorToken; range: RangeId; open: (id: ModuleId) => void }) {
+  const detail = tile.notSetUp ? tile.detail : tile.total !== undefined ? `Out of ${inr.format(tile.total)}` : tile.detail;
+  const rangeFact = !tile.period;
+  const period = rangeFact && range === 'today' ? '' : tile.period ?? '';
   return (
-    <Card title="Fee Collection" sub="Timing matters: on time, delayed and overdue.">
-      <div className="grid grid-cols-[auto_1fr] items-center gap-3">
-        <Ring segments={FEE_SUMMARY.buckets.map((b) => [b.share, b.tone] as [number, typeof b.tone])} size={96} stroke={12} label={`${FEE_SUMMARY.collectedPct}% collected`}>
-          <span className="text-base font-extrabold text-slate">{`${FEE_SUMMARY.collectedPct}%`}</span>
-          <span className="text-[10px] text-slate/70">Collected</span>
-        </Ring>
-        <ul className="flex flex-col gap-1.5">
-          {FEE_SUMMARY.buckets.map((b) => (
-            <li key={b.label} className="nca-row grid grid-cols-[auto_1fr_auto] items-center gap-2 rounded px-1">
-              <span aria-hidden="true" className={`h-2.5 w-2.5 rounded-full ${fillOf(b.tone)}`} />
-              <span className="min-w-0">
-                <span className="block text-sm font-extrabold text-slate">{b.amount}</span>
-                <span className="block truncate text-[11px] text-slate/70">{`${b.label} · ${b.note}`}</span>
-              </span>
-              <Chip tone={b.tone === 'success' ? 'success' : b.tone === 'action' ? 'action' : 'alert'}>{`${b.share}%`}</Chip>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <ul className="flex flex-col gap-1" aria-label="Amounts in lakh rupees">
-        {FEE_SUMMARY.buckets.map((b) => (
-          <li key={b.label} className="grid grid-cols-[5.5rem_1fr_3rem] items-center gap-2 text-[11px]">
-            <span className="font-semibold text-slate">{b.label}</span>
-            <span className="h-3 overflow-hidden rounded bg-slate/5">
-              <span className={`block h-full rounded ${fillOf(b.tone)}`} style={{ width: `${(parseFloat(b.amount.replace(/[^\d.]/g, '')) / max) * 100}%` }} />
-            </span>
-            <span className="text-right font-bold text-slate">{b.amount}</span>
-          </li>
-        ))}
-      </ul>
-      <div className="grid grid-cols-2 gap-2">
-        {[
-          { title: 'Delayed fee · student, class, parent', list: DELAYED_FEES, tone: 'action' as const },
-          { title: 'On time or paid in advance', list: ONTIME_FEES, tone: 'success' as const },
-        ].map((col) => (
-          <div key={col.title} className="flex flex-col gap-1 rounded-lg bg-off-white p-2">
-            <p className={`text-[11px] font-extrabold ${tones[col.tone].fg}`}>{col.title}</p>
-            {col.list.map((f) => (
-              <div key={f.student} className="nca-row flex flex-col rounded px-1 py-1 text-[11px]">
-                <span className="flex justify-between gap-2">
-                  <b className="text-slate">{f.student}</b>
-                  <b className="shrink-0 text-slate">{f.amount}</b>
-                </span>
-                <span className="text-slate/70">{f.parent}</span>
-                <span className="text-slate/70">{f.note}</span>
-              </div>
-            ))}
-          </div>
-        ))}
-      </div>
-      <p className="rounded-lg bg-coral/10 px-3 py-2 text-[11px] text-slate">
-        <b>{FEE_SUMMARY.defaulterTitle}</b> {FEE_SUMMARY.defaulterNote}
-      </p>
-    </Card>
+    <li className="nca-lift relative flex min-w-0 flex-col overflow-hidden rounded-2xl border border-slate/10 bg-white p-3 shadow-sm">
+      <button type="button" onClick={() => open(tile.module)} className={`flex min-h-[88px] flex-1 flex-col rounded-xl p-1 text-left ${FOCUS}`}>
+        <ModuleIcon name={tile.icon} tone={tone} size="sm" variant="solid" />
+        <span className={`mt-2 font-extrabold tabular-nums tracking-tight text-slate ${tile.notSetUp ? 'text-base' : 'text-3xl'}`}>{tile.notSetUp ? 'Not set up yet' : say(tile.value[range], tile.unit)}</span>
+        <span className="text-sm font-medium text-slate/70">{tile.label}</span>
+        <span className="mt-auto pt-1 text-xs text-slate/70">{[detail, period].filter(Boolean).join(' · ')}</span>
+      </button>
+    </li>
   );
 }
 
-function EcosystemCard({ open }: { open: (id: ModuleId) => void }) {
-  const nodes = [
-    { x: 78, y: 92, label: 'SCHOOL', sub: 'ERP + Ops', fill: '#1E293B' },
-    { x: 582, y: 92, label: 'TEACHER', sub: 'Copilot', fill: '#0F766E' },
-    { x: 582, y: 228, label: 'PARENT', sub: 'On WhatsApp', fill: '#C2410C' },
-    { x: 78, y: 228, label: 'STUDENT', sub: 'Learning graph', fill: '#6D28D9' },
-  ];
+function Hero({ attention }: { attention: number }) {
   return (
-    <section className="flex flex-col gap-3 rounded-xl bg-midnight p-4 text-white">
-      <div className="flex items-start justify-between gap-3">
-        <div>
-          <p className="text-[10px] font-bold uppercase tracking-wider opacity-80">NetCyberAI · Connected School Intelligence</p>
-          <h3 className="text-lg font-extrabold">One School → One Intelligence Loop</h3>
-          <p className="max-w-2xl text-xs opacity-90">
-            School operations create evidence. NetCyberAI connects that evidence across students, teachers, parents and administration, recommends the next action, records outcomes and feeds the result back into the system.
-          </p>
-        </div>
-        <span className="shrink-0 rounded-full border border-white/25 px-2.5 py-1 text-[10px] font-bold">Closed-loop view</span>
-      </div>
-      <div className="grid grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] gap-3">
-        <svg viewBox="0 0 660 320" className="w-full" role="img" aria-label="The school, teacher, parent and student connected in a loop through the NetCyberAI intelligence core">
-          <ellipse cx="330" cy="160" rx="284" ry="132" fill="none" stroke="#ffffff" strokeOpacity="0.15" />
-          <ellipse cx="330" cy="160" rx="206" ry="92" fill="none" stroke="#ffffff" strokeOpacity="0.1" />
-          <path className="nca-flow-line" d="M52 160 C110 42 220 28 330 48 S548 74 608 160" fill="none" stroke="#14B8A6" strokeWidth="3" />
-          <path className="nca-flow-line" d="M608 160 C548 246 450 284 330 272 S105 254 52 160" fill="none" stroke="#FF7A1A" strokeWidth="3" />
-          <path d="M105 78 C192 124 238 148 300 157" fill="none" stroke="#F5B90A" strokeWidth="2" strokeOpacity="0.8" />
-          <path d="M360 160 C432 152 494 116 555 76" fill="none" stroke="#8B3DFF" strokeWidth="2" strokeOpacity="0.8" />
-          {nodes.map((n) => (
-            <g key={n.label} className="transition-opacity hover:opacity-80">
-              <circle cx={n.x} cy={n.y} r="42" fill={n.fill} stroke="#ffffff" strokeOpacity="0.3" />
-              <text x={n.x} y={n.y - 2} fill="#fff" textAnchor="middle" fontSize="11" fontWeight="800">
-                {n.label}
-              </text>
-              <text x={n.x} y={n.y + 12} fill="#fff" textAnchor="middle" fontSize="8">
-                {n.sub}
-              </text>
-            </g>
-          ))}
-          <circle cx="330" cy="160" r="62" fill="#8B3DFF" />
-          <circle cx="330" cy="160" r="48" fill="#061233" />
-          <text x="330" y="156" fill="#fff" textAnchor="middle" fontSize="15" fontWeight="900">
-            NetCyberAI
-          </text>
-          <text x="330" y="172" fill="#fff" textAnchor="middle" fontSize="8">
-            INTELLIGENCE CORE
-          </text>
-        </svg>
-        <ul className="grid grid-cols-2 gap-2">
-          {ECO_SIGNALS.map((s) => (
-            <li key={s.label} className="nca-lift flex flex-col rounded-lg border border-white/15 bg-white/5 p-2">
-              <span className="flex items-center gap-1.5 text-[10px] font-bold opacity-90">
-                <span aria-hidden="true" className={`h-2 w-2 rounded-full ${fillOf(s.tone)}`} />
-                {s.label}
-              </span>
-              <span className="text-lg font-extrabold">{s.value}</span>
-              <span className="text-[10px] opacity-80">{s.note}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <ul className="grid grid-cols-5 gap-1.5">
-        {AI_CORE.map((m) => (
-          <li key={m.id}>
-            <button type="button" onClick={() => open(m.id)} className="nca-lift flex w-full flex-col rounded-lg bg-white/10 px-2 py-1.5 text-left hover:bg-white/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan">
-              <span className="text-[10px] font-extrabold opacity-80">{m.num}</span>
-              <span className="text-xs font-bold">{m.name}</span>
-              <span className="text-[10px] opacity-80">{m.rail}</span>
-            </button>
-          </li>
-        ))}
-      </ul>
-      <p className="flex flex-wrap justify-between gap-2 text-[11px] opacity-90">
-        <span>
-          <b>Data</b> → evidence → intelligence → human action → outcome → feedback
-        </span>
-        <span>Built for school, teacher, parent and student in one school-scoped platform</span>
-      </p>
+    <section aria-label="Today" className="nca-mesh-dark relative overflow-hidden rounded-3xl bg-midnight p-5 text-white md:p-7">
+      <span aria-hidden="true" className="nca-spectrum-bar absolute inset-x-0 top-0 h-1.5" />
+      <p className="text-sm font-semibold">{HERO.greeting}</p>
+      <h2 className="mt-1 text-2xl font-extrabold md:text-3xl">{SCHOOL.name}</h2>
+      <p className="mt-3 text-base font-semibold">{attention === 1 ? `${attention} thing needs you today` : `${attention} things need you today`}</p>
     </section>
   );
 }
 
-function ClassTable() {
+// ---- charts: each has a chart view and a table view ----------------------------------------------------------
+
+type Row = { label: string; value: number | null; text: string };
+
+function Bars({ rows, tone }: { rows: Row[]; tone: ColorToken }) {
+  const max = Math.max(1, ...rows.map((r) => r.value ?? 0));
   return (
-    <Card title="K–12 Attendance + Class Toppers" sub="Every class, its top attendance (opt-in) and attendance signal in one scan." aside={<Chip tone="neutral">13 classes</Chip>}>
-      <table className="w-full text-left text-xs">
-        <thead>
-          <tr className="border-b border-slate/10 text-slate/70">
-            {['Class', 'Present %', 'Total', 'Top attendance (opt-in)', 'Attendance', 'Progress'].map((h) => (
-              <th key={h} scope="col" className="px-2 py-2 font-bold">
-                {h}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {ATT_CLASS.map((c) => {
-            const p = classPct(c.present, c.total);
-            const label = p >= 96 ? 'Excellent' : p >= 93 ? 'Good' : p >= 90 ? 'Watch' : 'Needs attention';
-            return (
-              <tr key={c.cls} className="nca-row border-b border-slate/5 last:border-0">
-                <td className="px-2 py-1.5 font-bold text-slate">{c.cls}</td>
-                <td className="px-2 py-1.5">
-                  <Chip tone={p >= 93 ? 'success' : 'action'}>{`${p}%`}</Chip>
-                </td>
-                <td className="px-2 py-1.5 text-slate">{c.total}</td>
-                <td className="px-2 py-1.5 text-slate">
-                  <b>{c.top}</b>
-                  {c.notes && <span className="block text-[10px] text-slate/70">{c.notes}</span>}
-                </td>
-                <td className="px-2 py-1.5 text-slate">{`${c.present}/${c.total}`}</td>
-                <td className="w-40 px-2 py-1.5">
-                  <span className="flex justify-between text-[10px] font-semibold text-slate">
-                    <span>{label}</span>
-                    <b>{`${p}%`}</b>
-                  </span>
-                  <Progress value={p} tone={p >= 93 ? 'success' : 'action'} />
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </Card>
+    <ul className="flex flex-col gap-2">
+      {rows.map((r) => (
+        <li key={r.label} className="grid grid-cols-[minmax(0,8rem)_minmax(0,1fr)_auto] items-center gap-2 text-sm text-slate">
+          <span className="min-w-0">{r.label}</span>
+          <span aria-hidden="true" className="block h-3 overflow-hidden rounded-full bg-off-white">
+            <span className={`block h-3 rounded-full ${TOKEN_TONES[tone].bar}`} style={{ width: `${Math.round(((r.value ?? 0) / max) * 100)}%`, minWidth: (r.value ?? 0) > 0 ? 4 : 0 }} />
+          </span>
+          <span className="text-right font-semibold tabular-nums">{r.text}</span>
+        </li>
+      ))}
+    </ul>
   );
 }
 
-const ACT_FILTERS: ('All Activity' | ActivityKind)[] = ['All Activity', 'Fees', 'Admissions', 'Staff', 'Academics'];
-
-export function PrincipalHome({ open, onAdd, toast }: { open: (id: ModuleId) => void; onAdd: () => void; toast: (msg: string) => void }) {
-  const [filter, setFilter] = useState<(typeof ACT_FILTERS)[number]>('All Activity');
-  const activity = RECENT_ACTIVITY.filter((a) => filter === 'All Activity' || a.kind === filter);
-  const linkCls = 'text-xs font-bold text-emerald underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal';
-
+// A rate by day out of 100. A day with no value is a gap in the line, never a zero.
+function Line({ rows, tone, title }: { rows: Row[]; tone: ColorToken; title: string }) {
+  const W = 320;
+  const H = 120;
+  const x = (i: number) => 8 + (i / Math.max(1, rows.length - 1)) * (W - 56);
+  const y = (v: number) => 10 + (1 - v / 100) * (H - 34);
+  const real = rows.map((r, i) => ({ ...r, i })).filter((r): r is Row & { i: number; value: number } => r.value !== null);
+  const runs: (typeof real)[] = [];
+  for (const p of real) {
+    const run = runs[runs.length - 1];
+    if (run && run[run.length - 1].i === p.i - 1) run.push(p);
+    else runs.push([p]);
+  }
+  const last = real[real.length - 1];
+  const color = colors[tone];
   return (
-    <div className="flex flex-col gap-4">
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <h2 className="text-xl font-extrabold text-slate">Good Afternoon, Principal!</h2>
-          <p className="text-sm text-slate/70">Here’s what’s happening at your school today.</p>
-        </div>
-        <span className="rounded-full bg-slate/5 px-3 py-1 text-xs font-bold text-slate">{SCHOOL.dateLine}</span>
-      </div>
+    <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${title}. ${real.map((p) => `${p.label} ${p.text}`).join(', ')}`} className="h-auto w-full">
+      <line x1={8} y1={H - 24} x2={W - 8} y2={H - 24} stroke={colors.slate} strokeOpacity={0.15} />
+      {runs.filter((r) => r.length > 1).map((run) => (
+        <path key={run[0].label} d={run.map((p, k) => `${k ? 'L' : 'M'}${x(p.i).toFixed(1)} ${y(p.value).toFixed(1)}`).join('')} fill="none" stroke={color} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+      ))}
+      {real.map((p) => (
+        <circle key={p.label} cx={x(p.i)} cy={y(p.value)} r={p === last ? 4 : 3} fill={color}>
+          <title>{`${p.label}: ${p.text}`}</title>
+        </circle>
+      ))}
+      {last && (
+        <text x={Math.min(W - 4, x(last.i) + 8)} y={y(last.value) + 4} fontSize={12} fontWeight={700} fill={colors.slate}>
+          {last.text}
+        </text>
+      )}
+      <text x={8} y={H - 8} fontSize={10} fill={colors.slate}>{rows[0].label}</text>
+      <text x={x(rows.length - 1)} y={H - 8} fontSize={10} textAnchor="end" fill={colors.slate}>{rows[rows.length - 1].label}</text>
+    </svg>
+  );
+}
 
-      <ul className="grid grid-cols-4 gap-3">
-        {DASH_KPIS.map((k) => (
-          <li key={k.label} className="nca-lift flex items-center gap-3 rounded-xl border border-slate/10 bg-white p-3">
-            <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${tones[k.tone].solid}`}>
-              <Icon name={k.icon} className="h-5 w-5" />
-            </span>
-            <span className="min-w-0 flex-1">
-              <span className="block text-xl font-extrabold leading-none text-slate">{k.value}</span>
-              <span className="block text-xs text-slate/70">{k.label}</span>
-            </span>
-            <Chip tone={k.trendAlert ? 'alert' : 'success'}>{k.trend}</Chip>
+function RingChart({ done, total, rows, tone, title }: { done: number; total: number; rows: Row[]; tone: ColorToken; title: string }) {
+  const R = 48;
+  const around = 2 * Math.PI * R;
+  return (
+    <div className="flex flex-wrap items-center gap-4">
+      <svg viewBox="0 0 120 120" role="img" aria-label={title} className="h-28 w-28 shrink-0">
+        <circle cx={60} cy={60} r={R} fill="none" stroke={colors.slate} strokeOpacity={0.1} strokeWidth={12} />
+        <circle cx={60} cy={60} r={R} fill="none" stroke={colors[tone]} strokeWidth={12} strokeLinecap="round" strokeDasharray={`${((done / total) * around).toFixed(1)} ${around.toFixed(1)}`} transform="rotate(-90 60 60)" />
+      </svg>
+      <ul className="flex min-w-0 flex-1 flex-col gap-1 text-sm text-slate">
+        {rows.map((r) => (
+          <li key={r.label} className="flex flex-wrap justify-between gap-x-3">
+            <span>{r.label}</span>
+            <span className="font-semibold tabular-nums">{r.text}</span>
           </li>
         ))}
       </ul>
+    </div>
+  );
+}
 
-      <div className="grid grid-cols-2 gap-3">
-        <AttendanceOverview />
-        <FeeCollection />
+function Chart({ id, title, kind, tone, rows, what, why, ring, onOpen }: { id: string; title: string; kind: 'bars' | 'line' | 'ring'; tone: ColorToken; rows: Row[]; what: string; why: string; ring?: { done: number; total: number }; onOpen: () => void }) {
+  const [view, setView] = useState<'chart' | 'table'>('chart');
+  const gaps = kind === 'line' ? rows.filter((r) => r.value === null).length : 0;
+  const btn = `${TAP} rounded px-3 text-sm font-semibold ${FOCUS}`;
+  const toggle = (
+    <div role="group" aria-label="Show as" className="flex rounded-md border border-slate/10 bg-white p-0.5">
+      {(['chart', 'table'] as const).map((v) => (
+        <button key={v} type="button" aria-pressed={view === v} onClick={() => setView(v)} className={`${btn} ${view === v ? 'bg-sapphire text-white' : 'bg-white text-slate'}`}>
+          {v === 'chart' ? 'Chart' : 'Table'}
+        </button>
+      ))}
+    </div>
+  );
+  return (
+    <AppCard title={title} tone={tone} actions={toggle}>
+      <div data-chart={id} className="flex flex-col gap-2">
+        {view === 'chart' ? (
+          <>
+            {kind === 'bars' && <Bars rows={rows} tone={tone} />}
+            {kind === 'line' && <Line rows={rows} tone={tone} title={title} />}
+            {kind === 'ring' && ring && <RingChart done={ring.done} total={ring.total} rows={rows} tone={tone} title={title} />}
+            {gaps > 0 && <p className="text-xs text-slate">{gaps === 1 ? `${gaps} day has no mark saved and is left as a gap.` : `${gaps} days have no mark saved and are left as a gap.`}</p>}
+          </>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-sm text-slate">
+              <caption className="sr-only">{title}</caption>
+              <thead>
+                <tr className="border-b border-slate/10">
+                  <th scope="col" className="py-2 pr-3 font-semibold">{what}</th>
+                  <th scope="col" className="py-2 pr-3 font-semibold">Number</th>
+                </tr>
+              </thead>
+              <tbody>
+                {rows.map((r) => (
+                  <tr key={r.label} className="border-b border-slate/10">
+                    <th scope="row" className="py-2 pr-3 font-normal">{r.label}</th>
+                    <td className="py-2 pr-3 tabular-nums">{r.value === null ? 'No mark saved' : r.text}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+        <div className="flex flex-wrap items-center justify-between gap-x-4">
+          <Why>{`How it is counted: ${why}`}</Why>
+          <button type="button" onClick={onOpen} className={`${TAP} font-semibold text-sapphire underline ${FOCUS}`}>
+            Open the rows
+          </button>
+        </div>
+      </div>
+    </AppCard>
+  );
+}
+
+export function PrincipalHome({ open, onAdd, toast }: { open: (id: ModuleId) => void; onAdd: () => void; toast: (msg: string) => void }) {
+  const [range, setRange] = useState<RangeId>('today');
+  const current = RANGES.find((r) => r.id === range) ?? RANGES[0];
+
+  const attention = [
+    { id: UNMARKED.id, module: UNMARKED.module, icon: UNMARKED.icon, tone: UNMARKED.tone, count: UNMARKED.count, text: UNMARKED.text, action: UNMARKED.action, why: UNMARKED.why },
+    ...TILE_GROUPS.flatMap((g) => g.tiles.filter((t) => t.attention).map((t) => ({ id: t.id, module: t.module, icon: t.icon, tone: g.tone, ...t.attention! }))),
+  ];
+
+  const group = (g: (typeof TILE_GROUPS)[number]) => (
+    <section key={g.id} aria-labelledby={`dash-group-${g.id}`} className="flex flex-col gap-2">
+      <h3 id={`dash-group-${g.id}`} className="text-xs font-bold uppercase tracking-wider text-slate/70">
+        {g.title}
+      </h3>
+      <ul className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-5">
+        {g.tiles.map((t) => (
+          <FactTile key={t.id} tile={t} tone={g.tone} range={range} open={open} />
+        ))}
+      </ul>
+    </section>
+  );
+
+  const rangeSay = (n: number) => inr.format(n);
+  const msgs = MESSAGE_PARTS[range];
+  const msgTotal = msgs.reduce((a, p) => a + p.value, 0);
+
+  return (
+    <div className="flex flex-col gap-5">
+      <Hero attention={attention.length} />
+
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex flex-wrap items-center gap-3">
+          <nav aria-label="Days to show" className="flex gap-1 rounded-xl bg-slate/5 p-1 ring-1 ring-inset ring-slate/10">
+            {RANGES.map((r) => (
+              <button
+                key={r.id}
+                type="button"
+                aria-current={r.id === range ? 'page' : undefined}
+                onClick={() => setRange(r.id)}
+                className={`${TAP} rounded-lg px-4 text-sm font-semibold ${FOCUS} ${r.id === range ? 'bg-white text-slate shadow-sm' : 'text-slate/70 hover:text-slate'}`}
+              >
+                {r.label}
+              </button>
+            ))}
+          </nav>
+          {current.days && <span className="text-sm font-semibold text-slate/70">{current.days}</span>}
+        </div>
+        <button type="button" onClick={() => toast('Demo: no file is made. In the school app this downloads the numbers on screen as a CSV.')} className={`${TAP} gap-2 rounded-xl border border-slate/10 bg-white px-4 text-sm font-semibold text-slate shadow-sm ${FOCUS}`}>
+          <Icon name="download" className="h-4 w-4" />
+          Download CSV
+        </button>
       </div>
 
-      <Card title="Quick Actions">
-        <ul className="grid grid-cols-4 gap-2">
+      <div className="flex flex-col gap-5">
+        {group(TILE_GROUPS[0])}
+
+        <AppCard title="Needs your attention" tone="coral">
+          <ul className="-mx-1 flex flex-col divide-y divide-slate/10">
+            {attention.map((a) => (
+              <li key={a.id} className="flex flex-col px-3 py-2">
+                <div className="flex flex-wrap items-center gap-3">
+                  <ModuleIcon name={a.icon} tone={a.tone} size="md" />
+                  <p className="min-w-[10rem] flex-1 text-sm font-semibold text-slate">
+                    <span className="tabular-nums">{inr.format(a.count)}</span> {a.text}
+                  </p>
+                  <button type="button" onClick={() => open(a.module)} className={`${TAP} gap-1 rounded-md border border-sapphire/30 px-3 text-sm font-semibold text-sapphire hover:bg-sapphire/5 ${FOCUS}`}>
+                    {a.action}
+                    <Icon name="arrow" className="h-4 w-4" />
+                  </button>
+                  <Why className="[&[open]]:w-full">{`How it is counted: ${a.why}`}</Why>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </AppCard>
+
+        {TILE_GROUPS.slice(1).map(group)}
+      </div>
+
+      <section aria-label="Charts" className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+        <Chart
+          id="attendance-today"
+          title="Attendance today: 1,102 of 1,240 students marked"
+          kind="bars"
+          tone="royal"
+          what="What"
+          rows={ATTENDANCE_TODAY.map((r) => ({ ...r, text: rangeSay(r.value) }))}
+          why="Students on a class roll with a mark saved today: present, late, absent or on leave. A student on leave is marked."
+          onOpen={() => open('attendance')}
+        />
+        <Chart
+          id="present-rate"
+          title={`In school over these days: ${say(presentRate(range), 'percent')}`}
+          kind="line"
+          tone="azure"
+          what="Day"
+          rows={PRESENT_RATE_SERIES[range].map((r) => ({ ...r, text: r.value === null ? 'No mark saved' : `${r.value}%` }))}
+          why="Of every attendance mark saved in these days, the share that is present or late. A day on leave is a marked day and is not an absence. Days with no mark saved are left out."
+          onOpen={() => open('attendance')}
+        />
+        <Chart
+          id="fees-owed"
+          title="Fees still to come in"
+          kind="bars"
+          tone="tangerine"
+          what="What"
+          rows={FEES_OWED.map((r) => ({ ...r, text: say(r.value, 'rupees') }))}
+          why="What is still to be paid on fee entries, split into those not yet due and those whose due date has passed. Part payments are taken off."
+          onOpen={() => open('fees')}
+        />
+        <Chart
+          id="messages-by-state"
+          title={`WhatsApp messages in these days: ${rangeSay(msgTotal)}`}
+          kind="bars"
+          tone="cyan"
+          what="What"
+          rows={msgs.map((r) => ({ ...r, text: rangeSay(r.value) }))}
+          why="Every WhatsApp message written to the school’s log in these days, whatever state it is in now: waiting, sent, delivered, read, failed or held back."
+          onOpen={() => open('communication')}
+        />
+        <Chart
+          id="homework-checked"
+          title={`Homework checked: ${rangeSay(HOMEWORK_CHECKED[range])} of ${rangeSay(HOMEWORK_DUE[range])} due`}
+          kind="ring"
+          tone="azure"
+          what="What"
+          ring={{ done: HOMEWORK_CHECKED[range], total: HOMEWORK_DUE[range] }}
+          rows={[
+            { label: 'Checked for everyone', value: HOMEWORK_CHECKED[range], text: rangeSay(HOMEWORK_CHECKED[range]) },
+            { label: 'Not yet checked for everyone', value: HOMEWORK_DUE[range] - HOMEWORK_CHECKED[range], text: rangeSay(HOMEWORK_DUE[range] - HOMEWORK_CHECKED[range]) },
+          ]}
+          why="Of the homework due in these days for a section with students on its roll, how many are checked for every student of the section."
+          onOpen={() => open('homework')}
+        />
+      </section>
+
+      <nav aria-label="Quick actions">
+        <ul className="grid grid-cols-2 gap-3 md:grid-cols-4">
           {QUICK_ACTIONS.map((q) => (
             <li key={q.label}>
               <button
                 type="button"
                 onClick={() => (q.action === 'add-student' ? onAdd() : open(q.action))}
-                className="nca-lift flex w-full items-center gap-2.5 rounded-lg border border-slate/10 bg-off-white px-3 py-2.5 text-left text-sm font-bold text-slate focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal"
+                className={`nca-lift flex min-h-[88px] w-full flex-col items-start justify-between gap-2 rounded-2xl border border-slate/10 bg-white p-3 text-left text-sm font-bold text-slate ${FOCUS}`}
               >
-                <span className={`flex h-8 w-8 items-center justify-center rounded-lg ${tones[q.tone].solid}`}>
-                  <Icon name={q.icon} className="h-4 w-4" />
-                </span>
+                <ModuleIcon name={q.icon} tone={q.tone} size="lg" />
                 {q.label}
               </button>
             </li>
           ))}
         </ul>
-      </Card>
-
-      <EcosystemCard open={open} />
-      <ClassTable />
-
-      <div className="grid grid-cols-3 gap-3">
-        <Card title="Today's Timetable" aside={<button type="button" onClick={() => open('timetable')} className={linkCls}>View All</button>}>
-          <ul className="flex flex-col">
-            {TIMETABLE_TODAY.map((r) => (
-              <li key={r.time}>
-                <button type="button" onClick={() => toast(`${r.time} · ${r.subject} · ${r.detail}`)} className="nca-row flex w-full gap-2 rounded-md px-1.5 py-2 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal">
-                  <span className="w-16 shrink-0 text-[11px] font-bold text-slate/70">{r.time}</span>
-                  <span className="min-w-0 flex-1">
-                    <b className="block text-xs text-slate">{r.subject}</b>
-                    <span className="block text-[11px] text-slate/70">{r.detail}</span>
-                  </span>
-                  <Chip tone={r.status === 'Ongoing' ? 'success' : 'neutral'}>{r.status}</Chip>
-                </button>
-              </li>
-            ))}
-          </ul>
-        </Card>
-        <Card title="Upcoming Events" aside={<button type="button" onClick={() => open('events')} className={linkCls}>View All</button>}>
-          <ul className="flex flex-col">
-            {EVENTS_UPCOMING.map((e) => (
-              <li key={e.title}>
-                <button type="button" onClick={() => toast(`${e.title} · ${e.detail}`)} className="nca-row flex w-full items-start gap-2 rounded-md px-1.5 py-2 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal">
-                  <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${tones.action.soft}`}>
-                    <Icon name={e.icon} className="h-4 w-4" />
-                  </span>
-                  <span className="min-w-0 flex-1">
-                    <b className="block text-xs text-slate">{e.title}</b>
-                    <span className="block text-[11px] text-slate/70">{e.detail}</span>
-                  </span>
-                  <span className="shrink-0 text-[11px] font-bold text-slate">{e.time}</span>
-                </button>
-              </li>
-            ))}
-          </ul>
-        </Card>
-        <Card
-          title="Recent Activity"
-          aside={
-            <label>
-              <span className="sr-only">Filter activity</span>
-              <select value={filter} onChange={(e) => setFilter(e.target.value as typeof filter)} className="min-h-[32px] rounded-lg border border-slate/20 bg-white px-2 text-xs font-semibold text-slate">
-                {ACT_FILTERS.map((f) => (
-                  <option key={f}>{f}</option>
-                ))}
-              </select>
-            </label>
-          }
-        >
-          <ul className="flex flex-col">
-            {activity.map((a) => (
-              <li key={a.title}>
-                <button type="button" onClick={() => toast(`Activity: ${a.title} · ${a.detail}`)} className="nca-row flex w-full items-start gap-2 rounded-md px-1.5 py-2 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal">
-                  <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${tones.success.soft}`}>
-                    <Icon name={a.icon} className="h-4 w-4" />
-                  </span>
-                  <span className="min-w-0 flex-1">
-                    <b className="block text-xs text-slate">{a.title}</b>
-                    <span className="block text-[11px] text-slate/70">{a.detail}</span>
-                  </span>
-                  <span className="shrink-0 text-[10px] text-slate/70">{a.when}</span>
-                </button>
-              </li>
-            ))}
-          </ul>
-        </Card>
-      </div>
-
-      <section className="flex flex-col gap-3 rounded-xl border border-grape/20 bg-grape/5 p-4">
-        <div className="flex items-start justify-between gap-3">
-          <div>
-            <h3 className="text-base font-extrabold text-slate">NetCyberAI Core · Intelligence Across the Entire School</h3>
-            <p className="max-w-3xl text-xs text-slate/70">
-              One connected layer joins the ERP, student lifecycle, teacher workflow, family engagement, finance and school operations so decisions become evidence-led and actions become measurable.
-            </p>
-          </div>
-          <Chip tone="intelligence">10 Core Modules · Closed-Loop Intelligence</Chip>
-        </div>
-        <ul className="grid grid-cols-5 gap-2">
-          {AI_CORE.map((m) => (
-            <li key={m.id}>
-              <button type="button" onClick={() => open(m.id)} className="nca-lift flex h-full w-full flex-col gap-1 rounded-lg border border-slate/10 bg-white p-2.5 text-left hover:border-grape focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal">
-                <span className="flex items-center justify-between text-[10px] font-extrabold text-grape-deep">
-                  <span>{m.num}</span>
-                  <span>NETCYBER AI</span>
-                </span>
-                <span className={`flex h-8 w-8 items-center justify-center rounded-lg ${tones.intelligence.solid}`}>
-                  <Icon name={m.icon} className="h-4 w-4" />
-                </span>
-                <b className="text-xs text-slate">{m.name}</b>
-                <span className="text-[11px] text-slate/70">{m.line}</span>
-                <span className="mt-auto text-[11px] font-bold text-emerald">{m.metric}</span>
-              </button>
-            </li>
-          ))}
-        </ul>
-        <ol className="grid grid-cols-6 gap-1.5">
-          {AI_FLOW.map((f, i) => (
-            <li key={f} className="rounded-lg bg-white px-2 py-1.5 text-center">
-              <span className="block text-[10px] font-extrabold text-grape-deep">{`0${i + 1}`}</span>
-              <span className="text-[11px] font-bold text-slate">{f}</span>
-            </li>
-          ))}
-        </ol>
-        <ul className="grid grid-cols-4 gap-2">
-          {AI_STATS.map((s) => (
-            <li key={s.label} className="rounded-lg bg-white px-3 py-2">
-              <span className="block text-[11px] text-slate/70">{s.label}</span>
-              <span className="text-lg font-extrabold text-slate">{s.value}</span>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <div className="flex items-center justify-between gap-4 rounded-xl bg-slate p-4 text-white">
-        <div>
-          <h3 className="text-base font-extrabold">One school. One connected system. One intelligence layer.</h3>
-          <p className="text-xs opacity-90">Explore every module from the navigation, then use the actions to see how the platform works as one product.</p>
-        </div>
-        <button type="button" onClick={() => open('learning-genome')} className="nca-lift shrink-0 rounded-lg bg-gold px-4 py-2 text-sm font-bold text-slate focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan">
-          Explore AI Intelligence
-        </button>
-      </div>
+      </nav>
     </div>
   );
+}
+
+// The "In school" number the line chart's title and its tile both say.
+function presentRate(range: RangeId): number {
+  const t = TILE_GROUPS.flatMap((g) => g.tiles).find((x) => x.id === 'present_rate');
+  return t ? t.value[range] : 0;
 }
