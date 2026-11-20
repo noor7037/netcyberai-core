@@ -24,7 +24,7 @@ const PLAIN_LINKS = [
   { href: '/contact', label: 'Contact', xlOnly: true },
 ];
 
-const ROLE_SLUGS = ['principal', 'school-admin', 'teacher', 'finance', 'admissions'];
+const ROLE_SLUGS = ['principal', 'school-admin', 'teacher', 'finance', 'admissions', 'families'];
 
 function Wordmark() {
   return (
