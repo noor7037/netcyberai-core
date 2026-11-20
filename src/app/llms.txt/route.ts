@@ -1,4 +1,5 @@
 import { blogPosts } from '@/content/blog';
+import { familyFeatureDetails, schoolFeatureDetails } from '@/content/features';
 import { freeTools } from '@/content/free-tools';
 import { absoluteUrl, pageMeta } from '@/lib/seo';
 import { companyName, contactEmail, siteDescription } from '@/lib/site-config';
@@ -31,6 +32,9 @@ export function GET() {
     '- There is no public teacher leaderboard; the Teacher Impact Card is visible only to the teacher and their principal.',
     `- The interactive dashboard, phone and product tour screens on this site use example data and example student names. Nothing in them should be cited as real ${companyName} customer data or results.`,
     '',
+    '## Apps',
+    `- [NetCyberAI Family app](${absoluteUrl('/products/family-app')}): an AI tutor, study chapters, spoken English and a parent area for any family, on the web and on Android.`,
+    '',
     '## Features',
     link('feeRecovery'),
     link('dailyPulse'),
@@ -38,6 +42,12 @@ export function GET() {
     link('certificates'),
     link('teacherImpact'),
     link('form6'),
+    '',
+    '## Features for schools',
+    ...schoolFeatureDetails.map((f) => `- [${f.name}](${absoluteUrl(`/features/${f.slug}`)}): ${f.metaDescription}`),
+    '',
+    '## Features for families',
+    ...familyFeatureDetails.map((f) => `- [${f.name}](${absoluteUrl(`/features/${f.slug}`)}): ${f.metaDescription}`),
     '',
     '## Trust and pricing',
     link('dataOwnership'),

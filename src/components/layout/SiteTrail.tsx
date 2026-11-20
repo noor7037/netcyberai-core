@@ -5,6 +5,10 @@ import { useEffect, useState } from 'react';
 import { TrailView } from '@/components/app-ui/Breadcrumbs';
 import { Container } from '@/components/ui/Container';
 import { featurePages, findProduct, findSolution } from '@/content/catalog';
+// Only public pages load this file (SiteBreadcrumbs imports it on demand), so the Family app never downloads these names.
+import { featureNames } from '@/content/features/menu';
+
+const FEATURE_NAMES = featureNames();
 import { siteTrail } from '@/lib/nav/breadcrumbs';
 
 // The public site's trail (W14-E): Products › Attendance, Resources › Blog › a post, under the header in the content
@@ -17,7 +21,7 @@ function nameOf(path: string): string | undefined {
   const [, section, slug] = path.split('/');
   if (section === 'products') return findProduct(slug)?.name;
   if (section === 'solutions') return findSolution(slug)?.name;
-  if (section === 'features') return featurePages.find((f) => f.href === path)?.name;
+  if (section === 'features') return featurePages.find((f) => f.href === path)?.name ?? FEATURE_NAMES.find(([p]) => p === path)?.[1];
   return undefined;
 }
 

@@ -1,4 +1,5 @@
 import { products, solutions } from '@/content/catalog';
+import { featureDetails } from '@/content/features';
 import { freeTools } from '@/content/free-tools';
 import { resourceSections } from '@/content/resources';
 import { renderOgCard } from '@/lib/og-card';
@@ -28,6 +29,8 @@ function cards(): Map<string, Card> {
   for (const m of Object.values(pageMeta)) out.set(m.path, m.path === '/' ? ogCards.site : { eyebrow: eyebrow(m.path), title: m.title });
   for (const p of products) out.set(`/products/${p.slug}`, { eyebrow: 'Product', title: p.title });
   for (const s of solutions) out.set(`/solutions/${s.slug}`, { eyebrow: 'Solution', title: s.title });
+  // C533: the feature pages drawn from data (src/content/features).
+  for (const f of featureDetails) out.set(`/features/${f.slug}`, { eyebrow: f.audience === 'family' ? 'For families' : 'For schools', title: f.title });
   for (const t of freeTools) out.set(`/free-tools/${t.slug}`, { eyebrow: 'Free tool', title: t.title });
   for (const r of resourceSections) out.set(`/resources/${r.slug}`, { eyebrow: 'Resources', title: r.title });
   return out;

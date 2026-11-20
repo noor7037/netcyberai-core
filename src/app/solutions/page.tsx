@@ -9,7 +9,7 @@ import { breadcrumbListJsonLd, buildMetadata, pageMeta, serializeJsonLd } from '
 
 export const metadata = buildMetadata(pageMeta.solutions);
 
-const ROLE_SLUGS = ['principal', 'school-admin', 'teacher', 'finance', 'admissions'];
+const ROLE_SLUGS = ['principal', 'school-admin', 'teacher', 'finance', 'admissions', 'families'];
 
 export default function SolutionsPage() {
   return (

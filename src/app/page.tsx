@@ -7,6 +7,7 @@ import { CTASection } from '@/components/home/CTASection';
 import { Container } from '@/components/ui/Container';
 import { FaqBlock } from '@/components/content/FaqBlock';
 import { SectionHeading } from '@/components/visual/Primitives';
+import { FamilySection } from '@/components/home/FamilySection';
 import { HowItWorks } from '@/components/home/HowItWorks';
 import { HOME_GO_LIVE_FAQ } from '@/content/faqs';
 import { buildMetadata, pageMeta, serializeJsonLd, softwareApplicationJsonLd } from '@/lib/seo';
@@ -17,22 +18,22 @@ export const metadata = buildMetadata(pageMeta.home);
 const faqs = [
   {
     question: `What is ${companyName}?`,
-    answer: `${companyName} is a connected school platform for Indian schools. Principals, office staff, teachers, students and parents work from one validated school record, parents get honest daily updates on WhatsApp, and the principal sees school health and open exceptions in one dashboard.`,
+    answer: `${companyName} is one connected ecosystem for Indian schools and families. The School app serves principals, office staff and teachers on one validated school record, with honest daily updates for parents on WhatsApp. The ${companyName} Family app gives children an AI tutor, interactive study, spoken English, drawing and a look at their future, with a parent area. School Link joins the two when a family’s school uses ${companyName}.`,
   },
   {
     question: 'Do parents need to install an app?',
     answer:
-      'No. NetCyberAI is built so every parent-facing update, from attendance alerts to the Daily Learning Pulse, fee reminders and recognition, arrives on WhatsApp, which parents already use. Parents never need an app or a login.',
+      'Parents need no app for school updates: they arrive on WhatsApp. Families who want more for their child at home use the NetCyberAI Family app.',
+  },
+  {
+    question: 'What is the NetCyberAI Family app?',
+    answer:
+      'The Family app is for a child and their parent: an AI tutor that explains in the child’s own language, interactive study chapters, a spoken-English course, a drawing studio, careers, entrance exams and scholarships, and a parent area for progress, consent switches and the child’s data. It runs on the web and as an Android app, and works for any family. If the child’s school uses NetCyberAI, School Link connects them with a one-time code from the school, so the family also sees that child’s attendance, homework, notices, marks and timetable. Ask us about Family plans.',
   },
   {
     question: 'Which modules are live today?',
     answer:
-      'Available now: student records and CSV import, guardians and consent, attendance, homework, fees with UPI payment straight to the school’s own account and receipts, staff leave with automatic cover, the principal dashboard and reports, complaints, exams and report cards on the school’s own grading scheme, Personal Best, Curriculum Gap and the Learning Genome, Early Warning and the School Health Auditor. Ready and waiting for the school’s WhatsApp to be switched on: parent messages, notices, the Daily Learning Pulse, meetings and events. In development: Parent AI. The screens on this site show example data, and nothing is sold to a school as live until it is.',
-  },
-  {
-    question: 'Does it rank teachers or students publicly?',
-    answer:
-      'No. Teachers get a private Impact Card visible only to them and their principal. Students are recognised mainly for Personal Bests against their own past; class top-3 lists are optional and off by default.',
+      'The status of every module is kept in one place and shown on the products and pricing pages, so it never drifts from the real product. WhatsApp messages to parents start once a school’s own WhatsApp number is switched on. The screens on this site show example data, and nothing is sold to a school as live until it is.',
   },
   {
     question: `What does ${companyName} cost?`,
@@ -49,6 +50,7 @@ export default function HomePage() {
       <WhyChoose />
       <BeyondErp />
       <PrincipalSection />
+      <FamilySection />
       <AppsSection withParent={false} />
       <TrustSecurity />
       <HowItWorks />

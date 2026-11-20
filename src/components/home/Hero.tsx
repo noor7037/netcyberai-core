@@ -33,9 +33,9 @@ export function Hero() {
             </h1>
             <div className="flex flex-col gap-4">
               <p className="text-lg text-slate">
-                School work is scattered across registers, spreadsheets and busy WhatsApp groups. NetCyberAI brings your principal,
-                teachers, students and parents onto one connected platform: attendance, fees, exams and daily learning updates run
-                automatically, and parents get honest updates on WhatsApp with nothing to install.
+                One connected ecosystem for Indian schools and families. The School app brings your principal, office and teachers onto
+                one validated record, and parents get honest updates on WhatsApp. The NetCyberAI Family app gives every child an AI
+                tutor, study, English, drawing and a look at their future. School Link joins the two.
               </p>
               <div className="flex flex-wrap items-center gap-3">
                 <Button href="/book-demo" variant="secondary">
@@ -43,6 +43,9 @@ export function Hero() {
                 </Button>
                 <Button href="/get-started" variant="outline">
                   Get started
+                </Button>
+                <Button href="#family-app" variant="outline">
+                  Meet the Family app
                 </Button>
                 <Button href="#principal-dashboard" variant="accent">
                   <Icon name="play" className="mr-1.5 h-4 w-4" /> Try the principal dashboard

@@ -18,7 +18,7 @@ const ROLES = [
 ];
 
 const PRINCIPLES = [
-  'WhatsApp first. Parents need no app.',
+  'WhatsApp first. Parents need no app for school updates.',
   'Personal Best recognition, never a public ranking of teachers.',
   'Consent recorded before anything reaches a parent.',
   'Every school isolated in the database, every change audited.',

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Header } from '@/components/layout/Header';
+import { featureMenu } from '@/content/features/menu';
 import { Footer } from '@/components/layout/Footer';
 import { SiteBreadcrumbs } from '@/components/layout/SiteBreadcrumbs';
 import { AuthLinkForwarder } from '@/components/auth/AuthLinkForwarder';
@@ -31,7 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to main content
         </a>
-        <Header />
+        <Header features={featureMenu()} />
         <main id="main" tabIndex={-1} className="flex-1 focus:outline-none">
           <SiteBreadcrumbs />
           {children}

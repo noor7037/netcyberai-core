@@ -48,16 +48,16 @@ export const ECO_ROLES: EcoRole[] = [
     name: 'Student',
     tagline: 'Learn · Practice · Grow',
     icon: 'student',
-    href: '/products/academics',
-    items: ['Personal Learning Plan', 'Homework & Assignments', 'Exam Preparation', 'Progress Tracking', 'Certificates & Achievements', 'Interactive Learning', 'Doubt Support (AI)'],
+    href: '/products/family-app',
+    items: ['AI Tutor (Family app)', 'Homework & Assignments', 'Exam Preparation', 'Progress Tracking', 'Certificates & Achievements', 'Interactive Study', 'Spoken English'],
   },
   {
     id: 'parent',
     name: 'Parent',
     tagline: 'Stay Informed · Support · Engage',
     icon: 'parent',
-    href: '/products/parent-engagement',
-    items: ['Real-time Updates (WhatsApp)', 'Attendance Alerts', 'Homework & Assignments', 'Exam Results', 'Fee Reminders & Payments', 'Teacher Messages', 'Child’s Progress & Reports'],
+    href: '/products/family-app',
+    items: ['Updates on WhatsApp', 'Attendance Alerts', 'Homework & Assignments', 'Exam Results', 'Fee Reminders & Payments', 'Family app (optional)', 'School Link: child’s progress'],
   },
 ];
 
