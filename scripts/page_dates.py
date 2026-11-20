@@ -34,6 +34,8 @@ COLLECTIONS = {
     "solutions/[slug]": "src/content/catalog.ts",
     "resources/[slug]": "src/content/resources.ts",
     "free-tools/[slug]": "src/content/free-tools.ts",
+    # C533: the feature pages drawn from data, one file per audience.
+    "features/[slug]": ["src/content/features/school.ts", "src/content/features/family-learn.ts", "src/content/features/family-life.ts"],
 }
 
 
@@ -114,11 +116,12 @@ def compute() -> dict[str, str]:
         day = last_change(page_sources(folder))
         if day:
             dates[route] = day
-    for segment, file in COLLECTIONS.items():
+    for segment, source in COLLECTIONS.items():
         base = segment.split("/")[0]
+        files = source if isinstance(source, list) else [source]
         # The template page and the collection both make each entry's page.
-        day = last_change([file, *page_sources(APP / base / "[slug]")])
-        for slug in collection_slugs(file):
+        day = last_change([*files, *page_sources(APP / base / "[slug]")])
+        for slug in [s for f in files for s in collection_slugs(f)]:
             dates[f"/{base}/{slug}"] = day
     for post in sorted((ROOT / "src" / "content" / "blog").glob("*.ts")):
         if post.name == "index.ts":
