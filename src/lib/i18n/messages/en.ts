@@ -7589,6 +7589,7 @@ export const en = {
   'fam.school.awaiting': '{n} more of your children will appear once the school records consent.',
   'fam.school.addChildFirst': 'Add your child under Children first, then match them here.',
   'fam.school.saveError': 'That did not save. Try again.',
+  'fam.school.consentNeeded': 'Your school still needs your consent before your child\'s record can be shown. Please contact the school office.',
   'fam.school.saved': 'Saved.',
   'fam.school.save': 'Save',
   'fam.school.disconnect': 'Disconnect the school',

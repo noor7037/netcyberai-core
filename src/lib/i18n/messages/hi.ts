@@ -7580,6 +7580,7 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.school.awaiting': 'आपके {n} और बच्चे तब दिखेंगे जब स्कूल सहमति दर्ज करेगा।',
   'fam.school.addChildFirst': 'पहले बच्चे को \'बच्चे\' में जोड़ें, फिर यहाँ मिलाएँ।',
   'fam.school.saveError': 'सहेजा नहीं गया। फिर कोशिश करें।',
+  'fam.school.consentNeeded': 'आपके बच्चे का रिकॉर्ड दिखाने से पहले स्कूल को आपकी सहमति चाहिए। कृपया स्कूल कार्यालय से संपर्क करें।',
   'fam.school.saved': 'सहेजा गया।',
   'fam.school.save': 'सहेजें',
   'fam.school.disconnect': 'स्कूल से अलग करें',

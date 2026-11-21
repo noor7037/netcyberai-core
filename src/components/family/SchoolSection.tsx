@@ -330,7 +330,7 @@ function LinkCard({ w, lang, link, children }: { w: Words; lang: 'en' | 'hi'; li
   const save = async () => {
     setError('');
     const r = await familyApi('/api/family/school/children', 'POST', { linkId: link.linkId, pairs: link.school.children.map((c) => ({ studentId: c.studentId, childId: choice[c.studentId] || null })) });
-    if (!r.ok) return setError(w['fam.school.saveError']);
+    if (!r.ok) return setError(r.error === 'consent_needed' ? w['fam.school.consentNeeded'] : w['fam.school.saveError']);
     setSaved(true);
     router.refresh();
   };

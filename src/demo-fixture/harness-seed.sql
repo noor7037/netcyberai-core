@@ -555,3 +555,9 @@ select pg_temp.fl('careers','entrance_exam','board_exam_body','National Testing 
 select pg_temp.fl('careers','entrance_exam','institution','National Institute of Fashion Technology (illustrative)','Design and fashion entrance exam (illustrative)','डिज़ाइन और फ़ैशन प्रवेश परीक्षा (उदाहरण)','Entrance exam for design and fashion degrees.','{12}','{10,11}','{ALL}',9,-30,45,'closing_soon','https://www.nift.ac.in/','Class 12 students, or those appearing.','कक्षा 12 के विद्यार्थी, या परीक्षा देने वाले।',null);
 select pg_temp.fl('careers','entrance_exam','board_exam_body','Union Public Service Commission (illustrative)','Defence academy entrance exam (illustrative)','रक्षा अकादमी प्रवेश परीक्षा (उदाहरण)','Entrance exam for the defence academy after Class 12.','{12}','{8,9,10,11}','{ALL}',37,17,150,'upcoming','https://upsconline.gov.in/','Unmarried young people who have passed or are in Class 12.','कक्षा 12 पास या उसमें पढ़ रहे अविवाहित युवा।',null);
 select pg_temp.fl('careers','entrance_exam','institution','Indian Institutes of Science Education and Research (illustrative)','Science institutes aptitude test (illustrative)','विज्ञान संस्थानों की अभिक्षमता परीक्षा (उदाहरण)','Aptitude test for the science institutes.','{12}','{10,11}','{ALL}',null,null,null,'expected','https://iiseradmission.in/','Class 12 students with Science.','विज्ञान के साथ कक्षा 12 के विद्यार्थी।',null);
+
+-- The development stand-in provider (no key, sends nothing anywhere), so a harness run can route a profile to it through
+-- Control. Harness only: the live database never has this row and Control never offers it there.
+insert into control.ai_providers (provider_id, enabled, cleared_for_minors, cleared_terms_url, cleared_at, cleared_by)
+values ('stand-in', true, true, 'https://example.invalid/terms', now(), '00000000-0000-4000-8000-00000000f001')
+on conflict (provider_id) do nothing;
