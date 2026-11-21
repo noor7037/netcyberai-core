@@ -125,7 +125,8 @@ Credentials for all of these are sealed in Control → Integrations (`family-app
   web cannot reach: the Focus Lock (§9), and later push and camera.
 - It is listed on Google Play as its own app.
 - **Why a native shell, not a Trusted Web Activity:**
-  - the Focus Lock must live in the same app, because most pilot children use a parent's phone;
+  - the Focus Lock lives in its own app, NetCyberAI Focus, on the same phone, set up from the parent area (C538, which
+    replaced "the same app");
   - a Trusted Web Activity runs inside Chrome, and the lock may need to block browsers (YouTube opens in a browser
     too).
 - **What updates how:**

@@ -497,3 +497,54 @@ describe('the Focus Lock’s server (M2b-1, C305)', () => {
     expect((await status(childA, PHONE_A2)).body).toEqual({ error: 'unknown_device' });
   });
 });
+
+// C538: the lock runs in its own app, NetCyberAI Focus. The parent area asks a five-minute pass for the Focus app's
+// phone id, and the Focus app trades it once, on that phone, for its own family session.
+describe('the Focus app’s pass (C538)', () => {
+  const pass = async (cookie: string, device: string) => {
+    const res = await (await import('@/app/api/family/focus/pass/route')).POST(req('/api/family/focus/pass', { method: 'POST', cookie, device }));
+    return { code: res.status as number, body: await res.json() };
+  };
+  const redeem = async (device: string, body: unknown) => {
+    const res = await (await import('@/app/api/family/focus/redeem/route')).POST(req('/api/family/focus/redeem', { method: 'POST', device, body }));
+    return { code: res.status as number, body: await res.json() };
+  };
+
+  it('is made only in parent mode, for a phone already set up in that family', async () => {
+    expect((await pass(childA, PHONE_A)).body).toEqual({ error: 'parent_pin_required' });
+    expect((await pass(parentA, 'short')).body).toEqual({ error: 'bad_device' });
+    expect((await pass(parentA, PHONE_X)).body).toEqual({ error: 'unknown_device' });
+    const p = await pass(parentA, PHONE_A);
+    expect(p.code).toBe(200);
+    expect(typeof p.body.pass).toBe('string');
+  });
+
+  it('opens a family session only on the phone it was made for, never parent mode', async () => {
+    const p = (await pass(parentA, PHONE_A)).body.pass as string;
+    expect(await redeem(PHONE_X, { pass: p })).toEqual({ code: 400, body: { error: 'bad_pass' } });
+    expect(await redeem(PHONE_A, { pass: 'x.y.z' })).toEqual({ code: 400, body: { error: 'bad_pass' } });
+    expect(await redeem(PHONE_A, {})).toEqual({ code: 400, body: { error: 'bad_pass' } });
+    // A family session token is not a pass, and a pass is not a session.
+    expect((await redeem(PHONE_A, { pass: childA.slice('ncf_session='.length) })).code).toBe(400);
+    expect((await status(`ncf_session=${p}`, PHONE_A)).code).toBe(401);
+    const r = await redeem(PHONE_A, { pass: p });
+    expect(r.code).toBe(200);
+    const focusCookie = `ncf_session=${r.body.session}`;
+    expect((await status(focusCookie, PHONE_A)).code).toBe(200);
+    expect((await pass(focusCookie, PHONE_A)).body).toEqual({ error: 'parent_pin_required' });
+    // Family B's parent cannot make a pass for A's phone row: B's hash of the same id is B's own phone.
+    const pb = (await pass(parentB, PHONE_A)).body.pass as string;
+    const rb = await redeem(PHONE_A, { pass: pb });
+    expect((await status(`ncf_session=${rb.body.session}`, PHONE_A)).body.children.map((c: { firstName: string }) => c.firstName)).toEqual(['Ravi']);
+  });
+
+  it('opens nothing for a phone removed since, or after a sign-out everywhere', async () => {
+    const p = (await pass(parentA, PHONE_A)).body.pass as string;
+    await q(`update family.accounts set token_version = token_version + 1 where account_id = $1`, [A]);
+    expect(await redeem(PHONE_A, { pass: p })).toEqual({ code: 400, body: { error: 'bad_pass' } });
+    await q(`update family.accounts set token_version = token_version - 1 where account_id = $1`, [A]);
+    expect((await redeem(PHONE_A, { pass: p })).code).toBe(200);
+    await q(`delete from family.focus_devices where account_id = $1 and device_id = $2`, [A, devA]);
+    expect(await redeem(PHONE_A, { pass: p })).toEqual({ code: 404, body: { error: 'unknown_device' } });
+  });
+});

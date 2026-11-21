@@ -25,6 +25,8 @@ public class MainActivity extends BridgeActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        // C538: the parent area connects NetCyberAI Focus on this phone (FocusLinkPlugin).
+        registerPlugin(FocusLinkPlugin.class);
         super.onCreate(savedInstanceState);
 
         final View root = getWindow().getDecorView();

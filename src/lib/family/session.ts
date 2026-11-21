@@ -104,3 +104,27 @@ export async function verifyCodeStep(token: string | undefined): Promise<string 
   const v = await verifyFamilyToken(token, 'family_code');
   return v ? v.sub : null;
 }
+
+// The Focus app's pass (C538, src/lib/family/focus.ts): the account, its token_version and the phone's keyed hash.
+export async function signFocusPassToken(accountId: string, tokenVersion: number, hash: string, ttlSeconds: number): Promise<string> {
+  return signFamilyToken('family_focus', accountId, { tv: tokenVersion, dh: hash }, ttlSeconds);
+}
+
+export type FocusPassHolder = { accountId: string; tokenVersion: number };
+
+export async function verifyFocusPassToken(token: string): Promise<{ who: FocusPassHolder; hash: string } | null> {
+  const v = await verifyFamilyToken(token, 'family_focus');
+  if (!v || !Number.isInteger(v.claims.tv) || typeof v.claims.dh !== 'string') return null;
+  return { who: { accountId: v.sub, tokenVersion: Number(v.claims.tv) }, hash: v.claims.dh };
+}
+
+// The Focus app's own session, made from a live pass: the family's, kept, never a child's phone and never parent mode.
+export function focusAppSession(who: FocusPassHolder, sessionId: string): FamilySession {
+  return { accountId: who.accountId, tokenVersion: who.tokenVersion, sessionId, keep: true };
+}
+
+// Its token, for the Focus app's own encrypted store (never a cookie); signed here, with every other family session.
+export async function focusAppSessionToken(s: FamilySession): Promise<string> {
+  if (s.device) throw new Error('the Focus app’s session is never a child’s phone');
+  return signFamilySession(s);
+}

@@ -1,4 +1,5 @@
 import { createHash, createHmac } from 'crypto';
+import { signFocusPassToken, verifyFocusPassToken, type FocusPassHolder } from './session';
 import { isPrePrimary, listChildren } from './children';
 import { readFamilySwitches, switchOn } from './flags';
 import { dayPlan, type PlanKind } from './plan';
@@ -217,4 +218,28 @@ export async function parentFocus(db: Db, accountId: string): Promise<ParentFocu
 // "24 Oct, 4:30 pm" in India time, in the parent's language.
 export function focusTimeLabel(at: string, lang: 'en' | 'hi'): string {
   return sameInkOnBothSides(new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { timeZone: 'Asia/Kolkata', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' }).format(new Date(at)));
+}
+
+// ---- the Focus app's pass (C538) ------------------------------------------------------------------------------------
+// The lock runs in its own app, NetCyberAI Focus, beside the Family app on the same phone. The parent connects it from
+// the parent area (parent mode, the PIN) without typing a code: the Family app reads the Focus app's own phone id from
+// it on the phone (only an app signed with the same key may ask), sets the phone up (PUT devices), asks this pass and
+// hands it to the Focus app on the phone. The Focus app trades it for its own family session (POST redeem). The
+// pass is bound to the account, its token_version and that phone's keyed hash, and lasts five minutes: on any other
+// phone, after a sign-out everywhere, or later, it opens nothing.
+export const FOCUS_PASS_TTL_SECONDS = 5 * 60;
+
+export async function signFocusPass(accountId: string, tokenVersion: number, hash: string): Promise<string> {
+  return signFocusPassToken(accountId, tokenVersion, hash, FOCUS_PASS_TTL_SECONDS);
+}
+
+// The account and token_version the pass was made for, or null when it is not a live pass for this phone (the raw id
+// in the X-Focus-Device header).
+export async function verifyFocusPass(token: unknown, rawDevice: string | null): Promise<FocusPassHolder | null> {
+  if (typeof token !== 'string' || token.length > 2048) return null;
+  const v = await verifyFocusPassToken(token);
+  if (!v || !UUID.test(v.who.accountId)) return null;
+  const hash = deviceHash(v.who.accountId, rawDevice);
+  if (!hash || hash !== v.hash) return null;
+  return v.who;
 }

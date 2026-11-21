@@ -99,6 +99,8 @@ const FOCUS_KEYS: MessageKey[] = [
   'fam.focus.title', 'fam.focus.lead', 'fam.focus.none', 'fam.focus.phoneFor', 'fam.focus.phoneForNone', 'fam.focus.lastReport', 'fam.focus.noReport',
   'fam.focus.state.on', 'fam.focus.state.off', 'fam.focus.state.permissions', 'fam.focus.notices', 'fam.focus.notice.stopped', 'fam.focus.notice.permissions',
   'fam.focus.notice.clock', 'fam.focus.seen', 'fam.focus.remove', 'fam.focus.removeConfirm', 'fam.focus.removeYes', 'fam.common.cancel', 'fam.err.network',
+  'fam.focus.app.browser', 'fam.focus.app.title', 'fam.focus.app.what', 'fam.focus.app.install', 'fam.focus.app.key', 'fam.focus.app.failed', 'fam.focus.app.connectLead',
+  'fam.focus.app.who', 'fam.focus.app.done', 'fam.focus.app.connecting', 'fam.focus.app.connect', 'fam.err.off', 'fam.err.unknown_device',
   'fam.err.not_found', 'fam.err.bad_request', 'fam.err.parent_pin_required',
 ];
 
@@ -307,7 +309,16 @@ export default async function FamilyParentPage() {
             {page.children.length > 0 && (phoneLinking || phones.length > 0) && (
               <ChildPhoneSection w={familyWords(lang, PHONE_KEYS)} lang={lang} children={page.children.map((c) => ({ childId: c.childId, firstName: c.firstName }))} phones={phones} canLink={phoneLinking} />
             )}
-            {focus && <FocusSection w={familyWords(lang, FOCUS_KEYS)} devices={focus.devices} notices={focus.notices} />}
+            {focus && (
+              <FocusSection
+                w={familyWords(lang, FOCUS_KEYS)}
+                devices={focus.devices}
+                notices={focus.notices}
+                kids={page.children.map((c) => ({ childId: c.childId, firstName: c.firstName }))}
+                canSetUp={phoneLinking}
+                lang={lang}
+              />
+            )}
             </>
             ) : null,
           school: (
