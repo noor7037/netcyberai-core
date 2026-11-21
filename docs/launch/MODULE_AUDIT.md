@@ -13,14 +13,14 @@ the school day), **PARTIAL** (works, with a named piece missing), **NOT BUILT** 
 | Module | Verdict | Evidence and what is missing |
 |---|---|---|
 | Setup / onboarding | READY | Control creates the school and switches modules (step 1). Logins need Supabase Auth, so the harness writes them directly; on the live site the route makes them. |
-| Students (CSV import) | READY | 40 students imported (step 2). Guardians from the CSV: being fixed now (step 2 failed: the import ignored guardian columns). |
+| Students (CSV import) | READY | 40 students and 40 guardians imported from one file (step 2). A phone already on record is only suggested, never linked (C536). |
 | Parents / guardians | PARTIAL | Guardians, verification and School Link work. Consent must be recorded per guardian by the school (law; never automatic). WhatsApp waits on the school's own number. |
 | Staff | WORKS-UNCHECKED | Teacher invitation proven (step 3); payroll is not built. |
 | Attendance | READY | Marked for 40, seen by the family (steps 4, 7). |
 | Timetable | READY | Period set for Class 10-A, seen by the family (steps 3, 7). |
 | Homework | READY | Set by the teacher, seen by the family (steps 4, 7). |
 | Communication (notices) | READY | Teacher posts, principal approves, family sees it (steps 4, 7). |
-| Exams and report cards | READY | CBSE scheme applied, marks for 40, published, seen by the family (steps 3, 4, 7). New schools now get the board's default scheme (migration 20261121100000). |
+| Exams and report cards | READY | CBSE scheme applied, marks for 40, published, seen by the family (steps 3, 4, 7). New schools now get the board's default scheme (migration 20261121100000, applied live). |
 | Academics ("taught today") | PARTIAL | Live for teachers; lesson plans not built. |
 | Fees | WORKS-UNCHECKED | 30 API routes, 14 tests; OFF for the pilot (no payment account yet). |
 | Admissions, proxy, PTM, events, complaints, documents, compliance, reports, pulse, recovery | WORKS-UNCHECKED | Pages, APIs and tests exist; not in the pilot set. Switch off for the pilot school. |
@@ -45,3 +45,7 @@ the school day), **PARTIAL** (works, with a named piece missing), **NOT BUILT** 
 | Schools, modules, logins | READY | Step 1. |
 | Content approval (one click) | READY | C530. |
 | AI usage ledger | PARTIAL | Records attempts; proven once a tutor answer reaches it (step 10). |
+
+## Screens
+
+The harness checked 78 school and Control screens at 390 and 1440 before the run ran out of memory. None scrolled sideways or had small targets. The only errors were the harness database's connection timeouts under that memory pressure, not product faults. The pilot screens (communication, attendance, exams) are also proven by the school day.
