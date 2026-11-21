@@ -5,8 +5,8 @@ Android phone, about 15 minutes.
 
 ## Before you start (once)
 
-1. **In Control:** Family → People → your family account → add to staff preview. Then Apps → Focus Lock → on, for
-   staff preview. It is off for every family until you do this, and real families still do not see it.
+1. **Nothing to switch on.** Since 21 Nov 2026 the Focus Lock is offered to every family (Control → Apps → Focus Lock,
+   everyone). On each phone it stays off until the parent connects NetCyberAI Focus and taps Start.
 2. **Install both apps from the same run.** GitHub → Actions → the latest "android" run on this branch → Artifacts →
    `netcyberai-family-and-focus-apks`. Unzip it: `app-debug.apk` (Family) and `focus-debug.apk` (Focus).
    - Uninstall the NetCyberAI Family app you have now first. Test builds from different runs have different keys, and
