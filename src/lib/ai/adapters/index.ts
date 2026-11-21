@@ -13,6 +13,7 @@ import { sarvamAdapter, sarvamSpeechAdapter, sarvamVoiceAdapter } from './sarvam
 import { vertexAiAdapter } from './vertex-ai';
 import { workersAiAdapter, workersAiModerationAdapter, workersAiSpeechAdapter } from './workers-ai';
 import { youtubeAdapter } from './youtube';
+import { isTutorRequest, tutorAnswer } from './stand-in-tutor';
 import { CAPABILITIES, capabilities, type AdapterResult, type Capabilities, type Capability, type ModerationAdapter, type ModerationResult, type RealtimeAdapter, type SpeechAdapter, type SpeechResult, type SpeechToSpeechAdapter, type TextAdapter, type VoiceAdapter, type VoiceResult } from './types';
 
 export type { AdapterRequest, AdapterResult, Capabilities, Capability, ChatImage, ChatMessage, ModerationAdapter, ModerationResult, RealtimeAdapter, RealtimeResult, RealtimeToken, SpeechAdapter, SpeechToSpeechAdapter, SpeechToSpeechRequest, SpeechMediaType, SpeechResult, TermsNote, TextAdapter, VoiceAdapter, VoiceMediaType, VoiceResult } from './types';
@@ -30,7 +31,9 @@ export const standInAdapter: TextAdapter = {
   keyLooksRight: () => false,
   async streamText(request, onDelta): Promise<AdapterResult> {
     const asked = request.messages.filter((m) => m.role === 'user').length;
-    const text = request.responseFormat === 'json' ? JSON.stringify({ stand_in: true, model: request.model, questions: asked }) : `Stand-in answer (${asked} question${asked === 1 ? '' : 's'}).`;
+    // The tutor (family.resolver) reads a subject line and block lines: the stand-in answers in that format for it.
+    const user = request.messages.filter((m) => m.role === 'user').map((m) => m.content).join('\n');
+    const text = isTutorRequest(request.system) ? tutorAnswer(request.system, user) : request.responseFormat === 'json' ? JSON.stringify({ stand_in: true, model: request.model, questions: asked }) : `Stand-in answer (${asked} question${asked === 1 ? '' : 's'}).`;
     for (const piece of text.match(/[\s\S]{1,16}/g) ?? []) onDelta(piece);
     const words = (s: string) => s.split(/\s+/).filter(Boolean).length;
     return { ok: true, text, tokensIn: words(request.system) + request.messages.reduce((n, m) => n + words(m.content), 0), tokensOut: words(text) };

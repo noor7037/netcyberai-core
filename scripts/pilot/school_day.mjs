@@ -522,9 +522,9 @@ try {
     const noKey = (x) => /not_set_up|no_provider|unavailable|provider|key|ai_off|failed/i.test(JSON.stringify(x.refused ?? {})) || x.r.status === 503;
     if (first.r.status !== 200 || first.refused || !first.done) {
       const why = first.refused ? JSON.stringify(first.refused).slice(0, 200) : short(first.r);
-      // Routed to the stand-in and the call reached it (the ledger has the attempt): the stand-in answers in a fixed plain
-      // shape, not the tutor's block lines, so the tutor refuses. That is a real gap in the rehearsal, never a skip.
-      if (/routed to the stand-in/.test(flagNote) && /"reason":"failed"/.test(why)) throw new Error(`the tutor is routed to the stand-in and the call reached it, but the stand-in's fixed text is not the tutor's block format, so the tutor refused (${why}); a real provider key is needed for steps 8 to 9`);
+      // Routed to the stand-in and the call reached it (the ledger has the attempt): the stand-in answers the tutor in its
+      // block-line format (src/lib/ai/adapters/stand-in-tutor.ts), so a refusal here is a real failure, never a skip.
+      if (/routed to the stand-in/.test(flagNote) && /"reason":"failed"/.test(why)) throw new Error(`the tutor is routed to the stand-in and the call reached it, but the tutor refused its answer (${why})`);
       if (noKey(first) || /not_switched_on/.test(why)) throw new Skip(`no AI key in the harness (AI testing mode ${TESTING_MODE}; ${flagNote}): the tutor did not answer (${why})`);
       throw new Error(`the first question: ${why}`);
     }
