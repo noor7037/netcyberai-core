@@ -1,3 +1,4 @@
+import type { SessionRole } from '@/lib/auth/types';
 import { writeAuditLog } from '@/lib/audit/log';
 import type { SchoolRole } from '@/lib/contracts/modules';
 import { isUuid } from '@/lib/frameworks/custom-fields';
@@ -84,7 +85,7 @@ export async function saveScheme(db: Sql, actor: Actor, input: { scheme: unknown
 // change it: it is an ordinary first version). Called by Control in the school's creation transaction, as the
 // platform role. Only when the school's board has exactly one preset in use (a board with several levels leaves the
 // choice to the principal) and the school has no scheme yet. Audited as a system default.
-export async function applyBoardDefaultScheme(db: Sql, schoolId: string, by: { userId: string; role: string }): Promise<{ applied: boolean; version?: number }> {
+export async function applyBoardDefaultScheme(db: Sql, schoolId: string, by: { userId: string; role: SessionRole }): Promise<{ applied: boolean; version?: number }> {
   const school = await schoolBoard(db, schoolId);
   if (!school?.boardId) return { applied: false };
   const board = (await listBoards(db)).find((b) => b.boardId === school.boardId);
@@ -95,7 +96,7 @@ export async function applyBoardDefaultScheme(db: Sql, schoolId: string, by: { u
   return r.ok ? { applied: true, version: r.version } : { applied: false };
 }
 
-async function writeScheme(db: Sql, actor: { schoolId: string; userId: string; role: string }, input: { scheme: unknown; fromPresetId: unknown; basedOn: unknown }, auditAction: string): Promise<SaveResult> {
+async function writeScheme(db: Sql, actor: { schoolId: string; userId: string; role: SessionRole }, input: { scheme: unknown; fromPresetId: unknown; basedOn: unknown }, auditAction: string): Promise<SaveResult> {
   if (typeof input.basedOn !== 'number' || !Number.isInteger(input.basedOn) || input.basedOn < 0) return { ok: false, reason: 'based_on' };
   const checked = validateScheme(input.scheme);
   if (!checked.ok) return { ok: false, reason: checked.problem.code, ...(checked.problem.at === undefined ? {} : { at: checked.problem.at }) };
