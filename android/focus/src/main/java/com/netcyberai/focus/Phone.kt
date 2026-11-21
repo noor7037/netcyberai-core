@@ -62,7 +62,7 @@ object Phone {
     private fun browsers(ctx: Context): Set<String> =
         handlers(ctx, Intent(Intent.ACTION_VIEW, Uri.parse("https://example.org/")).addCategory(Intent.CATEGORY_BROWSABLE))
 
-    private fun homes(ctx: Context): Set<String> = handlers(ctx, Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME))
+    fun homes(ctx: Context): Set<String> = handlers(ctx, Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME))
 
     /** The phone's own app list (launcher apps), with the suggested ones ticked; never our apps or the calling apps. */
     fun apps(ctx: Context): List<AppRow> {
