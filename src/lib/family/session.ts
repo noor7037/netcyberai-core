@@ -122,3 +122,9 @@ export async function verifyFocusPassToken(token: string): Promise<{ who: FocusP
 export function focusAppSession(who: FocusPassHolder, sessionId: string): FamilySession {
   return { accountId: who.accountId, tokenVersion: who.tokenVersion, sessionId, keep: true };
 }
+
+// Its token, for the Focus app's own encrypted store (never a cookie); signed here, with every other family session.
+export async function focusAppSessionToken(s: FamilySession): Promise<string> {
+  if (s.device) throw new Error('the Focus app’s session is never a child’s phone');
+  return signFamilySession(s);
+}
