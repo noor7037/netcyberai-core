@@ -17,7 +17,7 @@ vi.mock('@/lib/family/school', () => ({
   setChildLinks: (...a: unknown[]) => (state.setChildLinks as unknown as (...x: unknown[]) => unknown)(...a),
 }));
 
-import { POST } from './route';
+import { POST } from '@/app/api/family/school/children/route';
 
 const post = (pairs: unknown) => POST(new Request('http://x/api/family/school/children', { method: 'POST', body: JSON.stringify({ linkId: LINK, pairs }) }) as never);
 
