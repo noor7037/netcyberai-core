@@ -144,6 +144,16 @@ object Phone {
         i != null && ctx.packageManager.resolveActivity(i, 0) != null
     }
 
+    /**
+     * Android 13 and later block "display over other apps" and usage access for an app installed from a file (not a
+     * store) until the parent allows "restricted settings" in its App info (⋮ menu). No app can switch this itself.
+     */
+    fun restrictedSettingsLikely(ctx: Context): Boolean {
+        if (Build.VERSION.SDK_INT < 33) return false
+        val installer = runCatching { ctx.packageManager.getInstallSourceInfo(ctx.packageName).installingPackageName }.getOrNull()
+        return installer != "com.android.vending"
+    }
+
     fun familyInstalled(ctx: Context): Boolean = ctx.packageManager.getLaunchIntentForPackage(FAMILY) != null
 
     fun openFamily(ctx: Context): Boolean = ctx.packageManager.getLaunchIntentForPackage(FAMILY)?.let { start(ctx, it) } ?: false
