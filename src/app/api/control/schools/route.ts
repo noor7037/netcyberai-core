@@ -3,6 +3,7 @@ import { requireSuperAdmin } from '@/lib/auth/require-super-admin';
 import { withTenantContext } from '@/lib/auth/db';
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import { writeAuditLog } from '@/lib/audit/log';
+import { applyBoardDefaultScheme } from '@/lib/exams/schemes';
 import { applyDefaultPlan } from '@/lib/frameworks/plans';
 
 const BOARD_TYPES = ['CBSE', 'ICSE', 'STATE', 'IB', 'OTHER'] as const;
@@ -55,6 +56,8 @@ export async function POST(req: NextRequest) {
       });
       // The plan new schools get (a platform setting, C204), in the same transaction (C114).
       await applyDefaultPlan(client, row.school_id, { userId: guard.claims.sub, role: guard.claims.role }, 'school created in Control');
+      // The board's grading preset, so results can be published on day one (the principal can still change it).
+      await applyBoardDefaultScheme(client, row.school_id, { userId: guard.claims.sub, role: guard.claims.role });
       return row;
     });
     return NextResponse.json({ school }, { status: 201 });

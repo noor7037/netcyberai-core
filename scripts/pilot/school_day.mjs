@@ -365,21 +365,11 @@ try {
     need(ct.status === 200, `make the teacher class teacher: ${short(ct)}`);
     const as = await call(principal, 'POST', '/api/app/subjects/assignments', { teacherUserId: ctx.teacher.sub, subjectId: ctx.subjectId, classId: ctx.classId });
     need(as.status === 200 || as.status === 201, `assign Mathematics in ${CLASS_NAME}: ${short(as)}`);
-    // A new school has no grading scheme, and a class cannot be published without one: the principal starts it from
-    // the board's preset, as the scheme screen does (src/lib/exams/scheme.ts schemeFromPreset).
+    // A new school starts with its board's grading scheme (saved by Control at creation); the principal saves nothing.
     const sch = await call(principal, 'GET', '/api/app/exams/scheme');
     need(sch.status === 200, `read the grading scheme: ${short(sch)}`);
-    let schemeNote = 'scheme already in force';
-    if (!sch.json.current) {
-      const board = (sch.json.boards ?? []).find((b) => b.boardId === (sch.json.board?.boardId ?? sch.json.board)) ?? (sch.json.boards ?? []).find((b) => /cbse/i.test(b.name));
-      const preset = board?.presets?.find((p) => /10|secondary/i.test(p.level)) ?? board?.presets?.[0];
-      need(preset, `no board preset to start from (board ${JSON.stringify(sch.json.board)}, ${(sch.json.boards ?? []).length} boards)`);
-      const copy = (v) => JSON.parse(JSON.stringify(v));
-      const scheme = { bands: copy(preset.bands), decimals: 0, passMark: preset.passMark, components: copy(preset.components).map((c) => ({ ...c, passMark: c.passMark ?? null, parts: c.parts ?? [] })), terms: [], layout: { components: true, total: true, percent: true, grade: true, attendance: true, remarks: true, coScholastic: preset.coScholastic !== null }, coScholastic: preset.coScholastic ? copy(preset.coScholastic) : null };
-      const saved = await call(principal, 'POST', '/api/app/exams/scheme', { action: 'save', scheme, fromPresetId: preset.presetId, basedOn: 0 });
-      need(saved.status === 200 || saved.status === 201, `save the grading scheme from the ${board.name} ${preset.level} preset: ${short(saved)}`);
-      schemeNote = `grading scheme saved from the ${board.name} ${preset.level} preset`;
-    }
+    need(sch.json.current, `a new CBSE school should start with its board's grading scheme, but none is in force`);
+    const schemeNote = `grading scheme in force from creation (version ${sch.json.current.version}, ${sch.json.current.fromPreset?.boardName ?? 'board'} ${sch.json.current.fromPreset?.level ?? 'preset'})`;
     const placed = [];
     const refused = [];
     for (let weekday = 1; weekday <= 7; weekday++) {

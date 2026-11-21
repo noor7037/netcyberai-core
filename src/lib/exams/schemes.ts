@@ -5,7 +5,7 @@ import type { Sql } from '@/lib/jobs/types';
 import type { ExamTypeRow } from '@/lib/contracts/exam-types';
 import { listBoards, loadPreset, schoolBoard, type Board } from './boards';
 import { examTypesOf } from './exam-types';
-import { validateScheme, type BoardPreset, type GradingScheme, type Problem } from './scheme';
+import { schemeFromPreset, validateScheme, type BoardPreset, type GradingScheme, type Problem } from './scheme';
 
 // The school's grading scheme (docs/27 row 9a, C213). Saving makes a new version; the latest version is in force;
 // nothing is overwritten. The principal and the school admin save it; the academic coordinator reads it. The school's
@@ -77,6 +77,25 @@ export type SaveResult = { ok: true; version: number } | { ok: false; reason: Sa
 // someone saved a newer one meanwhile, nothing is saved and the person is told, so no one's work is overwritten.
 export async function saveScheme(db: Sql, actor: Actor, input: { scheme: unknown; fromPresetId: unknown; basedOn: unknown }): Promise<SaveResult> {
   if (!SCHEME_EDITORS.includes(actor.role)) return { ok: false, reason: 'not_allowed' };
+  return writeScheme(db, actor, input, 'grading_scheme.saved');
+}
+
+// A new school starts with its board's preset, so results can be published on day one (the principal can still
+// change it: it is an ordinary first version). Called by Control in the school's creation transaction, as the
+// platform role. Only when the school's board has exactly one preset in use (a board with several levels leaves the
+// choice to the principal) and the school has no scheme yet. Audited as a system default.
+export async function applyBoardDefaultScheme(db: Sql, schoolId: string, by: { userId: string; role: string }): Promise<{ applied: boolean; version?: number }> {
+  const school = await schoolBoard(db, schoolId);
+  if (!school?.boardId) return { applied: false };
+  const board = (await listBoards(db)).find((b) => b.boardId === school.boardId);
+  if (!board || board.presets.length !== 1) return { applied: false };
+  if (await schemeInForce(db, schoolId)) return { applied: false };
+  const preset = board.presets[0];
+  const r = await writeScheme(db, { schoolId, userId: by.userId, role: by.role }, { scheme: schemeFromPreset(preset), fromPresetId: preset.presetId, basedOn: 0 }, 'grading_scheme.default_applied');
+  return r.ok ? { applied: true, version: r.version } : { applied: false };
+}
+
+async function writeScheme(db: Sql, actor: { schoolId: string; userId: string; role: string }, input: { scheme: unknown; fromPresetId: unknown; basedOn: unknown }, auditAction: string): Promise<SaveResult> {
   if (typeof input.basedOn !== 'number' || !Number.isInteger(input.basedOn) || input.basedOn < 0) return { ok: false, reason: 'based_on' };
   const checked = validateScheme(input.scheme);
   if (!checked.ok) return { ok: false, reason: checked.problem.code, ...(checked.problem.at === undefined ? {} : { at: checked.problem.at }) };
@@ -103,7 +122,7 @@ export async function saveScheme(db: Sql, actor: Actor, input: { scheme: unknown
       schoolId: actor.schoolId,
       actorUserId: actor.userId,
       actorRole: actor.role,
-      eventAction: 'grading_scheme.saved',
+      eventAction: auditAction,
       targetType: 'grading_schemes',
       targetId: rows[0].scheme_id,
       afterState: { version, from_preset_id: fromPresetId, bands: checked.scheme.bands.length, pass_mark: checked.scheme.passMark, decimals: checked.scheme.decimals, exam_types: checked.scheme.examTypes?.length ?? 0 },
