@@ -1,19 +1,19 @@
-school_day: starting the harness database (real migrations, in memory) on 127.0.0.1:3403 ...
-school_day: starting next dev on http://127.0.0.1:3402 (first compile takes a while) ...
+school_day: starting the harness database (real migrations, in memory) on 127.0.0.1:3406 ...
+school_day: starting next dev on http://127.0.0.1:3405 (first compile takes a while) ...
 
-[PASS] 1. Control: create a school and switch on the pilot modules  (6.5 s)
-  reason: school d1e0e84b made; 8 pilot modules on (fees off, switched off: the default plan had it on); logins route answered 503 service_key (no Supabase Auth in the harness), so the principal and office rows were written as that route writes them
+[PASS] 1. Control: create a school and switch on the pilot modules  (6.3 s)
+  reason: school 21bb1373 made; 8 pilot modules on (fees off, switched off: the default plan had it on); logins route answered 503 service_key (no Supabase Auth in the harness), so the principal and office rows were written as that route writes them
   routes: POST /api/control/schools, PUT /api/control/schools/:id/entitlements, GET /api/control/schools/:id/entitlements, POST /api/control/schools/:id/logins
 
-[FAIL] 2. Office: import 40 Class 10 students with guardians from a CSV  (20.7 s)
+[FAIL] 2. Office: import 40 Class 10 students with guardians from a CSV  (18.7 s)
   reason: 40 students imported, but the CSV's guardian columns made 0 guardians (the import has no guardian columns); the 40 guardians, their verification and consent were then added one by one through each student's record (all 40 linked, 40 active)
   routes: POST /api/app/classes, GET /api/app/subjects, POST /api/app/subjects, POST /api/app/students/import, POST /api/app/students/:id/guardians, POST /api/app/guardians/:id/students/:id/verification, POST /api/app/students/:id/consent
 
-[PASS] 3. Principal: add a teacher, set the Class 10-A timetable  (9.5 s)
-  reason: grading scheme saved from the Central Board of Secondary Education (CBSE) Classes IX-X preset; invitation made; teacher is class teacher and teaches Mathematics; period 1 Mathematics on weekdays 1,2,3,4,5,6,7 (database: 7 entries)
-  routes: POST /api/app/staff/invitations, PATCH /api/app/classes/:id, POST /api/app/subjects/assignments, GET /api/app/exams/scheme, POST /api/app/exams/scheme, PUT /api/app/timetable
+[PASS] 3. Principal: add a teacher, set the Class 10-A timetable  (5.3 s)
+  reason: grading scheme in force from creation (version 1, Central Board of Secondary Education (CBSE) Classes IX-X); invitation made; teacher is class teacher and teaches Mathematics; period 1 Mathematics on weekdays 1,2,3,4,5,6,7 (database: 7 entries)
+  routes: POST /api/app/staff/invitations, PATCH /api/app/classes/:id, POST /api/app/subjects/assignments, GET /api/app/exams/scheme, PUT /api/app/timetable
 
-[PASS] 4. Teacher: attendance, homework, class notice, marks for one paper  (75.5 s)
+[PASS] 4. Teacher: attendance, homework, class notice, marks for one paper  (71.0 s)
   reason: attendance (39 present, 1 absent), homework, notice (approved by the principal), marks for 40 (annual-examination+internal-assessment), published by the principal; database: 40 attendance marks today, 1 homework target(s)
   routes: POST /api/app/attendance, POST /api/app/homework, POST /api/app/communication/notices, POST /api/app/communication/notices/:id, GET /api/app/exams, POST /api/app/exams, GET /api/app/exams/papers/:id, POST /api/app/exams/papers/:id, POST /api/app/exams/:id/classes/:id/report-cards
 
@@ -21,24 +21,24 @@ school_day: starting next dev on http://127.0.0.1:3402 (first compile takes a wh
   reason: the fees module is off for this school (the pilot default)
   routes: (none)
 
-[PASS] 6. Principal: make a School Link code for the first child's guardian  (1.1 s)
-  reason: a single-use code made for guardian 30603bb2 (shown once; not printed here)
+[PASS] 6. Principal: make a School Link code for the first child's guardian  (0.9 s)
+  reason: a single-use code made for guardian b60bfb27 (shown once; not printed here)
   routes: POST /api/app/guardians/:id/family-code
 
-[PASS] 7. Family: redeem the code, match the child, read the school feed  (10.0 s)
-  reason: linked to "School Day Rehearsal 202611210328-a881", child matched; attendance on /family/parent; homework on /family/parent; notice on /family/parent; marks on /family/parent,/family/results; timetable on /family
+[PASS] 7. Family: redeem the code, match the child, read the school feed  (6.1 s)
+  reason: linked to "School Day Rehearsal 202611210339-7c74", child matched; attendance on /family/parent; homework on /family/parent; notice on /family/parent; marks on /family/parent,/family/results; timetable on /family
   routes: POST /api/family/children, POST /api/family/school/connect, POST /api/family/school/children, GET /family, GET /family/parent, GET /family/results, GET /family/study/homework
 
-[FAIL] 8. Family child: ask the tutor a Class 10 maths question, then "samajh nahi aaya"  (2.7 s)
-  reason: the tutor is routed to the stand-in and the call reached it, but the stand-in's fixed text is not the tutor's block format, so the tutor refused ({"t":"refused","reason":"failed","message":"The explanation could not be made just now. Please try again.","unanswered":"3d44c342-5a22-4cbe-a9c2-fc0aa4654bed"}); a real provider key is needed for steps 8 to 9
+[PASS] 8. Family child: ask the tutor a Class 10 maths question, then "samajh nahi aaya"  (2.4 s)
+  reason: answered the question (4 blocks) and the follow-up (3 blocks), AI testing mode on; understand flag on for everyone; family.resolver routed to the stand-in
   routes: GET /api/control/apps, GET /api/control/ai, POST /api/control/ai, POST /api/family/understand
 
-[SKIP] 9. Parent area: the child's progress / vault shows the question  (0.0 s)
-  reason: step 8 did not get an answer, so there is no question to find
-  routes: (none)
+[PASS] 9. Parent area: the child's progress / vault shows the question  (2.9 s)
+  reason: the question shows on /family/parent/vault
+  routes: GET /family/parent/progress/:id, GET /family/parent/vault, GET /family/parent
 
-[PASS] 10. Control: the AI usage ledger shows the run's attempts  (0.2 s)
-  reason: 1 new attempt(s) in the ledger; Control → AI shows 1 (outcomes: ok)
+[PASS] 10. Control: the AI usage ledger shows the run's attempts  (0.1 s)
+  reason: 2 new attempt(s) in the ledger; Control → AI shows 2 (outcomes: ok)
   routes: GET /api/control/ai
 
-school_day: 6 pass, 2 fail, 2 skip  (142 s, school stamp 202611210328-a881)
+school_day: 8 pass, 1 fail, 1 skip  (130 s, school stamp 202611210339-7c74)
