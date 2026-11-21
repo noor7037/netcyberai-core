@@ -1,10 +1,11 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '@/components/family/ui/Button';
 import { fill, type Words } from '@/lib/family/fill';
 import { errorWords, familyApi } from './client';
+import { connectFocusApp, focusLink, focusLinkAvailable, type FocusLinkStatus } from './focus-link';
 
 // The parent area's Focus Lock section (M2b-1, C305; docs/34 §9.1 rule 8): the phones the lock is set up on, with their
 // last report, and what the parent should look at: the lock stopped reporting while it was on, a permission was switched
@@ -76,11 +77,110 @@ function Device({ w, d, notices }: { w: Words; d: FocusDeviceView; notices: Focu
   );
 }
 
-export function FocusSection({ w, devices, notices }: { w: Words; devices: FocusDeviceView[]; notices: FocusNoticeView[] }) {
+export type FocusChildView = { childId: string; firstName: string };
+
+// C538: the lock is its own app, NetCyberAI Focus. On this phone, the parent installs it and connects it with one tap:
+// no code to type. Only in the Android app (the FocusLink plugin); a browser is told where to do it.
+function SetUpHere({ w, kids, lang }: { w: Words; kids: FocusChildView[]; lang: string }) {
+  const router = useRouter();
+  const [state, setState] = useState<FocusLinkStatus | 'browser' | null>(null);
+  const [chosen, setChosen] = useState<string[]>(kids.map((k) => k.childId));
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState('');
+  const [done, setDone] = useState(false);
+  useEffect(() => {
+    if (!focusLinkAvailable()) return setState('browser');
+    const read = () => void focusLink.status().then(setState, () => setState('browser'));
+    read();
+    // Back from the Play Store: look again.
+    window.addEventListener('focus', read);
+    document.addEventListener('visibilitychange', read);
+    return () => {
+      window.removeEventListener('focus', read);
+      document.removeEventListener('visibilitychange', read);
+    };
+  }, []);
+  if (state === null) return null;
+  const box = 'flex flex-col gap-3 rounded-2xl bg-off-white p-4 text-sm text-slate';
+  if (state === 'browser') return <p className={box}>{w['fam.focus.app.browser']}</p>;
+  if (!state.installed) {
+    return (
+      <div data-focus-setup="install" className={box}>
+        <p className="text-base font-bold">{w['fam.focus.app.title']}</p>
+        <p>{w['fam.focus.app.what']}</p>
+        <div>
+          <Button type="button" onClick={() => void focusLink.install()}>
+            {w['fam.focus.app.install']}
+          </Button>
+        </div>
+      </div>
+    );
+  }
+  if (!state.sameKey) return <p data-focus-setup="key" role="alert" className={box}>{w['fam.focus.app.key']}</p>;
+  const connect = async () => {
+    setBusy(true);
+    setError('');
+    const r = await connectFocusApp(chosen, lang);
+    setBusy(false);
+    if (!r.ok) return setError(r.error === 'focus_app' ? w['fam.focus.app.failed'] : errorWords(w, r.error));
+    setDone(true);
+    router.refresh();
+  };
+  return (
+    <div data-focus-setup="connect" className={box}>
+      <p className="text-base font-bold">{w['fam.focus.app.title']}</p>
+      <p>{w['fam.focus.app.connectLead']}</p>
+      {kids.length > 1 && (
+        <fieldset className="flex flex-col gap-2">
+          <legend className="mb-1 font-semibold">{w['fam.focus.app.who']}</legend>
+          {kids.map((k) => (
+            <label key={k.childId} className="flex min-h-11 items-center gap-3">
+              <input
+                type="checkbox"
+                className="h-5 w-5"
+                checked={chosen.includes(k.childId)}
+                onChange={(e) => setChosen((c) => (e.target.checked ? [...c, k.childId] : c.filter((x) => x !== k.childId)))}
+              />
+              <span className="text-base">{k.firstName}</span>
+            </label>
+          ))}
+        </fieldset>
+      )}
+      {error && (
+        <p role="alert" className="font-semibold text-red-700">
+          {error}
+        </p>
+      )}
+      {done && <p role="status">{w['fam.focus.app.done']}</p>}
+      <div>
+        <Button type="button" disabled={busy || chosen.length === 0} onClick={() => void connect()}>
+          {busy ? w['fam.focus.app.connecting'] : w['fam.focus.app.connect']}
+        </Button>
+      </div>
+    </div>
+  );
+}
+
+export function FocusSection({
+  w,
+  devices,
+  notices,
+  kids = [],
+  canSetUp = false,
+  lang = 'en',
+}: {
+  w: Words;
+  devices: FocusDeviceView[];
+  notices: FocusNoticeView[];
+  kids?: FocusChildView[];
+  canSetUp?: boolean;
+  lang?: string;
+}) {
   return (
     <section data-focus-section className="fam-card fam-section fam-rise bg-white">
       <h2 className="fam-h2 text-slate">{w['fam.focus.title']}</h2>
       <p className="text-sm text-slate">{w['fam.focus.lead']}</p>
+      {canSetUp && kids.length > 0 && <SetUpHere w={w} kids={kids} lang={lang} />}
       {devices.length === 0 ? (
         <p className="text-sm text-slate">{w['fam.focus.none']}</p>
       ) : (

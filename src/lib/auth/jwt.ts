@@ -151,8 +151,10 @@ export async function verifyStepUpToken(token: string): Promise<{ userId: string
 //   family         the family's session: the account, its token_version (checked live on every database request)
 //                  and a session id;
 //   family_parent  parent mode after the parent PIN: bound to the same account and session id, short-lived;
-//   family_code    the email-code step: the email the code was sent to, until the code is entered.
-export type FamilyTokenTyp = 'family' | 'family_parent' | 'family_code';
+//   family_code    the email-code step: the email the code was sent to, until the code is entered;
+//   family_focus   the Focus app's pass (C538): made in parent mode for one phone (its keyed device hash) and the
+//                  account's token_version, five minutes, traded on that phone only for the Focus app’s own session.
+export type FamilyTokenTyp = 'family' | 'family_parent' | 'family_code' | 'family_focus';
 const FAMILY_AUDIENCE = 'nca-family';
 
 export async function signFamilyToken(typ: FamilyTokenTyp, sub: string, claims: Record<string, string | number>, ttlSeconds: number): Promise<string> {

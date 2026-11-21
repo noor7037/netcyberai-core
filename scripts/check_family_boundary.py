@@ -75,7 +75,9 @@ FAMILY_DOORS = {
     "@/lib/control/billing-route": {"src/app/api/family/prepare/route.ts"},
     # The Android shell's own speech engine (C230-Y): the web view has no speechSynthesis, so the English course and the
     # read-aloud button speak through the shell's TextToSpeech plugin, from this one file.
-    "@capacitor/core": {"src/components/family/english/speech.ts"},
+    # C538: the parent area connects NetCyberAI Focus on the same phone through the shell's FocusLink plugin, from this
+    # one file.
+    "@capacitor/core": {"src/components/family/english/speech.ts", "src/components/family/focus-link.ts"},
     # School Link (C230-AA): the school's records, read as the guardian, only through this one family file.
     "@/lib/school-link": {"src/lib/family/school.ts"},
     # Online tests (AQ-4, C365): School Link's guardian functions for sitting a test in child mode, as the guardian, only

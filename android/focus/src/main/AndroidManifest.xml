@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- NetCyberAI Focus (C538; docs/34 §9; decisions C304). A parental-control app the parent installs and sets up from
+     the Family app's parent area. It sees which app is in front (usage access, read on the phone only), covers a locked
+     app with the block screen (display over other apps) and runs as a visible foreground service. No Accessibility API,
+     no device admin, no QUERY_ALL_PACKAGES (launcher apps come from the <queries> below), no battery-exemption request
+     (the parent switches battery saving off in Settings, guided). -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <queries>
+        <!-- The phone's own app list, for the parent to choose from. -->
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+        <!-- The home screen, kept open. -->
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.HOME" />
+        </intent>
+        <!-- Browsers, ticked by default (a child would open m.youtube.com in one). -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="https" />
+        </intent>
+        <!-- Whatever opens Settings, app info, uninstall and the permission screens: PIN only in lock times (rule 8). -->
+        <intent>
+            <action android:name="android.settings.SETTINGS" />
+        </intent>
+        <intent>
+            <action android:name="android.settings.APPLICATION_DETAILS_SETTINGS" />
+            <data android:scheme="package" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.DELETE" />
+            <data android:scheme="package" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.UNINSTALL_PACKAGE" />
+            <data android:scheme="package" />
+        </intent>
+        <intent>
+            <action android:name="android.settings.action.MANAGE_OVERLAY_PERMISSION" />
+        </intent>
+        <intent>
+            <action android:name="android.settings.USAGE_ACCESS_SETTINGS" />
+        </intent>
+        <!-- The calling apps, kept open whatever their brand. -->
+        <intent>
+            <action android:name="android.intent.action.DIAL" />
+        </intent>
+        <!-- The Family app, which connects this app and opens study. -->
+        <package android:name="com.netcyberai.family" />
+        <!-- The brands' own set-up screens and security apps (OemGuide). -->
+        <package android:name="com.miui.securitycenter" />
+        <package android:name="com.miui.powerkeeper" />
+        <package android:name="com.miui.packageinstaller" />
+        <package android:name="com.miui.cleaner" />
+        <package android:name="com.xiaomi.market" />
+        <package android:name="com.xiaomi.mipicks" />
+        <package android:name="com.samsung.android.lool" />
+        <package android:name="com.samsung.android.sm" />
+        <package android:name="com.samsung.android.sm.devicesecurity" />
+        <package android:name="com.sec.android.app.samsungapps" />
+        <package android:name="com.iqoo.secure" />
+        <package android:name="com.vivo.permissionmanager" />
+        <package android:name="com.vivo.appstore" />
+        <package android:name="com.coloros.safecenter" />
+        <package android:name="com.oplus.safecenter" />
+        <package android:name="com.oppo.safe" />
+        <package android:name="com.coloros.phonemanager" />
+        <package android:name="com.oplus.phonemanager" />
+        <package android:name="com.oneplus.security" />
+        <package android:name="com.heytap.market" />
+        <package android:name="com.oppo.market" />
+        <package android:name="com.transsion.phonemaster" />
+        <package android:name="com.transsion.packageinstaller" />
+    </queries>
+
+    <application
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@android:style/Theme.Material.Light.NoActionBar">
+
+        <!-- Google Play's monitoring-app flag: a parental-control app, for parents keeping their children safe. -->
+        <meta-data android:name="isMonitoringTool" android:value="child_monitoring" />
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:configChanges="orientation|screenSize|keyboardHidden|locale|layoutDirection|uiMode">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".FocusService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="Parental control set up by the parent: keeps chosen entertainment apps closed during study times until the child's study for the day is done." />
+        </service>
+
+        <receiver
+            android:name=".BootReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
+
+        <!-- The Family app connects this app here, on the phone: exported, but every call is refused unless it comes
+             from com.netcyberai.family signed with this app's own key (LinkProvider). -->
+        <provider
+            android:name=".LinkProvider"
+            android:authorities="com.netcyberai.focus.link"
+            android:exported="true" />
+    </application>
+</manifest>

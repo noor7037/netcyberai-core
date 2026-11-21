@@ -1,0 +1,59 @@
+// NetCyberAI Focus (C538): the Focus Lock as its own small app, beside the Family app on the same phone. Plain Android
+// views and the platform's own classes only (no AndroidX), so the app stays small for budget phones. The lock's rules
+// are the shared rule engine (:focuslock-core), tested on the JVM.
+apply plugin: 'com.android.application'
+apply plugin: 'org.jetbrains.kotlin.android'
+
+def keystorePropertiesFile = rootProject.file('keystore.properties')
+def keystoreProperties = new Properties()
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
+android {
+    namespace 'com.netcyberai.focus'
+    compileSdk rootProject.ext.compileSdkVersion
+    defaultConfig {
+        applicationId 'com.netcyberai.focus'
+        // Android 8: app categories, notification channels, the overlay window type the block screen uses.
+        minSdkVersion 26
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName '0.1.0'
+    }
+    // Release signing: the same upload key as the Family app (Play App Signing: "use the same app signing key as
+    // NetCyberAI Family" when the app is created), so the two apps can talk on the phone. Debug builds made in the same
+    // run share the runner's debug key.
+    signingConfigs {
+        release {
+            if (keystorePropertiesFile.exists()) {
+                storeFile file(keystoreProperties['storeFile'])
+                storePassword keystoreProperties['storePassword']
+                keyAlias keystoreProperties['keyAlias']
+                keyPassword keystoreProperties['keyPassword']
+            }
+        }
+    }
+    buildTypes {
+        release {
+            if (keystorePropertiesFile.exists()) {
+                signingConfig signingConfigs.release
+            }
+            minifyEnabled false
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_21
+        targetCompatibility JavaVersion.VERSION_21
+    }
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21)
+    }
+}
+
+dependencies {
+    implementation project(':focuslock-core')
+}

@@ -15,9 +15,10 @@ CONTEXT: From the Claude Code build lead to the supervisor and the founder (Noor
 
 ## Decisions (C304)
 
-- **One native plugin, in the same app.** A Capacitor plugin `FocusLock` (Kotlin, in `android/`) holds the lock. The
-  web app sets it up and shows the parent area; the plugin enforces it. There is no second app, because most pilot
-  children use a parent's phone (§9).
+- **Its own app (C538, replacing "one plugin in the same app").** NetCyberAI Focus (`android/focus`, package
+  `com.netcyberai.focus`) holds the lock, on the same phone as the Family app. The parent area connects it with one tap
+  (the FocusLink plugin in the Family app, the pass and redeem routes); the Focus app enforces it. Play's monitoring
+  flag stays off the learning app.
 - **How it sees and covers an app:**
   - It learns which app is in front from **usage access** (`PACKAGE_USAGE_STATS`), read on the phone.
   - It covers a locked app with our block screen. To open that screen from the background on Android 10 and later, it

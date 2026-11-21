@@ -73,6 +73,27 @@ jobs:
           if-no-files-found: error
           retention-days: 30
 
+      # NetCyberAI Focus (C538), the Focus Lock's own app, from the same run so it carries the same debug key as the
+      # Family app: the two connect on the phone only when both come from one run.
+      - name: Keep the Focus app's APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: netcyberai-focus-debug-apk
+          path: android/focus/build/outputs/apk/debug/focus-debug.apk
+          if-no-files-found: error
+          retention-days: 30
+
+      # Both apps together, for installing on one phone.
+      - name: Keep both APKs together
+        uses: actions/upload-artifact@v4
+        with:
+          name: netcyberai-family-and-focus-apks
+          path: |
+            android/app/build/outputs/apk/debug/app-debug.apk
+            android/focus/build/outputs/apk/debug/focus-debug.apk
+          if-no-files-found: error
+          retention-days: 30
+
       - name: Keep the test report when a test fails
         if: failure()
         uses: actions/upload-artifact@v4
