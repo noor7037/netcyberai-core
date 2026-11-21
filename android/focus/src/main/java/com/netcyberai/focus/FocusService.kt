@@ -42,6 +42,9 @@ class FocusService : Service() {
         private const val BEAT_EVERY = 30 * 60_000L
         private const val FLUSH_EVERY = 60_000L
         private const val DEVICE_EVERY = 10 * 60_000L
+        private const val EVENT_RESUMED = 1
+        private const val EVENT_PAUSED = 2
+        private const val EVENT_STOPPED = 23
 
         fun start(ctx: Context) {
             val s = Store.get(ctx)
@@ -55,7 +58,10 @@ class FocusService : Service() {
     private lateinit var overlay: BlockOverlay
     private var running = false
     private var current: String? = null
-    private var lastEventAt = 0L
+    private var currentAt = 0L
+    private val resumed = HashMap<String, Pair<String, Long>>()
+    private var sentHomeFor: String? = null
+    private var homes: Set<String> = emptySet()
     private var lastQuery = 0L
     private var lastTick = 0L
     private var statusAt = 0L
@@ -171,15 +177,24 @@ class FocusService : Service() {
         if (pkg == null || s.removed) {
             overlay.hide()
         } else {
-            if (device == null || now - deviceAt > DEVICE_EVERY) { device = Phone.devicePackages(this); deviceAt = now }
+            if (device == null || now - deviceAt > DEVICE_EVERY) { device = Phone.devicePackages(this); homes = Phone.homes(this) + "com.android.systemui"; deviceAt = now }
             when (val d = FocusEngine.decide(pkg, rules, device!!, s.state, clock)) {
                 is Decision.Open -> {
-                    overlay.hide()
+                    // After a block the locked app was sent to the home screen: the block screen stays over the home
+                    // screen and the recent apps until the child taps a button, so nothing locked shows behind it.
+                    if (!(overlay.isShown && pkg in homes)) overlay.hide()
                     val child = d.limitChildId
                     if (child != null && lastTick > 0) Store.touch(this) { it.copy(state = FocusEngine.recordLockedUse(it.state, child, now - lastTick, clock)) }
                 }
                 is Decision.Blocked -> {
                     overlay.show(d, s.lang)
+                    // Stop the locked app (a video would play on behind the block screen): send it to the background,
+                    // once for each time it is opened.
+                    val opened = "$pkg@$currentAt"
+                    if (overlay.isShown && sentHomeFor != opened) {
+                        sentHomeFor = opened
+                        Phone.openHome(this)
+                    }
                     // Study may have just been finished: ask at once, so the apps open within seconds.
                     if (d.reason == BlockReason.PLAN_NOT_DONE && now - statusAt > STATUS_ON_BLOCK && Focus.isConnected(s)) {
                         if (background { Focus.refreshStatus(this) }) statusAt = now
@@ -200,14 +215,23 @@ class FocusService : Service() {
         val e = UsageEvents.Event()
         while (events.hasNextEvent()) {
             events.getNextEvent(e)
-            // ACTIVITY_RESUMED (API 29) has the value of MOVE_TO_FOREGROUND (1).
-            @Suppress("DEPRECATION")
-            if (e.eventType == UsageEvents.Event.MOVE_TO_FOREGROUND && e.timeStamp >= lastEventAt) {
-                lastEventAt = e.timeStamp
-                current = e.packageName
+            val key = "${e.packageName}/${e.className}"
+            when (e.eventType) {
+                // ACTIVITY_RESUMED (API 29) has the value of MOVE_TO_FOREGROUND (1).
+                EVENT_RESUMED -> if (e.timeStamp >= (resumed[key]?.second ?: 0L)) resumed[key] = e.packageName to e.timeStamp
+                EVENT_PAUSED, EVENT_STOPPED -> if (e.timeStamp >= (resumed[key]?.second ?: 0L)) resumed.remove(key)
             }
         }
         lastQuery = end
+        // The app in front is the latest activity still resumed. Recent apps with a live picture of the app (Pixel and
+        // others) keep that app resumed under the overview, so when the overview closes the app is in front again even
+        // though no new "resumed" event comes (founder's phone, 21 Nov: back from recent apps passed the lock).
+        if (resumed.size > 64) resumed.entries.sortedBy { it.value.second }.take(resumed.size - 64).forEach { resumed.remove(it.key) }
+        val top = resumed.values.maxByOrNull { it.second }
+        if (top != null) {
+            current = top.first
+            currentAt = top.second
+        }
         return current
     }
 

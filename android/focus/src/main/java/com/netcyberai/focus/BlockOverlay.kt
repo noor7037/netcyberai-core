@@ -22,6 +22,8 @@ class BlockOverlay(private val ctx: Context, private val onChange: () -> Unit) {
     private var shown: String? = null
     private var typingPin = false
 
+    val isShown: Boolean get() = root != null
+
     fun hide() {
         root?.let { runCatching { wm.removeView(it) } }
         root = null
