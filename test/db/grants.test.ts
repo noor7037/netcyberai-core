@@ -384,7 +384,7 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   // p6-9a begin
   boards: 'INSERT,SELECT', // added in Control, never changed or removed (C213)
   board_presets: 'INSERT,SELECT', // a new preset replaces an old one; none is changed
-  grading_schemes: '', // a school's grading scheme is its own: the platform role reads nothing here
+  grading_schemes: 'INSERT,SELECT', // Control saves a new school's board scheme as its first version; nothing is changed or removed
   // p6-9a end
   // p6-9b begin
   exams: '', // a school's exams and marks are its own: the platform role reads nothing here (C214)

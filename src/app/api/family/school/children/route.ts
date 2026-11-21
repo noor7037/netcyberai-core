@@ -24,6 +24,10 @@ export async function POST(req: NextRequest) {
   }
   const school = await linkedSchool(familyClaims(g.session), linkId);
   if (!school) return NextResponse.json({ error: 'not_found' }, { status: 404 });
+  // A school child the school did not show this guardian is one whose consent is not yet recorded (home.ts shows a child
+  // only with consent): say so plainly, so the parent is told to contact the school rather than "try again".
+  const shown = new Set(school.children.map((c) => c.studentId));
+  if (pairs.some((p) => p.childId !== null && !shown.has(p.studentId))) return NextResponse.json({ error: 'consent_needed' }, { status: 400 });
   return familyRun(g.session, async (db) => {
     const r = await setChildLinks(db, g.session.accountId, linkId, school.children.map((c) => c.studentId), pairs);
     if (!r.ok) return NextResponse.json({ error: r.reason }, { status: r.reason === 'not_found' ? 404 : 400 });

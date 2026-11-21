@@ -12,6 +12,13 @@ const h = vi.hoisted(() => ({
   revoked: false,
 }));
 
+// This database carries the billing migrations only (no boards table); the board's default grading scheme on a new
+// school is proven against the full migrations in test/exams/default-scheme-db.test.ts.
+vi.mock('@/lib/exams/schemes', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/lib/exams/schemes')>()),
+  applyBoardDefaultScheme: async () => ({ applied: false }),
+}));
+
 vi.mock('@/lib/auth/db', async (importOriginal) => {
   const real = await importOriginal<typeof import('@/lib/auth/db')>();
   return {

@@ -125,8 +125,8 @@ export function parseRegister(text: string): RegisterParse {
 // ---- to the import -------------------------------------------------------------------------------------------------
 
 // The import's columns the register fills (src/lib/import/rules.ts IMPORT_COLUMNS, and the optional gender and
-// guardian_phone of run-import.ts). The guardian's name and the address are shown for the office to check, but the
-// import has no column for them yet, so they are not sent.
+// guardian_phone of run-import.ts). The guardian's name and the address are shown for the office to check but not
+// sent: a phone alone only suggests siblings, so a register read never adds a guardian by itself.
 export const IMPORT_HEADER = ['name', 'admission_no', 'class_name', 'dob', 'gender', 'guardian_phone'] as const;
 
 // A class as the school names its classes: "5" and "A" → "5-A" (the import matches a class name exactly).
