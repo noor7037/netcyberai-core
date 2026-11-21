@@ -49,6 +49,8 @@ type ImportResult = {
   skippedCount: number;
   errors: ImportRowError[];
   siblingSuggestions: { row: number; studentId: string | null; name: string; matches: SiblingSuggestion[] }[];
+  // What the guardian columns did (or would do); absent on a repeat of a file already imported.
+  guardians?: { created: number; linked: number; onRecord: number };
 };
 
 // The school record's gender (C222): Aadhaar's set or "not given", in this order on the form.
@@ -297,9 +299,17 @@ export function StudentsView({ title, description, statusFilter, openNew = false
 
   // What a check or an import did, in one sentence.
   function importSummary(r: ImportResult): string {
-    if (r.preview) return t('students.import.checked', { ready: r.rowCount - r.skippedCount, rows: r.rowCount });
     if (r.refused) return tCount('students.import.refused', r.skippedCount);
-    return t(r.alreadyImported ? 'students.import.again' : 'students.import.done', { imported: r.importedCount, rows: r.rowCount });
+    // The import never records consent (it stays the office's, by hand): every guardian it adds still needs it.
+    const g = r.guardians;
+    const extra = [
+      g && g.created > 0 ? tCount(r.preview ? 'students.import.guardiansWould' : 'students.import.guardians', g.created) : '',
+      g && g.onRecord > 0 ? tCount('students.import.guardiansOnRecord', g.onRecord) : '',
+    ].filter(Boolean);
+    const head = r.preview
+      ? t('students.import.checked', { ready: r.rowCount - r.skippedCount, rows: r.rowCount })
+      : t(r.alreadyImported ? 'students.import.again' : 'students.import.done', { imported: r.importedCount, rows: r.rowCount });
+    return [head, ...extra].join(' ');
   }
 
   function handleImport(e: FormEvent<HTMLFormElement>) {

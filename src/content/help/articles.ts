@@ -178,7 +178,7 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     ],
     tips: [
       { en: 'Uploading the exact same file again is safe: it does not create duplicates.', hi: 'वही फ़ाइल दोबारा upload करना सुरक्षित है: इससे duplicate नहीं बनते।' },
-      { en: 'Optional columns guardian_phone and guardian_email are used only to suggest possible siblings; you confirm each one.', hi: 'वैकल्पिक columns guardian_phone और guardian_email केवल संभावित भाई-बहन सुझाने के लिए हैं; हर एक की पुष्टि आप करते हैं।' },
+      { en: 'Optional columns guardian_name, guardian_relation, guardian_phone and guardian_email add each child’s guardian and link them; brothers and sisters with the same number share one. The import never records consent: each guardian still needs it. A phone or email alone only suggests possible siblings; you confirm each one.', hi: 'वैकल्पिक columns guardian_name, guardian_relation, guardian_phone और guardian_email से हर बच्चे का अभिभावक जुड़ता और लिंक होता है; एक ही नंबर वाले भाई-बहनों का एक ही अभिभावक बनता है। Import कभी सहमति दर्ज नहीं करता: हर अभिभावक की सहमति अभी भी चाहिए। केवल फ़ोन या email संभावित भाई-बहन ही सुझाते हैं; हर एक की पुष्टि आप करते हैं।' },
       { en: 'Leave gender empty when you do not know it: the child is “Not given”, and the student data check lists them for you to fill in.', hi: 'लिंग पता न हो तो खाली छोड़ें: बच्चा “Not given” रहता है, और विद्यार्थी डेटा जाँच उसे भरने के लिए दिखाती है।' },
     ],
     start: { href: '/app/students', label: { en: 'Students', hi: 'Students' } },

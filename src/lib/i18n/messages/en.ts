@@ -6306,7 +6306,7 @@ export const en = {
   'students.gender.label': 'Gender, as Aadhaar prints it',
   'students.dataCheck.link': 'Student data check',
   'students.dataCheck.how': 'Check each child’s name, date of birth and gender against Aadhaar as printed, for UDISE+ and APAAR.',
-  'students.import.columns': 'Columns: name (needed), admission_no, class_name (as a class is named here, exactly), roll_no, dob (as YYYY-MM-DD) and gender (male, female or transgender, as Aadhaar prints it; leave it empty if not known). Every child starts as waiting for consent. If any row has a problem, nothing is imported: every row to correct is listed. Uploading the same file again is safe: nobody is added twice. Optional guardian_phone and guardian_email columns only suggest brothers and sisters already here; nothing is linked until you confirm.',
+  'students.import.columns': 'Columns: name (needed), admission_no, class_name (as a class is named here, exactly), roll_no, dob (as YYYY-MM-DD) and gender (male, female or transgender, as Aadhaar prints it; leave it empty if not known). Every child starts as waiting for consent. If any row has a problem, nothing is imported: every row to correct is listed. Uploading the same file again is safe: nobody is added twice. Optional guardian columns: guardian_name, guardian_relation (mother, father, guardian or other), guardian_phone (a 10-digit mobile number, needed with any guardian column) and guardian_email. A row with a guardian’s name and phone adds that guardian and links them to the child; brothers and sisters with the same number share one guardian. The import never records consent: each guardian it adds still needs consent, recorded by you as for a guardian added by hand. A number a guardian here already has is not linked: it is suggested for you to confirm. A phone or email alone only suggests brothers and sisters already here.',
   // c224 end
   // c225 begin
   'rtd.csv.writtenOff': 'Written off (₹)',
@@ -6477,6 +6477,12 @@ export const en = {
   'students.import.refused.one': 'Nothing was imported: {count} row has a problem. Correct it and import the file again.',
   'students.import.refused.other': 'Nothing was imported: {count} rows have a problem. Correct them and import the file again.',
   'students.import.done': '{imported} of {rows} rows imported.',
+  'students.import.guardians.one': '{count} guardian added; consent is still needed from them.',
+  'students.import.guardians.other': '{count} guardians added; consent is still needed from each.',
+  'students.import.guardiansWould.one': 'Import would add {count} guardian; consent will still be needed from them.',
+  'students.import.guardiansWould.other': 'Import would add {count} guardians; consent will still be needed from each.',
+  'students.import.guardiansOnRecord.one': '{count} row gives a number a guardian here already has: not linked, confirm it below or on the student’s page.',
+  'students.import.guardiansOnRecord.other': '{count} rows give a number a guardian here already has: not linked, confirm them below or on each student’s page.',
   'students.import.again': 'This exact file was imported before. Then: {imported} of {rows} rows imported.',
   'students.import.row': 'Row {row} ({name}): {errors}',
   'students.import.unnamed': 'no name',

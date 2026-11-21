@@ -79,8 +79,12 @@ function readStudents(raw: string): NonNullable<ProvisionInput['students']> | Pr
     const checked = phone ? checkPhone(phone) : null;
     if (checked && !checked.ok) add(row, 'guardian phone is not a 10-digit phone number');
     const out: Record<string, string> = { name: rec.name ?? '', class_name: grade && section ? `${grade}-${section}` : '' };
-    for (const k of ['admission_no', 'roll_no', 'dob', 'gender', 'guardian_name'] as const) if (rec[k]) out[k] = rec[k];
-    if (checked?.ok) out.guardian_phone = checked.digits;
+    for (const k of ['admission_no', 'roll_no', 'dob', 'gender'] as const) if (rec[k]) out[k] = rec[k];
+    // A guardian's name goes with a phone that reads, as it always has: without one there is no guardian to add.
+    if (checked?.ok) {
+      out.guardian_phone = checked.digits;
+      if (rec.guardian_name) out.guardian_name = rec.guardian_name;
+    }
     return out;
   });
   return { records, rowErrors, hash: createHash('sha256').update(raw).digest('hex') };
