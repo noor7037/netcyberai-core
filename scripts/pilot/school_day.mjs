@@ -314,21 +314,25 @@ try {
     need(studs.length === 40, `the database holds ${studs.length} students in ${CLASS_NAME}`);
     ctx.students = studs;
     ctx.child = studs[0];
-    const fromCsv = Number((await q(`select count(*)::int as n from parent_student_map sp join students s on s.student_id = sp.student_id where s.school_id = $1 and s.class_id = $2`, [ctx.schoolId, ctx.classId]).catch(() => [{ n: -1 }]))[0].n);
-    // Guardians: the import route reads guardian_phone and guardian_email only as sibling hints; the guardian is added
-    // on each student's record (the same route the student screen's "Add guardian" calls).
+    // Guardians come from the CSV's own guardian columns: every student must have its guardian linked by the import,
+    // unverified and with no consent recorded (the import never records consent; the office does, below, by hand).
+    need(imp.json.guardians?.created === 40 && imp.json.guardians?.linked === 40, `the import's guardian columns: ${JSON.stringify(imp.json.guardians ?? null)} (want 40 added, 40 linked)`);
+    const links = await q(`select sp.student_id, sp.parent_id, p.name, p.phone, p.relation from parent_student_map sp join students s on s.student_id = sp.student_id join parents p on p.parent_id = sp.parent_id where s.school_id = $1 and s.class_id = $2`, [ctx.schoolId, ctx.classId]);
+    const linkOf = new Map(links.map((l) => [l.student_id, l]));
+    const wrong = studs.filter((st) => {
+      const p = PUPILS[Number(st.roll_no) - 1];
+      const l = linkOf.get(st.student_id);
+      return !l || l.name !== p.guardian || l.phone !== p.phone || l.relation !== p.relation;
+    });
+    need(!wrong.length, `${40 - wrong.length} of 40 students have their CSV guardian linked by the import; first missing roll ${wrong[0]?.roll_no}`);
+    const fromCsv = links.length;
+    const consentByImport = Number((await q(`select count(*)::int as n from consent_ledger where school_id = $1 and student_id = any($2::uuid[])`, [ctx.schoolId, studs.map((st) => st.student_id)]))[0].n);
+    need(consentByImport === 0, `the import recorded ${consentByImport} consent rows (it must record none)`);
     // The guardian's consent, as the office records it from the paper form: until then the student is pending_consent,
     // and the Family app shows nothing of the child (src/lib/parent-home/home.ts reads core_records).
-    const failed = [];
     const refusedConsent = [];
     for (let i = 0; i < studs.length; i++) {
-      const p = PUPILS[Number(studs[i].roll_no) - 1];
-      const g = await call(office, 'POST', `/api/app/students/${studs[i].student_id}/guardians`, { name: p.guardian, phone: p.phone, relation: p.relation });
-      if (g.status !== 201 && g.status !== 200) {
-        failed.push(`${studs[i].roll_no}: ${short(g)}`);
-        continue;
-      }
-      const parentId = g.json?.guardian?.parentId ?? g.json?.guardian?.parent_id ?? (await q(`select parent_id from parent_student_map where student_id = $1 limit 1`, [studs[i].student_id]))[0]?.parent_id;
+      const parentId = linkOf.get(studs[i].student_id).parent_id;
       if (i === 0) ctx.parentId = parentId;
       // The guardian is verified first (the "Verify" button: the office attests from the admission form), then consent.
       const v0 = await call(office, 'POST', `/api/app/guardians/${parentId}/students/${studs[i].student_id}/verification`, { action: 'start' });
@@ -343,14 +347,12 @@ try {
         if (c.status !== 200 && c.status !== 201) refusedConsent.push(`${studs[i].roll_no} ${purpose}: ${short(c)}`);
       }
     }
-    need(!failed.length, `adding guardians: ${failed.length} refused, first ${failed[0]}`);
     need(!refusedConsent.length, `recording consent: ${refusedConsent.length} refused, first ${refusedConsent[0]}`);
     const active = Number((await q(`select count(*)::int as n from students where school_id = $1 and class_id = $2 and status = 'active'`, [ctx.schoolId, ctx.classId]))[0].n);
     const linked = Number((await q(`select count(distinct sp.student_id)::int as n from parent_student_map sp join students s on s.student_id = sp.student_id where s.school_id = $1 and s.class_id = $2`, [ctx.schoolId, ctx.classId]))[0].n);
-    need(linked === 40, `${linked} of 40 students have a guardian after adding them`);
+    need(linked === 40, `${linked} of 40 students have a guardian after the import`);
     need(active === 40, `${active} of 40 students are active after their guardian's consent`);
-    if (fromCsv === 0) throw new Error(`40 students imported, but the CSV's guardian columns made 0 guardians (the import has no guardian columns); the 40 guardians, their verification and consent were then added one by one through each student's record (all ${linked} linked, ${active} active)`);
-    return `40 students imported into ${CLASS_NAME}; ${fromCsv} guardians from the CSV, 40 of 40 linked, verified, consent recorded, 40 active`;
+    return `40 students imported into ${CLASS_NAME}; ${fromCsv} guardians added and linked by the import (no consent recorded by it); then verified and consent recorded by the office, 40 active`;
   });
 
   await step(3, 'Principal: add a teacher, set the Class 10-A timetable', async () => {

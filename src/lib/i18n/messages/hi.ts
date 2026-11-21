@@ -6300,7 +6300,7 @@ export const hi: Record<keyof typeof en, string> = {
   'students.gender.label': 'लिंग, जैसा आधार पर छपा है',
   'students.dataCheck.link': 'विद्यार्थी डेटा जाँच',
   'students.dataCheck.how': 'UDISE+ और APAAR के लिए हर बच्चे का नाम, जन्म तिथि और लिंग आधार पर छपी जानकारी से मिलाएँ।',
-  'students.import.columns': 'Columns: name (ज़रूरी), admission_no, class_name (जैसा यहाँ कक्षा का नाम है, ठीक वैसा), roll_no, dob (YYYY-MM-DD रूप में) और gender (male, female या transgender, जैसा आधार पर छपा है; पता न हो तो खाली छोड़ें)। हर बच्चा सहमति की प्रतीक्षा से शुरू होता है। किसी भी row में गड़बड़ी हो तो कुछ भी import नहीं होता: ठीक करने वाली हर row दिखाई जाती है। वही फ़ाइल दोबारा upload करना सुरक्षित है: कोई दो बार नहीं जुड़ता। वैकल्पिक guardian_phone और guardian_email columns केवल यहाँ पहले से मौजूद भाई-बहन सुझाते हैं; आपकी पुष्टि के बिना कुछ नहीं जुड़ता।',
+  'students.import.columns': 'Columns: name (ज़रूरी), admission_no, class_name (जैसा यहाँ कक्षा का नाम है, ठीक वैसा), roll_no, dob (YYYY-MM-DD रूप में) और gender (male, female या transgender, जैसा आधार पर छपा है; पता न हो तो खाली छोड़ें)। हर बच्चा सहमति की प्रतीक्षा से शुरू होता है। किसी भी row में गड़बड़ी हो तो कुछ भी import नहीं होता: ठीक करने वाली हर row दिखाई जाती है। वही फ़ाइल दोबारा upload करना सुरक्षित है: कोई दो बार नहीं जुड़ता। वैकल्पिक guardian columns: guardian_name, guardian_relation (mother, father, guardian या other), guardian_phone (10 अंकों का मोबाइल नंबर, किसी भी guardian column के साथ ज़रूरी) और guardian_email। जिस row में अभिभावक का नाम और फ़ोन हो, उससे वह अभिभावक जुड़ता है और बच्चे से लिंक होता है; एक ही नंबर वाले भाई-बहनों का एक ही अभिभावक बनता है। Import कभी सहमति दर्ज नहीं करता: इससे जुड़े हर अभिभावक की सहमति अभी भी चाहिए, जो आप वैसे ही दर्ज करते हैं जैसे हाथ से जोड़े गए अभिभावक की। जो नंबर यहाँ किसी अभिभावक के पास पहले से है, वह लिंक नहीं होता: पुष्टि के लिए सुझाया जाता है। केवल फ़ोन या email यहाँ पहले से मौजूद भाई-बहन ही सुझाते हैं।',
   // c224 end
   // c225 begin
   'rtd.csv.writtenOff': 'बट्टे खाते में (₹)',
@@ -6469,6 +6469,12 @@ export const hi: Record<keyof typeof en, string> = {
   'students.import.refused.one': 'कुछ भी import नहीं हुआ: {count} row में गड़बड़ी है। उसे ठीक करके फ़ाइल फिर से import करें।',
   'students.import.refused.other': 'कुछ भी import नहीं हुआ: {count} rows में गड़बड़ी है। उन्हें ठीक करके फ़ाइल फिर से import करें।',
   'students.import.done': '{rows} में से {imported} rows import हुईं।',
+  'students.import.guardians.one': '{count} अभिभावक जुड़ा; उनकी सहमति अभी भी चाहिए।',
+  'students.import.guardians.other': '{count} अभिभावक जुड़े; हर एक की सहमति अभी भी चाहिए।',
+  'students.import.guardiansWould.one': 'Import से {count} अभिभावक जुड़ेगा; उनकी सहमति फिर भी चाहिए होगी।',
+  'students.import.guardiansWould.other': 'Import से {count} अभिभावक जुड़ेंगे; हर एक की सहमति फिर भी चाहिए होगी।',
+  'students.import.guardiansOnRecord.one': '{count} row में ऐसा नंबर है जो यहाँ किसी अभिभावक के पास पहले से है: लिंक नहीं हुआ, नीचे या बच्चे के पेज पर पुष्टि करें।',
+  'students.import.guardiansOnRecord.other': '{count} rows में ऐसे नंबर हैं जो यहाँ अभिभावकों के पास पहले से हैं: लिंक नहीं हुए, नीचे या हर बच्चे के पेज पर पुष्टि करें।',
   'students.import.again': 'यही फ़ाइल पहले import हो चुकी है। तब: {rows} में से {imported} rows import हुई थीं।',
   'students.import.row': 'पंक्ति {row} ({name}): {errors}',
   'students.import.unnamed': 'कोई नाम नहीं',

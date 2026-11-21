@@ -79,8 +79,12 @@ function readStudents(raw: string): NonNullable<ProvisionInput['students']> | Pr
     const checked = phone ? checkPhone(phone) : null;
     if (checked && !checked.ok) add(row, 'guardian phone is not a 10-digit phone number');
     const out: Record<string, string> = { name: rec.name ?? '', class_name: grade && section ? `${grade}-${section}` : '' };
-    for (const k of ['admission_no', 'roll_no', 'dob', 'gender', 'guardian_name'] as const) if (rec[k]) out[k] = rec[k];
-    if (checked?.ok) out.guardian_phone = checked.digits;
+    for (const k of ['admission_no', 'roll_no', 'dob', 'gender'] as const) if (rec[k]) out[k] = rec[k];
+    // A guardian's name goes with a phone that reads, as it always has: without one there is no guardian to add.
+    if (checked?.ok) {
+      out.guardian_phone = checked.digits;
+      if (rec.guardian_name) out.guardian_name = rec.guardian_name;
+    }
     return out;
   });
   return { records, rowErrors, hash: createHash('sha256').update(raw).digest('hex') };
@@ -344,45 +348,6 @@ async function mapSyllabus(db: Sql, schoolId: string, actor: Actor, boardId: str
   return result;
 }
 
-// One guardian a phone number in the list, linked to every student of the list with that number. A number a guardian
-// of the school already has is not given a second guardian: the importer suggested the match for the office to
-// confirm (C116), and nothing is linked by phone here.
-async function linkGuardians(db: Sql, schoolId: string, actor: Actor, records: Record<string, string>[], created: { row: number; studentId: string }[]): Promise<{ created: number; linked: number; onRecord: number }> {
-  const byPhone = new Map<string, { phone: string; name: string; studentIds: string[] }>();
-  for (const c of created) {
-    const rec = records[c.row - 1];
-    const key = phoneKey(rec?.guardian_phone);
-    if (!key) continue;
-    const entry = byPhone.get(key) ?? { phone: rec.guardian_phone, name: (rec.guardian_name ?? '').trim().replace(/\s+/g, ' ').slice(0, 200) || `Guardian of ${rec.name.trim()}`, studentIds: [] };
-    entry.studentIds.push(c.studentId);
-    byPhone.set(key, entry);
-  }
-  if (byPhone.size === 0) return { created: 0, linked: 0, onRecord: 0 };
-  const onRecord = new Set(
-    (await db.query(`select right(regexp_replace(coalesce(phone, ''), '\\D', '', 'g'), 10) as k from parents where school_id = $1 and merged_into is null`, [schoolId])).rows.map((r) => r.k as string)
-  );
-  const fresh = [...byPhone.entries()].filter(([k]) => !onRecord.has(k)).map(([, v]) => v);
-  if (fresh.length === 0) return { created: 0, linked: 0, onRecord: byPhone.size };
-  const parentIds = (
-    await db.query(
-      `insert into parents (school_id, name, phone) select $1, n.name, n.phone from unnest($2::text[], $3::text[]) with ordinality as n(name, phone, ord) order by n.ord returning parent_id, phone`,
-      [schoolId, fresh.map((f) => f.name), fresh.map((f) => f.phone)]
-    )
-  ).rows as { parent_id: string; phone: string }[];
-  const idByPhone = new Map(parentIds.map((r) => [phoneKey(r.phone)!, r.parent_id]));
-  const pairs = fresh.flatMap((f) => f.studentIds.map((s) => [idByPhone.get(phoneKey(f.phone)!)!, s] as const));
-  await db.query(`insert into parent_student_map (school_id, parent_id, student_id) select $1, p, s from unnest($2::uuid[], $3::uuid[]) as x(p, s)`, [schoolId, pairs.map((p) => p[0]), pairs.map((p) => p[1])]);
-  await writeAuditLog(db, {
-    schoolId,
-    actorUserId: actor.userId,
-    actorRole: actor.role,
-    eventAction: 'guardian.provisioned',
-    targetType: 'parent_student_map',
-    afterState: { guardians: parentIds.map((r) => r.parent_id), links: pairs.length, on_record: byPhone.size - fresh.length },
-  });
-  return { created: parentIds.length, linked: pairs.length, onRecord: byPhone.size - fresh.length };
-}
-
 // In the caller's platform transaction (withTenantContext for the founder). The caller commits, then runs the jobs.
 export async function provisionSchool(db: Sql, queue: JobQueue, actor: Actor, input: ProvisionInput, opts: { origin: string; existingSchoolId: string | null; today?: string }): Promise<ProvisionOutcome> {
   // Two founders provisioning the same name at once take turns, so the second finds the first's school.
@@ -449,16 +414,19 @@ export async function provisionSchool(db: Sql, queue: JobQueue, actor: Actor, in
       withIds: true,
       // No account of this school exists yet to name (C399): the file is recorded with no importer.
       importedBy: null,
+      // One guardian a phone number in the list, linked to that number's students; a number a guardian of the school
+      // already has is not given a second guardian, and nothing is linked to it (C116).
+      guardianFromPhone: true,
+      guardianAuditAction: 'guardian.provisioned',
       ...(opts.today ? { today: opts.today } : {}),
     });
     if (imported.refused) throw new ProvisionRefused({ ok: false, reason: 'students', errors: imported.errors });
     students.imported = imported.importedCount;
     students.alreadyImported = imported.alreadyImported;
-    if (imported.created) {
-      const linked = await linkGuardians(db, schoolId, actor, input.students.records, imported.created);
-      guardians.created = linked.created;
-      guardians.linked = linked.linked;
-      students.onRecordGuardians = linked.onRecord;
+    if (imported.guardians) {
+      guardians.created = imported.guardians.created;
+      guardians.linked = imported.guardians.linked;
+      students.onRecordGuardians = imported.guardians.onRecord;
     }
   }
 

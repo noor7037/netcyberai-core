@@ -1,6 +1,7 @@
 import { createHash, randomUUID } from 'crypto';
+import { writeAuditLog } from '@/lib/audit/log';
 import { withTenantContext } from '@/lib/auth/db';
-import type { SessionClaims } from '@/lib/auth/types';
+import type { SessionClaims, SessionRole } from '@/lib/auth/types';
 import type { SiblingSuggestion } from '@/lib/contracts/families';
 import { emailKey, phoneKey, suggestSiblingsFor } from '@/lib/families/families';
 import type { Sql } from '@/lib/jobs/types';
@@ -9,14 +10,19 @@ import { mayRecordGender, readImportGender } from '@/lib/students/gender';
 import { rollClashFileText, rollClashText, rollKey } from '@/lib/students/roll-clash';
 import { indiaDate } from '@/lib/time/india';
 import { parseCsvChecked, rowsToRecords } from './csv';
-import { basicRowErrors } from './rules';
+import { basicRowErrors, readRowGuardian, type RowGuardian } from './rules';
 
-// Optional columns used only to suggest siblings (C116): a row whose
-// guardian phone or email matches a guardian already on record lists that
-// guardian's children. Nothing is linked and no guardian is created from
-// them; the office confirms each suggestion on the student's page. Kept out
-// of IMPORT_COLUMNS (rules.ts), which the public import checker also shows.
+// Guardian columns (rules.ts IMPORT_COLUMNS, readRowGuardian). A row with guardian_name and guardian_phone adds that
+// guardian, one a phone number in the file (brothers and sisters share one), linked to each of its students. A
+// number a guardian of this school already has is never given a second guardian and never linked by the import: it
+// is suggested, as before, for the office to confirm (C116, as provisioning does, C399). A row with only
+// guardian_phone and/or guardian_email suggests siblings and adds no one. The import never records consent: every
+// guardian it adds is unverified and consent pending, as when the office adds one by hand.
 export const SIBLING_HINT_COLUMNS = ['guardian_phone', 'guardian_email'] as const;
+
+// What the guardian columns did (or, in a check, would do): guardians added, student links made, and rows whose
+// number belongs to a guardian already on record (left as a suggestion).
+export type ImportGuardians = { created: number; linked: number; onRecord: number };
 
 // Optional column 'gender' (C222, C224): Aadhaar's values as Aadhaar prints them (male, female, transgender, any
 // case) or empty for "not given". Only the office records a gender (the database's students_gender_office_only),
@@ -44,6 +50,7 @@ interface ValidRow {
   rollNo: string | null;
   dob: string | null;
   gender: RecordGender;
+  guardian: RowGuardian | null;
 }
 
 // A file that cannot be read as a list of students at all (C235-A): said as a
@@ -63,6 +70,8 @@ export interface ImportResult {
   skippedCount: number;
   errors: RowError[];
   siblingSuggestions: ImportSiblingSuggestion[];
+  // Absent on a repeat of a file already imported (its guardians were counted then).
+  guardians?: ImportGuardians;
   // The students written, by data row: only when written and asked for (opts.withIds), so a caller in the same
   // transaction can link each to its guardian (school provisioning, C399).
   created?: { row: number; studentId: string }[];
@@ -76,10 +85,10 @@ export interface ImportResult {
 // before anything is written. Phase 2 inserts every row inside ONE
 // transaction, and only when no row has a problem: all or nothing
 // (C235-A, as the timetable and classes imports). A file with one bad
-// row among 10,000 writes nothing and names that row. No sibling/guardian LINKING
-// happens here at all -- this only ever writes `students`, per this
-// project's explicit-data-only discipline (05_BUSINESS_LOGIC.md Sec3.3);
-// matching guardians are only suggested, for the office to confirm (C116).
+// row among 10,000 writes nothing and names that row. Guardians are added and
+// linked only from the file's own explicit guardian columns (above); a match
+// with a guardian already on record is never linked, only suggested for the
+// office to confirm (C116; 05_BUSINESS_LOGIC.md Sec3.3).
 //
 // Extracted from the API route so the same logic can be exercised
 // directly from a verification route with fixture claims -- never
@@ -123,7 +132,16 @@ export async function importStudentRecords(
   records: Record<string, string | undefined>[],
   fileHash: string,
   fileName: string,
-  opts: { preview?: boolean; rowErrors?: ReadonlyMap<number, string[]>; today?: string; withIds?: boolean; importedBy?: string | null } = {}
+  opts: {
+    preview?: boolean;
+    rowErrors?: ReadonlyMap<number, string[]>;
+    today?: string;
+    withIds?: boolean;
+    importedBy?: string | null;
+    // School provisioning (C399): a row with only a guardian phone also adds a guardian, named "Guardian of <student>".
+    guardianFromPhone?: boolean;
+    guardianAuditAction?: string;
+  } = {}
 ): Promise<ImportResult> {
   const preview = opts.preview === true;
   const today = opts.today ?? indiaDate();
@@ -222,7 +240,10 @@ export async function importStudentRecords(
       errors.push({ row, name, admissionNo, errors: rowErrors });
     } else {
       // The id is chosen here so a suggestion can name the new student.
-      valid.push({ row, studentId: randomUUID(), phone: phoneKey(rec.guardian_phone), email: emailKey(rec.guardian_email), name, admissionNo, classId, rollNo, dob, gender: gender.ok ? gender.value : 'not_given' });
+      let guardian = readRowGuardian(rec).guardian;
+      const phone = phoneKey(rec.guardian_phone);
+      if (!guardian && opts.guardianFromPhone && phone) guardian = { name: `Guardian of ${name}`.slice(0, 200), relation: null, phone, email: null };
+      valid.push({ row, studentId: randomUUID(), phone, email: emailKey(rec.guardian_email), name, admissionNo, classId, rollNo, dob, gender: gender.ok ? gender.value : 'not_given', guardian });
     }
   });
 
@@ -239,6 +260,9 @@ export async function importStudentRecords(
     .filter((v) => matches.has(String(v.row)))
     .map((v) => ({ row: v.row, studentId: preview || refused ? null : v.studentId, name: v.name, matches: matches.get(String(v.row))! }));
 
+  const guardianPlan = await planGuardians(client, claims.schoolId, valid);
+  const plannedGuardians: ImportGuardians = { created: guardianPlan.fresh.length, linked: guardianPlan.fresh.reduce((n, g) => n + g.studentIds.length, 0), onRecord: guardianPlan.onRecord };
+
   if (preview || refused) {
     return {
       alreadyImported: false,
@@ -251,6 +275,7 @@ export async function importStudentRecords(
       skippedCount: errors.length,
       errors,
       siblingSuggestions,
+      guardians: refused ? { created: 0, linked: 0, onRecord: 0 } : plannedGuardians,
     };
   }
 
@@ -283,6 +308,7 @@ export async function importStudentRecords(
     );
     importedCount = insertResult.rowCount ?? valid.length;
   }
+  const guardians = await writeGuardians(client, claims, guardianPlan.fresh, opts.importedBy === undefined ? claims.sub : opts.importedBy, opts.guardianAuditAction ?? 'guardian.imported');
 
   const { rows: importRows } = await client.query(
     `insert into csv_imports (school_id, file_hash, file_name, imported_by, row_count, imported_count, skipped_count, errors)
@@ -302,6 +328,69 @@ export async function importStudentRecords(
     skippedCount: errors.length,
     errors,
     siblingSuggestions,
+    guardians: { ...guardians, onRecord: guardianPlan.onRecord },
     ...(opts.withIds ? { created: valid.map((v) => ({ row: v.row, studentId: v.studentId })) } : {}),
   };
+}
+
+type PlannedGuardian = RowGuardian & { studentIds: string[] };
+
+// One guardian a phone number among the valid rows; the first row naming it gives the name, relation and email.
+// Numbers a guardian of THIS school already has (not merged) are counted, never linked (C116). Read only.
+async function planGuardians(client: Sql, schoolId: string, valid: ValidRow[]): Promise<{ fresh: PlannedGuardian[]; onRecord: number }> {
+  const byPhone = new Map<string, PlannedGuardian>();
+  for (const v of valid) {
+    if (!v.guardian) continue;
+    const entry = byPhone.get(v.guardian.phone) ?? { ...v.guardian, studentIds: [] };
+    entry.studentIds.push(v.studentId);
+    byPhone.set(v.guardian.phone, entry);
+  }
+  if (byPhone.size === 0) return { fresh: [], onRecord: 0 };
+  const { rows } = await client.query(
+    `select distinct right(regexp_replace(coalesce(phone, ''), '\\D', '', 'g'), 10) as k
+       from parents where school_id = $1 and merged_into is null and right(regexp_replace(coalesce(phone, ''), '\\D', '', 'g'), 10) = any($2::text[])`,
+    [schoolId, [...byPhone.keys()]]
+  );
+  const onRecord = new Set(rows.map((r: { k: string }) => r.k));
+  const fresh = [...byPhone.entries()].filter(([k]) => !onRecord.has(k)).map(([, g]) => g);
+  const onRecordRows = [...byPhone.entries()].filter(([k]) => onRecord.has(k)).reduce((n, [, g]) => n + g.studentIds.length, 0);
+  return { fresh, onRecord: onRecordRows };
+}
+
+// Adds the planned guardians and links each to its students, in the import's transaction and tenant context. Only
+// `parents` and `parent_student_map` are written: no consent, no verification, no family (consent stays the
+// office's, by hand, for each guardian). The audit row holds ids and counts, never names or numbers.
+async function writeGuardians(
+  client: Sql,
+  claims: { schoolId: string; role?: string },
+  fresh: PlannedGuardian[],
+  actorUserId: string | null,
+  eventAction: string
+): Promise<{ created: number; linked: number }> {
+  if (fresh.length === 0) return { created: 0, linked: 0 };
+  const parentIds = (
+    await client.query(
+      `insert into parents (school_id, name, phone, email, relation)
+       select $1, n.name, n.phone, n.email, n.relation
+         from unnest($2::text[], $3::text[], $4::text[], $5::text[]) with ordinality as n(name, phone, email, relation, ord)
+        order by n.ord
+       returning parent_id, phone`,
+      [claims.schoolId, fresh.map((g) => g.name), fresh.map((g) => g.phone), fresh.map((g) => g.email), fresh.map((g) => g.relation)]
+    )
+  ).rows as { parent_id: string; phone: string }[];
+  const idByPhone = new Map(parentIds.map((r) => [r.phone, r.parent_id]));
+  const pairs = fresh.flatMap((g) => g.studentIds.map((s) => [idByPhone.get(g.phone)!, s] as const));
+  await client.query(
+    `insert into parent_student_map (school_id, parent_id, student_id) select $1, p, s from unnest($2::uuid[], $3::uuid[]) as x(p, s)`,
+    [claims.schoolId, pairs.map((p) => p[0]), pairs.map((p) => p[1])]
+  );
+  await writeAuditLog(client, {
+    schoolId: claims.schoolId,
+    actorUserId,
+    actorRole: (claims.role ?? null) as SessionRole | null,
+    eventAction,
+    targetType: 'parent_student_map',
+    afterState: { guardians: parentIds.map((r) => r.parent_id), links: pairs.length, consent_recorded: false },
+  });
+  return { created: parentIds.length, linked: pairs.length };
 }
