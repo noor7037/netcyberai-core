@@ -386,11 +386,12 @@ describe('the database refuses what the app does not do', () => {
     expect((await ins(principal, 3, PRINCIPAL)).rowCount).toBe(1);
   });
 
-  it('the accountant reads no scheme, the teacher and the coordinator read their school’s, and the platform role reads nothing', async () => {
+  it('the accountant reads no scheme, the teacher and the coordinator read their school’s, and the platform role may not change or remove one', async () => {
     expect((await run(accountant, `select * from grading_schemes`)).rows).toEqual([]);
     expect((await run(teacher, `select version from grading_schemes order by version`)).rows.map((r) => r.version)).toEqual([1, 2, 3]);
     expect((await run(coordinator, `select version from grading_schemes order by version`)).rows.length).toBe(3);
-    await expect(platform((c) => c.query(`select * from grading_schemes`))).rejects.toThrow(/permission denied/);
+    await expect(platform((c) => c.query(`update grading_schemes set version = version`))).rejects.toThrow(/permission denied/);
+    await expect(platform((c) => c.query(`delete from grading_schemes`))).rejects.toThrow(/permission denied/);
   });
 });
 
