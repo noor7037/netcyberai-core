@@ -17,11 +17,13 @@ Android phone, about 15 minutes.
 
 1. **Family app → Parent area (PIN) → Focus Lock → Connect.** NetCyberAI Focus opens by itself. You type no code.
 2. **Focus: enter your parent PIN.**
-3. **The steps.** Tap Open on each and switch NetCyberAI Focus on: notifications, display over other apps, usage
-   access, then your phone brand's battery (and autostart) steps. If the usage-access switch is grey (an app installed
-   from a file), use the grey-switch line under that step. "Start" works only when every step is ticked.
-4. **Apps and times.** The suggested apps are already ticked. **For this test,** set the days to include today and a
-   time that includes now (the default is Monday to Friday, 4 pm to 9 pm). Tap Start.
+3. **Turn on.** One button. The phone opens its own screen two times (display over other apps, then usage access):
+   each time switch NetCyberAI Focus on and press Back; the app reads each step aloud. Apps (games, video, social,
+   browsers) and times (Monday to Friday, 4 pm to 9 pm) are already chosen. If a switch says "App was denied access"
+   (an app installed from a file, not from Play), the app shows the restricted-settings help and Try again.
+4. **For this test,** use "Choose apps and times first" to include today and the time now. On Xiaomi, Vivo, Oppo,
+   Realme, OnePlus, Samsung and Infinix/Tecno/itel, the home screen then recommends the brand's battery and autostart
+   steps (optional, they keep the lock on after a restart).
 5. **Open YouTube (or a game).** The block screen shows "Study first", with what is left today and "Start studying".
 6. **Back** goes to the home screen. **Calls, messages and WhatsApp** open normally.
 7. **Settings or the Play Store** shows "Locked in study time". The parent PIN opens it; the lock comes back when the

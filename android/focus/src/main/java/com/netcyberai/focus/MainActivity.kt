@@ -13,6 +13,7 @@ import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.Switch
 import android.widget.TextView
+import com.netcyberai.family.focus.Brand
 import com.netcyberai.family.focus.FocusEngine
 import com.netcyberai.family.focus.FocusRules
 import com.netcyberai.family.focus.LockSchedule
@@ -39,6 +40,14 @@ class MainActivity : Activity() {
     private var wantSetup = false
     private var askOff = false
 
+    // "Turn on" (C538, founder 21 Nov: fewer steps): the app opens each phone screen in turn and reads the step aloud; the
+    // parent only switches NetCyberAI Focus on and presses Back. [lastAsked] is the screen just opened; coming back with
+    // it still off stops the run and shows help ([stuck]) instead of opening it again and again.
+    private var flow = false
+    private var lastAsked: String? = null
+    private var stuck: String? = null
+    private var notifyAsked = false
+
     // The set-up draft, kept while the parent visits the phone's screens.
     private var draftLocked: MutableSet<String>? = null
     private var draftWhatsapp = true
@@ -55,8 +64,8 @@ class MainActivity : Activity() {
         super.onResume()
         val s = Store.get(this)
         if (s.pass != null && !working) background { Focus.redeem(this).let { if (it != Focus.Net.OK) message = Words.t(Store.get(this).lang, "connect.failed") } }
-        else if (Focus.isConnected(s) && !working) Thread { Focus.refreshStatus(this); runOnUiThread { if (!working) render() } }.start()
-        render()
+        else if (Focus.isConnected(s) && !working) Thread { Focus.refreshStatus(this); runOnUiThread { if (!working && !flow) render() } }.start()
+        if (flow && !working) advance() else render()
     }
 
     override fun onDestroy() {
@@ -114,7 +123,9 @@ class MainActivity : Activity() {
             working -> page { it.addView(Ui.title(this, w("connect.working"))) }
             !Focus.isConnected(s) -> welcome(s)
             s.state.pin.record == null || s.state.pin.record?.version != (s.state.status?.pinVersion ?: s.state.pin.record?.version) -> pinOnline()
-            s.rules == null || wantSetup -> if (FocusEngine.isParentSessionActive(s.state, Focus.clock(this, s))) setup(s) else pinLocal(s)
+            wantSetup -> if (FocusEngine.isParentSessionActive(s.state, Focus.clock(this, s))) setup(s) else pinLocal(s)
+            flow || stuck != null -> turnOn(s)
+            s.rules == null -> if (FocusEngine.isParentSessionActive(s.state, Focus.clock(this, s))) turnOn(s) else pinLocal(s)
             askOff -> pinLocal(s)
             else -> home(s)
         }
@@ -201,38 +212,13 @@ class MainActivity : Activity() {
 
     private fun stepKey(st: OemStep) = "oem.${st.kind}"
 
+    /** Brands that stop background apps unless allowed; on the others the lock's notification keeps it running. */
+    private val KEEP_BRANDS = setOf(Brand.XIAOMI, Brand.VIVO, Brand.OPPO, Brand.REALME, Brand.ONEPLUS, Brand.TRANSSION, Brand.SAMSUNG)
+
     private fun stepDone(s: Saved, st: OemStep): Boolean =
         stepKey(st) in s.confirmed || (st.kind == StepKind.BATTERY && Phone.ignoresBatteryOptimisation(this))
 
     private fun setup(s: Saved) = page { c ->
-        c.addView(Ui.title(this, w("perm.title")))
-        c.addView(Ui.text(this, w("perm.lead")))
-        val notify = Phone.hasNotifications(this)
-        stepCard(c, w("perm.notify.t"), w("perm.notify.b"), notify, onOpen = {
-            if (Build.VERSION.SDK_INT >= 33) requestPermissions(arrayOf(Manifest.permission.POST_NOTIFICATIONS), 1) else Phone.openAppInfo(this)
-        })
-        // Android 13+: an app installed from a file must first be allowed "restricted settings" (App info, ⋮), or the two
-        // switches below stay grey ("App was denied access"). The phone only shows ⋮ after one try of a switch.
-        val bothOn = Phone.lockPermissionsOk(this)
-        if (Phone.restrictedSettingsLikely(this) && !bothOn) {
-            stepCard(c, w("perm.restricted.t"), w("perm.restricted.b"), "oem.RESTRICTED" in s.confirmed, onOpen = { Phone.openAppInfo(this) }) { card ->
-                card.addView(Ui.button(this, w("perm.confirm"), primary = false) { Store.update(this) { it.copy(confirmed = it.confirmed + "oem.RESTRICTED") }; render() })
-            }
-        }
-        stepCard(c, w("perm.overlay.t"), w("perm.overlay.b"), Phone.hasOverlay(this), onOpen = { Phone.openOverlay(this) }) { card ->
-            card.addView(Ui.text(this, w("perm.usage.grey"), 15f, color = Ui.MUTED).apply { setOnClickListener { Phone.openAppInfo(this@MainActivity) }; minHeight = Ui.dp(context, 48) })
-        }
-        stepCard(c, w("perm.usage.t"), w("perm.usage.b"), Phone.hasUsageAccess(this), onOpen = { Phone.openUsageAccess(this) }) { card ->
-            card.addView(Ui.text(this, w("perm.usage.grey"), 15f, color = Ui.MUTED).apply { setOnClickListener { Phone.openAppInfo(this@MainActivity) }; minHeight = Ui.dp(context, 48) })
-        }
-        val brand = Phone.brand
-        for (st in OemGuide.steps(brand)) {
-            val done = stepDone(s, st)
-            stepCard(c, Words.stepTitle(lang, st.kind), Words.stepBody(lang, st.kind, brand, Phone.hasOwnScreen(this, st)), done, onOpen = { Phone.openStep(this, st) }) { card ->
-                card.addView(Ui.button(this, w("perm.confirm"), primary = false) { Store.update(this) { it.copy(confirmed = it.confirmed + stepKey(st)) }; render() })
-            }
-        }
-
         // The apps: already ticked; the parent changes them only if they want.
         val apps = Phone.apps(this)
         val locked = draftLocked ?: run {
@@ -287,15 +273,104 @@ class MainActivity : Activity() {
         stepper(w("times.to"), { draftEnd }, { draftEnd = it.coerceAtLeast(draftStart + 30) })
         c.addView(times)
 
-        val allSteps = notify && Phone.lockPermissionsOk(this) && OemGuide.steps(brand).all { stepDone(s, it) }
-        if (!allSteps) c.addView(Ui.text(this, w("start.missing"), bold = true, color = Ui.CORAL_DEEP))
-        c.addView(Ui.button(this, w("start")) {
-            if (!allSteps) { message = w("start.missing"); render(); return@button }
-            startWith(locked)
-        }.apply { alpha = if (allSteps) 1f else 0.5f })
+        if (s.rules == null) {
+            // First set-up: the choices are kept, then the switches (Turn on).
+            c.addView(Ui.button(this, w("turn.button")) { wantSetup = false; flow = true; lastAsked = null; advance() })
+        } else {
+            c.addView(Ui.button(this, w("save")) { startWith(locked, turnOn = s.enabled) })
+        }
     }
 
-    private fun startWith(locked: Set<String>) {
+    // ---- 3. turn on: the phone's own switches, one after another ------------------------------------------------------
+
+    private fun nextNeeded(): String? = when {
+        Build.VERSION.SDK_INT >= 33 && !Phone.hasNotifications(this) && !notifyAsked -> "notify"
+        !Phone.hasOverlay(this) -> "overlay"
+        !Phone.hasUsageAccess(this) -> "usage"
+        else -> null
+    }
+
+    private fun stepWords(need: String): Pair<String, String> = when (need) {
+        "notify" -> w("perm.notify.t") to w("perm.notify.b")
+        "overlay" -> w("perm.overlay.t") to w("perm.overlay.b")
+        else -> w("perm.usage.t") to w("perm.usage.b")
+    }
+
+    private fun advance() {
+        val need = nextNeeded()
+        if (need == null) {
+            flow = false
+            stuck = null
+            lastAsked = null
+            finishTurnOn()
+            return
+        }
+        if (need == lastAsked) {
+            // Back without switching it on: stop and help, never a loop of the same screen.
+            flow = false
+            stuck = need
+            lastAsked = null
+            render()
+            say(w("stuck.title") + ". " + w("stuck.body"))
+            return
+        }
+        lastAsked = need
+        stuck = null
+        render()
+        say(stepWords(need).second)
+        when (need) {
+            "notify" -> { notifyAsked = true; requestPermissions(arrayOf(Manifest.permission.POST_NOTIFICATIONS), 1) }
+            "overlay" -> Phone.openOverlay(this)
+            else -> Phone.openUsageAccess(this)
+        }
+    }
+
+    private fun finishTurnOn() {
+        val cur = Store.get(this)
+        if (cur.rules != null) {
+            // Switches fixed after the lock was set up: it carries on as it was.
+            if (cur.enabled) FocusService.start(this)
+            render()
+            return
+        }
+        val locked = draftLocked ?: Phone.apps(this).filter { it.suggested }.map { it.pkg }.toMutableSet()
+        startWith(locked, turnOn = true)
+    }
+
+    private fun turnOn(s: Saved) = page { c ->
+        val need = stuck
+        when {
+            need != null -> {
+                c.addView(Ui.title(this, w("stuck.title")))
+                c.addView(Ui.text(this, stepWords(need).first, 19f, bold = true))
+                c.addView(Ui.text(this, w("stuck.body")))
+                c.addView(Ui.button(this, w("stuck.retry")) { stuck = null; flow = true; lastAsked = null; advance() })
+                if (need != "notify" && Phone.restrictedSettingsLikely(this)) {
+                    val card = Ui.card(this, Ui.PEACH)
+                    card.addView(Ui.text(this, w("stuck.denied"), 17f))
+                    card.addView(Ui.button(this, w("stuck.appInfo"), primary = false) { Phone.openAppInfo(this) })
+                    c.addView(card)
+                }
+                c.addView(Ui.button(this, w("perm.listen"), primary = false) { say(w("stuck.body") + " " + w("stuck.denied")) })
+            }
+            flow && lastAsked != null -> {
+                val (t, b) = stepWords(lastAsked!!)
+                c.addView(Ui.title(this, t))
+                c.addView(Ui.text(this, b))
+                c.addView(Ui.button(this, w("perm.open")) { lastAsked = null; advance() })
+            }
+            else -> {
+                c.addView(Ui.title(this, w("turn.title")))
+                c.addView(Ui.text(this, w("turn.lead")))
+                c.addView(Ui.button(this, w("turn.button")) { flow = true; lastAsked = null; advance() })
+                c.addView(Ui.button(this, w("perm.listen"), primary = false) { say(w("turn.title") + ". " + w("turn.lead")) })
+                if (s.rules == null) c.addView(Ui.button(this, w("turn.choose"), primary = false) { wantSetup = true; render() })
+                c.addView(Ui.card(this, Ui.PEACH).apply { addView(Ui.text(context, w("welcome.privacy"), 15f)) })
+            }
+        }
+    }
+
+    private fun startWith(locked: Set<String>, turnOn: Boolean) {
         val cur = Store.get(this)
         val device = Phone.devicePackages(this)
         val clean = locked - device.alwaysOpen - device.lockedInLockTime - device.ownPackage
@@ -313,7 +388,7 @@ class MainActivity : Activity() {
                 Store.update(this) { it.copy(rules = r.rules, state = FocusEngine.endParentSession(it.state)) }
                 wantSetup = false
                 message = null
-                Focus.startLock(this)
+                if (turnOn) Focus.startLock(this) else if (Store.get(this).enabled) FocusService.start(this)
                 render()
             }
             RulesChange.NeedsParentPin -> render()
@@ -333,7 +408,7 @@ class MainActivity : Activity() {
             c.addView(Ui.text(this, w("home.times", "days" to days, "from" to Words.clock(lang, win.startMinute), "to" to Words.clock(lang, win.endMinute))))
         }
         if (s.enabled && !ok) {
-            c.addView(Ui.button(this, w("home.permLost")) { wantSetup = true; render() })
+            c.addView(Ui.button(this, w("home.permLost")) { flow = true; lastAsked = null; advance() })
         }
         val card = Ui.card(this)
         val status = s.state.status
@@ -350,6 +425,20 @@ class MainActivity : Activity() {
             c.addView(Ui.text(this, w("home.parentOn", "time" to Words.clock(lang, minute)), bold = true, color = Ui.EMERALD))
             c.addView(Ui.button(this, w("home.lockNow")) { Store.update(this) { it.copy(state = FocusEngine.endParentSession(it.state)) }; render() })
         }
+        // The brand's own steps (budget brands stop background apps): recommended, never in the way of turning it on.
+        val brand = Phone.brand
+        val todo = OemGuide.steps(brand).filter { !stepDone(s, it) && brand in KEEP_BRANDS }
+        if (s.enabled && todo.isNotEmpty()) {
+            val keep = Ui.card(this, Ui.PEACH)
+            keep.addView(Ui.text(this, w("keep.title"), 19f, bold = true))
+            keep.addView(Ui.text(this, w("keep.lead"), 15f))
+            c.addView(keep)
+            for (st in todo) {
+                stepCard(c, Words.stepTitle(lang, st.kind), Words.stepBody(lang, st.kind, brand, Phone.hasOwnScreen(this, st)), false, onOpen = { Phone.openStep(this, st) }) { card ->
+                    card.addView(Ui.button(this, w("perm.confirm"), primary = false) { Store.update(this) { it.copy(confirmed = it.confirmed + stepKey(st)) }; render() })
+                }
+            }
+        }
         c.addView(Ui.button(this, w("home.refresh"), primary = false) { background { Focus.refreshStatus(this) } })
         c.addView(Ui.button(this, w("home.change"), primary = false) { wantSetup = true; draftLocked = null; render() })
         if (s.enabled) c.addView(Ui.button(this, w("home.turnOff"), primary = false) { askOff = true; render() })
@@ -360,6 +449,8 @@ class MainActivity : Activity() {
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        render()
+        // Allowed or not, onResume carries on (the dialog paused this screen): the notification is asked for, never in the
+        // way of the lock.
+        if (!flow) render()
     }
 }
