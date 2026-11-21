@@ -211,7 +211,17 @@ class MainActivity : Activity() {
         stepCard(c, w("perm.notify.t"), w("perm.notify.b"), notify, onOpen = {
             if (Build.VERSION.SDK_INT >= 33) requestPermissions(arrayOf(Manifest.permission.POST_NOTIFICATIONS), 1) else Phone.openAppInfo(this)
         })
-        stepCard(c, w("perm.overlay.t"), w("perm.overlay.b"), Phone.hasOverlay(this), onOpen = { Phone.openOverlay(this) })
+        // Android 13+: an app installed from a file must first be allowed "restricted settings" (App info, ⋮), or the two
+        // switches below stay grey ("App was denied access"). The phone only shows ⋮ after one try of a switch.
+        val bothOn = Phone.lockPermissionsOk(this)
+        if (Phone.restrictedSettingsLikely(this) && !bothOn) {
+            stepCard(c, w("perm.restricted.t"), w("perm.restricted.b"), "oem.RESTRICTED" in s.confirmed, onOpen = { Phone.openAppInfo(this) }) { card ->
+                card.addView(Ui.button(this, w("perm.confirm"), primary = false) { Store.update(this) { it.copy(confirmed = it.confirmed + "oem.RESTRICTED") }; render() })
+            }
+        }
+        stepCard(c, w("perm.overlay.t"), w("perm.overlay.b"), Phone.hasOverlay(this), onOpen = { Phone.openOverlay(this) }) { card ->
+            card.addView(Ui.text(this, w("perm.usage.grey"), 15f, color = Ui.MUTED).apply { setOnClickListener { Phone.openAppInfo(this@MainActivity) }; minHeight = Ui.dp(context, 48) })
+        }
         stepCard(c, w("perm.usage.t"), w("perm.usage.b"), Phone.hasUsageAccess(this), onOpen = { Phone.openUsageAccess(this) }) { card ->
             card.addView(Ui.text(this, w("perm.usage.grey"), 15f, color = Ui.MUTED).apply { setOnClickListener { Phone.openAppInfo(this@MainActivity) }; minHeight = Ui.dp(context, 48) })
         }

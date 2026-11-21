@@ -66,7 +66,11 @@ object Ui {
      * shown, only dots.
      */
     fun pinPad(ctx: Context, lang: String, message: TextView, onPin: (String) -> Unit, onCancel: (() -> Unit)?): LinearLayout {
-        val box = LinearLayout(ctx).apply { orientation = LinearLayout.VERTICAL; gravity = Gravity.CENTER_HORIZONTAL }
+        val box = LinearLayout(ctx).apply {
+            orientation = LinearLayout.VERTICAL
+            gravity = Gravity.CENTER_HORIZONTAL
+            layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+        }
         val dots = text(ctx, "○ ○ ○ ○ ○ ○", 30f, bold = true).apply { gravity = Gravity.CENTER; contentDescription = "" }
         val typed = StringBuilder()
         fun redraw() { dots.text = (0 until 6).joinToString(" ") { if (it < typed.length) "●" else "○" } }
@@ -100,7 +104,7 @@ object Ui {
             }
             grid.addView(b)
         }
-        box.addView(grid)
+        box.addView(grid, LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).apply { gravity = Gravity.CENTER_HORIZONTAL; topMargin = dp(ctx, 16) })
         if (onCancel != null) box.addView(button(ctx, Words.t(lang, "pin.cancel"), primary = false) { onCancel() })
         return box
     }
