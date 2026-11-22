@@ -194,11 +194,12 @@ describe('what the block screen lists beyond the plan (C540)', () => {
     expect(await child(KA2)).toMatchObject({ pending: [{ kind: 'english' }] });
   });
 
-  it('school homework: only what is due today, for the matched child, until the teacher marks it done', async () => {
+  it('school homework: only what is due today, for the matched child, listed until the teacher marks it done, never holding the lock', async () => {
     expect(await child(KA)).toMatchObject({ done: true, pending: [] });
     await setSwitch('school_today', true);
     const meera = await child(KA);
-    expect(meera.done).toBe(false);
+    // Listed, but never holding the lock: only the teacher can mark it done (C540, supervisor).
+    expect(meera.done).toBe(true);
     expect(meera.pending).toEqual([{ key: expect.stringMatching(/^homework\.[0-9a-f]{12}$/), title: 'गृहकार्य: Leaf collection', subject: 'school', kind: 'homework' }]);
     // The unmatched sibling sees none of the school's homework.
     expect(kinds(await child(KA2))).toEqual(['english']);
@@ -224,7 +225,7 @@ describe('what the block screen lists beyond the plan (C540)', () => {
     await q(`insert into family.english_lessons_done (account_id, child_id, lesson_key, tries, best_score, stars, done_on, last_on) values ($1, $2, 'b.u01.l1', 1, 90, 2, $3, $3)`, [A, KA, today]);
     expect((await child(KA)).pending.map((p) => p.kind).sort()).toEqual(['homework', 'quiz']);
     await q(`insert into family.chapter_test_attempts (account_id, child_id, chapter_key, block_id, mcq_total, mcq_correct) values ($1, $2, 'session-quiz', $3, 3, 2)`, [A, KA, fresh]);
-    expect(await child(KA)).toMatchObject({ done: false, pending: [{ kind: 'homework' }] });
+    expect(await child(KA)).toMatchObject({ done: true, pending: [{ kind: 'homework' }] });
     await q(`insert into homework_status (school_id, target_id, class_id, student_id, done, checked_by, checked_at) values ($1, $2, $3, $4, true, $5, now())`, [SCHOOL, HW_TARGET_TODAY, CLASS, STUDENT, TEACHER]);
     expect(await child(KA)).toMatchObject({ done: true, pending: [] });
   });

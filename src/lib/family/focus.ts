@@ -237,7 +237,9 @@ export async function focusStatus(db: Db, accountId: string, device: string, day
       if (quiz) pending.push(...(await quizPending(db, accountId, child, day)));
     }
     pending.push(...homeworkPending(child, homework.get(child.childId) ?? [], day));
-    out.push({ childId: child.childId, firstName: child.firstName, done: pending.length === 0, pending });
+    // School homework is listed but never holds the lock (C540, supervisor): only the teacher can mark it done, so a late
+    // mark would keep a child locked for something already finished.
+    out.push({ childId: child.childId, firstName: child.firstName, done: pending.every((p) => p.kind === 'homework'), pending });
   }
   const { rows } = await db.query(`select pin_set_at from family.accounts where account_id = $1`, [accountId]);
   return { day, pinVersion: pinVersionOf(rows[0]?.pin_set_at), children: out };
