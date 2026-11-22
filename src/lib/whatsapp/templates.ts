@@ -388,7 +388,79 @@ export const TEMPLATE_REGISTRY: readonly TemplateDefinition[] = [
       hi: 'स्कूल {{school}} की ओर से: आपको {{date}} को कक्षा {{class}} ({{subject}}) का पीरियड {{period}} सँभालना है। कृपया स्कूल ऐप में प्रॉक्सी देखें।',
     },
   },
+  {
+    // Homework follow-up (C544): each morning, one message per child and guardian for the homework due on the school
+    // day before that the teacher marked "Not done" (never homework left unmarked). The child's first name, the
+    // subjects (at most three, then "and N more") and the day: no title, no mark, no other child.
+    name: 'homework_follow_up',
+    version: 1,
+    category: 'utility',
+    purpose: 'operational_communication',
+    staleAfterMinutes: 600,
+    variables: ['school', 'child', 'subjects', 'date'],
+    body: {
+      en: 'From {{school}}: {{child}}’s homework in {{subjects}}, due on {{date}}, was marked not done by the teacher. Please help your child finish it, and tell the school office if there is a problem.',
+      hi: 'स्कूल {{school}} की ओर से: शिक्षक ने दर्ज किया है कि {{child}} ने {{subjects}} का होमवर्क, जो {{date}} को जमा करना था, पूरा नहीं किया। कृपया बच्चे को इसे पूरा करने में मदद करें, और कोई समस्या हो तो स्कूल दफ़्तर को बताएँ।',
+    },
+  },
+  // The school's acknowledgement of a parent's message (C544), sent as free text in the parent's own open
+  // conversation (src/lib/whatsapp/replies.ts), never as a template, so Meta approves nothing here. Each says only
+  // what the system did: where the message now is (row level security shows a thread to the office and to the class
+  // teacher of the guardian's children), or that an answer was recorded and, for "needs help", that the child is on
+  // the class's follow-up list. English is the code's; the Hindi line goes only once it is approved and reviewed (C190).
+  {
+    name: 'reply_received',
+    version: 1,
+    category: 'utility',
+    purpose: 'operational_communication',
+    staleAfterMinutes: 60,
+    variables: ['school'],
+    body: {
+      en: 'From {{school}}: Thank you. Your message has reached the school office.',
+      hi: 'स्कूल {{school}} की ओर से: धन्यवाद। आपका संदेश स्कूल दफ़्तर तक पहुँच गया है।',
+    },
+  },
+  {
+    name: 'reply_received_class',
+    version: 1,
+    category: 'utility',
+    purpose: 'operational_communication',
+    staleAfterMinutes: 60,
+    variables: ['school', 'class'],
+    body: {
+      en: 'From {{school}}: Thank you. Your message has reached the class teacher of {{class}} and the school office.',
+      hi: 'स्कूल {{school}} की ओर से: धन्यवाद। आपका संदेश {{class}} के कक्षा अध्यापक और स्कूल दफ़्तर तक पहुँच गया है।',
+    },
+  },
+  {
+    name: 'answer_recorded',
+    version: 1,
+    category: 'utility',
+    purpose: 'operational_communication',
+    staleAfterMinutes: 60,
+    variables: ['school'],
+    body: {
+      en: 'From {{school}}: Thank you. Your answer has been recorded.',
+      hi: 'स्कूल {{school}} की ओर से: धन्यवाद। आपका जवाब दर्ज कर लिया गया है।',
+    },
+  },
+  {
+    name: 'help_follow_up',
+    version: 1,
+    category: 'utility',
+    purpose: 'operational_communication',
+    staleAfterMinutes: 60,
+    variables: ['school', 'class'],
+    body: {
+      en: 'From {{school}}: Thank you. Your answer has been recorded. The class teacher of {{class}} has your child on the list to follow up.',
+      hi: 'स्कूल {{school}} की ओर से: धन्यवाद। आपका जवाब दर्ज कर लिया गया है। आपका बच्चा {{class}} के कक्षा अध्यापक की फ़ॉलो-अप सूची में है।',
+    },
+  },
 ];
+
+// The acknowledgements (C544): written in the code and sent as free text only, inside the parent's own window.
+export const ACKNOWLEDGEMENTS = ['reply_received', 'reply_received_class', 'answer_recorded', 'help_follow_up'] as const;
+export type Acknowledgement = (typeof ACKNOWLEDGEMENTS)[number];
 
 // Whether a template carries a document above its words (C366), by the code's own definition of it.
 export const hasDocumentHeader = (templateName: string): boolean => TEMPLATE_REGISTRY.some((d) => d.name === templateName && d.header === 'document');

@@ -7,6 +7,7 @@ import { inviteSendHandler } from '@/lib/onboarding/invitations';
 import { COMPLAINT_ESCALATE_JOB, complaintEscalateHandler } from '@/lib/complaints/complaints';
 import { BILLING_NIGHTLY_JOB, billingNightlyHandler } from '@/lib/control/billing-nightly';
 import { EVENT_REMIND_JOB, eventRemindHandler } from '@/lib/events/events';
+import { HOMEWORK_FOLLOW_UP_JOB, homeworkFollowUpHandler } from '@/lib/homework/follow-up';
 import { feesNightlyHandler } from '@/lib/fees/nightly';
 import { PTM_APP_REMIND_JOB, PTM_REMIND_JOB, ptmAppRemindHandler, ptmRemindHandler } from '@/lib/ptm/ptm';
 import { bulkRunHandler } from '@/lib/frameworks/bulk-engine';
@@ -80,6 +81,9 @@ export function productionHandlers(): Record<string, JobHandler> {
     [PTM_APP_REMIND_JOB]: ptmAppRemindHandler({ platform: withPlatformService, queue: jobQueue }),
     // The day before a school event: everyone invited who did not say no (C194).
     [EVENT_REMIND_JOB]: eventRemindHandler({ platform: withPlatformService, queue: jobQueue }),
+    // C544: each morning in India after quiet hours, homework due the school day before and marked not done, one
+    // WhatsApp message per child and guardian, through the send-gate's outbox.
+    [HOMEWORK_FOLLOW_UP_JOB]: homeworkFollowUpHandler({ platform, queue: jobQueue }),
     // A complaint still open at its due time is passed to the principal (C195).
     [COMPLAINT_ESCALATE_JOB]: complaintEscalateHandler({ platform: withPlatformService, queue: jobQueue }),
     // Each night after midnight in India: a school past its paid-until day goes into grace, then read-only (C204).

@@ -150,6 +150,14 @@ describe('on the real schema', () => {
     await writes('+919000000001', 'help');
     expect((await db.pg.query(`select count(*)::int as n from pulse_followups`)).rows[0].n).toBe(1);
     expect((await db.pg.query(`select count(*)::int as n from pulse_response_log where student_id = $1`, [u(31)])).rows[0].n).toBe(2);
+    // Each answer counted is acknowledged once, saying only what was done (C544): "needs help" names the class whose
+    // follow-up list now has the child (its class teacher sees it); "understood" says it was recorded.
+    const acks = (await db.pg.query(`select to_phone, body from communication_log where dedupe_key like 'ack:%' order by created_at, log_id`)).rows;
+    expect(acks).toEqual([
+      { to_phone: '+919000000001', body: 'From School A: Thank you. Your answer has been recorded. The class teacher of 5-A has your child on the list to follow up.' },
+      { to_phone: '+919000000006', body: 'From School A: Thank you. Your answer has been recorded.' },
+      { to_phone: '+919000000001', body: 'From School A: Thank you. Your answer has been recorded. The class teacher of 5-A has your child on the list to follow up.' },
+    ]);
   });
 
   it('never by guess: a parent of two children who answers is not tied to either; a parent who was not sent a Pulse, or who writes something else, is only a message', async () => {
