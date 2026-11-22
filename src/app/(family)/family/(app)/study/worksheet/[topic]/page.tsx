@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import { SubPageHeader } from '@/components/family/SubPageHeader';
 import { WorksheetScreen } from '@/components/family/WorksheetScreen';
 import { classText } from '@/lib/family/fill';
+import { familyModuleOn } from '@/lib/family/flags';
 import { familyPageRead, firstStepsNext, requireFamilyPage } from '@/lib/family/server';
 import { UNDERSTAND_KEYS } from '@/lib/family/understand-words';
 import { WORKSHEET_KEYS } from '@/lib/family/worksheet-words';
@@ -20,10 +21,10 @@ export default async function FamilyWorksheetPage({ params }: { params: { topic:
   const child = page.child!;
   const lang = page.childLang;
   const key = (() => { try { return decodeURIComponent(params.topic); } catch { return ''; } })();
-  const w = await familyPageRead(page, (db) => loadWorksheet(db, { accountId: page.session.accountId, child }, key));
+  const { w, offline } = await familyPageRead(page, async (db) => ({ w: await loadWorksheet(db, { accountId: page.session.accountId, child }, key), offline: await familyModuleOn(db, 'offline', page.session.accountId) }));
   if (w.state === 'not_found') redirect('/family/study');
   const line = w.line!;
-  const words = familyWords(lang, [...UNDERSTAND_KEYS, ...WORKSHEET_KEYS]);
+  const words = familyWords(lang, [...UNDERSTAND_KEYS, ...WORKSHEET_KEYS, 'fam.offline.pack.answerSaved']);
   const empty = (text: string, understand: boolean) => (
     <p data-worksheet-empty={w.state} className="fam-card fam-rise flex flex-col gap-3 bg-white p-5 text-base text-slate">
       <span>{text}</span>
@@ -44,7 +45,7 @@ export default async function FamilyWorksheetPage({ params }: { params: { topic:
       <SubPageHeader back={`/family/study?subject=${line.subject}`} backLabel={t(lang, `fam.subject.${line.subject}`)} kicker={`${t(lang, 'fam.worksheet.title')} · ${classText((k) => t(lang, k), child.classLevel)}`} title={line.title} subject={line.subject} />
       <main className="relative mx-auto -mt-8 flex w-full max-w-xl flex-1 flex-col gap-3 px-4 pb-24">
         {w.state === 'ok' ? (
-          <WorksheetScreen w={words} ws={screenItems(w, { accountId: page.session.accountId, childId: child.childId })} name={child.firstName} tone={line.subject} />
+          <WorksheetScreen w={words} ws={screenItems(w, { accountId: page.session.accountId, childId: child.childId })} name={child.firstName} tone={line.subject} offline={offline} />
         ) : w.state === 'off' ? (
           empty(t(lang, 'fam.worksheet.off'), false)
         ) : w.state === 'not_open' ? (

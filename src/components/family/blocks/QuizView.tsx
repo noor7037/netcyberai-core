@@ -53,9 +53,13 @@ export function QuestionBody({ item, s, w, tone, onPick, onHint, onRetry }: { it
       <div role="group" aria-label={item.question} className="grid gap-2">
         {item.options.map((o, i) => {
           const chosen = s.picked === i;
-          const look = s.result && chosen ? (s.result.correct ? 'ring-2 ring-emerald-text bg-emerald/10' : 'ring-2 ring-coral-deep bg-coral/10') : chosen && s.kept ? 'ring-2 ring-ink' : 'ring-1 ring-slate/15';
+          // C539: the option tapped shows as chosen at once, while it is checked (it used to look like the others, with every
+          // option disabled, until the server answered: on a weak network the tap looked lost; after a wrong answer it
+          // even showed the last answer's red).
+          const checking = s.busy && chosen;
+          const look = checking || (chosen && s.kept) ? 'ring-2 ring-ink' : s.result && chosen ? (s.result.correct ? 'ring-2 ring-emerald-text bg-emerald/10' : 'ring-2 ring-coral-deep bg-coral/10') : 'ring-1 ring-slate/15';
           return (
-            <button key={i} type="button" disabled={s.busy || done} onClick={() => onPick(i)} className={`min-h-[44px] rounded-xl bg-white px-4 py-2 text-left text-base text-slate ${look}`}>
+            <button key={i} type="button" disabled={s.busy || done} aria-busy={checking || undefined} data-checking={checking ? '' : undefined} onClick={() => onPick(i)} className={`fam-press min-h-[44px] rounded-xl bg-white px-4 py-2 text-left text-base text-slate ${look}`}>
               {o}
             </button>
           );

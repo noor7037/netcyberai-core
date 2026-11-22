@@ -3,10 +3,8 @@
 import { useEffect, useState } from 'react';
 import { sizeText } from '@/lib/family/data-saver';
 import { fill, type Words } from '@/lib/family/fill';
-import type { ChapterPack } from '@/lib/family/pack';
-import { familyApi } from '../client';
 import { FamIcon } from '../FamIcon';
-import { keepShell, listPacks, removePack, savePack } from './store';
+import { downloadPack, listPacks, removePack } from './store';
 import { sameInkOnBothSides } from '@/lib/family/day-text';
 
 // "Save for offline" on a chapter (M2-9, C283): its size is shown before anything is fetched; the pack is kept in this
@@ -35,10 +33,9 @@ export function PackButton({ w, lang, childId, chapterKey, chapterTitle, bytes, 
 
   const save = async () => {
     setState('saving');
-    const r = await familyApi<ChapterPack>(`/api/family/pack?chapter=${encodeURIComponent(chapterKey)}`, 'GET');
-    if (!r.ok || r.data.childId !== childId || !(await savePack(r.data))) return setState('failed');
-    keepShell(true);
-    setUntil(r.data.expiresAt);
+    const pack = await downloadPack(childId, chapterKey);
+    if (!pack) return setState('failed');
+    setUntil(pack.expiresAt);
     setState('saved');
   };
   const remove = async () => {
