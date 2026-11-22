@@ -15,9 +15,9 @@ Overall: "Does your app collect or share any of the required user data types?" Y
 | App activity: In-app actions and other user-generated content | Yes | No | App functionality | No | Checked quiz and test answers and progress, kept so the parent can see and delete them. Typed questions are answered by AI and never kept in the shared library |
 | Photos and videos: Photos | Yes | No | App functionality | Yes | A photo of a textbook page for help. Read once, not stored |
 | Audio: Voice or sound recordings | Yes | No | App functionality | Yes | Voice questions and English speaking practice, only after a microphone tap. Read once, not stored |
-| Device or other IDs | Yes | No | App functionality | Yes | The browser's push-notification subscription if the parent turns notifications on. `[GAP: confirm no advertising or device ID is read by any plugin]` |
+| Device or other IDs | Yes | No | App functionality | Yes | The browser's push-notification subscription if the parent turns notifications on. (Checked by the lead: the app's only native plugins are Capacitor's own and the phone's text-to-speech; none reads an advertising or device ID.) |
 
-Not collected: location, contacts, calls, SMS, financial info, health, web browsing history, advertising ID. `[GAP: crash or diagnostic logs: confirm with the lead whether the deployment keeps any, and add "Crash logs / Diagnostics" if it does]`.
+Not collected: location, contacts, calls, SMS, financial info, health, web browsing history, advertising ID. Crash logs and diagnostics: none from the app (no crash or analytics SDK). The server keeps its own request logs for a short time to run the service; they are not data the app collects from the phone..
 
 "Shared" is No because the AI providers process the (name-free) text, photo or audio on our behalf as service providers and Play does not count that as sharing. `[GAP: lawyer to confirm this reading for the AI providers and the school link]`. Data from a school the parent links stays between the family and that school.
 
@@ -52,7 +52,7 @@ Email for the certificate: admin@netcyberai.com.
 | User-generated content or user interaction | The child types questions to an AI tutor and gets AI-generated answers; no chat between users. Answer the AI-content prompt truthfully (the answers pass a safety check before being shown) | No |
 | Shares the user's location | No | No |
 | Allows purchases of digital goods | No (none found in the code) | No |
-| Unrestricted internet access | No: pages load from our own site only. `[GAP: lead to confirm that no in-app link opens the open web for a child]` | No |
+| Unrestricted internet access | No: pages load from our own site only. (Checked by the lead: the app navigates only within www.netcyberai.com; video picks are curated in-app embeds.) | No |
 
 Expected result for Family: the lowest rating (3+ or equivalent). The rating is Play's output; do not promise it in the listing.
 
@@ -63,7 +63,7 @@ Expected result for Family: the lowest rating (3+ or equivalent). The rating is 
 - Target age groups: 5 to 8, 9 to 12 and 13 to 15 and 16 to 17 (the app covers Classes 1 to 12). Because it includes children under 13, the app is **designed for children and families** and Play's **Families policy** applies.
 - Appeals to children: Yes.
 - Opt into the Designed for Families program: Yes, when the app meets all of these. Checklist from the repository:
-  - No advertising and no ad SDKs: true (no ads of any kind; `forms.md` section 5). `[GAP: lead to run a dependency check of `android/` and the web bundle for any ad or analytics SDK before submission]`.
+  - No advertising and no ad SDKs: true (no ads of any kind; `forms.md` section 5). (Checked by the lead: no ad or analytics SDK in `package.json` or the Android projects.).
   - Only data needed for the app's purpose is collected, with no advertising ID: true by design; see section 1.
   - Parent controls: the parent area sits behind a 6-digit PIN; the parent can see and delete a child's answers and delete the account.
   - Privacy policy that covers children: `https://www.netcyberai.com/privacy`, section 4 (children's data) and 6 (rights).
@@ -83,9 +83,9 @@ Expected result for Family: the lowest rating (3+ or equivalent). The rating is 
 Both apps need a parent account, so tell Play how to sign in.
 
 - **NetCyberAI Family:** sign-in is by an emailed 6-digit code, so a reviewer needs an address that receives it.
-  - Instructions text to paste: "Open the app, tap Sign in, enter the reviewer email play-review@netcyberai.com, then enter the 6-digit sign-in code: the six-digit code in the private file the supervisor sent you. The parent area asks for a PIN: [GAP: reviewer PIN]. A child profile is already added."
-  - `[GAP: the lead chooses the mechanism that gives a reviewer a code that works (a fixed reviewer account, or an inbox the reviewers can read) and fills the placeholders]`.
-- **NetCyberAI Focus:** it is connected from the Family app. Instructions text: "Install both apps from the same Play track. Sign in to NetCyberAI Family with the reviewer account above, open Parent area > Focus Lock > Connect. NetCyberAI Focus opens by itself. Enter the parent PIN [GAP: reviewer PIN], switch on the steps shown (notifications, display over other apps, usage access), choose apps and times, tap Start. Open a chosen app inside the lock time to see the Study first screen." Steps are the ones in `docs/launch/FOCUS_TEST.md`.
+  - Instructions text to paste: "Open the app, tap Sign in, enter the reviewer email play-review@netcyberai.com, then enter the 6-digit sign-in code: the six-digit code in the private file the supervisor sent you. The parent area asks for a PIN: the parent PIN the reviewer sets at first sign-in (the app asks for one). A child profile is already added."
+  - Mechanism (C542): the review address gets a fixed six-digit code set on our server; no email is sent for it. It works for sign-in only, with the usual one-use code and try limits.
+- **NetCyberAI Focus:** it is connected from the Family app. Instructions text: "Install both apps from the same Play track. Sign in to NetCyberAI Family with the reviewer account above, open Parent area > Focus Lock > Connect. NetCyberAI Focus opens by itself. Enter the parent PIN the parent PIN the reviewer sets at first sign-in (the app asks for one), switch on the steps shown (notifications, display over other apps, usage access), choose apps and times, tap Start. Open a chosen app inside the lock time to see the Study first screen." Steps are the ones in `docs/launch/FOCUS_TEST.md`.
 - The Focus Lock must be switched on for the reviewer family in Control (Control > Apps > Focus Lock; offered to every family since 21 Nov 2026 per FOCUS_TEST.md).
 
 ## 5. Ads
@@ -102,7 +102,7 @@ Answer for both apps: **My app doesn't provide any financial features** (no loan
 
 Facts checked: neither app takes payment or sells anything, and neither has in-app purchases or a subscription in the code. One thing to note: in the Family parent area a parent with a linked school can see that school's fees and tap "Open my UPI app" or scan a UPI QR; the money goes to the school's own UPI account and we only show the details (`src/components/family/SchoolFees.tsx`). We do not process, hold or move money.
 
-`[GAP: lead and founder to decide whether Play's "Payments / bill payment" option should be ticked for the School Link fee view. Recommended answer: no financial features, since the app only displays a school's UPI details and opens the parent's own UPI app.]`
+Decided by the lead (C541): no financial features. The app only shows a linked school's UPI details and opens the parent's own UPI app; it takes no payment.
 
 ## 8. Health
 
@@ -148,7 +148,7 @@ The Focus manifest carries `<meta-data android:name="isMonitoringTool" android:v
 - **How the rule's conditions are met:**
   - Aimed at parents of their own children only; the listing says so at the top.
   - A permanent "Focus Lock is on" notification is always visible while it runs; the app has a launcher icon and does not hide.
-  - Clear disclosure in the listing's first paragraph (English and Hindi), and `[GAP: confirm the Focus app's first screen shows the same disclosure before set-up (docs/34 §9.3)]`.
+  - Clear disclosure in the listing's first paragraph (English and Hindi), and the Focus app's first screen shows the same disclosure before set-up (what it locks, that calls always work, and that app use never leaves the phone).
   - Set up by the parent, with the parent's own account and PIN, through the Family app.
   - What leaves the phone is limited to four requests (`FocusOutbound`): connect with a one-time pass, read today's study status, send three yes or no flags, check the parent PIN once. A test fails if any other host, path or field appears.
   - No ads, no selling of data, no Accessibility API, no device admin.
