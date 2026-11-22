@@ -9238,6 +9238,7 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.focus.app.title': 'इस फ़ोन पर फ़ोकस लॉक लगाएँ',
   'fam.focus.app.what': 'फ़ोकस लॉक एक छोटा दूसरा ऐप है, NetCyberAI Focus। आज की पढ़ाई पूरी होने तक यह गेम, वीडियो और सोशल ऐप बंद रखता है। कॉल और मैसेज हमेशा चलते हैं। इसे इंस्टॉल करें, फिर यहाँ वापस आएँ।',
   'fam.focus.app.install': 'NetCyberAI Focus इंस्टॉल करें',
+  'fam.focus.app.soon': 'NetCyberAI Focus जल्द ही Play Store पर आ रहा है। तब यहाँ इंस्टॉल का बटन दिखेगा।',
   'fam.focus.app.key': 'NetCyberAI Focus इस फ़ोन पर है, पर इस ऐप वाली जगह से नहीं आया। उसे हटाएँ, फिर दोनों ऐप एक ही जगह से दोबारा इंस्टॉल करें।',
   'fam.focus.app.failed': 'NetCyberAI Focus ने जवाब नहीं दिया। उसे एक बार खोलें, फिर दोबारा कनेक्ट दबाएँ।',
   'fam.focus.app.connectLead': 'NetCyberAI Focus इंस्टॉल हो गया है। कनेक्ट दबाएँ: वह खुलेगा और आगे के कदम दिखाएगा। कोई कोड नहीं लिखना है।',

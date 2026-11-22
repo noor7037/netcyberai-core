@@ -59,5 +59,5 @@ object Api {
 
 /** The app's version for its user agent, without the generated BuildConfig (switched off in new AGP versions). */
 object BuildConfigLite {
-    const val VERSION = 4
+    const val VERSION = 5
 }

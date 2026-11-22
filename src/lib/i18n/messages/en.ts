@@ -9251,6 +9251,7 @@ export const en = {
   'fam.focus.app.title': 'Set up the Focus Lock on this phone',
   'fam.focus.app.what': 'The Focus Lock is a small second app, NetCyberAI Focus. It keeps games, videos and social apps closed until today’s study is done. Calls and messages always work. Install it, then come back here.',
   'fam.focus.app.install': 'Install NetCyberAI Focus',
+  'fam.focus.app.soon': 'NetCyberAI Focus is coming to the Play Store soon. This section will then show an Install button.',
   'fam.focus.app.key': 'NetCyberAI Focus is on this phone, but it is not from the same place as this app. Remove it, then install both apps again from the same place.',
   'fam.focus.app.failed': 'NetCyberAI Focus did not answer. Open it once, then tap Connect again.',
   'fam.focus.app.connectLead': 'NetCyberAI Focus is installed. Tap Connect: it opens and shows you the next steps. You do not need to type any code.',

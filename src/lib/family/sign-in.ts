@@ -46,6 +46,14 @@ export function clientAddress(headers: Headers): string | null {
   return first || headers.get('x-real-ip') || null;
 }
 
+// The review sign-in (C542): only for sign-in (never a PIN reset), only for the configured address, only a six-digit code.
+export function reviewCodeFor(email: string, purpose: CodePurpose, env: NodeJS.ProcessEnv = process.env): string | null {
+  const address = normalizeFamilyEmail(env.FAMILY_REVIEW_EMAIL);
+  const code = env.FAMILY_REVIEW_CODE ?? '';
+  if (purpose !== 'sign_in' || !address || !/^[0-9]{6}$/.test(code)) return null;
+  return normalizeFamilyEmail(email) === address ? code : null;
+}
+
 export type RequestCodeResult = { status: 'sent' } | { status: 'rate_limited' } | { status: 'email_unavailable' };
 
 // Make a code, store its hash, and email it. `run` is the database door (withFamilyGate); tests pass their own.
@@ -53,10 +61,14 @@ export async function requestCode(
   input: { email: string; purpose: CodePurpose; ip: string | null; lang: Lang },
   deps: { sender?: EmailSender | null; run?: <T>(fn: (db: Db) => Promise<T>) => Promise<T>; code?: () => string } = {}
 ): Promise<RequestCodeResult> {
+  // Google Play's reviewers (C542) cannot read an emailed code. For the one review address set in the server's
+  // environment (FAMILY_REVIEW_EMAIL, with FAMILY_REVIEW_CODE: six digits), the code is that fixed one and no email is
+  // sent; everything else is unchanged (stored as a hash, one use, expiry, the same try limits). Unset: no effect.
+  const review = reviewCodeFor(input.email, input.purpose);
   const sender = deps.sender === undefined ? emailSenderFromEnv() : deps.sender;
-  if (!sender) return { status: 'email_unavailable' };
+  if (!sender && !review) return { status: 'email_unavailable' };
   const run = deps.run ?? (withFamilyGate as unknown as <T>(fn: (db: Db) => Promise<T>) => Promise<T>);
-  const code = (deps.code ?? newCode)();
+  const code = review ?? (deps.code ?? newCode)();
   const issued = await run(async (db) => {
     const { rows } = await db.query(`select family.issue_code($1, $2, $3, $4) as r`, [
       input.purpose,
@@ -67,6 +79,7 @@ export async function requestCode(
     return String(rows[0]?.r);
   });
   if (issued === 'rate_limited') return { status: 'rate_limited' };
+  if (review || !sender) return { status: 'sent' };
   const kind = input.purpose === 'pin_reset' ? 'pinReset' : 'signIn';
   // The email service refusing the address (a 4xx such as an example.com address) or being down is "could not send",
   // not a server fault: the screen then says so in plain words (W14-G).
