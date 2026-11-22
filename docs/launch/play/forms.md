@@ -6,7 +6,7 @@ Every answer below comes from the repository (manifests, `capacitor.config.json`
 
 ### NetCyberAI Family (com.netcyberai.family)
 
-Overall: "Does your app collect or share any of the required user data types?" Yes. "Is all of the user data collected by your app encrypted in transit?" Yes (the app loads `https://www.netcyberai.com/family` only; cleartext is off in `capacitor.config.json`). "Do you provide a way for users to request that their data is deleted?" Yes: the parent deletes a child's answers, or the whole account, in the parent area; also by email request. `[GAP: account deletion web page]` (Play needs a web address for this).
+Overall: "Does your app collect or share any of the required user data types?" Yes. "Is all of the user data collected by your app encrypted in transit?" Yes (the app loads `https://www.netcyberai.com/family` only; cleartext is off in `capacitor.config.json`). "Do you provide a way for users to request that their data is deleted?" Yes: the parent deletes a child's answers, or the whole account, in the parent area; also by email request. https://www.netcyberai.com/privacy#delete-account (Play needs a web address for this).
 
 | Data type (Play's list) | Collected | Shared | Purpose | Optional | Notes |
 |---|---|---|---|---|---|
@@ -39,7 +39,7 @@ The app uses Usage access and Display over other apps, which are read on the pho
 
 ## 2. Content rating (IARC questionnaire)
 
-Email for the certificate: [GAP: support email].
+Email for the certificate: admin@netcyberai.com.
 
 | Question | Family | Focus |
 |---|---|---|
@@ -83,7 +83,7 @@ Expected result for Family: the lowest rating (3+ or equivalent). The rating is 
 Both apps need a parent account, so tell Play how to sign in.
 
 - **NetCyberAI Family:** sign-in is by an emailed 6-digit code, so a reviewer needs an address that receives it.
-  - Instructions text to paste: "Open the app, tap Sign in, enter the reviewer email [GAP: reviewer email], then enter the 6-digit sign-in code: [GAP: reviewer code]. The parent area asks for a PIN: [GAP: reviewer PIN]. A child profile is already added."
+  - Instructions text to paste: "Open the app, tap Sign in, enter the reviewer email play-review@netcyberai.com, then enter the 6-digit sign-in code: the six-digit code in the private file the supervisor sent you. The parent area asks for a PIN: [GAP: reviewer PIN]. A child profile is already added."
   - `[GAP: the lead chooses the mechanism that gives a reviewer a code that works (a fixed reviewer account, or an inbox the reviewers can read) and fills the placeholders]`.
 - **NetCyberAI Focus:** it is connected from the Family app. Instructions text: "Install both apps from the same Play track. Sign in to NetCyberAI Family with the reviewer account above, open Parent area > Focus Lock > Connect. NetCyberAI Focus opens by itself. Enter the parent PIN [GAP: reviewer PIN], switch on the steps shown (notifications, display over other apps, usage access), choose apps and times, tap Start. Open a chosen app inside the lock time to see the Study first screen." Steps are the ones in `docs/launch/FOCUS_TEST.md`.
 - The Focus Lock must be switched on for the reviewer family in Control (Control > Apps > Focus Lock; offered to every family since 21 Nov 2026 per FOCUS_TEST.md).

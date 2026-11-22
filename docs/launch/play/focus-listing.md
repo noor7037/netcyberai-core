@@ -12,7 +12,7 @@ Paste into: Play Console > Grow > Store presence > Main store listing (English),
 | Free or paid | Free |
 | Category | Parenting |
 | Tags (choose from Play's list) | Parenting, Parental control, Family, Education |
-| Contact email | [GAP: support email] |
+| Contact email | admin@netcyberai.com |
 | Website | https://www.netcyberai.com |
 | Privacy policy | https://www.netcyberai.com/privacy (section "Focus Lock (NetCyberAI Focus app)") |
 | Monitoring app flag | `isMonitoringTool` = `child_monitoring` is in the manifest; see `forms.md` section 12 |
@@ -58,7 +58,7 @@ Honest limits
 
 For parents of children only. Not for use on another adult's phone, and not for secret monitoring. Needs the NetCyberAI Family app and a parent account.
 
-Questions: [GAP: support email]
+Questions: admin@netcyberai.com
 ```
 
 ## Hindi (हिन्दी)
@@ -104,7 +104,7 @@ Questions: [GAP: support email]
 
 यह सिर्फ़ बच्चों के माता-पिता के लिए है। किसी दूसरे वयस्क के फ़ोन पर या चोरी-छिपे निगरानी के लिए इस्तेमाल न करें। इसके लिए NetCyberAI Family ऐप और माता-पिता का खाता चाहिए।
 
-सवाल हों तो लिखें: [GAP: support email]
+सवाल हों तो लिखें: admin@netcyberai.com
 ```
 
 ## Notes for the lead

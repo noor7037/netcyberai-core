@@ -140,6 +140,17 @@ export default function PrivacyPage() {
         </p>
       </section>
 
+      <section id="delete-account" className="flex flex-col gap-3">
+        <h2 className="text-xl font-bold text-slate">Deleting a NetCyberAI Family account</h2>
+        <p className="text-sm text-slate">
+          In the NetCyberAI Family app, open the parent area with the parent PIN and tap Delete the
+          account. This deletes the account, every child, every answer and all progress, for good.
+          A parent can also ask us by email at the address in section 1; we delete the account and
+          its data and reply when it is done. Uninstalling NetCyberAI Focus removes everything it
+          keeps on the phone.
+        </p>
+      </section>
+
       <section className="flex flex-col gap-3">
         <h2 className="text-xl font-bold text-slate">6. Purpose limitation and consent</h2>
         <p className="text-sm text-slate">

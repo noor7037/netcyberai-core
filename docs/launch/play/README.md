@@ -49,8 +49,8 @@ Phone screenshots of the Family app are taken by the build lead. Focus screensho
 
 ## Gaps left for the founder
 
-- `[GAP: support email]` in both listings (Play shows it publicly).
-- `[GAP: reviewer email]` and `[GAP: reviewer code]`: the build lead decides the sign-in mechanism for Play's reviewers.
-- `[GAP: account deletion web page]`: Play asks for a web address where a parent can ask for the account to be deleted without installing the app.
+- `admin@netcyberai.com` in both listings (Play shows it publicly).
+- `play-review@netcyberai.com` and `the six-digit code in the private file the supervisor sent you`: the build lead decides the sign-in mechanism for Play's reviewers.
+- https://www.netcyberai.com/privacy#delete-account: Play asks for a web address where a parent can ask for the account to be deleted without installing the app.
 - `[GAP: lawyer confirmation]` of the Focus Lock before the public listing.
 - The other `[GAP: ...]` lines inside each file.

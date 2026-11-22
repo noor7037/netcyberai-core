@@ -12,7 +12,7 @@ Paste into: Play Console > Grow > Store presence > Main store listing (English),
 | Free or paid | Free |
 | Category | Education |
 | Tags (choose from Play's list) | Education, Learning, Study, Tutoring, Homework help, Parenting |
-| Contact email | [GAP: support email] |
+| Contact email | admin@netcyberai.com |
 | Website | https://www.netcyberai.com |
 | Privacy policy | https://www.netcyberai.com/privacy |
 
@@ -53,7 +53,7 @@ Safety and privacy
 
 NetCyberAI Family is a learning app. It does not replace a teacher. It is not endorsed by any education board.
 
-Questions: [GAP: support email]
+Questions: admin@netcyberai.com
 ```
 
 ## Hindi (हिन्दी)
@@ -95,7 +95,7 @@ NetCyberAI Family बच्चे को स्कूल का पाठ सम
 
 NetCyberAI Family पढ़ाई का ऐप है। यह टीचर की जगह नहीं लेता। इसे किसी शिक्षा बोर्ड का समर्थन प्राप्त नहीं है।
 
-सवाल हों तो लिखें: [GAP: support email]
+सवाल हों तो लिखें: admin@netcyberai.com
 ```
 
 ## Notes for the lead
