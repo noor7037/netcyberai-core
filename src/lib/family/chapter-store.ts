@@ -1,3 +1,4 @@
+import { oneAtATime } from './savepoint';
 import {
   checkChapter,
   showcaseChapter,
@@ -16,12 +17,16 @@ type Db = {
 };
 const MISSING_TABLE = "42P01";
 
-export async function guarded<T>(
+export function guarded<T>(
   db: Db,
   name: string,
   fn: () => Promise<T>,
   fallback: T,
 ): Promise<T> {
+  return oneAtATime(db, () => guardedNow(db, name, fn, fallback));
+}
+
+async function guardedNow<T>(db: Db, name: string, fn: () => Promise<T>, fallback: T): Promise<T> {
   await db.query(`savepoint ${name}`);
   try {
     const out = await fn();

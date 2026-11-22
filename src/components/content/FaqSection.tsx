@@ -6,7 +6,7 @@ import { FaqBlock, type FaqItem } from './FaqBlock';
 export function FaqSection({ id, items, tint = 'off-white', title = 'Frequently asked questions' }: { id: string; items: FaqItem[]; tint?: 'white' | 'off-white'; title?: string }) {
   return (
     <section aria-labelledby={id} className={tint === 'white' ? 'bg-white' : 'bg-off-white'}>
-      <Container className="flex flex-col gap-6 py-14">
+      <Container reading className="flex flex-col gap-6 py-14">
         <SectionHeading id={id} eyebrow="Got questions?" tone="product" title={title} center />
         <FaqBlock items={items} />
       </Container>

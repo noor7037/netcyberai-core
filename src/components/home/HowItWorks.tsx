@@ -10,7 +10,7 @@ import { tones } from '@/lib/semantic';
 export function HowItWorks({ id = 'how-it-works', tint = 'white', ctas = true }: { id?: string; tint?: 'white' | 'off-white'; ctas?: boolean }) {
   return (
     <section id={id} aria-labelledby={`${id}-title`} className={`scroll-mt-24 ${tint === 'white' ? 'bg-white' : 'bg-off-white'}`}>
-      <Container wide className="flex flex-col gap-8 py-16">
+      <Container className="flex flex-col gap-8 py-16">
         <SectionHeading id={`${id}-title`} eyebrow={ONBOARDING.eyebrow} tone="success" title={ONBOARDING.title} lead={ONBOARDING.lead} />
         <ol className="relative grid grid-cols-1 gap-4 md:grid-cols-3">
           <span aria-hidden="true" className="nca-steps-line absolute top-11 hidden h-0.5 md:block" style={{ left: '16%', right: '16%' }} />

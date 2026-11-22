@@ -92,7 +92,7 @@ export default function FreeToolPage({ params }: { params: { slug: string } }) {
       <section aria-labelledby="tool-title" className="relative overflow-hidden bg-midnight text-white print:hidden">
         <div aria-hidden="true" className="nca-mesh-dark absolute inset-0" />
         <div aria-hidden="true" className="nca-spectrum-bar absolute inset-x-0 top-0 h-1" />
-        <Container wide className="relative flex flex-col gap-5 py-12 sm:py-14">
+        <Container className="relative flex flex-col gap-5 py-12 sm:py-14">
           <nav aria-label="Breadcrumb" className="text-sm opacity-90">
             <Link href="/free-tools" className="font-semibold underline-offset-4 hover:underline">
               Free tools
@@ -120,7 +120,7 @@ export default function FreeToolPage({ params }: { params: { slug: string } }) {
       </section>
 
       <section aria-labelledby="tool-problem-title" className="bg-white print:hidden">
-        <Container wide className="grid grid-cols-1 gap-6 py-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] lg:items-center">
+        <Container className="grid grid-cols-1 gap-6 py-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] lg:items-center">
           <div className="flex flex-col gap-2">
             <h2 id="tool-problem-title" className="text-2xl font-extrabold text-slate">
               The problem this solves
@@ -132,7 +132,7 @@ export default function FreeToolPage({ params }: { params: { slug: string } }) {
       </section>
 
       <section aria-label={t.name} className="bg-off-white">
-        <Container wide className="py-10">
+        <Container className="py-10">
           <Tool t={t} />
           {t.kind !== 'certificate' && (
             <div className="mt-10 print:hidden">
@@ -143,7 +143,7 @@ export default function FreeToolPage({ params }: { params: { slug: string } }) {
       </section>
 
       <section aria-labelledby="tool-guide-title" className="bg-white print:hidden">
-        <Container wide className="grid grid-cols-1 gap-10 py-14 lg:grid-cols-2">
+        <Container className="grid grid-cols-1 gap-10 py-14 lg:grid-cols-2">
           <div className="flex flex-col gap-5">
             <h2 id="tool-guide-title" className="text-2xl font-extrabold text-slate">
               How to use the {t.name}
@@ -176,7 +176,7 @@ export default function FreeToolPage({ params }: { params: { slug: string } }) {
       </section>
 
       <section aria-labelledby="tool-more-title" className="bg-off-white print:hidden">
-        <Container wide className="flex flex-col gap-6 py-14">
+        <Container className="flex flex-col gap-6 py-14">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div className="flex max-w-2xl flex-col gap-2">
               <h2 id="tool-more-title" className="text-2xl font-extrabold text-slate">
@@ -193,7 +193,7 @@ export default function FreeToolPage({ params }: { params: { slug: string } }) {
       </section>
 
       <section aria-labelledby="other-tools-title" className="bg-white print:hidden">
-        <Container wide className="flex flex-col gap-4 py-12">
+        <Container className="flex flex-col gap-4 py-12">
           <h2 id="other-tools-title" className="text-lg font-extrabold text-slate">
             More free tools
           </h2>

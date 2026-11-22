@@ -81,7 +81,7 @@ export type FocusChildView = { childId: string; firstName: string };
 
 // C538: the lock is its own app, NetCyberAI Focus. On this phone, the parent installs it and connects it with one tap:
 // no code to type. Only in the Android app (the FocusLink plugin); a browser is told where to do it.
-function SetUpHere({ w, kids, lang }: { w: Words; kids: FocusChildView[]; lang: string }) {
+function SetUpHere({ w, kids, lang, onPlay }: { w: Words; kids: FocusChildView[]; lang: string; onPlay: boolean }) {
   const router = useRouter();
   const [state, setState] = useState<FocusLinkStatus | 'browser' | null>(null);
   const [chosen, setChosen] = useState<string[]>(kids.map((k) => k.childId));
@@ -108,11 +108,15 @@ function SetUpHere({ w, kids, lang }: { w: Words; kids: FocusChildView[]; lang: 
       <div data-focus-setup="install" className={box}>
         <p className="text-base font-bold">{w['fam.focus.app.title']}</p>
         <p>{w['fam.focus.app.what']}</p>
-        <div>
-          <Button type="button" onClick={() => void focusLink.install()}>
-            {w['fam.focus.app.install']}
-          </Button>
-        </div>
+        {onPlay ? (
+          <div>
+            <Button type="button" onClick={() => void focusLink.install()}>
+              {w['fam.focus.app.install']}
+            </Button>
+          </div>
+        ) : (
+          <p className="font-semibold">{w['fam.focus.app.soon']}</p>
+        )}
       </div>
     );
   }
@@ -168,6 +172,7 @@ export function FocusSection({
   kids = [],
   canSetUp = false,
   lang = 'en',
+  onPlay = false,
 }: {
   w: Words;
   devices: FocusDeviceView[];
@@ -175,12 +180,13 @@ export function FocusSection({
   kids?: FocusChildView[];
   canSetUp?: boolean;
   lang?: string;
+  onPlay?: boolean;
 }) {
   return (
     <section data-focus-section className="fam-card fam-section fam-rise bg-white">
       <h2 className="fam-h2 text-slate">{w['fam.focus.title']}</h2>
       <p className="text-sm text-slate">{w['fam.focus.lead']}</p>
-      {canSetUp && kids.length > 0 && <SetUpHere w={w} kids={kids} lang={lang} />}
+      {canSetUp && kids.length > 0 && <SetUpHere w={w} kids={kids} lang={lang} onPlay={onPlay} />}
       {devices.length === 0 ? (
         <p className="text-sm text-slate">{w['fam.focus.none']}</p>
       ) : (

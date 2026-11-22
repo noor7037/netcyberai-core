@@ -3,6 +3,12 @@ import { signFocusPassToken, verifyFocusPassToken, type FocusPassHolder } from '
 import { isPrePrimary, listChildren } from './children';
 import { readFamilySwitches, switchOn } from './flags';
 import { dayPlan, type PlanKind } from './plan';
+import { consentState } from './consent';
+import { quizCards } from './quiz';
+import { courseLessons, lessonStates } from './english/progress';
+import { courseUnits, doneSet, lessonsDone, newLessonsOn, publishedVersion, readEnrolment } from './english/store';
+import { activeLinks, linkedSchool, type FamilySchoolLink } from './school';
+import type { FamilyClaims } from './db';
 import { familyHashKey } from './secret';
 import { sameInkOnBothSides } from '@/lib/family/day-text';
 
@@ -107,7 +113,10 @@ export async function standDown(db: Db, accountId: string): Promise<void> {
 
 // ---- the status -----------------------------------------------------------------------------------------------------
 
-export type FocusPending = { key: string; title: string; subject: string; kind: PlanKind };
+// kind: a plan item's own kind, or the module the item comes from: 'english' (the course's next lesson), 'quiz' (today's
+// quick quiz or a review due today) or 'homework' (school homework due today, School Link).
+export type FocusKind = PlanKind | 'english' | 'quiz' | 'homework';
+export type FocusPending = { key: string; title: string; subject: string; kind: FocusKind };
 export type FocusChildStatus = { childId: string; firstName: string; done: boolean; pending: FocusPending[] };
 export type FocusStatus = { day: string; pinVersion: string | null; children: FocusChildStatus[] };
 
@@ -123,23 +132,114 @@ export async function deviceId(db: Db, accountId: string, hash: string): Promise
   return rows[0] ? String(rows[0].device_id) : null;
 }
 
-// For each child set for the phone (in the order the family added them): today's plan, done only when every item has a
-// checked answer today (dayPlan), and what is still pending. A day with nothing in the plan counts as done: the lock
-// never holds a child with nothing to do (review of C305). The day is India's, from the server.
-export async function focusStatus(db: Db, accountId: string, device: string, day: string): Promise<FocusStatus> {
+// ---- the other things a child has to do today (C540) -----------------------------------------------------------------
+// Beyond the day plan, the block screen lists what each module sets for the child today, and only when the module is
+// switched on for the family and the child really has such a task. Nothing is invented: a module with no task today adds
+// no item. Each source reads the family's own rows through the account's transaction (or, for the school, as the guardian).
+
+const LABEL = {
+  english: { en: 'English', hi: 'अंग्रेज़ी' },
+  quiz: { en: 'Quiz', hi: 'क्विज़' },
+  homework: { en: 'Homework', hi: 'गृहकार्य' },
+} as const;
+const labelled = (kind: keyof typeof LABEL, lang: 'en' | 'hi', title: string) => `${LABEL[kind][lang]}: ${title}`;
+
+// English programme (module english_programme, with the parent's english_programme consent): today's task is the next
+// open lesson of the child's course, done once the child has finished a lesson today (made done today, or passed again
+// today). Only for a child already enrolled in a track with a published course (nothing is enrolled here), and none once
+// every lesson is done.
+async function englishPending(db: Db, child: { childId: string; language: 'en' | 'hi' }, day: string): Promise<FocusPending[]> {
+  const enrolment = await readEnrolment(db, child.childId);
+  if (!enrolment) return [];
+  const versionId = await publishedVersion(db, enrolment.track);
+  if (!versionId) return [];
+  const done = await lessonsDone(db, child.childId, enrolment.track);
+  if ((await newLessonsOn(db, child.childId, day)) > 0 || [...done.values()].some((r) => r.stars > 0 && (r.doneOn === day || r.lastOn === day))) return [];
+  const states = lessonStates(enrolment.track, doneSet(done), enrolment.placedUnit, 0, 0);
+  const next = courseLessons(enrolment.track).find((k) => states[k] === 'open');
+  if (!next) return [];
+  const lesson = (await courseUnits(db, versionId)).flatMap((u) => u.lessons).find((l) => l.key === next);
+  if (!lesson) return [];
+  return [{ key: next, title: labelled('english', child.language, child.language === 'hi' ? lesson.titleHi || lesson.titleEn : lesson.titleEn), subject: 'english', kind: 'english' }];
+}
+
+// The quick quiz (module tutor_quiz): the quiz the app made from the child's tutor session today and not yet taken, or a
+// quiz whose review day is today and not yet retaken. A take is recorded as an attempt and moves the quiz out of both
+// states, so the item goes when the child does it. An older untaken quiz is not "today's".
+async function quizPending(db: Db, accountId: string, child: { childId: string; language: 'en' | 'hi' }, day: string): Promise<FocusPending[]> {
+  const cards = await quizCards(db, { accountId, childId: child.childId }, day, { all: true });
+  return cards
+    .filter((c) => (c.state === 'ready' && c.day === day) || (c.state === 'review' && c.due === day))
+    .map((c) => ({ key: `quiz.${c.quizId}`, title: labelled('quiz', child.language, c.title), subject: c.subject, kind: 'quiz' as const }));
+}
+
+// School homework (module school_today, School Link): for a child matched to a student of a connected school, the
+// homework the school set with today as its due day that the teacher has not marked done for this child. The done mark
+// is the school's: the child cannot make it in the app.
+export type FocusHomework = { title: string; due: string | null; done: boolean | null };
+export type FocusSchoolLinks = { links: FamilySchoolLink[]; childIds: string[] };
+
+// The family's links, narrowed to the phone's children, when the school module is on and any of them is matched.
+export async function focusSchoolLinks(db: Db, accountId: string, device: string): Promise<FocusSchoolLinks | null> {
+  if (!switchOn(await readFamilySwitches(db, accountId), 'school_today')) return null;
+  const set = new Set((await db.query(`select child_id from family.focus_device_children where account_id = $1 and device_id = $2`, [accountId, device])).rows.map((r) => String(r.child_id)));
+  const links = (await activeLinks(db as never, accountId)).map((l) => ({ ...l, children: l.children.filter((c) => set.has(c.childId)) })).filter((l) => l.children.length > 0);
+  return links.length ? { links, childIds: [...set] } : null;
+}
+
+// The homework of each matched child, read as the guardian (a different door from the family's transaction: call it
+// outside one). A link the school closed, or any failure, gives no homework: the lock never holds a child on a guess.
+export async function readFocusHomework(claims: FamilyClaims, school: FocusSchoolLinks | null): Promise<Map<string, FocusHomework[]>> {
+  const out = new Map<string, FocusHomework[]>();
+  if (!school) return out;
+  for (const l of school.links) {
+    try {
+      const read = await linkedSchool(claims, l.linkId, l.children.map((c) => c.studentId));
+      for (const m of l.children) {
+        const hw = read?.children.find((c) => c.studentId === m.studentId)?.homework;
+        if (hw) out.set(m.childId, [...(out.get(m.childId) ?? []), ...hw.map((h) => ({ title: h.title, due: h.due, done: h.done }))]);
+      }
+    } catch {
+      /* the school could not be read now: no homework item */
+    }
+  }
+  return out;
+}
+
+const homeworkPending = (child: { language: 'en' | 'hi' }, list: readonly FocusHomework[], day: string): FocusPending[] =>
+  list
+    .filter((h) => h.due === day && h.done !== true)
+    .map((h) => ({
+      key: `homework.${createHash('sha256').update(`${h.title}\u0000${h.due}`).digest('hex').slice(0, 12)}`,
+      title: labelled('homework', child.language, h.title),
+      subject: 'school',
+      kind: 'homework' as const,
+    }));
+
+// For each child set for the phone (in the order the family added them): today's plan (dayPlan), then, for each module
+// switched on, what it sets for the child today (above). Done only when everything listed is done; a day with nothing
+// listed counts as done: the lock never holds a child with nothing to do (review of C305). The day is India's, from
+// the server. `homework` comes from readFocusHomework, read outside this transaction.
+export async function focusStatus(db: Db, accountId: string, device: string, day: string, homework: ReadonlyMap<string, readonly FocusHomework[]> = new Map()): Promise<FocusStatus> {
   const set = new Set(
     (await db.query(`select child_id from family.focus_device_children where account_id = $1 and device_id = $2`, [accountId, device])).rows.map((r) => String(r.child_id))
   );
   const children = (await listChildren(db, accountId)).filter((c) => set.has(c.childId));
+  const switches = await readFamilySwitches(db, accountId);
+  const english = switchOn(switches, 'english_programme') && (await consentState(db, accountId)).english_programme;
+  const quiz = switchOn(switches, 'tutor_quiz');
   const out: FocusChildStatus[] = [];
   for (const child of children) {
     const plan = await dayPlan(db, accountId, child, day, child.language);
-    out.push({
-      childId: child.childId,
-      firstName: child.firstName,
-      done: plan.complete || plan.items.length === 0,
-      pending: plan.items.filter((i) => !i.done).map((i) => ({ key: i.topicKey, title: i.title, subject: i.subject, kind: i.kind })),
-    });
+    const pending: FocusPending[] = plan.items.filter((i) => !i.done).map((i) => ({ key: i.topicKey, title: i.title, subject: i.subject, kind: i.kind }));
+    if (!isPrePrimary(child.classLevel)) {
+      if (english) pending.push(...(await englishPending(db, child, day)));
+      if (quiz) pending.push(...(await quizPending(db, accountId, child, day)));
+    }
+    pending.push(...homeworkPending(child, homework.get(child.childId) ?? [], day));
+    // School homework is listed but never holds the lock (C540, supervisor): only the teacher can mark it done, so a late
+    // mark would keep a child locked for something already finished.
+    out.push({ childId: child.childId, firstName: child.firstName, done: pending.every((p) => p.kind === 'homework'), pending });
   }
   const { rows } = await db.query(`select pin_set_at from family.accounts where account_id = $1`, [accountId]);
   return { day, pinVersion: pinVersionOf(rows[0]?.pin_set_at), children: out };

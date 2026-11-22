@@ -55,7 +55,7 @@ export default function SupportPage() {
       </PageHero>
 
       <section aria-labelledby="support-channels-title" className="bg-off-white">
-        <Container wide className="grid grid-cols-1 gap-10 py-16 lg:grid-cols-2">
+        <Container className="grid grid-cols-1 gap-10 py-16 lg:grid-cols-2">
           <div className="flex flex-col gap-6">
             <SectionHeading id="support-channels-title" eyebrow="Reach us" tone="success" title="Two ways to get help" />
             <ul className="flex flex-col gap-4">
@@ -99,7 +99,7 @@ export default function SupportPage() {
       </section>
 
       <section aria-labelledby="self-help-title" className="bg-white">
-        <Container wide className="flex flex-col gap-8 py-16">
+        <Container className="flex flex-col gap-8 py-16">
           <SectionHeading id="self-help-title" eyebrow="Self-help" tone="product" title="Answers you can read now" />
           <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {SELF_HELP.map((s) => (

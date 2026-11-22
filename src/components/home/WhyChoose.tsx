@@ -17,7 +17,7 @@ const BENEFITS: { title: string; body: string; icon: IconName; card: string; chi
 export function WhyChoose() {
   return (
     <section aria-labelledby="why-title" className="bg-white">
-      <div className="mx-auto flex w-full max-w-[86rem] flex-col gap-6 px-4 py-10 sm:px-6">
+      <div className="nca-shell flex flex-col gap-6 py-10">
         <div className="nca-lift grid grid-cols-1 items-center gap-5 rounded-3xl border border-emerald/20 bg-gradient-to-r from-turquoise/15 via-white to-grape/5 p-5 sm:p-6 lg:grid-cols-[auto_1fr_auto]">
           <span className="flex h-20 w-20 items-center justify-center rounded-3xl bg-emerald text-white shadow-lg">
             <Icon name="shield" className="h-11 w-11" />

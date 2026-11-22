@@ -4,6 +4,7 @@
 // Each query runs under a savepoint, so a database without the migration yet answers "nothing" instead of failing a page.
 
 import { drawTemplate, fitsClass, isLocked } from './draw-templates';
+import { oneAtATime } from './savepoint';
 
 type Db = { query: (sql: string, params?: unknown[]) => Promise<{ rows: unknown[]; rowCount?: number | null }> };
 
@@ -11,7 +12,11 @@ const NOT_THERE = new Set(['42P01', '42703']);
 
 // A name of its own per call: the parent area reads several children at once on one connection.
 let seq = 0;
-async function guarded<T>(db: Db, fn: () => Promise<T>, fallback: T): Promise<T> {
+function guarded<T>(db: Db, fn: () => Promise<T>, fallback: T): Promise<T> {
+  return oneAtATime(db, () => guardedNow(db, fn, fallback));
+}
+
+async function guardedNow<T>(db: Db, fn: () => Promise<T>, fallback: T): Promise<T> {
   const sp = `draw_done_${++seq % 1_000_000}`;
   await db.query(`savepoint ${sp}`);
   try {

@@ -30,6 +30,12 @@ const nextConfig = {
   experimental: {
     // src/instrumentation.ts: forwards server errors to the ErrorReporter (C111).
     instrumentationHook: true,
+    // The client router's cache (C539): a screen opened in the last 30 s opens again from the phone (tabs, Back); a
+    // screen's loading skeleton, fetched ahead by its link, stays ready for 5 minutes, so a tap shows it with no wait.
+    // These are Next 14.2's own values, set here so an upgrade cannot quietly drop them (Next 15 makes `dynamic` 0, a
+    // round trip on every tab). `static` is not lowered: no link here prefetches a whole page (prefetch={true}), so it
+    // only keeps skeletons and static pages, and a shorter window would only add waits.
+    staleTimes: { dynamic: 30, static: 300 },
     // Keep tesseract.js as a plain node_modules require() at runtime
     // instead of webpack-bundling it into the route's compiled chunk --
     // bundling is what broke createWorker's __dirname-relative path to

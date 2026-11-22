@@ -15,6 +15,8 @@ import { sameInkOnBothSides } from '@/lib/family/day-text';
 // answers every /family page with this shell, so the address may still be the page the child asked for: a saved topic's
 // Understand page opens from its pack; anything else says "Needs internet". Answers are kept on the phone and sent,
 // once, when the connection is back. Nothing here asks the server while offline.
+// C539: each saved topic says how many questions it holds to practise, and the shelf says that today's plan is saved
+// here by itself on Wi-Fi (PlanAutoSave).
 // F2 on D1 (C230-Q): D1 cards that come in one after another, drawn icons (never a device emoji or an arrow
 // character), and every tappable thing presses.
 type Open = { pack: SavedPack; topic: PackTopic };
@@ -104,6 +106,9 @@ export function OfflineShelf({ w, lang }: { w: Words; lang: 'en' | 'hi' }) {
         <h2 id="fam-offline-shelf" className="px-1 text-lg font-extrabold text-slate">
           {w['fam.offline.pack.shelf']}
         </h2>
+        <p data-offline-auto className="px-1 text-sm text-slate">
+          {w['fam.offline.pack.autoLead']}
+        </p>
         {packs.length === 0 && <p className="fam-card fam-rise bg-white p-4 text-base text-slate">{w['fam.offline.pack.none']}</p>}
         <ol className="flex flex-col gap-2">
           {packs.map((p, i) => (
@@ -122,7 +127,11 @@ export function OfflineShelf({ w, lang }: { w: Words; lang: 'en' | 'hi' }) {
                   <li key={topic.key}>
                     <button type="button" onClick={() => setOpen({ pack: p, topic })} className="fam-press flex min-h-[44px] w-full items-center gap-3 rounded-xl bg-white px-2 text-left text-sm text-slate hover:bg-slate/5">
                       <span aria-hidden="true" className={`ml-1 h-2 w-2 shrink-0 rounded-full ${subjectTheme(p.pack.subject).chip}`} />
-                      <span className="min-w-0 flex-1">{topic.title}</span>
+                      <span className="flex min-w-0 flex-1 flex-col">
+                        <span>{topic.title}</span>
+                        {/* C539: the practice saved with the topic, so it shows before it is opened. */}
+                        {topic.check.length + topic.practice.length > 0 && <span data-offline-questions className="text-xs text-slate">{fill(w['fam.offline.pack.questions'], { n: topic.check.length + topic.practice.length })}</span>}
+                      </span>
                       <FamIcon name="next" className="h-4 w-4 shrink-0" />
                     </button>
                   </li>

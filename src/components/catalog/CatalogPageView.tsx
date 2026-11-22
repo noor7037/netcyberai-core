@@ -25,7 +25,7 @@ export function CatalogPageView({ page, kind, related }: { page: CatalogPage; ki
       <section aria-labelledby="page-title" className="relative overflow-hidden bg-midnight text-white">
         <div aria-hidden="true" className="nca-mesh-dark absolute inset-0" />
         <div aria-hidden="true" className="nca-spectrum-bar absolute inset-x-0 top-0 h-1" />
-        <Container wide className="relative grid grid-cols-1 items-center gap-10 py-16 lg:grid-cols-2 lg:py-20">
+        <Container className="relative grid grid-cols-1 items-center gap-10 py-16 lg:grid-cols-2 lg:py-20">
           <div className="flex flex-col gap-5">
             <div className="flex flex-wrap items-center gap-2">
               <EyebrowOnDark tone={page.tone}>{`${kind} · ${page.name}`}</EyebrowOnDark>
@@ -50,7 +50,7 @@ export function CatalogPageView({ page, kind, related }: { page: CatalogPage; ki
       </section>
 
       <section aria-labelledby="ps-title" className="bg-white">
-        <Container wide className="flex flex-col gap-8 py-16">
+        <Container className="flex flex-col gap-8 py-16">
           <SectionHeading id="ps-title" eyebrow="The problem, and the change" tone="alert" title="What changes for your school" />
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <div className="rounded-3xl border border-coral/30 bg-coral/10 p-6">
@@ -84,14 +84,14 @@ export function CatalogPageView({ page, kind, related }: { page: CatalogPage; ki
       </section>
 
       <section aria-labelledby="wf-title" className="nca-mesh-light bg-off-white">
-        <Container wide className="flex flex-col gap-8 py-16">
+        <Container className="flex flex-col gap-8 py-16">
           <SectionHeading id="wf-title" eyebrow="Workflow" tone={page.tone} title="How it works, step by step" />
           <FlowStepper steps={page.workflow} tones={STEP_TONES} icons={STEP_ICONS} />
         </Container>
       </section>
 
       <section aria-labelledby="ui-title" className="bg-white">
-        <Container wide className="flex flex-col gap-8 py-16">
+        <Container className="flex flex-col gap-8 py-16">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <SectionHeading id="ui-title" eyebrow="The product" tone="product" title="What it looks like in NetCyberAI" />
           </div>
@@ -109,7 +109,7 @@ export function CatalogPageView({ page, kind, related }: { page: CatalogPage; ki
 
       <section aria-labelledby="roles-title" className="relative overflow-hidden bg-sapphire text-white">
         <div aria-hidden="true" className="nca-mesh-dark absolute inset-0" />
-        <Container wide className="relative flex flex-col gap-8 py-16">
+        <Container className="relative flex flex-col gap-8 py-16">
           <SectionHeading dark id="roles-title" eyebrow="Who uses it" tone="communication" title="Built around real roles" />
           <ul className="grid grid-cols-1 gap-4 md:grid-cols-3">
             {page.users.map((u, i) => (
@@ -126,7 +126,7 @@ export function CatalogPageView({ page, kind, related }: { page: CatalogPage; ki
       </section>
 
       <section aria-labelledby="auto-title" className="bg-white">
-        <Container wide className="grid grid-cols-1 gap-10 py-16 lg:grid-cols-2">
+        <Container className="grid grid-cols-1 gap-10 py-16 lg:grid-cols-2">
           <div className="flex flex-col gap-6">
             <SectionHeading id="auto-title" eyebrow="Automation" tone="intelligence" title="What happens automatically" />
             <ul className="flex flex-col gap-3">
@@ -161,7 +161,7 @@ export function CatalogPageView({ page, kind, related }: { page: CatalogPage; ki
       </section>
 
       <section aria-labelledby="rel-title" className="bg-off-white">
-        <Container wide className="flex flex-col gap-8 py-16">
+        <Container className="flex flex-col gap-8 py-16">
           <SectionHeading id="rel-title" eyebrow="Related" tone="product" title={`Related ${kind === 'Product' ? 'capabilities' : 'solutions'}`} />
           <ul className="grid grid-cols-1 gap-4 md:grid-cols-3">
             {related.map(({ page: r, href }) => (
@@ -185,7 +185,7 @@ export function CatalogPageView({ page, kind, related }: { page: CatalogPage; ki
       </section>
 
       <section aria-labelledby="faq-title" className="bg-white">
-        <Container wide className="flex flex-col gap-8 py-16">
+        <Container className="flex flex-col gap-8 py-16">
           <SectionHeading id="faq-title" eyebrow="Questions" tone="product" title={`${page.name}: common questions`} />
           <FaqBlock items={page.faqs} />
         </Container>

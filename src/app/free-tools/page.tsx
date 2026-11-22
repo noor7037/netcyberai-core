@@ -19,7 +19,7 @@ export default function FreeToolsPage() {
       <section aria-labelledby="free-tools-title" className="relative overflow-hidden bg-midnight text-white">
         <div aria-hidden="true" className="nca-mesh-dark absolute inset-0" />
         <div aria-hidden="true" className="nca-spectrum-bar absolute inset-x-0 top-0 h-1" />
-        <Container wide className="relative flex flex-col gap-5 py-16">
+        <Container className="relative flex flex-col gap-5 py-16">
           <EyebrowOnDark tone="success">Free tools</EyebrowOnDark>
           <h1 id="free-tools-title" className="max-w-3xl text-4xl font-extrabold tracking-tight sm:text-5xl">
             Free tools for the decisions schools make every term
@@ -42,14 +42,14 @@ export default function FreeToolsPage() {
       </section>
 
       <section aria-label="Your school’s details" className="bg-white">
-        <Container wide className="py-10">
+        <Container className="py-10">
           <SchoolProfilePanel />
         </Container>
       </section>
 
       {KIND_ORDER.map((kind, i) => (
         <section key={kind} aria-labelledby={`kind-${kind}`} className={i % 2 ? 'bg-white' : 'bg-off-white'}>
-          <Container wide className="flex flex-col gap-6 py-14">
+          <Container className="flex flex-col gap-6 py-14">
             <div className="flex flex-col gap-1">
               <h2 id={`kind-${kind}`} className="text-2xl font-extrabold text-slate sm:text-3xl">
                 {KIND_LABELS[kind].title}
@@ -82,7 +82,7 @@ export default function FreeToolsPage() {
       ))}
 
       <section className="bg-white">
-        <Container wide className="py-14">
+        <Container className="py-14">
           <TrialCta />
         </Container>
       </section>

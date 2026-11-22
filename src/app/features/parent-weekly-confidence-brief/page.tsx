@@ -49,7 +49,7 @@ const faqs = [
 
 export default function WeeklyConfidenceBriefPage() {
   return (
-    <Container className="flex flex-col gap-12 py-12">
+    <Container reading className="flex flex-col gap-12 py-12">
       <div className="flex flex-col gap-4">
         <h1 className="text-2xl font-bold text-sapphire sm:text-3xl">
           The Weekly Confidence Brief: Three Dinner-Table Questions a Week
@@ -86,7 +86,7 @@ export default function WeeklyConfidenceBriefPage() {
 
       <div>
         <h2 className="text-xl font-bold text-slate">What it does not do</h2>
-        <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-slate">
+        <ul className="mt-4 list-disc space-y-2 pl-5 text-base leading-relaxed text-slate">
           <li>It does not publish or imply any real school’s or student’s data — the example above is illustrative only.</li>
           <li>It does not score or penalise a parent for not replying to the brief.</li>
           <li>It does not replace a report card or a parent-teacher meeting — it is a conversation prompt, not an assessment.</li>

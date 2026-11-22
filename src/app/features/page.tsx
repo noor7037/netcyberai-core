@@ -53,7 +53,7 @@ export default function FeaturesPage() {
       <section aria-labelledby="features-title" className="relative overflow-hidden bg-midnight text-white">
         <div aria-hidden="true" className="nca-mesh-dark absolute inset-0" />
         <div aria-hidden="true" className="nca-spectrum-bar absolute inset-x-0 top-0 h-1" />
-        <Container wide className="relative flex flex-col gap-5 py-16">
+        <Container className="relative flex flex-col gap-5 py-16">
           <EyebrowOnDark tone="intelligence">Features</EyebrowOnDark>
           <h1 id="features-title" className="max-w-3xl text-4xl font-extrabold tracking-tight sm:text-5xl">
             The features that make a school feel connected
@@ -75,7 +75,7 @@ export default function FeaturesPage() {
       </section>
 
       <section className="bg-off-white">
-        <Container wide className="flex flex-col gap-12 py-16">
+        <Container className="flex flex-col gap-12 py-16">
           <div className="flex flex-col gap-8">
             <SectionHeading eyebrow="For schools" tone="product" title="Features for your school" />
             <FeatureGrid items={schoolItems} />
@@ -93,7 +93,7 @@ export default function FeaturesPage() {
       <GapDetection />
 
       <section className="bg-white">
-        <Container wide className="flex flex-col gap-8 py-16">
+        <Container className="flex flex-col gap-8 py-16">
           <SectionHeading eyebrow="Also in the platform" tone="trust" title="Every feature lives inside a product" />
           <ul className="flex flex-wrap gap-2">
             {products.map((p) => (

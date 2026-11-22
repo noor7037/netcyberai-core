@@ -39,7 +39,7 @@ const faqs = [
 
 export default function HaryanaForm6AdvisoryPage() {
   return (
-    <Container className="flex flex-col gap-12 py-12">
+    <Container reading className="flex flex-col gap-12 py-12">
       <div className="flex flex-col gap-4">
         <h1 className="text-2xl font-bold text-sapphire sm:text-3xl">
           Haryana Form 6 Fee Advisory: The CPI + 5% Cap, Explained
@@ -54,7 +54,7 @@ export default function HaryanaForm6AdvisoryPage() {
 
       <div>
         <h2 className="text-xl font-bold text-slate">What the rule actually says</h2>
-        <p className="mt-4 text-sm text-slate">
+        <p className="mt-4 text-base leading-relaxed text-slate">
           Under the Haryana School Education Rules, a recognised private school may raise its fee
           in line with the per-capita rise in teaching staff salary from the previous year, but
           that increase may not exceed the latest available yearly Consumer Price Index rise plus
@@ -74,7 +74,7 @@ export default function HaryanaForm6AdvisoryPage() {
 
       <div>
         <h2 className="text-xl font-bold text-slate">Form 6: what it requires</h2>
-        <p className="mt-4 text-sm text-slate">
+        <p className="mt-4 text-base leading-relaxed text-slate">
           Form 6 must be filed online to the Director of Education and covers student and staff
           strength, staff salary, the prior year&rsquo;s and current fee structure, the proposed
           hike, and the facilities provided. It must also be displayed publicly on the school&rsquo;s
@@ -100,7 +100,7 @@ export default function HaryanaForm6AdvisoryPage() {
 
       <div>
         <h2 className="text-xl font-bold text-slate">Why compliance is genuinely hard right now</h2>
-        <p className="mt-4 text-sm text-slate">
+        <p className="mt-4 text-base leading-relaxed text-slate">
           Even after the Department extended one recent year&rsquo;s deadline multiple times, only
           around 56% of the more than 10,000 schools required to file had actually submitted Form
           6 — schools cited the form&rsquo;s complexity and the difficulty of comparing last
@@ -118,14 +118,14 @@ export default function HaryanaForm6AdvisoryPage() {
           <p className="text-xs font-semibold uppercase tracking-wide text-slate">
             Advisory example — CPI not configured
           </p>
-          <p className="mt-2 text-sm text-slate">
+          <p className="mt-2 text-base leading-relaxed text-slate">
             &ldquo;This year&rsquo;s CPI figure has not been entered yet, so we cannot show a fee
             hike position. Enter the current CPI and its official source to see whether your
             proposed increase sits within the advisory range. This is an advisory only, not a
             legal determination, and never blocks you from proceeding.&rdquo;
           </p>
         </Card>
-        <p className="mt-3 text-sm text-slate">
+        <p className="mt-3 text-base leading-relaxed text-slate">
           This is the honest default state, not a placeholder we plan to quietly replace with an
           invented number. Once a school admin enters the year&rsquo;s CPI figure with its source,
           the same card shows whether the proposed increase is within or above the advisory range
@@ -135,7 +135,7 @@ export default function HaryanaForm6AdvisoryPage() {
 
       <div>
         <h2 className="text-xl font-bold text-slate">What it does not do</h2>
-        <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-slate">
+        <ul className="mt-4 list-disc space-y-2 pl-5 text-base leading-relaxed text-slate">
           <li>It does not tell you a fee structure is legal or illegal — it shows a computed position against a published formula only.</li>
           <li>It does not block a fee decision. NetCyberAI is not the regulator and has no standing to gate it.</li>
           <li>It does not invent or hardcode a current-year CPI figure — the field stays empty, clearly marked, until an admin enters a sourced number.</li>

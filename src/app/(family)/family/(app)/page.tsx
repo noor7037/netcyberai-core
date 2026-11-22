@@ -6,6 +6,7 @@ import { HabitCard } from '@/components/family/HabitCard';
 import { QuizCards } from '@/components/family/QuizCards';
 import { ActivityTiles, type ActivityTile } from '@/components/family/home/ActivityTiles';
 import { MissionCard } from '@/components/family/home/MissionCard';
+import { PlanAutoSave } from '@/components/family/offline/PlanAutoSave';
 import { TutorsTile } from '@/components/family/TutorsTile';
 import { FamIcon } from '@/components/family/FamIcon';
 import { Button } from '@/components/family/ui/Button';
@@ -51,7 +52,7 @@ export default async function FamilyHomePage() {
   if (next) redirect(next);
   const child = page.child!;
   const lang = page.childLang;
-  const { progress, subjects, plan, habit, openToAll, links, schoolOn, meeting, seen, off, tutors, quizzes, settings } = await familyPageRead(page, async (db) => ({
+  const { progress, subjects, plan, habit, openToAll, links, schoolOn, meeting, seen, off, tutors, quizzes, settings, offlineOn } = await familyPageRead(page, async (db) => ({
     progress: await childProgress(db, page.session.accountId, child.childId, lang),
     subjects: isPrePrimary(child.classLevel) ? [] : await classSubjects(db, { board: syllabusBoardOf(child), classLevel: child.classLevel, stream: child.stream }),
     plan: (await familyModuleOn(db, 'plan', page.session.accountId)) ? await dayPlan(db, page.session.accountId, child, indiaDate(), lang) : null,
@@ -68,6 +69,8 @@ export default async function FamilyHomePage() {
     settings: await loadChildSettings(db, page.session.accountId, child.childId),
     off: await notifyOff(db, page.session.accountId),
     meeting: (await familyModuleOn(db, 'home_plan', page.session.accountId)) && (await plusOpen(db, page.session.accountId)) ? (await homePlan(db, page.session.accountId, child, indiaDate(), lang))?.tonight ?? null : null,
+    // C539: with offline packs on, today's plan is saved on the phone by itself (PlanAutoSave).
+    offlineOn: await familyModuleOn(db, 'offline', page.session.accountId),
   }));
   // At school today (C230-AA): for a child matched to a connected school's student, today's mark as the school has it.
   const atSchool = !schoolOn ? null : await schoolTodayFor(familyClaims(page.session), links, child.childId, { withResults: true });
@@ -94,6 +97,7 @@ export default async function FamilyHomePage() {
     <div lang={lang} data-fam-motion={settings.motion ? undefined : 'off'} className="flex min-h-screen flex-col">
       <FamilyHeader w={familyWords(lang, KEYS)} child={child} children={page.children} news={news?.total ?? 0} />
       <main className="fam-page">
+        {plan && offlineOn && plan.items.length > 0 && <PlanAutoSave childId={child.childId} items={plan.items.map((i) => ({ topicKey: i.topicKey, done: i.done }))} />}
         {plan ? (
           <MissionCard
             plan={plan}

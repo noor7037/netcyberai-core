@@ -17,7 +17,7 @@ export default function SolutionsPage() {
       <section aria-labelledby="solutions-title" className="relative overflow-hidden bg-midnight text-white">
         <div aria-hidden="true" className="nca-mesh-dark absolute inset-0" />
         <div aria-hidden="true" className="nca-spectrum-bar absolute inset-x-0 top-0 h-1" />
-        <Container wide className="relative flex flex-col gap-5 py-16">
+        <Container className="relative flex flex-col gap-5 py-16">
           <EyebrowOnDark tone="action">Solutions</EyebrowOnDark>
           <h1 id="solutions-title" className="max-w-3xl text-4xl font-extrabold tracking-tight sm:text-5xl">
             Built around who actually uses it
@@ -38,7 +38,7 @@ export default function SolutionsPage() {
         </Container>
       </section>
       <section className="bg-off-white">
-        <Container wide className="flex flex-col gap-12 py-16">
+        <Container className="flex flex-col gap-12 py-16">
           <div className="flex flex-col gap-6">
             <SectionHeading eyebrow="By role" tone="product" title="For each person in the school" />
             <CatalogGrid pages={solutions.filter((s) => ROLE_SLUGS.includes(s.slug))} base="/solutions" />

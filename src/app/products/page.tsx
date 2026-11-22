@@ -15,7 +15,7 @@ export default function ProductsPage() {
       <section aria-labelledby="products-title" className="relative overflow-hidden bg-midnight text-white">
         <div aria-hidden="true" className="nca-mesh-dark absolute inset-0" />
         <div aria-hidden="true" className="nca-spectrum-bar absolute inset-x-0 top-0 h-1" />
-        <Container wide className="relative flex flex-col gap-5 py-16">
+        <Container className="relative flex flex-col gap-5 py-16">
           <EyebrowOnDark tone="product">Products</EyebrowOnDark>
           <h1 id="products-title" className="max-w-3xl text-4xl font-extrabold tracking-tight sm:text-5xl">
             One platform, nine connected capabilities
@@ -36,7 +36,7 @@ export default function ProductsPage() {
         </Container>
       </section>
       <section className="bg-off-white">
-        <Container wide className="py-16">
+        <Container className="py-16">
           <CatalogGrid pages={products} base="/products" />
         </Container>
       </section>

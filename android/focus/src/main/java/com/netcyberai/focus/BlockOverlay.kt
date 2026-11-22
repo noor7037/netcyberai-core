@@ -56,6 +56,10 @@ class BlockOverlay(private val ctx: Context, private val onChange: () -> Unit) {
                 return
             }
             root = sv
+            // Android 13+ (and always when targeting Android 16): Back reaches a window through its back callback.
+            if (android.os.Build.VERSION.SDK_INT >= 33) {
+                sv.findOnBackInvokedDispatcher()?.registerOnBackInvokedCallback(android.window.OnBackInvokedDispatcher.PRIORITY_DEFAULT) { goHome() }
+            }
         }
         shown = key
         view.removeAllViews()

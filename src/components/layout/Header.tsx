@@ -304,8 +304,8 @@ export function Header({ features }: { features: FeatureMenu }) {
   ];
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate/10 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/85 print:hidden" onMouseLeave={hoverClose}>
-      <Container wide className="flex h-16 items-center justify-between gap-3">
+    <header className="nca-site-header sticky top-0 z-50 border-b border-slate/10 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/85 print:hidden" onMouseLeave={hoverClose}>
+      <Container className="flex h-16 items-center justify-between gap-3">
         <Link href="/" className="flex min-h-[44px] shrink-0 items-center" aria-label={`${companyName} home`}>
           <Wordmark />
         </Link>
@@ -398,7 +398,7 @@ export function Header({ features }: { features: FeatureMenu }) {
             onMouseEnter={clearTimers}
             className="nca-pop absolute inset-x-0 top-full hidden border-b border-slate/10 bg-white shadow-2xl shadow-sapphire/10 lg:block"
           >
-            <Container wide className="py-6">
+            <Container className="py-6">
               {m.key === 'products' && <ProductsPanel onNavigate={close} />}
               {m.key === 'solutions' && <SolutionsPanel onNavigate={close} />}
               {m.key === 'features' && <FeaturesPanel onNavigate={close} menu={features} />}

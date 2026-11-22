@@ -1,0 +1,77 @@
+# The Play Store bundles (C541): both apps, NetCyberAI Family and NetCyberAI Focus, as Android App Bundles signed with
+# the upload key (Google Play App Signing holds the app signing key; Focus is created with "use the same app signing
+# key as NetCyberAI Family"). Run by hand from Actions → android-release → Run workflow. The upload key comes only from
+# the repository's secrets and is written to the runner's temporary folder, never to the repository or the log.
+name: android-release
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  bundles:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: gradle/actions/wrapper-validation@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: gradle
+
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools platforms;android-36 build-tools;35.0.0'
+
+      - run: npm ci
+
+      - name: Copy the shell and the Capacitor plugins into the Android project
+        run: npx cap sync android
+
+      - name: The upload key, from the repository's secrets
+        env:
+          KEYSTORE_B64: ${{ secrets.ANDROID_UPLOAD_KEYSTORE_B64 }}
+          STORE_PASSWORD: ${{ secrets.ANDROID_UPLOAD_STORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.ANDROID_UPLOAD_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.ANDROID_UPLOAD_KEY_PASSWORD }}
+        run: |
+          if [ -z "$KEYSTORE_B64" ] || [ -z "$STORE_PASSWORD" ] || [ -z "$KEY_ALIAS" ] || [ -z "$KEY_PASSWORD" ]; then
+            echo "::error::The four ANDROID_UPLOAD_* secrets are not set (docs/launch/play/RELEASE.md)."
+            exit 1
+          fi
+          printf '%s' "$KEYSTORE_B64" | base64 -d > "$RUNNER_TEMP/upload.jks"
+          {
+            echo "storeFile=$RUNNER_TEMP/upload.jks"
+            echo "storePassword=$STORE_PASSWORD"
+            echo "keyAlias=$KEY_ALIAS"
+            echo "keyPassword=$KEY_PASSWORD"
+          } > android/keystore.properties
+
+      - name: Rule engine tests, then both signed bundles
+        working-directory: android
+        run: ./gradlew --no-daemon :focuslock-core:test :app:bundleRelease :focus:bundleRelease
+
+      - name: Keep the bundles
+        uses: actions/upload-artifact@v4
+        with:
+          name: netcyberai-play-bundles
+          path: |
+            android/app/build/outputs/bundle/release/app-release.aab
+            android/focus/build/outputs/bundle/release/focus-release.aab
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Remove the key from the runner
+        if: always()
+        run: rm -f "$RUNNER_TEMP/upload.jks" android/keystore.properties
