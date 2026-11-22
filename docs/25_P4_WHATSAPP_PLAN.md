@@ -111,6 +111,8 @@ read (messaging and personal data).
 
 Order may change after 7f: 7g to 7n are independent of each other.
 
+| **7r. Homework follow-up and reply acknowledgement** (C544, built 2026-11-22) | `homework_follow_up` (utility, en/hi), sent each morning for homework the teacher marked not done on the school day before. A parent's reply in a school's thread is acknowledged once, in free text inside the 24-hour window. | Migration 20261122090207 (the daily job only). | Submit `homework_follow_up` to Meta. Do **not** submit the acknowledgements (`reply_received`, `reply_received_class`, `answer_recorded`, `help_follow_up`): they are free text inside the window. |
+
 ## 5. Decisions the plan makes, unless told otherwise
 
 - **One platform number first.** P4 sends from NetCyberAI's own WhatsApp
