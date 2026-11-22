@@ -3,7 +3,7 @@ import { Card } from '@/components/ui/Card';
 import { companyAddress, companyName, contactEmail } from '@/lib/site-config';
 import { breadcrumbListJsonLd, buildMetadata, pageMeta, serializeJsonLd } from '@/lib/seo';
 
-const LAST_UPDATED = '25 September 2026';
+const LAST_UPDATED = '22 November 2026';
 
 export const metadata = buildMetadata(pageMeta.privacy);
 
@@ -88,7 +88,60 @@ export default function PrivacyPage() {
       </section>
 
       <section className="flex flex-col gap-3">
-        <h2 className="text-xl font-bold text-slate">5. Purpose limitation and consent</h2>
+        <h2 className="text-xl font-bold text-slate">5. Focus Lock (NetCyberAI Focus app)</h2>
+        <p className="text-sm text-slate">
+          NetCyberAI Focus is a separate Android app for parents. A parent chooses entertainment
+          apps and study times, and the app keeps those apps closed in those times until the
+          child&rsquo;s study for the day is done. It is for a parent to use on a phone their own
+          child uses. It runs with a visible &ldquo;Focus Lock is on&rdquo; notification and is
+          not hidden. Its children&rsquo;s data is handled under the terms of this page, including
+          the DPDP Act terms in sections 4 and 7.
+        </p>
+        <h3 className="text-base font-semibold text-slate">What the app reads on the phone</h3>
+        <p className="text-sm text-slate">
+          With the parent&rsquo;s permission (usage access and display over other apps, both
+          switched on by the parent in Android Settings), the app reads which app is in front, so
+          it can show a &ldquo;Study first&rdquo; screen over a locked app. This stays on the
+          phone. Which apps are opened, and when, is never sent to us or to anyone, and the list
+          of apps the parent chose from is not sent either. The app does not use the Accessibility
+          service and is not a device administrator.
+        </p>
+        <h3 className="text-base font-semibold text-slate">What is sent to our server</h3>
+        <ul className="list-disc pl-5 text-sm text-slate">
+          <li>
+            The phone reads from our server whether today&rsquo;s study is done and the titles of
+            what is still pending, so the block screen can show them.
+          </li>
+          <li>
+            About every 30 minutes while the lock is on, the phone sends three facts and nothing
+            else: the lock is on, its permissions are on, and the phone&rsquo;s clock was changed.
+            We use them only to tell the parent in the parent area when the lock has stopped or
+            been tampered with.
+          </li>
+          <li>
+            A random id made on the phone identifies it to us, and we keep only a keyed hash of
+            it.
+          </li>
+        </ul>
+        <h3 className="text-base font-semibold text-slate">The parent PIN</h3>
+        <p className="text-sm text-slate">
+          The parent PIN is checked once against our server when the parent sets the app up. The
+          phone then keeps it only as a salted hash and never shows it.
+        </p>
+        <h3 className="text-base font-semibold text-slate">
+          No advertising, no selling, and how to delete
+        </h3>
+        <p className="text-sm text-slate">
+          The app shows no advertising and we do not sell data. To delete what we hold for a
+          phone, a parent removes the phone in the Focus Lock part of the parent area of the
+          NetCyberAI Family app, or uninstalls NetCyberAI Focus, which removes everything it
+          keeps on the phone. A parent can also ask us to delete data at the address in section
+          1.
+        </p>
+      </section>
+
+      <section className="flex flex-col gap-3">
+        <h2 className="text-xl font-bold text-slate">6. Purpose limitation and consent</h2>
         <p className="text-sm text-slate">
           Each category of communication — daily updates, weekly summaries, recognition
           messages, fee reminders — is treated as a separately consentable purpose, defaulting
@@ -98,7 +151,7 @@ export default function PrivacyPage() {
       </section>
 
       <section className="flex flex-col gap-3">
-        <h2 className="text-xl font-bold text-slate">6. Your rights as a data principal</h2>
+        <h2 className="text-xl font-bold text-slate">7. Your rights as a data principal</h2>
         <p className="text-sm text-slate">
           Subject to the DPDP Act and its rules, you may request access to, correction of, or
           erasure of personal data we hold about you or your child, and you may withdraw consent
@@ -113,7 +166,7 @@ export default function PrivacyPage() {
       </section>
 
       <section className="flex flex-col gap-3">
-        <h2 className="text-xl font-bold text-slate">7. Where data is stored</h2>
+        <h2 className="text-xl font-bold text-slate">8. Where data is stored</h2>
         <p className="text-sm text-slate">
           For a live school deployment, operational data is intended to be stored in a database
           hosted in India. See{' '}
@@ -125,7 +178,7 @@ export default function PrivacyPage() {
       </section>
 
       <section className="flex flex-col gap-3">
-        <h2 className="text-xl font-bold text-slate">8. Retention</h2>
+        <h2 className="text-xl font-bold text-slate">9. Retention</h2>
         <p className="text-sm text-slate">
           We retain personal data only for as long as necessary for the purpose it was collected
           for, or as required by applicable law. A specific retention schedule for school data will
@@ -134,7 +187,7 @@ export default function PrivacyPage() {
       </section>
 
       <section className="flex flex-col gap-3">
-        <h2 className="text-xl font-bold text-slate">9. Changes to this policy</h2>
+        <h2 className="text-xl font-bold text-slate">10. Changes to this policy</h2>
         <p className="text-sm text-slate">
           We will update this policy as the product and its legal review progress, and will update
           the &ldquo;last updated&rdquo; date above whenever we do.
