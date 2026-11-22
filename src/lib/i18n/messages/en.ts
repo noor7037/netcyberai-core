@@ -1938,6 +1938,7 @@ export const en = {
   'moduleOff.parent-ai': '“Parent AI” leaves the menu. No answer can be drafted or approved. Answers already sent are kept.',
   'thr.homeHelp': 'Draft what they can do at home',
   'msg.template.home_help': 'What to do at home',
+  'msg.template.homework_follow_up': 'Homework not done',
   'pai.source.taughtPlain': 'Taught: {topic}, {when}',
   'cost.add.title': 'Add a rate',
   'cost.add.how': 'Read the rate on Meta’s own pricing page for India, then enter it here with the page’s address and the day you read it. A real message is not sent for a category with no rate in force.',

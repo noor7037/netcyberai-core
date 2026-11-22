@@ -9,6 +9,7 @@ import { chosenSchool, whichSchoolQuestion } from '@/lib/whatsapp/held';
 import { normalizePhone, writtenForms } from '@/lib/whatsapp/phone';
 import { StandInWhatsAppProvider, type WhatsAppNotice, type WhatsAppProvider } from '@/lib/whatsapp/provider';
 import { isStop, liftOptOut, listThreads, threadMessages, unknownSenders } from '@/lib/whatsapp/replies';
+import { TEMPLATE_REGISTRY } from '@/lib/whatsapp/templates';
 
 // Parents' replies, threaded (docs/25 slice 7f, C187). Every number is made up; nothing leaves the process.
 
@@ -166,6 +167,61 @@ describe('on the real schema', () => {
     expect(await as(teacher5A, (c) => queueThreadReply(c, queue, { schoolId: A, userId: TEACHER_5A }, binas, 'hello'))).toEqual({ ok: false, reason: 'no_thread' });
   });
 
+  it('the school acknowledges a message once, in free text inside the window, saying only where it went (C544)', async () => {
+    const p = listening();
+    const acks = async () => (await db.pg.query(`select dedupe_key, purpose, template_name, billable, thread_id is not null as threaded from communication_log where dedupe_key like 'ack:%' order by created_at, dedupe_key`)).rows;
+    // The first test's messages: Asha's twice (one message), Bina's once. One acknowledgement each, never two.
+    expect(await acks()).toEqual([
+      { dedupe_key: 'ack:standin-in-fixed', purpose: 'operational_communication', template_name: null, billable: false, threaded: true },
+      { dedupe_key: expect.stringMatching(/^ack:standin-in-\d+$/), purpose: 'operational_communication', template_name: null, billable: false, threaded: true },
+    ]);
+    expect(await runQueued(p.provider)).toEqual([{ status: 'sent', reason: null }, { status: 'sent', reason: null }]);
+    // Each class has an active class teacher, who sees the thread: so it is named. English alone until Hindi is reviewed.
+    expect(p.said).toEqual([
+      { to: '+919000000001', text: 'From School A: Thank you. Your message has reached the class teacher of 5-A and the school office.' },
+      { to: '+919000000002', text: 'From School A: Thank you. Your message has reached the class teacher of 6-B and the school office.' },
+    ]);
+    // A message that arrives more than 24 hours after it was written is kept, and not acknowledged.
+    await db.pg.exec(`insert into parents (parent_id, school_id, name, phone) values ('${u(76)}', '${A}', 'Guardian Six', '+919000000006'), ('${u(77)}', '${A}', 'Guardian Nine', '+919000000009'), ('${u(78)}', '${A}', 'Guardian Ten', '+919000000010');
+      insert into parent_student_map (school_id, parent_id, student_id) values ('${A}', '${u(76)}', '${u(32)}'), ('${A}', '${u(77)}', '${u(31)}'), ('${A}', '${u(77)}', '${u(32)}'), ('${A}', '${u(78)}', '${u(31)}');`);
+    await writes('+919000000006', 'Late by two days', 30);
+    expect(await threadOf(A, '+919000000006')).toBeDefined();
+    expect(await acks()).toHaveLength(2);
+    // Hindi goes once its words are approved and reviewed by a reader of Hindi (C190): then both languages, English first.
+    const words = TEMPLATE_REGISTRY.find((d) => d.name === 'reply_received_class')!;
+    await db.pg.query(
+      `insert into whatsapp_templates (school_id, template_name, version, language, body, variables, billing_category, stale_after_minutes, status, wording_reviewed, wording_reviewed_by, wording_reviewed_at, wording_reviewed_note)
+       values (null, $1, $2, 'hi', $3, $4, 'utility', 60, 'approved', true, $5, now(), 'Read by a reader of Hindi')`,
+      [words.name, words.version, words.body.hi, [...words.variables], PRINCIPAL]
+    );
+    await writes('+919000000006', 'Is the bus late today?', 0);
+    // A guardian of children in two classes: the class is not named, only the office (which sees every thread).
+    await writes('+919000000009', 'Hello', 0);
+    expect(await acks()).toHaveLength(4);
+    const q = listening();
+    expect(await runQueued(q.provider)).toEqual([{ status: 'sent', reason: null }, { status: 'sent', reason: null }]);
+    expect(q.said).toEqual([
+      { to: '+919000000006', text: 'From School A: Thank you. Your message has reached the class teacher of 6-B and the school office.\nस्कूल School A की ओर से: धन्यवाद। आपका संदेश 6-B के कक्षा अध्यापक और स्कूल दफ़्तर तक पहुँच गया है।' },
+      { to: '+919000000009', text: 'From School A: Thank you. Your message has reached the school office.' },
+    ]);
+    // A number that said STOP is not acknowledged, whatever it writes next.
+    await db.pg.exec(`insert into parents (parent_id, school_id, name, phone) values ('${u(79)}', '${A}', 'Guardian Twelve', '+919000000012');
+      insert into parent_student_map (school_id, parent_id, student_id) values ('${A}', '${u(79)}', '${u(32)}');
+      insert into whatsapp_opt_outs (school_id, phone, stopped_at) values ('${A}', '+919000000012', now() - interval '3 days');`);
+    await writes('+919000000012', 'Please call me', 0, 'standin-in-stopped');
+    expect(await threadOf(A, '+919000000012')).toBeDefined();
+    expect((await db.pg.query(`select 1 from communication_log where dedupe_key = 'ack:standin-in-stopped'`)).rows).toHaveLength(0);
+    // A second message in the same conversation within the day is not acknowledged again.
+    await writes('+919000000006', 'And is it on time tomorrow?', 0);
+    expect(await acks()).toHaveLength(4);
+    // Never outside the window: one queued now and reached by the runner 25 hours later is refused, not sent.
+    await writes('+919000000010', 'Are you there?', 0, 'standin-in-window');
+    expect((await db.pg.query(`select status from communication_log where dedupe_key = 'ack:standin-in-window'`)).rows).toEqual([{ status: 'queued' }]);
+    const r = listening();
+    expect(await runQueued(r.provider, new Date(Date.now() + 25 * 3_600_000))).toEqual([{ status: 'failed', reason: 'more than 24 hours have passed since the parent last wrote; free text can no longer be sent' }]);
+    expect(r.said).toEqual([]);
+  });
+
   it('a number no school knows: counted, without its words or the number; a number in two schools goes to the one that last wrote to it, or to neither', async () => {
     expect(await writes('+919999999999', 'Is this the tuition centre?')).toMatchObject({ inbound: 1 });
     expect(await platform((c) => unknownSenders(c))).toBe(1);
@@ -186,6 +242,10 @@ describe('on the real schema', () => {
   });
 
   it('staff answer in their own words inside 24 hours; the reply goes once, through the gate, and shows in the thread; opening marks it read', async () => {
+    // School B's acknowledgement of the message just before goes first: its guardian's child has no class.
+    const b = listening();
+    expect(await runQueued(b.provider)).toEqual([{ status: 'sent', reason: null }]);
+    expect(b.said).toEqual([{ to: '+919000000003', text: 'From School B: Thank you. Your message has reached the school office.' }]);
     const p = listening();
     const thread = (await threadOf(A, '+919000000001')) as string;
     expect(await as(teacher5A, (c) => queueThreadReply(c, queue, { schoolId: A, userId: TEACHER_5A }, thread, '   '))).toEqual({ ok: false, reason: 'text' });
@@ -196,8 +256,12 @@ describe('on the real schema', () => {
     expect(await runQueued(p.provider)).toEqual([]);
     expect(p.said).toEqual([{ to: '+919000000001', text: 'Thank you. I hope Asha feels better soon.' }]);
     const view = await as(teacher5A, (c) => threadMessages(c, A, thread));
-    expect(view?.messages.map((m) => [m.direction, m.text, m.status, m.by])).toEqual([['in', 'Asha has fever today', null, null], ['out', 'Thank you. I hope Asha feels better soon.', 'sent', 'Tara Teacher']]);
-    const row = (await db.pg.query(`select billable, cost_basis, provider, sent_by, template_name from communication_log where thread_id = $1`, [thread])).rows[0];
+    expect(view?.messages.map((m) => [m.direction, m.text, m.status, m.by])).toEqual([
+      ['in', 'Asha has fever today', null, null],
+      ['out', 'From School A: Thank you. Your message has reached the class teacher of 5-A and the school office.', 'sent', null],
+      ['out', 'Thank you. I hope Asha feels better soon.', 'sent', 'Tara Teacher'],
+    ]);
+    const row = (await db.pg.query(`select billable, cost_basis, provider, sent_by, template_name from communication_log where thread_id = $1 and sent_by is not null`, [thread])).rows[0];
     expect(row).toEqual({ billable: false, cost_basis: 'not_billable', provider: 'stand-in', sent_by: TEACHER_5A, template_name: null });
   });
 

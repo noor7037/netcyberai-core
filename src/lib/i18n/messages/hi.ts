@@ -1932,6 +1932,7 @@ export const hi: Record<keyof typeof en, string> = {
   'moduleOff.parent-ai': '“Parent AI” मेन्यू से हट जाएगा। कोई जवाब न बनाया जा सकेगा, न मंज़ूर किया जा सकेगा। पहले भेजे गए जवाब बने रहेंगे।',
   'thr.homeHelp': 'घर पर क्या करें, इसका मसौदा बनाएँ',
   'msg.template.home_help': 'घर पर क्या करें',
+  'msg.template.homework_follow_up': 'होमवर्क पूरा नहीं हुआ',
   'pai.source.taughtPlain': 'पढ़ाया गया: {topic}, {when}',
   'cost.add.title': 'दर जोड़ें',
   'cost.add.how': 'भारत के लिए Meta के अपने मूल्य पेज पर दर पढ़ें, फिर उसे यहाँ पेज के पते और पढ़ने की तारीख़ के साथ दर्ज करें। जिस श्रेणी की कोई दर लागू नहीं है, उसका असली संदेश नहीं भेजा जाता।',

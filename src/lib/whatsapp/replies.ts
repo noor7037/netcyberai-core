@@ -7,7 +7,8 @@ import { notePulseReply } from '@/lib/pulse/replies';
 import { HOLD_HOURS, chosenSchool, openHeld, phoneDigest, sealHeld } from './held';
 import { normalizePhone, writtenForms } from './phone';
 import type { ProviderName, WhatsAppNotice } from './provider';
-import { TEMPLATE_REGISTRY, renderTemplate } from './templates';
+import { classLabel } from '@/lib/frameworks/class-label';
+import { TEMPLATE_REGISTRY, renderTemplate, templateToSend, type Acknowledgement } from './templates';
 
 // Parents' replies, threaded to the school (docs/25 slice 7f, C187).
 //
@@ -25,6 +26,10 @@ import { TEMPLATE_REGISTRY, renderTemplate } from './templates';
 // number, at once. WhatsApp only: the consent ledger is not touched, so
 // email and everything else go on as the parent agreed. The parent is told
 // once, and the office can lift it when the parent asks.
+//
+// Any other message placed in a school's thread is acknowledged (C544): a short free-text reply in the parent's own
+// open conversation saying only what was done (it reached the school office, or the class teacher too; an answer was
+// recorded; a child is on the class's follow-up list). Once per message, never outside the 24 hours, never after STOP.
 
 type Sql = Pick<PoolClient, 'query'>;
 export const WINDOW_HOURS = 24;
@@ -51,11 +56,12 @@ export async function schoolOfNumber(db: Sql, e164: string, at: string = new Dat
 // A parent's message goes into its school's thread: the words, STOP if that is what it says, an answer to the Pulse.
 async function placeInSchool(db: Sql, provider: ProviderName, whose: { schoolId: string; parentId: string }, m: { phone: string; text: string; at: string; providerMessageId: string }, jobs?: InboundJobs): Promise<Received> {
   const stop = isStop(m.text);
-  const thread = (await db.query(
+  const row = (await db.query(
     `insert into message_threads (school_id, phone, parent_id, last_inbound_at, unread) values ($1, $2, $3, $4, 1)
-     on conflict (school_id, phone) do update set last_inbound_at = greatest(message_threads.last_inbound_at, excluded.last_inbound_at), unread = message_threads.unread + 1 returning thread_id`,
+     on conflict (school_id, phone) do update set last_inbound_at = greatest(message_threads.last_inbound_at, excluded.last_inbound_at), unread = message_threads.unread + 1 returning thread_id, parent_id`,
     [whose.schoolId, m.phone, whose.parentId, m.at]
-  )).rows[0].thread_id as string;
+  )).rows[0] as { thread_id: string; parent_id: string };
+  const thread = row.thread_id;
   await db.query(`insert into inbound_messages (school_id, thread_id, provider, provider_message_id, body, is_stop, received_at) values ($1, $2, $3, $4, $5, $6, $7)`, [whose.schoolId, thread, provider, m.providerMessageId, m.text.slice(0, 4096), stop, m.at]);
   if (!stop) {
     // An answer to the day's Pulse ("1" understood, "2" needs help) is counted, when it is plain whose it is.
@@ -64,11 +70,17 @@ async function placeInSchool(db: Sql, provider: ProviderName, whose: { schoolId:
     // The same few words can only mean one thing. An answer counted for the Pulse is not also read as a meeting
     // time ("1") or an event answer ("yes"). Otherwise: a time from a parent invited to a meeting books that slot
     // (C193); YES or NO from a parent invited to one event is counted for it (C194).
-    if (!pulse.recorded) {
+    let said: Said | null;
+    if (pulse.recorded) said = pulse.answer === 'needs_help' ? 'needs_help' : 'answer';
+    else {
       const ptm = await notePtmReply(db as PoolClient, jobs?.queue, note);
-      if (!('told' in ptm) && !ptm.booked) await noteEventReply(db, note);
+      // A meeting time is answered by its own message (booked, or not free): nothing more is said to it.
+      if ('told' in ptm || ptm.booked) said = null;
+      else said = (await noteEventReply(db, note)).recorded ? 'answer' : 'message';
     }
-    return { kind: 'threaded', schoolId: whose.schoolId, threadId: thread, stop: false };
+    // The school says it has the message (C544), in the parent's own open conversation.
+    const ack = said && jobs ? await acknowledge(db, jobs, whose.schoolId, row, m, said) : null;
+    return { kind: 'threaded', schoolId: whose.schoolId, threadId: thread, stop: false, ...(ack ? { confirm: { logId: ack } } : {}) };
   }
   const made = await db.query(`insert into whatsapp_opt_outs (school_id, phone, stopped_at) values ($1, $2, $3) on conflict (school_id, phone) where lifted_at is null do nothing`, [whose.schoolId, m.phone, m.at]);
   if (made.rowCount !== 1) return { kind: 'threaded', schoolId: whose.schoolId, threadId: thread, stop: true }; // already stopped: told once, not again
@@ -77,13 +89,82 @@ async function placeInSchool(db: Sql, provider: ProviderName, whose: { schoolId:
   const words = TEMPLATE_REGISTRY.find((t) => t.name === 'messages_stopped');
   const school = (await db.query(`select name from schools where school_id = $1`, [whose.schoolId])).rows[0]?.name as string;
   if (!words || !jobs) return { kind: 'threaded', schoolId: whose.schoolId, threadId: thread, stop: true };
-  const logId = (await db.query(
+  const logId = await queueOwnWords(db, jobs, { schoolId: whose.schoolId, phone: m.phone, parentId: whose.parentId, threadId: thread, purpose: 'core_records', dedupeKey: `stopped:${thread}:${m.providerMessageId}`, text: renderTemplate(words.body.en, { school }) });
+  return { kind: 'threaded', schoolId: whose.schoolId, threadId: thread, stop: true, ...(logId ? { confirm: { logId } } : {}) };
+}
+
+// Words the system itself writes into a parent's open conversation (the STOP confirmation, an acknowledgement): one
+// queued free-text row of the thread, sent by the send-gate's outbox, which reads the 24-hour window, the pilot
+// switch, STOP (for all but the STOP confirmation, `core_records`) and the test-school rule again when it goes. Once
+// per dedupe key: a second try writes nothing and returns null.
+async function queueOwnWords(db: Sql, jobs: InboundJobs, w: { schoolId: string; phone: string; parentId: string; threadId: string; purpose: 'core_records' | 'operational_communication'; dedupeKey: string; text: string }): Promise<string | null> {
+  const made = (await db.query(
     `insert into communication_log (school_id, to_phone, channel, billing_category, billable, est_cost_paise, gst_paise, cost_basis, status, dedupe_key, parent_id, purpose, thread_id, body, not_before)
-     values ($1, $2, 'whatsapp', 'service', false, 0, 0, 'not_billable', 'queued', $3, $4, 'core_records', $5, $6, now()) returning log_id`,
-    [whose.schoolId, m.phone, `stopped:${thread}:${m.providerMessageId}`.slice(0, 200), whose.parentId, thread, renderTemplate(words.body.en, { school })]
-  )).rows[0].log_id as string;
-  await jobs.confirm(db, logId, whose.schoolId);
-  return { kind: 'threaded', schoolId: whose.schoolId, threadId: thread, stop: true, confirm: { logId } };
+     values ($1, $2, 'whatsapp', 'service', false, 0, 0, 'not_billable', 'queued', $3, $4, $5, $6, $7, now())
+     on conflict (school_id, dedupe_key) where dedupe_key is not null do nothing returning log_id`,
+    [w.schoolId, w.phone, w.dedupeKey.slice(0, 200), w.parentId, w.purpose, w.threadId, w.text]
+  )).rows[0]?.log_id as string | undefined;
+  if (!made) return null;
+  await jobs.confirm(db, made, w.schoolId);
+  return made;
+}
+
+// What a parent's message was, for the acknowledgement: words for the school, an answer counted (the Pulse's
+// "understood", an event's YES or NO), or the Pulse's "needs help".
+type Said = 'message' | 'answer' | 'needs_help';
+type ClassRow = { name: string; section: string | null; taught: boolean };
+// A class is named only when it has an active class teacher: row level security shows the thread (and the class's
+// follow-up list) to that teacher, so "it has reached the class teacher" is then true.
+const taughtClass = (rows: ClassRow[]): string | null => (rows.length === 1 && rows[0].taught ? classLabel(rows[0].name, rows[0].section) : null);
+const CLASS_TEACHER = `left join users u on u.school_id = c.school_id and u.user_id = c.class_teacher_id and u.is_active`;
+
+// The school acknowledges a parent's message (C544): once per message (its dedupe key is the provider's own message
+// id), and only where a free-text reply may go: the message is from the last 24 hours, the school may send, and the
+// number has not said STOP. Words to the school are acknowledged once a conversation: not again while the school
+// (a person, or this) has written into that thread in the 24 hours before. Each answer counted is acknowledged.
+// The words say only what was done (TEMPLATE_REGISTRY, C544). Returns the queued row, or null.
+async function acknowledge(db: Sql, jobs: InboundJobs, schoolId: string, thread: { thread_id: string; parent_id: string }, m: { phone: string; at: string; providerMessageId: string }, said: Said): Promise<string | null> {
+  const s = (await db.query(
+    `select s.name, (s.is_pilot and not s.pilot_allow_outbound) as pilot, $3::timestamptz > now() - make_interval(hours => $5) as fresh,
+            exists (select 1 from whatsapp_opt_outs o where o.school_id = s.school_id and o.phone = $2 and o.lifted_at is null) as stopped,
+            exists (select 1 from communication_log l where l.school_id = s.school_id and l.thread_id = $4 and l.body is not null and l.created_at > $3::timestamptz - make_interval(hours => $5)) as spoke
+       from schools s where s.school_id = $1`,
+    [schoolId, m.phone, m.at, thread.thread_id, WINDOW_HOURS]
+  )).rows[0] as { name: string; pilot: boolean; fresh: boolean; stopped: boolean; spoke: boolean } | undefined;
+  if (!s || s.pilot || !s.fresh || s.stopped || (said === 'message' && s.spoke)) return null;
+  let name: Acknowledgement = 'answer_recorded';
+  let cls: string | null = null;
+  if (said === 'message') {
+    // The classes of the guardian's children: the thread is shown to each one's class teacher.
+    cls = taughtClass((await db.query(
+      `select distinct c.name, c.section, u.user_id is not null as taught
+         from parent_student_map m join students st on st.school_id = m.school_id and st.student_id = m.student_id and st.status = 'active'
+         join classes c on c.school_id = st.school_id and c.class_id = st.class_id ${CLASS_TEACHER}
+        where m.school_id = $1 and m.parent_id = $2`,
+      [schoolId, thread.parent_id]
+    )).rows as ClassRow[]);
+    name = cls ? 'reply_received_class' : 'reply_received';
+  } else if (said === 'needs_help') {
+    // The child this answer was counted for is on that class's open follow-up list (src/lib/pulse/replies.ts).
+    cls = taughtClass((await db.query(
+      `select c.name, c.section, u.user_id is not null as taught
+         from pulse_response_log r join pulse_followups f on f.school_id = r.school_id and f.student_id = r.student_id and f.kind = 'did_not_understand' and f.status = 'open'
+         join classes c on c.school_id = f.school_id and c.class_id = f.class_id ${CLASS_TEACHER}
+        where r.school_id = $1 and r.provider_message_id = $2 limit 1`,
+      [schoolId, m.providerMessageId]
+    )).rows as ClassRow[]);
+    if (cls) name = 'help_follow_up';
+  }
+  const words = TEMPLATE_REGISTRY.find((t) => t.name === name);
+  if (!words) return null;
+  const params = { school: s.name, ...(cls ? { class: cls } : {}) };
+  // Both languages, English then Hindi, as the founder's example shows. Hindi only once a reader of Hindi has reviewed
+  // and approved these very words in Control (C190); until then, English alone.
+  const hi = await templateToSend(db, schoolId, name, 'hi', false);
+  const hindi = hi?.language === 'hi' && hi.version === words.version ? renderTemplate(words.body.hi, params) : null;
+  const english = renderTemplate(words.body.en, params);
+  const text = hindi ? `${english}\n${hindi}` : english;
+  return queueOwnWords(db, jobs, { schoolId, phone: m.phone, parentId: thread.parent_id, threadId: thread.thread_id, purpose: 'operational_communication', dedupeKey: `ack:${m.providerMessageId}`, text });
 }
 
 const unknown = async (db: Sql, provider: ProviderName, n: { providerMessageId: string; at: string }): Promise<Received> => {
