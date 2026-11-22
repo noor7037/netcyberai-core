@@ -75,7 +75,7 @@ export default function PricingPage() {
       <section aria-labelledby="pricing-title" className="relative overflow-hidden bg-midnight text-white">
         <div aria-hidden="true" className="nca-mesh-dark absolute inset-0" />
         <div aria-hidden="true" className="nca-spectrum-bar absolute inset-x-0 top-0 h-1" />
-        <Container wide className="relative flex flex-col gap-5 py-16">
+        <Container className="relative flex flex-col gap-5 py-16">
           <EyebrowOnDark tone="action">Pricing</EyebrowOnDark>
           <h1 id="pricing-title" className="max-w-3xl text-4xl font-extrabold tracking-tight sm:text-5xl">
             Pricing that grows with your school
@@ -97,7 +97,7 @@ export default function PricingPage() {
       </section>
 
       <section aria-labelledby="value-title" className="bg-off-white">
-        <Container wide className="flex flex-col gap-8 py-16">
+        <Container className="flex flex-col gap-8 py-16">
           <SectionHeading id="value-title" eyebrow="What every plan includes" tone="trust" title="Clear terms, stated plainly" />
           <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {publishedClaims.map((c) => (
@@ -116,7 +116,7 @@ export default function PricingPage() {
       </section>
 
       <section aria-labelledby="plans-title" className="bg-white">
-        <Container wide className="flex flex-col gap-8 py-16">
+        <Container className="flex flex-col gap-8 py-16">
           <SectionHeading
             id="plans-title"
             eyebrow="Plans"
@@ -143,7 +143,7 @@ export default function PricingPage() {
       <HowItWorks id="pricing-steps" tint="off-white" />
 
       <section id="compare" aria-labelledby="compare-title" className="scroll-mt-24 bg-white">
-        <Container wide className="flex flex-col gap-6 py-16">
+        <Container className="flex flex-col gap-6 py-16">
           <SectionHeading id="compare-title" eyebrow="Compare" tone="intelligence" title="Module by module" />
           <div className="relative min-w-0 max-w-full overflow-x-auto rounded-3xl border border-slate/10 bg-white" tabIndex={0} role="region" aria-labelledby="compare-title">
             <table className="w-full min-w-[40rem] text-left text-sm">
@@ -183,7 +183,7 @@ export default function PricingPage() {
       </section>
 
       <section id="quote" aria-labelledby="quote-title" className="scroll-mt-24 bg-off-white">
-        <Container wide className="grid grid-cols-1 gap-10 py-16 lg:grid-cols-5">
+        <Container className="grid grid-cols-1 gap-10 py-16 lg:grid-cols-5">
           <div className="flex flex-col gap-4 lg:col-span-2">
             <SectionHeading
               id="quote-title"
@@ -207,7 +207,7 @@ export default function PricingPage() {
       </section>
 
       <section aria-labelledby="pricing-faq-title" className="bg-white">
-        <Container wide className="flex flex-col gap-6 py-16">
+        <Container className="flex flex-col gap-6 py-16">
           <h2 id="pricing-faq-title" className="text-2xl font-extrabold text-slate">
             Frequently asked questions
           </h2>
@@ -216,7 +216,7 @@ export default function PricingPage() {
       </section>
 
       <section aria-labelledby="pricing-cta-title" className="bg-midnight text-white">
-        <Container wide className="flex flex-col items-start gap-4 py-14 sm:flex-row sm:items-center sm:justify-between">
+        <Container className="flex flex-col items-start gap-4 py-14 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h2 id="pricing-cta-title" className="text-2xl font-extrabold">
               Rather talk it through?

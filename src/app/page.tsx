@@ -56,7 +56,7 @@ export default function HomePage() {
       <HowItWorks />
 
       <section aria-labelledby="faq-title" className="bg-off-white">
-        <Container className="flex flex-col gap-6 py-12">
+        <Container reading className="flex flex-col gap-6 py-12">
           <SectionHeading id="faq-title" eyebrow="Questions" tone="product" title="Frequently asked questions" />
           <FaqBlock items={faqs} />
         </Container>

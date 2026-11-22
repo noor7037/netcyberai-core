@@ -9,7 +9,7 @@ export default function AboutPage() {
   return (
     <>
       <section className="bg-gradient-to-br from-sapphire via-violet to-sapphire">
-        <Container className="flex flex-col gap-4 py-16 text-off-white">
+        <Container reading className="flex flex-col gap-4 py-16 text-off-white">
           <h1 className="max-w-2xl text-3xl font-bold sm:text-4xl">Why {companyName} exists</h1>
           <p className="max-w-2xl text-lg text-off-white/90">
             Most Indian parents don&apos;t distrust their child&apos;s school — they simply don&apos;t hear
@@ -21,7 +21,7 @@ export default function AboutPage() {
       </section>
 
       <section className="bg-off-white">
-        <Container className="flex flex-col gap-6 py-16 text-slate">
+        <Container reading className="flex flex-col gap-6 py-16 text-slate">
           <p className="max-w-2xl text-lg">
             {companyName} is a WhatsApp-native Student Learning Monitoring &amp; Parent Engagement platform
             for Indian schools. It sends parents an honest daily update about what their child learned,
@@ -37,7 +37,7 @@ export default function AboutPage() {
       </section>
 
       <section className="bg-sapphire">
-        <Container className="flex flex-col items-start gap-4 py-16 text-off-white">
+        <Container reading className="flex flex-col items-start gap-4 py-16 text-off-white">
           <h2 className="text-2xl font-bold">See it for your school</h2>
           <Button href="/book-demo" variant="secondary">
             Book a demo

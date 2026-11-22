@@ -23,7 +23,7 @@ const STEPS: { title: string; href: string }[] = [
 export function FamilySection() {
   return (
     <section id="family-app" aria-labelledby="family-title" className="scroll-mt-24 bg-white">
-      <Container wide className="grid grid-cols-1 items-center gap-10 py-16 lg:grid-cols-2">
+      <Container className="grid grid-cols-1 items-center gap-10 py-16 lg:grid-cols-2">
         <div className="flex flex-col gap-6">
           <SectionHeading
             id="family-title"

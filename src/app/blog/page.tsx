@@ -10,7 +10,7 @@ export default function BlogIndexPage() {
   const sorted = [...blogPosts].sort((a, b) => (a.publishedOn < b.publishedOn ? 1 : -1));
 
   return (
-    <Container className="flex flex-col gap-8 py-12">
+    <Container reading className="flex flex-col gap-8 py-12">
       <div className="flex flex-col gap-4">
         <h1 className="text-2xl font-bold text-sapphire sm:text-3xl">Blog</h1>
         <p className="text-lg text-slate">

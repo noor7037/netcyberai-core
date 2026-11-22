@@ -18,7 +18,7 @@ export function PrincipalSection({ headingLevel = 'h2' }: { headingLevel?: 'h1' 
   const H = headingLevel;
   return (
     <section id="principal-dashboard" aria-labelledby="principal-title" className="scroll-mt-20 bg-white">
-      <div className="mx-auto flex w-full max-w-[90rem] flex-col gap-5 px-4 py-10 sm:px-6 lg:py-12">
+      <div className="nca-shell flex flex-col gap-5 py-10 lg:py-12">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div className="flex max-w-3xl flex-col gap-2">
             <Eyebrow tone="trust">For the principal · desktop</Eyebrow>
@@ -59,7 +59,7 @@ export function PrincipalSection({ headingLevel = 'h2' }: { headingLevel?: 'h1' 
 export function AppsSection({ withParent = true }: { withParent?: boolean }) {
   return (
     <section aria-labelledby="apps-title" className="bg-off-white">
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 py-10 sm:px-6 lg:py-12">
+      <div className="nca-shell flex flex-col gap-8 py-10 lg:py-12">
         <div className="flex max-w-3xl flex-col gap-2">
           <Eyebrow tone="success">
             {withParent ? (
@@ -157,7 +157,7 @@ export function ModuleIndex() {
   const counts = (Object.keys(STATUS_LABEL) as ModuleStatus[]).map((s) => ({ s, n: Object.values(moduleStatus).filter((m) => m.status === s).length }));
   return (
     <section id="modules" aria-labelledby="modules-title" className="scroll-mt-20 bg-white">
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-10 sm:px-6 lg:py-12">
+      <div className="nca-shell flex flex-col gap-6 py-10 lg:py-12">
         <div className="flex max-w-3xl flex-col gap-2">
           <Eyebrow tone="trust">Every module, stated honestly</Eyebrow>
           <h2 id="modules-title" className="text-3xl font-extrabold tracking-tight text-slate">

@@ -58,7 +58,7 @@ export function GapDetection() {
 
   return (
     <section aria-labelledby="gap-title" className="nca-mesh-warm bg-off-white">
-      <Container wide className="flex flex-col gap-10 py-20">
+      <Container className="flex flex-col gap-10 py-20">
         <SectionHeading
           id="gap-title"
           eyebrow="Gap detection"

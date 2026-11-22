@@ -17,6 +17,52 @@ body {
   min-width: 0;
 }
 
+/* The public site's page shell (C543): the Header, Footer and every
+   marketing section share one width, up to 120rem, with a side gutter
+   that grows with the screen (16px on phones, 56px on wide desktops).
+   `.nca-shell-reading` keeps long text (articles, legal pages, FAQs) at
+   about 75 characters a line, centred inside the wider page. In the
+   components layer, so a section's own utilities (py-*, max-md:px-0)
+   still win. */
+@layer components {
+  .nca-shell {
+    --nca-gutter: clamp(16px, 3vw, 56px);
+    width: 100%;
+    max-width: 120rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--nca-gutter);
+    padding-right: var(--nca-gutter);
+  }
+  .nca-shell-reading {
+    max-width: calc(68ch + 2 * var(--nca-gutter));
+  }
+}
+
+/* Larger type on wide screens, for the public site only (C543). The
+   site Header (.nca-site-header) renders on the marketing pages and
+   returns nothing in the School app, Control, the Family app and the
+   parent home, so their root size never changes. Tailwind's breakpoints
+   are in px, so layouts switch at the same widths as before. */
+html:has(.nca-site-header) body {
+  font-size: 1rem;
+}
+@media (min-width: 1536px) {
+  html:has(.nca-site-header) {
+    font-size: 106.25%;
+  }
+}
+@media (min-width: 1920px) {
+  html:has(.nca-site-header) {
+    font-size: 112.5%;
+  }
+}
+@media (min-width: 2400px) {
+  html:has(.nca-site-header) {
+    font-size: 125%;
+  }
+}
+
 /* Modal.tsx uses the native <dialog> element for its spec-guaranteed
    focus trap and Escape handling; Tailwind has no utility for the
    ::backdrop pseudo-element, so this one rule lives here instead. */
@@ -221,6 +267,85 @@ dialog.modal-dialog::backdrop {
     radial-gradient(30rem 14rem at 15% 20%, rgb(255 255 255 / 0.8), transparent 70%),
     radial-gradient(34rem 18rem at 92% 40%, rgb(255 197 144 / 0.28), transparent 70%),
     radial-gradient(28rem 16rem at 40% 55%, rgb(139 61 255 / 0.07), transparent 70%);
+  transform: translate3d(calc(var(--nca-dx, 0) * -28px), calc(var(--nca-dy, 0) * -18px), 0);
+}
+
+/* Homepage hero backdrop (C543, HeroBackdrop.tsx): soft glows in logo
+   colours. With a mouse, the main glow eases toward the pointer and the
+   clouds and the second glow drift the other way (a light parallax);
+   the script only writes --nca-ax/--nca-ay (px) and --nca-dx/--nca-dy
+   (-0.5 to 0.5), so every move is a transform. Light tints at low
+   alpha, under the text, so contrast holds; static under reduced
+   motion and on touch screens. */
+.nca-hero-grid {
+  background-image: radial-gradient(rgb(29 78 216 / 0.09) 1px, transparent 1.5px);
+  background-size: 28px 28px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 55% 35%, #000 20%, transparent 75%);
+  mask-image: radial-gradient(ellipse 70% 60% at 55% 35%, #000 20%, transparent 75%);
+}
+.nca-hero-glow {
+  position: absolute;
+  width: 52rem;
+  height: 52rem;
+  border-radius: 9999px;
+  will-change: transform;
+}
+.nca-hero-glow > span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  animation: nca-breathe 16s ease-in-out infinite;
+}
+.nca-hero-glow-a {
+  left: 64%;
+  top: 22%;
+  transform: translate(-50%, -50%) translate3d(var(--nca-ax, 0px), var(--nca-ay, 0px), 0);
+}
+.nca-hero-glow-a > span {
+  background: radial-gradient(closest-side, rgb(2 207 249 / 0.2), rgb(29 78 216 / 0.08) 55%, transparent);
+}
+.nca-hero-glow-b {
+  left: 14%;
+  top: 70%;
+  transform: translate(-50%, -50%) translate3d(calc(var(--nca-dx, 0) * -120px), calc(var(--nca-dy, 0) * -70px), 0);
+}
+.nca-hero-glow-b > span {
+  background: radial-gradient(closest-side, rgb(139 61 255 / 0.12), rgb(139 61 255 / 0.04) 55%, transparent);
+  animation-delay: -8s;
+}
+.nca-hero-glow-c {
+  left: 94%;
+  top: 78%;
+  width: 40rem;
+  height: 40rem;
+  transform: translate(-50%, -50%) translate3d(calc(var(--nca-dx, 0) * 60px), calc(var(--nca-dy, 0) * 40px), 0);
+}
+.nca-hero-glow-c > span {
+  background: radial-gradient(closest-side, rgb(255 122 26 / 0.14), rgb(255 197 144 / 0.08) 55%, transparent);
+  animation-delay: -4s;
+}
+@keyframes nca-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nca-hero-clouds {
+    transform: none;
+  }
+  .nca-hero-glow {
+    transform: translate(-50%, -50%);
+  }
+  .nca-hero-glow > span {
+    animation: none;
+  }
 }
 .nca-brighter {
   background: linear-gradient(90deg, #1d4ed8 0%, #6d28d9 50%, #c2410c 100%);

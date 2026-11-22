@@ -1,10 +1,11 @@
 import type { HTMLAttributes } from 'react';
 
-// `wide` is for the visual marketing sections (1152px); the default
-// 1024px measure stays for text-led pages and the internal app.
-export function Container({ className = '', wide = false, children, ...props }: HTMLAttributes<HTMLDivElement> & { wide?: boolean }) {
+// The public site's one page shell (C543, `.nca-shell` in globals.css): up to 120rem wide with a gutter of
+// clamp(16px, 3vw, 56px), so the Header, Footer and every section line up and use a wide screen. `reading` keeps
+// long text (articles, legal pages, FAQs) at about 75 characters a line, centred in the page.
+export function Container({ className = '', reading = false, children, ...props }: HTMLAttributes<HTMLDivElement> & { reading?: boolean }) {
   return (
-    <div className={`mx-auto w-full ${wide ? 'max-w-6xl' : 'max-w-5xl'} px-4 sm:px-6 ${className}`} {...props}>
+    <div className={`nca-shell ${reading ? 'nca-shell-reading' : ''} ${className}`} {...props}>
       {children}
     </div>
   );

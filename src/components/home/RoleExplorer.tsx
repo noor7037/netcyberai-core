@@ -149,7 +149,7 @@ export function RoleExplorer() {
 
   return (
     <section aria-labelledby="roles-title" className="bg-white">
-      <Container wide className="flex flex-col gap-10 py-20">
+      <Container className="flex flex-col gap-10 py-20">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading
             id="roles-title"

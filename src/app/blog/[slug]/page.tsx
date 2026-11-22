@@ -82,7 +82,7 @@ export default function BlogPostPage({ params }: PageProps) {
   const howTo = post.howTo ? howToJsonLd(post.howTo) : null;
 
   return (
-    <Container className="flex flex-col gap-10 py-12">
+    <Container reading className="flex flex-col gap-10 py-12">
       <div className="flex flex-col gap-4">
         <p className="text-xs text-slate/70">
           {new Date(post.publishedOn).toLocaleDateString('en-IN', {

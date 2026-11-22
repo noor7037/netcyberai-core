@@ -57,7 +57,7 @@ const faqs = [
 
 export default function DigitalTcPipelinePage() {
   return (
-    <Container className="flex flex-col gap-12 py-12">
+    <Container reading className="flex flex-col gap-12 py-12">
       <div className="flex flex-col gap-4">
         <h1 className="text-2xl font-bold text-sapphire sm:text-3xl">
           Digital TC, Character &amp; Bonafide Certificates: Application to WhatsApp Delivery
@@ -99,7 +99,7 @@ export default function DigitalTcPipelinePage() {
 
       <div>
         <h2 className="text-xl font-bold text-slate">What it does not do</h2>
-        <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-slate">
+        <ul className="mt-4 list-disc space-y-2 pl-5 text-base leading-relaxed text-slate">
           <li>It does not use blockchain — a signed PDF with a QR verification link solves the same problem without a third-party dependency.</li>
           <li>It does not let a certificate skip the finance clearance stage silently — an override is always a recorded, human decision.</li>
           <li>It does not store the school&rsquo;s signing key on any client device or in the PDF itself.</li>

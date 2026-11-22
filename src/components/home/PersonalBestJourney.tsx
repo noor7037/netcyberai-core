@@ -26,7 +26,7 @@ export function PersonalBestJourney() {
       <div aria-hidden="true" className="nca-float absolute right-12 top-24 h-2.5 w-2.5 rounded-full bg-cyan" />
       <div aria-hidden="true" className="nca-float-slow absolute bottom-24 left-1/2 h-3 w-3 rounded-full bg-tangerine" />
       <div aria-hidden="true" className="nca-float absolute bottom-16 right-1/3 h-2.5 w-2.5 rotate-12 rounded-sm bg-sunshine" />
-      <Container wide className="relative flex flex-col gap-10 py-20">
+      <Container className="relative flex flex-col gap-10 py-20">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading
             dark

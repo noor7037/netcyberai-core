@@ -77,7 +77,7 @@ const faqs = [
 
 export default function WhatsappFeeRecoveryPage() {
   return (
-    <Container className="flex flex-col gap-12 py-12">
+    <Container reading className="flex flex-col gap-12 py-12">
       <div className="flex flex-col gap-4">
         <h1 className="text-2xl font-bold text-sapphire sm:text-3xl">
           WhatsApp Fee Reminders with UPI, on a D-3 to D+7 Sequence
@@ -92,12 +92,12 @@ export default function WhatsappFeeRecoveryPage() {
 
       <div>
         <h2 className="text-xl font-bold text-slate">The reminder sequence</h2>
-        <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
           {sequence.map((stage) => (
             <Card key={stage.label}>
               <span className="inline-block rounded bg-emerald/15 px-2 py-0.5 text-slate text-sm font-semibold">{stage.label}</span>
               <h3 className="mt-1 text-base font-semibold text-slate">{stage.title}</h3>
-              <p className="mt-2 text-sm text-slate">{stage.body}</p>
+              <p className="mt-2 text-base leading-relaxed text-slate">{stage.body}</p>
             </Card>
           ))}
         </div>
@@ -112,7 +112,7 @@ export default function WhatsappFeeRecoveryPage() {
 
       <div>
         <h2 className="text-xl font-bold text-slate">What it does not do</h2>
-        <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-slate">
+        <ul className="mt-4 list-disc space-y-2 pl-5 text-base leading-relaxed text-slate">
           <li>It does not replace your school&rsquo;s accounting system or statutory books.</li>
           <li>It does not auto-apply sibling or hardship discounts by guessing from a surname or address — every concession needs an approving staff member and a reason on record.</li>
           <li>

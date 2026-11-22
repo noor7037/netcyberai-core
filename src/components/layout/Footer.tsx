@@ -39,7 +39,7 @@ export function Footer() {
   return (
     <footer className="relative bg-midnight text-white print:hidden">
       <div aria-hidden="true" className="nca-spectrum-bar h-1" />
-      <Container wide className="flex flex-col gap-12 py-14">
+      <Container className="flex flex-col gap-12 py-14">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[18rem_1fr]">
           <div className="flex flex-col gap-4">
             <span className="w-fit rounded-xl bg-white px-3 py-2">
