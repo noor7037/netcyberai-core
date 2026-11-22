@@ -1,6 +1,7 @@
 import { createHash } from 'crypto';
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
+import { FamilyNavStatus } from '@/components/family/FamilyNavStatus';
 import { FamilySessionKeeper } from '@/components/family/FamilySessionKeeper';
 import { FamilyTabs } from '@/components/family/FamilyTabs';
 import { TutorSwitches } from '@/components/family/tutor/switches';
@@ -63,6 +64,8 @@ export default async function FamilyAppLayout({ children }: { children: React.Re
       <OfflineSync owner={createHash('sha256').update(`ncf-offline:${page.session.accountId}`).digest('hex').slice(0, 24)} childId={page.child?.childId ?? null} on={switchOn(switches, 'offline')} />
       <SettingsPrime settings={settings} />
       <div className="pb-28" data-family-settings data-fam-motion={settings && !settings.motion ? 'off' : undefined}>
+        {/* C539: a tap on a link shows at once; with no internet, a line says what still opens. */}
+        <FamilyNavStatus offlineText={t(lang, 'fam.offline.net')} />
         {/* W16-B5: the drawing board and the simulations follow Control → Apps (tutor_board) on every screen that draws an answer. */}
         <TutorSwitches board={tutorParts(switches).board}>{children}</TutorSwitches>
       </div>

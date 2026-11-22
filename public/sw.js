@@ -15,16 +15,20 @@
 // Signing out sends { type: 'clear' }: the kept pages are deleted.
 // Registered with scope /app, in production builds only.
 //
-// The Family app (M2-9, C283) registers this same worker with scope /family,
-// in production builds, when Control has its offline module on:
-//   - Its pages are always fetched from the network and never kept, except
-//     /family/offline, the app's shell: it needs no session and shows
-//     nothing personal. With no network, any /family page is answered with
-//     that shell, which opens the chapters saved on the phone (the packs
-//     live in the page's IndexedDB, not here) or says "needs internet".
-//   - { type: 'family-shell' } keeps the shell and the static files it loads,
-//     so it opens with no network; { type: 'family-clear' } deletes it.
-//
+// The Family app (M2-9, C283) registers this same worker with scope /family, in production builds, when Control has
+// its offline module on:
+//   - /family/offline is the app's shell: it needs no session and shows nothing personal. With no network and no kept
+//     copy, any /family page is answered with it; it opens the chapters saved on the phone (the packs live in the page's
+//     IndexedDB, not here) or says "needs internet". { type: 'family-shell' } keeps it and the static files it loads.
+//   - Weak network (C539): a Family page, and the page data the app's router asks for (a request with `RSC: 1` or an
+//     `_rsc` parameter), go to the network first. When the network has not answered in FAMILY_WAIT_MS, a copy kept in
+//     the last FAMILY_FRESH_MS answers (the network's answer still replaces the copy when it comes); with no network,
+//     any kept copy answers. Only the child's screens are kept (FAMILY_KEPT), only a direct 200 of the right type,
+//     never a redirect, never /api, at most FAMILY_MAX_KEPT copies. Nothing is kept until a signed-in page says the
+//     offline module is on ({ type: 'family-keep' }). A redirect, or the sign-in page answering, means the session
+//     ended: every kept page is deleted. { type: 'family-clear' } (sign-out, another account, offline switched off)
+//     deletes the kept pages and the shell.
+
 // Scanned answer sheets (C230-AJ): the scan screen keeps each page in its own IndexedDB outbox (nca-scan-outbox,
 // src/lib/marking/outbox-idb.ts) and asks for a Background Sync ('nca-scan-outbox') where the browser offers one. Then,
 // even with the screen closed, this worker sends the pages that already have their upload and file: one page a
@@ -43,6 +47,16 @@ const PAGE_CACHE = `${VERSION}-pages`;
 const KEPT_PAGES = ['/app', '/app/my-day', '/app/attendance'];
 const FAMILY_CACHE = `${VERSION}-family`;
 const FAMILY_SHELL = '/family/offline';
+const FAMILY_PAGES = `${VERSION}-family-pages`;
+// The mark a signed-in page leaves when the offline module is on; never a real address.
+const FAMILY_KEEP_MARK = '/__nca/family-keep';
+const FAMILY_WAIT_MS = 3500;
+const FAMILY_FRESH_MS = 6 * 60 * 60 * 1000;
+const FAMILY_MAX_KEPT = 48;
+const KEPT_AT = 'x-nca-kept-at';
+// The child's screens that are kept (each with what is under it). Not Understand (offline, the shell opens its saved
+// pack), not the parent area, results, the call, settings, sign-in, sign-out or the phone link.
+const FAMILY_KEPT = ['/family/study', '/family/english', '/family/progress', '/family/future', '/family/draw', '/family/tutors'];
 
 const PUSH_WORDS = {
   en: {
@@ -80,8 +94,9 @@ function pushNotice(data) {
   };
 }
 
-// What to do with a request: 'static', 'kept-page', 'other-page', 'family-page' or 'network'.
-function route(method, url, origin, mode) {
+// What to do with a request: 'static', 'kept-page', 'other-page', 'family-page', 'family-data' or 'network'. `rsc`: the
+// request carries the app router's `RSC: 1` header (an `_rsc` parameter says the same).
+function route(method, url, origin, mode, rsc) {
   if (method !== 'GET') return 'network';
   let u;
   try {
@@ -92,8 +107,9 @@ function route(method, url, origin, mode) {
   if (u.origin !== origin) return 'network';
   if (u.pathname.startsWith('/api/')) return 'network';
   if (u.pathname.startsWith('/_next/static/') || u.pathname.startsWith('/brand/') || u.pathname.startsWith('/icons/')) return 'static';
-  if (mode !== 'navigate') return 'network';
-  if (u.pathname === '/family' || u.pathname.startsWith('/family/')) return 'family-page';
+  const family = u.pathname === '/family' || u.pathname.startsWith('/family/');
+  if (mode !== 'navigate') return family && (rsc === true || u.searchParams.has('_rsc')) ? 'family-data' : 'network';
+  if (family) return 'family-page';
   if (!(u.pathname === '/app' || u.pathname.startsWith('/app/'))) return 'network';
   return KEPT_PAGES.includes(u.pathname.replace(/\/$/, '') || '/') ? 'kept-page' : 'other-page';
 }
@@ -175,27 +191,156 @@ function staticFiles(html) {
   return [...out].slice(0, 80);
 }
 
-// A Family app page (W11-A, C416). It comes from the network. One failed fetch is not "no internet": on a phone a
-// connection drops for a moment (a network change, a connection gone stale while the phone slept), yet the app showed
-// the offline page for it. So the page is asked for once more, as a fresh request with the same sign-in. Only when that
-// fails too, and the phone is offline or the failure is a network error, the shell (or the last-resort page) answers;
-// any other failure is passed on as the error it is. A redirect (to sign-in) is passed on as it came: the retry keeps
-// the navigation's 'manual' redirect mode, because a followed redirect may not answer a navigation.
-async function familyPage(request, deps) {
+// ---- the Family app's pages (W11-A, C416; C539) ---------------------------------------------------------------------
+
+// The address a Family answer is kept under, or null when it is never kept: a page by its path and query; the page data
+// by its full address, whose `_rsc` names the router state it was made for (so a copy only answers the same request).
+function familyKey(url, kind) {
+  let u;
+  try {
+    u = new URL(url);
+  } catch {
+    return null;
+  }
+  const path = u.pathname.replace(/\/$/, '') || '/';
+  if (!(path === '/family' || FAMILY_KEPT.some((k) => path === k || path.startsWith(`${k}/`)))) return null;
+  if (kind === 'family-data') return u.searchParams.has('_rsc') ? `${u.pathname}${u.search}` : null;
+  u.searchParams.delete('_rsc');
+  return `${u.pathname}${u.search}`;
+}
+
+// What a Family answer does to the kept pages: 'forget' (a redirect, or the sign-in page itself: the session has ended),
+// 'keep' (a direct 200 of the right type, for an address that is kept) or 'skip'.
+function familyStore(kind, url, key, response) {
+  if (!response) return 'skip';
+  if (response.type === 'opaqueredirect' || response.redirected || (response.status >= 300 && response.status < 400)) return 'forget';
+  let path = '';
+  try {
+    path = new URL(url).pathname.replace(/\/$/, '');
+  } catch {
+    return 'skip';
+  }
+  if (path === '/family/sign-in' && response.status === 200) return 'forget';
+  if (!key || !keepable(response)) return 'skip';
+  const type = (response.headers && response.headers.get('content-type')) || '';
+  return (kind === 'family-data' ? type.startsWith('text/x-component') : type.startsWith('text/html')) ? 'keep' : 'skip';
+}
+
+// May this kept copy answer? With no network, any; while the network is only slow, one kept in the last FAMILY_FRESH_MS.
+function mayAnswer(copy, why, now) {
+  if (!copy) return false;
+  if (why === 'offline') return true;
+  const at = Number(copy.headers.get(KEPT_AT));
+  return Number.isFinite(at) && at > 0 && now - at <= FAMILY_FRESH_MS;
+}
+
+// The kept copies past FAMILY_MAX_KEPT, oldest first (a copy kept again moves to the end); never the mark.
+function overflow(keys, max) {
+  const copies = keys.filter((k) => !(typeof k === 'string' ? k : k.url).endsWith(FAMILY_KEEP_MARK));
+  return copies.slice(0, Math.max(0, copies.length - max));
+}
+
+// The network, asked twice. One failed fetch is not "no internet": on a phone a connection drops for a moment (a network
+// change, a connection gone stale while the phone slept). The second ask is `again` (for a page, a fresh request with
+// the same sign-in and its 'manual' redirect mode, because a followed redirect may not answer a navigation).
+async function twice(request, again, deps) {
   try {
     return await deps.fetch(request);
   } catch {
-    // asked once more below
+    return deps.fetch(again());
   }
+}
+
+// Network first: the network's answer when it comes within `wait` ms; after that a fresh kept copy, if there is one
+// (the network's answer still replaces the copy when it comes); with none, the network is awaited.
+async function networkFirst(net, deps) {
+  if (!deps.kept) return net;
+  let timer;
+  const late = new Promise((resolve) => {
+    timer = setTimeout(() => resolve(null), deps.wait ?? FAMILY_WAIT_MS);
+  });
+  const first = await Promise.race([net.then((r) => ({ r }), (e) => ({ e })), late]);
+  clearTimeout(timer);
+  if (first) {
+    if (first.e) throw first.e;
+    return first.r;
+  }
+  const copy = await deps.kept().catch(() => undefined);
+  return mayAnswer(copy, 'slow', deps.now ? deps.now() : Date.now()) ? copy : net;
+}
+
+// Whatever the network answers is looked at once (`deps.keep`: kept, or the kept pages forgotten) while the page gets it.
+function watch(net, deps) {
+  if (deps.keep && deps.later) deps.later(net.then((r) => deps.keep(r)).catch(() => undefined));
+  return net;
+}
+
+// A Family app page. With no network after two tries (the phone offline, or a network error): the kept copy of the page,
+// else the shell, else the last-resort page; any other failure (an aborted navigation) is passed on as the error it is.
+// A redirect (to sign-in) is passed on as it came.
+async function familyPage(request, deps) {
+  const net = watch(twice(request, () => new Request(request.url, { credentials: 'include', redirect: 'manual' }), deps), deps);
   try {
-    return await deps.fetch(new Request(request.url, { credentials: 'include', redirect: 'manual' }));
+    return await networkFirst(net, deps);
   } catch (err) {
     if (deps.online() === false || (err && err.name === 'TypeError')) {
+      const copy = deps.kept ? await deps.kept().catch(() => undefined) : undefined;
+      if (mayAnswer(copy, 'offline')) return copy;
       const shell = await deps.shell().catch(() => undefined);
       return shell || new Response(FAMILY_OFFLINE_PAGE, { status: 200, headers: { 'content-type': 'text/html; charset=utf-8' } });
     }
     return Response.error();
   }
+}
+
+// The page data the app's router asks for. With no network: the copy kept for this exact request, else an error, on
+// which the router loads the page itself (and familyPage answers that).
+async function familyData(request, deps) {
+  const net = watch(twice(request, () => request, deps), deps);
+  try {
+    return await networkFirst(net, deps);
+  } catch (err) {
+    if (deps.online() === false || (err && err.name === 'TypeError')) {
+      const copy = deps.kept ? await deps.kept().catch(() => undefined) : undefined;
+      if (mayAnswer(copy, 'offline')) return copy;
+    }
+    return Response.error();
+  }
+}
+
+// The kept pages change one at a time, so a clear and a keep sent together never cross.
+let familyQueue = Promise.resolve();
+function familySerial(fn) {
+  familyQueue = familyQueue.then(fn, fn);
+  return familyQueue;
+}
+
+const familyKeepOn = () => familySerial(() => caches.open(FAMILY_PAGES).then((c) => c.put(FAMILY_KEEP_MARK, new Response('1'))));
+const familyForget = () => familySerial(() => caches.delete(FAMILY_PAGES));
+const familyClear = () => familySerial(() => Promise.all([caches.delete(FAMILY_PAGES), caches.delete(FAMILY_CACHE)]));
+
+// The kept copy for an address, only while the mark is there.
+async function familyKept(key) {
+  if (!key || !(await caches.has(FAMILY_PAGES))) return undefined;
+  const cache = await caches.open(FAMILY_PAGES);
+  if (!(await cache.match(FAMILY_KEEP_MARK))) return undefined;
+  return cache.match(key, { ignoreVary: true });
+}
+
+// Keep a copy, stamped with when, only while the mark is there; the oldest copies past the limit go.
+function familyKeepCopy(key, response) {
+  const copy = response.clone();
+  return familySerial(async () => {
+    if (!(await caches.has(FAMILY_PAGES))) return;
+    const cache = await caches.open(FAMILY_PAGES);
+    if (!(await cache.match(FAMILY_KEEP_MARK))) return;
+    const headers = new Headers(copy.headers);
+    headers.delete('content-encoding');
+    headers.delete('content-length');
+    headers.set(KEPT_AT, String(Date.now()));
+    await cache.put(key, new Response(await copy.blob(), { status: copy.status, statusText: copy.statusText, headers }));
+    for (const old of overflow(await cache.keys(), FAMILY_MAX_KEPT)) await cache.delete(old);
+  });
 }
 
 async function keepFamilyShell() {
@@ -226,7 +371,8 @@ if (typeof self !== 'undefined' && typeof self.addEventListener === 'function') 
   self.addEventListener('message', (event) => {
     if (event.data && event.data.type === 'clear') event.waitUntil(caches.delete(PAGE_CACHE));
     if (event.data && event.data.type === 'family-shell') event.waitUntil(keepFamilyShell().catch(() => undefined));
-    if (event.data && event.data.type === 'family-clear') event.waitUntil(caches.delete(FAMILY_CACHE));
+    if (event.data && event.data.type === 'family-keep') event.waitUntil(familyKeepOn());
+    if (event.data && event.data.type === 'family-clear') event.waitUntil(familyClear());
   });
 
   self.addEventListener('sync', (event) => {
@@ -263,7 +409,7 @@ if (typeof self !== 'undefined' && typeof self.addEventListener === 'function') 
 
   self.addEventListener('fetch', (event) => {
     const request = event.request;
-    const kind = route(request.method, request.url, self.location.origin, request.mode);
+    const kind = route(request.method, request.url, self.location.origin, request.mode, request.headers.get('RSC') === '1');
     if (kind === 'network') return;
 
     if (kind === 'static') {
@@ -279,14 +425,24 @@ if (typeof self !== 'undefined' && typeof self.addEventListener === 'function') 
       return;
     }
 
-    if (kind === 'family-page') {
-      event.respondWith(
-        familyPage(request, {
-          fetch: (r) => fetch(r),
-          online: () => self.navigator.onLine,
-          shell: () => caches.open(FAMILY_CACHE).then((c) => c.match(FAMILY_SHELL)),
-        })
-      );
+    if (kind === 'family-page' || kind === 'family-data') {
+      const key = familyKey(request.url, kind);
+      const deps = {
+        fetch: (r) => fetch(r),
+        online: () => self.navigator.onLine,
+        shell: () => caches.open(FAMILY_CACHE).then((c) => c.match(FAMILY_SHELL)),
+        kept: key ? () => familyKept(key) : undefined,
+        keep: (response) => {
+          const what = familyStore(kind, request.url, key, response);
+          if (what === 'forget') return familyForget();
+          if (what === 'keep') return familyKeepCopy(key, response);
+          return undefined;
+        },
+        later: (p) => event.waitUntil(p),
+        wait: FAMILY_WAIT_MS,
+        now: () => Date.now(),
+      };
+      event.respondWith(kind === 'family-page' ? familyPage(request, deps) : familyData(request, deps));
       return;
     }
 
@@ -308,4 +464,4 @@ if (typeof self !== 'undefined' && typeof self.addEventListener === 'function') 
 }
 
 // For the tests (test/offline/service-worker.test.ts).
-if (typeof module !== 'undefined') module.exports = { route, keepable, familyPage, staticFiles, pushNotice, scanPagesToSend, KEPT_PAGES, OFFLINE_PAGE, FAMILY_OFFLINE_PAGE, FAMILY_SHELL };
+if (typeof module !== 'undefined') module.exports = { route, keepable, familyPage, familyData, familyKey, familyStore, mayAnswer, overflow, networkFirst, staticFiles, pushNotice, scanPagesToSend, KEPT_PAGES, OFFLINE_PAGE, FAMILY_OFFLINE_PAGE, FAMILY_SHELL, FAMILY_KEPT, FAMILY_WAIT_MS, FAMILY_FRESH_MS, FAMILY_MAX_KEPT, FAMILY_KEEP_MARK, KEPT_AT };

@@ -3,6 +3,7 @@
 // once. Storage may be missing or blocked (a private window): every call then does nothing and says so.
 import type { ChapterPack } from '@/lib/family/pack';
 import { indiaDate } from '@/lib/time/india';
+import { familyApi } from '../client';
 
 const DB_NAME = 'ncf-offline';
 const PACKS = 'packs';
@@ -61,6 +62,15 @@ async function run<T>(store: string, mode: IDBTransactionMode, fn: (s: IDBObject
 export async function savePack(pack: ChapterPack): Promise<boolean> {
   const rec: SavedPack = { id: packId(pack.childId, pack.chapter.key), childId: pack.childId, chapterKey: pack.chapter.key, savedAt: Date.now(), pack };
   return (await run(PACKS, 'readwrite', (s) => s.put(rec))) !== null;
+}
+
+// A chapter's pack fetched for this child and saved on the phone, with the shell kept so it opens offline: the one way a
+// pack is saved ("Save for offline", and today's plan saved by itself, C539). Null when it could not be.
+export async function downloadPack(childId: string, chapterKey: string): Promise<ChapterPack | null> {
+  const r = await familyApi<ChapterPack>(`/api/family/pack?chapter=${encodeURIComponent(chapterKey)}`, 'GET');
+  if (!r.ok || r.data.childId !== childId || !(await savePack(r.data))) return null;
+  keepShell(true);
+  return r.data;
 }
 
 export async function removePack(childId: string, chapterKey: string): Promise<void> {
@@ -137,7 +147,11 @@ export async function clearOffline(): Promise<void> {
   await run(ANSWERS, 'readwrite', (s) => s.clear());
   local()?.removeItem(CHILD_KEY);
   local()?.removeItem(SHELL_KEY);
-  if (typeof navigator !== 'undefined' && 'serviceWorker' in navigator) navigator.serviceWorker.controller?.postMessage({ type: 'family-clear' });
+  // The kept pages and the shell go too (C539), also when this page is not run by the worker (a hard reload).
+  if (typeof navigator !== 'undefined' && 'serviceWorker' in navigator) {
+    const sw = navigator.serviceWorker.controller ?? (await navigator.serviceWorker.getRegistration('/family/').catch(() => undefined))?.active;
+    sw?.postMessage({ type: 'family-clear' });
+  }
 }
 
 // Another account signed in on this phone: the last account's packs and answers go first.
@@ -150,6 +164,12 @@ export async function claimStore(owner: string): Promise<void> {
 
 export const rememberChild = (childId: string) => local()?.setItem(CHILD_KEY, childId);
 export const rememberedChild = () => local()?.getItem(CHILD_KEY) ?? null;
+
+// Control has the offline module on (C539): the worker may keep the Family screens this phone opens (public/sw.js).
+export function keepPages(): void {
+  if (typeof navigator === 'undefined' || !('serviceWorker' in navigator)) return;
+  void navigator.serviceWorker.ready.then((r) => r.active?.postMessage({ type: 'family-keep' })).catch(() => undefined);
+}
 
 // Keep the app's shell for offline use: when a pack is saved, and then at most once a day while packs are saved.
 export function keepShell(force = false): void {

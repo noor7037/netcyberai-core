@@ -8,6 +8,7 @@ import { fill } from '@/lib/family/fill';
 import { subjectTheme } from '@/lib/family/subject-theme';
 import type { KeyRow, ScreenWorksheet } from '@/lib/family/worksheet';
 import { QuizView } from './blocks/QuizView';
+import { queueAnswer } from './offline/store';
 import { AiNotice } from './AiNotice';
 import { FamIcon, rise } from './FamIcon';
 import { SubjectGlyph } from './ui/SubjectGlyph';
@@ -20,7 +21,9 @@ import { WorksheetSheet } from './WorksheetSheet';
 // parent's key link with a lock); the printed sheet itself stays plain dark on white, for paper (WorksheetSheet).
 const PRINT = 'fam-cta fam-press flex min-h-[48px] items-center justify-center gap-2 rounded-2xl bg-saffron px-5 py-2 text-base font-extrabold text-ink';
 
-export function WorksheetScreen({ w, ws, name, tone }: { w: Words; ws: ScreenWorksheet; name: string; tone: string }) {
+// C539: with offline packs on, an answer that could not reach the server is kept on the phone and sent when the
+// connection is back (the same queue as Understand and the saved chapters).
+export function WorksheetScreen({ w, ws, name, tone, offline = false }: { w: Words; ws: ScreenWorksheet; name: string; tone: string; offline?: boolean }) {
   const router = useRouter();
   const { print, portal } = usePrintSheet();
   return (
@@ -53,7 +56,7 @@ export function WorksheetScreen({ w, ws, name, tone }: { w: Words; ws: ScreenWor
         </div>
         <p className="bg-white text-sm text-slate">{w['fam.worksheet.printHelp']}</p>
       </section>
-      <QuizView kind="practice" items={ws.items} w={w} tone={tone} onRetry={() => router.push(`/family/understand?kind=topic&key=${encodeURIComponent(ws.topicKey)}`)} />
+      <QuizView kind="practice" items={ws.items} w={w} tone={tone} onRetry={() => router.push(`/family/understand?kind=topic&key=${encodeURIComponent(ws.topicKey)}`)} onOffline={offline ? queueAnswer : undefined} />
       {portal}
     </div>
   );
