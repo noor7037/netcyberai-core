@@ -65,7 +65,7 @@ export function ProductShowcase() {
 
   return (
     <section aria-labelledby="showcase-title" className="bg-off-white">
-      <Container wide className="flex flex-col gap-10 py-20">
+      <Container className="flex flex-col gap-10 py-20">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading
             id="showcase-title"

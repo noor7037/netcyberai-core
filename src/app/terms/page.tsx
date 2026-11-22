@@ -9,7 +9,7 @@ export const metadata = buildMetadata(pageMeta.terms);
 
 export default function TermsPage() {
   return (
-    <Container className="flex flex-col gap-10 py-12">
+    <Container reading className="flex flex-col gap-10 py-12">
       <div className="flex flex-col gap-4">
         <h1 className="text-2xl font-bold text-sapphire sm:text-3xl">Terms of Use</h1>
         <p className="text-lg text-slate">
@@ -23,7 +23,7 @@ export default function TermsPage() {
 
       <Card className="border-amber/40 bg-amber/5">
         <p className="text-sm font-semibold text-slate">Draft — pending legal review</p>
-        <p className="mt-2 text-sm text-slate">
+        <p className="mt-2 text-base leading-relaxed text-slate">
           This is a structurally complete draft covering the current public website and its
           interactive demos. It is not a substitute for review by a qualified lawyer, and it does not yet cover
           a commercial school subscription — that will be governed by a separate signed
@@ -33,7 +33,7 @@ export default function TermsPage() {
 
       <section className="flex flex-col gap-3">
         <h2 className="text-xl font-bold text-slate">1. Scope</h2>
-        <p className="text-sm text-slate">
+        <p className="text-base leading-relaxed text-slate">
           These terms govern your use of the {companyName} public website, including the interactive
           demos on the homepage and the product tour, operated by {companyName} ({companyAddress}). They do
           not govern a live school&rsquo;s use of the platform itself, which will be covered by a
@@ -43,7 +43,7 @@ export default function TermsPage() {
 
       <section className="flex flex-col gap-3">
         <h2 className="text-xl font-bold text-slate">2. The interactive demos</h2>
-        <p className="text-sm text-slate">
+        <p className="text-base leading-relaxed text-slate">
           The demo dashboard, teacher app and parent WhatsApp on this site are demonstrations
           that use example data, not any real school&rsquo;s records. They cannot send real messages,
           process real payments, or store any information you enter. Nothing shown in the demo
@@ -53,7 +53,7 @@ export default function TermsPage() {
 
       <section className="flex flex-col gap-3">
         <h2 className="text-xl font-bold text-slate">3. Acceptable use</h2>
-        <p className="text-sm text-slate">
+        <p className="text-base leading-relaxed text-slate">
           You agree not to misuse this website: no attempt to gain unauthorised access to any
           system, no scraping at a rate that degrades the service for others, and no use of the
           site to transmit unlawful content.
@@ -62,7 +62,7 @@ export default function TermsPage() {
 
       <section className="flex flex-col gap-3">
         <h2 className="text-xl font-bold text-slate">4. Intellectual property</h2>
-        <p className="text-sm text-slate">
+        <p className="text-base leading-relaxed text-slate">
           The {companyName} name, logo, and the content of this website belong to {companyName}
           unless otherwise stated. You may not reproduce or redistribute this content for
           commercial purposes without our written permission.
@@ -71,7 +71,7 @@ export default function TermsPage() {
 
       <section className="flex flex-col gap-3">
         <h2 className="text-xl font-bold text-slate">5. No warranty on illustrative content</h2>
-        <p className="text-sm text-slate">
+        <p className="text-base leading-relaxed text-slate">
           Example messages, illustrative dashboards, and illustrative figures on this site are labelled
           as such and are provided to explain how a feature is designed to work. They are not a
           guarantee of a specific result for any school.
@@ -80,7 +80,7 @@ export default function TermsPage() {
 
       <section className="flex flex-col gap-3">
         <h2 className="text-xl font-bold text-slate">6. Limitation of liability</h2>
-        <p className="text-sm text-slate">
+        <p className="text-base leading-relaxed text-slate">
           To the maximum extent permitted by applicable law, {companyName} is not liable for any
           indirect or consequential loss arising from your use of this website. This does not limit
           any liability that cannot lawfully be excluded.
@@ -89,7 +89,7 @@ export default function TermsPage() {
 
       <section className="flex flex-col gap-3">
         <h2 className="text-xl font-bold text-slate">7. Governing law</h2>
-        <p className="text-sm text-slate">
+        <p className="text-base leading-relaxed text-slate">
           These terms are governed by the laws of India, and courts at Haryana shall have
           jurisdiction, subject to applicable law.
         </p>
@@ -97,7 +97,7 @@ export default function TermsPage() {
 
       <section className="flex flex-col gap-3">
         <h2 className="text-xl font-bold text-slate">8. Changes to these terms</h2>
-        <p className="text-sm text-slate">
+        <p className="text-base leading-relaxed text-slate">
           We may update these terms as the website and product evolve, and will update the
           &ldquo;last updated&rdquo; date above whenever we do. Continued use of the site after a
           change means you accept the updated terms.
@@ -106,7 +106,7 @@ export default function TermsPage() {
 
       <section className="flex flex-col gap-3">
         <h2 className="text-xl font-bold text-slate">9. Contact</h2>
-        <p className="text-sm text-slate">
+        <p className="text-base leading-relaxed text-slate">
           Questions about these terms can be sent to{' '}
           <a href={`mailto:${contactEmail}`} className="underline">
             {contactEmail}

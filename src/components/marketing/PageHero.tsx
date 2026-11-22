@@ -26,7 +26,7 @@ export function PageHero({
     <section aria-labelledby={id} className="relative overflow-hidden bg-midnight text-white print:hidden">
       <div aria-hidden="true" className="nca-mesh-dark absolute inset-0" />
       <div aria-hidden="true" className="nca-spectrum-bar absolute inset-x-0 top-0 h-1" />
-      <Container wide className="relative flex flex-col gap-5 py-16">
+      <Container className="relative flex flex-col gap-5 py-16">
         <EyebrowOnDark tone={tone}>{eyebrow}</EyebrowOnDark>
         <h1 id={id} className="max-w-3xl text-4xl font-extrabold tracking-tight sm:text-5xl">
           {title}

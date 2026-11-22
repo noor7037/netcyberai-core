@@ -15,7 +15,7 @@ export default function ResourcesPage() {
     <>
       <section aria-labelledby="resources-title" className="relative overflow-hidden bg-midnight text-white">
         <div aria-hidden="true" className="nca-mesh-dark absolute inset-0" />
-        <Container wide className="relative flex flex-col gap-5 py-16">
+        <Container className="relative flex flex-col gap-5 py-16">
           <EyebrowOnDark tone="communication">Resources</EyebrowOnDark>
           <h1 id="resources-title" className="max-w-3xl text-4xl font-extrabold tracking-tight sm:text-5xl">
             Everything you need to evaluate NetCyberAI
@@ -29,7 +29,7 @@ export default function ResourcesPage() {
       </section>
 
       <section className="bg-off-white">
-        <Container wide className="flex flex-col gap-10 py-16">
+        <Container className="flex flex-col gap-10 py-16">
           <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <li>
               <Link href="/blog" className="block h-full rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-royal">

@@ -19,7 +19,7 @@ const BADGE: Record<DifferentiatorStatus, string> = {
 export function BeyondErp() {
   return (
     <section aria-labelledby="beyond-erp-title" className="bg-off-white">
-      <Container wide className="flex flex-col gap-8 py-16">
+      <Container className="flex flex-col gap-8 py-16">
         <SectionHeading
           id="beyond-erp-title"
           eyebrow="Beyond the ERP"

@@ -28,7 +28,7 @@ export default function BrochurePage() {
   return (
     <>
       <section aria-labelledby="brochure-title" className="bg-off-white print:hidden">
-        <Container wide className="flex flex-col gap-4 pt-12">
+        <Container className="flex flex-col gap-4 pt-12">
           <h1 id="brochure-title" className="text-3xl font-extrabold tracking-tight text-slate sm:text-4xl">
             NetCyberAI brochure
           </h1>
@@ -47,7 +47,7 @@ export default function BrochurePage() {
       </section>
 
       <section aria-label="Brochure" className="bg-off-white py-10 print:bg-white print:py-0">
-        <Container wide className="print:px-0">
+        <Container className="print:px-0">
           <article className="mx-auto flex max-w-4xl flex-col gap-6 rounded-3xl bg-white p-6 shadow-xl sm:p-10 print:max-w-none print:gap-3 print:rounded-none print:p-0 print:shadow-none">
             <div aria-hidden="true" className="nca-spectrum-bar h-1.5 rounded-full" />
             <header className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">

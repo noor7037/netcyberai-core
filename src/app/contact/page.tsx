@@ -64,7 +64,7 @@ export default function ContactPage() {
       />
 
       <section aria-labelledby="contact-form-title" className="bg-off-white">
-        <Container wide className="grid grid-cols-1 gap-6 py-14 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
+        <Container className="grid grid-cols-1 gap-6 py-14 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
           <aside aria-labelledby="channels-title" className="flex flex-col gap-4 rounded-3xl border border-slate/10 bg-white p-6 shadow-sm">
             <div>
               <h2 id="channels-title" className="text-xl font-extrabold text-slate">
@@ -121,14 +121,14 @@ export default function ContactPage() {
       <HowItWorks id="contact-steps" tint="white" ctas={false} />
 
       <section aria-labelledby="contact-faq-title" className="bg-off-white">
-        <Container className="flex flex-col gap-6 py-14">
+        <Container reading className="flex flex-col gap-6 py-14">
           <SectionHeading id="contact-faq-title" eyebrow="Got questions?" tone="product" title="Frequently asked questions" center />
           <FaqBlock items={DEMO_FAQS} />
         </Container>
       </section>
 
       <section id="callback" aria-labelledby="callback-title" className="scroll-mt-24 bg-white">
-        <Container wide className="grid grid-cols-1 items-start gap-10 py-16 lg:grid-cols-2">
+        <Container className="grid grid-cols-1 items-start gap-10 py-16 lg:grid-cols-2">
           <div className="flex flex-col gap-4">
             <SectionHeading
               id="callback-title"

@@ -38,7 +38,7 @@ const faqs = [
 
 export default function DataOwnershipPage() {
   return (
-    <Container className="flex flex-col gap-12 py-12">
+    <Container reading className="flex flex-col gap-12 py-12">
       <div className="flex flex-col gap-4">
         <h1 className="text-2xl font-bold text-sapphire sm:text-3xl">
           Data Ownership &amp; Security
@@ -53,7 +53,7 @@ export default function DataOwnershipPage() {
 
       <Card className="border-amber/40 bg-amber/5">
         <p className="text-sm font-semibold text-slate">Current status: pilot build</p>
-        <p className="mt-2 text-sm text-slate">
+        <p className="mt-2 text-base leading-relaxed text-slate">
           The {companyName} database, sign-in and school isolation are live. Enquiries sent through
           this website are stored in that database. Outbound WhatsApp is switched off for every
           school by default and is only enabled deliberately for a pilot. Each section below says
@@ -63,7 +63,7 @@ export default function DataOwnershipPage() {
 
       <div className="flex flex-col gap-3">
         <h2 className="text-xl font-bold text-slate">Consent, before anything else (DPDP)</h2>
-        <p className="text-sm text-slate">
+        <p className="text-base leading-relaxed text-slate">
           <strong>Enforced in the database schema today:</strong> every student
           record is created in a quarantined <code>pending_consent</code> state, including bulk
           CSV imports of hundreds of students at once. No outbound message and no recognition
@@ -75,7 +75,7 @@ export default function DataOwnershipPage() {
 
       <div className="flex flex-col gap-3">
         <h2 className="text-xl font-bold text-slate">WhatsApp privacy</h2>
-        <p className="text-sm text-slate">
+        <p className="text-base leading-relaxed text-slate">
           <strong>Permanent policy, not a configurable setting:</strong> every parent message is
           sent 1-on-1. WhatsApp Groups are never used for parent communication, because a group
           would expose every parent&rsquo;s phone number to every other parent in that group —
@@ -86,7 +86,7 @@ export default function DataOwnershipPage() {
 
       <div className="flex flex-col gap-3">
         <h2 className="text-xl font-bold text-slate">No third-party tracking on your data</h2>
-        <p className="text-sm text-slate">
+        <p className="text-base leading-relaxed text-slate">
           No third-party analytics script, advertising pixel, or session-replay tool runs on any
           authenticated page where school or student data would be visible — this is a standing
           rule, not a future promise. It already applies to this site: this website itself
@@ -96,7 +96,7 @@ export default function DataOwnershipPage() {
 
       <div className="flex flex-col gap-3">
         <h2 className="text-xl font-bold text-slate">Where your data lives</h2>
-        <p className="text-sm text-slate">
+        <p className="text-base leading-relaxed text-slate">
           <strong>Live today:</strong> the school database runs on Supabase in its Mumbai, India
           region (AWS <code>ap-south-1</code>), so operational school data is stored in India by
           default. Supabase&rsquo;s own platform states that customer data is encrypted at rest with
@@ -114,7 +114,7 @@ export default function DataOwnershipPage() {
 
       <div className="flex flex-col gap-3">
         <h2 className="text-xl font-bold text-slate">Every query scoped to your school</h2>
-        <p className="text-sm text-slate">
+        <p className="text-base leading-relaxed text-slate">
           <strong>Live today, and tested:</strong>{' '}
           every operational table carries a school identifier, and access is restricted using
           Postgres Row-Level Security — enforced by the database itself, not only by
@@ -125,7 +125,7 @@ export default function DataOwnershipPage() {
 
       <div className="flex flex-col gap-3">
         <h2 className="text-xl font-bold text-slate">Exporting your data</h2>
-        <p className="text-sm text-slate">
+        <p className="text-base leading-relaxed text-slate">
           <strong>Planned, not live yet:</strong> a school will be able to take a full export of
           its own records in standard formats (CSV / SQL), not a proprietary format that locks you
           into the platform. The database exists, but the export itself has not been built, so we
@@ -135,7 +135,7 @@ export default function DataOwnershipPage() {
 
       <div className="flex flex-col gap-3">
         <h2 className="text-xl font-bold text-slate">If you leave</h2>
-        <p className="text-sm text-slate">
+        <p className="text-base leading-relaxed text-slate">
           <strong>Planned, not live yet:</strong> on offboarding, a school receives a full export of
           its data before deletion, and we intend to publish a specific retention and deletion
           timeline once that operational process actually exists, rather than promise a number now

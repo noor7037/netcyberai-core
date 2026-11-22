@@ -16,7 +16,7 @@ export default function ProductTourPage() {
   return (
     <>
       <section aria-labelledby="tour-title" className="bg-off-white">
-        <Container wide className="flex flex-col gap-4 py-10">
+        <Container className="flex flex-col gap-4 py-10">
           <Eyebrow tone="trust">Product tour</Eyebrow>
           <h1 id="tour-title" className="max-w-3xl text-4xl font-extrabold tracking-tight text-slate sm:text-5xl">
             Explore NetCyberAI yourself

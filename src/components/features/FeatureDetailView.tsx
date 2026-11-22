@@ -19,7 +19,7 @@ export function FeatureDetailView({ feature, related }: { feature: FeatureDetail
       <section aria-labelledby="feature-title" className="relative overflow-hidden bg-midnight text-white">
         <div aria-hidden="true" className="nca-mesh-dark absolute inset-0" />
         <div aria-hidden="true" className="nca-spectrum-bar absolute inset-x-0 top-0 h-1" />
-        <Container wide className="relative flex flex-col gap-5 py-16">
+        <Container className="relative flex flex-col gap-5 py-16">
           <div className="flex flex-wrap items-center gap-2">
             <EyebrowOnDark tone={feature.tone}>{isFamily ? 'For families' : 'For schools'}</EyebrowOnDark>
             {status ? (
@@ -57,7 +57,7 @@ export function FeatureDetailView({ feature, related }: { feature: FeatureDetail
       </section>
 
       <section aria-labelledby="how-title" className="bg-white">
-        <Container wide className="flex flex-col gap-8 py-16">
+        <Container className="flex flex-col gap-8 py-16">
           <SectionHeading id="how-title" eyebrow="Step by step" tone="product" title="How it works" />
           <ol className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             {feature.howItWorks.map((s, i) => (
@@ -76,7 +76,7 @@ export function FeatureDetailView({ feature, related }: { feature: FeatureDetail
       </section>
 
       <section aria-labelledby="get-title" className="bg-off-white">
-        <Container wide className="grid grid-cols-1 gap-10 py-16 lg:grid-cols-2">
+        <Container className="grid grid-cols-1 gap-10 py-16 lg:grid-cols-2">
           <div className="flex flex-col gap-6">
             <SectionHeading id="get-title" eyebrow="Outcome" tone="success" title="What you get" />
             <ul className="flex flex-col gap-3">
@@ -103,7 +103,7 @@ export function FeatureDetailView({ feature, related }: { feature: FeatureDetail
       </section>
 
       <section aria-labelledby="faq-title" className="bg-white">
-        <Container wide className="flex flex-col gap-8 py-16">
+        <Container className="flex flex-col gap-8 py-16">
           <SectionHeading id="faq-title" eyebrow="Questions" tone="trust" title="Frequently asked questions" />
           <FaqBlock items={feature.faqs} />
         </Container>
@@ -111,7 +111,7 @@ export function FeatureDetailView({ feature, related }: { feature: FeatureDetail
 
       {related.length > 0 ? (
         <section aria-labelledby="related-title" className="bg-off-white">
-          <Container wide className="flex flex-col gap-8 py-16">
+          <Container className="flex flex-col gap-8 py-16">
             <SectionHeading id="related-title" eyebrow="Keep reading" tone="intelligence" title="Related features" />
             <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {related.map((r) => (
@@ -137,7 +137,7 @@ export function FeatureDetailView({ feature, related }: { feature: FeatureDetail
 
       {isFamily ? (
         <section aria-labelledby="cta-title" className="relative overflow-hidden bg-gradient-to-br from-sapphire via-violet to-grape text-white">
-          <Container wide className="relative flex flex-col gap-5 py-14">
+          <Container className="relative flex flex-col gap-5 py-14">
             <h2 id="cta-title" className="text-3xl font-extrabold tracking-tight sm:text-4xl">
               Bring it home
             </h2>

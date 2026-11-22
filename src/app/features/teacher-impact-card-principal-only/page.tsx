@@ -48,7 +48,7 @@ const faqs = [
 
 export default function TeacherImpactCardPage() {
   return (
-    <Container className="flex flex-col gap-12 py-12">
+    <Container reading className="flex flex-col gap-12 py-12">
       <div className="flex flex-col gap-4">
         <h1 className="text-2xl font-bold text-sapphire sm:text-3xl">
           Why Public Teacher Leaderboards Backfire — and What We Built Instead
@@ -63,7 +63,7 @@ export default function TeacherImpactCardPage() {
 
       <div>
         <h2 className="text-xl font-bold text-slate">Why we refuse to build a public leaderboard</h2>
-        <p className="mt-4 text-sm text-slate">
+        <p className="mt-4 text-base leading-relaxed text-slate">
           Ranking teachers publicly rewards the teacher who happens to have the strongest class,
           not the one doing the hardest work with a struggling one. It also invites gaming —
           inflating attendance, avoiding difficult students — instead of genuine improvement. A
@@ -81,7 +81,7 @@ export default function TeacherImpactCardPage() {
 
       <div>
         <h2 className="text-xl font-bold text-slate">What it does not do</h2>
-        <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-slate">
+        <ul className="mt-4 list-disc space-y-2 pl-5 text-base leading-relaxed text-slate">
           <li>It does not publish a leaderboard, ranking, or percentile visible to other staff.</li>
           <li>It does not include salary, payroll, or any compensation data.</li>
           <li>It does not let a teacher see any other teacher&rsquo;s card, under any role or query path.</li>

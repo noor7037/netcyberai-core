@@ -76,7 +76,7 @@ const faqs = [
 
 export default function DailyLearningPulsePage() {
   return (
-    <Container className="flex flex-col gap-12 py-12">
+    <Container reading className="flex flex-col gap-12 py-12">
       <div className="flex flex-col gap-4">
         <h1 className="text-2xl font-bold text-sapphire sm:text-3xl">
           Daily Learning Pulse: A Hinglish WhatsApp Update, Every School Day
@@ -98,7 +98,7 @@ export default function DailyLearningPulsePage() {
 
       <div>
         <h2 className="text-xl font-bold text-slate">The four exception states</h2>
-        <p className="mt-2 text-sm text-slate">
+        <p className="mt-2 text-base leading-relaxed text-slate">
           Every Pulse reflects what actually happened in class that day. Here is the same class
           and topic, worded honestly under each state:
         </p>
@@ -114,7 +114,7 @@ export default function DailyLearningPulsePage() {
 
       <div>
         <h2 className="text-xl font-bold text-slate">What it does not do</h2>
-        <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-slate">
+        <ul className="mt-4 list-disc space-y-2 pl-5 text-base leading-relaxed text-slate">
           <li>It does not claim a topic was taught when a teacher marked it delayed, partial, or not taught.</li>
           <li>It does not send a comprehension question about a lesson that did not happen.</li>
           <li>It does not require a parent to install an app or create a login.</li>

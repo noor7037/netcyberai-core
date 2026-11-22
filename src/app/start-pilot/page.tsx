@@ -71,14 +71,14 @@ export default function StartPilotPage() {
       />
 
       <section aria-labelledby="pilot-steps-title" className="bg-off-white">
-        <Container wide className="flex flex-col gap-8 py-16">
+        <Container className="flex flex-col gap-8 py-16">
           <SectionHeading id="pilot-steps-title" eyebrow="How a pilot runs" tone="product" title="Five steps, in this order" />
           <FlowStepper steps={PILOT_STEPS} tones={STEP_TONES} icons={STEP_ICONS} />
         </Container>
       </section>
 
       <section aria-labelledby="pilot-guardrails-title" className="bg-white">
-        <Container wide className="flex flex-col gap-8 py-16">
+        <Container className="flex flex-col gap-8 py-16">
           <SectionHeading id="pilot-guardrails-title" eyebrow="Guardrails" tone="trust" title="What stays safe during a pilot" />
           <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {GUARDRAILS.map((g) => (
@@ -97,7 +97,7 @@ export default function StartPilotPage() {
       </section>
 
       <section aria-labelledby="pilot-form-title" className="bg-off-white">
-        <Container wide className="grid grid-cols-1 gap-10 py-16 lg:grid-cols-5">
+        <Container className="grid grid-cols-1 gap-10 py-16 lg:grid-cols-5">
           <div className="flex flex-col gap-4 lg:col-span-2">
             <SectionHeading
               id="pilot-form-title"
