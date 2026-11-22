@@ -1,3 +1,4 @@
+import { oneAtATime } from './savepoint';
 import { isLangCode, type LangCode } from './languages';
 import { embedUrl } from './videos';
 
@@ -27,7 +28,11 @@ export function checkClick(body: Record<string, unknown>): VideoClick | null {
 }
 
 let seq = 0;
-export async function recordClick(db: Db, accountId: string, childId: string, c: VideoClick, day: string): Promise<ClickResult> {
+export function recordClick(db: Db, accountId: string, childId: string, c: VideoClick, day: string): Promise<ClickResult> {
+  return oneAtATime(db, () => recordClickNow(db, accountId, childId, c, day));
+}
+
+async function recordClickNow(db: Db, accountId: string, childId: string, c: VideoClick, day: string): Promise<ClickResult> {
   const sp = `video_click_${++seq % 1_000_000}`;
   await db.query(`savepoint ${sp}`);
   try {
