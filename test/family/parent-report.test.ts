@@ -283,14 +283,15 @@ describe('the school’s side: counts only', () => {
   });
 
   it('the teacher’s doubts: subject, chapter, topic and a count for their own class (three linked children or more); nothing for a class they do not teach', async () => {
-    const { readRecentDoubts } = await import('@/lib/parent-ai/doubts');
+    const { readRecentDoubts, DOUBT_DAYS } = await import('@/lib/parent-ai/doubts');
     const mine = await as(teacher1, (c) => readRecentDoubts(c, actor(teacher1), 'en'));
     expect(mine.map((c) => c.className)).toEqual(['6-A']);
     expect(mine[0].doubts.map((d) => [d.subject, d.chapter, d.count])).toEqual([
       ['science', WATER_EN, 5],
       ['mathematics', FRACTIONS_EN, 2],
-      // the last 14 days, not the report's week: the question asked the day before the week counts here
-      ['science', null, 2],
+      // the last 14 days, not the report's week: the question asked the day before the week counts here, while it is
+      // still within 14 days of now (on a Sunday it has just left the window)
+      ['science', null, Date.parse(at(-1)) >= Date.now() - DOUBT_DAYS * 86_400_000 ? 2 : 1],
     ]);
     expect(typeof mine[0].doubts[0].topic).toBe('string');
     const raw: Record<string, unknown>[] = await as(teacher1, (c) => c.query(`select * from family.doubts_for_class($1::uuid, 14)`, [C6A]).then((r: { rows: Record<string, unknown>[] }) => r.rows));
