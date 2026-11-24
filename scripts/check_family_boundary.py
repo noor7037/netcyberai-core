@@ -41,6 +41,7 @@ FAMILY_MAY_IMPORT = (
     "@/components/app-ui/",
     "@/components/install/",  # the install button (C546 wave): no database, no session
     "@/lib/install/",
+    "@/lib/seo",  # the public install page's metadata and breadcrumbs: no database, no session
     "@/lib/i18n",
     "@/lib/design-tokens",
     "@/lib/time/",
