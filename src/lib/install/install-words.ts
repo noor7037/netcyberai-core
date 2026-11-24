@@ -44,3 +44,6 @@ export const INSTALL_WORDS = {
     },
   },
 } as const;
+
+// The browser tab's title and description of the Family install page.
+export const FAMILY_INSTALL_META = { title: 'Install NetCyberAI Family', description: 'Put the NetCyberAI Family app on your phone.' };

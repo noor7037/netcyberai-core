@@ -14,7 +14,7 @@ export default async function RequestPage({ params }: { params: { requestId: str
   const view = await getRequest(session, params.requestId);
   if (!view) notFound();
   return (
-    <ModulePage title={agentWords(lang).title} purpose={agentWords(lang).purpose}>
+    <ModulePage help="ask-the-assistant" title={agentWords(lang).title} purpose={agentWords(lang).purpose}>
       <div className="mx-auto w-full max-w-2xl">
         <RequestReview initial={view} lang={lang} />
       </div>
