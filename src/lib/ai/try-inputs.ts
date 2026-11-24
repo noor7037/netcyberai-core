@@ -60,4 +60,5 @@ export const TRY_INPUTS: Record<ProfileId, TrySample> = {
   'exams.mark': PHOTO_TEXT,
   'exams.write_questions': JSON_TEXT,
   'students.register_ocr': PHOTO_TEXT,
+  'school_agent.plan': plain('Plan the school app calls for a principal\'s request, as JSON.', 'Create section C of Class 6.'),
 };

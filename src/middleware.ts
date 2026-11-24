@@ -22,6 +22,13 @@ type GateClaims = { role: SessionRole; schoolId: string | null };
 // route as x-request-id and returned in the response.
 export async function middleware(req: NextRequest) {
   const requestId = requestIdFrom(req.headers);
+  // While a change request is open in Preview (C546) every screen is a rolled-back copy, so a real change made there
+  // would be lost: changes are refused until the person leaves Preview (the agent's own routes stay open).
+  if (req.cookies.get('nca_agent_preview')?.value && !['GET', 'HEAD', 'OPTIONS'].includes(req.method) && req.nextUrl.pathname.startsWith('/api/app/') && !req.nextUrl.pathname.startsWith('/api/app/agent/')) {
+    const res = NextResponse.json({ error: 'leave_preview_first', message: 'You are looking at a Preview. Leave the preview to make real changes.' }, { status: 409 });
+    res.headers.set(REQUEST_ID_HEADER, requestId);
+    return res;
+  }
   const res = await gate(req, requestId);
   res.headers.set(REQUEST_ID_HEADER, requestId);
   return res;
@@ -34,7 +41,7 @@ function next(req: NextRequest, requestId: string): NextResponse {
 }
 
 // The Family app's pages that need no session (M1-2, C248): signing in, and the page the Android shell shows offline.
-const FAMILY_OPEN = new Set(['/family/sign-in', '/family/link', '/family/offline', '/family/about-ai']);
+const FAMILY_OPEN = new Set(['/family/sign-in', '/family/link', '/family/offline', '/family/about-ai', '/family/install']);
 
 // The Family app (/family, M1-2, C248) has its own session and cookie; a staff cookie is never read here.
 async function familyGate(req: NextRequest, requestId: string): Promise<NextResponse> {

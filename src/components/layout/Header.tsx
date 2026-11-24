@@ -21,6 +21,8 @@ const PLAIN_LINKS = [
   { href: '/resources', label: 'Resources', xlOnly: false },
   { href: '/about', label: 'About', xlOnly: true },
   { href: '/contact', label: 'Contact', xlOnly: true },
+  { href: '/family/install', label: 'Family app', xlOnly: true },
+  { href: '/teacher-app', label: 'Teacher app', xlOnly: true },
 ];
 
 const ROLE_SLUGS = ['principal', 'school-admin', 'teacher', 'finance', 'admissions', 'families'];

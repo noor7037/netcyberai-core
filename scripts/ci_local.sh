@@ -94,6 +94,10 @@ python3 scripts/page_dates.py --self-test
 python3 scripts/page_dates.py --check
 STEP
 
+run_step "The school agent's route catalog is current" <<'STEP'
+python3 scripts/gen_agent_catalog.py --check
+STEP
+
 run_step "No mock/dummy/fake/sample data outside the demo fixture" <<'STEP'
 # src/lib/recognition.ts is also excluded: it uses "sample-size" in
 # its normal statistical sense (a comment on the minimum-assessments

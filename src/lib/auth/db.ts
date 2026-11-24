@@ -1,6 +1,7 @@
 import { Pool, PoolClient } from 'pg';
 import { databaseUrl } from './env';
 import type { SessionClaims } from './types';
+import { agentNoPreview, agentTx, assertNoAgentTx, inSavepoint } from '@/lib/agent/ctx';
 
 let pool: Pool | null = null;
 function getPool(): Pool {
@@ -88,10 +89,31 @@ export function tenantContextStatements(schoolIdOrNull: string | null, role: str
 // next. `SET LOCAL ROLE` is guaranteed by Postgres itself to unwind at the
 // end of the transaction on the SAME backend that ran it, regardless of
 // any pooler's routing of later statements -- closing that leak entirely.
+// The change request a school person has open in Preview, from the cookie the review page sets (C546); null outside a
+// request (jobs, tests) and for everyone else. The engine checks the id is this person's to see before replaying it.
+export const AGENT_PREVIEW_COOKIE = 'nca_agent_preview';
+async function previewRequestId(claims: SessionClaims): Promise<string | null> {
+  if (!claims.schoolId || agentNoPreview.getStore()) return null;
+  try {
+    const { cookies } = await import('next/headers');
+    const v = cookies().get(AGENT_PREVIEW_COOKIE)?.value ?? '';
+    return /^[0-9a-f-]{36}$/.test(v) ? v : null;
+  } catch {
+    return null;
+  }
+}
+
 export async function withTenantContext<T>(
   claims: SessionClaims,
   fn: (client: PoolClient) => Promise<T>
 ): Promise<T> {
+  // The school agent's transaction (C546): a route the agent calls joins it, as the same person, instead of opening
+  // and committing its own, so the engine can roll a check back or commit a change request once.
+  const joined = agentTx.getStore();
+  if (joined) {
+    if (joined.userId !== claims.sub || joined.schoolId !== claims.schoolId) throw new Error('agent_tx_other_person');
+    return inSavepoint(joined, fn);
+  }
   const client = await getPool().connect();
   const stmts = tenantContextStatements(claims.schoolId, claims.role);
   try {
@@ -148,6 +170,20 @@ export async function withTenantContext<T>(
       await client.query(`select set_config('app.impersonator_user_id', $1, true)`, [claims.impersonation.actorUserId]);
     }
 
+    // "See it live" (C546): with a change request open in Preview, this request first replays it, as this person, then
+    // runs as usual, and always rolls back: the screen shows the school as it would be, and nothing is kept or sent.
+    // Only a request that is still ready and this person's to see is previewed; otherwise the request runs as usual.
+    const preview = await previewRequestId(claims);
+    if (preview) {
+      const { previewSteps, replayForPreview } = await import('@/lib/agent/preview');
+      const steps = await previewSteps(client, claims, preview);
+      if (steps) {
+        const result = await replayForPreview(client, claims, steps, () => fn(client));
+        await client.query('rollback');
+        return result;
+      }
+    }
+
     const result = await fn(client);
     await client.query('commit');
     return result;
@@ -168,6 +204,7 @@ export async function withTenantContext<T>(
 // into a permission-denied error, since neither app_user nor nca_super
 // was ever granted access to it.
 export async function withBackendConnection<T>(fn: (client: PoolClient) => Promise<T>): Promise<T> {
+  assertNoAgentTx('withBackendConnection');
   const client = await getPool().connect();
   try {
     return await fn(client);
@@ -188,6 +225,7 @@ export async function withBackendConnection<T>(fn: (client: PoolClient) => Promi
 // "every SET ROLE literal lives in db.ts" invariant check_choke_point.py
 // enforces stays true even for this narrow exception.
 export async function withSuperAdminBypass<T>(fn: (client: PoolClient) => Promise<T>): Promise<T> {
+  assertNoAgentTx('withSuperAdminBypass');
   const client = await getPool().connect();
   try {
     await client.query('begin');
@@ -222,6 +260,7 @@ export async function withRoleProbe<T>(
   role: (typeof ROLE_PROBE_ALLOWED)[number],
   fn: (client: PoolClient) => Promise<T>
 ): Promise<T> {
+  assertNoAgentTx('withRoleProbe');
   if (!ROLE_PROBE_ALLOWED.includes(role)) {
     throw new Error(`withRoleProbe: role must be one of ${ROLE_PROBE_ALLOWED.join(', ')}`);
   }
@@ -267,6 +306,7 @@ export async function withRoleProbe<T>(
 // actual visibility guarantee comes entirely from the *_self policies
 // keyed on app.current_user_id below, never from tenant_isolation.
 export async function withSelfContext<T>(userId: string, fn: (client: PoolClient) => Promise<T>): Promise<T> {
+  assertNoAgentTx('withSelfContext');
   const client = await getPool().connect();
   try {
     await client.query('begin');
@@ -320,6 +360,7 @@ export function schoolJobContextStatements(schoolId: string, job: SchoolJob): { 
 }
 
 export async function withSchoolJobContext<T>(schoolId: string, job: SchoolJob, fn: (client: PoolClient) => Promise<T>): Promise<T> {
+  assertNoAgentTx('withSchoolJobContext');
   const stmts = schoolJobContextStatements(schoolId, job);
   const client = await getPool().connect();
   try {
@@ -354,6 +395,7 @@ async function asAccountService<T>(fn: (client: PoolClient) => Promise<T>): Prom
 // statements only; request input is validated before it reaches them and is
 // never used to choose a role, a table or a school context.
 export async function withPlatformService<T>(fn: (client: PoolClient) => Promise<T>): Promise<T> {
+  assertNoAgentTx('withPlatformService');
   const client = await getPool().connect();
   try {
     await client.query('begin');
@@ -536,6 +578,7 @@ async function familyTransaction<T>(claims: FamilyClaims | null, fn: (client: Po
 // Every request of a signed-in family: own account only (and, on a child's own phone, that one child), by the database's
 // own rules.
 export async function withFamilyContext<T>(claims: FamilyClaims, fn: (client: PoolClient) => Promise<T>): Promise<T> {
+  assertNoAgentTx('withFamilyContext');
   return familyTransaction(claims, fn);
 }
 
@@ -550,6 +593,7 @@ export async function withGuardianContext<T>(
   linkId: string,
   fn: (client: PoolClient, link: { schoolId: string; parentId: string }) => Promise<T>
 ): Promise<T> {
+  assertNoAgentTx('withGuardianContext');
   if (!UUID_RE.test(linkId)) throw new SchoolLinkGoneError('not a link id');
   const fam = familyContextStatements(claims.accountId);
   const client = await getPool().connect();
@@ -588,6 +632,7 @@ export async function withGuardianContext<T>(
 // Before any account (sign-in, the code step) and for screens with no session: the same role with no account, so no
 // family row is visible. Only the sign-in functions, the switches Control sets and published content are reachable.
 export async function withFamilyGate<T>(fn: (client: PoolClient) => Promise<T>): Promise<T> {
+  assertNoAgentTx('withFamilyGate');
   return familyTransaction(null, fn);
 }
 

@@ -64,7 +64,7 @@ describe('what school staff may reach in Control', () => {
     // Copilot and Parent AI (C284), AI answer-sheet marking's two tasks (C349), which the school's marking needs, and
     // writing a paper's questions (C363), which the paper maker needs, and reading a paper register page into the
     // student import (W21-M5), which follows the page reader's chain.
-    expect(ids).toEqual(['copilot.draft', 'exams.mark', 'exams.read_pages', 'exams.write_questions', 'parent_ai.home_help', 'students.register_ocr']);
+    expect(ids).toEqual(['copilot.draft', 'exams.mark', 'exams.read_pages', 'exams.write_questions', 'parent_ai.home_help', 'school_agent.plan', 'students.register_ocr']);
     expect(await refused(() => asTeacher((c) => c.query(`update control.ai_profiles set enabled = false where profile_id = 'copilot.draft'`)))).toMatch(/permission denied|row-level security/);
     expect(await refused(() => asTeacher((c) => c.query(`select * from control.settings`)))).toMatch(/permission denied/);
     expect(await refused(() => asTeacher((c) => c.query(`select * from control.ai_credentials`)))).toMatch(/permission denied/);

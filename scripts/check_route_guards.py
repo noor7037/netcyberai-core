@@ -60,7 +60,7 @@ FAMILY_GROUP = "(parent)/parent"
 FAMILY_APP_GROUP = "(family)/family/(app)"
 # /family/link (M2b-2, C342): a child's own phone enters the parent's code there, before it has a session.
 # /family/sign-out (W14-D): ends the session it may or may not still have, then lands on sign-in; it needs none.
-FAMILY_APP_OPEN = {"/family/sign-in", "/family/link", "/family/offline", "/family/about-ai", "/family/sign-out"}
+FAMILY_APP_OPEN = {"/family/sign-in", "/family/link", "/family/offline", "/family/about-ai", "/family/sign-out", "/family/install"}
 
 GROUP_SEGMENT_RE = re.compile(r"^\([^)]*\)$")
 

@@ -20,7 +20,7 @@ describe('the guides', () => {
     expect(HELP_ARTICLES.map((a) => a.slug)).toEqual([
       'sign-in', 'forgot-password', 'set-up-authenticator', 'send-staff-reset-code',
       'add-a-student', 'import-students-csv', 'link-siblings', 'student-id-cards',
-      'mark-attendance', 'use-my-day', 'student-page', 'taught-today', 'timetable', 'daily-pulse-message', 'needs-help-queue', 'set-homework', 'homework-recovery', 'teacher-copilot', 'fee-structures', 'raise-fee-dues', 'take-fee-payment', 'compliance-screen', 'fees-overdue-late-fee', 'verify-upi-payment', 'upload-bank-statement', 'follow-up-unpaid-fees', 'see-a-guardian', 'message-states', 'send-a-notice', 'plan-a-ptm', 'invite-to-an-event', 'handle-a-complaint', 'what-to-do-at-home', 'answer-a-parent', 'whatsapp-settings', 'make-a-certificate', 'raise-a-ticket', 'register-your-school',
+      'mark-attendance', 'use-my-day', 'student-page', 'taught-today', 'timetable', 'daily-pulse-message', 'needs-help-queue', 'set-homework', 'homework-recovery', 'teacher-copilot', 'ask-the-assistant', 'fee-structures', 'raise-fee-dues', 'take-fee-payment', 'compliance-screen', 'fees-overdue-late-fee', 'verify-upi-payment', 'upload-bank-statement', 'follow-up-unpaid-fees', 'see-a-guardian', 'message-states', 'send-a-notice', 'plan-a-ptm', 'invite-to-an-event', 'handle-a-complaint', 'what-to-do-at-home', 'answer-a-parent', 'whatsapp-settings', 'make-a-certificate', 'raise-a-ticket', 'register-your-school',
       // --- P5 (docs/26): one block a slice. A slice's lines go between its own two marker lines, nowhere else. ---
       // p5-8a begin
       // p5-8a end

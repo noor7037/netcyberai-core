@@ -58,5 +58,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...featureDetails.map((f) => `/features/${f.slug}`),
   ].map(entry);
 
+  // /family/install is public but not listed: the Family layout makes it dynamic (it reads the language cookie), and the
+  // audit only lists pages the build prerenders.
   return [...pages, ...catalog, ...posts];
 }

@@ -68,7 +68,8 @@ export type ProfileId =
   | 'exams.read_pages'
   | 'exams.mark'
   | 'exams.write_questions'
-  | 'students.register_ocr';
+  | 'students.register_ocr'
+  | 'school_agent.plan';
 export type Capability = 'text' | 'speech_to_text' | 'moderation' | 'text_to_speech' | 'realtime';
 // `audience`: a family profile counts against the family's daily cap; a school profile's limit is the school's own
 // monthly one, which its caller checks (src/lib/copilot/copilot.ts; AI marking's pages, src/app/api/app/marking); a
@@ -163,6 +164,11 @@ export const PROFILES: readonly AiProfile[] = [
   // reader's chain (a vision chain on the school side), and keeps its own switch, prompt and limits. The office reads
   // it while waiting, so its chain gets the reader's time. Nothing it returns is saved until the office imports it.
   { id: 'students.register_ocr', carriesChildWords: true, capability: 'text', audience: 'school', callMs: 90_000, chainFrom: 'exams.read_pages', needs: ['vision'] },
+  // C546: the school agent's planner (src/lib/agent/loop.ts). It reads the school's own data through the school app's
+  // routes, as the person asking, and writes a JSON plan of those routes; students reach it as tokens, never by name.
+  // It describes children's school records, so only a provider cleared for minors may serve it. It follows
+  // exams.write_questions's chain until Control gives it its own; its limit is the school's own daily one.
+  { id: 'school_agent.plan', carriesChildWords: true, capability: 'text', audience: 'school', callMs: 90_000, chainFrom: 'exams.write_questions' },
 ];
 
 // The adapter a profile would use for a provider: the one of the profile's capability, or null when the code has none

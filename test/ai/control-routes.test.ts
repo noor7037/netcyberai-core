@@ -128,6 +128,8 @@ describe('who is let in', () => {
       // W23-B (C494): the tap menu's word help reads a child's selection; no provider of its own (it follows the tutor's chain).
       expect.objectContaining({ profileId: 'family.word_help', carriesChildWords: true, providerId: null, enabled: true, usesPrompt: true, chainFrom: 'family.resolver' }),
       expect.objectContaining({ profileId: 'parent_ai.home_help', carriesChildWords: false, providerId: null, enabled: true }),
+      // C546: the school agent's planner; school records as tokens, so a children's-words profile on the papers chain.
+      expect.objectContaining({ profileId: 'school_agent.plan', carriesChildWords: true, needs: ['text'], providerId: null, enabled: true, usesPrompt: true, chainFrom: 'exams.write_questions' }),
       // W21-M5: a paper register page read into the student import: children's names; no service of its own, so it
       // follows the marking page reader's chain.
       expect.objectContaining({ profileId: 'students.register_ocr', carriesChildWords: true, needs: ['text', 'vision'], providerId: null, enabled: true, usesPrompt: true, chainFrom: 'exams.read_pages' }),

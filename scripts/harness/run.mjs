@@ -7334,6 +7334,8 @@ const controlAiTts = (hindi) => async (page) => {
 };
 const SCREENS = [
   ['principal', 'app-my-day', '/app/my-day'],
+  ['principal', 'app-ask', '/app/ask'],
+  ['teacher', 'teacher-ask', '/app/ask'],
   ['principal', 'app-my-day-hindi', '/app/my-day', speak('हिन्दी'), backToEnglish],
   ['office', 'office-my-day', '/app/my-day'],
   // Last for this person: after it they are signed out.
