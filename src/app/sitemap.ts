@@ -58,5 +58,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...featureDetails.map((f) => `/features/${f.slug}`),
   ].map(entry);
 
-  return [...pages, ...catalog, ...posts];
+  // The Family install page sits under (family), skipped above; it is public, so it is listed by hand.
+  const installs = ['/family/install'].map(entry);
+
+  return [...pages, ...installs, ...catalog, ...posts];
 }
