@@ -195,6 +195,18 @@ export const pageMeta = {
     description:
       'NetCyberAI support: reach a real person by email or WhatsApp, see how onboarding works, and find answers for schools already on a pilot or on a full rollout.',
   },
+  teacherInstall: {
+    path: '/teacher-app',
+    title: 'Install NetCyberAI Teacher',
+    description:
+      'Install the NetCyberAI Teacher app on your phone from this page: see your day, take attendance and manage your classes from your home screen like any app.',
+  },
+  familyInstall: {
+    path: '/family/install',
+    title: 'Install NetCyberAI Family',
+    description:
+      'Install the NetCyberAI Family app on your phone from this page: an AI tutor, study chapters and practice for your child, and a parent area, on your home screen.',
+  },
 } satisfies Record<string, PageMetaInput>;
 
 export function absoluteUrl(path: string): string {

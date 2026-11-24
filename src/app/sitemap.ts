@@ -58,8 +58,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...featureDetails.map((f) => `/features/${f.slug}`),
   ].map(entry);
 
-  // The Family install page sits under (family), skipped above; it is public, so it is listed by hand.
-  const installs = ['/family/install'].map(entry);
-
-  return [...pages, ...installs, ...catalog, ...posts];
+  // /family/install is public but not listed: the Family layout makes it dynamic (it reads the language cookie), and the
+  // audit only lists pages the build prerenders.
+  return [...pages, ...catalog, ...posts];
 }

@@ -14,12 +14,12 @@ export const INSTALL_WORDS = {
     after: 'After installing',
     family: {
       name: 'NetCyberAI Family',
-      what: 'An AI tutor, study chapters and practice for your child, with a parent area.',
+      what: "NetCyberAI Family is an app for parents and children. It gives your child an AI tutor, study chapters and practice, and it gives you a separate parent area. To install it on your phone, tap the big Install button below. On an iPhone, tap Share, then Add to Home Screen.",
       steps: ['Open the NetCyberAI Family app from your home screen.', 'Sign in with your phone or email code.', 'Add your child and start learning.'],
     },
     teacher: {
       name: 'NetCyberAI Teacher',
-      what: 'Your day, attendance and classes, on your phone.',
+      what: "NetCyberAI Teacher is an app for school teachers. It shows your day, helps you take attendance and keeps your classes in one place on your phone. To install it, tap the big Install button below. On an iPhone, tap Share, then Add to Home Screen, and sign in with your school login.",
       steps: ['Open the NetCyberAI Teacher app from your home screen.', 'Sign in with your school login.', 'See your day and take attendance.'],
     },
   },
@@ -34,16 +34,14 @@ export const INSTALL_WORDS = {
     after: 'इंस्टॉल के बाद',
     family: {
       name: 'NetCyberAI Family',
-      what: 'आपके बच्चे के लिए AI ट्यूटर, पढ़ाई के अध्याय और अभ्यास, और माता-पिता के लिए अलग हिस्सा।',
+      what: 'NetCyberAI Family माता-पिता और बच्चों के लिए एक ऐप है। इसमें आपके बच्चे के लिए AI ट्यूटर, पढ़ाई के अध्याय और अभ्यास हैं, और आपके लिए एक अलग माता-पिता वाला हिस्सा है। इसे अपने फ़ोन पर इंस्टॉल करने के लिए नीचे का बड़ा इंस्टॉल बटन दबाएँ। iPhone पर Share दबाएँ, फिर Add to Home Screen दबाएँ।',
       steps: ['होम स्क्रीन से NetCyberAI Family ऐप खोलें।', 'अपने फ़ोन या ईमेल के कोड से साइन इन करें।', 'अपने बच्चे को जोड़ें और पढ़ाई शुरू करें।'],
     },
     teacher: {
       name: 'NetCyberAI Teacher',
-      what: 'आपका दिन, उपस्थिति और कक्षाएँ, आपके फ़ोन पर।',
+      what: 'NetCyberAI Teacher स्कूल के शिक्षकों के लिए एक ऐप है। इसमें आप अपना दिन देखते हैं, उपस्थिति लेते हैं और अपनी कक्षाएँ अपने फ़ोन पर एक जगह रखते हैं। इसे इंस्टॉल करने के लिए नीचे का बड़ा इंस्टॉल बटन दबाएँ। iPhone पर Share दबाएँ, फिर Add to Home Screen दबाएँ, और अपने स्कूल के लॉगिन से साइन इन करें।',
       steps: ['होम स्क्रीन से NetCyberAI Teacher ऐप खोलें।', 'अपने स्कूल के लॉगिन से साइन इन करें।', 'अपना दिन देखें और उपस्थिति लें।'],
     },
   },
 } as const;
 
-// The browser tab's title and description of the Family install page.
-export const FAMILY_INSTALL_META = { title: 'Install NetCyberAI Family', description: 'Put the NetCyberAI Family app on your phone.' };
