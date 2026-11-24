@@ -486,10 +486,10 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
       hi: 'सहायक को बताइए क्या चाहिए। वह आपके स्कूल का अपना डेटा देखता है, बदलाव तैयार करता है, और जब तक आप “लाइव करें” न दबाएँ, कुछ भी असली नहीं होता।',
     },
     steps: [
-      { en: 'Tap “Ask” at the top of any screen. Type or speak what you need, for example “Make section C for Class 6”.', hi: 'किसी भी स्क्रीन के ऊपर “पूछें” दबाएँ। जो चाहिए वह लिखें या बोलें, जैसे “कक्षा 6 का सेक्शन C बनाइए”।' },
-      { en: 'For a question, it answers from your school’s data. For a change, it shows “Check and go live”.', hi: 'सवाल का जवाब वह आपके स्कूल के डेटा से देता है। बदलाव के लिए वह “देखें और लाइव करें” दिखाता है।' },
-      { en: 'Read “What will change”. To see it in the real app first, press “See it in the app first”; an orange bar says Preview, and nobody else sees it.', hi: '“क्या बदलेगा” पढ़ें। पहले असली ऐप में देखने के लिए “पहले ऐप में देखें” दबाएँ; नारंगी पट्टी “पूर्वावलोकन” बताती है, और किसी और को नहीं दिखता।' },
-      { en: 'Press “Go live” to make it real, or “Discard”. After it is live, “Undo this” prepares the reverse for you to check.', hi: 'असली करने के लिए “लाइव करें” दबाएँ, या “हटाएँ”। लाइव होने के बाद “इसे वापस लें” उल्टा बदलाव तैयार करता है, जिसे आप देखते हैं।' },
+      { en: 'Tap “Ask” at the top of any screen. Type or speak what you need, for example “Make section C for Class 6”.', hi: 'किसी भी स्क्रीन के ऊपर “Ask” दबाएँ। जो चाहिए वह लिखें या बोलें, जैसे “Make section C for Class 6”।' },
+      { en: 'For a question, it answers from your school’s data. For a change, it shows “Check and go live”.', hi: 'सवाल का जवाब वह आपके स्कूल के डेटा से देता है। बदलाव के लिए वह “Check and go live” दिखाता है।' },
+      { en: 'Read “What will change”. To see it in the real app first, press “See it in the app first”; an orange bar says Preview, and nobody else sees it.', hi: '“What will change” पढ़ें। पहले असली ऐप में देखने के लिए “See it in the app first” दबाएँ; नारंगी पट्टी Preview बताती है, और किसी और को नहीं दिखता।' },
+      { en: 'Press “Go live” to make it real, or “Discard”. After it is live, “Undo this” prepares the reverse for you to check.', hi: 'असली करने के लिए “Go live” दबाएँ, या “Discard”। लाइव होने के बाद “Undo this” उल्टा बदलाव तैयार करता है, जिसे आप देखते हैं।' },
     ],
     tips: [
       { en: 'It works only inside your school, with your own permissions. It never moves money, marks attendance or results, or changes staff accounts.', hi: 'यह सिर्फ़ आपके स्कूल के अंदर, आपकी अपनी अनुमति से काम करता है। यह पैसे का लेन-देन, हाज़िरी या नतीजे, और स्टाफ़ खाते कभी नहीं बदलता।' },
@@ -497,7 +497,7 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
       { en: 'If the school changed after the change was prepared, nothing happens; ask again.', hi: 'अगर बदलाव तैयार होने के बाद स्कूल बदल गया, तो कुछ नहीं होता; फिर से पूछें।' },
     ],
     start: { href: '/app/ask', label: { en: 'Ask', hi: 'पूछें' } },
-    related: ['teacher-copilot'],
+    related: ['teacher-copilot', 'use-my-day'],
     keywords: ['ask', 'assistant', 'agent', 'ai', 'go live', 'preview', 'सहायक', 'पूछें'],
   },
   {

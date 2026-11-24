@@ -85,7 +85,7 @@ describe('the tours', () => {
     // Up to the children: `tour=` is one of the first props wherever it is used.
     const tags = (text: string) => [...text.matchAll(/<ModulePage\b([\s\S]*?)(?:\n\s*>|>\s*\n)/g)].map((m) => m[1]);
     // Sub-pages of a screen that has the tour, and the person's own account page.
-    const without = new Set(['help/ticket/new/page.tsx', 'help/ticket/[ticketId]/page.tsx', 'account/page.tsx']);
+    const without = new Set(['help/ticket/new/page.tsx', 'help/ticket/[ticketId]/page.tsx', 'account/page.tsx', 'ask/[requestId]/page.tsx']);
     const app = path.join(root, 'app/(school)/app');
     let checked = 0;
     for (const page of files(app).filter((f) => f.endsWith('page.tsx'))) {

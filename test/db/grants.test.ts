@@ -28,6 +28,8 @@ const APP_USER: Record<string, string> = {
   attendance_correction_requests: 'INSERT,SELECT,UPDATE',
   audit_log: 'INSERT,SELECT',
   bulk_runs: 'INSERT,SELECT,UPDATE',
+  agent_requests: 'INSERT,SELECT,UPDATE',
+  agent_messages: 'INSERT,SELECT',
   captured_documents: 'DELETE,INSERT,SELECT,UPDATE',
   certificate_requests: 'DELETE,INSERT,SELECT,UPDATE',
   certificate_request_events: 'INSERT,SELECT', // the request's timeline, written once (W21-M7)
@@ -300,6 +302,7 @@ const APP_USER: Record<string, string> = {
 // The platform role (nca_super) holds what the app's role holds, except here.
 // It bypasses row level security, so these rights are its only limit.
 const NCA_SUPER_DIFFERS: Record<string, string> = {
+  agent_messages: 'DELETE,INSERT,SELECT', // the 90-day clean-up of the school agent's conversation (C546)
   hpc_cards: '', // a school's cards and words are the school's alone (W21-M4)
   hpc_entries: '',
   timetable_changes: '', // the school's own history (W21-M3)

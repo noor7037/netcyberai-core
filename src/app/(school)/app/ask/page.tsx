@@ -10,7 +10,7 @@ export default async function AskPage() {
   const { lang } = getLang(session?.sub ?? '');
   const w = agentWords(lang);
   return (
-    <ModulePage help="ask-the-assistant" title={w.title} purpose={w.purpose}>
+    <ModulePage help="ask-the-assistant" tour="ask" title={w.title} purpose={w.purpose}>
       <AgentView lang={lang} />
     </ModulePage>
   );
