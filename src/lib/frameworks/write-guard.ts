@@ -198,6 +198,8 @@ export const WRITE_ROUTES: readonly (readonly [string, WriteModule, 'even-read-o
   ['staff/**', 'any-module'],
   ['users/*/send-reset', 'any-module', 'even-read-only'],
   ['users/**', 'any-module'],
+  // The school agent (C546): its own conversation and change requests. Each route it calls is guarded on its own.
+  ['agent/**', 'any-module', 'even-read-only'],
   ['whatsapp-config', 'communication'],
   ['communication/**', 'communication'],
   ['ptm/**', 'ptm'],
@@ -222,6 +224,8 @@ export const WRITE_ROUTES: readonly (readonly [string, WriteModule, 'even-read-o
 // Path under /api/app → the module a READ belongs to. Same patterns.
 export const READ_ROUTES: readonly (readonly [string, WriteModule])[] = [
   // --- P5 (docs/26): one block a slice. A slice's lines go between its own two marker lines, nowhere else. ---
+  // The school agent's conversation and change requests (C546).
+  ['agent/**', 'any-module'],
   // p5-8a begin
   // p5-8a end
   // p5-8b begin

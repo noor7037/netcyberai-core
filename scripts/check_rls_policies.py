@@ -223,6 +223,9 @@ ALLOWED_PERMISSIVE = (
         ("custom_field_values", "custom_field_values_tenant_isolation"),
         ("saved_views", "saved_views_tenant_isolation"),
         ("bulk_runs", "bulk_runs_tenant_isolation"),
+        # C546: the school agent's change requests and conversation; the one tenant policy each, narrowed by restrictive ones.
+        ("agent_requests", "agent_requests_tenant_isolation"),
+        ("agent_messages", "agent_messages_tenant_isolation"),
         # Settings history is append-only: tenant read and tenant insert,
         # no update or delete grant (check_append_only_grants.py).
         ("school_setting_changes", "school_setting_changes_tenant_read"),

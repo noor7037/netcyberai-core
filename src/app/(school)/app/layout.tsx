@@ -5,6 +5,8 @@ import { SessionRevokedError, withTenantContext } from '@/lib/auth/db';
 import { AppShell } from '@/components/app-shell/AppShell';
 import { ViewAsBanner } from '@/components/app-shell/ViewAsBanner';
 import { ScanButton } from '@/components/shell/ScanButton';
+import { PreviewBanner } from '@/components/agent/PreviewBanner';
+import { agentWords } from '@/components/agent/words';
 import { schoolShellMenu } from '@/components/app-shell/shell-nav';
 import { ToastProvider } from '@/components/ui/Toast';
 import { accessNoticeText, schoolAccessNotice, schoolTrialNotice, trialNoticeText, type AccessNotice, type TrialNotice } from '@/lib/control/billing-notice';
@@ -110,7 +112,13 @@ export default async function AppLayout({ children }: { children: React.ReactNod
         roleLabel={t(lang, `role.${role}`)}
         navLabel={t(lang, 'shell.nav.school')}
         accountHref="/app/account"
-        action={isTeacher ? <ScanButton onDark /> : undefined}
+        action={
+          <span className="flex items-center gap-2">
+            {/* The school agent (C546): one tap from every screen. */}
+            <a href="/app/ask" className="inline-flex min-h-[44px] items-center rounded-full bg-tangerine px-4 text-sm font-bold text-slate">{agentWords(lang).title}</a>
+            {isTeacher && <ScanButton onDark />}
+          </span>
+        }
         lang={lang}
         langKnown={known}
         device={{ schoolId, userId: session!.sub }}
@@ -118,6 +126,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
         scope="school"
         quickAdd={quickAdd}
       >
+        <PreviewBanner lang={lang} />
         {storage !== 'ok' && <StorageAlert state={storage} scope="school" lang={lang} />}
         {viewAs && <ViewAsBanner name={viewAs.name} role={role} endsAt={viewAs.endsAt} schoolId={schoolId} />}
         {entitlements.accessMode === 'suspended' && (
