@@ -9,7 +9,16 @@ export function PreviewBanner({ lang }: { lang: string }) {
   const [id, setId] = useState<string | null>(null);
   useEffect(() => {
     const m = /(?:^|; )nca_agent_preview_on=([0-9a-f-]{36})/.exec(document.cookie);
-    setId(m ? m[1] : null);
+    if (!m) return;
+    setId(m[1]);
+    // A change someone already made live or discarded is no longer previewed: leave Preview by itself.
+    void fetch(`/api/app/agent/requests/${m[1]}`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((out) => {
+        if (out?.request?.status === 'ready') return;
+        return fetch(`/api/app/agent/requests/${m[1]}`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ action: 'preview_off' }) }).then(() => window.location.reload());
+      })
+      .catch(() => {});
   }, []);
   if (!id) return null;
   async function exit() {

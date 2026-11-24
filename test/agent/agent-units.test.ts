@@ -34,6 +34,8 @@ describe('what the agent may call', () => {
     expect(mayApprove(2, { role: 'principal', userId: 'p' }, 'a')).toBe(true);
     expect(mayApprove(1, { role: 'teacher', userId: 'a' }, 'a')).toBe(true);
     expect(mayApprove(1, { role: 'teacher', userId: 'b' }, 'a')).toBe(false);
+    // Tier 1 is the author's own: not even the principal makes someone else's tier 1 live.
+    expect(mayApprove(1, { role: 'principal', userId: 'p' }, 'a')).toBe(false);
   });
 });
 
@@ -63,6 +65,10 @@ describe('what the model sees', () => {
     expect(JSON.stringify(out)).toContain('6-A');
     expect(restoreNames('Moved [S1] to 6-B', book)).toBe('Moved Meera Sharma to 6-B');
     expect(hideKnownNames('Move Meera Sharma to 6-B', book)).toBe('Move [S1] to 6-B');
+    // Names under displayName, rows under a students key, free text and contact fields.
+    const more = JSON.stringify(redact({ students: [{ id: 'x', displayName: 'Zoya Khan' }], note: 'Called Meera Sharma today', contactNumber: '98' }, book));
+    expect(more).not.toMatch(/Zoya|Meera|98/);
+    expect(more).toContain('[S2]');
   });
 });
 
@@ -74,6 +80,10 @@ describe('the review hash', () => {
     expect(a).toBe(b);
     const c = diffHash(steps, [{ action: 'class.create', target: 'classes', targetId: null, before: null, after: { name: '6-D' } }], new Set());
     expect(c).not.toBe(a);
+    // The same plan that would now act on another student (an id filled in from a read) hashes differently.
+    const onA = diffHash([{ endpoint: 'POST x', sent: { params: { studentId: '33333333-3333-4333-8333-333333333333' } } }], [], new Set(['33333333-3333-4333-8333-333333333333']));
+    const onB = diffHash([{ endpoint: 'POST x', sent: { params: { studentId: '44444444-4444-4444-8444-444444444444' } } }], [], new Set(['44444444-4444-4444-8444-444444444444']));
+    expect(onA).not.toBe(onB);
     expect(canonical({ b: 1, a: [2, { d: 1, c: 0 }] })).toBe('{"a":[2,{"c":0,"d":1}],"b":1}');
   });
 });
@@ -82,7 +92,7 @@ describe('the transaction cannot be left', () => {
   it('withTenantContext joins the agent transaction, and every other context refuses inside it', () => {
     const src = readFileSync('src/lib/auth/db.ts', 'utf8');
     expect(src).toMatch(/const joined = agentTx\.getStore\(\);[\s\S]{0,300}inSavepoint\(joined, fn\)/);
-    for (const fn of ['withSuperAdminBypass', 'withSelfContext', 'withSchoolJobContext', 'withPlatformService', 'withFamilyContext', 'withGuardianContext', 'withFamilyGate']) {
+    for (const fn of ['withBackendConnection', 'withRoleProbe', 'withSuperAdminBypass', 'withSelfContext', 'withSchoolJobContext', 'withPlatformService', 'withFamilyContext', 'withGuardianContext', 'withFamilyGate']) {
       expect(src).toContain(`assertNoAgentTx('${fn}')`);
     }
   });

@@ -20,6 +20,7 @@ export type RouteModule = Partial<Record<CatalogEntry['method'], Handler>>;
 // One step of a plan, as the model writes it. A value may name an earlier step's answer: a dollar sign, the step's
 // number, then the fields to follow (step two's class.class_id).
 export type Step = { endpoint: string; params?: Record<string, string>; query?: Record<string, string>; body?: Record<string, unknown>; why?: string };
-export type StepResult = { endpoint: string; status: number; ok: boolean; answer: unknown; error?: string };
+// `sent`: the values the step really sent, after earlier answers were filled in; the review hash covers them.
+export type StepResult = { endpoint: string; status: number; ok: boolean; answer: unknown; error?: string; sent?: { params: unknown; query: unknown; body: unknown } };
 export type Change = { action: string; target: string | null; targetId: string | null; before: unknown; after: unknown };
 export type DryRun = { steps: StepResult[]; changes: Change[]; ok: boolean; hash: string; tier: Tier };

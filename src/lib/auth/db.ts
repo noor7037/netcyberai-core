@@ -172,12 +172,16 @@ export async function withTenantContext<T>(
 
     // "See it live" (C546): with a change request open in Preview, this request first replays it, as this person, then
     // runs as usual, and always rolls back: the screen shows the school as it would be, and nothing is kept or sent.
+    // Only a request that is still ready and this person's to see is previewed; otherwise the request runs as usual.
     const preview = await previewRequestId(claims);
     if (preview) {
-      const { replayForPreview } = await import('@/lib/agent/preview');
-      const result = await replayForPreview(client, claims, preview, () => fn(client));
-      await client.query('rollback');
-      return result;
+      const { previewSteps, replayForPreview } = await import('@/lib/agent/preview');
+      const steps = await previewSteps(client, claims, preview);
+      if (steps) {
+        const result = await replayForPreview(client, claims, steps, () => fn(client));
+        await client.query('rollback');
+        return result;
+      }
     }
 
     const result = await fn(client);
@@ -200,6 +204,7 @@ export async function withTenantContext<T>(
 // into a permission-denied error, since neither app_user nor nca_super
 // was ever granted access to it.
 export async function withBackendConnection<T>(fn: (client: PoolClient) => Promise<T>): Promise<T> {
+  assertNoAgentTx('withBackendConnection');
   const client = await getPool().connect();
   try {
     return await fn(client);
@@ -255,6 +260,7 @@ export async function withRoleProbe<T>(
   role: (typeof ROLE_PROBE_ALLOWED)[number],
   fn: (client: PoolClient) => Promise<T>
 ): Promise<T> {
+  assertNoAgentTx('withRoleProbe');
   if (!ROLE_PROBE_ALLOWED.includes(role)) {
     throw new Error(`withRoleProbe: role must be one of ${ROLE_PROBE_ALLOWED.join(', ')}`);
   }

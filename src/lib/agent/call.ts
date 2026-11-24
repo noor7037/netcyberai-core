@@ -49,7 +49,9 @@ export async function callStep(step: Step, answers: readonly unknown[], auth: Au
   const query = resolveRefs(step.query ?? {}, answers) as Record<string, string>;
   const url = routeUrl(entry, params ?? {}, query ?? {}, auth.origin);
   if (!url) return fail('missing or malformed path value');
-  const body = entry.method === 'GET' ? undefined : JSON.stringify(resolveRefs(step.body ?? {}, answers));
+  const sentBody = entry.method === 'GET' ? null : resolveRefs(step.body ?? {}, answers);
+  const sent = { params, query, body: sentBody };
+  const body = sentBody === null ? undefined : JSON.stringify(sentBody);
   const headers = new Headers({ 'content-type': 'application/json', origin: auth.origin, 'x-nca-agent': '1' });
   if (auth.cookie) headers.set('cookie', auth.cookie);
   if (auth.authorization) headers.set('authorization', auth.authorization);
@@ -67,9 +69,9 @@ export async function callStep(step: Step, answers: readonly unknown[], auth: Au
     }
     const ok = res.status < 400;
     const error = ok ? undefined : typeof answer === 'object' && answer ? String((answer as Record<string, unknown>).error ?? (answer as Record<string, unknown>).message ?? res.status) : String(res.status);
-    return { endpoint: step.endpoint, status: res.status, ok, answer, ...(error ? { error } : {}) };
+    return { endpoint: step.endpoint, status: res.status, ok, answer, sent, ...(error ? { error } : {}) };
   } catch (err) {
     const name = err instanceof Error ? err.message : 'error';
-    return fail(name.startsWith('agent_tx_escape') ? 'this action reaches outside the school app, so the agent cannot do it' : 'the action failed', 500);
+    return { ...fail(name.startsWith('agent_tx_escape') ? 'this action reaches outside the school app, so the agent cannot do it' : 'the action failed', 500), sent };
   }
 }

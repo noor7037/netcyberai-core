@@ -4,8 +4,8 @@ import type { SessionClaims } from '@/lib/auth/types';
 import { writeAuditLog } from '@/lib/audit/log';
 import { agentNoPreview } from './ctx';
 import type { Auth } from './call';
-import { applyPlan, mayApprove } from './engine';
-import { bookFromJson, restoreNames } from './redact';
+import { applyPlan, checkPlan, mayApprove, planTier } from './engine';
+import { bookFromJson, redact, restoreNames, type NameBook } from './redact';
 import type { Change, Step, Tier } from './types';
 
 // Change requests as the school's screens see them (C546), and the two decisions on one: go live, or discard.
@@ -59,7 +59,20 @@ export async function goLive(claims: SessionClaims, id: string, auth: Auth): Pro
   if (current.status !== 'ready') return { ok: false, status: 409, error: 'not_ready' };
   if (!current.mayGoLive) return { ok: false, status: 403, error: 'not_yours_to_approve' };
   const row = await inSchool(claims, async (db) => (await db.query(`select steps, diff_hash from agent_requests where request_id = $1 and school_id = $2`, [id, claims.schoolId])).rows[0]);
-  const outcome = await applyPlan(claims, row.steps as Step[], auth, String(row.diff_hash), async (db) => {
+  const steps = row.steps as Step[];
+  // The tier is worked out again from the routes, never taken from the stored row.
+  const tier = planTier(steps);
+  if (tier === null || tier === 0 || !mayApprove(tier, { role: claims.role, userId: claims.sub }, current.createdBy)) return { ok: false, status: 403, error: 'not_yours_to_approve' };
+  // Someone approving another person's plan checks it again as themselves: it goes live only if, with their own rights,
+  // it changes exactly what the author's check showed (a route can do more for a principal than for a teacher).
+  if (claims.sub !== current.createdBy) {
+    const again = await checkPlan(claims, steps, auth);
+    if (!again.ok || again.hash !== String(row.diff_hash)) {
+      await inSchool(claims, (db) => db.query(`update agent_requests set status = 'stale', updated_at = now() where request_id = $1 and school_id = $2 and status = 'ready'`, [id, claims.schoolId]));
+      return { ok: false, status: 409, error: 'changed_since_review' };
+    }
+  }
+  const outcome = await applyPlan(claims, steps, auth, String(row.diff_hash), async (db) => {
     const done = await db.query(`update agent_requests set status = 'live', approved_by = $3, applied_at = now(), updated_at = now() where request_id = $1 and school_id = $2 and status = 'ready'`, [id, claims.schoolId, claims.sub]);
     if (done.rowCount !== 1) throw new Error('agent_request_not_ready');
     // An undo that goes live marks what it reversed.
@@ -81,8 +94,8 @@ export async function discard(claims: SessionClaims, id: string): Promise<Decisi
 }
 
 // Undo asks the agent for the reverse of what went live, as a new change request the person reviews like any other.
-export function undoAsk(v: RequestView): string {
-  const changes = v.changes.slice(0, 30).map((c) => `${c.action} ${c.target ?? ''} ${c.targetId ?? ''} before=${JSON.stringify(c.before)} after=${JSON.stringify(c.after)}`).join('\n');
+export function undoAsk(v: RequestView, book: NameBook): string {
+  const changes = v.changes.slice(0, 30).map((c) => `${c.action} ${c.target ?? ''} ${c.targetId ?? ''} before=${JSON.stringify(redact(c.before, book))} after=${JSON.stringify(redact(c.after, book))}`).join('\n');
   return `Undo the change request "${v.title}" that went live: put back what it changed, exactly as it was before. Its steps were: ${v.steps.map((s) => s.endpoint).join('; ')}. What changed:\n${changes}`;
 }
 

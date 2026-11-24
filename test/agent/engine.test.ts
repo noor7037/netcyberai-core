@@ -35,7 +35,7 @@ vi.mock('@/lib/auth/db', async (original) => {
 
 import { applyPlan, checkPlan } from '@/lib/agent/engine';
 import { agentTx } from '@/lib/agent/ctx';
-import { replayForPreview } from '@/lib/agent/preview';
+import { previewSteps, replayForPreview } from '@/lib/agent/preview';
 import { goLive } from '@/lib/agent/requests';
 import { withTenantContext } from '@/lib/auth/db';
 
@@ -150,7 +150,7 @@ describe('change requests (C546)', () => {
     );
     vi.doMock('next/headers', () => ({ headers: () => new Headers({ host: 'localhost', 'x-forwarded-proto': 'http' }) }));
     const seen = await withTenantContext(as(principal), async (client) => {
-      const names = await replayForPreview(client, principal, id, async () => (await client.query(`select name from classes where school_id = $1 order by name`, [A])).rows.map((r: { name: string }) => r.name));
+      const names = await replayForPreview(client, principal, await previewSteps(client, principal, id), async () => (await client.query(`select name from classes where school_id = $1 order by name`, [A])).rows.map((r: { name: string }) => r.name));
       throw Object.assign(new Error('rollback'), { names });
     }).catch((e) => e.names);
     expect(seen).toContain('6-E');

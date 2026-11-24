@@ -2,8 +2,11 @@
 // accounts never reach it. Students reach it as tokens ("[S3]"), never by name; the person's screen shows the names
 // again (restoreNames). Staff and class names stay: they are what the principal asks about.
 
-const DROP = /(phone|mobile|whatsapp|email|address|pincode|dob|birth|aadha?ar|\bpan\b|bank|account_no|accountNumber|ifsc|upi|password|token|secret|otp|photo|signature|evidence|file_?url|storage)/i;
-const STUDENT_NAME = /^(student_?name|studentName|child_?name|childName|first_?name|firstName|last_?name|lastName|full_?name|fullName|guardian_?name|guardianName|parent_?name|parentName|father|mother)$/;
+const DROP = /(phone|mobile|whatsapp|email|address|pincode|dob|birth|aadha?ar|\bpan\b|bank|account_no|accountNumber|ifsc|upi|password|token|secret|otp|photo|signature|evidence|file_?url|storage|contact|^number$)/i;
+const STUDENT_NAME = /^(student_?name|studentName|child_?name|childName|first_?name|firstName|last_?name|lastName|full_?name|fullName|guardian_?name|guardianName|parent_?name|parentName|father|mother|ward_?name|wardName)$/;
+const ROW_NAME = /^(name|display_?name|displayName)$/;
+// A list or object under one of these keys holds people the school cares for: its rows' names are tokens.
+const PEOPLE_KEY = /(student|child|ward|enquir|guardian|parent|famil|candidate|sibling)/i;
 const STUDENT_ROW = /^(student_?id|studentId|enquiry_?id|enquiryId|parent_?id|parentId|guardian_?id)$/;
 const MAX_ITEMS = 40;
 const MAX_TEXT = 400;
@@ -20,24 +23,25 @@ function tokenFor(book: NameBook, name: string): string {
   return token;
 }
 
-export function redact(value: unknown, book: NameBook, depth = 0): unknown {
+export function redact(value: unknown, book: NameBook, depth = 0, people = false): unknown {
   if (depth > 8) return '…';
-  if (typeof value === 'string') return value.length > MAX_TEXT ? `${value.slice(0, MAX_TEXT)}…` : value;
+  // Free text (notes, reasons, messages) keeps no name the agent has already turned into a token.
+  if (typeof value === 'string') return hideKnownNames(value.length > MAX_TEXT ? `${value.slice(0, MAX_TEXT)}…` : value, book);
   if (Array.isArray(value)) {
-    const items = value.slice(0, MAX_ITEMS).map((v) => redact(v, book, depth + 1));
+    const items = value.slice(0, MAX_ITEMS).map((v) => redact(v, book, depth + 1, people));
     return value.length > MAX_ITEMS ? [...items, `… and ${value.length - MAX_ITEMS} more`] : items;
   }
   if (!value || typeof value !== 'object') return value;
   const obj = value as Record<string, unknown>;
-  const personRow = Object.keys(obj).some((k) => STUDENT_ROW.test(k));
+  const personRow = people || Object.keys(obj).some((k) => STUDENT_ROW.test(k));
   const out: Record<string, unknown> = {};
   for (const [k, v] of Object.entries(obj)) {
     if (DROP.test(k)) continue;
-    if (typeof v === 'string' && v.trim() && (STUDENT_NAME.test(k) || (personRow && (k === 'name' || k === 'display_name')))) {
+    if (typeof v === 'string' && v.trim() && (STUDENT_NAME.test(k) || (personRow && ROW_NAME.test(k)))) {
       out[k] = tokenFor(book, v.trim());
       continue;
     }
-    out[k] = redact(v, book, depth + 1);
+    out[k] = redact(v, book, depth + 1, PEOPLE_KEY.test(k));
   }
   return out;
 }

@@ -15,7 +15,8 @@ import type { DryRun, Step } from './types';
 
 export const MAX_ROUNDS = 8;
 export const MAX_FIXES = 3;
-export const TURNS_PER_SCHOOL_DAY = 300;
+// Each person's asks in a day (C548): counted on their own conversation, which is all their role can read.
+export const TURNS_PER_PERSON_DAY = 100;
 const MAX_RESULT = 7000;
 
 export type AgentReply = { say: string; requestId: string | null; plan: { title: string; summary: string } | null; run: DryRun | null; refused?: 'off' | 'limit' | 'failed' };
@@ -71,18 +72,18 @@ async function history(db: PoolClient, claims: SessionClaims): Promise<{ message
   return { messages, book };
 }
 
-export async function agentTurn(claims: SessionClaims, text: string, auth: Auth): Promise<AgentReply> {
+export async function agentTurn(claims: SessionClaims, text: string | ((book: NameBook) => string), auth: Auth): Promise<AgentReply> {
   const today = todayInIndia();
   const start = await inSchool(claims, async (db) => {
-    const used = Number((await db.query(`select count(*)::int as n from agent_messages m where m.school_id = $1 and m.role = 'person' and m.created_at >= (now() at time zone 'Asia/Kolkata')::date`, [claims.schoolId])).rows[0]?.n ?? 0);
+    const used = Number((await db.query(`select count(*)::int as n from agent_messages m where m.school_id = $1 and m.user_id = $2 and m.role = 'person' and m.created_at >= (now() at time zone 'Asia/Kolkata')::date`, [claims.schoolId, claims.sub])).rows[0]?.n ?? 0);
     const school = String((await db.query(`select name from schools where school_id = $1`, [claims.schoolId])).rows[0]?.name ?? 'the school');
     const past = await history(db, claims);
     return { used, school, ...past };
   });
-  if (start.used >= TURNS_PER_SCHOOL_DAY) return { say: "Today's limit for the assistant is used up. It opens again tomorrow.", requestId: null, plan: null, run: null, refused: 'limit' };
+  if (start.used >= TURNS_PER_PERSON_DAY) return { say: "Today's limit for the assistant is used up. It opens again tomorrow.", requestId: null, plan: null, run: null, refused: 'limit' };
 
   const book = start.book;
-  const asked = hideKnownNames(text.slice(0, 2000), book);
+  const asked = typeof text === 'function' ? hideKnownNames(text(book), book).slice(0, 7000) : hideKnownNames(text.slice(0, 2000), book);
   const messages: ChatMessage[] = [...start.messages, { role: 'user', content: asked }];
   const system = systemPrompt({ schoolName: start.school, role: claims.role, today });
   let say = '';
@@ -116,7 +117,7 @@ export async function agentTurn(claims: SessionClaims, text: string, auth: Auth)
       if (run.ok || fixes >= MAX_FIXES) break;
       fixes++;
       const failed = run.steps.find((s) => !s.ok);
-      messages.push({ role: 'user', content: `PLAN CHECK FAILED at step ${run.steps.length} (${failed?.endpoint}): status ${failed?.status}, ${failed?.error ?? ''}. Answer: ${clip(redact(failed?.answer, book))}. Fix the plan (read more if needed) and send it again.` });
+      messages.push({ role: 'user', content: `PLAN CHECK FAILED at step ${run.steps.length} (${failed?.endpoint}): status ${failed?.status}, ${hideKnownNames(String(redact(failed?.error ?? '', book)), book)}. Answer: ${clip(redact(failed?.answer, book))}. Fix the plan (read more if needed) and send it again.` });
       continue;
     }
     if (modules.length === 0 && reads.length === 0) break;
@@ -124,7 +125,7 @@ export async function agentTurn(claims: SessionClaims, text: string, auth: Auth)
     if (modules.length) parts.push(`ROUTES:\n${catalogFor(modules)}`);
     if (reads.length) {
       const results = await readSteps(claims, reads, auth);
-      parts.push(`READ RESULTS:\n${results.map((r, i) => `${i + 1}. ${r.endpoint} → ${r.status}${r.error ? ` (${r.error})` : ''}: ${clip(redact(r.answer, book))}`).join('\n')}`);
+      parts.push(`READ RESULTS:\n${results.map((r, i) => `${i + 1}. ${r.endpoint} → ${r.status}${r.error ? ` (${hideKnownNames(String(redact(r.error, book)), book)})` : ''}: ${clip(redact(r.answer, book))}`).join('\n')}`);
     }
     messages.push({ role: 'user', content: parts.join('\n\n') });
   }

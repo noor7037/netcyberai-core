@@ -55,7 +55,7 @@ export async function POST(req: NextRequest, { params }: { params: { requestId: 
     if (action === 'undo') {
       const v = await getRequest(guard.claims, params.requestId);
       if (!v || v.status !== 'live') return NextResponse.json({ error: 'only a live change can be undone' }, { status: 409 });
-      const reply = await agentTurn(guard.claims, undoAsk(v), authFrom(req));
+      const reply = await agentTurn(guard.claims, (book) => undoAsk(v, book), authFrom(req));
       if (reply.requestId) await linkReverse(guard.claims, reply.requestId, v.requestId);
       return NextResponse.json(reply);
     }

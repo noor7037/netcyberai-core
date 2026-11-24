@@ -26,8 +26,7 @@ async function requestAuth(): Promise<Auth | null> {
   }
 }
 
-export async function replayForPreview<T>(client: PoolClient, claims: SessionClaims, requestId: string, fn: () => Promise<T>): Promise<T> {
-  const steps = await previewSteps(client, claims, requestId);
+export async function replayForPreview<T>(client: PoolClient, claims: SessionClaims, steps: Step[] | null, fn: () => Promise<T>): Promise<T> {
   const auth = steps ? await requestAuth() : null;
   return agentTx.run({ client, userId: claims.sub, schoolId: claims.schoolId as string, mode: 'preview', savepoints: 0 }, async () => {
     if (steps && auth) {

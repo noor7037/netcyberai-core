@@ -32,11 +32,12 @@ export function planTier(steps: readonly Step[]): Tier | null {
   return tier;
 }
 
-// Who may make a plan live: tier 1 by the person who asked for it (their own role already ran every step); tier 2 by
-// the principal only.
+// Who may make a plan live: tier 1 only the person who asked for it (their own role ran every step); tier 2 the
+// principal only. A principal approving someone else's plan first checks it again as themselves (goLive): it goes live
+// only if it changes exactly what the author's check showed.
 export function mayApprove(tier: Tier, approver: { role: string; userId: string }, author: string): boolean {
   if (tier >= 2) return (PRINCIPAL_ROLES as readonly string[]).includes(approver.role);
-  return approver.userId === author || (PRINCIPAL_ROLES as readonly string[]).includes(approver.role);
+  return approver.userId === author;
 }
 
 const TIME_KEY = /(_at|At|_on|On|date|Date|time|Time|revision|hash|version)$/;
@@ -54,9 +55,11 @@ function stripTimes(v: unknown): unknown {
   return v;
 }
 
-// What the person approves: the plan itself and what it changed, with times left out and every id the plan made
-// named by its order ("#1"), so the same plan on the same school hashes the same at review and at going live.
-export function diffHash(steps: readonly Step[], changes: readonly Change[], known: ReadonlySet<string>): string {
+// What the person approves: every value each step really sent (earlier answers filled in, so a plan that would now act
+// on a different student or class hashes differently) and what it changed, with times left out of the changes and
+// every id the plan itself created named by its order ("#1"), so the same plan on the same school hashes the same at
+// review and at going live.
+export function diffHash(steps: readonly unknown[], changes: readonly Change[], known: ReadonlySet<string>): string {
   const ids = new Map<string, string>();
   const json = canonical(stripTimes(changes)).replace(UUID, (id) => {
     const low = id.toLowerCase();
@@ -104,9 +107,10 @@ async function runSteps(client: PoolClient, claims: SessionClaims, steps: readon
     after: r.after_state ?? null,
   }));
   const ok = results.length === steps.length && results.every((r) => r.ok);
-  const known = uuidsIn(steps, new Set<string>());
+  const sent = results.map((r, i) => ({ endpoint: steps[i].endpoint, sent: r.sent ?? null }));
+  const known = uuidsIn(sent, new Set<string>());
   for (const c of changes) uuidsIn(c.before, known);
-  return { steps: results, changes, ok, hash: diffHash(steps, changes, known), tier };
+  return { steps: results, changes, ok, hash: diffHash(sent, changes, known), tier };
 }
 
 // Runs the plan as the person and always rolls back.
