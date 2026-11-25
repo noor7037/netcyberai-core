@@ -18,6 +18,8 @@ export const MAX_FIXES = 3;
 // Each person's asks in a day (C548): counted on their own conversation, which is all their role can read.
 export const TURNS_PER_PERSON_DAY = 100;
 const MAX_RESULT = 7000;
+export const NO_SUCH_ACTION = 'There is no action in the app for that, so nothing was changed.';
+export const NOT_FINISHED = 'I could not finish that. Nothing was changed. Please ask again, one task at a time.';
 
 export type AgentReply = { say: string; requestId: string | null; plan: { title: string; summary: string } | null; run: DryRun | null; refused?: 'off' | 'limit' | 'failed' };
 type ModelOut = { say?: unknown; modules?: unknown; reads?: unknown; plan?: unknown; question?: unknown };
@@ -97,6 +99,9 @@ export async function agentTurn(claims: SessionClaims, text: string | ((book: Na
   let plan: { title: string; summary: string; steps: Step[] } | null = null;
   let run: DryRun | null = null;
   let fixes = 0;
+  // What the person is told comes from the model's last answer only, never left over from an earlier round.
+  let unknownSeen = false;
+  let finished = false;
 
   for (let round = 0; round < MAX_ROUNDS; round++) {
     const ai = await streamText(perQueryDb(claims), { accountId: claims.schoolId as string, childFirstNames: [], day: today }, 'school_agent.plan', { system, messages, maxTokens: 4000, responseFormat: 'json' });
@@ -110,7 +115,7 @@ export async function agentTurn(claims: SessionClaims, text: string | ((book: Na
       messages.push({ role: 'user', content: 'Reply with the one JSON object only.' });
       continue;
     }
-    if (typeof out.say === 'string') say = out.say;
+    say = typeof out.say === 'string' ? out.say : '';
     if (typeof out.question === 'string' && out.question.trim()) say = say ? `${say}\n${out.question}` : out.question;
 
     const modules = Array.isArray(out.modules) ? out.modules.filter((m): m is string => typeof m === 'string' && MODULES.some((x) => x.module === m)).slice(0, 4) : [];
@@ -120,6 +125,8 @@ export async function agentTurn(claims: SessionClaims, text: string | ((book: Na
     // A plan or read naming a route that is not listed goes back to the model at once, with what it should look at.
     const unknown = [...planSteps, ...reads].filter((s) => !catalogEntry(s.endpoint)).map((s) => s.endpoint);
     if (unknown.length) {
+      unknownSeen = true;
+      say = '';
       messages.push({ role: 'user', content: `UNKNOWN ROUTES: ${[...new Set(unknown)].join('; ')}. Use only routes exactly as listed in ROUTES (ask for the module in "modules" first), written like "GET classes".` });
       continue;
     }
@@ -128,7 +135,10 @@ export async function agentTurn(claims: SessionClaims, text: string | ((book: Na
       const p = out.plan as Record<string, unknown>;
       plan = { title: String(p.title ?? 'Changes').slice(0, 200), summary: String(p.summary ?? '').slice(0, 2000), steps: planSteps };
       run = await checkPlan(claims, planSteps, auth);
-      if (run.ok || fixes >= MAX_FIXES) break;
+      if (run.ok || fixes >= MAX_FIXES) {
+        finished = true;
+        break;
+      }
       fixes++;
       if (run.steps.length === 0) {
         messages.push({ role: 'user', content: `PLAN NOT RUN: a plan needs 1 to ${MAX_STEPS} listed routes that change something. Send it again.` });
@@ -138,7 +148,10 @@ export async function agentTurn(claims: SessionClaims, text: string | ((book: Na
       messages.push({ role: 'user', content: `PLAN CHECK FAILED at step ${run.steps.length} (${failed?.endpoint}): status ${failed?.status}, ${hideKnownNames(String(redact(failed?.error ?? '', book)), book)}. Answer: ${clip(redact(failed?.answer, book))}. Fix the plan (read more if needed) and send it again.` });
       continue;
     }
-    if (modules.length === 0 && reads.length === 0) break;
+    if (modules.length === 0 && reads.length === 0) {
+      finished = true;
+      break;
+    }
     const parts: string[] = [];
     if (modules.length) parts.push(`ROUTES:\n${catalogFor(modules)}`);
     if (reads.length) {
@@ -148,6 +161,8 @@ export async function agentTurn(claims: SessionClaims, text: string | ((book: Na
     messages.push({ role: 'user', content: parts.join('\n\n') });
   }
 
+  if (!plan && unknownSeen && !say) say = NO_SUCH_ACTION;
+  if (!finished && !(plan && run?.ok)) say = NOT_FINISHED;
   if (!say) say = plan ? plan.summary || plan.title : 'I could not finish that. Please say it another way.';
   const requestId = await inSchool(claims, async (db) => {
     let id: string | null = null;

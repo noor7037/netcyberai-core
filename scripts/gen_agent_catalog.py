@@ -55,6 +55,20 @@ def doc_of(src):
     text = ' '.join(x for x in out if x)
     return text[:300]
 
+def method_doc(src, method):
+    # The comment block right above this method's handler says what THIS method does; the file's top comment is the
+    # fallback. Both, when both exist and differ, so the agent knows the route and the method.
+    m = re.search(r'^export (?:async )?function ' + method + r'\b|^export const ' + method + r'\b', src, re.M)
+    above = []
+    if m:
+        lines = src[:m.start()].rstrip('\n').split('\n')
+        while lines and lines[-1].strip().startswith('//'):
+            above.insert(0, lines.pop().strip().lstrip('/').strip())
+    own = ' '.join(x for x in above if x)
+    top = doc_of(src)
+    text = own if own and own in top else (f'{own} {top}'.strip() if own else top)
+    return text[:300]
+
 def fields_of(src):
     names = set(re.findall(r'const (\w+) = (?:await )?(?:readJson\(req\)|req\.json\(\))', src)) | {'body'}
     found = []
@@ -91,7 +105,7 @@ def main():
             entries.append({
                 'id': f'{m} {path}', 'method': m, 'path': path, 'module': path.split('/')[0],
                 'params': params, 'fields': [] if m == 'GET' else fields_of(src), 'query': query if m == 'GET' else [],
-                'doc': doc_of(src), 'tier': t, 'file': rel,
+                'doc': method_doc(src, m), 'tier': t, 'file': rel,
             })
     entries.sort(key=lambda e: e['id'])
     files = sorted({e['file'] for e in entries})

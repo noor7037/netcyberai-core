@@ -11,7 +11,7 @@ const BY_ID = new Map(CATALOG.map((e) => [e.id, e]));
 export function normalizeEndpoint(id: string): string {
   const m = /^\s*(GET|POST|PUT|PATCH|DELETE)\s+(.+?)\s*$/i.exec(id);
   if (!m) return id.trim();
-  const path = m[2].replace(/^\/+/, '').replace(/^api\/app\//, '').replace(/\/+$/, '').replace(/\{(\w+)\}|\[(\w+)\]/g, (_x, a, b) => `:${a ?? b}`);
+  const path = m[2].replace(/[?#].*$/, '').replace(/^https?:\/\/[^/]+/i, '').replace(/^\/+/, '').replace(/^api\/app\//, '').replace(/\/+$/, '').replace(/\{(\w+)\}|\[(\w+)\]/g, (_x, a, b) => `:${a ?? b}`);
   return `${m[1].toUpperCase()} ${path}`;
 }
 export const catalogEntry = (id: string): CatalogEntry | null => BY_ID.get(id) ?? BY_ID.get(normalizeEndpoint(id)) ?? null;
