@@ -36,7 +36,7 @@ vi.mock('@/lib/auth/db', async (original) => {
 import { applyPlan, checkPlan } from '@/lib/agent/engine';
 import { agentTx } from '@/lib/agent/ctx';
 import { previewSteps, replayForPreview } from '@/lib/agent/preview';
-import { goLive } from '@/lib/agent/requests';
+import { goLive, listRequests, newChat, recentMessages } from '@/lib/agent/requests';
 import { withTenantContext } from '@/lib/auth/db';
 
 const u = (n: number) => `a5460000-0000-4000-8000-${String(n).padStart(12, '0')}`;
@@ -161,5 +161,20 @@ describe('change requests (C546)', () => {
     expect(live).toMatchObject({ ok: true });
     expect(await classNames()).toContain('6-E');
     expect((await owner(`select status, approved_by from agent_requests where request_id = $1`, [id]))[0]).toMatchObject({ status: 'live', approved_by: PRINCIPAL });
+  });
+
+  it('a live change whose class was later deleted shows as removed, not "Made live"', async () => {
+    const before = (await listRequests(as(principal))).find((r) => r.title === 'Make 6-E');
+    expect(before?.status).toBe('live');
+    await owner(`delete from classes where school_id = $1 and name = '6-E'`, [A]);
+    const after = (await listRequests(as(principal))).find((r) => r.title === 'Make 6-E');
+    expect(after?.status).toBe('removed');
+  });
+
+  it('"New chat" hides what came before, from the screen and from the model', async () => {
+    await owner(`insert into agent_messages (school_id, user_id, role, body) values ($1, $2, 'person', 'old ask'), ($1, $2, 'agent', 'old answer')`, [A, PRINCIPAL]);
+    expect((await recentMessages(as(principal))).map((m) => m.body)).toContain('old answer');
+    await newChat(as(principal));
+    expect(await recentMessages(as(principal))).toEqual([]);
   });
 });

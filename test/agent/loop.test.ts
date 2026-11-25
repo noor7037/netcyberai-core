@@ -52,7 +52,7 @@ vi.mock('@/lib/support/tickets', () => ({
 vi.mock('@/lib/jobs/handlers', () => ({ kickJobs: async () => {} }));
 
 import { catalogEntry, normalizeEndpoint } from '@/lib/agent/call';
-import { agentTurn, asSteps, carriesAadhaar, helpText, MAX_ROUNDS, NO_SUCH_ACTION, NOT_FINISHED, safeLinks, type AgentEvent } from '@/lib/agent/loop';
+import { agentTurn, asSteps, carriesAadhaar, helpText, MAX_ROUNDS, NO_SUCH_ACTION, NOT_FINISHED, NOT_MADE, safeLinks, type AgentEvent } from '@/lib/agent/loop';
 import { photosFrom } from '@/lib/agent/photos';
 
 const claims = { sub: 'u1', role: 'principal', schoolId: 's1', membershipId: 'm', tokenVersion: 0, aal: 'aal1', sessionId: 'x' } as never;
@@ -156,6 +156,27 @@ describe('the agent turn', () => {
     expect(state.seenMessages[0][0].images).toHaveLength(1);
     expect(state.seenMessages[1].at(-1)!.content).toMatch(/^REFUSED: .*Aadhaar/);
     expect(reply.say).toBe('I left the Aadhaar number out.');
+  });
+});
+
+describe('a change is never claimed without a plan', () => {
+  it('"Created class 10-Z" with no plan is sent back, and the plan that follows is used', async () => {
+    reset();
+    state.answers = ['{"say":"Created class 10-Z."}', '{"say":"Ready to check: class 10-Z.","plan":{"title":"Make 10-Z","summary":"","steps":[{"endpoint":"POST nowhere-yet"}]}}', '{"say":"There is no action for that, so nothing was changed."}'];
+    await agentTurn(claims, 'Create class 10-Z', auth);
+    expect(state.seenMessages[1].at(-1)!.content).toMatch(/^NO PLAN SENT/);
+  });
+  it('a model that keeps claiming it is done is not believed', async () => {
+    reset();
+    state.answers = ['{"say":"Created class 10-Z."}', '{"say":"Done, class 10-Z was added."}', '{"say":"I have created it."}'];
+    const reply = await agentTurn(claims, 'Create class 10-Z', auth);
+    expect(reply.say).toBe(NOT_MADE);
+    expect(reply.requestId).toBeNull();
+  });
+  it('a plain answer to a question is not mistaken for a claim', async () => {
+    reset();
+    state.answers = ['{"say":"6-A has 4 students and 7-A has 3."}'];
+    expect((await agentTurn(claims, 'How many students?', auth)).say).toBe('6-A has 4 students and 7-A has 3.');
   });
 });
 

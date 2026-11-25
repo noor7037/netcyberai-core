@@ -28,6 +28,10 @@ export const MAX_IMAGES = 3;
 const MAX_RESULT = 7000;
 const HISTORY = 10;
 export const NO_SUCH_ACTION = 'There is no action in the app for that, so nothing was changed.';
+// A reply that says a change was made, with no plan sent: nothing was made, so it is never shown as it is.
+const DONE_VERBS = 'created|added|made|updated|changed|deleted|removed|sent|published|assigned|moved|issued|saved|scheduled|admitted|generated';
+export const CLAIMS_DONE = new RegExp(`\\b(I|I've|I have|it's|it has|has been|have been|was|were|is now|are now)\\s+(\\w+\\s+)?(${DONE_VERBS})\\b|^\\s*(${DONE_VERBS})\\b|बना (दिया|दी)|जोड़ (दिया|दी)|भेज (दिया|दी)|हटा (दिया|दी)|बनाया गया|जोड़ा गया|भेजा गया|हटाया गया`, 'i');
+export const NOT_MADE = 'I did not make that change: nothing was changed. Please ask again and I will prepare it for you to check.';
 export const NOT_FINISHED = 'I could not finish that. Nothing was changed. Please ask again, one task at a time.';
 
 export type AgentLink = { label: string; href: string };
@@ -106,8 +110,10 @@ export function perQueryDb(claims: SessionClaims): Pick<PoolClient, 'query'> {
 // changed since, and an old answer must not be repeated as if it were new.
 async function history(db: PoolClient, claims: SessionClaims): Promise<{ context: string; book: NameBook }> {
   const { rows } = await db.query(
-    `select role, body, names from agent_messages where school_id = $1 and user_id = $2 and created_at > now() - interval '1 day'
-      order by created_at desc limit ${HISTORY}`,
+    `select role, body, names from agent_messages m where m.school_id = $1 and m.user_id = $2 and m.created_at > now() - interval '6 hours'
+        and m.created_at > coalesce((select max(n.created_at) from agent_messages n where n.school_id = $1 and n.user_id = $2 and n.extras ? 'newChat'), '-infinity')
+        and not m.extras ? 'newChat'
+      order by m.created_at desc limit ${HISTORY}`,
     [claims.schoolId, claims.sub]
   );
   const book = newNameBook();
@@ -189,6 +195,7 @@ export async function agentTurn(
   let finished = false;
   let links: AgentLink[] = [];
   let ticket: string | null = null;
+  let claimedNoPlan = 0;
   const faults: StepResult[] = [];
 
   for (let round = 0; round < MAX_ROUNDS; round++) {
@@ -251,6 +258,16 @@ export async function agentTurn(
       continue;
     }
     if (modules.length === 0 && reads.length === 0 && !help) {
+      // Nothing is real without a plan the person makes live: a "Created class 10-Z" with no plan is sent back.
+      if (!planSteps.length && !(plan && run?.ok) && CLAIMS_DONE.test(say)) {
+        if (claimedNoPlan < 2) {
+          claimedNoPlan++;
+          say = '';
+          messages.push({ role: 'user', content: 'NO PLAN SENT: you said a change was made, but nothing changes without a plan. Send the plan steps now, or say plainly that nothing was changed.' });
+          continue;
+        }
+        say = NOT_MADE;
+      }
       finished = true;
       break;
     }
