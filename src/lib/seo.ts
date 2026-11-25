@@ -195,6 +195,12 @@ export const pageMeta = {
     description:
       'NetCyberAI support: reach a real person by email or WhatsApp, see how onboarding works, and find answers for schools already on a pilot or on a full rollout.',
   },
+  schoolInstall: {
+    path: '/school-app',
+    title: 'Install NetCyberAI School',
+    description:
+      'Install the NetCyberAI School app on your phone: the principal’s dashboard, every module and the Ask assistant, opened from your home screen like any app.',
+  },
   teacherInstall: {
     path: '/teacher-app',
     title: 'Install NetCyberAI Teacher',

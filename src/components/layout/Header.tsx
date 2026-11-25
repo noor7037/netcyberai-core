@@ -22,6 +22,7 @@ const PLAIN_LINKS = [
   { href: '/about', label: 'About', xlOnly: true },
   { href: '/contact', label: 'Contact', xlOnly: true },
   { href: '/family/install', label: 'Family app', xlOnly: true },
+  { href: '/school-app', label: 'School app', xlOnly: true },
   { href: '/teacher-app', label: 'Teacher app', xlOnly: true },
 ];
 

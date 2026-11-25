@@ -108,6 +108,12 @@ export function AgentView({ lang }: { lang: string }) {
     }
   }
 
+  async function startNewChat() {
+    if (busy) return;
+    await fetch('/api/app/agent/ask', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ action: 'new_chat' }) });
+    setMessages([]);
+  }
+
   const waiting = requests.filter((r) => r.status === 'ready');
   const done = requests.filter((r) => r.status !== 'ready');
   return (
@@ -123,6 +129,11 @@ export function AgentView({ lang }: { lang: string }) {
         </section>
       )}
 
+      {messages.length > 0 && (
+        <button type="button" onClick={() => void startNewChat()} disabled={busy} className="ml-auto min-h-[44px] rounded-full border-2 border-royal px-4 text-sm font-semibold text-royal disabled:opacity-50">
+          + {w.newChat}
+        </button>
+      )}
       <div className="flex min-h-[200px] flex-col gap-3 rounded-lg border border-slate/10 bg-white p-4">
         {messages.length === 0 && !busy && (
           <div className="flex flex-col gap-3">

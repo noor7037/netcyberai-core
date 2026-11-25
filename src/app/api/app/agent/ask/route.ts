@@ -3,7 +3,7 @@ import { requireAppSession } from '@/lib/auth/require-app-session';
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import { agentTurn } from '@/lib/agent/loop';
 import { photosFrom } from '@/lib/agent/photos';
-import { authFrom, recentMessages } from '@/lib/agent/requests';
+import { authFrom, newChat, recentMessages } from '@/lib/agent/requests';
 
 // The school agent's conversation (C546, C549). POST { text, images? }: one turn, which may end in an answer, a guide or a
 // change request to review.
@@ -28,6 +28,11 @@ export async function POST(req: NextRequest) {
   const guard = await requireAppSession(req);
   if ('error' in guard) return guard.error;
   const body = await req.json().catch(() => null);
+  // { action: 'new_chat' }: start afresh; what came before is no longer shown or sent to the model.
+  if (body?.action === 'new_chat') {
+    await newChat(guard.claims);
+    return NextResponse.json({ ok: true });
+  }
   const text = typeof body?.text === 'string' ? body.text.trim() : '';
   const images = photosFrom(body?.images);
   if (images === null) return NextResponse.json({ error: 'photos must be up to 3 JPEG, PNG or WebP pictures' }, { status: 400 });

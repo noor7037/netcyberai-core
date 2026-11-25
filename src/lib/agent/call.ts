@@ -79,6 +79,6 @@ export async function callStep(step: Step, answers: readonly unknown[], auth: Au
     return { endpoint: step.endpoint, status: res.status, ok, answer, sent, ...(error ? { error } : {}) };
   } catch (err) {
     const name = err instanceof Error ? err.message : 'error';
-    return { ...fail(name.startsWith('agent_tx_escape') ? 'this action reaches outside the school app, so the agent cannot do it' : 'the action failed', 500), sent };
+    return { ...fail(name.startsWith('agent_tx_escape') ? 'this action reaches outside the school app (it sends or calls out itself), so the agent cannot do it; do it from its own screen' : 'the action failed', name.startsWith('agent_tx_escape') ? 422 : 500), sent };
   }
 }
