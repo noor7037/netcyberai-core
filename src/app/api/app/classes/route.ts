@@ -12,6 +12,9 @@ import { classLabel } from '@/lib/frameworks/class-label';
 import { validationError } from '@/lib/errors/catalogue';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 
+// GET: lists every class of the school (class_id, name such as "6-A", grade, section, session) with its student_count
+// and its class teacher (class_teacher_id, class_teacher_name). For the principal and the school admin it also returns
+// the active teachers a class teacher may be chosen from. Use it to find a class's id before changing the class.
 export async function GET(req: NextRequest) {
   const guard = await requireAppSession(req);
   if ('error' in guard) return guard.error;

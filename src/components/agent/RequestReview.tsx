@@ -92,6 +92,16 @@ export function RequestReview({ initial, lang }: { initial: RequestView; lang: s
           </button>
         </div>
       )}
+      {r.files.length > 0 && (
+        <section className="flex flex-col gap-2">
+          <h2 className="text-base font-semibold text-slate">{w.files}</h2>
+          {r.files.map((f) => (
+            <a key={f.href} href={f.href} className="flex min-h-[48px] items-center rounded-lg border-2 border-royal px-4 font-semibold text-royal">
+              {f.label}
+            </a>
+          ))}
+        </section>
+      )}
       {r.status === 'live' && (
         <button type="button" disabled={busy} onClick={() => void act('undo')} className="min-h-[48px] rounded-lg border-2 border-slate/30 px-4 text-base text-slate disabled:opacity-50">
           {w.undo}

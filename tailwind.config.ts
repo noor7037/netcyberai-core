@@ -53,9 +53,12 @@ const config: Config = {
         'bounce-once': { '0%, 100%': { transform: 'translateY(0)' }, '40%': { transform: 'translateY(-10px)' }, '70%': { transform: 'translateY(2px)' } },
         burst: { '0%': { transform: 'translate(0, 0) scale(0.6)', opacity: '1' }, '100%': { transform: 'translate(var(--bx), var(--by)) scale(1)', opacity: '0' } },
         nudge: { '0%, 100%': { transform: 'translateX(0)' }, '25%': { transform: 'translateX(-5px)' }, '75%': { transform: 'translateX(5px)' } },
+        // C549: the school assistant's eyes blink while it works.
+        blink: { '0%, 88%, 100%': { transform: 'scaleY(1)' }, '94%': { transform: 'scaleY(0.1)' } },
       },
       animation: {
         'drawer-in': 'drawer-in 180ms ease-out',
+        blink: 'blink 2.4s ease-in-out infinite',
         'pop-in': 'pop-in 360ms cubic-bezier(.2,.9,.3,1.2)',
         'rise-in': 'rise-in 320ms ease-out',
         'flip-in': 'flip-in 300ms ease-out',
