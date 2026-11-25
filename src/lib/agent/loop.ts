@@ -4,7 +4,7 @@ import type { SessionClaims } from '@/lib/auth/types';
 import { streamText, type ChatMessage } from '@/lib/ai/platform';
 import { todayInIndia } from '@/lib/academics/syllabus';
 import { agentNoPreview } from './ctx';
-import type { Auth } from './call';
+import { catalogEntry, normalizeEndpoint, type Auth } from './call';
 import { checkPlan, MAX_STEPS, readSteps } from './engine';
 import { MODULES, catalogFor, systemPrompt } from './prompt';
 import { bookFromJson, bookToJson, hideKnownNames, newNameBook, redact, restoreNames, type NameBook } from './redact';
@@ -40,7 +40,7 @@ export function asSteps(v: unknown): Step[] {
     .filter((s): s is Record<string, unknown> => !!s && typeof s === 'object' && typeof (s as Record<string, unknown>).endpoint === 'string')
     .slice(0, MAX_STEPS)
     .map((s) => ({
-      endpoint: String(s.endpoint).trim(),
+      endpoint: normalizeEndpoint(String(s.endpoint)),
       ...(s.params && typeof s.params === 'object' ? { params: s.params as Record<string, string> } : {}),
       ...(s.query && typeof s.query === 'object' ? { query: s.query as Record<string, string> } : {}),
       ...(s.body && typeof s.body === 'object' ? { body: s.body as Record<string, unknown> } : {}),
@@ -49,12 +49,19 @@ export function asSteps(v: unknown): Step[] {
 }
 
 const clip = (v: unknown) => {
-  const s = JSON.stringify(v);
+  // JSON.stringify(undefined) is undefined, not a string.
+  const s = JSON.stringify(v) ?? 'null';
   return s.length > MAX_RESULT ? `${s.slice(0, MAX_RESULT)}…(cut)` : s;
 };
 
 async function inSchool<T>(claims: SessionClaims, fn: (db: PoolClient) => Promise<T>): Promise<T> {
   return agentNoPreview.run(true, () => withTenantContext(claims, fn));
+}
+
+// The AI call holds no transaction open while the model thinks: each query the AI platform makes (its profile, key,
+// limits and metering) runs in its own short transaction as this person.
+export function perQueryDb(claims: SessionClaims): Pick<PoolClient, 'query'> {
+  return { query: ((text: unknown, params?: unknown) => inSchool(claims, (db) => db.query(text as string, params as unknown[]))) as PoolClient['query'] };
 }
 
 async function history(db: PoolClient, claims: SessionClaims): Promise<{ messages: ChatMessage[]; book: NameBook }> {
@@ -92,7 +99,7 @@ export async function agentTurn(claims: SessionClaims, text: string | ((book: Na
   let fixes = 0;
 
   for (let round = 0; round < MAX_ROUNDS; round++) {
-    const ai = await inSchool(claims, (db) => streamText(db, { accountId: claims.schoolId as string, childFirstNames: [], day: today }, 'school_agent.plan', { system, messages, maxTokens: 4000, responseFormat: 'json' }));
+    const ai = await streamText(perQueryDb(claims), { accountId: claims.schoolId as string, childFirstNames: [], day: today }, 'school_agent.plan', { system, messages, maxTokens: 4000, responseFormat: 'json' });
     if (!ai.ok) {
       const off = ai.reason === 'not_switched_on' || ai.reason === 'not_cleared_for_minors' || ai.reason === 'not_capable';
       return { say: off ? 'The assistant is not switched on for schools yet.' : 'The assistant could not answer just now. Please try again.', requestId: null, plan: null, run: null, refused: off ? 'off' : 'failed' };
@@ -110,12 +117,23 @@ export async function agentTurn(claims: SessionClaims, text: string | ((book: Na
     const reads = asSteps(out.reads).slice(0, 8);
     const planSteps = out.plan && typeof out.plan === 'object' ? asSteps((out.plan as Record<string, unknown>).steps) : [];
 
+    // A plan or read naming a route that is not listed goes back to the model at once, with what it should look at.
+    const unknown = [...planSteps, ...reads].filter((s) => !catalogEntry(s.endpoint)).map((s) => s.endpoint);
+    if (unknown.length) {
+      messages.push({ role: 'user', content: `UNKNOWN ROUTES: ${[...new Set(unknown)].join('; ')}. Use only routes exactly as listed in ROUTES (ask for the module in "modules" first), written like "GET classes".` });
+      continue;
+    }
+
     if (planSteps.length > 0) {
       const p = out.plan as Record<string, unknown>;
       plan = { title: String(p.title ?? 'Changes').slice(0, 200), summary: String(p.summary ?? '').slice(0, 2000), steps: planSteps };
       run = await checkPlan(claims, planSteps, auth);
       if (run.ok || fixes >= MAX_FIXES) break;
       fixes++;
+      if (run.steps.length === 0) {
+        messages.push({ role: 'user', content: `PLAN NOT RUN: a plan needs 1 to ${MAX_STEPS} listed routes that change something. Send it again.` });
+        continue;
+      }
       const failed = run.steps.find((s) => !s.ok);
       messages.push({ role: 'user', content: `PLAN CHECK FAILED at step ${run.steps.length} (${failed?.endpoint}): status ${failed?.status}, ${hideKnownNames(String(redact(failed?.error ?? '', book)), book)}. Answer: ${clip(redact(failed?.answer, book))}. Fix the plan (read more if needed) and send it again.` });
       continue;
@@ -149,6 +167,6 @@ export async function agentTurn(claims: SessionClaims, text: string | ((book: Na
     await db.query(`insert into agent_messages (school_id, user_id, role, body, names, request_id) values ($1, $2, 'agent', $3, $4, $5)`, [claims.schoolId, claims.sub, say.slice(0, 8000), names, id]);
     return id;
   });
-  if (plan && run && !run.ok) say = `${say}\n\nI could not make this work: ${run.steps.find((s) => !s.ok)?.error ?? 'a step failed'}. Nothing was changed.`;
+  if (plan && run && !run.ok) say = `${say}\n\nI could not make this work: ${run.steps.find((s) => !s.ok)?.error ?? 'the plan named no route it could run'}. Nothing was changed.`;
   return { say: restoreNames(say, book), requestId, plan: plan && run?.ok ? { title: restoreNames(plan.title, book), summary: restoreNames(plan.summary, book) } : null, run };
 }
