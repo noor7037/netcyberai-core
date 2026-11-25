@@ -19,6 +19,7 @@ const COMPANY = [
   { href: '/security/data-ownership', label: 'Data ownership' },
   { href: '/product-tour', label: 'Product tour' },
   { href: '/family/install', label: 'Family app' },
+  { href: '/school-app', label: 'School app' },
   { href: '/teacher-app', label: 'Teacher app' },
 ];
 

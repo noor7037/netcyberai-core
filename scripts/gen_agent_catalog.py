@@ -15,22 +15,30 @@ METHODS = ('GET', 'POST', 'PUT', 'PATCH', 'DELETE')
 
 # Never offered to the agent, read or write (tier 3): money moving, identity and accounts, consent and data rights,
 # records of what happened (attendance, marking), exports and files, and the agent's own and bulk engines.
+# Never offered to the agent, read or write (tier 3), each for a reason a principal's approval cannot cover (C550):
+# money that must match real cash (recording payments and receipts, bank lines, payment set-up); account security
+# (password resets, the WhatsApp keys, the plan NetCyberAI sets); consent and data rights (the parent's legal act);
+# answer-sheet marking (the teacher's own judgement of a child's work); exports, files and uploads (data leaving the
+# app, and the agent sends no files); and the agent's own, bulk and AI-drafting routes.
 NEVER = [
-    r'^agent(/|$)', r'^bulk(/|$)', r'^dsr(/|$)', r'(^|/)dsr(/|$)', r'(^|/)consent(/|$)', r'^recovery(/|$)',
-    r'^fees/recovery', r'qr-token', r'^users(/|$)', r'^whatsapp-config', r'^entitlements', r'^fees/payments',
-    r'^fees/payment-setup', r'^fees/bank', r'^fees/receipts', r'^fees/concessions', r'^fees/links', r'/waive$',
-    r'^scan$', r'^marking(/|$)', r'(^|/)export(/|$)', r'/bundle$', r'/files$', r'/pdf$', r'/print$', r'photo',
-    r'upload', r'attachments', r'record-documents', r'/evidence', r'^compliance/sqaaf', r'^students/import/ocr',
-    r'^staff/invitations', r'^guardians/merge', r'family-code', r'^families/(link|confirm)', r'^copilot(/|$)',
-    r'^parent-ai(/|$)', r'^school/branding', r'^compliance/qualifications/(import|template)', r'^lists/',
+    r'^agent(/|$)', r'^bulk(/|$)', r'^dsr(/|$)', r'(^|/)dsr(/|$)', r'(^|/)consent(/|$)', r'^users(/|$)',
+    r'^whatsapp-config', r'^entitlements', r'^fees/payments', r'^fees/payment-setup', r'^fees/bank', r'^fees/receipts',
+    r'^fees/links', r'^scan$', r'^marking(/|$)', r'(^|/)export(/|$)', r'/bundle$', r'/files$', r'/pdf$', r'/print$',
+    r'photo', r'upload', r'attachments', r'record-documents', r'/evidence', r'^compliance/sqaaf', r'^students/import/ocr',
+    r'family-code', r'^copilot(/|$)', r'^parent-ai(/|$)', r'^school/branding', r'^compliance/qualifications/(import|template)',
+    r'^lists/',
 ]
-NEVER_WRITE = [r'^attendance(/|$)', r'^documents/certificates/requests/[^/]+/(collect|deliver)', r'^timetable/import',
-               r'^students/import', r'^classes/import', r'^compliance/form6/figures']
-# Tier 2: the principal approves, after seeing who is affected. Anything parents or students see or pay, settings,
-# the school year, and every delete.
+# Who was in class is the teacher's own record: a day is marked by the teacher; the agent may only ask for, or (as the
+# office) decide, a correction, with a reason. CSV imports need a file.
+NEVER_WRITE = [r'^attendance$', r'^attendance/(?!corrections|chronic)', r'^documents/certificates/requests/[^/]+/(collect|deliver)',
+               r'^timetable/import', r'^students/import', r'^classes/import', r'^compliance/form6/figures']
+# Tier 2: the principal approves, after seeing who is affected. Anything parents or students see or pay (concessions
+# and fee follow-ups too), settings, the school year, staff invitations, ID cards, corrections to attendance, merging
+# records, and every delete.
 PRINCIPAL = [r'^communication', r'^ptm', r'^events', r'^exams', r'^documents', r'^admissions', r'^fees', r'^settings',
-             r'^setup/(promotion|sessions)', r'^attendance/chronic/tell', r'^complaints', r'^early-warning', r'^families',
-             r'^guardians', r'^students/[^/]+/(guardians|family)', r'^compliance', r'^proxy', r'^ai-tutors']
+             r'^setup/(promotion|sessions)', r'^attendance', r'^complaints', r'^early-warning', r'^families',
+             r'^guardians', r'^students/[^/]+/(guardians|family|qr-token)', r'^compliance', r'^proxy', r'^ai-tutors',
+             r'^staff/invitations', r'^qr-tokens', r'^recovery']
 
 def tier(path, method):
     if any(re.search(p, path) for p in NEVER):

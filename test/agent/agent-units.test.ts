@@ -10,7 +10,7 @@ import { hideKnownNames, newNameBook, redact, restoreNames } from '@/lib/agent/r
 
 describe('what the agent may call', () => {
   it('never lists money moving, accounts, consent, attendance or marking writes, exports or its own routes', () => {
-    const never = [/^POST fees\/payments/, /^POST attendance/, /^PATCH attendance/, /marking/, /^POST users/, /consent/, /dsr/, /export/, / agent/, / bulk/, /qr-token/, /whatsapp-config/, /fees\/(bank|receipts|concessions|recovery|payment-setup)/];
+    const never = [/^POST fees\/payments/, /^POST attendance$/, /^PATCH attendance\//, /marking/, /^POST users/, /consent/, /dsr/, /export/, / agent/, / bulk/, /whatsapp-config/, /fees\/(bank|receipts|payment-setup)/, /family-code/];
     for (const e of CATALOG) for (const re of never) expect(`${e.id}`).not.toMatch(re);
   });
   it('reads are tier 0, every change tier 1 or 2, every delete tier 2', () => {
@@ -21,6 +21,10 @@ describe('what the agent may call', () => {
     }
     expect(CATALOG.find((e) => e.id === 'POST communication/notices')?.tier).toBe(2);
     expect(CATALOG.find((e) => e.id === 'POST classes')?.tier).toBe(1);
+    // Opened with the principal's approval (C550).
+    for (const id of ['POST fees/concessions', 'POST staff/invitations', 'POST attendance/corrections', 'POST guardians/merge', 'POST qr-tokens/:tokenId/revoke']) {
+      expect(CATALOG.find((e) => e.id === id)?.tier, id).toBe(2);
+    }
   });
   it('covers the school app broadly', () => {
     expect(new Set(CATALOG.map((e) => e.module)).size).toBeGreaterThanOrEqual(30);

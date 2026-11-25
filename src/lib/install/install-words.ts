@@ -22,6 +22,11 @@ export const INSTALL_WORDS = {
       what: "NetCyberAI Teacher is an app for school teachers. It shows your day, helps you take attendance and keeps your classes in one place on your phone. To install it, tap the big Install button below. On an iPhone, tap Share, then Add to Home Screen, and sign in with your school login.",
       steps: ['Open the NetCyberAI Teacher app from your home screen.', 'Sign in with your school login.', 'See your day and take attendance.'],
     },
+    school: {
+      name: 'NetCyberAI School',
+      what: "NetCyberAI School is the school's own app for the principal and the office. It opens your dashboard, every module you use and the Ask assistant from your phone's home screen, like any other app. To install it, tap the big Install button below. On an iPhone, tap Share, then Add to Home Screen.",
+      steps: ['Open the NetCyberAI School app from your home screen.', 'Sign in with your school login.', 'Your dashboard opens; tap Ask to get work done.'],
+    },
   },
   hi: {
     install: 'इंस्टॉल करें',
@@ -41,6 +46,11 @@ export const INSTALL_WORDS = {
       name: 'NetCyberAI Teacher',
       what: 'NetCyberAI Teacher स्कूल के शिक्षकों के लिए एक ऐप है। इसमें आप अपना दिन देखते हैं, उपस्थिति लेते हैं और अपनी कक्षाएँ अपने फ़ोन पर एक जगह रखते हैं। इसे इंस्टॉल करने के लिए नीचे का बड़ा इंस्टॉल बटन दबाएँ। iPhone पर Share दबाएँ, फिर Add to Home Screen दबाएँ, और अपने स्कूल के लॉगिन से साइन इन करें।',
       steps: ['होम स्क्रीन से NetCyberAI Teacher ऐप खोलें।', 'अपने स्कूल के लॉगिन से साइन इन करें।', 'अपना दिन देखें और उपस्थिति लें।'],
+    },
+    school: {
+      name: 'NetCyberAI School',
+      what: 'NetCyberAI School स्कूल का अपना ऐप है, प्रधानाचार्य और ऑफ़िस के लिए। इसमें आपका डैशबोर्ड, आपके सभी मॉड्यूल और Ask सहायक आपके फ़ोन की होम स्क्रीन से खुलते हैं, किसी भी दूसरे ऐप की तरह। इंस्टॉल करने के लिए नीचे बड़ा Install बटन दबाएँ। iPhone पर Share दबाएँ, फिर Add to Home Screen दबाएँ।',
+      steps: ['होम स्क्रीन से NetCyberAI School ऐप खोलें।', 'अपने स्कूल के लॉगिन से साइन इन करें।', 'आपका डैशबोर्ड खुलेगा; काम करवाने के लिए Ask दबाएँ।'],
     },
   },
 } as const;

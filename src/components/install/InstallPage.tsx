@@ -8,7 +8,7 @@ type PromptEvent = Event & { prompt: () => Promise<void>; userChoice: Promise<{ 
 
 // One page, one big button (founder, C230): install the app from the phone's browser. `lang` is the server's choice
 // when it knows one (the Family cookie); otherwise the phone's own language decides after load.
-export function InstallPage({ app, startUrl, lang }: { app: 'family' | 'teacher'; startUrl: string; lang?: InstallLang }) {
+export function InstallPage({ app, startUrl, lang }: { app: 'family' | 'teacher' | 'school'; startUrl: string; lang?: InstallLang }) {
   const [chosen, setChosen] = useState<InstallLang>(lang ?? 'en');
   const [prompt, setPrompt] = useState<PromptEvent | null>(null);
   const [installed, setInstalled] = useState(false);
