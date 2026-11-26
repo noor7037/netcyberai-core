@@ -23,7 +23,7 @@ export function ModeSwitch({ mode, lang }: { mode: string; lang: string }) {
     document.querySelectorAll<HTMLElement>('[data-school-app]').forEach((el) => (el.dataset.ncaMode = m));
   }
   return (
-    <button type="button" onClick={next} aria-label={w[now]} title={w[now]} data-mode-switch={now} className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full bg-white/15 text-lg font-bold text-white ring-1 ring-white/30">
+    <button type="button" onClick={next} aria-label={w[now]} title={w[now]} data-mode-switch={now} className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full bg-sapphire text-lg font-bold text-white ring-1 ring-white/30">
       <span aria-hidden="true">{ICON[now]}</span>
     </button>
   );
