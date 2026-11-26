@@ -1,9 +1,9 @@
 import { InstallPage } from '@/components/install/InstallPage';
 import { breadcrumbListJsonLd, buildMetadata, pageMeta, serializeJsonLd } from '@/lib/seo';
 
-// Install the Teacher app from the phone's browser (founder, C230). It opens /app: signed-out visitors are sent to
-// /login by the middleware, signed-in teachers land on My Day.
-export const metadata = { ...buildMetadata(pageMeta.teacherInstall), manifest: '/teacher.webmanifest' };
+// Teachers install the School app here (C552): the same app as /school-app (one app per phone; on one phone the apps share
+// one sign-in). It opens /app: signed-out visitors are sent to /login, signed-in teachers land on My Day.
+export const metadata = { ...buildMetadata(pageMeta.teacherInstall), manifest: '/school.webmanifest' };
 
 export default function TeacherInstallPage() {
   return (

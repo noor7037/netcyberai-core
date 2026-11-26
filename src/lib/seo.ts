@@ -205,7 +205,7 @@ export const pageMeta = {
     path: '/teacher-app',
     title: 'Install NetCyberAI Teacher',
     description:
-      'Install the NetCyberAI Teacher app on your phone from this page: see your day, take attendance and manage your classes from your home screen like any app.',
+      'Teachers install the NetCyberAI School app from this page: your day, attendance and classes on your phone’s home screen, opened with your own school login.',
   },
   familyInstall: {
     path: '/family/install',
