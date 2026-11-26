@@ -21,6 +21,8 @@ function themeVars(id: SchoolThemeId): Record<string, string> {
     '--c-electric': rgb(t.electric),
     '--c-azure': rgb(t.azure),
     ...Object.fromEntries(t.chart.map((c, i) => [`--chart-${i + 1}`, c])),
+    // The dashboard band's glow takes the theme's own chart hues (classic keeps today's glow).
+    ...(id === 'classic' ? {} : { '--c-mesh-1': rgb(t.chart[0]), '--c-mesh-2': rgb(t.chart[4]) }),
   };
 }
 

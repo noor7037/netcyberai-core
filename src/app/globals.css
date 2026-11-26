@@ -80,8 +80,8 @@ dialog.modal-dialog::backdrop {
 
 .nca-mesh-dark {
   background-image:
-    radial-gradient(40rem 28rem at 88% -8%, rgb(139 61 255 / 0.38), transparent 70%),
-    radial-gradient(32rem 24rem at 102% 70%, rgb(2 207 249 / 0.22), transparent 70%),
+    radial-gradient(40rem 28rem at 88% -8%, rgb(var(--c-mesh-1, 139 61 255) / 0.38), transparent 70%),
+    radial-gradient(32rem 24rem at 102% 70%, rgb(var(--c-mesh-2, 2 207 249) / 0.22), transparent 70%),
     radial-gradient(28rem 22rem at -6% 108%, rgb(255 122 26 / 0.22), transparent 70%),
     radial-gradient(30rem 22rem at 30% 120%, rgb(20 184 166 / 0.18), transparent 70%);
 }
@@ -619,7 +619,8 @@ html {
 
 /* The part of a screen a first-visit tour step is about (C138). */
 [data-tour-here] {
-  outline: 3px solid #1d4ed8;
+  /* The school app's theme colour where one is set (C553); the classic blue everywhere else. */
+  outline: 3px solid rgb(var(--c-royal, 29 78 216));
   outline-offset: 4px;
   border-radius: 12px;
 }
