@@ -29,11 +29,24 @@ export const DASHBOARD_ATTENTION: readonly FactId[] = ['attendance.classes_unmar
 // `fact`: the fact a row's number IS, where the row is a fact of its own (today's "Present", the fees "Not yet
 // due"). Its rule, source and time are that fact's. A row without one is a part of the chart's own fact.
 export type ChartRow = { key: string; value: number | null; href?: string; fact?: FactResult };
+// The charts, in the order the principal reads them (founder, C235): today's attendance (the whole school, then
+// each class), the attendance trend, the fees, students by class, syllabus progress, the admissions pipeline, then
+// the rest. Each is drawn only when the fact it is made of was loaded.
+export const DASHBOARD_CHARTS = ['attendance-today', 'attendance-by-class', 'present-rate', 'fees-daily', 'fees-owed', 'students-by-class', 'syllabus-by-class', 'admissions-funnel', 'messages-by-state', 'homework-checked'] as const;
+export type DashboardChartId = (typeof DASHBOARD_CHARTS)[number];
+export type DashboardChartKind = 'bars' | 'line' | 'ring' | 'donut' | 'hbars' | 'area' | 'funnel' | 'progress';
+// The charts whose rows are classes: a row's label is the class's own name (its key), never a message.
+const BY_CLASS: readonly DashboardChartId[] = ['attendance-by-class', 'students-by-class', 'syllabus-by-class'];
+
 export type DashboardChart = {
-  id: 'attendance-today' | 'present-rate' | 'fees-owed' | 'messages-by-state' | 'homework-checked';
-  kind: 'bars' | 'line' | 'ring';
+  id: DashboardChartId;
+  kind: DashboardChartKind;
   tone: ColorToken;
+  // The unit of the rows; the title's number is in `titleUnit` where it differs (a count of classes over rows of rates).
   unit: FactUnit;
+  titleUnit?: FactUnit;
+  // Drawn across both columns on a wide screen (a trend over many days).
+  wide?: boolean;
   // The fact whose rule, source and time the chart's "Why this?" shows first, and that the title's number is.
   fact: FactResult;
   // More facts the chart draws, each with its own rule in "Why this?" (the fees chart is two facts side by side).
@@ -57,17 +70,26 @@ export function dashboardModel(facts: readonly FactResult[]): DashboardModel {
     return f && f.state === 'ok' ? f : undefined;
   };
   const charts: DashboardChart[] = [];
+  const partsOf = (f: FactResult): ChartRow[] => (f.parts ?? []).map((p) => ({ key: p.key, value: p.value, href: p.href }));
 
+  // Today, the whole school: every student on a class roll, by their mark, and those not marked yet. Each slice
+  // but the last is its own fact; "not marked yet" is a part of the students-marked fact.
   const marked = ok('attendance.students_marked');
   const marks = have(['attendance.present', 'attendance.absent', 'attendance.late', 'attendance.leave']).filter((f) => f.state === 'ok');
   if (marked && marks.length === 4) {
     charts.push({
-      id: 'attendance-today', kind: 'bars', tone: 'royal', unit: 'count', fact: marked, value: marked.value, total: marked.total, href: marked.href,
+      id: 'attendance-today', kind: 'donut', tone: 'royal', unit: 'count', fact: marked, value: marked.value, total: marked.total, href: marked.href,
       rows: [...marks.map((f) => ({ key: f.id.split('.')[1], value: f.value, href: f.href ?? undefined, fact: f })), { key: 'not_marked', value: marked.parts?.find((p) => p.key === 'not_marked')?.value ?? null, href: marked.parts?.find((p) => p.key === 'not_marked')?.href }],
     });
   }
+  // Today, class by class: each marked class's share in school, in class order (never by its rate).
+  const byClass = ok('attendance.by_class');
+  if (byClass && (byClass.parts?.length ?? 0) > 0) charts.push({ id: 'attendance-by-class', kind: 'hbars', tone: 'royal', unit: 'percent', titleUnit: 'count', fact: byClass, value: byClass.value, total: byClass.total, href: byClass.href, rows: partsOf(byClass) });
   const rate = by.get('attendance.present_rate');
-  if (rate && rate.state !== 'not_set_up' && (rate.series?.length ?? 0) > 1) charts.push({ id: 'present-rate', kind: 'line', tone: 'azure', unit: 'percent', fact: rate, value: rate.value, href: rate.href, rows: (rate.series ?? []).map((p) => ({ key: p.date, value: p.value })) });
+  if (rate && rate.state !== 'not_set_up' && (rate.series?.length ?? 0) > 1) charts.push({ id: 'present-rate', kind: 'line', tone: 'azure', unit: 'percent', wide: true, fact: rate, value: rate.value, href: rate.href, rows: (rate.series ?? []).map((p) => ({ key: p.date, value: p.value })) });
+  // Fees received, a day at a time: only over days (a single day is the tile).
+  const daily = ok('fees.collected_daily');
+  if (daily && (daily.series?.length ?? 0) > 1) charts.push({ id: 'fees-daily', kind: 'area', tone: 'tangerine', unit: 'inr_paise', fact: daily, value: daily.value, href: daily.href, rows: (daily.series ?? []).map((p) => ({ key: p.date, value: p.value })) });
   const owed = ok('fees.owed');
   const overdue = ok('fees.overdue');
   // Two facts side by side, each row with its own rule and its own rows. The title says no total: the two added
@@ -76,7 +98,14 @@ export function dashboardModel(facts: readonly FactResult[]): DashboardModel {
   const messages = ok('messages.total');
   if (messages) charts.push({ id: 'messages-by-state', kind: 'bars', tone: 'cyan', unit: 'count', fact: messages, value: messages.value, href: messages.href, rows: (messages.parts ?? []).map((p) => ({ key: p.key, value: p.value, href: p.href })) });
   const checked = ok('homework.checked');
-  if (checked) charts.push({ id: 'homework-checked', kind: 'ring', tone: 'azure', unit: 'count', fact: checked, value: checked.value, total: checked.total, href: checked.href, rows: (checked.parts ?? []).map((p) => ({ key: p.key, value: p.value, href: p.href })) });
+  if (checked) charts.push({ id: 'homework-checked', kind: 'ring', tone: 'azure', unit: 'count', fact: checked, value: checked.value, total: checked.total, href: checked.href, rows: partsOf(checked) });
+  const students = ok('students.by_class');
+  if (students && (students.parts?.length ?? 0) > 0) charts.push({ id: 'students-by-class', kind: 'hbars', tone: 'sapphire', unit: 'count', fact: students, value: students.value, href: students.href, rows: partsOf(students) });
+  const syllabus = ok('syllabus.by_class');
+  if (syllabus && (syllabus.parts?.length ?? 0) > 0) charts.push({ id: 'syllabus-by-class', kind: 'progress', tone: 'grape', unit: 'percent', fact: syllabus, value: syllabus.value, href: syllabus.href, rows: partsOf(syllabus) });
+  const funnel = ok('admissions.funnel');
+  if (funnel && (funnel.parts?.length ?? 0) > 0) charts.push({ id: 'admissions-funnel', kind: 'funnel', tone: 'tangerine', unit: 'count', titleUnit: 'percent', fact: funnel, value: funnel.value, href: funnel.href, rows: partsOf(funnel) });
+  charts.sort((a, b) => DASHBOARD_CHARTS.indexOf(a.id) - DASHBOARD_CHARTS.indexOf(b.id));
 
   return {
     groups: DASHBOARD_GROUPS.map((g) => ({ id: g.id, tone: g.tone, tiles: have(g.facts) })).filter((g) => g.tiles.length > 0),
@@ -145,10 +174,16 @@ export function sayDetail(lang: Lang, fact: FactResult): string | null {
 // A chart's one message, and the words of each of its rows.
 export function chartTitle(lang: Lang, chart: DashboardChart): string {
   if (chart.value === null) return say(lang, isMessageKey(`chart.${chart.id}.title.none`) ? `chart.${chart.id}.title.none` : `chart.${chart.id}.title`, { value: '', total: '' });
-  return say(lang, `chart.${chart.id}.title`, { value: sayNumber(chart.value, chart.unit), total: chart.total === undefined ? '' : sayNumber(chart.total, chart.unit) });
+  const unit = chart.titleUnit ?? chart.unit;
+  return say(lang, `chart.${chart.id}.title`, { value: sayNumber(chart.value, unit), total: chart.total === undefined ? '' : sayNumber(chart.total, unit) });
 }
+// The one plain line under a chart's title: what it shows and how to read it.
+export const chartNote = (lang: Lang, chart: Pick<DashboardChart, 'id'>): string => say(lang, `chart.${chart.id}.note`);
+// A chart whose rows are days (a line, an area).
+export const isDayChart = (chart: Pick<DashboardChart, 'kind'>): boolean => chart.kind === 'line' || chart.kind === 'area';
 export function chartRowLabel(lang: Lang, chart: DashboardChart, row: ChartRow): string {
-  if (chart.kind === 'line') return dayWords(lang, row.key);
+  if (isDayChart(chart)) return dayWords(lang, row.key);
+  if (BY_CLASS.includes(chart.id)) return row.key === '' ? t(lang, 'chart.students-by-class.noClass') : row.key;
   // The message states keep the words the Communication screen uses for them.
   return say(lang, chart.id === 'messages-by-state' ? `msg.state.${row.key}` : `chart.${chart.id}.${row.key}`);
 }
@@ -181,7 +216,7 @@ export function dashboardCsvRows(lang: Lang, model: DashboardModel, range: FactR
   for (const c of model.charts) {
     for (const r of c.rows) {
       const of = r.fact ?? c.fact;
-      out.push(row(chartTitle(lang, c), c.kind === 'line' ? r.key : chartRowLabel(lang, c, r), c.kind === 'line' && r.value === null ? { ...of, state: 'no_data' } : of, r.value, undefined, c.unit, r.href ?? c.href));
+      out.push(row(chartTitle(lang, c), isDayChart(c) ? r.key : chartRowLabel(lang, c, r), isDayChart(c) && r.value === null ? { ...of, state: 'no_data' } : of, r.value, undefined, c.unit, r.href ?? c.href));
     }
   }
   return out;

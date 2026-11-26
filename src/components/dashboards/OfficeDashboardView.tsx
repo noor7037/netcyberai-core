@@ -3,7 +3,7 @@ import { FirstVisitTour } from '@/components/app-shell/FirstVisitTour';
 import { ShowMeHow } from '@/components/app-shell/ShowMeHow';
 import type { TourId } from '@/lib/contracts/tours';
 import { t, tCount, type Lang, type MessageKey } from '@/lib/i18n';
-import { chartRowLabel, chartTitle, dashboardModel, sayNumber, sayPeriod, type DashboardChart } from '@/lib/insights/dashboard';
+import { chartNote, chartRowLabel, chartTitle, dashboardModel, isDayChart, sayNumber, sayPeriod, type DashboardChart } from '@/lib/insights/dashboard';
 import { RANGE_IDS, type FactRange, type FactResult, type RangeId } from '@/lib/insights/types';
 import { FactAttention, FactTile, QuickActions, WhyThis } from './dashboard-parts';
 import { FactChart, type FactChartRow } from './FactChart';
@@ -72,17 +72,26 @@ function RangeSwitch({ rangeId, lang }: { rangeId: RangeId; lang: Lang }) {
 }
 
 function Chart({ chart, lang }: { chart: DashboardChart; lang: Lang }) {
-  const rows: FactChartRow[] = chart.rows.map((r) => ({ label: chartRowLabel(lang, chart, r), value: r.value, text: r.value === null ? t(lang, 'dash.chart.gap') : sayNumber(r.value, chart.unit), href: r.href }));
+  // A funnel's step says how many did not go on from the step before: the two steps' own counts, one taken from the other.
+  const drop = (i: number): string | undefined => {
+    const before = chart.rows[i - 1]?.value;
+    const now = chart.rows[i]?.value;
+    return chart.kind === 'funnel' && i > 0 && before != null && now != null && before > now ? tCount(lang, 'dash.chart.drop', before - now) : undefined;
+  };
+  const rows: FactChartRow[] = chart.rows.map((r, i) => ({ label: chartRowLabel(lang, chart, r), value: r.value, text: r.value === null ? t(lang, 'dash.chart.gap') : sayNumber(r.value, chart.unit), href: r.href, muted: r.key === 'not_marked', note: drop(i) }));
   const gaps = chart.kind === 'line' ? chart.rows.filter((r) => r.value === null).length : 0;
   return (
     <FactChart
       id={chart.id}
       title={chartTitle(lang, chart)}
+      note={chartNote(lang, chart)}
       kind={chart.kind}
       tone={chart.tone}
       rows={rows}
       href={chart.href}
-      words={{ showAs: t(lang, 'dash.chart.showAs'), chart: t(lang, 'dash.chart.chart'), table: t(lang, 'dash.chart.table'), what: t(lang, chart.kind === 'line' ? 'dash.chart.day' : 'dash.chart.what'), value: t(lang, 'dash.chart.value'), none: t(lang, 'dash.chart.none'), open: t(lang, 'dash.open'), gaps: gaps > 0 ? tCount(lang, 'dash.chart.gaps', gaps) : undefined }}
+      wide={chart.wide}
+      centre={chart.kind === 'donut' && chart.total !== undefined ? { value: sayNumber(chart.total, chart.unit), word: t(lang, 'dash.chart.inAll') } : undefined}
+      words={{ showAs: t(lang, 'dash.chart.showAs'), chart: t(lang, 'dash.chart.chart'), table: t(lang, 'dash.chart.table'), what: t(lang, isDayChart(chart) ? 'dash.chart.day' : 'dash.chart.what'), value: t(lang, 'dash.chart.value'), none: t(lang, 'dash.chart.none'), open: t(lang, 'dash.open'), gaps: gaps > 0 ? tCount(lang, 'dash.chart.gaps', gaps) : undefined }}
     >
       <WhyThis fact={chart.fact} others={chart.others} lang={lang} />
     </FactChart>
@@ -141,7 +150,9 @@ export function OfficeDashboardView({ data, lang = 'en', tour, help, now = new D
       {model.charts.length > 0 && (
         <section aria-label={t(lang, 'dash.charts')} data-charts className="grid grid-cols-1 gap-4 lg:grid-cols-2">
           {model.charts.map((c) => (
-            <Chart key={c.id} chart={c} lang={lang} />
+            <div key={c.id} className={c.wide ? 'min-w-0 lg:col-span-2' : 'min-w-0'}>
+              <Chart chart={c} lang={lang} />
+            </div>
           ))}
         </section>
       )}
