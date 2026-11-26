@@ -4,7 +4,8 @@
 
 export type FromReader = {
   source: 'nca-reader';
-  type: 'ready' | 'where' | 'stop' | 'speak' | 'ask' | 'tap' | 'state';
+  type: 'ready' | 'where' | 'stop' | 'speak' | 'ask' | 'tap' | 'state' | 'chrome';
+  hidden?: unknown; // 'chrome': the reader's bars stepped aside while reading down (or came back)
   id?: unknown;
   lang?: unknown;
   sentences?: unknown;
