@@ -38,7 +38,7 @@ NEVER_WRITE = [r'^attendance$', r'^attendance/(?!corrections|chronic)', r'^docum
 PRINCIPAL = [r'^communication', r'^ptm', r'^events', r'^exams', r'^documents', r'^admissions', r'^fees', r'^settings',
              r'^setup/(promotion|sessions)', r'^attendance', r'^complaints', r'^early-warning', r'^families',
              r'^guardians', r'^students/[^/]+/(guardians|family|qr-token)', r'^compliance', r'^proxy', r'^ai-tutors',
-             r'^staff/invitations', r'^qr-tokens', r'^recovery']
+             r'^staff/invitations', r'^qr-tokens', r'^recovery', r'^school/theme']
 
 def tier(path, method):
     if any(re.search(p, path) for p in NEVER):

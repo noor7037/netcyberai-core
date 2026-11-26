@@ -1,3 +1,5 @@
+import type { SchoolThemeId } from '@/lib/design-tokens';
+import { isSchoolTheme } from '@/lib/theme/school-theme';
 import { randomUUID } from 'crypto';
 import { writeAuditLog } from '@/lib/audit/log';
 import type { SessionRole } from '@/lib/auth/types';
@@ -26,7 +28,7 @@ export type BrandingActor = { userId: string; role: SessionRole };
 export type BrandingInput = { name?: unknown; logo?: Uint8Array; removeLogo?: boolean };
 export type BrandingProblem = 'not_allowed' | 'not_found' | 'name_blank' | 'name_long' | 'name_invalid' | LogoProblem | 'storage_unavailable';
 export type BrandingResult = { ok: true; name: string; logoVersion: string | null; changed: { name: boolean; logo: 'set' | 'removed' | 'kept' } } | { ok: false; reason: BrandingProblem };
-export type SchoolBrand = { name: string; logoVersion: string | null };
+export type SchoolBrand = { name: string; logoVersion: string | null; theme: SchoolThemeId };
 
 const MAY_CHANGE: readonly SessionRole[] = ['principal', 'school_admin', 'super_admin'];
 export const mayChangeBranding = (role: SessionRole | null | undefined): boolean => !!role && MAY_CHANGE.includes(role);
@@ -38,8 +40,8 @@ export const isSchoolId = (v: unknown): v is string => typeof v === 'string' && 
 const versionOf = (logoPath: unknown, updatedAt: unknown): string | null => (logoPath && updatedAt ? String(new Date(updatedAt as string).getTime()) : null);
 
 export async function loadSchoolBrand(db: Sql, schoolId: string): Promise<SchoolBrand | null> {
-  const row = (await db.query(`select name, logo_path, logo_updated_at from schools where school_id = $1`, [schoolId])).rows[0];
-  return row ? { name: row.name as string, logoVersion: versionOf(row.logo_path, row.logo_updated_at) } : null;
+  const row = (await db.query(`select name, logo_path, logo_updated_at, app_theme from schools where school_id = $1`, [schoolId])).rows[0];
+  return row ? { name: row.name as string, logoVersion: versionOf(row.logo_path, row.logo_updated_at), theme: isSchoolTheme(row.app_theme) ? row.app_theme : 'classic' } : null;
 }
 
 export async function updateSchoolBranding(db: Sql, storage: FileStorage, actor: BrandingActor, schoolId: string, input: BrandingInput, newId: () => string = () => randomUUID()): Promise<BrandingResult> {

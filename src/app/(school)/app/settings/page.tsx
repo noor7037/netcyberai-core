@@ -7,6 +7,7 @@ import { ModuleSwitchList } from '@/components/settings/ModuleSwitchList';
 import { PaymentRailsPanel } from '@/components/payments/PaymentRailsPanel';
 import { SchoolSettingsPanel } from '@/components/settings/SchoolSettingsPanel';
 import { SchoolBrandingCard } from '@/components/settings/SchoolBrandingCard';
+import { SchoolThemeCard } from '@/components/theme/SchoolThemeCard';
 import { ModulePage } from '@/components/app-ui/ModulePage';
 import { ModuleOffPage } from '@/components/app-shell/ModuleOffPage';
 import { moduleOffReason } from '@/lib/frameworks/page-access';
@@ -63,6 +64,7 @@ export default async function SettingsPage() {
     <ModulePage moduleId="setup" help="whatsapp-settings" tour="settings" title="Settings" purpose="What is on for your school, how each part is set up, and WhatsApp.">
       <WordsProvider words={pageWords(lang, '/app/settings')}>
       {canManage && brand && session?.schoolId && <SchoolBrandingCard scope="school" schoolId={session.schoolId} initial={brand} />}
+      {canManage && brand && <SchoolThemeCard initial={brand.theme} lang={lang} />}
       {entitlements && <ModuleSwitchList entitlements={entitlements} lang={lang} />}
       <SchoolSettingsPanel modules={settings} />
       {settings.some((m) => m.moduleId === 'setup') && <HolidaysCard />}

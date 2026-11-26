@@ -628,3 +628,16 @@ html {
     outline: none;
   }
 }
+
+/* Chart colours (C553): the classic series (design-tokens.ts chartSeries) and the chart's lines and labels. The school
+   app's themes and dark mode replace them inside the school app (src/lib/theme/school-theme.ts). */
+:root {
+  --chart-1: #1D4ED8;
+  --chart-2: #FF7A1A;
+  --chart-3: #14B8A6;
+  --chart-4: #8B3DFF;
+  --chart-5: #016898;
+  --chart-6: #4400F0;
+  --chart-grid: #E2E8F0;
+  --chart-text: #475569;
+}

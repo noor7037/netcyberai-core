@@ -5,6 +5,11 @@ import { SessionRevokedError, withTenantContext } from '@/lib/auth/db';
 import { AppShell } from '@/components/app-shell/AppShell';
 import { ViewAsBanner } from '@/components/app-shell/ViewAsBanner';
 import { ScanButton } from '@/components/shell/ScanButton';
+import { cookies } from 'next/headers';
+import { ThemeSync } from '@/components/theme/ThemeSync';
+import { ModeSwitch } from '@/components/theme/ModeSwitch';
+import { isSchoolMode, schoolThemeCss, THEME_COOKIE } from '@/lib/theme/school-theme';
+import type { SchoolThemeId } from '@/lib/design-tokens';
 import { PreviewBanner } from '@/components/agent/PreviewBanner';
 import { agentWords } from '@/components/agent/words';
 import { schoolShellMenu } from '@/components/app-shell/shell-nav';
@@ -54,6 +59,8 @@ export default async function AppLayout({ children }: { children: React.ReactNod
   let schoolName = 'NetCyberAI';
   // The school's logo version (null: no logo, its initials are shown) and the signed-in person's name (C235-B).
   let logoVersion: string | null = null;
+  // The school's theme (C553), the principal's choice for everyone; the person's own light or dark is on their device.
+  let theme: SchoolThemeId = 'classic';
   let personName = '';
   let menuIncomplete = false;
   // While the founder is viewing as this person (C165): whose view it is and when it ends.
@@ -63,7 +70,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
   // In the free month, for the principal and the school admin: the days left, and the notice from 7 days before (C226).
   let trialNotice: TrialNotice | null = null;
   try {
-    ({ entitlements, schoolName, logoVersion, personName, viewAs, accessNotice, trialNotice } = await withTenantContext(session!, async (db) => {
+    ({ entitlements, schoolName, logoVersion, theme, personName, viewAs, accessNotice, trialNotice } = await withTenantContext(session!, async (db) => {
       const brand = await loadSchoolBrand(db, schoolId);
       const person = (await db.query(`select display_name from users where user_id = $1`, [session!.sub])).rows[0];
       const imp = session!.impersonation
@@ -74,6 +81,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
         entitlements: loaded,
         schoolName: brand?.name ?? 'NetCyberAI',
         logoVersion: brand?.logoVersion ?? null,
+        theme: brand?.theme ?? ('classic' as SchoolThemeId),
         personName: (person?.display_name as string | null | undefined)?.trim() ?? '',
         viewAs: imp ? { name: imp.display_name as string, endsAt: new Date(imp.expires_at as string).toISOString() } : null,
         // The last reads of this transaction: if one fails, the menu above is still whole and its line is left out.
@@ -90,6 +98,8 @@ export default async function AppLayout({ children }: { children: React.ReactNod
   }
 
   const { lang, known } = getLang(session!.sub);
+  const rawMode = cookies().get(THEME_COOKIE)?.value;
+  const mode = isSchoolMode(rawMode) ? rawMode : 'light';
   const storage = await storageAnswer;
   // With the menu's data missing, nothing is offered that the school may not have.
   const quickAdd = menuIncomplete ? [] : buildQuickAdd(role, entitlements);
@@ -100,6 +110,10 @@ export default async function AppLayout({ children }: { children: React.ReactNod
   const menu = schoolShellMenu(buildNavigation(role, entitlements), role, lang);
 
   return (
+    <div data-nca-theme={theme} data-nca-mode={mode} data-school-app className="min-h-screen">
+    {/* The school app's themes and dark mode (C553): made from the design tokens; nothing outside the school app uses them. */}
+    <style dangerouslySetInnerHTML={{ __html: schoolThemeCss() }} />
+    <ThemeSync theme={theme} mode={mode} />
     <ToastProvider>
       <AppShell {...shellWords(lang)}
         groups={menu.groups}
@@ -115,6 +129,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
         action={
           <span className="flex items-center gap-2">
             {/* The school agent (C546): one tap from every screen. */}
+            <ModeSwitch mode={mode} lang={lang} />
             <a href="/app/ask" className="inline-flex min-h-[44px] items-center rounded-full bg-tangerine px-4 text-sm font-bold text-slate">{agentWords(lang).title}</a>
             {isTeacher && <ScanButton onDark />}
           </span>
@@ -152,5 +167,6 @@ export default async function AppLayout({ children }: { children: React.ReactNod
         {children}
       </AppShell>
     </ToastProvider>
+    </div>
   );
 }
