@@ -139,7 +139,7 @@ describe('the school’s branding routes (C235-B)', () => {
     expect(set).toMatchObject({ status: 200, body: { name: 'Made-up School B Onboarded', changed: { name: true, logo: 'set' } } });
     signIn(founder);
     const read = await controlGet(new NextRequest(`http://school.example/api/control/schools/${B}/branding`), { params: { schoolId: B } });
-    expect(await read.json()).toEqual({ name: 'Made-up School B Onboarded', logoVersion: set.body.logoVersion });
+    expect(await read.json()).toEqual({ name: 'Made-up School B Onboarded', logoVersion: set.body.logoVersion, theme: 'classic' });
     // B's principal now sees B's new logo; the audit row is the platform's.
     expect((await getLogo(bPrincipal, '?v=2')).bytes).toEqual(png(128, 128));
     const audit = (await db.pg.query(`select actor_role::text as role from audit_log where school_id = $1 and event_action = 'school.branding_updated'`, [B])).rows;

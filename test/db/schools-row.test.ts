@@ -19,7 +19,7 @@ const u = (n: number) => `c2190000-0000-4000-8000-${String(n).padStart(12, '0')}
 const [A, B, T] = [u(1), u(2), u(3)];
 const [PRINCIPAL, ADMIN, COORDINATOR, TEACHER, ACCOUNTANT, PARENT, B_PRINCIPAL, FOUNDER] = [u(11), u(12), u(13), u(14), u(15), u(16), u(21), u(91)];
 // The profile columns: the school's own name and address (the migration's header lists them), and its logo (C235-B).
-const PROFILE = ['address', 'logo_path', 'name'];
+const PROFILE = ['address', 'app_theme', 'logo_path', 'name']; // app_theme: the school app's look (C553)
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let db: any;
