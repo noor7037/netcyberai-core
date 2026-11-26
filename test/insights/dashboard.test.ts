@@ -7,9 +7,9 @@ import { LANG_COOKIE, isMessageKey, langCookieValue, t } from '@/lib/i18n';
 import { en } from '@/lib/i18n/messages/en';
 import { hi } from '@/lib/i18n/messages/hi';
 import { FACTS, FACT_IDS, NO_LIST_YET, loadFacts, type FactId, type FactResult } from '@/lib/insights';
-import { DASHBOARD_ATTENTION, DASHBOARD_CSV_HEADER, DASHBOARD_GROUPS, chartRowLabel, chartTitle, dashboardCsvRows, dashboardModel, sayDetail, sayNumber, sayPeriod, sayValue } from '@/lib/insights/dashboard';
+import { DASHBOARD_ATTENTION, DASHBOARD_CSV_HEADER, DASHBOARD_GROUPS, chartRowLabel, chartTitle, dashboardCsvRows, dashboardModel, sayDay, sayDetail, sayNumber, sayPeriod, sayValue } from '@/lib/insights/dashboard';
 import { READ_ROUTES, readModuleFor } from '@/lib/frameworks/write-guard';
-import { A, ACCOUNTANT, C6B, PRINCIPAL, TARA, TODAY, accountant, admin, asWho, asWhoKept, coordinator, day, ents, principal, startSchool, tara, type Db, type Who } from './seed';
+import { A, ACCOUNTANT, C5A, C6B, PRINCIPAL, TARA, TODAY, accountant, admin, asWho, asWhoKept, coordinator, day, ents, principal, startSchool, tara, type Db, type Who } from './seed';
 import { ModuleComingPage } from '@/components/app-shell/ModuleComingPage';
 
 // The office's dashboard (docs/26 slice 8d, C203): the screen and its CSV are drawn from the school facts, in
@@ -107,7 +107,7 @@ describe('the words of every fact', () => {
     const placed = DASHBOARD_GROUPS.flatMap((g) => g.facts);
     expect(new Set(placed).size).toBe(placed.length);
     // A fact is a tile, or an attention item, or the whole of a chart: none is loaded and then not shown.
-    const onlyInAChart: FactId[] = ['attendance.students_marked'];
+    const onlyInAChart: FactId[] = ['attendance.students_marked', 'attendance.by_class', 'students.by_class', 'admissions.funnel', 'fees.collected_daily', 'syllabus.by_class'];
     for (const id of FACT_IDS) expect(placed.includes(id) || DASHBOARD_ATTENTION.includes(id) || onlyInAChart.includes(id), id).toBe(true);
     for (const g of DASHBOARD_GROUPS) expect(isMessageKey(`dash.group.${g.id}`), g.id).toBe(true);
     // Fees stay in their own group: no fee figure sits in the learning group or beside it (docs/26 §3 rule 5).
@@ -205,14 +205,28 @@ describe('the dashboard on the whole schema', () => {
     expect(officeRows.filter((r) => r[1] === 'Leave requests waiting').map((r) => [r[0], r[2], r[4]])).toEqual([['Needs your attention', 1, 'count'], ['Running the school', 2, 'count']]);
     expect(html).toContain(`data-needs-you="${model.attention.length}"`);
     // Charts: one message each, and a table whose rows are the facts' own parts.
-    expect(model.charts.map((c) => c.id)).toEqual(['attendance-today', 'present-rate', 'fees-owed', 'messages-by-state', 'homework-checked']);
+    // In the order the principal reads them: today's attendance (the school, then each class), the trend, the fees,
+    // students by class, syllabus progress, the admissions steps, then the rest.
+    expect(model.charts.map((c) => c.id)).toEqual(['attendance-today', 'attendance-by-class', 'present-rate', 'fees-daily', 'fees-owed', 'students-by-class', 'syllabus-by-class', 'admissions-funnel', 'messages-by-state', 'homework-checked']);
+    const chartOf = (id: string) => model.charts.find((c) => c.id === id)!;
+    const said = (id: string) => [chartTitle('en', chartOf(id)), chartOf(id).kind, chartOf(id).rows.map((r) => [chartRowLabel('en', chartOf(id), r), r.value, r.href ?? null])];
+    // Each class marked today, by the present rate's rule, opening that class's register; a class not yet marked is not drawn.
+    expect(said('attendance-by-class')).toEqual(['In school today, class by class: 1 of 2 classes marked', 'hbars', [['5-A', 50, `/app/attendance?class=${C5A}`]]]);
+    // Fees a day at a time: every day of the week, a day with no receipt an honest zero, adding up to "Fees received".
+    expect(said('fees-daily')).toEqual(['Fees received over these days: ₹1,500', 'area', [6, 5, 4, 3, 2, 1, 0].map((n) => [sayDay('en', day(n)), n === 3 ? 100000 : n === 0 ? 50000 : 0, null])]);
+    expect(chartOf('fees-daily').rows.reduce((a, r) => a + (r.value ?? 0), 0)).toBe(facts.find((f) => f.id === 'fees.collected')!.value);
+    // Classes in class order, never by size; the active student in no class on a row of their own.
+    expect(said('students-by-class')).toEqual(['Active students by class: 8', 'hbars', [['5-A', 4, null], ['6-B', 3, null], ['Not in a class yet', 1, null]]]);
+    expect(said('syllabus-by-class')).toEqual(['Syllabus taught, class by class: 25% overall', 'progress', [['5-A', 25, null]]]);
+    expect(said('admissions-funnel')).toEqual(['Admissions this session: 50% of enquiries admitted', 'funnel', [['Enquiries', 2, null], ['Visited', 1, null], ['Took a form', 1, null], ['Admitted', 1, null]]]);
+    expect(chartOf('attendance-today').kind).toBe('donut');
     expect(chartTitle('en', model.charts[0])).toBe('Attendance today: 4 of 8 students marked');
     expect(model.charts[0].rows.map((r) => [chartRowLabel('en', model.charts[0], r), r.value, r.href])).toEqual([['Present', 1, '/app/attendance?show=present'], ['Absent', 1, '/app/attendance?show=absent'], ['Late', 1, '/app/attendance?show=late'], ['On leave', 1, '/app/attendance?show=leave'], ['Not marked yet', 4, '/app/attendance?show=not-marked']]);
-    expect(chartTitle('en', model.charts[1])).toBe('In school over these days: 61.5%');
-    expect(model.charts[1].href).toBe(`/app/attendance?show=days&from=${day(6)}&to=${TODAY}`);
+    expect(chartTitle('en', chartOf('present-rate'))).toBe('In school over these days: 61.5%');
+    expect(chartOf('present-rate').href).toBe(`/app/attendance?show=days&from=${day(6)}&to=${TODAY}`);
     // The fees chart is two facts side by side. Its title says no total (the two added together would be a number
     // with no rule and no list of its own); each row is its own fact, with its own rule and its own rows.
-    const fees = model.charts[2];
+    const fees = chartOf('fees-owed');
     expect([chartTitle('en', fees), chartTitle('hi', fees), fees.value, fees.href]).toEqual(['Fees still to come in', 'जो फ़ीस अभी आनी है', null, null]);
     expect(fees.rows.map((r) => [chartRowLabel('en', fees, r), r.value, r.href, r.fact?.id])).toEqual([['Not yet due', 600000, '/app/fees?show=owed', 'fees.owed'], ['Overdue', 250000, '/app/fees?show=overdue', 'fees.overdue']]);
     const feesCard = new RegExp(`<div data-chart="fees-owed"[^>]*>(.*?)</details>`, 's').exec(html)?.[1] ?? '';
@@ -227,8 +241,8 @@ describe('the dashboard on the whole schema', () => {
     expect(html).not.toContain('8,500');
     // Today's attendance: each bar is its own fact; "not marked yet" is a part of the marked fact.
     expect(model.charts[0].rows.map((r) => r.fact?.id)).toEqual(['attendance.present', 'attendance.absent', 'attendance.late', 'attendance.leave', undefined]);
-    expect(model.charts[3].rows.map((r) => [chartRowLabel('en', model.charts[3], r), r.value])).toEqual([['Waiting to go', 1], ['Not known', 0], ['Sent', 1], ['Delivered', 1], ['Read', 1], ['Failed', 1], ['Held back', 1]]);
-    expect(chartTitle('hi', model.charts[4])).toBe('जाँचा गया होमवर्क: 2 में से 1');
+    expect(chartOf('messages-by-state').rows.map((r) => [chartRowLabel('en', chartOf('messages-by-state'), r), r.value])).toEqual([['Waiting to go', 1], ['Not known', 0], ['Sent', 1], ['Delivered', 1], ['Read', 1], ['Failed', 1], ['Held back', 1]]);
+    expect(chartTitle('hi', chartOf('homework-checked'))).toBe('जाँचा गया होमवर्क: 2 में से 1');
   });
 
   it('the range is in the address: today unless a real range is asked for; other roles are sent to My Day', async () => {

@@ -213,6 +213,7 @@ async function open(w: Who, href: string): Promise<Opened> {
 const paise = (rupees: string) => Math.round(Number(rupees.replace(/,/g, '')) * 100);
 const IN_A_ROW: Partial<Record<FactId, { find: RegExp; as: (text: string) => number }>> = {
   'fees.collected': { find: / · ₹([\d,]+(?:\.\d\d)?)</, as: paise },
+  'fees.collected_daily': { find: / · ₹([\d,]+(?:\.\d\d)?)</, as: paise },
   'fees.owed': { find: /left ₹([\d,]+(?:\.\d\d)?)\./, as: paise },
   'fees.overdue': { find: /left ₹([\d,]+(?:\.\d\d)?)\./, as: paise },
   'pulse.understood': { find: /Answers: (\d+) understood/, as: Number },
@@ -371,7 +372,7 @@ describe('school facts on the whole schema', () => {
       // Two screens ARE the list as they stand and need no filter: the students waiting for consent and the
       // needs-help queue. The month's spend is a figure the Communication screen says itself. Proxy Auto as it
       // stands draws the covered periods too, so its number carries a filter like the rest.
-      const plainAddress: Partial<Record<FactId, string>> = { 'students.waiting_consent': '/app/admissions', 'followups.open': '/app/pulse', 'whatsapp.spend': '/app/communication', 'syllabus.coverage': '/app/syllabus' };
+      const plainAddress: Partial<Record<FactId, string>> = { 'students.waiting_consent': '/app/admissions', 'followups.open': '/app/pulse', 'whatsapp.spend': '/app/communication', 'syllabus.coverage': '/app/syllabus', 'syllabus.by_class': '/app/syllabus' };
       if (plainAddress[f.id]) expect(f.href, f.id).toBe(plainAddress[f.id]);
       else expect(f.href, f.id).toMatch(/\?(show|status|state|from)=/);
     }
@@ -777,8 +778,8 @@ describe('school facts on the whole schema', () => {
       // Leave and covers the same: the platform role holds no right on staff_leave or substitutions and may not
       // ask staff_on_leave() or teachers_away_on() (leave is read by the person and the office, C201 and C202).
       // Admissions the same: the platform role holds no right on the enquiries (C221, W21-M1).
-      expect(asThePlatform.failed, range).toEqual(['admissions.conversion', 'fees.promises_due', 'fees.upi_to_verify', 'staff.leave_waiting', 'staff.on_leave_today', 'proxy.uncovered_today']);
-      expect(asThePlatform.facts, range).toHaveLength(FACT_IDS.length - 6);
+      expect(asThePlatform.failed, range).toEqual(['admissions.conversion', 'admissions.funnel', 'fees.promises_due', 'fees.upi_to_verify', 'staff.leave_waiting', 'staff.on_leave_today', 'proxy.uncovered_today']);
+      expect(asThePlatform.facts, range).toHaveLength(FACT_IDS.length - 7);
       for (const f of asThePlatform.facts) expect([f.state, f.value, f.total, f.count, f.parts], `${f.id} (${range})`).toEqual([mine[f.id].state, mine[f.id].value, mine[f.id].total, mine[f.id].count, mine[f.id].parts]);
       const p = byId(asThePlatform.facts);
       expect([p['fees.overdue'].value, p['fees.overdue'].count, p['tickets.open'].value]).toEqual([250000, 2, 2]);
@@ -790,7 +791,7 @@ describe('school facts on the whole schema', () => {
     const { facts, failed } = await asWho(db, empty, (c) => loadFacts(c, who(empty), ents([], EMPTY), { range: '7d' }));
     expect(failed).toEqual([]);
     const f = byId(facts);
-    for (const id of ['attendance.classes_marked', 'attendance.classes_unmarked', 'attendance.students_marked', 'attendance.present', 'attendance.absent', 'students.active', 'students.waiting_consent', 'fees.owed', 'fees.overdue', 'whatsapp.spend', 'proxy.uncovered_today'] as const) {
+    for (const id of ['attendance.classes_marked', 'attendance.classes_unmarked', 'attendance.students_marked', 'attendance.present', 'attendance.absent', 'students.active', 'students.waiting_consent', 'fees.owed', 'fees.overdue', 'whatsapp.spend', 'proxy.uncovered_today', 'attendance.by_class', 'students.by_class', 'syllabus.by_class', 'admissions.funnel'] as const) {
       expect(f[id], id).toMatchObject({ state: 'not_set_up', value: null, attention: false });
     }
     // With no timetable there is no period to cover: the tile says what is missing and opens nothing.
@@ -806,6 +807,9 @@ describe('school facts on the whole schema', () => {
     expect(f['homework.checked']).toMatchObject({ state: 'no_data', value: null });
     expect(f['messages.total']).toMatchObject({ state: 'ok', value: 0 });
     expect(f['fees.collected']).toMatchObject({ state: 'ok', value: 0, count: 0 });
+    // Fees received each day: every day of the range, each an honest zero, adding up to the total.
+    expect(f['fees.collected_daily']).toMatchObject({ state: 'ok', value: 0, count: 0 });
+    expect(f['fees.collected_daily'].series?.map((p) => p.value)).toEqual([0, 0, 0, 0, 0, 0, 0]);
     expect(facts.filter((x) => x.attention)).toEqual([]);
     // And the lists it opens say there is nothing, in the same words everywhere.
     const days = await open(empty, f['attendance.present_rate'].href!);
@@ -817,7 +821,7 @@ describe('school facts on the whole schema', () => {
     const ids = facts.map((f) => f.id);
     expect(ids.filter((id) => id.startsWith('fees.') || id.startsWith('homework.'))).toEqual([]);
     expect(ids).toContain('attendance.present');
-    expect(ids).toHaveLength(FACT_IDS.length - 8);
+    expect(ids).toHaveLength(FACT_IDS.length - 9);
   });
 
   it('a fact that cannot be computed is left out and named; the transaction and the other facts go on', async () => {

@@ -89,6 +89,8 @@ export type ProxyShow = typeof PROXY_SHOW;
 
 export const screenFor = {
   attendance: (show: AttendanceShow) => `/app/attendance?show=${show}`,
+  // One class's register for today, the screen a teacher marks it on.
+  attendanceClass: (classId: string) => `/app/attendance?class=${encodeURIComponent(classId)}`,
   // The marks saved on each day of the range, and the present rate over all of them.
   attendanceDays: (range: FactRange) => `/app/attendance?show=${ATTENDANCE_DAYS_SHOW}&${days(range)}`,
   // The students waiting for consent are the Admissions screen's own list.
