@@ -137,6 +137,27 @@
   const canSpeak = 'speechSynthesis' in window;
   const post = (m) => { try { if (window.parent !== window) window.parent.postMessage(Object.assign({ source: 'nca-reader' }, m), location.origin); } catch (e) {} };
   const canListen = () => S.host || canSpeak;
+  // Phone reading (founder, 26 Nov 2026): reading down moves the bars out of the way, a scroll up (or the top) brings them
+  // back. The host page is told, so its own bar steps aside too and the chapter has the whole screen.
+  (function chromeOnScroll() {
+    let lastY = window.scrollY;
+    let hidden = false;
+    const set = (h) => {
+      if (h === hidden) return;
+      hidden = h;
+      document.documentElement.classList.toggle('chrome-hidden', h);
+      post({ type: 'chrome', hidden: h });
+    };
+    window.addEventListener('scroll', () => {
+      if (window.innerWidth > 999) return set(false);
+      const y = window.scrollY;
+      const dy = y - lastY;
+      if (y < 60) set(false);
+      else if (dy > 12) set(true);
+      else if (dy < -8) set(false);
+      if (Math.abs(dy) > 8 || y < 60) lastY = y;
+    }, { passive: true });
+  })();
   // Screen furniture is never read aloud (founder, 12 Nov 2026): step tags, chips, progress, pins, credits, the lab's
   // download note and "tap to zoom". The teacher's line (.teach) and the lesson itself are read.
   const SKIP_SEL = 'svg, iframe, textarea, input, script, style, .noread, .sheet, [aria-hidden="true"], .tag, .chip, .eyebrow, .readprog, .pin, .frames, .legend b, .labdone';

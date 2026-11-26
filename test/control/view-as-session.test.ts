@@ -175,9 +175,11 @@ describe('the gate keeps a renewed session on every answer', () => {
     expect(page.headers.get('x-middleware-set-cookie') ?? '').toMatch(/nca_access=/);
     expect(page.cookies.get('nca_refresh')?.value).toBeTruthy();
 
-    // The founder on a school-app page: refused, but the rotated refresh token is kept, so the next page needs no sign-in.
+    // The founder on a school-app page (the installed School app shares the browser's sign-in): sent to Control, never a
+    // bare {"error":"forbidden"}, and the rotated refresh token is kept, so the next page needs no sign-in.
     const refused = await middleware(new NextRequest('https://www.netcyberai.test/app/my-day', { headers: { cookie: cookieHeader({ nca_access: stale, nca_refresh: await founderRefresh() }) } }));
-    expect(refused.status).toBe(403);
+    expect(refused.status).toBe(307);
+    expect(new URL(refused.headers.get('location') ?? '').pathname).toBe('/control');
     expect(refused.cookies.get('nca_refresh')?.value).toBeTruthy();
     expect(refused.cookies.get('nca_access')?.value).toBeTruthy();
     vi.unstubAllGlobals();

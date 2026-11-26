@@ -48,6 +48,8 @@ export function BookChapter({ src, title, chapterKey, subject, back, w, tutor, c
   // W23-A: the reader's reading state (for the bar's Play and Pause and percent) and the tap menu for a word tapped in it.
   const [reader, setReader] = useState<{ playing: boolean; percent: number; can: boolean }>({ playing: false, percent: 0, can: false });
   const [tap, setTap] = useState<Tap | null>(null);
+  // The reader's bars step aside while the child reads down (reader.js); this page's bar does too, so the chapter has the screen.
+  const [chromeHidden, setChromeHidden] = useState(false);
   const [ask, setAsk] = useState<{ n: number; text: string } | null>(null);
   const closeButton = useRef<HTMLButtonElement>(null);
   const opener = useRef<HTMLElement | null>(null);
@@ -95,6 +97,7 @@ export function BookChapter({ src, title, chapterKey, subject, back, w, tutor, c
       if (m.type === 'ready') to({ type: 'hello', tutor: !!tutor, name: childName ?? '' });
       else if (m.type === 'where') setWhere({ chapter: String(m.chapter ?? '').slice(0, 100), topic: String(m.topic ?? '').slice(0, 100), topicId: String(m.topicId ?? '').slice(0, 40), lab: '' });
       else if (m.type === 'stop') stop();
+      else if (m.type === 'chrome') setChromeHidden(m.hidden === true);
       else if (m.type === 'state') setReader(cleanState(m));
       else if (m.type === 'tap') {
         const t = cleanTap(m);
@@ -175,7 +178,7 @@ export function BookChapter({ src, title, chapterKey, subject, back, w, tutor, c
 
   return (
     <div data-book-chapter={chapterKey} className="fixed inset-0 z-30 flex flex-col bg-paper">
-      <div data-book-bar className="flex min-h-[76px] shrink-0 items-center gap-2 px-3 pb-1 pt-[max(0.5rem,env(safe-area-inset-top))]">
+      <div data-book-bar data-hidden={chromeHidden ? 'true' : undefined} className={`flex shrink-0 items-center gap-2 overflow-hidden px-3 transition-[max-height,padding] duration-200 motion-reduce:transition-none ${chromeHidden ? 'max-h-0 py-0' : 'max-h-[120px] min-h-[76px] pb-1 pt-[max(0.5rem,env(safe-area-inset-top))]'}`}>
         <Link href={back.href} className="fam-press flex min-h-[44px] shrink-0 items-center gap-2 rounded-full bg-emerald pl-3 pr-4 text-sm font-bold text-white">
           <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5">
             <path d="M15 18l-6-6 6-6" />

@@ -250,3 +250,19 @@ textarea { width: 100%; min-height: 96px; border: 2px solid var(--line); border-
 .teach { margin: 0 0 8px; padding: 8px 12px; border-radius: 12px; background: var(--sun-t); color: var(--ink); font-weight: 600; }
 .hero .teach { display: inline-block; margin-bottom: 10px; }
 .teach .ico { margin-right: 6px; }
+
+/* Phone and tablet portrait: the whole screen is the chapter (founder, 26 Nov 2026). The bars step aside while the child
+   reads down and come back on the first scroll up (or at the top); the page runs almost edge to edge; a step is one flat
+   surface, and a lab is the step itself, not a box in a box. With reduced motion the bars move without sliding. */
+@media (max-width: 999px) {
+  .main { padding: 6px 4px calc(var(--bar) + 20px); }
+  .card, .step { border-radius: 14px; padding: 12px 12px; margin: 0 0 10px; box-shadow: none; }
+  .step.lab { padding: 10px 0 6px; border-radius: 0; margin-inline: -4px; }
+  .step.lab > :not(iframe) { padding-inline: 12px; }
+  .labframe { border-radius: 0; }
+  .top, .bottombar { transition: transform .2s cubic-bezier(.2,.8,.2,1); will-change: transform; }
+  html.chrome-hidden .top { transform: translateY(-100%); }
+  html.chrome-hidden .bottombar { transform: translateY(110%); }
+  html.chrome-hidden .main { padding-bottom: 20px; }
+}
+@media (prefers-reduced-motion: reduce) { .top, .bottombar { transition: none; } }

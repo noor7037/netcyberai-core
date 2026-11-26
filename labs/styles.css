@@ -194,3 +194,11 @@ body::before { background: var(--bg); }
 .labphotos figure { margin: 0; flex: 0 0 min(240px, 70%); scroll-snap-align: start; background: var(--surface); border-radius: 12px; overflow: hidden; box-shadow: 0 1px 2px rgb(28 27 26 / 0.05), 0 4px 12px -6px rgb(28 27 26 / 0.1); }
 .labphotos img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
 .labphotos figcaption { font-size: .85rem; padding: 6px 10px 8px; color: var(--ink-2); }
+
+/* Inside the chapter reader on a phone: one surface, no frame in a frame (founder, 26 Nov 2026). */
+@media (max-width: 760px) {
+  html.embed .wrap { padding-left: 0; padding-right: 0; }
+  html.embed .player { gap: 8px; padding-bottom: 8px; }
+  html.embed .stagewrap, html.embed .guide { border: 0; border-radius: 0; padding: 8px 10px; }
+  html.embed .labtop { padding: 6px 10px 4px; }
+}

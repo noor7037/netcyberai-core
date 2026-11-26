@@ -96,7 +96,11 @@ async function gate(req: NextRequest, requestId: string): Promise<NextResponse> 
     // A parent who opens a staff address is taken to the parent home; staff who open the parent home, to their own.
     if (claims.role === 'parent') return keep(NextResponse.redirect(new URL('/parent', req.url)));
     if (isFamily) return keep(NextResponse.redirect(new URL(claims.role === 'super_admin' ? '/control' : '/app', req.url)));
-    return keep(NextResponse.json({ error: 'forbidden' }, { status: 403 }));
+    // Never a bare error page (founder, 26 Nov 2026: the installed School app showed {"error":"forbidden"} to the founder,
+    // whose browser sign-in it shares): staff and the founder are taken to their own home instead.
+    if (isApp && canAccessControl(claims)) return keep(NextResponse.redirect(new URL('/control', req.url)));
+    if (isControl && canAccessApp(claims)) return keep(NextResponse.redirect(new URL('/app', req.url)));
+    return keep(NextResponse.redirect(new URL('/login', req.url)));
   }
 
   return keep(next(req, requestId));
