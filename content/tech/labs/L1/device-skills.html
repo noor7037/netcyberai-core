@@ -1,0 +1,248 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#1D4ED8">
+<title>Device skills · Tech & AI Lab</title>
+<!-- Lab: device-skills (Level 1). Practise using a device: tap / double-tap / long-press / drag; find keys on a QWERTY keyboard
+     (with the F and J bumps); type home-row words; organise files into folders and make a new folder.
+     Modes (?mode=): tap | keys | type | files. Works with touch, mouse and a real keyboard. Own work, MIT. -->
+<style>/* L1 lab kit (own work, MIT). Family App palette from src/lib/design-tokens.ts */
+:root{--royal:#1D4ED8;--sapphire:#002357;--grape:#8B3DFF;--violet:#4400F0;--tangerine:#FF7A1A;--coral:#FF6B57;--gold:#F5B90A;--turq:#14B8A6;--emerald:#0F766E;--cyan:#02CFF9;--slate:#1E293B;--off:#F9FAFB;--ink2:#475569;--r:18px;--sh:0 6px 18px rgba(30,41,59,.12),0 1px 3px rgba(30,41,59,.08)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:var(--off);color:var(--slate);font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans Devanagari",sans-serif;overscroll-behavior:none}
+body{background:transparent;-webkit-user-select:none;user-select:none;display:flex;flex-direction:column;min-height:100%;overflow-x:hidden}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;touch-action:manipulation}
+.kbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:8px;padding:10px 12px;background:linear-gradient(120deg,var(--sapphire),var(--royal) 60%,var(--grape));color:#fff;box-shadow:0 2px 10px rgba(0,35,87,.25)}
+.kbar{flex-wrap:wrap;row-gap:6px}
+.kbar h1{flex:1 1 9em;min-width:0;margin:0;font-size:16px;line-height:1.2;font-weight:800;letter-spacing:.2px;overflow-wrap:break-word}/* title never cut: controls move to a 2nd row when needed */
+.kctl{display:flex;align-items:center;gap:8px;margin-left:auto}
+.kbar .kemo{font-size:22px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.25))}
+.kpill{display:flex;background:rgba(255,255,255,.16);border-radius:999px;padding:3px}
+.kpill button{padding:5px 9px;border-radius:999px;font-size:12.5px;font-weight:700;color:#e0e7ff;min-height:32px}
+.kpill button[aria-pressed=true]{background:#fff;color:var(--royal)}
+.kstars{display:flex;align-items:center;gap:4px;background:rgba(255,255,255,.16);padding:6px 10px;border-radius:999px;font-weight:800;font-size:14px;min-width:54px;justify-content:center}
+.kstars.bump{animation:kbump .5s}
+@keyframes kbump{40%{transform:scale(1.35)}}
+.kgoal{margin:10px 12px 0;padding:10px 12px;border-radius:14px;background:#fff;box-shadow:var(--sh);display:flex;gap:10px;align-items:flex-start;font-size:14.5px}
+.kgoal b{color:var(--royal)}
+.kbtn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:46px;padding:10px 18px;border-radius:14px;font-weight:800;background:var(--royal);color:#fff;box-shadow:0 4px 0 #1239a8,var(--sh);transition:transform .08s}
+.kbtn:active{transform:translateY(3px);box-shadow:0 1px 0 #1239a8}
+.kbtn.alt{background:#fff;color:var(--royal);box-shadow:0 4px 0 #c7d2fe,var(--sh)}
+.kbtn.go{background:var(--turq);box-shadow:0 4px 0 #0d8a7c,var(--sh)}
+.kbtn.warn{background:var(--tangerine);box-shadow:0 4px 0 #c75a0c,var(--sh)}
+.kbtn[disabled]{opacity:.45;pointer-events:none}
+.ktoast{pointer-events:none;position:fixed;left:0;top:0;width:max-content;z-index:60;max-width:min(92vw,360px);padding:12px 16px;border-radius:16px;background:var(--slate);color:#fff;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,.3);text-align:center;line-height:1.35;font-size:15px;opacity:0;visibility:hidden;transform:scale(.9);transition:opacity .25s,transform .3s cubic-bezier(.2,1.4,.4,1),visibility 0s .3s}
+.ktoast.show{opacity:1;visibility:visible;transform:none;transition:opacity .25s,transform .3s cubic-bezier(.2,1.4,.4,1)}
+.ktoast.inline{position:static;display:block;width:auto;max-width:none;margin:10px 12px;grid-column:1/-1;flex:0 0 auto}
+.ktoast.good{background:var(--emerald)}.ktoast.bad{background:#b4321f}
+#kconf{position:fixed;inset:0;pointer-events:none;z-index:-1}/* behind content; inside the win dialog it sits behind the card */
+.kwin #kconf{position:absolute;z-index:0}.kwin>div{position:relative;z-index:1}
+.kwin{position:fixed;inset:0;z-index:65;display:none;align-items:center;justify-content:center;background:rgba(6,18,51,.55);backdrop-filter:blur(3px);padding:20px}
+.kwin.show{display:flex}
+.kwin>div{background:#fff;border-radius:24px;padding:22px;text-align:center;max-width:360px;box-shadow:0 20px 50px rgba(0,0,0,.35);animation:kpop .5s cubic-bezier(.2,1.5,.4,1)}
+.kwin .big{font-size:64px;line-height:1;animation:kspin 1.2s ease-out}
+.kwin h2{margin:10px 0 6px;font-size:22px}
+.kwin p{margin:0 0 14px;color:var(--ink2)}
+@keyframes kpop{from{transform:scale(.6);opacity:0}}
+@keyframes kspin{from{transform:rotateY(-540deg) scale(.4)}}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+.kvoice{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.16);font-size:17px;opacity:.6}
+.kvoice[aria-pressed=true]{background:#fff;opacity:1;box-shadow:0 0 0 3px rgba(255,255,255,.4)}
+</style>
+<style>
+main{flex:1;display:flex;flex-direction:column;gap:9px;padding:8px 10px 16px}
+.modes{display:flex;flex-wrap:wrap;gap:6px;}
+.modes button{flex:0 1 auto;max-width:100%;white-space:normal;text-align:center;padding:7px 12px;border-radius:999px;background:#fff;box-shadow:var(--sh);font-weight:700;font-size:13px;min-height:36px}
+.modes button[aria-pressed=true]{background:var(--royal);color:#fff}
+.play{position:relative;border-radius:22px;background:linear-gradient(160deg,#eff6ff,#f5f3ff);box-shadow:var(--sh);min-height:300px;overflow:hidden;touch-action:none}
+.task{font-weight:900;font-size:18px;text-align:center;padding:10px 8px 0}
+.bub{position:absolute;width:76px;height:76px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:38px;background:radial-gradient(circle at 30% 30%,#fff,#bfdbfe 60%,#60a5fa);box-shadow:0 10px 24px rgba(29,78,216,.25);animation:bob 2.4s ease-in-out infinite;user-select:none}
+.bub.pop{animation:popb .35s forwards}@keyframes popb{to{transform:scale(1.6);opacity:0}}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.bub .ring{position:absolute;inset:-6px;border-radius:50%;border:5px solid var(--grape);clip-path:inset(0 0 0 0);opacity:0}
+.box{position:absolute;right:16px;bottom:16px;width:110px;height:96px;border-radius:18px;border:3px dashed var(--grape);display:flex;align-items:center;justify-content:center;font-size:42px;background:#faf5ff}
+.box.hot{background:#ede9fe;transform:scale(1.05)}
+.kb{display:flex;flex-direction:column;gap:5px;padding:8px;background:#1e293b;border-radius:18px;box-shadow:var(--sh);transform:perspective(700px) rotateX(18deg);transform-origin:50% 100%}
+.kr{display:flex;gap:4px;justify-content:center}
+.k{flex:1;max-width:44px;height:44px;border-radius:9px;background:linear-gradient(#f8fafc,#e2e8f0);box-shadow:0 3px 0 #94a3b8;font-weight:900;font-size:15px;display:flex;align-items:center;justify-content:center;position:relative;color:#1e293b}
+.k.wide{max-width:none;flex:2.2;font-size:12px}.k.space{flex:6;max-width:none}
+.k.home{background:linear-gradient(#fef9c3,#fde68a)}
+.k.bump::after{content:'';position:absolute;bottom:7px;width:12px;height:3px;border-radius:2px;background:#475569}
+.k.hint{outline:3px solid var(--tangerine);animation:np 1s ease-in-out infinite}@keyframes np{50%{outline-offset:3px}}
+.k.down{transform:translateY(3px);box-shadow:0 0 0 #94a3b8}
+.k.ok{background:#bbf7d0}.k.bad{background:#fecaca}
+.screen{background:#0f172a;color:#e2e8f0;border-radius:16px;padding:10px 12px;font-family:ui-monospace,Menlo,monospace;font-size:22px;min-height:54px;letter-spacing:1px;word-break:break-all}
+.screen .cur{display:inline-block;width:11px;height:24px;background:#5eead4;vertical-align:middle;animation:blink 1s steps(1) infinite}@keyframes blink{50%{opacity:0}}
+.screen .want{color:#64748b}.screen .done{color:#86efac}
+.fm{display:grid;grid-template-columns:1fr;gap:8px}
+.folders{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.folder{border-radius:16px;background:#fff;box-shadow:var(--sh);padding:8px 4px;text-align:center;font-weight:800;font-size:13px;min-height:92px;transition:transform .15s}
+.folder .fi{font-size:34px;display:block}.folder .fc{font-size:18px;min-height:22px}
+.folder.hot{transform:scale(1.07);outline:3px solid var(--royal)}
+.files{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:#fff;border-radius:16px;box-shadow:var(--sh);padding:10px;min-height:80px}
+.file{width:84px;border-radius:12px;background:#f8fafc;box-shadow:0 2px 0 #cbd5e1;padding:6px 2px;text-align:center;font-size:11px;font-weight:800;overflow-wrap:anywhere}
+.file b{display:block;font-size:28px}
+.newf{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.newf button{padding:7px 10px;border-radius:10px;background:#eef2ff;font-weight:800;font-size:13px;min-height:36px}
+.why{font-size:14px;background:#eff6ff;border-left:4px solid var(--royal);padding:8px 10px;border-radius:10px}
+.prog{display:flex;gap:4px;justify-content:center}.prog i{width:22px;height:8px;border-radius:9px;background:#e2e8f0}.prog i.on{background:var(--turq)}
+@media (orientation:landscape) and (max-height:520px){main{display:grid;grid-template-columns:1fr 1fr;align-items:start}.modes,#goal{grid-column:1/-1}}
+</style></head><body>
+<main>
+  <div class="modes" id="modes"></div>
+  <div class="kgoal" id="goal" style="margin:0"></div>
+  <div class="prog" id="prog"></div>
+  <div id="area"></div>
+  <div class="why" id="why"></div>
+</main>
+<script>// L1 lab kit (own work, MIT): language, header, stars, toast, confetti, sounds, drag, lesson config, completion events.
+(function (g) {
+  const q = new URLSearchParams(location.search);
+  const LANGS = ['hinglish', 'en', 'hi'];
+  let lang = q.get('lang') || (function () { try { return localStorage.getItem('techlab.lang'); } catch (e) { return null; } })() || 'hinglish';
+  if (!LANGS.includes(lang)) lang = 'hinglish';
+  const t = (o) => (o == null ? '' : typeof o === 'string' ? o : Array.isArray(o) ? (o[{ en: 0, hi: 1, hinglish: 2 }[lang]] ?? o[0]) : (o[lang] ?? o.hinglish ?? o.en));
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const el = (tag, attrs = {}, html) => { const e = document.createElement(tag); for (const k in attrs) { if (k === 'class') e.className = attrs[k]; else if (k === 'style') e.style.cssText = attrs[k]; else if (k.startsWith('on')) e.addEventListener(k.slice(2), attrs[k]); else e.setAttribute(k, attrs[k]); } if (html != null) e.innerHTML = html; return e; };
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+  const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const listeners = [];
+  const cls = +(q.get('class') || 0);
+  let voice = q.get('voice') ? q.get('voice') === '1' : (q.has('class') && cls <= 2);
+  const say = (o) => { if (!voice || !g.speechSynthesis) return; try { const txt = t(o).replace(/[\u{1F000}-\u{1FAFF}\u2600-\u27BF]/gu, ''); speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(txt); u.lang = lang === 'hi' ? 'hi-IN' : 'en-IN'; const v = speechSynthesis.getVoices().find((v) => v.lang === u.lang) || speechSynthesis.getVoices().find((v) => v.lang.startsWith(lang === 'hi' ? 'hi' : 'en')); if (v) u.voice = v; u.rate = cls <= 0 && q.has('class') ? .85 : .95; speechSynthesis.speak(u); } catch (e) {} };
+  const K = { q, t, $, $$, el, esc, reduced, say, get voice() { return voice; }, get lang() { return lang; }, stars: 0,
+    onLang(fn) { listeners.push(fn); },
+    setLang(l) { lang = l; try { localStorage.setItem('techlab.lang', l); } catch (e) {} document.documentElement.lang = l === 'hi' ? 'hi' : 'en'; $$('.kpill button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.l === l)); listeners.forEach((f) => f(l)); },
+    header(title, emoji) {
+      const bar = el('header', { class: 'kbar' });
+      bar.innerHTML = `<span class="kemo" aria-hidden="true">${emoji}</span><h1 id="ktitle"></h1><div class="kctl"><div class="kpill" role="group" aria-label="Language">${[['hinglish', 'Hing'], ['en', 'EN'], ['hi', 'हिं']].map(([l, n]) => `<button data-l="${l}" aria-pressed="${l === lang}">${n}</button>`).join('')}</div><button class="kvoice" id="kvoice" aria-label="Read aloud" aria-pressed="${voice}">🔊</button><div class="kstars" aria-live="polite">⭐ <span id="kstarn">0</span></div></div>`;
+      document.body.prepend(bar); if (window.ResizeObserver) new ResizeObserver(() => document.documentElement.style.setProperty('--kbar-h', bar.offsetHeight + 'px')).observe(bar);
+      const upd = () => { $('#ktitle').textContent = t(title); document.title = t(title) + ' · Tech & AI Lab'; };
+      upd(); listeners.push(upd);
+      $$('.kpill button', bar).forEach((b) => b.addEventListener('click', () => K.setLang(b.dataset.l)));
+      $('#kvoice', bar).addEventListener('click', (e) => { voice = !voice; e.currentTarget.setAttribute('aria-pressed', voice); if (voice) { const gl = $('#goal'); say(gl ? gl.textContent : title); } else if (g.speechSynthesis) speechSynthesis.cancel(); });
+      setTimeout(() => { const gl = $('#goal'); if (gl) new MutationObserver(() => say(gl.textContent)).observe(gl, { childList: true, subtree: true }); }, 0);
+      document.body.append(el('div', { class: 'ktoast', id: 'ktoast', role: 'status' }), el('canvas', { id: 'kconf' }), el('div', { class: 'kwin', id: 'kwin', 'data-ov-modal': '', role: 'dialog', 'aria-modal': 'true' }, '<div><div class="big" id="kwinE">🏆</div><h2 id="kwinH"></h2><p id="kwinP"></p><button class="kbtn" id="kwinB"></button></div>'));
+      document.addEventListener('pointerdown', (ev) => { K._lastTap = ev.target; K._tapAt = [ev.clientX, ev.clientY + scrollY]; }, true); let rp = 0; const re = () => { const e = K._tel || (K._tel = $('#ktoast')); if (!e || !e.classList.contains('show') || rp) return; rp = 1; requestAnimationFrame(() => { rp = 0; K._place(); }); }; K._re = re;
+      addEventListener('scroll', re, { passive: true }); addEventListener('resize', re); document.addEventListener('animationend', re, true); document.addEventListener('transitionend', re, true); K._mo = new MutationObserver((rs) => { const e = K._tel || (K._tel = $('#ktoast')); if (rs.some((r) => !e.contains(r.target))) re(); });
+      $('#kwinB').addEventListener('click', () => { $('#kwin').classList.remove('show'); K._winCb && K._winCb(); });
+    },
+    star(n = 1) { K.stars += n; const s = $('#kstarn'); if (s) { s.textContent = K.stars; s.parentElement.classList.remove('bump'); void s.offsetWidth; s.parentElement.classList.add('bump'); } },
+    // Toast never covers text: it floats in a free band of the screen (bottom first); with no free band it drops into the page
+    // flow under what the child just tapped (pushes content down). Closes on its own (2.5 s by default).
+    toast(msg, kind = '', ms = 2500) { const e = K._tel || (K._tel = $('#ktoast')); clearTimeout(K._tt); clearInterval(K._ti); if (e.classList.contains('inline')) document.body.append(e);
+      e.className = 'ktoast ' + kind; e._spot = null; e.textContent = t(msg); say(msg); e.style.left = e.style.top = '0px'; e.classList.add('show'); K._place(); K._ti = setInterval(K._place, 200); K._mo && K._mo.observe(document.body, { subtree: true, childList: true, attributes: true, characterData: true });
+      K._tt = setTimeout(() => { clearInterval(K._ti); K._mo && K._mo.disconnect(); e.classList.remove('show'); setTimeout(() => { if (!e.classList.contains('show') && e.classList.contains('inline')) { e.classList.remove('inline'); document.body.append(e); } }, 320); }, ms); },
+    _place() { const e = K._tel || (K._tel = $('#ktoast')); if (!e.classList.contains('show')) return; if (!e.isConnected) { e.classList.remove('inline'); document.body.append(e); } if (e.classList.contains('inline')) return;
+      const vw = document.documentElement.clientWidth, vh = innerHeight, w = e.offsetWidth, h = e.offsetHeight, m = 8; let top = m; const bar = $('.kbar'); if (bar) top = Math.max(top, bar.getBoundingClientRect().bottom + m);
+      const obs = [], rg = document.createRange(), tw = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); let n;
+      while ((n = tw.nextNode())) { if (!n.nodeValue.trim()) continue; const p = n.parentElement; if (!p || e.contains(p) || /^(SCRIPT|STYLE)$/.test(p.tagName)) continue; rg.selectNodeContents(n); for (const q of rg.getClientRects()) if (q.width >= 1 && q.bottom > 0 && q.top < vh) obs.push(q); }
+      $$('input,select,textarea,button,a[href],[role=button]').filter((x) => !e.contains(x)).forEach((x) => { const q = x.getBoundingClientRect(); if (q.width && q.bottom > 0 && q.top < vh) obs.push(q); });
+      const free = (x, y) => !obs.some((q) => q.left < x + w + 4 && q.right > x - 4 && q.top < y + h + 4 && q.bottom > y - 4);
+      let s = e._spot && free(e._spot.x, e._spot.y) ? e._spot : null;
+      if (!s) outer: for (let y = vh - h - m; y >= top; y -= 6) for (const x of [(vw - w) / 2, m, vw - w - m]) if (free(x, y)) { s = { x, y }; break outer; }
+      if (s) { e._spot = s; e.style.left = s.x + 'px'; e.style.top = s.y + 'px'; return; }
+      e._spot = null; e.classList.add('inline'); e.style.left = e.style.top = '';
+      let a = K._lastTap && K._lastTap.isConnected && !e.contains(K._lastTap) ? K._lastTap : null; if (!a && K._tapAt) { const y = K._tapAt[1] - scrollY; if (y > 0 && y < innerHeight) a = document.elementFromPoint(K._tapAt[0], y); } if (!a || e.contains(a)) a = $('main') || document.body.lastElementChild;
+      // never drop the note inside a 3D scene, a transformed, positioned-out or clipping box
+      const boxedIn = (a0) => { for (let p = a0; p && p !== document.body; p = p.parentElement) { const c = getComputedStyle(p); if (c.transform !== 'none' || c.transformStyle === 'preserve-3d' || c.perspective !== 'none' || c.position === 'absolute' || c.position === 'fixed' || (p !== a0 && c.overflow !== 'visible')) return true; } return false; };
+      while (a.parentElement && a.parentElement !== document.body) { const d = getComputedStyle(a.parentElement), me = getComputedStyle(a);
+        if (me.display !== 'inline' && !(a instanceof SVGElement) && (d.display === 'block' || d.display === 'flow-root' || d.display === 'grid' || (d.display === 'flex' && d.flexDirection.startsWith('column'))) && a.getBoundingClientRect().width >= Math.min(260, innerWidth * 0.6) && !boxedIn(a)) break; a = a.parentElement; }
+      a.after(e); e.scrollIntoView({ block: 'nearest' }); },
+    win(head, body, btn, emoji = '🏆', cb) { $('#kwinE').textContent = emoji; $('#kwinH').textContent = t(head); $('#kwinP').textContent = t(body); $('#kwinB').textContent = t(btn || ['Play again', 'फिर खेलो', 'Phir khelo']); K._winCb = cb; $('#kwin').classList.add('show'); K.confetti(); K.sfx('win'); say(t(head) + '. ' + t(body)); },
+    done(lab, mode, result) { const msg = { type: 'techlab:lab-complete', lab, mode, result, stars: K.stars }; try { parent !== window && parent.postMessage(msg, '*'); } catch (e) {} g.__labResult = msg; },
+    confetti() { if (reduced()) return; const c = $('#kconf'), x = c.getContext('2d'); const wn = $('#kwin'); if (wn.classList.contains('show')) wn.prepend(c); else document.body.append(c); const W = c.width = innerWidth, H = c.height = innerHeight; const cols = ['#1D4ED8', '#8B3DFF', '#FF7A1A', '#F5B90A', '#14B8A6', '#FF6B57', '#02CFF9']; const P = Array.from({ length: 90 }, () => ({ x: W / 2, y: H / 2.2, vx: (Math.random() - .5) * 14, vy: -Math.random() * 14 - 4, r: Math.random() * 6 + 4, c: cols[Math.random() * cols.length | 0], a: Math.random() * 6, va: (Math.random() - .5) * .4 })); let f = 0; (function tick() { x.clearRect(0, 0, W, H); P.forEach((p) => { p.vy += .45; p.x += p.vx; p.y += p.vy; p.a += p.va; x.save(); x.translate(p.x, p.y); x.rotate(p.a); x.fillStyle = p.c; x.fillRect(-p.r / 2, -p.r / 4, p.r, p.r / 2); x.restore(); }); if (++f < 110) requestAnimationFrame(tick); else x.clearRect(0, 0, W, H); })(); },
+    _ac: null,
+    sfx(kind) { try { const ac = K._ac || (K._ac = new (g.AudioContext || g.webkitAudioContext)()); const n = { good: [[660, .07], [880, .1]], bad: [[220, .15]], tap: [[520, .04]], win: [[523, .1], [659, .1], [784, .1], [1047, .22]], move: [[400, .03]] }[kind] || [[500, .05]]; let t0 = ac.currentTime; n.forEach(([f, d]) => { const o = ac.createOscillator(), gn = ac.createGain(); o.type = kind === 'bad' ? 'sawtooth' : 'triangle'; o.frequency.value = f; gn.gain.setValueAtTime(.0001, t0); gn.gain.exponentialRampToValueAtTime(.18, t0 + .01); gn.gain.exponentialRampToValueAtTime(.0001, t0 + d); o.connect(gn).connect(ac.destination); o.start(t0); o.stop(t0 + d + .02); t0 += d; }); } catch (e) {} },
+    // Pointer drag: el follows finger; onDrop(el, x, y) returns true to accept, else it flies back.
+    draggable(node, onDrop, onStart) {
+      node.style.touchAction = 'none';
+      node.addEventListener('pointerdown', (ev) => {
+        if (node.dataset.locked) return; ev.preventDefault(); node.setPointerCapture(ev.pointerId); onStart && onStart(node);
+        const r = node.getBoundingClientRect(), ox = ev.clientX - r.left, oy = ev.clientY - r.top; const ghost = node.cloneNode(true);
+        ghost.style.cssText += `;position:fixed;left:${r.left}px;top:${r.top}px;width:${r.width}px;height:${r.height}px;margin:0;z-index:50;pointer-events:none;transform:scale(1.08) rotate(-3deg);box-shadow:0 14px 30px rgba(0,0,0,.25);transition:none`; ghost.classList.add('dragging'); document.body.append(ghost); node.style.opacity = '.25'; K.sfx('tap');
+        const mv = (e) => { ghost.style.left = e.clientX - ox + 'px'; ghost.style.top = e.clientY - oy + 'px'; K._hover && K._hover(e.clientX, e.clientY); };
+        const up = (e) => { node.removeEventListener('pointermove', mv); node.removeEventListener('pointerup', up); node.removeEventListener('pointercancel', up); K._hover && K._hover(-1, -1);
+          const ok = onDrop(node, e.clientX, e.clientY); if (ok) { ghost.remove(); node.style.opacity = ''; } else { ghost.style.transition = 'left .3s, top .3s, transform .3s'; ghost.style.left = r.left + 'px'; ghost.style.top = r.top + 'px'; ghost.style.transform = 'none'; setTimeout(() => { ghost.remove(); node.style.opacity = ''; }, 300); } };
+        node.addEventListener('pointermove', mv); node.addEventListener('pointerup', up); node.addEventListener('pointercancel', up);
+      });
+    },
+    hit(node, x, y, pad = 10) { const r = node.getBoundingClientRect(); return x >= r.left - pad && x <= r.right + pad && y >= r.top - pad && y <= r.bottom + pad; },
+    async lessonConfig() { const p = q.get('lesson'); const cfg = {}; if (p) { try { const L = await (await fetch(p)).json(); Object.assign(cfg, L.play && L.play.config, { goal: L.play && L.play.goal }); } catch (e) { console.warn('lesson config not loaded', e); } } for (const k of ['mode', 'level', 'class']) if (q.get(k)) cfg[k] = q.get(k); return cfg; },
+    shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.random() * (i + 1) | 0; [a[i], a[j]] = [a[j], a[i]]; } return a; },
+  };
+  document.documentElement.lang = lang === 'hi' ? 'hi' : 'en';
+  g.K = K;
+})(window);
+</script>
+<script>
+(async function () {
+const { t, $, el, esc } = K; const L = (en, hi, hg) => [en, hi, hg];
+K.header(['Device skills', 'डिवाइस कौशल', 'Device skills'], '🖱️');
+const cfg = await K.lessonConfig();
+const MODES = {
+  tap: { n: L('1 · Tap & drag', '1 · टैप और खींचो', '1 · Tap aur drag'), goal: L('Do what each bubble says: tap, double-tap, press and hold, or drag it into the box.', 'हर बुलबुला जो कहे वह करो: टैप, दो बार टैप, दबाकर रखो, या डिब्बे में खींचो।', 'Har bubble jo kahe woh karo: tap, double-tap, daba kar rakho, ya box mein drag karo.') },
+  keys: { n: L('2 · Find the keys', '2 · कुंजी ढूँढो', '2 · Keys dhoondo'), goal: L('Find and press each key the screen asks for. Feel for the bumps on F and J!', 'स्क्रीन जो कुंजी माँगे, ढूँढकर दबाओ। F और J पर उभार महसूस करो!', 'Screen jo key maange, dhoondh kar dabao. F aur J par ubhaar mehsoos karo!') },
+  type: { n: L('3 · Home-row typing', '3 · होम-रो टाइपिंग', '3 · Home-row typing'), goal: L('Type each word using the home row (A S D F — J K L). Use Space between words.', 'होम रो (A S D F — J K L) से हर शब्द टाइप करो। शब्दों के बीच स्पेस दबाओ।', 'Home row (A S D F — J K L) se har word type karo. Words ke beech Space dabao.') },
+  files: { n: L('4 · Files & folders', '4 · फ़ाइलें और फ़ोल्डर', '4 · Files aur folders'), goal: L('Drag each file into the right folder. Then make a new folder called "Holiday" and put the trip photos in it.', 'हर फ़ाइल को सही फ़ोल्डर में खींचो। फिर "Holiday" नाम का नया फ़ोल्डर बनाओ और यात्रा की फ़ोटो उसमें रखो।', 'Har file ko sahi folder mein drag karo. Phir "Holiday" naam ka naya folder banao aur trip ki photos usmein rakho.') },
+};
+let mode = MODES[cfg.mode] ? cfg.mode : 'tap'; let st;
+const why = (m) => $('#why').textContent = t(m);
+const prog = (n, of) => $('#prog').innerHTML = Array.from({ length: of }, (_, i) => `<i class="${i < n ? 'on' : ''}"></i>`).join('');
+function win(extra) { if (st.won) return; st.won = true; K.star(3); K.done('device-skills', mode, { mode, solved: true, ...extra });
+  setTimeout(() => K.win(['Device pro!', 'डिवाइस प्रो!', 'Device pro!'], { tap: L('Tap, double-tap, press-and-hold and drag — you can use any touch screen or mouse now.', 'टैप, दो बार टैप, दबाकर रखना और खींचना — अब तुम कोई भी टच स्क्रीन या माउस चला सकते हो।', 'Tap, double-tap, press-and-hold aur drag — ab tum koi bhi touch screen ya mouse chala sakte ho.'), keys: L('You found letters, numbers and the special keys: Space, Enter, Backspace and Shift.', 'तुमने अक्षर, अंक और ख़ास कुंजियाँ ढूँढीं: स्पेस, एंटर, बैकस्पेस और शिफ़्ट।', 'Tumne letters, numbers aur khaas keys dhoondhi: Space, Enter, Backspace aur Shift.'), type: L(`You typed every word with ${st.mistakes || 0} mistakes. Keep fingers on the home row and you will get faster every day.`, `तुमने हर शब्द ${st.mistakes || 0} ग़लतियों के साथ टाइप किया। उँगलियाँ होम रो पर रखो, हर दिन तेज़ हो जाओगे।`, `Tumne har word ${st.mistakes || 0} galtiyon ke saath type kiya. Ungliyan home row par rakho, har din tez ho jaoge.`), files: L('Neat folders make files easy to find — that is how computers, phones and the cloud keep things tidy.', 'साफ़-सुथरे फ़ोल्डर से फ़ाइलें ढूँढना आसान है — कंप्यूटर, फ़ोन और क्लाउड ऐसे ही चीज़ें सँभालते हैं।', 'Saaf-suthre folders se files dhoondhna aasaan hai — computer, phone aur cloud aise hi cheezein sambhaalte hain.') }[mode], null, '🏅', () => start()), 500); }
+// ---------- tap ----------
+const TAPS = [{ k: 'tap', e: '🎈', n: L('Tap me once!', 'मुझे एक बार टैप करो!', 'Mujhe ek baar tap karo!') }, { k: 'dbl', e: '⭐', n: L('Double-tap me (tap tap)!', 'मुझे दो बार जल्दी टैप करो!', 'Mujhe double-tap karo (tap tap)!') }, { k: 'hold', e: '🐢', n: L('Press and hold me!', 'मुझे दबाकर रखो!', 'Mujhe daba kar rakho!') }, { k: 'drag', e: '🍎', n: L('Drag me into the basket!', 'मुझे टोकरी में खींचो!', 'Mujhe tokri mein drag karo!') }, { k: 'tap', e: '🦋', n: L('Tap the butterfly!', 'तितली पर टैप करो!', 'Titli par tap karo!') }, { k: 'drag', e: '🧸', n: L('Drag the teddy into the box!', 'टेडी को डिब्बे में खींचो!', 'Teddy ko box mein drag karo!') }];
+function tapMode() { const A = $('#area'); A.innerHTML = ''; const P = el('div', { class: 'play', id: 'play' }); A.append(P); prog(st.i, TAPS.length); if (st.i >= TAPS.length) return win({ steps: TAPS.length });
+  const T = TAPS[st.i]; P.append(el('div', { class: 'task', id: 'task' }, esc(t(T.n)))); K.say(T.n); const box = T.k === 'drag' ? el('div', { class: 'box', id: 'box' }, '🧺') : null; if (box) P.append(box);
+  const b = el('div', { class: 'bub', id: 'bub' }, `${T.e}<span class="ring" id="ring"></span>`); b.style.left = (st.i % 2 ? 40 : 50) + 'px'; b.style.top = (110 + (st.i % 3) * 30) + 'px'; P.append(b);
+  const done = () => { b.classList.add('pop'); K.sfx('good'); K.star(); st.i++; setTimeout(tapMode, 420); };
+  let lastTap = 0, holdT = null, drag = null;
+  b.addEventListener('pointerdown', (e) => { b.setPointerCapture(e.pointerId); if (T.k === 'hold') { const ring = $('#ring'); ring.style.transition = 'opacity .1s'; ring.style.opacity = 1; ring.animate([{ clipPath: 'inset(100% 0 0 0)' }, { clipPath: 'inset(0 0 0 0)' }], { duration: 900, fill: 'forwards' }); holdT = setTimeout(done, 900); }
+    if (T.k === 'drag') { const r = b.getBoundingClientRect(), pr = P.getBoundingClientRect(); drag = { dx: e.clientX - r.left, dy: e.clientY - r.top, pr }; b.style.animation = 'none'; } });
+  b.addEventListener('pointermove', (e) => { if (!drag) return; b.style.left = e.clientX - drag.pr.left - drag.dx + 'px'; b.style.top = e.clientY - drag.pr.top - drag.dy + 'px'; const br = box.getBoundingClientRect(); box.classList.toggle('hot', e.clientX > br.left && e.clientX < br.right && e.clientY > br.top && e.clientY < br.bottom); });
+  b.addEventListener('pointerup', (e) => { clearTimeout(holdT); if (T.k === 'hold' && !b.classList.contains('pop')) { $('#ring').style.opacity = 0; why(['Keep your finger down a little longer — count to one!', 'उँगली थोड़ी देर और दबाए रखो — एक तक गिनो!', 'Ungli thodi der aur dabaaye rakho — ek tak gino!']); }
+    if (T.k === 'tap') done(); if (T.k === 'dbl') { const now = performance.now(); if (now - lastTap < 450) done(); else { lastTap = now; K.sfx('tap'); } }
+    if (T.k === 'drag' && drag) { const br = box.getBoundingClientRect(); const inBox = e.clientX > br.left && e.clientX < br.right && e.clientY > br.top && e.clientY < br.bottom; drag = null; if (inBox) done(); else why(['Hold it and slide your finger all the way to the basket before letting go.', 'उसे पकड़कर उँगली टोकरी तक खिसकाओ, फिर छोड़ो।', 'Use pakad kar ungli tokri tak khiskao, phir chhodo.']); } });
+  why({ tap: L('A tap (or a mouse click) chooses or opens something.', 'टैप (या माउस क्लिक) किसी चीज़ को चुनता या खोलता है।', 'Tap (ya mouse click) kisi cheez ko chunta ya kholta hai.'), dbl: L('Double-tap = two quick taps. On a computer, double-click opens files and folders.', 'दो बार टैप = दो जल्दी टैप। कंप्यूटर पर डबल-क्लिक फ़ाइलें और फ़ोल्डर खोलता है।', 'Double-tap = do jaldi taps. Computer par double-click files aur folders kholta hai.'), hold: L('Press and hold often shows more choices, like a menu.', 'दबाकर रखने से अक्सर और विकल्प (मेनू) दिखते हैं।', 'Daba kar rakhne se aksar aur options (menu) dikhte hain.'), drag: L('Drag and drop moves things: hold, slide, let go.', 'खींचकर छोड़ने से चीज़ें हिलती हैं: पकड़ो, खिसकाओ, छोड़ो।', 'Drag and drop se cheezein hilti hain: pakdo, khiskao, chhodo.') }[T.k]); }
+// ---------- keyboard ----------
+const ROWS = [['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'], ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'], ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'], ['⇧Shift', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '⌫']];
+const KEYNAME = { '⇧Shift': 'Shift', '⌫': 'Backspace', '␣': ' ', '⏎': 'Enter' };
+const KEYQ = [{ k: 'A', n: L('Find the letter A', 'अक्षर A ढूँढो', 'Letter A dhoondo') }, { k: 'F', n: L('Find F — feel for its bump!', 'F ढूँढो — उसका उभार महसूस करो!', 'F dhoondo — uska ubhaar mehsoos karo!') }, { k: 'J', n: L('Find J — it has a bump too!', 'J ढूँढो — उस पर भी उभार है!', 'J dhoondo — us par bhi ubhaar hai!') }, { k: '7', n: L('Press the number 7', 'अंक 7 दबाओ', 'Number 7 dabao') }, { k: '␣', n: L('Press SPACE — the long key that makes a gap', 'स्पेस दबाओ — लंबी कुंजी जो जगह बनाती है', 'SPACE dabao — lambi key jo gap banaati hai') }, { k: '⌫', n: L('Press BACKSPACE — it rubs out the last letter', 'बैकस्पेस दबाओ — यह आख़िरी अक्षर मिटाती है', 'BACKSPACE dabao — yeh aakhri letter mitaati hai') }, { k: '⇧Shift', n: L('Press SHIFT — hold it for CAPITAL letters', 'शिफ़्ट दबाओ — बड़े अक्षरों के लिए इसे दबाए रखो', 'SHIFT dabao — CAPITAL letters ke liye ise dabaaye rakho') }, { k: '⏎', n: L('Press ENTER — it means "go" or "new line"', 'एंटर दबाओ — इसका मतलब "चलो" या "नई लाइन"', 'ENTER dabao — iska matlab "go" ya "nayi line"') }];
+const WORDS = ['dad', 'sad', 'lad', 'ask', 'fall', 'salad', 'flask'];
+function keyboard(onKey, hint) { const kb = el('div', { class: 'kb', id: 'kb' }); [...ROWS, ['␣', '⏎']].forEach((row) => { const r = el('div', { class: 'kr' }); row.forEach((k) => { const isHome = 'ASDFJKL'.includes(k) && k.length === 1; const b = el('button', { class: 'k' + (k.length > 1 && k !== '⌫' ? ' wide' : '') + (k === '␣' ? ' space' : '') + (isHome && mode === 'type' ? ' home' : '') + (k === 'F' || k === 'J' ? ' bump' : '') + (k === hint ? ' hint' : ''), 'data-k': k, 'aria-label': KEYNAME[k] || k }, k === '␣' ? t(['Space', 'स्पेस', 'Space']) : k === '⏎' ? '⏎ Enter' : k === '⇧Shift' ? '⇧' : k); b.addEventListener('pointerdown', (e) => { e.preventDefault(); b.classList.add('down'); onKey(k, b); }); b.addEventListener('pointerup', () => b.classList.remove('down')); b.addEventListener('pointerleave', () => b.classList.remove('down')); r.append(b); }); kb.append(r); }); return kb; }
+function physical(e) { if (!['keys', 'type'].includes(mode)) return; const map = { ' ': '␣', Enter: '⏎', Backspace: '⌫', Shift: '⇧Shift' }; const k = map[e.key] || (e.key.length === 1 ? e.key.toUpperCase() : null); if (!k) return; const b = document.querySelector(`.k[data-k="${CSS.escape(k)}"]`); if (b) { e.preventDefault(); b.classList.add('down'); setTimeout(() => b.classList.remove('down'), 120); st.onKey && st.onKey(k, b); } }
+document.addEventListener('keydown', physical);
+function keysMode() { const A = $('#area'); A.innerHTML = ''; prog(st.i, KEYQ.length); if (st.i >= KEYQ.length) return win({ keys: KEYQ.length }); const Q = KEYQ[st.i];
+  A.append(el('div', { class: 'screen', id: 'scr' }, `<b>${esc(t(Q.n))}</b>`)); K.say(Q.n);
+  st.onKey = (k, b) => { if (k === Q.k) { b.classList.add('ok'); K.sfx('good'); K.star(); st.i++; setTimeout(keysMode, 350); } else { b.classList.add('bad'); K.sfx('bad'); setTimeout(() => b.classList.remove('bad'), 400); st.miss = (st.miss || 0) + 1; if (st.miss >= 2) { const h = document.querySelector(`.k[data-k="${CSS.escape(Q.k)}"]`); h && h.classList.add('hint'); } } };
+  A.append(keyboard(st.onKey, null)); st.miss = 0;
+  why(Q.k === 'F' || Q.k === 'J' ? ['The little bumps on F and J let your fingers find the home row without looking.', 'F और J के छोटे उभार से उँगलियाँ बिना देखे होम रो ढूँढ लेती हैं।', 'F aur J ke chhote ubhaar se ungliyan bina dekhe home row dhoondh leti hain.'] : ['Keyboards are laid out QWERTY — named after the first six letters on the top letter row.', 'कीबोर्ड QWERTY क्रम में होते हैं — ऊपर की अक्षर पंक्ति के पहले छह अक्षरों से नाम पड़ा।', 'Keyboards QWERTY layout mein hote hain — upar ki letter row ke pehle chhe letters se naam pada.']); }
+function typeMode() { const A = $('#area'); A.innerHTML = ''; const target = WORDS.join(' '); st.typed = st.typed || ''; prog(Math.min(WORDS.length, st.typed.split(' ').length - (target.startsWith(st.typed) && !st.typed.endsWith(' ') ? 1 : 0)), WORDS.length);
+  const scr = el('div', { class: 'screen', id: 'scr' }); A.append(scr);
+  const paint = () => { const i = st.typed.length; scr.innerHTML = `<span class="done">${esc(target.slice(0, i))}</span><span class="cur"></span><span class="want">${esc(target.slice(i))}</span>`; document.querySelectorAll('.k.hint').forEach((b) => b.classList.remove('hint')); const nk = target[i] === ' ' ? '␣' : (target[i] || '').toUpperCase(); const h = document.querySelector(`.k[data-k="${CSS.escape(nk)}"]`); h && h.classList.add('hint'); };
+  st.onKey = (k, b) => { const want = target[st.typed.length]; const ch = k === '␣' ? ' ' : k.length === 1 ? k.toLowerCase() : null; if (ch == null) return; if (ch === want) { st.typed += ch; K.sfx('tap'); if (ch === ' ') { K.star(); } paint(); if (st.typed === target) { K.sfx('good'); win({ words: WORDS.length, mistakes: st.mistakes || 0 }); } } else { st.mistakes = (st.mistakes || 0) + 1; b.classList.add('bad'); K.sfx('bad'); setTimeout(() => b.classList.remove('bad'), 350); } };
+  A.append(keyboard(st.onKey, null)); paint();
+  why(['Left fingers rest on A S D F, right fingers on J K L. Thumbs press Space. Look at the screen, not your fingers!', 'बाईं उँगलियाँ A S D F पर, दाईं J K L पर। अँगूठे स्पेस दबाते हैं। स्क्रीन देखो, उँगलियाँ नहीं!', 'Left ungliyan A S D F par, right J K L par. Angoothe Space dabaate hain. Screen dekho, ungliyan nahin!']); }
+// ---------- files ----------
+const FOLDERS = [{ id: 'school', e: '📚', n: L('School', 'स्कूल', 'School') }, { id: 'draw', e: '🎨', n: L('Drawings', 'ड्रॉइंग', 'Drawings') }, { id: 'music', e: '🎵', n: L('Music', 'संगीत', 'Music') }];
+const FILES = [{ id: 'hw', e: '📝', name: 'maths-homework.docx', f: 'school' }, { id: 'tiger', e: '🖼️', name: 'my-tiger.png', f: 'draw' }, { id: 'song', e: '🎶', name: 'rhyme-song.mp3', f: 'music' }, { id: 'proj', e: '📄', name: 'science-project.pdf', f: 'school' }, { id: 'rang', e: '🖼️', name: 'rangoli.jpg', f: 'draw' }, { id: 'tabla', e: '🎶', name: 'tabla-beat.mp3', f: 'music' }, { id: 'beach', e: '📷', name: 'trip-goa-beach.jpg', f: 'holiday' }, { id: 'fort', e: '📷', name: 'trip-fort.jpg', f: 'holiday' }];
+function filesMode() { const A = $('#area'); A.innerHTML = ''; const placed = st.placed || (st.placed = {}); const done = Object.keys(placed).length; prog(done, FILES.length);
+  const fm = el('div', { class: 'fm' }); const fol = el('div', { class: 'folders', id: 'folders' }); const list = [...FOLDERS, ...(st.holiday ? [{ id: 'holiday', e: '🏖️', n: L('Holiday', 'छुट्टी (Holiday)', 'Holiday') }] : [])]; if (st.holiday) fol.style.gridTemplateColumns = 'repeat(2,1fr)';
+  list.forEach((F) => fol.append(el('div', { class: 'folder', 'data-f': F.id, id: 'fol-' + F.id }, `<span class="fi">📁</span>${F.e} ${esc(t(F.n))}<div class="fc">${FILES.filter((x) => placed[x.id] === F.id).map((x) => x.e).join('')}</div>`)));
+  const files = el('div', { class: 'files', id: 'files' }); FILES.filter((x) => !placed[x.id] && (x.f !== 'holiday' || st.holiday)).forEach((x) => { const c = el('div', { class: 'file', id: 'file-' + x.id }, `<b>${x.e}</b>${esc(x.name)}`); K.draggable(c, (node, px, py) => dropFile(x, px, py)); files.append(c); });
+  if (!files.children.length && !st.holiday) files.append(el('div', { style: 'font-weight:800;color:#475569;align-self:center' }, '✨ ' + t(['Two photos are left in Downloads. Make a new folder for them!', 'डाउनलोड में दो फ़ोटो बची हैं। उनके लिए नया फ़ोल्डर बनाओ!', 'Downloads mein do photos bachi hain. Unke liye naya folder banao!'])));
+  const nf = el('div', { class: 'newf' }); if (!st.holiday) { const b = el('button', { id: 'newfolder' }, '➕📁 ' + t(['New folder', 'नया फ़ोल्डर', 'New folder'])); b.onclick = () => nameFolder(nf); nf.append(b); }
+  fm.append(fol, el('div', { style: 'font-weight:800;font-size:13px' }, '⬇️ ' + t(['Downloads (messy!)', 'डाउनलोड (बिखरे हुए!)', 'Downloads (bikhre hue!)'])), files, nf); A.append(fm);
+  K._hover = (x, y) => document.querySelectorAll('.folder').forEach((f) => { const r = f.getBoundingClientRect(); f.classList.toggle('hot', x > r.left && x < r.right && y > r.top && y < r.bottom); });
+  if (done === FILES.length) win({ files: FILES.length, newFolder: true }); }
+function nameFolder(nf) { nf.innerHTML = `<b style="font-size:13px">${t(['Name it:', 'नाम रखो:', 'Naam rakho:'])}</b>`; [['Stuff', 'Holiday', 'asdf']].flat().forEach((n) => { const b = el('button', { id: 'nm-' + n }, '📁 ' + n); b.onclick = () => { if (n === 'Holiday') { st.holiday = true; K.sfx('good'); K.star(); why(['A good folder name tells you what is inside. "asdf" or "Stuff" would be hard to find later!', 'अच्छा फ़ोल्डर नाम बताता है कि अंदर क्या है। "asdf" या "Stuff" बाद में ढूँढना मुश्किल होगा!', 'Achha folder naam batata hai ki andar kya hai. "asdf" ya "Stuff" baad mein dhoondhna mushkil hoga!']); filesMode(); } else { K.sfx('bad'); K.toast(['Hmm — will you remember what is inside a folder with that name?', 'हम्म — क्या उस नाम के फ़ोल्डर में क्या है, याद रहेगा?', 'Hmm — kya us naam ke folder mein kya hai, yaad rahega?'], 'bad'); } }; nf.append(b); }); }
+function dropFile(x, px, py) { K._hover(-1, -1); const tgt = [...document.querySelectorAll('.folder')].find((f) => { const r = f.getBoundingClientRect(); return px > r.left && px < r.right && py > r.top && py < r.bottom; }); if (!tgt) return false; const f = tgt.dataset.f;
+  if (f !== x.f) { K.sfx('bad'); const ext = x.name.split('.').pop(); K.toast([`Look at the name and the ending .${ext} — what kind of file is it?`, `नाम और आख़िरी हिस्सा .${ext} देखो — यह किस तरह की फ़ाइल है?`, `Naam aur aakhri hissa .${ext} dekho — yeh kis tarah ki file hai?`], 'bad', 2600); return false; }
+  st.placed[x.id] = f; K.sfx('good'); K.star(); setTimeout(filesMode, 10); return true; }
+// ---------- start ----------
+function drawModes() { const m = $('#modes'); m.innerHTML = ''; for (const k in MODES) { const b = el('button', { 'aria-pressed': k === mode }, t(MODES[k].n)); b.onclick = () => { mode = k; start(); }; m.append(b); } }
+function start() { st = { i: 0 }; K._hover = null; drawModes(); $('#goal').innerHTML = `<span style="font-size:22px">🎯</span><div><b>${t(['Goal', 'लक्ष्य', 'Goal'])}:</b> ${esc(t(cfg.mode === mode && cfg.goal ? [cfg.goal.en, cfg.goal.hi || cfg.goal.en, cfg.goal.hinglish] : MODES[mode].goal))}</div>`;
+  ({ tap: tapMode, keys: keysMode, type: typeMode, files: filesMode })[mode](); if (mode === 'files') why(['File names end in a type: .docx and .pdf are documents, .png and .jpg are pictures, .mp3 is sound.', 'फ़ाइल के नाम के आख़िर में प्रकार होता है: .docx और .pdf दस्तावेज़, .png और .jpg चित्र, .mp3 आवाज़।', 'File naam ke aakhir mein type hota hai: .docx aur .pdf documents, .png aur .jpg pictures, .mp3 sound.']); }
+K.onLang(() => start());
+start();
+})();
+</script></body></html>

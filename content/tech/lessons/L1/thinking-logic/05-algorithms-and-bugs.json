@@ -1,0 +1,360 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.thinking-logic.05",
+ "level": 1,
+ "classes": [
+  4,
+  5
+ ],
+ "unit": "thinking-logic",
+ "title": {
+  "en": "Algorithms and bugs",
+  "hi": "एल्गोरिदम और बग",
+  "hinglish": "Algorithms aur bugs"
+ },
+ "minutes": 9,
+ "xp": 40,
+ "prereq": [
+  "L1.thinking-logic.04"
+ ],
+ "topics": [
+  "prog.sequence",
+  "prog.debugging",
+  "prog.algo-search"
+ ],
+ "outcomes": [
+  {
+   "en": "Say what an algorithm is and write one for a real task.",
+   "hi": "बता सकते हो एल्गोरिदम क्या है और किसी असली काम के लिए लिख सकते हो।",
+   "hinglish": "Bata sakte ho algorithm kya hai aur kisi asli kaam ke liye likh sakte ho."
+  },
+  {
+   "en": "Debug: find and fix the wrong step in a program.",
+   "hi": "डीबग: प्रोग्राम का गलत कदम ढूँढकर ठीक कर सकते हो।",
+   "hinglish": "Debug kar sakte ho: program ka galat step dhoondh kar theek karna."
+  },
+  {
+   "en": "Compare two algorithms and pick the faster one.",
+   "hi": "दो एल्गोरिदम की तुलना करके तेज़ वाला चुन सकते हो।",
+   "hinglish": "Do algorithms compare karke tez wala chun sakte ho."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Algorithm",
+   "en": "A clear, step-by-step method to solve a problem",
+   "hi": "समस्या हल करने का साफ़, कदम-दर-कदम तरीका",
+   "hinglish": "Kaam karne ke saaf, kram-vaar steps"
+  },
+  {
+   "term": "Bug",
+   "en": "A mistake in a program",
+   "hi": "प्रोग्राम की गलती",
+   "hinglish": "Program ki galti"
+  },
+  {
+   "term": "Debugging",
+   "en": "Finding and fixing bugs",
+   "hi": "बग ढूँढकर ठीक करना",
+   "hinglish": "Galti dhoondh kar theek karna"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.thinking-logic.05.s1",
+   "caption": {
+    "en": "An algorithm is a clear recipe for solving a problem.",
+    "hi": "एल्गोरिदम समस्या हल करने की साफ़ विधि है।",
+    "hinglish": "Algorithm problem solve karne ki saaf recipe hai."
+   },
+   "narration": {
+    "en": "A recipe, directions to a friend's house and the steps for long division are all algorithms.",
+    "hinglish": "Recipe, dost ke ghar ka raasta, aur long division ke steps — sab algorithms hain.",
+    "hi": "एल्गोरिदम समस्या हल करने की साफ़ विधि है।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.thinking-logic.05.s2",
+   "caption": {
+    "en": "A wrong step is a bug.",
+    "hi": "गलत कदम बग है।",
+    "hinglish": "Galat step bug hai."
+   },
+   "narration": {
+    "en": "In 1947, engineers found a real moth stuck in the Harvard Mark II computer and taped it in their logbook: the \"first actual case of bug being found\".",
+    "hinglish": "1947 mein engineers ko Harvard Mark II computer mein sach mein ek keeda (moth) phansa mila, jise unhone logbook mein chipkaya: \"first actual case of bug being found\".",
+    "hi": "गलत कदम बग है।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.thinking-logic.05.s3",
+   "caption": {
+    "en": "Debug: find, fix, test again.",
+    "hi": "डीबग: ढूँढो, ठीक करो, फिर जाँचो।",
+    "hinglish": "Debug: dhoondo, theek karo, phir test karo."
+   },
+   "narration": {
+    "en": "Run the program, watch where it goes wrong, fix that step, and run again.",
+    "hinglish": "Program chalao, dekho kahan galat hota hai, woh step theek karo, aur phir chalao.",
+    "hi": "डीबग: ढूँढो, ठीक करो, फिर जाँचो।"
+   }
+  },
+  {
+   "step": 4,
+   "visual": "scene:L1.thinking-logic.05.s4",
+   "caption": {
+    "en": "Some algorithms are faster.",
+    "hi": "कुछ एल्गोरिदम तेज़ होते हैं।",
+    "hinglish": "Kuch algorithms tez hote hain."
+   },
+   "narration": {
+    "en": "To find a word in a 300-page dictionary, opening it in the middle and halving again and again takes about 9 tries, not 300.",
+    "hinglish": "300 page ki dictionary mein shabd dhoondhne ke liye beech se kholo aur baar-baar aadha karo — lagbhag 9 try, 300 nahin.",
+    "hi": "कुछ एल्गोरिदम तेज़ होते हैं।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "loop-coder",
+  "config": {
+   "level": 9
+  },
+  "goal": {
+   "en": "Run the broken program, find the bug and fix it.",
+   "hi": "टूटा प्रोग्राम चलाओ, बग ढूँढो और ठीक करो।",
+   "hinglish": "Toota program chalao, bug dhoondo aur theek karo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "What makes a good algorithm",
+    "hi": "अच्छा एल्गोरिदम कैसा",
+    "hinglish": "Achha algorithm kaisa"
+   },
+   "body": {
+    "en": "It has clear steps, in the right order, that always finish and give the right answer. The word comes from the name of the 9th-century Persian mathematician al-Khwarizmi.",
+    "hi": "इसमें साफ़ कदम होते हैं, सही क्रम में, जो हमेशा ख़त्म होते हैं और सही जवाब देते हैं। यह शब्द 9वीं सदी के फ़ारसी गणितज्ञ अल-ख़्वारिज़्मी के नाम से आया है।",
+    "hinglish": "Ismein saaf steps hote hain, sahi order mein, jo hamesha khatam hote hain aur sahi jawab dete hain. Yeh shabd 9th century ke Persian mathematician al-Khwarizmi ke naam se aaya hai."
+   },
+   "analogy": {
+    "en": "Google Maps also uses an algorithm to find the shortest route.",
+    "hi": "गूगल मैप्स भी एक एल्गोरिदम से सबसे छोटा रास्ता ढूँढता है।",
+    "hinglish": "Google Maps bhi ek algorithm se sabse chhota raasta dhoondhta hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "Bugs are normal",
+    "hi": "बग होना सामान्य है",
+    "hinglish": "Bugs hona normal hai"
+   },
+   "body": {
+    "en": "Every programmer writes bugs. Good programmers test often and fix them calmly. Read your steps one by one and imagine what the computer does at each.",
+    "hi": "हर प्रोग्रामर से बग होते हैं। अच्छे प्रोग्रामर बार-बार जाँचते हैं और शांति से ठीक करते हैं। अपने कदम एक-एक पढ़ो और सोचो कंप्यूटर हर कदम पर क्या करेगा।",
+    "hinglish": "Har programmer se bugs hote hain. Achhe programmers baar-baar test karte hain aur shaanti se theek karte hain. Apne steps ek-ek padho aur socho computer har step par kya karega."
+   },
+   "realExample": {
+    "en": "Halving search (binary search): to guess a number from 1 to 100, \"higher or lower?\" finds it in at most 7 guesses.",
+    "hi": "आधा-आधा खोज (बाइनरी सर्च): 1 से 100 का नंबर \"ऊपर या नीचे?\" पूछकर ज़्यादा से ज़्यादा 7 अंदाज़ों में मिल जाता है।",
+    "hinglish": "Aadha-aadha search (binary search): 1 se 100 ke number ko \"upar ya neeche?\" poochh kar zyada se zyada 7 guess mein dhoondh lo."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Play \"guess my number 1–100\" with a family member using halving. Count your guesses — can you always do it in 7?",
+   "hi": "परिवार के साथ \"1–100 में मेरा नंबर बताओ\" आधा-आधा करके खेलो। अंदाज़े गिनो — क्या हमेशा 7 में होता है?",
+   "hinglish": "Family ke saath \"1–100 mein mera number batao\" aadha-aadha karke khelo. Guesses gino — kya hamesha 7 mein hota hai?"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "What is an algorithm?",
+     "hi": "एल्गोरिदम क्या है?",
+     "hinglish": "Algorithm kya hai?"
+    },
+    "options": [
+     {
+      "en": "Clear steps to solve a problem",
+      "hi": "समस्या हल करने के साफ़ कदम",
+      "hinglish": "Problem solve karne ke saaf steps"
+     },
+     {
+      "en": "A kind of computer virus",
+      "hi": "एक तरह का वायरस",
+      "hinglish": "Ek tarah ka virus"
+     },
+     {
+      "en": "A robot's name",
+      "hi": "रोबोट का नाम",
+      "hinglish": "Robot ka naam"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "An algorithm is a step-by-step method, like a recipe.",
+     "hi": "एल्गोरिदम कदम-दर-कदम विधि है, रेसिपी की तरह।",
+     "hinglish": "Algorithm step-by-step method hai, recipe ki tarah."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Finding and fixing mistakes in a program is called…",
+     "hi": "प्रोग्राम की गलतियाँ ढूँढकर ठीक करना कहलाता है…",
+     "hinglish": "Program ki galtiyan dhoondh kar theek karna kehlata hai…"
+    },
+    "options": [
+     {
+      "en": "debugging",
+      "hi": "डीबगिंग",
+      "hinglish": "debugging"
+     },
+     {
+      "en": "downloading",
+      "hi": "डाउनलोडिंग",
+      "hinglish": "downloading"
+     },
+     {
+      "en": "typing",
+      "hi": "टाइपिंग",
+      "hinglish": "typing"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "A bug is a mistake; debugging removes it.",
+     "hi": "बग गलती है; डीबगिंग उसे हटाती है।",
+     "hinglish": "Bug galti hai; debugging use hatati hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Guessing a number 1–100 with \"higher/lower\" hints, halving each time, needs at most…",
+     "hi": "1–100 का नंबर \"ऊपर/नीचे\" संकेत से, हर बार आधा करके, ज़्यादा से ज़्यादा कितने अंदाज़े?",
+     "hinglish": "1–100 ka number \"upar/neeche\" hint se, har baar aadha karke, zyada se zyada kitne guess?"
+    },
+    "options": [
+     {
+      "en": "7 guesses",
+      "hi": "7 अंदाज़े",
+      "hinglish": "7 guesses"
+     },
+     {
+      "en": "50 guesses",
+      "hi": "50 अंदाज़े",
+      "hinglish": "50 guesses"
+     },
+     {
+      "en": "100 guesses",
+      "hi": "100 अंदाज़े",
+      "hinglish": "100 guesses"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "100 → 50 → 25 → 13 → 7 → 4 → 2 → 1: halving reaches one number in 7 steps (2⁷ = 128 ≥ 100).",
+     "hi": "100 → 50 → 25 → 13 → 7 → 4 → 2 → 1: आधा करते-करते 7 कदम में एक नंबर (2⁷ = 128 ≥ 100)।",
+     "hinglish": "100 → 50 → 25 → 13 → 7 → 4 → 2 → 1: aadha karte-karte 7 steps mein ek number (2⁷ = 128 ≥ 100)."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q4",
+    "type": "order",
+    "prompt": {
+     "en": "Order the debugging steps.",
+     "hi": "डीबगिंग के कदम क्रम में लगाओ।",
+     "hinglish": "Debugging ke steps order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Fix the wrong step",
+      "hi": "गलत कदम ठीक करो",
+      "hinglish": "Galat step theek karo"
+     },
+     {
+      "en": "Run and watch",
+      "hi": "चलाओ और देखो",
+      "hinglish": "Chalao aur dekho"
+     },
+     {
+      "en": "Run again to test",
+      "hi": "जाँचने के लिए फिर चलाओ",
+      "hinglish": "Test ke liye phir chalao"
+     },
+     {
+      "en": "Find where it goes wrong",
+      "hi": "ढूँढो कहाँ गलत होता है",
+      "hinglish": "Dhoondo kahan galat hota hai"
+     }
+    ],
+    "answer": [
+     1,
+     3,
+     0,
+     2
+    ],
+    "explain": {
+     "en": "Run → find → fix → test again.",
+     "hi": "चलाओ → ढूँढो → ठीक करो → फिर जाँचो।",
+     "hinglish": "Chalao → dhoondo → theek karo → phir test karo."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Fix the buggy program in Level 9.",
+     "hi": "स्तर 9 का बग वाला प्रोग्राम ठीक करो।",
+     "hinglish": "Level 9 ka buggy program theek karo."
+    },
+    "answer": {
+     "lab": "loop-coder",
+     "level": 9,
+     "solved": true
+    },
+    "explain": {
+     "en": "The second block should be \"turn right\", not \"turn left\".",
+     "hi": "दूसरा ब्लॉक \"दाएँ मुड़ो\" होना चाहिए, \"बाएँ\" नहीं।",
+     "hinglish": "Doosra block \"right mudo\" hona chahiye, \"left\" nahin."
+    },
+    "difficulty": 3
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Smithsonian National Museum of American History – the 1947 \"first actual case of bug\" logbook (fact reference)",
+   "url": "https://americanhistory.si.edu/collections/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "CS Unplugged – computational thinking ideas (fact reference only)",
+   "url": "https://www.csunplugged.org/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NCERT – Computational thinking in the NEP 2020 / NCF-SE 2023 (fact reference)",
+   "url": "https://ncert.nic.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

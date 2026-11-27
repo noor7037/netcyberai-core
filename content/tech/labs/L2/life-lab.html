@@ -1,0 +1,216 @@
+<!doctype html><html lang="en-IN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Digital Life Lab — NCA Tech & AI Lab</title><style>/* NCA Tech & AI Lab — Level 2 shared lab skin (own work, MIT). Family App lesson tokens: paper, card, ink, saffron, teal, plum. */
+:root{--paper:#FBF8F3;--card:#FFFDF9;--ink:#1C1B1A;--muted:#4B5563;--line:#E7E1D6;--saffron:#E8702A;--saffronD:#C2410C;--teal:#0F766E;--plum:#6D28D9;--sky:#0369A1;
+--mint:#E4F3EA;--butter:#FBF1D3;--lilac:#EFE9FB;--blush:#FBE6E3;--skyT:#E3EEF9;--night:#0B1430;--night2:#16224A;--cyan:#02CFF9;--leaf:#22C55E;--coral:#FF6B57;--gold:#F5B90A;--grape:#8B3DFF;
+--r:16px;--sh:0 1px 0 rgba(28,27,26,.04),0 6px 18px -8px rgba(28,27,26,.18)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans Devanagari",sans-serif;font-variant-numeric:tabular-nums}
+body{background:transparent;min-height:100vh;padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 16px)}
+button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation}
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:8px;padding:10px 14px;background:rgba(251,248,243,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--lilac);flex:none}
+.top h1{font-size:16px;margin:0;line-height:1.2;flex:1;min-width:0}
+.top h1 small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;flex:none;background:var(--card)}
+.lang button{border:0;background:none;padding:6px 9px;font-size:12px;font-weight:600;color:var(--muted);min-height:32px}
+.lang button[aria-pressed=true]{background:var(--ink);color:#fff}
+.wrap{max-width:1100px;margin:0 auto;padding:12px 14px;display:grid;gap:12px;grid-template-columns:minmax(0,1fr)}
+.wrap>*{min-width:0}
+.wrap>div{grid-template-columns:minmax(0,1fr)}
+.card,.stage{min-width:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;box-shadow:var(--sh)}
+.goal{background:var(--butter);border-color:#F1DFA8;display:flex;gap:10px;align-items:flex-start;font-size:14.5px}
+.goal b{color:#8A5300}
+.goal .gi{font-size:20px;line-height:1}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn{border:0;border-radius:12px;padding:11px 16px;font-weight:700;min-height:44px;background:var(--saffron);color:var(--ink);box-shadow:0 3px 0 #B4531B;transition:transform .12s}
+.btn:active{transform:translateY(2px);box-shadow:0 1px 0 #B4531B}
+.btn.ghost{background:var(--card);border:1.5px solid var(--line);box-shadow:none}
+.btn.teal{background:var(--teal);color:#fff;box-shadow:0 3px 0 #0A4F49}
+.btn.plum{background:var(--plum);color:#fff;box-shadow:0 3px 0 #4C1D95}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.chip{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:3px 10px;font-size:12.5px;font-weight:600;background:var(--mint);color:var(--teal)}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;padding-bottom:2px}/* wraps: every mode name always fully visible */
+.tabs button{flex:0 1 auto;max-width:100%;white-space:normal;text-align:center;border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:8px 14px;font-weight:600;font-size:14px;min-height:40px}
+.tabs button[aria-selected=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.stage{background:radial-gradient(120% 90% at 30% 0%,#1D2D63 0%,var(--night) 60%);color:#E8EEFF;border-radius:20px;overflow:hidden;position:relative;border:1px solid #23305E}
+.muted{color:var(--muted)}
+.mission{background:var(--skyT);border-color:#C9DDF2}
+.mission h3{margin:0 0 6px;font-size:15px;color:var(--sky)}
+.toast{position:fixed;left:0;top:0;width:max-content;max-width:min(92vw,340px);background:var(--ink);color:#fff;padding:10px 16px;border-radius:14px;font-weight:600;z-index:50;box-shadow:0 8px 24px rgba(0,0,0,.25);opacity:0;visibility:hidden;transform:scale(.92);transition:opacity .25s,transform .25s,visibility 0s .25s;pointer-events:none;text-align:center;line-height:1.35}
+.toast.on{opacity:1;visibility:visible;transform:none;transition:opacity .25s,transform .25s}
+.toast.inline{position:static;display:block;width:auto;max-width:none;margin:10px 0;grid-column:1/-1;flex:0 0 auto}
+.toast.ok{background:var(--teal)}.toast.bad{background:#B42318}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:-1}/* behind the cards: confetti never covers text */
+.kbd{font-family:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace}
+.hidden{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@keyframes pop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.08);opacity:1}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.shake{animation:shake .3s 2}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
+</style>
+<style>
+.item{border:1.5px solid var(--line);border-radius:14px;padding:10px;margin:8px 0;background:var(--card);animation:pop .3s both}
+.item.ok{border-color:#10B981;background:#ECFDF5}.item.no{border-color:#F43F5E;background:#FFF1F2}
+.seg{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}.seg button{flex:1;min-width:84px;border:1.5px solid var(--line);background:var(--card);border-radius:10px;padding:7px 5px;font-weight:700;min-height:44px;font-size:13px}
+.seg button[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.why{font-size:13px;margin-top:6px}.big{font:800 20px system-ui;margin:4px 0}
+.cc{display:inline-flex;gap:3px;align-items:center;font:800 12px system-ui;background:#111;color:#fff;border-radius:8px;padding:3px 7px}
+.sl{margin:8px 0}.sl label{display:flex;justify-content:space-between;font-weight:700;font-size:14px}input[type=range]{width:100%;accent-color:var(--teal);height:32px}
+.day{display:flex;height:34px;border-radius:12px;overflow:hidden;margin:6px 0 4px}.day i{display:block;height:100%;transition:width .35s;position:relative}
+.leg{display:flex;flex-wrap:wrap;gap:6px 10px;font-size:11.5px}.leg span{display:flex;gap:4px;align-items:center}.leg b{width:10px;height:10px;border-radius:3px;display:inline-block}
+.chk{font-size:13.5px;margin:3px 0}
+.chips{display:flex;flex-wrap:wrap;gap:6px}.chips button{border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:8px 12px;font-weight:700;min-height:44px;font-size:13.5px}
+.chips button[aria-pressed=true]{background:var(--teal);color:#fff;border-color:var(--teal)}
+.car{border:1.5px solid var(--line);border-radius:14px;padding:10px;margin:8px 0;background:var(--card);animation:pop .3s both}
+.car summary{font-weight:800;cursor:pointer;min-height:36px;display:flex;align-items:center;gap:8px}.car p{font-size:13px;margin:6px 0}
+.ring{width:118px;height:118px;margin:auto;display:block}
+@media (orientation:landscape) and (min-width:640px){.wrap{grid-template-columns:1.2fr 1fr}.wrap>.full{grid-column:1/-1}}
+</style></head><body>
+<main class="wrap">
+ <div class="card goal full"><span class="gi">🎯</span><div id="goal"></div></div>
+ <div class="tabs full" role="tablist" id="tabs"></div>
+ <div class="card" id="stage"></div>
+ <div style="display:grid;gap:12px"><div class="card" id="side"></div><div class="card mission"><h3 data-k="mT"></h3><div id="mission"></div></div></div>
+</main>
+<script>/* NCA Tech & AI Lab — Level 2 shared lab runtime (own work, MIT). No eval, no network except an optional same-origin ?lesson= JSON. */
+(function(g){
+  const qs=new URLSearchParams(location.search);
+  const LANGS=['hinglish','en','hi'];
+  let lang=(qs.get('lang')||localStorage.getItem('nca-tl-lang')||'hinglish'); if(!LANGS.includes(lang)) lang='hinglish';
+  const reduced=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const t=x=>x==null?'':(typeof x==='string'||typeof x==='number')?String(x):(x[lang]||x.hinglish||x.en||'');
+  let STR={}; const listeners=[];
+  function applyI18n(root){(root||document).querySelectorAll('[data-k]').forEach(el=>{const v=STR[el.dataset.k]; if(v) el.innerHTML=t(v);});
+    document.documentElement.lang=lang==='hi'?'hi':(lang==='en'?'en':'en-IN');
+    document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.l===lang));}
+  function setLang(l){lang=l;localStorage.setItem('nca-tl-lang',l);applyI18n();listeners.forEach(f=>f(l));}
+  function header(icon,titleK,subK){const h=document.createElement('header');h.className='top';
+    h.innerHTML=`<div class="ic" aria-hidden="true">${icon}</div><h1><span data-k="${titleK}"></span><small data-k="${subK}"></small></h1>
+    <div class="lang" role="group" aria-label="Language"><button data-l="hinglish">Hinglish</button><button data-l="en">EN</button><button data-l="hi">हिं</button></div>`;
+    document.body.prepend(h); h.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>setLang(b.dataset.l));}
+  // Toast: never covers text. It floats in a free band of the screen (bottom first); if the screen has no free band
+  // it sits in the page flow right under what the child just tapped (pushes content down, covers nothing). Closes after 2.5 s.
+  let toastEl,lastTap=null,tapAt=null;document.addEventListener('pointerdown',e=>{lastTap=e.target;tapAt=[e.clientX,e.clientY+scrollY]},true);let rePend=0;const rePlace=()=>{if(!toastEl||!toastEl.classList.contains('on')||rePend)return;rePend=1;requestAnimationFrame(()=>{rePend=0;placeToast();});};
+  addEventListener('scroll',rePlace,{passive:true});addEventListener('resize',rePlace);document.addEventListener('animationend',rePlace,true);document.addEventListener('transitionend',rePlace,true);const toastMO=new MutationObserver(rs=>{if(rs.some(r=>!toastEl.contains(r.target)))rePlace();});
+  function textRects(skip){const vh=innerHeight,out=[],rg=document.createRange(),w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let n;
+    while((n=w.nextNode())){if(!n.nodeValue.trim())continue;const p=n.parentElement;if(!p||skip.contains(p)||/^(SCRIPT|STYLE)$/.test(p.tagName))continue;rg.selectNodeContents(n);
+      for(const q of rg.getClientRects())if(q.width>=1&&q.bottom>0&&q.top<vh)out.push(q);}
+    document.querySelectorAll('input,select,textarea,button,a[href],[role=button]').forEach(e=>{if(skip.contains(e))return;const q=e.getBoundingClientRect();if(q.width&&q.bottom>0&&q.top<vh)out.push(q)});if(0)document.querySelectorAll('x').forEach(e=>{const q=e.getBoundingClientRect();if(q.width&&q.bottom>0&&q.top<vh)out.push(q)});return out;}
+  function freeSpot(el){const vw=document.documentElement.clientWidth,vh=innerHeight,w=el.offsetWidth,h=el.offsetHeight,m=8;let top=m;
+    const bar=document.querySelector('.top');if(bar)top=Math.max(top,bar.getBoundingClientRect().bottom+m);
+    const obs=textRects(el),xs=[(vw-w)/2,m,vw-w-m],free=(x,y)=>!obs.some(q=>q.left<x+w+4&&q.right>x-4&&q.top<y+h+4&&q.bottom>y-4);
+    const cur=el._spot;if(cur&&free(cur.x,cur.y))return cur;
+    for(let y=vh-h-m;y>=top;y-=6)for(const x of xs)if(free(x,y))return{x,y};return null;}
+  /* never drop the note inside a 3D scene, a transformed, positioned-out or clipping box */
+  function boxedIn(a){for(let p=a;p&&p!==document.body;p=p.parentElement){const c=getComputedStyle(p);if(c.transform!=='none'||c.transformStyle==='preserve-3d'||c.perspective!=='none'||c.position==='absolute'||c.position==='fixed'||(p!==a&&c.overflow!=='visible'))return true;}return false;}
+  function inlineAfter(el){let a=lastTap&&lastTap.isConnected&&!el.contains(lastTap)?lastTap:null;
+    if(!a&&tapAt){const y=tapAt[1]-scrollY;if(y>0&&y<innerHeight)a=document.elementFromPoint(tapAt[0],y);}/* the tapped thing was re-drawn: use what is there now */
+    if(!a||el.contains(a))a=document.querySelector('main')||document.body.lastElementChild;
+    while(a.parentElement&&a.parentElement!==document.body){const d=getComputedStyle(a.parentElement),me=getComputedStyle(a);
+      if(me.display!=='inline'&&!(a instanceof SVGElement)&&(d.display==='block'||d.display==='flow-root'||d.display==='grid'||(d.display==='flex'&&d.flexDirection.startsWith('column')))&&a.getBoundingClientRect().width>=Math.min(260,innerWidth*.6)&&!boxedIn(a))break;a=a.parentElement;}
+    a.after(el);}
+  function placeToast(){const el=toastEl;if(!el.classList.contains('on'))return;if(!el.isConnected){el.classList.remove('inline');document.body.appendChild(el);}
+    if(el.classList.contains('inline'))return;const s=freeSpot(el);
+    if(s){el._spot=s;el.style.left=s.x+'px';el.style.top=s.y+'px';}else{el._spot=null;el.classList.add('inline');el.style.left=el.style.top='';inlineAfter(el);el.scrollIntoView({block:'nearest'});}}
+  function toast(msg,kind){if(!toastEl){toastEl=document.createElement('div');toastEl.setAttribute('role','status');document.body.appendChild(toastEl);}
+    const el=toastEl;clearTimeout(el._t);clearInterval(el._iv);if(el.classList.contains('inline'))document.body.appendChild(el);
+    el.className='toast '+(kind||'');el._spot=null;el.innerHTML=typeof msg==='object'?t(msg):msg;el.style.left='0px';el.style.top='0px';
+    el.classList.add('on');placeToast();el._iv=setInterval(placeToast,200);toastMO.observe(document.body,{subtree:true,childList:true,attributes:true,characterData:true});
+    el._t=setTimeout(()=>{clearInterval(el._iv);toastMO.disconnect();el.classList.remove('on');setTimeout(()=>{if(!el.classList.contains('on')&&el.classList.contains('inline')){el.classList.remove('inline');document.body.appendChild(el);}},320);},2500);}
+  function confetti(){if(reduced())return;const c=document.createElement('canvas');c.className='confetti';c.setAttribute('aria-hidden','true');document.body.appendChild(c);
+    const W=c.width=innerWidth,H=c.height=innerHeight,x=c.getContext('2d');const cols=['#E8702A','#0F766E','#6D28D9','#F5B90A','#02CFF9','#FF6B57'];
+    const P=Array.from({length:90},()=>({x:W/2,y:H*.55,vx:(Math.random()-.5)*9,vy:-Math.random()*11-4,r:Math.random()*6+3,c:cols[Math.random()*6|0],a:Math.random()*6}));
+    let n=0;(function f(){x.clearRect(0,0,W,H);P.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.32;p.a+=.2;x.save();x.translate(p.x,p.y);x.rotate(p.a);x.fillStyle=p.c;x.fillRect(-p.r/2,-p.r/4,p.r,p.r/2);x.restore();});
+      if(++n<110)requestAnimationFrame(f);else c.remove();})();}
+  function tween(ms,step,done){if(reduced()||ms<=0){step(1);done&&done();return()=>{};}let stop=0;const t0=performance.now();
+    const f=now=>{if(stop)return;const k=Math.min(1,(now-t0)/ms);step(k);k<1?requestAnimationFrame(f):done&&done();};requestAnimationFrame(f);return()=>{stop=1};}
+  const ease=k=>k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+  const sleep=ms=>new Promise(r=>setTimeout(r,reduced()?0:ms));
+  // Lesson config: ?lesson=<same-origin json path> (its play.config + play.goal), else inline defaults. ?cfg=<json> also accepted (parsed with JSON.parse only).
+  async function lessonConfig(defaults){let cfg=Object.assign({},defaults),goal=null,id=null;
+    const p=qs.get('lesson');
+    if(p&&/^[\w\-./]+\.json$/.test(p)&&!p.includes('..')){try{const r=await fetch(p);if(r.ok){const j=await r.json();id=j.id;if(j.play){Object.assign(cfg,j.play.config||{});goal=j.play.goal||null;}}}catch(e){}}
+    const c=qs.get('cfg'); if(c){try{Object.assign(cfg,JSON.parse(c));}catch(e){}}
+    return {cfg,goal,id};}
+  // Progress events the Family App shell can listen for (postMessage to the parent frame), plus local XP for the prototype.
+  function emit(type,data){const msg={source:'nca-techlab',type,data:data||{},at:Date.now()};try{parent!==window&&parent.postMessage(msg,'*');}catch(e){}
+    document.dispatchEvent(new CustomEvent('nca-lab',{detail:msg}));}
+  g.NCA={qs,esc,t,get lang(){return lang},setLang,onLang:f=>listeners.push(f),strings:o=>{STR=Object.assign(STR,o);applyI18n();},applyI18n,header,toast,confetti,tween,ease,sleep,reduced,lessonConfig,emit};
+})(window);
+</script>
+<script>
+(async function(){
+const N=NCA,T=N.t,E=N.esc,L=(en,hi,hinglish)=>({en,hi,hinglish}),$=id=>document.getElementById(id);
+N.header('🌐','title','sub');
+N.strings({title:L('Digital Life Lab','डिजिटल जीवन लैब','Digital Life Lab'),sub:L('Licences, a balanced day and tech careers','लाइसेंस, संतुलित दिन और टेक करियर','Licences, balanced day aur tech careers'),mT:L('🚀 Mission','🚀 मिशन','🚀 Mission')});
+const {cfg,goal}=await N.lessonConfig({tab:'licence'});
+const TABS=[['licence',L('©️ Can I use it?','©️ क्या मैं उपयोग कर सकता हूँ?','©️ Kya main use kar sakta hoon?')],['time',L('⏰ Balanced day','⏰ संतुलित दिन','⏰ Balanced day')],['career',L('🧭 Tech careers','🧭 टेक करियर','🧭 Tech careers')]];
+const GOALS={licence:L('Your class is making a magazine that will be SOLD at the school fair, and you will crop and edit the pictures. Decide for each picture: use it with credit, use it freely, or don’t use it.','तुम्हारी कक्षा एक पत्रिका बना रही है जो स्कूल मेले में बेची जाएगी, और तुम चित्रों को काटोगे और संपादित करोगे। हर चित्र के लिए तय करो: श्रेय के साथ उपयोग, खुलकर उपयोग, या उपयोग नहीं।','Tumhari class ek magazine bana rahi hai jo school fair mein BECHI jaayegi, aur tum pictures ko crop aur edit karoge. Har picture ke liye decide karo: credit ke saath use, freely use, ya use nahi.'),
+ time:L('Plan a school day that keeps your body and mind healthy: enough sleep, active play, study, family time — and fun screen time that does not eat the rest.','ऐसा स्कूल का दिन बनाओ जो शरीर और मन स्वस्थ रखे: पूरी नींद, सक्रिय खेल, पढ़ाई, परिवार का समय — और मनोरंजन स्क्रीन समय जो बाक़ी को न खाए।','Aisa school day plan karo jo body aur mind healthy rakhe: poori neend, active play, padhai, family time — aur fun screen time jo baaki ko na khaaye.'),
+ career:L('Pick 3 things you enjoy, then open 3 matching tech careers to see what they do and how people in India get there.','3 चीज़ें चुनो जो तुम्हें पसंद हैं, फिर 3 मेल खाते टेक करियर खोलो और देखो वे क्या करते हैं और भारत में लोग वहाँ कैसे पहुँचते हैं।','3 cheezein chuno jo tumhe pasand hain, phir 3 matching tech careers kholo aur dekho woh kya karte hain aur India mein log wahan kaise pahunchte hain.')};
+let tab=TABS.some(x=>x[0]===cfg.tab)?cfg.tab:'licence';const done={};
+function win(k,m){if(done[k])return;done[k]=1;N.confetti();N.toast(m,'ok');N.emit('mission:complete',{lab:'life-lab',tab:k});mission();}
+const vib=()=>{try{navigator.vibrate&&navigator.vibrate(12)}catch(e){}};
+/* ---------- LICENCE ---------- */
+const CH=[['credit',L('✔ Use + credit','✔ उपयोग + श्रेय','✔ Use + credit')],['free',L('✔ Use freely','✔ खुलकर उपयोग','✔ Freely use')],['no',L('✖ Don’t use','✖ उपयोग मत करो','✖ Use mat karo')]];
+const PICS=[{e:'🐅',lic:'CC BY',t:L('Tiger photo on Wikimedia Commons','विकिमीडिया कॉमन्स पर बाघ की फ़ोटो','Wikimedia Commons pe tiger photo'),a:'credit',why:L('CC BY allows any use, even selling and editing, as long as you credit the creator.','CC BY किसी भी उपयोग की अनुमति देता है, बेचने और संपादन की भी, बशर्ते रचनाकार को श्रेय दो।','CC BY kisi bhi use ki permission deta hai, bechne aur edit ki bhi, bas creator ko credit do.')},
+ {e:'🌄',lic:'CC0',t:L('Mountain photo marked “CC0 public domain dedication”','“CC0 पब्लिक डोमेन” चिह्नित पहाड़ की फ़ोटो','“CC0 public domain” marked mountain photo'),a:'free',why:L('CC0 means the creator gave up their rights. Use it any way; a credit is polite but not required.','CC0 का अर्थ है रचनाकार ने अपने अधिकार छोड़ दिए। कैसे भी उपयोग करो; श्रेय देना शिष्टता है, ज़रूरी नहीं।','CC0 ka matlab creator ne apne rights chhod diye. Kaise bhi use karo; credit dena polite hai, zaroori nahi.')},
+ {e:'🎨',lic:'CC BY-NC',t:L('A cartoon licensed CC BY-NC','CC BY-NC लाइसेंस वाला कार्टून','CC BY-NC licence wala cartoon'),a:'no',why:L('NC = NonCommercial. The magazine is sold, so this is commercial use — not allowed without asking.','NC = ग़ैर-व्यावसायिक। पत्रिका बेची जाएगी, यानी व्यावसायिक उपयोग — बिना पूछे अनुमति नहीं।','NC = NonCommercial. Magazine bechi jaayegi, yaani commercial use — bina poochhe allowed nahi.')},
+ {e:'🏏',lic:'©',t:L('A cricket photo from a news website, “© All rights reserved”','समाचार वेबसाइट की क्रिकेट फ़ोटो, “© सर्वाधिकार सुरक्षित”','News website ki cricket photo, “© All rights reserved”'),a:'no',why:L('Copyright protects it automatically. Being online does not make it free — you need the owner’s permission.','कॉपीराइट इसे अपने-आप सुरक्षित करता है। ऑनलाइन होने से यह मुफ़्त नहीं होता — मालिक की अनुमति चाहिए।','Copyright ise apne-aap protect karta hai. Online hone se yeh free nahi hota — owner ki permission chahiye.')},
+ {e:'🦚',lic:'CC BY-ND',t:L('A peacock drawing licensed CC BY-ND','CC BY-ND लाइसेंस वाला मोर का चित्र','CC BY-ND licence wala mor ka drawing'),a:'no',why:L('ND = NoDerivatives: you may share it unchanged, but you plan to crop and edit, which is not allowed.','ND = कोई बदलाव नहीं: बिना बदले साझा कर सकते हो, पर तुम काटना-संपादित करना चाहते हो, जिसकी अनुमति नहीं।','ND = NoDerivatives: bina badle share kar sakte ho, par tum crop aur edit karna chahte ho, jo allowed nahi.')},
+ {e:'🗺️',lic:'CC BY-SA',t:L('A map of India licensed CC BY-SA','CC BY-SA लाइसेंस वाला भारत का नक्शा','CC BY-SA licence wala India ka map'),a:'credit',why:L('BY-SA allows commercial use and edits with credit — but your edited map must be shared under the same CC BY-SA licence.','BY-SA श्रेय के साथ व्यावसायिक उपयोग और संपादन की अनुमति देता है — पर तुम्हारा संपादित नक्शा उसी CC BY-SA लाइसेंस में साझा होना चाहिए।','BY-SA credit ke saath commercial use aur edits allow karta hai — par tumhara edited map usi CC BY-SA licence mein share hona chahiye.')}];
+let lv={};
+function drawLic(){const right=PICS.filter((p,i)=>lv[i]===p.a).length;
+ $('stage').innerHTML=PICS.map((p,i)=>{const a=lv[i];return `<div class="item ${a===undefined?'':(a===p.a?'ok':'no')}"><div><span style="font-size:22px">${p.e}</span> <span class="cc">${E(p.lic)}</span> <b>${T(p.t)}</b></div><div class="seg">${CH.map(([k,n])=>`<button data-i="${i}" data-c="${k}" aria-pressed="${a===k}">${T(n)}</button>`).join('')}</div>${a!==undefined?`<div class="why">${a===p.a?'✔':'✖'} ${T(p.why)}</div>`:''}</div>`;}).join('');
+ $('stage').querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>{lv[+b.dataset.i]=b.dataset.c;vib();const y=scrollY;drawLic();scrollTo(0,y);});
+ $('side').innerHTML=`<div class="big">${right}/${PICS.length} ✔</div><div style="font-size:13.5px;display:grid;gap:5px">
+ <div><span class="cc">BY</span> ${T(L('credit the creator','रचनाकार को श्रेय दो','creator ko credit do'))}</div><div><span class="cc">NC</span> ${T(L('no commercial use','व्यावसायिक उपयोग नहीं','commercial use nahi'))}</div><div><span class="cc">ND</span> ${T(L('no changes','कोई बदलाव नहीं','koi badlaav nahi'))}</div><div><span class="cc">SA</span> ${T(L('share edits under the same licence','बदलाव उसी लाइसेंस में साझा करो','edits usi licence mein share karo'))}</div><div><span class="cc">CC0</span> ${T(L('no rights reserved','कोई अधिकार सुरक्षित नहीं','koi rights reserved nahi'))}</div></div>
+ <p style="font-size:12.5px;color:var(--muted)">${T(L('A good credit: “Photo: Name, CC BY 4.0, via Wikimedia Commons”.','अच्छा श्रेय: “फ़ोटो: नाम, CC BY 4.0, विकिमीडिया कॉमन्स से”।','Achha credit: “Photo: Naam, CC BY 4.0, via Wikimedia Commons”.'))}</p>`;
+ if(right===PICS.length)win('licence',L('Licence expert! Your magazine respects every creator.','लाइसेंस विशेषज्ञ! तुम्हारी पत्रिका हर रचनाकार का सम्मान करती है।','Licence expert! Tumhari magazine har creator ki respect karti hai.'));}
+/* ---------- BALANCED DAY ---------- */
+const ACTS=[['sleep',L('😴 Sleep','😴 नींद','😴 Neend'),'#6366F1',7],['study',L('📚 Homework & reading','📚 गृहकार्य और पढ़ना','📚 Homework aur reading'),'#F59E0B',1],['play',L('⚽ Active play outdoors','⚽ बाहर सक्रिय खेल','⚽ Bahar active khel'),'#10B981',0.5],['family',L('🍲 Meals, family & chores','🍲 भोजन, परिवार और काम','🍲 Khana, family aur chores'),'#EC4899',2],['screen',L('📱 Fun screen time','📱 मनोरंजन स्क्रीन समय','📱 Fun screen time'),'#EF4444',5.5]];
+const SCHOOL=8;let hrs=Object.fromEntries(ACTS.map(a=>[a[0],a[3]]));
+const tot=()=>SCHOOL+ACTS.reduce((s,a)=>s+hrs[a[0]],0);
+function checks(){return [[hrs.sleep>=9,L('Sleep 9 hours or more (doctors advise 9–12 h for ages 6–12, 8–10 h for teens)','9 घंटे या ज़्यादा नींद (डॉक्टर 6–12 वर्ष के लिए 9–12 घंटे, किशोरों के लिए 8–10 घंटे सुझाते हैं)','9 ghante ya zyada neend (doctors 6–12 saal ke liye 9–12 h, teens ke liye 8–10 h suggest karte hain)')],[hrs.play>=1,L('At least 1 hour of active play (WHO: 60 minutes a day)','कम से कम 1 घंटा सक्रिय खेल (WHO: रोज़ 60 मिनट)','Kam se kam 1 ghanta active play (WHO: roz 60 minute)')],[hrs.screen<=2,L('Fun screen time 2 hours or less','मनोरंजन स्क्रीन समय 2 घंटे या कम','Fun screen time 2 ghante ya kam')],[hrs.study>=1&&hrs.family>=1,L('Time for homework and for family','गृहकार्य और परिवार के लिए समय','Homework aur family ke liye time')],[Math.abs(tot()-24)<0.01,L('The day adds up to exactly 24 hours','दिन ठीक 24 घंटे का बनता है','Din exactly 24 ghante ka banta hai')]];}
+function drawTime(){const t=tot(),c=checks(),ok=c.every(x=>x[0]);
+ $('stage').innerHTML=`<div style="font-weight:800;font-size:14px">${T(L('Your 24-hour day','तुम्हारा 24 घंटे का दिन','Tumhara 24 ghante ka din'))}: <span style="color:${Math.abs(t-24)<.01?'#059669':'#DC2626'}">${t} / 24 h</span></div>
+ <div class="day" role="img" aria-label="day bar"><i style="width:${SCHOOL/Math.max(24,t)*100}%;background:#0EA5E9"></i>${ACTS.map(a=>`<i style="width:${hrs[a[0]]/Math.max(24,t)*100}%;background:${a[2]}"></i>`).join('')}</div>
+ <div class="leg"><span><b style="background:#0EA5E9"></b>🏫 ${T(L('School + travel','स्कूल + आना-जाना','School + travel'))} ${SCHOOL} h</span>${ACTS.map(a=>`<span><b style="background:${a[2]}"></b>${T(a[1])} ${hrs[a[0]]} h</span>`).join('')}</div>
+ ${ACTS.map(a=>`<div class="sl"><label for="h-${a[0]}"><span>${T(a[1])}</span><span>${hrs[a[0]]} h</span></label><input type="range" id="h-${a[0]}" data-h="${a[0]}" min="0" max="12" step="0.5" value="${hrs[a[0]]}"></div>`).join('')}`;
+ $('stage').querySelectorAll('[data-h]').forEach(r=>r.oninput=e=>{hrs[e.target.dataset.h]=+e.target.value;drawTime();const n=$('h-'+e.target.dataset.h);n&&n.focus();});
+ const pct=Math.round(c.filter(x=>x[0]).length/c.length*100);
+ $('side').innerHTML=`<svg class="ring" viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" fill="none" stroke="#E5E7EB" stroke-width="12"/><circle cx="60" cy="60" r="50" fill="none" stroke="${ok?'#10B981':'#F59E0B'}" stroke-width="12" stroke-linecap="round" stroke-dasharray="${pct*3.14} 314" transform="rotate(-90 60 60)" style="transition:stroke-dasharray .4s"/><text x="60" y="68" text-anchor="middle" font-size="24" font-weight="800" fill="#1C1B1A">${ok?'💚':pct+'%'}</text></svg>
+ ${c.map(([g,l])=>`<div class="chk">${g?'✅':'⬜'} ${T(l)}</div>`).join('')}
+ <p style="font-size:12.5px;color:var(--muted)">${T(L('Tip: no screens in the hour before bed — bright screens and exciting videos make it harder to fall asleep.','सुझाव: सोने से एक घंटा पहले स्क्रीन नहीं — तेज़ स्क्रीन और रोमांचक वीडियो नींद आना कठिन करते हैं।','Tip: sone se ek ghanta pehle screens nahi — bright screens aur exciting videos neend aana mushkil karte hain.'))}</p>`;
+ if(ok)win('time',L('Balanced day! Sleep, play, study and family all fit.','संतुलित दिन! नींद, खेल, पढ़ाई और परिवार सब फ़िट।','Balanced day! Neend, khel, padhai aur family sab fit.'));}
+/* ---------- CAREERS ---------- */
+const INT=[['build',L('🔧 Building things','🔧 चीज़ें बनाना','🔧 Cheezein banana')],['puzzle',L('🧩 Puzzles & maths','🧩 पहेलियाँ और गणित','🧩 Puzzles aur maths')],['draw',L('🎨 Drawing & design','🎨 चित्र और डिज़ाइन','🎨 Drawing aur design')],['help',L('🤝 Helping people','🤝 लोगों की मदद','🤝 Logon ki madad')],['games',L('🎮 Games & stories','🎮 खेल और कहानियाँ','🎮 Games aur kahaniyaan')],['safe',L('🛡️ Keeping things safe','🛡️ चीज़ें सुरक्षित रखना','🛡️ Cheezein safe rakhna')],['nature',L('🌱 Nature & space','🌱 प्रकृति और अंतरिक्ष','🌱 Nature aur space')],['talk',L('🗣️ Talking & writing','🗣️ बोलना और लिखना','🗣️ Bolna aur likhna')]];
+const CAR=[{e:'💻',n:L('Software developer','सॉफ़्टवेयर डेवलपर','Software developer'),k:['build','puzzle','games'],d:L('Writes and tests the code behind apps like UPI, IRCTC and DIKSHA.','UPI, IRCTC और DIKSHA जैसे ऐप के पीछे का कोड लिखता और जाँचता है।','UPI, IRCTC aur DIKSHA jaise apps ke peeche ka code likhta aur test karta hai.'),p:L('Path: maths in Class 11–12 → B.Tech/B.E. in Computer Science (JEE) or BCA/B.Sc → projects on GitHub → internship.','रास्ता: कक्षा 11–12 में गणित → कंप्यूटर साइंस में B.Tech/B.E. (JEE) या BCA/B.Sc → GitHub पर प्रोजेक्ट → इंटर्नशिप।','Path: Class 11–12 mein maths → Computer Science mein B.Tech/B.E. (JEE) ya BCA/B.Sc → GitHub pe projects → internship.')},
+ {e:'🧠',n:L('AI / machine-learning engineer','AI / मशीन-लर्निंग इंजीनियर','AI / machine-learning engineer'),k:['puzzle','build','nature'],d:L('Trains and tests models — for crop-disease apps, Indian-language translation or medical scans.','मॉडल प्रशिक्षित और जाँचता है — फ़सल रोग ऐप, भारतीय भाषा अनुवाद या चिकित्सा स्कैन के लिए।','Models train aur test karta hai — crop-disease apps, Indian-language translation ya medical scans ke liye.'),p:L('Path: strong maths and statistics → B.Tech CSE/AI or B.Sc Data Science → Python projects → M.Tech or research (IITs, IISc).','रास्ता: मज़बूत गणित और सांख्यिकी → B.Tech CSE/AI या B.Sc डेटा साइंस → Python प्रोजेक्ट → M.Tech या शोध (IIT, IISc)।','Path: strong maths aur statistics → B.Tech CSE/AI ya B.Sc Data Science → Python projects → M.Tech ya research (IITs, IISc).')},
+ {e:'🛡️',n:L('Cybersecurity analyst','साइबर सुरक्षा विश्लेषक','Cybersecurity analyst'),k:['safe','puzzle','help'],d:L('Defends banks, hospitals and government systems; investigates attacks and fixes weaknesses.','बैंकों, अस्पतालों और सरकारी प्रणालियों की रक्षा करता है; हमलों की जाँच और कमज़ोरियाँ ठीक करता है।','Banks, hospitals aur government systems ki raksha karta hai; attacks investigate karta aur weaknesses fix karta hai.'),p:L('Path: networking + programming basics → B.Tech/BCA → security certifications → work in a security team, CERT-In or police cyber cells.','रास्ता: नेटवर्किंग + प्रोग्रामिंग की मूल बातें → B.Tech/BCA → सुरक्षा प्रमाणपत्र → सुरक्षा टीम, CERT-In या पुलिस साइबर सेल में काम।','Path: networking + programming basics → B.Tech/BCA → security certifications → security team, CERT-In ya police cyber cells mein kaam.')},
+ {e:'🎨',n:L('UX / UI designer','UX / UI डिज़ाइनर','UX / UI designer'),k:['draw','help','talk'],d:L('Designs screens that are easy for everyone — including grandparents and people with disabilities.','ऐसी स्क्रीन डिज़ाइन करता है जो सबके लिए आसान हों — दादा-दादी और दिव्यांग लोगों के लिए भी।','Aisi screens design karta hai jo sabke liye aasaan hon — dada-dadi aur disabled logon ke liye bhi.'),p:L('Path: sketching and observing users → B.Des (NID, IIT/IDC via UCEED, NIFT) → a portfolio of app designs.','रास्ता: स्केच बनाना और उपयोगकर्ताओं को देखना → B.Des (NID, UCEED से IIT/IDC, NIFT) → ऐप डिज़ाइनों का पोर्टफ़ोलियो।','Path: sketching aur users ko observe karna → B.Des (NID, UCEED se IIT/IDC, NIFT) → app designs ka portfolio.')},
+ {e:'🤖',n:L('Robotics engineer','रोबोटिक्स इंजीनियर','Robotics engineer'),k:['build','nature','puzzle'],d:L('Builds robots for factories, farms, hospitals and space — like ISRO’s rovers.','फ़ैक्टरी, खेत, अस्पताल और अंतरिक्ष के लिए रोबोट बनाता है — ISRO के रोवर जैसे।','Factories, farms, hospitals aur space ke liye robots banata hai — ISRO ke rovers jaise.'),p:L('Path: physics + maths → B.Tech in Mechatronics, Electronics or Mechanical → robotics clubs and contests → ISRO, DRDO or startups.','रास्ता: भौतिकी + गणित → मेकाट्रॉनिक्स, इलेक्ट्रॉनिक्स या मैकेनिकल में B.Tech → रोबोटिक्स क्लब और प्रतियोगिताएँ → ISRO, DRDO या स्टार्टअप।','Path: physics + maths → Mechatronics, Electronics ya Mechanical mein B.Tech → robotics clubs aur contests → ISRO, DRDO ya startups.')},
+ {e:'🎮',n:L('Game developer','गेम डेवलपर','Game developer'),k:['games','draw','build'],d:L('Creates game worlds, characters and rules, using code, art and sound.','कोड, कला और ध्वनि से खेल की दुनिया, पात्र और नियम बनाता है।','Code, art aur sound se game worlds, characters aur rules banata hai.'),p:L('Path: make small games (Scratch → Python → a game engine) → B.Tech/BCA or a game-design course → a portfolio of playable games.','रास्ता: छोटे गेम बनाओ (Scratch → Python → गेम इंजन) → B.Tech/BCA या गेम-डिज़ाइन कोर्स → खेलने योग्य गेमों का पोर्टफ़ोलियो।','Path: chhote games banao (Scratch → Python → game engine) → B.Tech/BCA ya game-design course → playable games ka portfolio.')},
+ {e:'📊',n:L('Data scientist','डेटा वैज्ञानिक','Data scientist'),k:['puzzle','help','nature'],d:L('Finds patterns in data — for weather forecasts, cricket analytics or public health.','डेटा में पैटर्न खोजता है — मौसम पूर्वानुमान, क्रिकेट विश्लेषण या जन स्वास्थ्य के लिए।','Data mein patterns dhoondhta hai — weather forecasts, cricket analytics ya public health ke liye.'),p:L('Path: maths/statistics → B.Sc Statistics or Data Science, B.Tech, or the IIT Madras online BS in Data Science → spreadsheets, SQL, Python.','रास्ता: गणित/सांख्यिकी → B.Sc सांख्यिकी या डेटा साइंस, B.Tech, या IIT मद्रास का ऑनलाइन BS डेटा साइंस → स्प्रेडशीट, SQL, Python।','Path: maths/statistics → B.Sc Statistics ya Data Science, B.Tech, ya IIT Madras ka online BS in Data Science → spreadsheets, SQL, Python.')},
+ {e:'🔌',n:L('Chip & hardware engineer','चिप और हार्डवेयर इंजीनियर','Chip aur hardware engineer'),k:['build','puzzle','nature'],d:L('Designs the chips and circuit boards inside phones, cars and satellites.','फ़ोन, कारों और उपग्रहों के अंदर की चिप और सर्किट बोर्ड डिज़ाइन करता है।','Phones, cars aur satellites ke andar ki chips aur circuit boards design karta hai.'),p:L('Path: physics + maths → B.Tech in Electronics (ECE/EEE) → VLSI design → jobs growing under the India Semiconductor Mission.','रास्ता: भौतिकी + गणित → इलेक्ट्रॉनिक्स (ECE/EEE) में B.Tech → VLSI डिज़ाइन → भारत सेमीकंडक्टर मिशन के तहत बढ़ती नौकरियाँ।','Path: physics + maths → Electronics (ECE/EEE) mein B.Tech → VLSI design → India Semiconductor Mission ke under badhti jobs.')},
+ {e:'✍️',n:L('Tech teacher, writer or journalist','टेक शिक्षक, लेखक या पत्रकार','Tech teacher, writer ya journalist'),k:['talk','help','games'],d:L('Explains technology to others — in classrooms, YouTube lessons, help guides or news.','दूसरों को तकनीक समझाता है — कक्षा, YouTube पाठ, सहायता गाइड या समाचार में।','Doosron ko technology samjhata hai — classrooms, YouTube lessons, help guides ya news mein.'),p:L('Path: any degree plus strong tech knowledge → B.Ed for teaching, or journalism/communication courses → a blog or portfolio.','रास्ता: कोई भी डिग्री और मज़बूत तकनीकी ज्ञान → पढ़ाने के लिए B.Ed, या पत्रकारिता/संचार कोर्स → ब्लॉग या पोर्टफ़ोलियो।','Path: koi bhi degree plus strong tech knowledge → teaching ke liye B.Ed, ya journalism/communication courses → blog ya portfolio.')},
+ {e:'☁️',n:L('Cloud & network engineer','क्लाउड और नेटवर्क इंजीनियर','Cloud aur network engineer'),k:['safe','build','help'],d:L('Keeps websites, data centres and mobile networks running for millions of users.','लाखों उपयोगकर्ताओं के लिए वेबसाइट, डेटा सेंटर और मोबाइल नेटवर्क चालू रखता है।','Laakhon users ke liye websites, data centres aur mobile networks chalu rakhta hai.'),p:L('Path: networking basics → B.Tech/BCA/diploma → cloud and networking certifications → data-centre or telecom jobs.','रास्ता: नेटवर्किंग की मूल बातें → B.Tech/BCA/डिप्लोमा → क्लाउड और नेटवर्किंग प्रमाणपत्र → डेटा-सेंटर या दूरसंचार नौकरियाँ।','Path: networking basics → B.Tech/BCA/diploma → cloud aur networking certifications → data-centre ya telecom jobs.')}];
+let pick=[],opened=new Set();
+function drawCar(){const sc=c=>c.k.filter(k=>pick.includes(k)).length;const list=pick.length?CAR.map((c,i)=>[c,i]).filter(([c])=>sc(c)>0).sort((a,b)=>sc(b[0])-sc(a[0])||a[1]-b[1]):[];
+ $('stage').innerHTML=`<div style="font-weight:800;font-size:14px;margin-bottom:6px">${T(L('What do you enjoy? Pick 3','तुम्हें क्या पसंद है? 3 चुनो','Tumhe kya pasand hai? 3 chuno'))} (${pick.length}/3)</div><div class="chips">${INT.map(([k,n])=>`<button data-p="${k}" aria-pressed="${pick.includes(k)}">${T(n)}</button>`).join('')}</div>
+ <div style="margin-top:10px">${list.map(([c,i])=>`<details class="car" data-c="${i}" ${opened.has(i)?'open':''}><summary><span style="font-size:22px">${c.e}</span> ${T(c.n)} <span style="margin-left:auto;font-size:12px;color:var(--teal)">${'★'.repeat(sc(c))}</span></summary><p>${T(c.d)}</p><p><b>🇮🇳</b> ${T(c.p)}</p></details>`).join('')}</div>`;
+ $('stage').querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>{const k=b.dataset.p;vib();if(pick.includes(k))pick=pick.filter(x=>x!==k);else if(pick.length<3)pick.push(k);else{pick.shift();pick.push(k);}drawCar();});
+ $('stage').querySelectorAll('details').forEach(d=>d.ontoggle=()=>{if(d.open){opened.add(+d.dataset.c);sideCar();}});sideCar();}
+function sideCar(){const n=opened.size;$('side').innerHTML=`<div class="big">📖 ${n}/3</div><p style="font-size:13.5px">${T(L('Every tech career needs the same habits: curiosity, practice, teamwork, clear communication and honesty. You do not have to choose now — try many things and build small projects.','हर टेक करियर को एक जैसी आदतें चाहिए: जिज्ञासा, अभ्यास, टीमवर्क, स्पष्ट संवाद और ईमानदारी। अभी चुनना ज़रूरी नहीं — कई चीज़ें आज़माओ और छोटे प्रोजेक्ट बनाओ।','Har tech career ko same habits chahiye: curiosity, practice, teamwork, clear communication aur honesty. Abhi chunna zaroori nahi — kai cheezein try karo aur chhote projects banao.'))}</p><p style="font-size:12.5px;color:var(--muted)">${T(L('Girls and boys are equally good at tech — India’s chip, space and software teams include many women engineers.','लड़कियाँ और लड़के तकनीक में बराबर अच्छे हैं — भारत की चिप, अंतरिक्ष और सॉफ़्टवेयर टीमों में कई महिला इंजीनियर हैं।','Ladkiyaan aur ladke tech mein barabar achhe hain — India ki chip, space aur software teams mein kai women engineers hain.'))}</p>`;
+ if(pick.length===3&&n>=3)win('career',L('Career explorer! Keep trying, keep building.','करियर खोजी! आज़माते रहो, बनाते रहो।','Career explorer! Try karte raho, banaate raho.'));}
+function mission(){const st={licence:L('All 6 pictures judged right','सभी 6 चित्र सही आँके','Saari 6 pictures sahi judge'),time:L('A healthy 24-hour day','स्वस्थ 24 घंटे का दिन','Healthy 24-hour day'),career:L('3 interests, 3 careers explored','3 रुचियाँ, 3 करियर देखे','3 interests, 3 careers explore')};
+ $('mission').innerHTML=TABS.map(([k,n])=>`<div style="margin:3px 0">${done[k]?'✅':'⬜'} <b>${T(n)}</b> — ${T(st[k])}</div>`).join('');}
+function draw(){$('goal').innerHTML=E(T(goal&&cfg.tab===tab?goal:GOALS[tab]));$('tabs').innerHTML=TABS.map(([k,n])=>`<button role="tab" aria-selected="${k===tab}" data-t="${k}">${T(n)}</button>`).join('');
+ $('tabs').querySelectorAll('button').forEach(b=>b.onclick=()=>{tab=b.dataset.t;draw();});({licence:drawLic,time:drawTime,career:drawCar})[tab]();mission();}
+N.onLang(draw);draw();
+window.__lab={tab:k=>{tab=k;draw();},done,hrs};
+})();
+</script></body></html>

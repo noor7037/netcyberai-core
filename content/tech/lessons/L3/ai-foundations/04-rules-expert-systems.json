@@ -1,0 +1,338 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.ai-foundations.04",
+ "level": 3,
+ "classes": [
+  9,
+  10
+ ],
+ "unit": "ai-foundations",
+ "title": {
+  "en": "Rule-based AI and expert systems",
+  "hi": "नियम-आधारित एआई और एक्सपर्ट सिस्टम",
+  "hinglish": "Rule-based AI aur expert systems"
+ },
+ "minutes": 10,
+ "xp": 40,
+ "prereq": [
+  "L3.ai-foundations.01"
+ ],
+ "outcomes": [
+  {
+   "en": "Write IF–THEN rules and run forward chaining by hand",
+   "hinglish": "IF-THEN rules likho aur forward chaining haath se chalao",
+   "hi": "IF–THEN नियम लिखना और हाथ से फ़ॉरवर्ड चेनिंग चलाना"
+  },
+  {
+   "en": "Explain where rules beat machine learning and where they fail",
+   "hinglish": "Batao kahan rules ML se behtar hain aur kahan fail hote hain",
+   "hi": "समझाना कि नियम कहाँ मशीन लर्निंग से बेहतर हैं और कहाँ विफल होते हैं"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Rule",
+   "hinglish": "Agar yeh, to woh",
+   "en": "An IF condition THEN conclusion/action statement",
+   "hi": "\"यदि शर्त तो निष्कर्ष/कार्य\" वाला कथन"
+  },
+  {
+   "term": "Knowledge base",
+   "hinglish": "Rules aur facts ka khazana",
+   "en": "The stored facts and rules of an expert system",
+   "hi": "विशेषज्ञ प्रणाली के संग्रहीत तथ्य और नियम"
+  },
+  {
+   "term": "Inference engine",
+   "hinglish": "Rules lagakar naye facts nikaalne wali machine",
+   "en": "The part that applies rules to facts to derive conclusions",
+   "hi": "वह भाग जो तथ्यों पर नियम लगाकर निष्कर्ष निकालता है"
+  },
+  {
+   "term": "Forward chaining",
+   "hinglish": "Facts se shuru karke aage badhna",
+   "en": "Start from known facts and fire rules until no new facts appear",
+   "hi": "ज्ञात तथ्यों से शुरू करके तब तक नियम लगाना जब तक नए तथ्य न बनें"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "A rule: IF fever AND rash THEN suspect measles. Facts go in, the inference engine fires matching rules.",
+    "hi": "एक नियम: अगर बुखार और दाने तो खसरे का शक। तथ्य अंदर जाते हैं, इन्फ़रेंस इंजन मेल खाने वाले नियम चलाता है।",
+    "hinglish": "Ek rule: IF bukhaar AND daane THEN khasre ka shak. Facts andar jaate hain, inference engine matching rules chalata hai."
+   },
+   "visual": "anim:rule-fire",
+   "narration": {
+    "en": "A rule: IF fever AND rash THEN suspect measles. Facts go in, the inference engine fires matching rules.",
+    "hi": "एक नियम: अगर बुखार और दाने तो खसरे का शक। तथ्य अंदर जाते हैं, इन्फ़रेंस इंजन मेल खाने वाले नियम चलाता है।",
+    "hinglish": "Ek rule: IF bukhaar AND daane THEN khasre ka shak. Facts andar jaate hain, inference engine matching rules chalata hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Forward chaining repeats: each new fact can fire more rules, until nothing new appears.",
+    "hi": "फ़ॉरवर्ड चेनिंग दोहराती है: हर नया तथ्य और नियम चला सकता है, जब तक कुछ नया न आए।",
+    "hinglish": "Forward chaining repeat hoti hai: har naya fact aur rules chala sakta hai, jab tak kuch naya na aaye."
+   },
+   "visual": "anim:forward-chain",
+   "narration": {
+    "en": "Forward chaining repeats: each new fact can fire more rules, until nothing new appears.",
+    "hi": "फ़ॉरवर्ड चेनिंग दोहराती है: हर नया तथ्य और नियम चला सकता है, जब तक कुछ नया न आए।",
+    "hinglish": "Forward chaining repeat hoti hai: har naya fact aur rules chala sakta hai, jab tak kuch naya na aaye."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Rules are transparent and explainable, but someone must write every rule, and real life has endless exceptions.",
+    "hi": "नियम पारदर्शी और समझाने योग्य हैं, पर हर नियम किसी को लिखना पड़ता है, और असल ज़िंदगी में अनगिनत अपवाद हैं।",
+    "hinglish": "Rules transparent aur explainable hain, par har rule kisi ko likhna padta hai, aur real life mein anginat exceptions hain."
+   },
+   "visual": "anim:rules-exceptions",
+   "narration": {
+    "en": "Rules are transparent and explainable, but someone must write every rule, and real life has endless exceptions.",
+    "hi": "नियम पारदर्शी और समझाने योग्य हैं, पर हर नियम किसी को लिखना पड़ता है, और असल ज़िंदगी में अनगिनत अपवाद हैं।",
+    "hinglish": "Rules transparent aur explainable hain, par har rule kisi ko likhna padta hai, aur real life mein anginat exceptions hain."
+   }
+  }
+ ],
+ "play": {
+  "lab": "agent-loop",
+  "config": {
+   "scenario": "rule-engine-irrigation"
+  },
+  "goal": {
+   "en": "Step through a rule engine that decides whether to switch on a farm pump from soil moisture, rain forecast and time.",
+   "hinglish": "Ek rule engine ko step-by-step chalao jo soil moisture, baarish forecast aur time dekh ke farm pump on karne ka decide karta hai.",
+   "hi": "एक नियम-इंजन को कदम-दर-कदम चलाओ जो मिट्टी की नमी, बारिश के पूर्वानुमान और समय से खेत का पंप चालू करना तय करता है।"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "How an expert system works",
+    "hi": "एक्सपर्ट सिस्टम कैसे काम करता है",
+    "hinglish": "Expert system kaise kaam karta hai"
+   },
+   "body": {
+    "en": "An expert system stores a human expert's knowledge as rules in a knowledge base. The inference engine matches rules against facts about the current case. In forward chaining it starts from facts and fires every rule whose IF part is true, adding the THEN part as a new fact, until nothing changes. In backward chaining it starts from a goal (\"Is it measles?\") and works back to find which facts would prove it. MYCIN (Stanford, 1970s) used about 600 rules to suggest antibiotics and performed as well as some specialists in tests, yet was never used routinely in hospitals because of legal and practical concerns.",
+    "hi": "एक्सपर्ट सिस्टम किसी मानव विशेषज्ञ का ज्ञान नियमों के रूप में नॉलेज बेस में रखता है। इन्फ़रेंस इंजन वर्तमान मामले के तथ्यों से नियमों का मिलान करता है। फ़ॉरवर्ड चेनिंग में वह तथ्यों से शुरू करता है और हर वह नियम चलाता है जिसका अगर-भाग सच हो, और तो-भाग को नया तथ्य जोड़ता है, जब तक कुछ न बदले। बैकवर्ड चेनिंग में वह लक्ष्य (\"क्या यह खसरा है?\") से शुरू होकर पीछे जाता है कि कौन-से तथ्य इसे सिद्ध करेंगे। माइसिन (स्टैनफ़ोर्ड, 1970 का दशक) लगभग 600 नियमों से एंटीबायोटिक सुझाता था और परीक्षणों में कुछ विशेषज्ञों जितना अच्छा रहा, फिर भी कानूनी और व्यावहारिक कारणों से अस्पतालों में नियमित रूप से इस्तेमाल नहीं हुआ।",
+    "hinglish": "Expert system kisi human expert ka knowledge rules ki tarah knowledge base mein rakhta hai. Inference engine current case ke facts se rules match karta hai. Forward chaining mein woh facts se shuru karta hai aur har woh rule chalata hai jiska IF part true ho, THEN part ko naya fact jodta hai, jab tak kuch na badle. Backward chaining mein woh goal (\"Kya yeh khasra hai?\") se shuru karke peeche jaata hai ki kaunse facts ise prove karenge. MYCIN (Stanford, 1970s) lagbhag 600 rules se antibiotics suggest karta tha aur tests mein kuch specialists jitna accha raha, phir bhi legal aur practical wajahon se hospitals mein regular use nahi hua."
+   },
+   "analogy": {
+    "hinglish": "Jaise school ka rule book: \"Agar uniform nahi, to diary mein note\" — teacher (inference engine) facts dekh ke rule lagati hai.",
+    "en": "Like the school rule book: \"If no uniform, note in the diary\" — the teacher (inference engine) looks at the facts and applies the rule.",
+    "hi": "जैसे स्कूल की नियम-पुस्तिका: \"यदि वर्दी नहीं, तो डायरी में लिखो\" — शिक्षिका (अनुमान इंजन) तथ्य देखकर नियम लगाती हैं।"
+   },
+   "realExample": {
+    "en": "Income-tax portals and bank loan pre-checks still use rule engines: IF income < limit AND age ≥ 18 THEN eligible. Rules make the decision auditable.",
+    "hinglish": "Income-tax portals aur bank loan pre-checks abhi bhi rule engines use karte hain: IF income < limit AND age ≥ 18 THEN eligible. Rules se decision audit ho sakta hai.",
+    "hi": "आयकर पोर्टल और बैंक ऋण की प्रारंभिक जाँच आज भी नियम-इंजन इस्तेमाल करते हैं: यदि आय < सीमा और आयु ≥ 18 तो पात्र। नियम निर्णय को जाँचने योग्य बनाते हैं।"
+   }
+  },
+  {
+   "heading": {
+    "en": "Rules vs learning: when to use which",
+    "hi": "नियम बनाम सीखना: कब कौन",
+    "hinglish": "Rules vs learning: kab kaunsa"
+   },
+   "body": {
+    "en": "Use rules when the logic is known, stable and must be explained or audited: tax slabs, eligibility, safety interlocks. Use machine learning when the pattern is too complex to write down: recognising a face, a handwritten digit, or a fraudster's behaviour. Many real systems are hybrids: an ML model gives a fraud score, and rules decide what to do with it (block above 0.9, ask for extra verification between 0.6 and 0.9). Rules are also used as guardrails around modern AI agents.",
+    "hi": "नियम तब इस्तेमाल करें जब तर्क ज्ञात, स्थिर हो और उसे समझाना या ऑडिट करना ज़रूरी हो: टैक्स स्लैब, पात्रता, सुरक्षा इंटरलॉक। मशीन लर्निंग तब जब पैटर्न लिखना बहुत जटिल हो: चेहरा, हाथ से लिखा अंक या धोखेबाज़ का व्यवहार पहचानना। कई असली सिस्टम मिश्रित होते हैं: एमएल मॉडल धोखाधड़ी स्कोर देता है, और नियम तय करते हैं कि उसके साथ क्या करें (0.9 से ऊपर ब्लॉक, 0.6 से 0.9 के बीच अतिरिक्त सत्यापन)। आधुनिक एआई एजेंटों के चारों ओर सुरक्षा-घेरे (गार्डरेल) के रूप में भी नियम इस्तेमाल होते हैं।",
+    "hinglish": "Rules tab use karo jab logic pata ho, stable ho aur use explain ya audit karna zaroori ho: tax slabs, eligibility, safety interlocks. ML tab jab pattern likhna bahut complex ho: chehra, haath se likha digit ya fraudster ka behaviour pehchanna. Kai real systems hybrid hote hain: ML model fraud score deta hai, aur rules decide karte hain kya karna hai (0.9 se upar block, 0.6-0.9 ke beech extra verification). Modern AI agents ke chaaron taraf guardrails ki tarah bhi rules use hote hain."
+   },
+   "analogy": {
+    "hinglish": "Rules = traffic signal ke fixed niyam; ML = traffic police wala jo bheed dekh ke andaaza lagata hai. Accha system dono use karta hai.",
+    "en": "Rules = the fixed timing of a traffic signal; ML = the traffic policeman who judges the crowd. A good system uses both.",
+    "hi": "नियम = ट्रैफ़िक सिग्नल के तय नियम; एमएल = ट्रैफ़िक पुलिसवाला जो भीड़ देखकर अंदाज़ा लगाता है। अच्छी प्रणाली दोनों इस्तेमाल करती है।"
+   },
+   "realExample": {
+    "en": "Banks combine an ML risk score with RBI-mandated rules, for example extra authentication for card-not-present payments.",
+    "hinglish": "Banks ML risk score ko RBI ke rules ke saath combine karte hain, jaise card-not-present payments ke liye extra authentication.",
+    "hi": "बैंक एमएल जोखिम-अंक को आरबीआई के अनिवार्य नियमों से जोड़ते हैं, जैसे कार्ड-उपस्थित-न-होने वाले भुगतानों पर अतिरिक्त प्रमाणीकरण।"
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write 5 IF–THEN rules for a smart school bell (exam days, holidays, lunch). Run forward chaining for a Saturday exam day by hand.",
+   "hinglish": "Smart school bell ke liye 5 IF-THEN rules likho (exam days, chhuttiyan, lunch). Ek Saturday exam day ke liye haath se forward chaining chalao.",
+   "hi": "स्मार्ट स्कूल घंटी के लिए 5 IF–THEN नियम लिखो (परीक्षा के दिन, छुट्टियाँ, लंच)। शनिवार के परीक्षा दिवस के लिए हाथ से फ़ॉरवर्ड चेनिंग चलाओ।"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Facts: soil is dry, no rain forecast. Rule: IF dry AND no-rain THEN pump-on. What does forward chaining add?",
+     "hi": "तथ्य: मिट्टी सूखी, बारिश का अनुमान नहीं। नियम: अगर सूखी और बारिश-नहीं तो पंप-चालू। फ़ॉरवर्ड चेनिंग क्या जोड़ती है?",
+     "hinglish": "Facts: mitti sookhi, baarish ka forecast nahi. Rule: IF dry AND no-rain THEN pump-on. Forward chaining kya jodegi?"
+    },
+    "options": [
+     {
+      "en": "pump-on",
+      "hinglish": "pump-on",
+      "hi": "pump-on (पंप चालू)"
+     },
+     {
+      "en": "rain",
+      "hinglish": "rain",
+      "hi": "rain (बारिश)"
+     },
+     {
+      "en": "Nothing",
+      "hinglish": "Kuch nahi",
+      "hi": "कुछ नहीं"
+     },
+     {
+      "en": "pump-off",
+      "hinglish": "pump-off",
+      "hi": "pump-off (पंप बंद)"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Both conditions are true, so the rule fires and adds the new fact pump-on.",
+     "hi": "दोनों शर्तें सच हैं, इसलिए नियम चलता है और नया तथ्य पंप-चालू जुड़ता है।",
+     "hinglish": "Dono conditions true hain, isliye rule fire hota hai aur naya fact pump-on judta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "multi",
+    "prompt": {
+     "en": "Where is a rule-based system a better choice than ML? Choose all.",
+     "hi": "कहाँ नियम-आधारित सिस्टम एमएल से बेहतर विकल्प है? सभी चुनें।",
+     "hinglish": "Kahan rule-based system ML se behtar choice hai? Sab chuno."
+    },
+    "options": [
+     {
+      "en": "Calculating income tax from slabs",
+      "hinglish": "Slabs se income tax nikaalna",
+      "hi": "स्लैब से आयकर की गणना"
+     },
+     {
+      "en": "Recognising faces in photos",
+      "hinglish": "Photos mein chehre pehchanna",
+      "hi": "तस्वीरों में चेहरे पहचानना"
+     },
+     {
+      "en": "A lift that must not move with doors open",
+      "hinglish": "Lift jo darwaza khula ho to na chale",
+      "hi": "ऐसी लिफ़्ट जो दरवाज़े खुले रहने पर न चले"
+     },
+     {
+      "en": "Understanding spoken Tamil",
+      "hinglish": "Boli hui Tamil samajhna",
+      "hi": "बोली गई तमिल समझना"
+     }
+    ],
+    "answer": [
+     0,
+     2
+    ],
+    "explain": {
+     "en": "Tax slabs and safety interlocks are exact, known logic that must be auditable. Faces and speech are too complex for hand-written rules, so ML wins there.",
+     "hi": "टैक्स स्लैब और सुरक्षा इंटरलॉक सटीक, ज्ञात तर्क हैं जिनका ऑडिट होना चाहिए। चेहरे और बोली हाथ से लिखे नियमों के लिए बहुत जटिल हैं, वहाँ एमएल जीतता है।",
+     "hinglish": "Tax slabs aur safety interlocks exact, known logic hain jinka audit hona chahiye. Chehre aur speech haath ke rules ke liye bahut complex hain, wahan ML jeetta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Backward chaining starts from…",
+     "hi": "बैकवर्ड चेनिंग कहाँ से शुरू होती है?",
+     "hinglish": "Backward chaining kahan se shuru hoti hai?"
+    },
+    "options": [
+     {
+      "en": "A goal to prove",
+      "hinglish": "Prove karne wala goal",
+      "hi": "सिद्ध करने का एक लक्ष्य"
+     },
+     {
+      "en": "Random facts",
+      "hinglish": "Random facts",
+      "hi": "यादृच्छिक तथ्य"
+     },
+     {
+      "en": "The last rule written",
+      "hinglish": "Aakhri likha rule",
+      "hi": "आख़िरी लिखा गया नियम"
+     },
+     {
+      "en": "Training data",
+      "hinglish": "Training data",
+      "hi": "प्रशिक्षण डेटा"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "It picks a goal and searches for rules and facts that would prove it, like a detective working back from a suspect.",
+     "hi": "यह एक लक्ष्य चुनती है और ऐसे नियम-तथ्य खोजती है जो उसे सिद्ध करें, जैसे जासूस संदिग्ध से पीछे की ओर सोचता है।",
+     "hinglish": "Yeh ek goal chunti hai aur aise rules-facts dhoondhti hai jo use prove karein, jaise detective suspect se peeche ki taraf sochta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "The biggest weakness of pure rule systems is…",
+     "hi": "शुद्ध नियम-सिस्टम की सबसे बड़ी कमज़ोरी क्या है?",
+     "hinglish": "Pure rule systems ki sabse badi kamzori kya hai?"
+    },
+    "options": [
+     {
+      "en": "Every rule and exception must be written by hand, and they break on unseen cases",
+      "hinglish": "Har rule aur exception haath se likhna padta hai, aur naye cases par toot jaate hain",
+      "hi": "हर नियम और अपवाद हाथ से लिखना पड़ता है, और वे अनदेखे मामलों पर टूट जाते हैं"
+     },
+     {
+      "en": "They are impossible to explain",
+      "hinglish": "Unhe explain karna impossible hai",
+      "hi": "उन्हें समझाना असंभव है"
+     },
+     {
+      "en": "They need GPUs",
+      "hinglish": "Unhe GPU chahiye",
+      "hi": "उन्हें GPU चाहिए"
+     },
+     {
+      "en": "They only work offline",
+      "hinglish": "Sirf offline chalte hain",
+      "hi": "वे सिर्फ़ ऑफ़लाइन काम करते हैं"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Rules are explainable and cheap to run, but the real world has too many exceptions to list. This \"knowledge bottleneck\" helped cause the second AI winter.",
+     "hi": "नियम समझाने योग्य और सस्ते हैं, पर असली दुनिया में अपवाद गिनने से ज़्यादा हैं। इस \"ज्ञान अड़चन\" ने दूसरी एआई विंटर में योगदान दिया।",
+     "hinglish": "Rules explainable aur saste hain, par real world mein itne exceptions hain ki list nahi ho sakte. Is \"knowledge bottleneck\" ne second AI winter mein role nibhaya."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "topics": [
+  "ai.rules-expert"
+ ],
+ "sources": [
+  {
+   "title": "Shortliffe, E. H. (1976) Computer-Based Medical Consultations: MYCIN",
+   "url": "https://www.shortliffe.net/Shortliffe-1976/MYCIN%20thesis%20Book.htm",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Russell & Norvig, AIMA ch. 7–9 — logical agents and inference",
+   "url": "https://aima.cs.berkeley.edu/",
+   "licence": "fact reference"
+  }
+ ]
+}

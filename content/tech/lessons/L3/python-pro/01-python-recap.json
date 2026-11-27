@@ -1,0 +1,330 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.python-pro.01",
+ "level": 3,
+ "classes": [
+  9,
+  10
+ ],
+ "unit": "python-pro",
+ "title": {
+  "en": "Python recap: variables, if and loops",
+  "hi": "पायथन दोहराव: वेरिएबल, if और लूप",
+  "hinglish": "Python recap: variables, if aur loops"
+ },
+ "minutes": 12,
+ "xp": 50,
+ "prereq": [],
+ "outcomes": [
+  {
+   "en": "Trace how variables change line by line",
+   "hi": "पंक्ति-दर-पंक्ति वेरिएबल का बदलना देखो",
+   "hinglish": "Line by line variables ka badalna trace karo"
+  },
+  {
+   "en": "Use if/elif/else, for and while correctly",
+   "hi": "if/elif/else, for और while सही इस्तेमाल करो",
+   "hinglish": "if/elif/else, for aur while sahi use karo"
+  },
+  {
+   "en": "Know Python types: int, float, str, bool",
+   "hi": "पायथन प्रकार जानो: int, float, str, bool",
+   "hinglish": "Python types jaano: int, float, str, bool"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Variable",
+   "hinglish": "Value ka naam",
+   "en": "A name that refers to a value",
+   "hi": "किसी मान को दिया गया नाम"
+  },
+  {
+   "term": "Type",
+   "hinglish": "Value ka prakaar",
+   "en": "The kind of value: int, float, str, bool, list…",
+   "hi": "मान का प्रकार: int, float, str, bool, list…"
+  },
+  {
+   "term": "Loop",
+   "hinglish": "Dohraana",
+   "en": "Repeat a block: for over items, while a condition is True",
+   "hi": "भाग को दोहराना: for वस्तुओं पर, while शर्त True रहने तक"
+  },
+  {
+   "term": "Indentation",
+   "hinglish": "Andar khiskaana",
+   "en": "Spaces at the start of a line that group code into blocks",
+   "hi": "पंक्ति की शुरुआत की जगह जो कोड को भागों में बाँटती है"
+  },
+  {
+   "term": "Accumulator",
+   "hinglish": "Jodne wala variable",
+   "en": "A variable that builds a total inside a loop",
+   "hi": "लूप के अंदर कुल बनाने वाला वेरिएबल"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "marks = [72, 85, 91, 64] — a list of four ints. total = 0 starts an accumulator.",
+    "hi": "marks = [72, 85, 91, 64] — चार int की सूची। total = 0 संचायक शुरू करता है।",
+    "hinglish": "marks = [72, 85, 91, 64] — chaar int ki list. total = 0 accumulator shuru karta hai."
+   },
+   "visual": "anim:list-boxes",
+   "narration": {
+    "en": "marks = [72, 85, 91, 64] — a list of four ints. total = 0 starts an accumulator.",
+    "hi": "marks = [72, 85, 91, 64] — चार int की सूची। total = 0 संचायक शुरू करता है।",
+    "hinglish": "marks = [72, 85, 91, 64] — chaar int ki list. total = 0 accumulator shuru karta hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "for m in marks: takes each item in turn; the indented line runs once per item.",
+    "hi": "for m in marks: हर वस्तु बारी-बारी लेता है; इंडेंट पंक्ति हर वस्तु पर एक बार चलती है।",
+    "hinglish": "for m in marks: har item baari-baari leta hai; indented line har item par ek baar chalti hai."
+   },
+   "visual": "anim:loop-arrow",
+   "narration": {
+    "en": "for m in marks: takes each item in turn; the indented line runs once per item.",
+    "hi": "for m in marks: हर वस्तु बारी-बारी लेता है; इंडेंट पंक्ति हर वस्तु पर एक बार चलती है।",
+    "hinglish": "for m in marks: har item baari-baari leta hai; indented line har item par ek baar chalti hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "total / len(marks) gives 78.0 — / always returns a float; // floors to an int.",
+    "hi": "total / len(marks) देता है 78.0 — / हमेशा float देता है; // पूर्णांक तक घटाता है।",
+    "hinglish": "total / len(marks) deta hai 78.0 — / hamesha float deta hai; // int tak neeche karta hai."
+   },
+   "visual": "anim:divide",
+   "narration": {
+    "en": "total / len(marks) gives 78.0 — / always returns a float; // floors to an int.",
+    "hi": "total / len(marks) देता है 78.0 — / हमेशा float देता है; // पूर्णांक तक घटाता है।",
+    "hinglish": "total / len(marks) deta hai 78.0 — / hamesha float deta hai; // int tak neeche karta hai."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "if avg >= 75: picks one branch. Only one of if / elif / else ever runs.",
+    "hi": "if avg >= 75: एक शाखा चुनता है। if / elif / else में से एक ही चलती है।",
+    "hinglish": "if avg >= 75: ek branch chunta hai. if / elif / else mein se ek hi chalti hai."
+   },
+   "visual": "anim:branch",
+   "narration": {
+    "en": "if avg >= 75: picks one branch. Only one of if / elif / else ever runs.",
+    "hi": "if avg >= 75: एक शाखा चुनता है। if / elif / else में से एक ही चलती है।",
+    "hinglish": "if avg >= 75: ek branch chunta hai. if / elif / else mein se ek hi chalti hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "code-lab",
+  "config": {
+   "mode": "trace",
+   "scenario": "loop-sum"
+  },
+  "goal": {
+   "en": "Predict the output first, then step through the average-marks program and watch total grow in the variables panel.",
+   "hi": "पहले आउटपुट का अनुमान लगाओ, फिर औसत-अंक प्रोग्राम चरण-दर-चरण चलाओ और वेरिएबल पैनल में total बढ़ते देखो।",
+   "hinglish": "Pehle output predict karo, phir average-marks program step by step chalao aur variables panel mein total badhte dekho."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Values, types and names",
+    "hi": "मान, प्रकार और नाम",
+    "hinglish": "Values, types aur naam"
+   },
+   "body": {
+    "en": "Every value has a type: 42 is int, 4.2 is float, \"42\" is str, True is bool. type(x) tells you. Types matter: \"4\" + \"2\" is \"42\" (joining text) but 4 + 2 is 6. input() always returns a str, so convert with int() or float() before doing maths. Names follow snake_case by convention (total_marks), are case-sensitive, and should describe what they hold. A variable is a label stuck on a value, not a box — two names can point to the same list.",
+    "hi": "हर मान का प्रकार होता है: 42 int है, 4.2 float, \"42\" str, True bool। type(x) बताता है। प्रकार मायने रखते हैं: \"4\" + \"2\" है \"42\" (पाठ जोड़ना) पर 4 + 2 है 6। input() हमेशा str देता है, इसलिए गणित से पहले int() या float() से बदलो। नाम परंपरा से snake_case में होते हैं (total_marks), बड़े-छोटे अक्षर अलग मानते हैं, और बताने चाहिए कि उनमें क्या है। वेरिएबल मान पर चिपका लेबल है, डिब्बा नहीं — दो नाम एक ही सूची की ओर इशारा कर सकते हैं।",
+    "hinglish": "Har value ka type hota hai: 42 int hai, 4.2 float, \"42\" str, True bool. type(x) batata hai. Types matter karte hain: \"4\" + \"2\" hai \"42\" (text jodna) par 4 + 2 hai 6. input() hamesha str deta hai, isliye maths se pehle int() ya float() se badlo. Naam convention se snake_case mein (total_marks), case-sensitive, aur batayein ki unmein kya hai. Variable value par chipka label hai, dabba nahi — do naam ek hi list ko point kar sakte hain."
+   },
+   "analogy": {
+    "en": "A name tag at a party: the tag (variable) can be moved to a different person (value) at any time.",
+    "hi": "पार्टी में नाम का टैग: टैग (वेरिएबल) कभी भी दूसरे व्यक्ति (मान) पर लगाया जा सकता है।",
+    "hinglish": "Party mein naam ka tag: tag (variable) kabhi bhi doosre insaan (value) par lagaya ja sakta hai."
+   },
+   "realExample": {
+    "en": "age = input(\"Age? \") then age + 1 raises TypeError; int(age) + 1 works.",
+    "hi": "age = input(\"Age? \") फिर age + 1 से TypeError; int(age) + 1 चलता है।",
+    "hinglish": "age = input(\"Age? \") phir age + 1 se TypeError; int(age) + 1 chalta hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "Choosing for or while",
+    "hi": "for या while चुनना",
+    "hinglish": "for ya while chunna"
+   },
+   "body": {
+    "en": "Use for when you know what to loop over: items of a list, characters of a string, or range(1, 11) for 1 to 10 (the end is excluded). Use while when you repeat until something happens: while guess != secret:. Always make sure a while loop can end, or the program hangs. break leaves a loop early; continue skips to the next round. Comparison chains are allowed: 0 <= marks <= 100.",
+    "hi": "जब पता हो किस पर दोहराना है तब for: सूची की वस्तुएँ, स्ट्रिंग के अक्षर, या 1 से 10 के लिए range(1, 11) (अंत शामिल नहीं)। जब किसी घटना तक दोहराना हो तब while: while guess != secret:। हमेशा पक्का करो while लूप ख़त्म हो सके, वरना प्रोग्राम अटक जाता है। break लूप जल्दी छोड़ता है; continue अगले चक्कर पर जाता है। तुलना शृंखला चलती है: 0 <= marks <= 100।",
+    "hinglish": "Jab pata ho kis par loop karna hai tab for: list ke items, string ke characters, ya 1 se 10 ke liye range(1, 11) (end shaamil nahi). Jab kisi ghatna tak repeat karna ho tab while: while guess != secret:. Hamesha pakka karo while loop khatam ho sake, warna program atak jaata hai. break loop jaldi chhodta hai; continue agle round par jaata hai. Comparison chains chalte hain: 0 <= marks <= 100."
+   },
+   "analogy": {
+    "en": "for = \"for each student in the class\"; while = \"keep knocking until someone opens\".",
+    "hi": "for = \"कक्षा के हर छात्र के लिए\"; while = \"जब तक कोई न खोले, खटखटाते रहो\"।",
+    "hinglish": "for = \"class ke har student ke liye\"; while = \"jab tak koi na khole, khatkhatate raho\"."
+   },
+   "realExample": {
+    "en": "for i in range(3): print(i) prints 0, 1, 2 — not 3.",
+    "hi": "for i in range(3): print(i) 0, 1, 2 छापता है — 3 नहीं।",
+    "hinglish": "for i in range(3): print(i) 0, 1, 2 print karta hai — 3 nahi."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write a program that asks for 5 marks, prints the average, and prints \"Distinction\" if it is 75 or more. Then trace it on paper with marks 80, 70, 90, 60, 75.",
+   "hi": "5 अंक माँगने वाला प्रोग्राम लिखो जो औसत छापे, और 75 या ज़्यादा पर \"Distinction\" छापे। फिर उसे काग़ज़ पर 80, 70, 90, 60, 75 के साथ ट्रेस करो।",
+   "hinglish": "5 marks maangne wala program likho jo average print kare, aur 75 ya zyaada par \"Distinction\" print kare. Phir use kaagaz par 80, 70, 90, 60, 75 ke saath trace karo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "What is the type of 7 / 2 in Python 3?",
+     "hi": "Python 3 में 7 / 2 का प्रकार क्या है?",
+     "hinglish": "Python 3 mein 7 / 2 ka type kya hai?"
+    },
+    "options": [
+     "int",
+     "float",
+     "str",
+     "bool"
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "7 / 2 = 3.5, a float. 7 // 2 = 3, an int.",
+     "hi": "7 / 2 = 3.5, float। 7 // 2 = 3, int।",
+     "hinglish": "7 / 2 = 3.5, float. 7 // 2 = 3, int."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "short",
+    "prompt": {
+     "en": "What does \"4\" + \"2\" give?",
+     "hi": "\"4\" + \"2\" क्या देता है?",
+     "hinglish": "\"4\" + \"2\" kya deta hai?"
+    },
+    "answer": {
+     "accept": [
+      "42",
+      "\"42\"",
+      "'42'"
+     ]
+    },
+    "explain": {
+     "en": "+ joins strings, so the result is the text \"42\".",
+     "hi": "+ स्ट्रिंग जोड़ता है, तो परिणाम पाठ \"42\" है।",
+     "hinglish": "+ strings jodta hai, to result text \"42\" hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "How many times does for i in range(2, 8): run?",
+     "hi": "for i in range(2, 8): कितनी बार चलता है?",
+     "hinglish": "for i in range(2, 8): kitni baar chalta hai?"
+    },
+    "options": [
+     "5",
+     "6",
+     "7",
+     "8"
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "2, 3, 4, 5, 6, 7 — the end value 8 is excluded.",
+     "hi": "2, 3, 4, 5, 6, 7 — अंत मान 8 शामिल नहीं।",
+     "hinglish": "2, 3, 4, 5, 6, 7 — end value 8 shaamil nahi."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "A while loop never stops. The most likely cause?",
+     "hi": "while लूप कभी नहीं रुकता। सबसे संभावित कारण?",
+     "hinglish": "while loop kabhi nahi rukta. Sabse sambhav kaaran?"
+    },
+    "options": [
+     {
+      "en": "The condition never becomes False",
+      "hi": "शर्त कभी False नहीं होती",
+      "hinglish": "Condition kabhi False nahi hoti"
+     },
+     {
+      "en": "Too many variables",
+      "hi": "बहुत वेरिएबल",
+      "hinglish": "Bahut variables"
+     },
+     {
+      "en": "Using print",
+      "hi": "print का इस्तेमाल",
+      "hinglish": "print use karna"
+     },
+     {
+      "en": "The file name",
+      "hi": "फ़ाइल का नाम",
+      "hinglish": "File ka naam"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Something inside the loop must change the condition.",
+     "hi": "लूप के अंदर कुछ ऐसा हो जो शर्त बदले।",
+     "hinglish": "Loop ke andar kuch aisa ho jo condition badle."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Step through the average-marks program to the end.",
+     "hi": "औसत-अंक प्रोग्राम अंत तक चलाओ।",
+     "hinglish": "Average-marks program end tak chalao."
+    },
+    "answer": {
+     "event": "trace-done",
+     "scenario": "loop-sum"
+    },
+    "explain": {
+     "en": "You traced every line and watched total reach 312.",
+     "hi": "आपने हर पंक्ति ट्रेस की और total को 312 पहुँचते देखा।",
+     "hinglish": "Tumne har line trace ki aur total ko 312 pahunchte dekha."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "prog.python-basics"
+ ],
+ "sources": [
+  {
+   "title": "Python Software Foundation — The Python Tutorial",
+   "url": "https://docs.python.org/3/tutorial/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "CBSE Computer Science syllabus (Python), Class 11–12",
+   "url": "https://cbseacademic.nic.in/",
+   "licence": "fact reference"
+  }
+ ]
+}

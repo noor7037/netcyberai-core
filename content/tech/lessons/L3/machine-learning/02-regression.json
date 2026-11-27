@@ -1,0 +1,330 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.machine-learning.02",
+ "level": 3,
+ "classes": [
+  9,
+  10
+ ],
+ "unit": "machine-learning",
+ "title": {
+  "en": "Regression: predicting numbers",
+  "hi": "रिग्रेशन: संख्याओं का अनुमान",
+  "hinglish": "Regression: numbers predict karna"
+ },
+ "minutes": 12,
+ "xp": 50,
+ "prereq": [
+  "L3.machine-learning.01"
+ ],
+ "outcomes": [
+  {
+   "en": "Fit a line y = wx + b and read w and b",
+   "hinglish": "Line y = wx + b fit karo aur w, b ko samjho",
+   "hi": "रेखा y = wx + b फ़िट करना और w व b पढ़ना"
+  },
+  {
+   "en": "Compute mean squared error for 3 points by hand",
+   "hinglish": "3 points ke liye mean squared error haath se nikaalo",
+   "hi": "3 बिंदुओं के लिए हाथ से माध्य वर्ग त्रुटि निकालना"
+  },
+  {
+   "en": "Explain gradient descent as walking downhill on the error",
+   "hinglish": "Gradient descent ko error ki pahaadi se neeche utarna samjhao",
+   "hi": "ग्रेडिएंट डिसेंट को त्रुटि की ढलान पर नीचे उतरने के रूप में समझाना"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Linear regression",
+   "hinglish": "Data par sabse acchi seedhi line",
+   "en": "Fitting a straight line y = wx + b to predict a number",
+   "hi": "किसी संख्या का अनुमान लगाने के लिए सीधी रेखा y = wx + b फ़िट करना"
+  },
+  {
+   "term": "Weight (w)",
+   "hinglish": "Line ki dhalaan — input ka asar",
+   "en": "The slope; how much the output changes per unit of input",
+   "hi": "ढलान; इनपुट की प्रति इकाई आउटपुट कितना बदलता है"
+  },
+  {
+   "term": "Bias (b)",
+   "hinglish": "Line kahan se shuru hoti hai",
+   "en": "The intercept; the output when input is 0",
+   "hi": "अंतःखंड; इनपुट 0 होने पर आउटपुट"
+  },
+  {
+   "term": "MSE",
+   "hinglish": "Galtiyon ke square ka average",
+   "en": "Mean squared error: average of (prediction − actual)²",
+   "hi": "माध्य वर्ग त्रुटि: (अनुमान − वास्तविक)² का औसत"
+  },
+  {
+   "term": "Learning rate",
+   "hinglish": "Har kadam kitna bada",
+   "en": "Size of each gradient-descent step",
+   "hi": "ग्रेडिएंट-डिसेंट के हर कदम का आकार"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Points show study hours vs marks. We want the line that passes closest to all of them.",
+    "hi": "बिंदु पढ़ाई के घंटे बनाम अंक दिखाते हैं। हमें वह रेखा चाहिए जो सबके सबसे पास से गुज़रे।",
+    "hinglish": "Points padhai ke ghante vs marks dikhate hain. Hume woh line chahiye jo sabke sabse paas se guzre."
+   },
+   "visual": "anim:scatter-line",
+   "narration": {
+    "en": "Points show study hours vs marks. We want the line that passes closest to all of them.",
+    "hi": "बिंदु पढ़ाई के घंटे बनाम अंक दिखाते हैं। हमें वह रेखा चाहिए जो सबके सबसे पास से गुज़रे।",
+    "hinglish": "Points padhai ke ghante vs marks dikhate hain. Hume woh line chahiye jo sabke sabse paas se guzre."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Each vertical gap between a point and the line is an error. Square them, average them: that is MSE.",
+    "hi": "बिंदु और रेखा के बीच हर खड़ा अंतर एक त्रुटि है। उनका वर्ग करो, औसत लो: यही एमएसई है।",
+    "hinglish": "Point aur line ke beech har vertical gap ek error hai. Unka square karo, average lo: yahi MSE hai."
+   },
+   "visual": "anim:residual-squares",
+   "narration": {
+    "en": "Each vertical gap between a point and the line is an error. Square them, average them: that is MSE.",
+    "hi": "बिंदु और रेखा के बीच हर खड़ा अंतर एक त्रुटि है। उनका वर्ग करो, औसत लो: यही एमएसई है।",
+    "hinglish": "Point aur line ke beech har vertical gap ek error hai. Unka square karo, average lo: yahi MSE hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Gradient descent nudges w and b a little in the direction that lowers MSE, again and again, like walking down a valley in fog.",
+    "hi": "ग्रेडिएंट डिसेंट w और b को थोड़ा-थोड़ा उस दिशा में खिसकाता है जिससे एमएसई घटे, बार-बार, जैसे कोहरे में घाटी से नीचे उतरना।",
+    "hinglish": "Gradient descent w aur b ko thoda-thoda us direction mein khiskaata hai jisse MSE ghate, baar-baar, jaise kohre mein ghaati se neeche utarna."
+   },
+   "visual": "anim:loss-valley",
+   "narration": {
+    "en": "Gradient descent nudges w and b a little in the direction that lowers MSE, again and again, like walking down a valley in fog.",
+    "hi": "ग्रेडिएंट डिसेंट w और b को थोड़ा-थोड़ा उस दिशा में खिसकाता है जिससे एमएसई घटे, बार-बार, जैसे कोहरे में घाटी से नीचे उतरना।",
+    "hinglish": "Gradient descent w aur b ko thoda-thoda us direction mein khiskaata hai jisse MSE ghate, baar-baar, jaise kohre mein ghaati se neeche utarna."
+   }
+  }
+ ],
+ "play": {
+  "lab": "nn-playground",
+  "config": {
+   "mode": "regress",
+   "dataset": "study-marks",
+   "lr": 0.05
+  },
+  "goal": {
+   "en": "Train the line on study-hours data. Change the learning rate to 0.5 and see what goes wrong.",
+   "hinglish": "Study-hours data par line train karo. Learning rate 0.5 karke dekho kya gadbad hoti hai.",
+   "hi": "पढ़ाई-घंटों के डेटा पर रेखा प्रशिक्षित करो। लर्निंग रेट 0.5 करके देखो क्या गड़बड़ होती है।"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "The line and its error",
+    "hi": "रेखा और उसकी त्रुटि",
+    "hinglish": "Line aur uska error"
+   },
+   "body": {
+    "en": "Linear regression predicts ŷ = w·x + b. Suppose three students studied 1, 2 and 3 hours and scored 50, 60 and 75. Try w = 10, b = 40: predictions are 50, 60, 70. Errors are 0, 0 and −5, squared 0, 0, 25, so MSE = 25/3 ≈ 8.3. The best line minimises MSE. Squaring makes all errors positive and punishes big misses more. With several features the model becomes ŷ = w₁x₁ + w₂x₂ + … + b, and each weight tells you how much that feature pushes the prediction.",
+    "hi": "लीनियर रिग्रेशन ŷ = w·x + b अनुमानित करता है। मान लो तीन छात्रों ने 1, 2 और 3 घंटे पढ़ा और 50, 60 और 75 अंक पाए। w = 10, b = 40 आज़माओ: अनुमान 50, 60, 70। त्रुटियाँ 0, 0 और −5, वर्ग 0, 0, 25, तो एमएसई = 25/3 ≈ 8.3। सबसे अच्छी रेखा एमएसई को न्यूनतम करती है। वर्ग करने से सारी त्रुटियाँ धनात्मक होती हैं और बड़ी चूक को ज़्यादा सज़ा मिलती है। कई फ़ीचर हों तो मॉडल ŷ = w₁x₁ + w₂x₂ + … + b बनता है, और हर भार बताता है कि वह फ़ीचर अनुमान को कितना धकेलता है।",
+    "hinglish": "Linear regression ŷ = w·x + b predict karta hai. Maan lo teen students ne 1, 2 aur 3 ghante padha aur 50, 60, 75 marks laaye. w = 10, b = 40 try karo: predictions 50, 60, 70. Errors 0, 0 aur −5, square 0, 0, 25, to MSE = 25/3 ≈ 8.3. Best line MSE ko minimum karti hai. Square karne se saare errors positive hote hain aur bade miss ko zyada saza milti hai. Kai features hon to model ŷ = w₁x₁ + w₂x₂ + … + b banta hai, aur har weight batata hai woh feature prediction ko kitna dhakelta hai."
+   },
+   "analogy": {
+    "hinglish": "Dukaandaar andaaza lagata hai: \"har extra kilo par ₹40 badhega\" — woh ₹40 hi weight w hai, aur dukaan ka fixed charge b.",
+    "en": "The shopkeeper estimates: \"each extra kilo adds ₹40\" — that ₹40 is the weight w, and the shop's fixed charge is b.",
+    "hi": "दुकानदार अंदाज़ा लगाता है: \"हर अतिरिक्त किलो पर ₹40 बढ़ेगा\" — वह ₹40 ही भार w है, और दुकान का तय शुल्क b।"
+   },
+   "realExample": {
+    "en": "Grid Controller of India and power companies forecast next-day electricity demand from temperature, weekday and festivals using regression-family models.",
+    "hinglish": "Grid Controller of India aur power companies temperature, weekday aur tyohaaron se agle din ki bijli demand regression-type models se forecast karti hain.",
+    "hi": "ग्रिड कंट्रोलर ऑफ़ इंडिया और बिजली कंपनियाँ तापमान, सप्ताह के दिन और त्योहारों से रिग्रेशन-परिवार के मॉडलों द्वारा अगले दिन की बिजली माँग का पूर्वानुमान लगाती हैं।"
+   }
+  },
+  {
+   "heading": {
+    "en": "Gradient descent: learning by small steps",
+    "hi": "ग्रेडिएंट डिसेंट: छोटे कदमों से सीखना",
+    "hinglish": "Gradient descent: chhote steps se seekhna"
+   },
+   "body": {
+    "en": "Picture MSE as a valley over all possible (w, b) values. The gradient points uphill, so we step the opposite way: w ← w − η·∂MSE/∂w, and the same for b, where η (eta) is the learning rate. Too small and training crawls; too large and each step overshoots the valley floor, so the loss bounces or explodes. Every neural network, including large language models with billions of weights, is trained with versions of this idea (stochastic gradient descent, Adam).",
+    "hi": "एमएसई को सभी संभव (w, b) मानों के ऊपर एक घाटी सोचो। ग्रेडिएंट चढ़ाई की ओर इशारा करता है, इसलिए हम उल्टी तरफ़ कदम रखते हैं: w ← w − η·∂MSE/∂w, और b के लिए भी, जहाँ η (ईटा) लर्निंग रेट है। बहुत छोटा तो प्रशिक्षण रेंगता है; बहुत बड़ा तो हर कदम घाटी के तल से आगे निकल जाता है, और लॉस उछलता या फट जाता है। हर न्यूरल नेटवर्क, अरबों भार वाले बड़े भाषा मॉडल भी, इसी विचार के रूपों (एसजीडी, एडम) से प्रशिक्षित होते हैं।",
+    "hinglish": "MSE ko saare possible (w, b) values ke upar ek ghaati socho. Gradient chadhaai ki taraf point karta hai, isliye hum ulti taraf step lete hain: w ← w − η·∂MSE/∂w, aur b ke liye bhi, jahan η (eta) learning rate hai. Bahut chhota to training reng-reng ke chalti hai; bahut bada to har step ghaati ke tal se aage nikal jaata hai, aur loss uchhalta ya phat jaata hai. Har neural network, arabon weights wale LLMs bhi, isi idea ke versions (SGD, Adam) se train hote hain."
+   },
+   "analogy": {
+    "hinglish": "Andhere mein pahaadi se utarna: pair se dhalaan mehsoos karo aur neeche ki taraf chhota kadam rakho. Bahut bada kadam = doosri taraf gir jaoge.",
+    "en": "Coming down a hill in the dark: feel the slope with your feet and take a small step downhill. Too big a step = you fall over to the other side.",
+    "hi": "अँधेरे में पहाड़ी से उतरना: पैर से ढलान महसूस करो और नीचे की ओर छोटा कदम रखो। बहुत बड़ा कदम = दूसरी ओर गिर जाओगे।"
+   },
+   "realExample": {
+    "en": "The playground shows this live: at learning rate 0.05 the loss curve glides down; at 0.5 it zig-zags and can shoot up.",
+    "hinglish": "Playground mein yeh live dikhta hai: learning rate 0.05 par loss curve aaram se neeche aata hai; 0.5 par zig-zag karta aur upar bhaag sakta hai.",
+    "hi": "प्लेग्राउंड यह लाइव दिखाता है: लर्निंग रेट 0.05 पर लॉस वक्र आराम से नीचे फिसलता है; 0.5 पर टेढ़ा-मेढ़ा होकर ऊपर भी उछल सकता है।"
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Collect 6 data points from your family (age vs height, or km vs auto fare). Plot them, draw your best line by eye, write its w and b, and compute MSE.",
+   "hinglish": "Family se 6 data points lo (umar vs height, ya km vs auto kiraya). Plot karo, aankh se best line kheecho, uska w aur b likho, aur MSE nikaalo.",
+   "hi": "परिवार से 6 डेटा बिंदु जुटाओ (उम्र बनाम लंबाई, या किमी बनाम ऑटो किराया)। उन्हें प्लॉट करो, आँख से सबसे अच्छी रेखा खींचो, उसका w और b लिखो, और MSE निकालो।"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "For y = 3x + 2, what is y when x = 4?",
+     "hi": "y = 3x + 2 में x = 4 हो तो y क्या है?",
+     "hinglish": "y = 3x + 2 mein x = 4 ho to y kya hai?"
+    },
+    "options": [
+     {
+      "en": "14",
+      "hinglish": "14",
+      "hi": "14"
+     },
+     {
+      "en": "12",
+      "hinglish": "12",
+      "hi": "12"
+     },
+     {
+      "en": "9",
+      "hinglish": "9",
+      "hi": "9"
+     },
+     {
+      "en": "20",
+      "hinglish": "20",
+      "hi": "20"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "3 × 4 + 2 = 14. The weight 3 is the slope and the bias 2 is the starting value.",
+     "hi": "3 × 4 + 2 = 14। भार 3 ढलान है और बायस 2 शुरुआती मान।",
+     "hinglish": "3 × 4 + 2 = 14. Weight 3 slope hai aur bias 2 starting value."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Predictions 5, 7; actual 4, 9. What is the MSE?",
+     "hi": "अनुमान 5, 7; असली 4, 9। एमएसई क्या है?",
+     "hinglish": "Predictions 5, 7; actual 4, 9. MSE kya hai?"
+    },
+    "options": [
+     {
+      "en": "2.5",
+      "hinglish": "2.5",
+      "hi": "2.5"
+     },
+     {
+      "en": "3",
+      "hinglish": "3",
+      "hi": "3"
+     },
+     {
+      "en": "5",
+      "hinglish": "5",
+      "hi": "5"
+     },
+     {
+      "en": "1.5",
+      "hinglish": "1.5",
+      "hi": "1.5"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Errors are 1 and −2; squares 1 and 4; mean (1 + 4) / 2 = 2.5.",
+     "hi": "त्रुटियाँ 1 और −2; वर्ग 1 और 4; औसत (1 + 4) / 2 = 2.5।",
+     "hinglish": "Errors 1 aur −2; squares 1 aur 4; average (1 + 4) / 2 = 2.5."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "The loss jumps up and down wildly during training. The most likely fix is…",
+     "hi": "प्रशिक्षण में लॉस बुरी तरह ऊपर-नीचे हो रहा है। सबसे संभावित सुधार क्या है?",
+     "hinglish": "Training mein loss bahut upar-neeche ho raha hai. Sabse likely fix kya hai?"
+    },
+    "options": [
+     {
+      "en": "Lower the learning rate",
+      "hinglish": "Learning rate kam karo",
+      "hi": "लर्निंग रेट घटाओ"
+     },
+     {
+      "en": "Delete the test set",
+      "hinglish": "Test set delete karo",
+      "hi": "टेस्ट सेट मिटा दो"
+     },
+     {
+      "en": "Add more colours to the chart",
+      "hinglish": "Chart mein colours badhao",
+      "hi": "चार्ट में और रंग जोड़ो"
+     },
+     {
+      "en": "Raise the learning rate",
+      "hinglish": "Learning rate badhao",
+      "hi": "लर्निंग रेट बढ़ाओ"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Wild jumps mean steps are overshooting the minimum. Smaller steps settle into the valley.",
+     "hi": "बेतहाशा उछाल का मतलब कदम न्यूनतम से आगे निकल रहे हैं। छोटे कदम घाटी में टिकते हैं।",
+     "hinglish": "Wild jumps ka matlab steps minimum se aage nikal rahe hain. Chhote steps ghaati mein tik jaate hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "lab-check",
+    "prompt": {
+     "en": "In the playground, train the study-marks line until MSE is below 20.",
+     "hi": "प्लेग्राउंड में स्टडी-मार्क्स रेखा को एमएसई 20 से नीचे आने तक प्रशिक्षित करें।",
+     "hinglish": "Playground mein study-marks line ko MSE 20 se neeche aane tak train karo."
+    },
+    "answer": {
+     "event": "mse-below",
+     "value": 20
+    },
+    "explain": {
+     "en": "A sensible learning rate brings the line close to the points within a few hundred steps.",
+     "hi": "सही लर्निंग रेट कुछ सौ कदमों में रेखा को बिंदुओं के पास ले आता है।",
+     "hinglish": "Sahi learning rate kuch sau steps mein line ko points ke paas le aata hai."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "ai.ml-supervised",
+  "ds.correlation"
+ ],
+ "sources": [
+  {
+   "title": "Google ML Crash Course — Linear regression",
+   "url": "https://developers.google.com/machine-learning/crash-course/linear-regression",
+   "licence": "CC BY 4.0"
+  },
+  {
+   "title": "Grid Controller of India",
+   "url": "https://grid-india.in/",
+   "licence": "fact reference"
+  }
+ ]
+}

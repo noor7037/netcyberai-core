@@ -1,0 +1,307 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.block-coding.02",
+ "level": 1,
+ "classes": [
+  3,
+  4
+ ],
+ "unit": "block-coding",
+ "title": {
+  "en": "Events: when something happens…",
+  "hi": "इवेंट: जब कुछ होता है…",
+  "hinglish": "Events: jab kuch hota hai…"
+ },
+ "minutes": 7,
+ "xp": 30,
+ "prereq": [
+  "L1.block-coding.01"
+ ],
+ "topics": [
+  "prog.events"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain that programs wait for events like a tap, a key press or a timer.",
+   "hi": "समझा सकते हो कि प्रोग्राम टैप, कुंजी दबाने या टाइमर जैसे इवेंट का इंतज़ार करते हैं।",
+   "hinglish": "Samjha sakte ho ki programs tap, key press ya timer jaise events ka wait karte hain."
+  },
+  {
+   "en": "Match events to what they start.",
+   "hi": "इवेंट को उनसे शुरू होने वाले काम से मिला सकते हो।",
+   "hinglish": "Events ko unse shuru hone wale kaam se mila sakte ho."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Event",
+   "en": "Something that happens (a tap, click, key press, message) that a program reacts to",
+   "hi": "कोई घटना (टैप, क्लिक, कुंजी, संदेश) जिस पर प्रोग्राम प्रतिक्रिया करता है",
+   "hinglish": "Koi ghatna jo program ko shuru kare — tap, click, awaaz"
+  },
+  {
+   "term": "Hat block",
+   "en": "A block that starts a script when an event happens",
+   "hi": "वह ब्लॉक जो इवेंट होने पर स्क्रिप्ट शुरू करता है",
+   "hinglish": "Topi jaisa block jo \"Jab…\" se shuru hota hai"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.block-coding.02.s1",
+   "caption": {
+    "en": "Programs start with \"When…\".",
+    "hi": "प्रोग्राम \"जब…\" से शुरू होते हैं।",
+    "hinglish": "Programs \"Jab…\" se shuru hote hain."
+   },
+   "narration": {
+    "en": "The pink \"When Run is tapped\" block waits. When you tap Run — the event — the blocks below start.",
+    "hinglish": "Gulaabi \"Jab Run tap ho\" block wait karta hai. Run tap karte hi — event — neeche ke blocks shuru.",
+    "hi": "प्रोग्राम \"जब…\" से शुरू होते हैं।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.block-coding.02.s2",
+   "caption": {
+    "en": "Event → action, like a doorbell.",
+    "hi": "इवेंट → काम, घंटी की तरह।",
+    "hinglish": "Event → action, doorbell ki tarah."
+   },
+   "narration": {
+    "en": "When the doorbell rings, someone opens the door. The bell is the event.",
+    "hinglish": "Jab ghanti bajti hai, koi darwaza kholta hai. Ghanti event hai.",
+    "hi": "इवेंट → काम, घंटी की तरह।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.block-coding.02.s3",
+   "caption": {
+    "en": "Your phone is full of events.",
+    "hi": "तुम्हारा फ़ोन इवेंट से भरा है।",
+    "hinglish": "Tumhara phone events se bhara hai."
+   },
+   "narration": {
+    "en": "When a message arrives → play a sound. When you tap an app → open it. When the alarm time comes → ring.",
+    "hinglish": "Message aaye → awaaz bajao. App tap karo → kholo. Alarm ka time aaye → ghanti bajao.",
+    "hi": "तुम्हारा फ़ोन इवेंट से भरा है।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "loop-coder",
+  "config": {
+   "level": 6
+  },
+  "goal": {
+   "en": "Your program starts on the event \"When ▶ Run is tapped\". Build the garden walk and tap Run.",
+   "hi": "तुम्हारा प्रोग्राम इवेंट \"जब ▶ चलाओ दबे\" पर शुरू होता है। बगीचे की सैर बनाओ और चलाओ दबाओ।",
+   "hinglish": "Tumhara program event \"Jab ▶ Run tap ho\" par shuru hota hai. Garden walk banao aur Run tap karo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Waiting for events",
+    "hi": "इवेंट का इंतज़ार",
+    "hinglish": "Events ka wait"
+   },
+   "body": {
+    "en": "Most apps do nothing until an event happens: a tap, a swipe, a key press, a timer, or a message from the internet. Then the matching code runs.",
+    "hi": "ज़्यादातर ऐप कुछ नहीं करते जब तक कोई इवेंट न हो: टैप, स्वाइप, कुंजी दबाना, टाइमर, या इंटरनेट से संदेश। फिर उससे जुड़ा कोड चलता है।",
+    "hinglish": "Zyadatar apps kuch nahin karte jab tak koi event na ho: tap, swipe, key press, timer, ya internet se message. Phir usse juda code chalta hai."
+   },
+   "analogy": {
+    "en": "The school bell rings (event) → everyone has lunch (action).",
+    "hi": "स्कूल की घंटी (इवेंट) बजती है → सब खाना खाते हैं (काम)।",
+    "hinglish": "School ki ghanti (event) bajti hai → sab lunch karte hain (action)."
+   }
+  },
+  {
+   "heading": {
+    "en": "Events in Scratch",
+    "hi": "Scratch में इवेंट",
+    "hinglish": "Scratch mein events"
+   },
+   "body": {
+    "en": "Scratch has hat blocks like \"when green flag clicked\", \"when this sprite clicked\" and \"when space key pressed\". A game can have many scripts, each waiting for its own event.",
+    "hi": "Scratch में \"when green flag clicked\", \"when this sprite clicked\" और \"when space key pressed\" जैसे हैट ब्लॉक हैं। एक गेम में कई स्क्रिप्ट हो सकती हैं, हर एक अपने इवेंट का इंतज़ार करती है।",
+    "hinglish": "Scratch mein \"when green flag clicked\", \"when this sprite clicked\" aur \"when space key pressed\" jaise hat blocks hain. Ek game mein kai scripts ho sakti hain, har ek apne event ka wait karti hai."
+   },
+   "realExample": {
+    "en": "In a game: when ← key pressed → move left; when → pressed → move right.",
+    "hi": "गेम में: ← कुंजी दबे → बाएँ जाओ; → दबे → दाएँ जाओ।",
+    "hinglish": "Game mein: ← key dabe → left jao; → dabe → right jao."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "List 5 events on a phone or TV remote and what each one starts.",
+   "hi": "फ़ोन या टीवी रिमोट के 5 इवेंट और उनसे शुरू होने वाले काम लिखो।",
+   "hinglish": "Phone ya TV remote ke 5 events aur unse shuru hone wale kaam likho."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which is an event?",
+     "hi": "इवेंट कौन-सा है?",
+     "hinglish": "Event kaun sa hai?"
+    },
+    "options": [
+     {
+      "en": "Tapping a button",
+      "hi": "बटन टैप करना",
+      "hinglish": "Button tap karna"
+     },
+     {
+      "en": "The colour blue",
+      "hi": "नीला रंग",
+      "hinglish": "Neela rang"
+     },
+     {
+      "en": "A chair",
+      "hi": "कुर्सी",
+      "hinglish": "Kursi"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "A tap is something that happens, which a program can react to.",
+     "hi": "टैप एक घटना है, जिस पर प्रोग्राम प्रतिक्रिया कर सकता है।",
+     "hinglish": "Tap ek ghatna hai, jis par program react kar sakta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "match",
+    "prompt": {
+     "en": "Match the event to its action.",
+     "hi": "इवेंट को काम से मिलाओ।",
+     "hinglish": "Event ko action se milao."
+    },
+    "options": {
+     "left": [
+      {
+       "en": "Alarm time comes",
+       "hi": "अलार्म का समय आता है",
+       "hinglish": "Alarm ka time aata hai"
+      },
+      {
+       "en": "Tap the camera icon",
+       "hi": "कैमरा आइकन टैप",
+       "hinglish": "Camera icon tap"
+      },
+      {
+       "en": "New message arrives",
+       "hi": "नया संदेश आता है",
+       "hinglish": "Naya message aata hai"
+      }
+     ],
+     "right": [
+      {
+       "en": "Camera opens",
+       "hi": "कैमरा खुलता है",
+       "hinglish": "Camera khulta hai"
+      },
+      {
+       "en": "Phone plays a ping",
+       "hi": "फ़ोन \"पिंग\" बजाता है",
+       "hinglish": "Phone ping bajata hai"
+      },
+      {
+       "en": "Alarm rings",
+       "hi": "अलार्म बजता है",
+       "hinglish": "Alarm bajta hai"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      2
+     ],
+     [
+      1,
+      0
+     ],
+     [
+      2,
+      1
+     ]
+    ],
+    "explain": {
+     "en": "Each event starts its own piece of code.",
+     "hi": "हर इवेंट अपना कोड चलाता है।",
+     "hinglish": "Har event apna code chalata hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "The block \"When ▶ Run is tapped\" is called a…",
+     "hi": "\"जब ▶ चलाओ दबे\" ब्लॉक कहलाता है…",
+     "hinglish": "\"Jab ▶ Run tap ho\" block kehlata hai…"
+    },
+    "options": [
+     {
+      "en": "hat (event) block",
+      "hi": "हैट (इवेंट) ब्लॉक",
+      "hinglish": "hat (event) block"
+     },
+     {
+      "en": "loop block",
+      "hi": "लूप ब्लॉक",
+      "hinglish": "loop block"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "It sits on top like a hat and waits for an event.",
+     "hi": "यह टोपी की तरह ऊपर बैठता है और इवेंट का इंतज़ार करता है।",
+     "hinglish": "Yeh topi ki tarah upar baithta hai aur event ka wait karta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Solve Level 6 (the garden edge).",
+     "hi": "स्तर 6 (बगीचे का किनारा) हल करो।",
+     "hinglish": "Level 6 (garden edge) solve karo."
+    },
+    "answer": {
+     "lab": "loop-coder",
+     "level": 6,
+     "solved": true
+    },
+    "explain": {
+     "en": "Repeat 3 [forward], turn right, Repeat 3 [forward].",
+     "hi": "दोहराओ 3 [आगे], दाएँ मुड़ो, दोहराओ 3 [आगे]।",
+     "hinglish": "Repeat 3 [forward], right mudo, Repeat 3 [forward]."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Scratch / ScratchJr – MIT Media Lab, free block coding (fact reference)",
+   "url": "https://scratch.mit.edu/about",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

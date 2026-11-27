@@ -1,0 +1,340 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.friendly-ai.02",
+ "level": 1,
+ "classes": [
+  2,
+  3,
+  4
+ ],
+ "unit": "friendly-ai",
+ "title": {
+  "en": "How computers see pictures",
+  "hi": "कंप्यूटर चित्र कैसे देखते हैं",
+  "hinglish": "Computer pictures kaise dekhte hain"
+ },
+ "minutes": 8,
+ "xp": 30,
+ "prereq": [
+  "L1.friendly-ai.01"
+ ],
+ "topics": [
+  "ai.vision"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain that a digital picture is a grid of pixels.",
+   "hi": "समझा सकते हो कि डिजिटल चित्र पिक्सेल का जाल है।",
+   "hinglish": "Samjha sakte ho ki digital picture pixels ka jaal hai."
+  },
+  {
+   "en": "Explain that each pixel is stored as three numbers (Red, Green, Blue).",
+   "hi": "समझा सकते हो कि हर पिक्सेल तीन संख्याओं (लाल, हरा, नीला) में रखा जाता है।",
+   "hinglish": "Samjha sakte ho ki har pixel teen numbers (Red, Green, Blue) mein rakha jaata hai."
+  },
+  {
+   "en": "Describe how AI finds patterns in pixels to recognise things.",
+   "hi": "बता सकते हो कि AI पिक्सेल में पैटर्न ढूँढकर चीज़ें कैसे पहचानता है।",
+   "hinglish": "Bata sakte ho ki AI pixels mein patterns dhoondh kar cheezein kaise pehchaanta hai."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Pixel",
+   "en": "The smallest coloured square in a digital picture",
+   "hi": "चित्र का सबसे छोटा रंगीन वर्ग",
+   "hinglish": "Picture ka sabse chhota rangeen dabba"
+  },
+  {
+   "term": "RGB",
+   "en": "Red, Green, Blue: three numbers that make any colour",
+   "hi": "लाल, हरा, नीला — तीन रंगों से हर रंग बनता है",
+   "hinglish": "Red, Green, Blue — teen rangon se har rang banta hai"
+  },
+  {
+   "term": "Computer vision",
+   "en": "AI that understands pictures and video",
+   "hi": "कंप्यूटर का चित्र और वीडियो समझना",
+   "hinglish": "Computer ka pictures samajhna"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.friendly-ai.02.s1",
+   "caption": {
+    "en": "Zoom in: a picture is tiny squares!",
+    "hi": "ज़ूम करो: चित्र छोटे-छोटे वर्ग हैं!",
+    "hinglish": "Zoom karo: picture chhote-chhote squares hai!"
+   },
+   "narration": {
+    "en": "Zoom into any photo on a screen and you will see tiny squares called pixels. A phone photo can have more than 10 million of them.",
+    "hinglish": "Screen par kisi bhi photo mein zoom karo, chhote squares dikhenge — inhe pixels kehte hain. Phone ki photo mein 1 crore se zyada ho sakte hain.",
+    "hi": "स्क्रीन पर किसी भी फ़ोटो में ज़ूम करो, छोटे वर्ग दिखेंगे — इन्हें पिक्सेल कहते हैं। फ़ोन की फ़ोटो में 1 करोड़ से ज़्यादा हो सकते हैं।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.friendly-ai.02.s2",
+   "caption": {
+    "en": "Each pixel is 3 numbers: red, green, blue.",
+    "hi": "हर पिक्सेल 3 संख्याएँ है: लाल, हरा, नीला।",
+    "hinglish": "Har pixel 3 numbers hai: red, green, blue."
+   },
+   "narration": {
+    "en": "The computer stores each pixel as three numbers from 0 to 255 for red, green and blue light. Mixing them makes over 16 million colours.",
+    "hinglish": "Computer har pixel ko red, green aur blue roshni ke liye 0 se 255 tak ke teen numbers mein rakhta hai. Inko milaane se 1.6 crore se zyada rang bante hain.",
+    "hi": "कंप्यूटर हर पिक्सेल को लाल, हरी और नीली रोशनी के लिए 0 से 255 तक की तीन संख्याओं में रखता है। इन्हें मिलाने से 1.6 करोड़ से ज़्यादा रंग बनते हैं।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.friendly-ai.02.s3",
+   "caption": {
+    "en": "AI finds patterns in the numbers: stripes = tiger!",
+    "hi": "AI संख्याओं में पैटर्न ढूँढता है: धारियाँ = बाघ!",
+    "hinglish": "AI numbers mein patterns dhoondhta hai: dhaariyan = tiger!"
+   },
+   "narration": {
+    "en": "AI looks at millions of pixel numbers and learns patterns — edges, then shapes like ears and stripes — until it can say \"tiger\".",
+    "hinglish": "AI laakhon pixel numbers dekh kar patterns seekhta hai — pehle kinaare, phir kaan aur dhaariyon jaisi shapes — jab tak woh \"tiger\" na bol sake.",
+    "hi": "AI लाखों पिक्सेल संख्याएँ देखकर पैटर्न सीखता है — पहले किनारे, फिर कान और धारियों जैसी आकृतियाँ — जब तक वह \"बाघ\" न बोल सके।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "teach-sorter",
+  "config": {
+   "mode": "pixels"
+  },
+  "goal": {
+   "en": "Zoom into the picture and tap 3 pixels to read their colour numbers.",
+   "hi": "चित्र में ज़ूम करो और 3 पिक्सेल पर टैप करके उनकी रंग-संख्याएँ पढ़ो।",
+   "hinglish": "Picture mein zoom karo aur 3 pixels tap karke unke colour numbers padho."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Pictures are numbers",
+    "hi": "चित्र संख्याएँ हैं",
+    "hinglish": "Pictures numbers hain"
+   },
+   "body": {
+    "en": "A camera measures the light at each tiny spot and saves it as numbers. White is (255, 255, 255), black is (0, 0, 0), pure red is (255, 0, 0). The computer never \"sees\" a tiger — only numbers.",
+    "hi": "कैमरा हर छोटे बिंदु की रोशनी नापकर संख्याओं में सहेजता है। सफ़ेद (255, 255, 255), काला (0, 0, 0), गहरा लाल (255, 0, 0) है। कंप्यूटर कभी बाघ \"नहीं देखता\" — सिर्फ़ संख्याएँ।",
+    "hinglish": "Camera har chhote point ki roshni naap kar numbers mein save karta hai. White (255, 255, 255), black (0, 0, 0), pure red (255, 0, 0) hai. Computer kabhi tiger \"nahin dekhta\" — sirf numbers."
+   },
+   "analogy": {
+    "en": "Tiny grains of colour make a whole rangoli — pixels make a whole photo the same way.",
+    "hi": "रंगोली के छोटे-छोटे रंग के कण मिलकर पूरा डिज़ाइन बनाते हैं — पिक्सेल भी वैसे ही पूरी फ़ोटो बनाते हैं।",
+    "hinglish": "Rangoli ke chhote-chhote rang ke daane milkar poora design banaate hain — pixels bhi waise hi poori photo banaate hain."
+   }
+  },
+  {
+   "heading": {
+    "en": "Where computer vision helps",
+    "hi": "कंप्यूटर विज़न कहाँ मदद करता है",
+    "hinglish": "Computer vision kahan madad karta hai"
+   },
+   "body": {
+    "en": "Phone cameras find faces to focus. Apps can read text from a photo and translate it. Farmers can photograph a leaf to check for plant disease. Doctors use AI to help read X-rays — but a doctor always makes the final decision.",
+    "hi": "फ़ोन कैमरे फ़ोकस के लिए चेहरे ढूँढते हैं। ऐप फ़ोटो से लिखावट पढ़कर अनुवाद कर सकते हैं। किसान पत्ते की फ़ोटो से पौधे की बीमारी जाँच सकते हैं। डॉक्टर एक्स-रे पढ़ने में AI की मदद लेते हैं — पर आख़िरी फ़ैसला डॉक्टर का होता है।",
+    "hinglish": "Phone cameras focus ke liye chehre dhoondhte hain. Apps photo se text padh kar translate kar sakte hain. Kisaan patte ki photo se paudhe ki bimaari check kar sakte hain. Doctors X-ray padhne mein AI ki madad lete hain — par final faisla doctor ka hota hai."
+   },
+   "realExample": {
+    "en": "Google Lens can read a Hindi signboard and translate it into English.",
+    "hi": "Google Lens हिंदी साइनबोर्ड पढ़कर अंग्रेज़ी में अनुवाद कर सकता है।",
+    "hinglish": "Google Lens Hindi signboard padh kar English mein translate kar sakta hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Make a \"pixel picture\": colour a 8×8 grid on squared paper to draw an emoji. Count how many pixels you used!",
+   "hi": "चौकोर ख़ानों वाले काग़ज़ पर 8×8 जाल रंगकर एक इमोजी बनाओ। गिनो कितने पिक्सेल लगे!",
+   "hinglish": "Squared paper par 8×8 grid colour karke ek emoji banao. Gino kitne pixels lage!"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "A pixel is…",
+     "hi": "पिक्सेल क्या है?",
+     "hinglish": "Pixel kya hai?"
+    },
+    "options": [
+     {
+      "en": "a tiny coloured square in a picture",
+      "hi": "चित्र का एक छोटा रंगीन वर्ग",
+      "hinglish": "picture ka ek chhota rangeen square"
+     },
+     {
+      "en": "a type of camera",
+      "hi": "एक तरह का कैमरा",
+      "hinglish": "ek tarah ka camera"
+     },
+     {
+      "en": "a computer virus",
+      "hi": "कंप्यूटर वायरस",
+      "hinglish": "computer virus"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Digital pictures are made of pixels.",
+     "hi": "डिजिटल चित्र पिक्सेल से बनते हैं।",
+     "hinglish": "Digital pictures pixels se bante hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "match",
+    "prompt": {
+     "en": "Match the RGB numbers to the colour.",
+     "hi": "RGB संख्याओं को रंग से मिलाओ।",
+     "hinglish": "RGB numbers ko colour se milao."
+    },
+    "options": {
+     "left": [
+      {
+       "en": "(255, 0, 0)",
+       "hi": "(255, 0, 0)",
+       "hinglish": "(255, 0, 0)"
+      },
+      {
+       "en": "(0, 0, 0)",
+       "hi": "(0, 0, 0)",
+       "hinglish": "(0, 0, 0)"
+      },
+      {
+       "en": "(255, 255, 255)",
+       "hi": "(255, 255, 255)",
+       "hinglish": "(255, 255, 255)"
+      }
+     ],
+     "right": [
+      {
+       "en": "Black",
+       "hi": "काला",
+       "hinglish": "Kaala"
+      },
+      {
+       "en": "White",
+       "hi": "सफ़ेद",
+       "hinglish": "Safed"
+      },
+      {
+       "en": "Red",
+       "hi": "लाल",
+       "hinglish": "Laal"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      2
+     ],
+     [
+      1,
+      0
+     ],
+     [
+      2,
+      1
+     ]
+    ],
+    "explain": {
+     "en": "All light = white, no light = black, only red light = red.",
+     "hi": "सारी रोशनी = सफ़ेद, कोई रोशनी नहीं = काला, सिर्फ़ लाल = लाल।",
+     "hinglish": "Saari roshni = white, koi roshni nahin = black, sirf red = red."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "How does AI learn to spot a tiger?",
+     "hi": "AI बाघ पहचानना कैसे सीखता है?",
+     "hinglish": "AI tiger pehchaanna kaise seekhta hai?"
+    },
+    "options": [
+     {
+      "en": "By finding patterns in many tiger pictures",
+      "hi": "बहुत से बाघ के चित्रों में पैटर्न ढूँढकर",
+      "hinglish": "Bahut si tiger pictures mein patterns dhoondh kar"
+     },
+     {
+      "en": "By visiting the zoo",
+      "hi": "चिड़ियाघर जाकर",
+      "hinglish": "Zoo jaa kar"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "It learns patterns like stripes and ear shapes from examples.",
+     "hi": "वह उदाहरणों से धारियों और कानों की आकृति जैसे पैटर्न सीखता है।",
+     "hinglish": "Woh examples se dhaariyon aur kaan ki shape jaise patterns seekhta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "short",
+    "prompt": {
+     "en": "How many numbers does a computer store for one RGB pixel?",
+     "hi": "एक RGB पिक्सेल के लिए कंप्यूटर कितनी संख्याएँ रखता है?",
+     "hinglish": "Ek RGB pixel ke liye computer kitne numbers rakhta hai?"
+    },
+    "answer": [
+     "3",
+     "three",
+     "teen",
+     "तीन"
+    ],
+    "explain": {
+     "en": "Three: Red, Green and Blue.",
+     "hi": "तीन: लाल, हरा और नीला।",
+     "hinglish": "Teen: Red, Green aur Blue."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Read the colour numbers of 3 pixels in the lab.",
+     "hi": "लैब में 3 पिक्सेल की रंग-संख्याएँ पढ़ो।",
+     "hinglish": "Lab mein 3 pixels ke colour numbers padho."
+    },
+    "answer": {
+     "lab": "teach-sorter",
+     "mode": "pixels",
+     "solved": true
+    },
+    "explain": {
+     "en": "Zoom in until you see a grid, then tap three squares.",
+     "hi": "जाल दिखने तक ज़ूम करो, फिर तीन वर्गों पर टैप करो।",
+     "hinglish": "Grid dikhne tak zoom karo, phir teen squares par tap karo."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "AI4K12 – Five Big Ideas in AI (fact reference)",
+   "url": "https://ai4k12.org/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

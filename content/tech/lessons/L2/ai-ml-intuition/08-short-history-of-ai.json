@@ -1,0 +1,401 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.ai-ml-intuition.08",
+ "level": 2,
+ "classes": [
+  6,
+  7,
+  8
+ ],
+ "unit": "ai-ml-intuition",
+ "title": {
+  "en": "A short history of AI",
+  "hi": "AI का छोटा इतिहास",
+  "hinglish": "AI ka chhota itihaas"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [
+  "L2.ai-ml-intuition.07"
+ ],
+ "topics": [
+  "ai.history"
+ ],
+ "outcomes": [
+  {
+   "en": "Put key AI milestones from 1950 to today in order",
+   "hi": "1950 से आज तक AI के मुख्य पड़ाव क्रम में लगा सकते हो",
+   "hinglish": "1950 se aaj tak AI ke key milestones order mein laga sakte ho"
+  },
+  {
+   "en": "Explain the shift from hand-written rules to learning from data",
+   "hi": "हाथ से लिखे नियमों से डेटा से सीखने तक का बदलाव समझा सकते हो",
+   "hinglish": "Haath se likhe rules se data se seekhne tak ka badlaav samjha sakte ho"
+  },
+  {
+   "en": "Name India’s role in AI today",
+   "hi": "आज AI में भारत की भूमिका बता सकते हो",
+   "hinglish": "Aaj AI mein India ki bhoomika bata sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Turing test",
+   "hinglish": "Machine insaan jaisa baat kare?",
+   "en": "Alan Turing’s 1950 test: can a machine chat so well you cannot tell it from a person?",
+   "hi": "एलन ट्यूरिंग की 1950 की परीक्षा: क्या मशीन इतनी अच्छी बात कर सकती है कि तुम उसे इंसान से अलग न कर पाओ?"
+  },
+  {
+   "term": "Expert system",
+   "hinglish": "Rules wala AI",
+   "en": "Older AI built from many hand-written if-then rules",
+   "hi": "पुराना AI जो कई हाथ से लिखे अगर-तो नियमों से बना"
+  },
+  {
+   "term": "AI winter",
+   "hinglish": "AI ki thandi",
+   "en": "A period when AI progress and funding slowed after big promises failed",
+   "hi": "वह समय जब बड़े वादे पूरे न होने पर AI प्रगति और धन धीमा हो गया"
+  },
+  {
+   "term": "Deep learning",
+   "hinglish": "Gehri neural networks",
+   "en": "Learning with many-layer neural networks, powered by big data and fast chips",
+   "hi": "कई परतों वाले न्यूरल नेटवर्क से सीखना, बड़े डेटा और तेज़ चिप से संचालित"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "1950: Alan Turing asked “Can machines think?”. 1956: the Dartmouth workshop gave the field its name, “artificial intelligence”.",
+    "hi": "1950: एलन ट्यूरिंग ने पूछा “क्या मशीनें सोच सकती हैं?”। 1956: डार्टमाउथ कार्यशाला ने इस क्षेत्र को नाम दिया, “कृत्रिम बुद्धिमत्ता”।",
+    "hinglish": "1950: Alan Turing ne poocha “Kya machines soch sakti hain?”. 1956: Dartmouth workshop ne is field ko naam diya, “artificial intelligence”."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "Early AI = hand-written rules and logic.",
+    "hi": "शुरुआती AI = हाथ से लिखे नियम और तर्क।",
+    "hinglish": "Shuruaati AI = haath se likhe rules aur logic."
+   },
+   "code": "1950  Turing: \"Can machines think?\"\n1956  Dartmouth: \"artificial intelligence\"\n1966  ELIZA chatbot (rules)\n1997  Deep Blue beats Kasparov (chess)"
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "2012 onwards: learning from data took over — AlexNet for images, AlphaGo (2016) learned Go partly by playing itself with rewards, like our lab robot.",
+    "hi": "2012 से: डेटा से सीखना छा गया — चित्रों के लिए AlexNet, AlphaGo (2016) ने आंशिक रूप से इनाम से ख़ुद से खेलकर गो सीखा, हमारे लैब रोबोट की तरह।",
+    "hinglish": "2012 se: data se seekhna chha gaya — images ke liye AlexNet, AlphaGo (2016) ne partly rewards se khud se khel kar Go seekha, hamare lab robot ki tarah."
+   },
+   "visual": "lab:ai-lab#reward",
+   "narration": {
+    "en": "Train the robot: trial, error and reward.",
+    "hi": "रोबोट को प्रशिक्षित करो: प्रयास, ग़लती और इनाम।",
+    "hinglish": "Robot ko train karo: try, galti aur reward."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "2017: the Transformer. November 2022: ChatGPT reached millions in days. 2024: India launched the IndiaAI Mission.",
+    "hi": "2017: ट्रांसफ़ॉर्मर। नवंबर 2022: ChatGPT कुछ दिनों में लाखों तक पहुँचा। 2024: भारत ने IndiaAI मिशन शुरू किया।",
+    "hinglish": "2017: Transformer. November 2022: ChatGPT kuch dino mein millions tak pahuncha. 2024: India ne IndiaAI Mission launch kiya."
+   },
+   "visual": "compare:📜 1950–2000: rules written by people|📊 2012–now: patterns learned from data",
+   "narration": {
+    "en": "Same goal, new method: learn instead of being told.",
+    "hi": "लक्ष्य वही, तरीका नया: बताए जाने के बजाय सीखना।",
+    "hinglish": "Goal wahi, method naya: batane ke bajaye seekhna."
+   }
+  }
+ ],
+ "play": {
+  "lab": "ai-lab",
+  "config": {
+   "tab": "reward"
+  },
+  "goal": {
+   "en": "Train the robot with rewards until its best path reaches the goal — the same idea behind AlphaGo.",
+   "hi": "रोबोट को इनाम से प्रशिक्षित करो जब तक उसका सबसे अच्छा रास्ता लक्ष्य तक न पहुँचे — AlphaGo के पीछे वही विचार।",
+   "hinglish": "Robot ko rewards se train karo jab tak uska best path goal tak na pahunche — AlphaGo ke peeche wahi idea."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Rules, winters and the data revolution",
+    "hi": "नियम, सर्दियाँ और डेटा क्रांति",
+    "hinglish": "Rules, winters aur data revolution"
+   },
+   "body": {
+    "en": "In 1950 Alan Turing published “Computing Machinery and Intelligence”, proposing the imitation game now called the Turing test. In 1956 John McCarthy and others held the Dartmouth workshop, where the term “artificial intelligence” was used for the field. In 1966 Joseph Weizenbaum’s ELIZA chatted using simple pattern rules — and people still felt it understood them. Big promises outran the computers of the time, leading to “AI winters” in the 1970s and late 1980s when funding fell. Rule-based expert systems were used in business in the 1980s. In 1997 IBM’s Deep Blue beat world chess champion Garry Kasparov, mostly by searching millions of positions per second. Then data and fast graphics chips (GPUs) changed everything: AlexNet (2012) showed deep learning could recognise images far better; DeepMind’s AlphaGo beat Lee Sedol at Go in 2016; Google’s Transformer paper (2017) led to modern LLMs; and OpenAI released ChatGPT on 30 November 2022. In India, the Cabinet approved the IndiaAI Mission in March 2024 with an outlay of over ₹10,300 crore for computing power, datasets, startups and skills, while Bhashini builds AI for Indian languages and CBSE offers AI as a subject from Class 6 onwards.",
+    "hi": "1950 में एलन ट्यूरिंग ने “Computing Machinery and Intelligence” प्रकाशित किया, जिसमें अनुकरण खेल प्रस्तावित किया जिसे अब ट्यूरिंग टेस्ट कहते हैं। 1956 में जॉन मैकार्थी और अन्य ने डार्टमाउथ कार्यशाला आयोजित की, जहाँ इस क्षेत्र के लिए “कृत्रिम बुद्धिमत्ता” शब्द उपयोग हुआ। 1966 में जोसेफ़ वाइज़ेनबाम का ELIZA सरल पैटर्न नियमों से बात करता था — और लोगों को फिर भी लगा कि वह उन्हें समझता है। बड़े वादे उस समय के कंप्यूटरों से आगे निकल गए, जिससे 1970 के दशक और 1980 के दशक के अंत में “AI सर्दियाँ” आईं जब धन घटा। 1980 के दशक में व्यवसाय में नियम-आधारित विशेषज्ञ प्रणालियाँ उपयोग हुईं। 1997 में IBM के डीप ब्लू ने विश्व शतरंज चैंपियन गैरी कास्पारोव को हराया, ज़्यादातर प्रति सेकंड लाखों स्थितियाँ खोजकर। फिर डेटा और तेज़ ग्राफ़िक्स चिप (GPU) ने सब बदल दिया: AlexNet (2012) ने दिखाया कि डीप लर्निंग चित्र कहीं बेहतर पहचान सकता है; DeepMind के AlphaGo ने 2016 में ली सेडोल को गो में हराया; Google के ट्रांसफ़ॉर्मर पेपर (2017) से आधुनिक LLM बने; और OpenAI ने 30 नवंबर 2022 को ChatGPT जारी किया। भारत में, कैबिनेट ने मार्च 2024 में ₹10,300 करोड़ से अधिक के परिव्यय के साथ कंप्यूटिंग शक्ति, डेटासेट, स्टार्टअप और कौशल के लिए IndiaAI मिशन को मंज़ूरी दी, जबकि भाषिणी भारतीय भाषाओं के लिए AI बनाता है और CBSE कक्षा 6 से AI विषय के रूप में देता है।",
+    "hinglish": "1950 mein Alan Turing ne “Computing Machinery and Intelligence” publish kiya, jisme imitation game propose kiya jise ab Turing test kehte hain. 1956 mein John McCarthy aur doosron ne Dartmouth workshop rakhi, jahan is field ke liye “artificial intelligence” term use hua. 1966 mein Joseph Weizenbaum ka ELIZA simple pattern rules se baat karta tha — aur logon ko phir bhi laga ki woh unhe samajhta hai. Bade promises us samay ke computers se aage nikal gaye, jisse 1970s aur late 1980s mein “AI winters” aaye jab funding giri. 1980s mein business mein rule-based expert systems use hue. 1997 mein IBM ke Deep Blue ne world chess champion Garry Kasparov ko haraya, zyaadatar har second laakhon positions search karke. Phir data aur fast graphics chips (GPUs) ne sab badal diya: AlexNet (2012) ne dikhaya ki deep learning images kahin behtar pehchaan sakta hai; DeepMind ke AlphaGo ne 2016 mein Lee Sedol ko Go mein haraya; Google ke Transformer paper (2017) se modern LLMs bane; aur OpenAI ne 30 November 2022 ko ChatGPT release kiya. India mein, Cabinet ne March 2024 mein ₹10,300 crore se zyada ke outlay ke saath computing power, datasets, startups aur skills ke liye IndiaAI Mission approve kiya, jabki Bhashini Indian languages ke liye AI banata hai aur CBSE Class 6 se AI ek subject ke roop mein deta hai."
+   },
+   "analogy": {
+    "en": "AI history = learning to ride a cycle: first someone tells you every step (rules), then you learn by falling and trying (data and rewards) — and one day you ride without thinking.",
+    "hi": "AI का इतिहास = साइकिल चलाना सीखना: पहले कोई हर कदम बताता है (नियम), फिर तुम गिर-गिरकर सीखते हो (डेटा और इनाम) — और एक दिन बिना सोचे चला लेते हो।",
+    "hinglish": "AI ka itihaas = cycle seekhna: pehle koi har step batata hai (rules), phir tum khud gir-gir ke seekhte ho (data aur rewards) — aur ek din bina soche chala lete ho."
+   },
+   "realExample": {
+    "en": "The IndiaAI Mission (approved March 2024) funds shared GPU computing so Indian startups and researchers can build AI models, including ones for Indian languages.",
+    "hi": "IndiaAI मिशन (मार्च 2024 में स्वीकृत) साझा GPU कंप्यूटिंग को धन देता है ताकि भारतीय स्टार्टअप और शोधकर्ता AI मॉडल बना सकें, भारतीय भाषाओं वाले भी।",
+    "hinglish": "IndiaAI Mission (March 2024 mein approve hua) shared GPU computing fund karta hai taaki Indian startups aur researchers AI models bana sakein, Indian languages wale bhi."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Make a timeline strip with 8 boxes from 1950 to today. Draw one AI milestone in each box. Ask a grandparent what “computer” meant when they were your age, and add their answer at the start.",
+   "hi": "1950 से आज तक 8 खानों की समय-रेखा पट्टी बनाओ। हर खाने में एक AI पड़ाव बनाओ। दादा-दादी या नाना-नानी से पूछो कि जब वे तुम्हारी उम्र के थे तो “कंप्यूटर” का क्या अर्थ था, और उनका उत्तर शुरू में जोड़ो।",
+   "hinglish": "1950 se aaj tak 8 boxes ki timeline strip banao. Har box mein ek AI milestone draw karo. Dada-dadi ya nana-nani se poochho jab woh tumhari umar ke the to “computer” ka kya matlab tha, aur unka jawab shuru mein jodo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "order",
+    "prompt": {
+     "en": "Put these AI milestones in time order, oldest first.",
+     "hi": "इन AI पड़ावों को समय क्रम में लगाओ, सबसे पुराना पहले।",
+     "hinglish": "In AI milestones ko time order mein lagao, sabse purana pehle."
+    },
+    "options": [
+     {
+      "en": "AlphaGo beats Lee Sedol",
+      "hi": "AlphaGo ने ली सेडोल को हराया",
+      "hinglish": "AlphaGo ne Lee Sedol ko haraya"
+     },
+     {
+      "en": "Turing asks “Can machines think?”",
+      "hi": "ट्यूरिंग पूछते हैं “क्या मशीनें सोच सकती हैं?”",
+      "hinglish": "Turing poochte hain “Kya machines soch sakti hain?”"
+     },
+     {
+      "en": "ChatGPT is released",
+      "hi": "ChatGPT जारी हुआ",
+      "hinglish": "ChatGPT release hua"
+     },
+     {
+      "en": "Deep Blue beats Kasparov",
+      "hi": "डीप ब्लू ने कास्पारोव को हराया",
+      "hinglish": "Deep Blue ne Kasparov ko haraya"
+     }
+    ],
+    "answer": [
+     1,
+     3,
+     0,
+     2
+    ],
+    "explain": {
+     "en": "Turing 1950 → Deep Blue 1997 → AlphaGo 2016 → ChatGPT 2022.",
+     "hi": "ट्यूरिंग 1950 → डीप ब्लू 1997 → AlphaGo 2016 → ChatGPT 2022।",
+     "hinglish": "Turing 1950 → Deep Blue 1997 → AlphaGo 2016 → ChatGPT 2022."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Where did the name “artificial intelligence” get used for the field in 1956?",
+     "hi": "1956 में क्षेत्र के लिए “कृत्रिम बुद्धिमत्ता” नाम कहाँ उपयोग हुआ?",
+     "hinglish": "1956 mein field ke liye “artificial intelligence” naam kahan use hua?"
+    },
+    "options": [
+     {
+      "en": "At ISRO",
+      "hi": "ISRO में",
+      "hinglish": "ISRO mein"
+     },
+     {
+      "en": "At the Dartmouth workshop",
+      "hi": "डार्टमाउथ कार्यशाला में",
+      "hinglish": "Dartmouth workshop mein"
+     },
+     {
+      "en": "On the first iPhone",
+      "hi": "पहले iPhone पर",
+      "hinglish": "Pehle iPhone pe"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "At the Dartmouth workshop organised by John McCarthy and others.",
+     "hi": "जॉन मैकार्थी और अन्य द्वारा आयोजित डार्टमाउथ कार्यशाला में।",
+     "hinglish": "John McCarthy aur doosron ki Dartmouth workshop mein."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "What was the big change in AI after about 2012?",
+     "hi": "लगभग 2012 के बाद AI में बड़ा बदलाव क्या था?",
+     "hinglish": "Lagbhag 2012 ke baad AI mein bada badlaav kya tha?"
+    },
+    "options": [
+     {
+      "en": "Learning from big data replaced hand-written rules",
+      "hi": "बड़े डेटा से सीखने ने हाथ से लिखे नियमों की जगह ली",
+      "hinglish": "Big data se seekhne ne haath ke rules ki jagah li"
+     },
+     {
+      "en": "Computers stopped using electricity",
+      "hi": "कंप्यूटरों ने बिजली उपयोग करना बंद किया",
+      "hinglish": "Computers ne bijli use karna band kiya"
+     },
+     {
+      "en": "All AI research stopped",
+      "hi": "सारा AI शोध रुक गया",
+      "hinglish": "Saari AI research ruk gayi"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Deep learning from big data on fast GPUs replaced most hand-written rules.",
+     "hi": "तेज़ GPU पर बड़े डेटा से डीप लर्निंग ने अधिकतर हाथ से लिखे नियमों की जगह ली।",
+     "hinglish": "Fast GPUs pe big data se deep learning ne zyaadatar haath se likhe rules ki jagah li."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "match",
+    "prompt": {
+     "en": "Match each system to how it worked.",
+     "hi": "हर प्रणाली को उसके काम करने के तरीके से मिलाओ।",
+     "hinglish": "Har system ko uske kaam karne ke tareeke se match karo."
+    },
+    "options": {
+     "left": [
+      {
+       "en": "ELIZA (1966)",
+       "hi": "ELIZA (1966)",
+       "hinglish": "ELIZA (1966)"
+      },
+      {
+       "en": "Deep Blue (1997)",
+       "hi": "डीप ब्लू (1997)",
+       "hinglish": "Deep Blue (1997)"
+      },
+      {
+       "en": "AlphaGo (2016)",
+       "hi": "AlphaGo (2016)",
+       "hinglish": "AlphaGo (2016)"
+      }
+     ],
+     "right": [
+      {
+       "en": "Searched millions of chess positions per second",
+       "hi": "प्रति सेकंड लाखों शतरंज स्थितियाँ खोजीं",
+       "hinglish": "Har second laakhon chess positions search ki"
+      },
+      {
+       "en": "Learned from games and rewards with neural networks",
+       "hi": "न्यूरल नेटवर्क से खेलों और इनाम से सीखा",
+       "hinglish": "Neural networks se games aur rewards se seekha"
+      },
+      {
+       "en": "Matched simple word-pattern rules",
+       "hi": "सरल शब्द-पैटर्न नियम मिलाए",
+       "hinglish": "Simple word-pattern rules match kiye"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      2
+     ],
+     [
+      1,
+      0
+     ],
+     [
+      2,
+      1
+     ]
+    ],
+    "explain": {
+     "en": "ELIZA used pattern rules, Deep Blue searched chess moves, AlphaGo learned with neural networks and rewards.",
+     "hi": "ELIZA ने पैटर्न नियम, डीप ब्लू ने शतरंज चालें खोजीं, AlphaGo ने न्यूरल नेटवर्क और इनाम से सीखा।",
+     "hinglish": "ELIZA ne pattern rules, Deep Blue ne chess moves search ki, AlphaGo ne neural networks aur rewards se seekha."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "short",
+    "prompt": {
+     "en": "Which Indian government mission, approved in March 2024, funds AI computing, datasets and startups? (IndiaAI ___)",
+     "hi": "मार्च 2024 में स्वीकृत कौन-सा भारत सरकार मिशन AI कंप्यूटिंग, डेटासेट और स्टार्टअप को धन देता है? (IndiaAI ___)",
+     "hinglish": "March 2024 mein approve hua kaunsa Indian government mission AI computing, datasets aur startups fund karta hai? (IndiaAI ___)"
+    },
+    "answer": [
+     "Mission",
+     "mission"
+    ],
+    "explain": {
+     "en": "The IndiaAI Mission.",
+     "hi": "IndiaAI मिशन।",
+     "hinglish": "IndiaAI Mission."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the lab mission.",
+     "hi": "लैब मिशन पूरा करो।",
+     "hinglish": "Lab mission poora karo."
+    },
+    "answer": {
+     "lab": "ai-lab",
+     "event": "mission:complete",
+     "tab": "reward"
+    },
+    "explain": {
+     "en": "Train for 10+ episodes until the best path reaches the goal.",
+     "hi": "10+ एपिसोड प्रशिक्षित करो जब तक सबसे अच्छा रास्ता लक्ष्य तक न पहुँचे।",
+     "hinglish": "10+ episodes train karo jab tak best path goal tak na pahunche."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Turing — Computing Machinery and Intelligence, Mind (1950)",
+   "url": "https://academic.oup.com/mind/article/LIX/236/433/986238",
+   "licence": "fact reference"
+  },
+  {
+   "title": "IBM — Deep Blue (IBM history)",
+   "url": "https://www.ibm.com/history/deep-blue",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Google DeepMind — AlphaGo",
+   "url": "https://deepmind.google/research/breakthroughs/alphago/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "PIB — Cabinet approves IndiaAI Mission (7 March 2024)",
+   "url": "https://pib.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "OpenAI — Introducing ChatGPT (30 Nov 2022)",
+   "url": "https://openai.com/index/chatgpt/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

@@ -1,0 +1,385 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.security-engineering.07",
+ "level": 3,
+ "classes": [
+  10,
+  11,
+  12
+ ],
+ "unit": "security-engineering",
+ "title": {
+  "en": "Firewalls and VPNs",
+  "hi": "फ़ायरवॉल और VPN",
+  "hinglish": "Firewalls aur VPNs"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [
+  "L3.security-engineering.05"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain how packet-filtering and stateful firewalls decide allow or deny",
+   "hi": "समझाओ पैकेट-फ़िल्टर और स्टेटफ़ुल फ़ायरवॉल अनुमति या इनकार कैसे तय करते हैं",
+   "hinglish": "Samjhao packet-filtering aur stateful firewalls allow ya deny kaise tay karte hain"
+  },
+  {
+   "en": "Write simple default-deny rules for a small network",
+   "hi": "छोटे नेटवर्क के लिए सरल default-deny नियम लिखो",
+   "hinglish": "Chhote network ke liye simple default-deny rules likho"
+  },
+  {
+   "en": "Describe what a VPN protects, what it does not, and zero-trust access",
+   "hi": "बताओ VPN क्या बचाता है, क्या नहीं, और ज़ीरो-ट्रस्ट पहुँच",
+   "hinglish": "Batao VPN kya bachata hai, kya nahi, aur zero-trust access"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Firewall",
+   "hinglish": "Network ka darbaan",
+   "en": "Device or software that allows or blocks traffic using rules",
+   "hi": "नियमों से ट्रैफ़िक आने देने या रोकने वाला उपकरण या सॉफ़्टवेयर"
+  },
+  {
+   "term": "Stateful",
+   "hinglish": "Baat-cheet yaad rakhta hai",
+   "en": "Tracks connections, so replies to your requests are allowed automatically",
+   "hi": "कनेक्शन याद रखता है, ताकि आपके अनुरोधों के जवाब अपने-आप आ सकें"
+  },
+  {
+   "term": "Default deny",
+   "hinglish": "Jo allow nahi, woh band",
+   "en": "Block everything except what a rule explicitly allows",
+   "hi": "नियम में अनुमत के अलावा सब रोको"
+  },
+  {
+   "term": "VPN",
+   "hinglish": "Surakshit surang",
+   "en": "Virtual private network: an encrypted tunnel to another network",
+   "hi": "वर्चुअल प्राइवेट नेटवर्क: दूसरे नेटवर्क तक एन्क्रिप्टेड सुरंग"
+  },
+  {
+   "term": "Zero trust",
+   "hinglish": "Kisi par aankh band bharosa nahi",
+   "en": "Check every user and device for every request, wherever they are",
+   "hi": "हर अनुरोध पर हर उपयोगकर्ता और डिवाइस को जाँचो, चाहे वे कहीं हों"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Every packet has a source, destination, port and protocol. A firewall compares these with its rule list, top to bottom.",
+    "hi": "हर पैकेट में स्रोत, गंतव्य, पोर्ट और प्रोटोकॉल होता है। फ़ायरवॉल इन्हें ऊपर से नीचे अपनी नियम सूची से मिलाता है।",
+    "hinglish": "Har packet mein source, destination, port aur protocol hota hai. Firewall inhe upar se neeche apni rule list se milata hai."
+   },
+   "visual": "anim:fw-rules",
+   "narration": {
+    "en": "Every packet has a source, destination, port and protocol. A firewall compares these with its rule list, top to bottom.",
+    "hi": "हर पैकेट में स्रोत, गंतव्य, पोर्ट और प्रोटोकॉल होता है। फ़ायरवॉल इन्हें ऊपर से नीचे अपनी नियम सूची से मिलाता है।",
+    "hinglish": "Har packet mein source, destination, port aur protocol hota hai. Firewall inhe upar se neeche apni rule list se milata hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Your home router already acts like one: NAT plus a stateful firewall lets replies in but blocks strangers who start connections.",
+    "hi": "आपका घरेलू राउटर पहले से ऐसा करता है: NAT और स्टेटफ़ुल फ़ायरवॉल जवाब आने देते हैं पर कनेक्शन शुरू करने वाले अजनबियों को रोकते हैं।",
+    "hinglish": "Tumhara home router pehle se aisa karta hai: NAT plus stateful firewall replies aane dete hain par connection shuru karne wale ajnabiyon ko rokte hain."
+   },
+   "visual": "anim:nat-shield",
+   "narration": {
+    "en": "Your home router already acts like one: NAT plus a stateful firewall lets replies in but blocks strangers who start connections.",
+    "hi": "आपका घरेलू राउटर पहले से ऐसा करता है: NAT और स्टेटफ़ुल फ़ायरवॉल जवाब आने देते हैं पर कनेक्शन शुरू करने वाले अजनबियों को रोकते हैं।",
+    "hinglish": "Tumhara home router pehle se aisa karta hai: NAT plus stateful firewall replies aane dete hain par connection shuru karne wale ajnabiyon ko rokte hain."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "A school server allows TCP 443 (HTTPS) from anywhere, SSH 22 only from the IT room, and denies everything else.",
+    "hi": "स्कूल सर्वर कहीं से भी TCP 443 (HTTPS) आने देता है, SSH 22 सिर्फ़ आईटी कमरे से, और बाक़ी सब रोकता है।",
+    "hinglish": "School server kahin se bhi TCP 443 (HTTPS) aane deta hai, SSH 22 sirf IT room se, aur baaki sab rokta hai."
+   },
+   "visual": "anim:fw-allowlist",
+   "narration": {
+    "en": "A school server allows TCP 443 (HTTPS) from anywhere, SSH 22 only from the IT room, and denies everything else.",
+    "hi": "स्कूल सर्वर कहीं से भी TCP 443 (HTTPS) आने देता है, SSH 22 सिर्फ़ आईटी कमरे से, और बाक़ी सब रोकता है।",
+    "hinglish": "School server kahin se bhi TCP 443 (HTTPS) aane deta hai, SSH 22 sirf IT room se, aur baaki sab rokta hai."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "A VPN wraps your traffic in an encrypted tunnel to the VPN server. The café Wi-Fi sees only scrambled data going to one address.",
+    "hi": "VPN आपका ट्रैफ़िक VPN सर्वर तक एन्क्रिप्टेड सुरंग में लपेटता है। कैफ़े वाई-फ़ाई को सिर्फ़ एक पते पर जाता उलझा डेटा दिखता है।",
+    "hinglish": "VPN tumhara traffic VPN server tak encrypted tunnel mein lapet-ta hai. Cafe Wi-Fi ko sirf ek address par jaata uljha data dikhta hai."
+   },
+   "visual": "anim:vpn-tunnel",
+   "narration": {
+    "en": "A VPN wraps your traffic in an encrypted tunnel to the VPN server. The café Wi-Fi sees only scrambled data going to one address.",
+    "hi": "VPN आपका ट्रैफ़िक VPN सर्वर तक एन्क्रिप्टेड सुरंग में लपेटता है। कैफ़े वाई-फ़ाई को सिर्फ़ एक पते पर जाता उलझा डेटा दिखता है।",
+    "hinglish": "VPN tumhara traffic VPN server tak encrypted tunnel mein lapet-ta hai. Cafe Wi-Fi ko sirf ek address par jaata uljha data dikhta hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "seq-flow",
+  "config": {
+   "scenario": "nat-router"
+  },
+  "goal": {
+   "en": "Watch the router translate a private address to a public one and remember the connection. Ask: what happens to a packet from outside that matches no remembered connection?",
+   "hi": "राउटर को निजी पते को सार्वजनिक में बदलते और कनेक्शन याद रखते देखो। सोचो: बाहर से आए उस पैकेट का क्या होगा जो किसी याद किए कनेक्शन से नहीं मिलता?",
+   "hinglish": "Router ko private address ko public mein badalte aur connection yaad rakhte dekho. Socho: bahar se aaye us packet ka kya hoga jo kisi yaad kiye connection se match nahi karta?"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Kinds of firewalls and good rules",
+    "hi": "फ़ायरवॉल के प्रकार और अच्छे नियम",
+    "hinglish": "Firewalls ke types aur achhe rules"
+   },
+   "body": {
+    "en": "Packet filters check addresses and ports only. Stateful firewalls also track connections. Next-generation firewalls and web application firewalls (WAFs) look inside traffic for known attacks. Host firewalls run on each computer (Windows Defender Firewall, Linux nftables). Good practice: default deny, allow only needed ports, restrict admin access (SSH, RDP) to known addresses or a VPN, log denied traffic, and review rules regularly — old \"temporary\" rules are a common hole. Cloud platforms call these security groups.",
+    "hi": "पैकेट फ़िल्टर सिर्फ़ पते और पोर्ट जाँचते हैं। स्टेटफ़ुल फ़ायरवॉल कनेक्शन भी याद रखते हैं। अगली पीढ़ी के फ़ायरवॉल और वेब एप्लिकेशन फ़ायरवॉल (WAF) ज्ञात हमलों के लिए ट्रैफ़िक के अंदर देखते हैं। होस्ट फ़ायरवॉल हर कंप्यूटर पर चलते हैं (Windows Defender Firewall, Linux nftables)। अच्छा अभ्यास: default deny, सिर्फ़ ज़रूरी पोर्ट, प्रशासन पहुँच (SSH, RDP) सिर्फ़ ज्ञात पतों या VPN से, रोका गया ट्रैफ़िक लॉग करो, और नियम नियमित जाँचो — पुराने \"अस्थायी\" नियम आम छेद हैं। क्लाउड प्लेटफ़ॉर्म इन्हें सिक्योरिटी ग्रुप कहते हैं।",
+    "hinglish": "Packet filters sirf addresses aur ports check karte hain. Stateful firewalls connections bhi yaad rakhte hain. Next-generation firewalls aur web application firewalls (WAFs) known attacks ke liye traffic ke andar dekhte hain. Host firewalls har computer par chalte hain (Windows Defender Firewall, Linux nftables). Achhi practice: default deny, sirf zaroori ports, admin access (SSH, RDP) sirf known addresses ya VPN se, denied traffic log karo, aur rules regularly review karo — purane \"temporary\" rules common hole hain. Cloud platforms inhe security groups kehte hain."
+   },
+   "analogy": {
+    "en": "A society gate guard with a resident list: visitors are let in only if a resident invited them; delivery replies to your order come through.",
+    "hi": "निवासी सूची वाला सोसाइटी गेट गार्ड: मेहमान तभी अंदर जब किसी निवासी ने बुलाया हो; आपके ऑर्डर की डिलीवरी आ जाती है।",
+    "hinglish": "Resident list wala society gate guard: mehmaan tabhi andar jab kisi resident ne bulaya ho; tumhare order ki delivery aa jaati hai."
+   },
+   "realExample": {
+    "en": "Rule set: 1) allow TCP 443 from any; 2) allow TCP 22 from 10.0.5.0/24; 3) deny all. A request to port 3389 from the internet hits rule 3 and is dropped.",
+    "hi": "नियम सेट: 1) किसी से भी TCP 443 अनुमति; 2) 10.0.5.0/24 से TCP 22 अनुमति; 3) बाक़ी सब रोको। इंटरनेट से पोर्ट 3389 का अनुरोध नियम 3 से टकराकर गिरता है।",
+    "hinglish": "Rule set: 1) kisi se bhi TCP 443 allow; 2) 10.0.5.0/24 se TCP 22 allow; 3) baaki sab deny. Internet se port 3389 ki request rule 3 se takraakar drop hoti hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "VPNs honestly, and zero trust",
+    "hi": "VPN ईमानदारी से, और ज़ीरो ट्रस्ट",
+    "hinglish": "VPNs imaandaari se, aur zero trust"
+   },
+   "body": {
+    "en": "A VPN (WireGuard, IPsec or OpenVPN) protects traffic between you and the VPN server — useful on public Wi-Fi and for staff reaching office systems. It does not make you anonymous: the VPN provider can see your traffic, and it does not stop phishing or malware. In India, CERT-In's 2022 directions require VPN service providers to keep subscriber records for 5 years. Many organisations now prefer zero-trust access: instead of \"inside the network = trusted\", every request is checked for user identity, MFA and device health.",
+    "hi": "VPN (WireGuard, IPsec या OpenVPN) आपके और VPN सर्वर के बीच ट्रैफ़िक बचाता है — सार्वजनिक वाई-फ़ाई पर और कर्मचारियों के दफ़्तर प्रणाली तक पहुँचने में उपयोगी। यह आपको गुमनाम नहीं बनाता: VPN प्रदाता आपका ट्रैफ़िक देख सकता है, और यह फ़िशिंग या मैलवेयर नहीं रोकता। भारत में CERT-In के 2022 निर्देश VPN सेवा प्रदाताओं से ग्राहक रिकॉर्ड 5 साल रखने को कहते हैं। कई संगठन अब ज़ीरो-ट्रस्ट पहुँच पसंद करते हैं: \"नेटवर्क के अंदर = भरोसेमंद\" की जगह हर अनुरोध पर पहचान, MFA और डिवाइस की हालत जाँची जाती है।",
+    "hinglish": "VPN (WireGuard, IPsec ya OpenVPN) tumhare aur VPN server ke beech traffic bachata hai — public Wi-Fi par aur staff ke office systems tak pahunchne mein useful. Yeh tumhe anonymous nahi banata: VPN provider tumhara traffic dekh sakta hai, aur yeh phishing ya malware nahi rokta. India mein CERT-In ke 2022 directions VPN service providers se subscriber records 5 saal rakhne ko kehte hain. Kai organisations ab zero-trust access pasand karte hain: \"network ke andar = trusted\" ki jagah har request par identity, MFA aur device health check hoti hai."
+   },
+   "analogy": {
+    "en": "A VPN is a private tunnel to one building; zero trust is a guard at every room door, even inside the building.",
+    "hi": "VPN एक इमारत तक निजी सुरंग है; ज़ीरो ट्रस्ट इमारत के अंदर भी हर कमरे के दरवाज़े पर पहरेदार है।",
+    "hinglish": "VPN ek building tak private tunnel hai; zero trust building ke andar bhi har kamre ke darwaaze par guard hai."
+   },
+   "realExample": {
+    "en": "Free VPN apps that are not open about who runs them may sell browsing data — read their privacy policy, or skip them.",
+    "hi": "जो मुफ़्त VPN ऐप यह नहीं बताते कि उन्हें कौन चलाता है, वे ब्राउज़िंग डेटा बेच सकते हैं — उनकी निजता नीति पढ़ो, या छोड़ दो।",
+    "hinglish": "Jo free VPN apps yeh nahi batate ki unhe kaun chalata hai, woh browsing data bech sakte hain — unki privacy policy padho, ya chhod do."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write a 5-rule firewall table for a school web server: allow web traffic, allow admin only from the IT room, allow DNS out, log and deny the rest. Explain the order.",
+   "hi": "स्कूल वेब सर्वर के लिए 5 नियमों की फ़ायरवॉल तालिका लिखो: वेब ट्रैफ़िक अनुमति, प्रशासन सिर्फ़ आईटी कमरे से, DNS बाहर अनुमति, बाक़ी लॉग और रोको। क्रम समझाओ।",
+   "hinglish": "School web server ke liye 5 rules ki firewall table likho: web traffic allow, admin sirf IT room se, DNS bahar allow, baaki log aur deny. Order samjhao."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "What does \"default deny\" mean?",
+     "hi": "\"Default deny\" का मतलब क्या है?",
+     "hinglish": "\"Default deny\" ka matlab kya hai?"
+    },
+    "options": [
+     {
+      "en": "Block everything not explicitly allowed",
+      "hi": "जो साफ़ अनुमत नहीं, सब रोको",
+      "hinglish": "Jo explicitly allowed nahi, sab roko"
+     },
+     {
+      "en": "Allow everything",
+      "hi": "सब आने दो",
+      "hinglish": "Sab aane do"
+     },
+     {
+      "en": "Deny only known attackers",
+      "hi": "सिर्फ़ ज्ञात हमलावर रोको",
+      "hinglish": "Sirf known attackers roko"
+     },
+     {
+      "en": "Turn the firewall off at night",
+      "hi": "रात में फ़ायरवॉल बंद",
+      "hinglish": "Raat mein firewall band"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "An allow-list is safer than trying to list every bad thing.",
+     "hi": "हर बुरी चीज़ की सूची से अनुमति-सूची ज़्यादा सुरक्षित है।",
+     "hinglish": "Har buri cheez ki list se allow-list zyaada safe hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Rules: 1) allow TCP 443 any, 2) allow TCP 22 from 10.0.5.0/24, 3) deny all. Request: TCP 22 from 203.0.113.9. Result?",
+     "hi": "नियम: 1) TCP 443 कोई भी, 2) 10.0.5.0/24 से TCP 22, 3) सब रोको। अनुरोध: 203.0.113.9 से TCP 22। नतीजा?",
+     "hinglish": "Rules: 1) TCP 443 any allow, 2) 10.0.5.0/24 se TCP 22 allow, 3) deny all. Request: 203.0.113.9 se TCP 22. Result?"
+    },
+    "options": [
+     {
+      "en": "Allowed by rule 1",
+      "hi": "नियम 1 से अनुमति",
+      "hinglish": "Rule 1 se allow"
+     },
+     {
+      "en": "Allowed by rule 2",
+      "hi": "नियम 2 से अनुमति",
+      "hinglish": "Rule 2 se allow"
+     },
+     {
+      "en": "Denied by rule 3",
+      "hi": "नियम 3 से रोका",
+      "hinglish": "Rule 3 se deny"
+     },
+     {
+      "en": "Crashes the firewall",
+      "hi": "फ़ायरवॉल क्रैश",
+      "hinglish": "Firewall crash"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "Port 22 matches rule 2 only for the IT subnet; this source is outside it.",
+     "hi": "पोर्ट 22 नियम 2 से सिर्फ़ आईटी सबनेट के लिए मिलता है; यह स्रोत उसके बाहर है।",
+     "hinglish": "Port 22 rule 2 se sirf IT subnet ke liye match karta hai; yeh source uske bahar hai."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q3",
+    "type": "multi",
+    "prompt": {
+     "en": "What does a VPN NOT do? (choose all)",
+     "hi": "VPN क्या नहीं करता? (सभी चुनो)",
+     "hinglish": "VPN kya NAHI karta? (saare chuno)"
+    },
+    "options": [
+     {
+      "en": "Stop phishing emails",
+      "hi": "फ़िशिंग ईमेल रोकना",
+      "hinglish": "Phishing emails rokna"
+     },
+     {
+      "en": "Encrypt traffic to the VPN server",
+      "hi": "VPN सर्वर तक ट्रैफ़िक एन्क्रिप्ट",
+      "hinglish": "VPN server tak traffic encrypt"
+     },
+     {
+      "en": "Make you fully anonymous",
+      "hi": "आपको पूरी तरह गुमनाम बनाना",
+      "hinglish": "Tumhe poori tarah anonymous banana"
+     },
+     {
+      "en": "Remove malware",
+      "hi": "मैलवेयर हटाना",
+      "hinglish": "Malware hatana"
+     }
+    ],
+    "answer": [
+     0,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "A VPN is a tunnel, not an antivirus or an invisibility cloak.",
+     "hi": "VPN सुरंग है, एंटीवायरस या अदृश्य चोगा नहीं।",
+     "hinglish": "VPN tunnel hai, antivirus ya invisibility cloak nahi."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Zero trust means…",
+     "hi": "ज़ीरो ट्रस्ट का मतलब…",
+     "hinglish": "Zero trust ka matlab…"
+    },
+    "options": [
+     {
+      "en": "Verify every request, even from inside the network",
+      "hi": "हर अनुरोध जाँचो, नेटवर्क के अंदर से भी",
+      "hinglish": "Har request verify karo, network ke andar se bhi"
+     },
+     {
+      "en": "Trust no software updates",
+      "hi": "किसी अपडेट पर भरोसा नहीं",
+      "hinglish": "Kisi update par bharosa nahi"
+     },
+     {
+      "en": "Never use the internet",
+      "hi": "इंटरनेट कभी नहीं",
+      "hinglish": "Internet kabhi nahi"
+     },
+     {
+      "en": "Only trust the CEO",
+      "hi": "सिर्फ़ CEO पर भरोसा",
+      "hinglish": "Sirf CEO par bharosa"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Location inside the office no longer equals trust.",
+     "hi": "दफ़्तर के अंदर होना अब भरोसे के बराबर नहीं।",
+     "hinglish": "Office ke andar hona ab bharose ke barabar nahi."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Finish the NAT router scenario.",
+     "hi": "NAT राउटर परिदृश्य पूरा करो।",
+     "hinglish": "NAT router scenario poora karo."
+    },
+    "answer": {
+     "event": "scenario-complete",
+     "scenario": "nat-router"
+    },
+    "explain": {
+     "en": "Unsolicited inbound packets match no NAT entry and are dropped.",
+     "hi": "बिन माँगे आने वाले पैकेट किसी NAT प्रविष्टि से नहीं मिलते और गिरा दिए जाते हैं।",
+     "hinglish": "Bin maange aane wale packets kisi NAT entry se match nahi karte aur drop ho jaate hain."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "cyber.firewall",
+  "cyber.vpn"
+ ],
+ "sources": [
+  {
+   "title": "CERT-In — Directions under Section 70B (28 April 2022)",
+   "url": "https://www.cert-in.org.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NIST SP 800-207 Zero Trust Architecture",
+   "url": "https://csrc.nist.gov/pubs/sp/800/207/final",
+   "licence": "fact reference"
+  }
+ ]
+}

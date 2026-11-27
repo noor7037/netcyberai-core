@@ -1,0 +1,348 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.web.01",
+ "level": 2,
+ "classes": [
+  6,
+  7
+ ],
+ "unit": "web",
+ "title": {
+  "en": "Browsers, URLs and HTTP",
+  "hi": "ब्राउज़र, URL और HTTP",
+  "hinglish": "Browsers, URLs aur HTTP"
+ },
+ "minutes": 10,
+ "xp": 35,
+ "prereq": [],
+ "topics": [
+  "web.what-is-web",
+  "web.browser-url",
+  "web.http"
+ ],
+ "outcomes": [
+  {
+   "en": "Tell the web from the internet",
+   "hi": "वेब और इंटरनेट में अंतर बता सकते हो",
+   "hinglish": "Web aur internet mein farak bata sakte ho"
+  },
+  {
+   "en": "Read every part of a URL",
+   "hi": "URL का हर भाग पढ़ सकते हो",
+   "hinglish": "URL ka har hissa padh sakte ho"
+  },
+  {
+   "en": "Describe an HTTP request and response, with status codes",
+   "hi": "स्टेटस कोड सहित HTTP अनुरोध और उत्तर बता सकते हो",
+   "hinglish": "HTTP request, response aur status codes samjha sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "World Wide Web",
+   "hinglish": "Links se jude pages",
+   "en": "Pages and files linked together, reached through browsers (invented by Tim Berners-Lee, 1989)",
+   "hi": "आपस में जुड़े पेज और फ़ाइलें, ब्राउज़र से खुलने वाले (टिम बर्नर्स-ली ने 1989 में बनाया)"
+  },
+  {
+   "term": "URL",
+   "hinglish": "Web page ka poora pata",
+   "en": "Uniform Resource Locator: scheme://domain/path?query",
+   "hi": "यूनिफ़ॉर्म रिसोर्स लोकेटर: scheme://domain/path?query"
+  },
+  {
+   "term": "Browser",
+   "hinglish": "Pages dikhane wala app",
+   "en": "An app that requests pages and draws them: Chrome, Firefox, Safari, Edge",
+   "hi": "पेज माँगने और दिखाने वाला ऐप: Chrome, Firefox, Safari, Edge"
+  },
+  {
+   "term": "HTTP",
+   "hinglish": "Browser aur server ki bhasha",
+   "en": "HyperText Transfer Protocol: the rules for asking for and sending pages",
+   "hi": "हाइपरटेक्स्ट ट्रांसफ़र प्रोटोकॉल: पेज माँगने और भेजने के नियम"
+  },
+  {
+   "term": "Status code",
+   "hinglish": "Server ka jawab number",
+   "en": "A number in the reply: 200 OK, 404 Not Found, 500 Server Error",
+   "hi": "उत्तर में एक संख्या: 200 OK, 404 Not Found, 500 Server Error"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "The internet is the roads; the web is one service on it — like WhatsApp, email and UPI are others.",
+    "hi": "इंटरनेट सड़कें है; वेब उस पर एक सेवा है — जैसे WhatsApp, ईमेल और UPI दूसरी।",
+    "hinglish": "Internet sadkein hai; web uspe ek service hai — jaise WhatsApp, email aur UPI doosri."
+   },
+   "visual": "compare:🛣️ Internet = roads|🚌 Web, email, UPI, WhatsApp = services",
+   "narration": {
+    "en": "People often mix them up, but the web is only one thing that uses the internet.",
+    "hi": "लोग अक्सर दोनों को मिला देते हैं, पर वेब इंटरनेट उपयोग करने वाली केवल एक चीज़ है।",
+    "hinglish": "Log aksar dono ko mila dete hain, par web internet use karne wali sirf ek cheez hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "A URL has parts: https:// (scheme) + ncert.nic.in (domain) + /textbook.php (path) + ?class=7 (query).",
+    "hi": "URL के भाग: https:// (स्कीम) + ncert.nic.in (डोमेन) + /textbook.php (पथ) + ?class=7 (क्वेरी)।",
+    "hinglish": "URL ke parts: https:// (scheme) + ncert.nic.in (domain) + /textbook.php (path) + ?class=7 (query)."
+   },
+   "visual": "lab:web-studio#url",
+   "narration": {
+    "en": "Tap each colour in the lab to see what that part means.",
+    "hi": "लैब में हर रंग दबाकर देखो वह भाग क्या बताता है।",
+    "hinglish": "Lab mein har colour pe tap karke dekho woh hissa kya batata hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "The browser sends “GET /textbook.php”. The server replies “200 OK” plus the HTML. Not found? “404”.",
+    "hi": "ब्राउज़र भेजता है “GET /textbook.php”। सर्वर जवाब देता है “200 OK” और HTML। नहीं मिला? “404”।",
+    "hinglish": "Browser bhejta hai “GET /textbook.php”. Server jawab deta hai “200 OK” aur HTML. Nahi mila? “404”."
+   },
+   "visual": "flow:🌐 GET /page|🗄️ Server|📄 200 OK + HTML|🎨 Browser draws it",
+   "narration": {
+    "en": "One page can need 50–100 requests: HTML, CSS, scripts, images, fonts.",
+    "hi": "एक पेज को 50–100 अनुरोध लग सकते हैं: HTML, CSS, स्क्रिप्ट, चित्र, फ़ॉन्ट।",
+    "hinglish": "Ek page ko 50–100 requests lag sakti hain: HTML, CSS, scripts, images, fonts."
+   }
+  }
+ ],
+ "play": {
+  "lab": "web-studio",
+  "config": {
+   "tab": "url"
+  },
+  "goal": {
+   "en": "Take apart three URLs and send an HTTP request. Try a page that does not exist to see a 404.",
+   "hi": "तीन URL तोड़कर देखो और HTTP अनुरोध भेजो। 404 देखने के लिए ऐसा पेज आज़माओ जो है ही नहीं।",
+   "hinglish": "Teen URLs ko tod ke dekho aur HTTP request bhejo. Na hone wala page try karke 404 dekho."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "What happens when you press Enter",
+    "hi": "Enter दबाने पर क्या होता है",
+    "hinglish": "Enter dabane pe kya hota hai"
+   },
+   "body": {
+    "en": "1) The browser reads the URL. 2) DNS turns the domain into an IP. 3) It opens a connection (and for https, sets up encryption). 4) It sends an HTTP request: GET /path. 5) The server replies with a status code and the content. 6) The browser reads the HTML, asks for the CSS, JavaScript and images it mentions, and 7) draws (renders) the page. Common status codes: 200 OK, 301 Moved, 403 Forbidden, 404 Not Found, 500 Internal Server Error, 503 Service Unavailable (often a busy server, like during results day).",
+    "hi": "1) ब्राउज़र URL पढ़ता है। 2) DNS डोमेन को IP में बदलता है। 3) कनेक्शन खुलता है (https में एन्क्रिप्शन भी)। 4) HTTP अनुरोध: GET /path। 5) सर्वर स्टेटस कोड और सामग्री लौटाता है। 6) ब्राउज़र HTML पढ़कर उसमें लिखे CSS, JavaScript और चित्र माँगता है, और 7) पेज बनाता (रेंडर) है। आम स्टेटस कोड: 200 OK, 301 Moved, 403 Forbidden, 404 Not Found, 500 Internal Server Error, 503 Service Unavailable (अक्सर व्यस्त सर्वर, जैसे परिणाम वाले दिन)।",
+    "hinglish": "1) Browser URL padhta hai. 2) DNS domain ko IP mein badalta hai. 3) Connection khulta hai (https mein encryption bhi). 4) HTTP request: GET /path. 5) Server status code aur content bhejta hai. 6) Browser HTML padh ke usme likhe CSS, JavaScript aur images maangta hai, aur 7) page draw (render) karta hai. Common status codes: 200 OK, 301 Moved, 403 Forbidden, 404 Not Found, 500 Internal Server Error, 503 Service Unavailable (aksar busy server, jaise result wale din)."
+   },
+   "analogy": {
+    "hinglish": "URL = poora postal address; HTTP = chitthi ka format (“Priy server, kripya yeh page bhejiye”); status code = dakiye ka note (“mil gaya” / “is pate pe koi nahi”).",
+    "en": "URL = the full postal address; HTTP = the letter format (“Dear server, please send this page”); status code = the postman’s note (“delivered” / “nobody at this address”).",
+    "hi": "URL = पूरा डाक पता; HTTP = चिट्ठी का प्रारूप (“प्रिय सर्वर, कृपया यह पेज भेजिए”); स्टेटस कोड = डाकिए का नोट (“मिल गया” / “इस पते पर कोई नहीं”)।"
+   },
+   "realExample": {
+    "en": "On CBSE result day, results sites sometimes show 503 because lakhs of students request the same page in the same minute.",
+    "hi": "CBSE परिणाम वाले दिन साइटें कभी 503 दिखाती हैं क्योंकि लाखों छात्र एक ही मिनट में एक ही पेज माँगते हैं।",
+    "hinglish": "CBSE result day pe sites kabhi 503 dikhati hain kyunki lakhon students ek hi minute mein same page maangte hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write down the URL of your school or a government site and label scheme, domain, path and query.",
+   "hi": "अपने स्कूल या किसी सरकारी साइट का URL लिखो और स्कीम, डोमेन, पथ और क्वेरी चिह्नित करो।",
+   "hinglish": "Apne school ya kisi sarkari site ka URL likho aur scheme, domain, path aur query label karo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which is true?",
+     "hi": "कौन-सा सही है?",
+     "hinglish": "Kaunsa sahi hai?"
+    },
+    "options": [
+     {
+      "en": "The web and the internet are the same",
+      "hi": "वेब और इंटरनेट एक ही हैं",
+      "hinglish": "Web aur internet same hain"
+     },
+     {
+      "en": "The web is a service that runs on the internet",
+      "hi": "वेब इंटरनेट पर चलने वाली सेवा है",
+      "hinglish": "Web internet pe chalne wali service hai"
+     },
+     {
+      "en": "The internet runs on the web",
+      "hi": "इंटरनेट वेब पर चलता है",
+      "hinglish": "Internet web pe chalta hai"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "The internet is the global network; the web is one service that runs on it.",
+     "hi": "इंटरनेट वैश्विक नेटवर्क है; वेब उस पर चलने वाली एक सेवा।",
+     "hinglish": "Internet global network hai; web uspe chalne wali ek service."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "In https://cbse.gov.in/results?roll=12345, what is the path?",
+     "hi": "https://cbse.gov.in/results?roll=12345 में पथ क्या है?",
+     "hinglish": "https://cbse.gov.in/results?roll=12345 mein path kya hai?"
+    },
+    "options": [
+     "https://",
+     "cbse.gov.in",
+     "/results",
+     "?roll=12345"
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "The path comes after the domain: /results. ?roll=12345 is the query.",
+     "hi": "पथ डोमेन के बाद आता है: /results। ?roll=12345 क्वेरी है।",
+     "hinglish": "Path domain ke baad aata hai: /results. ?roll=12345 query hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "match",
+    "prompt": {
+     "en": "Match the status code to its meaning.",
+     "hi": "स्टेटस कोड को उसके अर्थ से मिलाओ।",
+     "hinglish": "Status code ko uske matlab se milao."
+    },
+    "options": {
+     "left": [
+      "200",
+      "404",
+      "503"
+     ],
+     "right": [
+      {
+       "en": "Server too busy or down",
+       "hi": "सर्वर बहुत व्यस्त या बंद",
+       "hinglish": "Server bahut busy ya down"
+      },
+      {
+       "en": "OK — here is the page",
+       "hi": "ठीक — यह रहा पेज",
+       "hinglish": "OK — yeh raha page"
+      },
+      {
+       "en": "Page not found",
+       "hi": "पेज नहीं मिला",
+       "hinglish": "Page nahi mila"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      2
+     ],
+     [
+      2,
+      0
+     ]
+    ],
+    "explain": {
+     "en": "200 OK, 404 Not Found, 503 Service Unavailable (busy/down).",
+     "hi": "200 OK, 404 Not Found, 503 Service Unavailable (व्यस्त/बंद)।",
+     "hinglish": "200 OK, 404 Not Found, 503 Service Unavailable (busy/down)."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "order",
+    "prompt": {
+     "en": "Order what happens after you press Enter.",
+     "hi": "Enter दबाने के बाद क्या होता है, क्रम में लगाओ।",
+     "hinglish": "Enter dabane ke baad kya hota hai, order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Server replies 200 OK + HTML",
+      "hi": "सर्वर 200 OK + HTML भेजता है",
+      "hinglish": "Server 200 OK + HTML bhejta hai"
+     },
+     {
+      "en": "DNS finds the IP",
+      "hi": "DNS IP खोजता है",
+      "hinglish": "DNS IP dhoondta hai"
+     },
+     {
+      "en": "Browser draws the page",
+      "hi": "ब्राउज़र पेज बनाता है",
+      "hinglish": "Browser page draw karta hai"
+     },
+     {
+      "en": "Browser sends GET /path",
+      "hi": "ब्राउज़र GET /path भेजता है",
+      "hinglish": "Browser GET /path bhejta hai"
+     }
+    ],
+    "answer": [
+     1,
+     3,
+     0,
+     2
+    ],
+    "explain": {
+     "en": "DNS lookup, then the request, then the server’s response, then rendering.",
+     "hi": "DNS खोज, फिर अनुरोध, फिर सर्वर का उत्तर, फिर रेंडरिंग।",
+     "hinglish": "DNS lookup, phir request, phir server ka response, phir rendering."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Send a request for a missing page in the web studio and read the status code.",
+     "hi": "वेब स्टूडियो में ग़ायब पेज का अनुरोध भेजो और स्टेटस कोड पढ़ो।",
+     "hinglish": "Web studio mein missing page ki request bhejo aur status code padho."
+    },
+    "answer": {
+     "lab": "web-studio",
+     "event": "mission:complete",
+     "tab": "url"
+    },
+    "explain": {
+     "en": "A missing path returns 404 Not Found.",
+     "hi": "ग़ायब पथ 404 Not Found देता है।",
+     "hinglish": "Missing path 404 Not Found deta hai."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "W3C / CERN — The birth of the Web (Tim Berners-Lee, 1989)",
+   "url": "https://home.cern/science/computing/birth-web",
+   "licence": "fact reference"
+  },
+  {
+   "title": "MDN Web Docs — HTTP response status codes",
+   "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status",
+   "licence": "CC BY-SA 2.5 (fact reference only)"
+  },
+  {
+   "title": "RFC 9110 — HTTP Semantics",
+   "url": "https://www.rfc-editor.org/rfc/rfc9110",
+   "licence": "fact reference"
+  }
+ ]
+}

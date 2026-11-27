@@ -1,0 +1,315 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.servers.02",
+ "level": 1,
+ "classes": [
+  4,
+  5
+ ],
+ "unit": "servers",
+ "title": {
+  "en": "DNS: the internet's phone book",
+  "hi": "DNS: इंटरनेट की फ़ोन-बुक",
+  "hinglish": "DNS: internet ki phone book"
+ },
+ "minutes": 8,
+ "xp": 30,
+ "prereq": [
+  "L1.servers.01"
+ ],
+ "topics": [
+  "net.dns",
+  "net.ip"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain that every device has an IP address made of numbers.",
+   "hi": "समझा सकते हो कि हर डिवाइस का संख्याओं वाला IP पता होता है।",
+   "hinglish": "Samjha sakte ho ki har device ka numbers wala IP address hota hai."
+  },
+  {
+   "en": "Explain how DNS turns a website name into an IP address.",
+   "hi": "समझा सकते हो कि DNS वेबसाइट के नाम को IP पते में कैसे बदलता है।",
+   "hinglish": "Samjha sakte ho ki DNS website ke naam ko IP address mein kaise badalta hai."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "IP address",
+   "en": "A device's number address on the internet, like 203.0.113.10",
+   "hi": "डिवाइस का संख्याओं वाला पता, जैसे 203.0.113.10",
+   "hinglish": "Device ka number wala address, jaise 203.0.113.10"
+  },
+  {
+   "term": "Domain name",
+   "en": "An easy-to-remember website name, like isro.gov.in",
+   "hi": "वेबसाइट का याद रखने लायक नाम",
+   "hinglish": "Website ka yaad rakhne layak naam"
+  },
+  {
+   "term": "DNS",
+   "en": "Domain Name System: the phone book that finds the number for a name",
+   "hi": "डोमेन नेम सिस्टम — नाम से नंबर ढूँढने वाली फ़ोन-बुक",
+   "hinglish": "Domain Name System — naam se number dhoondhne wali phone book"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.servers.02.s1",
+   "caption": {
+    "en": "Every device has a number address.",
+    "hi": "हर डिवाइस का एक नंबर वाला पता है।",
+    "hinglish": "Har device ka ek number wala address hai."
+   },
+   "narration": {
+    "en": "Just as every house has an address, every device on the internet has an IP address made of numbers.",
+    "hinglish": "Jaise har ghar ka address hota hai, waise hi internet par har device ka numbers wala IP address hota hai.",
+    "hi": "जैसे हर घर का पता होता है, वैसे ही इंटरनेट पर हर डिवाइस का संख्याओं वाला IP पता होता है।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.servers.02.s2",
+   "caption": {
+    "en": "DNS finds the number for a name.",
+    "hi": "DNS नाम का नंबर ढूँढता है।",
+    "hinglish": "DNS naam ka number dhoondhta hai."
+   },
+   "narration": {
+    "en": "Numbers are hard to remember, so we type names. Your device asks a DNS server: \"What is the number for cartoons.example?\" It replies with the IP address.",
+    "hinglish": "Numbers yaad rakhna mushkil hai, isliye hum naam type karte hain. Device DNS server se poochta hai: \"cartoons.example ka number kya hai?\" Woh IP address bata deta hai.",
+    "hi": "संख्याएँ याद रखना मुश्किल है, इसलिए हम नाम लिखते हैं। डिवाइस DNS सर्वर से पूछता है: \"cartoons.example का नंबर क्या है?\" वह IP पता बता देता है।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.servers.02.s3",
+   "caption": {
+    "en": "Then the request goes to that number.",
+    "hi": "फिर अनुरोध उस नंबर पर जाता है।",
+    "hinglish": "Phir request us number par jaati hai."
+   },
+   "narration": {
+    "en": "Now your device sends its request straight to that IP address, and the server answers. All this usually takes less than a second.",
+    "hinglish": "Ab device seedha us IP address par request bhejta hai, aur server jawab deta hai. Yeh sab aam taur par ek second se kam mein hota hai.",
+    "hi": "अब डिवाइस सीधे उस IP पते पर अनुरोध भेजता है, और सर्वर जवाब देता है। यह सब आमतौर पर एक सेकंड से कम में होता है।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "net-travel",
+  "config": {
+   "mode": "server"
+  },
+  "goal": {
+   "en": "Open the websites and read the log: find the line where DNS gives the number address.",
+   "hi": "वेबसाइट खोलो और लॉग पढ़ो: वह लाइन ढूँढो जहाँ DNS नंबर वाला पता देता है।",
+   "hinglish": "Websites kholo aur log padho: woh line dhoondo jahan DNS number address deta hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Names for people, numbers for computers",
+    "hi": "इंसानों के लिए नाम, कंप्यूटरों के लिए नंबर",
+    "hinglish": "Insaanon ke liye naam, computers ke liye number"
+   },
+   "body": {
+    "en": "Routers only understand number addresses. DNS lets us use friendly names. Without DNS, you would have to remember a long number for every website.",
+    "hi": "राउटर सिर्फ़ नंबर वाले पते समझते हैं। DNS हमें आसान नाम इस्तेमाल करने देता है। DNS के बिना तुम्हें हर वेबसाइट का लंबा नंबर याद रखना पड़ता।",
+    "hinglish": "Routers sirf number wale address samajhte hain. DNS humein aasaan naam use karne deta hai. DNS ke bina tumhe har website ka lamba number yaad rakhna padta."
+   },
+   "analogy": {
+    "en": "You call \"Mummy\" from your contacts, but the phone actually dials her number. DNS works the same way.",
+    "hi": "फ़ोन में \"मम्मी\" नाम से कॉल करते हो, पर फ़ोन असल में उनका नंबर डायल करता है। DNS भी वैसे ही काम करता है।",
+    "hinglish": "Phone mein \"Mummy\" naam se call karte ho, par phone asal mein unka number dial karta hai. DNS bhi waise hi kaam karta hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "Running out of numbers",
+    "hi": "नंबर ख़त्म हो रहे हैं",
+    "hinglish": "Numbers khatam ho rahe hain"
+   },
+   "body": {
+    "en": "The older address type, IPv4, has about 4.3 billion addresses — fewer than the number of devices today. The newer IPv6 has so many that every grain of sand could have its own address many times over.",
+    "hi": "पुराने पते IPv4 में लगभग 4.3 अरब पते हैं — आज के डिवाइसों से कम। नए IPv6 में इतने पते हैं कि रेत के हर कण को कई-कई पते मिल सकते हैं।",
+    "hinglish": "Purane address IPv4 mein lagbhag 4.3 arab address hain — aaj ke devices se kam. Naye IPv6 mein itne address hain ki ret ke har kan ko kai-kai address mil sakte hain."
+   },
+   "realExample": {
+    "en": "The addresses in our lab (203.0.113.x) are a special range kept only for examples and teaching.",
+    "hi": "हमारी लैब के पते (203.0.113.x) एक ख़ास श्रृंखला हैं जो सिर्फ़ उदाहरणों और पढ़ाई के लिए रखी गई है।",
+    "hinglish": "Hamari lab ke address (203.0.113.x) ek khaas range hain jo sirf examples aur padhaai ke liye rakhi gayi hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Make a family \"DNS\": write 5 nicknames and the real name for each. Ask someone to look up a nickname — they are the DNS server!",
+   "hi": "परिवार की \"DNS\" बनाओ: 5 उपनाम और हर एक का असली नाम लिखो। किसी से उपनाम ढूँढवाओ — वह DNS सर्वर है!",
+   "hinglish": "Family ki \"DNS\" banao: 5 nicknames aur har ek ka asli naam likho. Kisi se nickname dhoondhwao — woh DNS server hai!"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "DNS turns…",
+     "hi": "DNS बदलता है…",
+     "hinglish": "DNS badalta hai…"
+    },
+    "options": [
+     {
+      "en": "a website name into an IP address",
+      "hi": "वेबसाइट के नाम को IP पते में",
+      "hinglish": "website ke naam ko IP address mein"
+     },
+     {
+      "en": "a photo into a video",
+      "hi": "फ़ोटो को वीडियो में",
+      "hinglish": "photo ko video mein"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "It is the internet's phone book.",
+     "hi": "यह इंटरनेट की फ़ोन-बुक है।",
+     "hinglish": "Yeh internet ki phone book hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "order",
+    "prompt": {
+     "en": "Order the steps to open a website.",
+     "hi": "वेबसाइट खोलने के कदम क्रम में लगाओ।",
+     "hinglish": "Website kholne ke steps order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Server sends the page",
+      "hi": "सर्वर पेज भेजता है",
+      "hinglish": "Server page bhejta hai"
+     },
+     {
+      "en": "You type the name",
+      "hi": "तुम नाम लिखते हो",
+      "hinglish": "Tum naam likhte ho"
+     },
+     {
+      "en": "Request goes to the IP address",
+      "hi": "अनुरोध IP पते पर जाता है",
+      "hinglish": "Request IP address par jaati hai"
+     },
+     {
+      "en": "DNS gives the IP address",
+      "hi": "DNS IP पता देता है",
+      "hinglish": "DNS IP address deta hai"
+     }
+    ],
+    "answer": [
+     1,
+     3,
+     2,
+     0
+    ],
+    "explain": {
+     "en": "Name → DNS → IP → request → page.",
+     "hi": "नाम → DNS → IP → अनुरोध → पेज।",
+     "hinglish": "Naam → DNS → IP → request → page."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which looks like an IP address?",
+     "hi": "इनमें IP पता कौन सा लगता है?",
+     "hinglish": "Inmein IP address kaun sa lagta hai?"
+    },
+    "options": [
+     {
+      "en": "203.0.113.10",
+      "hi": "203.0.113.10",
+      "hinglish": "203.0.113.10"
+     },
+     {
+      "en": "isro.gov.in",
+      "hi": "isro.gov.in",
+      "hinglish": "isro.gov.in"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "IP addresses are numbers; isro.gov.in is a domain name.",
+     "hi": "IP पते संख्याएँ हैं; isro.gov.in डोमेन नाम है।",
+     "hinglish": "IP address numbers hain; isro.gov.in domain naam hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why do we use names instead of IP numbers?",
+     "hi": "हम IP नंबरों की जगह नाम क्यों इस्तेमाल करते हैं?",
+     "hinglish": "Hum IP numbers ki jagah naam kyun use karte hain?"
+    },
+    "options": [
+     {
+      "en": "Names are easier for people to remember",
+      "hi": "नाम इंसानों को याद रखना आसान है",
+      "hinglish": "Naam insaanon ko yaad rakhna aasaan hai"
+     },
+     {
+      "en": "Computers cannot read numbers",
+      "hi": "कंप्यूटर नंबर नहीं पढ़ सकते",
+      "hinglish": "Computers numbers nahin padh sakte"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Computers love numbers; people prefer names.",
+     "hi": "कंप्यूटर को नंबर पसंद हैं; इंसानों को नाम।",
+     "hinglish": "Computers ko numbers pasand hain; insaanon ko naam."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Open 3 sites and see DNS answer each time.",
+     "hi": "3 साइट खोलो और हर बार DNS का जवाब देखो।",
+     "hinglish": "3 sites kholo aur har baar DNS ka jawab dekho."
+    },
+    "answer": {
+     "lab": "net-travel",
+     "mode": "server",
+     "solved": true
+    },
+    "explain": {
+     "en": "Look for \"DNS: name → number\" in the log.",
+     "hi": "लॉग में \"DNS: नाम → नंबर\" ढूँढो।",
+     "hinglish": "Log mein \"DNS: naam → number\" dhoondo."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "IETF RFC 1034 – Domain Names: Concepts and Facilities; RFC 5737 – documentation addresses (fact reference)",
+   "url": "https://www.rfc-editor.org/rfc/rfc1034",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

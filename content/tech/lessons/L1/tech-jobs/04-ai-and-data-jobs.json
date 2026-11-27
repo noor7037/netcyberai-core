@@ -1,0 +1,367 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.tech-jobs.04",
+ "level": 1,
+ "classes": [
+  3,
+  4,
+  5
+ ],
+ "unit": "tech-jobs",
+ "title": {
+  "en": "AI and data jobs",
+  "hi": "AI और डेटा की नौकरियाँ",
+  "hinglish": "AI aur data jobs"
+ },
+ "minutes": 9,
+ "xp": 30,
+ "prereq": [
+  "L1.tech-jobs.03"
+ ],
+ "topics": [
+  "career.tech-jobs",
+  "career.future-skills",
+  "ai.ml-supervised"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain what data scientists, AI engineers and data labellers do.",
+   "hi": "डेटा वैज्ञानिक, AI इंजीनियर और डेटा लेबलर का काम समझा सकते हो।",
+   "hinglish": "Data scientists, AI engineers aur data labellers ka kaam samjha sakte ho."
+  },
+  {
+   "en": "Say why people are still needed to check AI.",
+   "hi": "बता सकते हो कि AI को जाँचने के लिए लोग क्यों ज़रूरी हैं।",
+   "hinglish": "Bata sakte ho ki AI ko check karne ke liye log kyon zaroori hain."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Data scientist",
+   "en": "Finds answers and patterns in data",
+   "hi": "डेटा में पैटर्न और जवाब ढूँढने वाला",
+   "hinglish": "Data se sawaalon ke jawaab dhoondhne wala"
+  },
+  {
+   "term": "AI engineer",
+   "en": "Builds and trains AI models",
+   "hi": "AI मॉडल बनाने और सिखाने वाला",
+   "hinglish": "AI models banaane aur train karne wala"
+  },
+  {
+   "term": "Data labeller",
+   "en": "Tags examples (like photos) with the right answer so AI can learn",
+   "hi": "उदाहरणों पर सही लेबल लगाने वाला ताकि AI सीख सके",
+   "hinglish": "Examples par sahi label lagaane wala"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.tech-jobs.04.s1",
+   "caption": {
+    "en": "Data scientists find patterns in data.",
+    "hi": "डेटा वैज्ञानिक डेटा में पैटर्न ढूँढते हैं।",
+    "hinglish": "Data scientists data mein patterns dhoondhte hain."
+   },
+   "narration": {
+    "en": "Data scientists look at lots of numbers — like rainfall or sales — and find patterns that help people decide.",
+    "hinglish": "Data scientists bahut saare numbers dekhte hain — jaise baarish ya sales — aur aise patterns dhoondhte hain jo faisla lene mein madad karein.",
+    "hi": "डेटा वैज्ञानिक बहुत सारी संख्याएँ देखते हैं — जैसे बारिश या बिक्री — और ऐसे पैटर्न ढूँढते हैं जो फ़ैसले में मदद करें।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.tech-jobs.04.s2",
+   "caption": {
+    "en": "Labellers tag examples so AI can learn.",
+    "hi": "लेबलर उदाहरणों पर टैग लगाते हैं ताकि AI सीखे।",
+    "hinglish": "Labellers examples par tag lagaate hain taaki AI seekhe."
+   },
+   "narration": {
+    "en": "To teach an AI, people label thousands of examples: this photo is a fruit, this one is a vegetable.",
+    "hinglish": "AI sikhaane ke liye log hazaaron examples par label lagaate hain: yeh photo fruit hai, yeh vegetable.",
+    "hi": "AI सिखाने के लिए लोग हज़ारों उदाहरणों पर लेबल लगाते हैं: यह फ़ोटो फल है, यह सब्ज़ी।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.tech-jobs.04.s3",
+   "caption": {
+    "en": "AI engineers train and improve models.",
+    "hi": "AI इंजीनियर मॉडल को सिखाते और सुधारते हैं।",
+    "hinglish": "AI engineers models ko train aur improve karte hain."
+   },
+   "narration": {
+    "en": "AI engineers choose the data, train the model, test it on new examples and fix its mistakes.",
+    "hinglish": "AI engineers data chunte hain, model ko train karte hain, naye examples par test karte hain aur galtiyan theek karte hain.",
+    "hi": "AI इंजीनियर डेटा चुनते हैं, मॉडल को सिखाते हैं, नए उदाहरणों पर जाँचते हैं और ग़लतियाँ ठीक करते हैं।"
+   }
+  },
+  {
+   "step": 4,
+   "visual": "scene:L1.tech-jobs.04.s4",
+   "caption": {
+    "en": "People still check what AI says.",
+    "hi": "AI जो कहे, उसे लोग ही जाँचते हैं।",
+    "hinglish": "AI jo kahe, use log hi check karte hain."
+   },
+   "narration": {
+    "en": "AI can make mistakes, so doctors, teachers and experts check AI answers before trusting them.",
+    "hinglish": "AI galti kar sakta hai, isliye doctors, teachers aur experts AI ke jawaab par bharosa karne se pehle check karte hain.",
+    "hi": "AI ग़लती कर सकता है, इसलिए डॉक्टर, शिक्षक और विशेषज्ञ AI के जवाब पर भरोसा करने से पहले जाँचते हैं।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "teach-sorter",
+  "config": {
+   "mode": "teach"
+  },
+  "goal": {
+   "en": "Be an AI engineer: label training examples, train the model, and get at least 4 of 6 test items right.",
+   "hi": "AI इंजीनियर बनो: सीखने वाले उदाहरणों पर लेबल लगाओ, मॉडल सिखाओ, और 6 में से कम से कम 4 सही करवाओ।",
+   "hinglish": "AI engineer bano: training examples par label lagao, model train karo, aur 6 mein se kam se kam 4 test items sahi karao."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "AI needs good data — and good people",
+    "hi": "AI को अच्छा डेटा — और अच्छे लोग — चाहिए",
+    "hinglish": "AI ko achha data — aur achhe log — chahiye"
+   },
+   "body": {
+    "en": "An AI is only as good as the examples it learns from. If the labels are wrong or one group is missing, the AI will be unfair or make mistakes. That is why AI teams include people who collect fair data, label it carefully, test the model on new cases, and think about whether it is safe and kind to everyone.",
+    "hi": "AI उतना ही अच्छा है जितने उदाहरणों से वह सीखता है। लेबल ग़लत हों या कोई समूह छूट जाए, तो AI अन्याय या ग़लती करेगा। इसीलिए AI टीमों में ऐसे लोग होते हैं जो निष्पक्ष डेटा इकट्ठा करते हैं, ध्यान से लेबल लगाते हैं, मॉडल को नए मामलों पर जाँचते हैं, और सोचते हैं कि क्या यह सबके लिए सुरक्षित और भला है।",
+    "hinglish": "AI utna hi achha hai jitne examples se woh seekhta hai. Labels galat hon ya koi group chhoot jaaye, toh AI unfair hoga ya galti karega. Isiliye AI teams mein aise log hote hain jo fair data ikattha karte hain, dhyaan se label lagaate hain, model ko naye cases par test karte hain, aur sochte hain ki kya yeh sabke liye safe aur bhala hai."
+   },
+   "analogy": {
+    "en": "An AI is like a new student — learn from a wrong book and you learn wrong things. Good teachers (people) choose good books (data).",
+    "hi": "AI एक नए विद्यार्थी जैसा है — ग़लत किताब से पढ़ेगा तो ग़लत सीखेगा। अच्छे शिक्षक (लोग) अच्छी किताब (डेटा) चुनते हैं।",
+    "hinglish": "AI ek naye student jaisa hai — galat kitaab se padhega toh galat seekhega. Achhe teacher (log) achhi kitaab (data) chunte hain."
+   }
+  },
+  {
+   "heading": {
+    "en": "Fast-growing jobs",
+    "hi": "तेज़ी से बढ़ती नौकरियाँ",
+    "hinglish": "Tezi se badhti jobs"
+   },
+   "body": {
+    "en": "The World Economic Forum’s Future of Jobs Report 2025 lists AI and big data among the fastest-growing skills worldwide. AI is also used in Indian farming (crop and weather advice), health (reading scans to help doctors) and languages (Bhashini translates between Indian languages). Each of these needs people who understand both AI and the real-world problem.",
+    "hi": "विश्व आर्थिक मंच की फ़्यूचर ऑफ़ जॉब्स रिपोर्ट 2025 में AI और बिग डेटा को दुनिया के सबसे तेज़ी से बढ़ते कौशलों में गिना गया है। भारत में AI खेती (फ़सल और मौसम की सलाह), स्वास्थ्य (डॉक्टरों की मदद के लिए स्कैन पढ़ना) और भाषाओं (भाषिणी भारतीय भाषाओं में अनुवाद करता है) में भी लग रहा है। इन सबके लिए ऐसे लोग चाहिए जो AI और असली समस्या दोनों समझें।",
+    "hinglish": "World Economic Forum ki Future of Jobs Report 2025 mein AI aur big data ko duniya ki sabse tezi se badhti skills mein gina gaya hai. India mein AI kheti (fasal aur mausam ki salah), health (doctors ki madad ke liye scans padhna) aur languages (Bhashini Indian languages mein translate karta hai) mein bhi lag raha hai. In sabke liye aise log chahiye jo AI aur asli problem dono samjhein."
+   },
+   "realExample": {
+    "en": "A farmer who also understands data can help build better crop-advice AI than a coder who has never seen a farm.",
+    "hi": "जो किसान डेटा भी समझता है, वह उस कोडर से बेहतर फ़सल-सलाह AI बनाने में मदद कर सकता है जिसने कभी खेत नहीं देखा।",
+    "hinglish": "Jo kisaan data bhi samajhta hai, woh us coder se behtar crop-advice AI banaane mein madad kar sakta hai jisne kabhi khet nahin dekha."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Collect data for a week: write down the weather each morning (sunny, cloudy, rainy). On day 7, look for a pattern — like a data scientist!",
+   "hi": "एक हफ़्ते डेटा इकट्ठा करो: हर सुबह मौसम लिखो (धूप, बादल, बारिश)। सातवें दिन पैटर्न ढूँढो — डेटा वैज्ञानिक की तरह!",
+   "hinglish": "Ek hafte data ikattha karo: har subah mausam likho (dhoop, baadal, baarish). Saatve din pattern dhoondho — data scientist ki tarah!"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "match",
+    "prompt": {
+     "en": "Match the AI job to the work.",
+     "hi": "AI की नौकरी को काम से मिलाओ।",
+     "hinglish": "AI job ko kaam se milao."
+    },
+    "options": {
+     "left": [
+      {
+       "en": "Data labeller",
+       "hi": "डेटा लेबलर",
+       "hinglish": "Data labeller"
+      },
+      {
+       "en": "Data scientist",
+       "hi": "डेटा वैज्ञानिक",
+       "hinglish": "Data scientist"
+      },
+      {
+       "en": "AI engineer",
+       "hi": "AI इंजीनियर",
+       "hinglish": "AI engineer"
+      }
+     ],
+     "right": [
+      {
+       "en": "Finds patterns in data",
+       "hi": "डेटा में पैटर्न ढूँढता है",
+       "hinglish": "Data mein patterns dhoondhta hai"
+      },
+      {
+       "en": "Trains and tests models",
+       "hi": "मॉडल सिखाता और जाँचता है",
+       "hinglish": "Models train aur test karta hai"
+      },
+      {
+       "en": "Tags examples with the right answer",
+       "hi": "उदाहरणों पर सही उत्तर लगाता है",
+       "hinglish": "Examples par sahi answer lagaata hai"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      2
+     ],
+     [
+      1,
+      0
+     ],
+     [
+      2,
+      1
+     ]
+    ],
+    "explain": {
+     "en": "Labeller = tags, scientist = patterns, engineer = models.",
+     "hi": "लेबलर = टैग, वैज्ञानिक = पैटर्न, इंजीनियर = मॉडल।",
+     "hinglish": "Labeller = tags, scientist = patterns, engineer = models."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "If the training labels are wrong, the AI will…",
+     "hi": "अगर सीखने वाले लेबल ग़लत हों, तो AI…",
+     "hinglish": "Agar training labels galat hon, toh AI…"
+    },
+    "options": [
+     {
+      "en": "learn wrong things",
+      "hi": "ग़लत बातें सीखेगा",
+      "hinglish": "galat cheezein seekhega"
+     },
+     {
+      "en": "fix them by magic",
+      "hi": "जादू से ठीक कर देगा",
+      "hinglish": "jaadu se theek kar dega"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "AI learns from its examples — wrong in, wrong out.",
+     "hi": "AI उदाहरणों से सीखता है — ग़लत अंदर, ग़लत बाहर।",
+     "hinglish": "AI examples se seekhta hai — galat andar, galat baahar."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Should a doctor check an AI’s reading of an X-ray?",
+     "hi": "क्या डॉक्टर को AI की एक्स-रे रिपोर्ट जाँचनी चाहिए?",
+     "hinglish": "Kya doctor ko AI ki X-ray reading check karni chahiye?"
+    },
+    "options": [
+     {
+      "en": "Yes",
+      "hi": "हाँ",
+      "hinglish": "Haan"
+     },
+     {
+      "en": "No",
+      "hi": "नहीं",
+      "hinglish": "Nahin"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "AI helps, but experts make the final call.",
+     "hi": "AI मदद करता है, पर आख़िरी फ़ैसला विशेषज्ञ लेते हैं।",
+     "hinglish": "AI madad karta hai, par final faisla experts lete hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "multi",
+    "prompt": {
+     "en": "Where is AI used in India today?",
+     "hi": "आज भारत में AI कहाँ इस्तेमाल होता है?",
+     "hinglish": "Aaj India mein AI kahan use hota hai?"
+    },
+    "options": [
+     {
+      "en": "Translating Indian languages (Bhashini)",
+      "hi": "भारतीय भाषाओं का अनुवाद (भाषिणी)",
+      "hinglish": "Indian languages translate karna (Bhashini)"
+     },
+     {
+      "en": "Crop and weather advice for farmers",
+      "hi": "किसानों के लिए फ़सल और मौसम की सलाह",
+      "hinglish": "Kisaanon ke liye fasal aur mausam ki salah"
+     },
+     {
+      "en": "Helping doctors read scans",
+      "hi": "डॉक्टरों को स्कैन पढ़ने में मदद",
+      "hinglish": "Doctors ko scans padhne mein madad"
+     },
+     {
+      "en": "Growing mangoes by itself",
+      "hi": "अपने-आप आम उगाना",
+      "hinglish": "Apne aap aam ugaana"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2
+    ],
+    "explain": {
+     "en": "AI helps people; it does not grow mangoes by itself!",
+     "hi": "AI लोगों की मदद करता है; वह अपने-आप आम नहीं उगाता!",
+     "hinglish": "AI logon ki madad karta hai; woh apne aap aam nahin ugaata!"
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Train the sorter and pass the test.",
+     "hi": "सॉर्टर को सिखाओ और जाँच पास करो।",
+     "hinglish": "Sorter ko train karo aur test pass karo."
+    },
+    "answer": {
+     "lab": "teach-sorter",
+     "mode": "teach",
+     "solved": true
+    },
+    "explain": {
+     "en": "Give varied examples of both groups before you train.",
+     "hi": "सिखाने से पहले दोनों समूहों के अलग-अलग उदाहरण दो।",
+     "hinglish": "Train karne se pehle dono groups ke alag-alag examples do."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "World Economic Forum – Future of Jobs Report 2025 (fact reference)",
+   "url": "https://www.weforum.org/publications/the-future-of-jobs-report-2025/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

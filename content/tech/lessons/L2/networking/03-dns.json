@@ -1,0 +1,322 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.networking.03",
+ "level": 2,
+ "classes": [
+  7,
+  8
+ ],
+ "unit": "networking",
+ "title": {
+  "en": "DNS: the internet’s phone book",
+  "hi": "DNS: इंटरनेट की फ़ोन बुक",
+  "hinglish": "DNS: internet ki phone book"
+ },
+ "minutes": 8,
+ "xp": 35,
+ "prereq": [
+  "L2.networking.02"
+ ],
+ "topics": [
+  "net.dns"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain why DNS exists",
+   "hi": "समझा सकते हो कि DNS क्यों है",
+   "hinglish": "DNS kyun hai samjha sakte ho"
+  },
+  {
+   "en": "Describe the steps of a DNS lookup",
+   "hi": "DNS खोज के कदम बता सकते हो",
+   "hinglish": "DNS lookup ke steps bata sakte ho"
+  },
+  {
+   "en": "Explain how fake domains trick people",
+   "hi": "समझा सकते हो कि नकली डोमेन लोगों को कैसे धोखा देते हैं",
+   "hinglish": "Nakli domains logon ko kaise phansate hain samjha sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Domain name",
+   "hinglish": "Website ka yaad rakhne layak naam",
+   "en": "A human-friendly name like ncert.nic.in",
+   "hi": "ncert.nic.in जैसा इंसानों के लिए आसान नाम"
+  },
+  {
+   "term": "DNS",
+   "hinglish": "Naam ko IP mein badalne wala system",
+   "en": "Domain Name System: turns names into IP addresses",
+   "hi": "डोमेन नेम सिस्टम: नामों को IP पतों में बदलता है"
+  },
+  {
+   "term": "Resolver",
+   "hinglish": "Aapki taraf se poochne wala server",
+   "en": "The DNS server that looks up names for you (often your ISP’s)",
+   "hi": "DNS सर्वर जो आपके लिए नाम खोजता है (अक्सर आपके ISP का)"
+  },
+  {
+   "term": "TLD",
+   "hinglish": "Aakhri hissa: .in, .com, .gov.in",
+   "en": "Top-level domain: the last part of a name",
+   "hi": "टॉप-लेवल डोमेन: नाम का आख़िरी भाग"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "People remember names; computers need numbers. DNS turns “ncert.nic.in” into an IP address.",
+    "hi": "लोग नाम याद रखते हैं; कंप्यूटरों को संख्याएँ चाहिए। DNS “ncert.nic.in” को IP पते में बदलता है।",
+    "hinglish": "Log naam yaad rakhte hain; computers ko numbers chahiye. DNS “ncert.nic.in” ko IP address mein badalta hai."
+   },
+   "visual": "flow:🔤 ncert.nic.in|📖 DNS|🔢 IP address|🌐 Connect",
+   "narration": {
+    "en": "Just like saving “Mummy” in contacts instead of remembering ten digits.",
+    "hi": "जैसे दस अंक याद रखने की जगह संपर्क में “मम्मी” सहेजना।",
+    "hinglish": "Jaise das digit yaad rakhne ki jagah contacts mein “Mummy” save karna."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "If the resolver doesn’t know, it asks the root, then the .in servers, then nic.in’s own servers.",
+    "hi": "अगर रिज़ॉल्वर नहीं जानता, तो वह रूट से, फिर .in सर्वर से, फिर nic.in के अपने सर्वर से पूछता है।",
+    "hinglish": "Agar resolver nahi jaanta, to woh root se, phir .in servers se, phir nic.in ke apne servers se poochta hai."
+   },
+   "visual": "flow:❓ Resolver|🌳 Root (.)|🇮🇳 .in servers|🏛️ nic.in servers|✅ Answer",
+   "narration": {
+    "en": "Answers are remembered (cached) for a while, so the next lookup takes almost no time.",
+    "hi": "उत्तर कुछ देर याद रखे (कैश) जाते हैं, इसलिए अगली खोज में लगभग समय नहीं लगता।",
+    "hinglish": "Jawab kuch der yaad (cache) rehta hai, to agli baar lagbhag zero time."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "In the packet tracer, the purple dot is a DNS lookup — it happens before any message packet leaves.",
+    "hi": "पैकेट ट्रेसर में बैंगनी बिंदु DNS खोज है — कोई संदेश पैकेट निकलने से पहले होती है।",
+    "hinglish": "Packet tracer mein purple dot DNS lookup hai — koi message packet nikalne se pehle hota hai."
+   },
+   "visual": "lab:packet-tracer",
+   "narration": {
+    "en": "No address, no delivery. DNS comes first.",
+    "hi": "पता नहीं, तो डिलीवरी नहीं। DNS पहले आता है।",
+    "hinglish": "Address nahi to delivery nahi. DNS pehle."
+   }
+  }
+ ],
+ "play": {
+  "lab": "packet-tracer",
+  "config": {
+   "mode": "whatsapp"
+  },
+  "goal": {
+   "en": "Send a message and watch the DNS lookup happen first. What IP did it return?",
+   "hi": "संदेश भेजो और पहले DNS खोज होते देखो। उसने कौन-सा IP लौटाया?",
+   "hinglish": "Message bhejo aur pehle DNS lookup dekho. Kaunsa IP mila?"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Reading domain names safely",
+    "hi": "डोमेन नाम सुरक्षित रूप से पढ़ना",
+    "hinglish": "Domain names safely padhna"
+   },
+   "body": {
+    "en": "Read a domain from the RIGHT: in “www.onlinesbi.sbi” the real domain is onlinesbi.sbi; in “sbi.login-verify.top” the real domain is login-verify.top — the “sbi” at the front is just a sub-part anyone can add. Indian government sites end in .gov.in or .nic.in, and RBI has asked banks to move to the .bank.in domain. Look-alike tricks: “paytrn” (rn looks like m), extra words (“-kyc-update”), and odd endings (.top, .xyz, .click). DNS can also be used to block known scam and adult sites — many school and family routers use filtered DNS for this.",
+    "hi": "डोमेन को दाएँ से पढ़ो: “www.onlinesbi.sbi” में असली डोमेन onlinesbi.sbi है; “sbi.login-verify.top” में असली डोमेन login-verify.top है — आगे का “sbi” केवल उप-भाग है जिसे कोई भी जोड़ सकता है। भारतीय सरकारी साइटें .gov.in या .nic.in पर ख़त्म होती हैं, और RBI ने बैंकों को .bank.in डोमेन पर जाने को कहा है। नक़ली चालें: “paytrn” (rn, m जैसा दिखता है), अतिरिक्त शब्द (“-kyc-update”), और अजीब अंत (.top, .xyz, .click)। DNS का उपयोग जाने-माने स्कैम और वयस्क साइटें रोकने के लिए भी होता है — कई स्कूल और घर के राउटर फ़िल्टर्ड DNS उपयोग करते हैं।",
+    "hinglish": "Domain ko RIGHT se padho: “www.onlinesbi.sbi” mein asli domain onlinesbi.sbi hai; “sbi.login-verify.top” mein asli domain login-verify.top hai — aage ka “sbi” bas ek sub-part hai jo koi bhi jod sakta hai. Indian sarkari sites .gov.in ya .nic.in pe khatam hoti hain, aur RBI ne banks ko .bank.in domain pe jaane ko kaha hai. Look-alike chaalein: “paytrn” (rn m jaisa dikhta hai), extra words (“-kyc-update”), aur ajeeb endings (.top, .xyz, .click). DNS se known scam aur adult sites block bhi hoti hain — kai school aur family routers filtered DNS use karte hain."
+   },
+   "analogy": {
+    "hinglish": "Address padhte waqt pehle shehar dekho, phir mohalla: “Sharma ji, MG Road, Pune” — Pune asli shehar hai. Domain mein right wala hissa “shehar” hai.",
+    "en": "When reading an address, look at the city first, then the area: “Sharma ji, MG Road, Pune” — Pune is the real city. In a domain, the right-hand part is the “city”.",
+    "hi": "पता पढ़ते समय पहले शहर देखो, फिर मोहल्ला: “शर्मा जी, एमजी रोड, पुणे” — पुणे असली शहर है। डोमेन में दाईं ओर का भाग “शहर” है।"
+   },
+   "realExample": {
+    "en": "In 2025 RBI announced the exclusive .bank.in domain for Indian banks so customers can trust bank links more easily.",
+    "hi": "2025 में RBI ने भारतीय बैंकों के लिए विशेष .bank.in डोमेन की घोषणा की ताकि ग्राहक बैंक लिंक पर आसानी से भरोसा कर सकें।",
+    "hinglish": "2025 mein RBI ne Indian banks ke liye exclusive .bank.in domain announce kiya taaki log bank links pe aasaani se bharosa kar sakein."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write three real school or government website addresses and underline the real domain in each.",
+   "hi": "तीन असली स्कूल या सरकारी वेबसाइटों के पते लिखो और हर एक में असली डोमेन रेखांकित करो।",
+   "hinglish": "Teen asli school ya sarkari website addresses likho aur har ek mein asli domain underline karo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "What does DNS do?",
+     "hi": "DNS क्या करता है?",
+     "hinglish": "DNS kya karta hai?"
+    },
+    "options": [
+     {
+      "en": "Turns names into IP addresses",
+      "hi": "नामों को IP पतों में बदलता है",
+      "hinglish": "Naamon ko IP addresses mein badalta hai"
+     },
+     {
+      "en": "Speeds up Wi-Fi",
+      "hi": "वाई-फ़ाई तेज़ करता है",
+      "hinglish": "Wi-Fi fast karta hai"
+     },
+     {
+      "en": "Stores photos",
+      "hi": "फ़ोटो रखता है",
+      "hinglish": "Photos rakhta hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "DNS translates domain names into IP addresses.",
+     "hi": "DNS डोमेन नामों को IP पतों में बदलता है।",
+     "hinglish": "DNS domain names ko IP addresses mein badalta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "In “xyzbank.secure-login.top/kyc”, what is the real domain?",
+     "hi": "“xyzbank.secure-login.top/kyc” में असली डोमेन क्या है?",
+     "hinglish": "“xyzbank.secure-login.top/kyc” mein asli domain kya hai?"
+    },
+    "options": [
+     "xyzbank",
+     "kyc",
+     "secure-login.top"
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "Read from the right, before the first “/”: secure-login.top. “xyzbank” is just a sub-part — this is NOT the bank.",
+     "hi": "पहले “/” से पहले, दाएँ से पढ़ो: secure-login.top। “xyzbank” केवल उप-भाग है — यह बैंक नहीं है।",
+     "hinglish": "Pehle “/” se pehle, right se padho: secure-login.top. “xyzbank” sirf sub-part hai — yeh bank NAHI hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "order",
+    "prompt": {
+     "en": "Order the steps of a fresh DNS lookup.",
+     "hi": "नई DNS खोज के चरण क्रम में लगाओ।",
+     "hinglish": "Fresh DNS lookup ke steps order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Resolver asks a root server",
+      "hi": "रिज़ॉल्वर रूट सर्वर से पूछता है",
+      "hinglish": "Resolver root server se poochta hai"
+     },
+     {
+      "en": "The domain’s own server gives the IP",
+      "hi": "डोमेन का अपना सर्वर IP देता है",
+      "hinglish": "Domain ka apna server IP deta hai"
+     },
+     {
+      "en": "Root points to the .in servers, which point onward",
+      "hi": "रूट .in सर्वर बताता है, जो आगे बताते हैं",
+      "hinglish": "Root .in servers batata hai, jo aage batate hain"
+     },
+     {
+      "en": "Your phone asks the resolver",
+      "hi": "आपका फ़ोन रिज़ॉल्वर से पूछता है",
+      "hinglish": "Aapka phone resolver se poochta hai"
+     }
+    ],
+    "answer": [
+     3,
+     0,
+     2,
+     1
+    ],
+    "explain": {
+     "en": "Your device asks the resolver; it asks root, then the TLD (.in) servers, then the domain’s own servers.",
+     "hi": "आपका उपकरण रिज़ॉल्वर से पूछता है; वह रूट, फिर TLD (.in) सर्वर, फिर डोमेन के अपने सर्वर से।",
+     "hinglish": "Aapka device resolver se poochta hai; woh root, phir TLD (.in) servers, phir domain ke apne servers se."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why is a second visit to a site often faster to look up?",
+     "hi": "किसी साइट पर दूसरी बार जाने पर खोज तेज़ क्यों होती है?",
+     "hinglish": "Kisi site pe doosri baar jaane pe lookup fast kyun hota hai?"
+    },
+    "options": [
+     {
+      "en": "The site moved closer",
+      "hi": "साइट पास आ गई",
+      "hinglish": "Site paas aa gayi"
+     },
+     {
+      "en": "The DNS answer is cached",
+      "hi": "DNS उत्तर कैश है",
+      "hinglish": "DNS jawab cache hai"
+     },
+     {
+      "en": "Wi-Fi learns",
+      "hi": "वाई-फ़ाई सीखता है",
+      "hinglish": "Wi-Fi seekhta hai"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "The answer is cached for its time-to-live (TTL), so no new lookup is needed.",
+     "hi": "उत्तर अपने TTL तक कैश रहता है, इसलिए नई खोज नहीं चाहिए।",
+     "hinglish": "Jawab apne TTL tak cache rehta hai, isliye nayi lookup nahi chahiye."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which ending belongs to Indian government websites?",
+     "hi": "भारतीय सरकारी वेबसाइटों का कौन-सा अंत है?",
+     "hinglish": "Indian sarkari websites ka kaunsa ending hai?"
+    },
+    "options": [
+     ".gov.in",
+     ".top",
+     ".xyz"
+    ],
+    "answer": 0,
+    "explain": {
+     "en": ".gov.in (and .nic.in) are reserved for government bodies.",
+     "hi": ".gov.in (और .nic.in) सरकारी संस्थाओं के लिए आरक्षित हैं।",
+     "hinglish": ".gov.in (aur .nic.in) sarkari bodies ke liye reserved hain."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "RFC 1034 — Domain Names: Concepts and Facilities",
+   "url": "https://www.rfc-editor.org/rfc/rfc1034",
+   "licence": "fact reference"
+  },
+  {
+   "title": "RBI — .bank.in exclusive domain for banks (Apr 2025)",
+   "url": "https://www.rbi.org.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NIXI — .in registry",
+   "url": "https://nixi.in/",
+   "licence": "fact reference"
+  }
+ ]
+}

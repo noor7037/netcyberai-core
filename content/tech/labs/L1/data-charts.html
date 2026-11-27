@@ -1,0 +1,248 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0F766E">
+<title>Mintu's data market · tables, tallies and charts · Tech & AI Lab</title>
+<!-- Lab: data-charts (Level 1). Mintu the squirrel collects data and draws charts.
+     Modes (?mode= / config.mode): collect (record a survey in a table) | tally (count with tally marks) | chart (picture graph, then bar chart) | average (most, fewest, level the bars = average).
+     Deterministic, no eval, no network. Own work, MIT. -->
+<style>/* L1 lab kit (own work, MIT). Family App palette from src/lib/design-tokens.ts */
+:root{--royal:#1D4ED8;--sapphire:#002357;--grape:#8B3DFF;--violet:#4400F0;--tangerine:#FF7A1A;--coral:#FF6B57;--gold:#F5B90A;--turq:#14B8A6;--emerald:#0F766E;--cyan:#02CFF9;--slate:#1E293B;--off:#F9FAFB;--ink2:#475569;--r:18px;--sh:0 6px 18px rgba(30,41,59,.12),0 1px 3px rgba(30,41,59,.08)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:var(--off);color:var(--slate);font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans Devanagari",sans-serif;overscroll-behavior:none}
+body{background:transparent;-webkit-user-select:none;user-select:none;display:flex;flex-direction:column;min-height:100%;overflow-x:hidden}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;touch-action:manipulation}
+.kbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:8px;padding:10px 12px;background:linear-gradient(120deg,var(--sapphire),var(--royal) 60%,var(--grape));color:#fff;box-shadow:0 2px 10px rgba(0,35,87,.25)}
+.kbar{flex-wrap:wrap;row-gap:6px}
+.kbar h1{flex:1 1 9em;min-width:0;margin:0;font-size:16px;line-height:1.2;font-weight:800;letter-spacing:.2px;overflow-wrap:break-word}/* title never cut: controls move to a 2nd row when needed */
+.kctl{display:flex;align-items:center;gap:8px;margin-left:auto}
+.kbar .kemo{font-size:22px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.25))}
+.kpill{display:flex;background:rgba(255,255,255,.16);border-radius:999px;padding:3px}
+.kpill button{padding:5px 9px;border-radius:999px;font-size:12.5px;font-weight:700;color:#e0e7ff;min-height:32px}
+.kpill button[aria-pressed=true]{background:#fff;color:var(--royal)}
+.kstars{display:flex;align-items:center;gap:4px;background:rgba(255,255,255,.16);padding:6px 10px;border-radius:999px;font-weight:800;font-size:14px;min-width:54px;justify-content:center}
+.kstars.bump{animation:kbump .5s}
+@keyframes kbump{40%{transform:scale(1.35)}}
+.kgoal{margin:10px 12px 0;padding:10px 12px;border-radius:14px;background:#fff;box-shadow:var(--sh);display:flex;gap:10px;align-items:flex-start;font-size:14.5px}
+.kgoal b{color:var(--royal)}
+.kbtn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:46px;padding:10px 18px;border-radius:14px;font-weight:800;background:var(--royal);color:#fff;box-shadow:0 4px 0 #1239a8,var(--sh);transition:transform .08s}
+.kbtn:active{transform:translateY(3px);box-shadow:0 1px 0 #1239a8}
+.kbtn.alt{background:#fff;color:var(--royal);box-shadow:0 4px 0 #c7d2fe,var(--sh)}
+.kbtn.go{background:var(--turq);box-shadow:0 4px 0 #0d8a7c,var(--sh)}
+.kbtn.warn{background:var(--tangerine);box-shadow:0 4px 0 #c75a0c,var(--sh)}
+.kbtn[disabled]{opacity:.45;pointer-events:none}
+.ktoast{pointer-events:none;position:fixed;left:0;top:0;width:max-content;z-index:60;max-width:min(92vw,360px);padding:12px 16px;border-radius:16px;background:var(--slate);color:#fff;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,.3);text-align:center;line-height:1.35;font-size:15px;opacity:0;visibility:hidden;transform:scale(.9);transition:opacity .25s,transform .3s cubic-bezier(.2,1.4,.4,1),visibility 0s .3s}
+.ktoast.show{opacity:1;visibility:visible;transform:none;transition:opacity .25s,transform .3s cubic-bezier(.2,1.4,.4,1)}
+.ktoast.inline{position:static;display:block;width:auto;max-width:none;margin:10px 12px;grid-column:1/-1;flex:0 0 auto}
+.ktoast.good{background:var(--emerald)}.ktoast.bad{background:#b4321f}
+#kconf{position:fixed;inset:0;pointer-events:none;z-index:-1}/* behind content; inside the win dialog it sits behind the card */
+.kwin #kconf{position:absolute;z-index:0}.kwin>div{position:relative;z-index:1}
+.kwin{position:fixed;inset:0;z-index:65;display:none;align-items:center;justify-content:center;background:rgba(6,18,51,.55);backdrop-filter:blur(3px);padding:20px}
+.kwin.show{display:flex}
+.kwin>div{background:#fff;border-radius:24px;padding:22px;text-align:center;max-width:360px;box-shadow:0 20px 50px rgba(0,0,0,.35);animation:kpop .5s cubic-bezier(.2,1.5,.4,1)}
+.kwin .big{font-size:64px;line-height:1;animation:kspin 1.2s ease-out}
+.kwin h2{margin:10px 0 6px;font-size:22px}
+.kwin p{margin:0 0 14px;color:var(--ink2)}
+@keyframes kpop{from{transform:scale(.6);opacity:0}}
+@keyframes kspin{from{transform:rotateY(-540deg) scale(.4)}}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+.kvoice{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.16);font-size:17px;opacity:.6}
+.kvoice[aria-pressed=true]{background:#fff;opacity:1;box-shadow:0 0 0 3px rgba(255,255,255,.4)}
+</style>
+<style>
+main{flex:1;display:flex;flex-direction:column;gap:9px;padding:8px 10px 16px}
+.modes{display:flex;flex-wrap:wrap;gap:6px}
+.modes button{padding:7px 12px;border-radius:999px;background:#fff;box-shadow:var(--sh);font-weight:700;font-size:13px;min-height:36px;white-space:normal;text-align:center}
+.modes button[aria-pressed=true]{background:#0F766E;color:#fff}
+.panel{background:#fff;border-radius:18px;box-shadow:var(--sh);padding:10px}
+.panel h3{margin:0 0 6px;font-size:14px;color:#334155;overflow-wrap:anywhere}
+.friend{display:flex;align-items:center;justify-content:center;gap:12px;font-weight:900;font-size:16px;flex-wrap:wrap}
+.friend .ans{font-size:46px;animation:pop .4s}@keyframes pop{0%{transform:scale(.3) rotate(-20deg)}100%{transform:none}}
+.prog{display:flex;gap:5px;justify-content:center;flex-wrap:wrap;margin-top:6px}.prog i{width:11px;height:11px;border-radius:50%;background:#cbd5e1}.prog i.on{background:#0F766E}
+table.dt{width:100%;border-collapse:separate;border-spacing:0 5px;font-weight:800;font-size:15px}
+table.dt td{padding:6px 8px;background:#f8fafc}
+table.dt td:first-child{border-radius:12px 0 0 12px}table.dt td:last-child{border-radius:0 12px 12px 0;text-align:right}
+table.dt th{font-size:12px;color:#64748b;text-align:left;padding:0 8px}
+.rowbtn{width:100%;display:flex;align-items:center;gap:8px;background:#f1f5f9;border-radius:12px;padding:8px 10px;font-weight:900;font-size:15px;min-height:46px;text-align:left}
+.rowbtn .e{font-size:26px}.rowbtn .n{margin-left:auto;background:#0F766E;color:#fff;border-radius:10px;min-width:34px;text-align:center;padding:2px 8px}
+.rows{display:flex;flex-direction:column;gap:6px}
+.items{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;font-size:26px;text-align:center}
+.trow{display:flex;align-items:center;gap:8px;background:#f8fafc;border-radius:12px;padding:6px 8px;min-height:50px}
+.trow .e{font-size:26px;width:34px;text-align:center}
+.marks{flex:1;display:flex;flex-wrap:wrap;gap:8px;min-height:34px;align-items:center}
+.five{position:relative;display:inline-flex;gap:4px;height:30px;padding:0 2px}
+.five i{display:block;width:4px;height:30px;background:#0f172a;border-radius:2px}
+.five b{position:absolute;left:-3px;right:-3px;top:13px;height:4px;background:#dc2626;border-radius:2px;transform:rotate(-28deg)}
+.pm{width:40px;height:40px;border-radius:12px;background:#0f172a;color:#fff;font-size:20px;font-weight:900}
+.pm.m{background:#e2e8f0;color:#0f172a}
+.chart{display:flex;align-items:flex-end;justify-content:space-around;gap:6px;height:190px;border-left:3px solid #334155;border-bottom:3px solid #334155;padding:0 4px;position:relative;background:repeating-linear-gradient(0deg,transparent 0 27px,#e2e8f0 27px 28px)}
+.col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:2px;height:100%;background:none;padding:0;min-height:0;border-radius:0}
+.col .blk{width:78%;height:26px;border-radius:5px;background:linear-gradient(#2dd4bf,#0F766E);box-shadow:inset 0 -3px 0 rgba(0,0,0,.15);transition:transform .25s}
+.col .pic{font-size:20px;line-height:26px;height:26px}
+.col.sel .blk{background:linear-gradient(#fde047,#f59e0b)}
+.col.top .blk:first-child{animation:lift 1s ease-in-out infinite}@keyframes lift{50%{transform:translateY(-4px)}}
+.labels{display:flex;justify-content:space-around;gap:6px;padding:4px 4px 0;font-weight:900;font-size:13px;text-align:center}
+.labels div{flex:1;min-width:0;overflow-wrap:anywhere}.labels .e{font-size:22px;display:block}
+.ctrl{display:flex;justify-content:space-around;gap:6px;padding:6px 4px 0}
+.ctrl div{flex:1;display:flex;justify-content:center;gap:4px}
+.ctrl button{width:34px;height:36px;border-radius:10px;background:#0f172a;color:#fff;font-weight:900;font-size:15px}
+.ctrl button.m{background:#e2e8f0;color:#0f172a}
+.go{display:flex;flex-wrap:wrap;gap:8px}.go .kbtn{flex:1 1 120px}
+.why{font-size:14px;background:#f0fdfa;border-left:4px solid #0F766E;padding:8px 10px;border-radius:10px}
+.avg{position:absolute;left:0;right:0;border-top:3px dashed #dc2626;pointer-events:none}
+@media (orientation:landscape) and (max-height:520px){main{display:grid;grid-template-columns:1fr 1fr;align-items:start}.modes,#goal{grid-column:1/-1}.chart{height:170px}}
+</style></head><body>
+<main>
+  <div class="modes" id="modes" role="tablist"></div>
+  <div class="kgoal" id="goal" style="margin:0"></div>
+  <div id="ws" style="display:flex;flex-direction:column;gap:9px"></div>
+  <div style="display:flex;flex-direction:column;gap:9px"><div class="go" id="go"></div><div class="why" id="why"></div></div>
+</main>
+<script>// L1 lab kit (own work, MIT): language, header, stars, toast, confetti, sounds, drag, lesson config, completion events.
+(function (g) {
+  const q = new URLSearchParams(location.search);
+  const LANGS = ['hinglish', 'en', 'hi'];
+  let lang = q.get('lang') || (function () { try { return localStorage.getItem('techlab.lang'); } catch (e) { return null; } })() || 'hinglish';
+  if (!LANGS.includes(lang)) lang = 'hinglish';
+  const t = (o) => (o == null ? '' : typeof o === 'string' ? o : Array.isArray(o) ? (o[{ en: 0, hi: 1, hinglish: 2 }[lang]] ?? o[0]) : (o[lang] ?? o.hinglish ?? o.en));
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const el = (tag, attrs = {}, html) => { const e = document.createElement(tag); for (const k in attrs) { if (k === 'class') e.className = attrs[k]; else if (k === 'style') e.style.cssText = attrs[k]; else if (k.startsWith('on')) e.addEventListener(k.slice(2), attrs[k]); else e.setAttribute(k, attrs[k]); } if (html != null) e.innerHTML = html; return e; };
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+  const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const listeners = [];
+  const cls = +(q.get('class') || 0);
+  let voice = q.get('voice') ? q.get('voice') === '1' : (q.has('class') && cls <= 2);
+  const say = (o) => { if (!voice || !g.speechSynthesis) return; try { const txt = t(o).replace(/[\u{1F000}-\u{1FAFF}\u2600-\u27BF]/gu, ''); speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(txt); u.lang = lang === 'hi' ? 'hi-IN' : 'en-IN'; const v = speechSynthesis.getVoices().find((v) => v.lang === u.lang) || speechSynthesis.getVoices().find((v) => v.lang.startsWith(lang === 'hi' ? 'hi' : 'en')); if (v) u.voice = v; u.rate = cls <= 0 && q.has('class') ? .85 : .95; speechSynthesis.speak(u); } catch (e) {} };
+  const K = { q, t, $, $$, el, esc, reduced, say, get voice() { return voice; }, get lang() { return lang; }, stars: 0,
+    onLang(fn) { listeners.push(fn); },
+    setLang(l) { lang = l; try { localStorage.setItem('techlab.lang', l); } catch (e) {} document.documentElement.lang = l === 'hi' ? 'hi' : 'en'; $$('.kpill button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.l === l)); listeners.forEach((f) => f(l)); },
+    header(title, emoji) {
+      const bar = el('header', { class: 'kbar' });
+      bar.innerHTML = `<span class="kemo" aria-hidden="true">${emoji}</span><h1 id="ktitle"></h1><div class="kctl"><div class="kpill" role="group" aria-label="Language">${[['hinglish', 'Hing'], ['en', 'EN'], ['hi', 'हिं']].map(([l, n]) => `<button data-l="${l}" aria-pressed="${l === lang}">${n}</button>`).join('')}</div><button class="kvoice" id="kvoice" aria-label="Read aloud" aria-pressed="${voice}">🔊</button><div class="kstars" aria-live="polite">⭐ <span id="kstarn">0</span></div></div>`;
+      document.body.prepend(bar); if (window.ResizeObserver) new ResizeObserver(() => document.documentElement.style.setProperty('--kbar-h', bar.offsetHeight + 'px')).observe(bar);
+      const upd = () => { $('#ktitle').textContent = t(title); document.title = t(title) + ' · Tech & AI Lab'; };
+      upd(); listeners.push(upd);
+      $$('.kpill button', bar).forEach((b) => b.addEventListener('click', () => K.setLang(b.dataset.l)));
+      $('#kvoice', bar).addEventListener('click', (e) => { voice = !voice; e.currentTarget.setAttribute('aria-pressed', voice); if (voice) { const gl = $('#goal'); say(gl ? gl.textContent : title); } else if (g.speechSynthesis) speechSynthesis.cancel(); });
+      setTimeout(() => { const gl = $('#goal'); if (gl) new MutationObserver(() => say(gl.textContent)).observe(gl, { childList: true, subtree: true }); }, 0);
+      document.body.append(el('div', { class: 'ktoast', id: 'ktoast', role: 'status' }), el('canvas', { id: 'kconf' }), el('div', { class: 'kwin', id: 'kwin', 'data-ov-modal': '', role: 'dialog', 'aria-modal': 'true' }, '<div><div class="big" id="kwinE">🏆</div><h2 id="kwinH"></h2><p id="kwinP"></p><button class="kbtn" id="kwinB"></button></div>'));
+      document.addEventListener('pointerdown', (ev) => { K._lastTap = ev.target; K._tapAt = [ev.clientX, ev.clientY + scrollY]; }, true); let rp = 0; const re = () => { const e = K._tel || (K._tel = $('#ktoast')); if (!e || !e.classList.contains('show') || rp) return; rp = 1; requestAnimationFrame(() => { rp = 0; K._place(); }); }; K._re = re;
+      addEventListener('scroll', re, { passive: true }); addEventListener('resize', re); document.addEventListener('animationend', re, true); document.addEventListener('transitionend', re, true); K._mo = new MutationObserver((rs) => { const e = K._tel || (K._tel = $('#ktoast')); if (rs.some((r) => !e.contains(r.target))) re(); });
+      $('#kwinB').addEventListener('click', () => { $('#kwin').classList.remove('show'); K._winCb && K._winCb(); });
+    },
+    star(n = 1) { K.stars += n; const s = $('#kstarn'); if (s) { s.textContent = K.stars; s.parentElement.classList.remove('bump'); void s.offsetWidth; s.parentElement.classList.add('bump'); } },
+    // Toast never covers text: it floats in a free band of the screen (bottom first); with no free band it drops into the page
+    // flow under what the child just tapped (pushes content down). Closes on its own (2.5 s by default).
+    toast(msg, kind = '', ms = 2500) { const e = K._tel || (K._tel = $('#ktoast')); clearTimeout(K._tt); clearInterval(K._ti); if (e.classList.contains('inline')) document.body.append(e);
+      e.className = 'ktoast ' + kind; e._spot = null; e.textContent = t(msg); say(msg); e.style.left = e.style.top = '0px'; e.classList.add('show'); K._place(); K._ti = setInterval(K._place, 200); K._mo && K._mo.observe(document.body, { subtree: true, childList: true, attributes: true, characterData: true });
+      K._tt = setTimeout(() => { clearInterval(K._ti); K._mo && K._mo.disconnect(); e.classList.remove('show'); setTimeout(() => { if (!e.classList.contains('show') && e.classList.contains('inline')) { e.classList.remove('inline'); document.body.append(e); } }, 320); }, ms); },
+    _place() { const e = K._tel || (K._tel = $('#ktoast')); if (!e.classList.contains('show')) return; if (!e.isConnected) { e.classList.remove('inline'); document.body.append(e); } if (e.classList.contains('inline')) return;
+      const vw = document.documentElement.clientWidth, vh = innerHeight, w = e.offsetWidth, h = e.offsetHeight, m = 8; let top = m; const bar = $('.kbar'); if (bar) top = Math.max(top, bar.getBoundingClientRect().bottom + m);
+      const obs = [], rg = document.createRange(), tw = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); let n;
+      while ((n = tw.nextNode())) { if (!n.nodeValue.trim()) continue; const p = n.parentElement; if (!p || e.contains(p) || /^(SCRIPT|STYLE)$/.test(p.tagName)) continue; rg.selectNodeContents(n); for (const q of rg.getClientRects()) if (q.width >= 1 && q.bottom > 0 && q.top < vh) obs.push(q); }
+      $$('input,select,textarea,button,a[href],[role=button]').filter((x) => !e.contains(x)).forEach((x) => { const q = x.getBoundingClientRect(); if (q.width && q.bottom > 0 && q.top < vh) obs.push(q); });
+      const free = (x, y) => !obs.some((q) => q.left < x + w + 4 && q.right > x - 4 && q.top < y + h + 4 && q.bottom > y - 4);
+      let s = e._spot && free(e._spot.x, e._spot.y) ? e._spot : null;
+      if (!s) outer: for (let y = vh - h - m; y >= top; y -= 6) for (const x of [(vw - w) / 2, m, vw - w - m]) if (free(x, y)) { s = { x, y }; break outer; }
+      if (s) { e._spot = s; e.style.left = s.x + 'px'; e.style.top = s.y + 'px'; return; }
+      e._spot = null; e.classList.add('inline'); e.style.left = e.style.top = '';
+      let a = K._lastTap && K._lastTap.isConnected && !e.contains(K._lastTap) ? K._lastTap : null; if (!a && K._tapAt) { const y = K._tapAt[1] - scrollY; if (y > 0 && y < innerHeight) a = document.elementFromPoint(K._tapAt[0], y); } if (!a || e.contains(a)) a = $('main') || document.body.lastElementChild;
+      // never drop the note inside a 3D scene, a transformed, positioned-out or clipping box
+      const boxedIn = (a0) => { for (let p = a0; p && p !== document.body; p = p.parentElement) { const c = getComputedStyle(p); if (c.transform !== 'none' || c.transformStyle === 'preserve-3d' || c.perspective !== 'none' || c.position === 'absolute' || c.position === 'fixed' || (p !== a0 && c.overflow !== 'visible')) return true; } return false; };
+      while (a.parentElement && a.parentElement !== document.body) { const d = getComputedStyle(a.parentElement), me = getComputedStyle(a);
+        if (me.display !== 'inline' && !(a instanceof SVGElement) && (d.display === 'block' || d.display === 'flow-root' || d.display === 'grid' || (d.display === 'flex' && d.flexDirection.startsWith('column'))) && a.getBoundingClientRect().width >= Math.min(260, innerWidth * 0.6) && !boxedIn(a)) break; a = a.parentElement; }
+      a.after(e); e.scrollIntoView({ block: 'nearest' }); },
+    win(head, body, btn, emoji = '🏆', cb) { $('#kwinE').textContent = emoji; $('#kwinH').textContent = t(head); $('#kwinP').textContent = t(body); $('#kwinB').textContent = t(btn || ['Play again', 'फिर खेलो', 'Phir khelo']); K._winCb = cb; $('#kwin').classList.add('show'); K.confetti(); K.sfx('win'); say(t(head) + '. ' + t(body)); },
+    done(lab, mode, result) { const msg = { type: 'techlab:lab-complete', lab, mode, result, stars: K.stars }; try { parent !== window && parent.postMessage(msg, '*'); } catch (e) {} g.__labResult = msg; },
+    confetti() { if (reduced()) return; const c = $('#kconf'), x = c.getContext('2d'); const wn = $('#kwin'); if (wn.classList.contains('show')) wn.prepend(c); else document.body.append(c); const W = c.width = innerWidth, H = c.height = innerHeight; const cols = ['#1D4ED8', '#8B3DFF', '#FF7A1A', '#F5B90A', '#14B8A6', '#FF6B57', '#02CFF9']; const P = Array.from({ length: 90 }, () => ({ x: W / 2, y: H / 2.2, vx: (Math.random() - .5) * 14, vy: -Math.random() * 14 - 4, r: Math.random() * 6 + 4, c: cols[Math.random() * cols.length | 0], a: Math.random() * 6, va: (Math.random() - .5) * .4 })); let f = 0; (function tick() { x.clearRect(0, 0, W, H); P.forEach((p) => { p.vy += .45; p.x += p.vx; p.y += p.vy; p.a += p.va; x.save(); x.translate(p.x, p.y); x.rotate(p.a); x.fillStyle = p.c; x.fillRect(-p.r / 2, -p.r / 4, p.r, p.r / 2); x.restore(); }); if (++f < 110) requestAnimationFrame(tick); else x.clearRect(0, 0, W, H); })(); },
+    _ac: null,
+    sfx(kind) { try { const ac = K._ac || (K._ac = new (g.AudioContext || g.webkitAudioContext)()); const n = { good: [[660, .07], [880, .1]], bad: [[220, .15]], tap: [[520, .04]], win: [[523, .1], [659, .1], [784, .1], [1047, .22]], move: [[400, .03]] }[kind] || [[500, .05]]; let t0 = ac.currentTime; n.forEach(([f, d]) => { const o = ac.createOscillator(), gn = ac.createGain(); o.type = kind === 'bad' ? 'sawtooth' : 'triangle'; o.frequency.value = f; gn.gain.setValueAtTime(.0001, t0); gn.gain.exponentialRampToValueAtTime(.18, t0 + .01); gn.gain.exponentialRampToValueAtTime(.0001, t0 + d); o.connect(gn).connect(ac.destination); o.start(t0); o.stop(t0 + d + .02); t0 += d; }); } catch (e) {} },
+    // Pointer drag: el follows finger; onDrop(el, x, y) returns true to accept, else it flies back.
+    draggable(node, onDrop, onStart) {
+      node.style.touchAction = 'none';
+      node.addEventListener('pointerdown', (ev) => {
+        if (node.dataset.locked) return; ev.preventDefault(); node.setPointerCapture(ev.pointerId); onStart && onStart(node);
+        const r = node.getBoundingClientRect(), ox = ev.clientX - r.left, oy = ev.clientY - r.top; const ghost = node.cloneNode(true);
+        ghost.style.cssText += `;position:fixed;left:${r.left}px;top:${r.top}px;width:${r.width}px;height:${r.height}px;margin:0;z-index:50;pointer-events:none;transform:scale(1.08) rotate(-3deg);box-shadow:0 14px 30px rgba(0,0,0,.25);transition:none`; ghost.classList.add('dragging'); document.body.append(ghost); node.style.opacity = '.25'; K.sfx('tap');
+        const mv = (e) => { ghost.style.left = e.clientX - ox + 'px'; ghost.style.top = e.clientY - oy + 'px'; K._hover && K._hover(e.clientX, e.clientY); };
+        const up = (e) => { node.removeEventListener('pointermove', mv); node.removeEventListener('pointerup', up); node.removeEventListener('pointercancel', up); K._hover && K._hover(-1, -1);
+          const ok = onDrop(node, e.clientX, e.clientY); if (ok) { ghost.remove(); node.style.opacity = ''; } else { ghost.style.transition = 'left .3s, top .3s, transform .3s'; ghost.style.left = r.left + 'px'; ghost.style.top = r.top + 'px'; ghost.style.transform = 'none'; setTimeout(() => { ghost.remove(); node.style.opacity = ''; }, 300); } };
+        node.addEventListener('pointermove', mv); node.addEventListener('pointerup', up); node.addEventListener('pointercancel', up);
+      });
+    },
+    hit(node, x, y, pad = 10) { const r = node.getBoundingClientRect(); return x >= r.left - pad && x <= r.right + pad && y >= r.top - pad && y <= r.bottom + pad; },
+    async lessonConfig() { const p = q.get('lesson'); const cfg = {}; if (p) { try { const L = await (await fetch(p)).json(); Object.assign(cfg, L.play && L.play.config, { goal: L.play && L.play.goal }); } catch (e) { console.warn('lesson config not loaded', e); } } for (const k of ['mode', 'level', 'class']) if (q.get(k)) cfg[k] = q.get(k); return cfg; },
+    shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.random() * (i + 1) | 0; [a[i], a[j]] = [a[j], a[i]]; } return a; },
+  };
+  document.documentElement.lang = lang === 'hi' ? 'hi' : 'en';
+  g.K = K;
+})(window);
+</script>
+<script>
+(async function () {
+const { t, $, el, esc } = K; const L = (en, hi, hg) => [en, hi, hg];
+K.header(['Mintu’s data market', 'मिंटू का डेटा बाज़ार', 'Mintu ka data bazaar'], '🐿️');
+const cfg = await K.lessonConfig();
+const MODES = {
+  collect: { n: L('1 · Collect data', '1 · डेटा इकट्ठा करो', '1 · Data collect karo'), goal: L('Mintu asked 10 friends: "What is your favourite fruit?" Write each answer in the right row of the table.', 'मिंटू ने 10 दोस्तों से पूछा: "तुम्हारा पसंदीदा फल कौन सा है?" हर जवाब तालिका की सही पंक्ति में लिखो।', 'Mintu ne 10 doston se poocha: "Tumhara favourite fruit kaun sa hai?" Har jawaab table ki sahi row mein likho.') },
+  tally: { n: L('2 · Tally marks', '2 · मिलान चिह्न', '2 · Tally marks'), goal: L('Count the vehicles that passed the school gate. Make one tally mark for each. Every 5th mark crosses the other four.', 'स्कूल के गेट से गुज़री गाड़ियाँ गिनो। हर एक के लिए एक मिलान चिह्न बनाओ। हर 5वाँ चिह्न बाक़ी चार को काटता है।', 'School gate se guzri gaadiyan gino. Har ek ke liye ek tally mark banao. Har 5th mark baaki chaar ko kaat-ta hai.') },
+  chart: { n: L('3 · Draw a chart', '3 · चार्ट बनाओ', '3 · Chart banao'), goal: L('Turn the tables into pictures: first a picture graph of fruits, then a bar chart of pets.', 'तालिकाओं को चित्र बनाओ: पहले फलों का चित्र आलेख, फिर पालतू जानवरों का दंड आलेख।', 'Tables ko pictures banao: pehle fruits ka picture graph, phir pets ka bar chart.') },
+  average: { n: L('4 · Most, fewest, average', '4 · सबसे ज़्यादा, सबसे कम, औसत', '4 · Most, fewest, average'), goal: L('Five friends read books this month. Find who read the most and the fewest, then share the blocks until every bar is equal: that is the average!', 'पाँच दोस्तों ने इस महीने किताबें पढ़ीं। किसने सबसे ज़्यादा और सबसे कम पढ़ीं, ढूँढो, फिर ब्लॉक बाँटो जब तक हर डंडा बराबर न हो: यही औसत है!', 'Paanch doston ne is mahine books padhin. Kisne sabse zyaada aur sabse kam padhin, dhoondo, phir blocks baanto jab tak har bar barabar na ho: yahi average hai!') },
+};
+let mode = MODES[K.q.get('mode')] ? K.q.get('mode') : MODES[cfg.mode] ? cfg.mode : 'collect'; let st;
+const why = (m) => { $('#why').textContent = t(m); };
+const bad = (m) => { K.sfx('bad'); K.toast(m, 'bad'); why(m); };
+function drawModes() { const m = $('#modes'); m.innerHTML = ''; for (const k in MODES) { const b = el('button', { role: 'tab', 'aria-pressed': k === mode, 'aria-selected': k === mode }, esc(t(MODES[k].n))); b.onclick = () => { mode = k; start(); }; m.append(b); } }
+function win(body, extra) { if (st.won) return; st.won = true; K.star(3); K.done('data-charts', mode, { mode, solved: true, ...extra }); setTimeout(() => K.win(['Data detective!', 'डेटा जासूस!', 'Data detective!'], body, null, '📊', () => start()), 600); }
+const FRUIT = [{ e: '🥭', n: L('Mango', 'आम', 'Aam') }, { e: '🍌', n: L('Banana', 'केला', 'Kela') }, { e: '🍎', n: L('Apple', 'सेब', 'Seb') }, { e: '🍇', n: L('Grapes', 'अंगूर', 'Angoor') }];
+const ANS = [0, 1, 2, 0, 3, 0, 1, 2, 0, 1]; // mango 4, banana 3, apple 2, grapes 1
+const FR = [L('Asha', 'आशा', 'Asha'), L('Ravi', 'रवि', 'Ravi'), L('Meena', 'मीना', 'Meena'), L('Kabir', 'कबीर', 'Kabir'), L('Zoya', 'ज़ोया', 'Zoya'), L('Arjun', 'अर्जुन', 'Arjun'), L('Priya', 'प्रिया', 'Priya'), L('Sam', 'सैम', 'Sam'), L('Divya', 'दिव्या', 'Divya'), L('Imran', 'इमरान', 'Imran')];
+// ---------- collect ----------
+function collectMode() { st.c = st.c || [0, 0, 0, 0]; st.i = st.i || 0; const W = $('#ws'); W.innerHTML = ''; $('#go').innerHTML = '';
+  const i = Math.min(st.i, 9); const done = st.i >= 10;
+  W.append(el('div', { class: 'panel' }, done ? `<div class="friend">✅ ${esc(t(['All 10 answers recorded!', 'सभी 10 जवाब लिख लिए!', 'Saare 10 jawaab likh liye!']))}</div>` : `<div class="friend"><span>🧒 ${esc(t(FR[i]))} ${esc(t(['says', 'कहता/कहती है', 'kehta/kehti hai']))}:</span><span class="ans" id="ans">${FRUIT[ANS[i]].e}</span></div><div class="prog">${ANS.map((_, k) => `<i class="${k < st.i ? 'on' : ''}"></i>`).join('')}</div>`));
+  const P = el('div', { class: 'panel' }, `<h3>📋 ${esc(t(['Favourite fruit table: tap the row to record', 'पसंदीदा फल तालिका: लिखने के लिए पंक्ति दबाओ', 'Favourite fruit table: record karne ke liye row dabao']))}</h3>`); const R = el('div', { class: 'rows' });
+  FRUIT.forEach((f, k) => { const b = el('button', { class: 'rowbtn', id: 'r' + k }, `<span class="e">${f.e}</span><span>${esc(t(f.n))}</span><span class="n">${st.c[k]}</span>`); b.onclick = () => { if (st.i >= 10) return; if (ANS[st.i] !== k) return bad([`${t(FR[st.i])} said ${FRUIT[ANS[st.i]].e}, not ${f.e}. Data must be recorded exactly as it was given.`, `${t(FR[st.i])} ने ${FRUIT[ANS[st.i]].e} कहा, ${f.e} नहीं। डेटा ठीक वैसा ही लिखना चाहिए जैसा मिला।`, `${t(FR[st.i])} ne ${FRUIT[ANS[st.i]].e} kaha, ${f.e} nahin. Data bilkul waisa hi likhna chahiye jaisa mila.`]); st.c[k]++; st.i++; K.sfx('tap'); collectMode(); if (st.i >= 10) { why(['Mango 4, Banana 3, Apple 2, Grapes 1. 4 + 3 + 2 + 1 = 10 friends. Mango is the favourite!', 'आम 4, केला 3, सेब 2, अंगूर 1। 4 + 3 + 2 + 1 = 10 दोस्त। आम सबसे पसंदीदा है!', 'Aam 4, Kela 3, Seb 2, Angoor 1. 4 + 3 + 2 + 1 = 10 dost. Aam sabse favourite hai!']); win(['You collected data from 10 friends and organised it in a table. Now anyone can see that mango is the favourite.', 'तुमने 10 दोस्तों से डेटा इकट्ठा किया और तालिका में सजाया। अब कोई भी देख सकता है कि आम सबसे पसंदीदा है।', 'Tumne 10 doston se data collect kiya aur table mein sajaaya. Ab koi bhi dekh sakta hai ki aam sabse favourite hai.'], { counts: st.c }); } }; R.append(b); }); P.append(R); W.append(P);
+  if (!st.said) { st.said = 1; why(['Data means facts we collect, like answers, counts or measurements. A table keeps them neat so we can understand them.', 'डेटा मतलब इकट्ठे किए तथ्य, जैसे जवाब, गिनती या नाप। तालिका उन्हें साफ़ रखती है ताकि हम समझ सकें।', 'Data matlab collect kiye facts, jaise jawaab, ginti ya naap. Table unhe saaf rakhti hai taaki hum samajh sakein.']); } }
+// ---------- tally ----------
+const VEH = [{ e: '🚗', n: L('Cars', 'कारें', 'Cars'), c: 6 }, { e: '🛺', n: L('Autos', 'ऑटो', 'Autos'), c: 4 }, { e: '🚌', n: L('Buses', 'बसें', 'Buses'), c: 3 }];
+const SEQ = ['🚗', '🛺', '🚗', '🚌', '🚗', '🛺', '🚗', '🚌', '🛺', '🚗', '🚗', '🛺', '🚌'];
+function tallyHTML(n) { let h = ''; for (let g = 0; g < n; g += 5) { const k = Math.min(5, n - g); h += `<span class="five">${'<i></i>'.repeat(Math.min(k, 4))}${k === 5 ? '<b></b>' : ''}</span>`; } return h; }
+function tallyMode() { st.m = st.m || [0, 0, 0]; const W = $('#ws'); W.innerHTML = '';
+  W.append(el('div', { class: 'panel' }, `<h3>🏫 ${esc(t(['Vehicles that passed the gate (count carefully)', 'गेट से गुज़री गाड़ियाँ (ध्यान से गिनो)', 'Gate se guzri gaadiyan (dhyaan se gino)']))}</h3><div class="items">${SEQ.map((e) => `<span>${e}</span>`).join('')}</div>`));
+  const P = el('div', { class: 'panel' }, `<h3>✏️ ${esc(t(['Tally chart', 'मिलान तालिका', 'Tally chart']))}</h3>`); const R = el('div', { class: 'rows' });
+  VEH.forEach((v, k) => { const r = el('div', { class: 'trow' }, `<span class="e">${v.e}</span><span class="marks" id="tm${k}">${tallyHTML(st.m[k])}</span>`); const mi = el('button', { class: 'pm m', id: 'm' + k, 'aria-label': 'remove mark' }, '−'); mi.onclick = () => { st.m[k] = Math.max(0, st.m[k] - 1); tallyMode(); }; const pl = el('button', { class: 'pm', id: 'p' + k, 'aria-label': 'add mark' }, '+'); pl.onclick = () => { st.m[k] = Math.min(12, st.m[k] + 1); K.sfx('tap'); tallyMode(); }; r.append(mi, pl); R.append(r); }); P.append(R); W.append(P);
+  const G = $('#go'); G.innerHTML = ''; const c = el('button', { class: 'kbtn go', id: 'check' }, '✅ ' + t(['Check', 'जाँचो', 'Check karo'])); c.onclick = () => { const wrong = VEH.findIndex((v, k) => v.c !== st.m[k]); if (wrong < 0) { K.sfx('good'); why(['Cars 6 (卌 + 1), Autos 4, Buses 3. Tally marks in fives are quick to count: 5, then 6.', 'कारें 6 (卌 + 1), ऑटो 4, बसें 3। पाँच-पाँच के मिलान चिह्न गिनने में तेज़ हैं: 5, फिर 6।', 'Cars 6 (卌 + 1), Autos 4, Buses 3. Paanch-paanch ke tally marks ginne mein tez hain: 5, phir 6.']); return win(['Your tally chart is right: 6 cars, 4 autos and 3 buses, 13 vehicles in all.', 'तुम्हारी मिलान तालिका सही है: 6 कारें, 4 ऑटो और 3 बसें, कुल 13 गाड़ियाँ।', 'Tumhara tally chart sahi hai: 6 cars, 4 autos aur 3 buses, kul 13 gaadiyan.'], { tally: st.m }); } const v = VEH[wrong]; bad(st.m[wrong] < v.c ? [`Count the ${v.e} again: you have too few marks.`, `${v.e} फिर से गिनो: चिह्न कम हैं।`, `${v.e} phir se gino: marks kam hain.`] : [`Count the ${v.e} again: you have too many marks.`, `${v.e} फिर से गिनो: चिह्न ज़्यादा हैं।`, `${v.e} phir se gino: marks zyaada hain.`]); }; G.append(c);
+  if (!st.said) { st.said = 1; why(['Tip: point at each vehicle as you count it, so you never count one twice.', 'सुझाव: गिनते समय हर गाड़ी पर उँगली रखो, ताकि कोई दो बार न गिनी जाए।', 'Tip: ginte samay har gaadi par ungli rakho, taaki koi do baar na gini jaaye.']); } }
+// ---------- chart ----------
+const PETS = [{ e: '🐶', n: L('Dog', 'कुत्ता', 'Kutta'), c: 5 }, { e: '🐱', n: L('Cat', 'बिल्ली', 'Billi'), c: 3 }, { e: '🐟', n: L('Fish', 'मछली', 'Machhli'), c: 2 }, { e: '🦜', n: L('Parrot', 'तोता', 'Tota'), c: 4 }];
+const FRC = FRUIT.map((f, k) => ({ ...f, c: [4, 3, 2, 1][k] }));
+function chartMode() { st.step = st.step || 0; const D = st.step ? PETS : FRC; st.h = st.h || D.map(() => 0); const W = $('#ws'); W.innerHTML = '';
+  W.append(el('div', { class: 'panel' }, `<h3>📋 ${esc(t(st.step ? ['Table: pets in our class', 'तालिका: हमारी कक्षा के पालतू', 'Table: hamari class ke pets'] : ['Table: favourite fruits', 'तालिका: पसंदीदा फल', 'Table: favourite fruits']))}</h3><table class="dt">${D.map((d) => `<tr><td>${d.e} ${esc(t(d.n))}</td><td>${d.c}</td></tr>`).join('')}</table>`));
+  const P = el('div', { class: 'panel' }, `<h3>${st.step ? '📊 ' + esc(t(['Bar chart: one block = 1 pet', 'दंड आलेख: एक ब्लॉक = 1 पालतू', 'Bar chart: ek block = 1 pet'])) : '🖼️ ' + esc(t(['Picture graph: one picture = 1 friend', 'चित्र आलेख: एक चित्र = 1 दोस्त', 'Picture graph: ek picture = 1 dost']))}</h3>`);
+  const ch = el('div', { class: 'chart', id: 'chart' }); D.forEach((d, k) => { const col = el('div', { class: 'col', id: 'col' + k }); for (let j = 0; j < st.h[k]; j++) col.append(st.step ? el('div', { class: 'blk' }) : el('div', { class: 'pic' }, d.e)); ch.append(col); }); P.append(ch);
+  P.append(el('div', { class: 'labels' }, D.map((d) => `<div><span class="e">${d.e}</span>${esc(t(d.n))}</div>`).join('')));
+  const ct = el('div', { class: 'ctrl' }); D.forEach((d, k) => { const w = el('div'); const mi = el('button', { class: 'm', id: 'dn' + k, 'aria-label': 'less' }, '−'); mi.onclick = () => { st.h[k] = Math.max(0, st.h[k] - 1); chartMode(); }; const pl = el('button', { id: 'up' + k, 'aria-label': 'more' }, '+'); pl.onclick = () => { st.h[k] = Math.min(6, st.h[k] + 1); K.sfx('tap'); chartMode(); }; w.append(mi, pl); ct.append(w); }); P.append(ct); W.append(P);
+  const G = $('#go'); G.innerHTML = ''; const c = el('button', { class: 'kbtn go', id: 'check' }, '✅ ' + t(['Check', 'जाँचो', 'Check karo'])); c.onclick = () => { const wr = D.findIndex((d, k) => d.c !== st.h[k]); if (wr >= 0) return bad([`The ${D[wr].e} column should match the table: ${D[wr].c}.`, `${D[wr].e} वाला स्तंभ तालिका से मिलना चाहिए: ${D[wr].c}।`, `${D[wr].e} wala column table se milna chahiye: ${D[wr].c}.`]); K.sfx('good');
+    if (!st.step) { st.step = 1; st.h = null; why(['Picture graph done! Mango has the tallest pile, so it is the favourite. Now try a bar chart.', 'चित्र आलेख बन गया! आम का ढेर सबसे ऊँचा है, तो वही सबसे पसंदीदा। अब दंड आलेख बनाओ।', 'Picture graph ban gaya! Aam ka dher sabse ooncha hai, toh wahi favourite. Ab bar chart banao.']); K.toast(['Picture graph ✔ Now a bar chart', 'चित्र आलेख ✔ अब दंड आलेख', 'Picture graph ✔ Ab bar chart'], 'good'); return chartMode(); }
+    why(['Bar chart done! The dog bar is the tallest (5) and the fish bar the shortest (2).', 'दंड आलेख बन गया! कुत्ते का डंडा सबसे ऊँचा (5) और मछली का सबसे छोटा (2)।', 'Bar chart ban gaya! Kutte ka bar sabse ooncha (5) aur machhli ka sabse chhota (2).']); win(['You drew a picture graph and a bar chart from tables. A chart lets you see the biggest and smallest in one look.', 'तुमने तालिकाओं से चित्र आलेख और दंड आलेख बनाए। चार्ट से सबसे बड़ा और सबसे छोटा एक नज़र में दिखता है।', 'Tumne tables se picture graph aur bar chart banaye. Chart se sabse bada aur sabse chhota ek nazar mein dikhta hai.'], { charts: 2 }); }; G.append(c);
+  if (!st.said) { st.said = 1; why(['Tap + to add one picture for each friend in the table. The tallest pile shows the favourite.', 'तालिका में हर दोस्त के लिए + दबाकर एक चित्र जोड़ो। सबसे ऊँचा ढेर पसंदीदा दिखाता है।', 'Table mein har dost ke liye + daba kar ek picture jodo. Sabse ooncha dher favourite dikhata hai.']); } }
+// ---------- average ----------
+const KIDS = [L('Asha', 'आशा', 'Asha'), L('Ravi', 'रवि', 'Ravi'), L('Meena', 'मीना', 'Meena'), L('Kabir', 'कबीर', 'Kabir'), L('Zoya', 'ज़ोया', 'Zoya')];
+const BOOKS = [2, 4, 3, 5, 1];
+function avgMode() { st.step = st.step || 0; st.b = st.b || [...BOOKS]; const W = $('#ws'); W.innerHTML = '';
+  const H = [['Step 1: tap the bar of the friend who read the MOST books.', 'चरण 1: जिसने सबसे ज़्यादा किताबें पढ़ीं, उसका डंडा दबाओ।', 'Step 1: jisne sabse zyaada books padhin, uska bar dabao.'], ['Step 2: tap the bar of the friend who read the FEWEST books.', 'चरण 2: जिसने सबसे कम किताबें पढ़ीं, उसका डंडा दबाओ।', 'Step 2: jisne sabse kam books padhin, uska bar dabao.'], ['Step 3: tap a tall bar to pick up its top block, then tap a short bar to give it. Make all bars equal.', 'चरण 3: ऊँचे डंडे को दबाकर ऊपर का ब्लॉक उठाओ, फिर छोटे डंडे को दबाकर दे दो। सब डंडे बराबर करो।', 'Step 3: oonche bar ko daba kar upar ka block uthao, phir chhote bar ko daba kar de do. Saare bars barabar karo.']][Math.min(st.step, 2)];
+  const P = el('div', { class: 'panel' }, `<h3>📚 ${esc(t(H))}</h3>`); const ch = el('div', { class: 'chart', id: 'chart' });
+  st.b.forEach((n, k) => { const col = el('button', { class: 'col' + (st.pick === k ? ' sel top' : ''), id: 'bar' + k, 'aria-label': t(KIDS[k]) + ' ' + n }); for (let j = 0; j < n; j++) col.append(el('div', { class: 'blk' })); col.onclick = () => tapBar(k); ch.append(col); });
+  if (st.step >= 3) { const a = el('div', { class: 'avg' }); a.style.bottom = (3 * 28) + 'px'; ch.append(a); }
+  P.append(ch, el('div', { class: 'labels' }, st.b.map((n, k) => `<div>${esc(t(KIDS[k]))}<br>${n}</div>`).join(''))); W.append(P); $('#go').innerHTML = '';
+  if (!st.said) { st.said = 1; why(['Total books: 2 + 4 + 3 + 5 + 1 = 15. Keep that in mind!', 'कुल किताबें: 2 + 4 + 3 + 5 + 1 = 15। यह याद रखो!', 'Kul books: 2 + 4 + 3 + 5 + 1 = 15. Yeh yaad rakho!']); } }
+function tapBar(k) { if (st.step === 0) { if (k === 3) { K.sfx('good'); st.step = 1; why(['Yes! Kabir read the most: 5 books. That is the tallest bar.', 'हाँ! कबीर ने सबसे ज़्यादा पढ़ीं: 5 किताबें। यही सबसे ऊँचा डंडा है।', 'Haan! Kabir ne sabse zyaada padhin: 5 books. Yahi sabse ooncha bar hai.']); } else bad(['Look for the tallest bar.', 'सबसे ऊँचा डंडा ढूँढो।', 'Sabse ooncha bar dhoondo.']); return avgMode(); }
+  if (st.step === 1) { if (k === 4) { K.sfx('good'); st.step = 2; why(['Yes! Zoya read the fewest: 1 book. Now share the blocks fairly.', 'हाँ! ज़ोया ने सबसे कम पढ़ीं: 1 किताब। अब ब्लॉक बराबर बाँटो।', 'Haan! Zoya ne sabse kam padhin: 1 book. Ab blocks barabar baanto.']); } else bad(['Look for the shortest bar.', 'सबसे छोटा डंडा ढूँढो।', 'Sabse chhota bar dhoondo.']); return avgMode(); }
+  if (st.step === 2) { if (st.pick == null) { if (!st.b[k]) return; st.pick = k; K.sfx('tap'); return avgMode(); } if (st.pick === k) { st.pick = null; return avgMode(); } st.b[st.pick]--; st.b[k]++; st.pick = null; K.sfx('tap');
+    if (st.b.every((n) => n === 3)) { st.step = 3; avgMode(); why(['Every bar is 3! 15 books shared by 5 friends = 3 each. The average is 3.', 'हर डंडा 3 है! 15 किताबें 5 दोस्तों में बाँटीं = हर एक को 3। औसत 3 है।', 'Har bar 3 hai! 15 books 5 doston mein baanti = har ek ko 3. Average 3 hai.']); return win(['Most: Kabir (5). Fewest: Zoya (1). Average: 15 ÷ 5 = 3 books. The average is the "fair share" when everything is shared equally.', 'सबसे ज़्यादा: कबीर (5)। सबसे कम: ज़ोया (1)। औसत: 15 ÷ 5 = 3 किताबें। औसत वह "बराबर हिस्सा" है जब सब बराबर बाँटा जाए।', 'Most: Kabir (5). Fewest: Zoya (1). Average: 15 ÷ 5 = 3 books. Average woh "fair share" hai jab sab barabar baanta jaaye.'], { most: 'Kabir', fewest: 'Zoya', average: 3 }); }
+    return avgMode(); } }
+window.__dcState = () => ({ mode, step: st.step, i: st.i, b: st.b, won: !!st.won });
+function start() { st = {}; drawModes(); $('#goal').innerHTML = `<span style="font-size:22px">🎯</span><div><b>${t(['Goal', 'लक्ष्य', 'Goal'])}:</b> ${esc(t(cfg.mode === mode && cfg.goal ? [cfg.goal.en, cfg.goal.hi || cfg.goal.en, cfg.goal.hinglish] : MODES[mode].goal))}</div>`; $('#go').innerHTML = ''; ({ collect: collectMode, tally: tallyMode, chart: chartMode, average: avgMode })[mode](); }
+K.onLang(() => start());
+start();
+})();
+</script></body></html>

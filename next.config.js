@@ -74,6 +74,11 @@ const nextConfig = {
       // W23-C: the tutor's answer reads the chapter reader's content and the lab definitions on the server (where the
       // window was opened, and the labs it may show: src/lib/family/tutor-context.ts), by a computed path.
       '/api/family/understand': ['./reader/content/**', './labs/index.json', './labs/defs/**'],
+      // Tech Lab lessons and the lab pages are read from disk (content/tech), not imported.
+      '/family/tech': ['./content/tech/**'],
+      '/family/tech/**/*': ['./content/tech/**'],
+      '/api/family/tech/**/*': ['./content/tech/**'],
+      '/api/family/voice/speak': ['./content/tech/lessons/**', './content/tech/meta.json'],
     },
   },
   // PDF.js's worker (AI marking's upload screen, C350) is a file the build copies into /_next/static/media. It is

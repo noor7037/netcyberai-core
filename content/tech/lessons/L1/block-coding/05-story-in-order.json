@@ -1,0 +1,311 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.block-coding.05",
+ "level": 1,
+ "classes": [
+  -2,
+  -1,
+  0,
+  1,
+  2
+ ],
+ "unit": "block-coding",
+ "title": {
+  "en": "Tell a story with blocks",
+  "hi": "ब्लॉक से कहानी सुनाओ",
+  "hinglish": "Blocks se story sunao"
+ },
+ "minutes": 6,
+ "xp": 25,
+ "prereq": [
+  "L1.block-coding.01"
+ ],
+ "topics": [
+  "prog.sequence",
+  "prog.blocks"
+ ],
+ "outcomes": [
+  {
+   "en": "Put story blocks in the right order: first, next, last.",
+   "hi": "कहानी के ब्लॉक सही क्रम में लगा सकते हो: पहले, फिर, आख़िर में।",
+   "hinglish": "Story blocks ko sahi order mein laga sakte ho: pehle, phir, aakhir mein."
+  },
+  {
+   "en": "Say that the computer does blocks from top to bottom.",
+   "hi": "बता सकते हो कि कंप्यूटर ब्लॉक ऊपर से नीचे करता है।",
+   "hinglish": "Bata sakte ho ki computer blocks upar se neeche karta hai."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Sequence",
+   "en": "Steps in the right order",
+   "hi": "कदमों का सही क्रम",
+   "hinglish": "Steps ka sahi order"
+  },
+  {
+   "term": "Run",
+   "en": "Tell the computer to start the program",
+   "hi": "प्रोग्राम चलाना",
+   "hinglish": "Program chalaana"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.block-coding.05.s1",
+   "caption": {
+    "en": "Gajju wants to visit Nani.",
+    "hi": "गज्जू नानी से मिलना चाहता है।",
+    "hinglish": "Gajju Nani se milna chahta hai."
+   },
+   "narration": {
+    "en": "Gajju the elephant wants to walk to Nani’s house.",
+    "hinglish": "Gajju haathi Nani ke ghar tak chalna chahta hai.",
+    "hi": "गज्जू हाथी नानी के घर तक चलना चाहता है।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.block-coding.05.s2",
+   "caption": {
+    "en": "First walk, then Namaste, then jump.",
+    "hi": "पहले चलो, फिर नमस्ते, फिर कूदो।",
+    "hinglish": "Pehle chalo, phir Namaste, phir jump."
+   },
+   "narration": {
+    "en": "First he walks, next he says Namaste, last he jumps with joy.",
+    "hinglish": "Pehle woh chalta hai, phir Namaste bolta hai, aakhir mein khushi se koodta hai.",
+    "hi": "पहले वह चलता है, फिर नमस्ते बोलता है, आख़िर में ख़ुशी से कूदता है।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.block-coding.05.s3",
+   "caption": {
+    "en": "Wrong order? The story goes funny!",
+    "hi": "ग़लत क्रम? कहानी अजीब हो जाती है!",
+    "hinglish": "Galat order? Story ajeeb ho jaati hai!"
+   },
+   "narration": {
+    "en": "If Gajju says Namaste before he reaches Nani, nobody hears him. Order matters!",
+    "hinglish": "Agar Gajju Nani tak pahunchne se pehle Namaste bole, toh koi nahin sunta. Order zaroori hai!",
+    "hi": "अगर गज्जू नानी तक पहुँचने से पहले नमस्ते बोले, तो कोई नहीं सुनता। क्रम ज़रूरी है!"
+   }
+  }
+ ],
+ "play": {
+  "lab": "story-blocks",
+  "config": {
+   "mode": "story"
+  },
+  "goal": {
+   "en": "Help Gajju: 3 Walk blocks, then Say Namaste, then Jump. Tap Run!",
+   "hi": "गज्जू की मदद करो: 3 \"चलो\" ब्लॉक, फिर नमस्ते बोलो, फिर कूदो। चलाओ दबाओ!",
+   "hinglish": "Gajju ki madad karo: 3 Walk blocks, phir Namaste bolo, phir Jump. Run dabao!"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Order is everything",
+    "hi": "क्रम ही सब कुछ है",
+    "hinglish": "Order hi sab kuch hai"
+   },
+   "body": {
+    "en": "A computer cannot guess what you meant. It does exactly the blocks you gave it, one at a time, from top to bottom. Brushing teeth works the same way: paste on the brush first, then brush, then rinse. Mix up the order and it does not work!",
+    "hi": "कंप्यूटर अंदाज़ा नहीं लगा सकता कि तुम्हारा मतलब क्या था। वह ठीक वही ब्लॉक करता है जो तुमने दिए, एक-एक करके, ऊपर से नीचे। दाँत साफ़ करना भी ऐसा ही है: पहले ब्रश पर पेस्ट, फिर ब्रश करना, फिर कुल्ला। क्रम बदलो तो काम नहीं बनता!",
+    "hinglish": "Computer andaaza nahin laga sakta ki tumhara matlab kya tha. Woh theek wahi blocks karta hai jo tumne diye, ek-ek karke, upar se neeche. Daant saaf karna bhi aisa hi hai: pehle brush par paste, phir brush karna, phir kulla. Order badlo toh kaam nahin banta!"
+   },
+   "analogy": {
+    "en": "Like making a roti — knead the dough, roll it, then cook it on the tawa. Do it backwards and there is no roti.",
+    "hi": "जैसे रोटी बनाना — पहले आटा गूँधो, फिर बेलो, फिर तवे पर सेंको। उल्टा करोगे तो रोटी नहीं बनेगी।",
+    "hinglish": "Jaise roti banaana — pehle aata goondho, phir belo, phir tawe par senko. Ulta karoge toh roti nahin banegi."
+   }
+  },
+  {
+   "heading": {
+    "en": "Block coding apps for kids",
+    "hi": "बच्चों के लिए ब्लॉक कोडिंग ऐप",
+    "hinglish": "Bachchon ke liye block coding apps"
+   },
+   "body": {
+    "en": "ScratchJr, made by MIT and Tufts University for children aged about 5 to 7, works just like this lab: you snap picture blocks together to make characters move, talk and jump. It is free on tablets.",
+    "hi": "स्क्रैच जूनियर, जिसे MIT और टफ़्ट्स विश्वविद्यालय ने लगभग 5 से 7 साल के बच्चों के लिए बनाया, बिल्कुल इस लैब जैसा है: चित्र वाले ब्लॉक जोड़कर पात्रों को चलाते, बुलवाते और कुदाते हैं। यह टैबलेट पर मुफ़्त है।",
+    "hinglish": "ScratchJr, jise MIT aur Tufts University ne lagbhag 5 se 7 saal ke bachchon ke liye banaaya, bilkul is lab jaisa hai: picture blocks jod kar characters ko chalaate, bulwaate aur kudaate hain. Yeh tablets par free hai."
+   },
+   "realExample": {
+    "en": "With a grown-up, tell a 3-step story out loud: \"First… then… last…\". That is a sequence!",
+    "hi": "बड़े के साथ 3 कदम की कहानी बोलो: \"पहले… फिर… आख़िर में…\"। यही अनुक्रम है!",
+    "hinglish": "Bade ke saath 3-step story bolo: \"Pehle… phir… aakhir mein…\". Yahi sequence hai!"
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Draw your morning in 3 boxes: wake up, brush, eat breakfast. Cut them out, mix them up, and ask someone to put them back in order.",
+   "hi": "अपनी सुबह 3 डिब्बों में बनाओ: उठना, ब्रश करना, नाश्ता। काटकर मिला दो, और किसी से फिर क्रम में लगवाओ।",
+   "hinglish": "Apni subah 3 boxes mein banao: uthna, brush karna, naashta. Kaat kar mila do, aur kisi se phir order mein lagwao."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Gajju should say Namaste…",
+     "hi": "गज्जू को नमस्ते कब बोलना चाहिए?",
+     "hinglish": "Gajju ko Namaste kab bolna chahiye?"
+    },
+    "options": [
+     {
+      "en": "🐘👵 after reaching Nani",
+      "hi": "🐘👵 नानी तक पहुँचकर",
+      "hinglish": "🐘👵 Nani tak pahunch kar"
+     },
+     {
+      "en": "🏠 before leaving home",
+      "hi": "🏠 घर से निकलने से पहले",
+      "hinglish": "🏠 ghar se nikalne se pehle"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Walk first, then greet.",
+     "hi": "पहले चलो, फिर नमस्ते।",
+     "hinglish": "Pehle chalo, phir Namaste."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "order",
+    "prompt": {
+     "en": "Put the story in order.",
+     "hi": "कहानी क्रम में लगाओ।",
+     "hinglish": "Story order mein lagao."
+    },
+    "options": [
+     {
+      "en": "⤴ Jump with joy",
+      "hi": "⤴ ख़ुशी से कूदो",
+      "hinglish": "⤴ Khushi se jump"
+     },
+     {
+      "en": "➡ Walk to Nani",
+      "hi": "➡ नानी तक चलो",
+      "hinglish": "➡ Nani tak chalo"
+     },
+     {
+      "en": "💬 Say Namaste",
+      "hi": "💬 नमस्ते बोलो",
+      "hinglish": "💬 Namaste bolo"
+     }
+    ],
+    "answer": [
+     1,
+     2,
+     0
+    ],
+    "explain": {
+     "en": "Walk → Namaste → jump.",
+     "hi": "चलो → नमस्ते → कूदो।",
+     "hinglish": "Walk → Namaste → jump."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "The computer does the blocks…",
+     "hi": "कंप्यूटर ब्लॉक कैसे करता है?",
+     "hinglish": "Computer blocks kaise karta hai?"
+    },
+    "options": [
+     {
+      "en": "⬇ top to bottom, one by one",
+      "hi": "⬇ ऊपर से नीचे, एक-एक करके",
+      "hinglish": "⬇ upar se neeche, ek-ek karke"
+     },
+     {
+      "en": "🎲 in any order it likes",
+      "hi": "🎲 जैसे मन करे",
+      "hinglish": "🎲 jaise mann kare"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Computers follow the order exactly.",
+     "hi": "कंप्यूटर क्रम का ठीक पालन करता है।",
+     "hinglish": "Computer order ko theek follow karta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Nani is 3 steps away. How many Walk blocks?",
+     "hi": "नानी 3 कदम दूर हैं। कितने \"चलो\" ब्लॉक?",
+     "hinglish": "Nani 3 steps door hain. Kitne Walk blocks?"
+    },
+    "options": [
+     {
+      "en": "3",
+      "hi": "3",
+      "hinglish": "3"
+     },
+     {
+      "en": "1",
+      "hi": "1",
+      "hinglish": "1"
+     },
+     {
+      "en": "5",
+      "hi": "5",
+      "hinglish": "5"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "One block = one step.",
+     "hi": "एक ब्लॉक = एक कदम।",
+     "hinglish": "Ek block = ek step."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Finish Gajju’s story in the lab.",
+     "hi": "लैब में गज्जू की कहानी पूरी करो।",
+     "hinglish": "Lab mein Gajju ki story poori karo."
+    },
+    "answer": {
+     "lab": "story-blocks",
+     "mode": "story",
+     "solved": true
+    },
+    "explain": {
+     "en": "Walk, walk, walk, Namaste, jump — then Run.",
+     "hi": "चलो, चलो, चलो, नमस्ते, कूदो — फिर चलाओ।",
+     "hinglish": "Walk, walk, walk, Namaste, jump — phir Run."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "ScratchJr – MIT Media Lab, Tufts University DevTech, Playful Invention Co. (fact reference)",
+   "url": "https://www.scratchjr.org/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

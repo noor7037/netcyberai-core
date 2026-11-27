@@ -1,0 +1,352 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.electronics-maker.02",
+ "level": 2,
+ "classes": [
+  7,
+  8
+ ],
+ "unit": "electronics-maker",
+ "title": {
+  "en": "Resistors and LEDs",
+  "hi": "प्रतिरोधक और LED",
+  "hinglish": "Resistors aur LEDs"
+ },
+ "minutes": 14,
+ "xp": 45,
+ "prereq": [
+  "L2.electronics-maker.01"
+ ],
+ "topics": [
+  "elec.components",
+  "elec.ohms-law"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain why an LED needs a series resistor",
+   "hi": "समझा सकते हो कि LED को श्रेणी प्रतिरोधक क्यों चाहिए",
+   "hinglish": "Samjha sakte ho ki LED ko series resistor kyun chahiye"
+  },
+  {
+   "en": "Calculate a safe resistor with R = (V − 2) ÷ I",
+   "hi": "R = (V − 2) ÷ I से सुरक्षित प्रतिरोधक निकाल सकते हो",
+   "hinglish": "R = (V − 2) ÷ I se safe resistor nikaal sakte ho"
+  },
+  {
+   "en": "Read LED legs and resistor colour bands",
+   "hi": "LED की टाँगें और प्रतिरोधक की रंग पट्टियाँ पढ़ सकते हो",
+   "hinglish": "LED ki taangein aur resistor ke colour bands padh sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Resistor",
+   "hinglish": "Current kam karne wala part",
+   "en": "A part that limits current; its value is in ohms",
+   "hi": "धारा सीमित करने वाला भाग; उसका मान ओम में"
+  },
+  {
+   "term": "LED",
+   "hinglish": "Light Emitting Diode",
+   "en": "Light-emitting diode: lights up when current flows the right way",
+   "hi": "प्रकाश उत्सर्जक डायोड: सही दिशा में धारा बहने पर जलता है"
+  },
+  {
+   "term": "Anode / cathode",
+   "hinglish": "LED ka + (lambi taang) / − (chhoti taang)",
+   "en": "The LED’s + leg (longer) and − leg (shorter, flat side)",
+   "hi": "LED की + टाँग (लंबी) और − टाँग (छोटी, सपाट तरफ़)"
+  },
+  {
+   "term": "Forward voltage",
+   "hinglish": "LED pe girne wala voltage, ~2 V",
+   "en": "The voltage an LED uses up when lit, about 2 V for red",
+   "hi": "जलते समय LED द्वारा उपयोग होने वाला वोल्टेज, लाल के लिए लगभग 2 V"
+  },
+  {
+   "term": "Colour code",
+   "hinglish": "Resistor pe rang ki pattiyaan",
+   "en": "Coloured bands that tell a resistor’s value",
+   "hi": "रंगीन पट्टियाँ जो प्रतिरोधक का मान बताती हैं"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "An LED is a diode: current can pass only one way, from the long leg (+) to the short leg (−).",
+    "hi": "LED एक डायोड है: धारा केवल एक दिशा में जा सकती है, लंबी टाँग (+) से छोटी टाँग (−) की ओर।",
+    "hinglish": "LED ek diode hai: current sirf ek taraf ja sakta hai, lambi taang (+) se chhoti taang (−) ki taraf."
+   },
+   "visual": "compare:✅ Long leg to + → lights|❌ Reversed → stays dark (no damage at low voltage)",
+   "narration": {
+    "en": "Put it in backwards and nothing happens — check the legs first.",
+    "hi": "उल्टा लगाया तो कुछ नहीं होता — पहले टाँगें जाँचो।",
+    "hinglish": "Ulta lagaya to kuch nahi hota — pehle taangein check karo."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "An LED has almost no resistance of its own once lit, so without a resistor the current shoots up and it burns out.",
+    "hi": "जलने पर LED का अपना प्रतिरोध लगभग नहीं होता, इसलिए प्रतिरोधक के बिना धारा बहुत बढ़ जाती है और वह जल जाता है।",
+    "hinglish": "Jalne ke baad LED ka apna resistance lagbhag nahi hota, isliye resistor ke bina current bahut badh jaata hai aur woh jal jaata hai."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "Battery volts minus the LED’s 2 V, divided by the current you want.",
+    "hi": "बैटरी के वोल्ट घटा LED के 2 V, भाग जितनी धारा चाहिए।",
+    "hinglish": "Battery ke volts minus LED ke 2 V, bhaag jo current chahiye."
+   },
+   "code": "R = (V_battery − V_LED) ÷ I\n  = (5 − 2) ÷ 0.02\n  = 150 Ω   → LED glows safely at 20 mA"
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Pick a battery and a resistor in the lab. Too little resistance and the LED pops!",
+    "hi": "लैब में बैटरी और प्रतिरोधक चुनो। बहुत कम प्रतिरोध और LED फट जाएगा!",
+    "hinglish": "Lab mein battery aur resistor chuno. Bahut kam resistance aur LED phat jaayega!"
+   },
+   "visual": "lab:circuit-lab#led",
+   "narration": {
+    "en": "Aim for 10–20 mA: bright and safe.",
+    "hi": "10–20 mA का लक्ष्य रखो: चमकदार और सुरक्षित।",
+    "hinglish": "10–20 mA ka target rakho: chamakdaar aur safe."
+   }
+  }
+ ],
+ "play": {
+  "lab": "circuit-lab",
+  "config": {
+   "tab": "led"
+  },
+  "goal": {
+   "en": "Choose a battery and a resistor so the LED glows safely between 10 and 20 mA.",
+   "hi": "बैटरी और प्रतिरोधक ऐसे चुनो कि LED 10 से 20 mA के बीच सुरक्षित चमके।",
+   "hinglish": "Battery aur resistor aise chuno ki LED 10 se 20 mA ke beech safely chamke."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "How to choose the resistor",
+    "hi": "प्रतिरोधक कैसे चुनें",
+    "hinglish": "Resistor kaise chunein"
+   },
+   "body": {
+    "en": "A typical 5 mm red LED drops about 1.8–2.2 V and is rated for about 20 mA continuous current; blue and white LEDs drop about 3 V. The resistor takes the rest of the voltage. With a 9 V battery and a red LED: R = (9 − 2) ÷ 0.02 = 350 Ω, so use the next standard value up, 390 Ω. A bigger resistor is always safer — the LED just glows a little dimmer. Resistor values are printed as colour bands: black 0, brown 1, red 2, orange 3, yellow 4, green 5, blue 6, violet 7, grey 8, white 9. Brown-black-brown means 1, 0, × 10 = 100 Ω; red-red-brown = 220 Ω. The resistor can go on either side of the LED — in a single loop the same current flows everywhere.",
+    "hi": "एक सामान्य 5 mm लाल LED लगभग 1.8–2.2 V लेता है और लगभग 20 mA लगातार धारा के लिए बना है; नीले और सफ़ेद LED लगभग 3 V लेते हैं। बाक़ी वोल्टेज प्रतिरोधक लेता है। 9 V बैटरी और लाल LED के साथ: R = (9 − 2) ÷ 0.02 = 350 Ω, इसलिए अगला मानक मान 390 Ω उपयोग करो। बड़ा प्रतिरोधक हमेशा ज़्यादा सुरक्षित है — LED बस थोड़ा मंद चमकता है। प्रतिरोधक का मान रंग पट्टियों में छपा होता है: काला 0, भूरा 1, लाल 2, नारंगी 3, पीला 4, हरा 5, नीला 6, बैंगनी 7, धूसर 8, सफ़ेद 9। भूरा-काला-भूरा का अर्थ 1, 0, × 10 = 100 Ω; लाल-लाल-भूरा = 220 Ω। प्रतिरोधक LED के किसी भी ओर लग सकता है — एक घेरे में हर जगह वही धारा बहती है।",
+    "hinglish": "Ek typical 5 mm red LED lagbhag 1.8–2.2 V leta hai aur lagbhag 20 mA continuous current ke liye bana hai; blue aur white LEDs lagbhag 3 V lete hain. Baaki voltage resistor leta hai. 9 V battery aur red LED ke saath: R = (9 − 2) ÷ 0.02 = 350 Ω, isliye agla standard value 390 Ω use karo. Bada resistor hamesha zyada safe hai — LED bas thoda dim chamakta hai. Resistor ki value colour bands mein chhapi hoti hai: kaala 0, bhoora 1, laal 2, naarangi 3, peela 4, hara 5, neela 6, baingani 7, grey 8, safed 9. Brown-black-brown matlab 1, 0, × 10 = 100 Ω; red-red-brown = 220 Ω. Resistor LED ke kisi bhi taraf lag sakta hai — ek loop mein har jagah same current behta hai."
+   },
+   "analogy": {
+    "en": "A resistor = a speed breaker for a scooter: the vehicle (current) slows down but the road stays open. No breaker and the LED has an “accident”.",
+    "hi": "प्रतिरोधक = स्कूटर का स्पीड ब्रेकर: गाड़ी (धारा) धीमी, पर रास्ता बंद नहीं। ब्रेकर नहीं तो LED का “एक्सीडेंट”।",
+    "hinglish": "Resistor = scooter ka speed breaker: gaadi (current) dheemi, par raasta band nahi. Breaker nahi to LED ki “accident”."
+   },
+   "realExample": {
+    "en": "Every LED bulb at home has a small driver circuit inside that limits current, just like your resistor, so the LEDs last for years.",
+    "hi": "घर के हर LED बल्ब के अंदर एक छोटा ड्राइवर परिपथ होता है जो धारा सीमित करता है, बिलकुल आपके प्रतिरोधक की तरह, इसलिए LED सालों चलते हैं।",
+    "hinglish": "Ghar ke har LED bulb ke andar ek chhota driver circuit hota hai jo current limit karta hai, bilkul aapke resistor ki tarah, isliye LEDs saalon chalte hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Look at an old remote or toy circuit board (with a grown-up, batteries out). Find a resistor, read its colour bands and work out its value.",
+   "hi": "पुराने रिमोट या खिलौने का परिपथ बोर्ड देखो (बड़े के साथ, बैटरियाँ निकालकर)। एक प्रतिरोधक ढूँढो, रंग पट्टियाँ पढ़ो और मान निकालो।",
+   "hinglish": "Purane remote ya toy ka circuit board dekho (bade ke saath, batteries nikaal ke). Ek resistor dhoondo, colour bands padho aur value nikaalo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which LED leg goes to the battery’s + side?",
+     "hi": "LED की कौन-सी टाँग बैटरी के + से जुड़ती है?",
+     "hinglish": "LED ki kaunsi taang battery ke + se judti hai?"
+    },
+    "options": [
+     {
+      "en": "The longer leg (anode)",
+      "hi": "लंबी टाँग (एनोड)",
+      "hinglish": "Lambi taang (anode)"
+     },
+     {
+      "en": "The shorter leg (cathode)",
+      "hi": "छोटी टाँग (कैथोड)",
+      "hinglish": "Chhoti taang (cathode)"
+     },
+     {
+      "en": "Either, it does not matter",
+      "hi": "कोई भी, फ़र्क़ नहीं पड़ता",
+      "hinglish": "Koi bhi, farak nahi padta"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "The longer leg is the anode (+).",
+     "hi": "लंबी टाँग एनोड (+) है।",
+     "hinglish": "Lambi taang anode (+) hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "short",
+    "prompt": {
+     "en": "5 V battery, red LED (2 V), you want 20 mA. Resistor in ohms?",
+     "hi": "5 V बैटरी, लाल LED (2 V), 20 mA चाहिए। प्रतिरोधक कितने ओम?",
+     "hinglish": "5 V battery, red LED (2 V), 20 mA chahiye. Resistor kitne ohm?"
+    },
+    "answer": [
+     "150",
+     "150 Ω",
+     "150 ohm",
+     "150ohm"
+    ],
+    "explain": {
+     "en": "(5 − 2) ÷ 0.02 = 150 Ω.",
+     "hi": "(5 − 2) ÷ 0.02 = 150 Ω।",
+     "hinglish": "(5 − 2) ÷ 0.02 = 150 Ω."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "What happens if you connect an LED straight to a 9 V battery with no resistor?",
+     "hi": "प्रतिरोधक के बिना LED को सीधे 9 V बैटरी से जोड़ो तो क्या होगा?",
+     "hinglish": "Resistor ke bina LED ko seedha 9 V battery se jodo to kya hoga?"
+    },
+    "options": [
+     {
+      "en": "It glows extra long",
+      "hi": "बहुत देर चमकता है",
+      "hinglish": "Bahut der chamakta hai"
+     },
+     {
+      "en": "It burns out",
+      "hi": "जल जाता है",
+      "hinglish": "Jal jaata hai"
+     },
+     {
+      "en": "Nothing at all",
+      "hi": "कुछ भी नहीं",
+      "hinglish": "Kuch bhi nahi"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Far too much current flows and the LED burns out.",
+     "hi": "बहुत ज़्यादा धारा बहती है और LED जल जाता है।",
+     "hinglish": "Bahut zyada current behta hai aur LED jal jaata hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "short",
+    "prompt": {
+     "en": "Bands red-red-brown. Value in ohms?",
+     "hi": "पट्टियाँ लाल-लाल-भूरा। मान कितने ओम?",
+     "hinglish": "Bands red-red-brown. Value kitne ohm?"
+    },
+    "answer": [
+     "220",
+     "220 Ω",
+     "220 ohm"
+    ],
+    "explain": {
+     "en": "Red 2, red 2, brown × 10 → 220 Ω.",
+     "hi": "लाल 2, लाल 2, भूरा × 10 → 220 Ω।",
+     "hinglish": "Red 2, red 2, brown × 10 → 220 Ω."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q5",
+    "type": "multi",
+    "prompt": {
+     "en": "Which choices keep an LED safe? Choose all.",
+     "hi": "कौन-से विकल्प LED को सुरक्षित रखते हैं? सभी चुनो।",
+     "hinglish": "Kaunse options LED ko safe rakhte hain? Saare chuno."
+    },
+    "options": [
+     {
+      "en": "Use the calculated resistor",
+      "hi": "गणना वाला प्रतिरोधक लगाओ",
+      "hinglish": "Calculated resistor lagao"
+     },
+     {
+      "en": "Remove the resistor for more light",
+      "hi": "ज़्यादा रोशनी के लिए प्रतिरोधक हटाओ",
+      "hinglish": "Zyada roshni ke liye resistor hatao"
+     },
+     {
+      "en": "Use a slightly bigger resistor",
+      "hi": "थोड़ा बड़ा प्रतिरोधक लगाओ",
+      "hinglish": "Thoda bada resistor lagao"
+     },
+     {
+      "en": "Use a 230 V socket",
+      "hi": "230 V सॉकेट उपयोग करो",
+      "hinglish": "230 V socket use karo"
+     }
+    ],
+    "answer": [
+     0,
+     2
+    ],
+    "explain": {
+     "en": "A correctly sized or bigger resistor limits current. A smaller resistor or none lets too much through.",
+     "hi": "सही या बड़ा प्रतिरोधक धारा सीमित करता है। छोटा या कोई नहीं तो बहुत धारा जाती है।",
+     "hinglish": "Sahi ya bada resistor current limit karta hai. Chhota ya koi nahi to bahut current jaata hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Light the LED safely in the circuit lab.",
+     "hi": "सर्किट लैब में LED को सुरक्षित जलाओ।",
+     "hinglish": "Circuit lab mein LED ko safely jalao."
+    },
+    "answer": {
+     "lab": "circuit-lab",
+     "event": "mission:complete",
+     "tab": "led"
+    },
+    "explain": {
+     "en": "Aim for 10–20 mA with R = (V − 2) ÷ I.",
+     "hi": "R = (V − 2) ÷ I से 10–20 mA का लक्ष्य रखो।",
+     "hinglish": "R = (V − 2) ÷ I se 10–20 mA ka target rakho."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "SparkFun Learn — Light-Emitting Diodes (LEDs)",
+   "url": "https://learn.sparkfun.com/tutorials/light-emitting-diodes-leds",
+   "licence": "fact reference"
+  },
+  {
+   "title": "SparkFun Learn — Resistors",
+   "url": "https://learn.sparkfun.com/tutorials/resistors",
+   "licence": "fact reference"
+  },
+  {
+   "title": "PhET Interactive Simulations — Circuit Construction Kit: DC (University of Colorado Boulder)",
+   "url": "https://phet.colorado.edu/en/simulations/circuit-construction-kit-dc",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

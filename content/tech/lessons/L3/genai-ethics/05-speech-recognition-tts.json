@@ -1,0 +1,374 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.genai-ethics.05",
+ "level": 3,
+ "classes": [
+  10,
+  11,
+  12
+ ],
+ "unit": "genai-ethics",
+ "title": {
+  "en": "Speech recognition and text-to-speech",
+  "hi": "वाक् पहचान और पाठ-से-वाक्",
+  "hinglish": "Speech recognition aur text-to-speech"
+ },
+ "minutes": 15,
+ "xp": 60,
+ "prereq": [
+  "L3.genai-ethics.01"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain how speech becomes text: sound wave, spectrogram, model, words",
+   "hi": "समझाओ आवाज़ पाठ कैसे बनती है: ध्वनि तरंग, स्पेक्ट्रोग्राम, मॉडल, शब्द",
+   "hinglish": "Samjhao awaaz text kaise banti hai: sound wave, spectrogram, model, words"
+  },
+  {
+   "en": "Explain how neural text-to-speech makes a voice",
+   "hi": "समझाओ न्यूरल पाठ-से-वाक् आवाज़ कैसे बनाता है",
+   "hinglish": "Samjhao neural text-to-speech awaaz kaise banata hai"
+  },
+  {
+   "en": "Measure accuracy with word error rate and spot bias across Indian languages and accents",
+   "hi": "शब्द त्रुटि दर से सटीकता मापो और भारतीय भाषाओं व लहजों में पक्षपात पहचानो",
+   "hinglish": "Word error rate se accuracy naapo aur Indian languages aur accents mein bias pehchano"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "ASR",
+   "hinglish": "Awaaz se text",
+   "en": "Automatic speech recognition: turning speech into text",
+   "hi": "स्वचालित वाक् पहचान: बोली को पाठ में बदलना"
+  },
+  {
+   "term": "Spectrogram",
+   "hinglish": "Awaaz ki tasveer",
+   "en": "A picture of sound: time across, pitch up, loudness as brightness",
+   "hi": "ध्वनि का चित्र: आड़ा समय, ऊपर सुर, चमक से तेज़ी"
+  },
+  {
+   "term": "TTS",
+   "hinglish": "Text se awaaz",
+   "en": "Text-to-speech: turning text into a spoken voice",
+   "hi": "पाठ-से-वाक्: पाठ को बोली आवाज़ में बदलना"
+  },
+  {
+   "term": "WER",
+   "hinglish": "Shabd galti dar",
+   "en": "Word error rate = (substitutions + deletions + insertions) ÷ words said",
+   "hi": "शब्द त्रुटि दर = (बदले + छूटे + जुड़े) ÷ बोले गए शब्द"
+  },
+  {
+   "term": "Code-mixing",
+   "hinglish": "Bhasha mix",
+   "en": "Switching languages within a sentence, as in Hinglish",
+   "hi": "वाक्य के भीतर भाषा बदलना, जैसे हिंग्लिश"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Microphone → sound wave sampled 16,000 times a second.",
+    "hi": "माइक्रोफ़ोन → ध्वनि तरंग, एक सेकंड में 16,000 बार नमूना।",
+    "hinglish": "Microphone → sound wave, ek second mein 16,000 baar sample."
+   },
+   "visual": "flow:voice|mic|samples",
+   "narration": {
+    "en": "Microphone → sound wave sampled 16,000 times a second.",
+    "hi": "माइक्रोफ़ोन → ध्वनि तरंग, एक सेकंड में 16,000 बार नमूना।",
+    "hinglish": "Microphone → sound wave, ek second mein 16,000 baar sample."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Samples → spectrogram → transformer → \"kal school band hai\".",
+    "hi": "नमूने → स्पेक्ट्रोग्राम → ट्रांसफ़ॉर्मर → \"kal school band hai\"।",
+    "hinglish": "Samples → spectrogram → transformer → \"kal school band hai\"."
+   },
+   "visual": "flow:spectrogram|model|text",
+   "narration": {
+    "en": "Samples → spectrogram → transformer → \"kal school band hai\".",
+    "hi": "नमूने → स्पेक्ट्रोग्राम → ट्रांसफ़ॉर्मर → \"kal school band hai\"।",
+    "hinglish": "Samples → spectrogram → transformer → \"kal school band hai\"."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "TTS runs the other way: text → sounds → spectrogram → vocoder → voice.",
+    "hi": "TTS उल्टा चलता है: पाठ → ध्वनियाँ → स्पेक्ट्रोग्राम → वोकोडर → आवाज़।",
+    "hinglish": "TTS ulta chalta hai: text → sounds → spectrogram → vocoder → voice."
+   },
+   "visual": "flow:text|spectrogram|vocoder|voice",
+   "narration": {
+    "en": "TTS runs the other way: text → sounds → spectrogram → vocoder → voice.",
+    "hi": "TTS उल्टा चलता है: पाठ → ध्वनियाँ → स्पेक्ट्रोग्राम → वोकोडर → आवाज़।",
+    "hinglish": "TTS ulta chalta hai: text → sounds → spectrogram → vocoder → voice."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Test fairly: WER for each language and accent, not just one average.",
+    "hi": "निष्पक्ष जाँच: हर भाषा और लहजे के लिए WER, केवल एक औसत नहीं।",
+    "hinglish": "Fair test: har language aur accent ke liye WER, sirf ek average nahi."
+   },
+   "visual": "compare:English WER|Bhojpuri WER",
+   "narration": {
+    "en": "Test fairly: WER for each language and accent, not just one average.",
+    "hi": "निष्पक्ष जाँच: हर भाषा और लहजे के लिए WER, केवल एक औसत नहीं।",
+    "hinglish": "Fair test: har language aur accent ke liye WER, sirf ek average nahi."
+   }
+  }
+ ],
+ "play": {
+  "lab": "tokenizer-attention",
+  "config": {
+   "view": "tokens"
+  },
+  "goal": {
+   "en": "After speech becomes text, a language model still has to read it. Compare how many tokens the same sentence needs in English, Hinglish and Hindi — one reason Indian-language voice assistants cost more and need models trained on Indian data.",
+   "hi": "बोली पाठ बनने के बाद भी भाषा मॉडल को उसे पढ़ना होता है। एक ही वाक्य के अंग्रेज़ी, हिंग्लिश और हिंदी में कितने टोकन लगते हैं तुलना करो — एक कारण कि भारतीय-भाषा वॉयस सहायक महँगे हैं और उन्हें भारतीय डेटा पर प्रशिक्षित मॉडल चाहिए।",
+   "hinglish": "Speech text banne ke baad bhi language model ko use padhna hota hai. Ek hi sentence ke English, Hinglish aur Hindi mein kitne tokens lagte hain compare karo — ek kaaran ki Indian-language voice assistants mehnge hain aur unhe Indian data par trained models chahiye."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "From sound to words",
+    "hi": "ध्वनि से शब्द तक",
+    "hinglish": "Sound se words tak"
+   },
+   "body": {
+    "en": "A microphone turns air-pressure changes into numbers, usually 16,000 samples per second for speech. The model first turns them into a spectrogram — a picture showing which pitches are loud at each moment — because speech sounds have recognisable shapes in it. A modern ASR model is a transformer, like an LLM: an encoder reads the spectrogram and a decoder writes text token by token, using context to pick between sound-alikes (\"there\" or \"their\"). OpenAI’s Whisper (2022, released under the MIT licence) was trained on about 680,000 hours of audio. India’s Bhashini platform, from the National Language Translation Mission launched in 2022, and the open AI4Bharat models offer speech recognition, translation and TTS for Indian languages — this is how a farmer can ask a question in Marathi and hear an answer.",
+    "hi": "माइक्रोफ़ोन हवा के दबाव के बदलावों को संख्याओं में बदलता है, बोली के लिए आमतौर पर एक सेकंड में 16,000 नमूने। मॉडल पहले उन्हें स्पेक्ट्रोग्राम में बदलता है — एक चित्र जो दिखाए हर पल कौन-से सुर तेज़ हैं — क्योंकि बोली की ध्वनियों के उसमें पहचानने योग्य आकार होते हैं। आधुनिक ASR मॉडल LLM जैसा ट्रांसफ़ॉर्मर है: एनकोडर स्पेक्ट्रोग्राम पढ़ता है और डिकोडर टोकन-दर-टोकन पाठ लिखता है, एक जैसी ध्वनियों (\"there\" या \"their\") में चुनने के लिए संदर्भ इस्तेमाल करते हुए। OpenAI का Whisper (2022, MIT लाइसेंस के तहत जारी) लगभग 6,80,000 घंटे के ऑडियो पर प्रशिक्षित हुआ। 2022 में शुरू राष्ट्रीय भाषा अनुवाद मिशन का भारत का भाषिणी मंच और खुले AI4Bharat मॉडल भारतीय भाषाओं के लिए वाक् पहचान, अनुवाद और TTS देते हैं — इसी से किसान मराठी में प्रश्न पूछकर उत्तर सुन सकता है।",
+    "hinglish": "Microphone hawa ke pressure ke badlaavon ko numbers mein badalta hai, speech ke liye aam taur par ek second mein 16,000 samples. Model pehle unhe spectrogram mein badalta hai — ek picture jo dikhaye har pal kaunse pitches tez hain — kyunki speech sounds ke usmein pehchanne layak shapes hote hain. Modern ASR model LLM jaisa transformer hai: encoder spectrogram padhta hai aur decoder token by token text likhta hai, ek jaisi sounds (\"there\" ya \"their\") mein chunne ke liye context use karte hue. OpenAI ka Whisper (2022, MIT licence ke tahat release) lagbhag 680,000 ghante ke audio par trained hua. 2022 mein shuru National Language Translation Mission ka India ka Bhashini platform aur open AI4Bharat models Indian languages ke liye speech recognition, translation aur TTS dete hain — isi se kisan Marathi mein sawaal poochkar jawab sun sakta hai."
+   },
+   "analogy": {
+    "en": "A court stenographer who has heard thousands of hearings: she uses the sentence so far to decide what an unclear word must be.",
+    "hi": "हज़ारों सुनवाइयाँ सुन चुकी अदालत आशुलिपिक: अब तक के वाक्य से तय करती है कि अस्पष्ट शब्द क्या होगा।",
+    "hinglish": "Hazaaron hearings sun chuki court stenographer: ab tak ke sentence se tay karti hai ki unclear word kya hoga."
+   },
+   "realExample": {
+    "en": "Said: \"kal school band hai kya\" → heard: \"kal school bandh hai kya\" → 1 substitution in 5 words → WER = 1 ÷ 5 = 20%.",
+    "hi": "बोला: \"kal school band hai kya\" → सुना: \"kal school bandh hai kya\" → 5 शब्दों में 1 बदलाव → WER = 1 ÷ 5 = 20%।",
+    "hinglish": "Bola: \"kal school band hai kya\" → suna: \"kal school bandh hai kya\" → 5 words mein 1 substitution → WER = 1 ÷ 5 = 20%."
+   }
+  },
+  {
+   "heading": {
+    "en": "Making voices, and testing fairly",
+    "hi": "आवाज़ें बनाना, और निष्पक्ष जाँच",
+    "hinglish": "Awaazein banana, aur fair testing"
+   },
+   "body": {
+    "en": "Neural text-to-speech runs the pipeline the other way. A front end turns text into sounds (phonemes) and decides stress and pauses — hard for Hindi words written in English letters, or numbers like \"₹1,250\". An acoustic model predicts a spectrogram, and a vocoder turns that into a waveform you can hear. Modern TTS sounds natural enough to read news, help blind users through screen readers and announce train arrivals. Measure ASR with word error rate on a test set, and always split it by group: models trained mostly on American and British English often do much worse on Indian accents, older speakers, noisy streets and code-mixed Hinglish. A voice assistant that understands one group and not another is unfair, even if its average looks good. Voice is also personal data, so ask before recording people and do not upload others’ voices.",
+    "hi": "न्यूरल पाठ-से-वाक् प्रक्रिया को उल्टा चलाता है। अग्र भाग पाठ को ध्वनियों (स्वनिम) में बदलता है और ज़ोर व ठहराव तय करता है — अंग्रेज़ी अक्षरों में लिखे हिंदी शब्दों, या \"₹1,250\" जैसी संख्याओं के लिए कठिन। ध्वनिक मॉडल स्पेक्ट्रोग्राम का अनुमान लगाता है, और वोकोडर उसे सुनने योग्य तरंग में बदलता है। आधुनिक TTS समाचार पढ़ने, स्क्रीन रीडर से दृष्टिहीन उपयोगकर्ताओं की मदद करने और ट्रेन आगमन की घोषणा के लिए काफ़ी स्वाभाविक लगता है। ASR को परीक्षण सेट पर शब्द त्रुटि दर से मापो, और हमेशा समूह के हिसाब से बाँटो: ज़्यादातर अमेरिकी और ब्रिटिश अंग्रेज़ी पर प्रशिक्षित मॉडल भारतीय लहजों, बुज़ुर्ग वक्ताओं, शोर भरी सड़कों और मिश्रित हिंग्लिश पर अक्सर बहुत बुरा करते हैं। जो वॉयस सहायक एक समूह को समझे और दूसरे को नहीं, वह अनुचित है, चाहे उसका औसत अच्छा दिखे। आवाज़ व्यक्तिगत डेटा भी है, इसलिए लोगों को रिकॉर्ड करने से पहले पूछो और दूसरों की आवाज़ अपलोड मत करो।",
+    "hinglish": "Neural text-to-speech pipeline ko ulta chalata hai. Front end text ko sounds (phonemes) mein badalta hai aur stress aur pauses tay karta hai — English letters mein likhe Hindi words, ya \"₹1,250\" jaise numbers ke liye mushkil. Acoustic model spectrogram predict karta hai, aur vocoder use sunne layak waveform mein badalta hai. Modern TTS news padhne, screen readers se blind users ki madad karne aur train arrival announce karne ke liye kaafi natural lagta hai. ASR ko test set par word error rate se naapo, aur hamesha group ke hisaab se baanto: zyaadatar American aur British English par trained models Indian accents, buzurg speakers, shor bhari sadkon aur code-mixed Hinglish par aksar bahut bura karte hain. Jo voice assistant ek group ko samjhe aur doosre ko nahi, woh unfair hai, chahe uska average achha dikhe. Awaaz personal data bhi hai, isliye logon ko record karne se pehle poocho aur doosron ki awaaz upload mat karo."
+   },
+   "analogy": {
+    "en": "A new teacher who understands the front bench perfectly but not the back rows has not really understood the class.",
+    "hi": "नया शिक्षक जो आगे की बेंच पूरी समझे पर पीछे की पंक्तियाँ नहीं, उसने कक्षा सच में नहीं समझी।",
+    "hinglish": "Naya teacher jo aage ki bench poori samjhe par peeche ki rows nahi, usne class sach mein nahi samjhi."
+   },
+   "realExample": {
+    "en": "Test report: WER 6% (news English) · 11% (Indian English) · 19% (Hinglish, street noise) → collect more Hinglish data before launch.",
+    "hi": "परीक्षण रिपोर्ट: WER 6% (समाचार अंग्रेज़ी) · 11% (भारतीय अंग्रेज़ी) · 19% (हिंग्लिश, सड़क शोर) → लॉन्च से पहले और हिंग्लिश डेटा इकट्ठा करो।",
+    "hinglish": "Test report: WER 6% (news English) · 11% (Indian English) · 19% (Hinglish, street noise) → launch se pehle aur Hinglish data ikattha karo."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Try your phone’s voice typing in English, Hindi and Hinglish: read the same 20-word paragraph three times in a quiet room and once near traffic. Count the errors and work out the WER for each. Then listen to your phone’s text-to-speech read a sentence with a number and a Hindi name, and note what it gets wrong.",
+   "hi": "अपने फ़ोन की वॉयस टाइपिंग अंग्रेज़ी, हिंदी और हिंग्लिश में आज़माओ: वही 20-शब्द अनुच्छेद शांत कमरे में तीन बार और ट्रैफ़िक के पास एक बार पढ़ो। त्रुटियाँ गिनो और हर एक का WER निकालो। फिर फ़ोन के पाठ-से-वाक् से संख्या और हिंदी नाम वाला वाक्य सुनो, और लिखो वह क्या ग़लत बोलता है।",
+   "hinglish": "Apne phone ki voice typing English, Hindi aur Hinglish mein try karo: wahi 20-word paragraph shaant kamre mein teen baar aur traffic ke paas ek baar padho. Errors gino aur har ek ka WER nikaalo. Phir phone ke text-to-speech se number aur Hindi naam wala sentence sunwao, aur note karo kya galat bolta hai."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "order",
+    "prompt": {
+     "en": "Order the speech-recognition pipeline.",
+     "hi": "वाक् पहचान प्रक्रिया क्रम में लगाओ।",
+     "hinglish": "Speech recognition pipeline order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Microphone samples the sound",
+      "hi": "माइक्रोफ़ोन ध्वनि के नमूने लेता है",
+      "hinglish": "Microphone sound sample karta hai"
+     },
+     {
+      "en": "Samples become a spectrogram",
+      "hi": "नमूने स्पेक्ट्रोग्राम बनते हैं",
+      "hinglish": "Samples spectrogram bante hain"
+     },
+     {
+      "en": "A transformer reads it",
+      "hi": "ट्रांसफ़ॉर्मर उसे पढ़ता है",
+      "hinglish": "Transformer use padhta hai"
+     },
+     {
+      "en": "Text tokens come out",
+      "hi": "पाठ टोकन निकलते हैं",
+      "hinglish": "Text tokens nikalte hain"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "Sound → picture → model → words.",
+     "hi": "ध्वनि → चित्र → मॉडल → शब्द।",
+     "hinglish": "Sound → picture → model → words."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "short",
+    "prompt": {
+     "en": "A speaker says 10 words. The ASR gets 1 word wrong and misses 1 word. What is the WER in %?",
+     "hi": "वक्ता 10 शब्द बोलता है। ASR 1 शब्द ग़लत करता है और 1 छोड़ता है। WER % में?",
+     "hinglish": "Speaker 10 words bolta hai. ASR 1 word galat karta hai aur 1 chhodta hai. WER % mein?"
+    },
+    "answer": {
+     "accept": [
+      "20",
+      "20%"
+     ]
+    },
+    "explain": {
+     "en": "(1 + 1) ÷ 10 = 20%.",
+     "hi": "(1 + 1) ÷ 10 = 20%।",
+     "hinglish": "(1 + 1) ÷ 10 = 20%."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "An assistant has 8% average WER but 25% on Bhojpuri-accented Hindi. What should the team do?",
+     "hi": "सहायक का औसत WER 8% पर भोजपुरी लहजे वाली हिंदी पर 25% है। टीम क्या करे?",
+     "hinglish": "Assistant ka average WER 8% par Bhojpuri accent wali Hindi par 25% hai. Team kya kare?"
+    },
+    "options": [
+     {
+      "en": "Collect consented data from those speakers and test each group",
+      "hi": "उन वक्ताओं से सहमति वाला डेटा लो और हर समूह जाँचो",
+      "hinglish": "Un speakers se consent wala data lo aur har group test karo"
+     },
+     {
+      "en": "Launch — the average is fine",
+      "hi": "लॉन्च करो — औसत ठीक है",
+      "hinglish": "Launch karo — average theek hai"
+     },
+     {
+      "en": "Tell users to change their accent",
+      "hi": "उपयोगकर्ताओं से लहजा बदलने को कहो",
+      "hinglish": "Users se accent badalne ko kaho"
+     },
+     {
+      "en": "Delete the test results",
+      "hi": "परिणाम मिटाओ",
+      "hinglish": "Results mitao"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Averages hide unfairness.",
+     "hi": "औसत अन्याय छिपाते हैं।",
+     "hinglish": "Averages unfairness chhupate hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "In text-to-speech, what does the vocoder do?",
+     "hi": "पाठ-से-वाक् में वोकोडर क्या करता है?",
+     "hinglish": "Text-to-speech mein vocoder kya karta hai?"
+    },
+    "options": [
+     {
+      "en": "Turns a predicted spectrogram into an audible waveform",
+      "hi": "अनुमानित स्पेक्ट्रोग्राम को सुनने योग्य तरंग में बदलता है",
+      "hinglish": "Predicted spectrogram ko sunne layak waveform mein badalta hai"
+     },
+     {
+      "en": "Translates Hindi to English",
+      "hi": "हिंदी का अंग्रेज़ी अनुवाद",
+      "hinglish": "Hindi ko English mein translate"
+     },
+     {
+      "en": "Records the user",
+      "hi": "उपयोगकर्ता को रिकॉर्ड करता है",
+      "hinglish": "User ko record karta hai"
+     },
+     {
+      "en": "Counts tokens",
+      "hi": "टोकन गिनता है",
+      "hinglish": "Tokens ginta hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Text → sounds → spectrogram → vocoder → voice.",
+     "hi": "पाठ → ध्वनियाँ → स्पेक्ट्रोग्राम → वोकोडर → आवाज़।",
+     "hinglish": "Text → sounds → spectrogram → vocoder → voice."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Compare English, Hinglish and Hindi token counts in the Tokenizer lab.",
+     "hi": "टोकनाइज़र लैब में अंग्रेज़ी, हिंग्लिश और हिंदी टोकन गिनती की तुलना करो।",
+     "hinglish": "Tokenizer lab mein English, Hinglish aur Hindi token counts compare karo."
+    },
+    "answer": {
+     "event": "compared-scripts"
+    },
+    "explain": {
+     "en": "Devanagari often needs more tokens in English-trained tokenizers.",
+     "hi": "अंग्रेज़ी-प्रशिक्षित टोकनाइज़र में देवनागरी को अक्सर ज़्यादा टोकन।",
+     "hinglish": "English-trained tokenizers mein Devanagari ko aksar zyada tokens."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "ai.genai-audio",
+  "ai.nlp",
+  "ai.data-bias"
+ ],
+ "sources": [
+  {
+   "title": "Radford et al. (2022) — Robust Speech Recognition via Large-Scale Weak Supervision (Whisper)",
+   "url": "https://arxiv.org/abs/2212.04356",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Bhashini — National Language Translation Mission",
+   "url": "https://bhashini.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "AI4Bharat (IIT Madras)",
+   "url": "https://ai4bharat.iitm.ac.in/",
+   "licence": "fact reference"
+  }
+ ]
+}

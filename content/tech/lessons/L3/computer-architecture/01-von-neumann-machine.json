@@ -1,0 +1,382 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.computer-architecture.01",
+ "level": 3,
+ "classes": [
+  9,
+  10
+ ],
+ "unit": "computer-architecture",
+ "title": {
+  "en": "The von Neumann machine",
+  "hi": "वॉन न्यूमैन मशीन",
+  "hinglish": "Von Neumann machine"
+ },
+ "minutes": 12,
+ "xp": 50,
+ "prereq": [],
+ "outcomes": [
+  {
+   "en": "Name the parts of a stored-program computer and how they connect",
+   "hi": "संग्रहीत-प्रोग्राम कंप्यूटर के हिस्से और उनका जुड़ाव बताओ",
+   "hinglish": "Stored-program computer ke parts aur unka judaav batao"
+  },
+  {
+   "en": "Trace one instruction through fetch, decode and execute",
+   "hi": "एक निर्देश को फ़ेच, डिकोड और एक्ज़ीक्यूट से गुज़रते देखो",
+   "hinglish": "Ek instruction ko fetch, decode aur execute se guzarte dekho"
+  },
+  {
+   "en": "Explain the von Neumann bottleneck",
+   "hi": "वॉन न्यूमैन अड़चन समझाओ",
+   "hinglish": "Von Neumann bottleneck samjhao"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Stored program",
+   "hinglish": "Program bhi memory mein",
+   "en": "Instructions are kept in memory just like data",
+   "hi": "निर्देश भी डेटा की तरह मेमोरी में रखे जाते हैं"
+  },
+  {
+   "term": "Program counter",
+   "hinglish": "Agla instruction kahan",
+   "en": "Register holding the address of the next instruction",
+   "hi": "अगले निर्देश का पता रखने वाला रजिस्टर"
+  },
+  {
+   "term": "ALU",
+   "hinglish": "Hisaab karne wala hissa",
+   "en": "Arithmetic logic unit: adds, compares, does AND/OR",
+   "hi": "अंकगणित तर्क इकाई: जोड़ती, तुलना करती, AND/OR करती"
+  },
+  {
+   "term": "Bus",
+   "hinglish": "Data ki sadak",
+   "en": "Wires carrying addresses, data and control signals",
+   "hi": "पते, डेटा और नियंत्रण संकेत ले जाने वाले तार"
+  },
+  {
+   "term": "Instruction set",
+   "hinglish": "CPU ki bhasha",
+   "en": "The list of operations a CPU understands, e.g. x86, ARM, RISC-V",
+   "hi": "CPU जो क्रियाएँ समझता है उनकी सूची, जैसे x86, ARM, RISC-V"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "In 1945 John von Neumann described a design still used today: CPU, memory holding both program and data, input and output.",
+    "hi": "1945 में जॉन वॉन न्यूमैन ने एक डिज़ाइन बताया जो आज भी इस्तेमाल होता है: CPU, प्रोग्राम और डेटा दोनों रखने वाली मेमोरी, इनपुट और आउटपुट।",
+    "hinglish": "1945 mein John von Neumann ne ek design bataya jo aaj bhi use hota hai: CPU, program aur data dono rakhne wali memory, input aur output."
+   },
+   "visual": "anim:vn-blocks",
+   "narration": {
+    "en": "In 1945 John von Neumann described a design still used today: CPU, memory holding both program and data, input and output.",
+    "hi": "1945 में जॉन वॉन न्यूमैन ने एक डिज़ाइन बताया जो आज भी इस्तेमाल होता है: CPU, प्रोग्राम और डेटा दोनों रखने वाली मेमोरी, इनपुट और आउटपुट।",
+    "hinglish": "1945 mein John von Neumann ne ek design bataya jo aaj bhi use hota hai: CPU, program aur data dono rakhne wali memory, input aur output."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "The CPU has a control unit (the conductor), an ALU (the calculator) and registers (tiny, super-fast scratch boxes).",
+    "hi": "CPU में नियंत्रण इकाई (संचालक), ALU (कैलकुलेटर) और रजिस्टर (छोटे, बेहद तेज़ डिब्बे) होते हैं।",
+    "hinglish": "CPU mein control unit (conductor), ALU (calculator) aur registers (chhote, bahut tez dibbe) hote hain."
+   },
+   "visual": "anim:cpu-parts",
+   "narration": {
+    "en": "The CPU has a control unit (the conductor), an ALU (the calculator) and registers (tiny, super-fast scratch boxes).",
+    "hi": "CPU में नियंत्रण इकाई (संचालक), ALU (कैलकुलेटर) और रजिस्टर (छोटे, बेहद तेज़ डिब्बे) होते हैं।",
+    "hinglish": "CPU mein control unit (conductor), ALU (calculator) aur registers (chhote, bahut tez dibbe) hote hain."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Each tick: fetch the instruction at the program counter, decode it, execute it, then move to the next.",
+    "hi": "हर टिक: प्रोग्राम काउंटर वाला निर्देश लाओ, डिकोड करो, चलाओ, फिर अगले पर जाओ।",
+    "hinglish": "Har tick: program counter wala instruction laao, decode karo, chalao, phir agle par jao."
+   },
+   "visual": "anim:fde-cycle",
+   "narration": {
+    "en": "Each tick: fetch the instruction at the program counter, decode it, execute it, then move to the next.",
+    "hi": "हर टिक: प्रोग्राम काउंटर वाला निर्देश लाओ, डिकोड करो, चलाओ, फिर अगले पर जाओ।",
+    "hinglish": "Har tick: program counter wala instruction laao, decode karo, chalao, phir agle par jao."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Program and data share one path to memory, so the CPU often waits for memory — the von Neumann bottleneck.",
+    "hi": "प्रोग्राम और डेटा मेमोरी तक एक ही रास्ता बाँटते हैं, इसलिए CPU अक्सर मेमोरी का इंतज़ार करता है — वॉन न्यूमैन अड़चन।",
+    "hinglish": "Program aur data memory tak ek hi raasta share karte hain, isliye CPU aksar memory ka intezaar karta hai — von Neumann bottleneck."
+   },
+   "visual": "anim:bottleneck",
+   "narration": {
+    "en": "Program and data share one path to memory, so the CPU often waits for memory — the von Neumann bottleneck.",
+    "hi": "प्रोग्राम और डेटा मेमोरी तक एक ही रास्ता बाँटते हैं, इसलिए CPU अक्सर मेमोरी का इंतज़ार करता है — वॉन न्यूमैन अड़चन।",
+    "hinglish": "Program aur data memory tak ek hi raasta share karte hain, isliye CPU aksar memory ka intezaar karta hai — von Neumann bottleneck."
+   }
+  }
+ ],
+ "play": {
+  "lab": "seq-flow",
+  "config": {
+   "scenario": "fetch-execute"
+  },
+  "goal": {
+   "en": "Step through ADD R1, [100]. Watch the program counter, the instruction register and the ALU. Write down R1 before and after.",
+   "hi": "ADD R1, [100] चरण-दर-चरण चलाओ। प्रोग्राम काउंटर, निर्देश रजिस्टर और ALU देखो। R1 पहले और बाद में लिखो।",
+   "hinglish": "ADD R1, [100] step-by-step chalao. Program counter, instruction register aur ALU dekho. R1 pehle aur baad mein note karo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Instruction sets: x86, ARM, RISC-V",
+    "hi": "निर्देश सेट: x86, ARM, RISC-V",
+    "hinglish": "Instruction sets: x86, ARM, RISC-V"
+   },
+   "body": {
+    "en": "Machine code is just numbers in memory; the instruction set architecture (ISA) defines what they mean. x86-64 (Intel, AMD) powers most laptops and servers; ARM powers almost every phone and Apple's M-series Macs; RISC-V is an open, royalty-free ISA anyone can build on. India's SHAKTI processors from IIT Madras are RISC-V based, and in 2025 ISRO's Semiconductor Laboratory presented the Vikram 3201, a 32-bit processor made in India for space use. Compilers turn your Python or C into the right machine code (Python via an interpreter).",
+    "hi": "मशीन कोड मेमोरी में बस संख्याएँ हैं; निर्देश सेट आर्किटेक्चर (ISA) उनका अर्थ तय करता है। x86-64 (Intel, AMD) ज़्यादातर लैपटॉप और सर्वर चलाता है; ARM लगभग हर फ़ोन और ऐप्पल के M-सीरीज़ मैक चलाता है; RISC-V खुला, रॉयल्टी-मुक्त ISA है जिस पर कोई भी बना सकता है। आईआईटी मद्रास के भारतीय SHAKTI प्रोसेसर RISC-V आधारित हैं, और 2025 में इसरो की सेमीकंडक्टर प्रयोगशाला ने अंतरिक्ष उपयोग के लिए भारत में बना 32-बिट प्रोसेसर विक्रम 3201 प्रस्तुत किया। कंपाइलर आपके Python या C को सही मशीन कोड में बदलते हैं (Python इंटरप्रेटर से)।",
+    "hinglish": "Machine code memory mein bas numbers hain; instruction set architecture (ISA) unka matlab tay karta hai. x86-64 (Intel, AMD) zyaadatar laptops aur servers chalata hai; ARM lagbhag har phone aur Apple ke M-series Macs chalata hai; RISC-V open, royalty-free ISA hai jis par koi bhi bana sakta hai. IIT Madras ke Indian SHAKTI processors RISC-V based hain, aur 2025 mein ISRO ki Semiconductor Laboratory ne space use ke liye India mein bana 32-bit processor Vikram 3201 present kiya. Compilers tumhare Python ya C ko sahi machine code mein badalte hain (Python interpreter se)."
+   },
+   "analogy": {
+    "en": "An ISA is like a language: Hindi and Tamil speakers think the same thoughts, but the words differ — software must be \"translated\" for each.",
+    "hi": "ISA एक भाषा जैसा है: हिंदी और तमिल बोलने वाले एक जैसा सोचते हैं, पर शब्द अलग — सॉफ़्टवेयर को हर एक के लिए \"अनुवाद\" करना पड़ता है।",
+    "hinglish": "ISA ek bhasha jaisa hai: Hindi aur Tamil bolne wale ek jaisa sochte hain, par shabd alag — software ko har ek ke liye \"translate\" karna padta hai."
+   },
+   "realExample": {
+    "en": "An Android app built for ARM will not run directly on an x86 laptop without an emulator or a recompile.",
+    "hi": "ARM के लिए बना एंड्रॉइड ऐप x86 लैपटॉप पर बिना एमुलेटर या दोबारा कंपाइल किए सीधे नहीं चलेगा।",
+    "hinglish": "ARM ke liye bana Android app x86 laptop par bina emulator ya recompile ke seedha nahi chalega."
+   }
+  },
+  {
+   "heading": {
+    "en": "Beating the bottleneck",
+    "hi": "अड़चन को हराना",
+    "hinglish": "Bottleneck ko harana"
+   },
+   "body": {
+    "en": "Memory is much slower than the CPU, so designers add caches (copies of hot data near the core), pipelining (start fetching the next instruction while executing this one), branch prediction (guess which way an if goes) and multiple cores. Some chips, like many microcontrollers and DSPs, use a Harvard design with separate paths for instructions and data. AI chips go further, keeping weights in on-chip memory to avoid trips to RAM.",
+    "hi": "मेमोरी CPU से बहुत धीमी है, इसलिए डिज़ाइनर कैश (कोर के पास गरम डेटा की कॉपी), पाइपलाइनिंग (यह निर्देश चलाते हुए अगला लाना शुरू), ब्रांच प्रेडिक्शन (if किस ओर जाएगा, अनुमान) और कई कोर जोड़ते हैं। कुछ चिप, जैसे कई माइक्रोकंट्रोलर और DSP, हार्वर्ड डिज़ाइन इस्तेमाल करते हैं जिसमें निर्देश और डेटा के अलग रास्ते होते हैं। AI चिप और आगे जाते हैं, भार चिप पर ही रखते हैं ताकि RAM तक न जाना पड़े।",
+    "hinglish": "Memory CPU se bahut slow hai, isliye designers caches (core ke paas garam data ki copy), pipelining (yeh instruction chalate hue agla laana shuru), branch prediction (if kis taraf jayega, andaaza) aur multiple cores jodte hain. Kuch chips, jaise kai microcontrollers aur DSPs, Harvard design use karte hain jismein instructions aur data ke alag raaste hote hain. AI chips aur aage jaate hain, weights chip par hi rakhte hain taaki RAM tak na jaana pade."
+   },
+   "analogy": {
+    "en": "A chef (CPU) with one narrow door to the store room (memory) keeps the most-used spices on the counter (cache).",
+    "hi": "एक रसोइया (CPU) जिसके भंडार (मेमोरी) तक एक ही पतला दरवाज़ा है, सबसे ज़्यादा इस्तेमाल मसाले काउंटर (कैश) पर रखता है।",
+    "hinglish": "Ek chef (CPU) jiske store room (memory) tak ek hi patla darwaaza hai, sabse zyaada use hone wale masale counter (cache) par rakhta hai."
+   },
+   "realExample": {
+    "en": "A 3 GHz CPU waiting ~100 ns for RAM loses about 300 clock cycles — enough time for hundreds of instructions.",
+    "hi": "RAM के लिए ~100 ns रुकता 3 GHz CPU लगभग 300 घड़ी-चक्र खोता है — सैकड़ों निर्देशों जितना समय।",
+    "hinglish": "RAM ke liye ~100 ns rukta 3 GHz CPU lagbhag 300 clock cycles khota hai — saikdon instructions jitna time."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write a 6-instruction \"program\" in plain words for a tiny CPU that adds two numbers from memory and stores the result. Show the program counter value at each step.",
+   "hi": "एक छोटे CPU के लिए 6-निर्देश का \"प्रोग्राम\" सरल शब्दों में लिखो जो मेमोरी से दो संख्याएँ जोड़े और परिणाम रखे। हर चरण पर प्रोग्राम काउंटर का मान दिखाओ।",
+   "hinglish": "Ek chhote CPU ke liye 6-instruction ka \"program\" saadi bhasha mein likho jo memory se do numbers jode aur result store kare. Har step par program counter ki value dikhao."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "order",
+    "prompt": {
+     "en": "Order the instruction cycle.",
+     "hi": "निर्देश चक्र क्रम में लगाओ।",
+     "hinglish": "Instruction cycle order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Fetch",
+      "hi": "लाना (Fetch)",
+      "hinglish": "Fetch"
+     },
+     {
+      "en": "Decode",
+      "hi": "समझना (Decode)",
+      "hinglish": "Decode"
+     },
+     {
+      "en": "Execute",
+      "hi": "चलाना (Execute)",
+      "hinglish": "Execute"
+     },
+     {
+      "en": "Write back",
+      "hi": "वापस लिखना",
+      "hinglish": "Write back"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "Then the PC points to the next instruction and it repeats.",
+     "hi": "फिर PC अगले निर्देश पर और चक्र दोहराता है।",
+     "hinglish": "Phir PC agle instruction par aur cycle repeat hota hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "What does the program counter hold?",
+     "hi": "प्रोग्राम काउंटर में क्या होता है?",
+     "hinglish": "Program counter mein kya hota hai?"
+    },
+    "options": [
+     {
+      "en": "Address of the next instruction",
+      "hi": "अगले निर्देश का पता",
+      "hinglish": "Agle instruction ka address"
+     },
+     {
+      "en": "The number of programs open",
+      "hi": "खुले प्रोग्रामों की संख्या",
+      "hinglish": "Khule programs ki sankhya"
+     },
+     {
+      "en": "The battery level",
+      "hi": "बैटरी स्तर",
+      "hinglish": "Battery level"
+     },
+     {
+      "en": "The last result",
+      "hi": "पिछला परिणाम",
+      "hinglish": "Pichhla result"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "It moves forward each cycle, or jumps on a branch.",
+     "hi": "हर चक्र आगे बढ़ता है, या ब्रांच पर कूदता है।",
+     "hinglish": "Har cycle aage badhta hai, ya branch par koodta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "The von Neumann bottleneck is…",
+     "hi": "वॉन न्यूमैन अड़चन है…",
+     "hinglish": "Von Neumann bottleneck hai…"
+    },
+    "options": [
+     {
+      "en": "The CPU waiting on the shared path to memory",
+      "hi": "मेमोरी तक साझा रास्ते पर CPU का इंतज़ार",
+      "hinglish": "Memory tak shared raaste par CPU ka intezaar"
+     },
+     {
+      "en": "A broken fan",
+      "hi": "ख़राब पंखा",
+      "hinglish": "Kharab fan"
+     },
+     {
+      "en": "Too many apps on screen",
+      "hi": "स्क्रीन पर बहुत ऐप",
+      "hinglish": "Screen par bahut apps"
+     },
+     {
+      "en": "Slow typing",
+      "hi": "धीमी टाइपिंग",
+      "hinglish": "Slow typing"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Caches and pipelining exist to hide it.",
+     "hi": "कैश और पाइपलाइनिंग इसे छिपाने के लिए हैं।",
+     "hinglish": "Caches aur pipelining ise chhupaane ke liye hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "match",
+    "prompt": {
+     "en": "Match the ISA to where you mostly find it.",
+     "hi": "ISA को उसकी मुख्य जगह से मिलाओ।",
+     "hinglish": "ISA ko uski main jagah se milao."
+    },
+    "options": [
+     "x86-64",
+     "ARM",
+     "RISC-V"
+    ],
+    "answer": [
+     {
+      "en": "Most laptops and servers",
+      "hi": "ज़्यादातर लैपटॉप और सर्वर",
+      "hinglish": "Zyaadatar laptops aur servers"
+     },
+     {
+      "en": "Almost all phones",
+      "hi": "लगभग सभी फ़ोन",
+      "hinglish": "Lagbhag saare phones"
+     },
+     {
+      "en": "Open ISA, e.g. India's SHAKTI chips",
+      "hi": "खुला ISA, जैसे भारत के SHAKTI चिप",
+      "hinglish": "Open ISA, jaise India ke SHAKTI chips"
+     }
+    ],
+    "explain": {
+     "en": "Each ISA needs its own machine code.",
+     "hi": "हर ISA को अपना मशीन कोड चाहिए।",
+     "hinglish": "Har ISA ko apna machine code chahiye."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Run the fetch–decode–execute scenario to the end.",
+     "hi": "फ़ेच–डिकोड–एक्ज़ीक्यूट परिदृश्य अंत तक चलाओ।",
+     "hinglish": "Fetch–decode–execute scenario end tak chalao."
+    },
+    "answer": {
+     "event": "scenario-complete",
+     "scenario": "fetch-execute"
+    },
+    "explain": {
+     "en": "R1 went from 5 to 12.",
+     "hi": "R1, 5 से 12 हुआ।",
+     "hinglish": "R1, 5 se 12 hua."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "hw.architecture",
+  "hw.cpu"
+ ],
+ "sources": [
+  {
+   "title": "Patterson & Hennessy, Computer Organization and Design — fact reference",
+   "url": "https://www.elsevier.com/books/computer-organization-and-design-risc-v-edition/patterson/978-0-12-820331-6",
+   "licence": "fact reference"
+  },
+  {
+   "title": "RISC-V International — About",
+   "url": "https://riscv.org/about/",
+   "licence": "fact reference"
+  }
+ ]
+}

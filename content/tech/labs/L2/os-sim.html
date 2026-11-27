@@ -1,0 +1,267 @@
+<!doctype html><html lang="en-IN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>OS Simulator — NCA Tech & AI Lab</title><style>/* NCA Tech & AI Lab — Level 2 shared lab skin (own work, MIT). Family App lesson tokens: paper, card, ink, saffron, teal, plum. */
+:root{--paper:#FBF8F3;--card:#FFFDF9;--ink:#1C1B1A;--muted:#4B5563;--line:#E7E1D6;--saffron:#E8702A;--saffronD:#C2410C;--teal:#0F766E;--plum:#6D28D9;--sky:#0369A1;
+--mint:#E4F3EA;--butter:#FBF1D3;--lilac:#EFE9FB;--blush:#FBE6E3;--skyT:#E3EEF9;--night:#0B1430;--night2:#16224A;--cyan:#02CFF9;--leaf:#22C55E;--coral:#FF6B57;--gold:#F5B90A;--grape:#8B3DFF;
+--r:16px;--sh:0 1px 0 rgba(28,27,26,.04),0 6px 18px -8px rgba(28,27,26,.18)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans Devanagari",sans-serif;font-variant-numeric:tabular-nums}
+body{background:transparent;min-height:100vh;padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 16px)}
+button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation}
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:8px;padding:10px 14px;background:rgba(251,248,243,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--lilac);flex:none}
+.top h1{font-size:16px;margin:0;line-height:1.2;flex:1;min-width:0}
+.top h1 small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;flex:none;background:var(--card)}
+.lang button{border:0;background:none;padding:6px 9px;font-size:12px;font-weight:600;color:var(--muted);min-height:32px}
+.lang button[aria-pressed=true]{background:var(--ink);color:#fff}
+.wrap{max-width:1100px;margin:0 auto;padding:12px 14px;display:grid;gap:12px;grid-template-columns:minmax(0,1fr)}
+.wrap>*{min-width:0}
+.wrap>div{grid-template-columns:minmax(0,1fr)}
+.card,.stage{min-width:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;box-shadow:var(--sh)}
+.goal{background:var(--butter);border-color:#F1DFA8;display:flex;gap:10px;align-items:flex-start;font-size:14.5px}
+.goal b{color:#8A5300}
+.goal .gi{font-size:20px;line-height:1}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn{border:0;border-radius:12px;padding:11px 16px;font-weight:700;min-height:44px;background:var(--saffron);color:var(--ink);box-shadow:0 3px 0 #B4531B;transition:transform .12s}
+.btn:active{transform:translateY(2px);box-shadow:0 1px 0 #B4531B}
+.btn.ghost{background:var(--card);border:1.5px solid var(--line);box-shadow:none}
+.btn.teal{background:var(--teal);color:#fff;box-shadow:0 3px 0 #0A4F49}
+.btn.plum{background:var(--plum);color:#fff;box-shadow:0 3px 0 #4C1D95}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.chip{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:3px 10px;font-size:12.5px;font-weight:600;background:var(--mint);color:var(--teal)}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;padding-bottom:2px}/* wraps: every mode name always fully visible */
+.tabs button{flex:0 1 auto;max-width:100%;white-space:normal;text-align:center;border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:8px 14px;font-weight:600;font-size:14px;min-height:40px}
+.tabs button[aria-selected=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.stage{background:radial-gradient(120% 90% at 30% 0%,#1D2D63 0%,var(--night) 60%);color:#E8EEFF;border-radius:20px;overflow:hidden;position:relative;border:1px solid #23305E}
+.muted{color:var(--muted)}
+.mission{background:var(--skyT);border-color:#C9DDF2}
+.mission h3{margin:0 0 6px;font-size:15px;color:var(--sky)}
+.toast{position:fixed;left:0;top:0;width:max-content;max-width:min(92vw,340px);background:var(--ink);color:#fff;padding:10px 16px;border-radius:14px;font-weight:600;z-index:50;box-shadow:0 8px 24px rgba(0,0,0,.25);opacity:0;visibility:hidden;transform:scale(.92);transition:opacity .25s,transform .25s,visibility 0s .25s;pointer-events:none;text-align:center;line-height:1.35}
+.toast.on{opacity:1;visibility:visible;transform:none;transition:opacity .25s,transform .25s}
+.toast.inline{position:static;display:block;width:auto;max-width:none;margin:10px 0;grid-column:1/-1;flex:0 0 auto}
+.toast.ok{background:var(--teal)}.toast.bad{background:#B42318}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:-1}/* behind the cards: confetti never covers text */
+.kbd{font-family:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace}
+.hidden{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@keyframes pop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.08);opacity:1}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.shake{animation:shake .3s 2}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
+</style>
+<style>
+.phone{max-width:400px;margin:0 auto;width:100%;background:#0B1430;border-radius:30px;padding:10px;border:2px solid #23305E;box-shadow:0 20px 40px -18px rgba(11,20,48,.6)}
+.scr{background:linear-gradient(160deg,#1D2D63,#0B1430 70%);border-radius:22px;min-height:430px;color:#E8EEFF;padding:12px;position:relative;overflow:hidden}
+.ram{background:#0A1028;border:1px solid #2A3A70;border-radius:12px;padding:8px}
+.ram .lbl{display:flex;justify-content:space-between;font-size:12px;font-weight:700;margin-bottom:6px}
+.bar{display:flex;height:26px;border-radius:8px;overflow:hidden;background:#141D3F;position:relative}
+.bar span{display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#0B1430;transition:flex-basis .45s cubic-bezier(.3,.9,.3,1),opacity .3s;white-space:nowrap;overflow:hidden;border-right:1px solid #0B1430}
+.bar span.os{background:#94A3B8}
+.bar .warn{position:absolute;inset:0;border:2px solid #FF6B57;border-radius:8px;animation:blink .6s 3;pointer-events:none;opacity:0}
+@keyframes blink{50%{opacity:1}}
+.apps{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0}
+.app{border:0;background:none;color:#E8EEFF;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px;font-weight:600}
+.app i{font-style:normal;width:52px;height:52px;border-radius:16px;display:grid;place-items:center;font-size:25px;box-shadow:0 6px 14px -6px rgba(0,0,0,.6);transition:transform .15s}
+.app:active i{transform:scale(.9)}
+.app.run i{outline:3px solid #22C55E;outline-offset:2px}
+.app small{color:#9FB0D8;font-size:10px}
+.cpu{background:#0A1028;border:1px solid #2A3A70;border-radius:12px;padding:8px;font-size:12px}
+.lane{display:flex;gap:2px;height:22px;margin-top:6px;overflow:hidden;border-radius:6px}
+.lane b{flex:0 0 18px;border-radius:3px;animation:pop .25s both}
+.recent{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;padding-bottom:2px}
+.recent button{flex:none;border:1px solid #2A3A70;background:#141D3F;color:#E8EEFF;border-radius:10px;padding:5px 8px;font-size:11.5px;font-weight:700}
+.recent button.fg{background:#22C55E;color:#0B1430}
+:has(>.loading)>:not(.loading){visibility:hidden}/* the loading screen replaces the screen, it does not cover text */
+.loading{position:absolute;inset:0;background:rgba(11,20,48,.88);display:grid;place-items:center;font-weight:800;font-size:15px;z-index:3;text-align:center;padding:20px}
+.spin{width:40px;height:40px;border:4px solid #2A3A70;border-top-color:#02CFF9;border-radius:50%;animation:sp 1s linear infinite;margin:0 auto 10px}
+@keyframes sp{to{transform:rotate(1turn)}}
+.log{font-size:13px;max-height:220px;overflow-y:auto}.log div{padding:5px 0;border-bottom:1px dashed var(--line);animation:pop .3s both}
+.tree{font-size:13.5px}
+.fold{border:2px dashed #3B4B85;border-radius:12px;padding:8px;margin-bottom:8px;background:#0F1838;transition:background .2s,border-color .2s;width:100%;text-align:left;color:#E8EEFF;display:block}
+.fold.target{border-color:#02CFF9;background:#13285A}
+.fold h4{margin:0 0 4px;font-size:13px;display:flex;justify-content:space-between}
+.fold .fs{display:flex;flex-wrap:wrap;gap:5px;min-height:22px}
+.file{border:1px solid #2A3A70;background:#1A2550;color:#E8EEFF;border-radius:9px;padding:5px 8px;font-size:12px;font-weight:700;display:inline-flex;gap:4px;align-items:center}
+.file.sel{background:#F5B90A;color:#0B1430;border-color:#F5B90A;transform:translateY(-2px)}
+.file.ok{background:#22C55E;color:#0B1430;border-color:#22C55E;animation:pop .3s}
+.path{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px;background:#0B1430;color:#7DF9C9;border-radius:10px;padding:8px 10px;word-break:break-all;margin-top:6px}
+.perm{background:#F8FAFC;color:#1C1B1A;border-radius:20px;padding:16px;margin-top:30px;box-shadow:0 18px 40px -12px rgba(0,0,0,.6);animation:pop .35s both}
+.perm .pi{font-size:30px;text-align:center}.perm h4{text-align:center;margin:6px 0 4px;font-size:15.5px}
+.perm p{font-size:13px;color:#4B5563;text-align:center;margin:0 0 12px}
+.perm .pa{display:grid;gap:8px}
+.perm .pa button{border:0;border-radius:999px;padding:11px;font-weight:800;background:#E3EEF9;color:#0369A1;min-height:44px}
+.dots{display:flex;gap:6px;justify-content:center;margin-top:14px}.dots i{width:10px;height:10px;border-radius:50%;background:#2A3A70}.dots i.g{background:#22C55E}.dots i.r{background:#FF6B57}.dots i.c{outline:2px solid #fff}
+.why{font-size:13.5px;border-left:4px solid var(--teal);padding:6px 10px;background:var(--mint);border-radius:10px;margin-top:8px;animation:pop .3s both}
+.why.r{border-color:#B42318;background:var(--blush)}
+@media (orientation:landscape) and (min-width:640px){.wrap{grid-template-columns:420px 1fr}.wrap>.full{grid-column:1/-1}.scr{min-height:300px}}
+</style></head><body>
+<main class="wrap">
+ <div class="card goal full"><span class="gi">🎯</span><div id="goal"></div></div>
+ <div class="tabs full" role="tablist" id="tabs"></div>
+ <div class="phone"><div class="scr" id="scr"></div></div>
+ <div style="display:grid;gap:12px">
+  <div class="card mission"><h3 data-k="mT"></h3><div id="mission"></div></div>
+  <div class="card" id="side"></div>
+ </div>
+</main>
+<script>/* NCA Tech & AI Lab — Level 2 shared lab runtime (own work, MIT). No eval, no network except an optional same-origin ?lesson= JSON. */
+(function(g){
+  const qs=new URLSearchParams(location.search);
+  const LANGS=['hinglish','en','hi'];
+  let lang=(qs.get('lang')||localStorage.getItem('nca-tl-lang')||'hinglish'); if(!LANGS.includes(lang)) lang='hinglish';
+  const reduced=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const t=x=>x==null?'':(typeof x==='string'||typeof x==='number')?String(x):(x[lang]||x.hinglish||x.en||'');
+  let STR={}; const listeners=[];
+  function applyI18n(root){(root||document).querySelectorAll('[data-k]').forEach(el=>{const v=STR[el.dataset.k]; if(v) el.innerHTML=t(v);});
+    document.documentElement.lang=lang==='hi'?'hi':(lang==='en'?'en':'en-IN');
+    document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.l===lang));}
+  function setLang(l){lang=l;localStorage.setItem('nca-tl-lang',l);applyI18n();listeners.forEach(f=>f(l));}
+  function header(icon,titleK,subK){const h=document.createElement('header');h.className='top';
+    h.innerHTML=`<div class="ic" aria-hidden="true">${icon}</div><h1><span data-k="${titleK}"></span><small data-k="${subK}"></small></h1>
+    <div class="lang" role="group" aria-label="Language"><button data-l="hinglish">Hinglish</button><button data-l="en">EN</button><button data-l="hi">हिं</button></div>`;
+    document.body.prepend(h); h.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>setLang(b.dataset.l));}
+  // Toast: never covers text. It floats in a free band of the screen (bottom first); if the screen has no free band
+  // it sits in the page flow right under what the child just tapped (pushes content down, covers nothing). Closes after 2.5 s.
+  let toastEl,lastTap=null,tapAt=null;document.addEventListener('pointerdown',e=>{lastTap=e.target;tapAt=[e.clientX,e.clientY+scrollY]},true);let rePend=0;const rePlace=()=>{if(!toastEl||!toastEl.classList.contains('on')||rePend)return;rePend=1;requestAnimationFrame(()=>{rePend=0;placeToast();});};
+  addEventListener('scroll',rePlace,{passive:true});addEventListener('resize',rePlace);document.addEventListener('animationend',rePlace,true);document.addEventListener('transitionend',rePlace,true);const toastMO=new MutationObserver(rs=>{if(rs.some(r=>!toastEl.contains(r.target)))rePlace();});
+  function textRects(skip){const vh=innerHeight,out=[],rg=document.createRange(),w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let n;
+    while((n=w.nextNode())){if(!n.nodeValue.trim())continue;const p=n.parentElement;if(!p||skip.contains(p)||/^(SCRIPT|STYLE)$/.test(p.tagName))continue;rg.selectNodeContents(n);
+      for(const q of rg.getClientRects())if(q.width>=1&&q.bottom>0&&q.top<vh)out.push(q);}
+    document.querySelectorAll('input,select,textarea,button,a[href],[role=button]').forEach(e=>{if(skip.contains(e))return;const q=e.getBoundingClientRect();if(q.width&&q.bottom>0&&q.top<vh)out.push(q)});if(0)document.querySelectorAll('x').forEach(e=>{const q=e.getBoundingClientRect();if(q.width&&q.bottom>0&&q.top<vh)out.push(q)});return out;}
+  function freeSpot(el){const vw=document.documentElement.clientWidth,vh=innerHeight,w=el.offsetWidth,h=el.offsetHeight,m=8;let top=m;
+    const bar=document.querySelector('.top');if(bar)top=Math.max(top,bar.getBoundingClientRect().bottom+m);
+    const obs=textRects(el),xs=[(vw-w)/2,m,vw-w-m],free=(x,y)=>!obs.some(q=>q.left<x+w+4&&q.right>x-4&&q.top<y+h+4&&q.bottom>y-4);
+    const cur=el._spot;if(cur&&free(cur.x,cur.y))return cur;
+    for(let y=vh-h-m;y>=top;y-=6)for(const x of xs)if(free(x,y))return{x,y};return null;}
+  /* never drop the note inside a 3D scene, a transformed, positioned-out or clipping box */
+  function boxedIn(a){for(let p=a;p&&p!==document.body;p=p.parentElement){const c=getComputedStyle(p);if(c.transform!=='none'||c.transformStyle==='preserve-3d'||c.perspective!=='none'||c.position==='absolute'||c.position==='fixed'||(p!==a&&c.overflow!=='visible'))return true;}return false;}
+  function inlineAfter(el){let a=lastTap&&lastTap.isConnected&&!el.contains(lastTap)?lastTap:null;
+    if(!a&&tapAt){const y=tapAt[1]-scrollY;if(y>0&&y<innerHeight)a=document.elementFromPoint(tapAt[0],y);}/* the tapped thing was re-drawn: use what is there now */
+    if(!a||el.contains(a))a=document.querySelector('main')||document.body.lastElementChild;
+    while(a.parentElement&&a.parentElement!==document.body){const d=getComputedStyle(a.parentElement),me=getComputedStyle(a);
+      if(me.display!=='inline'&&!(a instanceof SVGElement)&&(d.display==='block'||d.display==='flow-root'||d.display==='grid'||(d.display==='flex'&&d.flexDirection.startsWith('column')))&&a.getBoundingClientRect().width>=Math.min(260,innerWidth*.6)&&!boxedIn(a))break;a=a.parentElement;}
+    a.after(el);}
+  function placeToast(){const el=toastEl;if(!el.classList.contains('on'))return;if(!el.isConnected){el.classList.remove('inline');document.body.appendChild(el);}
+    if(el.classList.contains('inline'))return;const s=freeSpot(el);
+    if(s){el._spot=s;el.style.left=s.x+'px';el.style.top=s.y+'px';}else{el._spot=null;el.classList.add('inline');el.style.left=el.style.top='';inlineAfter(el);el.scrollIntoView({block:'nearest'});}}
+  function toast(msg,kind){if(!toastEl){toastEl=document.createElement('div');toastEl.setAttribute('role','status');document.body.appendChild(toastEl);}
+    const el=toastEl;clearTimeout(el._t);clearInterval(el._iv);if(el.classList.contains('inline'))document.body.appendChild(el);
+    el.className='toast '+(kind||'');el._spot=null;el.innerHTML=typeof msg==='object'?t(msg):msg;el.style.left='0px';el.style.top='0px';
+    el.classList.add('on');placeToast();el._iv=setInterval(placeToast,200);toastMO.observe(document.body,{subtree:true,childList:true,attributes:true,characterData:true});
+    el._t=setTimeout(()=>{clearInterval(el._iv);toastMO.disconnect();el.classList.remove('on');setTimeout(()=>{if(!el.classList.contains('on')&&el.classList.contains('inline')){el.classList.remove('inline');document.body.appendChild(el);}},320);},2500);}
+  function confetti(){if(reduced())return;const c=document.createElement('canvas');c.className='confetti';c.setAttribute('aria-hidden','true');document.body.appendChild(c);
+    const W=c.width=innerWidth,H=c.height=innerHeight,x=c.getContext('2d');const cols=['#E8702A','#0F766E','#6D28D9','#F5B90A','#02CFF9','#FF6B57'];
+    const P=Array.from({length:90},()=>({x:W/2,y:H*.55,vx:(Math.random()-.5)*9,vy:-Math.random()*11-4,r:Math.random()*6+3,c:cols[Math.random()*6|0],a:Math.random()*6}));
+    let n=0;(function f(){x.clearRect(0,0,W,H);P.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.32;p.a+=.2;x.save();x.translate(p.x,p.y);x.rotate(p.a);x.fillStyle=p.c;x.fillRect(-p.r/2,-p.r/4,p.r,p.r/2);x.restore();});
+      if(++n<110)requestAnimationFrame(f);else c.remove();})();}
+  function tween(ms,step,done){if(reduced()||ms<=0){step(1);done&&done();return()=>{};}let stop=0;const t0=performance.now();
+    const f=now=>{if(stop)return;const k=Math.min(1,(now-t0)/ms);step(k);k<1?requestAnimationFrame(f):done&&done();};requestAnimationFrame(f);return()=>{stop=1};}
+  const ease=k=>k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+  const sleep=ms=>new Promise(r=>setTimeout(r,reduced()?0:ms));
+  // Lesson config: ?lesson=<same-origin json path> (its play.config + play.goal), else inline defaults. ?cfg=<json> also accepted (parsed with JSON.parse only).
+  async function lessonConfig(defaults){let cfg=Object.assign({},defaults),goal=null,id=null;
+    const p=qs.get('lesson');
+    if(p&&/^[\w\-./]+\.json$/.test(p)&&!p.includes('..')){try{const r=await fetch(p);if(r.ok){const j=await r.json();id=j.id;if(j.play){Object.assign(cfg,j.play.config||{});goal=j.play.goal||null;}}}catch(e){}}
+    const c=qs.get('cfg'); if(c){try{Object.assign(cfg,JSON.parse(c));}catch(e){}}
+    return {cfg,goal,id};}
+  // Progress events the Family App shell can listen for (postMessage to the parent frame), plus local XP for the prototype.
+  function emit(type,data){const msg={source:'nca-techlab',type,data:data||{},at:Date.now()};try{parent!==window&&parent.postMessage(msg,'*');}catch(e){}
+    document.dispatchEvent(new CustomEvent('nca-lab',{detail:msg}));}
+  g.NCA={qs,esc,t,get lang(){return lang},setLang,onLang:f=>listeners.push(f),strings:o=>{STR=Object.assign(STR,o);applyI18n();},applyI18n,header,toast,confetti,tween,ease,sleep,reduced,lessonConfig,emit};
+})(window);
+</script>
+<script>
+(async function(){
+const N=NCA,T=N.t,E=N.esc,L=(en,hi,hinglish)=>({en,hi,hinglish}),$=id=>document.getElementById(id);
+N.header('📱','title','sub');
+N.strings({title:L('OS Simulator','OS सिम्युलेटर','OS Simulator'),sub:L('Be the operating system: memory, files and permissions','ऑपरेटिंग सिस्टम बनो: मेमोरी, फ़ाइलें और अनुमतियाँ','Operating system bano: memory, files aur permissions'),mT:L('🚀 Mission','🚀 मिशन','🚀 Mission')});
+const {cfg,goal}=await N.lessonConfig({tab:'tasks',ram:4});
+const TABS=[['tasks',L('🧠 RAM & tasks','🧠 RAM और कार्य','🧠 RAM & tasks')],['files',L('📁 Files','📁 फ़ाइलें','📁 Files')],['perms',L('🔐 Permissions','🔐 अनुमतियाँ','🔐 Permissions')]];
+const GOALS={tasks:L('Open apps until the RAM is full and watch the OS free memory by stopping the least recently used app.','RAM भरने तक ऐप खोलो और देखो OS सबसे पुराने उपयोग वाले ऐप को रोककर मेमोरी कैसे ख़ाली करता है।','RAM bharne tak apps kholo aur dekho OS sabse purane use wale app ko rok ke memory kaise khaali karta hai.'),
+ files:L('Tap a file, then tap the folder where it belongs. Read its full path.','फ़ाइल दबाओ, फिर उसका सही फ़ोल्डर दबाओ। उसका पूरा पथ पढ़ो।','File tap karo, phir uska sahi folder tap karo. Uska poora path padho.'),
+ perms:L('Six apps ask for permissions. Allow only what each app needs for its job.','छह ऐप अनुमति माँगते हैं। केवल वही दो जो ऐप के काम के लिए ज़रूरी है।','Chhe apps permission maang rahe hain. Sirf wahi do jo app ke kaam ke liye zaroori hai.')};
+let tab=TABS.some(x=>x[0]===cfg.tab)?cfg.tab:'tasks'; const done={};
+function win(k,msg){if(done[k])return;done[k]=1;N.confetti();N.toast(msg,'ok');N.emit('mission:complete',{lab:'os-sim',tab:k});mission();}
+/* ---------- TASKS: RAM + scheduler + low-memory killer (LRU) ---------- */
+const RAM=+cfg.ram||4, OSGB=1.2;
+const APPS=[{id:'wa',n:'WhatsApp',ic:'💬',c:'#25D366',gb:.4},{id:'yt',n:'YouTube',ic:'▶️',c:'#FF4E45',gb:.7},{id:'game',n:'Racing game',ic:'🏎️',c:'#F5B90A',gb:1.5},{id:'cam',n:'Camera',ic:'📷',c:'#8B9CF7',gb:.5},
+ {id:'maps',n:'Maps',ic:'🗺️',c:'#34D399',gb:.6},{id:'web',n:'Browser',ic:'🌐',c:'#02CFF9',gb:.8},{id:'calc',n:'Calculator',ic:'🧮',c:'#CBD5E1',gb:.1},{id:'upi',n:'UPI app',ic:'💸',c:'#C4B5FD',gb:.3}];
+let run=[],clock=0,log=[],kills=0,loading=false,lane=[],laneTimer=null;
+const used=()=>OSGB+run.reduce((s,r)=>s+r.gb,0);
+function addLog(m){log.unshift(m);log=log.slice(0,12);}
+async function openApp(id){if(loading)return;const a=APPS.find(x=>x.id===id);clock++;let r=run.find(x=>x.id===id);
+ if(r){r.t=clock;addLog(L(`${a.n}: already in RAM → opens instantly (warm start).`,`${a.n}: पहले से RAM में → तुरंत खुला (वॉर्म स्टार्ट)।`,`${a.n}: pehle se RAM mein → turant khula (warm start).`));drawTasks();return;}
+ loading=true;drawTasks(L(`Loading ${a.n} from storage into RAM…`,`${a.n} को स्टोरेज से RAM में ला रहे हैं…`,`${a.n} ko storage se RAM mein la rahe hain…`));await N.sleep(650);loading=false;
+ run.push({id,gb:a.gb,t:clock});addLog(L(`${a.n} started (cold start): +${a.gb} GB RAM.`,`${a.n} शुरू (कोल्ड स्टार्ट): +${a.gb} GB RAM।`,`${a.n} start hua (cold start): +${a.gb} GB RAM.`));
+ while(used()>RAM+1e-9){const fg=run.reduce((m,x)=>x.t>m.t?x:m);const victim=run.filter(x=>x!==fg).sort((p,q)=>p.t-q.t)[0];if(!victim)break;
+  run=run.filter(x=>x!==victim);kills++;const v=APPS.find(x=>x.id===victim.id);
+  addLog(L(`⚠️ RAM full! The OS stopped ${v.n} — the least recently used app — and freed ${v.gb} GB.`,`⚠️ RAM भरी! OS ने ${v.n} रोका — सबसे पहले उपयोग हुआ ऐप — और ${v.gb} GB ख़ाली किया।`,`⚠️ RAM full! OS ne ${v.n} roka — least recently used app — aur ${v.gb} GB khaali kiya.`));
+  N.toast(L(`Low memory: ${v.n} was closed`,`कम मेमोरी: ${v.n} बंद`,`Low memory: ${v.n} band hua`),'bad');const w=document.querySelector('.bar .warn');}
+ drawTasks();if(kills&&!done.tasks)win('tasks',L('The OS managed memory for you!','OS ने आपके लिए मेमोरी सँभाली!','OS ne aapke liye memory sambhaali!'));}
+function closeApp(id){run=run.filter(x=>x.id!==id);const a=APPS.find(x=>x.id===id);addLog(L(`You swiped away ${a.n}: −${a.gb} GB.`,`आपने ${a.n} हटाया: −${a.gb} GB।`,`Aapne ${a.n} swipe karke hataya: −${a.gb} GB.`));drawTasks();}
+function tick(){if(tab!=='tasks')return;const fg=run.length?run.reduce((m,x)=>x.t>m.t?x:m):null;let pick;
+ if(!run.length)pick='#334155';else{const r=Math.random();const bg=run.filter(x=>x!==fg);const pid=(r<.6||!bg.length)?fg.id:bg[(Math.random()*bg.length)|0].id;pick=APPS.find(a=>a.id===pid).c;}
+ lane.push(pick);lane=lane.slice(-18);const el=$('lane');if(el)el.innerHTML=lane.map(c=>`<b style="background:${c}"></b>`).join('');}
+function drawTasks(busy){const u=used();const pct=x=>(x/RAM*100).toFixed(1)+'%';const fg=run.length?run.reduce((m,x)=>x.t>m.t?x:m):null;
+ $('scr').innerHTML=`<div class="ram"><div class="lbl"><span>RAM ${u.toFixed(1)} / ${RAM} GB</span><span style="color:${u/RAM>.85?'#FF6B57':'#7DF9C9'}">${Math.round(u/RAM*100)}%</span></div>
+ <div class="bar"><span class="os" style="flex-basis:${pct(OSGB)}">OS</span>${run.map(r=>{const a=APPS.find(x=>x.id===r.id);return `<span style="flex-basis:${pct(r.gb)};background:${a.c}" title="${E(a.n)}">${a.ic}</span>`}).join('')}${u/RAM>.85?'<i class="warn"></i>':''}</div></div>
+ <div class="apps">${APPS.map(a=>`<button class="app ${run.some(r=>r.id===a.id)?'run':''}" data-a="${a.id}"><i style="background:${a.c}">${a.ic}</i>${E(a.n)}<small>${a.gb} GB</small></button>`).join('')}</div>
+ <div class="cpu"><b>${T(L('CPU scheduler — who gets the next time slice','CPU शेड्यूलर — अगली बारी किसकी','CPU scheduler — agli time slice kiski'))}</b><div class="lane" id="lane"></div>
+ <div style="margin-top:8px;font-weight:700">${T(L('Recent apps (tap = bring to front, × = close)','हाल के ऐप (दबाओ = आगे लाओ, × = बंद)','Recent apps (tap = aage lao, × = band)'))}</div>
+ <div class="recent">${run.slice().sort((p,q)=>q.t-p.t).map(r=>{const a=APPS.find(x=>x.id===r.id);return `<button data-a="${a.id}" class="${r===fg?'fg':''}">${a.ic} ${E(a.n)}</button><button data-x="${a.id}" aria-label="close ${E(a.n)}">×</button>`}).join('')||'<span class="muted" style="color:#9FB0D8">—</span>'}</div></div>
+ ${busy?`<div class="loading"><div><div class="spin"></div>${T(busy)}</div></div>`:''}`;
+ $('scr').querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>openApp(b.dataset.a));$('scr').querySelectorAll('[data-x]').forEach(b=>b.onclick=()=>closeApp(b.dataset.x));tick();
+ $('side').innerHTML=`<h3 style="margin:0 0 6px;font-size:15px">${T(L('📜 What the OS is doing','📜 OS क्या कर रहा है','📜 OS kya kar raha hai'))}</h3><div class="log">${log.map(m=>`<div>${T(m)}</div>`).join('')||`<div class="muted">${T(L('Tap an app icon to open it.','ऐप आइकन दबाकर खोलो।','App icon tap karke kholo.'))}</div>`}</div>
+ <p class="muted" style="font-size:13px;margin:8px 0 0">${T(L(`This phone has ${RAM} GB RAM; Android itself keeps about ${OSGB} GB. The colour strip shows the CPU switching between apps many times a second — the app you are using gets most turns.`,`इस फ़ोन में ${RAM} GB RAM है; Android ख़ुद लगभग ${OSGB} GB रखता है। रंगीन पट्टी दिखाती है CPU हर सेकंड कई बार ऐप बदलता है — जो ऐप आप चला रहे हो उसे सबसे ज़्यादा बारी मिलती है।`,`Is phone mein ${RAM} GB RAM hai; Android khud lagbhag ${OSGB} GB rakhta hai. Colour strip dikhati hai CPU har second kai baar apps badalta hai — jo app aap use kar rahe ho usse sabse zyada turns milte hain.`))}</p>`;}
+/* ---------- FILES ---------- */
+const ROOT='/storage/emulated/0';
+const FOLD=[{id:'Pictures',ic:'🖼️'},{id:'Music',ic:'🎵'},{id:'Documents',ic:'📄'},{id:'Movies',ic:'🎬'}];
+const FILES=[['holi-2026.jpg','Pictures'],['class-photo.png','Pictures'],['bhajan.mp3','Music'],['jana-gana-mana.m4a','Music'],['maths-notes.pdf','Documents'],['science-project.docx','Documents'],['timetable.pdf','Documents'],['school-trip.mp4','Movies']];
+const EXT={jpg:L('JPEG photo','JPEG फ़ोटो','JPEG photo'),png:L('PNG image','PNG चित्र','PNG image'),mp3:L('MP3 audio','MP3 ऑडियो','MP3 audio'),m4a:L('M4A (AAC) audio','M4A (AAC) ऑडियो','M4A (AAC) audio'),pdf:L('PDF document','PDF दस्तावेज़','PDF document'),docx:L('Word document','Word दस्तावेज़','Word document'),mp4:L('MP4 video','MP4 वीडियो','MP4 video')};
+let place={},sel=null,lastPath=null;
+function drawFiles(){const loose=FILES.filter(f=>!place[f[0]]);
+ $('scr').innerHTML=`<div class="tree"><div class="fold" style="border-style:solid"><h4>📥 Download <small>${loose.length}</small></h4><div class="fs">${loose.map(f=>`<button class="file ${sel===f[0]?'sel':''}" data-f="${E(f[0])}">${E(f[0])}</button>`).join('')||'✨'}</div></div>
+ ${FOLD.map(d=>`<button class="fold ${sel?'target':''}" data-d="${d.id}"><h4>${d.ic} ${d.id} <small>${FILES.filter(f=>place[f[0]]===d.id).length}</small></h4><span class="fs">${FILES.filter(f=>place[f[0]]===d.id).map(f=>`<span class="file ok">${E(f[0])}</span>`).join('')}</span></button>`).join('')}</div>
+ ${lastPath?`<div class="path">${E(lastPath)}</div>`:''}`;
+ $('scr').querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>{sel=sel===b.dataset.f?null:b.dataset.f;drawFiles();});
+ $('scr').querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>drop(b.dataset.d,b));
+ const ext=sel?sel.split('.').pop():null;
+ $('side').innerHTML=`<h3 style="margin:0 0 6px;font-size:15px">${T(L('🔎 File inspector','🔎 फ़ाइल जाँच','🔎 File inspector'))}</h3>${sel?`<p style="margin:0"><b>${E(sel)}</b><br>${T(L('Extension','एक्सटेंशन','Extension'))}: <span class="chip">.${E(ext)}</span> = ${T(EXT[ext])}</p>`:`<p class="muted" style="margin:0">${T(L('Tap a file in Download to inspect it.','Download में कोई फ़ाइल दबाकर देखो।','Download mein koi file tap karke dekho.'))}</p>`}
+ <p class="muted" style="font-size:13px">${T(L('A path is the address of a file: every folder from the top (root) down to the file, joined by “/”. On Android your own storage starts at /storage/emulated/0.','पथ फ़ाइल का पता है: ऊपर (रूट) से फ़ाइल तक हर फ़ोल्डर, “/” से जुड़े। Android पर आपका स्टोरेज /storage/emulated/0 से शुरू होता है।','Path file ka address hai: upar (root) se file tak har folder, “/” se jude. Android pe aapka storage /storage/emulated/0 se shuru hota hai.'))}</p>`;}
+function drop(d,el){if(!sel){N.toast(L('First tap a file in Download','पहले Download में फ़ाइल दबाओ','Pehle Download mein file tap karo'));return;}
+ const f=FILES.find(x=>x[0]===sel);if(f[1]!==d){el.classList.add('shake');setTimeout(()=>el.classList.remove('shake'),650);const ext=sel.split('.').pop();
+  N.toast(L(`.${ext} is a ${EXT[ext].en} — does it belong in ${d}?`,`.${ext} एक ${EXT[ext].hi} है — क्या यह ${d} में जाएगी?`,`.${ext} ek ${EXT[ext].hinglish} hai — kya yeh ${d} mein jaayegi?`),'bad');return;}
+ place[sel]=d;lastPath=`${ROOT}/${d}/${sel}`;sel=null;drawFiles();
+ if(FILES.every(x=>place[x[0]]))win('files',L('Every file is in its folder!','हर फ़ाइल अपने फ़ोल्डर में!','Har file apne folder mein!'));}
+/* ---------- PERMISSIONS ---------- */
+const PR=[{app:'Super Torch',ic:'🔦',p:L('access your contacts','आपके संपर्क देखने','aapke contacts dekhne'),ok:false,why:L('A torch only needs the flashlight. Contacts access could let it copy and sell your family’s numbers.','टॉर्च को केवल फ़्लैश चाहिए। संपर्क देखकर वह आपके परिवार के नंबर कॉपी करके बेच सकता है।','Torch ko sirf flashlight chahiye. Contacts se woh family ke numbers copy karke bech sakta hai.')},
+ {app:'Camera',ic:'📷',p:L('take pictures and record video','फ़ोटो लेने और वीडियो रिकॉर्ड करने','photo lene aur video record karne'),ok:true,why:L('Taking photos is the camera app’s whole job.','फ़ोटो लेना कैमरा ऐप का पूरा काम है।','Photo lena camera app ka poora kaam hai.')},
+ {app:'Maps',ic:'🗺️',p:L('use your location only while using the app','केवल ऐप चलाते समय आपकी लोकेशन','sirf app use karte waqt aapki location'),ok:true,why:L('Directions need location — and “only while using the app” is the safer choice.','रास्ता बताने के लिए लोकेशन चाहिए — और “केवल ऐप चलाते समय” ज़्यादा सुरक्षित है।','Raasta batane ke liye location chahiye — aur “sirf app use karte waqt” zyada safe hai.')},
+ {app:'Calculator Pro',ic:'🧮',p:L('record audio','ऑडियो रिकॉर्ड करने','audio record karne'),ok:false,why:L('A calculator has no reason to listen to you. Deny it.','कैलकुलेटर के पास आपकी बात सुनने का कोई कारण नहीं। मना करो।','Calculator ke paas aapki baat sunne ka koi reason nahi. Deny karo.')},
+ {app:'WhatsApp',ic:'💬',p:L('record audio (for voice notes and calls)','ऑडियो रिकॉर्ड करने (वॉइस नोट और कॉल के लिए)','audio record karne (voice notes aur calls ke liye)'),ok:true,why:L('Voice notes and calls need the microphone, so this one makes sense.','वॉइस नोट और कॉल के लिए माइक्रोफ़ोन चाहिए, इसलिए यह सही है।','Voice notes aur calls ke liye mic chahiye, isliye yeh sahi hai.')},
+ {app:'Free HD Wallpapers',ic:'🖼️',p:L('send and view SMS messages','SMS भेजने और पढ़ने','SMS bhejne aur padhne'),ok:false,why:L('Wallpapers do not need SMS. Apps that read SMS can steal OTPs — a common trick in banking frauds.','वॉलपेपर को SMS नहीं चाहिए। SMS पढ़ने वाले ऐप OTP चुरा सकते हैं — बैंक धोखाधड़ी की आम चाल।','Wallpapers ko SMS nahi chahiye. SMS padhne wale apps OTP chura sakte hain — banking fraud ki common trick.')}];
+let pi=0,ans={};
+function drawPerms(){const r=PR[pi];const a=ans[pi];
+ $('scr').innerHTML=`<div style="text-align:center;font-size:12px;color:#9FB0D8;font-weight:700">${T(L('Request','अनुरोध','Request'))} ${pi+1}/6</div>
+ <div class="perm"><div class="pi">${r.ic}</div><h4>${T(L(`Allow ${r.app} to ${r.p.en}?`,`${r.app} को ${r.p.hi} की अनुमति दें?`,`${r.app} ko ${r.p.hinglish} ki permission dein?`))}</h4>
+ <p>${T(L('Android asks you before any app uses sensitive data or hardware.','कोई भी ऐप संवेदनशील डेटा या हार्डवेयर उपयोग करे उससे पहले Android आपसे पूछता है।','Koi bhi app sensitive data ya hardware use kare usse pehle Android aapse poochta hai.'))}</p>
+ <div class="pa"><button data-v="1">${T(L('Allow','अनुमति दें','Allow'))}</button><button data-v="0">${T(L('Don’t allow','अनुमति न दें','Don’t allow'))}</button></div></div>
+ <div class="dots">${PR.map((_,i)=>`<i class="${ans[i]==null?'':(ans[i]===PR[i].ok?'g':'r')} ${i===pi?'c':''}"></i>`).join('')}</div>`;
+ $('scr').querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>decide(b.dataset.v==='1'));
+ $('side').innerHTML=`<h3 style="margin:0 0 6px;font-size:15px">${T(L('🛡️ Why?','🛡️ क्यों?','🛡️ Kyun?'))}</h3>${a==null?`<p class="muted" style="margin:0">${T(L('Ask: does this app need this for its main job?','पूछो: क्या इस ऐप को अपने मुख्य काम के लिए यह चाहिए?','Poocho: kya is app ko apne main kaam ke liye yeh chahiye?'))}</p>`:`<div class="why ${a===r.ok?'':'r'}">${a===r.ok?'✅':'❌'} ${T(r.why)}</div>`}
+ <div class="row" style="margin-top:10px"><button class="btn ghost" id="pp" ${pi?'':'disabled'}>←</button><button class="btn teal" id="pn" ${pi<5?'':'disabled'}>→</button></div>`;
+ $('pp').onclick=()=>{pi--;drawPerms();};$('pn').onclick=()=>{pi++;drawPerms();};}
+function decide(v){ans[pi]=v;const ok=v===PR[pi].ok;N.toast(ok?L('Sensible choice!','समझदारी भरा चुनाव!','Samajhdaar choice!'):L('Think again — read why','फिर सोचो — कारण पढ़ो','Phir socho — reason padho'),ok?'ok':'bad');drawPerms();
+ if(ok&&pi<5)setTimeout(()=>{if(ans[pi]===PR[pi].ok&&pi<5){pi++;drawPerms();}},900);
+ if(PR.every((r,i)=>ans[i]===r.ok))win('perms',L('Your data is safe — only needed permissions given.','आपका डेटा सुरक्षित — केवल ज़रूरी अनुमतियाँ।','Aapka data safe — sirf zaroori permissions di.'));mission();}
+/* ---------- shell ---------- */
+function mission(){const st={tasks:L('Make the OS free memory (fill the RAM).','OS से मेमोरी ख़ाली कराओ (RAM भरो)।','OS se memory khaali karwao (RAM bharo).'),files:L(`Sort all 8 files (${Object.keys(place).length}/8).`,`सभी 8 फ़ाइलें छाँटो (${Object.keys(place).length}/8)।`,`Saari 8 files sort karo (${Object.keys(place).length}/8).`),perms:L(`Make all 6 permission choices right (${PR.filter((r,i)=>ans[i]===r.ok).length}/6).`,`सभी 6 अनुमति निर्णय सही करो (${PR.filter((r,i)=>ans[i]===r.ok).length}/6)।`,`Saare 6 permission decisions sahi karo (${PR.filter((r,i)=>ans[i]===r.ok).length}/6).`)};
+ $('mission').innerHTML=TABS.map(([k,n])=>`<div style="margin:3px 0">${done[k]?'✅':'⬜'} <b>${T(n)}</b> — ${T(st[k])}</div>`).join('');}
+function draw(){$('goal').innerHTML=T(goal&&cfg.tab===tab?goal:GOALS[tab]);$('tabs').innerHTML=TABS.map(([k,n])=>`<button role="tab" aria-selected="${k===tab}" data-t="${k}">${T(n)}</button>`).join('');
+ $('tabs').querySelectorAll('button').forEach(b=>b.onclick=()=>{tab=b.dataset.t;draw();});({tasks:drawTasks,files:drawFiles,perms:drawPerms})[tab]();mission();}
+N.onLang(draw);draw();laneTimer=setInterval(tick,N.reduced()?1500:350);
+window.__lab={tab:k=>{tab=k;draw();},open:openApp,place:(f,d)=>{sel=f;drop(d,document.body);},decide:(i,v)=>{pi=i;decide(v);},answerAll:()=>PR.forEach((r,i)=>{pi=i;ans[i]=r.ok;}),done};
+})();
+</script></body></html>

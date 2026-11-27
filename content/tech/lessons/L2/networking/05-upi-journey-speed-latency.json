@@ -1,0 +1,353 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.networking.05",
+ "level": 2,
+ "classes": [
+  8
+ ],
+ "unit": "networking",
+ "title": {
+  "en": "A UPI payment’s journey, bandwidth and latency",
+  "hi": "UPI भुगतान की यात्रा, बैंडविड्थ और लेटेंसी",
+  "hinglish": "UPI payment ka safar, bandwidth aur latency"
+ },
+ "minutes": 10,
+ "xp": 40,
+ "prereq": [
+  "L2.networking.04"
+ ],
+ "topics": [
+  "net.bandwidth-latency",
+  "net.packets",
+  "cyber.upi-scams"
+ ],
+ "outcomes": [
+  {
+   "en": "Trace a UPI payment through PSP, NPCI and banks",
+   "hi": "PSP, NPCI और बैंकों से होकर UPI भुगतान ट्रेस कर सकते हो",
+   "hinglish": "UPI payment ko PSP, NPCI aur banks se trace kar sakte ho"
+  },
+  {
+   "en": "Tell bandwidth from latency",
+   "hi": "बैंडविड्थ और लेटेंसी में अंतर बता सकते हो",
+   "hinglish": "Bandwidth aur latency mein farak bata sakte ho"
+  },
+  {
+   "en": "Estimate a download time",
+   "hi": "डाउनलोड का समय अनुमान लगा सकते हो",
+   "hinglish": "Download time ka andaaza laga sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "UPI",
+   "hinglish": "Unified Payments Interface — turant bank transfer",
+   "en": "India’s real-time payment system run by NPCI",
+   "hi": "NPCI द्वारा चलाई जाने वाली भारत की तत्काल भुगतान प्रणाली"
+  },
+  {
+   "term": "NPCI",
+   "hinglish": "UPI chalane wali sanstha",
+   "en": "National Payments Corporation of India: the UPI “switch” between banks",
+   "hi": "नेशनल पेमेंट्स कॉर्पोरेशन ऑफ़ इंडिया: बैंकों के बीच UPI का “स्विच”"
+  },
+  {
+   "term": "PSP",
+   "hinglish": "UPI app ke peeche ka bank",
+   "en": "Payment Service Provider bank behind an app like PhonePe, Google Pay or Paytm",
+   "hi": "PhonePe, Google Pay या Paytm जैसे ऐप के पीछे का भुगतान सेवा प्रदाता बैंक"
+  },
+  {
+   "term": "Bandwidth",
+   "hinglish": "Kitna data per second",
+   "en": "How much data per second a link can carry (Mbps)",
+   "hi": "एक कड़ी प्रति सेकंड कितना डेटा ले जा सकती है (Mbps)"
+  },
+  {
+   "term": "Latency",
+   "hinglish": "Kitni der lagti hai",
+   "en": "How long one packet takes to arrive (ms)",
+   "hi": "एक पैकेट पहुँचने में कितना समय लेता है (ms)"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Scan, enter amount, enter PIN. Your app sends an encrypted request to its bank (PSP).",
+    "hi": "स्कैन, राशि, PIN। आपका ऐप अपने बैंक (PSP) को एन्क्रिप्टेड अनुरोध भेजता है।",
+    "hinglish": "Scan, amount, PIN. Aapka app apne bank (PSP) ko encrypted request bhejta hai."
+   },
+   "visual": "lab:packet-tracer#upi",
+   "narration": {
+    "en": "Your PIN is encrypted on your phone; no one on the way can read it.",
+    "hi": "आपका PIN आपके फ़ोन पर ही एन्क्रिप्ट होता है; रास्ते में कोई उसे पढ़ नहीं सकता।",
+    "hinglish": "Aapka PIN phone pe hi encrypt hota hai; raaste mein koi nahi padh sakta."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "NPCI’s UPI switch routes it: your bank debits you, the shop’s bank credits them, and both get a confirmation.",
+    "hi": "NPCI का UPI स्विच इसे आगे भेजता है: आपका बैंक आपसे काटता है, दुकान का बैंक उन्हें जमा करता है, और दोनों को पुष्टि मिलती है।",
+    "hinglish": "NPCI ka UPI switch isse route karta hai: aapka bank aapse debit karta hai, dukaan ka bank unhe credit karta hai, aur dono ko confirmation milta hai."
+   },
+   "visual": "flow:📱 App|🏦 PSP bank|🇮🇳 NPCI switch|🏦 Your bank (debit)|🏦 Shop’s bank (credit)|🔔 “₹ received”",
+   "narration": {
+    "en": "All of this usually finishes in two or three seconds.",
+    "hi": "यह सब आमतौर पर दो-तीन सेकंड में पूरा हो जाता है।",
+    "hinglish": "Yeh sab aam taur pe do-teen second mein ho jaata hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Bandwidth is how wide the road is; latency is how long the trip takes.",
+    "hi": "बैंडविड्थ सड़क की चौड़ाई है; लेटेंसी यात्रा का समय है।",
+    "hinglish": "Bandwidth = sadak kitni chaudi; latency = safar mein kitna time."
+   },
+   "visual": "compare:🛣️ Bandwidth 50 Mbps = wide road|⏱️ Latency 30 ms = trip time",
+   "narration": {
+    "en": "A wide highway still takes time to cross the country.",
+    "hi": "चौड़े हाईवे पर भी देश पार करने में समय लगता है।",
+    "hinglish": "Chaudi highway pe bhi desh cross karne mein time lagta hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "packet-tracer",
+  "config": {
+   "mode": "upi",
+   "message": "250 to Sharma Kirana"
+  },
+  "goal": {
+   "en": "Switch to UPI mode and follow ₹250 from your app through NPCI to the shop’s bank.",
+   "hi": "UPI मोड पर जाओ और ₹250 को अपने ऐप से NPCI होते हुए दुकान के बैंक तक जाते देखो।",
+   "hinglish": "UPI mode chuno aur ₹250 ko app se NPCI hoke dukaan ke bank tak follow karo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "UPI in numbers, and staying safe",
+    "hi": "UPI संख्याओं में, और सुरक्षित रहना",
+    "hinglish": "UPI numbers mein, aur safe rehna"
+   },
+   "body": {
+    "en": "UPI launched in 2016 and now handles well over 1,500 crore (15 billion) transactions a month — the largest real-time payment system in the world. It works because every bank connects to one switch (NPCI) using the same rules. Safety rule built into the design: the UPI PIN is needed only to SEND money or approve a debit. Receiving money never needs your PIN, OTP or a QR scan by you. Any “enter PIN to receive” screen is a scam.",
+    "hi": "UPI 2016 में शुरू हुआ और अब हर महीने 1,500 करोड़ (15 अरब) से कहीं ज़्यादा लेन-देन संभालता है — दुनिया का सबसे बड़ा रियल-टाइम भुगतान तंत्र। यह इसलिए काम करता है क्योंकि हर बैंक एक ही नियमों से एक स्विच (NPCI) से जुड़ता है। डिज़ाइन में सुरक्षा नियम: UPI PIN केवल पैसे भेजने या डेबिट स्वीकृत करने के लिए चाहिए। पैसा पाने के लिए कभी आपका PIN, OTP या आपके द्वारा QR स्कैन नहीं चाहिए। कोई भी “पाने के लिए PIN डालो” स्क्रीन स्कैम है।",
+    "hinglish": "UPI 2016 mein launch hua aur ab har mahine 1,500 crore (15 billion) se kahin zyada transactions handle karta hai — duniya ka sabse bada real-time payment system. Yeh isliye kaam karta hai kyunki har bank ek hi rules se ek switch (NPCI) se judta hai. Design mein safety rule: UPI PIN sirf paisa BHEJNE ya debit approve karne ke liye chahiye. Paisa PAANE ke liye kabhi aapka PIN, OTP ya aapka QR scan nahi chahiye. Koi bhi “receive karne ke liye PIN daalo” screen scam hai."
+   },
+   "analogy": {
+    "hinglish": "UPI = ek bada railway junction (NPCI) jahan har bank ki train aati hai; ticket (PIN) sirf woh dikhata hai jo safar (payment) kar raha hai.",
+    "en": "UPI = a big railway junction (NPCI) where every bank’s train arrives; only the person travelling (paying) shows the ticket (PIN).",
+    "hi": "UPI = एक बड़ा रेलवे जंक्शन (NPCI) जहाँ हर बैंक की ट्रेन आती है; टिकट (PIN) केवल वही दिखाता है जो सफ़र (भुगतान) कर रहा है।"
+   },
+   "realExample": {
+    "en": "NPCI publishes monthly UPI statistics on its website; by 2025 UPI crossed 18 billion transactions in a single month.",
+    "hi": "NPCI अपनी वेबसाइट पर मासिक UPI आँकड़े प्रकाशित करता है; 2025 तक UPI ने एक महीने में 18 अरब लेन-देन पार किए।",
+    "hinglish": "NPCI har mahine UPI stats website pe daalta hai; 2025 tak UPI ek mahine mein 18 billion transactions paar kar gaya."
+   }
+  },
+  {
+   "heading": {
+    "en": "Bandwidth vs latency maths",
+    "hi": "बैंडविड्थ बनाम लेटेंसी का गणित",
+    "hinglish": "Bandwidth vs latency ka maths"
+   },
+   "body": {
+    "en": "Download time ≈ file size ÷ bandwidth. A 500 MB game on a 40 Mbps line: 500 MB × 8 = 4,000 megabits ÷ 40 = 100 seconds. Latency is the delay for one packet (ping): about 10–30 ms within India, 150+ ms to the USA, and 600 ms via a geostationary satellite. Gamers care about low latency; streamers care about bandwidth. Low-orbit satellites and nearby servers (CDNs) reduce latency.",
+    "hi": "डाउनलोड समय ≈ फ़ाइल आकार ÷ बैंडविड्थ। 40 Mbps लाइन पर 500 MB गेम: 500 MB × 8 = 4,000 मेगाबिट ÷ 40 = 100 सेकंड। लेटेंसी एक पैकेट की देरी (पिंग) है: भारत के अंदर लगभग 10–30 ms, अमेरिका तक 150+ ms, और भूस्थिर उपग्रह से 600 ms। गेमर कम लेटेंसी चाहते हैं; स्ट्रीमर बैंडविड्थ। निचली कक्षा के उपग्रह और पास के सर्वर (CDN) लेटेंसी घटाते हैं।",
+    "hinglish": "Download time ≈ file size ÷ bandwidth. 40 Mbps line pe 500 MB game: 500 MB × 8 = 4,000 megabits ÷ 40 = 100 seconds. Latency ek packet ki delay (ping) hai: India ke andar lagbhag 10–30 ms, USA tak 150+ ms, aur geostationary satellite se 600 ms. Gamers ko low latency chahiye; streamers ko bandwidth. Low-orbit satellites aur paas ke servers (CDN) latency kam karte hain."
+   },
+   "analogy": {
+    "hinglish": "Bandwidth = paani ki pipe kitni moti; latency = nal kholne ke baad pehli boond aane mein kitna time.",
+    "en": "Bandwidth = how thick the water pipe is; latency = how long the first drop takes after you open the tap.",
+    "hi": "बैंडविड्थ = पानी का पाइप कितना मोटा; लेटेंसी = नल खोलने के बाद पहली बूँद आने में कितना समय।"
+   },
+   "realExample": {
+    "en": "Online games show “ping” in ms — under 50 ms feels instant, over 150 ms feels laggy.",
+    "hi": "ऑनलाइन गेम “पिंग” ms में दिखाते हैं — 50 ms से कम तुरंत लगता है, 150 ms से ज़्यादा अटकता लगता है।",
+    "hinglish": "Online games “ping” ms mein dikhate hain — 50 ms se kam instant lagta hai, 150 ms se zyada laggy."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Run a speed test with a parent on home Wi-Fi and note download Mbps and ping ms. Which matters more for a video call?",
+   "hi": "माता-पिता के साथ घर के Wi-Fi पर स्पीड टेस्ट करो और डाउनलोड Mbps और पिंग ms लिखो। वीडियो कॉल के लिए कौन ज़्यादा मायने रखता है?",
+   "hinglish": "Parent ke saath home Wi-Fi pe speed test karo aur download Mbps aur ping ms note karo. Video call ke liye kya zyada zaroori?"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Who runs the UPI switch that connects all banks?",
+     "hi": "सभी बैंकों को जोड़ने वाला UPI स्विच कौन चलाता है?",
+     "hinglish": "Saare banks ko jodne wala UPI switch kaun chalata hai?"
+    },
+    "options": [
+     {
+      "en": "The shopkeeper",
+      "hi": "दुकानदार",
+      "hinglish": "Dukaandaar"
+     },
+     {
+      "en": "Your mobile company",
+      "hi": "आपकी मोबाइल कंपनी",
+      "hinglish": "Aapki mobile company"
+     },
+     {
+      "en": "NPCI",
+      "hi": "NPCI",
+      "hinglish": "NPCI"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "NPCI (National Payments Corporation of India) runs UPI, set up by RBI and Indian banks.",
+     "hi": "NPCI (नेशनल पेमेंट्स कॉर्पोरेशन ऑफ़ इंडिया) UPI चलाता है, जिसे RBI और भारतीय बैंकों ने बनाया।",
+     "hinglish": "NPCI (National Payments Corporation of India) UPI chalata hai, jise RBI aur Indian banks ne banaya."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "When do you need to enter your UPI PIN?",
+     "hi": "UPI PIN कब डालना होता है?",
+     "hinglish": "UPI PIN kab daalna hota hai?"
+    },
+    "options": [
+     {
+      "en": "Only when sending money",
+      "hi": "केवल पैसे भेजते समय",
+      "hinglish": "Sirf paisa bhejte waqt"
+     },
+     {
+      "en": "When receiving money",
+      "hi": "पैसा पाते समय",
+      "hinglish": "Paisa paate waqt"
+     },
+     {
+      "en": "Both",
+      "hi": "दोनों",
+      "hinglish": "Dono"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Only to send money or approve a debit. Never to receive.",
+     "hi": "केवल पैसे भेजने या डेबिट स्वीकृत करने के लिए। पाने के लिए कभी नहीं।",
+     "hinglish": "Sirf paisa bhejne ya debit approve karne ke liye. Receive ke liye kabhi nahi."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "A 500 MB file on a 40 Mbps connection takes about…",
+     "hi": "40 Mbps कनेक्शन पर 500 MB फ़ाइल लगभग…",
+     "hinglish": "40 Mbps connection pe 500 MB file lagbhag…"
+    },
+    "options": [
+     {
+      "en": "12.5 s",
+      "hi": "12.5 सेकंड",
+      "hinglish": "12.5 s"
+     },
+     {
+      "en": "100 s",
+      "hi": "100 सेकंड",
+      "hinglish": "100 s"
+     },
+     {
+      "en": "20 min",
+      "hi": "20 मिनट",
+      "hinglish": "20 min"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "500 × 8 = 4,000 Mb ÷ 40 Mbps = 100 s.",
+     "hi": "500 × 8 = 4,000 Mb ÷ 40 Mbps = 100 सेकंड।",
+     "hinglish": "500 × 8 = 4,000 Mb ÷ 40 Mbps = 100 s."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "A gamer complains of lag even on a fast plan. What is the likely problem?",
+     "hi": "तेज़ प्लान पर भी गेमर लैग की शिकायत करता है। संभावित समस्या?",
+     "hinglish": "Fast plan pe bhi gamer lag ki shikayat karta hai. Likely problem?"
+    },
+    "options": [
+     {
+      "en": "Too much bandwidth",
+      "hi": "बहुत ज़्यादा बैंडविड्थ",
+      "hinglish": "Bahut zyada bandwidth"
+     },
+     {
+      "en": "Screen too bright",
+      "hi": "स्क्रीन बहुत चमकीली",
+      "hinglish": "Screen bahut bright"
+     },
+     {
+      "en": "High latency",
+      "hi": "ज़्यादा लेटेंसी",
+      "hinglish": "High latency"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "Lag is about delay (latency/ping), not bandwidth. A far-away game server raises latency.",
+     "hi": "लैग देरी (लेटेंसी/पिंग) से है, बैंडविड्थ से नहीं। दूर का गेम सर्वर लेटेंसी बढ़ाता है।",
+     "hinglish": "Lag delay (latency/ping) se hai, bandwidth se nahi. Door ka game server latency badhata hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Send a UPI payment in the packet tracer.",
+     "hi": "पैकेट ट्रेसर में UPI भुगतान भेजो।",
+     "hinglish": "Packet tracer mein UPI payment bhejo."
+    },
+    "answer": {
+     "lab": "packet-tracer",
+     "event": "delivered",
+     "mode": "upi"
+    },
+    "explain": {
+     "en": "App → PSP bank → NPCI → banks → “₹ received”.",
+     "hi": "ऐप → PSP बैंक → NPCI → बैंक → “₹ प्राप्त”।",
+     "hinglish": "App → PSP bank → NPCI → banks → “₹ received”."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "NPCI — UPI product statistics",
+   "url": "https://www.npci.org.in/what-we-do/upi/product-statistics",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NPCI — UPI safety tips",
+   "url": "https://www.npci.org.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NCERT / CBSE Artificial Intelligence & Computer curriculum (Classes 6–8), 2024–25",
+   "url": "https://cbseacademic.nic.in/",
+   "licence": "fact reference"
+  }
+ ]
+}

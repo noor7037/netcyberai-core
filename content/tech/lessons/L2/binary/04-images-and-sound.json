@@ -1,0 +1,344 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.binary.04",
+ "level": 2,
+ "classes": [
+  7,
+  8
+ ],
+ "unit": "binary",
+ "title": {
+  "en": "How photos and songs become numbers",
+  "hi": "फ़ोटो और गाने संख्या कैसे बनते हैं",
+  "hinglish": "Photos aur gaane number kaise bante hain"
+ },
+ "minutes": 10,
+ "xp": 40,
+ "prereq": [
+  "L2.binary.03"
+ ],
+ "topics": [
+  "hw.binary",
+  "data.what-is-data"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain pixels, resolution and RGB colour",
+   "hi": "पिक्सेल, रेज़ोल्यूशन और RGB रंग समझा सकते हो",
+   "hinglish": "Pixels, resolution aur RGB colour samjha sakte ho"
+  },
+  {
+   "en": "Calculate the size of an uncompressed image",
+   "hi": "बिना संपीड़न वाले चित्र का आकार निकाल सकते हो",
+   "hinglish": "Bina compression wali image ka size nikaal sakte ho"
+  },
+  {
+   "en": "Explain sampling of sound and why we compress files",
+   "hi": "ध्वनि का सैंपलिंग और फ़ाइलें संपीड़ित क्यों करते हैं, समझा सकते हो",
+   "hinglish": "Sound sampling aur compression kyun samjha sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Pixel",
+   "hinglish": "Screen ka sabse chhota rang wala dot",
+   "en": "Picture element: the smallest dot of colour in an image",
+   "hi": "चित्र तत्व: चित्र में रंग का सबसे छोटा बिंदु"
+  },
+  {
+   "term": "Resolution",
+   "hinglish": "Kitne pixels: chaudai × oonchai",
+   "en": "Number of pixels across × down, e.g. 1920 × 1080",
+   "hi": "चौड़ाई × ऊँचाई में पिक्सेल की संख्या, जैसे 1920 × 1080"
+  },
+  {
+   "term": "RGB",
+   "hinglish": "Red, Green, Blue — har ek 0–255",
+   "en": "A colour made from red, green and blue light, each 0–255",
+   "hi": "लाल, हरे और नीले प्रकाश से बना रंग, हर एक 0–255"
+  },
+  {
+   "term": "Sampling",
+   "hinglish": "Awaaz ko har pal naapna",
+   "en": "Measuring a sound wave many times a second",
+   "hi": "ध्वनि तरंग को एक सेकंड में कई बार मापना"
+  },
+  {
+   "term": "Compression",
+   "hinglish": "File ko chhota karna",
+   "en": "Making a file smaller (JPEG, MP3, MP4)",
+   "hi": "फ़ाइल को छोटा करना (JPEG, MP3, MP4)"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Zoom into any photo and you find tiny squares: pixels. Each pixel is just a few numbers.",
+    "hi": "किसी भी फ़ोटो को ज़ूम करो तो छोटे वर्ग मिलेंगे: पिक्सेल। हर पिक्सेल कुछ संख्याएँ है।",
+    "hinglish": "Kisi bhi photo ko zoom karo to chhote squares milenge: pixels. Har pixel bas kuch numbers hai."
+   },
+   "visual": "lab:bit-lab#pixel",
+   "narration": {
+    "en": "A picture is a grid. In black and white, 1 can mean a lit pixel and 0 a dark one.",
+    "hi": "चित्र एक जाली है। काले-सफ़ेद में 1 का अर्थ जलता पिक्सेल और 0 का अँधेरा हो सकता है।",
+    "hinglish": "Picture ek grid hai. Black and white mein 1 = jalta pixel, 0 = dark."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Colour pixels mix red, green and blue light. Each has a brightness from 0 to 255 — one byte each.",
+    "hi": "रंगीन पिक्सेल लाल, हरी और नीली रोशनी मिलाते हैं। हर एक की चमक 0 से 255 — हर एक एक बाइट।",
+    "hinglish": "Colour pixels red, green, blue light mix karte hain. Har ek ki brightness 0 se 255 — har ek ek byte."
+   },
+   "visual": "lab:bit-lab#colour",
+   "narration": {
+    "en": "Red 255, green 255, blue 0 makes yellow. Three bytes for every single dot on your screen.",
+    "hi": "लाल 255, हरा 255, नीला 0 से पीला बनता है। आपकी स्क्रीन के हर एक बिंदु के लिए तीन बाइट।",
+    "hinglish": "Red 255, green 255, blue 0 = yellow. Screen ke har dot ke liye teen bytes."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Sound is a wave. The computer measures its height 44,100 times a second and stores each measurement as a number.",
+    "hi": "ध्वनि एक तरंग है। कंप्यूटर उसकी ऊँचाई प्रति सेकंड 44,100 बार नापता है और हर माप संख्या के रूप में रखता है।",
+    "hinglish": "Sound ek wave hai. Computer uski height har second 44,100 baar naapta hai aur har measurement number ke roop mein rakhta hai."
+   },
+   "visual": "flow:🎤 Wave|📏 Sample 44,100×/s|🔢 Numbers|🎧 Play back",
+   "narration": {
+    "en": "Many quick measurements, joined again, sound smooth to our ears.",
+    "hi": "बहुत सारे तेज़ माप फिर से जोड़ने पर हमारे कानों को सहज सुनाई देते हैं।",
+    "hinglish": "Bahut saari tez measurements, phir se jodo to kaan ko smooth lagti hain."
+   }
+  }
+ ],
+ "play": {
+  "lab": "bit-lab",
+  "config": {
+   "tab": "colour"
+  },
+  "goal": {
+   "en": "Make pure yellow on the colour tab. Then draw a heart in the pixel tab and read its 8 bytes.",
+   "hi": "रंग टैब में शुद्ध पीला बनाओ। फिर पिक्सेल टैब में दिल बनाओ और उसकी 8 बाइट पढ़ो।",
+   "hinglish": "Colour tab mein pure yellow banao. Phir pixel tab mein dil banao aur uske 8 bytes padho."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Image size = pixels × bytes per pixel",
+    "hi": "छवि का आकार = पिक्सेल × हर पिक्सेल के बाइट",
+    "hinglish": "Image size = pixels × bytes per pixel"
+   },
+   "body": {
+    "en": "A Full-HD image is 1920 × 1080 = 20,73,600 pixels. With 3 bytes per pixel (RGB) that is about 6.2 MB without compression. A 12-megapixel phone photo would be about 36 MB! JPEG compression removes detail our eyes hardly notice and shrinks it to about 3–5 MB. PNG compresses without losing any detail (lossless), which is better for screenshots and diagrams.",
+    "hi": "फ़ुल-HD छवि 1920 × 1080 = 20,73,600 पिक्सेल है। हर पिक्सेल 3 बाइट (RGB) से लगभग 6.2 MB बिना संपीड़न। 12 मेगापिक्सेल फ़ोन फ़ोटो लगभग 36 MB होती! JPEG संपीड़न वह विवरण हटाता है जो आँखें मुश्किल से देखती हैं और इसे लगभग 3–5 MB कर देता है। PNG बिना विवरण खोए संपीड़ित करता है (लॉसलेस), स्क्रीनशॉट और चित्रों के लिए बेहतर।",
+    "hinglish": "Full-HD image 1920 × 1080 = 20,73,600 pixels. Har pixel 3 bytes (RGB) se lagbhag 6.2 MB bina compression. 12 megapixel phone photo lagbhag 36 MB hoti! JPEG compression woh detail hataata hai jo aankhein mushkil se notice karti hain aur isse lagbhag 3–5 MB kar deta hai. PNG bina detail khoye compress karta hai (lossless), screenshots aur diagrams ke liye better."
+   },
+   "analogy": {
+    "hinglish": "Jaise rangoli: chhote-chhote rang ke dots milke poori design banate hain. Har dot ka rang ek number.",
+    "en": "Like a rangoli: tiny coloured dots together make the whole design. Each dot’s colour is a number.",
+    "hi": "जैसे रंगोली: छोटे-छोटे रंगीन बिंदु मिलकर पूरी डिज़ाइन बनाते हैं। हर बिंदु का रंग एक संख्या।"
+   },
+   "realExample": {
+    "en": "WhatsApp compresses photos before sending, which is why forwarded photos look slightly blurrier.",
+    "hi": "WhatsApp भेजने से पहले फ़ोटो संपीड़ित करता है, इसीलिए फ़ॉरवर्ड की गई फ़ोटो थोड़ी धुँधली दिखती हैं।",
+    "hinglish": "WhatsApp photo bhejne se pehle compress karta hai, isliye forwarded photos thodi blurry lagti hain."
+   }
+  },
+  {
+   "heading": {
+    "en": "Sound: sample rate and bit depth",
+    "hi": "ध्वनि: सैंपल दर और बिट गहराई",
+    "hinglish": "Sound: sample rate aur bit depth"
+   },
+   "body": {
+    "en": "Music CDs sample sound 44,100 times per second (44.1 kHz), using 16 bits per sample, for 2 channels (stereo). That is 44,100 × 2 bytes × 2 = about 176 KB every second, or about 10 MB per minute. MP3 and AAC compression drop sounds humans can barely hear and shrink it about 10 times, to roughly 1 MB per minute. Video is just many images per second (usually 24–60 frames) plus sound, compressed together (MP4).",
+    "hi": "म्यूज़िक CD ध्वनि को प्रति सेकंड 44,100 बार (44.1 kHz), हर सैंपल 16 बिट, 2 चैनल (स्टीरियो) में नापती है। यानी 44,100 × 2 बाइट × 2 = हर सेकंड लगभग 176 KB, या प्रति मिनट लगभग 10 MB। MP3 और AAC संपीड़न वे आवाज़ें हटाते हैं जो इंसान मुश्किल से सुनते हैं और इसे लगभग 10 गुना छोटा, लगभग 1 MB प्रति मिनट कर देते हैं। वीडियो प्रति सेकंड कई चित्र (आमतौर पर 24–60 फ़्रेम) और ध्वनि है, साथ में संपीड़ित (MP4)।",
+    "hinglish": "Music CD sound ko har second 44,100 baar (44.1 kHz), har sample 16 bits, 2 channels (stereo) mein naapti hai. Yaani 44,100 × 2 bytes × 2 = har second lagbhag 176 KB, ya har minute lagbhag 10 MB. MP3 aur AAC compression woh awaazein hata dete hain jo insaan mushkil se sunte hain aur isse lagbhag 10 guna chhota, lagbhag 1 MB per minute kar dete hain. Video = har second kai images (aam taur pe 24–60 frames) + sound, saath mein compressed (MP4)."
+   },
+   "analogy": {
+    "hinglish": "Flipbook ki tarah: har page thoda alag, tezi se palto to movement dikhta hai. Video bhi aise hi frames hai.",
+    "en": "Like a flipbook: each page is slightly different, and flipping fast shows movement. Video is frames in the same way.",
+    "hi": "फ़्लिपबुक की तरह: हर पन्ना थोड़ा अलग, तेज़ी से पलटो तो हलचल दिखती है। वीडियो भी ऐसे ही फ़्रेम हैं।"
+   },
+   "realExample": {
+    "en": "A 3-minute song as MP3 at 128 kbps is about 2.9 MB.",
+    "hi": "128 kbps वाला 3 मिनट का MP3 गाना लगभग 2.9 MB का होता है।",
+    "hinglish": "128 kbps pe 3 minute ka MP3 gaana lagbhag 2.9 MB."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Find the resolution of your family phone’s camera in Settings and work out its uncompressed photo size.",
+   "hi": "Settings में परिवार के फ़ोन के कैमरे का रेज़ोल्यूशन ढूँढो और बिना संपीड़न फ़ोटो का आकार निकालो।",
+   "hinglish": "Ghar ke phone ke camera ka resolution Settings mein dekho aur uncompressed photo ka size nikaalo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which RGB values make white?",
+     "hi": "कौन-से RGB मान सफ़ेद बनाते हैं?",
+     "hinglish": "Kaunsi RGB values white banati hain?"
+    },
+    "options": [
+     "0, 0, 0",
+     "255, 0, 0",
+     "128, 128, 128",
+     "255, 255, 255"
+    ],
+    "answer": 3,
+    "explain": {
+     "en": "All three lights at full brightness add up to white.",
+     "hi": "तीनों रोशनियाँ पूरी चमक पर मिलकर सफ़ेद बनाती हैं।",
+     "hinglish": "Teeno lights full brightness pe milke white banati hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "A tiny image is 100 × 100 pixels with 3 bytes per pixel. How big is it uncompressed?",
+     "hi": "एक छोटी छवि 100 × 100 पिक्सेल, हर पिक्सेल 3 बाइट। बिना संपीड़न आकार?",
+     "hinglish": "Ek chhoti image 100 × 100 pixels, har pixel 3 bytes. Bina compression size?"
+    },
+    "options": [
+     "300 bytes",
+     "30 KB",
+     "3 MB",
+     "30 MB"
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "100 × 100 = 10,000 pixels × 3 = 30,000 bytes ≈ 30 KB.",
+     "hi": "100 × 100 = 10,000 पिक्सेल × 3 = 30,000 बाइट ≈ 30 KB।",
+     "hinglish": "100 × 100 = 10,000 pixels × 3 = 30,000 bytes ≈ 30 KB."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "What does a higher sample rate do to recorded sound?",
+     "hi": "ज़्यादा सैंपल दर से रिकॉर्ड ध्वनि पर क्या असर?",
+     "hinglish": "Zyada sample rate se recorded sound pe kya asar?"
+    },
+    "options": [
+     {
+      "en": "Better quality, bigger file",
+      "hi": "बेहतर गुणवत्ता, बड़ी फ़ाइल",
+      "hinglish": "Better quality, badi file"
+     },
+     {
+      "en": "Worse quality, smaller file",
+      "hi": "ख़राब गुणवत्ता, छोटी फ़ाइल",
+      "hinglish": "Kharab quality, chhoti file"
+     },
+     {
+      "en": "No change",
+      "hi": "कोई बदलाव नहीं",
+      "hinglish": "Koi farak nahi"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "More measurements per second capture the wave more accurately (better quality) but the file gets bigger.",
+     "hi": "प्रति सेकंड ज़्यादा माप तरंग को ज़्यादा सही पकड़ते हैं (बेहतर गुणवत्ता) पर फ़ाइल बड़ी होती है।",
+     "hinglish": "Har second zyada measurements wave ko zyada sahi pakadte hain (better quality) par file badi hoti hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "multi",
+    "prompt": {
+     "en": "Which of these are compressed file formats? (choose all)",
+     "hi": "इनमें से कौन संपीड़ित फ़ाइल फ़ॉर्मेट हैं? (सभी चुनो)",
+     "hinglish": "Inme se kaun compressed formats hain? (saare chuno)"
+    },
+    "options": [
+     "JPEG",
+     "MP3",
+     "BMP",
+     "MP4"
+    ],
+    "answer": [
+     0,
+     1,
+     3
+    ],
+    "explain": {
+     "en": "JPEG (photos), MP3 (music) and MP4 (video) are compressed. BMP stores raw pixels.",
+     "hi": "JPEG (फ़ोटो), MP3 (संगीत) और MP4 (वीडियो) संपीड़ित हैं। BMP कच्चे पिक्सेल रखता है।",
+     "hinglish": "JPEG (photos), MP3 (music) aur MP4 (video) compressed hain. BMP raw pixels rakhta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "A video at 30 frames per second shows how many images in 1 minute?",
+     "hi": "30 फ़्रेम प्रति सेकंड का वीडियो 1 मिनट में कितने चित्र दिखाता है?",
+     "hinglish": "30 frames per second ka video 1 minute mein kitni images dikhata hai?"
+    },
+    "options": [
+     "30",
+     "60",
+     "1,800",
+     "18,000"
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "30 × 60 = 1,800 images.",
+     "hi": "30 × 60 = 1,800 चित्र।",
+     "hinglish": "30 × 60 = 1,800 images."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Make pure yellow in the bit lab colour tab.",
+     "hi": "बिट लैब के रंग टैब में शुद्ध पीला बनाओ।",
+     "hinglish": "Bit lab colour tab mein pure yellow banao."
+    },
+    "answer": {
+     "lab": "bit-lab",
+     "event": "mission:complete",
+     "rgb": [
+      255,
+      255,
+      0
+     ]
+    },
+    "explain": {
+     "en": "Yellow light = red 255 + green 255 + blue 0.",
+     "hi": "पीली रोशनी = लाल 255 + हरा 255 + नीला 0।",
+     "hinglish": "Yellow light = red 255 + green 255 + blue 0."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Red Book (CD-DA) audio: 44.1 kHz, 16-bit stereo",
+   "url": "https://en.wikipedia.org/wiki/Compact_Disc_Digital_Audio",
+   "licence": "CC BY-SA (fact reference only)"
+  },
+  {
+   "title": "JPEG standard overview — ITU-T T.81",
+   "url": "https://www.w3.org/Graphics/JPEG/itu-t81.pdf",
+   "licence": "fact reference"
+  }
+ ]
+}

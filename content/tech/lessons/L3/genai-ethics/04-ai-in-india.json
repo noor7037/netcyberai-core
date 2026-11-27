@@ -1,0 +1,375 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.genai-ethics.04",
+ "level": 3,
+ "classes": [
+  11,
+  12
+ ],
+ "unit": "genai-ethics",
+ "title": {
+  "en": "AI at India scale: UPI, Aadhaar, Bhashini, farms",
+  "hi": "भारत के पैमाने पर एआई: यूपीआई, आधार, भाषिणी, खेत",
+  "hinglish": "India scale par AI: UPI, Aadhaar, Bhashini, kheti"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [
+  "L3.machine-learning.07"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain how AI is used inside four national-scale Indian systems",
+   "hinglish": "Chaar national-scale Indian systems mein AI kaise use hota hai samjhao",
+   "hi": "समझाना कि चार राष्ट्रीय-स्तर की भारतीय प्रणालियों में एआई कैसे इस्तेमाल होता है"
+  },
+  {
+   "en": "Estimate the scale (transactions per second, users) these systems handle",
+   "hinglish": "In systems ka scale (transactions per second, users) estimate karo",
+   "hi": "इन प्रणालियों के पैमाने (प्रति सेकंड लेन-देन, उपयोगकर्ता) का अनुमान लगाना"
+  },
+  {
+   "en": "Evaluate benefits and risks for citizens",
+   "hinglish": "Citizens ke liye benefits aur risks evaluate karo",
+   "hi": "नागरिकों के लिए लाभ और जोखिम आँकना"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Digital Public Infrastructure (DPI)",
+   "hinglish": "Sarkari digital \"sadak\" jis par sab apps chalein",
+   "en": "Shared digital systems like Aadhaar, UPI and DigiLocker that others build on",
+   "hi": "आधार, यूपीआई और डिजीलॉकर जैसी साझा डिजिटल प्रणालियाँ जिन पर दूसरे निर्माण करते हैं"
+  },
+  {
+   "term": "Fraud risk score",
+   "hinglish": "Payment kitna risky — ek number",
+   "en": "A model's estimate that a transaction is fraudulent",
+   "hi": "किसी लेन-देन के धोखाधड़ी होने का मॉडल का अनुमान"
+  },
+  {
+   "term": "Biometric deduplication",
+   "hinglish": "Ek insaan ka ek hi Aadhaar pakka karna",
+   "en": "Checking fingerprints/iris so no person enrols twice",
+   "hi": "उँगलियों के निशान/आँख की पुतली जाँचना ताकि कोई दो बार नामांकन न करे"
+  },
+  {
+   "term": "Speech-to-speech translation",
+   "hinglish": "Bol ke doosri bhasha mein sunna",
+   "en": "Recognise speech, translate, then synthesise speech",
+   "hi": "वाणी पहचानो, अनुवाद करो, फिर वाणी बनाओ"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "UPI handles roughly 20 billion payments a month. Each one is scored for fraud risk in milliseconds before it completes.",
+    "hi": "यूपीआई हर महीने लगभग 20 अरब भुगतान संभालता है। हर एक पूरा होने से पहले मिलीसेकंड में धोखाधड़ी जोखिम के लिए आँका जाता है।",
+    "hinglish": "UPI har mahine lagbhag 20 billion payments sambhaalta hai. Har ek complete hone se pehle milliseconds mein fraud risk ke liye score hota hai."
+   },
+   "visual": "anim:upi-stream",
+   "narration": {
+    "en": "UPI handles roughly 20 billion payments a month. Each one is scored for fraud risk in milliseconds before it completes.",
+    "hi": "यूपीआई हर महीने लगभग 20 अरब भुगतान संभालता है। हर एक पूरा होने से पहले मिलीसेकंड में धोखाधड़ी जोखिम के लिए आँका जाता है।",
+    "hinglish": "UPI har mahine lagbhag 20 billion payments sambhaalta hai. Har ek complete hone se pehle milliseconds mein fraud risk ke liye score hota hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Aadhaar has issued over 130 crore IDs; matching fingerprints and iris at that scale is pattern recognition on a national scale.",
+    "hi": "आधार ने 130 करोड़ से ज़्यादा पहचान जारी की हैं; उस पैमाने पर उँगलियों के निशान और आँख की पुतली मिलाना राष्ट्रीय पैमाने की पैटर्न पहचान है।",
+    "hinglish": "Aadhaar ne 130 crore se zyada IDs jaari ki hain; us scale par fingerprints aur iris match karna national scale ki pattern recognition hai."
+   },
+   "visual": "anim:aadhaar-scale",
+   "narration": {
+    "en": "Aadhaar has issued over 130 crore IDs; matching fingerprints and iris at that scale is pattern recognition on a national scale.",
+    "hi": "आधार ने 130 करोड़ से ज़्यादा पहचान जारी की हैं; उस पैमाने पर उँगलियों के निशान और आँख की पुतली मिलाना राष्ट्रीय पैमाने की पैटर्न पहचान है।",
+    "hinglish": "Aadhaar ne 130 crore se zyada IDs jaari ki hain; us scale par fingerprints aur iris match karna national scale ki pattern recognition hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Bhashini lets a farmer speak in Bhojpuri and hear a reply in Bhojpuri; a crop app spots leaf disease from a photo.",
+    "hi": "भाषिणी किसान को भोजपुरी में बोलने और भोजपुरी में जवाब सुनने देती है; फ़सल ऐप फ़ोटो से पत्ती का रोग पहचानता है।",
+    "hinglish": "Bhashini kisan ko Bhojpuri mein bolne aur Bhojpuri mein jawab sunne deti hai; crop app photo se patti ka rog pehchanta hai."
+   },
+   "visual": "anim:bhashini-farm",
+   "narration": {
+    "en": "Bhashini lets a farmer speak in Bhojpuri and hear a reply in Bhojpuri; a crop app spots leaf disease from a photo.",
+    "hi": "भाषिणी किसान को भोजपुरी में बोलने और भोजपुरी में जवाब सुनने देती है; फ़सल ऐप फ़ोटो से पत्ती का रोग पहचानता है।",
+    "hinglish": "Bhashini kisan ko Bhojpuri mein bolne aur Bhojpuri mein jawab sunne deti hai; crop app photo se patti ka rog pehchanta hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "seq-flow",
+  "config": {
+   "scenario": "upi-fraud-score"
+  },
+  "goal": {
+   "en": "Follow one UPI payment from your phone through the app, the PSP bank, NPCI and the receiving bank. Watch where the fraud model scores it and what happens at low, medium and high risk.",
+   "hinglish": "Ek UPI payment ko phone se app, PSP bank, NPCI aur receiving bank tak follow karo. Dekho fraud model kahan score karta hai aur low, medium aur high risk par kya hota hai.",
+   "hi": "एक यूपीआई भुगतान को फ़ोन से ऐप, PSP बैंक, NPCI और प्राप्त करने वाले बैंक तक देखो। देखो धोखाधड़ी मॉडल कहाँ अंक देता है और कम, मध्यम और ऊँचे जोखिम पर क्या होता है।"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "UPI fraud detection and Aadhaar",
+    "hi": "यूपीआई धोखाधड़ी पहचान और आधार",
+    "hinglish": "UPI fraud detection aur Aadhaar"
+   },
+   "body": {
+    "en": "UPI, run by NPCI, crossed 20 billion transactions in a single month in 2025, an average of several thousand per second with festival-day peaks far higher. Banks and NPCI score payments with ML models using features such as amount compared with the user's normal, new device or SIM, time of day, the receiver's history (is it a suspected mule account?), and how fast money moves onward. High-risk payments can be declined or held, medium-risk ones get extra checks or warnings, and the rest pass in under a second. RBI's MuleHunter.AI helps banks find money-mule accounts. Aadhaar (UIDAI) has generated over 130 crore numbers. Enrolment uses biometric deduplication, comparing fingerprints, iris and face against the whole database so no one gets two IDs, and authentication answers yes/no millions of times a day; face authentication has grown rapidly. Risks: false declines that block genuine users, exclusion when fingerprints fail (manual labourers, elderly), and the need for strong privacy safeguards, which the Supreme Court's 2018 Aadhaar judgment and the DPDP Act address.",
+    "hi": "एनपीसीआई द्वारा चलाया जाने वाला यूपीआई 2025 में एक महीने में 20 अरब लेनदेन पार कर गया, औसतन हर सेकंड कई हज़ार, और त्योहार के दिनों में शिखर कहीं ऊँचे। बैंक और एनपीसीआई भुगतानों को एमएल मॉडल से आँकते हैं, ऐसे फ़ीचर से: उपयोगकर्ता की सामान्य राशि से तुलना, नया डिवाइस या सिम, दिन का समय, प्राप्तकर्ता का इतिहास (क्या यह संदिग्ध म्यूल खाता है?), और पैसा कितनी तेज़ी से आगे जाता है। ऊँचे जोखिम वाले भुगतान ठुकराए या रोके जा सकते हैं, मध्यम वालों पर अतिरिक्त जाँच या चेतावनी, और बाकी एक सेकंड से कम में पूरे। आरबीआई का म्यूलहंटर.एआई बैंकों को म्यूल खाते ढूँढने में मदद करता है। आधार (यूआईडीएआई) ने 130 करोड़ से ज़्यादा नंबर बनाए हैं। नामांकन बायोमेट्रिक डीडुप्लिकेशन इस्तेमाल करता है, उँगलियों, पुतली और चेहरे को पूरे डेटाबेस से मिलाकर ताकि किसी को दो पहचान न मिलें, और प्रमाणीकरण रोज़ लाखों बार हाँ/ना देता है; चेहरा प्रमाणीकरण तेज़ी से बढ़ा है। खतरे: ईमानदार उपयोगकर्ताओं को रोकने वाले गलत इनकार, उँगलियों के निशान न मिलने पर बहिष्कार (मज़दूर, बुज़ुर्ग), और मज़बूत निजता सुरक्षा की ज़रूरत, जिसे सर्वोच्च न्यायालय का 2018 का आधार फ़ैसला और डीपीडीपी अधिनियम संबोधित करते हैं।",
+    "hinglish": "NPCI dwara chalaya jaane wala UPI 2025 mein ek mahine mein 20 billion transactions paar kar gaya, average har second kai hazaar, aur tyohaar ke dinon mein peaks kahin zyada. Banks aur NPCI payments ko ML models se score karte hain, aise features se: user ki normal amount se comparison, naya device ya SIM, din ka time, receiver ki history (kya yeh suspected mule account hai?), aur paisa kitni tezi se aage jaata hai. High-risk payments decline ya hold ho sakte hain, medium-risk par extra checks ya warnings, aur baaki ek second se kam mein poore. RBI ka MuleHunter.AI banks ko mule accounts dhoondhne mein madad karta hai. Aadhaar (UIDAI) ne 130 crore se zyada numbers banaye hain. Enrolment biometric deduplication use karta hai, fingerprints, iris aur face ko poore database se match karke taaki kisi ko do IDs na milein, aur authentication roz lakhon baar haan/na deta hai; face authentication tezi se badha hai. Risks: genuine users ko rokne wale false declines, fingerprints fail hone par exclusion (mazdoor, buzurg), aur strong privacy safeguards ki zaroorat, jise Supreme Court ka 2018 Aadhaar judgment aur DPDP Act address karte hain."
+   },
+   "analogy": {
+    "hinglish": "UPI fraud model ek bahut tez bank guard jaisa hai jo har second hazaaron logon ko dekh ke sirf shaky dikhne walon ko rokta hai — galti se kisi imaandaar ko roka to bhi problem.",
+    "en": "The UPI fraud model is like a very fast bank guard who looks at thousands of people every second and stops only the suspicious-looking ones — stopping an honest person by mistake is a problem too.",
+    "hi": "यूपीआई धोखाधड़ी मॉडल एक बहुत तेज़ बैंक गार्ड जैसा है जो हर सेकंड हज़ारों लोगों को देखकर सिर्फ़ संदिग्ध दिखने वालों को रोकता है — ग़लती से किसी ईमानदार को रोका तो भी समस्या।"
+   },
+   "realExample": {
+    "en": "Your UPI app may show \"This payment looks unusual\" or ask you to confirm a first payment to a new receiver: that is a medium-risk score triggering a warning, not a decline.",
+    "hinglish": "Tumhari UPI app \"This payment looks unusual\" dikha sakti hai ya naye receiver ko pehli payment confirm karne ko keh sakti hai: yeh medium-risk score se aayi warning hai, decline nahi.",
+    "hi": "आपका यूपीआई ऐप \"यह भुगतान असामान्य लगता है\" दिखा सकता है या नए प्राप्तकर्ता को पहले भुगतान की पुष्टि माँग सकता है: यह मध्यम-जोखिम अंक से आई चेतावनी है, अस्वीकृति नहीं।"
+   }
+  },
+  {
+   "heading": {
+    "en": "Bhashini and AI for farmers",
+    "hi": "भाषिणी और किसानों के लिए एआई",
+    "hinglish": "Bhashini aur kisaano ke liye AI"
+   },
+   "body": {
+    "en": "India has 22 scheduled languages and hundreds more, while most AI was built for English. Bhashini, the National Language Translation Mission under MeitY launched in 2022, provides open speech recognition, machine translation and text-to-speech models for Indian languages (many built with AI4Bharat at IIT Madras and other institutes), crowdsources data through Bhasha Daan, and offers APIs that apps, government portals and helplines use; it is used for live translation at events and in services like railway and agriculture helplines. In agriculture, apps such as Plantix and government initiatives use image classifiers to diagnose crop disease from a phone photo, satellite data plus ML to estimate crop area and yield for insurance (as in PMFBY's technology use), and weather-based advisories. Limits: models must be validated on local crops, light and phone cameras; advice should come with confidence and a route to a human expert (Krishi Vigyan Kendras); and farmers' data needs consent and protection.",
+    "hi": "भारत में 22 अनुसूचित भाषाएँ और सैकड़ों और हैं, जबकि ज़्यादातर एआई अंग्रेज़ी के लिए बना। भाषिणी, मीटीवाई के तहत 2022 में शुरू हुआ राष्ट्रीय भाषा अनुवाद मिशन, भारतीय भाषाओं के लिए खुले वाक्-पहचान, मशीन अनुवाद और टेक्स्ट-टू-स्पीच मॉडल देता है (कई आईआईटी मद्रास के एआई4भारत और अन्य संस्थानों के साथ बने), भाषा दान से डेटा जुटाता है, और ऐसे एपीआई देता है जिन्हें ऐप, सरकारी पोर्टल और हेल्पलाइन इस्तेमाल करते हैं; इसका उपयोग कार्यक्रमों में लाइव अनुवाद और रेलवे व कृषि हेल्पलाइन जैसी सेवाओं में होता है। खेती में प्लांटिक्स जैसे ऐप और सरकारी पहल फ़ोन फ़ोटो से फ़सल रोग पहचानने को इमेज क्लासिफ़ायर, बीमा के लिए फ़सल क्षेत्र और उपज आँकने को उपग्रह डेटा और एमएल (जैसे पीएमएफ़बीवाई में तकनीक का उपयोग), और मौसम-आधारित सलाह इस्तेमाल करते हैं। सीमाएँ: मॉडल स्थानीय फ़सलों, रोशनी और फ़ोन कैमरों पर परखे जाने चाहिए; सलाह विश्वास-स्तर और मानव विशेषज्ञ (कृषि विज्ञान केंद्र) तक रास्ते के साथ हो; और किसानों के डेटा को सहमति और सुरक्षा चाहिए।",
+    "hinglish": "India mein 22 scheduled languages aur sainkdon aur hain, jabki zyaadatar AI English ke liye bana. Bhashini, MeitY ke under 2022 mein shuru hua National Language Translation Mission, Indian languages ke liye open speech recognition, machine translation aur text-to-speech models deta hai (kai IIT Madras ke AI4Bharat aur doosre institutes ke saath bane), Bhasha Daan se data crowdsource karta hai, aur aise APIs deta hai jinhe apps, government portals aur helplines use karte hain; iska use events mein live translation aur railway aur agriculture helplines jaisi services mein hota hai. Kheti mein Plantix jaisi apps aur government initiatives phone photo se crop disease pehchanne ko image classifiers, insurance ke liye crop area aur yield estimate karne ko satellite data plus ML (jaise PMFBY mein technology use), aur weather-based advisories use karte hain. Limits: models local crops, roshni aur phone cameras par validate hone chahiye; advice confidence aur human expert (Krishi Vigyan Kendras) tak raaste ke saath ho; aur kisaano ke data ko consent aur protection chahiye."
+   },
+   "analogy": {
+    "hinglish": "Bhashini ek desh-bhar ka dubhashiya (translator) hai jo har gaon ki boli samjhe — par use har boli ke log khud sikhaate hain (Bhasha Daan).",
+    "en": "Bhashini is a nationwide interpreter who understands every village dialect — but the people of each dialect teach it themselves (Bhasha Daan).",
+    "hi": "भाषिणी देश-भर का दुभाषिया है जो हर गाँव की बोली समझे — पर उसे हर बोली के लोग ख़ुद सिखाते हैं (भाषा दान)।"
+   },
+   "realExample": {
+    "en": "At public events the Prime Minister's speeches have been live-translated into Tamil and other languages using Bhashini; Kisan e-Mitra, a government AI chatbot, answers farmers' PM-KISAN questions in several Indian languages.",
+    "hinglish": "Public events par Prime Minister ke speeches Bhashini se Tamil aur doosri languages mein live translate hue hain; Kisan e-Mitra, ek government AI chatbot, kisaano ke PM-KISAN sawaalon ke jawab kai Indian languages mein deta hai.",
+    "hi": "सार्वजनिक कार्यक्रमों में प्रधानमंत्री के भाषणों का भाषिणी से तमिल और अन्य भाषाओं में लाइव अनुवाद हुआ है; किसान ई-मित्र, एक सरकारी एआई चैटबॉट, कई भारतीय भाषाओं में किसानों के पीएम-किसान प्रश्नों के उत्तर देता है।"
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Pick one of the four systems. Draw its data flow, list 3 features its AI uses, one benefit, one way it could fail a real person, and the safeguard you would add.",
+   "hinglish": "Chaar systems mein se ek chuno. Uska data flow banao, uske AI ke 3 features, ek benefit, ek tareeka jisse woh kisi asli insaan ko fail kar sake, aur jo safeguard tum jodoge, likho.",
+   "hi": "चार में से एक प्रणाली चुनो। उसका डेटा-प्रवाह बनाओ, उसके एआई के 3 फ़ीचर, एक लाभ, एक तरीक़ा जिससे वह किसी असली व्यक्ति को विफल कर सकती है, और तुम कौन-सा सुरक्षा उपाय जोड़ोगे, लिखो।"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "20 billion UPI payments in a 30-day month is about how many per second on average?",
+     "hi": "30 दिन के महीने में 20 अरब यूपीआई भुगतान औसतन हर सेकंड लगभग कितने?",
+     "hinglish": "30-day mahine mein 20 billion UPI payments average har second lagbhag kitne?"
+    },
+    "options": [
+     {
+      "en": "About 7,700",
+      "hinglish": "Lagbhag 7,700",
+      "hi": "लगभग 7,700"
+     },
+     {
+      "en": "About 77",
+      "hinglish": "Lagbhag 77",
+      "hi": "लगभग 77"
+     },
+     {
+      "en": "About 7,70,000",
+      "hinglish": "Lagbhag 7,70,000",
+      "hi": "लगभग 7,70,000"
+     },
+     {
+      "en": "About 20",
+      "hinglish": "Lagbhag 20",
+      "hi": "लगभग 20"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "30 days × 86,400 s = 25,92,000 s. 20,000,000,000 ÷ 2,592,000 ≈ 7,716 per second, so every fraud check must take only milliseconds.",
+     "hi": "30 दिन × 86,400 सेकंड = 25,92,000 सेकंड। 20,00,00,00,000 ÷ 25,92,000 ≈ 7,716 प्रति सेकंड, इसलिए हर जाँच मिलीसेकंड की होनी चाहिए।",
+     "hinglish": "30 din × 86,400 s = 25,92,000 s. 20,00,00,00,000 ÷ 25,92,000 ≈ 7,716 per second, isliye har fraud check milliseconds ka hona chahiye."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q2",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are sensible features for a UPI fraud model? Choose all.",
+     "hi": "यूपीआई धोखाधड़ी मॉडल के लिए कौन-से फ़ीचर समझदार हैं? सभी चुनें।",
+     "hinglish": "UPI fraud model ke liye kaunse features sensible hain? Sab chuno."
+    },
+    "options": [
+     {
+      "en": "Amount vs the user's usual amount",
+      "hinglish": "User ki usual amount se comparison",
+      "hi": "राशि बनाम उपयोगकर्ता की सामान्य राशि"
+     },
+     {
+      "en": "First payment from a new device",
+      "hinglish": "Naye device se pehli payment",
+      "hi": "नए डिवाइस से पहला भुगतान"
+     },
+     {
+      "en": "Receiver flagged as a mule account",
+      "hinglish": "Receiver mule account flag",
+      "hi": "प्राप्तकर्ता \"म्यूल\" खाते के रूप में चिह्नित"
+     },
+     {
+      "en": "The user's religion",
+      "hinglish": "User ka dharm",
+      "hi": "उपयोगकर्ता का धर्म"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2
+    ],
+    "explain": {
+     "en": "Behavioural and account signals predict fraud. Religion is irrelevant, unlawful to use this way and would create discrimination.",
+     "hi": "व्यवहार और खाते के संकेत धोखाधड़ी बताते हैं। धर्म असंगत है, ऐसे उपयोग के लिए गैरकानूनी है और भेदभाव पैदा करेगा।",
+     "hinglish": "Behaviour aur account signals fraud predict karte hain. Dharm irrelevant hai, aise use ke liye unlawful hai aur discrimination banayega."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "What is the main purpose of biometric deduplication in Aadhaar enrolment?",
+     "hi": "आधार नामांकन में बायोमेट्रिक डीडुप्लिकेशन का मुख्य उद्देश्य?",
+     "hinglish": "Aadhaar enrolment mein biometric deduplication ka main purpose?"
+    },
+    "options": [
+     {
+      "en": "Ensure one person cannot get two Aadhaar numbers",
+      "hinglish": "Pakka karna ki ek insaan ko do Aadhaar na milein",
+      "hi": "सुनिश्चित करना कि एक व्यक्ति को दो आधार नंबर न मिलें"
+     },
+     {
+      "en": "Translate names",
+      "hinglish": "Naam translate karna",
+      "hi": "नामों का अनुवाद"
+     },
+     {
+      "en": "Speed up UPI",
+      "hinglish": "UPI tez karna",
+      "hi": "यूपीआई तेज़ करना"
+     },
+     {
+      "en": "Store passwords",
+      "hinglish": "Passwords store karna",
+      "hi": "पासवर्ड रखना"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "New biometrics are compared against everyone already enrolled to prevent duplicates and fake identities.",
+     "hi": "नए बायोमेट्रिक की पहले से नामांकित सभी से तुलना होती है ताकि दोहराव और नकली पहचान रुकें।",
+     "hinglish": "Naye biometrics ko pehle se enrolled sabse compare kiya jaata hai taaki duplicates aur nakli identities rukein."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "A crop app is 95% accurate on test photos from Punjab but gives a tomato farmer in Kerala a wrong diagnosis. The best design fix is…",
+     "hi": "एक फ़सल ऐप पंजाब की परीक्षण फ़ोटो पर 95% सटीक है पर केरल के टमाटर किसान को गलत निदान देता है। सबसे अच्छा सुधार?",
+     "hinglish": "Crop app Punjab ki test photos par 95% accurate hai par Kerala ke tomato kisan ko galat diagnosis deta hai. Best fix?"
+    },
+    "options": [
+     {
+      "en": "Validate per region, show confidence, and link to a Krishi Vigyan Kendra expert when unsure",
+      "hinglish": "Region-wise validate karo, confidence dikhao, aur unsure ho to KVK expert se jodo",
+      "hi": "हर क्षेत्र पर परखो, विश्वास-स्तर दिखाओ, और अनिश्चित होने पर कृषि विज्ञान केंद्र विशेषज्ञ से जोड़ो"
+     },
+     {
+      "en": "Ban Kerala users",
+      "hinglish": "Kerala users ban karo",
+      "hi": "केरल के उपयोगकर्ताओं पर रोक"
+     },
+     {
+      "en": "Hide the confidence",
+      "hinglish": "Confidence chhupao",
+      "hi": "विश्वास-स्तर छिपाओ"
+     },
+     {
+      "en": "Tell farmers AI is never wrong",
+      "hinglish": "Kisaano ko bolo AI kabhi galat nahi",
+      "hi": "किसानों को बताओ एआई कभी ग़लत नहीं होता"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Distribution shift across regions is expected; per-region testing, honest confidence and a human route protect farmers.",
+     "hi": "क्षेत्रों के बीच वितरण बदलाव अपेक्षित है; क्षेत्र-वार जाँच, ईमानदार विश्वास-स्तर और मानव रास्ता किसानों की रक्षा करते हैं।",
+     "hinglish": "Regions ke beech distribution shift expected hai; region-wise testing, honest confidence aur human route kisaano ko protect karte hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Send three payments in the flow: low, medium and high risk.",
+     "hi": "प्रवाह में तीन भुगतान भेजें: कम, मध्यम और ऊँचा जोखिम।",
+     "hinglish": "Flow mein teen payments bhejo: low, medium aur high risk."
+    },
+    "answer": {
+     "event": "scenario-complete",
+     "scenario": "upi-fraud-score"
+    },
+    "explain": {
+     "en": "Low passes instantly, medium shows a warning and confirmation, high is declined and the user is told to call the bank or 1930.",
+     "hi": "कम तुरंत पास, मध्यम पर चेतावनी और पुष्टि, ऊँचा ठुकराया जाता है और उपयोगकर्ता को बैंक या 1930 पर कॉल करने को कहा जाता है।",
+     "hinglish": "Low turant pass, medium par warning aur confirmation, high decline hota hai aur user ko bank ya 1930 call karne ko kaha jaata hai."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "ai.everyday-ai",
+  "ai.ethics",
+  "cyber.upi-scams"
+ ],
+ "sources": [
+  {
+   "title": "NPCI — UPI product statistics",
+   "url": "https://www.npci.org.in/what-we-do/upi/product-statistics",
+   "licence": "fact reference"
+  },
+  {
+   "title": "UIDAI — Aadhaar dashboard",
+   "url": "https://uidai.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Bhashini",
+   "url": "https://bhashini.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Justice K. S. Puttaswamy v. Union of India (Aadhaar), 2018",
+   "url": "https://main.sci.gov.in/",
+   "licence": "fact reference"
+  }
+ ]
+}

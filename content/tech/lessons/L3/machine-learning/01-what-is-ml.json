@@ -1,0 +1,335 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.machine-learning.01",
+ "level": 3,
+ "classes": [
+  9,
+  10
+ ],
+ "unit": "machine-learning",
+ "title": {
+  "en": "What is machine learning?",
+  "hi": "मशीन लर्निंग क्या है?",
+  "hinglish": "Machine learning kya hai?"
+ },
+ "minutes": 10,
+ "xp": 40,
+ "prereq": [
+  "L3.ai-foundations.04"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain ML as learning a function from examples instead of writing rules",
+   "hinglish": "ML ko samjhao: rules likhne ki jagah examples se function seekhna",
+   "hi": "मशीन लर्निंग को नियम लिखने के बजाय उदाहरणों से फ़ंक्शन सीखने के रूप में समझाना"
+  },
+  {
+   "en": "Name the three kinds of ML and give an example of each",
+   "hinglish": "ML ke teen types aur har ek ka example batao",
+   "hi": "एमएल के तीन प्रकार बताना और हर एक का उदाहरण देना"
+  },
+  {
+   "en": "Describe features, labels, training set and test set",
+   "hinglish": "Features, labels, training set aur test set samjhao",
+   "hi": "फ़ीचर, लेबल, प्रशिक्षण सेट और परीक्षण सेट का वर्णन करना"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Feature",
+   "hinglish": "Input ki ek khaasiyat (jaise size, rang)",
+   "en": "A measurable input property used for prediction",
+   "hi": "अनुमान के लिए इस्तेमाल होने वाला मापने योग्य इनपुट गुण"
+  },
+  {
+   "term": "Label",
+   "hinglish": "Sahi jawab jo hum model ko sikhate hain",
+   "en": "The correct output for a training example",
+   "hi": "किसी प्रशिक्षण उदाहरण का सही आउटपुट"
+  },
+  {
+   "term": "Training set",
+   "hinglish": "Jin examples se model seekhta hai",
+   "en": "Examples the model learns from",
+   "hi": "वे उदाहरण जिनसे मॉडल सीखता है"
+  },
+  {
+   "term": "Test set",
+   "hinglish": "Chhupaye gaye examples jin par exam hota hai",
+   "en": "Held-back examples used only to measure performance",
+   "hi": "अलग रखे गए उदाहरण जो सिर्फ़ प्रदर्शन मापने के लिए हैं"
+  },
+  {
+   "term": "Supervised learning",
+   "hinglish": "Sahi jawab ke saath seekhna",
+   "en": "Learning from inputs paired with correct labels",
+   "hi": "सही लेबलों के साथ जोड़े गए इनपुट से सीखना"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Classic programming: rules + data → answers. Machine learning: data + answers → rules (a model).",
+    "hi": "पारंपरिक प्रोग्रामिंग: नियम + डेटा → जवाब। मशीन लर्निंग: डेटा + जवाब → नियम (मॉडल)।",
+    "hinglish": "Classic programming: rules + data → answers. Machine learning: data + answers → rules (model)."
+   },
+   "visual": "anim:rules-vs-ml-flip",
+   "narration": {
+    "en": "Classic programming: rules + data → answers. Machine learning: data + answers → rules (a model).",
+    "hi": "पारंपरिक प्रोग्रामिंग: नियम + डेटा → जवाब। मशीन लर्निंग: डेटा + जवाब → नियम (मॉडल)।",
+    "hinglish": "Classic programming: rules + data → answers. Machine learning: data + answers → rules (model)."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Each example is a row: features (inputs) and a label (the answer). Thousands of rows teach the pattern.",
+    "hi": "हर उदाहरण एक पंक्ति है: फ़ीचर (इनपुट) और लेबल (जवाब)। हज़ारों पंक्तियाँ पैटर्न सिखाती हैं।",
+    "hinglish": "Har example ek row hai: features (inputs) aur label (jawab). Hazaaron rows pattern sikhati hain."
+   },
+   "visual": "anim:feature-label-table",
+   "narration": {
+    "en": "Each example is a row: features (inputs) and a label (the answer). Thousands of rows teach the pattern.",
+    "hi": "हर उदाहरण एक पंक्ति है: फ़ीचर (इनपुट) और लेबल (जवाब)। हज़ारों पंक्तियाँ पैटर्न सिखाती हैं।",
+    "hinglish": "Har example ek row hai: features (inputs) aur label (jawab). Hazaaron rows pattern sikhati hain."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "We hide some rows as a test set. The model never sees them during training, so the test score is honest.",
+    "hi": "हम कुछ पंक्तियाँ टेस्ट सेट के रूप में छिपाते हैं। प्रशिक्षण में मॉडल उन्हें कभी नहीं देखता, इसलिए टेस्ट स्कोर ईमानदार होता है।",
+    "hinglish": "Hum kuch rows test set ki tarah chhupate hain. Training mein model unhe kabhi nahi dekhta, isliye test score imaandaar hota hai."
+   },
+   "visual": "anim:train-test-split",
+   "narration": {
+    "en": "We hide some rows as a test set. The model never sees them during training, so the test score is honest.",
+    "hi": "हम कुछ पंक्तियाँ टेस्ट सेट के रूप में छिपाते हैं। प्रशिक्षण में मॉडल उन्हें कभी नहीं देखता, इसलिए टेस्ट स्कोर ईमानदार होता है।",
+    "hinglish": "Hum kuch rows test set ki tarah chhupate hain. Training mein model unhe kabhi nahi dekhta, isliye test score imaandaar hota hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "nn-playground",
+  "config": {
+   "mode": "classify",
+   "dataset": "two-blobs",
+   "hidden": [],
+   "showSplit": true
+  },
+  "goal": {
+   "en": "Train a one-neuron model on two clusters of points. Watch the line move as it learns, then check the test accuracy.",
+   "hinglish": "Do clusters par ek-neuron model train karo. Seekhte hue line ko hilte dekho, phir test accuracy check karo.",
+   "hi": "बिंदुओं के दो समूहों पर एक-न्यूरॉन मॉडल प्रशिक्षित करो। सीखते समय रेखा को हिलते देखो, फिर टेस्ट सटीकता जाँचो।"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "From rules to learning",
+    "hi": "नियमों से सीखने तक",
+    "hinglish": "Rules se learning tak"
+   },
+   "body": {
+    "en": "Arthur Samuel (1959) described machine learning as giving computers the ability to learn without being explicitly programmed. Instead of writing \"IF sender is unknown AND message has 'lottery' THEN spam\", we show a model 100,000 emails already marked spam or not-spam. A training algorithm adjusts the model's numbers (parameters) until its predictions match the labels as closely as possible. The result is a function f(features) → prediction that also works on new emails it has never seen. This ability to work on unseen data is called generalisation, and it is the real goal.",
+    "hi": "आर्थर सैमुअल (1959) ने मशीन लर्निंग को कंप्यूटरों को बिना स्पष्ट प्रोग्रामिंग के सीखने की क्षमता देना बताया। \"अगर भेजने वाला अनजान और संदेश में 'लॉटरी' तो स्पैम\" लिखने के बजाय, हम मॉडल को पहले से स्पैम/नॉट-स्पैम चिह्नित 1,00,000 ईमेल दिखाते हैं। एक प्रशिक्षण एल्गोरिदम मॉडल की संख्याएँ (पैरामीटर) तब तक बदलता है जब तक उसके अनुमान लेबल से जितना हो सके मेल न खाएँ। नतीजा एक फ़ंक्शन f(फ़ीचर) → अनुमान है जो उन नए ईमेल पर भी काम करता है जो उसने कभी नहीं देखे। अनदेखे डेटा पर काम करने की इस क्षमता को सामान्यीकरण कहते हैं, और यही असली लक्ष्य है।",
+    "hinglish": "Arthur Samuel (1959) ne ML ko bataya: computers ko bina explicitly program kiye seekhne ki ability dena. \"IF sender anjaan AND message mein 'lottery' THEN spam\" likhne ki jagah, hum model ko pehle se spam/not-spam mark kiye 1,00,000 emails dikhate hain. Training algorithm model ke numbers (parameters) tab tak badalta hai jab tak predictions labels se jitna ho sake match na karein. Result ek function f(features) → prediction hai jo naye emails par bhi kaam karta hai jo usne kabhi nahi dekhe. Is ability ko generalisation kehte hain, aur yahi asli goal hai."
+   },
+   "analogy": {
+    "hinglish": "Jaise tum maths ke 50 solved examples dekh ke naya sawaal solve kar lete ho — formula ratta nahi, pattern samjha.",
+    "en": "Like solving a new maths question after seeing 50 solved examples — you did not mug up a formula, you understood the pattern.",
+    "hi": "जैसे गणित के 50 हल किए उदाहरण देखकर तुम नया सवाल हल कर लेते हो — सूत्र रटा नहीं, पैटर्न समझा।"
+   },
+   "realExample": {
+    "en": "Gmail-style spam filters, YouTube recommendations and the crop-disease app Plantix all learn from labelled examples.",
+    "hinglish": "Gmail jaise spam filters, YouTube recommendations aur crop-disease app Plantix sab labelled examples se seekhte hain.",
+    "hi": "जीमेल जैसे स्पैम फ़िल्टर, यूट्यूब सुझाव और फ़सल-रोग ऐप प्लांटिक्स सभी लेबल वाले उदाहरणों से सीखते हैं।"
+   }
+  },
+  {
+   "heading": {
+    "en": "Three kinds of machine learning",
+    "hi": "मशीन लर्निंग के तीन प्रकार",
+    "hinglish": "ML ke teen types"
+   },
+   "body": {
+    "en": "Supervised learning learns from labelled pairs (photo → \"tomato late blight\"). Its two main jobs are classification (pick a category) and regression (predict a number such as tomorrow's electricity demand). Unsupervised learning gets no labels and finds structure by itself, for example grouping shoppers with similar habits (clustering) or spotting unusual transactions (anomaly detection). Reinforcement learning learns by trial and error from rewards, like a game-playing agent or a robot learning to walk. Large language models combine these: self-supervised pre-training on text, supervised fine-tuning, then reinforcement learning from feedback.",
+    "hi": "सुपरवाइज़्ड लर्निंग लेबल वाले जोड़ों से सीखती है (फ़ोटो → \"टमाटर लेट ब्लाइट\")। इसके दो मुख्य काम हैं क्लासिफ़िकेशन (श्रेणी चुनना) और रिग्रेशन (कोई संख्या अनुमानित करना, जैसे कल की बिजली की माँग)। अनसुपरवाइज़्ड लर्निंग को लेबल नहीं मिलते और वह खुद ढाँचा ढूँढती है, जैसे मिलती-जुलती आदतों वाले ग्राहकों का समूह बनाना (क्लस्टरिंग) या असामान्य लेनदेन पकड़ना। रीइनफ़ोर्समेंट लर्निंग इनाम से कोशिश-और-गलती करके सीखती है, जैसे गेम खेलने वाला एजेंट या चलना सीखता रोबोट। बड़े भाषा मॉडल इन सबको जोड़ते हैं: पाठ पर सेल्फ़-सुपरवाइज़्ड प्री-ट्रेनिंग, सुपरवाइज़्ड फ़ाइन-ट्यूनिंग, फिर फ़ीडबैक से रीइनफ़ोर्समेंट लर्निंग।",
+    "hinglish": "Supervised learning labelled pairs se seekhti hai (photo → \"tomato late blight\"). Iske do main kaam: classification (category chunna) aur regression (number predict karna, jaise kal ki bijli ki demand). Unsupervised learning ko labels nahi milte, woh khud structure dhoondhti hai — jaise similar aadaton wale customers ka group (clustering) ya ajeeb transactions pakadna (anomaly detection). Reinforcement learning rewards se trial-and-error karke seekhti hai, jaise game khelne wala agent ya chalna seekhta robot. LLMs in sabko jodte hain: text par self-supervised pre-training, supervised fine-tuning, phir feedback se reinforcement learning."
+   },
+   "analogy": {
+    "hinglish": "Supervised = teacher ke saath padhna, unsupervised = khud notes sort karna, reinforcement = cycle chalana seekhna — girke aur sambhal ke.",
+    "en": "Supervised = studying with a teacher, unsupervised = sorting your own notes, reinforcement = learning to ride a cycle — by falling and recovering.",
+    "hi": "पर्यवेक्षित = शिक्षक के साथ पढ़ना, अपर्यवेक्षित = ख़ुद नोट्स छाँटना, सुदृढ़ीकरण = साइकिल चलाना सीखना — गिरकर और सँभलकर।"
+   },
+   "realExample": {
+    "en": "UPI fraud systems use supervised models trained on past confirmed fraud, plus unsupervised anomaly detection to catch new scam patterns nobody has labelled yet.",
+    "hinglish": "UPI fraud systems purane confirmed fraud par trained supervised models aur naye scam patterns pakadne ke liye unsupervised anomaly detection dono use karte hain.",
+    "hi": "यूपीआई धोखाधड़ी प्रणालियाँ पिछली पुष्ट धोखाधड़ी पर प्रशिक्षित पर्यवेक्षित मॉडल, और नए घोटाले पकड़ने के लिए अपर्यवेक्षित विसंगति-पहचान दोनों इस्तेमाल करती हैं जिन्हें अभी किसी ने लेबल नहीं किया।"
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Pick a problem at home (e.g. predicting the monthly electricity bill). Write 4 features, the label, and how you would split train and test data.",
+   "hinglish": "Ghar ki ek problem chuno (jaise mahine ka bijli bill predict karna). 4 features, label, aur train-test split kaise karoge, likho.",
+   "hi": "घर की कोई समस्या चुनो (जैसे मासिक बिजली बिल का अनुमान)। 4 फ़ीचर, लेबल, और प्रशिक्षण व परीक्षण डेटा कैसे बाँटोगे, लिखो।"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "match",
+    "prompt": {
+     "en": "Match each task to its ML type.",
+     "hi": "हर काम को उसके एमएल प्रकार से मिलाएँ।",
+     "hinglish": "Har task ko uske ML type se milao."
+    },
+    "options": [
+     {
+      "en": "Predict a house price → ?",
+      "hinglish": "House price predict → ?",
+      "hi": "घर की क़ीमत का अनुमान → ?"
+     },
+     {
+      "en": "Group customers with no labels → ?",
+      "hinglish": "Bina labels customers group → ?",
+      "hi": "बिना लेबल के ग्राहकों का समूह बनाना → ?"
+     },
+     {
+      "en": "Robot learns to balance from rewards → ?",
+      "hinglish": "Robot rewards se balance seekhe → ?",
+      "hi": "रोबोट इनाम से संतुलन सीखता है → ?"
+     },
+     {
+      "en": "Label a leaf photo as healthy/diseased → ?",
+      "hinglish": "Patti ki photo healthy/diseased → ?",
+      "hi": "पत्ती की फ़ोटो को स्वस्थ/रोगग्रस्त लेबल करना → ?"
+     }
+    ],
+    "answer": [
+     "supervised regression",
+     "unsupervised clustering",
+     "reinforcement learning",
+     "supervised classification"
+    ],
+    "explain": {
+     "en": "Numbers out = regression; categories out = classification; no labels = unsupervised; rewards = reinforcement.",
+     "hi": "संख्या = रिग्रेशन; श्रेणी = क्लासिफ़िकेशन; बिना लेबल = अनसुपरवाइज़्ड; इनाम = रीइनफ़ोर्समेंट।",
+     "hinglish": "Number output = regression; category = classification; labels nahi = unsupervised; rewards = reinforcement."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why must the test set be kept hidden during training?",
+     "hi": "प्रशिक्षण के दौरान टेस्ट सेट छिपा क्यों रखना चाहिए?",
+     "hinglish": "Training ke dauraan test set chhupa kyun rakhna chahiye?"
+    },
+    "options": [
+     {
+      "en": "So the score shows how well the model works on new, unseen data",
+      "hinglish": "Taaki score dikhaye model naye, unseen data par kitna accha hai",
+      "hi": "ताकि अंक दिखाएँ कि मॉडल नए, अनदेखे डेटा पर कितना अच्छा है"
+     },
+     {
+      "en": "To save memory",
+      "hinglish": "Memory bachane ke liye",
+      "hi": "मेमोरी बचाने के लिए"
+     },
+     {
+      "en": "Because tests are secret by law",
+      "hinglish": "Kyunki law ke hisaab se secret hai",
+      "hi": "क्योंकि क़ानूनन परीक्षण गुप्त हैं"
+     },
+     {
+      "en": "It does not matter",
+      "hinglish": "Koi farak nahi padta",
+      "hi": "इससे कोई फ़र्क नहीं पड़ता"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "If the model saw the test rows it could memorise them, like seeing the exam paper early. The score would be high but meaningless.",
+     "hi": "अगर मॉडल ने टेस्ट पंक्तियाँ देख लीं तो वह उन्हें रट सकता है, जैसे परीक्षा का पेपर पहले देख लेना। स्कोर ऊँचा पर बेमतलब होगा।",
+     "hinglish": "Agar model ne test rows dekh li to ratta maar sakta hai, jaise exam paper pehle dekh lena. Score high par bekaar hoga."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "In a dataset of student rows (hours studied, sleep hours, marks), what is the label if we predict marks?",
+     "hi": "छात्रों के डेटा (पढ़ाई के घंटे, नींद के घंटे, अंक) में अगर हम अंक अनुमानित करें तो लेबल क्या है?",
+     "hinglish": "Student data (padhai ke ghante, neend ke ghante, marks) mein agar marks predict karein to label kya hai?"
+    },
+    "options": [
+     {
+      "en": "Marks",
+      "hinglish": "Marks",
+      "hi": "अंक"
+     },
+     {
+      "en": "Hours studied",
+      "hinglish": "Padhai ke ghante",
+      "hi": "पढ़ाई के घंटे"
+     },
+     {
+      "en": "Sleep hours",
+      "hinglish": "Neend ke ghante",
+      "hi": "नींद के घंटे"
+     },
+     {
+      "en": "The student's name",
+      "hinglish": "Student ka naam",
+      "hi": "छात्र का नाम"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "The label is what we want to predict. Hours studied and sleep are features. A name should not be a feature: it carries no causal signal and risks bias.",
+     "hi": "लेबल वह है जो हम अनुमानित करना चाहते हैं। पढ़ाई और नींद फ़ीचर हैं। नाम फ़ीचर नहीं होना चाहिए: उसमें कोई कारण-संकेत नहीं और पक्षपात का खतरा है।",
+     "hinglish": "Label woh hai jo predict karna hai. Padhai aur neend features hain. Naam feature nahi hona chahiye: usmein koi causal signal nahi aur bias ka khatra hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "lab-check",
+    "prompt": {
+     "en": "In the playground, train until test accuracy is at least 95%.",
+     "hi": "प्लेग्राउंड में टेस्ट सटीकता कम से कम 95% होने तक प्रशिक्षित करें।",
+     "hinglish": "Playground mein test accuracy kam se kam 95% hone tak train karo."
+    },
+    "answer": {
+     "event": "test-accuracy",
+     "min": 0.95
+    },
+    "explain": {
+     "en": "Two well-separated blobs can be split by a straight line, so even a single neuron reaches very high accuracy.",
+     "hi": "दो अलग-अलग गुच्छे एक सीधी रेखा से बँट सकते हैं, इसलिए एक न्यूरॉन भी बहुत ऊँची सटीकता पा लेता है।",
+     "hinglish": "Do alag-alag blobs ek seedhi line se bant sakte hain, isliye ek neuron bhi bahut high accuracy paa leta hai."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "ai.ml-supervised"
+ ],
+ "sources": [
+  {
+   "title": "Samuel, A. L. (1959) Some Studies in Machine Learning Using the Game of Checkers",
+   "url": "https://ieeexplore.ieee.org/document/5392560",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Google — Machine Learning Crash Course (framing)",
+   "url": "https://developers.google.com/machine-learning/crash-course",
+   "licence": "CC BY 4.0"
+  }
+ ]
+}

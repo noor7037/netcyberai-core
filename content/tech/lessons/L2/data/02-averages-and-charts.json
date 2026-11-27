@@ -1,0 +1,367 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.data.02",
+ "level": 2,
+ "classes": [
+  7,
+  8
+ ],
+ "unit": "data",
+ "title": {
+  "en": "Averages and charts: the story in data",
+  "hi": "औसत और चार्ट: डेटा की कहानी",
+  "hinglish": "Averages aur charts: data ki kahani"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [
+  "L2.data.01"
+ ],
+ "topics": [
+  "ds.averages",
+  "ds.charts",
+  "ds.visualisation-story"
+ ],
+ "outcomes": [
+  {
+   "en": "Find mean, median, mode and range",
+   "hi": "माध्य, माध्यिका, बहुलक और परिसर निकाल सकते हो",
+   "hinglish": "Mean, median, mode aur range nikaal sakte ho"
+  },
+  {
+   "en": "Choose the right chart: bar, line or pie",
+   "hi": "सही चार्ट चुन सकते हो: बार, लाइन या पाई",
+   "hinglish": "Sahi chart chun sakte ho: bar, line ya pie"
+  },
+  {
+   "en": "Spot misleading charts",
+   "hi": "भ्रामक चार्ट पहचान सकते हो",
+   "hinglish": "Misleading charts pehchaan sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Mean",
+   "hinglish": "Sab jodo, ginti se bhaag do",
+   "en": "Add all values and divide by how many",
+   "hi": "सभी मान जोड़ो और उनकी गिनती से भाग दो"
+  },
+  {
+   "term": "Median",
+   "hinglish": "Beech wali value",
+   "en": "The middle value when sorted",
+   "hi": "क्रम में लगाने पर बीच का मान"
+  },
+  {
+   "term": "Mode",
+   "hinglish": "Sabse zyada aane wali value",
+   "en": "The most common value",
+   "hi": "सबसे अधिक बार आने वाला मान"
+  },
+  {
+   "term": "Range",
+   "hinglish": "Sabse bada − sabse chhota",
+   "en": "Largest minus smallest",
+   "hi": "सबसे बड़ा घटा सबसे छोटा"
+  },
+  {
+   "term": "Outlier",
+   "hinglish": "Baaki se bahut alag value",
+   "en": "A value far away from the rest",
+   "hi": "बाक़ी से बहुत दूर का मान"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Mean, median and mode are three kinds of “average”. Each tells a different part of the story.",
+    "hi": "माध्य, माध्यिका और बहुलक तीन तरह के “औसत” हैं। हर एक कहानी का अलग हिस्सा बताता है।",
+    "hinglish": "Mean, median aur mode teen tarah ke “average” hain. Har ek kahani ka alag hissa batata hai."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "Sort first to find the median.",
+    "hi": "माध्यिका निकालने के लिए पहले क्रम में लगाओ।",
+    "hinglish": "Median ke liye pehle sort karo."
+   },
+   "code": "runs = [12, 45, 8, 45, 30]\nmean   = (12+45+8+45+30)/5 = 28\nsorted = [8, 12, 30, 45, 45] → median 30\nmode   = 45 (appears twice)\nrange  = 45 - 8 = 37"
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Bars compare categories, lines show change over time, pies show parts of a whole.",
+    "hi": "बार श्रेणियों की तुलना, रेखा समय के साथ बदलाव, पाई पूरे के हिस्से दिखाती है।",
+    "hinglish": "Bars categories compare karte hain, lines time ke saath change dikhati hain, pie poore ke parts dikhata hai."
+   },
+   "visual": "lab:sheet-lab#chart",
+   "narration": {
+    "en": "Switch the chart type in the lab and see which one tells the story best.",
+    "hi": "लैब में चार्ट का प्रकार बदलो और देखो कौन-सा कहानी सबसे अच्छी बताता है।",
+    "hinglish": "Lab mein chart type badlo aur dekho kaunsa kahani sabse achhi batata hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Charts can mislead: a bar axis that does not start at 0 makes a small difference look huge.",
+    "hi": "चार्ट गुमराह कर सकते हैं: 0 से शुरू न होने वाली धुरी छोटे अंतर को बड़ा दिखाती है।",
+    "hinglish": "Charts mislead kar sakte hain: 0 se shuru na hone wala axis chhote farak ko bada dikhata hai."
+   },
+   "visual": "compare:Axis from 0: 98 vs 100 looks close|Axis from 97: 98 vs 100 looks 3× bigger",
+   "narration": {
+    "en": "Always read the axis numbers before believing a chart in an ad or a forward.",
+    "hi": "किसी विज्ञापन या फ़ॉरवर्ड के चार्ट पर भरोसा करने से पहले हमेशा अक्ष की संख्याएँ पढ़ो।",
+    "hinglish": "Kisi ad ya forward mein chart pe vishwas karne se pehle axis ke numbers padho."
+   }
+  }
+ ],
+ "play": {
+  "lab": "sheet-lab",
+  "config": {
+   "tab": "chart"
+  },
+  "goal": {
+   "en": "Pick the best chart for each question and find the median of the runs scored.",
+   "hi": "हर प्रश्न के लिए सबसे अच्छा चार्ट चुनो और बनाए गए रनों की माध्यिका निकालो।",
+   "hinglish": "Har sawaal ke liye best chart chuno aur runs ka median nikaalo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Choosing the right summary",
+    "hi": "सही सारांश चुनना",
+    "hinglish": "Sahi summary chunna"
+   },
+   "body": {
+    "en": "The mean uses every value but is pulled by outliers: if four friends have ₹50 each and one has ₹5,000, the mean is ₹1,040 — not typical of anyone. The median (₹50) is better there. The mode is the only average for categories (“most popular sport”). Range shows the spread. Bar charts compare separate categories (votes per party), line charts show trends over time (Delhi’s AQI across November), pie charts show shares of 100 % and work best with few slices, and scatter plots show whether two things move together (study hours vs marks). Good charts have a title, labelled axes with units and a source. Misleading tricks: cut axes, 3D pies that distort sizes, and cherry-picked dates.",
+    "hi": "माध्य हर मान उपयोग करता है पर बाहरी मानों से खिंचता है: अगर चार दोस्तों के पास ₹50 हों और एक के पास ₹5,000, तो माध्य ₹1,040 — किसी के लिए भी सामान्य नहीं। वहाँ माध्यिका (₹50) बेहतर है। श्रेणियों के लिए केवल बहुलक काम करता है (“सबसे लोकप्रिय खेल”)। परिसर फैलाव दिखाता है। बार चार्ट अलग श्रेणियों की तुलना करते हैं (हर दल के वोट), रेखा चार्ट समय के साथ रुझान (नवंबर में दिल्ली का AQI), पाई चार्ट 100 % के हिस्से और कम टुकड़ों में अच्छे, और स्कैटर प्लॉट दिखाते हैं कि दो चीज़ें साथ बदलती हैं या नहीं (पढ़ाई के घंटे बनाम अंक)। अच्छे चार्ट में शीर्षक, इकाई वाली लेबल धुरियाँ और स्रोत होते हैं। गुमराह करने वाली चालें: कटी धुरी, आकार बिगाड़ने वाले 3D पाई, और चुनी हुई तारीख़ें।",
+    "hinglish": "Mean har value use karta hai par outliers se khinchta hai: agar chaar dosto ke paas ₹50 hon aur ek ke paas ₹5,000, to mean ₹1,040 — kisi ke liye bhi typical nahi. Wahan median (₹50) behtar hai. Categories ke liye sirf mode kaam karta hai (“sabse popular sport”). Range spread dikhata hai. Bar charts alag categories compare karte hain (har party ke votes), line charts time ke saath trend (November mein Delhi ka AQI), pie charts 100 % ke parts aur kam slices mein achhe, aur scatter plots dikhate hain ki do cheezein saath badalti hain ya nahi (study hours vs marks). Achhe charts mein title, units wale labelled axes aur source hota hai. Misleading tricks: cut axes, size bigaadne wale 3D pies, aur chuni hui dates."
+   },
+   "analogy": {
+    "hinglish": "Mean = sabka tiffin mila ke barabar baantna. Median = height se line mein khade ho to beech wala bachcha. Mode = class mein sabse common naam.",
+    "en": "Mean = mixing everyone’s tiffin and sharing it equally. Median = the child in the middle when you line up by height. Mode = the most common name in the class.",
+    "hi": "माध्य = सबका टिफ़िन मिलाकर बराबर बाँटना। माध्यिका = ऊँचाई से पंक्ति में खड़े हों तो बीच वाला बच्चा। बहुलक = कक्षा में सबसे आम नाम।"
+   },
+   "realExample": {
+    "en": "IMD shows monsoon rainfall as bar charts against the long-period average, so you can see at a glance which weeks were deficient.",
+    "hi": "IMD मानसून वर्षा को दीर्घावधि औसत के सामने बार चार्ट में दिखाता है, ताकि एक नज़र में दिखे कौन-से सप्ताह कम रहे।",
+    "hinglish": "IMD monsoon rainfall ko long-period average ke against bar charts mein dikhata hai, taaki ek nazar mein dikhe kaunse hafte kam baarish hui."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Record the daily maximum temperature for 7 days from a weather app. Find the mean, median and range and draw a line chart.",
+   "hi": "मौसम ऐप से 7 दिन का दैनिक अधिकतम तापमान लिखो। माध्य, माध्यिका और परिसर निकालो और लाइन चार्ट बनाओ।",
+   "hinglish": "Weather app se 7 din ka maximum temperature record karo. Mean, median aur range nikaalo aur line chart banao."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "short",
+    "prompt": {
+     "en": "Find the median of 7, 3, 9, 5, 1.",
+     "hi": "7, 3, 9, 5, 1 की माध्यिका ज्ञात करो।",
+     "hinglish": "7, 3, 9, 5, 1 ka median nikaalo."
+    },
+    "answer": [
+     "5"
+    ],
+    "explain": {
+     "en": "Sorted: 1, 3, 5, 7, 9. The middle value is 5.",
+     "hi": "क्रम में: 1, 3, 5, 7, 9। बीच का मान 5।",
+     "hinglish": "Sorted: 1, 3, 5, 7, 9. Beech ki value 5."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "short",
+    "prompt": {
+     "en": "Find the mean of 4, 8, 6, 2.",
+     "hi": "4, 8, 6, 2 का माध्य ज्ञात करो।",
+     "hinglish": "4, 8, 6, 2 ka mean nikaalo."
+    },
+    "answer": [
+     "5"
+    ],
+    "explain": {
+     "en": "(4 + 8 + 6 + 2) ÷ 4 = 20 ÷ 4 = 5.",
+     "hi": "(4 + 8 + 6 + 2) ÷ 4 = 20 ÷ 4 = 5।",
+     "hinglish": "(4 + 8 + 6 + 2) ÷ 4 = 20 ÷ 4 = 5."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "match",
+    "prompt": {
+     "en": "Match the question to the best chart.",
+     "hi": "प्रश्न को सबसे अच्छे चार्ट से मिलाओ।",
+     "hinglish": "Sawaal ko best chart se milao."
+    },
+    "options": {
+     "left": [
+      {
+       "en": "How did the temperature change this week?",
+       "hi": "इस हफ़्ते तापमान कैसे बदला?",
+       "hinglish": "Is hafte temperature kaise badla?"
+      },
+      {
+       "en": "Which sport got the most votes?",
+       "hi": "किस खेल को सबसे ज़्यादा वोट मिले?",
+       "hinglish": "Kis sport ko sabse zyada votes mile?"
+      },
+      {
+       "en": "What share of pocket money goes to snacks?",
+       "hi": "जेब ख़र्च का कितना हिस्सा नाश्ते पर?",
+       "hinglish": "Pocket money ka kitna hissa snacks pe?"
+      }
+     ],
+     "right": [
+      {
+       "en": "Bar chart",
+       "hi": "बार चार्ट",
+       "hinglish": "Bar chart"
+      },
+      {
+       "en": "Line chart",
+       "hi": "रेखा चार्ट",
+       "hinglish": "Line chart"
+      },
+      {
+       "en": "Pie chart",
+       "hi": "पाई चार्ट",
+       "hinglish": "Pie chart"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      0
+     ],
+     [
+      2,
+      2
+     ]
+    ],
+    "explain": {
+     "en": "Change over time → line; compare categories → bar; share of a whole → pie.",
+     "hi": "समय के साथ बदलाव → रेखा; श्रेणी तुलना → बार; पूरे का हिस्सा → पाई।",
+     "hinglish": "Time ke saath change → line; categories compare → bar; whole ka share → pie."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Pocket money: ₹50, ₹50, ₹60, ₹40, ₹5,000. Which average best describes a typical friend?",
+     "hi": "जेब ख़र्च: ₹50, ₹50, ₹60, ₹40, ₹5,000। सामान्य दोस्त का सबसे अच्छा औसत कौन?",
+     "hinglish": "Pocket money: ₹50, ₹50, ₹60, ₹40, ₹5,000. Typical dost ka best average kaunsa?"
+    },
+    "options": [
+     {
+      "en": "Mean",
+      "hi": "माध्य",
+      "hinglish": "Mean"
+     },
+     {
+      "en": "Median",
+      "hi": "माध्यिका",
+      "hinglish": "Median"
+     },
+     {
+      "en": "Range",
+      "hi": "परिसर",
+      "hinglish": "Range"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "The ₹5,000 outlier drags the mean to ₹1,040. The median, ₹50, is typical.",
+     "hi": "₹5,000 का बाहरी मान माध्य को ₹1,040 तक खींचता है। माध्यिका ₹50 सामान्य है।",
+     "hinglish": "₹5,000 outlier mean ko ₹1,040 tak kheench leta hai. Median ₹50 typical hai."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "A forwarded chart shows two bars, 98 and 100, but the second looks 3 times taller. What is wrong?",
+     "hi": "फ़ॉरवर्ड चार्ट में 98 और 100 के दो बार हैं, पर दूसरा 3 गुना लंबा दिखता है। क्या ग़लत है?",
+     "hinglish": "Forwarded chart mein 98 aur 100 ke do bars hain, par doosra 3 guna lamba dikhta hai. Kya galat hai?"
+    },
+    "options": [
+     {
+      "en": "The axis does not start at 0",
+      "hi": "धुरी 0 से शुरू नहीं होती",
+      "hinglish": "Axis 0 se shuru nahi hota"
+     },
+     {
+      "en": "Nothing — 100 is much bigger",
+      "hi": "कुछ नहीं — 100 बहुत बड़ा है",
+      "hinglish": "Kuch nahi — 100 bahut bada hai"
+     },
+     {
+      "en": "Bars should be round",
+      "hi": "बार गोल होने चाहिए",
+      "hinglish": "Bars gol hone chahiye"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "The axis does not start at 0, which exaggerates a 2 % difference.",
+     "hi": "धुरी 0 से शुरू नहीं होती, जो 2 % अंतर को बढ़ा-चढ़ाकर दिखाती है।",
+     "hinglish": "Axis 0 se shuru nahi hota, jo 2 % farak ko badha-chadha ke dikhata hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Finish the chart challenges in the sheet lab.",
+     "hi": "शीट लैब में चार्ट चुनौतियाँ पूरी करो।",
+     "hinglish": "Sheet lab mein chart challenges poore karo."
+    },
+    "answer": {
+     "lab": "sheet-lab",
+     "event": "mission:complete",
+     "tab": "chart"
+    },
+    "explain": {
+     "en": "Line for time, bar for categories, pie for shares; median of the runs.",
+     "hi": "समय के लिए रेखा, श्रेणी के लिए बार, हिस्से के लिए पाई; रनों की माध्यिका।",
+     "hinglish": "Time ke liye line, categories ke liye bar, share ke liye pie; runs ka median."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "NCERT Class 7 Mathematics — Data Handling",
+   "url": "https://ncert.nic.in/textbook.php",
+   "licence": "fact reference"
+  },
+  {
+   "title": "India Meteorological Department — Rainfall information",
+   "url": "https://mausam.imd.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

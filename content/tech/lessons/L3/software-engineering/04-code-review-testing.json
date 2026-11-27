@@ -1,0 +1,405 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.software-engineering.04",
+ "level": 3,
+ "classes": [
+  11,
+  12
+ ],
+ "unit": "software-engineering",
+ "title": {
+  "en": "Code review and testing",
+  "hi": "कोड समीक्षा और परीक्षण",
+  "hinglish": "Code review aur testing"
+ },
+ "minutes": 15,
+ "xp": 60,
+ "prereq": [
+  "L3.software-engineering.03",
+  "L3.python-pro.06"
+ ],
+ "outcomes": [
+  {
+   "en": "Describe unit, integration and end-to-end tests and the test pyramid",
+   "hi": "इकाई, एकीकरण और एंड-टू-एंड परीक्षण और परीक्षण पिरामिड बताओ",
+   "hinglish": "Unit, integration aur end-to-end tests aur test pyramid batao"
+  },
+  {
+   "en": "Write tests that include edge cases",
+   "hi": "किनारे के मामलों वाले परीक्षण लिखो",
+   "hinglish": "Edge cases wale tests likho"
+  },
+  {
+   "en": "Give helpful, kind code-review comments",
+   "hi": "मददगार, विनम्र कोड-समीक्षा टिप्पणियाँ दो",
+   "hinglish": "Madadgaar, vinamra code-review comments do"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Unit test",
+   "hinglish": "Chhota test",
+   "en": "Checks one function in isolation, in milliseconds",
+   "hi": "एक फ़ंक्शन को अकेले, मिलीसेकंड में जाँचता है"
+  },
+  {
+   "term": "Integration test",
+   "hinglish": "Jodne ka test",
+   "en": "Checks that parts work together, e.g. app + database",
+   "hi": "जाँचता है कि भाग साथ काम करें, जैसे ऐप + डेटाबेस"
+  },
+  {
+   "term": "End-to-end test",
+   "hinglish": "Poora test",
+   "en": "Drives the whole app like a user would",
+   "hi": "पूरे ऐप को उपयोगकर्ता की तरह चलाता है"
+  },
+  {
+   "term": "Edge case",
+   "hinglish": "Kinaare ka case",
+   "en": "An unusual input at the limits: empty, zero, huge, negative",
+   "hi": "सीमाओं पर असामान्य इनपुट: ख़ाली, शून्य, बहुत बड़ा, ऋणात्मक"
+  },
+  {
+   "term": "Regression",
+   "hinglish": "Purana bug wapas",
+   "en": "Something that used to work and broke after a change",
+   "hi": "जो पहले चलता था और बदलाव के बाद टूट गया"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Test pyramid: many fast unit tests, fewer integration tests, a few end-to-end tests.",
+    "hi": "परीक्षण पिरामिड: बहुत से तेज़ इकाई परीक्षण, कम एकीकरण, कुछ एंड-टू-एंड।",
+    "hinglish": "Test pyramid: bahut se tez unit tests, kam integration, kuch end-to-end."
+   },
+   "visual": "stack:end-to-end|integration|unit",
+   "narration": {
+    "en": "Test pyramid: many fast unit tests, fewer integration tests, a few end-to-end tests.",
+    "hi": "परीक्षण पिरामिड: बहुत से तेज़ इकाई परीक्षण, कम एकीकरण, कुछ एंड-टू-एंड।",
+    "hinglish": "Test pyramid: bahut se tez unit tests, kam integration, kuch end-to-end."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "A good test checks the normal case and the edges: empty list, zero, 100%, negative.",
+    "hi": "अच्छा परीक्षण सामान्य मामला और किनारे जाँचता है: ख़ाली सूची, शून्य, 100%, ऋणात्मक।",
+    "hinglish": "Achha test normal case aur edges check karta hai: khaali list, zero, 100%, negative."
+   },
+   "visual": "compare:normal|edge",
+   "narration": {
+    "en": "A good test checks the normal case and the edges: empty list, zero, 100%, negative.",
+    "hi": "अच्छा परीक्षण सामान्य मामला और किनारे जाँचता है: ख़ाली सूची, शून्य, 100%, ऋणात्मक।",
+    "hinglish": "Achha test normal case aur edges check karta hai: khaali list, zero, 100%, negative."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "A failing test is good news: it found the bug before users did.",
+    "hi": "विफल परीक्षण अच्छी ख़बर है: उसने उपयोगकर्ताओं से पहले बग पकड़ा।",
+    "hinglish": "Failing test achhi khabar hai: usne users se pehle bug pakda."
+   },
+   "visual": "anim:red-green",
+   "narration": {
+    "en": "A failing test is good news: it found the bug before users did.",
+    "hi": "विफल परीक्षण अच्छी ख़बर है: उसने उपयोगकर्ताओं से पहले बग पकड़ा।",
+    "hinglish": "Failing test achhi khabar hai: usne users se pehle bug pakda."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Review the code, not the coder: specific, kind, with a suggestion.",
+    "hi": "कोड की समीक्षा करो, कोडर की नहीं: विशिष्ट, विनम्र, सुझाव के साथ।",
+    "hinglish": "Code ka review karo, coder ka nahi: specific, vinamra, suggestion ke saath."
+   },
+   "visual": "flow:read|ask|suggest|approve",
+   "narration": {
+    "en": "Review the code, not the coder: specific, kind, with a suggestion.",
+    "hi": "कोड की समीक्षा करो, कोडर की नहीं: विशिष्ट, विनम्र, सुझाव के साथ।",
+    "hinglish": "Code ka review karo, coder ka nahi: specific, vinamra, suggestion ke saath."
+   }
+  }
+ ],
+ "play": {
+  "lab": "code-lab",
+  "config": {
+   "mode": "trace",
+   "scenario": "test-assert"
+  },
+  "goal": {
+   "en": "Run the tests on the average() function and watch one fail on an edge case. Turn on the fix and run again until all tests pass.",
+   "hi": "average() फ़ंक्शन पर परीक्षण चलाओ और देखो एक किनारे के मामले पर विफल होता है। सुधार चालू करो और दोबारा चलाओ जब तक सभी परीक्षण पास न हों।",
+   "hinglish": "average() function par tests chalao aur dekho ek edge case par fail hota hai. Fix on karo aur dobaara chalao jab tak saare tests pass na hon."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "What to test and how much",
+    "hi": "क्या और कितना जाँचें",
+    "hinglish": "Kya aur kitna test karein"
+   },
+   "body": {
+    "en": "Tests are code that checks code. A unit test calls one function with known inputs and asserts the output — with pytest it is just a function whose name starts with test_ containing assert statements. Integration tests check that pieces fit: does the marks API really read from the database? End-to-end tests click through the real app in a browser, and are slow and fragile, so teams keep a pyramid: lots of unit tests, fewer integration tests, a handful of end-to-end ones. Most bugs hide at the edges, so for every function ask: what if the input is empty, zero, negative, huge, has the wrong type, or is at an exact boundary like 33 marks when 33 is the pass mark? When you fix a bug, first write a test that fails because of it; then fix the code; the test stays forever to stop that regression coming back. CI runs the whole suite on every pull request.",
+    "hi": "परीक्षण वह कोड है जो कोड जाँचता है। इकाई परीक्षण एक फ़ंक्शन को ज्ञात इनपुट से बुलाकर आउटपुट पर assert करता है — pytest के साथ यह बस test_ से शुरू होने वाला फ़ंक्शन है जिसमें assert कथन हों। एकीकरण परीक्षण जाँचते हैं कि टुकड़े फ़िट हों: क्या अंक API सच में डेटाबेस से पढ़ता है? एंड-टू-एंड परीक्षण ब्राउज़र में असली ऐप पर क्लिक करते हैं, और धीमे व नाज़ुक होते हैं, इसलिए टीमें पिरामिड रखती हैं: बहुत से इकाई परीक्षण, कम एकीकरण, गिने-चुने एंड-टू-एंड। ज़्यादातर बग किनारों पर छिपते हैं, इसलिए हर फ़ंक्शन के लिए पूछो: इनपुट ख़ाली, शून्य, ऋणात्मक, बहुत बड़ा, ग़लत प्रकार का, या ठीक सीमा पर हो तो, जैसे 33 अंक जब उत्तीर्ण अंक 33 हो? बग ठीक करते समय पहले वह परीक्षण लिखो जो उसके कारण विफल हो; फिर कोड ठीक करो; परीक्षण हमेशा रहता है ताकि वह प्रतिगमन लौटे नहीं। CI हर पुल रिक्वेस्ट पर पूरा सूट चलाता है।",
+    "hinglish": "Tests woh code hain jo code check karte hain. Unit test ek function ko known inputs se bulakar output par assert karta hai — pytest ke saath yeh bas test_ se shuru hone wala function hai jismein assert statements hon. Integration tests check karte hain ki pieces fit hon: kya marks API sach mein database se padhta hai? End-to-end tests browser mein asli app par click karte hain, aur dheeme aur fragile hote hain, isliye teams pyramid rakhti hain: bahut se unit tests, kam integration tests, gine-chune end-to-end. Zyaadatar bugs edges par chhupte hain, isliye har function ke liye poocho: input khaali, zero, negative, bahut bada, galat type ka, ya bilkul boundary par ho to, jaise 33 marks jab pass mark 33 ho? Bug theek karte waqt pehle woh test likho jo uske kaaran fail ho; phir code theek karo; test hamesha rehta hai taaki woh regression wapas na aaye. CI har pull request par poora suite chalata hai."
+   },
+   "analogy": {
+    "en": "A car’s safety checks: each part is tested in the factory (unit), the assembled car on a test track (integration), and a full road trip before sale (end-to-end).",
+    "hi": "कार की सुरक्षा जाँच: हर पुर्ज़ा फ़ैक्टरी में जाँचा (इकाई), जुड़ी कार टेस्ट ट्रैक पर (एकीकरण), और बिक्री से पहले पूरी सड़क यात्रा (एंड-टू-एंड)।",
+    "hinglish": "Car ki safety checks: har part factory mein test (unit), assembled car test track par (integration), aur bikri se pehle poori road trip (end-to-end)."
+   },
+   "realExample": {
+    "en": "def test_average_empty(): assert average([]) == 0 — the test that catches a ZeroDivisionError before a student’s report card does.",
+    "hi": "def test_average_empty(): assert average([]) == 0 — वह परीक्षण जो छात्र के रिपोर्ट कार्ड से पहले ZeroDivisionError पकड़ता है।",
+    "hinglish": "def test_average_empty(): assert average([]) == 0 — woh test jo student ke report card se pehle ZeroDivisionError pakadta hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "Reviewing code like a professional",
+    "hi": "पेशेवर की तरह कोड समीक्षा",
+    "hinglish": "Professional ki tarah code review"
+   },
+   "body": {
+    "en": "Google’s public code-review guide sums up the goal: approve a change once it clearly improves the overall health of the code, even if it is not perfect. Reviewers look at design, correctness, tests, naming, readability and security — for example, is user input passed to SQL as a parameter, and are secrets kept out of the code? Good comments are specific and kind, and explain why: \"This crashes on an empty list — could we return 0 and add a test?\" is far better than \"wrong\". Mark small preferences as optional (\"nit:\"). As the author, keep pull requests small (a few hundred lines at most), describe what and why, and reply to every comment. Reviews are also how juniors learn from seniors and seniors learn new ideas from juniors — and with AI coding assistants, a human who understands the change must still review it before it is merged.",
+    "hi": "Google की सार्वजनिक कोड-समीक्षा गाइड लक्ष्य बताती है: बदलाव तब स्वीकृत करो जब वह कोड के समग्र स्वास्थ्य को स्पष्ट रूप से बेहतर करे, भले ही सर्वोत्तम न हो। समीक्षक डिज़ाइन, सहीपन, परीक्षण, नामकरण, पठनीयता और सुरक्षा देखते हैं — जैसे, क्या उपयोगकर्ता इनपुट SQL में पैरामीटर की तरह जाता है, और क्या रहस्य कोड से बाहर हैं? अच्छी टिप्पणियाँ विशिष्ट और विनम्र होती हैं, और क्यों बताती हैं: \"यह ख़ाली सूची पर क्रैश होता है — क्या हम 0 लौटाकर एक परीक्षण जोड़ सकते हैं?\" \"ग़लत\" से कहीं बेहतर है। छोटी पसंदों को वैकल्पिक चिह्नित करो (\"nit:\")। लेखक के रूप में पुल रिक्वेस्ट छोटे रखो (अधिकतम कुछ सौ पंक्तियाँ), क्या और क्यों बताओ, और हर टिप्पणी का उत्तर दो। समीक्षाओं से कनिष्ठ वरिष्ठों से सीखते हैं और वरिष्ठ कनिष्ठों से नए विचार — और एआई कोडिंग सहायकों के साथ भी, बदलाव समझने वाले किसी इंसान को मर्ज से पहले उसकी समीक्षा करनी ही चाहिए।",
+    "hinglish": "Google ki public code-review guide goal batati hai: change tab approve karo jab woh code ki overall health ko clearly behtar kare, bhale hi perfect na ho. Reviewers design, correctness, tests, naming, readability aur security dekhte hain — jaise, kya user input SQL mein parameter ki tarah jaata hai, aur kya secrets code se bahar hain? Achhe comments specific aur vinamra hote hain, aur kyun batate hain: \"Yeh khaali list par crash hota hai — kya hum 0 return karke ek test jod sakte hain?\" \"galat\" se kahin behtar hai. Chhoti preferences ko optional mark karo (\"nit:\"). Author ke roop mein pull requests chhote rakho (zyada se zyada kuch sau lines), kya aur kyun batao, aur har comment ka jawab do. Reviews se juniors seniors se seekhte hain aur seniors juniors se naye ideas — aur AI coding assistants ke saath bhi, change samajhne wale kisi insaan ko merge se pehle uska review karna hi chahiye."
+   },
+   "analogy": {
+    "en": "A teacher marking a draft essay: point to the exact sentence, explain the problem, suggest a fix — and praise what works.",
+    "hi": "शिक्षक मसौदा निबंध जाँचते हुए: ठीक वाक्य बताओ, समस्या समझाओ, सुधार सुझाओ — और जो अच्छा है उसकी तारीफ़ करो।",
+    "hinglish": "Teacher draft essay check karte hue: exact sentence batao, problem samjhao, fix suggest karo — aur jo achha hai uski taareef karo."
+   },
+   "realExample": {
+    "en": "Review comment: \"nit: rename x to marks for clarity. Blocking: SQL is built with an f-string here — please use a parameter to prevent injection.\"",
+    "hi": "समीक्षा टिप्पणी: \"nit: स्पष्टता के लिए x का नाम marks करो। रोकने वाली: यहाँ SQL f-string से बनी है — इंजेक्शन रोकने को पैरामीटर इस्तेमाल करो।\"",
+    "hinglish": "Review comment: \"nit: clarity ke liye x ka naam marks karo. Blocking: yahan SQL f-string se bani hai — injection rokne ko parameter use karo.\""
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write a function grade(marks) that returns \"A\" for 90 and above, \"B\" for 75–89, \"C\" for 33–74 and \"Fail\" below 33. Write at least six pytest tests including the edges 0, 33, 32, 89, 90 and 100, and one for invalid input like -5. Swap with a friend and write three review comments on each other’s code: one praise, one suggestion, one question.",
+   "hi": "फ़ंक्शन grade(marks) लिखो जो 90 और ऊपर पर \"A\", 75–89 पर \"B\", 33–74 पर \"C\" और 33 से नीचे \"Fail\" दे। कम से कम छह pytest परीक्षण लिखो जिनमें किनारे 0, 33, 32, 89, 90 और 100 हों, और एक अमान्य इनपुट जैसे -5 के लिए। दोस्त से बदलो और एक-दूसरे के कोड पर तीन समीक्षा टिप्पणियाँ लिखो: एक तारीफ़, एक सुझाव, एक प्रश्न।",
+   "hinglish": "Function grade(marks) likho jo 90 aur upar par \"A\", 75–89 par \"B\", 33–74 par \"C\" aur 33 se neeche \"Fail\" de. Kam se kam chhe pytest tests likho jinmein edges 0, 33, 32, 89, 90 aur 100 hon, aur ek invalid input jaise -5 ke liye. Dost ke saath badlo aur ek-doosre ke code par teen review comments likho: ek taareef, ek suggestion, ek sawaal."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "order",
+    "prompt": {
+     "en": "Order the test pyramid from the most tests to the fewest.",
+     "hi": "परीक्षण पिरामिड को सबसे ज़्यादा से सबसे कम परीक्षणों के क्रम में लगाओ।",
+     "hinglish": "Test pyramid ko sabse zyada se sabse kam tests ke order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Unit tests",
+      "hi": "इकाई परीक्षण",
+      "hinglish": "Unit tests"
+     },
+     {
+      "en": "Integration tests",
+      "hi": "एकीकरण परीक्षण",
+      "hinglish": "Integration tests"
+     },
+     {
+      "en": "End-to-end tests",
+      "hi": "एंड-टू-एंड परीक्षण",
+      "hinglish": "End-to-end tests"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2
+    ],
+    "explain": {
+     "en": "Fast and many at the base, slow and few at the top.",
+     "hi": "नीचे तेज़ और बहुत, ऊपर धीमे और कम।",
+     "hinglish": "Neeche tez aur bahut, upar dheeme aur kam."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "multi",
+    "prompt": {
+     "en": "Pass mark is 33. Which inputs are edge cases worth testing for grade()?",
+     "hi": "उत्तीर्ण अंक 33 है। grade() के लिए कौन-से इनपुट किनारे के मामले हैं?",
+     "hinglish": "Pass mark 33 hai. grade() ke liye kaunse inputs edge cases hain?"
+    },
+    "options": [
+     {
+      "en": "32",
+      "hi": "32",
+      "hinglish": "32"
+     },
+     {
+      "en": "33",
+      "hi": "33",
+      "hinglish": "33"
+     },
+     {
+      "en": "0",
+      "hi": "0",
+      "hinglish": "0"
+     },
+     {
+      "en": "57",
+      "hi": "57",
+      "hinglish": "57"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2
+    ],
+    "explain": {
+     "en": "Boundaries and limits; 57 is an ordinary middle value.",
+     "hi": "सीमाएँ और छोर; 57 साधारण बीच का मान है।",
+     "hinglish": "Boundaries aur limits; 57 ordinary middle value hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "You found a bug. What should you write first?",
+     "hi": "आपको बग मिला। पहले क्या लिखना चाहिए?",
+     "hinglish": "Tumhe bug mila. Pehle kya likhna chahiye?"
+    },
+    "options": [
+     {
+      "en": "A test that fails because of the bug",
+      "hi": "वह परीक्षण जो बग के कारण विफल हो",
+      "hinglish": "Woh test jo bug ke kaaran fail ho"
+     },
+     {
+      "en": "A blog post",
+      "hi": "ब्लॉग पोस्ट",
+      "hinglish": "Blog post"
+     },
+     {
+      "en": "Nothing — just fix it",
+      "hi": "कुछ नहीं — बस ठीक करो",
+      "hinglish": "Kuch nahi — bas theek karo"
+     },
+     {
+      "en": "A new feature",
+      "hi": "नई सुविधा",
+      "hinglish": "Naya feature"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "The test proves the fix and prevents regression.",
+     "hi": "परीक्षण सुधार साबित करता है और प्रतिगमन रोकता है।",
+     "hinglish": "Test fix prove karta hai aur regression rokta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which is the most helpful review comment?",
+     "hi": "कौन-सी समीक्षा टिप्पणी सबसे मददगार है?",
+     "hinglish": "Kaunsa review comment sabse madadgaar hai?"
+    },
+    "options": [
+     {
+      "en": "\"This crashes on an empty list — could we return 0 and add a test?\"",
+      "hi": "\"यह ख़ाली सूची पर क्रैश होता है — क्या हम 0 लौटाकर परीक्षण जोड़ सकते हैं?\"",
+      "hinglish": "\"Yeh khaali list par crash hota hai — kya hum 0 return karke test jod sakte hain?\""
+     },
+     {
+      "en": "\"Wrong.\"",
+      "hi": "\"ग़लत।\"",
+      "hinglish": "\"Galat.\""
+     },
+     {
+      "en": "\"Who wrote this?\"",
+      "hi": "\"यह किसने लिखा?\"",
+      "hinglish": "\"Yeh kisne likha?\""
+     },
+     {
+      "en": "\"I would never do this.\"",
+      "hi": "\"मैं ऐसा कभी नहीं करता।\"",
+      "hinglish": "\"Main aisa kabhi nahi karta.\""
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Specific, explains why, suggests a fix.",
+     "hi": "विशिष्ट, क्यों बताती है, सुधार सुझाती है।",
+     "hinglish": "Specific, kyun batati hai, fix suggest karti hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "short",
+    "prompt": {
+     "en": "In pytest, test function names must start with which prefix?",
+     "hi": "pytest में परीक्षण फ़ंक्शन के नाम किस उपसर्ग से शुरू होने चाहिए?",
+     "hinglish": "pytest mein test function ke naam kis prefix se shuru hone chahiye?"
+    },
+    "answer": {
+     "accept": [
+      "test_",
+      "test"
+     ]
+    },
+    "explain": {
+     "en": "pytest discovers functions named test_*.",
+     "hi": "pytest test_* नाम वाले फ़ंक्शन ढूँढता है।",
+     "hinglish": "pytest test_* naam wale functions dhoondhta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Make every test pass in the lab.",
+     "hi": "लैब में हर परीक्षण पास करो।",
+     "hinglish": "Lab mein har test pass karo."
+    },
+    "answer": {
+     "event": "tests-pass"
+    },
+    "explain": {
+     "en": "Handle the empty list, then rerun.",
+     "hi": "ख़ाली सूची सँभालो, फिर दोबारा चलाओ।",
+     "hinglish": "Khaali list sambhaalo, phir dobaara chalao."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "sw.testing",
+  "sw.how-made"
+ ],
+ "sources": [
+  {
+   "title": "Google Engineering Practices — Code review guide",
+   "url": "https://google.github.io/eng-practices/review/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "pytest documentation",
+   "url": "https://docs.pytest.org/",
+   "licence": "fact reference"
+  }
+ ]
+}

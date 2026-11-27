@@ -8188,6 +8188,7 @@ export const en = {
   'fam.tab.home': 'Home',
   'fam.tab.study': 'Study',
   'fam.tab.english': 'English',
+  'fam.tab.tech': 'Tech Lab',
   'fam.tab.future': 'Future',
   // H1: the notifications centre, the Profile with Parent space, and the three hub shells.
   'fam.notify.center.title': 'Notifications',
@@ -9202,6 +9203,7 @@ export const en = {
   'control.family.voice.saved': 'Saved.',
   'control.family.voice.failed': 'Not saved. Enter a whole number from 0 to 1,000,000, sign in with your authenticator and try again.',
   'control.apps.module.label.draw': 'Draw tab (art table)',
+  'control.apps.module.label.tech_lab': 'Tech Lab (technology and AI course)',
   'control.m6.sys.meaning.family_draw_daily_creations': 'New drawings one child may start in a day on the Draw tab. Counted on the phone; drawings already made always open.',
   'control.family.draw.title': 'Draw tab: new drawings per child per day',
   'control.family.draw.lead': 'How many new drawings a child may start in an India day. The count is kept on the child\'s phone, never on our servers; drawings already made still open and can be finished. 0 stops new drawings. Not set: 12.',

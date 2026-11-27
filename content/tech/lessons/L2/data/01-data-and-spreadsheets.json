@@ -1,0 +1,337 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.data.01",
+ "level": 2,
+ "classes": [
+  6,
+  7
+ ],
+ "unit": "data",
+ "title": {
+  "en": "Data and spreadsheets",
+  "hi": "डेटा और स्प्रेडशीट",
+  "hinglish": "Data aur spreadsheets"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [],
+ "topics": [
+  "data.what-is-data",
+  "data.tables",
+  "ds.collect"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain what data is and how it is collected",
+   "hi": "समझा सकते हो कि डेटा क्या है और कैसे इकट्ठा होता है",
+   "hinglish": "Data kya hai aur kaise collect hota hai samjha sakte ho"
+  },
+  {
+   "en": "Use rows, columns, cells and cell addresses like B3",
+   "hi": "पंक्तियाँ, स्तंभ, सेल और B3 जैसे सेल पते उपयोग कर सकते हो",
+   "hinglish": "Rows, columns, cells aur B3 jaise cell addresses use kar sakte ho"
+  },
+  {
+   "en": "Write formulas with SUM, AVERAGE, MAX and MIN",
+   "hi": "SUM, AVERAGE, MAX और MIN से फ़ॉर्मूले लिख सकते हो",
+   "hinglish": "SUM, AVERAGE, MAX aur MIN wale formulas likh sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Data",
+   "hinglish": "Facts aur numbers jo record kiye",
+   "en": "Facts, numbers or observations that are recorded",
+   "hi": "दर्ज किए गए तथ्य, संख्याएँ या अवलोकन"
+  },
+  {
+   "term": "Spreadsheet",
+   "hinglish": "Rows-columns wali smart table",
+   "en": "A grid of cells that can calculate: Google Sheets, Excel, LibreOffice Calc",
+   "hi": "गणना करने वाले सेलों का जाल: Google Sheets, Excel, LibreOffice Calc"
+  },
+  {
+   "term": "Cell address",
+   "hinglish": "Column letter + row number",
+   "en": "The name of a cell: column letter + row number, e.g. B3",
+   "hi": "सेल का नाम: स्तंभ अक्षर + पंक्ति संख्या, जैसे B3"
+  },
+  {
+   "term": "Formula",
+   "hinglish": "= se shuru hone wala calculation",
+   "en": "A calculation that starts with =, e.g. =SUM(B2:B6)",
+   "hi": "= से शुरू होने वाली गणना, जैसे =SUM(B2:B6)"
+  },
+  {
+   "term": "Range",
+   "hinglish": "Cells ka group",
+   "en": "A block of cells: B2:B6 means B2 to B6",
+   "hi": "सेलों का समूह: B2:B6 का अर्थ B2 से B6"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Data is recorded facts: marks, temperatures, heights, cricket scores. A table puts each record in a row and each property in a column.",
+    "hi": "डेटा दर्ज तथ्य हैं: अंक, तापमान, लंबाई, क्रिकेट स्कोर। तालिका हर रिकॉर्ड को पंक्ति में और हर गुण को स्तंभ में रखती है।",
+    "hinglish": "Data recorded facts hain: marks, temperature, height, cricket scores. Table har record ko row mein aur har property ko column mein rakhti hai."
+   },
+   "visual": "compare:↔️ Row = one student|↕️ Column = one kind of fact (marks)",
+   "narration": {
+    "en": "Good tables have one header row and one kind of data per column.",
+    "hi": "अच्छी तालिका में एक शीर्षक पंक्ति और हर स्तंभ में एक ही प्रकार का डेटा होता है।",
+    "hinglish": "Achhi tables mein ek header row aur har column mein ek hi type ka data hota hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Every cell has an address: column letter + row number. B3 = column B, row 3.",
+    "hi": "हर सेल का पता है: स्तंभ अक्षर + पंक्ति संख्या। B3 = स्तंभ B, पंक्ति 3।",
+    "hinglish": "Har cell ka address hai: column letter + row number. B3 = column B, row 3."
+   },
+   "visual": "lab:sheet-lab#sheet",
+   "narration": {
+    "en": "Tap a cell in the lab to see its address and formula.",
+    "hi": "लैब में किसी सेल पर टैप करो और उसका पता और फ़ॉर्मूला देखो।",
+    "hinglish": "Lab mein cell tap karke uska address aur formula dekho."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "A formula starts with =. Change one number and every formula that uses it updates instantly.",
+    "hi": "सूत्र = से शुरू होता है। एक संख्या बदलो और उसे उपयोग करने वाला हर सूत्र तुरंत बदलता है।",
+    "hinglish": "Formula = se shuru hota hai. Ek number badlo aur use karne wala har formula turant update hota hai."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "This automatic recalculation is why spreadsheets changed offices forever (VisiCalc, 1979).",
+    "hi": "इसी स्वचालित पुनर्गणना के कारण स्प्रेडशीट ने दफ़्तरों को हमेशा के लिए बदल दिया (VisiCalc, 1979)।",
+    "hinglish": "Yahi automatic recalculation hai jisne offices hamesha ke liye badal diye (VisiCalc, 1979)."
+   },
+   "code": "=SUM(B2:B6)      total of B2 to B6\n=AVERAGE(B2:B6)  mean\n=MAX(B2:B6)      highest\n=B2+C2           add two cells"
+  }
+ ],
+ "play": {
+  "lab": "sheet-lab",
+  "config": {
+   "tab": "sheet"
+  },
+  "goal": {
+   "en": "Fill in the class marks sheet: write formulas for the total and average in the yellow cells.",
+   "hi": "कक्षा की अंक शीट भरो: पीले सेल में योग और औसत के फ़ॉर्मूले लिखो।",
+   "hinglish": "Class marks sheet bharo: yellow cells mein total aur average ke formulas likho."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Collecting and organising data",
+    "hi": "डेटा इकट्ठा और व्यवस्थित करना",
+    "hinglish": "Data collect aur organise karna"
+   },
+   "body": {
+    "en": "Data can be collected by surveys (asking people), observation (counting cars), measurement (sensors, thermometers) and records (attendance registers). Quantitative data is numbers (height 142 cm); qualitative data is categories or words (favourite sport: kabaddi). In a spreadsheet, rows are numbered 1, 2, 3… and columns lettered A, B, C…; one sheet in Excel or Google Sheets can hold more than 10 lakh rows. Formulas use cell addresses instead of typed numbers, so they stay correct when data changes. Copying =B2+C2 down a column automatically becomes =B3+C3, =B4+C4 (relative references). India runs huge data collections too: UDISE+ collects data on about 14.7 lakh schools every year, and the Census counts every person.",
+    "hi": "डेटा सर्वेक्षण (लोगों से पूछना), अवलोकन (गाड़ियाँ गिनना), माप (सेंसर, थर्मामीटर) और रिकॉर्ड (उपस्थिति रजिस्टर) से इकट्ठा होता है। मात्रात्मक डेटा संख्या है (ऊँचाई 142 cm); गुणात्मक डेटा श्रेणी या शब्द है (पसंदीदा खेल: कबड्डी)। स्प्रेडशीट में पंक्तियाँ 1, 2, 3… और स्तंभ A, B, C… होते हैं; Excel या Google Sheets की एक शीट में 10 लाख से ज़्यादा पंक्तियाँ आ सकती हैं। सूत्र टाइप की संख्याओं की जगह सेल पते उपयोग करते हैं, इसलिए डेटा बदलने पर भी सही रहते हैं। =B2+C2 को नीचे कॉपी करने पर वह अपने-आप =B3+C3, =B4+C4 बनता है (सापेक्ष संदर्भ)। भारत भी बड़े डेटा संग्रह करता है: UDISE+ हर साल लगभग 14.7 लाख स्कूलों का डेटा जुटाता है, और जनगणना हर व्यक्ति को गिनती है।",
+    "hinglish": "Data surveys (logon se poochna), observation (gaadiyan ginna), measurement (sensors, thermometer) aur records (attendance register) se collect hota hai. Quantitative data numbers hai (height 142 cm); qualitative data categories ya words hai (favourite sport: kabaddi). Spreadsheet mein rows 1, 2, 3… aur columns A, B, C… hote hain; Excel ya Google Sheets ki ek sheet mein 10 lakh se zyada rows aa sakti hain. Formulas typed numbers ki jagah cell addresses use karte hain, isliye data badalne pe bhi sahi rehte hain. =B2+C2 ko neeche copy karo to woh apne aap =B3+C3, =B4+C4 ban jaata hai (relative references). India bhi bade data collections karta hai: UDISE+ har saal lagbhag 14.7 lakh schools ka data collect karta hai, aur Census har vyakti ko ginta hai."
+   },
+   "analogy": {
+    "hinglish": "Spreadsheet = smart register: normal register mein total khud jodna padta hai, spreadsheet mein ek baar formula likho, hamesha sahi total.",
+    "en": "A spreadsheet = a smart register: in a normal register you add the total yourself; in a spreadsheet you write the formula once and the total is always right.",
+    "hi": "स्प्रेडशीट = स्मार्ट रजिस्टर: सामान्य रजिस्टर में योग ख़ुद जोड़ना पड़ता है, स्प्रेडशीट में एक बार फ़ॉर्मूला लिखो, योग हमेशा सही।"
+   },
+   "realExample": {
+    "en": "Your school’s result sheet is a spreadsheet: one row per student, columns for subjects, and formula columns for total, percentage and grade.",
+    "hi": "आपके स्कूल की परिणाम शीट एक स्प्रेडशीट है: हर छात्र की एक पंक्ति, विषयों के स्तंभ, और योग, प्रतिशत व ग्रेड के फ़ॉर्मूला स्तंभ।",
+    "hinglish": "Aapke school ki result sheet ek spreadsheet hai: har student ki ek row, subjects ke columns, aur total, percentage aur grade ke formula columns."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Make a spreadsheet of your family’s screen time for 7 days (or on paper). Add a total row with =SUM and an average with =AVERAGE.",
+   "hi": "7 दिन के परिवार के स्क्रीन टाइम की स्प्रेडशीट बनाओ (या काग़ज़ पर)। =SUM से योग पंक्ति और =AVERAGE से औसत जोड़ो।",
+   "hinglish": "7 din ka family screen time spreadsheet banao (ya kaagaz pe). =SUM se total row aur =AVERAGE se average jodo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "What is the address of the cell in column C, row 4?",
+     "hi": "स्तंभ C, पंक्ति 4 वाले सेल का पता क्या है?",
+     "hinglish": "Column C, row 4 wale cell ka address kya hai?"
+    },
+    "options": [
+     "C4",
+     "4C",
+     "R4C3"
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Column letter first, then row number: C4.",
+     "hi": "पहले स्तंभ अक्षर, फिर पंक्ति संख्या: C4।",
+     "hinglish": "Pehle column letter, phir row number: C4."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which formula adds B2, B3, B4, B5 and B6?",
+     "hi": "कौन-सा सूत्र B2, B3, B4, B5 और B6 जोड़ता है?",
+     "hinglish": "Kaunsa formula B2, B3, B4, B5 aur B6 jodta hai?"
+    },
+    "options": [
+     "SUM B2 B6",
+     "=B2:B6",
+     "=SUM(B2:B6)"
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "=SUM(B2:B6) adds the whole range. The colon means “to”.",
+     "hi": "=SUM(B2:B6) पूरी रेंज जोड़ता है। कोलन का अर्थ “तक”।",
+     "hinglish": "=SUM(B2:B6) poori range jodta hai. Colon matlab “tak”."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "short",
+    "prompt": {
+     "en": "B2 = 10, B3 = 20, B4 = 30. What is =AVERAGE(B2:B4)?",
+     "hi": "B2 = 10, B3 = 20, B4 = 30। =AVERAGE(B2:B4) क्या है?",
+     "hinglish": "B2 = 10, B3 = 20, B4 = 30. =AVERAGE(B2:B4) kya hai?"
+    },
+    "answer": [
+     "20"
+    ],
+    "explain": {
+     "en": "(10 + 20 + 30) ÷ 3 = 20.",
+     "hi": "(10 + 20 + 30) ÷ 3 = 20।",
+     "hinglish": "(10 + 20 + 30) ÷ 3 = 20."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "multi",
+    "prompt": {
+     "en": "Which of these are qualitative (category) data? Choose all.",
+     "hi": "इनमें से कौन-से गुणात्मक (श्रेणी) डेटा हैं? सभी चुनो।",
+     "hinglish": "Inmein se kaunse qualitative (category) data hain? Saare chuno."
+    },
+    "options": [
+     {
+      "en": "Height: 142 cm",
+      "hi": "ऊँचाई: 142 cm",
+      "hinglish": "Height: 142 cm"
+     },
+     {
+      "en": "Favourite sport: kabaddi",
+      "hi": "पसंदीदा खेल: कबड्डी",
+      "hinglish": "Favourite sport: kabaddi"
+     },
+     {
+      "en": "Temperature: 38 °C",
+      "hi": "तापमान: 38 °C",
+      "hinglish": "Temperature: 38 °C"
+     },
+     {
+      "en": "Blood group: B+",
+      "hi": "रक्त समूह: B+",
+      "hinglish": "Blood group: B+"
+     }
+    ],
+    "answer": [
+     1,
+     3
+    ],
+    "explain": {
+     "en": "Kabaddi and B+ are categories (qualitative). 142 cm and 38 °C are measured numbers (quantitative).",
+     "hi": "कबड्डी और B+ श्रेणियाँ (गुणात्मक) हैं। 142 cm और 38 °C मापी संख्याएँ (मात्रात्मक) हैं।",
+     "hinglish": "Kabaddi aur B+ categories (qualitative) hain. 142 cm aur 38 °C measured numbers (quantitative) hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "You change B3 from 20 to 50. What happens to =SUM(B2:B4)?",
+     "hi": "B3 को 20 से 50 करते हो। =SUM(B2:B4) का क्या होता है?",
+     "hinglish": "B3 ko 20 se 50 karte ho. =SUM(B2:B4) ka kya hota hai?"
+    },
+    "options": [
+     {
+      "en": "Nothing, you must retype it",
+      "hi": "कुछ नहीं, दोबारा लिखना होगा",
+      "hinglish": "Kuch nahi, dobara likhna padega"
+     },
+     {
+      "en": "It updates by itself (+30)",
+      "hi": "अपने-आप बदलता है (+30)",
+      "hinglish": "Apne aap update hota hai (+30)"
+     },
+     {
+      "en": "It shows an error",
+      "hi": "त्रुटि दिखाता है",
+      "hinglish": "Error dikhata hai"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Formulas recalculate automatically: the total goes up by 30.",
+     "hi": "सूत्र अपने-आप फिर गणना करते हैं: योग 30 बढ़ता है।",
+     "hinglish": "Formulas apne aap recalculate hote hain: total 30 badh jaata hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the marks sheet with correct formulas in the sheet lab.",
+     "hi": "शीट लैब में सही सूत्रों से अंक शीट पूरी करो।",
+     "hinglish": "Sheet lab mein sahi formulas se marks sheet poori karo."
+    },
+    "answer": {
+     "lab": "sheet-lab",
+     "event": "mission:complete",
+     "tab": "sheet"
+    },
+    "explain": {
+     "en": "Total = SUM of the column; average = AVERAGE of the same range.",
+     "hi": "योग = स्तंभ का SUM; औसत = उसी रेंज का AVERAGE।",
+     "hinglish": "Total = column ka SUM; average = usi range ka AVERAGE."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "UDISE+ — Unified District Information System for Education Plus (Ministry of Education)",
+   "url": "https://udiseplus.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Google Sheets — function list",
+   "url": "https://support.google.com/docs/table/25273",
+   "licence": "fact reference"
+  },
+  {
+   "title": "LibreOffice Calc Guide",
+   "url": "https://documentation.libreoffice.org/en/english-documentation/calc/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

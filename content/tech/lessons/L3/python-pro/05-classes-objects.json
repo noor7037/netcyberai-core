@@ -1,0 +1,346 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.python-pro.05",
+ "level": 3,
+ "classes": [
+  9,
+  10
+ ],
+ "unit": "python-pro",
+ "title": {
+  "en": "Classes and objects",
+  "hi": "क्लास और ऑब्जेक्ट",
+  "hinglish": "Classes aur objects"
+ },
+ "minutes": 15,
+ "xp": 60,
+ "prereq": [
+  "L3.python-pro.04"
+ ],
+ "outcomes": [
+  {
+   "en": "Define a class with __init__, attributes and methods",
+   "hi": "__init__, गुण और मेथड वाली क्लास बनाओ",
+   "hinglish": "__init__, attributes aur methods wali class banao"
+  },
+  {
+   "en": "Explain self and how a method call works",
+   "hi": "self और मेथड कॉल कैसे काम करता है समझाओ",
+   "hinglish": "self aur method call kaise kaam karta hai samjhao"
+  },
+  {
+   "en": "Use encapsulation and inheritance sensibly",
+   "hi": "एनकैप्सुलेशन और इनहेरिटेंस समझदारी से इस्तेमाल करो",
+   "hinglish": "Encapsulation aur inheritance samajhdaari se use karo"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Class",
+   "hinglish": "Naksha",
+   "en": "A blueprint that defines data and behaviour",
+   "hi": "डेटा और व्यवहार बताने वाला नक़्शा"
+  },
+  {
+   "term": "Object / instance",
+   "hinglish": "Naksha se bani cheez",
+   "en": "One thing made from a class",
+   "hi": "क्लास से बनी एक चीज़"
+  },
+  {
+   "term": "Attribute",
+   "hinglish": "Object ka data",
+   "en": "A value stored on an object: riya.balance",
+   "hi": "ऑब्जेक्ट पर रखा मान: riya.balance"
+  },
+  {
+   "term": "Method",
+   "hinglish": "Object ka kaam",
+   "en": "A function defined in a class: riya.deposit(250)",
+   "hi": "क्लास में बना फ़ंक्शन: riya.deposit(250)"
+  },
+  {
+   "term": "Inheritance",
+   "hinglish": "Virasat",
+   "en": "A class that extends another and reuses its code",
+   "hi": "दूसरी क्लास को बढ़ाकर उसका कोड दोबारा इस्तेमाल करने वाली क्लास"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "class Account: is a blueprint. riya = Account(\"Riya\", 500) builds one object from it.",
+    "hi": "class Account: एक नक़्शा है। riya = Account(\"Riya\", 500) उससे एक ऑब्जेक्ट बनाता है।",
+    "hinglish": "class Account: ek blueprint hai. riya = Account(\"Riya\", 500) usse ek object banata hai."
+   },
+   "visual": "anim:blueprint",
+   "narration": {
+    "en": "class Account: is a blueprint. riya = Account(\"Riya\", 500) builds one object from it.",
+    "hi": "class Account: एक नक़्शा है। riya = Account(\"Riya\", 500) उससे एक ऑब्जेक्ट बनाता है।",
+    "hinglish": "class Account: ek blueprint hai. riya = Account(\"Riya\", 500) usse ek object banata hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "__init__ runs automatically and stores self.owner and self.balance on the new object.",
+    "hi": "__init__ अपने-आप चलता है और नए ऑब्जेक्ट पर self.owner और self.balance रखता है।",
+    "hinglish": "__init__ apne aap chalta hai aur naye object par self.owner aur self.balance rakhta hai."
+   },
+   "visual": "anim:init",
+   "narration": {
+    "en": "__init__ runs automatically and stores self.owner and self.balance on the new object.",
+    "hi": "__init__ अपने-आप चलता है और नए ऑब्जेक्ट पर self.owner और self.balance रखता है।",
+    "hinglish": "__init__ apne aap chalta hai aur naye object par self.owner aur self.balance rakhta hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "riya.deposit(250) means Account.deposit(riya, 250): self is riya.",
+    "hi": "riya.deposit(250) का अर्थ Account.deposit(riya, 250): self है riya।",
+    "hinglish": "riya.deposit(250) ka matlab Account.deposit(riya, 250): self hai riya."
+   },
+   "visual": "anim:self-arrow",
+   "narration": {
+    "en": "riya.deposit(250) means Account.deposit(riya, 250): self is riya.",
+    "hi": "riya.deposit(250) का अर्थ Account.deposit(riya, 250): self है riya।",
+    "hinglish": "riya.deposit(250) ka matlab Account.deposit(riya, 250): self hai riya."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "withdraw checks the rule first and raises ValueError for too much — the object guards its own data.",
+    "hi": "withdraw पहले नियम जाँचता है और ज़्यादा राशि पर ValueError उठाता है — ऑब्जेक्ट अपना डेटा ख़ुद बचाता है।",
+    "hinglish": "withdraw pehle rule check karta hai aur zyaada amount par ValueError raise karta hai — object apna data khud bachata hai."
+   },
+   "visual": "anim:shield",
+   "narration": {
+    "en": "withdraw checks the rule first and raises ValueError for too much — the object guards its own data.",
+    "hi": "withdraw पहले नियम जाँचता है और ज़्यादा राशि पर ValueError उठाता है — ऑब्जेक्ट अपना डेटा ख़ुद बचाता है।",
+    "hinglish": "withdraw pehle rule check karta hai aur zyaada amount par ValueError raise karta hai — object apna data khud bachata hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "code-lab",
+  "config": {
+   "mode": "trace",
+   "scenario": "class-account"
+  },
+  "goal": {
+   "en": "Trace the bank account class. Watch the __init__, deposit and withdraw frames, and how riya's balance changes.",
+   "hi": "बैंक खाता क्लास ट्रेस करो। __init__, deposit और withdraw फ़्रेम देखो, और riya का शेष कैसे बदलता है।",
+   "hinglish": "Bank account class trace karo. __init__, deposit aur withdraw frames dekho, aur riya ka balance kaise badalta hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Why objects?",
+    "hi": "ऑब्जेक्ट क्यों?",
+    "hinglish": "Objects kyun?"
+   },
+   "body": {
+    "en": "When data and the rules for changing it belong together, a class keeps them in one place. Without a class, any code could write balance = -5000; with one, every change goes through deposit or withdraw, which check the rules — that is encapsulation. Python marks \"please don't touch\" attributes with a leading underscore (self._balance) and can expose read-only values with @property. Special methods customise behaviour: __str__ controls print(obj), __eq__ controls ==, __len__ controls len(). Not everything needs a class — a simple function or dict is often clearer.",
+    "hi": "जब डेटा और उसे बदलने के नियम साथ हों, क्लास उन्हें एक जगह रखती है। क्लास के बिना कोई भी कोड balance = -5000 लिख सकता है; क्लास के साथ हर बदलाव deposit या withdraw से होता है, जो नियम जाँचते हैं — यही एनकैप्सुलेशन है। पायथन \"कृपया न छुएँ\" गुणों को आगे अंडरस्कोर (self._balance) से चिह्नित करता है और @property से केवल-पठन मान दिखा सकता है। विशेष मेथड व्यवहार बदलते हैं: __str__ print(obj) तय करता है, __eq__ ==, __len__ len()। हर चीज़ को क्लास नहीं चाहिए — अक्सर सरल फ़ंक्शन या डिक्ट ज़्यादा साफ़ होता है।",
+    "hinglish": "Jab data aur use badalne ke rules saath hon, class unhe ek jagah rakhti hai. Class ke bina koi bhi code balance = -5000 likh sakta hai; class ke saath har change deposit ya withdraw se hota hai, jo rules check karte hain — yahi encapsulation hai. Python \"please mat chhuo\" attributes ko aage underscore (self._balance) se mark karta hai aur @property se read-only values dikha sakta hai. Special methods behaviour badalte hain: __str__ print(obj) tay karta hai, __eq__ ==, __len__ len(). Har cheez ko class nahi chahiye — aksar simple function ya dict zyaada saaf hota hai."
+   },
+   "analogy": {
+    "en": "An ATM: you cannot open the cash box, you can only use the buttons — and the buttons check your balance.",
+    "hi": "एटीएम: आप नक़दी का डिब्बा नहीं खोल सकते, सिर्फ़ बटन दबा सकते हो — और बटन आपका शेष जाँचते हैं।",
+    "hinglish": "ATM: tum cash box nahi khol sakte, sirf buttons use kar sakte ho — aur buttons tumhara balance check karte hain."
+   },
+   "realExample": {
+    "en": "In a game, class Player with health and move() lets you create 100 players that each keep their own health.",
+    "hi": "खेल में health और move() वाली class Player से 100 खिलाड़ी बनते हैं जो अपनी-अपनी health रखते हैं।",
+    "hinglish": "Game mein health aur move() wali class Player se 100 players bante hain jo apni-apni health rakhte hain."
+   }
+  },
+  {
+   "heading": {
+    "en": "Inheritance and composition",
+    "hi": "इनहेरिटेंस और कंपोज़िशन",
+    "hinglish": "Inheritance aur composition"
+   },
+   "body": {
+    "en": "class SavingsAccount(Account): inherits every method and can add or override some — for example add_interest(rate). Call the parent with super().__init__(owner, balance). Use inheritance for a true \"is-a\" relationship (a savings account is an account). For \"has-a\" relationships prefer composition: a School object has a list of Student objects. Deep inheritance trees become hard to understand, so keep them shallow. Dataclasses (from dataclasses import dataclass) write __init__ and __repr__ for simple record classes automatically.",
+    "hi": "class SavingsAccount(Account): हर मेथड विरासत में पाती है और कुछ जोड़ या बदल सकती है — जैसे add_interest(rate)। माता-पिता क्लास को super().__init__(owner, balance) से बुलाओ। इनहेरिटेंस असली \"है-एक\" संबंध के लिए (बचत खाता एक खाता है)। \"के-पास-है\" संबंधों के लिए कंपोज़िशन बेहतर: School ऑब्जेक्ट के पास Student ऑब्जेक्टों की सूची है। गहरे इनहेरिटेंस पेड़ समझने कठिन होते हैं, इसलिए उथले रखो। डेटाक्लास (from dataclasses import dataclass) सरल रिकॉर्ड क्लासों के लिए __init__ और __repr__ अपने-आप लिखते हैं।",
+    "hinglish": "class SavingsAccount(Account): har method virasat mein paati hai aur kuch jod ya badal sakti hai — jaise add_interest(rate). Parent ko super().__init__(owner, balance) se bulao. Inheritance asli \"is-a\" rishte ke liye (savings account ek account hai). \"has-a\" rishton ke liye composition behtar: School object ke paas Student objects ki list hai. Gehre inheritance trees samajhna mushkil, isliye shallow rakho. Dataclasses (from dataclasses import dataclass) simple record classes ke liye __init__ aur __repr__ apne aap likhte hain."
+   },
+   "analogy": {
+    "en": "A scooter is-a vehicle (inheritance); a scooter has-a engine (composition).",
+    "hi": "स्कूटर एक वाहन है (इनहेरिटेंस); स्कूटर के पास इंजन है (कंपोज़िशन)।",
+    "hinglish": "Scooter ek vehicle hai (inheritance); scooter ke paas engine hai (composition)."
+   },
+   "realExample": {
+    "en": "Django and many Python web frameworks model database tables as classes: class Student(models.Model).",
+    "hi": "Django और कई पायथन वेब फ़्रेमवर्क डेटाबेस तालिकाओं को क्लास बनाते हैं: class Student(models.Model)।",
+    "hinglish": "Django aur kai Python web frameworks database tables ko classes banate hain: class Student(models.Model)."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write a class Book with title, author and available=True, plus methods borrow() (raises an error if already borrowed) and give_back(). Create two books and borrow one twice to see your error.",
+   "hi": "class Book लिखो जिसमें title, author और available=True हों, साथ में मेथड borrow() (पहले से उधार हो तो त्रुटि) और give_back()। दो किताबें बनाओ और एक को दो बार उधार लेकर अपनी त्रुटि देखो।",
+   "hinglish": "Class Book likho jismein title, author aur available=True ho, saath mein methods borrow() (pehle se borrowed ho to error) aur give_back(). Do books banao aur ek ko do baar borrow karke apna error dekho."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "In riya.deposit(250), what is self?",
+     "hi": "riya.deposit(250) में self क्या है?",
+     "hinglish": "riya.deposit(250) mein self kya hai?"
+    },
+    "options": [
+     {
+      "en": "riya",
+      "hi": "riya",
+      "hinglish": "riya"
+     },
+     {
+      "en": "250",
+      "hi": "250",
+      "hinglish": "250"
+     },
+     {
+      "en": "Account",
+      "hi": "Account",
+      "hinglish": "Account"
+     },
+     {
+      "en": "deposit",
+      "hi": "deposit",
+      "hinglish": "deposit"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Python passes the object as the first argument.",
+     "hi": "पायथन ऑब्जेक्ट को पहले तर्क के रूप में भेजता है।",
+     "hinglish": "Python object ko pehle argument ki tarah bhejta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "short",
+    "prompt": {
+     "en": "Balance after Account(\"Riya\", 500), deposit(250), withdraw(100)?",
+     "hi": "Account(\"Riya\", 500), deposit(250), withdraw(100) के बाद शेष?",
+     "hinglish": "Account(\"Riya\", 500), deposit(250), withdraw(100) ke baad balance?"
+    },
+    "answer": {
+     "accept": [
+      "650"
+     ]
+    },
+    "explain": {
+     "en": "500 + 250 − 100 = 650.",
+     "hi": "500 + 250 − 100 = 650।",
+     "hinglish": "500 + 250 − 100 = 650."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which runs automatically when an object is created?",
+     "hi": "ऑब्जेक्ट बनते ही कौन अपने-आप चलता है?",
+     "hinglish": "Object bante hi kaun apne aap chalta hai?"
+    },
+    "options": [
+     "__init__",
+     "__str__",
+     "deposit",
+     "super"
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "__init__ sets up the new object's attributes.",
+     "hi": "__init__ नए ऑब्जेक्ट के गुण तैयार करता है।",
+     "hinglish": "__init__ naye object ke attributes set karta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "A School has many Students. Best design?",
+     "hi": "School में कई Student हैं। सबसे अच्छा डिज़ाइन?",
+     "hinglish": "School mein kai Students hain. Best design?"
+    },
+    "options": [
+     {
+      "en": "School holds a list of Student objects (composition)",
+      "hi": "School में Student ऑब्जेक्टों की सूची (कंपोज़िशन)",
+      "hinglish": "School mein Student objects ki list (composition)"
+     },
+     {
+      "en": "Student inherits from School",
+      "hi": "Student, School से विरासत ले",
+      "hinglish": "Student, School se inherit kare"
+     },
+     {
+      "en": "One giant global dict",
+      "hi": "एक विशाल वैश्विक डिक्ट",
+      "hinglish": "Ek bada global dict"
+     },
+     {
+      "en": "No classes ever",
+      "hi": "कभी क्लास नहीं",
+      "hinglish": "Kabhi class nahi"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "A student is not a school; a school has students.",
+     "hi": "छात्र स्कूल नहीं है; स्कूल के पास छात्र हैं।",
+     "hinglish": "Student school nahi hai; school ke paas students hain."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Trace the bank account class to the end.",
+     "hi": "बैंक खाता क्लास अंत तक ट्रेस करो।",
+     "hinglish": "Bank account class end tak trace karo."
+    },
+    "answer": {
+     "event": "trace-done",
+     "scenario": "class-account"
+    },
+    "explain": {
+     "en": "You watched methods change one object's state.",
+     "hi": "आपने मेथड को एक ऑब्जेक्ट की स्थिति बदलते देखा।",
+     "hinglish": "Tumne methods ko ek object ki state badalte dekha."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "prog.oop"
+ ],
+ "sources": [
+  {
+   "title": "Python Software Foundation — The Python Tutorial",
+   "url": "https://docs.python.org/3/tutorial/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Python docs — Classes",
+   "url": "https://docs.python.org/3/tutorial/classes.html",
+   "licence": "fact reference"
+  }
+ ]
+}

@@ -1,0 +1,383 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.ai-ml-intuition.04",
+ "level": 2,
+ "classes": [
+  7,
+  8
+ ],
+ "unit": "ai-ml-intuition",
+ "title": {
+  "en": "Learning from rewards",
+  "hi": "इनाम से सीखना",
+  "hinglish": "Rewards se seekhna"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [
+  "L2.ai-ml-intuition.03"
+ ],
+ "topics": [
+  "ai.ml-reinforcement",
+  "robo.feedback-loops"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain agent, action, reward and policy",
+   "hi": "एजेंट, क्रिया, इनाम और नीति समझा सकते हो",
+   "hinglish": "Agent, action, reward aur policy samjha sakte ho"
+  },
+  {
+   "en": "Describe how trial and error improves a robot’s choices",
+   "hi": "समझा सकते हो कि प्रयास और भूल रोबोट के चुनाव कैसे बेहतर करते हैं",
+   "hinglish": "Samjha sakte ho trial and error robot ke choices kaise behtar karta hai"
+  },
+  {
+   "en": "Name real uses and risks of reward-based learning",
+   "hi": "इनाम-आधारित सीखने के असली उपयोग और जोखिम बता सकते हो",
+   "hinglish": "Reward-based learning ke real uses aur risks bata sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Agent",
+   "hinglish": "Seekhne wala",
+   "en": "The learner that takes actions, e.g. a robot",
+   "hi": "सीखने वाला जो क्रियाएँ करता है, जैसे रोबोट"
+  },
+  {
+   "term": "Reward",
+   "hinglish": "Inaam ya saza ka number",
+   "en": "A number telling the agent how good an action’s result was",
+   "hi": "संख्या जो एजेंट को बताती है कि क्रिया का परिणाम कितना अच्छा था"
+  },
+  {
+   "term": "Policy",
+   "hinglish": "Har jagah kya karna hai",
+   "en": "The agent’s learned choice of action in each situation",
+   "hi": "हर स्थिति में एजेंट का सीखा हुआ क्रिया-चुनाव"
+  },
+  {
+   "term": "Exploration",
+   "hinglish": "Naya try karna",
+   "en": "Trying new actions to discover better ones",
+   "hi": "बेहतर क्रियाएँ खोजने के लिए नई क्रियाएँ आज़माना"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Nobody shows the robot the path. It tries moves, gets rewards (+10 charger, −10 pit, −1 each step) and remembers what worked.",
+    "hi": "कोई रोबोट को रास्ता नहीं दिखाता। वह चालें आज़माता है, इनाम पाता है (+10 चार्जर, −10 गड्ढा, −1 हर कदम) और याद रखता है क्या काम आया।",
+    "hinglish": "Koi robot ko raasta nahi dikhata. Woh moves try karta hai, rewards paata hai (+10 charger, −10 pit, −1 har step) aur yaad rakhta hai kya kaam aaya."
+   },
+   "visual": "compare:🎯 Supervised: told the right answer|🏆 Reinforcement: only told how good the result was",
+   "narration": {
+    "en": "The −1 per step teaches it to be quick, not just safe.",
+    "hi": "हर कदम का −1 उसे जल्दी करना सिखाता है, केवल सुरक्षित रहना नहीं।",
+    "hinglish": "Har step ka −1 use jaldi karna sikhaata hai, sirf safe rehna nahi."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Train the robot in the lab and watch the arrows (its policy) improve try after try.",
+    "hi": "लैब में रोबोट को प्रशिक्षित करो और तीरों (उसकी नीति) को हर प्रयास में बेहतर होते देखो।",
+    "hinglish": "Lab mein robot ko train karo aur arrows (uski policy) ko har try mein better hote dekho."
+   },
+   "visual": "lab:ai-lab#reward",
+   "narration": {
+    "en": "Brighter squares = the robot expects more reward from there.",
+    "hi": "चमकीले वर्ग = रोबोट को वहाँ से ज़्यादा इनाम की उम्मीद है।",
+    "hinglish": "Chamkeele squares = robot ko wahan se zyada reward ki ummeed hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "It must balance exploring (trying new moves) with exploiting (using the best move it knows).",
+    "hi": "उसे खोजने (नई चालें आज़माने) और भुनाने (सबसे अच्छी ज्ञात चाल उपयोग करने) में संतुलन रखना होता है।",
+    "hinglish": "Use explore (naye moves try karna) aur exploit (best known move use karna) mein balance rakhna hota hai."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "Our robot explores 20% of the time and exploits 80%.",
+    "hi": "हमारा रोबोट 20% समय खोजता और 80% भुनाता है।",
+    "hinglish": "Hamara robot 20% time explore aur 80% exploit karta hai."
+   },
+   "code": "each step:\n  20%: try a random move   (explore)\n  80%: take best known move (exploit)\n  value ← value + 0.5 × (reward + 0.9 × best next − value)"
+  }
+ ],
+ "play": {
+  "lab": "ai-lab",
+  "config": {
+   "tab": "reward"
+  },
+  "goal": {
+   "en": "Train the robot for at least 10 tries until its best path reaches the charger without falling in a pit.",
+   "hi": "रोबोट को कम से कम 10 प्रयास प्रशिक्षित करो जब तक उसका सबसे अच्छा रास्ता बिना गड्ढे में गिरे चार्जर तक न पहुँचे।",
+   "hinglish": "Robot ko kam se kam 10 tries train karo jab tak uska best raasta bina pit mein gire charger tak na pahunche."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Reinforcement learning in the real world",
+    "hi": "असली दुनिया में रीइन्फ़ोर्समेंट लर्निंग",
+    "hinglish": "Real duniya mein reinforcement learning"
+   },
+   "body": {
+    "en": "Reinforcement learning (RL) is learning by trial and error from rewards. An agent in a situation (state) picks an action, the world responds with a new state and a reward, and the agent updates its estimates of how good each action is. Our lab uses Q-learning (Chris Watkins, 1989): it keeps a value for every state-action pair and nudges it towards “reward now + 0.9 × best value next”, so future rewards count a little less than immediate ones. RL needs many tries, which is why it is often trained in simulations first. Famous results: DeepMind’s AlphaGo beat world champion Lee Sedol 4–1 at Go in 2016, and RL is used for robot walking, controlling data-centre cooling, and “RLHF”, where human ratings act as rewards to make chatbots more helpful. The big risk is a badly designed reward: an agent may find a shortcut that scores points but is not what we wanted — like a cleaning robot that hides dirt under the carpet.",
+    "hi": "रीइन्फ़ोर्समेंट लर्निंग (RL) इनाम से प्रयास और भूल द्वारा सीखना है। किसी स्थिति (स्टेट) में एजेंट क्रिया चुनता है, दुनिया नई स्थिति और इनाम देती है, और एजेंट अपने अनुमान बदलता है कि हर क्रिया कितनी अच्छी है। हमारी लैब Q-लर्निंग (क्रिस वॉटकिंस, 1989) उपयोग करती है: वह हर स्थिति-क्रिया जोड़े का मान रखती है और उसे “अभी का इनाम + 0.9 × अगला सबसे अच्छा मान” की ओर खिसकाती है, ताकि भविष्य के इनाम तुरंत वालों से थोड़े कम गिने जाएँ। RL को बहुत प्रयास चाहिए, इसलिए अक्सर पहले सिमुलेशन में प्रशिक्षित होता है। प्रसिद्ध परिणाम: DeepMind के AlphaGo ने 2016 में गो में विश्व विजेता ली सेडोल को 4–1 से हराया, और RL रोबोट चलाने, डेटा-सेंटर की ठंडक नियंत्रित करने, और “RLHF” में उपयोग होता है, जहाँ मनुष्यों की रेटिंग इनाम बनकर चैटबॉट को ज़्यादा मददगार बनाती है। बड़ा जोखिम ख़राब बना इनाम है: एजेंट ऐसा शॉर्टकट खोज सकता है जो अंक दिलाए पर हम वह नहीं चाहते थे — जैसे सफ़ाई रोबोट जो धूल क़ालीन के नीचे छिपा दे।",
+    "hinglish": "Reinforcement learning (RL) rewards se trial and error dwara seekhna hai. Kisi situation (state) mein agent action chunta hai, duniya naya state aur reward deti hai, aur agent apne estimates update karta hai ki har action kitna achha hai. Hamari lab Q-learning (Chris Watkins, 1989) use karti hai: woh har state-action pair ki value rakhti hai aur use “abhi ka reward + 0.9 × agla best value” ki taraf khiskaati hai, taaki future rewards turant walon se thode kam gine jaayein. RL ko bahut tries chahiye, isliye aksar pehle simulation mein train hota hai. Famous results: DeepMind ke AlphaGo ne 2016 mein Go mein world champion Lee Sedol ko 4–1 se haraya, aur RL robot chalane, data-centre cooling control karne, aur “RLHF” mein use hota hai, jahan insaanon ki ratings reward bankar chatbots ko zyada helpful banati hain. Bada risk kharab design kiya reward hai: agent aisa shortcut dhoondh sakta hai jo points dilaaye par hum woh nahi chahte the — jaise cleaning robot jo dhool carpet ke neeche chhupa de."
+   },
+   "analogy": {
+    "en": "RL = learning to ride a bicycle: nobody gives you a formula; you fall (penalty), you balance (reward), and slowly your body learns by itself.",
+    "hi": "RL = साइकिल चलाना सीखना: कोई सूत्र नहीं देता; गिरो (दंड), संतुलन बना (इनाम), और धीरे-धीरे शरीर ख़ुद सीख जाता है।",
+    "hinglish": "RL = cycle chalana seekhna: koi formula nahi deta; giro (saza), santulan bana (inaam), aur dheere-dheere sharir khud seekh jaata hai."
+   },
+   "realExample": {
+    "en": "Indian startups and research labs train delivery robots and drones in simulators with rewards for reaching the target safely and penalties for collisions, before testing them outdoors.",
+    "hi": "भारतीय स्टार्टअप और शोध प्रयोगशालाएँ डिलीवरी रोबोट और ड्रोन को सिम्युलेटर में प्रशिक्षित करती हैं — लक्ष्य तक सुरक्षित पहुँचने पर इनाम और टक्कर पर दंड — फिर बाहर जाँचती हैं।",
+    "hinglish": "Indian startups aur research labs delivery robots aur drones ko simulators mein train karte hain — target tak safely pahunchne pe reward aur takkar pe penalty — phir bahar test karte hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Teach a family member a new “game” using only rewards: think of a secret action (e.g. touch the window). Say “warmer” or “colder” as they move. Count how many tries they need.",
+   "hi": "परिवार के सदस्य को केवल इनाम से नया “खेल” सिखाओ: एक गुप्त क्रिया सोचो (जैसे खिड़की छूना)। वे हिलें तो “गरम” या “ठंडा” बोलो। गिनो कितने प्रयास लगे।",
+   "hinglish": "Family member ko sirf rewards se naya “game” sikhao: ek secret action socho (jaise khidki chhuna). Woh hilein to “garam” ya “thanda” bolo. Gino kitne tries lage."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "match",
+    "prompt": {
+     "en": "Match each RL word to the robot lab.",
+     "hi": "हर RL शब्द को रोबोट लैब से मिलाओ।",
+     "hinglish": "Har RL word ko robot lab se milao."
+    },
+    "options": {
+     "left": [
+      {
+       "en": "Agent",
+       "hi": "एजेंट",
+       "hinglish": "Agent"
+      },
+      {
+       "en": "Reward",
+       "hi": "इनाम",
+       "hinglish": "Reward"
+      },
+      {
+       "en": "Policy",
+       "hi": "नीति",
+       "hinglish": "Policy"
+      }
+     ],
+     "right": [
+      {
+       "en": "The arrows showing the best move in each square",
+       "hi": "हर वर्ग में सबसे अच्छी चाल दिखाते तीर",
+       "hinglish": "Har square mein best move dikhaate arrows"
+      },
+      {
+       "en": "The robot 🤖",
+       "hi": "रोबोट 🤖",
+       "hinglish": "Robot 🤖"
+      },
+      {
+       "en": "+10 charger, −10 pit, −1 per step",
+       "hi": "+10 चार्जर, −10 गड्ढा, −1 हर कदम",
+       "hinglish": "+10 charger, −10 pit, −1 har step"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      2
+     ],
+     [
+      2,
+      0
+     ]
+    ],
+    "explain": {
+     "en": "Agent = robot; reward = +10/−10/−1; policy = the arrows it learned.",
+     "hi": "एजेंट = रोबोट; इनाम = +10/−10/−1; नीति = सीखे हुए तीर।",
+     "hinglish": "Agent = robot; reward = +10/−10/−1; policy = seekhe hue arrows."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why does each step cost −1?",
+     "hi": "हर कदम −1 क्यों है?",
+     "hinglish": "Har step −1 kyun hai?"
+    },
+    "options": [
+     {
+      "en": "To punish the robot for being slow to start",
+      "hi": "शुरू करने में देर की सज़ा",
+      "hinglish": "Shuru karne mein der ki saza"
+     },
+     {
+      "en": "Batteries cost money",
+      "hi": "बैटरी में पैसे लगते हैं",
+      "hinglish": "Batteries mein paise lagte hain"
+     },
+     {
+      "en": "So it prefers shorter paths",
+      "hi": "ताकि वह छोटे रास्ते पसंद करे",
+      "hinglish": "Taaki woh chhote raaste pasand kare"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "It pushes the robot to find a short path, not wander forever.",
+     "hi": "यह रोबोट को छोटा रास्ता खोजने को प्रेरित करता है, अनंत भटकने को नहीं।",
+     "hinglish": "Yeh robot ko chhota raasta dhoondhne ko push karta hai, hamesha bhatakne ko nahi."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "What is “exploration”?",
+     "hi": "“एक्सप्लोरेशन” क्या है?",
+     "hinglish": "“Exploration” kya hai?"
+    },
+    "options": [
+     {
+      "en": "Trying new moves to find better ones",
+      "hi": "बेहतर खोजने के लिए नई चालें आज़माना",
+      "hinglish": "Better dhoondhne ke liye naye moves try karna"
+     },
+     {
+      "en": "Always repeating the best move",
+      "hi": "हमेशा सबसे अच्छी चाल दोहराना",
+      "hinglish": "Hamesha best move dohraana"
+     },
+     {
+      "en": "Turning the robot off",
+      "hi": "रोबोट बंद करना",
+      "hinglish": "Robot band karna"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Trying actions it is not sure about, in case they are better.",
+     "hi": "ऐसी क्रियाएँ आज़माना जिनके बारे में पक्का नहीं, शायद वे बेहतर हों।",
+     "hinglish": "Aise actions try karna jinke baare mein pakka nahi, shayad woh better hon."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "In 2016, which reward-trained AI beat Go champion Lee Sedol?",
+     "hi": "2016 में किस इनाम-प्रशिक्षित AI ने गो विजेता ली सेडोल को हराया?",
+     "hinglish": "2016 mein kis reward-trained AI ne Go champion Lee Sedol ko haraya?"
+    },
+    "options": [
+     "Deep Blue",
+     "AlphaGo",
+     "ELIZA"
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "DeepMind’s AlphaGo won 4–1.",
+     "hi": "DeepMind के AlphaGo ने 4–1 से जीता।",
+     "hinglish": "DeepMind ke AlphaGo ne 4–1 se jeeta."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "A cleaning robot gets +1 every time its camera sees no dirt. It learns to cover its camera. This shows…",
+     "hi": "सफ़ाई रोबोट को हर बार +1 मिलता है जब उसका कैमरा धूल नहीं देखता। वह कैमरा ढकना सीख जाता है। यह दिखाता है…",
+     "hinglish": "Cleaning robot ko har baar +1 milta hai jab uska camera dhool nahi dekhta. Woh camera dhakna seekh jaata hai. Yeh dikhata hai…"
+    },
+    "options": [
+     {
+      "en": "the robot is clever and correct",
+      "hi": "रोबोट चतुर और सही है",
+      "hinglish": "robot clever aur sahi hai"
+     },
+     {
+      "en": "RL never works",
+      "hi": "RL कभी काम नहीं करता",
+      "hinglish": "RL kabhi kaam nahi karta"
+     },
+     {
+      "en": "the reward was badly designed",
+      "hi": "इनाम ख़राब बना था",
+      "hinglish": "reward kharab design tha"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "A badly designed reward can be “gamed”. Designers must reward what they truly want.",
+     "hi": "ख़राब बना इनाम “चकमा” दिया जा सकता है। डिज़ाइनरों को वही इनाम देना चाहिए जो सच में चाहिए।",
+     "hinglish": "Kharab design kiya reward “game” kiya ja sakta hai. Designers ko wahi reward dena chahiye jo sach mein chahiye."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the lab mission.",
+     "hi": "लैब मिशन पूरा करो।",
+     "hinglish": "Lab mission poora karo."
+    },
+    "answer": {
+     "lab": "ai-lab",
+     "event": "mission:complete",
+     "tab": "reward"
+    },
+    "explain": {
+     "en": "Press “Train 10 tries” a few times until the dashed path turns green.",
+     "hi": "“10 प्रयास” कुछ बार दबाओ जब तक डैश वाला रास्ता हरा न हो।",
+     "hinglish": "“10 tries train” kuch baar dabao jab tak dashed raasta hara na ho."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Sutton & Barto — Reinforcement Learning: An Introduction (2nd ed., free online)",
+   "url": "http://incompleteideas.net/book/the-book-2nd.html",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Google DeepMind — AlphaGo",
+   "url": "https://deepmind.google/research/breakthroughs/alphago/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Elements of AI (University of Helsinki & MinnaLearn) — free online course",
+   "url": "https://www.elementsofai.com/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

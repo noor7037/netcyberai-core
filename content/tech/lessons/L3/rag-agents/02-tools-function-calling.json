@@ -1,0 +1,382 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.rag-agents.02",
+ "level": 3,
+ "classes": [
+  11,
+  12
+ ],
+ "unit": "rag-agents",
+ "title": {
+  "en": "From chatbot to agent: tools and function calling",
+  "hi": "चैटबॉट से एजेंट तक: टूल और फ़ंक्शन कॉलिंग",
+  "hinglish": "Chatbot se agent tak: tools aur function calling"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [
+  "L3.rag-agents.01"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain the agent loop: goal → think → act (tool) → observe → repeat → answer",
+   "hinglish": "Agent loop samjhao: goal → socho → act (tool) → observe → repeat → answer",
+   "hi": "एजेंट लूप समझाना: लक्ष्य → सोचो → कार्य (टूल) → देखो → दोहराओ → उत्तर"
+  },
+  {
+   "en": "Read and write a JSON tool definition",
+   "hinglish": "JSON tool definition padho aur likho",
+   "hi": "JSON टूल परिभाषा पढ़ना और लिखना"
+  },
+  {
+   "en": "Explain why the app, not the model, executes tools",
+   "hinglish": "Samjhao tools model nahi, app chalati hai — kyun",
+   "hi": "समझाना कि टूल मॉडल नहीं, ऐप चलाता है"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "AI agent",
+   "hinglish": "LLM jo tools chala ke goal poora kare",
+   "en": "A system where an LLM decides actions, uses tools and loops until a goal is met",
+   "hi": "ऐसी प्रणाली जिसमें एलएलएम कार्य तय करता है, टूल इस्तेमाल करता है और लक्ष्य पूरा होने तक दोहराता है"
+  },
+  {
+   "term": "Tool",
+   "hinglish": "Bahar ka function: search, calculator, API",
+   "en": "An external function the model can request",
+   "hi": "बाहरी फ़ंक्शन जिसका मॉडल अनुरोध कर सकता है"
+  },
+  {
+   "term": "Function calling",
+   "hinglish": "Model JSON mein bataye kaunsa tool, kis input se",
+   "en": "The model outputs a structured call (name + arguments) for the app to run",
+   "hi": "मॉडल ऐप के चलाने के लिए संरचित कॉल (नाम + तर्क) देता है"
+  },
+  {
+   "term": "Observation",
+   "hinglish": "Tool ka result jo model ko wapas milta hai",
+   "en": "The tool result fed back into the context",
+   "hi": "संदर्भ में वापस डाला गया टूल परिणाम"
+  },
+  {
+   "term": "MCP",
+   "hinglish": "Tools jodne ka common standard",
+   "en": "Model Context Protocol, an open standard for connecting tools and data to AI apps",
+   "hi": "मॉडल कॉन्टेक्स्ट प्रोटोकॉल, टूल और डेटा को एआई ऐप से जोड़ने का खुला मानक"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Goal: \"Is it worth carrying an umbrella to school tomorrow in Pune?\" A plain chatbot can only guess.",
+    "hi": "लक्ष्य: \"क्या कल पुणे में स्कूल छाता ले जाना ठीक है?\" साधारण चैटबॉट सिर्फ़ अनुमान लगा सकता है।",
+    "hinglish": "Goal: \"Kya kal Pune mein school chhaata le jaana theek hai?\" Plain chatbot sirf guess kar sakta hai."
+   },
+   "visual": "anim:agent-goal",
+   "narration": {
+    "en": "Goal: \"Is it worth carrying an umbrella to school tomorrow in Pune?\" A plain chatbot can only guess.",
+    "hi": "लक्ष्य: \"क्या कल पुणे में स्कूल छाता ले जाना ठीक है?\" साधारण चैटबॉट सिर्फ़ अनुमान लगा सकता है।",
+    "hinglish": "Goal: \"Kya kal Pune mein school chhaata le jaana theek hai?\" Plain chatbot sirf guess kar sakta hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "The agent thinks \"I need the forecast\", outputs get_weather({\"city\":\"Pune\",\"date\":\"tomorrow\"}), and the app calls the weather API.",
+    "hi": "एजेंट सोचता है \"मुझे पूर्वानुमान चाहिए\", get_weather({\"city\":\"Pune\",\"date\":\"tomorrow\"}) लिखता है, और ऐप मौसम एपीआई बुलाता है।",
+    "hinglish": "Agent sochta hai \"mujhe forecast chahiye\", get_weather({\"city\":\"Pune\",\"date\":\"tomorrow\"}) likhta hai, aur app weather API call karti hai."
+   },
+   "visual": "anim:tool-call-json",
+   "narration": {
+    "en": "The agent thinks \"I need the forecast\", outputs get_weather({\"city\":\"Pune\",\"date\":\"tomorrow\"}), and the app calls the weather API.",
+    "hi": "एजेंट सोचता है \"मुझे पूर्वानुमान चाहिए\", get_weather({\"city\":\"Pune\",\"date\":\"tomorrow\"}) लिखता है, और ऐप मौसम एपीआई बुलाता है।",
+    "hinglish": "Agent sochta hai \"mujhe forecast chahiye\", get_weather({\"city\":\"Pune\",\"date\":\"tomorrow\"}) likhta hai, aur app weather API call karti hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Observation: 80% rain chance. The agent answers \"Yes, carry it\" and cites the forecast. Loop: think → act → observe → answer.",
+    "hi": "अवलोकन: 80% बारिश की संभावना। एजेंट जवाब देता है \"हाँ, ले जाओ\" और पूर्वानुमान का हवाला देता है। चक्र: सोचो → करो → देखो → जवाब।",
+    "hinglish": "Observation: 80% baarish chance. Agent jawab deta hai \"Haan, le jao\" aur forecast cite karta hai. Loop: socho → karo → dekho → jawab."
+   },
+   "visual": "anim:observe-answer",
+   "narration": {
+    "en": "Observation: 80% rain chance. The agent answers \"Yes, carry it\" and cites the forecast. Loop: think → act → observe → answer.",
+    "hi": "अवलोकन: 80% बारिश की संभावना। एजेंट जवाब देता है \"हाँ, ले जाओ\" और पूर्वानुमान का हवाला देता है। चक्र: सोचो → करो → देखो → जवाब।",
+    "hinglish": "Observation: 80% baarish chance. Agent jawab deta hai \"Haan, le jao\" aur forecast cite karta hai. Loop: socho → karo → dekho → jawab."
+   }
+  }
+ ],
+ "play": {
+  "lab": "agent-loop",
+  "config": {
+   "scenario": "umbrella-weather",
+   "showJson": true
+  },
+  "goal": {
+   "en": "Step through the agent loop. At each stage, predict what comes next before tapping Next. Open the JSON to see the exact tool call.",
+   "hinglish": "Agent loop ko step-by-step chalao. Har stage par Next dabane se pehle predict karo aage kya hoga. Exact tool call dekhne ke liye JSON kholo.",
+   "hi": "एजेंट लूप को कदम-दर-कदम चलाओ। हर चरण पर अगला दबाने से पहले अनुमान लगाओ आगे क्या होगा। सटीक टूल कॉल देखने के लिए JSON खोलो।"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "The agent loop",
+    "hi": "एजेंट चक्र",
+    "hinglish": "Agent loop"
+   },
+   "body": {
+    "en": "An AI agent wraps an LLM in a loop. The app sends the goal plus a list of available tools. The model replies either with a final answer or with a tool call. If it is a tool call, the app runs the tool and appends the result (observation) to the conversation, then asks the model again. This repeats until the model answers or a step limit is hit. The pattern was popularised by the ReAct paper (Yao et al., 2022: reason + act). Tools can be anything with a clear interface: web search, a calculator, a database query, sending an email, booking a ticket, running code. The model never touches the outside world directly; it only writes text that the app chooses whether to execute.",
+    "hi": "एआई एजेंट एक एलएलएम को चक्र में लपेटता है। ऐप लक्ष्य और उपलब्ध टूलों की सूची भेजता है। मॉडल या तो अंतिम जवाब देता है या टूल कॉल। टूल कॉल हो तो ऐप टूल चलाता है और नतीजा (अवलोकन) बातचीत में जोड़कर मॉडल से फिर पूछता है। यह तब तक चलता है जब तक मॉडल जवाब न दे या कदम-सीमा न आ जाए। यह ढाँचा रिएक्ट पेपर (याओ व अन्य, 2022: रीज़न + एक्ट) से लोकप्रिय हुआ। टूल साफ़ इंटरफ़ेस वाली कोई भी चीज़ हो सकती है: वेब खोज, कैलकुलेटर, डेटाबेस क्वेरी, ईमेल भेजना, टिकट बुक करना, कोड चलाना। मॉडल बाहरी दुनिया को सीधे नहीं छूता; वह सिर्फ़ पाठ लिखता है जिसे चलाना है या नहीं, ऐप तय करता है।",
+    "hinglish": "AI agent ek LLM ko loop mein lapet-ta hai. App goal aur available tools ki list bhejti hai. Model ya to final answer deta hai ya tool call. Tool call ho to app tool chalati hai aur result (observation) conversation mein jodke model se phir poochhti hai. Yeh tab tak chalta hai jab tak model answer na de ya step limit na aa jaaye. Yeh pattern ReAct paper (Yao et al., 2022: reason + act) se popular hua. Tool saaf interface wali koi bhi cheez ho sakti hai: web search, calculator, database query, email bhejna, ticket book karna, code chalana. Model bahar ki duniya ko seedha nahi chhoota; woh sirf text likhta hai jise chalana hai ya nahi, app decide karti hai."
+   },
+   "analogy": {
+    "hinglish": "Agent ek manager jaisa hai jiske paas phone directory (tools) hai: khud kaam nahi karta, sahi vibhaag ko call karta hai, jawab sunta hai, phir agla call ya final faisla.",
+    "en": "An agent is like a manager with a phone directory (tools): does not do the work himself, calls the right department, listens to the reply, then makes the next call or the final decision.",
+    "hi": "एजेंट एक प्रबंधक जैसा है जिसके पास फ़ोन डायरेक्टरी (टूल) है: ख़ुद काम नहीं करता, सही विभाग को फ़ोन करता है, उत्तर सुनता है, फिर अगला फ़ोन या अंतिम निर्णय।"
+   },
+   "realExample": {
+    "en": "Coding agents (GitHub Copilot agent mode, Cursor, Claude Code) read files, run tests and edit code in a loop; travel agents search flights and fill forms but ask before paying.",
+    "hinglish": "Coding agents (GitHub Copilot agent mode, Cursor, Claude Code) loop mein files padhte, tests chalate aur code edit karte hain; travel agents flights search karte aur forms bharte hain par payment se pehle poochhte hain.",
+    "hi": "कोडिंग एजेंट (GitHub Copilot एजेंट मोड, Cursor, Claude Code) लूप में फ़ाइलें पढ़ते, परीक्षण चलाते और कोड बदलते हैं; यात्रा एजेंट उड़ानें खोजते और फ़ॉर्म भरते हैं पर भुगतान से पहले पूछते हैं।"
+   }
+  },
+  {
+   "heading": {
+    "en": "Function calling and tool definitions",
+    "hi": "फ़ंक्शन कॉलिंग और टूल परिभाषाएँ",
+    "hinglish": "Function calling aur tool definitions"
+   },
+   "body": {
+    "en": "Each tool is described to the model with a name, a plain-language description and a JSON Schema for its arguments, for example {\"name\": \"get_weather\", \"description\": \"Forecast for an Indian city\", \"parameters\": {\"type\": \"object\", \"properties\": {\"city\": {\"type\": \"string\"}, \"date\": {\"type\": \"string\"}}, \"required\": [\"city\"]}}. The model was fine-tuned to emit calls in this structured form, so the app can validate them before running anything. Good tool design matters as much as prompts: clear names, narrow purposes, helpful error messages and safe defaults. The Model Context Protocol (MCP), an open standard introduced in late 2024 and now widely supported, lets one tool server work with many AI apps, like a USB port for AI tools.",
+    "hi": "हर टूल मॉडल को नाम, सरल भाषा के विवरण और उसके तर्कों के JSON स्कीमा से बताया जाता है, जैसे {\"name\": \"get_weather\", \"description\": \"भारतीय शहर का पूर्वानुमान\", \"parameters\": {\"type\": \"object\", \"properties\": {\"city\": {\"type\": \"string\"}, \"date\": {\"type\": \"string\"}}, \"required\": [\"city\"]}}। मॉडल को इसी ढाँचे में कॉल लिखने के लिए फ़ाइन-ट्यून किया गया है, तो ऐप कुछ भी चलाने से पहले उन्हें जाँच सकता है। अच्छा टूल डिज़ाइन प्रॉम्प्ट जितना ही ज़रूरी है: साफ़ नाम, संकीर्ण उद्देश्य, मददगार त्रुटि संदेश और सुरक्षित डिफ़ॉल्ट। मॉडल कॉन्टेक्स्ट प्रोटोकॉल (एमसीपी), 2024 के अंत में आया खुला मानक जो अब व्यापक रूप से समर्थित है, एक टूल सर्वर को कई एआई ऐप्स के साथ चलने देता है, जैसे एआई टूलों का यूएसबी पोर्ट।",
+    "hinglish": "Har tool model ko naam, simple description aur arguments ke JSON Schema se bataya jaata hai, jaise {\"name\": \"get_weather\", \"description\": \"Indian city ka forecast\", \"parameters\": {\"type\": \"object\", \"properties\": {\"city\": {\"type\": \"string\"}, \"date\": {\"type\": \"string\"}}, \"required\": [\"city\"]}}. Model ko isi structured form mein calls likhne ke liye fine-tune kiya gaya hai, to app kuch bhi chalane se pehle unhe validate kar sakti hai. Achha tool design prompts jitna hi zaroori hai: clear names, narrow purpose, helpful error messages aur safe defaults. Model Context Protocol (MCP), late 2024 mein aaya open standard jo ab widely supported hai, ek tool server ko kai AI apps ke saath chalne deta hai, jaise AI tools ka USB port."
+   },
+   "analogy": {
+    "hinglish": "Tool definition restaurant ka menu card hai: dish ka naam, kya hai, aur kya-kya choose karna hai (size, spice). Waiter (app) wahi order kitchen ko deta hai jo menu mein hai.",
+    "en": "A tool definition is the restaurant menu card: the dish name, what it is, and what you must choose (size, spice). The waiter (app) only passes the kitchen orders that are on the menu.",
+    "hi": "टूल परिभाषा रेस्तराँ का मेनू कार्ड है: व्यंजन का नाम, वह क्या है, और क्या-क्या चुनना है (आकार, तीखापन)। वेटर (ऐप) रसोई को वही ऑर्डर देता है जो मेनू में है।"
+   },
+   "realExample": {
+    "en": "A UPI-style payments agent could have tools check_balance and create_payment_request, but a safe design never gives it a tool that completes a payment without the user entering their own UPI PIN.",
+    "hinglish": "UPI-style payments agent ke paas check_balance aur create_payment_request tools ho sakte hain, par safe design use kabhi aisa tool nahi deta jo user ke apna UPI PIN daale bina payment poora kar de.",
+    "hi": "यूपीआई जैसे भुगतान एजेंट के पास check_balance और create_payment_request टूल हो सकते हैं, पर सुरक्षित डिज़ाइन उसे कभी ऐसा टूल नहीं देता जो उपयोगकर्ता के अपना यूपीआई पिन डाले बिना भुगतान पूरा कर दे।"
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write JSON tool definitions for a school helper agent with 3 tools: get_timetable, get_homework and draft_leave_note. For each, list one thing the agent must ask the parent before using it.",
+   "hinglish": "School helper agent ke liye 3 tools ki JSON definitions likho: get_timetable, get_homework aur draft_leave_note. Har ek ke liye ek cheez likho jo agent ko use karne se pehle parent se poochhni chahiye.",
+   "hi": "स्कूल सहायक एजेंट के लिए 3 टूल की JSON परिभाषाएँ लिखो: get_timetable, get_homework और draft_leave_note। हर एक के लिए एक बात लिखो जो इस्तेमाल से पहले एजेंट को अभिभावक से पूछनी चाहिए।"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "order",
+    "prompt": {
+     "en": "Order one turn of the agent loop.",
+     "hi": "एजेंट चक्र के एक दौर को क्रम में लगाएँ।",
+     "hinglish": "Agent loop ke ek round ko order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Model reads goal and tool list",
+      "hinglish": "Model goal aur tool list padhta hai",
+      "hi": "मॉडल लक्ष्य और टूल सूची पढ़ता है"
+     },
+     {
+      "en": "Model outputs a tool call",
+      "hinglish": "Model tool call likhta hai",
+      "hi": "मॉडल टूल कॉल देता है"
+     },
+     {
+      "en": "App validates and runs the tool",
+      "hinglish": "App validate karke tool chalati hai",
+      "hi": "ऐप जाँचकर टूल चलाता है"
+     },
+     {
+      "en": "Result is added as an observation",
+      "hinglish": "Result observation ki tarah judta hai",
+      "hi": "परिणाम अवलोकन के रूप में जुड़ता है"
+     },
+     {
+      "en": "Model gives the final answer",
+      "hinglish": "Model final answer deta hai",
+      "hi": "मॉडल अंतिम उत्तर देता है"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "explain": {
+     "en": "Think, act, observe, then either loop again or answer.",
+     "hi": "सोचो, करो, देखो, फिर दोबारा चक्र या जवाब।",
+     "hinglish": "Socho, karo, dekho, phir dobara loop ya answer."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Who actually executes a tool call?",
+     "hi": "टूल कॉल असल में कौन चलाता है?",
+     "hinglish": "Tool call asal mein kaun chalata hai?"
+    },
+    "options": [
+     {
+      "en": "The application around the model",
+      "hinglish": "Model ke around wali application",
+      "hi": "मॉडल के चारों ओर का अनुप्रयोग"
+     },
+     {
+      "en": "The LLM's weights",
+      "hinglish": "LLM ke weights",
+      "hi": "एलएलएम के भार"
+     },
+     {
+      "en": "The user's keyboard",
+      "hinglish": "User ka keyboard",
+      "hi": "उपयोगकर्ता का कीबोर्ड"
+     },
+     {
+      "en": "The tokenizer",
+      "hinglish": "Tokenizer",
+      "hi": "टोकनाइज़र"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "The model only writes a structured request. The app decides whether to run it, which is where permissions and confirmations belong.",
+     "hi": "मॉडल सिर्फ़ ढाँचेदार अनुरोध लिखता है। चलाना है या नहीं ऐप तय करता है, और अनुमति व पुष्टि वहीं होनी चाहिए।",
+     "hinglish": "Model sirf structured request likhta hai. Chalana hai ya nahi app decide karti hai, aur permissions aur confirmations wahin hone chahiye."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "What is the main purpose of a JSON Schema in a tool definition?",
+     "hi": "टूल परिभाषा में JSON स्कीमा का मुख्य उद्देश्य?",
+     "hinglish": "Tool definition mein JSON Schema ka main purpose?"
+    },
+    "options": [
+     {
+      "en": "To define the exact arguments so calls can be validated",
+      "hinglish": "Exact arguments define karna taaki calls validate ho sakein",
+      "hi": "सटीक तर्क तय करने के लिए ताकि कॉल जाँची जा सकें"
+     },
+     {
+      "en": "To make the model faster",
+      "hinglish": "Model tez karna",
+      "hi": "मॉडल तेज़ करने के लिए"
+     },
+     {
+      "en": "To store passwords",
+      "hinglish": "Passwords store karna",
+      "hi": "पासवर्ड रखने के लिए"
+     },
+     {
+      "en": "To translate languages",
+      "hinglish": "Languages translate karna",
+      "hi": "भाषाओं का अनुवाद करने के लिए"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Typed, required fields let the app reject malformed or unexpected calls before anything runs.",
+     "hi": "प्रकार वाले, ज़रूरी फ़ील्ड ऐप को गलत या अनपेक्षित कॉल चलने से पहले ठुकराने देते हैं।",
+     "hinglish": "Typed, required fields app ko galat ya unexpected calls chalne se pehle reject karne dete hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "MCP (Model Context Protocol) is best described as…",
+     "hi": "एमसीपी (मॉडल कॉन्टेक्स्ट प्रोटोकॉल) का सबसे अच्छा वर्णन?",
+     "hinglish": "MCP (Model Context Protocol) ka best description?"
+    },
+    "options": [
+     {
+      "en": "An open standard for connecting tools and data sources to AI apps",
+      "hinglish": "Tools aur data sources ko AI apps se jodne ka open standard",
+      "hi": "टूल और डेटा स्रोतों को एआई ऐप से जोड़ने का खुला मानक"
+     },
+     {
+      "en": "A new GPU",
+      "hinglish": "Naya GPU",
+      "hi": "एक नया GPU"
+     },
+     {
+      "en": "A tokenizer for Hindi",
+      "hinglish": "Hindi tokenizer",
+      "hi": "हिंदी का टोकनाइज़र"
+     },
+     {
+      "en": "A type of virus",
+      "hinglish": "Ek virus",
+      "hi": "एक प्रकार का वायरस"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "MCP lets a tool server (files, calendar, database) be plugged into any compatible AI client.",
+     "hi": "एमसीपी किसी टूल सर्वर (फ़ाइलें, कैलेंडर, डेटाबेस) को किसी भी संगत एआई क्लाइंट में लगाने देता है।",
+     "hinglish": "MCP kisi tool server (files, calendar, database) ko kisi bhi compatible AI client mein lagane deta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the umbrella scenario and open the tool-call JSON.",
+     "hi": "छाता परिदृश्य पूरा करें और टूल-कॉल JSON खोलें।",
+     "hinglish": "Umbrella scenario poora karo aur tool-call JSON kholo."
+    },
+    "answer": {
+     "event": "scenario-complete",
+     "scenario": "umbrella-weather"
+    },
+    "explain": {
+     "en": "You saw the full loop: the call get_weather with city Pune, the observation 80% rain, and a cited final answer.",
+     "hi": "आपने पूरा चक्र देखा: पुणे शहर के साथ get_weather कॉल, 80% बारिश का अवलोकन, और हवाले वाला अंतिम जवाब।",
+     "hinglish": "Tumne poora loop dekha: city Pune ke saath get_weather call, 80% rain observation, aur cited final answer."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "ai.agents-tools"
+ ],
+ "sources": [
+  {
+   "title": "Yao et al. (2022) ReAct: Synergizing Reasoning and Acting in Language Models",
+   "url": "https://arxiv.org/abs/2210.03629",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Model Context Protocol specification",
+   "url": "https://modelcontextprotocol.io/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "OpenAI — Function calling guide",
+   "url": "https://platform.openai.com/docs/guides/function-calling",
+   "licence": "fact reference"
+  }
+ ]
+}

@@ -1,0 +1,416 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.servers-cloud.01",
+ "level": 3,
+ "classes": [
+  11,
+  12
+ ],
+ "unit": "servers-cloud",
+ "title": {
+  "en": "How a server runs",
+  "hi": "सर्वर कैसे चलता है",
+  "hinglish": "Server kaise chalta hai"
+ },
+ "minutes": 15,
+ "xp": 60,
+ "prereq": [
+  "L3.networking-engineering.01"
+ ],
+ "outcomes": [
+  {
+   "en": "Describe server hardware and why it differs from a laptop",
+   "hi": "सर्वर हार्डवेयर बताओ और वह लैपटॉप से अलग क्यों है",
+   "hinglish": "Server hardware batao aur woh laptop se alag kyun hai"
+  },
+  {
+   "en": "Explain how a service (daemon) listens on a port and is managed and logged on Linux",
+   "hi": "समझाओ एक सेवा (डेमन) पोर्ट पर कैसे सुनती है और लिनक्स पर कैसे चलाई और लॉग की जाती है",
+   "hinglish": "Samjhao ek service (daemon) port par kaise sunti hai aur Linux par kaise manage aur log hoti hai"
+  },
+  {
+   "en": "Explain virtual machines and containers and when to use each",
+   "hi": "वर्चुअल मशीन और कंटेनर समझाओ और कब कौन-सा",
+   "hinglish": "Virtual machines aur containers samjhao aur kab kaunsa"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Server",
+   "hinglish": "Doosron ki request ka jawab dene wala computer",
+   "en": "A computer or program that serves requests from clients",
+   "hi": "क्लाइंटों के अनुरोधों का जवाब देने वाला कंप्यूटर या प्रोग्राम"
+  },
+  {
+   "term": "Daemon / service",
+   "hinglish": "Background mein hamesha chalne wala program",
+   "en": "Background program that runs continuously, such as a web server",
+   "hi": "पृष्ठभूमि में लगातार चलने वाला प्रोग्राम, जैसे वेब सर्वर"
+  },
+  {
+   "term": "Virtual machine",
+   "hinglish": "Ek computer ke andar nakli poora computer",
+   "en": "Software computer with its own OS running on shared hardware",
+   "hi": "साझा हार्डवेयर पर अपने ओएस के साथ चलता सॉफ़्टवेयर कंप्यूटर"
+  },
+  {
+   "term": "Container",
+   "hinglish": "App aur uski libraries ka packed dabba",
+   "en": "Packaged app plus libraries that shares the host OS kernel",
+   "hi": "ऐप और उसकी लाइब्रेरी का पैकेज जो होस्ट ओएस कर्नेल साझा करता है"
+  },
+  {
+   "term": "SSH",
+   "hinglish": "Server se surakshit remote login",
+   "en": "Secure Shell: encrypted remote login, port 22",
+   "hi": "सिक्योर शेल: एन्क्रिप्टेड दूरस्थ लॉगिन, पोर्ट 22"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "A server is just a computer built to run all day: many CPU cores, error-correcting (ECC) memory, two power supplies, fast disks, sitting in a rack with no screen.",
+    "hi": "सर्वर बस ऐसा कंप्यूटर है जो दिन-रात चलने के लिए बना है: कई सीपीयू कोर, त्रुटि सुधारने वाली (ECC) मेमोरी, दो पावर सप्लाई, तेज़ डिस्क, बिना स्क्रीन के रैक में।",
+    "hinglish": "Server bas aisa computer hai jo din-raat chalne ke liye bana hai: kai CPU cores, error-correcting (ECC) memory, do power supplies, tez disks, bina screen ke rack mein."
+   },
+   "visual": "anim:rack-server",
+   "narration": {
+    "en": "A server is just a computer built to run all day: many CPU cores, error-correcting (ECC) memory, two power supplies, fast disks, sitting in a rack with no screen.",
+    "hi": "सर्वर बस ऐसा कंप्यूटर है जो दिन-रात चलने के लिए बना है: कई सीपीयू कोर, त्रुटि सुधारने वाली (ECC) मेमोरी, दो पावर सप्लाई, तेज़ डिस्क, बिना स्क्रीन के रैक में।",
+    "hinglish": "Server bas aisa computer hai jo din-raat chalne ke liye bana hai: kai CPU cores, error-correcting (ECC) memory, do power supplies, tez disks, bina screen ke rack mein."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Most internet servers run Linux. A program like nginx starts at boot as a service and listens on ports 80 and 443, waiting for connections.",
+    "hi": "ज़्यादातर इंटरनेट सर्वर लिनक्स चलाते हैं। nginx जैसा प्रोग्राम बूट पर सेवा के रूप में शुरू होता है और पोर्ट 80 और 443 पर कनेक्शन का इंतज़ार करता है।",
+    "hinglish": "Zyaadatar internet servers Linux chalate hain. nginx jaisa program boot par service ke roop mein shuru hota hai aur ports 80 aur 443 par connections ka intezaar karta hai."
+   },
+   "visual": "anim:listen-ports",
+   "narration": {
+    "en": "Most internet servers run Linux. A program like nginx starts at boot as a service and listens on ports 80 and 443, waiting for connections.",
+    "hi": "ज़्यादातर इंटरनेट सर्वर लिनक्स चलाते हैं। nginx जैसा प्रोग्राम बूट पर सेवा के रूप में शुरू होता है और पोर्ट 80 और 443 पर कनेक्शन का इंतज़ार करता है।",
+    "hinglish": "Zyaadatar internet servers Linux chalate hain. nginx jaisa program boot par service ke roop mein shuru hota hai aur ports 80 aur 443 par connections ka intezaar karta hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "One physical machine can host many virtual machines, each with its own OS. Containers are lighter: they share the kernel and start in about a second.",
+    "hi": "एक भौतिक मशीन कई वर्चुअल मशीनें चला सकती है, हर एक का अपना ओएस। कंटेनर हल्के हैं: कर्नेल साझा करते हैं और लगभग एक सेकंड में शुरू होते हैं।",
+    "hinglish": "Ek physical machine kai virtual machines chala sakti hai, har ek ka apna OS. Containers halke hain: kernel share karte hain aur lagbhag ek second mein shuru hote hain."
+   },
+   "visual": "anim:vm-vs-container",
+   "narration": {
+    "en": "One physical machine can host many virtual machines, each with its own OS. Containers are lighter: they share the kernel and start in about a second.",
+    "hi": "एक भौतिक मशीन कई वर्चुअल मशीनें चला सकती है, हर एक का अपना ओएस। कंटेनर हल्के हैं: कर्नेल साझा करते हैं और लगभग एक सेकंड में शुरू होते हैं।",
+    "hinglish": "Ek physical machine kai virtual machines chala sakti hai, har ek ka apna OS. Containers halke hain: kernel share karte hain aur lagbhag ek second mein shuru hote hain."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Admins log in with SSH keys, not passwords, read logs to spot problems, and an orchestrator like Kubernetes restarts crashed containers automatically.",
+    "hi": "एडमिन पासवर्ड नहीं, SSH कुंजी से लॉगिन करते हैं, समस्या पकड़ने के लिए लॉग पढ़ते हैं, और Kubernetes जैसा ऑर्केस्ट्रेटर गिरे कंटेनर अपने-आप फिर शुरू करता है।",
+    "hinglish": "Admins password nahi, SSH keys se login karte hain, problems pakadne ke liye logs padhte hain, aur Kubernetes jaisa orchestrator crashed containers apne-aap restart karta hai."
+   },
+   "visual": "anim:self-heal",
+   "narration": {
+    "en": "Admins log in with SSH keys, not passwords, read logs to spot problems, and an orchestrator like Kubernetes restarts crashed containers automatically.",
+    "hi": "एडमिन पासवर्ड नहीं, SSH कुंजी से लॉगिन करते हैं, समस्या पकड़ने के लिए लॉग पढ़ते हैं, और Kubernetes जैसा ऑर्केस्ट्रेटर गिरे कंटेनर अपने-आप फिर शुरू करता है।",
+    "hinglish": "Admins password nahi, SSH keys se login karte hain, problems pakadne ke liye logs padhte hain, aur Kubernetes jaisa orchestrator crashed containers apne-aap restart karta hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "seq-flow",
+  "config": {
+   "scenario": "container-lifecycle"
+  },
+  "goal": {
+   "en": "Build a container image, deploy three copies, then watch one server die and the orchestrator heal the app by itself.",
+   "hi": "कंटेनर इमेज बनाओ, तीन प्रतियाँ तैनात करो, फिर एक सर्वर को गिरते और ऑर्केस्ट्रेटर को ऐप अपने-आप ठीक करते देखो।",
+   "hinglish": "Container image banao, teen copies deploy karo, phir ek server ko marte aur orchestrator ko app khud theek karte dekho."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Life of a request on one server",
+    "hi": "एक सर्वर पर अनुरोध का जीवन",
+    "hinglish": "Ek server par request ki zindagi"
+   },
+   "body": {
+    "en": "The network card receives packets; the kernel rebuilds the TCP stream and hands it to the process that opened (listened on) port 443. nginx decrypts TLS, then either returns a file or passes the request to an app process (Python, Node.js, Java) over a local socket. The app may query a database, then the reply goes back the same way. Every step writes a log line with time, status code and duration.",
+    "hi": "नेटवर्क कार्ड पैकेट लेता है; कर्नेल टीसीपी धारा फिर बनाकर उस प्रक्रिया को देता है जिसने पोर्ट 443 खोला (सुना) है। nginx TLS खोलता है, फिर या तो फ़ाइल लौटाता है या स्थानीय सॉकेट से अनुरोध ऐप प्रक्रिया (Python, Node.js, Java) को देता है। ऐप डेटाबेस से पूछ सकता है, फिर जवाब उसी रास्ते लौटता है। हर चरण समय, स्थिति कोड और अवधि के साथ एक लॉग पंक्ति लिखता है।",
+    "hinglish": "Network card packets leta hai; kernel TCP stream phir bana ke us process ko deta hai jisne port 443 khola (suna) hai. nginx TLS kholta hai, phir ya to file lautata hai ya local socket se request app process (Python, Node.js, Java) ko deta hai. App database se pooch sakta hai, phir reply usi raaste lautta hai. Har step time, status code aur duration ke saath ek log line likhta hai."
+   },
+   "analogy": {
+    "en": "A restaurant: the door guard (kernel) sends you to the right counter (port), the waiter (nginx) takes the order, the kitchen (app) cooks, the store room (database) supplies, and the bill book (log) records everything.",
+    "hi": "एक रेस्तराँ: दरबान (कर्नेल) सही काउंटर (पोर्ट) पर भेजता है, वेटर (nginx) ऑर्डर लेता है, रसोई (ऐप) पकाती है, भंडार (डेटाबेस) सामान देता है, और बिल-बुक (लॉग) सब दर्ज करती है।",
+    "hinglish": "Ek restaurant: darbaan (kernel) sahi counter (port) par bhejta hai, waiter (nginx) order leta hai, kitchen (app) pakati hai, store room (database) saamaan deta hai, aur bill book (log) sab darj karti hai."
+   },
+   "realExample": {
+    "en": "A real nginx log line: 203.0.113.9 - - [27/Nov/2026:10:00:01 +0530] \"GET /results HTTP/2.0\" 200 5120 \"-\" \"Mozilla/5.0\".",
+    "hi": "असली nginx लॉग पंक्ति: 203.0.113.9 - - [27/Nov/2026:10:00:01 +0530] \"GET /results HTTP/2.0\" 200 5120 \"-\" \"Mozilla/5.0\"।",
+    "hinglish": "Asli nginx log line: 203.0.113.9 - - [27/Nov/2026:10:00:01 +0530] \"GET /results HTTP/2.0\" 200 5120 \"-\" \"Mozilla/5.0\"."
+   }
+  },
+  {
+   "heading": {
+    "en": "VMs vs containers",
+    "hi": "वीएम बनाम कंटेनर",
+    "hinglish": "VMs vs containers"
+   },
+   "body": {
+    "en": "A hypervisor (such as KVM) splits one machine into virtual machines, each with a full operating system — strong isolation, but each VM uses gigabytes and takes tens of seconds to boot. A container (Docker, Podman) packages only the app and its libraries and uses Linux kernel features (namespaces and cgroups) to isolate it — megabytes in size, starts in about a second. Clouds often run containers inside VMs to get both.",
+    "hi": "हाइपरवाइज़र (जैसे KVM) एक मशीन को वर्चुअल मशीनों में बाँटता है, हर एक में पूरा ऑपरेटिंग सिस्टम — मज़बूत अलगाव, पर हर वीएम गीगाबाइट लेता है और बूट में दसियों सेकंड। कंटेनर (Docker, Podman) सिर्फ़ ऐप और उसकी लाइब्रेरी पैक करता है और लिनक्स कर्नेल की सुविधाओं (namespaces और cgroups) से उसे अलग रखता है — आकार मेगाबाइट में, लगभग एक सेकंड में शुरू। क्लाउड अक्सर दोनों का फ़ायदा लेने के लिए वीएम के अंदर कंटेनर चलाते हैं।",
+    "hinglish": "Hypervisor (jaise KVM) ek machine ko virtual machines mein baant-ta hai, har ek mein poora operating system — strong isolation, par har VM gigabytes leta hai aur boot mein dasiyon second. Container (Docker, Podman) sirf app aur uski libraries pack karta hai aur Linux kernel features (namespaces aur cgroups) se use alag rakhta hai — size megabytes mein, lagbhag ek second mein shuru. Clouds aksar dono ka fayda lene ke liye VMs ke andar containers chalate hain."
+   },
+   "analogy": {
+    "en": "VMs are separate flats each with its own kitchen; containers are rooms in a hostel sharing one kitchen but with their own locks.",
+    "hi": "वीएम अपनी-अपनी रसोई वाले अलग फ़्लैट हैं; कंटेनर हॉस्टल के कमरे हैं जो एक रसोई साझा करते हैं पर अपने ताले रखते हैं।",
+    "hinglish": "VMs apni-apni kitchen wale alag flats hain; containers hostel ke kamre hain jo ek kitchen share karte hain par apne taale rakhte hain."
+   },
+   "realExample": {
+    "en": "A school quiz app packaged as a container runs the same on a teacher's laptop, a lab server and a cloud — no \"it works on my machine\" problem.",
+    "hi": "कंटेनर में पैक स्कूल क्विज़ ऐप शिक्षक के लैपटॉप, लैब सर्वर और क्लाउड पर एक जैसा चलता है — \"मेरी मशीन पर तो चलता है\" वाली समस्या नहीं।",
+    "hinglish": "Container mein pack school quiz app teacher ke laptop, lab server aur cloud par ek jaisa chalta hai — \"meri machine par to chalta hai\" wali problem nahi."
+   }
+  },
+  {
+   "heading": {
+    "en": "Running servers safely",
+    "hi": "सर्वर सुरक्षित चलाना",
+    "hinglish": "Servers safely chalana"
+   },
+   "body": {
+    "en": "Good practice: log in with SSH keys and switch off password login; give each service its own low-privilege user; open only the ports you need (a firewall that denies everything else); install security updates quickly; keep backups and test restoring them; monitor CPU, memory, disk and error rates and alert a human when they cross limits.",
+    "hi": "अच्छा तरीका: SSH कुंजी से लॉगिन करो और पासवर्ड लॉगिन बंद करो; हर सेवा को अपना कम-अधिकार वाला उपयोगकर्ता दो; सिर्फ़ ज़रूरी पोर्ट खोलो (बाक़ी सब रोकने वाला फ़ायरवॉल); सुरक्षा अपडेट जल्दी लगाओ; बैकअप रखो और उन्हें वापस लाकर जाँचो; सीपीयू, मेमोरी, डिस्क और त्रुटि दर पर नज़र रखो और सीमा पार होने पर इंसान को सूचना दो।",
+    "hinglish": "Achha tareeka: SSH keys se login karo aur password login band karo; har service ko apna low-privilege user do; sirf zaroori ports kholo (baaki sab rokne wala firewall); security updates jaldi lagao; backups rakho aur unhe restore karke test karo; CPU, memory, disk aur error rates par nazar rakho aur limit paar hone par insaan ko alert do."
+   },
+   "analogy": {
+    "en": "A bank branch: staff badges (keys), each clerk can open only their own drawer (least privilege), one public door (firewall), CCTV (monitoring) and a vault copy of records (backups).",
+    "hi": "बैंक शाखा: कर्मचारी बिल्ले (कुंजी), हर क्लर्क बस अपनी दराज़ खोल सकता है (न्यूनतम अधिकार), एक सार्वजनिक दरवाज़ा (फ़ायरवॉल), सीसीटीवी (निगरानी) और रिकॉर्ड की तिजोरी वाली प्रति (बैकअप)।",
+    "hinglish": "Bank branch: staff badges (keys), har clerk bas apni daraaz khol sakta hai (least privilege), ek public darwaaza (firewall), CCTV (monitoring) aur records ki tijori wali copy (backups)."
+   },
+   "realExample": {
+    "en": "CERT-In's 2022 directions require organisations in India to report specified cyber incidents within 6 hours and keep logs for 180 days.",
+    "hi": "CERT-In के 2022 निर्देशों के अनुसार भारत में संगठनों को तय साइबर घटनाओं की सूचना 6 घंटे में देनी होती है और लॉग 180 दिन रखने होते हैं।",
+    "hinglish": "CERT-In ke 2022 directions ke hisaab se India mein organisations ko specified cyber incidents 6 ghante mein report karne hote hain aur logs 180 din rakhne hote hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Open the practice terminal in the Protocol Flow Visualiser (Linux command line) and complete all six missions. Then write which permission line shows marks.csv is private.",
+   "hi": "प्रोटोकॉल प्रवाह दर्शक का अभ्यास टर्मिनल (लिनक्स कमांड लाइन) खोलो और छह मिशन पूरे करो। फिर लिखो कौन-सी अनुमति पंक्ति दिखाती है कि marks.csv निजी है।",
+   "hinglish": "Protocol Flow Visualiser ka practice terminal (Linux command line) kholo aur chhe missions poore karo. Phir likho kaunsi permission line dikhati hai ki marks.csv private hai."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "multi",
+    "prompt": {
+     "en": "Which features make a server different from a home laptop? Choose all.",
+     "hi": "सर्वर को घर के लैपटॉप से क्या अलग बनाता है? सभी चुनो।",
+     "hinglish": "Server ko ghar ke laptop se kya alag banata hai? Sab chuno."
+    },
+    "options": [
+     {
+      "en": "ECC memory",
+      "hi": "ECC मेमोरी",
+      "hinglish": "ECC memory"
+     },
+     {
+      "en": "Redundant power supplies",
+      "hi": "दोहरी पावर सप्लाई",
+      "hinglish": "Redundant power supplies"
+     },
+     {
+      "en": "A bigger screen",
+      "hi": "बड़ी स्क्रीन",
+      "hinglish": "Badi screen"
+     },
+     {
+      "en": "Many CPU cores for many users",
+      "hi": "कई उपयोगकर्ताओं के लिए कई सीपीयू कोर",
+      "hinglish": "Kai users ke liye kai CPU cores"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     3
+    ],
+    "explain": {
+     "en": "Servers run headless in racks; reliability and parallel work matter.",
+     "hi": "सर्वर रैक में बिना स्क्रीन चलते हैं; विश्वसनीयता और समानांतर काम मायने रखते हैं।",
+     "hinglish": "Servers racks mein bina screen chalte hain; reliability aur parallel kaam maayne rakhte hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "What is the main difference between a VM and a container?",
+     "hi": "वीएम और कंटेनर में मुख्य अंतर क्या है?",
+     "hinglish": "VM aur container mein main antar kya hai?"
+    },
+    "options": [
+     {
+      "en": "Containers need a separate computer",
+      "hi": "कंटेनर को अलग कंप्यूटर चाहिए",
+      "hinglish": "Containers ko alag computer chahiye"
+     },
+     {
+      "en": "A VM has its own OS; containers share the host kernel",
+      "hi": "वीएम का अपना ओएस होता है; कंटेनर होस्ट कर्नेल साझा करते हैं",
+      "hinglish": "VM ka apna OS hota hai; containers host kernel share karte hain"
+     },
+     {
+      "en": "VMs only run Windows",
+      "hi": "वीएम सिर्फ़ विंडोज़ चलाते हैं",
+      "hinglish": "VMs sirf Windows chalate hain"
+     },
+     {
+      "en": "Containers cannot use networks",
+      "hi": "कंटेनर नेटवर्क इस्तेमाल नहीं कर सकते",
+      "hinglish": "Containers network use nahi kar sakte"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "That is why containers are smaller and start faster.",
+     "hi": "इसीलिए कंटेनर छोटे होते हैं और जल्दी शुरू होते हैं।",
+     "hinglish": "Isiliye containers chhote hote hain aur jaldi shuru hote hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "A web server must accept HTTPS. Which port must it listen on by default?",
+     "hi": "वेब सर्वर को HTTPS लेना है। डिफ़ॉल्ट रूप से किस पोर्ट पर सुनना होगा?",
+     "hinglish": "Web server ko HTTPS lena hai. Default roop se kis port par sunna hoga?"
+    },
+    "options": [
+     "22",
+     "53",
+     "443",
+     "3306"
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "443 is HTTPS; 22 is SSH, 53 DNS, 3306 MySQL.",
+     "hi": "443 HTTPS है; 22 SSH, 53 DNS, 3306 MySQL।",
+     "hinglish": "443 HTTPS hai; 22 SSH, 53 DNS, 3306 MySQL."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are good security habits for a server? Choose all.",
+     "hi": "सर्वर के लिए कौन-सी अच्छी सुरक्षा आदतें हैं? सभी चुनो।",
+     "hinglish": "Server ke liye kaunsi achhi security habits hain? Sab chuno."
+    },
+    "options": [
+     {
+      "en": "SSH keys instead of passwords",
+      "hi": "पासवर्ड के बजाय SSH कुंजी",
+      "hinglish": "Password ke bajaye SSH keys"
+     },
+     {
+      "en": "Run every service as root",
+      "hi": "हर सेवा root के रूप में चलाओ",
+      "hinglish": "Har service root ke roop mein chalao"
+     },
+     {
+      "en": "Open only needed ports",
+      "hi": "सिर्फ़ ज़रूरी पोर्ट खोलो",
+      "hinglish": "Sirf zaroori ports kholo"
+     },
+     {
+      "en": "Test restoring backups",
+      "hi": "बैकअप वापस लाकर जाँचो",
+      "hinglish": "Backups restore karke test karo"
+     }
+    ],
+    "answer": [
+     0,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "Least privilege means never running services as root.",
+     "hi": "न्यूनतम अधिकार का मतलब सेवाएँ कभी root के रूप में न चलाना।",
+     "hinglish": "Least privilege ka matlab services kabhi root ke roop mein na chalana."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Watch the container self-heal scenario to the end.",
+     "hi": "कंटेनर सेल्फ़-हील परिदृश्य अंत तक देखो।",
+     "hinglish": "Container self-heal scenario end tak dekho."
+    },
+    "answer": {
+     "event": "scenario-complete",
+     "scenario": "container-lifecycle"
+    },
+    "explain": {
+     "en": "The orchestrator noticed the dead pod and started a new one.",
+     "hi": "ऑर्केस्ट्रेटर ने गिरा पॉड देखा और नया शुरू किया।",
+     "hinglish": "Orchestrator ne gira pod dekha aur naya shuru kiya."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete all six missions in the practice Linux terminal.",
+     "hi": "अभ्यास लिनक्स टर्मिनल में सभी छह मिशन पूरे करो।",
+     "hinglish": "Practice Linux terminal mein saare chhe missions poore karo."
+    },
+    "answer": {
+     "event": "shell-mission-complete"
+    },
+    "explain": {
+     "en": "You used pwd, ls -l, cat, grep, mkdir and chmod.",
+     "hi": "आपने pwd, ls -l, cat, grep, mkdir और chmod इस्तेमाल किए।",
+     "hinglish": "Tumne pwd, ls -l, cat, grep, mkdir aur chmod use kiye."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "topics": [
+  "cloud.servers"
+ ],
+ "sources": [
+  {
+   "title": "nginx documentation — beginner's guide",
+   "url": "https://nginx.org/en/docs/beginners_guide.html",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Kubernetes documentation — Pods and self-healing",
+   "url": "https://kubernetes.io/docs/concepts/workloads/pods/",
+   "licence": "CC BY 4.0"
+  },
+  {
+   "title": "CERT-In Directions under section 70B (28 April 2022)",
+   "url": "https://www.cert-in.org.in/Directions70B.jsp",
+   "licence": "fact reference"
+  }
+ ]
+}

@@ -1,0 +1,321 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.servers.03",
+ "level": 1,
+ "classes": [
+  3,
+  4,
+  5
+ ],
+ "unit": "servers",
+ "title": {
+  "en": "Where is \"the cloud\"? Data centres",
+  "hi": "\"क्लाउड\" कहाँ है? डेटा सेंटर",
+  "hinglish": "\"Cloud\" kahan hai? Data centres"
+ },
+ "minutes": 8,
+ "xp": 30,
+ "prereq": [
+  "L1.servers.02"
+ ],
+ "topics": [
+  "cloud.data-centres",
+  "cloud.what-is-cloud"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain that \"the cloud\" means other people's computers in data centres.",
+   "hi": "समझा सकते हो कि \"क्लाउड\" मतलब डेटा सेंटर में दूसरों के कंप्यूटर।",
+   "hinglish": "Samjha sakte ho ki \"cloud\" matlab data centres mein doosron ke computers."
+  },
+  {
+   "en": "Explain why data centres need power, cooling and backups.",
+   "hi": "समझा सकते हो कि डेटा सेंटर को बिजली, ठंडक और बैकअप क्यों चाहिए।",
+   "hinglish": "Samjha sakte ho ki data centres ko bijli, thandak aur backup kyun chahiye."
+  },
+  {
+   "en": "Explain how a backup server keeps a service running.",
+   "hi": "समझा सकते हो कि बैकअप सर्वर सेवा को चालू कैसे रखता है।",
+   "hinglish": "Samjha sakte ho ki backup server service ko chaalu kaise rakhta hai."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Cloud",
+   "en": "Files and apps kept on computers in data centres, used over the internet",
+   "hi": "इंटरनेट के ज़रिए दूसरे कंप्यूटरों पर रखा डेटा और ऐप",
+   "hinglish": "Internet ke zariye doosre computers par rakha data aur apps"
+  },
+  {
+   "term": "Data centre",
+   "en": "A big building full of thousands of servers",
+   "hi": "हज़ारों सर्वर वाली बड़ी इमारत",
+   "hinglish": "Hazaaron servers wali badi imaarat"
+  },
+  {
+   "term": "Backup",
+   "en": "An extra copy kept safe in case something goes wrong",
+   "hi": "डेटा की एक और प्रति",
+   "hinglish": "Data ki ek aur copy"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.servers.03.s1",
+   "caption": {
+    "en": "Your photo \"in the cloud\" is really in a building.",
+    "hi": "\"क्लाउड में\" तुम्हारी फ़ोटो असल में एक इमारत में है।",
+    "hinglish": "\"Cloud mein\" tumhari photo asal mein ek building mein hai."
+   },
+   "narration": {
+    "en": "When a photo is saved \"to the cloud\", it goes over the internet to servers in a data centre. The cloud is not in the sky!",
+    "hinglish": "Jab photo \"cloud mein\" save hoti hai, woh internet se ek data centre ke servers par jaati hai. Cloud aasmaan mein nahin hai!",
+    "hi": "जब फ़ोटो \"क्लाउड में\" सहेजी जाती है, वह इंटरनेट से डेटा सेंटर के सर्वरों पर जाती है। क्लाउड आसमान में नहीं है!"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.servers.03.s2",
+   "caption": {
+    "en": "Rows of servers, cooled day and night.",
+    "hi": "सर्वरों की कतारें, दिन-रात ठंडी रखी जाती हैं।",
+    "hinglish": "Servers ki kataarein, din-raat thandi rakhi jaati hain."
+   },
+   "narration": {
+    "en": "A data centre holds rows and rows of servers. They get hot, so huge cooling systems run day and night, and generators take over if the power fails.",
+    "hinglish": "Data centre mein servers ki lambi kataarein hoti hain. Woh garam hote hain, isliye bade cooling systems din-raat chalte hain, aur bijli jaane par generators chalu ho jaate hain.",
+    "hi": "डेटा सेंटर में सर्वरों की लंबी कतारें होती हैं। वे गर्म होते हैं, इसलिए बड़े कूलिंग सिस्टम दिन-रात चलते हैं, और बिजली जाने पर जनरेटर चालू हो जाते हैं।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.servers.03.s3",
+   "caption": {
+    "en": "One place down? A copy elsewhere answers.",
+    "hi": "एक जगह बंद? दूसरी जगह की प्रति जवाब देती है।",
+    "hinglish": "Ek jagah band? Doosri jagah ki copy jawab deti hai."
+   },
+   "narration": {
+    "en": "Big services keep copies of data in more than one city. If one data centre has a problem, another takes over and you hardly notice.",
+    "hinglish": "Badi services data ki copies ek se zyada shehron mein rakhti hain. Ek data centre mein dikkat ho toh doosra sambhaal leta hai aur tumhe pata bhi nahin chalta.",
+    "hi": "बड़ी सेवाएँ डेटा की प्रतियाँ एक से ज़्यादा शहरों में रखती हैं। एक डेटा सेंटर में दिक़्क़त हो तो दूसरा संभाल लेता है और तुम्हें पता भी नहीं चलता।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "net-travel",
+  "config": {
+   "mode": "server"
+  },
+  "goal": {
+   "en": "Open the school website when its Mumbai server is down. Watch the Chennai backup take over.",
+   "hi": "स्कूल की वेबसाइट खोलो जब उसका मुंबई सर्वर बंद है। देखो चेन्नई का बैकअप कैसे संभालता है।",
+   "hinglish": "School website kholo jab uska Mumbai server band hai. Dekho Chennai backup kaise sambhaalta hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "The cloud = someone else's computer",
+    "hi": "क्लाउड = किसी और का कंप्यूटर",
+    "hinglish": "Cloud = kisi aur ka computer"
+   },
+   "body": {
+    "en": "Cloud storage and apps (like online documents, photo backup or DigiLocker) keep your files on servers owned by a company or government. You can reach them from any device — but only with the right login, so keep passwords safe.",
+    "hi": "क्लाउड स्टोरेज और ऐप (जैसे ऑनलाइन दस्तावेज़, फ़ोटो बैकअप या DigiLocker) तुम्हारी फ़ाइलें किसी कंपनी या सरकार के सर्वरों पर रखते हैं। तुम किसी भी डिवाइस से पहुँच सकते हो — पर सिर्फ़ सही लॉगिन से, इसलिए पासवर्ड सुरक्षित रखो।",
+    "hinglish": "Cloud storage aur apps (jaise online documents, photo backup ya DigiLocker) tumhari files kisi company ya sarkar ke servers par rakhte hain. Tum kisi bhi device se pahunch sakte ho — par sirf sahi login se, isliye passwords safe rakho."
+   },
+   "analogy": {
+    "en": "Like a bank locker: your things are in the bank's building, and only your key opens it.",
+    "hi": "बैंक लॉकर जैसा: तुम्हारा सामान बैंक की इमारत में है, और सिर्फ़ तुम्हारी चाबी से खुलता है।",
+    "hinglish": "Bank locker jaisa: tumhara saamaan bank ki building mein hai, aur sirf tumhari chaabi se khulta hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "Data centres use lots of energy",
+    "hi": "डेटा सेंटर बहुत ऊर्जा लेते हैं",
+    "hinglish": "Data centres bahut energy lete hain"
+   },
+   "body": {
+    "en": "Running and cooling thousands of servers needs a lot of electricity and often water. Engineers work to use solar and wind power and smarter cooling so the cloud is kinder to the planet.",
+    "hi": "हज़ारों सर्वर चलाने और ठंडा रखने में बहुत बिजली और अक्सर पानी लगता है। इंजीनियर सौर और पवन ऊर्जा और बेहतर कूलिंग पर काम करते हैं ताकि क्लाउड धरती के लिए बेहतर हो।",
+    "hinglish": "Hazaaron servers chalaane aur thanda rakhne mein bahut bijli aur aksar paani lagta hai. Engineers solar aur wind power aur behtar cooling par kaam karte hain taaki cloud dharti ke liye behtar ho."
+   },
+   "realExample": {
+    "en": "Mumbai and Chennai are India's biggest data-centre hubs, partly because undersea internet cables land there.",
+    "hi": "मुंबई और चेन्नई भारत के सबसे बड़े डेटा-सेंटर केंद्र हैं, कुछ हद तक इसलिए कि समुद्र के नीचे के इंटरनेट केबल वहीं उतरते हैं।",
+    "hinglish": "Mumbai aur Chennai India ke sabse bade data-centre hubs hain, kuch had tak isliye ki samundar ke neeche ki internet cables wahin utarti hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Ask a grown-up: which of our photos or files are in the cloud? Is there a backup? Make a family \"backup plan\" for important photos.",
+   "hi": "किसी बड़े से पूछो: हमारी कौन सी फ़ोटो या फ़ाइलें क्लाउड में हैं? क्या बैकअप है? ज़रूरी फ़ोटो के लिए परिवार का \"बैकअप प्लान\" बनाओ।",
+   "hinglish": "Kisi bade se poocho: hamari kaun si photos ya files cloud mein hain? Kya backup hai? Zaroori photos ke liye family ka \"backup plan\" banao."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Where are files \"in the cloud\" really kept?",
+     "hi": "\"क्लाउड में\" फ़ाइलें असल में कहाँ रखी जाती हैं?",
+     "hinglish": "\"Cloud mein\" files asal mein kahan rakhi jaati hain?"
+    },
+    "options": [
+     {
+      "en": "On servers in data centres",
+      "hi": "डेटा सेंटर के सर्वरों पर",
+      "hinglish": "Data centre ke servers par"
+     },
+     {
+      "en": "Inside real clouds in the sky",
+      "hi": "आसमान के असली बादलों में",
+      "hinglish": "Aasmaan ke asli baadalon mein"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "The cloud is a name for internet-connected servers.",
+     "hi": "क्लाउड इंटरनेट से जुड़े सर्वरों का नाम है।",
+     "hinglish": "Cloud internet se jude servers ka naam hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "multi",
+    "prompt": {
+     "en": "What does a data centre need?",
+     "hi": "डेटा सेंटर को क्या चाहिए?",
+     "hinglish": "Data centre ko kya chahiye?"
+    },
+    "options": [
+     {
+      "en": "Lots of electricity",
+      "hi": "बहुत बिजली",
+      "hinglish": "Bahut bijli"
+     },
+     {
+      "en": "Cooling",
+      "hi": "ठंडक",
+      "hinglish": "Thandak"
+     },
+     {
+      "en": "Backup power",
+      "hi": "बैकअप बिजली",
+      "hinglish": "Backup power"
+     },
+     {
+      "en": "A big playground",
+      "hi": "बड़ा खेल का मैदान",
+      "hinglish": "Bada khel ka maidan"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2
+    ],
+    "explain": {
+     "en": "Servers need power, cooling and backups to run 24×7.",
+     "hi": "सर्वरों को 24×7 चलने के लिए बिजली, ठंडक और बैकअप चाहिए।",
+     "hinglish": "Servers ko 24×7 chalne ke liye bijli, thandak aur backup chahiye."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "One data centre goes down. A well-built service…",
+     "hi": "एक डेटा सेंटर बंद हो गया। अच्छी तरह बनी सेवा…",
+     "hinglish": "Ek data centre band ho gaya. Achhi tarah bani service…"
+    },
+    "options": [
+     {
+      "en": "switches to a copy in another place",
+      "hi": "दूसरी जगह की प्रति पर चली जाती है",
+      "hinglish": "doosri jagah ki copy par chali jaati hai"
+     },
+     {
+      "en": "loses everyone's data",
+      "hi": "सबका डेटा खो देती है",
+      "hinglish": "sabka data kho deti hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Backups in other cities keep it running.",
+     "hi": "दूसरे शहरों के बैकअप इसे चालू रखते हैं।",
+     "hinglish": "Doosre shehron ke backups ise chaalu rakhte hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "To keep your cloud files safe you should…",
+     "hi": "क्लाउड फ़ाइलें सुरक्षित रखने के लिए…",
+     "hinglish": "Cloud files safe rakhne ke liye…"
+    },
+    "options": [
+     {
+      "en": "keep your password secret",
+      "hi": "पासवर्ड गुप्त रखो",
+      "hinglish": "password secret rakho"
+     },
+     {
+      "en": "share your password with friends",
+      "hi": "दोस्तों को पासवर्ड बताओ",
+      "hinglish": "doston ko password batao"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Your login is the key to your cloud locker.",
+     "hi": "तुम्हारा लॉगिन तुम्हारे क्लाउड लॉकर की चाबी है।",
+     "hinglish": "Tumhara login tumhare cloud locker ki chaabi hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Load the school page using the backup server.",
+     "hi": "बैकअप सर्वर से स्कूल का पेज खोलो।",
+     "hinglish": "Backup server se school ka page kholo."
+    },
+    "answer": {
+     "lab": "net-travel",
+     "mode": "server",
+     "solved": true,
+     "failover": true
+    },
+    "explain": {
+     "en": "Open school.example — the Mumbai server is down, so watch Chennai answer.",
+     "hi": "school.example खोलो — मुंबई सर्वर बंद है, चेन्नई को जवाब देते देखो।",
+     "hinglish": "school.example kholo — Mumbai server band hai, Chennai ko jawab dete dekho."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "MeitY – India data centre policy (fact reference)",
+   "url": "https://www.meity.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

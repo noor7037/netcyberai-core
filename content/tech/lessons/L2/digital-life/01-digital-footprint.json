@@ -1,0 +1,365 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.digital-life.01",
+ "level": 2,
+ "classes": [
+  6,
+  7,
+  8
+ ],
+ "unit": "digital-life",
+ "title": {
+  "en": "Your digital footprint",
+  "hi": "तुम्हारा डिजिटल फ़ुटप्रिंट",
+  "hinglish": "Tumhara digital footprint"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [],
+ "topics": [
+  "cit.footprint",
+  "cyber.privacy-sharing"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain active and passive digital footprints",
+   "hi": "सक्रिय और निष्क्रिय डिजिटल फ़ुटप्रिंट समझा सकते हो",
+   "hinglish": "Active aur passive digital footprint samjha sakte ho"
+  },
+  {
+   "en": "Decide what is OK to share, what to keep private and what to check first",
+   "hi": "तय कर सकते हो कि क्या शेयर करना ठीक है, क्या निजी रखना है और क्या पहले जाँचना है",
+   "hinglish": "Decide kar sakte ho kya share karna OK hai, kya private rakhna hai aur kya pehle check karna hai"
+  },
+  {
+   "en": "Use privacy settings and the “would I show my teacher?” test",
+   "hi": "प्राइवेसी सेटिंग और “क्या मैं शिक्षक को दिखा सकता हूँ?” परीक्षण उपयोग कर सकते हो",
+   "hinglish": "Privacy settings aur “kya main teacher ko dikha sakta hoon?” test use kar sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Digital footprint",
+   "hinglish": "Online nishaan",
+   "en": "The trail of data you leave online: posts, likes, searches, locations",
+   "hi": "ऑनलाइन छोड़ा गया डेटा का निशान: पोस्ट, लाइक, सर्च, स्थान"
+  },
+  {
+   "term": "Active footprint",
+   "hinglish": "Jaan-boojh kar chhoda",
+   "en": "What you choose to post or share",
+   "hi": "जो तुम जान-बूझकर पोस्ट या शेयर करते हो"
+  },
+  {
+   "term": "Passive footprint",
+   "hinglish": "Bina pata chale chhoda",
+   "en": "Data collected without you noticing: location, cookies, app tracking",
+   "hi": "बिना ध्यान दिए एकत्र डेटा: स्थान, कुकीज़, ऐप ट्रैकिंग"
+  },
+  {
+   "term": "Privacy settings",
+   "hinglish": "Kaun dekhe ka control",
+   "en": "Options that control who can see your posts and data",
+   "hi": "विकल्प जो नियंत्रित करते हैं कि तुम्हारी पोस्ट और डेटा कौन देखे"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Every post, like and search leaves a footprint. Unlike footprints on a beach, these are hard to wash away — screenshots last forever.",
+    "hi": "हर पोस्ट, लाइक और सर्च एक निशान छोड़ता है। समुद्र तट के निशानों के उलट, इन्हें मिटाना कठिन है — स्क्रीनशॉट हमेशा रहते हैं।",
+    "hinglish": "Har post, like aur search ek footprint chhodta hai. Beach ke footprints ke ulat, inhe mitana mushkil hai — screenshots hamesha rehte hain."
+   },
+   "visual": "compare:👣 Active: posts, comments, photos you share|🛰️ Passive: location, cookies, what apps track",
+   "narration": {
+    "en": "Think before you post.",
+    "hi": "पोस्ट करने से पहले सोचो।",
+    "hinglish": "Post karne se pehle socho."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Practise in the lab: sort 8 posts into OK to share, keep private, or check first.",
+    "hi": "लैब में अभ्यास करो: 8 पोस्ट को शेयर ठीक, निजी रखो, या पहले जाँचो में छाँटो।",
+    "hinglish": "Lab mein practice karo: 8 posts ko share OK, private rakho, ya pehle check mein sort karo."
+   },
+   "visual": "lab:cyber-lab#share",
+   "narration": {
+    "en": "School ID, live location and OTPs are always private.",
+    "hi": "स्कूल ID, लाइव लोकेशन और OTP हमेशा निजी हैं।",
+    "hinglish": "School ID, live location aur OTP hamesha private hain."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Before posting, run the 4-question test.",
+    "hi": "पोस्ट करने से पहले 4-प्रश्न परीक्षण करो।",
+    "hinglish": "Post karne se pehle 4-question test karo."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "If any answer is “no”, don’t post.",
+    "hi": "कोई भी उत्तर “नहीं” हो, तो पोस्ट मत करो।",
+    "hinglish": "Koi bhi jawab “nahi” ho, to post mat karo."
+   },
+   "code": "before I post:\n  1. Is it TRUE?\n  2. Is it KIND?\n  3. Is it PRIVATE info?   (address, school, location)\n  4. OK if my teacher, parents or a future college saw it?"
+  }
+ ],
+ "play": {
+  "lab": "cyber-lab",
+  "config": {
+   "tab": "share"
+  },
+  "goal": {
+   "en": "Sort all 8 posts correctly: OK to share, keep private, or check first.",
+   "hi": "सभी 8 पोस्ट सही छाँटो: शेयर ठीक, निजी रखो, या पहले जाँचो।",
+   "hinglish": "Saare 8 posts sahi sort karo: share OK, private rakho, ya pehle check."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Footprints last — so shape yours",
+    "hi": "निशान टिकते हैं — इसलिए अपना सँवारो",
+    "hinglish": "Footprints tikte hain — isliye apna sanvaaro"
+   },
+   "body": {
+    "en": "Your digital footprint has two parts. The active footprint is what you post: photos, comments, reels, reviews, chat messages. The passive footprint is collected quietly: your phone’s location history, which videos you watch, cookies that websites use to track you, and data apps collect. Both can be copied, screenshotted, searched and sold to advertisers, and they can last for years. Colleges and employers sometimes look people up online. Criminals use shared details — school uniform, location tags, holiday posts — to stalk, impersonate or burgle. Good habits: keep accounts private; turn off location tagging and give apps location only “while using”; never post your address, phone number, school ID, live location or travel plans; ask before posting photos of others; delete old posts you regret; and search your own name with a parent to see what is visible. A positive footprint helps you too — sharing your science project, art or volunteering shows who you are. India’s Digital Personal Data Protection Act, 2023 says platforms need verifiable parental consent to process children’s data and must not track or target ads at children.",
+    "hi": "तुम्हारे डिजिटल फ़ुटप्रिंट के दो भाग हैं। सक्रिय फ़ुटप्रिंट वह है जो तुम पोस्ट करते हो: फ़ोटो, टिप्पणियाँ, रील, समीक्षाएँ, चैट संदेश। निष्क्रिय फ़ुटप्रिंट चुपचाप एकत्र होता है: फ़ोन का स्थान इतिहास, कौन-से वीडियो देखते हो, कुकीज़ जिनसे वेबसाइटें तुम्हें ट्रैक करती हैं, और ऐप द्वारा एकत्र डेटा। दोनों कॉपी, स्क्रीनशॉट, खोजे और विज्ञापनदाताओं को बेचे जा सकते हैं, और सालों रह सकते हैं। कॉलेज और नियोक्ता कभी-कभी लोगों को ऑनलाइन खोजते हैं। अपराधी साझा जानकारी — स्कूल यूनिफ़ॉर्म, स्थान टैग, छुट्टी की पोस्ट — का उपयोग पीछा करने, नक़ल करने या चोरी के लिए करते हैं। अच्छी आदतें: खाते निजी रखो; लोकेशन टैगिंग बंद करो और ऐप को स्थान केवल “उपयोग के दौरान” दो; कभी पता, फ़ोन नंबर, स्कूल ID, लाइव लोकेशन या यात्रा योजना पोस्ट न करो; दूसरों की फ़ोटो पोस्ट करने से पहले पूछो; पछतावे वाली पुरानी पोस्ट हटाओ; और माता-पिता के साथ अपना नाम खोजकर देखो क्या दिखता है। सकारात्मक फ़ुटप्रिंट तुम्हारी मदद भी करता है — विज्ञान प्रोजेक्ट, कला या स्वयंसेवा साझा करना दिखाता है कि तुम कौन हो। भारत का डिजिटल व्यक्तिगत डेटा संरक्षण अधिनियम, 2023 कहता है कि प्लेटफ़ॉर्म को बच्चों का डेटा संसाधित करने के लिए सत्यापन योग्य माता-पिता की सहमति चाहिए और वे बच्चों को ट्रैक या उन पर लक्षित विज्ञापन नहीं कर सकते।",
+    "hinglish": "Tumhare digital footprint ke do parts hain. Active footprint woh hai jo tum post karte ho: photos, comments, reels, reviews, chat messages. Passive footprint chupchaap collect hota hai: phone ki location history, kaunse videos dekhte ho, cookies jinse websites tumhe track karti hain, aur apps ka collect kiya data. Dono copy, screenshot, search aur advertisers ko beche ja sakte hain, aur saalon reh sakte hain. Colleges aur employers kabhi-kabhi logon ko online search karte hain. Criminals shared details — school uniform, location tags, holiday posts — ka use stalk karne, impersonate karne ya chori ke liye karte hain. Achhi aadatein: accounts private rakho; location tagging band karo aur apps ko location sirf “while using” do; kabhi address, phone number, school ID, live location ya travel plans post mat karo; doosron ki photos post karne se pehle poochho; pachhtaave wali purani posts delete karo; aur parent ke saath apna naam search karke dekho kya dikhta hai. Positive footprint tumhari madad bhi karta hai — science project, art ya volunteering share karna dikhata hai ki tum kaun ho. India ka Digital Personal Data Protection Act, 2023 kehta hai ki platforms ko bachchon ka data process karne ke liye verifiable parental consent chahiye aur woh bachchon ko track ya un pe targeted ads nahi kar sakte."
+   },
+   "analogy": {
+    "en": "A digital footprint = a footprint in wet cement: once it sets, it stays forever — so step carefully.",
+    "hi": "डिजिटल फ़ुटप्रिंट = गीले सीमेंट पर पैर का निशान: एक बार सूख गया तो हमेशा के लिए — इसलिए कदम सोचकर रखो।",
+    "hinglish": "Digital footprint = geeli cement pe pair ka nishaan: ek baar sukh gaya to hamesha ke liye — isliye kadam soch kar rakho."
+   },
+   "realExample": {
+    "en": "Police in many Indian cities warn families not to post “we are away on holiday” photos with location tags until they return, because burglars watch for empty homes.",
+    "hi": "भारत के कई शहरों की पुलिस परिवारों को चेताती है कि स्थान टैग के साथ “हम छुट्टी पर हैं” फ़ोटो लौटने तक पोस्ट न करें, क्योंकि चोर ख़ाली घरों पर नज़र रखते हैं।",
+    "hinglish": "India ke kai shehron ki police families ko warn karti hai ki location tags ke saath “hum holiday pe hain” photos wapas aane tak post na karein, kyunki chor khaali gharon pe nazar rakhte hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "With a parent, open the privacy settings of one app you use (or a parent’s app). Check: who can see posts, location access, and who can message you. Change one setting to be safer, and write down what you changed.",
+   "hi": "माता-पिता के साथ किसी ऐप की प्राइवेसी सेटिंग खोलो जो तुम उपयोग करते हो (या माता-पिता का ऐप)। जाँचो: पोस्ट कौन देख सकता है, स्थान पहुँच, और तुम्हें कौन संदेश भेज सकता है। एक सेटिंग सुरक्षित करो, और लिखो क्या बदला।",
+   "hinglish": "Parent ke saath ek app ki privacy settings kholo jo tum use karte ho (ya parent ka app). Check karo: posts kaun dekh sakta hai, location access, aur tumhe kaun message kar sakta hai. Ek setting safer karo, aur likho kya badla."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are part of your ACTIVE footprint? Choose all.",
+     "hi": "तुम्हारे सक्रिय फ़ुटप्रिंट का भाग कौन-से हैं? सभी चुनो।",
+     "hinglish": "Tumhare ACTIVE footprint ka part kaunse hain? Saare chuno."
+    },
+    "options": [
+     {
+      "en": "A photo you post",
+      "hi": "तुम्हारी पोस्ट की फ़ोटो",
+      "hinglish": "Tumhari post ki photo"
+     },
+     {
+      "en": "Location history your phone records",
+      "hi": "फ़ोन द्वारा दर्ज स्थान इतिहास",
+      "hinglish": "Phone ki record ki location history"
+     },
+     {
+      "en": "A comment you write",
+      "hi": "तुम्हारी लिखी टिप्पणी",
+      "hinglish": "Tumhara likha comment"
+     },
+     {
+      "en": "Cookies a website stores",
+      "hi": "वेबसाइट द्वारा रखी कुकीज़",
+      "hinglish": "Website ki rakhi cookies"
+     }
+    ],
+    "answer": [
+     0,
+     2
+    ],
+    "explain": {
+     "en": "Posts and comments you choose to make are active; location history and cookies collected in the background are passive.",
+     "hi": "जो पोस्ट और टिप्पणियाँ तुम ख़ुद करते हो वे सक्रिय हैं; पृष्ठभूमि में एकत्र स्थान इतिहास और कुकीज़ निष्क्रिय हैं।",
+     "hinglish": "Jo posts aur comments tum khud karte ho woh active hain; background mein collect location history aur cookies passive hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "multi",
+    "prompt": {
+     "en": "Which should you NEVER post publicly? Choose all.",
+     "hi": "सार्वजनिक रूप से क्या कभी पोस्ट नहीं करना चाहिए? सभी चुनो।",
+     "hinglish": "Publicly kya kabhi post nahi karna chahiye? Saare chuno."
+    },
+    "options": [
+     {
+      "en": "Photo of your school ID",
+      "hi": "स्कूल ID की फ़ोटो",
+      "hinglish": "School ID ki photo"
+     },
+     {
+      "en": "Your live location",
+      "hi": "तुम्हारी लाइव लोकेशन",
+      "hinglish": "Tumhari live location"
+     },
+     {
+      "en": "A drawing with no name or school",
+      "hi": "बिना नाम या स्कूल की ड्रॉइंग",
+      "hinglish": "Bina naam ya school ki drawing"
+     },
+     {
+      "en": "Your phone number",
+      "hi": "तुम्हारा फ़ोन नंबर",
+      "hinglish": "Tumhara phone number"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     3
+    ],
+    "explain": {
+     "en": "School ID, live location and your phone number help strangers find you. A drawing without personal details is fine.",
+     "hi": "स्कूल ID, लाइव लोकेशन और फ़ोन नंबर अजनबियों को तुम तक पहुँचाते हैं। बिना निजी जानकारी की ड्रॉइंग ठीक है।",
+     "hinglish": "School ID, live location aur phone number strangers ko tum tak pahunchaate hain. Bina personal details ki drawing theek hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "You delete an embarrassing post after an hour. Is it gone for sure?",
+     "hi": "तुम एक घंटे बाद शर्मनाक पोस्ट हटाते हो। क्या वह पक्का चली गई?",
+     "hinglish": "Tum ek ghante baad embarrassing post delete karte ho. Kya woh pakka chali gayi?"
+    },
+    "options": [
+     {
+      "en": "Yes, deleting removes every copy",
+      "hi": "हाँ, हटाने से हर कॉपी चली जाती है",
+      "hinglish": "Haan, delete se har copy chali jaati hai"
+     },
+     {
+      "en": "Yes, if it had few likes",
+      "hi": "हाँ, अगर कम लाइक थे",
+      "hinglish": "Haan, agar kam likes the"
+     },
+     {
+      "en": "Not for sure — copies and screenshots may exist",
+      "hi": "पक्का नहीं — कॉपी और स्क्रीनशॉट हो सकते हैं",
+      "hinglish": "Pakka nahi — copies aur screenshots ho sakte hain"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "Someone may have screenshotted, saved or shared it. Think before you post.",
+     "hi": "किसी ने स्क्रीनशॉट, सेव या शेयर किया हो सकता है। पोस्ट से पहले सोचो।",
+     "hinglish": "Kisi ne screenshot, save ya share kiya ho sakta hai. Post se pehle socho."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "What is the safest location setting for a photo app?",
+     "hi": "फ़ोटो ऐप के लिए सबसे सुरक्षित स्थान सेटिंग क्या है?",
+     "hinglish": "Photo app ke liye sabse safe location setting kya hai?"
+    },
+    "options": [
+     {
+      "en": "“While using” or off, with location tags off",
+      "hi": "“उपयोग के दौरान” या बंद, स्थान टैग बंद",
+      "hinglish": "“While using” ya off, location tags off"
+     },
+     {
+      "en": "“Always”, so friends can find you",
+      "hi": "“हमेशा”, ताकि दोस्त ढूँढ सकें",
+      "hinglish": "“Always”, taaki dost dhoondh sakein"
+     },
+     {
+      "en": "Share live location in public posts",
+      "hi": "सार्वजनिक पोस्ट में लाइव लोकेशन",
+      "hinglish": "Public posts mein live location"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Give location only when needed — or not at all — and turn off location tags on posts.",
+     "hi": "स्थान केवल ज़रूरत पर दो — या बिल्कुल नहीं — और पोस्ट पर स्थान टैग बंद करो।",
+     "hinglish": "Location sirf zaroorat pe do — ya bilkul nahi — aur posts pe location tags band karo."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "short",
+    "prompt": {
+     "en": "Data collected about you without you noticing (location, cookies) is your ___ footprint.",
+     "hi": "बिना ध्यान दिए तुम्हारे बारे में एकत्र डेटा (स्थान, कुकीज़) तुम्हारा ___ फ़ुटप्रिंट है।",
+     "hinglish": "Bina notice kiye tumhare baare mein collect data (location, cookies) tumhara ___ footprint hai."
+    },
+    "answer": [
+     "passive",
+     "Passive"
+    ],
+    "explain": {
+     "en": "Passive footprint.",
+     "hi": "निष्क्रिय (passive) फ़ुटप्रिंट।",
+     "hinglish": "Passive footprint."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the lab mission.",
+     "hi": "लैब मिशन पूरा करो।",
+     "hinglish": "Lab mission poora karo."
+    },
+    "answer": {
+     "lab": "cyber-lab",
+     "event": "mission:complete",
+     "tab": "share"
+    },
+    "explain": {
+     "en": "Sort all 8 posts correctly.",
+     "hi": "सभी 8 पोस्ट सही छाँटो।",
+     "hinglish": "Saare 8 posts sahi sort karo."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "CBSE — Cyber Safety: A Handbook for Students of Secondary and Senior Secondary Schools",
+   "url": "https://cbseacademic.nic.in/web_material/Manuals/Cyber_Safety_Manual.pdf",
+   "licence": "fact reference"
+  },
+  {
+   "title": "MeitY — Digital Personal Data Protection Act, 2023",
+   "url": "https://www.meity.gov.in/data-protection-framework",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Common Sense Education — Digital Citizenship curriculum",
+   "url": "https://www.commonsense.org/education/digital-citizenship",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

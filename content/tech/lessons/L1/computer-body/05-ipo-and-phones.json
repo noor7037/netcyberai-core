@@ -1,0 +1,377 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.computer-body.05",
+ "level": 1,
+ "classes": [
+  4,
+  5
+ ],
+ "unit": "computer-body",
+ "title": {
+  "en": "Input → Process → Output: a phone is a computer",
+  "hi": "इनपुट → प्रोसेस → आउटपुट: फ़ोन भी कंप्यूटर है",
+  "hinglish": "Input → Process → Output: phone bhi computer hai"
+ },
+ "minutes": 9,
+ "xp": 40,
+ "prereq": [
+  "L1.computer-body.04"
+ ],
+ "topics": [
+  "hw.mobile",
+  "hw.io",
+  "hw.what-is-computer"
+ ],
+ "outcomes": [
+  {
+   "en": "Describe any computer job as input → process → output (+ storage).",
+   "hi": "किसी भी कंप्यूटर काम को इनपुट → प्रोसेस → आउटपुट (+ स्टोरेज) में बता सकते हो।",
+   "hinglish": "Kisi bhi computer kaam ko input → process → output (+ storage) mein samjha sakte ho."
+  },
+  {
+   "en": "Find the input, processing, output and storage parts inside a smartphone.",
+   "hi": "स्मार्टफ़ोन के अंदर इनपुट, प्रोसेसिंग, आउटपुट और स्टोरेज के हिस्से पहचान सकते हो।",
+   "hinglish": "Smartphone ke andar input, processing, output aur storage parts pehchaan sakte ho."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Process",
+   "en": "To work on information to change it into a result",
+   "hi": "जानकारी पर काम करके उसे परिणाम में बदलना",
+   "hinglish": "Kaam karna / badalna — CPU ka kaam"
+  },
+  {
+   "term": "IPO cycle",
+   "en": "The Input–Process–Output pattern every computer follows",
+   "hi": "इनपुट–प्रोसेस–आउटपुट का क्रम जिसे हर कंप्यूटर अपनाता है",
+   "hinglish": "Input → Process → Output ka chakkar"
+  },
+  {
+   "term": "Sensor",
+   "en": "A part that measures something, like light, motion or touch",
+   "hi": "हिस्सा जो रोशनी, हलचल या स्पर्श जैसी चीज़ मापता है",
+   "hinglish": "Mehsoos karne wala chhota part"
+  },
+  {
+   "term": "Battery (mAh)",
+   "en": "Stores energy; capacity is written in milliampere-hours",
+   "hi": "ऊर्जा रखती है; क्षमता मिलीएम्पियर-घंटे (mAh) में लिखी जाती है",
+   "hinglish": "Phone ki taakat ka dabba; mAh se size"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.computer-body.05.s1",
+   "caption": {
+    "en": "Every job: input → process → output.",
+    "hi": "हर काम: इनपुट → प्रोसेस → आउटपुट।",
+    "hinglish": "Har kaam: input → process → output."
+   },
+   "narration": {
+    "en": "You click a selfie (input), the phone adds a filter (process), shows the new photo (output) and saves it in the gallery (storage).",
+    "hinglish": "Selfie lete ho (input), phone filter lagata hai (process), nayi photo dikhata hai (output) aur gallery mein save karta hai (storage).",
+    "hi": "हर काम: इनपुट → प्रोसेस → आउटपुट।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.computer-body.05.s2",
+   "caption": {
+    "en": "A phone hides many parts.",
+    "hi": "फ़ोन में कई हिस्से छिपे हैं।",
+    "hinglish": "Phone mein kai parts chhupe hain."
+   },
+   "narration": {
+    "en": "Inside a phone: camera, mic and touchscreen (input), the chip with the CPU (process), screen and speaker (output), and storage memory.",
+    "hinglish": "Phone ke andar: camera, mic aur touchscreen (input), CPU wali chip (process), screen aur speaker (output), aur storage memory.",
+    "hi": "फ़ोन में कई हिस्से छिपे हैं।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.computer-body.05.s3",
+   "caption": {
+    "en": "Phones have sensors too.",
+    "hi": "फ़ोन में सेंसर भी होते हैं।",
+    "hinglish": "Phone mein sensors bhi hote hain."
+   },
+   "narration": {
+    "en": "Sensors are extra inputs: GPS knows where you are, the motion sensor turns the screen, the light sensor dims it, the fingerprint sensor unlocks it.",
+    "hinglish": "Sensors extra inputs hain: GPS jaanta hai tum kahan ho, motion sensor screen ghumata hai, light sensor brightness kam karta hai, fingerprint sensor unlock karta hai.",
+    "hi": "फ़ोन में सेंसर भी होते हैं।"
+   }
+  },
+  {
+   "step": 4,
+   "visual": "scene:L1.computer-body.05.s4",
+   "caption": {
+    "en": "An ATM is an IPO machine.",
+    "hi": "ATM एक IPO मशीन है।",
+    "hinglish": "ATM ek IPO machine hai."
+   },
+   "narration": {
+    "en": "ATM: card and PIN are input, the bank computer checks your account (process), cash and slip are output.",
+    "hinglish": "ATM: card aur PIN input hain, bank ka computer account check karta hai (process), cash aur slip output hain.",
+    "hi": "ATM एक IPO मशीन है।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "computer-body",
+  "config": {
+   "mode": "phone-teardown"
+  },
+  "goal": {
+   "en": "Open the 3D phone and drop each hidden part into Input, Process, Output or Storage.",
+   "hi": "3D फ़ोन खोलो और हर छिपे हिस्से को इनपुट, प्रोसेस, आउटपुट या स्टोरेज में डालो।",
+   "hinglish": "3D phone kholo aur har chhupe part ko Input, Process, Output ya Storage mein daalo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "The IPO cycle",
+    "hi": "IPO चक्र",
+    "hinglish": "IPO cycle"
+   },
+   "body": {
+    "en": "Every computer, big or small, works the same way: it takes Input, Processes it with the CPU, gives Output, and keeps things in Storage for later.",
+    "hi": "हर कंप्यूटर, बड़ा हो या छोटा, एक ही तरह काम करता है: इनपुट लेता है, CPU से प्रोसेस करता है, आउटपुट देता है, और बाद के लिए स्टोरेज में रखता है।",
+    "hinglish": "Har computer, bada ho ya chhota, ek hi tarah kaam karta hai: Input leta hai, CPU se Process karta hai, Output deta hai, aur baad ke liye Storage mein rakhta hai."
+   },
+   "analogy": {
+    "en": "Pressure cooker: put in rice and water (input), heat it (process), cooked rice (output). Leftover rice goes in the fridge (storage)!",
+    "hi": "प्रेशर कुकर: चावल-पानी डालो (इनपुट), गरम करो (प्रोसेस), पके चावल (आउटपुट)। बचे चावल फ़्रिज में (स्टोरेज)!",
+    "hinglish": "Pressure cooker: chawal-paani daalo (input), garam karo (process), pake chawal (output). Bache chawal fridge mein (storage)!"
+   },
+   "realExample": {
+    "en": "Typing \"2+3=\" on a calculator: keys are input, the chip adds (process), \"5\" on the screen is output.",
+    "hi": "कैलकुलेटर पर \"2+3=\": कुंजियाँ इनपुट, चिप जोड़ती है (प्रोसेस), स्क्रीन पर \"5\" आउटपुट।",
+    "hinglish": "Calculator par \"2+3=\": keys input, chip jodti hai (process), screen par \"5\" output."
+   }
+  },
+  {
+   "heading": {
+    "en": "Why a phone is a full computer",
+    "hi": "फ़ोन पूरा कंप्यूटर क्यों है",
+    "hinglish": "Phone poora computer kyun hai"
+   },
+   "body": {
+    "en": "A smartphone has all four parts in a small body, plus a battery and sensors. It also has an operating system like Android that runs apps. Today a mid-range phone is more powerful than the computers that helped land astronauts on the Moon in 1969.",
+    "hi": "स्मार्टफ़ोन में छोटे शरीर में चारों हिस्से हैं, साथ में बैटरी और सेंसर। इसमें Android जैसा ऑपरेटिंग सिस्टम भी है जो ऐप चलाता है। आज का सामान्य फ़ोन 1969 में चाँद पर उतरने में मदद करने वाले कंप्यूटरों से ज़्यादा ताक़तवर है।",
+    "hinglish": "Smartphone mein chhoti body mein chaaron parts hain, saath mein battery aur sensors. Ismein Android jaisa operating system bhi hai jo apps chalata hai. Aaj ka normal phone 1969 mein Moon par utarne mein madad karne wale computers se zyada powerful hai."
+   },
+   "realExample": {
+    "en": "The Apollo Guidance Computer (1969) had about 4 KB of RAM; a budget phone today has around 4 GB — about a million times more.",
+    "hi": "अपोलो गाइडेंस कंप्यूटर (1969) में लगभग 4 KB RAM थी; आज के सस्ते फ़ोन में लगभग 4 GB — क़रीब दस लाख गुना ज़्यादा।",
+    "hinglish": "Apollo Guidance Computer (1969) mein lagbhag 4 KB RAM thi; aaj ke budget phone mein lagbhag 4 GB — karib das lakh guna zyada."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Pick one app you use. Write its input, process, output and what it stores.",
+   "hi": "अपना इस्तेमाल किया एक ऐप चुनो। उसका इनपुट, प्रोसेस, आउटपुट और वह क्या स्टोर करता है, लिखो।",
+   "hinglish": "Apna use kiya ek app chuno. Uska input, process, output aur woh kya store karta hai, likho."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "order",
+    "prompt": {
+     "en": "Put the selfie steps in IPO order.",
+     "hi": "सेल्फ़ी के कदम IPO क्रम में लगाओ।",
+     "hinglish": "Selfie ke steps IPO order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Phone shows the filtered photo",
+      "hi": "फ़ोन फ़िल्टर वाली फ़ोटो दिखाता है",
+      "hinglish": "Phone filter wali photo dikhata hai"
+     },
+     {
+      "en": "Camera captures your face",
+      "hi": "कैमरा चेहरा कैप्चर करता है",
+      "hinglish": "Camera tumhara chehra capture karta hai"
+     },
+     {
+      "en": "Chip adds the filter",
+      "hi": "चिप फ़िल्टर लगाती है",
+      "hinglish": "Chip filter lagati hai"
+     }
+    ],
+    "answer": [
+     1,
+     2,
+     0
+    ],
+    "explain": {
+     "en": "Input (camera) → process (chip adds filter) → output (screen).",
+     "hi": "इनपुट (कैमरा) → प्रोसेस (चिप फ़िल्टर लगाती है) → आउटपुट (स्क्रीन)।",
+     "hinglish": "Input (camera) → process (chip filter lagati hai) → output (screen)."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "In an ATM, which is the PROCESS step?",
+     "hi": "ATM में प्रोसेस वाला कदम कौन-सा है?",
+     "hinglish": "ATM mein PROCESS wala step kaun sa hai?"
+    },
+    "options": [
+     {
+      "en": "Checking your account balance",
+      "hi": "खाते का बैलेंस जाँचना",
+      "hinglish": "Account balance check karna"
+     },
+     {
+      "en": "Typing the PIN",
+      "hi": "PIN डालना",
+      "hinglish": "PIN daalna"
+     },
+     {
+      "en": "Cash coming out",
+      "hi": "नकद बाहर आना",
+      "hinglish": "Cash bahar aana"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Typing the PIN is input, cash is output; checking the account is the processing in between.",
+     "hi": "PIN डालना इनपुट है, नकद आउटपुट; बीच में खाता जाँचना प्रोसेसिंग है।",
+     "hinglish": "PIN daalna input hai, cash output; beech mein account check karna processing hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are sensors in a phone?",
+     "hi": "फ़ोन में कौन-से सेंसर हैं?",
+     "hinglish": "Phone mein kaun se sensors hain?"
+    },
+    "options": [
+     {
+      "en": "GPS",
+      "hi": "GPS",
+      "hinglish": "GPS"
+     },
+     {
+      "en": "Fingerprint sensor",
+      "hi": "फ़िंगरप्रिंट सेंसर",
+      "hinglish": "Fingerprint sensor"
+     },
+     {
+      "en": "Light sensor",
+      "hi": "लाइट सेंसर",
+      "hinglish": "Light sensor"
+     },
+     {
+      "en": "Speaker",
+      "hi": "स्पीकर",
+      "hinglish": "Speaker"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2
+    ],
+    "explain": {
+     "en": "GPS, fingerprint and light sensors measure things (inputs). The speaker is an output.",
+     "hi": "GPS, फ़िंगरप्रिंट और लाइट सेंसर चीज़ें मापते हैं (इनपुट)। स्पीकर आउटपुट है।",
+     "hinglish": "GPS, fingerprint aur light sensors cheezein naapte hain (inputs). Speaker output hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Your photos stay in the phone after it is switched off. They are kept in…",
+     "hi": "फ़ोन बंद होने के बाद भी फ़ोटो रहती हैं। वे कहाँ रखी हैं…",
+     "hinglish": "Phone band hone ke baad bhi photos rehti hain. Woh kahan rakhi hain…"
+    },
+    "options": [
+     {
+      "en": "storage",
+      "hi": "स्टोरेज",
+      "hinglish": "storage"
+     },
+     {
+      "en": "RAM",
+      "hi": "RAM",
+      "hinglish": "RAM"
+     },
+     {
+      "en": "the screen",
+      "hi": "स्क्रीन",
+      "hinglish": "screen"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Storage keeps data with no power; RAM does not.",
+     "hi": "स्टोरेज बिना बिजली के डेटा रखता है; RAM नहीं।",
+     "hinglish": "Storage bina power ke data rakhta hai; RAM nahin."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which statement is TRUE?",
+     "hi": "कौन-सी बात सही है?",
+     "hinglish": "Kaun si baat sahi hai?"
+    },
+    "options": [
+     {
+      "en": "A phone is a real computer",
+      "hi": "फ़ोन एक असली कंप्यूटर है",
+      "hinglish": "Phone ek asli computer hai"
+     },
+     {
+      "en": "Only big boxes are computers",
+      "hi": "सिर्फ़ बड़े डिब्बे कंप्यूटर हैं",
+      "hinglish": "Sirf bade dabbe computer hain"
+     },
+     {
+      "en": "Phones have no CPU",
+      "hi": "फ़ोन में CPU नहीं होता",
+      "hinglish": "Phone mein CPU nahin hota"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "A phone has input, a CPU, output and storage, so it is a full computer.",
+     "hi": "फ़ोन में इनपुट, CPU, आउटपुट और स्टोरेज है, इसलिए यह पूरा कंप्यूटर है।",
+     "hinglish": "Phone mein input, CPU, output aur storage hai, isliye yeh poora computer hai."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "NCERT / CIET – ICT curriculum for school education (fact reference)",
+   "url": "https://ciet.ncert.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NASA – Apollo Guidance Computer (fact reference)",
+   "url": "https://www.nasa.gov/history/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

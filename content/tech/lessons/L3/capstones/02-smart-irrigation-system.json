@@ -1,0 +1,371 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.capstones.02",
+ "level": 3,
+ "classes": [
+  11,
+  12
+ ],
+ "unit": "capstones",
+ "title": {
+  "en": "Smart irrigation system",
+  "hi": "स्मार्ट सिंचाई तंत्र",
+  "hinglish": "Smart irrigation system"
+ },
+ "minutes": 25,
+ "xp": 100,
+ "prereq": [
+  "L3.robotics-autonomy.05",
+  "L3.electronics-embedded.03"
+ ],
+ "outcomes": [
+  {
+   "en": "Design a sensor → controller → actuator system with a feedback loop",
+   "hi": "फ़ीडबैक लूप वाला सेंसर → नियंत्रक → प्रवर्तक तंत्र बनाओ",
+   "hinglish": "Feedback loop wala sensor → controller → actuator system design karo"
+  },
+  {
+   "en": "Calibrate a soil-moisture sensor and choose thresholds",
+   "hi": "मिट्टी-नमी सेंसर अंशांकित करो और सीमाएँ चुनो",
+   "hinglish": "Soil-moisture sensor calibrate karo aur thresholds chuno"
+  },
+  {
+   "en": "Add safety, power planning and secure MQTT reporting",
+   "hi": "सुरक्षा, बिजली योजना और सुरक्षित MQTT रिपोर्टिंग जोड़ो",
+   "hinglish": "Safety, power planning aur secure MQTT reporting jodo"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Capacitive sensor",
+   "hinglish": "Nami sensor",
+   "en": "Measures soil moisture without exposed metal that corrodes",
+   "hi": "खुली धातु के बिना मिट्टी की नमी मापता है जो जंग खाए"
+  },
+  {
+   "term": "Calibration",
+   "hinglish": "Milaan",
+   "en": "Mapping raw readings to real values using known dry and wet points",
+   "hi": "ज्ञात सूखे और गीले बिंदुओं से कच्ची पढ़ाई को असली मानों से जोड़ना"
+  },
+  {
+   "term": "Hysteresis",
+   "hinglish": "Do seemayein",
+   "en": "Separate on and off thresholds so a pump does not flicker",
+   "hi": "अलग चालू और बंद सीमाएँ ताकि पंप बार-बार न झपके"
+  },
+  {
+   "term": "Relay",
+   "hinglish": "Bijli ka switch",
+   "en": "A switch controlled by a small signal that turns a bigger load on",
+   "hi": "छोटे संकेत से चलने वाला स्विच जो बड़ा भार चालू करे"
+  },
+  {
+   "term": "Deep sleep",
+   "hinglish": "Gehri neend",
+   "en": "A microcontroller mode that uses tiny power between readings",
+   "hi": "माइक्रोकंट्रोलर मोड जो पढ़ाइयों के बीच बहुत कम शक्ति ले"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Sense: a capacitive probe → ESP32 ADC reads 0–4095.",
+    "hi": "अनुभव: कैपेसिटिव प्रोब → ESP32 ADC 0–4095 पढ़ता है।",
+    "hinglish": "Sense: capacitive probe → ESP32 ADC 0–4095 padhta hai."
+   },
+   "visual": "flow:probe|ADC|moisture %",
+   "narration": {
+    "en": "Sense: a capacitive probe → ESP32 ADC reads 0–4095.",
+    "hi": "अनुभव: कैपेसिटिव प्रोब → ESP32 ADC 0–4095 पढ़ता है।",
+    "hinglish": "Sense: capacitive probe → ESP32 ADC 0–4095 padhta hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Decide: pump ON below 30%, OFF above 45% (hysteresis), with a 15-minute limit.",
+    "hi": "निर्णय: 30% से नीचे पंप चालू, 45% से ऊपर बंद (हिस्टैरिसिस), 15 मिनट सीमा के साथ।",
+    "hinglish": "Decide: 30% se neeche pump ON, 45% se upar OFF (hysteresis), 15 minute limit ke saath."
+   },
+   "visual": "compare:ON < 30%|OFF > 45%",
+   "narration": {
+    "en": "Decide: pump ON below 30%, OFF above 45% (hysteresis), with a 15-minute limit.",
+    "hi": "निर्णय: 30% से नीचे पंप चालू, 45% से ऊपर बंद (हिस्टैरिसिस), 15 मिनट सीमा के साथ।",
+    "hinglish": "Decide: 30% se neeche pump ON, 45% se upar OFF (hysteresis), 15 minute limit ke saath."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Act: a relay or MOSFET switches the pump; report over MQTT with TLS.",
+    "hi": "क्रिया: रिले या MOSFET पंप चलाता है; TLS के साथ MQTT पर रिपोर्ट।",
+    "hinglish": "Act: relay ya MOSFET pump chalata hai; TLS ke saath MQTT par report."
+   },
+   "visual": "flow:relay|pump|MQTT",
+   "narration": {
+    "en": "Act: a relay or MOSFET switches the pump; report over MQTT with TLS.",
+    "hi": "क्रिया: रिले या MOSFET पंप चलाता है; TLS के साथ MQTT पर रिपोर्ट।",
+    "hinglish": "Act: relay ya MOSFET pump chalata hai; TLS ke saath MQTT par report."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Power: deep sleep between readings lets a battery and small solar panel last.",
+    "hi": "शक्ति: पढ़ाइयों के बीच गहरी नींद से बैटरी और छोटा सौर पैनल चलते रहते हैं।",
+    "hinglish": "Power: readings ke beech deep sleep se battery aur chhota solar panel chalte rehte hain."
+   },
+   "visual": "stack:sleep|wake|read|send",
+   "narration": {
+    "en": "Power: deep sleep between readings lets a battery and small solar panel last.",
+    "hi": "शक्ति: पढ़ाइयों के बीच गहरी नींद से बैटरी और छोटा सौर पैनल चलते रहते हैं।",
+    "hinglish": "Power: readings ke beech deep sleep se battery aur chhota solar panel chalte rehte hain."
+   }
+  }
+ ],
+ "play": {
+  "lab": "control-lab",
+  "config": {
+   "mode": "adc",
+   "bits": 4,
+   "rate": 10
+  },
+  "goal": {
+   "en": "Tune the sensor input for the irrigation controller: reach at least 8 bits and 20 samples per second so readings are trustworthy.",
+   "hi": "सिंचाई नियंत्रक के लिए सेंसर इनपुट ट्यून करो: कम से कम 8 बिट और 20 नमूने प्रति सेकंड तक पहुँचो ताकि पढ़ाई भरोसेमंद हो।",
+   "hinglish": "Irrigation controller ke liye sensor input tune karo: kam se kam 8 bits aur 20 samples per second tak pahuncho taaki readings bharosemand hon."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "The build, step by step",
+    "hi": "निर्माण, चरण-दर-चरण",
+    "hinglish": "Build, step by step"
+   },
+   "body": {
+    "en": "1) Hardware: ESP32, a capacitive soil-moisture probe (resistive probes corrode within weeks), a relay module or logic-level MOSFET, a small 12 V pump or solenoid valve with its own supply, and a flyback diode. 2) Calibrate: read the probe in dry air and in a glass of water, then map: moisture % = (dry − reading) ÷ (dry − wet) × 100. Average 10 readings to cut noise. 3) Control: switch on below 30% and off above 45%. This hysteresis stops the pump clicking on and off around one value. Add a hard 15-minute limit and a daily maximum, in case the sensor fails. 4) Report: publish moisture and pump state over MQTT on port 8883 with a unique device login, and a last will of \"offline\". 5) Power: wake every 10 minutes, read, send, and deep-sleep; that lets a battery with a small solar panel run for weeks.",
+    "hi": "1) हार्डवेयर: ESP32, कैपेसिटिव मिट्टी-नमी प्रोब (प्रतिरोधी प्रोब हफ़्तों में जंग खाते हैं), रिले मॉड्यूल या लॉजिक-लेवल MOSFET, अपनी आपूर्ति वाला छोटा 12 V पंप या सोलेनॉइड वाल्व, और फ़्लाईबैक डायोड। 2) अंशांकन: प्रोब को सूखी हवा और पानी के गिलास में पढ़ो, फिर जोड़ो: नमी % = (सूखा − पढ़ाई) ÷ (सूखा − गीला) × 100। शोर घटाने को 10 पढ़ाइयों का औसत लो। 3) नियंत्रण: 30% से नीचे चालू, 45% से ऊपर बंद। यह हिस्टैरिसिस पंप को एक मान के आसपास चालू-बंद होने से रोकता है। सेंसर विफल होने के लिए 15 मिनट की कठोर सीमा और दैनिक अधिकतम जोड़ो। 4) रिपोर्ट: अलग उपकरण लॉगिन के साथ पोर्ट 8883 पर MQTT से नमी और पंप स्थिति प्रकाशित करो, और \"offline\" की अंतिम इच्छा। 5) शक्ति: हर 10 मिनट जागो, पढ़ो, भेजो, और गहरी नींद; इससे छोटे सौर पैनल वाली बैटरी हफ़्तों चलती है।",
+    "hinglish": "1) Hardware: ESP32, capacitive soil-moisture probe (resistive probes hafton mein jang khaate hain), relay module ya logic-level MOSFET, apni supply wala chhota 12 V pump ya solenoid valve, aur flyback diode. 2) Calibrate: probe ko sookhi hawa aur paani ke glass mein padho, phir map karo: moisture % = (dry − reading) ÷ (dry − wet) × 100. Noise ghataane ko 10 readings ka average lo. 3) Control: 30% se neeche on, 45% se upar off. Yeh hysteresis pump ko ek value ke aaspaas on-off hone se rokta hai. Sensor fail hone ke liye 15 minute ki hard limit aur daily maximum jodo. 4) Report: unique device login ke saath port 8883 par MQTT se moisture aur pump state publish karo, aur \"offline\" ki last will. 5) Power: har 10 minute jaago, padho, bhejo, aur deep sleep; isse chhote solar panel wali battery hafton chalti hai."
+   },
+   "analogy": {
+    "en": "A careful gardener: checks the soil with a finger, waters until it is moist, and never leaves the tap running.",
+    "hi": "सावधान माली: उँगली से मिट्टी जाँचता है, नम होने तक पानी देता है, और नल कभी खुला नहीं छोड़ता।",
+    "hinglish": "Saavdhaan maali: ungli se mitti check karta hai, nam hone tak paani deta hai, aur nal kabhi khula nahi chhodta."
+   },
+   "realExample": {
+    "en": "if moisture < 30: pump_on(max_minutes=15)  elif moisture > 45: pump_off()  # hysteresis + safety limit",
+    "hi": "if moisture < 30: pump_on(max_minutes=15)  elif moisture > 45: pump_off()  # हिस्टैरिसिस + सुरक्षा सीमा",
+    "hinglish": "if moisture < 30: pump_on(max_minutes=15)  elif moisture > 45: pump_off()  # hysteresis + safety limit"
+   }
+  },
+  {
+   "heading": {
+    "en": "Testing and measuring impact",
+    "hi": "परीक्षण और असर मापना",
+    "hinglish": "Testing aur impact naapna"
+   },
+   "body": {
+    "en": "Test on a pot before a field. Log moisture every 10 minutes for a week without watering automatically, so you learn how fast your soil dries. Then compare two identical pots or beds: one watered by a fixed timer, one by your controller, and measure water used (litres from a meter or bucket counts) and plant health. Think about failure: what happens if Wi-Fi drops (the device should still control locally), if the probe is pulled out of the soil (reading jumps to \"dry\" — the time limit protects you), or if the battery runs low (send a warning). Electrical safety: use low-voltage DC for school projects, and leave any mains 230 V wiring to a licensed electrician.",
+    "hi": "खेत से पहले गमले पर जाँचो। एक सप्ताह बिना स्वचालित पानी के हर 10 मिनट नमी लॉग करो, ताकि जानो मिट्टी कितनी तेज़ी से सूखती है। फिर दो एक जैसे गमलों या क्यारियों की तुलना करो: एक तय टाइमर से, एक आपके नियंत्रक से, और प्रयुक्त पानी (मीटर या बाल्टी गिनती से लीटर) और पौधे का स्वास्थ्य मापो। विफलता सोचो: वाई-फ़ाई कटे तो क्या (उपकरण को स्थानीय नियंत्रण जारी रखना चाहिए), प्रोब मिट्टी से निकल जाए तो (पढ़ाई \"सूखा\" पर उछलती है — समय सीमा बचाती है), या बैटरी कम हो तो (चेतावनी भेजो)। विद्युत सुरक्षा: स्कूल परियोजनाओं में कम-वोल्टेज DC इस्तेमाल करो, और कोई भी 230 V मेन वायरिंग लाइसेंसधारी इलेक्ट्रीशियन पर छोड़ो।",
+    "hinglish": "Khet se pehle gamle par test karo. Ek hafte bina automatic paani ke har 10 minute moisture log karo, taaki jaano mitti kitni tezi se sookhti hai. Phir do ek jaise gamlon ya kyariyon ki tulna karo: ek fixed timer se, ek tumhare controller se, aur use hua paani (meter ya baalti ginti se litre) aur paudhe ki health naapo. Failure socho: Wi-Fi kate to kya (device ko local control jaari rakhna chahiye), probe mitti se nikal jaaye to (reading \"dry\" par uchhalti hai — time limit bachati hai), ya battery kam ho to (warning bhejo). Electrical safety: school projects mein low-voltage DC use karo, aur koi bhi 230 V mains wiring licensed electrician par chhodo."
+   },
+   "analogy": {
+    "en": "A science experiment needs a control group; so does your gadget.",
+    "hi": "विज्ञान प्रयोग को नियंत्रण समूह चाहिए; आपके गैजेट को भी।",
+    "hinglish": "Science experiment ko control group chahiye; tumhare gadget ko bhi."
+   },
+   "realExample": {
+    "en": "Result line: \"Over 14 days the sensor bed used 38 L vs 61 L for the timer bed, with similar plant growth.\"",
+    "hi": "परिणाम पंक्ति: \"14 दिनों में सेंसर क्यारी ने 38 L बनाम टाइमर क्यारी के 61 L लिए, पौधों की वृद्धि समान।\"",
+    "hinglish": "Result line: \"14 dinon mein sensor bed ne 38 L vs timer bed ke 61 L liye, paudhon ki growth similar.\""
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Build it (or simulate it in Wokwi or on paper): wire the circuit, calibrate dry and wet readings, implement hysteresis with a safety time limit, and publish to a test MQTT broker you run yourself. Log a week of data and compare water use against a fixed timer.",
+   "hi": "बनाओ (या Wokwi या काग़ज़ पर अनुकरण करो): परिपथ जोड़ो, सूखी और गीली पढ़ाई अंशांकित करो, सुरक्षा समय सीमा के साथ हिस्टैरिसिस लगाओ, और ख़ुद चलाए परीक्षण MQTT ब्रोकर पर प्रकाशित करो। एक सप्ताह का डेटा लॉग करो और तय टाइमर से पानी के उपयोग की तुलना करो।",
+   "hinglish": "Banao (ya Wokwi ya kaagaz par simulate karo): circuit jodo, dry aur wet readings calibrate karo, safety time limit ke saath hysteresis lagao, aur khud chalaye test MQTT broker par publish karo. Ek hafte ka data log karo aur fixed timer se paani ke use ki tulna karo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why use separate ON (30%) and OFF (45%) thresholds?",
+     "hi": "अलग चालू (30%) और बंद (45%) सीमाएँ क्यों?",
+     "hinglish": "Alag ON (30%) aur OFF (45%) thresholds kyun?"
+    },
+    "options": [
+     {
+      "en": "To stop the pump flickering on and off around one value",
+      "hi": "पंप को एक मान के आसपास बार-बार चालू-बंद होने से रोकने के लिए",
+      "hinglish": "Pump ko ek value ke aaspaas baar-baar on-off hone se rokne ke liye"
+     },
+     {
+      "en": "To use more water",
+      "hi": "ज़्यादा पानी के लिए",
+      "hinglish": "Zyada paani ke liye"
+     },
+     {
+      "en": "Because sensors need two numbers",
+      "hi": "क्योंकि सेंसर को दो संख्याएँ चाहिए",
+      "hinglish": "Kyunki sensor ko do numbers chahiye"
+     },
+     {
+      "en": "No reason",
+      "hi": "कोई कारण नहीं",
+      "hinglish": "Koi kaaran nahi"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "That gap is hysteresis.",
+     "hi": "वह अंतर हिस्टैरिसिस है।",
+     "hinglish": "Woh gap hysteresis hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "short",
+    "prompt": {
+     "en": "Dry reading 3000, wet reading 1200, current reading 2100. Moisture % = (dry − reading) ÷ (dry − wet) × 100 = ?",
+     "hi": "सूखी पढ़ाई 3000, गीली 1200, अभी 2100। नमी % = (सूखा − पढ़ाई) ÷ (सूखा − गीला) × 100 = ?",
+     "hinglish": "Dry reading 3000, wet 1200, abhi 2100. Moisture % = (dry − reading) ÷ (dry − wet) × 100 = ?"
+    },
+    "answer": {
+     "accept": [
+      "50",
+      "50%"
+     ]
+    },
+    "explain": {
+     "en": "(3000 − 2100) ÷ 1800 × 100 = 50%.",
+     "hi": "(3000 − 2100) ÷ 1800 × 100 = 50%।",
+     "hinglish": "(3000 − 2100) ÷ 1800 × 100 = 50%."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "multi",
+    "prompt": {
+     "en": "Which protect the system if the sensor fails?",
+     "hi": "सेंसर विफल हो तो कौन तंत्र को बचाते हैं?",
+     "hinglish": "Sensor fail ho to kaun system ko bachate hain?"
+    },
+    "options": [
+     {
+      "en": "A maximum pump run time",
+      "hi": "अधिकतम पंप चलने का समय",
+      "hinglish": "Maximum pump run time"
+     },
+     {
+      "en": "A daily water limit",
+      "hi": "दैनिक पानी सीमा",
+      "hinglish": "Daily water limit"
+     },
+     {
+      "en": "A low-battery warning",
+      "hi": "कम-बैटरी चेतावनी",
+      "hinglish": "Low-battery warning"
+     },
+     {
+      "en": "Removing the relay",
+      "hi": "रिले हटाना",
+      "hinglish": "Relay hatana"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2
+    ],
+    "explain": {
+     "en": "Design for failure.",
+     "hi": "विफलता के लिए डिज़ाइन करो।",
+     "hinglish": "Failure ke liye design karo."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "How do you prove the controller saves water?",
+     "hi": "कैसे साबित करोगे कि नियंत्रक पानी बचाता है?",
+     "hinglish": "Kaise prove karoge ki controller paani bachata hai?"
+    },
+    "options": [
+     {
+      "en": "Compare with an identical timer-watered bed and measure litres",
+      "hi": "एक जैसी टाइमर वाली क्यारी से तुलना करके लीटर मापो",
+      "hinglish": "Ek jaisi timer wali kyari se tulna karke litre naapo"
+     },
+     {
+      "en": "Ask a friend",
+      "hi": "दोस्त से पूछो",
+      "hinglish": "Dost se poocho"
+     },
+     {
+      "en": "Assume it does",
+      "hi": "मान लो",
+      "hinglish": "Maan lo"
+     },
+     {
+      "en": "Watch it for one minute",
+      "hi": "एक मिनट देखो",
+      "hinglish": "Ek minute dekho"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "A fair comparison needs a control.",
+     "hi": "निष्पक्ष तुलना को नियंत्रण चाहिए।",
+     "hinglish": "Fair comparison ko control chahiye."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Get a clean ADC reading in the lab.",
+     "hi": "लैब में साफ़ ADC पढ़ाई पाओ।",
+     "hinglish": "Lab mein saaf ADC reading pao."
+    },
+    "answer": {
+     "event": "adc-good"
+    },
+    "explain": {
+     "en": "8+ bits, 20+ samples per second.",
+     "hi": "8+ बिट, 20+ नमूने प्रति सेकंड।",
+     "hinglish": "8+ bits, 20+ samples per second."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "robo.iot",
+  "elec.sensors",
+  "robo.feedback-loops",
+  "robo.microcontroller"
+ ],
+ "sources": [
+  {
+   "title": "Espressif — ESP32 ADC driver docs",
+   "url": "https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/adc_oneshot.html",
+   "licence": "fact reference"
+  },
+  {
+   "title": "MQTT.org",
+   "url": "https://mqtt.org/",
+   "licence": "fact reference"
+  }
+ ]
+}

@@ -1,0 +1,399 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.software-engineering.02",
+ "level": 3,
+ "classes": [
+  11,
+  12
+ ],
+ "unit": "software-engineering",
+ "title": {
+  "en": "Git and version control",
+  "hi": "Git और संस्करण नियंत्रण",
+  "hinglish": "Git aur version control"
+ },
+ "minutes": 15,
+ "xp": 60,
+ "prereq": [
+  "L3.software-engineering.01"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain commits, branches, merges and remotes",
+   "hi": "कमिट, शाखा, मर्ज और रिमोट समझाओ",
+   "hinglish": "Commits, branches, merges aur remotes samjhao"
+  },
+  {
+   "en": "Use the everyday Git commands in the right order",
+   "hi": "रोज़ के Git आदेश सही क्रम में इस्तेमाल करो",
+   "hinglish": "Roz ke Git commands sahi order mein use karo"
+  },
+  {
+   "en": "Describe the pull-request workflow with CI and review",
+   "hi": "CI और समीक्षा के साथ पुल-रिक्वेस्ट प्रवाह बताओ",
+   "hinglish": "CI aur review ke saath pull-request workflow batao"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Repository",
+   "hinglish": "Repo",
+   "en": "A project folder plus its full history",
+   "hi": "परियोजना फ़ोल्डर और उसका पूरा इतिहास"
+  },
+  {
+   "term": "Commit",
+   "hinglish": "Snapshot",
+   "en": "A saved snapshot of changes with a message and an ID",
+   "hi": "संदेश और ID वाला बदलावों का सहेजा स्नैपशॉट"
+  },
+  {
+   "term": "Branch",
+   "hinglish": "Shaakha",
+   "en": "A movable pointer to a line of commits where you can work safely",
+   "hi": "कमिट की एक रेखा का खिसकने वाला सूचक जहाँ सुरक्षित काम हो"
+  },
+  {
+   "term": "Merge",
+   "hinglish": "Jodna",
+   "en": "Combining the changes of one branch into another",
+   "hi": "एक शाखा के बदलाव दूसरी में मिलाना"
+  },
+  {
+   "term": "Pull request",
+   "hinglish": "PR",
+   "en": "A request to review and merge a branch, on GitHub and similar sites",
+   "hi": "शाखा की समीक्षा और मर्ज का अनुरोध, GitHub जैसी साइटों पर"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Every commit is a snapshot with a message, an author and a unique ID (a hash).",
+    "hi": "हर कमिट संदेश, लेखक और अनोखी ID (हैश) वाला स्नैपशॉट है।",
+    "hinglish": "Har commit message, author aur unique ID (hash) wala snapshot hai."
+   },
+   "visual": "flow:edit|add|commit",
+   "narration": {
+    "en": "Every commit is a snapshot with a message, an author and a unique ID (a hash).",
+    "hi": "हर कमिट संदेश, लेखक और अनोखी ID (हैश) वाला स्नैपशॉट है।",
+    "hinglish": "Har commit message, author aur unique ID (hash) wala snapshot hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Branches let you try changes without breaking main.",
+    "hi": "शाखाएँ main तोड़े बिना बदलाव आज़माने देती हैं।",
+    "hinglish": "Branches main tode bina changes try karne deti hain."
+   },
+   "visual": "anim:branch",
+   "narration": {
+    "en": "Branches let you try changes without breaking main.",
+    "hi": "शाखाएँ main तोड़े बिना बदलाव आज़माने देती हैं।",
+    "hinglish": "Branches main tode bina changes try karne deti hain."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Push your branch, open a pull request, and robots run every test.",
+    "hi": "शाखा पुश करो, पुल रिक्वेस्ट खोलो, और रोबोट हर परीक्षण चलाते हैं।",
+    "hinglish": "Branch push karo, pull request kholo, aur robots har test chalate hain."
+   },
+   "visual": "flow:push|PR|CI|review|merge",
+   "narration": {
+    "en": "Push your branch, open a pull request, and robots run every test.",
+    "hi": "शाखा पुश करो, पुल रिक्वेस्ट खोलो, और रोबोट हर परीक्षण चलाते हैं।",
+    "hinglish": "Branch push karo, pull request kholo, aur robots har test chalate hain."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "A failing test blocks the merge. History lets you find and undo any change.",
+    "hi": "विफल परीक्षण मर्ज रोकता है। इतिहास किसी भी बदलाव को ढूँढने और वापस लेने देता है।",
+    "hinglish": "Failing test merge rokta hai. History kisi bhi change ko dhoondhne aur undo karne deti hai."
+   },
+   "visual": "compare:green → merge|red → blocked",
+   "narration": {
+    "en": "A failing test blocks the merge. History lets you find and undo any change.",
+    "hi": "विफल परीक्षण मर्ज रोकता है। इतिहास किसी भी बदलाव को ढूँढने और वापस लेने देता है।",
+    "hinglish": "Failing test merge rokta hai. History kisi bhi change ko dhoondhne aur undo karne deti hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "seq-flow",
+  "config": {
+   "scenario": "git-flow"
+  },
+  "goal": {
+   "en": "Take a fix from your laptop to main: branch, commit, push, CI, review, merge. Then tick \"Push code with a bug\" and watch CI stop it.",
+   "hi": "एक सुधार को लैपटॉप से main तक ले जाओ: शाखा, कमिट, पुश, CI, समीक्षा, मर्ज। फिर \"बग वाला कोड पुश करो\" चुनो और देखो CI उसे कैसे रोकता है।",
+   "hinglish": "Ek fix ko laptop se main tak le jaao: branch, commit, push, CI, review, merge. Phir \"Bug wala code push karo\" tick karo aur dekho CI use kaise rokta hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "How Git thinks",
+    "hi": "Git कैसे सोचता है",
+    "hinglish": "Git kaise sochta hai"
+   },
+   "body": {
+    "en": "Linus Torvalds wrote Git in 2005 to manage the Linux kernel, one of the largest open-source projects. Git is distributed: every copy of a repository has the full history, so you can work offline. Your files move through three places: the working folder, the staging area (git add picks what goes in the next snapshot) and the repository (git commit saves it). Each commit records who, when, why (the message) and a pointer to its parent, so history is a chain you can walk back: git log shows it, git diff shows what changed, and git revert undoes a commit safely by adding a new one. A branch is just a light pointer, so creating one is instant. A remote such as GitHub, GitLab or a school server holds a shared copy: git push sends your commits, git pull fetches and merges others’. If two people change the same lines, Git asks a human to resolve the conflict.",
+    "hi": "लिनस टॉरवाल्ड्स ने 2005 में लिनक्स कर्नेल, सबसे बड़ी मुक्त-स्रोत परियोजनाओं में से एक, को सँभालने के लिए Git लिखा। Git वितरित है: रिपॉज़िटरी की हर प्रति में पूरा इतिहास होता है, इसलिए ऑफ़लाइन काम कर सकते हो। आपकी फ़ाइलें तीन जगहों से गुज़रती हैं: कार्य फ़ोल्डर, स्टेजिंग क्षेत्र (git add चुनता है कि अगले स्नैपशॉट में क्या जाए) और रिपॉज़िटरी (git commit उसे सहेजता है)। हर कमिट दर्ज करता है कौन, कब, क्यों (संदेश) और अपने माता-पिता कमिट का सूचक, इसलिए इतिहास एक शृंखला है जिसमें पीछे जा सकते हो: git log दिखाता है, git diff बताता है क्या बदला, और git revert नया कमिट जोड़कर किसी कमिट को सुरक्षित रूप से वापस लेता है। शाखा केवल हल्का सूचक है, इसलिए बनाना तुरंत होता है। GitHub, GitLab या स्कूल सर्वर जैसा रिमोट साझा प्रति रखता है: git push आपके कमिट भेजता है, git pull दूसरों के लाकर मिलाता है। अगर दो लोग वही पंक्तियाँ बदलें तो Git किसी इंसान से टकराव सुलझाने को कहता है।",
+    "hinglish": "Linus Torvalds ne 2005 mein Linux kernel, sabse bade open-source projects mein se ek, ko sambhaalne ke liye Git likha. Git distributed hai: repository ki har copy mein poori history hoti hai, isliye offline kaam kar sakte ho. Tumhari files teen jagahon se guzarti hain: working folder, staging area (git add chunta hai ki agle snapshot mein kya jaaye) aur repository (git commit use save karta hai). Har commit record karta hai kaun, kab, kyun (message) aur apne parent commit ka pointer, isliye history ek chain hai jismein peeche ja sakte ho: git log dikhata hai, git diff batata hai kya badla, aur git revert naya commit jodkar kisi commit ko safely undo karta hai. Branch bas halka pointer hai, isliye banana turant hota hai. GitHub, GitLab ya school server jaisa remote shared copy rakhta hai: git push tumhare commits bhejta hai, git pull doosron ke laakar merge karta hai. Agar do log wahi lines badlein to Git kisi insaan se conflict resolve karne ko kehta hai."
+   },
+   "analogy": {
+    "en": "A save-game system with named save points you can always return to — and parallel worlds (branches) to try risky moves.",
+    "hi": "नामित सेव पॉइंट वाला सेव-गेम तंत्र जहाँ हमेशा लौट सकते हो — और जोखिम भरी चालें आज़माने को समानांतर दुनियाएँ (शाखाएँ)।",
+    "hinglish": "Named save points wala save-game system jahan hamesha laut sakte ho — aur risky moves try karne ko parallel worlds (branches)."
+   },
+   "realExample": {
+    "en": "A good commit message: \"Fix rounding of percentage on report card\" — not \"changes\" or \"final_final2\".",
+    "hi": "अच्छा कमिट संदेश: \"Fix rounding of percentage on report card\" — \"changes\" या \"final_final2\" नहीं।",
+    "hinglish": "Achha commit message: \"Fix rounding of percentage on report card\" — \"changes\" ya \"final_final2\" nahi."
+   }
+  },
+  {
+   "heading": {
+    "en": "Pull requests, CI and safe habits",
+    "hi": "पुल रिक्वेस्ट, CI और सुरक्षित आदतें",
+    "hinglish": "Pull requests, CI aur safe habits"
+   },
+   "body": {
+    "en": "On teams, nobody pushes straight to main. You open a pull request; continuous integration (for example GitHub Actions) runs the tests and linters automatically; a reviewer reads the change; only then is it merged, often with \"branch protection\" rules that require green checks and an approval. This catches bugs early and spreads knowledge across the team. Three safety habits matter as much as commands: never commit secrets such as passwords or API keys (once pushed they are in history — rotate the key immediately if it happens, and add a .gitignore); keep commits small and focused so they are easy to review and revert; and pull often to avoid big conflicts. GitHub’s Octoverse 2024 report says India has the fastest-growing developer population on GitHub and is expected to have the largest by 2028 — your public repositories are a real portfolio.",
+    "hi": "टीमों में कोई सीधे main पर पुश नहीं करता। आप पुल रिक्वेस्ट खोलते हो; निरंतर एकीकरण (जैसे GitHub Actions) परीक्षण और लिंटर अपने आप चलाता है; समीक्षक बदलाव पढ़ता है; तभी मर्ज होता है, अक्सर \"शाखा सुरक्षा\" नियमों के साथ जिनमें हरी जाँच और स्वीकृति ज़रूरी होती है। यह बग जल्दी पकड़ता है और टीम में ज्ञान फैलाता है। तीन सुरक्षा आदतें आदेशों जितनी ज़रूरी हैं: पासवर्ड या API कुंजी जैसे रहस्य कभी कमिट न करो (पुश होने के बाद वे इतिहास में हैं — ऐसा हो तो कुंजी तुरंत बदलो, और .gitignore जोड़ो); कमिट छोटे और केंद्रित रखो ताकि समीक्षा और वापसी आसान हो; और बड़े टकराव से बचने को बार-बार pull करो। GitHub की Octoverse 2024 रिपोर्ट कहती है कि GitHub पर भारत की डेवलपर आबादी सबसे तेज़ बढ़ रही है और 2028 तक सबसे बड़ी होने की उम्मीद है — आपकी सार्वजनिक रिपॉज़िटरी असली पोर्टफ़ोलियो हैं।",
+    "hinglish": "Teams mein koi seedhe main par push nahi karta. Tum pull request kholte ho; continuous integration (jaise GitHub Actions) tests aur linters apne aap chalata hai; reviewer change padhta hai; tabhi merge hota hai, aksar \"branch protection\" rules ke saath jinmein green checks aur approval zaroori hote hain. Yeh bugs jaldi pakadta hai aur team mein knowledge failata hai. Teen safety habits commands jitni zaroori hain: passwords ya API keys jaise secrets kabhi commit na karo (push hone ke baad woh history mein hain — aisa ho to key turant badlo, aur .gitignore jodo); commits chhote aur focused rakho taaki review aur revert aasaan ho; aur bade conflicts se bachne ko baar-baar pull karo. GitHub ki Octoverse 2024 report kehti hai ki GitHub par India ki developer population sabse tez badh rahi hai aur 2028 tak sabse badi hone ki umeed hai — tumhari public repositories asli portfolio hain."
+   },
+   "analogy": {
+    "en": "A class magazine: you write your article on your own sheet (branch), the editor checks it (review), spell-check runs (CI), then it goes into the final copy (main).",
+    "hi": "कक्षा पत्रिका: तुम अपना लेख अपनी शीट पर लिखते हो (शाखा), संपादक जाँचता है (समीक्षा), वर्तनी-जाँच चलती है (CI), फिर वह अंतिम प्रति में जाता है (main)।",
+    "hinglish": "Class magazine: tum apna article apni sheet par likhte ho (branch), editor check karta hai (review), spell-check chalta hai (CI), phir woh final copy mein jaata hai (main)."
+   },
+   "realExample": {
+    "en": "git switch -c fix-marks → git add report.py → git commit -m \"Fix rounding\" → git push -u origin fix-marks → open a PR.",
+    "hi": "git switch -c fix-marks → git add report.py → git commit -m \"Fix rounding\" → git push -u origin fix-marks → PR खोलो।",
+    "hinglish": "git switch -c fix-marks → git add report.py → git commit -m \"Fix rounding\" → git push -u origin fix-marks → PR kholo."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "On your own computer (or a free online sandbox), create a repository for your notes, make three commits with clear messages, create a branch, change a file, and merge it back. Write down each command you used and what git log showed. Add a .gitignore that excludes a file called secrets.txt.",
+   "hi": "अपने कंप्यूटर पर (या मुफ़्त ऑनलाइन सैंडबॉक्स में) नोट्स के लिए रिपॉज़िटरी बनाओ, स्पष्ट संदेशों के साथ तीन कमिट करो, शाखा बनाओ, एक फ़ाइल बदलो, और वापस मर्ज करो। हर आदेश लिखो और git log ने क्या दिखाया। एक .gitignore जोड़ो जो secrets.txt नाम की फ़ाइल को बाहर रखे।",
+   "hinglish": "Apne computer par (ya free online sandbox mein) notes ke liye repository banao, clear messages ke saath teen commits karo, branch banao, ek file badlo, aur wapas merge karo. Har command likho aur git log ne kya dikhaya. Ek .gitignore jodo jo secrets.txt naam ki file ko exclude kare."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "order",
+    "prompt": {
+     "en": "Order the commands to save and share a change.",
+     "hi": "बदलाव सहेजने और साझा करने के आदेश क्रम में लगाओ।",
+     "hinglish": "Change save aur share karne ke commands order mein lagao."
+    },
+    "options": [
+     "git switch -c fix",
+     "git add report.py",
+     "git commit -m \"Fix rounding\"",
+     "git push origin fix"
+    ],
+    "answer": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "Branch → stage → commit → push.",
+     "hi": "शाखा → स्टेज → कमिट → पुश।",
+     "hinglish": "Branch → stage → commit → push."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "What does git add do?",
+     "hi": "git add क्या करता है?",
+     "hinglish": "git add kya karta hai?"
+    },
+    "options": [
+     {
+      "en": "Stages changes for the next commit",
+      "hi": "अगले कमिट के लिए बदलाव स्टेज करता है",
+      "hinglish": "Agle commit ke liye changes stage karta hai"
+     },
+     {
+      "en": "Uploads to GitHub",
+      "hi": "GitHub पर अपलोड करता है",
+      "hinglish": "GitHub par upload karta hai"
+     },
+     {
+      "en": "Deletes a file",
+      "hi": "फ़ाइल मिटाता है",
+      "hinglish": "File mitaata hai"
+     },
+     {
+      "en": "Creates a branch",
+      "hi": "शाखा बनाता है",
+      "hinglish": "Branch banata hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "push uploads; switch -c creates a branch.",
+     "hi": "push अपलोड करता है; switch -c शाखा बनाता है।",
+     "hinglish": "push upload karta hai; switch -c branch banata hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "You accidentally pushed an API key. What must you do first?",
+     "hi": "आपने ग़लती से API कुंजी पुश कर दी। पहले क्या करना है?",
+     "hinglish": "Tumne galti se API key push kar di. Pehle kya karna hai?"
+    },
+    "options": [
+     {
+      "en": "Revoke or rotate the key immediately",
+      "hi": "कुंजी तुरंत रद्द करो या बदलो",
+      "hinglish": "Key turant revoke ya rotate karo"
+     },
+     {
+      "en": "Delete the line and hope",
+      "hi": "पंक्ति मिटाकर उम्मीद करो",
+      "hinglish": "Line mitaakar umeed karo"
+     },
+     {
+      "en": "Rename the file",
+      "hi": "फ़ाइल का नाम बदलो",
+      "hinglish": "File ka naam badlo"
+     },
+     {
+      "en": "Nothing",
+      "hi": "कुछ नहीं",
+      "hinglish": "Kuch nahi"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "It stays in history; assume it is leaked.",
+     "hi": "यह इतिहास में रहती है; मानो लीक हो गई।",
+     "hinglish": "Yeh history mein rehti hai; maano leak ho gayi."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "multi",
+    "prompt": {
+     "en": "Why do teams use pull requests?",
+     "hi": "टीमें पुल रिक्वेस्ट क्यों इस्तेमाल करती हैं?",
+     "hinglish": "Teams pull requests kyun use karti hain?"
+    },
+    "options": [
+     {
+      "en": "So tests run automatically before merging",
+      "hi": "ताकि मर्ज से पहले परीक्षण अपने आप चलें",
+      "hinglish": "Taaki merge se pehle tests apne aap chalein"
+     },
+     {
+      "en": "So another person reviews the change",
+      "hi": "ताकि दूसरा व्यक्ति बदलाव की समीक्षा करे",
+      "hinglish": "Taaki doosra vyakti change review kare"
+     },
+     {
+      "en": "To skip testing",
+      "hi": "परीक्षण छोड़ने के लिए",
+      "hinglish": "Testing chhodne ke liye"
+     },
+     {
+      "en": "To keep a discussion of why the change was made",
+      "hi": "बदलाव क्यों हुआ इसकी चर्चा रखने के लिए",
+      "hinglish": "Change kyun hua iski charcha rakhne ke liye"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     3
+    ],
+    "explain": {
+     "en": "PRs combine CI, review and a record.",
+     "hi": "PR CI, समीक्षा और रिकॉर्ड जोड़ते हैं।",
+     "hinglish": "PRs CI, review aur record jodte hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "short",
+    "prompt": {
+     "en": "Which Git command safely undoes a pushed commit by adding a new commit?",
+     "hi": "कौन-सा Git आदेश नया कमिट जोड़कर पुश किए कमिट को सुरक्षित वापस लेता है?",
+     "hinglish": "Kaunsa Git command naya commit jodkar push kiye commit ko safely undo karta hai?"
+    },
+    "answer": {
+     "accept": [
+      "git revert",
+      "revert"
+     ]
+    },
+    "explain": {
+     "en": "git revert keeps history honest.",
+     "hi": "git revert इतिहास ईमानदार रखता है।",
+     "hinglish": "git revert history imaandaar rakhta hai."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Watch CI block a buggy push in the lab.",
+     "hi": "लैब में CI को बग वाला पुश रोकते देखो।",
+     "hinglish": "Lab mein CI ko bug wala push rokte dekho."
+    },
+    "answer": {
+     "event": "scenario-complete",
+     "scenario": "git-flow"
+    },
+    "explain": {
+     "en": "A red check blocks the merge.",
+     "hi": "लाल जाँच मर्ज रोकती है।",
+     "hinglish": "Red check merge rokta hai."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "sw.version-control",
+  "sw.how-made"
+ ],
+ "sources": [
+  {
+   "title": "Pro Git book (Chacon & Straub), CC BY-NC-SA — read online",
+   "url": "https://git-scm.com/book/en/v2",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Git — A short history of Git",
+   "url": "https://git-scm.com/book/en/v2/Getting-Started-A-Short-History-of-Git",
+   "licence": "fact reference"
+  },
+  {
+   "title": "GitHub Octoverse 2024",
+   "url": "https://github.blog/news-insights/octoverse/octoverse-2024/",
+   "licence": "fact reference"
+  }
+ ]
+}

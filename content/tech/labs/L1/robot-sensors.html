@@ -1,0 +1,300 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#1D4ED8">
+<title>Robot sensor playground · Tech & AI Lab</title>
+<!-- Lab: robot-sensors (Level 1). Canvas robot with an ultrasonic distance sensor, two IR line sensors, a light sensor and two motors.
+     Kids set IF-THEN-ELSE rules and watch the Sense → Think → Act loop run. Deterministic fixed-step simulation. Own work, MIT.
+     Modes (config.mode / ?mode=): sense | avoid | line | night -->
+<style>/* L1 lab kit (own work, MIT). Family App palette from src/lib/design-tokens.ts */
+:root{--royal:#1D4ED8;--sapphire:#002357;--grape:#8B3DFF;--violet:#4400F0;--tangerine:#FF7A1A;--coral:#FF6B57;--gold:#F5B90A;--turq:#14B8A6;--emerald:#0F766E;--cyan:#02CFF9;--slate:#1E293B;--off:#F9FAFB;--ink2:#475569;--r:18px;--sh:0 6px 18px rgba(30,41,59,.12),0 1px 3px rgba(30,41,59,.08)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:var(--off);color:var(--slate);font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans Devanagari",sans-serif;overscroll-behavior:none}
+body{background:transparent;-webkit-user-select:none;user-select:none;display:flex;flex-direction:column;min-height:100%;overflow-x:hidden}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;touch-action:manipulation}
+.kbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:8px;padding:10px 12px;background:linear-gradient(120deg,var(--sapphire),var(--royal) 60%,var(--grape));color:#fff;box-shadow:0 2px 10px rgba(0,35,87,.25)}
+.kbar{flex-wrap:wrap;row-gap:6px}
+.kbar h1{flex:1 1 9em;min-width:0;margin:0;font-size:16px;line-height:1.2;font-weight:800;letter-spacing:.2px;overflow-wrap:break-word}/* title never cut: controls move to a 2nd row when needed */
+.kctl{display:flex;align-items:center;gap:8px;margin-left:auto}
+.kbar .kemo{font-size:22px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.25))}
+.kpill{display:flex;background:rgba(255,255,255,.16);border-radius:999px;padding:3px}
+.kpill button{padding:5px 9px;border-radius:999px;font-size:12.5px;font-weight:700;color:#e0e7ff;min-height:32px}
+.kpill button[aria-pressed=true]{background:#fff;color:var(--royal)}
+.kstars{display:flex;align-items:center;gap:4px;background:rgba(255,255,255,.16);padding:6px 10px;border-radius:999px;font-weight:800;font-size:14px;min-width:54px;justify-content:center}
+.kstars.bump{animation:kbump .5s}
+@keyframes kbump{40%{transform:scale(1.35)}}
+.kgoal{margin:10px 12px 0;padding:10px 12px;border-radius:14px;background:#fff;box-shadow:var(--sh);display:flex;gap:10px;align-items:flex-start;font-size:14.5px}
+.kgoal b{color:var(--royal)}
+.kbtn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:46px;padding:10px 18px;border-radius:14px;font-weight:800;background:var(--royal);color:#fff;box-shadow:0 4px 0 #1239a8,var(--sh);transition:transform .08s}
+.kbtn:active{transform:translateY(3px);box-shadow:0 1px 0 #1239a8}
+.kbtn.alt{background:#fff;color:var(--royal);box-shadow:0 4px 0 #c7d2fe,var(--sh)}
+.kbtn.go{background:var(--turq);box-shadow:0 4px 0 #0d8a7c,var(--sh)}
+.kbtn.warn{background:var(--tangerine);box-shadow:0 4px 0 #c75a0c,var(--sh)}
+.kbtn[disabled]{opacity:.45;pointer-events:none}
+.ktoast{pointer-events:none;position:fixed;left:0;top:0;width:max-content;z-index:60;max-width:min(92vw,360px);padding:12px 16px;border-radius:16px;background:var(--slate);color:#fff;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,.3);text-align:center;line-height:1.35;font-size:15px;opacity:0;visibility:hidden;transform:scale(.9);transition:opacity .25s,transform .3s cubic-bezier(.2,1.4,.4,1),visibility 0s .3s}
+.ktoast.show{opacity:1;visibility:visible;transform:none;transition:opacity .25s,transform .3s cubic-bezier(.2,1.4,.4,1)}
+.ktoast.inline{position:static;display:block;width:auto;max-width:none;margin:10px 12px;grid-column:1/-1;flex:0 0 auto}
+.ktoast.good{background:var(--emerald)}.ktoast.bad{background:#b4321f}
+#kconf{position:fixed;inset:0;pointer-events:none;z-index:-1}/* behind content; inside the win dialog it sits behind the card */
+.kwin #kconf{position:absolute;z-index:0}.kwin>div{position:relative;z-index:1}
+.kwin{position:fixed;inset:0;z-index:65;display:none;align-items:center;justify-content:center;background:rgba(6,18,51,.55);backdrop-filter:blur(3px);padding:20px}
+.kwin.show{display:flex}
+.kwin>div{background:#fff;border-radius:24px;padding:22px;text-align:center;max-width:360px;box-shadow:0 20px 50px rgba(0,0,0,.35);animation:kpop .5s cubic-bezier(.2,1.5,.4,1)}
+.kwin .big{font-size:64px;line-height:1;animation:kspin 1.2s ease-out}
+.kwin h2{margin:10px 0 6px;font-size:22px}
+.kwin p{margin:0 0 14px;color:var(--ink2)}
+@keyframes kpop{from{transform:scale(.6);opacity:0}}
+@keyframes kspin{from{transform:rotateY(-540deg) scale(.4)}}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+.kvoice{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.16);font-size:17px;opacity:.6}
+.kvoice[aria-pressed=true]{background:#fff;opacity:1;box-shadow:0 0 0 3px rgba(255,255,255,.4)}
+</style>
+<style>
+main{flex:1;display:flex;flex-direction:column;gap:8px;padding:8px 10px 14px}
+.modes{display:flex;flex-wrap:wrap;gap:6px;}
+.modes button{flex:0 1 auto;max-width:100%;white-space:normal;text-align:center;padding:7px 12px;border-radius:999px;background:#fff;box-shadow:var(--sh);font-weight:700;font-size:13px;min-height:36px}
+.modes button[aria-pressed=true]{background:var(--slate);color:#fff}
+.arena{position:relative;border-radius:20px;overflow:hidden;box-shadow:var(--sh);background:#f8fafc;touch-action:none}
+canvas#c{display:block;width:100%;height:auto}
+.loop{position:absolute;left:8px;top:8px;display:flex;gap:4px}
+.loop span{padding:4px 8px;border-radius:999px;font-size:12px;font-weight:900;background:rgba(255,255,255,.85);color:#94a3b8;transition:all .15s}
+.loop span.on{background:var(--royal);color:#fff;transform:scale(1.08)}
+.loop span.on.t{background:var(--grape)}.loop span.on.a{background:var(--tangerine)}
+.readings{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.rd{background:#fff;border-radius:14px;box-shadow:var(--sh);padding:7px 6px;text-align:center}
+.rd b{display:block;font-size:17px;font-variant-numeric:tabular-nums}.rd small{font-size:11px;color:var(--ink2);font-weight:700}
+.motors{display:flex;gap:8px;align-items:center;background:#fff;border-radius:14px;box-shadow:var(--sh);padding:8px 10px;font-size:13px;font-weight:700}
+.motors .m{flex:1}.motors .bar{height:10px;border-radius:99px;background:#e2e8f0;position:relative;overflow:hidden;margin-top:3px}
+.motors .bar i{position:absolute;top:0;bottom:0;left:50%;background:var(--turq);transition:all .1s}
+.rules{background:#fff;border-radius:16px;box-shadow:var(--sh);padding:10px;display:flex;flex-direction:column;gap:8px}
+.rule{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-weight:800;font-size:14px}
+.kw{padding:4px 8px;border-radius:8px;color:#fff;font-size:13px}.kw.if{background:#d97706}.kw.then{background:var(--grape)}.kw.else{background:#64748b}
+.sel{display:flex;gap:4px;flex-wrap:wrap}
+.sel button{padding:6px 9px;border-radius:10px;background:#f1f5f9;font-weight:800;font-size:13px;min-height:36px;border:2px solid transparent}
+.sel button[aria-pressed=true]{background:#eef2ff;border-color:var(--royal);color:var(--royal)}
+input[type=range]{width:130px;accent-color:var(--royal)}
+.btns{display:flex;gap:8px}.btns .kbtn{flex:1}
+.why{font-size:14px;background:#eff6ff;border-left:4px solid var(--royal);padding:8px 10px;border-radius:10px}
+.lamp{display:flex;gap:12px;align-items:center;justify-content:center;padding:6px}
+@media (orientation:landscape) and (max-height:520px){main{display:grid;grid-template-columns:1.1fr 1fr;align-items:start}.modes{grid-column:1/-1}.arena{grid-row:2/6}canvas#c{max-height:calc(100vh - 120px);width:auto;margin:auto}}
+</style></head><body>
+<main>
+  <div class="modes" id="modes"></div>
+  <div class="kgoal" id="goal" style="margin:0"></div>
+  <div class="arena" id="arena"><canvas id="c" width="800" height="600"></canvas><div class="loop"><span id="lS">SENSE</span><span id="lT" class="t">THINK</span><span id="lA" class="a">ACT</span></div></div>
+  <div class="readings" id="readings"></div>
+  <div class="motors" id="motors"></div>
+  <div class="rules" id="rules"></div>
+  <div class="btns" id="btns"></div>
+  <div class="why" id="why"></div>
+</main>
+<script>// L1 lab kit (own work, MIT): language, header, stars, toast, confetti, sounds, drag, lesson config, completion events.
+(function (g) {
+  const q = new URLSearchParams(location.search);
+  const LANGS = ['hinglish', 'en', 'hi'];
+  let lang = q.get('lang') || (function () { try { return localStorage.getItem('techlab.lang'); } catch (e) { return null; } })() || 'hinglish';
+  if (!LANGS.includes(lang)) lang = 'hinglish';
+  const t = (o) => (o == null ? '' : typeof o === 'string' ? o : Array.isArray(o) ? (o[{ en: 0, hi: 1, hinglish: 2 }[lang]] ?? o[0]) : (o[lang] ?? o.hinglish ?? o.en));
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const el = (tag, attrs = {}, html) => { const e = document.createElement(tag); for (const k in attrs) { if (k === 'class') e.className = attrs[k]; else if (k === 'style') e.style.cssText = attrs[k]; else if (k.startsWith('on')) e.addEventListener(k.slice(2), attrs[k]); else e.setAttribute(k, attrs[k]); } if (html != null) e.innerHTML = html; return e; };
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+  const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const listeners = [];
+  const cls = +(q.get('class') || 0);
+  let voice = q.get('voice') ? q.get('voice') === '1' : (q.has('class') && cls <= 2);
+  const say = (o) => { if (!voice || !g.speechSynthesis) return; try { const txt = t(o).replace(/[\u{1F000}-\u{1FAFF}\u2600-\u27BF]/gu, ''); speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(txt); u.lang = lang === 'hi' ? 'hi-IN' : 'en-IN'; const v = speechSynthesis.getVoices().find((v) => v.lang === u.lang) || speechSynthesis.getVoices().find((v) => v.lang.startsWith(lang === 'hi' ? 'hi' : 'en')); if (v) u.voice = v; u.rate = cls <= 0 && q.has('class') ? .85 : .95; speechSynthesis.speak(u); } catch (e) {} };
+  const K = { q, t, $, $$, el, esc, reduced, say, get voice() { return voice; }, get lang() { return lang; }, stars: 0,
+    onLang(fn) { listeners.push(fn); },
+    setLang(l) { lang = l; try { localStorage.setItem('techlab.lang', l); } catch (e) {} document.documentElement.lang = l === 'hi' ? 'hi' : 'en'; $$('.kpill button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.l === l)); listeners.forEach((f) => f(l)); },
+    header(title, emoji) {
+      const bar = el('header', { class: 'kbar' });
+      bar.innerHTML = `<span class="kemo" aria-hidden="true">${emoji}</span><h1 id="ktitle"></h1><div class="kctl"><div class="kpill" role="group" aria-label="Language">${[['hinglish', 'Hing'], ['en', 'EN'], ['hi', 'हिं']].map(([l, n]) => `<button data-l="${l}" aria-pressed="${l === lang}">${n}</button>`).join('')}</div><button class="kvoice" id="kvoice" aria-label="Read aloud" aria-pressed="${voice}">🔊</button><div class="kstars" aria-live="polite">⭐ <span id="kstarn">0</span></div></div>`;
+      document.body.prepend(bar); if (window.ResizeObserver) new ResizeObserver(() => document.documentElement.style.setProperty('--kbar-h', bar.offsetHeight + 'px')).observe(bar);
+      const upd = () => { $('#ktitle').textContent = t(title); document.title = t(title) + ' · Tech & AI Lab'; };
+      upd(); listeners.push(upd);
+      $$('.kpill button', bar).forEach((b) => b.addEventListener('click', () => K.setLang(b.dataset.l)));
+      $('#kvoice', bar).addEventListener('click', (e) => { voice = !voice; e.currentTarget.setAttribute('aria-pressed', voice); if (voice) { const gl = $('#goal'); say(gl ? gl.textContent : title); } else if (g.speechSynthesis) speechSynthesis.cancel(); });
+      setTimeout(() => { const gl = $('#goal'); if (gl) new MutationObserver(() => say(gl.textContent)).observe(gl, { childList: true, subtree: true }); }, 0);
+      document.body.append(el('div', { class: 'ktoast', id: 'ktoast', role: 'status' }), el('canvas', { id: 'kconf' }), el('div', { class: 'kwin', id: 'kwin', 'data-ov-modal': '', role: 'dialog', 'aria-modal': 'true' }, '<div><div class="big" id="kwinE">🏆</div><h2 id="kwinH"></h2><p id="kwinP"></p><button class="kbtn" id="kwinB"></button></div>'));
+      document.addEventListener('pointerdown', (ev) => { K._lastTap = ev.target; K._tapAt = [ev.clientX, ev.clientY + scrollY]; }, true); let rp = 0; const re = () => { const e = K._tel || (K._tel = $('#ktoast')); if (!e || !e.classList.contains('show') || rp) return; rp = 1; requestAnimationFrame(() => { rp = 0; K._place(); }); }; K._re = re;
+      addEventListener('scroll', re, { passive: true }); addEventListener('resize', re); document.addEventListener('animationend', re, true); document.addEventListener('transitionend', re, true); K._mo = new MutationObserver((rs) => { const e = K._tel || (K._tel = $('#ktoast')); if (rs.some((r) => !e.contains(r.target))) re(); });
+      $('#kwinB').addEventListener('click', () => { $('#kwin').classList.remove('show'); K._winCb && K._winCb(); });
+    },
+    star(n = 1) { K.stars += n; const s = $('#kstarn'); if (s) { s.textContent = K.stars; s.parentElement.classList.remove('bump'); void s.offsetWidth; s.parentElement.classList.add('bump'); } },
+    // Toast never covers text: it floats in a free band of the screen (bottom first); with no free band it drops into the page
+    // flow under what the child just tapped (pushes content down). Closes on its own (2.5 s by default).
+    toast(msg, kind = '', ms = 2500) { const e = K._tel || (K._tel = $('#ktoast')); clearTimeout(K._tt); clearInterval(K._ti); if (e.classList.contains('inline')) document.body.append(e);
+      e.className = 'ktoast ' + kind; e._spot = null; e.textContent = t(msg); say(msg); e.style.left = e.style.top = '0px'; e.classList.add('show'); K._place(); K._ti = setInterval(K._place, 200); K._mo && K._mo.observe(document.body, { subtree: true, childList: true, attributes: true, characterData: true });
+      K._tt = setTimeout(() => { clearInterval(K._ti); K._mo && K._mo.disconnect(); e.classList.remove('show'); setTimeout(() => { if (!e.classList.contains('show') && e.classList.contains('inline')) { e.classList.remove('inline'); document.body.append(e); } }, 320); }, ms); },
+    _place() { const e = K._tel || (K._tel = $('#ktoast')); if (!e.classList.contains('show')) return; if (!e.isConnected) { e.classList.remove('inline'); document.body.append(e); } if (e.classList.contains('inline')) return;
+      const vw = document.documentElement.clientWidth, vh = innerHeight, w = e.offsetWidth, h = e.offsetHeight, m = 8; let top = m; const bar = $('.kbar'); if (bar) top = Math.max(top, bar.getBoundingClientRect().bottom + m);
+      const obs = [], rg = document.createRange(), tw = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); let n;
+      while ((n = tw.nextNode())) { if (!n.nodeValue.trim()) continue; const p = n.parentElement; if (!p || e.contains(p) || /^(SCRIPT|STYLE)$/.test(p.tagName)) continue; rg.selectNodeContents(n); for (const q of rg.getClientRects()) if (q.width >= 1 && q.bottom > 0 && q.top < vh) obs.push(q); }
+      $$('input,select,textarea,button,a[href],[role=button]').filter((x) => !e.contains(x)).forEach((x) => { const q = x.getBoundingClientRect(); if (q.width && q.bottom > 0 && q.top < vh) obs.push(q); });
+      const free = (x, y) => !obs.some((q) => q.left < x + w + 4 && q.right > x - 4 && q.top < y + h + 4 && q.bottom > y - 4);
+      let s = e._spot && free(e._spot.x, e._spot.y) ? e._spot : null;
+      if (!s) outer: for (let y = vh - h - m; y >= top; y -= 6) for (const x of [(vw - w) / 2, m, vw - w - m]) if (free(x, y)) { s = { x, y }; break outer; }
+      if (s) { e._spot = s; e.style.left = s.x + 'px'; e.style.top = s.y + 'px'; return; }
+      e._spot = null; e.classList.add('inline'); e.style.left = e.style.top = '';
+      let a = K._lastTap && K._lastTap.isConnected && !e.contains(K._lastTap) ? K._lastTap : null; if (!a && K._tapAt) { const y = K._tapAt[1] - scrollY; if (y > 0 && y < innerHeight) a = document.elementFromPoint(K._tapAt[0], y); } if (!a || e.contains(a)) a = $('main') || document.body.lastElementChild;
+      // never drop the note inside a 3D scene, a transformed, positioned-out or clipping box
+      const boxedIn = (a0) => { for (let p = a0; p && p !== document.body; p = p.parentElement) { const c = getComputedStyle(p); if (c.transform !== 'none' || c.transformStyle === 'preserve-3d' || c.perspective !== 'none' || c.position === 'absolute' || c.position === 'fixed' || (p !== a0 && c.overflow !== 'visible')) return true; } return false; };
+      while (a.parentElement && a.parentElement !== document.body) { const d = getComputedStyle(a.parentElement), me = getComputedStyle(a);
+        if (me.display !== 'inline' && !(a instanceof SVGElement) && (d.display === 'block' || d.display === 'flow-root' || d.display === 'grid' || (d.display === 'flex' && d.flexDirection.startsWith('column'))) && a.getBoundingClientRect().width >= Math.min(260, innerWidth * 0.6) && !boxedIn(a)) break; a = a.parentElement; }
+      a.after(e); e.scrollIntoView({ block: 'nearest' }); },
+    win(head, body, btn, emoji = '🏆', cb) { $('#kwinE').textContent = emoji; $('#kwinH').textContent = t(head); $('#kwinP').textContent = t(body); $('#kwinB').textContent = t(btn || ['Play again', 'फिर खेलो', 'Phir khelo']); K._winCb = cb; $('#kwin').classList.add('show'); K.confetti(); K.sfx('win'); say(t(head) + '. ' + t(body)); },
+    done(lab, mode, result) { const msg = { type: 'techlab:lab-complete', lab, mode, result, stars: K.stars }; try { parent !== window && parent.postMessage(msg, '*'); } catch (e) {} g.__labResult = msg; },
+    confetti() { if (reduced()) return; const c = $('#kconf'), x = c.getContext('2d'); const wn = $('#kwin'); if (wn.classList.contains('show')) wn.prepend(c); else document.body.append(c); const W = c.width = innerWidth, H = c.height = innerHeight; const cols = ['#1D4ED8', '#8B3DFF', '#FF7A1A', '#F5B90A', '#14B8A6', '#FF6B57', '#02CFF9']; const P = Array.from({ length: 90 }, () => ({ x: W / 2, y: H / 2.2, vx: (Math.random() - .5) * 14, vy: -Math.random() * 14 - 4, r: Math.random() * 6 + 4, c: cols[Math.random() * cols.length | 0], a: Math.random() * 6, va: (Math.random() - .5) * .4 })); let f = 0; (function tick() { x.clearRect(0, 0, W, H); P.forEach((p) => { p.vy += .45; p.x += p.vx; p.y += p.vy; p.a += p.va; x.save(); x.translate(p.x, p.y); x.rotate(p.a); x.fillStyle = p.c; x.fillRect(-p.r / 2, -p.r / 4, p.r, p.r / 2); x.restore(); }); if (++f < 110) requestAnimationFrame(tick); else x.clearRect(0, 0, W, H); })(); },
+    _ac: null,
+    sfx(kind) { try { const ac = K._ac || (K._ac = new (g.AudioContext || g.webkitAudioContext)()); const n = { good: [[660, .07], [880, .1]], bad: [[220, .15]], tap: [[520, .04]], win: [[523, .1], [659, .1], [784, .1], [1047, .22]], move: [[400, .03]] }[kind] || [[500, .05]]; let t0 = ac.currentTime; n.forEach(([f, d]) => { const o = ac.createOscillator(), gn = ac.createGain(); o.type = kind === 'bad' ? 'sawtooth' : 'triangle'; o.frequency.value = f; gn.gain.setValueAtTime(.0001, t0); gn.gain.exponentialRampToValueAtTime(.18, t0 + .01); gn.gain.exponentialRampToValueAtTime(.0001, t0 + d); o.connect(gn).connect(ac.destination); o.start(t0); o.stop(t0 + d + .02); t0 += d; }); } catch (e) {} },
+    // Pointer drag: el follows finger; onDrop(el, x, y) returns true to accept, else it flies back.
+    draggable(node, onDrop, onStart) {
+      node.style.touchAction = 'none';
+      node.addEventListener('pointerdown', (ev) => {
+        if (node.dataset.locked) return; ev.preventDefault(); node.setPointerCapture(ev.pointerId); onStart && onStart(node);
+        const r = node.getBoundingClientRect(), ox = ev.clientX - r.left, oy = ev.clientY - r.top; const ghost = node.cloneNode(true);
+        ghost.style.cssText += `;position:fixed;left:${r.left}px;top:${r.top}px;width:${r.width}px;height:${r.height}px;margin:0;z-index:50;pointer-events:none;transform:scale(1.08) rotate(-3deg);box-shadow:0 14px 30px rgba(0,0,0,.25);transition:none`; ghost.classList.add('dragging'); document.body.append(ghost); node.style.opacity = '.25'; K.sfx('tap');
+        const mv = (e) => { ghost.style.left = e.clientX - ox + 'px'; ghost.style.top = e.clientY - oy + 'px'; K._hover && K._hover(e.clientX, e.clientY); };
+        const up = (e) => { node.removeEventListener('pointermove', mv); node.removeEventListener('pointerup', up); node.removeEventListener('pointercancel', up); K._hover && K._hover(-1, -1);
+          const ok = onDrop(node, e.clientX, e.clientY); if (ok) { ghost.remove(); node.style.opacity = ''; } else { ghost.style.transition = 'left .3s, top .3s, transform .3s'; ghost.style.left = r.left + 'px'; ghost.style.top = r.top + 'px'; ghost.style.transform = 'none'; setTimeout(() => { ghost.remove(); node.style.opacity = ''; }, 300); } };
+        node.addEventListener('pointermove', mv); node.addEventListener('pointerup', up); node.addEventListener('pointercancel', up);
+      });
+    },
+    hit(node, x, y, pad = 10) { const r = node.getBoundingClientRect(); return x >= r.left - pad && x <= r.right + pad && y >= r.top - pad && y <= r.bottom + pad; },
+    async lessonConfig() { const p = q.get('lesson'); const cfg = {}; if (p) { try { const L = await (await fetch(p)).json(); Object.assign(cfg, L.play && L.play.config, { goal: L.play && L.play.goal }); } catch (e) { console.warn('lesson config not loaded', e); } } for (const k of ['mode', 'level', 'class']) if (q.get(k)) cfg[k] = q.get(k); return cfg; },
+    shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.random() * (i + 1) | 0; [a[i], a[j]] = [a[j], a[i]]; } return a; },
+  };
+  document.documentElement.lang = lang === 'hi' ? 'hi' : 'en';
+  g.K = K;
+})(window);
+</script>
+<script>
+(async function () {
+const { t, $, $$, el, esc } = K;
+K.header(['Robot sensor playground', 'रोबोट सेंसर खेल का मैदान', 'Robot sensor playground'], '🤖');
+const cfg = await K.lessonConfig(); const L = (en, hi, hg) => [en, hi, hg];
+const MODES = {
+  sense: { n: L('1 · Meet the sensors', '1 · सेंसर से मिलो', '1 · Sensors se milo'), goal: L('Drag the robot around. Bring it close to a box until the distance sensor reads under 15 cm, and put an eye sensor on the black line.', 'रोबोट को घुमाओ। डिब्बे के पास लाओ जब तक दूरी सेंसर 15 सेमी से कम न दिखाए, और एक आँख सेंसर काली लाइन पर रखो।', 'Robot ko drag karo. Box ke paas lao jab tak distance sensor 15 cm se kam na dikhaye, aur ek eye sensor kaali line par rakho.') },
+  avoid: { n: L('2 · Don\'t crash!', '2 · टकराना मत!', '2 · Takrana mat!'), goal: L('Write the rule so the robot drives for 25 seconds without crashing: IF distance is small THEN turn, ELSE go forward.', 'ऐसा नियम लिखो कि रोबोट 25 सेकंड बिना टकराए चले: अगर दूरी कम है तो मुड़ो, वरना आगे।', 'Aisa rule likho ki robot 25 second bina takraye chale: AGAR distance kam hai TOH mudo, WARNA aage.') },
+  line: { n: L('3 · Follow the line', '3 · लाइन पर चलो', '3 · Line follow karo'), goal: L('Pick an action for each sensor case so the robot drives one full lap on the black line.', 'हर सेंसर स्थिति के लिए काम चुनो ताकि रोबोट काली लाइन पर एक पूरा चक्कर लगाए।', 'Har sensor case ke liye action chuno taaki robot kaali line par ek poora chakkar lagaye.') },
+  night: { n: L('4 · Night lamp', '4 · रात का लैंप', '4 · Night lamp'), goal: L('Set the rule: IF light is LOW THEN lamp ON. Slide from day to night and check it works both ways.', 'नियम बनाओ: अगर रोशनी कम है तो लैंप चालू। दिन से रात तक खिसकाओ और दोनों तरफ़ जाँचो।', 'Rule banao: AGAR light KAM hai TOH lamp ON. Din se raat tak slide karo aur dono taraf check karo.') },
+};
+let mode = MODES[cfg.mode] ? cfg.mode : 'sense';
+const C = $('#c'), X = C.getContext('2d'); const W = 200, H = 150, SC = 4; // world in cm, 4 px per cm
+// world
+const walls = [[0, 0, W, 0], [W, 0, W, H], [W, H, 0, H], [0, H, 0, 0]];
+let boxes = [];
+const track = document.createElement('canvas'); track.width = W * SC; track.height = H * SC; const TX = track.getContext('2d');
+function drawTrack() { TX.clearRect(0, 0, track.width, track.height); TX.strokeStyle = '#111827'; TX.lineWidth = 5 * SC; TX.lineJoin = 'round'; TX.beginPath(); TX.ellipse(100 * SC, 75 * SC, 72 * SC, 48 * SC, 0, 0, Math.PI * 2); TX.stroke(); }
+let trackData = null;
+const bot = { x: 40, y: 75, a: 0, r: 8, vl: 0, vr: 0 };
+let running = false, simT = 0, crashed = false, lapAng = 0, lastAng = null, dragBot = false, lightLevel = 80, lampRule = { thr: 30, on: 'on' }, lampTests = { day: false, night: false };
+const rule = { avoid: { thr: 20, then: 'right', else: 'fwd' }, line: { left: 'fwd', right: 'fwd', none: 'fwd' } };
+const ACT = { fwd: L('⬆ Forward', '⬆ आगे', '⬆ Aage'), left: L('↶ Turn left', '↶ बाएँ', '↶ Left'), right: L('↷ Turn right', '↷ दाएँ', '↷ Right'), back: L('⬇ Reverse', '⬇ पीछे', '⬇ Peeche'), stop: L('⏹ Stop', '⏹ रुको', '⏹ Ruko') };
+const MOT = { fwd: [1, 1], left: [-.55, .55], right: [.55, -.55], back: [-.6, -.6], stop: [0, 0] };
+// --- sensing ---
+function rayDist(x, y, a, max = 120) { const dx = Math.cos(a), dy = Math.sin(a); let best = max;
+  for (const [x1, y1, x2, y2] of walls) { const ex = x2 - x1, ey = y2 - y1; const den = dx * ey - dy * ex; if (Math.abs(den) < 1e-9) continue; const tt = ((x1 - x) * ey - (y1 - y) * ex) / den, u = ((x1 - x) * dy - (y1 - y) * dx) / den; if (tt > 0 && u >= 0 && u <= 1) best = Math.min(best, tt); }
+  for (const b of boxes) { const fx = x - b.x, fy = y - b.y; const bb = fx * dx + fy * dy, cc = fx * fx + fy * fy - b.r * b.r; const disc = bb * bb - cc; if (disc >= 0) { const tt = -bb - Math.sqrt(disc); if (tt > 0) best = Math.min(best, tt); } }
+  return best; }
+function distance() { const fx = bot.x + Math.cos(bot.a) * bot.r, fy = bot.y + Math.sin(bot.a) * bot.r; return Math.min(...[-.55, -.3, 0, .3, .55].map((k) => rayDist(fx, fy, bot.a + k))); }
+function irAt(side) { if (mode !== 'line' && mode !== 'sense') return false; const ox = bot.x + Math.cos(bot.a) * 9 + Math.cos(bot.a + Math.PI / 2) * 4.5 * side, oy = bot.y + Math.sin(bot.a) * 9 + Math.sin(bot.a + Math.PI / 2) * 4.5 * side; const px = Math.round(ox * SC), py = Math.round(oy * SC); if (!trackData || px < 0 || py < 0 || px >= track.width || py >= track.height) return false; return trackData[(py * track.width + px) * 4 + 3] > 128; }
+function sense() { return { d: distance(), L: irAt(-1), R: irAt(1), light: lightLevel }; }
+function hitsAnything() { for (const b of boxes) if (Math.hypot(bot.x - b.x, bot.y - b.y) < bot.r + b.r) return true; return bot.x < bot.r || bot.y < bot.r || bot.x > W - bot.r || bot.y > H - bot.r; }
+// --- think ---
+function think(s) { if (mode === 'avoid') return s.d < rule.avoid.thr ? rule.avoid.then : rule.avoid.else; if (mode === 'line') return s.L && !s.R ? rule.line.left : s.R && !s.L ? rule.line.right : rule.line.none; return 'stop'; }
+// --- act ---
+const SPEED = 28, TURN = 2.2; // cm/s, rad/s at full differential
+function act(cmd, dt) { const [l, r] = MOT[cmd]; bot.vl = l; bot.vr = r; const v = (l + r) / 2 * SPEED, w = (r - l) / 2 * TURN * -1; bot.a += w * dt * (cmd === 'left' || cmd === 'right' ? 1 : 1); bot.x += Math.cos(bot.a) * v * dt; bot.y += Math.sin(bot.a) * v * dt; odo += Math.abs(v * dt); }
+let odo = 0;
+// --- draw ---
+function draw(s) {
+  X.setTransform(1, 0, 0, 1, 0, 0); X.clearRect(0, 0, C.width, C.height);
+  const g = X.createLinearGradient(0, 0, 0, C.height); g.addColorStop(0, mode === 'night' ? `hsl(225 50% ${8 + lightLevel * .7}%)` : '#f8fafc'); g.addColorStop(1, mode === 'night' ? `hsl(225 40% ${5 + lightLevel * .6}%)` : '#e2e8f0'); X.fillStyle = g; X.fillRect(0, 0, C.width, C.height);
+  X.strokeStyle = 'rgba(30,41,59,.06)'; X.lineWidth = 1; for (let i = 0; i <= W; i += 10) { X.beginPath(); X.moveTo(i * SC, 0); X.lineTo(i * SC, C.height); X.stroke(); } for (let j = 0; j <= H; j += 10) { X.beginPath(); X.moveTo(0, j * SC); X.lineTo(C.width, j * SC); X.stroke(); }
+  if (mode === 'line' || mode === 'sense') X.drawImage(track, 0, 0);
+  if (mode === 'night') return drawNight();
+  boxes.forEach((b) => { X.save(); X.translate(b.x * SC, b.y * SC); X.fillStyle = 'rgba(0,0,0,.15)'; X.beginPath(); X.ellipse(4, 6, b.r * SC, b.r * SC * .8, 0, 0, 7); X.fill(); const gg = X.createRadialGradient(-b.r, -b.r, 2, 0, 0, b.r * SC); gg.addColorStop(0, '#fdba74'); gg.addColorStop(1, '#c2410c'); X.fillStyle = gg; X.beginPath(); X.arc(0, 0, b.r * SC, 0, 7); X.fill(); X.fillStyle = '#fff'; X.font = `${b.r * SC}px sans-serif`; X.textAlign = 'center'; X.textBaseline = 'middle'; X.fillText('📦', 0, 2); X.restore(); });
+  // sonar cone
+  const fx = bot.x + Math.cos(bot.a) * bot.r, fy = bot.y + Math.sin(bot.a) * bot.r; const d = Math.min(s.d, 120);
+  X.save(); X.translate(fx * SC, fy * SC); X.rotate(bot.a); const cg = X.createLinearGradient(0, 0, d * SC, 0); const near = s.d < (mode === 'avoid' ? rule.avoid.thr : 15); cg.addColorStop(0, near ? 'rgba(239,68,68,.45)' : 'rgba(2,207,249,.40)'); cg.addColorStop(1, 'rgba(2,207,249,0)'); X.fillStyle = cg; X.beginPath(); X.moveTo(0, 0); X.lineTo(d * SC, -Math.tan(.45) * d * SC); X.lineTo(d * SC, Math.tan(.45) * d * SC); X.closePath(); X.fill();
+  const ph = (performance.now() / 600) % 1; X.strokeStyle = near ? 'rgba(239,68,68,.7)' : 'rgba(2,132,199,.6)'; X.lineWidth = 3; for (let k = 0; k < 3; k++) { const rr = ((ph + k / 3) % 1) * d * SC; X.beginPath(); X.arc(0, 0, rr, -.45, .45); X.stroke(); } X.restore();
+  // robot body
+  X.save(); X.translate(bot.x * SC, bot.y * SC); X.rotate(bot.a);
+  X.fillStyle = 'rgba(0,0,0,.18)'; X.beginPath(); X.ellipse(3, 5, bot.r * SC, bot.r * SC * .9, 0, 0, 7); X.fill();
+  const wheel = (y, v) => { X.fillStyle = '#0f172a'; X.fillRect(-5 * SC, y - 2 * SC, 10 * SC, 4 * SC); X.strokeStyle = '#64748b'; X.lineWidth = 2; const off = (simT * 40 * v) % 8; for (let k = -5; k < 5; k += 2) { X.beginPath(); X.moveTo((k + off / 4) * SC, y - 2 * SC); X.lineTo((k + off / 4) * SC, y + 2 * SC); X.stroke(); } };
+  wheel(-bot.r * SC, bot.vl); wheel(bot.r * SC, bot.vr);
+  const bg = X.createRadialGradient(-10, -10, 4, 0, 0, bot.r * SC); bg.addColorStop(0, '#93c5fd'); bg.addColorStop(1, crashed ? '#b91c1c' : '#1D4ED8'); X.fillStyle = bg; X.beginPath(); X.arc(0, 0, (bot.r - 1) * SC, 0, 7); X.fill();
+  X.fillStyle = '#e2e8f0'; X.fillRect((bot.r - 3) * SC, -3 * SC, 3 * SC, 6 * SC); X.fillStyle = '#0f172a'; [-1.6, 1.6].forEach((yy) => { X.beginPath(); X.arc((bot.r - 1.5) * SC, yy * SC, 1.1 * SC, 0, 7); X.fill(); });
+  [[-1, s.L], [1, s.R]].forEach(([side, on]) => { X.fillStyle = on ? '#ef4444' : '#22c55e'; X.beginPath(); X.arc(9 * SC, side * 4.5 * SC, 1.3 * SC, 0, 7); X.fill(); X.strokeStyle = '#fff'; X.lineWidth = 2; X.stroke(); });
+  X.fillStyle = '#fff'; X.font = `${6 * SC}px sans-serif`; X.textAlign = 'center'; X.textBaseline = 'middle'; X.rotate(-bot.a); X.fillText(crashed ? '😵' : '🙂', 0, 0); X.restore();
+}
+function drawNight() {
+  const on = lampOn(); const cx = C.width / 2, cy = C.height * .62;
+  if (lightLevel > 40) { X.font = '90px sans-serif'; X.textAlign = 'center'; X.fillText('☀️', C.width * .82, 110); } else { X.font = '70px sans-serif'; X.textAlign = 'center'; X.fillText('🌙', C.width * .82, 100); for (let i = 0; i < 18; i++) { X.fillStyle = 'rgba(255,255,255,.8)'; X.fillRect((i * 97) % C.width, (i * 53) % 220, 3, 3); } }
+  if (on) { const lg = X.createRadialGradient(cx, cy - 120, 10, cx, cy - 120, 260); lg.addColorStop(0, 'rgba(253,224,71,.85)'); lg.addColorStop(1, 'rgba(253,224,71,0)'); X.fillStyle = lg; X.fillRect(0, 0, C.width, C.height); }
+  X.fillStyle = '#334155'; X.fillRect(cx - 8, cy - 120, 16, 220); X.fillStyle = on ? '#fde047' : '#94a3b8'; X.beginPath(); X.arc(cx, cy - 130, 34, 0, 7); X.fill(); X.fillStyle = '#1e293b'; X.fillRect(cx - 40, cy + 95, 80, 20);
+  X.fillStyle = '#0f172a'; X.beginPath(); X.arc(cx + 30, cy - 60, 12, 0, 7); X.fill(); X.fillStyle = '#fbbf24'; X.font = 'bold 22px sans-serif'; X.fillText('👁', cx + 30, cy - 52);
+  X.fillStyle = 'rgba(255,255,255,.9)'; X.font = 'bold 26px sans-serif'; X.fillText(`${t(['Light sensor', 'लाइट सेंसर', 'Light sensor'])}: ${lightLevel}%`, cx, C.height - 30);
+}
+const lampOn = () => (lightLevel < lampRule.thr ? lampRule.on : (lampRule.on === 'on' ? 'off' : 'on')) === 'on';
+// --- UI ---
+function readings(s) {
+  const rows = mode === 'night' ? [[`${lightLevel}%`, L('Light', 'रोशनी', 'Light')], [lampOn() ? '💡 ON' : '⚫ OFF', L('Lamp', 'लैंप', 'Lamp')], [`< ${lampRule.thr}%`, L('Rule', 'नियम', 'Rule')], [lampTests.day && lampTests.night ? '✅' : `${+lampTests.day + +lampTests.night}/2`, L('Tests', 'जाँच', 'Tests')]]
+    : [[s.d >= 120 ? '>120' : s.d.toFixed(0) + ' cm', L('📡 Distance', '📡 दूरी', '📡 Distance')], [s.L ? '⬛' : '⬜', L('👁 Left eye', '👁 बायाँ', '👁 Left eye')], [s.R ? '⬛' : '⬜', L('👁 Right eye', '👁 दायाँ', '👁 Right eye')], [mode === 'line' ? `${Math.min(100, Math.round(Math.abs(lapAng) / (2 * Math.PI) * 100))}%` : `${simT.toFixed(1)} s`, mode === 'line' ? L('Lap', 'चक्कर', 'Lap') : L('⏱ Time', '⏱ समय', '⏱ Time')]];
+  $('#readings').innerHTML = rows.map(([v, n]) => `<div class="rd"><b>${v}</b><small>${t(n)}</small></div>`).join('');
+  const bar = (v) => `<div class="bar"><i style="${v >= 0 ? `left:50%;width:${v * 50}%` : `left:${50 + v * 50}%;width:${-v * 50}%;background:var(--coral)`}"></i></div>`;
+  $('#motors').style.display = mode === 'night' ? 'none' : ''; $('#motors').innerHTML = `⚙️<div class="m">${t(['Left motor', 'बायीं मोटर', 'Left motor'])}${bar(bot.vl)}</div><div class="m">${t(['Right motor', 'दायीं मोटर', 'Right motor'])}${bar(bot.vr)}</div>`;
+}
+function choice(opts, cur, set) { const d = el('div', { class: 'sel' }); opts.forEach((o) => { const b = el('button', { 'aria-pressed': o === cur }, t(ACT[o] || o)); b.onclick = () => { set(o); drawRules(); K.sfx('tap'); }; d.append(b); }); return d; }
+function drawRules() {
+  const R = $('#rules'); R.innerHTML = ''; R.style.display = mode === 'sense' ? 'none' : '';
+  if (mode === 'avoid') { const r1 = el('div', { class: 'rule' }, `<span class="kw if">${t(['IF', 'अगर', 'AGAR'])}</span> 📡 ${t(['distance', 'दूरी', 'distance'])} &lt; <b id="thrv">${rule.avoid.thr} cm</b>`); const sl = el('input', { type: 'range', min: 5, max: 60, value: rule.avoid.thr, 'aria-label': 'threshold' }); sl.oninput = () => { rule.avoid.thr = +sl.value; $('#thrv').textContent = sl.value + ' cm'; }; r1.append(sl);
+    const r2 = el('div', { class: 'rule' }, `<span class="kw then">${t(['THEN', 'तो', 'TOH'])}</span>`); r2.append(choice(['left', 'right', 'back', 'stop', 'fwd'], rule.avoid.then, (v) => rule.avoid.then = v));
+    const r3 = el('div', { class: 'rule' }, `<span class="kw else">${t(['ELSE', 'वरना', 'WARNA'])}</span>`); r3.append(choice(['fwd', 'left', 'right', 'stop'], rule.avoid.else, (v) => rule.avoid.else = v)); R.append(r1, r2, r3); }
+  if (mode === 'line') { [['left', L('IF only ⬛ LEFT eye on line', 'अगर सिर्फ़ ⬛ बायाँ सेंसर लाइन पर', 'AGAR sirf ⬛ LEFT eye line par')], ['right', L('IF only ⬛ RIGHT eye on line', 'अगर सिर्फ़ ⬛ दायाँ सेंसर लाइन पर', 'AGAR sirf ⬛ RIGHT eye line par')], ['none', L('ELSE (both on white)', 'वरना (दोनों सफ़ेद पर)', 'WARNA (dono white par)')]].forEach(([k, lab]) => { const r = el('div', { class: 'rule' }, `<span class="kw ${k === 'none' ? 'else' : 'if'}">${esc(t(lab))}</span> →`); r.append(choice(['fwd', 'left', 'right', 'stop'], rule.line[k], (v) => rule.line[k] = v)); R.append(r); }); }
+  if (mode === 'night') { const r1 = el('div', { class: 'rule' }, `<span class="kw if">${t(['IF', 'अगर', 'AGAR'])}</span> 👁 ${t(['light', 'रोशनी', 'light'])} &lt; <b id="lt">${lampRule.thr}%</b>`); const sl = el('input', { type: 'range', min: 5, max: 90, value: lampRule.thr }); sl.oninput = () => { lampRule.thr = +sl.value; $('#lt').textContent = sl.value + '%'; tick0(); }; r1.append(sl);
+    const r2 = el('div', { class: 'rule' }, `<span class="kw then">${t(['THEN lamp', 'तो लैंप', 'TOH lamp'])}</span>`); r2.append(choice(['on', 'off'], lampRule.on, (v) => { lampRule.on = v; tick0(); }));
+    const r3 = el('div', { class: 'rule' }, `☀️ ${t(['Day', 'दिन', 'Din'])}`); const sky = el('input', { type: 'range', min: 0, max: 100, value: lightLevel, 'aria-label': 'sky', id: 'sky' }); sky.oninput = () => { lightLevel = +sky.value; checkLamp(); tick0(); }; r3.append(sky, el('span', {}, `🌙 ${t(['Night', 'रात', 'Raat'])}`)); sky.style.direction = 'rtl'; R.append(r1, r2, r3); }
+}
+function btns() { const B = $('#btns'); B.innerHTML = ''; if (mode === 'sense' || mode === 'night') return; const run = el('button', { class: 'kbtn go', id: 'run' }, '▶ ' + t(['Run robot', 'रोबोट चलाओ', 'Robot chalao'])); run.onclick = () => (running ? stop() : go()); const rs = el('button', { class: 'kbtn alt' }, '↺ ' + t(['Reset', 'रीसेट', 'Reset'])); rs.onclick = () => { stop(); place(); tick0(); }; B.append(run, rs); }
+function place() { crashed = false; simT = 0; odo = 0; lapAng = 0; lastAng = null; bot.vl = bot.vr = 0;
+  if (mode === 'avoid') { Object.assign(bot, { x: 30, y: 75, a: 0 }); boxes = [{ x: 95, y: 70, r: 12 }, { x: 150, y: 30, r: 10 }, { x: 155, y: 115, r: 11 }, { x: 60, y: 125, r: 9 }]; }
+  else if (mode === 'line') { Object.assign(bot, { x: 100, y: 75 + 48, a: Math.PI }); boxes = []; }
+  else { Object.assign(bot, { x: 40, y: 75, a: 0 }); boxes = [{ x: 150, y: 75, r: 12 }]; } }
+function why(m) { $('#why').textContent = t(m); }
+let raf, last;
+function go() { place(); running = true; $('#run').textContent = '⏹ ' + t(['Stop', 'रोको', 'Stop']); last = performance.now(); why(['Watch the loop: SENSE (read sensors) → THINK (check your rule) → ACT (drive motors), many times a second.', 'लूप देखो: SENSE (सेंसर पढ़ो) → THINK (नियम जाँचो) → ACT (मोटर चलाओ), हर सेकंड कई बार।', 'Loop dekho: SENSE (sensors padho) → THINK (rule check) → ACT (motors chalao), har second kai baar.']); }
+function stop() { running = false; const r = $('#run'); if (r) r.textContent = '▶ ' + t(['Run robot', 'रोबोट चलाओ', 'Robot chalao']); bot.vl = bot.vr = 0; }
+let phase = 0;
+function frame(now) {
+  raf = requestAnimationFrame(frame); let s = sense();
+  if (running) { const dt = 1 / 60; let steps = Math.min(4, Math.round((now - last) / 16.7) || 1); last = now;
+    for (let i = 0; i < steps && running; i++) { s = sense(); const cmd = think(s); act(cmd, dt); simT += dt;
+      if (hitsAnything()) { crashed = true; stop(); K.sfx('bad'); why(['Crash! Read your rule: what should the robot do when the distance gets small? Is the number big enough to turn in time?', 'टक्कर! नियम पढ़ो: दूरी कम होने पर रोबोट क्या करे? क्या संख्या इतनी बड़ी है कि समय पर मुड़ सके?', 'Takkar! Rule padho: distance kam hone par robot kya kare? Kya number itna bada hai ki time par mud sake?']); break; }
+      if (mode === 'line') { const ang = Math.atan2((bot.y - 75) / 48, (bot.x - 100) / 72); if (lastAng != null) { let da = ang - lastAng; if (da > Math.PI) da -= 2 * Math.PI; if (da < -Math.PI) da += 2 * Math.PI; lapAng += da; } lastAng = ang; const off = Math.abs(Math.hypot((bot.x - 100) / 72, (bot.y - 75) / 48) - 1); if (off > .35) { stop(); K.sfx('bad'); why(['The robot left the line. When only the LEFT eye sees black, the line is on the left — which way should it turn?', 'रोबोट लाइन से हट गया। जब सिर्फ़ बायाँ सेंसर काला देखे, लाइन बाईं तरफ़ है — किधर मुड़ना चाहिए?', 'Robot line se hat gaya. Jab sirf LEFT eye kaala dekhe, line left mein hai — kidhar mudna chahiye?']); break; } if (Math.abs(lapAng) >= 2 * Math.PI) { stop(); win(); break; } if (simT > 60) { stop(); why(['Too slow — is the robot moving forward when both eyes see white?', 'बहुत धीमा — क्या दोनों सेंसर सफ़ेद देखें तब रोबोट आगे चलता है?', 'Bahut slow — kya dono eyes white dekhein tab robot aage chalta hai?']); break; } }
+      if (mode === 'avoid' && simT >= 25) { stop(); if (odo >= 150) win(); else { K.sfx('bad'); why(['No crash — but the robot hardly moved! A robot vacuum must keep exploring. Make it go forward when the way is clear.', 'टक्कर नहीं — पर रोबोट मुश्किल से चला! रोबोट वैक्यूम को घूमते रहना है। रास्ता खाली हो तो आगे चलाओ।', 'Takkar nahin — par robot mushkil se chala! Robot vacuum ko ghoomte rehna hai. Raasta khaali ho toh aage chalao.']); } break; } } }
+  phase = (phase + 1) % 30; ['lS', 'lT', 'lA'].forEach((id, k) => $('#' + id).classList.toggle('on', running && Math.floor(phase / 10) === k));
+  draw(s); if (phase % 3 === 0) readings(s); if (mode === 'sense') senseCheck(s);
+}
+let senseDone = { near: false, line: false };
+function senseCheck(s) { if (s.d < 15 && !senseDone.near) { senseDone.near = true; K.star(); K.sfx('good'); K.toast(['📡 The ultrasonic sensor sends a sound "ping" and times the echo — the box is close!', '📡 अल्ट्रासोनिक सेंसर आवाज़ की "पिंग" भेजकर गूँज का समय नापता है — डिब्बा पास है!', '📡 Ultrasonic sensor awaaz ki "ping" bhej kar echo ka time naapta hai — box paas hai!'], 'good', 3200); }
+  if ((s.L || s.R) && !senseDone.line) { senseDone.line = true; K.star(); K.sfx('good'); K.toast(['👁 The IR eye shines light down: white reflects it, black soaks it up — so it knows it is on the line!', '👁 IR सेंसर नीचे रोशनी डालता है: सफ़ेद लौटाता है, काला सोख लेता है — इसलिए उसे पता चलता है कि वह लाइन पर है!', '👁 IR eye neeche light daalta hai: white wapas bhejta hai, kaala sokh leta hai — isliye use pata chalta hai ki woh line par hai!'], 'good', 3400); }
+  if (senseDone.near && senseDone.line && !senseDone.won) { senseDone.won = true; setTimeout(win, 1500); } }
+function checkLamp() { const on = lampOn(); if (lightLevel < 20 && on) lampTests.night = true; if (lightLevel > 70 && !on) lampTests.day = true; if (lampTests.day && lampTests.night && !lampTests.won) { lampTests.won = true; win(); } }
+function win() { K.star(3); K.done('robot-sensors', mode, { mode, solved: true, t: +simT.toFixed(1) });
+  const M = { sense: L('Sensors are a robot\'s senses: sound echoes for distance, light for lines.', 'सेंसर रोबोट की इंद्रियाँ हैं: दूरी के लिए गूँज, लाइन के लिए रोशनी।', 'Sensors robot ki indriyan hain: distance ke liye echo, line ke liye light.'), avoid: L('25 seconds, no crash! Sense → Think → Act is how robot vacuums dodge sofas.', '25 सेकंड, कोई टक्कर नहीं! सेंस → थिंक → ऐक्ट से ही रोबोट वैक्यूम सोफ़े से बचते हैं।', '25 second, koi takkar nahin! Sense → Think → Act se hi robot vacuum sofa se bachte hain.'), line: L('A full lap! Factory and warehouse robots follow lines and tapes exactly like this.', 'पूरा चक्कर! फ़ैक्टरी और गोदाम के रोबोट ठीक ऐसे ही लाइन पर चलते हैं।', 'Poora chakkar! Factory aur warehouse robots bilkul aise hi line follow karte hain.'), night: L('Your lamp switches itself on at night and off by day — just like real street lights with light sensors.', 'तुम्हारा लैंप रात में ख़ुद जलता और दिन में बुझता है — असली स्ट्रीट लाइट की तरह।', 'Tumhara lamp raat mein khud jalta aur din mein bujhta hai — asli street lights ki tarah.') };
+  K.win(['Robot engineer!', 'रोबोट इंजीनियर!', 'Robot engineer!'], M[mode], null, '🤖', () => { senseDone = { near: false, line: false }; lampTests = { day: false, night: false }; start(); }); }
+// drag robot in sense mode / tap to add box in avoid mode when stopped
+function cpos(e) { const r = C.getBoundingClientRect(); return [(e.clientX - r.left) / r.width * W, (e.clientY - r.top) / r.height * H]; }
+C.addEventListener('pointerdown', (e) => { if (running || mode === 'night') return; const [x, y] = cpos(e); if (Math.hypot(x - bot.x, y - bot.y) < 14) { dragBot = true; C.setPointerCapture(e.pointerId); } else if (mode === 'sense') { const near = boxes.find((b) => Math.hypot(x - b.x, y - b.y) < b.r + 4); if (near) { near.drag = true; C.setPointerCapture(e.pointerId); } } });
+C.addEventListener('pointermove', (e) => { const [x, y] = cpos(e); if (dragBot) { bot.x = Math.max(9, Math.min(W - 9, x)); bot.y = Math.max(9, Math.min(H - 9, y)); } boxes.forEach((b) => { if (b.drag) { b.x = x; b.y = y; } }); });
+C.addEventListener('pointerup', () => { dragBot = false; boxes.forEach((b) => b.drag = false); });
+C.addEventListener('dblclick', () => { if (mode === 'sense') bot.a += Math.PI / 4; });
+function tick0() { draw(sense()); readings(sense()); }
+function drawModes() { const m = $('#modes'); m.innerHTML = ''; for (const k in MODES) { const b = el('button', { 'aria-pressed': k === mode }, t(MODES[k].n)); b.onclick = () => { stop(); mode = k; start(); }; m.append(b); } }
+function start() { drawModes(); $('#goal').innerHTML = `<span style="font-size:22px">🎯</span><div><b>${t(['Goal', 'लक्ष्य', 'Goal'])}:</b> ${esc(t(cfg.mode === mode && cfg.goal ? [cfg.goal.en, cfg.goal.hi || cfg.goal.en, cfg.goal.hinglish] : MODES[mode].goal))}</div>`; place(); drawRules(); btns();
+  why({ sense: L('Drag the blue robot. Drag the box too. Double-tap to turn the robot. Watch the readings change.', 'नीले रोबोट को खींचो। डिब्बा भी खींचो। मोड़ने के लिए दो बार टैप करो। रीडिंग बदलती देखो।', 'Neele robot ko drag karo. Box bhi drag karo. Ghumane ke liye double-tap karo. Readings badalti dekho.'), avoid: L('Tip: the robot needs time to turn. Try a distance of 20–30 cm.', 'संकेत: रोबोट को मुड़ने में समय लगता है। 20–30 सेमी दूरी आज़माओ।', 'Tip: robot ko mudne mein time lagta hai. 20–30 cm distance try karo.'), line: L('Both eyes start on white, either side of the line. The robot drives anticlockwise.', 'दोनों सेंसर लाइन के दोनों ओर सफ़ेद पर शुरू होते हैं। रोबोट उल्टी घड़ी की दिशा में चलता है।', 'Dono eyes line ke dono taraf white par shuru hote hain. Robot anticlockwise chalta hai.'), night: L('A light sensor (LDR) measures brightness. Street lights in many Indian cities switch on this way.', 'लाइट सेंसर (LDR) रोशनी मापता है। भारत के कई शहरों में स्ट्रीट लाइट ऐसे ही जलती हैं।', 'Light sensor (LDR) brightness naapta hai. India ke kai shehron mein street lights aise hi jalti hain.') }[mode]);
+  drawTrack(); trackData = TX.getImageData(0, 0, track.width, track.height).data; tick0(); }
+K.onLang(() => start());
+start(); requestAnimationFrame(frame);
+})();
+</script></body></html>

@@ -1,0 +1,402 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.databases-sql.01",
+ "level": 3,
+ "classes": [
+  9,
+  10,
+  11,
+  12
+ ],
+ "unit": "databases-sql",
+ "title": {
+  "en": "The relational model and keys",
+  "hi": "रिलेशनल मॉडल और कुंजियाँ",
+  "hinglish": "Relational model aur keys"
+ },
+ "minutes": 12,
+ "xp": 50,
+ "prereq": [],
+ "outcomes": [
+  {
+   "en": "Describe a table as rows (records) and columns (fields) with types",
+   "hi": "तालिका को पंक्तियों (रिकॉर्ड) और स्तंभों (फ़ील्ड) व प्रकारों से बताओ",
+   "hinglish": "Table ko rows (records) aur columns (fields) aur types se batao"
+  },
+  {
+   "en": "Identify primary keys and foreign keys and explain why they matter",
+   "hi": "प्राथमिक और विदेशी कुंजियाँ पहचानो और उनका महत्व समझाओ",
+   "hinglish": "Primary aur foreign keys pehchaano aur unka mahatva samjhao"
+  },
+  {
+   "en": "Explain why databases beat spreadsheets for shared, growing data",
+   "hi": "समझाओ साझा, बढ़ते डेटा के लिए डेटाबेस स्प्रेडशीट से बेहतर क्यों",
+   "hinglish": "Samjhao shared, badhte data ke liye database spreadsheet se behtar kyun"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Table",
+   "hinglish": "Rows aur columns mein data",
+   "en": "A set of rows with the same columns, about one kind of thing",
+   "hi": "एक तरह की चीज़ के बारे में एक जैसे स्तंभों वाली पंक्तियों का समूह"
+  },
+  {
+   "term": "Primary key",
+   "hinglish": "Har row ki unique pehchaan",
+   "en": "Column whose value is unique for every row",
+   "hi": "वह स्तंभ जिसका मान हर पंक्ति के लिए अनोखा हो"
+  },
+  {
+   "term": "Foreign key",
+   "hinglish": "Doosri table ki row ka reference",
+   "en": "Column that refers to the primary key of another table",
+   "hi": "दूसरी तालिका की प्राथमिक कुंजी की ओर संकेत करने वाला स्तंभ"
+  },
+  {
+   "term": "DBMS",
+   "hinglish": "Database chalane wala software",
+   "en": "Database management system, such as PostgreSQL, MySQL or SQLite",
+   "hi": "डेटाबेस प्रबंधन प्रणाली, जैसे PostgreSQL, MySQL या SQLite"
+  },
+  {
+   "term": "Query",
+   "hinglish": "Database se poocha gaya sawaal",
+   "en": "A request to read or change data, usually in SQL",
+   "hi": "डेटा पढ़ने या बदलने का अनुरोध, आम तौर पर SQL में"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "A relational database stores data in tables. Each row is one thing — one student — and each column is one fact about it: name, class, city.",
+    "hi": "रिलेशनल डेटाबेस डेटा को तालिकाओं में रखता है। हर पंक्ति एक चीज़ है — एक छात्र — और हर स्तंभ उसकी एक बात: नाम, कक्षा, शहर।",
+    "hinglish": "Relational database data ko tables mein rakhta hai. Har row ek cheez hai — ek student — aur har column uski ek baat: naam, class, city."
+   },
+   "visual": "anim:table-rows",
+   "narration": {
+    "en": "A relational database stores data in tables. Each row is one thing — one student — and each column is one fact about it: name, class, city.",
+    "hi": "रिलेशनल डेटाबेस डेटा को तालिकाओं में रखता है। हर पंक्ति एक चीज़ है — एक छात्र — और हर स्तंभ उसकी एक बात: नाम, कक्षा, शहर।",
+    "hinglish": "Relational database data ko tables mein rakhta hai. Har row ek cheez hai — ek student — aur har column uski ek baat: naam, class, city."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Two students can both be called Aanya, so each row gets a primary key such as id = 1 that is never repeated.",
+    "hi": "दो छात्र दोनों आन्या हो सकते हैं, इसलिए हर पंक्ति को id = 1 जैसी प्राथमिक कुंजी मिलती है जो कभी दोहराई नहीं जाती।",
+    "hinglish": "Do students dono Aanya ho sakte hain, isliye har row ko id = 1 jaisi primary key milti hai jo kabhi repeat nahi hoti."
+   },
+   "visual": "anim:pk-badge",
+   "narration": {
+    "en": "Two students can both be called Aanya, so each row gets a primary key such as id = 1 that is never repeated.",
+    "hi": "दो छात्र दोनों आन्या हो सकते हैं, इसलिए हर पंक्ति को id = 1 जैसी प्राथमिक कुंजी मिलती है जो कभी दोहराई नहीं जाती।",
+    "hinglish": "Do students dono Aanya ho sakte hain, isliye har row ko id = 1 jaisi primary key milti hai jo kabhi repeat nahi hoti."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "students.house_id is a foreign key pointing to houses.id. The house name is stored once, not copied into every student row.",
+    "hi": "students.house_id एक विदेशी कुंजी है जो houses.id की ओर इशारा करती है। सदन का नाम एक बार रखा जाता है, हर छात्र पंक्ति में कॉपी नहीं।",
+    "hinglish": "students.house_id ek foreign key hai jo houses.id ki taraf ishaara karti hai. House ka naam ek baar rakha jaata hai, har student row mein copy nahi."
+   },
+   "visual": "anim:fk-arrow",
+   "narration": {
+    "en": "students.house_id is a foreign key pointing to houses.id. The house name is stored once, not copied into every student row.",
+    "hi": "students.house_id एक विदेशी कुंजी है जो houses.id की ओर इशारा करती है। सदन का नाम एक बार रखा जाता है, हर छात्र पंक्ति में कॉपी नहीं।",
+    "hinglish": "students.house_id ek foreign key hai jo houses.id ki taraf ishaara karti hai. House ka naam ek baar rakha jaata hai, har student row mein copy nahi."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "The DBMS enforces rules (no duplicate ids, no student in a house that does not exist), lets thousands of users work at once and never loses a committed change.",
+    "hi": "DBMS नियम लागू करता है (कोई दोहरी id नहीं, कोई छात्र ऐसे सदन में नहीं जो है ही नहीं), हज़ारों उपयोगकर्ताओं को एक साथ काम करने देता है और पक्का किया बदलाव कभी नहीं खोता।",
+    "hinglish": "DBMS rules lagu karta hai (koi duplicate id nahi, koi student aise house mein nahi jo hai hi nahi), hazaaron users ko ek saath kaam karne deta hai aur committed change kabhi nahi khota."
+   },
+   "visual": "anim:dbms-guard",
+   "narration": {
+    "en": "The DBMS enforces rules (no duplicate ids, no student in a house that does not exist), lets thousands of users work at once and never loses a committed change.",
+    "hi": "DBMS नियम लागू करता है (कोई दोहरी id नहीं, कोई छात्र ऐसे सदन में नहीं जो है ही नहीं), हज़ारों उपयोगकर्ताओं को एक साथ काम करने देता है और पक्का किया बदलाव कभी नहीं खोता।",
+    "hinglish": "DBMS rules lagu karta hai (koi duplicate id nahi, koi student aise house mein nahi jo hai hi nahi), hazaaron users ko ek saath kaam karne deta hai aur committed change kabhi nahi khota."
+   }
+  }
+ ],
+ "play": {
+  "lab": "sql-playground",
+  "config": {
+   "mode": "missions",
+   "mission": "select-all"
+  },
+  "goal": {
+   "en": "Tap each table to preview it, find the primary and foreign keys, then run mission 1: show every student.",
+   "hi": "हर तालिका टैप करके देखो, प्राथमिक और विदेशी कुंजियाँ ढूँढो, फिर मिशन 1 चलाओ: सभी छात्र दिखाओ।",
+   "hinglish": "Har table tap karke preview karo, primary aur foreign keys dhoondho, phir mission 1 chalao: saare students dikhao."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Why not just a spreadsheet?",
+    "hi": "बस स्प्रेडशीट क्यों नहीं?",
+    "hinglish": "Bas spreadsheet kyun nahi?"
+   },
+   "body": {
+    "en": "Spreadsheets are great for one person and a few thousand rows. A school app needs more: many users writing at once without overwriting each other, rules that stop bad data (a mark of 150 out of 100), fast search over millions of rows using indexes, permissions per user, and transactions — a fee payment either fully happens or not at all (ACID: atomic, consistent, isolated, durable).",
+    "hi": "स्प्रेडशीट एक व्यक्ति और कुछ हज़ार पंक्तियों के लिए बढ़िया हैं। स्कूल ऐप को और चाहिए: कई उपयोगकर्ता एक साथ लिखें बिना एक-दूसरे का मिटाए, ग़लत डेटा रोकने के नियम (100 में से 150 अंक), इंडेक्स से लाखों पंक्तियों में तेज़ खोज, हर उपयोगकर्ता की अनुमति, और लेन-देन — शुल्क भुगतान या तो पूरा होता है या बिल्कुल नहीं (ACID: परमाणु, सुसंगत, पृथक, टिकाऊ)।",
+    "hinglish": "Spreadsheets ek insaan aur kuch hazaar rows ke liye badhiya hain. School app ko aur chahiye: kai users ek saath likhein bina ek-doosre ka mitaye, galat data rokne ke rules (100 mein se 150 marks), indexes se laakhon rows mein tez search, har user ki permission, aur transactions — fee payment ya to poora hota hai ya bilkul nahi (ACID: atomic, consistent, isolated, durable)."
+   },
+   "analogy": {
+    "en": "A spreadsheet is a personal notebook; a database is the school office register with a clerk who checks every entry.",
+    "hi": "स्प्रेडशीट निजी कॉपी है; डेटाबेस स्कूल दफ़्तर का रजिस्टर है जिसमें एक क्लर्क हर प्रविष्टि जाँचता है।",
+    "hinglish": "Spreadsheet personal notebook hai; database school office ka register hai jismein ek clerk har entry check karta hai."
+   },
+   "realExample": {
+    "en": "Railway reservations, UPI and DigiLocker all run on databases that handle huge numbers of transactions every second without double-booking a seat or losing a rupee.",
+    "hi": "रेलवे आरक्षण, यूपीआई और डिजिलॉकर सब ऐसे डेटाबेस पर चलते हैं जो हर सेकंड भारी संख्या में लेन-देन सँभालते हैं, बिना एक सीट दो बार बुक किए या एक रुपया खोए।",
+    "hinglish": "Railway reservations, UPI aur DigiLocker sab aise databases par chalte hain jo har second bhaari sankhya mein transactions sambhalte hain, bina ek seat do baar book kiye ya ek rupaya khoye."
+   }
+  },
+  {
+   "heading": {
+    "en": "Choosing good keys",
+    "hi": "अच्छी कुंजियाँ चुनना",
+    "hinglish": "Achhi keys chunna"
+   },
+   "body": {
+    "en": "A primary key must be unique, never empty and should never change. Names fail (not unique), phone numbers fail (they change). Most systems use a generated number or a UUID. Foreign keys create relationships: one house has many students (one-to-many). Many-to-many — students and clubs — needs a joining table such as memberships(student_id, club_id).",
+    "hi": "प्राथमिक कुंजी अनोखी, कभी ख़ाली नहीं और कभी न बदलने वाली होनी चाहिए। नाम विफल (अनोखे नहीं), फ़ोन नंबर विफल (बदलते हैं)। ज़्यादातर प्रणालियाँ बनाई गई संख्या या UUID इस्तेमाल करती हैं। विदेशी कुंजियाँ संबंध बनाती हैं: एक सदन में कई छात्र (एक-से-अनेक)। अनेक-से-अनेक — छात्र और क्लब — के लिए memberships(student_id, club_id) जैसी जोड़ने वाली तालिका चाहिए।",
+    "hinglish": "Primary key unique, kabhi khaali nahi aur kabhi na badalne wali honi chahiye. Naam fail (unique nahi), phone numbers fail (badalte hain). Zyaadatar systems generated number ya UUID use karte hain. Foreign keys relationships banati hain: ek house mein kai students (one-to-many). Many-to-many — students aur clubs — ke liye memberships(student_id, club_id) jaisi joining table chahiye."
+   },
+   "analogy": {
+    "en": "Your Aadhaar-style ID stays the same when you move city or change phone; that is what a key should be like.",
+    "hi": "आपकी आधार जैसी पहचान शहर या फ़ोन बदलने पर भी वही रहती है; कुंजी ऐसी ही होनी चाहिए।",
+    "hinglish": "Tumhari Aadhaar jaisi ID shehar ya phone badalne par bhi wahi rehti hai; key aisi hi honi chahiye."
+   },
+   "realExample": {
+    "en": "A roll number reused every year breaks old records; schools often use an admission number that never repeats instead.",
+    "hi": "हर साल दोबारा इस्तेमाल होने वाला रोल नंबर पुराने रिकॉर्ड तोड़ देता है; स्कूल अक्सर उसकी जगह कभी न दोहराने वाला प्रवेश क्रमांक इस्तेमाल करते हैं।",
+    "hinglish": "Har saal dobaara use hone wala roll number purane records tod deta hai; schools aksar uski jagah kabhi na repeat hone wala admission number use karte hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "List the tables your school would need for a library (books, members, loans). Mark the primary key of each and every foreign key.",
+   "hi": "अपने स्कूल की लाइब्रेरी के लिए ज़रूरी तालिकाएँ लिखो (किताबें, सदस्य, उधार)। हर एक की प्राथमिक कुंजी और हर विदेशी कुंजी पर निशान लगाओ।",
+   "hinglish": "Apne school ki library ke liye zaroori tables likho (books, members, loans). Har ek ki primary key aur har foreign key mark karo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which is the best primary key for students?",
+     "hi": "छात्रों के लिए सबसे अच्छी प्राथमिक कुंजी कौन-सी है?",
+     "hinglish": "Students ke liye sabse achhi primary key kaunsi hai?"
+    },
+    "options": [
+     {
+      "en": "Name",
+      "hi": "नाम",
+      "hinglish": "Naam"
+     },
+     {
+      "en": "Phone number",
+      "hi": "फ़ोन नंबर",
+      "hinglish": "Phone number"
+     },
+     {
+      "en": "A generated admission number",
+      "hi": "बनाया गया प्रवेश क्रमांक",
+      "hinglish": "Generated admission number"
+     },
+     {
+      "en": "City",
+      "hi": "शहर",
+      "hinglish": "City"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "It is unique, always present and never changes.",
+     "hi": "यह अनोखा, हमेशा मौजूद और कभी न बदलने वाला है।",
+     "hinglish": "Yeh unique, hamesha maujood aur kabhi na badalne wala hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "In the playground, students.house_id → houses.id. What is house_id?",
+     "hi": "खेल-मैदान में students.house_id → houses.id। house_id क्या है?",
+     "hinglish": "Playground mein students.house_id → houses.id. house_id kya hai?"
+    },
+    "options": [
+     {
+      "en": "A primary key",
+      "hi": "प्राथमिक कुंजी",
+      "hinglish": "Primary key"
+     },
+     {
+      "en": "A foreign key",
+      "hi": "विदेशी कुंजी",
+      "hinglish": "Foreign key"
+     },
+     {
+      "en": "An index",
+      "hi": "इंडेक्स",
+      "hinglish": "Index"
+     },
+     {
+      "en": "A password",
+      "hi": "पासवर्ड",
+      "hinglish": "Password"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "It refers to the primary key of another table.",
+     "hi": "यह दूसरी तालिका की प्राथमिक कुंजी की ओर इशारा करता है।",
+     "hinglish": "Yeh doosri table ki primary key ki taraf ishaara karta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "match",
+    "prompt": {
+     "en": "Match the ACID property to its meaning.",
+     "hi": "ACID गुण को उसके अर्थ से मिलाओ।",
+     "hinglish": "ACID property ko uske matlab se milao."
+    },
+    "options": [
+     {
+      "en": "Atomic",
+      "hi": "परमाणु",
+      "hinglish": "Atomic"
+     },
+     {
+      "en": "Consistent",
+      "hi": "सुसंगत",
+      "hinglish": "Consistent"
+     },
+     {
+      "en": "Isolated",
+      "hi": "पृथक",
+      "hinglish": "Isolated"
+     },
+     {
+      "en": "Durable",
+      "hi": "टिकाऊ",
+      "hinglish": "Durable"
+     }
+    ],
+    "answer": [
+     {
+      "en": "All of it happens, or none of it",
+      "hi": "सब होगा, या कुछ नहीं",
+      "hinglish": "Sab hoga, ya kuch nahi"
+     },
+     {
+      "en": "Rules are never broken",
+      "hi": "नियम कभी नहीं टूटते",
+      "hinglish": "Rules kabhi nahi toot-te"
+     },
+     {
+      "en": "Users at the same time do not interfere",
+      "hi": "एक साथ के उपयोगकर्ता टकराते नहीं",
+      "hinglish": "Ek saath ke users takraate nahi"
+     },
+     {
+      "en": "Saved changes survive a crash",
+      "hi": "सहेजे बदलाव क्रैश के बाद भी रहते हैं",
+      "hinglish": "Save hue changes crash ke baad bhi rehte hain"
+     }
+    ],
+    "explain": {
+     "en": "ACID is why banks trust databases with money.",
+     "hi": "ACID की वजह से बैंक पैसे के लिए डेटाबेस पर भरोसा करते हैं।",
+     "hinglish": "ACID ki wajah se banks paise ke liye databases par bharosa karte hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Students can join many clubs and clubs have many students. What do you need?",
+     "hi": "छात्र कई क्लबों में जा सकते हैं और क्लबों में कई छात्र हैं। क्या चाहिए?",
+     "hinglish": "Students kai clubs mein ja sakte hain aur clubs mein kai students hain. Kya chahiye?"
+    },
+    "options": [
+     {
+      "en": "A joining table memberships(student_id, club_id)",
+      "hi": "जोड़ने वाली तालिका memberships(student_id, club_id)",
+      "hinglish": "Joining table memberships(student_id, club_id)"
+     },
+     {
+      "en": "A column clubs with commas",
+      "hi": "कॉमा वाला clubs स्तंभ",
+      "hinglish": "Commas wala clubs column"
+     },
+     {
+      "en": "Two primary keys in students",
+      "hi": "students में दो प्राथमिक कुंजियाँ",
+      "hinglish": "students mein do primary keys"
+     },
+     {
+      "en": "A new database per club",
+      "hi": "हर क्लब का नया डेटाबेस",
+      "hinglish": "Har club ka naya database"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Many-to-many relationships are stored as rows in a joining table.",
+     "hi": "अनेक-से-अनेक संबंध जोड़ने वाली तालिका की पंक्तियों में रखे जाते हैं।",
+     "hinglish": "Many-to-many relationships joining table ki rows mein rakhe jaate hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete mission 1 in the SQL playground.",
+     "hi": "SQL खेल-मैदान में मिशन 1 पूरा करो।",
+     "hinglish": "SQL playground mein mission 1 poora karo."
+    },
+    "answer": {
+     "event": "query-correct",
+     "mission": "select-all"
+    },
+    "explain": {
+     "en": "SELECT * FROM students returned all 12 rows.",
+     "hi": "SELECT * FROM students ने सभी 12 पंक्तियाँ लौटाईं।",
+     "hinglish": "SELECT * FROM students ne saari 12 rows lautayin."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "data.modelling-keys",
+  "data.databases"
+ ],
+ "sources": [
+  {
+   "title": "E. F. Codd (1970) A Relational Model of Data for Large Shared Data Banks",
+   "url": "https://dl.acm.org/doi/10.1145/362384.362685",
+   "licence": "fact reference"
+  },
+  {
+   "title": "PostgreSQL documentation — SQL language",
+   "url": "https://www.postgresql.org/docs/current/sql.html",
+   "licence": "fact reference"
+  }
+ ]
+}

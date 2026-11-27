@@ -1,0 +1,354 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.python-pro.04",
+ "level": 3,
+ "classes": [
+  9,
+  10
+ ],
+ "unit": "python-pro",
+ "title": {
+  "en": "Files and exceptions",
+  "hi": "फ़ाइलें और अपवाद",
+  "hinglish": "Files aur exceptions"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [
+  "L3.python-pro.03"
+ ],
+ "outcomes": [
+  {
+   "en": "Read and write text and CSV files safely with with open()",
+   "hi": "with open() से पाठ और CSV फ़ाइलें सुरक्षित पढ़ो-लिखो",
+   "hinglish": "with open() se text aur CSV files safely padho-likho"
+  },
+  {
+   "en": "Handle errors with try / except / else / finally",
+   "hi": "try / except / else / finally से त्रुटियाँ सँभालो",
+   "hinglish": "try / except / else / finally se errors sambhalo"
+  },
+  {
+   "en": "Read a traceback to find the line and the cause",
+   "hi": "ट्रेसबैक पढ़कर पंक्ति और कारण खोजो",
+   "hinglish": "Traceback padhkar line aur kaaran dhoondho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Exception",
+   "hinglish": "Chalte waqt error",
+   "en": "An error raised while the program runs",
+   "hi": "प्रोग्राम चलते समय उठी त्रुटि"
+  },
+  {
+   "term": "Traceback",
+   "hinglish": "Error ka raasta",
+   "en": "Python's report of where an exception happened, newest call last",
+   "hi": "अपवाद कहाँ हुआ इसकी पायथन रिपोर्ट, सबसे नई कॉल अंत में"
+  },
+  {
+   "term": "with",
+   "hinglish": "Apne aap band",
+   "en": "Opens a resource and closes it automatically, even after an error",
+   "hi": "संसाधन खोलता है और त्रुटि के बाद भी अपने-आप बंद करता है"
+  },
+  {
+   "term": "CSV",
+   "hinglish": "Comma wali table",
+   "en": "Comma-separated values: a table as plain text",
+   "hi": "कॉमा से अलग मान: सादे पाठ में तालिका"
+  },
+  {
+   "term": "Encoding",
+   "hinglish": "Akshar ka code",
+   "en": "How characters become bytes; use UTF-8 for Hindi and emoji",
+   "hi": "अक्षर बाइट कैसे बनते हैं; हिंदी और इमोजी के लिए UTF-8"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "int(\"12\") works, int(\"abc\") raises ValueError, 100 / 0 raises ZeroDivisionError.",
+    "hi": "int(\"12\") चलता है, int(\"abc\") से ValueError, 100 / 0 से ZeroDivisionError।",
+    "hinglish": "int(\"12\") chalta hai, int(\"abc\") se ValueError, 100 / 0 se ZeroDivisionError."
+   },
+   "visual": "anim:error-bubble",
+   "narration": {
+    "en": "int(\"12\") works, int(\"abc\") raises ValueError, 100 / 0 raises ZeroDivisionError.",
+    "hi": "int(\"12\") चलता है, int(\"abc\") से ValueError, 100 / 0 से ZeroDivisionError।",
+    "hinglish": "int(\"12\") chalta hai, int(\"abc\") se ValueError, 100 / 0 se ZeroDivisionError."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "try: runs risky code; Python jumps to the first except that matches the error type.",
+    "hi": "try: जोखिम भरा कोड चलाता है; पायथन त्रुटि प्रकार से मेल खाते पहले except पर जाता है।",
+    "hinglish": "try: risky code chalata hai; Python error type se match karne wale pehle except par jaata hai."
+   },
+   "visual": "anim:jump",
+   "narration": {
+    "en": "try: runs risky code; Python jumps to the first except that matches the error type.",
+    "hi": "try: जोखिम भरा कोड चलाता है; पायथन त्रुटि प्रकार से मेल खाते पहले except पर जाता है।",
+    "hinglish": "try: risky code chalata hai; Python error type se match karne wale pehle except par jaata hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "finally: always runs — success or failure — so it is the place for cleanup.",
+    "hi": "finally: हमेशा चलता है — सफलता हो या विफलता — इसलिए सफ़ाई की जगह यही है।",
+    "hinglish": "finally: hamesha chalta hai — success ho ya failure — isliye cleanup ki jagah yahi hai."
+   },
+   "visual": "anim:always",
+   "narration": {
+    "en": "finally: always runs — success or failure — so it is the place for cleanup.",
+    "hi": "finally: हमेशा चलता है — सफलता हो या विफलता — इसलिए सफ़ाई की जगह यही है।",
+    "hinglish": "finally: hamesha chalta hai — success ho ya failure — isliye cleanup ki jagah yahi hai."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "with open(\"marks.csv\", encoding=\"utf-8\") as f: closes the file for you, even if an error happens.",
+    "hi": "with open(\"marks.csv\", encoding=\"utf-8\") as f: त्रुटि हो तब भी फ़ाइल आपके लिए बंद करता है।",
+    "hinglish": "with open(\"marks.csv\", encoding=\"utf-8\") as f: error ho tab bhi file tumhare liye band karta hai."
+   },
+   "visual": "anim:file-close",
+   "narration": {
+    "en": "with open(\"marks.csv\", encoding=\"utf-8\") as f: closes the file for you, even if an error happens.",
+    "hi": "with open(\"marks.csv\", encoding=\"utf-8\") as f: त्रुटि हो तब भी फ़ाइल आपके लिए बंद करता है।",
+    "hinglish": "with open(\"marks.csv\", encoding=\"utf-8\") as f: error ho tab bhi file tumhare liye band karta hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "code-lab",
+  "config": {
+   "mode": "trace",
+   "scenario": "try-except"
+  },
+  "goal": {
+   "en": "Predict how many times \"checked\" prints, then trace three inputs: a good number, text, and zero. Notice which except block catches each.",
+   "hi": "अनुमान लगाओ \"checked\" कितनी बार छपेगा, फिर तीन इनपुट ट्रेस करो: सही संख्या, पाठ, और शून्य। देखो कौन-सा except भाग किसे पकड़ता है।",
+   "hinglish": "Predict karo \"checked\" kitni baar print hoga, phir teen inputs trace karo: sahi number, text, aur zero. Dekho kaunsa except block kise pakadta hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Reading and writing files",
+    "hi": "फ़ाइलें पढ़ना और लिखना",
+    "hinglish": "Files padhna aur likhna"
+   },
+   "body": {
+    "en": "open(path, mode) returns a file: \"r\" read (default), \"w\" write (erases the old content!), \"a\" append. Always pass encoding=\"utf-8\" so Hindi text and emoji survive on every computer. Use with so the file is closed automatically. Read line by line with for line in f:, which works even for huge files. For tables use the csv module: csv.DictReader(f) turns each row into a dict like {\"name\": \"Asha\", \"marks\": \"88\"} — note the values are still strings. pathlib.Path(\"data\") / \"marks.csv\" builds paths that work on Windows, macOS and Linux.",
+    "hi": "open(path, mode) फ़ाइल देता है: \"r\" पढ़ना (डिफ़ॉल्ट), \"w\" लिखना (पुरानी सामग्री मिटाता है!), \"a\" जोड़ना। हमेशा encoding=\"utf-8\" दो ताकि हिंदी पाठ और इमोजी हर कंप्यूटर पर बचें। with इस्तेमाल करो ताकि फ़ाइल अपने-आप बंद हो। for line in f: से पंक्ति-दर-पंक्ति पढ़ो, जो बहुत बड़ी फ़ाइलों पर भी चलता है। तालिकाओं के लिए csv मॉड्यूल: csv.DictReader(f) हर पंक्ति को {\"name\": \"Asha\", \"marks\": \"88\"} जैसी डिक्ट बनाता है — ध्यान दो मान अभी भी स्ट्रिंग हैं। pathlib.Path(\"data\") / \"marks.csv\" ऐसे पथ बनाता है जो Windows, macOS और Linux पर चलें।",
+    "hinglish": "open(path, mode) file deta hai: \"r\" padhna (default), \"w\" likhna (purana content mita deta hai!), \"a\" jodna. Hamesha encoding=\"utf-8\" do taaki Hindi text aur emoji har computer par bachein. with use karo taaki file apne aap band ho. for line in f: se line by line padho, jo bahut badi files par bhi chalta hai. Tables ke liye csv module: csv.DictReader(f) har row ko {\"name\": \"Asha\", \"marks\": \"88\"} jaisi dict banata hai — dhyaan do values abhi bhi strings hain. pathlib.Path(\"data\") / \"marks.csv\" aise paths banata hai jo Windows, macOS aur Linux par chalein."
+   },
+   "analogy": {
+    "en": "\"w\" mode is like a fresh page torn from the notebook; \"a\" mode writes at the bottom of the current page.",
+    "hi": "\"w\" मोड नोटबुक से फाड़ा नया पन्ना है; \"a\" मोड मौजूदा पन्ने के नीचे लिखता है।",
+    "hinglish": "\"w\" mode notebook se phaada naya panna hai; \"a\" mode current panne ke neeche likhta hai."
+   },
+   "realExample": {
+    "en": "A school result script reads results.csv with csv.DictReader, converts marks with int(), and writes toppers.csv — all in about 10 lines.",
+    "hi": "स्कूल परिणाम स्क्रिप्ट results.csv को csv.DictReader से पढ़ती है, int() से अंक बदलती है, और toppers.csv लिखती है — सब लगभग 10 पंक्तियों में।",
+    "hinglish": "School result script results.csv ko csv.DictReader se padhti hai, int() se marks badalti hai, aur toppers.csv likhti hai — sab lagbhag 10 lines mein."
+   }
+  },
+  {
+   "heading": {
+    "en": "Exceptions done right",
+    "hi": "अपवाद सही तरीक़े से",
+    "hinglish": "Exceptions sahi tareeke se"
+   },
+   "body": {
+    "en": "Read a traceback from the bottom: the last line names the exception and message; the lines above show the chain of calls, each with a file name and line number. Catch only errors you expect and can handle — except ValueError:, not a bare except:, which also hides typos and Ctrl+C. Use else: for code that should run only if no error happened. Raise your own errors to protect rules: raise ValueError(\"marks must be 0–100\"). Common ones: FileNotFoundError, KeyError, IndexError, TypeError, ValueError, ZeroDivisionError.",
+    "hi": "ट्रेसबैक नीचे से पढ़ो: आख़िरी पंक्ति अपवाद और संदेश बताती है; ऊपर की पंक्तियाँ कॉल की शृंखला दिखाती हैं, हर एक फ़ाइल नाम और पंक्ति संख्या के साथ। सिर्फ़ वे त्रुटियाँ पकड़ो जिनकी उम्मीद है और जिन्हें सँभाल सकते हो — except ValueError:, ख़ाली except: नहीं, जो टाइपो और Ctrl+C भी छुपा देता है। else: उस कोड के लिए जो त्रुटि न होने पर ही चले। नियम बचाने के लिए अपनी त्रुटि उठाओ: raise ValueError(\"marks must be 0–100\")। आम त्रुटियाँ: FileNotFoundError, KeyError, IndexError, TypeError, ValueError, ZeroDivisionError।",
+    "hinglish": "Traceback neeche se padho: aakhri line exception aur message batati hai; upar ki lines calls ki chain dikhati hain, har ek file naam aur line number ke saath. Sirf woh errors pakdo jinki ummeed hai aur jinhe sambhal sakte ho — except ValueError:, khaali except: nahi, jo typos aur Ctrl+C bhi chhupa deta hai. else: us code ke liye jo error na hone par hi chale. Rules bachane ke liye apna error raise karo: raise ValueError(\"marks must be 0–100\"). Common errors: FileNotFoundError, KeyError, IndexError, TypeError, ValueError, ZeroDivisionError."
+   },
+   "analogy": {
+    "en": "A fire alarm that goes off for smoke, not one that is switched off for everything (a bare except).",
+    "hi": "धुएँ पर बजने वाला फ़ायर अलार्म, न कि सबके लिए बंद किया अलार्म (ख़ाली except)।",
+    "hinglish": "Dhuen par bajne wala fire alarm, na ki sab ke liye band kiya alarm (khaali except)."
+   },
+   "realExample": {
+    "en": "UPI apps validate the amount: entering \"12a\" shows \"enter a valid amount\" instead of crashing — that is exception handling.",
+    "hi": "UPI ऐप राशि जाँचते हैं: \"12a\" डालने पर क्रैश की जगह \"सही राशि डालें\" दिखता है — यही अपवाद सँभालना है।",
+    "hinglish": "UPI apps amount check karte hain: \"12a\" daalne par crash ki jagah \"valid amount daalein\" dikhta hai — yahi exception handling hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write a script that reads a marks.csv with columns name,marks, skips any row whose marks are not a number (print a warning), and writes the average to report.txt. Test it with one bad row.",
+   "hi": "एक स्क्रिप्ट लिखो जो name,marks स्तंभों वाली marks.csv पढ़े, जिस पंक्ति के अंक संख्या नहीं उसे छोड़े (चेतावनी छापो), और औसत report.txt में लिखे। एक ग़लत पंक्ति के साथ परखो।",
+   "hinglish": "Ek script likho jo name,marks columns wali marks.csv padhe, jis row ke marks number nahi unhe skip kare (warning print karo), aur average report.txt mein likhe. Ek galat row ke saath test karo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which mode erases a file before writing?",
+     "hi": "कौन-सा मोड लिखने से पहले फ़ाइल मिटाता है?",
+     "hinglish": "Kaunsa mode likhne se pehle file mitata hai?"
+    },
+    "options": [
+     "\"r\"",
+     "\"w\"",
+     "\"a\"",
+     "\"x\""
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "\"w\" truncates the file. \"a\" appends; \"x\" fails if the file exists.",
+     "hi": "\"w\" फ़ाइल ख़ाली करता है। \"a\" जोड़ता है; \"x\" फ़ाइल हो तो विफल।",
+     "hinglish": "\"w\" file khaali karta hai. \"a\" append karta hai; \"x\" file ho to fail."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "int(\"abc\") raises which exception?",
+     "hi": "int(\"abc\") कौन-सा अपवाद उठाता है?",
+     "hinglish": "int(\"abc\") kaunsa exception raise karta hai?"
+    },
+    "options": [
+     "TypeError",
+     "ValueError",
+     "KeyError",
+     "NameError"
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Right type (str), wrong value — ValueError.",
+     "hi": "सही प्रकार (str), ग़लत मान — ValueError।",
+     "hinglish": "Sahi type (str), galat value — ValueError."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "When does a finally block run?",
+     "hi": "finally भाग कब चलता है?",
+     "hinglish": "finally block kab chalta hai?"
+    },
+    "options": [
+     {
+      "en": "Always",
+      "hi": "हमेशा",
+      "hinglish": "Hamesha"
+     },
+     {
+      "en": "Only on errors",
+      "hi": "सिर्फ़ त्रुटि पर",
+      "hinglish": "Sirf error par"
+     },
+     {
+      "en": "Only without errors",
+      "hi": "सिर्फ़ बिना त्रुटि",
+      "hinglish": "Sirf bina error"
+     },
+     {
+      "en": "Never",
+      "hi": "कभी नहीं",
+      "hinglish": "Kabhi nahi"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "That is why it is used for cleanup.",
+     "hi": "इसीलिए इसे सफ़ाई के लिए इस्तेमाल करते हैं।",
+     "hinglish": "Isliye ise cleanup ke liye use karte hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why is a bare except: risky?",
+     "hi": "ख़ाली except: जोखिम भरा क्यों?",
+     "hinglish": "Khaali except: risky kyun?"
+    },
+    "options": [
+     {
+      "en": "It hides real bugs, even typos",
+      "hi": "यह असली बग, टाइपो भी, छुपाता है",
+      "hinglish": "Yeh asli bugs, typos bhi, chhupata hai"
+     },
+     {
+      "en": "It is slow",
+      "hi": "यह धीमा है",
+      "hinglish": "Yeh slow hai"
+     },
+     {
+      "en": "It deletes files",
+      "hi": "यह फ़ाइलें मिटाता है",
+      "hinglish": "Yeh files mitata hai"
+     },
+     {
+      "en": "It is not allowed",
+      "hi": "यह मना है",
+      "hinglish": "Yeh mana hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Catch the specific errors you expect.",
+     "hi": "अपेक्षित विशिष्ट त्रुटियाँ पकड़ो।",
+     "hinglish": "Expected specific errors pakdo."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Trace the try/except program to the end.",
+     "hi": "try/except प्रोग्राम अंत तक ट्रेस करो।",
+     "hinglish": "try/except program end tak trace karo."
+    },
+    "answer": {
+     "event": "trace-done",
+     "scenario": "try-except"
+    },
+    "explain": {
+     "en": "Three inputs, three different paths through the code.",
+     "hi": "तीन इनपुट, कोड में तीन अलग रास्ते।",
+     "hinglish": "Teen inputs, code mein teen alag raaste."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "prog.files-exceptions",
+  "prog.debugging"
+ ],
+ "sources": [
+  {
+   "title": "Python Software Foundation — The Python Tutorial",
+   "url": "https://docs.python.org/3/tutorial/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Python docs — Errors and Exceptions",
+   "url": "https://docs.python.org/3/tutorial/errors.html",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Python docs — csv module",
+   "url": "https://docs.python.org/3/library/csv.html",
+   "licence": "fact reference"
+  }
+ ]
+}

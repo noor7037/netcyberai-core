@@ -1,0 +1,402 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.genai-prompting.05",
+ "level": 2,
+ "classes": [
+  7,
+  8
+ ],
+ "unit": "genai-prompting",
+ "title": {
+  "en": "AI voices: helpful and harmful",
+  "hi": "AI आवाज़ें: मददगार और हानिकारक",
+  "hinglish": "AI voices: helpful aur harmful"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [
+  "L2.genai-prompting.04"
+ ],
+ "topics": [
+  "ai.genai-audio",
+  "ai.everyday-ai"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain speech-to-text and text-to-speech",
+   "hi": "वाक्-से-पाठ और पाठ-से-वाक् समझा सकते हो",
+   "hinglish": "Speech-to-text aur text-to-speech samjha sakte ho"
+  },
+  {
+   "en": "Name helpful uses of AI voices in India",
+   "hi": "भारत में AI आवाज़ों के मददगार उपयोग बता सकते हो",
+   "hinglish": "India mein AI voices ke helpful uses bata sakte ho"
+  },
+  {
+   "en": "Defend against cloned-voice scams with a code word and call-back",
+   "hi": "कोड शब्द और वापस कॉल से नक़ली-आवाज़ धोखों से बच सकते हो",
+   "hinglish": "Code word aur call-back se cloned-voice scams se bach sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Speech-to-text",
+   "hinglish": "Bolna → likha",
+   "en": "AI that turns spoken words into text",
+   "hi": "AI जो बोले शब्दों को पाठ में बदलता है"
+  },
+  {
+   "term": "Text-to-speech",
+   "hinglish": "Likha → bolna",
+   "en": "AI that reads text aloud in a natural voice",
+   "hi": "AI जो पाठ को स्वाभाविक आवाज़ में पढ़ता है"
+  },
+  {
+   "term": "Voice clone",
+   "hinglish": "Aawaaz ki nakal",
+   "en": "An AI copy of a real person’s voice made from a short recording",
+   "hi": "छोटी रिकॉर्डिंग से बनी किसी असली व्यक्ति की आवाज़ की AI नक़ल"
+  },
+  {
+   "term": "Call-back",
+   "hinglish": "Khud wapas call",
+   "en": "Hanging up and calling the person on the number you already saved",
+   "hi": "फ़ोन रखकर व्यक्ति को पहले से सहेजे नंबर पर ख़ुद कॉल करना"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Voice AI works both ways: speech-to-text writes what you say; text-to-speech reads text aloud.",
+    "hi": "वॉइस AI दोनों तरफ़ काम करता है: वाक्-से-पाठ तुम्हारा बोला लिखता है; पाठ-से-वाक् पाठ पढ़कर सुनाता है।",
+    "hinglish": "Voice AI dono taraf kaam karta hai: speech-to-text tumhara bola likhta hai; text-to-speech text padh kar sunata hai."
+   },
+   "visual": "compare:🎤→📝 Speech-to-text: voice typing|📝→🔊 Text-to-speech: read aloud",
+   "narration": {
+    "en": "Both learn from many hours of recorded speech.",
+    "hi": "दोनों घंटों की रिकॉर्ड की गई वाणी से सीखते हैं।",
+    "hinglish": "Dono ghanton ki recorded speech se seekhte hain."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Research systems can imitate a voice from a few seconds of audio. Scammers use this to sound like Papa or a “police officer”.",
+    "hi": "शोध प्रणालियाँ कुछ सेकंड की ऑडियो से आवाज़ की नक़ल कर सकती हैं। ठग इसका उपयोग पापा या “पुलिस अधिकारी” जैसा सुनाई देने के लिए करते हैं।",
+    "hinglish": "Research systems kuch seconds ki audio se voice ki nakal kar sakte hain. Scammers isse Papa ya “police officer” jaisa sunai dene ke liye use karte hain."
+   },
+   "visual": "lab:scam-inbox",
+   "narration": {
+    "en": "Find the warning signs in the voice note and the fake police call.",
+    "hi": "वॉइस नोट और नक़ली पुलिस कॉल में चेतावनी संकेत ढूँढो।",
+    "hinglish": "Voice note aur nakli police call mein warning signs dhoondo."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Your defence does not need tech: a family code word and a call-back on the saved number beat any clone.",
+    "hi": "तुम्हारी रक्षा को तकनीक नहीं चाहिए: पारिवारिक कोड शब्द और सहेजे नंबर पर वापस कॉल किसी भी नक़ल को हरा देते हैं।",
+    "hinglish": "Tumhari defence ko tech nahi chahiye: family code word aur saved number pe call-back kisi bhi clone ko hara dete hain."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "Urgent + money + secret = stop and check.",
+    "hi": "जल्दी + पैसा + गुप्त = रुको और जाँचो।",
+    "hinglish": "Urgent + paisa + secret = ruko aur check karo."
+   },
+   "code": "voice: \"Beta, it is Papa, new number, send ₹5,000 now!\"\n you: \"What is our code word?\"\n voice: ...silence...\n you: hang up → call Papa’s SAVED number → he is fine ✔"
+  }
+ ],
+ "play": {
+  "lab": "scam-inbox",
+  "config": {
+   "only": [
+    "papa",
+    "police",
+    "otp"
+   ],
+   "need": 3
+  },
+  "goal": {
+   "en": "Judge the cloned-voice note, the fake police call and the real bank OTP message correctly.",
+   "hi": "नक़ली-आवाज़ वॉइस नोट, नक़ली पुलिस कॉल और असली बैंक OTP संदेश को सही आँको।",
+   "hinglish": "Cloned-voice note, nakli police call aur asli bank OTP message ko sahi judge karo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Voices that help, voices that trick",
+    "hi": "मदद करने वाली आवाज़ें, धोखा देने वाली आवाज़ें",
+    "hinglish": "Madad karne wali aawaazein, dhokha dene wali aawaazein"
+   },
+   "body": {
+    "en": "Speech recognition turns sound waves into text by learning from thousands of hours of transcribed speech; text-to-speech does the reverse, learning rhythm and tone from recorded voices. Helpful uses are everywhere in India: voice typing in Indian languages on Android keyboards, screen readers that read apps aloud for people who are blind, Bhashini’s speech-to-speech translation (used to translate the Prime Minister’s speech live into Tamil at the Kashi Tamil Sangamam in December 2023), and dubbing of educational videos into many languages. The same technology enables voice cloning. In January 2023 Microsoft researchers described VALL-E, a system that could imitate a voice from a 3-second sample; many commercial tools now need under a minute of audio. Scammers take voice clips from social media to fake a relative in trouble, or pose as police in “digital arrest” calls. Defences: agree a family code word; hang up and call back on the number you already have saved; never send money, OTPs or photos because of a voice alone; keep your public videos limited; and report scam calls on Sanchar Saathi (Chakshu) or 1930.",
+    "hi": "वाक् पहचान हज़ारों घंटों की लिखित वाणी से सीखकर ध्वनि तरंगों को पाठ में बदलती है; पाठ-से-वाक् इसका उल्टा करता है, रिकॉर्ड की गई आवाज़ों से लय और स्वर सीखकर। भारत में मददगार उपयोग हर जगह हैं: Android कीबोर्ड पर भारतीय भाषाओं में वॉइस टाइपिंग, दृष्टिहीन लोगों के लिए ऐप पढ़कर सुनाने वाले स्क्रीन रीडर, भाषिणी का वाक्-से-वाक् अनुवाद (दिसंबर 2023 में काशी तमिल संगमम में प्रधानमंत्री के भाषण का तमिल में लाइव अनुवाद करने में उपयोग), और शैक्षिक वीडियो की कई भाषाओं में डबिंग। यही तकनीक आवाज़ की नक़ल संभव करती है। जनवरी 2023 में Microsoft शोधकर्ताओं ने VALL-E बताया, जो 3-सेकंड के नमूने से आवाज़ की नक़ल कर सकता था; कई व्यावसायिक उपकरणों को अब एक मिनट से कम ऑडियो चाहिए। ठग सोशल मीडिया से आवाज़ के अंश लेकर मुसीबत में फँसे रिश्तेदार की नक़ल करते हैं, या “डिजिटल अरेस्ट” कॉल में पुलिस बनते हैं। बचाव: पारिवारिक कोड शब्द तय करो; फ़ोन रखो और पहले से सहेजे नंबर पर वापस कॉल करो; सिर्फ़ आवाज़ के कारण कभी पैसा, OTP या फ़ोटो न भेजो; अपने सार्वजनिक वीडियो सीमित रखो; और धोखे की कॉल संचार साथी (चक्षु) या 1930 पर रिपोर्ट करो।",
+    "hinglish": "Speech recognition hazaaron ghanton ki transcribed speech se seekh kar sound waves ko text mein badalti hai; text-to-speech iska ulta karta hai, recorded voices se rhythm aur tone seekh kar. India mein helpful uses har jagah hain: Android keyboards pe Indian languages mein voice typing, blind logon ke liye apps padh kar sunane wale screen readers, Bhashini ka speech-to-speech translation (December 2023 mein Kashi Tamil Sangamam mein Prime Minister ke speech ka Tamil mein live translation karne mein use hua), aur educational videos ki kai languages mein dubbing. Yahi technology voice cloning possible karti hai. January 2023 mein Microsoft researchers ne VALL-E describe kiya, jo 3-second sample se voice ki nakal kar sakta tha; kai commercial tools ko ab ek minute se kam audio chahiye. Scammers social media se voice clips lekar musibat mein phanse rishtedaar ki nakal karte hain, ya “digital arrest” calls mein police bante hain. Defences: family code word tay karo; phone rakho aur pehle se saved number pe call-back karo; sirf aawaaz ki wajah se kabhi paisa, OTP ya photos mat bhejo; apne public videos limited rakho; aur scam calls Sanchar Saathi (Chakshu) ya 1930 pe report karo."
+   },
+   "analogy": {
+    "en": "A voice clone = a mimicry artist: on TV they can sound like any film star — but they are not that star. Don’t trust the voice; trust the code word.",
+    "hi": "आवाज़ की नक़ल = मिमिक्री कलाकार: टीवी पर वह किसी भी सितारे की आवाज़ निकाल देता है — पर वह सितारा नहीं है। आवाज़ पर नहीं, कोड शब्द पर भरोसा करो।",
+    "hinglish": "Voice clone = mimicry artist: TV pe woh kisi bhi star ki aawaaz nikaal deta hai — par woh star nahi hai. Aawaaz se pehchaan mat karo, code word se karo."
+   },
+   "realExample": {
+    "en": "At Kashi Tamil Sangamam in December 2023, Bhashini translated the Prime Minister’s Hindi speech into Tamil in real time through earphones for the audience.",
+    "hi": "दिसंबर 2023 में काशी तमिल संगमम में भाषिणी ने दर्शकों के लिए ईयरफ़ोन के ज़रिए प्रधानमंत्री के हिंदी भाषण का वास्तविक समय में तमिल में अनुवाद किया।",
+    "hinglish": "December 2023 mein Kashi Tamil Sangamam mein Bhashini ne audience ke liye earphones ke through Prime Minister ke Hindi speech ko real time mein Tamil mein translate kiya."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "With your family, choose a secret code word (not a pet’s name or birthday). Practise once: a grown-up pretends to be a relative calling from a “new number”, and you ask for the code word and call back the saved number. Also try voice typing one sentence in Hindi or your home language.",
+   "hi": "परिवार के साथ एक गुप्त कोड शब्द चुनो (पालतू का नाम या जन्मदिन नहीं)। एक बार अभ्यास करो: कोई बड़ा “नए नंबर” से रिश्तेदार बनने का नाटक करे, और तुम कोड शब्द पूछो और सहेजे नंबर पर वापस कॉल करो। एक वाक्य हिंदी या घर की भाषा में वॉइस टाइपिंग भी आज़माओ।",
+   "hinglish": "Family ke saath ek secret code word chuno (pet ka naam ya birthday nahi). Ek baar practice karo: koi grown-up “naye number” se rishtedaar banne ka natak kare, aur tum code word poochho aur saved number pe call-back karo. Ek sentence Hindi ya apni ghar ki bhasha mein voice typing bhi try karo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "match",
+    "prompt": {
+     "en": "Match each voice tool to what it does.",
+     "hi": "हर वॉइस उपकरण को उसके काम से मिलाओ।",
+     "hinglish": "Har voice tool ko uske kaam se match karo."
+    },
+    "options": {
+     "left": [
+      {
+       "en": "Speech-to-text",
+       "hi": "वाक्-से-पाठ",
+       "hinglish": "Speech-to-text"
+      },
+      {
+       "en": "Text-to-speech",
+       "hi": "पाठ-से-वाक्",
+       "hinglish": "Text-to-speech"
+      },
+      {
+       "en": "Voice clone",
+       "hi": "आवाज़ की नक़ल",
+       "hinglish": "Voice clone"
+      }
+     ],
+     "right": [
+      {
+       "en": "Copies a real person’s voice",
+       "hi": "असली व्यक्ति की आवाज़ की नक़ल",
+       "hinglish": "Asli insaan ki aawaaz ki nakal"
+      },
+      {
+       "en": "Turns your speech into typed words",
+       "hi": "तुम्हारी बोली को टाइप किए शब्दों में बदलता है",
+       "hinglish": "Tumhari boli ko typed words mein badalta hai"
+      },
+      {
+       "en": "Reads a message aloud",
+       "hi": "संदेश पढ़कर सुनाता है",
+       "hinglish": "Message padh kar sunata hai"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      2
+     ],
+     [
+      2,
+      0
+     ]
+    ],
+    "explain": {
+     "en": "Speech-to-text writes; text-to-speech reads aloud; a voice clone copies a person.",
+     "hi": "वाक्-से-पाठ लिखता है; पाठ-से-वाक् पढ़कर सुनाता है; आवाज़ की नक़ल व्यक्ति की नक़ल करती है।",
+     "hinglish": "Speech-to-text likhta hai; text-to-speech padh kar sunata hai; voice clone insaan ki nakal karta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are helpful uses of AI voices? Choose all.",
+     "hi": "AI आवाज़ों के मददगार उपयोग कौन-से हैं? सभी चुनो।",
+     "hinglish": "AI voices ke helpful uses kaunse hain? Saare chuno."
+    },
+    "options": [
+     {
+      "en": "A screen reader for a blind user",
+      "hi": "दृष्टिहीन के लिए स्क्रीन रीडर",
+      "hinglish": "Blind user ke liye screen reader"
+     },
+     {
+      "en": "Live Hindi→Tamil speech translation",
+      "hi": "लाइव हिंदी→तमिल अनुवाद",
+      "hinglish": "Live Hindi→Tamil translation"
+     },
+     {
+      "en": "Voice typing in Marathi",
+      "hi": "मराठी में वॉइस टाइपिंग",
+      "hinglish": "Marathi mein voice typing"
+     },
+     {
+      "en": "Faking an uncle’s voice to ask for money",
+      "hi": "पैसे माँगने के लिए चाचा की आवाज़ की नक़ल",
+      "hinglish": "Paise maangne ke liye chacha ki aawaaz ki nakal"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2
+    ],
+    "explain": {
+     "en": "Screen readers, live translation and voice typing help people. Faking a relative is a scam.",
+     "hi": "स्क्रीन रीडर, लाइव अनुवाद और वॉइस टाइपिंग मदद करते हैं। रिश्तेदार की नक़ल धोखा है।",
+     "hinglish": "Screen readers, live translation aur voice typing madad karte hain. Rishtedaar ki nakal scam hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "order",
+    "prompt": {
+     "en": "A “relative” calls from a new number asking for money. Put your steps in order.",
+     "hi": "“रिश्तेदार” नए नंबर से पैसे माँगता है। अपने कदम क्रम में लगाओ।",
+     "hinglish": "“Rishtedaar” naye number se paise maangta hai. Apne steps order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Call back on the number you saved",
+      "hi": "सहेजे नंबर पर वापस कॉल करो",
+      "hinglish": "Saved number pe call-back karo"
+     },
+     {
+      "en": "Ask for the family code word",
+      "hi": "पारिवारिक कोड शब्द पूछो",
+      "hinglish": "Family code word poochho"
+     },
+     {
+      "en": "Hang up politely",
+      "hi": "विनम्रता से फ़ोन रखो",
+      "hinglish": "Politely phone rakho"
+     }
+    ],
+    "answer": [
+     1,
+     2,
+     0
+    ],
+    "explain": {
+     "en": "Ask the code word → hang up → call back on the saved number.",
+     "hi": "कोड शब्द पूछो → फ़ोन रखो → सहेजे नंबर पर वापस कॉल करो।",
+     "hinglish": "Code word poochho → phone rakho → saved number pe call-back karo."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "About how much audio did Microsoft’s VALL-E research (2023) need to imitate a voice?",
+     "hi": "Microsoft के VALL-E शोध (2023) को आवाज़ की नक़ल के लिए लगभग कितना ऑडियो चाहिए था?",
+     "hinglish": "Microsoft ke VALL-E research (2023) ko voice ki nakal ke liye lagbhag kitni audio chahiye thi?"
+    },
+    "options": [
+     {
+      "en": "About 3 seconds",
+      "hi": "लगभग 3 सेकंड",
+      "hinglish": "Lagbhag 3 seconds"
+     },
+     {
+      "en": "At least 10 hours",
+      "hi": "कम से कम 10 घंटे",
+      "hinglish": "Kam se kam 10 ghante"
+     },
+     {
+      "en": "A full year of calls",
+      "hi": "पूरे साल की कॉल",
+      "hinglish": "Poore saal ki calls"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "A 3-second sample — so public videos and voice notes can be misused.",
+     "hi": "3-सेकंड का नमूना — इसलिए सार्वजनिक वीडियो और वॉइस नोट का दुरुपयोग हो सकता है।",
+     "hinglish": "3-second sample — isliye public videos aur voice notes ka misuse ho sakta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "short",
+    "prompt": {
+     "en": "What is the national helpline number to report cyber fraud in India?",
+     "hi": "भारत में साइबर धोखाधड़ी रिपोर्ट करने का राष्ट्रीय हेल्पलाइन नंबर क्या है?",
+     "hinglish": "India mein cyber fraud report karne ka national helpline number kya hai?"
+    },
+    "answer": [
+     "1930"
+    ],
+    "explain": {
+     "en": "1930, or cybercrime.gov.in.",
+     "hi": "1930, या cybercrime.gov.in।",
+     "hinglish": "1930, ya cybercrime.gov.in."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the lab mission.",
+     "hi": "लैब मिशन पूरा करो।",
+     "hinglish": "Lab mission poora karo."
+    },
+    "answer": {
+     "lab": "scam-inbox",
+     "event": "mission:complete"
+    },
+    "explain": {
+     "en": "Judge the voice note, the police call and the OTP message correctly.",
+     "hi": "वॉइस नोट, पुलिस कॉल और OTP संदेश सही आँको।",
+     "hinglish": "Voice note, police call aur OTP message sahi judge karo."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Wang et al. — Neural Codec Language Models are Zero-Shot Text to Speech Synthesizers (VALL-E, 2023)",
+   "url": "https://arxiv.org/abs/2301.02111",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Bhashini — National Language Translation Mission (MeitY)",
+   "url": "https://bhashini.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Department of Telecommunications — Sanchar Saathi (Chakshu)",
+   "url": "https://sancharsaathi.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "National Cyber Crime Reporting Portal — report online or call 1930",
+   "url": "https://cybercrime.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

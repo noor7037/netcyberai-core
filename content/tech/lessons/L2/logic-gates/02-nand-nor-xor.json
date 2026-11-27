@@ -1,0 +1,340 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.logic-gates.02",
+ "level": 2,
+ "classes": [
+  7,
+  8
+ ],
+ "unit": "logic-gates",
+ "title": {
+  "en": "NAND, NOR and XOR",
+  "hi": "NAND, NOR और XOR",
+  "hinglish": "NAND, NOR aur XOR"
+ },
+ "minutes": 8,
+ "xp": 35,
+ "prereq": [
+  "L2.logic-gates.01"
+ ],
+ "topics": [
+  "hw.gates"
+ ],
+ "outcomes": [
+  {
+   "en": "Use NAND, NOR and XOR truth tables",
+   "hi": "NAND, NOR और XOR सत्य तालिकाएँ उपयोग कर सकते हो",
+   "hinglish": "NAND, NOR, XOR truth tables use kar sakte ho"
+  },
+  {
+   "en": "Explain why NAND is a “universal” gate",
+   "hi": "समझा सकते हो कि NAND “सार्वभौमिक” गेट क्यों है",
+   "hinglish": "NAND “universal” gate kyun hai samjha sakte ho"
+  },
+  {
+   "en": "Build simple logic expressions",
+   "hi": "सरल तर्क व्यंजक बना सकते हो",
+   "hinglish": "Simple logic expressions bana sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "NAND",
+   "hinglish": "NOT + AND",
+   "en": "Output 0 only when both inputs are 1",
+   "hi": "आउटपुट 0 केवल तब जब दोनों इनपुट 1 हों"
+  },
+  {
+   "term": "NOR",
+   "hinglish": "NOT + OR",
+   "en": "Output 1 only when both inputs are 0",
+   "hi": "आउटपुट 1 केवल तब जब दोनों इनपुट 0 हों"
+  },
+  {
+   "term": "XOR",
+   "hinglish": "Exclusive OR: alag ho to 1",
+   "en": "Output 1 when the inputs are different",
+   "hi": "इनपुट अलग हों तो आउटपुट 1"
+  },
+  {
+   "term": "Universal gate",
+   "hinglish": "Sirf isi se baaki sab gates ban jaate hain",
+   "en": "A gate from which every other gate can be built",
+   "hi": "ऐसा गेट जिससे बाक़ी हर गेट बन सकता है"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "NAND = AND followed by NOT. Its output is 0 only when both inputs are 1.",
+    "hi": "NAND = AND के बाद NOT। आउटपुट केवल तब 0 जब दोनों इनपुट 1 हों।",
+    "hinglish": "NAND = AND ke baad NOT. Output sirf tab 0 jab dono inputs 1 hon."
+   },
+   "visual": "lab:bit-lab#gates-NAND",
+   "narration": {
+    "en": "The little circle on the gate symbol means NOT.",
+    "hi": "गेट चिह्न पर छोटा गोला NOT का अर्थ है।",
+    "hinglish": "Gate symbol pe chhota circle matlab NOT."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "XOR is 1 when the inputs are different — perfect for a staircase light.",
+    "hi": "XOR तब 1 जब इनपुट अलग हों — सीढ़ी की बत्ती के लिए एकदम सही।",
+    "hinglish": "XOR tab 1 jab inputs alag hon — seedhi ki light ke liye perfect."
+   },
+   "visual": "lab:bit-lab#gates-XOR",
+   "narration": {
+    "en": "Flip either switch and the light changes.",
+    "hi": "कोई भी स्विच पलटो और बत्ती बदल जाती है।",
+    "hinglish": "Koi bhi switch palto, light badal jaati hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Join NAND gates and you can make NOT, AND and OR. Chips are often built mostly from NAND/NOR.",
+    "hi": "NAND गेट जोड़कर NOT, AND और OR बना सकते हो। चिप अक्सर ज़्यादातर NAND/NOR से बनती हैं।",
+    "hinglish": "NAND gates jodkar NOT, AND aur OR bana sakte ho. Chips aksar zyaadatar NAND/NOR se banti hain."
+   },
+   "visual": "flow:NAND|NOT = NAND(A,A)|AND = NOT(NAND)|OR = NAND(NOT A, NOT B)",
+   "narration": {
+    "en": "One brick type can build the whole house.",
+    "hi": "एक ही तरह की ईंट से पूरा घर बन सकता है।",
+    "hinglish": "Ek hi tarah ki eent se poora ghar ban sakta hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "bit-lab",
+  "config": {
+   "tab": "gates",
+   "gate": "XOR"
+  },
+  "goal": {
+   "en": "Fill the XOR truth table. When exactly does the bulb light?",
+   "hi": "XOR सत्य तालिका भरो। बल्ब ठीक कब जलता है?",
+   "hinglish": "XOR truth table bharo. Bulb theek kab jalta hai?"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "The three “negative” and “exclusive” gates",
+    "hi": "तीन “उल्टे” और “अनन्य” गेट",
+    "hinglish": "Teen “negative” aur “exclusive” gates"
+   },
+   "body": {
+    "en": "For inputs 00, 01, 10, 11: NAND gives 1, 1, 1, 0. NOR gives 1, 0, 0, 0. XOR gives 0, 1, 1, 0. NAND is called universal because NOT A = A NAND A, A AND B = NOT(A NAND B), and A OR B = (NOT A) NAND (NOT B). XOR is used to compare bits (equal → 0, different → 1), to add binary numbers, and in encryption, because XOR-ing twice with the same key gives back the original.",
+    "hi": "इनपुट 00, 01, 10, 11 के लिए: NAND देता है 1, 1, 1, 0। NOR देता है 1, 0, 0, 0। XOR देता है 0, 1, 1, 0। NAND सार्वभौमिक है क्योंकि NOT A = A NAND A, A AND B = NOT(A NAND B), और A OR B = (NOT A) NAND (NOT B)। XOR बिटों की तुलना (बराबर → 0, अलग → 1), बाइनरी जोड़ और एन्क्रिप्शन में काम आता है, क्योंकि एक ही चाबी से दो बार XOR करने पर मूल वापस मिलता है।",
+    "hinglish": "Inputs 00, 01, 10, 11 ke liye: NAND deta hai 1, 1, 1, 0. NOR deta hai 1, 0, 0, 0. XOR deta hai 0, 1, 1, 0. NAND universal hai kyunki NOT A = A NAND A, A AND B = NOT(A NAND B), aur A OR B = (NOT A) NAND (NOT B). XOR bits compare karne (barabar → 0, alag → 1), binary jodne aur encryption mein kaam aata hai, kyunki ek hi key se do baar XOR karo to original wapas mil jaata hai."
+   },
+   "analogy": {
+    "hinglish": "XOR = “ek hi jeetega” game: dono same chune to koi nahi jeeta (0), alag chune to result (1).",
+    "en": "XOR = the “only one wins” game: if both choose the same, nobody wins (0); if they choose differently, there is a result (1).",
+    "hi": "XOR = “एक ही जीतेगा” खेल: दोनों एक जैसा चुनें तो कोई नहीं जीता (0), अलग चुनें तो नतीजा (1)।"
+   },
+   "realExample": {
+    "en": "Your phone’s storage is “NAND flash” — memory cells wired in a NAND-like pattern.",
+    "hi": "आपके फ़ोन का स्टोरेज “NAND फ़्लैश” है — NAND जैसे ढंग से जुड़ी मेमोरी कोशिकाएँ।",
+    "hinglish": "Phone ki storage “NAND flash” hai — memory cells NAND jaise pattern mein jude hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Design a “quiz buzzer” rule with XOR: the light shows if exactly one of two teams presses.",
+   "hi": "XOR से “क्विज़ बज़र” नियम बनाओ: बत्ती तब जले जब दो टीमों में से ठीक एक दबाए।",
+   "hinglish": "XOR se “quiz buzzer” banao: light tab jale jab do teams mein se sirf ek dabaye."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "NAND inputs 1, 1. Output?",
+     "hi": "NAND इनपुट 1, 1। आउटपुट?",
+     "hinglish": "NAND inputs 1, 1. Output?"
+    },
+    "options": [
+     "0",
+     "1"
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "AND gives 1, NOT makes it 0.",
+     "hi": "AND 1 देता है, NOT उसे 0 बनाता है।",
+     "hinglish": "AND 1 deta hai, NOT usse 0 bana deta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "XOR inputs 1, 1. Output?",
+     "hi": "XOR इनपुट 1, 1। आउटपुट?",
+     "hinglish": "XOR inputs 1, 1. Output?"
+    },
+    "options": [
+     "0",
+     "1"
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Same inputs → 0.",
+     "hi": "एक जैसे इनपुट → 0।",
+     "hinglish": "Same inputs → 0."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "NOR outputs 1 when…",
+     "hi": "NOR 1 देता है जब…",
+     "hinglish": "NOR 1 deta hai jab…"
+    },
+    "options": [
+     {
+      "en": "any input is 1",
+      "hi": "कोई इनपुट 1 हो",
+      "hinglish": "koi input 1 ho"
+     },
+     {
+      "en": "both are 1",
+      "hi": "दोनों 1 हों",
+      "hinglish": "dono 1 hon"
+     },
+     {
+      "en": "both are 0",
+      "hi": "दोनों 0 हों",
+      "hinglish": "dono 0 hon"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "NOR = NOT OR: only 00 makes OR give 0, so NOR gives 1 only for 00.",
+     "hi": "NOR = NOT OR: केवल 00 पर OR 0 देता है, तो NOR केवल 00 पर 1।",
+     "hinglish": "NOR = NOT OR: sirf 00 pe OR 0 deta hai, to NOR sirf 00 pe 1."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why is NAND called a universal gate?",
+     "hi": "NAND को सार्वभौमिक गेट क्यों कहते हैं?",
+     "hinglish": "NAND ko universal gate kyun kehte hain?"
+    },
+    "options": [
+     {
+      "en": "It is the fastest",
+      "hi": "यह सबसे तेज़ है",
+      "hinglish": "Yeh sabse fast hai"
+     },
+     {
+      "en": "Every other gate can be built from it",
+      "hi": "हर दूसरा गेट इससे बन सकता है",
+      "hinglish": "Har doosra gate isse ban sakta hai"
+     },
+     {
+      "en": "It has 3 inputs",
+      "hi": "इसमें 3 इनपुट हैं",
+      "hinglish": "Isme 3 inputs hain"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "NOT, AND and OR can all be built from NAND gates alone, so any circuit can be.",
+     "hi": "NOT, AND और OR सब केवल NAND से बन सकते हैं, इसलिए कोई भी सर्किट।",
+     "hinglish": "NOT, AND aur OR sab sirf NAND se ban sakte hain, isliye koi bhi circuit."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "match",
+    "prompt": {
+     "en": "Match the gate to its outputs for inputs 00, 01, 10, 11.",
+     "hi": "गेट को उसके आउटपुट (00, 01, 10, 11) से मिलाओ।",
+     "hinglish": "Gate ko uske outputs (00, 01, 10, 11) se milao."
+    },
+    "options": {
+     "left": [
+      "AND",
+      "OR",
+      "XOR",
+      "NAND"
+     ],
+     "right": [
+      "0111",
+      "1110",
+      "0001",
+      "0110"
+     ]
+    },
+    "answer": [
+     [
+      0,
+      2
+     ],
+     [
+      1,
+      0
+     ],
+     [
+      2,
+      3
+     ],
+     [
+      3,
+      1
+     ]
+    ],
+    "explain": {
+     "en": "AND 0001, OR 0111, XOR 0110, NAND 1110.",
+     "hi": "AND 0001, OR 0111, XOR 0110, NAND 1110।",
+     "hinglish": "AND 0001, OR 0111, XOR 0110, NAND 1110."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Fill the full XOR truth table in the lab.",
+     "hi": "लैब में पूरी XOR सत्य तालिका भरो।",
+     "hinglish": "Lab mein poori XOR truth table bharo."
+    },
+    "answer": {
+     "lab": "bit-lab",
+     "event": "mission:complete",
+     "gate": "XOR"
+    },
+    "explain": {
+     "en": "XOR: 00→0, 01→1, 10→1, 11→0.",
+     "hi": "XOR: 00→0, 01→1, 10→1, 11→0।",
+     "hinglish": "XOR: 00→0, 01→1, 10→1, 11→0."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Sheffer (1913) — NAND functional completeness",
+   "url": "https://en.wikipedia.org/wiki/Functional_completeness",
+   "licence": "CC BY-SA (fact reference only)"
+  },
+  {
+   "title": "NCERT / CBSE Artificial Intelligence & Computer curriculum (Classes 6–8), 2024–25",
+   "url": "https://cbseacademic.nic.in/",
+   "licence": "fact reference"
+  }
+ ]
+}

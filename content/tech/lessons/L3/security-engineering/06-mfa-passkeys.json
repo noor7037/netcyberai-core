@@ -1,0 +1,392 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.security-engineering.06",
+ "level": 3,
+ "classes": [
+  9,
+  10,
+  11,
+  12
+ ],
+ "unit": "security-engineering",
+ "title": {
+  "en": "MFA and passkeys",
+  "hi": "MFA और पासकी",
+  "hinglish": "MFA aur passkeys"
+ },
+ "minutes": 12,
+ "xp": 50,
+ "prereq": [
+  "L3.security-engineering.02"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain the three authentication factors and why combining them helps",
+   "hi": "प्रमाणीकरण के तीन कारक और उन्हें जोड़ने का लाभ समझाओ",
+   "hinglish": "Authentication ke teen factors aur unhe jodne ka fayda samjhao"
+  },
+  {
+   "en": "Rank SMS OTP, authenticator apps and passkeys by phishing resistance",
+   "hi": "SMS OTP, ऑथेंटिकेटर ऐप और पासकी को फ़िशिंग-प्रतिरोध से क्रम दो",
+   "hinglish": "SMS OTP, authenticator apps aur passkeys ko phishing resistance se rank karo"
+  },
+  {
+   "en": "Describe how a passkey works using public-key cryptography",
+   "hi": "बताओ पासकी सार्वजनिक-कुंजी क्रिप्टोग्राफ़ी से कैसे काम करती है",
+   "hinglish": "Batao passkey public-key cryptography se kaise kaam karti hai"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "MFA",
+   "hinglish": "Ek se zyaada saboot",
+   "en": "Multi-factor authentication: two or more different kinds of proof",
+   "hi": "बहु-कारक प्रमाणीकरण: दो या ज़्यादा अलग तरह के प्रमाण"
+  },
+  {
+   "term": "TOTP",
+   "hinglish": "Har 30 second naya code",
+   "en": "Time-based one-time password from an authenticator app (RFC 6238)",
+   "hi": "ऑथेंटिकेटर ऐप से समय-आधारित एक-बार पासवर्ड (RFC 6238)"
+  },
+  {
+   "term": "Passkey",
+   "hinglish": "Password ke bina login",
+   "en": "A FIDO2/WebAuthn key pair stored on your device, unlocked by fingerprint, face or PIN",
+   "hi": "डिवाइस में रखी FIDO2/WebAuthn कुंजी-जोड़ी, उँगली, चेहरे या पिन से खुलती है"
+  },
+  {
+   "term": "SIM swap",
+   "hinglish": "Tumhara number doosre SIM par",
+   "en": "Fraud where a criminal gets your number moved to their SIM to receive your OTPs",
+   "hi": "धोखा जिसमें अपराधी आपका नंबर अपनी सिम पर करवाकर आपके OTP पाता है"
+  },
+  {
+   "term": "MFA fatigue",
+   "hinglish": "Baar-baar approve ke prompt",
+   "en": "Spamming push prompts until the victim taps Approve",
+   "hi": "पीड़ित के Approve दबाने तक बार-बार पुश संदेश भेजना"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Three factors: something you know (PIN), something you have (phone, security key), something you are (fingerprint).",
+    "hi": "तीन कारक: जो आप जानते हो (पिन), जो आपके पास है (फ़ोन, सुरक्षा कुंजी), जो आप हो (उँगली-छाप)।",
+    "hinglish": "Teen factors: jo tum jaante ho (PIN), jo tumhare paas hai (phone, security key), jo tum ho (fingerprint)."
+   },
+   "visual": "anim:three-factors",
+   "narration": {
+    "en": "Three factors: something you know (PIN), something you have (phone, security key), something you are (fingerprint).",
+    "hi": "तीन कारक: जो आप जानते हो (पिन), जो आपके पास है (फ़ोन, सुरक्षा कुंजी), जो आप हो (उँगली-छाप)।",
+    "hinglish": "Teen factors: jo tum jaante ho (PIN), jo tumhare paas hai (phone, security key), jo tum ho (fingerprint)."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "A stolen password alone is no longer enough — the attacker also needs your phone. That blocks most account takeovers.",
+    "hi": "अकेला चोरी पासवर्ड अब काफ़ी नहीं — हमलावर को आपका फ़ोन भी चाहिए। इससे ज़्यादातर खाता-कब्ज़े रुकते हैं।",
+    "hinglish": "Akela chori password ab kaafi nahi — attacker ko tumhara phone bhi chahiye. Isse zyaadatar account takeovers rukte hain."
+   },
+   "visual": "anim:mfa-gate",
+   "narration": {
+    "en": "A stolen password alone is no longer enough — the attacker also needs your phone. That blocks most account takeovers.",
+    "hi": "अकेला चोरी पासवर्ड अब काफ़ी नहीं — हमलावर को आपका फ़ोन भी चाहिए। इससे ज़्यादातर खाता-कब्ज़े रुकते हैं।",
+    "hinglish": "Akela chori password ab kaafi nahi — attacker ko tumhara phone bhi chahiye. Isse zyaadatar account takeovers rukte hain."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "But codes can be phished: a fake site asks for your OTP and uses it instantly. Never share an OTP — no bank or company asks for it.",
+    "hi": "पर कोड फ़िश हो सकते हैं: नक़ली साइट आपका OTP माँगकर तुरंत इस्तेमाल करती है। OTP कभी न बताओ — कोई बैंक या कंपनी उसे नहीं माँगती।",
+    "hinglish": "Par codes phish ho sakte hain: nakli site tumhara OTP maangkar turant use karti hai. OTP kabhi mat batao — koi bank ya company use nahi maangti."
+   },
+   "visual": "anim:otp-phish",
+   "narration": {
+    "en": "But codes can be phished: a fake site asks for your OTP and uses it instantly. Never share an OTP — no bank or company asks for it.",
+    "hi": "पर कोड फ़िश हो सकते हैं: नक़ली साइट आपका OTP माँगकर तुरंत इस्तेमाल करती है। OTP कभी न बताओ — कोई बैंक या कंपनी उसे नहीं माँगती।",
+    "hinglish": "Par codes phish ho sakte hain: nakli site tumhara OTP maangkar turant use karti hai. OTP kabhi mat batao — koi bank ya company use nahi maangti."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "A passkey signs a challenge for the exact website domain. A look-alike site gets nothing useful, so passkeys resist phishing.",
+    "hi": "पासकी ठीक उसी वेबसाइट डोमेन की चुनौती पर हस्ताक्षर करती है। नक़ली दिखती साइट को कुछ काम का नहीं मिलता, इसलिए पासकी फ़िशिंग से बचाती है।",
+    "hinglish": "Passkey bilkul usi website domain ke challenge ko sign karti hai. Look-alike site ko kuch kaam ka nahi milta, isliye passkeys phishing se bachati hain."
+   },
+   "visual": "anim:passkey-domain",
+   "narration": {
+    "en": "A passkey signs a challenge for the exact website domain. A look-alike site gets nothing useful, so passkeys resist phishing.",
+    "hi": "पासकी ठीक उसी वेबसाइट डोमेन की चुनौती पर हस्ताक्षर करती है। नक़ली दिखती साइट को कुछ काम का नहीं मिलता, इसलिए पासकी फ़िशिंग से बचाती है।",
+    "hinglish": "Passkey bilkul usi website domain ke challenge ko sign karti hai. Look-alike site ko kuch kaam ka nahi milta, isliye passkeys phishing se bachati hain."
+   }
+  }
+ ],
+ "play": {
+  "lab": "password-lab",
+  "config": {
+   "seed": 7
+  },
+  "goal": {
+   "en": "Generate a passphrase and test it. Then think: even a strong passphrase can be phished — which extra factor would stop a thief who already knows it?",
+   "hi": "पासफ़्रेज़ बनाओ और जाँचो। फिर सोचो: मज़बूत पासफ़्रेज़ भी फ़िश हो सकता है — कौन-सा अतिरिक्त कारक उस चोर को रोकेगा जो उसे पहले से जानता है?",
+   "hinglish": "Passphrase banao aur test karo. Phir socho: strong passphrase bhi phish ho sakta hai — kaunsa extra factor us chor ko rokega jo use pehle se jaanta hai?"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Not all second factors are equal",
+    "hi": "सभी दूसरे कारक बराबर नहीं",
+    "hinglish": "Saare second factors barabar nahi"
+   },
+   "body": {
+    "en": "From weakest to strongest: SMS OTP (can be intercepted by SIM swap or phished), email codes, authenticator-app TOTP (works offline, still phishable), push approval with number matching (resists fatigue attacks), and passkeys or hardware security keys (FIDO2) which are phishing-resistant because the browser binds the signature to the real domain. In payments, RBI requires an additional factor for most digital transactions, and its 2025 authentication directions allow banks to use options beyond SMS OTP from April 2026.",
+    "hi": "सबसे कमज़ोर से सबसे मज़बूत: SMS OTP (सिम स्वैप से पकड़ा या फ़िश हो सकता है), ईमेल कोड, ऑथेंटिकेटर-ऐप TOTP (ऑफ़लाइन चलता, फिर भी फ़िश हो सकता), नंबर-मिलान वाला पुश अनुमोदन (थकान हमलों से बचाता), और पासकी या हार्डवेयर सुरक्षा कुंजी (FIDO2) जो फ़िशिंग-प्रतिरोधी हैं क्योंकि ब्राउज़र हस्ताक्षर को असली डोमेन से बाँधता है। भुगतान में RBI ज़्यादातर डिजिटल लेन-देन के लिए अतिरिक्त कारक माँगता है, और उसके 2025 प्रमाणीकरण निर्देश अप्रैल 2026 से बैंकों को SMS OTP के अलावा विकल्प इस्तेमाल करने देते हैं।",
+    "hinglish": "Sabse weak se sabse strong: SMS OTP (SIM swap se intercept ya phish ho sakta hai), email codes, authenticator-app TOTP (offline chalta, phir bhi phishable), number matching wala push approval (fatigue attacks se bachata), aur passkeys ya hardware security keys (FIDO2) jo phishing-resistant hain kyunki browser signature ko asli domain se baandhta hai. Payments mein RBI zyaadatar digital transactions ke liye additional factor maangta hai, aur uske 2025 authentication directions April 2026 se banks ko SMS OTP ke alawa options use karne dete hain."
+   },
+   "analogy": {
+    "en": "An OTP is a spare key you can be tricked into handing over; a passkey is a key that refuses to fit any lock except the real one.",
+    "hi": "OTP एक अतिरिक्त चाबी है जिसे धोखे से दिलवाया जा सकता है; पासकी ऐसी चाबी है जो असली के सिवा किसी ताले में नहीं लगती।",
+    "hinglish": "OTP ek spare chaabi hai jise dhokhe se dilwaya ja sakta hai; passkey aisi chaabi hai jo asli ke siwa kisi taale mein nahi lagti."
+   },
+   "realExample": {
+    "en": "Google, Apple, Microsoft, many banks and UPI apps now support passkeys or device-bound biometrics.",
+    "hi": "गूगल, ऐप्पल, माइक्रोसॉफ़्ट, कई बैंक और यूपीआई ऐप अब पासकी या डिवाइस-बद्ध बायोमेट्रिक का समर्थन करते हैं।",
+    "hinglish": "Google, Apple, Microsoft, kai banks aur UPI apps ab passkeys ya device-bound biometrics support karte hain."
+   }
+  },
+  {
+   "heading": {
+    "en": "How a passkey works",
+    "hi": "पासकी कैसे काम करती है",
+    "hinglish": "Passkey kaise kaam karti hai"
+   },
+   "body": {
+    "en": "At sign-up your device creates a key pair just for that site. The site stores only the public key — there is no shared secret to leak. At login the site sends a random challenge; your device asks for your fingerprint or PIN locally (the biometric never leaves the phone), signs the challenge with the private key, and the site verifies with the public key. Because the browser includes the real domain in what is signed, a fake domain cannot reuse it. Passkeys can sync across your devices through your platform account.",
+    "hi": "साइन-अप पर आपका डिवाइस सिर्फ़ उस साइट के लिए कुंजी-जोड़ी बनाता है। साइट सिर्फ़ सार्वजनिक कुंजी रखती है — लीक होने के लिए कोई साझा राज़ नहीं। लॉगिन पर साइट यादृच्छिक चुनौती भेजती है; डिवाइस स्थानीय रूप से उँगली या पिन माँगता है (बायोमेट्रिक फ़ोन से बाहर नहीं जाता), निजी कुंजी से चुनौती पर हस्ताक्षर करता है, और साइट सार्वजनिक कुंजी से जाँचती है। क्योंकि ब्राउज़र हस्ताक्षरित चीज़ में असली डोमेन जोड़ता है, नक़ली डोमेन उसे दोबारा इस्तेमाल नहीं कर सकता। पासकी आपके प्लेटफ़ॉर्म खाते से आपके डिवाइसों में सिंक हो सकती हैं।",
+    "hinglish": "Sign-up par tumhara device sirf us site ke liye key pair banata hai. Site sirf public key rakhti hai — leak hone ke liye koi shared secret nahi. Login par site random challenge bhejti hai; device locally fingerprint ya PIN maangta hai (biometric phone se bahar nahi jaata), private key se challenge sign karta hai, aur site public key se verify karti hai. Kyunki browser signed cheez mein asli domain jodta hai, fake domain use reuse nahi kar sakta. Passkeys tumhare platform account se tumhare devices mein sync ho sakti hain."
+   },
+   "analogy": {
+    "en": "Like a school ID with a hologram that only the school scanner accepts — photocopies are useless.",
+    "hi": "होलोग्राम वाले स्कूल आईडी जैसा जिसे सिर्फ़ स्कूल का स्कैनर माने — फ़ोटोकॉपी बेकार।",
+    "hinglish": "Hologram wale school ID jaisa jise sirf school ka scanner maane — photocopies bekaar."
+   },
+   "realExample": {
+    "en": "If a site using passkeys is breached, attackers steal only public keys, which cannot be used to log in.",
+    "hi": "अगर पासकी वाली साइट में सेंध लगे, हमलावर सिर्फ़ सार्वजनिक कुंजियाँ चुराते हैं, जिनसे लॉगिन नहीं हो सकता।",
+    "hinglish": "Agar passkey wali site mein breach ho, attackers sirf public keys churaate hain, jinse login nahi ho sakta."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Help a family member turn on MFA (authenticator app or passkey) for their email account, and save the backup codes somewhere safe offline.",
+   "hi": "घर के किसी सदस्य के ईमेल खाते पर MFA (ऑथेंटिकेटर ऐप या पासकी) चालू करने में मदद करो, और बैकअप कोड कहीं सुरक्षित ऑफ़लाइन रखो।",
+   "hinglish": "Ghar ke kisi sadasya ki email par MFA (authenticator app ya passkey) on karne mein madad karo, aur backup codes kahin safe offline rakho."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "match",
+    "prompt": {
+     "en": "Match each item to its factor type.",
+     "hi": "हर चीज़ को उसके कारक प्रकार से मिलाओ।",
+     "hinglish": "Har cheez ko uske factor type se milao."
+    },
+    "options": [
+     {
+      "en": "UPI PIN",
+      "hi": "यूपीआई पिन",
+      "hinglish": "UPI PIN"
+     },
+     {
+      "en": "Phone with authenticator app",
+      "hi": "ऑथेंटिकेटर ऐप वाला फ़ोन",
+      "hinglish": "Authenticator app wala phone"
+     },
+     {
+      "en": "Fingerprint",
+      "hi": "उँगली-छाप",
+      "hinglish": "Fingerprint"
+     }
+    ],
+    "answer": [
+     {
+      "en": "Something you know",
+      "hi": "जो आप जानते हो",
+      "hinglish": "Jo tum jaante ho"
+     },
+     {
+      "en": "Something you have",
+      "hi": "जो आपके पास है",
+      "hinglish": "Jo tumhare paas hai"
+     },
+     {
+      "en": "Something you are",
+      "hi": "जो आप हो",
+      "hinglish": "Jo tum ho"
+     }
+    ],
+    "explain": {
+     "en": "Different kinds of factor fail in different ways, so combining them helps.",
+     "hi": "अलग तरह के कारक अलग तरह से विफल होते हैं, इसलिए जोड़ना मदद करता है।",
+     "hinglish": "Alag tarah ke factors alag tarah se fail hote hain, isliye jodna madad karta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which is most resistant to phishing?",
+     "hi": "कौन-सा फ़िशिंग से सबसे ज़्यादा बचाता है?",
+     "hinglish": "Kaunsa phishing se sabse zyaada bachata hai?"
+    },
+    "options": [
+     {
+      "en": "SMS OTP",
+      "hi": "SMS OTP",
+      "hinglish": "SMS OTP"
+     },
+     {
+      "en": "Email code",
+      "hi": "ईमेल कोड",
+      "hinglish": "Email code"
+     },
+     {
+      "en": "Passkey",
+      "hi": "पासकी",
+      "hinglish": "Passkey"
+     },
+     {
+      "en": "Security question",
+      "hi": "सुरक्षा प्रश्न",
+      "hinglish": "Security question"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "The passkey signature is bound to the real domain.",
+     "hi": "पासकी हस्ताक्षर असली डोमेन से बँधा होता है।",
+     "hinglish": "Passkey signature asli domain se bandha hota hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "A caller \"from your bank\" asks for the OTP you just received. You should…",
+     "hi": "\"आपके बैंक से\" कॉल करने वाला अभी आया OTP माँगता है। आपको…",
+     "hinglish": "\"Tumhare bank se\" caller abhi aaya OTP maangta hai. Tumhe…"
+    },
+    "options": [
+     {
+      "en": "Share it quickly",
+      "hi": "जल्दी बता दो",
+      "hinglish": "Jaldi bata do"
+     },
+     {
+      "en": "Refuse, hang up and report on 1930 or cybercrime.gov.in",
+      "hi": "मना करो, फ़ोन काटो और 1930 या cybercrime.gov.in पर शिकायत करो",
+      "hinglish": "Mana karo, phone kaato aur 1930 ya cybercrime.gov.in par report karo"
+     },
+     {
+      "en": "Share half of it",
+      "hi": "आधा बता दो",
+      "hinglish": "Aadha bata do"
+     },
+     {
+      "en": "Text it instead",
+      "hi": "मैसेज कर दो",
+      "hinglish": "Message kar do"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Banks never ask for OTPs. 1930 is India's cyber-fraud helpline.",
+     "hi": "बैंक कभी OTP नहीं माँगते। 1930 भारत की साइबर-धोखाधड़ी हेल्पलाइन है।",
+     "hinglish": "Banks kabhi OTP nahi maangte. 1930 India ki cyber-fraud helpline hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "What does a site store for your passkey?",
+     "hi": "आपकी पासकी के लिए साइट क्या रखती है?",
+     "hinglish": "Tumhari passkey ke liye site kya rakhti hai?"
+    },
+    "options": [
+     {
+      "en": "Your fingerprint",
+      "hi": "आपकी उँगली-छाप",
+      "hinglish": "Tumhara fingerprint"
+     },
+     {
+      "en": "Only your public key",
+      "hi": "सिर्फ़ आपकी सार्वजनिक कुंजी",
+      "hinglish": "Sirf tumhari public key"
+     },
+     {
+      "en": "Your private key",
+      "hi": "आपकी निजी कुंजी",
+      "hinglish": "Tumhari private key"
+     },
+     {
+      "en": "Your password",
+      "hi": "आपका पासवर्ड",
+      "hinglish": "Tumhara password"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Private key and biometrics stay on your device.",
+     "hi": "निजी कुंजी और बायोमेट्रिक आपके डिवाइस पर रहते हैं।",
+     "hinglish": "Private key aur biometrics tumhare device par rehte hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Generate a passphrase in the lab.",
+     "hi": "प्रयोगशाला में पासफ़्रेज़ बनाओ।",
+     "hinglish": "Lab mein passphrase banao."
+    },
+    "answer": {
+     "event": "passphrase-made"
+    },
+    "explain": {
+     "en": "A random-word passphrase plus MFA is a strong combination.",
+     "hi": "यादृच्छिक-शब्द पासफ़्रेज़ और MFA मज़बूत जोड़ी है।",
+     "hinglish": "Random-word passphrase plus MFA strong combination hai."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "cyber.mfa",
+  "cyber.otp-never-share"
+ ],
+ "sources": [
+  {
+   "title": "FIDO Alliance — Passkeys",
+   "url": "https://fidoalliance.org/passkeys/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "RFC 6238 TOTP",
+   "url": "https://www.rfc-editor.org/rfc/rfc6238",
+   "licence": "fact reference"
+  }
+ ]
+}

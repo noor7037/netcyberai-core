@@ -1,0 +1,174 @@
+<!doctype html><html lang="en" data-lab="tokenizer-attention"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#061233"><title>Tokenizer & Attention Visualiser · NCA Tech Lab L3</title><style>:root{--bg:#061233;--bg2:#0b1b4a;--card:rgba(255,255,255,.06);--line:rgba(255,255,255,.12);--tx:#eef4ff;--mut:#9fb0d6;--grape:#8B3DFF;--cyan:#02CFF9;--leaf:#22C55E;--coral:#FF6B57;--gold:#F5B90A;--tang:#FF7A1A;--royal:#2563EB;--r:16px}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:radial-gradient(120% 80% at 10% -10%,#22145e 0%,transparent 55%),radial-gradient(120% 80% at 110% 10%,#04395e 0%,transparent 50%),var(--bg);color:var(--tx);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans Devanagari",sans-serif;min-height:100%}
+body{padding:0 0 24px}
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:8px;padding:10px 12px;background:rgba(6,18,51,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top h1{font-size:16px;margin:0;flex:1;letter-spacing:.2px}
+.top h1 small{display:block;font-size:11px;color:var(--mut);font-weight:500}
+.badge{font-size:11px;padding:3px 8px;border-radius:99px;background:linear-gradient(90deg,var(--grape),var(--cyan));color:#061233;font-weight:700}
+.langs{display:flex;border:1px solid var(--line);border-radius:99px;overflow:hidden}
+.langs button{background:none;border:0;color:var(--mut);padding:5px 8px;font:inherit;font-size:12px;min-height:30px}
+.langs button.on{background:var(--grape);color:#fff}
+.wrap{max-width:1100px;margin:0 auto;padding:12px}
+.goal{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:var(--r);background:linear-gradient(135deg,rgba(139,61,255,.22),rgba(2,207,249,.12));border:1px solid rgba(139,61,255,.4);margin-bottom:12px;font-size:14px}
+.goal b{color:var(--gold)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px;margin-bottom:12px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.card h2{font-size:14px;margin:0 0 8px;color:var(--cyan);letter-spacing:.3px;text-transform:uppercase}
+.grid{display:grid;gap:12px}
+@media(min-width:720px){.grid.two{grid-template-columns:1.25fr 1fr}}
+@media(orientation:landscape) and (max-height:500px){.grid.two{grid-template-columns:1.2fr 1fr}.top{padding:6px 12px}}
+.btn{appearance:none;border:1px solid var(--line);background:rgba(255,255,255,.08);color:var(--tx);border-radius:12px;padding:9px 12px;font:inherit;font-weight:600;min-height:40px;cursor:pointer;transition:transform .12s,background .2s}
+.btn:active{transform:scale(.96)}
+.btn.pri{background:linear-gradient(135deg,var(--grape),#5b2be0);border-color:transparent;color:#fff;box-shadow:0 6px 18px rgba(139,61,255,.4)}
+.btn.ok{background:var(--leaf);color:#062;border-color:transparent}
+.btn.on{outline:2px solid var(--cyan)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{border-radius:99px;padding:6px 11px;min-height:34px;font-size:13px}
+label.sl{display:flex;flex-direction:column;gap:3px;font-size:12px;color:var(--mut);flex:1;min-width:120px}
+input[type=range]{width:100%;accent-color:var(--grape)}
+input[type=text],textarea,select{width:100%;background:rgba(0,0,0,.25);border:1px solid var(--line);color:var(--tx);border-radius:12px;padding:10px;font:inherit}
+.stat{display:flex;flex-direction:column;padding:8px 10px;border-radius:12px;background:rgba(0,0,0,.22);min-width:80px}
+.stat b{font-size:18px;font-variant-numeric:tabular-nums}
+.stat span{font-size:11px;color:var(--mut)}
+.mut{color:var(--mut)}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px}
+canvas,svg{display:block;max-width:100%;touch-action:none}
+
+
+.explain{font-size:13.5px;color:#d7e2ff;background:rgba(0,0,0,.2);border-left:3px solid var(--cyan);padding:8px 10px;border-radius:8px;margin-top:8px}
+.pill{display:inline-block;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:700}
+@keyframes pop{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(2,207,249,.0)}50%{box-shadow:0 0 0 6px rgba(2,207,249,.25)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.top h1 .hstat{display:none;font-size:12px;font-weight:700;color:#4ade80;animation:pop .3s both}.top h1.toasting small{display:none}.top h1.toasting .hstat{display:block}
+.seg.chips{margin:4px 0}.seg.chips button{white-space:normal;text-align:left;line-height:1.25;max-width:100%}
+.seg.chips.big .pick{width:100%;font-weight:700}
+</style></head><body><script>// NCA Tech Lab L3 shared kit: language, config from ?cfg= / ?lesson= / inline, mission events, small helpers. No eval.
+(function(g){
+  const qs=new URLSearchParams(location.search);
+  const K={lang:qs.get('lang')||localStorage.getItem('nca-lang')||'hinglish',cfg:{},goal:null,lab:document.documentElement.dataset.lab,listeners:[]};
+  K.reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  K.t=(o)=>o==null?'':typeof o==='string'?o:(o[K.lang]||o.hinglish||o.en||'');
+  K.$=(s,r)=>(r||document).querySelector(s);K.$$=(s,r)=>[...(r||document).querySelectorAll(s)];
+  K.el=(tag,attrs,html)=>{const e=document.createElement(tag);if(attrs)for(const k in attrs){if(k==='on')for(const ev in attrs.on)e.addEventListener(ev,attrs.on[ev]);else e.setAttribute(k,attrs[k]);}if(html!=null)e.innerHTML=html;return e;};
+  K.esc=(s)=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+  K.rng=(seed)=>{let s=seed>>>0||1;return()=>{s^=s<<13;s>>>=0;s^=s>>17;s^=s<<5;s>>>=0;return s/4294967296;};};
+  K.clamp=(v,a,b)=>Math.max(a,Math.min(b,v));K.lerp=(a,b,t)=>a+(b-a)*t;K.ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+  K.sleep=(ms)=>new Promise(r=>setTimeout(r,K.reduced?0:ms));
+  K.tween=(ms,fn)=>new Promise(res=>{if(K.reduced||ms<=0){fn(1);return res();}const t0=performance.now();const f=n=>{const t=Math.min(1,(n-t0)/ms);fn(K.ease(t));t<1?requestAnimationFrame(f):res();};requestAnimationFrame(f);});
+  // Toasts never cover content (readability rule): the message temporarily replaces the header subtitle, then the subtitle returns after 2.5 s.
+  K.toast=(msg)=>{const h=K.$('header.top h1');if(!h)return;let st=h.querySelector('.hstat');if(!st){st=K.el('span',{class:'hstat',role:'status','aria-live':'polite'});h.appendChild(st);}st.textContent=msg;h.classList.add('toasting');clearTimeout(K._tt);K._tt=setTimeout(()=>h.classList.remove('toasting'),2500);};
+  K.events=[];
+  // emit a lab event; the lesson player listens via postMessage and matches it against try.questions[type=lab-check].answer
+  K.emit=(event,data)=>{const m={type:'nca-lab-event',lab:K.lab,event,data:data||{},at:Date.now()};K.events.push(m);try{parent!==window&&parent.postMessage(m,'*');}catch(e){}g.dispatchEvent(new CustomEvent('nca-lab-event',{detail:m}));document.documentElement.dataset.lastEvent=event;};
+  K.check=(event,data,msg)=>{K.emit(event,data);K.toast('✓ '+(msg||K.t({en:'Mission check passed',hinglish:'Mission check pass!',hi:'मिशन जाँच पास!'})));};
+  K.onLang=(fn)=>K.listeners.push(fn);
+  K.setLang=(l)=>{K.lang=l;localStorage.setItem('nca-lang',l);K.$$('.langs button').forEach(b=>b.classList.toggle('on',b.dataset.l===l));K.$$('[data-t]').forEach(e=>{const o=K.T[e.dataset.t];if(o)e.innerHTML=K.t(o);});K.renderGoal();K.listeners.forEach(f=>f(l));};
+  K.T={};// string table: key -> {en,hi,hinglish}
+  K.renderGoal=()=>{const gEl=K.$('#goal');if(!gEl)return;const goal=K.goal||K.T.__goal;gEl.style.display=goal?'flex':'none';if(goal)gEl.innerHTML='<span>🎯</span><div><b>'+K.esc(K.t({en:'Goal',hinglish:'Goal',hi:'लक्ष्य'}))+':</b> '+K.esc(K.t(goal))+'</div>';};
+  K.header=(title,sub)=>{const h=K.el('header',{class:'top'});h.innerHTML='<span class="badge">L3</span><h1>'+K.esc(K.t(title))+'<small>'+K.esc(K.t(sub))+'</small></h1><div class="langs" role="group" aria-label="Language"><button data-l="hinglish">Hinglish</button><button data-l="en">EN</button><button data-l="hi">हिं</button></div>';document.body.prepend(h);K.$$('.langs button',h).forEach(b=>b.onclick=()=>{K.setLang(b.dataset.l);h.querySelector('h1').firstChild.textContent=K.t(title);h.querySelector('small').textContent=K.t(sub);});};
+  // Readability rule: native <select> boxes cut long option text on phones, so every select is shown as a wrapping row of chips.
+  K.chipify=(sel)=>{if(sel._chips||sel.dataset.keep!=null)return;const box=K.el('div',{class:'seg chips',role:'radiogroup','aria-label':sel.getAttribute('aria-label')||'options'});sel.after(box);sel.style.display='none';sel._chips=box;let last='';
+    let open=false;const render=(force)=>{const n=sel.options.length,big=n>6;const sig=[...sel.options].map(o=>o.value+'\u0001'+o.textContent).join('\u0002')+'|'+sel.value+'|'+open;if(sig===last&&!force)return;last=sig;box.innerHTML='';box.classList.toggle('big',big);
+      if(big){const cur=sel.options[sel.selectedIndex];const t=K.el('button',{class:'btn on pick',type:'button','aria-expanded':open?'true':'false'});t.textContent=(open?'▴ ':'▾ ')+(cur?cur.textContent:'');t.onclick=()=>{open=!open;render(true);};box.appendChild(t);if(!open)return;}
+      [...sel.options].forEach(o=>{if(big&&o.value===sel.value)return;const b=K.el('button',{class:'btn'+(o.value===sel.value?' on':''),type:'button',role:'radio','aria-checked':o.value===sel.value?'true':'false'});b.textContent=o.textContent;b.onclick=()=>{if(sel.disabled)return;sel.value=o.value;open=false;render(true);sel.dispatchEvent(new Event('change',{bubbles:true}));};box.appendChild(b);});};
+    render();new MutationObserver(render).observe(sel,{childList:true,subtree:true,characterData:true});setInterval(render,250);};
+  K.chipAll=()=>{K.$$('select').forEach(K.chipify);if(!K._mo){K._mo=new MutationObserver(()=>K.$$('select').forEach(K.chipify));K._mo.observe(document.body,{childList:true,subtree:true});}};
+  K.boot=async(defaults)=>{let cfg=Object.assign({},defaults||{});
+    const inl=document.getElementById('lesson-inline');
+    try{if(inl){const L=JSON.parse(inl.textContent);if(L.play){Object.assign(cfg,L.play.config||{});K.goal=L.play.goal;}}}catch(e){}
+    const lp=qs.get('lesson');if(lp){try{const L=await (await fetch(lp)).json();if(L.play&&L.play.lab===K.lab){Object.assign(cfg,L.play.config||{});K.goal=L.play.goal;}}catch(e){}}
+    const c=qs.get('cfg');if(c){try{Object.assign(cfg,JSON.parse(c));}catch(e){}}
+    for(const [k,v] of qs){if(!['cfg','lesson','lang'].includes(k))cfg[k]=v;}
+    K.cfg=cfg;K.setLang(K.lang);setTimeout(K.chipAll,0);return cfg;};
+  g.K=K;
+})(window);
+</script><div class="wrap">
+ <div id="goal" class="goal" style="display:none"></div>
+ <div class="seg" id="views" style="margin-bottom:10px"></div>
+ <div id="stage"></div>
+</div>
+<style>
+.tok{display:inline-flex;flex-direction:column;align-items:center;margin:3px;padding:5px 7px;border-radius:9px;font-weight:700;color:#061233;animation:pop .35s both;font-size:15px;white-space:pre}
+.tok i{font-style:normal;font-size:9.5px;font-weight:600;opacity:.75;font-family:ui-monospace,monospace}
+.bar{height:26px;border-radius:8px;display:flex;align-items:center;padding:0 8px;font-weight:700;color:#061233;transition:width .6s cubic-bezier(.2,1,.3,1);white-space:nowrap}
+.heat td{width:26px;height:26px;text-align:center;font-size:9px;color:#fff;border-radius:4px}
+.heat th{font-size:10px;font-weight:600;color:#9fb0d6;padding:2px}
+.heat th.v{writing-mode:vertical-rl;transform:rotate(180deg);height:70px;text-align:left}
+.wbtn{margin:3px}
+</style>
+<script>
+const T=K.T;Object.assign(T,{tokens:{en:'Tokens',hinglish:'Tokens',hi:'टोकन'},embeddings:{en:'Embeddings',hinglish:'Embeddings',hi:'एम्बेडिंग'},attention:{en:'Attention',hinglish:'Attention',hi:'अटेंशन'}});
+let cfg,view;const TC=['#02CFF9','#FFD23F','#22C55E','#FF7A1A','#c4a3ff','#FF6B57','#7dd3fc','#fde68a'];
+// ---------- tokenizer: greedy longest-match over a small learned-style vocabulary, UTF-8 byte fallback ----------
+const VOCAB=('the,The, the, a, an, is, was, are, not, and, to, of, in, it, it, he, she, my, your, train, long, is, very,ing,ed,er,est,ly,un,re,able,believ,Un,believable, believable,!,.,?,",", ,'+
+ 'Nan,he,Nanhe, ki, ka, ke, hai, lam,bi, lambi, train, bahut, mera, meri, school, ghar, aaj, kal, kya, nahi, hum, tum, aur, bhi, se, ko, mein, par,'+
+ 'ani,mal, animal, did, cross, road, because, tired, wide, AI, model, token,ize,izer, Hello, India, Delhi, Mumbai, cricket, chai, pani,है, है,।, बहुत').split(',');
+const VSET=new Set(VOCAB);const enc=new TextEncoder();
+function tokenize(s){const out=[];let i=0;while(i<s.length){let m='';for(let L=Math.min(14,s.length-i);L>0;L--){const sub=s.substr(i,L);if(VSET.has(sub)){m=sub;break;}}
+ if(m){out.push({t:m,id:idOf(m)});i+=m.length;}else{const ch=String.fromCodePoint(s.codePointAt(i));const by=[...enc.encode(ch)];if(by.length===1&&/[A-Za-z0-9]/.test(ch)){out.push({t:ch,id:idOf(ch)});}else by.forEach((b,k)=>out.push({t:k?'·':ch,id:256+b,byte:true,hex:b.toString(16).toUpperCase()}));i+=ch.length;}}return out;}
+function idOf(s){let h=2166136261;for(const c of s){h^=c.codePointAt(0);h=Math.imul(h,16777619)>>>0;}return 1000+h%49000;}
+const SAMPLES=[{k:'en',label:'English',text:'My train is very long.'},{k:'hl',label:'Hinglish (Roman)',text:'Meri train bahut lambi hai.'},{k:'hi',label:'हिन्दी (देवनागरी)',text:'मेरी ट्रेन बहुत लंबी है।'}];
+function viewTokens(){const st=K.$('#stage');const seen=new Set();
+ st.innerHTML=`<div class="grid two"><div class="card"><h2>${K.t({en:'Type anything',hinglish:'Kuch bhi type karo',hi:'कुछ भी लिखो'})}</h2><textarea id="tx" rows="2"></textarea><div id="chips" style="margin-top:10px;min-height:60px"></div><div class="row" style="margin-top:6px"><div class="stat"><b id="nt">0</b><span>tokens</span></div><div class="stat"><b id="nc">0</b><span>${K.t({en:'characters',hinglish:'characters',hi:'अक्षर'})}</span></div><div class="stat"><b id="ratio">0</b><span>chars / token</span></div></div></div>
+ <div class="card"><h2>${K.t({en:'Same sentence, three scripts',hinglish:'Ek hi sentence, teen scripts',hi:'एक ही वाक्य, तीन लिपियाँ'})}</h2><div class="seg" id="samp">${SAMPLES.map((s,i)=>`<button class="btn" data-i="${i}">${s.label}</button>`).join('')}</div><div id="bars" style="margin-top:12px;display:grid;gap:8px"></div>
+ <div class="explain">${K.t({en:'A tokenizer splits text into pieces from a fixed vocabulary learned from training text (Byte-Pair Encoding). Pieces it has never seen fall back to raw UTF-8 bytes. One Devanagari letter is 3 bytes, so scripts that were rare in the training text cost more tokens — more money, less context. Newer tokenizers have larger multilingual vocabularies to fix this. (This lab uses a tiny teaching vocabulary; real ones have 50,000–200,000 tokens.)',hinglish:'Tokenizer text ko ek fixed vocabulary ke pieces mein todta hai jo training text se seekhi gayi hai (Byte-Pair Encoding). Jo piece kabhi nahi dekha, woh raw UTF-8 bytes ban jaata hai. Ek Devanagari akshar 3 bytes ka hota hai, isliye jo scripts training text mein kam thi unke zyada tokens lagte hain — zyada paisa, kam context. Naye tokenizers bade multilingual vocabularies se isse theek karte hain. (Yeh lab ek chhoti teaching vocabulary use karta hai; asli wale 50,000–2,00,000 tokens ke hote hain.)',hi:'टोकनाइज़र पाठ को एक निश्चित शब्दावली के टुकड़ों में तोड़ता है जो प्रशिक्षण पाठ से सीखी गई है (बाइट-पेयर एन्कोडिंग)। जो टुकड़ा कभी नहीं देखा, वह कच्चे UTF-8 बाइट बन जाता है। एक देवनागरी अक्षर 3 बाइट का होता है, इसलिए जो लिपियाँ प्रशिक्षण पाठ में कम थीं उनके ज़्यादा टोकन लगते हैं — ज़्यादा पैसा, कम संदर्भ। नए टोकनाइज़र बड़ी बहुभाषी शब्दावली से इसे सुधारते हैं। (यह लैब छोटी शिक्षण शब्दावली इस्तेमाल करता है; असली में 50,000–2,00,000 टोकन होते हैं।)'})}</div></div></div>`;
+ const tx=K.$('#tx');tx.value=cfg.text||SAMPLES[0].text;const render=()=>{const tk=tokenize(tx.value);K.$('#chips').innerHTML=tk.map((t,i)=>`<span class="tok" style="background:${t.byte?'#64748b':TC[i%TC.length]};animation-delay:${Math.min(i*25,600)}ms">${K.esc(t.t===' '?'␠':t.t.replace(/^ /,'␠'))}<i>${t.byte?'0x'+t.hex:t.id}</i></span>`).join('');K.$('#nt').textContent=tk.length;K.$('#nc').textContent=[...tx.value].length;K.$('#ratio').textContent=tk.length?([...tx.value].length/tk.length).toFixed(1):0;};
+ tx.oninput=render;render();
+ const counts=SAMPLES.map(s=>tokenize(s.text).length),mx=Math.max(...counts);
+ K.$('#bars').innerHTML=SAMPLES.map((s,i)=>`<div><div class="mut" style="font-size:12px">${s.label}: <span class="mono">${K.esc(s.text)}</span></div><div class="bar" id="b${i}" style="width:8%;background:${['#02CFF9','#FFD23F','#FF7A1A'][i]}">?</div></div>`).join('');
+ K.$$('#samp button').forEach(b=>b.onclick=()=>{const i=+b.dataset.i;b.classList.add('on');tx.value=SAMPLES[i].text;render();seen.add(i);const el=K.$('#b'+i);el.style.width=(15+85*counts[i]/mx)+'%';el.textContent=counts[i]+' tokens';if(seen.size===3){K.check('compared-scripts',{en:counts[0],hinglish:counts[1],hi:counts[2]});}});}
+// ---------- embeddings: hand-built 6-D meaning vectors (royal, female, young, fruit, veg, city, south) ----------
+const EMB={raja:[0.95,0.05,0.2,0,0,0,0.1],rani:[0.95,0.95,0.2,0,0,0,0.1],ladka:[0.05,0.05,0.9,0,0,0,0.1],ladki:[0.05,0.95,0.9,0,0,0,0.1],aam:[0,0.5,0,0.95,0.1,0,0.2],kela:[0,0.5,0,0.9,0.15,0,0.4],tamatar:[0,0.5,0,0.45,0.8,0,0.2],delhi:[0.3,0.5,0,0,0,0.95,0],mumbai:[0.1,0.5,0,0,0,0.95,0.3],chennai:[0.1,0.5,0,0,0,0.9,0.95]};
+const DIMS=['royal','female','young','fruit','veg','city','south'];
+const cos=(a,b)=>{let d=0,x=0,y=0;a.forEach((v,i)=>{d+=v*b[i];x+=v*v;y+=b[i]*b[i];});return d/Math.sqrt(x*y);};
+const sub=(a,b)=>a.map((v,i)=>v-b[i]),add=(a,b)=>a.map((v,i)=>v+b[i]);
+// fixed projection 7-D -> 3-D (like PCA) for display
+const PJ=[[1.1,0,-0.3,-0.9,-0.5,0.2,0],[0,1,0.5,0,0,0,0],[0,0,0.5,0.2,1.2,-1.0,1.0]];const proj=v=>{const p=PJ.map(r=>r.reduce((s,w,i)=>s+w*v[i],0));return [p[0]-0.1,p[1]-0.65,p[2]-0.1];};
+function viewEmb(){const words=(cfg.words&&cfg.words.length?cfg.words:Object.keys(EMB)).filter(w=>EMB[w]);const st=K.$('#stage');let ang=0.6,tilt=0.35,sel=null,arrow=0,drag=null,auto=!K.reduced;
+ st.innerHTML=`<div class="grid two"><div class="card"><h2>${K.t({en:'Meaning space (drag to rotate)',hinglish:'Meaning space (ghumane ke liye drag karo)',hi:'अर्थ-स्थान (घुमाने के लिए खींचो)'})}</h2><canvas id="sc" width="640" height="560" style="width:100%;border-radius:12px;background:#08163f"></canvas></div>
+ <div><div class="card"><h2>${K.t({en:'Tap a word',hinglish:'Ek word tap karo',hi:'एक शब्द दबाओ'})}</h2><div id="wl">${words.map(w=>`<button class="btn wbtn" data-w="${w}">${w}</button>`).join('')}</div><div id="nn" style="margin-top:8px"></div></div>
+ <div class="card"><h2>${K.t({en:'Vector maths',hinglish:'Vector maths',hi:'सदिश गणित'})}</h2><button class="btn pri" id="ar">raja − ladka + ladki = ?</button><div id="arr" class="explain"></div></div>
+ <div class="card"><div class="explain">${K.t({en:'Each word is a list of numbers (a vector). Words used in similar ways get nearby vectors, measured with cosine similarity. Real models learn 768–12,288 dimensions from billions of sentences; here 7 readable dimensions are drawn in 3-D.',hinglish:'Har word numbers ki ek list (vector) hai. Jo words milte-julte tareeke se use hote hain unke vectors paas hote hain, cosine similarity se naapte hain. Asli models arabon sentences se 768–12,288 dimensions seekhte hain; yahan 7 padhne-layak dimensions 3-D mein dikhaye hain.',hi:'हर शब्द संख्याओं की एक सूची (सदिश) है। जो शब्द मिलते-जुलते ढंग से इस्तेमाल होते हैं उनके सदिश पास होते हैं, कोसाइन समानता से मापे जाते हैं। असली मॉडल अरबों वाक्यों से 768–12,288 आयाम सीखते हैं; यहाँ 7 पढ़ने-योग्य आयाम 3-D में दिखाए हैं।'})}</div></div></div></div>`;
+ const c=K.$('#sc'),x=c.getContext('2d');
+ const P3=v=>{const p=proj(v);const X=p[0]*Math.cos(ang)-p[2]*Math.sin(ang),Z=p[0]*Math.sin(ang)+p[2]*Math.cos(ang);const Y=p[1]*Math.cos(tilt)-Z*Math.sin(tilt),Z2=p[1]*Math.sin(tilt)+Z*Math.cos(tilt);const s=3/(3+Z2);return [320+X*165*s,290-Y*175*s,s,Z2];};
+ function draw(){x.clearRect(0,0,640,560);// axes grid
+  x.strokeStyle='rgba(255,255,255,.08)';for(let g=-1;g<=1.01;g+=0.25){[[[g,0,0,0,0,0,-1],[g,0,0,0,0,0,1]]].forEach(()=>{});}
+  const base=[[-0.6,-0.1,0,0,0,0,0],[1.3,-0.1,0,0,0,0,0],[0,1.1,0,0,0,0,0]];
+  // floor grid
+  for(let i=-4;i<=4;i++){const a=P3vec(i/4*1.2,-0.15,-1.2),b=P3vec(i/4*1.2,-0.15,1.2),d=P3vec(-1.2,-0.15,i/4*1.2),e=P3vec(1.2,-0.15,i/4*1.2);x.beginPath();x.moveTo(a[0],a[1]);x.lineTo(b[0],b[1]);x.moveTo(d[0],d[1]);x.lineTo(e[0],e[1]);x.stroke();}
+  const pts=words.map(w=>[w,P3(EMB[w])]).sort((a,b)=>b[1][3]-a[1][3]);
+  if(sel){const near=words.filter(w=>w!==sel).map(w=>[w,cos(EMB[sel],EMB[w])]).sort((a,b)=>b[1]-a[1]).slice(0,3);const a=P3(EMB[sel]);near.forEach(([w,s])=>{const b=P3(EMB[w]);x.strokeStyle=`rgba(2,207,249,${s})`;x.lineWidth=2+s*4;x.setLineDash([6,6]);x.beginPath();x.moveTo(a[0],a[1]);x.lineTo(b[0],b[1]);x.stroke();x.setLineDash([]);});}
+  if(arrow>0){const A=EMB.raja,B=sub(A,EMB.ladka),C2=add(B,EMB.ladki);const pa=P3(A),pr=P3(EMB.rani);const t=arrow;const mid=P3(A.map((v,i)=>v+(C2[i]-v)*t));x.strokeStyle='#FFD23F';x.lineWidth=4;x.beginPath();x.moveTo(pa[0],pa[1]);x.lineTo(mid[0],mid[1]);x.stroke();x.fillStyle='#FFD23F';x.beginPath();x.arc(mid[0],mid[1],8,0,7);x.fill();if(t>=1){x.strokeStyle='#FFD23F';x.beginPath();x.arc(pr[0],pr[1],26,0,7);x.stroke();}}
+  pts.forEach(([w,p])=>{const g=EMB[w];const col=g[5]>0.5?'#02CFF9':g[3]>0.4||g[4]>0.4?'#22C55E':g[0]>0.5?'#FFD23F':'#c4a3ff';x.beginPath();x.arc(p[0],p[1],10*p[2],0,7);x.fillStyle=col;x.shadowColor=col;x.shadowBlur=w===sel?25:8;x.fill();x.shadowBlur=0;x.fillStyle='#eef4ff';x.font=`${Math.round(20*p[2])}px system-ui`;x.fillText(w,p[0]+12,p[1]+6);});}
+ function P3vec(a,b,cz){const X=a*Math.cos(ang)-cz*Math.sin(ang),Z=a*Math.sin(ang)+cz*Math.cos(ang);const Y=b*Math.cos(tilt)-Z*Math.sin(tilt),Z2=b*Math.sin(tilt)+Z*Math.cos(tilt);const s=3/(3+Z2);return [320+X*165*s,290-Y*175*s];}
+ const loop=()=>{if(view!=='embeddings')return;if(auto&&!drag)ang+=0.004;draw();requestAnimationFrame(loop);};loop();
+ c.addEventListener('pointerdown',e=>{drag=[e.clientX,e.clientY,ang,tilt];auto=false;c.setPointerCapture(e.pointerId);});c.addEventListener('pointermove',e=>{if(!drag)return;ang=drag[2]+(e.clientX-drag[0])*0.01;tilt=K.clamp(drag[3]+(e.clientY-drag[1])*0.006,-0.2,1.2);});c.addEventListener('pointerup',()=>drag=null);
+ K.$$('#wl button').forEach(b=>b.onclick=()=>{sel=b.dataset.w;K.$$('#wl button').forEach(z=>z.classList.toggle('on',z===b));const near=words.filter(w=>w!==sel).map(w=>[w,cos(EMB[sel],EMB[w])]).sort((a,b)=>b[1]-a[1]).slice(0,3);
+  K.$('#nn').innerHTML=near.map(([w,s],i)=>`<div class="row" style="gap:6px;margin:3px 0"><b style="width:76px">${i+1}. ${w}</b><div class="bar" style="width:${s*70}%;background:#02CFF9;height:20px;font-size:12px">${s.toFixed(2)}</div></div>`).join('')+`<div class="mono mut" style="margin-top:6px">${sel} = [${EMB[sel].map((v,i)=>DIMS[i]+':'+v).join(', ')}]</div>`;K.check('nearest-picked',{word:sel,nearest:near[0][0]},sel+' → '+near[0][0]);});
+ K.$('#ar').onclick=async()=>{arrow=0;await K.tween(1400,t=>arrow=t);arrow=1;const C2=add(sub(EMB.raja,EMB.ladka),EMB.ladki);const best=Object.keys(EMB).filter(w=>!['raja','ladka','ladki'].includes(w)).map(w=>[w,cos(C2,EMB[w])]).sort((a,b)=>b[1]-a[1]);K.$('#arr').innerHTML=`→ <b style="color:#FFD23F">${best[0][0]}</b> (cosine ${best[0][1].toFixed(3)}). ${K.t({en:'The "female" direction was added and "young" was cancelled. Real embeddings show this pattern only approximately, and they also learn human biases from text.',hinglish:'"Female" direction add hui aur "young" cancel hua. Asli embeddings mein yeh pattern sirf lagbhag dikhta hai, aur woh text se insaani bias bhi seekh lete hain.',hi:'"स्त्री" दिशा जुड़ी और "युवा" कट गया। असली एम्बेडिंग में यह पैटर्न लगभग ही दिखता है, और वे पाठ से मानवीय पूर्वाग्रह भी सीख लेते हैं।'})}`;K.emit('analogy-solved',{answer:best[0][0]});};}
+// ---------- attention: two precomputed heads ----------
+function viewAttn(){const text=cfg.text||'The animal did not cross the road because it was tired';const toks=text.split(/\s+/);const n=toks.length;const H=+cfg.heads||2;let head=0,q=toks.indexOf('it');if(q<0)q=n-1;
+ const low=toks.map(t=>t.toLowerCase());
+ function scores(h,i){return toks.map((t,j)=>{if(j>i)return -Infinity;/* causal mask */ let s=0;
+  if(h===0){const pron=['it','he','she','they'];if(pron.includes(low[i])){const nouns=['animal','road','dog','girl','boy','train'];if(nouns.includes(low[j]))s+=(low[j]==='animal'?3.2:1.4)+(low.includes('wide')&&low[j]==='road'?2.5:0)-(low.includes('wide')&&low[j]==='animal'?2:0);}if(low[i]==='tired'&&low[j]==='it')s+=2.5;if(j===i)s+=1;if(low[j]==='the')s-=1;}
+  else{if(j===i-1)s+=3;if(j===i)s+=1.2;if(j===0)s+=0.8;}return s;});}
+ const att=Array.from({length:H},(_,h)=>toks.map((_,i)=>{const sc=scores(h,i);const m=Math.max(...sc);const e=sc.map(v=>v===-Infinity?0:Math.exp(v-m));const z=e.reduce((a,b)=>a+b,0);return e.map(v=>v/z);}));
+ const st=K.$('#stage');st.innerHTML=`<div class="grid two"><div class="card"><h2>${K.t({en:'Tap a word: where does it look?',hinglish:'Word tap karo: woh kahan dekhta hai?',hi:'शब्द दबाओ: वह कहाँ देखता है?'})}</h2><div class="seg" id="hd">${Array.from({length:H},(_,h)=>`<button class="btn" data-h="${h}">Head ${h+1}${h===0?' · meaning':' · position'}</button>`).join('')}</div><svg id="arcs" viewBox="0 0 640 300" style="width:100%;margin-top:8px"></svg></div>
+ <div><div class="card" style="overflow-x:auto"><h2>${K.t({en:'Attention heatmap',hinglish:'Attention heatmap',hi:'अटेंशन हीटमैप'})}</h2><table class="heat" id="hm"></table></div>
+ <div class="card"><div class="explain" id="ax"></div><div class="explain">${K.t({en:'Each word makes a query; every earlier word offers a key. Score = query·key / √d, then softmax turns scores into weights that add to 1 (each row). The output is the weighted mix of the values. Words cannot look ahead (causal mask). Many heads run in parallel, each learning a different pattern; these two heads are hand-set to show typical patterns found in trained models.',hinglish:'Har word ek query banata hai; har pichhla word ek key deta hai. Score = query·key / √d, phir softmax scores ko weights banata hai jo (har row mein) 1 tak judte hain. Output values ka weighted mix hai. Words aage nahi dekh sakte (causal mask). Kai heads parallel chalte hain, har ek alag pattern seekhta hai; yeh do heads haath se set kiye gaye hain taaki trained models ke typical patterns dikhen.',hi:'हर शब्द एक क्वेरी बनाता है; हर पिछला शब्द एक की देता है। स्कोर = क्वेरी·की / √d, फिर सॉफ़्टमैक्स स्कोर को भार बनाता है जो (हर पंक्ति में) 1 तक जुड़ते हैं। आउटपुट मानों का भारित मिश्रण है। शब्द आगे नहीं देख सकते (कॉज़ल मास्क)। कई हेड समानांतर चलते हैं, हर एक अलग पैटर्न सीखता है; ये दो हेड हाथ से सेट हैं ताकि प्रशिक्षित मॉडल के आम पैटर्न दिखें।'})}</div></div></div></div>`;
+ const xs=toks.map((_,i)=>30+i*(580/(n-1)));
+ async function draw(){const A=att[head][q];let s='';toks.forEach((t,j)=>{if(j===q||A[j]<0.02)return;const x1=xs[q],x2=xs[j],h=Math.abs(x1-x2)*0.55;s+=`<path d="M${x1},230 C${x1},${230-h} ${x2},${230-h} ${x2},230" fill="none" stroke="${head?'#FFD23F':'#02CFF9'}" stroke-opacity="${0.25+A[j]*0.75}" stroke-width="${1+A[j]*14}" stroke-linecap="round" stroke-dasharray="900" stroke-dashoffset="900"><animate attributeName="stroke-dashoffset" from="900" to="0" dur="0.7s" fill="freeze"/></path>`;});
+  toks.forEach((t,j)=>{const a=A[j]||0;s+=`<g data-j="${j}" style="cursor:pointer"><rect x="${xs[j]-27}" y="236" width="54" height="36" rx="9" fill="${j===q?'#8B3DFF':`rgba(2,207,249,${0.1+a*0.9})`}" stroke="rgba(255,255,255,.25)"/><text x="${xs[j]}" y="259" text-anchor="middle" font-size="${t.length>7?11:13}" fill="#fff" font-weight="700">${K.esc(t)}</text>${j<=q?`<text x="${xs[j]}" y="290" text-anchor="middle" font-size="11" fill="#9fb0d6">${(a*100).toFixed(0)}%</text>`:''}</g>`;});
+  const svg=K.$('#arcs');svg.innerHTML=s;K.$$('#arcs g').forEach(g=>g.onclick=()=>{q=+g.dataset.j;draw();K.check('attention-inspected',{token:low[q],head:head+1});});
+  K.$('#hm').innerHTML='<tr><th></th>'+toks.map(t=>`<th class="v">${K.esc(t)}</th>`).join('')+'</tr>'+toks.map((t,i)=>'<tr><th style="text-align:right">'+K.esc(t)+'</th>'+att[head][i].map((v,j)=>`<td style="background:${j>i?'rgba(255,255,255,.03)':`rgba(${head?'245,185,10':'2,207,249'},${v})`};${i===q?'outline:2px solid #8B3DFF':''}">${j>i?'':Math.round(v*100)}</td>`).join('')+'</tr>').join('');
+  const top=A.map((v,j)=>[toks[j],v]).filter((_,j)=>j!==q).sort((a,b)=>b[1]-a[1])[0];K.$('#ax').innerHTML=`<b>"${K.esc(toks[q])}"</b> → ${top?`<b style="color:#FFD23F">"${K.esc(top[0])}"</b> (${(top[1]*100).toFixed(0)}%)`:'–'}`;}
+ K.$$('#hd button').forEach(b=>{b.classList.toggle('on',+b.dataset.h===head);b.onclick=()=>{head=+b.dataset.h;K.$$('#hd button').forEach(z=>z.classList.toggle('on',z===b));draw();};});draw();}
+const VIEWS={tokens:viewTokens,embeddings:viewEmb,attention:viewAttn};
+function go(v){view=v;K.$$('#views button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));VIEWS[v]();}
+K.header({en:'Tokenizer & Attention Lab',hinglish:'Tokenizer & Attention Lab',hi:'टोकनाइज़र और अटेंशन लैब'},{en:'See text the way an LLM sees it',hinglish:'Text ko LLM ki nazar se dekho',hi:'पाठ को एलएलएम की नज़र से देखो'});
+K.boot({view:'tokens'}).then(c=>{cfg=c;if(typeof cfg.words==='string')cfg.words=cfg.words.split(',');K.$('#views').innerHTML=Object.keys(VIEWS).map(v=>`<button class="btn" data-v="${v}" data-t="${v}">${K.t(T[v])}</button>`).join('');K.$$('#views button').forEach(b=>b.onclick=()=>go(b.dataset.v));K.onLang(()=>go(view));go(c.view||'tokens');});
+</script>
+</body></html>

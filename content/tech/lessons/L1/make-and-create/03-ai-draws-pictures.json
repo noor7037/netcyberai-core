@@ -1,0 +1,385 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.make-and-create.03",
+ "level": 1,
+ "classes": [
+  3,
+  4,
+  5
+ ],
+ "unit": "make-and-create",
+ "title": {
+  "en": "AI that draws pictures",
+  "hi": "चित्र बनाने वाला AI",
+  "hinglish": "Pictures banane wala AI"
+ },
+ "minutes": 8,
+ "xp": 35,
+ "prereq": [
+  "L1.make-and-create.02"
+ ],
+ "topics": [
+  "ai.genai-images"
+ ],
+ "outcomes": [
+  {
+   "en": "Say that image AI learnt from millions of pictures with words.",
+   "hi": "बता सकते हो कि चित्र AI ने लाखों चित्रों और उनके शब्दों से सीखा।",
+   "hinglish": "Bata sakte ho ki image AI ne laakhon pictures aur unke words se seekha."
+  },
+  {
+   "en": "Write a clear prompt: what, where, what style.",
+   "hi": "साफ़ प्रॉम्प्ट लिख सकते हो: क्या, कहाँ, कैसी शैली।",
+   "hinglish": "Saaf prompt likh sakte ho: kya, kahan, kaisa style."
+  },
+  {
+   "en": "Use AI pictures honestly: label them and never fake real people.",
+   "hi": "AI चित्र ईमानदारी से इस्तेमाल कर सकते हो: लेबल लगाओ और असली लोगों की नक़ली कभी मत बनाओ।",
+   "hinglish": "AI pictures imaandaari se use kar sakte ho: label lagao aur asli logon ki fake kabhi mat banao."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Prompt",
+   "en": "The words you give an AI",
+   "hi": "AI को दिए गए शब्द",
+   "hinglish": "AI ko diye gaye words"
+  },
+  {
+   "term": "Generate",
+   "en": "To make something new",
+   "hi": "नया बना देना",
+   "hinglish": "Naya bana dena"
+  },
+  {
+   "term": "Deepfake",
+   "en": "A fake photo or video made with AI that looks real",
+   "hi": "AI से बनी असली जैसी नक़ली फ़ोटो या वीडियो",
+   "hinglish": "AI se bani asli jaisi fake photo ya video"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.make-and-create.03.s1",
+   "caption": {
+    "en": "Type words, and AI draws a picture.",
+    "hi": "शब्द लिखो, और AI चित्र बनाता है।",
+    "hinglish": "Words likho, aur AI picture banata hai."
+   },
+   "narration": {
+    "en": "You type words called a prompt, like \"a blue elephant flying a kite\". The AI makes a new picture.",
+    "hinglish": "Tum words likhte ho jise prompt kehte hain, jaise \"a blue elephant flying a kite\". AI nayi picture bana deta hai.",
+    "hi": "तुम शब्द लिखते हो जिसे प्रॉम्प्ट कहते हैं, जैसे \"पतंग उड़ाता नीला हाथी\"। AI नया चित्र बना देता है।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.make-and-create.03.s2",
+   "caption": {
+    "en": "It learnt from millions of pictures.",
+    "hi": "इसने लाखों चित्रों से सीखा।",
+    "hinglish": "Isne laakhon pictures se seekha."
+   },
+   "narration": {
+    "en": "The AI studied millions of pictures with descriptions, so it learnt what elephants, kites and blue look like.",
+    "hinglish": "AI ne laakhon pictures aur unke descriptions dekhe, toh usne seekha ki haathi, patang aur neela kaisa dikhta hai.",
+    "hi": "AI ने लाखों चित्र और उनके विवरण देखे, तो उसने सीखा कि हाथी, पतंग और नीला कैसा दिखता है।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.make-and-create.03.s3",
+   "caption": {
+    "en": "AI pictures can have mistakes.",
+    "hi": "AI चित्रों में ग़लतियाँ हो सकती हैं।",
+    "hinglish": "AI pictures mein galtiyan ho sakti hain."
+   },
+   "narration": {
+    "en": "AI pictures can look real but have mistakes, like a hand with six fingers or writing that makes no sense.",
+    "hinglish": "AI pictures asli dikh sakti hain par galtiyan ho sakti hain, jaise chhe ungliyon wala haath ya bekaar likhaai.",
+    "hi": "AI चित्र असली दिख सकते हैं पर ग़लतियाँ हो सकती हैं, जैसे छह उँगलियों वाला हाथ या बेमतलब लिखाई।"
+   }
+  },
+  {
+   "step": 4,
+   "visual": "scene:L1.make-and-create.03.s4",
+   "caption": {
+    "en": "Label it \"made with AI\". Ask a grown-up first.",
+    "hi": "लेबल लगाओ \"AI से बना\"। पहले बड़े से पूछो।",
+    "hinglish": "Label lagao \"made with AI\". Pehle bade se poochho."
+   },
+   "narration": {
+    "en": "Be honest: label AI pictures, never make fake pictures of real people, and use AI apps with a grown-up.",
+    "hinglish": "Imaandaar raho: AI pictures par label lagao, asli logon ki fake pictures kabhi mat banao, aur AI apps bade ke saath use karo.",
+    "hi": "ईमानदार रहो: AI चित्रों पर लेबल लगाओ, असली लोगों के नक़ली चित्र कभी मत बनाओ, और AI ऐप बड़े के साथ इस्तेमाल करो।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "think-cards",
+  "config": {
+   "mode": "ai-art"
+  },
+  "goal": {
+   "en": "Sort 6 ways of using AI pictures: good idea or not OK?",
+   "hi": "AI चित्र इस्तेमाल करने के 6 तरीके छाँटो: अच्छा विचार या ठीक नहीं?",
+   "hinglish": "AI pictures use karne ke 6 tareeke chhaanto: achha idea ya theek nahin?"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "How picture AI works",
+    "hi": "चित्र AI कैसे काम करता है",
+    "hinglish": "Picture AI kaise kaam karta hai"
+   },
+   "body": {
+    "en": "Picture AI is a kind of generative AI: it generates, or makes, something new. It was trained on millions of pictures paired with words. Many such tools start from random dots, like TV static, and clean them up step by step until the picture matches your words. A clear prompt helps: say what (a blue elephant), doing what (flying a kite), where (over a village) and in what style (cartoon).",
+    "hi": "चित्र AI एक तरह का जनरेटिव AI है: यह कुछ नया बनाता है। इसे शब्दों के साथ जोड़े गए लाखों चित्रों पर सिखाया गया। ऐसे कई औज़ार टीवी की झिलमिलाहट जैसे बेतरतीब बिंदुओं से शुरू करते हैं और उन्हें कदम-दर-कदम साफ़ करते हैं जब तक चित्र तुम्हारे शब्दों से न मिले। साफ़ प्रॉम्प्ट मदद करता है: बताओ क्या (नीला हाथी), क्या करता हुआ (पतंग उड़ाता), कहाँ (गाँव के ऊपर) और कैसी शैली में (कार्टून)।",
+    "hinglish": "Picture AI ek tarah ka generative AI hai: yeh kuch naya banata hai. Ise words ke saath jode gaye laakhon pictures par sikhaya gaya. Aise kai tools TV ki jhilmilahat jaise random dots se shuru karte hain aur unhe step by step saaf karte hain jab tak picture tumhare words se na mile. Saaf prompt madad karta hai: batao kya (blue elephant), kya karta hua (patang udaata), kahan (gaon ke upar) aur kaisi style mein (cartoon)."
+   },
+   "analogy": {
+    "en": "Like spotting shapes in clouds: the AI slowly pulls your picture out of a blur of dots.",
+    "hi": "जैसे बादल में शक्ल ढूँढते हो — AI धब्बों में से धीरे-धीरे तुम्हारा माँगा चित्र निकालता है।",
+    "hinglish": "Jaise baadal mein shakal dhoondhte ho — AI dhabbon mein se dheere-dheere tumhari maangi picture nikaalta hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "Honest and kind with AI pictures",
+    "hi": "AI चित्रों के साथ ईमानदार और दयालु",
+    "hinglish": "AI pictures ke saath imaandaar aur kind"
+   },
+   "body": {
+    "en": "Because AI pictures can look real, people can be fooled. Fake videos or photos of real people, called deepfakes, can hurt them and spread lies. So: label AI pictures, never make pictures of real people without their permission, and do not believe every photo you see. Many AI apps are for ages 13 and up, so use them with a grown-up.",
+    "hi": "क्योंकि AI चित्र असली दिख सकते हैं, लोग धोखा खा सकते हैं। असली लोगों के नक़ली वीडियो या फ़ोटो, जिन्हें डीपफ़ेक कहते हैं, उन्हें दुख दे सकते हैं और झूठ फैला सकते हैं। इसलिए: AI चित्रों पर लेबल लगाओ, किसी असली व्यक्ति का चित्र उसकी इजाज़त के बिना कभी मत बनाओ, और हर फ़ोटो पर भरोसा मत करो। कई AI ऐप 13 साल और उससे बड़ों के लिए हैं, इसलिए बड़े के साथ इस्तेमाल करो।",
+    "hinglish": "Kyonki AI pictures asli dikh sakti hain, log dhokha kha sakte hain. Asli logon ke fake videos ya photos, jinhe deepfakes kehte hain, unhe dukh de sakte hain aur jhooth phaila sakte hain. Isliye: AI pictures par label lagao, kisi asli insaan ki picture uski permission ke bina kabhi mat banao, aur har photo par bharosa mat karo. Kai AI apps 13 saal aur usse badon ke liye hain, isliye bade ke saath use karo."
+   },
+   "realExample": {
+    "en": "Some companies hide an invisible watermark in AI pictures, for example Google’s SynthID, so tools can tell that a picture was made by AI.",
+    "hi": "कुछ कंपनियाँ AI चित्रों में न दिखने वाला वॉटरमार्क छिपाती हैं, जैसे Google का \"SynthID\", ताकि औज़ार बता सकें कि चित्र AI ने बनाया।",
+    "hinglish": "Kuch companies AI pictures mein invisible watermark chhupaati hain, jaise Google ka SynthID, taaki tools bata sakein ki picture AI ne banayi."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write the best prompt you can for a picture of your dream school (what, doing what, where, style). With a grown-up, try it in an AI app or draw it yourself.",
+   "hi": "अपने सपनों के स्कूल के चित्र के लिए सबसे अच्छा प्रॉम्प्ट लिखो (क्या, क्या करता हुआ, कहाँ, शैली)। बड़े के साथ AI ऐप में आज़माओ या ख़ुद बनाओ।",
+   "hinglish": "Apne sapnon ke school ki picture ke liye sabse achha prompt likho (kya, kya karta hua, kahan, style). Bade ke saath AI app mein try karo ya khud banao."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "The words you type for picture AI are called a…",
+     "hi": "चित्र AI के लिए लिखे शब्द कहलाते हैं…",
+     "hinglish": "Picture AI ke liye likhe words kehlaate hain…"
+    },
+    "options": [
+     {
+      "en": "prompt",
+      "hi": "प्रॉम्प्ट",
+      "hinglish": "prompt"
+     },
+     {
+      "en": "password",
+      "hi": "पासवर्ड",
+      "hinglish": "password"
+     },
+     {
+      "en": "pixel",
+      "hi": "पिक्सेल",
+      "hinglish": "pixel"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "A prompt tells the AI what to make.",
+     "hi": "प्रॉम्प्ट AI को बताता है क्या बनाना है।",
+     "hinglish": "Prompt AI ko batata hai kya banana hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "How did picture AI learn to draw elephants?",
+     "hi": "चित्र AI ने हाथी बनाना कैसे सीखा?",
+     "hinglish": "Picture AI ne haathi banana kaise seekha?"
+    },
+    "options": [
+     {
+      "en": "From millions of pictures with words",
+      "hi": "शब्दों के साथ लाखों चित्रों से",
+      "hinglish": "Words ke saath laakhon pictures se"
+     },
+     {
+      "en": "By visiting a zoo",
+      "hi": "चिड़ियाघर जाकर",
+      "hinglish": "Zoo jaa kar"
+     },
+     {
+      "en": "By magic",
+      "hi": "जादू से",
+      "hinglish": "Jaadu se"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "It learnt patterns from training data.",
+     "hi": "इसने सिखाने वाले डेटा से पैटर्न सीखे।",
+     "hinglish": "Isne training data se patterns seekhe."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are honest and kind uses?",
+     "hi": "कौन से इस्तेमाल ईमानदार और दयालु हैं?",
+     "hinglish": "Kaun se use imaandaar aur kind hain?"
+    },
+    "options": [
+     {
+      "en": "Label a picture \"made with AI\"",
+      "hi": "चित्र पर \"AI से बना\" लिखना",
+      "hinglish": "Picture par \"made with AI\" likhna"
+     },
+     {
+      "en": "Make a fake photo of a classmate",
+      "hi": "सहपाठी की नक़ली फ़ोटो बनाना",
+      "hinglish": "Classmate ki fake photo banana"
+     },
+     {
+      "en": "Get ideas from AI, then draw your own",
+      "hi": "AI से विचार लेकर ख़ुद बनाना",
+      "hinglish": "AI se idea le kar khud banana"
+     }
+    ],
+    "answer": [
+     0,
+     2
+    ],
+    "explain": {
+     "en": "Label AI pictures and never fake real people.",
+     "hi": "AI चित्रों पर लेबल लगाओ और असली लोगों की नक़ल कभी मत बनाओ।",
+     "hinglish": "AI pictures par label lagao aur asli logon ki fake kabhi mat banao."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "A photo looks real but a hand has 6 fingers. It might be…",
+     "hi": "एक फ़ोटो असली लगती है पर हाथ में 6 उँगलियाँ हैं। यह हो सकती है…",
+     "hinglish": "Ek photo asli lagti hai par haath mein 6 ungliyan hain. Yeh ho sakti hai…"
+    },
+    "options": [
+     {
+      "en": "made by AI",
+      "hi": "AI से बनी",
+      "hinglish": "AI se bani"
+     },
+     {
+      "en": "definitely real",
+      "hi": "पक्का असली",
+      "hinglish": "pakka asli"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Odd hands and messy writing are common AI mistakes.",
+     "hi": "अजीब हाथ और बेतरतीब लिखाई AI की आम ग़लतियाँ हैं।",
+     "hinglish": "Ajeeb haath aur bekaar likhaai AI ki aam galtiyan hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "order",
+    "prompt": {
+     "en": "Build a clear prompt in order: what, doing what, where, style.",
+     "hi": "साफ़ प्रॉम्प्ट क्रम से बनाओ: क्या, क्या करता हुआ, कहाँ, शैली।",
+     "hinglish": "Saaf prompt order mein banao: kya, kya karta hua, kahan, style."
+    },
+    "options": [
+     {
+      "en": "a blue elephant",
+      "hi": "एक नीला हाथी",
+      "hinglish": "ek blue elephant"
+     },
+     {
+      "en": "flying a kite",
+      "hi": "पतंग उड़ाता",
+      "hinglish": "patang udaata"
+     },
+     {
+      "en": "over a village",
+      "hi": "गाँव के ऊपर",
+      "hinglish": "gaon ke upar"
+     },
+     {
+      "en": "cartoon style",
+      "hi": "कार्टून शैली",
+      "hinglish": "cartoon style"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "What, action, place, style.",
+     "hi": "क्या, काम, जगह, शैली।",
+     "hinglish": "Kya, kaam, jagah, style."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Sort the AI picture cards in the lab.",
+     "hi": "लैब में AI चित्र वाले कार्ड छाँटो।",
+     "hinglish": "Lab mein AI picture cards chhaanto."
+    },
+    "answer": {
+     "lab": "think-cards",
+     "mode": "ai-art",
+     "pass": true
+    },
+    "explain": {
+     "en": "Get at least 5 of the 6 cards right.",
+     "hi": "6 में से कम से कम 5 कार्ड सही करो।",
+     "hinglish": "6 mein se kam se kam 5 cards sahi karo."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Google DeepMind – SynthID (fact reference)",
+   "url": "https://deepmind.google/technologies/synthid/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "UNICEF – Policy guidance on AI for children (fact reference)",
+   "url": "https://www.unicef.org/globalinsight/reports/policy-guidance-ai-children",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

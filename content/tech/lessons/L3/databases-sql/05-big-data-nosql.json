@@ -1,0 +1,424 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.databases-sql.05",
+ "level": 3,
+ "classes": [
+  11,
+  12
+ ],
+ "unit": "databases-sql",
+ "title": {
+  "en": "Big data and NoSQL",
+  "hi": "बिग डेटा और NoSQL",
+  "hinglish": "Big data aur NoSQL"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [
+  "L3.databases-sql.03"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain what makes data \"big\" (volume, velocity, variety)",
+   "hi": "समझाओ डेटा \"बड़ा\" क्यों कहलाता है (मात्रा, गति, विविधता)",
+   "hinglish": "Samjhao data \"big\" kyun kehlaata hai (volume, velocity, variety)"
+  },
+  {
+   "en": "Compare key-value, document, column and graph stores with SQL",
+   "hi": "की-वैल्यू, डॉक्यूमेंट, कॉलम और ग्राफ़ स्टोर की तुलना SQL से करो",
+   "hinglish": "Key-value, document, column aur graph stores ki tulna SQL se karo"
+  },
+  {
+   "en": "Describe sharding, replication and the CAP trade-off",
+   "hi": "शार्डिंग, प्रतिकृति और CAP सौदा बताओ",
+   "hinglish": "Sharding, replication aur CAP trade-off batao"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "NoSQL",
+   "hinglish": "Table ke bina database",
+   "en": "Databases that store data as key-values, documents, wide columns or graphs",
+   "hi": "डेटा को की-वैल्यू, डॉक्यूमेंट, चौड़े कॉलम या ग्राफ़ के रूप में रखने वाले डेटाबेस"
+  },
+  {
+   "term": "Sharding",
+   "hinglish": "Data ko machines mein baantna",
+   "en": "Splitting rows across many servers by a key",
+   "hi": "एक कुंजी से पंक्तियों को कई सर्वरों में बाँटना"
+  },
+  {
+   "term": "Replication",
+   "hinglish": "Data ki copies",
+   "en": "Keeping copies of data on several servers for safety and speed",
+   "hi": "सुरक्षा और गति के लिए कई सर्वरों पर डेटा की कॉपियाँ रखना"
+  },
+  {
+   "term": "CAP theorem",
+   "hinglish": "Network toote to C ya A chuno",
+   "en": "During a network partition a system must choose consistency or availability",
+   "hi": "नेटवर्क टूटने पर प्रणाली को संगति या उपलब्धता चुननी पड़ती है"
+  },
+  {
+   "term": "Data lake",
+   "hinglish": "Raw data ka bada godaam",
+   "en": "Cheap storage holding raw data of every type for later analysis",
+   "hi": "बाद के विश्लेषण के लिए हर तरह का कच्चा डेटा रखने वाला सस्ता भंडार"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "UPI handled over 20 billion transactions in a single month in 2025. One server cannot hold or process that alone.",
+    "hi": "यूपीआई ने 2025 में एक महीने में 20 अरब से ज़्यादा लेन-देन सँभाले। अकेला एक सर्वर इतना न रख सकता है न चला सकता है।",
+    "hinglish": "UPI ne 2025 mein ek mahine mein 20 billion se zyaada transactions sambhaale. Akela ek server itna na rakh sakta hai na chala sakta hai."
+   },
+   "visual": "anim:upi-counter",
+   "narration": {
+    "en": "UPI handled over 20 billion transactions in a single month in 2025. One server cannot hold or process that alone.",
+    "hi": "यूपीआई ने 2025 में एक महीने में 20 अरब से ज़्यादा लेन-देन सँभाले। अकेला एक सर्वर इतना न रख सकता है न चला सकता है।",
+    "hinglish": "UPI ne 2025 mein ek mahine mein 20 billion se zyaada transactions sambhaale. Akela ek server itna na rakh sakta hai na chala sakta hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Sharding splits users across servers: ids 1–1 crore on shard A, the next crore on shard B. Each shard also has replicas in case one dies.",
+    "hi": "शार्डिंग उपयोगकर्ताओं को सर्वरों में बाँटता है: id 1–1 करोड़ शार्ड A पर, अगला करोड़ शार्ड B पर। हर शार्ड की प्रतिकृतियाँ भी होती हैं अगर कोई बंद हो जाए।",
+    "hinglish": "Sharding users ko servers mein baant-ta hai: ids 1–1 crore shard A par, agla crore shard B par. Har shard ki replicas bhi hoti hain agar koi band ho jaaye."
+   },
+   "visual": "anim:shards",
+   "narration": {
+    "en": "Sharding splits users across servers: ids 1–1 crore on shard A, the next crore on shard B. Each shard also has replicas in case one dies.",
+    "hi": "शार्डिंग उपयोगकर्ताओं को सर्वरों में बाँटता है: id 1–1 करोड़ शार्ड A पर, अगला करोड़ शार्ड B पर। हर शार्ड की प्रतिकृतियाँ भी होती हैं अगर कोई बंद हो जाए।",
+    "hinglish": "Sharding users ko servers mein baant-ta hai: ids 1–1 crore shard A par, agla crore shard B par. Har shard ki replicas bhi hoti hain agar koi band ho jaaye."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "NoSQL shapes: key-value (session → data), document (a whole JSON profile), wide-column (sensor time series), graph (who follows whom).",
+    "hi": "NoSQL के रूप: की-वैल्यू (सत्र → डेटा), डॉक्यूमेंट (पूरी JSON प्रोफ़ाइल), वाइड-कॉलम (सेंसर समय-श्रृंखला), ग्राफ़ (कौन किसे फ़ॉलो करता है)।",
+    "hinglish": "NoSQL shapes: key-value (session → data), document (poori JSON profile), wide-column (sensor time series), graph (kaun kise follow karta hai)."
+   },
+   "visual": "anim:nosql-shapes",
+   "narration": {
+    "en": "NoSQL shapes: key-value (session → data), document (a whole JSON profile), wide-column (sensor time series), graph (who follows whom).",
+    "hi": "NoSQL के रूप: की-वैल्यू (सत्र → डेटा), डॉक्यूमेंट (पूरी JSON प्रोफ़ाइल), वाइड-कॉलम (सेंसर समय-श्रृंखला), ग्राफ़ (कौन किसे फ़ॉलो करता है)।",
+    "hinglish": "NoSQL shapes: key-value (session → data), document (poori JSON profile), wide-column (sensor time series), graph (kaun kise follow karta hai)."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "When the network splits, a replica must either refuse writes (stay consistent) or accept them and sync later (stay available). That is CAP.",
+    "hi": "नेटवर्क बँटने पर प्रतिकृति को या तो लिखना मना करना होगा (सुसंगत रहे) या स्वीकार कर बाद में मिलाना होगा (उपलब्ध रहे)। यही CAP है।",
+    "hinglish": "Network bantne par replica ko ya to writes mana karna hoga (consistent rahe) ya accept karke baad mein sync karna hoga (available rahe). Yahi CAP hai."
+   },
+   "visual": "anim:cap-split",
+   "narration": {
+    "en": "When the network splits, a replica must either refuse writes (stay consistent) or accept them and sync later (stay available). That is CAP.",
+    "hi": "नेटवर्क बँटने पर प्रतिकृति को या तो लिखना मना करना होगा (सुसंगत रहे) या स्वीकार कर बाद में मिलाना होगा (उपलब्ध रहे)। यही CAP है।",
+    "hinglish": "Network bantne par replica ko ya to writes mana karna hoga (consistent rahe) ya accept karke baad mein sync karna hoga (available rahe). Yahi CAP hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "sql-playground",
+  "config": {
+   "mode": "free",
+   "sql": "SELECT city, COUNT(*) AS n FROM students GROUP BY city ORDER BY n DESC"
+  },
+  "goal": {
+   "en": "Run the city count. Imagine 50 crore rows: which column would you shard by, and which query would then need every shard?",
+   "hi": "शहर गिनती चलाओ। 50 करोड़ पंक्तियाँ सोचो: किस स्तंभ से शार्ड करोगे, और फिर किस क्वेरी को हर शार्ड चाहिए होगा?",
+   "hinglish": "City count chalao. 50 crore rows socho: kis column se shard karoge, aur phir kaunsi query ko har shard chahiye hoga?"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "SQL or NoSQL? Pick by access pattern",
+    "hi": "SQL या NoSQL? पहुँच के ढंग से चुनो",
+    "hinglish": "SQL ya NoSQL? Access pattern se chuno"
+   },
+   "body": {
+    "en": "Relational databases give joins, strict schemas and ACID transactions — best for money, marks and bookings. Key-value stores like Redis answer simple lookups in well under a millisecond (sessions, caches, OTP rate limits). Document stores like MongoDB keep a whole object together, handy when shapes vary. Wide-column stores like Cassandra take massive write streams. Graph databases like Neo4j answer \"friends of friends\" fast. Modern PostgreSQL also stores JSON, so many teams start with SQL and add a specialist store only when measurements demand it.",
+    "hi": "रिलेशनल डेटाबेस जॉइन, सख़्त स्कीमा और ACID लेन-देन देते हैं — पैसे, अंक और बुकिंग के लिए सबसे अच्छे। Redis जैसे की-वैल्यू स्टोर साधारण खोज एक मिलीसेकंड से भी कम में देते हैं (सत्र, कैश, OTP दर-सीमा)। MongoDB जैसे डॉक्यूमेंट स्टोर पूरी वस्तु साथ रखते हैं, जब आकार बदलते हों तब काम के। Cassandra जैसे वाइड-कॉलम स्टोर भारी लिखने की धारा लेते हैं। Neo4j जैसे ग्राफ़ डेटाबेस \"दोस्तों के दोस्त\" तेज़ बताते हैं। आधुनिक PostgreSQL JSON भी रखता है, इसलिए कई टीमें SQL से शुरू करती हैं और नाप-तौल माँगे तभी विशेष स्टोर जोड़ती हैं।",
+    "hinglish": "Relational databases joins, strict schemas aur ACID transactions dete hain — paise, marks aur bookings ke liye best. Redis jaise key-value stores simple lookups ek millisecond se bhi kam mein dete hain (sessions, caches, OTP rate limits). MongoDB jaise document stores poora object saath rakhte hain, jab shapes badalte hon tab kaam ke. Cassandra jaise wide-column stores bhaari write streams lete hain. Neo4j jaise graph databases \"friends of friends\" tez batate hain. Modern PostgreSQL JSON bhi rakhta hai, isliye kai teams SQL se shuru karti hain aur measurements maangein tabhi specialist store jodti hain."
+   },
+   "analogy": {
+    "en": "A toolbox: a screwdriver (SQL) handles most jobs; you buy a special wrench only for the bolt it fits.",
+    "hi": "औज़ार-पेटी: पेचकस (SQL) ज़्यादातर काम करता है; ख़ास रिंच तभी ख़रीदते हो जब उसका नट हो।",
+    "hinglish": "Toolbox: screwdriver (SQL) zyaadatar kaam karta hai; special wrench tabhi khareedte ho jab uska bolt ho."
+   },
+   "realExample": {
+    "en": "A cricket app may keep scores in PostgreSQL, live ball-by-ball cache in Redis and the \"fans who follow both teams\" graph in a graph DB.",
+    "hi": "एक क्रिकेट ऐप स्कोर PostgreSQL में, गेंद-दर-गेंद लाइव कैश Redis में और \"दोनों टीमों को फ़ॉलो करने वाले प्रशंसक\" ग्राफ़ DB में रख सकता है।",
+    "hinglish": "Ek cricket app scores PostgreSQL mein, live ball-by-ball cache Redis mein aur \"dono teams follow karne wale fans\" graph DB mein rakh sakta hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "Big data pipelines",
+    "hi": "बिग डेटा पाइपलाइन",
+    "hinglish": "Big data pipelines"
+   },
+   "body": {
+    "en": "Big data means data too large, fast or varied for one machine: volume (petabytes), velocity (events every millisecond) and variety (text, images, logs). Pipelines collect events into a stream (such as Kafka), store raw copies in a data lake on cheap object storage, then run distributed jobs (such as Spark) that split work across hundreds of machines — the MapReduce idea: map each chunk in parallel, then reduce the partial results. Cleaned tables go to a warehouse for SQL analysis and dashboards.",
+    "hi": "बिग डेटा मतलब एक मशीन के लिए बहुत बड़ा, तेज़ या विविध डेटा: मात्रा (पेटाबाइट), गति (हर मिलीसेकंड घटनाएँ) और विविधता (पाठ, चित्र, लॉग)। पाइपलाइन घटनाओं को एक धारा (जैसे Kafka) में इकट्ठा करती हैं, कच्ची कॉपियाँ सस्ते ऑब्जेक्ट स्टोरेज पर डेटा लेक में रखती हैं, फिर वितरित काम (जैसे Spark) चलाती हैं जो काम सैकड़ों मशीनों में बाँटते हैं — MapReduce विचार: हर टुकड़े को साथ-साथ map करो, फिर आंशिक परिणाम reduce करो। साफ़ तालिकाएँ SQL विश्लेषण और डैशबोर्ड के लिए वेयरहाउस में जाती हैं।",
+    "hinglish": "Big data matlab ek machine ke liye bahut bada, tez ya vividh data: volume (petabytes), velocity (har millisecond events) aur variety (text, images, logs). Pipelines events ko ek stream (jaise Kafka) mein ikattha karti hain, raw copies saste object storage par data lake mein rakhti hain, phir distributed jobs (jaise Spark) chalati hain jo kaam saikdon machines mein baant-te hain — MapReduce idea: har chunk ko parallel mein map karo, phir partial results reduce karo. Saaf tables SQL analysis aur dashboards ke liye warehouse mein jaati hain."
+   },
+   "analogy": {
+    "en": "Counting votes: each booth counts its own (map), then the district adds the booth totals (reduce).",
+    "hi": "वोट गिनना: हर बूथ अपने गिनता है (map), फिर ज़िला बूथों के योग जोड़ता है (reduce)।",
+    "hinglish": "Vote ginna: har booth apne ginta hai (map), phir district booth totals jodta hai (reduce)."
+   },
+   "realExample": {
+    "en": "Indian Railways, telecom operators and payment networks run pipelines like this to spot congestion, network faults and fraud in near real time.",
+    "hi": "भारतीय रेल, टेलीकॉम कंपनियाँ और भुगतान नेटवर्क ऐसी पाइपलाइन चलाकर भीड़, नेटवर्क ख़राबी और धोखाधड़ी लगभग तुरंत पकड़ते हैं।",
+    "hinglish": "Indian Railways, telecom operators aur payment networks aisi pipelines chalakar congestion, network faults aur fraud lagbhag turant pakadte hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Pick an app you use daily. For three of its features, say whether you would store the data in SQL, key-value, document or graph — and why.",
+   "hi": "रोज़ इस्तेमाल होने वाला एक ऐप चुनो। उसकी तीन सुविधाओं के लिए बताओ डेटा SQL, की-वैल्यू, डॉक्यूमेंट या ग्राफ़ में रखोगे — और क्यों।",
+   "hinglish": "Roz use hone wala ek app chuno. Uske teen features ke liye batao data SQL, key-value, document ya graph mein rakhoge — aur kyun."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "match",
+    "prompt": {
+     "en": "Match the job to the best-fit store.",
+     "hi": "काम को सबसे सही स्टोर से मिलाओ।",
+     "hinglish": "Kaam ko sabse sahi store se milao."
+    },
+    "options": [
+     {
+      "en": "Bank transfer ledger",
+      "hi": "बैंक हस्तांतरण बही",
+      "hinglish": "Bank transfer ledger"
+     },
+     {
+      "en": "Login session cache",
+      "hi": "लॉगिन सत्र कैश",
+      "hinglish": "Login session cache"
+     },
+     {
+      "en": "\"People you may know\"",
+      "hi": "\"जिन्हें आप जानते होंगे\"",
+      "hinglish": "\"People you may know\""
+     },
+     {
+      "en": "Product pages with varied fields",
+      "hi": "अलग-अलग फ़ील्ड वाले उत्पाद पेज",
+      "hinglish": "Alag-alag fields wale product pages"
+     }
+    ],
+    "answer": [
+     {
+      "en": "Relational (ACID)",
+      "hi": "रिलेशनल (ACID)",
+      "hinglish": "Relational (ACID)"
+     },
+     {
+      "en": "Key-value",
+      "hi": "की-वैल्यू",
+      "hinglish": "Key-value"
+     },
+     {
+      "en": "Graph",
+      "hi": "ग्राफ़",
+      "hinglish": "Graph"
+     },
+     {
+      "en": "Document",
+      "hi": "डॉक्यूमेंट",
+      "hinglish": "Document"
+     }
+    ],
+    "explain": {
+     "en": "Choose the store by how the data is read and written.",
+     "hi": "डेटा कैसे पढ़ा-लिखा जाता है, उससे स्टोर चुनो।",
+     "hinglish": "Data kaise padha-likha jaata hai, usse store chuno."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "What does sharding do?",
+     "hi": "शार्डिंग क्या करता है?",
+     "hinglish": "Sharding kya karta hai?"
+    },
+    "options": [
+     {
+      "en": "Splits data across servers by a key",
+      "hi": "एक कुंजी से डेटा सर्वरों में बाँटता है",
+      "hinglish": "Ek key se data servers mein baant-ta hai"
+     },
+     {
+      "en": "Encrypts every row",
+      "hi": "हर पंक्ति एन्क्रिप्ट करता है",
+      "hinglish": "Har row encrypt karta hai"
+     },
+     {
+      "en": "Deletes old data",
+      "hi": "पुराना डेटा मिटाता है",
+      "hinglish": "Purana data mitata hai"
+     },
+     {
+      "en": "Makes copies on one disk",
+      "hi": "एक डिस्क पर कॉपी बनाता है",
+      "hinglish": "Ek disk par copies banata hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Each shard holds part of the data, so load spreads out.",
+     "hi": "हर शार्ड डेटा का हिस्सा रखता है, तो भार फैल जाता है।",
+     "hinglish": "Har shard data ka hissa rakhta hai, to load phail jaata hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "During a network split, a replica keeps accepting writes and syncs later. It chose…",
+     "hi": "नेटवर्क बँटने पर एक प्रतिकृति लिखना स्वीकार करती रही और बाद में मिलाया। उसने चुना…",
+     "hinglish": "Network split par ek replica writes accept karti rahi aur baad mein sync kiya. Usne chuna…"
+    },
+    "options": [
+     {
+      "en": "Availability",
+      "hi": "उपलब्धता",
+      "hinglish": "Availability"
+     },
+     {
+      "en": "Consistency",
+      "hi": "संगति",
+      "hinglish": "Consistency"
+     },
+     {
+      "en": "Neither",
+      "hi": "कोई नहीं",
+      "hinglish": "Koi nahi"
+     },
+     {
+      "en": "Encryption",
+      "hi": "एन्क्रिप्शन",
+      "hinglish": "Encryption"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "It stayed available but readers may briefly see stale data.",
+     "hi": "यह उपलब्ध रही पर पाठकों को थोड़ी देर पुराना डेटा दिख सकता है।",
+     "hinglish": "Yeh available rahi par readers ko thodi der purana data dikh sakta hai."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q4",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are the classic \"3 Vs\" of big data?",
+     "hi": "बिग डेटा के क्लासिक \"3 V\" कौन-से हैं?",
+     "hinglish": "Big data ke classic \"3 Vs\" kaunse hain?"
+    },
+    "options": [
+     {
+      "en": "Volume",
+      "hi": "मात्रा (Volume)",
+      "hinglish": "Volume"
+     },
+     {
+      "en": "Velocity",
+      "hi": "गति (Velocity)",
+      "hinglish": "Velocity"
+     },
+     {
+      "en": "Variety",
+      "hi": "विविधता (Variety)",
+      "hinglish": "Variety"
+     },
+     {
+      "en": "Visibility",
+      "hi": "दृश्यता (Visibility)",
+      "hinglish": "Visibility"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2
+    ],
+    "explain": {
+     "en": "Size, speed and different types.",
+     "hi": "आकार, गति और अलग-अलग प्रकार।",
+     "hinglish": "Size, speed aur alag-alag types."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "In MapReduce, what happens in \"reduce\"?",
+     "hi": "MapReduce में \"reduce\" में क्या होता है?",
+     "hinglish": "MapReduce mein \"reduce\" mein kya hota hai?"
+    },
+    "options": [
+     {
+      "en": "Partial results are combined",
+      "hi": "आंशिक परिणाम जोड़े जाते हैं",
+      "hinglish": "Partial results jode jaate hain"
+     },
+     {
+      "en": "Data is deleted",
+      "hi": "डेटा मिटता है",
+      "hinglish": "Data mitta hai"
+     },
+     {
+      "en": "Files are compressed",
+      "hi": "फ़ाइलें संपीड़ित होती हैं",
+      "hinglish": "Files compress hoti hain"
+     },
+     {
+      "en": "Users log in",
+      "hi": "उपयोगकर्ता लॉगिन करते हैं",
+      "hinglish": "Users login karte hain"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Map works on chunks in parallel; reduce merges the outputs.",
+     "hi": "Map टुकड़ों पर साथ-साथ काम करता है; reduce नतीजे मिलाता है।",
+     "hinglish": "Map chunks par parallel kaam karta hai; reduce outputs milata hai."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "topics": [
+  "data.big-data"
+ ],
+ "sources": [
+  {
+   "title": "NPCI — UPI product statistics",
+   "url": "https://www.npci.org.in/what-we-do/upi/product-statistics",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Dean & Ghemawat (2004) MapReduce",
+   "url": "https://research.google/pubs/mapreduce-simplified-data-processing-on-large-clusters/",
+   "licence": "fact reference"
+  }
+ ]
+}

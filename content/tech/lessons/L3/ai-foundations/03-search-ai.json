@@ -1,0 +1,324 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.ai-foundations.03",
+ "level": 3,
+ "classes": [
+  9,
+  10
+ ],
+ "unit": "ai-foundations",
+ "title": {
+  "en": "Search: how AI finds a path",
+  "hi": "खोज: एआई रास्ता कैसे ढूँढता है",
+  "hinglish": "Search: AI rasta kaise dhoondhta hai"
+ },
+ "minutes": 12,
+ "xp": 50,
+ "prereq": [
+  "L3.ai-foundations.01"
+ ],
+ "outcomes": [
+  {
+   "en": "Model a problem as states, actions, a start and a goal",
+   "hinglish": "Problem ko states, actions, start aur goal ki tarah model karo",
+   "hi": "किसी समस्या को स्थितियों, कार्यों, आरंभ और लक्ष्य के रूप में मॉडल करना"
+  },
+  {
+   "en": "Compare BFS, DFS, Dijkstra and A* on the same grid",
+   "hinglish": "Ek hi grid par BFS, DFS, Dijkstra aur A* compare karo",
+   "hi": "एक ही ग्रिड पर BFS, DFS, डाइक्स्ट्रा और A* की तुलना करना"
+  },
+  {
+   "en": "Explain what an admissible heuristic is",
+   "hinglish": "Admissible heuristic kya hota hai samjhao",
+   "hi": "समझाना कि स्वीकार्य (admissible) ह्यूरिस्टिक क्या है"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "State space",
+   "hinglish": "Saari possible situations ka naksha",
+   "en": "All the situations a problem can be in, linked by actions",
+   "hi": "वे सभी स्थितियाँ जिनमें समस्या हो सकती है, कार्यों से जुड़ी हुई"
+  },
+  {
+   "term": "BFS",
+   "hinglish": "Breadth-first: pehle paas wale, phir door wale",
+   "en": "Breadth-first search explores level by level; finds the fewest steps",
+   "hi": "चौड़ाई-प्रथम खोज स्तर-दर-स्तर खोजती है; सबसे कम कदम ढूँढती है"
+  },
+  {
+   "term": "Heuristic",
+   "hinglish": "Goal kitna door hai uska andaaza",
+   "en": "An estimate of the remaining cost to the goal",
+   "hi": "लक्ष्य तक बची लागत का अनुमान"
+  },
+  {
+   "term": "A*",
+   "hinglish": "Chala hua + bacha hua andaaza (g + h) se sabse accha raasta",
+   "en": "A best-first search that ranks nodes by f = g + h",
+   "hi": "सर्वश्रेष्ठ-प्रथम खोज जो नोड को f = g + h से क्रम देती है"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "A maze is a state space: each cell is a state, each move (up, down, left, right) is an action.",
+    "hi": "भूलभुलैया एक स्टेट स्पेस है: हर खाना एक स्टेट, हर चाल (ऊपर, नीचे, बाएँ, दाएँ) एक एक्शन।",
+    "hinglish": "Maze ek state space hai: har cell ek state, har move (up, down, left, right) ek action."
+   },
+   "visual": "anim:maze-states",
+   "narration": {
+    "en": "A maze is a state space: each cell is a state, each move (up, down, left, right) is an action.",
+    "hi": "भूलभुलैया एक स्टेट स्पेस है: हर खाना एक स्टेट, हर चाल (ऊपर, नीचे, बाएँ, दाएँ) एक एक्शन।",
+    "hinglish": "Maze ek state space hai: har cell ek state, har move (up, down, left, right) ek action."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "BFS spreads like ripples in a pond and always finds the shortest path in steps, but visits many cells.",
+    "hi": "बीएफ़एस तालाब की लहरों की तरह फैलता है और हमेशा सबसे कम कदम वाला रास्ता ढूँढता है, पर बहुत से खाने देखता है।",
+    "hinglish": "BFS talaab ki lehron ki tarah failta hai aur hamesha sabse kam steps wala rasta dhoondhta hai, par bahut cells visit karta hai."
+   },
+   "visual": "anim:bfs-ripple",
+   "narration": {
+    "en": "BFS spreads like ripples in a pond and always finds the shortest path in steps, but visits many cells.",
+    "hi": "बीएफ़एस तालाब की लहरों की तरह फैलता है और हमेशा सबसे कम कदम वाला रास्ता ढूँढता है, पर बहुत से खाने देखता है।",
+    "hinglish": "BFS talaab ki lehron ki tarah failta hai aur hamesha sabse kam steps wala rasta dhoondhta hai, par bahut cells visit karta hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "A* adds a compass: it prefers cells whose distance-so-far plus estimated distance-left (f = g + h) is smallest.",
+    "hi": "ए-स्टार एक कम्पास जोड़ता है: वह उन खानों को चुनता है जिनकी अब तक की दूरी और बची हुई अनुमानित दूरी (f = g + h) सबसे कम हो।",
+    "hinglish": "A* ek compass jodta hai: woh un cells ko pasand karta hai jinka ab tak ka distance plus bacha hua andaazan distance (f = g + h) sabse kam ho."
+   },
+   "visual": "anim:astar-compass",
+   "narration": {
+    "en": "A* adds a compass: it prefers cells whose distance-so-far plus estimated distance-left (f = g + h) is smallest.",
+    "hi": "ए-स्टार एक कम्पास जोड़ता है: वह उन खानों को चुनता है जिनकी अब तक की दूरी और बची हुई अनुमानित दूरी (f = g + h) सबसे कम हो।",
+    "hinglish": "A* ek compass jodta hai: woh un cells ko pasand karta hai jinka ab tak ka distance plus bacha hua andaazan distance (f = g + h) sabse kam ho."
+   }
+  }
+ ],
+ "play": {
+  "lab": "astar-arena",
+  "config": {
+   "algo": "compare",
+   "grid": "maze-1",
+   "heuristic": "manhattan"
+  },
+  "goal": {
+   "en": "Run BFS, DFS and A* on the same maze. Which visits the fewest cells and still finds the shortest path?",
+   "hinglish": "Ek hi maze par BFS, DFS aur A* chalao. Kaun sabse kam cells visit karke bhi shortest path dhoondhta hai?",
+   "hi": "एक ही भूलभुलैया पर BFS, DFS और A* चलाओ। कौन सबसे कम खाने देखकर भी सबसे छोटा रास्ता ढूँढता है?"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Uninformed search: BFS and DFS",
+    "hi": "अनिर्देशित खोज: बीएफ़एस और डीएफ़एस",
+    "hinglish": "Uninformed search: BFS aur DFS"
+   },
+   "body": {
+    "en": "Breadth-first search keeps a queue (first in, first out). It explores all cells 1 step away, then 2 steps, and so on, so the first time it reaches the goal it has used the fewest steps. Depth-first search keeps a stack (last in, first out). It runs down one corridor as far as possible before backing up. DFS uses little memory but its first path is often long and winding. Neither knows where the goal is; that is why they are called uninformed.",
+    "hi": "ब्रेड्थ-फ़र्स्ट सर्च एक कतार (पहले आओ, पहले जाओ) रखता है। वह पहले 1 कदम दूर के सारे खाने देखता है, फिर 2 कदम, और ऐसे ही आगे, इसलिए लक्ष्य पर पहली बार पहुँचने पर उसने सबसे कम कदम लिए होते हैं। डेप्थ-फ़र्स्ट सर्च एक ढेर (आखिरी आओ, पहले जाओ) रखता है। वह पीछे लौटने से पहले एक गलियारे में जितना हो सके आगे जाता है। डीएफ़एस कम मेमोरी लेता है पर उसका पहला रास्ता अक्सर लंबा और घुमावदार होता है। दोनों को नहीं पता कि लक्ष्य कहाँ है; इसलिए इन्हें अनिर्देशित कहते हैं।",
+    "hinglish": "Breadth-first search ek queue (pehle aao, pehle jao) rakhta hai. Woh pehle 1 step door ke saare cells dekhta hai, phir 2 steps, aise hi aage, isliye goal par pehli baar pahunchte waqt usne sabse kam steps liye hote hain. Depth-first search ek stack (last in, first out) rakhta hai. Woh peeche aane se pehle ek corridor mein jitna ho sake aage jaata hai. DFS kam memory leta hai par uska pehla rasta aksar lamba aur ghumaavdaar hota hai. Dono ko nahi pata goal kahan hai; isliye inhe uninformed kehte hain."
+   },
+   "analogy": {
+    "hinglish": "BFS: shaadi mein kisi ko dhoondhna — pehle apni table, phir paas ki saari tables. DFS: ek line pakad ke aakhri tak jaana, phir wapas aana.",
+    "en": "BFS: finding someone at a wedding — first your own table, then all the nearby tables. DFS: follow one row to the very end, then come back.",
+    "hi": "BFS: शादी में किसी को ढूँढना — पहले अपनी मेज़, फिर पास की सारी मेज़ें। DFS: एक पंक्ति पकड़कर आख़िर तक जाना, फिर लौटना।"
+   },
+   "realExample": {
+    "en": "Social networks use BFS-style search to find \"friends of friends\" suggestions: people exactly 2 steps away from you.",
+    "hinglish": "Social networks BFS jaisa search \"friends of friends\" suggestions ke liye use karte hain: jo log tumse exactly 2 steps door hain.",
+    "hi": "सोशल नेटवर्क \"दोस्तों के दोस्त\" सुझाने के लिए BFS जैसी खोज करते हैं: वे लोग जो आपसे ठीक 2 कदम दूर हैं।"
+   }
+  },
+  {
+   "heading": {
+    "en": "Informed search: Dijkstra and A*",
+    "hi": "सूचित खोज: डाइक्स्ट्रा और ए-स्टार",
+    "hinglish": "Informed search: Dijkstra aur A*"
+   },
+   "body": {
+    "en": "When moves cost different amounts (a highway versus a muddy lane), Dijkstra's algorithm always expands the cheapest-so-far node, cost g. A* adds a heuristic h, an estimate of the cost still to go, and expands the node with the smallest f = g + h. On a grid with 4-way moves, the Manhattan distance |dx| + |dy| is a good heuristic. If h never overestimates the true remaining cost it is called admissible, and A* is then guaranteed to find an optimal path while usually exploring far fewer nodes than Dijkstra. Setting h = 0 turns A* back into Dijkstra.",
+    "hi": "जब चालों की कीमत अलग हो (हाईवे बनाम कीचड़ वाली गली), डाइक्स्ट्रा का एल्गोरिदम हमेशा अब तक के सबसे सस्ते नोड (लागत g) को खोलता है। ए-स्टार एक अनुमान h जोड़ता है, यानी बची हुई लागत का अंदाज़ा, और सबसे छोटे f = g + h वाले नोड को खोलता है। 4-दिशा वाली ग्रिड पर मैनहैटन दूरी |dx| + |dy| अच्छा अनुमान है। अगर h असली बची लागत से कभी ज़्यादा न हो तो उसे स्वीकार्य (admissible) कहते हैं, और तब ए-स्टार हमेशा सबसे अच्छा रास्ता ढूँढता है, आमतौर पर डाइक्स्ट्रा से बहुत कम नोड देखकर। h = 0 रखने पर ए-स्टार फिर से डाइक्स्ट्रा बन जाता है।",
+    "hinglish": "Jab moves ki cost alag ho (highway vs keechad wali gali), Dijkstra ka algorithm hamesha ab tak ka sabse sasta node (cost g) kholta hai. A* ek heuristic h jodta hai, yaani bachi hui cost ka andaaza, aur sabse chhote f = g + h wala node kholta hai. 4-direction grid par Manhattan distance |dx| + |dy| accha heuristic hai. Agar h asli bachi cost se kabhi zyada na ho to use admissible kehte hain, aur tab A* hamesha optimal rasta dhoondhta hai, usually Dijkstra se bahut kam nodes dekh kar. h = 0 rakhne par A* wapas Dijkstra ban jaata hai."
+   },
+   "analogy": {
+    "hinglish": "Auto wale bhaiya ko pata hai station kis taraf hai (heuristic), isliye ulti gali mein nahi ghusenge — yahi A* hai.",
+    "en": "The auto driver knows which side the station is (heuristic), so he won't turn into the opposite lane — that is A*.",
+    "hi": "ऑटो वाले भैया को पता है स्टेशन किस तरफ़ है (ह्यूरिस्टिक), इसलिए उल्टी गली में नहीं घुसेंगे — यही A* है।"
+   },
+   "realExample": {
+    "en": "Map apps, Ola/Uber dispatch and game characters use Dijkstra- and A*-style routing over road graphs with travel-time costs.",
+    "hinglish": "Map apps, Ola/Uber dispatch aur game characters road graphs par travel-time cost ke saath Dijkstra aur A* jaisi routing use karte hain.",
+    "hi": "मैप ऐप, ओला/उबर डिस्पैच और गेम के पात्र यात्रा-समय लागत वाले सड़क ग्राफ़ पर डाइक्स्ट्रा और A* जैसी रूटिंग इस्तेमाल करते हैं।"
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "In the arena, draw a wall that forces a detour. Predict which algorithm will explore the most cells, then run all three and check.",
+   "hinglish": "Arena mein ek deewar banao jo ghoom ke jaane par majboor kare. Pehle predict karo kaun sabse zyada cells explore karega, phir teeno chala ke check karo.",
+   "hi": "एरीना में ऐसी दीवार बनाओ जो चक्कर लगवाए। अनुमान लगाओ कौन-सा एल्गोरिद्म सबसे ज़्यादा खाने खोजेगा, फिर तीनों चलाकर जाँचो।"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which data structure does BFS use?",
+     "hi": "बीएफ़एस कौन-सी डेटा संरचना इस्तेमाल करता है?",
+     "hinglish": "BFS kaunsa data structure use karta hai?"
+    },
+    "options": [
+     {
+      "en": "Queue",
+      "hinglish": "Queue",
+      "hi": "कतार (क्यू)"
+     },
+     {
+      "en": "Stack",
+      "hinglish": "Stack",
+      "hi": "ढेर (स्टैक)"
+     },
+     {
+      "en": "Hash table only",
+      "hinglish": "Sirf hash table",
+      "hi": "सिर्फ़ हैश तालिका"
+     },
+     {
+      "en": "Binary tree",
+      "hinglish": "Binary tree",
+      "hi": "बाइनरी ट्री"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "A FIFO queue makes BFS finish one distance level before starting the next. DFS uses a stack.",
+     "hi": "फ़ीफ़ो कतार बीएफ़एस को अगला स्तर शुरू करने से पहले एक दूरी-स्तर पूरा करवाती है। डीएफ़एस ढेर (स्टैक) इस्तेमाल करता है।",
+     "hinglish": "FIFO queue ki wajah se BFS agla level shuru karne se pehle ek distance level poora karta hai. DFS stack use karta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "In A*, a node has g = 6 and h = 4. What is f?",
+     "hi": "ए-स्टार में एक नोड का g = 6 और h = 4 है। f क्या है?",
+     "hinglish": "A* mein ek node ka g = 6 aur h = 4 hai. f kya hai?"
+    },
+    "options": [
+     {
+      "en": "10",
+      "hinglish": "10",
+      "hi": "10"
+     },
+     {
+      "en": "2",
+      "hinglish": "2",
+      "hi": "2"
+     },
+     {
+      "en": "24",
+      "hinglish": "24",
+      "hi": "24"
+     },
+     {
+      "en": "6",
+      "hinglish": "6",
+      "hi": "6"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "f = g + h = 6 + 4 = 10: the cost so far plus the estimated cost remaining.",
+     "hi": "f = g + h = 6 + 4 = 10: अब तक की लागत और बची अनुमानित लागत।",
+     "hinglish": "f = g + h = 6 + 4 = 10: ab tak ki cost plus bachi hui andaazan cost."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "A heuristic says the goal is 12 steps away, but the real shortest path is 8 steps. What is wrong?",
+     "hi": "अनुमान कहता है लक्ष्य 12 कदम दूर है, पर असली सबसे छोटा रास्ता 8 कदम का है। क्या गलत है?",
+     "hinglish": "Heuristic kehta hai goal 12 steps door hai, par asli shortest path 8 steps ka hai. Kya galat hai?"
+    },
+    "options": [
+     {
+      "en": "It overestimates, so it is not admissible and A* may return a non-optimal path",
+      "hinglish": "Yeh overestimate karta hai, admissible nahi hai, A* non-optimal path de sakta hai",
+      "hi": "यह अधिक अनुमान लगाता है, इसलिए स्वीकार्य नहीं है और A* ग़ैर-इष्टतम रास्ता दे सकता है"
+     },
+     {
+      "en": "Nothing, bigger is always better",
+      "hinglish": "Kuch nahi, bada hamesha behtar",
+      "hi": "कुछ नहीं, बड़ा हमेशा बेहतर है"
+     },
+     {
+      "en": "BFS will break",
+      "hinglish": "BFS toot jayega",
+      "hi": "BFS टूट जाएगा"
+     },
+     {
+      "en": "The grid is too small",
+      "hinglish": "Grid chhoti hai",
+      "hi": "ग्रिड बहुत छोटा है"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Admissible heuristics never overestimate. An overestimate can make A* skip the true best path.",
+     "hi": "स्वीकार्य अनुमान कभी ज़्यादा नहीं आँकते। ज़्यादा आँकने से ए-स्टार असली सबसे अच्छा रास्ता छोड़ सकता है।",
+     "hinglish": "Admissible heuristic kabhi overestimate nahi karta. Overestimate se A* asli best path chhod sakta hai."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q4",
+    "type": "lab-check",
+    "prompt": {
+     "en": "In the arena, run A* on maze-1 and reach the goal.",
+     "hi": "एरीना में मेज़-1 पर ए-स्टार चलाकर लक्ष्य तक पहुँचें।",
+     "hinglish": "Arena mein maze-1 par A* chala ke goal tak pahuncho."
+    },
+    "answer": {
+     "event": "path-found",
+     "algo": "astar"
+    },
+    "explain": {
+     "en": "A* should find a path of the same length as BFS while expanding fewer cells, thanks to the Manhattan heuristic.",
+     "hi": "मैनहैटन अनुमान की वजह से ए-स्टार को बीएफ़एस जितना ही लंबा रास्ता कम खाने खोलकर मिलना चाहिए।",
+     "hinglish": "Manhattan heuristic ki wajah se A* ko BFS jitna hi lamba path kam cells expand karke milna chahiye."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "topics": [
+  "ai.search",
+  "prog.algo-search"
+ ],
+ "sources": [
+  {
+   "title": "Hart, Nilsson, Raphael (1968) A Formal Basis for the Heuristic Determination of Minimum Cost Paths",
+   "url": "https://ieeexplore.ieee.org/document/4082128",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Red Blob Games — Introduction to A*",
+   "url": "https://www.redblobgames.com/pathfinding/a-star/introduction.html",
+   "licence": "fact reference"
+  }
+ ]
+}

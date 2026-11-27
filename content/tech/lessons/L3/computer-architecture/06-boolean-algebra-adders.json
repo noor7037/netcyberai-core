@@ -1,0 +1,355 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.computer-architecture.06",
+ "level": 3,
+ "classes": [
+  9,
+  10
+ ],
+ "unit": "computer-architecture",
+ "title": {
+  "en": "Boolean algebra and adders",
+  "hi": "बूलियन बीजगणित और योजक",
+  "hinglish": "Boolean algebra aur adders"
+ },
+ "minutes": 16,
+ "xp": 70,
+ "prereq": [
+  "L3.computer-architecture.05"
+ ],
+ "outcomes": [
+  {
+   "en": "Use AND, OR, NOT, XOR, NAND and their truth tables",
+   "hi": "AND, OR, NOT, XOR, NAND और उनकी सत्य-तालिकाएँ इस्तेमाल करो",
+   "hinglish": "AND, OR, NOT, XOR, NAND aur unki truth tables use karo"
+  },
+  {
+   "en": "Simplify simple Boolean expressions with laws such as De Morgan's",
+   "hi": "डी मॉर्गन जैसे नियमों से सरल बूलियन व्यंजक सरल करो",
+   "hinglish": "De Morgan jaise laws se simple Boolean expressions simplify karo"
+  },
+  {
+   "en": "Build a half adder, full adder and 4-bit ripple-carry adder",
+   "hi": "अर्ध योजक, पूर्ण योजक और 4-बिट रिपल-कैरी योजक बनाओ",
+   "hinglish": "Half adder, full adder aur 4-bit ripple-carry adder banao"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Boolean algebra",
+   "hinglish": "Sach-jhooth ka ganit",
+   "en": "Maths of true/false values (1/0) with AND, OR, NOT",
+   "hi": "सच/झूठ (1/0) मानों का गणित, AND, OR, NOT के साथ"
+  },
+  {
+   "term": "Truth table",
+   "hinglish": "Har input ka output",
+   "en": "Table listing the output for every input combination",
+   "hi": "हर इनपुट संयोजन का आउटपुट बताने वाली तालिका"
+  },
+  {
+   "term": "Half adder",
+   "hinglish": "Do bits jodo",
+   "en": "Adds two bits: sum = A XOR B, carry = A AND B",
+   "hi": "दो बिट जोड़ता है: योग = A XOR B, कैरी = A AND B"
+  },
+  {
+   "term": "Full adder",
+   "hinglish": "Teen bits jodo",
+   "en": "Adds two bits plus a carry-in",
+   "hi": "दो बिट और एक कैरी-इन जोड़ता है"
+  },
+  {
+   "term": "De Morgan's law",
+   "hinglish": "NOT ko andar le jaana",
+   "en": "NOT(A AND B) = NOT A OR NOT B; NOT(A OR B) = NOT A AND NOT B",
+   "hi": "NOT(A AND B) = NOT A OR NOT B; NOT(A OR B) = NOT A AND NOT B"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "George Boole (1854) wrote logic as algebra. Claude Shannon (1937) showed switch circuits could compute it — the birth of digital logic.",
+    "hi": "जॉर्ज बूल (1854) ने तर्क को बीजगणित की तरह लिखा। क्लॉड शैनन (1937) ने दिखाया कि स्विच परिपथ इसे गणना कर सकते हैं — डिजिटल तर्क का जन्म।",
+    "hinglish": "George Boole (1854) ne logic ko algebra ki tarah likha. Claude Shannon (1937) ne dikhaya ki switch circuits ise compute kar sakte hain — digital logic ka janm."
+   },
+   "visual": "anim:boole-shannon",
+   "narration": {
+    "en": "George Boole (1854) wrote logic as algebra. Claude Shannon (1937) showed switch circuits could compute it — the birth of digital logic.",
+    "hi": "जॉर्ज बूल (1854) ने तर्क को बीजगणित की तरह लिखा। क्लॉड शैनन (1937) ने दिखाया कि स्विच परिपथ इसे गणना कर सकते हैं — डिजिटल तर्क का जन्म।",
+    "hinglish": "George Boole (1854) ne logic ko algebra ki tarah likha. Claude Shannon (1937) ne dikhaya ki switch circuits ise compute kar sakte hain — digital logic ka janm."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Each gate is a few transistors. AND outputs 1 only if both inputs are 1; XOR outputs 1 if they differ.",
+    "hi": "हर गेट कुछ ट्रांज़िस्टर है। AND सिर्फ़ तब 1 जब दोनों इनपुट 1; XOR तब 1 जब वे अलग।",
+    "hinglish": "Har gate kuch transistors hai. AND sirf tab 1 jab dono inputs 1; XOR tab 1 jab woh alag."
+   },
+   "visual": "anim:gate-lamps",
+   "narration": {
+    "en": "Each gate is a few transistors. AND outputs 1 only if both inputs are 1; XOR outputs 1 if they differ.",
+    "hi": "हर गेट कुछ ट्रांज़िस्टर है। AND सिर्फ़ तब 1 जब दोनों इनपुट 1; XOR तब 1 जब वे अलग।",
+    "hinglish": "Har gate kuch transistors hai. AND sirf tab 1 jab dono inputs 1; XOR tab 1 jab woh alag."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Add two bits: 1 + 1 = 10 in binary. The sum bit is XOR (0) and the carry bit is AND (1). That is a half adder.",
+    "hi": "दो बिट जोड़ो: बाइनरी में 1 + 1 = 10। योग बिट XOR (0) और कैरी बिट AND (1)। यही अर्ध योजक है।",
+    "hinglish": "Do bits jodo: binary mein 1 + 1 = 10. Sum bit XOR (0) aur carry bit AND (1). Yahi half adder hai."
+   },
+   "visual": "anim:half-adder",
+   "narration": {
+    "en": "Add two bits: 1 + 1 = 10 in binary. The sum bit is XOR (0) and the carry bit is AND (1). That is a half adder.",
+    "hi": "दो बिट जोड़ो: बाइनरी में 1 + 1 = 10। योग बिट XOR (0) और कैरी बिट AND (1)। यही अर्ध योजक है।",
+    "hinglish": "Do bits jodo: binary mein 1 + 1 = 10. Sum bit XOR (0) aur carry bit AND (1). Yahi half adder hai."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Chain four full adders and the carry ripples from bit 0 to bit 3. Your CPU's ALU does this for 64 bits, with tricks to avoid waiting for the ripple.",
+    "hi": "चार पूर्ण योजक जोड़ो और कैरी बिट 0 से बिट 3 तक बहता है। आपके CPU का ALU 64 बिट के लिए यही करता है, बहाव का इंतज़ार टालने की तरकीबों के साथ।",
+    "hinglish": "Chaar full adders jodo aur carry bit 0 se bit 3 tak behta hai. Tumhare CPU ka ALU 64 bits ke liye yahi karta hai, ripple ka intezaar taalne ki tricks ke saath."
+   },
+   "visual": "anim:ripple",
+   "narration": {
+    "en": "Chain four full adders and the carry ripples from bit 0 to bit 3. Your CPU's ALU does this for 64 bits, with tricks to avoid waiting for the ripple.",
+    "hi": "चार पूर्ण योजक जोड़ो और कैरी बिट 0 से बिट 3 तक बहता है। आपके CPU का ALU 64 बिट के लिए यही करता है, बहाव का इंतज़ार टालने की तरकीबों के साथ।",
+    "hinglish": "Chaar full adders jodo aur carry bit 0 se bit 3 tak behta hai. Tumhare CPU ka ALU 64 bits ke liye yahi karta hai, ripple ka intezaar taalne ki tricks ke saath."
+   }
+  }
+ ],
+ "play": {
+  "lab": "bits-lab",
+  "config": {
+   "mode": "gates",
+   "gate": "XOR"
+  },
+  "goal": {
+   "en": "Fill the full truth table for XOR and NAND by trying every input. Then open the Adder, add 11 + 7 and watch the carry ripple and the overflow flag.",
+   "hi": "हर इनपुट आज़माकर XOR और NAND की पूरी सत्य-तालिका भरो। फिर योजक खोलो, 11 + 7 जोड़ो और कैरी का बहाव और ओवरफ़्लो फ़्लैग देखो।",
+   "hinglish": "XOR aur NAND ki poori truth table har input try karke bharo. Phir Adder kholo, 11 + 7 jodo aur carry ripple aur overflow flag dekho."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Laws that simplify circuits",
+    "hi": "परिपथ सरल करने वाले नियम",
+    "hinglish": "Circuits simplify karne wale laws"
+   },
+   "body": {
+    "en": "Like ordinary algebra, Boolean algebra has laws: A AND 1 = A, A OR 0 = A, A AND NOT A = 0, A OR NOT A = 1, distribution, and De Morgan's laws, which let you swap AND/OR by pushing NOT inside. Fewer gates mean cheaper, faster, cooler chips. NAND (and NOR) is universal: NOT A = A NAND A, and AND, OR and XOR can all be built from NANDs. Programming uses the same logic: in Python, not (a and b) == (not a) or (not b).",
+    "hi": "साधारण बीजगणित की तरह बूलियन बीजगणित के भी नियम हैं: A AND 1 = A, A OR 0 = A, A AND NOT A = 0, A OR NOT A = 1, वितरण, और डी मॉर्गन के नियम, जो NOT अंदर ले जाकर AND/OR बदलने देते हैं। कम गेट = सस्ते, तेज़, ठंडे चिप। NAND (और NOR) सार्वभौमिक है: NOT A = A NAND A, और AND, OR, XOR सब NAND से बन सकते हैं। प्रोग्रामिंग वही तर्क इस्तेमाल करती है: Python में not (a and b) == (not a) or (not b)।",
+    "hinglish": "Ordinary algebra ki tarah Boolean algebra ke bhi laws hain: A AND 1 = A, A OR 0 = A, A AND NOT A = 0, A OR NOT A = 1, distribution, aur De Morgan ke laws, jo NOT andar le jaakar AND/OR swap karne dete hain. Kam gates = saste, tez, thande chips. NAND (aur NOR) universal hai: NOT A = A NAND A, aur AND, OR, XOR sab NANDs se ban sakte hain. Programming wahi logic use karti hai: Python mein not (a and b) == (not a) or (not b)."
+   },
+   "analogy": {
+    "en": "\"Not (raining and cold)\" means \"not raining, or not cold\" — De Morgan in everyday words.",
+    "hi": "\"न (बारिश और ठंड)\" मतलब \"बारिश नहीं, या ठंड नहीं\" — रोज़ के शब्दों में डी मॉर्गन।",
+    "hinglish": "\"Na (baarish aur thand)\" matlab \"baarish nahi, ya thand nahi\" — rozana ke shabdon mein De Morgan."
+   },
+   "realExample": {
+    "en": "A door alarm: alarm = door_open AND armed AND NOT (code_entered). Three inputs, a few gates.",
+    "hi": "दरवाज़े का अलार्म: अलार्म = दरवाज़ा_खुला AND चालू AND NOT (कोड_डाला)। तीन इनपुट, कुछ गेट।",
+    "hinglish": "Door alarm: alarm = door_open AND armed AND NOT (code_entered). Teen inputs, kuch gates."
+   }
+  },
+  {
+   "heading": {
+    "en": "From adders to ALUs",
+    "hi": "योजक से ALU तक",
+    "hinglish": "Adders se ALUs tak"
+   },
+   "body": {
+    "en": "A full adder: sum = A XOR B XOR Cin; Cout = (A AND B) OR (Cin AND (A XOR B)) — that is, the carry is 1 when at least two of the three inputs are 1. Chaining n full adders makes an n-bit ripple-carry adder; its delay grows with n because each bit waits for the carry. Real CPUs use carry-lookahead adders that compute carries in parallel. Add NOT gates on B plus a carry-in of 1 and the same circuit subtracts (A + NOT B + 1 = A − B), thanks to two's complement. Add multiplexers to choose between add, AND, OR and compare, and you have an ALU.",
+    "hi": "पूर्ण योजक: योग = A XOR B XOR Cin; Cout = (A AND B) OR (Cin AND (A XOR B)) — यानी कैरी तब 1 जब तीन में से कम से कम दो इनपुट 1। n पूर्ण योजक जोड़ने से n-बिट रिपल-कैरी योजक बनता है; इसकी देरी n के साथ बढ़ती है क्योंकि हर बिट कैरी का इंतज़ार करता है। असली CPU कैरी-लुकअहेड योजक इस्तेमाल करते हैं जो कैरी साथ-साथ निकालते हैं। B पर NOT गेट और कैरी-इन 1 जोड़ो तो वही परिपथ घटाता है (A + NOT B + 1 = A − B), टूज़ कॉम्प्लिमेंट की बदौलत। जोड़, AND, OR और तुलना में चुनने के लिए मल्टीप्लेक्सर जोड़ो, और ALU तैयार।",
+    "hinglish": "Full adder: sum = A XOR B XOR Cin; Cout = (A AND B) OR (Cin AND (A XOR B)) — yaani carry tab 1 jab teen mein se kam se kam do inputs 1. n full adders jodne se n-bit ripple-carry adder banta hai; iski delay n ke saath badhti hai kyunki har bit carry ka intezaar karta hai. Asli CPUs carry-lookahead adders use karte hain jo carries parallel nikaalte hain. B par NOT gates aur carry-in 1 jodo to wahi circuit subtract karta hai (A + NOT B + 1 = A − B), two's complement ki badaulat. Add, AND, OR aur compare mein chunne ke liye multiplexers jodo, aur ALU taiyaar."
+   },
+   "analogy": {
+    "en": "Column addition in school: you add each column and carry 1 to the next — exactly what the ripple adder does in binary.",
+    "hi": "स्कूल का स्तंभ-जोड़: हर स्तंभ जोड़ते हो और अगले में 1 हासिल ले जाते हो — रिपल योजक बाइनरी में बिल्कुल यही करता है।",
+    "hinglish": "School ka column addition: har column jodte ho aur agle mein 1 carry le jaate ho — ripple adder binary mein bilkul yahi karta hai."
+   },
+   "realExample": {
+    "en": "0101 (5) + 0110 (6) = 1011 (11): bit 1 and bit 2 both produce carries along the way.",
+    "hi": "0101 (5) + 0110 (6) = 1011 (11): रास्ते में बिट 1 और बिट 2 दोनों कैरी बनाते हैं।",
+    "hinglish": "0101 (5) + 0110 (6) = 1011 (11): raaste mein bit 1 aur bit 2 dono carries banate hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Draw a half adder using one XOR and one AND gate. Then draw a full adder from two half adders and an OR gate, and test it with all 8 input combinations in a truth table.",
+   "hi": "एक XOR और एक AND गेट से अर्ध योजक बनाओ। फिर दो अर्ध योजक और एक OR गेट से पूर्ण योजक बनाओ, और सत्य-तालिका में सभी 8 इनपुट संयोजनों से जाँचो।",
+   "hinglish": "Ek XOR aur ek AND gate se half adder banao. Phir do half adders aur ek OR gate se full adder banao, aur truth table mein saare 8 input combinations se test karo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "A = 1, B = 1. What is A XOR B?",
+     "hi": "A = 1, B = 1। A XOR B क्या है?",
+     "hinglish": "A = 1, B = 1. A XOR B kya hai?"
+    },
+    "options": [
+     "0",
+     "1",
+     "2",
+     {
+      "en": "Undefined",
+      "hi": "अपरिभाषित",
+      "hinglish": "Undefined"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "XOR is 1 only when inputs differ.",
+     "hi": "XOR सिर्फ़ तब 1 जब इनपुट अलग।",
+     "hinglish": "XOR sirf tab 1 jab inputs alag."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "In a half adder, the carry is…",
+     "hi": "अर्ध योजक में कैरी है…",
+     "hinglish": "Half adder mein carry hai…"
+    },
+    "options": [
+     "A AND B",
+     "A OR B",
+     "A XOR B",
+     "NOT A"
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Carry only when both bits are 1.",
+     "hi": "कैरी तभी जब दोनों बिट 1।",
+     "hinglish": "Carry tabhi jab dono bits 1."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "By De Morgan, NOT (A OR B) equals…",
+     "hi": "डी मॉर्गन से NOT (A OR B) बराबर है…",
+     "hinglish": "De Morgan se NOT (A OR B) barabar hai…"
+    },
+    "options": [
+     "NOT A AND NOT B",
+     "NOT A OR NOT B",
+     "A AND B",
+     "A XOR B"
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Push NOT inside and swap OR for AND.",
+     "hi": "NOT अंदर ले जाओ और OR को AND से बदलो।",
+     "hinglish": "NOT andar le jao aur OR ko AND se badlo."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "4-bit unsigned: 11 + 7 gives sum bits 0010 and carry-out 1. What happened?",
+     "hi": "4-बिट अनसाइन्ड: 11 + 7 से योग बिट 0010 और कैरी-आउट 1। क्या हुआ?",
+     "hinglish": "4-bit unsigned: 11 + 7 se sum bits 0010 aur carry-out 1. Kya hua?"
+    },
+    "options": [
+     {
+      "en": "Overflow: 18 needs 5 bits",
+      "hi": "ओवरफ़्लो: 18 को 5 बिट चाहिए",
+      "hinglish": "Overflow: 18 ko 5 bits chahiye"
+     },
+     {
+      "en": "The adder is broken",
+      "hi": "योजक ख़राब है",
+      "hinglish": "Adder kharab hai"
+     },
+     {
+      "en": "The answer is 2",
+      "hi": "उत्तर 2 है",
+      "hinglish": "Answer 2 hai"
+     },
+     {
+      "en": "Nothing unusual",
+      "hi": "कुछ ख़ास नहीं",
+      "hinglish": "Kuch khaas nahi"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "16 + 2 = 18; the carry-out holds the 16.",
+     "hi": "16 + 2 = 18; कैरी-आउट में 16 है।",
+     "hinglish": "16 + 2 = 18; carry-out mein 16 hai."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the XOR truth table in the lab.",
+     "hi": "प्रयोगशाला में XOR सत्य-तालिका पूरी करो।",
+     "hinglish": "Lab mein XOR truth table poori karo."
+    },
+    "answer": {
+     "event": "gate-truth",
+     "gate": "XOR"
+    },
+    "explain": {
+     "en": "00→0, 01→1, 10→1, 11→0.",
+     "hi": "00→0, 01→1, 10→1, 11→0।",
+     "hinglish": "00→0, 01→1, 10→1, 11→0."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Run the adder and cause an overflow.",
+     "hi": "योजक चलाओ और ओवरफ़्लो कराओ।",
+     "hinglish": "Adder chalao aur overflow karao."
+    },
+    "answer": {
+     "event": "overflow-seen"
+    },
+    "explain": {
+     "en": "Any sum above 15 overflows 4 bits.",
+     "hi": "15 से ऊपर कोई भी योग 4 बिट में ओवरफ़्लो।",
+     "hinglish": "15 se upar koi bhi sum 4 bits mein overflow."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "topics": [
+  "hw.gates",
+  "elec.digital-ics"
+ ],
+ "sources": [
+  {
+   "title": "Patterson & Hennessy, Computer Organization and Design — fact reference",
+   "url": "https://www.elsevier.com/books/computer-organization-and-design-risc-v-edition/patterson/978-0-12-820331-6",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Shannon (1938) A Symbolic Analysis of Relay and Switching Circuits",
+   "url": "https://doi.org/10.1109/T-AIEE.1938.5057767",
+   "licence": "fact reference"
+  }
+ ]
+}

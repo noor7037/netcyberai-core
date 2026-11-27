@@ -1,0 +1,319 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.electricity.06",
+ "level": 1,
+ "classes": [
+  1,
+  2,
+  3
+ ],
+ "unit": "electricity",
+ "title": {
+  "en": "Switch off, save power!",
+  "hi": "बंद करो, बिजली बचाओ!",
+  "hinglish": "Band karo, bijli bachao!"
+ },
+ "minutes": 6,
+ "xp": 25,
+ "prereq": [
+  "L1.electricity.02"
+ ],
+ "topics": [
+  "elec.electricity",
+  "elec.circuits"
+ ],
+ "outcomes": [
+  {
+   "en": "Switch off lights, fans and screens when not in use.",
+   "hi": "काम न हो तो बत्ती, पंखे और स्क्रीन बंद कर सकते हो।",
+   "hinglish": "Kaam na ho toh lights, pankhe aur screens band kar sakte ho."
+  },
+  {
+   "en": "Say why saving electricity helps our planet.",
+   "hi": "बता सकते हो कि बिजली बचाने से धरती की मदद कैसे होती है।",
+   "hinglish": "Bata sakte ho ki bijli bachaane se dharti ki madad kaise hoti hai."
+  },
+  {
+   "en": "Read a star label: more stars use less power.",
+   "hi": "स्टार लेबल पढ़ सकते हो: ज़्यादा स्टार, कम बिजली।",
+   "hinglish": "Star label padh sakte ho: zyaada stars, kam bijli."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Switch",
+   "en": "A button that opens or closes a circuit",
+   "hi": "सर्किट खोलने-बंद करने वाला बटन",
+   "hinglish": "Circuit kholne-band karne wala button"
+  },
+  {
+   "term": "Star label",
+   "en": "A sticker that shows how much power an appliance saves",
+   "hi": "उपकरण कितनी बिजली बचाता है, बताने वाला स्टिकर",
+   "hinglish": "Bijli bachat batane wala sticker"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.electricity.06.s1",
+   "caption": {
+    "en": "Leaving the room? Switch off.",
+    "hi": "कमरे से जा रहे हो? बंद करो।",
+    "hinglish": "Kamre se ja rahe ho? Band karo."
+   },
+   "narration": {
+    "en": "When you leave a room, switch off the lights and the fan.",
+    "hinglish": "Jab kamre se jao, toh light aur pankha band kar do.",
+    "hi": "जब कमरे से जाओ, तो बत्ती और पंखा बंद कर दो।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.electricity.06.s2",
+   "caption": {
+    "en": "LED bulbs use much less power.",
+    "hi": "LED बल्ब बहुत कम बिजली लेते हैं।",
+    "hinglish": "LED bulbs bahut kam bijli lete hain."
+   },
+   "narration": {
+    "en": "An LED bulb gives the same light as an old bulb but uses far less electricity.",
+    "hinglish": "LED bulb purane bulb jitni roshni deta hai par bahut kam bijli leta hai.",
+    "hi": "LED बल्ब पुराने बल्ब जितनी रोशनी देता है पर बहुत कम बिजली लेता है।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.electricity.06.s3",
+   "caption": {
+    "en": "More stars on the label = less power.",
+    "hi": "लेबल पर ज़्यादा स्टार = कम बिजली।",
+    "hinglish": "Label par zyaada stars = kam bijli."
+   },
+   "narration": {
+    "en": "Fridges, ACs and fans in India carry a star label. 5 stars saves the most power.",
+    "hinglish": "India mein fridge, AC aur pankhon par star label hota hai. 5 star sabse zyaada bijli bachaata hai.",
+    "hi": "भारत में फ़्रिज, AC और पंखों पर स्टार लेबल होता है। 5 स्टार सबसे ज़्यादा बिजली बचाता है।"
+   }
+  },
+  {
+   "step": 4,
+   "visual": "scene:L1.electricity.06.s4",
+   "caption": {
+    "en": "Saving power helps the Earth.",
+    "hi": "बिजली बचाने से धरती की मदद होती है।",
+    "hinglish": "Bijli bachaane se dharti ki madad hoti hai."
+   },
+   "narration": {
+    "en": "Much of our electricity is made by burning coal, which makes smoke. Using less means less smoke.",
+    "hinglish": "Hamari bahut si bijli koyla jala kar banti hai, jisse dhuaan hota hai. Kam bijli matlab kam dhuaan.",
+    "hi": "हमारी बहुत सी बिजली कोयला जलाकर बनती है, जिससे धुआँ होता है। कम बिजली मतलब कम धुआँ।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "circuit-builder",
+  "config": {
+   "mode": "switch"
+  },
+  "goal": {
+   "en": "Put a switch in the circuit and turn the bulb ON, OFF, ON. A switch is how we save power!",
+   "hi": "सर्किट में स्विच लगाओ और बल्ब चालू, बंद, चालू करो। स्विच से ही हम बिजली बचाते हैं!",
+   "hinglish": "Circuit mein switch lagao aur bulb ON, OFF, ON karo. Switch se hi hum bijli bachaate hain!"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Why switching off works",
+    "hi": "बंद करना क्यों काम करता है",
+    "hinglish": "Band karna kyon kaam karta hai"
+   },
+   "body": {
+    "en": "A switch makes a gap in the circuit. With a gap, no electricity flows, so the bulb or fan uses no power at all. Even phone chargers left plugged in and TVs on standby use a little power all the time, so switch them off at the plug too (ask a grown-up).",
+    "hi": "स्विच सर्किट में एक ख़ाली जगह बनाता है। ख़ाली जगह हो तो बिजली नहीं बहती, इसलिए बल्ब या पंखा बिल्कुल बिजली नहीं लेता। लगे छोड़े फ़ोन चार्जर और स्टैंडबाय पर पड़े टीवी भी हर समय थोड़ी बिजली लेते हैं, इसलिए उन्हें भी प्लग से बंद करो (बड़े से पूछकर)।",
+    "hinglish": "Switch circuit mein ek gap banaata hai. Gap ho toh bijli nahin behti, isliye bulb ya pankha bilkul bijli nahin leta. Lage chhode phone chargers aur standby par pade TV bhi har samay thodi bijli lete hain, isliye unhe bhi plug se band karo (bade se poochh kar)."
+   },
+   "analogy": {
+    "en": "Just as turning off a tap saves water, turning off a switch saves electricity.",
+    "hi": "जैसे नल बंद करने से पानी बचता है, वैसे ही स्विच बंद करने से बिजली बचती है।",
+    "hinglish": "Jaise nal band karne se paani bachta hai, waise hi switch band karne se bijli bachti hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "India’s big LED switch",
+    "hi": "भारत का बड़ा LED बदलाव",
+    "hinglish": "India ka bada LED badlaav"
+   },
+   "body": {
+    "en": "Under the UJALA programme, India distributed more than 36 crore LED bulbs to homes. LEDs use roughly 80–90% less electricity than old filament bulbs for the same light. The Bureau of Energy Efficiency also gives star labels to fans, fridges and ACs, so families can choose ones that use less power.",
+    "hi": "उजाला कार्यक्रम के तहत भारत ने घरों में 36 करोड़ से ज़्यादा LED बल्ब बाँटे। उतनी ही रोशनी के लिए LED पुराने फ़िलामेंट बल्बों से लगभग 80–90% कम बिजली लेते हैं। ऊर्जा दक्षता ब्यूरो पंखों, फ़्रिज और AC को स्टार लेबल भी देता है, ताकि परिवार कम बिजली वाले चुन सकें।",
+    "hinglish": "UJALA programme ke tahat India ne gharon mein 36 crore se zyaada LED bulbs baante. Utni hi roshni ke liye LED purane filament bulbs se lagbhag 80–90% kam bijli lete hain. Bureau of Energy Efficiency pankhon, fridge aur AC ko star labels bhi deta hai, taaki families kam bijli wale chun sakein."
+   },
+   "realExample": {
+    "en": "Be your home’s \"Power Monitor\" for a week: each evening, check that no empty room has a light or fan on.",
+    "hi": "एक हफ़्ते के लिए घर के \"पावर मॉनिटर\" बनो: हर शाम देखो कि किसी ख़ाली कमरे में बत्ती या पंखा न चल रहा हो।",
+    "hinglish": "Ek hafte ke liye ghar ke \"Power Monitor\" bano: har shaam check karo ki kisi khaali kamre mein light ya pankha na chal raha ho."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Make a \"Switch off!\" sign and stick it next to a switch at home (with permission). Count how many times your family remembers this week.",
+   "hi": "एक \"बंद करो!\" का चिह्न बनाओ और घर में किसी स्विच के पास चिपकाओ (इजाज़त लेकर)। गिनो इस हफ़्ते परिवार कितनी बार याद रखता है।",
+   "hinglish": "Ek \"Switch off!\" sign banao aur ghar mein kisi switch ke paas chipkao (permission lekar). Gino is hafte family kitni baar yaad rakhti hai."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "You leave your room. The fan is on. You…",
+     "hi": "तुम कमरे से जा रहे हो। पंखा चल रहा है। तुम…",
+     "hinglish": "Tum kamre se ja rahe ho. Pankha chal raha hai. Tum…"
+    },
+    "options": [
+     {
+      "en": "👆 switch it off",
+      "hi": "👆 बंद करोगे",
+      "hinglish": "👆 band karoge"
+     },
+     {
+      "en": "🏃 leave it on",
+      "hi": "🏃 चलता छोड़ोगे",
+      "hinglish": "🏃 chalta chhodoge"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "No one there = no fan needed.",
+     "hi": "कोई नहीं = पंखे की ज़रूरत नहीं।",
+     "hinglish": "Koi nahin = pankhe ki zaroorat nahin."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which bulb uses less power for the same light?",
+     "hi": "उतनी ही रोशनी के लिए कौन सा बल्ब कम बिजली लेता है?",
+     "hinglish": "Utni hi roshni ke liye kaun sa bulb kam bijli leta hai?"
+    },
+    "options": [
+     {
+      "en": "💡 LED",
+      "hi": "💡 LED",
+      "hinglish": "💡 LED"
+     },
+     {
+      "en": "🔥 Old filament bulb",
+      "hi": "🔥 पुराना फ़िलामेंट बल्ब",
+      "hinglish": "🔥 Purana filament bulb"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "LEDs use roughly 80–90% less.",
+     "hi": "LED लगभग 80–90% कम लेते हैं।",
+     "hinglish": "LED lagbhag 80–90% kam lete hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "A fridge with 5 stars or 2 stars — which saves more power?",
+     "hi": "5 स्टार या 2 स्टार वाला फ़्रिज — कौन ज़्यादा बिजली बचाता है?",
+     "hinglish": "5 star ya 2 star wala fridge — kaun zyaada bijli bachaata hai?"
+    },
+    "options": [
+     {
+      "en": "⭐⭐⭐⭐⭐ 5 stars",
+      "hi": "⭐⭐⭐⭐⭐ 5 स्टार",
+      "hinglish": "⭐⭐⭐⭐⭐ 5 star"
+     },
+     {
+      "en": "⭐⭐ 2 stars",
+      "hi": "⭐⭐ 2 स्टार",
+      "hinglish": "⭐⭐ 2 star"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "More stars = more efficient.",
+     "hi": "ज़्यादा स्टार = ज़्यादा बचत।",
+     "hinglish": "Zyaada stars = zyaada bachat."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "When a switch is OFF, does electricity flow to the bulb?",
+     "hi": "स्विच बंद हो तो क्या बल्ब तक बिजली बहती है?",
+     "hinglish": "Switch OFF ho toh kya bulb tak bijli behti hai?"
+    },
+    "options": [
+     {
+      "en": "Yes",
+      "hi": "हाँ",
+      "hinglish": "Haan"
+     },
+     {
+      "en": "No",
+      "hi": "नहीं",
+      "hinglish": "Nahin"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "OFF makes a gap, so nothing flows.",
+     "hi": "बंद से ख़ाली जगह बनती है, कुछ नहीं बहता।",
+     "hinglish": "OFF se gap banta hai, kuch nahin behta."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Use the switch in the lab: ON, OFF, ON.",
+     "hi": "लैब में स्विच चलाओ: चालू, बंद, चालू।",
+     "hinglish": "Lab mein switch chalao: ON, OFF, ON."
+    },
+    "answer": {
+     "lab": "circuit-builder",
+     "mode": "switch",
+     "solved": true
+    },
+    "explain": {
+     "en": "Drop the switch into the gap, then tap it three times.",
+     "hi": "स्विच को ख़ाली जगह में डालो, फिर तीन बार टैप करो।",
+     "hinglish": "Switch ko gap mein daalo, phir teen baar tap karo."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Bureau of Energy Efficiency – UJALA and Star Labelling (fact reference)",
+   "url": "https://beeindia.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "US Department of Energy – LED lighting efficiency (fact reference)",
+   "url": "https://www.energy.gov/energysaver/led-lighting",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

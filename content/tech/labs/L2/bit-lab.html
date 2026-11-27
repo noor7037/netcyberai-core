@@ -1,0 +1,247 @@
+<!doctype html><html lang="en-IN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Bits & Gates Lab — NCA Tech & AI Lab</title><style>/* NCA Tech & AI Lab — Level 2 shared lab skin (own work, MIT). Family App lesson tokens: paper, card, ink, saffron, teal, plum. */
+:root{--paper:#FBF8F3;--card:#FFFDF9;--ink:#1C1B1A;--muted:#4B5563;--line:#E7E1D6;--saffron:#E8702A;--saffronD:#C2410C;--teal:#0F766E;--plum:#6D28D9;--sky:#0369A1;
+--mint:#E4F3EA;--butter:#FBF1D3;--lilac:#EFE9FB;--blush:#FBE6E3;--skyT:#E3EEF9;--night:#0B1430;--night2:#16224A;--cyan:#02CFF9;--leaf:#22C55E;--coral:#FF6B57;--gold:#F5B90A;--grape:#8B3DFF;
+--r:16px;--sh:0 1px 0 rgba(28,27,26,.04),0 6px 18px -8px rgba(28,27,26,.18)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans Devanagari",sans-serif;font-variant-numeric:tabular-nums}
+body{background:transparent;min-height:100vh;padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 16px)}
+button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation}
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:8px;padding:10px 14px;background:rgba(251,248,243,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--lilac);flex:none}
+.top h1{font-size:16px;margin:0;line-height:1.2;flex:1;min-width:0}
+.top h1 small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;flex:none;background:var(--card)}
+.lang button{border:0;background:none;padding:6px 9px;font-size:12px;font-weight:600;color:var(--muted);min-height:32px}
+.lang button[aria-pressed=true]{background:var(--ink);color:#fff}
+.wrap{max-width:1100px;margin:0 auto;padding:12px 14px;display:grid;gap:12px;grid-template-columns:minmax(0,1fr)}
+.wrap>*{min-width:0}
+.wrap>div{grid-template-columns:minmax(0,1fr)}
+.card,.stage{min-width:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;box-shadow:var(--sh)}
+.goal{background:var(--butter);border-color:#F1DFA8;display:flex;gap:10px;align-items:flex-start;font-size:14.5px}
+.goal b{color:#8A5300}
+.goal .gi{font-size:20px;line-height:1}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn{border:0;border-radius:12px;padding:11px 16px;font-weight:700;min-height:44px;background:var(--saffron);color:var(--ink);box-shadow:0 3px 0 #B4531B;transition:transform .12s}
+.btn:active{transform:translateY(2px);box-shadow:0 1px 0 #B4531B}
+.btn.ghost{background:var(--card);border:1.5px solid var(--line);box-shadow:none}
+.btn.teal{background:var(--teal);color:#fff;box-shadow:0 3px 0 #0A4F49}
+.btn.plum{background:var(--plum);color:#fff;box-shadow:0 3px 0 #4C1D95}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.chip{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:3px 10px;font-size:12.5px;font-weight:600;background:var(--mint);color:var(--teal)}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;padding-bottom:2px}/* wraps: every mode name always fully visible */
+.tabs button{flex:0 1 auto;max-width:100%;white-space:normal;text-align:center;border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:8px 14px;font-weight:600;font-size:14px;min-height:40px}
+.tabs button[aria-selected=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.stage{background:radial-gradient(120% 90% at 30% 0%,#1D2D63 0%,var(--night) 60%);color:#E8EEFF;border-radius:20px;overflow:hidden;position:relative;border:1px solid #23305E}
+.muted{color:var(--muted)}
+.mission{background:var(--skyT);border-color:#C9DDF2}
+.mission h3{margin:0 0 6px;font-size:15px;color:var(--sky)}
+.toast{position:fixed;left:0;top:0;width:max-content;max-width:min(92vw,340px);background:var(--ink);color:#fff;padding:10px 16px;border-radius:14px;font-weight:600;z-index:50;box-shadow:0 8px 24px rgba(0,0,0,.25);opacity:0;visibility:hidden;transform:scale(.92);transition:opacity .25s,transform .25s,visibility 0s .25s;pointer-events:none;text-align:center;line-height:1.35}
+.toast.on{opacity:1;visibility:visible;transform:none;transition:opacity .25s,transform .25s}
+.toast.inline{position:static;display:block;width:auto;max-width:none;margin:10px 0;grid-column:1/-1;flex:0 0 auto}
+.toast.ok{background:var(--teal)}.toast.bad{background:#B42318}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:-1}/* behind the cards: confetti never covers text */
+.kbd{font-family:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace}
+.hidden{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@keyframes pop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.08);opacity:1}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.shake{animation:shake .3s 2}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
+</style>
+<style>
+.bits{display:grid;grid-template-columns:repeat(8,1fr);gap:5px;perspective:600px}
+.bit{border:0;background:none;padding:0;height:72px;position:relative}
+.bit .in{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .45s cubic-bezier(.3,1.4,.5,1)}
+.bit.on .in{transform:rotateY(180deg)}
+.bit .f,.bit .b{position:absolute;inset:0;border-radius:10px;backface-visibility:hidden;display:grid;place-items:center;font:800 24px ui-monospace,Menlo,monospace}
+.bit .f{background:#1B2A5C;color:#7A8CC4;border:1.5px solid #34457F}
+.bit .b{background:linear-gradient(160deg,#FFE27A,#F5B90A);color:#1C1B1A;transform:rotateY(180deg);box-shadow:0 0 18px rgba(245,185,10,.7)}
+.pv{display:grid;grid-template-columns:repeat(8,1fr);gap:5px;text-align:center;font-size:11px;color:#9FB1E8;font-weight:700;margin-top:4px}
+.stage{padding:14px}
+.big{font:800 54px/1 ui-monospace,Menlo,monospace;text-align:center;margin:8px 0 2px;color:#fff;text-shadow:0 0 24px rgba(2,207,249,.5)}
+.eq{text-align:center;color:#C9D4FF;font-size:14px;min-height:20px}
+.grid8{display:grid;grid-template-columns:repeat(8,1fr);gap:3px;max-width:230px;margin:6px auto}
+.px{aspect-ratio:1;border-radius:3px;background:#22305E;transition:background .2s,transform .2s}
+.px.on{background:#FFD23F;transform:scale(1.04)}
+.rowsel{display:grid;gap:3px;font:600 11px ui-monospace,monospace}
+.rowsel button{border:1.5px solid #34457F;background:#1B2A5C;color:#C9D4FF;border-radius:6px;padding:2px 6px;min-height:26px;text-align:left}
+.rowsel button[aria-pressed=true]{border-color:#02CFF9;color:#fff;background:#24407A}
+.pixwrap{display:flex;gap:10px;justify-content:center;align-items:center}
+.sw{height:110px;border-radius:16px;margin:8px 0;border:2px solid rgba(255,255,255,.3);transition:background .25s}
+.ch{display:flex;gap:6px;justify-content:center}
+.ch button{flex:1;border-radius:10px;border:2px solid transparent;padding:8px;font-weight:800;color:#fff;min-height:44px}
+.ch button[aria-pressed=true]{border-color:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.25)}
+.gsel{display:flex;gap:5px;flex-wrap:wrap;justify-content:center}
+.gsel button{border:1.5px solid #34457F;background:#1B2A5C;color:#E8EEFF;border-radius:10px;padding:6px 12px;font-weight:800;min-height:40px}
+.gsel button[aria-pressed=true]{background:#02CFF9;color:#1C1B1A;border-color:#02CFF9}
+.wire{stroke:#475a9a;stroke-width:5;fill:none;stroke-linecap:round;transition:stroke .2s}
+.wire.on{stroke:#FFD23F;filter:drop-shadow(0 0 5px #F5B90A)}
+.gbody{fill:#24407A;stroke:#9FB1E8;stroke-width:2.5}
+.inbtn{cursor:pointer}
+table.tt{border-collapse:collapse;margin:8px auto 0;font:700 15px ui-monospace,monospace;color:#E8EEFF}
+table.tt td,table.tt th{padding:5px 14px;border-bottom:1px solid #2B3A70;text-align:center}
+table.tt tr.cur{background:rgba(2,207,249,.18)}
+table.tt tr.found td:last-child{color:#FFD23F}
+.ascii{display:flex;flex-wrap:wrap;gap:4px;padding:6px 0;font:700 12px ui-monospace,monospace}
+.ascii span{flex:none;background:#1B2A5C;border-radius:6px;padding:4px 6px;color:#9FB1E8;text-align:center}
+.ascii span.hit{background:#FFD23F;color:#1C1B1A}
+.hidden{display:none!important}
+@media (orientation:landscape) and (min-width:640px){.wrap{grid-template-columns:1fr 1fr}.wrap>.full{grid-column:1/-1}.bit{height:60px}}
+</style></head><body>
+<main class="wrap">
+ <div class="card goal full"><span class="gi">🎯</span><div id="goal"></div></div>
+ <div class="tabs full" role="tablist" id="tabs"></div>
+ <section class="stage" id="bitsBox"><div class="row" style="justify-content:space-between;margin-bottom:8px"><b style="font-size:14px" id="byteLbl"></b><span class="chip" style="background:#24407A;color:#C9D4FF" id="hexChip"></span></div>
+  <div class="bits" id="bits"></div><div class="pv" id="pv"></div>
+  <div class="row" style="margin-top:10px;justify-content:center"><button class="btn ghost" id="clr" style="background:#1B2A5C;color:#E8EEFF;border-color:#34457F" data-k="clear"></button><button class="btn ghost" id="inc" style="background:#1B2A5C;color:#E8EEFF;border-color:#34457F">+1</button><button class="btn ghost" id="shl" style="background:#1B2A5C;color:#E8EEFF;border-color:#34457F">×2 (≪)</button></div></section>
+ <section class="stage" id="view"></section>
+ <div class="card" id="explain"></div>
+ <div class="card mission full"><h3 data-k="mT"></h3><div id="mission"></div></div>
+</main>
+<script>/* NCA Tech & AI Lab — Level 2 shared lab runtime (own work, MIT). No eval, no network except an optional same-origin ?lesson= JSON. */
+(function(g){
+  const qs=new URLSearchParams(location.search);
+  const LANGS=['hinglish','en','hi'];
+  let lang=(qs.get('lang')||localStorage.getItem('nca-tl-lang')||'hinglish'); if(!LANGS.includes(lang)) lang='hinglish';
+  const reduced=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const t=x=>x==null?'':(typeof x==='string'||typeof x==='number')?String(x):(x[lang]||x.hinglish||x.en||'');
+  let STR={}; const listeners=[];
+  function applyI18n(root){(root||document).querySelectorAll('[data-k]').forEach(el=>{const v=STR[el.dataset.k]; if(v) el.innerHTML=t(v);});
+    document.documentElement.lang=lang==='hi'?'hi':(lang==='en'?'en':'en-IN');
+    document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.l===lang));}
+  function setLang(l){lang=l;localStorage.setItem('nca-tl-lang',l);applyI18n();listeners.forEach(f=>f(l));}
+  function header(icon,titleK,subK){const h=document.createElement('header');h.className='top';
+    h.innerHTML=`<div class="ic" aria-hidden="true">${icon}</div><h1><span data-k="${titleK}"></span><small data-k="${subK}"></small></h1>
+    <div class="lang" role="group" aria-label="Language"><button data-l="hinglish">Hinglish</button><button data-l="en">EN</button><button data-l="hi">हिं</button></div>`;
+    document.body.prepend(h); h.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>setLang(b.dataset.l));}
+  // Toast: never covers text. It floats in a free band of the screen (bottom first); if the screen has no free band
+  // it sits in the page flow right under what the child just tapped (pushes content down, covers nothing). Closes after 2.5 s.
+  let toastEl,lastTap=null,tapAt=null;document.addEventListener('pointerdown',e=>{lastTap=e.target;tapAt=[e.clientX,e.clientY+scrollY]},true);let rePend=0;const rePlace=()=>{if(!toastEl||!toastEl.classList.contains('on')||rePend)return;rePend=1;requestAnimationFrame(()=>{rePend=0;placeToast();});};
+  addEventListener('scroll',rePlace,{passive:true});addEventListener('resize',rePlace);document.addEventListener('animationend',rePlace,true);document.addEventListener('transitionend',rePlace,true);const toastMO=new MutationObserver(rs=>{if(rs.some(r=>!toastEl.contains(r.target)))rePlace();});
+  function textRects(skip){const vh=innerHeight,out=[],rg=document.createRange(),w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let n;
+    while((n=w.nextNode())){if(!n.nodeValue.trim())continue;const p=n.parentElement;if(!p||skip.contains(p)||/^(SCRIPT|STYLE)$/.test(p.tagName))continue;rg.selectNodeContents(n);
+      for(const q of rg.getClientRects())if(q.width>=1&&q.bottom>0&&q.top<vh)out.push(q);}
+    document.querySelectorAll('input,select,textarea,button,a[href],[role=button]').forEach(e=>{if(skip.contains(e))return;const q=e.getBoundingClientRect();if(q.width&&q.bottom>0&&q.top<vh)out.push(q)});if(0)document.querySelectorAll('x').forEach(e=>{const q=e.getBoundingClientRect();if(q.width&&q.bottom>0&&q.top<vh)out.push(q)});return out;}
+  function freeSpot(el){const vw=document.documentElement.clientWidth,vh=innerHeight,w=el.offsetWidth,h=el.offsetHeight,m=8;let top=m;
+    const bar=document.querySelector('.top');if(bar)top=Math.max(top,bar.getBoundingClientRect().bottom+m);
+    const obs=textRects(el),xs=[(vw-w)/2,m,vw-w-m],free=(x,y)=>!obs.some(q=>q.left<x+w+4&&q.right>x-4&&q.top<y+h+4&&q.bottom>y-4);
+    const cur=el._spot;if(cur&&free(cur.x,cur.y))return cur;
+    for(let y=vh-h-m;y>=top;y-=6)for(const x of xs)if(free(x,y))return{x,y};return null;}
+  /* never drop the note inside a 3D scene, a transformed, positioned-out or clipping box */
+  function boxedIn(a){for(let p=a;p&&p!==document.body;p=p.parentElement){const c=getComputedStyle(p);if(c.transform!=='none'||c.transformStyle==='preserve-3d'||c.perspective!=='none'||c.position==='absolute'||c.position==='fixed'||(p!==a&&c.overflow!=='visible'))return true;}return false;}
+  function inlineAfter(el){let a=lastTap&&lastTap.isConnected&&!el.contains(lastTap)?lastTap:null;
+    if(!a&&tapAt){const y=tapAt[1]-scrollY;if(y>0&&y<innerHeight)a=document.elementFromPoint(tapAt[0],y);}/* the tapped thing was re-drawn: use what is there now */
+    if(!a||el.contains(a))a=document.querySelector('main')||document.body.lastElementChild;
+    while(a.parentElement&&a.parentElement!==document.body){const d=getComputedStyle(a.parentElement),me=getComputedStyle(a);
+      if(me.display!=='inline'&&!(a instanceof SVGElement)&&(d.display==='block'||d.display==='flow-root'||d.display==='grid'||(d.display==='flex'&&d.flexDirection.startsWith('column')))&&a.getBoundingClientRect().width>=Math.min(260,innerWidth*.6)&&!boxedIn(a))break;a=a.parentElement;}
+    a.after(el);}
+  function placeToast(){const el=toastEl;if(!el.classList.contains('on'))return;if(!el.isConnected){el.classList.remove('inline');document.body.appendChild(el);}
+    if(el.classList.contains('inline'))return;const s=freeSpot(el);
+    if(s){el._spot=s;el.style.left=s.x+'px';el.style.top=s.y+'px';}else{el._spot=null;el.classList.add('inline');el.style.left=el.style.top='';inlineAfter(el);el.scrollIntoView({block:'nearest'});}}
+  function toast(msg,kind){if(!toastEl){toastEl=document.createElement('div');toastEl.setAttribute('role','status');document.body.appendChild(toastEl);}
+    const el=toastEl;clearTimeout(el._t);clearInterval(el._iv);if(el.classList.contains('inline'))document.body.appendChild(el);
+    el.className='toast '+(kind||'');el._spot=null;el.innerHTML=typeof msg==='object'?t(msg):msg;el.style.left='0px';el.style.top='0px';
+    el.classList.add('on');placeToast();el._iv=setInterval(placeToast,200);toastMO.observe(document.body,{subtree:true,childList:true,attributes:true,characterData:true});
+    el._t=setTimeout(()=>{clearInterval(el._iv);toastMO.disconnect();el.classList.remove('on');setTimeout(()=>{if(!el.classList.contains('on')&&el.classList.contains('inline')){el.classList.remove('inline');document.body.appendChild(el);}},320);},2500);}
+  function confetti(){if(reduced())return;const c=document.createElement('canvas');c.className='confetti';c.setAttribute('aria-hidden','true');document.body.appendChild(c);
+    const W=c.width=innerWidth,H=c.height=innerHeight,x=c.getContext('2d');const cols=['#E8702A','#0F766E','#6D28D9','#F5B90A','#02CFF9','#FF6B57'];
+    const P=Array.from({length:90},()=>({x:W/2,y:H*.55,vx:(Math.random()-.5)*9,vy:-Math.random()*11-4,r:Math.random()*6+3,c:cols[Math.random()*6|0],a:Math.random()*6}));
+    let n=0;(function f(){x.clearRect(0,0,W,H);P.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.32;p.a+=.2;x.save();x.translate(p.x,p.y);x.rotate(p.a);x.fillStyle=p.c;x.fillRect(-p.r/2,-p.r/4,p.r,p.r/2);x.restore();});
+      if(++n<110)requestAnimationFrame(f);else c.remove();})();}
+  function tween(ms,step,done){if(reduced()||ms<=0){step(1);done&&done();return()=>{};}let stop=0;const t0=performance.now();
+    const f=now=>{if(stop)return;const k=Math.min(1,(now-t0)/ms);step(k);k<1?requestAnimationFrame(f):done&&done();};requestAnimationFrame(f);return()=>{stop=1};}
+  const ease=k=>k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+  const sleep=ms=>new Promise(r=>setTimeout(r,reduced()?0:ms));
+  // Lesson config: ?lesson=<same-origin json path> (its play.config + play.goal), else inline defaults. ?cfg=<json> also accepted (parsed with JSON.parse only).
+  async function lessonConfig(defaults){let cfg=Object.assign({},defaults),goal=null,id=null;
+    const p=qs.get('lesson');
+    if(p&&/^[\w\-./]+\.json$/.test(p)&&!p.includes('..')){try{const r=await fetch(p);if(r.ok){const j=await r.json();id=j.id;if(j.play){Object.assign(cfg,j.play.config||{});goal=j.play.goal||null;}}}catch(e){}}
+    const c=qs.get('cfg'); if(c){try{Object.assign(cfg,JSON.parse(c));}catch(e){}}
+    return {cfg,goal,id};}
+  // Progress events the Family App shell can listen for (postMessage to the parent frame), plus local XP for the prototype.
+  function emit(type,data){const msg={source:'nca-techlab',type,data:data||{},at:Date.now()};try{parent!==window&&parent.postMessage(msg,'*');}catch(e){}
+    document.dispatchEvent(new CustomEvent('nca-lab',{detail:msg}));}
+  g.NCA={qs,esc,t,get lang(){return lang},setLang,onLang:f=>listeners.push(f),strings:o=>{STR=Object.assign(STR,o);applyI18n();},applyI18n,header,toast,confetti,tween,ease,sleep,reduced,lessonConfig,emit};
+})(window);
+</script>
+<script>
+(async function(){
+const N=NCA,T=N.t,E=N.esc,L=(en,hi,hinglish)=>({en,hi,hinglish}),$=id=>document.getElementById(id);
+N.header('🔢','title','sub');
+N.strings({title:L('Bits & Gates Lab','बिट्स और गेट्स लैब','Bits & Gates Lab'),sub:L('8 switches can be a number, a letter, a pixel or a colour','8 स्विच एक संख्या, अक्षर, पिक्सेल या रंग बन सकते हैं','8 switches = number, letter, pixel ya colour'),clear:L('All 0','सब 0','Sab 0'),mT:L('🚀 Mission','🚀 मिशन','🚀 Mission')});
+const {cfg,goal}=await N.lessonConfig({tab:'number',target:77,letter:'M',gate:'AND',mission:'auto'});
+const TABS=[['number',L('🔢 Number','🔢 संख्या','🔢 Number')],['letter',L('🔤 Letter','🔤 अक्षर','🔤 Letter')],['pixel',L('🖼️ Pixel','🖼️ पिक्सेल','🖼️ Pixel')],['colour',L('🎨 Colour','🎨 रंग','🎨 Colour')],['gates',L('⚡ Gates','⚡ गेट्स','⚡ Gates')]];
+let tab=TABS.some(x=>x[0]===cfg.tab)?cfg.tab:'number';
+// state: one "current byte" edited by the 8 switches; pixel rows and RGB channels each hold their own byte
+let val=0, pix=[0,0,0,0,0,0,0,0], prow=0, rgb=[255,122,26], ch=0, gate=(cfg.gate||'AND').toUpperCase(), A=0,B=0, found=new Set(), done=false;
+const PRE={heart:[0x00,0x66,0xFF,0xFF,0x7E,0x3C,0x18,0x00],smile:[0x3C,0x42,0xA5,0x81,0xA5,0x99,0x42,0x3C],arrow:[0x18,0x3C,0x7E,0xFF,0x18,0x18,0x18,0x18]};
+const GATES={AND:{f:(a,b)=>a&b,d:L('Output is 1 only if A AND B are both 1.','आउटपुट 1 तभी जब A और B दोनों 1 हों।','Output 1 tabhi jab A AUR B dono 1 hon.'),eg:L('Like a lift door: it closes only if the button is pressed AND nobody is in the doorway.','जैसे लिफ़्ट का दरवाज़ा: बटन दबा हो और दरवाज़े में कोई न हो, तभी बंद होता है।','Jaise lift ka darwaza: button dabaya AUR beech mein koi nahi, tabhi band hota hai.')},
+ OR:{f:(a,b)=>a|b,d:L('Output is 1 if A OR B (or both) is 1.','A या B (या दोनों) 1 हों तो आउटपुट 1।','A YA B (ya dono) 1 ho to output 1.'),eg:L('Like a doorbell with two buttons, front and back: either one rings it.','जैसे आगे और पीछे दो बटन वाली घंटी: कोई भी बटन बजा देता है।','Jaise do button wali doorbell (aage, peeche): koi bhi button bajaa deta hai.')},
+ NOT:{f:a=>a?0:1,one:1,d:L('Output is the opposite of A.','आउटपुट A का उल्टा।','Output A ka ulta.'),eg:L('Like an automatic street light: light OFF when it is bright, ON when it is dark.','जैसे स्वचालित स्ट्रीट लाइट: उजाला हो तो बंद, अँधेरा हो तो चालू।','Jaise automatic street light: ujaala ho to OFF, andhera ho to ON.')},
+ NAND:{f:(a,b)=>(a&b)?0:1,d:L('NOT-AND: 0 only when both are 1. Every other gate can be built from NAND alone.','NOT-AND: केवल दोनों 1 होने पर 0। हर दूसरा गेट केवल NAND से बन सकता है।','NOT-AND: sirf dono 1 hon to 0. Baaki har gate sirf NAND se ban sakta hai.'),eg:L('Flash memory in your phone is called “NAND flash” because its cells are wired in a NAND-like pattern.','आपके फ़ोन की फ़्लैश मेमोरी “NAND फ़्लैश” कहलाती है क्योंकि उसकी सेल NAND जैसे ढंग से जुड़ी हैं।','Phone ki flash memory ko “NAND flash” kehte hain kyunki uske cells NAND jaise pattern mein jude hain.')},
+ NOR:{f:(a,b)=>(a|b)?0:1,d:L('NOT-OR: 1 only when both inputs are 0.','NOT-OR: केवल दोनों इनपुट 0 होने पर 1।','NOT-OR: sirf dono inputs 0 hon to 1.'),eg:L('A “silence” light that glows only when neither student is talking.','“शांति” बत्ती जो तभी जले जब कोई भी छात्र न बोले।','“Silence” light jo tabhi jale jab koi bhi student na bole.')},
+ XOR:{f:(a,b)=>a^b,d:L('Exclusive OR: 1 when the inputs are DIFFERENT.','एक्सक्लूसिव OR: इनपुट अलग हों तो 1।','Exclusive OR: inputs ALAG hon to 1.'),eg:L('A staircase light with a switch at the top and the bottom: flipping either one changes the light.','सीढ़ी की बत्ती जिसके ऊपर और नीचे स्विच हों: कोई भी पलटो तो बत्ती बदल जाती है।','Seedhi ki light jiske upar aur neeche switch hai: koi bhi switch palto, light badal jaati hai.')}};
+if(!GATES[gate])gate='AND';
+const tabsEl=$('tabs');TABS.forEach(([k,l])=>{const b=document.createElement('button');b.setAttribute('role','tab');b.dataset.t=k;b.onclick=()=>{tab=k;render();};tabsEl.appendChild(b);});
+const bitsEl=$('bits');for(let i=7;i>=0;i--){const b=document.createElement('button');b.className='bit';b.dataset.i=i;b.setAttribute('aria-label','bit '+(1<<i));b.innerHTML='<span class="in"><span class="f">0</span><span class="b">1</span></span>';b.onclick=()=>setByte(cur()^(1<<i));bitsEl.appendChild(b);$('pv').insertAdjacentHTML('beforeend',`<span>${1<<i}</span>`);}
+function cur(){return tab==='pixel'?pix[prow]:tab==='colour'?rgb[ch]:val;}
+function setByte(v){v&=255;if(tab==='pixel')pix[prow]=v;else if(tab==='colour')rgb[ch]=v;else val=v;N.emit('toggled',{tab,value:v});render();}
+$('clr').onclick=()=>setByte(0);$('inc').onclick=()=>setByte(cur()+1);$('shl').onclick=()=>setByte(cur()<<1);
+const bin=v=>v.toString(2).padStart(8,'0'), hx=v=>v.toString(16).toUpperCase().padStart(2,'0');
+function gateSVG(){const one=GATES[gate].one,o=one?GATES[gate].f(A):GATES[gate].f(A,B);
+ const body={AND:'M120,40 h40 a40,40 0 0 1 0,80 h-40 z',NAND:'M120,40 h40 a40,40 0 0 1 0,80 h-40 z',OR:'M115,40 q60,0 90,40 q-30,40 -90,40 q22,-40 0,-80 z',NOR:'M115,40 q60,0 90,40 q-30,40 -90,40 q22,-40 0,-80 z',XOR:'M125,40 q60,0 90,40 q-30,40 -90,40 q22,-40 0,-80 z',NOT:'M125,45 l70,35 l-70,35 z'}[gate];
+ const bub=(gate==='NAND'||gate==='NOR'||gate==='NOT');const ox=gate==='NAND'?200:gate==='NOT'?195:205;
+ return `<svg viewBox="0 0 320 160" style="width:100%;max-width:420px;display:block;margin:0 auto">
+ <g class="inbtn" data-in="A"><path class="wire ${A?'on':''}" d="M42,${one?80:60} H${one?125:130}"/><circle cx="30" cy="${one?80:60}" r="20" fill="${A?'#FFD23F':'#1B2A5C'}" stroke="#9FB1E8" stroke-width="2"/><text x="30" y="${(one?80:60)+6}" text-anchor="middle" font-weight="800" font-size="16" fill="${A?'#1C1B1A':'#fff'}">A=${A}</text></g>
+ ${one?'':`<g class="inbtn" data-in="B"><path class="wire ${B?'on':''}" d="M42,100 H130"/><circle cx="30" cy="100" r="20" fill="${B?'#FFD23F':'#1B2A5C'}" stroke="#9FB1E8" stroke-width="2"/><text x="30" y="106" text-anchor="middle" font-weight="800" font-size="16" fill="${B?'#1C1B1A':'#fff'}">B=${B}</text></g>`}
+ ${gate==='XOR'?'<path d="M113,40 q22,40 0,80" stroke="#9FB1E8" stroke-width="2.5" fill="none"/>':''}
+ <path class="gbody" d="${body}"/>${bub?`<circle cx="${ox+7}" cy="80" r="7" class="gbody"/>`:''}
+ <text x="${gate==='NOT'?150:158}" y="86" text-anchor="middle" font-weight="800" font-size="15" fill="#E8EEFF">${gate}</text>
+ <path class="wire ${o?'on':''}" d="M${ox+(bub?14:0)},80 H262"/><circle cx="285" cy="80" r="22" fill="${o?'#FFD23F':'#1B2A5C'}" stroke="${o?'#fff':'#9FB1E8'}" stroke-width="2" style="filter:${o?'drop-shadow(0 0 12px #F5B90A)':'none'};transition:all .2s"/><text x="285" y="87" text-anchor="middle" font-size="20">${o?'💡':'⚫'}</text></svg>`;}
+function render(){tabsEl.querySelectorAll('button').forEach((b,i)=>{b.innerHTML=T(TABS[i][1]);b.setAttribute('aria-selected',b.dataset.t===tab);});
+ const v=cur();bitsEl.querySelectorAll('.bit').forEach(b=>b.classList.toggle('on',!!(v&(1<<b.dataset.i))));
+ $('bitsBox').classList.toggle('hidden',tab==='gates');
+ $('hexChip').textContent=`${bin(v)}₂ = ${v}₁₀ = ${hx(v)}₁₆`;
+ $('byteLbl').textContent=tab==='pixel'?T(L(`Row ${prow+1} of the picture (1 byte)`,`चित्र की पंक्ति ${prow+1} (1 बाइट)`,`Picture ki row ${prow+1} (1 byte)`)):tab==='colour'?T(L(`${'RGB'[ch]} channel (1 byte)`,`${'RGB'[ch]} चैनल (1 बाइट)`,`${'RGB'[ch]} channel (1 byte)`)):T(L('1 byte = 8 bits','1 बाइट = 8 बिट','1 byte = 8 bits'));
+ const parts=[];for(let i=7;i>=0;i--)if(v&(1<<i))parts.push(1<<i);
+ let html='',ex='';
+ if(tab==='number'){html=`<div class="big">${v}</div><div class="eq">${parts.length?parts.join(' + ')+' = '+v:'0'}</div>${cfg.target!=null?`<div class="eq" style="margin-top:8px">🎯 ${T(L('Target','लक्ष्य','Target'))}: <b style="color:#FFD23F">${cfg.target}</b> ${v===+cfg.target?'✅':''}</div>`:''}`;
+  ex=T(L('<b>Place value in base 2.</b> In decimal each place is 10× the one to its right (1, 10, 100…). In binary each place is 2× (1, 2, 4, 8, 16, 32, 64, 128). Add the places that are 1. With 8 bits the biggest number is 128+64+32+16+8+4+2+1 = <b>255</b>, so one byte has 256 possible values (0–255). Tap ×2: shifting left doubles the number, which is why computers multiply by 2 so quickly.','<b>आधार 2 में स्थानीय मान।</b> दशमलव में हर स्थान अपने दाएँ वाले का 10 गुना है (1, 10, 100…)। बाइनरी में हर स्थान 2 गुना है (1, 2, 4, 8, 16, 32, 64, 128)। जो स्थान 1 हैं उन्हें जोड़ो। 8 बिट में सबसे बड़ी संख्या 128+64+32+16+8+4+2+1 = <b>255</b>, इसलिए एक बाइट के 256 मान (0–255) होते हैं। ×2 दबाओ: बाईं ओर खिसकाने से संख्या दोगुनी होती है।','<b>Base 2 mein place value.</b> Decimal mein har jagah apne right wale ki 10 guna hoti hai (1, 10, 100…). Binary mein har jagah 2 guna (1, 2, 4, 8, 16, 32, 64, 128). Jo jagah 1 hai unko jodo. 8 bits mein sabse bada number 128+64+32+16+8+4+2+1 = <b>255</b>, isliye ek byte ke 256 values (0–255). ×2 dabao: left shift se number double hota hai — isliye computer 2 se guna bahut fast karta hai.'));}
+ else if(tab==='letter'){const ok=v>=32&&v<=126,c=ok?String.fromCharCode(v):'';
+  html=`<div class="big" style="font-family:Georgia,serif">${ok?E(c===' '?'␣':c):'·'}</div><div class="eq">${ok?`ASCII ${v} → “${E(c)}”`:T(L('Codes 0–31 and 127 are control codes (like Enter or Tab), not printable letters. Try 65.','कोड 0–31 और 127 नियंत्रण कोड हैं (जैसे Enter या Tab), छपने वाले अक्षर नहीं। 65 आज़माओ।','Code 0–31 aur 127 control codes hain (jaise Enter, Tab), print hone wale letter nahi. 65 try karo.'))}</div>
+  <div class="ascii">${[48,49,50,65,66,67,77,90,97,98,122,32,33,63].map(n=>`<span class="${n===v?'hit':''}">${n===32?'␣':E(String.fromCharCode(n))}<br>${n}</span>`).join('')}</div>${cfg.letter?`<div class="eq">🎯 ${T(L('Store the letter','यह अक्षर बनाओ','Yeh letter banao'))} <b style="color:#FFD23F">${E(cfg.letter)}</b> ${String.fromCharCode(v)===cfg.letter?'✅':''}</div>`:''}`;
+  ex=T(L('<b>Text is numbers with an agreed code.</b> ASCII (1963) gives each English letter, digit and symbol a number: A = 65, B = 66, a = 97, “0” = 48, space = 32. Capital and small letters differ by exactly 32 — one bit (the 32s place)! Unicode extends this to over 1,50,000 characters from every script: Hindi “क” is U+0915, stored in UTF-8 as 3 bytes (E0 A4 95). Emojis are Unicode too: 😀 is U+1F600 and takes 4 bytes.','<b>टेक्स्ट तय कोड वाली संख्याएँ हैं।</b> ASCII (1963) हर अंग्रेज़ी अक्षर, अंक और चिह्न को एक संख्या देता है: A = 65, B = 66, a = 97, “0” = 48, स्पेस = 32। बड़े और छोटे अक्षर में ठीक 32 का अंतर है — एक बिट! यूनिकोड इसे हर लिपि के 1,50,000 से ज़्यादा अक्षरों तक बढ़ाता है: हिंदी “क” U+0915 है, UTF-8 में 3 बाइट (E0 A4 95)। इमोजी भी यूनिकोड हैं: 😀 U+1F600, 4 बाइट।','<b>Text = numbers + ek tay kiya hua code.</b> ASCII (1963) har English letter, digit aur symbol ko number deta hai: A = 65, B = 66, a = 97, “0” = 48, space = 32. Capital aur small letter mein theek 32 ka farak — sirf ek bit (32 wali jagah)! Unicode isse har script ke 1,50,000+ characters tak le jaata hai: Hindi “क” U+0915 hai, UTF-8 mein 3 bytes (E0 A4 95). Emoji bhi Unicode: 😀 U+1F600, 4 bytes.'));}
+ else if(tab==='pixel'){html=`<div class="pixwrap"><div class="grid8" style="flex:1">${pix.map((r,y)=>Array.from({length:8},(_,x)=>`<div class="px ${r&(128>>x)?'on':''}"></div>`).join('')).join('')}</div><div class="rowsel">${pix.map((r,y)=>`<button data-r="${y}" aria-pressed="${y===prow}">${bin(r)}</button>`).join('')}</div></div>
+  <div class="row" style="justify-content:center;margin-top:8px">${Object.keys(PRE).map(k=>`<button class="btn ghost" data-p="${k}" style="background:#1B2A5C;color:#E8EEFF;border-color:#34457F;min-height:38px;padding:6px 12px">${{heart:'❤️',smile:'🙂',arrow:'⬆️'}[k]}</button>`).join('')}</div>`;
+  ex=T(L('<b>A picture is a grid of numbers.</b> Here 1 = yellow, 0 = dark, so each row of 8 pixels fits in 1 byte and the whole 8×8 picture is just 8 bytes. Tap a row on the right, then flip switches. A real phone photo stores 3 bytes (red, green, blue) for every pixel: a 12-megapixel photo is 12,000,000 × 3 = 36 MB before JPEG compression squeezes it to about 3–5 MB.','<b>चित्र संख्याओं का ग्रिड है।</b> यहाँ 1 = पीला, 0 = गहरा, तो 8 पिक्सेल की हर पंक्ति 1 बाइट में आ जाती है और पूरा 8×8 चित्र केवल 8 बाइट है। दाईं ओर पंक्ति चुनो, फिर स्विच पलटो। असली फ़ोन फ़ोटो हर पिक्सेल के 3 बाइट (लाल, हरा, नीला) रखती है: 12 मेगापिक्सेल फ़ोटो = 12,000,000 × 3 = 36 MB, JPEG संपीड़न इसे लगभग 3–5 MB कर देता है।','<b>Picture = numbers ka grid.</b> Yahan 1 = peela, 0 = dark, to 8 pixels ki har row 1 byte mein aa jaati hai aur poori 8×8 picture sirf 8 bytes. Right side pe row chuno, phir switches flip karo. Asli phone photo har pixel ke 3 bytes (red, green, blue) rakhti hai: 12 megapixel photo = 12,000,000 × 3 = 36 MB, JPEG compression isse lagbhag 3–5 MB kar deta hai.'));}
+ else if(tab==='colour'){const css=`rgb(${rgb.join(',')})`,h='#'+rgb.map(hx).join('');
+  html=`<div class="sw" style="background:${css}"></div><div class="eq" style="font:800 20px ui-monospace,monospace;color:#fff">${h}</div><div class="eq">R ${rgb[0]} · G ${rgb[1]} · B ${rgb[2]}</div>
+  <div class="ch" style="margin-top:10px">${['#DC2626','#16A34A','#2563EB'].map((c,i)=>`<button data-c="${i}" aria-pressed="${i===ch}" style="background:${c}">${'RGB'[i]} ${rgb[i]}</button>`).join('')}</div>`;
+  ex=T(L('<b>Every screen colour is three bytes.</b> Your phone screen makes each pixel from tiny red, green and blue lights, each with brightness 0–255. 255,0,0 is pure red; 255,255,0 (red + green light) is yellow; 255,255,255 is white; 0,0,0 is black. 256 × 256 × 256 = 16,777,216 colours. Web designers write it in hexadecimal: #FF7A1A is NetCyberAI orange (255, 122, 26).','<b>स्क्रीन का हर रंग तीन बाइट है।</b> फ़ोन स्क्रीन हर पिक्सेल को छोटी लाल, हरी और नीली रोशनियों से बनाती है, हर एक की चमक 0–255। 255,0,0 शुद्ध लाल; 255,255,0 (लाल + हरी रोशनी) पीला; 255,255,255 सफ़ेद; 0,0,0 काला। 256 × 256 × 256 = 1,67,77,216 रंग। वेब डिज़ाइनर इसे हेक्साडेसिमल में लिखते हैं: #FF7A1A NetCyberAI नारंगी (255, 122, 26) है।','<b>Screen ka har colour = 3 bytes.</b> Phone screen har pixel ko chhoti red, green, blue lights se banati hai, har ek ki brightness 0–255. 255,0,0 = pure red; 255,255,0 (red + green light) = yellow; 255,255,255 = white; 0,0,0 = black. 256 × 256 × 256 = 1,67,77,216 colours. Web designers isse hexadecimal mein likhte hain: #FF7A1A = NetCyberAI orange (255, 122, 26).'));}
+ else {const one=GATES[gate].one;const rows=one?[[0],[1]]:[[0,0],[0,1],[1,0],[1,1]];
+  html=`<div class="gsel">${Object.keys(GATES).map(g=>`<button data-g="${g}" aria-pressed="${g===gate}">${g}</button>`).join('')}</div><div style="margin-top:6px">${gateSVG()}</div>
+  <div class="eq">${T(L('Tap A and B to switch them','A और B को दबाकर बदलो','A aur B ko tap karke badlo'))}</div>
+  <table class="tt"><tr><th>A</th>${one?'':'<th>B</th>'}<th>OUT</th></tr>${rows.map(r=>{const o=one?GATES[gate].f(r[0]):GATES[gate].f(r[0],r[1]);const curr=r[0]===A&&(one||r[1]===B);const k=gate+r.join('');return `<tr class="${curr?'cur':''} ${found.has(k)?'found':''}"><td>${r[0]}</td>${one?'':`<td>${r[1]}</td>`}<td>${found.has(k)||curr?o:'?'}</td></tr>`;}).join('')}</table>`;
+  ex=`<b>${gate}:</b> ${T(GATES[gate].d)}<br><br>🏠 ${T(GATES[gate].eg)}<br><br>`+T(L('A gate is built from a few transistors — tiny electric switches. A modern phone chip has more than 15 billion transistors, all doing these simple 0/1 jobs billions of times per second.','गेट कुछ ट्रांजिस्टरों से बनता है — छोटे बिजली के स्विच। आधुनिक फ़ोन चिप में 15 अरब से ज़्यादा ट्रांजिस्टर होते हैं, जो प्रति सेकंड अरबों बार ये सरल 0/1 काम करते हैं।','Gate kuch transistors se banta hai — chhote electric switches. Aaj ke phone chip mein 15 billion se zyada transistors hote hain, jo har second billions baar yeh simple 0/1 kaam karte hain.'));}
+ $('view').innerHTML=html;$('explain').innerHTML=ex;
+ $('view').querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{prow=+b.dataset.r;render();});
+ $('view').querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>{pix=PRE[b.dataset.p].slice();render();});
+ $('view').querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>{ch=+b.dataset.c;render();});
+ $('view').querySelectorAll('[data-g]').forEach(b=>b.onclick=()=>{gate=b.dataset.g;render();});
+ $('view').querySelectorAll('.inbtn').forEach(b=>b.onclick=()=>{if(b.dataset.in==='A')A^=1;else B^=1;found.add(gate+(GATES[gate].one?[A]:[A,B]).join(''));N.emit('output:'+(GATES[gate].one?GATES[gate].f(A):GATES[gate].f(A,B)));render();});
+ if(tab==='gates')found.add(gate+(GATES[gate].one?[A]:[A,B]).join(''));
+ check();}
+function missionText(){const m={number:L(`Make the number ${cfg.target} using the switches.`,`स्विचों से संख्या ${cfg.target} बनाओ।`,`Switches se number ${cfg.target} banao.`),letter:L(`Store the letter “${cfg.letter}” in one byte.`,`एक बाइट में अक्षर “${cfg.letter}” रखो।`,`Ek byte mein letter “${cfg.letter}” store karo.`),pixel:L('Draw the heart using bytes: row 2 = 01100110, row 3 = 11111111 … or tap ❤️ and read its bytes.','बाइट्स से दिल बनाओ: पंक्ति 2 = 01100110, पंक्ति 3 = 11111111 … या ❤️ दबाकर उसके बाइट पढ़ो।','Bytes se dil banao: row 2 = 01100110, row 3 = 11111111 … ya ❤️ tap karke uske bytes padho.'),colour:L('Make pure yellow on screen (it uses no blue at all).','स्क्रीन पर शुद्ध पीला बनाओ (इसमें नीला बिल्कुल नहीं)।','Screen pe pure yellow banao (isme blue bilkul nahi).'),gates:L(`Fill the whole truth table of the ${gate} gate by trying every input combination.`,`हर इनपुट संयोजन आज़माकर ${gate} गेट की पूरी सत्य तालिका भरो।`,`Har input combination try karke ${gate} gate ki poori truth table bharo.`)};return m[tab];}
+function check(){let ok=false;
+ if(tab==='number')ok=val===+cfg.target;else if(tab==='letter')ok=String.fromCharCode(val)===cfg.letter;else if(tab==='pixel')ok=pix.join()===PRE.heart.join();else if(tab==='colour')ok=rgb[0]===255&&rgb[1]===255&&rgb[2]===0;
+ else ok=(GATES[gate].one?['0','1']:['00','01','10','11']).every(r=>found.has(gate+r));
+ $('mission').innerHTML=(ok?'✅ ':'')+T(missionText())+(ok?' — '+T(L('Correct!','सही!','Sahi!')):'');
+ const key=tab+gate;if(ok&&!done){done=key;N.emit('mission:complete',Object.assign({lab:'bit-lab',tab},tab==='gates'?{gate}:tab==='number'?{value:val}:tab==='letter'?{letter:String.fromCharCode(val),value:val}:tab==='colour'?{rgb:rgb.slice()}:{}));N.toast(L('Mission complete! +XP','मिशन पूरा! +XP','Mission complete! +XP'),'ok');N.confetti();}else if(!ok&&done)done=false;}
+const goalDef=L('Flip the 8 switches. The same byte can mean a number, a letter, a row of pixels or a colour. Then try the logic gates — the tiny decision makers inside every chip.','8 स्विच पलटो। एक ही बाइट संख्या, अक्षर, पिक्सेल की पंक्ति या रंग हो सकता है। फिर लॉजिक गेट आज़माओ — हर चिप के छोटे निर्णयकर्ता।','8 switches flip karo. Ek hi byte number, letter, pixels ki row ya colour ho sakta hai. Phir logic gates try karo — har chip ke chhote decision-makers.');
+const setGoal=()=>$('goal').innerHTML=T(goal||goalDef);N.onLang(()=>{setGoal();render();});setGoal();render();
+window.__lab={set:(t,v)=>{tab=t;if(v!=null)setByte(v);else render();},gate:(g,a,b)=>{tab='gates';gate=g;A=a;B=b;found.add(g+[a,b].join(''));render();}};
+})();
+</script></body></html>

@@ -1,0 +1,351 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.electricity.04",
+ "level": 1,
+ "classes": [
+  3,
+  4,
+  5
+ ],
+ "unit": "electricity",
+ "title": {
+  "en": "Conductors and insulators",
+  "hi": "चालक और कुचालक",
+  "hinglish": "Conductors aur insulators"
+ },
+ "minutes": 8,
+ "xp": 30,
+ "prereq": [
+  "L1.electricity.03"
+ ],
+ "topics": [
+  "elec.components",
+  "elec.circuits"
+ ],
+ "outcomes": [
+  {
+   "en": "Test materials and sort them into conductors and insulators.",
+   "hi": "चीज़ें जाँचकर चालक और कुचालक में बाँट सकते हो।",
+   "hinglish": "Materials test karke conductors aur insulators mein baant sakte ho."
+  },
+  {
+   "en": "Explain why wires are metal inside and plastic outside.",
+   "hi": "समझा सकते हो कि तार अंदर धातु और बाहर प्लास्टिक के क्यों होते हैं।",
+   "hinglish": "Samjha sakte ho ki taar andar metal aur bahar plastic kyun hote hain."
+  },
+  {
+   "en": "Make a prediction, then test it — like a scientist.",
+   "hi": "पहले अनुमान, फिर जाँच — वैज्ञानिक की तरह।",
+   "hinglish": "Pehle andaaza, phir test — scientist ki tarah."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Conductor",
+   "en": "A material that lets electricity flow, like metals",
+   "hi": "वह पदार्थ जो बिजली को बहने दे, जैसे धातुएँ",
+   "hinglish": "Jo bijli ko behne de"
+  },
+  {
+   "term": "Insulator",
+   "en": "A material that stops electricity, like plastic and rubber",
+   "hi": "वह पदार्थ जो बिजली रोके, जैसे प्लास्टिक और रबर",
+   "hinglish": "Jo bijli ko roke"
+  },
+  {
+   "term": "Prediction",
+   "en": "Your best guess before you test",
+   "hi": "जाँच से पहले का अनुमान",
+   "hinglish": "Test se pehle ka andaaza"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.electricity.04.s1",
+   "caption": {
+    "en": "A metal key in the gap: the bulb glows!",
+    "hi": "ख़ाली जगह में धातु की चाबी: बल्ब जला!",
+    "hinglish": "Gap mein metal ki chaabi: bulb jala!"
+   },
+   "narration": {
+    "en": "Put a metal key across the gap and the bulb lights. Metals are conductors.",
+    "hinglish": "Gap mein metal ki chaabi rakho aur bulb jal jaata hai. Metals conductors hain.",
+    "hi": "ख़ाली जगह में धातु की चाबी रखो और बल्ब जल जाता है। धातुएँ चालक हैं।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.electricity.04.s2",
+   "caption": {
+    "en": "A plastic spoon: no light. An insulator.",
+    "hi": "प्लास्टिक का चम्मच: रोशनी नहीं। कुचालक।",
+    "hinglish": "Plastic chammach: roshni nahin. Insulator."
+   },
+   "narration": {
+    "en": "A plastic spoon does not let electricity through. Plastic, rubber, wood, paper and glass are insulators.",
+    "hinglish": "Plastic ka chammach bijli ko jaane nahin deta. Plastic, rubber, lakdi, kaagaz aur kaanch insulators hain.",
+    "hi": "प्लास्टिक का चम्मच बिजली को जाने नहीं देता। प्लास्टिक, रबर, लकड़ी, काग़ज़ और काँच कुचालक हैं।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.electricity.04.s3",
+   "caption": {
+    "en": "Wires: metal inside, plastic outside.",
+    "hi": "तार: अंदर धातु, बाहर प्लास्टिक।",
+    "hinglish": "Taar: andar metal, bahar plastic."
+   },
+   "narration": {
+    "en": "A wire has copper inside to carry electricity and a plastic cover outside to keep our hands safe.",
+    "hinglish": "Taar ke andar bijli le jaane ke liye copper hota hai aur bahar haathon ko safe rakhne ke liye plastic ka cover.",
+    "hi": "तार के अंदर बिजली ले जाने के लिए तांबा होता है और बाहर हाथों को सुरक्षित रखने के लिए प्लास्टिक का आवरण।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "circuit-builder",
+  "config": {
+   "mode": "test"
+  },
+  "goal": {
+   "en": "Predict, then test 6 objects. Which are conductors?",
+   "hi": "पहले अनुमान, फिर 6 चीज़ें जाँचो। कौन चालक हैं?",
+   "hinglish": "Pehle guess, phir 6 cheezein test karo. Kaun conductors hain?"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Why metals conduct",
+    "hi": "धातुएँ बिजली क्यों चलाती हैं",
+    "hinglish": "Metals bijli kyun chalaate hain"
+   },
+   "body": {
+    "en": "Metals have tiny particles called electrons that can move about freely, so electricity can travel through them easily. In plastic and rubber the electrons are held tightly and cannot move along.",
+    "hi": "धातुओं में इलेक्ट्रॉन नाम के छोटे कण होते हैं जो आसानी से घूम सकते हैं, इसलिए बिजली उनमें से आसानी से गुज़रती है। प्लास्टिक और रबर में इलेक्ट्रॉन कसकर बँधे रहते हैं और आगे नहीं बढ़ पाते।",
+    "hinglish": "Metals mein electrons naam ke chhote kan hote hain jo aasaani se ghoom sakte hain, isliye bijli unmein se aasaani se guzarti hai. Plastic aur rubber mein electrons kas kar bandhe rehte hain aur aage nahin badh paate."
+   },
+   "analogy": {
+    "en": "A conductor is like an empty road where cars move easily; an insulator is like a blocked lane.",
+    "hi": "चालक एक खाली सड़क जैसा है — गाड़ियाँ आराम से चलती हैं। कुचालक बंद गली जैसा है।",
+    "hinglish": "Conductor ek khaali sadak jaisa hai — gaadiyan aaraam se chalti hain. Insulator band gali jaisa hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "Water is a sneaky conductor",
+    "hi": "पानी छुपा हुआ चालक है",
+    "hinglish": "Paani chhupa hua conductor hai"
+   },
+   "body": {
+    "en": "Pure water conducts poorly, but tap water, rain and sweat have dissolved salts that let electricity through. That is why wet hands and electricity are dangerous.",
+    "hi": "शुद्ध पानी कम बिजली चलाता है, पर नल का पानी, बारिश और पसीने में घुले लवण बिजली को जाने देते हैं। इसीलिए गीले हाथ और बिजली ख़तरनाक हैं।",
+    "hinglish": "Shuddh paani kam bijli chalaata hai, par nal ka paani, baarish aur paseene mein ghule salts bijli ko jaane dete hain. Isiliye geele haath aur bijli khatarnaak hain."
+   },
+   "realExample": {
+    "en": "Electricians use tools with rubber or plastic handles and wear rubber gloves — insulators protect them.",
+    "hi": "इलेक्ट्रीशियन रबर या प्लास्टिक के हत्थे वाले औज़ार और रबर के दस्ताने इस्तेमाल करते हैं — कुचालक उन्हें बचाते हैं।",
+    "hinglish": "Electricians rubber ya plastic handle wale auzaar aur rubber gloves use karte hain — insulators unhe bachaate hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Make a list of 5 conductors and 5 insulators you can find at home. Ask a grown-up to check it.",
+   "hi": "घर में मिलने वाले 5 चालक और 5 कुचालक की सूची बनाओ। किसी बड़े से जँचवाओ।",
+   "hinglish": "Ghar mein milne wale 5 conductors aur 5 insulators ki list banao. Kisi bade se check karwao."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are conductors?",
+     "hi": "कौन चालक हैं?",
+     "hinglish": "Kaun conductors hain?"
+    },
+    "options": [
+     {
+      "en": "Iron key",
+      "hi": "लोहे की चाबी",
+      "hinglish": "Lohe ki chaabi"
+     },
+     {
+      "en": "Plastic spoon",
+      "hi": "प्लास्टिक चम्मच",
+      "hinglish": "Plastic chammach"
+     },
+     {
+      "en": "Aluminium foil",
+      "hi": "एल्युमिनियम फ़ॉयल",
+      "hinglish": "Aluminium foil"
+     },
+     {
+      "en": "Wooden stick",
+      "hi": "लकड़ी की छड़ी",
+      "hinglish": "Lakdi ki chhadi"
+     }
+    ],
+    "answer": [
+     0,
+     2
+    ],
+    "explain": {
+     "en": "Metals conduct; plastic and wood insulate.",
+     "hi": "धातुएँ चलाती हैं; प्लास्टिक और लकड़ी रोकते हैं।",
+     "hinglish": "Metals conduct karte hain; plastic aur lakdi rokte hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why is a wire covered in plastic?",
+     "hi": "तार पर प्लास्टिक क्यों चढ़ा होता है?",
+     "hinglish": "Taar par plastic kyun chadha hota hai?"
+    },
+    "options": [
+     {
+      "en": "Plastic is an insulator that keeps us safe",
+      "hi": "प्लास्टिक कुचालक है जो हमें बचाता है",
+      "hinglish": "Plastic insulator hai jo humein bachaata hai"
+     },
+     {
+      "en": "To make it heavier",
+      "hi": "भारी करने के लिए",
+      "hinglish": "Bhaari karne ke liye"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "The insulator cover stops electricity reaching our hands.",
+     "hi": "कुचालक आवरण बिजली को हाथों तक पहुँचने से रोकता है।",
+     "hinglish": "Insulator cover bijli ko haathon tak pahunchne se rokta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Pencil lead made the bulb glow dimly. So graphite is…",
+     "hi": "पेंसिल की लीड से बल्ब धीमा जला। तो ग्रेफ़ाइट है…",
+     "hinglish": "Pencil lead se bulb dheema jala. Toh graphite hai…"
+    },
+    "options": [
+     {
+      "en": "a weak conductor",
+      "hi": "कमज़ोर चालक",
+      "hinglish": "kamzor conductor"
+     },
+     {
+      "en": "a perfect insulator",
+      "hi": "पक्का कुचालक",
+      "hinglish": "pakka insulator"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Graphite conducts, but not as well as metal.",
+     "hi": "ग्रेफ़ाइट चलाता है, पर धातु जितना अच्छा नहीं।",
+     "hinglish": "Graphite conduct karta hai, par metal jitna achha nahin."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q4",
+    "type": "match",
+    "prompt": {
+     "en": "Match each item.",
+     "hi": "हर चीज़ मिलाओ।",
+     "hinglish": "Har cheez milao."
+    },
+    "options": {
+     "left": [
+      {
+       "en": "Copper wire",
+       "hi": "तांबे का तार",
+       "hinglish": "Copper taar"
+      },
+      {
+       "en": "Rubber gloves",
+       "hi": "रबर के दस्ताने",
+       "hinglish": "Rubber gloves"
+      },
+      {
+       "en": "Steel spoon",
+       "hi": "स्टील का चम्मच",
+       "hinglish": "Steel chammach"
+      }
+     ],
+     "right": [
+      {
+       "en": "Insulator",
+       "hi": "कुचालक",
+       "hinglish": "Insulator"
+      },
+      {
+       "en": "Conductor",
+       "hi": "चालक",
+       "hinglish": "Conductor"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      0
+     ],
+     [
+      2,
+      1
+     ]
+    ],
+    "explain": {
+     "en": "Metals conduct; rubber insulates.",
+     "hi": "धातुएँ चलाती हैं; रबर रोकता है।",
+     "hinglish": "Metals conduct; rubber insulate."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Test 6 objects in the conductor tester.",
+     "hi": "चालक जाँचक में 6 चीज़ें जाँचो।",
+     "hinglish": "Conductor tester mein 6 cheezein test karo."
+    },
+    "answer": {
+     "lab": "circuit-builder",
+     "mode": "test",
+     "solved": true
+    },
+    "explain": {
+     "en": "Guess first, then drop each one into the gap.",
+     "hi": "पहले अंदाज़ा, फिर हर चीज़ ख़ाली जगह में डालो।",
+     "hinglish": "Pehle guess, phir har cheez gap mein daalo."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "NCERT Class 6 Science – Electricity and Circuits (fact reference)",
+   "url": "https://ncert.nic.in/textbook.php",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

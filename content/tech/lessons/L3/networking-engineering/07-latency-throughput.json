@@ -1,0 +1,397 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.networking-engineering.07",
+ "level": 3,
+ "classes": [
+  10,
+  11,
+  12
+ ],
+ "unit": "networking-engineering",
+ "title": {
+  "en": "Latency and throughput",
+  "hi": "विलंब और थ्रूपुट",
+  "hinglish": "Latency aur throughput"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [
+  "L3.networking-engineering.03",
+  "L3.networking-engineering.05"
+ ],
+ "outcomes": [
+  {
+   "en": "Tell bandwidth, throughput, latency, jitter and packet loss apart",
+   "hi": "बैंडविड्थ, थ्रूपुट, विलंब, जिटर और पैकेट हानि में अंतर बताओ",
+   "hinglish": "Bandwidth, throughput, latency, jitter aur packet loss mein antar batao"
+  },
+  {
+   "en": "Calculate download time and the minimum delay set by the speed of light",
+   "hi": "डाउनलोड समय और प्रकाश की गति से तय न्यूनतम देरी निकालो",
+   "hinglish": "Download time aur speed of light se tay minimum delay nikaalo"
+  },
+  {
+   "en": "Explain how CDNs and caching cut latency",
+   "hi": "समझाओ सीडीएन और कैशिंग विलंब कैसे घटाते हैं",
+   "hinglish": "Samjhao CDN aur caching latency kaise ghatate hain"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Bandwidth",
+   "hinglish": "Pipe kitna chauda hai",
+   "en": "Maximum data rate of a link, in bits per second",
+   "hi": "लिंक की अधिकतम डेटा दर, बिट प्रति सेकंड में"
+  },
+  {
+   "term": "Throughput",
+   "hinglish": "Asal mein kitna data pahuncha",
+   "en": "Data rate actually achieved end to end",
+   "hi": "आरंभ से अंत तक असल में मिली डेटा दर"
+  },
+  {
+   "term": "RTT",
+   "hinglish": "Jaane aur jawab aane ka samay",
+   "en": "Round-trip time: request out and reply back",
+   "hi": "राउंड-ट्रिप समय: अनुरोध जाना और जवाब आना"
+  },
+  {
+   "term": "Jitter",
+   "hinglish": "Delay ka upar-neeche hona",
+   "en": "Variation in latency from packet to packet",
+   "hi": "पैकेट-दर-पैकेट विलंब में उतार-चढ़ाव"
+  },
+  {
+   "term": "CDN",
+   "hinglish": "Paas ke servers par copy rakhna",
+   "en": "Content delivery network: copies of content on servers near users",
+   "hi": "कंटेंट डिलीवरी नेटवर्क: उपयोगकर्ताओं के पास के सर्वरों पर सामग्री की प्रतियाँ"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Bandwidth is how wide the pipe is (Mbit/s). Latency is how long one drop takes to travel through it (ms). A wide pipe can still be slow to respond.",
+    "hi": "बैंडविड्थ पाइप की चौड़ाई है (Mbit/s)। विलंब एक बूँद को उसमें से गुज़रने का समय है (ms)। चौड़ा पाइप भी जवाब देने में धीमा हो सकता है।",
+    "hinglish": "Bandwidth pipe ki chaudai hai (Mbit/s). Latency ek boond ko usmein se guzarne ka samay hai (ms). Chauda pipe bhi jawab dene mein dheema ho sakta hai."
+   },
+   "visual": "anim:pipe-width-length",
+   "narration": {
+    "en": "Bandwidth is how wide the pipe is (Mbit/s). Latency is how long one drop takes to travel through it (ms). A wide pipe can still be slow to respond.",
+    "hi": "बैंडविड्थ पाइप की चौड़ाई है (Mbit/s)। विलंब एक बूँद को उसमें से गुज़रने का समय है (ms)। चौड़ा पाइप भी जवाब देने में धीमा हो सकता है।",
+    "hinglish": "Bandwidth pipe ki chaudai hai (Mbit/s). Latency ek boond ko usmein se guzarne ka samay hai (ms). Chauda pipe bhi jawab dene mein dheema ho sakta hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Light in fibre travels about 200,000 km per second: 5 µs per km. Mumbai to Chennai, about 1,030 km in a straight line, can never be faster than about 10 ms round trip.",
+    "hi": "फ़ाइबर में प्रकाश लगभग 2,00,000 किमी प्रति सेकंड चलता है: 5 µs प्रति किमी। मुंबई से चेन्नई, सीधी रेखा में लगभग 1,030 किमी, कभी भी लगभग 10 ms राउंड ट्रिप से तेज़ नहीं हो सकता।",
+    "hinglish": "Fibre mein light lagbhag 2,00,000 km per second chalti hai: 5 µs per km. Mumbai se Chennai, seedhi line mein lagbhag 1,030 km, kabhi bhi lagbhag 10 ms round trip se tez nahi ho sakta."
+   },
+   "visual": "anim:light-fibre",
+   "narration": {
+    "en": "Light in fibre travels about 200,000 km per second: 5 µs per km. Mumbai to Chennai, about 1,030 km in a straight line, can never be faster than about 10 ms round trip.",
+    "hi": "फ़ाइबर में प्रकाश लगभग 2,00,000 किमी प्रति सेकंड चलता है: 5 µs प्रति किमी। मुंबई से चेन्नई, सीधी रेखा में लगभग 1,030 किमी, कभी भी लगभग 10 ms राउंड ट्रिप से तेज़ नहीं हो सकता।",
+    "hinglish": "Fibre mein light lagbhag 2,00,000 km per second chalti hai: 5 µs per km. Mumbai se Chennai, seedhi line mein lagbhag 1,030 km, kabhi bhi lagbhag 10 ms round trip se tez nahi ho sakta."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Network speeds are in bits; file sizes are in bytes. 8 bits = 1 byte, so a 100 Mbit/s line moves at most 12.5 MB per second.",
+    "hi": "नेटवर्क गति बिट में होती है; फ़ाइल आकार बाइट में। 8 बिट = 1 बाइट, तो 100 Mbit/s लाइन अधिकतम 12.5 MB प्रति सेकंड ले जाती है।",
+    "hinglish": "Network speeds bits mein hoti hain; file sizes bytes mein. 8 bits = 1 byte, to 100 Mbit/s line maximum 12.5 MB per second le jaati hai."
+   },
+   "visual": "anim:bits-bytes",
+   "narration": {
+    "en": "Network speeds are in bits; file sizes are in bytes. 8 bits = 1 byte, so a 100 Mbit/s line moves at most 12.5 MB per second.",
+    "hi": "नेटवर्क गति बिट में होती है; फ़ाइल आकार बाइट में। 8 बिट = 1 बाइट, तो 100 Mbit/s लाइन अधिकतम 12.5 MB प्रति सेकंड ले जाती है।",
+    "hinglish": "Network speeds bits mein hoti hain; file sizes bytes mein. 8 bits = 1 byte, to 100 Mbit/s line maximum 12.5 MB per second le jaati hai."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "A CDN keeps copies close to you, so a Chennai student gets the video from a Chennai server instead of one in the USA, cutting the round trip from about 200 ms to under 10 ms.",
+    "hi": "सीडीएन प्रतियाँ आपके पास रखता है, तो चेन्नई का छात्र वीडियो अमेरिका के बजाय चेन्नई के सर्वर से पाता है, राउंड ट्रिप लगभग 200 ms से 10 ms से कम हो जाता है।",
+    "hinglish": "CDN copies tumhare paas rakhta hai, to Chennai ka student video USA ke bajaye Chennai ke server se paata hai, round trip lagbhag 200 ms se 10 ms se kam ho jaata hai."
+   },
+   "visual": "anim:cdn-near",
+   "narration": {
+    "en": "A CDN keeps copies close to you, so a Chennai student gets the video from a Chennai server instead of one in the USA, cutting the round trip from about 200 ms to under 10 ms.",
+    "hi": "सीडीएन प्रतियाँ आपके पास रखता है, तो चेन्नई का छात्र वीडियो अमेरिका के बजाय चेन्नई के सर्वर से पाता है, राउंड ट्रिप लगभग 200 ms से 10 ms से कम हो जाता है।",
+    "hinglish": "CDN copies tumhare paas rakhta hai, to Chennai ka student video USA ke bajaye Chennai ke server se paata hai, round trip lagbhag 200 ms se 10 ms se kam ho jaata hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "seq-flow",
+  "config": {
+   "scenario": "cdn-edge"
+  },
+  "goal": {
+   "en": "Fetch a school logo through a CDN: first a cache miss that travels to the far origin (about 45 ms), then a cache hit at the nearby edge (about 5 ms). Compare the times.",
+   "hi": "सीडीएन से स्कूल लोगो लाओ: पहले कैश मिस जो दूर के मूल सर्वर तक जाता है (लगभग 45 ms), फिर पास के एज पर कैश हिट (लगभग 5 ms)। समय की तुलना करो।",
+   "hinglish": "CDN se school logo laao: pehle cache miss jo door ke origin tak jaata hai (lagbhag 45 ms), phir paas ke edge par cache hit (lagbhag 5 ms). Time compare karo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Five measures of a network",
+    "hi": "नेटवर्क के पाँच माप",
+    "hinglish": "Network ke paanch maap"
+   },
+   "body": {
+    "en": "Bandwidth: the link's capacity. Throughput: what you actually get, limited by the slowest link, congestion and TCP behaviour. Latency: delay, made of propagation (distance), transmission (size ÷ bandwidth), queuing (waiting in busy routers) and processing. Jitter: how much latency varies — bad for calls. Packet loss: percentage of packets that never arrive — 1–2% already hurts video calls.",
+    "hi": "बैंडविड्थ: लिंक की क्षमता। थ्रूपुट: जो असल में मिलता है, सबसे धीमे लिंक, भीड़ और टीसीपी व्यवहार से सीमित। विलंब: देरी, जिसमें प्रसार (दूरी), संचरण (आकार ÷ बैंडविड्थ), कतार (व्यस्त राउटर में इंतज़ार) और प्रसंस्करण शामिल। जिटर: विलंब कितना बदलता है — कॉल के लिए बुरा। पैकेट हानि: कितने प्रतिशत पैकेट कभी नहीं पहुँचते — 1–2% भी वीडियो कॉल बिगाड़ देता है।",
+    "hinglish": "Bandwidth: link ki capacity. Throughput: jo asal mein milta hai, sabse dheeme link, congestion aur TCP behaviour se seemit. Latency: delay, jismein propagation (doori), transmission (size ÷ bandwidth), queuing (busy routers mein intezaar) aur processing shaamil. Jitter: latency kitni badalti hai — calls ke liye bura. Packet loss: kitne percent packets kabhi nahi pahunchte — 1–2% bhi video calls bigaad deta hai."
+   },
+   "analogy": {
+    "en": "A highway: lanes are bandwidth, cars per hour reaching Pune is throughput, travel time is latency, uneven arrival times are jitter, cars that break down are loss.",
+    "hi": "राजमार्ग: लेन बैंडविड्थ हैं, हर घंटे पुणे पहुँचने वाली गाड़ियाँ थ्रूपुट, सफ़र का समय विलंब, असमान पहुँच का समय जिटर, ख़राब हुई गाड़ियाँ हानि।",
+    "hinglish": "Highway: lanes bandwidth hain, har ghante Pune pahunchne wali gaadiyan throughput, safar ka samay latency, uneven pahunch ka samay jitter, kharab hui gaadiyan loss."
+   },
+   "realExample": {
+    "en": "An online class freezes even on a \"100 Mbps\" plan when Wi-Fi is congested: throughput dropped, and jitter rose.",
+    "hi": "\"100 Mbps\" प्लान पर भी वाई-फ़ाई भीड़ से ऑनलाइन क्लास अटकती है: थ्रूपुट गिरा और जिटर बढ़ा।",
+    "hinglish": "\"100 Mbps\" plan par bhi Wi-Fi congestion se online class atakti hai: throughput gira aur jitter badha."
+   }
+  },
+  {
+   "heading": {
+    "en": "Worked calculations",
+    "hi": "हल किए गए हिसाब",
+    "hinglish": "Solved calculations"
+   },
+   "body": {
+    "en": "Download time = size in bits ÷ throughput. A 1.5 GB game update = 12,000 Mbit; at 50 Mbit/s that is 240 s = 4 minutes (ignoring overheads). Propagation delay = distance ÷ speed in fibre: Delhi to Singapore by cable is roughly 6,000 km → about 30 ms one way, 60 ms round trip at the very least. Real paths are longer than straight lines, so expect more.",
+    "hi": "डाउनलोड समय = बिट में आकार ÷ थ्रूपुट। 1.5 GB गेम अपडेट = 12,000 Mbit; 50 Mbit/s पर 240 सेकंड = 4 मिनट (अतिरिक्त ख़र्च छोड़कर)। प्रसार देरी = दूरी ÷ फ़ाइबर में गति: दिल्ली से सिंगापुर केबल से लगभग 6,000 किमी → एक तरफ़ लगभग 30 ms, कम से कम 60 ms राउंड ट्रिप। असली रास्ते सीधी रेखा से लंबे होते हैं, तो ज़्यादा मानो।",
+    "hinglish": "Download time = bits mein size ÷ throughput. 1.5 GB game update = 12,000 Mbit; 50 Mbit/s par 240 s = 4 minute (overheads chhod ke). Propagation delay = doori ÷ fibre mein speed: Delhi se Singapore cable se lagbhag 6,000 km → ek taraf lagbhag 30 ms, kam se kam 60 ms round trip. Asli raaste seedhi line se lambe hote hain, to zyaada maano."
+   },
+   "analogy": {
+    "en": "More lanes do not shorten the road from Delhi to Singapore; only moving the shop closer (a CDN) does.",
+    "hi": "ज़्यादा लेन दिल्ली से सिंगापुर की सड़क छोटी नहीं करतीं; सिर्फ़ दुकान पास लाना (सीडीएन) करता है।",
+    "hinglish": "Zyaada lanes Delhi se Singapore ki sadak chhoti nahi kartin; sirf dukaan paas laana (CDN) karta hai."
+   },
+   "realExample": {
+    "en": "Gamers choose an \"Asia (Mumbai)\" server over \"Europe\" because ping drops from ~150 ms to ~20 ms, even on the same internet plan.",
+    "hi": "गेमर \"यूरोप\" के बजाय \"एशिया (मुंबई)\" सर्वर चुनते हैं क्योंकि उसी इंटरनेट प्लान पर भी पिंग ~150 ms से ~20 ms हो जाता है।",
+    "hinglish": "Gamers \"Europe\" ke bajaye \"Asia (Mumbai)\" server chunte hain kyunki usi internet plan par bhi ping ~150 ms se ~20 ms ho jaata hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "Cutting latency in real systems",
+    "hi": "असली प्रणालियों में विलंब घटाना",
+    "hinglish": "Asli systems mein latency ghatana"
+   },
+   "body": {
+    "en": "Engineers fight latency by moving content closer (CDNs and edge servers), saving round trips (TLS 1.3 and QUIC need fewer handshakes; HTTP keep-alive reuses connections), caching (DNS and browser caches), compressing (smaller images such as WebP or AVIF) and keeping queues short (modern queue management such as fq_codel reduces \"bufferbloat\" in home routers).",
+    "hi": "इंजीनियर विलंब से ऐसे लड़ते हैं: सामग्री पास लाना (सीडीएन और एज सर्वर), राउंड ट्रिप बचाना (TLS 1.3 और QUIC को कम हैंडशेक चाहिए; HTTP keep-alive कनेक्शन दोबारा इस्तेमाल करता है), कैशिंग (डीएनएस और ब्राउज़र कैश), संपीड़न (WebP या AVIF जैसी छोटी तस्वीरें) और कतारें छोटी रखना (fq_codel जैसा आधुनिक कतार प्रबंधन घर के राउटर में \"बफ़रब्लोट\" घटाता है)।",
+    "hinglish": "Engineers latency se aise ladte hain: content paas laana (CDNs aur edge servers), round trips bachana (TLS 1.3 aur QUIC ko kam handshakes chahiye; HTTP keep-alive connections dobaara use karta hai), caching (DNS aur browser caches), compression (WebP ya AVIF jaisi chhoti images) aur queues chhoti rakhna (fq_codel jaisa modern queue management ghar ke routers mein \"bufferbloat\" ghatata hai)."
+   },
+   "analogy": {
+    "en": "A good canteen: snacks kept at the counter (cache), a token system so you do not queue twice (fewer round trips), and a second counter near the playground (edge).",
+    "hi": "अच्छी कैंटीन: काउंटर पर रखे नाश्ते (कैश), टोकन प्रणाली ताकि दो बार कतार न लगे (कम राउंड ट्रिप), और खेल के मैदान के पास दूसरा काउंटर (एज)।",
+    "hinglish": "Achhi canteen: counter par rakhe snacks (cache), token system taaki do baar line na lage (kam round trips), aur playground ke paas doosra counter (edge)."
+   },
+   "realExample": {
+    "en": "IRCTC and results websites put static pages behind a CDN so that a sudden rush is served from many cities at once.",
+    "hi": "IRCTC और परिणाम वेबसाइटें स्थिर पेज सीडीएन के पीछे रखती हैं ताकि अचानक भीड़ एक साथ कई शहरों से संभाली जाए।",
+    "hinglish": "IRCTC aur results websites static pages CDN ke peeche rakhti hain taaki achaanak bheed ek saath kai shehron se sambhali jaaye."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Ping three servers (for example a CDN site, a government site and a site hosted abroad). Record the RTTs, estimate the distance each implies at 5 µs per km one way, and explain any gap.",
+   "hi": "तीन सर्वरों (जैसे एक सीडीएन साइट, एक सरकारी साइट और विदेश में होस्ट की गई साइट) को पिंग करो। RTT लिखो, 5 µs प्रति किमी एक तरफ़ से हर एक की दूरी का अनुमान लगाओ, और अंतर समझाओ।",
+   "hinglish": "Teen servers (jaise ek CDN site, ek sarkari site aur videsh mein hosted site) ko ping karo. RTTs likho, 5 µs per km ek taraf se har ek ki doori ka anumaan lagao, aur gap samjhao."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "short",
+    "prompt": {
+     "en": "How many seconds to download a 100 MB file at a steady 40 Mbit/s? (1 MB = 8 Mbit)",
+     "hi": "स्थिर 40 Mbit/s पर 100 MB फ़ाइल डाउनलोड होने में कितने सेकंड? (1 MB = 8 Mbit)",
+     "hinglish": "Steady 40 Mbit/s par 100 MB file download hone mein kitne second? (1 MB = 8 Mbit)"
+    },
+    "answer": {
+     "accept": [
+      "20",
+      "20 s",
+      "20 seconds"
+     ]
+    },
+    "explain": {
+     "en": "100 MB × 8 = 800 Mbit; 800 ÷ 40 = 20 s.",
+     "hi": "100 MB × 8 = 800 Mbit; 800 ÷ 40 = 20 सेकंड।",
+     "hinglish": "100 MB × 8 = 800 Mbit; 800 ÷ 40 = 20 s."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "What is the smallest possible round trip over 1,000 km of fibre?",
+     "hi": "1,000 किमी फ़ाइबर पर सबसे छोटा संभव राउंड ट्रिप कितना?",
+     "hinglish": "1,000 km fibre par sabse chhota possible round trip kitna?"
+    },
+    "options": [
+     "1 ms",
+     "5 ms",
+     "10 ms",
+     "100 ms"
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "5 µs/km × 1,000 km = 5 ms one way, so 10 ms there and back.",
+     "hi": "5 µs/किमी × 1,000 किमी = एक तरफ़ 5 ms, तो जाना-आना 10 ms।",
+     "hinglish": "5 µs/km × 1,000 km = ek taraf 5 ms, to jaana-aana 10 ms."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "match",
+    "prompt": {
+     "en": "Match the term to its description.",
+     "hi": "शब्द को उसके विवरण से मिलाओ।",
+     "hinglish": "Term ko uske description se milao."
+    },
+    "options": [
+     {
+      "en": "Bandwidth",
+      "hi": "बैंडविड्थ",
+      "hinglish": "Bandwidth"
+     },
+     {
+      "en": "Latency",
+      "hi": "विलंब",
+      "hinglish": "Latency"
+     },
+     {
+      "en": "Jitter",
+      "hi": "जिटर",
+      "hinglish": "Jitter"
+     },
+     {
+      "en": "Packet loss",
+      "hi": "पैकेट हानि",
+      "hinglish": "Packet loss"
+     }
+    ],
+    "answer": [
+     {
+      "en": "Maximum rate of the link",
+      "hi": "लिंक की अधिकतम दर",
+      "hinglish": "Link ki maximum rate"
+     },
+     {
+      "en": "Delay to travel",
+      "hi": "यात्रा की देरी",
+      "hinglish": "Travel ka delay"
+     },
+     {
+      "en": "Variation in delay",
+      "hi": "देरी में उतार-चढ़ाव",
+      "hinglish": "Delay mein utaar-chadhaav"
+     },
+     {
+      "en": "Packets that never arrive",
+      "hi": "कभी न पहुँचने वाले पैकेट",
+      "hinglish": "Kabhi na pahunchne wale packets"
+     }
+    ],
+    "explain": {
+     "en": "Four different measures; a good connection needs all four to be healthy.",
+     "hi": "चार अलग माप; अच्छे कनेक्शन के लिए चारों ठीक होने चाहिए।",
+     "hinglish": "Chaar alag maap; ache connection ke liye chaaron theek hone chahiye."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Ping to a foreign game server is 180 ms on fibre. What helps most?",
+     "hi": "फ़ाइबर पर विदेशी गेम सर्वर का पिंग 180 ms है। सबसे ज़्यादा क्या मदद करेगा?",
+     "hinglish": "Fibre par foreign game server ka ping 180 ms hai. Sabse zyaada kya madad karega?"
+    },
+    "options": [
+     {
+      "en": "Buy a faster plan",
+      "hi": "तेज़ प्लान ख़रीदो",
+      "hinglish": "Tez plan khareedo"
+     },
+     {
+      "en": "Choose a server in India",
+      "hi": "भारत का सर्वर चुनो",
+      "hinglish": "India ka server chuno"
+     },
+     {
+      "en": "Restart the phone",
+      "hi": "फ़ोन रीस्टार्ट करो",
+      "hinglish": "Phone restart karo"
+     },
+     {
+      "en": "Use UDP instead",
+      "hi": "यूडीपी इस्तेमाल करो",
+      "hinglish": "UDP use karo"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Distance sets the minimum latency; more bandwidth does not shorten it.",
+     "hi": "दूरी न्यूनतम विलंब तय करती है; ज़्यादा बैंडविड्थ उसे छोटा नहीं करती।",
+     "hinglish": "Doori minimum latency tay karti hai; zyaada bandwidth use chhota nahi karti."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Finish the CDN edge scenario.",
+     "hi": "सीडीएन एज परिदृश्य पूरा करो।",
+     "hinglish": "CDN edge scenario poora karo."
+    },
+    "answer": {
+     "event": "scenario-complete",
+     "scenario": "cdn-edge"
+    },
+    "explain": {
+     "en": "You compared the edge cache hit with the long trip to the origin.",
+     "hi": "आपने एज कैश हिट की तुलना मूल सर्वर तक की लंबी यात्रा से की।",
+     "hinglish": "Tumne edge cache hit ki tulna origin tak ki lambi yatra se ki."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "net.bandwidth-latency"
+ ],
+ "sources": [
+  {
+   "title": "Cloudflare Learning — What is latency?",
+   "url": "https://www.cloudflare.com/learning/performance/glossary/what-is-latency/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "web.dev — Time to First Byte (TTFB)",
+   "url": "https://web.dev/articles/ttfb",
+   "licence": "fact reference"
+  },
+  {
+   "title": "RFC 8290 — FQ-CoDel",
+   "url": "https://www.rfc-editor.org/rfc/rfc8290",
+   "licence": "fact reference"
+  }
+ ]
+}

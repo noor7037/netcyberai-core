@@ -1,0 +1,389 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.robotics-iot.01",
+ "level": 2,
+ "classes": [
+  6,
+  7
+ ],
+ "unit": "robotics-iot",
+ "title": {
+  "en": "What makes a robot a robot?",
+  "hi": "रोबोट को रोबोट क्या बनाता है?",
+  "hinglish": "Robot ko robot kya banata hai?"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [],
+ "topics": [
+  "robo.what-is-robot",
+  "robo.rules"
+ ],
+ "outcomes": [
+  {
+   "en": "Define a robot as a machine that senses, thinks and acts",
+   "hi": "रोबोट को महसूस करने, सोचने और काम करने वाली मशीन के रूप में परिभाषित कर सकते हो",
+   "hinglish": "Robot ko sense, think aur act karne wali machine ke roop mein define kar sakte ho"
+  },
+  {
+   "en": "Sort machines into robots and non-robots",
+   "hi": "मशीनों को रोबोट और ग़ैर-रोबोट में छाँट सकते हो",
+   "hinglish": "Machines ko robot aur non-robot mein sort kar sakte ho"
+  },
+  {
+   "en": "Name robots used in India, from factories to the Moon",
+   "hi": "भारत में उपयोग होने वाले रोबोट बता सकते हो, फ़ैक्टरी से चाँद तक",
+   "hinglish": "India mein use hone wale robots bata sakte ho, factory se Moon tak"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Robot",
+   "hinglish": "Sense-think-act machine",
+   "en": "A programmable machine that senses its surroundings, decides and acts on its own",
+   "hi": "प्रोग्राम करने योग्य मशीन जो परिवेश महसूस करती, निर्णय लेती और ख़ुद काम करती है"
+  },
+  {
+   "term": "Sensor",
+   "hinglish": "Robot ki aankh-kaan",
+   "en": "A part that measures the world: light, distance, touch, temperature",
+   "hi": "भाग जो दुनिया मापता है: प्रकाश, दूरी, स्पर्श, तापमान"
+  },
+  {
+   "term": "Actuator",
+   "hinglish": "Robot ke haath-pair",
+   "en": "A part that makes movement or output: motor, servo, speaker, LED",
+   "hi": "भाग जो गति या आउटपुट बनाता है: मोटर, सर्वो, स्पीकर, LED"
+  },
+  {
+   "term": "Controller",
+   "hinglish": "Robot ka dimaag",
+   "en": "The computer chip that runs the program and decides what to do",
+   "hi": "कंप्यूटर चिप जो प्रोग्राम चलाती और तय करती है क्या करना है"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "A robot does three things again and again: SENSE the world, THINK (run its program), and ACT (move or make output).",
+    "hi": "रोबोट बार-बार तीन काम करता है: दुनिया महसूस करना, सोचना (प्रोग्राम चलाना), और काम करना (हिलना या आउटपुट देना)।",
+    "hinglish": "Robot baar-baar teen kaam karta hai: duniya SENSE karna, THINK karna (program chalana), aur ACT karna (hilna ya output dena)."
+   },
+   "visual": "compare:👀 SENSE → 🧠 THINK|→ 🦾 ACT → 👀 SENSE again",
+   "narration": {
+    "en": "No sensing or no deciding = not really a robot.",
+    "hi": "महसूस या निर्णय नहीं = असली रोबोट नहीं।",
+    "hinglish": "Sensing ya deciding nahi = asli robot nahi."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "A ceiling fan only acts — it does not sense or decide. A robot vacuum senses walls, decides, and turns.",
+    "hi": "छत का पंखा केवल काम करता है — वह महसूस या निर्णय नहीं करता। रोबोट वैक्यूम दीवारें महसूस करता, निर्णय लेता और मुड़ता है।",
+    "hinglish": "Ceiling fan sirf act karta hai — woh sense ya decide nahi karta. Robot vacuum deewarein sense karta, decide karta aur mudta hai."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "Robots follow rules written by people.",
+    "hi": "रोबोट लोगों के लिखे नियम मानते हैं।",
+    "hinglish": "Robots logon ke likhe rules follow karte hain."
+   },
+   "code": "robot vacuum program:\n  forever:\n    SENSE: bumper pressed?\n    THINK: if yes → wall ahead\n    ACT:   back up, turn 90°, go on"
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Try a factory-style robot arm in the lab: you are its controller, choosing the angles.",
+    "hi": "लैब में फ़ैक्टरी जैसी रोबोट भुजा आज़माओ: तुम उसके नियंत्रक हो, कोण चुनते हो।",
+    "hinglish": "Lab mein factory jaisi robot arm try karo: tum uske controller ho, angles chunte ho."
+   },
+   "visual": "lab:robot-lab#arm",
+   "narration": {
+    "en": "Pick up the mango and place it in the basket.",
+    "hi": "आम उठाओ और टोकरी में रखो।",
+    "hinglish": "Aam uthao aur tokri mein rakho."
+   }
+  }
+ ],
+ "play": {
+  "lab": "robot-lab",
+  "config": {
+   "tab": "arm"
+  },
+  "goal": {
+   "en": "Move the two servo joints to the mango, grab it, and drop it in the basket.",
+   "hi": "दो सर्वो जोड़ों को आम तक ले जाओ, पकड़ो, और टोकरी में डालो।",
+   "hinglish": "Do servo joints ko aam tak le jao, pakdo, aur tokri mein daalo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Robots, from a play to the Moon",
+    "hi": "नाटक से चाँद तक रोबोट",
+    "hinglish": "Natak se Chaand tak robots"
+   },
+   "body": {
+    "en": "The word “robot” comes from the Czech word “robota” (forced work) and was first used in Karel Čapek’s 1920 play R.U.R. Today a robot means a programmable machine with sensors, a controller and actuators that can do a job with some independence. Factory robot arms weld and paint cars and assemble phones with great precision. In India, Genrobotics’ Bandicoot robot cleans sewer manholes so that people do not have to enter dangerous drains. On 23 August 2023 Chandrayaan-3’s Vikram lander touched down near the Moon’s south pole, and its six-wheeled Pragyan rover drove about 100 metres, using cameras and instruments to study the soil, then went to sleep when lunar night came. ISRO has also built Vyommitra, a half-humanoid robot planned to fly on an uncrewed Gaganyaan test mission. Robots only follow the rules people program into them (plus, in newer robots, patterns learned with AI), so engineers add safety rules — emergency stop buttons, speed limits near humans, and fences around big factory arms.",
+    "hi": "“रोबोट” शब्द चेक भाषा के “robota” (बेगार) से आया है और पहली बार कारेल चापेक के 1920 के नाटक R.U.R. में उपयोग हुआ। आज रोबोट का अर्थ है सेंसर, नियंत्रक और एक्चुएटर वाली प्रोग्राम योग्य मशीन जो कुछ स्वतंत्रता से काम कर सके। फ़ैक्टरी रोबोट भुजाएँ कारों में वेल्डिंग और पेंट करती हैं और बड़ी सटीकता से फ़ोन जोड़ती हैं। भारत में, जेनरोबोटिक्स का बैंडीकूट रोबोट सीवर मैनहोल साफ़ करता है ताकि लोगों को ख़तरनाक नालों में न उतरना पड़े। 23 अगस्त 2023 को चंद्रयान-3 का विक्रम लैंडर चाँद के दक्षिणी ध्रुव के पास उतरा, और उसका छह पहियों वाला प्रज्ञान रोवर लगभग 100 मीटर चला, कैमरों और उपकरणों से मिट्टी का अध्ययन किया, फिर चंद्र रात आने पर सो गया। ISRO ने व्योममित्र भी बनाया है, एक आधी-मानवाकार रोबोट जिसे बिना चालक वाले गगनयान परीक्षण मिशन में भेजने की योजना है। रोबोट केवल वे नियम मानते हैं जो लोग उनमें प्रोग्राम करते हैं (और नए रोबोटों में AI से सीखे पैटर्न), इसलिए इंजीनियर सुरक्षा नियम जोड़ते हैं — आपातकालीन बंद बटन, इंसानों के पास गति सीमा, और बड़ी फ़ैक्टरी भुजाओं के चारों ओर बाड़।",
+    "hinglish": "“Robot” word Czech bhasha ke “robota” (begaar, zabardasti ka kaam) se aaya hai aur pehli baar Karel Čapek ke 1920 ke play R.U.R. mein use hua. Aaj robot ka matlab hai sensors, controller aur actuators wali programmable machine jo kuch independence se kaam kar sake. Factory robot arms cars mein welding aur paint karte hain aur badi precision se phones assemble karte hain. India mein, Genrobotics ka Bandicoot robot sewer manholes saaf karta hai taaki logon ko khatarnaak naalon mein na utarna pade. 23 August 2023 ko Chandrayaan-3 ka Vikram lander Chaand ke south pole ke paas utra, aur uska chhe pahiyon wala Pragyan rover lagbhag 100 metre chala, cameras aur instruments se mitti study ki, phir lunar night aane pe so gaya. ISRO ne Vyommitra bhi banaya hai, ek half-humanoid robot jise uncrewed Gaganyaan test mission mein bhejne ka plan hai. Robots sirf woh rules follow karte hain jo log unme program karte hain (aur naye robots mein AI se seekhe patterns), isliye engineers safety rules jodte hain — emergency stop buttons, insaanon ke paas speed limits, aur badi factory arms ke chaaron taraf fences."
+   },
+   "analogy": {
+    "en": "A robot = a cricket fielder: watches the ball (sense), decides where to run (think), runs and catches (act) — and repeats for every ball.",
+    "hi": "रोबोट = क्रिकेट फ़ील्डर: गेंद देखता है (महसूस), सोचता है किधर जाना है (सोचो), दौड़कर पकड़ता है (करो) — और हर गेंद पर यही दोहराता है।",
+    "hinglish": "Robot = cricket fielder: ball dekhta hai (sense), sochta hai kidhar jaana hai (think), daud kar pakadta hai (act) — aur har ball pe yahi dohrata hai."
+   },
+   "realExample": {
+    "en": "Bandicoot, built by Genrobotics in Kerala, is used by many city corporations in India to clean manholes so sanitation workers stay safe outside.",
+    "hi": "बैंडीकूट, केरल की जेनरोबोटिक्स द्वारा बनाया, भारत के कई नगर निगम मैनहोल साफ़ करने में उपयोग करते हैं ताकि सफ़ाई कर्मचारी बाहर सुरक्षित रहें।",
+    "hinglish": "Bandicoot, Kerala ki Genrobotics ka banaya, India ke kai city corporations manholes saaf karne ke liye use karte hain taaki safai workers bahar safe rahein."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Walk around your home and list 6 machines (fan, washing machine, fridge, phone…). For each, write whether it SENSES, THINKS (decides) and ACTS. Which ones come closest to being robots?",
+   "hi": "घर में घूमो और 6 मशीनें सूचीबद्ध करो (पंखा, वॉशिंग मशीन, फ़्रिज, फ़ोन…)। हर एक के लिए लिखो कि वह महसूस, सोचती (निर्णय) और काम करती है या नहीं। कौन-सी रोबोट के सबसे क़रीब हैं?",
+   "hinglish": "Ghar mein ghoomo aur 6 machines list karo (fan, washing machine, fridge, phone…). Har ek ke liye likho ki woh SENSE, THINK (decide) aur ACT karti hai ya nahi. Kaunsi robot ke sabse kareeb hain?"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "order",
+    "prompt": {
+     "en": "Put a robot’s loop in order.",
+     "hi": "रोबोट के लूप को क्रम में लगाओ।",
+     "hinglish": "Robot ke loop ko order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Act: move or make output",
+      "hi": "करो: हिलो या आउटपुट दो",
+      "hinglish": "Act: hilo ya output do"
+     },
+     {
+      "en": "Sense: read the sensors",
+      "hi": "महसूस: सेंसर पढ़ो",
+      "hinglish": "Sense: sensors padho"
+     },
+     {
+      "en": "Think: run the program to decide",
+      "hi": "सोचो: निर्णय के लिए प्रोग्राम चलाओ",
+      "hinglish": "Think: decide karne ke liye program chalao"
+     }
+    ],
+    "answer": [
+     1,
+     2,
+     0
+    ],
+    "explain": {
+     "en": "Sense → think → act, then sense again.",
+     "hi": "महसूस → सोचो → करो, फिर से महसूस।",
+     "hinglish": "Sense → think → act, phir se sense."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "match",
+    "prompt": {
+     "en": "Match each robot part to its job.",
+     "hi": "हर रोबोट भाग को उसके काम से मिलाओ।",
+     "hinglish": "Har robot part ko uske kaam se match karo."
+    },
+    "options": {
+     "left": [
+      {
+       "en": "Ultrasonic sensor",
+       "hi": "अल्ट्रासोनिक सेंसर",
+       "hinglish": "Ultrasonic sensor"
+      },
+      {
+       "en": "Microcontroller",
+       "hi": "माइक्रोकंट्रोलर",
+       "hinglish": "Microcontroller"
+      },
+      {
+       "en": "Servo motor",
+       "hi": "सर्वो मोटर",
+       "hinglish": "Servo motor"
+      }
+     ],
+     "right": [
+      {
+       "en": "Decides what to do",
+       "hi": "निर्णय लेता है क्या करना है",
+       "hinglish": "Decide karta hai kya karna hai"
+      },
+      {
+       "en": "Moves a joint to an angle",
+       "hi": "जोड़ को कोण पर घुमाता है",
+       "hinglish": "Joint ko angle pe ghumata hai"
+      },
+      {
+       "en": "Measures distance",
+       "hi": "दूरी मापता है",
+       "hinglish": "Distance measure karta hai"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      2
+     ],
+     [
+      1,
+      0
+     ],
+     [
+      2,
+      1
+     ]
+    ],
+    "explain": {
+     "en": "Sensor measures, controller decides, actuator moves.",
+     "hi": "सेंसर मापता है, नियंत्रक निर्णय लेता है, एक्चुएटर हिलाता है।",
+     "hinglish": "Sensor measure karta hai, controller decide karta hai, actuator hilata hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which is a robot?",
+     "hi": "कौन-सा रोबोट है?",
+     "hinglish": "Kaunsa robot hai?"
+    },
+    "options": [
+     {
+      "en": "A ceiling fan",
+      "hi": "छत का पंखा",
+      "hinglish": "Ceiling fan"
+     },
+     {
+      "en": "A remote-control toy car",
+      "hi": "रिमोट-कंट्रोल खिलौना कार",
+      "hinglish": "Remote-control toy car"
+     },
+     {
+      "en": "A robot vacuum that avoids walls",
+      "hi": "दीवारों से बचने वाला रोबोट वैक्यूम",
+      "hinglish": "Deewaron se bachne wala robot vacuum"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "The vacuum senses obstacles, decides and moves on its own. The others only act or need a person to decide.",
+     "hi": "वैक्यूम बाधाएँ महसूस करता, निर्णय लेता और ख़ुद चलता है। बाक़ी केवल काम करते हैं या इंसान को निर्णय लेना पड़ता है।",
+     "hinglish": "Vacuum obstacles sense karta, decide karta aur khud chalta hai. Baaki sirf act karte hain ya insaan ko decide karna padta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "What did Chandrayaan-3’s Pragyan rover do in August 2023?",
+     "hi": "अगस्त 2023 में चंद्रयान-3 के प्रज्ञान रोवर ने क्या किया?",
+     "hinglish": "August 2023 mein Chandrayaan-3 ke Pragyan rover ne kya kiya?"
+    },
+    "options": [
+     {
+      "en": "Drove about 100 m on the Moon and studied the soil",
+      "hi": "चाँद पर लगभग 100 मीटर चला और मिट्टी जाँची",
+      "hinglish": "Chaand pe lagbhag 100 m chala aur mitti check ki"
+     },
+     {
+      "en": "Landed on Mars",
+      "hi": "मंगल पर उतरा",
+      "hinglish": "Mars pe utra"
+     },
+     {
+      "en": "Carried astronauts",
+      "hi": "अंतरिक्ष यात्रियों को ले गया",
+      "hinglish": "Astronauts ko le gaya"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "It drove about 100 m near the lunar south pole and studied the soil.",
+     "hi": "वह चंद्र दक्षिणी ध्रुव के पास लगभग 100 मीटर चला और मिट्टी का अध्ययन किया।",
+     "hinglish": "Woh lunar south pole ke paas lagbhag 100 m chala aur mitti study ki."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "short",
+    "prompt": {
+     "en": "A part that makes a robot move (motor, servo) is called an ___ .",
+     "hi": "रोबोट को हिलाने वाला भाग (मोटर, सर्वो) ___ कहलाता है।",
+     "hinglish": "Robot ko hilane wala part (motor, servo) ___ kehlata hai."
+    },
+    "answer": [
+     "actuator",
+     "Actuator",
+     "actuators"
+    ],
+    "explain": {
+     "en": "Actuator — the robot’s “muscles”.",
+     "hi": "एक्चुएटर — रोबोट की “मांसपेशियाँ”।",
+     "hinglish": "Actuator — robot ki “muscles”."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the lab mission.",
+     "hi": "लैब मिशन पूरा करो।",
+     "hinglish": "Lab mission poora karo."
+    },
+    "answer": {
+     "lab": "robot-lab",
+     "event": "mission:complete",
+     "tab": "arm"
+    },
+    "explain": {
+     "en": "Grab the mango and drop it in the basket.",
+     "hi": "आम पकड़ो और टोकरी में डालो।",
+     "hinglish": "Aam pakdo aur tokri mein daalo."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "ISRO — Chandrayaan-3",
+   "url": "https://www.isro.gov.in/Chandrayaan3_New.html",
+   "licence": "fact reference"
+  },
+  {
+   "title": "ISRO — Gaganyaan programme",
+   "url": "https://www.isro.gov.in/Gaganyaan.html",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Genrobotics — Bandicoot manhole-cleaning robot",
+   "url": "https://www.genrobotics.com/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Encyclopaedia Britannica — R.U.R. (Karel Čapek, 1920)",
+   "url": "https://www.britannica.com/topic/RUR",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

@@ -1,0 +1,178 @@
+<!doctype html><html lang="en" data-lab="crypto-lab"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#061233"><title>Encryption & TLS Lab · NCA Tech Lab L3</title><style>:root{--bg:#061233;--bg2:#0b1b4a;--card:rgba(255,255,255,.06);--line:rgba(255,255,255,.12);--tx:#eef4ff;--mut:#9fb0d6;--grape:#8B3DFF;--cyan:#02CFF9;--leaf:#22C55E;--coral:#FF6B57;--gold:#F5B90A;--tang:#FF7A1A;--royal:#2563EB;--r:16px}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:radial-gradient(120% 80% at 10% -10%,#22145e 0%,transparent 55%),radial-gradient(120% 80% at 110% 10%,#04395e 0%,transparent 50%),var(--bg);color:var(--tx);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans Devanagari",sans-serif;min-height:100%}
+body{padding:0 0 24px}
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:8px;padding:10px 12px;background:rgba(6,18,51,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top h1{font-size:16px;margin:0;flex:1;letter-spacing:.2px}
+.top h1 small{display:block;font-size:11px;color:var(--mut);font-weight:500}
+.badge{font-size:11px;padding:3px 8px;border-radius:99px;background:linear-gradient(90deg,var(--grape),var(--cyan));color:#061233;font-weight:700}
+.langs{display:flex;border:1px solid var(--line);border-radius:99px;overflow:hidden}
+.langs button{background:none;border:0;color:var(--mut);padding:5px 8px;font:inherit;font-size:12px;min-height:30px}
+.langs button.on{background:var(--grape);color:#fff}
+.wrap{max-width:1100px;margin:0 auto;padding:12px}
+.goal{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:var(--r);background:linear-gradient(135deg,rgba(139,61,255,.22),rgba(2,207,249,.12));border:1px solid rgba(139,61,255,.4);margin-bottom:12px;font-size:14px}
+.goal b{color:var(--gold)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px;margin-bottom:12px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.card h2{font-size:14px;margin:0 0 8px;color:var(--cyan);letter-spacing:.3px;text-transform:uppercase}
+.grid{display:grid;gap:12px}
+@media(min-width:720px){.grid.two{grid-template-columns:1.25fr 1fr}}
+@media(orientation:landscape) and (max-height:500px){.grid.two{grid-template-columns:1.2fr 1fr}.top{padding:6px 12px}}
+.btn{appearance:none;border:1px solid var(--line);background:rgba(255,255,255,.08);color:var(--tx);border-radius:12px;padding:9px 12px;font:inherit;font-weight:600;min-height:40px;cursor:pointer;transition:transform .12s,background .2s}
+.btn:active{transform:scale(.96)}
+.btn.pri{background:linear-gradient(135deg,var(--grape),#5b2be0);border-color:transparent;color:#fff;box-shadow:0 6px 18px rgba(139,61,255,.4)}
+.btn.ok{background:var(--leaf);color:#062;border-color:transparent}
+.btn.on{outline:2px solid var(--cyan)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{border-radius:99px;padding:6px 11px;min-height:34px;font-size:13px}
+label.sl{display:flex;flex-direction:column;gap:3px;font-size:12px;color:var(--mut);flex:1;min-width:120px}
+input[type=range]{width:100%;accent-color:var(--grape)}
+input[type=text],textarea,select{width:100%;background:rgba(0,0,0,.25);border:1px solid var(--line);color:var(--tx);border-radius:12px;padding:10px;font:inherit}
+.stat{display:flex;flex-direction:column;padding:8px 10px;border-radius:12px;background:rgba(0,0,0,.22);min-width:80px}
+.stat b{font-size:18px;font-variant-numeric:tabular-nums}
+.stat span{font-size:11px;color:var(--mut)}
+.mut{color:var(--mut)}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px}
+canvas,svg{display:block;max-width:100%;touch-action:none}
+
+
+.explain{font-size:13.5px;color:#d7e2ff;background:rgba(0,0,0,.2);border-left:3px solid var(--cyan);padding:8px 10px;border-radius:8px;margin-top:8px}
+.pill{display:inline-block;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:700}
+@keyframes pop{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(2,207,249,.0)}50%{box-shadow:0 0 0 6px rgba(2,207,249,.25)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.top h1 .hstat{display:none;font-size:12px;font-weight:700;color:#4ade80;animation:pop .3s both}.top h1.toasting small{display:none}.top h1.toasting .hstat{display:block}
+.seg.chips{margin:4px 0}.seg.chips button{white-space:normal;text-align:left;line-height:1.25;max-width:100%}
+.seg.chips.big .pick{width:100%;font-weight:700}
+</style></head><body><script>// NCA Tech Lab L3 shared kit: language, config from ?cfg= / ?lesson= / inline, mission events, small helpers. No eval.
+(function(g){
+  const qs=new URLSearchParams(location.search);
+  const K={lang:qs.get('lang')||localStorage.getItem('nca-lang')||'hinglish',cfg:{},goal:null,lab:document.documentElement.dataset.lab,listeners:[]};
+  K.reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  K.t=(o)=>o==null?'':typeof o==='string'?o:(o[K.lang]||o.hinglish||o.en||'');
+  K.$=(s,r)=>(r||document).querySelector(s);K.$$=(s,r)=>[...(r||document).querySelectorAll(s)];
+  K.el=(tag,attrs,html)=>{const e=document.createElement(tag);if(attrs)for(const k in attrs){if(k==='on')for(const ev in attrs.on)e.addEventListener(ev,attrs.on[ev]);else e.setAttribute(k,attrs[k]);}if(html!=null)e.innerHTML=html;return e;};
+  K.esc=(s)=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+  K.rng=(seed)=>{let s=seed>>>0||1;return()=>{s^=s<<13;s>>>=0;s^=s>>17;s^=s<<5;s>>>=0;return s/4294967296;};};
+  K.clamp=(v,a,b)=>Math.max(a,Math.min(b,v));K.lerp=(a,b,t)=>a+(b-a)*t;K.ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+  K.sleep=(ms)=>new Promise(r=>setTimeout(r,K.reduced?0:ms));
+  K.tween=(ms,fn)=>new Promise(res=>{if(K.reduced||ms<=0){fn(1);return res();}const t0=performance.now();const f=n=>{const t=Math.min(1,(n-t0)/ms);fn(K.ease(t));t<1?requestAnimationFrame(f):res();};requestAnimationFrame(f);});
+  // Toasts never cover content (readability rule): the message temporarily replaces the header subtitle, then the subtitle returns after 2.5 s.
+  K.toast=(msg)=>{const h=K.$('header.top h1');if(!h)return;let st=h.querySelector('.hstat');if(!st){st=K.el('span',{class:'hstat',role:'status','aria-live':'polite'});h.appendChild(st);}st.textContent=msg;h.classList.add('toasting');clearTimeout(K._tt);K._tt=setTimeout(()=>h.classList.remove('toasting'),2500);};
+  K.events=[];
+  // emit a lab event; the lesson player listens via postMessage and matches it against try.questions[type=lab-check].answer
+  K.emit=(event,data)=>{const m={type:'nca-lab-event',lab:K.lab,event,data:data||{},at:Date.now()};K.events.push(m);try{parent!==window&&parent.postMessage(m,'*');}catch(e){}g.dispatchEvent(new CustomEvent('nca-lab-event',{detail:m}));document.documentElement.dataset.lastEvent=event;};
+  K.check=(event,data,msg)=>{K.emit(event,data);K.toast('✓ '+(msg||K.t({en:'Mission check passed',hinglish:'Mission check pass!',hi:'मिशन जाँच पास!'})));};
+  K.onLang=(fn)=>K.listeners.push(fn);
+  K.setLang=(l)=>{K.lang=l;localStorage.setItem('nca-lang',l);K.$$('.langs button').forEach(b=>b.classList.toggle('on',b.dataset.l===l));K.$$('[data-t]').forEach(e=>{const o=K.T[e.dataset.t];if(o)e.innerHTML=K.t(o);});K.renderGoal();K.listeners.forEach(f=>f(l));};
+  K.T={};// string table: key -> {en,hi,hinglish}
+  K.renderGoal=()=>{const gEl=K.$('#goal');if(!gEl)return;const goal=K.goal||K.T.__goal;gEl.style.display=goal?'flex':'none';if(goal)gEl.innerHTML='<span>🎯</span><div><b>'+K.esc(K.t({en:'Goal',hinglish:'Goal',hi:'लक्ष्य'}))+':</b> '+K.esc(K.t(goal))+'</div>';};
+  K.header=(title,sub)=>{const h=K.el('header',{class:'top'});h.innerHTML='<span class="badge">L3</span><h1>'+K.esc(K.t(title))+'<small>'+K.esc(K.t(sub))+'</small></h1><div class="langs" role="group" aria-label="Language"><button data-l="hinglish">Hinglish</button><button data-l="en">EN</button><button data-l="hi">हिं</button></div>';document.body.prepend(h);K.$$('.langs button',h).forEach(b=>b.onclick=()=>{K.setLang(b.dataset.l);h.querySelector('h1').firstChild.textContent=K.t(title);h.querySelector('small').textContent=K.t(sub);});};
+  // Readability rule: native <select> boxes cut long option text on phones, so every select is shown as a wrapping row of chips.
+  K.chipify=(sel)=>{if(sel._chips||sel.dataset.keep!=null)return;const box=K.el('div',{class:'seg chips',role:'radiogroup','aria-label':sel.getAttribute('aria-label')||'options'});sel.after(box);sel.style.display='none';sel._chips=box;let last='';
+    let open=false;const render=(force)=>{const n=sel.options.length,big=n>6;const sig=[...sel.options].map(o=>o.value+'\u0001'+o.textContent).join('\u0002')+'|'+sel.value+'|'+open;if(sig===last&&!force)return;last=sig;box.innerHTML='';box.classList.toggle('big',big);
+      if(big){const cur=sel.options[sel.selectedIndex];const t=K.el('button',{class:'btn on pick',type:'button','aria-expanded':open?'true':'false'});t.textContent=(open?'▴ ':'▾ ')+(cur?cur.textContent:'');t.onclick=()=>{open=!open;render(true);};box.appendChild(t);if(!open)return;}
+      [...sel.options].forEach(o=>{if(big&&o.value===sel.value)return;const b=K.el('button',{class:'btn'+(o.value===sel.value?' on':''),type:'button',role:'radio','aria-checked':o.value===sel.value?'true':'false'});b.textContent=o.textContent;b.onclick=()=>{if(sel.disabled)return;sel.value=o.value;open=false;render(true);sel.dispatchEvent(new Event('change',{bubbles:true}));};box.appendChild(b);});};
+    render();new MutationObserver(render).observe(sel,{childList:true,subtree:true,characterData:true});setInterval(render,250);};
+  K.chipAll=()=>{K.$$('select').forEach(K.chipify);if(!K._mo){K._mo=new MutationObserver(()=>K.$$('select').forEach(K.chipify));K._mo.observe(document.body,{childList:true,subtree:true});}};
+  K.boot=async(defaults)=>{let cfg=Object.assign({},defaults||{});
+    const inl=document.getElementById('lesson-inline');
+    try{if(inl){const L=JSON.parse(inl.textContent);if(L.play){Object.assign(cfg,L.play.config||{});K.goal=L.play.goal;}}}catch(e){}
+    const lp=qs.get('lesson');if(lp){try{const L=await (await fetch(lp)).json();if(L.play&&L.play.lab===K.lab){Object.assign(cfg,L.play.config||{});K.goal=L.play.goal;}}catch(e){}}
+    const c=qs.get('cfg');if(c){try{Object.assign(cfg,JSON.parse(c));}catch(e){}}
+    for(const [k,v] of qs){if(!['cfg','lesson','lang'].includes(k))cfg[k]=v;}
+    K.cfg=cfg;K.setLang(K.lang);setTimeout(K.chipAll,0);return cfg;};
+  g.K=K;
+})(window);
+</script><div class="wrap">
+ <div id="goal" class="goal" style="display:none"></div>
+ <div class="seg" id="modes" style="margin-bottom:10px"></div>
+ <div class="grid two"><div class="card"><h2 id="vt"></h2><div id="main"></div></div><div class="card"><h2 data-t="why"></h2><div id="why" class="mut"></div></div></div>
+</div>
+<style>.big{font:700 18px ui-monospace,monospace;word-break:break-all;background:#020817;border-radius:10px;padding:10px;margin:6px 0}.bits{font:12px/1.5 ui-monospace,monospace;word-break:break-all}.bits .d{color:#FF6B57;font-weight:800}.bars{display:flex;align-items:flex-end;gap:2px;height:90px;margin:8px 0}.bars div{flex:1;background:#02CFF9;border-radius:3px 3px 0 0;position:relative;transition:height .4s}.bars div span{position:absolute;bottom:-15px;left:0;right:0;text-align:center;font-size:9px;color:#9fb0d6}.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;font:13px ui-monospace,monospace;margin:6px 0}.kv b{color:#F5B90A}.paint{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;margin:10px 0}.blob{width:62px;height:62px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:800 13px ui-monospace,monospace;color:#061233;box-shadow:0 0 18px rgba(255,255,255,.15);transition:background .6s}.shiftlist{max-height:220px;overflow:auto;font:12.5px ui-monospace,monospace}.shiftlist div{padding:3px 6px;border-radius:6px;cursor:pointer}.shiftlist div:hover{background:rgba(255,255,255,.08)}</style>
+<script>
+const T=K.T,t3=(en,hinglish,hi)=>({en,hinglish,hi});T.why=t3('What is going on','Kya ho raha hai','क्या हो रहा है');
+// ---------- SHA-256 (own implementation, FIPS 180-4) ----------
+function sha256(msg){const K256=[0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2];
+ const b=[...new TextEncoder().encode(msg)];const l=b.length*8;b.push(0x80);while(b.length%64!==56)b.push(0);for(let i=7;i>=0;i--)b.push(Math.floor(l/2**(8*i))&255);
+ let h=[0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19];const r=(x,n)=>(x>>>n)|(x<<(32-n));
+ for(let o=0;o<b.length;o+=64){const w=[];for(let i=0;i<16;i++)w[i]=(b[o+4*i]<<24|b[o+4*i+1]<<16|b[o+4*i+2]<<8|b[o+4*i+3])>>>0;for(let i=16;i<64;i++){const s0=r(w[i-15],7)^r(w[i-15],18)^(w[i-15]>>>3),s1=r(w[i-2],17)^r(w[i-2],19)^(w[i-2]>>>10);w[i]=(w[i-16]+s0+w[i-7]+s1)>>>0;}
+  let [a,bb,c,d,e,f,g,hh]=h;for(let i=0;i<64;i++){const S1=r(e,6)^r(e,11)^r(e,25),ch=(e&f)^(~e&g),t1=(hh+S1+ch+K256[i]+w[i])>>>0,S0=r(a,2)^r(a,13)^r(a,22),mj=(a&bb)^(a&c)^(bb&c),t2=(S0+mj)>>>0;hh=g;g=f;f=e;e=(d+t1)>>>0;d=c;c=bb;bb=a;a=(t1+t2)>>>0;}
+  h=h.map((x,i)=>(x+[a,bb,c,d,e,f,g,hh][i])>>>0);}
+ return h.map(x=>x.toString(16).padStart(8,'0')).join('');}
+const hex2bin=h=>[...h].map(c=>parseInt(c,16).toString(2).padStart(4,'0')).join('');
+// ---------- Caesar ----------
+const A='ABCDEFGHIJKLMNOPQRSTUVWXYZ';const caesar=(s,k)=>s.toUpperCase().replace(/[A-Z]/g,c=>A[(A.indexOf(c)+k+26)%26]);
+const SECRET='MEET AT THE SCIENCE LAB AFTER LUNCH',SECRET_K=7;
+const EN_FREQ='ETAOINSHRDLCUMWFGYPBVKJXQZ';
+let st={};
+function vCaesar(){const k=st.k??3,txt=st.txt??'NAMASTE INDIA';const ct=caesar(txt,k),target=caesar(SECRET,SECRET_K);
+ const fq=A.split('').map(c=>(target.match(new RegExp(c,'g'))||[]).length),mx=Math.max(...fq);
+ K.$('#main').innerHTML=`<label class="mut">${K.t(t3('Plain text','Plain text','सादा पाठ'))}<input type="text" id="ptxt" value="${K.esc(txt)}" style="width:100%"></label>
+ <label class="sl">${K.t(t3('Shift key','Shift key','खिसकाव कुंजी'))}: <b>${k}</b><input type="range" id="sh" min="1" max="25" value="${k}"></label>
+ <div class="big">${K.esc(ct)}</div><hr style="border-color:rgba(255,255,255,.1)">
+ <b>${K.t(t3('Challenge: crack this intercepted message','Challenge: yeh pakda gaya message todo','चुनौती: यह पकड़ा गया संदेश तोड़ो'))}</b><div class="big" style="color:#FF6B57">${target}</div>
+ <div class="mut" style="font-size:12px">${K.t(t3('Letter frequency of the ciphertext (in English, E and T are the most common):','Ciphertext ki letter frequency (English mein E aur T sabse aam):','सिफ़रटेक्स्ट में अक्षरों की आवृत्ति (अंग्रेज़ी में E और T सबसे आम):'))}</div>
+ <div class="bars">${fq.map((v,i)=>`<div style="height:${mx?v/mx*80+2:2}px;${v===mx?'background:#F5B90A':''}"><span>${A[i]}</span></div>`).join('')}</div><br>
+ <div class="mut" style="font-size:12px">${K.t(t3('Brute force: only 25 keys to try. Tap the line that makes sense.','Brute force: sirf 25 keys try karni hain. Jo line samajh aaye use tap karo.','पाशविक बल: सिर्फ़ 25 कुंजियाँ आज़मानी हैं। जो पंक्ति समझ आए उसे टैप करो।'))}</div>
+ <div class="shiftlist">${Array.from({length:25},(_,i)=>i+1).map(s=>`<div data-s="${s}">k=${String(s).padStart(2)}: ${caesar(target,-s)}</div>`).join('')}</div>`;
+ K.$('#sh').oninput=e=>{st.k=+e.target.value;vCaesar();};K.$('#ptxt').onchange=e=>{st.txt=e.target.value.slice(0,60);vCaesar();K.emit('caesar-encrypted',{k:st.k??3});};
+ K.$$('.shiftlist div').forEach(d=>d.onclick=()=>{const s=+d.dataset.s;if(s===SECRET_K){d.style.background='rgba(34,197,94,.3)';K.check('caesar-cracked',{key:s,tries:25});}else{d.style.background='rgba(255,107,87,.25)';}});
+ K.$('#why').innerHTML=K.t(t3('Caesar shifts each letter by a fixed key. It is hopeless today: there are only 25 keys, and letter frequencies leak through. Real ciphers need a key space so large that trying every key is impossible — AES-128 has 2¹²⁸ ≈ 3.4 × 10³⁸ keys.','Caesar har letter ko ek fixed key se khiskata hai. Aaj yeh bekaar hai: sirf 25 keys hain, aur letter frequencies chhupti nahi. Asli ciphers ko itna bada key space chahiye ki har key try karna namumkin ho — AES-128 mein 2¹²⁸ ≈ 3.4 × 10³⁸ keys hain.','सीज़र हर अक्षर को एक तय कुंजी से खिसकाता है। आज यह बेकार है: सिर्फ़ 25 कुंजियाँ हैं, और अक्षरों की आवृत्ति छिपती नहीं। असली सिफ़र को इतना बड़ा कुंजी-स्थान चाहिए कि हर कुंजी आज़माना असंभव हो — AES-128 में 2¹²⁸ ≈ 3.4 × 10³⁸ कुंजियाँ हैं।'));}
+// ---------- XOR / symmetric ----------
+function vXor(){const msg=st.m??'HI',key=st.key??'K7';const mb=[...new TextEncoder().encode(msg)],kb=[...new TextEncoder().encode(key)];const cb=mb.map((b,i)=>b^kb[i%kb.length]);const db=cb.map((b,i)=>b^kb[i%kb.length]);
+ const bin=a=>a.map(b=>b.toString(2).padStart(8,'0')).join(' ');
+ K.$('#main').innerHTML=`<div class="row" style="gap:8px;flex-wrap:wrap"><label class="mut">${K.t(t3('Message','Message','संदेश'))}<input type="text" id="xm" value="${K.esc(msg)}" maxlength="12"></label><label class="mut">${K.t(t3('Secret key','Secret key','गुप्त कुंजी'))}<input type="text" id="xk" value="${K.esc(key)}" maxlength="12"></label></div>
+ <div class="kv"><b>${K.t(t3('message','message','संदेश'))}</b><span class="bits">${bin(mb)}</span><b>⊕ ${K.t(t3('key','key','कुंजी'))}</b><span class="bits">${bin(mb.map((_,i)=>kb[i%kb.length]))}</span><b>= ${K.t(t3('cipher','cipher','सिफ़र'))}</b><span class="bits" style="color:#FF6B57">${bin(cb)}</span><b>⊕ ${K.t(t3('key again','phir key','फिर कुंजी'))}</b><span class="bits" style="color:#22C55E">${bin(db)} → "${K.esc(new TextDecoder().decode(new Uint8Array(db)))}"</span></div>
+ <button class="btn pri" id="xr">✓ ${K.t(t3('Decrypt with the same key','Usi key se decrypt karo','उसी कुंजी से डिक्रिप्ट करो'))}</button>`;
+ K.$('#xm').onchange=e=>{st.m=e.target.value||'HI';vXor();};K.$('#xk').onchange=e=>{st.key=e.target.value||'K';vXor();};
+ K.$('#xr').onclick=()=>{if(new TextDecoder().decode(new Uint8Array(db))===msg)K.check('xor-roundtrip',{len:msg.length});};
+ K.$('#why').innerHTML=K.t(t3('XOR (⊕) flips a bit wherever the key has a 1. Doing it twice with the same key gives the message back — that is symmetric encryption: one shared key locks and unlocks. Real systems use AES (a NIST standard since 2001) or ChaCha20, which mix the key in over many rounds. A short repeating key like this is easy to break; the problem symmetric crypto cannot solve alone is: how do two strangers agree on the key? → see Key exchange.','XOR (⊕) jahan key mein 1 hai wahan bit palat deta hai. Usi key se do baar karo to message wapas — yahi symmetric encryption hai: ek shared key lock aur unlock karti hai. Asli systems AES (2001 se NIST standard) ya ChaCha20 use karte hain, jo key ko kai rounds mein milate hain. Aisi chhoti repeating key aasaani se toot-ti hai; jo problem symmetric crypto akele hal nahi kar sakta: do ajnabi key par kaise sehmat hon? → Key exchange dekho.','XOR (⊕) जहाँ कुंजी में 1 है वहाँ बिट पलट देता है। उसी कुंजी से दो बार करो तो संदेश वापस — यही सममित एन्क्रिप्शन है: एक साझा कुंजी ताला लगाती और खोलती है। असली प्रणालियाँ AES (2001 से NIST मानक) या ChaCha20 इस्तेमाल करती हैं, जो कुंजी को कई दौरों में मिलाते हैं। ऐसी छोटी दोहराती कुंजी आसानी से टूटती है; जो समस्या सममित क्रिप्टो अकेले हल नहीं कर सकता: दो अजनबी कुंजी पर कैसे सहमत हों? → कुंजी विनिमय देखो।'));}
+// ---------- Diffie–Hellman ----------
+function vDh(){const p=23,g=5,a=st.a??6,b=st.b??15;const pw=(x,e,m)=>{let r=1;for(let i=0;i<e;i++)r=r*x%m;return r;};const A_=pw(g,a,p),B_=pw(g,b,p),sa=pw(B_,a,p),sb=pw(A_,b,p);
+ const col=n=>`hsl(${n*15%360} 80% 60%)`;
+ K.$('#main').innerHTML=`<div class="kv"><b>${K.t(t3('public','public','सार्वजनिक'))}</b><span>p = ${p}, g = ${g}</span></div>
+ <div class="row" style="gap:8px;flex-wrap:wrap"><label class="sl">${K.t(t3('Aanya\'s secret a','Aanya ka secret a','आन्या का रहस्य a'))}: <b>${a}</b><input type="range" id="da" min="2" max="21" value="${a}"></label><label class="sl">${K.t(t3('Server\'s secret b','Server ka secret b','सर्वर का रहस्य b'))}: <b>${b}</b><input type="range" id="db" min="2" max="21" value="${b}"></label></div>
+ <div class="paint"><div class="blob" style="background:${col(g)}">g=${g}</div>→<div class="blob" style="background:${col(A_)}">A=${A_}</div><span class="mut">⇄ ${K.t(t3('sent openly','khule mein bheja','खुले में भेजा'))} ⇄</span><div class="blob" style="background:${col(B_)}">B=${B_}</div></div>
+ <div class="kv"><b>A</b><span>g^a mod p = ${g}^${a} mod ${p} = ${A_}</span><b>B</b><span>g^b mod p = ${g}^${b} mod ${p} = ${B_}</span><b>Aanya</b><span>B^a mod p = ${sa}</span><b>${K.t(t3('Server','Server','सर्वर'))}</b><span>A^b mod p = ${sb}</span></div>
+ <div class="paint"><div class="blob" style="background:${col(sa)};width:80px;height:80px">🔑 ${sa}</div><div class="blob" style="background:${col(sb)};width:80px;height:80px">🔑 ${sb}</div></div>
+ <button class="btn pri" id="dok">${K.t(t3('Compare the two keys','Dono keys compare karo','दोनों कुंजियों की तुलना करो'))}</button>`;
+ K.$('#da').oninput=e=>{st.a=+e.target.value;vDh();};K.$('#db').oninput=e=>{st.b=+e.target.value;vDh();};K.$('#dok').onclick=()=>{if(sa===sb)K.check('dh-shared',{key:sa});};
+ K.$('#why').innerHTML=K.t(t3('Diffie–Hellman (1976): both sides mix a public number with their own secret and swap only the results. Each then mixes the other\'s result with their own secret — and both arrive at the same key, while an eavesdropper who saw A and B cannot work it out (for real sizes the "discrete logarithm" is infeasible). TLS 1.3 does this with elliptic curves (X25519) in the very first message, then uses the shared key for fast AES or ChaCha20 encryption.','Diffie–Hellman (1976): dono taraf ek public number ko apne secret se milate hain aur sirf result badalte hain. Phir har koi doosre ke result ko apne secret se milata hai — aur dono ek hi key par pahunchte hain, jabki A aur B dekhne wala chhupa sunne wala use nikaal nahi sakta (asli size par "discrete logarithm" namumkin hai). TLS 1.3 yeh elliptic curves (X25519) se pehle hi message mein karta hai, phir shared key se tez AES ya ChaCha20 encryption.','डिफ़ी–हेलमैन (1976): दोनों पक्ष एक सार्वजनिक संख्या को अपने रहस्य से मिलाते हैं और सिर्फ़ परिणाम बदलते हैं। फिर हर कोई दूसरे के परिणाम को अपने रहस्य से मिलाता है — और दोनों एक ही कुंजी पर पहुँचते हैं, जबकि A और B देखने वाला छिपकर सुनने वाला उसे नहीं निकाल सकता (असली आकार पर "असतत लघुगणक" असंभव है)। TLS 1.3 यह अण्डाकार वक्रों (X25519) से पहले ही संदेश में करता है, फिर साझा कुंजी से तेज़ AES या ChaCha20 एन्क्रिप्शन।'));}
+// ---------- tiny RSA ----------
+const PR=[11,13,17,19,23,29,31,37,41,43,47,53,59,61];
+const mpow=(b,e,m)=>{b=BigInt(b);e=BigInt(e);m=BigInt(m);let r=1n;b%=m;while(e>0n){if(e&1n)r=r*b%m;b=b*b%m;e>>=1n;}return Number(r);};
+const gcd=(a,b)=>b?gcd(b,a%b):a;const inv=(e,ph)=>{let [a,b,x0,x1]=[e,ph,1,0];while(b){const q=Math.floor(a/b);[a,b]=[b,a-q*b];[x0,x1]=[x1,x0-q*x1];}return (x0%ph+ph)%ph;};
+function vRsa(){const p=st.p??61,q=st.q??53;const n=p*q,ph=(p-1)*(q-1);let e=st.e??17;if(gcd(e,ph)!==1){e=[3,5,7,17,257,65537].find(x=>gcd(x,ph)===1&&x<ph)||3;}const d=inv(e,ph);const m=Math.min(st.msg??65,n-1);const c=mpow(m,e,n),back=mpow(c,d,n);const sig=mpow(m,d,n),ver=mpow(sig,e,n);
+ K.$('#main').innerHTML=`<div class="row" style="gap:8px;flex-wrap:wrap"><label class="mut">p <select id="rp">${PR.map(x=>`<option ${x===p?'selected':''}>${x}</option>`).join('')}</select></label><label class="mut">q <select id="rq">${PR.map(x=>`<option ${x===q?'selected':''}>${x}</option>`).join('')}</select></label><label class="mut">${K.t(t3('message m (a number)','message m (number)','संदेश m (संख्या)'))} <input type="text" id="rm" value="${m}" style="width:80px" inputmode="numeric"></label></div>
+ <div class="kv"><b>n = p×q</b><span>${p}×${q} = ${n} <span class="pill" style="background:#22C55E33">${K.t(t3('public','public','सार्वजनिक'))}</span></span><b>φ(n)</b><span>(${p}−1)(${q}−1) = ${ph} <span class="pill" style="background:#FF6B5733">${K.t(t3('secret','secret','गुप्त'))}</span></span><b>e</b><span>${e} <span class="pill" style="background:#22C55E33">${K.t(t3('public key','public key','सार्वजनिक कुंजी'))} (e, n)</span></span><b>d</b><span>${d} <span class="pill" style="background:#FF6B5733">${K.t(t3('private key','private key','निजी कुंजी'))}</span> (e×d mod φ = ${e*d%ph})</span></div>
+ <div class="big">🔒 c = m^e mod n = ${m}^${e} mod ${n} = <span style="color:#FF6B57">${c}</span></div><div class="big">🔓 m = c^d mod n = ${c}^${d} mod ${n} = <span style="color:#22C55E">${back}</span></div>
+ <div class="big" style="font-size:14px">✍ ${K.t(t3('signature','signature','हस्ताक्षर'))} s = m^d mod n = ${sig} → ${K.t(t3('verify','verify','सत्यापन'))} s^e mod n = ${ver} ${ver===m?'✓':'✗'}</div>
+ <button class="btn pri" id="rok">${K.t(t3('Check the round trip','Round trip check karo','पूरा चक्र जाँचो'))}</button>`;
+ K.$('#rp').onchange=e=>{st.p=+e.target.value;if(st.p===(st.q??53))st.q=PR.find(x=>x!==st.p);vRsa();};K.$('#rq').onchange=e=>{st.q=+e.target.value;if(st.q===(st.p??61))st.p=PR.find(x=>x!==st.q);vRsa();};K.$('#rm').onchange=e=>{st.msg=Math.max(2,parseInt(e.target.value)||65);vRsa();};
+ K.$('#rok').onclick=()=>{if(back===m&&ver===m)K.check('rsa-roundtrip',{n,e});};
+ K.$('#why').innerHTML=K.t(t3('RSA (1977) uses a key pair. Anyone may encrypt with the public key (e, n); only the private key d decrypts. Its security rests on factoring: from n alone it is easy for small numbers like '+n+' but infeasible for the 2048-bit n used today (617 decimal digits). Reverse the roles and you get a digital signature: sign with d, anyone verifies with e — that is how your browser checks a website\'s certificate. Large quantum computers could break RSA and elliptic curves, so NIST published post-quantum standards in 2024 (ML-KEM, ML-DSA).','RSA (1977) key pair use karta hai. Koi bhi public key (e, n) se encrypt kar sakta hai; sirf private key d decrypt karti hai. Iski security factoring par tiki hai: '+n+' jaise chhote numbers ke liye n se aasaan, par aaj ke 2048-bit n (617 decimal digits) ke liye namumkin. Roles palto to digital signature milta hai: d se sign, e se koi bhi verify — isi tarah browser website ka certificate check karta hai. Bade quantum computers RSA aur elliptic curves tod sakte hain, isliye NIST ne 2024 mein post-quantum standards (ML-KEM, ML-DSA) diye.','RSA (1977) कुंजी-जोड़ी इस्तेमाल करता है। कोई भी सार्वजनिक कुंजी (e, n) से एन्क्रिप्ट कर सकता है; सिर्फ़ निजी कुंजी d डिक्रिप्ट करती है। इसकी सुरक्षा गुणनखंड पर टिकी है: '+n+' जैसी छोटी संख्याओं के लिए आसान, पर आज के 2048-बिट n (617 अंक) के लिए असंभव। भूमिकाएँ पलटो तो डिजिटल हस्ताक्षर मिलता है: d से हस्ताक्षर, e से कोई भी सत्यापन — इसी तरह ब्राउज़र वेबसाइट का प्रमाणपत्र जाँचता है। बड़े क्वांटम कंप्यूटर RSA और अण्डाकार वक्र तोड़ सकते हैं, इसलिए NIST ने 2024 में पोस्ट-क्वांटम मानक (ML-KEM, ML-DSA) जारी किए।'));}
+// ---------- hash avalanche ----------
+function vHash(){const a=st.ha??'Riya scored 88 in maths',b=st.hb??'Riya scored 89 in maths';const A1=sha256(a),B1=sha256(b);const ab=hex2bin(A1),bb=hex2bin(B1);let diff=0;let viz='';for(let i=0;i<256;i++){const d=ab[i]!==bb[i];if(d)diff++;viz+=d?'<span class="d">'+bb[i]+'</span>':bb[i];}
+ const pct=Math.round(diff/256*100);
+ K.$('#main').innerHTML=`<label class="mut">${K.t(t3('Text 1','Text 1','पाठ 1'))}<input type="text" id="ha" value="${K.esc(a)}" style="width:100%"></label><div class="big" style="font-size:12px">${A1}</div>
+ <label class="mut">${K.t(t3('Text 2 (change one character)','Text 2 (ek character badlo)','पाठ 2 (एक अक्षर बदलो)'))}<input type="text" id="hb" value="${K.esc(b)}" style="width:100%"></label><div class="big" style="font-size:12px">${B1}</div>
+ <div class="row" style="gap:8px"><div class="stat"><b>${diff}/256</b><span>${K.t(t3('bits changed','bits badle','बिट बदले'))}</span></div><div class="stat"><b>${pct}%</b><span>${K.t(t3('avalanche','avalanche','हिमस्खलन'))}</span></div></div>
+ <div class="bits" style="margin-top:6px">${viz}</div>`;
+ const upd=()=>{st.ha=K.$('#ha').value;st.hb=K.$('#hb').value;vHash();const n=[...st.ha].filter((c,i)=>c!==st.hb[i]).length+Math.abs(st.ha.length-st.hb.length);};
+ K.$('#ha').onchange=upd;K.$('#hb').onchange=upd;
+ if(a!==b&&pct>=35&&!st.avOnce){st.avOnce=1;K.check('avalanche-seen',{bitsChanged:diff});}
+ K.$('#why').innerHTML=K.t(t3('A hash like SHA-256 turns any input into a fixed 256-bit fingerprint. It is one-way (you cannot get the text back), and changing one character flips about half the bits — the avalanche effect. Uses: checking downloads, digital signatures, and Git commits. For passwords, a fast hash is not enough: sites must store a slow, salted hash (bcrypt, scrypt or Argon2) so stolen databases resist guessing.','SHA-256 jaisa hash kisi bhi input ko fixed 256-bit fingerprint mein badalta hai. Yeh ek-tarfa hai (text wapas nahi milta), aur ek character badalne se lagbhag aadhe bits palat jaate hain — avalanche effect. Upyog: downloads check karna, digital signatures, aur Git commits. Passwords ke liye tez hash kaafi nahi: sites ko dheema, salted hash (bcrypt, scrypt ya Argon2) rakhna chahiye taaki chori hua database guessing ka saamna kar sake.','SHA-256 जैसा हैश किसी भी इनपुट को तय 256-बिट फ़िंगरप्रिंट में बदलता है। यह एक-तरफ़ा है (पाठ वापस नहीं मिलता), और एक अक्षर बदलने से लगभग आधे बिट पलट जाते हैं — हिमस्खलन प्रभाव। उपयोग: डाउनलोड जाँचना, डिजिटल हस्ताक्षर, और Git कमिट। पासवर्ड के लिए तेज़ हैश काफ़ी नहीं: साइटों को धीमा, नमक-युक्त हैश (bcrypt, scrypt या Argon2) रखना चाहिए ताकि चोरी हुआ डेटाबेस अनुमान का सामना कर सके।'));}
+// ---------- TLS summary ----------
+function vTls(){const steps=[['ClientHello',t3('Phone → server: supported ciphers + its X25519 key share','Phone → server: supported ciphers + X25519 key share','फ़ोन → सर्वर: समर्थित सिफ़र + X25519 कुंजी अंश'),'#02CFF9'],['ServerHello',t3('Server → phone: chosen cipher (e.g. TLS_AES_128_GCM_SHA256) + its key share. Both now compute the same secret (Diffie–Hellman).','Server → phone: chuna cipher (jaise TLS_AES_128_GCM_SHA256) + key share. Dono ab ek hi secret nikaalte hain (Diffie–Hellman).','सर्वर → फ़ोन: चुना सिफ़र (जैसे TLS_AES_128_GCM_SHA256) + कुंजी अंश। दोनों अब एक ही रहस्य निकालते हैं (डिफ़ी–हेलमैन)।'),'#8B3DFF'],['Certificate',t3('Server proves its identity: a certificate for myschool.in signed by a trusted certificate authority (RSA or ECDSA signature).','Server apni pehchaan saabit karta hai: myschool.in ka certificate, trusted certificate authority se signed (RSA ya ECDSA signature).','सर्वर अपनी पहचान साबित करता है: myschool.in का प्रमाणपत्र, भरोसेमंद प्रमाणपत्र प्राधिकरण से हस्ताक्षरित (RSA या ECDSA हस्ताक्षर)।'),'#F5B90A'],['CertificateVerify + Finished',t3('Server signs the handshake with its private key; the phone verifies with the public key in the certificate. No forger can do this.','Server handshake ko private key se sign karta hai; phone certificate ki public key se verify karta hai. Koi nakli yeh nahi kar sakta.','सर्वर हैंडशेक पर निजी कुंजी से हस्ताक्षर करता है; फ़ोन प्रमाणपत्र की सार्वजनिक कुंजी से सत्यापित करता है। कोई जालसाज़ यह नहीं कर सकता।'),'#22C55E'],['🔒 Application data',t3('From now on everything is encrypted with AES-GCM using the shared key. Total: 1 round trip.','Ab se sab kuch shared key se AES-GCM mein encrypted. Kul: 1 round trip.','अब से सब कुछ साझा कुंजी से AES-GCM में एन्क्रिप्टेड। कुल: 1 राउंड ट्रिप।'),'#22C55E']];
+ K.$('#main').innerHTML=steps.map((s,i)=>`<div class="tlsrow" style="border-left:4px solid ${s[2]};padding:6px 10px;margin:6px 0;background:rgba(255,255,255,.04);border-radius:8px;${i<(st.ti||0)?'':'opacity:.25'}"><b>${i+1}. ${s[0]}</b><div class="mut" style="font-size:13px">${K.esc(K.t(s[1]))}</div></div>`).join('')+`<button class="btn pri" id="tn">${(st.ti||0)<steps.length?K.t(t3('Next step','Agla step','अगला चरण'))+' ›':'✓'}</button> <a class="btn" href="seq-flow.html?scenario=https-tls">${K.t(t3('Animated version','Animated version','एनिमेटेड रूप'))} ↗</a>`;
+ K.$('#tn').onclick=()=>{st.ti=Math.min(steps.length,(st.ti||0)+1);vTls();if(st.ti===steps.length)K.check('tls-walkthrough',{steps:steps.length});};
+ K.$('#why').innerHTML=K.t(t3('HTTPS combines all the pieces in this lab: key exchange (Diffie–Hellman) to agree a secret, signatures and certificates (RSA/ECDSA) to prove who the server is, hashing to protect integrity, and fast symmetric encryption (AES) for the data. The padlock means the connection is encrypted and the certificate matches the name — not that the site is honest, so still check the address.','HTTPS is lab ke saare tukde jodta hai: secret par sehmat hone ke liye key exchange (Diffie–Hellman), server kaun hai saabit karne ke liye signatures aur certificates (RSA/ECDSA), integrity ke liye hashing, aur data ke liye tez symmetric encryption (AES). Padlock ka matlab connection encrypted hai aur certificate naam se match karta hai — yeh nahi ki site imaandaar hai, isliye address phir bhi check karo.','HTTPS इस लैब के सभी टुकड़े जोड़ता है: रहस्य पर सहमति के लिए कुंजी विनिमय (डिफ़ी–हेलमैन), सर्वर कौन है साबित करने के लिए हस्ताक्षर और प्रमाणपत्र (RSA/ECDSA), अखंडता के लिए हैशिंग, और डेटा के लिए तेज़ सममित एन्क्रिप्शन (AES)। ताले का मतलब कनेक्शन एन्क्रिप्टेड है और प्रमाणपत्र नाम से मेल खाता है — यह नहीं कि साइट ईमानदार है, इसलिए पता फिर भी जाँचो।'));}
+const MODES={caesar:[t3('Caesar','Caesar','सीज़र'),vCaesar],xor:[t3('Symmetric (XOR)','Symmetric (XOR)','सममित (XOR)'),vXor],dh:[t3('Key exchange','Key exchange','कुंजी विनिमय'),vDh],rsa:[t3('Public key (RSA)','Public key (RSA)','सार्वजनिक कुंजी (RSA)'),vRsa],hash:[t3('Hash (SHA-256)','Hash (SHA-256)','हैश (SHA-256)'),vHash],tls:[t3('TLS: all together','TLS: sab ek saath','TLS: सब एक साथ'),vTls]};
+let mode;function setMode(m){mode=MODES[m]?m:'caesar';K.$$('#modes button').forEach(b=>b.classList.toggle('on',b.dataset.m===mode));K.$('#vt').textContent=K.t(MODES[mode][0]);MODES[mode][1]();K.emit('mode-opened',{mode});}
+(async()=>{K.lab='crypto-lab';K.header(t3('Encryption & TLS Lab','Encryption & TLS Lab','एन्क्रिप्शन और TLS लैब'),t3('From Caesar to the HTTPS padlock','Caesar se HTTPS padlock tak','सीज़र से HTTPS ताले तक'));
+ const cfg=await K.boot({mode:'caesar'});K.$('#modes').innerHTML=Object.entries(MODES).map(([k,v])=>`<button class="btn" data-m="${k}">${K.t(v[0])}</button>`).join('');K.$$('#modes button').forEach(b=>b.onclick=()=>setMode(b.dataset.m));
+ setMode(cfg.mode);K.onLang(()=>{K.$$('#modes button').forEach(b=>b.textContent=K.t(MODES[b.dataset.m][0]));setMode(mode);});window.__c={sha256};})();
+</script>
+</body></html>

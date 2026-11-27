@@ -1,0 +1,318 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.os-software.03",
+ "level": 2,
+ "classes": [
+  8
+ ],
+ "unit": "os-software",
+ "title": {
+  "en": "Processes, multitasking and memory management",
+  "hi": "प्रोसेस, मल्टीटास्किंग और मेमोरी प्रबंधन",
+  "hinglish": "Processes, multitasking aur memory management"
+ },
+ "minutes": 10,
+ "xp": 40,
+ "prereq": [
+  "L2.os-software.02"
+ ],
+ "topics": [
+  "os.processes",
+  "os.memory-mgmt"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain what a process is",
+   "hi": "प्रोसेस क्या है, समझा सकते हो",
+   "hinglish": "Process kya hai samjha sakte ho"
+  },
+  {
+   "en": "Describe scheduling and time slices",
+   "hi": "शेड्यूलिंग और टाइम स्लाइस बता सकते हो",
+   "hinglish": "Scheduling aur time slices bata sakte ho"
+  },
+  {
+   "en": "Explain why phones close background apps",
+   "hi": "समझा सकते हो कि फ़ोन पीछे चल रहे ऐप क्यों बंद करते हैं",
+   "hinglish": "Phones background apps kyun band karte hain samjha sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Process",
+   "hinglish": "Chalta hua program",
+   "en": "A program that is running, with its own memory",
+   "hi": "चलता हुआ प्रोग्राम, अपनी मेमोरी के साथ"
+  },
+  {
+   "term": "Scheduler",
+   "hinglish": "Baari tay karne wala",
+   "en": "The part of the OS that decides which process runs next",
+   "hi": "OS का भाग जो तय करता है कि अगला कौन-सा प्रोसेस चलेगा"
+  },
+  {
+   "term": "Time slice",
+   "hinglish": "Har baari ka chhota samay",
+   "en": "A short turn on the CPU, a few milliseconds",
+   "hi": "CPU पर छोटी बारी, कुछ मिलीसेकंड"
+  },
+  {
+   "term": "Virtual memory / swap",
+   "hinglish": "Storage ko extra RAM ki tarah use karna",
+   "en": "Using storage as slow extra RAM when RAM is full",
+   "hi": "RAM भरने पर स्टोरेज को धीमी अतिरिक्त RAM की तरह उपयोग करना"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "An app saved on storage is a program. Once it runs, the OS calls it a process and gives it RAM.",
+    "hi": "स्टोरेज पर रखा ऐप प्रोग्राम है। चलते ही OS उसे प्रोसेस कहता है और RAM देता है।",
+    "hinglish": "Storage pe rakha app program hai. Chalte hi OS usse process kehta hai aur RAM deta hai."
+   },
+   "visual": "lab:os-sim#tasks",
+   "narration": {
+    "en": "A recipe in a book is a program; actually cooking it is a process.",
+    "hi": "किताब में लिखी रेसिपी प्रोग्राम है; उसे सच में पकाना प्रोसेस है।",
+    "hinglish": "Kitaab mein recipe = program; asal mein pakana = process."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "The scheduler gives each process a turn of a few milliseconds, round and round.",
+    "hi": "शेड्यूलर हर प्रोसेस को कुछ मिलीसेकंड की बारी देता है, बार-बार।",
+    "hinglish": "Scheduler har process ko kuch milliseconds ki baari deta hai, baar baar."
+   },
+   "visual": "flow:🎵 Music 4 ms|💬 Chat 4 ms|🗺️ Maps 4 ms|🔁 repeat",
+   "narration": {
+    "en": "Music, chat and maps all seem live, but on one core they take quick turns.",
+    "hi": "संगीत, चैट और मैप सब एक साथ चलते लगते हैं, पर एक कोर पर वे तेज़ी से बारी लेते हैं।",
+    "hinglish": "Music, chat aur maps sab live lagte hain, par ek core pe jaldi-jaldi baari lete hain."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "When RAM is almost full, the phone quietly closes apps you have not used for a while.",
+    "hi": "जब RAM लगभग भर जाती है, फ़ोन चुपचाप उन ऐप्स को बंद करता है जो देर से उपयोग नहीं हुए।",
+    "hinglish": "Jab RAM lagbhag bhar jaati hai, phone chupchaap un apps ko band karta hai jo der se use nahi hue."
+   },
+   "visual": "icon:🧹",
+   "narration": {
+    "en": "That is why a game sometimes restarts when you come back to it.",
+    "hi": "इसीलिए गेम पर लौटने पर वह कभी-कभी फिर से शुरू होता है।",
+    "hinglish": "Isliye kabhi game wapas aane pe restart hota hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "os-sim",
+  "config": {
+   "tab": "tasks"
+  },
+  "goal": {
+   "en": "Fill the RAM and watch the OS free memory by stopping the least recently used app.",
+   "hi": "RAM भरो और देखो OS सबसे पहले उपयोग हुए ऐप को रोककर मेमोरी कैसे ख़ाली करता है।",
+   "hinglish": "RAM bharo aur dekho OS sabse kam haal mein use hue app ko band karke memory kaise khaali karta hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "How the OS keeps everything smooth",
+    "hi": "OS सब कुछ सुचारु कैसे रखता है",
+    "hinglish": "OS sab kuch smooth kaise rakhta hai"
+   },
+   "body": {
+    "en": "Each process gets its own private memory space, so a crashing game cannot damage your banking app. The scheduler gives priority to what you are touching (the foreground app) and to time-critical work like music and calls. When RAM runs short, computers move unused memory pages to storage (swap/virtual memory) — slow, but it avoids crashing — and Android/iOS go further and stop the least recently used background apps. Task Manager on Windows and “Running services” in Android developer options show processes and their CPU and memory use.",
+    "hi": "हर प्रोसेस को अपनी निजी मेमोरी मिलती है, इसलिए क्रैश होता गेम बैंकिंग ऐप को नुकसान नहीं पहुँचा सकता। शेड्यूलर उसे प्राथमिकता देता है जिसे आप छू रहे हो (सामने वाला ऐप) और संगीत व कॉल जैसे समय-संवेदनशील काम को। RAM कम होने पर कंप्यूटर अनुपयोगी मेमोरी पन्नों को स्टोरेज (स्वैप/वर्चुअल मेमोरी) में डालते हैं — धीमा, पर क्रैश से बचाता है — और Android/iOS सबसे कम हाल में उपयोग हुए बैकग्राउंड ऐप बंद कर देते हैं। Windows का टास्क मैनेजर और Android डेवलपर विकल्पों में “Running services” प्रोसेस और उनका CPU व मेमोरी उपयोग दिखाते हैं।",
+    "hinglish": "Har process ko apni private memory milti hai, isliye crash hota game banking app ko nuksaan nahi pahuncha sakta. Scheduler usse priority deta hai jise aap touch kar rahe ho (foreground app) aur music aur calls jaise time-critical kaam ko. RAM kam hone pe computer unused memory pages ko storage (swap/virtual memory) mein daalte hain — slow, par crash se bachata hai — aur Android/iOS sabse kam haal mein use hue background apps band kar dete hain. Windows ka Task Manager aur Android developer options mein “Running services” processes aur unka CPU aur memory use dikhate hain."
+   },
+   "analogy": {
+    "hinglish": "Ek hi tawa, kai rotiyaan: maa har roti ko thodi der palat-palat ke sekti hai — sab saath-saath ban jaati hain. Yahi scheduling hai.",
+    "en": "One tawa, many rotis: Mum turns each roti for a short while — they all get cooked together. That is scheduling.",
+    "hi": "एक ही तवा, कई रोटियाँ: माँ हर रोटी को थोड़ी देर पलट-पलटकर सेंकती हैं — सब साथ-साथ बन जाती हैं। यही शेड्यूलिंग है।"
+   },
+   "realExample": {
+    "en": "Phones with 4 GB RAM restart background apps more often than 8 GB phones — the main reason extra RAM feels “smoother”.",
+    "hi": "4 GB RAM वाले फ़ोन पीछे के ऐप 8 GB वालों से ज़्यादा बार फिर शुरू करते हैं — ज़्यादा RAM “स्मूद” लगने का मुख्य कारण।",
+    "hinglish": "4 GB RAM wale phones background apps zyada baar restart karte hain 8 GB walon se — extra RAM “smooth” lagne ki main wajah."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "On a computer, open Task Manager (Ctrl+Shift+Esc) with an adult and find the process using the most memory.",
+   "hi": "किसी बड़े के साथ कंप्यूटर पर Task Manager (Ctrl+Shift+Esc) खोलो और सबसे ज़्यादा मेमोरी वाला प्रोसेस ढूँढो।",
+   "hinglish": "Kisi bade ke saath computer pe Task Manager (Ctrl+Shift+Esc) kholo aur sabse zyada memory use karne wala process dhoondo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "A program that is currently running is called a…",
+     "hi": "अभी चल रहा प्रोग्राम कहलाता है…",
+     "hinglish": "Abhi chal raha program kehlaata hai…"
+    },
+    "options": [
+     {
+      "en": "file",
+      "hi": "फ़ाइल",
+      "hinglish": "file"
+     },
+     {
+      "en": "process",
+      "hi": "प्रोसेस",
+      "hinglish": "process"
+     },
+     {
+      "en": "folder",
+      "hi": "फ़ोल्डर",
+      "hinglish": "folder"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "A process is a running program with its own memory and state.",
+     "hi": "प्रोसेस अपनी मेमोरी और स्थिति वाला चलता प्रोग्राम है।",
+     "hinglish": "Process apni memory aur state wala chalta program hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why does each process get its own memory space?",
+     "hi": "हर प्रोसेस को अपनी मेमोरी क्यों मिलती है?",
+     "hinglish": "Har process ko apni memory kyun milti hai?"
+    },
+    "options": [
+     {
+      "en": "Safety: apps cannot read or break each other",
+      "hi": "सुरक्षा: ऐप एक-दूसरे को पढ़/तोड़ नहीं सकते",
+      "hinglish": "Safety: apps ek doosre ko padh/tod nahi sakte"
+     },
+     {
+      "en": "To use more battery",
+      "hi": "ज़्यादा बैटरी के लिए",
+      "hinglish": "Zyada battery ke liye"
+     },
+     {
+      "en": "It doesn’t",
+      "hi": "ऐसा नहीं होता",
+      "hinglish": "Aisa nahi hota"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Isolation keeps one buggy or malicious app from reading or breaking another app’s data.",
+     "hi": "अलगाव एक ख़राब या दुर्भावनापूर्ण ऐप को दूसरे ऐप का डेटा पढ़ने या तोड़ने से रोकता है।",
+     "hinglish": "Isolation ek kharab ya malicious app ko doosre app ka data padhne ya todne se rokta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "RAM is full. What does Android usually do first?",
+     "hi": "RAM भरी है। Android आमतौर पर पहले क्या करता है?",
+     "hinglish": "RAM full hai. Android aam taur pe pehle kya karta hai?"
+    },
+    "options": [
+     {
+      "en": "Deletes your photos",
+      "hi": "आपकी फ़ोटो मिटाता है",
+      "hinglish": "Aapki photos delete karta hai"
+     },
+     {
+      "en": "Turns off the screen",
+      "hi": "स्क्रीन बंद करता है",
+      "hinglish": "Screen band karta hai"
+     },
+     {
+      "en": "Closes old background apps",
+      "hi": "पुराने बैकग्राउंड ऐप बंद करता है",
+      "hinglish": "Purane background apps band karta hai"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "It stops the least recently used background apps to free memory for what you are using now.",
+     "hi": "यह सबसे कम हाल में उपयोग हुए बैकग्राउंड ऐप बंद करता है ताकि अभी के काम को मेमोरी मिले।",
+     "hinglish": "Yeh sabse kam haal mein use hue background apps band karta hai taaki abhi ke kaam ko memory mile."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "What is swap / virtual memory?",
+     "hi": "स्वैप / वर्चुअल मेमोरी क्या है?",
+     "hinglish": "Swap / virtual memory kya hai?"
+    },
+    "options": [
+     {
+      "en": "Extra cache inside the CPU",
+      "hi": "CPU के अंदर अतिरिक्त कैश",
+      "hinglish": "CPU ke andar extra cache"
+     },
+     {
+      "en": "Using storage as slow extra RAM",
+      "hi": "स्टोरेज को धीमी अतिरिक्त RAM बनाना",
+      "hinglish": "Storage ko slow extra RAM banana"
+     },
+     {
+      "en": "Cloud backup",
+      "hi": "क्लाउड बैकअप",
+      "hinglish": "Cloud backup"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "The OS uses part of storage as slow extra RAM.",
+     "hi": "OS स्टोरेज का हिस्सा धीमी अतिरिक्त RAM की तरह उपयोग करता है।",
+     "hinglish": "OS storage ka hissa slow extra RAM ki tarah use karta hai."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "In the OS simulator, open apps until the OS has to free memory.",
+     "hi": "OS सिम्युलेटर में तब तक ऐप खोलो जब तक OS को मेमोरी ख़ाली न करनी पड़े।",
+     "hinglish": "OS simulator mein itne apps kholo ki OS ko memory khaali karni pade."
+    },
+    "answer": {
+     "lab": "os-sim",
+     "event": "mission:complete",
+     "tab": "tasks"
+    },
+    "explain": {
+     "en": "The least recently used app is stopped and its RAM given to the new one.",
+     "hi": "सबसे कम हाल में उपयोग हुआ ऐप रुकता है और उसकी RAM नए को मिलती है।",
+     "hinglish": "Sabse kam haal mein use hua app rukta hai aur uski RAM naye ko milti hai."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Android Developers — Processes and app lifecycle / low-memory killer",
+   "url": "https://developer.android.com/guide/components/activities/process-lifecycle",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NCERT / CBSE Artificial Intelligence & Computer curriculum (Classes 6–8), 2024–25",
+   "url": "https://cbseacademic.nic.in/",
+   "licence": "fact reference"
+  }
+ ]
+}

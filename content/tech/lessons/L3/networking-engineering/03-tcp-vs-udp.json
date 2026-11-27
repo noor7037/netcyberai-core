@@ -1,0 +1,405 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.networking-engineering.03",
+ "level": 3,
+ "classes": [
+  10,
+  11,
+  12
+ ],
+ "unit": "networking-engineering",
+ "title": {
+  "en": "TCP vs UDP",
+  "hi": "टीसीपी बनाम यूडीपी",
+  "hinglish": "TCP vs UDP"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [
+  "L3.networking-engineering.01"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain the TCP three-way handshake and how sequence numbers give reliability",
+   "hi": "टीसीपी तीन-चरणीय हैंडशेक और अनुक्रम संख्याओं से विश्वसनीयता समझाओ",
+   "hinglish": "TCP three-way handshake aur sequence numbers se reliability samjhao"
+  },
+  {
+   "en": "Describe what happens when a packet is lost (timeout and retransmission)",
+   "hi": "पैकेट खोने पर क्या होता है (टाइमआउट और दोबारा भेजना) बताओ",
+   "hinglish": "Packet khone par kya hota hai (timeout aur retransmission) batao"
+  },
+  {
+   "en": "Choose TCP or UDP for an application and justify it",
+   "hi": "किसी ऐप के लिए TCP या UDP चुनो और कारण बताओ",
+   "hinglish": "Kisi app ke liye TCP ya UDP chuno aur kaaran batao"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Handshake",
+   "hinglish": "Baat shuru karne se pehle haath milana",
+   "en": "Exchange that sets up a connection before data flows",
+   "hi": "डेटा चलने से पहले कनेक्शन बनाने वाला आदान-प्रदान"
+  },
+  {
+   "term": "Sequence number",
+   "hinglish": "Har byte ka gina hua number",
+   "en": "Counter that numbers bytes so they can be reordered and acknowledged",
+   "hi": "बाइट गिनने वाली संख्या ताकि उन्हें क्रम में लगाया और स्वीकारा जा सके"
+  },
+  {
+   "term": "Retransmission",
+   "hinglish": "Khoya packet dobaara bhejna",
+   "en": "Sending data again after no acknowledgement arrives",
+   "hi": "स्वीकृति न आने पर डेटा फिर भेजना"
+  },
+  {
+   "term": "Datagram",
+   "hinglish": "Bina connection ka akela packet",
+   "en": "Self-contained UDP message with no connection or delivery guarantee",
+   "hi": "बिना कनेक्शन या डिलीवरी गारंटी का स्वतंत्र यूडीपी संदेश"
+  },
+  {
+   "term": "QUIC",
+   "hinglish": "UDP ke upar tez aur encrypted transport",
+   "en": "Modern encrypted transport built on UDP, used by HTTP/3",
+   "hi": "यूडीपी पर बना आधुनिक एन्क्रिप्टेड ट्रांसपोर्ट, HTTP/3 में इस्तेमाल"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "TCP first shakes hands: SYN → SYN-ACK → ACK. After one round trip both sides agree on starting sequence numbers.",
+    "hi": "टीसीपी पहले हाथ मिलाता है: SYN → SYN-ACK → ACK। एक राउंड ट्रिप के बाद दोनों पक्ष शुरुआती अनुक्रम संख्याओं पर सहमत होते हैं।",
+    "hinglish": "TCP pehle haath milata hai: SYN → SYN-ACK → ACK. Ek round trip ke baad dono taraf starting sequence numbers par sehmat hote hain."
+   },
+   "visual": "anim:tcp-handshake",
+   "narration": {
+    "en": "TCP first shakes hands: SYN → SYN-ACK → ACK. After one round trip both sides agree on starting sequence numbers.",
+    "hi": "टीसीपी पहले हाथ मिलाता है: SYN → SYN-ACK → ACK। एक राउंड ट्रिप के बाद दोनों पक्ष शुरुआती अनुक्रम संख्याओं पर सहमत होते हैं।",
+    "hinglish": "TCP pehle haath milata hai: SYN → SYN-ACK → ACK. Ek round trip ke baad dono taraf starting sequence numbers par sehmat hote hain."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Every byte is numbered and acknowledged. If an ACK does not come back in time, TCP sends the data again and slows down to avoid congestion.",
+    "hi": "हर बाइट गिनी और स्वीकारी जाती है। समय पर ACK न आए तो टीसीपी डेटा दोबारा भेजता है और भीड़ से बचने के लिए धीमा होता है।",
+    "hinglish": "Har byte gini aur acknowledge ki jaati hai. Time par ACK na aaye to TCP data dobaara bhejta hai aur congestion se bachne ke liye dheema hota hai."
+   },
+   "visual": "anim:tcp-retransmit",
+   "narration": {
+    "en": "Every byte is numbered and acknowledged. If an ACK does not come back in time, TCP sends the data again and slows down to avoid congestion.",
+    "hi": "हर बाइट गिनी और स्वीकारी जाती है। समय पर ACK न आए तो टीसीपी डेटा दोबारा भेजता है और भीड़ से बचने के लिए धीमा होता है।",
+    "hinglish": "Har byte gini aur acknowledge ki jaati hai. Time par ACK na aaye to TCP data dobaara bhejta hai aur congestion se bachne ke liye dheema hota hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "UDP just sends datagrams: no handshake, no ordering, no retries. Lighter and faster, and the app decides what to do about loss.",
+    "hi": "यूडीपी बस डेटाग्राम भेजता है: न हैंडशेक, न क्रम, न दोबारा कोशिश। हल्का और तेज़, और नुक़सान पर क्या करना है ऐप तय करता है।",
+    "hinglish": "UDP bas datagrams bhejta hai: na handshake, na ordering, na retries. Halka aur tez, aur loss par kya karna hai app decide karta hai."
+   },
+   "visual": "anim:udp-burst",
+   "narration": {
+    "en": "UDP just sends datagrams: no handshake, no ordering, no retries. Lighter and faster, and the app decides what to do about loss.",
+    "hi": "यूडीपी बस डेटाग्राम भेजता है: न हैंडशेक, न क्रम, न दोबारा कोशिश। हल्का और तेज़, और नुक़सान पर क्या करना है ऐप तय करता है।",
+    "hinglish": "UDP bas datagrams bhejta hai: na handshake, na ordering, na retries. Halka aur tez, aur loss par kya karna hai app decide karta hai."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Downloads, web pages and UPI need every byte: TCP (or QUIC). Live calls and games prefer fresh data over late data: UDP.",
+    "hi": "डाउनलोड, वेब पेज और यूपीआई को हर बाइट चाहिए: TCP (या QUIC)। लाइव कॉल और गेम देर वाले डेटा से ताज़ा डेटा पसंद करते हैं: UDP।",
+    "hinglish": "Downloads, web pages aur UPI ko har byte chahiye: TCP (ya QUIC). Live calls aur games late data se fresh data pasand karte hain: UDP."
+   },
+   "visual": "anim:tcp-udp-choice",
+   "narration": {
+    "en": "Downloads, web pages and UPI need every byte: TCP (or QUIC). Live calls and games prefer fresh data over late data: UDP.",
+    "hi": "डाउनलोड, वेब पेज और यूपीआई को हर बाइट चाहिए: TCP (या QUIC)। लाइव कॉल और गेम देर वाले डेटा से ताज़ा डेटा पसंद करते हैं: UDP।",
+    "hinglish": "Downloads, web pages aur UPI ko har byte chahiye: TCP (ya QUIC). Live calls aur games late data se fresh data pasand karte hain: UDP."
+   }
+  }
+ ],
+ "play": {
+  "lab": "seq-flow",
+  "config": {
+   "scenario": "tcp-handshake"
+  },
+  "goal": {
+   "en": "Run the TCP handshake once normally, then tick \"Lose the SYN-ACK\" and run it again. Watch the timeout and the retransmission.",
+   "hi": "टीसीपी हैंडशेक एक बार सामान्य चलाओ, फिर \"SYN-ACK खो दो\" चुनकर दोबारा चलाओ। टाइमआउट और दोबारा भेजना देखो।",
+   "hinglish": "TCP handshake ek baar normal chalao, phir \"SYN-ACK kho do\" tick karke dobaara chalao. Timeout aur retransmission dekho."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "How TCP stays reliable",
+    "hi": "टीसीपी भरोसेमंद कैसे रहता है",
+    "hinglish": "TCP reliable kaise rehta hai"
+   },
+   "body": {
+    "en": "Four tools: sequence numbers (put bytes back in order, spot gaps), acknowledgements (the receiver says \"send byte N next\"), retransmission timers (RFC 6298 recommends an initial timeout of 1 second, which then adapts to the measured round-trip time), and flow and congestion control (the sending window grows while things go well and shrinks when loss suggests a jam).",
+    "hi": "चार औज़ार: अनुक्रम संख्याएँ (बाइट को क्रम में लगाओ, ख़ाली जगह पकड़ो), स्वीकृतियाँ (प्राप्तकर्ता कहता है \"अगली बाइट N भेजो\"), दोबारा-भेजने वाले टाइमर (RFC 6298 शुरुआती टाइमआउट 1 सेकंड सुझाता है, जो फिर मापे गए राउंड-ट्रिप समय के अनुसार बदलता है), और प्रवाह व भीड़ नियंत्रण (सब ठीक चलने पर भेजने की खिड़की बढ़ती है और नुक़सान से जाम का संकेत मिलने पर घटती है)।",
+    "hinglish": "Chaar tools: sequence numbers (bytes ko order mein lagao, gaps pakdo), acknowledgements (receiver kehta hai \"agla byte N bhejo\"), retransmission timers (RFC 6298 initial timeout 1 second suggest karta hai, jo phir measured round-trip time ke hisaab se badalta hai), aur flow aur congestion control (sab theek chale to sending window badhti hai aur loss se jam ka ishaara mile to ghatti hai)."
+   },
+   "analogy": {
+    "en": "Like sending exam answer sheets by registered post with a receipt for each page; if a receipt does not arrive, you post that page again.",
+    "hi": "जैसे परीक्षा की उत्तर-पुस्तिकाएँ रजिस्टर्ड डाक से हर पन्ने की रसीद के साथ भेजना; रसीद न आए तो वह पन्ना फिर भेजो।",
+    "hinglish": "Jaise exam ki answer sheets registered post se har page ki receipt ke saath bhejna; receipt na aaye to woh page phir bhejo."
+   },
+   "realExample": {
+    "en": "When a big app update pauses on weak signal and then resumes without corruption, TCP retransmissions and the app's resume feature did that work.",
+    "hi": "कमज़ोर सिग्नल पर बड़ा ऐप अपडेट रुककर बिना ख़राबी के फिर चलता है, तो यह काम टीसीपी के दोबारा भेजने और ऐप के रिज़्यूम ने किया।",
+    "hinglish": "Kamzor signal par bada app update ruk kar bina kharaabi ke phir chalta hai, to yeh kaam TCP retransmissions aur app ke resume feature ne kiya."
+   }
+  },
+  {
+   "heading": {
+    "en": "When UDP wins",
+    "hi": "यूडीपी कब जीतता है",
+    "hinglish": "UDP kab jeet-ta hai"
+   },
+   "body": {
+    "en": "In a video call, a packet that arrives 300 ms late is useless — the moment has passed. UDP lets the app skip it and keep going. DNS queries also use UDP because a single small question and answer does not need a connection. Online games send position updates over UDP many times a second; the newest one is all that matters.",
+    "hi": "वीडियो कॉल में 300 ms देर से आया पैकेट बेकार है — वह पल निकल चुका। यूडीपी ऐप को उसे छोड़कर आगे बढ़ने देता है। डीएनएस प्रश्न भी यूडीपी इस्तेमाल करते हैं क्योंकि एक छोटे सवाल-जवाब को कनेक्शन की ज़रूरत नहीं। ऑनलाइन गेम स्थिति के अपडेट यूडीपी से सेकंड में कई बार भेजते हैं; बस सबसे नया मायने रखता है।",
+    "hinglish": "Video call mein 300 ms late aaya packet bekaar hai — woh pal nikal chuka. UDP app ko use chhod ke aage badhne deta hai. DNS queries bhi UDP use karti hain kyunki ek chhote sawaal-jawaab ko connection ki zaroorat nahi. Online games position updates UDP se second mein kai baar bhejte hain; bas sabse naya maayne rakhta hai."
+   },
+   "analogy": {
+    "en": "TCP is a parcel service with signatures; UDP is shouting live cricket scores across the street — if one shout is missed, the next one is newer anyway.",
+    "hi": "टीसीपी हस्ताक्षर वाली पार्सल सेवा है; यूडीपी गली के पार लाइव क्रिकेट स्कोर चिल्लाना है — एक आवाज़ छूट जाए तो अगली वैसे भी नई है।",
+    "hinglish": "TCP signature wali parcel service hai; UDP gali ke paar live cricket score chillana hai — ek awaaz chhoot jaaye to agli waise bhi nayi hai."
+   },
+   "realExample": {
+    "en": "Google Meet, WhatsApp calls and online multiplayer games carry their real-time media or game state mainly over UDP.",
+    "hi": "गूगल मीट, व्हाट्सऐप कॉल और ऑनलाइन मल्टीप्लेयर गेम अपना रियल-टाइम मीडिया या गेम स्थिति मुख्य रूप से यूडीपी से भेजते हैं।",
+    "hinglish": "Google Meet, WhatsApp calls aur online multiplayer games apna real-time media ya game state mainly UDP se bhejte hain."
+   }
+  },
+  {
+   "heading": {
+    "en": "QUIC and HTTP/3: the best of both",
+    "hi": "QUIC और HTTP/3: दोनों की ख़ूबियाँ",
+    "hinglish": "QUIC aur HTTP/3: dono ki khoobiyan"
+   },
+   "body": {
+    "en": "QUIC (RFC 9000, 2021) builds reliability, ordering and TLS 1.3 encryption on top of UDP. It joins the transport and encryption handshakes, so a new connection usually needs one round trip, and a lost packet only stalls its own stream instead of the whole page. HTTP/3 runs on QUIC and is used by major sites such as YouTube and Google Search.",
+    "hi": "QUIC (RFC 9000, 2021) यूडीपी के ऊपर विश्वसनीयता, क्रम और TLS 1.3 एन्क्रिप्शन बनाता है। यह ट्रांसपोर्ट और एन्क्रिप्शन हैंडशेक जोड़ देता है, तो नए कनेक्शन को आम तौर पर एक राउंड ट्रिप लगता है, और खोया पैकेट पूरे पेज के बजाय सिर्फ़ अपनी धारा को रोकता है। HTTP/3 QUIC पर चलता है और यूट्यूब, गूगल सर्च जैसी बड़ी साइटें इसे इस्तेमाल करती हैं।",
+    "hinglish": "QUIC (RFC 9000, 2021) UDP ke upar reliability, ordering aur TLS 1.3 encryption banata hai. Yeh transport aur encryption handshakes jod deta hai, to naye connection ko aam taur par ek round trip lagta hai, aur khoya packet poore page ke bajaye sirf apne stream ko rokta hai. HTTP/3 QUIC par chalta hai aur YouTube, Google Search jaisi badi sites ise use karti hain."
+   },
+   "analogy": {
+    "en": "A multi-lane toll plaza: one stuck car blocks only its lane, not all traffic.",
+    "hi": "कई लेन वाला टोल प्लाज़ा: एक फँसी गाड़ी सिर्फ़ अपनी लेन रोकती है, पूरा ट्रैफ़िक नहीं।",
+    "hinglish": "Kai lane wala toll plaza: ek phansi gaadi sirf apni lane rokti hai, poora traffic nahi."
+   },
+   "realExample": {
+    "en": "Open browser developer tools → Network → Protocol column: many big sites show \"h3\", meaning HTTP/3 over QUIC.",
+    "hi": "ब्राउज़र डेवलपर टूल → नेटवर्क → प्रोटोकॉल कॉलम खोलो: कई बड़ी साइटें \"h3\" दिखाती हैं, यानी QUIC पर HTTP/3।",
+    "hinglish": "Browser developer tools → Network → Protocol column kholo: kai badi sites \"h3\" dikhati hain, yaani QUIC par HTTP/3."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "For each app — UPI payment, live cricket stream, file download, multiplayer game, DNS lookup — pick TCP, UDP or QUIC and write one line of reasoning.",
+   "hi": "हर ऐप के लिए — यूपीआई भुगतान, लाइव क्रिकेट स्ट्रीम, फ़ाइल डाउनलोड, मल्टीप्लेयर गेम, डीएनएस खोज — TCP, UDP या QUIC चुनो और एक पंक्ति का कारण लिखो।",
+   "hinglish": "Har app ke liye — UPI payment, live cricket stream, file download, multiplayer game, DNS lookup — TCP, UDP ya QUIC chuno aur ek line ka reasoning likho."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "order",
+    "prompt": {
+     "en": "Order the TCP handshake.",
+     "hi": "टीसीपी हैंडशेक को क्रम में लगाओ।",
+     "hinglish": "TCP handshake ko order mein lagao."
+    },
+    "options": [
+     "SYN",
+     "SYN-ACK",
+     "ACK",
+     "DATA"
+    ],
+    "answer": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "Client SYN, server SYN-ACK, client ACK, then data.",
+     "hi": "क्लाइंट SYN, सर्वर SYN-ACK, क्लाइंट ACK, फिर डेटा।",
+     "hinglish": "Client SYN, server SYN-ACK, client ACK, phir data."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "The server acknowledges with ack = 1001. What does it mean?",
+     "hi": "सर्वर ack = 1001 से स्वीकारता है। इसका क्या मतलब?",
+     "hinglish": "Server ack = 1001 se acknowledge karta hai. Iska kya matlab?"
+    },
+    "options": [
+     {
+      "en": "It received 1001 packets",
+      "hi": "उसे 1001 पैकेट मिले",
+      "hinglish": "Use 1001 packets mile"
+     },
+     {
+      "en": "It got everything up to 1000; send 1001 next",
+      "hi": "उसे 1000 तक सब मिला; अगला 1001 भेजो",
+      "hinglish": "Use 1000 tak sab mila; agla 1001 bhejo"
+     },
+     {
+      "en": "Its port is 1001",
+      "hi": "उसका पोर्ट 1001 है",
+      "hinglish": "Uska port 1001 hai"
+     },
+     {
+      "en": "Connection refused",
+      "hi": "कनेक्शन अस्वीकार",
+      "hinglish": "Connection refused"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "An ACK number is the next byte the receiver expects.",
+     "hi": "ACK संख्या वह अगली बाइट है जिसकी प्राप्तकर्ता को उम्मीद है।",
+     "hinglish": "ACK number woh agla byte hai jiski receiver ko ummeed hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "match",
+    "prompt": {
+     "en": "Match each app to the best transport.",
+     "hi": "हर ऐप को सबसे अच्छे ट्रांसपोर्ट से मिलाओ।",
+     "hinglish": "Har app ko sabse ache transport se milao."
+    },
+    "options": [
+     {
+      "en": "Bank / UPI API call",
+      "hi": "बैंक / यूपीआई एपीआई कॉल",
+      "hinglish": "Bank / UPI API call"
+     },
+     {
+      "en": "Live voice call",
+      "hi": "लाइव वॉइस कॉल",
+      "hinglish": "Live voice call"
+     },
+     {
+      "en": "Single DNS query",
+      "hi": "एक डीएनएस प्रश्न",
+      "hinglish": "Ek DNS query"
+     },
+     {
+      "en": "Modern web page over HTTP/3",
+      "hi": "HTTP/3 पर आधुनिक वेब पेज",
+      "hinglish": "HTTP/3 par modern web page"
+     }
+    ],
+    "answer": [
+     "TCP",
+     "UDP",
+     "UDP",
+     "QUIC"
+    ],
+    "explain": {
+     "en": "Money must be exact (TCP); voice prefers fresh data (UDP); a one-shot DNS query is tiny (UDP); HTTP/3 runs on QUIC.",
+     "hi": "पैसा सटीक होना चाहिए (TCP); आवाज़ ताज़ा डेटा पसंद करती है (UDP); एक बार का डीएनएस प्रश्न छोटा है (UDP); HTTP/3 QUIC पर चलता है।",
+     "hinglish": "Paisa exact hona chahiye (TCP); awaaz fresh data pasand karti hai (UDP); ek baar ki DNS query chhoti hai (UDP); HTTP/3 QUIC par chalta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "What does TCP do when no ACK arrives before the timer runs out?",
+     "hi": "टाइमर ख़त्म होने से पहले ACK न आए तो टीसीपी क्या करता है?",
+     "hinglish": "Timer khatam hone se pehle ACK na aaye to TCP kya karta hai?"
+    },
+    "options": [
+     {
+      "en": "Gives up immediately",
+      "hi": "तुरंत हार मान लेता है",
+      "hinglish": "Turant haar maan leta hai"
+     },
+     {
+      "en": "Retransmits and backs off",
+      "hi": "दोबारा भेजता है और धीमा होता है",
+      "hinglish": "Retransmit karta hai aur dheema hota hai"
+     },
+     {
+      "en": "Switches to UDP",
+      "hi": "यूडीपी पर चला जाता है",
+      "hinglish": "UDP par chala jaata hai"
+     },
+     {
+      "en": "Asks DNS",
+      "hi": "डीएनएस से पूछता है",
+      "hinglish": "DNS se poochta hai"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "It resends the segment and doubles the timeout (exponential back-off).",
+     "hi": "यह खंड दोबारा भेजता है और टाइमआउट दोगुना करता है (घातांकी बैक-ऑफ़)।",
+     "hinglish": "Yeh segment dobaara bhejta hai aur timeout double karta hai (exponential back-off)."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Run the TCP handshake with \"Lose the SYN-ACK\" ticked until it completes.",
+     "hi": "\"SYN-ACK खो दो\" चुनकर टीसीपी हैंडशेक पूरा होने तक चलाओ।",
+     "hinglish": "\"SYN-ACK kho do\" tick karke TCP handshake poora hone tak chalao."
+    },
+    "answer": {
+     "event": "scenario-complete",
+     "scenario": "tcp-handshake",
+     "flags": {
+      "drop": true
+     }
+    },
+    "explain": {
+     "en": "You saw the timeout and the retransmitted SYN.",
+     "hi": "आपने टाइमआउट और दोबारा भेजा गया SYN देखा।",
+     "hinglish": "Tumne timeout aur retransmitted SYN dekha."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "topics": [
+  "net.tcp-ip-layers",
+  "net.packets"
+ ],
+ "sources": [
+  {
+   "title": "RFC 9293 — Transmission Control Protocol",
+   "url": "https://www.rfc-editor.org/rfc/rfc9293",
+   "licence": "fact reference"
+  },
+  {
+   "title": "RFC 6298 — Computing TCP's Retransmission Timer",
+   "url": "https://www.rfc-editor.org/rfc/rfc6298",
+   "licence": "fact reference"
+  },
+  {
+   "title": "RFC 9000 — QUIC",
+   "url": "https://www.rfc-editor.org/rfc/rfc9000",
+   "licence": "fact reference"
+  }
+ ]
+}

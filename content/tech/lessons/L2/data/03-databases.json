@@ -1,0 +1,388 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.data.03",
+ "level": 2,
+ "classes": [
+  8
+ ],
+ "unit": "data",
+ "title": {
+  "en": "Databases: tables, keys and queries",
+  "hi": "डेटाबेस: तालिकाएँ, कुंजियाँ और क्वेरी",
+  "hinglish": "Databases: tables, keys aur queries"
+ },
+ "minutes": 12,
+ "xp": 45,
+ "prereq": [
+  "L2.data.02"
+ ],
+ "topics": [
+  "data.databases",
+  "data.modelling-keys",
+  "data.sql-select",
+  "data.big-data"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain records, fields and primary keys",
+   "hi": "रिकॉर्ड, फ़ील्ड और प्राथमिक कुंजी समझा सकते हो",
+   "hinglish": "Records, fields aur primary keys samjha sakte ho"
+  },
+  {
+   "en": "Write a simple query: SELECT … FROM … WHERE …",
+   "hi": "सरल क्वेरी लिख सकते हो: SELECT … FROM … WHERE …",
+   "hinglish": "Simple query likh sakte ho: SELECT … FROM … WHERE …"
+  },
+  {
+   "en": "Explain why apps use databases instead of spreadsheets",
+   "hi": "समझा सकते हो कि ऐप स्प्रेडशीट की जगह डेटाबेस क्यों उपयोग करते हैं",
+   "hinglish": "Apps spreadsheets ki jagah databases kyun use karte hain samjha sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Database",
+   "hinglish": "Organised data ka bhandaar",
+   "en": "An organised store of data that programs can search and update",
+   "hi": "डेटा का व्यवस्थित भंडार जिसे प्रोग्राम खोज और बदल सकते हैं"
+  },
+  {
+   "term": "Table",
+   "hinglish": "Ek type ke records",
+   "en": "A set of records of one kind (students, books)",
+   "hi": "एक प्रकार के रिकॉर्ड का समूह (छात्र, किताबें)"
+  },
+  {
+   "term": "Record / field",
+   "hinglish": "Row / column",
+   "en": "A record is one row (one student); a field is one column (name)",
+   "hi": "रिकॉर्ड एक पंक्ति है (एक छात्र); फ़ील्ड एक स्तंभ है (नाम)"
+  },
+  {
+   "term": "Primary key",
+   "hinglish": "Har record ka unique ID",
+   "en": "A field whose value is unique for every record: roll number, Aadhaar-style ID",
+   "hi": "ऐसी फ़ील्ड जिसका मान हर रिकॉर्ड के लिए अलग हो: रोल नंबर, आधार जैसी ID"
+  },
+  {
+   "term": "Query",
+   "hinglish": "Database se sawaal",
+   "en": "A question to the database, often written in SQL",
+   "hi": "डेटाबेस से प्रश्न, अक्सर SQL में लिखा"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "A database table looks like a spreadsheet, but every column has a fixed type and every row has a unique key.",
+    "hi": "डेटाबेस तालिका स्प्रेडशीट जैसी दिखती है, पर हर स्तंभ का तय टाइप और हर पंक्ति की अनोखी कुंजी होती है।",
+    "hinglish": "Database table spreadsheet jaisi dikhti hai, par har column ka fixed type aur har row ki unique key hoti hai."
+   },
+   "visual": "compare:📗 Spreadsheet: for people, small data|🗄️ Database: for apps, huge data, many users at once",
+   "narration": {
+    "en": "Your school app, UPI app and railway booking all run on databases.",
+    "hi": "आपका स्कूल ऐप, UPI ऐप और रेलवे बुकिंग सब डेटाबेस पर चलते हैं।",
+    "hinglish": "Aapka school app, UPI app aur railway booking sab databases pe chalte hain."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "A query asks a question. SELECT name FROM students WHERE marks > 80 lists names of students who scored above 80.",
+    "hi": "क्वेरी प्रश्न पूछती है। SELECT name FROM students WHERE marks > 80 उन छात्रों के नाम देती है जिनके 80 से ज़्यादा अंक।",
+    "hinglish": "Query sawaal poochti hai. SELECT name FROM students WHERE marks > 80 un students ke naam deti hai jinke 80 se zyada marks."
+   },
+   "visual": "lab:sheet-lab#db",
+   "narration": {
+    "en": "Build the query from blocks and watch the matching rows light up.",
+    "hi": "ब्लॉक से क्वेरी बनाओ और मेल खाती पंक्तियों को जगमगाते देखो।",
+    "hinglish": "Blocks se query banao aur matching rows ko chamakte dekho."
+   },
+   "code": "SELECT name, marks\nFROM students\nWHERE class = 8 AND marks > 80\nORDER BY marks DESC;"
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "The primary key must be unique. Try to add two students with the same roll number and the database refuses.",
+    "hi": "प्राथमिक कुंजी अनोखी होनी चाहिए। एक ही रोल नंबर के दो छात्र जोड़ो और डेटाबेस मना कर देता है।",
+    "hinglish": "Primary key unique honi chahiye. Same roll number ke do students jodo aur database mana kar deta hai."
+   },
+   "visual": "flow:➕ Insert roll 7|🔑 Check key|⛔ Already exists → rejected",
+   "narration": {
+    "en": "This is how a bank makes sure two accounts never get the same account number.",
+    "hi": "इसी तरह बैंक पक्का करता है कि दो खातों को कभी एक ही खाता संख्या न मिले।",
+    "hinglish": "Isi tarah bank pakka karta hai ki do accounts ko kabhi same account number na mile."
+   }
+  }
+ ],
+ "play": {
+  "lab": "sheet-lab",
+  "config": {
+   "tab": "db"
+  },
+  "goal": {
+   "en": "Answer three questions by building queries, and see what happens when you add a duplicate roll number.",
+   "hi": "क्वेरी बनाकर तीन प्रश्नों के उत्तर दो, और देखो दोहराया रोल नंबर जोड़ने पर क्या होता है।",
+   "hinglish": "Queries bana ke teen sawaalon ke jawab do, aur dekho duplicate roll number jodne pe kya hota hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "How databases keep data safe and fast",
+    "hi": "डेटाबेस डेटा को सुरक्षित और तेज़ कैसे रखते हैं",
+    "hinglish": "Databases data ko safe aur fast kaise rakhte hain"
+   },
+   "body": {
+    "en": "A relational database (an idea from E. F. Codd at IBM, 1970) stores data in tables linked by keys. A students table might have roll_no (primary key), name and class; a marks table stores roll_no + subject + marks, and the shared roll_no links them (a foreign key). This avoids copying the same name into many places. SQL (Structured Query Language) is used to ask questions: SELECT picks columns, FROM picks the table, WHERE filters rows, ORDER BY sorts. Databases also keep indexes (sorted lookups — binary search again!), allow thousands of users at once, check data types and keys, and use permissions so each person sees only their own data. Popular databases: PostgreSQL, MySQL, SQLite (inside every Android phone) and Firebase. “Big data” means data too large for one computer — UPI, for example, processes billions of transactions every month.",
+    "hi": "रिलेशनल डेटाबेस (IBM में ई. एफ़. कॉड का विचार, 1970) डेटा को कुंजियों से जुड़ी तालिकाओं में रखता है। students तालिका में roll_no (प्राथमिक कुंजी), name और class हो सकते हैं; marks तालिका roll_no + विषय + अंक रखती है, और साझा roll_no दोनों को जोड़ता है (फ़ॉरेन की)। इससे एक ही नाम कई जगह कॉपी नहीं करना पड़ता। प्रश्न पूछने को SQL (Structured Query Language) उपयोग होती है: SELECT स्तंभ चुनता है, FROM तालिका, WHERE पंक्तियाँ छाँटता है, ORDER BY क्रम लगाता है। डेटाबेस इंडेक्स भी रखते हैं (क्रमबद्ध खोज — फिर से द्विआधारी खोज!), एक साथ हज़ारों उपयोगकर्ता सँभालते हैं, डेटा टाइप और कुंजियाँ जाँचते हैं, और अनुमतियों से हर व्यक्ति को केवल उसका डेटा दिखाते हैं। लोकप्रिय डेटाबेस: PostgreSQL, MySQL, SQLite (हर Android फ़ोन के अंदर) और Firebase। “बिग डेटा” यानी एक कंप्यूटर के लिए बहुत बड़ा डेटा — जैसे UPI हर महीने अरबों लेन-देन सँभालता है।",
+    "hinglish": "Relational database (IBM mein E. F. Codd ka idea, 1970) data ko keys se judi tables mein rakhta hai. students table mein roll_no (primary key), name aur class ho sakte hain; marks table roll_no + subject + marks rakhti hai, aur shared roll_no dono ko jodta hai (foreign key). Isse same naam kai jagah copy nahi karna padta. Sawaal poochne ke liye SQL (Structured Query Language) use hoti hai: SELECT columns chunta hai, FROM table, WHERE rows filter karta hai, ORDER BY sort karta hai. Databases indexes bhi rakhte hain (sorted lookups — phir se binary search!), ek saath hazaaron users sambhaalte hain, data types aur keys check karte hain, aur permissions se har vyakti ko sirf uska data dikhate hain. Popular databases: PostgreSQL, MySQL, SQLite (har Android phone ke andar) aur Firebase. “Big data” matlab ek computer ke liye bahut bada data — jaise UPI har mahine arabon transactions sambhaalta hai."
+   },
+   "analogy": {
+    "hinglish": "Database = school ka office: har bachche ki file (record), har file mein same khaane (fields), aur file pe unique admission number (primary key).",
+    "en": "A database = the school office: a file for every child (record), the same boxes in every file (fields), and a unique admission number on each file (primary key).",
+    "hi": "डेटाबेस = स्कूल का दफ़्तर: हर बच्चे की फ़ाइल (रिकॉर्ड), हर फ़ाइल में वही ख़ाने (फ़ील्ड), और फ़ाइल पर अनोखा प्रवेश नंबर (प्राथमिक कुंजी)।"
+   },
+   "realExample": {
+    "en": "When you check PNR status, IRCTC runs a query like SELECT status FROM bookings WHERE pnr = … — one row out of crores, found in milliseconds thanks to an index.",
+    "hi": "जब आप PNR स्थिति देखते हो, IRCTC SELECT status FROM bookings WHERE pnr = … जैसी क्वेरी चलाता है — करोड़ों में से एक पंक्ति, इंडेक्स के कारण मिलीसेकंड में।",
+    "hinglish": "PNR status check karte ho to IRCTC aisi query chalata hai: SELECT status FROM bookings WHERE pnr = … — crores mein se ek row, index ki wajah se milliseconds mein."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Design a “library” table on paper: choose 5 fields, pick the primary key, and write a query to find all books by one author.",
+   "hi": "काग़ज़ पर “पुस्तकालय” तालिका बनाओ: 5 फ़ील्ड चुनो, प्राथमिक कुंजी चुनो, और एक लेखक की सभी किताबें ढूँढने की क्वेरी लिखो।",
+   "hinglish": "Kaagaz pe “library” table design karo: 5 fields chuno, primary key chuno, aur ek author ki saari books dhoondne ki query likho."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which field is the best primary key for a students table?",
+     "hi": "students तालिका के लिए सबसे अच्छी प्राथमिक कुंजी कौन?",
+     "hinglish": "students table ke liye best primary key kaunsi?"
+    },
+    "options": [
+     {
+      "en": "name",
+      "hi": "नाम",
+      "hinglish": "name"
+     },
+     {
+      "en": "class",
+      "hi": "कक्षा",
+      "hinglish": "class"
+     },
+     {
+      "en": "admission_no",
+      "hi": "प्रवेश संख्या",
+      "hinglish": "admission_no"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "It must be unique for every student; names and classes repeat.",
+     "hi": "हर छात्र के लिए अनोखी होनी चाहिए; नाम और कक्षा दोहराते हैं।",
+     "hinglish": "Har student ke liye unique honi chahiye; naam aur class repeat hote hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "match",
+    "prompt": {
+     "en": "Match each SQL word to its job.",
+     "hi": "हर SQL शब्द को उसके काम से मिलाओ।",
+     "hinglish": "Har SQL word ko uske kaam se milao."
+    },
+    "options": {
+     "left": [
+      "SELECT",
+      "FROM",
+      "WHERE",
+      "ORDER BY"
+     ],
+     "right": [
+      {
+       "en": "Keep only rows that match a condition",
+       "hi": "केवल शर्त मानने वाली पंक्तियाँ",
+       "hinglish": "Sirf condition match karne wali rows"
+      },
+      {
+       "en": "Choose which columns to show",
+       "hi": "कौन-से स्तंभ दिखें",
+       "hinglish": "Kaunse columns dikhein"
+      },
+      {
+       "en": "Sort the results",
+       "hi": "परिणाम क्रम में",
+       "hinglish": "Results sort karo"
+      },
+      {
+       "en": "Choose which table",
+       "hi": "कौन-सी तालिका",
+       "hinglish": "Kaunsi table"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      3
+     ],
+     [
+      2,
+      0
+     ],
+     [
+      3,
+      2
+     ]
+    ],
+    "explain": {
+     "en": "SELECT columns, FROM table, WHERE filter, ORDER BY sort.",
+     "hi": "SELECT स्तंभ, FROM तालिका, WHERE छँटाई, ORDER BY क्रम।",
+     "hinglish": "SELECT columns, FROM table, WHERE filter, ORDER BY sort."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "In a database table, what is one row called?",
+     "hi": "डेटाबेस तालिका में एक पंक्ति को क्या कहते हैं?",
+     "hinglish": "Database table mein ek row ko kya kehte hain?"
+    },
+    "options": [
+     {
+      "en": "A record",
+      "hi": "रिकॉर्ड",
+      "hinglish": "Record"
+     },
+     {
+      "en": "A field",
+      "hi": "फ़ील्ड",
+      "hinglish": "Field"
+     },
+     {
+      "en": "A key",
+      "hi": "कुंजी",
+      "hinglish": "Key"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "A row is a record (one student); a column is a field.",
+     "hi": "पंक्ति रिकॉर्ड है (एक छात्र); स्तंभ फ़ील्ड।",
+     "hinglish": "Row record hai (ek student); column field."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why does the database reject a new student with roll number 7 if one already exists?",
+     "hi": "अगर रोल नंबर 7 पहले से है तो डेटाबेस नया छात्र क्यों नहीं लेता?",
+     "hinglish": "Agar roll number 7 pehle se hai to database naya student kyun nahi leta?"
+    },
+    "options": [
+     {
+      "en": "The table is full",
+      "hi": "तालिका भरी है",
+      "hinglish": "Table full hai"
+     },
+     {
+      "en": "roll_no is the primary key and must be unique",
+      "hi": "roll_no प्राथमिक कुंजी है और अनोखी होनी चाहिए",
+      "hinglish": "roll_no primary key hai aur unique honi chahiye"
+     },
+     {
+      "en": "7 is an unlucky number",
+      "hi": "7 अशुभ संख्या है",
+      "hinglish": "7 unlucky number hai"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Primary keys must be unique so every record can be found without confusion.",
+     "hi": "प्राथमिक कुंजी अनोखी होनी चाहिए ताकि हर रिकॉर्ड बिना भ्रम मिले।",
+     "hinglish": "Primary keys unique honi chahiye taaki har record bina confusion mile."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which query lists names of Class 8 students?",
+     "hi": "कौन-सी क्वेरी कक्षा 8 के छात्रों के नाम देती है?",
+     "hinglish": "Kaunsi query Class 8 ke students ke naam deti hai?"
+    },
+    "options": [
+     "SELECT students FROM name WHERE 8",
+     "FROM students SELECT class = 8",
+     "SELECT name FROM students WHERE class = 8"
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "SELECT the column, FROM the table, WHERE the condition.",
+     "hi": "SELECT स्तंभ, FROM तालिका, WHERE शर्त।",
+     "hinglish": "SELECT column, FROM table, WHERE condition."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Solve all three query challenges in the sheet lab’s database tab.",
+     "hi": "शीट लैब के डेटाबेस टैब में तीनों क्वेरी चुनौतियाँ हल करो।",
+     "hinglish": "Sheet lab ke database tab mein teeno query challenges solve karo."
+    },
+    "answer": {
+     "lab": "sheet-lab",
+     "event": "mission:complete",
+     "tab": "db"
+    },
+    "explain": {
+     "en": "Use WHERE with the right column, operator and value.",
+     "hi": "सही स्तंभ, संकारक और मान के साथ WHERE उपयोग करो।",
+     "hinglish": "Sahi column, operator aur value ke saath WHERE use karo."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "E. F. Codd — A Relational Model of Data for Large Shared Data Banks (1970)",
+   "url": "https://dl.acm.org/doi/10.1145/362384.362685",
+   "licence": "fact reference"
+  },
+  {
+   "title": "SQLite — About SQLite",
+   "url": "https://www.sqlite.org/about.html",
+   "licence": "fact reference"
+  },
+  {
+   "title": "PostgreSQL — Tutorial: Querying a table",
+   "url": "https://www.postgresql.org/docs/current/tutorial-select.html",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NPCI — UPI product statistics",
+   "url": "https://www.npci.org.in/what-we-do/upi/product-statistics",
+   "licence": "fact reference"
+  }
+ ]
+}

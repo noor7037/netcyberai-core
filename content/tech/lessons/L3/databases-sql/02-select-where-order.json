@@ -1,0 +1,376 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.databases-sql.02",
+ "level": 3,
+ "classes": [
+  9,
+  10,
+  11,
+  12
+ ],
+ "unit": "databases-sql",
+ "title": {
+  "en": "SELECT, WHERE, ORDER BY",
+  "hi": "SELECT, WHERE, ORDER BY",
+  "hinglish": "SELECT, WHERE, ORDER BY"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [
+  "L3.databases-sql.01"
+ ],
+ "outcomes": [
+  {
+   "en": "Write SELECT queries that choose columns and filter rows with WHERE",
+   "hi": "स्तंभ चुनने और WHERE से पंक्तियाँ छाँटने वाली SELECT क्वेरी लिखो",
+   "hinglish": "Columns chunne aur WHERE se rows chhaantne wali SELECT queries likho"
+  },
+  {
+   "en": "Use AND, OR, IN, LIKE and BETWEEN correctly",
+   "hi": "AND, OR, IN, LIKE और BETWEEN सही इस्तेमाल करो",
+   "hinglish": "AND, OR, IN, LIKE aur BETWEEN sahi use karo"
+  },
+  {
+   "en": "Sort and limit results with ORDER BY and LIMIT",
+   "hi": "ORDER BY और LIMIT से परिणाम क्रमबद्ध और सीमित करो",
+   "hinglish": "ORDER BY aur LIMIT se results sort aur limit karo"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "SELECT",
+   "hinglish": "Kaunse columns chahiye",
+   "en": "Chooses which columns (or expressions) to return",
+   "hi": "कौन-से स्तंभ (या व्यंजक) लौटाने हैं, चुनता है"
+  },
+  {
+   "term": "WHERE",
+   "hinglish": "Kaunsi rows chahiye",
+   "en": "Keeps only rows that match a condition",
+   "hi": "सिर्फ़ शर्त से मिलती पंक्तियाँ रखता है"
+  },
+  {
+   "term": "ORDER BY",
+   "hinglish": "Kis kram mein",
+   "en": "Sorts the result ascending (ASC) or descending (DESC)",
+   "hi": "परिणाम को बढ़ते (ASC) या घटते (DESC) क्रम में लगाता है"
+  },
+  {
+   "term": "LIKE",
+   "hinglish": "Pattern se milao",
+   "en": "Text pattern match: % means any text, _ means one character",
+   "hi": "पाठ पैटर्न मिलान: % मतलब कोई भी पाठ, _ मतलब एक अक्षर"
+  },
+  {
+   "term": "NULL",
+   "hinglish": "Value hai hi nahi",
+   "en": "Marker for a missing or unknown value",
+   "hi": "ग़ायब या अज्ञात मान का चिह्न"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "SELECT name, city FROM students — you choose the columns. * means all columns.",
+    "hi": "SELECT name, city FROM students — आप स्तंभ चुनते हो। * का मतलब सभी स्तंभ।",
+    "hinglish": "SELECT name, city FROM students — tum columns chunte ho. * matlab saare columns."
+   },
+   "visual": "anim:sql-select-cols",
+   "narration": {
+    "en": "SELECT name, city FROM students — you choose the columns. * means all columns.",
+    "hi": "SELECT name, city FROM students — आप स्तंभ चुनते हो। * का मतलब सभी स्तंभ।",
+    "hinglish": "SELECT name, city FROM students — tum columns chunte ho. * matlab saare columns."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "WHERE class = 10 keeps only matching rows. Text goes in single quotes: WHERE city = 'Pune'.",
+    "hi": "WHERE class = 10 सिर्फ़ मिलती पंक्तियाँ रखता है। पाठ एकल उद्धरण में: WHERE city = 'Pune'।",
+    "hinglish": "WHERE class = 10 sirf matching rows rakhta hai. Text single quotes mein: WHERE city = 'Pune'."
+   },
+   "visual": "anim:sql-where-filter",
+   "narration": {
+    "en": "WHERE class = 10 keeps only matching rows. Text goes in single quotes: WHERE city = 'Pune'.",
+    "hi": "WHERE class = 10 सिर्फ़ मिलती पंक्तियाँ रखता है। पाठ एकल उद्धरण में: WHERE city = 'Pune'।",
+    "hinglish": "WHERE class = 10 sirf matching rows rakhta hai. Text single quotes mein: WHERE city = 'Pune'."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Combine conditions: AND (both true), OR (either), IN ('Pune','Chennai') for a list, LIKE '%a%' for \"contains a\".",
+    "hi": "शर्तें जोड़ो: AND (दोनों सच), OR (कोई एक), सूची के लिए IN ('Pune','Chennai'), \"a है\" के लिए LIKE '%a%'।",
+    "hinglish": "Conditions jodo: AND (dono sach), OR (koi ek), list ke liye IN ('Pune','Chennai'), \"a hai\" ke liye LIKE '%a%'."
+   },
+   "visual": "anim:sql-and-or",
+   "narration": {
+    "en": "Combine conditions: AND (both true), OR (either), IN ('Pune','Chennai') for a list, LIKE '%a%' for \"contains a\".",
+    "hi": "शर्तें जोड़ो: AND (दोनों सच), OR (कोई एक), सूची के लिए IN ('Pune','Chennai'), \"a है\" के लिए LIKE '%a%'।",
+    "hinglish": "Conditions jodo: AND (dono sach), OR (koi ek), list ke liye IN ('Pune','Chennai'), \"a hai\" ke liye LIKE '%a%'."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "ORDER BY marks DESC LIMIT 3 gives the top three. The database actually runs FROM → WHERE → SELECT → ORDER BY → LIMIT.",
+    "hi": "ORDER BY marks DESC LIMIT 3 शीर्ष तीन देता है। डेटाबेस असल में FROM → WHERE → SELECT → ORDER BY → LIMIT चलाता है।",
+    "hinglish": "ORDER BY marks DESC LIMIT 3 top teen deta hai. Database asal mein FROM → WHERE → SELECT → ORDER BY → LIMIT chalata hai."
+   },
+   "visual": "anim:sql-pipeline",
+   "narration": {
+    "en": "ORDER BY marks DESC LIMIT 3 gives the top three. The database actually runs FROM → WHERE → SELECT → ORDER BY → LIMIT.",
+    "hi": "ORDER BY marks DESC LIMIT 3 शीर्ष तीन देता है। डेटाबेस असल में FROM → WHERE → SELECT → ORDER BY → LIMIT चलाता है।",
+    "hinglish": "ORDER BY marks DESC LIMIT 3 top teen deta hai. Database asal mein FROM → WHERE → SELECT → ORDER BY → LIMIT chalata hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "sql-playground",
+  "config": {
+   "mode": "missions",
+   "mission": "where"
+  },
+  "goal": {
+   "en": "Finish missions 2, 3 and 4: filter Class 10, get the top 3 maths scores, and combine IN with LIKE. Watch the pipeline chips count rows at each stage.",
+   "hi": "मिशन 2, 3 और 4 पूरे करो: कक्षा 10 छाँटो, गणित के शीर्ष 3 अंक निकालो, और IN को LIKE के साथ जोड़ो। पाइपलाइन चिप्स को हर चरण पर पंक्तियाँ गिनते देखो।",
+   "hinglish": "Missions 2, 3 aur 4 poore karo: Class 10 filter, maths ke top 3 scores, aur IN ko LIKE ke saath jodo. Pipeline chips ko har stage par rows ginte dekho."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Logical order vs written order",
+    "hi": "तार्किक क्रम बनाम लिखा क्रम",
+    "hinglish": "Logical order vs likha order"
+   },
+   "body": {
+    "en": "You write SELECT first, but the database works FROM → JOIN → WHERE → GROUP BY → HAVING → SELECT → ORDER BY → LIMIT. That explains common errors: you cannot use a column alias from SELECT inside WHERE (WHERE runs earlier), but you can use it in ORDER BY (which runs later).",
+    "hi": "आप पहले SELECT लिखते हो, पर डेटाबेस FROM → JOIN → WHERE → GROUP BY → HAVING → SELECT → ORDER BY → LIMIT चलाता है। इससे आम त्रुटियाँ समझ आती हैं: SELECT का उपनाम WHERE में इस्तेमाल नहीं कर सकते (WHERE पहले चलता है), पर ORDER BY में कर सकते हो (वह बाद में चलता है)।",
+    "hinglish": "Tum pehle SELECT likhte ho, par database FROM → JOIN → WHERE → GROUP BY → HAVING → SELECT → ORDER BY → LIMIT chalata hai. Isse common errors samajh aate hain: SELECT ka alias WHERE mein use nahi kar sakte (WHERE pehle chalta hai), par ORDER BY mein kar sakte ho (woh baad mein chalta hai)."
+   },
+   "analogy": {
+    "en": "Like cooking: pick the ingredients (FROM), throw out spoiled ones (WHERE), chop what you need (SELECT), arrange on the plate (ORDER BY), serve three pieces (LIMIT).",
+    "hi": "खाना पकाने जैसा: सामग्री लो (FROM), ख़राब फेंको (WHERE), ज़रूरी काटो (SELECT), थाली में सजाओ (ORDER BY), तीन टुकड़े परोसो (LIMIT)।",
+    "hinglish": "Khaana pakane jaisa: ingredients lo (FROM), kharab phenko (WHERE), zaroori kaato (SELECT), thaali mein sajao (ORDER BY), teen tukde paroso (LIMIT)."
+   },
+   "realExample": {
+    "en": "An e-commerce search \"phones under ₹15,000, cheapest first\" is WHERE price < 15000 ORDER BY price LIMIT 20 behind the scenes.",
+    "hi": "ई-कॉमर्स खोज \"₹15,000 से कम के फ़ोन, सबसे सस्ता पहले\" पर्दे के पीछे WHERE price < 15000 ORDER BY price LIMIT 20 है।",
+    "hinglish": "E-commerce search \"₹15,000 se kam ke phones, sabse sasta pehle\" parde ke peeche WHERE price < 15000 ORDER BY price LIMIT 20 hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "Traps: precedence and NULL",
+    "hi": "जाल: प्राथमिकता और NULL",
+    "hinglish": "Traps: precedence aur NULL"
+   },
+   "body": {
+    "en": "AND binds tighter than OR, so WHERE class = 9 OR class = 10 AND city = 'Pune' means 9 from anywhere, or 10 from Pune. Use brackets to say what you mean. NULL means unknown, so city = NULL is never true — write city IS NULL. And text comparison may be case-sensitive in some databases; this playground ignores case.",
+    "hi": "AND, OR से ज़्यादा मज़बूती से बँधता है, तो WHERE class = 9 OR class = 10 AND city = 'Pune' का मतलब कहीं से भी 9, या पुणे से 10। जो मतलब है उसके लिए कोष्ठक लगाओ। NULL का मतलब अज्ञात, तो city = NULL कभी सच नहीं — city IS NULL लिखो। और कुछ डेटाबेस में पाठ तुलना बड़े-छोटे अक्षर पर निर्भर हो सकती है; यह खेल-मैदान अक्षर का आकार नज़रअंदाज़ करता है।",
+    "hinglish": "AND, OR se zyaada mazbooti se bandhta hai, to WHERE class = 9 OR class = 10 AND city = 'Pune' ka matlab kahin se bhi 9, ya Pune se 10. Jo matlab hai uske liye brackets lagao. NULL ka matlab unknown, to city = NULL kabhi sach nahi — city IS NULL likho. Aur kuch databases mein text comparison case-sensitive ho sakta hai; yeh playground case ignore karta hai."
+   },
+   "analogy": {
+    "en": "Like maths: 2 + 3 × 4 is 14, not 20. Brackets remove doubt.",
+    "hi": "गणित जैसा: 2 + 3 × 4 = 14, 20 नहीं। कोष्ठक संदेह मिटाते हैं।",
+    "hinglish": "Maths jaisa: 2 + 3 × 4 = 14, 20 nahi. Brackets shak mitaate hain."
+   },
+   "realExample": {
+    "en": "WHERE (class = 9 OR class = 10) AND city = 'Pune' returns only Pune students from Classes 9 and 10.",
+    "hi": "WHERE (class = 9 OR class = 10) AND city = 'Pune' सिर्फ़ कक्षा 9 और 10 के पुणे वाले छात्र लौटाता है।",
+    "hinglish": "WHERE (class = 9 OR class = 10) AND city = 'Pune' sirf Class 9 aur 10 ke Pune wale students lautata hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write three queries of your own in Free play: (1) students not from Pune, (2) science marks between 60 and 80, (3) the 5 lowest maths marks. Predict the row count before running each.",
+   "hi": "खुले अभ्यास में अपनी तीन क्वेरी लिखो: (1) पुणे के अलावा छात्र, (2) 60 से 80 के बीच विज्ञान अंक, (3) गणित के 5 सबसे कम अंक। चलाने से पहले हर एक की पंक्ति-संख्या का अनुमान लगाओ।",
+   "hinglish": "Free play mein apni teen queries likho: (1) Pune ke alawa students, (2) 60 se 80 ke beech science marks, (3) maths ke 5 sabse kam marks. Chalane se pehle har ek ki row count ka andaaza lagao."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which query lists names of Class 10 students?",
+     "hi": "कौन-सी क्वेरी कक्षा 10 के छात्रों के नाम दिखाती है?",
+     "hinglish": "Kaunsi query Class 10 ke students ke naam dikhati hai?"
+    },
+    "options": [
+     "SELECT name FROM students WHERE class = 10",
+     "SELECT class = 10 FROM students",
+     "SELECT * WHERE class = 10",
+     "FROM students SELECT name"
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "SELECT columns FROM table WHERE condition.",
+     "hi": "SELECT स्तंभ FROM तालिका WHERE शर्त।",
+     "hinglish": "SELECT columns FROM table WHERE condition."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "What does LIKE 'S%' match?",
+     "hi": "LIKE 'S%' किससे मिलता है?",
+     "hinglish": "LIKE 'S%' kisse milta hai?"
+    },
+    "options": [
+     {
+      "en": "Names ending in S",
+      "hi": "S पर ख़त्म होने वाले नाम",
+      "hinglish": "S par khatam hone wale naam"
+     },
+     {
+      "en": "Names starting with S",
+      "hi": "S से शुरू होने वाले नाम",
+      "hinglish": "S se shuru hone wale naam"
+     },
+     {
+      "en": "Only the name \"S%\"",
+      "hi": "सिर्फ़ \"S%\" नाम",
+      "hinglish": "Sirf \"S%\" naam"
+     },
+     {
+      "en": "Names with exactly 2 letters",
+      "hi": "ठीक 2 अक्षर वाले नाम",
+      "hinglish": "Theek 2 letters wale naam"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "% stands for any run of characters after S.",
+     "hi": "% का मतलब S के बाद कोई भी अक्षर-लड़ी।",
+     "hinglish": "% ka matlab S ke baad koi bhi characters."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "order",
+    "prompt": {
+     "en": "Order the steps in which a database logically runs a query.",
+     "hi": "डेटाबेस क्वेरी को तार्किक रूप से किस क्रम में चलाता है, लगाओ।",
+     "hinglish": "Database query ko logically kis order mein chalata hai, lagao."
+    },
+    "options": [
+     "FROM",
+     "WHERE",
+     "SELECT",
+     "ORDER BY",
+     "LIMIT"
+    ],
+    "answer": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "explain": {
+     "en": "Rows are found and filtered before columns are chosen, sorted and cut.",
+     "hi": "स्तंभ चुनने, क्रमबद्ध करने और काटने से पहले पंक्तियाँ ढूँढी और छाँटी जाती हैं।",
+     "hinglish": "Columns chunne, sort karne aur kaatne se pehle rows dhoondhi aur chhaanti jaati hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why is \"WHERE city = NULL\" a mistake?",
+     "hi": "\"WHERE city = NULL\" ग़लत क्यों है?",
+     "hinglish": "\"WHERE city = NULL\" galat kyun hai?"
+    },
+    "options": [
+     {
+      "en": "NULL is unknown, so = is never true; use IS NULL",
+      "hi": "NULL अज्ञात है, तो = कभी सच नहीं; IS NULL इस्तेमाल करो",
+      "hinglish": "NULL unknown hai, to = kabhi sach nahi; IS NULL use karo"
+     },
+     {
+      "en": "NULL must be in quotes",
+      "hi": "NULL उद्धरण में होना चाहिए",
+      "hinglish": "NULL quotes mein hona chahiye"
+     },
+     {
+      "en": "city is a keyword",
+      "hi": "city एक कीवर्ड है",
+      "hinglish": "city ek keyword hai"
+     },
+     {
+      "en": "It deletes data",
+      "hi": "यह डेटा मिटाता है",
+      "hinglish": "Yeh data mitata hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Comparisons with NULL give unknown, which WHERE treats as false.",
+     "hi": "NULL से तुलना अज्ञात देती है, जिसे WHERE झूठ मानता है।",
+     "hinglish": "NULL se comparison unknown deta hai, jise WHERE false maanta hai."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Finish the top-3 maths mission.",
+     "hi": "गणित शीर्ष-3 मिशन पूरा करो।",
+     "hinglish": "Maths top-3 mission poora karo."
+    },
+    "answer": {
+     "event": "query-correct",
+     "mission": "order-limit"
+    },
+    "explain": {
+     "en": "ORDER BY marks DESC LIMIT 3.",
+     "hi": "ORDER BY marks DESC LIMIT 3।",
+     "hinglish": "ORDER BY marks DESC LIMIT 3."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Finish the IN + LIKE mission.",
+     "hi": "IN + LIKE मिशन पूरा करो।",
+     "hinglish": "IN + LIKE mission poora karo."
+    },
+    "answer": {
+     "event": "query-correct",
+     "mission": "like-in"
+    },
+    "explain": {
+     "en": "city IN ('Pune','Chennai') AND name LIKE '%a%'.",
+     "hi": "city IN ('Pune','Chennai') AND name LIKE '%a%'।",
+     "hinglish": "city IN ('Pune','Chennai') AND name LIKE '%a%'."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "topics": [
+  "data.sql-select"
+ ],
+ "sources": [
+  {
+   "title": "PostgreSQL documentation — SQL language",
+   "url": "https://www.postgresql.org/docs/current/sql.html",
+   "licence": "fact reference"
+  },
+  {
+   "title": "SQLite — SELECT",
+   "url": "https://www.sqlite.org/lang_select.html",
+   "licence": "public domain"
+  }
+ ]
+}

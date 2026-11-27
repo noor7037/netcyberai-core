@@ -1,0 +1,310 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.friendly-ai.01",
+ "level": 1,
+ "classes": [
+  -2,
+  -1,
+  0,
+  1,
+  2
+ ],
+ "unit": "friendly-ai",
+ "title": {
+  "en": "What is AI?",
+  "hi": "AI क्या है?",
+  "hinglish": "AI kya hai?"
+ },
+ "minutes": 5,
+ "xp": 20,
+ "prereq": [
+  "L1.thinking-logic.04"
+ ],
+ "topics": [
+  "ai.what-is-intelligence",
+  "ai.everyday-ai"
+ ],
+ "outcomes": [
+  {
+   "en": "Say that AI is a computer that learns from examples.",
+   "hi": "बता सकते हो कि AI एक कंप्यूटर है जो उदाहरणों से सीखता है।",
+   "hinglish": "Bata sakte ho ki AI ek computer hai jo examples se seekhta hai."
+  },
+  {
+   "en": "Name AI helpers around us: voice assistants, maps, photo apps.",
+   "hi": "आस-पास के AI सहायकों के नाम ले सकते हो: वॉइस असिस्टेंट, मैप्स, फ़ोटो ऐप।",
+   "hinglish": "Aas-paas ke AI helpers ke naam le sakte ho: voice assistant, maps, photo apps."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "AI",
+   "en": "Artificial Intelligence: computers that learn from examples to do smart tasks",
+   "hi": "कृत्रिम बुद्धि — ऐसा कंप्यूटर जो सीखकर समझदारी के काम करता है",
+   "hinglish": "Artificial Intelligence — aisa computer jo seekh kar kaam karta hai"
+  },
+  {
+   "term": "Learn",
+   "en": "To get better by seeing examples",
+   "hi": "सीखना — देखकर बेहतर होना",
+   "hinglish": "Seekhna — dekh kar behtar hona"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.friendly-ai.01.s1",
+   "caption": {
+    "en": "We show the computer many examples.",
+    "hi": "हम कंप्यूटर को कई उदाहरण दिखाते हैं।",
+    "hinglish": "Hum computer ko kai examples dikhaate hain."
+   },
+   "narration": {
+    "en": "We show the computer lots of pictures: this is an apple, this is a banana, this is a mango.",
+    "hinglish": "Hum computer ko bahut saari pictures dikhaate hain: yeh seb hai, yeh kela hai, yeh aam hai.",
+    "hi": "हम कंप्यूटर को बहुत सारे चित्र दिखाते हैं: यह सेब है, यह केला है, यह आम है।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.friendly-ai.01.s2",
+   "caption": {
+    "en": "Then it guesses new ones by itself.",
+    "hi": "फिर वह नए चित्र ख़ुद पहचानता है।",
+    "hinglish": "Phir woh nayi pictures khud pehchaanta hai."
+   },
+   "narration": {
+    "en": "Then we show a new picture. The computer guesses: \"Fruit!\" That is AI — a computer that learns.",
+    "hinglish": "Phir hum nayi picture dikhaate hain. Computer guess karta hai: \"Fruit!\" Yahi AI hai — seekhne wala computer.",
+    "hi": "फिर हम नया चित्र दिखाते हैं। कंप्यूटर अंदाज़ा लगाता है: \"फल!\" यही AI है — सीखने वाला कंप्यूटर।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.friendly-ai.01.s3",
+   "caption": {
+    "en": "AI helpers are all around us.",
+    "hi": "AI सहायक हमारे चारों ओर हैं।",
+    "hinglish": "AI helpers hamare chaaron taraf hain."
+   },
+   "narration": {
+    "en": "Voice helpers that answer questions, maps that find the fastest road, and cameras that find faces all use AI.",
+    "hinglish": "Sawaal ka jawab dene wale voice helper, sabse tez raasta dhoondhne wale maps, aur chehre dhoondhne wale camera — sab AI use karte hain.",
+    "hi": "सवालों का जवाब देने वाले वॉइस सहायक, सबसे तेज़ रास्ता ढूँढने वाले मैप्स, और चेहरे ढूँढने वाले कैमरे — सब AI इस्तेमाल करते हैं।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "teach-sorter",
+  "config": {
+   "mode": "teach"
+  },
+  "goal": {
+   "en": "Teach the AI fruits and vegetables, then test it!",
+   "hi": "AI को फल और सब्ज़ियाँ सिखाओ, फिर जाँचो!",
+   "hinglish": "AI ko fruits aur sabziyan sikhao, phir test karo!"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "AI learns like you do — from examples",
+    "hi": "AI तुम्हारी तरह सीखता है — उदाहरणों से",
+    "hinglish": "AI tumhari tarah seekhta hai — examples se"
+   },
+   "body": {
+    "en": "Nobody gave you a rule for \"what is a dog\". You saw many dogs and learnt. AI does the same with thousands of pictures, sounds or words.",
+    "hi": "किसी ने तुम्हें \"कुत्ता क्या है\" का नियम नहीं दिया। तुमने बहुत से कुत्ते देखे और सीख गए। AI हज़ारों चित्रों, आवाज़ों या शब्दों से ऐसे ही सीखता है।",
+    "hinglish": "Kisi ne tumhe \"dog kya hai\" ka rule nahin diya. Tumne bahut se dogs dekhe aur seekh gaye. AI hazaaron pictures, awaazon ya words se aise hi seekhta hai."
+   },
+   "analogy": {
+    "en": "A little brother may call a cat a \"dog\" at first, then slowly learns the difference. AI learns the same way.",
+    "hi": "छोटा भाई पहली बार बिल्ली देखकर \"कुत्ता!\" बोलता है — धीरे-धीरे फ़र्क़ सीख जाता है। AI भी ऐसे ही सीखता है।",
+    "hinglish": "Chhota bhai pehli baar billi dekh kar \"kutta!\" bolta hai — dheere-dheere farak seekh jaata hai. AI bhi aise hi seekhta hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "AI is a helper, not a person",
+    "hi": "AI सहायक है, इंसान नहीं",
+    "hinglish": "AI helper hai, insaan nahin"
+   },
+   "body": {
+    "en": "AI has no feelings and is not alive. It is a clever computer program made by people. It can help us, and it can also make mistakes.",
+    "hi": "AI की कोई भावनाएँ नहीं होतीं और वह ज़िंदा नहीं है। वह इंसानों का बनाया एक चतुर कंप्यूटर प्रोग्राम है। वह मदद कर सकता है, और ग़लती भी कर सकता है।",
+    "hinglish": "AI ki koi feelings nahin hoti aur woh zinda nahin hai. Woh insaanon ka banaya ek chatur computer program hai. Woh madad kar sakta hai, aur galti bhi kar sakta hai."
+   },
+   "realExample": {
+    "en": "The words \"artificial intelligence\" were first used by scientist John McCarthy in 1955.",
+    "hi": "\"आर्टिफ़िशियल इंटेलिजेंस\" शब्द पहली बार वैज्ञानिक जॉन मैकार्थी ने 1955 में इस्तेमाल किए।",
+    "hinglish": "\"Artificial intelligence\" shabd pehli baar scientist John McCarthy ne 1955 mein use kiye."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "With a grown-up, find one AI helper at home (voice assistant, phone camera, maps). Ask: what did it learn from?",
+   "hi": "किसी बड़े के साथ घर में एक AI सहायक ढूँढो (वॉइस असिस्टेंट, फ़ोन कैमरा, मैप्स)। पूछो: इसने किससे सीखा?",
+   "hinglish": "Kisi bade ke saath ghar mein ek AI helper dhoondo (voice assistant, phone camera, maps). Poocho: isne kisse seekha?"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "How does AI learn?",
+     "hi": "AI कैसे सीखता है?",
+     "hinglish": "AI kaise seekhta hai?"
+    },
+    "options": [
+     {
+      "en": "From lots of examples",
+      "hi": "बहुत सारे उदाहरणों से",
+      "hinglish": "Bahut saare examples se"
+     },
+     {
+      "en": "By eating food",
+      "hi": "खाना खाकर",
+      "hinglish": "Khaana kha kar"
+     },
+     {
+      "en": "By sleeping",
+      "hi": "सोकर",
+      "hinglish": "So kar"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "AI gets better by seeing many examples.",
+     "hi": "AI बहुत से उदाहरण देखकर बेहतर होता है।",
+     "hinglish": "AI bahut se examples dekh kar behtar hota hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Is AI alive?",
+     "hi": "क्या AI ज़िंदा है?",
+     "hinglish": "Kya AI zinda hai?"
+    },
+    "options": [
+     {
+      "en": "Yes",
+      "hi": "हाँ",
+      "hinglish": "Haan"
+     },
+     {
+      "en": "No",
+      "hi": "नहीं",
+      "hinglish": "Nahin"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "No. AI is a computer program made by people.",
+     "hi": "नहीं। AI इंसानों का बनाया कंप्यूटर प्रोग्राम है।",
+     "hinglish": "Nahin. AI insaanon ka banaya computer program hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "multi",
+    "prompt": {
+     "en": "Which use AI?",
+     "hi": "कौन AI इस्तेमाल करते हैं?",
+     "hinglish": "Kaun AI use karte hain?"
+    },
+    "options": [
+     {
+      "en": "🗺️ Maps finding the fastest road",
+      "hi": "🗺️ सबसे तेज़ रास्ता ढूँढने वाले मैप्स",
+      "hinglish": "🗺️ Sabse tez raasta dhoondhne wale Maps"
+     },
+     {
+      "en": "🗣️ Voice assistant",
+      "hi": "🗣️ वॉइस असिस्टेंट",
+      "hinglish": "🗣️ Voice assistant"
+     },
+     {
+      "en": "🥄 A spoon",
+      "hi": "🥄 चम्मच",
+      "hinglish": "🥄 Chammach"
+     }
+    ],
+    "answer": [
+     0,
+     1
+    ],
+    "explain": {
+     "en": "A spoon is a simple tool — no computer, no learning.",
+     "hi": "चम्मच एक साधारण औज़ार है — न कंप्यूटर, न सीखना।",
+     "hinglish": "Chammach simple tool hai — na computer, na seekhna."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Can AI make mistakes?",
+     "hi": "क्या AI ग़लती कर सकता है?",
+     "hinglish": "Kya AI galti kar sakta hai?"
+    },
+    "options": [
+     {
+      "en": "Yes",
+      "hi": "हाँ",
+      "hinglish": "Haan"
+     },
+     {
+      "en": "No",
+      "hi": "नहीं",
+      "hinglish": "Nahin"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Yes! So we always check what AI says.",
+     "hi": "हाँ! इसलिए हम हमेशा AI की बात जाँचते हैं।",
+     "hinglish": "Haan! Isliye hum hamesha AI ki baat check karte hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Teach the AI and test it in the lab.",
+     "hi": "लैब में AI को सिखाओ और जाँचो।",
+     "hinglish": "Lab mein AI ko sikhao aur test karo."
+    },
+    "answer": {
+     "lab": "teach-sorter",
+     "mode": "teach",
+     "solved": true
+    },
+    "explain": {
+     "en": "Sort 8 pictures, then mark each guess right or wrong.",
+     "hi": "8 चित्र छाँटो, फिर हर अंदाज़े को सही या ग़लत बताओ।",
+     "hinglish": "8 pictures sort karo, phir har guess ko sahi ya galat batao."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "AI4K12 – Five Big Ideas in AI (fact reference)",
+   "url": "https://ai4k12.org/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

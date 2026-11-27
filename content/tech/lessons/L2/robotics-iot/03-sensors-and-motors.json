@@ -1,0 +1,382 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.robotics-iot.03",
+ "level": 2,
+ "classes": [
+  7,
+  8
+ ],
+ "unit": "robotics-iot",
+ "title": {
+  "en": "Sensors and motors: how robots feel and move",
+  "hi": "सेंसर और मोटर: रोबोट कैसे महसूस करते और हिलते हैं",
+  "hinglish": "Sensors aur motors: robots kaise feel karte aur hilte hain"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [
+  "L2.robotics-iot.02"
+ ],
+ "topics": [
+  "robo.sensors-motors"
+ ],
+ "outcomes": [
+  {
+   "en": "Choose the right sensor for a job",
+   "hi": "काम के लिए सही सेंसर चुन सकते हो",
+   "hinglish": "Kaam ke liye sahi sensor chun sakte ho"
+  },
+  {
+   "en": "Tell DC motors, servos and steppers apart",
+   "hi": "DC मोटर, सर्वो और स्टेपर का अंतर बता सकते हो",
+   "hinglish": "DC motor, servo aur stepper ka farak bata sakte ho"
+  },
+  {
+   "en": "Control a servo angle and explain its pulse signal",
+   "hi": "सर्वो कोण नियंत्रित कर सकते हो और उसका पल्स संकेत समझा सकते हो",
+   "hinglish": "Servo angle control kar sakte ho aur uska pulse signal samjha sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "DC motor",
+   "hinglish": "Lagataar ghoomne wali motor",
+   "en": "A motor that spins continuously; speed changes with voltage",
+   "hi": "मोटर जो लगातार घूमती है; गति वोल्टेज से बदलती है"
+  },
+  {
+   "term": "Servo motor",
+   "hinglish": "Angle pe rukne wali motor",
+   "en": "A motor that turns to an exact angle (usually 0–180°) and holds it",
+   "hi": "मोटर जो सटीक कोण (आमतौर पर 0–180°) पर घूमकर रुकती है"
+  },
+  {
+   "term": "Stepper motor",
+   "hinglish": "Chhote kadam wali motor",
+   "en": "A motor that moves in small fixed steps, used in 3D printers",
+   "hi": "मोटर जो छोटे तय कदमों में चलती है, 3D प्रिंटर में उपयोग"
+  },
+  {
+   "term": "PWM",
+   "hinglish": "Pulse se control",
+   "en": "Pulse-width modulation: controlling a device by how long an on-pulse lasts",
+   "hi": "पल्स-विड्थ मॉड्यूलेशन: ऑन-पल्स की अवधि से उपकरण नियंत्रित करना"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Sensors are a robot’s senses. Each one turns something in the world into a number.",
+    "hi": "सेंसर रोबोट की इंद्रियाँ हैं। हर एक दुनिया की किसी चीज़ को संख्या में बदलता है।",
+    "hinglish": "Sensors robot ki indriyaan hain. Har ek duniya ki kisi cheez ko number mein badalta hai."
+   },
+   "visual": "compare:👁 IR / LDR: light · 🦇 ultrasonic: distance|🌡 thermistor: heat · 🖐 button: touch · 🧭 accelerometer: tilt",
+   "narration": {
+    "en": "Pick the sensor that measures what you care about.",
+    "hi": "वह सेंसर चुनो जो तुम्हारी ज़रूरत मापे।",
+    "hinglish": "Woh sensor chuno jo tumhari zaroorat naape."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Motors are its muscles: DC motors spin wheels, servos turn to an angle, steppers move in exact tiny steps.",
+    "hi": "मोटर उसकी मांसपेशियाँ हैं: DC मोटर पहिए घुमाती हैं, सर्वो कोण पर घूमते हैं, स्टेपर सटीक छोटे कदम चलते हैं।",
+    "hinglish": "Motors uski muscles hain: DC motors pahiye ghumaati hain, servos angle pe ghoomte hain, steppers exact chhote steps chalte hain."
+   },
+   "visual": "lab:robot-lab#arm",
+   "narration": {
+    "en": "Move the two servos of the arm and watch the pulse values.",
+    "hi": "भुजा के दो सर्वो हिलाओ और पल्स मान देखो।",
+    "hinglish": "Arm ke do servos hilao aur pulse values dekho."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "A servo listens to a pulse 50 times a second: about 1 ms → 0°, 1.5 ms → 90°, 2 ms → 180°.",
+    "hi": "सर्वो हर सेकंड 50 बार पल्स सुनता है: लगभग 1 ms → 0°, 1.5 ms → 90°, 2 ms → 180°।",
+    "hinglish": "Servo har second 50 baar pulse sunta hai: lagbhag 1 ms → 0°, 1.5 ms → 90°, 2 ms → 180°."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "Exact ranges vary a little between servo models.",
+    "hi": "सटीक सीमा सर्वो मॉडलों में थोड़ी अलग होती है।",
+    "hinglish": "Exact range servo models mein thoda alag hota hai."
+   },
+   "code": "angle  pulse (every 20 ms)\n  0°   ▇▁▁▁▁▁▁▁▁▁   ≈1.0 ms\n 90°   ▇▇▁▁▁▁▁▁▁▁   ≈1.5 ms\n180°   ▇▇▇▁▁▁▁▁▁▁   ≈2.0 ms"
+  }
+ ],
+ "play": {
+  "lab": "robot-lab",
+  "config": {
+   "tab": "arm"
+  },
+  "goal": {
+   "en": "Use the shoulder and elbow servos to pick up the mango and place it in the basket.",
+   "hi": "कंधे और कोहनी सर्वो से आम उठाओ और टोकरी में रखो।",
+   "hinglish": "Shoulder aur elbow servos se aam uthao aur tokri mein rakho."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Choosing parts like an engineer",
+    "hi": "इंजीनियर की तरह भाग चुनना",
+    "hinglish": "Engineer ki tarah parts chunna"
+   },
+   "body": {
+    "en": "Common robot sensors: an infrared (IR) pair shines light and measures the reflection, so it can tell a black line from a white floor; an LDR changes resistance with light; an ultrasonic sensor like the HC-SR04 sends a 40 kHz sound pulse and times the echo to measure roughly 2 cm to 4 m; a thermistor measures temperature; buttons and bump switches detect touch; an accelerometer and gyroscope measure tilt and turning (your phone uses them to rotate the screen); a camera gives the richest data but needs the most computing. Motors: a DC motor spins continuously and its speed is controlled with PWM (switching power on and off very fast); a servo has a motor, gears and a position sensor inside and turns to a commanded angle; a stepper moves in fixed steps (often 200 steps per turn, 1.8° each), which is why 3D printers and CNC machines use them. Motors draw much more current than a microcontroller pin can give, so they are powered through a motor driver board, never straight from the pin.",
+    "hi": "आम रोबोट सेंसर: इन्फ़्रारेड (IR) जोड़ी प्रकाश डालती और परावर्तन मापती है, इसलिए काली रेखा और सफ़ेद फ़र्श में अंतर बता सकती है; LDR प्रकाश से प्रतिरोध बदलता है; HC-SR04 जैसा अल्ट्रासोनिक सेंसर 40 kHz ध्वनि पल्स भेजकर गूँज का समय नापता है और लगभग 2 cm से 4 m तक माप सकता है; थर्मिस्टर तापमान मापता है; बटन और बंप स्विच स्पर्श पहचानते हैं; एक्सेलेरोमीटर और जाइरोस्कोप झुकाव और घुमाव मापते हैं (तुम्हारा फ़ोन इनसे स्क्रीन घुमाता है); कैमरा सबसे समृद्ध डेटा देता है पर सबसे ज़्यादा कंप्यूटिंग चाहिए। मोटर: DC मोटर लगातार घूमती है और उसकी गति PWM (बिजली को बहुत तेज़ी से चालू-बंद करना) से नियंत्रित होती है; सर्वो के अंदर मोटर, गियर और स्थिति सेंसर होते हैं और वह आदेशित कोण पर घूमता है; स्टेपर तय कदमों में चलता है (अक्सर प्रति चक्कर 200 कदम, हर एक 1.8°), इसीलिए 3D प्रिंटर और CNC मशीनें इन्हें उपयोग करती हैं। मोटर माइक्रोकंट्रोलर पिन से कहीं ज़्यादा धारा लेती हैं, इसलिए उन्हें मोटर ड्राइवर बोर्ड से बिजली दी जाती है, सीधे पिन से कभी नहीं।",
+    "hinglish": "Common robot sensors: infrared (IR) pair light daalti aur reflection naapti hai, isliye kaali line aur safed floor mein farak bata sakti hai; LDR light se resistance badalta hai; HC-SR04 jaisa ultrasonic sensor 40 kHz sound pulse bhej kar echo ka time naapta hai aur lagbhag 2 cm se 4 m tak measure kar sakta hai; thermistor temperature naapta hai; buttons aur bump switches touch pehchaante hain; accelerometer aur gyroscope tilt aur ghumaav naapte hain (tumhara phone inse screen ghumata hai); camera sabse rich data deta hai par sabse zyada computing chahiye. Motors: DC motor lagataar ghoomti hai aur uski speed PWM (power ko bahut tezi se on-off karna) se control hoti hai; servo ke andar motor, gears aur position sensor hote hain aur woh commanded angle pe ghoomta hai; stepper fixed steps mein chalta hai (aksar har chakkar mein 200 steps, har ek 1.8°), isiliye 3D printers aur CNC machines inhe use karti hain. Motors microcontroller pin se kahin zyada current leti hain, isliye unhe motor driver board se power di jaati hai, seedhe pin se kabhi nahi."
+   },
+   "analogy": {
+    "en": "DC motor = a fan (just spins), servo = a clock hand (stops at an exact place), stepper = stairs (one step at a time).",
+    "hi": "DC मोटर = पंखा (बस घूमता है), सर्वो = घड़ी की सुई (सटीक जगह पर रुकती है), स्टेपर = सीढ़ियाँ (एक-एक कदम)।",
+    "hinglish": "DC motor = pankha (bas ghoomta hai), servo = ghadi ki sui (exact jagah pe rukti hai), stepper = seedhiyaan (ek ek kadam)."
+   },
+   "realExample": {
+    "en": "Your phone has an accelerometer, gyroscope, light sensor, proximity sensor (turns the screen off near your ear), GPS and cameras — a pocket full of robot senses.",
+    "hi": "तुम्हारे फ़ोन में एक्सेलेरोमीटर, जाइरोस्कोप, प्रकाश सेंसर, निकटता सेंसर (कान के पास स्क्रीन बंद करता है), GPS और कैमरे हैं — जेब भर रोबोट इंद्रियाँ।",
+    "hinglish": "Tumhare phone mein accelerometer, gyroscope, light sensor, proximity sensor (kaan ke paas screen band karta hai), GPS aur cameras hain — jeb bhar robot senses."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Design a “smart dustbin” on paper: which sensor notices a hand near the lid, which motor opens the lid, and what is the rule? Draw it with labels for SENSE, THINK and ACT.",
+   "hi": "काग़ज़ पर “स्मार्ट कूड़ादान” डिज़ाइन करो: ढक्कन के पास हाथ कौन-सा सेंसर पहचानेगा, ढक्कन कौन-सी मोटर खोलेगी, और नियम क्या है? महसूस, सोचो और करो लेबल के साथ बनाओ।",
+   "hinglish": "Kaagaz pe “smart dustbin” design karo: dhakkan ke paas haath kaunsa sensor pehchaanega, dhakkan kaunsi motor kholegi, aur rule kya hai? SENSE, THINK aur ACT labels ke saath draw karo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "match",
+    "prompt": {
+     "en": "Match each job to the best sensor.",
+     "hi": "हर काम को सबसे अच्छे सेंसर से मिलाओ।",
+     "hinglish": "Har kaam ko best sensor se match karo."
+    },
+    "options": {
+     "left": [
+      {
+       "en": "How far is the wall?",
+       "hi": "दीवार कितनी दूर है?",
+       "hinglish": "Deewar kitni door hai?"
+      },
+      {
+       "en": "Am I on the black line?",
+       "hi": "क्या मैं काली रेखा पर हूँ?",
+       "hinglish": "Kya main kaali line pe hoon?"
+      },
+      {
+       "en": "Is the phone tilted?",
+       "hi": "क्या फ़ोन झुका है?",
+       "hinglish": "Kya phone jhuka hai?"
+      }
+     ],
+     "right": [
+      {
+       "en": "Accelerometer",
+       "hi": "एक्सेलेरोमीटर",
+       "hinglish": "Accelerometer"
+      },
+      {
+       "en": "Ultrasonic sensor",
+       "hi": "अल्ट्रासोनिक सेंसर",
+       "hinglish": "Ultrasonic sensor"
+      },
+      {
+       "en": "IR reflection sensor",
+       "hi": "IR परावर्तन सेंसर",
+       "hinglish": "IR reflection sensor"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      2
+     ],
+     [
+      2,
+      0
+     ]
+    ],
+    "explain": {
+     "en": "Distance → ultrasonic; black line → IR; tilt → accelerometer.",
+     "hi": "दूरी → अल्ट्रासोनिक; काली रेखा → IR; झुकाव → एक्सेलेरोमीटर।",
+     "hinglish": "Distance → ultrasonic; kaali line → IR; tilt → accelerometer."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which motor should turn a gate barrier to exactly 90°?",
+     "hi": "गेट बैरियर को ठीक 90° पर कौन-सी मोटर घुमाए?",
+     "hinglish": "Gate barrier ko exactly 90° pe kaunsi motor ghumaaye?"
+    },
+    "options": [
+     {
+      "en": "DC motor",
+      "hi": "DC मोटर",
+      "hinglish": "DC motor"
+     },
+     {
+      "en": "Servo motor",
+      "hi": "सर्वो मोटर",
+      "hinglish": "Servo motor"
+     },
+     {
+      "en": "Loudspeaker",
+      "hi": "लाउडस्पीकर",
+      "hinglish": "Loudspeaker"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "A servo turns to a commanded angle and holds it.",
+     "hi": "सर्वो आदेशित कोण पर घूमकर रुकता है।",
+     "hinglish": "Servo commanded angle pe ghoom kar rukta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "A servo gets about 1.5 ms pulses. Where does it point?",
+     "hi": "सर्वो को लगभग 1.5 ms पल्स मिलती हैं। वह कहाँ इशारा करेगा?",
+     "hinglish": "Servo ko lagbhag 1.5 ms pulses milti hain. Woh kahan point karega?"
+    },
+    "options": [
+     {
+      "en": "0°",
+      "hi": "0°",
+      "hinglish": "0°"
+     },
+     {
+      "en": "180°",
+      "hi": "180°",
+      "hinglish": "180°"
+     },
+     {
+      "en": "About 90°",
+      "hi": "लगभग 90°",
+      "hinglish": "Lagbhag 90°"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "About 1 ms = 0°, 2 ms = 180°, so 1.5 ms ≈ 90°.",
+     "hi": "लगभग 1 ms = 0°, 2 ms = 180°, तो 1.5 ms ≈ 90°।",
+     "hinglish": "Lagbhag 1 ms = 0°, 2 ms = 180°, to 1.5 ms ≈ 90°."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why should a motor not be powered straight from a microcontroller pin?",
+     "hi": "मोटर को सीधे माइक्रोकंट्रोलर पिन से बिजली क्यों नहीं देनी चाहिए?",
+     "hinglish": "Motor ko seedhe microcontroller pin se power kyun nahi deni chahiye?"
+    },
+    "options": [
+     {
+      "en": "It needs much more current than a pin gives",
+      "hi": "पिन से कहीं ज़्यादा धारा चाहिए",
+      "hinglish": "Pin se kahin zyada current chahiye"
+     },
+     {
+      "en": "Motors only work on Wi-Fi",
+      "hi": "मोटर केवल Wi-Fi पर चलती हैं",
+      "hinglish": "Motors sirf Wi-Fi pe chalti hain"
+     },
+     {
+      "en": "Pins are only for decoration",
+      "hi": "पिन केवल सजावट के लिए हैं",
+      "hinglish": "Pins sirf decoration ke liye hain"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Motors need far more current than a pin can supply; a motor driver handles it.",
+     "hi": "मोटर को पिन से कहीं ज़्यादा धारा चाहिए; मोटर ड्राइवर संभालता है।",
+     "hinglish": "Motor ko pin se kahin zyada current chahiye; motor driver sambhalta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "short",
+    "prompt": {
+     "en": "Which motor type moves in fixed small steps and is used in 3D printers?",
+     "hi": "कौन-सी मोटर तय छोटे कदमों में चलती है और 3D प्रिंटर में उपयोग होती है?",
+     "hinglish": "Kaunsi motor fixed chhote steps mein chalti hai aur 3D printers mein use hoti hai?"
+    },
+    "answer": [
+     "stepper",
+     "Stepper",
+     "stepper motor",
+     "Stepper motor"
+    ],
+    "explain": {
+     "en": "Stepper motor — often 200 steps per turn.",
+     "hi": "स्टेपर मोटर — अक्सर प्रति चक्कर 200 कदम।",
+     "hinglish": "Stepper motor — aksar har chakkar 200 steps."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the lab mission.",
+     "hi": "लैब मिशन पूरा करो।",
+     "hinglish": "Lab mission poora karo."
+    },
+    "answer": {
+     "lab": "robot-lab",
+     "event": "mission:complete",
+     "tab": "arm"
+    },
+    "explain": {
+     "en": "Pick up the mango and drop it in the basket.",
+     "hi": "आम उठाओ और टोकरी में डालो।",
+     "hinglish": "Aam uthao aur tokri mein daalo."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Arduino — UNO R3 documentation",
+   "url": "https://docs.arduino.cc/hardware/uno-rev3/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "SparkFun — Hobby servo tutorial",
+   "url": "https://learn.sparkfun.com/tutorials/hobby-servo-tutorial/all",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Micro:bit Educational Foundation — micro:bit hardware",
+   "url": "https://microbit.org/get-started/features/overview/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

@@ -1,0 +1,341 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.neural-nets-deep-learning.02",
+ "level": 3,
+ "classes": [
+  11
+ ],
+ "unit": "neural-nets-deep-learning",
+ "title": {
+  "en": "Loss, gradient descent and backpropagation",
+  "hi": "लॉस, ग्रेडिएंट डिसेंट और बैकप्रोपेगेशन",
+  "hinglish": "Loss, gradient descent aur backpropagation"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [
+  "L3.neural-nets-deep-learning.01"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain cross-entropy loss for classification",
+   "hinglish": "Classification ke liye cross-entropy loss samjhao",
+   "hi": "वर्गीकरण के लिए क्रॉस-एंट्रॉपी लॉस समझाना"
+  },
+  {
+   "en": "Describe a training step: forward pass, loss, backward pass, update",
+   "hinglish": "Training step samjhao: forward pass, loss, backward pass, update",
+   "hi": "एक प्रशिक्षण कदम बताना: फ़ॉरवर्ड पास, लॉस, बैकवर्ड पास, अद्यतन"
+  },
+  {
+   "en": "Use the chain rule intuition to see how blame flows backwards",
+   "hinglish": "Chain rule ki intuition se dekho galti ka \"blame\" peeche kaise jaata hai",
+   "hi": "शृंखला नियम की समझ से देखना कि दोष पीछे की ओर कैसे बहता है"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Loss",
+   "hinglish": "Model kitna galat hai — ek number",
+   "en": "A number measuring how wrong predictions are",
+   "hi": "एक संख्या जो मापती है कि अनुमान कितने ग़लत हैं"
+  },
+  {
+   "term": "Cross-entropy",
+   "hinglish": "Sahi class ko kam probability di to bhaari saza",
+   "en": "−log(p of the correct class)",
+   "hi": "−log(सही वर्ग की संभावना p)"
+  },
+  {
+   "term": "Backpropagation",
+   "hinglish": "Galti ko peeche har weight tak baantna",
+   "en": "Chain-rule method to compute every weight's gradient",
+   "hi": "हर भार का ग्रेडिएंट निकालने की शृंखला-नियम विधि"
+  },
+  {
+   "term": "Epoch",
+   "hinglish": "Poore data ka ek chakkar",
+   "en": "One full pass over the training data",
+   "hi": "प्रशिक्षण डेटा पर एक पूरा चक्कर"
+  },
+  {
+   "term": "Batch",
+   "hinglish": "Ek baar mein kuch examples",
+   "en": "A small group of examples per update",
+   "hi": "हर अद्यतन के लिए उदाहरणों का छोटा समूह"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Forward pass: inputs flow through the layers to a prediction, e.g. 70% cat.",
+    "hi": "फ़ॉरवर्ड पास: इनपुट परतों से बहकर अनुमान तक जाते हैं, जैसे 70% बिल्ली।",
+    "hinglish": "Forward pass: inputs layers se behkar prediction tak jaate hain, jaise 70% cat."
+   },
+   "visual": "anim:forward-flow",
+   "narration": {
+    "en": "Forward pass: inputs flow through the layers to a prediction, e.g. 70% cat.",
+    "hi": "फ़ॉरवर्ड पास: इनपुट परतों से बहकर अनुमान तक जाते हैं, जैसे 70% बिल्ली।",
+    "hinglish": "Forward pass: inputs layers se behkar prediction tak jaate hain, jaise 70% cat."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Loss measures the miss. If the answer was cat, loss = −log(0.7) ≈ 0.36. Lower is better.",
+    "hi": "लॉस चूक को मापता है। अगर जवाब बिल्ली था, तो लॉस = −log(0.7) ≈ 0.36। कम बेहतर है।",
+    "hinglish": "Loss miss ko naapta hai. Agar jawab cat tha, loss = −log(0.7) ≈ 0.36. Kam behtar hai."
+   },
+   "visual": "anim:loss-meter",
+   "narration": {
+    "en": "Loss measures the miss. If the answer was cat, loss = −log(0.7) ≈ 0.36. Lower is better.",
+    "hi": "लॉस चूक को मापता है। अगर जवाब बिल्ली था, तो लॉस = −log(0.7) ≈ 0.36। कम बेहतर है।",
+    "hinglish": "Loss miss ko naapta hai. Agar jawab cat tha, loss = −log(0.7) ≈ 0.36. Kam behtar hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Backward pass: the error flows back layer by layer, telling each weight how much it contributed. Then every weight takes a small step downhill.",
+    "hi": "बैकवर्ड पास: त्रुटि परत दर परत पीछे बहती है, हर भार को बताती है कि उसका कितना योगदान था। फिर हर भार ढलान पर छोटा कदम लेता है।",
+    "hinglish": "Backward pass: error layer by layer peeche behta hai, har weight ko batata hai uska kitna contribution tha. Phir har weight dhalaan par chhota step leta hai."
+   },
+   "visual": "anim:backprop-glow",
+   "narration": {
+    "en": "Backward pass: the error flows back layer by layer, telling each weight how much it contributed. Then every weight takes a small step downhill.",
+    "hi": "बैकवर्ड पास: त्रुटि परत दर परत पीछे बहती है, हर भार को बताती है कि उसका कितना योगदान था। फिर हर भार ढलान पर छोटा कदम लेता है।",
+    "hinglish": "Backward pass: error layer by layer peeche behta hai, har weight ko batata hai uska kitna contribution tha. Phir har weight dhalaan par chhota step leta hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "nn-playground",
+  "config": {
+   "mode": "classify",
+   "dataset": "spiral",
+   "hidden": [
+    8,
+    8
+   ],
+   "activation": "relu",
+   "showLoss": true,
+   "showGradients": true
+  },
+  "goal": {
+   "en": "Train the spiral. Watch the loss curve and the glowing connections: brighter means a larger gradient this step.",
+   "hinglish": "Spiral train karo. Loss curve aur chamakte connections dekho: zyada chamak matlab is step mein bada gradient.",
+   "hi": "सर्पिल प्रशिक्षित करो। लॉस वक्र और चमकते संयोजन देखो: अधिक चमक मतलब इस कदम में बड़ा ग्रेडिएंट।"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "The training loop",
+    "hi": "प्रशिक्षण चक्र",
+    "hinglish": "Training loop"
+   },
+   "body": {
+    "en": "Training repeats four steps for each batch of examples. 1) Forward pass: compute predictions. 2) Loss: for classification, cross-entropy −log p(correct class); if the model gave the right class probability 0.9 the loss is 0.105, if 0.1 it is 2.30, so confident wrong answers are punished hard. 3) Backward pass: compute the gradient ∂loss/∂w for every weight. 4) Update: w ← w − η·gradient (or a smarter optimiser such as Adam). One pass over all data is an epoch; training a small model takes tens of epochs, while large language models see each piece of their training text about once or a few times.",
+    "hi": "प्रशिक्षण हर बैच के लिए चार कदम दोहराता है। 1) फ़ॉरवर्ड पास: अनुमान निकालो। 2) लॉस: क्लासिफ़िकेशन में क्रॉस-एंट्रॉपी −log p(सही श्रेणी); अगर मॉडल ने सही श्रेणी को 0.9 दिया तो लॉस 0.105, अगर 0.1 तो 2.30, यानी आत्मविश्वासी गलत जवाब को कड़ी सज़ा। 3) बैकवर्ड पास: हर भार का ग्रेडिएंट ∂loss/∂w निकालो। 4) अपडेट: w ← w − η·ग्रेडिएंट (या एडम जैसा बेहतर ऑप्टिमाइज़र)। पूरे डेटा का एक चक्कर एक एपॉक है; छोटा मॉडल दसियों एपॉक लेता है, जबकि बड़े भाषा मॉडल अपने प्रशिक्षण पाठ का हर हिस्सा लगभग एक या कुछ बार देखते हैं।",
+    "hinglish": "Training har batch ke liye chaar steps repeat karti hai. 1) Forward pass: predictions nikaalo. 2) Loss: classification mein cross-entropy −log p(sahi class); agar model ne sahi class ko 0.9 diya to loss 0.105, agar 0.1 to 2.30, yaani confident galat jawab ko kadi saza. 3) Backward pass: har weight ka gradient ∂loss/∂w nikaalo. 4) Update: w ← w − η·gradient (ya Adam jaisa smarter optimiser). Poore data ka ek chakkar ek epoch; chhota model dasiyon epochs leta hai, jabki LLMs apne training text ka har hissa lagbhag ek ya kuch baar dekhte hain."
+   },
+   "analogy": {
+    "hinglish": "Darts khelna: phenko (forward), dekho kitna door laga (loss), socho haath ka kaunsa hissa galat tha (backward), agli baar thoda adjust (update).",
+    "en": "Playing darts: throw (forward), see how far off it landed (loss), think which part of your arm was wrong (backward), adjust a little next time (update).",
+    "hi": "डार्ट खेलना: फेंको (फ़ॉरवर्ड), देखो कितनी दूर लगा (लॉस), सोचो हाथ का कौन-सा हिस्सा ग़लत था (बैकवर्ड), अगली बार थोड़ा सुधारो (अद्यतन)।"
+   },
+   "realExample": {
+    "en": "Training a speech model for Bhashini on thousands of hours of Indian-language audio runs this loop billions of times on GPU clusters.",
+    "hinglish": "Bhashini ke liye hazaaron ghante ke Indian-language audio par speech model train karna is loop ko GPU clusters par arabon baar chalata hai.",
+    "hi": "हज़ारों घंटों के भारतीय-भाषा ऑडियो पर भाषिणी के लिए वाणी मॉडल प्रशिक्षित करना GPU क्लस्टरों पर यह चक्र अरबों बार चलाता है।"
+   }
+  },
+  {
+   "heading": {
+    "en": "Backpropagation: passing the blame",
+    "hi": "बैकप्रोपेगेशन: दोष आगे से पीछे",
+    "hinglish": "Backpropagation: blame peeche bhejna"
+   },
+   "body": {
+    "en": "How does a weight deep inside know how to change? The chain rule: if the loss depends on output y, y depends on hidden value h, and h depends on weight w, then ∂loss/∂w = ∂loss/∂y × ∂y/∂h × ∂h/∂w. Backpropagation (popularised by Rumelhart, Hinton and Williams in 1986) computes these products efficiently from the output backwards, reusing each layer's result, so the cost is about the same as one forward pass. Problems it can face: vanishing gradients (products of many small numbers shrink to zero in deep nets; ReLU, residual connections and normalisation help) and exploding gradients (fixed by gradient clipping). Libraries such as PyTorch and JAX do this automatically (autodiff).",
+    "hi": "अंदर गहरे बैठे भार को कैसे पता चले कि कैसे बदलना है? चेन रूल: अगर लॉस आउटपुट y पर, y छिपे मान h पर, और h भार w पर निर्भर है, तो ∂loss/∂w = ∂loss/∂y × ∂y/∂h × ∂h/∂w। बैकप्रोपेगेशन (1986 में रुमेलहार्ट, हिंटन और विलियम्स ने लोकप्रिय किया) ये गुणनफल आउटपुट से पीछे की ओर कुशलता से निकालता है, हर परत का नतीजा दोबारा इस्तेमाल करके, इसलिए लागत लगभग एक फ़ॉरवर्ड पास जितनी होती है। समस्याएँ: लुप्त होते ग्रेडिएंट (गहरे नेटवर्क में कई छोटी संख्याओं का गुणा शून्य हो जाता है; ReLU, रेज़िडुअल कनेक्शन और नॉर्मलाइज़ेशन मदद करते हैं) और फटते ग्रेडिएंट (ग्रेडिएंट क्लिपिंग से हल)। पाइटॉर्च और जैक्स जैसी लाइब्रेरी यह अपने आप करती हैं (ऑटोडिफ़)।",
+    "hinglish": "Andar gehre baithe weight ko kaise pata chale kaise badalna hai? Chain rule: agar loss output y par, y hidden value h par, aur h weight w par depend karta hai, to ∂loss/∂w = ∂loss/∂y × ∂y/∂h × ∂h/∂w. Backpropagation (1986 mein Rumelhart, Hinton aur Williams ne popular kiya) yeh products output se peeche ki taraf efficiently nikaalta hai, har layer ka result reuse karke, isliye cost lagbhag ek forward pass jitni hoti hai. Problems: vanishing gradients (deep nets mein kai chhote numbers ka product zero ho jaata hai; ReLU, residual connections aur normalisation madad karte hain) aur exploding gradients (gradient clipping se fix). PyTorch aur JAX jaisi libraries yeh automatically karti hain (autodiff)."
+   },
+   "analogy": {
+    "hinglish": "Cricket team haari: captain (output) coach ko batata hai, coach har player ko uske hisse ki galti batata hai — galti peeche ki taraf baanti jaati hai.",
+    "en": "The cricket team lost: the captain (output) tells the coach, the coach tells each player their share of the mistake — blame is shared out backwards.",
+    "hi": "क्रिकेट टीम हारी: कप्तान (आउटपुट) कोच को बताता है, कोच हर खिलाड़ी को उसके हिस्से की ग़लती बताता है — ग़लती पीछे की ओर बँटती जाती है।"
+   },
+   "realExample": {
+    "en": "Geoffrey Hinton shared the 2024 Nobel Prize in Physics with John Hopfield for foundational work that enabled machine learning with neural networks.",
+    "hinglish": "Geoffrey Hinton ne John Hopfield ke saath 2024 ka Physics Nobel Prize share kiya, neural networks se machine learning ko sambhav banane wale foundational kaam ke liye.",
+    "hi": "जेफ़्री हिंटन ने न्यूरल नेटवर्क से मशीन लर्निंग संभव करने वाले मूल कार्य के लिए जॉन हॉपफ़ील्ड के साथ 2024 का भौतिकी नोबेल पुरस्कार साझा किया।"
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "With pencil and paper, do one training step for y = w·x with x = 2, target 10, start w = 3, loss (y − 10)², learning rate 0.1. What is the new w?",
+   "hinglish": "Kagaz-pencil se y = w·x ka ek training step karo: x = 2, target 10, start w = 3, loss (y − 10)², learning rate 0.1. Naya w kya hai?",
+   "hi": "पेंसिल-काग़ज़ से y = w·x के लिए एक प्रशिक्षण कदम करो: x = 2, लक्ष्य 10, आरंभ w = 3, लॉस (y − 10)², लर्निंग रेट 0.1। नया w क्या है?"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "One step: y = w·x, x = 2, w = 3, target 10, loss (y−10)², η = 0.1. New w?",
+     "hi": "एक कदम: y = w·x, x = 2, w = 3, लक्ष्य 10, लॉस (y−10)², η = 0.1। नया w?",
+     "hinglish": "Ek step: y = w·x, x = 2, w = 3, target 10, loss (y−10)², η = 0.1. Naya w?"
+    },
+    "options": [
+     {
+      "en": "4.6",
+      "hinglish": "4.6",
+      "hi": "4.6"
+     },
+     {
+      "en": "3.4",
+      "hinglish": "3.4",
+      "hi": "3.4"
+     },
+     {
+      "en": "1.4",
+      "hinglish": "1.4",
+      "hi": "1.4"
+     },
+     {
+      "en": "5",
+      "hinglish": "5",
+      "hi": "5"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "y = 6. ∂loss/∂w = 2(y − 10)·x = 2(−4)(2) = −16. w ← 3 − 0.1×(−16) = 4.6, moving towards the ideal 5.",
+     "hi": "y = 6। ∂loss/∂w = 2(y − 10)·x = −16। w ← 3 − 0.1×(−16) = 4.6, आदर्श 5 की ओर।",
+     "hinglish": "y = 6. ∂loss/∂w = 2(y − 10)·x = −16. w ← 3 − 0.1×(−16) = 4.6, ideal 5 ki taraf."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "The model gives the correct class probability 0.5. Cross-entropy loss (natural log)?",
+     "hi": "मॉडल सही श्रेणी को 0.5 संभावना देता है। क्रॉस-एंट्रॉपी लॉस?",
+     "hinglish": "Model sahi class ko 0.5 probability deta hai. Cross-entropy loss?"
+    },
+    "options": [
+     {
+      "en": "≈ 0.69",
+      "hinglish": "≈ 0.69",
+      "hi": "≈ 0.69"
+     },
+     {
+      "en": "0.5",
+      "hinglish": "0.5",
+      "hi": "0.5"
+     },
+     {
+      "en": "0",
+      "hinglish": "0",
+      "hi": "0"
+     },
+     {
+      "en": "≈ 2.3",
+      "hinglish": "≈ 2.3",
+      "hi": "≈ 2.3"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "−ln(0.5) = ln 2 ≈ 0.693. A perfect 1.0 would give loss 0.",
+     "hi": "−ln(0.5) = ln 2 ≈ 0.693। पूरा 1.0 होता तो लॉस 0।",
+     "hinglish": "−ln(0.5) = ln 2 ≈ 0.693. Perfect 1.0 hota to loss 0."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "order",
+    "prompt": {
+     "en": "Order one training step.",
+     "hi": "एक प्रशिक्षण कदम को क्रम में लगाएँ।",
+     "hinglish": "Ek training step ko order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Forward pass",
+      "hinglish": "Forward pass",
+      "hi": "फ़ॉरवर्ड पास"
+     },
+     {
+      "en": "Compute loss",
+      "hinglish": "Loss nikaalo",
+      "hi": "लॉस निकालो"
+     },
+     {
+      "en": "Backward pass (gradients)",
+      "hinglish": "Backward pass (gradients)",
+      "hi": "बैकवर्ड पास (ग्रेडिएंट)"
+     },
+     {
+      "en": "Update weights",
+      "hinglish": "Weights update",
+      "hi": "भार अद्यतन करो"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "Predict, measure, assign blame, adjust. Repeat for the next batch.",
+     "hi": "अनुमान, माप, दोष बाँटना, सुधार। अगले बैच के लिए दोहराओ।",
+     "hinglish": "Predict, measure, blame baanto, adjust. Agle batch ke liye repeat."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Train the spiral until the loss is below 0.1.",
+     "hi": "स्पाइरल को लॉस 0.1 से नीचे आने तक प्रशिक्षित करें।",
+     "hinglish": "Spiral ko loss 0.1 se neeche aane tak train karo."
+    },
+    "answer": {
+     "event": "loss-below",
+     "value": 0.1,
+     "dataset": "spiral"
+    },
+    "explain": {
+     "en": "The spiral is hard; two hidden layers and patience are needed. Watch the boundary curl to follow the arms.",
+     "hi": "स्पाइरल कठिन है; दो छिपी परतें और धैर्य चाहिए। सीमा को भुजाओं के साथ मुड़ते देखो।",
+     "hinglish": "Spiral mushkil hai; do hidden layers aur sabr chahiye. Boundary ko arms ke saath mudte dekho."
+    },
+    "difficulty": 3
+   }
+  ]
+ },
+ "topics": [
+  "ai.neural-nets",
+  "ai.deep-learning"
+ ],
+ "sources": [
+  {
+   "title": "Rumelhart, Hinton & Williams (1986) Learning representations by back-propagating errors, Nature",
+   "url": "https://www.nature.com/articles/323533a0",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Nobel Prize in Physics 2024 — press release",
+   "url": "https://www.nobelprize.org/prizes/physics/2024/press-release/",
+   "licence": "fact reference"
+  }
+ ]
+}

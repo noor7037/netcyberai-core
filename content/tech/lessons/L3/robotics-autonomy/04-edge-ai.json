@@ -1,0 +1,424 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.robotics-autonomy.04",
+ "level": 3,
+ "classes": [
+  10,
+  11,
+  12
+ ],
+ "unit": "robotics-autonomy",
+ "title": {
+  "en": "Edge AI on small devices",
+  "hi": "छोटे उपकरणों पर एज एआई",
+  "hinglish": "Chhote devices par Edge AI"
+ },
+ "minutes": 15,
+ "xp": 65,
+ "prereq": [
+  "L3.robotics-autonomy.03",
+  "L3.machine-learning.01"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain the difference between cloud AI and edge AI",
+   "hi": "क्लाउड एआई और एज एआई में अंतर समझाओ",
+   "hinglish": "Cloud AI aur edge AI mein farak samjhao"
+  },
+  {
+   "en": "Weigh latency, privacy, cost, power and accuracy when choosing where a model runs",
+   "hi": "मॉडल कहाँ चले यह चुनते समय विलंब, निजता, लागत, शक्ति और सटीकता तौलो",
+   "hinglish": "Model kahan chale yeh chunte waqt latency, privacy, cost, power aur accuracy taulo"
+  },
+  {
+   "en": "Describe how models are shrunk: small architectures and quantisation",
+   "hi": "बताओ मॉडल कैसे छोटे किए जाते हैं: छोटी संरचनाएँ और क्वांटाइज़ेशन",
+   "hinglish": "Batao models kaise chhote kiye jaate hain: chhoti architectures aur quantisation"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Edge AI",
+   "hinglish": "Device par AI",
+   "en": "Running a model on the device itself instead of a distant server",
+   "hi": "दूर के सर्वर के बजाय उपकरण पर ही मॉडल चलाना"
+  },
+  {
+   "term": "Latency",
+   "hinglish": "Deri",
+   "en": "Time from input to answer",
+   "hi": "इनपुट से उत्तर तक का समय"
+  },
+  {
+   "term": "Quantisation",
+   "hinglish": "Numbers chhote karna",
+   "en": "Storing weights with fewer bits, e.g. 8-bit integers instead of 32-bit floats",
+   "hi": "वज़न कम बिटों में रखना, जैसे 32-बिट फ़्लोट के बजाय 8-बिट पूर्णांक"
+  },
+  {
+   "term": "TinyML",
+   "hinglish": "TinyML",
+   "en": "Machine learning on microcontrollers with kilobytes of memory",
+   "hi": "किलोबाइट मेमोरी वाले माइक्रोकंट्रोलरों पर मशीन लर्निंग"
+  },
+  {
+   "term": "NPU",
+   "hinglish": "AI chip",
+   "en": "Neural processing unit: a chip block built for fast, low-power neural-network maths",
+   "hi": "न्यूरल प्रोसेसिंग यूनिट: तेज़, कम-शक्ति न्यूरल नेटवर्क गणित के लिए बना चिप भाग"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Cloud AI: send data to a big server, wait, get an answer. Edge AI: the device answers itself.",
+    "hi": "क्लाउड एआई: डेटा बड़े सर्वर को भेजो, रुको, उत्तर पाओ। एज एआई: उपकरण ख़ुद उत्तर देता है।",
+    "hinglish": "Cloud AI: data bade server ko bhejo, ruko, jawab pao. Edge AI: device khud jawab deta hai."
+   },
+   "visual": "compare:cloud|edge",
+   "narration": {
+    "en": "Cloud AI: send data to a big server, wait, get an answer. Edge AI: the device answers itself.",
+    "hi": "क्लाउड एआई: डेटा बड़े सर्वर को भेजो, रुको, उत्तर पाओ। एज एआई: उपकरण ख़ुद उत्तर देता है।",
+    "hinglish": "Cloud AI: data bade server ko bhejo, ruko, jawab pao. Edge AI: device khud jawab deta hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Edge wins on latency, privacy and working offline. Cloud wins on model size.",
+    "hi": "एज विलंब, निजता और ऑफ़लाइन काम में जीतता है। क्लाउड मॉडल के आकार में।",
+    "hinglish": "Edge latency, privacy aur offline kaam mein jeet-ta hai. Cloud model size mein."
+   },
+   "visual": "stack:latency|privacy|offline|power",
+   "narration": {
+    "en": "Edge wins on latency, privacy and working offline. Cloud wins on model size.",
+    "hi": "एज विलंब, निजता और ऑफ़लाइन काम में जीतता है। क्लाउड मॉडल के आकार में।",
+    "hinglish": "Edge latency, privacy aur offline kaam mein jeet-ta hai. Cloud model size mein."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Shrink the model: fewer neurons, and 8-bit weights instead of 32-bit — 4× smaller.",
+    "hi": "मॉडल छोटा करो: कम न्यूरॉन, और 32-बिट के बजाय 8-बिट वज़न — 4 गुना छोटा।",
+    "hinglish": "Model chhota karo: kam neurons, aur 32-bit ke bajaye 8-bit weights — 4 guna chhota."
+   },
+   "visual": "anim:quantise",
+   "narration": {
+    "en": "Shrink the model: fewer neurons, and 8-bit weights instead of 32-bit — 4× smaller.",
+    "hi": "मॉडल छोटा करो: कम न्यूरॉन, और 32-बिट के बजाय 8-बिट वज़न — 4 गुना छोटा।",
+    "hinglish": "Model chhota karo: kam neurons, aur 32-bit ke bajaye 8-bit weights — 4 guna chhota."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "A wake-word detector listens all day on a tiny chip, and only then wakes the big system.",
+    "hi": "वेक-वर्ड पहचानने वाला छोटी चिप पर दिनभर सुनता है, और तभी बड़ा तंत्र जगाता है।",
+    "hinglish": "Wake-word detector chhoti chip par din bhar sunta hai, aur tabhi bada system jagata hai."
+   },
+   "visual": "flow:mic|tiny model|\"Hey…\"|wake",
+   "narration": {
+    "en": "A wake-word detector listens all day on a tiny chip, and only then wakes the big system.",
+    "hi": "वेक-वर्ड पहचानने वाला छोटी चिप पर दिनभर सुनता है, और तभी बड़ा तंत्र जगाता है।",
+    "hinglish": "Wake-word detector chhoti chip par din bhar sunta hai, aur tabhi bada system jagata hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "nn-playground",
+  "config": {
+   "mode": "classify",
+   "dataset": "circle",
+   "hidden": [
+    4
+   ]
+  },
+  "goal": {
+   "en": "Edge budget: train the smallest network that still classifies the circle well — try 0, 2 and 4 hidden neurons. Reach at least 90% test accuracy with as few neurons as you can.",
+   "hi": "एज बजट: सबसे छोटा नेटवर्क प्रशिक्षित करो जो वृत्त को फिर भी अच्छे से वर्गीकृत करे — 0, 2 और 4 छिपे न्यूरॉन आज़माओ। जितने कम न्यूरॉन में हो सके, कम से कम 90% परीक्षण सटीकता पाओ।",
+   "hinglish": "Edge budget: sabse chhota network train karo jo circle ko phir bhi achhe se classify kare — 0, 2 aur 4 hidden neurons try karo. Jitne kam neurons mein ho sake, kam se kam 90% test accuracy pao."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Where should the model run?",
+    "hi": "मॉडल कहाँ चले?",
+    "hinglish": "Model kahan chale?"
+   },
+   "body": {
+    "en": "A cloud model can be huge and accurate, but every request needs the internet, takes a round trip (often 100 ms or more on mobile data, and nothing at all with no signal), costs money per request, and sends your data away. An edge model runs on your phone, a camera or a microcontroller: answers in milliseconds, works in a village with no network, keeps photos and voice on the device, and costs nothing per use. The price is size: the device has limited memory, compute and battery. So engineers often split the work. Phones detect the wake word on a low-power chip that is always listening; face unlock runs entirely on the phone’s NPU; and since 2024 phone makers have shipped on-device language models of a few billion parameters for tasks like summarising notifications, sending only harder requests to the cloud.",
+    "hi": "क्लाउड मॉडल बहुत बड़ा और सटीक हो सकता है, पर हर अनुरोध को इंटरनेट चाहिए, आने-जाने का समय लगता है (मोबाइल डेटा पर अक्सर 100 ms या ज़्यादा, और बिना सिग्नल कुछ नहीं), हर अनुरोध पर पैसा लगता है, और आपका डेटा बाहर जाता है। एज मॉडल आपके फ़ोन, कैमरे या माइक्रोकंट्रोलर पर चलता है: मिलीसेकंड में उत्तर, बिना नेटवर्क वाले गाँव में भी काम, फ़ोटो और आवाज़ उपकरण पर ही, और हर उपयोग मुफ़्त। क़ीमत आकार है: उपकरण की मेमोरी, गणना और बैटरी सीमित हैं। इसलिए इंजीनियर अक्सर काम बाँटते हैं। फ़ोन हमेशा सुनने वाली कम-शक्ति चिप पर वेक-वर्ड पहचानते हैं; फ़ेस अनलॉक पूरी तरह फ़ोन के NPU पर चलता है; और 2024 से फ़ोन निर्माता सूचनाओं का सार जैसे कामों के लिए कुछ अरब पैरामीटर के उपकरण-पर भाषा मॉडल दे रहे हैं, केवल कठिन अनुरोध क्लाउड को भेजते हुए।",
+    "hinglish": "Cloud model bahut bada aur accurate ho sakta hai, par har request ko internet chahiye, round trip lagti hai (mobile data par aksar 100 ms ya zyada, aur bina signal kuch nahi), har request par paisa lagta hai, aur tumhara data bahar jaata hai. Edge model tumhare phone, camera ya microcontroller par chalta hai: milliseconds mein jawab, bina network wale gaon mein bhi kaam, photos aur awaaz device par hi, aur har use free. Keemat size hai: device ki memory, compute aur battery limited hain. Isliye engineers aksar kaam baant-te hain. Phones hamesha sunne wali low-power chip par wake word pehchaante hain; face unlock poori tarah phone ke NPU par chalta hai; aur 2024 se phone makers notifications summarise karne jaise kaamon ke liye kuch billion parameters ke on-device language models de rahe hain, sirf mushkil requests cloud ko bhejte hue."
+   },
+   "analogy": {
+    "en": "A calculator in your bag versus phoning a friend who has a supercomputer: the calculator is instant and private, the friend can do much more.",
+    "hi": "बैग में कैलकुलेटर बनाम सुपरकंप्यूटर वाले दोस्त को फ़ोन: कैलकुलेटर तुरंत और निजी, दोस्त बहुत ज़्यादा कर सकता है।",
+    "hinglish": "Bag mein calculator vs supercomputer wale dost ko phone: calculator turant aur private, dost bahut zyada kar sakta hai."
+   },
+   "realExample": {
+    "en": "A crop-disease app that works offline can check a leaf photo in a field with no signal — the model ships inside the app.",
+    "hi": "ऑफ़लाइन चलने वाला फ़सल-रोग ऐप बिना सिग्नल वाले खेत में पत्ती की फ़ोटो जाँच सकता है — मॉडल ऐप के अंदर ही आता है।",
+    "hinglish": "Offline chalne wala crop-disease app bina signal wale khet mein patti ki photo check kar sakta hai — model app ke andar hi aata hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "Making models small enough",
+    "hi": "मॉडल को काफ़ी छोटा बनाना",
+    "hinglish": "Models ko kaafi chhota banana"
+   },
+   "body": {
+    "en": "Three tricks shrink a model. Smaller architectures: fewer layers and neurons, or designs like MobileNet built for phones. Quantisation: store each weight as an 8-bit integer instead of a 32-bit float — 4 times less memory and much faster on NPUs, usually with only a small accuracy drop. Pruning and distillation: remove weights that barely matter, or train a small \"student\" model to copy a big \"teacher\". Toolkits such as Google’s LiteRT (formerly TensorFlow Lite) run models on Android phones and even on microcontrollers with a few hundred kilobytes of RAM — that is TinyML. A keyword-spotting model for an ESP32 can be under 100 KB. Always measure after shrinking: test accuracy on real data from the device’s own microphone or camera, in Indian accents and lighting, not just on the original test set.",
+    "hi": "तीन तरीक़े मॉडल छोटा करते हैं। छोटी संरचनाएँ: कम परतें और न्यूरॉन, या फ़ोन के लिए बने MobileNet जैसे डिज़ाइन। क्वांटाइज़ेशन: हर वज़न 32-बिट फ़्लोट के बजाय 8-बिट पूर्णांक में रखो — 4 गुना कम मेमोरी और NPU पर बहुत तेज़, आम तौर पर सटीकता में थोड़ी गिरावट। छँटाई और आसवन: बेहद कम असर वाले वज़न हटाओ, या छोटे \"छात्र\" मॉडल को बड़े \"शिक्षक\" की नक़ल सिखाओ। Google के LiteRT (पहले TensorFlow Lite) जैसे टूलकिट Android फ़ोनों पर और कुछ सौ किलोबाइट RAM वाले माइक्रोकंट्रोलरों पर भी मॉडल चलाते हैं — यही TinyML है। ESP32 के लिए कीवर्ड पहचान मॉडल 100 KB से कम हो सकता है। छोटा करने के बाद हमेशा मापो: उपकरण के अपने माइक्रोफ़ोन या कैमरे के असली डेटा पर, भारतीय लहजों और रोशनी में सटीकता जाँचो, केवल मूल परीक्षण सेट पर नहीं।",
+    "hinglish": "Teen tricks model chhota karti hain. Chhoti architectures: kam layers aur neurons, ya phones ke liye bane MobileNet jaise designs. Quantisation: har weight 32-bit float ke bajaye 8-bit integer mein rakho — 4 guna kam memory aur NPUs par bahut tez, aam taur par accuracy mein thoda drop. Pruning aur distillation: bahut kam asar wale weights hatao, ya chhote \"student\" model ko bade \"teacher\" ki nakal sikhao. Google ke LiteRT (pehle TensorFlow Lite) jaise toolkits Android phones par aur kuch sau kilobyte RAM wale microcontrollers par bhi models chalate hain — yahi TinyML hai. ESP32 ke liye keyword-spotting model 100 KB se kam ho sakta hai. Chhota karne ke baad hamesha naapo: device ke apne microphone ya camera ke asli data par, Indian accents aur lighting mein accuracy check karo, sirf original test set par nahi."
+   },
+   "analogy": {
+    "en": "Packing for a trek: you cannot carry the whole wardrobe, so you pick light versions of what you truly need.",
+    "hi": "ट्रेक के लिए सामान: पूरी अलमारी नहीं ले जा सकते, तो जो सच में चाहिए उसके हल्के रूप चुनते हो।",
+    "hinglish": "Trek ke liye packing: poori almari nahi le ja sakte, to jo sach mein chahiye uske halke versions chunte ho."
+   },
+   "realExample": {
+    "en": "A 10-million-parameter model takes 40 MB as 32-bit floats but only 10 MB as 8-bit integers.",
+    "hi": "1 करोड़ पैरामीटर का मॉडल 32-बिट फ़्लोट में 40 MB लेता है पर 8-बिट पूर्णांक में केवल 10 MB।",
+    "hinglish": "1 crore parameters ka model 32-bit floats mein 40 MB leta hai par 8-bit integers mein sirf 10 MB."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Pick three AI features on a phone (for example face unlock, live captions, photo search, a chatbot). For each, decide edge, cloud or both, and justify it with latency, privacy, cost and accuracy. Then calculate the size of a 50-lakh-parameter model in 32-bit and in 8-bit.",
+   "hi": "फ़ोन की तीन एआई सुविधाएँ चुनो (जैसे फ़ेस अनलॉक, लाइव कैप्शन, फ़ोटो खोज, चैटबॉट)। हर एक के लिए एज, क्लाउड या दोनों तय करो, और विलंब, निजता, लागत और सटीकता से उचित ठहराओ। फिर 50-लाख-पैरामीटर मॉडल का आकार 32-बिट और 8-बिट में निकालो।",
+   "hinglish": "Phone ke teen AI features chuno (jaise face unlock, live captions, photo search, chatbot). Har ek ke liye edge, cloud ya dono tay karo, aur latency, privacy, cost aur accuracy se justify karo. Phir 50-lakh-parameter model ka size 32-bit aur 8-bit mein nikaalo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "multi",
+    "prompt": {
+     "en": "What are advantages of running a model on the device?",
+     "hi": "उपकरण पर मॉडल चलाने के क्या लाभ हैं?",
+     "hinglish": "Device par model chalane ke kya fayde hain?"
+    },
+    "options": [
+     {
+      "en": "Works without internet",
+      "hi": "बिना इंटरनेट चलता है",
+      "hinglish": "Bina internet chalta hai"
+     },
+     {
+      "en": "Lower latency",
+      "hi": "कम विलंब",
+      "hinglish": "Kam latency"
+     },
+     {
+      "en": "Data can stay private on the device",
+      "hi": "डेटा उपकरण पर निजी रह सकता है",
+      "hinglish": "Data device par private reh sakta hai"
+     },
+     {
+      "en": "Unlimited model size",
+      "hi": "असीमित मॉडल आकार",
+      "hinglish": "Unlimited model size"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2
+    ],
+    "explain": {
+     "en": "Device memory and battery limit model size.",
+     "hi": "उपकरण की मेमोरी और बैटरी मॉडल आकार सीमित करती हैं।",
+     "hinglish": "Device ki memory aur battery model size limit karti hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "short",
+    "prompt": {
+     "en": "A model has 20 lakh (2 million) weights. How many MB does it take as 8-bit integers? (1 MB = 10 lakh bytes)",
+     "hi": "मॉडल में 20 लाख वज़न हैं। 8-बिट पूर्णांक में कितने MB? (1 MB = 10 लाख बाइट)",
+     "hinglish": "Model mein 20 lakh weights hain. 8-bit integers mein kitne MB? (1 MB = 10 lakh bytes)"
+    },
+    "answer": {
+     "accept": [
+      "2",
+      "2 MB",
+      "2MB"
+     ]
+    },
+    "explain": {
+     "en": "1 byte per weight → 2 MB (it would be 8 MB as 32-bit floats).",
+     "hi": "हर वज़न 1 बाइट → 2 MB (32-बिट फ़्लोट में 8 MB होता)।",
+     "hinglish": "Har weight 1 byte → 2 MB (32-bit floats mein 8 MB hota)."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why is wake-word detection (\"Hey…\") usually done on the device?",
+     "hi": "वेक-वर्ड पहचान (\"Hey…\") आम तौर पर उपकरण पर क्यों होती है?",
+     "hinglish": "Wake-word detection (\"Hey…\") aam taur par device par kyun hoti hai?"
+    },
+    "options": [
+     {
+      "en": "It listens all the time, so sending all audio to the cloud would be slow, costly and a privacy risk",
+      "hi": "यह हमेशा सुनता है, तो सारी आवाज़ क्लाउड भेजना धीमा, महँगा और निजता के लिए जोखिम होगा",
+      "hinglish": "Yeh hamesha sunta hai, to saari awaaz cloud bhejna dheema, mehenga aur privacy risk hoga"
+     },
+     {
+      "en": "Phones have no internet",
+      "hi": "फ़ोनों में इंटरनेट नहीं",
+      "hinglish": "Phones mein internet nahi"
+     },
+     {
+      "en": "Cloud models cannot hear",
+      "hi": "क्लाउड मॉडल सुन नहीं सकते",
+      "hinglish": "Cloud models sun nahi sakte"
+     },
+     {
+      "en": "It needs a huge model",
+      "hi": "इसे विशाल मॉडल चाहिए",
+      "hinglish": "Ise bahut bada model chahiye"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "A tiny always-on model guards the big one.",
+     "hi": "छोटा हमेशा-चालू मॉडल बड़े का पहरेदार है।",
+     "hinglish": "Chhota always-on model bade ka pehredaar hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "match",
+    "prompt": {
+     "en": "Match each shrinking trick to what it does.",
+     "hi": "हर छोटा करने वाले तरीक़े को उसके काम से मिलाओ।",
+     "hinglish": "Har chhota karne wali trick ko uske kaam se milao."
+    },
+    "options": [
+     {
+      "en": "Quantisation",
+      "hi": "क्वांटाइज़ेशन",
+      "hinglish": "Quantisation"
+     },
+     {
+      "en": "Pruning",
+      "hi": "छँटाई",
+      "hinglish": "Pruning"
+     },
+     {
+      "en": "Distillation",
+      "hi": "आसवन",
+      "hinglish": "Distillation"
+     }
+    ],
+    "answer": [
+     {
+      "en": "Fewer bits per weight",
+      "hi": "हर वज़न के कम बिट",
+      "hinglish": "Har weight ke kam bits"
+     },
+     {
+      "en": "Remove weights that barely matter",
+      "hi": "बेहद कम असर वाले वज़न हटाओ",
+      "hinglish": "Bahut kam asar wale weights hatao"
+     },
+     {
+      "en": "A small student copies a big teacher",
+      "hi": "छोटा छात्र बड़े शिक्षक की नक़ल करता है",
+      "hinglish": "Chhota student bade teacher ki nakal karta hai"
+     }
+    ],
+    "explain": {
+     "en": "All three trade a little accuracy for size and speed.",
+     "hi": "तीनों थोड़ी सटीकता के बदले आकार और गति देते हैं।",
+     "hinglish": "Teeno thodi accuracy ke badle size aur speed dete hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "After quantising a model for a school-gate camera, what should you do first?",
+     "hi": "स्कूल-गेट कैमरे के लिए मॉडल क्वांटाइज़ करने के बाद पहले क्या करो?",
+     "hinglish": "School-gate camera ke liye model quantise karne ke baad pehle kya karo?"
+    },
+    "options": [
+     {
+      "en": "Re-test accuracy on real images from that camera",
+      "hi": "उसी कैमरे की असली तस्वीरों पर सटीकता दोबारा जाँचो",
+      "hinglish": "Usi camera ki asli images par accuracy dobaara check karo"
+     },
+     {
+      "en": "Delete the test set",
+      "hi": "परीक्षण सेट मिटाओ",
+      "hinglish": "Test set mitao"
+     },
+     {
+      "en": "Assume it is unchanged",
+      "hi": "मान लो कुछ नहीं बदला",
+      "hinglish": "Maan lo kuch nahi badla"
+     },
+     {
+      "en": "Make it bigger again",
+      "hi": "फिर से बड़ा करो",
+      "hinglish": "Phir se bada karo"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Shrinking can change behaviour; measure on real conditions.",
+     "hi": "छोटा करने से व्यवहार बदल सकता है; असली हालात में मापो।",
+     "hinglish": "Chhota karne se behaviour badal sakta hai; asli halaat mein naapo."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Reach at least 90% test accuracy with a small network.",
+     "hi": "छोटे नेटवर्क से कम से कम 90% परीक्षण सटीकता पाओ।",
+     "hinglish": "Chhote network se kam se kam 90% test accuracy pao."
+    },
+    "answer": {
+     "event": "test-accuracy",
+     "dataset": "circle"
+    },
+    "explain": {
+     "en": "A circle needs at least a few hidden neurons; a straight line cannot separate it.",
+     "hi": "वृत्त को कम से कम कुछ छिपे न्यूरॉन चाहिए; सीधी रेखा उसे अलग नहीं कर सकती।",
+     "hinglish": "Circle ko kam se kam kuch hidden neurons chahiye; seedhi line use alag nahi kar sakti."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "topics": [
+  "robo.edge-ai",
+  "ai.neural-nets",
+  "robo.microcontroller"
+ ],
+ "sources": [
+  {
+   "title": "Google AI Edge — LiteRT (formerly TensorFlow Lite)",
+   "url": "https://ai.google.dev/edge/litert",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Apple Machine Learning Research — Introducing Apple’s On-Device and Server Foundation Models (June 2024)",
+   "url": "https://machinelearning.apple.com/research/introducing-apple-foundation-models",
+   "licence": "fact reference"
+  }
+ ]
+}

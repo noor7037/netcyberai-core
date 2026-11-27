@@ -1,0 +1,379 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.electronics-embedded.03",
+ "level": 3,
+ "classes": [
+  9,
+  10,
+  11
+ ],
+ "unit": "electronics-embedded",
+ "title": {
+  "en": "Analog, digital and the ADC",
+  "hi": "एनालॉग, डिजिटल और ADC",
+  "hinglish": "Analog, digital aur ADC"
+ },
+ "minutes": 15,
+ "xp": 60,
+ "prereq": [
+  "L3.electronics-embedded.02"
+ ],
+ "outcomes": [
+  {
+   "en": "Tell analog signals from digital ones",
+   "hi": "एनालॉग और डिजिटल संकेतों में अंतर बताओ",
+   "hinglish": "Analog aur digital signals mein farak batao"
+  },
+  {
+   "en": "Work out an ADC’s step size from its bits and reference voltage",
+   "hi": "बिट और संदर्भ वोल्टेज से ADC का चरण आकार निकालो",
+   "hinglish": "Bits aur reference voltage se ADC ka step size nikaalo"
+  },
+  {
+   "en": "Pick a sampling rate using the Nyquist rule and read a sensor",
+   "hi": "नाइक्विस्ट नियम से नमूना दर चुनो और सेंसर पढ़ो",
+   "hinglish": "Nyquist rule se sampling rate chuno aur sensor padho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Analog",
+   "hinglish": "Lagataar",
+   "en": "A signal that can take any value in a range, like temperature",
+   "hi": "संकेत जो सीमा में कोई भी मान ले सके, जैसे तापमान"
+  },
+  {
+   "term": "Digital",
+   "hinglish": "Ginti wala",
+   "en": "A signal stored as whole numbers from a fixed set of levels",
+   "hi": "संकेत जो तय स्तरों की पूर्ण संख्याओं में सहेजा जाए"
+  },
+  {
+   "term": "ADC",
+   "hinglish": "Analog-to-digital converter",
+   "en": "A circuit that measures a voltage and outputs a number",
+   "hi": "परिपथ जो वोल्टेज मापकर संख्या देता है"
+  },
+  {
+   "term": "Resolution",
+   "hinglish": "Barikee",
+   "en": "How many levels an ADC has: 2ⁿ for n bits",
+   "hi": "ADC के कितने स्तर: n बिट के लिए 2ⁿ"
+  },
+  {
+   "term": "Sampling rate",
+   "hinglish": "Kitni baar naapna",
+   "en": "How many measurements per second",
+   "hi": "प्रति सेकंड कितने माप"
+  },
+  {
+   "term": "Aliasing",
+   "hinglish": "Nakli wave",
+   "en": "A false slower signal that appears when you sample too slowly",
+   "hi": "बहुत धीमे नमूने लेने पर दिखने वाला नकली धीमा संकेत"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "The real world is analog: temperature, light and sound change smoothly.",
+    "hi": "असली दुनिया एनालॉग है: तापमान, प्रकाश और ध्वनि सहज रूप से बदलते हैं।",
+    "hinglish": "Asli duniya analog hai: temperature, light aur sound smoothly badalte hain."
+   },
+   "visual": "anim:wave",
+   "narration": {
+    "en": "The real world is analog: temperature, light and sound change smoothly.",
+    "hi": "असली दुनिया एनालॉग है: तापमान, प्रकाश और ध्वनि सहज रूप से बदलते हैं।",
+    "hinglish": "Asli duniya analog hai: temperature, light aur sound smoothly badalte hain."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "An ADC measures it many times a second and rounds each reading to a level.",
+    "hi": "ADC उसे सेकंड में कई बार मापता है और हर पढ़ाई को एक स्तर पर गोल करता है।",
+    "hinglish": "ADC use second mein kai baar naapta hai aur har reading ko ek level par round karta hai."
+   },
+   "visual": "anim:staircase",
+   "narration": {
+    "en": "An ADC measures it many times a second and rounds each reading to a level.",
+    "hi": "ADC उसे सेकंड में कई बार मापता है और हर पढ़ाई को एक स्तर पर गोल करता है।",
+    "hinglish": "ADC use second mein kai baar naapta hai aur har reading ko ek level par round karta hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "10 bits = 1,024 levels. With 5 V reference, each step is 5 ÷ 1,024 ≈ 4.9 mV.",
+    "hi": "10 बिट = 1,024 स्तर। 5 V संदर्भ पर हर चरण 5 ÷ 1,024 ≈ 4.9 mV।",
+    "hinglish": "10 bits = 1,024 levels. 5 V reference par har step 5 ÷ 1,024 ≈ 4.9 mV."
+   },
+   "visual": "stack:bits|levels|step",
+   "narration": {
+    "en": "10 bits = 1,024 levels. With 5 V reference, each step is 5 ÷ 1,024 ≈ 4.9 mV.",
+    "hi": "10 बिट = 1,024 स्तर। 5 V संदर्भ पर हर चरण 5 ÷ 1,024 ≈ 4.9 mV।",
+    "hinglish": "10 bits = 1,024 levels. 5 V reference par har step 5 ÷ 1,024 ≈ 4.9 mV."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Sample more than twice as fast as the fastest wiggle, or you see a fake wave.",
+    "hi": "सबसे तेज़ हिलाव से दोगुने से ज़्यादा तेज़ नमूना लो, वरना नकली तरंग दिखेगी।",
+    "hinglish": "Sabse tez hilaav se double se zyada tez sample lo, warna nakli wave dikhegi."
+   },
+   "visual": "compare:fast sampling|too slow → aliasing",
+   "narration": {
+    "en": "Sample more than twice as fast as the fastest wiggle, or you see a fake wave.",
+    "hi": "सबसे तेज़ हिलाव से दोगुने से ज़्यादा तेज़ नमूना लो, वरना नकली तरंग दिखेगी।",
+    "hinglish": "Sabse tez hilaav se double se zyada tez sample lo, warna nakli wave dikhegi."
+   }
+  }
+ ],
+ "play": {
+  "lab": "control-lab",
+  "config": {
+   "mode": "adc",
+   "bits": 3,
+   "rate": 8
+  },
+  "goal": {
+   "en": "Start with a 3-bit ADC. Drop the rate to 5 per second and spot the fake wave. Then reach a clean copy: at least 8 bits and 20 samples per second.",
+   "hi": "3-बिट ADC से शुरू करो। दर 5 प्रति सेकंड तक गिराओ और नकली तरंग पकड़ो। फिर साफ़ प्रति तक पहुँचो: कम से कम 8 बिट और 20 नमूने प्रति सेकंड।",
+   "hinglish": "3-bit ADC se shuru karo. Rate 5 per second tak girao aur nakli wave pakdo. Phir saaf copy tak pahuncho: kam se kam 8 bits aur 20 samples per second."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Two choices: how fine, how often",
+    "hi": "दो चुनाव: कितना बारीक, कितनी बार",
+    "hinglish": "Do choices: kitna bareek, kitni baar"
+   },
+   "body": {
+    "en": "An ADC makes two approximations. First, resolution: an n-bit ADC has 2ⁿ levels, so a 10-bit ADC on a 5 V reference can only report steps of about 4.9 mV, and every reading is rounded to the nearest step. The Arduino Uno’s ADC is 10-bit (analogRead returns 0–1023); the ESP32’s is 12-bit (0–4095). Second, sampling rate: the ADC measures at fixed moments. The Nyquist–Shannon rule says you must sample more than twice the highest frequency in the signal. Human hearing reaches about 20 kHz, which is why audio CDs use 44,100 samples per second at 16 bits. Sample too slowly and a fast signal shows up as a slower false one — aliasing. It is also why car wheels in videos sometimes seem to spin backwards.",
+    "hi": "ADC दो अनुमान लगाता है। पहला, विभेदन: n-बिट ADC के 2ⁿ स्तर होते हैं, इसलिए 5 V संदर्भ पर 10-बिट ADC लगभग 4.9 mV के चरण ही बता सकता है, और हर पढ़ाई निकटतम चरण पर गोल होती है। Arduino Uno का ADC 10-बिट है (analogRead 0–1023 लौटाता है); ESP32 का 12-बिट (0–4095)। दूसरा, नमूना दर: ADC तय पलों पर मापता है। नाइक्विस्ट–शैनन नियम कहता है कि संकेत की सबसे ऊँची आवृत्ति के दोगुने से ज़्यादा दर से नमूना लेना होगा। मानव श्रवण लगभग 20 kHz तक जाता है, इसीलिए ऑडियो CD 16 बिट पर प्रति सेकंड 44,100 नमूने लेती है। बहुत धीमे नमूने लो तो तेज़ संकेत धीमे नकली संकेत की तरह दिखता है — एलियासिंग। इसीलिए वीडियो में कार के पहिए कभी उल्टे घूमते दिखते हैं।",
+    "hinglish": "ADC do approximations karta hai. Pehla, resolution: n-bit ADC ke 2ⁿ levels hote hain, isliye 5 V reference par 10-bit ADC lagbhag 4.9 mV ke steps hi bata sakta hai, aur har reading nearest step par round hoti hai. Arduino Uno ka ADC 10-bit hai (analogRead 0–1023 return karta hai); ESP32 ka 12-bit (0–4095). Doosra, sampling rate: ADC fixed moments par naapta hai. Nyquist–Shannon rule kehta hai ki signal ki sabse oonchi frequency ke double se zyada rate se sample lena hoga. Insaani sunne ki range lagbhag 20 kHz tak hai, isiliye audio CD 16 bits par per second 44,100 samples leti hai. Bahut dheere sample lo to tez signal dheeme nakli signal jaisa dikhta hai — aliasing. Isiliye videos mein car ke pahiye kabhi ulte ghoomte dikhte hain."
+   },
+   "analogy": {
+    "en": "Taking photos of a fan: too few photos per second and the blades seem to stand still or turn backwards.",
+    "hi": "पंखे की फ़ोटो लेना: प्रति सेकंड बहुत कम फ़ोटो हों तो ब्लेड रुके या उल्टे घूमते लगते हैं।",
+    "hinglish": "Pankhe ki photos lena: per second bahut kam photos hon to blades ruke ya ulte ghoomte lagte hain."
+   },
+   "realExample": {
+    "en": "Your phone’s microphone signal goes through an ADC at 48,000 samples per second before any voice assistant hears it.",
+    "hi": "आपके फ़ोन के माइक्रोफ़ोन का संकेत किसी भी वॉइस असिस्टेंट के सुनने से पहले 48,000 नमूने प्रति सेकंड पर ADC से गुज़रता है।",
+    "hinglish": "Tumhare phone ke microphone ka signal kisi bhi voice assistant ke sunne se pehle 48,000 samples per second par ADC se guzarta hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "Reading a real sensor",
+    "hi": "असली सेंसर पढ़ना",
+    "hinglish": "Asli sensor padhna"
+   },
+   "body": {
+    "en": "Most sensors turn a physical quantity into a voltage. The LM35 temperature sensor gives 10 mV per °C, so 0.30 V means 30 °C. A light-dependent resistor (LDR) or a thermistor changes resistance, so you put it in a voltage divider with a fixed resistor: Vout = Vin × R2 ÷ (R1 + R2). Then the microcontroller converts: voltage = reading × Vref ÷ 1024 on a 10-bit ADC. Example: an Uno reads 61 from an LM35 → 61 × 5 ÷ 1024 ≈ 0.298 V ≈ 29.8 °C. Real readings are noisy, so code usually averages several samples. Good engineers also check the sensor’s accuracy in its datasheet — a 10-bit ADC cannot make a ±2 °C sensor more accurate.",
+    "hi": "ज़्यादातर सेंसर किसी भौतिक राशि को वोल्टेज में बदलते हैं। LM35 तापमान सेंसर प्रति °C 10 mV देता है, तो 0.30 V का अर्थ 30 °C। प्रकाश-निर्भर प्रतिरोधक (LDR) या थर्मिस्टर का प्रतिरोध बदलता है, इसलिए उसे स्थिर प्रतिरोधक के साथ वोल्टेज विभाजक में लगाते हैं: Vout = Vin × R2 ÷ (R1 + R2)। फिर माइक्रोकंट्रोलर बदलता है: 10-बिट ADC पर वोल्टेज = पढ़ाई × Vref ÷ 1024। उदाहरण: Uno LM35 से 61 पढ़ता है → 61 × 5 ÷ 1024 ≈ 0.298 V ≈ 29.8 °C। असली पढ़ाइयों में शोर होता है, इसलिए कोड अक्सर कई नमूनों का औसत लेता है। अच्छे इंजीनियर डेटाशीट में सेंसर की शुद्धता भी जाँचते हैं — 10-बिट ADC ±2 °C वाले सेंसर को ज़्यादा सटीक नहीं बना सकता।",
+    "hinglish": "Zyaadatar sensors kisi physical quantity ko voltage mein badalte hain. LM35 temperature sensor per °C 10 mV deta hai, to 0.30 V ka matlab 30 °C. Light-dependent resistor (LDR) ya thermistor ka resistance badalta hai, isliye use fixed resistor ke saath voltage divider mein lagate hain: Vout = Vin × R2 ÷ (R1 + R2). Phir microcontroller convert karta hai: 10-bit ADC par voltage = reading × Vref ÷ 1024. Example: Uno LM35 se 61 padhta hai → 61 × 5 ÷ 1024 ≈ 0.298 V ≈ 29.8 °C. Asli readings mein noise hota hai, isliye code aksar kai samples ka average leta hai. Achhe engineers datasheet mein sensor ki accuracy bhi check karte hain — 10-bit ADC ±2 °C wale sensor ko zyada accurate nahi bana sakta."
+   },
+   "analogy": {
+    "en": "A ruler with only centimetre marks: you can read 7 cm or 8 cm, never 7.4 cm. More bits = more marks.",
+    "hi": "केवल सेंटीमीटर निशान वाला पैमाना: 7 या 8 सेमी पढ़ सकते हो, 7.4 कभी नहीं। ज़्यादा बिट = ज़्यादा निशान।",
+    "hinglish": "Sirf centimetre marks wala ruler: 7 ya 8 cm padh sakte ho, 7.4 kabhi nahi. Zyada bits = zyada marks."
+   },
+   "realExample": {
+    "en": "Smart irrigation kits for Indian farms read a soil-moisture probe through an ADC and switch a pump when it drops below a threshold.",
+    "hi": "भारतीय खेतों के स्मार्ट सिंचाई किट ADC से मिट्टी-नमी प्रोब पढ़ते हैं और सीमा से नीचे जाने पर पंप चलाते हैं।",
+    "hinglish": "Indian kheton ke smart irrigation kits ADC se soil-moisture probe padhte hain aur threshold se neeche jaane par pump chalate hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "An Arduino Uno (10-bit, 5 V) reads 512 from a sensor. What voltage is that? An LM35 on the same board reads 72 — what temperature? Now suppose you want to record a 1 kHz whistle: what is the minimum sampling rate?",
+   "hi": "Arduino Uno (10-बिट, 5 V) सेंसर से 512 पढ़ता है। वह कितना वोल्टेज है? उसी बोर्ड पर LM35 72 पढ़ता है — कितना तापमान? अब मानो 1 kHz की सीटी रिकॉर्ड करनी है: न्यूनतम नमूना दर क्या?",
+   "hinglish": "Arduino Uno (10-bit, 5 V) sensor se 512 padhta hai. Woh kitna voltage hai? Usi board par LM35 72 padhta hai — kitna temperature? Ab maano tumhe 1 kHz ki seeti record karni hai: minimum sampling rate kya?"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "short",
+    "prompt": {
+     "en": "How many levels does an 8-bit ADC have?",
+     "hi": "8-बिट ADC के कितने स्तर?",
+     "hinglish": "8-bit ADC ke kitne levels?"
+    },
+    "answer": {
+     "accept": [
+      "256"
+     ]
+    },
+    "explain": {
+     "en": "2⁸ = 256.",
+     "hi": "2⁸ = 256।",
+     "hinglish": "2⁸ = 256."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "A 10-bit ADC with a 5 V reference reads 512. About what voltage is that?",
+     "hi": "5 V संदर्भ वाला 10-बिट ADC 512 पढ़ता है। लगभग कितना वोल्टेज?",
+     "hinglish": "5 V reference wala 10-bit ADC 512 padhta hai. Lagbhag kitna voltage?"
+    },
+    "options": [
+     {
+      "en": "2.5 V",
+      "hi": "2.5 V",
+      "hinglish": "2.5 V"
+     },
+     {
+      "en": "5 V",
+      "hi": "5 V",
+      "hinglish": "5 V"
+     },
+     {
+      "en": "0.5 V",
+      "hi": "0.5 V",
+      "hinglish": "0.5 V"
+     },
+     {
+      "en": "512 V",
+      "hi": "512 V",
+      "hinglish": "512 V"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "512 × 5 ÷ 1024 = 2.5 V.",
+     "hi": "512 × 5 ÷ 1024 = 2.5 V।",
+     "hinglish": "512 × 5 ÷ 1024 = 2.5 V."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "A signal contains frequencies up to 3 Hz. Which sampling rate avoids aliasing?",
+     "hi": "संकेत में 3 Hz तक की आवृत्तियाँ हैं। कौन-सी नमूना दर एलियासिंग से बचाती है?",
+     "hinglish": "Signal mein 3 Hz tak ki frequencies hain. Kaunsi sampling rate aliasing se bachati hai?"
+    },
+    "options": [
+     {
+      "en": "10 per second",
+      "hi": "10 प्रति सेकंड",
+      "hinglish": "10 per second"
+     },
+     {
+      "en": "5 per second",
+      "hi": "5 प्रति सेकंड",
+      "hinglish": "5 per second"
+     },
+     {
+      "en": "3 per second",
+      "hi": "3 प्रति सेकंड",
+      "hinglish": "3 per second"
+     },
+     {
+      "en": "1 per second",
+      "hi": "1 प्रति सेकंड",
+      "hinglish": "1 per second"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Must be more than 2 × 3 = 6 per second.",
+     "hi": "2 × 3 = 6 प्रति सेकंड से ज़्यादा होनी चाहिए।",
+     "hinglish": "2 × 3 = 6 per second se zyada honi chahiye."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "short",
+    "prompt": {
+     "en": "An LM35 gives 10 mV per °C. It outputs 0.35 V. What is the temperature in °C?",
+     "hi": "LM35 प्रति °C 10 mV देता है। आउटपुट 0.35 V है। तापमान °C में?",
+     "hinglish": "LM35 per °C 10 mV deta hai. Output 0.35 V hai. Temperature °C mein?"
+    },
+    "answer": {
+     "accept": [
+      "35",
+      "35 °C",
+      "35°C",
+      "35 C"
+     ]
+    },
+    "explain": {
+     "en": "0.35 V ÷ 0.01 V/°C = 35 °C.",
+     "hi": "0.35 V ÷ 0.01 V/°C = 35 °C।",
+     "hinglish": "0.35 V ÷ 0.01 V/°C = 35 °C."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Show aliasing in the lab by sampling too slowly.",
+     "hi": "लैब में बहुत धीमे नमूने लेकर एलियासिंग दिखाओ।",
+     "hinglish": "Lab mein bahut dheere sample lekar aliasing dikhao."
+    },
+    "answer": {
+     "event": "aliasing-seen"
+    },
+    "explain": {
+     "en": "At 6 samples per second or fewer, a fake slow wave appears.",
+     "hi": "6 या कम नमूने प्रति सेकंड पर नकली धीमी तरंग दिखती है।",
+     "hinglish": "6 ya kam samples per second par nakli dheemi wave dikhti hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Get a clean digital copy: at least 8 bits and 20 samples per second.",
+     "hi": "साफ़ डिजिटल प्रति बनाओ: कम से कम 8 बिट और 20 नमूने प्रति सेकंड।",
+     "hinglish": "Saaf digital copy banao: kam se kam 8 bits aur 20 samples per second."
+    },
+    "answer": {
+     "event": "adc-good"
+    },
+    "explain": {
+     "en": "Both resolution and rate matter.",
+     "hi": "विभेदन और दर दोनों ज़रूरी।",
+     "hinglish": "Resolution aur rate dono zaroori."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "topics": [
+  "elec.sensors",
+  "elec.digital-ics",
+  "robo.microcontroller"
+ ],
+ "sources": [
+  {
+   "title": "Arduino docs — analogRead()",
+   "url": "https://docs.arduino.cc/language-reference/en/functions/analog-io/analogRead/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Espressif ESP-IDF docs — ADC oneshot driver (ESP32)",
+   "url": "https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/adc_oneshot.html",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Texas Instruments — LM35 datasheet",
+   "url": "https://www.ti.com/lit/ds/symlink/lm35.pdf",
+   "licence": "fact reference"
+  }
+ ]
+}

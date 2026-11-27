@@ -1,0 +1,375 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.servers.05",
+ "level": 1,
+ "classes": [
+  3,
+  4,
+  5
+ ],
+ "unit": "servers",
+ "title": {
+  "en": "Data centres: power, heat and cooling",
+  "hi": "डेटा सेंटर: बिजली, गर्मी और ठंडक",
+  "hinglish": "Data centres: bijli, garmi aur thandak"
+ },
+ "minutes": 8,
+ "xp": 30,
+ "prereq": [
+  "L1.servers.03"
+ ],
+ "topics": [
+  "cloud.data-centres",
+  "elec.power-batteries"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain why data centres need huge amounts of electricity.",
+   "hi": "समझा सकते हो कि डेटा सेंटर को बहुत ज़्यादा बिजली क्यों चाहिए।",
+   "hinglish": "Samjha sakte ho ki data centres ko bahut zyaada bijli kyon chahiye."
+  },
+  {
+   "en": "Describe how servers are kept cool and kept running in a power cut.",
+   "hi": "बता सकते हो कि सर्वर को ठंडा कैसे रखते हैं और बिजली जाने पर कैसे चलाते हैं।",
+   "hinglish": "Bata sakte ho ki servers ko thanda kaise rakhte hain aur power cut mein kaise chalaate hain."
+  },
+  {
+   "en": "Suggest ways to make data centres greener.",
+   "hi": "डेटा सेंटर को पर्यावरण-अनुकूल बनाने के तरीक़े बता सकते हो।",
+   "hinglish": "Data centres ko green banaane ke tareeke bata sakte ho."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Data centre",
+   "en": "A building full of thousands of servers",
+   "hi": "हज़ारों सर्वर वाली इमारत",
+   "hinglish": "Hazaaron servers wali building"
+  },
+  {
+   "term": "UPS",
+   "en": "Uninterruptible power supply: batteries that take over instantly in a power cut",
+   "hi": "बिजली जाते ही तुरंत चलने वाली बैटरी",
+   "hinglish": "Bijli jaane par turant chalne wali battery"
+  },
+  {
+   "term": "Cooling",
+   "en": "Removing heat so machines do not overheat",
+   "hi": "गर्मी हटाना ताकि मशीनें ज़्यादा गर्म न हों",
+   "hinglish": "Garmi hataana"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.servers.05.s1",
+   "caption": {
+    "en": "Thousands of servers run day and night.",
+    "hi": "हज़ारों सर्वर दिन-रात चलते हैं।",
+    "hinglish": "Hazaaron servers din-raat chalte hain."
+   },
+   "narration": {
+    "en": "A big data centre holds rows and rows of servers that never switch off.",
+    "hinglish": "Bade data centre mein servers ki line pe line hoti hai jo kabhi band nahin hote.",
+    "hi": "बड़े डेटा सेंटर में सर्वरों की कतार-दर-कतार होती है जो कभी बंद नहीं होते।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.servers.05.s2",
+   "caption": {
+    "en": "Servers get hot, so cool air is pumped in.",
+    "hi": "सर्वर गर्म होते हैं, इसलिए ठंडी हवा भेजी जाती है।",
+    "hinglish": "Servers garam hote hain, isliye thandi hawa bheji jaati hai."
+   },
+   "narration": {
+    "en": "Every server turns electricity into heat. Big coolers and chilled water carry the heat away.",
+    "hinglish": "Har server bijli ko garmi mein badalta hai. Bade coolers aur thanda paani garmi ko door le jaate hain.",
+    "hi": "हर सर्वर बिजली को गर्मी में बदलता है। बड़े कूलर और ठंडा पानी गर्मी को दूर ले जाते हैं।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.servers.05.s3",
+   "caption": {
+    "en": "Power cut? Batteries, then generators take over.",
+    "hi": "बिजली गई? पहले बैटरी, फिर जनरेटर।",
+    "hinglish": "Power cut? Pehle battery, phir generator."
+   },
+   "narration": {
+    "en": "If the power goes, UPS batteries take over in a split second, then big generators start.",
+    "hinglish": "Bijli jaaye toh UPS batteries pal bhar mein kaam sambhaalti hain, phir bade generators chalu hote hain.",
+    "hi": "बिजली जाए तो UPS बैटरियाँ पल भर में काम सँभालती हैं, फिर बड़े जनरेटर चालू होते हैं।"
+   }
+  },
+  {
+   "step": 4,
+   "visual": "scene:L1.servers.05.s4",
+   "caption": {
+    "en": "Sun and wind can power data centres.",
+    "hi": "धूप और हवा डेटा सेंटर चला सकती हैं।",
+    "hinglish": "Dhoop aur hawa data centres chala sakti hain."
+   },
+   "narration": {
+    "en": "Many companies now buy solar and wind power for their data centres to cut pollution.",
+    "hinglish": "Kai companies ab pollution kam karne ke liye data centres ke liye solar aur wind power khareedti hain.",
+    "hi": "कई कंपनियाँ अब प्रदूषण घटाने के लिए डेटा सेंटर के लिए सौर और पवन बिजली ख़रीदती हैं।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "circuit-builder",
+  "config": {
+   "mode": "bright"
+  },
+  "goal": {
+   "en": "More machines need more power: light 2 bulbs brightly by adding enough cells — just as a data centre adds power for more servers.",
+   "hi": "ज़्यादा मशीनों को ज़्यादा बिजली चाहिए: पर्याप्त सेल जोड़कर 2 बल्ब तेज़ जलाओ — जैसे डेटा सेंटर ज़्यादा सर्वर के लिए ज़्यादा बिजली जोड़ता है।",
+   "hinglish": "Zyaada machines ko zyaada bijli chahiye: kaafi cells jod kar 2 bulbs tez jalao — jaise data centre zyaada servers ke liye zyaada power jodta hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "How much electricity?",
+    "hi": "कितनी बिजली?",
+    "hinglish": "Kitni bijli?"
+   },
+   "body": {
+    "en": "The International Energy Agency estimates that data centres used about 1.5% of all the world’s electricity in 2024, and that this could roughly double by 2030 as AI grows. A large data centre can need as much power as a small town. Nearly all of that electricity ends up as heat, which is why cooling is one of the biggest jobs in the building.",
+    "hi": "अंतरराष्ट्रीय ऊर्जा एजेंसी के अनुमान से 2024 में डेटा सेंटरों ने दुनिया की कुल बिजली का लगभग 1.5% इस्तेमाल किया, और AI बढ़ने से 2030 तक यह लगभग दोगुना हो सकता है। एक बड़े डेटा सेंटर को एक छोटे शहर जितनी बिजली चाहिए हो सकती है। लगभग सारी बिजली आख़िर में गर्मी बन जाती है, इसीलिए ठंडक देना इमारत के सबसे बड़े कामों में है।",
+    "hinglish": "International Energy Agency ke anumaan se 2024 mein data centres ne duniya ki kul bijli ka lagbhag 1.5% use kiya, aur AI badhne se 2030 tak yeh lagbhag double ho sakta hai. Ek bade data centre ko ek chhote shehar jitni bijli chahiye ho sakti hai. Lagbhag saari bijli aakhir mein garmi ban jaati hai, isiliye thandak dena building ke sabse bade kaamon mein hai."
+   },
+   "analogy": {
+    "en": "Just as a crowded classroom in summer needs fans and coolers, a room packed with servers needs lots of cooling.",
+    "hi": "जैसे गर्मी में भरी कक्षा में पंखे और कूलर चाहिए, वैसे ही सर्वरों से भरे कमरे को बहुत ठंडक चाहिए।",
+    "hinglish": "Jaise garmi mein bhari class mein pankhe aur cooler chahiye, waise hi servers se bhare kamre ko bahut thandak chahiye."
+   }
+  },
+  {
+   "heading": {
+    "en": "Never switching off",
+    "hi": "कभी बंद नहीं होना",
+    "hinglish": "Kabhi band nahin hona"
+   },
+   "body": {
+    "en": "Data centres are designed so that no single failure stops them. Power comes from the grid, with UPS batteries that take over instantly and diesel or gas generators that start within seconds to minutes. Important services also keep copies in a second data centre in another city. India’s biggest data-centre hubs include Mumbai and Chennai, where undersea internet cables land.",
+    "hi": "डेटा सेंटर ऐसे बनाए जाते हैं कि कोई एक ख़राबी उन्हें रोक न सके। बिजली ग्रिड से आती है, साथ में UPS बैटरियाँ जो तुरंत काम सँभालती हैं और डीज़ल या गैस जनरेटर जो कुछ सेकंड से मिनटों में चालू हो जाते हैं। ज़रूरी सेवाएँ दूसरे शहर के डेटा सेंटर में भी कॉपी रखती हैं। भारत के सबसे बड़े डेटा सेंटर केंद्रों में मुंबई और चेन्नई हैं, जहाँ समुद्र के नीचे से इंटरनेट केबल आती हैं।",
+    "hinglish": "Data centres aise banaaye jaate hain ki koi ek kharaabi unhe rok na sake. Bijli grid se aati hai, saath mein UPS batteries jo turant kaam sambhaalti hain aur diesel ya gas generators jo kuch second se minute mein chalu ho jaate hain. Zaroori services doosre shehar ke data centre mein bhi copy rakhti hain. India ke sabse bade data centre hubs mein Mumbai aur Chennai hain, jahan samundar ke neeche se internet cables aati hain."
+   },
+   "realExample": {
+    "en": "Engineers measure efficiency with PUE (power usage effectiveness): total power ÷ power used by the computers. 1.0 would be perfect; good modern data centres reach about 1.1 to 1.5.",
+    "hi": "इंजीनियर दक्षता PUE (बिजली उपयोग प्रभावशीलता) से नापते हैं: कुल बिजली ÷ कंप्यूटरों की बिजली। 1.0 सर्वश्रेष्ठ होगा; अच्छे आधुनिक डेटा सेंटर लगभग 1.1 से 1.5 तक पहुँचते हैं।",
+    "hinglish": "Engineers efficiency PUE (power usage effectiveness) se naapte hain: kul bijli ÷ computers ki bijli. 1.0 perfect hoga; achhe modern data centres lagbhag 1.1 se 1.5 tak pahunchte hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Feel the back of a charging phone or a laptop after a long video (with a grown-up). It is warm — that is electricity turning into heat, just like in a data centre.",
+   "hi": "किसी बड़े के साथ लंबा वीडियो चलने के बाद चार्ज हो रहे फ़ोन या लैपटॉप का पीछे का हिस्सा छूकर देखो। वह गर्म है — यही बिजली का गर्मी बनना है, जैसे डेटा सेंटर में।",
+   "hinglish": "Kisi bade ke saath lamba video chalne ke baad charge ho rahe phone ya laptop ka peechhe ka hissa chhoo kar dekho. Woh garam hai — yahi bijli ka garmi banna hai, jaise data centre mein."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Almost all the electricity a server uses becomes…",
+     "hi": "सर्वर की लगभग सारी बिजली आख़िर में बन जाती है…",
+     "hinglish": "Server ki lagbhag saari bijli aakhir mein ban jaati hai…"
+    },
+    "options": [
+     {
+      "en": "heat",
+      "hi": "गर्मी",
+      "hinglish": "garmi"
+     },
+     {
+      "en": "water",
+      "hi": "पानी",
+      "hinglish": "paani"
+     },
+     {
+      "en": "light only",
+      "hi": "सिर्फ़ रोशनी",
+      "hinglish": "sirf roshni"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "That is why cooling matters so much.",
+     "hi": "इसीलिए ठंडक इतनी ज़रूरी है।",
+     "hinglish": "Isiliye thandak itni zaroori hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "order",
+    "prompt": {
+     "en": "Power cut! Put what happens in order.",
+     "hi": "बिजली गई! क्रम में लगाओ क्या होता है।",
+     "hinglish": "Power cut! Order mein lagao kya hota hai."
+    },
+    "options": [
+     {
+      "en": "Generators start",
+      "hi": "जनरेटर चालू होते हैं",
+      "hinglish": "Generators chalu hote hain"
+     },
+     {
+      "en": "Grid power stops",
+      "hi": "ग्रिड की बिजली रुकती है",
+      "hinglish": "Grid ki bijli rukti hai"
+     },
+     {
+      "en": "UPS batteries take over instantly",
+      "hi": "UPS बैटरियाँ तुरंत सँभालती हैं",
+      "hinglish": "UPS batteries turant sambhaalti hain"
+     }
+    ],
+    "answer": [
+     1,
+     2,
+     0
+    ],
+    "explain": {
+     "en": "Grid stops → UPS → generators.",
+     "hi": "ग्रिड रुका → UPS → जनरेटर।",
+     "hinglish": "Grid ruka → UPS → generators."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "About what share of the world’s electricity did data centres use in 2024 (IEA)?",
+     "hi": "2024 में दुनिया की बिजली का कितना हिस्सा डेटा सेंटरों ने लिया (IEA)?",
+     "hinglish": "2024 mein duniya ki bijli ka kitna hissa data centres ne liya (IEA)?"
+    },
+    "options": [
+     {
+      "en": "About 1.5%",
+      "hi": "लगभग 1.5%",
+      "hinglish": "Lagbhag 1.5%"
+     },
+     {
+      "en": "About 50%",
+      "hi": "लगभग 50%",
+      "hinglish": "Lagbhag 50%"
+     },
+     {
+      "en": "0%",
+      "hi": "0%",
+      "hinglish": "0%"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Small as a share, but huge in total — and growing with AI.",
+     "hi": "हिस्सा छोटा, पर कुल मिलाकर बहुत बड़ा — और AI के साथ बढ़ रहा।",
+     "hinglish": "Hissa chhota, par kul milaakar bahut bada — aur AI ke saath badh raha."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q4",
+    "type": "multi",
+    "prompt": {
+     "en": "Which make a data centre greener?",
+     "hi": "कौन सी चीज़ें डेटा सेंटर को हरित बनाती हैं?",
+     "hinglish": "Kaun si cheezein data centre ko green banaati hain?"
+    },
+    "options": [
+     {
+      "en": "Solar and wind power",
+      "hi": "सौर और पवन बिजली",
+      "hinglish": "Solar aur wind power"
+     },
+     {
+      "en": "Better cooling that wastes less power",
+      "hi": "कम बिजली बर्बाद करने वाली बेहतर ठंडक",
+      "hinglish": "Kam bijli waste karne wali behtar cooling"
+     },
+     {
+      "en": "Leaving unused servers running for nothing",
+      "hi": "बेकार सर्वर बिना काम चलाते रहना",
+      "hinglish": "Bekaar servers bina kaam chalaate rehna"
+     }
+    ],
+    "answer": [
+     0,
+     1
+    ],
+    "explain": {
+     "en": "Clean power and efficiency help; wasted servers do not.",
+     "hi": "साफ़ बिजली और दक्षता मदद करती हैं; बेकार सर्वर नहीं।",
+     "hinglish": "Clean power aur efficiency madad karti hain; bekaar servers nahin."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "short",
+    "prompt": {
+     "en": "A PUE of 1.0 means all power goes to the… ? (one word)",
+     "hi": "PUE 1.0 का मतलब सारी बिजली जाती है… ? (एक शब्द)",
+     "hinglish": "PUE 1.0 ka matlab saari bijli jaati hai… ? (ek word)"
+    },
+    "answer": [
+     "computers",
+     "servers",
+     "computer",
+     "server",
+     "कंप्यूटर",
+     "सर्वर"
+    ],
+    "explain": {
+     "en": "PUE = total power ÷ IT power; 1.0 means no extra power for cooling or lights.",
+     "hi": "PUE = कुल बिजली ÷ कंप्यूटर की बिजली; 1.0 मतलब ठंडक या रोशनी पर कोई अतिरिक्त बिजली नहीं।",
+     "hinglish": "PUE = kul bijli ÷ IT bijli; 1.0 matlab cooling ya lights par koi extra bijli nahin."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Light two bulbs brightly in the lab.",
+     "hi": "लैब में दो बल्ब तेज़ जलाओ।",
+     "hinglish": "Lab mein do bulbs tez jalao."
+    },
+    "answer": {
+     "lab": "circuit-builder",
+     "mode": "bright",
+     "solved": true
+    },
+    "explain": {
+     "en": "Two bulbs need two cells.",
+     "hi": "दो बल्ब को दो सेल चाहिए।",
+     "hinglish": "Do bulbs ko do cells chahiye."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "International Energy Agency – Energy and AI (2025): data centre electricity use (fact reference)",
+   "url": "https://www.iea.org/reports/energy-and-ai",
+   "licence": "fact reference"
+  },
+  {
+   "title": "MeitY – India data centre policy (fact reference)",
+   "url": "https://www.meity.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

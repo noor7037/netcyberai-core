@@ -1,0 +1,245 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#F5B90A">
+<title>Circuit builder · Tech & AI Lab</title>
+<!-- Lab: circuit-builder (Level 1). Build a series circuit on a 6-slot loop with cells, bulbs, wires and a switch; test which
+     materials conduct; see short circuits flagged. Brightness model: series loop, brightness = cells / bulbs (capped).
+     Modes (?mode=): light | switch | test | bright. Own work, MIT. Uses only safe 1.5 V cells in the story. -->
+<style>/* L1 lab kit (own work, MIT). Family App palette from src/lib/design-tokens.ts */
+:root{--royal:#1D4ED8;--sapphire:#002357;--grape:#8B3DFF;--violet:#4400F0;--tangerine:#FF7A1A;--coral:#FF6B57;--gold:#F5B90A;--turq:#14B8A6;--emerald:#0F766E;--cyan:#02CFF9;--slate:#1E293B;--off:#F9FAFB;--ink2:#475569;--r:18px;--sh:0 6px 18px rgba(30,41,59,.12),0 1px 3px rgba(30,41,59,.08)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:var(--off);color:var(--slate);font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans Devanagari",sans-serif;overscroll-behavior:none}
+body{background:transparent;-webkit-user-select:none;user-select:none;display:flex;flex-direction:column;min-height:100%;overflow-x:hidden}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;touch-action:manipulation}
+.kbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:8px;padding:10px 12px;background:linear-gradient(120deg,var(--sapphire),var(--royal) 60%,var(--grape));color:#fff;box-shadow:0 2px 10px rgba(0,35,87,.25)}
+.kbar{flex-wrap:wrap;row-gap:6px}
+.kbar h1{flex:1 1 9em;min-width:0;margin:0;font-size:16px;line-height:1.2;font-weight:800;letter-spacing:.2px;overflow-wrap:break-word}/* title never cut: controls move to a 2nd row when needed */
+.kctl{display:flex;align-items:center;gap:8px;margin-left:auto}
+.kbar .kemo{font-size:22px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.25))}
+.kpill{display:flex;background:rgba(255,255,255,.16);border-radius:999px;padding:3px}
+.kpill button{padding:5px 9px;border-radius:999px;font-size:12.5px;font-weight:700;color:#e0e7ff;min-height:32px}
+.kpill button[aria-pressed=true]{background:#fff;color:var(--royal)}
+.kstars{display:flex;align-items:center;gap:4px;background:rgba(255,255,255,.16);padding:6px 10px;border-radius:999px;font-weight:800;font-size:14px;min-width:54px;justify-content:center}
+.kstars.bump{animation:kbump .5s}
+@keyframes kbump{40%{transform:scale(1.35)}}
+.kgoal{margin:10px 12px 0;padding:10px 12px;border-radius:14px;background:#fff;box-shadow:var(--sh);display:flex;gap:10px;align-items:flex-start;font-size:14.5px}
+.kgoal b{color:var(--royal)}
+.kbtn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:46px;padding:10px 18px;border-radius:14px;font-weight:800;background:var(--royal);color:#fff;box-shadow:0 4px 0 #1239a8,var(--sh);transition:transform .08s}
+.kbtn:active{transform:translateY(3px);box-shadow:0 1px 0 #1239a8}
+.kbtn.alt{background:#fff;color:var(--royal);box-shadow:0 4px 0 #c7d2fe,var(--sh)}
+.kbtn.go{background:var(--turq);box-shadow:0 4px 0 #0d8a7c,var(--sh)}
+.kbtn.warn{background:var(--tangerine);box-shadow:0 4px 0 #c75a0c,var(--sh)}
+.kbtn[disabled]{opacity:.45;pointer-events:none}
+.ktoast{pointer-events:none;position:fixed;left:0;top:0;width:max-content;z-index:60;max-width:min(92vw,360px);padding:12px 16px;border-radius:16px;background:var(--slate);color:#fff;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,.3);text-align:center;line-height:1.35;font-size:15px;opacity:0;visibility:hidden;transform:scale(.9);transition:opacity .25s,transform .3s cubic-bezier(.2,1.4,.4,1),visibility 0s .3s}
+.ktoast.show{opacity:1;visibility:visible;transform:none;transition:opacity .25s,transform .3s cubic-bezier(.2,1.4,.4,1)}
+.ktoast.inline{position:static;display:block;width:auto;max-width:none;margin:10px 12px;grid-column:1/-1;flex:0 0 auto}
+.ktoast.good{background:var(--emerald)}.ktoast.bad{background:#b4321f}
+#kconf{position:fixed;inset:0;pointer-events:none;z-index:-1}/* behind content; inside the win dialog it sits behind the card */
+.kwin #kconf{position:absolute;z-index:0}.kwin>div{position:relative;z-index:1}
+.kwin{position:fixed;inset:0;z-index:65;display:none;align-items:center;justify-content:center;background:rgba(6,18,51,.55);backdrop-filter:blur(3px);padding:20px}
+.kwin.show{display:flex}
+.kwin>div{background:#fff;border-radius:24px;padding:22px;text-align:center;max-width:360px;box-shadow:0 20px 50px rgba(0,0,0,.35);animation:kpop .5s cubic-bezier(.2,1.5,.4,1)}
+.kwin .big{font-size:64px;line-height:1;animation:kspin 1.2s ease-out}
+.kwin h2{margin:10px 0 6px;font-size:22px}
+.kwin p{margin:0 0 14px;color:var(--ink2)}
+@keyframes kpop{from{transform:scale(.6);opacity:0}}
+@keyframes kspin{from{transform:rotateY(-540deg) scale(.4)}}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+.kvoice{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.16);font-size:17px;opacity:.6}
+.kvoice[aria-pressed=true]{background:#fff;opacity:1;box-shadow:0 0 0 3px rgba(255,255,255,.4)}
+</style>
+<style>
+main{flex:1;display:flex;flex-direction:column;gap:9px;padding:8px 10px 16px}
+.modes{display:flex;flex-wrap:wrap;gap:6px;}
+.modes button{flex:0 1 auto;max-width:100%;white-space:normal;text-align:center;padding:7px 12px;border-radius:999px;background:#fff;box-shadow:var(--sh);font-weight:700;font-size:13px;min-height:36px}
+.modes button[aria-pressed=true]{background:#b45309;color:#fff}
+.board{position:relative;border-radius:22px;background:radial-gradient(120% 90% at 30% 10%,#1e3a8a,#0b1736);box-shadow:var(--sh),inset 0 0 0 2px rgba(255,255,255,.06);overflow:hidden;perspective:800px}
+.board svg{display:block;width:100%;height:auto;transform:rotateX(14deg);transform-origin:50% 80%}
+.board.dark{background:radial-gradient(120% 90% at 30% 10%,#111827,#030712)}
+.slot{cursor:pointer}.slot .hit{fill:rgba(255,255,255,.0001)}
+.slot.empty .ring{fill:none;stroke:#fde68a;stroke-width:2.5;stroke-dasharray:5 5;animation:spin 6s linear infinite;transform-box:fill-box;transform-origin:center}
+.slot.hover .ring{stroke:#fff;stroke-width:4}
+@keyframes spin{to{transform:rotate(360deg)}}
+.flow{fill:none;stroke:#fde047;stroke-width:5;stroke-linecap:round;stroke-dasharray:2 16;animation:flow var(--sp,1s) linear infinite;filter:drop-shadow(0 0 4px #fde047)}
+@keyframes flow{to{stroke-dashoffset:-36}}
+.hot{animation:hot .4s ease-in-out infinite alternate}@keyframes hot{to{filter:drop-shadow(0 0 10px #ef4444)}}
+.status{position:absolute;left:10px;top:8px;padding:5px 10px;border-radius:999px;font-weight:900;font-size:13px;background:rgba(255,255,255,.92)}
+.status.on{background:#fde047}.status.bad{background:#fecaca;color:#991b1b}
+.tray{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:#fff;border-radius:18px;box-shadow:var(--sh);padding:10px;min-height:70px}
+.chip{display:flex;flex-direction:column;align-items:center;justify-content:center;width:72px;height:72px;border-radius:16px;background:linear-gradient(160deg,#fff,#fef3c7);box-shadow:0 4px 0 #fcd34d,var(--sh);font-size:30px;line-height:1;user-select:none}
+.chip small{font-size:10.5px;font-weight:800;margin-top:4px;text-align:center;line-height:1.1;color:var(--slate)}
+.shelves{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.shelf{background:#fff;border-radius:16px;box-shadow:var(--sh);padding:8px;min-height:64px}
+.shelf h4{margin:0 0 4px;font-size:13px}.shelf div{font-size:24px;display:flex;flex-wrap:wrap;gap:4px}
+.why{font-size:14px;background:#fffbeb;border-left:4px solid var(--gold);padding:8px 10px;border-radius:10px}
+.predict{position:fixed;inset:0;z-index:55;display:none;align-items:center;justify-content:center;background:rgba(6,18,51,.45)}
+.predict.show{display:flex}.predict>div{background:#fff;border-radius:22px;padding:18px;max-width:320px;text-align:center;box-shadow:0 20px 40px rgba(0,0,0,.3);animation:kpop .4s}
+.predict .big{font-size:54px}.predict .row{display:flex;gap:8px;margin-top:10px}.predict .row .kbtn{flex:1}
+@media (orientation:landscape) and (max-height:520px){main{display:grid;grid-template-columns:1.2fr 1fr;align-items:start}.modes,#goal{grid-column:1/-1}.board{grid-row:3/7}.board svg{max-height:calc(100vh - 150px)}}
+</style></head><body>
+<main>
+  <div class="modes" id="modes"></div>
+  <div class="kgoal" id="goal" style="margin:0"></div>
+  <div class="board" id="board"><svg id="svg" viewBox="0 -34 360 284" aria-label="circuit board"></svg><div class="status" id="status"></div></div>
+  <div class="tray" id="tray"></div>
+  <div class="shelves" id="shelves" style="display:none"><div class="shelf"><h4 id="sh1"></h4><div id="cond"></div></div><div class="shelf"><h4 id="sh2"></h4><div id="ins"></div></div></div>
+  <div class="why" id="why"></div>
+</main>
+<div class="predict" id="predict" data-ov-modal role="dialog" aria-modal="true"><div><div class="big" id="pe"></div><h3 id="pq" style="margin:6px 0"></h3><div class="row"><button class="kbtn go" id="pyes"></button><button class="kbtn warn" id="pno"></button></div></div></div>
+<script>// L1 lab kit (own work, MIT): language, header, stars, toast, confetti, sounds, drag, lesson config, completion events.
+(function (g) {
+  const q = new URLSearchParams(location.search);
+  const LANGS = ['hinglish', 'en', 'hi'];
+  let lang = q.get('lang') || (function () { try { return localStorage.getItem('techlab.lang'); } catch (e) { return null; } })() || 'hinglish';
+  if (!LANGS.includes(lang)) lang = 'hinglish';
+  const t = (o) => (o == null ? '' : typeof o === 'string' ? o : Array.isArray(o) ? (o[{ en: 0, hi: 1, hinglish: 2 }[lang]] ?? o[0]) : (o[lang] ?? o.hinglish ?? o.en));
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const el = (tag, attrs = {}, html) => { const e = document.createElement(tag); for (const k in attrs) { if (k === 'class') e.className = attrs[k]; else if (k === 'style') e.style.cssText = attrs[k]; else if (k.startsWith('on')) e.addEventListener(k.slice(2), attrs[k]); else e.setAttribute(k, attrs[k]); } if (html != null) e.innerHTML = html; return e; };
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+  const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const listeners = [];
+  const cls = +(q.get('class') || 0);
+  let voice = q.get('voice') ? q.get('voice') === '1' : (q.has('class') && cls <= 2);
+  const say = (o) => { if (!voice || !g.speechSynthesis) return; try { const txt = t(o).replace(/[\u{1F000}-\u{1FAFF}\u2600-\u27BF]/gu, ''); speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(txt); u.lang = lang === 'hi' ? 'hi-IN' : 'en-IN'; const v = speechSynthesis.getVoices().find((v) => v.lang === u.lang) || speechSynthesis.getVoices().find((v) => v.lang.startsWith(lang === 'hi' ? 'hi' : 'en')); if (v) u.voice = v; u.rate = cls <= 0 && q.has('class') ? .85 : .95; speechSynthesis.speak(u); } catch (e) {} };
+  const K = { q, t, $, $$, el, esc, reduced, say, get voice() { return voice; }, get lang() { return lang; }, stars: 0,
+    onLang(fn) { listeners.push(fn); },
+    setLang(l) { lang = l; try { localStorage.setItem('techlab.lang', l); } catch (e) {} document.documentElement.lang = l === 'hi' ? 'hi' : 'en'; $$('.kpill button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.l === l)); listeners.forEach((f) => f(l)); },
+    header(title, emoji) {
+      const bar = el('header', { class: 'kbar' });
+      bar.innerHTML = `<span class="kemo" aria-hidden="true">${emoji}</span><h1 id="ktitle"></h1><div class="kctl"><div class="kpill" role="group" aria-label="Language">${[['hinglish', 'Hing'], ['en', 'EN'], ['hi', 'हिं']].map(([l, n]) => `<button data-l="${l}" aria-pressed="${l === lang}">${n}</button>`).join('')}</div><button class="kvoice" id="kvoice" aria-label="Read aloud" aria-pressed="${voice}">🔊</button><div class="kstars" aria-live="polite">⭐ <span id="kstarn">0</span></div></div>`;
+      document.body.prepend(bar); if (window.ResizeObserver) new ResizeObserver(() => document.documentElement.style.setProperty('--kbar-h', bar.offsetHeight + 'px')).observe(bar);
+      const upd = () => { $('#ktitle').textContent = t(title); document.title = t(title) + ' · Tech & AI Lab'; };
+      upd(); listeners.push(upd);
+      $$('.kpill button', bar).forEach((b) => b.addEventListener('click', () => K.setLang(b.dataset.l)));
+      $('#kvoice', bar).addEventListener('click', (e) => { voice = !voice; e.currentTarget.setAttribute('aria-pressed', voice); if (voice) { const gl = $('#goal'); say(gl ? gl.textContent : title); } else if (g.speechSynthesis) speechSynthesis.cancel(); });
+      setTimeout(() => { const gl = $('#goal'); if (gl) new MutationObserver(() => say(gl.textContent)).observe(gl, { childList: true, subtree: true }); }, 0);
+      document.body.append(el('div', { class: 'ktoast', id: 'ktoast', role: 'status' }), el('canvas', { id: 'kconf' }), el('div', { class: 'kwin', id: 'kwin', 'data-ov-modal': '', role: 'dialog', 'aria-modal': 'true' }, '<div><div class="big" id="kwinE">🏆</div><h2 id="kwinH"></h2><p id="kwinP"></p><button class="kbtn" id="kwinB"></button></div>'));
+      document.addEventListener('pointerdown', (ev) => { K._lastTap = ev.target; K._tapAt = [ev.clientX, ev.clientY + scrollY]; }, true); let rp = 0; const re = () => { const e = K._tel || (K._tel = $('#ktoast')); if (!e || !e.classList.contains('show') || rp) return; rp = 1; requestAnimationFrame(() => { rp = 0; K._place(); }); }; K._re = re;
+      addEventListener('scroll', re, { passive: true }); addEventListener('resize', re); document.addEventListener('animationend', re, true); document.addEventListener('transitionend', re, true); K._mo = new MutationObserver((rs) => { const e = K._tel || (K._tel = $('#ktoast')); if (rs.some((r) => !e.contains(r.target))) re(); });
+      $('#kwinB').addEventListener('click', () => { $('#kwin').classList.remove('show'); K._winCb && K._winCb(); });
+    },
+    star(n = 1) { K.stars += n; const s = $('#kstarn'); if (s) { s.textContent = K.stars; s.parentElement.classList.remove('bump'); void s.offsetWidth; s.parentElement.classList.add('bump'); } },
+    // Toast never covers text: it floats in a free band of the screen (bottom first); with no free band it drops into the page
+    // flow under what the child just tapped (pushes content down). Closes on its own (2.5 s by default).
+    toast(msg, kind = '', ms = 2500) { const e = K._tel || (K._tel = $('#ktoast')); clearTimeout(K._tt); clearInterval(K._ti); if (e.classList.contains('inline')) document.body.append(e);
+      e.className = 'ktoast ' + kind; e._spot = null; e.textContent = t(msg); say(msg); e.style.left = e.style.top = '0px'; e.classList.add('show'); K._place(); K._ti = setInterval(K._place, 200); K._mo && K._mo.observe(document.body, { subtree: true, childList: true, attributes: true, characterData: true });
+      K._tt = setTimeout(() => { clearInterval(K._ti); K._mo && K._mo.disconnect(); e.classList.remove('show'); setTimeout(() => { if (!e.classList.contains('show') && e.classList.contains('inline')) { e.classList.remove('inline'); document.body.append(e); } }, 320); }, ms); },
+    _place() { const e = K._tel || (K._tel = $('#ktoast')); if (!e.classList.contains('show')) return; if (!e.isConnected) { e.classList.remove('inline'); document.body.append(e); } if (e.classList.contains('inline')) return;
+      const vw = document.documentElement.clientWidth, vh = innerHeight, w = e.offsetWidth, h = e.offsetHeight, m = 8; let top = m; const bar = $('.kbar'); if (bar) top = Math.max(top, bar.getBoundingClientRect().bottom + m);
+      const obs = [], rg = document.createRange(), tw = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); let n;
+      while ((n = tw.nextNode())) { if (!n.nodeValue.trim()) continue; const p = n.parentElement; if (!p || e.contains(p) || /^(SCRIPT|STYLE)$/.test(p.tagName)) continue; rg.selectNodeContents(n); for (const q of rg.getClientRects()) if (q.width >= 1 && q.bottom > 0 && q.top < vh) obs.push(q); }
+      $$('input,select,textarea,button,a[href],[role=button]').filter((x) => !e.contains(x)).forEach((x) => { const q = x.getBoundingClientRect(); if (q.width && q.bottom > 0 && q.top < vh) obs.push(q); });
+      const free = (x, y) => !obs.some((q) => q.left < x + w + 4 && q.right > x - 4 && q.top < y + h + 4 && q.bottom > y - 4);
+      let s = e._spot && free(e._spot.x, e._spot.y) ? e._spot : null;
+      if (!s) outer: for (let y = vh - h - m; y >= top; y -= 6) for (const x of [(vw - w) / 2, m, vw - w - m]) if (free(x, y)) { s = { x, y }; break outer; }
+      if (s) { e._spot = s; e.style.left = s.x + 'px'; e.style.top = s.y + 'px'; return; }
+      e._spot = null; e.classList.add('inline'); e.style.left = e.style.top = '';
+      let a = K._lastTap && K._lastTap.isConnected && !e.contains(K._lastTap) ? K._lastTap : null; if (!a && K._tapAt) { const y = K._tapAt[1] - scrollY; if (y > 0 && y < innerHeight) a = document.elementFromPoint(K._tapAt[0], y); } if (!a || e.contains(a)) a = $('main') || document.body.lastElementChild;
+      // never drop the note inside a 3D scene, a transformed, positioned-out or clipping box
+      const boxedIn = (a0) => { for (let p = a0; p && p !== document.body; p = p.parentElement) { const c = getComputedStyle(p); if (c.transform !== 'none' || c.transformStyle === 'preserve-3d' || c.perspective !== 'none' || c.position === 'absolute' || c.position === 'fixed' || (p !== a0 && c.overflow !== 'visible')) return true; } return false; };
+      while (a.parentElement && a.parentElement !== document.body) { const d = getComputedStyle(a.parentElement), me = getComputedStyle(a);
+        if (me.display !== 'inline' && !(a instanceof SVGElement) && (d.display === 'block' || d.display === 'flow-root' || d.display === 'grid' || (d.display === 'flex' && d.flexDirection.startsWith('column'))) && a.getBoundingClientRect().width >= Math.min(260, innerWidth * 0.6) && !boxedIn(a)) break; a = a.parentElement; }
+      a.after(e); e.scrollIntoView({ block: 'nearest' }); },
+    win(head, body, btn, emoji = '🏆', cb) { $('#kwinE').textContent = emoji; $('#kwinH').textContent = t(head); $('#kwinP').textContent = t(body); $('#kwinB').textContent = t(btn || ['Play again', 'फिर खेलो', 'Phir khelo']); K._winCb = cb; $('#kwin').classList.add('show'); K.confetti(); K.sfx('win'); say(t(head) + '. ' + t(body)); },
+    done(lab, mode, result) { const msg = { type: 'techlab:lab-complete', lab, mode, result, stars: K.stars }; try { parent !== window && parent.postMessage(msg, '*'); } catch (e) {} g.__labResult = msg; },
+    confetti() { if (reduced()) return; const c = $('#kconf'), x = c.getContext('2d'); const wn = $('#kwin'); if (wn.classList.contains('show')) wn.prepend(c); else document.body.append(c); const W = c.width = innerWidth, H = c.height = innerHeight; const cols = ['#1D4ED8', '#8B3DFF', '#FF7A1A', '#F5B90A', '#14B8A6', '#FF6B57', '#02CFF9']; const P = Array.from({ length: 90 }, () => ({ x: W / 2, y: H / 2.2, vx: (Math.random() - .5) * 14, vy: -Math.random() * 14 - 4, r: Math.random() * 6 + 4, c: cols[Math.random() * cols.length | 0], a: Math.random() * 6, va: (Math.random() - .5) * .4 })); let f = 0; (function tick() { x.clearRect(0, 0, W, H); P.forEach((p) => { p.vy += .45; p.x += p.vx; p.y += p.vy; p.a += p.va; x.save(); x.translate(p.x, p.y); x.rotate(p.a); x.fillStyle = p.c; x.fillRect(-p.r / 2, -p.r / 4, p.r, p.r / 2); x.restore(); }); if (++f < 110) requestAnimationFrame(tick); else x.clearRect(0, 0, W, H); })(); },
+    _ac: null,
+    sfx(kind) { try { const ac = K._ac || (K._ac = new (g.AudioContext || g.webkitAudioContext)()); const n = { good: [[660, .07], [880, .1]], bad: [[220, .15]], tap: [[520, .04]], win: [[523, .1], [659, .1], [784, .1], [1047, .22]], move: [[400, .03]] }[kind] || [[500, .05]]; let t0 = ac.currentTime; n.forEach(([f, d]) => { const o = ac.createOscillator(), gn = ac.createGain(); o.type = kind === 'bad' ? 'sawtooth' : 'triangle'; o.frequency.value = f; gn.gain.setValueAtTime(.0001, t0); gn.gain.exponentialRampToValueAtTime(.18, t0 + .01); gn.gain.exponentialRampToValueAtTime(.0001, t0 + d); o.connect(gn).connect(ac.destination); o.start(t0); o.stop(t0 + d + .02); t0 += d; }); } catch (e) {} },
+    // Pointer drag: el follows finger; onDrop(el, x, y) returns true to accept, else it flies back.
+    draggable(node, onDrop, onStart) {
+      node.style.touchAction = 'none';
+      node.addEventListener('pointerdown', (ev) => {
+        if (node.dataset.locked) return; ev.preventDefault(); node.setPointerCapture(ev.pointerId); onStart && onStart(node);
+        const r = node.getBoundingClientRect(), ox = ev.clientX - r.left, oy = ev.clientY - r.top; const ghost = node.cloneNode(true);
+        ghost.style.cssText += `;position:fixed;left:${r.left}px;top:${r.top}px;width:${r.width}px;height:${r.height}px;margin:0;z-index:50;pointer-events:none;transform:scale(1.08) rotate(-3deg);box-shadow:0 14px 30px rgba(0,0,0,.25);transition:none`; ghost.classList.add('dragging'); document.body.append(ghost); node.style.opacity = '.25'; K.sfx('tap');
+        const mv = (e) => { ghost.style.left = e.clientX - ox + 'px'; ghost.style.top = e.clientY - oy + 'px'; K._hover && K._hover(e.clientX, e.clientY); };
+        const up = (e) => { node.removeEventListener('pointermove', mv); node.removeEventListener('pointerup', up); node.removeEventListener('pointercancel', up); K._hover && K._hover(-1, -1);
+          const ok = onDrop(node, e.clientX, e.clientY); if (ok) { ghost.remove(); node.style.opacity = ''; } else { ghost.style.transition = 'left .3s, top .3s, transform .3s'; ghost.style.left = r.left + 'px'; ghost.style.top = r.top + 'px'; ghost.style.transform = 'none'; setTimeout(() => { ghost.remove(); node.style.opacity = ''; }, 300); } };
+        node.addEventListener('pointermove', mv); node.addEventListener('pointerup', up); node.addEventListener('pointercancel', up);
+      });
+    },
+    hit(node, x, y, pad = 10) { const r = node.getBoundingClientRect(); return x >= r.left - pad && x <= r.right + pad && y >= r.top - pad && y <= r.bottom + pad; },
+    async lessonConfig() { const p = q.get('lesson'); const cfg = {}; if (p) { try { const L = await (await fetch(p)).json(); Object.assign(cfg, L.play && L.play.config, { goal: L.play && L.play.goal }); } catch (e) { console.warn('lesson config not loaded', e); } } for (const k of ['mode', 'level', 'class']) if (q.get(k)) cfg[k] = q.get(k); return cfg; },
+    shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.random() * (i + 1) | 0; [a[i], a[j]] = [a[j], a[i]]; } return a; },
+  };
+  document.documentElement.lang = lang === 'hi' ? 'hi' : 'en';
+  g.K = K;
+})(window);
+</script>
+<script>
+(async function () {
+const { t, $, el, esc } = K; const L = (en, hi, hg) => [en, hi, hg];
+K.header(['Circuit builder', 'सर्किट बनाओ', 'Circuit builder'], '💡');
+const cfg = await K.lessonConfig();
+const NS = 'http://www.w3.org/2000/svg'; const svg = $('#svg');
+const SLOTS = [{ x: 110, y: 40, v: 0 }, { x: 250, y: 40, v: 0 }, { x: 320, y: 125, v: 1 }, { x: 250, y: 210, v: 0 }, { x: 110, y: 210, v: 0 }, { x: 40, y: 125, v: 1 }];
+const PARTS = { cell: { e: '🔋', n: L('Cell (1.5 V)', 'सेल (1.5 V)', 'Cell (1.5 V)'), c: true }, bulb: { e: '💡', n: L('Bulb', 'बल्ब', 'Bulb'), c: true }, wire: { e: '➖', n: L('Wire', 'तार', 'Taar'), c: true }, switch: { e: '🔘', n: L('Switch', 'स्विच', 'Switch'), c: true },
+  coin: { e: '🪙', n: L('Coin', 'सिक्का', 'Sikka'), c: true, m: 1 }, key: { e: '🔑', n: L('Iron key', 'लोहे की चाबी', 'Lohe ki chaabi'), c: true, m: 1 }, clip: { e: '📎', n: L('Paper clip', 'पेपर क्लिप', 'Paper clip'), c: true, m: 1 }, foil: { e: '🥈', n: L('Aluminium foil', 'एल्युमिनियम फ़ॉयल', 'Aluminium foil'), c: true, m: 1 }, lead: { e: '✏️', n: L('Pencil lead', 'पेंसिल की लीड', 'Pencil lead'), c: true, m: 1, dim: true },
+  spoon: { e: '🥄', n: L('Plastic spoon', 'प्लास्टिक चम्मच', 'Plastic chammach'), c: false, m: 1 }, eraser: { e: '🧽', n: L('Rubber eraser', 'रबर', 'Rubber'), c: false, m: 1 }, stick: { e: '🪵', n: L('Wooden stick', 'लकड़ी की छड़ी', 'Lakdi ki chhadi'), c: false, m: 1 }, paper: { e: '📄', n: L('Paper', 'काग़ज़', 'Kaagaz'), c: false, m: 1 }, band: { e: '🎗️', n: L('Rubber band', 'रबर बैंड', 'Rubber band'), c: false, m: 1 }, glass: { e: '🔮', n: L('Glass marble', 'काँच का कंचा', 'Kaanch ka kancha'), c: false, m: 1 } };
+const MODES = {
+  light: { n: L('1 · Light the bulb', '1 · बल्ब जलाओ', '1 · Bulb jalao'), goal: L('Drag the cell and the bulb into the glowing gaps to make a closed loop. Light the bulb!', 'सेल और बल्ब को चमकते ख़ाली जगहों में खींचो ताकि पूरा घेरा बने। बल्ब जलाओ!', 'Cell aur bulb ko chamakti khaali jagahon mein drag karo taaki poora ghera bane. Bulb jalao!'), lock: { 1: 'wire', 2: 'wire', 4: 'wire', 5: 'wire' }, tray: ['cell', 'bulb'] },
+  switch: { n: L('2 · Add a switch', '2 · स्विच लगाओ', '2 · Switch lagao'), goal: L('Put the switch in the gap. Tap it to turn the bulb ON, then OFF, then ON again.', 'स्विच को ख़ाली जगह में लगाओ। टैप करके बल्ब चालू, फिर बंद, फिर चालू करो।', 'Switch ko khaali jagah mein lagao. Tap karke bulb ON, phir OFF, phir ON karo.'), lock: { 0: 'bulb', 1: 'wire', 2: 'wire', 4: 'wire', 5: 'cell' }, tray: ['switch'] },
+  test: { n: L('3 · Conductor tester', '3 · चालक जाँचो', '3 · Conductor tester'), goal: L('Drop each object into the gap. First guess: will the bulb glow? Test 6 objects.', 'हर चीज़ को ख़ाली जगह में डालो। पहले अंदाज़ा लगाओ: बल्ब जलेगा? 6 चीज़ें जाँचो।', 'Har cheez ko khaali jagah mein daalo. Pehle guess karo: bulb jalega? 6 cheezein test karo.'), lock: { 0: 'bulb', 1: 'wire', 2: 'wire', 4: 'wire', 5: 'cell' }, tray: ['coin', 'spoon', 'clip', 'eraser', 'foil', 'stick', 'key', 'paper', 'lead', 'band', 'glass'] },
+  bright: { n: L('4 · Two bulbs', '4 · दो बल्ब', '4 · Do bulb'), goal: L('Build one loop with 2 bulbs that both shine brightly. Hint: how many cells do two bulbs need?', 'एक घेरे में 2 बल्ब लगाओ जो दोनों तेज़ चमकें। संकेत: दो बल्बों को कितने सेल चाहिए?', 'Ek ghere mein 2 bulb lagao jo dono tez chamkein. Hint: do bulbs ko kitne cells chahiye?'), lock: { 1: 'wire', 4: 'wire' }, tray: ['cell', 'cell', 'bulb', 'bulb', 'wire', 'wire'] },
+};
+let mode = MODES[cfg.mode] ? cfg.mode : 'light'; let st;
+function reset() { const M = MODES[mode]; st = { slot: SLOTS.map((_, i) => M.lock[i] ? { p: M.lock[i], locked: true } : null), tray: [...M.tray], sw: false, toggles: [], tested: [], preds: 0, won: false, lit: false }; }
+// ---------- evaluate ----------
+function evaluate() { const s = st.slot; const closed = s.every((x) => x && PARTS[x.p].c && !(x.p === 'switch' && !st.sw)); const nb = s.filter((x) => x && x.p === 'cell').length, nl = s.filter((x) => x && x.p === 'bulb').length; const dim = s.some((x) => x && PARTS[x.p].dim);
+  let br = 0, short = false; if (closed && nb) { if (!nl) short = true; else br = Math.min(1.5, nb / nl) * (dim ? .35 : 1); } return { closed, nb, nl, br, short }; }
+// ---------- draw ----------
+const mk = (tag, a = {}, parent) => { const n = document.createElementNS(NS, tag); for (const k in a) n.setAttribute(k, a[k]); parent && parent.append(n); return n; };
+function partSVG(g, p, on, br) { const P = PARTS[p];
+  if (p === 'wire') { mk('line', { x1: -28, y1: 0, x2: 28, y2: 0, stroke: '#f59e0b', 'stroke-width': 6, 'stroke-linecap': 'round' }, g); return; }
+  if (p === 'cell') { mk('rect', { x: -26, y: -13, width: 46, height: 26, rx: 6, fill: 'url(#cellg)' }, g); mk('rect', { x: 20, y: -6, width: 7, height: 12, rx: 2, fill: '#cbd5e1' }, g); mk('text', { x: 10, y: 5, 'font-size': 14, 'font-weight': 900, fill: '#fff', 'text-anchor': 'middle' }, g).textContent = '+'; mk('text', { x: -16, y: 5, 'font-size': 14, 'font-weight': 900, fill: '#fff', 'text-anchor': 'middle' }, g).textContent = '−'; return; }
+  if (p === 'bulb') { if (br > 0) { const r = 26 + br * 22; mk('circle', { cx: 0, cy: -18, r, fill: 'url(#glow)', opacity: Math.min(1, .35 + br * .5) }, g); }
+    mk('line', { x1: -28, y1: 0, x2: -9, y2: 0, stroke: '#f59e0b', 'stroke-width': 5 }, g); mk('line', { x1: 9, y1: 0, x2: 28, y2: 0, stroke: '#f59e0b', 'stroke-width': 5 }, g);
+    mk('rect', { x: -9, y: -6, width: 18, height: 12, rx: 3, fill: '#94a3b8' }, g); mk('circle', { cx: 0, cy: -20, r: 15, fill: br > 0 ? `hsl(50 100% ${55 + br * 20}%)` : 'rgba(226,232,240,.55)', stroke: '#e2e8f0', 'stroke-width': 1.5 }, g);
+    mk('path', { d: 'M-5 -8 L-5 -18 Q0 -26 5 -18 L5 -8', fill: 'none', stroke: br > 0 ? '#fff7ed' : '#64748b', 'stroke-width': 2 }, g); return; }
+  if (p === 'switch') { mk('circle', { cx: -20, cy: 0, r: 5, fill: '#e2e8f0' }, g); mk('circle', { cx: 20, cy: 0, r: 5, fill: '#e2e8f0' }, g); mk('line', { x1: -28, y1: 0, x2: -20, y2: 0, stroke: '#f59e0b', 'stroke-width': 5 }, g); mk('line', { x1: 20, y1: 0, x2: 28, y2: 0, stroke: '#f59e0b', 'stroke-width': 5 }, g);
+    const lev = mk('line', { x1: -20, y1: 0, x2: 20, y2: 0, stroke: '#f8fafc', 'stroke-width': 5, 'stroke-linecap': 'round' }, g); lev.style.transformOrigin = '-20px 0px'; lev.style.transition = 'transform .25s'; lev.style.transform = on ? 'rotate(0deg)' : 'rotate(-35deg)'; mk('text', { x: 0, y: 26, 'font-size': 12, 'font-weight': 900, fill: on ? '#86efac' : '#fca5a5', 'text-anchor': 'middle' }, g).textContent = on ? 'ON' : 'OFF'; return; }
+  // material in the test gap
+  mk('circle', { cx: -26, cy: 0, r: 5, fill: '#ef4444' }, g); mk('circle', { cx: 26, cy: 0, r: 5, fill: '#111827' }, g); mk('rect', { x: -22, y: -18, width: 44, height: 36, rx: 10, fill: 'rgba(255,255,255,.12)' }, g); const tx = mk('text', { x: 0, y: 10, 'font-size': 28, 'text-anchor': 'middle' }, g); tx.textContent = P.e; }
+function draw() { const ev = evaluate(); svg.innerHTML = `<defs><radialGradient id="glow"><stop offset="0" stop-color="#fef9c3"/><stop offset=".5" stop-color="#fde047" stop-opacity=".55"/><stop offset="1" stop-color="#fde047" stop-opacity="0"/></radialGradient><linearGradient id="cellg" x1="0" x2="1"><stop offset="0" stop-color="#1f2937"/><stop offset=".6" stop-color="#374151"/><stop offset=".6" stop-color="#d97706"/><stop offset="1" stop-color="#f59e0b"/></linearGradient></defs>`;
+  // wires around the loop, broken at each slot
+  const segs = [[[40, 40], [82, 40]], [[138, 40], [222, 40]], [[278, 40], [320, 40], [320, 97]], [[320, 153], [320, 210], [278, 210]], [[222, 210], [138, 210]], [[82, 210], [40, 210], [40, 153]], [[40, 97], [40, 40]]];
+  segs.forEach((pts) => mk('polyline', { points: pts.map((p) => p.join(',')).join(' '), fill: 'none', stroke: '#f59e0b', 'stroke-width': 6, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }, svg));
+  if (ev.closed && ev.nb) { const f = mk('rect', { x: 40, y: 40, width: 280, height: 170, rx: 4, class: 'flow' }, svg); f.style.setProperty('--sp', ev.short ? '.25s' : (1.6 / Math.max(.3, ev.br)) + 's'); if (ev.short) f.style.stroke = '#f87171'; }
+  SLOTS.forEach((S, i) => { const x = st.slot[i]; const g = mk('g', { class: 'slot' + (x ? '' : ' empty'), transform: `translate(${S.x} ${S.y}) rotate(${S.v ? 90 : 0})`, 'data-i': i }, svg); mk('rect', { class: 'hit', x: -34, y: -34, width: 68, height: 68 }, g);
+    if (!x) { mk('circle', { class: 'ring', cx: 0, cy: 0, r: 22 }, g); mk('circle', { cx: -28, cy: 0, r: 4, fill: '#f59e0b' }, g); mk('circle', { cx: 28, cy: 0, r: 4, fill: '#f59e0b' }, g); }
+    else { const inner = mk('g', S.v && x.p === 'bulb' ? { transform: 'rotate(-90) translate(0 0)' } : {}, g); if (S.v && x.p === 'bulb') inner.setAttribute('transform', ''); partSVG(inner, x.p, st.sw, x.p === 'bulb' ? ev.br : 0); if (x.p === 'cell' && ev.short) inner.classList.add('hot'); }
+    g.addEventListener('click', () => tapSlot(i)); });
+  $('#board').classList.toggle('dark', !ev.br); const s = $('#status');
+  s.className = 'status ' + (ev.short ? 'bad' : ev.br ? 'on' : ''); s.textContent = ev.short ? t(['⚠️ Short circuit!', '⚠️ शॉर्ट सर्किट!', '⚠️ Short circuit!']) : ev.br ? t(['💡 Closed circuit: current flows', '💡 बंद सर्किट: करंट बह रहा है', '💡 Closed circuit: current beh raha hai']) : ev.closed && !ev.nb ? t(['No cell = no push', 'सेल नहीं = धक्का नहीं', 'Cell nahin = push nahin']) : t(['⭕ Open circuit: a gap', '⭕ खुला सर्किट: रास्ता टूटा', '⭕ Open circuit: gap hai']);
+  return ev; }
+function drawTray() { const T = $('#tray'); T.innerHTML = ''; st.tray.forEach((p, k) => { const c = el('div', { class: 'chip', 'data-p': p, id: 'chip-' + p + (st.tray.slice(0, k).filter((q) => q === p).length || '') }, `${PARTS[p].e}<small>${esc(t(PARTS[p].n))}</small>`); K.draggable(c, (node, x, y) => drop(k, x, y)); T.append(c); });
+  if (!st.tray.length) T.append(el('div', { style: 'color:#64748b;font-weight:700;align-self:center' }, t(['Tap a part on the board to take it back.', 'वापस लेने के लिए बोर्ड पर पुर्ज़े पर टैप करो।', 'Wapas lene ke liye board par part par tap karo.']))); }
+let hoverI = -1; K._hover = (x, y) => { const i = slotAt(x, y); if (i !== hoverI) { hoverI = i; svg.querySelectorAll('.slot').forEach((g) => g.classList.toggle('hover', +g.dataset.i === i)); } };
+function slotAt(x, y) { if (x < 0) return -1; let best = -1, bd = 1e9; svg.querySelectorAll('.slot.empty').forEach((g) => { const r = g.getBoundingClientRect(); const d = Math.hypot(r.left + r.width / 2 - x, r.top + r.height / 2 - y); if (d < Math.max(46, r.width * .8) && d < bd) { bd = d; best = +g.dataset.i; } }); return best; }
+function drop(k, x, y) { const i = slotAt(x, y); if (i < 0) return false; const p = st.tray[k];
+  if (mode === 'test') { if (i !== 3) return false; ask(p, () => { st.slot[3] = { p }; st.tray.splice(k, 1); afterChange(); }); return true; }
+  st.slot[i] = { p }; st.tray.splice(k, 1); K.sfx('tap'); afterChange(); return true; }
+function tapSlot(i) { const x = st.slot[i]; if (!x) return; if (x.p === 'switch') { st.sw = !st.sw; K.sfx('tap'); st.toggles.push(st.sw); afterChange(); return; } if (x.locked) return; st.slot[i] = null; if (!(mode === 'test' && PARTS[x.p].m && st.tested.includes(x.p))) st.tray.push(x.p); K.sfx('move'); afterChange(); }
+// ---------- predict (test mode) ----------
+function ask(p, then) { const P = $('#predict'); $('#pe').textContent = PARTS[p].e; $('#pq').textContent = t([`${t(PARTS[p].n)}: will the bulb glow?`, `${t(PARTS[p].n)}: क्या बल्ब जलेगा?`, `${t(PARTS[p].n)}: kya bulb jalega?`]); K.say([$('#pq').textContent, $('#pq').textContent, $('#pq').textContent]);
+  $('#pyes').textContent = '💡 ' + t(['Yes, it glows', 'हाँ, जलेगा', 'Haan, jalega']); $('#pno').textContent = '⚫ ' + t(['No', 'नहीं', 'Nahin']); P.classList.add('show');
+  const go = (guess) => { P.classList.remove('show'); then(); const real = PARTS[p].c; const right = guess === real; if (right) { st.preds++; K.star(); } st.tested.push(p);
+    $(real ? '#cond' : '#ins').append(el('span', { title: t(PARTS[p].n) }, PARTS[p].e)); K.sfx(right ? 'good' : 'bad');
+    K.toast(real ? (PARTS[p].dim ? ['Pencil lead (graphite) conducts — but only a little, so the bulb is dim.', 'पेंसिल की लीड (ग्रेफ़ाइट) बिजली चलाती है — पर थोड़ी, इसलिए बल्ब धीमा जलता है।', 'Pencil lead (graphite) conduct karti hai — par thoda, isliye bulb dheema jalta hai.'] : ['Metal lets electricity flow: a CONDUCTOR.', 'धातु से बिजली बहती है: यह चालक (कंडक्टर) है।', 'Metal se bijli behti hai: CONDUCTOR.']) : ['Electricity cannot pass: an INSULATOR. Wires are covered in plastic for this reason.', 'बिजली नहीं बह सकती: यह कुचालक (इंसुलेटर) है। इसीलिए तारों पर प्लास्टिक चढ़ा होता है।', 'Bijli nahin beh sakti: INSULATOR. Isiliye taaron par plastic chadha hota hai.'], right ? 'good' : 'bad', 3000);
+    setTimeout(() => { st.slot[3] = null; afterChange(); }, 1500); };
+  $('#pyes').onclick = () => go(true); $('#pno').onclick = () => go(false); }
+// ---------- rules ----------
+function afterChange() { const ev = draw(); drawTray(); const why = (m) => $('#why').textContent = t(m);
+  if (ev.short) { K.sfx('bad'); why(['A short circuit: the current rushes round with no bulb to slow it, so the cell gets hot. Never connect a battery\'s ends with just a wire!', 'शॉर्ट सर्किट: बिना बल्ब के करंट तेज़ी से दौड़ता है, इसलिए सेल गर्म हो जाता है। बैटरी के दोनों सिरे सिर्फ़ तार से कभी मत जोड़ो!', 'Short circuit: bina bulb ke current tezi se daudta hai, isliye cell garam ho jaata hai. Battery ke dono sire sirf taar se kabhi mat jodo!']); return; }
+  if (mode === 'light') { if (ev.br) { why(['Closed circuit! Electricity flows out of the cell, through the bulb\'s thin filament (which glows), and back to the cell.', 'बंद सर्किट! बिजली सेल से निकलकर बल्ब के पतले तार (फ़िलामेंट) से होकर, जो चमकता है, वापस सेल में जाती है।', 'Closed circuit! Bijli cell se nikal kar bulb ke patle filament se hokar (jo chamakta hai) wapas cell mein jaati hai.']); if (!st.won) win(); } else why(ev.closed ? ['The loop is closed but something is missing — every circuit needs a cell to push the electricity.', 'घेरा पूरा है पर कुछ कमी है — हर सर्किट को बिजली धकेलने के लिए सेल चाहिए।', 'Ghera poora hai par kuch kami hai — har circuit ko bijli dhakelne ke liye cell chahiye.'] : ['Electricity needs a complete loop with no gaps — from the cell, through the bulb, and back to the cell.', 'बिजली को बिना टूटा पूरा घेरा चाहिए — सेल से, बल्ब से होकर, वापस सेल तक।', 'Bijli ko bina toota poora ghera chahiye — cell se, bulb se hokar, wapas cell tak.']); }
+  if (mode === 'switch') { why(['A switch makes a gap (OFF) or closes it (ON). The light switches at home work the same way.', 'स्विच रास्ता तोड़ता (बंद) या जोड़ता (चालू) है। घर के स्विच भी ऐसे ही काम करते हैं।', 'Switch raasta todta (OFF) ya jodta (ON) hai. Ghar ke switch bhi aise hi kaam karte hain.']); const tg = st.toggles.join(''); if (/truefalsetrue/.test(tg) && !st.won) win(); }
+  if (mode === 'test') { why([`Tested ${st.tested.length} of 6. Correct guesses: ${st.preds}.`, `${st.tested.length}/6 जाँचे। सही अंदाज़े: ${st.preds}।`, `${st.tested.length}/6 test kiye. Sahi guess: ${st.preds}.`]); if (st.tested.length >= 6 && !st.won) setTimeout(win, 1700); }
+  if (mode === 'bright') { if (ev.br && ev.nl === 2 && ev.nb === 2 && !st.won) win(); else if (ev.br && ev.nl === 2) why(['Two bulbs share one cell\'s push, so each glows dimly. Add another cell!', 'दो बल्ब एक सेल का धक्का बाँटते हैं, इसलिए धीमे जलते हैं। एक और सेल लगाओ!', 'Do bulb ek cell ka push baant-te hain, isliye dheeme jalte hain. Ek aur cell lagao!']); else if (ev.br && ev.nb > ev.nl) why(['Very bright! More cells than bulbs push extra hard — real bulbs can burn out. Two bulbs with two cells is just right.', 'बहुत तेज़! बल्बों से ज़्यादा सेल ज़्यादा धक्का देते हैं — असली बल्ब फुँक सकते हैं। दो बल्ब और दो सेल बिल्कुल सही हैं।', 'Bahut tez! Bulbs se zyada cells zyada push dete hain — asli bulb fuse ho sakte hain. Do bulb aur do cell bilkul sahi hain.']); else why(['Fill every gap. A wire just connects; cells push; bulbs use the energy to make light.', 'हर ख़ाली जगह भरो। तार बस जोड़ता है; सेल धक्का देता है; बल्ब ऊर्जा से रोशनी बनाता है।', 'Har khaali jagah bharo. Taar bas jodta hai; cell push deta hai; bulb energy se roshni banaata hai.']); } }
+function win() { st.won = true; K.star(3); K.done('circuit-builder', mode, { mode, solved: true, ...(mode === 'test' ? { tested: st.tested.length, correctGuesses: st.preds } : {}) });
+  setTimeout(() => K.win(['Circuit champion!', 'सर्किट चैंपियन!', 'Circuit champion!'], { light: L('You made a closed circuit. Electricity flowed from the cell, through the bulb, and back.', 'तुमने बंद सर्किट बनाया। बिजली सेल से बल्ब होकर वापस बही।', 'Tumne closed circuit banaya. Bijli cell se bulb hokar wapas bahi.'), switch: L('Switches open and close the loop. Now you know how every light switch works!', 'स्विच घेरा खोलते और बंद करते हैं। अब तुम जानते हो हर स्विच कैसे काम करता है!', 'Switch ghera kholte aur band karte hain. Ab tum jaante ho har switch kaise kaam karta hai!'), test: L(`Metals conduct; plastic, rubber, wood, paper and glass insulate. You guessed ${st.preds} of ${st.tested.length} right.`, `धातुएँ बिजली चलाती हैं; प्लास्टिक, रबर, लकड़ी, काग़ज़ और काँच रोकते हैं। तुम्हारे ${st.tested.length} में से ${st.preds} अंदाज़े सही।`, `Metals conduct karte hain; plastic, rubber, lakdi, kaagaz aur kaanch rokte hain. Tumhare ${st.tested.length} mein se ${st.preds} guess sahi.`), bright: L('Two bulbs in one loop share the push. Two cells give enough push for both to shine.', 'एक घेरे में दो बल्ब धक्का बाँटते हैं। दो सेल दोनों को चमकाने लायक धक्का देते हैं।', 'Ek ghere mein do bulb push baant-te hain. Do cells dono ko chamkaane laayak push dete hain.') }[mode], null, '💡', () => start()), 1400); }
+function drawModes() { const m = $('#modes'); m.innerHTML = ''; for (const k in MODES) { const b = el('button', { 'aria-pressed': k === mode }, t(MODES[k].n)); b.onclick = () => { mode = k; start(); }; m.append(b); } }
+function start() { drawModes(); reset(); $('#goal').innerHTML = `<span style="font-size:22px">🎯</span><div><b>${t(['Goal', 'लक्ष्य', 'Goal'])}:</b> ${esc(t(cfg.mode === mode && cfg.goal ? [cfg.goal.en, cfg.goal.hi || cfg.goal.en, cfg.goal.hinglish] : MODES[mode].goal))}</div>`;
+  $('#shelves').style.display = mode === 'test' ? '' : 'none'; $('#cond').innerHTML = ''; $('#ins').innerHTML = ''; $('#sh1').textContent = '⚡ ' + t(['Conductors', 'चालक', 'Conductors']); $('#sh2').textContent = '🚫 ' + t(['Insulators', 'कुचालक', 'Insulators']); afterChange(); }
+K.onLang(() => { draw(); drawTray(); drawModes(); });
+start();
+})();
+</script></body></html>

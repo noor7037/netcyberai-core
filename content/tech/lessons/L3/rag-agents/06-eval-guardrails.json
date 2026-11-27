@@ -1,0 +1,377 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.rag-agents.06",
+ "level": 3,
+ "classes": [
+  12
+ ],
+ "unit": "rag-agents",
+ "title": {
+  "en": "Evaluating agents and building guardrails",
+  "hi": "एजेंटों का मूल्यांकन और गार्डरेल बनाना",
+  "hinglish": "Agents ko evaluate karna aur guardrails banana"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [
+  "L3.rag-agents.04",
+  "L3.rag-agents.05"
+ ],
+ "outcomes": [
+  {
+   "en": "Build an evaluation set and metrics for an agent",
+   "hinglish": "Agent ke liye evaluation set aur metrics banao",
+   "hi": "एजेंट के लिए मूल्यांकन सेट और मापदंड बनाना"
+  },
+  {
+   "en": "List input, action and output guardrails",
+   "hinglish": "Input, action aur output guardrails gino",
+   "hi": "इनपुट, कार्य और आउटपुट सुरक्षा-घेरे सूचीबद्ध करना"
+  },
+  {
+   "en": "Explain red-teaming and human-in-the-loop approval",
+   "hinglish": "Red-teaming aur human-in-the-loop approval samjhao",
+   "hi": "रेड-टीमिंग और मानव-निगरानी स्वीकृति समझाना"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Eval set",
+   "hinglish": "Test sawaal + sahi jawab ka set",
+   "en": "A fixed set of tasks with expected outcomes",
+   "hi": "अपेक्षित परिणामों के साथ कार्यों का तय सेट"
+  },
+  {
+   "term": "Guardrail",
+   "hinglish": "Model ke chaaron taraf suraksha niyam",
+   "en": "A check that blocks or modifies unsafe inputs, actions or outputs",
+   "hi": "ऐसी जाँच जो असुरक्षित इनपुट, कार्य या आउटपुट रोकती या बदलती है"
+  },
+  {
+   "term": "Red-teaming",
+   "hinglish": "Jaan-boojh ke todne ki koshish (safety ke liye)",
+   "en": "Deliberately probing a system for failures to fix them",
+   "hi": "ठीक करने के लिए जानबूझकर प्रणाली की कमज़ोरियाँ खोजना"
+  },
+  {
+   "term": "LLM-as-judge",
+   "hinglish": "Ek model doosre ke jawab grade kare",
+   "en": "Using a model with a rubric to score outputs",
+   "hi": "एक मानदंड के साथ मॉडल से आउटपुट को अंक दिलाना"
+  },
+  {
+   "term": "Least privilege",
+   "hinglish": "Sirf zaroori permission",
+   "en": "Giving only the access needed for the task",
+   "hi": "काम के लिए जितनी ज़रूरी उतनी ही पहुँच देना"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Before launch, the help-desk agent faces 200 test tasks: real parent questions with known correct answers and actions.",
+    "hi": "लॉन्च से पहले हेल्प-डेस्क एजेंट 200 परीक्षण कामों का सामना करता है: ज्ञात सही जवाब और कार्यों वाले असली अभिभावक सवाल।",
+    "hinglish": "Launch se pehle help-desk agent 200 test tasks face karta hai: known correct answers aur actions wale asli parent sawaal."
+   },
+   "visual": "anim:eval-grid",
+   "narration": {
+    "en": "Before launch, the help-desk agent faces 200 test tasks: real parent questions with known correct answers and actions.",
+    "hi": "लॉन्च से पहले हेल्प-डेस्क एजेंट 200 परीक्षण कामों का सामना करता है: ज्ञात सही जवाब और कार्यों वाले असली अभिभावक सवाल।",
+    "hinglish": "Launch se pehle help-desk agent 200 test tasks face karta hai: known correct answers aur actions wale asli parent sawaal."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Guardrails wrap the model: check the input, allow only listed tools, ask a human before risky actions, check the output.",
+    "hi": "गार्डरेल मॉडल को घेरते हैं: इनपुट जाँचो, सिर्फ़ सूचीबद्ध टूल की अनुमति, जोखिम वाले कामों से पहले मानव से पूछो, आउटपुट जाँचो।",
+    "hinglish": "Guardrails model ko gherte hain: input check karo, sirf listed tools allow, risky actions se pehle human se poochho, output check karo."
+   },
+   "visual": "anim:guardrail-rings",
+   "narration": {
+    "en": "Guardrails wrap the model: check the input, allow only listed tools, ask a human before risky actions, check the output.",
+    "hi": "गार्डरेल मॉडल को घेरते हैं: इनपुट जाँचो, सिर्फ़ सूचीबद्ध टूल की अनुमति, जोखिम वाले कामों से पहले मानव से पूछो, आउटपुट जाँचो।",
+    "hinglish": "Guardrails model ko gherte hain: input check karo, sirf listed tools allow, risky actions se pehle human se poochho, output check karo."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Red team: testers try tricks (fake teacher messages, injected PDFs). Every failure becomes a new test case.",
+    "hi": "रेड टीम: परीक्षक तरकीबें आज़माते हैं (नकली शिक्षक संदेश, इंजेक्ट किए पीडीएफ़)। हर विफलता नया परीक्षण बनती है।",
+    "hinglish": "Red team: testers tricks try karte hain (nakli teacher messages, injected PDFs). Har failure naya test case banti hai."
+   },
+   "visual": "anim:red-team",
+   "narration": {
+    "en": "Red team: testers try tricks (fake teacher messages, injected PDFs). Every failure becomes a new test case.",
+    "hi": "रेड टीम: परीक्षक तरकीबें आज़माते हैं (नकली शिक्षक संदेश, इंजेक्ट किए पीडीएफ़)। हर विफलता नया परीक्षण बनती है।",
+    "hinglish": "Red team: testers tricks try karte hain (nakli teacher messages, injected PDFs). Har failure naya test case banti hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "agent-loop",
+  "config": {
+   "scenario": "guardrail-gauntlet"
+  },
+  "goal": {
+   "en": "Be the guardrail: for each of 6 inputs to the school helpdesk agent (3 attacks, 3 honest requests) choose Block or Allow. Your score counts attacks blocked and honest requests allowed.",
+   "hinglish": "Guardrail bano: school helpdesk agent ke 6 inputs (3 attacks, 3 honest requests) mein har ek ke liye Block ya Allow chuno. Score mein block hue attacks aur allow hue honest requests gine jaate hain.",
+   "hi": "सुरक्षा-घेरा बनो: स्कूल सहायता एजेंट के 6 इनपुट (3 हमले, 3 ईमानदार अनुरोध) में हर एक के लिए रोको या आने दो चुनो। अंक में रोके गए हमले और आने दिए गए ईमानदार अनुरोध गिने जाते हैं।"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "How to evaluate an agent",
+    "hi": "एजेंट का मूल्यांकन कैसे करें",
+    "hinglish": "Agent ko evaluate kaise karein"
+   },
+   "body": {
+    "en": "Write an evaluation set of realistic tasks with expected outcomes, including edge cases and things the agent should refuse. Measure: task success rate (did it reach the right end state, e.g. the correct leave note drafted?), tool-use correctness (right tool, valid arguments), factual accuracy and faithfulness to sources, safety (refused what it should, did not leak data), cost and latency per task, and how often it asked for help appropriately. Use automatic checks where possible (exact answers, unit tests, database state), an LLM-as-judge with a clear rubric for open-ended text, and human review of samples. Re-run the eval after every prompt, model or tool change, because fixing one case can break another (regression testing). Public benchmarks such as SWE-bench (coding), GAIA (assistant tasks) and τ-bench (tool-using customer service) follow the same idea.",
+    "hi": "असली कामों का मूल्यांकन सेट लिखो जिनके अपेक्षित नतीजे हों, किनारे के मामले और वे चीज़ें भी जिन्हें एजेंट को मना करना चाहिए। मापो: काम-सफलता दर (क्या सही अंतिम स्थिति आई, जैसे सही छुट्टी-पत्र बना?), टूल-उपयोग की शुद्धता (सही टूल, मान्य तर्क), तथ्य सटीकता और स्रोतों के प्रति विश्वसनीयता, सुरक्षा (जो मना करना था किया, डेटा लीक नहीं), हर काम की लागत और समय, और कितनी बार उसने उचित रूप से मदद माँगी। जहाँ संभव हो स्वचालित जाँच (सटीक जवाब, यूनिट टेस्ट, डेटाबेस स्थिति), खुले पाठ के लिए साफ़ रूब्रिक वाला एलएलएम-जज, और नमूनों की मानव समीक्षा। हर प्रॉम्प्ट, मॉडल या टूल बदलाव के बाद मूल्यांकन फिर चलाओ, क्योंकि एक मामला सुधारने से दूसरा टूट सकता है (रिग्रेशन टेस्टिंग)। SWE-bench (कोडिंग), GAIA (सहायक काम) और τ-bench (टूल वाली ग्राहक सेवा) जैसे सार्वजनिक बेंचमार्क यही विचार अपनाते हैं।",
+    "hinglish": "Real tasks ka evaluation set likho jinke expected outcomes hon, edge cases aur woh cheezein bhi jinhe agent ko refuse karna chahiye. Naapo: task success rate (sahi end state aaya, jaise sahi leave note bana?), tool-use correctness (sahi tool, valid arguments), factual accuracy aur sources ke prati faithfulness, safety (jo refuse karna tha kiya, data leak nahi), har task ki cost aur latency, aur kitni baar usne theek se help maangi. Jahan ho sake automatic checks (exact answers, unit tests, database state), open text ke liye clear rubric wala LLM-as-judge, aur samples ka human review. Har prompt, model ya tool change ke baad eval phir chalao, kyunki ek case theek karne se doosra toot sakta hai (regression testing). SWE-bench (coding), GAIA (assistant tasks) aur τ-bench (tool-using customer service) jaise public benchmarks yahi idea follow karte hain."
+   },
+   "analogy": {
+    "hinglish": "Eval set board exam ka sample paper hai: har naye \"padhai ke tareeke\" (prompt change) ke baad wahi paper dobara do, taaki pata chale sach mein sudhaar hua ya nahi.",
+    "en": "An eval set is the board-exam sample paper: after every new \"way of studying\" (prompt change), take the same paper again to see whether you really improved.",
+    "hi": "मूल्यांकन सेट बोर्ड परीक्षा का नमूना पत्र है: हर नए \"पढ़ाई के तरीक़े\" (प्रॉम्प्ट बदलाव) के बाद वही पत्र फिर दो, ताकि पता चले सच में सुधार हुआ या नहीं।"
+   },
+   "realExample": {
+    "en": "Before a bank launches a WhatsApp banking agent, it is tested on thousands of scripted chats, including scam attempts, wrong account numbers and Hinglish typos.",
+    "hinglish": "Bank WhatsApp banking agent launch karne se pehle use hazaaron scripted chats par test karta hai, jismein scam attempts, galat account numbers aur Hinglish typos bhi hote hain.",
+    "hi": "बैंक व्हाट्सऐप बैंकिंग एजेंट शुरू करने से पहले उसे हज़ारों स्क्रिप्टेड बातचीत पर परखता है, जिनमें धोखाधड़ी के प्रयास, ग़लत खाता संख्या और हिंग्लिश टाइपिंग ग़लतियाँ शामिल हैं।"
+   }
+  },
+  {
+   "heading": {
+    "en": "Layers of guardrails",
+    "hi": "गार्डरेल की परतें",
+    "hinglish": "Guardrails ki layers"
+   },
+   "body": {
+    "en": "Input guardrails: detect abuse, personal data, and prompt-injection patterns; label untrusted content. Action guardrails: an allow-list of tools; least-privilege credentials; argument validation (amount ≤ limit, recipient in the school directory); rate and budget limits; and mandatory human confirmation for irreversible or external actions (pay, send, delete, share). Output guardrails: check for unsafe content, leaked personal data, missing citations or a policy violation before showing or sending. Plus monitoring and audit logs, a kill switch, and an incident process. Red-teaming, ethical attacks by your own testers, finds weaknesses before real attackers do. No single layer is perfect, so security uses defence in depth, the same principle as in network security.",
+    "hi": "इनपुट गार्डरेल: दुरुपयोग, निजी डेटा और प्रॉम्प्ट-इंजेक्शन पैटर्न पहचानो; अविश्वसनीय सामग्री चिह्नित करो। एक्शन गार्डरेल: टूलों की अनुमति-सूची; न्यूनतम-अधिकार वाले क्रेडेंशियल; तर्क जाँच (राशि ≤ सीमा, प्राप्तकर्ता स्कूल निर्देशिका में); दर और बजट सीमा; और अपरिवर्तनीय या बाहरी कामों (भुगतान, भेजना, मिटाना, साझा करना) के लिए अनिवार्य मानव पुष्टि। आउटपुट गार्डरेल: दिखाने या भेजने से पहले असुरक्षित सामग्री, लीक हुआ निजी डेटा, गायब हवाले या नीति-उल्लंघन जाँचो। साथ में निगरानी और ऑडिट लॉग, किल स्विच, और घटना-प्रक्रिया। रेड-टीमिंग, यानी अपने परीक्षकों के नैतिक हमले, असली हमलावरों से पहले कमज़ोरियाँ ढूँढती है। कोई एक परत पूर्ण नहीं, इसलिए सुरक्षा गहराई में बचाव अपनाती है, नेटवर्क सुरक्षा जैसा ही सिद्धांत।",
+    "hinglish": "Input guardrails: abuse, personal data aur prompt-injection patterns detect karo; untrusted content label karo. Action guardrails: tools ki allow-list; least-privilege credentials; argument validation (amount ≤ limit, recipient school directory mein); rate aur budget limits; aur irreversible ya external actions (pay, send, delete, share) ke liye mandatory human confirmation. Output guardrails: dikhane ya bhejne se pehle unsafe content, leaked personal data, missing citations ya policy violation check karo. Saath mein monitoring aur audit logs, kill switch, aur incident process. Red-teaming, yaani apne testers ke ethical attacks, asli attackers se pehle kamzoriyan dhoondhta hai. Koi ek layer perfect nahi, isliye security defence in depth use karti hai, network security jaisa hi principle."
+   },
+   "analogy": {
+    "hinglish": "Airport security jaisa: ticket check (input), security scanner (action), boarding gate par phir check (output) — ek layer chook jaaye to agli pakad le.",
+    "en": "Like airport security: ticket check (input), security scanner (action), another check at the boarding gate (output) — if one layer misses, the next catches it.",
+    "hi": "हवाई अड्डे की सुरक्षा जैसा: टिकट जाँच (इनपुट), सुरक्षा स्कैनर (कार्य), बोर्डिंग गेट पर फिर जाँच (आउटपुट) — एक परत चूके तो अगली पकड़ ले।"
+   },
+   "realExample": {
+    "en": "This very course's rules for AI agents (read-only GitHub, no sending messages, no deleting live data, approval before any external action) are real action guardrails.",
+    "hinglish": "Is course ke AI agents ke rules (read-only GitHub, messages nahi bhejna, live data delete nahi, kisi bhi external action se pehle approval) asli action guardrails hain.",
+    "hi": "इसी पाठ्यक्रम के एआई एजेंटों के नियम (केवल-पठन GitHub, संदेश नहीं भेजना, लाइव डेटा नहीं मिटाना, किसी भी बाहरी कार्य से पहले स्वीकृति) असली कार्य-सुरक्षा-घेरे हैं।"
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write an eval set of 8 tasks for a homework-helper agent: 5 normal, 2 it should refuse, 1 prompt-injection attempt. For each, write the expected behaviour and how you would check it automatically.",
+   "hinglish": "Homework-helper agent ke liye 8 tasks ka eval set likho: 5 normal, 2 jo refuse karne chahiye, 1 prompt-injection attempt. Har ek ka expected behaviour aur use automatically kaise check karoge, likho.",
+   "hi": "होमवर्क-सहायक एजेंट के लिए 8 कार्यों का मूल्यांकन सेट लिखो: 5 सामान्य, 2 जिन्हें उसे मना करना चाहिए, 1 प्रॉम्प्ट-इंजेक्शन प्रयास। हर एक का अपेक्षित व्यवहार और उसे स्वचालित रूप से कैसे जाँचोगे, लिखो।"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "match",
+    "prompt": {
+     "en": "Match each guardrail to its layer.",
+     "hi": "हर गार्डरेल को उसकी परत से मिलाएँ।",
+     "hinglish": "Har guardrail ko uski layer se milao."
+    },
+    "options": [
+     {
+      "en": "Detect injected instructions in a PDF",
+      "hinglish": "PDF mein injected instructions pakadna",
+      "hi": "PDF में डाले गए निर्देश पहचानना"
+     },
+     {
+      "en": "Require a parent's confirmation before paying fees",
+      "hinglish": "Fees payment se pehle parent ka confirmation",
+      "hi": "शुल्क भुगतान से पहले अभिभावक की पुष्टि माँगना"
+     },
+     {
+      "en": "Block an answer containing another child's phone number",
+      "hinglish": "Doosre bachche ka phone number wala jawab rokna",
+      "hi": "किसी दूसरे बच्चे का फ़ोन नंबर वाला उत्तर रोकना"
+     },
+     {
+      "en": "Allow only 3 listed tools",
+      "hinglish": "Sirf 3 listed tools allow",
+      "hi": "सिर्फ़ 3 सूचीबद्ध टूल की अनुमति"
+     }
+    ],
+    "answer": [
+     "input",
+     "action",
+     "output",
+     "action"
+    ],
+    "explain": {
+     "en": "Injection checks guard input; confirmations and tool allow-lists guard actions; leak checks guard output.",
+     "hi": "इंजेक्शन जाँच इनपुट की; पुष्टि और टूल-सूची कार्यों की; लीक जाँच आउटपुट की रक्षा करती है।",
+     "hinglish": "Injection checks input guard karte hain; confirmations aur tool allow-lists actions; leak checks output."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "After changing the system prompt, what should you do before release?",
+     "hi": "सिस्टम प्रॉम्प्ट बदलने के बाद रिलीज़ से पहले क्या करना चाहिए?",
+     "hinglish": "System prompt badalne ke baad release se pehle kya karna chahiye?"
+    },
+    "options": [
+     {
+      "en": "Re-run the full evaluation set to catch regressions",
+      "hinglish": "Regressions pakadne ke liye poora eval set dobara chalao",
+      "hi": "गिरावट पकड़ने के लिए पूरा मूल्यांकन सेट फिर चलाओ"
+     },
+     {
+      "en": "Nothing, prompts are safe",
+      "hinglish": "Kuch nahi, prompts safe hain",
+      "hi": "कुछ नहीं, प्रॉम्प्ट सुरक्षित हैं"
+     },
+     {
+      "en": "Test one happy example",
+      "hinglish": "Ek achha example test karo",
+      "hi": "एक अच्छा उदाहरण परखो"
+     },
+     {
+      "en": "Delete the old tests",
+      "hinglish": "Purane tests delete karo",
+      "hi": "पुराने परीक्षण मिटा दो"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Prompt changes can silently break other cases; the eval set is your regression test.",
+     "hi": "प्रॉम्प्ट बदलाव चुपचाप दूसरे मामले तोड़ सकते हैं; मूल्यांकन सेट आपका रिग्रेशन टेस्ट है।",
+     "hinglish": "Prompt changes chupchaap doosre cases tod sakte hain; eval set tumhara regression test hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Red-teaming means…",
+     "hi": "रेड-टीमिंग का मतलब?",
+     "hinglish": "Red-teaming ka matlab?"
+    },
+    "options": [
+     {
+      "en": "Your own testers ethically try to break the system so you can fix it",
+      "hinglish": "Tumhare apne testers ethically system todne ki koshish karte hain taaki theek ho sake",
+      "hi": "आपके अपने परीक्षक नैतिक रूप से प्रणाली तोड़ने की कोशिश करते हैं ताकि आप उसे ठीक कर सकें"
+     },
+     {
+      "en": "Painting the server red",
+      "hinglish": "Server laal rangna",
+      "hi": "सर्वर को लाल रंगना"
+     },
+     {
+      "en": "Hacking other companies",
+      "hinglish": "Doosri companies hack karna",
+      "hi": "दूसरी कंपनियों को हैक करना"
+     },
+     {
+      "en": "Training on red images",
+      "hinglish": "Laal images par training",
+      "hi": "लाल तस्वीरों पर प्रशिक्षण"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "It is authorised, defensive testing; findings become test cases and fixes.",
+     "hi": "यह अधिकृत, बचाव वाली जाँच है; नतीजे परीक्षण और सुधार बनते हैं।",
+     "hinglish": "Yeh authorised, defensive testing hai; findings test cases aur fixes bante hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why use several guardrail layers instead of one perfect prompt?",
+     "hi": "एक \"पूर्ण\" प्रॉम्प्ट की जगह कई गार्डरेल परतें क्यों?",
+     "hinglish": "Ek \"perfect\" prompt ki jagah kai guardrail layers kyun?"
+    },
+    "options": [
+     {
+      "en": "No single check is reliable alone; defence in depth limits harm when one fails",
+      "hinglish": "Koi akela check reliable nahi; defence in depth ek fail ho to nuksaan seemit karta hai",
+      "hi": "कोई एक जाँच अकेले भरोसेमंद नहीं; बहु-स्तरीय रक्षा एक के चूकने पर नुक़सान सीमित करती है"
+     },
+     {
+      "en": "Prompts cannot be written",
+      "hinglish": "Prompts likhe nahi ja sakte",
+      "hi": "प्रॉम्प्ट लिखे नहीं जा सकते"
+     },
+     {
+      "en": "It makes the model bigger",
+      "hinglish": "Model bada hota hai",
+      "hi": "यह मॉडल बड़ा करता है"
+     },
+     {
+      "en": "Laws forbid prompts",
+      "hinglish": "Law prompts mana karta hai",
+      "hi": "क़ानून प्रॉम्प्ट मना करते हैं"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Models can be tricked; independent checks on actions and outputs still stop the damage.",
+     "hi": "मॉडल धोखा खा सकते हैं; कार्यों और आउटपुट पर स्वतंत्र जाँच फिर भी नुकसान रोकती है।",
+     "hinglish": "Models dhokha kha sakte hain; actions aur outputs par independent checks phir bhi nuksaan rokte hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Block all 3 attacks while letting all 3 honest requests through.",
+     "hi": "तीनों हमले रोकें और तीनों ईमानदार अनुरोध जाने दें।",
+     "hinglish": "Teeno attacks block karo aur teeno imaandaar requests jaane do."
+    },
+    "answer": {
+     "event": "guardrail-score",
+     "blocked": 3,
+     "allowed": 3
+    },
+    "explain": {
+     "en": "The winning setup: injection filter on input, tool allow-list plus confirmation on actions, and a personal-data check on output.",
+     "hi": "जीतने वाला सेटअप: इनपुट पर इंजेक्शन फ़िल्टर, कार्यों पर टूल-सूची और पुष्टि, और आउटपुट पर निजी-डेटा जाँच।",
+     "hinglish": "Jeetne wala setup: input par injection filter, actions par tool allow-list plus confirmation, aur output par personal-data check."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "topics": [
+  "ai.evaluation",
+  "ai.safety"
+ ],
+ "sources": [
+  {
+   "title": "NIST AI Risk Management Framework 1.0",
+   "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+   "licence": "fact reference"
+  },
+  {
+   "title": "OWASP Top 10 for LLM Applications (2025)",
+   "url": "https://genai.owasp.org/llm-top-10/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Mialon et al. (2023) GAIA: a benchmark for General AI Assistants",
+   "url": "https://arxiv.org/abs/2311.12983",
+   "licence": "fact reference"
+  }
+ ]
+}

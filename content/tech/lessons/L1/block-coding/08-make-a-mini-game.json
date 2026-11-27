@@ -1,0 +1,407 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.block-coding.08",
+ "level": 1,
+ "classes": [
+  3,
+  4,
+  5
+ ],
+ "unit": "block-coding",
+ "title": {
+  "en": "Make a mini game",
+  "hi": "एक छोटा गेम बनाओ",
+  "hinglish": "Ek mini game banao"
+ },
+ "minutes": 10,
+ "xp": 40,
+ "prereq": [
+  "L1.block-coding.04",
+  "L1.block-coding.07"
+ ],
+ "topics": [
+  "prog.events",
+  "prog.variables",
+  "prog.conditions",
+  "sw.how-made"
+ ],
+ "outcomes": [
+  {
+   "en": "Build a game from event rules, a score variable and an IF condition.",
+   "hi": "इवेंट नियम, स्कोर वेरिएबल और अगर-शर्त से गेम बना सकते हो।",
+   "hinglish": "Event rules, score variable aur IF condition se game bana sakte ho."
+  },
+  {
+   "en": "Explain what each rule does and what breaks if it is missing.",
+   "hi": "हर नियम का काम और उसके न होने पर क्या बिगड़ता है, समझा सकते हो।",
+   "hinglish": "Har rule ka kaam aur uske na hone par kya bigadta hai, samjha sakte ho."
+  },
+  {
+   "en": "Playtest a game and improve it.",
+   "hi": "गेम खेलकर जाँच और सुधार कर सकते हो।",
+   "hinglish": "Game ko khel kar test aur behtar kar sakte ho."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Event",
+   "en": "Something that happens, like a button press",
+   "hi": "कुछ होना, जैसे बटन दबना",
+   "hinglish": "Jab kuch hota hai"
+  },
+  {
+   "term": "Variable",
+   "en": "A named box that holds a value, like the score",
+   "hi": "नाम वाला डिब्बा जिसमें मान रहता है, जैसे स्कोर",
+   "hinglish": "Naam wala dabba jo number rakhta hai"
+  },
+  {
+   "term": "Playtest",
+   "en": "Playing your game to find problems",
+   "hi": "गेम खेलकर समस्याएँ ढूँढना",
+   "hinglish": "Game khel kar galtiyan dhoondhna"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.block-coding.08.s1",
+   "caption": {
+    "en": "Mangoes fall. Gajju catches them.",
+    "hi": "आम गिरते हैं। गज्जू पकड़ता है।",
+    "hinglish": "Mangoes girte hain. Gajju pakadta hai."
+   },
+   "narration": {
+    "en": "Our game: mangoes fall from the tree, and Gajju moves left and right to catch them.",
+    "hinglish": "Hamara game: ped se mangoes girte hain, aur Gajju left-right chal kar unhe pakadta hai.",
+    "hi": "हमारा गेम: पेड़ से आम गिरते हैं, और गज्जू बाएँ-दाएँ चलकर उन्हें पकड़ता है।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.block-coding.08.s2",
+   "caption": {
+    "en": "Events: button presses and touches.",
+    "hi": "इवेंट: बटन दबना और छूना।",
+    "hinglish": "Events: button dabna aur chhoona."
+   },
+   "narration": {
+    "en": "Each rule starts with an event: when left is pressed, when right is pressed, when a mango touches Gajju.",
+    "hinglish": "Har rule ek event se shuru hota hai: jab left dabe, jab right dabe, jab mango Gajju ko chhuye.",
+    "hi": "हर नियम एक इवेंट से शुरू होता है: जब बायाँ दबे, जब दायाँ दबे, जब आम गज्जू को छुए।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.block-coding.08.s3",
+   "caption": {
+    "en": "A score variable counts every catch.",
+    "hi": "स्कोर वेरिएबल हर पकड़ गिनता है।",
+    "hinglish": "Score variable har catch ginta hai."
+   },
+   "narration": {
+    "en": "The score is a variable. Each catch adds 1. IF score is 5, you win!",
+    "hinglish": "Score ek variable hai. Har catch par 1 judta hai. IF score 5 hai, toh tum jeet gaye!",
+    "hi": "स्कोर एक वेरिएबल है। हर पकड़ पर 1 जुड़ता है। अगर स्कोर 5 है, तो तुम जीत गए!"
+   }
+  },
+  {
+   "step": 4,
+   "visual": "scene:L1.block-coding.08.s4",
+   "caption": {
+    "en": "Play it, find problems, improve it.",
+    "hi": "खेलो, समस्या ढूँढो, सुधारो।",
+    "hinglish": "Khelo, problem dhoondho, sudhaaro."
+   },
+   "narration": {
+    "en": "Game makers play their own game again and again to find problems and make it more fun.",
+    "hinglish": "Game banaane wale apna game baar-baar khelte hain taaki problems milein aur woh aur mazedaar bane.",
+    "hi": "गेम बनाने वाले अपना गेम बार-बार खेलते हैं ताकि समस्याएँ मिलें और वह और मज़ेदार बने।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "story-blocks",
+  "config": {
+   "mode": "game"
+  },
+  "goal": {
+   "en": "Pick the right game rules (leave out the one that does not belong), then play with ⬅ ➡ and catch 5 mangoes.",
+   "hi": "सही गेम नियम चुनो (जो नियम गेम का नहीं है उसे छोड़ दो), फिर ⬅ ➡ से खेलो और 5 आम पकड़ो।",
+   "hinglish": "Sahi game rules chuno (jo rule game ka nahin hai use chhod do), phir ⬅ ➡ se khelo aur 5 mangoes pakdo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "What each rule does",
+    "hi": "हर नियम का काम",
+    "hinglish": "Har rule ka kaam"
+   },
+   "body": {
+    "en": "\"When game starts → set score to 0\" gives the variable a starting value; without it the score is unknown. The two button rules turn your presses into movement. \"When mango touches Gajju → change score by 1\" is the scoring rule. \"IF score = 5 → say I win\" is the goal check. Take any one away and the game breaks in a different way — try it in the lab!",
+    "hi": "\"जब गेम शुरू हो → स्कोर = 0\" वेरिएबल को शुरुआती मान देता है; इसके बिना स्कोर अनजाना है। दोनों बटन वाले नियम तुम्हारे दबाने को हरकत में बदलते हैं। \"जब आम गज्जू को छुए → स्कोर में 1 जोड़ो\" अंक देने वाला नियम है। \"अगर स्कोर = 5 → बोलो मैं जीता\" लक्ष्य की जाँच है। कोई भी एक हटाओ तो गेम अलग तरह से बिगड़ता है — लैब में आज़माओ!",
+    "hinglish": "\"Jab game shuru ho → score = 0\" variable ko starting value deta hai; iske bina score anjaana hai. Dono button wale rules tumhare dabaane ko movement mein badalte hain. \"Jab mango Gajju ko chhuye → score mein 1 jodo\" scoring rule hai. \"IF score = 5 → bolo main jeeta\" goal check hai. Koi bhi ek hatao toh game alag tarah se bigadta hai — lab mein try karo!"
+   },
+   "analogy": {
+    "en": "Game rules are like cricket rules — when you score a run, when you are out, when the match ends — all decided in advance.",
+    "hi": "गेम के नियम क्रिकेट के नियमों जैसे हैं — रन कब मिलेगा, आउट कब होगा, मैच कब ख़त्म — सब पहले से तय।",
+    "hinglish": "Game ke rules cricket ke rules jaise hain — run kab milega, out kab hoga, match kab khatam — sab pehle se tay."
+   }
+  },
+  {
+   "heading": {
+    "en": "From blocks to real games",
+    "hi": "ब्लॉक से असली गेम तक",
+    "hinglish": "Blocks se asli games tak"
+   },
+   "body": {
+    "en": "Scratch, a free block-coding tool from the MIT Media Lab, lets children share their own games online, and many millions of projects have been shared there. Professional games are built from the same ideas — events, variables, conditions and loops — just written in languages like C++, C# or Python, with artists, sound designers and testers in the team.",
+    "hi": "स्क्रैच, MIT मीडिया लैब का मुफ़्त ब्लॉक-कोडिंग औज़ार, बच्चों को अपने गेम ऑनलाइन साझा करने देता है, और वहाँ करोड़ों प्रोजेक्ट साझा हो चुके हैं। पेशेवर गेम भी इन्हीं विचारों — इवेंट, वेरिएबल, शर्तें और लूप — से बनते हैं, बस C++, C# या पाइथन जैसी भाषाओं में, और टीम में कलाकार, ध्वनि डिज़ाइनर और टेस्टर होते हैं।",
+    "hinglish": "Scratch, MIT Media Lab ka free block-coding tool, bachchon ko apne games online share karne deta hai, aur wahan karodon projects share ho chuke hain. Professional games bhi inhi ideas — events, variables, conditions aur loops — se bante hain, bas C++, C# ya Python jaisi languages mein, aur team mein artists, sound designers aur testers hote hain."
+   },
+   "realExample": {
+    "en": "Try it: in the lab, remove the \"change score by 1\" rule and play. What happens to the score?",
+    "hi": "आज़माओ: लैब में \"स्कोर में 1 जोड़ो\" नियम हटाकर खेलो। स्कोर का क्या होता है?",
+    "hinglish": "Try karo: lab mein \"score mein 1 jodo\" rule hata kar khelo. Score ka kya hota hai?"
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Design your own catching game on paper: what falls, who catches it, what the score counts, and when you win. Ask a friend to \"playtest\" it by acting it out.",
+   "hi": "काग़ज़ पर अपना पकड़ने वाला गेम डिज़ाइन करो: क्या गिरता है, कौन पकड़ता है, स्कोर क्या गिनता है, और जीत कब होती है। किसी दोस्त से अभिनय करके \"प्लेटेस्ट\" कराओ।",
+   "hinglish": "Kaagaz par apna catching game design karo: kya girta hai, kaun pakadta hai, score kya ginta hai, aur jeet kab hoti hai. Kisi dost se act karke \"playtest\" karao."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "match",
+    "prompt": {
+     "en": "Match each game rule to its job.",
+     "hi": "हर गेम नियम को उसके काम से मिलाओ।",
+     "hinglish": "Har game rule ko uske kaam se milao."
+    },
+    "options": {
+     "left": [
+      {
+       "en": "set score to 0",
+       "hi": "स्कोर = 0",
+       "hinglish": "score = 0"
+      },
+      {
+       "en": "when mango touches → score + 1",
+       "hi": "आम छुए → स्कोर + 1",
+       "hinglish": "mango chhuye → score + 1"
+      },
+      {
+       "en": "IF score = 5 → I win",
+       "hi": "अगर स्कोर = 5 → मैं जीता",
+       "hinglish": "IF score = 5 → main jeeta"
+      }
+     ],
+     "right": [
+      {
+       "en": "Counts each catch",
+       "hi": "हर पकड़ गिनता है",
+       "hinglish": "Har catch ginta hai"
+      },
+      {
+       "en": "Checks if you won",
+       "hi": "जाँचता है कि जीते या नहीं",
+       "hinglish": "Check karta hai ki jeete ya nahin"
+      },
+      {
+       "en": "Gives the starting value",
+       "hi": "शुरुआती मान देता है",
+       "hinglish": "Starting value deta hai"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      2
+     ],
+     [
+      1,
+      0
+     ],
+     [
+      2,
+      1
+     ]
+    ],
+    "explain": {
+     "en": "Start value, scoring, goal check.",
+     "hi": "शुरुआती मान, अंक, लक्ष्य जाँच।",
+     "hinglish": "Starting value, scoring, goal check."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "You press ➡ but Gajju does not move. Which rule is missing?",
+     "hi": "तुम ➡ दबाते हो पर गज्जू नहीं चलता। कौन सा नियम ग़ायब है?",
+     "hinglish": "Tum ➡ dabaate ho par Gajju nahin chalta. Kaun sa rule missing hai?"
+    },
+    "options": [
+     {
+      "en": "When right pressed → move right",
+      "hi": "जब दायाँ दबे → दाएँ चलो",
+      "hinglish": "Jab right dabe → right chalo"
+     },
+     {
+      "en": "Set score to 0",
+      "hi": "स्कोर = 0",
+      "hinglish": "Score = 0"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "No event rule, no action.",
+     "hi": "इवेंट नियम नहीं, तो काम नहीं।",
+     "hinglish": "Event rule nahin, toh action nahin."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Score is 4. Gajju catches a mango. Score becomes…",
+     "hi": "स्कोर 4 है। गज्जू एक आम पकड़ता है। स्कोर होगा…",
+     "hinglish": "Score 4 hai. Gajju ek mango pakadta hai. Score hoga…"
+    },
+    "options": [
+     {
+      "en": "5",
+      "hi": "5",
+      "hinglish": "5"
+     },
+     {
+      "en": "4",
+      "hi": "4",
+      "hinglish": "4"
+     },
+     {
+      "en": "0",
+      "hi": "0",
+      "hinglish": "0"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "change score by 1: 4 + 1 = 5.",
+     "hi": "स्कोर में 1 जोड़ो: 4 + 1 = 5।",
+     "hinglish": "Score mein 1 jodo: 4 + 1 = 5."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are events?",
+     "hi": "कौन से इवेंट हैं?",
+     "hinglish": "Kaun se events hain?"
+    },
+    "options": [
+     {
+      "en": "A button is pressed",
+      "hi": "बटन दबता है",
+      "hinglish": "Button dabta hai"
+     },
+     {
+      "en": "A mango touches Gajju",
+      "hi": "आम गज्जू को छूता है",
+      "hinglish": "Mango Gajju ko chhoota hai"
+     },
+     {
+      "en": "The game starts",
+      "hi": "गेम शुरू होता है",
+      "hinglish": "Game shuru hota hai"
+     },
+     {
+      "en": "The number 5",
+      "hi": "संख्या 5",
+      "hinglish": "Number 5"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2
+    ],
+    "explain": {
+     "en": "Events are things that happen; a number is a value.",
+     "hi": "इवेंट वे हैं जो होते हैं; संख्या एक मान है।",
+     "hinglish": "Events woh hain jo hote hain; number ek value hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why do game makers playtest?",
+     "hi": "गेम बनाने वाले प्लेटेस्ट क्यों करते हैं?",
+     "hinglish": "Game makers playtest kyon karte hain?"
+    },
+    "options": [
+     {
+      "en": "To find problems and make it more fun",
+      "hi": "समस्याएँ ढूँढने और मज़ा बढ़ाने के लिए",
+      "hinglish": "Problems dhoondhne aur mazaa badhaane ke liye"
+     },
+     {
+      "en": "Because they are bored",
+      "hi": "क्योंकि वे ऊब गए हैं",
+      "hinglish": "Kyonki woh bore ho gaye hain"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Testing makes games better.",
+     "hi": "जाँच से गेम बेहतर बनता है।",
+     "hinglish": "Testing se game behtar banta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Build and win the mango game in the lab.",
+     "hi": "लैब में आम वाला गेम बनाओ और जीतो।",
+     "hinglish": "Lab mein mango game banao aur jeeto."
+    },
+    "answer": {
+     "lab": "story-blocks",
+     "mode": "game",
+     "solved": true
+    },
+    "explain": {
+     "en": "Add all five game rules, leave out Sleep, then catch 5 mangoes.",
+     "hi": "पाँचों गेम नियम जोड़ो, \"सो जाओ\" छोड़ दो, फिर 5 आम पकड़ो।",
+     "hinglish": "Paanchon game rules jodo, Sleep chhod do, phir 5 mangoes pakdo."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Scratch / ScratchJr – MIT Media Lab, free block coding (fact reference)",
+   "url": "https://scratch.mit.edu/about",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

@@ -1,0 +1,346 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.cyber-essentials.03",
+ "level": 2,
+ "classes": [
+  7,
+  8
+ ],
+ "unit": "cyber-essentials",
+ "title": {
+  "en": "The HTTPS padlock and real domains",
+  "hi": "HTTPS ताला और असली डोमेन",
+  "hinglish": "HTTPS padlock aur asli domains"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [
+  "L2.cyber-essentials.02"
+ ],
+ "topics": [
+  "cyber.https-padlock",
+  "cyber.phishing"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain what HTTPS and the padlock really promise",
+   "hi": "समझा सकते हो कि HTTPS और ताला असल में क्या वादा करते हैं",
+   "hinglish": "Samjha sakte ho HTTPS aur padlock asal mein kya promise karte hain"
+  },
+  {
+   "en": "Find the real domain of any link by reading from the right",
+   "hi": "दाएँ से पढ़कर किसी भी लिंक का असली डोमेन ढूँढ सकते हो",
+   "hinglish": "Right se padhkar kisi bhi link ka asli domain dhoondh sakte ho"
+  },
+  {
+   "en": "Spot look-alike tricks: extra words, digits for letters, odd endings",
+   "hi": "मिलते-जुलते नाम की चालें पहचान सकते हो: अतिरिक्त शब्द, अक्षरों की जगह अंक, अजीब अंत",
+   "hinglish": "Look-alike tricks pehchaan sakte ho: extra words, letters ki jagah digits, ajeeb endings"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "HTTPS",
+   "hinglish": "Encrypted web connection",
+   "en": "HTTP with encryption (TLS), so others cannot read or change the data on the way",
+   "hi": "एन्क्रिप्शन (TLS) वाला HTTP, ताकि रास्ते में कोई डेटा पढ़ या बदल न सके"
+  },
+  {
+   "term": "Domain",
+   "hinglish": "Website ka asli naam",
+   "en": "The real name of a website, e.g. irctc.co.in",
+   "hi": "वेबसाइट का असली नाम, जैसे irctc.co.in"
+  },
+  {
+   "term": "Subdomain",
+   "hinglish": "Domain se pehle ka hissa",
+   "en": "A part added before the domain, e.g. www. or mail.",
+   "hi": "डोमेन से पहले जोड़ा भाग, जैसे www. या mail."
+  },
+  {
+   "term": "Certificate",
+   "hinglish": "Website ka digital ID card",
+   "en": "A digital ID that proves which domain you are connected to",
+   "hi": "डिजिटल पहचान जो साबित करती है कि आप किस डोमेन से जुड़े हो"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "The padlock means the connection is encrypted. It does NOT mean the website is honest — scam sites get free certificates too.",
+    "hi": "ताला बताता है कि कनेक्शन एन्क्रिप्टेड है। इसका अर्थ यह नहीं कि वेबसाइट ईमानदार है — धोखेबाज़ साइटों को भी मुफ़्त प्रमाणपत्र मिलते हैं।",
+    "hinglish": "Padlock batata hai connection encrypted hai. Iska matlab yeh nahi ki website imaandaar hai — scam sites ko bhi free certificates milte hain."
+   },
+   "visual": "compare:🔒 = nobody can read it on the way|❓ ≠ the site is who you think",
+   "narration": {
+    "en": "A padlock on a fake bank site just means your password goes to the scammer privately.",
+    "hi": "नक़ली बैंक साइट पर ताले का अर्थ बस इतना कि आपका पासवर्ड धोखेबाज़ को निजी रूप से जाता है।",
+    "hinglish": "Nakli bank site pe padlock ka matlab bas itna ki aapka password scammer ko privately jaata hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Read the address bar from the right, before the first single “/”. The last parts are the real owner.",
+    "hi": "पता पट्टी को पहले अकेले “/” से पहले, दाएँ से पढ़ो। आख़िरी भाग असली मालिक हैं।",
+    "hinglish": "Address bar ko pehle akele “/” se pehle, right se padho. Aakhri parts asli owner hain."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "Everything to the left of the real domain can be anything the scammer likes.",
+    "hi": "असली डोमेन के बाएँ कुछ भी हो सकता है जो धोखेबाज़ चाहे।",
+    "hinglish": "Asli domain ke left mein kuch bhi ho sakta hai jo scammer chahe."
+   },
+   "code": "https://www.irctc.co.in.refund-help.com/claim\n        └──── decoy ───┘└─ REAL ──────┘\n                         refund-help.com"
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Judge seven links in the lab. The real domain lights up when you answer.",
+    "hi": "लैब में सात लिंक आँको। उत्तर देने पर असली डोमेन चमकता है।",
+    "hinglish": "Lab mein saat links judge karo. Answer dene pe asli domain highlight hota hai."
+   },
+   "visual": "lab:cyber-lab#url",
+   "narration": {
+    "en": "Watch for .gov.in — only Indian government sites can use it.",
+    "hi": ".gov.in पर ध्यान दो — केवल भारतीय सरकारी साइटें उपयोग कर सकती हैं।",
+    "hinglish": ".gov.in pe dhyaan do — sirf Indian sarkari sites use kar sakti hain."
+   }
+  }
+ ],
+ "play": {
+  "lab": "cyber-lab",
+  "config": {
+   "tab": "url"
+  },
+  "goal": {
+   "en": "Mark all seven links Safe or Scam by finding the real domain.",
+   "hi": "असली डोमेन ढूँढकर सातों लिंक को सुरक्षित या धोखा चिह्नित करो।",
+   "hinglish": "Asli domain dhoondh ke saaton links ko Safe ya Scam mark karo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "What HTTPS protects — and what it cannot",
+    "hi": "HTTPS क्या बचाता है — और क्या नहीं",
+    "hinglish": "HTTPS kya bachata hai — aur kya nahi"
+   },
+   "body": {
+    "en": "HTTPS uses TLS encryption: your browser and the server agree on secret keys, so anyone on the same Wi-Fi or along the internet path sees only scrambled data. The website shows a certificate signed by a trusted certificate authority, proving it controls that exact domain name. But a certificate checks the domain, not the honesty of the owner. Free certificate services such as Let’s Encrypt (launched 2015) made HTTPS easy, so most phishing sites use HTTPS too. That is why Google Chrome replaced the padlock with a neutral “tune” icon in 2023: people wrongly thought the padlock meant “safe”. Your real defence is reading the domain. Scammers use extra words (sbi-kyc-update.xyz), real names as decoys on the left (paytm.com.secure-verify.in), digits for letters (amaz0n), and cheap endings like .xyz, .top or .shop. In India, .gov.in and .nic.in are reserved for government, .ac.in and .edu.in for education, and in 2025 the RBI asked banks to move to a new .bank.in domain that only verified banks can register. Typing a site yourself or using a bookmark is always safer than tapping a link.",
+    "hi": "HTTPS TLS एन्क्रिप्शन उपयोग करता है: आपका ब्राउज़र और सर्वर गुप्त कुंजियों पर सहमत होते हैं, इसलिए उसी वाई-फ़ाई या इंटरनेट रास्ते पर कोई भी केवल उलझा डेटा देखता है। वेबसाइट किसी भरोसेमंद प्रमाणन प्राधिकरण द्वारा हस्ताक्षरित प्रमाणपत्र दिखाती है, जो साबित करता है कि वह उसी डोमेन नाम को नियंत्रित करती है। पर प्रमाणपत्र डोमेन जाँचता है, मालिक की ईमानदारी नहीं। Let’s Encrypt (2015 में शुरू) जैसी मुफ़्त प्रमाणपत्र सेवाओं ने HTTPS आसान किया, इसलिए ज़्यादातर फ़िशिंग साइटें भी HTTPS उपयोग करती हैं। इसीलिए Google Chrome ने 2023 में ताले की जगह तटस्थ “ट्यून” आइकन लगाया: लोग ग़लती से ताले को “सुरक्षित” समझते थे। आपकी असली सुरक्षा डोमेन पढ़ना है। धोखेबाज़ अतिरिक्त शब्द (sbi-kyc-update.xyz), बाईं ओर असली नाम का छलावा (paytm.com.secure-verify.in), अक्षरों की जगह अंक (amaz0n), और .xyz, .top या .shop जैसे सस्ते अंत उपयोग करते हैं। भारत में .gov.in और .nic.in सरकार के लिए, .ac.in और .edu.in शिक्षा के लिए आरक्षित हैं, और 2025 में RBI ने बैंकों से नए .bank.in डोमेन पर जाने को कहा जिसे केवल सत्यापित बैंक पंजीकृत कर सकते हैं। लिंक दबाने से ज़्यादा सुरक्षित है साइट ख़ुद लिखना या बुकमार्क उपयोग करना।",
+    "hinglish": "HTTPS TLS encryption use karta hai: aapka browser aur server secret keys pe agree karte hain, isliye usi Wi-Fi ya internet raaste pe koi bhi sirf scrambled data dekhta hai. Website ek trusted certificate authority se signed certificate dikhati hai, jo prove karta hai ki woh usi domain naam ko control karti hai. Par certificate domain check karta hai, owner ki imaandaari nahi. Let’s Encrypt (2015 mein launch) jaisi free certificate services ne HTTPS aasaan kiya, isliye zyaadatar phishing sites bhi HTTPS use karti hain. Isiliye Google Chrome ne 2023 mein padlock ki jagah neutral “tune” icon lagaya: log galti se padlock ko “safe” samajhte the. Aapki asli suraksha domain padhna hai. Scammers extra words (sbi-kyc-update.xyz), left mein asli naam ka decoy (paytm.com.secure-verify.in), letters ki jagah digits (amaz0n), aur .xyz, .top ya .shop jaise saste endings use karte hain. India mein .gov.in aur .nic.in sarkar ke liye, .ac.in aur .edu.in education ke liye reserved hain, aur 2025 mein RBI ne banks ko naye .bank.in domain pe jaane ko kaha jo sirf verified banks register kar sakte hain. Link dabane se zyada safe hai site khud type karna ya bookmark use karna."
+   },
+   "analogy": {
+    "en": "The padlock = a sealed envelope. Sealed means nobody can read it on the way — but if the address itself is wrong, your letter reaches the wrong person, still sealed.",
+    "hi": "ताला = बंद लिफ़ाफ़ा। लिफ़ाफ़ा बंद है तो रास्ते में कोई पढ़ नहीं सकता — पर अगर पता ही ग़लत लिखा है, तो चिट्ठी ग़लत व्यक्ति तक बंद लिफ़ाफ़े में पहुँचेगी।",
+    "hinglish": "Padlock = band lifafa. Lifafa band hai to raaste mein koi padh nahi sakta — par agar pata hi galat likha hai, to chitthi galat insaan tak band lifafe mein pahunchegi."
+   },
+   "realExample": {
+    "en": "Fake IRCTC refund pages often use addresses like irctc.co.in.refund-help.com; the real site is always just irctc.co.in.",
+    "hi": "नक़ली IRCTC रिफ़ंड पेज अक्सर irctc.co.in.refund-help.com जैसे पते उपयोग करते हैं; असली साइट हमेशा केवल irctc.co.in है।",
+    "hinglish": "Nakli IRCTC refund pages aksar irctc.co.in.refund-help.com jaise address use karte hain; asli site hamesha sirf irctc.co.in hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Bookmark the 3 sites your family uses most for money or tickets (bank, UPI, IRCTC). Write down each real domain and check it in the address bar next time.",
+   "hi": "परिवार की 3 सबसे ज़्यादा उपयोग होने वाली पैसे/टिकट साइटें बुकमार्क करो (बैंक, UPI, IRCTC)। हर एक का असली डोमेन लिखो और अगली बार पता पट्टी में जाँचो।",
+   "hinglish": "Family ki 3 sabse zyada use hone wali money/ticket sites bookmark karo (bank, UPI, IRCTC). Har ka asli domain likho aur agli baar address bar mein check karo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "A site shows a padlock. That means…",
+     "hi": "साइट पर ताला दिखता है। इसका अर्थ…",
+     "hinglish": "Site pe padlock dikhta hai. Iska matlab…"
+    },
+    "options": [
+     {
+      "en": "the site is safe and honest",
+      "hi": "साइट सुरक्षित और ईमानदार है",
+      "hinglish": "site safe aur imaandaar hai"
+     },
+     {
+      "en": "the connection is encrypted",
+      "hi": "कनेक्शन एन्क्रिप्टेड है",
+      "hinglish": "connection encrypted hai"
+     },
+     {
+      "en": "the government checked it",
+      "hi": "सरकार ने जाँची है",
+      "hinglish": "sarkar ne check ki hai"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Only that the connection is encrypted. Scam sites can have padlocks too.",
+     "hi": "केवल यह कि कनेक्शन एन्क्रिप्टेड है। धोखेबाज़ साइटों पर भी ताला हो सकता है।",
+     "hinglish": "Sirf yeh ki connection encrypted hai. Scam sites pe bhi padlock ho sakta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "short",
+    "prompt": {
+     "en": "What is the real domain of https://login.hdfcbank.com.verify-now.top/start ?",
+     "hi": "https://login.hdfcbank.com.verify-now.top/start का असली डोमेन क्या है?",
+     "hinglish": "https://login.hdfcbank.com.verify-now.top/start ka asli domain kya hai?"
+    },
+    "answer": [
+     "verify-now.top"
+    ],
+    "explain": {
+     "en": "Read from the right before the first single “/”: verify-now.top. “hdfcbank.com” is a decoy.",
+     "hi": "पहले अकेले “/” से पहले दाएँ से पढ़ो: verify-now.top। “hdfcbank.com” छलावा है।",
+     "hinglish": "Pehle akele “/” se pehle right se padho: verify-now.top. “hdfcbank.com” decoy hai."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q3",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are look-alike tricks? Choose all.",
+     "hi": "कौन-से मिलते-जुलते नाम की चालें हैं? सभी चुनो।",
+     "hinglish": "Kaunse look-alike tricks hain? Saare chuno."
+    },
+    "options": [
+     "amaz0n.in",
+     "flipkart.com.offer-zone.xyz",
+     "sbi-kyc-update.xyz",
+     "uidai.gov.in"
+    ],
+    "answer": [
+     0,
+     1,
+     2
+    ],
+    "explain": {
+     "en": "Digits for letters, real names as decoys and extra words are all tricks. uidai.gov.in is the real Aadhaar authority site.",
+     "hi": "अक्षरों की जगह अंक, छलावे के लिए असली नाम और अतिरिक्त शब्द सब चालें हैं। uidai.gov.in असली आधार प्राधिकरण साइट है।",
+     "hinglish": "Letters ki jagah digits, decoy ke liye asli naam aur extra words sab tricks hain. uidai.gov.in asli Aadhaar authority site hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why did Chrome swap the padlock for a different icon in 2023?",
+     "hi": "Chrome ने 2023 में ताले की जगह दूसरा आइकन क्यों लगाया?",
+     "hinglish": "Chrome ne 2023 mein padlock ki jagah doosra icon kyun lagaya?"
+    },
+    "options": [
+     {
+      "en": "People wrongly read it as “safe”",
+      "hi": "लोग उसे ग़लती से “सुरक्षित” समझते थे",
+      "hinglish": "Log use galti se “safe” samajhte the"
+     },
+     {
+      "en": "HTTPS was stopped",
+      "hi": "HTTPS बंद हो गया",
+      "hinglish": "HTTPS band ho gaya"
+     },
+     {
+      "en": "Padlocks slowed down phones",
+      "hi": "ताले फ़ोन धीमे करते थे",
+      "hinglish": "Padlocks phones slow karte the"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Many people thought the padlock meant “trustworthy”, but nearly all sites, including scams, use HTTPS.",
+     "hi": "बहुत लोग ताले को “भरोसेमंद” समझते थे, पर लगभग सभी साइटें, धोखे वाली भी, HTTPS उपयोग करती हैं।",
+     "hinglish": "Bahut log padlock ko “trustworthy” samajhte the, par lagbhag saari sites, scam wali bhi, HTTPS use karti hain."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "Safest way to open your bank’s website?",
+     "hi": "बैंक की वेबसाइट खोलने का सबसे सुरक्षित तरीक़ा?",
+     "hinglish": "Bank ki website kholne ka sabse safe tareeka?"
+    },
+    "options": [
+     {
+      "en": "Tap the link in an SMS",
+      "hi": "SMS का लिंक दबाओ",
+      "hinglish": "SMS ka link dabao"
+     },
+     {
+      "en": "Search and tap the first ad",
+      "hi": "खोजो और पहला विज्ञापन दबाओ",
+      "hinglish": "Search karo aur pehla ad dabao"
+     },
+     {
+      "en": "Use the official app or your saved bookmark",
+      "hi": "आधिकारिक ऐप या सहेजा बुकमार्क",
+      "hinglish": "Official app ya saved bookmark"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "Use the official app or a bookmark/typed address you have checked.",
+     "hi": "आधिकारिक ऐप या जाँचा हुआ बुकमार्क/लिखा पता उपयोग करो।",
+     "hinglish": "Official app ya checked bookmark/typed address use karo."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the lab mission.",
+     "hi": "लैब मिशन पूरा करो।",
+     "hinglish": "Lab mission poora karo."
+    },
+    "answer": {
+     "lab": "cyber-lab",
+     "event": "mission:complete",
+     "tab": "url"
+    },
+    "explain": {
+     "en": "Read each link from the right to find the real owner.",
+     "hi": "हर लिंक को दाएँ से पढ़कर असली मालिक ढूँढो।",
+     "hinglish": "Har link ko right se padh ke asli owner dhoondo."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Let’s Encrypt — About",
+   "url": "https://letsencrypt.org/about/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Chromium Blog — An update on the lock icon (2023)",
+   "url": "https://blog.chromium.org/2023/05/an-update-on-lock-icon.html",
+   "licence": "fact reference"
+  },
+  {
+   "title": "MDN Web Docs — What is a domain name?",
+   "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_domain_name",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Reserve Bank of India — press releases (exclusive .bank.in domain for banks, 2025)",
+   "url": "https://www.rbi.org.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

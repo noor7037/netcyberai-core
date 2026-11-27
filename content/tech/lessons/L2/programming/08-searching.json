@@ -1,0 +1,326 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.programming.08",
+ "level": 2,
+ "classes": [
+  8
+ ],
+ "unit": "programming",
+ "title": {
+  "en": "Searching: linear and binary search",
+  "hi": "खोज: रैखिक और द्विआधारी",
+  "hinglish": "Searching: linear aur binary search"
+ },
+ "minutes": 12,
+ "xp": 45,
+ "prereq": [
+  "L2.programming.07"
+ ],
+ "topics": [
+  "prog.algo-search",
+  "prog.complexity"
+ ],
+ "outcomes": [
+  {
+   "en": "Trace linear search and binary search",
+   "hi": "रैखिक और द्विआधारी खोज ट्रेस कर सकते हो",
+   "hinglish": "Linear aur binary search trace kar sakte ho"
+  },
+  {
+   "en": "Explain why binary search needs sorted data",
+   "hi": "समझा सकते हो कि द्विआधारी खोज को क्रमबद्ध डेटा क्यों चाहिए",
+   "hinglish": "Binary search ko sorted data kyun chahiye samjha sakte ho"
+  },
+  {
+   "en": "Compare how the number of steps grows (n vs log₂ n)",
+   "hi": "कदमों की संख्या कैसे बढ़ती है, तुलना कर सकते हो (n बनाम log₂ n)",
+   "hinglish": "Steps kaise badhte hain compare kar sakte ho (n vs log₂ n)"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Linear search",
+   "hinglish": "Ek-ek karke dekhna",
+   "en": "Check items one by one from the start",
+   "hi": "शुरू से एक-एक करके चीज़ें जाँचो"
+  },
+  {
+   "term": "Binary search",
+   "hinglish": "Beech se aadha-aadha kaatna",
+   "en": "Check the middle of a sorted list and throw away half each time",
+   "hi": "क्रमबद्ध लिस्ट का बीच जाँचो और हर बार आधा हटा दो"
+  },
+  {
+   "term": "Sorted",
+   "hinglish": "Order mein lagi hui",
+   "en": "Arranged in order, smallest to largest",
+   "hi": "क्रम में लगा, सबसे छोटे से सबसे बड़े तक"
+  },
+  {
+   "term": "Efficiency",
+   "hinglish": "Kitne steps lagte hain",
+   "en": "How the work grows as the data grows",
+   "hi": "डेटा बढ़ने पर काम कैसे बढ़ता है"
+  },
+  {
+   "term": "log₂ n",
+   "hinglish": "Kitni baar aadha karo ki 1 bache",
+   "en": "How many times you can halve n until 1 is left",
+   "hi": "n को कितनी बार आधा कर सकते हो जब तक 1 न बचे"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Linear search: look at each item until you find it — like checking every page of a notebook.",
+    "hi": "रैखिक खोज: मिलने तक हर चीज़ देखो — जैसे नोटबुक का हर पन्ना।",
+    "hinglish": "Linear search: milne tak har item dekho — jaise notebook ka har page."
+   },
+   "visual": "lab:py-tracer#linear",
+   "narration": {
+    "en": "Easy and works on any list, but slow on huge lists.",
+    "hi": "आसान और किसी भी लिस्ट पर चलती है, पर बहुत बड़ी लिस्ट पर धीमी।",
+    "hinglish": "Aasaan aur kisi bhi list pe chalta hai, par badi lists pe slow."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Binary search: in a sorted list, check the middle, then keep only the half that can contain the target.",
+    "hi": "द्विआधारी खोज: क्रमबद्ध लिस्ट में बीच देखो, फिर केवल वह आधा रखो जिसमें लक्ष्य हो सकता है।",
+    "hinglish": "Binary search: sorted list mein beech dekho, phir sirf woh aadha rakho jisme target ho sakta hai."
+   },
+   "visual": "lab:py-tracer#binary",
+   "narration": {
+    "en": "Watch lo, mid and hi pointers close in on the answer.",
+    "hi": "देखो lo, mid और hi सूचक उत्तर की ओर कैसे बढ़ते हैं।",
+    "hinglish": "Dekho lo, mid aur hi pointers jawab ki taraf kaise badhte hain."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "The difference is huge on big data.",
+    "hi": "बड़े डेटा पर अंतर बहुत बड़ा है।",
+    "hinglish": "Bade data pe farak bahut bada hai."
+   },
+   "visual": "compare:1,000 items → linear up to 1,000 · binary ≤ 10|10,00,000 items → linear up to 10 lakh · binary ≤ 20",
+   "narration": {
+    "en": "Doubling the data adds just ONE step to binary search.",
+    "hi": "डेटा दोगुना करने पर द्विआधारी खोज में केवल एक कदम बढ़ता है।",
+    "hinglish": "Data double karo to binary search mein sirf EK step badhta hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "py-tracer",
+  "config": {
+   "program": "binary"
+  },
+  "goal": {
+   "en": "Step through binary search for 44 and count the steps. Then answer: what must be true about the list?",
+   "hi": "44 के लिए द्विआधारी खोज कदम-दर-कदम चलाओ और कदम गिनो। फिर बताओ: लिस्ट के बारे में क्या सच होना चाहिए?",
+   "hinglish": "44 ke liye binary search step karo aur steps gino. Phir jawab do: list ke baare mein kya sach hona chahiye?"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Measuring how fast an algorithm is",
+    "hi": "एल्गोरिदम की गति मापना",
+    "hinglish": "Algorithm ki speed naapna"
+   },
+   "body": {
+    "en": "Computer scientists measure algorithms by how the number of steps grows with the input size n. Linear search takes up to n steps — double the list, double the work (we write O(n)). Binary search halves the list every step, so it takes at most about log₂ n steps (O(log n)): 2¹⁰ = 1,024, so 1,000 items need at most 10 checks; 2²⁰ ≈ 10 lakh, so a million items need at most 20. The catch: the list must be sorted, and sorting costs time once. That is why phone contacts, dictionaries and database indexes are kept sorted — one sort, then millions of fast searches. The “guess the number from 1 to 100” game is binary search: always guess the middle and you will win in 7 tries or fewer.",
+    "hi": "कंप्यूटर वैज्ञानिक एल्गोरिदम को इस आधार पर मापते हैं कि इनपुट आकार n के साथ कदम कैसे बढ़ते हैं। रैखिक खोज में अधिकतम n कदम — लिस्ट दोगुनी, काम दोगुना (O(n) लिखते हैं)। द्विआधारी खोज हर कदम पर लिस्ट आधी करती है, इसलिए अधिकतम लगभग log₂ n कदम (O(log n)): 2¹⁰ = 1,024, तो 1,000 चीज़ों में अधिकतम 10 जाँच; 2²⁰ ≈ 10 लाख, तो 10 लाख चीज़ों में अधिकतम 20। शर्त: लिस्ट क्रमबद्ध हो, और छाँटने में एक बार समय लगता है। इसीलिए फ़ोन संपर्क, शब्दकोश और डेटाबेस इंडेक्स क्रम में रखे जाते हैं — एक बार छाँटो, फिर लाखों तेज़ खोजें। “1 से 100 तक संख्या बूझो” खेल द्विआधारी खोज है: हमेशा बीच की संख्या बोलो और 7 या कम प्रयासों में जीतोगे।",
+    "hinglish": "Computer scientists algorithms ko is basis pe naapte hain ki input size n ke saath steps kaise badhte hain. Linear search mein maximum n steps — list double, kaam double (O(n) likhte hain). Binary search har step pe list aadhi karta hai, isliye maximum lagbhag log₂ n steps (O(log n)): 2¹⁰ = 1,024, to 1,000 items mein maximum 10 checks; 2²⁰ ≈ 10 lakh, to 10 lakh items mein maximum 20. Catch: list sorted honi chahiye, aur sorting mein ek baar time lagta hai. Isliye phone contacts, dictionaries aur database indexes sorted rakhe jaate hain — ek baar sort, phir laakhon fast searches. “1 se 100 tak number guess karo” game binary search hai: hamesha beech ka number bolo aur 7 ya kam tries mein jeetoge."
+   },
+   "analogy": {
+    "hinglish": "Binary search = dictionary mein “Neem” dhoondna: beech se kholo, “M” aaya to aage ka aadha, “P” aaya to peeche ka aadha.",
+    "en": "Binary search = finding “Neem” in a dictionary: open in the middle; if you land on “M”, keep the later half; if “P”, keep the earlier half.",
+    "hi": "द्विआधारी खोज = शब्दकोश में “नीम” ढूँढना: बीच से खोलो, “M” आया तो आगे का आधा, “P” आया तो पीछे का आधा।"
+   },
+   "realExample": {
+    "en": "When you type in your contacts search, the phone uses sorted indexes so results appear instantly even with 2,000 contacts.",
+    "hi": "जब आप संपर्क खोज में लिखते हो, फ़ोन क्रमबद्ध इंडेक्स उपयोग करता है ताकि 2,000 संपर्कों में भी परिणाम तुरंत आएँ।",
+    "hinglish": "Contacts search mein type karte ho to phone sorted indexes use karta hai, isliye 2,000 contacts mein bhi results turant aate hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Play “guess my number” (1–100) with a family member using the middle-guess strategy. Record how many guesses it took each time.",
+   "hi": "परिवार के किसी सदस्य के साथ बीच वाली संख्या की रणनीति से “मेरी संख्या बूझो” (1–100) खेलो। हर बार कितने अनुमान लगे लिखो।",
+   "hinglish": "Ghar mein kisi ke saath “mera number guess karo” (1–100) beech-wala-guess strategy se khelo. Har baar kitne guesses lage likho."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Binary search only works when the list is…",
+     "hi": "द्विआधारी खोज तभी काम करती है जब लिस्ट…",
+     "hinglish": "Binary search tabhi kaam karta hai jab list…"
+    },
+    "options": [
+     {
+      "en": "sorted",
+      "hi": "क्रमबद्ध",
+      "hinglish": "sorted"
+     },
+     {
+      "en": "short",
+      "hi": "छोटी",
+      "hinglish": "chhoti"
+     },
+     {
+      "en": "made of words",
+      "hi": "शब्दों से बनी",
+      "hinglish": "words se bani"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "It decides which half to keep by comparing with the middle, which needs sorted order.",
+     "hi": "बीच से तुलना करके आधा चुनती है, इसके लिए क्रम चाहिए।",
+     "hinglish": "Beech se compare karke aadha chunta hai, iske liye sorted order chahiye."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Linear search in a list of 500 unsorted items. Worst case number of checks?",
+     "hi": "500 बिना क्रम चीज़ों में रैखिक खोज। सबसे बुरी स्थिति में कितनी जाँच?",
+     "hinglish": "500 unsorted items mein linear search. Worst case mein kitne checks?"
+    },
+    "options": [
+     "1",
+     "9",
+     "500"
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "If the item is last or missing, it checks all 500.",
+     "hi": "चीज़ आख़िरी या ग़ायब हो तो सभी 500 जाँचता है।",
+     "hinglish": "Item last ya missing ho to saare 500 check karta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "About how many checks does binary search need for 1,000 sorted items at most?",
+     "hi": "1,000 क्रमबद्ध चीज़ों में द्विआधारी खोज को अधिकतम लगभग कितनी जाँच चाहिए?",
+     "hinglish": "1,000 sorted items mein binary search ko maximum lagbhag kitne checks chahiye?"
+    },
+    "options": [
+     "500",
+     "10",
+     "100"
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "2¹⁰ = 1,024, so about 10 halvings are enough.",
+     "hi": "2¹⁰ = 1,024, तो लगभग 10 बार आधा करना काफ़ी।",
+     "hinglish": "2¹⁰ = 1,024, to lagbhag 10 baar aadha karna kaafi."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Binary search for 31 in [3, 8, 12, 19, 25, 31, 44]. Which middle values does it check, in order?",
+     "hi": "[3, 8, 12, 19, 25, 31, 44] में 31 के लिए द्विआधारी खोज। कौन-से बीच वाले मान क्रम में जाँचे जाते हैं?",
+     "hinglish": "[3, 8, 12, 19, 25, 31, 44] mein 31 ke liye binary search. Kaunse middle values order mein check hote hain?"
+    },
+    "options": [
+     "19, then 31",
+     "25, then 31",
+     "3, 8, 12, 19, 25, 31"
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Middle of indexes 0–6 is 3 (value 19) → 31 is bigger, go right; middle of 4–6 is 5 (value 31) → found in 2 checks.",
+     "hi": "इंडेक्स 0–6 का बीच 3 (मान 19) → 31 बड़ा, दाएँ जाओ; 4–6 का बीच 5 (मान 31) → 2 जाँच में मिला।",
+     "hinglish": "Indexes 0–6 ka middle 3 (value 19) → 31 bada, right jao; 4–6 ka middle 5 (value 31) → 2 checks mein mila."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "A sorted list doubles from 1 lakh to 2 lakh items. Binary search needs…",
+     "hi": "क्रमबद्ध लिस्ट 1 लाख से 2 लाख चीज़ों की हो जाती है। द्विआधारी खोज को चाहिए…",
+     "hinglish": "Sorted list 1 lakh se 2 lakh items ki ho jaati hai. Binary search ko chahiye…"
+    },
+    "options": [
+     {
+      "en": "just 1 more step",
+      "hi": "केवल 1 और कदम",
+      "hinglish": "sirf 1 aur step"
+     },
+     {
+      "en": "double the steps",
+      "hi": "दोगुने कदम",
+      "hinglish": "double steps"
+     },
+     {
+      "en": "1 lakh more steps",
+      "hi": "1 लाख और कदम",
+      "hinglish": "1 lakh aur steps"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "One extra halving handles double the data.",
+     "hi": "दोगुने डेटा के लिए एक अतिरिक्त आधा करना।",
+     "hinglish": "Double data ke liye ek extra halving."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "lc",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Answer the predict question for the Binary search program.",
+     "hi": "Binary search प्रोग्राम का अनुमान प्रश्न हल करो।",
+     "hinglish": "Binary search program ka predict sawaal solve karo."
+    },
+    "answer": {
+     "lab": "py-tracer",
+     "event": "mission:complete",
+     "program": "binary"
+    },
+    "explain": {
+     "en": "The list must be sorted.",
+     "hi": "लिस्ट क्रमबद्ध होनी चाहिए।",
+     "hinglish": "List sorted honi chahiye."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Khan Academy — Binary search",
+   "url": "https://www.khanacademy.org/computing/computer-science/algorithms/binary-search/a/binary-search",
+   "licence": "fact reference"
+  },
+  {
+   "title": "CS Unplugged — Searching algorithms (CC BY-SA)",
+   "url": "https://www.csunplugged.org/en/topics/searching-algorithms/",
+   "licence": "CC BY-SA 4.0 (idea reference only)"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

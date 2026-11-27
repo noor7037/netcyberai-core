@@ -1,0 +1,382 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.neural-nets-deep-learning.03",
+ "level": 3,
+ "classes": [
+  11
+ ],
+ "unit": "neural-nets-deep-learning",
+ "title": {
+  "en": "Convolutional networks and computer vision",
+  "hi": "कन्वोल्यूशनल नेटवर्क और कंप्यूटर विज़न",
+  "hinglish": "Convolutional networks aur computer vision"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [
+  "L3.neural-nets-deep-learning.02"
+ ],
+ "outcomes": [
+  {
+   "en": "Apply a 3×3 filter to a small image by hand",
+   "hinglish": "3×3 filter ko chhoti image par haath se lagao",
+   "hi": "छोटी तस्वीर पर हाथ से 3×3 फ़िल्टर लगाना"
+  },
+  {
+   "en": "Explain convolution, pooling and feature maps",
+   "hinglish": "Convolution, pooling aur feature maps samjhao",
+   "hi": "कन्वोल्यूशन, पूलिंग और फ़ीचर मैप समझाना"
+  },
+  {
+   "en": "Name vision tasks: classification, detection, segmentation, OCR",
+   "hinglish": "Vision tasks batao: classification, detection, segmentation, OCR",
+   "hi": "दृष्टि कार्यों के नाम: वर्गीकरण, पहचान, विभाजन, OCR"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Pixel",
+   "hinglish": "Image ka sabse chhota dot",
+   "en": "One number (or RGB triple) in an image grid",
+   "hi": "तस्वीर-ग्रिड में एक संख्या (या RGB तिकड़ी)"
+  },
+  {
+   "term": "Convolution",
+   "hinglish": "Chhota filter image par sarkaana",
+   "en": "Sliding a small weight grid over an image, multiplying and summing",
+   "hi": "तस्वीर पर भारों का छोटा ग्रिड सरकाना, गुणा करना और जोड़ना"
+  },
+  {
+   "term": "Feature map",
+   "hinglish": "Filter ka output — kahan pattern mila",
+   "en": "The grid of filter responses",
+   "hi": "फ़िल्टर प्रतिक्रियाओं का ग्रिड"
+  },
+  {
+   "term": "Pooling",
+   "hinglish": "Image chhoti karna, khaas cheez bachana",
+   "en": "Downsampling, e.g. max of each 2×2 block",
+   "hi": "आकार घटाना, जैसे हर 2×2 खंड का अधिकतम"
+  },
+  {
+   "term": "Object detection",
+   "hinglish": "Kya hai aur kahan hai (box)",
+   "en": "Finding objects and drawing boxes around them",
+   "hi": "वस्तुएँ ढूँढना और उनके चारों ओर बक्से बनाना"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "To a computer an image is a grid of numbers: a 224×224 colour photo is 224×224×3 ≈ 1.5 lakh values.",
+    "hi": "कंप्यूटर के लिए तस्वीर संख्याओं की ग्रिड है: 224×224 रंगीन फ़ोटो में 224×224×3 ≈ 1.5 लाख मान।",
+    "hinglish": "Computer ke liye image numbers ki grid hai: 224×224 colour photo mein 224×224×3 ≈ 1.5 lakh values."
+   },
+   "visual": "anim:pixel-grid-zoom",
+   "narration": {
+    "en": "To a computer an image is a grid of numbers: a 224×224 colour photo is 224×224×3 ≈ 1.5 lakh values.",
+    "hi": "कंप्यूटर के लिए तस्वीर संख्याओं की ग्रिड है: 224×224 रंगीन फ़ोटो में 224×224×3 ≈ 1.5 लाख मान।",
+    "hinglish": "Computer ke liye image numbers ki grid hai: 224×224 colour photo mein 224×224×3 ≈ 1.5 lakh values."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "A 3×3 filter slides across, multiplying and adding. An edge filter lights up where brightness changes sharply.",
+    "hi": "3×3 फ़िल्टर सरकता है, गुणा करके जोड़ता है। किनारा-फ़िल्टर वहाँ चमकता है जहाँ चमक अचानक बदले।",
+    "hinglish": "3×3 filter sarakta hai, multiply karke jodta hai. Edge filter wahan chamakta hai jahan brightness achanak badle."
+   },
+   "visual": "anim:conv-slide",
+   "narration": {
+    "en": "A 3×3 filter slides across, multiplying and adding. An edge filter lights up where brightness changes sharply.",
+    "hi": "3×3 फ़िल्टर सरकता है, गुणा करके जोड़ता है। किनारा-फ़िल्टर वहाँ चमकता है जहाँ चमक अचानक बदले।",
+    "hinglish": "3×3 filter sarakta hai, multiply karke jodta hai. Edge filter wahan chamakta hai jahan brightness achanak badle."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Layer after layer: edges → corners and textures → leaf spots → \"tomato early blight, 92%\".",
+    "hi": "परत दर परत: किनारे → कोने और बनावट → पत्ती के धब्बे → \"टमाटर अर्ली ब्लाइट, 92%\"।",
+    "hinglish": "Layer dar layer: edges → corners aur textures → leaf spots → \"tomato early blight, 92%\"."
+   },
+   "visual": "anim:cnn-hierarchy",
+   "narration": {
+    "en": "Layer after layer: edges → corners and textures → leaf spots → \"tomato early blight, 92%\".",
+    "hi": "परत दर परत: किनारे → कोने और बनावट → पत्ती के धब्बे → \"टमाटर अर्ली ब्लाइट, 92%\"।",
+    "hinglish": "Layer dar layer: edges → corners aur textures → leaf spots → \"tomato early blight, 92%\"."
+   }
+  }
+ ],
+ "play": {
+  "lab": "nn-playground",
+  "config": {
+   "mode": "conv",
+   "image": "leaf-16",
+   "filters": [
+    "edge-v",
+    "edge-h",
+    "blur",
+    "sharpen"
+   ]
+  },
+  "goal": {
+   "en": "Pick a filter and watch it slide over the 16×16 leaf image to build a feature map. Which filter finds the leaf's outline?",
+   "hinglish": "Ek filter chuno aur use 16×16 leaf image par sarakte hue feature map banate dekho. Kaunsa filter patti ki outline dhoondhta hai?",
+   "hi": "एक फ़िल्टर चुनो और उसे 16×16 पत्ती की तस्वीर पर सरकते हुए फ़ीचर मैप बनाते देखो। कौन-सा फ़िल्टर पत्ती की रूपरेखा ढूँढता है?"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Convolution and pooling",
+    "hi": "कन्वोल्यूशन और पूलिंग",
+    "hinglish": "Convolution aur pooling"
+   },
+   "body": {
+    "en": "A fully connected network on a 1.5-lakh-value image would need billions of weights and would not know that a cat in the corner is the same as a cat in the centre. A convolutional neural network (CNN) instead learns small filters, say 3×3, and slides the same filter across the whole image (weight sharing). At each position it multiplies the 9 pixels by the 9 weights and adds them, producing one value in a feature map. A vertical-edge filter like [−1 0 1; −1 0 1; −1 0 1] responds strongly where left and right differ. Pooling (taking the max of each 2×2 block) halves the size and makes the network tolerant to small shifts. Stacking conv → ReLU → pool many times builds from edges to objects. Yann LeCun's LeNet read cheque digits in the 1990s; AlexNet (2012) and ResNet (2015, with skip connections for 152 layers) made CNNs dominant.",
+    "hi": "1.5 लाख मानों वाली तस्वीर पर पूर्ण जुड़े नेटवर्क को अरबों भार चाहिए होते और उसे पता न होता कि कोने की बिल्ली बीच की बिल्ली जैसी ही है। कन्वोल्यूशनल न्यूरल नेटवर्क (सीएनएन) छोटे फ़िल्टर, जैसे 3×3, सीखता है और वही फ़िल्टर पूरी तस्वीर पर सरकाता है (भार साझा)। हर जगह वह 9 पिक्सेल को 9 भार से गुणा कर जोड़ता है, जिससे फ़ीचर मैप में एक मान बनता है। [−1 0 1; −1 0 1; −1 0 1] जैसा खड़ा-किनारा फ़िल्टर वहाँ तेज़ प्रतिक्रिया देता है जहाँ बाएँ और दाएँ में फ़र्क हो। पूलिंग (हर 2×2 खंड का अधिकतम) आकार आधा करती है और नेटवर्क को छोटे खिसकाव सहने देती है। conv → ReLU → pool कई बार लगाकर किनारों से वस्तुओं तक पहुँचते हैं। यान लेकुन के लेनेट ने 1990 के दशक में चेक के अंक पढ़े; एलेक्सनेट (2012) और रेज़नेट (2015, 152 परतों के लिए स्किप कनेक्शन) ने सीएनएन को प्रमुख बनाया।",
+    "hinglish": "1.5 lakh values wali image par fully connected network ko arabon weights chahiye hote aur use pata na hota ki kone ki billi beech ki billi jaisi hi hai. CNN chhote filters, jaise 3×3, seekhta hai aur wahi filter poori image par sarkaata hai (weight sharing). Har position par 9 pixels ko 9 weights se multiply karke jodta hai, jisse feature map mein ek value banti hai. [−1 0 1; −1 0 1; −1 0 1] jaisa vertical-edge filter wahan strong response deta hai jahan left aur right mein farak ho. Pooling (har 2×2 block ka max) size aadha karti hai aur network ko chhote shifts sehne deti hai. conv → ReLU → pool kai baar lagake edges se objects tak pahunchte hain. Yann LeCun ke LeNet ne 1990s mein cheque digits padhe; AlexNet (2012) aur ResNet (2015, 152 layers ke liye skip connections) ne CNNs ko dominant banaya."
+   },
+   "analogy": {
+    "hinglish": "Convolution ek magnifying glass jaisa hai jise poore newspaper par line-by-line ghumaate ho, sirf ek cheez dhoondhte hue — jaise \"tumhara naam\".",
+    "en": "Convolution is like a magnifying glass you move line by line over a whole newspaper, looking for just one thing — like \"your name\".",
+    "hi": "कन्वोल्यूशन एक आवर्धक लेंस जैसा है जिसे पूरे अख़बार पर पंक्ति-दर-पंक्ति घुमाते हो, सिर्फ़ एक चीज़ ढूँढते हुए — जैसे \"तुम्हारा नाम\"।"
+   },
+   "realExample": {
+    "en": "Kisan apps such as Plantix use CNN-style models to identify crop diseases from a phone photo; DigiYatra at Indian airports uses face recognition at the boarding gate.",
+    "hinglish": "Plantix jaisi kisan apps phone photo se crop disease pehchanne ke liye CNN-style models use karti hain; Indian airports par DigiYatra boarding gate par face recognition use karta hai.",
+    "hi": "प्लांटिक्स जैसे किसान ऐप फ़ोन की फ़ोटो से फ़सल रोग पहचानने के लिए CNN जैसे मॉडल इस्तेमाल करते हैं; भारतीय हवाई अड्डों पर डिजीयात्रा बोर्डिंग गेट पर चेहरा पहचान इस्तेमाल करती है।"
+   }
+  },
+  {
+   "heading": {
+    "en": "Vision tasks and their limits",
+    "hi": "विज़न के काम और उनकी सीमाएँ",
+    "hinglish": "Vision tasks aur unki limits"
+   },
+   "body": {
+    "en": "Image classification gives one label per image. Object detection (e.g. YOLO) draws boxes around each object, used for counting vehicles at traffic junctions. Segmentation labels every pixel, used for tumour outlines in scans or road lanes for driver assistance. OCR (optical character recognition) reads text, including Devanagari and other Indic scripts, from documents. Since 2020 vision transformers (ViT) compete with CNNs by treating image patches like words. Limits: models can be fooled by unusual lighting, angles or tiny adversarial changes, and face recognition raises privacy and consent issues, which India's DPDP Act treats as personal data processing.",
+    "hi": "इमेज क्लासिफ़िकेशन हर तस्वीर को एक लेबल देता है। ऑब्जेक्ट डिटेक्शन (जैसे योलो) हर वस्तु के चारों ओर डिब्बा बनाता है, ट्रैफ़िक चौराहों पर वाहन गिनने में काम आता है। सेगमेंटेशन हर पिक्सेल को लेबल देता है, स्कैन में ट्यूमर की रूपरेखा या ड्राइवर सहायता के लिए सड़क की लेन के लिए। ओसीआर दस्तावेज़ों से पाठ पढ़ता है, देवनागरी और अन्य भारतीय लिपियाँ भी। 2020 से विज़न ट्रांसफ़ॉर्मर (ViT) तस्वीर के टुकड़ों को शब्दों की तरह मानकर सीएनएन से मुकाबला करते हैं। सीमाएँ: असामान्य रोशनी, कोण या छोटे जानबूझकर बदलाव मॉडल को धोखा दे सकते हैं, और चेहरा पहचान निजता और सहमति के सवाल उठाती है, जिसे भारत का डीपीडीपी अधिनियम निजी डेटा प्रसंस्करण मानता है।",
+    "hinglish": "Image classification har image ko ek label deta hai. Object detection (jaise YOLO) har object ke chaaron taraf box banata hai, traffic junctions par gaadiyan ginne mein kaam aata hai. Segmentation har pixel ko label deta hai, scans mein tumour outline ya driver assistance ke liye road lanes. OCR documents se text padhta hai, Devanagari aur doosri Indic scripts bhi. 2020 se vision transformers (ViT) image patches ko words ki tarah treat karke CNNs se muqabla karte hain. Limits: ajeeb lighting, angles ya chhote jaan-boojh ke kiye changes model ko dhokha de sakte hain, aur face recognition privacy aur consent ke sawaal uthata hai, jise India ka DPDP Act personal data processing maanta hai."
+   },
+   "analogy": {
+    "hinglish": "Classification = \"photo mein kutta hai\"; detection = \"kutta yahan hai [box]\"; segmentation = \"kutte ka har baal yahan hai\".",
+    "en": "Classification = \"there is a dog in the photo\"; detection = \"the dog is here [box]\"; segmentation = \"every hair of the dog is here\".",
+    "hi": "वर्गीकरण = \"फ़ोटो में कुत्ता है\"; पहचान = \"कुत्ता यहाँ है [बक्सा]\"; विभाजन = \"कुत्ते का हर बाल यहाँ है\"।"
+   },
+   "realExample": {
+    "en": "Bengaluru and other cities use camera-based detection at traffic signals to count vehicles and adjust signal timing (adaptive traffic control).",
+    "hinglish": "Bengaluru aur doosre shehar traffic signals par camera-based detection se gaadiyan gin ke signal timing adjust karte hain (adaptive traffic control).",
+    "hi": "बेंगलुरु और अन्य शहर ट्रैफ़िक सिग्नलों पर कैमरा-आधारित पहचान से वाहन गिनते हैं और सिग्नल का समय बदलते हैं (अनुकूली ट्रैफ़िक नियंत्रण)।"
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Take a 5×5 grid of 0s and 1s with a vertical line of 1s. Apply the vertical-edge filter at 3 positions by hand and write the feature-map values.",
+   "hinglish": "5×5 ki 0 aur 1 wali grid lo jismein 1s ki ek khadi line ho. Vertical-edge filter ko 3 positions par haath se lagao aur feature-map values likho.",
+   "hi": "0 और 1 का 5×5 ग्रिड लो जिसमें 1 की एक खड़ी रेखा हो। हाथ से 3 स्थानों पर खड़ा-किनारा फ़िल्टर लगाओ और फ़ीचर-मैप के मान लिखो।"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "A 3×3 patch is all 1s and the filter is all 1s. The output value is…",
+     "hi": "3×3 टुकड़ा सब 1 है और फ़िल्टर भी सब 1। आउटपुट मान?",
+     "hinglish": "3×3 patch sab 1 hai aur filter bhi sab 1. Output value?"
+    },
+    "options": [
+     {
+      "en": "9",
+      "hinglish": "9",
+      "hi": "9"
+     },
+     {
+      "en": "1",
+      "hinglish": "1",
+      "hi": "1"
+     },
+     {
+      "en": "3",
+      "hinglish": "3",
+      "hi": "3"
+     },
+     {
+      "en": "0",
+      "hinglish": "0",
+      "hi": "0"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Nine products of 1×1 summed give 9. Convolution is multiply-and-add.",
+     "hi": "1×1 के नौ गुणनफल जोड़कर 9। कन्वोल्यूशन गुणा-और-जोड़ है।",
+     "hinglish": "1×1 ke nau products jodke 9. Convolution multiply-and-add hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "2×2 max pooling on [1 5; 3 2] gives…",
+     "hi": "[1 5; 3 2] पर 2×2 मैक्स पूलिंग?",
+     "hinglish": "[1 5; 3 2] par 2×2 max pooling?"
+    },
+    "options": [
+     {
+      "en": "5",
+      "hinglish": "5",
+      "hi": "5"
+     },
+     {
+      "en": "2.75",
+      "hinglish": "2.75",
+      "hi": "2.75"
+     },
+     {
+      "en": "11",
+      "hinglish": "11",
+      "hi": "11"
+     },
+     {
+      "en": "1",
+      "hinglish": "1",
+      "hi": "1"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Max pooling keeps the largest value of the block: 5.",
+     "hi": "मैक्स पूलिंग खंड का सबसे बड़ा मान रखती है: 5।",
+     "hinglish": "Max pooling block ki sabse badi value rakhti hai: 5."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "match",
+    "prompt": {
+     "en": "Match the vision task.",
+     "hi": "विज़न का काम मिलाएँ।",
+     "hinglish": "Vision task milao."
+    },
+    "options": [
+     {
+      "en": "Is there a cow in this photo?",
+      "hinglish": "Photo mein gaay hai?",
+      "hi": "क्या इस फ़ोटो में गाय है?"
+     },
+     {
+      "en": "Draw boxes around every vehicle",
+      "hinglish": "Har gaadi par box",
+      "hi": "हर वाहन के चारों ओर बक्सा बनाओ"
+     },
+     {
+      "en": "Colour every pixel of the road",
+      "hinglish": "Road ka har pixel colour",
+      "hi": "सड़क के हर पिक्सेल को रंगो"
+     },
+     {
+      "en": "Read the text on an Aadhaar letter",
+      "hinglish": "Aadhaar letter ka text padhna",
+      "hi": "आधार पत्र पर लिखा पाठ पढ़ो"
+     }
+    ],
+    "answer": [
+     "classification",
+     "detection",
+     "segmentation",
+     "OCR"
+    ],
+    "explain": {
+     "en": "One label = classification; boxes = detection; per-pixel = segmentation; reading text = OCR.",
+     "hi": "एक लेबल = क्लासिफ़िकेशन; डिब्बे = डिटेक्शन; हर पिक्सेल = सेगमेंटेशन; पाठ पढ़ना = ओसीआर।",
+     "hinglish": "Ek label = classification; boxes = detection; per-pixel = segmentation; text padhna = OCR."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why does a CNN share the same filter across the image?",
+     "hi": "सीएनएन पूरी तस्वीर पर एक ही फ़िल्टर क्यों साझा करता है?",
+     "hinglish": "CNN poori image par ek hi filter kyun share karta hai?"
+    },
+    "options": [
+     {
+      "en": "A pattern means the same thing wherever it appears, and it saves huge numbers of weights",
+      "hinglish": "Pattern kahin bhi ho uska matlab same hai, aur bahut weights bachte hain",
+      "hi": "पैटर्न कहीं भी दिखे उसका अर्थ एक ही है, और इससे भारी संख्या में भार बचते हैं"
+     },
+     {
+      "en": "To make images blurry",
+      "hinglish": "Image blur karne ke liye",
+      "hi": "तस्वीरें धुंधली करने के लिए"
+     },
+     {
+      "en": "Because GPUs need it",
+      "hinglish": "GPU ko chahiye",
+      "hi": "क्योंकि GPU को चाहिए"
+     },
+     {
+      "en": "To hide the data",
+      "hinglish": "Data chhupane ke liye",
+      "hi": "डेटा छिपाने के लिए"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Weight sharing gives translation tolerance and cuts parameters from billions to thousands per layer.",
+     "hi": "भार साझा करने से खिसकाव सहनशीलता मिलती है और पैरामीटर अरबों से घटकर प्रति परत हज़ारों रह जाते हैं।",
+     "hinglish": "Weight sharing se shift tolerance milti hai aur parameters arabon se ghat kar per layer hazaaron reh jaate hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Apply the vertical-edge filter to the leaf image.",
+     "hi": "पत्ती की तस्वीर पर खड़ा-किनारा फ़िल्टर लगाएँ।",
+     "hinglish": "Leaf image par vertical-edge filter lagao."
+    },
+    "answer": {
+     "event": "filter-applied",
+     "filter": "edge-v"
+    },
+    "explain": {
+     "en": "The feature map lights up along the left and right edges of the leaf where brightness changes.",
+     "hi": "फ़ीचर मैप पत्ती के बाएँ-दाएँ किनारों पर चमकता है जहाँ चमक बदलती है।",
+     "hinglish": "Feature map patti ke left-right edges par chamakta hai jahan brightness badalti hai."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "ai.vision",
+  "ai.deep-learning"
+ ],
+ "sources": [
+  {
+   "title": "LeCun et al. (1998) Gradient-based learning applied to document recognition",
+   "url": "http://yann.lecun.com/exdb/publis/pdf/lecun-98.pdf",
+   "licence": "fact reference"
+  },
+  {
+   "title": "He et al. (2015) Deep Residual Learning (ResNet)",
+   "url": "https://arxiv.org/abs/1512.03385",
+   "licence": "fact reference"
+  },
+  {
+   "title": "DigiYatra — Ministry of Civil Aviation",
+   "url": "https://www.digiyatra.com/",
+   "licence": "fact reference"
+  }
+ ]
+}

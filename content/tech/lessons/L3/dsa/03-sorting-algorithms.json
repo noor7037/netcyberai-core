@@ -1,0 +1,353 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.dsa.03",
+ "level": 3,
+ "classes": [
+  11,
+  12
+ ],
+ "unit": "dsa",
+ "title": {
+  "en": "Sorting algorithms",
+  "hi": "क्रमबद्धता एल्गोरिदम",
+  "hinglish": "Sorting algorithms"
+ },
+ "minutes": 15,
+ "xp": 60,
+ "prereq": [
+  "L3.dsa.02"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain bubble, insertion, selection, merge and quick sort",
+   "hi": "बबल, इंसर्शन, सेलेक्शन, मर्ज और क्विक सॉर्ट समझाओ",
+   "hinglish": "Bubble, insertion, selection, merge aur quick sort samjhao"
+  },
+  {
+   "en": "Compare them by comparisons and Big-O",
+   "hi": "तुलनाओं और बिग-O से उनकी तुलना करो",
+   "hinglish": "Comparisons aur Big-O se unka muqabla karo"
+  },
+  {
+   "en": "Know what Python's sorted() does and what \"stable\" means",
+   "hi": "जानो पायथन का sorted() क्या करता है और \"स्थिर\" का मतलब",
+   "hinglish": "Jaano Python ka sorted() kya karta hai aur \"stable\" ka matlab"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Comparison",
+   "hinglish": "Do cheezon ka muqabla",
+   "en": "Asking \"is a > b?\" — the basic step of sorting",
+   "hi": "\"क्या a > b?\" पूछना — क्रमबद्धता का मूल चरण"
+  },
+  {
+   "term": "Swap",
+   "hinglish": "Jagah badalna",
+   "en": "Exchanging two items in a list",
+   "hi": "सूची में दो वस्तुओं की जगह बदलना"
+  },
+  {
+   "term": "Divide and conquer",
+   "hinglish": "Baanto aur jeeto",
+   "en": "Split a problem, solve the parts, combine",
+   "hi": "समस्या बाँटो, हिस्से हल करो, जोड़ो"
+  },
+  {
+   "term": "Stable sort",
+   "hinglish": "Barabar walon ka order same",
+   "en": "Equal items keep their original order",
+   "hi": "बराबर वस्तुएँ अपना मूल क्रम रखती हैं"
+  },
+  {
+   "term": "Pivot",
+   "hinglish": "Beech ka khamba",
+   "en": "The item quicksort partitions around",
+   "hi": "वह वस्तु जिसके चारों ओर क्विकसॉर्ट बाँटता है"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Bubble sort compares neighbours and swaps; big values \"bubble\" to the end. O(n²).",
+    "hi": "बबल सॉर्ट पड़ोसियों की तुलना करके अदला-बदली करता है; बड़े मान अंत तक \"बुलबुले\" बनते हैं। O(n²)।",
+    "hinglish": "Bubble sort neighbours compare karke swap karta hai; badi values end tak \"bubble\" karti hain. O(n²)."
+   },
+   "visual": "anim:bubble",
+   "narration": {
+    "en": "Bubble sort compares neighbours and swaps; big values \"bubble\" to the end. O(n²).",
+    "hi": "बबल सॉर्ट पड़ोसियों की तुलना करके अदला-बदली करता है; बड़े मान अंत तक \"बुलबुले\" बनते हैं। O(n²)।",
+    "hinglish": "Bubble sort neighbours compare karke swap karta hai; badi values end tak \"bubble\" karti hain. O(n²)."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Insertion sort slides each new item left into place — like sorting cards in your hand. Very fast if nearly sorted.",
+    "hi": "इंसर्शन सॉर्ट हर नई वस्तु को बाएँ सही जगह खिसकाता है — हाथ में ताश जमाने जैसा। लगभग क्रमबद्ध हो तो बहुत तेज़।",
+    "hinglish": "Insertion sort har nayi item ko left sahi jagah khiskaata hai — haath mein taash jamaane jaisa. Lagbhag sorted ho to bahut tez."
+   },
+   "visual": "anim:insertion",
+   "narration": {
+    "en": "Insertion sort slides each new item left into place — like sorting cards in your hand. Very fast if nearly sorted.",
+    "hi": "इंसर्शन सॉर्ट हर नई वस्तु को बाएँ सही जगह खिसकाता है — हाथ में ताश जमाने जैसा। लगभग क्रमबद्ध हो तो बहुत तेज़।",
+    "hinglish": "Insertion sort har nayi item ko left sahi jagah khiskaata hai — haath mein taash jamaane jaisa. Lagbhag sorted ho to bahut tez."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Merge sort splits in halves until single items, then merges sorted halves. Always O(n log n).",
+    "hi": "मर्ज सॉर्ट आधे-आधे में बाँटता है जब तक एक-एक वस्तु न बचे, फिर क्रमबद्ध आधे जोड़ता है। हमेशा O(n log n)।",
+    "hinglish": "Merge sort halves mein baant-ta hai jab tak ek-ek item na bache, phir sorted halves merge karta hai. Hamesha O(n log n)."
+   },
+   "visual": "anim:merge-tree",
+   "narration": {
+    "en": "Merge sort splits in halves until single items, then merges sorted halves. Always O(n log n).",
+    "hi": "मर्ज सॉर्ट आधे-आधे में बाँटता है जब तक एक-एक वस्तु न बचे, फिर क्रमबद्ध आधे जोड़ता है। हमेशा O(n log n)।",
+    "hinglish": "Merge sort halves mein baant-ta hai jab tak ek-ek item na bache, phir sorted halves merge karta hai. Hamesha O(n log n)."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Quicksort picks a pivot, puts smaller items left and bigger right, then recurses. O(n log n) on average.",
+    "hi": "क्विकसॉर्ट पिवट चुनता है, छोटी वस्तुएँ बाएँ और बड़ी दाएँ रखता है, फिर दोहराता है। औसतन O(n log n)।",
+    "hinglish": "Quicksort pivot chunta hai, chhoti items left aur badi right rakhta hai, phir recurse karta hai. Average O(n log n)."
+   },
+   "visual": "anim:pivot",
+   "narration": {
+    "en": "Quicksort picks a pivot, puts smaller items left and bigger right, then recurses. O(n log n) on average.",
+    "hi": "क्विकसॉर्ट पिवट चुनता है, छोटी वस्तुएँ बाएँ और बड़ी दाएँ रखता है, फिर दोहराता है। औसतन O(n log n)।",
+    "hinglish": "Quicksort pivot chunta hai, chhoti items left aur badi right rakhta hai, phir recurse karta hai. Average O(n log n)."
+   }
+  }
+ ],
+ "play": {
+  "lab": "code-lab",
+  "config": {
+   "mode": "sort",
+   "algo": "bubble",
+   "n": 16
+  },
+  "goal": {
+   "en": "Watch bubble sort, then merge sort, on 16 bars. Then press Race all — first with Random, then with Nearly sorted. Which algorithm wins each race?",
+   "hi": "16 पट्टियों पर बबल सॉर्ट, फिर मर्ज सॉर्ट देखो। फिर सबकी दौड़ दबाओ — पहले यादृच्छिक, फिर लगभग क्रमबद्ध के साथ। हर दौड़ कौन जीतता है?",
+   "hinglish": "16 bars par bubble sort, phir merge sort dekho. Phir Sabki race dabao — pehle Random, phir Lagbhag sorted ke saath. Har race kaun jeet-ta hai?"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "The five classics",
+    "hi": "पाँच क्लासिक",
+    "hinglish": "Paanch classics"
+   },
+   "body": {
+    "en": "Bubble, selection and insertion sort are simple and in-place but O(n²): for 10 lakh items that is about 10¹² comparisons. Merge sort is O(n log n) in every case and stable, but needs extra memory for merging. Quicksort is O(n log n) on average and very fast in practice, but a bad pivot (for example the last element of an already-sorted list) makes it O(n²). The theoretical limit: any sort that only compares items needs about n log₂ n comparisons in the worst case, so O(n log n) is the best possible for comparison sorts.",
+    "hi": "बबल, सेलेक्शन और इंसर्शन सॉर्ट सरल और इन-प्लेस हैं पर O(n²): 10 लाख वस्तुओं के लिए लगभग 10¹² तुलनाएँ। मर्ज सॉर्ट हर स्थिति में O(n log n) और स्थिर है, पर जोड़ने के लिए अतिरिक्त मेमोरी चाहिए। क्विकसॉर्ट औसतन O(n log n) और व्यवहार में बहुत तेज़, पर ख़राब पिवट (जैसे पहले से क्रमबद्ध सूची का आख़िरी तत्व) उसे O(n²) बना देता है। सैद्धांतिक सीमा: सिर्फ़ तुलना करने वाले हर सॉर्ट को सबसे बुरी स्थिति में लगभग n log₂ n तुलनाएँ चाहिए, इसलिए तुलना सॉर्ट के लिए O(n log n) सर्वश्रेष्ठ संभव है।",
+    "hinglish": "Bubble, selection aur insertion sort simple aur in-place hain par O(n²): 10 lakh items ke liye lagbhag 10¹² comparisons. Merge sort har case mein O(n log n) aur stable hai, par merging ke liye extra memory chahiye. Quicksort average O(n log n) aur practice mein bahut tez, par bura pivot (jaise pehle se sorted list ka aakhri element) use O(n²) bana deta hai. Theoretical limit: sirf compare karne wale har sort ko worst case mein lagbhag n log₂ n comparisons chahiye, isliye comparison sorts ke liye O(n log n) best possible hai."
+   },
+   "analogy": {
+    "en": "Merge sort is like two teachers each sorting half the answer sheets, then merging the two piles by taking the smaller top sheet each time.",
+    "hi": "मर्ज सॉर्ट ऐसा है जैसे दो शिक्षक आधी-आधी उत्तर पुस्तिकाएँ क्रमबद्ध करें, फिर हर बार छोटी ऊपरी पुस्तिका लेकर दोनों ढेर जोड़ें।",
+    "hinglish": "Merge sort aisa hai jaise do teachers aadhi-aadhi answer sheets sort karein, phir har baar chhoti upar wali sheet lekar dono dher merge karein."
+   },
+   "realExample": {
+    "en": "Sorting 16 random bars in the lab: bubble needs about 100+ comparisons, merge sort about 45–50 (16 × log₂16 = 64 is the rough ceiling).",
+    "hi": "लैब में 16 यादृच्छिक पट्टियाँ: बबल को लगभग 100+ तुलनाएँ, मर्ज सॉर्ट को लगभग 45–50 (16 × log₂16 = 64 मोटी ऊपरी सीमा)।",
+    "hinglish": "Lab mein 16 random bars: bubble ko lagbhag 100+ comparisons, merge sort ko lagbhag 45–50 (16 × log₂16 = 64 moti upper limit)."
+   }
+  },
+  {
+   "heading": {
+    "en": "What real software uses",
+    "hi": "असली सॉफ़्टवेयर क्या इस्तेमाल करता है",
+    "hinglish": "Asli software kya use karta hai"
+   },
+   "body": {
+    "en": "Python's sorted() and list.sort() use Timsort (invented by Tim Peters for Python in 2002; its merge policy was upgraded to Powersort in Python 3.11). It finds runs that are already in order and merges them, so nearly-sorted data sorts in close to O(n). It is stable: sort students by name, then by marks with key=lambda s: s[\"marks\"], and students with equal marks stay in name order. Java uses Timsort for objects too; C++ std::sort typically uses introsort, a quicksort that switches to heapsort to avoid the O(n²) trap.",
+    "hi": "पायथन का sorted() और list.sort() Timsort इस्तेमाल करते हैं (2002 में टिम पीटर्स ने पायथन के लिए बनाया; Python 3.11 में इसकी मर्ज नीति Powersort में बदली)। यह पहले से क्रम में चल रहे हिस्से ढूँढकर जोड़ता है, इसलिए लगभग क्रमबद्ध डेटा लगभग O(n) में क्रमबद्ध होता है। यह स्थिर है: छात्रों को नाम से, फिर key=lambda s: s[\"marks\"] से अंकों से क्रमबद्ध करो, और बराबर अंक वाले नाम-क्रम में रहते हैं। Java भी ऑब्जेक्ट के लिए Timsort; C++ std::sort आम तौर पर इंट्रोसॉर्ट, एक क्विकसॉर्ट जो O(n²) जाल से बचने को हीपसॉर्ट पर जाता है।",
+    "hinglish": "Python ka sorted() aur list.sort() Timsort use karte hain (2002 mein Tim Peters ne Python ke liye banaya; Python 3.11 mein iski merge policy Powersort mein badli). Yeh pehle se order mein chal rahe hisse (runs) dhoondh kar merge karta hai, isliye lagbhag sorted data lagbhag O(n) mein sort hota hai. Yeh stable hai: students ko naam se, phir key=lambda s: s[\"marks\"] se marks se sort karo, aur barabar marks wale naam-order mein rehte hain. Java bhi objects ke liye Timsort; C++ std::sort aam taur par introsort, ek quicksort jo O(n²) trap se bachne ko heapsort par jaata hai."
+   },
+   "analogy": {
+    "en": "Don't build your own car engine to go to school — but knowing how it works makes you a better driver.",
+    "hi": "स्कूल जाने के लिए अपना कार इंजन मत बनाओ — पर यह कैसे काम करता है जानना आपको बेहतर चालक बनाता है।",
+    "hinglish": "School jaane ke liye apna car engine mat banao — par yeh kaise kaam karta hai jaanna tumhe behtar driver banata hai."
+   },
+   "realExample": {
+    "en": "Board-exam result portals sort lakhs of students by marks, then by roll number — a stable sort keeps ties fair and predictable.",
+    "hi": "बोर्ड परीक्षा परिणाम पोर्टल लाखों छात्रों को अंकों से, फिर रोल नंबर से क्रमबद्ध करते हैं — स्थिर सॉर्ट बराबरी को निष्पक्ष और अनुमेय रखता है।",
+    "hinglish": "Board exam result portals lakhs students ko marks se, phir roll number se sort karte hain — stable sort ties ko fair aur predictable rakhta hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Sort 8 playing cards (or numbered chits) by hand three ways: bubble, insertion and merge. Count your comparisons for each and compare with the lab.",
+   "hi": "8 ताश के पत्ते (या संख्या वाली पर्चियाँ) हाथ से तीन तरह क्रमबद्ध करो: बबल, इंसर्शन और मर्ज। हर एक की तुलनाएँ गिनो और लैब से मिलाओ।",
+   "hinglish": "8 taash ke patte (ya number wali parchiyaan) haath se teen tarah sort karo: bubble, insertion aur merge. Har ek ke comparisons gino aur lab se milao."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which sort is O(n log n) even in the worst case?",
+     "hi": "कौन-सा सॉर्ट सबसे बुरी स्थिति में भी O(n log n) है?",
+     "hinglish": "Kaunsa sort worst case mein bhi O(n log n) hai?"
+    },
+    "options": [
+     "Bubble",
+     "Insertion",
+     "Merge",
+     "Quicksort"
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "Quicksort can degrade to O(n²) with bad pivots.",
+     "hi": "ख़राब पिवट से क्विकसॉर्ट O(n²) हो सकता है।",
+     "hinglish": "Bure pivots se quicksort O(n²) ho sakta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Data is already nearly sorted. Which simple sort shines?",
+     "hi": "डेटा लगभग क्रमबद्ध है। कौन-सा सरल सॉर्ट चमकता है?",
+     "hinglish": "Data lagbhag sorted hai. Kaunsa simple sort chamakta hai?"
+    },
+    "options": [
+     "Insertion",
+     "Selection",
+     "Random",
+     "Bogosort"
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Each item moves only a little: close to O(n).",
+     "hi": "हर वस्तु थोड़ी ही खिसकती है: लगभग O(n)।",
+     "hinglish": "Har item thoda hi khisakta hai: lagbhag O(n)."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "A stable sort means…",
+     "hi": "स्थिर सॉर्ट का मतलब…",
+     "hinglish": "Stable sort ka matlab…"
+    },
+    "options": [
+     {
+      "en": "Equal items keep their original order",
+      "hi": "बराबर वस्तुएँ मूल क्रम रखती हैं",
+      "hinglish": "Barabar items original order rakhte hain"
+     },
+     {
+      "en": "It never crashes",
+      "hi": "कभी क्रैश नहीं",
+      "hinglish": "Kabhi crash nahi"
+     },
+     {
+      "en": "It uses no memory",
+      "hi": "कोई मेमोरी नहीं",
+      "hinglish": "Koi memory nahi"
+     },
+     {
+      "en": "It is always O(n)",
+      "hi": "हमेशा O(n)",
+      "hinglish": "Hamesha O(n)"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Python's sort is stable.",
+     "hi": "पायथन का सॉर्ट स्थिर है।",
+     "hinglish": "Python ka sort stable hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "match",
+    "prompt": {
+     "en": "Match the algorithm to its idea.",
+     "hi": "एल्गोरिदम को उसके विचार से मिलाओ।",
+     "hinglish": "Algorithm ko uske idea se milao."
+    },
+    "options": [
+     "Bubble",
+     "Insertion",
+     "Merge",
+     "Quick"
+    ],
+    "answer": [
+     {
+      "en": "Swap neighbours",
+      "hi": "पड़ोसी बदलो",
+      "hinglish": "Neighbours swap karo"
+     },
+     {
+      "en": "Slide into place like cards",
+      "hi": "ताश की तरह जगह पर खिसकाओ",
+      "hinglish": "Taash ki tarah jagah par khiskao"
+     },
+     {
+      "en": "Split, sort halves, merge",
+      "hi": "बाँटो, आधे क्रमबद्ध, जोड़ो",
+      "hinglish": "Baanto, halves sort, merge"
+     },
+     {
+      "en": "Partition around a pivot",
+      "hi": "पिवट के चारों ओर बाँटो",
+      "hinglish": "Pivot ke chaaron or baanto"
+     }
+    ],
+    "explain": {
+     "en": "Each idea defines the algorithm.",
+     "hi": "हर विचार एल्गोरिदम तय करता है।",
+     "hinglish": "Har idea algorithm tay karta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Race all five algorithms on the same array.",
+     "hi": "एक ही सूची पर पाँचों एल्गोरिदम की दौड़ कराओ।",
+     "hinglish": "Ek hi array par paanchon algorithms ki race karao."
+    },
+    "answer": {
+     "event": "sort-race"
+    },
+    "explain": {
+     "en": "You compared comparisons, not guesses.",
+     "hi": "आपने अनुमान नहीं, तुलनाएँ मिलाईं।",
+     "hinglish": "Tumne guesses nahi, comparisons milaaye."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "prog.algo-sort"
+ ],
+ "sources": [
+  {
+   "title": "Cormen, Leiserson, Rivest, Stein — Introduction to Algorithms (4th ed., MIT Press, 2022)",
+   "url": "https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "CPython listsort.txt — Timsort and Powersort notes",
+   "url": "https://github.com/python/cpython/blob/main/Objects/listsort.txt",
+   "licence": "fact reference"
+  }
+ ]
+}

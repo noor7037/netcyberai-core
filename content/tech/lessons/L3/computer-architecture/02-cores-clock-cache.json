@@ -1,0 +1,366 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.computer-architecture.02",
+ "level": 3,
+ "classes": [
+  9,
+  10
+ ],
+ "unit": "computer-architecture",
+ "title": {
+  "en": "Cores, clock and cache",
+  "hi": "कोर, घड़ी और कैश",
+  "hinglish": "Cores, clock aur cache"
+ },
+ "minutes": 12,
+ "xp": 50,
+ "prereq": [
+  "L3.computer-architecture.01"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain what clock speed (GHz) measures and why it is not the whole story",
+   "hi": "समझाओ घड़ी गति (GHz) क्या मापती है और वह पूरी कहानी क्यों नहीं",
+   "hinglish": "Samjhao clock speed (GHz) kya maapti hai aur woh poori kahani kyun nahi"
+  },
+  {
+   "en": "Explain how multiple cores and threads speed up work",
+   "hi": "समझाओ कई कोर और थ्रेड काम कैसे तेज़ करते हैं",
+   "hinglish": "Samjhao multiple cores aur threads kaam kaise tez karte hain"
+  },
+  {
+   "en": "Describe cache levels and locality",
+   "hi": "कैश स्तर और निकटता बताओ",
+   "hinglish": "Cache levels aur locality batao"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Clock speed",
+   "hinglish": "Har second kitne tick",
+   "en": "Ticks per second; 3 GHz = 3 billion",
+   "hi": "प्रति सेकंड टिक; 3 GHz = 3 अरब"
+  },
+  {
+   "term": "Core",
+   "hinglish": "CPU ke andar ek poora dimaag",
+   "en": "An independent processing unit inside the CPU chip",
+   "hi": "CPU चिप के अंदर स्वतंत्र प्रसंस्करण इकाई"
+  },
+  {
+   "term": "Thread",
+   "hinglish": "Kaam ki ek dhaara",
+   "en": "A sequence of instructions the OS schedules on a core",
+   "hi": "निर्देशों का क्रम जिसे OS कोर पर चलाता है"
+  },
+  {
+   "term": "Cache",
+   "hinglish": "Core ke paas chhoti tez memory",
+   "en": "Small fast memory holding recently used data",
+   "hi": "हाल में इस्तेमाल डेटा रखने वाली छोटी तेज़ मेमोरी"
+  },
+  {
+   "term": "IPC",
+   "hinglish": "Har tick kitne instructions",
+   "en": "Instructions per clock; better designs do more per tick",
+   "hi": "प्रति टिक निर्देश; बेहतर डिज़ाइन एक टिक में ज़्यादा करते हैं"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Performance ≈ clock speed × instructions per clock × number of cores actually used.",
+    "hi": "प्रदर्शन ≈ घड़ी गति × प्रति टिक निर्देश × असल में इस्तेमाल कोर।",
+    "hinglish": "Performance ≈ clock speed × instructions per clock × asal mein use hue cores."
+   },
+   "visual": "anim:perf-formula",
+   "narration": {
+    "en": "Performance ≈ clock speed × instructions per clock × number of cores actually used.",
+    "hi": "प्रदर्शन ≈ घड़ी गति × प्रति टिक निर्देश × असल में इस्तेमाल कोर।",
+    "hinglish": "Performance ≈ clock speed × instructions per clock × asal mein use hue cores."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Clock speeds stalled around 3–5 GHz since the mid-2000s because faster clocks made chips too hot. So designers added cores instead.",
+    "hi": "2000 के दशक के मध्य से घड़ी गति 3–5 GHz के आसपास रुकी है क्योंकि तेज़ घड़ी चिप को बहुत गरम करती थी। इसलिए डिज़ाइनरों ने कोर जोड़े।",
+    "hinglish": "2000s ke beech se clock speeds 3–5 GHz ke aas-paas ruki hain kyunki tez clock chips ko bahut garam karti thi. Isliye designers ne cores jode."
+   },
+   "visual": "anim:heat-wall",
+   "narration": {
+    "en": "Clock speeds stalled around 3–5 GHz since the mid-2000s because faster clocks made chips too hot. So designers added cores instead.",
+    "hi": "2000 के दशक के मध्य से घड़ी गति 3–5 GHz के आसपास रुकी है क्योंकि तेज़ घड़ी चिप को बहुत गरम करती थी। इसलिए डिज़ाइनरों ने कोर जोड़े।",
+    "hinglish": "2000s ke beech se clock speeds 3–5 GHz ke aas-paas ruki hain kyunki tez clock chips ko bahut garam karti thi. Isliye designers ne cores jode."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Phones mix big fast cores with small efficient cores, and the OS picks which one runs each task to save battery.",
+    "hi": "फ़ोन बड़े तेज़ कोर और छोटे कुशल कोर मिलाते हैं, और बैटरी बचाने के लिए OS चुनता है कौन-सा कोर कौन-सा काम करे।",
+    "hinglish": "Phones bade tez cores aur chhote efficient cores milate hain, aur battery bachane ke liye OS chunta hai kaunsa core kaunsa kaam kare."
+   },
+   "visual": "anim:big-little",
+   "narration": {
+    "en": "Phones mix big fast cores with small efficient cores, and the OS picks which one runs each task to save battery.",
+    "hi": "फ़ोन बड़े तेज़ कोर और छोटे कुशल कोर मिलाते हैं, और बैटरी बचाने के लिए OS चुनता है कौन-सा कोर कौन-सा काम करे।",
+    "hinglish": "Phones bade tez cores aur chhote efficient cores milate hain, aur battery bachane ke liye OS chunta hai kaunsa core kaunsa kaam kare."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Each core has small L1/L2 caches and shares a bigger L3. A cache hit takes ~1 ns; going to RAM takes ~100 ns.",
+    "hi": "हर कोर के छोटे L1/L2 कैश होते हैं और बड़ा L3 साझा। कैश हिट ~1 ns; RAM तक ~100 ns।",
+    "hinglish": "Har core ke chhote L1/L2 caches hote hain aur bada L3 shared. Cache hit ~1 ns; RAM tak ~100 ns."
+   },
+   "visual": "anim:cache-levels",
+   "narration": {
+    "en": "Each core has small L1/L2 caches and shares a bigger L3. A cache hit takes ~1 ns; going to RAM takes ~100 ns.",
+    "hi": "हर कोर के छोटे L1/L2 कैश होते हैं और बड़ा L3 साझा। कैश हिट ~1 ns; RAM तक ~100 ns।",
+    "hinglish": "Har core ke chhote L1/L2 caches hote hain aur bada L3 shared. Cache hit ~1 ns; RAM tak ~100 ns."
+   }
+  }
+ ],
+ "play": {
+  "lab": "seq-flow",
+  "config": {
+   "scenario": "cache-lookup"
+  },
+  "goal": {
+   "en": "Run the cache scenario as a hit first (fast path), then tick \"First touch\" and compare how many levels the request has to travel through.",
+   "hi": "कैश परिदृश्य पहले हिट की तरह चलाओ (तेज़ रास्ता), फिर \"पहली बार\" चुनो और मिलाओ कि अनुरोध को कितने स्तरों से गुज़रना पड़ता है।",
+   "hinglish": "Cache scenario pehle hit ki tarah chalao (tez raasta), phir \"First touch\" tick karo aur compare karo request ko kitne levels se guzarna padta hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Why more cores do not always mean faster",
+    "hi": "ज़्यादा कोर हमेशा तेज़ क्यों नहीं",
+    "hinglish": "Zyaada cores hamesha tez kyun nahi"
+   },
+   "body": {
+    "en": "Work only speeds up on many cores if it can be split into parallel pieces. Amdahl's law: if 10% of a job must run one step at a time, even infinite cores give at most a 10× speed-up. Games, video encoding and AI training split well; a single long chain of steps does not. Hyper-threading (SMT) lets one core juggle two threads to fill idle moments, typically adding a modest gain, not doubling speed.",
+    "hi": "काम कई कोर पर तभी तेज़ होता है जब उसे समानांतर टुकड़ों में बाँटा जा सके। अमडाल का नियम: अगर काम का 10% एक-एक क़दम चलना ज़रूरी है, तो अनंत कोर भी अधिकतम 10× तेज़ी देंगे। गेम, वीडियो एन्कोडिंग और AI प्रशिक्षण अच्छे से बँटते हैं; क़दमों की एक लंबी श्रृंखला नहीं। हाइपर-थ्रेडिंग (SMT) एक कोर को खाली पलों में दो थ्रेड चलाने देती है, आम तौर पर थोड़ा फ़ायदा, दोगुना नहीं।",
+    "hinglish": "Kaam kai cores par tabhi tez hota hai jab use parallel tukdon mein baanta ja sake. Amdahl ka law: agar kaam ka 10% ek-ek step chalna zaroori hai, to infinite cores bhi maximum 10× speed-up denge. Games, video encoding aur AI training achhe se bant-te hain; steps ki ek lambi chain nahi. Hyper-threading (SMT) ek core ko khaali pal mein do threads chalane deti hai, aam taur par thoda fayda, double nahi."
+   },
+   "analogy": {
+    "en": "Ten people can paint a wall faster than one, but they cannot make one cup of tea ten times faster.",
+    "hi": "दस लोग एक दीवार एक से जल्दी रंग सकते हैं, पर एक कप चाय दस गुना जल्दी नहीं बना सकते।",
+    "hinglish": "Das log ek deewar ek se jaldi rang sakte hain, par ek cup chai das guna jaldi nahi bana sakte."
+   },
+   "realExample": {
+    "en": "If a program is 90% parallel, 8 cores give about 4.7× speed-up: 1 / (0.1 + 0.9/8).",
+    "hi": "अगर प्रोग्राम 90% समानांतर है, तो 8 कोर लगभग 4.7× तेज़ी देते हैं: 1 / (0.1 + 0.9/8)।",
+    "hinglish": "Agar program 90% parallel hai, to 8 cores lagbhag 4.7× speed-up dete hain: 1 / (0.1 + 0.9/8)."
+   }
+  },
+  {
+   "heading": {
+    "en": "Locality: why caches work",
+    "hi": "निकटता: कैश क्यों काम करते हैं",
+    "hinglish": "Locality: caches kyun kaam karte hain"
+   },
+   "body": {
+    "en": "Programs tend to reuse the same data soon (temporal locality) and use data next to what they just used (spatial locality). Caches exploit both: they keep recent data, and they load memory in 64-byte lines so neighbours come along. Code that walks an array in order is often many times faster than code that jumps randomly through the same data, even though both do the same arithmetic.",
+    "hi": "प्रोग्राम एक ही डेटा जल्दी दोबारा इस्तेमाल करते हैं (कालिक निकटता) और अभी इस्तेमाल डेटा के पास वाला डेटा इस्तेमाल करते हैं (स्थानिक निकटता)। कैश दोनों का फ़ायदा उठाते हैं: हाल का डेटा रखते हैं, और मेमोरी 64-बाइट लाइनों में लाते हैं ताकि पड़ोसी भी आ जाएँ। सरणी को क्रम से चलने वाला कोड अक्सर उसी डेटा में बेतरतीब कूदने वाले कोड से कई गुना तेज़ होता है, भले दोनों एक जैसा गणित करें।",
+    "hinglish": "Programs same data jaldi dobaara use karte hain (temporal locality) aur abhi use hue data ke paas wala data use karte hain (spatial locality). Caches dono ka fayda uthaate hain: haal ka data rakhte hain, aur memory 64-byte lines mein laate hain taaki padosi bhi aa jaayein. Array ko kram se chalne wala code aksar usi data mein random koodne wale code se kai guna tez hota hai, bhale dono ek jaisa maths karein."
+   },
+   "analogy": {
+    "en": "Keeping this week's textbooks on your desk and the rest on the shelf.",
+    "hi": "इस हफ़्ते की किताबें मेज़ पर और बाक़ी अलमारी में रखना।",
+    "hinglish": "Is hafte ki kitaabein mez par aur baaki almaari mein rakhna."
+   },
+   "realExample": {
+    "en": "Looping over a 2-D grid row by row (how it is stored) instead of column by column can make image processing several times faster.",
+    "hi": "2-D ग्रिड को स्तंभ-दर-स्तंभ के बजाय पंक्ति-दर-पंक्ति (जैसे वह रखी है) चलाने से चित्र प्रसंस्करण कई गुना तेज़ हो सकता है।",
+    "hinglish": "2-D grid ko column-by-column ke bajaye row-by-row (jaise woh stored hai) chalane se image processing kai guna tez ho sakti hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Look up your phone's or computer's chip: number of cores (and which are big/small), maximum clock speed, and cache sizes. Explain which tasks you do would benefit most from more cores.",
+   "hi": "अपने फ़ोन या कंप्यूटर का चिप देखो: कोर की संख्या (और कौन-से बड़े/छोटे), अधिकतम घड़ी गति, और कैश आकार। समझाओ आपके कौन-से काम ज़्यादा कोर से सबसे ज़्यादा फ़ायदा पाएँगे।",
+   "hinglish": "Apne phone ya computer ka chip dekho: cores ki sankhya (aur kaunse big/small), maximum clock speed, aur cache sizes. Samjhao tumhare kaunse kaam zyaada cores se sabse zyaada fayda paayenge."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "A 3 GHz CPU ticks how many times a second?",
+     "hi": "3 GHz CPU एक सेकंड में कितनी बार टिक करता है?",
+     "hinglish": "3 GHz CPU ek second mein kitni baar tick karta hai?"
+    },
+    "options": [
+     {
+      "en": "3 million",
+      "hi": "30 लाख",
+      "hinglish": "3 million"
+     },
+     {
+      "en": "3 billion",
+      "hi": "3 अरब",
+      "hinglish": "3 billion"
+     },
+     {
+      "en": "3 thousand",
+      "hi": "3 हज़ार",
+      "hinglish": "3 thousand"
+     },
+     {
+      "en": "3 trillion",
+      "hi": "3 खरब",
+      "hinglish": "3 trillion"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Giga = 10^9.",
+     "hi": "गीगा = 10^9।",
+     "hinglish": "Giga = 10^9."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why did clock speeds stop rising quickly after the mid-2000s?",
+     "hi": "2000 के दशक के मध्य के बाद घड़ी गति तेज़ी से बढ़ना क्यों रुकी?",
+     "hinglish": "2000s ke beech ke baad clock speeds tezi se badhna kyun rukin?"
+    },
+    "options": [
+     {
+      "en": "Heat and power",
+      "hi": "गर्मी और बिजली",
+      "hinglish": "Garmi aur bijli"
+     },
+     {
+      "en": "Lack of demand",
+      "hi": "माँग की कमी",
+      "hinglish": "Demand ki kami"
+     },
+     {
+      "en": "A law banned it",
+      "hi": "क़ानून ने रोका",
+      "hinglish": "Law ne roka"
+     },
+     {
+      "en": "Screens got bigger",
+      "hi": "स्क्रीन बड़ी हुईं",
+      "hinglish": "Screens badi huin"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Power rises steeply with frequency and voltage, so designers went multi-core.",
+     "hi": "आवृत्ति और वोल्टेज के साथ बिजली तेज़ी से बढ़ती है, इसलिए डिज़ाइनर मल्टी-कोर पर गए।",
+     "hinglish": "Frequency aur voltage ke saath power tezi se badhti hai, isliye designers multi-core par gaye."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "By Amdahl's law, a job that is 50% serial can speed up at most…",
+     "hi": "अमडाल नियम से, 50% क्रमिक काम अधिकतम कितना तेज़ हो सकता है…",
+     "hinglish": "Amdahl law se, 50% serial kaam maximum kitna tez ho sakta hai…"
+    },
+    "options": [
+     "2×",
+     "4×",
+     "10×",
+     {
+      "en": "Unlimited",
+      "hi": "असीमित",
+      "hinglish": "Unlimited"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "1 / 0.5 = 2, no matter how many cores.",
+     "hi": "1 / 0.5 = 2, कितने भी कोर हों।",
+     "hinglish": "1 / 0.5 = 2, kitne bhi cores hon."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q4",
+    "type": "multi",
+    "prompt": {
+     "en": "Which make good use of locality? (choose all)",
+     "hi": "कौन-से निकटता का अच्छा उपयोग करते हैं? (सभी चुनो)",
+     "hinglish": "Kaunse locality ka achha use karte hain? (saare chuno)"
+    },
+    "options": [
+     {
+      "en": "Reading an array in order",
+      "hi": "सरणी क्रम से पढ़ना",
+      "hinglish": "Array kram se padhna"
+     },
+     {
+      "en": "Reusing a variable inside a loop",
+      "hi": "लूप में एक चर दोबारा इस्तेमाल",
+      "hinglish": "Loop mein ek variable dobaara use"
+     },
+     {
+      "en": "Jumping randomly across a huge table",
+      "hi": "बड़ी तालिका में बेतरतीब कूदना",
+      "hinglish": "Badi table mein random koodna"
+     }
+    ],
+    "answer": [
+     0,
+     1
+    ],
+    "explain": {
+     "en": "Random jumps miss the cache often.",
+     "hi": "बेतरतीब कूद अक्सर कैश चूकते हैं।",
+     "hinglish": "Random jumps aksar cache miss karte hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Run the cache scenario.",
+     "hi": "कैश परिदृश्य चलाओ।",
+     "hinglish": "Cache scenario chalao."
+    },
+    "answer": {
+     "event": "scenario-complete",
+     "scenario": "cache-lookup"
+    },
+    "explain": {
+     "en": "A hit is answered by L1 in about 4 cycles.",
+     "hi": "हिट का जवाब L1 लगभग 4 चक्र में देता है।",
+     "hinglish": "Hit ka jawab L1 lagbhag 4 cycles mein deta hai."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "hw.cpu",
+  "hw.memory"
+ ],
+ "sources": [
+  {
+   "title": "Patterson & Hennessy, Computer Organization and Design — fact reference",
+   "url": "https://www.elsevier.com/books/computer-organization-and-design-risc-v-edition/patterson/978-0-12-820331-6",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Amdahl (1967) Validity of the single processor approach",
+   "url": "https://doi.org/10.1145/1465482.1465560",
+   "licence": "fact reference"
+  }
+ ]
+}

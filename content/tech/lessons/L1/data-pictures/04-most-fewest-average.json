@@ -1,0 +1,358 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.data-pictures.04",
+ "level": 1,
+ "classes": [
+  3,
+  4,
+  5
+ ],
+ "unit": "data-pictures",
+ "title": {
+  "en": "Most, fewest and average",
+  "hi": "सबसे ज़्यादा, सबसे कम और औसत",
+  "hinglish": "Most, fewest aur average"
+ },
+ "minutes": 8,
+ "xp": 35,
+ "prereq": [
+  "L1.data-pictures.03"
+ ],
+ "topics": [
+  "ds.averages"
+ ],
+ "outcomes": [
+  {
+   "en": "Find the most and the fewest in a chart.",
+   "hi": "चार्ट में सबसे ज़्यादा और सबसे कम ढूँढ सकते हो।",
+   "hinglish": "Chart mein sabse zyaada aur sabse kam dhoondh sakte ho."
+  },
+  {
+   "en": "Find the average by sharing equally (total ÷ how many).",
+   "hi": "बराबर बाँटकर औसत निकाल सकते हो (कुल ÷ कितने)।",
+   "hinglish": "Barabar baant kar average nikaal sakte ho (total ÷ kitne)."
+  },
+  {
+   "en": "Say what an average tells us and what it hides.",
+   "hi": "बता सकते हो औसत क्या बताता है और क्या छिपाता है।",
+   "hinglish": "Bata sakte ho average kya batata hai aur kya chhupata hai."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Average",
+   "en": "The fair share when everything is shared equally",
+   "hi": "सब बराबर बाँटने पर हर एक का हिस्सा",
+   "hinglish": "Sab barabar baantne par har ek ka hissa"
+  },
+  {
+   "term": "Total",
+   "en": "Everything added together",
+   "hi": "सब जोड़कर",
+   "hinglish": "Sab jod kar"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.data-pictures.04.s1",
+   "caption": {
+    "en": "Five friends read 2, 4, 3, 5 and 1 books.",
+    "hi": "पाँच दोस्तों ने 2, 4, 3, 5 और 1 किताबें पढ़ीं।",
+    "hinglish": "Paanch doston ne 2, 4, 3, 5 aur 1 books padhin."
+   },
+   "narration": {
+    "en": "Asha read 2 books, Ravi 4, Meena 3, Kabir 5 and Zoya 1.",
+    "hinglish": "Asha ne 2 books padhin, Ravi ne 4, Meena ne 3, Kabir ne 5 aur Zoya ne 1.",
+    "hi": "आशा ने 2 किताबें पढ़ीं, रवि ने 4, मीना ने 3, कबीर ने 5 और ज़ोया ने 1।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.data-pictures.04.s2",
+   "caption": {
+    "en": "Most: Kabir, 5. Fewest: Zoya, 1.",
+    "hi": "सबसे ज़्यादा: कबीर, 5। सबसे कम: ज़ोया, 1।",
+    "hinglish": "Most: Kabir, 5. Fewest: Zoya, 1."
+   },
+   "narration": {
+    "en": "The tallest bar is Kabir with 5 books. The shortest is Zoya with 1.",
+    "hinglish": "Sabse ooncha bar Kabir ka hai, 5 books. Sabse chhota Zoya ka, 1.",
+    "hi": "सबसे ऊँचा डंडा कबीर का है, 5 किताबें। सबसे छोटा ज़ोया का, 1।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.data-pictures.04.s3",
+   "caption": {
+    "en": "Share blocks until every bar is equal.",
+    "hi": "ब्लॉक बाँटो जब तक हर डंडा बराबर न हो।",
+    "hinglish": "Blocks baanto jab tak har bar barabar na ho."
+   },
+   "narration": {
+    "en": "Move blocks from tall bars to short bars. When every bar is the same, each one is 3.",
+    "hinglish": "Oonche bars se blocks chhote bars par le jao. Jab har bar barabar ho, toh har ek 3 hai.",
+    "hi": "ऊँचे डंडों से ब्लॉक छोटे डंडों पर ले जाओ। जब हर डंडा बराबर हो, तो हर एक 3 है।"
+   }
+  },
+  {
+   "step": 4,
+   "visual": "scene:L1.data-pictures.04.s4",
+   "caption": {
+    "en": "Average = total ÷ how many = 15 ÷ 5 = 3.",
+    "hi": "औसत = कुल ÷ कितने = 15 ÷ 5 = 3।",
+    "hinglish": "Average = total ÷ kitne = 15 ÷ 5 = 3."
+   },
+   "narration": {
+    "en": "Quick way: add them all, 15 books, and divide by 5 friends. The average is 3.",
+    "hinglish": "Jaldi tareeka: sab jodo, 15 books, aur 5 doston se bhaag do. Average 3 hai.",
+    "hi": "जल्दी तरीका: सब जोड़ो, 15 किताबें, और 5 दोस्तों से भाग दो। औसत 3 है।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "data-charts",
+  "config": {
+   "mode": "average"
+  },
+  "goal": {
+   "en": "Tap the most, then the fewest, then share blocks until every bar is equal.",
+   "hi": "पहले सबसे ज़्यादा, फिर सबसे कम दबाओ, फिर ब्लॉक तब तक बाँटो जब तक हर डंडा बराबर न हो।",
+   "hinglish": "Pehle most, phir fewest dabao, phir blocks tab tak baanto jab tak har bar barabar na ho."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Average is the fair share",
+    "hi": "औसत बराबर का हिस्सा है",
+    "hinglish": "Average barabar ka hissa hai"
+   },
+   "body": {
+    "en": "The average (also called the mean) is what everyone would get if the total were shared equally. Add up all the values and divide by how many there are: (2 + 4 + 3 + 5 + 1) ÷ 5 = 15 ÷ 5 = 3. The average does not have to be one of the numbers, and it can be a fraction: the average of 2 and 3 is 2½.",
+    "hi": "औसत (जिसे माध्य भी कहते हैं) वह है जो हर किसी को मिलता अगर कुल बराबर बाँटा जाता। सारे मूल्य जोड़ो और गिनती से भाग दो: (2 + 4 + 3 + 5 + 1) ÷ 5 = 15 ÷ 5 = 3। ज़रूरी नहीं कि औसत उन्हीं संख्याओं में से एक हो, और वह भिन्न भी हो सकता है: 2 और 3 का औसत 2½ है।",
+    "hinglish": "Average (jise mean bhi kehte hain) woh hai jo har kisi ko milta agar total barabar baanta jaata. Saari values jodo aur ginti se bhaag do: (2 + 4 + 3 + 5 + 1) ÷ 5 = 15 ÷ 5 = 3. Zaroori nahin ki average unhi numbers mein se ek ho, aur woh fraction bhi ho sakta hai: 2 aur 3 ka average 2½ hai."
+   },
+   "analogy": {
+    "en": "Like sharing 15 laddoos equally among 5 children: 3 each. That is the average.",
+    "hi": "जैसे 15 लड्डू 5 बच्चों में बराबर बाँटो — हर एक को 3। यही औसत है।",
+    "hinglish": "Jaise 15 laddoo 5 bachchon mein barabar baanto — har ek ko 3. Yahi average hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "What averages tell, and hide",
+    "hi": "औसत क्या बताता है, और क्या छिपाता है",
+    "hinglish": "Average kya batata hai, aur kya chhupata hai"
+   },
+   "body": {
+    "en": "An average gives one number that sums up a lot of data, so weather reports give the average temperature of a month, and cricket uses batting averages (runs ÷ times out). But an average hides the spread: Zoya read only 1 book even though the average is 3. Good data detectives look at the most and the fewest too.",
+    "hi": "औसत बहुत सारे डेटा को एक संख्या में बता देता है, इसलिए मौसम रिपोर्ट महीने का औसत तापमान देती है, और क्रिकेट में बल्लेबाज़ी औसत (रन ÷ कितनी बार आउट) होता है। पर औसत फैलाव छिपा देता है: औसत 3 होने पर भी ज़ोया ने सिर्फ़ 1 किताब पढ़ी। अच्छे डेटा जासूस सबसे ज़्यादा और सबसे कम भी देखते हैं।",
+    "hinglish": "Average bahut saare data ko ek number mein bata deta hai, isliye weather report mahine ka average temperature deti hai, aur cricket mein batting average (runs ÷ kitni baar out) hota hai. Par average failaav chhupa deta hai: average 3 hone par bhi Zoya ne sirf 1 book padhi. Achhe data detectives most aur fewest bhi dekhte hain."
+   },
+   "realExample": {
+    "en": "A batter who scores 300 runs and gets out 6 times has a batting average of 300 ÷ 6 = 50.",
+    "hi": "जो बल्लेबाज़ 300 रन बनाए और 6 बार आउट हो, उसका बल्लेबाज़ी औसत 300 ÷ 6 = 50 है।",
+    "hinglish": "Jo batter 300 runs banaye aur 6 baar out ho, uska batting average 300 ÷ 6 = 50 hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write down how many minutes you play outside each day for 5 days. Find your most, fewest and average day.",
+   "hi": "5 दिन तक रोज़ लिखो कि तुम कितने मिनट बाहर खेले। अपना सबसे ज़्यादा, सबसे कम और औसत दिन निकालो।",
+   "hinglish": "5 din tak roz likho ki tum kitne minute bahar khele. Apna most, fewest aur average din nikaalo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Scores: 4, 6, 8. What is the average?",
+     "hi": "स्कोर: 4, 6, 8। औसत क्या है?",
+     "hinglish": "Score: 4, 6, 8. Average kya hai?"
+    },
+    "options": [
+     {
+      "en": "6",
+      "hi": "6",
+      "hinglish": "6"
+     },
+     {
+      "en": "8",
+      "hi": "8",
+      "hinglish": "8"
+     },
+     {
+      "en": "18",
+      "hi": "18",
+      "hinglish": "18"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "4 + 6 + 8 = 18, and 18 ÷ 3 = 6.",
+     "hi": "4 + 6 + 8 = 18, और 18 ÷ 3 = 6।",
+     "hinglish": "4 + 6 + 8 = 18, aur 18 ÷ 3 = 6."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Books: 2, 4, 3, 5, 1. Who read the fewest?",
+     "hi": "किताबें: 2, 4, 3, 5, 1। सबसे कम किसने पढ़ीं?",
+     "hinglish": "Books: 2, 4, 3, 5, 1. Sabse kam kisne padhin?"
+    },
+    "options": [
+     {
+      "en": "The one who read 1",
+      "hi": "जिसने 1 पढ़ी",
+      "hinglish": "Jisne 1 padhi"
+     },
+     {
+      "en": "The one who read 5",
+      "hi": "जिसने 5 पढ़ीं",
+      "hinglish": "Jisne 5 padhin"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "1 is the smallest number.",
+     "hi": "1 सबसे छोटी संख्या है।",
+     "hinglish": "1 sabse chhota number hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "short",
+    "prompt": {
+     "en": "10 laddoos shared equally by 2 children. How many each? (type a number)",
+     "hi": "10 लड्डू 2 बच्चों में बराबर बाँटे। हर एक को कितने? (संख्या लिखो)",
+     "hinglish": "10 laddoo 2 bachchon mein barabar baante. Har ek ko kitne? (number likho)"
+    },
+    "answer": [
+     "5",
+     "five",
+     "पाँच",
+     "paanch"
+    ],
+    "explain": {
+     "en": "10 ÷ 2 = 5. That is the average.",
+     "hi": "10 ÷ 2 = 5। यही औसत है।",
+     "hinglish": "10 ÷ 2 = 5. Yahi average hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "order",
+    "prompt": {
+     "en": "Put the steps for finding an average in order.",
+     "hi": "औसत निकालने के चरण क्रम से लगाओ।",
+     "hinglish": "Average nikaalne ke steps order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Add all the numbers",
+      "hi": "सारी संख्याएँ जोड़ो",
+      "hinglish": "Saare numbers jodo"
+     },
+     {
+      "en": "Count how many numbers there are",
+      "hi": "गिनो कितनी संख्याएँ हैं",
+      "hinglish": "Gino kitne numbers hain"
+     },
+     {
+      "en": "Divide the total by that count",
+      "hi": "कुल को उस गिनती से भाग दो",
+      "hinglish": "Total ko us ginti se bhaag do"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2
+    ],
+    "explain": {
+     "en": "Total ÷ how many.",
+     "hi": "कुल ÷ कितने।",
+     "hinglish": "Total ÷ kitne."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "A batter made 200 runs and was out 4 times. Batting average?",
+     "hi": "एक बल्लेबाज़ ने 200 रन बनाए और 4 बार आउट हुआ। बल्लेबाज़ी औसत?",
+     "hinglish": "Ek batter ne 200 runs banaye aur 4 baar out hua. Batting average?"
+    },
+    "options": [
+     {
+      "en": "50",
+      "hi": "50",
+      "hinglish": "50"
+     },
+     {
+      "en": "40",
+      "hi": "40",
+      "hinglish": "40"
+     },
+     {
+      "en": "204",
+      "hi": "204",
+      "hinglish": "204"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "200 ÷ 4 = 50.",
+     "hi": "200 ÷ 4 = 50।",
+     "hinglish": "200 ÷ 4 = 50."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Find the most, the fewest and level the bars in the lab.",
+     "hi": "लैब में सबसे ज़्यादा, सबसे कम ढूँढो और डंडे बराबर करो।",
+     "hinglish": "Lab mein most, fewest dhoondo aur bars barabar karo."
+    },
+    "answer": {
+     "lab": "data-charts",
+     "mode": "average",
+     "solved": true
+    },
+    "explain": {
+     "en": "Kabir 5 is most, Zoya 1 is fewest, average 3.",
+     "hi": "कबीर 5 सबसे ज़्यादा, ज़ोया 1 सबसे कम, औसत 3।",
+     "hinglish": "Kabir 5 most, Zoya 1 fewest, average 3."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "NCERT Mathematics (Classes 1–5) – Data handling chapters (fact reference)",
+   "url": "https://ncert.nic.in/textbook.php",
+   "licence": "fact reference"
+  },
+  {
+   "title": "ICC – Playing conditions and statistics glossary (fact reference)",
+   "url": "https://www.icc-cricket.com/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

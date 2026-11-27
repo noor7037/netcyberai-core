@@ -1,0 +1,385 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.robotics-iot.04",
+ "level": 2,
+ "classes": [
+  7,
+  8
+ ],
+ "unit": "robotics-iot",
+ "title": {
+  "en": "Feedback loops: the line-follower robot",
+  "hi": "फ़ीडबैक लूप: लाइन-फ़ॉलोअर रोबोट",
+  "hinglish": "Feedback loops: line-follower robot"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [
+  "L2.robotics-iot.03"
+ ],
+ "topics": [
+  "robo.feedback-loops",
+  "robo.rules"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain open-loop and closed-loop (feedback) control",
+   "hi": "ओपन-लूप और क्लोज़्ड-लूप (फ़ीडबैक) नियंत्रण समझा सकते हो",
+   "hinglish": "Open-loop aur closed-loop (feedback) control samjha sakte ho"
+  },
+  {
+   "en": "Write if-then rules for a two-sensor line follower",
+   "hi": "दो-सेंसर लाइन फ़ॉलोअर के लिए अगर-तो नियम लिख सकते हो",
+   "hinglish": "Do-sensor line follower ke liye if-then rules likh sakte ho"
+  },
+  {
+   "en": "Spot feedback loops in everyday machines",
+   "hi": "रोज़ की मशीनों में फ़ीडबैक लूप पहचान सकते हो",
+   "hinglish": "Rozana machines mein feedback loops pehchaan sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Feedback loop",
+   "hinglish": "Dekh kar sudhaarna",
+   "en": "Measuring the result and correcting again and again",
+   "hi": "परिणाम मापकर बार-बार सुधारना"
+  },
+  {
+   "term": "Open loop",
+   "hinglish": "Bina dekhe chalana",
+   "en": "Control without checking the result, like a timer",
+   "hi": "परिणाम जाँचे बिना नियंत्रण, जैसे टाइमर"
+  },
+  {
+   "term": "Closed loop",
+   "hinglish": "Dekh kar chalana",
+   "en": "Control that uses a sensor to check and correct",
+   "hi": "नियंत्रण जो सेंसर से जाँचकर सुधारता है"
+  },
+  {
+   "term": "Set point",
+   "hinglish": "Lakshya maan",
+   "en": "The target value the loop tries to keep, like 24 °C",
+   "hi": "लक्ष्य मान जिसे लूप बनाए रखना चाहता है, जैसे 24 °C"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Open loop: “drive straight for 5 seconds” — if the floor is slippery, the robot never knows it went wrong.",
+    "hi": "ओपन लूप: “5 सेकंड सीधा चलो” — फ़र्श फिसलन भरा हो तो रोबोट को कभी पता नहीं चलता कि ग़लत हुआ।",
+    "hinglish": "Open loop: “5 second seedha chalo” — floor slippery ho to robot ko kabhi pata nahi chalta ki galat hua."
+   },
+   "visual": "compare:⏱ Open loop: act blindly by time|🔁 Closed loop: sense → correct → sense again",
+   "narration": {
+    "en": "Feedback = checking and correcting.",
+    "hi": "फ़ीडबैक = जाँचना और सुधारना।",
+    "hinglish": "Feedback = check karna aur sudhaarna."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "A line follower has two sensors near the line. If only the left one sees black, the line is on the left — turn left. Program it in the lab.",
+    "hi": "लाइन फ़ॉलोअर के दो सेंसर रेखा के पास हैं। अगर केवल बायाँ काला देखे, रेखा बाईं ओर है — बाएँ मुड़ो। लैब में प्रोग्राम करो।",
+    "hinglish": "Line follower ke do sensors line ke paas hain. Agar sirf left wala kaala dekhe, line left mein hai — left mudo. Lab mein program karo."
+   },
+   "visual": "lab:robot-lab#line",
+   "narration": {
+    "en": "Tiny corrections hundreds of times a second keep it on track.",
+    "hi": "सेकंड में सैकड़ों छोटे सुधार उसे ट्रैक पर रखते हैं।",
+    "hinglish": "Second mein saikdon chhote corrections use track pe rakhte hain."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "The same loop runs in an AC, an iron and a car’s cruise control: measure, compare with the set point, correct.",
+    "hi": "यही लूप AC, इस्त्री और कार के क्रूज़ कंट्रोल में चलता है: मापो, लक्ष्य से तुलना करो, सुधारो।",
+    "hinglish": "Yahi loop AC, iron aur car ke cruise control mein chalta hai: naapo, set point se compare karo, sudhaaro."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "Error = set point − measured value.",
+    "hi": "त्रुटि = लक्ष्य मान − मापा गया मान।",
+    "hinglish": "Error = set point − measured value."
+   },
+   "code": "AC thermostat (set point 24 °C):\n  forever:\n    t = read_temperature()\n    if t > 24.5: compressor_on()\n    elif t < 23.5: compressor_off()"
+  }
+ ],
+ "play": {
+  "lab": "robot-lab",
+  "config": {
+   "tab": "line"
+  },
+  "goal": {
+   "en": "Choose a rule for each sensor reading so the robot drives one full lap of the track.",
+   "hi": "हर सेंसर रीडिंग के लिए नियम चुनो ताकि रोबोट ट्रैक का एक पूरा चक्कर लगाए।",
+   "hinglish": "Har sensor reading ke liye rule chuno taaki robot track ka ek poora lap lagaye."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Feedback is everywhere",
+    "hi": "फ़ीडबैक हर जगह है",
+    "hinglish": "Feedback har jagah hai"
+   },
+   "body": {
+    "en": "Control engineers split systems into two kinds. Open-loop control acts without checking: a basic toaster runs for a set time whether the bread is pale or burnt. Closed-loop (feedback) control measures the output with a sensor, compares it with a target called the set point, and corrects the difference (the error). Your body does it too — when you ride a bicycle you keep correcting your balance. A two-sensor line follower uses simple “bang-bang” rules: both sensors on the line → go forward; only left → turn left; only right → turn right; neither → stop (or search). It wobbles a little, so better robots use proportional control (turn harder when the error is bigger) or full PID control (proportional–integral–derivative), the same idea used in drones, factory machines and car cruise control. Robots in Indian warehouses follow lines or floor markers in a similar way, and school robotics contests in India often start with a line-follower challenge.",
+    "hi": "नियंत्रण इंजीनियर प्रणालियों को दो प्रकारों में बाँटते हैं। ओपन-लूप नियंत्रण बिना जाँचे काम करता है: साधारण टोस्टर तय समय तक चलता है चाहे ब्रेड कच्ची हो या जली। क्लोज़्ड-लूप (फ़ीडबैक) नियंत्रण सेंसर से आउटपुट मापता है, उसे लक्ष्य मान (सेट पॉइंट) से तुलना करता है, और अंतर (त्रुटि) सुधारता है। तुम्हारा शरीर भी यह करता है — साइकिल चलाते समय तुम संतुलन लगातार सुधारते हो। दो-सेंसर लाइन फ़ॉलोअर सरल “बैंग-बैंग” नियम उपयोग करता है: दोनों सेंसर रेखा पर → आगे; केवल बायाँ → बाएँ मुड़ो; केवल दायाँ → दाएँ मुड़ो; कोई नहीं → रुको (या खोजो)। वह थोड़ा डगमगाता है, इसलिए बेहतर रोबोट आनुपातिक नियंत्रण (त्रुटि बड़ी हो तो ज़्यादा मुड़ो) या पूरा PID नियंत्रण (आनुपातिक–समाकल–अवकल) उपयोग करते हैं, यही विचार ड्रोन, फ़ैक्टरी मशीनों और कार क्रूज़ कंट्रोल में है। भारतीय गोदामों के रोबोट भी इसी तरह रेखाओं या फ़र्श के निशानों का पालन करते हैं, और भारत में स्कूल रोबोटिक्स प्रतियोगिताएँ अक्सर लाइन-फ़ॉलोअर चुनौती से शुरू होती हैं।",
+    "hinglish": "Control engineers systems ko do types mein baant-te hain. Open-loop control bina check kiye kaam karta hai: basic toaster set time tak chalta hai chahe bread kachchi ho ya jali. Closed-loop (feedback) control sensor se output naapta hai, use target value (set point) se compare karta hai, aur difference (error) sudhaarta hai. Tumhara body bhi yeh karta hai — cycle chalate waqt tum balance lagataar sudhaarte ho. Do-sensor line follower simple “bang-bang” rules use karta hai: dono sensors line pe → aage; sirf left → left mudo; sirf right → right mudo; koi nahi → ruko (ya dhoondo). Woh thoda dagmagata hai, isliye better robots proportional control (error bada ho to zyada mudo) ya full PID control (proportional–integral–derivative) use karte hain, yahi idea drones, factory machines aur car cruise control mein hai. Indian warehouses ke robots bhi isi tarah lines ya floor markers follow karte hain, aur India mein school robotics contests aksar line-follower challenge se shuru hote hain."
+   },
+   "analogy": {
+    "en": "A feedback loop = walking along a wall in a dark room: check with your hand at every step and correct a little.",
+    "hi": "फ़ीडबैक लूप = अँधेरे कमरे में दीवार छूकर चलना: हर कदम पर हाथ से जाँचो, थोड़ा रास्ता सुधारो।",
+    "hinglish": "Feedback loop = andhere kamre mein deewar chhoo kar chalna: har kadam pe haath se check karo, thoda sa raasta sudhaaro."
+   },
+   "realExample": {
+    "en": "An inverter AC keeps a room near its set point by slowly speeding up or slowing down its compressor using temperature feedback, instead of switching fully on and off — which is why it saves electricity.",
+    "hi": "इन्वर्टर AC तापमान फ़ीडबैक से कंप्रेसर को धीरे-धीरे तेज़ या धीमा करके कमरे को लक्ष्य मान के पास रखता है, पूरी तरह चालू-बंद करने के बजाय — इसीलिए वह बिजली बचाता है।",
+    "hinglish": "Inverter AC temperature feedback se compressor ko dheere tez ya dheema karke room ko set point ke paas rakhta hai, poora on-off karne ki jagah — isiliye woh bijli bachata hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Find 2 open-loop and 2 closed-loop machines at home (hint: a mixer on a timer vs a fridge). For one closed-loop machine, write its sensor, set point and what it does to correct.",
+   "hi": "घर में 2 ओपन-लूप और 2 क्लोज़्ड-लूप मशीनें ढूँढो (संकेत: टाइमर वाला मिक्सर बनाम फ़्रिज)। एक क्लोज़्ड-लूप मशीन के लिए उसका सेंसर, लक्ष्य मान और सुधार के लिए वह क्या करती है लिखो।",
+   "hinglish": "Ghar mein 2 open-loop aur 2 closed-loop machines dhoondo (hint: timer wala mixer vs fridge). Ek closed-loop machine ke liye uska sensor, set point aur correct karne ke liye woh kya karti hai likho."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which is closed-loop (feedback) control?",
+     "hi": "कौन-सा क्लोज़्ड-लूप (फ़ीडबैक) नियंत्रण है?",
+     "hinglish": "Kaunsa closed-loop (feedback) control hai?"
+    },
+    "options": [
+     {
+      "en": "A microwave running for 60 s",
+      "hi": "60 सेकंड चलता माइक्रोवेव",
+      "hinglish": "60 s chalta microwave"
+     },
+     {
+      "en": "A fan on speed 3",
+      "hi": "स्पीड 3 पर पंखा",
+      "hinglish": "Speed 3 pe fan"
+     },
+     {
+      "en": "A fridge keeping 4 °C using a sensor",
+      "hi": "सेंसर से 4 °C रखता फ़्रिज",
+      "hinglish": "Sensor se 4 °C rakhta fridge"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "The fridge measures temperature and switches the compressor to correct it.",
+     "hi": "फ़्रिज तापमान मापकर सुधार के लिए कंप्रेसर चालू-बंद करता है।",
+     "hinglish": "Fridge temperature naap kar correct karne ke liye compressor on-off karta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "match",
+    "prompt": {
+     "en": "Match each sensor reading to the right action for a line follower.",
+     "hi": "हर सेंसर रीडिंग को लाइन फ़ॉलोअर की सही क्रिया से मिलाओ।",
+     "hinglish": "Har sensor reading ko line follower ke sahi action se match karo."
+    },
+    "options": {
+     "left": [
+      {
+       "en": "Both sensors on the line",
+       "hi": "दोनों सेंसर रेखा पर",
+       "hinglish": "Dono sensors line pe"
+      },
+      {
+       "en": "Only the left sensor on the line",
+       "hi": "केवल बायाँ सेंसर रेखा पर",
+       "hinglish": "Sirf left sensor line pe"
+      },
+      {
+       "en": "Only the right sensor on the line",
+       "hi": "केवल दायाँ सेंसर रेखा पर",
+       "hinglish": "Sirf right sensor line pe"
+      }
+     ],
+     "right": [
+      {
+       "en": "Turn right",
+       "hi": "दाएँ मुड़ो",
+       "hinglish": "Right mudo"
+      },
+      {
+       "en": "Go forward",
+       "hi": "आगे बढ़ो",
+       "hinglish": "Aage badho"
+      },
+      {
+       "en": "Turn left",
+       "hi": "बाएँ मुड़ो",
+       "hinglish": "Left mudo"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      2
+     ],
+     [
+      2,
+      0
+     ]
+    ],
+    "explain": {
+     "en": "Both on → forward; only left → turn left; only right → turn right.",
+     "hi": "दोनों पर → आगे; केवल बायाँ → बाएँ; केवल दायाँ → दाएँ।",
+     "hinglish": "Dono pe → aage; sirf left → left; sirf right → right."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "order",
+    "prompt": {
+     "en": "Put one cycle of a feedback loop in order.",
+     "hi": "फ़ीडबैक लूप के एक चक्र को क्रम में लगाओ।",
+     "hinglish": "Feedback loop ke ek cycle ko order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Compare with the set point",
+      "hi": "लक्ष्य मान से तुलना करो",
+      "hinglish": "Set point se compare karo"
+     },
+     {
+      "en": "Correct the output",
+      "hi": "आउटपुट सुधारो",
+      "hinglish": "Output sudhaaro"
+     },
+     {
+      "en": "Measure with a sensor",
+      "hi": "सेंसर से मापो",
+      "hinglish": "Sensor se naapo"
+     }
+    ],
+    "answer": [
+     2,
+     0,
+     1
+    ],
+    "explain": {
+     "en": "Measure → compare with the set point → correct, and repeat.",
+     "hi": "मापो → लक्ष्य से तुलना → सुधारो, और दोहराओ।",
+     "hinglish": "Naapo → set point se compare → sudhaaro, aur dohrao."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why does a simple line follower wobble from side to side?",
+     "hi": "सरल लाइन फ़ॉलोअर एक ओर से दूसरी ओर क्यों डगमगाता है?",
+     "hinglish": "Simple line follower side to side kyun dagmagata hai?"
+    },
+    "options": [
+     {
+      "en": "It always turns fully, whatever the size of the error",
+      "hi": "त्रुटि कितनी भी हो, हमेशा पूरा मुड़ता है",
+      "hinglish": "Error kitna bhi ho, hamesha full mudta hai"
+     },
+     {
+      "en": "The line is moving",
+      "hi": "रेखा हिल रही है",
+      "hinglish": "Line hil rahi hai"
+     },
+     {
+      "en": "Its battery is too full",
+      "hi": "बैटरी बहुत भरी है",
+      "hinglish": "Battery bahut bhari hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Its bang-bang rules make full turns for any error; proportional or PID control turns just enough.",
+     "hi": "उसके बैंग-बैंग नियम किसी भी त्रुटि पर पूरा मोड़ लेते हैं; आनुपातिक या PID नियंत्रण उतना ही मुड़ता है जितना चाहिए।",
+     "hinglish": "Uske bang-bang rules kisi bhi error pe full turn lete hain; proportional ya PID control utna hi mudta hai jitna chahiye."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "short",
+    "prompt": {
+     "en": "The target value a feedback loop tries to keep is called the set ___ .",
+     "hi": "फ़ीडबैक लूप जिस लक्ष्य मान को बनाए रखना चाहता है उसे set ___ कहते हैं।",
+     "hinglish": "Feedback loop jis target value ko banaye rakhna chahta hai use set ___ kehte hain."
+    },
+    "answer": [
+     "point",
+     "Point"
+    ],
+    "explain": {
+     "en": "Set point — like 24 °C on an AC remote.",
+     "hi": "सेट पॉइंट — जैसे AC रिमोट पर 24 °C।",
+     "hinglish": "Set point — jaise AC remote pe 24 °C."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the lab mission.",
+     "hi": "लैब मिशन पूरा करो।",
+     "hinglish": "Lab mission poora karo."
+    },
+    "answer": {
+     "lab": "robot-lab",
+     "event": "mission:complete",
+     "tab": "line"
+    },
+    "explain": {
+     "en": "Both → forward, only left → left, only right → right.",
+     "hi": "दोनों → आगे, केवल बायाँ → बाएँ, केवल दायाँ → दाएँ।",
+     "hinglish": "Dono → aage, sirf left → left, sirf right → right."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "MIT OpenCourseWare — Analysis and Design of Feedback Control Systems",
+   "url": "https://ocw.mit.edu/courses/2-14-analysis-and-design-of-feedback-control-systems-spring-2014/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Bureau of Energy Efficiency — Star labelling of inverter air conditioners",
+   "url": "https://beeindia.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Atal Innovation Mission — Atal Tinkering Labs (NITI Aayog)",
+   "url": "https://aim.gov.in/atl.php",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

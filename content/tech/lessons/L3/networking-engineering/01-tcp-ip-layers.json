@@ -1,0 +1,430 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.networking-engineering.01",
+ "level": 3,
+ "classes": [
+  10,
+  11,
+  12
+ ],
+ "unit": "networking-engineering",
+ "title": {
+  "en": "The TCP/IP layers",
+  "hi": "टीसीपी/आईपी की परतें",
+  "hinglish": "TCP/IP ki layers"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [],
+ "outcomes": [
+  {
+   "en": "Name the four TCP/IP layers and what each one does",
+   "hi": "टीसीपी/आईपी की चार परतों के नाम और काम बताओ",
+   "hinglish": "TCP/IP ki chaar layers ke naam aur kaam batao"
+  },
+  {
+   "en": "Explain encapsulation: how headers wrap data on the way down and are removed on the way up",
+   "hi": "एनकैप्सुलेशन समझाओ: नीचे जाते समय हेडर डेटा को लपेटते हैं और ऊपर आते समय हटते हैं",
+   "hinglish": "Encapsulation samjhao: neeche jaate waqt headers data ko lapet-te hain aur upar aate waqt hat-te hain"
+  },
+  {
+   "en": "Map the OSI 7-layer model onto TCP/IP",
+   "hi": "ओएसआई के 7-परत मॉडल को टीसीपी/आईपी से मिलाओ",
+   "hinglish": "OSI ke 7-layer model ko TCP/IP se milao"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Protocol",
+   "hinglish": "Baat-cheet ke tay niyam",
+   "en": "Agreed rules for how devices exchange messages",
+   "hi": "उपकरणों के संदेश आदान-प्रदान के तय नियम"
+  },
+  {
+   "term": "Encapsulation",
+   "hinglish": "Data ko header ke liffafe mein band karna",
+   "en": "Wrapping data with each layer's header",
+   "hi": "हर परत के हेडर में डेटा को लपेटना"
+  },
+  {
+   "term": "Header",
+   "hinglish": "Packet ke upar likha pata aur jaankari",
+   "en": "Control information added in front of data",
+   "hi": "डेटा के आगे जोड़ी गई नियंत्रण जानकारी"
+  },
+  {
+   "term": "Port",
+   "hinglish": "Computer ke andar app ka darwaaza number",
+   "en": "Number that identifies an app or service on a host",
+   "hi": "होस्ट पर किसी ऐप या सेवा की पहचान करने वाली संख्या"
+  },
+  {
+   "term": "MAC address",
+   "hinglish": "Network card ka hardware pata",
+   "en": "Hardware address used on the local link",
+   "hi": "स्थानीय लिंक पर इस्तेमाल होने वाला हार्डवेयर पता"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "You send \"hi\" on a chat app. Before it leaves your phone, four layers each add their own label, like envelopes inside envelopes.",
+    "hi": "आप चैट ऐप पर \"hi\" भेजते हो। फ़ोन छोड़ने से पहले चार परतें अपना-अपना लेबल जोड़ती हैं, जैसे लिफ़ाफ़े के अंदर लिफ़ाफ़ा।",
+    "hinglish": "Tum chat app par \"hi\" bhejte ho. Phone chhodne se pehle chaar layers apna-apna label jodti hain, jaise liffafe ke andar liffafa."
+   },
+   "visual": "anim:layer-envelopes",
+   "narration": {
+    "en": "You send \"hi\" on a chat app. Before it leaves your phone, four layers each add their own label, like envelopes inside envelopes.",
+    "hi": "आप चैट ऐप पर \"hi\" भेजते हो। फ़ोन छोड़ने से पहले चार परतें अपना-अपना लेबल जोड़ती हैं, जैसे लिफ़ाफ़े के अंदर लिफ़ाफ़ा।",
+    "hinglish": "Tum chat app par \"hi\" bhejte ho. Phone chhodne se pehle chaar layers apna-apna label jodti hain, jaise liffafe ke andar liffafa."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Application layer (HTTP, DNS, SMTP): what the message means. Transport (TCP/UDP): which app, using port numbers, and reliability.",
+    "hi": "एप्लिकेशन परत (HTTP, DNS, SMTP): संदेश का अर्थ। ट्रांसपोर्ट (TCP/UDP): कौन-सा ऐप, पोर्ट संख्या से, और विश्वसनीयता।",
+    "hinglish": "Application layer (HTTP, DNS, SMTP): message ka matlab. Transport (TCP/UDP): kaunsa app, port numbers se, aur reliability."
+   },
+   "visual": "anim:layer-stack-top",
+   "narration": {
+    "en": "Application layer (HTTP, DNS, SMTP): what the message means. Transport (TCP/UDP): which app, using port numbers, and reliability.",
+    "hi": "एप्लिकेशन परत (HTTP, DNS, SMTP): संदेश का अर्थ। ट्रांसपोर्ट (TCP/UDP): कौन-सा ऐप, पोर्ट संख्या से, और विश्वसनीयता।",
+    "hinglish": "Application layer (HTTP, DNS, SMTP): message ka matlab. Transport (TCP/UDP): kaunsa app, port numbers se, aur reliability."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Internet layer (IP): source and destination IP addresses so routers can forward it across the world. Link layer (Wi-Fi, Ethernet): the next hop on this one cable or radio.",
+    "hi": "इंटरनेट परत (IP): स्रोत और गंतव्य आईपी पते ताकि राउटर इसे दुनिया भर आगे भेज सकें। लिंक परत (वाई-फ़ाई, ईथरनेट): इसी एक केबल या रेडियो पर अगला पड़ाव।",
+    "hinglish": "Internet layer (IP): source aur destination IP addresses taaki routers ise duniya bhar aage bhej sakein. Link layer (Wi-Fi, Ethernet): isi ek cable ya radio par agla padaav."
+   },
+   "visual": "anim:layer-stack-bottom",
+   "narration": {
+    "en": "Internet layer (IP): source and destination IP addresses so routers can forward it across the world. Link layer (Wi-Fi, Ethernet): the next hop on this one cable or radio.",
+    "hi": "इंटरनेट परत (IP): स्रोत और गंतव्य आईपी पते ताकि राउटर इसे दुनिया भर आगे भेज सकें। लिंक परत (वाई-फ़ाई, ईथरनेट): इसी एक केबल या रेडियो पर अगला पड़ाव।",
+    "hinglish": "Internet layer (IP): source aur destination IP addresses taaki routers ise duniya bhar aage bhej sakein. Link layer (Wi-Fi, Ethernet): isi ek cable ya radio par agla padaav."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "At the server each layer peels off its own header and passes the rest up. Every layer only talks to the same layer on the other side.",
+    "hi": "सर्वर पर हर परत अपना हेडर हटाकर बाक़ी ऊपर भेजती है। हर परत दूसरी तरफ़ की उसी परत से ही बात करती है।",
+    "hinglish": "Server par har layer apna header hata ke baaki upar bhejti hai. Har layer doosri taraf ki usi layer se hi baat karti hai."
+   },
+   "visual": "anim:layer-unwrap",
+   "narration": {
+    "en": "At the server each layer peels off its own header and passes the rest up. Every layer only talks to the same layer on the other side.",
+    "hi": "सर्वर पर हर परत अपना हेडर हटाकर बाक़ी ऊपर भेजती है। हर परत दूसरी तरफ़ की उसी परत से ही बात करती है।",
+    "hinglish": "Server par har layer apna header hata ke baaki upar bhejti hai. Har layer doosri taraf ki usi layer se hi baat karti hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "seq-flow",
+  "config": {
+   "scenario": "osi-encapsulation"
+  },
+  "goal": {
+   "en": "Step through the message \"hi\" being wrapped layer by layer, sent, and unwrapped at the server. Watch which header appears at each step.",
+   "hi": "संदेश \"hi\" को परत-दर-परत लिपटते, भेजे जाते और सर्वर पर खुलते चरण-दर-चरण देखो। हर चरण पर कौन-सा हेडर आता है, ध्यान दो।",
+   "hinglish": "Message \"hi\" ko layer by layer wrap hote, bheje jaate aur server par unwrap hote step by step dekho. Har step par kaunsa header aata hai, dhyaan do."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Why layers at all?",
+    "hi": "परतें क्यों?",
+    "hinglish": "Layers kyun?"
+   },
+   "body": {
+    "en": "Layers let each part change without breaking the rest. Your browser does not care whether you are on Jio 5G or home fibre, and Wi-Fi does not care whether you are watching a video or paying by UPI. New apps and new radios can be invented separately.",
+    "hi": "परतों से हर हिस्सा बाक़ी को तोड़े बिना बदल सकता है। आपके ब्राउज़र को फ़र्क़ नहीं पड़ता कि आप जियो 5G पर हो या घर के फ़ाइबर पर, और वाई-फ़ाई को फ़र्क़ नहीं पड़ता कि आप वीडियो देख रहे हो या यूपीआई से भुगतान कर रहे हो। नए ऐप और नए रेडियो अलग-अलग बनाए जा सकते हैं।",
+    "hinglish": "Layers se har hissa baaki ko tode bina badal sakta hai. Tumhare browser ko farak nahi padta ki tum Jio 5G par ho ya ghar ke fibre par, aur Wi-Fi ko farak nahi padta ki tum video dekh rahe ho ya UPI se pay kar rahe ho. Naye apps aur naye radios alag-alag banaye ja sakte hain."
+   },
+   "analogy": {
+    "en": "Like India Post: the letter writer, the sorting office, the train and the postman each do one job and trust the others.",
+    "hi": "जैसे भारतीय डाक: पत्र लिखने वाला, छँटाई दफ़्तर, रेलगाड़ी और डाकिया हर एक एक ही काम करता है और दूसरों पर भरोसा करता है।",
+    "hinglish": "Jaise India Post: letter likhne wala, sorting office, train aur postman har ek ek hi kaam karta hai aur doosron par bharosa karta hai."
+   },
+   "realExample": {
+    "en": "The same WhatsApp message travels over Wi-Fi at home and 4G on the bus. Only the link layer changes; the app never notices.",
+    "hi": "वही व्हाट्सऐप संदेश घर पर वाई-फ़ाई और बस में 4G से जाता है। सिर्फ़ लिंक परत बदलती है; ऐप को पता भी नहीं चलता।",
+    "hinglish": "Wahi WhatsApp message ghar par Wi-Fi aur bus mein 4G se jaata hai. Sirf link layer badalti hai; app ko pata bhi nahi chalta."
+   }
+  },
+  {
+   "heading": {
+    "en": "What each header carries",
+    "hi": "हर हेडर में क्या होता है",
+    "hinglish": "Har header mein kya hota hai"
+   },
+   "body": {
+    "en": "TCP header: source and destination ports (for example 51514 → 443), sequence and acknowledgement numbers, flags such as SYN and ACK. IP header: source and destination IP, TTL (hops left), protocol number. Ethernet/Wi-Fi frame: source and destination MAC addresses and a checksum (FCS) to detect damaged bits.",
+    "hi": "टीसीपी हेडर: स्रोत और गंतव्य पोर्ट (जैसे 51514 → 443), अनुक्रम और स्वीकृति संख्याएँ, SYN और ACK जैसे फ़्लैग। आईपी हेडर: स्रोत और गंतव्य आईपी, TTL (बचे हुए हॉप), प्रोटोकॉल संख्या। ईथरनेट/वाई-फ़ाई फ़्रेम: स्रोत और गंतव्य MAC पते और ख़राब बिट पकड़ने के लिए चेकसम (FCS)।",
+    "hinglish": "TCP header: source aur destination ports (jaise 51514 → 443), sequence aur acknowledgement numbers, SYN aur ACK jaise flags. IP header: source aur destination IP, TTL (bache hue hops), protocol number. Ethernet/Wi-Fi frame: source aur destination MAC addresses aur kharab bits pakadne ke liye checksum (FCS)."
+   },
+   "analogy": {
+    "en": "Port is the flat number, IP is the building address, MAC is the name on the door of the next house the parcel is handed to.",
+    "hi": "पोर्ट फ़्लैट नंबर है, आईपी इमारत का पता है, MAC उस अगले घर के दरवाज़े पर लिखा नाम है जिसे पार्सल सौंपा जाता है।",
+    "hinglish": "Port flat number hai, IP building ka address hai, MAC us agle ghar ke darwaaze par likha naam hai jise parcel saunpa jaata hai."
+   },
+   "realExample": {
+    "en": "Port 443 means HTTPS, 53 means DNS, 22 means SSH. That is how one server can run a website and a DNS service at the same time.",
+    "hi": "पोर्ट 443 का मतलब HTTPS, 53 का मतलब DNS, 22 का मतलब SSH। इसी तरह एक सर्वर एक साथ वेबसाइट और डीएनएस सेवा चला सकता है।",
+    "hinglish": "Port 443 matlab HTTPS, 53 matlab DNS, 22 matlab SSH. Isi tarah ek server ek saath website aur DNS service chala sakta hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "OSI vs TCP/IP",
+    "hi": "ओएसआई बनाम टीसीपी/आईपी",
+    "hinglish": "OSI vs TCP/IP"
+   },
+   "body": {
+    "en": "The OSI model has 7 layers: Physical, Data link, Network, Transport, Session, Presentation, Application. TCP/IP, which the real internet uses, folds them into 4: Link (OSI 1–2), Internet (3), Transport (4), Application (5–7). Engineers still say \"a layer-7 load balancer\" or \"a layer-2 switch\" using OSI numbers.",
+    "hi": "ओएसआई मॉडल में 7 परतें हैं: फ़िज़िकल, डेटा लिंक, नेटवर्क, ट्रांसपोर्ट, सेशन, प्रेज़ेंटेशन, एप्लिकेशन। असली इंटरनेट जिस टीसीपी/आईपी का इस्तेमाल करता है, वह इन्हें 4 में समेटता है: लिंक (OSI 1–2), इंटरनेट (3), ट्रांसपोर्ट (4), एप्लिकेशन (5–7)। इंजीनियर आज भी ओएसआई संख्या से \"लेयर-7 लोड बैलेंसर\" या \"लेयर-2 स्विच\" कहते हैं।",
+    "hinglish": "OSI model mein 7 layers hain: Physical, Data link, Network, Transport, Session, Presentation, Application. Asli internet jo TCP/IP use karta hai, woh inhe 4 mein samet-ta hai: Link (OSI 1–2), Internet (3), Transport (4), Application (5–7). Engineers aaj bhi OSI number se \"layer-7 load balancer\" ya \"layer-2 switch\" kehte hain."
+   },
+   "analogy": {
+    "en": "OSI is the detailed textbook map; TCP/IP is the road you actually drive on.",
+    "hi": "ओएसआई विस्तृत किताबी नक़्शा है; टीसीपी/आईपी वह सड़क है जिस पर आप असल में चलते हो।",
+    "hinglish": "OSI detailed textbook map hai; TCP/IP woh sadak hai jis par tum asal mein chalte ho."
+   },
+   "realExample": {
+    "en": "A home Wi-Fi router is really three boxes in one: a layer-2 switch, a layer-3 router and a Wi-Fi access point.",
+    "hi": "घर का वाई-फ़ाई राउटर असल में तीन डिब्बे एक में है: लेयर-2 स्विच, लेयर-3 राउटर और वाई-फ़ाई एक्सेस पॉइंट।",
+    "hinglish": "Ghar ka Wi-Fi router asal mein teen dabbe ek mein hai: layer-2 switch, layer-3 router aur Wi-Fi access point."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Explain to a friend which layer would break if (a) the Wi-Fi password is wrong, (b) a website name does not resolve, (c) a router drops packets.",
+   "hi": "दोस्त को समझाओ कि कौन-सी परत टूटेगी अगर (a) वाई-फ़ाई पासवर्ड ग़लत है, (b) वेबसाइट का नाम हल नहीं होता, (c) राउटर पैकेट गिरा देता है।",
+   "hinglish": "Dost ko samjhao ki kaunsi layer tootegi agar (a) Wi-Fi password galat hai, (b) website ka naam resolve nahi hota, (c) router packets gira deta hai."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "order",
+    "prompt": {
+     "en": "Order the TCP/IP layers from top (closest to the app) to bottom.",
+     "hi": "टीसीपी/आईपी परतों को ऊपर (ऐप के पास) से नीचे क्रम में लगाओ।",
+     "hinglish": "TCP/IP layers ko upar (app ke paas) se neeche order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Application",
+      "hi": "एप्लिकेशन",
+      "hinglish": "Application"
+     },
+     {
+      "en": "Transport",
+      "hi": "ट्रांसपोर्ट",
+      "hinglish": "Transport"
+     },
+     {
+      "en": "Internet",
+      "hi": "इंटरनेट",
+      "hinglish": "Internet"
+     },
+     {
+      "en": "Link",
+      "hi": "लिंक",
+      "hinglish": "Link"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "Application data is wrapped by TCP/UDP, then IP, then the link frame.",
+     "hi": "एप्लिकेशन डेटा को पहले TCP/UDP, फिर IP, फिर लिंक फ़्रेम लपेटता है।",
+     "hinglish": "Application data ko pehle TCP/UDP, phir IP, phir link frame lapet-ta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "match",
+    "prompt": {
+     "en": "Match each item to the layer whose header carries it.",
+     "hi": "हर चीज़ को उस परत से मिलाओ जिसके हेडर में वह होती है।",
+     "hinglish": "Har cheez ko us layer se milao jiske header mein woh hoti hai."
+    },
+    "options": [
+     {
+      "en": "Port number 443",
+      "hi": "पोर्ट संख्या 443",
+      "hinglish": "Port number 443"
+     },
+     {
+      "en": "IP address and TTL",
+      "hi": "आईपी पता और TTL",
+      "hinglish": "IP address aur TTL"
+     },
+     {
+      "en": "MAC address",
+      "hi": "MAC पता",
+      "hinglish": "MAC address"
+     },
+     {
+      "en": "GET /index.html",
+      "hi": "GET /index.html",
+      "hinglish": "GET /index.html"
+     }
+    ],
+    "answer": [
+     {
+      "en": "Transport",
+      "hi": "ट्रांसपोर्ट",
+      "hinglish": "Transport"
+     },
+     {
+      "en": "Internet",
+      "hi": "इंटरनेट",
+      "hinglish": "Internet"
+     },
+     {
+      "en": "Link",
+      "hi": "लिंक",
+      "hinglish": "Link"
+     },
+     {
+      "en": "Application",
+      "hi": "एप्लिकेशन",
+      "hinglish": "Application"
+     }
+    ],
+    "explain": {
+     "en": "Ports are transport, IP and TTL are internet layer, MAC is link, and the HTTP request line is application.",
+     "hi": "पोर्ट ट्रांसपोर्ट में, आईपी और TTL इंटरनेट परत में, MAC लिंक में, और HTTP अनुरोध पंक्ति एप्लिकेशन में।",
+     "hinglish": "Ports transport mein, IP aur TTL internet layer mein, MAC link mein, aur HTTP request line application mein."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Your phone switches from home Wi-Fi to 4G in the middle of a video call. Which layer changed?",
+     "hi": "वीडियो कॉल के बीच फ़ोन घर के वाई-फ़ाई से 4G पर चला जाता है। कौन-सी परत बदली?",
+     "hinglish": "Video call ke beech phone ghar ke Wi-Fi se 4G par chala jaata hai. Kaunsi layer badli?"
+    },
+    "options": [
+     {
+      "en": "Application",
+      "hi": "एप्लिकेशन",
+      "hinglish": "Application"
+     },
+     {
+      "en": "Transport",
+      "hi": "ट्रांसपोर्ट",
+      "hinglish": "Transport"
+     },
+     {
+      "en": "Link (and the IP address you get)",
+      "hi": "लिंक (और मिलने वाला आईपी पता)",
+      "hinglish": "Link (aur milne wala IP address)"
+     },
+     {
+      "en": "None",
+      "hi": "कोई नहीं",
+      "hinglish": "Koi nahi"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "The radio link changes and you get a new IP from the mobile network; apps reconnect on top without changing what they do.",
+     "hi": "रेडियो लिंक बदलता है और मोबाइल नेटवर्क से नया आईपी मिलता है; ऐप ऊपर से फिर जुड़ जाते हैं, अपना काम बदले बिना।",
+     "hinglish": "Radio link badalta hai aur mobile network se naya IP milta hai; apps upar se phir jud jaate hain, apna kaam badle bina."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which OSI layers does the TCP/IP Application layer cover?",
+     "hi": "टीसीपी/आईपी की एप्लिकेशन परत ओएसआई की किन परतों को ढकती है?",
+     "hinglish": "TCP/IP ki Application layer OSI ki kin layers ko cover karti hai?"
+    },
+    "options": [
+     "1–2",
+     "3",
+     "4",
+     "5–7"
+    ],
+    "answer": 3,
+    "explain": {
+     "en": "Session, Presentation and Application (5, 6, 7) are folded into one Application layer in TCP/IP.",
+     "hi": "सेशन, प्रेज़ेंटेशन और एप्लिकेशन (5, 6, 7) टीसीपी/आईपी में एक एप्लिकेशन परत में समा जाते हैं।",
+     "hinglish": "Session, Presentation aur Application (5, 6, 7) TCP/IP mein ek Application layer mein sama jaate hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "short",
+    "prompt": {
+     "en": "Which transport port number does HTTPS use by default?",
+     "hi": "HTTPS डिफ़ॉल्ट रूप से कौन-सा ट्रांसपोर्ट पोर्ट इस्तेमाल करता है?",
+     "hinglish": "HTTPS default roop se kaunsa transport port use karta hai?"
+    },
+    "answer": {
+     "accept": [
+      "443"
+     ]
+    },
+    "explain": {
+     "en": "443 for HTTPS (80 for plain HTTP).",
+     "hi": "HTTPS के लिए 443 (सादे HTTP के लिए 80)।",
+     "hinglish": "HTTPS ke liye 443 (plain HTTP ke liye 80)."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Run the encapsulation scenario to the end in the Protocol Flow Visualiser.",
+     "hi": "प्रोटोकॉल प्रवाह दर्शक में एनकैप्सुलेशन परिदृश्य अंत तक चलाओ।",
+     "hinglish": "Protocol Flow Visualiser mein encapsulation scenario end tak chalao."
+    },
+    "answer": {
+     "event": "scenario-complete",
+     "scenario": "osi-encapsulation"
+    },
+    "explain": {
+     "en": "You saw every layer add and remove its header.",
+     "hi": "आपने हर परत को अपना हेडर जोड़ते और हटाते देखा।",
+     "hinglish": "Tumne har layer ko apna header jodte aur hatate dekha."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "net.tcp-ip-layers"
+ ],
+ "sources": [
+  {
+   "title": "RFC 1122 — Requirements for Internet Hosts (IETF)",
+   "url": "https://www.rfc-editor.org/rfc/rfc1122",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Cloudflare Learning — What is the OSI model?",
+   "url": "https://www.cloudflare.com/learning/ddos/glossary/open-systems-interconnection-model-osi/",
+   "licence": "fact reference"
+  }
+ ]
+}

@@ -1,0 +1,352 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.data-science.01",
+ "level": 3,
+ "classes": [
+  9,
+  10,
+  11,
+  12
+ ],
+ "unit": "data-science",
+ "title": {
+  "en": "Distributions and spread",
+  "hi": "वितरण और फैलाव",
+  "hinglish": "Distributions aur spread"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [],
+ "outcomes": [
+  {
+   "en": "Read a histogram and a box plot",
+   "hi": "हिस्टोग्राम और बॉक्स प्लॉट पढ़ो",
+   "hinglish": "Histogram aur box plot padho"
+  },
+  {
+   "en": "Choose between mean and median, and between SD and IQR",
+   "hi": "माध्य और माध्यिका, और मानक विचलन और IQR में चुनो",
+   "hinglish": "Mean aur median, aur SD aur IQR mein chuno"
+  },
+  {
+   "en": "Explain how outliers and skew change summaries",
+   "hi": "समझाओ बाहरी मान और तिरछापन सारांश कैसे बदलते हैं",
+   "hinglish": "Samjhao outliers aur skew summaries kaise badalte hain"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Distribution",
+   "hinglish": "Values ka phailaav",
+   "en": "How often each value appears in data",
+   "hi": "डेटा में हर मान कितनी बार आता है"
+  },
+  {
+   "term": "Median",
+   "hinglish": "Beech wali value",
+   "en": "The middle value when data is sorted",
+   "hi": "क्रमबद्ध डेटा का बीच वाला मान"
+  },
+  {
+   "term": "Standard deviation",
+   "hinglish": "Mean se typical doori",
+   "en": "Typical distance of values from the mean",
+   "hi": "मानों की माध्य से सामान्य दूरी"
+  },
+  {
+   "term": "IQR",
+   "hinglish": "Beech ke 50%",
+   "en": "Q3 − Q1: the spread of the middle half",
+   "hi": "Q3 − Q1: बीच के आधे का फैलाव"
+  },
+  {
+   "term": "Outlier",
+   "hinglish": "Bahut alag value",
+   "en": "A value far from the rest",
+   "hi": "बाक़ी से बहुत दूर का मान"
+  },
+  {
+   "term": "Skew",
+   "hinglish": "Ek taraf lambi poonch",
+   "en": "A distribution with a long tail on one side",
+   "hi": "एक तरफ़ लंबी पूँछ वाला वितरण"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Heights of 30 students form a bell shape: most near 158 cm, few very short or tall.",
+    "hi": "30 छात्रों की ऊँचाई घंटी का आकार बनाती है: ज़्यादातर 158 सेमी के पास, कुछ बहुत छोटे या लंबे।",
+    "hinglish": "30 students ki height ghanti ka shape banati hai: zyaadatar 158 cm ke paas, kuch bahut chhote ya lambe."
+   },
+   "visual": "anim:bell",
+   "narration": {
+    "en": "Heights of 30 students form a bell shape: most near 158 cm, few very short or tall.",
+    "hi": "30 छात्रों की ऊँचाई घंटी का आकार बनाती है: ज़्यादातर 158 सेमी के पास, कुछ बहुत छोटे या लंबे।",
+    "hinglish": "30 students ki height ghanti ka shape banati hai: zyaadatar 158 cm ke paas, kuch bahut chhote ya lambe."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Mean (yellow dashes) and median (teal line) almost overlap when data is symmetric.",
+    "hi": "डेटा सममित हो तो माध्य (पीली डैश) और माध्यिका (फ़िरोज़ी रेखा) लगभग मिल जाते हैं।",
+    "hinglish": "Data symmetric ho to mean (peeli dash) aur median (teal line) lagbhag mil jaate hain."
+   },
+   "visual": "anim:mean-median",
+   "narration": {
+    "en": "Mean (yellow dashes) and median (teal line) almost overlap when data is symmetric.",
+    "hi": "डेटा सममित हो तो माध्य (पीली डैश) और माध्यिका (फ़िरोज़ी रेखा) लगभग मिल जाते हैं।",
+    "hinglish": "Data symmetric ho to mean (peeli dash) aur median (teal line) lagbhag mil jaate hain."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Pocket money is right-skewed: a few students get much more, pulling the mean above the median.",
+    "hi": "जेब ख़र्च दाएँ-तिरछा है: कुछ छात्रों को बहुत ज़्यादा मिलता है, जो माध्य को माध्यिका से ऊपर खींचता है।",
+    "hinglish": "Pocket money right-skewed hai: kuch students ko bahut zyaada milta hai, jo mean ko median se upar kheenchta hai."
+   },
+   "visual": "anim:skew",
+   "narration": {
+    "en": "Pocket money is right-skewed: a few students get much more, pulling the mean above the median.",
+    "hi": "जेब ख़र्च दाएँ-तिरछा है: कुछ छात्रों को बहुत ज़्यादा मिलता है, जो माध्य को माध्यिका से ऊपर खींचता है।",
+    "hinglish": "Pocket money right-skewed hai: kuch students ko bahut zyaada milta hai, jo mean ko median se upar kheenchta hai."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Add one ₹2,500 outlier: the mean jumps by about ₹75, the median barely moves.",
+    "hi": "एक ₹2,500 बाहरी मान जोड़ो: माध्य लगभग ₹75 उछलता है, माध्यिका मुश्किल से हिलती है।",
+    "hinglish": "Ek ₹2,500 outlier jodo: mean lagbhag ₹75 uchhalta hai, median mushkil se hilta hai."
+   },
+   "visual": "anim:outlier",
+   "narration": {
+    "en": "Add one ₹2,500 outlier: the mean jumps by about ₹75, the median barely moves.",
+    "hi": "एक ₹2,500 बाहरी मान जोड़ो: माध्य लगभग ₹75 उछलता है, माध्यिका मुश्किल से हिलती है।",
+    "hinglish": "Ek ₹2,500 outlier jodo: mean lagbhag ₹75 uchhalta hai, median mushkil se hilta hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "data-lab",
+  "config": {
+   "mode": "dist",
+   "dataset": "pocket"
+  },
+  "goal": {
+   "en": "Compare the mean and median for each dataset. Then add an outlier to the pocket-money data and see which summary moves more.",
+   "hi": "हर डेटासेट के लिए माध्य और माध्यिका की तुलना करो। फिर जेब-ख़र्च डेटा में बाहरी मान जोड़ो और देखो कौन-सा सारांश ज़्यादा हिलता है।",
+   "hinglish": "Har dataset ke liye mean aur median compare karo. Phir pocket-money data mein outlier jodo aur dekho kaunsa summary zyaada hilta hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Centre and spread",
+    "hi": "केंद्र और फैलाव",
+    "hinglish": "Centre aur spread"
+   },
+   "body": {
+    "en": "A good summary gives a centre and a spread. Centre: the mean adds everything and divides by n; the median is the middle of the sorted list; the mode is the most common value. Spread: the range (max − min) uses only two values; the IQR (Q3 − Q1) covers the middle 50%; the standard deviation measures typical distance from the mean — for bell-shaped data about 68% of values lie within 1 SD of the mean and about 95% within 2 SD. For symmetric data report mean ± SD; for skewed data or data with outliers report median and IQR.",
+    "hi": "अच्छा सारांश केंद्र और फैलाव देता है। केंद्र: माध्य सब जोड़कर n से भाग देता है; माध्यिका क्रमबद्ध सूची का बीच है; बहुलक सबसे आम मान है। फैलाव: परिसर (अधिकतम − न्यूनतम) सिर्फ़ दो मान लेता है; IQR (Q3 − Q1) बीच के 50% को ढकता है; मानक विचलन माध्य से सामान्य दूरी नापता है — घंटी-आकार डेटा में लगभग 68% मान माध्य से 1 SD के भीतर और लगभग 95% 2 SD के भीतर होते हैं। सममित डेटा के लिए माध्य ± SD बताओ; तिरछे या बाहरी मान वाले डेटा के लिए माध्यिका और IQR।",
+    "hinglish": "Achha summary centre aur spread deta hai. Centre: mean sab jodkar n se divide karta hai; median sorted list ka beech hai; mode sabse common value hai. Spread: range (max − min) sirf do values leta hai; IQR (Q3 − Q1) beech ke 50% ko cover karta hai; standard deviation mean se typical doori naapta hai — bell-shaped data mein lagbhag 68% values mean se 1 SD ke andar aur lagbhag 95% 2 SD ke andar hoti hain. Symmetric data ke liye mean ± SD batao; skewed ya outliers wale data ke liye median aur IQR."
+   },
+   "analogy": {
+    "en": "If a billionaire walks into a tea stall, the average wealth of the customers explodes — but the median customer is just as rich as before.",
+    "hi": "अगर कोई अरबपति चाय की दुकान में आए, ग्राहकों की औसत संपत्ति फट जाती है — पर माध्यिका ग्राहक उतना ही अमीर है जितना पहले।",
+    "hinglish": "Agar koi arabpati chai ki dukaan mein aaye, customers ki average wealth phat jaati hai — par median customer utna hi ameer hai jitna pehle."
+   },
+   "realExample": {
+    "en": "Income surveys usually report median household income, because a small number of very high earners pulls the mean far above what a typical family earns.",
+    "hi": "आय सर्वे आम तौर पर माध्यिका पारिवारिक आय बताते हैं, क्योंकि बहुत ज़्यादा कमाने वाले थोड़े लोग माध्य को सामान्य परिवार की कमाई से बहुत ऊपर खींच देते हैं।",
+    "hinglish": "Income surveys aam taur par median household income batate hain, kyunki bahut zyaada kamaane wale thode log mean ko typical family ki kamaai se bahut upar kheench dete hain."
+   }
+  },
+  {
+   "heading": {
+    "en": "Shapes of data",
+    "hi": "डेटा के आकार",
+    "hinglish": "Data ke shapes"
+   },
+   "body": {
+    "en": "Always plot before you summarise. A histogram groups values into bins and shows the shape: symmetric (heights, measurement errors), right-skewed (income, screen time, city populations, waiting times), left-skewed (marks in an easy test), or bimodal with two humps (heights of a mixed group of Class 6 and Class 12 students). A box plot shows the median, the box from Q1 to Q3, whiskers, and outliers as separate points. Two very different datasets can share the same mean and SD — only a plot reveals the difference.",
+    "hi": "सारांश से पहले हमेशा प्लॉट बनाओ। हिस्टोग्राम मानों को खानों में रखता है और आकार दिखाता है: सममित (ऊँचाई, मापन त्रुटियाँ), दाएँ-तिरछा (आय, स्क्रीन समय, शहरों की आबादी, प्रतीक्षा समय), बाएँ-तिरछा (आसान परीक्षा के अंक), या दो कूबड़ वाला द्वि-बहुलक (कक्षा 6 और कक्षा 12 के मिले समूह की ऊँचाई)। बॉक्स प्लॉट माध्यिका, Q1 से Q3 का बॉक्स, व्हिस्कर, और बाहरी मान अलग बिंदुओं के रूप में दिखाता है। दो बहुत अलग डेटासेट का माध्य और SD एक जैसा हो सकता है — सिर्फ़ प्लॉट अंतर दिखाता है।",
+    "hinglish": "Summary se pehle hamesha plot banao. Histogram values ko bins mein rakhta hai aur shape dikhata hai: symmetric (heights, measurement errors), right-skewed (income, screen time, shehron ki aabaadi, waiting times), left-skewed (aasaan test ke marks), ya do humps wala bimodal (Class 6 aur Class 12 ke mixed group ki heights). Box plot median, Q1 se Q3 ka box, whiskers, aur outliers alag points ki tarah dikhata hai. Do bahut alag datasets ka mean aur SD same ho sakta hai — sirf plot fark dikhata hai."
+   },
+   "analogy": {
+    "en": "Describing a class by its average height is like describing a film by its running time — true, but you miss the story.",
+    "hi": "कक्षा को औसत ऊँचाई से बताना फ़िल्म को उसकी अवधि से बताने जैसा है — सच, पर कहानी छूट जाती है।",
+    "hinglish": "Class ko average height se batana film ko uske running time se batane jaisa hai — sach, par kahani chhoot jaati hai."
+   },
+   "realExample": {
+    "en": "Anscombe's quartet (1973): four small datasets with almost identical means, variances and correlations look completely different when plotted.",
+    "hi": "एन्सकॉम्ब चौकड़ी (1973): लगभग एक जैसे माध्य, प्रसरण और सहसंबंध वाले चार छोटे डेटासेट प्लॉट करने पर पूरी तरह अलग दिखते हैं।",
+    "hinglish": "Anscombe's quartet (1973): lagbhag same means, variances aur correlations wale chaar chhote datasets plot karne par poori tarah alag dikhte hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Collect the sleep hours of 15 people at home or in class (ask permission; no names). Sort them and find the mean, median, range and IQR. Is the data symmetric or skewed? Which centre would you report?",
+   "hi": "घर या कक्षा में 15 लोगों के सोने के घंटे इकट्ठा करो (अनुमति लो; नाम नहीं)। क्रमबद्ध करके माध्य, माध्यिका, परिसर और IQR निकालो। डेटा सममित है या तिरछा? कौन-सा केंद्र बताओगे?",
+   "hinglish": "Ghar ya class mein 15 logon ke sone ke ghante collect karo (permission lo; naam nahi). Sort karke mean, median, range aur IQR nikalo. Data symmetric hai ya skewed? Kaunsa centre report karoge?"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "short",
+    "prompt": {
+     "en": "Median of 3, 9, 4, 7, 5?",
+     "hi": "3, 9, 4, 7, 5 की माध्यिका?",
+     "hinglish": "3, 9, 4, 7, 5 ka median?"
+    },
+    "answer": {
+     "accept": [
+      "5"
+     ]
+    },
+    "explain": {
+     "en": "Sorted: 3, 4, 5, 7, 9 — the middle is 5.",
+     "hi": "क्रमबद्ध: 3, 4, 5, 7, 9 — बीच में 5।",
+     "hinglish": "Sorted: 3, 4, 5, 7, 9 — beech mein 5."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which summary is least affected by one huge outlier?",
+     "hi": "एक बहुत बड़े बाहरी मान से कौन-सा सारांश सबसे कम प्रभावित?",
+     "hinglish": "Ek bahut bade outlier se kaunsa summary sabse kam prabhavit?"
+    },
+    "options": [
+     {
+      "en": "Median",
+      "hi": "माध्यिका",
+      "hinglish": "Median"
+     },
+     {
+      "en": "Mean",
+      "hi": "माध्य",
+      "hinglish": "Mean"
+     },
+     {
+      "en": "Range",
+      "hi": "परिसर",
+      "hinglish": "Range"
+     },
+     {
+      "en": "Standard deviation",
+      "hi": "मानक विचलन",
+      "hinglish": "Standard deviation"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "The median depends only on the middle position.",
+     "hi": "माध्यिका सिर्फ़ बीच की स्थिति पर निर्भर है।",
+     "hinglish": "Median sirf beech ki position par nirbhar hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Income data is usually…",
+     "hi": "आय का डेटा आम तौर पर…",
+     "hinglish": "Income data aam taur par…"
+    },
+    "options": [
+     {
+      "en": "Right-skewed (long tail of high earners)",
+      "hi": "दाएँ-तिरछा (ऊँची कमाई की लंबी पूँछ)",
+      "hinglish": "Right-skewed (high earners ki lambi poonch)"
+     },
+     {
+      "en": "Perfectly symmetric",
+      "hi": "पूरी तरह सममित",
+      "hinglish": "Poori tarah symmetric"
+     },
+     {
+      "en": "Left-skewed",
+      "hi": "बाएँ-तिरछा",
+      "hinglish": "Left-skewed"
+     },
+     {
+      "en": "Uniform",
+      "hi": "एकसमान",
+      "hinglish": "Uniform"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "So the mean is above the median.",
+     "hi": "इसलिए माध्य माध्यिका से ऊपर है।",
+     "hinglish": "Isliye mean median se upar hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Bell-shaped data, mean 158 cm, SD 7 cm. About 95% of students are between…",
+     "hi": "घंटी-आकार डेटा, माध्य 158 सेमी, SD 7 सेमी। लगभग 95% छात्र किसके बीच?",
+     "hinglish": "Bell-shaped data, mean 158 cm, SD 7 cm. Lagbhag 95% students kiske beech?"
+    },
+    "options": [
+     "151–165 cm",
+     "144–172 cm",
+     "137–179 cm",
+     "158–172 cm"
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Mean ± 2 SD = 158 ± 14.",
+     "hi": "माध्य ± 2 SD = 158 ± 14।",
+     "hinglish": "Mean ± 2 SD = 158 ± 14."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Add an outlier and compare the mean and median shifts.",
+     "hi": "बाहरी मान जोड़कर माध्य और माध्यिका का खिसकना मिलाओ।",
+     "hinglish": "Outlier jodkar mean aur median ka khisakna milao."
+    },
+    "answer": {
+     "event": "outlier-added"
+    },
+    "explain": {
+     "en": "The mean chased the outlier; the median stayed put.",
+     "hi": "माध्य बाहरी मान के पीछे भागा; माध्यिका टिकी रही।",
+     "hinglish": "Mean outlier ke peeche bhaaga; median tiki rahi."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "ds.distributions",
+  "ds.averages"
+ ],
+ "sources": [
+  {
+   "title": "OpenIntro Statistics, 4th ed. (CC BY-SA; used as a fact reference)",
+   "url": "https://www.openintro.org/book/os/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Anscombe, F. J. (1973) Graphs in Statistical Analysis, The American Statistician 27(1)",
+   "url": "https://doi.org/10.1080/00031305.1973.10478966",
+   "licence": "fact reference"
+  }
+ ]
+}

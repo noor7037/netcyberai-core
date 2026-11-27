@@ -1,0 +1,309 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.internet.03",
+ "level": 1,
+ "classes": [
+  4,
+  5
+ ],
+ "unit": "internet",
+ "title": {
+  "en": "Packets: how big things travel in small pieces",
+  "hi": "पैकेट: बड़ी चीज़ें छोटे टुकड़ों में कैसे जाती हैं",
+  "hinglish": "Packets: badi cheezein chhote tukdon mein kaise jaati hain"
+ },
+ "minutes": 9,
+ "xp": 35,
+ "prereq": [
+  "L1.internet.02"
+ ],
+ "topics": [
+  "net.packets",
+  "net.ip"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain that data is split into numbered packets.",
+   "hi": "समझा सकते हो कि डेटा नंबर वाले पैकेट में बँटता है।",
+   "hinglish": "Samjha sakte ho ki data numbered packets mein toot-ta hai."
+  },
+  {
+   "en": "Explain why packets can take different routes and arrive out of order.",
+   "hi": "समझा सकते हो कि पैकेट अलग रास्ते क्यों लेते हैं और उल्टे क्रम में क्यों पहुँचते हैं।",
+   "hinglish": "Samjha sakte ho ki packets alag raaste kyun lete hain aur ulte order mein kyun pahunchte hain."
+  },
+  {
+   "en": "Explain how the internet keeps working when a cable breaks.",
+   "hi": "समझा सकते हो कि केबल टूटने पर भी इंटरनेट कैसे चलता रहता है।",
+   "hinglish": "Samjha sakte ho ki cable tootne par bhi internet kaise chalta rehta hai."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Packet",
+   "en": "A small piece of data with an address and a number on it",
+   "hi": "डेटा का छोटा टुकड़ा जिस पर पता और नंबर हो",
+   "hinglish": "Data ka chhota tukda jis par address aur number hota hai"
+  },
+  {
+   "term": "IP address",
+   "en": "The number address of a device on the internet",
+   "hi": "इंटरनेट पर हर डिवाइस का नंबर वाला पता",
+   "hinglish": "Internet par har device ka number wala address"
+  },
+  {
+   "term": "Route",
+   "en": "The path a packet takes",
+   "hi": "रास्ता",
+   "hinglish": "Raasta"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.internet.03.s1",
+   "caption": {
+    "en": "A photo is cut into numbered packets.",
+    "hi": "फ़ोटो नंबर वाले पैकेट में कटती है।",
+    "hinglish": "Photo numbered packets mein katti hai."
+   },
+   "narration": {
+    "en": "A big photo is too large to send in one go. It is split into small packets. Each has the sender's address, the receiver's address and a number.",
+    "hinglish": "Badi photo ek baar mein bhejne ke liye bahut badi hai. Use chhote packets mein toda jaata hai. Har packet par bhejne wale ka address, paane wale ka address aur ek number hota hai.",
+    "hi": "बड़ी फ़ोटो एक बार में भेजने के लिए बहुत बड़ी है। उसे छोटे पैकेट में तोड़ा जाता है। हर पैकेट पर भेजने वाले का पता, पाने वाले का पता और एक नंबर होता है।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.internet.03.s2",
+   "caption": {
+    "en": "Packets can take different roads.",
+    "hi": "पैकेट अलग-अलग रास्ते ले सकते हैं।",
+    "hinglish": "Packets alag-alag raaste le sakte hain."
+   },
+   "narration": {
+    "en": "Routers send each packet the best way at that moment. If a cable is cut, packets go around it.",
+    "hinglish": "Routers har packet ko us waqt ke best raaste bhejte hain. Cable kat jaaye toh packets ghoom kar jaate hain.",
+    "hi": "राउटर हर पैकेट को उस समय के सबसे अच्छे रास्ते भेजते हैं। केबल कट जाए तो पैकेट घूमकर जाते हैं।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.internet.03.s3",
+   "caption": {
+    "en": "The numbers put the photo back together.",
+    "hi": "नंबर फ़ोटो को फिर से जोड़ते हैं।",
+    "hinglish": "Numbers photo ko phir se jodte hain."
+   },
+   "narration": {
+    "en": "Packets may arrive as 3, 1, 4, 2. The receiving phone uses the numbers to rebuild the photo — and asks again for any packet that went missing.",
+    "hinglish": "Packets 3, 1, 4, 2 order mein pahunch sakte hain. Paane wala phone numbers se photo phir banaata hai — aur koi packet kho jaaye toh dobara maangta hai.",
+    "hi": "पैकेट 3, 1, 4, 2 क्रम में पहुँच सकते हैं। पाने वाला फ़ोन नंबरों से फ़ोटो फिर बनाता है — और कोई पैकेट खो जाए तो दोबारा माँगता है।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "net-travel",
+  "config": {
+   "mode": "packets"
+  },
+  "goal": {
+   "en": "Send the photo, cut a cable, and send again. Do all 4 packets arrive?",
+   "hi": "फ़ोटो भेजो, एक केबल काटो, और फिर भेजो। क्या चारों पैकेट पहुँचते हैं?",
+   "hinglish": "Photo bhejo, ek cable kaato, aur phir bhejo. Kya chaaron packets pahunchte hain?"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Why split into packets?",
+    "hi": "पैकेट में क्यों तोड़ें?",
+    "hinglish": "Packets mein kyun todein?"
+   },
+   "body": {
+    "en": "Small packets share the roads fairly with everyone else's messages, and if one gets lost only that small piece must be sent again — not the whole photo or video.",
+    "hi": "छोटे पैकेट सड़कों को बाक़ी सबके संदेशों के साथ बराबर बाँटते हैं, और अगर एक खो जाए तो सिर्फ़ वही छोटा टुकड़ा फिर भेजना पड़ता है — पूरी फ़ोटो या वीडियो नहीं।",
+    "hinglish": "Chhote packets sadkon ko baaki sabke messages ke saath barabar baant-te hain, aur agar ek kho jaaye toh sirf wahi chhota tukda phir bhejna padta hai — poori photo ya video nahin."
+   },
+   "analogy": {
+    "en": "When moving house, things go in numbered boxes; even if they arrive in different trucks, the numbers sort everything out.",
+    "hi": "घर बदलते समय सामान नंबर वाले डिब्बों में जाता है; अलग ट्रकों में आए तो भी नंबरों से सब सही जगह लग जाता है।",
+    "hinglish": "Ghar shift karte waqt saamaan numbered dabbon mein jaata hai; alag trucks mein aaye toh bhi numbers se sab sahi jagah lag jaata hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "Built to survive breaks",
+    "hi": "टूटने पर भी चलने के लिए बना",
+    "hinglish": "Tootne par bhi chalne ke liye bana"
+   },
+   "body": {
+    "en": "The internet grew from ARPANET, a 1969 research network in the USA. It was designed with many possible paths, so if one link breaks, messages find another. That is why one cut cable rarely stops the whole internet.",
+    "hi": "इंटरनेट 1969 के अमेरिकी शोध नेटवर्क ARPANET से बढ़ा। इसे कई रास्तों के साथ बनाया गया, ताकि एक कड़ी टूटे तो संदेश दूसरी ढूँढ लें। इसीलिए एक कटा केबल शायद ही कभी पूरा इंटरनेट रोकता है।",
+    "hinglish": "Internet 1969 ke American research network ARPANET se badha. Ise kai raaston ke saath banaya gaya, taaki ek link toote toh messages doosra dhoondh lein. Isiliye ek kati cable shayad hi kabhi poora internet rokti hai."
+   },
+   "realExample": {
+    "en": "A video call sends dozens of packets every second; a small delay in some packets makes the picture freeze for a moment.",
+    "hi": "वीडियो कॉल हर सेकंड दर्जनों पैकेट भेजती है; कुछ पैकेट में देर हो तो तस्वीर पल भर के लिए रुक जाती है।",
+    "hinglish": "Video call har second darjanon packets bhejti hai; kuch packets mein der ho toh picture pal bhar ke liye ruk jaati hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write a 12-word sentence on 4 paper slips (3 words each), number them, shuffle, and ask a family member to rebuild it. You are a packet network!",
+   "hi": "12 शब्दों का वाक्य 4 पर्चियों पर लिखो (हर पर्ची पर 3 शब्द), नंबर डालो, मिलाओ, और परिवार के किसी सदस्य से फिर जुड़वाओ। तुम पैकेट नेटवर्क हो!",
+   "hinglish": "12 shabdon ka vaakya 4 parchiyon par likho (har parchi par 3 shabd), number daalo, milao, aur family member se phir judwao. Tum packet network ho!"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "multi",
+    "prompt": {
+     "en": "What is written on every packet?",
+     "hi": "हर पैकेट पर क्या लिखा होता है?",
+     "hinglish": "Har packet par kya likha hota hai?"
+    },
+    "options": [
+     {
+      "en": "Where it is going (address)",
+      "hi": "कहाँ जा रहा है (पता)",
+      "hinglish": "Kahan ja raha hai (address)"
+     },
+     {
+      "en": "Where it came from",
+      "hi": "कहाँ से आया",
+      "hinglish": "Kahan se aaya"
+     },
+     {
+      "en": "Its number",
+      "hi": "उसका नंबर",
+      "hinglish": "Uska number"
+     },
+     {
+      "en": "Its favourite colour",
+      "hi": "उसका पसंदीदा रंग",
+      "hinglish": "Uska favourite colour"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2
+    ],
+    "explain": {
+     "en": "Addresses get it there; numbers rebuild the file.",
+     "hi": "पते उसे पहुँचाते हैं; नंबर फ़ाइल फिर बनाते हैं।",
+     "hinglish": "Address use pahunchaate hain; numbers file phir banaate hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Packets arrive as 2, 4, 1, 3. What happens?",
+     "hi": "पैकेट 2, 4, 1, 3 क्रम में पहुँचे। क्या होगा?",
+     "hinglish": "Packets 2, 4, 1, 3 order mein pahunche. Kya hoga?"
+    },
+    "options": [
+     {
+      "en": "The numbers are used to put them in order",
+      "hi": "नंबरों से उन्हें क्रम में लगाया जाता है",
+      "hinglish": "Numbers se unhe order mein lagaaya jaata hai"
+     },
+     {
+      "en": "The photo is lost forever",
+      "hi": "फ़ोटो हमेशा के लिए खो जाती है",
+      "hinglish": "Photo hamesha ke liye kho jaati hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Order is fixed using packet numbers.",
+     "hi": "क्रम पैकेट नंबरों से ठीक होता है।",
+     "hinglish": "Order packet numbers se theek hota hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "A cable breaks. The internet usually…",
+     "hi": "एक केबल टूट गया। इंटरनेट आमतौर पर…",
+     "hinglish": "Ek cable toot gayi. Internet aam taur par…"
+    },
+    "options": [
+     {
+      "en": "sends packets another way",
+      "hi": "पैकेट दूसरे रास्ते भेजता है",
+      "hinglish": "packets doosre raaste bhejta hai"
+     },
+     {
+      "en": "stops everywhere",
+      "hi": "हर जगह बंद हो जाता है",
+      "hinglish": "har jagah band ho jaata hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Many paths make the network strong.",
+     "hi": "कई रास्ते नेटवर्क को मज़बूत बनाते हैं।",
+     "hinglish": "Kai raaste network ko mazboot banaate hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "short",
+    "prompt": {
+     "en": "The number address of a device on the internet is called an ___ address.",
+     "hi": "इंटरनेट पर डिवाइस के नंबर वाले पते को ___ पता कहते हैं।",
+     "hinglish": "Internet par device ke number wale address ko ___ address kehte hain."
+    },
+    "answer": [
+     "ip"
+    ],
+    "explain": {
+     "en": "IP = Internet Protocol address.",
+     "hi": "IP = इंटरनेट प्रोटोकॉल पता।",
+     "hinglish": "IP = Internet Protocol address."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Deliver the photo even after cutting a cable.",
+     "hi": "केबल काटने के बाद भी फ़ोटो पहुँचाओ।",
+     "hinglish": "Cable kaatne ke baad bhi photo pahunchao."
+    },
+    "answer": {
+     "lab": "net-travel",
+     "mode": "packets",
+     "solved": true
+    },
+    "explain": {
+     "en": "Tap a cable to cut it, then press Send photo.",
+     "hi": "केबल पर टैप करके काटो, फिर फ़ोटो भेजो दबाओ।",
+     "hinglish": "Cable par tap karke kaato, phir Photo bhejo dabao."
+    },
+    "difficulty": 3
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Internet Society – Brief history of the Internet (fact reference)",
+   "url": "https://www.internetsociety.org/internet/history-internet/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

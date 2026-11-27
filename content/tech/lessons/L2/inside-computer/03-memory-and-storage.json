@@ -1,0 +1,312 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.inside-computer.03",
+ "level": 2,
+ "classes": [
+  7,
+  8
+ ],
+ "unit": "inside-computer",
+ "title": {
+  "en": "Memory vs storage: RAM, ROM, SSD, HDD",
+  "hi": "मेमोरी बनाम स्टोरेज: RAM, ROM, SSD, HDD",
+  "hinglish": "Memory vs storage: RAM, ROM, SSD, HDD"
+ },
+ "minutes": 10,
+ "xp": 40,
+ "prereq": [
+  "L2.inside-computer.02"
+ ],
+ "topics": [
+  "hw.memory",
+  "hw.storage"
+ ],
+ "outcomes": [
+  {
+   "en": "Tell volatile memory from non-volatile storage",
+   "hi": "अस्थायी मेमोरी और स्थायी स्टोरेज में अंतर बता सकते हो",
+   "hinglish": "Volatile memory aur non-volatile storage mein farak bata sakte ho"
+  },
+  {
+   "en": "Compare HDD, SSD and flash speeds",
+   "hi": "HDD, SSD और फ़्लैश की गति की तुलना कर सकते हो",
+   "hinglish": "HDD, SSD aur flash ki speed compare kar sakte ho"
+  },
+  {
+   "en": "Explain the memory hierarchy",
+   "hi": "मेमोरी पदानुक्रम समझा सकते हो",
+   "hinglish": "Memory hierarchy samjha sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "RAM",
+   "hinglish": "Abhi ka kaam rakhne wali fast memory",
+   "en": "Random Access Memory: fast, volatile working memory",
+   "hi": "रैंडम एक्सेस मेमोरी: तेज़, अस्थायी कामकाजी मेमोरी"
+  },
+  {
+   "term": "ROM / firmware",
+   "hinglish": "Start karne wala permanent code",
+   "en": "Read-only / flash memory holding start-up code",
+   "hi": "शुरुआती कोड रखने वाली रीड-ओनली / फ़्लैश मेमोरी"
+  },
+  {
+   "term": "Volatile",
+   "hinglish": "Power gayi to data gaya",
+   "en": "Loses its data when power is off",
+   "hi": "बिजली बंद होने पर डेटा खो देती है"
+  },
+  {
+   "term": "SSD",
+   "hinglish": "Bina moving parts wali fast storage",
+   "en": "Solid State Drive: flash-chip storage, no moving parts",
+   "hi": "सॉलिड स्टेट ड्राइव: फ़्लैश चिप स्टोरेज, कोई चलता भाग नहीं"
+  },
+  {
+   "term": "HDD",
+   "hinglish": "Ghoomti disk wali storage",
+   "en": "Hard Disk Drive: spinning magnetic platters, cheaper per GB, slower",
+   "hi": "हार्ड डिस्क ड्राइव: घूमती चुंबकीय प्लेटें, प्रति GB सस्ती, धीमी"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "RAM is your study desk: everything you are using now. Storage is your almirah: everything you own.",
+    "hi": "RAM पढ़ाई की मेज़ है: अभी इस्तेमाल हो रही हर चीज़। स्टोरेज अलमारी है: आपकी हर चीज़।",
+    "hinglish": "RAM aapki study desk hai: jo abhi use ho raha hai. Storage aapki almirah: jo kuch aapka hai."
+   },
+   "visual": "flow:🗄️ Almirah = Storage|📚 Desk = RAM|🧠 You = CPU",
+   "narration": {
+    "en": "You take books out of the almirah onto the desk to work. Apps move from storage to RAM the same way.",
+    "hi": "काम करने के लिए किताबें अलमारी से डेस्क पर लाते हो। ऐप भी ऐसे ही स्टोरेज से RAM में आते हैं।",
+    "hinglish": "Kaam ke liye kitaabein almirah se desk pe laate ho. Apps bhi storage se RAM mein aise hi aate hain."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Switch off and the desk is wiped (RAM is volatile). The almirah keeps everything (storage is non-volatile).",
+    "hi": "बंद करो तो मेज़ साफ़ (RAM अस्थायी)। अलमारी सब रखती है (स्टोरेज स्थायी)।",
+    "hinglish": "Switch off karo to desk saaf (RAM volatile). Almirah sab rakhti hai (storage non-volatile)."
+   },
+   "visual": "icon:🔌",
+   "narration": {
+    "en": "That is why you save your work before closing an app.",
+    "hi": "इसीलिए ऐप बंद करने से पहले काम सहेजते हो।",
+    "hinglish": "Isliye app band karne se pehle kaam save karte ho."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Speeds differ hugely: HDD ~150 MB/s, SATA SSD ~550 MB/s, NVMe SSD ~3,500 MB/s or more, RAM ~25,000 MB/s.",
+    "hi": "गतियों में बड़ा अंतर: HDD ~150 MB/s, SATA SSD ~550 MB/s, NVMe SSD ~3,500 MB/s या ज़्यादा, RAM ~25,000 MB/s।",
+    "hinglish": "Speeds mein bahut farak: HDD ~150 MB/s, SATA SSD ~550 MB/s, NVMe SSD ~3,500 MB/s ya zyada, RAM ~25,000 MB/s."
+   },
+   "visual": "compare:🐢 HDD 150 MB/s|🚗 SATA SSD 550 MB/s|🚀 NVMe 3,500 MB/s|⚡ RAM 25,000 MB/s",
+   "narration": {
+    "en": "Changing an old hard disk for an SSD is the biggest speed-up you can give an old laptop.",
+    "hi": "पुरानी हार्ड डिस्क की जगह SSD लगाना पुराने लैपटॉप को सबसे ज़्यादा तेज़ बनाता है।",
+    "hinglish": "Purane laptop mein hard disk ki jagah SSD lagana sabse bada speed-up hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "pc-builder-3d",
+  "config": {},
+  "goal": {
+   "en": "Build and boot, then compare how long a 4 GB game takes to load from HDD, SATA SSD and NVMe.",
+   "hi": "बनाओ और बूट करो, फिर तुलना करो कि 4 GB गेम HDD, SATA SSD और NVMe से कितनी देर में खुलता है।",
+   "hinglish": "Build aur boot karo, phir dekho 4 GB game HDD, SATA SSD aur NVMe se kitni der mein load hota hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "The memory hierarchy",
+    "hi": "मेमोरी पदानुक्रम",
+    "hinglish": "Memory hierarchy"
+   },
+   "body": {
+    "en": "From fastest and smallest to slowest and biggest: registers (bytes, inside the CPU) → cache (a few MB) → RAM (4–32 GB) → SSD/HDD (128 GB–2 TB) → cloud/backup (unlimited but over the internet). Fast memory costs more per GB, so computers use a little of the fast kind and a lot of the slow kind. ROM/flash firmware holds the first program that runs at power-on. Your phone’s “storage” is flash memory (UFS or eMMC) — the same idea as an SSD.",
+    "hi": "सबसे तेज़ और छोटे से सबसे धीमे और बड़े तक: रजिस्टर (बाइट, CPU के अंदर) → कैश (कुछ MB) → RAM (4–32 GB) → SSD/HDD (128 GB–2 TB) → क्लाउड/बैकअप (असीमित पर इंटरनेट से)। तेज़ मेमोरी प्रति GB महँगी है, इसलिए कंप्यूटर थोड़ी तेज़ और बहुत सारी धीमी मेमोरी रखते हैं। ROM/फ़्लैश फ़र्मवेयर में वह पहला प्रोग्राम होता है जो चालू होते ही चलता है। फ़ोन का “स्टोरेज” फ़्लैश मेमोरी (UFS या eMMC) है — SSD जैसा।",
+    "hinglish": "Sabse fast aur chhoti se sabse slow aur badi tak: registers (bytes, CPU ke andar) → cache (kuch MB) → RAM (4–32 GB) → SSD/HDD (128 GB–2 TB) → cloud/backup (unlimited par internet se). Fast memory per GB mehngi hai, isliye computer thodi fast aur bahut saari slow memory rakhte hain. ROM/flash firmware mein woh pehla program hota hai jo ON hote hi chalta hai. Phone ka “storage” flash memory (UFS ya eMMC) hai — SSD jaisa hi."
+   },
+   "analogy": {
+    "hinglish": "Jeb (registers) → school bag (cache) → desk (RAM) → ghar ki almirah (SSD) → gaon ka godown (cloud). Paas wali cheez jaldi milti hai.",
+    "en": "Pocket (registers) → school bag (cache) → desk (RAM) → home cupboard (SSD) → village warehouse (cloud). Whatever is closest is found fastest.",
+    "hi": "जेब (रजिस्टर) → स्कूल बैग (कैश) → डेस्क (RAM) → घर की अलमारी (SSD) → गाँव का गोदाम (क्लाउड)। पास वाली चीज़ जल्दी मिलती है।"
+   },
+   "realExample": {
+    "en": "When your phone says “storage full”, it means flash storage, not RAM. Clearing RAM (closing apps) does not free storage.",
+    "hi": "जब फ़ोन “storage full” कहता है, तो मतलब फ़्लैश स्टोरेज, RAM नहीं। RAM ख़ाली करने (ऐप बंद करने) से स्टोरेज ख़ाली नहीं होता।",
+    "hinglish": "Phone “storage full” bole to matlab flash storage, RAM nahi. Apps band karne se storage khaali nahi hota."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Check your family phone: how much RAM and how much storage does it have? Which is bigger and why?",
+   "hi": "परिवार का फ़ोन जाँचो: उसमें कितनी RAM और कितना स्टोरेज है? कौन बड़ा है और क्यों?",
+   "hinglish": "Ghar ke phone mein kitni RAM aur kitni storage hai? Kaun badi hai aur kyun?"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which loses its data when the power goes off?",
+     "hi": "बिजली बंद होने पर किसका डेटा मिट जाता है?",
+     "hinglish": "Power off hone pe kiska data mit jaata hai?"
+    },
+    "options": [
+     "RAM",
+     "SSD",
+     "HDD",
+     "Pen drive"
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "RAM is volatile. SSD, HDD and flash keep data without power.",
+     "hi": "RAM अस्थायी है। SSD, HDD और फ़्लैश बिना बिजली डेटा रखते हैं।",
+     "hinglish": "RAM volatile hai. SSD, HDD aur flash bina power data rakhte hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "order",
+    "prompt": {
+     "en": "Order from fastest to slowest.",
+     "hi": "सबसे तेज़ से सबसे धीमे के क्रम में लगाओ।",
+     "hinglish": "Sabse fast se sabse slow ke order mein lagao."
+    },
+    "options": [
+     "RAM",
+     "HDD",
+     "Cache",
+     "NVMe SSD"
+    ],
+    "answer": [
+     2,
+     0,
+     3,
+     1
+    ],
+    "explain": {
+     "en": "Cache → RAM → NVMe SSD → HDD.",
+     "hi": "कैश → RAM → NVMe SSD → HDD।",
+     "hinglish": "Cache → RAM → NVMe SSD → HDD."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "A 4 GB game loads from an HDD at 150 MB/s. About how long?",
+     "hi": "4 GB गेम HDD से 150 MB/s पर। लगभग कितना समय?",
+     "hinglish": "4 GB game HDD se 150 MB/s pe. Lagbhag kitna time?"
+    },
+    "options": [
+     "About 3 s",
+     "About 27 s",
+     "About 4 min"
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "4,000 MB ÷ 150 MB/s ≈ 27 seconds. An NVMe SSD at 3,500 MB/s needs about 1.1 s.",
+     "hi": "4,000 MB ÷ 150 MB/s ≈ 27 सेकंड। 3,500 MB/s की NVMe SSD को लगभग 1.1 सेकंड।",
+     "hinglish": "4,000 MB ÷ 150 MB/s ≈ 27 seconds. 3,500 MB/s wali NVMe SSD ko lagbhag 1.1 s."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why don’t computers use only cache-speed memory?",
+     "hi": "कंप्यूटर केवल कैश-गति वाली मेमोरी क्यों नहीं लगाते?",
+     "hinglish": "Computer sirf cache-speed memory kyun nahi lagate?"
+    },
+    "options": [
+     {
+      "en": "It is slower",
+      "hi": "यह धीमी है",
+      "hinglish": "Yeh slow hai"
+     },
+     {
+      "en": "It does not exist",
+      "hi": "यह होती ही नहीं",
+      "hinglish": "Yeh hoti hi nahi"
+     },
+     {
+      "en": "It is far too expensive per GB",
+      "hi": "प्रति GB बहुत महँगी है",
+      "hinglish": "Per GB bahut mehngi hai"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "Faster memory costs far more per GB and uses more chip space and power, so we use a little fast and a lot of slow memory.",
+     "hi": "तेज़ मेमोरी प्रति GB बहुत महँगी है और ज़्यादा जगह व बिजली लेती है, इसलिए थोड़ी तेज़ और बहुत धीमी।",
+     "hinglish": "Fast memory per GB bahut mehngi hai aur zyada jagah aur bijli leti hai, isliye thodi fast aur bahut saari slow."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "Your phone says “Storage almost full”. What helps?",
+     "hi": "फ़ोन कहता है “स्टोरेज लगभग भरा”। क्या मदद करेगा?",
+     "hinglish": "Phone bolta hai “Storage almost full”. Kya help karega?"
+    },
+    "options": [
+     {
+      "en": "Closing all apps",
+      "hi": "सभी ऐप बंद करना",
+      "hinglish": "Saare apps band karna"
+     },
+     {
+      "en": "Deleting or backing up old videos",
+      "hi": "पुराने वीडियो मिटाना या बैकअप",
+      "hinglish": "Purane videos delete ya backup"
+     },
+     {
+      "en": "Restarting",
+      "hi": "रीस्टार्ट करना",
+      "hinglish": "Restart karna"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Storage holds files. Deleting old videos or moving them to a backup frees it; closing apps only frees RAM.",
+     "hi": "स्टोरेज फ़ाइलें रखता है। पुराने वीडियो मिटाना या बैकअप में डालना जगह बनाता है; ऐप बंद करना केवल RAM खाली करता है।",
+     "hinglish": "Storage files rakhta hai. Purane videos delete ya backup mein daalna jagah banata hai; apps band karna sirf RAM khaali karta hai."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "JEDEC DDR4 standard (DDR4-3200 = 25.6 GB/s per channel)",
+   "url": "https://www.jedec.org/standards-documents/docs/jesd79-4a",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NVM Express — NVMe specification overview",
+   "url": "https://nvmexpress.org/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NCERT / CBSE Artificial Intelligence & Computer curriculum (Classes 6–8), 2024–25",
+   "url": "https://cbseacademic.nic.in/",
+   "licence": "fact reference"
+  }
+ ]
+}

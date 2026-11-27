@@ -1,0 +1,329 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.friendly-ai.08",
+ "level": 1,
+ "classes": [
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "unit": "friendly-ai",
+ "title": {
+  "en": "AI is a helper, not magic",
+  "hi": "AI मददगार है, जादू नहीं",
+  "hinglish": "AI helper hai, magic nahin"
+ },
+ "minutes": 5,
+ "xp": 20,
+ "prereq": [
+  "L1.friendly-ai.01"
+ ],
+ "topics": [
+  "ai.ethics",
+  "ai.hallucination"
+ ],
+ "outcomes": [
+  {
+   "en": "Say that AI is a tool made by people, not magic.",
+   "hi": "बता सकते हो कि AI लोगों का बनाया औज़ार है, जादू नहीं।",
+   "hinglish": "Bata sakte ho ki AI logon ka banaya tool hai, jaadu nahin."
+  },
+  {
+   "en": "Check AI answers, because AI can be wrong.",
+   "hi": "AI के जवाब जाँच सकते हो, क्योंकि AI ग़लत हो सकता है।",
+   "hinglish": "AI ke jawaab check kar sakte ho, kyonki AI galat ho sakta hai."
+  },
+  {
+   "en": "Know that people decide what is kind and fair.",
+   "hi": "जानते हो कि क्या दयालु और सही है, यह लोग तय करते हैं।",
+   "hinglish": "Jaante ho ki kya kind aur fair hai, yeh log tay karte hain."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Tool",
+   "en": "Something that helps you do a job",
+   "hi": "काम में मदद करने वाली चीज़",
+   "hinglish": "Kaam mein madad karne wali cheez"
+  },
+  {
+   "term": "Check",
+   "en": "Make sure something is right",
+   "hi": "पक्का करना कि सही है",
+   "hinglish": "Pakka karna ki sahi hai"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.friendly-ai.08.s1",
+   "caption": {
+    "en": "AI is not magic.",
+    "hi": "AI जादू नहीं है।",
+    "hinglish": "AI jaadu nahin hai."
+   },
+   "narration": {
+    "en": "AI is not magic and it is not alive. People built it with computers and data.",
+    "hinglish": "AI jaadu nahin hai aur zinda nahin hai. Logon ne ise computers aur data se banaya.",
+    "hi": "AI जादू नहीं है और ज़िंदा नहीं है। लोगों ने इसे कंप्यूटर और डेटा से बनाया।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.friendly-ai.08.s2",
+   "caption": {
+    "en": "AI is a helper, like a tool.",
+    "hi": "AI एक औज़ार जैसा मददगार है।",
+    "hinglish": "AI ek tool jaisa helper hai."
+   },
+   "narration": {
+    "en": "AI is a helper, like a tool. It can translate words, set timers and suggest ideas.",
+    "hinglish": "AI ek tool jaisa helper hai. Woh words translate kar sakta hai, timer laga sakta hai aur ideas de sakta hai.",
+    "hi": "AI एक औज़ार जैसा मददगार है। वह शब्दों का अनुवाद कर सकता है, टाइमर लगा सकता है और विचार दे सकता है।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.friendly-ai.08.s3",
+   "caption": {
+    "en": "AI can be wrong. Always check.",
+    "hi": "AI ग़लत हो सकता है। हमेशा जाँचो।",
+    "hinglish": "AI galat ho sakta hai. Hamesha check karo."
+   },
+   "narration": {
+    "en": "Sometimes AI gives a wrong answer that sounds sure. Check in a book or ask a teacher.",
+    "hinglish": "Kabhi-kabhi AI galat jawaab bhi pakke andaaz mein deta hai. Book mein dekho ya teacher se poochho.",
+    "hi": "कभी-कभी AI ग़लत जवाब भी पक्के अंदाज़ में देता है। किताब में देखो या टीचर से पूछो।"
+   }
+  },
+  {
+   "step": 4,
+   "visual": "scene:L1.friendly-ai.08.s4",
+   "caption": {
+    "en": "You decide what is kind and fair.",
+    "hi": "क्या दयालु और सही है, तुम तय करते हो।",
+    "hinglish": "Kya kind aur fair hai, tum tay karte ho."
+   },
+   "narration": {
+    "en": "People are in charge. You decide what is kind and fair, not the AI.",
+    "hinglish": "Log hi boss hain. Kya kind aur fair hai, yeh tum tay karte ho, AI nahin.",
+    "hi": "फ़ैसला लोगों का है। क्या दयालु और सही है, यह तुम तय करते हो, AI नहीं।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "think-cards",
+  "config": {
+   "mode": "helper"
+  },
+  "goal": {
+   "en": "Sort 6 jobs: can AI help, or must YOU check or decide?",
+   "hi": "6 काम छाँटो: AI मदद कर सकता है, या तुम्हें जाँचना या तय करना है?",
+   "hinglish": "6 kaam chhaanto: AI madad kar sakta hai, ya TUMHE check ya decide karna hai?"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "A tool built by people",
+    "hi": "लोगों का बनाया औज़ार",
+    "hinglish": "Logon ka banaya tool"
+   },
+   "body": {
+    "en": "AI is software that learnt patterns from lots of data. It does not think or feel like you, and it has no magic powers. It is very good at some jobs, like translating, sorting photos or finding a route, and bad at others, like knowing how your friend feels. Sometimes it makes up answers that sound right but are wrong, so always check important facts.",
+    "hi": "AI एक सॉफ़्टवेयर है जिसने बहुत सारे डेटा से पैटर्न सीखे। यह तुम्हारी तरह न सोचता है न महसूस करता है, और इसमें कोई जादुई ताक़त नहीं। यह कुछ कामों में बहुत अच्छा है, जैसे अनुवाद, फ़ोटो छाँटना या रास्ता ढूँढना, और कुछ में बुरा, जैसे यह जानना कि तुम्हारा दोस्त कैसा महसूस कर रहा है। कभी-कभी यह ऐसे जवाब बना देता है जो सही लगते हैं पर ग़लत होते हैं, इसलिए ज़रूरी तथ्य हमेशा जाँचो।",
+    "hinglish": "AI ek software hai jisne bahut saare data se patterns seekhe. Yeh tumhari tarah na sochta hai na feel karta hai, aur isme koi jaadui taaqat nahin. Yeh kuch kaamon mein bahut achha hai, jaise translate karna, photos chhaantna ya raasta dhoondna, aur kuch mein bura, jaise yeh jaanna ki tumhara dost kaisa feel kar raha hai. Kabhi-kabhi yeh aise jawaab bana deta hai jo sahi lagte hain par galat hote hain, isliye zaroori facts hamesha check karo."
+   },
+   "analogy": {
+    "en": "Like a calculator: very useful, but type the wrong number and you get the wrong answer. A machine, not magic.",
+    "hi": "जैसे कैलकुलेटर — बहुत काम का, पर ग़लत संख्या डालो तो ग़लत जवाब। जादू नहीं, मशीन है।",
+    "hinglish": "Jaise calculator — bahut kaam ka, par galat number daalo toh galat jawaab. Jaadu nahin, machine hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "People stay in charge",
+    "hi": "फ़ैसला लोगों का रहता है",
+    "hinglish": "Faisla logon ka rehta hai"
+   },
+   "body": {
+    "en": "Being fair, kind and honest are human choices. Use AI to help, then think for yourself: is this true, is it kind, is it fair? Never use AI to trick or hurt someone. The people who build AI have a duty to make it safe and fair too, which is why many countries, including India, are writing rules for AI.",
+    "hi": "सही, दयालु और ईमानदार होना इंसानी चुनाव हैं। AI से मदद लो, फिर ख़ुद सोचो: क्या यह सच है, क्या यह दयालु है, क्या यह सही है? AI से कभी किसी को धोखा या दुख मत दो। AI बनाने वालों का भी फ़र्ज़ है कि इसे सुरक्षित और निष्पक्ष बनाएँ, इसीलिए भारत समेत कई देश AI के लिए नियम बना रहे हैं।",
+    "hinglish": "Fair, kind aur imaandaar hona insaani choices hain. AI se madad lo, phir khud socho: kya yeh sach hai, kya yeh kind hai, kya yeh fair hai? AI se kabhi kisi ko dhokha ya dukh mat do. AI banane walon ka bhi farz hai ki ise safe aur fair banayein, isiliye India samet kai desh AI ke liye niyam bana rahe hain."
+   },
+   "realExample": {
+    "en": "If you ask a chatbot \"How many legs does a spider have?\" and it says 6, a book will show you the right answer: 8.",
+    "hi": "अगर तुम चैटबॉट से पूछो \"मकड़ी की कितनी टाँगें होती हैं?\" और वह 6 कहे, तो किताब तुम्हें सही जवाब दिखाएगी: 8।",
+    "hinglish": "Agar tum chatbot se poochho \"Makdi ki kitni taangein hoti hain?\" aur woh 6 kahe, toh book tumhe sahi jawaab dikhayegi: 8."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "With a grown-up, ask a voice assistant or chatbot 2 questions you already know the answer to. Was it right both times?",
+   "hi": "बड़े के साथ, किसी आवाज़ सहायक या चैटबॉट से 2 ऐसे सवाल पूछो जिनका जवाब तुम्हें पता है। क्या दोनों बार सही था?",
+   "hinglish": "Bade ke saath, kisi voice assistant ya chatbot se 2 aise sawaal poochho jinka jawaab tumhe pata hai. Kya dono baar sahi tha?"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Is AI magic?",
+     "hi": "क्या AI जादू है?",
+     "hinglish": "Kya AI jaadu hai?"
+    },
+    "options": [
+     {
+      "en": "Yes",
+      "hi": "हाँ",
+      "hinglish": "Haan"
+     },
+     {
+      "en": "No",
+      "hi": "नहीं",
+      "hinglish": "Nahin"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "People built it with computers and data.",
+     "hi": "लोगों ने इसे कंप्यूटर और डेटा से बनाया।",
+     "hinglish": "Logon ne ise computers aur data se banaya."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "AI tells you a fact for your homework. You should…",
+     "hi": "AI तुम्हें होमवर्क का एक तथ्य बताता है। तुम्हें…",
+     "hinglish": "AI tumhe homework ka ek fact batata hai. Tumhe…"
+    },
+    "options": [
+     {
+      "en": "check it in a book or ask a teacher",
+      "hi": "किताब में जाँचना या टीचर से पूछना चाहिए",
+      "hinglish": "book mein check karna ya teacher se poochhna chahiye"
+     },
+     {
+      "en": "copy it without checking",
+      "hi": "बिना जाँचे नक़ल करना चाहिए",
+      "hinglish": "bina check kiye copy karna chahiye"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "AI can be wrong even when it sounds sure.",
+     "hi": "AI पक्के अंदाज़ में भी ग़लत हो सकता है।",
+     "hinglish": "AI pakke andaaz mein bhi galat ho sakta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "multi",
+    "prompt": {
+     "en": "Which can AI help with?",
+     "hi": "AI किसमें मदद कर सकता है?",
+     "hinglish": "AI kisme madad kar sakta hai?"
+    },
+    "options": [
+     {
+      "en": "Translating a word",
+      "hi": "एक शब्द का अनुवाद",
+      "hinglish": "Ek word ka translation"
+     },
+     {
+      "en": "Setting a timer",
+      "hi": "टाइमर लगाना",
+      "hinglish": "Timer lagaana"
+     },
+     {
+      "en": "Deciding what is kind",
+      "hi": "तय करना कि क्या दयालु है",
+      "hinglish": "Decide karna ki kya kind hai"
+     }
+    ],
+    "answer": [
+     0,
+     1
+    ],
+    "explain": {
+     "en": "Kind and fair choices are yours.",
+     "hi": "दयालु और सही चुनाव तुम्हारे हैं।",
+     "hinglish": "Kind aur fair choices tumhare hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Who is in charge: you or the AI?",
+     "hi": "फ़ैसला किसका: तुम्हारा या AI का?",
+     "hinglish": "Faisla kiska: tumhara ya AI ka?"
+    },
+    "options": [
+     {
+      "en": "🧑 Me",
+      "hi": "🧑 मेरा",
+      "hinglish": "🧑 Mera"
+     },
+     {
+      "en": "🤖 The AI",
+      "hi": "🤖 AI का",
+      "hinglish": "🤖 AI ka"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "AI is a helper; people decide.",
+     "hi": "AI मददगार है; फ़ैसला लोग करते हैं।",
+     "hinglish": "AI helper hai; faisla log karte hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Sort the helper cards in the lab.",
+     "hi": "लैब में मददगार वाले कार्ड छाँटो।",
+     "hinglish": "Lab mein helper cards chhaanto."
+    },
+    "answer": {
+     "lab": "think-cards",
+     "mode": "helper",
+     "pass": true
+    },
+    "explain": {
+     "en": "Get at least 5 of the 6 right.",
+     "hi": "6 में से कम से कम 5 सही करो।",
+     "hinglish": "6 mein se kam se kam 5 sahi karo."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "UNICEF – Policy guidance on AI for children (fact reference)",
+   "url": "https://www.unicef.org/globalinsight/reports/policy-guidance-ai-children",
+   "licence": "fact reference"
+  },
+  {
+   "title": "UNESCO – Recommendation on the Ethics of Artificial Intelligence (fact reference)",
+   "url": "https://www.unesco.org/en/artificial-intelligence/recommendation-ethics",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

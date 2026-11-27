@@ -1,0 +1,305 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.robots.03",
+ "level": 1,
+ "classes": [
+  3,
+  4,
+  5
+ ],
+ "unit": "robots",
+ "title": {
+  "en": "Motors: how robots move and turn",
+  "hi": "मोटर: रोबोट कैसे चलते और मुड़ते हैं",
+  "hinglish": "Motors: robot kaise chalte aur mudte hain"
+ },
+ "minutes": 8,
+ "xp": 30,
+ "prereq": [
+  "L1.robots.02"
+ ],
+ "topics": [
+  "robo.sensors-motors"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain that a motor turns electricity into spinning movement.",
+   "hi": "समझा सकते हो कि मोटर बिजली को घूमने वाली गति में बदलती है।",
+   "hinglish": "Samjha sakte ho ki motor bijli ko ghoomne wali harkat mein badalti hai."
+  },
+  {
+   "en": "Explain how a two-wheeled robot turns by spinning its wheels at different speeds.",
+   "hi": "समझा सकते हो कि दो पहियों वाला रोबोट पहियों को अलग गति से घुमाकर कैसे मुड़ता है।",
+   "hinglish": "Samjha sakte ho ki do pahiye wala robot pahiyon ko alag speed se ghumaa kar kaise mudta hai."
+  },
+  {
+   "en": "Use left/right sensor rules to follow a line.",
+   "hi": "बाएँ/दाएँ सेंसर के नियमों से लाइन पर चलवा सकते हो।",
+   "hinglish": "Left/right sensor rules se line follow karwa sakte ho."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Motor",
+   "en": "A part that uses electricity to spin",
+   "hi": "बिजली से घूमने वाला पुर्ज़ा",
+   "hinglish": "Bijli se ghoomne wala part"
+  },
+  {
+   "term": "Actuator",
+   "en": "Any part that makes a robot move or act, like a motor",
+   "hi": "रोबोट के \"हाथ-पैर\" — जो हरकत करते हैं",
+   "hinglish": "Robot ka \"haath-pair\" — jo harkat karta hai"
+  },
+  {
+   "term": "Line follower",
+   "en": "A robot that drives along a painted line",
+   "hi": "लाइन पर चलने वाला रोबोट",
+   "hinglish": "Line par chalne wala robot"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.robots.03.s1",
+   "caption": {
+    "en": "Electricity spins the motor. The motor spins the wheel.",
+    "hi": "बिजली मोटर घुमाती है। मोटर पहिया घुमाती है।",
+    "hinglish": "Bijli motor ghumaati hai. Motor pahiya ghumaati hai."
+   },
+   "narration": {
+    "en": "The battery sends electricity to the motor. The motor spins, and the spinning turns the wheel.",
+    "hinglish": "Battery motor ko bijli bhejti hai. Motor ghoomti hai, aur woh pahiye ko ghumaati hai.",
+    "hi": "बैटरी मोटर को बिजली भेजती है। मोटर घूमती है, और वह पहिये को घुमाती है।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.robots.03.s2",
+   "caption": {
+    "en": "Both wheels same speed: straight ahead.",
+    "hi": "दोनों पहिये एक जैसी गति: सीधे आगे।",
+    "hinglish": "Dono pahiye same speed: seedhe aage."
+   },
+   "narration": {
+    "en": "When both wheels spin forward at the same speed, the robot drives straight.",
+    "hinglish": "Jab dono pahiye same speed se aage ghoomte hain, robot seedha chalta hai.",
+    "hi": "जब दोनों पहिये एक जैसी गति से आगे घूमते हैं, रोबोट सीधा चलता है।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.robots.03.s3",
+   "caption": {
+    "en": "One wheel slower: the robot turns.",
+    "hi": "एक पहिया धीमा: रोबोट मुड़ता है।",
+    "hinglish": "Ek pahiya slow: robot mudta hai."
+   },
+   "narration": {
+    "en": "If the left wheel slows down and the right wheel keeps going, the robot turns left — like a bullock cart turning.",
+    "hinglish": "Agar left pahiya slow ho jaaye aur right chalta rahe, robot left mudta hai — jaise bailgaadi mudti hai.",
+    "hi": "अगर बायाँ पहिया धीमा हो जाए और दायाँ चलता रहे, रोबोट बाईं ओर मुड़ता है — जैसे बैलगाड़ी मुड़ती है।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "robot-sensors",
+  "config": {
+   "mode": "line"
+  },
+  "goal": {
+   "en": "Choose what the motors do for each eye reading so the robot finishes one lap of the line.",
+   "hi": "हर सेंसर रीडिंग पर मोटर क्या करें, चुनो — ताकि रोबोट लाइन का एक चक्कर पूरा करे।",
+   "hinglish": "Har eye reading ke liye motors kya karein, chuno — taaki robot line ka ek chakkar poora kare."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Turning without a steering wheel",
+    "hi": "बिना स्टीयरिंग के मुड़ना",
+    "hinglish": "Bina steering ke mudna"
+   },
+   "body": {
+    "en": "Many small robots have no steering. They have two motors, one per wheel. Same speed = straight. Left slower = turn left. Right slower = turn right. One forward and one backward = spin on the spot.",
+    "hi": "कई छोटे रोबोट में स्टीयरिंग नहीं होता। उनमें दो मोटर होती हैं, हर पहिये की एक। एक जैसी गति = सीधा। बायाँ धीमा = बाएँ मुड़ो। दायाँ धीमा = दाएँ मुड़ो। एक आगे और एक पीछे = वहीं घूमो।",
+    "hinglish": "Kai chhote robots mein steering nahin hoti. Unmein do motors hoti hain, har pahiye ki ek. Same speed = seedha. Left slow = left mudo. Right slow = right mudo. Ek aage aur ek peeche = wahin ghoomo."
+   },
+   "analogy": {
+    "en": "When rowing a boat, pull harder on one side and the boat turns the other way.",
+    "hi": "नाव चलाते समय एक तरफ़ का चप्पू ज़्यादा चलाओ तो नाव दूसरी तरफ़ मुड़ जाती है।",
+    "hinglish": "Naav chalaate waqt ek taraf ka chappu zyada chalao toh naav doosri taraf mud jaati hai."
+   },
+   "realExample": {
+    "en": "Tanks, JCB-type crawler machines and wheelchairs with motors turn the same way.",
+    "hi": "टैंक, क्रॉलर मशीनें और मोटर वाली व्हीलचेयर भी ऐसे ही मुड़ती हैं।",
+    "hinglish": "Tank, crawler machines aur motor wali wheelchair bhi aise hi mudti hain."
+   }
+  },
+  {
+   "heading": {
+    "en": "How a line follower thinks",
+    "hi": "लाइन फ़ॉलोअर कैसे सोचता है",
+    "hinglish": "Line follower kaise sochta hai"
+   },
+   "body": {
+    "en": "Two IR eyes sit on either side of the line. If the LEFT eye sees black, the line has drifted left — so turn left. If the RIGHT eye sees black, turn right. If both see white, go straight.",
+    "hi": "दो IR सेंसर लाइन के दोनों ओर होते हैं। अगर बायाँ सेंसर काला देखे, लाइन बाईं ओर खिसक गई — तो बाएँ मुड़ो। दायाँ काला देखे तो दाएँ मुड़ो। दोनों सफ़ेद देखें तो सीधे चलो।",
+    "hinglish": "Do IR eyes line ke dono taraf hote hain. Agar LEFT eye kaala dekhe, line left khisak gayi — toh left mudo. RIGHT eye kaala dekhe toh right mudo. Dono white dekhein toh seedha chalo."
+   },
+   "realExample": {
+    "en": "Some hospital and warehouse robots follow tape or lines on the floor to carry medicines and parcels.",
+    "hi": "कुछ अस्पताल और गोदाम के रोबोट फ़र्श पर टेप या लाइन पर चलकर दवाइयाँ और पार्सल ले जाते हैं।",
+    "hinglish": "Kuch hospital aur godaam ke robots farsh par tape ya line follow karke dawai aur parcel le jaate hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Walk along a line on the floor with eyes on your feet. Say \"left!\" or \"right!\" each time you drift — you are a line follower!",
+   "hi": "फ़र्श पर किसी लाइन पर अपने पैरों को देखते हुए चलो। हटने पर \"बाएँ!\" या \"दाएँ!\" बोलो — तुम लाइन फ़ॉलोअर हो!",
+   "hinglish": "Farsh par kisi line par apne pairon ko dekhte hue chalo. Hatne par \"left!\" ya \"right!\" bolo — tum line follower ho!"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "A motor changes electricity into…",
+     "hi": "मोटर बिजली को किसमें बदलती है?",
+     "hinglish": "Motor bijli ko kismein badalti hai?"
+    },
+    "options": [
+     {
+      "en": "spinning movement",
+      "hi": "घूमने वाली गति",
+      "hinglish": "ghoomne wali harkat"
+     },
+     {
+      "en": "light",
+      "hi": "रोशनी",
+      "hinglish": "roshni"
+     },
+     {
+      "en": "sound only",
+      "hi": "सिर्फ़ आवाज़",
+      "hinglish": "sirf awaaz"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Motors make things spin — wheels, fans and robot arms.",
+     "hi": "मोटर चीज़ों को घुमाती है — पहिये, पंखे और रोबोट की बाँहें।",
+     "hinglish": "Motor cheezon ko ghumaati hai — pahiye, pankhe aur robot arms."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Left wheel stops, right wheel goes forward. The robot turns…",
+     "hi": "बायाँ पहिया रुका, दायाँ आगे चला। रोबोट मुड़ेगा…",
+     "hinglish": "Left pahiya ruka, right aage chala. Robot mudega…"
+    },
+    "options": [
+     {
+      "en": "left",
+      "hi": "बाएँ",
+      "hinglish": "left"
+     },
+     {
+      "en": "right",
+      "hi": "दाएँ",
+      "hinglish": "right"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "It turns towards the slower wheel — left.",
+     "hi": "यह धीमे पहिये की तरफ़ मुड़ता है — बाएँ।",
+     "hinglish": "Yeh slow pahiye ki taraf mudta hai — left."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Line follower: only the RIGHT eye sees black. It should…",
+     "hi": "लाइन फ़ॉलोअर: सिर्फ़ दायाँ सेंसर काला देखता है। उसे…",
+     "hinglish": "Line follower: sirf RIGHT eye kaala dekhta hai. Use…"
+    },
+    "options": [
+     {
+      "en": "turn right",
+      "hi": "दाएँ मुड़ना चाहिए",
+      "hinglish": "right mudna chahiye"
+     },
+     {
+      "en": "turn left",
+      "hi": "बाएँ मुड़ना चाहिए",
+      "hinglish": "left mudna chahiye"
+     },
+     {
+      "en": "stop forever",
+      "hi": "हमेशा के लिए रुकना चाहिए",
+      "hinglish": "hamesha ke liye rukna chahiye"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "The line is under the right eye, so steer right to get back over it.",
+     "hi": "लाइन दाएँ सेंसर के नीचे है, इसलिए वापस आने के लिए दाएँ मुड़ो।",
+     "hinglish": "Line right eye ke neeche hai, isliye wapas aane ke liye right mudo."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "short",
+    "prompt": {
+     "en": "A part that makes a robot move (like a motor) is called an a_______.",
+     "hi": "रोबोट को हिलाने वाला पुर्ज़ा (जैसे मोटर) अंग्रेज़ी में a_______ कहलाता है।",
+     "hinglish": "Robot ko hilaane wala part (jaise motor) a_______ kehlaata hai."
+    },
+    "answer": [
+     "actuator"
+    ],
+    "explain": {
+     "en": "Sensors take information in; actuators act on the world.",
+     "hi": "सेंसर जानकारी लेते हैं; एक्चुएटर दुनिया पर काम करते हैं।",
+     "hinglish": "Sensors jaankari lete hain; actuators duniya par kaam karte hain."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Make the robot finish one lap in \"Follow the line\".",
+     "hi": "\"लाइन पर चलो\" में रोबोट से एक चक्कर पूरा करवाओ।",
+     "hinglish": "\"Line follow karo\" mein robot se ek chakkar poora karwao."
+    },
+    "answer": {
+     "lab": "robot-sensors",
+     "mode": "line",
+     "solved": true
+    },
+    "explain": {
+     "en": "Left eye black → turn left; right eye black → turn right; both white → forward.",
+     "hi": "बायाँ काला → बाएँ; दायाँ काला → दाएँ; दोनों सफ़ेद → आगे।",
+     "hinglish": "Left eye kaala → left; right eye kaala → right; dono white → forward."
+    },
+    "difficulty": 3
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

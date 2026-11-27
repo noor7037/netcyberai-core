@@ -1,0 +1,376 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.programming.01",
+ "level": 2,
+ "classes": [
+  6
+ ],
+ "unit": "programming",
+ "title": {
+  "en": "Algorithms, and from blocks to code",
+  "hi": "एल्गोरिदम, और ब्लॉक से कोड तक",
+  "hinglish": "Algorithms, aur blocks se code tak"
+ },
+ "minutes": 10,
+ "xp": 35,
+ "prereq": [],
+ "topics": [
+  "prog.sequence",
+  "prog.blocks"
+ ],
+ "outcomes": [
+  {
+   "en": "Write an algorithm as clear, ordered steps",
+   "hi": "एल्गोरिदम को साफ़, क्रमबद्ध कदमों में लिख सकते हो",
+   "hinglish": "Algorithm ko saaf, order wale steps mein likh sakte ho"
+  },
+  {
+   "en": "See that blocks and text code say the same thing",
+   "hi": "समझ सकते हो कि ब्लॉक और टेक्स्ट कोड एक ही बात कहते हैं",
+   "hinglish": "Samajh sakte ho ki blocks aur text code ek hi baat kehte hain"
+  },
+  {
+   "en": "Explain why computers need exact instructions",
+   "hi": "समझा सकते हो कि कंप्यूटर को सटीक निर्देश क्यों चाहिए",
+   "hinglish": "Samjha sakte ho ki computer ko bilkul exact instructions kyun chahiye"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Algorithm",
+   "hinglish": "Kaam karne ke steps ka recipe",
+   "en": "A step-by-step set of instructions to solve a problem",
+   "hi": "समस्या हल करने के क्रमवार निर्देश"
+  },
+  {
+   "term": "Program",
+   "hinglish": "Computer ki bhasha mein likha algorithm",
+   "en": "An algorithm written in a language a computer can run",
+   "hi": "ऐसी भाषा में लिखा एल्गोरिदम जिसे कंप्यूटर चला सके"
+  },
+  {
+   "term": "Sequence",
+   "hinglish": "Steps ka order",
+   "en": "Doing steps one after another in the right order",
+   "hi": "कदमों को सही क्रम में एक के बाद एक करना"
+  },
+  {
+   "term": "Block coding",
+   "hinglish": "Jigsaw jaise blocks jod ke code",
+   "en": "Making programs by snapping blocks together (Scratch, MakeCode)",
+   "hi": "ब्लॉक जोड़कर प्रोग्राम बनाना (Scratch, MakeCode)"
+  },
+  {
+   "term": "Syntax",
+   "hinglish": "Code likhne ke grammar rules",
+   "en": "The exact spelling and punctuation rules of a language",
+   "hi": "किसी भाषा की सटीक वर्तनी और विराम-चिह्न नियम"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Making chai is an algorithm: boil water, add tea leaves, add milk and sugar, boil, strain. Change the order and it goes wrong!",
+    "hi": "चाय बनाना एक एल्गोरिदम है: पानी उबालो, पत्ती डालो, दूध-चीनी डालो, उबालो, छानो। क्रम बदला तो गड़बड़!",
+    "hinglish": "Chai banana ek algorithm hai: paani ubaalo, patti daalo, doodh-cheeni daalo, ubaalo, chhaano. Order badla to gadbad!"
+   },
+   "visual": "flow:💧 Boil water|🍃 Add tea|🥛 Milk + sugar|🔥 Boil|🫖 Strain",
+   "narration": {
+    "en": "Computers are like a very obedient friend who does EXACTLY what you say — nothing more.",
+    "hi": "कंप्यूटर बहुत आज्ञाकारी दोस्त जैसा है जो ठीक वही करता है जो आप कहते हो — उससे ज़्यादा कुछ नहीं।",
+    "hinglish": "Computer ek bahut obedient dost jaisa hai jo BILKUL wahi karta hai jo aap kehte ho — usse zyada kuch nahi."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Blocks and text are two ways to write the same program. Each block becomes one line of code.",
+    "hi": "ब्लॉक और टेक्स्ट एक ही प्रोग्राम लिखने के दो तरीक़े हैं। हर ब्लॉक कोड की एक लाइन बनता है।",
+    "hinglish": "Blocks aur text ek hi program likhne ke do tareeke hain. Har block code ki ek line banta hai."
+   },
+   "visual": "lab:microbit-sim#code",
+   "narration": {
+    "en": "In the lab, every block you add appears instantly as MicroPython code.",
+    "hi": "लैब में आप जो भी ब्लॉक जोड़ते हो, वह तुरंत MicroPython कोड में दिखता है।",
+    "hinglish": "Lab mein jo bhi block jodo, woh turant MicroPython code mein dikhta hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Text code has strict syntax: one missing bracket and the computer stops.",
+    "hi": "टेक्स्ट कोड का व्याकरण सख़्त है: एक कोष्ठक छूटा और कंप्यूटर रुक जाता है।",
+    "hinglish": "Text code ka syntax strict hai: ek bracket chhoota aur computer ruk jaata hai."
+   },
+   "visual": "compare:🧩 Blocks: cannot misspell|⌨️ Text: faster, more powerful, needs exact syntax",
+   "narration": {
+    "en": "Blocks are great for learning; text code is what professionals use every day.",
+    "hi": "ब्लॉक सीखने के लिए बढ़िया हैं; पेशेवर रोज़ टेक्स्ट कोड उपयोग करते हैं।",
+    "hinglish": "Blocks seekhne ke liye badhiya hain; text code professionals roz use karte hain."
+   },
+   "code": "display.show(Image.HAPPY)\nmusic.pitch(440, 200)"
+  }
+ ],
+ "play": {
+  "lab": "microbit-sim",
+  "config": {
+   "mission": "parking",
+   "preset": "empty"
+  },
+  "goal": {
+   "en": "Build a parking sensor from blocks: if the car is closer than 20 cm, beep and light the LED. Then read the code it made.",
+   "hi": "ब्लॉक से पार्किंग सेंसर बनाओ: गाड़ी 20 cm से पास हो तो बीप करो और LED जलाओ। फिर बना कोड पढ़ो।",
+   "hinglish": "Blocks se parking sensor banao: car 20 cm se paas ho to beep aur LED jalao. Phir bana hua code padho."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Thinking like a programmer",
+    "hi": "प्रोग्रामर की तरह सोचना",
+    "hinglish": "Programmer ki tarah sochna"
+   },
+   "body": {
+    "en": "Good algorithms are: 1) precise — no guessing (“add some sugar” is unclear; “add 2 spoons” is clear); 2) ordered — the sequence matters; 3) finite — they must end. Programmers break a big problem into small steps (decomposition), spot repeats (patterns), and ignore unneeded details (abstraction). Block languages like Scratch (MIT, 2007) and Microsoft MakeCode help beginners because blocks only fit in valid ways. Text languages like Python (first released in 1991 by Guido van Rossum) are used in real jobs — in AI, websites, science and ISRO-style data work. India’s National Education Policy 2020 says coding should be introduced from Class 6.",
+    "hi": "अच्छे एल्गोरिदम होते हैं: 1) सटीक — अनुमान नहीं (“थोड़ी चीनी” अस्पष्ट; “2 चम्मच” स्पष्ट); 2) क्रमबद्ध — क्रम मायने रखता है; 3) सीमित — ख़त्म होने चाहिए। प्रोग्रामर बड़ी समस्या को छोटे कदमों में तोड़ते हैं (विघटन), दोहराव पहचानते हैं (पैटर्न), और बेकार विवरण छोड़ते हैं (अमूर्तन)। Scratch (MIT, 2007) और Microsoft MakeCode जैसी ब्लॉक भाषाएँ शुरुआत करने वालों की मदद करती हैं क्योंकि ब्लॉक केवल सही तरीक़े से जुड़ते हैं। Python (1991 में गुइडो वैन रॉसम द्वारा पहली बार जारी) जैसी टेक्स्ट भाषाएँ असली नौकरियों में उपयोग होती हैं — AI, वेबसाइट, विज्ञान और डेटा कार्य में। भारत की राष्ट्रीय शिक्षा नीति 2020 कहती है कि कोडिंग कक्षा 6 से शुरू होनी चाहिए।",
+    "hinglish": "Achhe algorithms hote hain: 1) precise — guessing nahi (“thodi cheeni” unclear; “2 chammach” clear); 2) ordered — sequence matter karta hai; 3) finite — khatam hone chahiye. Programmers bade problem ko chhote steps mein todte hain (decomposition), repeats pehchaante hain (patterns), aur bekaar details chhodte hain (abstraction). Scratch (MIT, 2007) aur Microsoft MakeCode jaisi block languages beginners ki madad karti hain kyunki blocks sirf sahi tareeke se judte hain. Python (1991 mein Guido van Rossum ne pehli baar release kiya) jaisi text languages real jobs mein use hoti hain — AI, websites, science aur data kaam mein. India ki National Education Policy 2020 kehti hai coding Class 6 se shuru honi chahiye."
+   },
+   "analogy": {
+    "hinglish": "Algorithm = Google Maps ke directions: “200 m seedha, phir left, phir doosra right.” Ek step galat order mein = galat jagah.",
+    "en": "An algorithm = Google Maps directions: “200 m straight, then left, then the second right.” One step in the wrong order = the wrong place.",
+    "hi": "एल्गोरिदम = Google Maps के निर्देश: “200 m सीधे, फिर बाएँ, फिर दूसरा दाएँ।” एक कदम ग़लत क्रम में = ग़लत जगह।"
+   },
+   "realExample": {
+    "en": "A railway signal system follows a strict algorithm: a train may enter a section only after the previous train has cleared it.",
+    "hi": "रेलवे सिग्नल प्रणाली सख़्त एल्गोरिदम मानती है: ट्रेन किसी खंड में तभी जा सकती है जब पिछली ट्रेन उसे ख़ाली कर दे।",
+    "hinglish": "Railway signal system ek strict algorithm follow karta hai: train section mein tabhi jaa sakti hai jab pichhli train usse khaali kar de."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write an exact algorithm for brushing your teeth in 8 steps. Ask a family member to follow it word-for-word and find the unclear step.",
+   "hi": "दाँत ब्रश करने का सटीक एल्गोरिदम 8 कदमों में लिखो। परिवार के किसी सदस्य से शब्दशः पालन करवाओ और अस्पष्ट कदम ढूँढो।",
+   "hinglish": "Daant brush karne ka exact algorithm 8 steps mein likho. Ghar mein kisi se word-by-word follow karwao aur unclear step dhoondo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "order",
+    "prompt": {
+     "en": "Put the algorithm for sending a WhatsApp photo in order.",
+     "hi": "WhatsApp पर फ़ोटो भेजने के एल्गोरिदम को क्रम में लगाओ।",
+     "hinglish": "WhatsApp pe photo bhejne ke algorithm ko order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Tap the 📎 attach button",
+      "hi": "📎 अटैच बटन दबाओ",
+      "hinglish": "📎 attach button dabao"
+     },
+     {
+      "en": "Tap Send",
+      "hi": "भेजें दबाओ",
+      "hinglish": "Send dabao"
+     },
+     {
+      "en": "Open your friend’s chat",
+      "hi": "दोस्त की चैट खोलो",
+      "hinglish": "Dost ki chat kholo"
+     },
+     {
+      "en": "Choose the photo",
+      "hi": "फ़ोटो चुनो",
+      "hinglish": "Photo chuno"
+     }
+    ],
+    "answer": [
+     2,
+     0,
+     3,
+     1
+    ],
+    "explain": {
+     "en": "Open the chat, attach, pick the photo, then send.",
+     "hi": "चैट खोलो, अटैच करो, फ़ोटो चुनो, फिर भेजो।",
+     "hinglish": "Chat kholo, attach karo, photo chuno, phir bhejo."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which instruction is precise enough for a computer?",
+     "hi": "कौन-सा निर्देश कंप्यूटर के लिए पर्याप्त सटीक है?",
+     "hinglish": "Kaunsa instruction computer ke liye kaafi precise hai?"
+    },
+    "options": [
+     {
+      "en": "Move a bit forward",
+      "hi": "थोड़ा आगे बढ़ो",
+      "hinglish": "Thoda aage badho"
+     },
+     {
+      "en": "Turn until it looks nice",
+      "hi": "अच्छा दिखने तक मुड़ो",
+      "hinglish": "Achha dikhne tak mudo"
+     },
+     {
+      "en": "Move forward 10 steps, then turn right 90°",
+      "hi": "10 कदम आगे बढ़ो, फिर 90° दाएँ मुड़ो",
+      "hinglish": "10 steps aage badho, phir 90° right mudo"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "Computers need exact values; “a bit” and “until it looks nice” cannot be measured.",
+     "hi": "कंप्यूटर को सटीक मान चाहिए; “थोड़ा” और “अच्छा दिखने तक” मापे नहीं जा सकते।",
+     "hinglish": "Computer ko exact values chahiye; “thoda” aur “achha dikhne tak” measure nahi ho sakte."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "What is the big advantage of block coding for beginners?",
+     "hi": "शुरुआत करने वालों के लिए ब्लॉक कोडिंग का बड़ा फ़ायदा क्या है?",
+     "hinglish": "Beginners ke liye block coding ka bada fayda kya hai?"
+    },
+    "options": [
+     {
+      "en": "No syntax mistakes are possible",
+      "hi": "सिंटैक्स की ग़लती संभव नहीं",
+      "hinglish": "Syntax ki galti possible nahi"
+     },
+     {
+      "en": "Programs run faster",
+      "hi": "प्रोग्राम तेज़ चलते हैं",
+      "hinglish": "Programs fast chalte hain"
+     },
+     {
+      "en": "They need no logic",
+      "hi": "तर्क की ज़रूरत नहीं",
+      "hinglish": "Logic ki zaroorat nahi"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Blocks only snap together in valid ways, so you cannot make spelling or bracket mistakes.",
+     "hi": "ब्लॉक केवल सही ढंग से जुड़ते हैं, इसलिए वर्तनी या कोष्ठक की ग़लती नहीं होती।",
+     "hinglish": "Blocks sirf sahi tareeke se judte hain, isliye spelling ya bracket ki galti nahi hoti."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "match",
+    "prompt": {
+     "en": "Match each thinking skill to its meaning.",
+     "hi": "हर सोच कौशल को उसके अर्थ से मिलाओ।",
+     "hinglish": "Har thinking skill ko uske matlab se milao."
+    },
+    "options": {
+     "left": [
+      {
+       "en": "Decomposition",
+       "hi": "विघटन",
+       "hinglish": "Decomposition"
+      },
+      {
+       "en": "Pattern recognition",
+       "hi": "पैटर्न पहचान",
+       "hinglish": "Pattern recognition"
+      },
+      {
+       "en": "Abstraction",
+       "hi": "अमूर्तन",
+       "hinglish": "Abstraction"
+      }
+     ],
+     "right": [
+      {
+       "en": "Keep only the details that matter",
+       "hi": "केवल ज़रूरी विवरण रखो",
+       "hinglish": "Sirf zaroori details rakho"
+      },
+      {
+       "en": "Break a big problem into small parts",
+       "hi": "बड़ी समस्या को छोटे हिस्सों में तोड़ो",
+       "hinglish": "Bade problem ko chhote parts mein todo"
+      },
+      {
+       "en": "Notice things that repeat",
+       "hi": "दोहराने वाली चीज़ें पहचानो",
+       "hinglish": "Repeat hone wali cheezein notice karo"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      2
+     ],
+     [
+      2,
+      0
+     ]
+    ],
+    "explain": {
+     "en": "Decomposition breaks problems down, patterns find repeats, abstraction hides extra detail.",
+     "hi": "विघटन समस्या तोड़ता है, पैटर्न दोहराव ढूँढता है, अमूर्तन अतिरिक्त विवरण छिपाता है।",
+     "hinglish": "Decomposition problem todta hai, patterns repeats dhoondta hai, abstraction extra detail chhupata hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Build the parking sensor from blocks in the micro:bit lab.",
+     "hi": "micro:bit लैब में ब्लॉक से पार्किंग सेंसर बनाओ।",
+     "hinglish": "micro:bit lab mein blocks se parking sensor banao."
+    },
+    "answer": {
+     "lab": "microbit-sim",
+     "event": "mission:complete",
+     "mission": "parking"
+    },
+    "explain": {
+     "en": "If distance < 20 → LED on + tone; else LED off.",
+     "hi": "अगर दूरी < 20 → LED चालू + आवाज़; वरना LED बंद।",
+     "hinglish": "Agar distance < 20 → LED on + tone; warna LED off."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "NEP 2020 — National Education Policy (Ministry of Education)",
+   "url": "https://www.education.gov.in/sites/upload_files/mhrd/files/NEP_Final_English_0.pdf",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Scratch — MIT Media Lab",
+   "url": "https://scratch.mit.edu/about",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Microsoft MakeCode for micro:bit",
+   "url": "https://makecode.microbit.org/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

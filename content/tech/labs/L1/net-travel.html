@@ -1,0 +1,251 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#14B8A6">
+<title>How messages travel · Tech & AI Lab</title>
+<!-- Lab: net-travel (Level 1). A small network map: phones, Wi-Fi routers, towers, internet routers, a DNS "phone book" and servers.
+     Modes (?mode=): send (route a message hop by hop) | packets (a photo split into packets that re-route around a cut cable)
+     | server (client asks, DNS looks up, server answers; a backup server takes over when one is down).
+     Addresses use the documentation range 203.0.113.0/24 (RFC 5737). Own work, MIT. -->
+<style>/* L1 lab kit (own work, MIT). Family App palette from src/lib/design-tokens.ts */
+:root{--royal:#1D4ED8;--sapphire:#002357;--grape:#8B3DFF;--violet:#4400F0;--tangerine:#FF7A1A;--coral:#FF6B57;--gold:#F5B90A;--turq:#14B8A6;--emerald:#0F766E;--cyan:#02CFF9;--slate:#1E293B;--off:#F9FAFB;--ink2:#475569;--r:18px;--sh:0 6px 18px rgba(30,41,59,.12),0 1px 3px rgba(30,41,59,.08)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:var(--off);color:var(--slate);font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans Devanagari",sans-serif;overscroll-behavior:none}
+body{background:transparent;-webkit-user-select:none;user-select:none;display:flex;flex-direction:column;min-height:100%;overflow-x:hidden}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;touch-action:manipulation}
+.kbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:8px;padding:10px 12px;background:linear-gradient(120deg,var(--sapphire),var(--royal) 60%,var(--grape));color:#fff;box-shadow:0 2px 10px rgba(0,35,87,.25)}
+.kbar{flex-wrap:wrap;row-gap:6px}
+.kbar h1{flex:1 1 9em;min-width:0;margin:0;font-size:16px;line-height:1.2;font-weight:800;letter-spacing:.2px;overflow-wrap:break-word}/* title never cut: controls move to a 2nd row when needed */
+.kctl{display:flex;align-items:center;gap:8px;margin-left:auto}
+.kbar .kemo{font-size:22px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.25))}
+.kpill{display:flex;background:rgba(255,255,255,.16);border-radius:999px;padding:3px}
+.kpill button{padding:5px 9px;border-radius:999px;font-size:12.5px;font-weight:700;color:#e0e7ff;min-height:32px}
+.kpill button[aria-pressed=true]{background:#fff;color:var(--royal)}
+.kstars{display:flex;align-items:center;gap:4px;background:rgba(255,255,255,.16);padding:6px 10px;border-radius:999px;font-weight:800;font-size:14px;min-width:54px;justify-content:center}
+.kstars.bump{animation:kbump .5s}
+@keyframes kbump{40%{transform:scale(1.35)}}
+.kgoal{margin:10px 12px 0;padding:10px 12px;border-radius:14px;background:#fff;box-shadow:var(--sh);display:flex;gap:10px;align-items:flex-start;font-size:14.5px}
+.kgoal b{color:var(--royal)}
+.kbtn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:46px;padding:10px 18px;border-radius:14px;font-weight:800;background:var(--royal);color:#fff;box-shadow:0 4px 0 #1239a8,var(--sh);transition:transform .08s}
+.kbtn:active{transform:translateY(3px);box-shadow:0 1px 0 #1239a8}
+.kbtn.alt{background:#fff;color:var(--royal);box-shadow:0 4px 0 #c7d2fe,var(--sh)}
+.kbtn.go{background:var(--turq);box-shadow:0 4px 0 #0d8a7c,var(--sh)}
+.kbtn.warn{background:var(--tangerine);box-shadow:0 4px 0 #c75a0c,var(--sh)}
+.kbtn[disabled]{opacity:.45;pointer-events:none}
+.ktoast{pointer-events:none;position:fixed;left:0;top:0;width:max-content;z-index:60;max-width:min(92vw,360px);padding:12px 16px;border-radius:16px;background:var(--slate);color:#fff;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,.3);text-align:center;line-height:1.35;font-size:15px;opacity:0;visibility:hidden;transform:scale(.9);transition:opacity .25s,transform .3s cubic-bezier(.2,1.4,.4,1),visibility 0s .3s}
+.ktoast.show{opacity:1;visibility:visible;transform:none;transition:opacity .25s,transform .3s cubic-bezier(.2,1.4,.4,1)}
+.ktoast.inline{position:static;display:block;width:auto;max-width:none;margin:10px 12px;grid-column:1/-1;flex:0 0 auto}
+.ktoast.good{background:var(--emerald)}.ktoast.bad{background:#b4321f}
+#kconf{position:fixed;inset:0;pointer-events:none;z-index:-1}/* behind content; inside the win dialog it sits behind the card */
+.kwin #kconf{position:absolute;z-index:0}.kwin>div{position:relative;z-index:1}
+.kwin{position:fixed;inset:0;z-index:65;display:none;align-items:center;justify-content:center;background:rgba(6,18,51,.55);backdrop-filter:blur(3px);padding:20px}
+.kwin.show{display:flex}
+.kwin>div{background:#fff;border-radius:24px;padding:22px;text-align:center;max-width:360px;box-shadow:0 20px 50px rgba(0,0,0,.35);animation:kpop .5s cubic-bezier(.2,1.5,.4,1)}
+.kwin .big{font-size:64px;line-height:1;animation:kspin 1.2s ease-out}
+.kwin h2{margin:10px 0 6px;font-size:22px}
+.kwin p{margin:0 0 14px;color:var(--ink2)}
+@keyframes kpop{from{transform:scale(.6);opacity:0}}
+@keyframes kspin{from{transform:rotateY(-540deg) scale(.4)}}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+.kvoice{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.16);font-size:17px;opacity:.6}
+.kvoice[aria-pressed=true]{background:#fff;opacity:1;box-shadow:0 0 0 3px rgba(255,255,255,.4)}
+</style>
+<style>
+main{flex:1;display:flex;flex-direction:column;gap:9px;padding:8px 10px 16px}
+.modes{display:flex;flex-wrap:wrap;gap:6px;}
+.modes button{flex:0 1 auto;max-width:100%;white-space:normal;text-align:center;padding:7px 12px;border-radius:999px;background:#fff;box-shadow:var(--sh);font-weight:700;font-size:13px;min-height:36px}
+.modes button[aria-pressed=true]{background:var(--emerald);color:#fff}
+.map{position:relative;border-radius:22px;overflow:hidden;box-shadow:var(--sh);background:radial-gradient(110% 80% at 20% 0%,#ccfbf1,#e0f2fe 55%,#ede9fe)}
+.map svg{display:block;width:100%;height:auto}
+.edge{stroke:#94a3b8;stroke-width:4;stroke-linecap:round;transition:stroke .2s}
+.edge.hit{stroke:transparent;stroke-width:22;cursor:pointer}
+.edge.on{stroke:var(--turq);stroke-width:6}
+.edge.cut{stroke:#ef4444;stroke-dasharray:4 8}
+.edge.pulse{animation:ep 1s linear infinite;stroke-dasharray:6 10}@keyframes ep{to{stroke-dashoffset:-32}}
+.node{cursor:pointer}.node circle{fill:#fff;stroke:#cbd5e1;stroke-width:3;filter:drop-shadow(0 4px 6px rgba(15,23,42,.18));transition:all .2s}
+.node.can circle{stroke:var(--turq);stroke-width:4;animation:np 1.2s ease-in-out infinite}@keyframes np{50%{stroke-width:7}}
+.node.vis circle{fill:#ccfbf1}.node.down circle{fill:#fee2e2;stroke:#ef4444}
+.node text.e{font-size:22px;text-anchor:middle;dominant-baseline:central}
+.node text.l{font-size:10px;font-weight:800;fill:#334155;text-anchor:middle;paint-order:stroke;stroke:#f8fafc;stroke-width:3px;stroke-linejoin:round}
+.pk{font-size:18px;text-anchor:middle;dominant-baseline:central;pointer-events:none;filter:drop-shadow(0 3px 3px rgba(0,0,0,.25))}
+.panel{background:#fff;border-radius:18px;box-shadow:var(--sh);padding:10px 12px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.row .kbtn{flex:1}
+.slots{display:flex;gap:6px;justify-content:center;margin-top:6px}
+.slots span{width:60px;height:60px;border-radius:12px;background:#f1f5f9;display:flex;align-items:center;justify-content:center;font-weight:900;color:#94a3b8;overflow:hidden;position:relative;font-size:12px}
+.slots span.got{background:linear-gradient(135deg,#fde68a,#fb923c);color:#7c2d12;animation:kpop .4s}
+.slots span i{position:absolute;inset:0;background-size:240px 60px;font-style:normal}
+.log{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;background:#0f172a;color:#a7f3d0;border-radius:14px;padding:8px 10px;min-height:64px;max-height:150px;overflow:auto;white-space:pre-wrap}
+.browser{border-radius:14px;overflow:hidden;box-shadow:inset 0 0 0 2px #e2e8f0;margin-top:8px}
+.browser .bar{background:#f1f5f9;padding:6px 10px;font-size:12.5px;font-weight:700;color:#334155;display:flex;gap:6px;align-items:center}
+.browser .pg{min-height:70px;padding:10px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:8px;font-size:16px;text-align:center}
+.sites{display:flex;gap:6px;flex-wrap:wrap}.sites button{flex:1;min-width:0;padding:8px 4px;border-radius:12px;background:#f0fdfa;font-weight:800;font-size:11.5px;box-shadow:var(--sh);overflow-wrap:anywhere}
+.sites button.done{background:#ccfbf1;outline:2px solid var(--turq)}
+.why{font-size:14px;background:#f0fdfa;border-left:4px solid var(--turq);padding:8px 10px;border-radius:10px}
+@media (orientation:landscape) and (max-height:520px){main{display:grid;grid-template-columns:1.15fr 1fr;align-items:start}.modes,#goal{grid-column:1/-1}.map{grid-row:3/7}.map svg{max-height:calc(100vh - 140px)}}
+</style></head><body>
+<main>
+  <div class="modes" id="modes"></div>
+  <div class="kgoal" id="goal" style="margin:0"></div>
+  <div class="map"><svg id="svg" viewBox="0 0 360 290"></svg></div>
+  <div class="panel" id="panel"></div>
+  <div class="why" id="why"></div>
+</main>
+<script>// L1 lab kit (own work, MIT): language, header, stars, toast, confetti, sounds, drag, lesson config, completion events.
+(function (g) {
+  const q = new URLSearchParams(location.search);
+  const LANGS = ['hinglish', 'en', 'hi'];
+  let lang = q.get('lang') || (function () { try { return localStorage.getItem('techlab.lang'); } catch (e) { return null; } })() || 'hinglish';
+  if (!LANGS.includes(lang)) lang = 'hinglish';
+  const t = (o) => (o == null ? '' : typeof o === 'string' ? o : Array.isArray(o) ? (o[{ en: 0, hi: 1, hinglish: 2 }[lang]] ?? o[0]) : (o[lang] ?? o.hinglish ?? o.en));
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const el = (tag, attrs = {}, html) => { const e = document.createElement(tag); for (const k in attrs) { if (k === 'class') e.className = attrs[k]; else if (k === 'style') e.style.cssText = attrs[k]; else if (k.startsWith('on')) e.addEventListener(k.slice(2), attrs[k]); else e.setAttribute(k, attrs[k]); } if (html != null) e.innerHTML = html; return e; };
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+  const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const listeners = [];
+  const cls = +(q.get('class') || 0);
+  let voice = q.get('voice') ? q.get('voice') === '1' : (q.has('class') && cls <= 2);
+  const say = (o) => { if (!voice || !g.speechSynthesis) return; try { const txt = t(o).replace(/[\u{1F000}-\u{1FAFF}\u2600-\u27BF]/gu, ''); speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(txt); u.lang = lang === 'hi' ? 'hi-IN' : 'en-IN'; const v = speechSynthesis.getVoices().find((v) => v.lang === u.lang) || speechSynthesis.getVoices().find((v) => v.lang.startsWith(lang === 'hi' ? 'hi' : 'en')); if (v) u.voice = v; u.rate = cls <= 0 && q.has('class') ? .85 : .95; speechSynthesis.speak(u); } catch (e) {} };
+  const K = { q, t, $, $$, el, esc, reduced, say, get voice() { return voice; }, get lang() { return lang; }, stars: 0,
+    onLang(fn) { listeners.push(fn); },
+    setLang(l) { lang = l; try { localStorage.setItem('techlab.lang', l); } catch (e) {} document.documentElement.lang = l === 'hi' ? 'hi' : 'en'; $$('.kpill button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.l === l)); listeners.forEach((f) => f(l)); },
+    header(title, emoji) {
+      const bar = el('header', { class: 'kbar' });
+      bar.innerHTML = `<span class="kemo" aria-hidden="true">${emoji}</span><h1 id="ktitle"></h1><div class="kctl"><div class="kpill" role="group" aria-label="Language">${[['hinglish', 'Hing'], ['en', 'EN'], ['hi', 'हिं']].map(([l, n]) => `<button data-l="${l}" aria-pressed="${l === lang}">${n}</button>`).join('')}</div><button class="kvoice" id="kvoice" aria-label="Read aloud" aria-pressed="${voice}">🔊</button><div class="kstars" aria-live="polite">⭐ <span id="kstarn">0</span></div></div>`;
+      document.body.prepend(bar); if (window.ResizeObserver) new ResizeObserver(() => document.documentElement.style.setProperty('--kbar-h', bar.offsetHeight + 'px')).observe(bar);
+      const upd = () => { $('#ktitle').textContent = t(title); document.title = t(title) + ' · Tech & AI Lab'; };
+      upd(); listeners.push(upd);
+      $$('.kpill button', bar).forEach((b) => b.addEventListener('click', () => K.setLang(b.dataset.l)));
+      $('#kvoice', bar).addEventListener('click', (e) => { voice = !voice; e.currentTarget.setAttribute('aria-pressed', voice); if (voice) { const gl = $('#goal'); say(gl ? gl.textContent : title); } else if (g.speechSynthesis) speechSynthesis.cancel(); });
+      setTimeout(() => { const gl = $('#goal'); if (gl) new MutationObserver(() => say(gl.textContent)).observe(gl, { childList: true, subtree: true }); }, 0);
+      document.body.append(el('div', { class: 'ktoast', id: 'ktoast', role: 'status' }), el('canvas', { id: 'kconf' }), el('div', { class: 'kwin', id: 'kwin', 'data-ov-modal': '', role: 'dialog', 'aria-modal': 'true' }, '<div><div class="big" id="kwinE">🏆</div><h2 id="kwinH"></h2><p id="kwinP"></p><button class="kbtn" id="kwinB"></button></div>'));
+      document.addEventListener('pointerdown', (ev) => { K._lastTap = ev.target; K._tapAt = [ev.clientX, ev.clientY + scrollY]; }, true); let rp = 0; const re = () => { const e = K._tel || (K._tel = $('#ktoast')); if (!e || !e.classList.contains('show') || rp) return; rp = 1; requestAnimationFrame(() => { rp = 0; K._place(); }); }; K._re = re;
+      addEventListener('scroll', re, { passive: true }); addEventListener('resize', re); document.addEventListener('animationend', re, true); document.addEventListener('transitionend', re, true); K._mo = new MutationObserver((rs) => { const e = K._tel || (K._tel = $('#ktoast')); if (rs.some((r) => !e.contains(r.target))) re(); });
+      $('#kwinB').addEventListener('click', () => { $('#kwin').classList.remove('show'); K._winCb && K._winCb(); });
+    },
+    star(n = 1) { K.stars += n; const s = $('#kstarn'); if (s) { s.textContent = K.stars; s.parentElement.classList.remove('bump'); void s.offsetWidth; s.parentElement.classList.add('bump'); } },
+    // Toast never covers text: it floats in a free band of the screen (bottom first); with no free band it drops into the page
+    // flow under what the child just tapped (pushes content down). Closes on its own (2.5 s by default).
+    toast(msg, kind = '', ms = 2500) { const e = K._tel || (K._tel = $('#ktoast')); clearTimeout(K._tt); clearInterval(K._ti); if (e.classList.contains('inline')) document.body.append(e);
+      e.className = 'ktoast ' + kind; e._spot = null; e.textContent = t(msg); say(msg); e.style.left = e.style.top = '0px'; e.classList.add('show'); K._place(); K._ti = setInterval(K._place, 200); K._mo && K._mo.observe(document.body, { subtree: true, childList: true, attributes: true, characterData: true });
+      K._tt = setTimeout(() => { clearInterval(K._ti); K._mo && K._mo.disconnect(); e.classList.remove('show'); setTimeout(() => { if (!e.classList.contains('show') && e.classList.contains('inline')) { e.classList.remove('inline'); document.body.append(e); } }, 320); }, ms); },
+    _place() { const e = K._tel || (K._tel = $('#ktoast')); if (!e.classList.contains('show')) return; if (!e.isConnected) { e.classList.remove('inline'); document.body.append(e); } if (e.classList.contains('inline')) return;
+      const vw = document.documentElement.clientWidth, vh = innerHeight, w = e.offsetWidth, h = e.offsetHeight, m = 8; let top = m; const bar = $('.kbar'); if (bar) top = Math.max(top, bar.getBoundingClientRect().bottom + m);
+      const obs = [], rg = document.createRange(), tw = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); let n;
+      while ((n = tw.nextNode())) { if (!n.nodeValue.trim()) continue; const p = n.parentElement; if (!p || e.contains(p) || /^(SCRIPT|STYLE)$/.test(p.tagName)) continue; rg.selectNodeContents(n); for (const q of rg.getClientRects()) if (q.width >= 1 && q.bottom > 0 && q.top < vh) obs.push(q); }
+      $$('input,select,textarea,button,a[href],[role=button]').filter((x) => !e.contains(x)).forEach((x) => { const q = x.getBoundingClientRect(); if (q.width && q.bottom > 0 && q.top < vh) obs.push(q); });
+      const free = (x, y) => !obs.some((q) => q.left < x + w + 4 && q.right > x - 4 && q.top < y + h + 4 && q.bottom > y - 4);
+      let s = e._spot && free(e._spot.x, e._spot.y) ? e._spot : null;
+      if (!s) outer: for (let y = vh - h - m; y >= top; y -= 6) for (const x of [(vw - w) / 2, m, vw - w - m]) if (free(x, y)) { s = { x, y }; break outer; }
+      if (s) { e._spot = s; e.style.left = s.x + 'px'; e.style.top = s.y + 'px'; return; }
+      e._spot = null; e.classList.add('inline'); e.style.left = e.style.top = '';
+      let a = K._lastTap && K._lastTap.isConnected && !e.contains(K._lastTap) ? K._lastTap : null; if (!a && K._tapAt) { const y = K._tapAt[1] - scrollY; if (y > 0 && y < innerHeight) a = document.elementFromPoint(K._tapAt[0], y); } if (!a || e.contains(a)) a = $('main') || document.body.lastElementChild;
+      // never drop the note inside a 3D scene, a transformed, positioned-out or clipping box
+      const boxedIn = (a0) => { for (let p = a0; p && p !== document.body; p = p.parentElement) { const c = getComputedStyle(p); if (c.transform !== 'none' || c.transformStyle === 'preserve-3d' || c.perspective !== 'none' || c.position === 'absolute' || c.position === 'fixed' || (p !== a0 && c.overflow !== 'visible')) return true; } return false; };
+      while (a.parentElement && a.parentElement !== document.body) { const d = getComputedStyle(a.parentElement), me = getComputedStyle(a);
+        if (me.display !== 'inline' && !(a instanceof SVGElement) && (d.display === 'block' || d.display === 'flow-root' || d.display === 'grid' || (d.display === 'flex' && d.flexDirection.startsWith('column'))) && a.getBoundingClientRect().width >= Math.min(260, innerWidth * 0.6) && !boxedIn(a)) break; a = a.parentElement; }
+      a.after(e); e.scrollIntoView({ block: 'nearest' }); },
+    win(head, body, btn, emoji = '🏆', cb) { $('#kwinE').textContent = emoji; $('#kwinH').textContent = t(head); $('#kwinP').textContent = t(body); $('#kwinB').textContent = t(btn || ['Play again', 'फिर खेलो', 'Phir khelo']); K._winCb = cb; $('#kwin').classList.add('show'); K.confetti(); K.sfx('win'); say(t(head) + '. ' + t(body)); },
+    done(lab, mode, result) { const msg = { type: 'techlab:lab-complete', lab, mode, result, stars: K.stars }; try { parent !== window && parent.postMessage(msg, '*'); } catch (e) {} g.__labResult = msg; },
+    confetti() { if (reduced()) return; const c = $('#kconf'), x = c.getContext('2d'); const wn = $('#kwin'); if (wn.classList.contains('show')) wn.prepend(c); else document.body.append(c); const W = c.width = innerWidth, H = c.height = innerHeight; const cols = ['#1D4ED8', '#8B3DFF', '#FF7A1A', '#F5B90A', '#14B8A6', '#FF6B57', '#02CFF9']; const P = Array.from({ length: 90 }, () => ({ x: W / 2, y: H / 2.2, vx: (Math.random() - .5) * 14, vy: -Math.random() * 14 - 4, r: Math.random() * 6 + 4, c: cols[Math.random() * cols.length | 0], a: Math.random() * 6, va: (Math.random() - .5) * .4 })); let f = 0; (function tick() { x.clearRect(0, 0, W, H); P.forEach((p) => { p.vy += .45; p.x += p.vx; p.y += p.vy; p.a += p.va; x.save(); x.translate(p.x, p.y); x.rotate(p.a); x.fillStyle = p.c; x.fillRect(-p.r / 2, -p.r / 4, p.r, p.r / 2); x.restore(); }); if (++f < 110) requestAnimationFrame(tick); else x.clearRect(0, 0, W, H); })(); },
+    _ac: null,
+    sfx(kind) { try { const ac = K._ac || (K._ac = new (g.AudioContext || g.webkitAudioContext)()); const n = { good: [[660, .07], [880, .1]], bad: [[220, .15]], tap: [[520, .04]], win: [[523, .1], [659, .1], [784, .1], [1047, .22]], move: [[400, .03]] }[kind] || [[500, .05]]; let t0 = ac.currentTime; n.forEach(([f, d]) => { const o = ac.createOscillator(), gn = ac.createGain(); o.type = kind === 'bad' ? 'sawtooth' : 'triangle'; o.frequency.value = f; gn.gain.setValueAtTime(.0001, t0); gn.gain.exponentialRampToValueAtTime(.18, t0 + .01); gn.gain.exponentialRampToValueAtTime(.0001, t0 + d); o.connect(gn).connect(ac.destination); o.start(t0); o.stop(t0 + d + .02); t0 += d; }); } catch (e) {} },
+    // Pointer drag: el follows finger; onDrop(el, x, y) returns true to accept, else it flies back.
+    draggable(node, onDrop, onStart) {
+      node.style.touchAction = 'none';
+      node.addEventListener('pointerdown', (ev) => {
+        if (node.dataset.locked) return; ev.preventDefault(); node.setPointerCapture(ev.pointerId); onStart && onStart(node);
+        const r = node.getBoundingClientRect(), ox = ev.clientX - r.left, oy = ev.clientY - r.top; const ghost = node.cloneNode(true);
+        ghost.style.cssText += `;position:fixed;left:${r.left}px;top:${r.top}px;width:${r.width}px;height:${r.height}px;margin:0;z-index:50;pointer-events:none;transform:scale(1.08) rotate(-3deg);box-shadow:0 14px 30px rgba(0,0,0,.25);transition:none`; ghost.classList.add('dragging'); document.body.append(ghost); node.style.opacity = '.25'; K.sfx('tap');
+        const mv = (e) => { ghost.style.left = e.clientX - ox + 'px'; ghost.style.top = e.clientY - oy + 'px'; K._hover && K._hover(e.clientX, e.clientY); };
+        const up = (e) => { node.removeEventListener('pointermove', mv); node.removeEventListener('pointerup', up); node.removeEventListener('pointercancel', up); K._hover && K._hover(-1, -1);
+          const ok = onDrop(node, e.clientX, e.clientY); if (ok) { ghost.remove(); node.style.opacity = ''; } else { ghost.style.transition = 'left .3s, top .3s, transform .3s'; ghost.style.left = r.left + 'px'; ghost.style.top = r.top + 'px'; ghost.style.transform = 'none'; setTimeout(() => { ghost.remove(); node.style.opacity = ''; }, 300); } };
+        node.addEventListener('pointermove', mv); node.addEventListener('pointerup', up); node.addEventListener('pointercancel', up);
+      });
+    },
+    hit(node, x, y, pad = 10) { const r = node.getBoundingClientRect(); return x >= r.left - pad && x <= r.right + pad && y >= r.top - pad && y <= r.bottom + pad; },
+    async lessonConfig() { const p = q.get('lesson'); const cfg = {}; if (p) { try { const L = await (await fetch(p)).json(); Object.assign(cfg, L.play && L.play.config, { goal: L.play && L.play.goal }); } catch (e) { console.warn('lesson config not loaded', e); } } for (const k of ['mode', 'level', 'class']) if (q.get(k)) cfg[k] = q.get(k); return cfg; },
+    shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.random() * (i + 1) | 0; [a[i], a[j]] = [a[j], a[i]]; } return a; },
+  };
+  document.documentElement.lang = lang === 'hi' ? 'hi' : 'en';
+  g.K = K;
+})(window);
+</script>
+<script>
+(async function () {
+const { t, $, el, esc } = K; const L = (en, hi, hg) => [en, hi, hg];
+K.header(['How messages travel', 'संदेश कैसे यात्रा करते हैं', 'Message kaise travel karte hain'], '🌐');
+const cfg = await K.lessonConfig(); const NS = 'http://www.w3.org/2000/svg';
+const N = {
+  me: { x: 28, y: 252, e: '📱', l: L('You', 'तुम', 'Tum') }, wifi: { x: 82, y: 252, e: '📶', l: L('Wi-Fi router', 'वाई-फ़ाई राउटर', 'Wi-Fi router') }, isp: { x: 128, y: 196, e: '🗼', l: L('Tower', 'टावर', 'Tower') },
+  a: { x: 112, y: 112, e: '🔀', l: L('Router', 'राउटर', 'Router') }, b: { x: 190, y: 62, e: '🔀', l: L('Router', 'राउटर', 'Router') }, c: { x: 192, y: 150, e: '🔀', l: L('Router', 'राउटर', 'Router') }, d: { x: 268, y: 108, e: '🔀', l: L('Router', 'राउटर', 'Router') },
+  isp2: { x: 246, y: 200, e: '🗼', l: L('Tower', 'टावर', 'Tower') }, wifi2: { x: 290, y: 252, e: '📶', l: L('Nani\'s Wi-Fi', 'नानी का वाई-फ़ाई', 'Nani ka Wi-Fi') }, nani: { x: 336, y: 252, e: '👵', l: L('Nani', 'नानी', 'Nani') },
+  dns: { x: 42, y: 52, e: '📒', l: L('DNS phone book', 'DNS फ़ोन-बुक', 'DNS phone book') }, srv: { x: 328, y: 40, e: '🗄️', l: L('Server (Mumbai)', 'सर्वर (मुंबई)', 'Server (Mumbai)') }, srv2: { x: 330, y: 170, e: '🗄️', l: L('Backup (Chennai)', 'बैकअप (चेन्नई)', 'Backup (Chennai)') },
+};
+const E0 = [['me', 'wifi'], ['wifi', 'isp'], ['isp', 'a'], ['isp', 'c'], ['a', 'b'], ['a', 'c'], ['b', 'd'], ['c', 'd'], ['c', 'isp2'], ['d', 'isp2'], ['isp2', 'wifi2'], ['wifi2', 'nani'], ['a', 'dns'], ['b', 'srv'], ['d', 'srv'], ['d', 'srv2'], ['isp2', 'srv2']];
+const MODES = {
+  send: { n: L('1 · Send to Nani', '1 · नानी को भेजो', '1 · Nani ko bhejo'), goal: L('Send a "Happy Birthday" message to Nani. Tap the next stop each time — from your phone to her phone.', 'नानी को "जन्मदिन मुबारक" संदेश भेजो। हर बार अगला पड़ाव टैप करो — तुम्हारे फ़ोन से उनके फ़ोन तक।', 'Nani ko "Happy Birthday" message bhejo. Har baar agla stop tap karo — tumhare phone se unke phone tak.'), nodes: ['me', 'wifi', 'isp', 'a', 'b', 'c', 'd', 'isp2', 'wifi2', 'nani'] },
+  packets: { n: L('2 · Packets', '2 · पैकेट', '2 · Packets'), goal: L('Send a photo to Nani. The internet breaks it into 4 packets. Cut one cable (tap it) — can the packets find another way?', 'नानी को फ़ोटो भेजो। इंटरनेट उसे 4 पैकेट में तोड़ता है। एक केबल काटो (टैप करो) — क्या पैकेट दूसरा रास्ता ढूँढ लेंगे?', 'Nani ko photo bhejo. Internet use 4 packets mein todta hai. Ek cable kaato (tap karo) — kya packets doosra raasta dhoondh lenge?'), nodes: ['me', 'wifi', 'isp', 'a', 'b', 'c', 'd', 'isp2', 'wifi2', 'nani'] },
+  server: { n: L('3 · Ask a server', '3 · सर्वर से माँगो', '3 · Server se maango'), goal: L('Open 3 websites. Watch the DNS phone book find the address, and the server send the page back. One server will be down — what happens?', '3 वेबसाइट खोलो। देखो DNS फ़ोन-बुक पता ढूँढती है, और सर्वर पेज वापस भेजता है। एक सर्वर बंद होगा — फिर क्या होगा?', '3 websites kholo. Dekho DNS phone book address dhoondhti hai, aur server page wapas bhejta hai. Ek server band hoga — phir kya hoga?'), nodes: ['me', 'wifi', 'isp', 'a', 'b', 'c', 'd', 'isp2', 'dns', 'srv', 'srv2'] },
+};
+let mode = MODES[cfg.mode] ? cfg.mode : 'send'; let st;
+const svg = $('#svg'); const mk = (tag, a = {}, p) => { const n = document.createElementNS(NS, tag); for (const k in a) n.setAttribute(k, a[k]); p && p.append(n); return n; };
+const key = (u, v) => [u, v].sort().join('-');
+function edges() { const on = new Set(MODES[mode].nodes); return E0.filter(([u, v]) => on.has(u) && on.has(v)); }
+function nbrs(u) { return edges().filter((e) => !st.cut.has(key(...e)) && e.includes(u)).map((e) => (e[0] === u ? e[1] : e[0])); }
+function bfs(s, g, avoid = new Set()) { const prev = { [s]: null }, q = [s]; while (q.length) { const u = q.shift(); if (u === g) break; for (const v of nbrs(u)) if (!(v in prev) && !avoid.has(v)) { prev[v] = u; q.push(v); } } if (!(g in prev)) return null; const p = []; for (let u = g; u != null; u = prev[u]) p.unshift(u); return p; }
+// ---------- draw ----------
+function draw() { svg.innerHTML = ''; const on = new Set(MODES[mode].nodes); const gE = mk('g', {}, svg), gH = mk('g', {}, svg), gN = mk('g', {}, svg); st.layerP = mk('g', {}, svg); const gL = mk('g', {}, svg); /* names on top of flying packets */
+  edges().forEach(([u, v]) => { const A = N[u], B = N[v], k = key(u, v); const cls = 'edge' + (st.cut.has(k) ? ' cut' : '') + (st.lit.has(k) ? ' on' : '') + (st.pulse.has(k) ? ' pulse on' : ''); mk('line', { class: cls, x1: A.x, y1: A.y, x2: B.x, y2: B.y }, gE);
+    if (mode === 'packets' && !['me-wifi', 'nani-wifi2'].includes(k)) { const h = mk('line', { class: 'edge hit', x1: A.x, y1: A.y, x2: B.x, y2: B.y, 'data-k': k }, gH); h.addEventListener('click', () => cutEdge(k)); } });
+  for (const id of on) { const n = N[id]; const can = mode === 'send' && st.route && nbrs(st.route.at(-1)).includes(id) && !st.done; const g = mk('g', { class: 'node' + (can ? ' can' : '') + (st.vis.has(id) ? ' vis' : '') + (st.down.has(id) ? ' down' : ''), transform: `translate(${n.x} ${n.y})`, 'data-id': id }, gN);
+    mk('circle', { r: 19 }, g); mk('text', { class: 'e', y: 1 }, g).textContent = st.down.has(id) ? '💤' : n.e; const gl = mk('g', { class: g.getAttribute('class'), transform: g.getAttribute('transform') }, gL); gl.addEventListener('click', () => tapNode(id)); const lab = mk('text', { class: 'l', y: id === 'srv' || id === 'b' || id === 'dns' ? -26 : 32 }, gl); lab.textContent = t(n.l); if (n.x > 290) { lab.style.textAnchor = 'end'; lab.setAttribute('x', 360 - 6 - n.x); } else if (n.x < 60) { lab.style.textAnchor = 'start'; lab.setAttribute('x', 6 - n.x); } /* edge labels stay inside the map */
+    g.addEventListener('click', () => tapNode(id)); } }
+function fly(path, emoji, dur = 520) { return new Promise((res) => { const g = mk('text', { class: 'pk', 'data-ov-sprite': '' }, st.layerP); g.textContent = emoji; let i = 0; const step = () => { if (i >= path.length - 1) { g.remove(); res(true); return; } const A = N[path[i]], B = N[path[i + 1]]; const t0 = performance.now(); const k = key(path[i], path[i + 1]);
+  const f = (now) => { const p = Math.min(1, (now - t0) / dur); const e = p < .5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2; g.setAttribute('x', A.x + (B.x - A.x) * e); g.setAttribute('y', A.y + (B.y - A.y) * e - 4 - Math.sin(p * Math.PI) * 8); if (p < 1) requestAnimationFrame(f); else { st.lit.add(k); i++; step(); } }; requestAnimationFrame(f); }; step(); }); }
+const why = (m) => $('#why').textContent = t(m); const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+// ---------- send ----------
+function panelSend() { const P = $('#panel'); P.innerHTML = `<div class="row" style="justify-content:space-between"><b>✉️ “${esc(t(['Happy Birthday, Nani! 🎂', 'जन्मदिन मुबारक, नानी! 🎂', 'Happy Birthday, Nani! 🎂']))}”</b><span id="hops" style="font-weight:900;color:var(--emerald)">${t(['Hops', 'हॉप', 'Hops'])}: ${st.route.length - 1}</span></div>`;
+  const r = el('div', { class: 'row', style: 'margin-top:8px' }); const u = el('button', { class: 'kbtn alt' }, '↶ ' + t(['Undo', 'वापस', 'Undo'])); u.onclick = () => { if (st.route.length > 1 && !st.done) { const a = st.route.pop(); st.vis.delete(a); st.lit.delete(key(a, st.route.at(-1))); draw(); panelSend(); } }; r.append(u); P.append(r); }
+async function tapNode(id) { if (mode !== 'send' || st.done || st.busy) return; const cur = st.route.at(-1); if (!nbrs(cur).includes(id)) { if (id !== cur) { K.sfx('bad'); K.toast(['Messages can only jump along a connected line to the next stop.', 'संदेश सिर्फ़ जुड़ी लाइन से अगले पड़ाव तक कूद सकता है।', 'Message sirf judi line se agle stop tak jump kar sakta hai.']); } return; }
+  st.busy = true; await fly([cur, id], '✉️', 420); st.route.push(id); st.vis.add(id); K.sfx('move'); st.busy = false; draw(); panelSend();
+  const tips = { wifi: ['The Wi-Fi router sends your message out of the house using radio waves and cables.', 'वाई-फ़ाई राउटर रेडियो तरंगों और केबल से संदेश घर से बाहर भेजता है।', 'Wi-Fi router radio waves aur cables se message ghar se bahar bhejta hai.'], isp: ['The tower belongs to your internet company. It connects you to the big internet.', 'टावर तुम्हारी इंटरनेट कंपनी का है। यह तुम्हें बड़े इंटरनेट से जोड़ता है।', 'Tower tumhari internet company ka hai. Yeh tumhe bade internet se jodta hai.'], a: ['Routers are like traffic police: they read the address and pass the message on.', 'राउटर ट्रैफ़िक पुलिस जैसे हैं: पता पढ़कर संदेश आगे भेजते हैं।', 'Routers traffic police jaise hain: address padh kar message aage bhejte hain.'] };
+  if (tips[id]) why(tips[id]);
+  if (id === 'nani') { st.done = true; const best = bfs('me', 'nani').length - 1; const hops = st.route.length - 1; K.star(hops <= best ? 3 : 2); K.done('net-travel', 'send', { mode: 'send', solved: true, hops, best });
+    setTimeout(() => K.win(['Message delivered!', 'संदेश पहुँच गया!', 'Message deliver ho gaya!'], [`It took ${hops} hops (shortest is ${best}). Real messages make trips like this in under a second!`, `${hops} हॉप लगे (सबसे छोटा ${best})। असली संदेश ऐसी यात्रा एक सेकंड से भी कम में करते हैं!`, `${hops} hops lage (sabse chhota ${best}). Asli messages aisi trip ek second se bhi kam mein karte hain!`], null, '💌', () => start()), 600); } }
+// ---------- packets ----------
+function panelPackets() { const P = $('#panel'); P.innerHTML = `<b>🖼️ ${t(['Photo for Nani — split into 4 packets', 'नानी के लिए फ़ोटो — 4 पैकेट में बँटी', 'Nani ke liye photo — 4 packets mein bati'])}</b><div class="slots" id="slots">${[1, 2, 3, 4].map((i) => `<span id="sl${i}">#${i}</span>`).join('')}</div>`;
+  const r = el('div', { class: 'row', style: 'margin-top:8px' }); const go = el('button', { class: 'kbtn go', id: 'sendp' }, '📤 ' + t(['Send photo', 'फ़ोटो भेजो', 'Photo bhejo'])); go.onclick = sendPackets; const rs = el('button', { class: 'kbtn alt' }, '↺ ' + t(['Fix cables', 'केबल जोड़ो', 'Cables jodo'])); rs.onclick = () => start(); r.append(go, rs); P.append(r); }
+function cutEdge(k) { if (st.cut.has(k)) return; if (st.cut.size >= 2) { K.toast(['Two cut cables is enough for this test!', 'इस जाँच के लिए दो कटे केबल काफ़ी हैं!', 'Is test ke liye do kati cables kaafi hain!']); return; } st.cut.add(k); K.sfx('bad'); if (!bfs('me', 'nani')) { st.cut.delete(k); K.toast(['That would cut Nani off completely — choose another cable.', 'इससे नानी पूरी तरह कट जाएँगी — कोई और केबल चुनो।', 'Isse Nani poori tarah kat jaayengi — koi aur cable chuno.']); return; } draw(); why(['✂️ Cable cut! Routers notice and send packets another way. The internet was designed to keep working even when parts break.', '✂️ केबल कटा! राउटर ध्यान देते हैं और पैकेट दूसरे रास्ते भेजते हैं। इंटरनेट इस तरह बना है कि कुछ हिस्से टूटने पर भी चलता रहे।', '✂️ Cable kat gaya! Routers dhyaan dete hain aur packets doosre raaste bhejte hain. Internet aise bana hai ki kuch hisse tootne par bhi chalta rahe.']); }
+async function sendPackets() { if (st.busy) return; st.busy = true; $('#sendp').disabled = true; let arrived = [];
+  const routeFrom = (u, i) => { const alt = bfs(u, 'nani', i % 2 ? new Set(['a']) : new Set(['c'])); return alt || bfs(u, 'nani'); };
+  const runPacket = async (i) => { await sleep(i * 260); let path = routeFrom('me', i); let at = 0; const g = '📦';
+    while (path[at] !== 'nani') { const u = path[at], v = path[at + 1]; if (st.cut.has(key(u, v))) { path = [...path.slice(0, at + 1), ...bfs(u, 'nani').slice(1)]; continue; } await fly([u, v], g + (i + 1), [620, 360, 560, 330][i]); at++; }
+    arrived.push(i + 1); const s = $('#sl' + (i + 1)); s.classList.add('got'); s.textContent = '🖼️' + (i + 1); K.sfx('good'); };
+  why(['Each packet has Nani\'s address and a number. They can take different roads and arrive in any order.', 'हर पैकेट पर नानी का पता और एक नंबर है। वे अलग रास्ते ले सकते हैं और किसी भी क्रम में पहुँच सकते हैं।', 'Har packet par Nani ka address aur ek number hai. Woh alag raaste le sakte hain aur kisi bhi order mein pahunch sakte hain.']);
+  await Promise.all([0, 1, 2, 3].map(runPacket)); st.busy = false; const order = arrived.join(', ');
+  why([`Arrival order: ${order}. Nani's phone puts them back in order 1-2-3-4 using the numbers, and shows the whole photo.`, `पहुँचने का क्रम: ${order}। नानी का फ़ोन नंबरों से इन्हें 1-2-3-4 क्रम में जोड़कर पूरी फ़ोटो दिखाता है।`, `Pahunchne ka order: ${order}. Nani ka phone numbers se inhe 1-2-3-4 order mein jod kar poori photo dikhaata hai.`]);
+  if (st.cut.size) { K.star(3); K.done('net-travel', 'packets', { mode: 'packets', solved: true, cuts: st.cut.size, order: arrived }); setTimeout(() => K.win(['Photo delivered!', 'फ़ोटो पहुँच गई!', 'Photo deliver ho gayi!'], ['Even with a cut cable, the packets found another route and were put back together. That is packet switching!', 'केबल कटने पर भी पैकेट ने दूसरा रास्ता ढूँढा और फिर से जुड़ गए। यही पैकेट स्विचिंग है!', 'Cable katne par bhi packets ne doosra raasta dhoondha aur phir se jud gaye. Yahi packet switching hai!'], null, '🖼️', () => start()), 900); }
+  else { K.toast(['Delivered! Now cut a cable and send again to test the network.', 'पहुँच गई! अब एक केबल काटो और फिर भेजो।', 'Deliver ho gayi! Ab ek cable kaato aur phir bhejo.'], 'good', 3000); $('#sendp').disabled = false; [1, 2, 3, 4].forEach((i) => { const s = $('#sl' + i); s.classList.remove('got'); s.textContent = '#' + i; }); st.lit.clear(); draw(); } }
+// ---------- server ----------
+const SITES = [{ host: 'cartoons.example', ip: '203.0.113.10', srv: 'srv', page: ['🐘 Today\'s cartoon: The Clever Elephant', '🐘 आज का कार्टून: चतुर हाथी', '🐘 Aaj ka cartoon: Chatur Haathi'] }, { host: 'weather.example', ip: '203.0.113.20', srv: 'srv', page: ['⛅ Delhi: 24°C, sunny', '⛅ दिल्ली: 24°C, धूप', '⛅ Delhi: 24°C, dhoop'] }, { host: 'school.example', ip: '203.0.113.30', srv: 'srv', down: true, page: ['📚 Homework: read page 12', '📚 गृहकार्य: पेज 12 पढ़ो', '📚 Homework: page 12 padho'] }];
+function panelServer() { const P = $('#panel'); P.innerHTML = ''; const s = el('div', { class: 'sites' }); SITES.forEach((x, i) => { const b = el('button', { class: st.got.has(i) ? 'done' : '', id: 'site' + i }, '🌐 ' + x.host); b.onclick = () => fetchSite(i); s.append(b); }); P.append(s);
+  P.append(el('div', { class: 'browser' }, `<div class="bar">🔒 <span id="url">${st.url || '…'}</span></div><div class="pg" id="pg">${st.pg || t(['Tap a website to open it', 'खोलने के लिए वेबसाइट पर टैप करो', 'Kholne ke liye website par tap karo'])}</div>`)); P.append(el('div', { class: 'log', id: 'log', style: 'margin-top:8px' }, st.log || '')); }
+const log = (s) => { st.log = (st.log || '') + s + '\n'; const L2 = $('#log'); if (L2) { L2.textContent = st.log; L2.scrollTop = 1e6; } };
+async function fetchSite(i) { if (st.busy) return; st.busy = true; const S = SITES[i]; st.log = ''; st.lit.clear(); st.pulse.clear(); st.url = 'https://' + S.host; st.pg = '⏳'; panelServer(); draw(); $('#url').textContent = st.url; $('#pg').textContent = '⏳';
+  log(`> ${t(['open', 'खोलो', 'open'])} ${S.host}`); await fly(['me', 'wifi', 'isp', 'a', 'dns'], '❓', 380); log(`DNS: ${S.host} → ${S.ip}`); why(['The DNS is the internet\'s phone book. It turns a name like cartoons.example into a number address (an IP address).', 'DNS इंटरनेट की फ़ोन-बुक है। यह cartoons.example जैसे नाम को संख्या वाले पते (IP पता) में बदलती है।', 'DNS internet ki phone book hai. Yeh cartoons.example jaise naam ko number wale address (IP address) mein badalti hai.']);
+  await fly(['dns', 'a'], '🔢', 380); let path = bfs('a', S.srv); log(`→ ${t(['request to', 'अनुरोध', 'request to'])} ${S.ip}`); await fly(path, '📨', 420);
+  if (S.down && !st.failed) { st.failed = true; st.down.add('srv'); draw(); K.sfx('bad'); log(`✖ ${t(['no answer: server is down', 'जवाब नहीं: सर्वर बंद है', 'jawab nahin: server band hai'])}`); $('#pg').textContent = '😕 ' + t(['This server is not answering…', 'यह सर्वर जवाब नहीं दे रहा…', 'Yeh server jawab nahin de raha…']);
+    why(['The Mumbai server is down (maybe a power cut). Big websites keep copies in more than one data centre…', 'मुंबई वाला सर्वर बंद है (शायद बिजली गई)। बड़ी वेबसाइटें एक से ज़्यादा डेटा सेंटर में प्रतियाँ रखती हैं…', 'Mumbai wala server band hai (shayad power cut). Badi websites ek se zyada data centre mein copies rakhti hain…']); await sleep(1400);
+    log(`↻ ${t(['trying backup server in Chennai', 'चेन्नई के बैकअप सर्वर पर कोशिश', 'Chennai ke backup server par try'])}`); path = bfs(S.srv === 'srv' ? 'd' : 'a', 'srv2'); await fly(['srv', 'd'], '↩️', 300); await fly(path, '📨', 420); log(`✔ ${t(['backup answered', 'बैकअप ने जवाब दिया', 'backup ne jawab diya'])}`); path = [...bfs('srv2', 'me')]; await fly(path, '📄', 360); }
+  else { log(`✔ ${t(['server found the page', 'सर्वर को पेज मिला', 'server ko page mila'])}`); await fly([...bfs(S.srv, 'me')], '📄', 360); why(['The server is a computer that is always on, waiting for requests. It finds the page and sends it back to your browser.', 'सर्वर एक कंप्यूटर है जो हमेशा चालू रहता है और अनुरोधों का इंतज़ार करता है। वह पेज ढूँढकर तुम्हारे ब्राउज़र को वापस भेजता है।', 'Server ek computer hai jo hamesha chaalu rehta hai aur requests ka intezaar karta hai. Woh page dhoondh kar tumhare browser ko wapas bhejta hai.']); }
+  st.pg = esc(t(S.page)); $('#pg').innerHTML = st.pg; st.got.add(i); K.sfx('good'); K.star(); st.busy = false; panelServer();
+  if (st.got.size === 3 && !st.won) { st.won = true; K.done('net-travel', 'server', { mode: 'server', solved: true, pages: 3, failover: st.failed }); setTimeout(() => K.win(['Server expert!', 'सर्वर एक्सपर्ट!', 'Server expert!'], ['Browser asks → DNS finds the address → server answers. When one server failed, a backup in another city answered. That is how the cloud stays up.', 'ब्राउज़र पूछता है → DNS पता ढूँढता है → सर्वर जवाब देता है। एक सर्वर बंद हुआ तो दूसरे शहर के बैकअप ने जवाब दिया। क्लाउड ऐसे ही चालू रहता है।', 'Browser poochta hai → DNS address dhoondhta hai → server jawab deta hai. Ek server band hua toh doosre shehar ke backup ne jawab diya. Cloud aise hi chaalu rehta hai.'], null, '🗄️', () => start()), 700); } }
+// ---------- start ----------
+function drawModes() { const m = $('#modes'); m.innerHTML = ''; for (const k in MODES) { const b = el('button', { 'aria-pressed': k === mode }, t(MODES[k].n)); b.onclick = () => { if (!st.busy) { mode = k; start(); } }; m.append(b); } }
+function start() { st = { cut: new Set(), lit: new Set(), pulse: new Set(), vis: new Set(['me']), down: new Set(), route: ['me'], got: new Set(), busy: false };
+  drawModes(); $('#goal').innerHTML = `<span style="font-size:22px">🎯</span><div><b>${t(['Goal', 'लक्ष्य', 'Goal'])}:</b> ${esc(t(cfg.mode === mode && cfg.goal ? [cfg.goal.en, cfg.goal.hi || cfg.goal.en, cfg.goal.hinglish] : MODES[mode].goal))}</div>`;
+  draw(); ({ send: panelSend, packets: panelPackets, server: panelServer })[mode]();
+  why({ send: L('Glowing circles are the stops you can jump to next.', 'चमकते गोले वे पड़ाव हैं जहाँ अगली छलाँग लगा सकते हो।', 'Chamakte gole woh stops hain jahan agli chhalaang laga sakte ho.'), packets: L('Tap a grey cable to cut it (like a digging machine breaking an underground cable).', 'किसी स्लेटी केबल पर टैप करके काटो (जैसे खुदाई मशीन ज़मीन के नीचे का केबल तोड़ दे)।', 'Kisi grey cable par tap karke kaato (jaise khudaai machine zameen ke neeche ki cable tod de).'), server: L('Servers live in data centres: big buildings full of computers that run day and night.', 'सर्वर डेटा सेंटर में रहते हैं: कंप्यूटरों से भरी बड़ी इमारतें जो दिन-रात चलती हैं।', 'Servers data centres mein rehte hain: computers se bhari badi imaaratein jo din-raat chalti hain.') }[mode]); }
+K.onLang(() => start());
+start();
+})();
+</script></body></html>

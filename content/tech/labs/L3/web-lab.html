@@ -1,0 +1,314 @@
+<!doctype html><html lang="en" data-lab="web-lab"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#061233"><title>Web Dev Lab · NCA Tech Lab L3</title><style>:root{--bg:#061233;--bg2:#0b1b4a;--card:rgba(255,255,255,.06);--line:rgba(255,255,255,.12);--tx:#eef4ff;--mut:#9fb0d6;--grape:#8B3DFF;--cyan:#02CFF9;--leaf:#22C55E;--coral:#FF6B57;--gold:#F5B90A;--tang:#FF7A1A;--royal:#2563EB;--r:16px}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:radial-gradient(120% 80% at 10% -10%,#22145e 0%,transparent 55%),radial-gradient(120% 80% at 110% 10%,#04395e 0%,transparent 50%),var(--bg);color:var(--tx);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans Devanagari",sans-serif;min-height:100%}
+body{padding:0 0 24px}
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:8px;padding:10px 12px;background:rgba(6,18,51,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top h1{font-size:16px;margin:0;flex:1;letter-spacing:.2px}
+.top h1 small{display:block;font-size:11px;color:var(--mut);font-weight:500}
+.badge{font-size:11px;padding:3px 8px;border-radius:99px;background:linear-gradient(90deg,var(--grape),var(--cyan));color:#061233;font-weight:700}
+.langs{display:flex;border:1px solid var(--line);border-radius:99px;overflow:hidden}
+.langs button{background:none;border:0;color:var(--mut);padding:5px 8px;font:inherit;font-size:12px;min-height:30px}
+.langs button.on{background:var(--grape);color:#fff}
+.wrap{max-width:1100px;margin:0 auto;padding:12px}
+.goal{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:var(--r);background:linear-gradient(135deg,rgba(139,61,255,.22),rgba(2,207,249,.12));border:1px solid rgba(139,61,255,.4);margin-bottom:12px;font-size:14px}
+.goal b{color:var(--gold)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px;margin-bottom:12px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.card h2{font-size:14px;margin:0 0 8px;color:var(--cyan);letter-spacing:.3px;text-transform:uppercase}
+.grid{display:grid;gap:12px}
+@media(min-width:720px){.grid.two{grid-template-columns:1.25fr 1fr}}
+@media(orientation:landscape) and (max-height:500px){.grid.two{grid-template-columns:1.2fr 1fr}.top{padding:6px 12px}}
+.btn{appearance:none;border:1px solid var(--line);background:rgba(255,255,255,.08);color:var(--tx);border-radius:12px;padding:9px 12px;font:inherit;font-weight:600;min-height:40px;cursor:pointer;transition:transform .12s,background .2s}
+.btn:active{transform:scale(.96)}
+.btn.pri{background:linear-gradient(135deg,var(--grape),#5b2be0);border-color:transparent;color:#fff;box-shadow:0 6px 18px rgba(139,61,255,.4)}
+.btn.ok{background:var(--leaf);color:#062;border-color:transparent}
+.btn.on{outline:2px solid var(--cyan)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{border-radius:99px;padding:6px 11px;min-height:34px;font-size:13px}
+label.sl{display:flex;flex-direction:column;gap:3px;font-size:12px;color:var(--mut);flex:1;min-width:120px}
+input[type=range]{width:100%;accent-color:var(--grape)}
+input[type=text],textarea,select{width:100%;background:rgba(0,0,0,.25);border:1px solid var(--line);color:var(--tx);border-radius:12px;padding:10px;font:inherit}
+.stat{display:flex;flex-direction:column;padding:8px 10px;border-radius:12px;background:rgba(0,0,0,.22);min-width:80px}
+.stat b{font-size:18px;font-variant-numeric:tabular-nums}
+.stat span{font-size:11px;color:var(--mut)}
+.mut{color:var(--mut)}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px}
+canvas,svg{display:block;max-width:100%;touch-action:none}
+
+
+.explain{font-size:13.5px;color:#d7e2ff;background:rgba(0,0,0,.2);border-left:3px solid var(--cyan);padding:8px 10px;border-radius:8px;margin-top:8px}
+.pill{display:inline-block;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:700}
+@keyframes pop{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(2,207,249,.0)}50%{box-shadow:0 0 0 6px rgba(2,207,249,.25)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.top h1 .hstat{display:none;font-size:12px;font-weight:700;color:#4ade80;animation:pop .3s both}.top h1.toasting small{display:none}.top h1.toasting .hstat{display:block}
+.seg.chips{margin:4px 0}.seg.chips button{white-space:normal;text-align:left;line-height:1.25;max-width:100%}
+.seg.chips.big .pick{width:100%;font-weight:700}
+</style></head><body><script>// NCA Tech Lab L3 shared kit: language, config from ?cfg= / ?lesson= / inline, mission events, small helpers. No eval.
+(function(g){
+  const qs=new URLSearchParams(location.search);
+  const K={lang:qs.get('lang')||localStorage.getItem('nca-lang')||'hinglish',cfg:{},goal:null,lab:document.documentElement.dataset.lab,listeners:[]};
+  K.reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  K.t=(o)=>o==null?'':typeof o==='string'?o:(o[K.lang]||o.hinglish||o.en||'');
+  K.$=(s,r)=>(r||document).querySelector(s);K.$$=(s,r)=>[...(r||document).querySelectorAll(s)];
+  K.el=(tag,attrs,html)=>{const e=document.createElement(tag);if(attrs)for(const k in attrs){if(k==='on')for(const ev in attrs.on)e.addEventListener(ev,attrs.on[ev]);else e.setAttribute(k,attrs[k]);}if(html!=null)e.innerHTML=html;return e;};
+  K.esc=(s)=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+  K.rng=(seed)=>{let s=seed>>>0||1;return()=>{s^=s<<13;s>>>=0;s^=s>>17;s^=s<<5;s>>>=0;return s/4294967296;};};
+  K.clamp=(v,a,b)=>Math.max(a,Math.min(b,v));K.lerp=(a,b,t)=>a+(b-a)*t;K.ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+  K.sleep=(ms)=>new Promise(r=>setTimeout(r,K.reduced?0:ms));
+  K.tween=(ms,fn)=>new Promise(res=>{if(K.reduced||ms<=0){fn(1);return res();}const t0=performance.now();const f=n=>{const t=Math.min(1,(n-t0)/ms);fn(K.ease(t));t<1?requestAnimationFrame(f):res();};requestAnimationFrame(f);});
+  // Toasts never cover content (readability rule): the message temporarily replaces the header subtitle, then the subtitle returns after 2.5 s.
+  K.toast=(msg)=>{const h=K.$('header.top h1');if(!h)return;let st=h.querySelector('.hstat');if(!st){st=K.el('span',{class:'hstat',role:'status','aria-live':'polite'});h.appendChild(st);}st.textContent=msg;h.classList.add('toasting');clearTimeout(K._tt);K._tt=setTimeout(()=>h.classList.remove('toasting'),2500);};
+  K.events=[];
+  // emit a lab event; the lesson player listens via postMessage and matches it against try.questions[type=lab-check].answer
+  K.emit=(event,data)=>{const m={type:'nca-lab-event',lab:K.lab,event,data:data||{},at:Date.now()};K.events.push(m);try{parent!==window&&parent.postMessage(m,'*');}catch(e){}g.dispatchEvent(new CustomEvent('nca-lab-event',{detail:m}));document.documentElement.dataset.lastEvent=event;};
+  K.check=(event,data,msg)=>{K.emit(event,data);K.toast('✓ '+(msg||K.t({en:'Mission check passed',hinglish:'Mission check pass!',hi:'मिशन जाँच पास!'})));};
+  K.onLang=(fn)=>K.listeners.push(fn);
+  K.setLang=(l)=>{K.lang=l;localStorage.setItem('nca-lang',l);K.$$('.langs button').forEach(b=>b.classList.toggle('on',b.dataset.l===l));K.$$('[data-t]').forEach(e=>{const o=K.T[e.dataset.t];if(o)e.innerHTML=K.t(o);});K.renderGoal();K.listeners.forEach(f=>f(l));};
+  K.T={};// string table: key -> {en,hi,hinglish}
+  K.renderGoal=()=>{const gEl=K.$('#goal');if(!gEl)return;const goal=K.goal||K.T.__goal;gEl.style.display=goal?'flex':'none';if(goal)gEl.innerHTML='<span>🎯</span><div><b>'+K.esc(K.t({en:'Goal',hinglish:'Goal',hi:'लक्ष्य'}))+':</b> '+K.esc(K.t(goal))+'</div>';};
+  K.header=(title,sub)=>{const h=K.el('header',{class:'top'});h.innerHTML='<span class="badge">L3</span><h1>'+K.esc(K.t(title))+'<small>'+K.esc(K.t(sub))+'</small></h1><div class="langs" role="group" aria-label="Language"><button data-l="hinglish">Hinglish</button><button data-l="en">EN</button><button data-l="hi">हिं</button></div>';document.body.prepend(h);K.$$('.langs button',h).forEach(b=>b.onclick=()=>{K.setLang(b.dataset.l);h.querySelector('h1').firstChild.textContent=K.t(title);h.querySelector('small').textContent=K.t(sub);});};
+  // Readability rule: native <select> boxes cut long option text on phones, so every select is shown as a wrapping row of chips.
+  K.chipify=(sel)=>{if(sel._chips||sel.dataset.keep!=null)return;const box=K.el('div',{class:'seg chips',role:'radiogroup','aria-label':sel.getAttribute('aria-label')||'options'});sel.after(box);sel.style.display='none';sel._chips=box;let last='';
+    let open=false;const render=(force)=>{const n=sel.options.length,big=n>6;const sig=[...sel.options].map(o=>o.value+'\u0001'+o.textContent).join('\u0002')+'|'+sel.value+'|'+open;if(sig===last&&!force)return;last=sig;box.innerHTML='';box.classList.toggle('big',big);
+      if(big){const cur=sel.options[sel.selectedIndex];const t=K.el('button',{class:'btn on pick',type:'button','aria-expanded':open?'true':'false'});t.textContent=(open?'▴ ':'▾ ')+(cur?cur.textContent:'');t.onclick=()=>{open=!open;render(true);};box.appendChild(t);if(!open)return;}
+      [...sel.options].forEach(o=>{if(big&&o.value===sel.value)return;const b=K.el('button',{class:'btn'+(o.value===sel.value?' on':''),type:'button',role:'radio','aria-checked':o.value===sel.value?'true':'false'});b.textContent=o.textContent;b.onclick=()=>{if(sel.disabled)return;sel.value=o.value;open=false;render(true);sel.dispatchEvent(new Event('change',{bubbles:true}));};box.appendChild(b);});};
+    render();new MutationObserver(render).observe(sel,{childList:true,subtree:true,characterData:true});setInterval(render,250);};
+  K.chipAll=()=>{K.$$('select').forEach(K.chipify);if(!K._mo){K._mo=new MutationObserver(()=>K.$$('select').forEach(K.chipify));K._mo.observe(document.body,{childList:true,subtree:true});}};
+  K.boot=async(defaults)=>{let cfg=Object.assign({},defaults||{});
+    const inl=document.getElementById('lesson-inline');
+    try{if(inl){const L=JSON.parse(inl.textContent);if(L.play){Object.assign(cfg,L.play.config||{});K.goal=L.play.goal;}}}catch(e){}
+    const lp=qs.get('lesson');if(lp){try{const L=await (await fetch(lp)).json();if(L.play&&L.play.lab===K.lab){Object.assign(cfg,L.play.config||{});K.goal=L.play.goal;}}catch(e){}}
+    const c=qs.get('cfg');if(c){try{Object.assign(cfg,JSON.parse(c));}catch(e){}}
+    for(const [k,v] of qs){if(!['cfg','lesson','lang'].includes(k))cfg[k]=v;}
+    K.cfg=cfg;K.setLang(K.lang);setTimeout(K.chipAll,0);return cfg;};
+  g.K=K;
+})(window);
+</script><div class="wrap">
+ <div id="goal" class="goal" style="display:none"></div>
+ <div class="seg" id="missions" role="tablist" aria-label="Missions"></div>
+ <div class="card"><h2 id="mTitle"></h2><p id="mTask" style="margin:0 0 8px;font-size:14px"></p><div id="checks"></div></div>
+ <div class="grid two">
+  <div class="card"><h2 data-t="editor"></h2>
+   <div class="seg" id="files" role="tablist" aria-label="Files"></div>
+   <textarea id="code" class="mono" rows="12" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="code editor"></textarea>
+   <div class="row" style="margin-top:8px"><button class="btn pri" id="run" data-t="run"></button><button class="btn ok" id="chk" data-t="check"></button><button class="btn" id="fix" data-t="fix"></button><button class="btn" id="reset" data-t="reset"></button></div>
+   <div class="mut" id="size" style="font-size:12px;margin-top:6px"></div>
+  </div>
+  <div class="card"><h2 data-t="preview"></h2>
+   <div class="seg" id="dev" aria-label="Device width"><button class="btn on" data-w="phone">📱 320 px</button><button class="btn" data-w="tablet">💻 700 px</button></div>
+   <div class="pv" id="pv"><iframe id="frame" title="Preview" sandbox="allow-scripts" referrerpolicy="no-referrer"></iframe></div>
+   <h2 style="margin-top:10px" data-t="console"></h2>
+   <div id="log" class="log mono" aria-live="polite"></div>
+  </div>
+ </div>
+ <div class="card"><h2 data-t="safe"></h2><div class="mut" style="font-size:13px" data-t="safeTxt"></div></div>
+</div>
+<style>
+.pv{position:relative;width:100%;height:340px;border-radius:12px;overflow:hidden;background:#fff;border:2px solid var(--cyan)}
+.pv iframe{position:absolute;left:0;top:0;border:0;background:#fff;transform-origin:0 0}
+textarea.mono{min-height:220px;line-height:1.45;font-size:13px;resize:vertical;tab-size:2}
+.log{background:#020817;border-radius:10px;padding:8px;min-height:44px;max-height:140px;overflow-y:auto;white-space:pre-wrap;word-break:break-word;font-size:12px}
+.log .e{color:#FF8A7A}.log .l{color:#bfe9ff}
+.ckl{display:flex;align-items:flex-start;gap:8px;padding:6px 0;border-top:1px solid rgba(255,255,255,.07);font-size:13.5px}
+.ckl .ck{width:22px;height:22px;border-radius:50%;border:2px solid #9fb0d6;display:grid;place-items:center;font-size:12px;flex:none}
+.ckl.pass .ck{background:#22C55E;border-color:#22C55E;color:#062}.ckl.fail .ck{background:#FF6B57;border-color:#FF6B57;color:#fff}
+.ckl small{display:block;color:var(--mut);font-size:12px}
+#missions button.done::after{content:' ✓';color:#4ade80}
+</style>
+<script>
+const t3=(en,hinglish,hi)=>({en,hinglish,hi});
+Object.assign(K.T,{editor:t3('Code editor','Code editor','कोड संपादक'),preview:t3('Live preview (sandboxed)','Live preview (sandbox mein)','लाइव पूर्वावलोकन (सैंडबॉक्स)'),console:t3('Console','Console','कंसोल'),run:t3('▶ Run','▶ Chalao','▶ चलाओ'),check:t3('✓ Check mission','✓ Mission check','✓ मिशन जाँचो'),fix:t3('💡 Show a fix','💡 Fix dikhao','💡 हल दिखाओ'),reset:t3('↺ Reset','↺ Reset','↺ रीसेट'),
+ safe:t3('Why your code is safe here','Tumhara code yahan safe kyun hai','आपका कोड यहाँ सुरक्षित क्यों है'),
+ safeTxt:t3('Your page runs inside an iframe with sandbox="allow-scripts" and no same-origin access, so it cannot read this app, your cookies or storage, open pop-ups or submit forms anywhere. The lab never runs your code with eval. This is the same idea browsers use to isolate ads and embedded widgets.','Tumhara page sandbox="allow-scripts" wale iframe mein chalta hai, same-origin access ke bina, isliye woh is app, tumhari cookies ya storage ko padh nahi sakta, pop-ups nahi khol sakta aur forms kahin submit nahi kar sakta. Lab tumhara code kabhi eval se nahi chalati. Browsers ads aur embedded widgets ko alag rakhne ke liye yahi idea use karte hain.','आपका पेज sandbox="allow-scripts" वाले iframe में चलता है, समान-मूल पहुँच के बिना, इसलिए वह इस ऐप, आपकी कुकीज़ या भंडारण को पढ़ नहीं सकता, पॉप-अप नहीं खोल सकता और फ़ॉर्म कहीं जमा नहीं कर सकता। लैब आपका कोड कभी eval से नहीं चलाती। ब्राउज़र विज्ञापनों और एम्बेड किए विजेट्स को अलग रखने के लिए यही विचार इस्तेमाल करते हैं।')});
+const IMG='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22160%22 height=%2290%22%3E%3Crect width=%22160%22 height=%2290%22 rx=%2212%22 fill=%22%2300C2B8%22/%3E%3Ccircle cx=%2250%22 cy=%2245%22 r=%2218%22 fill=%22%23FFD23F%22/%3E%3C/svg%3E';
+const TT=[{period:1,time:'08:00',subject:'Maths'},{period:2,time:'08:45',subject:'Science'},{period:3,time:'09:30',subject:'Hindi'},{period:4,time:'10:30',subject:'English'},{period:5,time:'11:15',subject:'Computer Science'}];
+const M=[
+ {id:'html',ev:'html-semantic',name:t3('1 · Semantic HTML','1 · Semantic HTML','1 · अर्थपूर्ण HTML'),
+  task:t3('The school notice page is built only from <div> and <b>. Rewrite it with header, nav, main and footer, one h1, a h2 for the notice, and alt text on the image.','School notice page sirf <div> aur <b> se bana hai. Ise header, nav, main aur footer se dobara likho, ek h1, notice ke liye h2, aur image par alt text.','स्कूल सूचना पेज केवल <div> और <b> से बना है। इसे header, nav, main और footer से दोबारा लिखो, एक h1, सूचना के लिए h2, और चित्र पर alt पाठ।'),
+  checks:{landmarks:t3('Has header, nav, main and footer','header, nav, main aur footer hain','header, nav, main और footer हैं'),h1:t3('Exactly one h1, plus a h2','Theek ek h1, aur ek h2','ठीक एक h1, और एक h2'),alt:t3('Every image has alt text','Har image par alt text','हर चित्र पर alt पाठ')},
+  start:{html:`<div class="top"><b>Sunrise Public School</b></div>
+<div class="menu"><a href="#">Home</a> <a href="#">Notices</a></div>
+<div class="content">
+  <b>Annual Science Fair</b>
+  <img src="${IMG}">
+  <p>The fair is on 12 December in the main hall. Bring your project by 9 am.</p>
+</div>
+<div class="bottom">© Sunrise Public School</div>`,css:`body{font-family:system-ui;margin:12px}
+nav a,.menu a{margin-right:8px}
+img{max-width:100%}`,js:``},
+  fix:{html:`<header><h1>Sunrise Public School</h1></header>
+<nav><a href="#">Home</a> <a href="#">Notices</a></nav>
+<main>
+  <h2>Annual Science Fair</h2>
+  <img src="${IMG}" alt="Science fair poster" width="160" height="90">
+  <p>The fair is on 12 December in the main hall. Bring your project by 9 am.</p>
+</main>
+<footer>© Sunrise Public School</footer>`}},
+ {id:'form',ev:'form-accessible',name:t3('2 · Forms','2 · Forms','2 · फ़ॉर्म'),
+  task:t3('Fix the club sign-up form: give every field a label, use type="email", make name, email and class required, and use a real submit button.','Club sign-up form theek karo: har field ko label do, type="email" use karo, name, email aur class ko required banao, aur asli submit button lagao.','क्लब साइन-अप फ़ॉर्म ठीक करो: हर फ़ील्ड को label दो, type="email" इस्तेमाल करो, नाम, ईमेल और कक्षा को required बनाओ, और असली submit बटन लगाओ।'),
+  checks:{labels:t3('Every field has a <label>','Har field ka <label> hai','हर फ़ील्ड का <label> है'),email:t3('Email uses type="email"','Email mein type="email"','ईमेल में type="email"'),submit:t3('A real submit button','Asli submit button','असली submit बटन'),valid:t3('Empty form is blocked; filled form is valid','Khaali form ruka; bhara form valid','ख़ाली फ़ॉर्म रुका; भरा फ़ॉर्म मान्य')},
+  start:{html:`<form>
+  Name <input id="name">
+  Email <input id="email" type="text">
+  Class <select id="cls"><option value="">Choose</option><option>9</option><option>10</option><option>11</option><option>12</option></select>
+  <div class="send">Join</div>
+</form>`,css:`body{font-family:system-ui;margin:12px}
+form{display:grid;gap:6px;max-width:320px}
+input,select,button{font:inherit;padding:8px}
+.send{background:#00796B;color:#fff;padding:8px;text-align:center}`,js:``},
+  fix:{html:`<form>
+  <label for="name">Name</label>
+  <input id="name" name="name" required autocomplete="name">
+  <label for="email">Email</label>
+  <input id="email" name="email" type="email" required autocomplete="email">
+  <label for="cls">Class</label>
+  <select id="cls" name="cls" required><option value="">Choose</option><option>9</option><option>10</option><option>11</option><option>12</option></select>
+  <button type="submit">Join the club</button>
+</form>`}},
+ {id:'css',ev:'css-responsive',name:t3('3 · Responsive CSS','3 · Responsive CSS','3 · रिस्पॉन्सिव CSS'),
+  task:t3('The club cards spill off a phone screen. Make them one column on a 320 px phone and at least two columns on a 700 px tablet, with no sideways scrolling. Try CSS grid and a @media rule.','Club cards phone screen se bahar nikal rahe hain. 320 px phone par ek column aur 700 px tablet par kam se kam do columns banao, sideways scroll ke bina. CSS grid aur @media rule try karo.','क्लब कार्ड फ़ोन स्क्रीन से बाहर जा रहे हैं। 320 px फ़ोन पर एक कॉलम और 700 px टैबलेट पर कम से कम दो कॉलम बनाओ, बग़ल में स्क्रॉल के बिना। CSS grid और @media नियम आज़माओ।'),
+  checks:{phone:t3('Phone (320 px): one column','Phone (320 px): ek column','फ़ोन (320 px): एक कॉलम'),tablet:t3('Tablet (700 px): two or more columns','Tablet (700 px): do ya zyada columns','टैबलेट (700 px): दो या ज़्यादा कॉलम'),overflow:t3('No sideways scrolling at either width','Kisi width par sideways scroll nahi','किसी चौड़ाई पर बग़ल में स्क्रॉल नहीं')},
+  start:{html:`<h1>Clubs</h1>
+<div class="cards">
+  <div class="card">🤖 Robotics</div>
+  <div class="card">💻 Coding</div>
+  <div class="card">🎨 Design</div>
+  <div class="card">🔭 Astronomy</div>
+</div>`,css:`body{font-family:system-ui;margin:12px}
+.cards{display:flex}
+.card{width:300px;flex:none;padding:16px;margin:6px;background:#e0f7f6;border-radius:12px}`,js:``},
+  fix:{css:`body{font-family:system-ui;margin:12px}
+.cards{display:grid;grid-template-columns:1fr;gap:10px}
+.card{padding:16px;background:#e0f7f6;border-radius:12px}
+@media (min-width:600px){
+  .cards{grid-template-columns:repeat(2,1fr)}
+}`}},
+ {id:'dom',ev:'dom-works',name:t3('4 · JS & the DOM','4 · JS aur DOM','4 · JS और DOM'),
+  task:t3('Make the 👍 Like button work: when it is clicked, add 1 to the count. Use addEventListener in the JS tab (not onclick in HTML) and set the number with textContent.','👍 Like button chalao: click hone par count mein 1 jodo. JS tab mein addEventListener use karo (HTML mein onclick nahi) aur number textContent se set karo.','👍 Like बटन चलाओ: क्लिक होने पर गिनती में 1 जोड़ो। JS टैब में addEventListener इस्तेमाल करो (HTML में onclick नहीं) और संख्या textContent से लिखो।'),
+  checks:{click:t3('Two clicks add 2 to the count','Do clicks se count mein 2 judte hain','दो क्लिक से गिनती में 2 जुड़ते हैं'),listener:t3('Uses addEventListener, no onclick in HTML','addEventListener use, HTML mein onclick nahi','addEventListener, HTML में onclick नहीं'),text:t3('Uses textContent (safe, no HTML injection)','textContent use (safe, HTML injection nahi)','textContent (सुरक्षित, HTML घुसपैठ नहीं)')},
+  start:{html:`<p>Do you like the new library?</p>
+<button id="like" type="button">👍 Like</button>
+<span id="count">0</span> likes`,css:`body{font-family:system-ui;margin:12px}
+button{font:inherit;padding:8px 12px}`,js:`// TODO: when #like is clicked, add 1 to #count
+let likes = 0;
+`},
+  fix:{js:`let likes = 0;
+const btn = document.querySelector('#like');
+const out = document.querySelector('#count');
+btn.addEventListener('click', () => {
+  likes = likes + 1;
+  out.textContent = likes;
+  console.log('likes =', likes);
+});`}},
+ {id:'json',ev:'json-rendered',name:t3('5 · APIs & JSON','5 · APIs aur JSON','5 · API और JSON'),
+  task:t3('API_URL is a pretend school API that returns today’s timetable as JSON. Use fetch, turn the reply into data with .json(), add one <li> per period to #list, and show a message if loading fails (.catch).','API_URL ek pretend school API hai jo aaj ka timetable JSON mein deta hai. fetch use karo, .json() se data banao, har period ke liye #list mein ek <li> jodo, aur load fail ho to message dikhao (.catch).','API_URL एक नक़ली स्कूल API है जो आज की समय-सारणी JSON में देता है। fetch इस्तेमाल करो, .json() से डेटा बनाओ, हर पीरियड के लिए #list में एक <li> जोड़ो, और लोड विफल हो तो संदेश दिखाओ (.catch)।'),
+  checks:{items:t3('All 5 periods appear as list items','Saare 5 periods list items mein','सभी 5 पीरियड सूची में'),fetch:t3('Data comes from fetch(API_URL)','Data fetch(API_URL) se aata hai','डेटा fetch(API_URL) से आता है'),errors:t3('Errors are handled with .catch or try/catch','Errors .catch ya try/catch se handle','त्रुटियाँ .catch या try/catch से सँभाली')},
+  start:{html:`<h2>Today's timetable</h2>
+<ul id="list"></ul>`,css:`body{font-family:system-ui;margin:12px}
+li{padding:4px 0}`,js:`// API_URL is a pretend school API. Fetch it and show each period.
+fetch(API_URL)
+  .then(r => r.json())
+  .then(data => {
+    console.log(data);
+    // TODO: add one <li> per period to #list
+  });
+`},
+  fix:{js:`const list = document.querySelector('#list');
+fetch(API_URL)
+  .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+  .then(data => {
+    for (const p of data) {
+      const li = document.createElement('li');
+      li.textContent = p.time + ' · ' + p.subject;
+      list.appendChild(li);
+    }
+    console.log('Loaded', data.length, 'periods');
+  })
+  .catch(err => { list.textContent = 'Could not load: ' + err.message; });`}},
+ {id:'a11y',ev:'a11y-fixed',name:t3('6 · Accessibility & speed','6 · Accessibility aur speed','6 · सुलभता और गति'),
+  task:t3('Make the library page work for everyone and load fast: alt text on the image, text contrast of at least 4.5 : 1, a real <button> instead of a clickable <div>, and width, height and loading="lazy" on the image.','Library page ko sabke liye kaam karne wala aur tez banao: image par alt text, text contrast kam se kam 4.5 : 1, clickable <div> ki jagah asli <button>, aur image par width, height aur loading="lazy".','पुस्तकालय पेज को सबके लिए उपयोगी और तेज़ बनाओ: चित्र पर alt पाठ, पाठ कंट्रास्ट कम से कम 4.5 : 1, क्लिक होने वाले <div> की जगह असली <button>, और चित्र पर width, height और loading="lazy"।'),
+  checks:{alt:t3('Image has alt text','Image par alt text','चित्र पर alt पाठ'),contrast:t3('All text has contrast ≥ 4.5 : 1','Saare text ka contrast ≥ 4.5 : 1','सारे पाठ का कंट्रास्ट ≥ 4.5 : 1'),button:t3('Uses a real <button>, no clickable div','Asli <button>, clickable div nahi','असली <button>, क्लिक वाला div नहीं'),speed:t3('Image has width, height and loading="lazy"','Image par width, height aur loading="lazy"','चित्र पर width, height और loading="lazy"')},
+  start:{html:`<h1>Library</h1>
+<img src="${IMG}">
+<p class="note">Books are due back in 14 days.</p>
+<div class="btn" onclick="renew()">Renew book</div>`,css:`body{font-family:system-ui;margin:12px}
+.note{color:#bbb}
+.btn{background:#00C2B8;color:#fff;padding:10px;display:inline-block}`,js:`function renew(){ console.log('Renewed!'); }`},
+  fix:{html:`<h1>Library</h1>
+<img src="${IMG}" alt="Students reading in the school library" width="160" height="90" loading="lazy">
+<p class="note">Books are due back in 14 days.</p>
+<button id="renew" type="button">Renew book</button>`,css:`body{font-family:system-ui;margin:12px}
+.note{color:#444}
+button{background:#00796B;color:#fff;padding:10px;border:0;border-radius:8px;font:inherit}`,js:`document.querySelector('#renew').addEventListener('click', () => {
+  console.log('Renewed for 14 more days');
+});`}}];
+const FILES=['html','css','js'];
+// --- runs INSIDE the sandboxed preview only (never in this page) ---
+const BRIDGE=`(function(){var P=function(k,m){parent.postMessage({type:'wl-log',k:k,m:String(m).slice(0,400)},'*');};
+var S=function(a){return Array.prototype.map.call(a,function(x){try{return typeof x==='object'?JSON.stringify(x):String(x);}catch(e){return String(x);}}).join(' ');};
+console.log=function(){P('l',S(arguments));};console.info=console.log;console.warn=function(){P('e','⚠ '+S(arguments));};console.error=function(){P('e',S(arguments));};
+window.onerror=function(msg,src,line){P('e','✗ '+msg+(line?' (line '+line+')':''));return true;};
+window.addEventListener('unhandledrejection',function(e){P('e','✗ '+(e.reason&&e.reason.message||e.reason));e.preventDefault();});
+document.addEventListener('submit',function(e){e.preventDefault();var f=e.target,o=[];try{new FormData(f).forEach(function(v,k){o.push(k+'='+v);});}catch(x){}P('l','📨 Form submitted (demo, not sent): '+o.join(', '));},true);})();`;
+const CHECKER=`(function(){var Q=function(s){return document.querySelector(s);},A=function(s){return Array.prototype.slice.call(document.querySelectorAll(s));};
+function rgb(c){var m=c.match(/[\\d.]+/g)||[0,0,0,0];return [+m[0],+m[1],+m[2],m[3]==null?1:+m[3]];}
+function lum(c){var a=[c[0],c[1],c[2]].map(function(v){v/=255;return v<=0.03928?v/12.92:Math.pow((v+0.055)/1.055,2.4);});return 0.2126*a[0]+0.7152*a[1]+0.0722*a[2];}
+function bgOf(e){for(var a=e;a;a=a.parentElement){var c=rgb(getComputedStyle(a).backgroundColor);if(c[3]>0.5)return c;}return [255,255,255,1];}
+function ratio(e){var f=rgb(getComputedStyle(e).color),b=bgOf(e),l1=lum(f),l2=lum(b);return (Math.max(l1,l2)+0.05)/(Math.min(l1,l2)+0.05);}
+var R={
+ html:function(){return {landmarks:!!(Q('header')&&Q('nav')&&Q('main')&&Q('footer')),h1:A('h1').length===1&&!!Q('h2'),alt:A('img').length>0&&A('img').every(function(i){return (i.getAttribute('alt')||'').trim().length>0;})};},
+ form:function(){var f=Q('form');if(!f)return {labels:false,email:false,submit:false,valid:false};var F=A('form input:not([type=submit]):not([type=hidden]):not([type=button]), form select, form textarea');
+  var labels=F.length>0&&F.every(function(i){return i.labels&&i.labels.length>0;});var email=!!Q('form input[type=email]');var submit=!!Q('form button:not([type=button]):not([type=reset]), form input[type=submit]');
+  var empty=!f.checkValidity();F.forEach(function(i){if(i.tagName==='SELECT'){i.selectedIndex=Math.min(1,i.options.length-1);}else if(i.type==='email')i.value='asha@example.com';else if(i.type==='number')i.value='14';else i.value='Asha';});var full=f.checkValidity();
+  return {labels:labels,email:email,submit:submit,valid:empty&&full};},
+ css:function(w){var c=A('.card');var top=c.length?c[0].getBoundingClientRect().top:0;var first=c.filter(function(x){return Math.abs(x.getBoundingClientRect().top-top)<3;}).length;
+  var o={overflow:document.documentElement.scrollWidth<=innerWidth+1};if(w<500)o.phone=c.length>1&&first===1;else o.tablet=first>=2;return o;},
+ dom:function(){var b=Q('#like'),c=Q('#count');if(!b||!c)return {click:false};var n0=parseInt(c.textContent,10)||0;b.click();b.click();var n1=parseInt(c.textContent,10);return {click:n1===n0+2};},
+ json:function(){var li=A('#list li');return {items:li.length===5&&li.some(function(x){return /Maths/.test(x.textContent);})};},
+ a11y:function(){var im=A('img');var T=A('body *').filter(function(e){return Array.prototype.some.call(e.childNodes,function(n){return n.nodeType===3&&n.textContent.trim();});});
+  var bad=T.filter(function(e){return ratio(e)<4.5;});
+  return {alt:im.length>0&&im.every(function(i){return (i.getAttribute('alt')||'').trim().length>0;}),contrast:bad.length===0,button:!!Q('button')&&A('[onclick]').filter(function(e){return e.tagName!=='BUTTON';}).length===0,
+   speed:im.length>0&&im.every(function(i){return i.getAttribute('width')&&i.getAttribute('height')&&i.getAttribute('loading')==='lazy';}),_low:bad.map(function(e){return e.tagName.toLowerCase()+' '+ratio(e).toFixed(1)+':1';}).slice(0,3)};}};
+window.addEventListener('message',function(e){var d=e.data;if(!d||d.type!=='wl-check')return;var res={};try{res=R[d.mission]?R[d.mission](d.w):{};}catch(x){res={_err:x.message};}parent.postMessage({type:'wl-result',id:d.id,res:res},'*');});
+parent.postMessage({type:'wl-ready'},'*');})();`;
+// --- parent page ---
+let mi=0,file='html',code={},dev='phone',reqId=0,waiters={},readyFn=null,results={},done={};
+const cur=()=>M[mi];
+const scr=s=>String(s).replace(/<\/(script)/gi,'<\\/$1');
+function doc(){const c=code[cur().id];return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>'+String(c.css).replace(/<\/style/gi,'<\\/style')+'</style><script>'+BRIDGE+'var API_URL='+JSON.stringify('data:application/json,'+encodeURIComponent(JSON.stringify(TT)))+';<\/script></head><body>'+c.html+'<script>'+scr(c.js)+'\n<\/script><script>'+CHECKER+'<\/script></body></html>';}
+const fr=()=>K.$('#frame');
+function size(){const pv=K.$('#pv'),f=fr(),cw=pv.clientWidth,w=dev==='tablet'?700:Math.max(280,Math.min(320,cw)),s=Math.min(1,cw/w);f.style.width=w+'px';f.style.height=Math.round(340/s)+'px';f.style.transform='scale('+s+')';f.style.left=Math.max(0,(cw-w*s)/2)+'px';}
+function logLine(k,m){const L=K.$('#log');const d=K.el('div',{class:k});d.textContent=m;L.appendChild(d);while(L.children.length>40)L.firstChild.remove();L.scrollTop=L.scrollHeight;}
+addEventListener('message',e=>{if(e.source!==fr().contentWindow)return;const d=e.data||{};if(d.type==='wl-log')logLine(d.k==='e'?'e':'l',d.m);else if(d.type==='wl-ready'&&readyFn){const f=readyFn;readyFn=null;f();}else if(d.type==='wl-result'&&waiters[d.id]){waiters[d.id](d.res);delete waiters[d.id];}});
+function run(){return new Promise(res=>{K.$('#log').innerHTML='';readyFn=res;fr().srcdoc=doc();setTimeout(()=>{if(readyFn===res){readyFn=null;res();}},2500);K.emit('preview-run',{mission:cur().id});});}
+function ask(w){return new Promise(res=>{const id=++reqId;waiters[id]=res;fr().contentWindow.postMessage({type:'wl-check',mission:cur().id,w,id},'*');setTimeout(()=>{if(waiters[id]){delete waiters[id];res({});}},2000);});}
+function stat(m,c){const o={};if(m.id==='dom'){o.listener=/addEventListener\s*\(/.test(c.js)&&!/onclick\s*=/i.test(c.html);o.text=/textContent/.test(c.js)&&!/innerHTML/.test(c.js);}
+ if(m.id==='json'){o.fetch=/fetch\s*\(\s*API_URL/.test(c.js);o.errors=/\.catch\s*\(|catch\s*\(/.test(c.js);}return o;}
+async function check(){const m=cur(),c=code[m.id];let r={};
+ if(m.id==='css'){const keep=dev;dev='phone';size();await run();await K.sleep(150);const a=await ask(320);dev='tablet';size();await run();await K.sleep(150);const b=await ask(700);r={phone:!!a.phone,tablet:!!b.tablet,overflow:!!(a.overflow&&b.overflow)};dev=keep;setDev(dev);}
+ else{await run();if(m.id==='json')await new Promise(x=>setTimeout(x,500));r=await ask(dev==='tablet'?700:320);}
+ Object.assign(r,stat(m,c));results[m.id]=r;const keys=Object.keys(m.checks),passed=keys.filter(k=>r[k]===true).length;drawChecks();
+ K.emit('mission-checked',{mission:m.id,passed,total:keys.length});
+ if(passed===keys.length){done[m.id]=1;drawTabs();K.check(m.ev,{mission:m.id});}else K.toast(K.t(t3(passed+' of '+keys.length+' checks pass — keep going',passed+'/'+keys.length+' checks pass — lage raho',keys.length+' में से '+passed+' जाँच पास — जारी रखो')));
+ if(r._low&&r._low.length)logLine('e','Low contrast: '+r._low.join(', '));}
+function drawChecks(){const m=cur(),r=results[m.id];K.$('#mTitle').textContent=K.t(m.name);K.$('#mTask').textContent=K.t(m.task);
+ K.$('#checks').innerHTML=Object.keys(m.checks).map(k=>{const st=r?(r[k]===true?'pass':'fail'):'';return `<div class="ckl ${st}"><span class="ck">${st==='pass'?'✓':st==='fail'?'✗':''}</span><div>${K.esc(K.t(m.checks[k]))}</div></div>`;}).join('');}
+function drawTabs(){K.$$('#missions button').forEach((b,i)=>{b.classList.toggle('on',i===mi);b.classList.toggle('done',!!done[M[i].id]);b.textContent=K.t(M[i].name);});
+ K.$$('#files button').forEach(b=>b.classList.toggle('on',b.dataset.f===file));}
+function loadFile(){K.$('#code').value=code[cur().id][file];const c=code[cur().id];K.$('#size').textContent=K.t(t3('Page size: ','Page size: ','पेज आकार: '))+(new Blob([c.html,c.css,c.js]).size)+' bytes';}
+function go(id){const i=M.findIndex(m=>m.id===id);mi=i<0?0:i;if(!code[cur().id])code[cur().id]=Object.assign({},cur().start);file='html';drawTabs();drawChecks();loadFile();run();}
+function setDev(d){dev=d;K.$$('#dev button').forEach(b=>b.classList.toggle('on',b.dataset.w===d));size();}
+function fix(){const m=cur();Object.assign(code[m.id],m.start,code[m.id],m.fix);for(const f of FILES)if(m.fix[f]!=null)code[m.id][f]=m.fix[f];loadFile();run();K.emit('fix-shown',{mission:m.id});}
+(async()=>{K.lab='web-lab';K.header(t3('Web Dev Lab','Web Dev Lab','वेब डेव लैब'),t3('Write HTML, CSS and JS — see it live','HTML, CSS aur JS likho — live dekho','HTML, CSS और JS लिखो — लाइव देखो'));
+ const cfg=await K.boot({mission:'html'});
+ K.$('#missions').innerHTML=M.map(m=>`<button class="btn" data-m="${m.id}"></button>`).join('');K.$$('#missions button').forEach(b=>b.onclick=()=>go(b.dataset.m));
+ K.$('#files').innerHTML=FILES.map(f=>`<button class="btn" data-f="${f}">${f.toUpperCase()}</button>`).join('');K.$$('#files button').forEach(b=>b.onclick=()=>{file=b.dataset.f;drawTabs();loadFile();});
+ let tm;K.$('#code').addEventListener('input',e=>{code[cur().id][file]=e.target.value;clearTimeout(tm);tm=setTimeout(()=>{loadFile();run();},700);});
+ K.$('#run').onclick=run;K.$('#chk').onclick=check;K.$('#fix').onclick=fix;K.$('#reset').onclick=()=>{code[cur().id]=Object.assign({},cur().start);delete results[cur().id];drawChecks();loadFile();run();};
+ K.$$('#dev button').forEach(b=>b.onclick=()=>setDev(b.dataset.w));addEventListener('resize',size);
+ K.onLang(()=>{drawTabs();drawChecks();loadFile();});setDev('phone');go(cfg.mission);
+ window.__w={go,fix,check,run,setDev,set:(f,v)=>{code[cur().id][f]=v;loadFile();},results:()=>results};})();
+</script>
+</body></html>

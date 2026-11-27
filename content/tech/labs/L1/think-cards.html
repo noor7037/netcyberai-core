@@ -1,0 +1,246 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0F766E">
+<title>Think-first cards · create, credit, AI and safety · Tech & AI Lab</title>
+<!-- Lab: think-cards (Level 1). Tara the parrot's sorting cards: read a card, choose a box, read why.
+     Decks (?mode= / config.mode): apps (draw / music / story) | credit | ai-art | voice (voice-clone scam calls) | news (is it true?) | report (tell, block, report, 1930) | helper (AI is a helper, not magic).
+     Defensive safety only. Deterministic, no eval, no network. Own work, MIT. -->
+<style>/* L1 lab kit (own work, MIT). Family App palette from src/lib/design-tokens.ts */
+:root{--royal:#1D4ED8;--sapphire:#002357;--grape:#8B3DFF;--violet:#4400F0;--tangerine:#FF7A1A;--coral:#FF6B57;--gold:#F5B90A;--turq:#14B8A6;--emerald:#0F766E;--cyan:#02CFF9;--slate:#1E293B;--off:#F9FAFB;--ink2:#475569;--r:18px;--sh:0 6px 18px rgba(30,41,59,.12),0 1px 3px rgba(30,41,59,.08)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:var(--off);color:var(--slate);font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans Devanagari",sans-serif;overscroll-behavior:none}
+body{background:transparent;-webkit-user-select:none;user-select:none;display:flex;flex-direction:column;min-height:100%;overflow-x:hidden}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;touch-action:manipulation}
+.kbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:8px;padding:10px 12px;background:linear-gradient(120deg,var(--sapphire),var(--royal) 60%,var(--grape));color:#fff;box-shadow:0 2px 10px rgba(0,35,87,.25)}
+.kbar{flex-wrap:wrap;row-gap:6px}
+.kbar h1{flex:1 1 9em;min-width:0;margin:0;font-size:16px;line-height:1.2;font-weight:800;letter-spacing:.2px;overflow-wrap:break-word}/* title never cut: controls move to a 2nd row when needed */
+.kctl{display:flex;align-items:center;gap:8px;margin-left:auto}
+.kbar .kemo{font-size:22px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.25))}
+.kpill{display:flex;background:rgba(255,255,255,.16);border-radius:999px;padding:3px}
+.kpill button{padding:5px 9px;border-radius:999px;font-size:12.5px;font-weight:700;color:#e0e7ff;min-height:32px}
+.kpill button[aria-pressed=true]{background:#fff;color:var(--royal)}
+.kstars{display:flex;align-items:center;gap:4px;background:rgba(255,255,255,.16);padding:6px 10px;border-radius:999px;font-weight:800;font-size:14px;min-width:54px;justify-content:center}
+.kstars.bump{animation:kbump .5s}
+@keyframes kbump{40%{transform:scale(1.35)}}
+.kgoal{margin:10px 12px 0;padding:10px 12px;border-radius:14px;background:#fff;box-shadow:var(--sh);display:flex;gap:10px;align-items:flex-start;font-size:14.5px}
+.kgoal b{color:var(--royal)}
+.kbtn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:46px;padding:10px 18px;border-radius:14px;font-weight:800;background:var(--royal);color:#fff;box-shadow:0 4px 0 #1239a8,var(--sh);transition:transform .08s}
+.kbtn:active{transform:translateY(3px);box-shadow:0 1px 0 #1239a8}
+.kbtn.alt{background:#fff;color:var(--royal);box-shadow:0 4px 0 #c7d2fe,var(--sh)}
+.kbtn.go{background:var(--turq);box-shadow:0 4px 0 #0d8a7c,var(--sh)}
+.kbtn.warn{background:var(--tangerine);box-shadow:0 4px 0 #c75a0c,var(--sh)}
+.kbtn[disabled]{opacity:.45;pointer-events:none}
+.ktoast{pointer-events:none;position:fixed;left:0;top:0;width:max-content;z-index:60;max-width:min(92vw,360px);padding:12px 16px;border-radius:16px;background:var(--slate);color:#fff;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,.3);text-align:center;line-height:1.35;font-size:15px;opacity:0;visibility:hidden;transform:scale(.9);transition:opacity .25s,transform .3s cubic-bezier(.2,1.4,.4,1),visibility 0s .3s}
+.ktoast.show{opacity:1;visibility:visible;transform:none;transition:opacity .25s,transform .3s cubic-bezier(.2,1.4,.4,1)}
+.ktoast.inline{position:static;display:block;width:auto;max-width:none;margin:10px 12px;grid-column:1/-1;flex:0 0 auto}
+.ktoast.good{background:var(--emerald)}.ktoast.bad{background:#b4321f}
+#kconf{position:fixed;inset:0;pointer-events:none;z-index:-1}/* behind content; inside the win dialog it sits behind the card */
+.kwin #kconf{position:absolute;z-index:0}.kwin>div{position:relative;z-index:1}
+.kwin{position:fixed;inset:0;z-index:65;display:none;align-items:center;justify-content:center;background:rgba(6,18,51,.55);backdrop-filter:blur(3px);padding:20px}
+.kwin.show{display:flex}
+.kwin>div{background:#fff;border-radius:24px;padding:22px;text-align:center;max-width:360px;box-shadow:0 20px 50px rgba(0,0,0,.35);animation:kpop .5s cubic-bezier(.2,1.5,.4,1)}
+.kwin .big{font-size:64px;line-height:1;animation:kspin 1.2s ease-out}
+.kwin h2{margin:10px 0 6px;font-size:22px}
+.kwin p{margin:0 0 14px;color:var(--ink2)}
+@keyframes kpop{from{transform:scale(.6);opacity:0}}
+@keyframes kspin{from{transform:rotateY(-540deg) scale(.4)}}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+.kvoice{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.16);font-size:17px;opacity:.6}
+.kvoice[aria-pressed=true]{background:#fff;opacity:1;box-shadow:0 0 0 3px rgba(255,255,255,.4)}
+</style>
+<style>
+main{flex:1;display:flex;flex-direction:column;gap:9px;padding:8px 10px 16px}
+.modes{display:flex;flex-wrap:wrap;gap:6px}
+.modes button{padding:7px 12px;border-radius:999px;background:#fff;box-shadow:var(--sh);font-weight:700;font-size:13px;min-height:36px;white-space:normal;text-align:center;max-width:100%}
+.modes button[aria-pressed=true]{background:#0F766E;color:#fff}
+.scen{font-size:14px;background:#fff7ed;border-left:4px solid #f97316;padding:8px 10px;border-radius:10px;font-weight:700}
+.stack{position:relative;perspective:800px;min-height:190px}
+.card{background:#fff;border-radius:22px;box-shadow:0 10px 26px rgba(15,23,42,.16);padding:16px 14px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;animation:flip .45s cubic-bezier(.3,1.3,.5,1)}
+@keyframes flip{from{transform:rotateY(-70deg) translateY(10px);opacity:0}to{transform:none;opacity:1}}
+.card .e{font-size:54px;line-height:1;animation:bob 2.4s ease-in-out infinite}@keyframes bob{50%{transform:translateY(-5px)}}
+.card .tx{font-size:17px;font-weight:800;color:#0f172a;overflow-wrap:anywhere}
+.card.ok{outline:4px solid #22c55e}.card.no{outline:4px solid #f59e0b}
+.bins{display:flex;flex-wrap:wrap;gap:8px}
+.bins button{flex:1 1 120px;min-height:56px;border-radius:16px;font-weight:900;font-size:15px;color:#fff;box-shadow:0 4px 0 rgba(0,0,0,.2);padding:8px 10px;white-space:normal}
+.bins button:nth-child(1){background:#0F766E}.bins button:nth-child(2){background:#b45309}.bins button:nth-child(3){background:#7c3aed}
+.bins.three button:nth-child(2){background:#db2777}
+.bins button[disabled]{opacity:.5}
+.fb{border-radius:14px;padding:10px 12px;font-size:14.5px;display:flex;gap:10px;align-items:flex-start}
+.fb.ok{background:#dcfce7}.fb.no{background:#fef3c7}
+.fb .h{font-weight:900;display:block}
+.prog{display:flex;gap:5px;justify-content:center;flex-wrap:wrap}.prog i{width:11px;height:11px;border-radius:50%;background:#cbd5e1}.prog i.r{background:#22c55e}.prog i.w{background:#f59e0b}
+.go{display:flex;flex-wrap:wrap;gap:8px}.go .kbtn{flex:1 1 120px}
+@media (orientation:landscape) and (max-height:520px){main{display:grid;grid-template-columns:1fr 1fr;align-items:start}.modes,#goal{grid-column:1/-1}.stack{min-height:150px}.card .e{font-size:40px}}
+</style></head><body>
+<main>
+  <div class="modes" id="modes" role="tablist"></div>
+  <div class="kgoal" id="goal" style="margin:0"></div>
+  <div style="display:flex;flex-direction:column;gap:9px"><div class="scen" id="scen" hidden></div><div class="prog" id="prog"></div><div class="stack" id="stack"></div></div>
+  <div style="display:flex;flex-direction:column;gap:9px"><div class="bins" id="bins"></div><div id="fbHost"></div><div class="go" id="go"></div></div>
+</main>
+<script>// L1 lab kit (own work, MIT): language, header, stars, toast, confetti, sounds, drag, lesson config, completion events.
+(function (g) {
+  const q = new URLSearchParams(location.search);
+  const LANGS = ['hinglish', 'en', 'hi'];
+  let lang = q.get('lang') || (function () { try { return localStorage.getItem('techlab.lang'); } catch (e) { return null; } })() || 'hinglish';
+  if (!LANGS.includes(lang)) lang = 'hinglish';
+  const t = (o) => (o == null ? '' : typeof o === 'string' ? o : Array.isArray(o) ? (o[{ en: 0, hi: 1, hinglish: 2 }[lang]] ?? o[0]) : (o[lang] ?? o.hinglish ?? o.en));
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const el = (tag, attrs = {}, html) => { const e = document.createElement(tag); for (const k in attrs) { if (k === 'class') e.className = attrs[k]; else if (k === 'style') e.style.cssText = attrs[k]; else if (k.startsWith('on')) e.addEventListener(k.slice(2), attrs[k]); else e.setAttribute(k, attrs[k]); } if (html != null) e.innerHTML = html; return e; };
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+  const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const listeners = [];
+  const cls = +(q.get('class') || 0);
+  let voice = q.get('voice') ? q.get('voice') === '1' : (q.has('class') && cls <= 2);
+  const say = (o) => { if (!voice || !g.speechSynthesis) return; try { const txt = t(o).replace(/[\u{1F000}-\u{1FAFF}\u2600-\u27BF]/gu, ''); speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(txt); u.lang = lang === 'hi' ? 'hi-IN' : 'en-IN'; const v = speechSynthesis.getVoices().find((v) => v.lang === u.lang) || speechSynthesis.getVoices().find((v) => v.lang.startsWith(lang === 'hi' ? 'hi' : 'en')); if (v) u.voice = v; u.rate = cls <= 0 && q.has('class') ? .85 : .95; speechSynthesis.speak(u); } catch (e) {} };
+  const K = { q, t, $, $$, el, esc, reduced, say, get voice() { return voice; }, get lang() { return lang; }, stars: 0,
+    onLang(fn) { listeners.push(fn); },
+    setLang(l) { lang = l; try { localStorage.setItem('techlab.lang', l); } catch (e) {} document.documentElement.lang = l === 'hi' ? 'hi' : 'en'; $$('.kpill button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.l === l)); listeners.forEach((f) => f(l)); },
+    header(title, emoji) {
+      const bar = el('header', { class: 'kbar' });
+      bar.innerHTML = `<span class="kemo" aria-hidden="true">${emoji}</span><h1 id="ktitle"></h1><div class="kctl"><div class="kpill" role="group" aria-label="Language">${[['hinglish', 'Hing'], ['en', 'EN'], ['hi', 'हिं']].map(([l, n]) => `<button data-l="${l}" aria-pressed="${l === lang}">${n}</button>`).join('')}</div><button class="kvoice" id="kvoice" aria-label="Read aloud" aria-pressed="${voice}">🔊</button><div class="kstars" aria-live="polite">⭐ <span id="kstarn">0</span></div></div>`;
+      document.body.prepend(bar); if (window.ResizeObserver) new ResizeObserver(() => document.documentElement.style.setProperty('--kbar-h', bar.offsetHeight + 'px')).observe(bar);
+      const upd = () => { $('#ktitle').textContent = t(title); document.title = t(title) + ' · Tech & AI Lab'; };
+      upd(); listeners.push(upd);
+      $$('.kpill button', bar).forEach((b) => b.addEventListener('click', () => K.setLang(b.dataset.l)));
+      $('#kvoice', bar).addEventListener('click', (e) => { voice = !voice; e.currentTarget.setAttribute('aria-pressed', voice); if (voice) { const gl = $('#goal'); say(gl ? gl.textContent : title); } else if (g.speechSynthesis) speechSynthesis.cancel(); });
+      setTimeout(() => { const gl = $('#goal'); if (gl) new MutationObserver(() => say(gl.textContent)).observe(gl, { childList: true, subtree: true }); }, 0);
+      document.body.append(el('div', { class: 'ktoast', id: 'ktoast', role: 'status' }), el('canvas', { id: 'kconf' }), el('div', { class: 'kwin', id: 'kwin', 'data-ov-modal': '', role: 'dialog', 'aria-modal': 'true' }, '<div><div class="big" id="kwinE">🏆</div><h2 id="kwinH"></h2><p id="kwinP"></p><button class="kbtn" id="kwinB"></button></div>'));
+      document.addEventListener('pointerdown', (ev) => { K._lastTap = ev.target; K._tapAt = [ev.clientX, ev.clientY + scrollY]; }, true); let rp = 0; const re = () => { const e = K._tel || (K._tel = $('#ktoast')); if (!e || !e.classList.contains('show') || rp) return; rp = 1; requestAnimationFrame(() => { rp = 0; K._place(); }); }; K._re = re;
+      addEventListener('scroll', re, { passive: true }); addEventListener('resize', re); document.addEventListener('animationend', re, true); document.addEventListener('transitionend', re, true); K._mo = new MutationObserver((rs) => { const e = K._tel || (K._tel = $('#ktoast')); if (rs.some((r) => !e.contains(r.target))) re(); });
+      $('#kwinB').addEventListener('click', () => { $('#kwin').classList.remove('show'); K._winCb && K._winCb(); });
+    },
+    star(n = 1) { K.stars += n; const s = $('#kstarn'); if (s) { s.textContent = K.stars; s.parentElement.classList.remove('bump'); void s.offsetWidth; s.parentElement.classList.add('bump'); } },
+    // Toast never covers text: it floats in a free band of the screen (bottom first); with no free band it drops into the page
+    // flow under what the child just tapped (pushes content down). Closes on its own (2.5 s by default).
+    toast(msg, kind = '', ms = 2500) { const e = K._tel || (K._tel = $('#ktoast')); clearTimeout(K._tt); clearInterval(K._ti); if (e.classList.contains('inline')) document.body.append(e);
+      e.className = 'ktoast ' + kind; e._spot = null; e.textContent = t(msg); say(msg); e.style.left = e.style.top = '0px'; e.classList.add('show'); K._place(); K._ti = setInterval(K._place, 200); K._mo && K._mo.observe(document.body, { subtree: true, childList: true, attributes: true, characterData: true });
+      K._tt = setTimeout(() => { clearInterval(K._ti); K._mo && K._mo.disconnect(); e.classList.remove('show'); setTimeout(() => { if (!e.classList.contains('show') && e.classList.contains('inline')) { e.classList.remove('inline'); document.body.append(e); } }, 320); }, ms); },
+    _place() { const e = K._tel || (K._tel = $('#ktoast')); if (!e.classList.contains('show')) return; if (!e.isConnected) { e.classList.remove('inline'); document.body.append(e); } if (e.classList.contains('inline')) return;
+      const vw = document.documentElement.clientWidth, vh = innerHeight, w = e.offsetWidth, h = e.offsetHeight, m = 8; let top = m; const bar = $('.kbar'); if (bar) top = Math.max(top, bar.getBoundingClientRect().bottom + m);
+      const obs = [], rg = document.createRange(), tw = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); let n;
+      while ((n = tw.nextNode())) { if (!n.nodeValue.trim()) continue; const p = n.parentElement; if (!p || e.contains(p) || /^(SCRIPT|STYLE)$/.test(p.tagName)) continue; rg.selectNodeContents(n); for (const q of rg.getClientRects()) if (q.width >= 1 && q.bottom > 0 && q.top < vh) obs.push(q); }
+      $$('input,select,textarea,button,a[href],[role=button]').filter((x) => !e.contains(x)).forEach((x) => { const q = x.getBoundingClientRect(); if (q.width && q.bottom > 0 && q.top < vh) obs.push(q); });
+      const free = (x, y) => !obs.some((q) => q.left < x + w + 4 && q.right > x - 4 && q.top < y + h + 4 && q.bottom > y - 4);
+      let s = e._spot && free(e._spot.x, e._spot.y) ? e._spot : null;
+      if (!s) outer: for (let y = vh - h - m; y >= top; y -= 6) for (const x of [(vw - w) / 2, m, vw - w - m]) if (free(x, y)) { s = { x, y }; break outer; }
+      if (s) { e._spot = s; e.style.left = s.x + 'px'; e.style.top = s.y + 'px'; return; }
+      e._spot = null; e.classList.add('inline'); e.style.left = e.style.top = '';
+      let a = K._lastTap && K._lastTap.isConnected && !e.contains(K._lastTap) ? K._lastTap : null; if (!a && K._tapAt) { const y = K._tapAt[1] - scrollY; if (y > 0 && y < innerHeight) a = document.elementFromPoint(K._tapAt[0], y); } if (!a || e.contains(a)) a = $('main') || document.body.lastElementChild;
+      // never drop the note inside a 3D scene, a transformed, positioned-out or clipping box
+      const boxedIn = (a0) => { for (let p = a0; p && p !== document.body; p = p.parentElement) { const c = getComputedStyle(p); if (c.transform !== 'none' || c.transformStyle === 'preserve-3d' || c.perspective !== 'none' || c.position === 'absolute' || c.position === 'fixed' || (p !== a0 && c.overflow !== 'visible')) return true; } return false; };
+      while (a.parentElement && a.parentElement !== document.body) { const d = getComputedStyle(a.parentElement), me = getComputedStyle(a);
+        if (me.display !== 'inline' && !(a instanceof SVGElement) && (d.display === 'block' || d.display === 'flow-root' || d.display === 'grid' || (d.display === 'flex' && d.flexDirection.startsWith('column'))) && a.getBoundingClientRect().width >= Math.min(260, innerWidth * 0.6) && !boxedIn(a)) break; a = a.parentElement; }
+      a.after(e); e.scrollIntoView({ block: 'nearest' }); },
+    win(head, body, btn, emoji = '🏆', cb) { $('#kwinE').textContent = emoji; $('#kwinH').textContent = t(head); $('#kwinP').textContent = t(body); $('#kwinB').textContent = t(btn || ['Play again', 'फिर खेलो', 'Phir khelo']); K._winCb = cb; $('#kwin').classList.add('show'); K.confetti(); K.sfx('win'); say(t(head) + '. ' + t(body)); },
+    done(lab, mode, result) { const msg = { type: 'techlab:lab-complete', lab, mode, result, stars: K.stars }; try { parent !== window && parent.postMessage(msg, '*'); } catch (e) {} g.__labResult = msg; },
+    confetti() { if (reduced()) return; const c = $('#kconf'), x = c.getContext('2d'); const wn = $('#kwin'); if (wn.classList.contains('show')) wn.prepend(c); else document.body.append(c); const W = c.width = innerWidth, H = c.height = innerHeight; const cols = ['#1D4ED8', '#8B3DFF', '#FF7A1A', '#F5B90A', '#14B8A6', '#FF6B57', '#02CFF9']; const P = Array.from({ length: 90 }, () => ({ x: W / 2, y: H / 2.2, vx: (Math.random() - .5) * 14, vy: -Math.random() * 14 - 4, r: Math.random() * 6 + 4, c: cols[Math.random() * cols.length | 0], a: Math.random() * 6, va: (Math.random() - .5) * .4 })); let f = 0; (function tick() { x.clearRect(0, 0, W, H); P.forEach((p) => { p.vy += .45; p.x += p.vx; p.y += p.vy; p.a += p.va; x.save(); x.translate(p.x, p.y); x.rotate(p.a); x.fillStyle = p.c; x.fillRect(-p.r / 2, -p.r / 4, p.r, p.r / 2); x.restore(); }); if (++f < 110) requestAnimationFrame(tick); else x.clearRect(0, 0, W, H); })(); },
+    _ac: null,
+    sfx(kind) { try { const ac = K._ac || (K._ac = new (g.AudioContext || g.webkitAudioContext)()); const n = { good: [[660, .07], [880, .1]], bad: [[220, .15]], tap: [[520, .04]], win: [[523, .1], [659, .1], [784, .1], [1047, .22]], move: [[400, .03]] }[kind] || [[500, .05]]; let t0 = ac.currentTime; n.forEach(([f, d]) => { const o = ac.createOscillator(), gn = ac.createGain(); o.type = kind === 'bad' ? 'sawtooth' : 'triangle'; o.frequency.value = f; gn.gain.setValueAtTime(.0001, t0); gn.gain.exponentialRampToValueAtTime(.18, t0 + .01); gn.gain.exponentialRampToValueAtTime(.0001, t0 + d); o.connect(gn).connect(ac.destination); o.start(t0); o.stop(t0 + d + .02); t0 += d; }); } catch (e) {} },
+    // Pointer drag: el follows finger; onDrop(el, x, y) returns true to accept, else it flies back.
+    draggable(node, onDrop, onStart) {
+      node.style.touchAction = 'none';
+      node.addEventListener('pointerdown', (ev) => {
+        if (node.dataset.locked) return; ev.preventDefault(); node.setPointerCapture(ev.pointerId); onStart && onStart(node);
+        const r = node.getBoundingClientRect(), ox = ev.clientX - r.left, oy = ev.clientY - r.top; const ghost = node.cloneNode(true);
+        ghost.style.cssText += `;position:fixed;left:${r.left}px;top:${r.top}px;width:${r.width}px;height:${r.height}px;margin:0;z-index:50;pointer-events:none;transform:scale(1.08) rotate(-3deg);box-shadow:0 14px 30px rgba(0,0,0,.25);transition:none`; ghost.classList.add('dragging'); document.body.append(ghost); node.style.opacity = '.25'; K.sfx('tap');
+        const mv = (e) => { ghost.style.left = e.clientX - ox + 'px'; ghost.style.top = e.clientY - oy + 'px'; K._hover && K._hover(e.clientX, e.clientY); };
+        const up = (e) => { node.removeEventListener('pointermove', mv); node.removeEventListener('pointerup', up); node.removeEventListener('pointercancel', up); K._hover && K._hover(-1, -1);
+          const ok = onDrop(node, e.clientX, e.clientY); if (ok) { ghost.remove(); node.style.opacity = ''; } else { ghost.style.transition = 'left .3s, top .3s, transform .3s'; ghost.style.left = r.left + 'px'; ghost.style.top = r.top + 'px'; ghost.style.transform = 'none'; setTimeout(() => { ghost.remove(); node.style.opacity = ''; }, 300); } };
+        node.addEventListener('pointermove', mv); node.addEventListener('pointerup', up); node.addEventListener('pointercancel', up);
+      });
+    },
+    hit(node, x, y, pad = 10) { const r = node.getBoundingClientRect(); return x >= r.left - pad && x <= r.right + pad && y >= r.top - pad && y <= r.bottom + pad; },
+    async lessonConfig() { const p = q.get('lesson'); const cfg = {}; if (p) { try { const L = await (await fetch(p)).json(); Object.assign(cfg, L.play && L.play.config, { goal: L.play && L.play.goal }); } catch (e) { console.warn('lesson config not loaded', e); } } for (const k of ['mode', 'level', 'class']) if (q.get(k)) cfg[k] = q.get(k); return cfg; },
+    shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.random() * (i + 1) | 0; [a[i], a[j]] = [a[j], a[i]]; } return a; },
+  };
+  document.documentElement.lang = lang === 'hi' ? 'hi' : 'en';
+  g.K = K;
+})(window);
+</script>
+<script>
+(async function () {
+const { t, $, el, esc } = K; const L = (en, hi, hg) => [en, hi, hg];
+K.header(['Tara’s think-first cards', 'तारा के सोचो-पहले कार्ड', 'Tara ke think-first cards'], '🦜');
+const cfg = await K.lessonConfig();
+const C = (e, tx, a, why) => ({ e, tx, a, why });
+const OKB = L('✅ Fair', '✅ सही', '✅ Fair'), NOB = L('❌ Not fair', '❌ ग़लत', '❌ Fair nahin');
+const D = {
+  apps: { n: L('Making apps', 'बनाने वाले ऐप', 'Banane wale apps'), goal: L('Which kind of app would you use? Sort each idea into a drawing, music or story app.', 'तुम कौन सा ऐप इस्तेमाल करोगे? हर विचार को चित्र, संगीत या कहानी ऐप में छाँटो।', 'Tum kaun sa app use karoge? Har idea ko drawing, music ya story app mein chhaanto.'),
+    bins: [L('🎨 Drawing app', '🎨 चित्र ऐप', '🎨 Drawing app'), L('🎵 Music app', '🎵 संगीत ऐप', '🎵 Music app'), L('📖 Story app', '📖 कहानी ऐप', '📖 Story app')], cards: [
+    C('🦚', L('Colour a picture of a peacock', 'मोर का चित्र रँगो', 'Mor ki picture rango'), 0, L('Colours, brushes and an eraser live in a drawing app.', 'रंग, ब्रश और रबर चित्र ऐप में होते हैं।', 'Rang, brush aur eraser drawing app mein hote hain.')),
+    C('🥁', L('Make a drum beat for a dance', 'नाच के लिए ढोल की ताल बनाओ', 'Dance ke liye dhol ki beat banao'), 1, L('Beats, tunes and instruments live in a music app.', 'ताल, धुन और वाद्य संगीत ऐप में होते हैं।', 'Beats, dhun aur instruments music app mein hote hain.')),
+    C('📚', L('Make a comic with pages and speech bubbles', 'पन्नों और बोलती गुब्बारों वाली कॉमिक बनाओ', 'Pages aur speech bubbles wali comic banao'), 2, L('Pages, characters and words are what a story app is for.', 'पन्ने, पात्र और शब्द कहानी ऐप के काम हैं।', 'Pages, characters aur words story app ke kaam hain.')),
+    C('🎹', L('Play a tune on a phone piano', 'फ़ोन के पियानो पर धुन बजाओ', 'Phone piano par dhun bajao'), 1, L('A piano keyboard on screen is a music app.', 'स्क्रीन पर पियानो संगीत ऐप है।', 'Screen par piano music app hai.')),
+    C('🌈', L('Mix colours and paint a rainbow', 'रंग मिलाकर इंद्रधनुष बनाओ', 'Rang mila kar rainbow banao'), 0, L('Mixing colours is drawing work.', 'रंग मिलाना चित्र का काम है।', 'Rang milana drawing ka kaam hai.')),
+    C('🐘', L('Write what happens next to Gajju the elephant, page by page', 'गज्जू हाथी के साथ आगे क्या हुआ, पन्ना-दर-पन्ना लिखो', 'Gajju haathi ke saath aage kya hua, page by page likho'), 2, L('A tale with a beginning, middle and end belongs in a story app.', 'शुरुआत, बीच और अंत वाली कहानी, कहानी ऐप में।', 'Shuruaat, beech aur ant wali kahani, story app mein.')),
+  ] },
+  credit: { n: L('Who made it?', 'किसने बनाया?', 'Kisne banaya?'), goal: L('Is it fair to the person who made it? Sort each action.', 'क्या बनाने वाले के साथ यह सही है? हर काम छाँटो।', 'Kya banane wale ke saath yeh fair hai? Har kaam chhaanto.'), bins: [OKB, NOB], cards: [
+    C('🖼️', L('Use a "free to use" photo in your project and write who took it', '"मुफ़्त इस्तेमाल" वाली फ़ोटो प्रोजेक्ट में लगाओ और लिखो किसने खींची', '"Free to use" photo project mein lagao aur likho kisne kheenchi'), 0, L('Free-to-use plus a credit line is fair. That is what Creative Commons is for.', 'मुफ़्त इस्तेमाल और साथ में श्रेय लिखना सही है। क्रिएटिव कॉमन्स इसी के लिए है।', 'Free-to-use aur saath mein credit likhna fair hai. Creative Commons isi ke liye hai.')),
+    C('✏️', L('Copy your friend’s drawing and say you made it', 'दोस्त का चित्र नक़ल करके कहो तुमने बनाया', 'Dost ki drawing copy karke kaho tumne banayi'), 1, L('Taking credit for someone else’s work is not fair. Ask them, and say it is theirs.', 'किसी और के काम का श्रेय लेना ठीक नहीं। उनसे पूछो, और कहो यह उनका है।', 'Kisi aur ke kaam ka credit lena theek nahin. Unse poochho, aur kaho yeh unka hai.')),
+    C('🏷️', L('Write "Drawing by Meena" under Meena’s picture in the class book', 'कक्षा की किताब में मीना के चित्र के नीचे "चित्र: मीना" लिखो', 'Class book mein Meena ki picture ke neeche "Drawing by Meena" likho'), 0, L('Giving credit tells everyone who the maker is.', 'श्रेय देने से सबको पता चलता है किसने बनाया।', 'Credit dene se sabko pata chalta hai kisne banaya.')),
+    C('📹', L('Download someone’s video and post it as yours', 'किसी का वीडियो डाउनलोड करके अपना बताकर डालो', 'Kisi ka video download karke apna bata kar daalo'), 1, L('The video belongs to its maker. Reposting it as yours breaks copyright.', 'वीडियो बनाने वाले का है। उसे अपना बताकर डालना कॉपीराइट तोड़ना है।', 'Video banane wale ka hai. Use apna bata kar daalna copyright todna hai.')),
+    C('🎶', L('Use music marked CC0 in your video and still thank the creator', 'अपने वीडियो में CC0 वाला संगीत लगाओ और फिर भी बनाने वाले को धन्यवाद दो', 'Apne video mein CC0 wala music lagao aur phir bhi creator ko thank you do'), 0, L('CC0 means anyone may use it. Saying thanks is still kind.', 'CC0 मतलब कोई भी इस्तेमाल कर सकता है। धन्यवाद कहना फिर भी अच्छा है।', 'CC0 matlab koi bhi use kar sakta hai. Thank you kehna phir bhi achha hai.')),
+    C('📕', L('Copy a whole story from a book and put your name on it', 'किताब से पूरी कहानी नक़ल करके उस पर अपना नाम लिखो', 'Book se poori kahani copy karke us par apna naam likho'), 1, L('That is called plagiarism. Write your own story, or say which book it came from.', 'इसे साहित्यिक चोरी कहते हैं। अपनी कहानी लिखो, या बताओ किस किताब से ली।', 'Ise plagiarism kehte hain. Apni kahani likho, ya batao kis book se li.')),
+  ] },
+  'ai-art': { n: L('AI pictures', 'AI चित्र', 'AI pictures'), goal: L('AI can draw a picture from words. Is each use a good idea or not OK?', 'AI शब्दों से चित्र बना सकता है। हर इस्तेमाल अच्छा है या ठीक नहीं?', 'AI words se picture bana sakta hai. Har use achha hai ya theek nahin?'), bins: [L('👍 Good idea', '👍 अच्छा विचार', '👍 Achha idea'), L('🚫 Not OK', '🚫 ठीक नहीं', '🚫 Theek nahin')], cards: [
+    C('🐉', L('With a grown-up, ask AI for a dragon picture for your story and write "made with AI"', 'बड़े के साथ, कहानी के लिए AI से ड्रैगन का चित्र माँगो और लिखो "AI से बना"', 'Bade ke saath, story ke liye AI se dragon picture maango aur likho "made with AI"'), 0, L('Being honest that AI made it is the right thing.', 'सच बताना कि AI ने बनाया, सही बात है।', 'Sach batana ki AI ne banaya, sahi baat hai.')),
+    C('🤳', L('Make a fake photo of a classmate doing something silly and share it', 'किसी सहपाठी की बेवकूफ़ी करते नक़ली फ़ोटो बनाकर भेजो', 'Kisi classmate ki silly cheez karte fake photo bana kar bhejo'), 1, L('Fake pictures of real people can hurt and embarrass them. Never do it.', 'असली लोगों की नक़ली तस्वीरें उन्हें दुख और शर्मिंदगी दे सकती हैं। कभी मत करो।', 'Asli logon ki fake pictures unhe dukh aur sharmindagi de sakti hain. Kabhi mat karo.')),
+    C('💡', L('Look at AI pictures for ideas, then draw your own', 'विचारों के लिए AI चित्र देखो, फिर अपना बनाओ', 'Ideas ke liye AI pictures dekho, phir apna banao'), 0, L('Using AI to spark ideas and then creating yourself is great.', 'AI से विचार लेकर ख़ुद बनाना बढ़िया है।', 'AI se idea le kar khud banana badhiya hai.')),
+    C('📸', L('Tell everyone an AI picture is a real photo', 'सबको बताओ कि AI चित्र असली फ़ोटो है', 'Sabko batao ki AI picture asli photo hai'), 1, L('That fools people. AI pictures can look real but did not happen.', 'इससे लोग धोखा खाते हैं। AI चित्र असली दिख सकते हैं पर वैसा हुआ नहीं।', 'Isse log dhokha khaate hain. AI pictures asli dikh sakti hain par waisa hua nahin.')),
+    C('🧑‍🏫', L('Ask a grown-up before using an AI picture app', 'AI चित्र ऐप इस्तेमाल करने से पहले बड़े से पूछो', 'AI picture app use karne se pehle bade se poochho'), 0, L('Many AI apps are for ages 13 and up. A grown-up helps you use them safely.', 'कई AI ऐप 13 साल और उससे बड़ों के लिए हैं। बड़े तुम्हें सुरक्षित इस्तेमाल में मदद करते हैं।', 'Kai AI apps 13 saal aur usse badon ke liye hain. Bade tumhe safely use karne mein madad karte hain.')),
+    C('🖼️', L('Upload a friend’s photo to an AI app without asking them', 'दोस्त से पूछे बिना उसकी फ़ोटो AI ऐप में डालो', 'Dost se poochhe bina uski photo AI app mein daalo'), 1, L('A person’s face is their private data. Always ask first.', 'किसी का चेहरा उसका निजी डेटा है। हमेशा पहले पूछो।', 'Kisi ka chehra uska private data hai. Hamesha pehle poochho.')),
+  ] },
+  voice: { n: L('AI voice calls', 'AI आवाज़ वाले कॉल', 'AI voice calls'), scen: L('📞 A call comes. The voice sounds just like Mama: "I’m in trouble! Tell me the OTP on your phone, quick, and don’t tell anyone!" AI can copy voices. What should you do?', '📞 एक कॉल आता है। आवाज़ बिल्कुल मम्मी जैसी है: "मैं मुसीबत में हूँ! जल्दी अपने फ़ोन का OTP बताओ, और किसी को मत बताना!" AI आवाज़ नक़ल कर सकता है। तुम्हें क्या करना चाहिए?', '📞 Ek call aata hai. Awaaz bilkul Mama jaisi hai: "Main musibat mein hoon! Jaldi apne phone ka OTP batao, aur kisi ko mat batana!" AI awaaz copy kar sakta hai. Tumhe kya karna chahiye?'),
+    goal: L('Sort each step: safe or unsafe?', 'हर कदम छाँटो: सुरक्षित या असुरक्षित?', 'Har step chhaanto: safe ya unsafe?'), bins: [L('✅ Safe step', '✅ सुरक्षित कदम', '✅ Safe step'), L('❌ Unsafe step', '❌ असुरक्षित कदम', '❌ Unsafe step')], cards: [
+    C('📴', L('Hang up and call Mama back on her saved number', 'फ़ोन काटो और मम्मी को उनके सेव नंबर पर वापस कॉल करो', 'Phone kaato aur Mama ko unke saved number par wapas call karo'), 0, L('Calling back on the number you know is the best check.', 'जाने-पहचाने नंबर पर वापस कॉल करना सबसे अच्छी जाँच है।', 'Jaane-pehchaane number par wapas call karna sabse achhi jaanch hai.')),
+    C('🔢', L('Tell the caller the OTP that just came on the phone', 'फ़ोन पर अभी आया OTP कॉल करने वाले को बताओ', 'Phone par abhi aaya OTP caller ko batao'), 1, L('Never share an OTP on a call, not even with a voice you know.', 'कॉल पर कभी OTP मत बताओ, जानी-पहचानी आवाज़ को भी नहीं।', 'Call par kabhi OTP mat batao, jaani-pehchaani awaaz ko bhi nahin.')),
+    C('🧑‍🍼', L('Tell a grown-up at home straight away', 'घर पर किसी बड़े को तुरंत बताओ', 'Ghar par kisi bade ko turant batao'), 0, L('A trusted grown-up can check and keep everyone safe.', 'भरोसेमंद बड़े जाँच करके सबको सुरक्षित रख सकते हैं।', 'Bharosemand bade jaanch karke sabko safe rakh sakte hain.')),
+    C('🔐', L('Ask for your family’s secret code word', 'अपने परिवार का गुप्त कोड शब्द पूछो', 'Apne family ka secret code word poochho'), 0, L('A code word that only your family knows beats a copied voice.', 'सिर्फ़ परिवार को पता कोड शब्द नक़ली आवाज़ को हरा देता है।', 'Sirf family ko pata code word fake awaaz ko hara deta hai.')),
+    C('💸', L('Send money quickly because the voice sounds worried', 'आवाज़ परेशान लगी, इसलिए जल्दी पैसे भेज दो', 'Awaaz pareshaan lagi, isliye jaldi paise bhej do'), 1, L('Scammers make you hurry so you don’t think. Slow down and check.', 'ठग जल्दबाज़ी कराते हैं ताकि तुम सोचो नहीं। रुको और जाँचो।', 'Thag jaldbaazi karaate hain taaki tum socho nahin. Ruko aur jaancho.')),
+    C('🤫', L('Keep the call a secret because the caller said so', 'कॉल को राज़ रखो क्योंकि कॉल करने वाले ने कहा', 'Call ko raaz rakho kyonki caller ne kaha'), 1, L('"Don’t tell anyone" is a big warning sign. Always tell a grown-up.', '"किसी को मत बताना" बड़ा ख़तरे का निशान है। हमेशा बड़े को बताओ।', '"Kisi ko mat batana" bada khatre ka nishaan hai. Hamesha bade ko batao.')),
+  ] },
+  news: { n: L('Is it true?', 'क्या यह सच है?', 'Kya yeh sach hai?'), goal: L('Should you stop and check this message, or does it come from a source you can trust?', 'क्या इस संदेश को रुककर जाँचना चाहिए, या यह भरोसेमंद जगह से आया है?', 'Kya is message ko ruk kar check karna chahiye, ya yeh bharosemand jagah se aaya hai?'), bins: [L('🔍 Stop and check', '🔍 रुको और जाँचो', '🔍 Ruko aur check karo'), L('👍 Trusted source', '👍 भरोसेमंद स्रोत', '👍 Trusted source')], cards: [
+    C('📨', L('"Forward this to 10 people or bad luck will come!"', '"इसे 10 लोगों को भेजो वरना बुरा होगा!"', '"Ise 10 logon ko bhejo warna bura hoga!"'), 0, L('Chain messages that scare you are not true. Don’t forward them.', 'डराने वाले चेन संदेश सच नहीं होते। आगे मत भेजो।', 'Daraane wale chain messages sach nahin hote. Aage mat bhejo.')),
+    C('🏫', L('A holiday notice on your school’s official website', 'स्कूल की आधिकारिक वेबसाइट पर छुट्टी की सूचना', 'School ki official website par chhutti ki notice'), 1, L('The school’s own website is the right place for school news.', 'स्कूल की अपनी वेबसाइट स्कूल की ख़बर के लिए सही जगह है।', 'School ki apni website school ki khabar ke liye sahi jagah hai.')),
+    C('🦈', L('A photo of a shark swimming on a city road after rain', 'बारिश के बाद शहर की सड़क पर तैरती शार्क की फ़ोटो', 'Baarish ke baad sheher ki sadak par tairti shark ki photo'), 0, L('This famous picture is fake: it was edited. Surprising photos need checking.', 'यह मशहूर तस्वीर नक़ली है: इसे एडिट किया गया था। चौंकाने वाली तस्वीरें जाँचनी चाहिए।', 'Yeh mashhoor picture fake hai: ise edit kiya gaya tha. Chaunkaane wali pictures check karni chahiye.')),
+    C('🌧️', L('A heavy rain alert from the India Meteorological Department', 'भारत मौसम विज्ञान विभाग की भारी बारिश की चेतावनी', 'India Meteorological Department ki heavy rain alert'), 1, L('IMD is the official weather service, so its alerts can be trusted.', 'IMD सरकारी मौसम सेवा है, इसलिए उसकी चेतावनी पर भरोसा कर सकते हैं।', 'IMD official weather service hai, isliye uski alert par bharosa kar sakte hain.')),
+    C('🧃', L('"DRINK THIS AND YOU WILL NEVER GET SICK!!!"', '"यह पियो और कभी बीमार नहीं होगे!!!"', '"YEH PIYO AUR KABHI BEEMAAR NAHIN HOGE!!!"'), 0, L('Big promises, shouting and no source are signs of fake news. Ask a doctor.', 'बड़े वादे, चिल्लाहट और कोई स्रोत नहीं — ये नक़ली ख़बर के निशान हैं। डॉक्टर से पूछो।', 'Bade vaade, chillahat aur koi source nahin — yeh fake news ke nishaan hain. Doctor se poochho.')),
+    C('👩‍🏫', L('Your teacher tells the class the sports day date', 'टीचर कक्षा को खेल दिवस की तारीख़ बताती हैं', 'Teacher class ko sports day ki date batati hain'), 1, L('A person who really knows is a trusted source.', 'जो सच में जानता है, वह भरोसेमंद स्रोत है।', 'Jo sach mein jaanta hai, woh trusted source hai.')),
+  ] },
+  report: { n: L('Tell, block, report', 'बताओ, ब्लॉक करो, रिपोर्ट करो', 'Batao, block karo, report karo'), scen: L('😟 Someone online keeps sending you mean, scary messages. What do you do?', '😟 कोई ऑनलाइन तुम्हें बार-बार बुरे, डरावने संदेश भेज रहा है। तुम क्या करोगे?', '😟 Koi online tumhe baar-baar bure, daraavne messages bhej raha hai. Tum kya karoge?'),
+    goal: L('Sort each action: do it, or don’t?', 'हर काम छाँटो: करो या मत करो?', 'Har kaam chhaanto: karo ya mat karo?'), bins: [L('✅ Do this', '✅ यह करो', '✅ Yeh karo'), L('❌ Don’t', '❌ मत करो', '❌ Mat karo')], cards: [
+    C('🧑‍🍼', L('Tell a trusted grown-up', 'किसी भरोसेमंद बड़े को बताओ', 'Kisi bharosemand bade ko batao'), 0, L('Telling is always step one. It is never your fault.', 'बताना हमेशा पहला कदम है। यह कभी तुम्हारी ग़लती नहीं।', 'Batana hamesha pehla step hai. Yeh kabhi tumhari galti nahin.')),
+    C('📸', L('Save a screenshot to show the grown-up', 'बड़े को दिखाने के लिए स्क्रीनशॉट सेव करो', 'Bade ko dikhane ke liye screenshot save karo'), 0, L('Proof helps grown-ups and the app take action.', 'सबूत से बड़े और ऐप कार्रवाई कर पाते हैं।', 'Saboot se bade aur app action le paate hain.')),
+    C('🚫', L('Block the person', 'उस व्यक्ति को ब्लॉक करो', 'Us person ko block karo'), 0, L('Blocking stops them from messaging you.', 'ब्लॉक करने से वे तुम्हें संदेश नहीं भेज पाते।', 'Block karne se woh tumhe message nahin bhej paate.')),
+    C('🚩', L('Use the app’s Report button', 'ऐप का रिपोर्ट बटन दबाओ', 'App ka Report button dabao'), 0, L('Reporting tells the app’s safety team so they can stop it.', 'रिपोर्ट करने से ऐप की सुरक्षा टीम को पता चलता है और वह रोक सकती है।', 'Report karne se app ki safety team ko pata chalta hai aur woh rok sakti hai.')),
+    C('😡', L('Reply with mean words', 'बुरे शब्दों से जवाब दो', 'Bure shabdon se jawaab do'), 1, L('Replying makes it worse. Don’t reply — tell, block, report.', 'जवाब देने से बात बिगड़ती है। जवाब मत दो — बताओ, ब्लॉक करो, रिपोर्ट करो।', 'Jawaab dene se baat bigadti hai. Jawaab mat do — batao, block karo, report karo.')),
+    C('🤐', L('Keep it a secret', 'इसे राज़ रखो', 'Ise raaz rakho'), 1, L('Secrets let bullies and scammers keep going. Tell someone.', 'राज़ रखने से बुली और ठग चलते रहते हैं। किसी को बताओ।', 'Raaz rakhne se bullies aur thag chalte rehte hain. Kisi ko batao.')),
+    C('☎️', L('If money was taken: with a grown-up, call 1930 or use cybercrime.gov.in', 'अगर पैसे गए: बड़े के साथ 1930 पर कॉल करो या cybercrime.gov.in इस्तेमाल करो', 'Agar paise gaye: bade ke saath 1930 par call karo ya cybercrime.gov.in use karo'), 0, L('1930 is India’s cyber fraud helpline. Calling fast helps stop the money.', '1930 भारत की साइबर धोखाधड़ी हेल्पलाइन है। जल्दी कॉल करने से पैसे रोकने में मदद मिलती है।', '1930 India ki cyber fraud helpline hai. Jaldi call karne se paise rokne mein madad milti hai.')),
+  ] },
+  helper: { n: L('AI: helper, not magic', 'AI: मददगार, जादू नहीं', 'AI: helper, magic nahin'), goal: L('AI is a helper, not magic. Which jobs can AI help with, and which need YOU to check or decide?', 'AI मददगार है, जादू नहीं। किन कामों में AI मदद कर सकता है, और किनमें तुम्हें जाँचना या तय करना है?', 'AI helper hai, magic nahin. Kin kaamon mein AI madad kar sakta hai, aur kinme TUMHE check ya decide karna hai?'), bins: [L('🤖 AI can help', '🤖 AI मदद कर सकता है', '🤖 AI madad kar sakta hai'), L('🧑 You check or decide', '🧑 तुम जाँचो या तय करो', '🧑 Tum check ya decide karo')], cards: [
+    C('📝', L('Suggest rhyming words for your poem', 'तुम्हारी कविता के लिए तुकबंदी वाले शब्द सुझाना', 'Tumhari poem ke liye rhyming words suggest karna'), 0, L('AI is good at word ideas. You still choose the ones you like.', 'AI शब्दों के विचार देने में अच्छा है। पसंद तुम ही चुनते हो।', 'AI words ke ideas dene mein achha hai. Pasand tum hi chunte ho.')),
+    C('🔎', L('Decide whether a fact from AI is really true', 'तय करना कि AI का बताया तथ्य सच में सही है', 'Decide karna ki AI ka bataya fact sach mein sahi hai'), 1, L('AI can make mistakes. Check in a book or ask a teacher.', 'AI ग़लती कर सकता है। किताब में देखो या टीचर से पूछो।', 'AI galti kar sakta hai. Book mein dekho ya teacher se poochho.')),
+    C('🌐', L('Translate "thank you" into Tamil', '"धन्यवाद" को तमिल में बदलना', '"Thank you" ko Tamil mein badalna'), 0, L('Translation apps use AI and are usually good at short phrases.', 'अनुवाद ऐप AI इस्तेमाल करते हैं और छोटे वाक्यों में अक्सर अच्छे होते हैं।', 'Translation apps AI use karti hain aur chhote phrases mein aksar achhi hoti hain.')),
+    C('💛', L('Know how your best friend is feeling today', 'जानना कि आज तुम्हारा सबसे अच्छा दोस्त कैसा महसूस कर रहा है', 'Jaanna ki aaj tumhara best friend kaisa feel kar raha hai'), 1, L('Ask your friend! AI cannot read hearts.', 'दोस्त से पूछो! AI दिल नहीं पढ़ सकता।', 'Dost se poochho! AI dil nahin padh sakta.')),
+    C('⏲️', L('Set a 10-minute timer when you ask', 'कहने पर 10 मिनट का टाइमर लगाना', 'Kehne par 10 minute ka timer lagana'), 0, L('Voice assistants do simple jobs like timers well.', 'आवाज़ सहायक टाइमर जैसे आसान काम अच्छे से करते हैं।', 'Voice assistants timer jaise aasaan kaam achhe se karte hain.')),
+    C('⚖️', L('Decide what is kind and fair to do', 'तय करना कि क्या करना दयालु और सही है', 'Decide karna ki kya karna kind aur fair hai'), 1, L('Being kind and fair is a human choice. You are in charge, not the AI.', 'दयालु और सही होना इंसान का चुनाव है। फ़ैसला तुम्हारा है, AI का नहीं।', 'Kind aur fair hona insaan ka choice hai. Faisla tumhara hai, AI ka nahin.')),
+  ] },
+};
+let mode = D[K.q.get('mode')] ? K.q.get('mode') : D[cfg.mode] ? cfg.mode : 'apps'; let st;
+function drawModes() { const m = $('#modes'); m.innerHTML = ''; for (const k in D) { const b = el('button', { role: 'tab', 'aria-pressed': k === mode, 'aria-selected': k === mode }, esc(t(D[k].n))); b.onclick = () => { mode = k; start(); }; m.append(b); } }
+function prog() { $('#prog').innerHTML = D[mode].cards.map((_, k) => `<i class="${st.res[k] === true ? 'r' : st.res[k] === false ? 'w' : ''}"></i>`).join(''); }
+function show() { const d = D[mode]; prog(); const c = d.cards[st.i]; $('#fbHost').innerHTML = ''; $('#go').innerHTML = '';
+  $('#stack').innerHTML = ''; $('#stack').append(el('div', { class: 'card', id: 'card' }, `<span class="e">${c.e}</span><span class="tx">${esc(t(c.tx))}</span>`));
+  const B = $('#bins'); B.innerHTML = ''; B.className = 'bins' + (d.bins.length === 3 ? ' three' : ''); d.bins.forEach((b, k) => { const x = el('button', { id: 'bin' + k }, esc(t(b))); x.onclick = () => answer(k); B.append(x); }); }
+function answer(k) { if (st.locked) return; st.locked = true; const d = D[mode], c = d.cards[st.i], ok = k === c.a; st.res[st.i] = ok; if (ok) st.right++; K.sfx(ok ? 'good' : 'bad'); prog();
+  $('#card').classList.add(ok ? 'ok' : 'no'); $('#bins').querySelectorAll('button').forEach((b) => b.disabled = true);
+  $('#fbHost').innerHTML = ''; $('#fbHost').append(el('div', { class: 'fb ' + (ok ? 'ok' : 'no'), id: 'fb' }, `<span style="font-size:22px">${ok ? '✅' : '💡'}</span><div><span class="h">${esc(t(ok ? ['Correct!', 'सही!', 'Sahi!'] : ['Think again: ' + t(d.bins[c.a]), 'फिर सोचो: ' + t(d.bins[c.a]), 'Phir socho: ' + t(d.bins[c.a])]))}</span>${esc(t(c.why))}</div>`));
+  const last = st.i >= d.cards.length - 1; const n = el('button', { class: 'kbtn go', id: 'next' }, last ? '🏁 ' + t(['Finish', 'पूरा करो', 'Finish']) : t(['Next card ➡', 'अगला कार्ड ➡', 'Agla card ➡'])); n.onclick = () => { st.locked = false; if (last) return finish(); st.i++; show(); }; $('#go').append(n); }
+function finish() { const n = D[mode].cards.length, pass = st.right >= n - 1; K.done('think-cards', mode, { mode, right: st.right, total: n, pass }); if (pass) K.star(3);
+  K.win(pass ? ['Think-first star!', 'सोचो-पहले सितारा!', 'Think-first star!'] : ['Good try!', 'अच्छी कोशिश!', 'Achhi koshish!'], [`${st.right} of ${n} right.` + (pass ? '' : ' Try once more to get at least ' + (n - 1) + '.'), `${n} में से ${st.right} सही।` + (pass ? '' : ' कम से कम ' + (n - 1) + ' के लिए फिर कोशिश करो।'), `${n} mein se ${st.right} sahi.` + (pass ? '' : ' Kam se kam ' + (n - 1) + ' ke liye phir try karo.')], null, pass ? '🦜' : '💪', () => start()); }
+window.__tcState = () => ({ mode, i: st.i, right: st.right, ans: D[mode].cards.map((c) => c.a) });
+function start() { st = { i: 0, right: 0, res: [] }; drawModes(); const d = D[mode]; $('#goal').innerHTML = `<span style="font-size:22px">🎯</span><div><b>${t(['Goal', 'लक्ष्य', 'Goal'])}:</b> ${esc(t(cfg.mode === mode && cfg.goal ? [cfg.goal.en, cfg.goal.hi || cfg.goal.en, cfg.goal.hinglish] : d.goal))}</div>`; const s = $('#scen'); s.hidden = !d.scen; s.textContent = d.scen ? t(d.scen) : ''; show(); }
+K.onLang(() => { const keep = st; start(); if (keep) { Object.assign(st, keep, { locked: false }); show(); } });
+start();
+})();
+</script></body></html>

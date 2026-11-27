@@ -1,0 +1,371 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.data-pictures.03",
+ "level": 1,
+ "classes": [
+  2,
+  3,
+  4,
+  5
+ ],
+ "unit": "data-pictures",
+ "title": {
+  "en": "Picture graphs and bar charts",
+  "hi": "चित्र आलेख और दंड आलेख",
+  "hinglish": "Picture graphs aur bar charts"
+ },
+ "minutes": 8,
+ "xp": 30,
+ "prereq": [
+  "L1.data-pictures.02"
+ ],
+ "topics": [
+  "ds.charts"
+ ],
+ "outcomes": [
+  {
+   "en": "Turn a table into a picture graph where one picture stands for one thing.",
+   "hi": "तालिका को चित्र आलेख बना सकते हो जहाँ एक चित्र एक चीज़ है।",
+   "hinglish": "Table ko picture graph bana sakte ho jahan ek picture ek cheez hai."
+  },
+  {
+   "en": "Draw a bar chart with bars the right height.",
+   "hi": "सही ऊँचाई के डंडों वाला दंड आलेख बना सकते हो।",
+   "hinglish": "Sahi oonchai ke bars wala bar chart bana sakte ho."
+  },
+  {
+   "en": "Read a chart: tallest bar = most.",
+   "hi": "चार्ट पढ़ सकते हो: सबसे ऊँचा डंडा = सबसे ज़्यादा।",
+   "hinglish": "Chart padh sakte ho: sabse ooncha bar = sabse zyaada."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Picture graph",
+   "en": "A chart made of pictures",
+   "hi": "चित्रों से बना आलेख",
+   "hinglish": "Pictures se bana chart"
+  },
+  {
+   "term": "Bar chart",
+   "en": "A chart made of bars",
+   "hi": "डंडों वाला आलेख",
+   "hinglish": "Bars (dande) wala chart"
+  },
+  {
+   "term": "Key",
+   "en": "Tells what one picture stands for",
+   "hi": "बताता है एक चित्र कितने के बराबर है",
+   "hinglish": "Batata hai ek picture kitne ke barabar hai"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.data-pictures.03.s1",
+   "caption": {
+    "en": "One picture for each friend: a picture graph.",
+    "hi": "हर दोस्त के लिए एक चित्र: चित्र आलेख।",
+    "hinglish": "Har dost ke liye ek picture: picture graph."
+   },
+   "narration": {
+    "en": "Put one fruit picture in the column for each friend who chose it. That is a picture graph.",
+    "hinglish": "Jis dost ne jo fruit chuna, uske column mein ek picture rakho. Yahi picture graph hai.",
+    "hi": "जिस दोस्त ने जो फल चुना, उसके स्तंभ में एक चित्र रखो। यही चित्र आलेख है।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.data-pictures.03.s2",
+   "caption": {
+    "en": "Bars instead of pictures: a bar chart.",
+    "hi": "चित्रों की जगह डंडे: दंड आलेख।",
+    "hinglish": "Pictures ki jagah bars: bar chart."
+   },
+   "narration": {
+    "en": "Swap the pictures for blocks and you get a bar chart. The taller the bar, the more there are.",
+    "hinglish": "Pictures ki jagah blocks rakho toh bar chart ban jaata hai. Bar jitna ooncha, utne zyaada.",
+    "hi": "चित्रों की जगह ब्लॉक रखो तो दंड आलेख बन जाता है। डंडा जितना ऊँचा, उतने ज़्यादा।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.data-pictures.03.s3",
+   "caption": {
+    "en": "One look shows the most and fewest.",
+    "hi": "एक नज़र में सबसे ज़्यादा और सबसे कम।",
+    "hinglish": "Ek nazar mein sabse zyaada aur sabse kam."
+   },
+   "narration": {
+    "en": "With one look you can see that dogs are the most popular pet and fish the least.",
+    "hinglish": "Ek nazar mein dikh jaata hai ki kutte sabse popular pet hain aur machhli sabse kam.",
+    "hi": "एक नज़र में दिख जाता है कि कुत्ते सबसे पसंदीदा पालतू हैं और मछली सबसे कम।"
+   }
+  },
+  {
+   "step": 4,
+   "visual": "scene:L1.data-pictures.03.s4",
+   "caption": {
+    "en": "Apps show charts too: weather, steps, scores.",
+    "hi": "ऐप भी चार्ट दिखाते हैं: मौसम, कदम, स्कोर।",
+    "hinglish": "Apps bhi charts dikhati hain: mausam, steps, score."
+   },
+   "narration": {
+    "en": "Phones show charts all the time: rain each day, steps walked, or runs scored in each over.",
+    "hinglish": "Phones hamesha charts dikhate hain: har din ki baarish, chale gaye steps, ya har over ke runs.",
+    "hi": "फ़ोन हमेशा चार्ट दिखाते हैं: हर दिन की बारिश, चले गए कदम, या हर ओवर के रन।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "data-charts",
+  "config": {
+   "mode": "chart"
+  },
+  "goal": {
+   "en": "Build the fruit picture graph, then the pets bar chart, so both match their tables.",
+   "hi": "फलों का चित्र आलेख बनाओ, फिर पालतू जानवरों का दंड आलेख, ताकि दोनों अपनी तालिकाओं से मिलें।",
+   "hinglish": "Fruit picture graph banao, phir pets bar chart, taaki dono apni tables se milein."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Pictures that count",
+    "hi": "गिनती करने वाले चित्र",
+    "hinglish": "Ginti karne wali pictures"
+   },
+   "body": {
+    "en": "A picture graph uses one picture for each thing counted, lined up in columns, with a key that says what one picture means. A bar chart uses bars instead: every bar starts from the same line, and its height shows the number. Always start bars from zero and keep the blocks the same size, or the chart will trick people.",
+    "hi": "चित्र आलेख हर गिनी चीज़ के लिए एक चित्र स्तंभों में लगाता है, और एक कुंजी बताती है कि एक चित्र का मतलब क्या है। दंड आलेख में डंडे होते हैं: हर डंडा एक ही रेखा से शुरू होता है, और उसकी ऊँचाई संख्या दिखाती है। डंडे हमेशा शून्य से शुरू करो और ब्लॉक एक ही आकार के रखो, वरना चार्ट लोगों को धोखा देगा।",
+    "hinglish": "Picture graph har gini cheez ke liye ek picture columns mein lagata hai, aur ek key batati hai ki ek picture ka matlab kya hai. Bar chart mein bars hote hain: har bar ek hi line se shuru hota hai, aur uski oonchai number dikhati hai. Bars hamesha zero se shuru karo aur blocks ek hi size ke rakho, warna chart logon ko dhokha dega."
+   },
+   "analogy": {
+    "en": "Like a class photo where everyone stands on the same line, so you can tell who is tallest.",
+    "hi": "जैसे क्लास फ़ोटो में सब एक ही लाइन पर खड़े हों, तभी पता चलता है कौन सबसे लंबा है।",
+    "hinglish": "Jaise class photo mein sab ek hi line par khade hon, tabhi pata chalta hai kaun sabse lamba hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "Who invented the bar chart?",
+    "hi": "दंड आलेख किसने बनाया?",
+    "hinglish": "Bar chart kisne banaya?"
+   },
+   "body": {
+    "en": "The Scottish engineer William Playfair published one of the first bar charts in 1786, to show trade between countries. Today charts are everywhere: news, cricket scorecards, weather apps and science reports. Scientists and data analysts make charts as a big part of their job, because a good chart helps people understand data in seconds.",
+    "hi": "स्कॉटलैंड के इंजीनियर विलियम प्लेफ़ेयर ने 1786 में देशों के बीच व्यापार दिखाने के लिए पहले दंड आलेखों में से एक छापा। आज चार्ट हर जगह हैं: समाचार, क्रिकेट स्कोरकार्ड, मौसम ऐप और विज्ञान रिपोर्ट। वैज्ञानिक और डेटा विश्लेषक अपने काम में बहुत चार्ट बनाते हैं, क्योंकि अच्छा चार्ट लोगों को सेकंडों में डेटा समझा देता है।",
+    "hinglish": "Scotland ke engineer William Playfair ne 1786 mein deshon ke beech vyapaar dikhane ke liye pehle bar charts mein se ek chhaapa. Aaj charts har jagah hain: news, cricket scorecards, weather apps aur science reports. Scientists aur data analysts apne kaam mein bahut charts banate hain, kyonki achha chart logon ko seconds mein data samjha deta hai."
+   },
+   "realExample": {
+    "en": "In cricket TV coverage, the \"Manhattan\" chart shows the runs scored in each over as bars.",
+    "hi": "क्रिकेट टीवी पर \"मैनहट्टन\" चार्ट हर ओवर में बने रनों को डंडों की तरह दिखाता है।",
+    "hinglish": "Cricket TV par \"Manhattan\" chart har over mein bane runs ko bars ki tarah dikhata hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Use your tally chart from last lesson (or count shoes at home) and draw a bar chart on paper. Show a grown-up the tallest bar.",
+   "hi": "पिछले पाठ की मिलान तालिका (या घर के जूते गिनकर) से काग़ज़ पर दंड आलेख बनाओ। बड़े को सबसे ऊँचा डंडा दिखाओ।",
+   "hinglish": "Pichhle lesson ka tally chart (ya ghar ke joote gin kar) se kaagaz par bar chart banao. Bade ko sabse ooncha bar dikhao."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "In a bar chart, the tallest bar shows…",
+     "hi": "दंड आलेख में सबसे ऊँचा डंडा दिखाता है…",
+     "hinglish": "Bar chart mein sabse ooncha bar dikhata hai…"
+    },
+    "options": [
+     {
+      "en": "the most",
+      "hi": "सबसे ज़्यादा",
+      "hinglish": "sabse zyaada"
+     },
+     {
+      "en": "the fewest",
+      "hi": "सबसे कम",
+      "hinglish": "sabse kam"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Taller bar = bigger number.",
+     "hi": "ऊँचा डंडा = बड़ी संख्या।",
+     "hinglish": "Ooncha bar = bada number."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Key: 🥭 = 2 friends. A row shows 🥭🥭🥭. How many friends?",
+     "hi": "कुंजी: 🥭 = 2 दोस्त। एक पंक्ति में 🥭🥭🥭 है। कितने दोस्त?",
+     "hinglish": "Key: 🥭 = 2 dost. Ek row mein 🥭🥭🥭 hai. Kitne dost?"
+    },
+    "options": [
+     {
+      "en": "6",
+      "hi": "6",
+      "hinglish": "6"
+     },
+     {
+      "en": "3",
+      "hi": "3",
+      "hinglish": "3"
+     },
+     {
+      "en": "5",
+      "hi": "5",
+      "hinglish": "5"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "3 pictures × 2 = 6.",
+     "hi": "3 चित्र × 2 = 6।",
+     "hinglish": "3 pictures × 2 = 6."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q3",
+    "type": "multi",
+    "prompt": {
+     "en": "Which make a chart fair and clear?",
+     "hi": "चार्ट को सही और साफ़ क्या बनाता है?",
+     "hinglish": "Chart ko sahi aur saaf kya banata hai?"
+    },
+    "options": [
+     {
+      "en": "Bars start from zero",
+      "hi": "डंडे शून्य से शुरू हों",
+      "hinglish": "Bars zero se shuru hon"
+     },
+     {
+      "en": "Blocks are the same size",
+      "hi": "ब्लॉक एक ही आकार के हों",
+      "hinglish": "Blocks ek hi size ke hon"
+     },
+     {
+      "en": "Make your favourite bar extra tall",
+      "hi": "अपना पसंदीदा डंडा और ऊँचा कर दो",
+      "hinglish": "Apna favourite bar aur ooncha kar do"
+     }
+    ],
+    "answer": [
+     0,
+     1
+    ],
+    "explain": {
+     "en": "Same start and same block size; never stretch a bar.",
+     "hi": "एक ही शुरुआत और एक ही ब्लॉक आकार; डंडा कभी न खींचो।",
+     "hinglish": "Ek hi shuruaat aur ek hi block size; bar kabhi na kheencho."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Pets: 🐶 5, 🐱 3, 🐟 2. How many more dogs than fish?",
+     "hi": "पालतू: 🐶 5, 🐱 3, 🐟 2। मछलियों से कितने ज़्यादा कुत्ते?",
+     "hinglish": "Pets: 🐶 5, 🐱 3, 🐟 2. Machhliyon se kitne zyaada kutte?"
+    },
+    "options": [
+     {
+      "en": "3",
+      "hi": "3",
+      "hinglish": "3"
+     },
+     {
+      "en": "2",
+      "hi": "2",
+      "hinglish": "2"
+     },
+     {
+      "en": "7",
+      "hi": "7",
+      "hinglish": "7"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "5 − 2 = 3.",
+     "hi": "5 − 2 = 3।",
+     "hinglish": "5 − 2 = 3."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "Who published one of the first bar charts, in 1786?",
+     "hi": "1786 में पहले दंड आलेखों में से एक किसने छापा?",
+     "hinglish": "1786 mein pehle bar charts mein se ek kisne chhaapa?"
+    },
+    "options": [
+     {
+      "en": "William Playfair",
+      "hi": "विलियम प्लेफ़ेयर",
+      "hinglish": "William Playfair"
+     },
+     {
+      "en": "Isaac Newton",
+      "hi": "आइज़क न्यूटन",
+      "hinglish": "Isaac Newton"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Playfair, a Scottish engineer.",
+     "hi": "प्लेफ़ेयर, स्कॉटलैंड के इंजीनियर।",
+     "hinglish": "Playfair, Scotland ke engineer."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Build both charts in the lab.",
+     "hi": "लैब में दोनों चार्ट बनाओ।",
+     "hinglish": "Lab mein dono charts banao."
+    },
+    "answer": {
+     "lab": "data-charts",
+     "mode": "chart",
+     "solved": true
+    },
+    "explain": {
+     "en": "Match each column to its table number.",
+     "hi": "हर स्तंभ को तालिका की संख्या से मिलाओ।",
+     "hinglish": "Har column ko table ke number se milao."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "NCERT Mathematics (Classes 1–5) – Data handling chapters (fact reference)",
+   "url": "https://ncert.nic.in/textbook.php",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Encyclopaedia Britannica – William Playfair (fact reference)",
+   "url": "https://www.britannica.com/biography/William-Playfair",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

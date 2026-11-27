@@ -1,0 +1,346 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.programming.04",
+ "level": 2,
+ "classes": [
+  7
+ ],
+ "unit": "programming",
+ "title": {
+  "en": "Loops: for and while",
+  "hi": "लूप: for और while",
+  "hinglish": "Loops: for aur while"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [
+  "L2.programming.03"
+ ],
+ "topics": [
+  "prog.loops",
+  "prog.patterns"
+ ],
+ "outcomes": [
+  {
+   "en": "Repeat code with for and range()",
+   "hi": "for और range() से कोड दोहरा सकते हो",
+   "hinglish": "for aur range() se code repeat kar sakte ho"
+  },
+  {
+   "en": "Use while for “repeat until” jobs",
+   "hi": "“जब तक” वाले कामों के लिए while उपयोग कर सकते हो",
+   "hinglish": "“Jab tak” wale kaam ke liye while use kar sakte ho"
+  },
+  {
+   "en": "Avoid infinite loops and off-by-one mistakes",
+   "hi": "अनंत लूप और ऑफ़-बाय-वन ग़लतियों से बच सकते हो",
+   "hinglish": "Infinite loops aur off-by-one galtiyon se bach sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Loop",
+   "hinglish": "Code ko baar-baar chalana",
+   "en": "Code that repeats",
+   "hi": "दोहराने वाला कोड"
+  },
+  {
+   "term": "for loop",
+   "hinglish": "Gin ke repeat",
+   "en": "Repeats for each item in a sequence",
+   "hi": "क्रम की हर चीज़ के लिए दोहराता है"
+  },
+  {
+   "term": "range(a, b)",
+   "hinglish": "a se b-1 tak numbers",
+   "en": "Numbers from a up to (not including) b",
+   "hi": "a से b तक की संख्याएँ (b शामिल नहीं)"
+  },
+  {
+   "term": "while loop",
+   "hinglish": "Jab tak condition True",
+   "en": "Repeats while a condition stays True",
+   "hi": "जब तक शर्त सत्य रहे, दोहराता है"
+  },
+  {
+   "term": "Infinite loop",
+   "hinglish": "Kabhi na rukne wala loop",
+   "en": "A loop whose condition never becomes False",
+   "hi": "ऐसा लूप जिसकी शर्त कभी असत्य नहीं होती"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Instead of writing print 100 times, a loop repeats it for you.",
+    "hi": "100 बार print लिखने के बजाय लूप आपके लिए दोहराता है।",
+    "hinglish": "100 baar print likhne ke bajaye loop aapke liye repeat karta hai."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "range(1, 6) gives 1, 2, 3, 4, 5 — it stops before 6.",
+    "hi": "range(1, 6) देता है 1, 2, 3, 4, 5 — 6 से पहले रुकता है।",
+    "hinglish": "range(1, 6) deta hai 1, 2, 3, 4, 5 — 6 se pehle ruk jaata hai."
+   },
+   "code": "for n in range(1, 6):\n    print(n, \"x 7 =\", n * 7)"
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Each time round, the loop variable takes the next value. Watch n and total change.",
+    "hi": "हर चक्कर में लूप वेरिएबल अगला मान लेता है। n और total को बदलते देखो।",
+    "hinglish": "Har round mein loop variable agla value leta hai. n aur total ko badalte dekho."
+   },
+   "visual": "lab:py-tracer#loop",
+   "narration": {
+    "en": "This running total pattern is used everywhere — bills, scores, step counters.",
+    "hi": "यह चालू योग पैटर्न हर जगह उपयोग होता है — बिल, स्कोर, कदम गिनने वाले।",
+    "hinglish": "Yeh running total pattern har jagah use hota hai — bills, scores, step counters."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "while repeats until its condition is False. Forget to change the variable and it never stops!",
+    "hi": "while तब तक दोहराता है जब तक शर्त असत्य न हो। वेरिएबल बदलना भूले तो कभी नहीं रुकेगा!",
+    "hinglish": "while tab tak repeat karta hai jab tak condition False na ho. Variable badalna bhoole to kabhi nahi rukega!"
+   },
+   "visual": "compare:✅ count = count - 1 → stops|❌ forgot it → infinite loop",
+   "narration": {
+    "en": "The lab stops runaway programs after a safe number of steps with a TimeoutError.",
+    "hi": "लैब बेक़ाबू प्रोग्राम को सुरक्षित कदमों के बाद TimeoutError से रोक देती है।",
+    "hinglish": "Lab runaway programs ko safe steps ke baad TimeoutError se rok deti hai."
+   },
+   "code": "count = 3\nwhile count > 0:\n    print(count)\n    count = count - 1\nprint(\"Go!\")"
+  }
+ ],
+ "play": {
+  "lab": "py-tracer",
+  "config": {
+   "program": "loop"
+  },
+  "goal": {
+   "en": "Step through the loop program. How many times does line 3 run? Then make it add 1 to 10.",
+   "hi": "लूप प्रोग्राम कदम-दर-कदम चलाओ। लाइन 3 कितनी बार चलती है? फिर उसे 1 से 10 तक जोड़ने वाला बनाओ।",
+   "hinglish": "Loop program step karo. Line 3 kitni baar chalti hai? Phir isse 1 se 10 tak jodne wala banao."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "for vs while, and loop patterns",
+    "hi": "for बनाम while, और लूप पैटर्न",
+    "hinglish": "for vs while, aur loop patterns"
+   },
+   "body": {
+    "en": "Use for when you know how many times (or have a list to go through): for name in names. Use while when you repeat until something happens: while password != correct. range(5) gives 0–4, range(2, 10, 2) gives 2, 4, 6, 8 (the third number is the step). break leaves a loop at once; continue skips to the next round. Common patterns: counter (count = count + 1), running total, finding the maximum, and nested loops (a loop inside a loop — e.g. rows and columns of a times table). An “off-by-one” bug is looping one time too many or too few — always check the first and last values.",
+    "hi": "जब पता हो कितनी बार (या लिस्ट पर चलना हो) तो for: for name in names। जब कुछ होने तक दोहराना हो तो while: while password != correct। range(5) देता है 0–4, range(2, 10, 2) देता है 2, 4, 6, 8 (तीसरी संख्या कदम है)। break लूप से तुरंत निकलता है; continue अगले चक्कर पर कूदता है। आम पैटर्न: गिनती (count = count + 1), चालू योग, सबसे बड़ा ढूँढना, और नेस्टेड लूप (लूप के अंदर लूप — जैसे पहाड़े की पंक्तियाँ और स्तंभ)। “ऑफ़-बाय-वन” बग में लूप एक बार ज़्यादा या कम चलता है — पहला और आख़िरी मान हमेशा जाँचो।",
+    "hinglish": "Jab pata ho kitni baar (ya list pe chalna ho) to for: for name in names. Jab kuch hone tak repeat karna ho to while: while password != correct. range(5) deta hai 0–4, range(2, 10, 2) deta hai 2, 4, 6, 8 (teesra number step hai). break loop se turant nikalta hai; continue agle round pe kood jaata hai. Common patterns: counter (count = count + 1), running total, maximum dhoondna, aur nested loops (loop ke andar loop — jaise table ki rows aur columns). “Off-by-one” bug mein loop ek baar zyada ya kam chalta hai — pehla aur aakhri value hamesha check karo."
+   },
+   "analogy": {
+    "hinglish": "for loop = class ki attendance: har bachche ka naam ek baar. while loop = “jab tak bell na baje, padhte raho”.",
+    "en": "A for loop = class attendance: every child’s name once. A while loop = “keep studying until the bell rings”.",
+    "hi": "for लूप = कक्षा की हाज़िरी: हर बच्चे का नाम एक बार। while लूप = “जब तक घंटी न बजे, पढ़ते रहो”।"
+   },
+   "realExample": {
+    "en": "A fitness band runs a loop many times per second: read the motion sensor, if it is a step, add 1 to steps.",
+    "hi": "फ़िटनेस बैंड हर सेकंड कई बार लूप चलाता है: गति सेंसर पढ़ो, अगर कदम है तो steps में 1 जोड़ो।",
+    "hinglish": "Fitness band har second kai baar loop chalata hai: motion sensor padho, agar step hai to steps mein 1 jodo."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write a loop that prints the 13 times table from 13 × 1 to 13 × 10.",
+   "hi": "ऐसा लूप लिखो जो 13 का पहाड़ा 13 × 1 से 13 × 10 तक छापे।",
+   "hinglish": "Ek loop likho jo 13 ka table 13 × 1 se 13 × 10 tak print kare."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "What numbers does range(1, 5) give?",
+     "hi": "range(1, 5) कौन-सी संख्याएँ देता है?",
+     "hinglish": "range(1, 5) kaunse numbers deta hai?"
+    },
+    "options": [
+     "1, 2, 3, 4",
+     "1, 2, 3, 4, 5",
+     "0, 1, 2, 3, 4"
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "It starts at 1 and stops BEFORE 5.",
+     "hi": "1 से शुरू होकर 5 से पहले रुकता है।",
+     "hinglish": "1 se shuru hokar 5 se PEHLE ruk jaata hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "short",
+    "prompt": {
+     "en": "total = 0; for n in range(1, 5): total = total + n. What is total at the end?",
+     "hi": "total = 0; for n in range(1, 5): total = total + n। अंत में total क्या है?",
+     "hinglish": "total = 0; for n in range(1, 5): total = total + n. End mein total kya hai?"
+    },
+    "answer": [
+     "10"
+    ],
+    "explain": {
+     "en": "1 + 2 + 3 + 4 = 10.",
+     "hi": "1 + 2 + 3 + 4 = 10।",
+     "hinglish": "1 + 2 + 3 + 4 = 10."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why does this never stop? x = 5 / while x > 0: print(x)",
+     "hi": "यह कभी क्यों नहीं रुकता? x = 5 / while x > 0: print(x)",
+     "hinglish": "Yeh kabhi kyun nahi rukta? x = 5 / while x > 0: print(x)"
+    },
+    "options": [
+     {
+      "en": "print is slow",
+      "hi": "print धीमा है",
+      "hinglish": "print slow hai"
+     },
+     {
+      "en": "x is never changed inside the loop",
+      "hi": "लूप के अंदर x कभी नहीं बदला",
+      "hinglish": "Loop ke andar x kabhi nahi badla"
+     },
+     {
+      "en": "5 is too big",
+      "hi": "5 बहुत बड़ा है",
+      "hinglish": "5 bahut bada hai"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "x never changes, so x > 0 stays True forever. Add x = x - 1 inside the loop.",
+     "hi": "x कभी नहीं बदलता, तो x > 0 हमेशा सत्य। लूप में x = x - 1 जोड़ो।",
+     "hinglish": "x kabhi nahi badalta, to x > 0 hamesha True. Loop mein x = x - 1 jodo."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "match",
+    "prompt": {
+     "en": "Match the job to the best loop.",
+     "hi": "काम को सबसे सही लूप से मिलाओ।",
+     "hinglish": "Kaam ko sabse sahi loop se milao."
+    },
+    "options": {
+     "left": [
+      {
+       "en": "Print each name in a class list",
+       "hi": "कक्षा सूची का हर नाम छापो",
+       "hinglish": "Class list ka har naam print karo"
+      },
+      {
+       "en": "Ask for the PIN until it is correct",
+       "hi": "सही होने तक PIN पूछो",
+       "hinglish": "Sahi hone tak PIN poocho"
+      },
+      {
+       "en": "Print 1 to 100",
+       "hi": "1 से 100 छापो",
+       "hinglish": "1 se 100 print karo"
+      }
+     ],
+     "right": [
+      "for name in names:",
+      "while pin != correct:",
+      "for n in range(1, 101):"
+     ]
+    },
+    "answer": [
+     [
+      0,
+      0
+     ],
+     [
+      1,
+      1
+     ],
+     [
+      2,
+      2
+     ]
+    ],
+    "explain": {
+     "en": "Going through a list → for item in list. Repeat until something happens → while. A fixed count → for with range().",
+     "hi": "लिस्ट पर चलना → for item in list। कुछ होने तक → while। तय गिनती → range() वाला for।",
+     "hinglish": "List pe chalna → for item in list. Kuch hone tak → while. Fixed count → range() wala for."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "How many lines does this print? for r in range(3): for c in range(4): print(r, c)",
+     "hi": "यह कितनी लाइनें छापेगा? for r in range(3): for c in range(4): print(r, c)",
+     "hinglish": "Yeh kitni lines print karega? for r in range(3): for c in range(4): print(r, c)"
+    },
+    "options": [
+     "7",
+     "4",
+     "12",
+     "3"
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "Nested loops multiply: 3 rows × 4 columns = 12.",
+     "hi": "नेस्टेड लूप गुणा करते हैं: 3 × 4 = 12।",
+     "hinglish": "Nested loops multiply karte hain: 3 × 4 = 12."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "lc",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Answer the predict question for the Loops program.",
+     "hi": "Loops प्रोग्राम का अनुमान प्रश्न हल करो।",
+     "hinglish": "Loops program ka predict sawaal solve karo."
+    },
+    "answer": {
+     "lab": "py-tracer",
+     "event": "mission:complete",
+     "program": "loop"
+    },
+    "explain": {
+     "en": "Line 3 runs 5 times.",
+     "hi": "लाइन 3 पाँच बार चलती है।",
+     "hinglish": "Line 3 paanch baar chalti hai."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Python documentation — The Python Tutorial",
+   "url": "https://docs.python.org/3/tutorial/",
+   "licence": "PSF licence (fact reference only)"
+  },
+  {
+   "title": "Python docs — for statements and range()",
+   "url": "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
+   "licence": "PSF licence (fact reference only)"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

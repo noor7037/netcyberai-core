@@ -1,0 +1,340 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.machine-learning.06",
+ "level": 3,
+ "classes": [
+  10,
+  11
+ ],
+ "unit": "machine-learning",
+ "title": {
+  "en": "Reinforcement learning: learning from rewards",
+  "hi": "रीइनफ़ोर्समेंट लर्निंग: इनाम से सीखना",
+  "hinglish": "Reinforcement learning: rewards se seekhna"
+ },
+ "minutes": 12,
+ "xp": 50,
+ "prereq": [
+  "L3.machine-learning.01"
+ ],
+ "outcomes": [
+  {
+   "en": "Name agent, environment, state, action, reward and policy",
+   "hinglish": "Agent, environment, state, action, reward aur policy ke naam batao",
+   "hi": "एजेंट, परिवेश, स्थिति, कार्य, इनाम और नीति का नाम बताना"
+  },
+  {
+   "en": "Explain exploration vs exploitation",
+   "hinglish": "Exploration vs exploitation samjhao",
+   "hi": "खोज बनाम उपयोग (exploration vs exploitation) समझाना"
+  },
+  {
+   "en": "Update a Q-value with the Q-learning rule",
+   "hinglish": "Q-learning rule se ek Q-value update karo",
+   "hi": "Q-लर्निंग नियम से एक Q-मान अद्यतन करना"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Reward",
+   "hinglish": "Accha kaam = points, bura = minus",
+   "en": "A number the environment gives after each action",
+   "hi": "हर कार्य के बाद परिवेश द्वारा दी गई संख्या"
+  },
+  {
+   "term": "Policy",
+   "hinglish": "Har state mein kya karna hai uska plan",
+   "en": "The agent's rule for choosing actions",
+   "hi": "कार्य चुनने का एजेंट का नियम"
+  },
+  {
+   "term": "Q-value",
+   "hinglish": "Is state mein yeh action kitna faydemand",
+   "en": "Expected future reward of an action in a state",
+   "hi": "किसी स्थिति में किसी कार्य का अपेक्षित भावी इनाम"
+  },
+  {
+   "term": "Exploration",
+   "hinglish": "Naya try karna",
+   "en": "Trying actions to learn about them",
+   "hi": "कार्यों के बारे में जानने के लिए उन्हें आज़माना"
+  },
+  {
+   "term": "Discount (γ)",
+   "hinglish": "Aaj ka inaam kal se zyada keemti",
+   "en": "How much future rewards count, between 0 and 1",
+   "hi": "भावी इनाम कितना गिना जाए, 0 और 1 के बीच"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "A robot in a grid gets +10 at the charger and −10 in a pit. It starts knowing nothing.",
+    "hi": "ग्रिड में एक रोबोट को चार्जर पर +10 और गड्ढे में −10 मिलता है। शुरुआत में उसे कुछ नहीं पता।",
+    "hinglish": "Grid mein robot ko charger par +10 aur gaddhe mein −10 milta hai. Shuru mein use kuch nahi pata."
+   },
+   "visual": "anim:rl-grid-start",
+   "narration": {
+    "en": "A robot in a grid gets +10 at the charger and −10 in a pit. It starts knowing nothing.",
+    "hi": "ग्रिड में एक रोबोट को चार्जर पर +10 और गड्ढे में −10 मिलता है। शुरुआत में उसे कुछ नहीं पता।",
+    "hinglish": "Grid mein robot ko charger par +10 aur gaddhe mein −10 milta hai. Shuru mein use kuch nahi pata."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Episode after episode it tries moves, and arrows on each cell slowly point towards the charger: the policy is forming.",
+    "hi": "एपिसोड दर एपिसोड वह चालें आज़माता है, और हर खाने के तीर धीरे-धीरे चार्जर की ओर मुड़ते हैं: नीति बन रही है।",
+    "hinglish": "Episode dar episode woh moves try karta hai, aur har cell ke arrows dheere-dheere charger ki taraf mudte hain: policy ban rahi hai."
+   },
+   "visual": "anim:rl-policy-arrows",
+   "narration": {
+    "en": "Episode after episode it tries moves, and arrows on each cell slowly point towards the charger: the policy is forming.",
+    "hi": "एपिसोड दर एपिसोड वह चालें आज़माता है, और हर खाने के तीर धीरे-धीरे चार्जर की ओर मुड़ते हैं: नीति बन रही है।",
+    "hinglish": "Episode dar episode woh moves try karta hai, aur har cell ke arrows dheere-dheere charger ki taraf mudte hain: policy ban rahi hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "It balances exploring new paths with exploiting the best-known one: epsilon-greedy tries a random move 10% of the time.",
+    "hi": "वह नए रास्ते खोजने और सबसे अच्छे ज्ञात रास्ते का फ़ायदा उठाने में संतुलन रखता है: एप्सिलॉन-ग्रीडी 10% बार यादृच्छिक चाल आज़माता है।",
+    "hinglish": "Woh naye raste explore karne aur best known raste ko exploit karne mein balance rakhta hai: epsilon-greedy 10% baar random move try karta hai."
+   },
+   "visual": "anim:explore-exploit",
+   "narration": {
+    "en": "It balances exploring new paths with exploiting the best-known one: epsilon-greedy tries a random move 10% of the time.",
+    "hi": "वह नए रास्ते खोजने और सबसे अच्छे ज्ञात रास्ते का फ़ायदा उठाने में संतुलन रखता है: एप्सिलॉन-ग्रीडी 10% बार यादृच्छिक चाल आज़माता है।",
+    "hinglish": "Woh naye raste explore karne aur best known raste ko exploit karne mein balance rakhta hai: epsilon-greedy 10% baar random move try karta hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "astar-arena",
+  "config": {
+   "mode": "qlearn",
+   "grid": "rl-5x5",
+   "epsilon": 0.1,
+   "gamma": 0.9,
+   "alpha": 0.5
+  },
+  "goal": {
+   "en": "Run 200 Q-learning episodes and watch the policy arrows form. Compare with A*, which knows the map in advance.",
+   "hinglish": "200 Q-learning episodes chalao aur policy arrows bante dekho. A* se compare karo, jo map pehle se jaanta hai.",
+   "hi": "200 Q-लर्निंग एपिसोड चलाओ और नीति के तीर बनते देखो। A* से तुलना करो, जिसे नक्शा पहले से पता है।"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "The RL loop and Q-learning",
+    "hi": "आरएल चक्र और क्यू-लर्निंग",
+    "hinglish": "RL loop aur Q-learning"
+   },
+   "body": {
+    "en": "An agent observes state s, takes action a, receives reward r and new state s′, and repeats. Its goal is to maximise total discounted reward r₀ + γr₁ + γ²r₂ + …. Q-learning keeps a table Q(s, a) and after each step updates it: Q(s,a) ← Q(s,a) + α[r + γ·max Q(s′,·) − Q(s,a)]. Over many episodes Q converges, and the policy is simply \"take the action with the highest Q\". For huge state spaces such as game screens, a neural network replaces the table: DeepMind's DQN learned dozens of Atari games this way (Nature, 2015).",
+    "hi": "एजेंट स्थिति s देखता है, एक्शन a लेता है, इनाम r और नई स्थिति s′ पाता है, और दोहराता है। लक्ष्य कुल छूट वाला इनाम r₀ + γr₁ + γ²r₂ + … अधिकतम करना है। क्यू-लर्निंग तालिका Q(s, a) रखती है और हर कदम के बाद अपडेट करती है: Q(s,a) ← Q(s,a) + α[r + γ·max Q(s′,·) − Q(s,a)]। कई एपिसोड में Q स्थिर होता है, और नीति बस \"सबसे ऊँचे Q वाला एक्शन लो\" है। गेम स्क्रीन जैसे विशाल स्थिति-क्षेत्र में तालिका की जगह न्यूरल नेटवर्क आता है: डीपमाइंड के डीक्यूएन ने ऐसे दर्जनों अटारी गेम सीखे (नेचर, 2015)।",
+    "hinglish": "Agent state s dekhta hai, action a leta hai, reward r aur nayi state s′ paata hai, aur repeat karta hai. Goal total discounted reward r₀ + γr₁ + γ²r₂ + … maximum karna hai. Q-learning table Q(s, a) rakhta hai aur har step ke baad update karta hai: Q(s,a) ← Q(s,a) + α[r + γ·max Q(s′,·) − Q(s,a)]. Bahut episodes mein Q settle hota hai, aur policy simple: \"sabse high Q wala action lo\". Game screens jaise huge state spaces mein table ki jagah neural network aata hai: DeepMind ke DQN ne aise darjanon Atari games seekhe (Nature, 2015)."
+   },
+   "analogy": {
+    "hinglish": "Puppy ko trick sikhana: sahi kiya to biscuit (reward). Dheere-dheere use samajh aata hai kaunsa action biscuit dilata hai.",
+    "en": "Teaching a puppy a trick: do it right and get a biscuit (reward). Slowly it learns which action earns the biscuit.",
+    "hi": "पिल्ले को करतब सिखाना: सही किया तो बिस्कुट (इनाम)। धीरे-धीरे उसे समझ आता है कौन-सा कार्य बिस्कुट दिलाता है।"
+   },
+   "realExample": {
+    "en": "AlphaGo Zero (2017) learned Go only by playing itself with RL and beat the version that had beaten Lee Sedol 100 games to 0.",
+    "hinglish": "AlphaGo Zero (2017) ne sirf khud se khel ke RL se Go seekha aur Lee Sedol ko harane wale version ko 100-0 se haraya.",
+    "hi": "अल्फ़ागो ज़ीरो (2017) ने सिर्फ़ ख़ुद से खेलकर RL से गो सीखा और उस संस्करण को 100–0 से हराया जिसने ली सेडोल को हराया था।"
+   }
+  },
+  {
+   "heading": {
+    "en": "Where RL is used, and reward hacking",
+    "hi": "आरएल कहाँ इस्तेमाल होता है, और रिवॉर्ड हैकिंग",
+    "hinglish": "RL kahan use hota hai, aur reward hacking"
+   },
+   "body": {
+    "en": "RL is used for game-playing, robot control, data-centre cooling (Google reported up to 40% lower cooling energy with DeepMind's system in 2016), chip layout and for tuning large language models with human feedback (RLHF), covered later. A key risk is reward hacking: the agent finds a loophole that scores points without doing what we meant, like OpenAI's boat-racing agent that circled forever collecting bonus targets instead of finishing. Designing rewards that capture what we really want is a central AI-safety problem.",
+    "hi": "आरएल गेम, रोबोट नियंत्रण, डेटा-सेंटर कूलिंग (गूगल ने 2016 में डीपमाइंड के सिस्टम से कूलिंग ऊर्जा 40% तक कम होने की सूचना दी), चिप लेआउट और मानवीय फ़ीडबैक से भाषा मॉडल सुधारने (आरएलएचएफ़) में इस्तेमाल होता है। बड़ा खतरा रिवॉर्ड हैकिंग है: एजेंट ऐसा छेद ढूँढता है जो असली इरादे के बिना अंक दिलाए, जैसे ओपनएआई का नाव-दौड़ एजेंट जो दौड़ पूरी करने के बजाय बोनस निशाने बटोरते हुए चक्कर लगाता रहा। ऐसे इनाम बनाना जो सच में हमारी चाहत पकड़ें, एआई सुरक्षा की केंद्रीय समस्या है।",
+    "hinglish": "RL games, robot control, data-centre cooling (Google ne 2016 mein DeepMind ke system se cooling energy 40% tak kam hone ki report di), chip layout aur human feedback se LLMs tune karne (RLHF) mein use hota hai. Bada risk reward hacking: agent aisa loophole dhoondhta hai jo asli matlab ke bina points dilaye, jaise OpenAI ka boat-racing agent jo race khatam karne ki jagah bonus targets collect karte hue chakkar lagata raha. Aise rewards banana jo sach mein hamari chaahat pakdein, AI safety ki central problem hai."
+   },
+   "analogy": {
+    "hinglish": "Agar teacher sirf \"kitne pages likhe\" ke marks de, to bachche bade akshar mein likhne lagenge — yahi reward hacking hai.",
+    "en": "If the teacher gives marks only for \"how many pages written\", children start writing in big letters — that is reward hacking.",
+    "hi": "अगर शिक्षक सिर्फ़ \"कितने पन्ने लिखे\" के अंक दें, तो बच्चे बड़े अक्षरों में लिखने लगेंगे — यही इनाम-हैकिंग है।"
+   },
+   "realExample": {
+    "en": "Ride-hailing and quick-commerce platforms use RL-style methods to assign riders and restock dark stores as demand changes through the day.",
+    "hinglish": "Ride-hailing aur quick-commerce platforms din bhar badalti demand mein riders assign karne aur dark stores restock karne ke liye RL-style methods use karte hain.",
+    "hi": "राइड-हेलिंग और क्विक-कॉमर्स प्लेटफ़ॉर्म दिन भर बदलती माँग के साथ राइडर सौंपने और डार्क स्टोर भरने के लिए RL जैसे तरीक़े इस्तेमाल करते हैं।"
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Design a reward for a robot vacuum. Write one way it could \"hack\" your reward and how you would fix it.",
+   "hinglish": "Robot vacuum ke liye reward design karo. Ek tareeka likho jisse woh tumhara reward \"hack\" kar sake aur use kaise theek karoge.",
+   "hi": "रोबोट वैक्यूम के लिए इनाम बनाओ। एक तरीक़ा लिखो जिससे वह तुम्हारे इनाम को \"हैक\" कर सकता है और तुम उसे कैसे ठीक करोगे।"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Q(s,a) = 2, α = 0.5, r = 4, γ = 0.5, max Q(s′) = 4. New Q(s,a)?",
+     "hi": "Q(s,a) = 2, α = 0.5, r = 4, γ = 0.5, max Q(s′) = 4। नया Q(s,a)?",
+     "hinglish": "Q(s,a) = 2, α = 0.5, r = 4, γ = 0.5, max Q(s′) = 4. Naya Q(s,a)?"
+    },
+    "options": [
+     {
+      "en": "4",
+      "hinglish": "4",
+      "hi": "4"
+     },
+     {
+      "en": "3",
+      "hinglish": "3",
+      "hi": "3"
+     },
+     {
+      "en": "6",
+      "hinglish": "6",
+      "hi": "6"
+     },
+     {
+      "en": "2",
+      "hinglish": "2",
+      "hi": "2"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Target = 4 + 0.5×4 = 6. Update: 2 + 0.5×(6 − 2) = 4.",
+     "hi": "लक्ष्य = 4 + 0.5×4 = 6। अपडेट: 2 + 0.5×(6 − 2) = 4।",
+     "hinglish": "Target = 4 + 0.5×4 = 6. Update: 2 + 0.5×(6 − 2) = 4."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why does an RL agent sometimes take a random action on purpose?",
+     "hi": "आरएल एजेंट कभी-कभी जानबूझकर यादृच्छिक एक्शन क्यों लेता है?",
+     "hinglish": "RL agent kabhi-kabhi jaan-boojh ke random action kyun leta hai?"
+    },
+    "options": [
+     {
+      "en": "To explore and possibly find a better path",
+      "hinglish": "Explore karke behtar raasta dhoondhne ke liye",
+      "hi": "खोजने और शायद बेहतर रास्ता पाने के लिए"
+     },
+     {
+      "en": "Because it is broken",
+      "hinglish": "Kyunki woh kharab hai",
+      "hi": "क्योंकि यह टूटा है"
+     },
+     {
+      "en": "To save battery",
+      "hinglish": "Battery bachane ke liye",
+      "hi": "बैटरी बचाने के लिए"
+     },
+     {
+      "en": "Random is always best",
+      "hinglish": "Random hamesha best hai",
+      "hi": "यादृच्छिक हमेशा सबसे अच्छा है"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Without exploration it may lock onto the first okay path and never discover a better one.",
+     "hi": "खोज के बिना वह पहले ठीक-ठाक रास्ते पर अटक सकता है।",
+     "hinglish": "Exploration ke bina woh pehle theek-thaak raaste par atak sakta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "match",
+    "prompt": {
+     "en": "Match the RL term for a ludo-playing bot.",
+     "hi": "लूडो खेलने वाले बॉट के लिए आरएल शब्द मिलाएँ।",
+     "hinglish": "Ludo bot ke liye RL terms milao."
+    },
+    "options": [
+     {
+      "en": "The bot",
+      "hinglish": "Bot",
+      "hi": "बॉट"
+     },
+     {
+      "en": "The board and dice",
+      "hinglish": "Board aur dice",
+      "hi": "बोर्ड और पासा"
+     },
+     {
+      "en": "Moving a token",
+      "hinglish": "Token chalana",
+      "hi": "गोटी चलाना"
+     },
+     {
+      "en": "+1 for winning",
+      "hinglish": "Jeetne par +1",
+      "hi": "जीतने पर +1"
+     }
+    ],
+    "answer": [
+     "agent",
+     "environment",
+     "action",
+     "reward"
+    ],
+    "explain": {
+     "en": "The learner is the agent, its world is the environment, its choices are actions and the score is the reward.",
+     "hi": "सीखने वाला एजेंट, उसकी दुनिया वातावरण, चुनाव एक्शन और अंक इनाम।",
+     "hinglish": "Seekhne wala agent, uski duniya environment, choices actions aur score reward."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Train Q-learning until the agent reaches the charger in the minimum number of steps.",
+     "hi": "क्यू-लर्निंग को तब तक चलाएँ जब तक एजेंट न्यूनतम कदमों में चार्जर तक न पहुँचे।",
+     "hinglish": "Q-learning ko tab tak chalao jab tak agent minimum steps mein charger tak na pahunche."
+    },
+    "answer": {
+     "event": "rl-optimal"
+    },
+    "explain": {
+     "en": "After enough episodes the greedy policy matches the shortest path A* would find.",
+     "hi": "पर्याप्त एपिसोड के बाद लालची नीति ए-स्टार के सबसे छोटे रास्ते से मेल खाती है।",
+     "hinglish": "Kaafi episodes ke baad greedy policy A* ke shortest path se match karti hai."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "topics": [
+  "ai.ml-reinforcement"
+ ],
+ "sources": [
+  {
+   "title": "Sutton & Barto, Reinforcement Learning: An Introduction (2nd ed.)",
+   "url": "http://incompleteideas.net/book/the-book-2nd.html",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Mnih et al. (2015) Human-level control through deep RL, Nature",
+   "url": "https://www.nature.com/articles/nature14236",
+   "licence": "fact reference"
+  },
+  {
+   "title": "OpenAI (2016) Faulty reward functions in the wild",
+   "url": "https://openai.com/index/faulty-reward-functions/",
+   "licence": "fact reference"
+  }
+ ]
+}

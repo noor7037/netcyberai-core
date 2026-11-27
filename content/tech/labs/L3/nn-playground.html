@@ -1,0 +1,254 @@
+<!doctype html><html lang="en" data-lab="nn-playground"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#061233"><title>Neural Network Playground · NCA Tech Lab L3</title><style>:root{--bg:#061233;--bg2:#0b1b4a;--card:rgba(255,255,255,.06);--line:rgba(255,255,255,.12);--tx:#eef4ff;--mut:#9fb0d6;--grape:#8B3DFF;--cyan:#02CFF9;--leaf:#22C55E;--coral:#FF6B57;--gold:#F5B90A;--tang:#FF7A1A;--royal:#2563EB;--r:16px}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:radial-gradient(120% 80% at 10% -10%,#22145e 0%,transparent 55%),radial-gradient(120% 80% at 110% 10%,#04395e 0%,transparent 50%),var(--bg);color:var(--tx);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans Devanagari",sans-serif;min-height:100%}
+body{padding:0 0 24px}
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:8px;padding:10px 12px;background:rgba(6,18,51,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top h1{font-size:16px;margin:0;flex:1;letter-spacing:.2px}
+.top h1 small{display:block;font-size:11px;color:var(--mut);font-weight:500}
+.badge{font-size:11px;padding:3px 8px;border-radius:99px;background:linear-gradient(90deg,var(--grape),var(--cyan));color:#061233;font-weight:700}
+.langs{display:flex;border:1px solid var(--line);border-radius:99px;overflow:hidden}
+.langs button{background:none;border:0;color:var(--mut);padding:5px 8px;font:inherit;font-size:12px;min-height:30px}
+.langs button.on{background:var(--grape);color:#fff}
+.wrap{max-width:1100px;margin:0 auto;padding:12px}
+.goal{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:var(--r);background:linear-gradient(135deg,rgba(139,61,255,.22),rgba(2,207,249,.12));border:1px solid rgba(139,61,255,.4);margin-bottom:12px;font-size:14px}
+.goal b{color:var(--gold)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px;margin-bottom:12px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.card h2{font-size:14px;margin:0 0 8px;color:var(--cyan);letter-spacing:.3px;text-transform:uppercase}
+.grid{display:grid;gap:12px}
+@media(min-width:720px){.grid.two{grid-template-columns:1.25fr 1fr}}
+@media(orientation:landscape) and (max-height:500px){.grid.two{grid-template-columns:1.2fr 1fr}.top{padding:6px 12px}}
+.btn{appearance:none;border:1px solid var(--line);background:rgba(255,255,255,.08);color:var(--tx);border-radius:12px;padding:9px 12px;font:inherit;font-weight:600;min-height:40px;cursor:pointer;transition:transform .12s,background .2s}
+.btn:active{transform:scale(.96)}
+.btn.pri{background:linear-gradient(135deg,var(--grape),#5b2be0);border-color:transparent;color:#fff;box-shadow:0 6px 18px rgba(139,61,255,.4)}
+.btn.ok{background:var(--leaf);color:#062;border-color:transparent}
+.btn.on{outline:2px solid var(--cyan)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{border-radius:99px;padding:6px 11px;min-height:34px;font-size:13px}
+label.sl{display:flex;flex-direction:column;gap:3px;font-size:12px;color:var(--mut);flex:1;min-width:120px}
+input[type=range]{width:100%;accent-color:var(--grape)}
+input[type=text],textarea,select{width:100%;background:rgba(0,0,0,.25);border:1px solid var(--line);color:var(--tx);border-radius:12px;padding:10px;font:inherit}
+.stat{display:flex;flex-direction:column;padding:8px 10px;border-radius:12px;background:rgba(0,0,0,.22);min-width:80px}
+.stat b{font-size:18px;font-variant-numeric:tabular-nums}
+.stat span{font-size:11px;color:var(--mut)}
+.mut{color:var(--mut)}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px}
+canvas,svg{display:block;max-width:100%;touch-action:none}
+
+
+.explain{font-size:13.5px;color:#d7e2ff;background:rgba(0,0,0,.2);border-left:3px solid var(--cyan);padding:8px 10px;border-radius:8px;margin-top:8px}
+.pill{display:inline-block;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:700}
+@keyframes pop{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(2,207,249,.0)}50%{box-shadow:0 0 0 6px rgba(2,207,249,.25)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.top h1 .hstat{display:none;font-size:12px;font-weight:700;color:#4ade80;animation:pop .3s both}.top h1.toasting small{display:none}.top h1.toasting .hstat{display:block}
+.seg.chips{margin:4px 0}.seg.chips button{white-space:normal;text-align:left;line-height:1.25;max-width:100%}
+.seg.chips.big .pick{width:100%;font-weight:700}
+</style></head><body><script>// NCA Tech Lab L3 shared kit: language, config from ?cfg= / ?lesson= / inline, mission events, small helpers. No eval.
+(function(g){
+  const qs=new URLSearchParams(location.search);
+  const K={lang:qs.get('lang')||localStorage.getItem('nca-lang')||'hinglish',cfg:{},goal:null,lab:document.documentElement.dataset.lab,listeners:[]};
+  K.reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  K.t=(o)=>o==null?'':typeof o==='string'?o:(o[K.lang]||o.hinglish||o.en||'');
+  K.$=(s,r)=>(r||document).querySelector(s);K.$$=(s,r)=>[...(r||document).querySelectorAll(s)];
+  K.el=(tag,attrs,html)=>{const e=document.createElement(tag);if(attrs)for(const k in attrs){if(k==='on')for(const ev in attrs.on)e.addEventListener(ev,attrs.on[ev]);else e.setAttribute(k,attrs[k]);}if(html!=null)e.innerHTML=html;return e;};
+  K.esc=(s)=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+  K.rng=(seed)=>{let s=seed>>>0||1;return()=>{s^=s<<13;s>>>=0;s^=s>>17;s^=s<<5;s>>>=0;return s/4294967296;};};
+  K.clamp=(v,a,b)=>Math.max(a,Math.min(b,v));K.lerp=(a,b,t)=>a+(b-a)*t;K.ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+  K.sleep=(ms)=>new Promise(r=>setTimeout(r,K.reduced?0:ms));
+  K.tween=(ms,fn)=>new Promise(res=>{if(K.reduced||ms<=0){fn(1);return res();}const t0=performance.now();const f=n=>{const t=Math.min(1,(n-t0)/ms);fn(K.ease(t));t<1?requestAnimationFrame(f):res();};requestAnimationFrame(f);});
+  // Toasts never cover content (readability rule): the message temporarily replaces the header subtitle, then the subtitle returns after 2.5 s.
+  K.toast=(msg)=>{const h=K.$('header.top h1');if(!h)return;let st=h.querySelector('.hstat');if(!st){st=K.el('span',{class:'hstat',role:'status','aria-live':'polite'});h.appendChild(st);}st.textContent=msg;h.classList.add('toasting');clearTimeout(K._tt);K._tt=setTimeout(()=>h.classList.remove('toasting'),2500);};
+  K.events=[];
+  // emit a lab event; the lesson player listens via postMessage and matches it against try.questions[type=lab-check].answer
+  K.emit=(event,data)=>{const m={type:'nca-lab-event',lab:K.lab,event,data:data||{},at:Date.now()};K.events.push(m);try{parent!==window&&parent.postMessage(m,'*');}catch(e){}g.dispatchEvent(new CustomEvent('nca-lab-event',{detail:m}));document.documentElement.dataset.lastEvent=event;};
+  K.check=(event,data,msg)=>{K.emit(event,data);K.toast('✓ '+(msg||K.t({en:'Mission check passed',hinglish:'Mission check pass!',hi:'मिशन जाँच पास!'})));};
+  K.onLang=(fn)=>K.listeners.push(fn);
+  K.setLang=(l)=>{K.lang=l;localStorage.setItem('nca-lang',l);K.$$('.langs button').forEach(b=>b.classList.toggle('on',b.dataset.l===l));K.$$('[data-t]').forEach(e=>{const o=K.T[e.dataset.t];if(o)e.innerHTML=K.t(o);});K.renderGoal();K.listeners.forEach(f=>f(l));};
+  K.T={};// string table: key -> {en,hi,hinglish}
+  K.renderGoal=()=>{const gEl=K.$('#goal');if(!gEl)return;const goal=K.goal||K.T.__goal;gEl.style.display=goal?'flex':'none';if(goal)gEl.innerHTML='<span>🎯</span><div><b>'+K.esc(K.t({en:'Goal',hinglish:'Goal',hi:'लक्ष्य'}))+':</b> '+K.esc(K.t(goal))+'</div>';};
+  K.header=(title,sub)=>{const h=K.el('header',{class:'top'});h.innerHTML='<span class="badge">L3</span><h1>'+K.esc(K.t(title))+'<small>'+K.esc(K.t(sub))+'</small></h1><div class="langs" role="group" aria-label="Language"><button data-l="hinglish">Hinglish</button><button data-l="en">EN</button><button data-l="hi">हिं</button></div>';document.body.prepend(h);K.$$('.langs button',h).forEach(b=>b.onclick=()=>{K.setLang(b.dataset.l);h.querySelector('h1').firstChild.textContent=K.t(title);h.querySelector('small').textContent=K.t(sub);});};
+  // Readability rule: native <select> boxes cut long option text on phones, so every select is shown as a wrapping row of chips.
+  K.chipify=(sel)=>{if(sel._chips||sel.dataset.keep!=null)return;const box=K.el('div',{class:'seg chips',role:'radiogroup','aria-label':sel.getAttribute('aria-label')||'options'});sel.after(box);sel.style.display='none';sel._chips=box;let last='';
+    let open=false;const render=(force)=>{const n=sel.options.length,big=n>6;const sig=[...sel.options].map(o=>o.value+'\u0001'+o.textContent).join('\u0002')+'|'+sel.value+'|'+open;if(sig===last&&!force)return;last=sig;box.innerHTML='';box.classList.toggle('big',big);
+      if(big){const cur=sel.options[sel.selectedIndex];const t=K.el('button',{class:'btn on pick',type:'button','aria-expanded':open?'true':'false'});t.textContent=(open?'▴ ':'▾ ')+(cur?cur.textContent:'');t.onclick=()=>{open=!open;render(true);};box.appendChild(t);if(!open)return;}
+      [...sel.options].forEach(o=>{if(big&&o.value===sel.value)return;const b=K.el('button',{class:'btn'+(o.value===sel.value?' on':''),type:'button',role:'radio','aria-checked':o.value===sel.value?'true':'false'});b.textContent=o.textContent;b.onclick=()=>{if(sel.disabled)return;sel.value=o.value;open=false;render(true);sel.dispatchEvent(new Event('change',{bubbles:true}));};box.appendChild(b);});};
+    render();new MutationObserver(render).observe(sel,{childList:true,subtree:true,characterData:true});setInterval(render,250);};
+  K.chipAll=()=>{K.$$('select').forEach(K.chipify);if(!K._mo){K._mo=new MutationObserver(()=>K.$$('select').forEach(K.chipify));K._mo.observe(document.body,{childList:true,subtree:true});}};
+  K.boot=async(defaults)=>{let cfg=Object.assign({},defaults||{});
+    const inl=document.getElementById('lesson-inline');
+    try{if(inl){const L=JSON.parse(inl.textContent);if(L.play){Object.assign(cfg,L.play.config||{});K.goal=L.play.goal;}}}catch(e){}
+    const lp=qs.get('lesson');if(lp){try{const L=await (await fetch(lp)).json();if(L.play&&L.play.lab===K.lab){Object.assign(cfg,L.play.config||{});K.goal=L.play.goal;}}catch(e){}}
+    const c=qs.get('cfg');if(c){try{Object.assign(cfg,JSON.parse(c));}catch(e){}}
+    for(const [k,v] of qs){if(!['cfg','lesson','lang'].includes(k))cfg[k]=v;}
+    K.cfg=cfg;K.setLang(K.lang);setTimeout(K.chipAll,0);return cfg;};
+  g.K=K;
+})(window);
+</script><div class="wrap">
+ <div id="goal" class="goal" style="display:none"></div>
+ <div class="seg" id="modes" style="margin-bottom:10px"></div>
+ <div class="grid two">
+  <div class="card"><h2 id="vizTitle"></h2><canvas id="cv" width="640" height="640" style="width:100%;aspect-ratio:1;border-radius:12px;background:#08163f"></canvas>
+   <div class="row" style="margin-top:8px" id="legend"></div></div>
+  <div>
+   <div class="card" id="ctrl"></div>
+   <div class="card"><h2 data-t="stats"></h2><div class="row" id="stats"></div><canvas id="loss" width="600" height="160" style="width:100%;height:110px;margin-top:8px;border-radius:10px;background:rgba(0,0,0,.25)"></canvas></div>
+   <div class="card" id="netCard"><h2 data-t="net"></h2><svg id="net" viewBox="0 0 320 150" style="width:100%"></svg></div>
+   <div class="card"><div class="explain" id="explain"></div></div>
+  </div>
+ </div>
+</div>
+<script>
+const T=K.T;Object.assign(T,{stats:{en:'Live numbers',hinglish:'Live numbers',hi:'लाइव संख्याएँ'},net:{en:'The network',hinglish:'Network',hi:'नेटवर्क'},
+ classify:{en:'Classify',hinglish:'Classify',hi:'वर्गीकरण'},regress:{en:'Regression',hinglish:'Regression',hi:'रिग्रेशन'},kmeans:{en:'k-means',hinglish:'k-means',hi:'के-मीन्स'},conv:{en:'Convolution',hinglish:'Convolution',hi:'कन्वोल्यूशन'},diffusion:{en:'Diffusion',hinglish:'Diffusion',hi:'डिफ़्यूज़न'}});
+const cv=K.$('#cv'),cx=cv.getContext('2d'),lc=K.$('#loss'),lx=lc.getContext('2d');let mode,cfg,raf=0,running=false;
+const PAL={a:'#FF7A1A',b:'#02CFF9',ga:'#FFD23F',gb:'#8B3DFF'};
+// ---------- datasets (deterministic) ----------
+function gauss(r){let u=0,v=0;while(!u)u=r();while(!v)v=r();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);}
+function makeData(name,noise){const r=K.rng(42),P=[];const n=(name==='imbalanced-groups')?220:200;noise=noise==null?0.1:noise;
+ for(let i=0;i<n;i++){let x,y,l,grp=0;
+  if(name==='two-blobs'){l=i%2;x=(l?0.45:-0.45)+gauss(r)*0.18;y=(l?0.35:-0.35)+gauss(r)*0.18;}
+  else if(name==='xor'){x=r()*2-1;y=r()*2-1;if(Math.abs(x)<0.08||Math.abs(y)<0.08){i--;continue;}l=(x*y>0)?1:0;}
+  else if(name==='circle'||name==='noisy-circle'){const a=r()*Math.PI*2;l=i%2;const rad=l?r()*0.42:0.6+r()*0.35;x=Math.cos(a)*rad;y=Math.sin(a)*rad;}
+  else if(name==='spiral'){l=i%2;const t=(i>>1)/(n/2)*3.2;const rad=t/3.4*0.95;const a=t*1.9+(l?Math.PI:0);x=Math.cos(a)*rad;y=Math.sin(a)*rad;}
+  else if(name==='imbalanced-groups'){grp=r()<0.12?1:0;l=r()<0.5?1:0;if(grp===0){x=(l?0.45:-0.45)+gauss(r)*0.18;y=-0.3+gauss(r)*0.25;}else{x=(l?-0.45:0.45)+gauss(r)*0.14;y=0.72+gauss(r)*0.1;}}
+  if(name!=='imbalanced-groups'&&noise>0.1&&r()<noise*0.35)l=1-l;
+  x+=gauss(r)*noise*0.15;y+=gauss(r)*noise*0.15;P.push({x:K.clamp(x,-1,1),y:K.clamp(y,-1,1),l,grp,test:(i%5===0)});}
+ return P;}
+// ---------- tiny MLP ----------
+function MLP(sizes,act){const r=K.rng(7);this.L=[];this.act=act;for(let i=0;i<sizes.length-1;i++){const a=sizes[i],b=sizes[i+1],s=Math.sqrt(2/a);this.L.push({W:Array.from({length:b},()=>Array.from({length:a},()=>gauss(r)*s)),b:Array.from({length:b},()=>gauss(r)*0.3)});}}
+const ACT={relu:[z=>z>0?z:0.01*z,(z,a)=>z>0?1:0.01],tanh:[z=>Math.tanh(z),(z,a)=>1-a*a]};
+MLP.prototype.fwd=function(x){const zs=[],as=[x];let a=x;this.L.forEach((ly,li)=>{const last=li===this.L.length-1;const z=ly.W.map((w,j)=>w.reduce((s,wi,k)=>s+wi*a[k],ly.b[j]));const f=last?(v=>1/(1+Math.exp(-v))):ACT[this.act][0];a=z.map(f);zs.push(z);as.push(a);});return{zs,as,out:a[0]};};
+MLP.prototype.train=function(P,lr,weight){const G=this.L.map(ly=>({W:ly.W.map(w=>w.map(()=>0)),b:ly.b.map(()=>0)}));let loss=0,n=0;
+ for(const p of P){const w=weight?weight(p):1;const {zs,as,out}=this.fwd([p.x,p.y]);const o=K.clamp(out,1e-7,1-1e-7);loss+=-w*(p.l?Math.log(o):Math.log(1-o));n+=w;
+  let d=[(out-p.l)*w];for(let li=this.L.length-1;li>=0;li--){const ly=this.L[li],aPrev=as[li];d.forEach((dj,j)=>{G[li].b[j]+=dj;aPrev.forEach((ak,k)=>G[li].W[j][k]+=dj*ak);});
+   if(li>0){const nd=aPrev.map((ak,k)=>{let s=0;d.forEach((dj,j)=>s+=dj*ly.W[j][k]);return s*ACT[this.act][1](zs[li-1][k],ak);});d=nd;}}}
+ if(!this.V)this.V=this.L.map(ly=>({W:ly.W.map(w=>w.map(()=>0)),b:ly.b.map(()=>0)}));const V=this.V,mu=0.9;this.L.forEach((ly,li)=>{ly.W.forEach((w,j)=>w.forEach((_,k)=>{V[li].W[j][k]=mu*V[li].W[j][k]-lr*G[li].W[j][k]/n;w[k]+=V[li].W[j][k];}));ly.b.forEach((_,j)=>{V[li].b[j]=mu*V[li].b[j]-lr*G[li].b[j]/n;ly.b[j]+=V[li].b[j];});});this.grad=G;return loss/n;};
+// ---------- classify mode ----------
+const C={};
+function setupClassify(){const c=cfg;C.dataset=c.dataset||'two-blobs';C.hidden=Array.isArray(c.hidden)?c.hidden:(c.hidden?JSON.parse(c.hidden):[4]);C.act=c.activation||'tanh';C.lr=+c.lr||(C.act==='relu'?0.1:0.2);C.noise=c.noise!=null?+c.noise:0.1;C.balanced=false;resetClassify();
+ const presets=[[],[4],[8],[8,8]];K.$('#ctrl').innerHTML=`<h2>${K.t({en:'Controls',hinglish:'Controls',hi:'नियंत्रण'})}</h2>
+ <div class="seg" id="ds">${['two-blobs','xor','circle','spiral','noisy-circle','imbalanced-groups'].map(d=>`<button class="btn" data-d="${d}">${d}</button>`).join('')}</div>
+ <div class="mut" style="margin:8px 0 4px">${K.t({en:'Hidden layers',hinglish:'Hidden layers',hi:'छिपी परतें'})}</div><div class="seg" id="hl">${presets.map(p=>`<button class="btn" data-h="${JSON.stringify(p)}">${p.length?p.join(' → '):K.t({en:'none',hinglish:'koi nahi',hi:'कोई नहीं'})}</button>`).join('')}</div>
+ <div class="row" style="margin-top:8px"><label class="sl">${K.t({en:'Learning rate',hinglish:'Learning rate',hi:'लर्निंग रेट'})} <b id="lrv"></b><input type="range" id="lr" min="0.005" max="1" step="0.005"></label>
+ <label class="sl">${K.t({en:'Activation',hinglish:'Activation',hi:'एक्टिवेशन'})}<select id="act"><option>tanh</option><option>relu</option></select></label></div>
+ <div class="row" style="margin-top:8px"><button class="btn pri" id="play">▶</button><button class="btn" id="step">+1 epoch</button><button class="btn" id="reset">↺</button>${C.dataset==='imbalanced-groups'?`<button class="btn" id="bal">⚖ ${K.t({en:'Balance groups',hinglish:'Groups balance karo',hi:'समूह संतुलित करो'})}</button>`:''}</div>`;
+ K.$$('#ds button').forEach(b=>{b.classList.toggle('on',b.dataset.d===C.dataset);b.onclick=()=>{cfg.dataset=b.dataset.d;stop();setupClassify();};});
+ K.$$('#hl button').forEach(b=>{b.classList.toggle('on',b.dataset.h===JSON.stringify(C.hidden));b.onclick=()=>{C.hidden=JSON.parse(b.dataset.h);K.$$('#hl button').forEach(x=>x.classList.toggle('on',x===b));resetClassify();};});
+ const lr=K.$('#lr');lr.value=C.lr;K.$('#lrv').textContent=C.lr;lr.oninput=()=>{C.lr=+lr.value;K.$('#lrv').textContent=C.lr;};
+ const ac=K.$('#act');ac.value=C.act;ac.onchange=()=>{C.act=ac.value;resetClassify();};
+ K.$('#play').onclick=()=>running?stop():start(classifyTick);K.$('#step').onclick=()=>{classifyTick(true);};K.$('#reset').onclick=()=>{stop();resetClassify();};
+ const bb=K.$('#bal');if(bb)bb.onclick=()=>{C.balanced=!C.balanced;bb.classList.toggle('on',C.balanced);};
+ K.$('#legend').innerHTML=`<span class="pill" style="background:${PAL.a};color:#000">● class 0</span><span class="pill" style="background:${PAL.b};color:#000">● class 1</span><span class="mut">○ = test</span>${C.dataset==='imbalanced-groups'?'<span class="pill" style="background:#fff;color:#000">◆ group B</span>':''}`;
+ K.$('#vizTitle').textContent=K.t({en:'Decision boundary (colour = model\'s belief)',hinglish:'Decision boundary (rang = model ka andaaza)',hi:'निर्णय सीमा (रंग = मॉडल का विश्वास)'});
+ K.$('#netCard').style.display='';
+ K.$('#explain').innerHTML=K.t({en:'Each epoch: forward pass on every training point, cross-entropy loss, backpropagation, then a gradient-descent step (with momentum 0.9). Hollow circles are the test set, never used for training.',hinglish:'Har epoch: har training point par forward pass, cross-entropy loss, backpropagation, phir gradient-descent step (momentum 0.9 ke saath). Khaali gol test set hain, training mein kabhi use nahi hote.',hi:'हर एपॉक: हर प्रशिक्षण बिंदु पर फ़ॉरवर्ड पास, क्रॉस-एंट्रॉपी लॉस, बैकप्रोपेगेशन, फिर ग्रेडिएंट-डिसेंट कदम (मोमेंटम 0.9 के साथ)। खोखले घेरे टेस्ट सेट हैं, प्रशिक्षण में कभी नहीं।'});
+ drawClassify();}
+function resetClassify(){C.P=makeData(C.dataset,C.noise);C.net=new MLP([2,...C.hidden,1],C.act);C.epoch=0;C.hist=[];C.fired={};drawClassify();}
+function acc(P,f){if(!P.length)return 0;return P.filter(p=>(C.net.fwd([p.x,p.y]).out>0.5?1:0)===p.l&&(!f||f(p))).length/P.filter(p=>!f||f(p)).length;}
+function classifyTick(single){const tr=C.P.filter(p=>!p.test);const nB=tr.filter(p=>p.grp).length,nA=tr.length-nB;const wf=C.balanced?(p=>p.grp?nA/nB:1):null;
+ let loss;for(let i=0;i<(single===true?1:4);i++){loss=C.net.train(tr,C.lr,wf);C.epoch++;C.hist.push(loss);}
+ const te=C.P.filter(p=>p.test),trA=acc(tr),teA=acc(te);C.stats={loss,trA,teA};
+ if(C.dataset==='imbalanced-groups'){C.stats.gA=acc(te.concat(tr),p=>!p.grp);C.stats.gB=acc(te.concat(tr),p=>p.grp);}
+ // mission events (once each)
+ const fire=(ev,d)=>{const key=ev+JSON.stringify(d);if(C.fired[key])return;C.fired[key]=1;K.check(ev,d);};
+ if(C.epoch>20&&teA>=0.95)fire('test-accuracy',{min:0.95,dataset:C.dataset});else if(C.epoch>20&&teA>=0.9)fire('test-accuracy',{min:0.9,dataset:C.dataset});
+ if(loss<0.1)fire('loss-below',{value:0.1,dataset:C.dataset});
+ if(C.epoch>150&&Math.abs(trA-teA)<0.05&&teA>0.8&&C.dataset==='noisy-circle')fire('gap-below',{value:0.05});
+ if(C.stats.gB!=null&&C.epoch>100&&Math.abs(C.stats.gA-C.stats.gB)<0.05&&C.stats.gB>0.8)fire('group-gap-below',{value:0.05});
+ drawClassify();}
+function drawClassify(){const W=cv.width,R=40,cs=W/R;const img=cx.createImageData(R,R);
+ for(let i=0;i<R;i++)for(let j=0;j<R;j++){const x=(j+.5)/R*2-1,y=1-(i+.5)/R*2;const o=C.net.fwd([x,y]).out;const a=[255,122,26],b=[2,207,249];const t=o;const k=(i*R+j)*4;const s=0.35+0.5*Math.abs(t-0.5)*2;
+  img.data[k]=(a[0]*(1-t)+b[0]*t)*s+8*(1-s);img.data[k+1]=(a[1]*(1-t)+b[1]*t)*s+22*(1-s);img.data[k+2]=(a[2]*(1-t)+b[2]*t)*s+63*(1-s);img.data[k+3]=255;}
+ const oc=C.oc||(C.oc=document.createElement('canvas'));oc.width=R;oc.height=R;oc.getContext('2d').putImageData(img,0,0);cx.imageSmoothingEnabled=true;cx.drawImage(oc,0,0,W,W);
+ // boundary contour
+ cx.strokeStyle='rgba(255,255,255,.9)';cx.lineWidth=3;cx.beginPath();const S=80;for(let i=0;i<S;i++)for(let j=0;j<S;j++){const x=(j+.5)/S*2-1,y=1-(i+.5)/S*2;const o=C.net.fwd([x,y]).out,o2=C.net.fwd([x+2/S,y]).out,o3=C.net.fwd([x,y-2/S]).out;if((o-.5)*(o2-.5)<0||(o-.5)*(o3-.5)<0){cx.moveTo((j+.5)*W/S+1.5,(i+.5)*W/S);cx.arc((j+.5)*W/S,(i+.5)*W/S,1.5,0,7);}}cx.stroke();
+ for(const p of C.P){const X=(p.x+1)/2*W,Y=(1-p.y)/2*W;cx.beginPath();if(p.grp){cx.moveTo(X,Y-9);cx.lineTo(X+9,Y);cx.lineTo(X,Y+9);cx.lineTo(X-9,Y);cx.closePath();}else cx.arc(X,Y,7,0,7);
+  cx.fillStyle=p.l?PAL.b:PAL.a;cx.strokeStyle=p.grp?'#fff':'#061233';cx.lineWidth=2.5;if(p.test){cx.lineWidth=3;cx.strokeStyle=p.l?PAL.b:PAL.a;cx.stroke();}else{cx.fill();cx.stroke();}}
+ const s=C.stats||{};K.$('#stats').innerHTML=[['Epoch',C.epoch],['Loss',s.loss!=null?s.loss.toFixed(3):'–'],[K.t({en:'Train acc',hinglish:'Train acc',hi:'ट्रेन सटीकता'}),s.trA!=null?(s.trA*100).toFixed(0)+'%':'–'],[K.t({en:'Test acc',hinglish:'Test acc',hi:'टेस्ट सटीकता'}),s.teA!=null?(s.teA*100).toFixed(0)+'%':'–']].concat(s.gA!=null?[['Group A',(s.gA*100).toFixed(0)+'%'],['Group B',(s.gB*100).toFixed(0)+'%']]:[]).map(([a,b])=>`<div class="stat"><b>${b}</b><span>${a}</span></div>`).join('');
+ if(cfg.showConfusion&&C.stats){const te=C.P.filter(p=>p.test);let tp=0,fp=0,fn=0,tn=0;te.forEach(p=>{const y=C.net.fwd([p.x,p.y]).out>0.5?1:0;if(y&&p.l)tp++;else if(y)fp++;else if(p.l)fn++;else tn++;});const pr=tp/Math.max(tp+fp,1),rc=tp/Math.max(tp+fn,1);
+ K.$('#stats').innerHTML+=`<div class="stat" style="min-width:100%"><span>${K.t({en:'Confusion matrix (test)',hinglish:'Confusion matrix (test)',hi:'कन्फ़्यूज़न मैट्रिक्स (टेस्ट)'})}</span><table class="mono" style="margin-top:4px;border-collapse:collapse"><tr><td></td><td style="padding:2px 8px">pred 1</td><td style="padding:2px 8px">pred 0</td></tr><tr><td>true 1</td><td style="background:rgba(34,197,94,.3);text-align:center">TP ${tp}</td><td style="background:rgba(255,107,87,.3);text-align:center">FN ${fn}</td></tr><tr><td>true 0</td><td style="background:rgba(255,107,87,.3);text-align:center">FP ${fp}</td><td style="background:rgba(34,197,94,.3);text-align:center">TN ${tn}</td></tr></table><span style="margin-top:4px">precision ${(pr*100).toFixed(0)}% · recall ${(rc*100).toFixed(0)}% · F1 ${(2*pr*rc/Math.max(pr+rc,1e-9)*100).toFixed(0)}%</span></div>`;}
+ drawLoss(C.hist);drawNet();}
+function drawLoss(h,label){const W=lc.width,H=lc.height;lx.clearRect(0,0,W,H);if(!h.length)return;const mx=Math.max(...h.slice(0,5),...h.slice(-1))||1;lx.strokeStyle='rgba(255,255,255,.12)';lx.beginPath();for(let i=1;i<4;i++){lx.moveTo(0,H*i/4);lx.lineTo(W,H*i/4);}lx.stroke();
+ const g=lx.createLinearGradient(0,0,W,0);g.addColorStop(0,'#8B3DFF');g.addColorStop(1,'#02CFF9');lx.strokeStyle=g;lx.lineWidth=3;lx.beginPath();h.forEach((v,i)=>{const X=i/(Math.max(h.length-1,1))*W,Y=H-6-Math.min(v/mx,1)*(H-12);i?lx.lineTo(X,Y):lx.moveTo(X,Y);});lx.stroke();
+ lx.fillStyle='#9fb0d6';lx.font='20px system-ui';lx.fillText((label||'loss')+' '+h[h.length-1].toFixed(3),8,22);}
+function drawNet(){const svg=K.$('#net');const sizes=[2,...C.hidden,1];const W=320,H=150;const xs=sizes.map((_,i)=>20+i*(W-40)/(sizes.length-1));let s='';
+ const pos=sizes.map((n,i)=>Array.from({length:n},(_,j)=>[xs[i],H/2+(j-(n-1)/2)*Math.min(30,(H-20)/n)]));
+ C.net.L.forEach((ly,li)=>ly.W.forEach((w,j)=>w.forEach((v,k)=>{const a=pos[li][k],b=pos[li+1][j];const gr=C.net.grad?Math.abs(C.net.grad[li].W[j][k]):0;s+=`<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="${v>0?'#02CFF9':'#FF7A1A'}" stroke-opacity="${K.clamp(0.25+gr*8,0.25,1)}" stroke-width="${K.clamp(Math.abs(v)*1.6,0.4,5)}"/>`;})));
+ pos.forEach((col,i)=>col.forEach(([x,y])=>s+=`<circle cx="${x}" cy="${y}" r="7" fill="#0b1b4a" stroke="${i===0?'#FFD23F':i===pos.length-1?'#22C55E':'#8B3DFF'}" stroke-width="2.5"/>`));
+ s+=`<text x="8" y="146" fill="#9fb0d6" font-size="10">x, y</text><text x="${W-38}" y="146" fill="#9fb0d6" font-size="10">output</text>`;svg.innerHTML=s;}
+// ---------- regression ----------
+const Rg={};function setupRegress(){Rg.P=[[1,48],[1.5,52],[2,58],[2.5,57],[3,66],[3.5,68],[4,74],[4.5,73],[5,80],[5.5,84],[6,86],[6.5,91]].map(([h,m])=>({x:h,y:m}));Rg.w=0;Rg.b=40;Rg.lr=+cfg.lr||0.05;Rg.hist=[];Rg.fired=false;Rg.step=0;
+ K.$('#ctrl').innerHTML=`<h2>${K.t({en:'Controls',hinglish:'Controls',hi:'नियंत्रण'})}</h2><div class="row"><label class="sl">${K.t({en:'Learning rate η',hinglish:'Learning rate η',hi:'लर्निंग रेट η'})} <b id="lrv">${Rg.lr}</b><input type="range" id="lr" min="0.005" max="0.6" step="0.005" value="${Rg.lr}"></label></div>
+ <div class="row" style="margin-top:8px"><button class="btn pri" id="play">▶</button><button class="btn" id="step">+1 step</button><button class="btn" id="reset">↺</button></div><div class="mono" id="eq" style="margin-top:10px;font-size:15px"></div>`;
+ K.$('#lr').oninput=e=>{Rg.lr=+e.target.value;K.$('#lrv').textContent=Rg.lr;};K.$('#play').onclick=()=>running?stop():start(regTick);K.$('#step').onclick=()=>regTick(true);K.$('#reset').onclick=()=>{stop();setupRegress();};
+ K.$('#vizTitle').textContent=K.t({en:'Study hours → marks, with error squares',hinglish:'Padhai ke ghante → marks, error squares ke saath',hi:'पढ़ाई के घंटे → अंक, त्रुटि वर्गों के साथ'});K.$('#legend').innerHTML='';K.$('#netCard').style.display='none';
+ K.$('#explain').innerHTML=K.t({en:'Each step computes ∂MSE/∂w and ∂MSE/∂b over all 12 students and moves w and b a little downhill. Squares show each squared error; their average is the MSE.',hinglish:'Har step saare 12 students par ∂MSE/∂w aur ∂MSE/∂b nikaal ke w aur b ko thoda neeche khiskaata hai. Squares har squared error dikhate hain; unka average MSE hai.',hi:'हर कदम सभी 12 छात्रों पर ∂MSE/∂w और ∂MSE/∂b निकालकर w और b को थोड़ा नीचे खिसकाता है। वर्ग हर वर्गित त्रुटि दिखाते हैं; उनका औसत एमएसई है।'});drawReg();}
+const mse=()=>Rg.P.reduce((s,p)=>s+Math.pow(Rg.w*p.x+Rg.b-p.y,2),0)/Rg.P.length;
+function regTick(single){for(let i=0;i<(single===true?1:2);i++){let gw=0,gb=0;Rg.P.forEach(p=>{const e=Rg.w*p.x+Rg.b-p.y;gw+=2*e*p.x;gb+=2*e;});gw/=Rg.P.length;gb/=Rg.P.length;Rg.w-=Rg.lr*gw*0.1;Rg.b-=Rg.lr*gb;Rg.step++;const m=mse();Rg.hist.push(Math.min(m,1e4));if(!isFinite(m)||m>1e6){stop();Rg.w=0;Rg.b=40;K.toast(K.t({en:'Exploded! Learning rate too big.',hinglish:'Loss phat gaya! Learning rate bahut bada.',hi:'लॉस फट गया! लर्निंग रेट बहुत बड़ा।'}));break;}}
+ if(!Rg.fired&&mse()<20){Rg.fired=true;K.check('mse-below',{value:20});}drawReg();}
+function drawReg(){const W=cv.width;cx.fillStyle='#08163f';cx.fillRect(0,0,W,W);const X=h=>40+(h/7)*(W-60),Y=m=>W-40-((m-30)/70)*(W-60);
+ cx.strokeStyle='rgba(255,255,255,.1)';cx.lineWidth=1;for(let i=0;i<=7;i++){cx.beginPath();cx.moveTo(X(i),Y(30));cx.lineTo(X(i),Y(100));cx.stroke();}for(let m=30;m<=100;m+=10){cx.beginPath();cx.moveTo(X(0),Y(m));cx.lineTo(X(7),Y(m));cx.stroke();}
+ cx.fillStyle='#9fb0d6';cx.font='18px system-ui';cx.fillText('hours →',W-110,W-12);cx.fillText('marks',6,24);
+ Rg.P.forEach(p=>{const py=Rg.w*p.x+Rg.b;const e=py-p.y;const sz=Math.abs(Y(p.y)-Y(py));cx.fillStyle='rgba(255,107,87,.18)';cx.strokeStyle='rgba(255,107,87,.7)';cx.lineWidth=1.5;cx.fillRect(X(p.x),Math.min(Y(p.y),Y(py)),Math.min(sz,200),sz);cx.strokeRect(X(p.x),Math.min(Y(p.y),Y(py)),Math.min(sz,200),sz);});
+ cx.strokeStyle='#02CFF9';cx.lineWidth=4;cx.beginPath();cx.moveTo(X(0),Y(Rg.b));cx.lineTo(X(7),Y(Rg.w*7+Rg.b));cx.stroke();
+ Rg.P.forEach(p=>{cx.beginPath();cx.arc(X(p.x),Y(p.y),9,0,7);cx.fillStyle='#FFD23F';cx.fill();cx.strokeStyle='#061233';cx.lineWidth=2;cx.stroke();});
+ K.$('#eq')&&(K.$('#eq').innerHTML=`ŷ = <b style="color:#02CFF9">${Rg.w.toFixed(2)}</b>·x + <b style="color:#FFD23F">${Rg.b.toFixed(2)}</b>`);
+ K.$('#stats').innerHTML=[['Step',Rg.step],['MSE',mse().toFixed(1)],['w',Rg.w.toFixed(2)],['b',Rg.b.toFixed(2)]].map(([a,b])=>`<div class="stat"><b>${b}</b><span>${a}</span></div>`).join('');drawLoss(Rg.hist,'MSE');}
+// ---------- k-means ----------
+const Km={};function setupKmeans(){const r=K.rng(11);Km.P=[];[[-.5,.45],[.5,.4],[0,-.5]].forEach(([cx0,cy0])=>{for(let i=0;i<45;i++)Km.P.push({x:cx0+gauss(r)*.16,y:cy0+gauss(r)*.16,c:-1});});Km.k=+cfg.k||3;Km.phase=0;Km.iter=0;Km.done=false;Km.hist=[];initCent();
+ K.$('#ctrl').innerHTML=`<h2>${K.t({en:'Controls',hinglish:'Controls',hi:'नियंत्रण'})}</h2><div class="row"><label class="sl">k = <b id="kv">${Km.k}</b><input type="range" id="k" min="1" max="6" value="${Km.k}"></label></div><div class="row" style="margin-top:8px"><button class="btn pri" id="step"></button><button class="btn" id="auto">⏩ ${K.t({en:'Run to end',hinglish:'End tak chalao',hi:'अंत तक चलाओ'})}</button><button class="btn" id="reset">↺</button></div><div class="explain" id="ph"></div>`;
+ K.$('#k').oninput=e=>{Km.k=+e.target.value;K.$('#kv').textContent=Km.k;Km.iter=0;Km.phase=0;Km.done=false;Km.hist=[];initCent();drawKm();};K.$('#step').onclick=()=>kmStep();K.$('#auto').onclick=async()=>{for(let i=0;i<30&&!Km.done;i++){await kmStep();await K.sleep(250);}};K.$('#reset').onclick=()=>{Km.iter=0;Km.phase=0;Km.done=false;Km.hist=[];initCent();drawKm();};
+ K.$('#vizTitle').textContent=K.t({en:'Unlabelled points and moving centres',hinglish:'Bina label ke points aur chalte centres',hi:'बिना लेबल के बिंदु और चलते केंद्र'});K.$('#legend').innerHTML='';K.$('#netCard').style.display='none';
+ K.$('#explain').innerHTML=K.t({en:'Assign: every point joins its nearest centre. Update: each centre moves to the mean of its points. The spread (inertia) can only go down; when no point changes cluster, k-means has converged.',hinglish:'Assign: har point sabse paas ke centre se judta hai. Update: har centre apne points ke mean par jaata hai. Spread (inertia) sirf ghat sakta hai; jab koi point cluster na badle, k-means converge ho gaya.',hi:'असाइन: हर बिंदु सबसे पास के केंद्र से जुड़ता है। अपडेट: हर केंद्र अपने बिंदुओं के औसत पर जाता है। फैलाव (इनर्शिया) सिर्फ़ घट सकता है; जब कोई बिंदु समूह न बदले, के-मीन्स अभिसरित हो गया।'});drawKm();}
+function initCent(){const r=K.rng(3+Km.k);Km.C=Array.from({length:Km.k},()=>({x:r()*1.6-.8,y:r()*1.6-.8}));Km.P.forEach(p=>p.c=-1);}
+const KC=['#FF7A1A','#02CFF9','#22C55E','#FFD23F','#8B3DFF','#FF6B57'];
+async function kmStep(){if(Km.done)return;if(Km.phase===0){let ch=0;Km.P.forEach(p=>{let b=0,bd=1e9;Km.C.forEach((c,i)=>{const d=(p.x-c.x)**2+(p.y-c.y)**2;if(d<bd){bd=d;b=i;}});if(b!==p.c){ch++;p.c=b;}});Km.changed=ch;Km.phase=1;Km.hist.push(Km.P.reduce((s,p)=>s+(p.x-Km.C[p.c].x)**2+(p.y-Km.C[p.c].y)**2,0));if(ch===0&&Km.iter>0){Km.done=true;K.check('kmeans-converged',{k:Km.k});}drawKm();}
+ else{const from=Km.C.map(c=>({...c}));const to=Km.C.map((c,i)=>{const m=Km.P.filter(p=>p.c===i);return m.length?{x:m.reduce((s,p)=>s+p.x,0)/m.length,y:m.reduce((s,p)=>s+p.y,0)/m.length}:c;});Km.phase=0;Km.iter++;await K.tween(500,t=>{Km.C.forEach((c,i)=>{c.x=K.lerp(from[i].x,to[i].x,t);c.y=K.lerp(from[i].y,to[i].y,t);});drawKm();});}}
+function drawKm(){const W=cv.width;cx.fillStyle='#08163f';cx.fillRect(0,0,W,W);const P=(v)=>(v+1)/2*W;Km.P.forEach(p=>{if(p.c>=0){cx.strokeStyle=KC[p.c]+'55';cx.lineWidth=1;cx.beginPath();cx.moveTo(P(p.x),P(-p.y));cx.lineTo(P(Km.C[p.c].x),P(-Km.C[p.c].y));cx.stroke();}});
+ Km.P.forEach(p=>{cx.beginPath();cx.arc(P(p.x),P(-p.y),7,0,7);cx.fillStyle=p.c>=0?KC[p.c]:'#cbd5e1';cx.fill();});
+ Km.C.forEach((c,i)=>{cx.save();cx.translate(P(c.x),P(-c.y));cx.rotate(Math.PI/4);cx.fillStyle=KC[i];cx.strokeStyle='#fff';cx.lineWidth=4;cx.fillRect(-13,-13,26,26);cx.strokeRect(-13,-13,26,26);cx.restore();});
+ const sb=K.$('#step');if(sb)sb.textContent=Km.done?'✓ converged':Km.phase===0?'① '+K.t({en:'Assign',hinglish:'Assign',hi:'असाइन'}):'② '+K.t({en:'Update centres',hinglish:'Centres update',hi:'केंद्र अपडेट'});
+ K.$('#stats').innerHTML=[['Iteration',Km.iter],['k',Km.k],[K.t({en:'Inertia',hinglish:'Inertia',hi:'इनर्शिया'}),Km.hist.length?Km.hist[Km.hist.length-1].toFixed(2):'–'],[K.t({en:'Changed',hinglish:'Badle',hi:'बदले'}),Km.changed==null?'–':Km.changed]].map(([a,b])=>`<div class="stat"><b>${b}</b><span>${a}</span></div>`).join('');drawLoss(Km.hist,'inertia');}
+// ---------- convolution ----------
+const Cv={};const FILT={'edge-v':[[-1,0,1],[-1,0,1],[-1,0,1]],'edge-h':[[-1,-1,-1],[0,0,0],[1,1,1]],blur:[[1,1,1],[1,1,1],[1,1,1]].map(r=>r.map(v=>v/9)),sharpen:[[0,-1,0],[-1,5,-1],[0,-1,0]]};
+function leaf(){const N=16,I=[];for(let i=0;i<N;i++){I.push([]);for(let j=0;j<N;j++){const x=(j-7.5)/7,y=(i-7.5)/7;const rx=x*Math.cos(.6)-y*Math.sin(.6),ry=x*Math.sin(.6)+y*Math.cos(.6);let v=(rx*rx/0.9+ry*ry/0.28)<1?0.85:0.1;if(v>0.5&&Math.abs(ry)<0.06)v=0.55;if(v>0.5&&((i-5)**2+(j-9)**2<2.2||(i-10)**2+(j-6)**2<1.5))v=0.3;I[i].push(v);}}return I;}
+function setupConv(){Cv.I=leaf();Cv.f=(cfg.filters&&cfg.filters[0])||'edge-v';Cv.pos=-1;Cv.out=null;
+ K.$('#ctrl').innerHTML=`<h2>${K.t({en:'Pick a 3×3 filter',hinglish:'3×3 filter chuno',hi:'3×3 फ़िल्टर चुनो'})}</h2><div class="seg" id="fs">${Object.keys(FILT).map(f=>`<button class="btn" data-f="${f}">${f}</button>`).join('')}</div><div class="mono" id="kern" style="margin:10px 0"></div><div class="row"><button class="btn pri" id="run">▶ ${K.t({en:'Slide filter',hinglish:'Filter sarkao',hi:'फ़िल्टर सरकाओ'})}</button><button class="btn" id="fast">⏩</button></div><div class="explain" id="calc"></div>`;
+ K.$$('#fs button').forEach(b=>{b.classList.toggle('on',b.dataset.f===Cv.f);b.onclick=()=>{Cv.f=b.dataset.f;Cv.pos=-1;Cv.out=null;K.$$('#fs button').forEach(x=>x.classList.toggle('on',x===b));drawConv();};});
+ K.$('#run').onclick=()=>runConv(false);K.$('#fast').onclick=()=>runConv(true);K.$('#vizTitle').textContent=K.t({en:'16×16 leaf image (left) → feature map (right)',hinglish:'16×16 leaf image (left) → feature map (right)',hi:'16×16 पत्ती तस्वीर (बाएँ) → फ़ीचर मैप (दाएँ)'});K.$('#legend').innerHTML='';K.$('#netCard').style.display='none';
+ K.$('#explain').innerHTML=K.t({en:'At each position the filter\'s 9 weights multiply the 9 pixels under it and the products are added: that sum is one feature-map value. The same 9 weights are reused everywhere (weight sharing).',hinglish:'Har position par filter ke 9 weights neeche ke 9 pixels se multiply hote hain aur products jude jaate hain: woh sum feature map ki ek value hai. Wahi 9 weights har jagah reuse hote hain (weight sharing).',hi:'हर स्थान पर फ़िल्टर के 9 भार नीचे के 9 पिक्सेल से गुणा होते हैं और गुणनफल जुड़ते हैं: वह योग फ़ीचर मैप का एक मान है। वही 9 भार हर जगह दोबारा इस्तेमाल होते हैं (भार साझा)।'});
+ K.$('#stats').innerHTML='';drawLoss([]);drawConv();}
+function convAt(i,j){const F=FILT[Cv.f];let s=0;for(let a=-1;a<=1;a++)for(let b=-1;b<=1;b++){const v=(Cv.I[i+a]||[])[j+b];s+=(v==null?0:v)*F[a+1][b+1];}return s;}
+async function runConv(fast){Cv.out=Array.from({length:16},()=>new Array(16).fill(null));for(let p=0;p<256;p++){Cv.pos=p;const i=p>>4,j=p&15;Cv.out[i][j]=convAt(i,j);if(!fast&&(p%3===0)){drawConv();await K.sleep(18);}}Cv.pos=-1;drawConv();K.check('filter-applied',{filter:Cv.f});}
+function drawConv(){const W=cv.width,cs=W/2/16;cx.fillStyle='#08163f';cx.fillRect(0,0,W,W);const top=W/2-cs*8;
+ for(let i=0;i<16;i++)for(let j=0;j<16;j++){const v=Cv.I[i][j];cx.fillStyle=`rgb(${30+v*40|0},${60+v*180|0},${40+v*60|0})`;cx.fillRect(j*cs,top+i*cs,cs-1,cs-1);
+  if(Cv.out&&Cv.out[i][j]!=null){const o=Cv.out[i][j];const m=Cv.f==='blur'?o:Math.abs(o)/2.2;cx.fillStyle=Cv.f==='blur'||Cv.f==='sharpen'?`rgb(${K.clamp(m*255,0,255)|0},${K.clamp(m*255,0,255)|0},${K.clamp(m*255,0,255)|0})`:(o>0?`rgba(2,207,249,${K.clamp(m,0,1)})`:`rgba(255,122,26,${K.clamp(m,0,1)})`);cx.fillRect(W/2+j*cs,top+i*cs,cs-1,cs-1);}}
+ cx.strokeStyle='rgba(255,255,255,.2)';cx.strokeRect(W/2,top,cs*16,cs*16);
+ if(Cv.pos>=0){const i=Cv.pos>>4,j=Cv.pos&15;cx.strokeStyle='#FFD23F';cx.lineWidth=4;cx.strokeRect((j-1)*cs,top+(i-1)*cs,cs*3,cs*3);cx.strokeStyle='#fff';cx.strokeRect(W/2+j*cs,top+i*cs,cs,cs);
+  cx.strokeStyle='rgba(255,210,63,.6)';cx.lineWidth=2;cx.beginPath();cx.moveTo((j+2)*cs,top+(i+.5)*cs);cx.lineTo(W/2+j*cs,top+(i+.5)*cs);cx.stroke();
+  const F=FILT[Cv.f];let terms=[];for(let a=-1;a<=1;a++)for(let b=-1;b<=1;b++){const v=(Cv.I[i+a]||[])[j+b];terms.push(((v==null?0:v)).toFixed(2)+'×'+(+F[a+1][b+1].toFixed(2)));}K.$('#calc').innerHTML='<span class="mono">'+terms.slice(0,4).join(' + ')+' + … = <b>'+convAt(i,j).toFixed(2)+'</b></span>';}
+ const F=FILT[Cv.f];K.$('#kern')&&(K.$('#kern').innerHTML='<table style="border-collapse:collapse">'+F.map(r=>'<tr>'+r.map(v=>`<td style="border:1px solid #334;padding:4px 8px;text-align:center;color:${v>0?'#02CFF9':v<0?'#FF7A1A':'#9fb0d6'}">${+v.toFixed(2)}</td>`).join('')+'</tr>').join('')+'</table>');
+ cx.fillStyle='#9fb0d6';cx.font='18px system-ui';cx.fillText('input',8,top-10);cx.fillText('feature map',W/2+8,top-10);}
+// ---------- diffusion ----------
+const Df={};const ICONS={peacock:(x,y)=>{const r=Math.hypot(x-16,y-12);let c=[8,22,63];if(r<11&&y<20){const a=Math.atan2(y-12,x-16);const ring=Math.floor(r/3.2)%2;c=ring?[2,180,170]:[30,90,200];if(Math.abs(Math.sin(a*6))<.18&&r>5)c=[245,185,10];}if((x-16)**2/6+(y-20)**2/22<1)c=[37,99,235];if((x-16)**2+(y-12.5)**2<3&&y>19)c=[37,99,235];if(Math.hypot(x-16,y-15.5)<1.9)c=[20,60,180];if(y>27&&Math.abs(x-16)<4&&y<29)c=[245,185,10];return c;},
+ lotus:(x,y)=>{let c=[8,22,63];for(let k=-2;k<=2;k++){const cxp=16+k*4.2,ang=k*0.35;const dx=x-cxp,dy=y-15;const rx=dx*Math.cos(ang)+dy*Math.sin(ang),ry=-dx*Math.sin(ang)+dy*Math.cos(ang);if(rx*rx/5+ry*ry/42<1&&y<21)c=k===0?[255,140,190]:[240,100,160];}if(y>21&&y<25&&Math.abs(x-16)<12)c=[34,197,94];if(y>=25)c=[2,100,160];return c;}};
+function setupDiff(){Df.prompt='peacock';Df.t=+cfg.steps||20;Df.T=+cfg.steps||20;const r=K.rng(99);Df.noise=Array.from({length:32*32*3},()=>gauss(r));Df.fired=false;
+ K.$('#ctrl').innerHTML=`<h2>${K.t({en:'Denoise step by step',hinglish:'Step-by-step denoise',hi:'कदम-दर-कदम शोर हटाओ'})}</h2><div class="seg" id="pr"><button class="btn" data-p="peacock">"a peacock, folk-art style"</button><button class="btn" data-p="lotus">"a lotus on a pond"</button></div><label class="sl" style="margin-top:10px">${K.t({en:'Step t (noise level)',hinglish:'Step t (noise level)',hi:'कदम t (शोर स्तर)'})} <b id="tv"></b><input type="range" id="t" min="0" max="${Df.T}" value="${Df.T}"></label><div class="row" style="margin-top:8px"><button class="btn pri" id="go">▶ ${K.t({en:'Denoise',hinglish:'Denoise karo',hi:'शोर हटाओ'})}</button><button class="btn" id="noise">↺ ${K.t({en:'Back to noise',hinglish:'Wapas noise',hi:'वापस शोर'})}</button></div>`;
+ K.$$('#pr button').forEach(b=>{b.classList.toggle('on',b.dataset.p===Df.prompt);b.onclick=()=>{Df.prompt=b.dataset.p;K.$$('#pr button').forEach(x=>x.classList.toggle('on',x===b));drawDiff();};});
+ K.$('#t').oninput=e=>{Df.t=+e.target.value;drawDiff();};K.$('#go').onclick=async()=>{for(let t=Df.t;t>=0;t--){Df.t=t;K.$('#t').value=t;drawDiff();await K.sleep(140);}};K.$('#noise').onclick=()=>{Df.t=Df.T;K.$('#t').value=Df.T;drawDiff();};
+ K.$('#vizTitle').textContent=K.t({en:'From pure noise to a picture',hinglish:'Pure noise se tasveer tak',hi:'शुद्ध शोर से तस्वीर तक'});K.$('#legend').innerHTML='';K.$('#netCard').style.display='none';K.$('#stats').innerHTML='';drawLoss([]);
+ K.$('#explain').innerHTML=K.t({en:'This visualiser uses the real diffusion noise schedule: xₜ = √ᾱₜ·x₀ + √(1−ᾱₜ)·ε. A trained model predicts ε from xₜ and the prompt; here the picture the prompt points to is built in, so you can see exactly what each denoising step removes. Same noise + different prompt = different image.',hinglish:'Yeh visualiser asli diffusion noise schedule use karta hai: xₜ = √ᾱₜ·x₀ + √(1−ᾱₜ)·ε. Trained model xₜ aur prompt se ε predict karta hai; yahan prompt wali tasveer built-in hai, taaki tum dekh sako har denoising step kya hatata hai. Same noise + alag prompt = alag image.',hi:'यह विज़ुअलाइज़र असली डिफ़्यूज़न शोर-अनुसूची इस्तेमाल करता है: xₜ = √ᾱₜ·x₀ + √(1−ᾱₜ)·ε। प्रशिक्षित मॉडल xₜ और प्रॉम्प्ट से ε अनुमानित करता है; यहाँ प्रॉम्प्ट वाली तस्वीर अंदर बनी है, ताकि आप देख सकें हर कदम क्या हटाता है। वही शोर + अलग प्रॉम्प्ट = अलग तस्वीर।'});drawDiff();}
+function drawDiff(){const N=32,W=cv.width,cs=W/N;const ab=Math.cos((Df.t/Df.T)*Math.PI/2*0.98)**2;const sa=Math.sqrt(ab),sn=Math.sqrt(1-ab);const f=ICONS[Df.prompt];
+ for(let y=0;y<N;y++)for(let x=0;x<N;x++){const c=f(x,y);const k=(y*N+x)*3;const px=[0,1,2].map(i=>K.clamp((c[i]/127.5-1)*sa+Df.noise[k+i]*sn,-1,1));cx.fillStyle=`rgb(${(px[0]+1)*127.5|0},${(px[1]+1)*127.5|0},${(px[2]+1)*127.5|0})`;cx.fillRect(x*cs,y*cs,cs+0.5,cs+0.5);}
+ K.$('#tv').textContent=Df.t+' / '+Df.T+'  (√ᾱ = '+sa.toFixed(2)+')';if(Df.t===0&&!Df.fired){Df.fired=true;K.check('diffusion-complete',{prompt:Df.prompt});}}
+// ---------- loop & boot ----------
+function start(fn){running=true;const b=K.$('#play');if(b)b.textContent='⏸';const f=()=>{if(!running)return;fn();raf=requestAnimationFrame(f);};raf=requestAnimationFrame(f);}
+function stop(){running=false;cancelAnimationFrame(raf);const b=K.$('#play');if(b)b.textContent='▶';}
+const SETUP={classify:setupClassify,regress:setupRegress,kmeans:setupKmeans,conv:setupConv,diffusion:setupDiff};
+function go(m){stop();mode=m;K.$$('#modes button').forEach(b=>b.classList.toggle('on',b.dataset.m===m));SETUP[m]();}
+K.header({en:'Neural Network Playground',hinglish:'Neural Network Playground',hi:'न्यूरल नेटवर्क प्लेग्राउंड'},{en:'Train real models in your browser',hinglish:'Browser mein asli models train karo',hi:'ब्राउज़र में असली मॉडल प्रशिक्षित करो'});
+K.boot({mode:'classify',dataset:'circle',hidden:[4]}).then(c=>{cfg=c;K.$('#modes').innerHTML=Object.keys(SETUP).map(m=>`<button class="btn" data-m="${m}" data-t="${m}">${K.t(T[m])}</button>`).join('');K.$$('#modes button').forEach(b=>b.onclick=()=>go(b.dataset.m));K.onLang(()=>go(mode));go(c.mode||'classify');});
+</script>
+</body></html>

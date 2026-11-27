@@ -1,0 +1,367 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.llms.04",
+ "level": 3,
+ "classes": [
+  11,
+  12
+ ],
+ "unit": "llms",
+ "title": {
+  "en": "Context windows and hallucination",
+  "hi": "कॉन्टेक्स्ट विंडो और हैलुसिनेशन",
+  "hinglish": "Context windows aur hallucination"
+ },
+ "minutes": 12,
+ "xp": 50,
+ "prereq": [
+  "L3.llms.03"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain what a context window is and what happens when it fills",
+   "hinglish": "Context window kya hai aur bharne par kya hota hai",
+   "hi": "समझाना कि संदर्भ-खिड़की क्या है और भरने पर क्या होता है"
+  },
+  {
+   "en": "Explain why LLMs hallucinate and how to reduce it",
+   "hinglish": "LLMs hallucinate kyun karte hain aur kaise kam karein",
+   "hi": "समझाना कि एलएलएम मतिभ्रम क्यों करते हैं और इसे कैसे घटाएँ"
+  },
+  {
+   "en": "Verify an AI answer against a primary source",
+   "hinglish": "AI jawab ko primary source se verify karo",
+   "hi": "एआई उत्तर को प्राथमिक स्रोत से सत्यापित करना"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Context window",
+   "hinglish": "Model ek baar mein kitna text \"dekh\" sakta hai",
+   "en": "The maximum number of tokens a model processes at once",
+   "hi": "टोकनों की अधिकतम संख्या जिसे मॉडल एक बार में संसाधित करता है"
+  },
+  {
+   "term": "Hallucination",
+   "hinglish": "Aatmavishwaas se galat ya banaayi hui baat",
+   "en": "Fluent output that is false or unsupported",
+   "hi": "धाराप्रवाह पर ग़लत या असमर्थित आउटपुट"
+  },
+  {
+   "term": "Knowledge cutoff",
+   "hinglish": "Training data kis date tak ka hai",
+   "en": "The date after which the model saw no training data",
+   "hi": "वह तिथि जिसके बाद मॉडल ने प्रशिक्षण डेटा नहीं देखा"
+  },
+  {
+   "term": "Grounding",
+   "hinglish": "Jawab ko asli source se jodna",
+   "en": "Basing an answer on provided, checkable sources",
+   "hi": "उत्तर को दिए गए, जाँचने योग्य स्रोतों पर आधारित करना"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "The context window is the model's working desk: your prompt, the chat so far, files and its own reply must all fit.",
+    "hi": "कॉन्टेक्स्ट विंडो मॉडल की काम की मेज़ है: आपका प्रॉम्प्ट, अब तक की बातचीत, फ़ाइलें और उसका जवाब सब उसमें आना चाहिए।",
+    "hinglish": "Context window model ki kaam ki table hai: tumhara prompt, ab tak ki chat, files aur uska jawab sab usmein aana chahiye."
+   },
+   "visual": "anim:context-desk",
+   "narration": {
+    "en": "The context window is the model's working desk: your prompt, the chat so far, files and its own reply must all fit.",
+    "hi": "कॉन्टेक्स्ट विंडो मॉडल की काम की मेज़ है: आपका प्रॉम्प्ट, अब तक की बातचीत, फ़ाइलें और उसका जवाब सब उसमें आना चाहिए।",
+    "hinglish": "Context window model ki kaam ki table hai: tumhara prompt, ab tak ki chat, files aur uska jawab sab usmein aana chahiye."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Ask about a fake book and a model may invent an author and a plot: it predicts plausible text, not checked facts.",
+    "hi": "किसी नकली किताब के बारे में पूछो तो मॉडल लेखक और कहानी गढ़ सकता है: वह संभावित पाठ बनाता है, जाँचे हुए तथ्य नहीं।",
+    "hinglish": "Kisi nakli kitaab ke baare mein poochho to model author aur plot bana sakta hai: woh plausible text banata hai, checked facts nahi."
+   },
+   "visual": "anim:hallucination-book",
+   "narration": {
+    "en": "Ask about a fake book and a model may invent an author and a plot: it predicts plausible text, not checked facts.",
+    "hi": "किसी नकली किताब के बारे में पूछो तो मॉडल लेखक और कहानी गढ़ सकता है: वह संभावित पाठ बनाता है, जाँचे हुए तथ्य नहीं।",
+    "hinglish": "Kisi nakli kitaab ke baare mein poochho to model author aur plot bana sakta hai: woh plausible text banata hai, checked facts nahi."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Defences: give it sources (RAG), ask it to cite and to say \"I don't know\", use tools for maths, and always verify important claims.",
+    "hi": "बचाव: उसे स्रोत दो (आरएजी), हवाला देने और \"मुझे नहीं पता\" कहने को कहो, गणित के लिए औज़ार इस्तेमाल करो, और ज़रूरी दावे हमेशा जाँचो।",
+    "hinglish": "Bachaav: use sources do (RAG), cite karne aur \"mujhe nahi pata\" kehne ko kaho, maths ke liye tools use karo, aur important claims hamesha verify karo."
+   },
+   "visual": "anim:verify-shield",
+   "narration": {
+    "en": "Defences: give it sources (RAG), ask it to cite and to say \"I don't know\", use tools for maths, and always verify important claims.",
+    "hi": "बचाव: उसे स्रोत दो (आरएजी), हवाला देने और \"मुझे नहीं पता\" कहने को कहो, गणित के लिए औज़ार इस्तेमाल करो, और ज़रूरी दावे हमेशा जाँचो।",
+    "hinglish": "Bachaav: use sources do (RAG), cite karne aur \"mujhe nahi pata\" kehne ko kaho, maths ke liye tools use karo, aur important claims hamesha verify karo."
+   }
+  }
+ ],
+ "play": {
+  "lab": "agent-loop",
+  "config": {
+   "scenario": "hallucination-check"
+  },
+  "goal": {
+   "en": "Compare two runs on the same question: one answers from memory and invents a citation; one retrieves the official page and cites it. Spot the hallucination.",
+   "hinglish": "Ek hi sawaal par do runs compare karo: ek memory se jawab deta hai aur fake citation banata hai; doosra official page laake cite karta hai. Hallucination pakdo.",
+   "hi": "एक ही प्रश्न पर दो रन की तुलना करो: एक याद से उत्तर देकर संदर्भ गढ़ता है; दूसरा आधिकारिक पेज लाकर उसका हवाला देता है। मतिभ्रम पकड़ो।"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "The context window",
+    "hi": "कॉन्टेक्स्ट विंडो",
+    "hinglish": "Context window"
+   },
+   "body": {
+    "en": "A model can only attend to tokens inside its context window. GPT-3 (2020) had 2,048 tokens; by 2025 many models offered 1,28,000 tokens and some 1 million or more, enough for several books. Everything counts: the system instructions, the whole chat history, pasted documents and the answer being written. When a conversation exceeds the window, apps drop or summarise older turns, so the model \"forgets\" early details. Even inside the window, studies show models use information in the middle of very long inputs less reliably than the beginning and end (\"lost in the middle\"). Long contexts also cost more and run slower, since attention grows roughly with the square of length.",
+    "hi": "मॉडल सिर्फ़ अपनी कॉन्टेक्स्ट विंडो के अंदर के टोकन पर ध्यान दे सकता है। जीपीटी-3 (2020) में 2,048 टोकन थे; 2025 तक कई मॉडल 1,28,000 टोकन और कुछ 10 लाख या ज़्यादा देने लगे, जो कई किताबों के लिए काफ़ी है। सब गिनता है: सिस्टम निर्देश, पूरी बातचीत, चिपकाए दस्तावेज़ और लिखा जा रहा जवाब। बातचीत विंडो से बड़ी हो तो ऐप पुराने हिस्से हटाते या सारांश बनाते हैं, तो मॉडल शुरुआती बातें \"भूल\" जाता है। विंडो के अंदर भी अध्ययन बताते हैं कि बहुत लंबे इनपुट के बीच की जानकारी शुरू और अंत से कम भरोसे से इस्तेमाल होती है (\"लॉस्ट इन द मिडल\")। लंबे कॉन्टेक्स्ट महँगे और धीमे भी हैं, क्योंकि अटेंशन लंबाई के लगभग वर्ग से बढ़ता है।",
+    "hinglish": "Model sirf apni context window ke andar ke tokens par dhyaan de sakta hai. GPT-3 (2020) mein 2,048 tokens the; 2025 tak kai models 1,28,000 tokens aur kuch 10 lakh ya zyada dene lage, jo kai kitaabon ke liye kaafi hai. Sab ginta hai: system instructions, poori chat history, paste kiye documents aur likha ja raha jawab. Chat window se badi ho to apps purane turns hatate ya summary banate hain, to model shuru ki baatein \"bhool\" jaata hai. Window ke andar bhi studies batati hain ki bahut lambe input ke beech ki info shuru aur end se kam reliable tareeke se use hoti hai (\"lost in the middle\"). Lambe contexts mehenge aur slow bhi hain, kyunki attention length ke lagbhag square se badhta hai."
+   },
+   "analogy": {
+    "hinglish": "Context window exam hall ki bench jaisi hai: jitni kitaabein bench par aa sakein, utni hi dekh sakte ho. Baaki ghar par chhoot gayi.",
+    "en": "The context window is like your exam-hall bench: you can only look at as many books as fit on the bench. The rest stayed at home.",
+    "hi": "संदर्भ-खिड़की परीक्षा-हॉल की बेंच जैसी है: जितनी किताबें बेंच पर आ सकें, उतनी ही देख सकते हो। बाक़ी घर पर छूट गईं।"
+   },
+   "realExample": {
+    "en": "When you paste a 300-page DPDP Rules PDF into a chatbot, it may silently truncate it; asking about a clause near the end can then give a wrong answer.",
+    "hinglish": "Jab tum 300-page ka DPDP Rules PDF chatbot mein paste karte ho, woh chupchaap truncate kar sakta hai; phir end ke clause ke baare mein poochhne par galat jawab mil sakta hai.",
+    "hi": "जब आप 300 पन्नों का DPDP नियम PDF चैटबॉट में चिपकाते हो, तो वह चुपचाप उसे काट सकता है; तब अंत के पास के किसी खंड के बारे में पूछने पर ग़लत उत्तर मिल सकता है।"
+   }
+  },
+  {
+   "heading": {
+    "en": "Why models hallucinate, and what to do",
+    "hi": "मॉडल हैलुसिनेट क्यों करते हैं, और क्या करें",
+    "hinglish": "Models hallucinate kyun karte hain, aur kya karein"
+   },
+   "body": {
+    "en": "An LLM is trained to produce likely-sounding text, not to look facts up. When it lacks the knowledge (a rare topic, something after its knowledge cutoff, an exact number or quote), the most likely-sounding continuation can be false but fluent: invented court cases, fake research papers, wrong train timings. In 2023 lawyers in the US were fined after filing a brief with case citations ChatGPT had invented. Reduce hallucination by grounding answers in retrieved documents (RAG), letting the model use tools (search, calculator, code), asking for sources and confidence, lowering temperature for factual tasks, and testing with known questions. As a user: treat output as a draft, check numbers, laws, medicine and money advice against official sources, and never share it as fact without checking.",
+    "hi": "एलएलएम संभावित लगने वाला पाठ बनाने के लिए प्रशिक्षित है, तथ्य देखने के लिए नहीं। जब उसके पास ज्ञान न हो (दुर्लभ विषय, ज्ञान-सीमा के बाद की बात, सटीक संख्या या उद्धरण), सबसे संभावित लगने वाला आगे का पाठ गलत पर धाराप्रवाह हो सकता है: गढ़े हुए अदालती मामले, नकली शोध-पत्र, गलत ट्रेन समय। 2023 में अमेरिका में वकीलों पर जुर्माना लगा जब उन्होंने चैटजीपीटी के गढ़े मामलों वाले दस्तावेज़ दाखिल किए। कम करने के लिए: जवाबों को लाए गए दस्तावेज़ों पर आधारित करो (आरएजी), मॉडल को औज़ार दो (खोज, कैलकुलेटर, कोड), स्रोत और विश्वास पूछो, तथ्यात्मक कामों में टेम्परेचर घटाओ, और ज्ञात सवालों से जाँचो। उपयोगकर्ता के रूप में: आउटपुट को मसौदा मानो, संख्याएँ, कानून, दवा और पैसे की सलाह आधिकारिक स्रोतों से जाँचो, और बिना जाँचे तथ्य की तरह आगे मत भेजो।",
+    "hinglish": "LLM likely-sounding text banane ke liye trained hai, facts dekhne ke liye nahi. Jab uske paas knowledge na ho (rare topic, knowledge cutoff ke baad ki baat, exact number ya quote), sabse likely-sounding continuation galat par fluent ho sakta hai: banaaye hue court cases, nakli research papers, galat train timings. 2023 mein US mein lawyers par fine laga jab unhone ChatGPT ke banaaye cases wala brief file kiya. Kam karne ke liye: jawab ko retrieved documents par ground karo (RAG), model ko tools do (search, calculator, code), sources aur confidence poochho, factual tasks mein temperature ghatao, aur known questions se test karo. User ki tarah: output ko draft maano, numbers, laws, medicine aur paise ki advice official sources se check karo, aur bina check kiye fact ki tarah forward mat karo."
+   },
+   "analogy": {
+    "hinglish": "Hallucination us dost jaisa hai jo raasta na pata ho phir bhi poore confidence se bata deta hai \"seedha jao, phir left\". Google Maps (source) se check karo.",
+    "en": "A hallucination is like the friend who does not know the way but says with full confidence, \"go straight, then left\". Check with Google Maps (the source).",
+    "hi": "मतिभ्रम उस दोस्त जैसा है जिसे रास्ता पता न हो फिर भी पूरे भरोसे से बता देता है \"सीधे जाओ, फिर बाएँ\"। गूगल मैप्स (स्रोत) से जाँचो।"
+   },
+   "realExample": {
+    "en": "Ask a chatbot for a Class 10 CBSE exam date and verify on cbse.gov.in: dates change yearly and the model's training data may be out of date.",
+    "hinglish": "Chatbot se Class 10 CBSE exam date poochho aur cbse.gov.in par verify karo: dates har saal badalti hain aur model ka training data purana ho sakta hai.",
+    "hi": "चैटबॉट से कक्षा 10 सीबीएसई परीक्षा तिथि पूछो और cbse.gov.in पर सत्यापित करो: तिथियाँ हर साल बदलती हैं और मॉडल का प्रशिक्षण डेटा पुराना हो सकता है।"
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Ask any chatbot 3 questions about your own town (a local festival date, the MLA's name, a train number). Check each answer against an official source and mark it correct, outdated or invented.",
+   "hinglish": "Kisi bhi chatbot se apne shehar ke 3 sawaal poochho (local tyohaar ki date, MLA ka naam, train number). Har jawab official source se check karo aur mark karo: sahi, purana, ya banaaya hua.",
+   "hi": "किसी भी चैटबॉट से अपने शहर के बारे में 3 प्रश्न पूछो (स्थानीय त्योहार की तिथि, विधायक का नाम, एक ट्रेन नंबर)। हर उत्तर को आधिकारिक स्रोत से जाँचो और सही, पुराना या गढ़ा हुआ चिह्नित करो।"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "A chat has gone on so long that the model forgets your name from the first message. Why?",
+     "hi": "बातचीत इतनी लंबी हो गई कि मॉडल पहले संदेश का आपका नाम भूल गया। क्यों?",
+     "hinglish": "Chat itni lambi ho gayi ki model pehle message ka tumhara naam bhool gaya. Kyun?"
+    },
+    "options": [
+     {
+      "en": "Older messages fell outside the context window",
+      "hinglish": "Purane messages context window se bahar ho gaye",
+      "hi": "पुराने संदेश संदर्भ-खिड़की से बाहर चले गए"
+     },
+     {
+      "en": "The model got tired",
+      "hinglish": "Model thak gaya",
+      "hi": "मॉडल थक गया"
+     },
+     {
+      "en": "Names are not tokens",
+      "hinglish": "Naam tokens nahi hote",
+      "hi": "नाम टोकन नहीं होते"
+     },
+     {
+      "en": "The internet disconnected",
+      "hinglish": "Internet chala gaya",
+      "hi": "इंटरनेट कट गया"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Only tokens inside the window are seen. Apps trim or summarise older turns when it fills.",
+     "hi": "सिर्फ़ विंडो के अंदर के टोकन दिखते हैं। भरने पर ऐप पुराने हिस्से काटते या सारांश बनाते हैं।",
+     "hinglish": "Sirf window ke andar ke tokens dikhte hain. Bharne par apps purane turns kaat-te ya summary banate hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "The root cause of hallucination is that LLMs…",
+     "hi": "हैलुसिनेशन का मूल कारण यह है कि एलएलएम…",
+     "hinglish": "Hallucination ki asli wajah yeh hai ki LLMs…"
+    },
+    "options": [
+     {
+      "en": "Generate plausible text rather than looking up verified facts",
+      "hinglish": "Verified facts dekhne ki jagah plausible text banate hain",
+      "hi": "सत्यापित तथ्य देखने के बजाय विश्वसनीय-सा पाठ बनाते हैं"
+     },
+     {
+      "en": "Are connected to fake websites",
+      "hinglish": "Fake websites se jude hain",
+      "hi": "नकली वेबसाइटों से जुड़े हैं"
+     },
+     {
+      "en": "Want to lie",
+      "hinglish": "Jhooth bolna chahte hain",
+      "hi": "झूठ बोलना चाहते हैं"
+     },
+     {
+      "en": "Run out of battery",
+      "hinglish": "Battery khatam",
+      "hi": "बैटरी ख़त्म हो जाती है"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Next-token prediction rewards fluency; without grounding, fluent and false can look identical.",
+     "hi": "अगले टोकन का अनुमान धाराप्रवाहता को इनाम देता है; आधार के बिना धाराप्रवाह और झूठ एक जैसे दिख सकते हैं।",
+     "hinglish": "Next-token prediction fluency ko reward karta hai; grounding ke bina fluent aur jhooth ek jaise dikh sakte hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "multi",
+    "prompt": {
+     "en": "Which reduce hallucination? Choose all.",
+     "hi": "कौन-से हैलुसिनेशन घटाते हैं? सभी चुनें।",
+     "hinglish": "Kaun hallucination ghatate hain? Sab chuno."
+    },
+    "options": [
+     {
+      "en": "Retrieval of trusted documents (RAG)",
+      "hinglish": "Trusted documents ki retrieval (RAG)",
+      "hi": "विश्वसनीय दस्तावेज़ों की पुनर्प्राप्ति (RAG)"
+     },
+     {
+      "en": "Using a calculator tool for arithmetic",
+      "hinglish": "Arithmetic ke liye calculator tool",
+      "hi": "अंकगणित के लिए कैलकुलेटर टूल"
+     },
+     {
+      "en": "Asking for sources you can check",
+      "hinglish": "Check ho sakne wale sources maangna",
+      "hi": "ऐसे स्रोत माँगना जिन्हें तुम जाँच सको"
+     },
+     {
+      "en": "Raising temperature to 2",
+      "hinglish": "Temperature 2 karna",
+      "hi": "तापमान 2 कर देना"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2
+    ],
+    "explain": {
+     "en": "Grounding, tools and checkable citations help. High temperature makes output more random, not more accurate.",
+     "hi": "आधार, औज़ार और जाँचने योग्य हवाले मदद करते हैं। ऊँचा टेम्परेचर आउटपुट को ज़्यादा यादृच्छिक बनाता है, सटीक नहीं।",
+     "hinglish": "Grounding, tools aur checkable citations madad karte hain. High temperature output ko zyada random banata hai, accurate nahi."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "A model with a 1,28,000-token window. Roughly how many English words fit?",
+     "hi": "1,28,000 टोकन विंडो वाला मॉडल। लगभग कितने अंग्रेज़ी शब्द आएँगे?",
+     "hinglish": "1,28,000-token window wala model. Lagbhag kitne English words aayenge?"
+    },
+    "options": [
+     {
+      "en": "About 96,000",
+      "hinglish": "Lagbhag 96,000",
+      "hi": "लगभग 96,000"
+     },
+     {
+      "en": "About 12,800",
+      "hinglish": "Lagbhag 12,800",
+      "hi": "लगभग 12,800"
+     },
+     {
+      "en": "About 1 crore",
+      "hinglish": "Lagbhag 1 crore",
+      "hi": "लगभग 1 करोड़"
+     },
+     {
+      "en": "About 1,28,000 pages",
+      "hinglish": "Lagbhag 1,28,000 pages",
+      "hi": "लगभग 1,28,000 पन्ने"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "About 0.75 words per token: 1,28,000 × 0.75 ≈ 96,000 words, roughly a 300-page book. The reply must fit too.",
+     "hi": "प्रति टोकन लगभग 0.75 शब्द: 1,28,000 × 0.75 ≈ 96,000 शब्द, लगभग 300 पेज की किताब। जवाब भी इसी में आना है।",
+     "hinglish": "Per token lagbhag 0.75 words: 1,28,000 × 0.75 ≈ 96,000 words, lagbhag 300-page kitaab. Jawab bhi isi mein aana hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "In the simulator, flag the run that invented a citation.",
+     "hi": "सिम्युलेटर में वह रन चिह्नित करें जिसने हवाला गढ़ा।",
+     "hinglish": "Simulator mein woh run flag karo jisne citation banaaya."
+    },
+    "answer": {
+     "event": "hallucination-flagged"
+    },
+    "explain": {
+     "en": "The memory-only run cites a circular number that does not exist on the official site; the grounded run links the real page.",
+     "hi": "सिर्फ़-याद वाला रन ऐसा परिपत्र नंबर बताता है जो आधिकारिक साइट पर नहीं है; आधारित रन असली पेज जोड़ता है।",
+     "hinglish": "Memory-only run aisa circular number batata hai jo official site par hai hi nahi; grounded run asli page link karta hai."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "ai.hallucination"
+ ],
+ "sources": [
+  {
+   "title": "Liu et al. (2023) Lost in the Middle: How Language Models Use Long Contexts",
+   "url": "https://arxiv.org/abs/2307.03172",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Ji et al. (2023) Survey of Hallucination in Natural Language Generation",
+   "url": "https://arxiv.org/abs/2202.03629",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Mata v. Avianca (S.D.N.Y. 2023) sanctions order — news coverage",
+   "url": "https://en.wikipedia.org/wiki/Mata_v._Avianca,_Inc.",
+   "licence": "fact reference"
+  }
+ ]
+}
