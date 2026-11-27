@@ -1,0 +1,225 @@
+<!doctype html><html lang="en" data-lab="data-lab"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#061233"><title>Data Science Lab · NCA Tech Lab L3</title><style>:root{--bg:#061233;--bg2:#0b1b4a;--card:rgba(255,255,255,.06);--line:rgba(255,255,255,.12);--tx:#eef4ff;--mut:#9fb0d6;--grape:#8B3DFF;--cyan:#02CFF9;--leaf:#22C55E;--coral:#FF6B57;--gold:#F5B90A;--tang:#FF7A1A;--royal:#2563EB;--r:16px}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:radial-gradient(120% 80% at 10% -10%,#22145e 0%,transparent 55%),radial-gradient(120% 80% at 110% 10%,#04395e 0%,transparent 50%),var(--bg);color:var(--tx);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans Devanagari",sans-serif;min-height:100%}
+body{padding:0 0 24px}
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:8px;padding:10px 12px;background:rgba(6,18,51,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top h1{font-size:16px;margin:0;flex:1;letter-spacing:.2px}
+.top h1 small{display:block;font-size:11px;color:var(--mut);font-weight:500}
+.badge{font-size:11px;padding:3px 8px;border-radius:99px;background:linear-gradient(90deg,var(--grape),var(--cyan));color:#061233;font-weight:700}
+.langs{display:flex;border:1px solid var(--line);border-radius:99px;overflow:hidden}
+.langs button{background:none;border:0;color:var(--mut);padding:5px 8px;font:inherit;font-size:12px;min-height:30px}
+.langs button.on{background:var(--grape);color:#fff}
+.wrap{max-width:1100px;margin:0 auto;padding:12px}
+.goal{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:var(--r);background:linear-gradient(135deg,rgba(139,61,255,.22),rgba(2,207,249,.12));border:1px solid rgba(139,61,255,.4);margin-bottom:12px;font-size:14px}
+.goal b{color:var(--gold)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px;margin-bottom:12px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.card h2{font-size:14px;margin:0 0 8px;color:var(--cyan);letter-spacing:.3px;text-transform:uppercase}
+.grid{display:grid;gap:12px}
+@media(min-width:720px){.grid.two{grid-template-columns:1.25fr 1fr}}
+@media(orientation:landscape) and (max-height:500px){.grid.two{grid-template-columns:1.2fr 1fr}.top{padding:6px 12px}}
+.btn{appearance:none;border:1px solid var(--line);background:rgba(255,255,255,.08);color:var(--tx);border-radius:12px;padding:9px 12px;font:inherit;font-weight:600;min-height:40px;cursor:pointer;transition:transform .12s,background .2s}
+.btn:active{transform:scale(.96)}
+.btn.pri{background:linear-gradient(135deg,var(--grape),#5b2be0);border-color:transparent;color:#fff;box-shadow:0 6px 18px rgba(139,61,255,.4)}
+.btn.ok{background:var(--leaf);color:#062;border-color:transparent}
+.btn.on{outline:2px solid var(--cyan)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{border-radius:99px;padding:6px 11px;min-height:34px;font-size:13px}
+label.sl{display:flex;flex-direction:column;gap:3px;font-size:12px;color:var(--mut);flex:1;min-width:120px}
+input[type=range]{width:100%;accent-color:var(--grape)}
+input[type=text],textarea,select{width:100%;background:rgba(0,0,0,.25);border:1px solid var(--line);color:var(--tx);border-radius:12px;padding:10px;font:inherit}
+.stat{display:flex;flex-direction:column;padding:8px 10px;border-radius:12px;background:rgba(0,0,0,.22);min-width:80px}
+.stat b{font-size:18px;font-variant-numeric:tabular-nums}
+.stat span{font-size:11px;color:var(--mut)}
+.mut{color:var(--mut)}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px}
+canvas,svg{display:block;max-width:100%;touch-action:none}
+
+
+.explain{font-size:13.5px;color:#d7e2ff;background:rgba(0,0,0,.2);border-left:3px solid var(--cyan);padding:8px 10px;border-radius:8px;margin-top:8px}
+.pill{display:inline-block;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:700}
+@keyframes pop{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(2,207,249,.0)}50%{box-shadow:0 0 0 6px rgba(2,207,249,.25)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.top h1 .hstat{display:none;font-size:12px;font-weight:700;color:#4ade80;animation:pop .3s both}.top h1.toasting small{display:none}.top h1.toasting .hstat{display:block}
+.seg.chips{margin:4px 0}.seg.chips button{white-space:normal;text-align:left;line-height:1.25;max-width:100%}
+.seg.chips.big .pick{width:100%;font-weight:700}
+</style></head><body><script>// NCA Tech Lab L3 shared kit: language, config from ?cfg= / ?lesson= / inline, mission events, small helpers. No eval.
+(function(g){
+  const qs=new URLSearchParams(location.search);
+  const K={lang:qs.get('lang')||localStorage.getItem('nca-lang')||'hinglish',cfg:{},goal:null,lab:document.documentElement.dataset.lab,listeners:[]};
+  K.reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  K.t=(o)=>o==null?'':typeof o==='string'?o:(o[K.lang]||o.hinglish||o.en||'');
+  K.$=(s,r)=>(r||document).querySelector(s);K.$$=(s,r)=>[...(r||document).querySelectorAll(s)];
+  K.el=(tag,attrs,html)=>{const e=document.createElement(tag);if(attrs)for(const k in attrs){if(k==='on')for(const ev in attrs.on)e.addEventListener(ev,attrs.on[ev]);else e.setAttribute(k,attrs[k]);}if(html!=null)e.innerHTML=html;return e;};
+  K.esc=(s)=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+  K.rng=(seed)=>{let s=seed>>>0||1;return()=>{s^=s<<13;s>>>=0;s^=s>>17;s^=s<<5;s>>>=0;return s/4294967296;};};
+  K.clamp=(v,a,b)=>Math.max(a,Math.min(b,v));K.lerp=(a,b,t)=>a+(b-a)*t;K.ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+  K.sleep=(ms)=>new Promise(r=>setTimeout(r,K.reduced?0:ms));
+  K.tween=(ms,fn)=>new Promise(res=>{if(K.reduced||ms<=0){fn(1);return res();}const t0=performance.now();const f=n=>{const t=Math.min(1,(n-t0)/ms);fn(K.ease(t));t<1?requestAnimationFrame(f):res();};requestAnimationFrame(f);});
+  // Toasts never cover content (readability rule): the message temporarily replaces the header subtitle, then the subtitle returns after 2.5 s.
+  K.toast=(msg)=>{const h=K.$('header.top h1');if(!h)return;let st=h.querySelector('.hstat');if(!st){st=K.el('span',{class:'hstat',role:'status','aria-live':'polite'});h.appendChild(st);}st.textContent=msg;h.classList.add('toasting');clearTimeout(K._tt);K._tt=setTimeout(()=>h.classList.remove('toasting'),2500);};
+  K.events=[];
+  // emit a lab event; the lesson player listens via postMessage and matches it against try.questions[type=lab-check].answer
+  K.emit=(event,data)=>{const m={type:'nca-lab-event',lab:K.lab,event,data:data||{},at:Date.now()};K.events.push(m);try{parent!==window&&parent.postMessage(m,'*');}catch(e){}g.dispatchEvent(new CustomEvent('nca-lab-event',{detail:m}));document.documentElement.dataset.lastEvent=event;};
+  K.check=(event,data,msg)=>{K.emit(event,data);K.toast('✓ '+(msg||K.t({en:'Mission check passed',hinglish:'Mission check pass!',hi:'मिशन जाँच पास!'})));};
+  K.onLang=(fn)=>K.listeners.push(fn);
+  K.setLang=(l)=>{K.lang=l;localStorage.setItem('nca-lang',l);K.$$('.langs button').forEach(b=>b.classList.toggle('on',b.dataset.l===l));K.$$('[data-t]').forEach(e=>{const o=K.T[e.dataset.t];if(o)e.innerHTML=K.t(o);});K.renderGoal();K.listeners.forEach(f=>f(l));};
+  K.T={};// string table: key -> {en,hi,hinglish}
+  K.renderGoal=()=>{const gEl=K.$('#goal');if(!gEl)return;const goal=K.goal||K.T.__goal;gEl.style.display=goal?'flex':'none';if(goal)gEl.innerHTML='<span>🎯</span><div><b>'+K.esc(K.t({en:'Goal',hinglish:'Goal',hi:'लक्ष्य'}))+':</b> '+K.esc(K.t(goal))+'</div>';};
+  K.header=(title,sub)=>{const h=K.el('header',{class:'top'});h.innerHTML='<span class="badge">L3</span><h1>'+K.esc(K.t(title))+'<small>'+K.esc(K.t(sub))+'</small></h1><div class="langs" role="group" aria-label="Language"><button data-l="hinglish">Hinglish</button><button data-l="en">EN</button><button data-l="hi">हिं</button></div>';document.body.prepend(h);K.$$('.langs button',h).forEach(b=>b.onclick=()=>{K.setLang(b.dataset.l);h.querySelector('h1').firstChild.textContent=K.t(title);h.querySelector('small').textContent=K.t(sub);});};
+  // Readability rule: native <select> boxes cut long option text on phones, so every select is shown as a wrapping row of chips.
+  K.chipify=(sel)=>{if(sel._chips||sel.dataset.keep!=null)return;const box=K.el('div',{class:'seg chips',role:'radiogroup','aria-label':sel.getAttribute('aria-label')||'options'});sel.after(box);sel.style.display='none';sel._chips=box;let last='';
+    let open=false;const render=(force)=>{const n=sel.options.length,big=n>6;const sig=[...sel.options].map(o=>o.value+'\u0001'+o.textContent).join('\u0002')+'|'+sel.value+'|'+open;if(sig===last&&!force)return;last=sig;box.innerHTML='';box.classList.toggle('big',big);
+      if(big){const cur=sel.options[sel.selectedIndex];const t=K.el('button',{class:'btn on pick',type:'button','aria-expanded':open?'true':'false'});t.textContent=(open?'▴ ':'▾ ')+(cur?cur.textContent:'');t.onclick=()=>{open=!open;render(true);};box.appendChild(t);if(!open)return;}
+      [...sel.options].forEach(o=>{if(big&&o.value===sel.value)return;const b=K.el('button',{class:'btn'+(o.value===sel.value?' on':''),type:'button',role:'radio','aria-checked':o.value===sel.value?'true':'false'});b.textContent=o.textContent;b.onclick=()=>{if(sel.disabled)return;sel.value=o.value;open=false;render(true);sel.dispatchEvent(new Event('change',{bubbles:true}));};box.appendChild(b);});};
+    render();new MutationObserver(render).observe(sel,{childList:true,subtree:true,characterData:true});setInterval(render,250);};
+  K.chipAll=()=>{K.$$('select').forEach(K.chipify);if(!K._mo){K._mo=new MutationObserver(()=>K.$$('select').forEach(K.chipify));K._mo.observe(document.body,{childList:true,subtree:true});}};
+  K.boot=async(defaults)=>{let cfg=Object.assign({},defaults||{});
+    const inl=document.getElementById('lesson-inline');
+    try{if(inl){const L=JSON.parse(inl.textContent);if(L.play){Object.assign(cfg,L.play.config||{});K.goal=L.play.goal;}}}catch(e){}
+    const lp=qs.get('lesson');if(lp){try{const L=await (await fetch(lp)).json();if(L.play&&L.play.lab===K.lab){Object.assign(cfg,L.play.config||{});K.goal=L.play.goal;}}catch(e){}}
+    const c=qs.get('cfg');if(c){try{Object.assign(cfg,JSON.parse(c));}catch(e){}}
+    for(const [k,v] of qs){if(!['cfg','lesson','lang'].includes(k))cfg[k]=v;}
+    K.cfg=cfg;K.setLang(K.lang);setTimeout(K.chipAll,0);return cfg;};
+  g.K=K;
+})(window);
+</script><div class="wrap">
+ <div id="goal" class="goal" style="display:none"></div>
+ <div class="seg" id="modes" role="tablist" style="margin-bottom:10px"></div>
+ <div id="pane-dist" class="pane">
+  <div class="card"><div class="row" style="gap:6px;flex-wrap:wrap"><select id="dset" aria-label="dataset"></select><button class="btn" id="outl" data-t="addOut"></button><button class="btn" id="reset">↺</button></div>
+   <svg id="hist" viewBox="0 -8 320 214" role="img" aria-label="histogram and box plot"></svg>
+   <div class="nums" id="stats"></div><div class="explain" id="distInfo"></div>
+  </div>
+ </div>
+ <div id="pane-corr" class="pane">
+  <div class="card"><div class="row" style="gap:6px;flex-wrap:wrap"><select id="cset" aria-label="dataset"></select><label class="row mut" id="confWrap" style="font-size:13px;gap:4px"><input type="checkbox" id="conf"> <span id="confLbl"></span></label></div>
+   <svg id="scat" viewBox="0 0 320 230" role="img" aria-label="scatter plot"></svg>
+   <div class="row" style="justify-content:center;gap:14px"><div class="stat"><b id="rVal">–</b><span>r</span></div><div class="stat"><b id="r2Val">–</b><span>r²</span></div></div>
+   <div class="explain" id="corrInfo"></div>
+  </div>
+ </div>
+ <div id="pane-prob" class="pane">
+  <div class="card"><h2 data-t="sim"></h2><div class="row" style="gap:6px;flex-wrap:wrap"><select id="sim" aria-label="simulation"></select><button class="btn" id="s10">+10</button><button class="btn" id="s100">+100</button><button class="btn pri" id="s1000">+1000</button><button class="btn" id="sClr">↺</button></div>
+   <svg id="psvg" viewBox="0 0 320 170" role="img" aria-label="simulation chart"></svg><div class="explain" id="simInfo"></div></div>
+  <div class="card"><h2 data-t="bayes"></h2>
+   <label class="sl"><span><span data-t="prev"></span>: <b id="pvV"></b></span><input type="range" id="pv" min="1" max="200" value="10"></label>
+   <label class="sl"><span><span data-t="sens"></span>: <b id="snV"></b></span><input type="range" id="sn" min="50" max="99" value="90"></label>
+   <label class="sl"><span><span data-t="fpr"></span>: <b id="fpV"></b></span><input type="range" id="fp" min="1" max="200" value="50"></label>
+   <svg id="dots" viewBox="0 0 320 162" role="img" aria-label="1000 people"></svg>
+   <div class="legend" id="leg"></div><div class="big3" id="ppv"></div><div class="explain" id="bayesInfo"></div></div>
+ </div>
+ <div id="pane-chart" class="pane">
+  <div class="card"><div id="cq" class="mut" style="font-size:15px;color:#fff"></div>
+   <div class="row" style="gap:6px;flex-wrap:wrap;margin:8px 0" id="ctypes"></div>
+   <svg id="csvg" viewBox="0 0 320 200" role="img" aria-label="chart"></svg>
+   <label class="row mut" style="font-size:13px;gap:4px" id="truncWrap"><input type="checkbox" id="trunc"> <span data-t="trunc"></span></label>
+   <div class="explain" id="chartInfo"></div><div id="cprog" class="mut" style="margin-top:6px"></div></div>
+ </div>
+</div>
+<style>
+.pane{display:none}.pane.on{display:block;animation:pop .3s both}
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:6px}.nums div{background:#020817;border-radius:10px;padding:6px 8px}.nums small{display:block;color:#9fb0d6;font-size:11px}.nums b{font:800 17px ui-monospace,monospace}
+.nums .mean b{color:#FFD23F}.nums .med b{color:#00C2B8}
+.legend{display:flex;flex-wrap:wrap;gap:8px;font-size:12px;margin-top:4px}.legend span:before{content:'';display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px;background:var(--c)}
+.big3{font:800 20px ui-monospace,monospace;text-align:center;margin:8px 0;color:#FFD23F}
+.ok2{color:#4ade80}.no2{color:#f87171}
+svg{width:100%;height:auto;display:block}
+</style>
+<script>
+const T=K.T,t3=(en,hinglish,hi)=>({en,hinglish,hi});
+Object.assign(T,{addOut:t3('➕ Add an outlier','➕ Outlier jodo','➕ बाहरी मान जोड़ो'),sim:t3('Simulate chance','Chance simulate karo','संयोग का अनुकरण'),bayes:t3('Bayes: what does a positive test mean?','Bayes: positive test ka matlab kya?','बेयस: पॉज़िटिव परीक्षण का अर्थ क्या?'),prev:t3('People who have it','Jinhe sach mein hai','जिन्हें सच में है'),sens:t3('Test catches the sick (sensitivity)','Test bimaar ko pakadta hai (sensitivity)','परीक्षण बीमार को पकड़ता है (संवेदनशीलता)'),fpr:t3('False alarms in healthy people','Swasth logon mein galat alarm','स्वस्थ लोगों में ग़लत चेतावनी'),trunc:t3('Start the y-axis at 18 (the "dramatic" trick)','y-axis 18 se shuru karo ("dramatic" trick)','y-अक्ष 18 से शुरू करो ("नाटकीय" चाल)')});
+const MODES={dist:t3('📊 Spread','📊 Spread','📊 फैलाव'),corr:t3('🔗 Correlation','🔗 Correlation','🔗 सहसंबंध'),prob:t3('🎲 Probability','🎲 Probability','🎲 प्रायिकता'),chart:t3('📈 Charts','📈 Charts','📈 चार्ट')};
+let cfg,mode='dist';const R=K.rng(2026);const gauss=(r)=>{let u=0,v=0;while(!u)u=r();v=r();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);};
+const fmt=(x,d=1)=>Number.isFinite(x)?(+x.toFixed(d)).toLocaleString('en-IN'):'–';
+// ---------- distributions (sample data, generated)
+const DS={heights:{t:t3('Heights of 30 Class 10 students (cm)','30 Class 10 students ki height (cm)','कक्षा 10 के 30 छात्रों की ऊँचाई (सेमी)'),u:'cm',d:(()=>{const r=K.rng(5);return Array.from({length:30},()=>Math.round(158+7*gauss(r)));})(),out:198},
+ screen:{t:t3('Daily screen time of 30 teens (hours)','30 teens ka daily screen time (ghante)','30 किशोरों का रोज़ का स्क्रीन समय (घंटे)'),u:'h',d:(()=>{const r=K.rng(9);return Array.from({length:30},()=>Math.round(Math.min(11,Math.exp(1.2+0.45*gauss(r)))*2)/2);})(),out:16},
+ pocket:{t:t3('Weekly pocket money of 30 students (₹)','30 students ki weekly pocket money (₹)','30 छात्रों का साप्ताहिक जेब ख़र्च (₹)'),u:'₹',d:(()=>{const r=K.rng(13);return Array.from({length:30},()=>Math.round(Math.max(0,Math.exp(5+0.5*gauss(r)))/10)*10);})(),out:2500}};
+let dk='heights',data=[],outAdded=false;
+function st(a){const s=a.slice().sort((x,y)=>x-y),n=s.length,m=s.reduce((p,c)=>p+c,0)/n;const q=p=>{const i=(n-1)*p,l=Math.floor(i),h=Math.ceil(i);return s[l]+(s[h]-s[l])*(i-l);};const sd=Math.sqrt(s.reduce((p,c)=>p+(c-m)**2,0)/(n-1));const f={};let mo=s[0];s.forEach(v=>{f[v]=(f[v]||0)+1;if(f[v]>f[mo])mo=v;});return{s,n,mean:m,med:q(.5),q1:q(.25),q3:q(.75),sd,min:s[0],max:s[n-1],mode:mo};}
+function drawDist(){const S=st(data),D=DS[dk];const lo=Math.min(S.min,D.d.reduce((a,b)=>Math.min(a,b))),hi=Math.max(S.max,lo+1);const X=v=>12+(v-lo)/(hi-lo)*296;const nb=12,bw=(hi-lo)/nb,bins=Array(nb).fill(0);data.forEach(v=>bins[Math.min(nb-1,Math.floor((v-lo)/bw))]++);const mx=Math.max(...bins);
+ let g=bins.map((c,i)=>{const h=c/mx*110;return `<rect x="${X(lo+i*bw)+1}" y="${125-h}" width="${296/nb-2}" height="${h}" rx="3" fill="url(#hg)"><animate attributeName="height" from="0" to="${h}" dur=".4s"/><animate attributeName="y" from="125" to="${125-h}" dur=".4s"/></rect>`;}).join('');
+ g+=`<line x1="${X(S.mean)}" y1="8" x2="${X(S.mean)}" y2="128" stroke="#FFD23F" stroke-width="2.5" stroke-dasharray="5 3"/><text x="${X(S.mean)}" y="7" fill="#FFD23F" font-size="10" text-anchor="middle">${K.esc(K.t(t3('mean','mean','माध्य')))}</text>`;
+ g+=`<line x1="${X(S.med)}" y1="14" x2="${X(S.med)}" y2="128" stroke="#00C2B8" stroke-width="2.5"/><text x="${X(S.med)}" y="140" fill="#00C2B8" font-size="10" text-anchor="middle">${K.esc(K.t(t3('median','median','माध्यिका')))}</text>`;
+ const by=165;g+=`<line x1="${X(S.min)}" y1="${by}" x2="${X(S.max)}" y2="${by}" stroke="#9fb0d6"/><rect x="${X(S.q1)}" y="${by-10}" width="${Math.max(2,X(S.q3)-X(S.q1))}" height="20" fill="#8B3DFF55" stroke="#8B3DFF" rx="3"/><line x1="${X(S.med)}" y1="${by-10}" x2="${X(S.med)}" y2="${by+10}" stroke="#00C2B8" stroke-width="3"/>`;
+ g+=data.map(v=>`<circle cx="${X(v)}" cy="${by+22}" r="3" fill="${v===D.out&&outAdded?'#ef4444':'#cbd5e1'}" opacity=".8"/>`).join('');
+ g+=`<text x="12" y="198" fill="#64748b" font-size="9">${fmt(lo,0)} ${D.u}</text><text x="308" y="198" fill="#64748b" font-size="9" text-anchor="end">${fmt(hi,0)} ${D.u}</text>`;
+ K.$('#hist').innerHTML=`<defs><linearGradient id="hg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#00C2B8"/><stop offset="1" stop-color="#8B3DFF"/></linearGradient></defs>`+g;
+ const c=(cls,l,v)=>`<div class="${cls}"><small>${K.esc(K.t(l))}</small><b>${v}</b></div>`;
+ K.$('#stats').innerHTML=c('mean',t3('Mean','Mean','माध्य'),fmt(S.mean))+c('med',t3('Median','Median','माध्यिका'),fmt(S.med))+c('',t3('Mode','Mode','बहुलक'),fmt(S.mode))+c('',t3('Range','Range','परिसर'),fmt(S.max-S.min))+c('',t3('IQR (Q3−Q1)','IQR (Q3−Q1)','अंतर-चतुर्थक परिसर'),fmt(S.q3-S.q1))+c('',t3('Std dev','Std dev','मानक विचलन'),fmt(S.sd));
+ K.$('#distInfo').textContent=K.t(outAdded?t3(`One extreme value moved the mean much more than the median. Mean and SD are sensitive to outliers; median and IQR are "robust". Report the median for skewed data such as income.`,`Ek extreme value ne mean ko median se kahin zyaada khiskaaya. Mean aur SD outliers se jaldi hilte hain; median aur IQR "robust" hain. Income jaise skewed data ke liye median batao.`,`एक चरम मान ने माध्य को माध्यिका से कहीं ज़्यादा खिसकाया। माध्य और मानक विचलन बाहरी मानों से जल्दी हिलते हैं; माध्यिका और IQR "मज़बूत" हैं। आय जैसे तिरछे डेटा के लिए माध्यिका बताओ।`):t3('Sample data. The box shows the middle 50% (Q1 to Q3); the line inside is the median. Standard deviation is the typical distance from the mean.','Sample data. Box beech ke 50% (Q1 se Q3) dikhata hai; andar ki line median hai. Standard deviation mean se typical doori hai.','नमूना डेटा। बॉक्स बीच के 50% (Q1 से Q3) दिखाता है; अंदर की रेखा माध्यिका है। मानक विचलन माध्य से सामान्य दूरी है।'));}
+function loadDS(k){dk=DS[k]?k:'heights';data=DS[dk].d.slice();outAdded=false;K.$('#dset').value=dk;drawDist();}
+function addOutlier(){if(outAdded)return;const b=st(data);data.push(DS[dk].out);outAdded=true;const a=st(data);drawDist();K.check('outlier-added',{dataset:dk,meanShift:+(a.mean-b.mean).toFixed(2),medianShift:+(a.med-b.med).toFixed(2)});}
+// ---------- correlation
+const CS={study:{t:t3('Study hours vs marks','Study hours vs marks','पढ़ाई के घंटे बनाम अंक'),x:t3('hours studied per day','roz padhai ke ghante','रोज़ पढ़ाई के घंटे'),y:t3('marks','marks','अंक'),gen(r){return Array.from({length:40},()=>{const h=r()*6;return[h,Math.min(100,38+8.5*h+8*gauss(r))];});},n:t3('Strong positive correlation, and a believable cause: more practice → more marks. Still, other factors (sleep, teaching) matter too.','Strong positive correlation, aur maanne laayak kaaran: zyaada practice → zyaada marks. Phir bhi doosre factors (neend, padhai) bhi matter karte hain.','मज़बूत धनात्मक सहसंबंध, और मानने योग्य कारण: ज़्यादा अभ्यास → ज़्यादा अंक। फिर भी दूसरे कारक (नींद, पढ़ाई) भी मायने रखते हैं।')},
+ ice:{t:t3('Ice-cream sales vs drownings','Ice-cream sales vs drownings','आइसक्रीम बिक्री बनाम डूबने की घटनाएँ'),x:t3('ice-creams sold per day','roz bikne wali ice-creams','रोज़ बिकी आइसक्रीम'),y:t3('drowning cases per month','mahine ke drowning cases','महीने में डूबने के मामले'),z:t3('Colour by temperature (the hidden cause)','Temperature se rang do (chhupa kaaran)','तापमान से रंग दो (छुपा कारण)'),gen(r){return Array.from({length:40},()=>{const t=18+r()*22;return[Math.max(0,12*t-150+25*gauss(r)),Math.max(0,0.45*t-6+1.6*gauss(r)),t];});},n:t3('Strong correlation — but ice-cream does not cause drowning. Hot weather (a confounder) drives both: more ice-cream AND more swimming.','Strong correlation — par ice-cream drowning ka kaaran nahi. Garam mausam (confounder) dono ko badhata hai: zyaada ice-cream AUR zyaada swimming.','मज़बूत सहसंबंध — पर आइसक्रीम डूबने का कारण नहीं। गर्म मौसम (भ्रमित करने वाला कारक) दोनों बढ़ाता है: ज़्यादा आइसक्रीम और ज़्यादा तैराकी।')},
+ shoe:{t:t3('Shoe size vs reading score (ages 6–16)','Shoe size vs reading score (umar 6–16)','जूते का नाप बनाम पढ़ने का अंक (आयु 6–16)'),x:t3('shoe size (UK)','shoe size (UK)','जूते का नाप (UK)'),y:t3('reading score','reading score','पढ़ने का अंक'),z:t3('Colour by age (the hidden cause)','Umar se rang do (chhupa kaaran)','आयु से रंग दो (छुपा कारण)'),gen(r){return Array.from({length:40},()=>{const a=6+r()*10;return[Math.max(1,0.55*a-1+0.7*gauss(r)),Math.min(100,6*a-10+6*gauss(r)),a];});},n:t3('Bigger feet, better reading? No — older children have both. Age is the confounder. Only a controlled experiment can prove cause.','Bade pair, behtar reading? Nahi — bade bachchon mein dono hote hain. Umar confounder hai. Sirf controlled experiment cause prove kar sakta hai.','बड़े पैर, बेहतर पढ़ाई? नहीं — बड़े बच्चों में दोनों होते हैं। आयु भ्रमित करने वाला कारक है। सिर्फ़ नियंत्रित प्रयोग कारण सिद्ध कर सकता है।')},
+ random:{t:t3('Roll number vs height','Roll number vs height','रोल नंबर बनाम ऊँचाई'),x:t3('roll number','roll number','रोल नंबर'),y:t3('height (cm)','height (cm)','ऊँचाई (सेमी)'),gen(r){return Array.from({length:40},(_,i)=>[i+1,158+7*gauss(r)]);},n:t3('r is close to 0: no linear relationship. Roll numbers are alphabetical, not related to height.','r 0 ke paas: koi linear rishta nahi. Roll numbers alphabetical hain, height se jude nahi.','r 0 के पास: कोई रैखिक संबंध नहीं। रोल नंबर वर्णानुक्रम में हैं, ऊँचाई से जुड़े नहीं।')}};
+let ck='study',pts=[],confSeen={};
+function pear(p){const n=p.length,mx=p.reduce((a,v)=>a+v[0],0)/n,my=p.reduce((a,v)=>a+v[1],0)/n;let sxy=0,sxx=0,syy=0;p.forEach(([x,y])=>{sxy+=(x-mx)*(y-my);sxx+=(x-mx)**2;syy+=(y-my)**2;});const b=sxy/sxx;return{r:sxy/Math.sqrt(sxx*syy),b,a:my-b*mx};}
+function drawCorr(){const C=CS[ck],P=pear(pts),xs=pts.map(p=>p[0]),ys=pts.map(p=>p[1]);const x0=Math.min(...xs),x1=Math.max(...xs),y0=Math.min(...ys),y1=Math.max(...ys);const X=v=>34+(v-x0)/(x1-x0||1)*276,Y=v=>200-(v-y0)/(y1-y0||1)*185;const conf=K.$('#conf').checked&&C.z;const zs=pts.map(p=>p[2]),z0=Math.min(...zs),z1=Math.max(...zs);
+ let g=`<line x1="34" y1="200" x2="312" y2="200" stroke="#334155"/><line x1="34" y1="10" x2="34" y2="200" stroke="#334155"/>`;
+ g+=pts.map((p,i)=>{const col=conf?`hsl(${220-(p[2]-z0)/(z1-z0)*220},90%,60%)`:'#00C2B8';return `<circle cx="${X(p[0])}" cy="${Y(p[1])}" r="4.5" fill="${col}" opacity=".85"><animate attributeName="r" from="0" to="4.5" dur=".3s" begin="${i*0.01}s"/></circle>`;}).join('');
+ g+=`<line x1="${X(x0)}" y1="${Y(P.a+P.b*x0)}" x2="${X(x1)}" y2="${Y(P.a+P.b*x1)}" stroke="#FFD23F" stroke-width="2.5"/>`;
+ g+=`<text x="172" y="222" fill="#9fb0d6" font-size="10" text-anchor="middle">${K.esc(K.t(C.x))} →</text><text x="12" y="105" fill="#9fb0d6" font-size="10" transform="rotate(-90 12 105)" text-anchor="middle">${K.esc(K.t(C.y))} →</text>`;
+ if(conf)g+=`<text x="308" y="20" fill="#f87171" font-size="10" text-anchor="end">${K.esc(K.t(t3('red = hot / older','laal = garam / bada','लाल = गर्म / बड़ा')))}</text><text x="308" y="32" fill="#60a5fa" font-size="10" text-anchor="end">${K.esc(K.t(t3('blue = cool / younger','neela = thanda / chhota','नीला = ठंडा / छोटा')))}</text>`;
+ K.$('#scat').innerHTML=g;K.$('#rVal').textContent=P.r.toFixed(2);K.$('#r2Val').textContent=(P.r*P.r).toFixed(2);
+ const s=Math.abs(P.r)>0.7?t3('strong','strong','मज़बूत'):Math.abs(P.r)>0.4?t3('moderate','moderate','मध्यम'):Math.abs(P.r)>0.2?t3('weak','weak','कमज़ोर'):t3('almost no','lagbhag koi nahi','लगभग कोई नहीं');
+ K.$('#corrInfo').textContent=K.t(t3(`r = ${P.r.toFixed(2)}: ${K.t(s)} linear relationship (r runs from −1 to +1). `,`r = ${P.r.toFixed(2)}: ${K.t(s)} linear rishta (r −1 se +1 tak). `,`r = ${P.r.toFixed(2)}: ${K.t(s)} रैखिक संबंध (r −1 से +1 तक)। `))+K.t(C.n);}
+function loadCS(k){ck=CS[k]?k:'study';K.$('#cset').value=ck;pts=CS[ck].gen(K.rng(ck.length*97+3));const C=CS[ck];K.$('#confWrap').style.display=C.z?'':'none';K.$('#conf').checked=false;if(C.z)K.$('#confLbl').textContent=K.t(C.z);drawCorr();K.emit('corr-read',{dataset:ck,r:+pear(pts).r.toFixed(2)});}
+// ---------- probability
+const SIMS={coin:t3('Coin flips: share of heads','Coin flips: heads ka hissa','सिक्का उछाल: चित का हिस्सा'),dice:t3('Two dice: totals 2–12','Do dice: total 2–12','दो पासे: योग 2–12')};
+let sim='coin',flips=[],heads=0,dice=Array(13).fill(0),dn=0,simR=K.rng(77),lln=false;
+function runSim(n){if(sim==='coin'){for(let i=0;i<n;i++){heads+=simR()<.5?1:0;flips.push(heads/(flips.length+1));}}else{for(let i=0;i<n;i++){dice[1+Math.ceil(simR()*6)+Math.floor(simR()*6)]++;dn++;}}drawSim();const tot=sim==='coin'?flips.length:dn;K.emit('sim-run',{kind:sim,n:tot});if(tot>=1000&&!lln){lln=true;K.check('lln-seen',{kind:sim,n:tot});}}
+function drawSim(){let g='';if(sim==='coin'){const n=flips.length;g+=`<line x1="30" y1="85" x2="312" y2="85" stroke="#FFD23F" stroke-dasharray="4 3"/><text x="28" y="88" fill="#FFD23F" font-size="10" text-anchor="end">0.5</text><text x="28" y="14" fill="#64748b" font-size="10" text-anchor="end">1</text><text x="28" y="158" fill="#64748b" font-size="10" text-anchor="end">0</text>`;if(n){const step=Math.max(1,Math.floor(n/300));let d='';for(let i=0;i<n;i+=step)d+=(i?'L':'M')+(30+i/(Math.max(n-1,1))*282).toFixed(1)+','+(155-flips[i]*140).toFixed(1);g+=`<path d="${d}" fill="none" stroke="#00C2B8" stroke-width="2"/>`;}
+ K.$('#simInfo').textContent=K.t(n?t3(`${n} flips, ${heads} heads = ${(heads/n*100).toFixed(1)}%. Early on the share swings wildly; with more flips it settles near 50% — the law of large numbers. Each single flip is still 50–50: a coin has no memory.`,`${n} flips, ${heads} heads = ${(heads/n*100).toFixed(1)}%. Shuru mein hissa bahut hilta hai; zyaada flips par 50% ke paas tikta hai — law of large numbers. Har ek flip phir bhi 50–50: coin ki koi memory nahi.`,`${n} उछाल, ${heads} चित = ${(heads/n*100).toFixed(1)}%। शुरू में हिस्सा बहुत डोलता है; ज़्यादा उछाल पर 50% के पास टिकता है — बड़ी संख्याओं का नियम। हर एक उछाल फिर भी 50–50: सिक्के की कोई याददाश्त नहीं।`):t3('Press +10, +100 or +1000 to flip.','Flip ke liye +10, +100 ya +1000 dabao.','उछालने के लिए +10, +100 या +1000 दबाओ।'));}
+ else{const mx=Math.max(1,...dice);for(let s=2;s<=12;s++){const h=dice[s]/mx*120,x=30+(s-2)*25.5,th=(6-Math.abs(7-s))/36*dn/mx*120;g+=`<rect x="${x}" y="${145-h}" width="21" height="${h}" rx="3" fill="${s===7?'#FFD23F':'#8B3DFF'}"/><text x="${x+10.5}" y="160" fill="#9fb0d6" font-size="10" text-anchor="middle">${s}</text>`;if(dn)g+=`<line x1="${x}" y1="${145-th}" x2="${x+21}" y2="${145-th}" stroke="#fff" stroke-width="2"/>`;}
+ K.$('#simInfo').textContent=K.t(dn?t3(`${dn} rolls. White lines show theory: 7 is most likely (6 of 36 ways = 16.7%), 2 and 12 least (1 of 36 = 2.8%). Your bars get closer to theory as rolls grow.`,`${dn} rolls. Safed lines theory dikhati hain: 7 sabse likely (36 mein 6 tareeke = 16.7%), 2 aur 12 sabse kam (36 mein 1 = 2.8%). Rolls badhne par bars theory ke paas aate hain.`,`${dn} बार फेंका। सफ़ेद रेखाएँ सिद्धांत दिखाती हैं: 7 सबसे संभावित (36 में 6 तरीक़े = 16.7%), 2 और 12 सबसे कम (36 में 1 = 2.8%)। फेंकना बढ़ने पर पट्टियाँ सिद्धांत के पास आती हैं।`):t3('Press +10, +100 or +1000 to roll.','Roll ke liye +10, +100 ya +1000 dabao.','फेंकने के लिए +10, +100 या +1000 दबाओ।'));}
+ K.$('#psvg').innerHTML=g;}
+let bT=null;
+function drawBayes(emit){const pv=+K.$('#pv').value/10,sn=+K.$('#sn').value,fp=+K.$('#fp').value/10;K.$('#pvV').textContent=pv+'%';K.$('#snV').textContent=sn+'%';K.$('#fpV').textContent=fp+'%';
+ const sick=Math.round(1000*pv/100),tp=Math.round(sick*sn/100),fn=sick-tp,fpos=Math.round((1000-sick)*fp/100);const ppv=tp/Math.max(1,tp+fpos);
+ const cols=[];for(let i=0;i<1000;i++)cols.push(i<tp?'#ef4444':i<sick?'#f9a8d4':i<sick+fpos?'#FFD23F':'#334155');let g='';for(let i=0;i<1000;i++){const x=i%50,y=Math.floor(i/50);g+=`<rect x="${4+x*6.25}" y="${2+y*8}" width="5" height="6.5" rx="1.5" fill="${cols[i]}"/>`;}K.$('#dots').innerHTML=g;
+ K.$('#leg').innerHTML=[['#ef4444',t3(`sick & positive: ${tp}`,`bimaar & positive: ${tp}`,`बीमार और पॉज़िटिव: ${tp}`)],['#f9a8d4',t3(`sick, missed: ${fn}`,`bimaar, chhoot gaye: ${fn}`,`बीमार, छूटे: ${fn}`)],['#FFD23F',t3(`healthy but positive: ${fpos}`,`swasth par positive: ${fpos}`,`स्वस्थ पर पॉज़िटिव: ${fpos}`)],['#334155',t3('healthy & negative','swasth & negative','स्वस्थ और नेगेटिव')]].map(([c,l])=>`<span style="--c:${c}">${K.esc(K.t(l))}</span>`).join('');
+ K.$('#ppv').textContent=K.t(t3('If you test positive: ','Positive aaye to: ','पॉज़िटिव आए तो: '))+(ppv*100).toFixed(0)+'%';
+ K.$('#bayesInfo').textContent=K.t(t3(`Of ${tp+fpos} positives, only ${tp} are really sick. When a condition is rare, even a good test gives many false alarms. Bayes' rule: P(sick | positive) = P(positive | sick) × P(sick) ÷ P(positive). That is why doctors confirm with a second test.`,`${tp+fpos} positives mein sirf ${tp} sach mein bimaar hain. Jab bimaari rare ho, achha test bhi bahut galat alarm deta hai. Bayes' rule: P(bimaar | positive) = P(positive | bimaar) × P(bimaar) ÷ P(positive). Isliye doctor doosre test se confirm karte hain.`,`${tp+fpos} पॉज़िटिव में सिर्फ़ ${tp} सच में बीमार हैं। जब रोग दुर्लभ हो, अच्छा परीक्षण भी बहुत ग़लत चेतावनी देता है। बेयस नियम: P(बीमार | पॉज़िटिव) = P(पॉज़िटिव | बीमार) × P(बीमार) ÷ P(पॉज़िटिव)। इसीलिए डॉक्टर दूसरे परीक्षण से पुष्टि करते हैं।`));
+ if(emit){clearTimeout(bT);bT=setTimeout(()=>K.check('bayes-computed',{prevalence:pv,sensitivity:sn,falsePositive:fp,ppv:+(ppv*100).toFixed(1)}),400);}}
+// ---------- charts
+const UPI=[['2019',1.31],['2020',2.23],['2021',4.56],['2022',7.82],['2023',12.02],['2024',16.73]];
+const SUBJ=[[t3('Maths','Maths','गणित'),34],[t3('Science','Science','विज्ञान'),28],[t3('Computer','Computer','कंप्यूटर'),41],[t3('English','English','अंग्रेज़ी'),19],[t3('Art','Art','कला'),22]];
+const DAY=[[t3('Sleep','Neend','नींद'),8],[t3('School','School','स्कूल'),7],[t3('Study','Padhai','पढ़ाई'),3],[t3('Play','Khel','खेल'),2],[t3('Screens','Screens','स्क्रीन'),2],[t3('Other','Baaki','अन्य'),2]];
+const TWO=[[t3('Class 10-A','Class 10-A','कक्षा 10-A'),19.2],[t3('Class 10-B','Class 10-B','कक्षा 10-B'),20.1]];
+const CQ=[{q:t3('How did UPI transactions in December grow from 2019 to 2024 (billions per month, NPCI)?','December UPI transactions 2019 se 2024 tak kaise badhe (billion per month, NPCI)?','दिसंबर में UPI लेन-देन 2019 से 2024 तक कैसे बढ़े (अरब प्रति माह, NPCI)?'),d:UPI,best:'line',why:t3('A line chart shows change over time: UPI grew about 13× in five years.','Line chart samay ke saath badlaav dikhata hai: UPI paanch saal mein lagbhag 13× badha.','रेखा चार्ट समय के साथ बदलाव दिखाता है: UPI पाँच साल में लगभग 13× बढ़ा।')},
+ {q:t3('Which subject is the most popular in our class survey?','Class survey mein sabse popular subject kaunsa?','कक्षा सर्वे में सबसे लोकप्रिय विषय कौन-सा?'),d:SUBJ,best:'bar',why:t3('A bar chart compares separate categories; sort the bars to make the winner obvious.','Bar chart alag categories compare karta hai; bars sort karo taaki winner saaf dikhe.','बार चार्ट अलग श्रेणियों की तुलना करता है; पट्टियाँ क्रमबद्ध करो ताकि विजेता साफ़ दिखे।')},
+ {q:t3('How is a typical 24-hour school day split?','Ek typical 24-ghante ka school din kaise bantta hai?','एक सामान्य 24-घंटे का स्कूल दिन कैसे बँटता है?'),d:DAY,best:'pie',why:t3('A pie (or a stacked bar) shows parts of one whole that add up to 100%. Use it only for a few slices.','Pie (ya stacked bar) ek poore ke hisse dikhata hai jo 100% bante hain. Sirf kuch slices ke liye use karo.','पाई (या स्टैक्ड बार) एक पूरे के हिस्से दिखाता है जो 100% बनते हैं। सिर्फ़ कुछ टुकड़ों के लिए इस्तेमाल करो।')},
+ {q:t3('Average marks out of 25: is 10-B really far ahead of 10-A?','25 mein average marks: kya 10-B sach mein 10-A se bahut aage hai?','25 में औसत अंक: क्या 10-B सच में 10-A से बहुत आगे है?'),d:TWO,best:'bar',trunc:1,why:t3('Bar charts must start at zero. Tick the box to see how a cut axis makes a 0.9-mark gap look huge — a common trick in ads and news.','Bar charts zero se shuru hone chahiye. Box tick karke dekho kaise kata hua axis 0.9 marks ke fark ko bahut bada dikhata hai — ads aur news ki common trick.','बार चार्ट शून्य से शुरू होने चाहिए। बॉक्स चुनकर देखो कैसे कटा अक्ष 0.9 अंक के अंतर को बहुत बड़ा दिखाता है — विज्ञापनों और ख़बरों की आम चाल।')}];
+let cqi=0,cpick=null,cdone={};const CT={bar:t3('Bar','Bar','बार'),line:t3('Line','Line','रेखा'),pie:t3('Pie','Pie','पाई')};const PAL=['#00C2B8','#8B3DFF','#FFD23F','#f472b6','#22C55E','#60a5fa'];
+function lab(x){return typeof x==='string'?x:K.t(x);}
+function drawChart(){const Q=CQ[cqi];K.$('#cq').textContent=(cqi+1)+'/'+CQ.length+' · '+K.t(Q.q);K.$('#ctypes').innerHTML=Object.keys(CT).map(k=>`<button class="btn ${cpick===k?(k===Q.best?'ok':'on'):''}" data-c="${k}">${K.esc(K.t(CT[k]))}</button>`).join('')+`<button class="btn" id="cnext">→</button>`;
+ K.$$('#ctypes [data-c]').forEach(b=>b.onclick=()=>pickChart(b.dataset.c));K.$('#cnext').onclick=()=>{cqi=(cqi+1)%CQ.length;cpick=null;K.$('#trunc').checked=false;drawChart();};
+ K.$('#truncWrap').style.display=Q.trunc?'':'none';const ty=cpick||'bar',d=Q.d,mx=Math.max(...d.map(x=>x[1]));let g='';
+ if(ty==='bar'){const tr=Q.trunc&&K.$('#trunc').checked,base=tr?18:0,top=Q.trunc?(tr?20.5:25):mx;const bw=280/d.length;d.forEach(([l,v],i)=>{const h=(v-base)/(top-base)*150;g+=`<rect x="${32+i*bw+4}" y="${170-h}" width="${bw-8}" height="${h}" rx="4" fill="${PAL[i%6]}"><animate attributeName="height" from="0" to="${h}" dur=".4s"/><animate attributeName="y" from="170" to="${170-h}" dur=".4s"/></rect><text x="${32+i*bw+bw/2}" y="${165-h}" fill="#fff" font-size="10" text-anchor="middle">${v}</text><text x="${32+i*bw+bw/2}" y="186" fill="#9fb0d6" font-size="9.5" text-anchor="middle">${K.esc(lab(l))}</text>`;});g+=`<line x1="30" y1="170" x2="314" y2="170" stroke="#334155"/><text x="27" y="173" fill="${tr?'#f87171':'#64748b'}" font-size="10" text-anchor="end">${base}</text><text x="27" y="24" fill="#64748b" font-size="10" text-anchor="end">${fmt(top,1)}</text>`;}
+ else if(ty==='line'){let p='';d.forEach(([l,v],i)=>{const x=36+i*(272/(d.length-1)),y=170-v/mx*150;p+=(i?'L':'M')+x+','+y;g+=`<circle cx="${x}" cy="${y}" r="4" fill="#FFD23F"/><text x="${x}" y="186" fill="#9fb0d6" font-size="9.5" text-anchor="middle">${K.esc(lab(l))}</text>`;});g=`<path d="${p}" fill="none" stroke="#00C2B8" stroke-width="3" stroke-linejoin="round"/>`+g+`<line x1="30" y1="170" x2="314" y2="170" stroke="#334155"/>`;}
+ else{const tot=d.reduce((a,x)=>a+x[1],0);let a0=-Math.PI/2;d.forEach(([l,v],i)=>{const a1=a0+v/tot*2*Math.PI,cx=110,cy=100,r=80;const p=`M${cx},${cy}L${cx+r*Math.cos(a0)},${cy+r*Math.sin(a0)}A${r},${r} 0 ${a1-a0>Math.PI?1:0} 1 ${cx+r*Math.cos(a1)},${cy+r*Math.sin(a1)}Z`;g+=`<path d="${p}" fill="${PAL[i%6]}" stroke="#061233" stroke-width="2"/><rect x="210" y="${30+i*20}" width="10" height="10" rx="2" fill="${PAL[i%6]}"/><text x="225" y="${39+i*20}" fill="#cbd5e1" font-size="10">${K.esc(lab(l))} ${(v/tot*100).toFixed(0)}%</text>`;a0=a1;});}
+ K.$('#csvg').innerHTML=g;K.$('#cprog').textContent=Object.keys(cdone).length+' / '+CQ.length+' ✓';
+ K.$('#chartInfo').innerHTML=cpick?`<span class="${cpick===Q.best?'ok2':'no2'}">${cpick===Q.best?'✓':'✗'}</span> `+K.esc(K.t(cpick===Q.best?Q.why:t3('Not the best fit here — try another chart type.','Yahan best fit nahi — doosra chart type try karo.','यहाँ सबसे उपयुक्त नहीं — दूसरा चार्ट प्रकार आज़माओ।'))):K.esc(K.t(t3('Pick the chart type that answers the question best.','Woh chart type chuno jo sawaal ka sabse achha jawab de.','वह चार्ट प्रकार चुनो जो प्रश्न का सबसे अच्छा उत्तर दे।')));}
+function pickChart(k){cpick=k;const Q=CQ[cqi],ok=k===Q.best;K.emit('chart-picked',{question:cqi,chart:k,correct:ok});if(ok&&!cdone[cqi]){cdone[cqi]=1;if(Object.keys(cdone).length===CQ.length)K.check('charts-all',{});}drawChart();}
+// ---------- modes
+function setMode(m){mode=MODES[m]?m:'dist';K.$$('#modes button').forEach(b=>b.classList.toggle('on',b.dataset.m===mode));K.$$('.pane').forEach(p=>p.classList.toggle('on',p.id==='pane-'+mode));if(mode==='dist')drawDist();if(mode==='corr')drawCorr();if(mode==='prob'){drawSim();drawBayes(false);}if(mode==='chart')drawChart();K.emit('mode-opened',{mode});}
+function fillSel(){K.$('#dset').innerHTML=Object.keys(DS).map(k=>`<option value="${k}">${K.esc(K.t(DS[k].t))}</option>`).join('');K.$('#dset').value=dk;K.$('#cset').innerHTML=Object.keys(CS).map(k=>`<option value="${k}">${K.esc(K.t(CS[k].t))}</option>`).join('');K.$('#cset').value=ck;K.$('#sim').innerHTML=Object.keys(SIMS).map(k=>`<option value="${k}">${K.esc(K.t(SIMS[k]))}</option>`).join('');K.$('#sim').value=sim;if(CS[ck].z)K.$('#confLbl').textContent=K.t(CS[ck].z);}
+(async()=>{K.lab='data-lab';K.header(t3('Data Science Lab','Data Science Lab','डेटा विज्ञान लैब'),t3('Spread, correlation, chance and honest charts','Spread, correlation, chance aur imaandaar charts','फैलाव, सहसंबंध, संयोग और ईमानदार चार्ट'));
+ cfg=await K.boot({mode:'dist',dataset:'heights',corr:'study',sim:'coin',question:0,prevalence:1});
+ K.$('#modes').innerHTML=Object.keys(MODES).map(k=>`<button class="btn" data-m="${k}">${K.esc(K.t(MODES[k]))}</button>`).join('');K.$$('#modes button').forEach(b=>b.onclick=()=>setMode(b.dataset.m));
+ dk=DS[cfg.dataset]?cfg.dataset:'heights';ck=CS[cfg.corr]?cfg.corr:'study';sim=SIMS[cfg.sim]?cfg.sim:'coin';cqi=K.clamp(+cfg.question||0,0,CQ.length-1);fillSel();
+ K.$('#dset').onchange=e=>loadDS(e.target.value);K.$('#outl').onclick=addOutlier;K.$('#reset').onclick=()=>loadDS(dk);
+ K.$('#cset').onchange=e=>loadCS(e.target.value);K.$('#conf').onchange=()=>{drawCorr();if(K.$('#conf').checked&&!confSeen[ck]){confSeen[ck]=1;K.check('confounder-revealed',{dataset:ck});}};
+ K.$('#sim').onchange=e=>{sim=e.target.value;drawSim();};K.$('#s10').onclick=()=>runSim(10);K.$('#s100').onclick=()=>runSim(100);K.$('#s1000').onclick=()=>runSim(1000);K.$('#sClr').onclick=()=>{flips=[];heads=0;dice=Array(13).fill(0);dn=0;drawSim();};
+ K.$('#pv').value=String(K.clamp(Math.round(+cfg.prevalence*10),1,200));['#pv','#sn','#fp'].forEach(s=>K.$(s).oninput=()=>drawBayes(true));K.$('#trunc').onchange=()=>{drawChart();if(K.$('#trunc').checked)K.check('misleading-spotted',{});};
+ loadDS(dk);loadCS(ck);setMode(cfg.mode);
+ K.onLang(()=>{K.$$('#modes button').forEach(b=>b.textContent=K.t(MODES[b.dataset.m]));fillSel();setMode(mode);});
+ window.__d={addOutlier,loadCS,runSim,pickChart,bayes:(p,s,f)=>{K.$('#pv').value=p;K.$('#sn').value=s;K.$('#fp').value=f;drawBayes(true);},conf:()=>{const c=K.$('#conf');c.checked=true;c.onchange();},q:i=>{cqi=i;cpick=null;drawChart();}};})();
+</script>
+</body></html>

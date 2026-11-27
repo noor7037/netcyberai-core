@@ -56,7 +56,7 @@ const FAMILY_MAX_KEPT = 48;
 const KEPT_AT = 'x-nca-kept-at';
 // The child's screens that are kept (each with what is under it). Not Understand (offline, the shell opens its saved
 // pack), not the parent area, results, the call, settings, sign-in, sign-out or the phone link.
-const FAMILY_KEPT = ['/family/study', '/family/english', '/family/progress', '/family/future', '/family/draw', '/family/tutors'];
+const FAMILY_KEPT = ['/family/study', '/family/english', '/family/tech', '/family/progress', '/family/future', '/family/draw', '/family/tutors'];
 
 const PUSH_WORDS = {
   en: {

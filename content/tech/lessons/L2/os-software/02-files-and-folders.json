@@ -1,0 +1,324 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.os-software.02",
+ "level": 2,
+ "classes": [
+  6,
+  7
+ ],
+ "unit": "os-software",
+ "title": {
+  "en": "Files, folders, paths and extensions",
+  "hi": "फ़ाइलें, फ़ोल्डर, पथ और एक्सटेंशन",
+  "hinglish": "Files, folders, paths aur extensions"
+ },
+ "minutes": 8,
+ "xp": 30,
+ "prereq": [
+  "L2.os-software.01"
+ ],
+ "topics": [
+  "os.files-folders"
+ ],
+ "outcomes": [
+  {
+   "en": "Organise files into folders",
+   "hi": "फ़ाइलों को फ़ोल्डरों में व्यवस्थित कर सकते हो",
+   "hinglish": "Files ko folders mein organise kar sakte ho"
+  },
+  {
+   "en": "Read a file path",
+   "hi": "फ़ाइल पथ पढ़ सकते हो",
+   "hinglish": "File path padh sakte ho"
+  },
+  {
+   "en": "Recognise common file extensions and sizes",
+   "hi": "आम फ़ाइल एक्सटेंशन और आकार पहचान सकते हो",
+   "hinglish": "Common file extensions aur sizes pehchaan sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "File",
+   "hinglish": "Data ka ek naam wala packet",
+   "en": "A named piece of saved data: a photo, a song, a document",
+   "hi": "सहेजे गए डेटा का नाम वाला टुकड़ा: फ़ोटो, गाना, दस्तावेज़"
+  },
+  {
+   "term": "Folder / directory",
+   "hinglish": "Files ka dabba",
+   "en": "A container that holds files and other folders",
+   "hi": "डिब्बा जिसमें फ़ाइलें और दूसरे फ़ोल्डर रहते हैं"
+  },
+  {
+   "term": "Path",
+   "hinglish": "File tak pahunchne ka pata",
+   "en": "The address of a file, e.g. /Pictures/School/sports-day.jpg",
+   "hi": "फ़ाइल का पता, जैसे /Pictures/School/sports-day.jpg"
+  },
+  {
+   "term": "Extension",
+   "hinglish": "Naam ke baad .jpg, .pdf",
+   "en": "The letters after the dot that tell the file type",
+   "hi": "बिंदु के बाद के अक्षर जो फ़ाइल का प्रकार बताते हैं"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Files live inside folders, and folders inside folders — like a tree turned upside down.",
+    "hi": "फ़ाइलें फ़ोल्डरों में रहती हैं, और फ़ोल्डर फ़ोल्डरों में — उल्टे पेड़ की तरह।",
+    "hinglish": "Files folders mein rehti hain, aur folders folders mein — ulte ped ki tarah."
+   },
+   "visual": "lab:os-sim#files",
+   "narration": {
+    "en": "The top folder is called the root. Every other folder branches from it.",
+    "hi": "सबसे ऊपर के फ़ोल्डर को रूट कहते हैं। बाक़ी हर फ़ोल्डर उसी से निकलता है।",
+    "hinglish": "Sabse upar wala folder root kehlaata hai. Baaki sab usi se nikalte hain."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "A path is a file’s full address: /Documents/Class7/Science/project.pdf",
+    "hi": "पथ फ़ाइल का पूरा पता है: /Documents/Class7/Science/project.pdf",
+    "hinglish": "Path file ka poora address hai: /Documents/Class7/Science/project.pdf"
+   },
+   "visual": "flow:/ (root)|Documents|Class7|Science|project.pdf",
+   "narration": {
+    "en": "Read it like a postal address, from big area to exact house.",
+    "hi": "इसे डाक पते की तरह पढ़ो, बड़े इलाक़े से ठीक घर तक।",
+    "hinglish": "Ise postal address ki tarah padho, bade area se exact ghar tak."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "The extension tells the OS which app opens the file: .jpg photo, .mp3 song, .pdf document, .apk Android app.",
+    "hi": "एक्सटेंशन OS को बताता है कि कौन-सा ऐप फ़ाइल खोले: .jpg फ़ोटो, .mp3 गाना, .pdf दस्तावेज़, .apk Android ऐप।",
+    "hinglish": "Extension OS ko batata hai kaunsa app file kholega: .jpg photo, .mp3 gaana, .pdf document, .apk Android app."
+   },
+   "visual": "compare:🖼️ .jpg .png|🎵 .mp3|📄 .pdf .docx|📦 .apk .zip",
+   "narration": {
+    "en": "Be careful: a file named “marks.pdf.apk” is really an app, not a PDF!",
+    "hi": "सावधान: “marks.pdf.apk” नाम की फ़ाइल असल में ऐप है, PDF नहीं!",
+    "hinglish": "Savdhaan: “marks.pdf.apk” naam ki file asal mein app hai, PDF nahi!"
+   }
+  }
+ ],
+ "play": {
+  "lab": "os-sim",
+  "config": {
+   "tab": "files"
+  },
+  "goal": {
+   "en": "Move the scattered files into the right folders and read each file’s full path.",
+   "hi": "बिखरी फ़ाइलों को सही फ़ोल्डरों में रखो और हर फ़ाइल का पूरा पथ पढ़ो।",
+   "hinglish": "Bikhri files ko sahi folders mein daalo aur har file ka poora path padho."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Good file habits",
+    "hi": "फ़ाइलों की अच्छी आदतें",
+    "hinglish": "Files ki achhi aadatein"
+   },
+   "body": {
+    "en": "Give files clear names with dates: “2026-11-27 science-project.pdf” sorts correctly and is easy to find. Group by subject or year. Keep a backup in a second place (a pen drive, a family computer, or a cloud drive) — phones get lost and storage fails. Before opening any file someone sends you, look at the real extension: .apk and .exe files are programs that can install malware. On Windows, turn on “Show file extensions” so a fake “photo.jpg.exe” cannot trick you.",
+    "hi": "फ़ाइलों को तारीख़ के साथ स्पष्ट नाम दो: “2026-11-27 science-project.pdf” सही क्रम में आती है और आसानी से मिलती है। विषय या साल से समूह बनाओ। दूसरी जगह बैकअप रखो (पेन ड्राइव, घर का कंप्यूटर, या क्लाउड ड्राइव) — फ़ोन खोते हैं और स्टोरेज ख़राब होता है। किसी की भेजी फ़ाइल खोलने से पहले असली एक्सटेंशन देखो: .apk और .exe प्रोग्राम हैं जो मैलवेयर डाल सकते हैं। Windows में “फ़ाइल एक्सटेंशन दिखाएँ” चालू करो ताकि नकली “photo.jpg.exe” धोखा न दे।",
+    "hinglish": "Files ko date ke saath clear naam do: “2026-11-27 science-project.pdf” sahi order mein aati hai aur aasaani se milti hai. Subject ya saal se group banao. Doosri jagah backup rakho (pen drive, ghar ka computer, ya cloud drive) — phones khote hain aur storage kharab hota hai. Kisi ki bheji file kholne se pehle asli extension dekho: .apk aur .exe programs hain jo malware daal sakte hain. Windows mein “Show file extensions” ON karo taaki nakli “photo.jpg.exe” dhokha na de."
+   },
+   "analogy": {
+    "hinglish": "Jaise school bag mein har subject ki alag copy aur cover pe naam — dhoondhne mein ek second.",
+    "en": "Like a school bag with a separate notebook for each subject and the name on every cover — finding one takes a second.",
+    "hi": "जैसे स्कूल बैग में हर विषय की अलग कॉपी और कवर पर नाम — ढूँढने में एक सेकंड।"
+   },
+   "realExample": {
+    "en": "Many WhatsApp “wedding invitation .apk” files in 2024–25 were malware that stole bank details — police in several states issued warnings.",
+    "hi": "2024–25 में WhatsApp पर कई “शादी का निमंत्रण .apk” फ़ाइलें मैलवेयर थीं जो बैंक विवरण चुराती थीं — कई राज्यों की पुलिस ने चेतावनी दी।",
+    "hinglish": "2024–25 mein kai WhatsApp “wedding invitation .apk” files malware thi jo bank details churaati thi — kai states ki police ne warning di."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Create a neat folder plan for your school year (subjects → terms) on paper and name three example files properly.",
+   "hi": "काग़ज़ पर अपने स्कूल वर्ष का साफ़ फ़ोल्डर प्लान बनाओ (विषय → सत्र) और तीन उदाहरण फ़ाइलों के सही नाम रखो।",
+   "hinglish": "School saal ke liye folder plan banao (subjects → terms) aur teen example files ke sahi naam likho."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "In /Pictures/Trip/beach.jpg, which is the file name?",
+     "hi": "/Pictures/Trip/beach.jpg में फ़ाइल का नाम क्या है?",
+     "hinglish": "/Pictures/Trip/beach.jpg mein file ka naam kya hai?"
+    },
+    "options": [
+     "Pictures",
+     "Trip",
+     "beach.jpg"
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "The last part after the final “/” is the file; the others are folders.",
+     "hi": "आख़िरी “/” के बाद का भाग फ़ाइल है; बाक़ी फ़ोल्डर।",
+     "hinglish": "Last “/” ke baad wala hissa file hai; baaki folders."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "match",
+    "prompt": {
+     "en": "Match the extension to the file type.",
+     "hi": "एक्सटेंशन को फ़ाइल प्रकार से मिलाओ।",
+     "hinglish": "Extension ko file type se milao."
+    },
+    "options": {
+     "left": [
+      ".mp3",
+      ".pdf",
+      ".apk",
+      ".jpg"
+     ],
+     "right": [
+      {
+       "en": "Document",
+       "hi": "दस्तावेज़",
+       "hinglish": "Document"
+      },
+      {
+       "en": "Photo",
+       "hi": "फ़ोटो",
+       "hinglish": "Photo"
+      },
+      {
+       "en": "Song / audio",
+       "hi": "गाना / ऑडियो",
+       "hinglish": "Gaana / audio"
+      },
+      {
+       "en": "Android app",
+       "hi": "Android ऐप",
+       "hinglish": "Android app"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      2
+     ],
+     [
+      1,
+      0
+     ],
+     [
+      2,
+      3
+     ],
+     [
+      3,
+      1
+     ]
+    ],
+    "explain": {
+     "en": ".mp3 audio, .pdf document, .apk Android app, .jpg photo.",
+     "hi": ".mp3 ऑडियो, .pdf दस्तावेज़, .apk Android ऐप, .jpg फ़ोटो।",
+     "hinglish": ".mp3 audio, .pdf document, .apk Android app, .jpg photo."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "A friend sends “result.pdf.apk”. What is it really?",
+     "hi": "दोस्त ने “result.pdf.apk” भेजा। यह असल में क्या है?",
+     "hinglish": "Dost ne “result.pdf.apk” bheja. Yeh asal mein kya hai?"
+    },
+    "options": [
+     {
+      "en": "A PDF document",
+      "hi": "PDF दस्तावेज़",
+      "hinglish": "PDF document"
+     },
+     {
+      "en": "An app that could be malware",
+      "hi": "ऐप जो मैलवेयर हो सकता है",
+      "hinglish": "App jo malware ho sakta hai"
+     },
+     {
+      "en": "A photo",
+      "hi": "फ़ोटो",
+      "hinglish": "Photo"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Only the LAST extension counts. .apk means it is an Android app that can install itself — possibly malware. Do not open it.",
+     "hi": "केवल आख़िरी एक्सटेंशन मायने रखता है। .apk यानी Android ऐप जो ख़ुद इंस्टॉल हो सकता है — शायद मैलवेयर। मत खोलो।",
+     "hinglish": "Sirf LAST extension maayne rakhta hai. .apk matlab Android app jo khud install ho sakta hai — shayad malware. Mat kholo."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which name sorts best by date in a folder?",
+     "hi": "फ़ोल्डर में तारीख़ से कौन-सा नाम सबसे अच्छा क्रमित होगा?",
+     "hinglish": "Folder mein date se kaunsa naam sabse achha sort hoga?"
+    },
+    "options": [
+     "2026-11-27 notes.docx",
+     "27 Nov notes.docx",
+     "notes new final 2.docx"
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Year-month-day (2026-11-27) sorts in true date order as text.",
+     "hi": "वर्ष-माह-दिन (2026-11-27) टेक्स्ट के रूप में भी सही तारीख़ क्रम में आता है।",
+     "hinglish": "Year-month-day (2026-11-27) text ke roop mein bhi sahi date order mein aata hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Sort all the files into the right folders in the OS simulator.",
+     "hi": "OS सिम्युलेटर में सभी फ़ाइलें सही फ़ोल्डरों में रखो।",
+     "hinglish": "OS simulator mein saari files sahi folders mein rakho."
+    },
+    "answer": {
+     "lab": "os-sim",
+     "event": "mission:complete",
+     "tab": "files"
+    },
+    "explain": {
+     "en": "Photos → Pictures, songs → Music, PDFs → Documents, the .apk → delete (unknown source).",
+     "hi": "फ़ोटो → Pictures, गाने → Music, PDF → Documents, .apk → मिटाओ (अनजान स्रोत)।",
+     "hinglish": "Photos → Pictures, songs → Music, PDFs → Documents, .apk → delete (unknown source)."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "NCERT / CBSE Artificial Intelligence & Computer curriculum (Classes 6–8), 2024–25",
+   "url": "https://cbseacademic.nic.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "CERT-In advisories on malicious APK campaigns",
+   "url": "https://www.cert-in.org.in/",
+   "licence": "fact reference"
+  }
+ ]
+}

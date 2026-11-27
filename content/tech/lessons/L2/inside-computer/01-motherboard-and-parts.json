@@ -1,0 +1,364 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.inside-computer.01",
+ "level": 2,
+ "classes": [
+  6,
+  7
+ ],
+ "unit": "inside-computer",
+ "title": {
+  "en": "The motherboard and the main parts",
+  "hi": "मदरबोर्ड और मुख्य पुर्ज़े",
+  "hinglish": "Motherboard aur main parts"
+ },
+ "minutes": 10,
+ "xp": 40,
+ "prereq": [],
+ "topics": [
+  "hw.parts",
+  "hw.io",
+  "hw.what-is-computer"
+ ],
+ "outcomes": [
+  {
+   "en": "Name the main parts of a computer and their jobs",
+   "hi": "कंप्यूटर के मुख्य भागों और उनके काम के नाम बता सकते हो",
+   "hinglish": "Computer ke main parts aur unke kaam bata sakte ho"
+  },
+  {
+   "en": "Explain input → process → output → storage",
+   "hi": "इनपुट → प्रोसेस → आउटपुट → स्टोरेज समझा सकते हो",
+   "hinglish": "Input → process → output → storage samjha sakte ho"
+  },
+  {
+   "en": "Assemble a virtual PC in the right slots",
+   "hi": "वर्चुअल PC को सही स्लॉट में जोड़ सकते हो",
+   "hinglish": "Virtual PC sahi slots mein assemble kar sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Motherboard",
+   "hinglish": "Main board jis pe sab parts lagte hain",
+   "en": "The main circuit board that connects every part",
+   "hi": "मुख्य सर्किट बोर्ड जो हर भाग को जोड़ता है"
+  },
+  {
+   "term": "Bus",
+   "hinglish": "Parts ke beech data ki sadak",
+   "en": "Wires/traces that carry data between parts",
+   "hi": "भागों के बीच डेटा ले जाने वाले तार/पथ"
+  },
+  {
+   "term": "Port",
+   "hinglish": "Bahar ke devices lagane ki jagah",
+   "en": "A socket for outside devices: USB-C, HDMI, audio",
+   "hi": "बाहरी उपकरणों का सॉकेट: USB-C, HDMI, ऑडियो"
+  },
+  {
+   "term": "PSU",
+   "hinglish": "Bijli dene wala box",
+   "en": "Power Supply Unit: turns 230 V AC into low DC voltages",
+   "hi": "पावर सप्लाई यूनिट: 230 V AC को कम DC वोल्टेज में बदलती है"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "A computer does four things: takes input, processes it, gives output, and stores data.",
+    "hi": "कंप्यूटर चार काम करता है: इनपुट लेता है, प्रोसेस करता है, आउटपुट देता है, और डेटा रखता है।",
+    "hinglish": "Computer chaar kaam karta hai: input leta hai, process karta hai, output deta hai, aur data store karta hai."
+   },
+   "visual": "flow:⌨️ Input|🧠 Process|🖥️ Output|💾 Storage",
+   "narration": {
+    "en": "Keyboard, touch and mic are inputs; the screen and speaker are outputs.",
+    "hi": "कीबोर्ड, टच और माइक इनपुट हैं; स्क्रीन और स्पीकर आउटपुट हैं।",
+    "hinglish": "Keyboard, touch aur mic inputs hain; screen aur speaker outputs."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Everything plugs into the motherboard. Copper traces on it are the “roads” (buses) for data and power.",
+    "hi": "सब कुछ मदरबोर्ड में लगता है। उस पर तांबे की रेखाएँ डेटा और बिजली की “सड़कें” (बस) हैं।",
+    "hinglish": "Sab kuch motherboard mein lagta hai. Us pe copper ki lines data aur power ki “sadkein” (buses) hain."
+   },
+   "visual": "lab:pc-builder-3d",
+   "narration": {
+    "en": "Each part has its own shaped slot so it cannot go in the wrong place.",
+    "hi": "हर भाग का अपने आकार का स्लॉट है ताकि वह ग़लत जगह न लगे।",
+    "hinglish": "Har part ka apna shape wala slot hai taaki galat jagah na lage."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Power on: PSU → firmware check (POST) → OS loads from SSD into RAM → CPU runs it → GPU draws the screen.",
+    "hi": "चालू: PSU → फ़र्मवेयर जाँच (POST) → OS, SSD से RAM में → CPU चलाता है → GPU स्क्रीन बनाता है।",
+    "hinglish": "Power ON: PSU → firmware check (POST) → OS SSD se RAM mein → CPU chalata hai → GPU screen banata hai."
+   },
+   "visual": "flow:🔌 PSU|🧪 POST|💾→🗂️ Load OS|🧠 CPU|🎮 GPU|🖥️ Screen",
+   "narration": {
+    "en": "This start-up journey is called booting.",
+    "hi": "चालू होने की इस यात्रा को बूटिंग कहते हैं।",
+    "hinglish": "Is start-up safar ko booting kehte hain."
+   }
+  }
+ ],
+ "play": {
+  "lab": "pc-builder-3d",
+  "config": {},
+  "goal": {
+   "en": "Fit all five parts into their slots and power on. Watch the data travel.",
+   "hi": "पाँचों भाग अपने स्लॉट में लगाओ और चालू करो। डेटा को चलते देखो।",
+   "hinglish": "Paanchon parts sahi slots mein lagao aur power ON karo. Data ka safar dekho."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Who does what",
+    "hi": "कौन क्या करता है",
+    "hinglish": "Kaun kya karta hai"
+   },
+   "body": {
+    "en": "CPU – thinks (runs instructions). RAM – holds what is open right now; fast but forgets when power goes. Storage (SSD/HDD) – keeps files permanently. GPU – draws images, fast at many small jobs at once. PSU – gives clean power. Motherboard – connects all of them with buses, and holds the firmware chip (BIOS/UEFI) that starts the machine. Ports (USB-C, HDMI, Ethernet) connect the outside world. A laptop has the same parts, just smaller; a phone squeezes most of them into one chip.",
+    "hi": "CPU – सोचता है (निर्देश चलाता है)। RAM – अभी खुला काम रखती है; तेज़ पर बिजली जाने पर भूल जाती है। स्टोरेज (SSD/HDD) – फ़ाइलें स्थायी रूप से रखता है। GPU – चित्र बनाता है, एक साथ कई छोटे काम में तेज़। PSU – साफ़ बिजली देता है। मदरबोर्ड – सबको बस से जोड़ता है, और फ़र्मवेयर चिप (BIOS/UEFI) रखता है जो मशीन शुरू करती है। पोर्ट (USB-C, HDMI, ईथरनेट) बाहरी दुनिया से जोड़ते हैं। लैपटॉप में यही पुर्ज़े छोटे होते हैं; फ़ोन ज़्यादातर को एक चिप में समेट देता है।",
+    "hinglish": "CPU – sochta hai (instructions chalata hai). RAM – abhi jo khula hai rakhti hai; fast par power jaane pe bhool jaati hai. Storage (SSD/HDD) – files hamesha ke liye rakhta hai. GPU – images banata hai, ek saath kai chhote kaam mein fast. PSU – saaf bijli deta hai. Motherboard – sabko buses se jodta hai, aur firmware chip (BIOS/UEFI) rakhta hai jo machine start karti hai. Ports (USB-C, HDMI, Ethernet) bahar ki duniya se jodte hain. Laptop mein yahi parts chhote; phone zyaadatar ko ek chip mein samet deta hai."
+   },
+   "analogy": {
+    "hinglish": "Computer ek school jaisa: CPU = principal jo faisle leti hai, RAM = class ki desk, SSD = library ki almirah, GPU = art teachers ki team, PSU = canteen jo sabko energy deti hai, motherboard = galiyaare jo sab rooms jodte hain.",
+    "en": "A computer is like a school: CPU = the principal who makes decisions, RAM = the class desk, SSD = the library cupboard, GPU = the team of art teachers, PSU = the canteen that gives everyone energy, motherboard = the corridors joining every room.",
+    "hi": "कंप्यूटर एक स्कूल जैसा: CPU = प्रधानाचार्य जो निर्णय लेती हैं, RAM = कक्षा की डेस्क, SSD = पुस्तकालय की अलमारी, GPU = कला शिक्षकों की टीम, PSU = कैंटीन जो सबको ऊर्जा देती है, मदरबोर्ड = गलियारे जो सब कमरे जोड़ते हैं।"
+   },
+   "realExample": {
+    "en": "India’s PARAM supercomputers (C-DAC) use thousands of CPUs and GPUs connected by very fast networks — the same parts at a giant scale.",
+    "hi": "भारत के PARAM सुपरकंप्यूटर (C-DAC) बहुत तेज़ नेटवर्क से जुड़े हज़ारों CPU और GPU उपयोग करते हैं — वही भाग, विशाल पैमाने पर।",
+    "hinglish": "India ke PARAM supercomputers (C-DAC) hazaaron CPUs aur GPUs fast network se jodkar bane hain — wahi parts, bahut bade scale pe."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Look at the back of a desktop or the sides of a laptop at home or school and list every port you can find.",
+   "hi": "घर या स्कूल में डेस्कटॉप के पीछे या लैपटॉप के किनारों को देखो और हर पोर्ट की सूची बनाओ।",
+   "hinglish": "Ghar ya school ke desktop ke peeche ya laptop ke side mein jitne ports dikhein unki list banao."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "match",
+    "prompt": {
+     "en": "Match each part with its job.",
+     "hi": "हर पुर्ज़े को उसके काम से मिलाओ।",
+     "hinglish": "Har part ko uske kaam se milao."
+    },
+    "options": {
+     "left": [
+      "CPU",
+      "RAM",
+      "SSD",
+      "GPU"
+     ],
+     "right": [
+      {
+       "en": "Keeps files when power is off",
+       "hi": "बिजली बंद होने पर फ़ाइलें रखता है",
+       "hinglish": "Power off pe bhi files rakhta hai"
+      },
+      {
+       "en": "Runs instructions",
+       "hi": "निर्देश चलाता है",
+       "hinglish": "Instructions chalata hai"
+      },
+      {
+       "en": "Draws images on the screen",
+       "hi": "स्क्रीन पर चित्र बनाता है",
+       "hinglish": "Screen pe images banata hai"
+      },
+      {
+       "en": "Holds what is open right now",
+       "hi": "अभी खुला काम रखती है",
+       "hinglish": "Abhi khula kaam rakhti hai"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      3
+     ],
+     [
+      2,
+      0
+     ],
+     [
+      3,
+      2
+     ]
+    ],
+    "explain": {
+     "en": "CPU runs instructions, RAM holds open work, SSD keeps files, GPU draws graphics.",
+     "hi": "CPU निर्देश चलाता है, RAM खुला काम रखती है, SSD फ़ाइलें रखती है, GPU ग्राफ़िक्स बनाता है।",
+     "hinglish": "CPU instructions chalata hai, RAM khula kaam rakhti hai, SSD files rakhti hai, GPU graphics banata hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are INPUT devices? (choose all)",
+     "hi": "कौन-से इनपुट उपकरण हैं? (सभी चुनो)",
+     "hinglish": "Kaun se INPUT devices hain? (saare chuno)"
+    },
+    "options": [
+     {
+      "en": "Keyboard",
+      "hi": "कीबोर्ड",
+      "hinglish": "Keyboard"
+     },
+     {
+      "en": "Speaker",
+      "hi": "स्पीकर",
+      "hinglish": "Speaker"
+     },
+     {
+      "en": "Microphone",
+      "hi": "माइक्रोफ़ोन",
+      "hinglish": "Microphone"
+     },
+     {
+      "en": "Camera",
+      "hi": "कैमरा",
+      "hinglish": "Camera"
+     }
+    ],
+    "answer": [
+     0,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "Keyboard, microphone and camera send data in. A speaker sends data out (output).",
+     "hi": "कीबोर्ड, माइक्रोफ़ोन और कैमरा डेटा अंदर भेजते हैं। स्पीकर बाहर (आउटपुट)।",
+     "hinglish": "Keyboard, mic aur camera data andar bhejte hain. Speaker bahar (output)."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "order",
+    "prompt": {
+     "en": "Put the boot steps in order.",
+     "hi": "बूट के चरण क्रम में लगाओ।",
+     "hinglish": "Boot steps ko order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Firmware checks the parts (POST)",
+      "hi": "फ़र्मवेयर पुर्ज़े जाँचता है (POST)",
+      "hinglish": "Firmware parts check karta hai (POST)"
+     },
+     {
+      "en": "Desktop appears on screen",
+      "hi": "स्क्रीन पर डेस्कटॉप आता है",
+      "hinglish": "Screen pe desktop aata hai"
+     },
+     {
+      "en": "PSU sends power",
+      "hi": "PSU बिजली भेजता है",
+      "hinglish": "PSU power bhejta hai"
+     },
+     {
+      "en": "OS loads from SSD into RAM",
+      "hi": "OS, SSD से RAM में लोड होता है",
+      "hinglish": "OS SSD se RAM mein load hota hai"
+     }
+    ],
+    "answer": [
+     2,
+     0,
+     3,
+     1
+    ],
+    "explain": {
+     "en": "Power first, then the firmware self-test (POST), then the OS is copied from storage into RAM, then the CPU runs it and the screen shows the desktop.",
+     "hi": "पहले बिजली, फिर फ़र्मवेयर स्व-परीक्षण (POST), फिर OS स्टोरेज से RAM में, फिर CPU चलाता है और स्क्रीन डेस्कटॉप दिखाती है।",
+     "hinglish": "Pehle power, phir firmware self-test (POST), phir OS storage se RAM mein, phir CPU chalata hai aur screen desktop dikhati hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "What are the copper “roads” on a motherboard that carry data called?",
+     "hi": "मदरबोर्ड पर डेटा ले जाने वाली तांबे की “सड़कें” क्या कहलाती हैं?",
+     "hinglish": "Motherboard pe data le jaane wali copper “sadkein” kya kehlaati hain?"
+    },
+    "options": [
+     {
+      "en": "Cables",
+      "hi": "केबल",
+      "hinglish": "Cables"
+     },
+     {
+      "en": "Buses",
+      "hi": "बस",
+      "hinglish": "Buses"
+     },
+     {
+      "en": "Ports",
+      "hi": "पोर्ट",
+      "hinglish": "Ports"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Buses carry data, addresses and control signals between parts.",
+     "hi": "बस पुर्ज़ों के बीच डेटा, पते और नियंत्रण संकेत ले जाती हैं।",
+     "hinglish": "Buses parts ke beech data, address aur control signals le jaati hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Build and boot the PC in the 3D lab.",
+     "hi": "3D लैब में पीसी बनाओ और चालू करो।",
+     "hinglish": "3D lab mein PC banao aur boot karo."
+    },
+    "answer": {
+     "lab": "pc-builder-3d",
+     "event": "mission:complete"
+    },
+    "explain": {
+     "en": "All 5 parts in their slots, then power on.",
+     "hi": "सभी 5 पुर्ज़े सही स्लॉट में, फिर चालू।",
+     "hinglish": "Saare 5 parts sahi slots mein, phir power ON."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "NCERT / CBSE Artificial Intelligence & Computer curriculum (Classes 6–8), 2024–25",
+   "url": "https://cbseacademic.nic.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "C-DAC National Supercomputing Mission — PARAM systems",
+   "url": "https://nsmindia.in/",
+   "licence": "fact reference"
+  }
+ ]
+}

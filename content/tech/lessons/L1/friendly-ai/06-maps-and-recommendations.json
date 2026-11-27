@@ -1,0 +1,311 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.friendly-ai.06",
+ "level": 1,
+ "classes": [
+  3,
+  4,
+  5
+ ],
+ "unit": "friendly-ai",
+ "title": {
+  "en": "AI in maps and \"you may also like\"",
+  "hi": "मैप्स और \"यह भी पसंद आएगा\" में AI",
+  "hinglish": "Maps aur \"you may also like\" mein AI"
+ },
+ "minutes": 8,
+ "xp": 30,
+ "prereq": [
+  "L1.friendly-ai.05"
+ ],
+ "topics": [
+  "ai.everyday-ai",
+  "ai.search"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain how a maps app finds where you are (GPS) and the fastest road (traffic data).",
+   "hi": "समझा सकते हो कि मैप्स ऐप कैसे पता करता है तुम कहाँ हो (GPS) और सबसे तेज़ रास्ता (ट्रैफ़िक डेटा)।",
+   "hinglish": "Samjha sakte ho ki maps app kaise pata karta hai tum kahan ho (GPS) aur sabse tez raasta (traffic data)."
+  },
+  {
+   "en": "Explain how recommendations use what you liked before.",
+   "hi": "समझा सकते हो कि सुझाव तुम्हारी पहले की पसंद कैसे इस्तेमाल करते हैं।",
+   "hinglish": "Samjha sakte ho ki recommendations tumhari pehle ki pasand kaise use karte hain."
+  },
+  {
+   "en": "Choose for yourself instead of letting autoplay decide.",
+   "hi": "ऑटोप्ले के बजाय ख़ुद चुन सकते हो।",
+   "hinglish": "Autoplay ke bajaay khud chun sakte ho."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "GPS",
+   "en": "Global Positioning System: finding your location using satellites",
+   "hi": "उपग्रहों से अपनी जगह पता करना",
+   "hinglish": "Satellites se apni jagah pata karna"
+  },
+  {
+   "term": "Recommendation",
+   "en": "A suggestion of what you might like next",
+   "hi": "सुझाव — \"यह भी पसंद आएगा\"",
+   "hinglish": "Sujhaav — \"yeh bhi pasand aayega\""
+  },
+  {
+   "term": "Autoplay",
+   "en": "When the next video starts by itself",
+   "hi": "अपने आप अगला वीडियो चल जाना",
+   "hinglish": "Apne aap agla video chal jaana"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.friendly-ai.06.s1",
+   "caption": {
+    "en": "Satellites help the phone find where it is.",
+    "hi": "उपग्रह फ़ोन को उसकी जगह बताने में मदद करते हैं।",
+    "hinglish": "Satellites phone ko uski jagah batane mein madad karte hain."
+   },
+   "narration": {
+    "en": "GPS satellites send time signals. Your phone listens to at least four of them and works out exactly where you are. India also has its own system, called NavIC.",
+    "hinglish": "GPS satellites time signals bhejte hain. Tumhara phone kam se kam chaar ko sun kar pata lagaata hai ki tum kahan ho. India ka apna system bhi hai — NavIC.",
+    "hi": "GPS उपग्रह समय के सिग्नल भेजते हैं। तुम्हारा फ़ोन कम से कम चार को सुनकर पता लगाता है कि तुम कहाँ हो। भारत की अपनी प्रणाली भी है — नाविक (NavIC)।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.friendly-ai.06.s2",
+   "caption": {
+    "en": "AI picks the faster road from traffic.",
+    "hi": "AI ट्रैफ़िक देखकर तेज़ रास्ता चुनता है।",
+    "hinglish": "AI traffic dekh kar tez raasta chunta hai."
+   },
+   "narration": {
+    "en": "Maps apps combine speed information from many phones (without names) to spot traffic jams, then pick the quickest route.",
+    "hinglish": "Maps apps kai phones ki speed jaankari (bina naam ke) jod kar traffic jam pehchaante hain, phir sabse jaldi wala raasta chunte hain.",
+    "hi": "मैप्स ऐप कई फ़ोनों की गति की जानकारी (बिना नाम के) जोड़कर ट्रैफ़िक जाम पहचानते हैं, फिर सबसे जल्दी वाला रास्ता चुनते हैं।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.friendly-ai.06.s3",
+   "caption": {
+    "en": "You liked dinosaurs and space… try tigers?",
+    "hi": "तुम्हें डायनासोर और अंतरिक्ष पसंद… बाघ देखोगे?",
+    "hinglish": "Tumhe dinosaur aur space pasand… tiger dekhoge?"
+   },
+   "narration": {
+    "en": "Video and music apps notice what you liked and suggest similar things. Helpful — but you decide what to watch, and when to stop.",
+    "hinglish": "Video aur music apps dekhte hain tumhe kya pasand aaya aur milti-julti cheezein sujhaate hain. Madadgaar — par kya dekhna hai aur kab rukna hai, yeh tum tay karo.",
+    "hi": "वीडियो और संगीत ऐप देखते हैं तुम्हें क्या पसंद आया और मिलती-जुलती चीज़ें सुझाते हैं। मददगार — पर क्या देखना है और कब रुकना है, यह तुम तय करो।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "teach-sorter",
+  "config": {
+   "mode": "recommend"
+  },
+  "goal": {
+   "en": "Tell the AI what you like, then see if its recommendations match your taste.",
+   "hi": "AI को बताओ तुम्हें क्या पसंद है, फिर देखो उसके सुझाव तुम्हारी पसंद से मिलते हैं या नहीं।",
+   "hinglish": "AI ko batao tumhe kya pasand hai, phir dekho uske sujhaav tumhari pasand se milte hain ya nahin."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Recommendations = \"similar to what you liked\"",
+    "hi": "सुझाव = \"तुम्हारी पसंद जैसा\"",
+    "hinglish": "Recommendations = \"tumhari pasand jaisa\""
+   },
+   "body": {
+    "en": "The app gives each video clues (like \"science\" or \"sports\") and finds ones close to the videos you liked — the same nearest-neighbour idea from our lab. It can also look at what other people with similar tastes enjoyed.",
+    "hi": "ऐप हर वीडियो को सुराग देता है (जैसे \"विज्ञान\" या \"खेल\") और तुम्हारे पसंद किए वीडियो के पास वाले ढूँढता है — हमारी लैब वाला सबसे-पास-के-पड़ोसी तरीका। वह मिलती-जुलती पसंद वाले दूसरे लोगों की पसंद भी देख सकता है।",
+    "hinglish": "App har video ko suraag deta hai (jaise \"science\" ya \"sports\") aur tumhare pasand kiye videos ke paas wale dhoondhta hai — hamari lab wala nearest-neighbour idea. Woh milti-julti pasand wale doosre logon ki pasand bhi dekh sakta hai."
+   },
+   "analogy": {
+    "en": "A shopkeeper remembers you always buy mangoes, so next time says \"fresh mangoes today!\"",
+    "hi": "दुकानदार याद रखता है कि तुम हर बार आम लेते हो, तो अगली बार कहता है \"आज ताज़े आम आए हैं!\"",
+    "hinglish": "Dukaandaar yaad rakhta hai ki tum har baar aam lete ho, toh agli baar kehta hai \"aaj taaze aam aaye hain!\""
+   }
+  },
+  {
+   "heading": {
+    "en": "You are the boss of your screen",
+    "hi": "अपनी स्क्रीन के मालिक तुम हो",
+    "hinglish": "Apni screen ke boss tum ho"
+   },
+   "body": {
+    "en": "Apps are designed to keep you watching. Autoplay starts the next video before you choose. Turn off autoplay with a grown-up, decide how many videos before you start, and stop when the time is up.",
+    "hi": "ऐप इस तरह बने हैं कि तुम देखते रहो। ऑटोप्ले तुम्हारे चुनने से पहले अगला वीडियो चला देता है। किसी बड़े के साथ ऑटोप्ले बंद करो, शुरू करने से पहले तय करो कितने वीडियो, और समय पूरा होने पर रुक जाओ।",
+    "hinglish": "Apps is tarah bane hain ki tum dekhte raho. Autoplay tumhare chunne se pehle agla video chala deta hai. Kisi bade ke saath autoplay band karo, shuru karne se pehle tay karo kitne videos, aur time poora hone par ruk jao."
+   },
+   "realExample": {
+    "en": "India's NavIC satellite system was built by ISRO to give accurate positions over India and around it.",
+    "hi": "भारत की नाविक (NavIC) उपग्रह प्रणाली इसरो ने बनाई ताकि भारत और आस-पास सही स्थिति मिल सके।",
+    "hinglish": "India ka NavIC satellite system ISRO ne banaya taaki India aur aas-paas sahi location mil sake."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "With a grown-up, open a maps app and look at the road colours near your home: green, orange, red. What do they mean right now?",
+   "hi": "किसी बड़े के साथ मैप्स ऐप खोलो और घर के पास सड़कों के रंग देखो: हरा, नारंगी, लाल। अभी उनका क्या मतलब है?",
+   "hinglish": "Kisi bade ke saath maps app kholo aur ghar ke paas sadkon ke rang dekho: hara, orange, laal. Abhi unka kya matlab hai?"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "How does your phone know where you are?",
+     "hi": "फ़ोन को कैसे पता चलता है तुम कहाँ हो?",
+     "hinglish": "Phone ko kaise pata chalta hai tum kahan ho?"
+    },
+    "options": [
+     {
+      "en": "Signals from satellites (GPS)",
+      "hi": "उपग्रहों के सिग्नल (GPS)",
+      "hinglish": "Satellites ke signals (GPS)"
+     },
+     {
+      "en": "It guesses randomly",
+      "hi": "अंदाज़े से",
+      "hinglish": "Random guess se"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "It uses signals from at least four satellites.",
+     "hi": "वह कम से कम चार उपग्रहों के सिग्नल इस्तेमाल करता है।",
+     "hinglish": "Woh kam se kam chaar satellites ke signals use karta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "A road shows RED on the map. It means…",
+     "hi": "मैप पर सड़क लाल दिखती है। मतलब…",
+     "hinglish": "Map par sadak laal dikhti hai. Matlab…"
+    },
+    "options": [
+     {
+      "en": "traffic is slow",
+      "hi": "ट्रैफ़िक धीमा है",
+      "hinglish": "traffic slow hai"
+     },
+     {
+      "en": "the road is painted red",
+      "hi": "सड़क लाल रंगी है",
+      "hinglish": "sadak laal rangi hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Red = slow traffic, worked out from many phones' speeds.",
+     "hi": "लाल = धीमा ट्रैफ़िक, कई फ़ोनों की गति से पता चला।",
+     "hinglish": "Laal = slow traffic, kai phones ki speed se pata chala."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "You liked 3 cricket videos. The app will probably suggest…",
+     "hi": "तुमने 3 क्रिकेट वीडियो पसंद किए। ऐप शायद सुझाएगा…",
+     "hinglish": "Tumne 3 cricket videos pasand kiye. App shayad sujhaayega…"
+    },
+    "options": [
+     {
+      "en": "more sports videos",
+      "hi": "और खेल वीडियो",
+      "hinglish": "aur sports videos"
+     },
+     {
+      "en": "cooking videos",
+      "hi": "खाना बनाने के वीडियो",
+      "hinglish": "cooking videos"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Recommendations find things similar to what you liked.",
+     "hi": "सुझाव तुम्हारी पसंद जैसी चीज़ें ढूँढते हैं।",
+     "hinglish": "Recommendations tumhari pasand jaisi cheezein dhoondhte hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "What is a smart way to handle autoplay?",
+     "hi": "ऑटोप्ले से निपटने का समझदार तरीका?",
+     "hinglish": "Autoplay se nipatne ka smart tarika?"
+    },
+    "options": [
+     {
+      "en": "Turn it off and decide how many videos first",
+      "hi": "बंद करो और पहले तय करो कितने वीडियो",
+      "hinglish": "Band karo aur pehle tay karo kitne videos"
+     },
+     {
+      "en": "Watch until the battery dies",
+      "hi": "बैटरी ख़त्म होने तक देखो",
+      "hinglish": "Battery khatam hone tak dekho"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "You choose — not the app.",
+     "hi": "तुम चुनो — ऐप नहीं।",
+     "hinglish": "Tum chuno — app nahin."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Train the recommender in the lab and test 4 suggestions.",
+     "hi": "लैब में सुझाव-AI को सिखाओ और 4 सुझाव जाँचो।",
+     "hinglish": "Lab mein recommender ko train karo aur 4 suggestions test karo."
+    },
+    "answer": {
+     "lab": "teach-sorter",
+     "mode": "recommend",
+     "solved": true
+    },
+    "explain": {
+     "en": "Mark 6 things 👍 or 👎, then say if each suggestion fits you.",
+     "hi": "6 चीज़ों को 👍 या 👎 करो, फिर बताओ हर सुझाव तुम्हें जँचा या नहीं।",
+     "hinglish": "6 cheezon ko 👍 ya 👎 karo, phir batao har suggestion tumhe jacha ya nahin."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "ISRO – NavIC navigation satellite system (fact reference)",
+   "url": "https://www.isro.gov.in/IRNSS_Programme.html",
+   "licence": "fact reference"
+  },
+  {
+   "title": "GPS.gov – How GPS works (fact reference)",
+   "url": "https://www.gps.gov/systems/gps/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

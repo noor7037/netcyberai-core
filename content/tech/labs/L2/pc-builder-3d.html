@@ -1,0 +1,253 @@
+<!doctype html><html lang="en-IN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>3D PC Builder — NCA Tech & AI Lab</title><style>/* NCA Tech & AI Lab — Level 2 shared lab skin (own work, MIT). Family App lesson tokens: paper, card, ink, saffron, teal, plum. */
+:root{--paper:#FBF8F3;--card:#FFFDF9;--ink:#1C1B1A;--muted:#4B5563;--line:#E7E1D6;--saffron:#E8702A;--saffronD:#C2410C;--teal:#0F766E;--plum:#6D28D9;--sky:#0369A1;
+--mint:#E4F3EA;--butter:#FBF1D3;--lilac:#EFE9FB;--blush:#FBE6E3;--skyT:#E3EEF9;--night:#0B1430;--night2:#16224A;--cyan:#02CFF9;--leaf:#22C55E;--coral:#FF6B57;--gold:#F5B90A;--grape:#8B3DFF;
+--r:16px;--sh:0 1px 0 rgba(28,27,26,.04),0 6px 18px -8px rgba(28,27,26,.18)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans Devanagari",sans-serif;font-variant-numeric:tabular-nums}
+body{background:transparent;min-height:100vh;padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 16px)}
+button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation}
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:8px;padding:10px 14px;background:rgba(251,248,243,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--lilac);flex:none}
+.top h1{font-size:16px;margin:0;line-height:1.2;flex:1;min-width:0}
+.top h1 small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;flex:none;background:var(--card)}
+.lang button{border:0;background:none;padding:6px 9px;font-size:12px;font-weight:600;color:var(--muted);min-height:32px}
+.lang button[aria-pressed=true]{background:var(--ink);color:#fff}
+.wrap{max-width:1100px;margin:0 auto;padding:12px 14px;display:grid;gap:12px;grid-template-columns:minmax(0,1fr)}
+.wrap>*{min-width:0}
+.wrap>div{grid-template-columns:minmax(0,1fr)}
+.card,.stage{min-width:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;box-shadow:var(--sh)}
+.goal{background:var(--butter);border-color:#F1DFA8;display:flex;gap:10px;align-items:flex-start;font-size:14.5px}
+.goal b{color:#8A5300}
+.goal .gi{font-size:20px;line-height:1}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn{border:0;border-radius:12px;padding:11px 16px;font-weight:700;min-height:44px;background:var(--saffron);color:var(--ink);box-shadow:0 3px 0 #B4531B;transition:transform .12s}
+.btn:active{transform:translateY(2px);box-shadow:0 1px 0 #B4531B}
+.btn.ghost{background:var(--card);border:1.5px solid var(--line);box-shadow:none}
+.btn.teal{background:var(--teal);color:#fff;box-shadow:0 3px 0 #0A4F49}
+.btn.plum{background:var(--plum);color:#fff;box-shadow:0 3px 0 #4C1D95}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.chip{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:3px 10px;font-size:12.5px;font-weight:600;background:var(--mint);color:var(--teal)}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;padding-bottom:2px}/* wraps: every mode name always fully visible */
+.tabs button{flex:0 1 auto;max-width:100%;white-space:normal;text-align:center;border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:8px 14px;font-weight:600;font-size:14px;min-height:40px}
+.tabs button[aria-selected=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.stage{background:radial-gradient(120% 90% at 30% 0%,#1D2D63 0%,var(--night) 60%);color:#E8EEFF;border-radius:20px;overflow:hidden;position:relative;border:1px solid #23305E}
+.muted{color:var(--muted)}
+.mission{background:var(--skyT);border-color:#C9DDF2}
+.mission h3{margin:0 0 6px;font-size:15px;color:var(--sky)}
+.toast{position:fixed;left:0;top:0;width:max-content;max-width:min(92vw,340px);background:var(--ink);color:#fff;padding:10px 16px;border-radius:14px;font-weight:600;z-index:50;box-shadow:0 8px 24px rgba(0,0,0,.25);opacity:0;visibility:hidden;transform:scale(.92);transition:opacity .25s,transform .25s,visibility 0s .25s;pointer-events:none;text-align:center;line-height:1.35}
+.toast.on{opacity:1;visibility:visible;transform:none;transition:opacity .25s,transform .25s}
+.toast.inline{position:static;display:block;width:auto;max-width:none;margin:10px 0;grid-column:1/-1;flex:0 0 auto}
+.toast.ok{background:var(--teal)}.toast.bad{background:#B42318}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:-1}/* behind the cards: confetti never covers text */
+.kbd{font-family:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace}
+.hidden{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@keyframes pop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.08);opacity:1}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.shake{animation:shake .3s 2}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
+</style>
+<style>
+#scene{height:380px;perspective:1000px;perspective-origin:50% 30%;touch-action:none;cursor:grab;display:grid;place-items:center}
+#board{width:300px;height:300px;position:relative;transform-style:preserve-3d;transition:transform .08s linear}
+.pcb{position:absolute;inset:0;border-radius:10px;background:linear-gradient(135deg,#0E5A47,#0B4436);box-shadow:0 0 0 2px #0A3A2E,0 40px 60px rgba(0,0,0,.6);transform-style:preserve-3d}
+.pcb svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.slot{position:absolute;border:2px dashed rgba(255,255,255,.55);border-radius:5px;display:grid;place-items:center;font:700 9px system-ui;color:rgba(255,255,255,.85);transform-style:preserve-3d;transform:translateZ(1px);transition:background .2s,border-color .2s}
+.slot.want{border-color:#FFD23F;background:rgba(255,210,63,.18);animation:pulse 1s infinite}
+.slot.filled{border-color:transparent;color:transparent}
+@keyframes pulse{50%{background:rgba(255,210,63,.35)}}
+.cube{position:absolute;left:0;top:0;transform-style:preserve-3d;pointer-events:none}
+.cube>i{position:absolute;display:block;backface-visibility:hidden}
+.stage{position:relative}.stage .ovl{position:absolute;inset:0;pointer-events:none;overflow:hidden}.ol{position:absolute;left:0;top:0;font:800 10px system-ui;color:#fff;text-shadow:0 0 3px #000,0 1px 2px #000;white-space:nowrap}.ol.sv{font:700 8px system-ui;color:#F3F4F6}
+.cube .lb{position:absolute;left:0;top:0;pointer-events:none;font:800 10px system-ui;color:#fff;text-shadow:0 0 3px #000,0 1px 2px rgba(0,0,0,.8);display:grid;place-items:center;text-align:center;line-height:1.1}/* part names float above every cube, so a tall part never hides a neighbour's name */
+.cube .t{left:0;top:0;display:grid;place-items:center;font:800 10px system-ui;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.6);text-align:center;line-height:1.1}
+.drop{animation:drop .55s cubic-bezier(.3,1.5,.6,1) both}
+@keyframes drop{from{transform:translateZ(140px)}to{transform:translateZ(0)}}
+.tray{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.part{border:2px solid var(--line);background:#fff;border-radius:14px;padding:8px 2px 6px;display:grid;gap:2px;justify-items:center;font-size:11px;font-weight:700;min-height:74px;touch-action:none;user-select:none}
+.part .e{font-size:24px}
+.part[aria-pressed=true]{border-color:var(--saffron);background:#FFF1E6;box-shadow:0 0 0 3px rgba(232,112,42,.25)}
+.part.used{opacity:.3;pointer-events:none}
+.dragghost{position:fixed;z-index:40;pointer-events:none;font-size:34px;transform:translate(-50%,-60%);filter:drop-shadow(0 6px 8px rgba(0,0,0,.35))}
+#screen{height:130px;border-radius:14px;background:#05070F;border:6px solid #2A2F3A;display:grid;place-items:center;color:#7CFFB2;font:600 13px ui-monospace,monospace;text-align:center;overflow:hidden;position:relative}
+#screen.game{background:linear-gradient(180deg,#5AB2FF 0%,#9BD8FF 55%,#3BA55C 55%,#2B7A44 100%)}
+.flow{fill:#FFD23F;filter:drop-shadow(0 0 4px #FFD23F)}
+.trace{stroke:#3BAA85;stroke-width:2.2;fill:none;opacity:.8}
+.trace.live{stroke:#FFD23F;opacity:1}
+#info{font-size:14.5px}
+#info h4{margin:0 0 4px;font-size:15px}
+.speed{display:grid;gap:6px;font-size:13px}
+.bar{height:16px;border-radius:8px;background:var(--paper);overflow:hidden}
+.bar i{display:block;height:100%;width:0;border-radius:8px;transition:width 1.2s linear}
+.hint{font-size:12px;color:#C9D4FF;text-align:center;margin-top:-6px;padding-bottom:8px}
+@media (orientation:landscape) and (min-width:640px){.wrap{grid-template-columns:1.3fr 1fr}.wrap>.full{grid-column:1/-1}#scene{height:330px}}
+</style></head><body>
+<main class="wrap">
+ <div class="card goal full"><span class="gi">🎯</span><div id="goal"></div></div>
+ <section class="stage"><div id="scene" aria-label="3D motherboard"><div id="board"><div class="pcb" id="pcb"></div></div></div><div class="ovl"></div><div class="hint" data-k="drag"></div></section>
+ <div style="display:grid;gap:12px">
+  <div class="card"><div style="font-weight:700;font-size:14px;margin-bottom:8px" data-k="tray"></div><div class="tray" id="tray"></div>
+   <div class="row" style="margin-top:10px"><button class="btn teal" id="power" disabled data-k="power"></button><button class="btn ghost" id="reset" data-k="reset"></button></div></div>
+  <div id="screen" aria-live="polite">— NO SIGNAL —</div>
+ </div>
+ <div class="card" id="info"></div>
+ <div class="card speed" id="speed"></div>
+ <div class="card mission full"><h3 data-k="mT"></h3><div id="mission"></div></div>
+</main>
+<script>/* NCA Tech & AI Lab — Level 2 shared lab runtime (own work, MIT). No eval, no network except an optional same-origin ?lesson= JSON. */
+(function(g){
+  const qs=new URLSearchParams(location.search);
+  const LANGS=['hinglish','en','hi'];
+  let lang=(qs.get('lang')||localStorage.getItem('nca-tl-lang')||'hinglish'); if(!LANGS.includes(lang)) lang='hinglish';
+  const reduced=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const t=x=>x==null?'':(typeof x==='string'||typeof x==='number')?String(x):(x[lang]||x.hinglish||x.en||'');
+  let STR={}; const listeners=[];
+  function applyI18n(root){(root||document).querySelectorAll('[data-k]').forEach(el=>{const v=STR[el.dataset.k]; if(v) el.innerHTML=t(v);});
+    document.documentElement.lang=lang==='hi'?'hi':(lang==='en'?'en':'en-IN');
+    document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.l===lang));}
+  function setLang(l){lang=l;localStorage.setItem('nca-tl-lang',l);applyI18n();listeners.forEach(f=>f(l));}
+  function header(icon,titleK,subK){const h=document.createElement('header');h.className='top';
+    h.innerHTML=`<div class="ic" aria-hidden="true">${icon}</div><h1><span data-k="${titleK}"></span><small data-k="${subK}"></small></h1>
+    <div class="lang" role="group" aria-label="Language"><button data-l="hinglish">Hinglish</button><button data-l="en">EN</button><button data-l="hi">हिं</button></div>`;
+    document.body.prepend(h); h.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>setLang(b.dataset.l));}
+  // Toast: never covers text. It floats in a free band of the screen (bottom first); if the screen has no free band
+  // it sits in the page flow right under what the child just tapped (pushes content down, covers nothing). Closes after 2.5 s.
+  let toastEl,lastTap=null,tapAt=null;document.addEventListener('pointerdown',e=>{lastTap=e.target;tapAt=[e.clientX,e.clientY+scrollY]},true);let rePend=0;const rePlace=()=>{if(!toastEl||!toastEl.classList.contains('on')||rePend)return;rePend=1;requestAnimationFrame(()=>{rePend=0;placeToast();});};
+  addEventListener('scroll',rePlace,{passive:true});addEventListener('resize',rePlace);document.addEventListener('animationend',rePlace,true);document.addEventListener('transitionend',rePlace,true);const toastMO=new MutationObserver(rs=>{if(rs.some(r=>!toastEl.contains(r.target)))rePlace();});
+  function textRects(skip){const vh=innerHeight,out=[],rg=document.createRange(),w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let n;
+    while((n=w.nextNode())){if(!n.nodeValue.trim())continue;const p=n.parentElement;if(!p||skip.contains(p)||/^(SCRIPT|STYLE)$/.test(p.tagName))continue;rg.selectNodeContents(n);
+      for(const q of rg.getClientRects())if(q.width>=1&&q.bottom>0&&q.top<vh)out.push(q);}
+    document.querySelectorAll('input,select,textarea,button,a[href],[role=button]').forEach(e=>{if(skip.contains(e))return;const q=e.getBoundingClientRect();if(q.width&&q.bottom>0&&q.top<vh)out.push(q)});if(0)document.querySelectorAll('x').forEach(e=>{const q=e.getBoundingClientRect();if(q.width&&q.bottom>0&&q.top<vh)out.push(q)});return out;}
+  function freeSpot(el){const vw=document.documentElement.clientWidth,vh=innerHeight,w=el.offsetWidth,h=el.offsetHeight,m=8;let top=m;
+    const bar=document.querySelector('.top');if(bar)top=Math.max(top,bar.getBoundingClientRect().bottom+m);
+    const obs=textRects(el),xs=[(vw-w)/2,m,vw-w-m],free=(x,y)=>!obs.some(q=>q.left<x+w+4&&q.right>x-4&&q.top<y+h+4&&q.bottom>y-4);
+    const cur=el._spot;if(cur&&free(cur.x,cur.y))return cur;
+    for(let y=vh-h-m;y>=top;y-=6)for(const x of xs)if(free(x,y))return{x,y};return null;}
+  /* never drop the note inside a 3D scene, a transformed, positioned-out or clipping box */
+  function boxedIn(a){for(let p=a;p&&p!==document.body;p=p.parentElement){const c=getComputedStyle(p);if(c.transform!=='none'||c.transformStyle==='preserve-3d'||c.perspective!=='none'||c.position==='absolute'||c.position==='fixed'||(p!==a&&c.overflow!=='visible'))return true;}return false;}
+  function inlineAfter(el){let a=lastTap&&lastTap.isConnected&&!el.contains(lastTap)?lastTap:null;
+    if(!a&&tapAt){const y=tapAt[1]-scrollY;if(y>0&&y<innerHeight)a=document.elementFromPoint(tapAt[0],y);}/* the tapped thing was re-drawn: use what is there now */
+    if(!a||el.contains(a))a=document.querySelector('main')||document.body.lastElementChild;
+    while(a.parentElement&&a.parentElement!==document.body){const d=getComputedStyle(a.parentElement),me=getComputedStyle(a);
+      if(me.display!=='inline'&&!(a instanceof SVGElement)&&(d.display==='block'||d.display==='flow-root'||d.display==='grid'||(d.display==='flex'&&d.flexDirection.startsWith('column')))&&a.getBoundingClientRect().width>=Math.min(260,innerWidth*.6)&&!boxedIn(a))break;a=a.parentElement;}
+    a.after(el);}
+  function placeToast(){const el=toastEl;if(!el.classList.contains('on'))return;if(!el.isConnected){el.classList.remove('inline');document.body.appendChild(el);}
+    if(el.classList.contains('inline'))return;const s=freeSpot(el);
+    if(s){el._spot=s;el.style.left=s.x+'px';el.style.top=s.y+'px';}else{el._spot=null;el.classList.add('inline');el.style.left=el.style.top='';inlineAfter(el);el.scrollIntoView({block:'nearest'});}}
+  function toast(msg,kind){if(!toastEl){toastEl=document.createElement('div');toastEl.setAttribute('role','status');document.body.appendChild(toastEl);}
+    const el=toastEl;clearTimeout(el._t);clearInterval(el._iv);if(el.classList.contains('inline'))document.body.appendChild(el);
+    el.className='toast '+(kind||'');el._spot=null;el.innerHTML=typeof msg==='object'?t(msg):msg;el.style.left='0px';el.style.top='0px';
+    el.classList.add('on');placeToast();el._iv=setInterval(placeToast,200);toastMO.observe(document.body,{subtree:true,childList:true,attributes:true,characterData:true});
+    el._t=setTimeout(()=>{clearInterval(el._iv);toastMO.disconnect();el.classList.remove('on');setTimeout(()=>{if(!el.classList.contains('on')&&el.classList.contains('inline')){el.classList.remove('inline');document.body.appendChild(el);}},320);},2500);}
+  function confetti(){if(reduced())return;const c=document.createElement('canvas');c.className='confetti';c.setAttribute('aria-hidden','true');document.body.appendChild(c);
+    const W=c.width=innerWidth,H=c.height=innerHeight,x=c.getContext('2d');const cols=['#E8702A','#0F766E','#6D28D9','#F5B90A','#02CFF9','#FF6B57'];
+    const P=Array.from({length:90},()=>({x:W/2,y:H*.55,vx:(Math.random()-.5)*9,vy:-Math.random()*11-4,r:Math.random()*6+3,c:cols[Math.random()*6|0],a:Math.random()*6}));
+    let n=0;(function f(){x.clearRect(0,0,W,H);P.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.32;p.a+=.2;x.save();x.translate(p.x,p.y);x.rotate(p.a);x.fillStyle=p.c;x.fillRect(-p.r/2,-p.r/4,p.r,p.r/2);x.restore();});
+      if(++n<110)requestAnimationFrame(f);else c.remove();})();}
+  function tween(ms,step,done){if(reduced()||ms<=0){step(1);done&&done();return()=>{};}let stop=0;const t0=performance.now();
+    const f=now=>{if(stop)return;const k=Math.min(1,(now-t0)/ms);step(k);k<1?requestAnimationFrame(f):done&&done();};requestAnimationFrame(f);return()=>{stop=1};}
+  const ease=k=>k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+  const sleep=ms=>new Promise(r=>setTimeout(r,reduced()?0:ms));
+  // Lesson config: ?lesson=<same-origin json path> (its play.config + play.goal), else inline defaults. ?cfg=<json> also accepted (parsed with JSON.parse only).
+  async function lessonConfig(defaults){let cfg=Object.assign({},defaults),goal=null,id=null;
+    const p=qs.get('lesson');
+    if(p&&/^[\w\-./]+\.json$/.test(p)&&!p.includes('..')){try{const r=await fetch(p);if(r.ok){const j=await r.json();id=j.id;if(j.play){Object.assign(cfg,j.play.config||{});goal=j.play.goal||null;}}}catch(e){}}
+    const c=qs.get('cfg'); if(c){try{Object.assign(cfg,JSON.parse(c));}catch(e){}}
+    return {cfg,goal,id};}
+  // Progress events the Family App shell can listen for (postMessage to the parent frame), plus local XP for the prototype.
+  function emit(type,data){const msg={source:'nca-techlab',type,data:data||{},at:Date.now()};try{parent!==window&&parent.postMessage(msg,'*');}catch(e){}
+    document.dispatchEvent(new CustomEvent('nca-lab',{detail:msg}));}
+  g.NCA={qs,esc,t,get lang(){return lang},setLang,onLang:f=>listeners.push(f),strings:o=>{STR=Object.assign(STR,o);applyI18n();},applyI18n,header,toast,confetti,tween,ease,sleep,reduced,lessonConfig,emit};
+})(window);
+</script>
+<script>
+(async function(){
+const N=NCA,T=N.t,E=N.esc,L=(en,hi,hinglish)=>({en,hi,hinglish}),$=id=>document.getElementById(id);
+N.header('🧰','title','sub');
+N.strings({title:L('3D PC Builder','3D पीसी बिल्डर','3D PC Builder'),sub:L('Build a computer, then power it on','कंप्यूटर बनाओ, फिर चालू करो','Computer banao, phir ON karo'),drag:L('Drag on the board to turn it in 3D','बोर्ड पर खींचकर 3D में घुमाओ','Board pe drag karke 3D mein ghumao'),
+tray:L('Parts: drag one onto its slot, or tap a part then tap the slot','पुर्ज़े: खींचकर सही स्लॉट पर रखो, या पुर्ज़ा दबाकर स्लॉट दबाओ','Parts: drag karke sahi slot pe rakho, ya part tap karke slot tap karo'),power:L('⏻ Power on','⏻ चालू करो','⏻ Power ON'),reset:L('↺ Start again','↺ फिर से','↺ Dobara'),mT:L('🚀 Mission','🚀 मिशन','🚀 Mission')});
+const {goal}=await N.lessonConfig({});
+// slots on a 300×300 board (x, y, w, d) and the part that fits each, with a 3D height
+const P={
+ cpu:{e:'🧠',c:'#9CA3AF',top:'#C7CDD6',slot:[112,46,72,72],h:10,lbl:'CPU',name:L('CPU (processor)','सीपीयू (प्रोसेसर)','CPU (processor)'),
+  info:L('The brain. It fetches an instruction from RAM, decodes it and executes it — billions of times a second (3 GHz = 3 billion clock ticks per second). It has a few powerful cores (4–16) and a tiny super-fast memory inside called cache.','दिमाग़। यह RAM से निर्देश लाता है, समझता है और चलाता है — हर सेकंड अरबों बार (3 GHz = प्रति सेकंड 3 अरब घड़ी टिक)। इसमें कुछ शक्तिशाली कोर (4–16) और अंदर छोटी अति-तेज़ मेमोरी होती है जिसे कैश कहते हैं।','Computer ka dimaag. Yeh RAM se instruction laata hai (fetch), samajhta hai (decode) aur chalata hai (execute) — har second billions baar (3 GHz = 3 billion clock ticks per second). Isme kuch powerful cores (4–16) aur andar ek chhoti super-fast memory hoti hai jise cache kehte hain.')},
+ ram:{e:'🗂️',c:'#1D4ED8',top:'#3B6CF0',slot:[208,26,40,124],h:26,lbl:'RAM',name:L('RAM (memory)','RAM (मेमोरी)','RAM (memory)'),
+  info:L('The study desk. Whatever is open right now — the game, the browser, this lesson — sits in RAM so the CPU can reach it in about 100 nanoseconds. It is volatile: switch off and it forgets everything. Phones today have 4–12 GB.','पढ़ाई की मेज़। जो अभी खुला है — गेम, ब्राउज़र, यह पाठ — वह RAM में रहता है ताकि CPU उसे लगभग 100 नैनोसेकंड में पा ले। यह अस्थायी है: बंद करो तो सब भूल जाती है। आज फ़ोनों में 4–12 GB होती है।','Study desk. Jo abhi khula hai — game, browser, yeh lesson — woh RAM mein rehta hai taaki CPU usse lagbhag 100 nanoseconds mein pakad le. Yeh volatile hai: switch off karo to sab bhool jaati hai. Aaj phones mein 4–12 GB hoti hai.')},
+ ssd:{e:'💾',c:'#111827',top:'#374151',slot:[104,150,96,22],h:5,lbl:'M.2 SSD',name:L('SSD (storage)','SSD (स्टोरेज)','SSD (storage)'),
+  info:L('The school bag / almirah. Apps, photos and the operating system are kept here even when power is off (non-volatile), in NAND flash chips. An NVMe SSD reads about 3,500 MB per second; an old spinning hard disk only about 150 MB/s.','स्कूल बैग / अलमारी। ऐप, फ़ोटो और ऑपरेटिंग सिस्टम यहाँ बिजली बंद होने पर भी रहते हैं (स्थायी), NAND फ़्लैश चिप में। NVMe SSD लगभग 3,500 MB प्रति सेकंड पढ़ती है; पुरानी घूमने वाली हार्ड डिस्क केवल लगभग 150 MB/s।','School bag / almirah. Apps, photos aur operating system yahan power off hone par bhi rehte hain (non-volatile), NAND flash chips mein. NVMe SSD lagbhag 3,500 MB per second padhti hai; purani ghoomne wali hard disk sirf lagbhag 150 MB/s.')},
+ gpu:{e:'🎮',c:'#374151',top:'#4B5563',slot:[34,200,226,30],h:34,lbl:'GPU',name:L('GPU (graphics card)','जीपीयू (ग्राफ़िक्स कार्ड)','GPU (graphics card)'),
+  info:L('The artist team. A CPU has a few strong cores; a GPU has thousands of small cores that colour millions of pixels at the same time (parallel work). The same parallel power trains AI models, which is why AI companies buy huge numbers of GPUs.','कलाकारों की टीम। CPU में कुछ ताक़तवर कोर होते हैं; GPU में हज़ारों छोटे कोर जो एक साथ लाखों पिक्सेल रंगते हैं (समानांतर काम)। यही ताक़त AI मॉडल को प्रशिक्षित करती है, इसलिए AI कंपनियाँ बहुत सारे GPU ख़रीदती हैं।','Artists ki team. CPU mein kuch strong cores hote hain; GPU mein hazaaron chhote cores jo ek saath millions pixels colour karte hain (parallel kaam). Yahi parallel power AI models ko train karti hai, isliye AI companies bahut saare GPUs khareedti hain.')},
+ psu:{e:'🔌',c:'#B45309',top:'#F59E0B',slot:[262,166,24,74],h:14,lbl:'24-pin',name:L('Power supply (PSU)','पावर सप्लाई (PSU)','Power supply (PSU)'),
+  info:L('The kitchen that feeds everyone. It turns 230 V AC from the wall socket into steady low DC voltages: 12 V, 5 V and 3.3 V. Parts inside are even pickier — the CPU core runs at about 1 V. A phone does the same job with its battery and charger.','रसोई जो सबको खाना देती है। यह दीवार के 230 V AC को स्थिर कम DC वोल्टेज में बदलती है: 12 V, 5 V और 3.3 V। CPU कोर लगभग 1 V पर चलता है। फ़ोन यही काम बैटरी और चार्जर से करता है।','Kitchen jo sabko khana deti hai. Yeh deewar ke 230 V AC ko steady low DC voltage mein badalti hai: 12 V, 5 V aur 3.3 V. CPU core lagbhag 1 V pe chalta hai. Phone yahi kaam battery aur charger se karta hai.')}};
+const ORDER=['cpu','ram','ssd','gpu','psu'];let placed={},sel=null,booted=false,rx=55,rz=-32;
+function cube(w,d,h,c,top,label){const el=document.createElement('div');el.className='cube';el.style.width=w+'px';el.style.height=d+'px';
+ el.innerHTML=`<i class="t" style="width:${w}px;height:${d}px;background:${top};transform:translateZ(${h}px);border-radius:3px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.25)"></i>
+ <b class="lb" style="width:${w}px;height:${d}px;transform:translateZ(40px)">${label}</b>
+ <i style="width:${w}px;height:${h}px;background:${c};filter:brightness(.8);transform-origin:top;transform:translateY(${d}px) rotateX(90deg) translateY(-${h}px) rotateX(-180deg)"></i>
+ <i style="width:${w}px;height:${h}px;background:${c};filter:brightness(.6);transform-origin:top;transform:rotateX(90deg) translateY(0)"></i>
+ <i style="width:${h}px;height:${d}px;background:${c};filter:brightness(.7);transform-origin:left;transform:translateX(${w}px) rotateY(-90deg)"></i>
+ <i style="width:${h}px;height:${d}px;background:${c};filter:brightness(.9);transform-origin:left;transform:rotateY(-90deg) translateX(-${h}px) rotateY(180deg)"></i>`;return el;}
+// board: traces (data buses) drawn on the PCB, which the flow dots run along
+const TR={psu:'M274,203 H250 V160 H180',ssdram:'M200,161 H228 V150',ramcpu:'M208,88 H184',cpugpu:'M148,118 V140 H90 V200',gpuout:'M34,215 H10 V30 H40'};
+const pcb=$('pcb');pcb.innerHTML=`<svg viewBox="0 0 300 300">${Object.entries(TR).map(([k,d])=>`<path id="tr-${k}" class="trace" d="${d}"/>`).join('')}
+ ${Array.from({length:14},(_,i)=>`<path class="trace" style="opacity:.35" d="M${20+i*19},290 v-${20+(i%4)*9}"/>`).join('')}
+ <rect x="12" y="14" width="40" height="58" rx="3" fill="#9CA3AF" opacity=".9"/><text x="32" y="47" font-size="8" fill="#1C1B1A" text-anchor="middle" font-weight="700">I/O</text>
+ <rect x="150" y="250" width="34" height="34" rx="3" fill="#1F2937"/><text x="167" y="270" font-size="6.5" fill="#9CA3AF" text-anchor="middle">CHIPSET</text>
+ ${[60,72,84,96].map(x=>`<circle cx="${x}" cy="128" r="5" fill="#111827" stroke="#9CA3AF"/>`).join('')}<circle cx="118" cy="268" r="10" fill="#C0C7D1"/><text x="118" y="271" font-size="6" text-anchor="middle">BIOS</text></svg>`;
+ORDER.forEach(k=>{const [x,y,w,d]=P[k].slot,s=document.createElement('div');s.className='slot';s.dataset.slot=k;Object.assign(s.style,{left:x+'px',top:y+'px',width:w+'px',height:d+'px'});s.textContent=P[k].lbl;s.onclick=()=>tryPlace(sel,k,s);pcb.appendChild(s);});
+const tray=$('tray');ORDER.forEach(k=>{const b=document.createElement('button');b.className='part';b.dataset.p=k;b.innerHTML=`<span class="e">${P[k].e}</span><span>${P[k].lbl}</span>`;tray.appendChild(b);
+ b.addEventListener('pointerdown',ev=>startDrag(ev,k,b));});
+function setSel(k){sel=k;tray.querySelectorAll('.part').forEach(b=>b.setAttribute('aria-pressed',b.dataset.p===k));pcb.querySelectorAll('.slot').forEach(s=>s.classList.toggle('want',false));
+ if(k)showInfo(L(`Where does the ${T(P[k].name)} go? Tap its slot on the board.`,`${T(P[k].name)} कहाँ लगेगा? बोर्ड पर उसका स्लॉट दबाओ।`,`${T(P[k].name)} kahan lagega? Board pe uska slot tap karo.`));}
+let ghost=null;function startDrag(ev,k,b){if(placed[k])return;ev.preventDefault();setSel(k);const x0=ev.clientX,y0=ev.clientY;let moved=false;
+ const mv=e=>{if(!moved&&Math.hypot(e.clientX-x0,e.clientY-y0)>8){moved=true;ghost=document.createElement('div');ghost.className='dragghost';ghost.textContent=P[k].e;document.body.appendChild(ghost);}
+  if(ghost){ghost.style.left=e.clientX+'px';ghost.style.top=e.clientY+'px';pcb.querySelectorAll('.slot').forEach(s=>s.classList.remove('want'));const t=document.elementFromPoint(e.clientX,e.clientY);const s=t&&t.closest&&t.closest('.slot');s&&s.classList.add('want');}};
+ const up=e=>{removeEventListener('pointermove',mv);removeEventListener('pointerup',up);if(ghost){ghost.remove();ghost=null;const t=document.elementFromPoint(e.clientX,e.clientY);const s=t&&t.closest&&t.closest('.slot');pcb.querySelectorAll('.slot').forEach(x=>x.classList.remove('want'));if(s)tryPlace(k,s.dataset.slot,s);}};
+ addEventListener('pointermove',mv);addEventListener('pointerup',up);}
+function tryPlace(k,slot,el){if(!k||placed[slot])return;if(k!==slot){el.classList.add('shake');setTimeout(()=>el.classList.remove('shake'),650);
+  N.toast(L(`That slot is for the ${T(P[slot].name)}. Look for a ${P[k].lbl} slot.`,`यह स्लॉट ${T(P[slot].name)} का है। ${P[k].lbl} स्लॉट ढूँढो।`,`Yeh slot ${T(P[slot].name)} ka hai. ${P[k].lbl} slot dhoondo.`),'bad');N.emit('answered:wrong',{part:k,slot});return;}
+ placed[k]=1;el.classList.add('filled');const [x,y,w,d]=P[k].slot;const c=cube(w,d,P[k].h,P[k].c,P[k].top,P[k].e+'<br>'+P[k].lbl);c.style.left=x+'px';c.style.top=y+'px';c.classList.add('drop');c.dataset.part=k;pcb.appendChild(c);
+ if(k==='ram'){const c2=cube(16,d,P[k].h,P[k].c,P[k].top,'');c2.style.left=(x+24)+'px';c2.style.top=y+'px';c2.classList.add('drop');pcb.appendChild(c2);c.style.width='16px';c.querySelector('.t').style.width='16px';}
+ tray.querySelector(`[data-p=${k}]`).classList.add('used');setSel(null);showInfo(null,k);N.emit('placed',{part:k});
+ $('power').disabled=Object.keys(placed).length<5;mission();}
+function showInfo(msg,k){$('info').innerHTML=k?`<h4>${P[k].e} ${E(T(P[k].name))} ✓</h4>${T(P[k].info)}`:(msg?T(msg):T(L('Start with the CPU — the biggest square socket in the middle.','CPU से शुरू करो — बीच का सबसे बड़ा चौकोर सॉकेट।','CPU se shuru karo — beech ka sabse bada square socket.')));}
+// 3D orbit
+const scene=$('scene'),board=$('board');function view(){board.style.transform=`rotateX(${rx}deg) rotateZ(${rz}deg) scale(${innerWidth<400?.82:.95})`;}
+let dr=null;scene.addEventListener('pointerdown',e=>{if(e.target.closest('.slot'))return;dr=[e.clientX,e.clientY,rx,rz];scene.setPointerCapture(e.pointerId);});
+scene.addEventListener('pointermove',e=>{if(!dr)return;rz=dr[3]+(e.clientX-dr[0])*.4;rx=Math.max(20,Math.min(70,dr[2]-(e.clientY-dr[1])*.3));view();});
+scene.addEventListener('pointerup',()=>dr=null);
+// boot: power → BIOS → SSD → RAM → CPU → GPU → screen
+function dot(path,ms){return new Promise(res=>{const p=$('tr-'+path),len=p.getTotalLength(),svg=pcb.querySelector('svg');p.classList.add('live');const ds=[0,1,2].map(()=>{const c=document.createElementNS('http://www.w3.org/2000/svg','circle');c.setAttribute('r','3.5');c.setAttribute('class','flow');svg.appendChild(c);return c;});
+ N.tween(ms,k=>ds.forEach((c,i)=>{const t=Math.max(0,Math.min(1,k*1.3-i*.15));const pt=p.getPointAtLength(len*t);c.setAttribute('cx',pt.x);c.setAttribute('cy',pt.y);}),()=>{ds.forEach(c=>c.remove());res();});});}
+const scr=$('screen');async function boot(){if(booted)return;booted=true;$('power').disabled=true;
+ const step=async(path,txt,ms)=>{scr.innerHTML=txt;await dot(path,ms);};
+ await step('psu','⚡ '+T(L('PSU: 230 V AC → 12 V / 5 V / 3.3 V DC','PSU: 230 V AC → 12 V / 5 V / 3.3 V DC','PSU: 230 V AC → 12 V / 5 V / 3.3 V DC')),900);
+ scr.innerHTML='BIOS/UEFI: POST… CPU ✓ RAM 16 GB ✓ SSD ✓ GPU ✓';await N.sleep(900);
+ await step('ssdram','💾→🗂️ '+T(L('Loading Windows/Linux from SSD into RAM…','SSD से RAM में ऑपरेटिंग सिस्टम लोड हो रहा है…','SSD se RAM mein operating system load ho raha hai…')),1100);
+ await step('ramcpu','🗂️→🧠 '+T(L('CPU fetches instructions from RAM','CPU, RAM से निर्देश ले रहा है','CPU RAM se instructions fetch kar raha hai')),900);
+ await step('cpugpu','🧠→🎮 '+T(L('CPU sends drawing jobs to the GPU','CPU चित्र बनाने का काम GPU को भेजता है','CPU drawing ka kaam GPU ko bhejta hai')),900);
+ await dot('gpuout',700);scr.classList.add('game');scr.innerHTML=`<div style="font:800 20px system-ui;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.5)">🏏 ${T(L('Welcome! Your PC works','स्वागत है! आपका पीसी चल रहा है','Welcome! Aapka PC chal raha hai'))}</div>`;
+ N.emit('mission:complete',{lab:'pc-builder-3d'});N.confetti();N.toast(L('Booted! Mission complete +XP','चालू हो गया! मिशन पूरा +XP','Boot ho gaya! Mission complete +XP'),'ok');mission();race();}
+function race(){const d=[[L('Hard disk (HDD)','हार्ड डिस्क (HDD)','Hard disk (HDD)'),150,'#B42318'],[L('SATA SSD','SATA SSD','SATA SSD'),550,'#C2410C'],[L('NVMe SSD','NVMe SSD','NVMe SSD'),3500,'#0F766E']];
+ $('speed').innerHTML=`<b>⏱️ ${T(L('Loading a 4 GB game:','4 GB का गेम लोड करना:','4 GB game load karna:'))}</b>`+d.map(([n,s,c])=>`<div>${T(n)} · ${s} MB/s → <b>${(4000/s).toFixed(1)} s</b><div class="bar"><i style="background:${c}" data-w="${Math.max(3,100*150/s/1)}"></i></div></div>`).join('')+`<div class="muted">${T(L('Shorter bar = faster. Same game, same CPU — only the storage changed.','छोटी पट्टी = तेज़। वही गेम, वही CPU — केवल स्टोरेज बदला।','Chhoti bar = fast. Wahi game, wahi CPU — sirf storage badla.'))}</div>`;
+ requestAnimationFrame(()=>$('speed').querySelectorAll('.bar i').forEach(i=>i.style.width=i.dataset.w+'%'));}
+function mission(){const n=Object.keys(placed).length;$('mission').innerHTML=booted?'✅ '+T(L('You built it and booted it! Data went SSD → RAM → CPU → GPU → screen. Remember this road: storage keeps it, RAM holds it for now, CPU thinks, GPU draws.','आपने बनाया और चालू किया! डेटा SSD → RAM → CPU → GPU → स्क्रीन गया। याद रखो: स्टोरेज रखता है, RAM अभी के लिए पकड़ती है, CPU सोचता है, GPU बनाता है।','Aapne banaya aur boot kiya! Data gaya SSD → RAM → CPU → GPU → screen. Yeh raasta yaad rakho: storage rakhta hai, RAM abhi ke liye pakadti hai, CPU sochta hai, GPU drawing karta hai.')):T(L(`Fit all 5 parts (${n}/5), then press Power on and watch the data travel.`,`सभी 5 पुर्ज़े लगाओ (${n}/5), फिर चालू करो और डेटा की यात्रा देखो।`,`Saare 5 parts lagao (${n}/5), phir Power ON karo aur data ka safar dekho.`));}
+$('power').onclick=boot;$('reset').onclick=()=>location.reload();
+const goalDef=L('Build a working computer: put each part in its correct slot, then switch it on and follow the data from storage to screen.','काम करने वाला कंप्यूटर बनाओ: हर पुर्ज़ा सही स्लॉट में लगाओ, फिर चालू करो और डेटा को स्टोरेज से स्क्रीन तक देखो।','Ek chalta hua computer banao: har part sahi slot mein lagao, phir ON karo aur data ko storage se screen tak follow karo.');
+const setGoal=()=>$('goal').innerHTML=T(goal||goalDef);N.onLang(()=>{setGoal();mission();showInfo(null);if(booted)race();});
+setGoal();view();showInfo(null);mission();addEventListener('resize',view);
+window.__lab={placeAll:()=>ORDER.forEach(k=>tryPlace(k,k,pcb.querySelector(`[data-slot=${k}]`))),boot};
+})();
+// every name on the 3D board is drawn flat in a layer above it, following its spot, so no part ever hides a name
+const ovl=document.querySelector('.stage .ovl'),lmap=new Map();
+function syncL(){const sr=ovl.getBoundingClientRect();for(const [k,o] of lmap)if(!k.isConnected){o.remove();lmap.delete(k);}
+ for(const k of [...pcb.querySelectorAll('svg text'),...document.querySelectorAll('#board .lb')]){let o=lmap.get(k);
+  if(!o){o=document.createElement('span');o.className='ol'+(k.tagName==='text'?' sv':'');lmap.set(k,o);ovl.appendChild(o);k.style.visibility='hidden';}
+  if(o.textContent!==k.textContent)o.textContent=k.textContent;const r=k.getBoundingClientRect();o.style.transform=`translate(${(r.left+r.width/2-sr.left).toFixed(1)}px,${(r.top+r.height/2-sr.top).toFixed(1)}px) translate(-50%,-50%)`;}
+ requestAnimationFrame(syncL);}
+requestAnimationFrame(syncL);
+</script></body></html>

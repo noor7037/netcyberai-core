@@ -1,0 +1,338 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.programming.05",
+ "level": 2,
+ "classes": [
+  7,
+  8
+ ],
+ "unit": "programming",
+ "title": {
+  "en": "Functions: reusable mini-programs",
+  "hi": "फ़ंक्शन: दोबारा काम आने वाले छोटे प्रोग्राम",
+  "hinglish": "Functions: reusable mini-programs"
+ },
+ "minutes": 12,
+ "xp": 45,
+ "prereq": [
+  "L2.programming.04"
+ ],
+ "topics": [
+  "prog.functions",
+  "prog.recursion"
+ ],
+ "outcomes": [
+  {
+   "en": "Define a function with def, parameters and return",
+   "hi": "def, पैरामीटर और return से फ़ंक्शन बना सकते हो",
+   "hinglish": "def, parameters aur return se function bana sakte ho"
+  },
+  {
+   "en": "Explain local variables and why functions avoid repeated code",
+   "hi": "स्थानीय वेरिएबल और फ़ंक्शन दोहराव क्यों बचाते हैं, समझा सकते हो",
+   "hinglish": "Local variables aur functions repeat code kyun bachaate hain samjha sakte ho"
+  },
+  {
+   "en": "Recognise recursion: a function that calls itself",
+   "hi": "रिकर्शन पहचान सकते हो: ख़ुद को बुलाने वाला फ़ंक्शन",
+   "hinglish": "Recursion pehchaan sakte ho: khud ko call karne wala function"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Function",
+   "hinglish": "Naam wala code ka tukda",
+   "en": "A named block of code you can run (call) many times",
+   "hi": "नाम वाला कोड का भाग जिसे कई बार चला (बुला) सकते हो"
+  },
+  {
+   "term": "Parameter",
+   "hinglish": "Function ka input naam",
+   "en": "A name for an input the function receives",
+   "hi": "फ़ंक्शन को मिलने वाले इनपुट का नाम"
+  },
+  {
+   "term": "Argument",
+   "hinglish": "Call karte waqt di gayi value",
+   "en": "The actual value passed in: area(4, 5)",
+   "hi": "असल में दिया गया मान: area(4, 5)"
+  },
+  {
+   "term": "return",
+   "hinglish": "Jawab wapas bhejna",
+   "en": "Sends a result back to the code that called the function",
+   "hi": "फ़ंक्शन को बुलाने वाले कोड को परिणाम वापस भेजता है"
+  },
+  {
+   "term": "Local variable",
+   "hinglish": "Sirf function ke andar wala",
+   "en": "A variable that exists only while its function runs",
+   "hi": "ऐसा वेरिएबल जो केवल उसके फ़ंक्शन के चलने तक रहता है"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "def makes a function. The parameters are inputs, and return sends the answer back.",
+    "hi": "def फ़ंक्शन बनाता है। पैरामीटर इनपुट हैं, return उत्तर लौटाता है।",
+    "hinglish": "def function banata hai. Parameters inputs hain, aur return jawab wapas bhejta hai."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "Define once, use as many times as you like.",
+    "hi": "एक बार बनाओ, जितनी बार चाहो उपयोग करो।",
+    "hinglish": "Ek baar banao, jitni baar chaho use karo."
+   },
+   "code": "def area(length, width):\n    return length * width\n\nprint(area(4, 5))\nprint(area(10, 12))"
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "When a function is called, a fresh “frame” of local variables appears, then disappears on return.",
+    "hi": "फ़ंक्शन कॉल होते ही स्थानीय वेरिएबल का नया “फ़्रेम” बनता है, return पर मिट जाता है।",
+    "hinglish": "Function call hote hi local variables ka naya “frame” banta hai, return pe mit jaata hai."
+   },
+   "visual": "lab:py-tracer#function",
+   "narration": {
+    "en": "Watch length and width pop up inside area() in Memory, then vanish.",
+    "hi": "मेमोरी में length और width को area() के अंदर आते और फिर ग़ायब होते देखो।",
+    "hinglish": "Memory mein dekho length aur width area() ke andar aate hain, phir gayab."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Recursion: a function that calls a smaller version of itself, with a stopping case.",
+    "hi": "रिकर्शन: फ़ंक्शन जो ख़ुद के छोटे रूप को बुलाता है, एक रुकने वाली स्थिति के साथ।",
+    "hinglish": "Recursion: function jo khud ke chhote version ko call karta hai, ek stopping case ke saath."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "Like Russian dolls — open one, find a smaller one, until the tiniest.",
+    "hi": "रूसी गुड़ियों की तरह — एक खोलो, अंदर छोटी, सबसे छोटी तक।",
+    "hinglish": "Russian dolls jaisa — ek kholo, andar chhoti, sabse chhoti tak."
+   },
+   "code": "def countdown(n):\n    if n == 0:\n        print(\"Liftoff! 🚀\")\n        return\n    print(n)\n    countdown(n - 1)\n\ncountdown(3)"
+  }
+ ],
+ "play": {
+  "lab": "py-tracer",
+  "config": {
+   "program": "function"
+  },
+  "goal": {
+   "en": "Step through the area program and watch the function’s local variables appear and disappear.",
+   "hi": "area प्रोग्राम कदम-दर-कदम चलाओ और फ़ंक्शन के स्थानीय वेरिएबल आते-जाते देखो।",
+   "hinglish": "Area program step karo aur function ke local variables ko aate-jaate dekho."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Why programmers love functions",
+    "hi": "प्रोग्रामर फ़ंक्शन क्यों पसंद करते हैं",
+    "hinglish": "Programmers functions kyun pasand karte hain"
+   },
+   "body": {
+    "en": "Functions follow the DRY rule — Don’t Repeat Yourself. Fix a bug once inside the function and every use is fixed. They give names to ideas (is_even(n), gst(price)), which makes code read like English. A function without return gives back None. Built-in functions you already used — print(), len(), range(), max() — were written by other programmers. Recursion needs a base case (where it stops); without one Python raises RecursionError after about 1,000 calls. Many problems, like exploring folders inside folders, are naturally recursive.",
+    "hi": "फ़ंक्शन DRY नियम मानते हैं — Don’t Repeat Yourself। फ़ंक्शन में बग एक बार ठीक करो और हर जगह ठीक। ये विचारों को नाम देते हैं (is_even(n), gst(price)), जिससे कोड अंग्रेज़ी जैसा पढ़ा जाता है। बिना return वाला फ़ंक्शन None लौटाता है। जो बिल्ट-इन फ़ंक्शन आप उपयोग कर चुके हो — print(), len(), range(), max() — दूसरे प्रोग्रामरों ने लिखे। रिकर्शन को आधार स्थिति (जहाँ रुके) चाहिए; उसके बिना पायथन लगभग 1,000 कॉल के बाद RecursionError देता है। कई समस्याएँ, जैसे फ़ोल्डर के अंदर फ़ोल्डर खोजना, स्वाभाविक रूप से रिकर्सिव हैं।",
+    "hinglish": "Functions DRY rule follow karte hain — Don’t Repeat Yourself. Function mein bug ek baar fix karo aur har jagah fix. Yeh ideas ko naam dete hain (is_even(n), gst(price)), jisse code English jaisa padha jaata hai. Bina return wala function None deta hai. Jo built-in functions aap use kar chuke ho — print(), len(), range(), max() — doosre programmers ne likhe. Recursion ko base case (jahan ruke) chahiye; uske bina Python lagbhag 1,000 calls ke baad RecursionError deta hai. Kai problems, jaise folders ke andar folders explore karna, naturally recursive hain."
+   },
+   "analogy": {
+    "hinglish": "Function = pressure cooker: daal-paani daalo (arguments), seeti (processing), pakki daal bahar (return). Har baar wahi cooker, naya khaana.",
+    "en": "A function = a pressure cooker: put in dal and water (arguments), whistles (processing), cooked dal comes out (return). Same cooker every time, new food.",
+    "hi": "फ़ंक्शन = प्रेशर कुकर: दाल-पानी डालो (आर्ग्युमेंट), सीटी (प्रोसेसिंग), पकी दाल बाहर (return)। हर बार वही कुकर, नया खाना।"
+   },
+   "realExample": {
+    "en": "A shopping app’s total_with_gst(price) function is called for every item in your cart.",
+    "hi": "शॉपिंग ऐप का total_with_gst(price) फ़ंक्शन आपकी कार्ट की हर चीज़ के लिए बुलाया जाता है।",
+    "hinglish": "Shopping app ka total_with_gst(price) function cart ke har item ke liye call hota hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write a function is_even(n) that returns True if n is even, and test it with 4 and 7.",
+   "hi": "फ़ंक्शन is_even(n) लिखो जो n सम हो तो True लौटाए, और उसे 4 और 7 से जाँचो।",
+   "hinglish": "Function is_even(n) likho jo n even ho to True return kare, aur 4 aur 7 se test karo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "short",
+    "prompt": {
+     "en": "def double(x): return x * 2. What does double(double(3)) give?",
+     "hi": "def double(x): return x * 2। double(double(3)) क्या देगा?",
+     "hinglish": "def double(x): return x * 2. double(double(3)) kya dega?"
+    },
+    "answer": [
+     "12"
+    ],
+    "explain": {
+     "en": "Inner first: double(3) = 6, then double(6) = 12.",
+     "hi": "पहले अंदर: double(3) = 6, फिर double(6) = 12।",
+     "hinglish": "Pehle andar: double(3) = 6, phir double(6) = 12."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "In area(4, 5), what are 4 and 5?",
+     "hi": "area(4, 5) में 4 और 5 क्या हैं?",
+     "hinglish": "area(4, 5) mein 4 aur 5 kya hain?"
+    },
+    "options": [
+     {
+      "en": "Arguments",
+      "hi": "आर्ग्युमेंट",
+      "hinglish": "Arguments"
+     },
+     {
+      "en": "Return values",
+      "hi": "रिटर्न मान",
+      "hinglish": "Return values"
+     },
+     {
+      "en": "Loops",
+      "hi": "लूप",
+      "hinglish": "Loops"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Values passed in a call are arguments; the names length and width are parameters.",
+     "hi": "कॉल में दिए मान आर्ग्युमेंट हैं; length और width नाम पैरामीटर हैं।",
+     "hinglish": "Call mein di gayi values arguments hain; length aur width naam parameters hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "A function has no return line. What does it give back?",
+     "hi": "फ़ंक्शन में return लाइन नहीं है। वह क्या लौटाता है?",
+     "hinglish": "Function mein return line nahi hai. Woh kya wapas deta hai?"
+    },
+    "options": [
+     "0",
+     "\"\"",
+     "None"
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "Python returns the special value None.",
+     "hi": "पायथन विशेष मान None लौटाता है।",
+     "hinglish": "Python special value None return karta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "What is the biggest benefit of functions?",
+     "hi": "फ़ंक्शन का सबसे बड़ा फ़ायदा क्या है?",
+     "hinglish": "Functions ka sabse bada fayda kya hai?"
+    },
+    "options": [
+     {
+      "en": "They make the computer faster",
+      "hi": "कंप्यूटर तेज़ करते हैं",
+      "hinglish": "Computer fast karte hain"
+     },
+     {
+      "en": "Reuse code and fix it in one place",
+      "hi": "कोड दोबारा उपयोग और एक जगह ठीक",
+      "hinglish": "Code reuse aur ek jagah fix"
+     },
+     {
+      "en": "They remove the need for variables",
+      "hi": "वेरिएबल की ज़रूरत ख़त्म",
+      "hinglish": "Variables ki zaroorat khatam"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Write once, reuse many times, and fix bugs in one place.",
+     "hi": "एक बार लिखो, कई बार उपयोग करो, और बग एक जगह ठीक करो।",
+     "hinglish": "Ek baar likho, kai baar use karo, aur bugs ek jagah fix karo."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "What must every recursive function have?",
+     "hi": "हर रिकर्सिव फ़ंक्शन में क्या होना ज़रूरी है?",
+     "hinglish": "Har recursive function mein kya hona zaroori hai?"
+    },
+    "options": [
+     {
+      "en": "A base case where it stops",
+      "hi": "रुकने वाली आधार स्थिति",
+      "hinglish": "Rukne wala base case"
+     },
+     {
+      "en": "A while loop",
+      "hi": "एक while लूप",
+      "hinglish": "Ek while loop"
+     },
+     {
+      "en": "At least 3 parameters",
+      "hi": "कम से कम 3 पैरामीटर",
+      "hinglish": "Kam se kam 3 parameters"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "A base case that stops the calls; otherwise you get RecursionError.",
+     "hi": "आधार स्थिति जो कॉल रोके; वरना RecursionError।",
+     "hinglish": "Base case jo calls roke; warna RecursionError."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "lc",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Answer the predict question for the Functions program.",
+     "hi": "Functions प्रोग्राम का अनुमान प्रश्न हल करो।",
+     "hinglish": "Functions program ka predict sawaal solve karo."
+    },
+    "answer": {
+     "lab": "py-tracer",
+     "event": "mission:complete",
+     "program": "function"
+    },
+    "explain": {
+     "en": "Parameters live only inside the function while it runs.",
+     "hi": "पैरामीटर केवल फ़ंक्शन चलने तक उसके अंदर रहते हैं।",
+     "hinglish": "Parameters sirf function chalne tak uske andar rehte hain."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Python documentation — The Python Tutorial",
+   "url": "https://docs.python.org/3/tutorial/",
+   "licence": "PSF licence (fact reference only)"
+  },
+  {
+   "title": "Python docs — Defining functions",
+   "url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
+   "licence": "PSF licence (fact reference only)"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

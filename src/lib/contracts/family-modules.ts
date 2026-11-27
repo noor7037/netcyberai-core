@@ -7,7 +7,7 @@
 // Entitlement classes (03 §2): `school_info` always free to a linked family; `learning` per child per subject (free for
 // one subject per child; Family Plus or a school's sponsorship later for the rest); `public` free; `plus` Plus only.
 
-export type FamilyTab = 'home' | 'study' | 'english' | 'draw' | 'future' | 'family';
+export type FamilyTab = 'home' | 'study' | 'english' | 'tech' | 'draw' | 'future' | 'family';
 export type Entitlement = 'school_info' | 'learning' | 'public' | 'plus';
 // `addOn`: the module only extends others on its tab (M2-9's offline packs extend Understand), so it never shows a tab
 // by itself.
@@ -21,6 +21,8 @@ export const FAMILY_MODULES: readonly FamilyModule[] = [
   { id: 'progress', tab: 'home', flag: 'progress', entitlement: 'public', built: true, milestone: 'M1' },
   { id: 'parent_card', tab: 'family', flag: 'parent_card', entitlement: 'public', built: true, milestone: 'M1' },
   { id: 'english_programme', tab: 'english', flag: 'english_programme', entitlement: 'plus', built: true, milestone: 'C274' },
+  // TL1: Tech Lab, the free course after English. On for every family as soon as it is merged.
+  { id: 'tech_lab', tab: 'tech', flag: 'tech_lab', entitlement: 'public', built: true, milestone: 'TL1' },
   // H1: the three public hubs are shells (their sections, no entries yet): Career Hub, Schemes & Scholarships (the
   // `opportunities` module) and the Exam Portal. Verified entries are added later from official sources.
   { id: 'careers', tab: 'future', flag: 'careers', entitlement: 'public', built: true, milestone: 'H1' },

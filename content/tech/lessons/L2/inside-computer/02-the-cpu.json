@@ -1,0 +1,317 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.inside-computer.02",
+ "level": 2,
+ "classes": [
+  7,
+  8
+ ],
+ "unit": "inside-computer",
+ "title": {
+  "en": "The CPU: fetch, decode, execute",
+  "hi": "CPU: लाना, समझना, चलाना",
+  "hinglish": "CPU: fetch, decode, execute"
+ },
+ "minutes": 10,
+ "xp": 40,
+ "prereq": [
+  "L2.inside-computer.01"
+ ],
+ "topics": [
+  "hw.cpu",
+  "hw.architecture"
+ ],
+ "outcomes": [
+  {
+   "en": "Describe the fetch–decode–execute cycle",
+   "hi": "फ़ेच–डिकोड–एक्ज़िक्यूट चक्र बता सकते हो",
+   "hinglish": "Fetch–decode–execute cycle bata sakte ho"
+  },
+  {
+   "en": "Explain clock speed (GHz) and cores",
+   "hi": "क्लॉक स्पीड (GHz) और कोर समझा सकते हो",
+   "hinglish": "Clock speed (GHz) aur cores samjha sakte ho"
+  },
+  {
+   "en": "Explain why cache makes a CPU faster",
+   "hi": "समझा सकते हो कि कैश CPU को तेज़ क्यों बनाता है",
+   "hinglish": "Cache CPU ko fast kyun banata hai samjha sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Instruction",
+   "hinglish": "CPU ke liye ek chhota kaam",
+   "en": "One small command the CPU can do: add, compare, jump, load, store",
+   "hi": "CPU का एक छोटा आदेश: जोड़ना, तुलना, कूदना, लाना, रखना"
+  },
+  {
+   "term": "Clock speed",
+   "hinglish": "Ek second mein kitne ticks",
+   "en": "How many cycles per second: 3 GHz = 3 billion",
+   "hi": "प्रति सेकंड कितने चक्र: 3 GHz = 3 अरब"
+  },
+  {
+   "term": "Core",
+   "hinglish": "CPU ke andar ek poora processor",
+   "en": "An independent processing unit; 8 cores can do 8 things at once",
+   "hi": "स्वतंत्र प्रोसेसिंग इकाई; 8 कोर एक साथ 8 काम कर सकते हैं"
+  },
+  {
+   "term": "Cache",
+   "hinglish": "CPU ke paas ki tiny super-fast memory",
+   "en": "Very small, very fast memory inside the CPU",
+   "hi": "CPU के अंदर बहुत छोटी, बहुत तेज़ मेमोरी"
+  },
+  {
+   "term": "Register",
+   "hinglish": "CPU ki jeb — sabse fast storage",
+   "en": "Tiny storage slots inside the CPU used for the current calculation",
+   "hi": "CPU के अंदर चालू गणना के लिए छोटे भंडार खाने"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "The CPU repeats three steps forever: FETCH an instruction from memory, DECODE what it means, EXECUTE it.",
+    "hi": "CPU हमेशा तीन क़दम दोहराता है: मेमोरी से निर्देश लाना (FETCH), अर्थ समझना (DECODE), चलाना (EXECUTE)।",
+    "hinglish": "CPU hamesha teen steps dohrata hai: memory se instruction FETCH, uska matlab DECODE, phir EXECUTE."
+   },
+   "visual": "flow:📥 Fetch|🔍 Decode|⚙️ Execute|🔁 Next",
+   "narration": {
+    "en": "Like reading a recipe: read a line, understand it, do it, next line.",
+    "hi": "जैसे रेसिपी पढ़ना: एक लाइन पढ़ो, समझो, करो, अगली लाइन।",
+    "hinglish": "Recipe padhne jaisa: line padho, samjho, karo, agli line."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "A clock ticks billions of times a second to keep every step in time. 3 GHz = 3,000,000,000 ticks per second.",
+    "hi": "एक घड़ी हर सेकंड अरबों बार टिक करती है ताकि हर क़दम समय पर हो। 3 GHz = प्रति सेकंड 3,00,00,00,000 टिक।",
+    "hinglish": "Ek clock har second billions baar tick karti hai taaki har step time pe ho. 3 GHz = har second 3,00,00,00,000 ticks."
+   },
+   "visual": "icon:⏱️",
+   "narration": {
+    "en": "Each tick is a third of a nanosecond.",
+    "hi": "हर टिक एक नैनोसेकंड का एक-तिहाई है।",
+    "hinglish": "Har tick ek nanosecond ka ek-tihaai hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Modern CPUs have several cores, and a small fast cache so they don’t wait for RAM.",
+    "hi": "आधुनिक CPU में कई कोर और छोटा तेज़ कैश होता है ताकि RAM का इंतज़ार न करें।",
+    "hinglish": "Aaj ke CPUs mein kai cores aur ek chhota fast cache hota hai taaki RAM ka wait na karna pade."
+   },
+   "visual": "flow:Registers ~0.3 ns|Cache ~1–10 ns|RAM ~100 ns|SSD ~100,000 ns",
+   "narration": {
+    "en": "The closer the memory, the faster — but the smaller.",
+    "hi": "मेमोरी जितनी पास, उतनी तेज़ — पर उतनी छोटी।",
+    "hinglish": "Memory jitni paas, utni fast — par utni chhoti."
+   }
+  }
+ ],
+ "play": {
+  "lab": "pc-builder-3d",
+  "config": {},
+  "goal": {
+   "en": "Rebuild the PC and watch the data path RAM → CPU during boot.",
+   "hi": "PC फिर बनाओ और बूट के समय RAM → CPU का डेटा पथ देखो।",
+   "hinglish": "PC dobara banao aur boot mein RAM → CPU data path dekho."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Inside the CPU",
+    "hi": "CPU के अंदर",
+    "hinglish": "CPU ke andar"
+   },
+   "body": {
+    "en": "The control unit fetches and decodes instructions; the ALU does arithmetic and logic; registers hold the numbers being worked on; the program counter remembers which instruction is next. Each instruction is tiny — “load a number”, “add two registers”, “if zero, jump to line 40”. A game or app is billions of these. Clock speed alone does not decide speed: a newer design can do more work per tick, and more cores help when work can be split (like a video export), but not for one long chain of steps.",
+    "hi": "नियंत्रण इकाई निर्देश लाती और समझती है; ALU गणित और तर्क करता है; रजिस्टर काम वाली संख्याएँ रखते हैं; प्रोग्राम काउंटर याद रखता है कि अगला निर्देश कौन-सा है। हर निर्देश छोटा है — “संख्या लाओ”, “दो रजिस्टर जोड़ो”, “शून्य हो तो लाइन 40 पर जाओ”। एक गेम या ऐप ऐसे अरबों निर्देश है। केवल क्लॉक गति से गति तय नहीं होती: नया डिज़ाइन हर टिक में ज़्यादा काम कर सकता है, और ज़्यादा कोर तब मदद करते हैं जब काम बँट सके (जैसे वीडियो एक्सपोर्ट), पर एक लंबी क्रमिक शृंखला में नहीं।",
+    "hinglish": "Control unit instructions fetch aur decode karta hai; ALU arithmetic aur logic karta hai; registers kaam wale numbers rakhte hain; program counter yaad rakhta hai ki agla instruction kaunsa hai. Har instruction chhota hai — “number load karo”, “do registers jodo”, “zero ho to line 40 pe jump karo”. Ek game ya app aise billions instructions hai. Sirf clock speed se speed tay nahi hoti: naya design har tick mein zyada kaam kar sakta hai, aur zyada cores tab help karte hain jab kaam baant sakein (jaise video export), par ek lambi step-by-step chain mein nahi."
+   },
+   "analogy": {
+    "hinglish": "Cores = kitchen ke chefs. 8 chefs ek saath 8 dishes bana sakte hain, par ek hi daal ko 8 chefs jaldi nahi paka sakte.",
+    "en": "Cores = chefs in a kitchen. 8 chefs can make 8 dishes at once, but 8 chefs cannot cook one pot of dal faster.",
+    "hi": "कोर = रसोई के शेफ़। 8 शेफ़ एक साथ 8 व्यंजन बना सकते हैं, पर एक ही दाल को 8 शेफ़ जल्दी नहीं पका सकते।"
+   },
+   "realExample": {
+    "en": "Most Indian phones use ARM-design CPUs; most laptops use x86 CPUs from Intel or AMD — different instruction “languages”.",
+    "hi": "ज़्यादातर भारतीय फ़ोन ARM डिज़ाइन वाले CPU उपयोग करते हैं; ज़्यादातर लैपटॉप Intel या AMD के x86 CPU — अलग निर्देश “भाषाएँ”।",
+    "hinglish": "Zyaadatar Indian phones ARM design CPU use karte hain; zyaadatar laptops Intel ya AMD ke x86 CPU — alag instruction “bhashayein”."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Open Settings → About phone at home and find your phone’s processor name and number of cores.",
+   "hi": "घर पर Settings → About phone खोलो और अपने फ़ोन के प्रोसेसर का नाम और कोर की संख्या ढूँढो।",
+   "hinglish": "Ghar pe Settings → About phone kholo aur processor ka naam aur cores ginti dhoondo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "order",
+    "prompt": {
+     "en": "Order the CPU cycle.",
+     "hi": "CPU चक्र को क्रम में लगाओ।",
+     "hinglish": "CPU cycle ko order mein lagao."
+    },
+    "options": [
+     "Execute",
+     "Fetch",
+     "Decode"
+    ],
+    "answer": [
+     1,
+     2,
+     0
+    ],
+    "explain": {
+     "en": "Fetch → Decode → Execute, then repeat.",
+     "hi": "लाना → समझना → चलाना, फिर दोहराना।",
+     "hinglish": "Fetch → Decode → Execute, phir repeat."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "A 2 GHz CPU ticks how many times per second?",
+     "hi": "2 GHz CPU प्रति सेकंड कितनी बार टिक करता है?",
+     "hinglish": "2 GHz CPU har second kitni baar tick karta hai?"
+    },
+    "options": [
+     "2 thousand",
+     "2 million",
+     "2 billion",
+     "2 trillion"
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "Giga = billion, so 2 billion ticks per second.",
+     "hi": "गीगा = अरब, तो प्रति सेकंड 2 अरब।",
+     "hinglish": "Giga = billion, to har second 2 billion."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why does a CPU have cache?",
+     "hi": "CPU में कैश क्यों होता है?",
+     "hinglish": "CPU mein cache kyun hota hai?"
+    },
+    "options": [
+     {
+      "en": "To avoid waiting for slow RAM",
+      "hi": "धीमी RAM का इंतज़ार न करने के लिए",
+      "hinglish": "Slow RAM ka wait na karne ke liye"
+     },
+     {
+      "en": "To store photos",
+      "hi": "फ़ोटो रखने के लिए",
+      "hinglish": "Photos rakhne ke liye"
+     },
+     {
+      "en": "To cool the chip",
+      "hi": "चिप ठंडा करने के लिए",
+      "hinglish": "Chip thanda karne ke liye"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "RAM is about 100 ns away — hundreds of ticks. Cache keeps recently used data a few ns away, so the CPU waits less.",
+     "hi": "RAM लगभग 100 ns दूर है — सैकड़ों टिक। कैश हाल का डेटा कुछ ns पर रखता है, तो CPU कम रुकता है।",
+     "hinglish": "RAM lagbhag 100 ns door hai — sainkdon ticks. Cache haal ka data kuch ns pe rakhta hai, to CPU kam wait karta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "When do more cores help the most?",
+     "hi": "ज़्यादा कोर सबसे ज़्यादा कब मदद करते हैं?",
+     "hinglish": "Zyada cores sabse zyada kab help karte hain?"
+    },
+    "options": [
+     {
+      "en": "For one long chain of steps",
+      "hi": "एक लंबी क्रमिक शृंखला के लिए",
+      "hinglish": "Ek lambi step-by-step chain ke liye"
+     },
+     {
+      "en": "When work can be split into parts",
+      "hi": "जब काम हिस्सों में बँट सके",
+      "hinglish": "Jab kaam hisson mein baant sake"
+     },
+     {
+      "en": "Never",
+      "hi": "कभी नहीं",
+      "hinglish": "Kabhi nahi"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Cores work in parallel; a job that can be split (many video frames) finishes faster. A strict step-by-step job cannot use them all.",
+     "hi": "कोर समानांतर काम करते हैं; बँटने वाला काम (कई वीडियो फ़्रेम) जल्दी होता है। सख़्त क्रमिक काम सबका उपयोग नहीं कर पाता।",
+     "hinglish": "Cores parallel kaam karte hain; baantne layak kaam (kai video frames) jaldi hota hai. Strict step-by-step kaam sabko use nahi kar paata."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which part of the CPU remembers the address of the next instruction?",
+     "hi": "CPU का कौन-सा भाग अगले निर्देश का पता याद रखता है?",
+     "hinglish": "CPU ka kaunsa hissa agle instruction ka address yaad rakhta hai?"
+    },
+    "options": [
+     {
+      "en": "ALU",
+      "hi": "ALU",
+      "hinglish": "ALU"
+     },
+     {
+      "en": "Cache",
+      "hi": "कैश",
+      "hinglish": "Cache"
+     },
+     {
+      "en": "Program counter",
+      "hi": "प्रोग्राम काउंटर",
+      "hinglish": "Program counter"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "The program counter (a special register) points to the next instruction.",
+     "hi": "प्रोग्राम काउंटर (एक विशेष रजिस्टर) अगले निर्देश की ओर इशारा करता है।",
+     "hinglish": "Program counter (ek special register) agle instruction ki taraf point karta hai."
+    },
+    "difficulty": 3
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "NCERT / CBSE Artificial Intelligence & Computer curriculum (Classes 6–8), 2024–25",
+   "url": "https://cbseacademic.nic.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NCERT Class 11 Computer Science Ch. 1 — Computer System",
+   "url": "https://ncert.nic.in/textbook.php?kecs1=1-11",
+   "licence": "fact reference"
+  }
+ ]
+}

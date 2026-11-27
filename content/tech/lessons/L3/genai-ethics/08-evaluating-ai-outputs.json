@@ -1,0 +1,390 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.genai-ethics.08",
+ "level": 3,
+ "classes": [
+  10,
+  11,
+  12
+ ],
+ "unit": "genai-ethics",
+ "title": {
+  "en": "Evaluating AI outputs",
+  "hi": "AI आउटपुट का मूल्यांकन",
+  "hinglish": "AI outputs evaluate karna"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [
+  "L3.genai-ethics.07"
+ ],
+ "outcomes": [
+  {
+   "en": "Check AI answers for accuracy, sources and reasoning",
+   "hi": "AI उत्तरों की सटीकता, स्रोत और तर्क जाँचो",
+   "hinglish": "AI answers ki accuracy, sources aur reasoning check karo"
+  },
+  {
+   "en": "Explain how AI systems are evaluated: test sets, benchmarks, human rating and rubrics",
+   "hi": "समझाओ AI तंत्रों का मूल्यांकन कैसे होता है: परीक्षण सेट, बेंचमार्क, मानव रेटिंग और रूब्रिक",
+   "hinglish": "Samjhao AI systems ka evaluation kaise hota hai: test sets, benchmarks, human rating aur rubrics"
+  },
+  {
+   "en": "Spot the limits of benchmarks and of AI judging AI",
+   "hi": "बेंचमार्क और AI द्वारा AI जाँचने की सीमाएँ पहचानो",
+   "hinglish": "Benchmarks aur AI ke AI ko judge karne ki limits pehchano"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Ground truth",
+   "hinglish": "Sahi jawab",
+   "en": "The checked correct answer you compare against",
+   "hi": "जाँचा हुआ सही उत्तर जिससे तुलना करते हो"
+  },
+  {
+   "term": "Benchmark",
+   "hinglish": "Benchmark",
+   "en": "A fixed public test used to compare models",
+   "hi": "मॉडलों की तुलना के लिए तय सार्वजनिक परीक्षण"
+  },
+  {
+   "term": "Contamination",
+   "hinglish": "Paper leak",
+   "en": "When test questions leaked into training data, so scores look better than real ability",
+   "hi": "जब परीक्षण प्रश्न प्रशिक्षण डेटा में चले गए, तो अंक असली क्षमता से अच्छे दिखें"
+  },
+  {
+   "term": "Rubric",
+   "hinglish": "Ank yojana",
+   "en": "A written scoring guide, e.g. correct, cites source, clear, safe",
+   "hi": "लिखित अंक मार्गदर्शिका, जैसे सही, स्रोत, स्पष्ट, सुरक्षित"
+  },
+  {
+   "term": "Lateral reading",
+   "hinglish": "Bagal mein padhna",
+   "en": "Checking a claim by opening other trusted sources, not just reading the one in front of you",
+   "hi": "सामने वाले के अलावा दूसरे भरोसेमंद स्रोत खोलकर दावा जाँचना"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "AI answer → split into claims → check each claim against a trusted source.",
+    "hi": "AI उत्तर → दावों में बाँटो → हर दावा भरोसेमंद स्रोत से जाँचो।",
+    "hinglish": "AI answer → claims mein baanto → har claim trusted source se check karo."
+   },
+   "visual": "flow:answer|claims|sources",
+   "narration": {
+    "en": "AI answer → split into claims → check each claim against a trusted source.",
+    "hi": "AI उत्तर → दावों में बाँटो → हर दावा भरोसेमंद स्रोत से जाँचो।",
+    "hinglish": "AI answer → claims mein baanto → har claim trusted source se check karo."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Open every citation: does it exist, and does it really say that?",
+    "hi": "हर हवाला खोलो: क्या वह है, और क्या सच में वही कहता है?",
+    "hinglish": "Har citation kholo: kya woh hai, aur kya sach mein wahi kehta hai?"
+   },
+   "visual": "compare:cited|verified",
+   "narration": {
+    "en": "Open every citation: does it exist, and does it really say that?",
+    "hi": "हर हवाला खोलो: क्या वह है, और क्या सच में वही कहता है?",
+    "hinglish": "Har citation kholo: kya woh hai, aur kya sach mein wahi kehta hai?"
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Score many answers with a rubric, on a test set the model never saw.",
+    "hi": "रूब्रिक से कई उत्तर आँको, ऐसे परीक्षण सेट पर जो मॉडल ने कभी न देखा।",
+    "hinglish": "Rubric se kai answers score karo, aise test set par jo model ne kabhi na dekha."
+   },
+   "visual": "stack:correct|sourced|clear|safe",
+   "narration": {
+    "en": "Score many answers with a rubric, on a test set the model never saw.",
+    "hi": "रूब्रिक से कई उत्तर आँको, ऐसे परीक्षण सेट पर जो मॉडल ने कभी न देखा।",
+    "hinglish": "Rubric se kai answers score karo, aise test set par jo model ne kabhi na dekha."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Benchmarks saturate and leak; always test on your own real task.",
+    "hi": "बेंचमार्क भर जाते और लीक होते हैं; हमेशा अपने असली काम पर जाँचो।",
+    "hinglish": "Benchmarks saturate aur leak hote hain; hamesha apne asli task par test karo."
+   },
+   "visual": "compare:benchmark|your task",
+   "narration": {
+    "en": "Benchmarks saturate and leak; always test on your own real task.",
+    "hi": "बेंचमार्क भर जाते और लीक होते हैं; हमेशा अपने असली काम पर जाँचो।",
+    "hinglish": "Benchmarks saturate aur leak hote hain; hamesha apne asli task par test karo."
+   }
+  }
+ ],
+ "play": {
+  "lab": "agent-loop",
+  "config": {
+   "scenario": "hallucination-check"
+  },
+  "goal": {
+   "en": "Compare two runs on the same question: one answers from memory and invents a citation, the other retrieves the official page and cites it. Flag the hallucinated claim.",
+   "hi": "एक ही प्रश्न पर दो रन की तुलना करो: एक स्मृति से उत्तर देता है और हवाला गढ़ता है, दूसरा आधिकारिक पेज खोजकर हवाला देता है। गढ़ा हुआ दावा चिह्नित करो।",
+   "hinglish": "Ek hi sawaal par do runs compare karo: ek memory se jawab deta hai aur citation banata hai, doosra official page retrieve karke cite karta hai. Hallucinated claim flag karo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Checking one answer",
+    "hi": "एक उत्तर की जाँच",
+    "hinglish": "Ek answer check karna"
+   },
+   "body": {
+    "en": "Language models write fluent text whether or not it is true, so fluency is not evidence. To check an answer, break it into separate claims — names, dates, numbers, quotes, laws — and verify each against a trusted source: an official site (gov.in, an exam board, a company’s own page), a textbook or a reputable news report. Open every citation: models sometimes invent papers, court cases or links that look real. Check that the source actually says what the answer claims, and is current — fees, rules and model versions change. Watch for missing steps in reasoning and for answers that simply agree with how you phrased the question. Be extra careful with health, money, law and exam information, and with anything about real people. Tools with retrieval and citations reduce errors but do not remove them; the final responsibility for what you submit or share is yours.",
+    "hi": "भाषा मॉडल धाराप्रवाह पाठ लिखते हैं चाहे वह सच हो या नहीं, इसलिए धाराप्रवाह होना प्रमाण नहीं है। उत्तर जाँचने के लिए उसे अलग दावों में बाँटो — नाम, तारीख़ें, संख्याएँ, उद्धरण, क़ानून — और हर एक को भरोसेमंद स्रोत से सत्यापित करो: आधिकारिक साइट (gov.in, परीक्षा बोर्ड, कंपनी का अपना पेज), पाठ्यपुस्तक या प्रतिष्ठित समाचार रिपोर्ट। हर हवाला खोलो: मॉडल कभी-कभी असली दिखने वाले शोधपत्र, अदालती मामले या लिंक गढ़ लेते हैं। जाँचो कि स्रोत सच में वही कहता है जो उत्तर दावा करता है, और ताज़ा है — शुल्क, नियम और मॉडल संस्करण बदलते हैं। तर्क में छूटे चरणों और ऐसे उत्तरों पर नज़र रखो जो बस आपके प्रश्न के शब्दों से सहमत हों। स्वास्थ्य, पैसा, क़ानून और परीक्षा जानकारी, और असली लोगों के बारे में किसी भी बात पर ख़ास सावधानी रखो। खोज और हवाले वाले टूल त्रुटियाँ घटाते हैं पर मिटाते नहीं; आप जो जमा या साझा करते हो उसकी अंतिम ज़िम्मेदारी आपकी है।",
+    "hinglish": "Language models fluent text likhte hain chahe woh sach ho ya nahi, isliye fluency proof nahi hai. Answer check karne ke liye use alag claims mein baanto — naam, dates, numbers, quotes, laws — aur har ek ko trusted source se verify karo: official site (gov.in, exam board, company ka apna page), textbook ya reputable news report. Har citation kholo: models kabhi-kabhi asli dikhne wale papers, court cases ya links bana lete hain. Check karo ki source sach mein wahi kehta hai jo answer claim karta hai, aur current hai — fees, rules aur model versions badalte hain. Reasoning mein chhoote steps aur aise answers par nazar rakho jo bas tumhare sawaal ke shabdon se sehmat hon. Health, paisa, kanoon aur exam information, aur asli logon ke baare mein kisi bhi baat par khaas saavdhaani rakho. Retrieval aur citations wale tools errors ghatate hain par mitate nahi; tum jo submit ya share karte ho uski final zimmedaari tumhari hai."
+   },
+   "analogy": {
+    "en": "A confident classmate’s answer in a group project: useful, but you still check it against the textbook before it goes on the chart.",
+    "hi": "समूह परियोजना में आत्मविश्वासी सहपाठी का उत्तर: उपयोगी, पर चार्ट पर लगाने से पहले पाठ्यपुस्तक से जाँचते हो।",
+    "hinglish": "Group project mein confident classmate ka answer: useful, par chart par lagane se pehle textbook se check karte ho."
+   },
+   "realExample": {
+    "en": "AI said: \"The DPDP Act was passed in 2021 [Section 12].\" Check: MeitY page → the Act received assent in August 2023 → claim false; cite the official page instead.",
+    "hi": "AI ने कहा: \"DPDP अधिनियम 2021 में पारित हुआ [धारा 12]।\" जाँच: MeitY पेज → अधिनियम को अगस्त 2023 में स्वीकृति मिली → दावा ग़लत; उसकी जगह आधिकारिक पेज का हवाला दो।",
+    "hinglish": "AI ne kaha: \"DPDP Act 2021 mein pass hua [Section 12].\" Check: MeitY page → Act ko August 2023 mein assent mila → claim galat; uski jagah official page cite karo."
+   }
+  },
+  {
+   "heading": {
+    "en": "Evaluating a whole system",
+    "hi": "पूरे तंत्र का मूल्यांकन",
+    "hinglish": "Poore system ka evaluation"
+   },
+   "body": {
+    "en": "Builders evaluate AI on many examples, not one. Start with a test set that reflects real use — for a school chatbot, real student questions in English, Hindi and Hinglish — with checked answers, kept separate from anything used for training or prompt tuning. Score each answer with a rubric: correct, supported by a source, complete, clear, safe, in the right language. Some things can be scored automatically (exact numbers, valid JSON, whether a citation exists); others need trained human raters, who should not know which model wrote which answer. Using a strong model as a judge is cheaper but it has known biases: it tends to prefer longer answers, answers in the first position and its own style, so check it against humans. Public benchmarks such as MMLU helped compare models, but many are now saturated, and some test questions have leaked into training data (contamination), inflating scores. Report results per group and per task, include failure examples, and re-run evaluations whenever the model or prompt changes.",
+    "hi": "निर्माता AI का मूल्यांकन एक नहीं, कई उदाहरणों पर करते हैं। असली उपयोग दर्शाते परीक्षण सेट से शुरू करो — स्कूल चैटबॉट के लिए अंग्रेज़ी, हिंदी और हिंग्लिश में असली छात्र प्रश्न — जाँचे उत्तरों के साथ, प्रशिक्षण या प्रॉम्प्ट ट्यूनिंग में इस्तेमाल किसी भी चीज़ से अलग रखा। हर उत्तर को रूब्रिक से आँको: सही, स्रोत समर्थित, पूरा, स्पष्ट, सुरक्षित, सही भाषा में। कुछ चीज़ें स्वचालित आँकी जा सकती हैं (सटीक संख्याएँ, मान्य JSON, हवाला है या नहीं); दूसरों को प्रशिक्षित मानव रेटर चाहिए, जिन्हें पता न हो कौन-सा उत्तर किस मॉडल ने लिखा। मज़बूत मॉडल को जज बनाना सस्ता है पर उसके ज्ञात पक्षपात हैं: वह लंबे उत्तर, पहले स्थान वाले उत्तर और अपनी शैली पसंद करता है, इसलिए उसे मनुष्यों से मिलाओ। MMLU जैसे सार्वजनिक बेंचमार्क ने मॉडलों की तुलना में मदद की, पर कई अब भर चुके हैं, और कुछ परीक्षण प्रश्न प्रशिक्षण डेटा में लीक हो गए हैं (संदूषण), जिससे अंक बढ़ जाते हैं। परिणाम हर समूह और हर काम के हिसाब से बताओ, विफलता के उदाहरण शामिल करो, और मॉडल या प्रॉम्प्ट बदलने पर मूल्यांकन दोबारा चलाओ।",
+    "hinglish": "Builders AI ka evaluation ek nahi, kai examples par karte hain. Asli use dikhane wale test set se shuru karo — school chatbot ke liye English, Hindi aur Hinglish mein asli student questions — checked answers ke saath, training ya prompt tuning mein use hui kisi bhi cheez se alag rakha. Har answer ko rubric se score karo: correct, source supported, complete, clear, safe, sahi language mein. Kuch cheezein automatically score ho sakti hain (exact numbers, valid JSON, citation hai ya nahi); doosron ko trained human raters chahiye, jinhe pata na ho kaunsa answer kis model ne likha. Strong model ko judge banana sasta hai par uske known biases hain: woh lambe answers, pehli position wale answers aur apni style pasand karta hai, isliye use humans se milao. MMLU jaise public benchmarks ne models compare karne mein madad ki, par kai ab saturate ho chuke hain, aur kuch test questions training data mein leak ho gaye hain (contamination), jisse scores badh jaate hain. Results har group aur har task ke hisaab se batao, failure examples shaamil karo, aur model ya prompt badalne par evaluation dobara chalao."
+   },
+   "analogy": {
+    "en": "A board exam is fair because the paper is secret, marked with a scheme, and checked by examiners who do not know whose answer sheet it is.",
+    "hi": "बोर्ड परीक्षा निष्पक्ष है क्योंकि प्रश्नपत्र गुप्त, अंक योजना से जाँचा, और ऐसे परीक्षकों से जिन्हें पता नहीं उत्तर पुस्तिका किसकी है।",
+    "hinglish": "Board exam fair hai kyunki paper secret, marking scheme se check, aur aise examiners se jinhe pata nahi answer sheet kiski hai."
+   },
+   "realExample": {
+    "en": "Eval report: 200 student questions · correct 87% (en 91%, hi 80%, Hinglish 84%) · cites a real source 78% · unsafe answers 0 · next: add Hindi retrieval sources.",
+    "hi": "मूल्यांकन रिपोर्ट: 200 छात्र प्रश्न · सही 87% (अंग्रेज़ी 91%, हिंदी 80%, हिंग्लिश 84%) · असली स्रोत का हवाला 78% · असुरक्षित उत्तर 0 · अगला: हिंदी खोज स्रोत जोड़ो।",
+    "hinglish": "Eval report: 200 student questions · correct 87% (en 91%, hi 80%, Hinglish 84%) · real source cite 78% · unsafe answers 0 · next: Hindi retrieval sources jodo."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Ask any AI chatbot five factual questions from your syllabus, two of them about India-specific rules or dates. Break each answer into claims, verify every claim and citation against an official or textbook source, and score them with a 4-point rubric (correct, sourced, complete, clear). Report how many claims were wrong and what kind of errors you found.",
+   "hi": "किसी भी AI चैटबॉट से अपने पाठ्यक्रम के पाँच तथ्यात्मक प्रश्न पूछो, जिनमें दो भारत-विशिष्ट नियमों या तारीख़ों के बारे में हों। हर उत्तर को दावों में बाँटो, हर दावे और हवाले को आधिकारिक या पाठ्यपुस्तक स्रोत से सत्यापित करो, और 4-अंक रूब्रिक (सही, स्रोत, पूरा, स्पष्ट) से आँको। बताओ कितने दावे ग़लत थे और किस तरह की त्रुटियाँ मिलीं।",
+   "hinglish": "Kisi bhi AI chatbot se apne syllabus ke paanch factual sawaal poocho, jinmein do India-specific rules ya dates ke baare mein hon. Har answer ko claims mein baanto, har claim aur citation ko official ya textbook source se verify karo, aur 4-point rubric (correct, sourced, complete, clear) se score karo. Batao kitne claims galat the aur kis tarah ke errors mile."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "order",
+    "prompt": {
+     "en": "Order the steps to check an AI answer.",
+     "hi": "AI उत्तर जाँचने के चरण क्रम में लगाओ।",
+     "hinglish": "AI answer check karne ke steps order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Split the answer into separate claims",
+      "hi": "उत्तर को अलग दावों में बाँटो",
+      "hinglish": "Answer ko alag claims mein baanto"
+     },
+     {
+      "en": "Open every citation",
+      "hi": "हर हवाला खोलो",
+      "hinglish": "Har citation kholo"
+     },
+     {
+      "en": "Verify each claim in a trusted source",
+      "hi": "हर दावा भरोसेमंद स्रोत में सत्यापित करो",
+      "hinglish": "Har claim trusted source mein verify karo"
+     },
+     {
+      "en": "Correct or remove what is wrong",
+      "hi": "जो ग़लत है उसे सुधारो या हटाओ",
+      "hinglish": "Jo galat hai use sudhaaro ya hatao"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "Claims, citations, verification, correction.",
+     "hi": "दावे, हवाले, सत्यापन, सुधार।",
+     "hinglish": "Claims, citations, verification, correction."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "A model scores 95% on a famous benchmark but poorly on your school’s real questions. A likely reason?",
+     "hi": "मॉडल प्रसिद्ध बेंचमार्क पर 95% पर आपके स्कूल के असली प्रश्नों पर कमज़ोर। संभावित कारण?",
+     "hinglish": "Model famous benchmark par 95% par tumhare school ke asli questions par kamzor. Likely kaaran?"
+    },
+    "options": [
+     {
+      "en": "The benchmark leaked into training data or does not match your task",
+      "hi": "बेंचमार्क प्रशिक्षण डेटा में लीक हुआ या आपके काम से मेल नहीं खाता",
+      "hinglish": "Benchmark training data mein leak hua ya tumhare task se match nahi karta"
+     },
+     {
+      "en": "Your questions are wrong",
+      "hi": "आपके प्रश्न ग़लत हैं",
+      "hinglish": "Tumhare questions galat hain"
+     },
+     {
+      "en": "Benchmarks are always perfect",
+      "hi": "बेंचमार्क हमेशा सही",
+      "hinglish": "Benchmarks hamesha perfect"
+     },
+     {
+      "en": "The internet was slow",
+      "hi": "इंटरनेट धीमा था",
+      "hinglish": "Internet slow tha"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Contamination and mismatch; test on your own task.",
+     "hi": "संदूषण और बेमेल; अपने काम पर जाँचो।",
+     "hinglish": "Contamination aur mismatch; apne task par test karo."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are known biases when an AI model judges other answers?",
+     "hi": "जब AI मॉडल दूसरे उत्तर जाँचता है तो कौन-से ज्ञात पक्षपात हैं?",
+     "hinglish": "Jab AI model doosre answers judge karta hai to kaunse known biases hain?"
+    },
+    "options": [
+     {
+      "en": "Preferring longer answers",
+      "hi": "लंबे उत्तर पसंद करना",
+      "hinglish": "Lambe answers pasand karna"
+     },
+     {
+      "en": "Preferring the answer shown first",
+      "hi": "पहले दिखाए उत्तर को पसंद करना",
+      "hinglish": "Pehle dikhaye answer ko pasand karna"
+     },
+     {
+      "en": "Preferring its own style",
+      "hi": "अपनी शैली पसंद करना",
+      "hinglish": "Apni style pasand karna"
+     },
+     {
+      "en": "Always being perfectly fair",
+      "hi": "हमेशा पूरी तरह निष्पक्ष",
+      "hinglish": "Hamesha poori tarah fair"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2
+    ],
+    "explain": {
+     "en": "Check AI judges against human raters.",
+     "hi": "AI जज को मानव रेटरों से मिलाओ।",
+     "hinglish": "AI judges ko human raters se milao."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "An AI answer cites \"Supreme Court, Sharma v. State, 2021\". What should you do?",
+     "hi": "AI उत्तर \"सुप्रीम कोर्ट, शर्मा बनाम राज्य, 2021\" का हवाला देता है। क्या करो?",
+     "hinglish": "AI answer \"Supreme Court, Sharma v. State, 2021\" cite karta hai. Kya karo?"
+    },
+    "options": [
+     {
+      "en": "Find the case in an official or trusted legal database before using it",
+      "hi": "इस्तेमाल से पहले मामला आधिकारिक या भरोसेमंद क़ानूनी डेटाबेस में ढूँढो",
+      "hinglish": "Use se pehle case official ya trusted legal database mein dhoondho"
+     },
+     {
+      "en": "Trust it — it has a year",
+      "hi": "भरोसा करो — साल लिखा है",
+      "hinglish": "Trust karo — saal likha hai"
+     },
+     {
+      "en": "Copy it into your project",
+      "hi": "परियोजना में कॉपी करो",
+      "hinglish": "Project mein copy karo"
+     },
+     {
+      "en": "Ask the same AI if it is sure",
+      "hi": "उसी AI से पूछो पक्का है",
+      "hinglish": "Usi AI se poocho pakka hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Models can invent real-looking citations.",
+     "hi": "मॉडल असली दिखने वाले हवाले गढ़ सकते हैं।",
+     "hinglish": "Models asli dikhne wale citations bana sakte hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Flag the hallucinated claim in the hallucination-check scenario.",
+     "hi": "hallucination-check परिदृश्य में गढ़ा दावा चिह्नित करो।",
+     "hinglish": "Hallucination-check scenario mein hallucinated claim flag karo."
+    },
+    "answer": {
+     "event": "hallucination-flagged"
+    },
+    "explain": {
+     "en": "Retrieve, cite, verify.",
+     "hi": "खोजो, हवाला दो, सत्यापित करो।",
+     "hinglish": "Retrieve, cite, verify."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "ai.evaluation",
+  "ai.hallucination",
+  "cit.fake-news"
+ ],
+ "sources": [
+  {
+   "title": "Hendrycks et al. (2020) — Measuring Massive Multitask Language Understanding (MMLU)",
+   "url": "https://arxiv.org/abs/2009.03300",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Zheng et al. (2023) — Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena",
+   "url": "https://arxiv.org/abs/2306.05685",
+   "licence": "fact reference"
+  }
+ ]
+}

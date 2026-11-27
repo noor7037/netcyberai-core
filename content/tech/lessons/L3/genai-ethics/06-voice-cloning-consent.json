@@ -1,0 +1,374 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.genai-ethics.06",
+ "level": 3,
+ "classes": [
+  10,
+  11,
+  12
+ ],
+ "unit": "genai-ethics",
+ "title": {
+  "en": "Voice cloning, music and consent",
+  "hi": "आवाज़ क्लोनिंग, संगीत और सहमति",
+  "hinglish": "Voice cloning, music aur consent"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [
+  "L3.genai-ethics.05"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain how a voice can be cloned from a short sample",
+   "hi": "समझाओ छोटे नमूने से आवाज़ कैसे क्लोन होती है",
+   "hinglish": "Samjhao chhote sample se awaaz kaise clone hoti hai"
+  },
+  {
+   "en": "Apply consent, credit and the law to AI voices and music",
+   "hi": "AI आवाज़ों और संगीत पर सहमति, श्रेय और क़ानून लागू करो",
+   "hinglish": "AI voices aur music par consent, credit aur kanoon lagao"
+  },
+  {
+   "en": "Protect your family from voice-clone scam calls",
+   "hi": "अपने परिवार को आवाज़-क्लोन घोटाला कॉल से बचाओ",
+   "hinglish": "Apni family ko voice-clone scam calls se bachao"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Voice clone",
+   "hinglish": "Nakli awaaz",
+   "en": "A TTS voice made to sound like a specific real person",
+   "hi": "TTS आवाज़ जो किसी ख़ास असली व्यक्ति जैसी लगे"
+  },
+  {
+   "term": "Consent",
+   "hinglish": "Ijaazat",
+   "en": "Clear, informed permission that can be withdrawn",
+   "hi": "स्पष्ट, सूचित अनुमति जो वापस ली जा सके"
+  },
+  {
+   "term": "Personality rights",
+   "hinglish": "Pehchaan ke adhikaar",
+   "en": "A person’s right to control commercial use of their name, face and voice",
+   "hi": "व्यक्ति का अपने नाम, चेहरे और आवाज़ के व्यावसायिक उपयोग पर नियंत्रण का अधिकार"
+  },
+  {
+   "term": "Watermark",
+   "hinglish": "Chhupa nishaan",
+   "en": "A hidden signal in audio that marks it as AI-generated",
+   "hi": "ऑडियो में छिपा संकेत जो उसे AI-निर्मित चिह्नित करे"
+  },
+  {
+   "term": "Safe word",
+   "hinglish": "Code shabd",
+   "en": "A family secret word to verify a caller in an emergency",
+   "hi": "आपात स्थिति में कॉल करने वाले को पहचानने का पारिवारिक गुप्त शब्द"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "A few seconds of someone’s voice → speaker embedding → TTS in their voice.",
+    "hi": "किसी की कुछ सेकंड की आवाज़ → वक्ता एम्बेडिंग → उनकी आवाज़ में TTS।",
+    "hinglish": "Kisi ki kuch second ki awaaz → speaker embedding → unki awaaz mein TTS."
+   },
+   "visual": "flow:sample|embedding|clone",
+   "narration": {
+    "en": "A few seconds of someone’s voice → speaker embedding → TTS in their voice.",
+    "hi": "किसी की कुछ सेकंड की आवाज़ → वक्ता एम्बेडिंग → उनकी आवाज़ में TTS।",
+    "hinglish": "Kisi ki kuch second ki awaaz → speaker embedding → unki awaaz mein TTS."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Good uses: giving back a voice to people who lose it to illness, with their consent.",
+    "hi": "अच्छे उपयोग: बीमारी से आवाज़ खोने वालों को उनकी सहमति से आवाज़ लौटाना।",
+    "hinglish": "Achhe uses: bimaari se awaaz khone walon ko unki consent se awaaz lautana."
+   },
+   "visual": "compare:with consent|without consent",
+   "narration": {
+    "en": "Good uses: giving back a voice to people who lose it to illness, with their consent.",
+    "hi": "अच्छे उपयोग: बीमारी से आवाज़ खोने वालों को उनकी सहमति से आवाज़ लौटाना।",
+    "hinglish": "Achhe uses: bimaari se awaaz khone walon ko unki consent se awaaz lautana."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Scam: \"Papa, I’m in trouble, send money now\" — in a cloned voice.",
+    "hi": "घोटाला: \"पापा, मैं मुसीबत में हूँ, अभी पैसे भेजो\" — क्लोन आवाज़ में।",
+    "hinglish": "Scam: \"Papa, main musibat mein hoon, abhi paise bhejo\" — clone awaaz mein."
+   },
+   "visual": "stack:urgent|secret|money",
+   "narration": {
+    "en": "Scam: \"Papa, I’m in trouble, send money now\" — in a cloned voice.",
+    "hi": "घोटाला: \"पापा, मैं मुसीबत में हूँ, अभी पैसे भेजो\" — क्लोन आवाज़ में।",
+    "hinglish": "Scam: \"Papa, main musibat mein hoon, abhi paise bhejo\" — clone awaaz mein."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Defence: hang up, call back on the saved number, ask the safe word, report to 1930.",
+    "hi": "बचाव: फ़ोन रखो, सहेजे नंबर पर वापस कॉल करो, गुप्त शब्द पूछो, 1930 पर रिपोर्ट करो।",
+    "hinglish": "Defence: phone rakho, saved number par wapas call karo, safe word poocho, 1930 par report karo."
+   },
+   "visual": "flow:hang up|call back|safe word|report",
+   "narration": {
+    "en": "Defence: hang up, call back on the saved number, ask the safe word, report to 1930.",
+    "hi": "बचाव: फ़ोन रखो, सहेजे नंबर पर वापस कॉल करो, गुप्त शब्द पूछो, 1930 पर रिपोर्ट करो।",
+    "hinglish": "Defence: phone rakho, saved number par wapas call karo, safe word poocho, 1930 par report karo."
+   }
+  }
+ ],
+ "play": {
+  "lab": "agent-loop",
+  "config": {
+   "scenario": "ethics-review-board"
+  },
+  "goal": {
+   "en": "Sit on the ethics review board. For each AI product idea, decide what consent, labelling and safeguards it needs — think about how the same questions apply to cloning a singer’s or a teacher’s voice.",
+   "hi": "नैतिकता समीक्षा बोर्ड पर बैठो। हर AI उत्पाद विचार के लिए तय करो कौन-सी सहमति, लेबलिंग और सुरक्षा चाहिए — सोचो यही प्रश्न किसी गायक या शिक्षक की आवाज़ क्लोन करने पर कैसे लागू होते हैं।",
+   "hinglish": "Ethics review board par baitho. Har AI product idea ke liye tay karo kaunsi consent, labelling aur safeguards chahiye — socho yahi sawaal kisi singer ya teacher ki awaaz clone karne par kaise lagte hain."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "How cloning works, and when it is right",
+    "hi": "क्लोनिंग कैसे होती है, और कब सही है",
+    "hinglish": "Cloning kaise hoti hai, aur kab sahi hai"
+   },
+   "body": {
+    "en": "Modern TTS models learn a \"speaker embedding\" — a list of numbers that captures how a voice sounds. Give the model a short clean recording, sometimes only a few seconds, and it can speak any text in that voice, in other languages too. AI music tools can likewise generate a song \"in the style of\" a singer. Used with consent, this does real good: people with motor neurone disease or throat cancer can \"bank\" their voice and keep speaking in it, actors can dub films into many Indian languages in their own voice, and teachers can turn notes into audio lessons. The test is consent and honesty: did the person agree, for this use, and can they withdraw? Are listeners told it is AI? Is the original artist credited and paid? In India, courts have protected the personality rights of public figures — for example the Delhi High Court for Anil Kapoor (2023) and the Bombay High Court for singer Arijit Singh (2024), whose voice was being cloned by AI tools without permission.",
+    "hi": "आधुनिक TTS मॉडल \"वक्ता एम्बेडिंग\" सीखते हैं — संख्याओं की सूची जो पकड़े आवाज़ कैसी लगती है। मॉडल को छोटी साफ़ रिकॉर्डिंग दो, कभी केवल कुछ सेकंड, और वह उस आवाज़ में कोई भी पाठ बोल सकता है, दूसरी भाषाओं में भी। AI संगीत टूल इसी तरह किसी गायक \"की शैली में\" गाना बना सकते हैं। सहमति से इस्तेमाल हो तो यह सच्चा भला करता है: मोटर न्यूरॉन रोग या गले के कैंसर वाले लोग अपनी आवाज़ \"बैंक\" करके उसी में बोलते रह सकते हैं, अभिनेता अपनी आवाज़ में फ़िल्में कई भारतीय भाषाओं में डब कर सकते हैं, और शिक्षक नोट्स को ऑडियो पाठ बना सकते हैं। कसौटी सहमति और ईमानदारी है: क्या व्यक्ति ने इस उपयोग के लिए हाँ कहा, और क्या वह वापस ले सकता है? क्या सुनने वालों को बताया गया कि यह AI है? क्या मूल कलाकार को श्रेय और भुगतान मिला? भारत में अदालतों ने सार्वजनिक हस्तियों के व्यक्तित्व अधिकारों की रक्षा की है — जैसे दिल्ली उच्च न्यायालय ने अनिल कपूर (2023) के लिए और बॉम्बे उच्च न्यायालय ने गायक अरिजीत सिंह (2024) के लिए, जिनकी आवाज़ AI टूल बिना अनुमति क्लोन कर रहे थे।",
+    "hinglish": "Modern TTS models \"speaker embedding\" seekhte hain — numbers ki list jo pakde awaaz kaisi lagti hai. Model ko chhoti saaf recording do, kabhi sirf kuch seconds, aur woh us awaaz mein koi bhi text bol sakta hai, doosri languages mein bhi. AI music tools isi tarah kisi singer \"ki style mein\" gaana bana sakte hain. Consent se use ho to yeh sachcha bhala karta hai: motor neurone disease ya gale ke cancer wale log apni awaaz \"bank\" karke usi mein bolte reh sakte hain, actors apni awaaz mein films kai Indian languages mein dub kar sakte hain, aur teachers notes ko audio lessons bana sakte hain. Kasauti consent aur imaandaari hai: kya vyakti ne is use ke liye haan kaha, aur kya woh wapas le sakta hai? Kya sunne walon ko bataya gaya ki yeh AI hai? Kya original artist ko credit aur payment mila? India mein courts ne public figures ke personality rights ki raksha ki hai — jaise Delhi High Court ne Anil Kapoor (2023) ke liye aur Bombay High Court ne singer Arijit Singh (2024) ke liye, jinki awaaz AI tools bina permission clone kar rahe the."
+   },
+   "analogy": {
+    "en": "Borrowing a friend’s bicycle: fine when they said yes, theft when they did not — the bicycle is the same.",
+    "hi": "दोस्त की साइकिल उधार लेना: हाँ कहने पर ठीक, न कहने पर चोरी — साइकिल वही है।",
+    "hinglish": "Dost ki cycle udhaar lena: haan kehne par theek, na kehne par chori — cycle wahi hai."
+   },
+   "realExample": {
+    "en": "Ethical label on a podcast: \"This episode’s Hindi version uses an AI copy of the host’s voice, made with her written consent.\"",
+    "hi": "पॉडकास्ट पर नैतिक लेबल: \"इस एपिसोड का हिंदी संस्करण मेज़बान की लिखित सहमति से बनी उनकी आवाज़ की AI प्रति इस्तेमाल करता है।\"",
+    "hinglish": "Podcast par ethical label: \"Is episode ka Hindi version host ki likhit consent se bani unki awaaz ki AI copy use karta hai.\""
+   }
+  },
+  {
+   "heading": {
+    "en": "Scam calls and how to stop them",
+    "hi": "घोटाला कॉल और उन्हें कैसे रोकें",
+    "hinglish": "Scam calls aur unhe kaise rokein"
+   },
+   "body": {
+    "en": "Criminals clip a voice from a reel, video or phone call and use it for \"emergency\" calls: a crying child, an arrested relative, a boss asking for an urgent transfer. Police in India and abroad have reported such cases. The pattern is always urgency, secrecy and money. The defence works whatever the technology: pause; hang up and call back on the number saved in your phone; ask a question only the real person would know, or a family safe word agreed in advance; never send money, OTPs or UPI PINs because of a call alone; and report fraud on 1930 or cybercrime.gov.in. Reduce what can be copied: keep reels and voice notes to friends you know, and set accounts to private. Voice is personal data under the DPDP Act 2023, and creating fake recordings to cheat or defame someone is a crime under existing laws.",
+    "hi": "अपराधी रील, वीडियो या फ़ोन कॉल से आवाज़ काटकर \"आपात\" कॉल में इस्तेमाल करते हैं: रोता बच्चा, गिरफ़्तार रिश्तेदार, तुरंत पैसे भेजने को कहता बॉस। भारत और विदेश में पुलिस ने ऐसे मामले बताए हैं। पैटर्न हमेशा जल्दबाज़ी, गोपनीयता और पैसा है। बचाव किसी भी तकनीक पर काम करता है: रुको; फ़ोन रखकर फ़ोन में सहेजे नंबर पर वापस कॉल करो; ऐसा प्रश्न पूछो जो केवल असली व्यक्ति जाने, या पहले से तय पारिवारिक गुप्त शब्द; केवल कॉल के कारण कभी पैसे, OTP या UPI पिन मत भेजो; और धोखाधड़ी 1930 या cybercrime.gov.in पर रिपोर्ट करो। जो कॉपी हो सकता है उसे घटाओ: रील और वॉयस नोट जाने-पहचाने दोस्तों तक रखो, और खाते निजी रखो। DPDP अधिनियम 2023 के तहत आवाज़ व्यक्तिगत डेटा है, और किसी को ठगने या बदनाम करने के लिए नकली रिकॉर्डिंग बनाना मौजूदा क़ानूनों के तहत अपराध है।",
+    "hinglish": "Criminals reel, video ya phone call se awaaz kaatkar \"emergency\" calls mein use karte hain: rota bachcha, giraftaar rishtedaar, turant paise bhejne ko kehta boss. India aur videsh mein police ne aise cases bataye hain. Pattern hamesha urgency, secrecy aur paisa hai. Defence kisi bhi technology par kaam karta hai: ruko; phone rakhkar phone mein saved number par wapas call karo; aisa sawaal poocho jo sirf asli vyakti jaane, ya pehle se tay family safe word; sirf call ke kaaran kabhi paise, OTP ya UPI PIN mat bhejo; aur fraud 1930 ya cybercrime.gov.in par report karo. Jo copy ho sakta hai use ghatao: reels aur voice notes jaan-pehchaan wale doston tak rakho, aur accounts private rakho. DPDP Act 2023 ke tahat awaaz personal data hai, aur kisi ko thagne ya badnaam karne ke liye nakli recording banana maujooda kanoonon ke tahat crime hai."
+   },
+   "analogy": {
+    "en": "A stranger at the school gate saying \"your mother sent me\" — the school still calls your mother.",
+    "hi": "स्कूल गेट पर अजनबी कहे \"तुम्हारी माँ ने भेजा है\" — स्कूल फिर भी माँ को फ़ोन करता है।",
+    "hinglish": "School gate par ajnabi kahe \"tumhari maa ne bheja hai\" — school phir bhi maa ko phone karta hai."
+   },
+   "realExample": {
+    "en": "Family plan: safe word \"neem-chai-42\" · rule: no money on a call alone · call back on the saved number · report on 1930.",
+    "hi": "पारिवारिक योजना: गुप्त शब्द \"neem-chai-42\" · नियम: केवल कॉल पर पैसे नहीं · सहेजे नंबर पर वापस कॉल · 1930 पर रिपोर्ट।",
+    "hinglish": "Family plan: safe word \"neem-chai-42\" · rule: sirf call par paise nahi · saved number par call back · 1930 par report."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Make a one-page \"voice-clone safety plan\" for your family in your home language: the warning signs, a safe word (do not write the real one on the poster), the call-back rule and the 1930 helpline. Then write three rules your school should follow before using any AI voice in announcements or videos.",
+   "hi": "अपने परिवार के लिए घर की भाषा में एक पेज की \"आवाज़-क्लोन सुरक्षा योजना\" बनाओ: चेतावनी संकेत, गुप्त शब्द (असली वाला पोस्टर पर मत लिखो), वापस-कॉल नियम और 1930 हेल्पलाइन। फिर तीन नियम लिखो जो स्कूल को घोषणाओं या वीडियो में कोई AI आवाज़ इस्तेमाल करने से पहले मानने चाहिए।",
+   "hinglish": "Apni family ke liye apni ghar ki bhasha mein ek page ka \"voice-clone safety plan\" banao: warning signs, safe word (asli wala poster par mat likho), call-back rule aur 1930 helpline. Phir teen rules likho jo school ko announcements ya videos mein koi AI voice use karne se pehle maanne chahiye."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Your \"uncle\" calls crying, asking you to send ₹20,000 by UPI right now and tell no one. Best first step?",
+     "hi": "आपके \"चाचा\" रोते हुए फ़ोन करते हैं, अभी UPI से ₹20,000 भेजने और किसी को न बताने को कहते हैं। सबसे अच्छा पहला कदम?",
+     "hinglish": "Tumhare \"chacha\" rote hue phone karte hain, abhi UPI se ₹20,000 bhejne aur kisi ko na batane ko kehte hain. Best first step?"
+    },
+    "options": [
+     {
+      "en": "Hang up and call him back on the number saved in your phone",
+      "hi": "फ़ोन रखकर फ़ोन में सहेजे नंबर पर वापस कॉल करो",
+      "hinglish": "Phone rakhkar phone mein saved number par wapas call karo"
+     },
+     {
+      "en": "Send the money quickly",
+      "hi": "जल्दी पैसे भेजो",
+      "hinglish": "Jaldi paise bhejo"
+     },
+     {
+      "en": "Share your UPI PIN so he can help himself",
+      "hi": "UPI पिन बता दो",
+      "hinglish": "UPI PIN bata do"
+     },
+     {
+      "en": "Keep it secret as asked",
+      "hi": "कहे अनुसार गुप्त रखो",
+      "hinglish": "Kahe anusaar secret rakho"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Urgency + secrecy + money = verify first.",
+     "hi": "जल्दबाज़ी + गोपनीयता + पैसा = पहले जाँचो।",
+     "hinglish": "Urgency + secrecy + money = pehle verify karo."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "multi",
+    "prompt": {
+     "en": "Which make an AI voice project ethical?",
+     "hi": "कौन-सी बातें AI आवाज़ परियोजना को नैतिक बनाती हैं?",
+     "hinglish": "Kaunsi baatein AI voice project ko ethical banati hain?"
+    },
+    "options": [
+     {
+      "en": "Written consent from the person, for this use",
+      "hi": "इस उपयोग के लिए व्यक्ति की लिखित सहमति",
+      "hinglish": "Is use ke liye vyakti ki likhit consent"
+     },
+     {
+      "en": "Telling listeners it is AI-generated",
+      "hi": "सुनने वालों को बताना कि यह AI से बना",
+      "hinglish": "Sunne walon ko batana ki yeh AI se bana"
+     },
+     {
+      "en": "Letting the person withdraw consent",
+      "hi": "व्यक्ति को सहमति वापस लेने देना",
+      "hinglish": "Vyakti ko consent wapas lene dena"
+     },
+     {
+      "en": "Using a celebrity’s voice in an ad because it is popular",
+      "hi": "लोकप्रिय होने के कारण विज्ञापन में सेलिब्रिटी की आवाज़",
+      "hinglish": "Popular hone ke kaaran ad mein celebrity ki awaaz"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2
+    ],
+    "explain": {
+     "en": "Consent, disclosure, control.",
+     "hi": "सहमति, खुलासा, नियंत्रण।",
+     "hinglish": "Consent, disclosure, control."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why did Indian courts protect stars like Arijit Singh against AI voice clones?",
+     "hi": "भारतीय अदालतों ने अरिजीत सिंह जैसे सितारों को AI आवाज़ क्लोन से क्यों बचाया?",
+     "hinglish": "Indian courts ne Arijit Singh jaise stars ko AI voice clones se kyun bachaya?"
+    },
+    "options": [
+     {
+      "en": "Their voice is part of their personality rights and was used without permission",
+      "hi": "उनकी आवाज़ उनके व्यक्तित्व अधिकार का हिस्सा है और बिना अनुमति इस्तेमाल हुई",
+      "hinglish": "Unki awaaz unke personality rights ka hissa hai aur bina permission use hui"
+     },
+     {
+      "en": "AI music is always illegal",
+      "hi": "AI संगीत हमेशा अवैध है",
+      "hinglish": "AI music hamesha illegal hai"
+     },
+     {
+      "en": "Singers own all songs ever made",
+      "hi": "गायक सारे गानों के मालिक हैं",
+      "hinglish": "Singers saare gaano ke maalik hain"
+     },
+     {
+      "en": "Cloning is impossible",
+      "hi": "क्लोनिंग असंभव है",
+      "hinglish": "Cloning impossible hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "The problem was use without consent, not the technology itself.",
+     "hi": "समस्या बिना सहमति उपयोग थी, तकनीक नहीं।",
+     "hinglish": "Problem bina consent use tha, technology nahi."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "short",
+    "prompt": {
+     "en": "Which national helpline number reports cyber fraud in India?",
+     "hi": "भारत में साइबर धोखाधड़ी किस राष्ट्रीय हेल्पलाइन नंबर पर रिपोर्ट होती है?",
+     "hinglish": "India mein cyber fraud kis national helpline number par report hota hai?"
+    },
+    "answer": {
+     "accept": [
+      "1930"
+     ]
+    },
+    "explain": {
+     "en": "1930, or cybercrime.gov.in.",
+     "hi": "1930, या cybercrime.gov.in।",
+     "hinglish": "1930, ya cybercrime.gov.in."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the ethics review board scenario.",
+     "hi": "नैतिकता समीक्षा बोर्ड परिदृश्य पूरा करो।",
+     "hinglish": "Ethics review board scenario poora karo."
+    },
+    "answer": {
+     "event": "scenario-complete",
+     "scenario": "ethics-review-board"
+    },
+    "explain": {
+     "en": "Decide safeguards for every product.",
+     "hi": "हर उत्पाद की सुरक्षा तय करो।",
+     "hinglish": "Har product ke safeguards tay karo."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "ai.genai-audio",
+  "ai.ethics",
+  "cyber.deepfakes",
+  "cyber.upi-scams"
+ ],
+ "sources": [
+  {
+   "title": "Bombay High Court — Arijit Singh v. Codible Ventures LLP (ad-interim order, 26 July 2024), LiveLaw report",
+   "url": "https://www.livelaw.in/high-court/bombay-high-court/bombay-high-court-protects-personality-rights-of-bollywood-singer-arijit-singh-265237",
+   "licence": "fact reference"
+  },
+  {
+   "title": "National Cyber Crime Reporting Portal",
+   "url": "https://cybercrime.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "MeitY — Digital Personal Data Protection Act, 2023",
+   "url": "https://www.meity.gov.in/",
+   "licence": "fact reference"
+  }
+ ]
+}

@@ -1,0 +1,324 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.dsa.01",
+ "level": 3,
+ "classes": [
+  11,
+  12
+ ],
+ "unit": "dsa",
+ "title": {
+  "en": "Big-O: how fast is fast?",
+  "hi": "बिग-O: तेज़ कितना तेज़?",
+  "hinglish": "Big-O: tez kitna tez?"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [
+  "L3.python-pro.02"
+ ],
+ "outcomes": [
+  {
+   "en": "Describe how running time grows using Big-O",
+   "hi": "बिग-O से बताओ चलने का समय कैसे बढ़ता है",
+   "hinglish": "Big-O se batao running time kaise badhta hai"
+  },
+  {
+   "en": "Rank O(1), O(log n), O(n), O(n log n), O(n²), O(2ⁿ)",
+   "hi": "O(1), O(log n), O(n), O(n log n), O(n²), O(2ⁿ) को क्रम दो",
+   "hinglish": "O(1), O(log n), O(n), O(n log n), O(n²), O(2ⁿ) ko rank karo"
+  },
+  {
+   "en": "Find the Big-O of simple loops",
+   "hi": "सरल लूपों का बिग-O निकालो",
+   "hinglish": "Simple loops ka Big-O nikalo"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Algorithm",
+   "hinglish": "Kadam-dar-kadam tareeka",
+   "en": "A precise step-by-step method to solve a problem",
+   "hi": "समस्या हल करने का सटीक चरणबद्ध तरीक़ा"
+  },
+  {
+   "term": "Big-O",
+   "hinglish": "Badhne ki raftaar",
+   "en": "How the number of steps grows with input size n, ignoring constants",
+   "hi": "इनपुट आकार n के साथ चरण कैसे बढ़ते हैं, स्थिरांक छोड़कर"
+  },
+  {
+   "term": "Worst case",
+   "hinglish": "Sabse bura haal",
+   "en": "The input that makes the algorithm slowest",
+   "hi": "वह इनपुट जो एल्गोरिदम को सबसे धीमा करे"
+  },
+  {
+   "term": "Logarithm",
+   "hinglish": "Kitni baar aadha",
+   "en": "log₂ n = how many times n can be halved to reach 1",
+   "hi": "log₂ n = n को 1 तक कितनी बार आधा कर सकते हैं"
+  },
+  {
+   "term": "Space complexity",
+   "hinglish": "Memory ki zaroorat",
+   "en": "How much extra memory an algorithm needs",
+   "hi": "एल्गोरिदम को कितनी अतिरिक्त मेमोरी चाहिए"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Six curves: O(1) flat, O(log n) almost flat, O(n) a straight line, O(n²) a curve, O(2ⁿ) a wall.",
+    "hi": "छह वक्र: O(1) सपाट, O(log n) लगभग सपाट, O(n) सीधी रेखा, O(n²) वक्र, O(2ⁿ) दीवार।",
+    "hinglish": "Chhe curves: O(1) flat, O(log n) lagbhag flat, O(n) seedhi line, O(n²) curve, O(2ⁿ) deewar."
+   },
+   "visual": "anim:growth-curves",
+   "narration": {
+    "en": "Six curves: O(1) flat, O(log n) almost flat, O(n) a straight line, O(n²) a curve, O(2ⁿ) a wall.",
+    "hi": "छह वक्र: O(1) सपाट, O(log n) लगभग सपाट, O(n) सीधी रेखा, O(n²) वक्र, O(2ⁿ) दीवार।",
+    "hinglish": "Chhe curves: O(1) flat, O(log n) lagbhag flat, O(n) seedhi line, O(n²) curve, O(2ⁿ) deewar."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "At n = 1,000 the gaps are small. At n = 10 lakh, O(n²) needs 10¹² steps — hours.",
+    "hi": "n = 1,000 पर अंतर छोटे हैं। n = 10 लाख पर O(n²) को 10¹² चरण चाहिए — घंटों।",
+    "hinglish": "n = 1,000 par gaps chhote hain. n = 10 lakh par O(n²) ko 10¹² steps chahiye — ghante."
+   },
+   "visual": "anim:table-blowup",
+   "narration": {
+    "en": "At n = 1,000 the gaps are small. At n = 10 lakh, O(n²) needs 10¹² steps — hours.",
+    "hi": "n = 1,000 पर अंतर छोटे हैं। n = 10 लाख पर O(n²) को 10¹² चरण चाहिए — घंटों।",
+    "hinglish": "n = 1,000 par gaps chhote hain. n = 10 lakh par O(n²) ko 10¹² steps chahiye — ghante."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "One loop over n items is O(n). A loop inside a loop is O(n²). Halving each time is O(log n).",
+    "hi": "n वस्तुओं पर एक लूप O(n)। लूप के अंदर लूप O(n²)। हर बार आधा करना O(log n)।",
+    "hinglish": "n items par ek loop O(n). Loop ke andar loop O(n²). Har baar aadha karna O(log n)."
+   },
+   "visual": "anim:loop-nest",
+   "narration": {
+    "en": "One loop over n items is O(n). A loop inside a loop is O(n²). Halving each time is O(log n).",
+    "hi": "n वस्तुओं पर एक लूप O(n)। लूप के अंदर लूप O(n²)। हर बार आधा करना O(log n)।",
+    "hinglish": "n items par ek loop O(n). Loop ke andar loop O(n²). Har baar aadha karna O(log n)."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Better algorithms beat faster hardware: O(n log n) on a phone beats O(n²) on a supercomputer for big n.",
+    "hi": "बेहतर एल्गोरिदम तेज़ हार्डवेयर से जीतते हैं: बड़े n पर फ़ोन पर O(n log n) सुपरकंप्यूटर पर O(n²) से तेज़।",
+    "hinglish": "Behtar algorithms tez hardware se jeet-te hain: bade n par phone par O(n log n) supercomputer par O(n²) se tez."
+   },
+   "visual": "anim:phone-vs-super",
+   "narration": {
+    "en": "Better algorithms beat faster hardware: O(n log n) on a phone beats O(n²) on a supercomputer for big n.",
+    "hi": "बेहतर एल्गोरिदम तेज़ हार्डवेयर से जीतते हैं: बड़े n पर फ़ोन पर O(n log n) सुपरकंप्यूटर पर O(n²) से तेज़।",
+    "hinglish": "Behtar algorithms tez hardware se jeet-te hain: bade n par phone par O(n log n) supercomputer par O(n²) se tez."
+   }
+  }
+ ],
+ "play": {
+  "lab": "code-lab",
+  "config": {
+   "mode": "growth",
+   "n": 1000
+  },
+  "goal": {
+   "en": "Drag n from 1 up to 10 lakh. Watch the steps and the time column for each Big-O class — which ones turn red?",
+   "hi": "n को 1 से 10 लाख तक खिसकाओ। हर बिग-O वर्ग के चरण और समय स्तंभ देखो — कौन लाल होते हैं?",
+   "hinglish": "n ko 1 se 10 lakh tak khiskao. Har Big-O class ke steps aur time column dekho — kaun laal hote hain?"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Counting steps, not seconds",
+    "hi": "सेकंड नहीं, चरण गिनना",
+    "hinglish": "Seconds nahi, steps ginna"
+   },
+   "body": {
+    "en": "Seconds depend on the computer, so computer scientists count basic steps as a function of the input size n and keep only the fastest-growing term: 3n² + 5n + 20 is O(n²), because for large n the n² part dominates. Rules of thumb: a single statement is O(1); one loop over the data is O(n); two nested loops over the data are O(n²); repeatedly halving the problem gives O(log n); good sorts are O(n log n); trying every subset is O(2ⁿ). Python examples: x in a_list is O(n), x in a_set or a_dict is O(1) on average, list.append is O(1), list.insert(0, x) is O(n).",
+    "hi": "सेकंड कंप्यूटर पर निर्भर हैं, इसलिए कंप्यूटर वैज्ञानिक इनपुट आकार n के फलन के रूप में मूल चरण गिनते हैं और सबसे तेज़ बढ़ने वाला पद ही रखते हैं: 3n² + 5n + 20 है O(n²), क्योंकि बड़े n पर n² भाग हावी है। अंगूठे के नियम: एक कथन O(1); डेटा पर एक लूप O(n); डेटा पर दो नेस्टेड लूप O(n²); समस्या को बार-बार आधा करना O(log n); अच्छे सॉर्ट O(n log n); हर उपसमुच्चय आज़माना O(2ⁿ)। पायथन उदाहरण: x in a_list O(n), x in a_set या a_dict औसतन O(1), list.append O(1), list.insert(0, x) O(n)।",
+    "hinglish": "Seconds computer par nirbhar hain, isliye computer scientists input size n ke function ki tarah basic steps ginte hain aur sabse tez badhne wala term hi rakhte hain: 3n² + 5n + 20 hai O(n²), kyunki bade n par n² hissa haavi hai. Rules of thumb: ek statement O(1); data par ek loop O(n); data par do nested loops O(n²); problem ko baar-baar aadha karna O(log n); achhe sorts O(n log n); har subset try karna O(2ⁿ). Python examples: x in a_list O(n), x in a_set ya a_dict average O(1), list.append O(1), list.insert(0, x) O(n)."
+   },
+   "analogy": {
+    "en": "Finding a name: reading every page of a register is O(n); opening the alphabetical index in the middle and halving is O(log n).",
+    "hi": "नाम खोजना: रजिस्टर का हर पन्ना पढ़ना O(n); वर्णानुक्रम सूची को बीच से खोलकर आधा करते जाना O(log n)।",
+    "hinglish": "Naam dhoondhna: register ka har panna padhna O(n); alphabetical index ko beech se kholkar aadha karte jaana O(log n)."
+   },
+   "realExample": {
+    "en": "Checking 10 lakh Aadhaar-style IDs for duplicates: comparing every pair is ~5 × 10¹¹ comparisons; putting them in a set is about 10 lakh steps.",
+    "hi": "10 लाख आधार-जैसी ID में दोहराव जाँचना: हर जोड़ी की तुलना ~5 × 10¹¹ तुलनाएँ; उन्हें सेट में डालना लगभग 10 लाख चरण।",
+    "hinglish": "10 lakh Aadhaar jaisi IDs mein duplicates check karna: har pair compare karna ~5 × 10¹¹ comparisons; unhe set mein daalna lagbhag 10 lakh steps."
+   }
+  },
+  {
+   "heading": {
+    "en": "Time, space and trade-offs",
+    "hi": "समय, स्थान और समझौते",
+    "hinglish": "Time, space aur trade-offs"
+   },
+   "body": {
+    "en": "Faster often costs memory: a set uses more memory than a list but answers \"is x present?\" instantly. Caching (memoisation) stores answers so they are not recomputed. Big-O hides constants, so for tiny inputs a \"slower\" simple algorithm can win — that is why real libraries switch to insertion sort for small pieces. O(2ⁿ) problems such as trying every password or every route quickly become impossible; that impossibility is exactly what keeps strong encryption safe.",
+    "hi": "तेज़ी अक्सर मेमोरी से ख़रीदी जाती है: सेट सूची से ज़्यादा मेमोरी लेता है पर \"क्या x है?\" तुरंत बताता है। कैशिंग (मेमोइज़ेशन) उत्तर सहेजती है ताकि दोबारा न गिनने पड़ें। बिग-O स्थिरांक छुपाता है, इसलिए छोटे इनपुट पर \"धीमा\" सरल एल्गोरिदम जीत सकता है — इसीलिए असली लाइब्रेरी छोटे टुकड़ों के लिए इंसर्शन सॉर्ट पर जाती हैं। O(2ⁿ) समस्याएँ, जैसे हर पासवर्ड या हर रास्ता आज़माना, जल्दी असंभव हो जाती हैं; यही असंभवता मज़बूत एन्क्रिप्शन को सुरक्षित रखती है।",
+    "hinglish": "Tezi aksar memory se khareedi jaati hai: set list se zyaada memory leta hai par \"kya x hai?\" turant batata hai. Caching (memoisation) answers save karti hai taaki dobaara na ginne padein. Big-O constants chhupata hai, isliye chhote input par \"slow\" simple algorithm jeet sakta hai — isliye asli libraries chhote tukdon ke liye insertion sort par jaati hain. O(2ⁿ) problems, jaise har password ya har raasta try karna, jaldi impossible ho jaati hain; yahi impossibility strong encryption ko safe rakhti hai."
+   },
+   "analogy": {
+    "en": "A cheat-sheet in your pocket (memory) saves you re-deriving formulas (time).",
+    "hi": "जेब में चीट-शीट (मेमोरी) सूत्र दोबारा निकालने (समय) से बचाती है।",
+    "hinglish": "Jeb mein cheat-sheet (memory) formulas dobaara nikaalne (time) se bachati hai."
+   },
+   "realExample": {
+    "en": "A 128-bit key has 2¹²⁸ ≈ 3.4 × 10³⁸ possibilities — trying them all is far beyond any computer ever built.",
+    "hi": "128-बिट कुंजी के 2¹²⁸ ≈ 3.4 × 10³⁸ संभावनाएँ — सब आज़माना किसी भी बने कंप्यूटर की पहुँच से बहुत दूर।",
+    "hinglish": "128-bit key ki 2¹²⁸ ≈ 3.4 × 10³⁸ possibilities — sab try karna kisi bhi bane computer ki pahunch se bahut door."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write three tiny Python functions: one O(1), one O(n) and one O(n²). Time each with n = 1,000 and n = 10,000 using time.perf_counter() and note how much slower each gets.",
+   "hi": "तीन छोटे पायथन फ़ंक्शन लिखो: एक O(1), एक O(n) और एक O(n²)। हर एक को n = 1,000 और n = 10,000 पर time.perf_counter() से नापो और लिखो हर एक कितना धीमा होता है।",
+   "hinglish": "Teen chhote Python functions likho: ek O(1), ek O(n) aur ek O(n²). Har ek ko n = 1,000 aur n = 10,000 par time.perf_counter() se time karo aur note karo har ek kitna slow hota hai."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "order",
+    "prompt": {
+     "en": "Order from slowest-growing to fastest-growing.",
+     "hi": "सबसे धीमे बढ़ने वाले से सबसे तेज़ बढ़ने वाले तक क्रम दो।",
+     "hinglish": "Sabse dheere badhne wale se sabse tez badhne wale tak order karo."
+    },
+    "options": [
+     "O(1)",
+     "O(log n)",
+     "O(n)",
+     "O(n log n)",
+     "O(n²)",
+     "O(2ⁿ)"
+    ],
+    "answer": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "explain": {
+     "en": "Constant < logarithmic < linear < linearithmic < quadratic < exponential.",
+     "hi": "स्थिर < लघुगणकीय < रैखिक < रैखिक-लघुगणकीय < द्विघाती < घातीय।",
+     "hinglish": "Constant < logarithmic < linear < linearithmic < quadratic < exponential."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Big-O of: for i in range(n): for j in range(n): total += 1",
+     "hi": "Big-O: for i in range(n): for j in range(n): total += 1",
+     "hinglish": "Big-O: for i in range(n): for j in range(n): total += 1"
+    },
+    "options": [
+     "O(n)",
+     "O(n²)",
+     "O(log n)",
+     "O(1)"
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "n × n steps.",
+     "hi": "n × n चरण।",
+     "hinglish": "n × n steps."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "3n² + 100n + 7 simplifies to…",
+     "hi": "3n² + 100n + 7 सरल होकर…",
+     "hinglish": "3n² + 100n + 7 simplify hokar…"
+    },
+    "options": [
+     "O(n)",
+     "O(n²)",
+     "O(3n²)",
+     "O(100n)"
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Drop constants and smaller terms.",
+     "hi": "स्थिरांक और छोटे पद हटाओ।",
+     "hinglish": "Constants aur chhote terms hatao."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which Python check is O(1) on average?",
+     "hi": "कौन-सी पायथन जाँच औसतन O(1) है?",
+     "hinglish": "Kaunsa Python check average O(1) hai?"
+    },
+    "options": [
+     "x in a_list",
+     "x in a_set",
+     "sorted(a_list)",
+     "a_list.index(x)"
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Sets and dicts use hashing.",
+     "hi": "सेट और डिक्ट हैशिंग इस्तेमाल करते हैं।",
+     "hinglish": "Sets aur dicts hashing use karte hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Explore growth up to at least 1 lakh items.",
+     "hi": "कम से कम 1 लाख वस्तुओं तक वृद्धि देखो।",
+     "hinglish": "Kam se kam 1 lakh items tak growth dekho."
+    },
+    "answer": {
+     "event": "bigo-explored"
+    },
+    "explain": {
+     "en": "You saw O(n²) and O(2ⁿ) explode.",
+     "hi": "आपने O(n²) और O(2ⁿ) को फटते देखा।",
+     "hinglish": "Tumne O(n²) aur O(2ⁿ) ko phat-te dekha."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "prog.complexity"
+ ],
+ "sources": [
+  {
+   "title": "Cormen, Leiserson, Rivest, Stein — Introduction to Algorithms (4th ed., MIT Press, 2022)",
+   "url": "https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Python Wiki — TimeComplexity of built-in operations",
+   "url": "https://wiki.python.org/moin/TimeComplexity",
+   "licence": "fact reference"
+  }
+ ]
+}

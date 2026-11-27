@@ -1,0 +1,316 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#1D4ED8">
+<title>Chintu's mango mission · block coding · Tech & AI Lab</title>
+<!-- Lab: loop-coder (Level 1). Tap-to-build block coding on a 2.5D board: sequence, patterns, loops, if-then, debugging,
+     events and a score variable, with a live Python view. Deterministic interpreter (no eval). Own work, MIT.
+     config.level / ?level= 1..10 -->
+<style>/* L1 lab kit (own work, MIT). Family App palette from src/lib/design-tokens.ts */
+:root{--royal:#1D4ED8;--sapphire:#002357;--grape:#8B3DFF;--violet:#4400F0;--tangerine:#FF7A1A;--coral:#FF6B57;--gold:#F5B90A;--turq:#14B8A6;--emerald:#0F766E;--cyan:#02CFF9;--slate:#1E293B;--off:#F9FAFB;--ink2:#475569;--r:18px;--sh:0 6px 18px rgba(30,41,59,.12),0 1px 3px rgba(30,41,59,.08)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:var(--off);color:var(--slate);font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans Devanagari",sans-serif;overscroll-behavior:none}
+body{background:transparent;-webkit-user-select:none;user-select:none;display:flex;flex-direction:column;min-height:100%;overflow-x:hidden}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;touch-action:manipulation}
+.kbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:8px;padding:10px 12px;background:linear-gradient(120deg,var(--sapphire),var(--royal) 60%,var(--grape));color:#fff;box-shadow:0 2px 10px rgba(0,35,87,.25)}
+.kbar{flex-wrap:wrap;row-gap:6px}
+.kbar h1{flex:1 1 9em;min-width:0;margin:0;font-size:16px;line-height:1.2;font-weight:800;letter-spacing:.2px;overflow-wrap:break-word}/* title never cut: controls move to a 2nd row when needed */
+.kctl{display:flex;align-items:center;gap:8px;margin-left:auto}
+.kbar .kemo{font-size:22px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.25))}
+.kpill{display:flex;background:rgba(255,255,255,.16);border-radius:999px;padding:3px}
+.kpill button{padding:5px 9px;border-radius:999px;font-size:12.5px;font-weight:700;color:#e0e7ff;min-height:32px}
+.kpill button[aria-pressed=true]{background:#fff;color:var(--royal)}
+.kstars{display:flex;align-items:center;gap:4px;background:rgba(255,255,255,.16);padding:6px 10px;border-radius:999px;font-weight:800;font-size:14px;min-width:54px;justify-content:center}
+.kstars.bump{animation:kbump .5s}
+@keyframes kbump{40%{transform:scale(1.35)}}
+.kgoal{margin:10px 12px 0;padding:10px 12px;border-radius:14px;background:#fff;box-shadow:var(--sh);display:flex;gap:10px;align-items:flex-start;font-size:14.5px}
+.kgoal b{color:var(--royal)}
+.kbtn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:46px;padding:10px 18px;border-radius:14px;font-weight:800;background:var(--royal);color:#fff;box-shadow:0 4px 0 #1239a8,var(--sh);transition:transform .08s}
+.kbtn:active{transform:translateY(3px);box-shadow:0 1px 0 #1239a8}
+.kbtn.alt{background:#fff;color:var(--royal);box-shadow:0 4px 0 #c7d2fe,var(--sh)}
+.kbtn.go{background:var(--turq);box-shadow:0 4px 0 #0d8a7c,var(--sh)}
+.kbtn.warn{background:var(--tangerine);box-shadow:0 4px 0 #c75a0c,var(--sh)}
+.kbtn[disabled]{opacity:.45;pointer-events:none}
+.ktoast{pointer-events:none;position:fixed;left:0;top:0;width:max-content;z-index:60;max-width:min(92vw,360px);padding:12px 16px;border-radius:16px;background:var(--slate);color:#fff;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,.3);text-align:center;line-height:1.35;font-size:15px;opacity:0;visibility:hidden;transform:scale(.9);transition:opacity .25s,transform .3s cubic-bezier(.2,1.4,.4,1),visibility 0s .3s}
+.ktoast.show{opacity:1;visibility:visible;transform:none;transition:opacity .25s,transform .3s cubic-bezier(.2,1.4,.4,1)}
+.ktoast.inline{position:static;display:block;width:auto;max-width:none;margin:10px 12px;grid-column:1/-1;flex:0 0 auto}
+.ktoast.good{background:var(--emerald)}.ktoast.bad{background:#b4321f}
+#kconf{position:fixed;inset:0;pointer-events:none;z-index:-1}/* behind content; inside the win dialog it sits behind the card */
+.kwin #kconf{position:absolute;z-index:0}.kwin>div{position:relative;z-index:1}
+.kwin{position:fixed;inset:0;z-index:65;display:none;align-items:center;justify-content:center;background:rgba(6,18,51,.55);backdrop-filter:blur(3px);padding:20px}
+.kwin.show{display:flex}
+.kwin>div{background:#fff;border-radius:24px;padding:22px;text-align:center;max-width:360px;box-shadow:0 20px 50px rgba(0,0,0,.35);animation:kpop .5s cubic-bezier(.2,1.5,.4,1)}
+.kwin .big{font-size:64px;line-height:1;animation:kspin 1.2s ease-out}
+.kwin h2{margin:10px 0 6px;font-size:22px}
+.kwin p{margin:0 0 14px;color:var(--ink2)}
+@keyframes kpop{from{transform:scale(.6);opacity:0}}
+@keyframes kspin{from{transform:rotateY(-540deg) scale(.4)}}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+.kvoice{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.16);font-size:17px;opacity:.6}
+.kvoice[aria-pressed=true]{background:#fff;opacity:1;box-shadow:0 0 0 3px rgba(255,255,255,.4)}
+</style>
+<style>
+main{flex:1;display:flex;flex-direction:column;gap:8px;padding:8px 10px 14px}
+.lvls{display:flex;flex-wrap:wrap;gap:5px;padding-bottom:2px}
+.lvls button{flex:none;width:38px;height:38px;border-radius:12px;background:#fff;box-shadow:var(--sh);font-weight:900}
+.lvls button.done{background:var(--turq);color:#fff}.lvls button[aria-pressed=true]{outline:3px solid var(--royal)}
+.story{display:flex;gap:8px;align-items:flex-start;background:#fff;border-radius:16px;padding:9px 11px;box-shadow:var(--sh);font-size:14.5px}
+.story .who{font-size:28px;line-height:1}
+.story b{color:var(--grape)}
+.boardWrap{position:sticky;top:var(--kbar-h,58px);z-index:6;height:min(40vh,320px);min-height:230px;border-radius:22px;background:radial-gradient(120% 100% at 50% 0%,#bbf7d0,#86efac 60%,#4ade80);overflow:hidden;perspective:700px;box-shadow:inset 0 -20px 40px rgba(0,0,0,.08),var(--sh)}
+.board{position:absolute;left:50%;top:50%;display:grid;gap:3px;transform-style:preserve-3d;transform:translate(-50%,-46%) rotateX(38deg);transition:transform .6s}
+.cell{width:var(--c);height:var(--c);border-radius:8px;background:#fefce8;box-shadow:0 3px 0 #ca8a04;position:relative;transform-style:preserve-3d}
+.cell.alt{background:#fef9c3}
+.cell.wall{background:#78716c;box-shadow:0 3px 0 #44403c;transform:translateZ(10px)}
+.cell .ghost{position:absolute;inset:22%;border-radius:50%;opacity:.4;border:3px dashed currentColor}
+.cell.painted{transition:background .25s}
+.cell .itm{position:absolute;left:50%;top:50%;font-size:calc(var(--c)*.62);transform:translate(-50%,-80%) rotateX(-38deg);transform-origin:bottom;line-height:1;filter:drop-shadow(0 3px 2px rgba(0,0,0,.25));animation:bob 1.6s ease-in-out infinite}
+.cell .itm.got{animation:grab .5s forwards}
+@keyframes bob{50%{transform:translate(-50%,-92%) rotateX(-38deg)}}
+@keyframes grab{to{transform:translate(-50%,-260%) rotateX(-38deg) scale(1.6);opacity:0}}
+.bot{position:absolute;left:0;top:0;width:var(--c);height:var(--c);transform-style:preserve-3d;transition:transform .34s cubic-bezier(.4,0,.2,1);z-index:5;pointer-events:none}
+.bot .shadow{position:absolute;inset:18%;border-radius:50%;background:rgba(0,0,0,.22);filter:blur(2px)}
+.bot .body{position:absolute;left:50%;bottom:30%;font-size:calc(var(--c)*.78);line-height:1;transform:translateX(-50%) rotateX(-38deg);transform-origin:bottom}
+.bot .dir{position:absolute;inset:0;display:grid;place-items:center;transition:transform .3s}
+.bot .dir i{position:absolute;top:-4px;width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-bottom:12px solid var(--royal);filter:drop-shadow(0 1px 1px #fff)}
+.bot.crash .body{animation:crash .5s}
+@keyframes crash{25%{transform:translateX(-60%) rotateX(-38deg) rotate(-12deg)}75%{transform:translateX(-40%) rotateX(-38deg) rotate(12deg)}}
+.bot.hop .body{animation:hop .34s}
+@keyframes hop{50%{transform:translateX(-50%) translateY(-22%) rotateX(-38deg)}}
+.hud{position:absolute;left:8px;top:8px;display:flex;gap:6px}
+.hud span{background:rgba(255,255,255,.9);padding:4px 9px;border-radius:999px;font-weight:800;font-size:13px}
+.var{font-family:ui-monospace,monospace}
+.dock{display:grid;grid-template-columns:1fr;gap:8px}
+.pal{display:flex;flex-wrap:wrap;gap:6px}
+.blk{display:inline-flex;align-items:center;gap:6px;padding:8px 11px;border-radius:12px;font-weight:800;font-size:14px;color:#fff;min-height:42px;box-shadow:0 3px 0 rgba(0,0,0,.25);position:relative}
+.blk.fwd{background:#2563EB}.blk.left,.blk.right{background:#7c3aed}.blk.paint{background:#ea580c}.blk.repeat{background:#0d9488}.blk.ifw{background:#d97706}.blk.hat{background:#be185d}.blk.endr{background:#0f766e}
+.blk .sw{width:18px;height:18px;border-radius:50%;border:2px solid #fff}
+.prog{background:#fff;border-radius:16px;box-shadow:var(--sh);padding:8px;min-height:84px;display:flex;flex-direction:column;gap:5px}
+.prog .row{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.prog .blk{font-size:13.5px;min-height:36px;padding:6px 10px}
+.prog .blk.now{outline:3px solid var(--gold);transform:scale(1.05)}
+.prog .blk .del{margin-left:4px;opacity:.8;font-size:12px}
+.nest{margin-left:16px;padding:6px;border-left:6px solid #0d9488;border-radius:0 10px 10px 0;background:#f0fdfa;display:flex;flex-wrap:wrap;gap:5px;min-height:40px}
+.nest.open{outline:2px dashed #0d9488}
+.step{display:inline-flex;align-items:center;gap:2px;background:rgba(255,255,255,.25);border-radius:8px;padding:0 2px}
+.step button{width:24px;height:24px;color:#fff;font-weight:900}
+.btns{display:flex;gap:8px}
+.btns .kbtn{flex:1;min-height:48px;padding:8px}
+.code{display:none;background:#0f172a;color:#e2e8f0;border-radius:14px;padding:10px 12px;font:13px/1.5 ui-monospace,monospace;white-space:pre-wrap;overflow-wrap:anywhere;overflow:auto}
+.code.show{display:block}.code .k{color:#f472b6}.code .f{color:#7dd3fc}.code .n{color:#fbbf24}.code .c{color:#64748b}
+.limit{font-size:13px;font-weight:700;color:var(--ink2)}
+@media (orientation:landscape) and (max-height:520px){main{display:grid;grid-template-columns:1.1fr 1fr;grid-template-rows:auto auto 1fr;align-items:start}.lvls,.story{grid-column:1/-1}.boardWrap{height:calc(100vh - 170px);grid-row:3}.dock{grid-row:3;max-height:calc(100vh - 170px);overflow:auto}}
+</style></head><body>
+<main>
+  <div class="lvls" id="lvls"></div>
+  <div class="story" id="story"></div>
+  <div class="boardWrap" id="bw"><div class="board" id="board"></div><div class="hud"><span id="hudS"></span><span class="var" id="hudV"></span></div></div>
+  <div class="dock">
+    <div class="pal" id="pal"></div>
+    <div class="prog" id="prog"></div>
+    <div class="limit" id="limit"></div>
+    <div class="btns"><button class="kbtn go" id="run">▶ Run</button><button class="kbtn alt" id="reset">↺</button><button class="kbtn alt" id="clear">🗑️</button><button class="kbtn alt" id="codeB">&lt;/&gt;</button></div>
+    <div class="code" id="code"></div>
+  </div>
+</main>
+<script>// L1 lab kit (own work, MIT): language, header, stars, toast, confetti, sounds, drag, lesson config, completion events.
+(function (g) {
+  const q = new URLSearchParams(location.search);
+  const LANGS = ['hinglish', 'en', 'hi'];
+  let lang = q.get('lang') || (function () { try { return localStorage.getItem('techlab.lang'); } catch (e) { return null; } })() || 'hinglish';
+  if (!LANGS.includes(lang)) lang = 'hinglish';
+  const t = (o) => (o == null ? '' : typeof o === 'string' ? o : Array.isArray(o) ? (o[{ en: 0, hi: 1, hinglish: 2 }[lang]] ?? o[0]) : (o[lang] ?? o.hinglish ?? o.en));
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const el = (tag, attrs = {}, html) => { const e = document.createElement(tag); for (const k in attrs) { if (k === 'class') e.className = attrs[k]; else if (k === 'style') e.style.cssText = attrs[k]; else if (k.startsWith('on')) e.addEventListener(k.slice(2), attrs[k]); else e.setAttribute(k, attrs[k]); } if (html != null) e.innerHTML = html; return e; };
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+  const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const listeners = [];
+  const cls = +(q.get('class') || 0);
+  let voice = q.get('voice') ? q.get('voice') === '1' : (q.has('class') && cls <= 2);
+  const say = (o) => { if (!voice || !g.speechSynthesis) return; try { const txt = t(o).replace(/[\u{1F000}-\u{1FAFF}\u2600-\u27BF]/gu, ''); speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(txt); u.lang = lang === 'hi' ? 'hi-IN' : 'en-IN'; const v = speechSynthesis.getVoices().find((v) => v.lang === u.lang) || speechSynthesis.getVoices().find((v) => v.lang.startsWith(lang === 'hi' ? 'hi' : 'en')); if (v) u.voice = v; u.rate = cls <= 0 && q.has('class') ? .85 : .95; speechSynthesis.speak(u); } catch (e) {} };
+  const K = { q, t, $, $$, el, esc, reduced, say, get voice() { return voice; }, get lang() { return lang; }, stars: 0,
+    onLang(fn) { listeners.push(fn); },
+    setLang(l) { lang = l; try { localStorage.setItem('techlab.lang', l); } catch (e) {} document.documentElement.lang = l === 'hi' ? 'hi' : 'en'; $$('.kpill button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.l === l)); listeners.forEach((f) => f(l)); },
+    header(title, emoji) {
+      const bar = el('header', { class: 'kbar' });
+      bar.innerHTML = `<span class="kemo" aria-hidden="true">${emoji}</span><h1 id="ktitle"></h1><div class="kctl"><div class="kpill" role="group" aria-label="Language">${[['hinglish', 'Hing'], ['en', 'EN'], ['hi', 'हिं']].map(([l, n]) => `<button data-l="${l}" aria-pressed="${l === lang}">${n}</button>`).join('')}</div><button class="kvoice" id="kvoice" aria-label="Read aloud" aria-pressed="${voice}">🔊</button><div class="kstars" aria-live="polite">⭐ <span id="kstarn">0</span></div></div>`;
+      document.body.prepend(bar); if (window.ResizeObserver) new ResizeObserver(() => document.documentElement.style.setProperty('--kbar-h', bar.offsetHeight + 'px')).observe(bar);
+      const upd = () => { $('#ktitle').textContent = t(title); document.title = t(title) + ' · Tech & AI Lab'; };
+      upd(); listeners.push(upd);
+      $$('.kpill button', bar).forEach((b) => b.addEventListener('click', () => K.setLang(b.dataset.l)));
+      $('#kvoice', bar).addEventListener('click', (e) => { voice = !voice; e.currentTarget.setAttribute('aria-pressed', voice); if (voice) { const gl = $('#goal'); say(gl ? gl.textContent : title); } else if (g.speechSynthesis) speechSynthesis.cancel(); });
+      setTimeout(() => { const gl = $('#goal'); if (gl) new MutationObserver(() => say(gl.textContent)).observe(gl, { childList: true, subtree: true }); }, 0);
+      document.body.append(el('div', { class: 'ktoast', id: 'ktoast', role: 'status' }), el('canvas', { id: 'kconf' }), el('div', { class: 'kwin', id: 'kwin', 'data-ov-modal': '', role: 'dialog', 'aria-modal': 'true' }, '<div><div class="big" id="kwinE">🏆</div><h2 id="kwinH"></h2><p id="kwinP"></p><button class="kbtn" id="kwinB"></button></div>'));
+      document.addEventListener('pointerdown', (ev) => { K._lastTap = ev.target; K._tapAt = [ev.clientX, ev.clientY + scrollY]; }, true); let rp = 0; const re = () => { const e = K._tel || (K._tel = $('#ktoast')); if (!e || !e.classList.contains('show') || rp) return; rp = 1; requestAnimationFrame(() => { rp = 0; K._place(); }); }; K._re = re;
+      addEventListener('scroll', re, { passive: true }); addEventListener('resize', re); document.addEventListener('animationend', re, true); document.addEventListener('transitionend', re, true); K._mo = new MutationObserver((rs) => { const e = K._tel || (K._tel = $('#ktoast')); if (rs.some((r) => !e.contains(r.target))) re(); });
+      $('#kwinB').addEventListener('click', () => { $('#kwin').classList.remove('show'); K._winCb && K._winCb(); });
+    },
+    star(n = 1) { K.stars += n; const s = $('#kstarn'); if (s) { s.textContent = K.stars; s.parentElement.classList.remove('bump'); void s.offsetWidth; s.parentElement.classList.add('bump'); } },
+    // Toast never covers text: it floats in a free band of the screen (bottom first); with no free band it drops into the page
+    // flow under what the child just tapped (pushes content down). Closes on its own (2.5 s by default).
+    toast(msg, kind = '', ms = 2500) { const e = K._tel || (K._tel = $('#ktoast')); clearTimeout(K._tt); clearInterval(K._ti); if (e.classList.contains('inline')) document.body.append(e);
+      e.className = 'ktoast ' + kind; e._spot = null; e.textContent = t(msg); say(msg); e.style.left = e.style.top = '0px'; e.classList.add('show'); K._place(); K._ti = setInterval(K._place, 200); K._mo && K._mo.observe(document.body, { subtree: true, childList: true, attributes: true, characterData: true });
+      K._tt = setTimeout(() => { clearInterval(K._ti); K._mo && K._mo.disconnect(); e.classList.remove('show'); setTimeout(() => { if (!e.classList.contains('show') && e.classList.contains('inline')) { e.classList.remove('inline'); document.body.append(e); } }, 320); }, ms); },
+    _place() { const e = K._tel || (K._tel = $('#ktoast')); if (!e.classList.contains('show')) return; if (!e.isConnected) { e.classList.remove('inline'); document.body.append(e); } if (e.classList.contains('inline')) return;
+      const vw = document.documentElement.clientWidth, vh = innerHeight, w = e.offsetWidth, h = e.offsetHeight, m = 8; let top = m; const bar = $('.kbar'); if (bar) top = Math.max(top, bar.getBoundingClientRect().bottom + m);
+      const obs = [], rg = document.createRange(), tw = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); let n;
+      while ((n = tw.nextNode())) { if (!n.nodeValue.trim()) continue; const p = n.parentElement; if (!p || e.contains(p) || /^(SCRIPT|STYLE)$/.test(p.tagName)) continue; rg.selectNodeContents(n); for (const q of rg.getClientRects()) if (q.width >= 1 && q.bottom > 0 && q.top < vh) obs.push(q); }
+      $$('input,select,textarea,button,a[href],[role=button]').filter((x) => !e.contains(x)).forEach((x) => { const q = x.getBoundingClientRect(); if (q.width && q.bottom > 0 && q.top < vh) obs.push(q); });
+      const free = (x, y) => !obs.some((q) => q.left < x + w + 4 && q.right > x - 4 && q.top < y + h + 4 && q.bottom > y - 4);
+      let s = e._spot && free(e._spot.x, e._spot.y) ? e._spot : null;
+      if (!s) outer: for (let y = vh - h - m; y >= top; y -= 6) for (const x of [(vw - w) / 2, m, vw - w - m]) if (free(x, y)) { s = { x, y }; break outer; }
+      if (s) { e._spot = s; e.style.left = s.x + 'px'; e.style.top = s.y + 'px'; return; }
+      e._spot = null; e.classList.add('inline'); e.style.left = e.style.top = '';
+      let a = K._lastTap && K._lastTap.isConnected && !e.contains(K._lastTap) ? K._lastTap : null; if (!a && K._tapAt) { const y = K._tapAt[1] - scrollY; if (y > 0 && y < innerHeight) a = document.elementFromPoint(K._tapAt[0], y); } if (!a || e.contains(a)) a = $('main') || document.body.lastElementChild;
+      // never drop the note inside a 3D scene, a transformed, positioned-out or clipping box
+      const boxedIn = (a0) => { for (let p = a0; p && p !== document.body; p = p.parentElement) { const c = getComputedStyle(p); if (c.transform !== 'none' || c.transformStyle === 'preserve-3d' || c.perspective !== 'none' || c.position === 'absolute' || c.position === 'fixed' || (p !== a0 && c.overflow !== 'visible')) return true; } return false; };
+      while (a.parentElement && a.parentElement !== document.body) { const d = getComputedStyle(a.parentElement), me = getComputedStyle(a);
+        if (me.display !== 'inline' && !(a instanceof SVGElement) && (d.display === 'block' || d.display === 'flow-root' || d.display === 'grid' || (d.display === 'flex' && d.flexDirection.startsWith('column'))) && a.getBoundingClientRect().width >= Math.min(260, innerWidth * 0.6) && !boxedIn(a)) break; a = a.parentElement; }
+      a.after(e); e.scrollIntoView({ block: 'nearest' }); },
+    win(head, body, btn, emoji = '🏆', cb) { $('#kwinE').textContent = emoji; $('#kwinH').textContent = t(head); $('#kwinP').textContent = t(body); $('#kwinB').textContent = t(btn || ['Play again', 'फिर खेलो', 'Phir khelo']); K._winCb = cb; $('#kwin').classList.add('show'); K.confetti(); K.sfx('win'); say(t(head) + '. ' + t(body)); },
+    done(lab, mode, result) { const msg = { type: 'techlab:lab-complete', lab, mode, result, stars: K.stars }; try { parent !== window && parent.postMessage(msg, '*'); } catch (e) {} g.__labResult = msg; },
+    confetti() { if (reduced()) return; const c = $('#kconf'), x = c.getContext('2d'); const wn = $('#kwin'); if (wn.classList.contains('show')) wn.prepend(c); else document.body.append(c); const W = c.width = innerWidth, H = c.height = innerHeight; const cols = ['#1D4ED8', '#8B3DFF', '#FF7A1A', '#F5B90A', '#14B8A6', '#FF6B57', '#02CFF9']; const P = Array.from({ length: 90 }, () => ({ x: W / 2, y: H / 2.2, vx: (Math.random() - .5) * 14, vy: -Math.random() * 14 - 4, r: Math.random() * 6 + 4, c: cols[Math.random() * cols.length | 0], a: Math.random() * 6, va: (Math.random() - .5) * .4 })); let f = 0; (function tick() { x.clearRect(0, 0, W, H); P.forEach((p) => { p.vy += .45; p.x += p.vx; p.y += p.vy; p.a += p.va; x.save(); x.translate(p.x, p.y); x.rotate(p.a); x.fillStyle = p.c; x.fillRect(-p.r / 2, -p.r / 4, p.r, p.r / 2); x.restore(); }); if (++f < 110) requestAnimationFrame(tick); else x.clearRect(0, 0, W, H); })(); },
+    _ac: null,
+    sfx(kind) { try { const ac = K._ac || (K._ac = new (g.AudioContext || g.webkitAudioContext)()); const n = { good: [[660, .07], [880, .1]], bad: [[220, .15]], tap: [[520, .04]], win: [[523, .1], [659, .1], [784, .1], [1047, .22]], move: [[400, .03]] }[kind] || [[500, .05]]; let t0 = ac.currentTime; n.forEach(([f, d]) => { const o = ac.createOscillator(), gn = ac.createGain(); o.type = kind === 'bad' ? 'sawtooth' : 'triangle'; o.frequency.value = f; gn.gain.setValueAtTime(.0001, t0); gn.gain.exponentialRampToValueAtTime(.18, t0 + .01); gn.gain.exponentialRampToValueAtTime(.0001, t0 + d); o.connect(gn).connect(ac.destination); o.start(t0); o.stop(t0 + d + .02); t0 += d; }); } catch (e) {} },
+    // Pointer drag: el follows finger; onDrop(el, x, y) returns true to accept, else it flies back.
+    draggable(node, onDrop, onStart) {
+      node.style.touchAction = 'none';
+      node.addEventListener('pointerdown', (ev) => {
+        if (node.dataset.locked) return; ev.preventDefault(); node.setPointerCapture(ev.pointerId); onStart && onStart(node);
+        const r = node.getBoundingClientRect(), ox = ev.clientX - r.left, oy = ev.clientY - r.top; const ghost = node.cloneNode(true);
+        ghost.style.cssText += `;position:fixed;left:${r.left}px;top:${r.top}px;width:${r.width}px;height:${r.height}px;margin:0;z-index:50;pointer-events:none;transform:scale(1.08) rotate(-3deg);box-shadow:0 14px 30px rgba(0,0,0,.25);transition:none`; ghost.classList.add('dragging'); document.body.append(ghost); node.style.opacity = '.25'; K.sfx('tap');
+        const mv = (e) => { ghost.style.left = e.clientX - ox + 'px'; ghost.style.top = e.clientY - oy + 'px'; K._hover && K._hover(e.clientX, e.clientY); };
+        const up = (e) => { node.removeEventListener('pointermove', mv); node.removeEventListener('pointerup', up); node.removeEventListener('pointercancel', up); K._hover && K._hover(-1, -1);
+          const ok = onDrop(node, e.clientX, e.clientY); if (ok) { ghost.remove(); node.style.opacity = ''; } else { ghost.style.transition = 'left .3s, top .3s, transform .3s'; ghost.style.left = r.left + 'px'; ghost.style.top = r.top + 'px'; ghost.style.transform = 'none'; setTimeout(() => { ghost.remove(); node.style.opacity = ''; }, 300); } };
+        node.addEventListener('pointermove', mv); node.addEventListener('pointerup', up); node.addEventListener('pointercancel', up);
+      });
+    },
+    hit(node, x, y, pad = 10) { const r = node.getBoundingClientRect(); return x >= r.left - pad && x <= r.right + pad && y >= r.top - pad && y <= r.bottom + pad; },
+    async lessonConfig() { const p = q.get('lesson'); const cfg = {}; if (p) { try { const L = await (await fetch(p)).json(); Object.assign(cfg, L.play && L.play.config, { goal: L.play && L.play.goal }); } catch (e) { console.warn('lesson config not loaded', e); } } for (const k of ['mode', 'level', 'class']) if (q.get(k)) cfg[k] = q.get(k); return cfg; },
+    shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.random() * (i + 1) | 0; [a[i], a[j]] = [a[j], a[i]]; } return a; },
+  };
+  document.documentElement.lang = lang === 'hi' ? 'hi' : 'en';
+  g.K = K;
+})(window);
+</script>
+<script>
+(async function () {
+const { t, $, $$, el, esc } = K;
+K.header(['Chintu\'s Mango Mission', 'चिंटू का आम मिशन', 'Chintu ka Mango Mission'], '🤖');
+const cfg = await K.lessonConfig(); const L = (en, hi, hg) => [en, hi, hg];
+// map legend: . floor, # wall, S start (facing given), M mango (goal), * star (collect), r/b/y paint targets
+const LEVELS = [
+  { map: ['S...M'], dir: 1, blocks: ['fwd'], max: 6, topic: 'sequence', story: L('Chintu the robot wants the mango 🥭. Give him steps in order: tap ⬆ Forward 4 times, then Run.', 'चिंटू रोबोट को आम 🥭 चाहिए। उसे क्रम से कदम दो: ⬆ आगे 4 बार दबाओ, फिर चलाओ।', 'Chintu robot ko mango 🥭 chahiye. Use order mein steps do: ⬆ Forward 4 baar tap karo, phir Run.') },
+  { map: ['S..#', '.#..', '..*M'], dir: 2, blocks: ['fwd', 'left', 'right'], max: 8, topic: 'sequence', story: L('A wall is in the way! Go down, then turn and go across. Pick up the ⭐ on the way. Order matters!', 'रास्ते में दीवार है! नीचे जाओ, फिर मुड़कर आगे जाओ। रास्ते में ⭐ उठाओ। क्रम ज़रूरी है!', 'Raaste mein deewar hai! Neeche jao, phir mud kar aage jao. Raaste mein ⭐ uthao. Order zaroori hai!') },
+  { map: ['Srbrb', '....M'], dir: 1, blocks: ['fwd', 'right', 'left', 'paint'], max: 14, topic: 'pattern', paint: ['r', 'b'], story: L('Dadi wants a pattern on the path: red, blue, red, blue. Move forward and paint each dotted tile, then reach the mango.', 'दादी को रास्ते पर पैटर्न चाहिए: लाल, नीला, लाल, नीला। आगे बढ़कर हर बिंदु वाली टाइल रँगो, फिर आम तक पहुँचो।', 'Dadi ko raaste par pattern chahiye: laal, neela, laal, neela. Aage badh kar har dotted tile paint karo, phir mango tak pahuncho.') },
+  { map: ['S.....M'], dir: 1, blocks: ['fwd', 'repeat'], max: 2, topic: 'loop', story: L('Now only 2 blocks allowed! Use 🔁 Repeat: put ⬆ inside it and set the number to 6.', 'अब सिर्फ़ 2 ब्लॉक! 🔁 दोहराओ इस्तेमाल करो: उसके अंदर ⬆ रखो और संख्या 6 करो।', 'Ab sirf 2 blocks allowed! 🔁 Repeat use karo: uske andar ⬆ rakho aur number 6 karo.') },
+  { map: ['....M', '...*.', '..*..', '.*...', 'S....'], dir: 1, blocks: ['fwd', 'left', 'right', 'repeat'], max: 5, topic: 'loop', story: L('Climb the stairs! Spot the pattern: forward, left, forward, right… Repeat it to collect every ⭐.', 'सीढ़ियाँ चढ़ो! पैटर्न देखो: आगे, बाएँ, आगे, दाएँ… इसे दोहराकर हर ⭐ उठाओ।', 'Seedhiyan chadho! Pattern dekho: forward, left, forward, right… Ise repeat karke har ⭐ uthao.') },
+  { map: ['S..*', '...*', '*..*', '***M'], dir: 1, blocks: ['fwd', 'right', 'left', 'repeat'], max: 5, topic: 'loop', allStars: false, story: L('Go around the garden edge: 3 forward, turn right — and again. Loops make long jobs short!', 'बगीचे के किनारे घूमो: 3 आगे, दाएँ मुड़ो — फिर से। लूप लंबे काम छोटे करते हैं!', 'Bageeche ke kinaare ghoomo: 3 forward, right mudo — phir se. Loops lambe kaam chhote karte hain!') },
+  { map: ['S...#', '###.#', '#M#.#', '#...#', '#####'], dir: 1, blocks: ['ifw', 'repeat', 'fwd', 'left', 'right'], max: 2, topic: 'ifthen', story: L('A twisty path! Use 🧱 IF wall ahead → turn right, ELSE → forward, inside a 🔁 Repeat 15. Chintu decides by himself at every step.', 'घुमावदार रास्ता! 🔁 दोहराओ 15 के अंदर 🧱 अगर आगे दीवार → दाएँ मुड़ो, वरना → आगे लगाओ। चिंटू हर कदम पर ख़ुद फ़ैसला करेगा।', 'Ghumaavdaar raasta! 🔁 Repeat 15 ke andar 🧱 IF aage deewar → right mudo, ELSE → forward lagao. Chintu har step par khud decide karega.') },
+  { map: ['S.#..', '..#.M', '.....'], dir: 2, blocks: ['ifw', 'repeat', 'fwd', 'left', 'right'], max: 8, topic: 'loop', story: L('Plan the whole trip: down, along the bottom, then up to the mango. Use loops to do it in 8 blocks or fewer.', 'पूरी यात्रा की योजना बनाओ: नीचे, फिर नीचे वाली पंक्ति में आगे, फिर ऊपर आम तक। लूप से 8 या कम ब्लॉक में करो।', 'Poori trip plan karo: neeche, phir neeche wali line mein aage, phir upar mango tak. Loops se 8 ya kam blocks mein karo.') },
+  { map: ['S..', '#*#', '#.M'], dir: 1, blocks: ['fwd', 'left', 'right'], max: 6, topic: 'debug', preset: [['fwd'], ['left'], ['fwd'], ['fwd'], ['left'], ['fwd']], story: L('🐞 Bug hunt! This program is broken. Run it, watch where Chintu goes wrong, then fix it. Finding and fixing mistakes is called debugging.', '🐞 बग खोजो! यह प्रोग्राम टूटा है। चलाओ, देखो चिंटू कहाँ गलत जाता है, फिर ठीक करो। गलती ढूँढकर ठीक करना डीबगिंग कहलाता है।', '🐞 Bug hunt! Yeh program toota hai. Run karo, dekho Chintu kahan galat jaata hai, phir theek karo. Galti dhoondh kar theek karna debugging kehlata hai.') },
+  { map: ['S*.*.', '....*', '*.*..', '....M'], dir: 1, blocks: ['fwd', 'left', 'right', 'repeat'], max: 12, topic: 'variable', needStars: 3, story: L('Score game! The variable stars counts every ⭐ Chintu picks up (stars = stars + 1). Get stars = 3 or more, then reach the mango.', 'स्कोर गेम! वेरिएबल stars हर उठाए ⭐ को गिनता है (stars = stars + 1)। stars = 3 या ज़्यादा करो, फिर आम तक पहुँचो।', 'Score game! Variable stars har uthaye ⭐ ko ginta hai (stars = stars + 1). stars = 3 ya zyada karo, phir mango tak pahuncho.') },
+];
+const BLK = { fwd: { c: 'fwd', l: L('⬆ Forward', '⬆ आगे', '⬆ Aage') }, left: { c: 'left', l: L('↶ Turn left', '↶ बाएँ मुड़ो', '↶ Left mudo') }, right: { c: 'right', l: L('↷ Turn right', '↷ दाएँ मुड़ो', '↷ Right mudo') }, paint: { c: 'paint', l: L('🎨 Paint', '🎨 रँगो', '🎨 Paint') }, repeat: { c: 'repeat', l: L('🔁 Repeat', '🔁 दोहराओ', '🔁 Repeat') }, ifw: { c: 'ifw', l: L('🧱 IF wall ahead → ↷ ELSE ⬆', '🧱 अगर आगे दीवार → ↷ वरना ⬆', '🧱 IF aage deewar → ↷ ELSE ⬆') } };
+const COL = { r: '#ef4444', b: '#3b82f6', y: '#eab308' };
+const DIRS = [[0, -1], [1, 0], [0, 1], [-1, 0]]; // up, right, down, left
+const saved = (() => { try { return JSON.parse(localStorage.getItem('techlab.loopcoder') || '[]'); } catch (e) { return []; } })();
+let li = Math.max(0, Math.min(LEVELS.length - 1, (+cfg.level || 1) - 1));
+let prog = [], openRepeat = null, paintColor = 'r', running = false, st, showCode = false;
+function cnt(p) { return p.reduce((a, n) => a + 1 + (n[0] === 'repeat' ? cnt(n[2]) : 0), 0); }
+function drawLevels() { const h = $('#lvls'); h.innerHTML = ''; LEVELS.forEach((lv, i) => { const b = el('button', { 'aria-pressed': i === li, class: saved.includes(i) ? 'done' : '', title: lv.topic }, i + 1); b.onclick = () => { if (running) return; li = i; load(); }; h.append(b); }); }
+function load() {
+  const lv = LEVELS[li]; drawLevels(); prog = lv.preset ? JSON.parse(JSON.stringify(lv.preset)) : []; openRepeat = null;
+  $('#story').innerHTML = `<span class="who">👵</span><div><b>${t(['Level', 'स्तर', 'Level'])} ${li + 1} · ${t({ sequence: L('Sequence', 'क्रम', 'Sequence'), pattern: L('Pattern', 'पैटर्न', 'Pattern'), loop: L('Loop', 'लूप', 'Loop'), ifthen: L('If-then', 'अगर-तो', 'If-then'), debug: L('Debugging', 'डीबगिंग', 'Debugging'), variable: L('Variable', 'वेरिएबल', 'Variable') }[lv.topic])}</b><br>${esc(t(lv.story))}</div>`;
+  drawPal(); reset(); drawProg();
+}
+function reset() {
+  const lv = LEVELS[li]; const H = lv.map.length, W = lv.map[0].length; const bw = $('#bw').getBoundingClientRect(); const c = Math.floor(Math.min((bw.width - 30) / W, (bw.height * 1.25 - 20) / H, 62)) - 3;
+  const B = $('#board'); B.style.setProperty('--c', c + 'px'); B.style.gridTemplateColumns = `repeat(${W}, ${c}px)`; B.innerHTML = '';
+  st = { x: 0, y: 0, d: lv.dir, stars: 0, painted: {}, items: {}, done: false, crashed: false };
+  lv.map.forEach((row, y) => [...row].forEach((ch, x) => { const cell = el('div', { class: 'cell' + ((x + y) % 2 ? ' alt' : '') + (ch === '#' ? ' wall' : ''), 'data-x': x, 'data-y': y });
+    if (ch === 'S') { st.x = x; st.y = y; }
+    if (ch === 'M' || ch === '*') { const it = el('div', { class: 'itm' }, ch === 'M' ? '🥭' : '⭐'); cell.append(it); st.items[x + ',' + y] = ch; }
+    if (COL[ch]) { cell.append(el('div', { class: 'ghost', style: `color:${COL[ch]}` })); }
+    B.append(cell); }));
+  const bot = el('div', { class: 'bot', id: 'bot', 'data-ov-sprite': '' }, '<div class="shadow"></div><div class="dir"><i></i></div><div class="body">🤖</div>'); B.append(bot); place(true); hud();
+}
+function place(instant) { const bot = $('#bot'); const c = parseFloat($('#board').style.getPropertyValue('--c')) + 3; if (instant) bot.style.transition = 'none'; bot.style.transform = `translate(${st.x * c}px, ${st.y * c}px)`; $('.dir', bot).style.transform = `rotate(${st.d * 90}deg)`; if (instant) { void bot.offsetWidth; bot.style.transition = ''; } }
+function hud() { $('#hudS').textContent = `⭐ ${st.stars}`; $('#hudV').textContent = `stars = ${st.stars}`; $('#limit').textContent = `${t(['Blocks used', 'इस्तेमाल ब्लॉक', 'Blocks used'])}: ${cnt(prog)} / ${LEVELS[li].max}`; $('#limit').style.color = cnt(prog) > LEVELS[li].max ? '#b4321f' : ''; }
+function drawPal() {
+  const p = $('#pal'); p.innerHTML = ''; const lv = LEVELS[li];
+  lv.blocks.forEach((k) => { if (k === 'paint') { (lv.paint || ['r']).forEach((col) => { const b = el('button', { class: 'blk paint' }, `🎨 <span class="sw" style="background:${COL[col]}"></span>`); b.onclick = () => add(['paint', col]); p.append(b); }); return; }
+    const b = el('button', { class: 'blk ' + BLK[k].c }, esc(t(BLK[k].l))); b.onclick = () => add(k === 'repeat' ? ['repeat', 3, []] : [k]); p.append(b); });
+  if (lv.blocks.includes('repeat')) { const e = el('button', { class: 'blk endr', id: 'endr' }, '⤴ ' + t(['End repeat', 'दोहराना ख़त्म', 'Repeat khatam'])); e.onclick = () => { openRepeat = null; drawProg(); }; p.append(e); }
+}
+function add(n) { if (running) return; K.sfx('tap'); const target = openRepeat ? openRepeat[2] : prog; if (cnt(prog) >= LEVELS[li].max) { K.toast(['Block limit reached! Can a loop make it shorter?', 'ब्लॉक सीमा पूरी! क्या लूप इसे छोटा कर सकता है?', 'Block limit poori! Kya loop ise chhota kar sakta hai?'], 'bad'); return; } if (n[0] === 'repeat' && openRepeat) { K.toast(['Close this repeat first (End repeat).', 'पहले यह दोहराना बंद करो।', 'Pehle yeh repeat band karo (End repeat).']); return; } target.push(n); if (n[0] === 'repeat') openRepeat = n; drawProg(); }
+function label(n) { if (n[0] === 'paint') return `🎨 <span class="sw" style="background:${COL[n[1]]}"></span>`; return esc(t(BLK[n[0]].l)); }
+let flat = []; // for highlighting
+function drawProg() {
+  const P = $('#prog'); P.innerHTML = ''; flat = [];
+  P.append(el('div', { class: 'row' }, `<span class="blk hat">⚡ ${t(['When ▶ Run is tapped', 'जब ▶ चलाओ दबे', 'Jab ▶ Run tap ho'])}</span>`));
+  const row = el('div', { class: 'row' }); P.append(row);
+  const mk = (n, list, i, host) => {
+    if (n[0] === 'repeat') { const wrap = el('div', { style: 'flex-basis:100%' }); const head = el('span', { class: 'blk repeat' }, `🔁 ${t(['Repeat', 'दोहराओ', 'Repeat'])} <span class="step"><button aria-label="less">−</button><b>${n[1]}</b><button aria-label="more">+</button></span> <span class="del">✕</span>`);
+      const [mi, pl] = $$('.step button', head); mi.onclick = (e) => { e.stopPropagation(); n[1] = Math.max(2, n[1] - 1); drawProg(); }; pl.onclick = (e) => { e.stopPropagation(); n[1] = Math.min(20, n[1] + 1); drawProg(); };
+      $('.del', head).onclick = (e) => { e.stopPropagation(); list.splice(i, 1); if (openRepeat === n) openRepeat = null; drawProg(); };
+      head.onclick = () => { openRepeat = n; drawProg(); };
+      const nest = el('div', { class: 'nest' + (openRepeat === n ? ' open' : '') }); n[2].forEach((m, j) => mk(m, n[2], j, nest)); if (!n[2].length) nest.append(el('span', { style: 'font-size:12.5px;color:#0f766e;align-self:center' }, t(['tap blocks to put them inside', 'अंदर रखने के लिए ब्लॉक दबाओ', 'andar rakhne ke liye blocks tap karo'])));
+      wrap.append(head, nest); host.append(wrap); flat.push([n, head]); return; }
+    const b = el('span', { class: 'blk ' + (BLK[n[0]] ? BLK[n[0]].c : 'paint') }, `${label(n)} <span class="del">✕</span>`); b.onclick = () => { if (running) return; list.splice(i, 1); drawProg(); }; host.append(b); flat.push([n, b]);
+  };
+  prog.forEach((n, i) => mk(n, prog, i, row)); if (!prog.length) row.append(el('span', { style: 'color:#94a3b8;font-size:13.5px' }, t(['Tap blocks above to build your program', 'प्रोग्राम बनाने के लिए ऊपर के ब्लॉक दबाओ', 'Program banane ke liye upar ke blocks tap karo'])));
+  hud(); drawCode();
+}
+function drawCode() {
+  const c = $('#code'); c.classList.toggle('show', showCode); if (!showCode) return;
+  const lines = ['<span class="c"># Python version of your blocks</span>', 'stars = <span class="n">0</span>'];
+  const walk = (p, ind) => p.forEach((n) => { const s = '    '.repeat(ind); if (n[0] === 'repeat') { lines.push(`${s}<span class="k">for</span> i <span class="k">in</span> <span class="f">range</span>(<span class="n">${n[1]}</span>):`); if (!n[2].length) lines.push(s + '    <span class="k">pass</span>'); walk(n[2], ind + 1); }
+    else if (n[0] === 'ifw') { lines.push(`${s}<span class="k">if</span> <span class="f">wall_ahead</span>():`, `${s}    <span class="f">turn_right</span>()`, `${s}<span class="k">else</span>:`, `${s}    <span class="f">forward</span>()`); }
+    else lines.push(s + { fwd: '<span class="f">forward</span>()', left: '<span class="f">turn_left</span>()', right: '<span class="f">turn_right</span>()', paint: `<span class="f">paint</span>(<span class="n">"${{ r: 'red', b: 'blue', y: 'yellow' }[n[1]]}"</span>)` }[n[0]]); });
+  walk(prog, 0); lines.push('<span class="c"># every ⭐ picked up runs: stars = stars + 1</span>'); c.innerHTML = lines.join('\n');
+}
+const cell = (x, y) => LEVELS[li].map[y] && LEVELS[li].map[y][x];
+const wallAhead = () => { const [dx, dy] = DIRS[st.d]; const ch = cell(st.x + dx, st.y + dy); return ch === undefined || ch === '#'; };
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+async function exec(n) {
+  if (st.crashed || st.done) return;
+  const hl = flat.find((f) => f[0] === n); hl && hl[1].classList.add('now');
+  if (n[0] === 'repeat') { for (let k = 0; k < n[1] && !st.crashed && !st.done; k++) for (const m of n[2]) await exec(m); }
+  else if (n[0] === 'ifw') { if (wallAhead()) await exec(['right']); else await exec(['fwd']); }
+  else if (n[0] === 'left' || n[0] === 'right') { st.d = (st.d + (n[0] === 'left' ? 3 : 1)) % 4; place(); K.sfx('move'); await sleep(320); }
+  else if (n[0] === 'paint') { const c = $(`.cell[data-x="${st.x}"][data-y="${st.y}"]`); c.classList.add('painted'); c.style.background = COL[n[1]]; st.painted[st.x + ',' + st.y] = n[1]; K.sfx('tap'); await sleep(260); }
+  else if (n[0] === 'fwd') { const [dx, dy] = DIRS[st.d]; const nx = st.x + dx, ny = st.y + dy; const ch = cell(nx, ny);
+    if (ch === undefined || ch === '#') { st.crashed = true; const b = $('#bot'); b.classList.add('crash'); K.sfx('bad'); await sleep(520); b.classList.remove('crash'); }
+    else { st.x = nx; st.y = ny; const b = $('#bot'); b.classList.remove('hop'); void b.offsetWidth; b.classList.add('hop'); place(); K.sfx('move'); await sleep(360); const key = nx + ',' + ny; const it = st.items[key];
+      if (it === '*') { delete st.items[key]; st.stars++; K.star(); K.sfx('good'); $(`.cell[data-x="${nx}"][data-y="${ny}"] .itm`).classList.add('got'); hud(); }
+      if (it === 'M') { st.reachedMango = true; st.done = true; } } }
+  hl && hl[1].classList.remove('now');
+}
+async function run() {
+  if (running) return; if (!prog.length) { K.toast(['Add some blocks first!', 'पहले कुछ ब्लॉक जोड़ो!', 'Pehle kuch blocks jodo!']); return; }
+  if (cnt(prog) > LEVELS[li].max) { K.toast(['Too many blocks for this level.', 'इस स्तर के लिए बहुत ज़्यादा ब्लॉक।', 'Is level ke liye bahut zyada blocks.'], 'bad'); return; }
+  running = true; reset(); $('#run').disabled = true; let steps = 0;
+  for (const n of prog) { await exec(n); if (st.crashed || st.reachedMango) break; if (++steps > 400) break; }
+  running = false; $('#run').disabled = false; judge();
+}
+function judge() {
+  const lv = LEVELS[li]; const paintOK = lv.map.every((row, y) => [...row].every((ch, x) => !COL[ch] || st.painted[x + ',' + y] === ch));
+  const starsLeft = Object.values(st.items).filter((v) => v === '*').length; const needStars = lv.needStars != null ? st.stars >= lv.needStars : (lv.allStars === false ? true : starsLeft === 0);
+  if (st.crashed) return K.toast(['Bonk! Chintu hit a wall or the edge. Find the step that went wrong (debug!) and run again.', 'धड़ाम! चिंटू दीवार या किनारे से टकराया। गलत कदम ढूँढो (डीबग!) और फिर चलाओ।', 'Dhadaam! Chintu deewar ya kinaare se takraya. Galat step dhoondo (debug!) aur phir run karo.'], 'bad', 3200);
+  if (!st.reachedMango) return K.toast(['Chintu stopped before the mango. Add more steps!', 'चिंटू आम से पहले रुक गया। और कदम जोड़ो!', 'Chintu mango se pehle ruk gaya. Aur steps jodo!'], 'bad', 2600);
+  if (!paintOK) return K.toast(['The pattern is not right yet: red, blue, red, blue.', 'पैटर्न अभी सही नहीं: लाल, नीला, लाल, नीला।', 'Pattern abhi sahi nahin: laal, neela, laal, neela.'], 'bad', 2600);
+  if (!needStars) return K.toast(lv.needStars ? [`stars = ${st.stars}. You need ${lv.needStars}!`, `stars = ${st.stars}। ${lv.needStars} चाहिए!`, `stars = ${st.stars}. ${lv.needStars} chahiye!`] : ['You missed a ⭐. Collect them all!', 'एक ⭐ छूट गया। सब उठाओ!', 'Ek ⭐ chhoot gaya. Sab uthao!'], 'bad', 2600);
+  $(`.cell .itm`) && $$('.cell .itm').forEach((i) => i.textContent === '🥭' && i.classList.add('got'));
+  if (!saved.includes(li)) { saved.push(li); try { localStorage.setItem('techlab.loopcoder', JSON.stringify(saved)); } catch (e) {} }
+  K.star(2); K.done('loop-coder', 'level-' + (li + 1), { level: li + 1, solved: true, blocks: cnt(prog), stars: st.stars });
+  const msg = { sequence: L('Steps in the right order = a sequence. That is an algorithm!', 'सही क्रम में कदम = क्रम (sequence)। यही एल्गोरिदम है!', 'Sahi order mein steps = sequence. Yahi algorithm hai!'), pattern: L('You followed a repeating pattern.', 'तुमने दोहराने वाला पैटर्न अपनाया।', 'Tumne repeat hone wala pattern follow kiya.'), loop: L('A loop repeats blocks so programs stay short.', 'लूप ब्लॉक दोहराता है ताकि प्रोग्राम छोटा रहे।', 'Loop blocks repeat karta hai taaki program chhota rahe.'), ifthen: L('IF-THEN lets a robot decide by itself using a sensor.', 'अगर-तो से रोबोट सेंसर से ख़ुद फ़ैसला करता है।', 'IF-THEN se robot sensor se khud decide karta hai.'), debug: L('You found and fixed the bug. Real programmers debug every day!', 'तुमने बग ढूँढकर ठीक किया। असली प्रोग्रामर रोज़ डीबग करते हैं!', 'Tumne bug dhoondh kar theek kiya. Asli programmers roz debug karte hain!'), variable: L('A variable is a labelled box that remembers a value, like stars.', 'वेरिएबल एक नाम वाला डिब्बा है जो मान याद रखता है, जैसे stars।', 'Variable ek naam wala dabba hai jo value yaad rakhta hai, jaise stars.') }[lv.topic];
+  K.win(['Mango mission complete!', 'आम मिशन पूरा!', 'Mango mission complete!'], msg, li < LEVELS.length - 1 ? ['Next level ➜', 'अगला स्तर ➜', 'Next level ➜'] : ['Play again', 'फिर खेलो', 'Phir khelo'], '🥭', () => { if (li < LEVELS.length - 1) li++; load(); });
+}
+$('#run').onclick = run; $('#reset').onclick = () => !running && reset(); $('#clear').onclick = () => { if (running) return; prog = []; openRepeat = null; drawProg(); };
+$('#codeB').onclick = () => { showCode = !showCode; drawCode(); };
+K.onLang(() => { $('#run').textContent = '▶ ' + t(['Run', 'चलाओ', 'Run']); load(); });
+$('#run').textContent = '▶ ' + t(['Run', 'चलाओ', 'Run']);
+if (cfg.code || K.q.get('code')) showCode = true;
+addEventListener('resize', () => !running && reset());
+load();
+})();
+</script></body></html>

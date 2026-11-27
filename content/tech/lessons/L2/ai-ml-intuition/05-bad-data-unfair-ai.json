@@ -1,0 +1,358 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.ai-ml-intuition.05",
+ "level": 2,
+ "classes": [
+  7,
+  8
+ ],
+ "unit": "ai-ml-intuition",
+ "title": {
+  "en": "Bad data, unfair AI",
+  "hi": "बुरा डेटा, अन्यायी AI",
+  "hinglish": "Bura data, unfair AI"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [
+  "L2.ai-ml-intuition.04"
+ ],
+ "topics": [
+  "ai.data-bias",
+  "ai.ethics"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain how biased training data makes an AI unfair",
+   "hi": "समझा सकते हो कि पक्षपाती प्रशिक्षण डेटा AI को अन्यायी कैसे बनाता है",
+   "hinglish": "Samjha sakte ho biased training data AI ko unfair kaise banata hai"
+  },
+  {
+   "en": "Spot missing groups in a dataset",
+   "hi": "डेटासेट में छूटे समूह पहचान सकते हो",
+   "hinglish": "Dataset mein chhoote groups pehchaan sakte ho"
+  },
+  {
+   "en": "Suggest fixes: more varied data, testing for every group, human checks",
+   "hi": "सुधार सुझा सकते हो: विविध डेटा, हर समूह के लिए जाँच, मानवीय जाँच",
+   "hinglish": "Fixes suggest kar sakte ho: varied data, har group ke liye test, insaani check"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Bias",
+   "hinglish": "Ek taraf jhukaav",
+   "en": "A systematic unfairness that favours some groups over others",
+   "hi": "व्यवस्थित अन्याय जो कुछ समूहों को दूसरों पर तरजीह देता है"
+  },
+  {
+   "term": "Representative data",
+   "hinglish": "Sabko shaamil karne wala data",
+   "en": "Data that includes all the kinds of cases the AI will meet",
+   "hi": "ऐसा डेटा जिसमें वे सभी प्रकार के मामले हों जिनसे AI मिलेगा"
+  },
+  {
+   "term": "Fairness test",
+   "hinglish": "Har group pe check",
+   "en": "Checking accuracy separately for each group of people or cases",
+   "hi": "हर समूह के लोगों या मामलों के लिए अलग से सटीकता जाँचना"
+  },
+  {
+   "term": "Human in the loop",
+   "hinglish": "Insaan ki final jaanch",
+   "en": "A person reviews important AI decisions before they count",
+   "hi": "महत्वपूर्ण AI निर्णयों के लागू होने से पहले एक व्यक्ति उनकी समीक्षा करता है"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "An AI only knows what its data shows it. Our mango data came only from a market selling yellow Alphonso mangoes.",
+    "hi": "AI केवल वही जानता है जो डेटा उसे दिखाता है। हमारा आम का डेटा केवल पीले अल्फ़ांसो बेचने वाले बाज़ार से आया था।",
+    "hinglish": "AI sirf wahi jaanta hai jo data use dikhata hai. Hamara aam ka data sirf peele Alphonso bechne wale market se aaya tha."
+   },
+   "visual": "compare:🟡 Trained on: yellow Alphonso only|🟢 Meets: Langra, ripe but green → wrong!",
+   "narration": {
+    "en": "Missing examples become blind spots.",
+    "hi": "छूटे उदाहरण अंधे धब्बे बन जाते हैं।",
+    "hinglish": "Chhoote examples blind spots ban jaate hain."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Test it in the lab: overall it looks okay, but it fails every Langra mango. Check every group separately.",
+    "hi": "लैब में जाँचो: कुल मिलाकर ठीक लगता है, पर हर लंगड़ा आम पर विफल। हर समूह अलग से जाँचो।",
+    "hinglish": "Lab mein test karo: overall theek lagta hai, par har Langra aam pe fail. Har group alag se check karo."
+   },
+   "visual": "lab:ai-lab#learn",
+   "narration": {
+    "en": "67% overall can hide 0% for one group.",
+    "hi": "कुल 67% एक समूह के 0% को छिपा सकता है।",
+    "hinglish": "67% overall ek group ke 0% ko chhupa sakta hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "The same thing happens with people: face, voice or hiring AIs trained mostly on one group can treat others unfairly.",
+    "hi": "लोगों के साथ भी यही होता है: ज़्यादातर एक समूह पर प्रशिक्षित चेहरा, आवाज़ या भर्ती AI दूसरों से अन्याय कर सकते हैं।",
+    "hinglish": "Logon ke saath bhi yahi hota hai: zyaadatar ek group pe trained face, voice ya hiring AIs doosron ke saath unfair ho sakte hain."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "Fixing it: collect fairer data, test per group, keep a human in the loop.",
+    "hi": "सुधार: निष्पक्ष डेटा जमा करो, हर समूह जाँचो, इंसान को शामिल रखो।",
+    "hinglish": "Theek karna: fair data jama karo, har group test karo, insaan ko loop mein rakho."
+   },
+   "code": "accuracy by group:\n  Alphonso   2/2 = 100 %\n  raw        2/2 = 100 %\n  Langra     0/2 =   0 %   ← unfair!"
+  }
+ ],
+ "play": {
+  "lab": "ai-lab",
+  "config": {
+   "tab": "learn"
+  },
+  "goal": {
+   "en": "Find the group the AI fails on, then fix the data so it is right for every kind of mango.",
+   "hi": "वह समूह ढूँढो जिस पर AI विफल होता है, फिर डेटा ठीक करो ताकि हर प्रकार के आम के लिए सही हो।",
+   "hinglish": "Woh group dhoondo jis pe AI fail hota hai, phir data theek karo taaki har tarah ke aam ke liye sahi ho."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Real cases of AI bias",
+    "hi": "AI पक्षपात के असली मामले",
+    "hinglish": "AI bias ke real cases"
+   },
+   "body": {
+    "en": "Bias usually enters through data, not because a computer “dislikes” anyone. In the 2018 Gender Shades study, Joy Buolamwini and Timnit Gebru tested commercial face-analysis systems and found error rates under 1% for lighter-skinned men but up to about 35% for darker-skinned women, because the training photos had far fewer darker faces. Amazon dropped an experimental hiring tool after it learned to downgrade CVs that mentioned women’s colleges, because it had learned from ten years of mostly male hires. Speech recognisers trained mostly on one accent make more mistakes on others — a real concern in India, with 22 scheduled languages and hundreds of dialects; that is one reason the government’s Bhashini mission collects speech and text in many Indian languages. Fixes include: gathering representative data, measuring accuracy separately for each group, letting people appeal decisions, and keeping a human in the loop for important choices like loans, jobs, health and policing.",
+    "hi": "पक्षपात आमतौर पर डेटा से आता है, इसलिए नहीं कि कंप्यूटर किसी को “नापसंद” करता है। 2018 के जेंडर शेड्स अध्ययन में जॉय बुओलामविनी और टिमनिट गेब्रू ने व्यावसायिक चेहरा-विश्लेषण प्रणालियाँ जाँचीं और पाया कि गोरे पुरुषों के लिए त्रुटि दर 1% से कम पर साँवली महिलाओं के लिए लगभग 35% तक थी, क्योंकि प्रशिक्षण फ़ोटो में साँवले चेहरे बहुत कम थे। Amazon ने एक प्रायोगिक भर्ती उपकरण बंद किया जब उसने महिला कॉलेजों का उल्लेख करने वाले CV को कम आँकना सीख लिया, क्योंकि उसने दस साल की ज़्यादातर पुरुष भर्तियों से सीखा था। ज़्यादातर एक लहजे पर प्रशिक्षित वाक् पहचान प्रणालियाँ दूसरों पर ज़्यादा ग़लतियाँ करती हैं — भारत में यह असली चिंता है, जहाँ 22 अनुसूचित भाषाएँ और सैकड़ों बोलियाँ हैं; इसी कारण सरकार का भाषिणी मिशन कई भारतीय भाषाओं में बोली और पाठ इकट्ठा करता है। सुधारों में शामिल हैं: प्रतिनिधि डेटा जुटाना, हर समूह के लिए अलग से सटीकता मापना, लोगों को निर्णयों पर अपील करने देना, और ऋण, नौकरी, स्वास्थ्य और पुलिस जैसे महत्वपूर्ण फ़ैसलों में इंसान को शामिल रखना।",
+    "hinglish": "Bias aamtaur pe data se aata hai, isliye nahi ki computer kisi ko “naapasand” karta hai. 2018 ki Gender Shades study mein Joy Buolamwini aur Timnit Gebru ne commercial face-analysis systems test kiye aur paaya ki gore purushon ke liye error rate 1% se kam par saanvli mahilaon ke liye lagbhag 35% tak tha, kyunki training photos mein saanvle chehre bahut kam the. Amazon ne ek experimental hiring tool band kiya jab usne women’s colleges mention karne wale CVs ko kam aankna seekh liya, kyunki usne das saal ki zyaadatar male hiring se seekha tha. Zyaadatar ek accent pe trained speech recognisers doosron pe zyada galtiyaan karte hain — India mein yeh asli chinta hai, jahan 22 scheduled languages aur saikdon boliyaan hain; isi wajah se sarkar ka Bhashini mission kai Indian languages mein speech aur text collect karta hai. Fixes mein shaamil hain: representative data jutana, har group ke liye alag se accuracy naapna, logon ko decisions pe appeal karne dena, aur loan, job, health aur policing jaise important faislon mein insaan ko loop mein rakhna."
+   },
+   "analogy": {
+    "en": "Biased data = learning “Indian food” only from Mumbai dishes: then the AI will say dosa and litti-chokha are not Indian.",
+    "hi": "पक्षपाती डेटा = केवल मुंबई के खाने से “भारतीय खाना” सीखना: फिर AI कहेगा डोसा और लिट्टी-चोखा भारतीय नहीं हैं।",
+    "hinglish": "Biased data = sirf Mumbai ke khaane se “Indian food” seekhna: phir AI kahega dosa aur litti-chokha Indian nahi hain."
+   },
+   "realExample": {
+    "en": "India’s Bhashini platform builds AI for translation and speech in many Indian languages, so voice services work for people who do not speak English or Hindi.",
+    "hi": "भारत का भाषिणी प्लेटफ़ॉर्म कई भारतीय भाषाओं में अनुवाद और वाक् के लिए AI बनाता है, ताकि वॉइस सेवाएँ उन लोगों के लिए भी काम करें जो अंग्रेज़ी या हिंदी नहीं बोलते।",
+    "hinglish": "India ka Bhashini platform kai Indian languages mein translation aur speech ke liye AI banata hai, taaki voice services un logon ke liye bhi kaam karein jo English ya Hindi nahi bolte."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Look at the photos in a textbook chapter or an ad. Count who appears (girls, boys, ages, regions). If an AI learned only from these, who would it miss?",
+   "hi": "किसी पाठ्यपुस्तक अध्याय या विज्ञापन की फ़ोटो देखो। गिनो कौन दिखता है (लड़कियाँ, लड़के, उम्र, क्षेत्र)। अगर AI केवल इनसे सीखे, तो कौन छूट जाएगा?",
+   "hinglish": "Kisi textbook chapter ya ad ki photos dekho. Gino kaun dikhta hai (ladkiyaan, ladke, umar, region). Agar AI sirf inse seekhe, to kaun chhoot jaayega?"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Where does AI bias most often come from?",
+     "hi": "AI पक्षपात सबसे अधिक कहाँ से आता है?",
+     "hinglish": "AI bias sabse zyada kahan se aata hai?"
+    },
+    "options": [
+     {
+      "en": "Unrepresentative training data",
+      "hi": "अप्रतिनिधि प्रशिक्षण डेटा",
+      "hinglish": "Unrepresentative training data"
+     },
+     {
+      "en": "The computer’s feelings",
+      "hi": "कंप्यूटर की भावनाएँ",
+      "hinglish": "Computer ki feelings"
+     },
+     {
+      "en": "A slow internet connection",
+      "hi": "धीमा इंटरनेट",
+      "hinglish": "Slow internet"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Training data that leaves out or under-represents some groups.",
+     "hi": "प्रशिक्षण डेटा जो कुछ समूहों को छोड़ देता या कम दिखाता है।",
+     "hinglish": "Training data jo kuch groups ko chhod deta ya kam dikhata hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "A model is 90% accurate overall. Why can it still be unfair?",
+     "hi": "मॉडल कुल 90% सटीक है। फिर भी वह अन्यायी क्यों हो सकता है?",
+     "hinglish": "Model overall 90% accurate hai. Phir bhi unfair kyun ho sakta hai?"
+    },
+    "options": [
+     {
+      "en": "90% is always unfair",
+      "hi": "90% हमेशा अन्यायी है",
+      "hinglish": "90% hamesha unfair hai"
+     },
+     {
+      "en": "It cannot be unfair if it is accurate",
+      "hi": "सटीक है तो अन्यायी नहीं हो सकता",
+      "hinglish": "Accurate hai to unfair nahi ho sakta"
+     },
+     {
+      "en": "Its errors may all hit one group",
+      "hi": "उसकी सारी त्रुटियाँ एक समूह पर पड़ सकती हैं",
+      "hinglish": "Uski saari errors ek group pe pad sakti hain"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "The 10% errors may all fall on one small group. Test each group separately.",
+     "hi": "10% त्रुटियाँ सब एक छोटे समूह पर पड़ सकती हैं। हर समूह अलग से जाँचो।",
+     "hinglish": "10% errors sab ek chhote group pe pad sakti hain. Har group alag se test karo."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "multi",
+    "prompt": {
+     "en": "Which steps reduce AI bias? Choose all.",
+     "hi": "कौन-से कदम AI पक्षपात घटाते हैं? सभी चुनो।",
+     "hinglish": "Kaunse steps AI bias ghataate hain? Saare chuno."
+    },
+    "options": [
+     {
+      "en": "Collect data from every group",
+      "hi": "हर समूह से डेटा जमा करो",
+      "hinglish": "Har group se data jama karo"
+     },
+     {
+      "en": "Measure accuracy per group",
+      "hi": "हर समूह की सटीकता मापो",
+      "hinglish": "Har group ki accuracy naapo"
+     },
+     {
+      "en": "Hide the test results",
+      "hi": "परीक्षण परिणाम छिपाओ",
+      "hinglish": "Test results chhupao"
+     },
+     {
+      "en": "Keep a human in the loop",
+      "hi": "इंसान को शामिल रखो",
+      "hinglish": "Insaan ko loop mein rakho"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     3
+    ],
+    "explain": {
+     "en": "Varied data, per-group testing and human review all help. Hiding the results does not.",
+     "hi": "विविध डेटा, हर समूह की जाँच और मानवीय समीक्षा मदद करते हैं। परिणाम छिपाना नहीं।",
+     "hinglish": "Varied data, har group ki testing aur human review madad karte hain. Results chhupana nahi."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "In the Gender Shades study (2018), face systems made the most errors on…",
+     "hi": "जेंडर शेड्स अध्ययन (2018) में चेहरा प्रणालियों ने सबसे ज़्यादा ग़लतियाँ किन पर कीं…",
+     "hinglish": "Gender Shades study (2018) mein face systems ne sabse zyada galtiyaan kin pe ki…"
+    },
+    "options": [
+     {
+      "en": "lighter-skinned men",
+      "hi": "गोरे पुरुष",
+      "hinglish": "gore purush"
+     },
+     {
+      "en": "darker-skinned women",
+      "hi": "साँवली महिलाएँ",
+      "hinglish": "saanvli mahilaayein"
+     },
+     {
+      "en": "everyone equally",
+      "hi": "सब पर बराबर",
+      "hinglish": "sab pe barabar"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Darker-skinned women, who were under-represented in the training photos.",
+     "hi": "साँवली महिलाएँ, जो प्रशिक्षण फ़ोटो में कम थीं।",
+     "hinglish": "Saanvli mahilaayein, jo training photos mein kam thi."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "short",
+    "prompt": {
+     "en": "What name do we give a person who reviews important AI decisions? Human in the ___",
+     "hi": "महत्वपूर्ण AI निर्णयों की समीक्षा करने वाले व्यक्ति को क्या कहते हैं? Human in the ___",
+     "hinglish": "Important AI decisions review karne wale insaan ko kya kehte hain? Human in the ___"
+    },
+    "answer": [
+     "loop",
+     "Loop"
+    ],
+    "explain": {
+     "en": "Human in the loop: a person checks before the decision counts.",
+     "hi": "ह्यूमन इन द लूप: निर्णय लागू होने से पहले एक व्यक्ति जाँचता है।",
+     "hinglish": "Human in the loop: decision count hone se pehle ek insaan check karta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the lab mission.",
+     "hi": "लैब मिशन पूरा करो।",
+     "hinglish": "Lab mission poora karo."
+    },
+    "answer": {
+     "lab": "ai-lab",
+     "event": "mission:complete",
+     "tab": "learn"
+    },
+    "explain": {
+     "en": "Add ripe Langra examples (soft but green) so every group is right.",
+     "hi": "पके लंगड़ा उदाहरण (नरम पर हरे) जोड़ो ताकि हर समूह सही हो।",
+     "hinglish": "Pakke Langra examples (soft par hare) jodo taaki har group sahi ho."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Buolamwini & Gebru — Gender Shades (Proceedings of Machine Learning Research, 2018)",
+   "url": "https://proceedings.mlr.press/v81/buolamwini18a.html",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Bhashini — National Language Translation Mission (MeitY)",
+   "url": "https://bhashini.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NITI Aayog — Responsible AI for All (2021)",
+   "url": "https://www.niti.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

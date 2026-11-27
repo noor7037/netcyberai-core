@@ -5,6 +5,7 @@ import type { Viewport } from 'next';
 import { headers } from 'next/headers';
 import { shellNeedsEdgeRoom } from '@/lib/family/flags';
 import './family.css';
+import './tech-lab.css';
 
 export const dynamic = 'force-dynamic';
 

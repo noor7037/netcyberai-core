@@ -1,0 +1,361 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.databases-sql.03",
+ "level": 3,
+ "classes": [
+  10,
+  11,
+  12
+ ],
+ "unit": "databases-sql",
+ "title": {
+  "en": "JOIN and GROUP BY",
+  "hi": "JOIN और GROUP BY",
+  "hinglish": "JOIN aur GROUP BY"
+ },
+ "minutes": 16,
+ "xp": 70,
+ "prereq": [
+  "L3.databases-sql.02"
+ ],
+ "outcomes": [
+  {
+   "en": "Combine tables with INNER JOIN and LEFT JOIN on a key",
+   "hi": "कुंजी पर INNER JOIN और LEFT JOIN से तालिकाएँ जोड़ो",
+   "hinglish": "Key par INNER JOIN aur LEFT JOIN se tables jodo"
+  },
+  {
+   "en": "Summarise groups with COUNT, AVG, SUM, MIN, MAX and GROUP BY",
+   "hi": "COUNT, AVG, SUM, MIN, MAX और GROUP BY से समूहों का सार निकालो",
+   "hinglish": "COUNT, AVG, SUM, MIN, MAX aur GROUP BY se groups ka saar nikalo"
+  },
+  {
+   "en": "Filter groups with HAVING and tell it apart from WHERE",
+   "hi": "HAVING से समूह छाँटो और उसे WHERE से अलग पहचानो",
+   "hinglish": "HAVING se groups chhaanto aur use WHERE se alag pehchaano"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "JOIN",
+   "hinglish": "Do tables ko key se jodna",
+   "en": "Combines rows of two tables where a condition (usually keys) matches",
+   "hi": "दो तालिकाओं की पंक्तियाँ जोड़ता है जहाँ शर्त (आम तौर पर कुंजियाँ) मिलती है"
+  },
+  {
+   "term": "LEFT JOIN",
+   "hinglish": "Left ki saari rows, match ho ya na ho",
+   "en": "Keeps every row of the left table; missing matches become NULL",
+   "hi": "बाईं तालिका की हर पंक्ति रखता है; न मिलने पर NULL"
+  },
+  {
+   "term": "Aggregate",
+   "hinglish": "Kai rows se ek number",
+   "en": "Function that turns many rows into one value: COUNT, SUM, AVG, MIN, MAX",
+   "hi": "कई पंक्तियों को एक मान में बदलने वाला फ़ंक्शन: COUNT, SUM, AVG, MIN, MAX"
+  },
+  {
+   "term": "GROUP BY",
+   "hinglish": "Ek jaisi value wali rows ka group",
+   "en": "Puts rows with the same value into groups, one result row per group",
+   "hi": "एक जैसे मान वाली पंक्तियों को समूह में रखता है, हर समूह की एक परिणाम पंक्ति"
+  },
+  {
+   "term": "HAVING",
+   "hinglish": "Groups par filter",
+   "en": "Filters groups after aggregation, e.g. HAVING AVG(marks) > 70",
+   "hi": "एकत्रीकरण के बाद समूह छाँटता है, जैसे HAVING AVG(marks) > 70"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "marks has student_id but no names. JOIN students ON students.id = marks.student_id glues the matching rows side by side.",
+    "hi": "marks में student_id है पर नाम नहीं। JOIN students ON students.id = marks.student_id मिलती पंक्तियों को साथ-साथ चिपका देता है।",
+    "hinglish": "marks mein student_id hai par naam nahi. JOIN students ON students.id = marks.student_id matching rows ko saath-saath chipka deta hai."
+   },
+   "visual": "anim:join-zip",
+   "narration": {
+    "en": "marks has student_id but no names. JOIN students ON students.id = marks.student_id glues the matching rows side by side.",
+    "hi": "marks में student_id है पर नाम नहीं। JOIN students ON students.id = marks.student_id मिलती पंक्तियों को साथ-साथ चिपका देता है।",
+    "hinglish": "marks mein student_id hai par naam nahi. JOIN students ON students.id = marks.student_id matching rows ko saath-saath chipka deta hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "INNER JOIN keeps only pairs that match. LEFT JOIN keeps every student, even one with no marks yet — the missing columns show NULL.",
+    "hi": "INNER JOIN सिर्फ़ मिलते जोड़े रखता है। LEFT JOIN हर छात्र रखता है, उसे भी जिसके अभी अंक नहीं — ग़ायब स्तंभ NULL दिखाते हैं।",
+    "hinglish": "INNER JOIN sirf matching pairs rakhta hai. LEFT JOIN har student rakhta hai, use bhi jiske abhi marks nahi — missing columns NULL dikhate hain."
+   },
+   "visual": "anim:join-venn",
+   "narration": {
+    "en": "INNER JOIN keeps only pairs that match. LEFT JOIN keeps every student, even one with no marks yet — the missing columns show NULL.",
+    "hi": "INNER JOIN सिर्फ़ मिलते जोड़े रखता है। LEFT JOIN हर छात्र रखता है, उसे भी जिसके अभी अंक नहीं — ग़ायब स्तंभ NULL दिखाते हैं।",
+    "hinglish": "INNER JOIN sirf matching pairs rakhta hai. LEFT JOIN har student rakhta hai, use bhi jiske abhi marks nahi — missing columns NULL dikhate hain."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "GROUP BY house sorts rows into buckets — one per house — and AVG(marks) gives one number per bucket.",
+    "hi": "GROUP BY house पंक्तियों को बाल्टियों में बाँटता है — हर सदन की एक — और AVG(marks) हर बाल्टी का एक अंक देता है।",
+    "hinglish": "GROUP BY house rows ko buckets mein baant-ta hai — har house ki ek — aur AVG(marks) har bucket ka ek number deta hai."
+   },
+   "visual": "anim:group-buckets",
+   "narration": {
+    "en": "GROUP BY house sorts rows into buckets — one per house — and AVG(marks) gives one number per bucket.",
+    "hi": "GROUP BY house पंक्तियों को बाल्टियों में बाँटता है — हर सदन की एक — और AVG(marks) हर बाल्टी का एक अंक देता है।",
+    "hinglish": "GROUP BY house rows ko buckets mein baant-ta hai — har house ki ek — aur AVG(marks) har bucket ka ek number deta hai."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "WHERE filters rows before grouping; HAVING filters whole groups after. \"Houses whose average is above 70\" needs HAVING.",
+    "hi": "WHERE समूह बनने से पहले पंक्तियाँ छाँटता है; HAVING बाद में पूरे समूह। \"जिन सदनों का औसत 70 से ऊपर\" के लिए HAVING चाहिए।",
+    "hinglish": "WHERE grouping se pehle rows chhaant-ta hai; HAVING baad mein poore groups. \"Jin houses ka average 70 se upar\" ke liye HAVING chahiye."
+   },
+   "visual": "anim:where-vs-having",
+   "narration": {
+    "en": "WHERE filters rows before grouping; HAVING filters whole groups after. \"Houses whose average is above 70\" needs HAVING.",
+    "hi": "WHERE समूह बनने से पहले पंक्तियाँ छाँटता है; HAVING बाद में पूरे समूह। \"जिन सदनों का औसत 70 से ऊपर\" के लिए HAVING चाहिए।",
+    "hinglish": "WHERE grouping se pehle rows chhaant-ta hai; HAVING baad mein poore groups. \"Jin houses ka average 70 se upar\" ke liye HAVING chahiye."
+   }
+  }
+ ],
+ "play": {
+  "lab": "sql-playground",
+  "config": {
+   "mode": "missions",
+   "mission": "join"
+  },
+  "goal": {
+   "en": "Finish missions 5, 6 and 7: join students to houses, find each class's average mark, then keep only houses with at least 3 students.",
+   "hi": "मिशन 5, 6 और 7 पूरे करो: छात्रों को सदनों से जोड़ो, हर कक्षा का औसत अंक निकालो, फिर सिर्फ़ कम से कम 3 छात्रों वाले सदन रखो।",
+   "hinglish": "Missions 5, 6 aur 7 poore karo: students ko houses se join karo, har class ka average mark nikalo, phir sirf kam se kam 3 students wale houses rakho."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "How a JOIN really works",
+    "hi": "JOIN असल में कैसे काम करता है",
+    "hinglish": "JOIN asal mein kaise kaam karta hai"
+   },
+   "body": {
+    "en": "Think of every student paired with every marks row (12 × 36 combinations), then keep only pairs where the ids match. Real databases are smarter: with an index on student_id they jump straight to matches (a hash join or index lookup), so joining millions of rows takes milliseconds. Forget the ON condition and you get the full cross product — a classic bug that makes reports show crazy totals.",
+    "hi": "हर छात्र को हर अंक-पंक्ति से जोड़ा सोचो (12 × 36 संयोजन), फिर सिर्फ़ वे जोड़े रखो जिनकी id मिलती है। असली डेटाबेस समझदार हैं: student_id पर इंडेक्स हो तो सीधे मिलान पर कूदते हैं (हैश जॉइन या इंडेक्स लुकअप), इसलिए लाखों पंक्तियाँ जोड़ने में मिलीसेकंड लगते हैं। ON शर्त भूल जाओ तो पूरा क्रॉस-गुणनफल मिलता है — एक आम बग जिससे रिपोर्ट में अजीब योग दिखते हैं।",
+    "hinglish": "Har student ko har marks row se joda socho (12 × 36 combinations), phir sirf woh pairs rakho jinki id match ho. Asli databases smart hain: student_id par index ho to seedhe matches par koodte hain (hash join ya index lookup), isliye laakhon rows join karne mein milliseconds lagte hain. ON condition bhool jao to poora cross product milta hai — ek common bug jisse reports mein ajeeb totals dikhte hain."
+   },
+   "analogy": {
+    "en": "Matching roll numbers on the attendance sheet with the marks sheet — you only staple together pages with the same roll number.",
+    "hi": "हाज़िरी शीट के रोल नंबर अंक शीट से मिलाना — सिर्फ़ एक जैसे रोल नंबर वाले पन्ने साथ नत्थी करते हो।",
+    "hinglish": "Attendance sheet ke roll numbers marks sheet se milana — sirf same roll number wale pages saath staple karte ho."
+   },
+   "realExample": {
+    "en": "A food-delivery app joins orders with restaurants and riders to show \"Your order from Saravana Bhavan, rider Ravi, 12 min\".",
+    "hi": "खाना-डिलीवरी ऐप ऑर्डर को रेस्टोरेंट और राइडर से जोड़कर दिखाता है \"आपका ऑर्डर सरवण भवन से, राइडर रवि, 12 मिनट\"।",
+    "hinglish": "Food-delivery app orders ko restaurants aur riders se join karke dikhata hai \"Aapka order Saravana Bhavan se, rider Ravi, 12 min\"."
+   }
+  },
+  {
+   "heading": {
+    "en": "Grouping rules",
+    "hi": "समूह बनाने के नियम",
+    "hinglish": "Grouping ke rules"
+   },
+   "body": {
+    "en": "With GROUP BY, every column in SELECT must either be in the GROUP BY list or wrapped in an aggregate — \"SELECT house, name, AVG(marks) GROUP BY house\" is ambiguous (which name?). COUNT(*) counts rows; COUNT(column) skips NULLs; AVG also ignores NULLs, so a missing mark does not count as zero. Order: WHERE → GROUP BY → HAVING → ORDER BY.",
+    "hi": "GROUP BY के साथ, SELECT का हर स्तंभ या तो GROUP BY सूची में हो या किसी एकत्रीकरण में लिपटा हो — \"SELECT house, name, AVG(marks) GROUP BY house\" अस्पष्ट है (कौन-सा नाम?)। COUNT(*) पंक्तियाँ गिनता है; COUNT(स्तंभ) NULL छोड़ता है; AVG भी NULL नज़रअंदाज़ करता है, तो ग़ायब अंक शून्य नहीं गिना जाता। क्रम: WHERE → GROUP BY → HAVING → ORDER BY।",
+    "hinglish": "GROUP BY ke saath, SELECT ka har column ya to GROUP BY list mein ho ya kisi aggregate mein lipta ho — \"SELECT house, name, AVG(marks) GROUP BY house\" ambiguous hai (kaunsa naam?). COUNT(*) rows ginta hai; COUNT(column) NULLs chhodta hai; AVG bhi NULLs ignore karta hai, to missing mark zero nahi gina jaata. Order: WHERE → GROUP BY → HAVING → ORDER BY."
+   },
+   "analogy": {
+    "en": "Sorting answer sheets into piles by section, then writing one average on top of each pile.",
+    "hi": "उत्तर पुस्तिकाओं को सेक्शन के ढेरों में बाँटना, फिर हर ढेर के ऊपर एक औसत लिखना।",
+    "hinglish": "Answer sheets ko section ke dheron mein baantna, phir har dher ke upar ek average likhna."
+   },
+   "realExample": {
+    "en": "SELECT city, COUNT(*) FROM students GROUP BY city HAVING COUNT(*) >= 3 lists cities with at least three students.",
+    "hi": "SELECT city, COUNT(*) FROM students GROUP BY city HAVING COUNT(*) >= 3 कम से कम तीन छात्रों वाले शहर दिखाता है।",
+    "hinglish": "SELECT city, COUNT(*) FROM students GROUP BY city HAVING COUNT(*) >= 3 kam se kam teen students wale cities dikhata hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "In Free play, find the subject with the highest average mark, and the student with the best total across all subjects. Write both queries in your notebook.",
+   "hi": "खुले अभ्यास में सबसे ज़्यादा औसत अंक वाला विषय, और सभी विषयों में सबसे अच्छे कुल वाला छात्र ढूँढो। दोनों क्वेरी कॉपी में लिखो।",
+   "hinglish": "Free play mein sabse zyaada average marks wala subject, aur saare subjects mein best total wala student dhoondho. Dono queries notebook mein likho."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "A student has no marks rows. Which join still shows them?",
+     "hi": "एक छात्र की कोई अंक-पंक्ति नहीं। कौन-सा जॉइन फिर भी उसे दिखाएगा?",
+     "hinglish": "Ek student ki koi marks row nahi. Kaunsa join phir bhi use dikhayega?"
+    },
+    "options": [
+     "INNER JOIN",
+     "students LEFT JOIN marks",
+     "marks INNER JOIN students",
+     {
+      "en": "None can",
+      "hi": "कोई नहीं",
+      "hinglish": "Koi nahi"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "LEFT JOIN keeps all rows from the left table, filling NULLs.",
+     "hi": "LEFT JOIN बाईं तालिका की सब पंक्तियाँ रखता है, NULL भरकर।",
+     "hinglish": "LEFT JOIN left table ki saari rows rakhta hai, NULLs bharke."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "\"Houses with average above 70\" — which clause filters the groups?",
+     "hi": "\"70 से ऊपर औसत वाले सदन\" — कौन-सा खंड समूह छाँटता है?",
+     "hinglish": "\"70 se upar average wale houses\" — kaunsa clause groups chhaant-ta hai?"
+    },
+    "options": [
+     "WHERE",
+     "HAVING",
+     "ORDER BY",
+     "LIMIT"
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "HAVING runs after GROUP BY, so it can test AVG().",
+     "hi": "HAVING, GROUP BY के बाद चलता है, इसलिए AVG() जाँच सकता है।",
+     "hinglish": "HAVING, GROUP BY ke baad chalta hai, isliye AVG() check kar sakta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "match",
+    "prompt": {
+     "en": "Match the aggregate to what it returns.",
+     "hi": "एकत्रीकरण को उसके परिणाम से मिलाओ।",
+     "hinglish": "Aggregate ko uske result se milao."
+    },
+    "options": [
+     "COUNT(*)",
+     "AVG(marks)",
+     "MAX(marks)",
+     "SUM(marks)"
+    ],
+    "answer": [
+     {
+      "en": "How many rows",
+      "hi": "कितनी पंक्तियाँ",
+      "hinglish": "Kitni rows"
+     },
+     {
+      "en": "Mean mark",
+      "hi": "औसत अंक",
+      "hinglish": "Average mark"
+     },
+     {
+      "en": "Highest mark",
+      "hi": "सबसे ऊँचा अंक",
+      "hinglish": "Sabse ooncha mark"
+     },
+     {
+      "en": "Total of all marks",
+      "hi": "सभी अंकों का योग",
+      "hinglish": "Saare marks ka total"
+     }
+    ],
+    "explain": {
+     "en": "These five aggregates cover most reports.",
+     "hi": "ये पाँच एकत्रीकरण ज़्यादातर रिपोर्टें सँभालते हैं।",
+     "hinglish": "Yeh paanch aggregates zyaadatar reports sambhalte hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "You join 12 students to 36 marks rows but forget ON. Roughly how many rows come back?",
+     "hi": "12 छात्रों को 36 अंक-पंक्तियों से जोड़ा पर ON भूल गए। लगभग कितनी पंक्तियाँ आएँगी?",
+     "hinglish": "12 students ko 36 marks rows se joda par ON bhool gaye. Lagbhag kitni rows aayengi?"
+    },
+    "options": [
+     "36",
+     "48",
+     "432",
+     "12"
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "Without a condition every pair is returned: 12 × 36 = 432.",
+     "hi": "शर्त के बिना हर जोड़ा लौटता है: 12 × 36 = 432।",
+     "hinglish": "Condition ke bina har pair lautta hai: 12 × 36 = 432."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Finish the JOIN mission.",
+     "hi": "JOIN मिशन पूरा करो।",
+     "hinglish": "JOIN mission poora karo."
+    },
+    "answer": {
+     "event": "query-correct",
+     "mission": "join"
+    },
+    "explain": {
+     "en": "students s JOIN houses h ON s.house_id = h.id.",
+     "hi": "students s JOIN houses h ON s.house_id = h.id।",
+     "hinglish": "students s JOIN houses h ON s.house_id = h.id."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Finish the HAVING mission.",
+     "hi": "HAVING मिशन पूरा करो।",
+     "hinglish": "HAVING mission poora karo."
+    },
+    "answer": {
+     "event": "query-correct",
+     "mission": "having"
+    },
+    "explain": {
+     "en": "GROUP BY h.name HAVING COUNT(*) >= 3.",
+     "hi": "GROUP BY h.name HAVING COUNT(*) >= 3।",
+     "hinglish": "GROUP BY h.name HAVING COUNT(*) >= 3."
+    },
+    "difficulty": 3
+   }
+  ]
+ },
+ "topics": [
+  "data.sql-join-group"
+ ],
+ "sources": [
+  {
+   "title": "PostgreSQL documentation — SQL language",
+   "url": "https://www.postgresql.org/docs/current/sql.html",
+   "licence": "fact reference"
+  },
+  {
+   "title": "SQLite — SELECT (joins and aggregates)",
+   "url": "https://www.sqlite.org/lang_select.html",
+   "licence": "public domain"
+  }
+ ]
+}

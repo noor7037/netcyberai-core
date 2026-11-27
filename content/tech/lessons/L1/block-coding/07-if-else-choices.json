@@ -1,0 +1,341 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.block-coding.07",
+ "level": 1,
+ "classes": [
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "unit": "block-coding",
+ "title": {
+  "en": "IF / ELSE: two-way choices",
+  "hi": "अगर / नहीं तो: दो रास्तों वाला फ़ैसला",
+  "hinglish": "IF / ELSE: do raaston wala faisla"
+ },
+ "minutes": 8,
+ "xp": 30,
+ "prereq": [
+  "L1.block-coding.05"
+ ],
+ "topics": [
+  "prog.conditions"
+ ],
+ "outcomes": [
+  {
+   "en": "Write an IF … THEN … ELSE … rule.",
+   "hi": "अगर … तो … नहीं तो … वाला नियम लिख सकते हो।",
+   "hinglish": "IF … THEN … ELSE … rule likh sakte ho."
+  },
+  {
+   "en": "Test a rule in both cases (true and false).",
+   "hi": "नियम को दोनों हालात (सच और झूठ) में जाँच सकते हो।",
+   "hinglish": "Rule ko dono cases (true aur false) mein test kar sakte ho."
+  },
+  {
+   "en": "Spot IF/ELSE in everyday apps.",
+   "hi": "रोज़ के ऐप में अगर/नहीं तो पहचान सकते हो।",
+   "hinglish": "Roz ke apps mein IF/ELSE pehchaan sakte ho."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Condition",
+   "en": "A yes-or-no question the program checks",
+   "hi": "हाँ या ना वाला सवाल जो प्रोग्राम जाँचता है",
+   "hinglish": "Haan ya na wala sawaal"
+  },
+  {
+   "term": "IF",
+   "en": "Do something only when the condition is true",
+   "hi": "शर्त सच होने पर ही कुछ करना",
+   "hinglish": "Agar"
+  },
+  {
+   "term": "ELSE",
+   "en": "What to do when the condition is false",
+   "hi": "शर्त झूठ होने पर क्या करना",
+   "hinglish": "Nahin toh"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.block-coding.07.s1",
+   "caption": {
+    "en": "Raining? Umbrella. Not raining? Cap.",
+    "hi": "बारिश? छाता। बारिश नहीं? टोपी।",
+    "hinglish": "Baarish? Chhaata. Baarish nahin? Topi."
+   },
+   "narration": {
+    "en": "Every morning you decide: IF it is raining, take an umbrella, ELSE wear a cap.",
+    "hinglish": "Har subah tum faisla karte ho: AGAR baarish ho rahi hai toh chhaata lo, NAHIN TOH topi pehno.",
+    "hi": "हर सुबह तुम फ़ैसला करते हो: अगर बारिश हो रही है तो छाता लो, नहीं तो टोपी पहनो।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.block-coding.07.s2",
+   "caption": {
+    "en": "One question, two paths.",
+    "hi": "एक सवाल, दो रास्ते।",
+    "hinglish": "Ek sawaal, do raaste."
+   },
+   "narration": {
+    "en": "The condition is a yes-or-no question. YES goes to THEN, NO goes to ELSE.",
+    "hinglish": "Condition ek haan-ya-na sawaal hai. Haan toh THEN, na toh ELSE.",
+    "hi": "शर्त एक हाँ-या-ना सवाल है। हाँ तो \"तो\" वाला रास्ता, ना तो \"नहीं तो\" वाला।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.block-coding.07.s3",
+   "caption": {
+    "en": "Phones use IF/ELSE all day.",
+    "hi": "फ़ोन दिनभर अगर/नहीं तो इस्तेमाल करते हैं।",
+    "hinglish": "Phones din bhar IF/ELSE use karte hain."
+   },
+   "narration": {
+    "en": "IF it is night, the phone can switch to dark mode, ELSE it stays light.",
+    "hinglish": "AGAR raat hai toh phone dark mode mein ja sakta hai, NAHIN TOH light rehta hai.",
+    "hi": "अगर रात है तो फ़ोन डार्क मोड में जा सकता है, नहीं तो उजला रहता है।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "story-blocks",
+  "config": {
+   "mode": "ifelse"
+  },
+  "goal": {
+   "en": "Write one rule that keeps Gajju dry on the rainy day and cool on the sunny day. Test it on both days.",
+   "hi": "एक नियम लिखो जो गज्जू को बारिश वाले दिन सूखा और धूप वाले दिन ठंडा रखे। दोनों दिन जाँचो।",
+   "hinglish": "Ek rule likho jo Gajju ko baarish wale din sookha aur dhoop wale din thanda rakhe. Dono din test karo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "IF alone vs IF / ELSE",
+    "hi": "सिर्फ़ अगर बनाम अगर / नहीं तो",
+    "hinglish": "Sirf IF vs IF / ELSE"
+   },
+   "body": {
+    "en": "A plain IF does something only when the condition is true, and does nothing otherwise — like a night lamp that switches on when it is dark. IF / ELSE always does one of two things: one when the answer is yes and another when it is no. Programs can also check many conditions one after another (else if), like a traffic light: red → stop, yellow → wait, green → go.",
+    "hi": "सादा \"अगर\" सिर्फ़ शर्त सच होने पर कुछ करता है, वरना कुछ नहीं — जैसे अँधेरा होने पर जलने वाला नाइट लैंप। \"अगर / नहीं तो\" हमेशा दो में से एक काम करता है: हाँ पर एक, ना पर दूसरा। प्रोग्राम एक के बाद एक कई शर्तें भी जाँच सकते हैं, जैसे ट्रैफ़िक लाइट: लाल → रुको, पीली → इंतज़ार, हरी → चलो।",
+    "hinglish": "Saada IF sirf condition true hone par kuch karta hai, warna kuch nahin — jaise andhera hone par jalne wala night lamp. IF / ELSE hamesha do mein se ek kaam karta hai: haan par ek, na par doosra. Programs ek ke baad ek kai conditions bhi check kar sakte hain (else if), jaise traffic light: laal → ruko, peeli → intezaar, hari → chalo."
+   },
+   "analogy": {
+    "en": "IF/ELSE is like the school-gate guard — ID card? Come in. No ID card? Go to the office.",
+    "hi": "अगर/नहीं तो स्कूल गेट के गार्ड जैसा है — पहचान पत्र है तो अंदर, नहीं है तो दफ़्तर जाओ।",
+    "hinglish": "IF/ELSE school gate ke guard jaisa hai — ID card hai toh andar, nahin hai toh office jao."
+   }
+  },
+  {
+   "heading": {
+    "en": "Always test both paths",
+    "hi": "हमेशा दोनों रास्ते जाँचो",
+    "hinglish": "Hamesha dono raaste test karo"
+   },
+   "body": {
+    "en": "A rule can look right on one day and fail on the other. Good coders test with a \"yes\" case and a \"no\" case. In Python the same rule looks like: if raining: open_umbrella() else: wear_cap(). The lab shows this code under your blocks.",
+    "hi": "कोई नियम एक दिन सही लग सकता है और दूसरे दिन ग़लत निकल सकता है। अच्छे कोडर \"हाँ\" वाले और \"ना\" वाले दोनों मामले जाँचते हैं। पाइथन में यही नियम ऐसा दिखता है: \"if raining: open_umbrella() else: wear_cap()\"। लैब में यह कोड तुम्हारे ब्लॉक के नीचे दिखता है।",
+    "hinglish": "Koi rule ek din sahi lag sakta hai aur doosre din fail ho sakta hai. Achhe coders \"haan\" wala aur \"na\" wala dono case test karte hain. Python mein yahi rule aisa dikhta hai: if raining: open_umbrella() else: wear_cap(). Lab mein yeh code tumhare blocks ke neeche dikhta hai."
+   },
+   "realExample": {
+    "en": "UPI apps use IF/ELSE too: IF the PIN is correct THEN pay, ELSE show \"Incorrect PIN\".",
+    "hi": "UPI ऐप भी अगर/नहीं तो इस्तेमाल करते हैं: अगर पिन सही है तो भुगतान, नहीं तो \"ग़लत पिन\" दिखाओ।",
+    "hinglish": "UPI apps bhi IF/ELSE use karte hain: AGAR PIN sahi hai TOH payment, NAHIN TOH \"Incorrect PIN\" dikhao."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Make an IF/ELSE rule for your evening: IF homework is done THEN play outside ELSE … . Write it on paper and test it on two different days.",
+   "hi": "अपनी शाम का अगर/नहीं तो नियम बनाओ: अगर होमवर्क पूरा है तो बाहर खेलो, नहीं तो … । काग़ज़ पर लिखो और दो अलग दिनों पर जाँचो।",
+   "hinglish": "Apni shaam ka IF/ELSE rule banao: IF homework poora hai THEN bahar khelo ELSE … . Kaagaz par likho aur do alag dinon par test karo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "IF it is raining THEN umbrella ELSE cap. Today is sunny. Gajju wears…",
+     "hi": "अगर बारिश तो छाता, नहीं तो टोपी। आज धूप है। गज्जू पहनेगा…",
+     "hinglish": "IF baarish THEN chhaata ELSE topi. Aaj dhoop hai. Gajju pehnega…"
+    },
+    "options": [
+     {
+      "en": "🧢 a cap",
+      "hi": "🧢 टोपी",
+      "hinglish": "🧢 topi"
+     },
+     {
+      "en": "☂️ an umbrella",
+      "hi": "☂️ छाता",
+      "hinglish": "☂️ chhaata"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Not raining → the ELSE part runs.",
+     "hi": "बारिश नहीं → \"नहीं तो\" वाला हिस्सा चलता है।",
+     "hinglish": "Baarish nahin → ELSE wala hissa chalta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "A condition is always a…",
+     "hi": "शर्त हमेशा क्या होती है?",
+     "hinglish": "Condition hamesha kya hoti hai?"
+    },
+    "options": [
+     {
+      "en": "yes-or-no question",
+      "hi": "हाँ-या-ना वाला सवाल",
+      "hinglish": "haan-ya-na sawaal"
+     },
+     {
+      "en": "colour",
+      "hi": "रंग",
+      "hinglish": "rang"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "True or false, yes or no.",
+     "hi": "सच या झूठ, हाँ या ना।",
+     "hinglish": "True ya false, haan ya na."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are IF/ELSE rules?",
+     "hi": "कौन से अगर/नहीं तो नियम हैं?",
+     "hinglish": "Kaun se IF/ELSE rules hain?"
+    },
+    "options": [
+     {
+      "en": "IF PIN correct THEN pay ELSE show error",
+      "hi": "अगर पिन सही तो भुगतान, नहीं तो त्रुटि",
+      "hinglish": "IF PIN sahi THEN pay ELSE error"
+     },
+     {
+      "en": "IF dark THEN dark mode ELSE light mode",
+      "hi": "अगर अँधेरा तो डार्क मोड, नहीं तो उजला मोड",
+      "hinglish": "IF andhera THEN dark mode ELSE light mode"
+     },
+     {
+      "en": "Walk 3 steps",
+      "hi": "3 कदम चलो",
+      "hinglish": "3 steps chalo"
+     }
+    ],
+    "answer": [
+     0,
+     1
+    ],
+    "explain": {
+     "en": "\"Walk 3 steps\" has no question, so it is a plain sequence.",
+     "hi": "\"3 कदम चलो\" में कोई सवाल नहीं, यह सादा क्रम है।",
+     "hinglish": "\"3 steps chalo\" mein koi sawaal nahin, yeh saada sequence hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "To check an IF/ELSE rule you should test…",
+     "hi": "अगर/नहीं तो नियम जाँचने के लिए…",
+     "hinglish": "IF/ELSE rule check karne ke liye test karo…"
+    },
+    "options": [
+     {
+      "en": "both the yes case and the no case",
+      "hi": "हाँ और ना दोनों मामले",
+      "hinglish": "haan aur na dono cases"
+     },
+     {
+      "en": "only the yes case",
+      "hi": "सिर्फ़ हाँ वाला मामला",
+      "hinglish": "sirf haan wala case"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Each path must work.",
+     "hi": "हर रास्ता चलना चाहिए।",
+     "hinglish": "Har raasta chalna chahiye."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "short",
+    "prompt": {
+     "en": "Traffic light rule: IF red THEN … ? (one word)",
+     "hi": "ट्रैफ़िक लाइट नियम: अगर लाल तो … ? (एक शब्द)",
+     "hinglish": "Traffic light rule: IF laal THEN … ? (ek word)"
+    },
+    "answer": [
+     "stop",
+     "Stop",
+     "ruko",
+     "रुको"
+    ],
+    "explain": {
+     "en": "Red means stop.",
+     "hi": "लाल का मतलब रुको।",
+     "hinglish": "Laal matlab ruko."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Make Gajju’s weather rule work on both days.",
+     "hi": "गज्जू का मौसम नियम दोनों दिन चलाओ।",
+     "hinglish": "Gajju ka weather rule dono din chalao."
+    },
+    "answer": {
+     "lab": "story-blocks",
+     "mode": "ifelse",
+     "solved": true
+    },
+    "explain": {
+     "en": "IF raining THEN umbrella, ELSE cap.",
+     "hi": "अगर बारिश तो छाता, नहीं तो टोपी।",
+     "hinglish": "IF baarish THEN chhaata, ELSE topi."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Python documentation – if statements (fact reference)",
+   "url": "https://docs.python.org/3/tutorial/controlflow.html",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Scratch / ScratchJr – MIT Media Lab, free block coding (fact reference)",
+   "url": "https://scratch.mit.edu/about",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

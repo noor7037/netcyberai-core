@@ -529,6 +529,15 @@ ALLOWED_PERMISSIVE = (
         ("family.chapter_reading", "chapter_reading_own"),
         # C514: a child's completed drawing templates (ids and a time only); own account only (restrictive twins below).
         ("family.draw_completions", "draw_completions_own"),
+        # C555 (TL-1): Tech Lab progress, own account only (restrictive twins below); families read only course versions
+        # published to everyone, and their units and lessons (the English course's rule).
+        ("family.tech_lessons_done", "tech_lessons_done_own"),
+        ("family.tech_labs_done", "tech_labs_done_own"),
+        ("family.tech_badges", "tech_badges_own"),
+        ("family.tech_days", "tech_days_own"),
+        ("content.tech_versions", "tech_versions_family_read"),
+        ("content.tech_units", "tech_units_family_read"),
+        ("content.tech_lessons", "tech_lessons_family_read"),
         # C522: a child's "See video" taps (ids, a topic key and times only); own account only (restrictive twins below).
         ("family.video_clicks", "video_clicks_own"),
         # S3 (C376): published chapters (or the family's own upload), the family's own requests, and its subject sources.
@@ -1143,6 +1152,18 @@ REQUIRED_RESTRICTIVE = {
     # C514: own account only, and on a child's own phone that child only.
     ("family.draw_completions", "draw_completions_own_only"),
     ("family.draw_completions", "draw_completions_one_child"),
+    # C555 (TL-1): own account only, that child only on a child's own phone, and families never write the course.
+    ("family.tech_lessons_done", "tech_lessons_done_own_only"),
+    ("family.tech_lessons_done", "tech_lessons_done_one_child"),
+    ("family.tech_labs_done", "tech_labs_done_own_only"),
+    ("family.tech_labs_done", "tech_labs_done_one_child"),
+    ("family.tech_badges", "tech_badges_own_only"),
+    ("family.tech_badges", "tech_badges_one_child"),
+    ("family.tech_days", "tech_days_own_only"),
+    ("family.tech_days", "tech_days_one_child"),
+    ("content.tech_versions", "tech_versions_family_only"),
+    ("content.tech_units", "tech_units_family_only"),
+    ("content.tech_lessons", "tech_lessons_family_only"),
     # C522: own account only, and on a child's own phone that child only.
     ("family.video_clicks", "video_clicks_own_only"),
     ("family.video_clicks", "video_clicks_one_child"),

@@ -1,0 +1,379 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.os-internals.04",
+ "level": 3,
+ "classes": [
+  10,
+  11
+ ],
+ "unit": "os-internals",
+ "title": {
+  "en": "File systems",
+  "hi": "फ़ाइल सिस्टम",
+  "hinglish": "File systems"
+ },
+ "minutes": 12,
+ "xp": 50,
+ "prereq": [
+  "L3.os-internals.01"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain how a file system maps names to blocks on storage",
+   "hi": "समझाओ फ़ाइल सिस्टम नामों को भंडारण के ब्लॉक से कैसे जोड़ता है",
+   "hinglish": "Samjhao file system naamon ko storage ke blocks se kaise jodta hai"
+  },
+  {
+   "en": "Describe directories, inodes, metadata and journaling",
+   "hi": "डायरेक्टरी, inode, मेटाडेटा और जर्नलिंग बताओ",
+   "hinglish": "Directories, inodes, metadata aur journaling batao"
+  },
+  {
+   "en": "Compare common file systems (ext4, NTFS, APFS, FAT32/exFAT)",
+   "hi": "आम फ़ाइल सिस्टम (ext4, NTFS, APFS, FAT32/exFAT) की तुलना करो",
+   "hinglish": "Common file systems (ext4, NTFS, APFS, FAT32/exFAT) ki tulna karo"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "File system",
+   "hinglish": "Files ko sambhaalne ka tareeka",
+   "en": "How an OS organises files and folders on storage",
+   "hi": "OS भंडारण पर फ़ाइलें और फ़ोल्डर कैसे व्यवस्थित करता है"
+  },
+  {
+   "term": "Inode",
+   "hinglish": "File ka record card",
+   "en": "Structure holding a file's metadata and block locations (Unix)",
+   "hi": "फ़ाइल का मेटाडेटा और ब्लॉक स्थान रखने वाली संरचना (Unix)"
+  },
+  {
+   "term": "Metadata",
+   "hinglish": "Data ke baare mein data",
+   "en": "Size, owner, permissions, timestamps",
+   "hi": "आकार, मालिक, अनुमतियाँ, समय"
+  },
+  {
+   "term": "Journaling",
+   "hinglish": "Pehle diary mein likho",
+   "en": "Recording changes before making them so a crash cannot corrupt the disk",
+   "hi": "बदलाव करने से पहले लिखना ताकि क्रैश डिस्क ख़राब न करे"
+  },
+  {
+   "term": "Path",
+   "hinglish": "File ka pata",
+   "en": "Location like /home/riya/marks.csv",
+   "hi": "स्थान जैसे /home/riya/marks.csv"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Storage is just numbered blocks (often 4 KB). The file system decides which blocks belong to which file.",
+    "hi": "भंडारण बस क्रमांकित ब्लॉक हैं (अक्सर 4 KB)। फ़ाइल सिस्टम तय करता है कौन-से ब्लॉक किस फ़ाइल के।",
+    "hinglish": "Storage bas numbered blocks hain (aksar 4 KB). File system tay karta hai kaunse blocks kis file ke."
+   },
+   "visual": "anim:blocks-grid",
+   "narration": {
+    "en": "Storage is just numbered blocks (often 4 KB). The file system decides which blocks belong to which file.",
+    "hi": "भंडारण बस क्रमांकित ब्लॉक हैं (अक्सर 4 KB)। फ़ाइल सिस्टम तय करता है कौन-से ब्लॉक किस फ़ाइल के।",
+    "hinglish": "Storage bas numbered blocks hain (aksar 4 KB). File system tay karta hai kaunse blocks kis file ke."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "A directory is a list of names → inode numbers. The inode stores size, owner, permissions, times and where the blocks are.",
+    "hi": "डायरेक्टरी नाम → inode संख्याओं की सूची है। inode आकार, मालिक, अनुमतियाँ, समय और ब्लॉक कहाँ हैं, रखता है।",
+    "hinglish": "Directory naam → inode numbers ki list hai. Inode size, owner, permissions, times aur blocks kahan hain, rakhta hai."
+   },
+   "visual": "anim:dir-inode",
+   "narration": {
+    "en": "A directory is a list of names → inode numbers. The inode stores size, owner, permissions, times and where the blocks are.",
+    "hi": "डायरेक्टरी नाम → inode संख्याओं की सूची है। inode आकार, मालिक, अनुमतियाँ, समय और ब्लॉक कहाँ हैं, रखता है।",
+    "hinglish": "Directory naam → inode numbers ki list hai. Inode size, owner, permissions, times aur blocks kahan hain, rakhta hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "ls -l shows that metadata: permissions, owner, size and date for each file.",
+    "hi": "ls -l वह मेटाडेटा दिखाता है: हर फ़ाइल की अनुमतियाँ, मालिक, आकार और तारीख़।",
+    "hinglish": "ls -l woh metadata dikhata hai: har file ki permissions, owner, size aur date."
+   },
+   "visual": "anim:ls-l",
+   "narration": {
+    "en": "ls -l shows that metadata: permissions, owner, size and date for each file.",
+    "hi": "ls -l वह मेटाडेटा दिखाता है: हर फ़ाइल की अनुमतियाँ, मालिक, आकार और तारीख़।",
+    "hinglish": "ls -l woh metadata dikhata hai: har file ki permissions, owner, size aur date."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Journaling writes \"I am about to do X\" first. After a power cut the OS replays or discards the note instead of scanning the whole disk.",
+    "hi": "जर्नलिंग पहले लिखती है \"मैं X करने वाला हूँ\"। बिजली जाने के बाद OS पूरी डिस्क जाँचने की जगह वह नोट दोहराता या छोड़ता है।",
+    "hinglish": "Journaling pehle likhti hai \"main X karne wala hoon\". Bijli jaane ke baad OS poori disk scan karne ki jagah woh note replay ya discard karta hai."
+   },
+   "visual": "anim:journal",
+   "narration": {
+    "en": "Journaling writes \"I am about to do X\" first. After a power cut the OS replays or discards the note instead of scanning the whole disk.",
+    "hi": "जर्नलिंग पहले लिखती है \"मैं X करने वाला हूँ\"। बिजली जाने के बाद OS पूरी डिस्क जाँचने की जगह वह नोट दोहराता या छोड़ता है।",
+    "hinglish": "Journaling pehle likhti hai \"main X karne wala hoon\". Bijli jaane ke baad OS poori disk scan karne ki jagah woh note replay ya discard karta hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "seq-flow",
+  "config": {
+   "scenario": "linux-shell"
+  },
+  "goal": {
+   "en": "In the practice terminal, find where you are (pwd), list files with details (ls -l) and read notice.txt (cat). Identify the owner, size and permissions of marks.csv.",
+   "hi": "अभ्यास टर्मिनल में पता करो कहाँ हो (pwd), फ़ाइलें विवरण सहित देखो (ls -l) और notice.txt पढ़ो (cat)। marks.csv का मालिक, आकार और अनुमतियाँ पहचानो।",
+   "hinglish": "Practice terminal mein pata karo kahan ho (pwd), files details ke saath list karo (ls -l) aur notice.txt padho (cat). marks.csv ka owner, size aur permissions pehchaano."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Common file systems",
+    "hi": "आम फ़ाइल सिस्टम",
+    "hinglish": "Common file systems"
+   },
+   "body": {
+    "en": "ext4 is the default on many Linux systems and Android; NTFS on Windows; APFS on Apple devices (with snapshots and encryption built in); FAT32 and exFAT on memory cards and pen drives because nearly every device can read them. FAT32 cannot store a single file larger than 4 GB, which is why big videos need exFAT or NTFS. Newer designs (Btrfs, ZFS, APFS) use copy-on-write: they never overwrite data in place, which makes snapshots cheap and protects against corruption.",
+    "hi": "ext4 कई लिनक्स प्रणालियों और एंड्रॉइड पर डिफ़ॉल्ट है; Windows पर NTFS; ऐप्पल डिवाइस पर APFS (स्नैपशॉट और एन्क्रिप्शन अंदर); मेमोरी कार्ड और पेन ड्राइव पर FAT32 और exFAT क्योंकि लगभग हर डिवाइस इन्हें पढ़ सकता है। FAT32 में 4 GB से बड़ी एक फ़ाइल नहीं रख सकते, इसलिए बड़े वीडियो को exFAT या NTFS चाहिए। नए डिज़ाइन (Btrfs, ZFS, APFS) कॉपी-ऑन-राइट इस्तेमाल करते हैं: डेटा को उसी जगह कभी नहीं मिटाते, जिससे स्नैपशॉट सस्ते और भ्रष्टाचार से बचाव होता है।",
+    "hinglish": "ext4 kai Linux systems aur Android par default hai; Windows par NTFS; Apple devices par APFS (snapshots aur encryption andar); memory cards aur pen drives par FAT32 aur exFAT kyunki lagbhag har device inhe padh sakta hai. FAT32 mein 4 GB se badi ek file nahi rakh sakte, isliye bade videos ko exFAT ya NTFS chahiye. Naye designs (Btrfs, ZFS, APFS) copy-on-write use karte hain: data ko usi jagah kabhi overwrite nahi karte, jisse snapshots saste aur corruption se bachav hota hai."
+   },
+   "analogy": {
+    "en": "A library: shelves are blocks, the catalogue card is the inode, and the index of titles is the directory.",
+    "hi": "पुस्तकालय: अलमारियाँ ब्लॉक हैं, कैटलॉग कार्ड inode, और शीर्षकों की सूची डायरेक्टरी।",
+    "hinglish": "Library: shelves blocks hain, catalogue card inode, aur titles ki list directory."
+   },
+   "realExample": {
+    "en": "Copying a 6 GB movie to a FAT32 pen drive fails with \"file too large\" — reformatting it as exFAT fixes that.",
+    "hi": "FAT32 पेन ड्राइव पर 6 GB फ़िल्म कॉपी करना \"फ़ाइल बहुत बड़ी\" से विफल होता है — उसे exFAT में फ़ॉर्मेट करने से ठीक होता है।",
+    "hinglish": "FAT32 pen drive par 6 GB movie copy karna \"file too large\" se fail hota hai — use exFAT mein format karne se theek hota hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "Deleting is not destroying",
+    "hi": "मिटाना नष्ट करना नहीं",
+    "hinglish": "Delete karna destroy karna nahi"
+   },
+   "body": {
+    "en": "Deleting a file usually just removes its name and marks the blocks free; the data stays until overwritten. That is how recovery tools work — and why old phones and drives should be encrypted and properly wiped (factory reset with encryption on, or secure-erase) before you sell or donate them. SSDs also use TRIM to clean freed blocks in the background. Full-disk encryption (on by default in modern Android and iPhones) means leftover blocks are unreadable without the key.",
+    "hi": "फ़ाइल मिटाना आम तौर पर बस उसका नाम हटाता है और ब्लॉक ख़ाली चिह्नित करता है; डेटा ऊपर लिखे जाने तक रहता है। रिकवरी टूल इसी से काम करते हैं — और इसीलिए पुराने फ़ोन और ड्राइव बेचने या दान करने से पहले एन्क्रिप्ट और ठीक से साफ़ करने चाहिए (एन्क्रिप्शन चालू रखकर फ़ैक्टरी रीसेट, या सिक्योर-इरेज़)। SSD पृष्ठभूमि में खाली ब्लॉक साफ़ करने के लिए TRIM भी इस्तेमाल करते हैं। पूर्ण-डिस्क एन्क्रिप्शन (आधुनिक एंड्रॉइड और आईफ़ोन में डिफ़ॉल्ट) का मतलब बचे ब्लॉक कुंजी के बिना पढ़े नहीं जा सकते।",
+    "hinglish": "File delete karna aam taur par bas uska naam hatata hai aur blocks free mark karta hai; data overwrite hone tak rehta hai. Recovery tools isi se kaam karte hain — aur isiliye purane phones aur drives bechne ya daan karne se pehle encrypt aur theek se wipe karne chahiye (encryption on rakhkar factory reset, ya secure-erase). SSDs background mein free blocks saaf karne ke liye TRIM bhi use karte hain. Full-disk encryption (modern Android aur iPhones mein default) ka matlab bache blocks key ke bina padhe nahi ja sakte."
+   },
+   "analogy": {
+    "en": "Tearing the index page out of a notebook: the chapter pages are still there for anyone who flips through.",
+    "hi": "कॉपी का सूची-पृष्ठ फाड़ना: अध्याय के पन्ने अब भी पलटने वाले के लिए वहीं हैं।",
+    "hinglish": "Notebook ka index page phaadna: chapter ke pages ab bhi palatne wale ke liye wahin hain."
+   },
+   "realExample": {
+    "en": "Before giving an old phone to a cousin, sign out of accounts, remove the SIM and memory card, then factory reset.",
+    "hi": "पुराना फ़ोन किसी चचेरे भाई-बहन को देने से पहले खातों से साइन आउट करो, सिम और मेमोरी कार्ड निकालो, फिर फ़ैक्टरी रीसेट करो।",
+    "hinglish": "Purana phone kisi cousin ko dene se pehle accounts se sign out karo, SIM aur memory card nikaalo, phir factory reset karo."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Open the storage settings of a phone or computer: which file system is the main drive, how big is it, and how much is free? Find one folder with many small files and one big file, and explain how each uses blocks.",
+   "hi": "फ़ोन या कंप्यूटर की भंडारण सेटिंग खोलो: मुख्य ड्राइव का फ़ाइल सिस्टम कौन-सा है, कितनी बड़ी, और कितनी ख़ाली? कई छोटी फ़ाइलों वाला एक फ़ोल्डर और एक बड़ी फ़ाइल ढूँढो, और समझाओ हर एक ब्लॉक कैसे इस्तेमाल करती है।",
+   "hinglish": "Phone ya computer ki storage settings kholo: main drive ka file system kaunsa hai, kitni badi hai, aur kitni khaali? Kai chhoti files wala ek folder aur ek badi file dhoondho, aur samjhao har ek blocks kaise use karti hai."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "What does an inode NOT store?",
+     "hi": "inode क्या नहीं रखता?",
+     "hinglish": "Inode kya nahi rakhta?"
+    },
+    "options": [
+     {
+      "en": "The file's name",
+      "hi": "फ़ाइल का नाम",
+      "hinglish": "File ka naam"
+     },
+     {
+      "en": "Owner",
+      "hi": "मालिक",
+      "hinglish": "Owner"
+     },
+     {
+      "en": "Permissions",
+      "hi": "अनुमतियाँ",
+      "hinglish": "Permissions"
+     },
+     {
+      "en": "Block locations",
+      "hi": "ब्लॉक स्थान",
+      "hinglish": "Block locations"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Names live in directories, which point to inodes.",
+     "hi": "नाम डायरेक्टरी में रहते हैं, जो inode की ओर इशारा करती हैं।",
+     "hinglish": "Naam directories mein rehte hain, jo inodes ki taraf ishaara karti hain."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why can't you copy a 6 GB file to a FAT32 drive?",
+     "hi": "6 GB फ़ाइल FAT32 ड्राइव पर कॉपी क्यों नहीं होती?",
+     "hinglish": "6 GB file FAT32 drive par copy kyun nahi hoti?"
+    },
+    "options": [
+     {
+      "en": "FAT32 limits single files to 4 GB",
+      "hi": "FAT32 एक फ़ाइल को 4 GB तक सीमित करता है",
+      "hinglish": "FAT32 single file ko 4 GB tak limit karta hai"
+     },
+     {
+      "en": "The drive is broken",
+      "hi": "ड्राइव ख़राब है",
+      "hinglish": "Drive kharab hai"
+     },
+     {
+      "en": "Videos are protected",
+      "hi": "वीडियो सुरक्षित हैं",
+      "hinglish": "Videos protected hain"
+     },
+     {
+      "en": "USB is too slow",
+      "hi": "USB बहुत धीमा",
+      "hinglish": "USB bahut slow"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Use exFAT or NTFS for big files.",
+     "hi": "बड़ी फ़ाइलों के लिए exFAT या NTFS।",
+     "hinglish": "Badi files ke liye exFAT ya NTFS."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Journaling helps because…",
+     "hi": "जर्नलिंग इसलिए मदद करती है क्योंकि…",
+     "hinglish": "Journaling isliye madad karti hai kyunki…"
+    },
+    "options": [
+     {
+      "en": "After a crash the disk can be made consistent quickly",
+      "hi": "क्रैश के बाद डिस्क जल्दी सुसंगत हो जाती है",
+      "hinglish": "Crash ke baad disk jaldi consistent ho jaati hai"
+     },
+     {
+      "en": "It makes files smaller",
+      "hi": "फ़ाइलें छोटी करती है",
+      "hinglish": "Files chhoti karti hai"
+     },
+     {
+      "en": "It encrypts files",
+      "hi": "फ़ाइलें एन्क्रिप्ट करती है",
+      "hinglish": "Files encrypt karti hai"
+     },
+     {
+      "en": "It speeds up Wi-Fi",
+      "hi": "वाई-फ़ाई तेज़ करती है",
+      "hinglish": "Wi-Fi tez karti hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "The journal records intent before changes are made.",
+     "hi": "जर्नल बदलाव से पहले इरादा लिखता है।",
+     "hinglish": "Journal changes se pehle intent likhta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why encrypt and wipe an old phone before selling it?",
+     "hi": "पुराना फ़ोन बेचने से पहले एन्क्रिप्ट और साफ़ क्यों करो?",
+     "hinglish": "Purana phone bechne se pehle encrypt aur wipe kyun karo?"
+    },
+    "options": [
+     {
+      "en": "Deleted data can often be recovered",
+      "hi": "मिटाया डेटा अक्सर वापस लाया जा सकता है",
+      "hinglish": "Delete hua data aksar recover ho sakta hai"
+     },
+     {
+      "en": "It makes the phone faster",
+      "hi": "फ़ोन तेज़ होता है",
+      "hinglish": "Phone tez hota hai"
+     },
+     {
+      "en": "The law forbids selling phones",
+      "hi": "क़ानून फ़ोन बेचना मना करता है",
+      "hinglish": "Law phone bechna mana karta hai"
+     },
+     {
+      "en": "To change its colour",
+      "hi": "रंग बदलने",
+      "hinglish": "Rang badalne"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Deleting removes the name, not the blocks.",
+     "hi": "मिटाना नाम हटाता है, ब्लॉक नहीं।",
+     "hinglish": "Delete karna naam hatata hai, blocks nahi."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "List files with details in the practice terminal.",
+     "hi": "अभ्यास टर्मिनल में विवरण सहित फ़ाइलें दिखाओ।",
+     "hinglish": "Practice terminal mein details ke saath files list karo."
+    },
+    "answer": {
+     "event": "shell-task-done",
+     "task": "ls"
+    },
+    "explain": {
+     "en": "ls -l prints the inode metadata for each file.",
+     "hi": "ls -l हर फ़ाइल का inode मेटाडेटा छापता है।",
+     "hinglish": "ls -l har file ka inode metadata print karta hai."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "os.files-folders"
+ ],
+ "sources": [
+  {
+   "title": "Arpaci-Dusseau, Operating Systems: Three Easy Pieces (free online)",
+   "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "ext4 documentation (kernel.org)",
+   "url": "https://docs.kernel.org/filesystems/ext4/index.html",
+   "licence": "fact reference"
+  }
+ ]
+}

@@ -1,0 +1,369 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.security-engineering.10",
+ "level": 3,
+ "classes": [
+  10,
+  11,
+  12
+ ],
+ "unit": "security-engineering",
+ "title": {
+  "en": "Incident response and CERT-In",
+  "hi": "घटना प्रतिक्रिया और CERT-In",
+  "hinglish": "Incident response aur CERT-In"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [
+  "L3.security-engineering.09"
+ ],
+ "outcomes": [
+  {
+   "en": "List the phases of incident response and what happens in each",
+   "hi": "घटना प्रतिक्रिया के चरण और हर चरण में क्या होता है, बताओ",
+   "hinglish": "Incident response ke phases aur har phase mein kya hota hai, batao"
+  },
+  {
+   "en": "Use logs to find evidence of an incident (grep, timestamps)",
+   "hi": "घटना के सबूत लॉग से ढूँढो (grep, टाइमस्टैम्प)",
+   "hinglish": "Incident ka saboot logs se dhoondho (grep, timestamps)"
+  },
+  {
+   "en": "State India's reporting rules: CERT-In within 6 hours, logs kept 180 days",
+   "hi": "भारत के रिपोर्टिंग नियम बताओ: CERT-In को 6 घंटे में, लॉग 180 दिन",
+   "hinglish": "India ke reporting rules batao: CERT-In ko 6 ghante mein, logs 180 din"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Incident",
+   "hinglish": "Security ki gadbad",
+   "en": "An event that harms or threatens confidentiality, integrity or availability",
+   "hi": "गोपनीयता, अखंडता या उपलब्धता को नुक़सान या ख़तरा पहुँचाने वाली घटना"
+  },
+  {
+   "term": "Log",
+   "hinglish": "System ki diary",
+   "en": "Time-stamped record of events: logins, errors, requests",
+   "hi": "घटनाओं का समय-अंकित रिकॉर्ड: लॉगिन, त्रुटियाँ, अनुरोध"
+  },
+  {
+   "term": "Containment",
+   "hinglish": "Failaav rokna",
+   "en": "Limiting the spread and damage of an incident",
+   "hi": "घटना का फैलाव और नुक़सान सीमित करना"
+  },
+  {
+   "term": "SOC",
+   "hinglish": "Security nigraani kendra",
+   "en": "Security operations centre: team watching alerts 24×7",
+   "hi": "सुरक्षा संचालन केंद्र: 24×7 अलर्ट देखने वाली टीम"
+  },
+  {
+   "term": "CERT-In",
+   "hinglish": "Bharat ki cyber emergency team",
+   "en": "Indian Computer Emergency Response Team, the national agency under MeitY",
+   "hi": "भारतीय कंप्यूटर आपातकालीन प्रतिक्रिया दल, MeitY के तहत राष्ट्रीय एजेंसी"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Alert at 02:14: 50 failed logins for \"admin\" in two minutes from one address, then one success.",
+    "hi": "02:14 पर अलर्ट: एक पते से दो मिनट में \"admin\" के 50 विफल लॉगिन, फिर एक सफल।",
+    "hinglish": "02:14 par alert: ek address se do minute mein \"admin\" ke 50 failed logins, phir ek success."
+   },
+   "visual": "anim:log-alert",
+   "narration": {
+    "en": "Alert at 02:14: 50 failed logins for \"admin\" in two minutes from one address, then one success.",
+    "hi": "02:14 पर अलर्ट: एक पते से दो मिनट में \"admin\" के 50 विफल लॉगिन, फिर एक सफल।",
+    "hinglish": "02:14 par alert: ek address se do minute mein \"admin\" ke 50 failed logins, phir ek success."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Detect and analyse: grep the logs for that address, build a timeline, and decide how serious it is.",
+    "hi": "पहचानो और विश्लेषण करो: उस पते के लिए लॉग में grep करो, समय-रेखा बनाओ, और गंभीरता तय करो।",
+    "hinglish": "Detect aur analyse karo: us address ke liye logs mein grep karo, timeline banao, aur kitna serious hai tay karo."
+   },
+   "visual": "anim:timeline-build",
+   "narration": {
+    "en": "Detect and analyse: grep the logs for that address, build a timeline, and decide how serious it is.",
+    "hi": "पहचानो और विश्लेषण करो: उस पते के लिए लॉग में grep करो, समय-रेखा बनाओ, और गंभीरता तय करो।",
+    "hinglish": "Detect aur analyse karo: us address ke liye logs mein grep karo, timeline banao, aur kitna serious hai tay karo."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Contain: lock the account, block the address, isolate the server. Eradicate: remove backdoors, reset passwords, patch.",
+    "hi": "रोको: खाता बंद करो, पता ब्लॉक करो, सर्वर अलग करो। मिटाओ: पिछले दरवाज़े हटाओ, पासवर्ड बदलो, अपडेट करो।",
+    "hinglish": "Contain: account lock karo, address block karo, server isolate karo. Eradicate: backdoors hatao, passwords reset karo, patch karo."
+   },
+   "visual": "anim:contain-wall",
+   "narration": {
+    "en": "Contain: lock the account, block the address, isolate the server. Eradicate: remove backdoors, reset passwords, patch.",
+    "hi": "रोको: खाता बंद करो, पता ब्लॉक करो, सर्वर अलग करो। मिटाओ: पिछले दरवाज़े हटाओ, पासवर्ड बदलो, अपडेट करो।",
+    "hinglish": "Contain: account lock karo, address block karo, server isolate karo. Eradicate: backdoors hatao, passwords reset karo, patch karo."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Recover and learn: restore service, report to CERT-In within 6 hours, and write a blameless lessons-learned note.",
+    "hi": "उबरो और सीखो: सेवा बहाल करो, 6 घंटे में CERT-In को रिपोर्ट करो, और बिना दोष वाला सीख-नोट लिखो।",
+    "hinglish": "Recover aur seekho: service restore karo, 6 ghante mein CERT-In ko report karo, aur blameless lessons-learned note likho."
+   },
+   "visual": "anim:lessons-note",
+   "narration": {
+    "en": "Recover and learn: restore service, report to CERT-In within 6 hours, and write a blameless lessons-learned note.",
+    "hi": "उबरो और सीखो: सेवा बहाल करो, 6 घंटे में CERT-In को रिपोर्ट करो, और बिना दोष वाला सीख-नोट लिखो।",
+    "hinglish": "Recover aur seekho: service restore karo, 6 ghante mein CERT-In ko report karo, aur blameless lessons-learned note likho."
+   }
+  }
+ ],
+ "play": {
+  "lab": "seq-flow",
+  "config": {
+   "scenario": "linux-shell"
+  },
+  "goal": {
+   "en": "Use the practice terminal like an investigator: find where you are, list files, read notice.txt and use grep to pull out the matching lines. Then protect marks.csv with chmod 600.",
+   "hi": "अभ्यास टर्मिनल को जाँचकर्ता की तरह इस्तेमाल करो: पता करो कहाँ हो, फ़ाइलें देखो, notice.txt पढ़ो और grep से मिलती पंक्तियाँ निकालो। फिर marks.csv को chmod 600 से सुरक्षित करो।",
+   "hinglish": "Practice terminal ko investigator ki tarah use karo: pata karo kahan ho, files list karo, notice.txt padho aur grep se matching lines nikaalo. Phir marks.csv ko chmod 600 se surakshit karo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "The incident response lifecycle",
+    "hi": "घटना प्रतिक्रिया जीवन-चक्र",
+    "hinglish": "Incident response lifecycle"
+   },
+   "body": {
+    "en": "The classic NIST SP 800-61 cycle is: Preparation → Detection & Analysis → Containment, Eradication & Recovery → Post-incident activity. Revision 3 (April 2025) maps this onto the CSF 2.0 functions. Preparation is most of the work: an up-to-date asset list, contact list, logging switched on and kept, backups, and practice drills. During an incident, keep a written timeline, preserve evidence (copy logs before changing systems) and communicate through a single lead. Afterwards, fix root causes, not just symptoms.",
+    "hi": "क्लासिक NIST SP 800-61 चक्र है: तैयारी → पहचान और विश्लेषण → रोकथाम, उन्मूलन और बहाली → घटना-पश्चात गतिविधि। संशोधन 3 (अप्रैल 2025) इसे CSF 2.0 कार्यों से जोड़ता है। तैयारी ही ज़्यादातर काम है: अद्यतन संपत्ति सूची, संपर्क सूची, लॉगिंग चालू और सहेजी, बैकअप, और अभ्यास। घटना के दौरान लिखित समय-रेखा रखो, सबूत बचाओ (प्रणाली बदलने से पहले लॉग कॉपी करो) और एक ही प्रमुख के ज़रिए बात करो। बाद में सिर्फ़ लक्षण नहीं, मूल कारण ठीक करो।",
+    "hinglish": "Classic NIST SP 800-61 cycle hai: Preparation → Detection & Analysis → Containment, Eradication & Recovery → Post-incident activity. Revision 3 (April 2025) ise CSF 2.0 functions se jodta hai. Preparation hi zyaadatar kaam hai: updated asset list, contact list, logging on aur saved, backups, aur practice drills. Incident ke dauraan written timeline rakho, evidence bachao (systems badalne se pehle logs copy karo) aur ek hi lead ke zariye communicate karo. Baad mein sirf symptoms nahi, root causes fix karo."
+   },
+   "analogy": {
+    "en": "Like a school fire drill: most of the value is in practising before there is ever a real fire.",
+    "hi": "स्कूल के अग्नि अभ्यास जैसा: ज़्यादातर फ़ायदा असली आग से पहले अभ्यास में है।",
+    "hinglish": "School fire drill jaisa: zyaadatar fayda asli aag se pehle practice mein hai."
+   },
+   "realExample": {
+    "en": "grep \"203.0.113.50\" auth.log | wc -l counts lines mentioning a suspicious address — one of the first commands an analyst runs.",
+    "hi": "grep \"203.0.113.50\" auth.log | wc -l संदिग्ध पते वाली पंक्तियाँ गिनता है — विश्लेषक के पहले कमांड में से एक।",
+    "hinglish": "grep \"203.0.113.50\" auth.log | wc -l suspicious address wali lines ginta hai — analyst ke pehle commands mein se ek."
+   }
+  },
+  {
+   "heading": {
+    "en": "India's rules: CERT-In directions (2022)",
+    "hi": "भारत के नियम: CERT-In निर्देश (2022)",
+    "hinglish": "India ke rules: CERT-In directions (2022)"
+   },
+   "body": {
+    "en": "Under Section 70B of the IT Act, CERT-In's directions of 28 April 2022 require organisations to report listed cyber incidents (such as data breaches, ransomware, compromised accounts, website defacement) within 6 hours of noticing them, keep ICT system logs for 180 days within India, sync clocks to the national NTP servers (so timelines line up), and name a point of contact. VPN, cloud and data-centre providers must also keep subscriber records for 5 years. Citizens report fraud at cybercrime.gov.in or 1930.",
+    "hi": "आईटी अधिनियम की धारा 70B के तहत CERT-In के 28 अप्रैल 2022 के निर्देश संगठनों से सूचीबद्ध साइबर घटनाएँ (जैसे डेटा लीक, रैनसमवेयर, खाते पर कब्ज़ा, वेबसाइट विरूपण) पता चलने के 6 घंटे में रिपोर्ट करने, ICT प्रणाली लॉग 180 दिन भारत में रखने, घड़ियाँ राष्ट्रीय NTP सर्वर से मिलाने (ताकि समय-रेखा मेल खाए), और संपर्क व्यक्ति नामित करने को कहते हैं। VPN, क्लाउड और डेटा सेंटर प्रदाताओं को ग्राहक रिकॉर्ड 5 साल रखने होते हैं। नागरिक धोखाधड़ी cybercrime.gov.in या 1930 पर बताएँ।",
+    "hinglish": "IT Act ke Section 70B ke tahat CERT-In ke 28 April 2022 ke directions organisations se listed cyber incidents (jaise data breaches, ransomware, compromised accounts, website defacement) pata chalne ke 6 ghante mein report karne, ICT system logs 180 din India mein rakhne, clocks national NTP servers se sync karne (taaki timelines match hon), aur point of contact naam karne ko kehte hain. VPN, cloud aur data-centre providers ko subscriber records 5 saal rakhne hote hain. Citizens fraud cybercrime.gov.in ya 1930 par report karein."
+   },
+   "analogy": {
+    "en": "Reporting fast is like calling 112 quickly after an accident — the sooner help knows, the less damage spreads.",
+    "hi": "जल्दी रिपोर्ट करना दुर्घटना के बाद जल्दी 112 पर कॉल करने जैसा है — मदद को जितनी जल्दी पता चले, उतना कम नुक़सान।",
+    "hinglish": "Jaldi report karna accident ke baad jaldi 112 par call karne jaisa hai — madad ko jitni jaldi pata chale, utna kam nuksaan."
+   },
+   "realExample": {
+    "en": "If a school's website is defaced at 9 am, its IT provider should report to CERT-In (incident@cert-in.org.in) before 3 pm.",
+    "hi": "अगर स्कूल की वेबसाइट सुबह 9 बजे विरूपित हो, उसके आईटी प्रदाता को दोपहर 3 बजे से पहले CERT-In (incident@cert-in.org.in) को रिपोर्ट करना चाहिए।",
+    "hinglish": "Agar school ki website subah 9 baje deface ho, uske IT provider ko dopahar 3 baje se pehle CERT-In (incident@cert-in.org.in) ko report karna chahiye."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write a one-page incident playbook for \"a teacher's email account is sending phishing links\": who to call, the first three containment steps, what evidence to save, and who must be told within 6 hours.",
+   "hi": "\"शिक्षक का ईमेल खाता फ़िशिंग लिंक भेज रहा है\" के लिए एक पन्ने की घटना-पुस्तिका लिखो: किसे कॉल करना, पहले तीन रोकथाम क़दम, कौन-से सबूत बचाने, और 6 घंटे में किसे बताना ज़रूरी।",
+   "hinglish": "Ek page ka incident playbook likho \"teacher ka email account phishing links bhej raha hai\" ke liye: kise call karna, pehle teen containment steps, kaunsa evidence bachana, aur 6 ghante mein kise batana zaroori."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "order",
+    "prompt": {
+     "en": "Order the incident response phases.",
+     "hi": "घटना प्रतिक्रिया चरण क्रम में लगाओ।",
+     "hinglish": "Incident response phases order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Preparation",
+      "hi": "तैयारी",
+      "hinglish": "Preparation"
+     },
+     {
+      "en": "Detection & analysis",
+      "hi": "पहचान और विश्लेषण",
+      "hinglish": "Detection & analysis"
+     },
+     {
+      "en": "Containment, eradication, recovery",
+      "hi": "रोकथाम, उन्मूलन, बहाली",
+      "hinglish": "Containment, eradication, recovery"
+     },
+     {
+      "en": "Lessons learned",
+      "hi": "सीख",
+      "hinglish": "Lessons learned"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "NIST SP 800-61 lifecycle.",
+     "hi": "NIST SP 800-61 जीवन-चक्र।",
+     "hinglish": "NIST SP 800-61 lifecycle."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Within how many hours must Indian organisations report listed incidents to CERT-In?",
+     "hi": "भारतीय संगठनों को सूचीबद्ध घटनाएँ CERT-In को कितने घंटे में बतानी होती हैं?",
+     "hinglish": "Indian organisations ko listed incidents CERT-In ko kitne ghante mein report karne hote hain?"
+    },
+    "options": [
+     "1",
+     "6",
+     "24",
+     "72"
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "6 hours, under the April 2022 directions.",
+     "hi": "अप्रैल 2022 निर्देशों के तहत 6 घंटे।",
+     "hinglish": "April 2022 directions ke tahat 6 ghante."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why save logs before cleaning the server?",
+     "hi": "सर्वर साफ़ करने से पहले लॉग क्यों बचाओ?",
+     "hinglish": "Server saaf karne se pehle logs kyun bachao?"
+    },
+    "options": [
+     {
+      "en": "They are evidence for analysis and reporting",
+      "hi": "वे विश्लेषण और रिपोर्ट के सबूत हैं",
+      "hinglish": "Woh analysis aur reporting ke evidence hain"
+     },
+     {
+      "en": "They make the server faster",
+      "hi": "सर्वर तेज़ होता है",
+      "hinglish": "Server tez hota hai"
+     },
+     {
+      "en": "The law bans cleaning",
+      "hi": "क़ानून सफ़ाई रोकता है",
+      "hinglish": "Law safaai rokta hai"
+     },
+     {
+      "en": "Logs fix malware",
+      "hi": "लॉग मैलवेयर ठीक करते हैं",
+      "hinglish": "Logs malware fix karte hain"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Changing the system first can destroy the trail.",
+     "hi": "पहले प्रणाली बदलना निशान मिटा सकता है।",
+     "hinglish": "Pehle system badalna trail mita sakta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why must clocks be synced (NTP) across systems?",
+     "hi": "प्रणालियों की घड़ियाँ (NTP) क्यों मिलानी चाहिए?",
+     "hinglish": "Systems ki clocks (NTP) kyun sync karni chahiye?"
+    },
+    "options": [
+     {
+      "en": "So log timelines from different systems line up",
+      "hi": "ताकि अलग प्रणालियों की लॉग समय-रेखा मेल खाए",
+      "hinglish": "Taaki alag systems ki log timelines match hon"
+     },
+     {
+      "en": "To save power",
+      "hi": "बिजली बचाने",
+      "hinglish": "Bijli bachane"
+     },
+     {
+      "en": "For faster Wi-Fi",
+      "hi": "तेज़ वाई-फ़ाई",
+      "hinglish": "Tez Wi-Fi"
+     },
+     {
+      "en": "To encrypt files",
+      "hi": "फ़ाइलें एन्क्रिप्ट करने",
+      "hinglish": "Files encrypt karne"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "A 5-minute clock drift can hide the order of events.",
+     "hi": "5 मिनट का घड़ी अंतर घटनाओं का क्रम छिपा सकता है।",
+     "hinglish": "5 minute ka clock drift events ka order chhupa sakta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Use grep in the practice terminal.",
+     "hi": "अभ्यास टर्मिनल में grep इस्तेमाल करो।",
+     "hinglish": "Practice terminal mein grep use karo."
+    },
+    "answer": {
+     "event": "shell-task-done",
+     "task": "grep"
+    },
+    "explain": {
+     "en": "grep is the investigator's first tool for searching logs.",
+     "hi": "grep लॉग खोजने का जाँचकर्ता का पहला औज़ार है।",
+     "hinglish": "grep logs search karne ka investigator ka pehla tool hai."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "cyber.incident-response"
+ ],
+ "sources": [
+  {
+   "title": "CERT-In — Directions under Section 70B (28 April 2022)",
+   "url": "https://www.cert-in.org.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NIST SP 800-61 Rev. 3 (2025)",
+   "url": "https://csrc.nist.gov/pubs/sp/800/61/r3/final",
+   "licence": "fact reference"
+  }
+ ]
+}

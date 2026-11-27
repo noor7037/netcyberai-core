@@ -1,0 +1,389 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.ai-ml-intuition.02",
+ "level": 2,
+ "classes": [
+  6,
+  7,
+  8
+ ],
+ "unit": "ai-ml-intuition",
+ "title": {
+  "en": "Training data, labels and testing",
+  "hi": "प्रशिक्षण डेटा, लेबल और परीक्षण",
+  "hinglish": "Training data, labels aur testing"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [
+  "L2.ai-ml-intuition.01"
+ ],
+ "topics": [
+  "ai.ml-supervised",
+  "ai.evaluation"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain features, labels, training data and test data",
+   "hi": "फ़ीचर, लेबल, प्रशिक्षण डेटा और परीक्षण डेटा समझा सकते हो",
+   "hinglish": "Features, labels, training data aur test data samjha sakte ho"
+  },
+  {
+   "en": "Describe how a nearest-neighbour model makes a prediction",
+   "hi": "समझा सकते हो कि निकटतम-पड़ोसी मॉडल अनुमान कैसे लगाता है",
+   "hinglish": "Samjha sakte ho nearest-neighbour model prediction kaise karta hai"
+  },
+  {
+   "en": "Measure accuracy on data the model has never seen",
+   "hi": "मॉडल के कभी न देखे डेटा पर सटीकता माप सकते हो",
+   "hinglish": "Model ke kabhi na dekhe data pe accuracy naap sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Feature",
+   "hinglish": "Input ki khoobi",
+   "en": "A measurable property used as input, e.g. softness or colour",
+   "hi": "इनपुट के रूप में उपयोग होने वाला मापने योग्य गुण, जैसे नरमी या रंग"
+  },
+  {
+   "term": "Label",
+   "hinglish": "Sahi jawab",
+   "en": "The correct answer attached to a training example, e.g. “ripe”",
+   "hi": "प्रशिक्षण उदाहरण से जुड़ा सही उत्तर, जैसे “पका”"
+  },
+  {
+   "term": "Training data",
+   "hinglish": "Seekhne ke examples",
+   "en": "Labelled examples the model learns from",
+   "hi": "लेबल वाले उदाहरण जिनसे मॉडल सीखता है"
+  },
+  {
+   "term": "Test data",
+   "hinglish": "Pareeksha ke examples",
+   "en": "Examples kept aside to check the model fairly",
+   "hi": "मॉडल को निष्पक्ष जाँचने के लिए अलग रखे उदाहरण"
+  },
+  {
+   "term": "Accuracy",
+   "hinglish": "Kitne sahi",
+   "en": "The share of test examples the model gets right",
+   "hi": "परीक्षण उदाहरणों का वह हिस्सा जो मॉडल सही करता है"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Each mango is described by features (softness, yellow skin) and, for training, a label (ripe or raw).",
+    "hi": "हर आम को फ़ीचर (नरमी, पीला छिलका) से और प्रशिक्षण के लिए एक लेबल (पका या कच्चा) से बताया जाता है।",
+    "hinglish": "Har aam ko features (softness, peela chhilka) se aur training ke liye ek label (pakka ya kachcha) se describe kiya jaata hai."
+   },
+   "visual": "compare:📏 Features = what we measure|🏷️ Label = the right answer",
+   "narration": {
+    "en": "Without labels, the model cannot know what “ripe” means.",
+    "hi": "लेबल के बिना मॉडल नहीं जान सकता “पका” क्या है।",
+    "hinglish": "Labels ke bina model nahi jaan sakta “pakka” kya hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "The 3-nearest-neighbours model finds the 3 training examples closest to a new mango and takes a vote.",
+    "hi": "3-निकटतम-पड़ोसी मॉडल नए आम के सबसे पास के 3 प्रशिक्षण उदाहरण ढूँढकर वोट लेता है।",
+    "hinglish": "3-nearest-neighbours model naye aam ke sabse paas ke 3 training examples dhoondh ke vote leta hai."
+   },
+   "visual": "lab:ai-lab#learn",
+   "narration": {
+    "en": "Two ripe neighbours and one raw → it predicts ripe.",
+    "hi": "दो पके पड़ोसी और एक कच्चा → वह पका अनुमान लगाता है।",
+    "hinglish": "Do pakke padosi aur ek kachcha → woh pakka predict karta hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Always test on data the model did NOT train on — like a surprise test with new questions.",
+    "hi": "मॉडल को हमेशा ऐसे डेटा पर जाँचो जिस पर उसने प्रशिक्षण नहीं लिया — नए प्रश्नों वाली अचानक परीक्षा की तरह।",
+    "hinglish": "Model ko hamesha aise data pe test karo jis pe usne training nahi li — naye questions wale surprise test ki tarah."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "Testing on training data is like giving the exam paper before the exam.",
+    "hi": "प्रशिक्षण डेटा पर जाँचना परीक्षा से पहले प्रश्नपत्र देने जैसा है।",
+    "hinglish": "Training data pe test karna exam se pehle paper dene jaisa hai."
+   },
+   "code": "accuracy = correct ÷ total\n         = 4 ÷ 6 ≈ 67 %   (before fixing)\n         = 6 ÷ 6 = 100 %  (after better data)"
+  }
+ ],
+ "play": {
+  "lab": "ai-lab",
+  "config": {
+   "tab": "learn"
+  },
+  "goal": {
+   "en": "Test the model, read its accuracy, then add labelled examples until it scores 6/6.",
+   "hi": "मॉडल जाँचो, सटीकता पढ़ो, फिर लेबल वाले उदाहरण जोड़ो जब तक 6/6 न आए।",
+   "hinglish": "Model test karo, accuracy padho, phir labelled examples jodo jab tak 6/6 na aaye."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "How supervised learning works",
+    "hi": "पर्यवेक्षित सीखना कैसे काम करता है",
+    "hinglish": "Supervised learning kaise kaam karta hai"
+   },
+   "body": {
+    "en": "Learning from labelled examples is called supervised learning, because the labels act like a teacher. Step 1: collect examples and measure features. Step 2: label them correctly — often by people; for example, doctors label X-rays and volunteers label photos. Step 3: split the data, usually about 80% for training and 20% for testing. Step 4: train the model. A k-nearest-neighbours (k-NN) model simply remembers the training points and, for a new point, looks at the k closest ones and votes; other models, like decision trees and neural networks, learn a compact set of numbers instead. Step 5: measure accuracy on the test set. If accuracy is low, the usual fix is better data: more examples, more variety, or correct labels — not just a bigger computer. Wrong labels teach wrong lessons: “garbage in, garbage out”.",
+    "hi": "लेबल वाले उदाहरणों से सीखना पर्यवेक्षित सीखना कहलाता है, क्योंकि लेबल शिक्षक की तरह काम करते हैं। कदम 1: उदाहरण इकट्ठा करो और फ़ीचर मापो। कदम 2: उन्हें सही लेबल दो — अक्सर लोगों द्वारा; जैसे डॉक्टर एक्स-रे पर और स्वयंसेवक फ़ोटो पर लेबल लगाते हैं। कदम 3: डेटा बाँटो, आमतौर पर लगभग 80% प्रशिक्षण और 20% परीक्षण के लिए। कदम 4: मॉडल प्रशिक्षित करो। k-निकटतम-पड़ोसी (k-NN) मॉडल बस प्रशिक्षण बिंदु याद रखता है और नए बिंदु के लिए k सबसे पास वाले देखकर वोट लेता है; दूसरे मॉडल, जैसे निर्णय वृक्ष और न्यूरल नेटवर्क, इसकी जगह संख्याओं का छोटा समूह सीखते हैं। कदम 5: परीक्षण समूह पर सटीकता मापो। सटीकता कम हो तो आम सुधार है बेहतर डेटा: ज़्यादा उदाहरण, ज़्यादा विविधता, या सही लेबल — केवल बड़ा कंप्यूटर नहीं। ग़लत लेबल ग़लत सबक़ सिखाते हैं: “कचरा अंदर, कचरा बाहर”।",
+    "hinglish": "Labelled examples se seekhna supervised learning kehlata hai, kyunki labels teacher ki tarah kaam karte hain. Step 1: examples collect karo aur features naapo. Step 2: unhe sahi label do — aksar logon dwara; jaise doctors X-rays pe aur volunteers photos pe label lagaate hain. Step 3: data baanto, aamtaur pe lagbhag 80% training aur 20% testing ke liye. Step 4: model train karo. k-nearest-neighbours (k-NN) model bas training points yaad rakhta hai aur naye point ke liye k sabse paas wale dekh ke vote leta hai; doosre models, jaise decision trees aur neural networks, iski jagah numbers ka chhota set seekhte hain. Step 5: test set pe accuracy naapo. Accuracy kam ho to aam fix hai better data: zyada examples, zyada variety, ya sahi labels — sirf bada computer nahi. Galat labels galat sabak sikhaate hain: “garbage in, garbage out”."
+   },
+   "analogy": {
+    "en": "k-NN = choosing a restaurant in a new city: ask the 3 nearest people; if 2 say “it is good”, you go there.",
+    "hi": "k-NN = नए शहर में रेस्टोरेंट चुनना: आस-पास के 3 लोगों से पूछो, 2 ने कहा “अच्छा है” तो वहीं चलो।",
+    "hinglish": "k-NN = naye shehar mein restaurant chunna: aas-paas ke 3 logon se poocho, 2 ne kaha “achha hai” to chalo wahin."
+   },
+   "realExample": {
+    "en": "Kisan apps that spot crop diseases from a leaf photo were trained on many thousands of leaf photos that plant experts labelled “healthy” or with a disease name.",
+    "hi": "पत्ते की फ़ोटो से फ़सल रोग पहचानने वाले किसान ऐप हज़ारों पत्तों की फ़ोटो पर प्रशिक्षित हुए जिन्हें पौध विशेषज्ञों ने “स्वस्थ” या रोग के नाम से लेबल किया।",
+    "hinglish": "Patte ki photo se fasal ki beemari pehchaanne wale kisan apps hazaaron patton ki photos pe train hue jinhe plant experts ne “healthy” ya beemari ke naam se label kiya."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Make a tiny dataset: 10 fruits from your kitchen. Write 2 features for each (weight, colour) and a label (fruit name). Cover 2 rows and ask someone to guess them from the rest.",
+   "hi": "छोटा डेटासेट बनाओ: रसोई के 10 फल। हर एक के 2 फ़ीचर लिखो (वज़न, रंग) और एक लेबल (फल का नाम)। 2 पंक्तियाँ ढक दो और किसी से बाक़ी देखकर अनुमान लगवाओ।",
+   "hinglish": "Chhota dataset banao: kitchen ke 10 phal. Har ek ke 2 features likho (weight, colour) aur ek label (phal ka naam). 2 rows dhak do aur kisi se baaki dekhkar guess karwao."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "match",
+    "prompt": {
+     "en": "Match each word to its meaning.",
+     "hi": "हर शब्द को उसके अर्थ से मिलाओ।",
+     "hinglish": "Har word ko uske matlab se milao."
+    },
+    "options": {
+     "left": [
+      {
+       "en": "Feature",
+       "hi": "फ़ीचर",
+       "hinglish": "Feature"
+      },
+      {
+       "en": "Label",
+       "hi": "लेबल",
+       "hinglish": "Label"
+      },
+      {
+       "en": "Test data",
+       "hi": "परीक्षण डेटा",
+       "hinglish": "Test data"
+      }
+     ],
+     "right": [
+      {
+       "en": "The right answer for an example",
+       "hi": "उदाहरण का सही उत्तर",
+       "hinglish": "Example ka sahi answer"
+      },
+      {
+       "en": "Examples kept aside for checking",
+       "hi": "जाँच के लिए अलग रखे उदाहरण",
+       "hinglish": "Check ke liye alag rakhe examples"
+      },
+      {
+       "en": "A measured property, like softness",
+       "hi": "मापा गुण, जैसे नरमी",
+       "hinglish": "Naapi property, jaise softness"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      2
+     ],
+     [
+      1,
+      0
+     ],
+     [
+      2,
+      1
+     ]
+    ],
+    "explain": {
+     "en": "Feature = measured input; label = right answer; test data = kept aside to check.",
+     "hi": "फ़ीचर = मापा इनपुट; लेबल = सही उत्तर; परीक्षण डेटा = जाँच के लिए अलग रखा।",
+     "hinglish": "Feature = naapa input; label = sahi answer; test data = check ke liye alag rakha."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "A new mango’s 3 nearest neighbours are ripe, raw, ripe. The 3-NN model predicts…",
+     "hi": "नए आम के 3 निकटतम पड़ोसी पका, कच्चा, पका हैं। 3-NN मॉडल अनुमान लगाता है…",
+     "hinglish": "Naye aam ke 3 nearest neighbours pakka, kachcha, pakka hain. 3-NN model predict karta hai…"
+    },
+    "options": [
+     {
+      "en": "ripe",
+      "hi": "पका",
+      "hinglish": "pakka"
+     },
+     {
+      "en": "raw",
+      "hi": "कच्चा",
+      "hinglish": "kachcha"
+     },
+     {
+      "en": "cannot decide",
+      "hi": "तय नहीं कर सकता",
+      "hinglish": "decide nahi kar sakta"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Majority vote: 2 ripe vs 1 raw → ripe.",
+     "hi": "बहुमत: 2 पके बनाम 1 कच्चा → पका।",
+     "hinglish": "Majority vote: 2 pakke vs 1 kachcha → pakka."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "short",
+    "prompt": {
+     "en": "A model gets 45 of 50 test examples right. What is its accuracy in %?",
+     "hi": "मॉडल 50 में से 45 परीक्षण उदाहरण सही करता है। सटीकता कितने % है?",
+     "hinglish": "Model 50 mein se 45 test examples sahi karta hai. Accuracy kitne % hai?"
+    },
+    "answer": [
+     "90",
+     "90%",
+     "90 %"
+    ],
+    "explain": {
+     "en": "45 ÷ 50 = 0.9 = 90%.",
+     "hi": "45 ÷ 50 = 0.9 = 90%।",
+     "hinglish": "45 ÷ 50 = 0.9 = 90%."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why must test data be different from training data?",
+     "hi": "परीक्षण डेटा प्रशिक्षण डेटा से अलग क्यों होना चाहिए?",
+     "hinglish": "Test data training data se alag kyun hona chahiye?"
+    },
+    "options": [
+     {
+      "en": "To save storage",
+      "hi": "जगह बचाने के लिए",
+      "hinglish": "Storage bachane ke liye"
+     },
+     {
+      "en": "Test data must be smaller",
+      "hi": "परीक्षण डेटा छोटा होना चाहिए",
+      "hinglish": "Test data chhota hona chahiye"
+     },
+     {
+      "en": "To check it works on examples it has not seen",
+      "hi": "यह जाँचने के लिए कि वह न देखे उदाहरणों पर काम करता है",
+      "hinglish": "Check karne ke liye ki woh na dekhe examples pe kaam karta hai"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "Otherwise you only check memory, not whether it works on new cases.",
+     "hi": "वरना आप केवल याददाश्त जाँचते हो, यह नहीं कि नए मामलों पर काम करता है या नहीं।",
+     "hinglish": "Warna aap sirf memory check karte ho, yeh nahi ki naye cases pe kaam karta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "Accuracy is low. What is usually the best first fix?",
+     "hi": "सटीकता कम है। आमतौर पर सबसे अच्छा पहला सुधार क्या है?",
+     "hinglish": "Accuracy kam hai. Aamtaur pe sabse achha pehla fix kya hai?"
+    },
+    "options": [
+     {
+      "en": "A faster computer",
+      "hi": "तेज़ कंप्यूटर",
+      "hinglish": "Tez computer"
+     },
+     {
+      "en": "Better, more varied labelled data",
+      "hi": "बेहतर, ज़्यादा विविध लेबल वाला डेटा",
+      "hinglish": "Better, zyada varied labelled data"
+     },
+     {
+      "en": "Delete the test set",
+      "hi": "परीक्षण समूह मिटा दो",
+      "hinglish": "Test set delete karo"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "More varied, correctly labelled examples usually help most.",
+     "hi": "ज़्यादा विविध, सही लेबल वाले उदाहरण सबसे ज़्यादा मदद करते हैं।",
+     "hinglish": "Zyada varied, sahi labelled examples sabse zyada madad karte hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the lab mission.",
+     "hi": "लैब मिशन पूरा करो।",
+     "hinglish": "Lab mission poora karo."
+    },
+    "answer": {
+     "lab": "ai-lab",
+     "event": "mission:complete",
+     "tab": "learn"
+    },
+    "explain": {
+     "en": "Get 6/6 on the test mangoes with the learner.",
+     "hi": "सीखने वाले से परीक्षण आमों पर 6/6 पाओ।",
+     "hinglish": "Learner se test aamon pe 6/6 lao."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Google — Machine Learning Crash Course",
+   "url": "https://developers.google.com/machine-learning/crash-course",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Elements of AI (University of Helsinki & MinnaLearn) — free online course",
+   "url": "https://www.elementsofai.com/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "scikit-learn — Nearest Neighbors user guide",
+   "url": "https://scikit-learn.org/stable/modules/neighbors.html",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

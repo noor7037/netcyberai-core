@@ -1,0 +1,358 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.os-software.04",
+ "level": 2,
+ "classes": [
+  7,
+  8
+ ],
+ "unit": "os-software",
+ "title": {
+  "en": "Apps, permissions, updates and drivers",
+  "hi": "ऐप, अनुमतियाँ, अपडेट और ड्राइवर",
+  "hinglish": "Apps, permissions, updates aur drivers"
+ },
+ "minutes": 10,
+ "xp": 40,
+ "prereq": [
+  "L2.os-software.03"
+ ],
+ "topics": [
+  "sw.apps",
+  "os.users-permissions",
+  "os.updates-drivers",
+  "sw.open-source-licences"
+ ],
+ "outcomes": [
+  {
+   "en": "Decide which app permissions make sense",
+   "hi": "तय कर सकते हो कि कौन-सी ऐप अनुमतियाँ उचित हैं",
+   "hinglish": "App permissions sahi hain ya nahi decide kar sakte ho"
+  },
+  {
+   "en": "Explain why updates and drivers matter",
+   "hi": "समझा सकते हो कि अपडेट और ड्राइवर क्यों ज़रूरी हैं",
+   "hinglish": "Updates aur drivers kyun zaroori hain samjha sakte ho"
+  },
+  {
+   "en": "Explain open-source vs closed-source software",
+   "hi": "ओपन-सोर्स और क्लोज़्ड-सोर्स सॉफ़्टवेयर समझा सकते हो",
+   "hinglish": "Open-source aur closed-source mein farak bata sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Permission",
+   "hinglish": "App ko di gayi ijaazat",
+   "en": "Access an app asks for: camera, location, contacts, microphone",
+   "hi": "ऐप जो पहुँच माँगता है: कैमरा, लोकेशन, संपर्क, माइक्रोफ़ोन"
+  },
+  {
+   "term": "Update / patch",
+   "hinglish": "Galtiyan aur security holes theek karne wala naya version",
+   "en": "A new version that fixes bugs and security holes",
+   "hi": "नया संस्करण जो बग और सुरक्षा छेद ठीक करता है"
+  },
+  {
+   "term": "Driver",
+   "hinglish": "Hardware ka translator",
+   "en": "Small software that lets the OS control a device",
+   "hi": "छोटा सॉफ़्टवेयर जिससे OS किसी उपकरण को चलाता है"
+  },
+  {
+   "term": "Open source",
+   "hinglish": "Code sabke liye khula",
+   "en": "Software whose source code anyone can read, use and improve under its licence",
+   "hi": "ऐसा सॉफ़्टवेयर जिसका सोर्स कोड कोई भी उसके लाइसेंस के तहत पढ़, उपयोग और सुधार सकता है"
+  },
+  {
+   "term": "User account",
+   "hinglish": "Har user ka alag login",
+   "en": "A separate sign-in with its own files and permissions",
+   "hi": "अपनी फ़ाइलों और अनुमतियों वाला अलग साइन-इन"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Every app must ask the OS for permission before using your camera, microphone, location or contacts.",
+    "hi": "हर ऐप को कैमरा, माइक्रोफ़ोन, लोकेशन या संपर्क उपयोग से पहले OS से अनुमति माँगनी होती है।",
+    "hinglish": "Har app ko camera, mic, location ya contacts use karne se pehle OS se permission maangni hoti hai."
+   },
+   "visual": "lab:os-sim#perms",
+   "narration": {
+    "en": "A torch app asking for your contacts is a red flag.",
+    "hi": "टॉर्च ऐप का आपके संपर्क माँगना ख़तरे का संकेत है।",
+    "hinglish": "Torch app aapke contacts maange to red flag hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Updates fix security holes that criminals already know about. Install them soon.",
+    "hi": "अपडेट उन सुरक्षा छेदों को ठीक करते हैं जिन्हें अपराधी पहले से जानते हैं। जल्दी इंस्टॉल करो।",
+    "hinglish": "Updates woh security holes theek karte hain jinke baare mein criminals pehle se jaante hain. Jaldi install karo."
+   },
+   "visual": "icon:🔄",
+   "narration": {
+    "en": "An unpatched phone is like a house with a known broken lock.",
+    "hi": "बिना अपडेट वाला फ़ोन ऐसे घर जैसा है जिसका टूटा ताला सबको पता हो।",
+    "hinglish": "Bina update ka phone = ghar jiska tala tootna sabko pata ho."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Drivers are translators between the OS and a device — printer, webcam, graphics card.",
+    "hi": "ड्राइवर OS और उपकरण — प्रिंटर, वेबकैम, ग्राफ़िक्स कार्ड — के बीच अनुवादक हैं।",
+    "hinglish": "Drivers OS aur device — printer, webcam, graphics card — ke beech translator hain."
+   },
+   "visual": "flow:🪟 OS|🔤 Driver|🖨️ Printer",
+   "narration": {
+    "en": "A new printer often needs its driver installed before it works.",
+    "hi": "नया प्रिंटर अक्सर ड्राइवर इंस्टॉल होने के बाद ही चलता है।",
+    "hinglish": "Naye printer ko kaam karne se pehle aksar driver chahiye."
+   }
+  }
+ ],
+ "play": {
+  "lab": "os-sim",
+  "config": {
+   "tab": "perms"
+  },
+  "goal": {
+   "en": "Review 6 permission requests and Allow or Deny each one sensibly.",
+   "hi": "6 अनुमति अनुरोध देखो और हर एक को समझदारी से Allow या Deny करो।",
+   "hinglish": "6 permission requests dekho aur har ek ko samajh ke Allow ya Deny karo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Permission sense",
+    "hi": "अनुमति की समझ",
+    "hinglish": "Permission ki samajh"
+   },
+   "body": {
+    "en": "Ask: does this app NEED this to do its job? Maps needs location; a video-call app needs camera and microphone; a calculator needs nothing. Choose “Only while using the app” for location when possible. Install apps only from the official store (Play Store / App Store); turning on “Install unknown apps” for a browser or WhatsApp lets fake .apk files in. Use a separate child account or Google Family Link on shared devices so purchases and adult apps need a parent’s approval.",
+    "hi": "पूछो: क्या इस ऐप को अपना काम करने के लिए यह चाहिए? मैप्स को लोकेशन चाहिए; वीडियो-कॉल ऐप को कैमरा और माइक्रोफ़ोन; कैलकुलेटर को कुछ नहीं। लोकेशन के लिए जहाँ हो सके “केवल ऐप उपयोग के समय” चुनो। ऐप केवल आधिकारिक स्टोर (Play Store / App Store) से इंस्टॉल करो; ब्राउज़र या WhatsApp के लिए “अनजान ऐप इंस्टॉल करें” चालू करने से नकली .apk आ सकते हैं। साझा डिवाइस पर अलग बच्चे का खाता या Google Family Link उपयोग करो ताकि ख़रीद और वयस्क ऐप के लिए माता-पिता की मंज़ूरी चाहिए।",
+    "hinglish": "Poocho: kya is app ko apna kaam karne ke liye yeh CHAHIYE? Maps ko location chahiye; video-call app ko camera aur mic; calculator ko kuch nahi. Location ke liye jahan ho sake “Only while using the app” chuno. Apps sirf official store (Play Store / App Store) se install karo; browser ya WhatsApp ke liye “Install unknown apps” ON karne se nakli .apk andar aa sakte hain. Shared device pe alag child account ya Google Family Link use karo taaki purchase aur adult apps ke liye parent ki approval lage."
+   },
+   "analogy": {
+    "hinglish": "Ghar ki chaabi doodhwale ko nahi dete, sirf darwaze tak aane dete hain. Permission bhi utni hi do jitni zaroorat ho.",
+    "en": "We don’t give the milkman the house key, we only let him come to the door. Give permissions only as much as needed.",
+    "hi": "घर की चाबी दूधवाले को नहीं देते, केवल दरवाज़े तक आने देते हैं। अनुमति भी उतनी ही दो जितनी ज़रूरत हो।"
+   },
+   "realExample": {
+    "en": "India’s DPDP Act 2023 says apps should collect only the personal data needed for a stated purpose, and need a parent’s consent for children under 18.",
+    "hi": "भारत का DPDP अधिनियम 2023 कहता है कि ऐप केवल बताए उद्देश्य के लिए ज़रूरी व्यक्तिगत डेटा लें, और 18 से कम उम्र के बच्चों के लिए माता-पिता की सहमति लें।",
+    "hinglish": "India ka DPDP Act 2023 kehta hai apps sirf utna personal data lein jitna bataye kaam ke liye chahiye, aur 18 se kam bachchon ke liye parent ki consent chahiye."
+   }
+  },
+  {
+   "heading": {
+    "en": "Open source and licences",
+    "hi": "ओपन सोर्स और लाइसेंस",
+    "hinglish": "Open source aur licences"
+   },
+   "body": {
+    "en": "Open-source software publishes its source code so anyone can study and improve it — Linux, Android’s base (AOSP), Firefox, VLC and Python are open source. The licence says what you may do: MIT and Apache let you reuse almost freely with credit; GPL asks that changed versions stay open. Closed-source (proprietary) software like Windows or most games keeps its code private. Both can be safe or unsafe; what matters is who maintains it and whether it is updated.",
+    "hi": "ओपन-सोर्स सॉफ़्टवेयर अपना स्रोत कोड प्रकाशित करता है ताकि कोई भी उसे पढ़ और सुधार सके — Linux, Android का आधार (AOSP), Firefox, VLC और Python ओपन सोर्स हैं। लाइसेंस बताता है आप क्या कर सकते हो: MIT और Apache श्रेय के साथ लगभग मुक्त पुन: उपयोग देते हैं; GPL कहता है बदले संस्करण भी खुले रहें। बंद-स्रोत (स्वामित्व) सॉफ़्टवेयर जैसे Windows या ज़्यादातर गेम अपना कोड निजी रखते हैं। दोनों सुरक्षित या असुरक्षित हो सकते हैं; मायने रखता है कि कौन रखरखाव करता है और अपडेट होता है या नहीं।",
+    "hinglish": "Open-source software apna source code publish karta hai taaki koi bhi usse padh aur improve kar sake — Linux, Android ka base (AOSP), Firefox, VLC aur Python open source hain. Licence batata hai aap kya kar sakte ho: MIT aur Apache credit ke saath lagbhag free reuse dete hain; GPL kehta hai badle versions bhi open rahein. Closed-source (proprietary) software jaise Windows ya zyaadatar games apna code private rakhte hain. Dono safe ya unsafe ho sakte hain; maayne rakhta hai kaun maintain karta hai aur update hota hai ya nahi."
+   },
+   "analogy": {
+    "hinglish": "Open source = ghar ki recipe jo sabko share karte ho aur log usme sudhaar bhi bhejte hain.",
+    "en": "Open source = a family recipe you share with everyone, and people send back improvements.",
+    "hi": "ओपन सोर्स = घर की रेसिपी जो सबसे साझा करते हो और लोग उसमें सुधार भी भेजते हैं।"
+   },
+   "realExample": {
+    "en": "Indian projects like DigiLocker and UPI’s reference tools build on open-source components.",
+    "hi": "DigiLocker और UPI के संदर्भ टूल जैसी भारतीय परियोजनाएँ ओपन-सोर्स घटकों पर बनी हैं।",
+    "hinglish": "DigiLocker jaise Indian projects open-source components pe bane hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "With a parent, open Settings → Apps → Permissions on your phone and turn off one permission an app does not need.",
+   "hi": "माता-पिता के साथ फ़ोन में Settings → Apps → Permissions खोलो और ऐसी एक अनुमति बंद करो जो ऐप को नहीं चाहिए।",
+   "hinglish": "Parent ke saath Settings → Apps → Permissions kholo aur ek aisi permission band karo jo kisi app ko nahi chahiye."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "A simple torch (flashlight) app asks for your contacts. You should…",
+     "hi": "एक साधारण टॉर्च ऐप आपके संपर्क माँगता है। आपको…",
+     "hinglish": "Ek simple torch app aapke contacts maangta hai. Aapko…"
+    },
+    "options": [
+     {
+      "en": "Allow — apps know best",
+      "hi": "अनुमति दो — ऐप सबसे बेहतर जानते हैं",
+      "hinglish": "Allow — apps sab jaante hain"
+     },
+     {
+      "en": "Deny — it doesn’t need contacts",
+      "hi": "मना करो — इसे संपर्क नहीं चाहिए",
+      "hinglish": "Deny — isse contacts nahi chahiye"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "A torch needs only the camera flash. Asking for contacts is unnecessary and suspicious — deny, and consider uninstalling.",
+     "hi": "टॉर्च को केवल कैमरा फ़्लैश चाहिए। संपर्क माँगना अनावश्यक और संदिग्ध है — मना करो, और हटाने पर विचार करो।",
+     "hinglish": "Torch ko sirf camera flash chahiye. Contacts maangna faltu aur suspicious hai — deny karo, aur uninstall karne ka socho."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why install security updates quickly?",
+     "hi": "सुरक्षा अपडेट जल्दी क्यों इंस्टॉल करें?",
+     "hinglish": "Security updates jaldi kyun install karein?"
+    },
+    "options": [
+     {
+      "en": "They fix holes attackers already know",
+      "hi": "वे वे छेद ठीक करते हैं जो हमलावर जानते हैं",
+      "hinglish": "Woh holes theek karte hain jo attackers jaante hain"
+     },
+     {
+      "en": "They make the phone heavier",
+      "hi": "फ़ोन भारी करते हैं",
+      "hinglish": "Phone bhaari karte hain"
+     },
+     {
+      "en": "They are just new wallpapers",
+      "hi": "केवल नए वॉलपेपर हैं",
+      "hinglish": "Sirf naye wallpapers hain"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Once a hole is announced and fixed, attackers try it on phones that have not updated yet.",
+     "hi": "छेद घोषित और ठीक होने के बाद हमलावर उन फ़ोनों पर आज़माते हैं जो अपडेट नहीं हुए।",
+     "hinglish": "Hole announce aur fix hone ke baad attackers un phones pe try karte hain jo update nahi hue."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "What does a driver do?",
+     "hi": "ड्राइवर क्या करता है?",
+     "hinglish": "Driver kya karta hai?"
+    },
+    "options": [
+     {
+      "en": "Drives the car",
+      "hi": "गाड़ी चलाता है",
+      "hinglish": "Gaadi chalata hai"
+     },
+     {
+      "en": "Stores music",
+      "hi": "संगीत रखता है",
+      "hinglish": "Music rakhta hai"
+     },
+     {
+      "en": "Lets the OS control a device",
+      "hi": "OS को उपकरण चलाने देता है",
+      "hinglish": "OS ko device control karne deta hai"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "A driver translates between the OS and a specific piece of hardware.",
+     "hi": "ड्राइवर OS और किसी ख़ास हार्डवेयर के बीच अनुवाद करता है।",
+     "hinglish": "Driver OS aur kisi specific hardware ke beech translate karta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are open-source? (choose all)",
+     "hi": "कौन-से ओपन-सोर्स हैं? (सभी चुनो)",
+     "hinglish": "Kaun se open-source hain? (saare chuno)"
+    },
+    "options": [
+     {
+      "en": "Linux",
+      "hi": "Linux",
+      "hinglish": "Linux"
+     },
+     {
+      "en": "Windows",
+      "hi": "Windows",
+      "hinglish": "Windows"
+     },
+     {
+      "en": "Python",
+      "hi": "Python",
+      "hinglish": "Python"
+     },
+     {
+      "en": "Firefox",
+      "hi": "Firefox",
+      "hinglish": "Firefox"
+     }
+    ],
+    "answer": [
+     0,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "Linux, Python and Firefox publish their code. Windows is proprietary.",
+     "hi": "Linux, Python और Firefox अपना कोड प्रकाशित करते हैं। Windows स्वामित्व वाला है।",
+     "hinglish": "Linux, Python aur Firefox apna code publish karte hain. Windows proprietary hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Make the right Allow/Deny choice for every permission request in the simulator.",
+     "hi": "सिम्युलेटर में हर अनुमति अनुरोध पर सही Allow/Deny चुनो।",
+     "hinglish": "Simulator mein har permission request pe sahi Allow/Deny chuno."
+    },
+    "answer": {
+     "lab": "os-sim",
+     "event": "mission:complete",
+     "tab": "perms"
+    },
+    "explain": {
+     "en": "Allow only what the app’s job needs.",
+     "hi": "केवल वही दो जो ऐप के काम के लिए ज़रूरी है।",
+     "hinglish": "Sirf wahi do jo app ke kaam ke liye zaroori hai."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Digital Personal Data Protection Act, 2023 (MeitY)",
+   "url": "https://www.meity.gov.in/data-protection-framework",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Open Source Initiative — licences",
+   "url": "https://opensource.org/licenses",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Google Family Link",
+   "url": "https://families.google/familylink/",
+   "licence": "fact reference"
+  }
+ ]
+}

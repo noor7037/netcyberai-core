@@ -1,0 +1,363 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.os-internals.02",
+ "level": 3,
+ "classes": [
+  10,
+  11
+ ],
+ "unit": "os-internals",
+ "title": {
+  "en": "CPU scheduling",
+  "hi": "CPU शेड्यूलिंग",
+  "hinglish": "CPU scheduling"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [
+  "L3.os-internals.01"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain processes, threads and their states",
+   "hi": "प्रोसेस, थ्रेड और उनकी अवस्थाएँ समझाओ",
+   "hinglish": "Processes, threads aur unki states samjhao"
+  },
+  {
+   "en": "Compare FCFS, shortest-job-first, round robin and priority scheduling",
+   "hi": "FCFS, सबसे-छोटा-काम-पहले, राउंड रॉबिन और प्राथमिकता शेड्यूलिंग की तुलना करो",
+   "hinglish": "FCFS, shortest-job-first, round robin aur priority scheduling ki tulna karo"
+  },
+  {
+   "en": "Calculate average waiting time for a small example",
+   "hi": "छोटे उदाहरण के लिए औसत प्रतीक्षा समय निकालो",
+   "hinglish": "Chhote example ke liye average waiting time nikaalo"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Process",
+   "hinglish": "Chalta hua program",
+   "en": "A running program with its own memory and resources",
+   "hi": "अपनी मेमोरी और संसाधनों वाला चलता प्रोग्राम"
+  },
+  {
+   "term": "Thread",
+   "hinglish": "Process ke andar kaam ki dhaara",
+   "en": "A unit of execution inside a process; threads share memory",
+   "hi": "प्रोसेस के अंदर निष्पादन इकाई; थ्रेड मेमोरी साझा करते हैं"
+  },
+  {
+   "term": "Time slice",
+   "hinglish": "Har baari ka samay",
+   "en": "How long a thread may run before the scheduler may switch",
+   "hi": "शेड्यूलर बदलने से पहले थ्रेड कितनी देर चल सकता है"
+  },
+  {
+   "term": "Context switch",
+   "hinglish": "Kaam badalna",
+   "en": "Saving one thread's state and loading another's",
+   "hi": "एक थ्रेड की अवस्था सहेजकर दूसरे की लोड करना"
+  },
+  {
+   "term": "Starvation",
+   "hinglish": "Baari kabhi na aana",
+   "en": "A task that never gets CPU time because others always win",
+   "hi": "काम जिसे कभी CPU समय न मिले क्योंकि दूसरे हमेशा जीतें"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Your phone runs hundreds of threads but has 8 or so cores. The scheduler decides who runs, on which core, for how long.",
+    "hi": "आपका फ़ोन सैकड़ों थ्रेड चलाता है पर कोर लगभग 8 हैं। शेड्यूलर तय करता है कौन, किस कोर पर, कितनी देर चले।",
+    "hinglish": "Tumhara phone saikdon threads chalata hai par cores lagbhag 8 hain. Scheduler tay karta hai kaun, kis core par, kitni der chale."
+   },
+   "visual": "anim:thread-crowd",
+   "narration": {
+    "en": "Your phone runs hundreds of threads but has 8 or so cores. The scheduler decides who runs, on which core, for how long.",
+    "hi": "आपका फ़ोन सैकड़ों थ्रेड चलाता है पर कोर लगभग 8 हैं। शेड्यूलर तय करता है कौन, किस कोर पर, कितनी देर चले।",
+    "hinglish": "Tumhara phone saikdon threads chalata hai par cores lagbhag 8 hain. Scheduler tay karta hai kaun, kis core par, kitni der chale."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "States: ready (waiting for CPU), running, blocked (waiting for disk, network or a key press), finished.",
+    "hi": "अवस्थाएँ: तैयार (CPU का इंतज़ार), चल रहा, रुका (डिस्क, नेटवर्क या कुंजी का इंतज़ार), समाप्त।",
+    "hinglish": "States: ready (CPU ka intezaar), running, blocked (disk, network ya key press ka intezaar), finished."
+   },
+   "visual": "anim:state-diagram",
+   "narration": {
+    "en": "States: ready (waiting for CPU), running, blocked (waiting for disk, network or a key press), finished.",
+    "hi": "अवस्थाएँ: तैयार (CPU का इंतज़ार), चल रहा, रुका (डिस्क, नेटवर्क या कुंजी का इंतज़ार), समाप्त।",
+    "hinglish": "States: ready (CPU ka intezaar), running, blocked (disk, network ya key press ka intezaar), finished."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Round robin gives each ready thread a short slice in turn. Nobody waits forever, and everything feels responsive.",
+    "hi": "राउंड रॉबिन हर तैयार थ्रेड को बारी-बारी छोटा खंड देता है। कोई हमेशा इंतज़ार नहीं करता, और सब तुरंत लगता है।",
+    "hinglish": "Round robin har ready thread ko baari-baari chhota slice deta hai. Koi hamesha intezaar nahi karta, aur sab responsive lagta hai."
+   },
+   "visual": "anim:rr-wheel",
+   "narration": {
+    "en": "Round robin gives each ready thread a short slice in turn. Nobody waits forever, and everything feels responsive.",
+    "hi": "राउंड रॉबिन हर तैयार थ्रेड को बारी-बारी छोटा खंड देता है। कोई हमेशा इंतज़ार नहीं करता, और सब तुरंत लगता है।",
+    "hinglish": "Round robin har ready thread ko baari-baari chhota slice deta hai. Koi hamesha intezaar nahi karta, aur sab responsive lagta hai."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Priorities matter too: a video call or music must never stutter, while a backup can use leftover time.",
+    "hi": "प्राथमिकताएँ भी मायने रखती हैं: वीडियो कॉल या संगीत कभी न अटके, जबकि बैकअप बचा समय ले सकता है।",
+    "hinglish": "Priorities bhi matter karti hain: video call ya music kabhi na atke, jabki backup bacha time le sakta hai."
+   },
+   "visual": "anim:priority-lanes",
+   "narration": {
+    "en": "Priorities matter too: a video call or music must never stutter, while a backup can use leftover time.",
+    "hi": "प्राथमिकताएँ भी मायने रखती हैं: वीडियो कॉल या संगीत कभी न अटके, जबकि बैकअप बचा समय ले सकता है।",
+    "hinglish": "Priorities bhi matter karti hain: video call ya music kabhi na atke, jabki backup bacha time le sakta hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "seq-flow",
+  "config": {
+   "scenario": "rr-scheduler"
+  },
+  "goal": {
+   "en": "Watch music, browser and backup share one core. Note what happens when the browser blocks on the network, and why the music gets a priority boost.",
+   "hi": "संगीत, ब्राउज़र और बैकअप को एक कोर बाँटते देखो। लिखो जब ब्राउज़र नेटवर्क पर रुकता है तब क्या होता है, और संगीत को प्राथमिकता क्यों मिलती है।",
+   "hinglish": "Music, browser aur backup ko ek core share karte dekho. Note karo jab browser network par block hota hai tab kya hota hai, aur music ko priority boost kyun milta hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Classic algorithms, worked example",
+    "hi": "क्लासिक एल्गोरिदम, हल उदाहरण",
+    "hinglish": "Classic algorithms, worked example"
+   },
+   "body": {
+    "en": "Jobs arrive together: A needs 8 ms, B 4 ms, C 2 ms. FCFS (first come, first served) in order A, B, C: waits are 0, 8, 12 → average 6.67 ms. Shortest job first (C, B, A): waits 0, 2, 6 → average 2.67 ms, the best possible average — but it needs to know job lengths and can starve long jobs. Round robin with a 2 ms slice is fair and responsive but adds context switches. Real schedulers mix these ideas with priorities and fairness.",
+    "hi": "काम साथ आते हैं: A को 8 ms, B को 4 ms, C को 2 ms। FCFS (पहले आओ, पहले पाओ) क्रम A, B, C: प्रतीक्षा 0, 8, 12 → औसत 6.67 ms। सबसे छोटा पहले (C, B, A): प्रतीक्षा 0, 2, 6 → औसत 2.67 ms, सबसे अच्छा संभव औसत — पर इसे काम की लंबाई पता होनी चाहिए और लंबे काम भूखे रह सकते हैं। 2 ms खंड वाला राउंड रॉबिन निष्पक्ष और तुरंत है पर संदर्भ परिवर्तन बढ़ाता है। असली शेड्यूलर इन विचारों को प्राथमिकता और निष्पक्षता से मिलाते हैं।",
+    "hinglish": "Jobs saath aate hain: A ko 8 ms, B ko 4 ms, C ko 2 ms. FCFS (first come, first served) order A, B, C: waits 0, 8, 12 → average 6.67 ms. Shortest job first (C, B, A): waits 0, 2, 6 → average 2.67 ms, best possible average — par ise job lengths pata honi chahiye aur lambe jobs starve ho sakte hain. 2 ms slice wala round robin fair aur responsive hai par context switches badhata hai. Asli schedulers in ideas ko priorities aur fairness se milate hain."
+   },
+   "analogy": {
+    "en": "A ration shop queue: letting the person with one item go first cuts everyone's average wait, but someone with a full trolley might wait forever.",
+    "hi": "राशन दुकान की कतार: एक सामान वाले को पहले जाने देने से सबका औसत इंतज़ार घटता है, पर भरी ट्रॉली वाला हमेशा इंतज़ार कर सकता है।",
+    "hinglish": "Ration shop ki line: ek item wale ko pehle jaane dene se sabka average wait ghatta hai, par bhari trolley wala hamesha intezaar kar sakta hai."
+   },
+   "realExample": {
+    "en": "Linux switched from the Completely Fair Scheduler to EEVDF in kernel 6.6 (2023) to improve latency for interactive tasks.",
+    "hi": "लिनक्स ने इंटरैक्टिव कामों का विलंब सुधारने के लिए कर्नेल 6.6 (2023) में Completely Fair Scheduler से EEVDF पर बदलाव किया।",
+    "hinglish": "Linux ne interactive tasks ki latency sudhaarne ke liye kernel 6.6 (2023) mein Completely Fair Scheduler se EEVDF par switch kiya."
+   }
+  },
+  {
+   "heading": {
+    "en": "Processes vs threads",
+    "hi": "प्रोसेस बनाम थ्रेड",
+    "hinglish": "Processes vs threads"
+   },
+   "body": {
+    "en": "Each process has its own private memory, so a crash in one app does not corrupt another — browsers run each site in a separate process for safety. Threads inside one process share memory: fast to communicate, but two threads changing the same variable at once can cause race conditions, so programmers use locks. Creating a process (fork on Linux) is heavier than creating a thread.",
+    "hi": "हर प्रोसेस की अपनी निजी मेमोरी होती है, इसलिए एक ऐप का क्रैश दूसरे को ख़राब नहीं करता — ब्राउज़र सुरक्षा के लिए हर साइट को अलग प्रोसेस में चलाते हैं। एक प्रोसेस के थ्रेड मेमोरी साझा करते हैं: बात करना तेज़, पर दो थ्रेड एक ही चर एक साथ बदलें तो रेस कंडीशन हो सकती है, इसलिए प्रोग्रामर लॉक लगाते हैं। प्रोसेस बनाना (लिनक्स पर fork) थ्रेड बनाने से भारी है।",
+    "hinglish": "Har process ki apni private memory hoti hai, isliye ek app ka crash doosre ko kharab nahi karta — browsers safety ke liye har site ko alag process mein chalate hain. Ek process ke threads memory share karte hain: baat karna tez, par do threads same variable ek saath badlein to race condition ho sakti hai, isliye programmers locks lagate hain. Process banana (Linux par fork) thread banane se bhaari hai."
+   },
+   "analogy": {
+    "en": "Processes are separate flats; threads are family members in one flat sharing the fridge — handy, but they must agree who takes the last mango.",
+    "hi": "प्रोसेस अलग फ़्लैट हैं; थ्रेड एक फ़्लैट में फ़्रिज बाँटते परिवार के सदस्य — आसान, पर आख़िरी आम कौन लेगा यह तय करना पड़ता है।",
+    "hinglish": "Processes alag flats hain; threads ek flat mein fridge share karte family members — aasaan, par aakhri aam kaun lega yeh tay karna padta hai."
+   },
+   "realExample": {
+    "en": "Open Task Manager (Windows) or Activity Monitor (Mac), or run top on Linux, to see processes and their threads live.",
+    "hi": "प्रोसेस और उनके थ्रेड लाइव देखने के लिए टास्क मैनेजर (Windows) या एक्टिविटी मॉनिटर (Mac) खोलो, या लिनक्स पर top चलाओ।",
+    "hinglish": "Processes aur unke threads live dekhne ke liye Task Manager (Windows) ya Activity Monitor (Mac) kholo, ya Linux par top chalao."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Three jobs arrive together: P1 = 6 ms, P2 = 3 ms, P3 = 1 ms. Draw Gantt charts for FCFS and SJF and compute the average waiting time for each.",
+   "hi": "तीन काम साथ आए: P1 = 6 ms, P2 = 3 ms, P3 = 1 ms। FCFS और SJF के गैंट चार्ट बनाओ और हर एक का औसत प्रतीक्षा समय निकालो।",
+   "hinglish": "Teen jobs saath aaye: P1 = 6 ms, P2 = 3 ms, P3 = 1 ms. FCFS aur SJF ke Gantt charts banao aur har ek ka average waiting time nikaalo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "A thread waiting for a network reply is in which state?",
+     "hi": "नेटवर्क जवाब का इंतज़ार करता थ्रेड किस अवस्था में है?",
+     "hinglish": "Network reply ka intezaar karta thread kis state mein hai?"
+    },
+    "options": [
+     {
+      "en": "Blocked",
+      "hi": "रुका (Blocked)",
+      "hinglish": "Blocked"
+     },
+     {
+      "en": "Running",
+      "hi": "चल रहा",
+      "hinglish": "Running"
+     },
+     {
+      "en": "Ready",
+      "hi": "तैयार",
+      "hinglish": "Ready"
+     },
+     {
+      "en": "Finished",
+      "hi": "समाप्त",
+      "hinglish": "Finished"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "It cannot use the CPU until the data arrives.",
+     "hi": "डेटा आने तक वह CPU इस्तेमाल नहीं कर सकता।",
+     "hinglish": "Data aane tak woh CPU use nahi kar sakta."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "short",
+    "prompt": {
+     "en": "Jobs of 8, 4 and 2 ms arrive together. With shortest-job-first, what is the average waiting time in ms? (2 decimals)",
+     "hi": "8, 4 और 2 ms के काम साथ आए। सबसे-छोटा-पहले से औसत प्रतीक्षा समय ms में? (2 दशमलव)",
+     "hinglish": "8, 4 aur 2 ms ke jobs saath aaye. Shortest-job-first se average waiting time ms mein? (2 decimals)"
+    },
+    "answer": {
+     "accept": [
+      "2.67",
+      "2.7",
+      "8/3"
+     ]
+    },
+    "explain": {
+     "en": "Waits 0, 2, 6 → 8/3 ≈ 2.67.",
+     "hi": "प्रतीक्षा 0, 2, 6 → 8/3 ≈ 2.67।",
+     "hinglish": "Waits 0, 2, 6 → 8/3 ≈ 2.67."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Main advantage of round robin?",
+     "hi": "राउंड रॉबिन का मुख्य लाभ?",
+     "hinglish": "Round robin ka main fayda?"
+    },
+    "options": [
+     {
+      "en": "Fair and responsive; no starvation",
+      "hi": "निष्पक्ष और तुरंत; कोई भूखा नहीं",
+      "hinglish": "Fair aur responsive; koi starvation nahi"
+     },
+     {
+      "en": "Lowest possible average wait",
+      "hi": "सबसे कम औसत प्रतीक्षा",
+      "hinglish": "Sabse kam average wait"
+     },
+     {
+      "en": "No context switches",
+      "hi": "कोई संदर्भ परिवर्तन नहीं",
+      "hinglish": "Koi context switch nahi"
+     },
+     {
+      "en": "Uses no memory",
+      "hi": "मेमोरी नहीं लेता",
+      "hinglish": "Memory nahi leta"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Everyone gets a turn every cycle.",
+     "hi": "हर चक्र में सबकी बारी आती है।",
+     "hinglish": "Har cycle mein sabki baari aati hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why do browsers run each site in its own process?",
+     "hi": "ब्राउज़र हर साइट को अलग प्रोसेस में क्यों चलाते हैं?",
+     "hinglish": "Browsers har site ko alag process mein kyun chalate hain?"
+    },
+    "options": [
+     {
+      "en": "Isolation: one site's crash or attack cannot reach another's memory",
+      "hi": "अलगाव: एक साइट का क्रैश या हमला दूसरी की मेमोरी तक न पहुँचे",
+      "hinglish": "Isolation: ek site ka crash ya attack doosri ki memory tak na pahunche"
+     },
+     {
+      "en": "To use less RAM",
+      "hi": "कम RAM के लिए",
+      "hinglish": "Kam RAM ke liye"
+     },
+     {
+      "en": "To load faster on 2G",
+      "hi": "2G पर तेज़ लोड",
+      "hinglish": "2G par tez load"
+     },
+     {
+      "en": "Because of HTML rules",
+      "hi": "HTML नियमों की वजह से",
+      "hinglish": "HTML rules ki wajah se"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Processes have separate memory protected by the OS.",
+     "hi": "प्रोसेस की अलग मेमोरी OS से सुरक्षित होती है।",
+     "hinglish": "Processes ki alag memory OS se protected hoti hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Run the round-robin scenario.",
+     "hi": "राउंड-रॉबिन परिदृश्य चलाओ।",
+     "hinglish": "Round-robin scenario chalao."
+    },
+    "answer": {
+     "event": "scenario-complete",
+     "scenario": "rr-scheduler"
+    },
+    "explain": {
+     "en": "The blocked browser freed its slice early for the backup.",
+     "hi": "रुके ब्राउज़र ने अपना खंड जल्दी बैकअप को दिया।",
+     "hinglish": "Blocked browser ne apna slice jaldi backup ko diya."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "os.processes"
+ ],
+ "sources": [
+  {
+   "title": "Arpaci-Dusseau, Operating Systems: Three Easy Pieces (free online)",
+   "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "The Linux Kernel documentation",
+   "url": "https://docs.kernel.org/",
+   "licence": "fact reference"
+  }
+ ]
+}

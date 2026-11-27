@@ -1,0 +1,426 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.software-engineering.01",
+ "level": 3,
+ "classes": [
+  11,
+  12
+ ],
+ "unit": "software-engineering",
+ "title": {
+  "en": "How teams build software",
+  "hi": "टीमें सॉफ़्टवेयर कैसे बनाती हैं",
+  "hinglish": "Teams software kaise banati hain"
+ },
+ "minutes": 14,
+ "xp": 55,
+ "prereq": [
+  "L3.python-pro.06"
+ ],
+ "outcomes": [
+  {
+   "en": "Compare waterfall and agile ways of working",
+   "hi": "वॉटरफ़ॉल और एजाइल कार्य-शैली की तुलना करो",
+   "hinglish": "Waterfall aur agile kaam karne ke tareekon ki tulna karo"
+  },
+  {
+   "en": "Write a user story with acceptance criteria",
+   "hi": "स्वीकृति मानदंड के साथ उपयोगकर्ता कहानी लिखो",
+   "hinglish": "Acceptance criteria ke saath user story likho"
+  },
+  {
+   "en": "Explain why teams test with users and release in stages",
+   "hi": "समझाओ टीमें उपयोगकर्ताओं के साथ जाँच और चरणों में रिलीज़ क्यों करती हैं",
+   "hinglish": "Samjhao teams users ke saath test aur stages mein release kyun karti hain"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Requirements",
+   "hinglish": "Zarooratein",
+   "en": "What the software must do, and for whom",
+   "hi": "सॉफ़्टवेयर को क्या करना है, और किसके लिए"
+  },
+  {
+   "term": "Agile",
+   "hinglish": "Chhote loops",
+   "en": "Working in short cycles with frequent feedback",
+   "hi": "बार-बार प्रतिक्रिया के साथ छोटे चक्रों में काम"
+  },
+  {
+   "term": "Sprint",
+   "hinglish": "Sprint",
+   "en": "A fixed time-box, often 2 weeks, to deliver a usable slice",
+   "hi": "उपयोगी हिस्सा देने का तय समय, अक्सर 2 सप्ताह"
+  },
+  {
+   "term": "User story",
+   "hinglish": "User ki kahani",
+   "en": "\"As a …, I want …, so that …\"",
+   "hi": "\"एक … के रूप में, मैं … चाहता हूँ, ताकि …\""
+  },
+  {
+   "term": "Staged rollout",
+   "hinglish": "Dheere-dheere release",
+   "en": "Releasing to a small share of users first, then everyone",
+   "hi": "पहले उपयोगकर्ताओं के छोटे हिस्से को, फिर सबको जारी करना"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Waterfall: plan everything, build for months, test at the end. Changes are expensive.",
+    "hi": "वॉटरफ़ॉल: सब योजना, महीनों निर्माण, अंत में जाँच। बदलाव महँगे।",
+    "hinglish": "Waterfall: sab plan, mahino build, end mein test. Changes mehenge."
+   },
+   "visual": "flow:plan|build|test|release",
+   "narration": {
+    "en": "Waterfall: plan everything, build for months, test at the end. Changes are expensive.",
+    "hi": "वॉटरफ़ॉल: सब योजना, महीनों निर्माण, अंत में जाँच। बदलाव महँगे।",
+    "hinglish": "Waterfall: sab plan, mahino build, end mein test. Changes mehenge."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Agile: build a small slice every two weeks, show it, learn, adjust.",
+    "hi": "एजाइल: हर दो सप्ताह छोटा हिस्सा बनाओ, दिखाओ, सीखो, सुधारो।",
+    "hinglish": "Agile: har do hafte chhota hissa banao, dikhao, seekho, sudhaaro."
+   },
+   "visual": "cycle:plan|build|review|learn",
+   "narration": {
+    "en": "Agile: build a small slice every two weeks, show it, learn, adjust.",
+    "hi": "एजाइल: हर दो सप्ताह छोटा हिस्सा बनाओ, दिखाओ, सीखो, सुधारो।",
+    "hinglish": "Agile: har do hafte chhota hissa banao, dikhao, seekho, sudhaaro."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Every feature starts as a user story with a clear \"done when\".",
+    "hi": "हर सुविधा स्पष्ट \"पूरा तब\" वाली उपयोगकर्ता कहानी से शुरू होती है।",
+    "hinglish": "Har feature clear \"done when\" wali user story se shuru hota hai."
+   },
+   "visual": "stack:who|what|why|done when",
+   "narration": {
+    "en": "Every feature starts as a user story with a clear \"done when\".",
+    "hi": "हर सुविधा स्पष्ट \"पूरा तब\" वाली उपयोगकर्ता कहानी से शुरू होती है।",
+    "hinglish": "Har feature clear \"done when\" wali user story se shuru hota hai."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Test with 10 real users before 1 crore users find the problem for you.",
+    "hi": "1 करोड़ उपयोगकर्ता समस्या ढूँढें उससे पहले 10 असली उपयोगकर्ताओं से जाँचो।",
+    "hinglish": "1 crore users problem dhoondhein usse pehle 10 asli users se test karo."
+   },
+   "visual": "compare:test early|fix late",
+   "narration": {
+    "en": "Test with 10 real users before 1 crore users find the problem for you.",
+    "hi": "1 करोड़ उपयोगकर्ता समस्या ढूँढें उससे पहले 10 असली उपयोगकर्ताओं से जाँचो।",
+    "hinglish": "1 crore users problem dhoondhein usse pehle 10 asli users se test karo."
+   }
+  }
+ ],
+ "play": {
+  "lab": "seq-flow",
+  "config": {
+   "scenario": "sprint-cycle"
+  },
+  "goal": {
+   "en": "Run one sprint from user feedback to a measured release. Then tick \"Skip user testing\" and see what it costs.",
+   "hi": "एक स्प्रिंट उपयोगकर्ता प्रतिक्रिया से मापी गई रिलीज़ तक चलाओ। फिर \"उपयोगकर्ता परीक्षण छोड़ो\" चुनो और देखो इसकी क़ीमत क्या है।",
+   "hinglish": "Ek sprint user feedback se measured release tak chalao. Phir \"User testing chhodo\" tick karo aur dekho iski keemat kya hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "From waterfall to agile",
+    "hi": "वॉटरफ़ॉल से एजाइल तक",
+    "hinglish": "Waterfall se agile tak"
+   },
+   "body": {
+    "en": "Big projects were once run like building a bridge: write all requirements, design, code, test and release, one phase after another (waterfall). It suits work where requirements are fixed and mistakes are deadly, such as flight software. But for apps, users often do not know what they want until they see it, so problems found at the end are very expensive. In 2001, seventeen developers wrote the Agile Manifesto: working software over comprehensive documents, customer collaboration, responding to change. Scrum, the most common agile method, works in sprints of one to four weeks with a backlog ranked by a product owner, a daily stand-up, a demo (sprint review) and a retrospective. DevOps adds automation so that code can be tested and released many times a day. Most teams mix these: careful planning for safety-critical parts, fast loops for everything else.",
+    "hi": "बड़ी परियोजनाएँ कभी पुल बनाने की तरह चलती थीं: सब आवश्यकताएँ लिखो, डिज़ाइन, कोड, परीक्षण और रिलीज़, एक चरण के बाद दूसरा (वॉटरफ़ॉल)। यह उस काम के लिए ठीक है जहाँ आवश्यकताएँ तय और ग़लतियाँ घातक हों, जैसे उड़ान सॉफ़्टवेयर। पर ऐप में उपयोगकर्ता अक्सर देखने तक नहीं जानते कि उन्हें क्या चाहिए, इसलिए अंत में मिली समस्याएँ बहुत महँगी पड़ती हैं। 2001 में सत्रह डेवलपरों ने एजाइल घोषणापत्र लिखा: विस्तृत दस्तावेज़ों से ऊपर चलता सॉफ़्टवेयर, ग्राहक सहयोग, बदलाव पर प्रतिक्रिया। स्क्रम, सबसे आम एजाइल तरीक़ा, एक से चार सप्ताह के स्प्रिंट में काम करता है, उत्पाद स्वामी द्वारा क्रमित बैकलॉग, रोज़ाना स्टैंड-अप, डेमो (स्प्रिंट समीक्षा) और पुनरावलोकन के साथ। DevOps स्वचालन जोड़ता है ताकि कोड दिन में कई बार जाँचा और जारी हो सके। ज़्यादातर टीमें इन्हें मिलाती हैं: सुरक्षा-महत्वपूर्ण भागों के लिए सावधान योजना, बाकी के लिए तेज़ चक्र।",
+    "hinglish": "Bade projects kabhi pul banane ki tarah chalte the: saari requirements likho, design, code, test aur release, ek phase ke baad doosra (waterfall). Yeh us kaam ke liye theek hai jahan requirements fixed aur galtiyan ghaatak hon, jaise flight software. Par apps mein users aksar dekhne tak nahi jaante ki unhe kya chahiye, isliye end mein mili problems bahut mehengi padti hain. 2001 mein satrah developers ne Agile Manifesto likha: detailed documents se upar chalta software, customer collaboration, change par response. Scrum, sabse common agile method, ek se chaar hafte ke sprints mein kaam karta hai, product owner dwara ranked backlog, daily stand-up, demo (sprint review) aur retrospective ke saath. DevOps automation jodta hai taaki code din mein kai baar test aur release ho sake. Zyaadatar teams inhe milaati hain: safety-critical parts ke liye careful planning, baaki ke liye tez loops."
+   },
+   "analogy": {
+    "en": "Cooking for a wedding without tasting until the end (waterfall) versus tasting and adjusting the dal every few minutes (agile).",
+    "hi": "अंत तक चखे बिना शादी का खाना बनाना (वॉटरफ़ॉल) बनाम हर कुछ मिनट दाल चखकर सुधारना (एजाइल)।",
+    "hinglish": "End tak chakhe bina shaadi ka khaana banana (waterfall) vs har kuch minute daal chakhkar sudhaarna (agile)."
+   },
+   "realExample": {
+    "en": "UPI apps release updates every few weeks; each change goes through review, automated tests and a staged rollout before reaching everyone.",
+    "hi": "UPI ऐप हर कुछ सप्ताह अपडेट जारी करते हैं; हर बदलाव सबके पास पहुँचने से पहले समीक्षा, स्वचालित परीक्षण और चरणबद्ध रोलआउट से गुज़रता है।",
+    "hinglish": "UPI apps har kuch hafte updates release karte hain; har change sabke paas pahunchne se pehle review, automated tests aur staged rollout se guzarta hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "Why staged rollouts matter",
+    "hi": "चरणबद्ध रोलआउट क्यों ज़रूरी",
+    "hinglish": "Staged rollouts kyun zaroori"
+   },
+   "body": {
+    "en": "On 19 July 2024 a faulty content update from the security company CrowdStrike was pushed to Windows computers worldwide at once. Microsoft estimated about 8.5 million devices crashed, grounding flights and disrupting banks and hospitals, including in India. The lesson for every engineer: release to a small share first (a \"canary\"), watch crash and error rates, and only then widen it; keep a quick way to roll back; and test updates on real configurations. Software teams also track outcomes, not just features shipped — did students actually miss fewer deadlines? — and hold blameless retrospectives that ask what in the process allowed a mistake, rather than who to blame.",
+    "hi": "19 जुलाई 2024 को सुरक्षा कंपनी CrowdStrike का एक दोषपूर्ण सामग्री अपडेट दुनियाभर के Windows कंप्यूटरों पर एक साथ भेजा गया। Microsoft के अनुमान से लगभग 85 लाख उपकरण क्रैश हुए, उड़ानें रुकीं और बैंक व अस्पताल प्रभावित हुए, भारत में भी। हर इंजीनियर के लिए सबक़: पहले छोटे हिस्से को जारी करो (\"कैनरी\"), क्रैश और त्रुटि दर देखो, तभी बढ़ाओ; जल्दी वापस लेने का तरीक़ा रखो; और अपडेट असली विन्यासों पर जाँचो। सॉफ़्टवेयर टीमें केवल भेजी गई सुविधाएँ नहीं, परिणाम भी मापती हैं — क्या छात्रों ने सच में कम समय-सीमाएँ चूकीं? — और दोष-रहित पुनरावलोकन करती हैं जो पूछते हैं कि प्रक्रिया में किसने ग़लती होने दी, न कि किसे दोष दें।",
+    "hinglish": "19 July 2024 ko security company CrowdStrike ka ek faulty content update duniya bhar ke Windows computers par ek saath bheja gaya. Microsoft ke andaaze se lagbhag 85 lakh devices crash hue, flights rukin aur banks aur hospitals affect hue, India mein bhi. Har engineer ke liye sabak: pehle chhote hisse ko release karo (\"canary\"), crash aur error rates dekho, tabhi badhao; jaldi roll back ka tareeka rakho; aur updates asli configurations par test karo. Software teams sirf ship kiye features nahi, outcomes bhi naapti hain — kya students ne sach mein kam deadlines miss kin? — aur blameless retrospectives karti hain jo poochte hain ki process mein kisne galti hone di, na ki kise blame karein."
+   },
+   "analogy": {
+    "en": "Miners once carried a canary into the mine: if the small bird got sick, everyone left before the gas reached them.",
+    "hi": "खनिक कभी खदान में कैनरी ले जाते थे: छोटी चिड़िया बीमार हो तो गैस पहुँचने से पहले सब निकल जाते।",
+    "hinglish": "Miners kabhi khadaan mein canary le jaate the: chhoti chidiya beemar ho to gas pahunchne se pehle sab nikal jaate."
+   },
+   "realExample": {
+    "en": "Play Store and App Store both let developers release a new version to, say, 5% of users and pause if crashes rise.",
+    "hi": "Play Store और App Store दोनों डेवलपरों को नया संस्करण, जैसे, 5% उपयोगकर्ताओं को देने और क्रैश बढ़ें तो रोकने देते हैं।",
+    "hinglish": "Play Store aur App Store dono developers ko naya version, jaise, 5% users ko dene aur crashes badhein to rokne dete hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Pick an app your school or family uses. Write three user stories for improvements (\"As a …, I want …, so that …\") with acceptance criteria. Rank them, and describe a 10-person test you could run for the top one.",
+   "hi": "अपने स्कूल या परिवार का कोई ऐप चुनो। सुधार के लिए तीन उपयोगकर्ता कहानियाँ लिखो (\"एक … के रूप में, मैं … चाहता हूँ, ताकि …\") स्वीकृति मानदंड के साथ। उन्हें क्रम दो, और सबसे ऊपर वाली के लिए 10 लोगों का परीक्षण बताओ।",
+   "hinglish": "Apne school ya family ka koi app chuno. Sudhaar ke liye teen user stories likho (\"As a …, I want …, so that …\") acceptance criteria ke saath. Unhe rank karo, aur top wali ke liye 10 logon ka test describe karo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which situation suits a waterfall approach best?",
+     "hi": "कौन-सी स्थिति वॉटरफ़ॉल के लिए सबसे उपयुक्त?",
+     "hinglish": "Kaunsi situation waterfall ke liye sabse suitable?"
+    },
+    "options": [
+     {
+      "en": "Flight-control software with fixed, safety-critical requirements",
+      "hi": "तय, सुरक्षा-महत्वपूर्ण आवश्यकताओं वाला उड़ान-नियंत्रण सॉफ़्टवेयर",
+      "hinglish": "Fixed, safety-critical requirements wala flight-control software"
+     },
+     {
+      "en": "A new social app where nobody knows what users want",
+      "hi": "नया सोशल ऐप जहाँ कोई नहीं जानता उपयोगकर्ता क्या चाहते",
+      "hinglish": "Naya social app jahan koi nahi jaanta users kya chahte"
+     },
+     {
+      "en": "A school club website",
+      "hi": "स्कूल क्लब वेबसाइट",
+      "hinglish": "School club website"
+     },
+     {
+      "en": "A game prototype",
+      "hi": "गेम प्रोटोटाइप",
+      "hinglish": "Game prototype"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Fixed requirements and high stakes favour careful up-front planning.",
+     "hi": "तय आवश्यकताएँ और ऊँचा जोखिम सावधान पूर्व-योजना के पक्ष में।",
+     "hinglish": "Fixed requirements aur ooncha risk careful upfront planning ke paksh mein."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "order",
+    "prompt": {
+     "en": "Order the parts of a user story.",
+     "hi": "उपयोगकर्ता कहानी के भाग क्रम में लगाओ।",
+     "hinglish": "User story ke parts order mein lagao."
+    },
+    "options": [
+     {
+      "en": "As a student…",
+      "hi": "एक छात्र के रूप में…",
+      "hinglish": "As a student…"
+     },
+     {
+      "en": "I want to see today’s homework first…",
+      "hi": "मैं आज का गृहकार्य पहले देखना चाहता हूँ…",
+      "hinglish": "I want to see today’s homework first…"
+     },
+     {
+      "en": "so that I don’t miss deadlines.",
+      "hi": "ताकि मैं समय-सीमा न चूकूँ।",
+      "hinglish": "so that I don’t miss deadlines."
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2
+    ],
+    "explain": {
+     "en": "Who → what → why.",
+     "hi": "कौन → क्या → क्यों।",
+     "hinglish": "Who → what → why."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "What is a staged (canary) rollout?",
+     "hi": "चरणबद्ध (कैनरी) रोलआउट क्या है?",
+     "hinglish": "Staged (canary) rollout kya hai?"
+    },
+    "options": [
+     {
+      "en": "Releasing to a small share of users first and watching for problems",
+      "hi": "पहले छोटे हिस्से को जारी करके समस्याएँ देखना",
+      "hinglish": "Pehle chhote hisse ko release karke problems dekhna"
+     },
+     {
+      "en": "Releasing to everyone at midnight",
+      "hi": "आधी रात सबको जारी करना",
+      "hinglish": "Aadhi raat sabko release karna"
+     },
+     {
+      "en": "Never releasing",
+      "hi": "कभी जारी न करना",
+      "hinglish": "Kabhi release na karna"
+     },
+     {
+      "en": "Releasing only on paper",
+      "hi": "केवल काग़ज़ पर जारी करना",
+      "hinglish": "Sirf kaagaz par release karna"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "The 2024 CrowdStrike outage showed the cost of skipping it.",
+     "hi": "2024 के CrowdStrike आउटेज ने इसे छोड़ने की क़ीमत दिखाई।",
+     "hinglish": "2024 ke CrowdStrike outage ne ise chhodne ki keemat dikhayi."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are Scrum events?",
+     "hi": "कौन-से स्क्रम आयोजन हैं?",
+     "hinglish": "Kaunse Scrum events hain?"
+    },
+    "options": [
+     {
+      "en": "Daily stand-up (daily scrum)",
+      "hi": "रोज़ाना स्टैंड-अप",
+      "hinglish": "Daily stand-up"
+     },
+     {
+      "en": "Sprint review",
+      "hi": "स्प्रिंट समीक्षा",
+      "hinglish": "Sprint review"
+     },
+     {
+      "en": "Retrospective",
+      "hi": "पुनरावलोकन",
+      "hinglish": "Retrospective"
+     },
+     {
+      "en": "Annual exam",
+      "hi": "वार्षिक परीक्षा",
+      "hinglish": "Annual exam"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2
+    ],
+    "explain": {
+     "en": "Plus sprint planning.",
+     "hi": "साथ में स्प्रिंट योजना।",
+     "hinglish": "Saath mein sprint planning."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "A bug reached users. What does a blameless retrospective ask?",
+     "hi": "बग उपयोगकर्ताओं तक पहुँचा। दोष-रहित पुनरावलोकन क्या पूछता है?",
+     "hinglish": "Bug users tak pahuncha. Blameless retrospective kya poochta hai?"
+    },
+    "options": [
+     {
+      "en": "What in our process let it through, and how do we change that?",
+      "hi": "हमारी प्रक्रिया में किसने इसे निकलने दिया, और उसे कैसे बदलें?",
+      "hinglish": "Hamari process mein kisne ise nikalne diya, aur use kaise badlein?"
+     },
+     {
+      "en": "Who should be punished?",
+      "hi": "किसे सज़ा मिले?",
+      "hinglish": "Kise saza mile?"
+     },
+     {
+      "en": "Can we hide it?",
+      "hi": "क्या इसे छिपा सकते हैं?",
+      "hinglish": "Kya ise chhupa sakte hain?"
+     },
+     {
+      "en": "Should we stop testing?",
+      "hi": "क्या परीक्षण बंद करें?",
+      "hinglish": "Kya testing band karein?"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Fix the system, not the person.",
+     "hi": "व्यक्ति नहीं, तंत्र सुधारो।",
+     "hinglish": "Vyakti nahi, system sudhaaro."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the sprint scenario in the lab.",
+     "hi": "लैब में स्प्रिंट परिदृश्य पूरा करो।",
+     "hinglish": "Lab mein sprint scenario poora karo."
+    },
+    "answer": {
+     "event": "scenario-complete",
+     "scenario": "sprint-cycle"
+    },
+    "explain": {
+     "en": "Feedback → story → build → test → release → measure.",
+     "hi": "प्रतिक्रिया → कहानी → निर्माण → जाँच → रिलीज़ → माप।",
+     "hinglish": "Feedback → story → build → test → release → measure."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "sw.how-made",
+  "sw.types"
+ ],
+ "sources": [
+  {
+   "title": "Manifesto for Agile Software Development (2001)",
+   "url": "https://agilemanifesto.org/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "The Scrum Guide",
+   "url": "https://scrumguides.org/scrum-guide.html",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Microsoft — Helping our customers through the CrowdStrike outage (20 July 2024)",
+   "url": "https://blogs.microsoft.com/blog/2024/07/20/helping-our-customers-through-the-crowdstrike-outage/",
+   "licence": "fact reference"
+  }
+ ]
+}

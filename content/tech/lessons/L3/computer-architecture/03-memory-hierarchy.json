@@ -1,0 +1,378 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.computer-architecture.03",
+ "level": 3,
+ "classes": [
+  9,
+  10
+ ],
+ "unit": "computer-architecture",
+ "title": {
+  "en": "The memory hierarchy",
+  "hi": "मेमोरी पदानुक्रम",
+  "hinglish": "Memory hierarchy"
+ },
+ "minutes": 12,
+ "xp": 50,
+ "prereq": [
+  "L3.computer-architecture.02"
+ ],
+ "outcomes": [
+  {
+   "en": "Order registers, caches, RAM, SSD and HDD by speed, size and cost",
+   "hi": "रजिस्टर, कैश, RAM, SSD और HDD को गति, आकार और क़ीमत से क्रम दो",
+   "hinglish": "Registers, caches, RAM, SSD aur HDD ko speed, size aur cost se order karo"
+  },
+  {
+   "en": "Explain volatile vs non-volatile storage",
+   "hi": "अस्थिर बनाम स्थायी भंडारण समझाओ",
+   "hinglish": "Volatile vs non-volatile storage samjhao"
+  },
+  {
+   "en": "Read latency numbers and reason about where data should live",
+   "hi": "विलंब संख्याएँ पढ़ो और सोचो डेटा कहाँ रहे",
+   "hinglish": "Latency numbers padho aur socho data kahan rahe"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Volatile",
+   "hinglish": "Bijli gayi, data gaya",
+   "en": "Loses its contents when power is off (RAM, caches)",
+   "hi": "बिजली जाने पर सामग्री खो देता है (RAM, कैश)"
+  },
+  {
+   "term": "SSD",
+   "hinglish": "Flash wali tez storage",
+   "en": "Solid-state drive using flash memory; no moving parts",
+   "hi": "फ़्लैश मेमोरी वाली ड्राइव; कोई चलते हिस्से नहीं"
+  },
+  {
+   "term": "Latency",
+   "hinglish": "Pehla byte aane mein samay",
+   "en": "Time until data starts arriving",
+   "hi": "डेटा आना शुरू होने तक का समय"
+  },
+  {
+   "term": "Bandwidth",
+   "hinglish": "Har second kitna data",
+   "en": "How much data per second once it flows",
+   "hi": "बहना शुरू होने पर प्रति सेकंड कितना डेटा"
+  },
+  {
+   "term": "Cache miss",
+   "hinglish": "Cache mein nahi mila",
+   "en": "Requested data was not in the cache, so a slower level is used",
+   "hi": "माँगा डेटा कैश में नहीं, तो धीमा स्तर इस्तेमाल"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "A pyramid: registers at the top (tiny, fastest), then L1, L2, L3 caches, RAM, SSD, and hard disks or cloud storage at the base (huge, slowest).",
+    "hi": "एक पिरामिड: ऊपर रजिस्टर (छोटे, सबसे तेज़), फिर L1, L2, L3 कैश, RAM, SSD, और आधार पर हार्ड डिस्क या क्लाउड भंडारण (विशाल, सबसे धीमा)।",
+    "hinglish": "Ek pyramid: upar registers (chhote, sabse tez), phir L1, L2, L3 caches, RAM, SSD, aur base par hard disks ya cloud storage (bahut bade, sabse slow)."
+   },
+   "visual": "anim:mem-pyramid",
+   "narration": {
+    "en": "A pyramid: registers at the top (tiny, fastest), then L1, L2, L3 caches, RAM, SSD, and hard disks or cloud storage at the base (huge, slowest).",
+    "hi": "एक पिरामिड: ऊपर रजिस्टर (छोटे, सबसे तेज़), फिर L1, L2, L3 कैश, RAM, SSD, और आधार पर हार्ड डिस्क या क्लाउड भंडारण (विशाल, सबसे धीमा)।",
+    "hinglish": "Ek pyramid: upar registers (chhote, sabse tez), phir L1, L2, L3 caches, RAM, SSD, aur base par hard disks ya cloud storage (bahut bade, sabse slow)."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Scale it to human time: if an L1 hit took 1 second, RAM would take about 2 minutes and an SSD read about 14 hours.",
+    "hi": "मानव समय में सोचो: अगर L1 हिट 1 सेकंड ले, तो RAM लगभग 2 मिनट और SSD पढ़ना लगभग 14 घंटे लेगा।",
+    "hinglish": "Insaani time mein socho: agar L1 hit 1 second le, to RAM lagbhag 2 minute aur SSD read lagbhag 14 ghante lega."
+   },
+   "visual": "anim:human-scale",
+   "narration": {
+    "en": "Scale it to human time: if an L1 hit took 1 second, RAM would take about 2 minutes and an SSD read about 14 hours.",
+    "hi": "मानव समय में सोचो: अगर L1 हिट 1 सेकंड ले, तो RAM लगभग 2 मिनट और SSD पढ़ना लगभग 14 घंटे लेगा।",
+    "hinglish": "Insaani time mein socho: agar L1 hit 1 second le, to RAM lagbhag 2 minute aur SSD read lagbhag 14 ghante lega."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "RAM and caches are volatile: switch off and they forget. SSDs and disks keep data without power.",
+    "hi": "RAM और कैश अस्थिर हैं: बंद करो तो भूल जाते हैं। SSD और डिस्क बिना बिजली डेटा रखते हैं।",
+    "hinglish": "RAM aur caches volatile hain: band karo to bhool jaate hain. SSDs aur disks bina bijli data rakhte hain."
+   },
+   "visual": "anim:power-off",
+   "narration": {
+    "en": "RAM and caches are volatile: switch off and they forget. SSDs and disks keep data without power.",
+    "hi": "RAM और कैश अस्थिर हैं: बंद करो तो भूल जाते हैं। SSD और डिस्क बिना बिजली डेटा रखते हैं।",
+    "hinglish": "RAM aur caches volatile hain: band karo to bhool jaate hain. SSDs aur disks bina bijli data rakhte hain."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "That is why unsaved work is lost in a power cut, and why apps load from storage into RAM before they run.",
+    "hi": "इसीलिए बिजली जाने पर बिना सहेजा काम खो जाता है, और ऐप चलने से पहले भंडारण से RAM में लोड होते हैं।",
+    "hinglish": "Isiliye bijli jaane par bina save kiya kaam kho jaata hai, aur apps chalne se pehle storage se RAM mein load hote hain."
+   },
+   "visual": "anim:app-load",
+   "narration": {
+    "en": "That is why unsaved work is lost in a power cut, and why apps load from storage into RAM before they run.",
+    "hi": "इसीलिए बिजली जाने पर बिना सहेजा काम खो जाता है, और ऐप चलने से पहले भंडारण से RAM में लोड होते हैं।",
+    "hinglish": "Isiliye bijli jaane par bina save kiya kaam kho jaata hai, aur apps chalne se pehle storage se RAM mein load hote hain."
+   }
+  }
+ ],
+ "play": {
+  "lab": "seq-flow",
+  "config": {
+   "scenario": "cache-lookup"
+  },
+  "goal": {
+   "en": "Tick \"First touch (cache miss)\" and follow the request down the hierarchy. Note the cost at each level, and why RAM sends a whole 64-byte line.",
+   "hi": "\"पहली बार (कैश मिस)\" चुनो और अनुरोध को पदानुक्रम में नीचे जाते देखो। हर स्तर की लागत लिखो, और RAM पूरी 64-बाइट लाइन क्यों भेजता है।",
+   "hinglish": "\"First touch (cache miss)\" tick karo aur request ko hierarchy mein neeche jaate dekho. Har level ki cost note karo, aur RAM poori 64-byte line kyun bhejta hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Typical numbers (2026)",
+    "hi": "सामान्य संख्याएँ (2026)",
+    "hinglish": "Typical numbers (2026)"
+   },
+   "body": {
+    "en": "Registers: under 1 ns, a few hundred bytes per core. L1 cache: ~1 ns, ~32–64 KB per core. L2: ~3–5 ns, ~1–2 MB. L3: ~10–20 ns, tens of MB shared. RAM: ~80–100 ns, 8–32 GB in a phone or laptop. NVMe SSD: ~20–100 µs, 256 GB–4 TB, several GB/s. Hard disk: ~5–10 ms (a spinning platter and moving head), many TB, cheapest per GB. Each step down is roughly 10× slower but much bigger and cheaper per byte.",
+    "hi": "रजिस्टर: 1 ns से कम, प्रति कोर कुछ सौ बाइट। L1 कैश: ~1 ns, प्रति कोर ~32–64 KB। L2: ~3–5 ns, ~1–2 MB। L3: ~10–20 ns, दसियों MB साझा। RAM: ~80–100 ns, फ़ोन या लैपटॉप में 8–32 GB। NVMe SSD: ~20–100 µs, 256 GB–4 TB, कई GB/s। हार्ड डिस्क: ~5–10 ms (घूमती प्लेट और चलता सिर), कई TB, प्रति GB सबसे सस्ती। हर नीचे का क़दम मोटे तौर पर 10× धीमा पर बहुत बड़ा और प्रति बाइट सस्ता।",
+    "hinglish": "Registers: 1 ns se kam, per core kuch sau bytes. L1 cache: ~1 ns, per core ~32–64 KB. L2: ~3–5 ns, ~1–2 MB. L3: ~10–20 ns, dasiyon MB shared. RAM: ~80–100 ns, phone ya laptop mein 8–32 GB. NVMe SSD: ~20–100 µs, 256 GB–4 TB, kai GB/s. Hard disk: ~5–10 ms (ghoomti platter aur chalta head), kai TB, per GB sabse sasti. Har neeche ka step mote taur par 10× slow par bahut bada aur per byte sasta."
+   },
+   "analogy": {
+    "en": "Your pencil box (registers), school bag (cache), locker (RAM), library (SSD) and the city archive (hard disk).",
+    "hi": "आपका पेंसिल बॉक्स (रजिस्टर), बस्ता (कैश), लॉकर (RAM), पुस्तकालय (SSD) और शहर का अभिलेखागार (हार्ड डिस्क)।",
+    "hinglish": "Tumhara pencil box (registers), school bag (cache), locker (RAM), library (SSD) aur shehar ka archive (hard disk)."
+   },
+   "realExample": {
+    "en": "Cloud services keep \"hot\" data on SSDs and move rarely used backups to cheap disks or tape for long-term storage.",
+    "hi": "क्लाउड सेवाएँ \"गरम\" डेटा SSD पर रखती हैं और कम इस्तेमाल बैकअप लंबे समय के लिए सस्ती डिस्क या टेप पर ले जाती हैं।",
+    "hinglish": "Cloud services \"garam\" data SSDs par rakhti hain aur kam use hone wale backups long-term ke liye sasti disks ya tape par le jaati hain."
+   }
+  },
+  {
+   "heading": {
+    "en": "Latency vs bandwidth",
+    "hi": "विलंब बनाम बैंडविड्थ",
+    "hinglish": "Latency vs bandwidth"
+   },
+   "body": {
+    "en": "Latency is the wait before the first byte; bandwidth is the flow rate after that. A truck full of hard disks has huge bandwidth but terrible latency. Many small random reads are limited by latency; one big sequential file copy is limited by bandwidth. Good software batches requests and reads data in big, ordered chunks.",
+    "hi": "विलंब पहले बाइट से पहले का इंतज़ार है; बैंडविड्थ उसके बाद का बहाव। हार्ड डिस्कों से भरे ट्रक की बैंडविड्थ बहुत पर विलंब भयानक। कई छोटे बेतरतीब पढ़ना विलंब से सीमित; एक बड़ी क्रमिक फ़ाइल कॉपी बैंडविड्थ से। अच्छा सॉफ़्टवेयर अनुरोध इकट्ठे करता है और डेटा बड़े, क्रमबद्ध टुकड़ों में पढ़ता है।",
+    "hinglish": "Latency pehle byte se pehle ka intezaar hai; bandwidth uske baad ka bahaav. Hard disks se bhare truck ki bandwidth bahut par latency bhayaanak. Kai chhote random reads latency se limited; ek badi sequential file copy bandwidth se. Achha software requests ikatthe karta hai aur data bade, ordered chunks mein padhta hai."
+   },
+   "analogy": {
+    "en": "A water tank tap: latency is how long until water first comes out, bandwidth is how thick the stream is.",
+    "hi": "पानी की टंकी का नल: विलंब यानी पानी पहली बार आने तक का समय, बैंडविड्थ यानी धार कितनी मोटी।",
+    "hinglish": "Paani ki tanki ka nal: latency yaani paani pehli baar aane tak ka time, bandwidth yaani dhaar kitni moti."
+   },
+   "realExample": {
+    "en": "Booting from an SSD instead of a hard disk often cuts start-up from a minute to a few seconds, mostly thanks to lower latency for thousands of small files.",
+    "hi": "हार्ड डिस्क की जगह SSD से बूट करने पर स्टार्ट-अप अक्सर एक मिनट से कुछ सेकंड हो जाता है, ज़्यादातर हज़ारों छोटी फ़ाइलों के कम विलंब से।",
+    "hinglish": "Hard disk ki jagah SSD se boot karne par start-up aksar ek minute se kuch seconds ho jaata hai, zyaadatar hazaaron chhoti files ki kam latency se."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Make a \"memory pyramid\" poster with real numbers for your own phone: RAM size, storage size, and approximate speeds. Add the human-time scale beside it.",
+   "hi": "अपने फ़ोन के लिए असली संख्याओं के साथ \"मेमोरी पिरामिड\" पोस्टर बनाओ: RAM आकार, भंडारण आकार, और अनुमानित गति। साथ में मानव-समय पैमाना जोड़ो।",
+   "hinglish": "Apne phone ke liye asli numbers ke saath \"memory pyramid\" poster banao: RAM size, storage size, aur andaazan speeds. Bagal mein human-time scale jodo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "order",
+    "prompt": {
+     "en": "Order from fastest to slowest.",
+     "hi": "सबसे तेज़ से सबसे धीमे क्रम में लगाओ।",
+     "hinglish": "Sabse tez se sabse slow order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Registers",
+      "hi": "रजिस्टर",
+      "hinglish": "Registers"
+     },
+     {
+      "en": "L1 cache",
+      "hi": "L1 कैश",
+      "hinglish": "L1 cache"
+     },
+     {
+      "en": "RAM",
+      "hi": "RAM",
+      "hinglish": "RAM"
+     },
+     {
+      "en": "NVMe SSD",
+      "hi": "NVMe SSD",
+      "hinglish": "NVMe SSD"
+     },
+     {
+      "en": "Hard disk",
+      "hi": "हार्ड डिस्क",
+      "hinglish": "Hard disk"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "explain": {
+     "en": "Each step down is slower, bigger and cheaper per byte.",
+     "hi": "हर नीचे का क़दम धीमा, बड़ा और प्रति बाइट सस्ता।",
+     "hinglish": "Har neeche ka step slow, bada aur per byte sasta."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which is volatile?",
+     "hi": "कौन-सा अस्थिर है?",
+     "hinglish": "Kaunsa volatile hai?"
+    },
+    "options": [
+     {
+      "en": "RAM",
+      "hi": "RAM",
+      "hinglish": "RAM"
+     },
+     {
+      "en": "SSD",
+      "hi": "SSD",
+      "hinglish": "SSD"
+     },
+     {
+      "en": "Hard disk",
+      "hi": "हार्ड डिस्क",
+      "hinglish": "Hard disk"
+     },
+     {
+      "en": "USB pen drive",
+      "hi": "USB पेन ड्राइव",
+      "hinglish": "USB pen drive"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "RAM forgets when power is off.",
+     "hi": "बिजली जाने पर RAM भूल जाती है।",
+     "hinglish": "Bijli jaane par RAM bhool jaati hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "RAM ≈ 100 ns, L1 ≈ 1 ns. How many times slower is RAM?",
+     "hi": "RAM ≈ 100 ns, L1 ≈ 1 ns। RAM कितने गुना धीमी?",
+     "hinglish": "RAM ≈ 100 ns, L1 ≈ 1 ns. RAM kitne guna slow?"
+    },
+    "options": [
+     "10×",
+     "100×",
+     "1,000×",
+     "2×"
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "100 / 1 = 100.",
+     "hi": "100 / 1 = 100।",
+     "hinglish": "100 / 1 = 100."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Copying one 10 GB movie is mostly limited by…",
+     "hi": "एक 10 GB फ़िल्म कॉपी करना ज़्यादातर किससे सीमित है…",
+     "hinglish": "Ek 10 GB movie copy karna zyaadatar kisse limited hai…"
+    },
+    "options": [
+     {
+      "en": "Bandwidth",
+      "hi": "बैंडविड्थ",
+      "hinglish": "Bandwidth"
+     },
+     {
+      "en": "Latency",
+      "hi": "विलंब",
+      "hinglish": "Latency"
+     },
+     {
+      "en": "Screen size",
+      "hi": "स्क्रीन आकार",
+      "hinglish": "Screen size"
+     },
+     {
+      "en": "Keyboard",
+      "hi": "कीबोर्ड",
+      "hinglish": "Keyboard"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "One long sequential stream: throughput matters most.",
+     "hi": "एक लंबी क्रमिक धारा: थ्रूपुट सबसे अहम।",
+     "hinglish": "Ek lambi sequential stream: throughput sabse important."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Run the cache scenario with a cache miss.",
+     "hi": "कैश मिस के साथ कैश परिदृश्य चलाओ।",
+     "hinglish": "Cache miss ke saath cache scenario chalao."
+    },
+    "answer": {
+     "event": "scenario-complete",
+     "scenario": "cache-lookup",
+     "flags": {
+      "miss": true
+     }
+    },
+    "explain": {
+     "en": "The miss cost ~300 cycles; the next access hits.",
+     "hi": "मिस की लागत ~300 चक्र; अगली पहुँच हिट।",
+     "hinglish": "Miss ki cost ~300 cycles; agla access hit."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "topics": [
+  "hw.memory",
+  "hw.storage"
+ ],
+ "sources": [
+  {
+   "title": "Patterson & Hennessy, Computer Organization and Design — fact reference",
+   "url": "https://www.elsevier.com/books/computer-organization-and-design-risc-v-edition/patterson/978-0-12-820331-6",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Jeff Dean — Latency numbers every programmer should know",
+   "url": "https://research.google/people/jeff/",
+   "licence": "fact reference"
+  }
+ ]
+}

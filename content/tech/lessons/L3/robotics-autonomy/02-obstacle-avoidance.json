@@ -1,0 +1,409 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.robotics-autonomy.02",
+ "level": 3,
+ "classes": [
+  10,
+  11,
+  12
+ ],
+ "unit": "robotics-autonomy",
+ "title": {
+  "en": "Obstacle avoidance",
+  "hi": "बाधा से बचाव",
+  "hinglish": "Obstacle avoidance"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [
+  "L3.robotics-autonomy.01"
+ ],
+ "outcomes": [
+  {
+   "en": "Measure distance with an ultrasonic sensor using time of flight",
+   "hi": "उड़ान-समय से अल्ट्रासोनिक सेंसर द्वारा दूरी मापो",
+   "hinglish": "Time of flight se ultrasonic sensor dwara distance naapo"
+  },
+  {
+   "en": "Write sense → decide → act rules for a robot",
+   "hi": "रोबोट के लिए अनुभव → निर्णय → क्रिया नियम लिखो",
+   "hinglish": "Robot ke liye sense → decide → act rules likho"
+  },
+  {
+   "en": "Explain the trade-off between speed, reaction distance and coverage",
+   "hi": "गति, प्रतिक्रिया दूरी और कवरेज के बीच संतुलन समझाओ",
+   "hinglish": "Speed, reaction distance aur coverage ke beech trade-off samjhao"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Ultrasonic sensor",
+   "hinglish": "Awaaz se doori",
+   "en": "Sends a sound pulse above human hearing and times the echo",
+   "hi": "मानव श्रवण से ऊपर की ध्वनि पल्स भेजकर गूँज का समय मापता है"
+  },
+  {
+   "term": "LiDAR",
+   "hinglish": "Laser se doori",
+   "en": "Measures distance with laser light, often spinning to map a room",
+   "hi": "लेज़र प्रकाश से दूरी मापता है, अक्सर घूमकर कमरे का नक्शा बनाता है"
+  },
+  {
+   "term": "Reactive control",
+   "hinglish": "Turant pratikriya",
+   "en": "Acting directly on current sensor readings, with no map",
+   "hi": "बिना नक्शे, वर्तमान सेंसर पढ़ाई पर सीधे कार्य"
+  },
+  {
+   "term": "SLAM",
+   "hinglish": "Map banate hue jagah jaanna",
+   "en": "Simultaneous localisation and mapping",
+   "hi": "एक साथ स्थान-निर्धारण और नक्शा बनाना"
+  },
+  {
+   "term": "Coverage",
+   "hinglish": "Kitna area dekha",
+   "en": "The share of free space the robot has visited",
+   "hi": "ख़ाली जगह का वह भाग जहाँ रोबोट गया"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Ultrasonic sensor: ping, wait for the echo, distance = time × 343 m/s ÷ 2.",
+    "hi": "अल्ट्रासोनिक सेंसर: पिंग, गूँज का इंतज़ार, दूरी = समय × 343 m/s ÷ 2।",
+    "hinglish": "Ultrasonic sensor: ping, echo ka intezaar, distance = time × 343 m/s ÷ 2."
+   },
+   "visual": "flow:ping|echo|distance",
+   "narration": {
+    "en": "Ultrasonic sensor: ping, wait for the echo, distance = time × 343 m/s ÷ 2.",
+    "hi": "अल्ट्रासोनिक सेंसर: पिंग, गूँज का इंतज़ार, दूरी = समय × 343 m/s ÷ 2।",
+    "hinglish": "Ultrasonic sensor: ping, echo ka intezaar, distance = time × 343 m/s ÷ 2."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Three rays — left, front, right — tell the robot where space is.",
+    "hi": "तीन किरणें — बाएँ, सामने, दाएँ — रोबोट को बताती हैं कि जगह कहाँ है।",
+    "hinglish": "Teen rays — left, front, right — robot ko batati hain ki jagah kahan hai."
+   },
+   "visual": "anim:rays",
+   "narration": {
+    "en": "Three rays — left, front, right — tell the robot where space is.",
+    "hi": "तीन किरणें — बाएँ, सामने, दाएँ — रोबोट को बताती हैं कि जगह कहाँ है।",
+    "hinglish": "Teen rays — left, front, right — robot ko batati hain ki jagah kahan hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Rule: if front is closer than the turn distance, stop and turn to the more open side.",
+    "hi": "नियम: सामने मुड़ने की दूरी से पास हो तो रुको और अधिक खुली ओर मुड़ो।",
+    "hinglish": "Rule: saamne turn distance se paas ho to ruko aur zyada khuli taraf mudo."
+   },
+   "visual": "stack:sense|decide|act",
+   "narration": {
+    "en": "Rule: if front is closer than the turn distance, stop and turn to the more open side.",
+    "hi": "नियम: सामने मुड़ने की दूरी से पास हो तो रुको और अधिक खुली ओर मुड़ो।",
+    "hinglish": "Rule: saamne turn distance se paas ho to ruko aur zyada khuli taraf mudo."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Too close → crashes. Too cautious → it hides in one corner. Engineering is choosing the middle.",
+    "hi": "बहुत पास → टक्कर। बहुत सावधान → एक कोने में छिपा रहता है। इंजीनियरिंग बीच चुनना है।",
+    "hinglish": "Bahut paas → takkar. Bahut saavdhaan → ek kone mein chhupa rehta hai. Engineering beech chunna hai."
+   },
+   "visual": "compare:crashes|timid",
+   "narration": {
+    "en": "Too close → crashes. Too cautious → it hides in one corner. Engineering is choosing the middle.",
+    "hi": "बहुत पास → टक्कर। बहुत सावधान → एक कोने में छिपा रहता है। इंजीनियरिंग बीच चुनना है।",
+    "hinglish": "Bahut paas → takkar. Bahut saavdhaan → ek kone mein chhupa rehta hai. Engineering beech chunna hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "control-lab",
+  "config": {
+   "mode": "avoid"
+  },
+  "goal": {
+   "en": "Drive the robot for 30 s with zero crashes while exploring at least 35% of the arena. Start with the risky defaults, then change the turn distance, speed and rule.",
+   "hi": "रोबोट को 30 s चलाओ, शून्य टक्कर के साथ, और मैदान का कम से कम 35% खोजो। जोखिम भरे शुरुआती मानों से शुरू करो, फिर मुड़ने की दूरी, गति और नियम बदलो।",
+   "hinglish": "Robot ko 30 s chalao, zero takkar ke saath, aur arena ka kam se kam 35% explore karo. Risky defaults se shuru karo, phir turn distance, speed aur rule badlo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Seeing with sound and light",
+    "hi": "ध्वनि और प्रकाश से देखना",
+    "hinglish": "Sound aur light se dekhna"
+   },
+   "body": {
+    "en": "The popular HC-SR04 ultrasonic module sends a 40 kHz chirp and measures how long the echo takes. Sound travels about 343 m/s in air at 20 °C, and the pulse goes there and back, so distance = time × 343 ÷ 2. An echo after 2 ms means about 34 cm. It works from about 2 cm to 4 m, but soft surfaces like cushions absorb sound and angled walls reflect it away. Infrared sensors are cheap but confused by sunlight. LiDAR fires laser pulses and is precise; robot vacuums spin a small LiDAR to map rooms, and self-driving cars combine LiDAR, radar and cameras (\"sensor fusion\") because each fails in different conditions — cameras in darkness, LiDAR in heavy rain, radar with fine detail.",
+    "hi": "लोकप्रिय HC-SR04 अल्ट्रासोनिक मॉड्यूल 40 kHz की चहचहाहट भेजता है और गूँज के समय को मापता है। 20 °C पर हवा में ध्वनि लगभग 343 m/s चलती है, और पल्स जाकर लौटती है, इसलिए दूरी = समय × 343 ÷ 2। 2 ms बाद गूँज का अर्थ लगभग 34 सेमी। यह लगभग 2 सेमी से 4 m तक काम करता है, पर गद्दी जैसी नरम सतहें ध्वनि सोख लेती हैं और तिरछी दीवारें उसे दूर मोड़ देती हैं। इन्फ़्रारेड सेंसर सस्ते हैं पर धूप से भ्रमित होते हैं। LiDAR लेज़र पल्स छोड़ता है और सटीक है; रोबोट वैक्यूम कमरे का नक्शा बनाने को छोटा LiDAR घुमाते हैं, और स्वचालित कारें LiDAR, रडार और कैमरे मिलाती हैं (\"सेंसर फ़्यूज़न\") क्योंकि हर एक अलग हालात में विफल होता है — कैमरा अँधेरे में, LiDAR तेज़ बारिश में, रडार बारीक विवरण में।",
+    "hinglish": "Popular HC-SR04 ultrasonic module 40 kHz ki chirp bhejta hai aur echo ka time naapta hai. 20 °C par hawa mein sound lagbhag 343 m/s chalti hai, aur pulse jaakar lautti hai, isliye distance = time × 343 ÷ 2. 2 ms baad echo ka matlab lagbhag 34 cm. Yeh lagbhag 2 cm se 4 m tak kaam karta hai, par cushion jaisi naram surfaces sound sokh leti hain aur tirchhi deewarein use door mod deti hain. Infrared sensors saste hain par dhoop se confuse hote hain. LiDAR laser pulses chhodta hai aur precise hai; robot vacuums kamre ka map banane ko chhota LiDAR ghumaate hain, aur self-driving cars LiDAR, radar aur cameras milaati hain (\"sensor fusion\") kyunki har ek alag halaat mein fail hota hai — camera andhere mein, LiDAR tez baarish mein, radar bareek detail mein."
+   },
+   "analogy": {
+    "en": "A bat in a dark cave: it clicks and listens, and the delay tells it how far each wall is.",
+    "hi": "अँधेरी गुफ़ा में चमगादड़: वह क्लिक करके सुनता है, और देरी बताती है हर दीवार कितनी दूर है।",
+    "hinglish": "Andheri gufa mein chamgaadad: woh click karke sunta hai, aur deri batati hai har deewar kitni door hai."
+   },
+   "realExample": {
+    "en": "Car parking sensors in Indian hatchbacks are ultrasonic modules in the rear bumper; the beeping speeds up as the echo time shrinks.",
+    "hi": "भारतीय हैचबैक के पार्किंग सेंसर पिछले बम्पर में अल्ट्रासोनिक मॉड्यूल हैं; गूँज का समय घटने पर बीप तेज़ होती है।",
+    "hinglish": "Indian hatchbacks ke parking sensors pichhle bumper mein ultrasonic modules hain; echo time ghatne par beep tez hoti hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "Reflexes, then maps",
+    "hi": "पहले प्रतिवर्त, फिर नक्शे",
+    "hinglish": "Pehle reflexes, phir maps"
+   },
+   "body": {
+    "en": "The simplest robots are reactive: a few if-then rules on current sensor readings, run many times a second. They are fast and cheap but can get stuck in corners or loop forever, because they remember nothing. The key design numbers are linked: at higher speed the robot travels further during each sensor reading and while turning, so it needs a larger turn distance — stopping distance grows with speed, exactly as for cars. Make the distance too large and the robot becomes timid and explores little. Better robots add memory: SLAM builds a map while working out where the robot is in it, and then a planner such as A* (next lesson) chooses routes. Safety engineers add a last layer that overrides everything: an emergency stop if anything comes within a hard limit, or a bumper switch.",
+    "hi": "सबसे सरल रोबोट प्रतिक्रियाशील होते हैं: वर्तमान सेंसर पढ़ाई पर कुछ अगर-तो नियम, सेकंड में कई बार चलते। ये तेज़ और सस्ते हैं पर कोनों में फँस सकते हैं या अनंत चक्कर लगा सकते हैं, क्योंकि ये कुछ याद नहीं रखते। मुख्य डिज़ाइन संख्याएँ जुड़ी हैं: ज़्यादा गति पर रोबोट हर सेंसर पढ़ाई और मुड़ने के दौरान ज़्यादा दूर जाता है, इसलिए उसे बड़ी मुड़ने की दूरी चाहिए — रुकने की दूरी गति के साथ बढ़ती है, ठीक कारों की तरह। दूरी बहुत बड़ी करो तो रोबोट डरपोक बनकर कम खोजता है। बेहतर रोबोट स्मृति जोड़ते हैं: SLAM नक्शा बनाते हुए पता लगाता है कि रोबोट उसमें कहाँ है, और फिर A* जैसा योजक (अगला पाठ) रास्ते चुनता है। सुरक्षा इंजीनियर एक अंतिम परत जोड़ते हैं जो सब पर भारी है: कुछ भी तय सीमा में आए तो आपातकालीन रोक, या बम्पर स्विच।",
+    "hinglish": "Sabse simple robots reactive hote hain: current sensor readings par kuch if-then rules, second mein kai baar chalte. Yeh tez aur saste hain par corners mein phans sakte hain ya hamesha chakkar laga sakte hain, kyunki yeh kuch yaad nahi rakhte. Main design numbers jude hain: zyada speed par robot har sensor reading aur mudne ke dauraan zyada door jaata hai, isliye use bada turn distance chahiye — rukne ki doori speed ke saath badhti hai, bilkul cars ki tarah. Distance bahut bada karo to robot darpok bankar kam explore karta hai. Behtar robots memory jodte hain: SLAM map banate hue pata lagata hai ki robot usmein kahan hai, aur phir A* jaisa planner (agla lesson) raaste chunta hai. Safety engineers ek aakhri layer jodte hain jo sab par bhaari hai: kuch bhi hard limit mein aaye to emergency stop, ya bumper switch."
+   },
+   "analogy": {
+    "en": "Walking in a dark room with your hands out: you react to what you touch, but you only stop bumping once you remember the layout.",
+    "hi": "हाथ आगे करके अँधेरे कमरे में चलना: जो छूते हो उस पर प्रतिक्रिया देते हो, पर टकराना तभी रुकता है जब बनावट याद हो जाए।",
+    "hinglish": "Haath aage karke andhere kamre mein chalna: jo chhoote ho us par react karte ho, par takraana tabhi rukta hai jab layout yaad ho jaaye."
+   },
+   "realExample": {
+    "en": "Warehouse robots move shelves to packers in large Indian fulfilment centres; they combine floor markers or maps with obstacle sensors and safety stops around people.",
+    "hi": "बड़े भारतीय फ़ुलफ़िलमेंट केंद्रों में गोदाम रोबोट अलमारियाँ पैक करने वालों तक ले जाते हैं; वे फ़र्श चिह्न या नक्शे को बाधा सेंसर और लोगों के पास सुरक्षा रोक से जोड़ते हैं।",
+    "hinglish": "Bade Indian fulfilment centres mein warehouse robots shelves packers tak le jaate hain; woh floor markers ya maps ko obstacle sensors aur logon ke paas safety stops se jodte hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "An ultrasonic echo returns after 5.8 ms. How far is the wall? Now write the rules for a robot that must follow a corridor wall on its right at about 20 cm, using two sensors. Test them on paper with a T-junction.",
+   "hi": "अल्ट्रासोनिक गूँज 5.8 ms बाद लौटती है। दीवार कितनी दूर है? अब ऐसे रोबोट के नियम लिखो जो दो सेंसरों से अपनी दाईं ओर की गलियारे की दीवार को लगभग 20 सेमी पर फ़ॉलो करे। काग़ज़ पर T-मोड़ से जाँचो।",
+   "hinglish": "Ultrasonic echo 5.8 ms baad lautti hai. Deewar kitni door hai? Ab ek robot ke rules likho jo do sensors se apni right taraf ki corridor wall ko lagbhag 20 cm par follow kare. Kaagaz par T-junction ke saath test karo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "short",
+    "prompt": {
+     "en": "An ultrasonic echo returns after 2 ms. About how far is the obstacle, in cm? (sound ≈ 343 m/s)",
+     "hi": "अल्ट्रासोनिक गूँज 2 ms बाद लौटती है। बाधा लगभग कितनी दूर, सेमी में? (ध्वनि ≈ 343 m/s)",
+     "hinglish": "Ultrasonic echo 2 ms baad lautti hai. Obstacle lagbhag kitni door, cm mein? (sound ≈ 343 m/s)"
+    },
+    "answer": {
+     "accept": [
+      "34",
+      "34.3",
+      "34 cm",
+      "34.3 cm",
+      "35"
+     ]
+    },
+    "explain": {
+     "en": "0.002 × 343 ÷ 2 = 0.343 m ≈ 34 cm.",
+     "hi": "0.002 × 343 ÷ 2 = 0.343 m ≈ 34 सेमी।",
+     "hinglish": "0.002 × 343 ÷ 2 = 0.343 m ≈ 34 cm."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why divide by 2 in the ultrasonic formula?",
+     "hi": "अल्ट्रासोनिक सूत्र में 2 से भाग क्यों?",
+     "hinglish": "Ultrasonic formula mein 2 se bhaag kyun?"
+    },
+    "options": [
+     {
+      "en": "The sound goes to the obstacle and back",
+      "hi": "ध्वनि बाधा तक जाकर लौटती है",
+      "hinglish": "Sound obstacle tak jaakar lautti hai"
+     },
+     {
+      "en": "There are two sensors",
+      "hi": "दो सेंसर हैं",
+      "hinglish": "Do sensors hain"
+     },
+     {
+      "en": "Sound is half as fast indoors",
+      "hi": "अंदर ध्वनि आधी तेज़ है",
+      "hinglish": "Andar sound aadhi tez hai"
+     },
+     {
+      "en": "To convert to cm",
+      "hi": "सेमी में बदलने को",
+      "hinglish": "cm mein badalne ko"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Round trip.",
+     "hi": "आना-जाना।",
+     "hinglish": "Round trip."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "The robot crashes often at high speed. What is the best first fix?",
+     "hi": "तेज़ गति पर रोबोट अक्सर टकराता है। पहला अच्छा सुधार?",
+     "hinglish": "Tez speed par robot aksar takraata hai. Pehla achha fix?"
+    },
+    "options": [
+     {
+      "en": "Raise the turn distance or slow down",
+      "hi": "मुड़ने की दूरी बढ़ाओ या धीमा करो",
+      "hinglish": "Turn distance badhao ya dheema karo"
+     },
+     {
+      "en": "Remove the left sensor",
+      "hi": "बायाँ सेंसर हटाओ",
+      "hinglish": "Left sensor hatao"
+     },
+     {
+      "en": "Make it faster",
+      "hi": "और तेज़ करो",
+      "hinglish": "Aur tez karo"
+     },
+     {
+      "en": "Paint it a bright colour",
+      "hi": "चमकीला रंग करो",
+      "hinglish": "Chamkeela rang karo"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Stopping distance grows with speed.",
+     "hi": "रुकने की दूरी गति के साथ बढ़ती है।",
+     "hinglish": "Rukne ki doori speed ke saath badhti hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "multi",
+    "prompt": {
+     "en": "Why do self-driving cars use several kinds of sensor?",
+     "hi": "स्वचालित कारें कई प्रकार के सेंसर क्यों लगाती हैं?",
+     "hinglish": "Self-driving cars kai tarah ke sensors kyun lagati hain?"
+    },
+    "options": [
+     {
+      "en": "Each fails in different conditions",
+      "hi": "हर एक अलग हालात में विफल होता है",
+      "hinglish": "Har ek alag halaat mein fail hota hai"
+     },
+     {
+      "en": "Cameras struggle in darkness and glare",
+      "hi": "कैमरे अँधेरे और चकाचौंध में कमज़ोर",
+      "hinglish": "Cameras andhere aur glare mein kamzor"
+     },
+     {
+      "en": "One sensor is always perfect",
+      "hi": "एक सेंसर हमेशा उत्तम होता है",
+      "hinglish": "Ek sensor hamesha perfect hota hai"
+     },
+     {
+      "en": "Combining them gives a more reliable picture",
+      "hi": "मिलाने से ज़्यादा भरोसेमंद तस्वीर",
+      "hinglish": "Milaane se zyada bharosemand tasveer"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     3
+    ],
+    "explain": {
+     "en": "Sensor fusion covers each sensor’s weak spots.",
+     "hi": "सेंसर फ़्यूज़न हर सेंसर की कमज़ोरी ढकता है।",
+     "hinglish": "Sensor fusion har sensor ki kamzori dhakta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "What does SLAM let a robot do?",
+     "hi": "SLAM रोबोट को क्या करने देता है?",
+     "hinglish": "SLAM robot ko kya karne deta hai?"
+    },
+    "options": [
+     {
+      "en": "Build a map while tracking where it is in it",
+      "hi": "नक्शा बनाते हुए उसमें अपनी जगह जानना",
+      "hinglish": "Map banate hue usmein apni jagah jaanna"
+     },
+     {
+      "en": "Charge faster",
+      "hi": "तेज़ चार्ज होना",
+      "hinglish": "Tez charge hona"
+     },
+     {
+      "en": "Talk to people",
+      "hi": "लोगों से बात करना",
+      "hinglish": "Logon se baat karna"
+     },
+     {
+      "en": "Lift heavy boxes",
+      "hi": "भारी डिब्बे उठाना",
+      "hinglish": "Bhaari dibbe uthaana"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Simultaneous localisation and mapping.",
+     "hi": "एक साथ स्थान-निर्धारण और नक्शा।",
+     "hinglish": "Simultaneous localisation and mapping."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Drive 30 s with zero crashes and at least 35% explored.",
+     "hi": "30 s शून्य टक्कर और कम से कम 35% खोज के साथ चलाओ।",
+     "hinglish": "30 s zero takkar aur kam se kam 35% explore ke saath chalao."
+    },
+    "answer": {
+     "event": "avoid-clear"
+    },
+    "explain": {
+     "en": "Try turn distance about 20 at speed 3.",
+     "hi": "गति 3 पर मुड़ने की दूरी लगभग 20 आज़माओ।",
+     "hinglish": "Speed 3 par turn distance lagbhag 20 try karo."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "topics": [
+  "robo.sensors-motors",
+  "robo.rules",
+  "robo.feedback-loops"
+ ],
+ "sources": [
+  {
+   "title": "ROS 2 documentation",
+   "url": "https://docs.ros.org/en/rolling/index.html",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NCERT Physics Class 11 — Waves (speed of sound)",
+   "url": "https://ncert.nic.in/",
+   "licence": "fact reference"
+  }
+ ]
+}

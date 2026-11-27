@@ -1,0 +1,333 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.robots.06",
+ "level": 1,
+ "classes": [
+  1,
+  2,
+  3
+ ],
+ "unit": "robots",
+ "title": {
+  "en": "Robot helpers around us",
+  "hi": "हमारे आस-पास के रोबोट मददगार",
+  "hinglish": "Hamare aas-paas ke robot helpers"
+ },
+ "minutes": 6,
+ "xp": 25,
+ "prereq": [
+  "L1.robots.01"
+ ],
+ "topics": [
+  "robo.what-is-robot",
+  "robo.rules",
+  "elec.sensors"
+ ],
+ "outcomes": [
+  {
+   "en": "Spot everyday machines that sense and follow rules: automatic doors, street lights, robot vacuums.",
+   "hi": "रोज़ की मशीनें पहचान सकते हो जो महसूस करती और नियम मानती हैं: अपने-आप खुलने वाले दरवाज़े, स्ट्रीट लाइट, रोबोट वैक्यूम।",
+   "hinglish": "Roz ki machines pehchaan sakte ho jo sense karti aur rules maanti hain: automatic doors, street lights, robot vacuums."
+  },
+  {
+   "en": "Say the IF-THEN rule a helper follows.",
+   "hi": "मददगार का अगर-तो नियम बता सकते हो।",
+   "hinglish": "Helper ka IF-THEN rule bata sakte ho."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Automatic",
+   "en": "Works by itself, without a person pressing a button",
+   "hi": "अपने-आप चलने वाला",
+   "hinglish": "Apne aap chalne wala"
+  },
+  {
+   "term": "Light sensor",
+   "en": "A sensor that measures how bright or dark it is",
+   "hi": "रोशनी नापने वाला सेंसर",
+   "hinglish": "Roshni naapne wala sensor"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.robots.06.s1",
+   "caption": {
+    "en": "The mall door opens when you come near.",
+    "hi": "पास आते ही मॉल का दरवाज़ा खुल जाता है।",
+    "hinglish": "Paas aate hi mall ka darwaaza khul jaata hai."
+   },
+   "narration": {
+    "en": "A sensor feels you coming. Rule: IF someone is near, THEN open the door.",
+    "hinglish": "Sensor tumhe aate hue mehsoos karta hai. Rule: AGAR koi paas hai, TOH darwaaza kholo.",
+    "hi": "सेंसर तुम्हें आते हुए महसूस करता है। नियम: अगर कोई पास है, तो दरवाज़ा खोलो।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.robots.06.s2",
+   "caption": {
+    "en": "Street lights switch on when it gets dark.",
+    "hi": "अँधेरा होते ही स्ट्रीट लाइट जल जाती है।",
+    "hinglish": "Andhera hote hi street light jal jaati hai."
+   },
+   "narration": {
+    "en": "Many street lights have a light sensor. IF it is dark, THEN the lamp turns on.",
+    "hinglish": "Kai street lights mein light sensor hota hai. AGAR andhera hai, TOH lamp jal jaata hai.",
+    "hi": "कई स्ट्रीट लाइट में रोशनी का सेंसर होता है। अगर अँधेरा है, तो लैंप जल जाता है।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.robots.06.s3",
+   "caption": {
+    "en": "A robot vacuum turns when it bumps a wall.",
+    "hi": "रोबोट वैक्यूम दीवार से टकराकर मुड़ जाता है।",
+    "hinglish": "Robot vacuum deewar se takra kar mud jaata hai."
+   },
+   "narration": {
+    "en": "A robot vacuum cleans the floor. IF it bumps something, THEN it turns and tries another way.",
+    "hinglish": "Robot vacuum farsh saaf karta hai. AGAR woh kisi cheez se takraaye, TOH mud kar doosra raasta leta hai.",
+    "hi": "रोबोट वैक्यूम फ़र्श साफ़ करता है। अगर वह किसी चीज़ से टकराए, तो मुड़कर दूसरा रास्ता लेता है।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "robot-sensors",
+  "config": {
+   "mode": "night"
+  },
+  "goal": {
+   "en": "Be a street-light engineer: set the rule IF light is LOW THEN lamp ON, and test it in the day and at night.",
+   "hi": "स्ट्रीट लाइट इंजीनियर बनो: नियम बनाओ अगर रोशनी कम है तो लैंप चालू, और दिन व रात दोनों में जाँचो।",
+   "hinglish": "Street-light engineer bano: rule set karo AGAR light KAM hai TOH lamp ON, aur din aur raat dono mein test karo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Sense → rule → action",
+    "hi": "महसूस → नियम → काम",
+    "hinglish": "Sense → rule → action"
+   },
+   "body": {
+    "en": "Every helper machine works the same way. A sensor notices something (a person, darkness, a bump). A rule decides what to do (IF … THEN …). A motor or a light does the action (open, switch on, turn). Some are simple machines, not full robots — but they all use the sense, think, act idea.",
+    "hi": "हर मददगार मशीन एक ही तरह काम करती है। सेंसर कुछ महसूस करता है (कोई व्यक्ति, अँधेरा, टक्कर)। नियम तय करता है क्या करना है (अगर … तो …)। मोटर या बत्ती काम करती है (खोलना, जलाना, मुड़ना)। कुछ सादी मशीनें हैं, पूरे रोबोट नहीं — पर सब महसूस करो, सोचो, करो वाला विचार इस्तेमाल करती हैं।",
+    "hinglish": "Har helper machine ek hi tarah kaam karti hai. Sensor kuch mehsoos karta hai (koi insaan, andhera, takkar). Rule tay karta hai kya karna hai (IF … THEN …). Motor ya light action karti hai (kholna, jalaana, mudna). Kuch saadi machines hain, poore robots nahin — par sab sense, think, act wala idea use karti hain."
+   },
+   "analogy": {
+    "en": "Like you switching on the light when it gets dark — your eyes notice (sensor), your brain decides (rule), your hand presses the switch (action).",
+    "hi": "जैसे तुम अँधेरा होते ही बत्ती जलाते हो — आँख ने देखा (सेंसर), दिमाग़ ने सोचा (नियम), हाथ ने स्विच दबाया (काम)।",
+    "hinglish": "Jaise tum andhera hote hi light jalaate ho — aankh ne dekha (sensor), dimaag ne socha (rule), haath ne switch dabaaya (action)."
+   }
+  },
+  {
+   "heading": {
+    "en": "Robots that keep us safe",
+    "hi": "रोबोट जो हमें सुरक्षित रखते हैं",
+    "hinglish": "Robots jo hamein safe rakhte hain"
+   },
+   "body": {
+    "en": "Robot vacuums have \"cliff sensors\" underneath that look down with invisible light, so they do not fall down the stairs. Lifts have sensors in the doors so they open again if something is in the way. These rules were written by engineers to keep people safe.",
+    "hi": "रोबोट वैक्यूम के नीचे \"किनारा सेंसर\" होते हैं जो अदृश्य रोशनी से नीचे देखते हैं, ताकि वे सीढ़ियों से न गिरें। लिफ़्ट के दरवाज़ों में सेंसर होते हैं ताकि बीच में कुछ हो तो दरवाज़ा फिर खुल जाए। ये नियम इंजीनियरों ने लोगों को सुरक्षित रखने के लिए लिखे हैं।",
+    "hinglish": "Robot vacuums ke neeche \"cliff sensors\" hote hain jo invisible light se neeche dekhte hain, taaki woh seedhiyon se na girein. Lifts ke darwaazon mein sensors hote hain taaki beech mein kuch ho toh darwaaza phir khul jaaye. Yeh rules engineers ne logon ko safe rakhne ke liye likhe hain."
+   },
+   "realExample": {
+    "en": "Never put your hand in a closing lift or train door to test the sensor — always wait for the next one.",
+    "hi": "लिफ़्ट या ट्रेन के बंद होते दरवाज़े में सेंसर जाँचने के लिए कभी हाथ मत डालो — हमेशा अगली का इंतज़ार करो।",
+    "hinglish": "Lift ya train ke band hote darwaaze mein sensor test karne ke liye kabhi haath mat daalo — hamesha agle ka intezaar karo."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "On a walk with a grown-up, find 3 machines that work by themselves (a door, a light, a tap, a lift). For each one, say its rule: IF … THEN … .",
+   "hi": "किसी बड़े के साथ टहलते हुए 3 मशीनें ढूँढो जो अपने-आप चलती हैं (दरवाज़ा, बत्ती, नल, लिफ़्ट)। हर एक का नियम बोलो: अगर … तो … ।",
+   "hinglish": "Kisi bade ke saath tehalte hue 3 machines dhoondho jo apne aap chalti hain (darwaaza, light, nal, lift). Har ek ka rule bolo: IF … THEN … ."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "The mall door opens because…",
+     "hi": "मॉल का दरवाज़ा क्यों खुलता है?",
+     "hinglish": "Mall ka darwaaza kyon khulta hai?"
+    },
+    "options": [
+     {
+      "en": "a sensor feels someone near",
+      "hi": "सेंसर किसी को पास महसूस करता है",
+      "hinglish": "sensor kisi ko paas mehsoos karta hai"
+     },
+     {
+      "en": "it is magic",
+      "hi": "यह जादू है",
+      "hinglish": "yeh jaadu hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Sensor + rule + motor.",
+     "hi": "सेंसर + नियम + मोटर।",
+     "hinglish": "Sensor + rule + motor."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Street light rule: IF it is dark THEN…",
+     "hi": "स्ट्रीट लाइट नियम: अगर अँधेरा है तो…",
+     "hinglish": "Street light rule: IF andhera hai THEN…"
+    },
+    "options": [
+     {
+      "en": "💡 lamp ON",
+      "hi": "💡 लैंप चालू",
+      "hinglish": "💡 lamp ON"
+     },
+     {
+      "en": "🌑 lamp OFF",
+      "hi": "🌑 लैंप बंद",
+      "hinglish": "🌑 lamp OFF"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Dark → light needed.",
+     "hi": "अँधेरा → रोशनी चाहिए।",
+     "hinglish": "Andhera → roshni chahiye."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "match",
+    "prompt": {
+     "en": "Match the helper to what it senses.",
+     "hi": "मददगार को उससे मिलाओ जो वह महसूस करता है।",
+     "hinglish": "Helper ko usse milao jo woh sense karta hai."
+    },
+    "options": {
+     "left": [
+      {
+       "en": "🚪 Automatic door",
+       "hi": "🚪 अपने-आप दरवाज़ा",
+       "hinglish": "🚪 Automatic door"
+      },
+      {
+       "en": "💡 Street light",
+       "hi": "💡 स्ट्रीट लाइट",
+       "hinglish": "💡 Street light"
+      },
+      {
+       "en": "🤖 Robot vacuum",
+       "hi": "🤖 रोबोट वैक्यूम",
+       "hinglish": "🤖 Robot vacuum"
+      }
+     ],
+     "right": [
+      {
+       "en": "Darkness",
+       "hi": "अँधेरा",
+       "hinglish": "Andhera"
+      },
+      {
+       "en": "Bumping a wall",
+       "hi": "दीवार से टकराना",
+       "hinglish": "Deewar se takraana"
+      },
+      {
+       "en": "A person coming near",
+       "hi": "पास आता व्यक्ति",
+       "hinglish": "Paas aata insaan"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      2
+     ],
+     [
+      1,
+      0
+     ],
+     [
+      2,
+      1
+     ]
+    ],
+    "explain": {
+     "en": "Door → person, light → dark, vacuum → bump.",
+     "hi": "दरवाज़ा → व्यक्ति, लाइट → अँधेरा, वैक्यूम → टक्कर।",
+     "hinglish": "Door → insaan, light → andhera, vacuum → takkar."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why does a robot vacuum have sensors underneath?",
+     "hi": "रोबोट वैक्यूम के नीचे सेंसर क्यों होते हैं?",
+     "hinglish": "Robot vacuum ke neeche sensors kyon hote hain?"
+    },
+    "options": [
+     {
+      "en": "So it does not fall down the stairs",
+      "hi": "ताकि सीढ़ियों से न गिरे",
+      "hinglish": "Taaki seedhiyon se na gire"
+     },
+     {
+      "en": "To play music",
+      "hi": "गाना बजाने के लिए",
+      "hinglish": "Gaana bajaane ke liye"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Cliff sensors see the edge.",
+     "hi": "किनारा सेंसर किनारा देखते हैं।",
+     "hinglish": "Cliff sensors edge dekhte hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Build the night lamp and pass both tests.",
+     "hi": "रात का लैंप बनाओ और दोनों जाँच पास करो।",
+     "hinglish": "Night lamp banao aur dono tests pass karo."
+    },
+    "answer": {
+     "lab": "robot-sensors",
+     "mode": "night",
+     "solved": true
+    },
+    "explain": {
+     "en": "IF light is low THEN lamp on.",
+     "hi": "अगर रोशनी कम है तो लैंप चालू।",
+     "hinglish": "IF light kam hai THEN lamp on."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Britannica – Robot (Karel Čapek, R.U.R., 1920) (fact reference)",
+   "url": "https://www.britannica.com/technology/robot-technology",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

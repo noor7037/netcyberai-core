@@ -1,0 +1,397 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.electronics-embedded.04",
+ "level": 3,
+ "classes": [
+  9,
+  10,
+  11
+ ],
+ "unit": "electronics-embedded",
+ "title": {
+  "en": "PWM and motor control",
+  "hi": "PWM और मोटर नियंत्रण",
+  "hinglish": "PWM aur motor control"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [
+  "L3.electronics-embedded.03"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain how PWM fakes an in-between voltage with fast on/off switching",
+   "hi": "समझाओ PWM तेज़ चालू/बंद से बीच का वोल्टेज कैसे बनाता है",
+   "hinglish": "Samjhao PWM tez on/off switching se beech ka voltage kaise banata hai"
+  },
+  {
+   "en": "Calculate average voltage from duty cycle",
+   "hi": "ड्यूटी साइकिल से औसत वोल्टेज निकालो",
+   "hinglish": "Duty cycle se average voltage nikaalo"
+  },
+  {
+   "en": "Drive a motor safely with a driver, and control a servo",
+   "hi": "ड्राइवर से मोटर सुरक्षित चलाओ, और सर्वो नियंत्रित करो",
+   "hinglish": "Driver se motor safely chalao, aur servo control karo"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "PWM",
+   "hinglish": "Pulse-width modulation",
+   "en": "Switching a pin on and off fast; the fraction of time on sets the average power",
+   "hi": "पिन को तेज़ी से चालू-बंद करना; चालू समय का भाग औसत शक्ति तय करता है"
+  },
+  {
+   "term": "Duty cycle",
+   "hinglish": "ON ka hissa",
+   "en": "The percentage of each cycle that the signal is on",
+   "hi": "हर चक्र का वह प्रतिशत जब संकेत चालू है"
+  },
+  {
+   "term": "Motor driver",
+   "hinglish": "Motor ka driver",
+   "en": "A transistor circuit (often an H-bridge) that switches the motor’s large current",
+   "hi": "ट्रांजिस्टर परिपथ (अक्सर H-ब्रिज) जो मोटर की बड़ी धारा बदलता है"
+  },
+  {
+   "term": "H-bridge",
+   "hinglish": "H-bridge",
+   "en": "Four switches that let a DC motor spin either way",
+   "hi": "चार स्विच जो DC मोटर को किसी भी दिशा में घुमाते हैं"
+  },
+  {
+   "term": "Servo",
+   "hinglish": "Servo",
+   "en": "A motor that turns to an angle set by pulse width (about 1–2 ms every 20 ms)",
+   "hi": "मोटर जो पल्स चौड़ाई से तय कोण पर घूमती है (हर 20 ms में लगभग 1–2 ms)"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "A digital pin is only 0 V or 5 V — no \"half\".",
+    "hi": "डिजिटल पिन केवल 0 V या 5 V है — \"आधा\" नहीं।",
+    "hinglish": "Digital pin sirf 0 V ya 5 V hai — \"aadha\" nahi."
+   },
+   "visual": "compare:0 V|5 V",
+   "narration": {
+    "en": "A digital pin is only 0 V or 5 V — no \"half\".",
+    "hi": "डिजिटल पिन केवल 0 V या 5 V है — \"आधा\" नहीं।",
+    "hinglish": "Digital pin sirf 0 V ya 5 V hai — \"aadha\" nahi."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Switch it on 60% of the time, very fast: the average is 0.6 × 5 = 3 V.",
+    "hi": "इसे 60% समय चालू करो, बहुत तेज़ी से: औसत 0.6 × 5 = 3 V।",
+    "hinglish": "Ise 60% time on karo, bahut tezi se: average 0.6 × 5 = 3 V."
+   },
+   "visual": "anim:pwm",
+   "narration": {
+    "en": "Switch it on 60% of the time, very fast: the average is 0.6 × 5 = 3 V.",
+    "hi": "इसे 60% समय चालू करो, बहुत तेज़ी से: औसत 0.6 × 5 = 3 V।",
+    "hinglish": "Ise 60% time on karo, bahut tezi se: average 0.6 × 5 = 3 V."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "At 1,000 switches a second, LEDs look dimmer and motors run slower — no heat wasted in a resistor.",
+    "hi": "प्रति सेकंड 1,000 बार बदलने पर LED धुँधली दिखती है और मोटर धीमी चलती है — प्रतिरोधक में ऊष्मा बर्बाद नहीं।",
+    "hinglish": "1,000 switches per second par LEDs dhundhli dikhti hain aur motors dheemi chalti hain — resistor mein garmi barbaad nahi."
+   },
+   "visual": "flow:pin|driver|motor",
+   "narration": {
+    "en": "At 1,000 switches a second, LEDs look dimmer and motors run slower — no heat wasted in a resistor.",
+    "hi": "प्रति सेकंड 1,000 बार बदलने पर LED धुँधली दिखती है और मोटर धीमी चलती है — प्रतिरोधक में ऊष्मा बर्बाद नहीं।",
+    "hinglish": "1,000 switches per second par LEDs dhundhli dikhti hain aur motors dheemi chalti hain — resistor mein garmi barbaad nahi."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "A servo reads the pulse width: 1 ms ≈ 0°, 1.5 ms ≈ 90°, 2 ms ≈ 180°.",
+    "hi": "सर्वो पल्स चौड़ाई पढ़ती है: 1 ms ≈ 0°, 1.5 ms ≈ 90°, 2 ms ≈ 180°।",
+    "hinglish": "Servo pulse width padhti hai: 1 ms ≈ 0°, 1.5 ms ≈ 90°, 2 ms ≈ 180°."
+   },
+   "visual": "stack:1 ms|1.5 ms|2 ms",
+   "narration": {
+    "en": "A servo reads the pulse width: 1 ms ≈ 0°, 1.5 ms ≈ 90°, 2 ms ≈ 180°.",
+    "hi": "सर्वो पल्स चौड़ाई पढ़ती है: 1 ms ≈ 0°, 1.5 ms ≈ 90°, 2 ms ≈ 180°।",
+    "hinglish": "Servo pulse width padhti hai: 1 ms ≈ 0°, 1.5 ms ≈ 90°, 2 ms ≈ 180°."
+   }
+  }
+ ],
+ "play": {
+  "lab": "control-lab",
+  "config": {
+   "mode": "pwm",
+   "duty": 25
+  },
+  "goal": {
+   "en": "Set the fan to exactly 3 V average. First switch to 1 Hz and watch the LED blink, then back to 1 kHz.",
+   "hi": "पंखे को ठीक 3 V औसत पर सेट करो। पहले 1 Hz पर जाओ और LED को टिमटिमाते देखो, फिर वापस 1 kHz।",
+   "hinglish": "Pankhe ko bilkul 3 V average par set karo. Pehle 1 Hz par jaao aur LED ko blink karte dekho, phir wapas 1 kHz."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Why PWM beats a resistor",
+    "hi": "PWM प्रतिरोधक से बेहतर क्यों",
+    "hinglish": "PWM resistor se behtar kyun"
+   },
+   "body": {
+    "en": "To dim a lamp or slow a motor you could add a resistor, but it would waste energy as heat (P = I²R). PWM instead switches the full voltage on and off very fast. A transistor that is fully on or fully off wastes almost nothing, so efficiency is high. Average voltage = duty cycle × supply. On an Arduino Uno, analogWrite(pin, value) takes 0–255: analogWrite(9, 153) gives a 60% duty cycle, about 3 V. Uno PWM runs at about 490 Hz (pins 5 and 6 about 980 Hz) — fast enough that a motor’s inertia and your eye smooth it out. Ceiling-fan regulators, phone-screen brightness, electric-scooter controllers and LED street lights all use PWM.",
+    "hi": "दीया धुँधला करने या मोटर धीमी करने के लिए प्रतिरोधक लगा सकते हो, पर वह ऊर्जा ऊष्मा में बर्बाद करेगा (P = I²R)। PWM इसके बजाय पूरा वोल्टेज बहुत तेज़ी से चालू-बंद करता है। पूरी तरह चालू या पूरी तरह बंद ट्रांजिस्टर लगभग कुछ बर्बाद नहीं करता, इसलिए दक्षता ऊँची है। औसत वोल्टेज = ड्यूटी साइकिल × आपूर्ति। Arduino Uno पर analogWrite(pin, value) 0–255 लेता है: analogWrite(9, 153) से 60% ड्यूटी साइकिल, लगभग 3 V। Uno PWM लगभग 490 Hz पर चलता है (पिन 5 और 6 लगभग 980 Hz) — इतना तेज़ कि मोटर का जड़त्व और आपकी आँख उसे सहज कर देते हैं। छत के पंखे के रेगुलेटर, फ़ोन स्क्रीन की चमक, ई-स्कूटर कंट्रोलर और LED स्ट्रीट लाइट सब PWM इस्तेमाल करते हैं।",
+    "hinglish": "Lamp dhundhla karne ya motor dheemi karne ke liye resistor laga sakte ho, par woh energy garmi mein barbaad karega (P = I²R). PWM iske bajaye poora voltage bahut tezi se on-off karta hai. Poori tarah on ya poori tarah off transistor lagbhag kuch barbaad nahi karta, isliye efficiency oonchi hai. Average voltage = duty cycle × supply. Arduino Uno par analogWrite(pin, value) 0–255 leta hai: analogWrite(9, 153) se 60% duty cycle, lagbhag 3 V. Uno PWM lagbhag 490 Hz par chalta hai (pins 5 aur 6 lagbhag 980 Hz) — itna tez ki motor ka inertia aur tumhari aankh use smooth kar dete hain. Ceiling-fan regulators, phone screen brightness, e-scooter controllers aur LED street lights sab PWM use karte hain."
+   },
+   "analogy": {
+    "en": "Pedalling a cycle in bursts: pedal hard half the time and coast half the time, and your average speed is in between.",
+    "hi": "साइकिल रुक-रुक कर चलाना: आधा समय ज़ोर से पैडल, आधा समय लुढ़कना, औसत गति बीच में।",
+    "hinglish": "Cycle ruk-ruk kar chalana: aadha time zor se pedal, aadha time ludhakna, average speed beech mein."
+   },
+   "realExample": {
+    "en": "analogWrite(9, 64) → 25% → about 1.25 V average; analogWrite(9, 255) → always on.",
+    "hi": "analogWrite(9, 64) → 25% → लगभग 1.25 V औसत; analogWrite(9, 255) → हमेशा चालू।",
+    "hinglish": "analogWrite(9, 64) → 25% → lagbhag 1.25 V average; analogWrite(9, 255) → hamesha on."
+   }
+  },
+  {
+   "heading": {
+    "en": "Driving motors safely",
+    "hi": "मोटर सुरक्षित चलाना",
+    "hinglish": "Motors safely chalana"
+   },
+   "body": {
+    "en": "A microcontroller pin can supply only a few tens of milliamps (about 20 mA is a safe working value on an Uno), but a small DC motor can draw hundreds of milliamps or more. So the pin never powers the motor directly: it drives a transistor or a motor-driver chip such as the L293D or an H-bridge module, which switches the motor’s own supply. Motors are coils, so when switched off they kick back a voltage spike; a flyback diode across the motor (built into most driver chips) absorbs it. An H-bridge’s four switches reverse the current, so the motor can turn either way — with PWM on top for speed. A servo motor is different: it has its own controller and gear train, and you send it a pulse every 20 ms whose width sets the angle.",
+    "hi": "माइक्रोकंट्रोलर पिन केवल कुछ दसियों मिलीएम्पियर दे सकता है (Uno पर लगभग 20 mA सुरक्षित कार्य मान है), पर छोटी DC मोटर सैकड़ों मिलीएम्पियर या ज़्यादा ले सकती है। इसलिए पिन कभी सीधे मोटर नहीं चलाता: वह ट्रांजिस्टर या L293D जैसी मोटर-ड्राइवर चिप या H-ब्रिज मॉड्यूल चलाता है, जो मोटर की अपनी आपूर्ति बदलता है। मोटर कुंडली होती हैं, इसलिए बंद करने पर वोल्टेज झटका लौटाती हैं; मोटर के पार फ़्लाईबैक डायोड (ज़्यादातर ड्राइवर चिपों में बना) उसे सोख लेता है। H-ब्रिज के चार स्विच धारा उलटते हैं, इसलिए मोटर किसी भी दिशा में घूम सकती है — गति के लिए ऊपर से PWM। सर्वो मोटर अलग है: उसमें अपना कंट्रोलर और गियर होते हैं, और आप हर 20 ms एक पल्स भेजते हो जिसकी चौड़ाई कोण तय करती है।",
+    "hinglish": "Microcontroller pin sirf kuch dasiyon milliamps de sakta hai (Uno par lagbhag 20 mA safe working value hai), par chhoti DC motor saikdon milliamps ya zyada le sakti hai. Isliye pin kabhi seedhe motor nahi chalata: woh transistor ya L293D jaisi motor-driver chip ya H-bridge module chalata hai, jo motor ki apni supply switch karta hai. Motors coils hoti hain, isliye band karne par voltage spike lautati hain; motor ke across flyback diode (zyaadatar driver chips mein bana) use sokh leta hai. H-bridge ke chaar switches current ulatte hain, isliye motor kisi bhi direction mein ghoom sakti hai — speed ke liye upar se PWM. Servo motor alag hai: usmein apna controller aur gears hote hain, aur tum har 20 ms ek pulse bhejte ho jiski width angle tay karti hai."
+   },
+   "analogy": {
+    "en": "The pin is a manager giving orders; the driver is the strong worker who actually lifts the load.",
+    "hi": "पिन आदेश देने वाला मैनेजर है; ड्राइवर वह मज़बूत कर्मचारी जो असल में बोझ उठाता है।",
+    "hinglish": "Pin order dene wala manager hai; driver woh mazboot worker jo asal mein bojh uthata hai."
+   },
+   "realExample": {
+    "en": "Robot cars in school labs use an L298N or L293D module between the Arduino and two DC motors, plus a separate battery pack for the motors.",
+    "hi": "स्कूल लैब की रोबोट कारें Arduino और दो DC मोटरों के बीच L298N या L293D मॉड्यूल, और मोटरों के लिए अलग बैटरी पैक लगाती हैं।",
+    "hinglish": "School labs ki robot cars Arduino aur do DC motors ke beech L298N ya L293D module, aur motors ke liye alag battery pack lagati hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write the analogWrite values (0–255) for 0%, 25%, 50%, 75% and 100% duty. Then sketch a robot car circuit: Arduino, motor driver, two motors, two batteries. Mark where the flyback diodes go and why the motors need their own battery.",
+   "hi": "0%, 25%, 50%, 75% और 100% ड्यूटी के लिए analogWrite मान (0–255) लिखो। फिर रोबोट कार परिपथ का चित्र बनाओ: Arduino, मोटर ड्राइवर, दो मोटर, दो बैटरी। फ़्लाईबैक डायोड कहाँ लगेंगे और मोटरों को अलग बैटरी क्यों चाहिए, चिह्नित करो।",
+   "hinglish": "analogWrite values (0–255) likho 0%, 25%, 50%, 75% aur 100% duty ke liye. Phir robot car circuit ka sketch banao: Arduino, motor driver, do motors, do batteries. Flyback diodes kahan lagenge aur motors ko alag battery kyun chahiye, mark karo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "short",
+    "prompt": {
+     "en": "Supply is 5 V and duty cycle is 40%. What is the average voltage (V)?",
+     "hi": "आपूर्ति 5 V और ड्यूटी साइकिल 40% है। औसत वोल्टेज (V)?",
+     "hinglish": "Supply 5 V aur duty cycle 40% hai. Average voltage (V)?"
+    },
+    "answer": {
+     "accept": [
+      "2",
+      "2 V",
+      "2.0",
+      "2V"
+     ]
+    },
+    "explain": {
+     "en": "0.4 × 5 = 2 V.",
+     "hi": "0.4 × 5 = 2 V।",
+     "hinglish": "0.4 × 5 = 2 V."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why is PWM more efficient than a series resistor for dimming?",
+     "hi": "धुँधला करने में PWM श्रेणी प्रतिरोधक से ज़्यादा दक्ष क्यों?",
+     "hinglish": "Dimming mein PWM series resistor se zyada efficient kyun?"
+    },
+    "options": [
+     {
+      "en": "The switch is fully on or off, so little energy becomes heat",
+      "hi": "स्विच पूरा चालू या बंद, इसलिए कम ऊर्जा ऊष्मा बनती है",
+      "hinglish": "Switch poora on ya off, isliye kam energy garmi banti hai"
+     },
+     {
+      "en": "It raises the voltage",
+      "hi": "यह वोल्टेज बढ़ाता है",
+      "hinglish": "Yeh voltage badhata hai"
+     },
+     {
+      "en": "It uses AC",
+      "hi": "यह AC इस्तेमाल करता है",
+      "hinglish": "Yeh AC use karta hai"
+     },
+     {
+      "en": "LEDs need no current",
+      "hi": "LED को धारा नहीं चाहिए",
+      "hinglish": "LED ko current nahi chahiye"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "A resistor burns P = I²R; an on/off transistor wastes very little.",
+     "hi": "प्रतिरोधक P = I²R जलाता है; चालू/बंद ट्रांजिस्टर बहुत कम बर्बाद करता है।",
+     "hinglish": "Resistor P = I²R jalata hai; on/off transistor bahut kam barbaad karta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "On an Arduino Uno, which analogWrite value gives about 50% duty?",
+     "hi": "Arduino Uno पर कौन-सा analogWrite मान लगभग 50% ड्यूटी देता है?",
+     "hinglish": "Arduino Uno par kaunsa analogWrite value lagbhag 50% duty deta hai?"
+    },
+    "options": [
+     {
+      "en": "127 or 128",
+      "hi": "127 या 128",
+      "hinglish": "127 ya 128"
+     },
+     {
+      "en": "50",
+      "hi": "50",
+      "hinglish": "50"
+     },
+     {
+      "en": "512",
+      "hi": "512",
+      "hinglish": "512"
+     },
+     {
+      "en": "1023",
+      "hi": "1023",
+      "hinglish": "1023"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "The range is 0–255, so half is about 128.",
+     "hi": "सीमा 0–255 है, तो आधा लगभग 128।",
+     "hinglish": "Range 0–255 hai, to aadha lagbhag 128."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are needed to drive a DC motor from a microcontroller safely?",
+     "hi": "माइक्रोकंट्रोलर से DC मोटर सुरक्षित चलाने के लिए क्या चाहिए?",
+     "hinglish": "Microcontroller se DC motor safely chalane ke liye kya chahiye?"
+    },
+    "options": [
+     {
+      "en": "A transistor or motor-driver chip",
+      "hi": "ट्रांजिस्टर या मोटर-ड्राइवर चिप",
+      "hinglish": "Transistor ya motor-driver chip"
+     },
+     {
+      "en": "A flyback diode",
+      "hi": "फ़्लाईबैक डायोड",
+      "hinglish": "Flyback diode"
+     },
+     {
+      "en": "Connecting the motor straight to the pin",
+      "hi": "मोटर सीधे पिन से जोड़ना",
+      "hinglish": "Motor seedhe pin se jodna"
+     },
+     {
+      "en": "A suitable motor power supply",
+      "hi": "उपयुक्त मोटर बिजली आपूर्ति",
+      "hinglish": "Suitable motor power supply"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     3
+    ],
+    "explain": {
+     "en": "Never power a motor directly from a pin.",
+     "hi": "मोटर को कभी सीधे पिन से न चलाओ।",
+     "hinglish": "Motor ko kabhi seedhe pin se na chalao."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "match",
+    "prompt": {
+     "en": "Match the servo pulse width to its angle.",
+     "hi": "सर्वो पल्स चौड़ाई को कोण से मिलाओ।",
+     "hinglish": "Servo pulse width ko angle se milao."
+    },
+    "options": [
+     "1 ms",
+     "1.5 ms",
+     "2 ms"
+    ],
+    "answer": [
+     "≈ 0°",
+     "≈ 90°",
+     "≈ 180°"
+    ],
+    "explain": {
+     "en": "Typical hobby servos; exact limits vary by model.",
+     "hi": "आम हॉबी सर्वो; सटीक सीमा मॉडल पर निर्भर।",
+     "hinglish": "Aam hobby servos; exact limits model par nirbhar."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Run the fan at a 3 V average in the lab.",
+     "hi": "लैब में पंखा 3 V औसत पर चलाओ।",
+     "hinglish": "Lab mein pankha 3 V average par chalao."
+    },
+    "answer": {
+     "event": "pwm-matched"
+    },
+    "explain": {
+     "en": "60% of 5 V = 3 V.",
+     "hi": "5 V का 60% = 3 V।",
+     "hinglish": "5 V ka 60% = 3 V."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "elec.components",
+  "elec.circuits",
+  "robo.sensors-motors",
+  "robo.microcontroller"
+ ],
+ "sources": [
+  {
+   "title": "Arduino docs — analogWrite()",
+   "url": "https://docs.arduino.cc/language-reference/en/functions/analog-io/analogWrite/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Arduino docs — Basics of PWM",
+   "url": "https://docs.arduino.cc/learn/microcontrollers/analog-output/",
+   "licence": "fact reference"
+  }
+ ]
+}

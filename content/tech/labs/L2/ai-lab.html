@@ -1,0 +1,263 @@
+<!doctype html><html lang="en-IN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>AI Lab — NCA Tech & AI Lab</title><style>/* NCA Tech & AI Lab — Level 2 shared lab skin (own work, MIT). Family App lesson tokens: paper, card, ink, saffron, teal, plum. */
+:root{--paper:#FBF8F3;--card:#FFFDF9;--ink:#1C1B1A;--muted:#4B5563;--line:#E7E1D6;--saffron:#E8702A;--saffronD:#C2410C;--teal:#0F766E;--plum:#6D28D9;--sky:#0369A1;
+--mint:#E4F3EA;--butter:#FBF1D3;--lilac:#EFE9FB;--blush:#FBE6E3;--skyT:#E3EEF9;--night:#0B1430;--night2:#16224A;--cyan:#02CFF9;--leaf:#22C55E;--coral:#FF6B57;--gold:#F5B90A;--grape:#8B3DFF;
+--r:16px;--sh:0 1px 0 rgba(28,27,26,.04),0 6px 18px -8px rgba(28,27,26,.18)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans Devanagari",sans-serif;font-variant-numeric:tabular-nums}
+body{background:transparent;min-height:100vh;padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 16px)}
+button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation}
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:8px;padding:10px 14px;background:rgba(251,248,243,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--lilac);flex:none}
+.top h1{font-size:16px;margin:0;line-height:1.2;flex:1;min-width:0}
+.top h1 small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;flex:none;background:var(--card)}
+.lang button{border:0;background:none;padding:6px 9px;font-size:12px;font-weight:600;color:var(--muted);min-height:32px}
+.lang button[aria-pressed=true]{background:var(--ink);color:#fff}
+.wrap{max-width:1100px;margin:0 auto;padding:12px 14px;display:grid;gap:12px;grid-template-columns:minmax(0,1fr)}
+.wrap>*{min-width:0}
+.wrap>div{grid-template-columns:minmax(0,1fr)}
+.card,.stage{min-width:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;box-shadow:var(--sh)}
+.goal{background:var(--butter);border-color:#F1DFA8;display:flex;gap:10px;align-items:flex-start;font-size:14.5px}
+.goal b{color:#8A5300}
+.goal .gi{font-size:20px;line-height:1}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn{border:0;border-radius:12px;padding:11px 16px;font-weight:700;min-height:44px;background:var(--saffron);color:var(--ink);box-shadow:0 3px 0 #B4531B;transition:transform .12s}
+.btn:active{transform:translateY(2px);box-shadow:0 1px 0 #B4531B}
+.btn.ghost{background:var(--card);border:1.5px solid var(--line);box-shadow:none}
+.btn.teal{background:var(--teal);color:#fff;box-shadow:0 3px 0 #0A4F49}
+.btn.plum{background:var(--plum);color:#fff;box-shadow:0 3px 0 #4C1D95}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.chip{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:3px 10px;font-size:12.5px;font-weight:600;background:var(--mint);color:var(--teal)}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;padding-bottom:2px}/* wraps: every mode name always fully visible */
+.tabs button{flex:0 1 auto;max-width:100%;white-space:normal;text-align:center;border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:8px 14px;font-weight:600;font-size:14px;min-height:40px}
+.tabs button[aria-selected=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.stage{background:radial-gradient(120% 90% at 30% 0%,#1D2D63 0%,var(--night) 60%);color:#E8EEFF;border-radius:20px;overflow:hidden;position:relative;border:1px solid #23305E}
+.muted{color:var(--muted)}
+.mission{background:var(--skyT);border-color:#C9DDF2}
+.mission h3{margin:0 0 6px;font-size:15px;color:var(--sky)}
+.toast{position:fixed;left:0;top:0;width:max-content;max-width:min(92vw,340px);background:var(--ink);color:#fff;padding:10px 16px;border-radius:14px;font-weight:600;z-index:50;box-shadow:0 8px 24px rgba(0,0,0,.25);opacity:0;visibility:hidden;transform:scale(.92);transition:opacity .25s,transform .25s,visibility 0s .25s;pointer-events:none;text-align:center;line-height:1.35}
+.toast.on{opacity:1;visibility:visible;transform:none;transition:opacity .25s,transform .25s}
+.toast.inline{position:static;display:block;width:auto;max-width:none;margin:10px 0;grid-column:1/-1;flex:0 0 auto}
+.toast.ok{background:var(--teal)}.toast.bad{background:#B42318}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:-1}/* behind the cards: confetti never covers text */
+.kbd{font-family:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace}
+.hidden{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@keyframes pop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.08);opacity:1}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.shake{animation:shake .3s 2}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
+</style>
+<style>
+.plot{width:100%;height:auto;display:block;background:#0A1028;border-radius:16px;touch-action:manipulation}
+.seg{display:flex;gap:6px;flex-wrap:wrap}.seg button{flex:1;min-width:70px;border:1.5px solid var(--line);background:var(--card);border-radius:10px;padding:8px 6px;font-weight:700;min-height:44px}
+.seg button[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.big{font:800 22px system-ui;margin:4px 0}
+.note{font-size:13.5px;border-radius:12px;padding:8px 10px;background:var(--mint);margin-top:8px}.note.bad{background:var(--blush)}
+.pt{transition:cx .5s,cy .5s}
+.prob{display:grid;grid-template-columns:90px 1fr 44px;gap:6px;align-items:center;font-size:13px;margin:3px 0}
+.prob i{display:block;height:12px;border-radius:6px;background:var(--teal);transition:width .4s}
+.gen{font:600 16px ui-monospace,Menlo,monospace;background:#0A1028;color:#E8EEFF;border-radius:12px;padding:10px;min-height:48px;margin:8px 0}
+.gen .w{animation:pop .25s both;display:inline-block;margin-right:6px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}.chips button{border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:7px 12px;font-weight:700;min-height:40px}
+.chips button[aria-pressed=true]{background:var(--teal);color:#fff;border-color:var(--teal)}
+.slot{margin:8px 0}.slot b{display:block;font-size:13.5px;margin-bottom:4px}
+.ans{background:#F1F5F9;border-radius:12px;padding:10px;font-size:14px;white-space:pre-wrap}
+@media (orientation:landscape) and (min-width:640px){.wrap{grid-template-columns:1.1fr 1fr}.wrap>.full{grid-column:1/-1}}
+</style></head><body>
+<main class="wrap">
+ <div class="card goal full"><span class="gi">🎯</span><div id="goal"></div></div>
+ <div class="tabs full" role="tablist" id="tabs"></div>
+ <div class="card" id="stage"></div>
+ <div style="display:grid;gap:12px"><div class="card" id="side"></div><div class="card mission"><h3 data-k="mT"></h3><div id="mission"></div></div></div>
+</main>
+<script>/* NCA Tech & AI Lab — Level 2 shared lab runtime (own work, MIT). No eval, no network except an optional same-origin ?lesson= JSON. */
+(function(g){
+  const qs=new URLSearchParams(location.search);
+  const LANGS=['hinglish','en','hi'];
+  let lang=(qs.get('lang')||localStorage.getItem('nca-tl-lang')||'hinglish'); if(!LANGS.includes(lang)) lang='hinglish';
+  const reduced=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const t=x=>x==null?'':(typeof x==='string'||typeof x==='number')?String(x):(x[lang]||x.hinglish||x.en||'');
+  let STR={}; const listeners=[];
+  function applyI18n(root){(root||document).querySelectorAll('[data-k]').forEach(el=>{const v=STR[el.dataset.k]; if(v) el.innerHTML=t(v);});
+    document.documentElement.lang=lang==='hi'?'hi':(lang==='en'?'en':'en-IN');
+    document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.l===lang));}
+  function setLang(l){lang=l;localStorage.setItem('nca-tl-lang',l);applyI18n();listeners.forEach(f=>f(l));}
+  function header(icon,titleK,subK){const h=document.createElement('header');h.className='top';
+    h.innerHTML=`<div class="ic" aria-hidden="true">${icon}</div><h1><span data-k="${titleK}"></span><small data-k="${subK}"></small></h1>
+    <div class="lang" role="group" aria-label="Language"><button data-l="hinglish">Hinglish</button><button data-l="en">EN</button><button data-l="hi">हिं</button></div>`;
+    document.body.prepend(h); h.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>setLang(b.dataset.l));}
+  // Toast: never covers text. It floats in a free band of the screen (bottom first); if the screen has no free band
+  // it sits in the page flow right under what the child just tapped (pushes content down, covers nothing). Closes after 2.5 s.
+  let toastEl,lastTap=null,tapAt=null;document.addEventListener('pointerdown',e=>{lastTap=e.target;tapAt=[e.clientX,e.clientY+scrollY]},true);let rePend=0;const rePlace=()=>{if(!toastEl||!toastEl.classList.contains('on')||rePend)return;rePend=1;requestAnimationFrame(()=>{rePend=0;placeToast();});};
+  addEventListener('scroll',rePlace,{passive:true});addEventListener('resize',rePlace);document.addEventListener('animationend',rePlace,true);document.addEventListener('transitionend',rePlace,true);const toastMO=new MutationObserver(rs=>{if(rs.some(r=>!toastEl.contains(r.target)))rePlace();});
+  function textRects(skip){const vh=innerHeight,out=[],rg=document.createRange(),w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let n;
+    while((n=w.nextNode())){if(!n.nodeValue.trim())continue;const p=n.parentElement;if(!p||skip.contains(p)||/^(SCRIPT|STYLE)$/.test(p.tagName))continue;rg.selectNodeContents(n);
+      for(const q of rg.getClientRects())if(q.width>=1&&q.bottom>0&&q.top<vh)out.push(q);}
+    document.querySelectorAll('input,select,textarea,button,a[href],[role=button]').forEach(e=>{if(skip.contains(e))return;const q=e.getBoundingClientRect();if(q.width&&q.bottom>0&&q.top<vh)out.push(q)});if(0)document.querySelectorAll('x').forEach(e=>{const q=e.getBoundingClientRect();if(q.width&&q.bottom>0&&q.top<vh)out.push(q)});return out;}
+  function freeSpot(el){const vw=document.documentElement.clientWidth,vh=innerHeight,w=el.offsetWidth,h=el.offsetHeight,m=8;let top=m;
+    const bar=document.querySelector('.top');if(bar)top=Math.max(top,bar.getBoundingClientRect().bottom+m);
+    const obs=textRects(el),xs=[(vw-w)/2,m,vw-w-m],free=(x,y)=>!obs.some(q=>q.left<x+w+4&&q.right>x-4&&q.top<y+h+4&&q.bottom>y-4);
+    const cur=el._spot;if(cur&&free(cur.x,cur.y))return cur;
+    for(let y=vh-h-m;y>=top;y-=6)for(const x of xs)if(free(x,y))return{x,y};return null;}
+  /* never drop the note inside a 3D scene, a transformed, positioned-out or clipping box */
+  function boxedIn(a){for(let p=a;p&&p!==document.body;p=p.parentElement){const c=getComputedStyle(p);if(c.transform!=='none'||c.transformStyle==='preserve-3d'||c.perspective!=='none'||c.position==='absolute'||c.position==='fixed'||(p!==a&&c.overflow!=='visible'))return true;}return false;}
+  function inlineAfter(el){let a=lastTap&&lastTap.isConnected&&!el.contains(lastTap)?lastTap:null;
+    if(!a&&tapAt){const y=tapAt[1]-scrollY;if(y>0&&y<innerHeight)a=document.elementFromPoint(tapAt[0],y);}/* the tapped thing was re-drawn: use what is there now */
+    if(!a||el.contains(a))a=document.querySelector('main')||document.body.lastElementChild;
+    while(a.parentElement&&a.parentElement!==document.body){const d=getComputedStyle(a.parentElement),me=getComputedStyle(a);
+      if(me.display!=='inline'&&!(a instanceof SVGElement)&&(d.display==='block'||d.display==='flow-root'||d.display==='grid'||(d.display==='flex'&&d.flexDirection.startsWith('column')))&&a.getBoundingClientRect().width>=Math.min(260,innerWidth*.6)&&!boxedIn(a))break;a=a.parentElement;}
+    a.after(el);}
+  function placeToast(){const el=toastEl;if(!el.classList.contains('on'))return;if(!el.isConnected){el.classList.remove('inline');document.body.appendChild(el);}
+    if(el.classList.contains('inline'))return;const s=freeSpot(el);
+    if(s){el._spot=s;el.style.left=s.x+'px';el.style.top=s.y+'px';}else{el._spot=null;el.classList.add('inline');el.style.left=el.style.top='';inlineAfter(el);el.scrollIntoView({block:'nearest'});}}
+  function toast(msg,kind){if(!toastEl){toastEl=document.createElement('div');toastEl.setAttribute('role','status');document.body.appendChild(toastEl);}
+    const el=toastEl;clearTimeout(el._t);clearInterval(el._iv);if(el.classList.contains('inline'))document.body.appendChild(el);
+    el.className='toast '+(kind||'');el._spot=null;el.innerHTML=typeof msg==='object'?t(msg):msg;el.style.left='0px';el.style.top='0px';
+    el.classList.add('on');placeToast();el._iv=setInterval(placeToast,200);toastMO.observe(document.body,{subtree:true,childList:true,attributes:true,characterData:true});
+    el._t=setTimeout(()=>{clearInterval(el._iv);toastMO.disconnect();el.classList.remove('on');setTimeout(()=>{if(!el.classList.contains('on')&&el.classList.contains('inline')){el.classList.remove('inline');document.body.appendChild(el);}},320);},2500);}
+  function confetti(){if(reduced())return;const c=document.createElement('canvas');c.className='confetti';c.setAttribute('aria-hidden','true');document.body.appendChild(c);
+    const W=c.width=innerWidth,H=c.height=innerHeight,x=c.getContext('2d');const cols=['#E8702A','#0F766E','#6D28D9','#F5B90A','#02CFF9','#FF6B57'];
+    const P=Array.from({length:90},()=>({x:W/2,y:H*.55,vx:(Math.random()-.5)*9,vy:-Math.random()*11-4,r:Math.random()*6+3,c:cols[Math.random()*6|0],a:Math.random()*6}));
+    let n=0;(function f(){x.clearRect(0,0,W,H);P.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.32;p.a+=.2;x.save();x.translate(p.x,p.y);x.rotate(p.a);x.fillStyle=p.c;x.fillRect(-p.r/2,-p.r/4,p.r,p.r/2);x.restore();});
+      if(++n<110)requestAnimationFrame(f);else c.remove();})();}
+  function tween(ms,step,done){if(reduced()||ms<=0){step(1);done&&done();return()=>{};}let stop=0;const t0=performance.now();
+    const f=now=>{if(stop)return;const k=Math.min(1,(now-t0)/ms);step(k);k<1?requestAnimationFrame(f):done&&done();};requestAnimationFrame(f);return()=>{stop=1};}
+  const ease=k=>k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+  const sleep=ms=>new Promise(r=>setTimeout(r,reduced()?0:ms));
+  // Lesson config: ?lesson=<same-origin json path> (its play.config + play.goal), else inline defaults. ?cfg=<json> also accepted (parsed with JSON.parse only).
+  async function lessonConfig(defaults){let cfg=Object.assign({},defaults),goal=null,id=null;
+    const p=qs.get('lesson');
+    if(p&&/^[\w\-./]+\.json$/.test(p)&&!p.includes('..')){try{const r=await fetch(p);if(r.ok){const j=await r.json();id=j.id;if(j.play){Object.assign(cfg,j.play.config||{});goal=j.play.goal||null;}}}catch(e){}}
+    const c=qs.get('cfg'); if(c){try{Object.assign(cfg,JSON.parse(c));}catch(e){}}
+    return {cfg,goal,id};}
+  // Progress events the Family App shell can listen for (postMessage to the parent frame), plus local XP for the prototype.
+  function emit(type,data){const msg={source:'nca-techlab',type,data:data||{},at:Date.now()};try{parent!==window&&parent.postMessage(msg,'*');}catch(e){}
+    document.dispatchEvent(new CustomEvent('nca-lab',{detail:msg}));}
+  g.NCA={qs,esc,t,get lang(){return lang},setLang,onLang:f=>listeners.push(f),strings:o=>{STR=Object.assign(STR,o);applyI18n();},applyI18n,header,toast,confetti,tween,ease,sleep,reduced,lessonConfig,emit};
+})(window);
+</script>
+<script>
+(async function(){
+const N=NCA,T=N.t,E=N.esc,L=(en,hi,hinglish)=>({en,hi,hinglish}),$=id=>document.getElementById(id);
+N.header('🤖','title','sub');
+N.strings({title:L('AI Lab','AI लैब','AI Lab'),sub:L('Watch machines learn — from examples, groups, rewards and words','मशीनों को सीखते देखो — उदाहरण, समूह, इनाम और शब्दों से','Machines ko seekhte dekho — examples, groups, rewards aur words se'),mT:L('🚀 Mission','🚀 मिशन','🚀 Mission')});
+const {cfg,goal}=await N.lessonConfig({tab:'learn'});
+const TABS=[['learn',L('🥭 Learn from examples','🥭 उदाहरणों से सीखो','🥭 Examples se seekho')],['cluster',L('🫧 Find groups','🫧 समूह खोजो','🫧 Groups dhoondo')],['reward',L('🏆 Learn from rewards','🏆 इनाम से सीखो','🏆 Rewards se seekho')],['words',L('💬 Next word','💬 अगला शब्द','💬 Agla word')],['prompt',L('✍️ Prompt builder','✍️ प्रॉम्प्ट बनाओ','✍️ Prompt builder')]];
+const GOALS={learn:L('Teach the AI to tell ripe from raw mangoes. Test it — then fix its mistakes by adding better examples.','AI को पका और कच्चा आम पहचानना सिखाओ। जाँचो — फिर बेहतर उदाहरण जोड़कर उसकी ग़लतियाँ सुधारो।','AI ko pakka aur kachcha aam pehchaanna sikhao. Test karo — phir better examples jodkar uski galtiyaan sudhaaro.'),
+ cluster:L('No labels this time. Step the k-means algorithm and watch it find groups of shop customers on its own.','इस बार लेबल नहीं। k-means एल्गोरिदम को कदम-दर-कदम चलाओ और देखो वह ख़ुद दुकान के ग्राहकों के समूह कैसे खोजता है।','Is baar labels nahi. k-means algorithm ko step-by-step chalao aur dekho woh khud shop customers ke groups kaise dhoondhta hai.'),
+ reward:L('Nobody tells the robot the way. Train it with rewards (+10 charger, −10 pit, −1 per step) until it finds a safe path.','कोई रोबोट को रास्ता नहीं बताता। इनाम से प्रशिक्षित करो (+10 चार्जर, −10 गड्ढा, −1 हर कदम) जब तक वह सुरक्षित रास्ता न खोज ले।','Koi robot ko raasta nahi batata. Rewards se train karo (+10 charger, −10 pit, −1 har step) jab tak woh safe raasta na dhoondh le.'),
+ words:L('A tiny language model guesses the next word from counts. Generate sentences — and catch it making up a fact.','एक छोटा भाषा मॉडल गिनती से अगला शब्द अनुमान लगाता है। वाक्य बनाओ — और उसे तथ्य गढ़ते पकड़ो।','Ek chhota language model counts se agla word guess karta hai. Sentences banao — aur use fact banaate pakdo.'),
+ prompt:L('Build a prompt from five parts and watch the answer get better.','पाँच भागों से प्रॉम्प्ट बनाओ और देखो उत्तर कैसे बेहतर होता है।','Paanch parts se prompt banao aur dekho answer kaise better hota hai.')};
+let tab=TABS.some(x=>x[0]===cfg.tab)?cfg.tab:'learn';const done={};
+function win(k,m){if(done[k])return;done[k]=1;N.confetti();N.toast(m,'ok');N.emit('mission:complete',{lab:'ai-lab',tab:k});mission();}
+let seed=7;const rnd=()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};
+/* ---------- LEARN: k-NN ---------- */
+const TRAIN0=[[7,8,1],[8,9,1],[9,7,1],[6,9,1],[8,8,1],[2,2,0],[1,4,0],[3,3,0],[2,1,0],[3,5,0],[1,2,0]];
+const TEST=[[8,7.5,1,'Alphonso'],[2,3,0,''],[3,4,0,''],[7,9,1,'Alphonso'],[8,2,1,'Langra'],[7,3,1,'Langra']];
+let train=TRAIN0.map(p=>p.slice()),lab=1,mode='knn',tested=false,added=0;
+const X=v=>30+v*26,Y=v=>290-v*26,iX=px=>(px-30)/26,iY=py=>(290-py)/26;
+function predict(x,y){if(mode==='rule')return y>5?1:0;const d=train.map(p=>[(p[0]-x)**2+(p[1]-y)**2,p[2]]).sort((a,b)=>a[0]-b[0]).slice(0,3);return d.filter(z=>z[1]).length>=2?1:0;}
+function drawLearn(){const res=TEST.map(t=>predict(t[0],t[1]));const right=res.filter((r,i)=>r===TEST[i][2]).length;
+ let grid='';if(tested)for(let gx=0;gx<=10;gx+=.5)for(let gy=0;gy<=10;gy+=.5)grid+=`<rect x="${X(gx)-6.5}" y="${Y(gy)-6.5}" width="13" height="13" fill="${predict(gx,gy)?'#F5B90A':'#22C55E'}" opacity=".13"/>`;
+ $('stage').innerHTML=`<svg class="plot" id="pl" viewBox="0 0 310 320">${grid}<line x1="30" y1="290" x2="300" y2="290" stroke="#64748B"/><line x1="30" y1="290" x2="30" y2="20" stroke="#64748B"/>
+ <text x="165" y="312" fill="#9FB0D8" font-size="11" text-anchor="middle">${E(T(L('softness →','नरमी →','softness →')))}</text><text x="12" y="155" fill="#9FB0D8" font-size="11" text-anchor="middle" transform="rotate(-90 12 155)">${E(T(L('yellow skin →','पीला छिलका →','peela chhilka →')))}</text>
+ ${train.map(p=>`<circle class="pt" cx="${X(p[0])}" cy="${Y(p[1])}" r="8" fill="${p[2]?'#F5B90A':'#22C55E'}" stroke="#0A1028" stroke-width="2"/>`).join('')}
+ ${TEST.map((t,i)=>`<g transform="translate(${X(t[0])},${Y(t[1])})"><rect x="-10" y="-10" width="20" height="20" rx="4" fill="none" stroke="${tested?(res[i]===t[2]?'#7DF9C9':'#FF6B57'):'#E8EEFF'}" stroke-width="3"/><text y="4" text-anchor="middle" font-size="11" fill="#fff">${tested?(res[i]?'P':'K'):'?'}</text></g>`).join('')}</svg>
+ <small>${T(L('Circles = training examples (🟡 ripe, 🟢 raw). Squares = test mangoes the AI has never seen. Tap the chart to add an example.','गोले = प्रशिक्षण उदाहरण (🟡 पका, 🟢 कच्चा)। वर्ग = परीक्षण आम जो AI ने कभी नहीं देखे। उदाहरण जोड़ने के लिए चार्ट दबाओ।','Circles = training examples (🟡 pakka, 🟢 kachcha). Squares = test mangoes jo AI ne kabhi nahi dekhe. Example jodne ke liye chart tap karo.'))} P=${T(L('ripe','पका','pakka'))}, K=${T(L('raw','कच्चा','kachcha'))}</small>`;
+ $('pl').onclick=e=>{const r=$('pl').getBoundingClientRect(),sx=310/r.width;const x=iX((e.clientX-r.left)*sx),y=iY((e.clientY-r.top)*(320/r.height));if(x<0||x>10.5||y<0||y>10.5)return;train.push([+x.toFixed(1),+y.toFixed(1),lab]);added++;drawLearn();};
+ $('side').innerHTML=`<b>${T(L('Brain','दिमाग़','Dimaag'))}</b><div class="seg" style="margin:6px 0"><button data-m="rule" aria-pressed="${mode==='rule'}">📏 ${T(L('Rule: yellow > 5','नियम: पीला > 5','Rule: yellow > 5'))}</button><button data-m="knn" aria-pressed="${mode==='knn'}">🧠 ${T(L('Learn (3 nearest)','सीखो (3 निकटतम)','Learn (3 nearest)'))}</button></div>
+ <b>${T(L('Label for new examples','नए उदाहरणों का लेबल','Naye examples ka label'))}</b><div class="seg" style="margin:6px 0"><button data-l="1" aria-pressed="${lab===1}">🟡 ${T(L('Ripe','पका','Pakka'))}</button><button data-l="0" aria-pressed="${lab===0}">🟢 ${T(L('Raw','कच्चा','Kachcha'))}</button></div>
+ <div class="row"><button class="btn teal" id="tst">🧪 ${T(L('Test','जाँचो','Test'))}</button><button class="btn ghost" id="rst">↺</button></div>
+ ${tested?`<div class="big">${right}/6 ✔</div><div class="note ${right<6?'bad':''}">${right<6?T(L('The AI gets the Langra mangoes wrong: Langra stays GREEN when ripe, and the training data came only from yellow Alphonso mangoes. Biased data → biased AI. Add ripe examples that are soft but green (bottom-right) and test again.','AI लंगड़ा आमों को ग़लत बताता है: लंगड़ा पकने पर भी हरा रहता है, और प्रशिक्षण डेटा केवल पीले अल्फ़ांसो आमों से आया था। पक्षपाती डेटा → पक्षपाती AI। नरम पर हरे पके उदाहरण (नीचे-दाएँ) जोड़ो और फिर जाँचो।','AI Langra aamon ko galat batata hai: Langra pakne pe bhi HARA rehta hai, aur training data sirf peele Alphonso aamon se aaya tha. Biased data → biased AI. Soft par hare pakke examples (neeche-right) jodo aur phir test karo.')):(mode==='knn'?T(L('All 6 right! The AI learned from better, fairer examples — no rule was written by hand.','सभी 6 सही! AI ने बेहतर, निष्पक्ष उदाहरणों से सीखा — कोई नियम हाथ से नहीं लिखा।','Saare 6 sahi! AI ne better, fair examples se seekha — koi rule haath se nahi likha.')):T(L('All right with the rule — but a fixed rule cannot learn new kinds of mango.','नियम से सब सही — पर स्थिर नियम नए प्रकार के आम नहीं सीख सकता।','Rule se sab sahi — par fixed rule naye type ke aam nahi seekh sakta.')))}</div>`:''}`;
+ $('side').querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{mode=b.dataset.m;drawLearn();});$('side').querySelectorAll('[data-l]').forEach(b=>b.onclick=()=>{lab=+b.dataset.l;drawLearn();});
+ $('tst').onclick=()=>{tested=true;drawLearn();};$('rst').onclick=()=>{train=TRAIN0.map(p=>p.slice());tested=false;added=0;drawLearn();};
+ if(tested&&right===6&&mode==='knn'&&added>0)win('learn',L('You fixed biased data. Machine learning!','आपने पक्षपाती डेटा सुधारा। मशीन लर्निंग!','Aapne biased data theek kiya. Machine learning!'));}
+/* ---------- CLUSTER: k-means ---------- */
+const CP=(()=>{const c=[[2,2],[7.5,3],[5,8]],o=[];let s=3;const r=()=>{s=(s*9301+49297)%233280;return s/233280;};c.forEach(([x,y])=>{for(let i=0;i<7;i++)o.push([+(x+(r()-.5)*2.6).toFixed(2),+(y+(r()-.5)*2.6).toFixed(2)]);});return o;})();
+const COL=['#F5B90A','#02CFF9','#FF6B57','#A78BFA'];
+let K=3,cent=null,asg=null,iter=0,phase='assign',conv=false;
+function cinit(){cent=[[1,9],[2,8],[3,9],[9,9]].slice(0,K).map(p=>p.slice());asg=CP.map(()=>-1);iter=0;phase='assign';conv=false;}
+function cstep(){if(conv)return;if(phase==='assign'){let ch=0;CP.forEach((p,i)=>{let b=0,bd=1e9;cent.forEach((c,j)=>{const d=(p[0]-c[0])**2+(p[1]-c[1])**2;if(d<bd){bd=d;b=j;}});if(asg[i]!==b){ch++;asg[i]=b;}});if(!ch&&iter>0)conv=true;phase='update';}
+ else{cent=cent.map((c,j)=>{const m=CP.filter((_,i)=>asg[i]===j);return m.length?[m.reduce((a,p)=>a+p[0],0)/m.length,m.reduce((a,p)=>a+p[1],0)/m.length]:c;});iter++;phase='assign';}}
+function drawCluster(){if(!cent)cinit();
+ $('stage').innerHTML=`<svg class="plot" viewBox="0 0 310 320"><line x1="30" y1="290" x2="300" y2="290" stroke="#64748B"/><line x1="30" y1="290" x2="30" y2="20" stroke="#64748B"/>
+ <text x="165" y="312" fill="#9FB0D8" font-size="11" text-anchor="middle">${E(T(L('visits per month →','प्रति माह आना →','har mahine visits →')))}</text><text x="12" y="155" fill="#9FB0D8" font-size="11" text-anchor="middle" transform="rotate(-90 12 155)">${E(T(L('money spent →','ख़र्च किए पैसे →','kharch kiye paise →')))}</text>
+ ${CP.map((p,i)=>`<circle class="pt" cx="${X(p[0])}" cy="${Y(p[1])}" r="7" fill="${asg[i]>=0?COL[asg[i]]:'#94A3B8'}" stroke="#0A1028" stroke-width="1.5"/>`).join('')}
+ ${cent.map((c,j)=>`<g class="pt" style="transition:transform .5s" transform="translate(${X(c[0])},${Y(c[1])})"><path d="M0-13 L4-4 13-4 6 2 9 12 0 6-9 12-6 2-13-4-4-4Z" fill="${COL[j]}" stroke="#fff" stroke-width="2"/></g>`).join('')}</svg>`;
+ $('side').innerHTML=`<b>k = ${T(L('number of groups','समूहों की संख्या','groups ki sankhya'))}</b><div class="seg" style="margin:6px 0">${[2,3,4].map(k=>`<button data-k="${k}" aria-pressed="${k===K}">${k}</button>`).join('')}</div>
+ <div class="row"><button class="btn teal" id="stp">${phase==='assign'?'① '+T(L('Assign to nearest ⭐','निकटतम ⭐ को सौंपो','Nearest ⭐ ko assign karo')):'② '+T(L('Move ⭐ to centre','⭐ को केंद्र में ले जाओ','⭐ ko centre mein le jao'))}</button><button class="btn ghost" id="cr">↺</button></div>
+ <div class="big">${T(L('Round','चक्र','Round'))} ${iter}${conv?' ✅':''}</div>
+ <div class="note">${conv?T(L(`Settled! k-means found ${K} groups with no labels at all. A shop could call them “rare big spenders”, “regulars”, and so on — but YOU must name them; the AI only grouped.`,`स्थिर! k-means ने बिना किसी लेबल के ${K} समूह खोजे। दुकान उन्हें “कभी-कभी बड़े ख़रीदार”, “नियमित” आदि कह सकती है — पर नाम आपको देना है; AI ने केवल समूह बनाए।`,`Settle ho gaya! k-means ne bina kisi label ke ${K} groups dhoondhe. Shop unhe “kabhi-kabhi bade kharidaar”, “regulars” waghera keh sakti hai — par naam AAPKO dena hai; AI ne sirf group kiye.`)):T(L('Each round: ① every customer joins the nearest star, ② each star moves to the middle of its group. Repeat until nothing changes.','हर चक्र: ① हर ग्राहक निकटतम तारे से जुड़ता है, ② हर तारा अपने समूह के बीच जाता है। तब तक दोहराओ जब तक कुछ न बदले।','Har round: ① har customer nearest star se judta hai, ② har star apne group ke beech jaata hai. Tab tak dohraao jab tak kuch na badle.'))}</div>`;
+ $('side').querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>{K=+b.dataset.k;cinit();drawCluster();});$('stp').onclick=()=>{cstep();drawCluster();};$('cr').onclick=()=>{cinit();drawCluster();};
+ if(conv&&K===3)win('cluster',L('Unsupervised learning: groups found with no labels!','बिना निगरानी सीखना: बिना लेबल के समूह मिले!','Unsupervised learning: bina labels ke groups mile!'));}
+/* ---------- REWARD: Q-learning ---------- */
+const G=5,START=[0,4],GOAL=[4,0],PITS=['2,2','1,1','3,3','4,2'],ACT=[[0,-1],[1,0],[0,1],[-1,0]],ARW=['↑','→','↓','←'];
+let Q={},eps=0,lastSteps=0,lastR=0,wins=0;
+const q=(s,a)=>Q[s+'|'+a]||0;
+function stepEnv(s,a){const [x,y]=s.split(',').map(Number);let nx=Math.min(G-1,Math.max(0,x+ACT[a][0])),ny=Math.min(G-1,Math.max(0,y+ACT[a][1]));const ns=nx+','+ny;if(PITS.includes(ns))return [ns,-10,true];if(nx===GOAL[0]&&ny===GOAL[1])return [ns,10,true];return [ns,-1,false];}
+function best(s){let b=0;for(let a=1;a<4;a++)if(q(s,a)>q(s,b))b=a;return b;}
+function episode(){let s=START.join(','),tot=0,n=0;while(n<60){const a=rnd()<0.2?Math.floor(rnd()*4):best(s);const [ns,r,end]=stepEnv(s,a);const tgt=r+(end?0:0.9*Math.max(...[0,1,2,3].map(b=>q(ns,b))));Q[s+'|'+a]=q(s,a)+0.5*(tgt-q(s,a));tot+=r;n++;s=ns;if(end){if(r>0)wins++;break;}}lastSteps=n;lastR=tot;eps++;}
+function greedy(){let s=START.join(','),path=[s];for(let i=0;i<20;i++){const [ns,r,end]=stepEnv(s,best(s));path.push(ns);s=ns;if(end)return [path,r>0];}return [path,false];}
+function drawReward(){const [path,ok]=greedy();const C=58;
+ let cells='';for(let y=0;y<G;y++)for(let x=0;x<G;x++){const k=x+','+y;const v=Math.max(...[0,1,2,3].map(a=>q(k,a)));const pit=PITS.includes(k),goal=x===GOAL[0]&&y===GOAL[1];
+  cells+=`<rect x="${5+x*C}" y="${5+y*C}" width="${C-4}" height="${C-4}" rx="10" fill="${pit?'#3B0A0A':goal?'#064E3B':`rgba(2,207,249,${Math.max(0,Math.min(.5,v/20)).toFixed(2)})`}" stroke="#2A3A70"/>`+(pit?`<text x="${5+x*C+27}" y="${5+y*C+36}" text-anchor="middle" font-size="24">🕳️</text>`:goal?`<text x="${5+x*C+27}" y="${5+y*C+36}" text-anchor="middle" font-size="24">🔋</text>`:(eps?`<text x="${5+x*C+27}" y="${5+y*C+34}" text-anchor="middle" font-size="16" fill="#9FB0D8">${ARW[best(k)]}</text>`:''));}
+ const pts=path.map(p=>{const [x,y]=p.split(',').map(Number);return `${5+x*C+27},${5+y*C+27}`;}).join(' ');
+ const [rx,ry]=path[path.length-1].split(',').map(Number);
+ const cellTx=(cells.match(/<text[^>]*>[^<]*<\/text>/g)||[]).join(''),cellBg=cells.replace(/<text[^>]*>[^<]*<\/text>/g,'');/* path under the icons and arrows: no text hidden */
+ $('stage').innerHTML=`<svg class="plot" viewBox="0 0 295 295">${cellBg}${eps?`<polyline points="${pts}" fill="none" stroke="${ok?'#7DF9C9':'#F5B90A'}" stroke-width="4" stroke-dasharray="6 4" stroke-linecap="round"/>`:''}${cellTx}<text x="${5+START[0]*C+27}" y="${5+START[1]*C+37}" text-anchor="middle" font-size="26">🤖</text></svg>`;
+ $('side').innerHTML=`<div class="row"><button class="btn teal" id="t1">▶ ${T(L('Train 1 try','1 प्रयास','1 try train'))}</button><button class="btn teal" id="t10">⏩ ${T(L('Train 10 tries','10 प्रयास','10 tries train'))}</button><button class="btn ghost" id="t0">↺</button></div>
+ <div class="big">${T(L('Tries','प्रयास','Tries'))}: ${eps} · ${T(L('reached charger','चार्जर तक पहुँचा','charger tak pahuncha'))}: ${wins}</div>
+ <small>${eps?T(L(`Last try: ${lastSteps} steps, total reward ${lastR}.`,`पिछला प्रयास: ${lastSteps} कदम, कुल इनाम ${lastR}।`,`Last try: ${lastSteps} steps, total reward ${lastR}.`)):''}</small>
+ <div class="note ${eps&&!ok?'bad':''}">${!eps?T(L('At first the robot knows nothing and wanders randomly. Each try, it remembers which moves led to rewards (arrows = best move it has learned so far; brighter squares = closer to reward).','शुरू में रोबोट कुछ नहीं जानता और बेतरतीब घूमता है। हर प्रयास में वह याद रखता है कौन-सी चालें इनाम तक ले गईं (तीर = अब तक सीखी सबसे अच्छी चाल; चमकीले वर्ग = इनाम के पास)।','Shuru mein robot kuch nahi jaanta aur random ghoomta hai. Har try mein woh yaad rakhta hai kaunsi moves reward tak le gayi (arrows = ab tak seekhi best move; chamkeele squares = reward ke paas).')):ok?T(L('The dashed path now reaches the charger safely — learned only from rewards and penalties. This is reinforcement learning, the same idea behind game-playing AIs like AlphaGo.','डैश वाला रास्ता अब चार्जर तक सुरक्षित पहुँचता है — केवल इनाम और दंड से सीखा। यह रीइन्फ़ोर्समेंट लर्निंग है, AlphaGo जैसे खेल खेलने वाले AI के पीछे का विचार।','Dashed raasta ab charger tak safely pahunchta hai — sirf rewards aur penalties se seekha. Yeh reinforcement learning hai, AlphaGo jaise game khelne wale AI ke peeche ka idea.')):T(L('Not there yet — the best path so far does not reach the charger. Keep training.','अभी नहीं — अब तक का सबसे अच्छा रास्ता चार्जर तक नहीं पहुँचता। प्रशिक्षण जारी रखो।','Abhi nahi — ab tak ka best raasta charger tak nahi pahunchta. Training jaari rakho.'))}</div>`;
+ $('t1').onclick=()=>{episode();drawReward();};$('t10').onclick=()=>{for(let i=0;i<10;i++)episode();drawReward();};$('t0').onclick=()=>{Q={};eps=0;wins=0;seed=7;drawReward();};
+ if(ok&&eps>=10)win('reward',L('Your robot learned from rewards!','आपके रोबोट ने इनाम से सीखा!','Aapke robot ne rewards se seekha!'));}
+/* ---------- WORDS: bigram LM ---------- */
+const CORPUS=`the capital of india is new delhi . the capital of france is paris . the capital of japan is tokyo . my school is new and big . i live in new delhi . my school has a big library . the library has new books . the robot can move . the robot can talk . the robot has two wheels . i drink chai every morning . chai is hot . new delhi is a big city . the train is new and fast . my friend can talk in three languages . the city has a big park .`.split(' ');
+const BI={};for(let i=0;i<CORPUS.length-1;i++){const a=CORPUS[i],b=CORPUS[i+1];if(a==='.')continue;(BI[a]=BI[a]||{})[b]=(BI[a][b]||0)+1;}
+const FACTS={india:'new delhi',france:'paris',japan:'tokyo'};
+const STARTS=['the capital of france','the capital of japan','the robot','my school','chai'];
+let temp=0.2,start=STARTS[0],out=[],gens=0,caught=false,judged=null;
+function dist(w){const c=BI[w]||{'.':1};const ks=Object.keys(c);const lg=ks.map(k=>Math.log(c[k])/temp);const m=Math.max(...lg);const ex=lg.map(v=>Math.exp(v-m));const s=ex.reduce((a,b)=>a+b,0);return ks.map((k,i)=>[k,ex[i]/s]).sort((a,b)=>b[1]-a[1]);}
+function generate(){out=start.split(' ');for(let i=0;i<10;i++){const d=dist(out[out.length-1]);let r=rnd(),pick=d[0][0];for(const [k,p] of d){if((r-=p)<=0){pick=k;break;}}out.push(pick);if(pick==='.')break;}gens++;judged=null;}
+function truth(){const s=out.join(' ');const m=s.match(/capital of (\w+) is ([\w ]+?) \./);if(!m)return null;return FACTS[m[1]]===m[2];}
+function drawWords(){const last=out.length?out[out.length-1]==='.'?out[out.length-2]:out[out.length-1]:start.split(' ').pop();const d=dist(last).slice(0,5);const tv=out.length?truth():null;
+ $('stage').innerHTML=`<b>${T(L('Start with','शुरुआत','Shuru karo'))}</b><div class="chips" style="margin:6px 0">${STARTS.map(s=>`<button data-s="${E(s)}" aria-pressed="${s===start}">${E(s)}…</button>`).join('')}</div>
+ <label style="font-weight:700;font-size:14px;display:grid;gap:4px">🌡️ ${T(L('Temperature (randomness)','तापमान (बेतरतीबी)','Temperature (randomness)'))}: ${temp.toFixed(1)}<input type="range" id="tp" min="0.2" max="2" step="0.1" value="${temp}" style="width:100%;accent-color:var(--teal);height:28px"></label>
+ <button class="btn teal" id="gn" style="width:100%;margin-top:6px">✨ ${T(L('Generate','बनाओ','Generate'))}</button>
+ <div class="gen" aria-live="polite">${out.map((w,i)=>`<span class="w" style="animation-delay:${i*60}ms">${E(w)}</span>`).join('')||'…'}</div>
+ ${tv!==null&&out.length?`<div class="row"><button class="btn ghost" id="jt">✅ ${T(L('True fact','सच्चा तथ्य','True fact'))}</button><button class="btn ghost" id="jf">🚩 ${T(L('Made up!','गढ़ा हुआ!','Made up!'))}</button></div>${judged!==null?`<div class="note ${judged===tv?'':'bad'}">${judged===tv?'✔':'✖'} ${tv?T(L('This one happens to be true.','यह संयोग से सच है।','Yeh sanyog se sach hai.')):T(L('Fluent but FALSE. The model only knows “is” is often followed by “new”, and “new” by “delhi”. It predicts likely words — it does not check facts. This is a hallucination.','सहज पर ग़लत। मॉडल केवल जानता है कि “is” के बाद अक्सर “new” और “new” के बाद “delhi” आता है। वह संभावित शब्द अनुमान लगाता है — तथ्य नहीं जाँचता। यह हैलुसिनेशन है।','Fluent par GALAT. Model sirf jaanta hai ki “is” ke baad aksar “new”, aur “new” ke baad “delhi” aata hai. Woh likely words predict karta hai — facts check nahi karta. Yeh hallucination hai.'))}</div>`:''}`:''}`;
+ $('side').innerHTML=`<b>${T(L('Next-word chances after','इसके बाद अगले शब्द की संभावना','Iske baad agle word ka chance'))} “${E(last)}”</b>${d.map(([k,p])=>`<div class="prob"><span>${E(k)}</span><i style="width:${(p*100).toFixed(0)}%"></i><span>${(p*100).toFixed(0)}%</span></div>`).join('')}
+ <p style="font-size:13px">${T(L('Real chatbots (LLMs) do the same job — predict the next token — but learned from trillions of words with billions of settings, so they sound very smart. They can still be confidently wrong.','असली चैटबॉट (LLM) भी यही करते हैं — अगला टोकन अनुमान — पर खरबों शब्दों और अरबों सेटिंग से सीखे हैं, इसलिए बहुत समझदार लगते हैं। फिर भी वे आत्मविश्वास से ग़लत हो सकते हैं।','Asli chatbots (LLMs) bhi yahi kaam karte hain — agla token predict — par kharabon words aur arabon settings se seekhe hain, isliye bahut smart lagte hain. Phir bhi woh confidently galat ho sakte hain.'))}</p><small>${T(L('Sentences made','बने वाक्य','Bane sentences'))}: ${gens}</small>`;
+ $('stage').querySelectorAll('[data-s]').forEach(b=>b.onclick=()=>{start=b.dataset.s;out=[];drawWords();});$('tp').oninput=e=>{temp=+e.target.value;drawWords();};$('gn').onclick=()=>{generate();drawWords();};
+ if($('jt')){$('jt').onclick=()=>{judged=true;drawWords();};$('jf').onclick=()=>{judged=false;if(tv===false)caught=true;drawWords();};}
+ if(caught&&gens>=3)win('words',L('You caught an AI hallucination!','आपने AI का हैलुसिनेशन पकड़ा!','Aapne AI ki hallucination pakdi!'));}
+/* ---------- PROMPT ---------- */
+const SL=[['role',L('Role','भूमिका','Role'),[L('(none)','(कुछ नहीं)','(kuch nahi)'),L('You are a pirate.','तुम एक समुद्री डाकू हो।','Tum ek pirate ho.'),L('You are a friendly Class 7 science teacher.','तुम कक्षा 7 के दोस्ताना विज्ञान शिक्षक हो।','Tum Class 7 ke friendly science teacher ho.')]],
+ ['task',L('Task','काम','Task'),[L('photosynthesis','प्रकाश संश्लेषण','photosynthesis'),L('Tell me about plants.','पौधों के बारे में बताओ।','Plants ke baare mein batao.'),L('Explain photosynthesis and quiz me on it.','प्रकाश संश्लेषण समझाओ और मुझसे प्रश्न पूछो।','Photosynthesis samjhao aur mujhse quiz karo.')]],
+ ['ctx',L('Context','संदर्भ','Context'),[L('(none)','(कुछ नहीं)','(kuch nahi)'),L('I have a test.','मेरी परीक्षा है।','Mera test hai.'),L('My NCERT Class 7 test is on Friday; I mix up stomata and chlorophyll.','मेरी NCERT कक्षा 7 की परीक्षा शुक्रवार को है; मैं स्टोमेटा और क्लोरोफ़िल में उलझता हूँ।','Mera NCERT Class 7 test Friday ko hai; main stomata aur chlorophyll mein confuse hota hoon.')]],
+ ['fmt',L('Format','प्रारूप','Format'),[L('(none)','(कुछ नहीं)','(kuch nahi)'),L('Make it nice.','अच्छा बनाओ।','Achha banao.'),L('5 bullet points, then 3 multiple-choice questions.','5 बुलेट पॉइंट, फिर 3 बहुविकल्पीय प्रश्न।','5 bullet points, phir 3 MCQ questions.')]],
+ ['lim',L('Limits','सीमाएँ','Limits'),[L('(none)','(कुछ नहीं)','(kuch nahi)'),L('Be quick.','जल्दी करो।','Jaldi karo.'),L('Simple words, under 150 words, say “I am not sure” if unsure.','सरल शब्द, 150 शब्दों से कम, पक्का न हो तो “मुझे पक्का नहीं पता” कहो।','Simple words, 150 words se kam, pakka na ho to “mujhe pakka nahi pata” kaho.')]]];
+let pv={role:0,task:0,ctx:0,fmt:0,lim:0};
+function drawPrompt(){const sc=Object.values(pv).filter(v=>v===2).length;
+ const txt=SL.map(([k])=>pv[k]?T(SL.find(s=>s[0]===k)[2][pv[k]]):'').filter(Boolean).join(' ')||T(SL[1][2][0]);
+ const ans=sc===5?L('🌿 Photosynthesis (Class 7)\n• Plants make food from carbon dioxide + water using sunlight.\n• Chlorophyll is the green pigment in leaves that traps light.\n• Stomata are tiny pores that let gases in and out.\n• Oxygen is released; glucose (food) is made.\n• Leaves are the plant’s “kitchen”.\nQ1. Which pigment traps light? (a) stomata (b) chlorophyll (c) xylem\nQ2. What gas is released? …  Q3. …','🌿 प्रकाश संश्लेषण (कक्षा 7)\n• पौधे सूर्य के प्रकाश से कार्बन डाइऑक्साइड + पानी से भोजन बनाते हैं।\n• क्लोरोफ़िल पत्तियों का हरा वर्णक है जो प्रकाश पकड़ता है।\n• स्टोमेटा छोटे छिद्र हैं जो गैसें अंदर-बाहर जाने देते हैं।\n• ऑक्सीजन निकलती है; ग्लूकोज़ (भोजन) बनता है।\n• पत्तियाँ पौधे की “रसोई” हैं।\nप्र1. कौन-सा वर्णक प्रकाश पकड़ता है? (क) स्टोमेटा (ख) क्लोरोफ़िल (ग) ज़ाइलम\nप्र2. कौन-सी गैस निकलती है? …  प्र3. …','🌿 Photosynthesis (Class 7)\n• Plants sunlight se carbon dioxide + paani se khaana banate hain.\n• Chlorophyll pattiyon ka hara pigment hai jo light pakadta hai.\n• Stomata chhote pores hain jo gases andar-bahar jaane dete hain.\n• Oxygen nikalti hai; glucose (khaana) banta hai.\n• Pattiyan plant ki “kitchen” hain.\nQ1. Kaunsa pigment light pakadta hai? (a) stomata (b) chlorophyll (c) xylem\nQ2. Kaunsi gas nikalti hai? …  Q3. …')
+  :sc>=3?L('A decent explanation of photosynthesis with some structure — but it misses part of what you need (check the missing parts).','प्रकाश संश्लेषण की ठीक-ठाक व्याख्या कुछ ढाँचे के साथ — पर आपकी ज़रूरत का कुछ हिस्सा छूट गया (छूटे भाग देखो)।','Photosynthesis ki theek-thaak explanation thode structure ke saath — par aapki zaroorat ka kuch hissa chhoot gaya (missing parts dekho).')
+  :pv.role===1?L('Arrr! Plants be eatin’ sunshine, matey! (Fun — but not useful for your test.)','अर्र! पौधे धूप खाते हैं, दोस्त! (मज़ेदार — पर परीक्षा के लिए उपयोगी नहीं।)','Arrr! Plants dhoop khaate hain, dost! (Mazedaar — par test ke liye useful nahi.)')
+  :L('A long, general essay about plants — roots, flowers, trees… Not what you needed.','पौधों पर लंबा, सामान्य निबंध — जड़ें, फूल, पेड़… वह नहीं जो आपको चाहिए था।','Plants pe lamba, general essay — roots, flowers, trees… Woh nahi jo aapko chahiye tha.');
+ $('stage').innerHTML=SL.map(([k,n,opts])=>`<div class="slot"><b>${pv[k]===2?'✅':'⬜'} ${T(n)}</b><div class="chips">${opts.map((o,i)=>`<button data-p="${k}" data-i="${i}" aria-pressed="${pv[k]===i}">${E(T(o))}</button>`).join('')}</div></div>`).join('');
+ $('stage').querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>{pv[b.dataset.p]=+b.dataset.i;const y=scrollY;drawPrompt();scrollTo(0,y);});
+ $('side').innerHTML=`<b>${T(L('Your prompt','आपका प्रॉम्प्ट','Aapka prompt'))}</b><div class="gen">${E(txt)}</div><div class="big">${sc}/5 ✔</div><b>${T(L('AI answer (simulated)','AI उत्तर (अनुकरण)','AI answer (simulated)'))}</b><div class="ans">${E(T(ans))}</div>
+ <p style="font-size:13px">${T(L('Even with a great prompt, check facts in your textbook — and never paste private details into a chatbot.','अच्छे प्रॉम्प्ट के साथ भी तथ्य अपनी पाठ्यपुस्तक में जाँचो — और चैटबॉट में निजी जानकारी कभी मत डालो।','Achhe prompt ke saath bhi facts apni textbook mein check karo — aur chatbot mein private details kabhi mat daalo.'))}</p>`;
+ if(sc===5)win('prompt',L('Prompt pro: role, task, context, format, limits!','प्रॉम्प्ट प्रो: भूमिका, काम, संदर्भ, प्रारूप, सीमाएँ!','Prompt pro: role, task, context, format, limits!'));}
+function mission(){const st={learn:L('6/6 after fixing the data','डेटा सुधारकर 6/6','Data theek karke 6/6'),cluster:L('k = 3 settles','k = 3 स्थिर','k = 3 settle'),reward:L('Safe path after 10+ tries','10+ प्रयास में सुरक्षित रास्ता','10+ tries mein safe raasta'),words:L('3 sentences + catch a made-up fact','3 वाक्य + गढ़ा तथ्य पकड़ो','3 sentences + made-up fact pakdo'),prompt:L('All 5 parts strong','सभी 5 भाग मज़बूत','Saare 5 parts strong')};
+ $('mission').innerHTML=TABS.map(([k,n])=>`<div style="margin:3px 0">${done[k]?'✅':'⬜'} <b>${T(n)}</b> — ${T(st[k])}</div>`).join('');}
+function draw(){$('goal').innerHTML=E(T(goal&&cfg.tab===tab?goal:GOALS[tab]));$('tabs').innerHTML=TABS.map(([k,n])=>`<button role="tab" aria-selected="${k===tab}" data-t="${k}">${T(n)}</button>`).join('');
+ $('tabs').querySelectorAll('button').forEach(b=>b.onclick=()=>{tab=b.dataset.t;draw();});({learn:drawLearn,cluster:drawCluster,reward:drawReward,words:drawWords,prompt:drawPrompt})[tab]();mission();}
+N.onLang(draw);draw();
+window.__lab={tab:k=>{tab=k;draw();},add:(x,y,l)=>{train.push([x,y,l]);added++;drawLearn();},train:n=>{for(let i=0;i<n;i++)episode();drawReward();},greedy,done,dist};
+})();
+</script></body></html>

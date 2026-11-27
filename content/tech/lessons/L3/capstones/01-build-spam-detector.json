@@ -1,0 +1,376 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.capstones.01",
+ "level": 3,
+ "classes": [
+  11,
+  12
+ ],
+ "unit": "capstones",
+ "title": {
+  "en": "Build a spam detector",
+  "hi": "स्पैम पहचानक बनाओ",
+  "hinglish": "Spam detector banao"
+ },
+ "minutes": 25,
+ "xp": 100,
+ "prereq": [
+  "L3.machine-learning.04",
+  "L3.data-science.05"
+ ],
+ "outcomes": [
+  {
+   "en": "Turn messages into features and train a Naive Bayes classifier",
+   "hi": "संदेशों को विशेषताओं में बदलकर नाइव बेज़ वर्गीकारक प्रशिक्षित करो",
+   "hinglish": "Messages ko features mein badalkar Naive Bayes classifier train karo"
+  },
+  {
+   "en": "Evaluate with precision and recall on a held-out test set",
+   "hi": "अलग रखे परीक्षण सेट पर परिशुद्धता और रिकॉल से मूल्यांकन करो",
+   "hinglish": "Held-out test set par precision aur recall se evaluate karo"
+  },
+  {
+   "en": "Choose a threshold by weighing the cost of each mistake",
+   "hi": "हर ग़लती की क़ीमत तौलकर सीमा चुनो",
+   "hinglish": "Har galti ki keemat taulkar threshold chuno"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Feature",
+   "hinglish": "Pehchaan ka sanket",
+   "en": "A measurable clue, e.g. whether the word \"prize\" appears",
+   "hi": "मापने योग्य संकेत, जैसे \"prize\" शब्द है या नहीं"
+  },
+  {
+   "term": "Naive Bayes",
+   "hinglish": "Naive Bayes",
+   "en": "A classifier that combines word probabilities with Bayes’ rule, assuming words are independent",
+   "hi": "वर्गीकारक जो बेज़ नियम से शब्द प्रायिकताएँ जोड़ता है, शब्दों को स्वतंत्र मानकर"
+  },
+  {
+   "term": "Precision",
+   "hinglish": "Sahi pakad",
+   "en": "Of messages flagged as spam, how many really were",
+   "hi": "स्पैम चिह्नित संदेशों में से कितने सच में थे"
+  },
+  {
+   "term": "Recall",
+   "hinglish": "Kitne pakde",
+   "en": "Of all real spam, how much was caught",
+   "hi": "सारे असली स्पैम में से कितना पकड़ा"
+  },
+  {
+   "term": "Threshold",
+   "hinglish": "Seema",
+   "en": "The probability above which a message is called spam",
+   "hi": "वह प्रायिकता जिसके ऊपर संदेश स्पैम कहलाए"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Collect labelled messages: spam and ham (not spam). Split 80% train, 20% test.",
+    "hi": "लेबल वाले संदेश इकट्ठे करो: स्पैम और हैम (स्पैम नहीं)। 80% प्रशिक्षण, 20% परीक्षण।",
+    "hinglish": "Labelled messages ikatthe karo: spam aur ham (not spam). 80% train, 20% test."
+   },
+   "visual": "flow:collect|label|split",
+   "narration": {
+    "en": "Collect labelled messages: spam and ham (not spam). Split 80% train, 20% test.",
+    "hi": "लेबल वाले संदेश इकट्ठे करो: स्पैम और हैम (स्पैम नहीं)। 80% प्रशिक्षण, 20% परीक्षण।",
+    "hinglish": "Labelled messages ikatthe karo: spam aur ham (not spam). 80% train, 20% test."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Count words: \"won\", \"prize\", \"KYC\", \"link\" appear far more in spam.",
+    "hi": "शब्द गिनो: \"won\", \"prize\", \"KYC\", \"link\" स्पैम में कहीं ज़्यादा आते हैं।",
+    "hinglish": "Words gino: \"won\", \"prize\", \"KYC\", \"link\" spam mein kahin zyada aate hain."
+   },
+   "visual": "tokens:won|prize|KYC|link",
+   "narration": {
+    "en": "Count words: \"won\", \"prize\", \"KYC\", \"link\" appear far more in spam.",
+    "hi": "शब्द गिनो: \"won\", \"prize\", \"KYC\", \"link\" स्पैम में कहीं ज़्यादा आते हैं।",
+    "hinglish": "Words gino: \"won\", \"prize\", \"KYC\", \"link\" spam mein kahin zyada aate hain."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Bayes’ rule turns word clues into P(spam | message).",
+    "hi": "बेज़ नियम शब्द संकेतों को P(spam | message) में बदलता है।",
+    "hinglish": "Bayes rule word clues ko P(spam | message) mein badalta hai."
+   },
+   "visual": "stack:prior|evidence|posterior",
+   "narration": {
+    "en": "Bayes’ rule turns word clues into P(spam | message).",
+    "hi": "बेज़ नियम शब्द संकेतों को P(spam | message) में बदलता है।",
+    "hinglish": "Bayes rule word clues ko P(spam | message) mein badalta hai."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Test on unseen messages; choose a threshold so real messages are rarely lost.",
+    "hi": "अनदेखे संदेशों पर जाँचो; ऐसी सीमा चुनो कि असली संदेश कम ही खोएँ।",
+    "hinglish": "Unseen messages par test karo; aisi threshold chuno ki asli messages kam hi khoyein."
+   },
+   "visual": "compare:precision|recall",
+   "narration": {
+    "en": "Test on unseen messages; choose a threshold so real messages are rarely lost.",
+    "hi": "अनदेखे संदेशों पर जाँचो; ऐसी सीमा चुनो कि असली संदेश कम ही खोएँ।",
+    "hinglish": "Unseen messages par test karo; aisi threshold chuno ki asli messages kam hi khoyein."
+   }
+  }
+ ],
+ "play": {
+  "lab": "data-lab",
+  "config": {
+   "mode": "prob",
+   "prevalence": 20
+  },
+  "goal": {
+   "en": "Warm-up for the detector: with the Bayes grid, see how a \"positive\" (a word like \"prize\") changes the chance a message is spam when 20% of messages are spam, then when only 1% are.",
+   "hi": "पहचानक का अभ्यास: बेज़ ग्रिड से देखो कि \"पॉज़िटिव\" (\"prize\" जैसा शब्द) संदेश के स्पैम होने की संभावना कैसे बदलता है जब 20% संदेश स्पैम हों, फिर जब केवल 1% हों।",
+   "hinglish": "Detector ka warm-up: Bayes grid se dekho ki \"positive\" (\"prize\" jaisa shabd) message ke spam hone ka chance kaise badalta hai jab 20% messages spam hon, phir jab sirf 1% hon."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "The build, step by step",
+    "hi": "निर्माण, चरण-दर-चरण",
+    "hinglish": "Build, step by step"
+   },
+   "body": {
+    "en": "1) Data: use a public labelled set such as the UCI SMS Spam Collection (5,574 English SMS, CC BY 4.0) and, with permission, add anonymised examples of Indian scam patterns (fake KYC, lottery, job-fee). Remove names and numbers. 2) Features: lower-case, split into words, and count them (scikit-learn’s CountVectorizer). 3) Model: MultinomialNB applies Bayes’ rule: P(spam | words) ∝ P(spam) × Π P(word | spam). It trains in seconds and is easy to explain. 4) Evaluate on the untouched 20%: confusion matrix, precision and recall. 5) Threshold: losing a real OTP or school message is worse than letting one spam through, so favour high precision — for example call it spam only above 0.9. 6) Explain: show the top words that pushed each decision.",
+    "hi": "1) डेटा: UCI SMS Spam Collection (5,574 अंग्रेज़ी SMS, CC BY 4.0) जैसा सार्वजनिक लेबल वाला सेट लो और अनुमति से भारतीय घोटाला पैटर्न (नकली KYC, लॉटरी, नौकरी-शुल्क) के गुमनाम उदाहरण जोड़ो। नाम और नंबर हटाओ। 2) विशेषताएँ: छोटे अक्षर, शब्दों में बाँटो, और गिनो (scikit-learn का CountVectorizer)। 3) मॉडल: MultinomialNB बेज़ नियम लगाता है: P(spam | words) ∝ P(spam) × Π P(word | spam)। यह सेकंडों में प्रशिक्षित होता है और समझाना आसान है। 4) अछूते 20% पर मूल्यांकन: भ्रम आव्यूह, परिशुद्धता और रिकॉल। 5) सीमा: असली OTP या स्कूल संदेश खोना एक स्पैम निकलने से बुरा है, इसलिए ऊँची परिशुद्धता चुनो — जैसे 0.9 से ऊपर ही स्पैम कहो। 6) समझाओ: हर निर्णय को धकेलने वाले शीर्ष शब्द दिखाओ।",
+    "hinglish": "1) Data: UCI SMS Spam Collection (5,574 English SMS, CC BY 4.0) jaisa public labelled set lo aur permission se Indian scam patterns (fake KYC, lottery, job-fee) ke anonymised examples jodo. Naam aur numbers hatao. 2) Features: lower-case, words mein baanto, aur gino (scikit-learn ka CountVectorizer). 3) Model: MultinomialNB Bayes rule lagata hai: P(spam | words) ∝ P(spam) × Π P(word | spam). Yeh seconds mein train hota hai aur samjhana aasaan hai. 4) Untouched 20% par evaluate: confusion matrix, precision aur recall. 5) Threshold: asli OTP ya school message khona ek spam nikalne se bura hai, isliye high precision chuno — jaise 0.9 se upar hi spam kaho. 6) Explain: har decision ko dhakelne wale top words dikhao."
+   },
+   "analogy": {
+    "en": "A teacher who has read thousands of letters can guess a fake one from a few tell-tale phrases.",
+    "hi": "हज़ारों पत्र पढ़ चुका शिक्षक कुछ पहचान वाले वाक्यांशों से नकली पत्र भाँप लेता है।",
+    "hinglish": "Hazaaron letters padh chuka teacher kuch pehchaan wale phrases se nakli letter bhaanp leta hai."
+   },
+   "realExample": {
+    "en": "from sklearn.naive_bayes import MultinomialNB; model.fit(X_train, y_train); print(classification_report(y_test, model.predict(X_test)))",
+    "hi": "from sklearn.naive_bayes import MultinomialNB; model.fit(X_train, y_train); print(classification_report(y_test, model.predict(X_test)))",
+    "hinglish": "from sklearn.naive_bayes import MultinomialNB; model.fit(X_train, y_train); print(classification_report(y_test, model.predict(X_test)))"
+   }
+  },
+  {
+   "heading": {
+    "en": "Limits and responsibility",
+    "hi": "सीमाएँ और ज़िम्मेदारी",
+    "hinglish": "Limits aur zimmedaari"
+   },
+   "body": {
+    "en": "Scammers adapt: they misspell words (\"pr1ze\"), switch to Hinglish or images, so the model needs retraining and testing on fresh data. A model trained mostly on English may wrongly flag Hindi or Hinglish messages — check accuracy separately for each language, just as in the fairness lesson. Keep the user in control: move suspected spam to a folder rather than deleting it, and let people mark mistakes, which become new training data. Never collect real people’s messages without consent; under the DPDP Act, personal data needs a clear purpose and permission. Your final write-up should report the test-set numbers honestly, including where the model fails.",
+    "hi": "घोटालेबाज़ बदलते हैं: वे शब्द ग़लत लिखते हैं (\"pr1ze\"), हिंग्लिश या चित्रों पर जाते हैं, इसलिए मॉडल को ताज़ा डेटा पर दोबारा प्रशिक्षण और जाँच चाहिए। ज़्यादातर अंग्रेज़ी पर प्रशिक्षित मॉडल हिंदी या हिंग्लिश संदेशों को ग़लत चिह्नित कर सकता है — हर भाषा के लिए अलग सटीकता जाँचो, जैसे निष्पक्षता पाठ में। उपयोगकर्ता को नियंत्रण दो: संदिग्ध स्पैम मिटाने के बजाय फ़ोल्डर में डालो, और लोगों को ग़लतियाँ चिह्नित करने दो, जो नया प्रशिक्षण डेटा बनती हैं। असली लोगों के संदेश बिना सहमति कभी मत इकट्ठा करो; DPDP अधिनियम के तहत व्यक्तिगत डेटा को स्पष्ट उद्देश्य और अनुमति चाहिए। आपकी अंतिम रिपोर्ट परीक्षण-सेट संख्याएँ ईमानदारी से बताए, जहाँ मॉडल विफल होता है वह भी।",
+    "hinglish": "Scammers badalte hain: woh words galat likhte hain (\"pr1ze\"), Hinglish ya images par jaate hain, isliye model ko fresh data par retraining aur testing chahiye. Zyaadatar English par trained model Hindi ya Hinglish messages ko galat flag kar sakta hai — har language ke liye alag accuracy check karo, jaise fairness lesson mein. User ko control do: suspected spam mitaane ke bajaye folder mein daalo, aur logon ko galtiyan mark karne do, jo naya training data banti hain. Asli logon ke messages bina consent kabhi mat ikattha karo; DPDP Act ke tahat personal data ko clear purpose aur permission chahiye. Tumhari final report test-set numbers imaandaari se bataye, jahan model fail hota hai woh bhi."
+   },
+   "analogy": {
+    "en": "A guard dog that barks at every postman is useless; one that never barks is dangerous. Tune it.",
+    "hi": "हर डाकिये पर भौंकने वाला कुत्ता बेकार; कभी न भौंकने वाला ख़तरनाक। उसे साधो।",
+    "hinglish": "Har daakiye par bhaunkne wala kutta bekaar; kabhi na bhaunkne wala khatarnaak. Use saadho."
+   },
+   "realExample": {
+    "en": "Report line: \"Precision 0.98, recall 0.91 on 1,115 test SMS; recall falls to 0.72 on Hinglish messages — next step: add Hinglish training data.\"",
+    "hi": "रिपोर्ट पंक्ति: \"1,115 परीक्षण SMS पर परिशुद्धता 0.98, रिकॉल 0.91; हिंग्लिश संदेशों पर रिकॉल 0.72 — अगला कदम: हिंग्लिश प्रशिक्षण डेटा जोड़ो।\"",
+    "hinglish": "Report line: \"1,115 test SMS par precision 0.98, recall 0.91; Hinglish messages par recall 0.72 — agla step: Hinglish training data jodo.\""
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Build it: train a Naive Bayes spam filter on the UCI SMS Spam Collection in Python (scikit-learn). Report the confusion matrix, precision and recall on the test set, try thresholds 0.5, 0.8 and 0.95, and pick one with a written reason. Add 20 Hinglish test messages you write yourself and report how it does.",
+   "hi": "बनाओ: Python (scikit-learn) में UCI SMS Spam Collection पर नाइव बेज़ स्पैम फ़िल्टर प्रशिक्षित करो। परीक्षण सेट पर भ्रम आव्यूह, परिशुद्धता और रिकॉल बताओ, सीमाएँ 0.5, 0.8 और 0.95 आज़माओ, और लिखित कारण के साथ एक चुनो। ख़ुद लिखे 20 हिंग्लिश परीक्षण संदेश जोड़ो और बताओ कैसा करता है।",
+   "hinglish": "Banao: Python (scikit-learn) mein UCI SMS Spam Collection par Naive Bayes spam filter train karo. Test set par confusion matrix, precision aur recall report karo, thresholds 0.5, 0.8 aur 0.95 try karo, aur likhit kaaran ke saath ek chuno. Khud likhe 20 Hinglish test messages jodo aur batao kaisa karta hai."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "order",
+    "prompt": {
+     "en": "Order the project steps.",
+     "hi": "परियोजना के चरण क्रम में लगाओ।",
+     "hinglish": "Project steps order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Collect and label messages",
+      "hi": "संदेश इकट्ठे करके लेबल करो",
+      "hinglish": "Messages ikatthe karke label karo"
+     },
+     {
+      "en": "Split into train and test",
+      "hi": "प्रशिक्षण और परीक्षण में बाँटो",
+      "hinglish": "Train aur test mein baanto"
+     },
+     {
+      "en": "Train the model on the training set",
+      "hi": "प्रशिक्षण सेट पर मॉडल सिखाओ",
+      "hinglish": "Training set par model sikhao"
+     },
+     {
+      "en": "Evaluate on the test set and choose a threshold",
+      "hi": "परीक्षण सेट पर मूल्यांकन करके सीमा चुनो",
+      "hinglish": "Test set par evaluate karke threshold chuno"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "Never tune on the test set.",
+     "hi": "परीक्षण सेट पर कभी ट्यून मत करो।",
+     "hinglish": "Test set par kabhi tune mat karo."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why favour high precision for a spam filter?",
+     "hi": "स्पैम फ़िल्टर में ऊँची परिशुद्धता क्यों?",
+     "hinglish": "Spam filter mein high precision kyun?"
+    },
+    "options": [
+     {
+      "en": "Losing a real message (like an OTP) is worse than one spam getting through",
+      "hi": "असली संदेश (जैसे OTP) खोना एक स्पैम निकलने से बुरा",
+      "hinglish": "Asli message (jaise OTP) khona ek spam nikalne se bura"
+     },
+     {
+      "en": "Spam is harmless",
+      "hi": "स्पैम हानिरहित है",
+      "hinglish": "Spam harmless hai"
+     },
+     {
+      "en": "Recall does not exist",
+      "hi": "रिकॉल होता ही नहीं",
+      "hinglish": "Recall hota hi nahi"
+     },
+     {
+      "en": "It trains faster",
+      "hi": "यह तेज़ प्रशिक्षित होता है",
+      "hinglish": "Yeh tez train hota hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Weigh the cost of each kind of mistake.",
+     "hi": "हर तरह की ग़लती की क़ीमत तौलो।",
+     "hinglish": "Har tarah ki galti ki keemat taulo."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "short",
+    "prompt": {
+     "en": "Of 100 messages flagged as spam, 95 really are spam. What is the precision (as a decimal)?",
+     "hi": "स्पैम चिह्नित 100 संदेशों में से 95 सच में स्पैम हैं। परिशुद्धता (दशमलव में)?",
+     "hinglish": "Spam flag kiye 100 messages mein se 95 sach mein spam hain. Precision (decimal mein)?"
+    },
+    "answer": {
+     "accept": [
+      "0.95",
+      ".95",
+      "95%"
+     ]
+    },
+    "explain": {
+     "en": "95 ÷ 100 = 0.95.",
+     "hi": "95 ÷ 100 = 0.95।",
+     "hinglish": "95 ÷ 100 = 0.95."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are responsible choices for this project?",
+     "hi": "इस परियोजना के लिए कौन-से ज़िम्मेदार चुनाव हैं?",
+     "hinglish": "Is project ke liye kaunse responsible choices hain?"
+    },
+    "options": [
+     {
+      "en": "Move suspected spam to a folder instead of deleting",
+      "hi": "संदिग्ध स्पैम मिटाने के बजाय फ़ोल्डर में डालो",
+      "hinglish": "Suspected spam mitaane ke bajaye folder mein daalo"
+     },
+     {
+      "en": "Check accuracy separately for Hinglish messages",
+      "hi": "हिंग्लिश संदेशों की सटीकता अलग जाँचो",
+      "hinglish": "Hinglish messages ki accuracy alag check karo"
+     },
+     {
+      "en": "Collect friends’ chats without asking",
+      "hi": "बिना पूछे दोस्तों की चैट इकट्ठा करो",
+      "hinglish": "Bina pooche doston ki chats ikattha karo"
+     },
+     {
+      "en": "Report where the model fails",
+      "hi": "बताओ मॉडल कहाँ विफल",
+      "hinglish": "Batao model kahan fail"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     3
+    ],
+    "explain": {
+     "en": "Consent and honesty.",
+     "hi": "सहमति और ईमानदारी।",
+     "hinglish": "Consent aur imaandaari."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Compute a Bayes result in the lab.",
+     "hi": "लैब में बेज़ परिणाम निकालो।",
+     "hinglish": "Lab mein Bayes result nikaalo."
+    },
+    "answer": {
+     "event": "bayes-computed"
+    },
+    "explain": {
+     "en": "The base rate changes everything.",
+     "hi": "आधार दर सब बदल देती है।",
+     "hinglish": "Base rate sab badal deti hai."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "ai.ml-supervised",
+  "ai.evaluation",
+  "ds.probability",
+  "cyber.upi-scams"
+ ],
+ "sources": [
+  {
+   "title": "UCI Machine Learning Repository — SMS Spam Collection (CC BY 4.0)",
+   "url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+   "licence": "CC BY 4.0"
+  },
+  {
+   "title": "scikit-learn — Naive Bayes",
+   "url": "https://scikit-learn.org/stable/modules/naive_bayes.html",
+   "licence": "fact reference"
+  }
+ ]
+}

@@ -1,0 +1,291 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.block-coding.01",
+ "level": 1,
+ "classes": [
+  -2,
+  -1,
+  0,
+  1,
+  2,
+  3
+ ],
+ "unit": "block-coding",
+ "title": {
+  "en": "Meet the blocks: Chintu's story",
+  "hi": "ब्लॉक से मिलो: चिंटू की कहानी",
+  "hinglish": "Blocks se milo: Chintu ki kahani"
+ },
+ "minutes": 7,
+ "xp": 30,
+ "prereq": [
+  "L1.thinking-logic.02"
+ ],
+ "topics": [
+  "prog.blocks",
+  "prog.sequence"
+ ],
+ "outcomes": [
+  {
+   "en": "Build a program by snapping blocks in order.",
+   "hi": "ब्लॉक को क्रम से जोड़कर प्रोग्राम बना सकते हो।",
+   "hinglish": "Blocks ko order mein jod kar program bana sakte ho."
+  },
+  {
+   "en": "Know that each block is one instruction.",
+   "hi": "जानते हो कि हर ब्लॉक एक निर्देश है।",
+   "hinglish": "Jaante ho ki har block ek instruction hai."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Block",
+   "en": "A puzzle-piece that holds one instruction",
+   "hi": "एक निर्देश वाला पहेली का टुकड़ा",
+   "hinglish": "Ek instruction wala rangeen tukda"
+  },
+  {
+   "term": "Program",
+   "en": "A list of instructions a computer follows",
+   "hi": "निर्देशों की सूची जिसे कंप्यूटर मानता है",
+   "hinglish": "Instructions ki list jo computer chalata hai"
+  },
+  {
+   "term": "Run",
+   "en": "Start the program",
+   "hi": "प्रोग्राम शुरू करना",
+   "hinglish": "Program chalana"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.block-coding.01.s1",
+   "caption": {
+    "en": "Each block is one instruction.",
+    "hi": "हर ब्लॉक एक निर्देश है।",
+    "hinglish": "Har block ek instruction hai."
+   },
+   "narration": {
+    "en": "Blocks are like puzzle pieces. Each one tells the character to do one thing.",
+    "hinglish": "Blocks puzzle ke tukdon jaise hain. Har ek character ko ek kaam batata hai.",
+    "hi": "हर ब्लॉक एक निर्देश है।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.block-coding.01.s2",
+   "caption": {
+    "en": "Snap blocks together, then Run.",
+    "hi": "ब्लॉक जोड़ो, फिर चलाओ।",
+    "hinglish": "Blocks jodo, phir Run karo."
+   },
+   "narration": {
+    "en": "Put blocks in order to make a program. Tap Run and watch it go.",
+    "hinglish": "Blocks ko order mein rakh kar program banao. Run dabao aur dekho.",
+    "hi": "ब्लॉक जोड़ो, फिर चलाओ।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.block-coding.01.s3",
+   "caption": {
+    "en": "Story time: Chintu fetches mangoes for Dadi.",
+    "hi": "कहानी: चिंटू दादी के लिए आम लाता है।",
+    "hinglish": "Kahani: Chintu Dadi ke liye mango laata hai."
+   },
+   "narration": {
+    "en": "In our story, Chintu the robot helps Dadi pick mangoes. Your blocks tell him how.",
+    "hinglish": "Hamari kahani mein Chintu robot Dadi ki mango todne mein madad karta hai. Tumhare blocks use batate hain kaise.",
+    "hi": "कहानी: चिंटू दादी के लिए आम लाता है।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "loop-coder",
+  "config": {
+   "level": 1
+  },
+  "goal": {
+   "en": "Build Chintu's first program and run it.",
+   "hi": "चिंटू का पहला प्रोग्राम बनाओ और चलाओ।",
+   "hinglish": "Chintu ka pehla program banao aur chalao."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Why blocks?",
+    "hi": "ब्लॉक क्यों?",
+    "hinglish": "Blocks kyun?"
+   },
+   "body": {
+    "en": "With blocks you cannot make spelling mistakes, so you can think about the idea. Real apps like Scratch (made at MIT, free) and ScratchJr let millions of children code with blocks.",
+    "hi": "ब्लॉक से वर्तनी की गलती नहीं होती, इसलिए तुम विचार पर ध्यान दे सकते हो। Scratch (MIT में बना, मुफ़्त) और ScratchJr जैसे असली ऐप से करोड़ों बच्चे ब्लॉक से कोड करते हैं।",
+    "hinglish": "Blocks se spelling mistakes nahin hoti, isliye tum idea par dhyaan de sakte ho. Scratch (MIT mein bana, free) aur ScratchJr jaise asli apps se karodon bachche blocks se code karte hain."
+   },
+   "analogy": {
+    "en": "You join LEGO pieces to build a house — you join blocks to build a program.",
+    "hi": "लेगो के टुकड़े जोड़कर घर बनाते हो — ब्लॉक जोड़कर प्रोग्राम बनता है।",
+    "hinglish": "LEGO ke tukde jod kar ghar banate ho — blocks jod kar program banta hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "Blocks are real code",
+    "hi": "ब्लॉक असली कोड हैं",
+    "hinglish": "Blocks asli code hain"
+   },
+   "body": {
+    "en": "Every block matches a line of real code. \"⬆ Forward\" is like writing forward() in Python. Later you will type the code yourself.",
+    "hi": "हर ब्लॉक असली कोड की एक पंक्ति जैसा है। \"⬆ आगे\" Python में forward() लिखने जैसा है। बाद में तुम ख़ुद कोड टाइप करोगे।",
+    "hinglish": "Har block asli code ki ek line jaisa hai. \"⬆ Forward\" Python mein forward() likhne jaisa hai. Baad mein tum khud code type karoge."
+   },
+   "realExample": {
+    "en": "Tap </> in the lab to see your blocks as Python.",
+    "hi": "लैब में </> दबाओ और अपने ब्लॉक Python में देखो।",
+    "hinglish": "Lab mein </> dabao aur apne blocks ko Python mein dekho."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Tell a 3-step story with blocks drawn on paper: e.g., \"Chintu walks, jumps, waves\". Act it out!",
+   "hi": "कागज़ पर बने ब्लॉक से 3 कदम की कहानी बताओ: जैसे \"चिंटू चलता, कूदता, हाथ हिलाता है\"। करके दिखाओ!",
+   "hinglish": "Kaagaz par bane blocks se 3-step kahani batao: jaise \"Chintu chalta, koodta, haath hilaata hai\". Karke dikhao!"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "One block is…",
+     "hi": "एक ब्लॉक है…",
+     "hinglish": "Ek block hai…"
+    },
+    "options": [
+     {
+      "en": "one instruction",
+      "hi": "एक निर्देश",
+      "hinglish": "ek instruction"
+     },
+     {
+      "en": "a whole game",
+      "hi": "पूरा गेम",
+      "hinglish": "poora game"
+     },
+     {
+      "en": "a picture only",
+      "hi": "सिर्फ़ एक तस्वीर",
+      "hinglish": "sirf ek picture"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Each block holds one instruction.",
+     "hi": "हर ब्लॉक में एक निर्देश होता है।",
+     "hinglish": "Har block mein ek instruction hota hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "What do we call a list of blocks that the computer runs?",
+     "hi": "कंप्यूटर जो ब्लॉक की सूची चलाता है उसे क्या कहते हैं?",
+     "hinglish": "Computer jo blocks ki list chalata hai use kya kehte hain?"
+    },
+    "options": [
+     {
+      "en": "A program",
+      "hi": "प्रोग्राम",
+      "hinglish": "Program"
+     },
+     {
+      "en": "A photo",
+      "hi": "फ़ोटो",
+      "hinglish": "Photo"
+     },
+     {
+      "en": "A password",
+      "hi": "पासवर्ड",
+      "hinglish": "Password"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "A program is a list of instructions.",
+     "hi": "प्रोग्राम निर्देशों की सूची है।",
+     "hinglish": "Program instructions ki list hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "The mango is 4 steps ahead. How many ⬆ Forward blocks?",
+     "hi": "आम 4 कदम आगे है। कितने ⬆ आगे ब्लॉक?",
+     "hinglish": "Mango 4 steps aage hai. Kitne ⬆ Forward blocks?"
+    },
+    "options": [
+     {
+      "en": "4",
+      "hi": "4",
+      "hinglish": "4"
+     },
+     {
+      "en": "2",
+      "hi": "2",
+      "hinglish": "2"
+     },
+     {
+      "en": "6",
+      "hi": "6",
+      "hinglish": "6"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "One block = one step, so 4 steps need 4 blocks.",
+     "hi": "एक ब्लॉक = एक कदम, तो 4 कदम = 4 ब्लॉक।",
+     "hinglish": "Ek block = ek step, toh 4 steps = 4 blocks."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Solve Level 1 of Chintu's Mango Mission.",
+     "hi": "चिंटू के आम मिशन का स्तर 1 हल करो।",
+     "hinglish": "Chintu ke Mango Mission ka Level 1 solve karo."
+    },
+    "answer": {
+     "lab": "loop-coder",
+     "level": 1,
+     "solved": true
+    },
+    "explain": {
+     "en": "Four Forward blocks, then Run.",
+     "hi": "चार आगे ब्लॉक, फिर चलाओ।",
+     "hinglish": "Chaar Forward blocks, phir Run."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Scratch / ScratchJr – MIT Media Lab, free block coding (fact reference)",
+   "url": "https://scratch.mit.edu/about",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

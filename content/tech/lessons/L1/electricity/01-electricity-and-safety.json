@@ -1,0 +1,308 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.electricity.01",
+ "level": 1,
+ "classes": [
+  -2,
+  -1,
+  0,
+  1,
+  2
+ ],
+ "unit": "electricity",
+ "title": {
+  "en": "Electricity: helpful but careful!",
+  "hi": "बिजली: मददगार पर सावधान!",
+  "hinglish": "Bijli: madadgaar par saavdhaan!"
+ },
+ "minutes": 5,
+ "xp": 20,
+ "prereq": [],
+ "topics": [
+  "elec.electricity"
+ ],
+ "outcomes": [
+  {
+   "en": "Name things that use electricity at home.",
+   "hi": "घर में बिजली से चलने वाली चीज़ों के नाम ले सकते हो।",
+   "hinglish": "Ghar ki bijli se chalne wali cheezon ke naam le sakte ho."
+  },
+  {
+   "en": "Follow electricity safety rules: no wet hands, never touch sockets, tell a grown-up.",
+   "hi": "बिजली के सुरक्षा नियम मान सकते हो: गीले हाथ नहीं, सॉकेट कभी नहीं छूना, बड़े को बताना।",
+   "hinglish": "Bijli ke safety rules maan sakte ho: geele haath nahin, socket kabhi nahin chhoona, bade ko batana."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Electricity",
+   "en": "Energy that makes lights, fans and computers work",
+   "hi": "वह ऊर्जा जो बत्ती, पंखे और कंप्यूटर चलाती है",
+   "hinglish": "Woh energy jo cheezein chalaati hai"
+  },
+  {
+   "term": "Socket",
+   "en": "The holes in the wall where plugs go",
+   "hi": "दीवार में प्लग लगाने की जगह",
+   "hinglish": "Deewar ka plug lagaane wala chhed"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.electricity.01.s1",
+   "caption": {
+    "en": "Lights, fans and TVs use electricity.",
+    "hi": "बत्ती, पंखा और टीवी बिजली से चलते हैं।",
+    "hinglish": "Light, pankha aur TV bijli se chalte hain."
+   },
+   "narration": {
+    "en": "Lights, fans, TVs, fridges and computers all need electricity to work.",
+    "hinglish": "Light, pankha, TV, fridge aur computer — sabko kaam karne ke liye bijli chahiye.",
+    "hi": "बत्ती, पंखा, टीवी, फ़्रिज और कंप्यूटर — सबको काम करने के लिए बिजली चाहिए।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.electricity.01.s2",
+   "caption": {
+    "en": "Never touch switches with wet hands.",
+    "hi": "गीले हाथों से स्विच कभी मत छुओ।",
+    "hinglish": "Geele haathon se switch kabhi mat chhuo."
+   },
+   "narration": {
+    "en": "Water lets electricity jump into your body. Always dry your hands before touching a switch.",
+    "hinglish": "Paani bijli ko tumhare shareer mein jaane deta hai. Switch chhoone se pehle haath sukhao.",
+    "hi": "पानी बिजली को तुम्हारे शरीर में जाने देता है। स्विच छूने से पहले हाथ सुखाओ।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.electricity.01.s3",
+   "caption": {
+    "en": "See a broken wire? Tell a grown-up!",
+    "hi": "टूटा तार दिखे? बड़े को बताओ!",
+    "hinglish": "Toota taar dikhe? Bade ko batao!"
+   },
+   "narration": {
+    "en": "If a wire is broken, a plug sparks, or something smells of burning, do not touch. Tell a grown-up straight away.",
+    "hinglish": "Agar taar toota ho, plug se chingaari nikle, ya jalne ki boo aaye, toh chhuo mat. Turant bade ko batao.",
+    "hi": "अगर तार टूटा हो, प्लग से चिंगारी निकले, या जलने की गंध आए, तो छुओ मत। तुरंत बड़े को बताओ।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "safety-sort",
+  "config": {
+   "deck": "electric"
+  },
+  "goal": {
+   "en": "Safe or unsafe? Sort each picture about electricity.",
+   "hi": "सुरक्षित या असुरक्षित? बिजली वाला हर चित्र छाँटो।",
+   "hinglish": "Safe ya unsafe? Bijli wali har picture sort karo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Home electricity is strong",
+    "hi": "घर की बिजली बहुत तेज़ है",
+    "hinglish": "Ghar ki bijli bahut tez hai"
+   },
+   "body": {
+    "en": "The electricity in wall sockets in India is 230 volts — strong enough to badly hurt or kill. A torch cell is only 1.5 volts, which is safe for experiments. Never experiment with sockets.",
+    "hi": "भारत में दीवार के सॉकेट की बिजली 230 वोल्ट है — इतनी तेज़ कि बुरी तरह चोट पहुँचा सकती या जान ले सकती है। टॉर्च का सेल सिर्फ़ 1.5 वोल्ट है, जो प्रयोग के लिए सुरक्षित है। सॉकेट से कभी प्रयोग मत करो।",
+    "hinglish": "India mein deewar ke socket ki bijli 230 volt hai — itni tez ki buri tarah chot pahuncha sakti ya jaan le sakti hai. Torch ka cell sirf 1.5 volt hai, jo experiment ke liye safe hai. Socket se kabhi experiment mat karo."
+   },
+   "analogy": {
+    "en": "Electricity is like a fast river — useful from a distance, dangerous to step into.",
+    "hi": "बिजली नदी के तेज़ बहाव जैसी है — दूर से काम आती है, पास जाना ख़तरनाक।",
+    "hinglish": "Bijli nadi ke tez bahaav jaisi hai — door se kaam aati hai, paas jaana khatarnaak."
+   }
+  },
+  {
+   "heading": {
+    "en": "Where does electricity come from?",
+    "hi": "बिजली कहाँ से आती है?",
+    "hinglish": "Bijli kahan se aati hai?"
+   },
+   "body": {
+    "en": "Power stations make electricity from coal, water (dams), wind, sunlight (solar) and more. It travels through thick wires on tall towers to our homes. Batteries store a small amount we can carry.",
+    "hi": "बिजलीघर कोयले, पानी (बाँध), हवा, धूप (सौर) आदि से बिजली बनाते हैं। यह ऊँचे खंभों पर मोटे तारों से हमारे घर आती है। बैटरी थोड़ी बिजली जमा रखती है जिसे हम साथ ले जा सकते हैं।",
+    "hinglish": "Power stations koyle, paani (dam), hawa, dhoop (solar) aadi se bijli banaate hain. Yeh oonche khambhon par mote taaron se hamare ghar aati hai. Battery thodi bijli jama rakhti hai jise hum saath le ja sakte hain."
+   },
+   "realExample": {
+    "en": "Many Indian homes and schools now have solar panels on the roof that turn sunlight into electricity.",
+    "hi": "अब कई भारतीय घरों और स्कूलों की छत पर सौर पैनल हैं जो धूप को बिजली में बदलते हैं।",
+    "hinglish": "Ab kai Indian gharon aur schools ki chhat par solar panel hain jo dhoop ko bijli mein badalte hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "With a grown-up, count how many things in your home use electricity. Which one could you switch off to save power?",
+   "hi": "किसी बड़े के साथ गिनो घर में कितनी चीज़ें बिजली से चलती हैं। बिजली बचाने के लिए कौन सी बंद कर सकते हो?",
+   "hinglish": "Kisi bade ke saath gino ghar mein kitni cheezein bijli se chalti hain. Bijli bachaane ke liye kaun si band kar sakte ho?"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "multi",
+    "prompt": {
+     "en": "Which use electricity?",
+     "hi": "कौन बिजली से चलते हैं?",
+     "hinglish": "Kaun bijli se chalte hain?"
+    },
+    "options": [
+     {
+      "en": "💡 Bulb",
+      "hi": "💡 बल्ब",
+      "hinglish": "💡 Bulb"
+     },
+     {
+      "en": "🌀 Fan",
+      "hi": "🌀 पंखा",
+      "hinglish": "🌀 Pankha"
+     },
+     {
+      "en": "🪁 Kite",
+      "hi": "🪁 पतंग",
+      "hinglish": "🪁 Patang"
+     },
+     {
+      "en": "📺 TV",
+      "hi": "📺 टीवी",
+      "hinglish": "📺 TV"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     3
+    ],
+    "explain": {
+     "en": "A kite flies with wind, not electricity.",
+     "hi": "पतंग हवा से उड़ती है, बिजली से नहीं।",
+     "hinglish": "Patang hawa se udti hai, bijli se nahin."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Touching a switch with wet hands is…",
+     "hi": "गीले हाथों से स्विच छूना…",
+     "hinglish": "Geele haathon se switch chhoona…"
+    },
+    "options": [
+     {
+      "en": "Safe ✅",
+      "hi": "सुरक्षित ✅",
+      "hinglish": "Safe ✅"
+     },
+     {
+      "en": "Unsafe ❌",
+      "hi": "असुरक्षित ❌",
+      "hinglish": "Unsafe ❌"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Water and electricity are a dangerous mix.",
+     "hi": "पानी और बिजली का मेल ख़तरनाक है।",
+     "hinglish": "Paani aur bijli ka mel khatarnaak hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "You see a broken wire. What do you do?",
+     "hi": "तुम्हें टूटा तार दिखा। क्या करोगे?",
+     "hinglish": "Tumhe toota taar dikha. Kya karoge?"
+    },
+    "options": [
+     {
+      "en": "Tell a grown-up, don't touch",
+      "hi": "बड़े को बताओ, छुओ मत",
+      "hinglish": "Bade ko batao, chhuo mat"
+     },
+     {
+      "en": "Pick it up",
+      "hi": "उठा लो",
+      "hinglish": "Utha lo"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Never touch. A grown-up can switch off the power.",
+     "hi": "कभी मत छुओ। बड़े बिजली बंद कर सकते हैं।",
+     "hinglish": "Kabhi mat chhuo. Bade power band kar sakte hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which is safe for a science experiment?",
+     "hi": "विज्ञान के प्रयोग के लिए क्या सुरक्षित है?",
+     "hinglish": "Science experiment ke liye kya safe hai?"
+    },
+    "options": [
+     {
+      "en": "A 1.5 V torch cell",
+      "hi": "1.5 V टॉर्च सेल",
+      "hinglish": "1.5 V torch cell"
+     },
+     {
+      "en": "A wall socket",
+      "hi": "दीवार का सॉकेट",
+      "hinglish": "Deewar ka socket"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Small cells are safe; sockets are 230 V and dangerous.",
+     "hi": "छोटे सेल सुरक्षित हैं; सॉकेट 230 V और ख़तरनाक हैं।",
+     "hinglish": "Chhote cells safe hain; socket 230 V aur khatarnaak hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Pass the electricity safety game.",
+     "hi": "बिजली सुरक्षा खेल पास करो।",
+     "hinglish": "Bijli safety game pass karo."
+    },
+    "answer": {
+     "lab": "safety-sort",
+     "mode": "electric",
+     "pass": true
+    },
+    "explain": {
+     "en": "Think: water, sockets, wires, overloading, lightning.",
+     "hi": "सोचो: पानी, सॉकेट, तार, ज़्यादा भार, आसमानी बिजली।",
+     "hinglish": "Socho: paani, socket, taar, overload, aasmaani bijli."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "NCERT Class 6 Science – Electricity and Circuits (fact reference)",
+   "url": "https://ncert.nic.in/textbook.php",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

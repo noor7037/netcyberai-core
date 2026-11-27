@@ -1,0 +1,442 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.networking-engineering.04",
+ "level": 3,
+ "classes": [
+  10,
+  11,
+  12
+ ],
+ "unit": "networking-engineering",
+ "title": {
+  "en": "DNS in depth",
+  "hi": "डीएनएस गहराई से",
+  "hinglish": "DNS gehraai se"
+ },
+ "minutes": 15,
+ "xp": 60,
+ "prereq": [
+  "L3.networking-engineering.01",
+  "L3.networking-engineering.03"
+ ],
+ "outcomes": [
+  {
+   "en": "Trace a DNS lookup from resolver to root, TLD and authoritative server",
+   "hi": "डीएनएस खोज को रिज़ॉल्वर से रूट, टीएलडी और प्रामाणिक सर्वर तक ट्रेस करो",
+   "hinglish": "DNS lookup ko resolver se root, TLD aur authoritative server tak trace karo"
+  },
+  {
+   "en": "Read common record types: A, AAAA, CNAME, MX, NS, TXT",
+   "hi": "आम रिकॉर्ड प्रकार पढ़ो: A, AAAA, CNAME, MX, NS, TXT",
+   "hinglish": "Common record types padho: A, AAAA, CNAME, MX, NS, TXT"
+  },
+  {
+   "en": "Explain caching, TTL and how encrypted DNS protects privacy",
+   "hi": "कैशिंग, TTL और एन्क्रिप्टेड डीएनएस से निजता कैसे बचती है, समझाओ",
+   "hinglish": "Caching, TTL aur encrypted DNS se privacy kaise bachti hai, samjhao"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Resolver",
+   "hinglish": "Tumhare liye DNS jawab dhoondhne wala server",
+   "en": "Server that looks up DNS answers on your behalf and caches them",
+   "hi": "आपकी ओर से डीएनएस जवाब खोजने और कैश करने वाला सर्वर"
+  },
+  {
+   "term": "Root server",
+   "hinglish": "DNS ka sabse upar ka level",
+   "en": "Top of the DNS tree; points to TLD servers like .in and .com",
+   "hi": "डीएनएस पेड़ का शिखर; .in और .com जैसे टीएलडी सर्वरों की ओर इशारा"
+  },
+  {
+   "term": "TLD",
+   "hinglish": "Naam ka aakhri hissa jaise .in",
+   "en": "Top-level domain, the last label of a name such as .in or .org",
+   "hi": "शीर्ष-स्तरीय डोमेन, नाम का आख़िरी हिस्सा जैसे .in या .org"
+  },
+  {
+   "term": "Authoritative server",
+   "hinglish": "Domain ka asli record rakhne wala",
+   "en": "Server that holds the official records for a domain",
+   "hi": "डोमेन के आधिकारिक रिकॉर्ड रखने वाला सर्वर"
+  },
+  {
+   "term": "TTL (DNS)",
+   "hinglish": "Jawab kitni der cache mein rahe",
+   "en": "Seconds an answer may be cached before asking again",
+   "hi": "फिर पूछने से पहले जवाब कितने सेकंड कैश रह सकता है"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "You type www.myschool.in. Your phone asks a recursive resolver (from your ISP or a public one like 1.1.1.1) — it does the hard work.",
+    "hi": "आप www.myschool.in लिखते हो। फ़ोन एक रिकर्सिव रिज़ॉल्वर (आपके ISP का या 1.1.1.1 जैसा सार्वजनिक) से पूछता है — मेहनत वही करता है।",
+    "hinglish": "Tum www.myschool.in likhte ho. Phone ek recursive resolver (tumhare ISP ka ya 1.1.1.1 jaisa public) se poochta hai — mehnat wahi karta hai."
+   },
+   "visual": "anim:dns-ask",
+   "narration": {
+    "en": "You type www.myschool.in. Your phone asks a recursive resolver (from your ISP or a public one like 1.1.1.1) — it does the hard work.",
+    "hi": "आप www.myschool.in लिखते हो। फ़ोन एक रिकर्सिव रिज़ॉल्वर (आपके ISP का या 1.1.1.1 जैसा सार्वजनिक) से पूछता है — मेहनत वही करता है।",
+    "hinglish": "Tum www.myschool.in likhte ho. Phone ek recursive resolver (tumhare ISP ka ya 1.1.1.1 jaisa public) se poochta hai — mehnat wahi karta hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "No cached answer? The resolver asks a root server: \"Ask the .in servers.\" There are 13 root identities (a to m) served by more than 1,900 machines worldwide.",
+    "hi": "कैश में जवाब नहीं? रिज़ॉल्वर रूट सर्वर से पूछता है: \".in सर्वरों से पूछो।\" 13 रूट पहचानें (a से m) हैं जिन्हें दुनिया भर में 1,900 से ज़्यादा मशीनें चलाती हैं।",
+    "hinglish": "Cache mein jawab nahi? Resolver root server se poochta hai: \".in servers se poocho.\" 13 root identities (a se m) hain jinhe duniya bhar mein 1,900 se zyaada machines chalati hain."
+   },
+   "visual": "anim:dns-root",
+   "narration": {
+    "en": "No cached answer? The resolver asks a root server: \"Ask the .in servers.\" There are 13 root identities (a to m) served by more than 1,900 machines worldwide.",
+    "hi": "कैश में जवाब नहीं? रिज़ॉल्वर रूट सर्वर से पूछता है: \".in सर्वरों से पूछो।\" 13 रूट पहचानें (a से m) हैं जिन्हें दुनिया भर में 1,900 से ज़्यादा मशीनें चलाती हैं।",
+    "hinglish": "Cache mein jawab nahi? Resolver root server se poochta hai: \".in servers se poocho.\" 13 root identities (a se m) hain jinhe duniya bhar mein 1,900 se zyaada machines chalati hain."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "The .in TLD servers (run for NIXI) say: \"myschool.in is answered by ns1.myschool-dns.in.\" That authoritative server gives the A record: 203.0.113.25.",
+    "hi": ".in टीएलडी सर्वर (NIXI के लिए चलाए जाते) कहते हैं: \"myschool.in का जवाब ns1.myschool-dns.in देता है।\" वह प्रामाणिक सर्वर A रिकॉर्ड देता है: 203.0.113.25।",
+    "hinglish": ".in TLD servers (NIXI ke liye chalaye jaate) kehte hain: \"myschool.in ka jawab ns1.myschool-dns.in deta hai.\" Woh authoritative server A record deta hai: 203.0.113.25."
+   },
+   "visual": "anim:dns-tld-auth",
+   "narration": {
+    "en": "The .in TLD servers (run for NIXI) say: \"myschool.in is answered by ns1.myschool-dns.in.\" That authoritative server gives the A record: 203.0.113.25.",
+    "hi": ".in टीएलडी सर्वर (NIXI के लिए चलाए जाते) कहते हैं: \"myschool.in का जवाब ns1.myschool-dns.in देता है।\" वह प्रामाणिक सर्वर A रिकॉर्ड देता है: 203.0.113.25।",
+    "hinglish": ".in TLD servers (NIXI ke liye chalaye jaate) kehte hain: \"myschool.in ka jawab ns1.myschool-dns.in deta hai.\" Woh authoritative server A record deta hai: 203.0.113.25."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "The resolver caches the answer for its TTL (say 3,600 s). The next student's lookup is answered instantly from cache.",
+    "hi": "रिज़ॉल्वर जवाब को उसके TTL (मान लो 3,600 सेकंड) तक कैश करता है। अगले छात्र की खोज का जवाब कैश से तुरंत मिलता है।",
+    "hinglish": "Resolver jawab ko uske TTL (maan lo 3,600 s) tak cache karta hai. Agle student ki lookup ka jawab cache se turant milta hai."
+   },
+   "visual": "anim:dns-cache",
+   "narration": {
+    "en": "The resolver caches the answer for its TTL (say 3,600 s). The next student's lookup is answered instantly from cache.",
+    "hi": "रिज़ॉल्वर जवाब को उसके TTL (मान लो 3,600 सेकंड) तक कैश करता है। अगले छात्र की खोज का जवाब कैश से तुरंत मिलता है।",
+    "hinglish": "Resolver jawab ko uske TTL (maan lo 3,600 s) tak cache karta hai. Agle student ki lookup ka jawab cache se turant milta hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "seq-flow",
+  "config": {
+   "scenario": "dns-resolution"
+  },
+  "goal": {
+   "en": "Run a full DNS lookup, then tick \"Resolver already has it cached\" and run it again. Count the messages each time.",
+   "hi": "पूरी डीएनएस खोज चलाओ, फिर \"रिज़ॉल्वर के कैश में पहले से\" चुनकर दोबारा चलाओ। हर बार संदेश गिनो।",
+   "hinglish": "Poora DNS lookup chalao, phir \"Resolver ke cache mein pehle se\" tick karke dobaara chalao. Har baar messages gino."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Record types you will meet",
+    "hi": "जिन रिकॉर्ड प्रकारों से मिलोगे",
+    "hinglish": "Record types jinse miloge"
+   },
+   "body": {
+    "en": "A: name → IPv4 address. AAAA: name → IPv6 address. CNAME: an alias (\"www is the same as school.example-host.net\"). MX: which server receives email for the domain. NS: which servers are authoritative. TXT: free text, widely used to prove domain ownership and for email anti-spoofing (SPF, DKIM, DMARC).",
+    "hi": "A: नाम → IPv4 पता। AAAA: नाम → IPv6 पता। CNAME: उपनाम (\"www वही है जो school.example-host.net\")। MX: डोमेन का ईमेल कौन-सा सर्वर लेता है। NS: कौन-से सर्वर प्रामाणिक हैं। TXT: खुला पाठ, डोमेन स्वामित्व साबित करने और ईमेल नक़ल रोकने (SPF, DKIM, DMARC) में बहुत इस्तेमाल।",
+    "hinglish": "A: naam → IPv4 address. AAAA: naam → IPv6 address. CNAME: alias (\"www wahi hai jo school.example-host.net\"). MX: domain ka email kaunsa server leta hai. NS: kaunse servers authoritative hain. TXT: free text, domain ownership prove karne aur email anti-spoofing (SPF, DKIM, DMARC) mein bahut use."
+   },
+   "analogy": {
+    "en": "A contacts app: A/AAAA is the phone number, CNAME is \"same as Papa's office\", MX is \"send letters to the post box at the gate\".",
+    "hi": "संपर्क ऐप: A/AAAA फ़ोन नंबर है, CNAME है \"पापा के दफ़्तर वाला ही\", MX है \"चिट्ठियाँ गेट वाले डाक-बक्से में डालो\"।",
+    "hinglish": "Contacts app: A/AAAA phone number hai, CNAME hai \"Papa ke office wala hi\", MX hai \"chitthiyan gate wale post box mein daalo\"."
+   },
+   "realExample": {
+    "en": "Run \"nslookup -type=mx gmail.com\" in a terminal to see Google's mail servers, or \"nslookup isro.gov.in\" for ISRO's address.",
+    "hi": "टर्मिनल में \"nslookup -type=mx gmail.com\" चलाकर गूगल के मेल सर्वर देखो, या इसरो का पता \"nslookup isro.gov.in\" से।",
+    "hinglish": "Terminal mein \"nslookup -type=mx gmail.com\" chala ke Google ke mail servers dekho, ya ISRO ka address \"nslookup isro.gov.in\" se."
+   }
+  },
+  {
+   "heading": {
+    "en": "Caching and TTL trade-offs",
+    "hi": "कैशिंग और TTL के फ़ायदे-नुक़सान",
+    "hinglish": "Caching aur TTL ke trade-offs"
+   },
+   "body": {
+    "en": "Caching makes DNS fast and keeps load off root and TLD servers: most lookups never leave your resolver. The price: when a site moves to a new IP, old answers live on until their TTL expires. Engineers lower the TTL (for example to 300 s) a day before a planned move, then raise it again afterwards.",
+    "hi": "कैशिंग डीएनएस को तेज़ बनाती है और रूट व टीएलडी सर्वरों का बोझ घटाती है: ज़्यादातर खोजें आपके रिज़ॉल्वर से बाहर ही नहीं जातीं। क़ीमत: साइट नए आईपी पर जाए तो पुराने जवाब TTL ख़त्म होने तक चलते रहते हैं। इंजीनियर योजनाबद्ध बदलाव से एक दिन पहले TTL घटाते हैं (जैसे 300 सेकंड), फिर बाद में बढ़ा देते हैं।",
+    "hinglish": "Caching DNS ko tez banati hai aur root aur TLD servers ka bojh ghatati hai: zyaadatar lookups tumhare resolver se bahar hi nahi jaate. Keemat: site naye IP par jaaye to purane jawab TTL khatam hone tak chalte rehte hain. Engineers planned move se ek din pehle TTL ghatate hain (jaise 300 s), phir baad mein badha dete hain."
+   },
+   "analogy": {
+    "en": "Like writing a friend's new number on your hand: quick to check, but you must remember to update it if they change it.",
+    "hi": "जैसे दोस्त का नया नंबर हाथ पर लिखना: देखना आसान, पर वे बदलें तो अपडेट करना याद रखना होगा।",
+    "hinglish": "Jaise dost ka naya number haath par likhna: dekhna aasaan, par woh badlein to update karna yaad rakhna hoga."
+   },
+   "realExample": {
+    "en": "During board-result day, a results site may keep a long TTL on its CDN name so millions of lookups are served from caches.",
+    "hi": "बोर्ड-परिणाम के दिन परिणाम साइट अपने सीडीएन नाम पर लंबा TTL रख सकती है ताकि करोड़ों खोजें कैश से ही हों।",
+    "hinglish": "Board-result day par results site apne CDN naam par lamba TTL rakh sakti hai taaki crore-on lookups cache se hi hon."
+   }
+  },
+  {
+   "heading": {
+    "en": "Keeping DNS safe and private",
+    "hi": "डीएनएस को सुरक्षित और निजी रखना",
+    "hinglish": "DNS ko safe aur private rakhna"
+   },
+   "body": {
+    "en": "Classic DNS travels unencrypted on UDP port 53, so anyone on the path can see which sites you look up. DNS over HTTPS (DoH) and DNS over TLS (DoT, port 853) encrypt the lookup. DNSSEC adds digital signatures so a resolver can detect forged answers (it proves authenticity, not privacy). Attackers may try \"typosquatting\" names like rnyschool.in — always check the spelling.",
+    "hi": "पारंपरिक डीएनएस यूडीपी पोर्ट 53 पर बिना एन्क्रिप्शन चलता है, तो रास्ते का कोई भी देख सकता है आप कौन-सी साइटें खोजते हो। DNS over HTTPS (DoH) और DNS over TLS (DoT, पोर्ट 853) खोज को एन्क्रिप्ट करते हैं। DNSSEC डिजिटल हस्ताक्षर जोड़ता है ताकि रिज़ॉल्वर नक़ली जवाब पकड़ सके (यह प्रामाणिकता साबित करता है, निजता नहीं)। हमलावर rnyschool.in जैसे मिलते-जुलते नाम (\"टाइपोस्क्वैटिंग\") आज़मा सकते हैं — वर्तनी हमेशा जाँचो।",
+    "hinglish": "Classic DNS UDP port 53 par bina encryption chalta hai, to raaste ka koi bhi dekh sakta hai tum kaunsi sites lookup karte ho. DNS over HTTPS (DoH) aur DNS over TLS (DoT, port 853) lookup ko encrypt karte hain. DNSSEC digital signatures jodta hai taaki resolver nakli jawab pakad sake (yeh authenticity prove karta hai, privacy nahi). Attackers rnyschool.in jaise milte-julte naam (\"typosquatting\") try kar sakte hain — spelling hamesha check karo."
+   },
+   "analogy": {
+    "en": "DoH is a sealed envelope for your question; DNSSEC is a tamper-proof stamp on the reply.",
+    "hi": "DoH आपके सवाल के लिए बंद लिफ़ाफ़ा है; DNSSEC जवाब पर छेड़छाड़-रोधी मुहर।",
+    "hinglish": "DoH tumhare sawaal ke liye band liffafa hai; DNSSEC jawab par tamper-proof stamp."
+   },
+   "realExample": {
+    "en": "Android's \"Private DNS\" setting turns on DNS over TLS for the whole phone.",
+    "hi": "एंड्रॉइड की \"Private DNS\" सेटिंग पूरे फ़ोन के लिए DNS over TLS चालू करती है।",
+    "hinglish": "Android ki \"Private DNS\" setting poore phone ke liye DNS over TLS chalu karti hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Use nslookup or an online DNS lookup tool on three Indian sites (for example isro.gov.in, irctc.co.in, your school). Note the A or AAAA record, the TTL and the name servers.",
+   "hi": "तीन भारतीय साइटों (जैसे isro.gov.in, irctc.co.in, आपका स्कूल) पर nslookup या ऑनलाइन डीएनएस खोज टूल चलाओ। A या AAAA रिकॉर्ड, TTL और नेम सर्वर लिखो।",
+   "hinglish": "Teen Indian sites (jaise isro.gov.in, irctc.co.in, tumhara school) par nslookup ya online DNS lookup tool chalao. A ya AAAA record, TTL aur name servers note karo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "order",
+    "prompt": {
+     "en": "Order a lookup with an empty cache.",
+     "hi": "ख़ाली कैश के साथ खोज को क्रम में लगाओ।",
+     "hinglish": "Khaali cache ke saath lookup ko order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Phone asks resolver",
+      "hi": "फ़ोन रिज़ॉल्वर से पूछता है",
+      "hinglish": "Phone resolver se poochta hai"
+     },
+     {
+      "en": "Resolver asks a root server",
+      "hi": "रिज़ॉल्वर रूट सर्वर से पूछता है",
+      "hinglish": "Resolver root server se poochta hai"
+     },
+     {
+      "en": "Resolver asks the .in TLD server",
+      "hi": "रिज़ॉल्वर .in टीएलडी सर्वर से पूछता है",
+      "hinglish": "Resolver .in TLD server se poochta hai"
+     },
+     {
+      "en": "Authoritative server returns the A record",
+      "hi": "प्रामाणिक सर्वर A रिकॉर्ड लौटाता है",
+      "hinglish": "Authoritative server A record lautata hai"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "Top-down: root → TLD → authoritative, then the answer is cached.",
+     "hi": "ऊपर से नीचे: रूट → टीएलडी → प्रामाणिक, फिर जवाब कैश होता है।",
+     "hinglish": "Upar se neeche: root → TLD → authoritative, phir jawab cache hota hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "match",
+    "prompt": {
+     "en": "Match each record type to its job.",
+     "hi": "हर रिकॉर्ड प्रकार को उसके काम से मिलाओ।",
+     "hinglish": "Har record type ko uske kaam se milao."
+    },
+    "options": [
+     "A",
+     "AAAA",
+     "MX",
+     "CNAME"
+    ],
+    "answer": [
+     {
+      "en": "Name → IPv4",
+      "hi": "नाम → IPv4",
+      "hinglish": "Naam → IPv4"
+     },
+     {
+      "en": "Name → IPv6",
+      "hi": "नाम → IPv6",
+      "hinglish": "Naam → IPv6"
+     },
+     {
+      "en": "Mail server",
+      "hi": "मेल सर्वर",
+      "hinglish": "Mail server"
+     },
+     {
+      "en": "Alias to another name",
+      "hi": "दूसरे नाम का उपनाम",
+      "hinglish": "Doosre naam ka alias"
+     }
+    ],
+    "explain": {
+     "en": "A is IPv4, AAAA (\"quad-A\") is IPv6, MX is mail exchange, CNAME is canonical name (alias).",
+     "hi": "A है IPv4, AAAA (\"क्वाड-ए\") है IPv6, MX है मेल एक्सचेंज, CNAME है कैनोनिकल नाम (उपनाम)।",
+     "hinglish": "A hai IPv4, AAAA (\"quad-A\") hai IPv6, MX hai mail exchange, CNAME hai canonical name (alias)."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "A site moved servers 10 minutes ago but some users still reach the old one. Most likely reason?",
+     "hi": "साइट 10 मिनट पहले नए सर्वर पर गई पर कुछ उपयोगकर्ता अब भी पुराने पर पहुँचते हैं। सबसे संभावित कारण?",
+     "hinglish": "Site 10 minute pehle naye server par gayi par kuch users ab bhi purane par pahunchte hain. Sabse sambhavit kaaran?"
+    },
+    "options": [
+     {
+      "en": "Root servers are down",
+      "hi": "रूट सर्वर बंद हैं",
+      "hinglish": "Root servers band hain"
+     },
+     {
+      "en": "Old answers are still cached until their TTL expires",
+      "hi": "पुराने जवाब TTL ख़त्म होने तक कैश में हैं",
+      "hinglish": "Purane jawab TTL khatam hone tak cache mein hain"
+     },
+     {
+      "en": "TCP lost packets",
+      "hi": "टीसीपी ने पैकेट खोए",
+      "hinglish": "TCP ne packets khoye"
+     },
+     {
+      "en": "IPv6 is off",
+      "hi": "IPv6 बंद है",
+      "hinglish": "IPv6 band hai"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Resolvers keep the old record until the TTL runs out.",
+     "hi": "रिज़ॉल्वर TTL ख़त्म होने तक पुराना रिकॉर्ड रखते हैं।",
+     "hinglish": "Resolvers TTL khatam hone tak purana record rakhte hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "What does DNS over HTTPS mainly add?",
+     "hi": "DNS over HTTPS मुख्य रूप से क्या जोड़ता है?",
+     "hinglish": "DNS over HTTPS mainly kya jodta hai?"
+    },
+    "options": [
+     {
+      "en": "Faster IP addresses",
+      "hi": "तेज़ आईपी पते",
+      "hinglish": "Tez IP addresses"
+     },
+     {
+      "en": "Encryption of your lookups",
+      "hi": "आपकी खोजों का एन्क्रिप्शन",
+      "hinglish": "Tumhare lookups ka encryption"
+     },
+     {
+      "en": "More root servers",
+      "hi": "ज़्यादा रूट सर्वर",
+      "hinglish": "Zyaada root servers"
+     },
+     {
+      "en": "Free domains",
+      "hi": "मुफ़्त डोमेन",
+      "hinglish": "Free domains"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "It hides which names you look up from others on the network path.",
+     "hi": "यह छिपाता है कि आप कौन-से नाम खोजते हो, रास्ते पर बैठे दूसरों से।",
+     "hinglish": "Yeh chhupata hai ki tum kaunse naam lookup karte ho, raaste par baithe doosron se."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "short",
+    "prompt": {
+     "en": "How many root server identities (letters) does DNS have?",
+     "hi": "डीएनएस में कितनी रूट सर्वर पहचानें (अक्षर) हैं?",
+     "hinglish": "DNS mein kitni root server identities (letters) hain?"
+    },
+    "answer": {
+     "accept": [
+      "13",
+      "thirteen"
+     ]
+    },
+    "explain": {
+     "en": "13, named a to m, each run by many machines using anycast.",
+     "hi": "13, a से m तक नाम, हर एक एनीकास्ट से कई मशीनों पर।",
+     "hinglish": "13, a se m tak naam, har ek anycast se kai machines par."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Run the DNS scenario with the cache option ticked.",
+     "hi": "कैश विकल्प चुनकर डीएनएस परिदृश्य चलाओ।",
+     "hinglish": "Cache option tick karke DNS scenario chalao."
+    },
+    "answer": {
+     "event": "scenario-complete",
+     "scenario": "dns-resolution",
+     "flags": {
+      "cached": true
+     }
+    },
+    "explain": {
+     "en": "A cache hit answers in one round trip with no root or TLD queries.",
+     "hi": "कैश हिट एक राउंड ट्रिप में बिना रूट या टीएलडी प्रश्न के जवाब देता है।",
+     "hinglish": "Cache hit ek round trip mein bina root ya TLD query ke jawab deta hai."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "net.dns"
+ ],
+ "sources": [
+  {
+   "title": "Root Server Technical Operations Association",
+   "url": "https://root-servers.org/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NIXI — .IN Registry",
+   "url": "https://www.registry.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Cloudflare Learning — What is DNS?",
+   "url": "https://www.cloudflare.com/learning/dns/what-is-dns/",
+   "licence": "fact reference"
+  }
+ ]
+}

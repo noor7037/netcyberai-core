@@ -1,0 +1,391 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.binary-secret-codes.02",
+ "level": 1,
+ "classes": [
+  3,
+  4,
+  5
+ ],
+ "unit": "binary-secret-codes",
+ "title": {
+  "en": "Count in binary on your fingers",
+  "hi": "उँगलियों पर बाइनरी में गिनो",
+  "hinglish": "Ungliyon par binary mein gino"
+ },
+ "minutes": 8,
+ "xp": 35,
+ "prereq": [
+  "L1.binary-secret-codes.01"
+ ],
+ "topics": [
+  "hw.binary"
+ ],
+ "outcomes": [
+  {
+   "en": "Give each finger a value: 1, 2, 4, 8, 16.",
+   "hi": "हर उँगली को मूल्य दे सकते हो: 1, 2, 4, 8, 16।",
+   "hinglish": "Har ungli ko value de sakte ho: 1, 2, 4, 8, 16."
+  },
+  {
+   "en": "Show numbers up to 31 on one hand and read them as binary.",
+   "hi": "एक हाथ पर 31 तक संख्याएँ दिखाकर बाइनरी में पढ़ सकते हो।",
+   "hinglish": "Ek haath par 31 tak numbers dikha kar binary mein padh sakte ho."
+  },
+  {
+   "en": "Explain why each new bit doubles how far you can count.",
+   "hi": "समझा सकते हो कि हर नया बिट गिनती को दुगना क्यों कर देता है।",
+   "hinglish": "Samjha sakte ho ki har naya bit ginti ko double kyon kar deta hai."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Place value",
+   "en": "The value a digit gets from where it sits",
+   "hi": "जगह के हिसाब से मिलने वाला मूल्य",
+   "hinglish": "Jagah ke hisaab se value"
+  },
+  {
+   "term": "Double",
+   "en": "Two times as much",
+   "hi": "दो गुना",
+   "hinglish": "Do guna"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.binary-secret-codes.02.s1",
+   "caption": {
+    "en": "Each finger gets a value: 1, 2, 4, 8, 16.",
+    "hi": "हर उँगली का मूल्य: 1, 2, 4, 8, 16।",
+    "hinglish": "Har ungli ki value: 1, 2, 4, 8, 16."
+   },
+   "narration": {
+    "en": "Start with the thumb as 1. Every next finger is double: 2, 4, 8 and 16 for the little finger.",
+    "hinglish": "Angoothe ko 1 maano. Har agli ungli double: 2, 4, 8 aur chhoti ungli 16.",
+    "hi": "अँगूठे को 1 मानो। हर अगली उँगली दुगनी: 2, 4, 8 और छोटी उँगली 16।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.binary-secret-codes.02.s2",
+   "caption": {
+    "en": "Thumb and pointer up: 1 + 2 = 3.",
+    "hi": "अँगूठा और तर्जनी ऊपर: 1 + 2 = 3।",
+    "hinglish": "Angootha aur pointer upar: 1 + 2 = 3."
+   },
+   "narration": {
+    "en": "A raised finger is 1, a folded finger is 0. Thumb and pointer up make 1 plus 2, which is 3.",
+    "hinglish": "Uthi ungli 1 hai, mudi ungli 0. Angootha aur pointer upar matlab 1 plus 2, yaani 3.",
+    "hi": "उठी उँगली 1 है, मुड़ी उँगली 0। अँगूठा और तर्जनी ऊपर मतलब 1 और 2, यानी 3।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.binary-secret-codes.02.s3",
+   "caption": {
+    "en": "All five up: 16+8+4+2+1 = 31!",
+    "hi": "पाँचों ऊपर: 16+8+4+2+1 = 31!",
+    "hinglish": "Paanchon upar: 16+8+4+2+1 = 31!"
+   },
+   "narration": {
+    "en": "With all five fingers up you get 31. Normal counting on one hand stops at 5, binary reaches 31.",
+    "hinglish": "Paanchon ungliyan upar ho toh 31. Aam ginti ek haath par 5 tak rukti hai, binary 31 tak jaati hai.",
+    "hi": "पाँचों उँगलियाँ ऊपर हों तो 31। आम गिनती एक हाथ पर 5 पर रुकती है, बाइनरी 31 तक जाती है।"
+   }
+  },
+  {
+   "step": 4,
+   "visual": "scene:L1.binary-secret-codes.02.s4",
+   "caption": {
+    "en": "Two hands count up to 1023.",
+    "hi": "दो हाथ 1023 तक गिनते हैं।",
+    "hinglish": "Do haath 1023 tak ginte hain."
+   },
+   "narration": {
+    "en": "Ten fingers are ten bits. Ten bits can count from 0 all the way to 1023.",
+    "hinglish": "Das ungliyan das bits hain. Das bits 0 se 1023 tak gin sakte hain.",
+    "hi": "दस उँगलियाँ दस बिट हैं। दस बिट 0 से 1023 तक गिन सकते हैं।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "secret-codes",
+  "config": {
+   "mode": "fingers"
+  },
+  "goal": {
+   "en": "Raise fingers (worth 16, 8, 4, 2, 1) to show 3, 10 and 21.",
+   "hi": "उँगलियाँ (16, 8, 4, 2, 1 वाली) उठाकर 3, 10 और 21 दिखाओ।",
+   "hinglish": "Ungliyan (16, 8, 4, 2, 1 wali) utha kar 3, 10 aur 21 dikhao."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "The doubling trick",
+    "hi": "दुगना करने की तरकीब",
+    "hinglish": "Double karne ki trick"
+   },
+   "body": {
+    "en": "In our normal numbers each place is worth 10 times more: ones, tens, hundreds. In binary each place is worth 2 times more: 1, 2, 4, 8, 16, 32… To show a number, start with the biggest value that fits, raise that finger, take it away, and repeat with what is left. For 21: 16 fits (5 left), 8 does not, 4 fits (1 left), 2 does not, 1 fits. So 21 = 10101.",
+    "hi": "हमारी आम संख्याओं में हर जगह 10 गुना ज़्यादा की होती है: इकाई, दहाई, सैकड़ा। बाइनरी में हर जगह 2 गुना ज़्यादा: 1, 2, 4, 8, 16, 32… संख्या दिखाने के लिए सबसे बड़ा फिट होने वाला मूल्य लो, वह उँगली उठाओ, उसे घटाओ, और बचे हुए के साथ दोहराओ। 21 के लिए: 16 फिट (5 बचा), 8 नहीं, 4 फिट (1 बचा), 2 नहीं, 1 फिट। तो 21 = 10101।",
+    "hinglish": "Hamare aam numbers mein har jagah 10 guna zyaada ki hoti hai: ikai, dahai, saikda. Binary mein har jagah 2 guna zyaada: 1, 2, 4, 8, 16, 32… Number dikhane ke liye sabse bada fit hone wala value lo, woh ungli uthao, use ghatao, aur bache hue ke saath dohrao. 21 ke liye: 16 fit (5 bacha), 8 nahin, 4 fit (1 bacha), 2 nahin, 1 fit. Toh 21 = 10101."
+   },
+   "analogy": {
+    "en": "Like paying with the biggest note first, then smaller ones — the 16 note, then the 4, then the 1 coin.",
+    "hi": "जैसे पैसे देने में पहले सबसे बड़ा नोट देते हो, फिर छोटे — 16 का नोट, फिर 4 का, फिर 1 का सिक्का।",
+    "hinglish": "Jaise paise dene mein pehle sabse bada note dete ho, phir chhote — 16 ka note, phir 4 ka, phir 1 ka sikka."
+   }
+  },
+  {
+   "heading": {
+    "en": "Every new bit doubles the count",
+    "hi": "हर नया बिट गिनती दुगनी करता है",
+    "hinglish": "Har naya bit ginti double karta hai"
+   },
+   "body": {
+    "en": "1 finger counts 0–1, 2 fingers 0–3, 3 fingers 0–7, 5 fingers 0–31 and 10 fingers 0–1023. That is why computers grow so powerful: 8 bits give 256 different values, enough for every English letter and digit, and 32 bits give more than 4 billion.",
+    "hi": "1 उँगली 0–1 गिनती है, 2 उँगलियाँ 0–3, 3 उँगलियाँ 0–7, 5 उँगलियाँ 0–31 और 10 उँगलियाँ 0–1023। इसीलिए कंप्यूटर इतने ताक़तवर हैं: 8 बिट से 256 अलग मूल्य मिलते हैं, जो हर अंग्रेज़ी अक्षर और अंक के लिए काफ़ी हैं, और 32 बिट से 4 अरब से ज़्यादा।",
+    "hinglish": "1 ungli 0–1 ginti hai, 2 ungliyan 0–3, 3 ungliyan 0–7, 5 ungliyan 0–31 aur 10 ungliyan 0–1023. Isiliye computer itne taaqatwar hain: 8 bits se 256 alag values milti hain, jo har English letter aur digit ke liye kaafi hain, aur 32 bits se 4 arab se zyaada."
+   },
+   "realExample": {
+    "en": "Colours on a screen use 8 bits each for red, green and blue: 256 × 256 × 256 = about 1.67 crore colours.",
+    "hi": "स्क्रीन के रंग लाल, हरे और नीले के लिए 8-8 बिट लेते हैं: 256 × 256 × 256 = लगभग 1.67 करोड़ रंग।",
+    "hinglish": "Screen ke rang red, green aur blue ke liye 8-8 bits lete hain: 256 × 256 × 256 = lagbhag 1.67 crore rang."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Teach a friend or sibling binary finger counting. Can they show their age in binary?",
+   "hi": "किसी दोस्त या भाई-बहन को बाइनरी उँगली गिनती सिखाओ। क्या वे अपनी उम्र बाइनरी में दिखा सकते हैं?",
+   "hinglish": "Kisi dost ya bhai-behen ko binary finger counting sikhao. Kya woh apni umar binary mein dikha sakte hain?"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Finger values go 1, 2, 4, 8… What comes next?",
+     "hi": "उँगलियों के मूल्य 1, 2, 4, 8… आगे क्या आएगा?",
+     "hinglish": "Ungliyon ki values 1, 2, 4, 8… aage kya aayega?"
+    },
+    "options": [
+     {
+      "en": "16",
+      "hi": "16",
+      "hinglish": "16"
+     },
+     {
+      "en": "10",
+      "hi": "10",
+      "hinglish": "10"
+     },
+     {
+      "en": "12",
+      "hi": "12",
+      "hinglish": "12"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Each value doubles: 8 × 2 = 16.",
+     "hi": "हर मूल्य दुगना: 8 × 2 = 16।",
+     "hinglish": "Har value double: 8 × 2 = 16."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which fingers show 6? (values 1, 2, 4, 8, 16)",
+     "hi": "कौन सी उँगलियाँ 6 दिखाती हैं? (मूल्य 1, 2, 4, 8, 16)",
+     "hinglish": "Kaun si ungliyan 6 dikhati hain? (values 1, 2, 4, 8, 16)"
+    },
+    "options": [
+     {
+      "en": "4 and 2",
+      "hi": "4 और 2",
+      "hinglish": "4 aur 2"
+     },
+     {
+      "en": "4 and 1",
+      "hi": "4 और 1",
+      "hinglish": "4 aur 1"
+     },
+     {
+      "en": "8 only",
+      "hi": "सिर्फ़ 8",
+      "hinglish": "Sirf 8"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "4 + 2 = 6.",
+     "hi": "4 + 2 = 6।",
+     "hinglish": "4 + 2 = 6."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "short",
+    "prompt": {
+     "en": "What number is 10101 in binary? (values 16, 8, 4, 2, 1)",
+     "hi": "बाइनरी 10101 कौन सी संख्या है? (मूल्य 16, 8, 4, 2, 1)",
+     "hinglish": "Binary 10101 kaun sa number hai? (values 16, 8, 4, 2, 1)"
+    },
+    "answer": [
+     "21",
+     "twenty-one",
+     "twenty one",
+     "इक्कीस"
+    ],
+    "explain": {
+     "en": "16 + 4 + 1 = 21.",
+     "hi": "16 + 4 + 1 = 21।",
+     "hinglish": "16 + 4 + 1 = 21."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q4",
+    "type": "match",
+    "prompt": {
+     "en": "Match each binary number to its value.",
+     "hi": "हर बाइनरी संख्या को उसके मूल्य से मिलाओ।",
+     "hinglish": "Har binary number ko uski value se milao."
+    },
+    "options": {
+     "left": [
+      {
+       "en": "00011",
+       "hi": "00011",
+       "hinglish": "00011"
+      },
+      {
+       "en": "01010",
+       "hi": "01010",
+       "hinglish": "01010"
+      },
+      {
+       "en": "11111",
+       "hi": "11111",
+       "hinglish": "11111"
+      }
+     ],
+     "right": [
+      {
+       "en": "3",
+       "hi": "3",
+       "hinglish": "3"
+      },
+      {
+       "en": "10",
+       "hi": "10",
+       "hinglish": "10"
+      },
+      {
+       "en": "31",
+       "hi": "31",
+       "hinglish": "31"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      0
+     ],
+     [
+      1,
+      1
+     ],
+     [
+      2,
+      2
+     ]
+    ],
+    "explain": {
+     "en": "2+1 = 3, 8+2 = 10, 16+8+4+2+1 = 31.",
+     "hi": "2+1 = 3, 8+2 = 10, 16+8+4+2+1 = 31।",
+     "hinglish": "2+1 = 3, 8+2 = 10, 16+8+4+2+1 = 31."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "How far can you count with 10 fingers in binary?",
+     "hi": "बाइनरी में 10 उँगलियों से कहाँ तक गिन सकते हो?",
+     "hinglish": "Binary mein 10 ungliyon se kahan tak gin sakte ho?"
+    },
+    "options": [
+     {
+      "en": "1023",
+      "hi": "1023",
+      "hinglish": "1023"
+     },
+     {
+      "en": "10",
+      "hi": "10",
+      "hinglish": "10"
+     },
+     {
+      "en": "100",
+      "hi": "100",
+      "hinglish": "100"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "10 bits count from 0 to 1023.",
+     "hi": "10 बिट 0 से 1023 तक गिनते हैं।",
+     "hinglish": "10 bits 0 se 1023 tak ginte hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Show 3, 10 and 21 on the binary hand in the lab.",
+     "hi": "लैब के बाइनरी हाथ पर 3, 10 और 21 दिखाओ।",
+     "hinglish": "Lab ke binary haath par 3, 10 aur 21 dikhao."
+    },
+    "answer": {
+     "lab": "secret-codes",
+     "mode": "fingers",
+     "solved": true
+    },
+    "explain": {
+     "en": "3 = 00011, 10 = 01010, 21 = 10101.",
+     "hi": "3 = 00011, 10 = 01010, 21 = 10101।",
+     "hinglish": "3 = 00011, 10 = 01010, 21 = 10101."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Computer Science Unplugged – Binary numbers (fact reference)",
+   "url": "https://www.csunplugged.org/en/topics/binary-numbers/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Encyclopaedia Britannica – Binary number system (fact reference)",
+   "url": "https://www.britannica.com/science/binary-number-system",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

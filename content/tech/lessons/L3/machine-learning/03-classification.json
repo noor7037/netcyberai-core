@@ -1,0 +1,329 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.machine-learning.03",
+ "level": 3,
+ "classes": [
+  10
+ ],
+ "unit": "machine-learning",
+ "title": {
+  "en": "Classification: kNN, decision trees and logistic models",
+  "hi": "क्लासिफ़िकेशन: केएनएन, डिसीज़न ट्री और लॉजिस्टिक मॉडल",
+  "hinglish": "Classification: kNN, decision trees aur logistic models"
+ },
+ "minutes": 12,
+ "xp": 50,
+ "prereq": [
+  "L3.machine-learning.02"
+ ],
+ "outcomes": [
+  {
+   "en": "Classify a point by hand with k-nearest neighbours",
+   "hinglish": "kNN se ek point haath se classify karo",
+   "hi": "k-निकटतम पड़ोसी से हाथ से किसी बिंदु का वर्गीकरण करना"
+  },
+  {
+   "en": "Read a decision tree and trace a prediction",
+   "hinglish": "Decision tree padho aur prediction trace karo",
+   "hi": "निर्णय वृक्ष पढ़ना और एक अनुमान का रास्ता खोजना"
+  },
+  {
+   "en": "Explain why a classifier outputs a probability",
+   "hinglish": "Samjhao classifier probability kyun deta hai",
+   "hi": "समझाना कि वर्गीकारक संभावना क्यों देता है"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Classifier",
+   "hinglish": "Category batane wala model",
+   "en": "A model that assigns inputs to classes",
+   "hi": "ऐसा मॉडल जो इनपुट को वर्गों में बाँटता है"
+  },
+  {
+   "term": "kNN",
+   "hinglish": "Sabse paas ke k padosiyon ka vote",
+   "en": "k-nearest neighbours: vote among the k closest training points",
+   "hi": "k-निकटतम पड़ोसी: सबसे पास के k प्रशिक्षण बिंदुओं में मतदान"
+  },
+  {
+   "term": "Decision tree",
+   "hinglish": "Sawaalon ka ped: haan/na se aage",
+   "en": "A tree of yes/no questions on features ending in a class",
+   "hi": "फ़ीचरों पर हाँ/ना प्रश्नों का वृक्ष जो एक वर्ग पर ख़त्म होता है"
+  },
+  {
+   "term": "Decision boundary",
+   "hinglish": "Wo line/curve jo classes ko alag kare",
+   "en": "The surface where the predicted class changes",
+   "hi": "वह सतह जहाँ अनुमानित वर्ग बदल जाता है"
+  },
+  {
+   "term": "Sigmoid",
+   "hinglish": "Kisi bhi number ko 0–1 mein dabana",
+   "en": "σ(z) = 1/(1+e^−z), squashes a score into a probability",
+   "hi": "σ(z) = 1/(1+e^−z), किसी अंक को संभावना में दबा देता है"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "kNN: to label the new point, look at its 3 nearest neighbours and take a majority vote.",
+    "hi": "केएनएन: नए बिंदु को लेबल करने के लिए उसके 3 सबसे नज़दीकी पड़ोसी देखो और बहुमत वोट लो।",
+    "hinglish": "kNN: naye point ko label karne ke liye uske 3 sabse paas ke padosi dekho aur majority vote lo."
+   },
+   "visual": "anim:knn-vote",
+   "narration": {
+    "en": "kNN: to label the new point, look at its 3 nearest neighbours and take a majority vote.",
+    "hi": "केएनएन: नए बिंदु को लेबल करने के लिए उसके 3 सबसे नज़दीकी पड़ोसी देखो और बहुमत वोट लो।",
+    "hinglish": "kNN: naye point ko label karne ke liye uske 3 sabse paas ke padosi dekho aur majority vote lo."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "A decision tree asks questions: Is the leaf spot brown? → Are edges yellow? → \"early blight\". Each path ends in a class.",
+    "hi": "डिसीज़न ट्री सवाल पूछता है: क्या पत्ती का धब्बा भूरा है? → क्या किनारे पीले हैं? → \"अर्ली ब्लाइट\"। हर रास्ता एक श्रेणी पर खत्म होता है।",
+    "hinglish": "Decision tree sawaal poochta hai: Kya patti ka dhabba bhoora hai? → Kya kinaare peele hain? → \"early blight\". Har raasta ek class par khatam hota hai."
+   },
+   "visual": "anim:decision-tree-grow",
+   "narration": {
+    "en": "A decision tree asks questions: Is the leaf spot brown? → Are edges yellow? → \"early blight\". Each path ends in a class.",
+    "hi": "डिसीज़न ट्री सवाल पूछता है: क्या पत्ती का धब्बा भूरा है? → क्या किनारे पीले हैं? → \"अर्ली ब्लाइट\"। हर रास्ता एक श्रेणी पर खत्म होता है।",
+    "hinglish": "Decision tree sawaal poochta hai: Kya patti ka dhabba bhoora hai? → Kya kinaare peele hain? → \"early blight\". Har raasta ek class par khatam hota hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Logistic regression computes a score, squashes it with a sigmoid into 0–1, and calls it \"spam\" if above 0.5.",
+    "hi": "लॉजिस्टिक रिग्रेशन एक स्कोर निकालता है, उसे सिग्मॉइड से 0–1 में दबाता है, और 0.5 से ऊपर हो तो \"स्पैम\" कहता है।",
+    "hinglish": "Logistic regression ek score nikaalta hai, sigmoid se 0-1 mein dabaata hai, aur 0.5 se upar ho to \"spam\" kehta hai."
+   },
+   "visual": "anim:sigmoid-squash",
+   "narration": {
+    "en": "Logistic regression computes a score, squashes it with a sigmoid into 0–1, and calls it \"spam\" if above 0.5.",
+    "hi": "लॉजिस्टिक रिग्रेशन एक स्कोर निकालता है, उसे सिग्मॉइड से 0–1 में दबाता है, और 0.5 से ऊपर हो तो \"स्पैम\" कहता है।",
+    "hinglish": "Logistic regression ek score nikaalta hai, sigmoid se 0-1 mein dabaata hai, aur 0.5 se upar ho to \"spam\" kehta hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "nn-playground",
+  "config": {
+   "mode": "classify",
+   "dataset": "xor",
+   "hidden": []
+  },
+  "goal": {
+   "en": "Try to separate the XOR pattern with one neuron (no hidden layer). Why does it fail? Then add a hidden layer of 4.",
+   "hinglish": "XOR pattern ko ek neuron (bina hidden layer) se alag karne ki koshish karo. Kyun fail hota hai? Phir 4 ka hidden layer jodo.",
+   "hi": "XOR पैटर्न को एक न्यूरॉन (कोई छिपी परत नहीं) से अलग करने की कोशिश करो। यह क्यों विफल होता है? फिर 4 की छिपी परत जोड़ो।"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Three classic classifiers",
+    "hi": "तीन क्लासिक क्लासिफ़ायर",
+    "hinglish": "Teen classic classifiers"
+   },
+   "body": {
+    "en": "k-nearest neighbours stores all training points; for a new point it finds the k closest and takes a majority vote. It needs no training but is slow on big data. A decision tree learns yes/no questions that split the data into purer groups (measured by Gini impurity or entropy); it is easy to explain but overfits if grown too deep, so random forests average hundreds of trees. Logistic regression computes z = w·x + b and outputs p = σ(z), a probability; its boundary p = 0.5 is a straight line. When classes cannot be split by a straight line, as in XOR, we need non-linear models such as neural networks with hidden layers.",
+    "hi": "के-नियरेस्ट नेबर्स सारे प्रशिक्षण बिंदु रखता है; नए बिंदु के लिए k सबसे नज़दीकी ढूँढकर बहुमत वोट लेता है। इसे प्रशिक्षण नहीं चाहिए पर बड़े डेटा पर धीमा है। डिसीज़न ट्री हाँ/ना सवाल सीखता है जो डेटा को शुद्ध समूहों में बाँटें (गिनी अशुद्धता या एंट्रॉपी से मापा); इसे समझाना आसान है पर बहुत गहरा होने पर ओवरफ़िट होता है, इसलिए रैंडम फ़ॉरेस्ट सैकड़ों पेड़ों का औसत लेते हैं। लॉजिस्टिक रिग्रेशन z = w·x + b निकालकर p = σ(z) संभावना देता है; उसकी सीमा p = 0.5 एक सीधी रेखा है। जब श्रेणियाँ सीधी रेखा से न बँटें, जैसे XOR, तो छिपी परतों वाले न्यूरल नेटवर्क जैसे गैर-रेखीय मॉडल चाहिए।",
+    "hinglish": "kNN saare training points rakhta hai; naye point ke liye k sabse paas wale dhoondh ke majority vote leta hai. Training nahi chahiye par bade data par slow hai. Decision tree haan/na sawaal seekhta hai jo data ko pure groups mein baante (Gini impurity ya entropy se naapa); explain karna aasaan hai par bahut gehra ho to overfit hota hai, isliye random forests sainkdon trees ka average lete hain. Logistic regression z = w·x + b nikaal ke p = σ(z) probability deta hai; uski boundary p = 0.5 seedhi line hai. Jab classes seedhi line se na bantein, jaise XOR, to hidden layers wale neural networks jaise non-linear models chahiye."
+   },
+   "analogy": {
+    "hinglish": "kNN = naye mohalle mein dekhna ki teen sabse paas ke padosi kaunsi team support karte hain; tum bhi wahi maan lo.",
+    "en": "kNN = in a new neighbourhood, see which team your three nearest neighbours support, and assume the same.",
+    "hi": "kNN = नए मोहल्ले में देखना कि तीन सबसे पास के पड़ोसी कौन-सी टीम का समर्थन करते हैं; तुम भी वही मान लो।"
+   },
+   "realExample": {
+    "en": "Plantix and ICAR-supported crop-disease tools classify a leaf photo into one of many disease classes and show a confidence percentage.",
+    "hinglish": "Plantix aur ICAR-supported crop-disease tools patti ki photo ko kai diseases mein se ek class mein daalte hain aur confidence percentage dikhate hain.",
+    "hi": "प्लांटिक्स और ICAR-समर्थित फ़सल-रोग उपकरण पत्ती की फ़ोटो को कई रोग-वर्गों में से एक में बाँटते हैं और विश्वास प्रतिशत दिखाते हैं।"
+   }
+  },
+  {
+   "heading": {
+    "en": "Probabilities and thresholds",
+    "hi": "संभावनाएँ और सीमाएँ",
+    "hinglish": "Probabilities aur thresholds"
+   },
+   "body": {
+    "en": "A good classifier does not just say \"fraud\"; it says \"fraud with probability 0.83\". The threshold is a business choice. A bank may block payments above 0.95, send an extra check between 0.7 and 0.95 and let the rest pass. Lowering the threshold catches more fraud but annoys more honest users; raising it does the opposite. The next lesson measures this trade-off with precision and recall.",
+    "hi": "अच्छा क्लासिफ़ायर सिर्फ़ \"धोखाधड़ी\" नहीं कहता; वह कहता है \"0.83 संभावना से धोखाधड़ी\"। सीमा एक व्यावसायिक फ़ैसला है। बैंक 0.95 से ऊपर भुगतान रोक सकता है, 0.7 से 0.95 के बीच अतिरिक्त जाँच भेज सकता है और बाकी को जाने दे सकता है। सीमा घटाने से ज़्यादा धोखाधड़ी पकड़ी जाती है पर ज़्यादा ईमानदार उपयोगकर्ता परेशान होते हैं; बढ़ाने से उल्टा। अगला पाठ इसे प्रिसिज़न और रिकॉल से मापता है।",
+    "hinglish": "Accha classifier sirf \"fraud\" nahi kehta; woh kehta hai \"0.83 probability se fraud\". Threshold ek business choice hai. Bank 0.95 se upar payment block kar sakta hai, 0.7-0.95 ke beech extra check bhej sakta hai aur baaki ko jaane de sakta hai. Threshold ghatane se zyada fraud pakda jaata hai par zyada imaandaar users pareshaan hote hain; badhane se ulta. Agla lesson ise precision aur recall se naapta hai."
+   },
+   "analogy": {
+    "hinglish": "School gate ka guard: bahut strict hua to apne bachche bhi ruk jaayenge; bahut dheela hua to bahar wale andar aa jaayenge.",
+    "en": "The school gate guard: too strict and even our own students get stopped; too loose and outsiders get in.",
+    "hi": "स्कूल गेट का गार्ड: बहुत सख़्त हुआ तो अपने बच्चे भी रुक जाएँगे; बहुत ढीला हुआ तो बाहर वाले अंदर आ जाएँगे।"
+   },
+   "realExample": {
+    "en": "RBI's MuleHunter.AI, built by the Reserve Bank Innovation Hub, is an ML classifier that flags likely money-mule bank accounts for banks to review.",
+    "hinglish": "RBI ka MuleHunter.AI, jo Reserve Bank Innovation Hub ne banaya, ek ML classifier hai jo likely money-mule bank accounts ko flag karta hai taaki banks review karein.",
+    "hi": "आरबीआई का MuleHunter.AI, जिसे रिज़र्व बैंक इनोवेशन हब ने बनाया, एक एमएल वर्गीकारक है जो संभावित \"मनी-म्यूल\" बैंक खातों को बैंकों की जाँच के लिए चिह्नित करता है।"
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "On graph paper, plot 6 red and 6 blue points, add a new point, and classify it with k = 1 and k = 5. Did the answer change? Why?",
+   "hinglish": "Graph paper par 6 laal aur 6 neele points banao, ek naya point jodo, aur k = 1 aur k = 5 se classify karo. Jawab badla? Kyun?",
+   "hi": "ग्राफ़ पेपर पर 6 लाल और 6 नीले बिंदु लगाओ, एक नया बिंदु जोड़ो, और k = 1 व k = 5 से वर्गीकरण करो। क्या उत्तर बदला? क्यों?"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "With k = 3, the nearest neighbours are: spam, not-spam, spam. The prediction is…",
+     "hi": "k = 3 पर नज़दीकी पड़ोसी हैं: स्पैम, नॉट-स्पैम, स्पैम। अनुमान क्या है?",
+     "hinglish": "k = 3 par nearest neighbours: spam, not-spam, spam. Prediction kya hai?"
+    },
+    "options": [
+     {
+      "en": "spam",
+      "hinglish": "spam",
+      "hi": "स्पैम"
+     },
+     {
+      "en": "not-spam",
+      "hinglish": "not-spam",
+      "hi": "स्पैम नहीं"
+     },
+     {
+      "en": "a tie",
+      "hinglish": "tie",
+      "hi": "बराबरी"
+     },
+     {
+      "en": "cannot tell",
+      "hinglish": "pata nahi",
+      "hi": "बता नहीं सकते"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Two of three votes are spam, so the majority is spam. An odd k avoids ties between two classes.",
+     "hi": "तीन में से दो वोट स्पैम हैं, तो बहुमत स्पैम। विषम k दो श्रेणियों में बराबरी से बचाता है।",
+     "hinglish": "Teen mein se do vote spam hain, to majority spam. Odd k do classes mein tie se bachata hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why can one neuron with no hidden layer not solve XOR?",
+     "hi": "बिना छिपी परत वाला एक न्यूरॉन XOR क्यों हल नहीं कर सकता?",
+     "hinglish": "Bina hidden layer wala ek neuron XOR kyun solve nahi kar sakta?"
+    },
+    "options": [
+     {
+      "en": "Its decision boundary is a single straight line, and XOR needs two",
+      "hinglish": "Uski boundary ek seedhi line hai, XOR ko do chahiye",
+      "hi": "इसकी निर्णय सीमा एक सीधी रेखा है, और XOR को दो चाहिए"
+     },
+     {
+      "en": "It has too much data",
+      "hinglish": "Data bahut zyada hai",
+      "hi": "इसके पास बहुत ज़्यादा डेटा है"
+     },
+     {
+      "en": "XOR is random",
+      "hinglish": "XOR random hai",
+      "hi": "XOR यादृच्छिक है"
+     },
+     {
+      "en": "The learning rate is wrong",
+      "hinglish": "Learning rate galat hai",
+      "hi": "लर्निंग रेट ग़लत है"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "XOR puts (0,0) and (1,1) in one class and (0,1), (1,0) in the other: no single line separates them. Minsky and Papert highlighted this in 1969; hidden layers fix it.",
+     "hi": "XOR (0,0) और (1,1) को एक श्रेणी में और (0,1), (1,0) को दूसरी में रखता है: कोई एक रेखा इन्हें अलग नहीं करती। मिन्स्की और पैपर्ट ने 1969 में यह बताया; छिपी परतें इसे हल करती हैं।",
+     "hinglish": "XOR (0,0) aur (1,1) ko ek class mein aur (0,1), (1,0) ko doosri mein rakhta hai: koi ek line inhe alag nahi karti. Minsky aur Papert ne 1969 mein yeh bataya; hidden layers ise solve karte hain."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "σ(0) equals…",
+     "hi": "σ(0) किसके बराबर है?",
+     "hinglish": "σ(0) kiske barabar hai?"
+    },
+    "options": [
+     {
+      "en": "0.5",
+      "hinglish": "0.5",
+      "hi": "0.5"
+     },
+     {
+      "en": "0",
+      "hinglish": "0",
+      "hi": "0"
+     },
+     {
+      "en": "1",
+      "hinglish": "1",
+      "hi": "1"
+     },
+     {
+      "en": "−1",
+      "hinglish": "−1",
+      "hi": "−1"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "σ(0) = 1/(1 + e⁰) = 1/2. A score of zero means the model is exactly undecided.",
+     "hi": "σ(0) = 1/(1 + e⁰) = 1/2। शून्य स्कोर का मतलब मॉडल बिल्कुल अनिश्चित है।",
+     "hinglish": "σ(0) = 1/(1 + e⁰) = 1/2. Zero score ka matlab model bilkul undecided hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Add a hidden layer and train XOR to at least 90% accuracy.",
+     "hi": "एक छिपी परत जोड़कर XOR को कम से कम 90% सटीकता तक प्रशिक्षित करें।",
+     "hinglish": "Hidden layer jodke XOR ko kam se kam 90% accuracy tak train karo."
+    },
+    "answer": {
+     "event": "test-accuracy",
+     "min": 0.9,
+     "dataset": "xor"
+    },
+    "explain": {
+     "en": "With 4 hidden neurons the network can bend its boundary into the regions XOR needs.",
+     "hi": "4 छिपे न्यूरॉन से नेटवर्क अपनी सीमा को उन क्षेत्रों में मोड़ लेता है जो XOR को चाहिए।",
+     "hinglish": "4 hidden neurons se network apni boundary ko un regions mein mod leta hai jo XOR ko chahiye."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "topics": [
+  "ai.ml-supervised"
+ ],
+ "sources": [
+  {
+   "title": "scikit-learn user guide — supervised learning",
+   "url": "https://scikit-learn.org/stable/supervised_learning.html",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Reserve Bank of India — press releases (MuleHunter.AI, Dec 2024)",
+   "url": "https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx",
+   "licence": "fact reference"
+  }
+ ]
+}

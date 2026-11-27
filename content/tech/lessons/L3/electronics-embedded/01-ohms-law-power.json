@@ -1,0 +1,424 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.electronics-embedded.01",
+ "level": 3,
+ "classes": [
+  9,
+  10,
+  11
+ ],
+ "unit": "electronics-embedded",
+ "title": {
+  "en": "Ohm’s law and power",
+  "hi": "ओम का नियम और शक्ति",
+  "hinglish": "Ohm ka niyam aur power"
+ },
+ "minutes": 14,
+ "xp": 55,
+ "prereq": [],
+ "outcomes": [
+  {
+   "en": "Use V = I × R to find voltage, current or resistance",
+   "hi": "V = I × R से वोल्टेज, धारा या प्रतिरोध निकालो",
+   "hinglish": "V = I × R se voltage, current ya resistance nikaalo"
+  },
+  {
+   "en": "Choose a safe resistor for an LED",
+   "hi": "LED के लिए सुरक्षित प्रतिरोधक चुनो",
+   "hinglish": "LED ke liye safe resistor chuno"
+  },
+  {
+   "en": "Calculate power (P = V × I) and battery energy in Wh",
+   "hi": "शक्ति (P = V × I) और बैटरी ऊर्जा Wh में निकालो",
+   "hinglish": "Power (P = V × I) aur battery energy Wh mein nikaalo"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Voltage (V)",
+   "hinglish": "Dhakka",
+   "en": "The electrical push between two points, in volts",
+   "hi": "दो बिंदुओं के बीच विद्युत धक्का, वोल्ट में"
+  },
+  {
+   "term": "Current (I)",
+   "hinglish": "Bahaav",
+   "en": "How much charge flows per second, in amperes (A) or milliamperes (mA)",
+   "hi": "प्रति सेकंड कितना आवेश बहता है, एम्पियर (A) या मिलीएम्पियर (mA) में"
+  },
+  {
+   "term": "Resistance (R)",
+   "hinglish": "Rukawat",
+   "en": "How strongly something resists current, in ohms (Ω)",
+   "hi": "कोई चीज़ धारा को कितना रोकती है, ओम (Ω) में"
+  },
+  {
+   "term": "Power (P)",
+   "hinglish": "Kaam ki raftaar",
+   "en": "Energy used per second, in watts: P = V × I",
+   "hi": "प्रति सेकंड प्रयुक्त ऊर्जा, वाट में: P = V × I"
+  },
+  {
+   "term": "Watt-hour (Wh)",
+   "hinglish": "Energy ka hisaab",
+   "en": "Energy = power × time; 1 kWh is one electricity \"unit\" on your bill",
+   "hi": "ऊर्जा = शक्ति × समय; 1 kWh बिजली बिल की एक \"यूनिट\" है"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Think of a water tank: voltage is the pressure, current is the flow, resistance is a narrow pipe.",
+    "hi": "पानी की टंकी सोचो: वोल्टेज दबाव है, धारा बहाव है, प्रतिरोध पतला पाइप है।",
+    "hinglish": "Paani ki tanki socho: voltage pressure hai, current flow hai, resistance patla pipe hai."
+   },
+   "visual": "compare:pressure|flow|narrow pipe",
+   "narration": {
+    "en": "Think of a water tank: voltage is the pressure, current is the flow, resistance is a narrow pipe.",
+    "hi": "पानी की टंकी सोचो: वोल्टेज दबाव है, धारा बहाव है, प्रतिरोध पतला पाइप है।",
+    "hinglish": "Paani ki tanki socho: voltage pressure hai, current flow hai, resistance patla pipe hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Ohm’s law: V = I × R. Cover the one you want: I = V ÷ R, R = V ÷ I.",
+    "hi": "ओम का नियम: V = I × R। जो चाहिए उसे ढको: I = V ÷ R, R = V ÷ I।",
+    "hinglish": "Ohm ka niyam: V = I × R. Jo chahiye use dhako: I = V ÷ R, R = V ÷ I."
+   },
+   "visual": "stack:V|I × R",
+   "narration": {
+    "en": "Ohm’s law: V = I × R. Cover the one you want: I = V ÷ R, R = V ÷ I.",
+    "hi": "ओम का नियम: V = I × R। जो चाहिए उसे ढको: I = V ÷ R, R = V ÷ I।",
+    "hinglish": "Ohm ka niyam: V = I × R. Jo chahiye use dhako: I = V ÷ R, R = V ÷ I."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "An LED takes about 2 V and wants about 15 mA. From 5 V: R = (5 − 2) ÷ 0.015 = 200 Ω → use the standard 220 Ω.",
+    "hi": "LED लगभग 2 V लेती है और लगभग 15 mA चाहती है। 5 V से: R = (5 − 2) ÷ 0.015 = 200 Ω → मानक 220 Ω लगाओ।",
+    "hinglish": "LED lagbhag 2 V leti hai aur lagbhag 15 mA chahti hai. 5 V se: R = (5 − 2) ÷ 0.015 = 200 Ω → standard 220 Ω lagao."
+   },
+   "visual": "flow:5 V|220 Ω|LED|13.6 mA",
+   "narration": {
+    "en": "An LED takes about 2 V and wants about 15 mA. From 5 V: R = (5 − 2) ÷ 0.015 = 200 Ω → use the standard 220 Ω.",
+    "hi": "LED लगभग 2 V लेती है और लगभग 15 mA चाहती है। 5 V से: R = (5 − 2) ÷ 0.015 = 200 Ω → मानक 220 Ω लगाओ।",
+    "hinglish": "LED lagbhag 2 V leti hai aur lagbhag 15 mA chahti hai. 5 V se: R = (5 − 2) ÷ 0.015 = 200 Ω → standard 220 Ω lagao."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Power P = V × I. A 5 V, 2 A phone charger delivers up to 10 W.",
+    "hi": "शक्ति P = V × I। 5 V, 2 A फ़ोन चार्जर 10 W तक देता है।",
+    "hinglish": "Power P = V × I. 5 V, 2 A phone charger 10 W tak deta hai."
+   },
+   "visual": "anim:power",
+   "narration": {
+    "en": "Power P = V × I. A 5 V, 2 A phone charger delivers up to 10 W.",
+    "hi": "शक्ति P = V × I। 5 V, 2 A फ़ोन चार्जर 10 W तक देता है।",
+    "hinglish": "Power P = V × I. 5 V, 2 A phone charger 10 W tak deta hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "control-lab",
+  "config": {
+   "mode": "ohm",
+   "volts": 5
+  },
+  "goal": {
+   "en": "Put the LED in a 5 V circuit and pick a resistor so the current is safe (5–20 mA). Then try 47 Ω and watch what happens.",
+   "hi": "LED को 5 V परिपथ में लगाओ और ऐसा प्रतिरोधक चुनो कि धारा सुरक्षित हो (5–20 mA)। फिर 47 Ω आज़माओ और देखो क्या होता है।",
+   "hinglish": "LED ko 5 V circuit mein lagao aur aisa resistor chuno ki current safe ho (5–20 mA). Phir 47 Ω try karo aur dekho kya hota hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "One law, three quantities",
+    "hi": "एक नियम, तीन राशियाँ",
+    "hinglish": "Ek niyam, teen quantities"
+   },
+   "body": {
+    "en": "Georg Ohm found in 1827 that, for many materials, current is proportional to voltage: double the push, double the flow. The ratio V ÷ I is the resistance R. In a series circuit the same current flows through every part and the voltages add up; in a parallel circuit every branch gets the same voltage and the currents add up. That is why the lights in your home are wired in parallel: each gets the full 230 V, and switching one off does not turn the others off. Wires have tiny resistance, resistors are made to have a chosen one, and an LED is special — it drops a nearly fixed voltage (about 1.8–2.2 V for red, about 3 V for blue or white), so you always add a resistor to limit its current.",
+    "hi": "जॉर्ज ओम ने 1827 में पाया कि कई पदार्थों में धारा वोल्टेज के समानुपाती होती है: धक्का दोगुना, बहाव दोगुना। अनुपात V ÷ I प्रतिरोध R है। श्रेणी परिपथ में हर भाग से एक ही धारा बहती है और वोल्टेज जुड़ते हैं; समानांतर परिपथ में हर शाखा को एक ही वोल्टेज मिलता है और धाराएँ जुड़ती हैं। इसीलिए घर की बत्तियाँ समानांतर में जुड़ी होती हैं: हर एक को पूरे 230 V मिलते हैं, और एक बंद करने से बाकी बंद नहीं होतीं। तारों का प्रतिरोध बहुत कम होता है, प्रतिरोधक चुने हुए प्रतिरोध के बनते हैं, और LED ख़ास है — वह लगभग तय वोल्टेज लेती है (लाल के लिए लगभग 1.8–2.2 V, नीली या सफ़ेद के लिए लगभग 3 V), इसलिए उसकी धारा सीमित करने को हमेशा प्रतिरोधक लगाते हैं।",
+    "hinglish": "Georg Ohm ne 1827 mein paaya ki kai materials mein current voltage ke proportional hota hai: dhakka double, flow double. Ratio V ÷ I resistance R hai. Series circuit mein har part se ek hi current behta hai aur voltages judte hain; parallel circuit mein har branch ko ek hi voltage milta hai aur currents judte hain. Isiliye ghar ki lights parallel mein judi hoti hain: har ek ko poore 230 V milte hain, aur ek band karne se baaki band nahi hoti. Wires ka resistance bahut kam hota hai, resistors chune hue resistance ke bante hain, aur LED khaas hai — woh lagbhag fixed voltage leti hai (laal ke liye lagbhag 1.8–2.2 V, neeli ya safed ke liye lagbhag 3 V), isliye uska current limit karne ko hamesha resistor lagate hain."
+   },
+   "analogy": {
+    "en": "A crowded corridor: the push of people is voltage, how many pass per second is current, and a narrow door is resistance.",
+    "hi": "भीड़ भरा गलियारा: लोगों का धक्का वोल्टेज है, प्रति सेकंड कितने निकलते हैं वह धारा, और पतला दरवाज़ा प्रतिरोध।",
+    "hinglish": "Bheed bhara corridor: logon ka dhakka voltage hai, per second kitne nikalte hain woh current, aur patla darwaaza resistance."
+   },
+   "realExample": {
+    "en": "Every power-on LED on a router, TV or charger has a small resistor next to it, sized exactly like this.",
+    "hi": "राउटर, टीवी या चार्जर की हर पावर-ऑन LED के पास एक छोटा प्रतिरोधक होता है, ठीक ऐसे ही चुना हुआ।",
+    "hinglish": "Router, TV ya charger ki har power-on LED ke paas ek chhota resistor hota hai, bilkul aise hi chuna hua."
+   }
+  },
+  {
+   "heading": {
+    "en": "Power, heat and batteries",
+    "hi": "शक्ति, ऊष्मा और बैटरियाँ",
+    "hinglish": "Power, garmi aur batteries"
+   },
+   "body": {
+    "en": "Power is how fast energy is used: P = V × I, which also equals I² × R. A resistor turns that power into heat, so every resistor has a rating — common small ones are ¼ W (250 mW). Exceed it and it gets hot or burns. Energy is power × time: a 10 W LED bulb on for 100 hours uses 1,000 Wh = 1 kWh, which is one \"unit\" on an Indian electricity bill. Batteries are rated in mAh at a voltage: a 5,000 mAh phone battery at 3.85 V stores about 5 × 3.85 ≈ 19 Wh. That is also why airlines limit power banks by Wh, and why fast chargers raise the voltage (for example 9 V or more with USB Power Delivery) instead of pushing huge currents through thin cables.",
+    "hi": "शक्ति बताती है ऊर्जा कितनी तेज़ी से ख़र्च होती है: P = V × I, जो I² × R के बराबर भी है। प्रतिरोधक उस शक्ति को ऊष्मा में बदलता है, इसलिए हर प्रतिरोधक की एक रेटिंग होती है — आम छोटे ¼ W (250 mW) के होते हैं। उससे ज़्यादा हो तो गरम होता है या जलता है। ऊर्जा = शक्ति × समय: 10 W का LED बल्ब 100 घंटे जले तो 1,000 Wh = 1 kWh लगता है, जो भारतीय बिजली बिल की एक \"यूनिट\" है। बैटरियाँ किसी वोल्टेज पर mAh में आँकी जाती हैं: 3.85 V पर 5,000 mAh की फ़ोन बैटरी लगभग 5 × 3.85 ≈ 19 Wh रखती है। इसीलिए एयरलाइंस पावर बैंक Wh से सीमित करती हैं, और तेज़ चार्जर पतली केबल में बहुत ज़्यादा धारा भेजने के बजाय वोल्टेज बढ़ाते हैं (जैसे USB Power Delivery में 9 V या ज़्यादा)।",
+    "hinglish": "Power batata hai energy kitni tezi se kharch hoti hai: P = V × I, jo I² × R ke barabar bhi hai. Resistor us power ko garmi mein badalta hai, isliye har resistor ki rating hoti hai — aam chhote ¼ W (250 mW) ke hote hain. Usse zyada ho to garam hota hai ya jalta hai. Energy = power × time: 10 W ka LED bulb 100 ghante jale to 1,000 Wh = 1 kWh lagta hai, jo Indian bijli bill ki ek \"unit\" hai. Batteries kisi voltage par mAh mein aanki jaati hain: 3.85 V par 5,000 mAh ki phone battery lagbhag 5 × 3.85 ≈ 19 Wh rakhti hai. Isiliye airlines power bank Wh se limit karti hain, aur fast chargers patli cable mein bahut zyada current bhejne ke bajaye voltage badhate hain (jaise USB Power Delivery mein 9 V ya zyada)."
+   },
+   "analogy": {
+    "en": "Power is like speed; energy is like distance. Speed × time = distance, watts × hours = watt-hours.",
+    "hi": "शक्ति गति जैसी है; ऊर्जा दूरी जैसी। गति × समय = दूरी, वाट × घंटे = वाट-घंटे।",
+    "hinglish": "Power speed jaisi hai; energy distance jaisi. Speed × time = distance, watts × hours = watt-hours."
+   },
+   "realExample": {
+    "en": "A 1.5-ton inverter AC draws roughly 1–1.5 kW, so 8 hours a night can use 8–12 units — far more than all the LED lights in the house.",
+    "hi": "1.5 टन का इन्वर्टर AC लगभग 1–1.5 kW लेता है, तो रात के 8 घंटे में 8–12 यूनिट लग सकती हैं — घर की सारी LED बत्तियों से कहीं ज़्यादा।",
+    "hinglish": "1.5 ton ka inverter AC lagbhag 1–1.5 kW leta hai, to raat ke 8 ghante mein 8–12 units lag sakti hain — ghar ki saari LED lights se kahin zyada."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Find three chargers or adapters at home and read the small print: output volts and amps. Work out the maximum watts of each. Then design an LED circuit for a 9 V battery (LED 2 V, 15 mA): what resistor, and how much heat does it make?",
+   "hi": "घर में तीन चार्जर या एडेप्टर ढूँढो और छोटा लिखा पढ़ो: आउटपुट वोल्ट और एम्पियर। हर एक के अधिकतम वाट निकालो। फिर 9 V बैटरी के लिए LED परिपथ बनाओ (LED 2 V, 15 mA): कौन-सा प्रतिरोधक, और वह कितनी ऊष्मा बनाता है?",
+   "hinglish": "Ghar mein teen chargers ya adapters dhoondo aur chhota likha padho: output volts aur amps. Har ek ke maximum watts nikaalo. Phir 9 V battery ke liye LED circuit design karo (LED 2 V, 15 mA): kaunsa resistor, aur woh kitni garmi banata hai?"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "short",
+    "prompt": {
+     "en": "A 9 V battery is connected across a 450 Ω resistor. What current flows, in mA?",
+     "hi": "9 V बैटरी 450 Ω प्रतिरोधक से जुड़ी है। कितनी धारा बहती है, mA में?",
+     "hinglish": "9 V battery 450 Ω resistor se judi hai. Kitna current behta hai, mA mein?"
+    },
+    "answer": {
+     "accept": [
+      "20",
+      "20 mA",
+      "20mA",
+      "0.02 A"
+     ]
+    },
+    "explain": {
+     "en": "I = V ÷ R = 9 ÷ 450 = 0.02 A = 20 mA.",
+     "hi": "I = V ÷ R = 9 ÷ 450 = 0.02 A = 20 mA।",
+     "hinglish": "I = V ÷ R = 9 ÷ 450 = 0.02 A = 20 mA."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why must an LED have a series resistor?",
+     "hi": "LED के साथ श्रेणी प्रतिरोधक क्यों ज़रूरी है?",
+     "hinglish": "LED ke saath series resistor kyun zaroori hai?"
+    },
+    "options": [
+     {
+      "en": "To limit the current so the LED does not burn out",
+      "hi": "धारा सीमित करने के लिए ताकि LED न जले",
+      "hinglish": "Current limit karne ke liye taaki LED na jale"
+     },
+     {
+      "en": "To change its colour",
+      "hi": "उसका रंग बदलने के लिए",
+      "hinglish": "Uska rang badalne ke liye"
+     },
+     {
+      "en": "To store charge",
+      "hi": "आवेश जमा करने के लिए",
+      "hinglish": "Charge store karne ke liye"
+     },
+     {
+      "en": "It is only decoration",
+      "hi": "यह सिर्फ़ सजावट है",
+      "hinglish": "Yeh sirf decoration hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "An LED drops an almost fixed voltage, so without a resistor the current shoots up.",
+     "hi": "LED लगभग तय वोल्टेज लेती है, इसलिए प्रतिरोधक के बिना धारा बहुत बढ़ जाती है।",
+     "hinglish": "LED lagbhag fixed voltage leti hai, isliye resistor ke bina current bahut badh jaata hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "A phone battery is 5,000 mAh at 3.85 V. About how much energy does it store?",
+     "hi": "फ़ोन बैटरी 3.85 V पर 5,000 mAh है। लगभग कितनी ऊर्जा रखती है?",
+     "hinglish": "Phone battery 3.85 V par 5,000 mAh hai. Lagbhag kitni energy rakhti hai?"
+    },
+    "options": [
+     {
+      "en": "About 19 Wh",
+      "hi": "लगभग 19 Wh",
+      "hinglish": "Lagbhag 19 Wh"
+     },
+     {
+      "en": "About 5,000 Wh",
+      "hi": "लगभग 5,000 Wh",
+      "hinglish": "Lagbhag 5,000 Wh"
+     },
+     {
+      "en": "About 1.3 Wh",
+      "hi": "लगभग 1.3 Wh",
+      "hinglish": "Lagbhag 1.3 Wh"
+     },
+     {
+      "en": "About 19 kWh",
+      "hi": "लगभग 19 kWh",
+      "hinglish": "Lagbhag 19 kWh"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "5 Ah × 3.85 V ≈ 19.25 Wh.",
+     "hi": "5 Ah × 3.85 V ≈ 19.25 Wh।",
+     "hinglish": "5 Ah × 3.85 V ≈ 19.25 Wh."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "match",
+    "prompt": {
+     "en": "Match each quantity to its unit.",
+     "hi": "हर राशि को उसकी इकाई से मिलाओ।",
+     "hinglish": "Har quantity ko uski unit se milao."
+    },
+    "options": [
+     {
+      "en": "Voltage",
+      "hi": "वोल्टेज",
+      "hinglish": "Voltage"
+     },
+     {
+      "en": "Current",
+      "hi": "धारा",
+      "hinglish": "Current"
+     },
+     {
+      "en": "Resistance",
+      "hi": "प्रतिरोध",
+      "hinglish": "Resistance"
+     },
+     {
+      "en": "Power",
+      "hi": "शक्ति",
+      "hinglish": "Power"
+     }
+    ],
+    "answer": [
+     {
+      "en": "volt (V)",
+      "hi": "वोल्ट (V)",
+      "hinglish": "volt (V)"
+     },
+     {
+      "en": "ampere (A)",
+      "hi": "एम्पियर (A)",
+      "hinglish": "ampere (A)"
+     },
+     {
+      "en": "ohm (Ω)",
+      "hi": "ओम (Ω)",
+      "hinglish": "ohm (Ω)"
+     },
+     {
+      "en": "watt (W)",
+      "hi": "वाट (W)",
+      "hinglish": "watt (W)"
+     }
+    ],
+    "explain": {
+     "en": "V, A, Ω, W.",
+     "hi": "V, A, Ω, W।",
+     "hinglish": "V, A, Ω, W."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "Lights in a house are wired in parallel. What does that mean?",
+     "hi": "घर की बत्तियाँ समानांतर में जुड़ी हैं। इसका अर्थ?",
+     "hinglish": "Ghar ki lights parallel mein judi hain. Iska matlab?"
+    },
+    "options": [
+     {
+      "en": "Each gets the full 230 V and works on its own",
+      "hi": "हर एक को पूरे 230 V मिलते हैं और अलग से चलती है",
+      "hinglish": "Har ek ko poore 230 V milte hain aur alag se chalti hai"
+     },
+     {
+      "en": "They share 230 V between them",
+      "hi": "वे 230 V आपस में बाँटती हैं",
+      "hinglish": "Woh 230 V aapas mein baantti hain"
+     },
+     {
+      "en": "If one goes off, all go off",
+      "hi": "एक बंद तो सब बंद",
+      "hinglish": "Ek band to sab band"
+     },
+     {
+      "en": "They carry the same current",
+      "hi": "उनमें एक ही धारा बहती है",
+      "hinglish": "Unmein ek hi current behta hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Parallel branches share the same voltage; currents add up.",
+     "hi": "समानांतर शाखाओं का वोल्टेज समान; धाराएँ जुड़ती हैं।",
+     "hinglish": "Parallel branches ka voltage same; currents judte hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "In the lab, light the LED safely from 5 V.",
+     "hi": "लैब में 5 V से LED सुरक्षित जलाओ।",
+     "hinglish": "Lab mein 5 V se LED safely jalao."
+    },
+    "answer": {
+     "event": "led-safe"
+    },
+    "explain": {
+     "en": "220 Ω or 330 Ω gives a safe 9–14 mA.",
+     "hi": "220 Ω या 330 Ω से सुरक्षित 9–14 mA।",
+     "hinglish": "220 Ω ya 330 Ω se safe 9–14 mA."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "elec.ohms-law",
+  "elec.power-batteries",
+  "elec.circuits"
+ ],
+ "sources": [
+  {
+   "title": "NCERT Science Class 10 — Chapter \"Electricity\"",
+   "url": "https://ncert.nic.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "USB Implementers Forum — USB Power Delivery",
+   "url": "https://www.usb.org/usb-charger-pd",
+   "licence": "fact reference"
+  }
+ ]
+}

@@ -1,0 +1,385 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.networking.02",
+ "level": 2,
+ "classes": [
+  7
+ ],
+ "unit": "networking",
+ "title": {
+  "en": "IP addresses, routers and switches",
+  "hi": "IP पते, राउटर और स्विच",
+  "hinglish": "IP address, routers aur switches"
+ },
+ "minutes": 10,
+ "xp": 35,
+ "prereq": [
+  "L2.networking.01"
+ ],
+ "topics": [
+  "net.ip",
+  "net.routers-switches"
+ ],
+ "outcomes": [
+  {
+   "en": "Read an IPv4 address and explain what it identifies",
+   "hi": "IPv4 पता पढ़कर बता सकते हो कि वह किसे पहचानता है",
+   "hinglish": "IPv4 address padh ke bata sakte ho kya pehchaanta hai"
+  },
+  {
+   "en": "Explain private vs public IP and IPv6",
+   "hi": "निजी बनाम सार्वजनिक IP और IPv6 समझा सकते हो",
+   "hinglish": "Private vs public IP aur IPv6 samjha sakte ho"
+  },
+  {
+   "en": "Explain what routers and switches do",
+   "hi": "राउटर और स्विच क्या करते हैं, समझा सकते हो",
+   "hinglish": "Routers aur switches kya karte hain samjha sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "IP address",
+   "hinglish": "Network pe device ka pata",
+   "en": "Internet Protocol address: the number that identifies a device on a network",
+   "hi": "इंटरनेट प्रोटोकॉल पता: नेटवर्क पर उपकरण को पहचानने वाली संख्या"
+  },
+  {
+   "term": "IPv4 / IPv6",
+   "hinglish": "Purana 4-number aur naya lamba address",
+   "en": "IPv4: four numbers 0–255 (about 4.3 billion addresses). IPv6: 128-bit, practically unlimited",
+   "hi": "IPv4: 0–255 की चार संख्याएँ (लगभग 4.3 अरब पते)। IPv6: 128-बिट, लगभग असीमित"
+  },
+  {
+   "term": "Router",
+   "hinglish": "Raasta chunne wala device",
+   "en": "Forwards packets between networks, choosing the next hop",
+   "hi": "नेटवर्कों के बीच पैकेट आगे भेजता है, अगला कदम चुनकर"
+  },
+  {
+   "term": "Switch",
+   "hinglish": "Ek network ke andar jodne wala",
+   "en": "Connects devices inside one network (LAN)",
+   "hi": "एक नेटवर्क (LAN) के अंदर उपकरण जोड़ता है"
+  },
+  {
+   "term": "MAC address",
+   "hinglish": "Hardware ki pehchaan",
+   "en": "A hardware ID burned into each network card",
+   "hi": "हर नेटवर्क कार्ड में दर्ज हार्डवेयर पहचान"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Every device on the internet needs an address, like a house number: 192.168.1.7 or 2401:4900:1c3a::7.",
+    "hi": "इंटरनेट पर हर उपकरण को पता चाहिए, मकान नंबर जैसा: 192.168.1.7 या 2401:4900:1c3a::7।",
+    "hinglish": "Internet pe har device ko address chahiye, ghar ke number jaisa: 192.168.1.7 ya 2401:4900:1c3a::7."
+   },
+   "visual": "flow:192|168|1|7",
+   "narration": {
+    "en": "An IPv4 address is four numbers from 0 to 255 — four bytes.",
+    "hi": "IPv4 पता 0 से 255 तक की चार संख्याएँ है — चार बाइट।",
+    "hinglish": "IPv4 address 0 se 255 tak ke chaar numbers — chaar bytes."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Your router gives home devices private addresses (192.168.x.x) and shares one public address with the internet.",
+    "hi": "आपका राउटर घर के उपकरणों को निजी पते (192.168.x.x) देता है और इंटरनेट के लिए एक सार्वजनिक पता साझा करता है।",
+    "hinglish": "Aapka router ghar ke devices ko private address (192.168.x.x) deta hai aur internet ke liye ek public address share karta hai."
+   },
+   "visual": "flow:📱 192.168.1.7|💻 192.168.1.8|📶 Router (NAT)|🌍 Public 203.0.113.25",
+   "narration": {
+    "en": "Like a society with one gate number but many flat numbers inside.",
+    "hi": "जैसे एक सोसाइटी जिसका गेट नंबर एक, पर अंदर कई फ़्लैट नंबर।",
+    "hinglish": "Jaise society ka ek gate number par andar kai flat numbers."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Routers read the destination address of each packet and send it one hop closer, like post offices passing a letter along.",
+    "hi": "राउटर हर पैकेट का गंतव्य पता पढ़कर उसे एक क़दम आगे भेजते हैं, जैसे डाकघर चिट्ठी आगे बढ़ाते हैं।",
+    "hinglish": "Routers har packet ka destination address padh ke usse ek hop aage bhejte hain, jaise post offices chitthi aage badhaate hain."
+   },
+   "visual": "lab:packet-tracer",
+   "narration": {
+    "en": "No single router knows the whole route — each only knows the best next step.",
+    "hi": "कोई एक राउटर पूरा रास्ता नहीं जानता — हर एक केवल अगला सबसे अच्छा कदम जानता है।",
+    "hinglish": "Kisi ek router ko poora raasta nahi pata — har ek sirf agla best step jaanta hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "packet-tracer",
+  "config": {
+   "mode": "whatsapp"
+  },
+  "goal": {
+   "en": "Watch the packet headers: find the From address and the To address on each packet.",
+   "hi": "पैकेट हेडर देखो: हर पैकेट पर From और To पता ढूँढो।",
+   "hinglish": "Packet headers dekho: har packet pe From aur To address dhoondo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "IPv4, IPv6 and NAT",
+    "hi": "IPv4, IPv6 और NAT",
+    "hinglish": "IPv4, IPv6 aur NAT"
+   },
+   "body": {
+    "en": "IPv4 has 2³² ≈ 4.3 billion addresses — fewer than the world’s devices. Two fixes: NAT (Network Address Translation) lets a whole home or a mobile operator share one public address, and IPv6 uses 128-bit addresses (2¹²⁸, about 340 undecillion). Indian mobile networks are among the world’s biggest IPv6 users. Private ranges such as 192.168.x.x and 10.x.x.x are reused in millions of homes; they work only inside the LAN. Your router gives addresses automatically using DHCP.",
+    "hi": "IPv4 में 2³² ≈ 4.3 अरब पते हैं — दुनिया के उपकरणों से कम। दो समाधान: NAT (नेटवर्क एड्रेस ट्रांसलेशन) पूरे घर या मोबाइल ऑपरेटर को एक सार्वजनिक पता साझा करने देता है, और IPv6 में 128-बिट पते हैं (2¹²⁸)। भारतीय मोबाइल नेटवर्क दुनिया के सबसे बड़े IPv6 उपयोगकर्ताओं में हैं। 192.168.x.x और 10.x.x.x जैसी निजी श्रेणियाँ लाखों घरों में दोहराई जाती हैं; वे केवल LAN के अंदर काम करती हैं। आपका राउटर DHCP से अपने आप पते देता है।",
+    "hinglish": "IPv4 mein 2³² ≈ 4.3 billion addresses hain — duniya ke devices se kam. Do solutions: NAT (Network Address Translation) poore ghar ya mobile operator ko ek public address share karne deta hai, aur IPv6 128-bit addresses use karta hai (2¹²⁸). Indian mobile networks duniya ke sabse bade IPv6 users mein hain. 192.168.x.x aur 10.x.x.x jaise private ranges lakhon gharon mein repeat hote hain; woh sirf LAN ke andar kaam karte hain. Aapka router DHCP se automatically address deta hai."
+   },
+   "analogy": {
+    "hinglish": "Jaise hotel ka ek phone number aur andar room extensions — bahar se call reception (NAT) pe aati hai, wahan se sahi room mein.",
+    "en": "Like a hotel with one phone number and room extensions inside — outside calls reach reception (NAT), then go to the right room.",
+    "hi": "जैसे होटल का एक फ़ोन नंबर और अंदर कमरों के एक्सटेंशन — बाहर से कॉल रिसेप्शन (NAT) पर आती है, वहाँ से सही कमरे में।"
+   },
+   "realExample": {
+    "en": "Google’s IPv6 statistics show India with one of the highest IPv6 adoption rates in the world (around 70% of users).",
+    "hi": "Google के IPv6 आँकड़ों में भारत दुनिया में सबसे ज़्यादा IPv6 अपनाने वाले देशों में है (लगभग 70% उपयोगकर्ता)।",
+    "hinglish": "Google ke IPv6 stats mein India ka IPv6 adoption duniya mein sabse zyada mein hai (lagbhag 70% users)."
+   }
+  },
+  {
+   "heading": {
+    "en": "Switch vs router",
+    "hi": "स्विच बनाम राउटर",
+    "hinglish": "Switch vs router"
+   },
+   "body": {
+    "en": "A switch connects devices inside one LAN and delivers frames using MAC addresses (hardware IDs). A router connects different networks and forwards packets using IP addresses, choosing the next hop from its routing table. A home “Wi-Fi router” is really several devices in one box: router + switch (the LAN ports) + Wi-Fi access point + DHCP server + firewall.",
+    "hi": "स्विच एक LAN के अंदर उपकरणों को जोड़ता है और MAC पतों (हार्डवेयर ID) से फ़्रेम पहुँचाता है। राउटर अलग-अलग नेटवर्क जोड़ता है और IP पतों से पैकेट आगे भेजता है, अपनी रूटिंग तालिका से अगला क़दम चुनकर। घर का “वाई-फ़ाई राउटर” असल में एक डिब्बे में कई उपकरण है: राउटर + स्विच (LAN पोर्ट) + वाई-फ़ाई एक्सेस पॉइंट + DHCP सर्वर + फ़ायरवॉल।",
+    "hinglish": "Switch ek LAN ke andar devices jodta hai aur MAC addresses (hardware IDs) se frames pahunchata hai. Router alag networks jodta hai aur IP addresses se packets aage bhejta hai, routing table se agla hop chunke. Ghar ka “Wi-Fi router” asal mein ek dabbe mein kai devices hai: router + switch (LAN ports) + Wi-Fi access point + DHCP server + firewall."
+   },
+   "analogy": {
+    "hinglish": "Switch = society ke andar ka chowkidaar jo flat tak le jaata hai; router = highway ka toll plaza jo sahi shehar ki taraf bhejta hai.",
+    "en": "Switch = the society guard who takes you to the right flat; router = the highway toll plaza that sends you towards the right city.",
+    "hi": "स्विच = सोसाइटी का चौकीदार जो सही फ़्लैट तक ले जाता है; राउटर = हाईवे का टोल प्लाज़ा जो सही शहर की ओर भेजता है।"
+   },
+   "realExample": {
+    "en": "Your Wi-Fi router’s settings page is usually at 192.168.0.1 or 192.168.1.1 — never change it without a parent.",
+    "hi": "Wi-Fi राउटर का सेटिंग पेज आमतौर पर 192.168.0.1 या 192.168.1.1 पर होता है — माता-पिता के बिना कभी मत बदलो।",
+    "hinglish": "Wi-Fi router ka settings page aksar 192.168.0.1 ya 192.168.1.1 pe hota hai — parent ke bina kabhi mat badlo."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Ask a parent to show the phone’s Wi-Fi details (Settings → Wi-Fi → your network) and note its IP address. Is it private?",
+   "hi": "माता-पिता से फ़ोन की Wi-Fi जानकारी (Settings → Wi-Fi → आपका नेटवर्क) दिखाने को कहो और IP पता लिखो। क्या वह निजी है?",
+   "hinglish": "Parent se phone ke Wi-Fi details (Settings → Wi-Fi → network) dikhane ko kaho aur IP address note karo. Kya yeh private hai?"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which is a valid IPv4 address?",
+     "hi": "कौन-सा मान्य IPv4 पता है?",
+     "hinglish": "Kaunsa valid IPv4 address hai?"
+    },
+    "options": [
+     "192.168.1.256",
+     "10.0.0.5",
+     "300.1.1.1",
+     "1.2.3"
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Each of the four numbers must be 0–255. 256 and 300 are too big; IPv4 has exactly four parts.",
+     "hi": "चारों संख्याएँ 0–255 होनी चाहिए। 256 और 300 बड़ी हैं; IPv4 में ठीक चार भाग।",
+     "hinglish": "Chaaron numbers 0–255 hone chahiye. 256 aur 300 bade hain; IPv4 mein theek chaar parts."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why does a home use private addresses like 192.168.1.x?",
+     "hi": "घर 192.168.1.x जैसे निजी पते क्यों उपयोग करता है?",
+     "hinglish": "Ghar 192.168.1.x jaise private address kyun use karta hai?"
+    },
+    "options": [
+     {
+      "en": "To share one public address (NAT)",
+      "hi": "एक सार्वजनिक पता साझा करने (NAT) के लिए",
+      "hinglish": "Ek public address share karne (NAT) ke liye"
+     },
+     {
+      "en": "To make Wi-Fi faster",
+      "hi": "वाई-फ़ाई तेज़ करने के लिए",
+      "hinglish": "Wi-Fi fast karne ke liye"
+     },
+     {
+      "en": "Because they are secret passwords",
+      "hi": "क्योंकि वे गुप्त पासवर्ड हैं",
+      "hinglish": "Kyunki woh secret passwords hain"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "IPv4 addresses are scarce; with NAT many devices share one public address.",
+     "hi": "IPv4 पते कम हैं; NAT से कई उपकरण एक सार्वजनिक पता साझा करते हैं।",
+     "hinglish": "IPv4 addresses kam hain; NAT se kai devices ek public address share karte hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "What does a router do with each packet?",
+     "hi": "राउटर हर पैकेट के साथ क्या करता है?",
+     "hinglish": "Router har packet ke saath kya karta hai?"
+    },
+    "options": [
+     {
+      "en": "Opens and reads the message",
+      "hi": "संदेश खोलकर पढ़ता है",
+      "hinglish": "Message khol ke padhta hai"
+     },
+     {
+      "en": "Deletes it",
+      "hi": "मिटा देता है",
+      "hinglish": "Delete kar deta hai"
+     },
+     {
+      "en": "Sends it one hop closer to its destination",
+      "hi": "गंतव्य की ओर एक क़दम आगे भेजता है",
+      "hinglish": "Destination ki taraf ek hop aage bhejta hai"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "It looks at the destination IP and forwards the packet to the best next hop.",
+     "hi": "यह गंतव्य IP देखकर पैकेट को सबसे अच्छे अगले क़दम पर भेजता है।",
+     "hinglish": "Yeh destination IP dekh ke packet ko best next hop pe bhejta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "About how many IPv4 addresses exist?",
+     "hi": "लगभग कितने IPv4 पते हैं?",
+     "hinglish": "Lagbhag kitne IPv4 addresses hain?"
+    },
+    "options": [
+     {
+      "en": "255",
+      "hi": "255",
+      "hinglish": "255"
+     },
+     {
+      "en": "About 4.3 billion",
+      "hi": "लगभग 4.3 अरब",
+      "hinglish": "Lagbhag 4.3 billion"
+     },
+     {
+      "en": "Unlimited",
+      "hi": "असीमित",
+      "hinglish": "Unlimited"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "2³² = 4,294,967,296 ≈ 4.3 billion.",
+     "hi": "2³² = 4,29,49,67,296 ≈ 4.3 अरब।",
+     "hinglish": "2³² = 4,29,49,67,296 ≈ 4.3 billion."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "match",
+    "prompt": {
+     "en": "Match the device to its job.",
+     "hi": "उपकरण को उसके काम से मिलाओ।",
+     "hinglish": "Device ko uske kaam se milao."
+    },
+    "options": {
+     "left": [
+      {
+       "en": "Switch",
+       "hi": "स्विच",
+       "hinglish": "Switch"
+      },
+      {
+       "en": "Router",
+       "hi": "राउटर",
+       "hinglish": "Router"
+      },
+      {
+       "en": "Access point",
+       "hi": "एक्सेस पॉइंट",
+       "hinglish": "Access point"
+      }
+     ],
+     "right": [
+      {
+       "en": "Creates the Wi-Fi radio signal",
+       "hi": "वाई-फ़ाई रेडियो सिग्नल बनाता है",
+       "hinglish": "Wi-Fi radio signal banata hai"
+      },
+      {
+       "en": "Connects devices inside one LAN",
+       "hi": "एक LAN के अंदर उपकरण जोड़ता है",
+       "hinglish": "Ek LAN ke andar devices jodta hai"
+      },
+      {
+       "en": "Forwards packets between networks",
+       "hi": "नेटवर्कों के बीच पैकेट भेजता है",
+       "hinglish": "Networks ke beech packets bhejta hai"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      2
+     ],
+     [
+      2,
+      0
+     ]
+    ],
+    "explain": {
+     "en": "Switch: inside one LAN (MAC). Router: between networks (IP). Access point: gives Wi-Fi radio.",
+     "hi": "स्विच: एक LAN के अंदर (MAC)। राउटर: नेटवर्कों के बीच (IP)। एक्सेस पॉइंट: वाई-फ़ाई रेडियो।",
+     "hinglish": "Switch: ek LAN ke andar (MAC). Router: networks ke beech (IP). Access point: Wi-Fi radio."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "RFC 1918 — private IPv4 address ranges",
+   "url": "https://www.rfc-editor.org/rfc/rfc1918",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Google IPv6 statistics (per-country adoption)",
+   "url": "https://www.google.com/intl/en/ipv6/statistics.html",
+   "licence": "fact reference"
+  },
+  {
+   "title": "RFC 5737 — documentation addresses used in this lab",
+   "url": "https://www.rfc-editor.org/rfc/rfc5737",
+   "licence": "fact reference"
+  }
+ ]
+}

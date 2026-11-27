@@ -1,0 +1,313 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.programming.03",
+ "level": 2,
+ "classes": [
+  6,
+  7
+ ],
+ "unit": "programming",
+ "title": {
+  "en": "Decisions: if, elif and else",
+  "hi": "निर्णय: if, elif और else",
+  "hinglish": "Decisions: if, elif aur else"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [
+  "L2.programming.02"
+ ],
+ "topics": [
+  "prog.conditions"
+ ],
+ "outcomes": [
+  {
+   "en": "Write if / elif / else to make decisions",
+   "hi": "निर्णय के लिए if / elif / else लिख सकते हो",
+   "hinglish": "Decisions ke liye if / elif / else likh sakte ho"
+  },
+  {
+   "en": "Use comparisons (==, !=, <, >=) and and / or / not",
+   "hi": "तुलना (==, !=, <, >=) और and / or / not उपयोग कर सकते हो",
+   "hinglish": "Comparisons (==, !=, <, >=) aur and / or / not use kar sakte ho"
+  },
+  {
+   "en": "Trace which branch runs",
+   "hi": "कौन-सी शाखा चलेगी, ट्रेस कर सकते हो",
+   "hinglish": "Kaunsi branch chalegi trace kar sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Condition",
+   "hinglish": "True ya False wala sawaal",
+   "en": "An expression that is True or False: marks >= 33",
+   "hi": "ऐसा व्यंजक जो True या False हो: marks >= 33"
+  },
+  {
+   "term": "Branch",
+   "hinglish": "Raasta jo condition ke hisaab se chuna jaata hai",
+   "en": "A block of code that runs only if its condition is True",
+   "hi": "कोड का भाग जो केवल शर्त सत्य होने पर चलता है"
+  },
+  {
+   "term": "Indentation",
+   "hinglish": "Line ke aage 4 spaces",
+   "en": "Spaces at the start of a line that show which code belongs to the if",
+   "hi": "लाइन की शुरुआत की जगह जो बताती है कौन-सा कोड if का है"
+  },
+  {
+   "term": "==",
+   "hinglish": "Barabar hai kya? (check)",
+   "en": "Comparison: is equal to. One = stores, two == compares",
+   "hi": "तुलना: बराबर है। एक = रखता है, दो == तुलना करते हैं"
+  },
+  {
+   "term": "Boolean logic",
+   "hinglish": "and / or / not",
+   "en": "Combining conditions: and (both), or (either), not (opposite)",
+   "hi": "शर्तें जोड़ना: and (दोनों), or (कोई एक), not (उल्टा)"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "A condition is a yes/no question. If it is True, the indented block runs.",
+    "hi": "शर्त हाँ/ना वाला प्रश्न है। सत्य हो तो इंडेंट वाला भाग चलता है।",
+    "hinglish": "Condition haan/naa wala sawaal hai. True ho to indented block chalta hai."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "The colon and the 4-space indent are part of Python’s grammar.",
+    "hi": "कोलन और 4-स्पेस इंडेंट पायथन के व्याकरण का हिस्सा हैं।",
+    "hinglish": "Colon aur 4-space indent Python ke grammar ka hissa hain."
+   },
+   "code": "temp = 41\nif temp > 40:\n    print(\"Heatwave! Drink water 💧\")\nelse:\n    print(\"Normal day\")"
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "elif checks the next condition only if the earlier ones were False. The first True branch wins; the rest are skipped.",
+    "hi": "elif अगली शर्त तभी जाँचता है जब पिछली असत्य हों। पहली सत्य शाखा जीतती है; बाक़ी छूट जाती हैं।",
+    "hinglish": "elif agli condition tabhi check karta hai jab pichhli False hon. Pehli True branch jeet-ti hai; baaki skip."
+   },
+   "visual": "lab:py-tracer#ifelse",
+   "narration": {
+    "en": "Watch the yellow line jump over the branches that are not chosen.",
+    "hi": "देखो पीली लाइन न चुनी गई शाखाओं को कैसे लाँघ जाती है।",
+    "hinglish": "Dekho yellow line un branches ko kaise kood jaati hai jo chuni nahi gayi."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Combine conditions: and needs both, or needs at least one, not flips it.",
+    "hi": "शर्तें जोड़ो: and में दोनों, or में कम से कम एक, not उलट देता है।",
+    "hinglish": "Conditions jodo: and mein dono, or mein kam se kam ek, not ulta kar deta hai."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "These are the AND, OR and NOT gates you met in Logic Gates!",
+    "hi": "ये वही AND, OR और NOT गेट हैं जो लॉजिक गेट में मिले थे!",
+    "hinglish": "Yeh wahi AND, OR aur NOT gates hain jo Logic Gates mein mile the!"
+   },
+   "code": "age = 13\nhas_ticket = True\nif age >= 12 and has_ticket:\n    print(\"Enter the science show\")"
+  }
+ ],
+ "play": {
+  "lab": "py-tracer",
+  "config": {
+   "program": "ifelse"
+  },
+  "goal": {
+   "en": "Run the grade program with marks = 78, predict which lines are skipped, then try other marks in Edit mode.",
+   "hi": "marks = 78 के साथ ग्रेड प्रोग्राम चलाओ, अनुमान लगाओ कौन-सी लाइनें छूटेंगी, फिर Edit मोड में दूसरे अंक आज़माओ।",
+   "hinglish": "Grade program marks = 78 ke saath chalao, predict karo kaunsi lines skip hongi, phir Edit mode mein doosre marks try karo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Writing good decisions",
+    "hi": "अच्छे निर्णय लिखना",
+    "hinglish": "Achhe decisions likhna"
+   },
+   "body": {
+    "en": "Comparisons: == (equal), != (not equal), <, >, <=, >=. A common bug is writing = (store) instead of == (compare). Order matters in an if/elif chain: check the strictest condition first (>= 90 before >= 75), otherwise every high score would match the first, easier test. else has no condition — it catches everything left. Every condition becomes True or False (a bool), so you can store it: passed = marks >= 33. Python uses indentation (4 spaces is the standard) instead of { } brackets, so mixing tabs and spaces causes an IndentationError.",
+    "hi": "तुलना: == (बराबर), != (बराबर नहीं), <, >, <=, >=। आम बग है == (तुलना) की जगह = (रखना) लिखना। if/elif शृंखला में क्रम मायने रखता है: सबसे सख़्त शर्त पहले जाँचो (>= 90, >= 75 से पहले), नहीं तो हर ऊँचा अंक पहली, आसान जाँच में ही फँस जाएगा। else की कोई शर्त नहीं — वह बाक़ी सब पकड़ता है। हर शर्त True या False (bool) बनती है, इसलिए उसे रख सकते हो: passed = marks >= 33। पायथन { } की जगह इंडेंटेशन (मानक 4 स्पेस) उपयोग करता है, इसलिए टैब और स्पेस मिलाने से IndentationError आती है।",
+    "hinglish": "Comparisons: == (equal), != (not equal), <, >, <=, >=. Common bug hai == (compare) ki jagah = (store) likhna. if/elif chain mein order matter karta hai: sabse strict condition pehle check karo (>= 90, >= 75 se pehle), warna har high score pehle, aasaan test mein hi match ho jaayega. else ki koi condition nahi — woh baaki sab pakadta hai. Har condition True ya False (bool) banti hai, isliye usse store kar sakte ho: passed = marks >= 33. Python { } brackets ki jagah indentation (standard 4 spaces) use karta hai, isliye tabs aur spaces mix karne se IndentationError aati hai."
+   },
+   "analogy": {
+    "hinglish": "if/elif/else = railway points: train ek hi track pe jaati hai, pehla khula signal jidhar le jaaye.",
+    "en": "if/elif/else = railway points: the train goes down only one track — wherever the first open signal sends it.",
+    "hi": "if/elif/else = रेलवे पॉइंट: ट्रेन एक ही पटरी पर जाती है, जिधर पहला खुला सिग्नल ले जाए।"
+   },
+   "realExample": {
+    "en": "A UPI app runs checks like: if amount > balance: show “Insufficient balance” elif PIN is wrong: refuse, else: send money.",
+    "hi": "UPI ऐप ऐसी जाँच चलाता है: if राशि > शेष: “Insufficient balance” दिखाओ elif PIN ग़लत: मना करो, else: पैसे भेजो।",
+    "hinglish": "UPI app aise checks chalata hai: if amount > balance: “Insufficient balance” dikhao elif PIN galat: mana karo, else: paise bhejo."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write a program: if the temperature is above 40 print a heatwave warning, elif below 10 print “wear a sweater”, else print “pleasant”.",
+   "hi": "प्रोग्राम लिखो: तापमान 40 से ऊपर हो तो लू की चेतावनी, elif 10 से नीचे हो तो “स्वेटर पहनो”, else “सुहावना” छापो।",
+   "hinglish": "Program likho: temperature 40 se upar ho to heatwave warning, elif 10 se neeche to “sweater pehno”, else “pleasant”."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "marks = 78. Which grade does the program give? (>=90 A1, >=75 A2, >=60 B1, else C)",
+     "hi": "marks = 78। कौन-सा ग्रेड मिलेगा? (>=90 A1, >=75 A2, >=60 B1, वरना C)",
+     "hinglish": "marks = 78. Kaunsa grade milega? (>=90 A1, >=75 A2, >=60 B1, warna C)"
+    },
+    "options": [
+     "A1",
+     "A2",
+     "B1",
+     "C"
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "78 is not ≥ 90, but it is ≥ 75, so A2 — and checking stops there.",
+     "hi": "78, 90 से कम पर 75 से ज़्यादा या बराबर है, इसलिए A2 — और जाँच वहीं रुकती है।",
+     "hinglish": "78, 90 se kam par 75 se zyada ya barabar hai, isliye A2 — aur check wahin ruk jaata hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which line correctly checks if x is equal to 10?",
+     "hi": "कौन-सी लाइन सही जाँचती है कि x, 10 के बराबर है?",
+     "hinglish": "Kaunsi line sahi check karti hai ki x, 10 ke barabar hai?"
+    },
+    "options": [
+     "if x = 10:",
+     "if x => 10:",
+     "if x == 10:"
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "== compares; a single = stores a value and is a syntax error inside if.",
+     "hi": "== तुलना करता है; एक = मान रखता है और if में सिंटैक्स त्रुटि है।",
+     "hinglish": "== compare karta hai; ek = value store karta hai aur if mein syntax error hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "age = 15, member = False. Is “age > 12 and member” True?",
+     "hi": "age = 15, member = False। क्या “age > 12 and member” सत्य है?",
+     "hinglish": "age = 15, member = False. Kya “age > 12 and member” True hai?"
+    },
+    "options": [
+     "True",
+     "False"
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "and needs BOTH to be True; member is False, so the whole thing is False.",
+     "hi": "and में दोनों सत्य होने चाहिए; member असत्य है, तो पूरा असत्य।",
+     "hinglish": "and mein DONO True hone chahiye; member False hai, to poora False."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why must “>= 90” be checked before “>= 75”?",
+     "hi": "“>= 90” को “>= 75” से पहले क्यों जाँचें?",
+     "hinglish": "“>= 90” ko “>= 75” se pehle kyun check karein?"
+    },
+    "options": [
+     {
+      "en": "Otherwise high marks match the easier test first",
+      "hi": "वरना ऊँचे अंक पहले आसान जाँच में फँसेंगे",
+      "hinglish": "Warna high marks pehle aasaan test mein match ho jaayenge"
+     },
+     {
+      "en": "Python only reads big numbers first",
+      "hi": "पायथन पहले बड़ी संख्याएँ पढ़ता है",
+      "hinglish": "Python pehle bade numbers padhta hai"
+     },
+     {
+      "en": "It makes no difference",
+      "hi": "कोई फ़र्क़ नहीं पड़ता",
+      "hinglish": "Koi farak nahi padta"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "A 95 also passes >= 75. If that came first, 95 would wrongly get A2.",
+     "hi": "95 भी >= 75 पास करता है। वह पहले हो तो 95 को ग़लत A2 मिलेगा।",
+     "hinglish": "95 bhi >= 75 pass karta hai. Woh pehle ho to 95 ko galat A2 milega."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "short",
+    "prompt": {
+     "en": "What does this print? x = 7, then: if x % 2 == 0: print(\"even\") else: print(\"odd\")",
+     "hi": "यह क्या छापेगा? x = 7, फिर: if x % 2 == 0: print(\"even\") else: print(\"odd\")",
+     "hinglish": "Yeh kya print karega? x = 7, phir: if x % 2 == 0: print(\"even\") else: print(\"odd\")"
+    },
+    "answer": [
+     "odd"
+    ],
+    "explain": {
+     "en": "7 % 2 is 1, not 0, so the else branch runs.",
+     "hi": "7 % 2 = 1, 0 नहीं, इसलिए else चलता है।",
+     "hinglish": "7 % 2 = 1, 0 nahi, isliye else chalta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "lc",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Answer the predict question for the If / elif / else program.",
+     "hi": "If / elif / else प्रोग्राम का अनुमान प्रश्न हल करो।",
+     "hinglish": "If / elif / else program ka predict sawaal solve karo."
+    },
+    "answer": {
+     "lab": "py-tracer",
+     "event": "mission:complete",
+     "program": "ifelse"
+    },
+    "explain": {
+     "en": "Lines 3 and 6–9 are skipped.",
+     "hi": "लाइन 3 और 6–9 छूटती हैं।",
+     "hinglish": "Lines 3 aur 6–9 skip hoti hain."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Python documentation — The Python Tutorial",
+   "url": "https://docs.python.org/3/tutorial/",
+   "licence": "PSF licence (fact reference only)"
+  },
+  {
+   "title": "Python docs — if statements",
+   "url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
+   "licence": "PSF licence (fact reference only)"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

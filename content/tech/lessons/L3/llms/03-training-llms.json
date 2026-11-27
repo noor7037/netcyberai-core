@@ -1,0 +1,381 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.llms.03",
+ "level": 3,
+ "classes": [
+  11,
+  12
+ ],
+ "unit": "llms",
+ "title": {
+  "en": "How LLMs are trained: pre-training, fine-tuning, RLHF",
+  "hi": "एलएलएम कैसे प्रशिक्षित होते हैं: प्री-ट्रेनिंग, फ़ाइन-ट्यूनिंग, आरएलएचएफ़",
+  "hinglish": "LLMs kaise train hote hain: pre-training, fine-tuning, RLHF"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [
+  "L3.llms.02"
+ ],
+ "outcomes": [
+  {
+   "en": "Describe the three training stages of a chat model",
+   "hinglish": "Chat model ke teen training stages samjhao",
+   "hi": "चैट मॉडल के तीन प्रशिक्षण चरणों का वर्णन करना"
+  },
+  {
+   "en": "Explain how RLHF uses human preference comparisons",
+   "hinglish": "Samjhao RLHF human preference comparisons kaise use karta hai",
+   "hi": "समझाना कि RLHF मानव पसंद-तुलना कैसे इस्तेमाल करता है"
+  },
+  {
+   "en": "Name what scaling laws say about data, parameters and compute",
+   "hinglish": "Scaling laws data, parameters aur compute ke baare mein kya kehte hain",
+   "hi": "बताना कि स्केलिंग नियम डेटा, पैरामीटर और कंप्यूट के बारे में क्या कहते हैं"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Pre-training",
+   "hinglish": "Internet-bhar text par agla token predict karna seekhna",
+   "en": "Self-supervised next-token training on a huge text corpus",
+   "hi": "विशाल पाठ-संग्रह पर स्व-पर्यवेक्षित अगले-टोकन प्रशिक्षण"
+  },
+  {
+   "term": "Base model",
+   "hinglish": "Sirf pre-trained model — text continue karta hai, instructions nahi maanta",
+   "en": "A model after pre-training only",
+   "hi": "सिर्फ़ पूर्व-प्रशिक्षण के बाद का मॉडल"
+  },
+  {
+   "term": "Fine-tuning",
+   "hinglish": "Khaas examples par aage training",
+   "en": "Further training on a smaller, targeted dataset",
+   "hi": "छोटे, लक्षित डेटासेट पर आगे प्रशिक्षण"
+  },
+  {
+   "term": "RLHF",
+   "hinglish": "Insaano ki pasand se model ko sudharna",
+   "en": "Reinforcement learning from human feedback",
+   "hi": "मानव प्रतिक्रिया से सुदृढ़ीकरण अधिगम"
+  },
+  {
+   "term": "Reward model",
+   "hinglish": "Jawab kitna accha hai, score dene wala model",
+   "en": "A model trained to predict which answer humans prefer",
+   "hi": "ऐसा मॉडल जो अनुमान लगाता है कि इंसान कौन-सा उत्तर पसंद करेंगे"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Stage 1, pre-training: trillions of tokens of books, websites and code; the model learns to predict the next token. This costs weeks on thousands of GPUs.",
+    "hi": "चरण 1, प्री-ट्रेनिंग: किताबों, वेबसाइटों और कोड के खरबों टोकन; मॉडल अगला टोकन अनुमान लगाना सीखता है। इसमें हज़ारों जीपीयू पर हफ़्ते लगते हैं।",
+    "hinglish": "Stage 1, pre-training: kitaabon, websites aur code ke trillions tokens; model agla token predict karna seekhta hai. Hazaaron GPUs par hafte lagte hain."
+   },
+   "visual": "anim:pretrain-firehose",
+   "narration": {
+    "en": "Stage 1, pre-training: trillions of tokens of books, websites and code; the model learns to predict the next token. This costs weeks on thousands of GPUs.",
+    "hi": "चरण 1, प्री-ट्रेनिंग: किताबों, वेबसाइटों और कोड के खरबों टोकन; मॉडल अगला टोकन अनुमान लगाना सीखता है। इसमें हज़ारों जीपीयू पर हफ़्ते लगते हैं।",
+    "hinglish": "Stage 1, pre-training: kitaabon, websites aur code ke trillions tokens; model agla token predict karna seekhta hai. Hazaaron GPUs par hafte lagte hain."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Stage 2, supervised fine-tuning: tens of thousands of example conversations written by people teach the model to follow instructions.",
+    "hi": "चरण 2, सुपरवाइज़्ड फ़ाइन-ट्यूनिंग: लोगों के लिखे हज़ारों उदाहरण संवाद मॉडल को निर्देश मानना सिखाते हैं।",
+    "hinglish": "Stage 2, supervised fine-tuning: logon ke likhe hazaaron example conversations model ko instructions follow karna sikhate hain."
+   },
+   "visual": "anim:sft-examples",
+   "narration": {
+    "en": "Stage 2, supervised fine-tuning: tens of thousands of example conversations written by people teach the model to follow instructions.",
+    "hi": "चरण 2, सुपरवाइज़्ड फ़ाइन-ट्यूनिंग: लोगों के लिखे हज़ारों उदाहरण संवाद मॉडल को निर्देश मानना सिखाते हैं।",
+    "hinglish": "Stage 2, supervised fine-tuning: logon ke likhe hazaaron example conversations model ko instructions follow karna sikhate hain."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Stage 3, RLHF: people compare two answers, a reward model learns their preferences, and RL nudges the chat model towards preferred answers.",
+    "hi": "चरण 3, आरएलएचएफ़: लोग दो जवाबों की तुलना करते हैं, एक रिवॉर्ड मॉडल उनकी पसंद सीखता है, और आरएल चैट मॉडल को पसंदीदा जवाबों की ओर ले जाता है।",
+    "hinglish": "Stage 3, RLHF: log do jawab compare karte hain, reward model unki pasand seekhta hai, aur RL chat model ko pasandida jawabon ki taraf le jaata hai."
+   },
+   "visual": "anim:rlhf-compare",
+   "narration": {
+    "en": "Stage 3, RLHF: people compare two answers, a reward model learns their preferences, and RL nudges the chat model towards preferred answers.",
+    "hi": "चरण 3, आरएलएचएफ़: लोग दो जवाबों की तुलना करते हैं, एक रिवॉर्ड मॉडल उनकी पसंद सीखता है, और आरएल चैट मॉडल को पसंदीदा जवाबों की ओर ले जाता है।",
+    "hinglish": "Stage 3, RLHF: log do jawab compare karte hain, reward model unki pasand seekhta hai, aur RL chat model ko pasandida jawabon ki taraf le jaata hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "agent-loop",
+  "config": {
+   "scenario": "rlhf-ranking"
+  },
+  "goal": {
+   "en": "Act as a human rater: rank pairs of answers. Watch the toy reward model learn your preferences and the chat model's answers shift.",
+   "hinglish": "Human rater bano: answer pairs ko rank karo. Dekho toy reward model tumhari pasand kaise seekhta hai aur chat model ke jawab kaise badalte hain.",
+   "hi": "मानव मूल्यांकनकर्ता बनो: उत्तरों के जोड़ों को क्रम दो। देखो खिलौना इनाम-मॉडल तुम्हारी पसंद सीखता है और चैट मॉडल के उत्तर बदलते हैं।"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Three stages from text-predictor to assistant",
+    "hi": "पाठ-अनुमानक से सहायक तक तीन चरण",
+    "hinglish": "Text-predictor se assistant tak teen stages"
+   },
+   "body": {
+    "en": "Pre-training is self-supervised: the \"label\" is just the next token in real text, so no human labelling is needed and the data can be trillions of tokens. The resulting base model has absorbed grammar, facts, reasoning patterns and also errors and biases from its data, but asked \"What is the capital of France?\" it may simply continue with more quiz questions. Supervised fine-tuning (SFT) on curated instruction–response pairs teaches the assistant format. Preference tuning then improves helpfulness and safety: RLHF trains a reward model on human comparisons (\"A is better than B\") and optimises the chat model against it (often with the PPO algorithm), with a penalty for drifting too far from the SFT model. Newer methods such as DPO learn directly from preference pairs, and \"constitutional AI\" uses written principles plus AI feedback. Since 2024, reasoning models are also trained with RL on problems whose answers can be checked automatically, such as maths and code.",
+    "hi": "प्री-ट्रेनिंग सेल्फ़-सुपरवाइज़्ड है: \"लेबल\" असली पाठ का अगला टोकन ही है, तो मानवीय लेबल की ज़रूरत नहीं और डेटा खरबों टोकन हो सकता है। बना बेस मॉडल व्याकरण, तथ्य, तर्क के पैटर्न और डेटा की गलतियाँ व पक्षपात भी सोख लेता है, पर \"फ़्रांस की राजधानी क्या है?\" पूछने पर वह शायद और क्विज़ सवाल लिखने लगे। चुने हुए निर्देश-जवाब जोड़ों पर सुपरवाइज़्ड फ़ाइन-ट्यूनिंग (एसएफ़टी) सहायक का ढंग सिखाती है। फिर पसंद-आधारित ट्यूनिंग मददगारी और सुरक्षा सुधारती है: आरएलएचएफ़ मानवीय तुलनाओं (\"A, B से बेहतर\") पर रिवॉर्ड मॉडल सिखाता है और चैट मॉडल को उसके ख़िलाफ़ अनुकूलित करता है (अक्सर पीपीओ एल्गोरिदम से), एसएफ़टी मॉडल से बहुत दूर भटकने पर दंड के साथ। डीपीओ जैसे नए तरीके सीधे पसंद-जोड़ों से सीखते हैं, और \"कॉन्स्टिट्यूशनल एआई\" लिखे सिद्धांत और एआई फ़ीडबैक इस्तेमाल करता है। 2024 से रीज़निंग मॉडल ऐसे सवालों पर आरएल से भी प्रशिक्षित होते हैं जिनके जवाब अपने आप जाँचे जा सकें, जैसे गणित और कोड।",
+    "hinglish": "Pre-training self-supervised hai: \"label\" asli text ka agla token hi hai, to human labelling nahi chahiye aur data trillions tokens ho sakta hai. Bana base model grammar, facts, reasoning patterns aur data ki galtiyan aur bias bhi sokh leta hai, par \"France ki capital kya hai?\" poochho to shayad aur quiz questions likhne lage. Curated instruction-response pairs par supervised fine-tuning (SFT) assistant ka format sikhati hai. Phir preference tuning helpfulness aur safety sudhaarti hai: RLHF human comparisons (\"A, B se behtar\") par reward model sikhata hai aur chat model ko uske against optimise karta hai (aksar PPO algorithm se), SFT model se bahut door bhatakne par penalty ke saath. DPO jaise naye methods seedha preference pairs se seekhte hain, aur \"constitutional AI\" likhe principles aur AI feedback use karta hai. 2024 se reasoning models aise problems par RL se bhi train hote hain jinke jawab automatically check ho sakein, jaise maths aur code."
+   },
+   "analogy": {
+    "hinglish": "Pre-training = bachpan se lakhon kitaabein padhna; SFT = interview ki practice; RLHF = mentor ka feedback \"yeh jawab behtar tha\".",
+    "en": "Pre-training = reading lakhs of books since childhood; SFT = interview practice; RLHF = a mentor's feedback, \"this answer was better\".",
+    "hi": "पूर्व-प्रशिक्षण = बचपन से लाखों किताबें पढ़ना; SFT = साक्षात्कार का अभ्यास; RLHF = मार्गदर्शक की प्रतिक्रिया \"यह उत्तर बेहतर था\"।"
+   },
+   "realExample": {
+    "en": "InstructGPT (OpenAI, 2022) showed that a 1.3-billion-parameter model tuned with RLHF was preferred by raters over the 175-billion-parameter base GPT-3.",
+    "hinglish": "InstructGPT (OpenAI, 2022) ne dikhaya ki RLHF se tune kiya 1.3 billion parameter model raters ko 175 billion parameter wale base GPT-3 se zyada pasand aaya.",
+    "hi": "InstructGPT (OpenAI, 2022) ने दिखाया कि RLHF से ट्यून किया गया 1.3 अरब-पैरामीटर मॉडल मूल्यांकनकर्ताओं को 175 अरब-पैरामीटर वाले मूल GPT-3 से अधिक पसंद आया।"
+   }
+  },
+  {
+   "heading": {
+    "en": "Scale, cost and open models",
+    "hi": "पैमाना, लागत और खुले मॉडल",
+    "hinglish": "Scale, cost aur open models"
+   },
+   "body": {
+    "en": "Scaling laws (Kaplan et al. 2020; Hoffmann et al. 2022, \"Chinchilla\") found that loss falls predictably as you increase parameters, data and compute together; Chinchilla suggested about 20 training tokens per parameter for compute-efficient training, and many current models train on far more. Frontier training runs cost tens to hundreds of millions of dollars in compute. Not every team trains from scratch: open-weight models (Llama, Mistral, Gemma, Qwen, DeepSeek and Indian models from Sarvam and others) can be downloaded and fine-tuned cheaply with methods like LoRA, which trains small add-on matrices instead of all weights. Distillation trains a small \"student\" model to imitate a large \"teacher\", which is how phone-sized models are made.",
+    "hi": "स्केलिंग नियमों (कपलान व अन्य 2020; हॉफ़मैन व अन्य 2022, \"चिंचिला\") ने पाया कि पैरामीटर, डेटा और कंप्यूट साथ बढ़ाने पर लॉस अनुमान के मुताबिक गिरता है; चिंचिला ने कंप्यूट-कुशल प्रशिक्षण के लिए प्रति पैरामीटर लगभग 20 टोकन सुझाए, और आज कई मॉडल इससे कहीं ज़्यादा पर प्रशिक्षित होते हैं। अग्रणी प्रशिक्षण पर कंप्यूट में करोड़ों डॉलर लगते हैं। हर टीम शून्य से नहीं बनाती: खुले भार वाले मॉडल (लामा, मिस्ट्रल, जेम्मा, क्वेन, डीपसीक और सर्वम जैसे भारतीय मॉडल) डाउनलोड करके लोरा जैसे तरीकों से सस्ते में फ़ाइन-ट्यून हो सकते हैं, जो सारे भार के बजाय छोटे जोड़ मैट्रिक्स सिखाता है। डिस्टिलेशन एक छोटे \"छात्र\" मॉडल को बड़े \"शिक्षक\" की नकल सिखाता है; फ़ोन-आकार के मॉडल ऐसे ही बनते हैं।",
+    "hinglish": "Scaling laws (Kaplan et al. 2020; Hoffmann et al. 2022, \"Chinchilla\") ne paaya ki parameters, data aur compute saath badhane par loss predictable tareeke se girta hai; Chinchilla ne compute-efficient training ke liye per parameter lagbhag 20 tokens suggest kiye, aur aaj kai models isse kahin zyada par train hote hain. Frontier training par compute mein crores of dollars lagte hain. Har team scratch se nahi banati: open-weight models (Llama, Mistral, Gemma, Qwen, DeepSeek aur Sarvam jaise Indian models) download karke LoRA jaise methods se saste mein fine-tune ho sakte hain, jo saare weights ki jagah chhoti add-on matrices sikhata hai. Distillation ek chhote \"student\" model ko bade \"teacher\" ki nakal sikhata hai; phone-size models aise hi bante hain."
+   },
+   "analogy": {
+    "hinglish": "Bade restaurant ki recipe (open model) lekar apne shehar ke swaad ke hisaab se thoda masala badalna = fine-tuning. Poora restaurant khud banana = pre-training.",
+    "en": "Taking a big restaurant's recipe (open model) and adjusting the masala for your city's taste = fine-tuning. Building the whole restaurant yourself = pre-training.",
+    "hi": "बड़े रेस्तराँ की रेसिपी (खुला मॉडल) लेकर अपने शहर के स्वाद के हिसाब से मसाला बदलना = फ़ाइन-ट्यूनिंग। पूरा रेस्तराँ ख़ुद बनाना = पूर्व-प्रशिक्षण।"
+   },
+   "realExample": {
+    "en": "The IndiaAI Mission subsidises GPU access (tens of thousands of GPUs were made available in 2025) so Indian teams can build foundation models for Indian languages.",
+    "hinglish": "IndiaAI Mission GPU access subsidise karta hai (2025 mein hazaaron GPUs available kiye gaye) taaki Indian teams Indian languages ke liye foundation models bana sakein.",
+    "hi": "इंडियाएआई मिशन GPU पहुँच पर सब्सिडी देता है (2025 में हज़ारों-हज़ार GPU उपलब्ध कराए गए) ताकि भारतीय टीमें भारतीय भाषाओं के लिए आधार मॉडल बना सकें।"
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "You want a chatbot that answers in polite Marathi for a farmer helpline. Write which stage you would change (pre-train, fine-tune, or prompt), what data you need, and how you would test it.",
+   "hinglish": "Tumhe farmer helpline ke liye polite Marathi mein jawab dene wala chatbot chahiye. Likho kaunsa stage badloge (pre-train, fine-tune, ya prompt), kaunsa data chahiye, aur test kaise karoge.",
+   "hi": "तुम किसान हेल्पलाइन के लिए विनम्र मराठी में उत्तर देने वाला चैटबॉट चाहते हो। लिखो कौन-सा चरण बदलोगे (पूर्व-प्रशिक्षण, फ़ाइन-ट्यून, या प्रॉम्प्ट), कौन-सा डेटा चाहिए, और कैसे परखोगे।"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "order",
+    "prompt": {
+     "en": "Order the stages of building a chat assistant.",
+     "hi": "चैट सहायक बनाने के चरणों को क्रम में लगाएँ।",
+     "hinglish": "Chat assistant banane ke stages ko order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Pre-train on huge text",
+      "hinglish": "Huge text par pre-train",
+      "hi": "विशाल पाठ पर पूर्व-प्रशिक्षण"
+     },
+     {
+      "en": "Supervised fine-tuning on example chats",
+      "hinglish": "Example chats par SFT",
+      "hi": "उदाहरण बातचीत पर पर्यवेक्षित फ़ाइन-ट्यूनिंग"
+     },
+     {
+      "en": "Train a reward model from human comparisons",
+      "hinglish": "Human comparisons se reward model",
+      "hi": "मानव तुलनाओं से इनाम-मॉडल प्रशिक्षित करना"
+     },
+     {
+      "en": "RL against the reward model",
+      "hinglish": "Reward model ke against RL",
+      "hi": "इनाम-मॉडल के विरुद्ध RL"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "Base knowledge first, then format, then preferences learned and applied.",
+     "hi": "पहले आधार ज्ञान, फिर ढंग, फिर पसंद सीखी और लागू की जाती है।",
+     "hinglish": "Pehle base knowledge, phir format, phir preferences seekhi aur lagaayi jaati hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "What does a human rater usually provide in RLHF?",
+     "hi": "आरएलएचएफ़ में मानव मूल्यांकनकर्ता आमतौर पर क्या देता है?",
+     "hinglish": "RLHF mein human rater usually kya deta hai?"
+    },
+    "options": [
+     {
+      "en": "Which of two answers is better",
+      "hinglish": "Do jawabon mein kaunsa behtar hai",
+      "hi": "दो उत्तरों में कौन बेहतर है"
+     },
+     {
+      "en": "The next token for every sentence",
+      "hinglish": "Har sentence ka next token",
+      "hi": "हर वाक्य का अगला टोकन"
+     },
+     {
+      "en": "New GPU hardware",
+      "hinglish": "Naya GPU",
+      "hi": "नया GPU हार्डवेयर"
+     },
+     {
+      "en": "The model's weights",
+      "hinglish": "Model ke weights",
+      "hi": "मॉडल के भार"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Comparisons are easier and more consistent for people than writing scores; the reward model learns from many such comparisons.",
+     "hi": "लोगों के लिए अंक लिखने से तुलना आसान और ज़्यादा सुसंगत है; रिवॉर्ड मॉडल ऐसी कई तुलनाओं से सीखता है।",
+     "hinglish": "Logon ke liye score likhne se comparison aasaan aur consistent hai; reward model aisi kai comparisons se seekhta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why is pre-training called self-supervised?",
+     "hi": "प्री-ट्रेनिंग को सेल्फ़-सुपरवाइज़्ड क्यों कहते हैं?",
+     "hinglish": "Pre-training ko self-supervised kyun kehte hain?"
+    },
+    "options": [
+     {
+      "en": "The labels (next tokens) come from the text itself",
+      "hinglish": "Labels (next tokens) text se hi aate hain",
+      "hi": "लेबल (अगले टोकन) स्वयं पाठ से आते हैं"
+     },
+     {
+      "en": "Nobody supervises the GPUs",
+      "hinglish": "GPUs ko koi supervise nahi karta",
+      "hi": "GPU की कोई निगरानी नहीं करता"
+     },
+     {
+      "en": "It uses no data",
+      "hinglish": "Data use nahi hota",
+      "hi": "यह कोई डेटा नहीं इस्तेमाल करता"
+     },
+     {
+      "en": "The model labels humans",
+      "hinglish": "Model insaano ko label karta hai",
+      "hi": "मॉडल इंसानों को लेबल करता है"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Hide the next token, ask the model to predict it, check against the real text: no human labeller needed.",
+     "hi": "अगला टोकन छिपाओ, मॉडल से अनुमान लगवाओ, असली पाठ से जाँचो: मानव लेबलर की ज़रूरत नहीं।",
+     "hinglish": "Agla token chhupao, model se predict karwao, asli text se check karo: human labeller nahi chahiye."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "LoRA is used to…",
+     "hi": "लोरा किसलिए इस्तेमाल होता है?",
+     "hinglish": "LoRA kis liye use hota hai?"
+    },
+    "options": [
+     {
+      "en": "Fine-tune a big model cheaply by training small add-on matrices",
+      "hinglish": "Chhoti add-on matrices train karke bade model ko sasta fine-tune karna",
+      "hi": "छोटे जोड़-मैट्रिक्स प्रशिक्षित करके बड़े मॉडल को सस्ते में फ़ाइन-ट्यून करना"
+     },
+     {
+      "en": "Delete a model",
+      "hinglish": "Model delete karna",
+      "hi": "मॉडल मिटाना"
+     },
+     {
+      "en": "Make GPUs faster",
+      "hinglish": "GPU tez karna",
+      "hi": "GPU तेज़ करना"
+     },
+     {
+      "en": "Translate tokens to images",
+      "hinglish": "Tokens ko images banana",
+      "hi": "टोकन को तस्वीरों में बदलना"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Low-rank adaptation freezes the original weights and learns a few million extra parameters, so it fits on a single GPU.",
+     "hi": "लो-रैंक अनुकूलन मूल भार जमा देता है और कुछ लाख-करोड़ अतिरिक्त पैरामीटर सीखता है, तो एक जीपीयू पर चल जाता है।",
+     "hinglish": "Low-rank adaptation original weights freeze karta hai aur kuch million extra parameters seekhta hai, to ek GPU par chal jaata hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Rank 5 answer pairs and watch the reward model update.",
+     "hi": "5 जवाब-जोड़ों को रैंक करें और रिवॉर्ड मॉडल अपडेट होते देखें।",
+     "hinglish": "5 answer pairs rank karo aur reward model update hote dekho."
+    },
+    "answer": {
+     "event": "rlhf-ranked",
+     "count": 5
+    },
+    "explain": {
+     "en": "Each comparison shifts the toy reward model; the chat model then prefers answers with the qualities you rewarded.",
+     "hi": "हर तुलना खिलौना रिवॉर्ड मॉडल को बदलती है; फिर चैट मॉडल उन गुणों वाले जवाब पसंद करता है जिन्हें आपने इनाम दिया।",
+     "hinglish": "Har comparison toy reward model ko badalti hai; phir chat model un qualities wale jawab pasand karta hai jinhe tumne reward diya."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "ai.llm-training",
+  "ai.llm-rlhf"
+ ],
+ "sources": [
+  {
+   "title": "Ouyang et al. (2022) Training language models to follow instructions with human feedback",
+   "url": "https://arxiv.org/abs/2203.02155",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Hoffmann et al. (2022) Training Compute-Optimal LLMs (Chinchilla)",
+   "url": "https://arxiv.org/abs/2203.15556",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Hu et al. (2021) LoRA",
+   "url": "https://arxiv.org/abs/2106.09685",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Rafailov et al. (2023) Direct Preference Optimization",
+   "url": "https://arxiv.org/abs/2305.18290",
+   "licence": "fact reference"
+  }
+ ]
+}

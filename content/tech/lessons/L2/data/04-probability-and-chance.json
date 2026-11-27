@@ -1,0 +1,359 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.data.04",
+ "level": 2,
+ "classes": [
+  7,
+  8
+ ],
+ "unit": "data",
+ "title": {
+  "en": "Probability: measuring chance",
+  "hi": "संभावना: मौक़े को मापना",
+  "hinglish": "Probability: chance ko naapna"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [
+  "L2.data.03"
+ ],
+ "topics": [
+  "ds.probability",
+  "ds.collect"
+ ],
+ "outcomes": [
+  {
+   "en": "Calculate simple probability as favourable ÷ total outcomes",
+   "hi": "सरल संभावना को अनुकूल ÷ कुल परिणाम के रूप में निकाल सकते हो",
+   "hinglish": "Simple probability ko favourable ÷ total outcomes ki tarah calculate kar sakte ho"
+  },
+  {
+   "en": "Compare theoretical and experimental probability",
+   "hi": "सैद्धांतिक और प्रायोगिक संभावना की तुलना कर सकते हो",
+   "hinglish": "Theoretical aur experimental probability compare kar sakte ho"
+  },
+  {
+   "en": "Explain why more trials give more reliable results",
+   "hi": "समझा सकते हो कि ज़्यादा प्रयास ज़्यादा भरोसेमंद परिणाम क्यों देते हैं",
+   "hinglish": "Samjha sakte ho zyada trials zyada reliable results kyun dete hain"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Probability",
+   "hinglish": "Sambhavna",
+   "en": "A number from 0 (impossible) to 1 (certain) for how likely something is",
+   "hi": "0 (असंभव) से 1 (निश्चित) तक की संख्या कि कुछ कितना संभावित है"
+  },
+  {
+   "term": "Outcome",
+   "hinglish": "Nateeja",
+   "en": "One possible result, such as rolling a 4",
+   "hi": "एक संभावित परिणाम, जैसे 4 आना"
+  },
+  {
+   "term": "Experimental probability",
+   "hinglish": "Prayog se mili sambhavna",
+   "en": "How often something happened ÷ number of trials",
+   "hi": "कुछ कितनी बार हुआ ÷ प्रयासों की संख्या"
+  },
+  {
+   "term": "Law of large numbers",
+   "hinglish": "Bade numbers ka niyam",
+   "en": "With many trials, results get closer to the theoretical probability",
+   "hi": "बहुत प्रयासों में परिणाम सैद्धांतिक संभावना के पास आते हैं"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Probability = favourable outcomes ÷ all equally likely outcomes. A die has 6 faces, one of them a 6, so P(6) = 1/6 ≈ 0.167.",
+    "hi": "संभावना = अनुकूल परिणाम ÷ सभी समान संभावित परिणाम। पासे के 6 फलक हैं, उनमें एक 6, तो P(6) = 1/6 ≈ 0.167।",
+    "hinglish": "Probability = favourable outcomes ÷ saare equally likely outcomes. Dice ke 6 faces hain, unme ek 6, to P(6) = 1/6 ≈ 0.167."
+   },
+   "visual": "compare:0 = impossible (rolling a 7)|1 = certain (rolling less than 7)",
+   "narration": {
+    "en": "Every probability is between 0 and 1.",
+    "hi": "हर संभावना 0 और 1 के बीच होती है।",
+    "hinglish": "Har probability 0 aur 1 ke beech hoti hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Predict, then test it: roll a virtual die hundreds of times and watch the bars.",
+    "hi": "अनुमान लगाओ, फिर जाँचो: आभासी पासा सैकड़ों बार फेंको और दंड देखो।",
+    "hinglish": "Predict karo, phir test karo: virtual dice saikdon baar pheko aur bars dekho."
+   },
+   "visual": "lab:sheet-lab#chance",
+   "narration": {
+    "en": "10 rolls look messy; 300 rolls look fair.",
+    "hi": "10 फेंक बिखरे लगते हैं; 300 फेंक निष्पक्ष लगते हैं।",
+    "hinglish": "10 rolls messy lagte hain; 300 rolls fair lagte hain."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Write probability as a fraction, a decimal or a percentage — all mean the same.",
+    "hi": "संभावना को भिन्न, दशमलव या प्रतिशत में लिखो — सबका एक अर्थ है।",
+    "hinglish": "Probability ko fraction, decimal ya percentage mein likho — sabka ek matlab hai."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "Spreadsheet: =COUNTIF(A2:A301,6)/COUNT(A2:A301)",
+    "hi": "स्प्रेडशीट: =COUNTIF(A2:A301,6)/COUNT(A2:A301)",
+    "hinglish": "Spreadsheet: =COUNTIF(A2:A301,6)/COUNT(A2:A301)"
+   },
+   "code": "coin heads:   1/2 = 0.5   = 50%\ndie shows 6:  1/6 ≈ 0.167 ≈ 16.7%\ndie is even:  3/6 = 0.5   = 50%   (2, 4, 6)\nexperiment: 52 sixes in 300 rolls → 52/300 ≈ 17.3%"
+  }
+ ],
+ "play": {
+  "lab": "sheet-lab",
+  "config": {
+   "tab": "chance"
+  },
+  "goal": {
+   "en": "Predict the chance of a 6, then roll at least 300 times and compare.",
+   "hi": "6 की संभावना का अनुमान लगाओ, फिर कम से कम 300 बार फेंककर तुलना करो।",
+   "hinglish": "6 ki probability predict karo, phir kam se kam 300 baar roll karke compare karo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Chance in real life",
+    "hi": "असल ज़िंदगी में संभावना",
+    "hinglish": "Real life mein chance"
+   },
+   "body": {
+    "en": "Theoretical probability comes from reasoning: if all outcomes are equally likely, P(event) = favourable outcomes ÷ total outcomes, so a fair coin gives P(heads) = 1/2 and a die gives P(even) = 3/6 = 1/2. Experimental probability comes from data: the number of times it happened ÷ the number of trials. With few trials the two can differ a lot (you might get three 6s in five rolls), but as trials increase the experimental value settles near the theoretical one — the law of large numbers, first proved by Jacob Bernoulli and published in 1713. Probability is everywhere: an IMD forecast of “70% chance of rain” means that, in similar conditions, it rained on about 7 days out of 10; cricket analysts estimate win probabilities ball by ball; doctors and vaccine trials use probability to judge if a treatment really works; and AI models output probabilities for each possible next word or label. Watch out for the gambler’s fallacy: after five heads in a row, the next toss is still 1/2 — the coin has no memory. Many lotteries and betting apps are designed so that, on average, players lose money.",
+    "hi": "सैद्धांतिक संभावना तर्क से आती है: यदि सभी परिणाम समान संभावित हों, P(घटना) = अनुकूल परिणाम ÷ कुल परिणाम, इसलिए निष्पक्ष सिक्के में P(चित) = 1/2 और पासे में P(सम) = 3/6 = 1/2। प्रायोगिक संभावना डेटा से आती है: घटना कितनी बार हुई ÷ प्रयासों की संख्या। कम प्रयासों में दोनों में बहुत अंतर हो सकता है (पाँच फेंक में तीन 6 आ सकते हैं), पर प्रयास बढ़ने पर प्रायोगिक मान सैद्धांतिक के पास आ जाता है — बड़ी संख्याओं का नियम, जिसे पहले याकोब बर्नूली ने सिद्ध किया और 1713 में प्रकाशित हुआ। संभावना हर जगह है: IMD के “70% बारिश की संभावना” पूर्वानुमान का अर्थ है कि ऐसी परिस्थितियों में लगभग 10 में से 7 दिन बारिश हुई; क्रिकेट विश्लेषक हर गेंद पर जीत की संभावना आँकते हैं; डॉक्टर और वैक्सीन परीक्षण यह आँकने के लिए संभावना उपयोग करते हैं कि उपचार सच में काम करता है या नहीं; और AI मॉडल हर संभावित अगले शब्द या लेबल के लिए संभावना देते हैं। जुआरी की भ्रांति से सावधान: लगातार पाँच चित के बाद भी अगली उछाल 1/2 ही है — सिक्के की कोई याददाश्त नहीं। कई लॉटरी और सट्टेबाज़ी ऐप ऐसे बनाए जाते हैं कि औसतन खिलाड़ी पैसा हारते हैं।",
+    "hinglish": "Theoretical probability reasoning se aati hai: agar saare outcomes equally likely hon, P(event) = favourable outcomes ÷ total outcomes, isliye fair coin mein P(heads) = 1/2 aur dice mein P(even) = 3/6 = 1/2. Experimental probability data se aati hai: event kitni baar hua ÷ trials ki sankhya. Kam trials mein dono mein bahut farak ho sakta hai (paanch rolls mein teen 6 aa sakte hain), par trials badhne pe experimental value theoretical ke paas aa jaati hai — law of large numbers, jise pehle Jacob Bernoulli ne prove kiya aur 1713 mein publish hua. Probability har jagah hai: IMD ke “70% baarish ki sambhavna” forecast ka matlab hai ki aisi conditions mein lagbhag 10 mein se 7 din baarish hui; cricket analysts har ball pe win probability estimate karte hain; doctors aur vaccine trials yeh judge karne ke liye probability use karte hain ki treatment sach mein kaam karta hai ya nahi; aur AI models har possible next word ya label ke liye probability dete hain. Gambler’s fallacy se savdhaan: lagataar paanch heads ke baad bhi agla toss 1/2 hi hai — coin ki koi memory nahi. Kai lotteries aur betting apps aise banaye jaate hain ki average mein players paisa haarte hain."
+   },
+   "analogy": {
+    "en": "Probability = the weather forecaster’s estimate: “70% rain” doesn’t mean it will surely rain — it just means taking an umbrella is wise.",
+    "hi": "संभावना = मौसम वाले भैया का अंदाज़ा: “70% बारिश” का अर्थ पक्की बारिश नहीं, बस छाता ले जाना समझदारी है।",
+    "hinglish": "Probability = mausam wale bhaiya ka andaaza: “70% baarish” ka matlab pakki baarish nahi, bas chhata le jaana samajhdaari hai."
+   },
+   "realExample": {
+    "en": "The India Meteorological Department (IMD) gives district-level rain forecasts with probability categories, which farmers use to decide when to sow and spray.",
+    "hi": "भारत मौसम विज्ञान विभाग (IMD) संभावना श्रेणियों के साथ ज़िला-स्तरीय वर्षा पूर्वानुमान देता है, जिनका उपयोग किसान बुआई और छिड़काव का समय तय करने में करते हैं।",
+    "hinglish": "India Meteorological Department (IMD) district-level rain forecasts probability categories ke saath deta hai, jinhe farmers buaai aur spray ka time decide karne ke liye use karte hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Toss a coin 20 times and record H or T in a table (or a spreadsheet). Calculate the experimental P(heads). Then combine results with 4 family members or friends (100 tosses). Which result is closer to 1/2, and why?",
+   "hi": "एक सिक्का 20 बार उछालो और तालिका (या स्प्रेडशीट) में H या T दर्ज करो। प्रायोगिक P(चित) निकालो। फिर 4 परिवार सदस्यों या दोस्तों के परिणाम जोड़ो (100 उछाल)। कौन-सा परिणाम 1/2 के ज़्यादा पास है, और क्यों?",
+   "hinglish": "Ek coin 20 baar uchhaalo aur table (ya spreadsheet) mein H ya T record karo. Experimental P(heads) calculate karo. Phir 4 family members ya doston ke results jodo (100 tosses). Kaunsa result 1/2 ke zyada paas hai, aur kyun?"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "A bag has 3 red and 7 blue marbles. What is P(red)?",
+     "hi": "थैले में 3 लाल और 7 नीले कंचे हैं। P(लाल) क्या है?",
+     "hinglish": "Bag mein 3 red aur 7 blue marbles hain. P(red) kya hai?"
+    },
+    "options": [
+     {
+      "en": "3/7",
+      "hi": "3/7",
+      "hinglish": "3/7"
+     },
+     {
+      "en": "3/10",
+      "hi": "3/10",
+      "hinglish": "3/10"
+     },
+     {
+      "en": "7/10",
+      "hi": "7/10",
+      "hinglish": "7/10"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "3 favourable out of 10 total = 3/10 = 0.3.",
+     "hi": "10 में से 3 अनुकूल = 3/10 = 0.3।",
+     "hinglish": "10 mein se 3 favourable = 3/10 = 0.3."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "order",
+    "prompt": {
+     "en": "Order these from least to most likely (fair die).",
+     "hi": "इन्हें सबसे कम से सबसे ज़्यादा संभावित के क्रम में लगाओ (निष्पक्ष पासा)।",
+     "hinglish": "Inhe least se most likely order mein lagao (fair dice)."
+    },
+    "options": [
+     {
+      "en": "Rolling a 6",
+      "hi": "6 आना",
+      "hinglish": "6 aana"
+     },
+     {
+      "en": "Rolling an even number",
+      "hi": "सम संख्या आना",
+      "hinglish": "Even number aana"
+     },
+     {
+      "en": "Rolling a 7",
+      "hi": "7 आना",
+      "hinglish": "7 aana"
+     },
+     {
+      "en": "Rolling a number from 1 to 6",
+      "hi": "1 से 6 तक कोई संख्या आना",
+      "hinglish": "1 se 6 tak koi number aana"
+     }
+    ],
+    "answer": [
+     2,
+     0,
+     1,
+     3
+    ],
+    "explain": {
+     "en": "Rolling 7: 0 → rolling 6: 1/6 → rolling even: 1/2 → rolling 1–6: 1.",
+     "hi": "7 आना: 0 → 6 आना: 1/6 → सम आना: 1/2 → 1–6 आना: 1।",
+     "hinglish": "7 aana: 0 → 6 aana: 1/6 → even aana: 1/2 → 1–6 aana: 1."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "A coin lands heads 5 times in a row. What is the chance the next toss is heads?",
+     "hi": "सिक्का लगातार 5 बार चित आता है। अगली उछाल चित होने की संभावना क्या है?",
+     "hinglish": "Coin lagataar 5 baar heads aata hai. Agla toss heads hone ki probability kya hai?"
+    },
+    "options": [
+     {
+      "en": "Still 1/2",
+      "hi": "अभी भी 1/2",
+      "hinglish": "Ab bhi 1/2"
+     },
+     {
+      "en": "Less than 1/2 — tails is “due”",
+      "hi": "1/2 से कम — अब पट की बारी",
+      "hinglish": "1/2 se kam — ab tails ki baari"
+     },
+     {
+      "en": "More than 1/2 — heads is “hot”",
+      "hi": "1/2 से ज़्यादा — चित “गर्म” है",
+      "hinglish": "1/2 se zyada — heads “hot” hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Still 1/2. Each toss is independent — believing otherwise is the gambler’s fallacy.",
+     "hi": "अभी भी 1/2। हर उछाल स्वतंत्र है — उल्टा मानना जुआरी की भ्रांति है।",
+     "hinglish": "Ab bhi 1/2. Har toss independent hai — ulta maanna gambler’s fallacy hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why do 300 rolls give a better estimate than 10 rolls?",
+     "hi": "300 फेंक 10 फेंक से बेहतर अनुमान क्यों देते हैं?",
+     "hinglish": "300 rolls 10 rolls se better estimate kyun dete hain?"
+    },
+    "options": [
+     {
+      "en": "The die gets tired",
+      "hi": "पासा थक जाता है",
+      "hinglish": "Dice thak jaata hai"
+     },
+     {
+      "en": "Big numbers are always correct",
+      "hi": "बड़ी संख्याएँ हमेशा सही होती हैं",
+      "hinglish": "Bade numbers hamesha sahi hote hain"
+     },
+     {
+      "en": "Random ups and downs even out over many trials",
+      "hi": "बहुत प्रयासों में यादृच्छिक उतार-चढ़ाव बराबर होते हैं",
+      "hinglish": "Bahut trials mein random ups and downs barabar hote hain"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "With more trials, random ups and downs even out — the law of large numbers.",
+     "hi": "ज़्यादा प्रयासों में यादृच्छिक उतार-चढ़ाव बराबर हो जाते हैं — बड़ी संख्याओं का नियम।",
+     "hinglish": "Zyada trials mein random ups and downs barabar ho jaate hain — law of large numbers."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "short",
+    "prompt": {
+     "en": "Write the probability of rolling an even number on a fair die as a fraction in simplest form.",
+     "hi": "निष्पक्ष पासे पर सम संख्या आने की संभावना को सरलतम भिन्न में लिखो।",
+     "hinglish": "Fair dice pe even number aane ki probability ko simplest fraction mein likho."
+    },
+    "answer": [
+     "1/2",
+     "½"
+    ],
+    "explain": {
+     "en": "Even faces are 2, 4, 6: 3/6 = 1/2.",
+     "hi": "सम फलक 2, 4, 6: 3/6 = 1/2।",
+     "hinglish": "Even faces 2, 4, 6: 3/6 = 1/2."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the lab mission.",
+     "hi": "लैब मिशन पूरा करो।",
+     "hinglish": "Lab mission poora karo."
+    },
+    "answer": {
+     "lab": "sheet-lab",
+     "event": "mission:complete",
+     "tab": "chance"
+    },
+    "explain": {
+     "en": "Predict 1/6, then roll at least 300 times.",
+     "hi": "1/6 का अनुमान लगाओ, फिर कम से कम 300 बार फेंको।",
+     "hinglish": "1/6 predict karo, phir kam se kam 300 baar roll karo."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "NCERT — Mathematics Class 9, Chapter on Probability / Class 8 Data Handling",
+   "url": "https://ncert.nic.in/textbook.php",
+   "licence": "fact reference"
+  },
+  {
+   "title": "India Meteorological Department — district forecasts",
+   "url": "https://mausam.imd.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Encyclopaedia Britannica — Law of large numbers",
+   "url": "https://www.britannica.com/science/law-of-large-numbers",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

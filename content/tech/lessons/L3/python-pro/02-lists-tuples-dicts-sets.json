@@ -1,0 +1,351 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.python-pro.02",
+ "level": 3,
+ "classes": [
+  9,
+  10
+ ],
+ "unit": "python-pro",
+ "title": {
+  "en": "Lists, tuples, dicts and sets",
+  "hi": "सूची, टपल, डिक्ट और सेट",
+  "hinglish": "Lists, tuples, dicts aur sets"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [
+  "L3.python-pro.01"
+ ],
+ "outcomes": [
+  {
+   "en": "Choose the right collection for a job",
+   "hi": "काम के लिए सही संग्रह चुनो",
+   "hinglish": "Kaam ke liye sahi collection chuno"
+  },
+  {
+   "en": "Count and look up items with a dictionary",
+   "hi": "डिक्शनरी से वस्तुएँ गिनो और खोजो",
+   "hinglish": "Dictionary se items gino aur dhoondho"
+  },
+  {
+   "en": "Explain mutable vs immutable",
+   "hi": "परिवर्तनीय बनाम अपरिवर्तनीय समझाओ",
+   "hinglish": "Mutable vs immutable samjhao"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "List",
+   "hinglish": "Order wali badalne layak list",
+   "en": "Ordered, changeable sequence: [1, 2, 3]",
+   "hi": "क्रमबद्ध, बदलने योग्य अनुक्रम: [1, 2, 3]"
+  },
+  {
+   "term": "Tuple",
+   "hinglish": "Na badalne wali list",
+   "en": "Ordered, unchangeable sequence: (1, 2)",
+   "hi": "क्रमबद्ध, न बदलने योग्य अनुक्रम: (1, 2)"
+  },
+  {
+   "term": "Dictionary",
+   "hinglish": "Key se value",
+   "en": "Key → value mapping: {\"roll\": 14}",
+   "hi": "कुंजी → मान: {\"roll\": 14}"
+  },
+  {
+   "term": "Set",
+   "hinglish": "Unique items ka thaila",
+   "en": "Unordered collection of unique items: {1, 2}",
+   "hi": "अनोखी वस्तुओं का बिना क्रम संग्रह: {1, 2}"
+  },
+  {
+   "term": "Mutable",
+   "hinglish": "Badal sakte hain",
+   "en": "Can be changed after creation (list, dict, set)",
+   "hi": "बनने के बाद बदला जा सकता है (list, dict, set)"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "A list keeps order and duplicates: words = [\"to\", \"be\", \"or\", \"not\", \"to\", \"be\"].",
+    "hi": "सूची क्रम और दोहराव रखती है: words = [\"to\", \"be\", \"or\", \"not\", \"to\", \"be\"]।",
+    "hinglish": "List order aur duplicates rakhti hai: words = [\"to\", \"be\", \"or\", \"not\", \"to\", \"be\"]."
+   },
+   "visual": "anim:list-boxes",
+   "narration": {
+    "en": "A list keeps order and duplicates: words = [\"to\", \"be\", \"or\", \"not\", \"to\", \"be\"].",
+    "hi": "सूची क्रम और दोहराव रखती है: words = [\"to\", \"be\", \"or\", \"not\", \"to\", \"be\"]।",
+    "hinglish": "List order aur duplicates rakhti hai: words = [\"to\", \"be\", \"or\", \"not\", \"to\", \"be\"]."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "A dict maps keys to values. count.get(w, 0) + 1 counts each word without a KeyError.",
+    "hi": "डिक्ट कुंजियों को मानों से जोड़ता है। count.get(w, 0) + 1 बिना KeyError हर शब्द गिनता है।",
+    "hinglish": "Dict keys ko values se jodta hai. count.get(w, 0) + 1 bina KeyError har word ginta hai."
+   },
+   "visual": "anim:dict-keys",
+   "narration": {
+    "en": "A dict maps keys to values. count.get(w, 0) + 1 counts each word without a KeyError.",
+    "hi": "डिक्ट कुंजियों को मानों से जोड़ता है। count.get(w, 0) + 1 बिना KeyError हर शब्द गिनता है।",
+    "hinglish": "Dict keys ko values se jodta hai. count.get(w, 0) + 1 bina KeyError har word ginta hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "set(words) keeps only unique words: 4. Checking x in a_set is near-instant even for millions.",
+    "hi": "set(words) सिर्फ़ अनोखे शब्द रखता है: 4। x in a_set जाँच लाखों पर भी लगभग तुरंत।",
+    "hinglish": "set(words) sirf unique words rakhta hai: 4. x in a_set check crore items par bhi lagbhag turant."
+   },
+   "visual": "anim:set-dedupe",
+   "narration": {
+    "en": "set(words) keeps only unique words: 4. Checking x in a_set is near-instant even for millions.",
+    "hi": "set(words) सिर्फ़ अनोखे शब्द रखता है: 4। x in a_set जाँच लाखों पर भी लगभग तुरंत।",
+    "hinglish": "set(words) sirf unique words rakhta hai: 4. x in a_set check crore items par bhi lagbhag turant."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "A tuple like (\"be\", 2) cannot change — safe for fixed records such as coordinates.",
+    "hi": "(\"be\", 2) जैसा टपल बदल नहीं सकता — निर्देशांक जैसे स्थिर रिकॉर्ड के लिए सुरक्षित।",
+    "hinglish": "(\"be\", 2) jaisa tuple badal nahi sakta — coordinates jaise fixed records ke liye safe."
+   },
+   "visual": "anim:tuple-lock",
+   "narration": {
+    "en": "A tuple like (\"be\", 2) cannot change — safe for fixed records such as coordinates.",
+    "hi": "(\"be\", 2) जैसा टपल बदल नहीं सकता — निर्देशांक जैसे स्थिर रिकॉर्ड के लिए सुरक्षित।",
+    "hinglish": "(\"be\", 2) jaisa tuple badal nahi sakta — coordinates jaise fixed records ke liye safe."
+   }
+  }
+ ],
+ "play": {
+  "lab": "code-lab",
+  "config": {
+   "mode": "trace",
+   "scenario": "dict-count"
+  },
+  "goal": {
+   "en": "Trace the word counter. Watch the dict grow after each word, then see what set() and the tuple do.",
+   "hi": "शब्द गिनने वाले प्रोग्राम को ट्रेस करो। हर शब्द के बाद डिक्ट बढ़ते देखो, फिर देखो set() और टपल क्या करते हैं।",
+   "hinglish": "Word counter trace karo. Har word ke baad dict badhte dekho, phir dekho set() aur tuple kya karte hain."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Which collection when?",
+    "hi": "कौन-सा संग्रह कब?",
+    "hinglish": "Kaunsa collection kab?"
+   },
+   "body": {
+    "en": "List: an ordered sequence you will add to, sort or index — a class roll list. Tuple: a fixed record — (latitude, longitude), or a value you want to use as a dict key. Dict: look things up by a key — roll number → name, word → count, PIN code → city. Set: uniqueness and fast membership — which students submitted homework, removing duplicate emails. Useful methods: list.append, list.sort, dict.items(), dict.get, set.add, and set operations a | b (union), a & b (intersection), a - b (difference).",
+    "hi": "सूची: क्रमबद्ध अनुक्रम जिसमें जोड़ना, क्रमबद्ध करना या सूचकांक से पढ़ना हो — कक्षा की रोल सूची। टपल: स्थिर रिकॉर्ड — (अक्षांश, देशांतर), या डिक्ट कुंजी बनने वाला मान। डिक्ट: कुंजी से खोजना — रोल नंबर → नाम, शब्द → गिनती, पिन कोड → शहर। सेट: अनोखापन और तेज़ सदस्यता जाँच — किसने गृहकार्य जमा किया, दोहराए ईमेल हटाना। उपयोगी मेथड: list.append, list.sort, dict.items(), dict.get, set.add, और सेट क्रियाएँ a | b (संघ), a & b (प्रतिच्छेद), a - b (अंतर)।",
+    "hinglish": "List: ordered sequence jismein add, sort ya index karna ho — class roll list. Tuple: fixed record — (latitude, longitude), ya dict key banne wali value. Dict: key se dhoondhna — roll number → naam, word → count, PIN code → city. Set: uniqueness aur fast membership — kisne homework jama kiya, duplicate emails hatana. Useful methods: list.append, list.sort, dict.items(), dict.get, set.add, aur set operations a | b (union), a & b (intersection), a - b (difference)."
+   },
+   "analogy": {
+    "en": "List = a queue of people; tuple = a printed ticket; dict = a phone contacts app; set = the guest list at the door.",
+    "hi": "सूची = लोगों की कतार; टपल = छपा टिकट; डिक्ट = फ़ोन का संपर्क ऐप; सेट = दरवाज़े की मेहमान सूची।",
+    "hinglish": "List = logon ki line; tuple = chhapa ticket; dict = phone ka contacts app; set = darwaaze ki guest list."
+   },
+   "realExample": {
+    "en": "submitted = {\"Asha\", \"Ravi\"}; class_ = {\"Asha\", \"Ravi\", \"Meena\"}; class_ - submitted → {\"Meena\"} still owes homework.",
+    "hi": "submitted = {\"Asha\", \"Ravi\"}; class_ = {\"Asha\", \"Ravi\", \"Meena\"}; class_ - submitted → {\"Meena\"} का गृहकार्य बाक़ी।",
+    "hinglish": "submitted = {\"Asha\", \"Ravi\"}; class_ = {\"Asha\", \"Ravi\", \"Meena\"}; class_ - submitted → {\"Meena\"} ka homework baaki."
+   }
+  },
+  {
+   "heading": {
+    "en": "Mutable traps",
+    "hi": "परिवर्तनीय जाल",
+    "hinglish": "Mutable traps"
+   },
+   "body": {
+    "en": "Lists, dicts and sets are mutable: b = a does NOT copy a list, it gives the same list a second name, so b.append(5) also changes a. Use b = a.copy() or list(a) for a copy. Strings and tuples are immutable — \"hello\".upper() returns a new string. Only immutable values can be dict keys or set members, which is why a tuple can be a key but a list cannot.",
+    "hi": "सूची, डिक्ट और सेट परिवर्तनीय हैं: b = a सूची की नक़ल नहीं बनाता, उसी सूची को दूसरा नाम देता है, इसलिए b.append(5) से a भी बदलता है। नक़ल के लिए b = a.copy() या list(a)। स्ट्रिंग और टपल अपरिवर्तनीय हैं — \"hello\".upper() नई स्ट्रिंग देता है। सिर्फ़ अपरिवर्तनीय मान डिक्ट कुंजी या सेट सदस्य बन सकते हैं, इसीलिए टपल कुंजी बन सकता है पर सूची नहीं।",
+    "hinglish": "Lists, dicts aur sets mutable hain: b = a list copy NAHI karta, usi list ko doosra naam deta hai, isliye b.append(5) se a bhi badalta hai. Copy ke liye b = a.copy() ya list(a). Strings aur tuples immutable hain — \"hello\".upper() nayi string deta hai. Sirf immutable values dict keys ya set members ban sakti hain, isliye tuple key ban sakta hai par list nahi."
+   },
+   "analogy": {
+    "en": "Two people sharing one Google Doc link: an edit by one is seen by both. A copy is a separate document.",
+    "hi": "एक Google Doc लिंक साझा करते दो लोग: एक का बदलाव दोनों देखते हैं। नक़ल अलग दस्तावेज़ है।",
+    "hinglish": "Ek Google Doc link share karte do log: ek ka edit dono dekhte hain. Copy alag document hai."
+   },
+   "realExample": {
+    "en": "seats = {(2, 5): \"Riya\"} works; seats = {[2, 5]: \"Riya\"} raises TypeError: unhashable type: 'list'.",
+    "hi": "seats = {(2, 5): \"Riya\"} चलता है; seats = {[2, 5]: \"Riya\"} से TypeError: unhashable type: 'list'।",
+    "hinglish": "seats = {(2, 5): \"Riya\"} chalta hai; seats = {[2, 5]: \"Riya\"} se TypeError: unhashable type: 'list'."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Build a dict of 5 friends → favourite subject. Print each pair with a for loop over .items(), then make a set of the subjects and print how many different subjects there are.",
+   "hi": "5 दोस्तों → पसंदीदा विषय की डिक्ट बनाओ। .items() पर for लूप से हर जोड़ा छापो, फिर विषयों का सेट बनाओ और छापो कितने अलग विषय हैं।",
+   "hinglish": "5 doston → favourite subject ki dict banao. .items() par for loop se har pair print karo, phir subjects ka set banao aur print karo kitne alag subjects hain."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "match",
+    "prompt": {
+     "en": "Match the job to the best collection.",
+     "hi": "काम को सबसे अच्छे संग्रह से मिलाओ।",
+     "hinglish": "Kaam ko best collection se milao."
+    },
+    "options": [
+     {
+      "en": "Roll no. → name",
+      "hi": "रोल नं. → नाम",
+      "hinglish": "Roll no. → naam"
+     },
+     {
+      "en": "Remove duplicate emails",
+      "hi": "दोहराए ईमेल हटाओ",
+      "hinglish": "Duplicate emails hatao"
+     },
+     {
+      "en": "A GPS point",
+      "hi": "एक GPS बिंदु",
+      "hinglish": "Ek GPS point"
+     },
+     {
+      "en": "Queue of songs to play",
+      "hi": "बजाने वाले गानों की कतार",
+      "hinglish": "Bajane wale gaanon ki line"
+     }
+    ],
+    "answer": [
+     "dict",
+     "set",
+     "tuple",
+     "list"
+    ],
+    "explain": {
+     "en": "Pick by the job: lookup, uniqueness, fixed record, ordered changeable sequence.",
+     "hi": "काम से चुनो: खोज, अनोखापन, स्थिर रिकॉर्ड, क्रमबद्ध बदलने योग्य अनुक्रम।",
+     "hinglish": "Kaam se chuno: lookup, uniqueness, fixed record, ordered changeable sequence."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "a = [1, 2]; b = a; b.append(3). What is a?",
+     "hi": "a = [1, 2]; b = a; b.append(3)। a क्या है?",
+     "hinglish": "a = [1, 2]; b = a; b.append(3). a kya hai?"
+    },
+    "options": [
+     "[1, 2]",
+     "[1, 2, 3]",
+     "[3]",
+     "Error"
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "b is another name for the same list.",
+     "hi": "b उसी सूची का दूसरा नाम है।",
+     "hinglish": "b usi list ka doosra naam hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "short",
+    "prompt": {
+     "en": "len(set([3, 1, 3, 2, 1])) = ?",
+     "hi": "len(set([3, 1, 3, 2, 1])) = ?",
+     "hinglish": "len(set([3, 1, 3, 2, 1])) = ?"
+    },
+    "answer": {
+     "accept": [
+      "3"
+     ]
+    },
+    "explain": {
+     "en": "Unique values are 1, 2, 3.",
+     "hi": "अनोखे मान 1, 2, 3।",
+     "hinglish": "Unique values 1, 2, 3."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why use count.get(w, 0) instead of count[w]?",
+     "hi": "count[w] की जगह count.get(w, 0) क्यों?",
+     "hinglish": "count[w] ki jagah count.get(w, 0) kyun?"
+    },
+    "options": [
+     {
+      "en": "It returns 0 for a missing key instead of raising KeyError",
+      "hi": "ग़ायब कुंजी पर KeyError की जगह 0 देता है",
+      "hinglish": "Missing key par KeyError ki jagah 0 deta hai"
+     },
+     {
+      "en": "It is slower",
+      "hi": "यह धीमा है",
+      "hinglish": "Yeh slow hai"
+     },
+     {
+      "en": "It sorts the dict",
+      "hi": "यह डिक्ट क्रमबद्ध करता है",
+      "hinglish": "Yeh dict sort karta hai"
+     },
+     {
+      "en": "It deletes w",
+      "hi": "यह w मिटाता है",
+      "hinglish": "Yeh w mitata hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "collections.Counter does this counting for you too.",
+     "hi": "collections.Counter भी यही गिनती कर देता है।",
+     "hinglish": "collections.Counter bhi yahi counting kar deta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Trace the word counter to the end.",
+     "hi": "शब्द गिनने वाले को अंत तक ट्रेस करो।",
+     "hinglish": "Word counter end tak trace karo."
+    },
+    "answer": {
+     "event": "trace-done",
+     "scenario": "dict-count"
+    },
+    "explain": {
+     "en": "You saw a list, dict, set and tuple work together.",
+     "hi": "आपने सूची, डिक्ट, सेट और टपल साथ काम करते देखे।",
+     "hinglish": "Tumne list, dict, set aur tuple saath kaam karte dekhe."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "prog.lists-dicts"
+ ],
+ "sources": [
+  {
+   "title": "Python Software Foundation — The Python Tutorial",
+   "url": "https://docs.python.org/3/tutorial/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Python docs — Data Structures",
+   "url": "https://docs.python.org/3/tutorial/datastructures.html",
+   "licence": "fact reference"
+  }
+ ]
+}

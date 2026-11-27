@@ -1,0 +1,282 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0F766E">
+<title>Gajju's story stage · block coding · Tech & AI Lab</title>
+<!-- Lab: story-blocks (Level 1). Tap-to-build block stories and games with Gajju the elephant.
+     Modes (?mode= / config.mode): story (sequence) | debug (fix a buggy story) | ifelse (IF / ELSE weather rule) | game (events + score variable + IF).
+     Deterministic interpreter over a block list (no eval). Own work, MIT. -->
+<style>/* L1 lab kit (own work, MIT). Family App palette from src/lib/design-tokens.ts */
+:root{--royal:#1D4ED8;--sapphire:#002357;--grape:#8B3DFF;--violet:#4400F0;--tangerine:#FF7A1A;--coral:#FF6B57;--gold:#F5B90A;--turq:#14B8A6;--emerald:#0F766E;--cyan:#02CFF9;--slate:#1E293B;--off:#F9FAFB;--ink2:#475569;--r:18px;--sh:0 6px 18px rgba(30,41,59,.12),0 1px 3px rgba(30,41,59,.08)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:var(--off);color:var(--slate);font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans Devanagari",sans-serif;overscroll-behavior:none}
+body{background:transparent;-webkit-user-select:none;user-select:none;display:flex;flex-direction:column;min-height:100%;overflow-x:hidden}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;touch-action:manipulation}
+.kbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:8px;padding:10px 12px;background:linear-gradient(120deg,var(--sapphire),var(--royal) 60%,var(--grape));color:#fff;box-shadow:0 2px 10px rgba(0,35,87,.25)}
+.kbar{flex-wrap:wrap;row-gap:6px}
+.kbar h1{flex:1 1 9em;min-width:0;margin:0;font-size:16px;line-height:1.2;font-weight:800;letter-spacing:.2px;overflow-wrap:break-word}/* title never cut: controls move to a 2nd row when needed */
+.kctl{display:flex;align-items:center;gap:8px;margin-left:auto}
+.kbar .kemo{font-size:22px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.25))}
+.kpill{display:flex;background:rgba(255,255,255,.16);border-radius:999px;padding:3px}
+.kpill button{padding:5px 9px;border-radius:999px;font-size:12.5px;font-weight:700;color:#e0e7ff;min-height:32px}
+.kpill button[aria-pressed=true]{background:#fff;color:var(--royal)}
+.kstars{display:flex;align-items:center;gap:4px;background:rgba(255,255,255,.16);padding:6px 10px;border-radius:999px;font-weight:800;font-size:14px;min-width:54px;justify-content:center}
+.kstars.bump{animation:kbump .5s}
+@keyframes kbump{40%{transform:scale(1.35)}}
+.kgoal{margin:10px 12px 0;padding:10px 12px;border-radius:14px;background:#fff;box-shadow:var(--sh);display:flex;gap:10px;align-items:flex-start;font-size:14.5px}
+.kgoal b{color:var(--royal)}
+.kbtn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:46px;padding:10px 18px;border-radius:14px;font-weight:800;background:var(--royal);color:#fff;box-shadow:0 4px 0 #1239a8,var(--sh);transition:transform .08s}
+.kbtn:active{transform:translateY(3px);box-shadow:0 1px 0 #1239a8}
+.kbtn.alt{background:#fff;color:var(--royal);box-shadow:0 4px 0 #c7d2fe,var(--sh)}
+.kbtn.go{background:var(--turq);box-shadow:0 4px 0 #0d8a7c,var(--sh)}
+.kbtn.warn{background:var(--tangerine);box-shadow:0 4px 0 #c75a0c,var(--sh)}
+.kbtn[disabled]{opacity:.45;pointer-events:none}
+.ktoast{pointer-events:none;position:fixed;left:0;top:0;width:max-content;z-index:60;max-width:min(92vw,360px);padding:12px 16px;border-radius:16px;background:var(--slate);color:#fff;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,.3);text-align:center;line-height:1.35;font-size:15px;opacity:0;visibility:hidden;transform:scale(.9);transition:opacity .25s,transform .3s cubic-bezier(.2,1.4,.4,1),visibility 0s .3s}
+.ktoast.show{opacity:1;visibility:visible;transform:none;transition:opacity .25s,transform .3s cubic-bezier(.2,1.4,.4,1)}
+.ktoast.inline{position:static;display:block;width:auto;max-width:none;margin:10px 12px;grid-column:1/-1;flex:0 0 auto}
+.ktoast.good{background:var(--emerald)}.ktoast.bad{background:#b4321f}
+#kconf{position:fixed;inset:0;pointer-events:none;z-index:-1}/* behind content; inside the win dialog it sits behind the card */
+.kwin #kconf{position:absolute;z-index:0}.kwin>div{position:relative;z-index:1}
+.kwin{position:fixed;inset:0;z-index:65;display:none;align-items:center;justify-content:center;background:rgba(6,18,51,.55);backdrop-filter:blur(3px);padding:20px}
+.kwin.show{display:flex}
+.kwin>div{background:#fff;border-radius:24px;padding:22px;text-align:center;max-width:360px;box-shadow:0 20px 50px rgba(0,0,0,.35);animation:kpop .5s cubic-bezier(.2,1.5,.4,1)}
+.kwin .big{font-size:64px;line-height:1;animation:kspin 1.2s ease-out}
+.kwin h2{margin:10px 0 6px;font-size:22px}
+.kwin p{margin:0 0 14px;color:var(--ink2)}
+@keyframes kpop{from{transform:scale(.6);opacity:0}}
+@keyframes kspin{from{transform:rotateY(-540deg) scale(.4)}}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+.kvoice{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.16);font-size:17px;opacity:.6}
+.kvoice[aria-pressed=true]{background:#fff;opacity:1;box-shadow:0 0 0 3px rgba(255,255,255,.4)}
+</style>
+<style>
+main{flex:1;display:flex;flex-direction:column;gap:9px;padding:8px 10px 16px}
+.modes{display:flex;flex-wrap:wrap;gap:6px}
+.modes button{padding:7px 12px;border-radius:999px;background:#fff;box-shadow:var(--sh);font-weight:700;font-size:13px;min-height:36px}
+.modes button[aria-pressed=true]{background:#0F766E;color:#fff}
+.stage{position:relative;height:178px;border-radius:22px;overflow:hidden;box-shadow:var(--sh);background:linear-gradient(#bae6fd,#e0f2fe 58%,#86efac 58%,#4ade80);perspective:600px}
+.stage .sun{position:absolute;right:16px;top:12px;font-size:34px;transition:opacity .4s}
+.stage .cloud{position:absolute;font-size:34px;top:8px;transition:opacity .4s}
+.stage .floor{position:absolute;left:0;right:0;bottom:0;height:42%;transform-origin:top;background:repeating-linear-gradient(90deg,rgba(0,0,0,.05) 0 1px,transparent 1px 20%)}
+.actor{position:absolute;bottom:20px;width:20%;text-align:center;font-size:46px;line-height:1;transition:left .45s cubic-bezier(.3,1.3,.5,1),transform .35s;z-index:2}
+.actor .gear{display:block;position:absolute;left:50%;top:-30px;transform:translateX(-50%);font-size:28px}
+.nani{position:absolute;bottom:20px;width:20%;text-align:center;font-size:44px;line-height:1}
+.speech{position:absolute;bottom:92px;transform:translateX(-30%);background:#fff;border-radius:14px;padding:6px 10px;font-weight:800;font-size:14px;box-shadow:0 4px 12px rgba(0,0,0,.18);white-space:nowrap;z-index:3}
+.speech::after{content:'';position:absolute;left:24px;bottom:-7px;border:7px solid transparent;border-top-color:#fff;border-bottom:0}
+.drop{position:absolute;top:-30px;font-size:16px;animation:rain .7s linear infinite}@keyframes rain{to{transform:translateY(230px)}}
+.mango{position:absolute;font-size:30px;width:20%;text-align:center;top:-40px;z-index:1}
+.score{position:absolute;left:10px;top:10px;background:rgba(255,255,255,.92);border-radius:12px;padding:4px 10px;font-weight:900;font-size:15px;z-index:3}
+.day{position:absolute;left:10px;bottom:6px;background:rgba(255,255,255,.92);border-radius:12px;padding:4px 10px;font-weight:900;font-size:14px;z-index:3}
+.ws{display:grid;grid-template-columns:1fr;gap:8px}
+.panel{background:#fff;border-radius:18px;box-shadow:var(--sh);padding:10px}
+.panel h3{margin:0 0 6px;font-size:14px;color:#334155}
+.script{display:flex;flex-direction:column;gap:5px;min-height:60px}
+.blk{display:flex;align-items:center;gap:6px;border-radius:12px;padding:8px 10px;font-weight:800;font-size:14px;color:#fff;box-shadow:0 3px 0 rgba(0,0,0,.18);min-height:40px;position:relative}
+.blk .tx{flex:1;min-width:0;overflow-wrap:anywhere}
+.blk.hat{border-radius:18px 18px 12px 12px;background:#f59e0b}
+.blk.move{background:#2563eb}.blk.look{background:#7c3aed}.blk.ctl{background:#ea580c}.blk.var{background:#db2777}.blk.ev{background:#f59e0b}
+.blk.run{outline:3px solid #fde047;outline-offset:2px}
+.blk.bug{outline:3px dashed #ef4444;outline-offset:2px}
+.blk .mini{background:rgba(255,255,255,.25);color:#fff;border-radius:8px;min-width:32px;min-height:32px;font-size:14px;font-weight:900}
+.blk .chip{background:#fff;color:#0f172a;border-radius:8px;padding:4px 8px;font-size:13px;font-weight:900;min-height:32px}
+.palette{display:flex;flex-wrap:wrap;gap:6px}
+.palette .blk{cursor:pointer;flex:1 1 140px}
+.cond{display:flex;flex-direction:column;gap:6px}
+.cond .row{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-weight:900;font-size:14px}
+.cond .lbl{background:#ea580c;color:#fff;border-radius:10px;padding:6px 10px}
+.opts{display:flex;flex-wrap:wrap;gap:6px}
+.opts button{background:#f1f5f9;border-radius:10px;padding:6px 10px;font-weight:800;font-size:14px;min-height:38px}
+.opts button[aria-pressed=true]{background:#0F766E;color:#fff}
+.go{display:flex;flex-wrap:wrap;gap:8px}
+.go .kbtn{flex:1 1 120px}
+.pad{display:flex;gap:10px;justify-content:center}
+.pad button{width:72px;height:56px;border-radius:16px;background:#0f172a;color:#fff;font-size:26px;box-shadow:0 4px 0 #475569}
+.why{font-size:14px;background:#f0fdfa;border-left:4px solid #0F766E;padding:8px 10px;border-radius:10px}
+.code{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;background:#0f172a;color:#e2e8f0;border-radius:12px;padding:8px 10px;white-space:pre-wrap;overflow-wrap:anywhere}
+@media (orientation:landscape) and (max-height:520px){main{display:grid;grid-template-columns:1fr 1fr;align-items:start}.modes,#goal{grid-column:1/-1}.stage{height:160px}}
+</style></head><body>
+<main>
+  <div class="modes" id="modes" role="tablist"></div>
+  <div class="kgoal" id="goal" style="margin:0"></div>
+  <div class="stage" id="stage"></div>
+  <div class="ws" id="ws"></div>
+  <div class="why" id="why"></div>
+</main>
+<script>// L1 lab kit (own work, MIT): language, header, stars, toast, confetti, sounds, drag, lesson config, completion events.
+(function (g) {
+  const q = new URLSearchParams(location.search);
+  const LANGS = ['hinglish', 'en', 'hi'];
+  let lang = q.get('lang') || (function () { try { return localStorage.getItem('techlab.lang'); } catch (e) { return null; } })() || 'hinglish';
+  if (!LANGS.includes(lang)) lang = 'hinglish';
+  const t = (o) => (o == null ? '' : typeof o === 'string' ? o : Array.isArray(o) ? (o[{ en: 0, hi: 1, hinglish: 2 }[lang]] ?? o[0]) : (o[lang] ?? o.hinglish ?? o.en));
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const el = (tag, attrs = {}, html) => { const e = document.createElement(tag); for (const k in attrs) { if (k === 'class') e.className = attrs[k]; else if (k === 'style') e.style.cssText = attrs[k]; else if (k.startsWith('on')) e.addEventListener(k.slice(2), attrs[k]); else e.setAttribute(k, attrs[k]); } if (html != null) e.innerHTML = html; return e; };
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+  const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const listeners = [];
+  const cls = +(q.get('class') || 0);
+  let voice = q.get('voice') ? q.get('voice') === '1' : (q.has('class') && cls <= 2);
+  const say = (o) => { if (!voice || !g.speechSynthesis) return; try { const txt = t(o).replace(/[\u{1F000}-\u{1FAFF}\u2600-\u27BF]/gu, ''); speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(txt); u.lang = lang === 'hi' ? 'hi-IN' : 'en-IN'; const v = speechSynthesis.getVoices().find((v) => v.lang === u.lang) || speechSynthesis.getVoices().find((v) => v.lang.startsWith(lang === 'hi' ? 'hi' : 'en')); if (v) u.voice = v; u.rate = cls <= 0 && q.has('class') ? .85 : .95; speechSynthesis.speak(u); } catch (e) {} };
+  const K = { q, t, $, $$, el, esc, reduced, say, get voice() { return voice; }, get lang() { return lang; }, stars: 0,
+    onLang(fn) { listeners.push(fn); },
+    setLang(l) { lang = l; try { localStorage.setItem('techlab.lang', l); } catch (e) {} document.documentElement.lang = l === 'hi' ? 'hi' : 'en'; $$('.kpill button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.l === l)); listeners.forEach((f) => f(l)); },
+    header(title, emoji) {
+      const bar = el('header', { class: 'kbar' });
+      bar.innerHTML = `<span class="kemo" aria-hidden="true">${emoji}</span><h1 id="ktitle"></h1><div class="kctl"><div class="kpill" role="group" aria-label="Language">${[['hinglish', 'Hing'], ['en', 'EN'], ['hi', 'हिं']].map(([l, n]) => `<button data-l="${l}" aria-pressed="${l === lang}">${n}</button>`).join('')}</div><button class="kvoice" id="kvoice" aria-label="Read aloud" aria-pressed="${voice}">🔊</button><div class="kstars" aria-live="polite">⭐ <span id="kstarn">0</span></div></div>`;
+      document.body.prepend(bar); if (window.ResizeObserver) new ResizeObserver(() => document.documentElement.style.setProperty('--kbar-h', bar.offsetHeight + 'px')).observe(bar);
+      const upd = () => { $('#ktitle').textContent = t(title); document.title = t(title) + ' · Tech & AI Lab'; };
+      upd(); listeners.push(upd);
+      $$('.kpill button', bar).forEach((b) => b.addEventListener('click', () => K.setLang(b.dataset.l)));
+      $('#kvoice', bar).addEventListener('click', (e) => { voice = !voice; e.currentTarget.setAttribute('aria-pressed', voice); if (voice) { const gl = $('#goal'); say(gl ? gl.textContent : title); } else if (g.speechSynthesis) speechSynthesis.cancel(); });
+      setTimeout(() => { const gl = $('#goal'); if (gl) new MutationObserver(() => say(gl.textContent)).observe(gl, { childList: true, subtree: true }); }, 0);
+      document.body.append(el('div', { class: 'ktoast', id: 'ktoast', role: 'status' }), el('canvas', { id: 'kconf' }), el('div', { class: 'kwin', id: 'kwin', 'data-ov-modal': '', role: 'dialog', 'aria-modal': 'true' }, '<div><div class="big" id="kwinE">🏆</div><h2 id="kwinH"></h2><p id="kwinP"></p><button class="kbtn" id="kwinB"></button></div>'));
+      document.addEventListener('pointerdown', (ev) => { K._lastTap = ev.target; K._tapAt = [ev.clientX, ev.clientY + scrollY]; }, true); let rp = 0; const re = () => { const e = K._tel || (K._tel = $('#ktoast')); if (!e || !e.classList.contains('show') || rp) return; rp = 1; requestAnimationFrame(() => { rp = 0; K._place(); }); }; K._re = re;
+      addEventListener('scroll', re, { passive: true }); addEventListener('resize', re); document.addEventListener('animationend', re, true); document.addEventListener('transitionend', re, true); K._mo = new MutationObserver((rs) => { const e = K._tel || (K._tel = $('#ktoast')); if (rs.some((r) => !e.contains(r.target))) re(); });
+      $('#kwinB').addEventListener('click', () => { $('#kwin').classList.remove('show'); K._winCb && K._winCb(); });
+    },
+    star(n = 1) { K.stars += n; const s = $('#kstarn'); if (s) { s.textContent = K.stars; s.parentElement.classList.remove('bump'); void s.offsetWidth; s.parentElement.classList.add('bump'); } },
+    // Toast never covers text: it floats in a free band of the screen (bottom first); with no free band it drops into the page
+    // flow under what the child just tapped (pushes content down). Closes on its own (2.5 s by default).
+    toast(msg, kind = '', ms = 2500) { const e = K._tel || (K._tel = $('#ktoast')); clearTimeout(K._tt); clearInterval(K._ti); if (e.classList.contains('inline')) document.body.append(e);
+      e.className = 'ktoast ' + kind; e._spot = null; e.textContent = t(msg); say(msg); e.style.left = e.style.top = '0px'; e.classList.add('show'); K._place(); K._ti = setInterval(K._place, 200); K._mo && K._mo.observe(document.body, { subtree: true, childList: true, attributes: true, characterData: true });
+      K._tt = setTimeout(() => { clearInterval(K._ti); K._mo && K._mo.disconnect(); e.classList.remove('show'); setTimeout(() => { if (!e.classList.contains('show') && e.classList.contains('inline')) { e.classList.remove('inline'); document.body.append(e); } }, 320); }, ms); },
+    _place() { const e = K._tel || (K._tel = $('#ktoast')); if (!e.classList.contains('show')) return; if (!e.isConnected) { e.classList.remove('inline'); document.body.append(e); } if (e.classList.contains('inline')) return;
+      const vw = document.documentElement.clientWidth, vh = innerHeight, w = e.offsetWidth, h = e.offsetHeight, m = 8; let top = m; const bar = $('.kbar'); if (bar) top = Math.max(top, bar.getBoundingClientRect().bottom + m);
+      const obs = [], rg = document.createRange(), tw = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); let n;
+      while ((n = tw.nextNode())) { if (!n.nodeValue.trim()) continue; const p = n.parentElement; if (!p || e.contains(p) || /^(SCRIPT|STYLE)$/.test(p.tagName)) continue; rg.selectNodeContents(n); for (const q of rg.getClientRects()) if (q.width >= 1 && q.bottom > 0 && q.top < vh) obs.push(q); }
+      $$('input,select,textarea,button,a[href],[role=button]').filter((x) => !e.contains(x)).forEach((x) => { const q = x.getBoundingClientRect(); if (q.width && q.bottom > 0 && q.top < vh) obs.push(q); });
+      const free = (x, y) => !obs.some((q) => q.left < x + w + 4 && q.right > x - 4 && q.top < y + h + 4 && q.bottom > y - 4);
+      let s = e._spot && free(e._spot.x, e._spot.y) ? e._spot : null;
+      if (!s) outer: for (let y = vh - h - m; y >= top; y -= 6) for (const x of [(vw - w) / 2, m, vw - w - m]) if (free(x, y)) { s = { x, y }; break outer; }
+      if (s) { e._spot = s; e.style.left = s.x + 'px'; e.style.top = s.y + 'px'; return; }
+      e._spot = null; e.classList.add('inline'); e.style.left = e.style.top = '';
+      let a = K._lastTap && K._lastTap.isConnected && !e.contains(K._lastTap) ? K._lastTap : null; if (!a && K._tapAt) { const y = K._tapAt[1] - scrollY; if (y > 0 && y < innerHeight) a = document.elementFromPoint(K._tapAt[0], y); } if (!a || e.contains(a)) a = $('main') || document.body.lastElementChild;
+      // never drop the note inside a 3D scene, a transformed, positioned-out or clipping box
+      const boxedIn = (a0) => { for (let p = a0; p && p !== document.body; p = p.parentElement) { const c = getComputedStyle(p); if (c.transform !== 'none' || c.transformStyle === 'preserve-3d' || c.perspective !== 'none' || c.position === 'absolute' || c.position === 'fixed' || (p !== a0 && c.overflow !== 'visible')) return true; } return false; };
+      while (a.parentElement && a.parentElement !== document.body) { const d = getComputedStyle(a.parentElement), me = getComputedStyle(a);
+        if (me.display !== 'inline' && !(a instanceof SVGElement) && (d.display === 'block' || d.display === 'flow-root' || d.display === 'grid' || (d.display === 'flex' && d.flexDirection.startsWith('column'))) && a.getBoundingClientRect().width >= Math.min(260, innerWidth * 0.6) && !boxedIn(a)) break; a = a.parentElement; }
+      a.after(e); e.scrollIntoView({ block: 'nearest' }); },
+    win(head, body, btn, emoji = '🏆', cb) { $('#kwinE').textContent = emoji; $('#kwinH').textContent = t(head); $('#kwinP').textContent = t(body); $('#kwinB').textContent = t(btn || ['Play again', 'फिर खेलो', 'Phir khelo']); K._winCb = cb; $('#kwin').classList.add('show'); K.confetti(); K.sfx('win'); say(t(head) + '. ' + t(body)); },
+    done(lab, mode, result) { const msg = { type: 'techlab:lab-complete', lab, mode, result, stars: K.stars }; try { parent !== window && parent.postMessage(msg, '*'); } catch (e) {} g.__labResult = msg; },
+    confetti() { if (reduced()) return; const c = $('#kconf'), x = c.getContext('2d'); const wn = $('#kwin'); if (wn.classList.contains('show')) wn.prepend(c); else document.body.append(c); const W = c.width = innerWidth, H = c.height = innerHeight; const cols = ['#1D4ED8', '#8B3DFF', '#FF7A1A', '#F5B90A', '#14B8A6', '#FF6B57', '#02CFF9']; const P = Array.from({ length: 90 }, () => ({ x: W / 2, y: H / 2.2, vx: (Math.random() - .5) * 14, vy: -Math.random() * 14 - 4, r: Math.random() * 6 + 4, c: cols[Math.random() * cols.length | 0], a: Math.random() * 6, va: (Math.random() - .5) * .4 })); let f = 0; (function tick() { x.clearRect(0, 0, W, H); P.forEach((p) => { p.vy += .45; p.x += p.vx; p.y += p.vy; p.a += p.va; x.save(); x.translate(p.x, p.y); x.rotate(p.a); x.fillStyle = p.c; x.fillRect(-p.r / 2, -p.r / 4, p.r, p.r / 2); x.restore(); }); if (++f < 110) requestAnimationFrame(tick); else x.clearRect(0, 0, W, H); })(); },
+    _ac: null,
+    sfx(kind) { try { const ac = K._ac || (K._ac = new (g.AudioContext || g.webkitAudioContext)()); const n = { good: [[660, .07], [880, .1]], bad: [[220, .15]], tap: [[520, .04]], win: [[523, .1], [659, .1], [784, .1], [1047, .22]], move: [[400, .03]] }[kind] || [[500, .05]]; let t0 = ac.currentTime; n.forEach(([f, d]) => { const o = ac.createOscillator(), gn = ac.createGain(); o.type = kind === 'bad' ? 'sawtooth' : 'triangle'; o.frequency.value = f; gn.gain.setValueAtTime(.0001, t0); gn.gain.exponentialRampToValueAtTime(.18, t0 + .01); gn.gain.exponentialRampToValueAtTime(.0001, t0 + d); o.connect(gn).connect(ac.destination); o.start(t0); o.stop(t0 + d + .02); t0 += d; }); } catch (e) {} },
+    // Pointer drag: el follows finger; onDrop(el, x, y) returns true to accept, else it flies back.
+    draggable(node, onDrop, onStart) {
+      node.style.touchAction = 'none';
+      node.addEventListener('pointerdown', (ev) => {
+        if (node.dataset.locked) return; ev.preventDefault(); node.setPointerCapture(ev.pointerId); onStart && onStart(node);
+        const r = node.getBoundingClientRect(), ox = ev.clientX - r.left, oy = ev.clientY - r.top; const ghost = node.cloneNode(true);
+        ghost.style.cssText += `;position:fixed;left:${r.left}px;top:${r.top}px;width:${r.width}px;height:${r.height}px;margin:0;z-index:50;pointer-events:none;transform:scale(1.08) rotate(-3deg);box-shadow:0 14px 30px rgba(0,0,0,.25);transition:none`; ghost.classList.add('dragging'); document.body.append(ghost); node.style.opacity = '.25'; K.sfx('tap');
+        const mv = (e) => { ghost.style.left = e.clientX - ox + 'px'; ghost.style.top = e.clientY - oy + 'px'; K._hover && K._hover(e.clientX, e.clientY); };
+        const up = (e) => { node.removeEventListener('pointermove', mv); node.removeEventListener('pointerup', up); node.removeEventListener('pointercancel', up); K._hover && K._hover(-1, -1);
+          const ok = onDrop(node, e.clientX, e.clientY); if (ok) { ghost.remove(); node.style.opacity = ''; } else { ghost.style.transition = 'left .3s, top .3s, transform .3s'; ghost.style.left = r.left + 'px'; ghost.style.top = r.top + 'px'; ghost.style.transform = 'none'; setTimeout(() => { ghost.remove(); node.style.opacity = ''; }, 300); } };
+        node.addEventListener('pointermove', mv); node.addEventListener('pointerup', up); node.addEventListener('pointercancel', up);
+      });
+    },
+    hit(node, x, y, pad = 10) { const r = node.getBoundingClientRect(); return x >= r.left - pad && x <= r.right + pad && y >= r.top - pad && y <= r.bottom + pad; },
+    async lessonConfig() { const p = q.get('lesson'); const cfg = {}; if (p) { try { const L = await (await fetch(p)).json(); Object.assign(cfg, L.play && L.play.config, { goal: L.play && L.play.goal }); } catch (e) { console.warn('lesson config not loaded', e); } } for (const k of ['mode', 'level', 'class']) if (q.get(k)) cfg[k] = q.get(k); return cfg; },
+    shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.random() * (i + 1) | 0; [a[i], a[j]] = [a[j], a[i]]; } return a; },
+  };
+  document.documentElement.lang = lang === 'hi' ? 'hi' : 'en';
+  g.K = K;
+})(window);
+</script>
+<script>
+(async function () {
+const { t, $, el, esc } = K; const L = (en, hi, hg) => [en, hi, hg];
+K.header(['Gajju’s story stage', 'गज्जू का कहानी मंच', 'Gajju ka story stage'], '🐘');
+const cfg = await K.lessonConfig();
+const MODES = {
+  story: { n: L('1 · Make a story', '1 · कहानी बनाओ', '1 · Story banao'), goal: L('Snap blocks in order so Gajju walks 3 steps to Nani, says "Namaste!" and then jumps with joy. Tap ▶ Run.', 'ब्लॉक क्रम से जोड़ो ताकि गज्जू 3 कदम चलकर नानी तक जाए, "नमस्ते!" बोले और फिर ख़ुशी से कूदे। ▶ चलाओ दबाओ।', 'Blocks order mein jodo taaki Gajju 3 steps chal kar Nani tak jaaye, "Namaste!" bole aur phir khushi se jump kare. ▶ Run dabao.') },
+  debug: { n: L('2 · Fix the bug', '2 · बग ठीक करो', '2 · Bug theek karo'), goal: L('This story has bugs! Run it, see what goes wrong, then move (▲) or delete (✕) blocks until Gajju reaches Nani before saying "Namaste!".', 'इस कहानी में बग हैं! चलाओ, देखो क्या ग़लत होता है, फिर ब्लॉक ऊपर (▲) करो या हटाओ (✕) जब तक गज्जू "नमस्ते!" कहने से पहले नानी तक न पहुँचे।', 'Is story mein bugs hain! Run karo, dekho kya galat hota hai, phir blocks upar (▲) karo ya hatao (✕) jab tak Gajju "Namaste!" kehne se pehle Nani tak na pahunche.') },
+  ifelse: { n: L('3 · IF / ELSE', '3 · अगर / नहीं तो', '3 · IF / ELSE'), goal: L('Write one rule that works on BOTH days: IF it is raining THEN … ELSE … . Gajju must stay dry in the rain and cool in the sun.', 'एक ऐसा नियम लिखो जो दोनों दिन काम करे: अगर बारिश हो रही है तो … नहीं तो … । गज्जू बारिश में सूखा और धूप में ठंडा रहे।', 'Ek aisa rule likho jo DONO din kaam kare: IF baarish ho rahi hai THEN … ELSE … . Gajju baarish mein sookha aur dhoop mein thanda rahe.') },
+  game: { n: L('4 · Make a game', '4 · गेम बनाओ', '4 · Game banao'), goal: L('Build a mango-catching game: add the event blocks it needs, then play. Catch 5 mangoes to win!', 'आम पकड़ने का गेम बनाओ: ज़रूरी इवेंट ब्लॉक जोड़ो, फिर खेलो। जीतने के लिए 5 आम पकड़ो!', 'Mango pakadne ka game banao: zaroori event blocks jodo, phir khelo. Jeetne ke liye 5 mangoes pakdo!') },
+};
+let mode = MODES[cfg.mode] ? cfg.mode : 'story'; let st;
+const why = (m) => $('#why').textContent = t(m);
+const B = { right: { c: 'move', l: L('➡ Walk 1 step', '➡ 1 कदम चलो', '➡ 1 step chalo') }, left: { c: 'move', l: L('⬅ Walk back 1 step', '⬅ 1 कदम पीछे', '⬅ 1 step peeche') }, jump: { c: 'move', l: L('⤴ Jump', '⤴ कूदो', '⤴ Jump karo') }, say: { c: 'look', l: L('💬 Say "Namaste!"', '💬 "नमस्ते!" बोलो', '💬 "Namaste!" bolo') }, sing: { c: 'look', l: L('🎵 Sing a song', '🎵 गाना गाओ', '🎵 Gaana gaao') }, sleep: { c: 'look', l: L('😴 Sleep', '😴 सो जाओ', '😴 So jao') } };
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+function drawModes() { const m = $('#modes'); m.innerHTML = ''; for (const k in MODES) { const b = el('button', { role: 'tab', 'aria-pressed': k === mode, 'aria-selected': k === mode }, t(MODES[k].n)); b.onclick = () => { if (st && st.busy) return; mode = k; start(); }; m.append(b); } }
+function win(body, extra) { if (st.won) return; st.won = true; K.star(3); K.done('story-blocks', mode, { mode, solved: true, ...extra }); setTimeout(() => K.win(['Coder star!', 'कोडर सितारा!', 'Coder star!'], body, null, '🌟', () => start()), 700); }
+// ---------- stage ----------
+function stage(opts = {}) { const S = $('#stage'); S.innerHTML = `<div class="floor"></div>${opts.sky === 'rain' ? '<div class="cloud" style="left:20px">🌧️</div><div class="cloud" style="left:110px">☁️</div><div class="cloud" style="right:20px">🌧️</div>' : '<div class="sun">☀️</div>'}`;
+  if (opts.rain) for (let i = 0; i < 14; i++) { const d = el('div', { class: 'drop', 'data-ov-sprite': '' }, '💧'); d.style.left = (i * 7.3 + 2) + '%'; d.style.animationDelay = (-(i * 137) % 700) + 'ms'; S.append(d); }
+  if (opts.nani) S.append(Object.assign(el('div', { class: 'nani' }, '👵'), { style: 'left:80%' }));
+  const a = el('div', { class: 'actor', id: 'actor', 'data-ov-sprite': '' }, '🐘<span class="gear" id="gear"></span>'); S.append(a); place(opts.pos || 0); return S; }
+function place(p) { const a = $('#actor'); if (a) a.style.left = (p * 20) + '%'; }
+function speech(txt) { const S = $('#stage'); S.querySelectorAll('.speech').forEach((s) => s.remove()); if (!txt) return; const s = el('div', { class: 'speech' }, esc(txt)); s.style.left = (Math.min(st.pos, 3) * 20 + 4) + '%'; S.append(s); const sr = S.getBoundingClientRect(), r = s.getBoundingClientRect(); if (r.right > sr.right - 6) s.style.left = (parseFloat(getComputedStyle(s).left) - (r.right - sr.right + 8)) + 'px'; if (s.getBoundingClientRect().left < sr.left + 4) s.style.left = (parseFloat(getComputedStyle(s).left) + (sr.left + 6 - s.getBoundingClientRect().left)) + 'px'; }
+// ---------- story / debug ----------
+const BUGGY = ['say', 'right', 'right', 'jump', 'sleep'];
+function storyMode() { st.prog = st.prog || (mode === 'debug' ? [...BUGGY] : []); st.pos = 0; stage({ nani: true }); const W = $('#ws'); W.innerHTML = '';
+  const sc = el('div', { class: 'panel' }, `<h3>📜 ${t(['Gajju’s program', 'गज्जू का प्रोग्राम', 'Gajju ka program'])}</h3>`); const list = el('div', { class: 'script', id: 'script' }); sc.append(list);
+  list.append(el('div', { class: 'blk hat' }, `<span class="tx">🚩 ${esc(t(['When ▶ Run is tapped', 'जब ▶ चलाओ दबे', 'Jab ▶ Run dabe']))}</span>`));
+  st.prog.forEach((k, i) => { const b = el('div', { class: 'blk ' + B[k].c, id: 'pb' + i }, `<span class="tx">${esc(t(B[k].l))}</span>`); const up = el('button', { class: 'mini', 'aria-label': 'Move up', id: 'up' + i }, '▲'); up.disabled = i === 0; up.onclick = () => { if (st.busy || !i) return; [st.prog[i - 1], st.prog[i]] = [st.prog[i], st.prog[i - 1]]; K.sfx('tap'); storyMode(); }; const x = el('button', { class: 'mini', 'aria-label': 'Delete', id: 'del' + i }, '✕'); x.onclick = () => { if (st.busy) return; st.prog.splice(i, 1); K.sfx('tap'); storyMode(); }; b.append(up, x); list.append(b); });
+  if (!st.prog.length) list.append(el('div', { style: 'font-size:13px;color:#64748b;padding:4px' }, t(['Tap blocks below to add them here.', 'नीचे के ब्लॉक टैप करके यहाँ जोड़ो।', 'Neeche ke blocks tap karke yahan jodo.'])));
+  const pal = el('div', { class: 'panel' }, `<h3>🧱 ${t(['Blocks', 'ब्लॉक', 'Blocks'])}</h3>`); const pp = el('div', { class: 'palette' }); ['right', 'left', 'jump', 'say', 'sing', 'sleep'].forEach((k) => { const b = el('button', { class: 'blk ' + B[k].c, id: 'add-' + k }, `<span class="tx">${esc(t(B[k].l))}</span>`); b.onclick = () => { if (st.busy || st.prog.length >= 10) return; st.prog.push(k); K.sfx('tap'); storyMode(); }; pp.append(b); }); pal.append(pp);
+  const go = el('div', { class: 'go' }); const run = el('button', { class: 'kbtn', id: 'run' }, '▶ ' + t(['Run', 'चलाओ', 'Run'])); run.onclick = runStory; const clr = el('button', { class: 'kbtn alt', id: 'clear' }, '🧹 ' + t(['Clear', 'साफ़ करो', 'Clear'])); clr.onclick = () => { if (st.busy) return; st.prog = []; storyMode(); }; go.append(run, clr);
+  W.append(sc, go, pal);
+  why(mode === 'debug' ? ['A bug is a mistake in a program. Run it, watch closely, and find the block that happens at the wrong time.', 'बग प्रोग्राम की ग़लती है। चलाओ, ध्यान से देखो, और वह ब्लॉक ढूँढो जो ग़लत समय पर होता है।', 'Bug program ki galti hai. Run karo, dhyaan se dekho, aur woh block dhoondho jo galat time par hota hai.'] : ['A program is a list of steps in order — a sequence. The computer does them one by one, top to bottom.', 'प्रोग्राम क्रम से लिखे कदमों की सूची है — एक अनुक्रम। कंप्यूटर उन्हें ऊपर से नीचे एक-एक करके करता है।', 'Program order mein likhe steps ki list hai — ek sequence. Computer unhe upar se neeche ek-ek karke karta hai.']); }
+async function runStory() { if (st.busy) return; st.busy = true; st.pos = 0; place(0); speech(''); const log = []; const gear = $('#gear'); gear.textContent = '';
+  for (let i = 0; i < st.prog.length; i++) { const k = st.prog[i]; const b = $('#pb' + i); b && b.classList.add('run'); const a = $('#actor');
+    if (k === 'right') { st.pos = Math.min(4, st.pos + 1); place(st.pos); K.sfx('move'); }
+    if (k === 'left') { st.pos = Math.max(0, st.pos - 1); place(st.pos); K.sfx('move'); }
+    if (k === 'jump') { a.style.transform = 'translateY(-46px)'; K.sfx('good'); await sleep(300); a.style.transform = ''; }
+    if (k === 'say') speech(t(['Namaste!', 'नमस्ते!', 'Namaste!']));
+    if (k === 'sing') { speech('🎵 la la la'); K.sfx('win'); }
+    if (k === 'sleep') { gear.textContent = '💤'; }
+    log.push({ k, pos: st.pos }); await sleep(620); b && b.classList.remove('run'); }
+  st.busy = false; const atNani = st.pos === 3; const sayI = log.findIndex((x) => x.k === 'say'); const saidThere = sayI >= 0 && log[sayI].pos === 3; const jumpedAfter = log.some((x, i) => x.k === 'jump' && i > sayI && x.pos === 3 && sayI >= 0); const slept = log.some((x) => x.k === 'sleep');
+  if (atNani && saidThere && jumpedAfter && !slept) { return win(mode === 'debug' ? L('You debugged it! You moved the steps into the right order and removed the extra one. Real coders test and fix like this every day.', 'तुमने बग ठीक कर दिया! कदम सही क्रम में लगाए और फ़ालतू वाला हटाया। असली कोडर रोज़ ऐसे ही जाँचते और सुधारते हैं।', 'Tumne debug kar diya! Steps sahi order mein lagaaye aur extra wala hataaya. Asli coders roz aise hi test aur fix karte hain.') : L('Walk, walk, walk, say Namaste, jump — the right sequence! Order matters: the computer does exactly what you wrote, in that order.', 'चलो, चलो, चलो, नमस्ते बोलो, कूदो — सही क्रम! क्रम ज़रूरी है: कंप्यूटर वही करता है जो तुमने लिखा, उसी क्रम में।', 'Chalo, chalo, chalo, Namaste bolo, jump — sahi sequence! Order zaroori hai: computer wahi karta hai jo tumne likha, usi order mein.'), { blocks: st.prog.length }); }
+  let msg; if (slept) msg = ['Gajju fell asleep! Is there a block that should not be in this story?', 'गज्जू सो गया! क्या कोई ब्लॉक इस कहानी में नहीं होना चाहिए?', 'Gajju so gaya! Kya koi block is story mein nahin hona chahiye?']; else if (!atNani) msg = [`Gajju stopped at step ${st.pos}. Nani is at step 3. How many "Walk" blocks do you need?`, `गज्जू कदम ${st.pos} पर रुका। नानी कदम 3 पर हैं। कितने "चलो" ब्लॉक चाहिए?`, `Gajju step ${st.pos} par ruka. Nani step 3 par hain. Kitne "Walk" blocks chahiye?`]; else if (!saidThere) msg = ['Gajju said Namaste too early — or not at all! Say it after reaching Nani.', 'गज्जू ने नमस्ते बहुत जल्दी बोला — या बोला ही नहीं! नानी तक पहुँचकर बोलो।', 'Gajju ne Namaste bahut jaldi bola — ya bola hi nahin! Nani tak pahunch kar bolo.']; else msg = ['Almost! Gajju should jump with joy AFTER saying Namaste.', 'लगभग! गज्जू को नमस्ते कहने के बाद ख़ुशी से कूदना है।', 'Almost! Gajju ko Namaste kehne ke BAAD khushi se jump karna hai.'];
+  K.sfx('bad'); K.toast(msg, 'bad'); if (mode === 'debug') { const bi = log.findIndex((x) => (x.k === 'say' && x.pos !== 3) || x.k === 'sleep'); const b = $('#pb' + bi); b && b.classList.add('bug'); } why(msg); }
+// ---------- if / else ----------
+const ACT = { umb: L('☂️ open umbrella', '☂️ छाता खोलो', '☂️ chhaata kholo'), cap: L('🧢 wear a cap', '🧢 टोपी पहनो', '🧢 topi pehno'), sleep: L('😴 go to sleep', '😴 सो जाओ', '😴 so jao') };
+const CND = { rain: L('it is raining 🌧️', 'बारिश हो रही है 🌧️', 'baarish ho rahi hai 🌧️'), sun: L('it is sunny ☀️', 'धूप है ☀️', 'dhoop hai ☀️') };
+function ifMode() { st.rule = st.rule || { c: 'rain', then: null, els: null }; stage({ sky: st.day === 'rain' ? 'rain' : 'sun', rain: st.day === 'rain' }); const W = $('#ws'); W.innerHTML = '';
+  const p = el('div', { class: 'panel cond' }, `<h3>📜 ${t(['Gajju’s rule', 'गज्जू का नियम', 'Gajju ka rule'])}</h3>`);
+  const row = (lbl, key, opts, src) => { const r = el('div', { class: 'row' }, `<span class="lbl">${esc(t(lbl))}</span>`); const o = el('div', { class: 'opts' }); for (const k in opts) { const b = el('button', { id: key + '-' + k, 'aria-pressed': st.rule[key] === k }, esc(t(opts[k]))); b.onclick = () => { if (st.busy) return; st.rule[key] = k; K.sfx('tap'); ifMode(); }; o.append(b); } r.append(o); p.append(r); };
+  row(['IF', 'अगर', 'IF'], 'c', CND); row(['THEN', 'तो', 'THEN'], 'then', ACT); row(['ELSE', 'नहीं तो', 'ELSE'], 'els', ACT);
+  const go = el('div', { class: 'go' }); const run = el('button', { class: 'kbtn', id: 'run' }, '▶ ' + t(['Test on 2 days', '2 दिन पर जाँचो', '2 din par test karo'])); run.onclick = runIf; go.append(run);
+  const code = el('div', { class: 'code', id: 'code' }, esc(`if ${st.rule.c === 'rain' ? 'raining' : 'sunny'}:\n    ${st.rule.then ? { umb: 'open_umbrella()', cap: 'wear_cap()', sleep: 'sleep()' }[st.rule.then] : '...'}\nelse:\n    ${st.rule.els ? { umb: 'open_umbrella()', cap: 'wear_cap()', sleep: 'sleep()' }[st.rule.els] : '...'}`));
+  W.append(p, go, code); why(['IF checks a question that is true or false. THEN runs when it is true; ELSE runs when it is false. One rule, two answers!', 'अगर एक ऐसा सवाल जाँचता है जो सच या झूठ हो। सच हो तो "तो" वाला चलता है; झूठ हो तो "नहीं तो" वाला। एक नियम, दो जवाब!', 'IF ek sawaal check karta hai jo true ya false ho. True ho toh THEN chalta hai; false ho toh ELSE. Ek rule, do jawaab!']); }
+async function runIf() { if (st.busy) return; const R = st.rule; if (!R.then || !R.els) { K.toast(['Choose an action for THEN and for ELSE first.', 'पहले "तो" और "नहीं तो" के लिए काम चुनो।', 'Pehle THEN aur ELSE ke liye action chuno.'], 'bad'); return; } st.busy = true; let ok = 0; const res = [];
+  for (const day of ['rain', 'sun']) { st.day = day; ifMode(); st.busy = true; const S = $('#stage'); S.append(el('div', { class: 'day' }, esc(t(day === 'rain' ? ['Day 1: rainy', 'दिन 1: बारिश', 'Day 1: baarish'] : ['Day 2: sunny', 'दिन 2: धूप', 'Day 2: dhoop'])))); await sleep(500);
+    const cond = (R.c === 'rain') === (day === 'rain'); const act = cond ? R.then : R.els; $('#gear').textContent = { umb: '☂️', cap: '🧢', sleep: '💤' }[act]; const good = (day === 'rain' && act === 'umb') || (day === 'sun' && act === 'cap'); if (good) ok++; res.push(good); K.sfx(good ? 'good' : 'bad'); st.pos = 1; speech(t(good ? ['Perfect!', 'बढ़िया!', 'Perfect!'] : day === 'rain' ? ['I am getting wet!', 'मैं भीग रहा हूँ!', 'Main bheeg raha hoon!'] : ['So hot!', 'बहुत गर्मी!', 'Bahut garmi!'])); await sleep(1300); }
+  st.busy = false; if (ok === 2) return win(L('Your rule works on both days! IF/ELSE lets one program make the right choice in different situations — like a phone switching to dark mode at night.', 'तुम्हारा नियम दोनों दिन चला! अगर/नहीं तो से एक ही प्रोग्राम अलग हालात में सही फ़ैसला लेता है — जैसे रात में फ़ोन डार्क मोड में चला जाता है।', 'Tumhara rule dono din chala! IF/ELSE se ek hi program alag situations mein sahi faisla leta hai — jaise raat mein phone dark mode mein chala jaata hai.'), { days: 2 });
+  const m = !res[0] ? ['On the rainy day Gajju got wet. Which action should happen when it rains?', 'बारिश वाले दिन गज्जू भीग गया। बारिश में कौन सा काम होना चाहिए?', 'Baarish wale din Gajju bheeg gaya. Baarish mein kaun sa action hona chahiye?'] : ['On the sunny day Gajju was too hot. What should happen when it is NOT raining?', 'धूप वाले दिन गज्जू को बहुत गर्मी लगी। जब बारिश न हो तब क्या होना चाहिए?', 'Dhoop wale din Gajju ko bahut garmi lagi. Jab baarish NA ho tab kya hona chahiye?']; K.toast(m, 'bad'); why(m); }
+// ---------- game ----------
+const GB = [{ id: 'start', c: 'ev', l: L('🚩 When game starts → set score to 0', '🚩 जब गेम शुरू हो → स्कोर = 0', '🚩 Jab game shuru ho → score = 0'), need: true },
+  { id: 'left', c: 'ev', l: L('⬅ When left button pressed → move left', '⬅ जब बायाँ बटन दबे → बाएँ चलो', '⬅ Jab left button dabe → left chalo'), need: true },
+  { id: 'right', c: 'ev', l: L('➡ When right button pressed → move right', '➡ जब दायाँ बटन दबे → दाएँ चलो', '➡ Jab right button dabe → right chalo'), need: true },
+  { id: 'catch', c: 'var', l: L('🥭 When mango touches Gajju → change score by 1', '🥭 जब आम गज्जू को छुए → स्कोर में 1 जोड़ो', '🥭 Jab mango Gajju ko chhuye → score mein 1 jodo'), need: true },
+  { id: 'win', c: 'ctl', l: L('🏆 IF score = 5 → say "I win!"', '🏆 अगर स्कोर = 5 → बोलो "मैं जीता!"', '🏆 IF score = 5 → bolo "Main jeeta!"'), need: true },
+  { id: 'sleep', c: 'look', l: L('😴 When mango touches Gajju → go to sleep', '😴 जब आम गज्जू को छुए → सो जाओ', '😴 Jab mango Gajju ko chhuye → so jao'), need: false }];
+const COLS = [2, 0, 3, 1, 4, 2, 0, 3, 1, 4, 2, 3];
+function gameMode() { st.have = st.have || new Set(); st.pos = 2; const S = stage({ pos: 2 }); S.append(el('div', { class: 'score', id: 'score' }, `⭐ ${t(['score', 'स्कोर', 'score'])} = ${st.score ?? 0}`)); const W = $('#ws'); W.innerHTML = '';
+  const p = el('div', { class: 'panel' }, `<h3>📜 ${t(['Game rules (tap to add or remove)', 'गेम के नियम (जोड़ने/हटाने को टैप करो)', 'Game rules (add/remove ke liye tap karo)'])}</h3>`); const pp = el('div', { class: 'script' });
+  GB.forEach((g) => { const on = st.have.has(g.id); const b = el('button', { class: 'blk ' + g.c, id: 'g-' + g.id, 'aria-pressed': on, style: on ? '' : 'opacity:.55;filter:saturate(.4)' }, `<span class="tx">${on ? '✅ ' : '➕ '}${esc(t(g.l))}</span>`); b.onclick = () => { if (st.busy) return; on ? st.have.delete(g.id) : st.have.add(g.id); K.sfx('tap'); gameMode(); }; pp.append(b); }); p.append(pp);
+  const go = el('div', { class: 'go' }); const run = el('button', { class: 'kbtn', id: 'run' }, '▶ ' + t(['Play the game', 'गेम खेलो', 'Game khelo'])); run.onclick = playGame; go.append(run);
+  const pad = el('div', { class: 'pad' }); const bl = el('button', { id: 'padL', 'aria-label': 'left' }, '⬅'), br = el('button', { id: 'padR', 'aria-label': 'right' }, '➡'); bl.onclick = () => press('left'); br.onclick = () => press('right'); pad.append(bl, br);
+  W.append(pad, go, p); why(['An event is "when something happens". Each game rule waits for its event: a button press, a mango touching Gajju. The score is a variable — a box that holds a number.', 'इवेंट मतलब "जब कुछ हो"। हर नियम अपने इवेंट का इंतज़ार करता है: बटन दबना, आम का गज्जू को छूना। स्कोर एक वेरिएबल है — संख्या रखने वाला डिब्बा।', 'Event matlab "jab kuch ho". Har rule apne event ka intezaar karta hai: button dabna, mango ka Gajju ko chhoona. Score ek variable hai — number rakhne wala dabba.']); }
+function press(dir) { if (!st.playing) return; if (!st.have.has(dir)) { st.noMove = dir; return; } st.pos = Math.max(0, Math.min(4, st.pos + (dir === 'left' ? -1 : 1))); place(st.pos); K.sfx('move'); }
+window.__sbState = () => ({ pos: st.pos, playing: !!st.playing, next: st.nextCol, score: st.score });
+async function playGame() { if (st.busy) return; st.busy = true; st.playing = true; st.score = st.have.has('start') ? 0 : NaN; st.noMove = null; let caught = 0, slept = false, said = false; const S = $('#stage'); const sc = $('#score');
+  const show = () => sc.textContent = `⭐ ${t(['score', 'स्कोर', 'score'])} = ${Number.isNaN(st.score) ? '?' : st.score}`; show();
+  for (let i = 0; i < COLS.length && !said; i++) { const col = COLS[i]; st.nextCol = col; const m = el('div', { class: 'mango', 'data-ov-sprite': '' }, '🥭'); m.style.left = col * 20 + '%'; S.append(m);
+    const T0 = performance.now(), dur = 1500; await new Promise((res) => { (function f(now) { const k = Math.min(1, (now - T0) / dur); m.style.top = (-40 + k * 150) + 'px'; if (k < 1) requestAnimationFrame(f); else res(); })(performance.now()); });
+    if (col === st.pos) { if (st.have.has('sleep')) { slept = true; $('#gear').textContent = '💤'; } if (st.have.has('catch')) { st.score = st.score + 1; caught++; K.sfx('good'); K.star(); } else K.sfx('tap'); show(); if (st.have.has('win') && st.score === 5) { said = true; speech(t(['I win!', 'मैं जीता!', 'Main jeeta!'])); } }
+    m.remove(); if (slept) break; }
+  st.playing = false; st.busy = false;
+  if (said) return win(L('You built a real game: events (button presses, a mango touching Gajju), a variable (score) and a condition (IF score = 5). Every video game is made of rules like these.', 'तुमने असली गेम बनाया: इवेंट (बटन दबना, आम का गज्जू को छूना), वेरिएबल (स्कोर) और शर्त (अगर स्कोर = 5)। हर वीडियो गेम ऐसे ही नियमों से बनता है।', 'Tumne asli game banaya: events (button dabna, mango ka Gajju ko chhoona), variable (score) aur condition (IF score = 5). Har video game aise hi rules se banta hai.'), { caught });
+  let m; if (slept) m = ['Gajju fell asleep when a mango touched him! Remove the rule that does not belong in this game.', 'आम छूते ही गज्जू सो गया! वह नियम हटाओ जो इस गेम का नहीं है।', 'Mango chhoote hi Gajju so gaya! Woh rule hatao jo is game ka nahin hai.'];
+  else if (st.noMove) m = [`You pressed ${st.noMove === 'left' ? '⬅' : '➡'} but nothing happened. Which event rule is missing?`, `तुमने ${st.noMove === 'left' ? '⬅' : '➡'} दबाया पर कुछ नहीं हुआ। कौन सा इवेंट नियम ग़ायब है?`, `Tumne ${st.noMove === 'left' ? '⬅' : '➡'} dabaaya par kuch nahin hua. Kaun sa event rule gaayab hai?`];
+  else if (!st.have.has('start')) m = ['The score shows "?" — it was never set at the start. Add the rule that sets score to 0.', 'स्कोर "?" दिखा रहा है — शुरू में कभी सेट नहीं हुआ। स्कोर को 0 करने वाला नियम जोड़ो।', 'Score "?" dikha raha hai — shuru mein kabhi set nahin hua. Score ko 0 karne wala rule jodo.'];
+  else if (!st.have.has('catch')) m = ['Mangoes touched Gajju but the score did not change. Which rule adds 1 to the score?', 'आम गज्जू को छुए पर स्कोर नहीं बदला। कौन सा नियम स्कोर में 1 जोड़ता है?', 'Mangoes Gajju ko chhuye par score nahin badla. Kaun sa rule score mein 1 jodta hai?'];
+  else if (!st.have.has('win')) m = ['Nobody said "I win!" — add the IF rule that checks the score.', 'किसी ने "मैं जीता!" नहीं कहा — स्कोर जाँचने वाला अगर-नियम जोड़ो।', 'Kisi ne "Main jeeta!" nahin kaha — score check karne wala IF rule jodo.'];
+  else m = [`Only ${caught} mangoes caught. Move under each mango with ⬅ ➡ — watch where it falls!`, `सिर्फ़ ${caught} आम पकड़े। ⬅ ➡ से हर आम के नीचे जाओ — देखो वह कहाँ गिरता है!`, `Sirf ${caught} mangoes pakde. ⬅ ➡ se har mango ke neeche jao — dekho woh kahan girta hai!`];
+  K.sfx('bad'); K.toast(m, 'bad'); why(m); }
+function start() { st = { day: 'rain' }; drawModes(); $('#goal').innerHTML = `<span style="font-size:22px">🎯</span><div><b>${t(['Goal', 'लक्ष्य', 'Goal'])}:</b> ${esc(t(cfg.mode === mode && cfg.goal ? [cfg.goal.en, cfg.goal.hi || cfg.goal.en, cfg.goal.hinglish] : MODES[mode].goal))}</div>`;
+  ({ story: storyMode, debug: storyMode, ifelse: ifMode, game: gameMode })[mode](); }
+K.onLang(() => { if (!st || !st.busy) start(); });
+start();
+})();
+</script></body></html>

@@ -89,7 +89,7 @@ describe('the Progress screen’s parts', () => {
 describe('the dock and the mascot', () => {
   it('keeps aria-current and every tab’s name, on an ink dock with 56 px tabs', async () => {
     const { FamilyTabs } = await import('@/components/family/FamilyTabs');
-    const html = renderToStaticMarkup(h(FamilyTabs, { tabs: ['home', 'study', 'english', 'future'], navLabel: 'Main menu', labels: { home: 'Home', study: 'Study', english: 'English', draw: 'Draw', future: 'Future' } }));
+    const html = renderToStaticMarkup(h(FamilyTabs, { tabs: ['home', 'study', 'english', 'future'], navLabel: 'Main menu', labels: { home: 'Home', study: 'Study', english: 'English', tech: 'Tech Lab', draw: 'Draw', future: 'Future' } }));
     expect(html).toContain('bg-ink');
     expect(html.match(/aria-current="page"/g)?.length).toBe(1);
     expect(html).toMatch(/aria-current="page"[^>]*href="\/family"|href="\/family"[^>]*aria-current="page"/);
@@ -102,15 +102,15 @@ describe('the dock and the mascot', () => {
   // 17 Nov 2026 (founder): edge to edge on a phone, every name always shown, each tab its own logo colour.
   it('is edge to edge on a phone, a centred column on a wide screen, and shows every name, each tab in its own colour', async () => {
     const { FamilyTabs, TAB_TONE } = await import('@/components/family/FamilyTabs');
-    const labels = { home: 'Home', study: 'Study', english: 'English', draw: 'Draw', future: 'Future' };
-    const html = renderToStaticMarkup(h(FamilyTabs, { tabs: ['home', 'study', 'english', 'draw', 'future'], navLabel: 'Main menu', labels }));
+    const labels = { home: 'Home', study: 'Study', english: 'English', tech: 'Tech Lab', draw: 'Draw', future: 'Future' };
+    const html = renderToStaticMarkup(h(FamilyTabs, { tabs: ['home', 'study', 'english', 'tech', 'draw', 'future'], navLabel: 'Main menu', labels }));
     expect(html).not.toContain('sr-only');
-    expect(html.match(/data-tab-label/g)?.length).toBe(5);
+    expect(html.match(/data-tab-label/g)?.length).toBe(6);
     expect(html).toMatch(/<nav[^>]*class="fixed inset-x-0 bottom-0[^"]*"/);
     expect(html).toMatch(/class="fam-dock mx-auto flex w-full[^"]*pb-\[calc\(var\(--fam-bottom,0px\)[^"]*lg:max-w-\[68rem\]/);
     // Five distinct colours, all logo tokens (tailwind.config.ts maps them to design-tokens.ts).
     const tones = Object.values(TAB_TONE).map((t) => t.text);
-    expect(new Set(tones).size).toBe(5);
+    expect(new Set(tones).size).toBe(6);
     for (const [tab, t] of Object.entries(TAB_TONE)) expect(html, tab).toContain(t.text);
     // The open tab (Home here: /family/progress) has its icon on its colour's disc.
     expect(html).toContain(`fam-tab-ico ${TAB_TONE.home.disc} text-ink`);

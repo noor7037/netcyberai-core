@@ -1,0 +1,373 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.web-dev.03",
+ "level": 3,
+ "classes": [
+  9,
+  10,
+  11
+ ],
+ "unit": "web-dev",
+ "title": {
+  "en": "Responsive CSS layout",
+  "hi": "रिस्पॉन्सिव CSS लेआउट",
+  "hinglish": "Responsive CSS layout"
+ },
+ "minutes": 15,
+ "xp": 60,
+ "prereq": [
+  "L3.web-dev.02"
+ ],
+ "outcomes": [
+  {
+   "en": "Use selectors, the box model and the cascade",
+   "hi": "सिलेक्टर, बॉक्स मॉडल और कैस्केड इस्तेमाल करो",
+   "hinglish": "Selectors, box model aur cascade use karo"
+  },
+  {
+   "en": "Lay out pages with flexbox and grid",
+   "hi": "flexbox और grid से पेज सजाओ",
+   "hinglish": "Flexbox aur grid se pages layout karo"
+  },
+  {
+   "en": "Build mobile-first pages with media queries and fluid sizes",
+   "hi": "मीडिया क्वेरी और लचीले आकारों से मोबाइल-पहले पेज बनाओ",
+   "hinglish": "Media queries aur fluid sizes se mobile-first pages banao"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Selector",
+   "hinglish": "Chunne wala",
+   "en": "Picks which elements a rule styles, e.g. .card or nav a",
+   "hi": "चुनता है किन तत्वों पर नियम लगे, जैसे .card या nav a"
+  },
+  {
+   "term": "Box model",
+   "hinglish": "Box model",
+   "en": "Every element is content + padding + border + margin",
+   "hi": "हर तत्व = सामग्री + पैडिंग + बॉर्डर + मार्जिन"
+  },
+  {
+   "term": "Flexbox",
+   "hinglish": "Flexbox",
+   "en": "Lays items in a row or column and shares space between them",
+   "hi": "चीज़ों को पंक्ति या कॉलम में रखकर जगह बाँटता है"
+  },
+  {
+   "term": "Grid",
+   "hinglish": "Grid",
+   "en": "Lays items in rows and columns at once",
+   "hi": "चीज़ों को एक साथ पंक्तियों और कॉलमों में रखता है"
+  },
+  {
+   "term": "Media query",
+   "hinglish": "Screen ka sawaal",
+   "en": "CSS that applies only when, e.g., the screen is at least 600 px wide",
+   "hi": "CSS जो तभी लगे जब, जैसे, स्क्रीन कम से कम 600 px चौड़ी हो"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Rule: selector { property: value; } — e.g. .card { padding: 16px; }",
+    "hi": "नियम: selector { property: value; } — जैसे .card { padding: 16px; }",
+    "hinglish": "Rule: selector { property: value; } — jaise .card { padding: 16px; }"
+   },
+   "visual": "flow:selector|property|value",
+   "narration": {
+    "en": "Rule: selector { property: value; } — e.g. .card { padding: 16px; }",
+    "hi": "नियम: selector { property: value; } — जैसे .card { padding: 16px; }",
+    "hinglish": "Rule: selector { property: value; } — jaise .card { padding: 16px; }"
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Box model: margin › border › padding › content.",
+    "hi": "बॉक्स मॉडल: margin › border › padding › content।",
+    "hinglish": "Box model: margin › border › padding › content."
+   },
+   "visual": "stack:margin|border|padding|content",
+   "narration": {
+    "en": "Box model: margin › border › padding › content.",
+    "hi": "बॉक्स मॉडल: margin › border › padding › content।",
+    "hinglish": "Box model: margin › border › padding › content."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Phone: one column. Tablet: two columns. Same HTML, different CSS.",
+    "hi": "फ़ोन: एक कॉलम। टैबलेट: दो कॉलम। वही HTML, अलग CSS।",
+    "hinglish": "Phone: ek column. Tablet: do columns. Wahi HTML, alag CSS."
+   },
+   "visual": "compare:320 px|700 px",
+   "narration": {
+    "en": "Phone: one column. Tablet: two columns. Same HTML, different CSS.",
+    "hi": "फ़ोन: एक कॉलम। टैबलेट: दो कॉलम। वही HTML, अलग CSS।",
+    "hinglish": "Phone: ek column. Tablet: do columns. Wahi HTML, alag CSS."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Mobile-first: write the phone style first, then add @media (min-width: 600px).",
+    "hi": "मोबाइल-पहले: पहले फ़ोन स्टाइल लिखो, फिर @media (min-width: 600px) जोड़ो।",
+    "hinglish": "Mobile-first: pehle phone style likho, phir @media (min-width: 600px) jodo."
+   },
+   "visual": "flow:phone|tablet|desktop",
+   "narration": {
+    "en": "Mobile-first: write the phone style first, then add @media (min-width: 600px).",
+    "hi": "मोबाइल-पहले: पहले फ़ोन स्टाइल लिखो, फिर @media (min-width: 600px) जोड़ो।",
+    "hinglish": "Mobile-first: pehle phone style likho, phir @media (min-width: 600px) jodo."
+   }
+  }
+ ],
+ "play": {
+  "lab": "web-lab",
+  "config": {
+   "mission": "css"
+  },
+  "goal": {
+   "en": "Mission 3: the club cards are fixed at 300 px and spill off a phone. Make one column at 320 px and two at 700 px with no sideways scrolling. Switch the preview between 📱 and 💻 to see it.",
+   "hi": "मिशन 3: क्लब कार्ड 300 px पर तय हैं और फ़ोन से बाहर जाते हैं। 320 px पर एक कॉलम और 700 px पर दो बनाओ, बग़ल में स्क्रॉल के बिना। देखने के लिए पूर्वावलोकन को 📱 और 💻 के बीच बदलो।",
+   "hinglish": "Mission 3: club cards 300 px par fixed hain aur phone se bahar jaate hain. 320 px par ek column aur 700 px par do banao, sideways scroll ke bina. Dekhne ke liye preview ko 📱 aur 💻 ke beech badlo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "How CSS decides",
+    "hi": "CSS कैसे तय करता है",
+    "hinglish": "CSS kaise decide karta hai"
+   },
+   "body": {
+    "en": "A CSS rule has a selector and declarations: .card { padding: 16px; border-radius: 12px; }. When rules clash, the cascade decides: more specific selectors win (an id beats a class, which beats a tag), and if equal, the later rule wins. Some properties, such as color and font, are inherited by children. Every element is a box: content, then padding inside the border, then margin outside. Set box-sizing: border-box so a 300 px-wide box stays 300 px including its padding. Use relative units — rem for text (1 rem is the root font size, usually 16 px), % or fr for widths — so pages adapt when people zoom or use larger text, which many users with weak eyesight do.",
+    "hi": "CSS नियम में सिलेक्टर और घोषणाएँ होती हैं: .card { padding: 16px; border-radius: 12px; }। जब नियम टकराएँ, कैस्केड तय करता है: ज़्यादा विशिष्ट सिलेक्टर जीतते हैं (id क्लास से, क्लास टैग से), और बराबर हों तो बाद वाला नियम जीतता है। color और font जैसे कुछ गुण बच्चों को विरासत में मिलते हैं। हर तत्व एक बॉक्स है: सामग्री, फिर बॉर्डर के अंदर पैडिंग, फिर बाहर मार्जिन। box-sizing: border-box लगाओ ताकि 300 px चौड़ा बॉक्स पैडिंग समेत 300 px ही रहे। सापेक्ष इकाइयाँ इस्तेमाल करो — पाठ के लिए rem (1 rem मूल फ़ॉन्ट आकार, आमतौर पर 16 px), चौड़ाई के लिए % या fr — ताकि लोग ज़ूम करें या बड़ा पाठ इस्तेमाल करें तो पेज ढल जाए, जो कमज़ोर दृष्टि वाले कई उपयोगकर्ता करते हैं।",
+    "hinglish": "CSS rule mein selector aur declarations hote hain: .card { padding: 16px; border-radius: 12px; }. Jab rules takrayein, cascade decide karta hai: zyada specific selectors jeette hain (id class se, class tag se), aur barabar hon to baad wala rule jeetta hai. color aur font jaise kuch properties children ko inherit hoti hain. Har element ek box hai: content, phir border ke andar padding, phir bahar margin. box-sizing: border-box lagao taaki 300 px chauda box padding samet 300 px hi rahe. Relative units use karo — text ke liye rem (1 rem root font size, aam taur par 16 px), widths ke liye % ya fr — taaki log zoom karein ya bada text use karein to page dhal jaaye, jo kamzor nazar wale kai users karte hain."
+   },
+   "analogy": {
+    "en": "Uniform rules in a school: the school rule applies to all, a class rule overrides it, and the class teacher’s latest note wins.",
+    "hi": "स्कूल में वर्दी नियम: स्कूल का नियम सब पर, कक्षा का नियम उसे बदलता है, और कक्षा अध्यापक की ताज़ा सूचना जीतती है।",
+    "hinglish": "School mein uniform rules: school ka rule sab par, class ka rule use badalta hai, aur class teacher ka latest note jeetta hai."
+   },
+   "realExample": {
+    "en": "*{box-sizing:border-box} body{font-size:1rem;line-height:1.5} .card{padding:1rem;border:1px solid #ccc}",
+    "hi": "*{box-sizing:border-box} body{font-size:1rem;line-height:1.5} .card{padding:1rem;border:1px solid #ccc}",
+    "hinglish": "*{box-sizing:border-box} body{font-size:1rem;line-height:1.5} .card{padding:1rem;border:1px solid #ccc}"
+   }
+  },
+  {
+   "heading": {
+    "en": "Flexbox, grid and mobile-first",
+    "hi": "Flexbox, grid और मोबाइल-पहले",
+    "hinglish": "Flexbox, grid aur mobile-first"
+   },
+   "body": {
+    "en": "Flexbox arranges items along one line — a nav bar or a row of buttons — with gap for spacing and flex-wrap: wrap so items move to the next line instead of spilling off the screen. Grid arranges rows and columns together: grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) makes as many columns as fit, with no media query at all. Most Indian users browse on phones, so design mobile-first: write the single-column phone layout first, then add @media (min-width: 600px) { … } for wider screens. Always include <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> or phones will shrink the desktop page. Test at 320 px, in landscape, and at 200% zoom; sideways scrolling and text cut off at the edge are bugs.",
+    "hi": "Flexbox चीज़ों को एक रेखा में सजाता है — nav बार या बटनों की पंक्ति — दूरी के लिए gap और flex-wrap: wrap के साथ ताकि चीज़ें स्क्रीन से बाहर जाने के बजाय अगली पंक्ति में जाएँ। Grid पंक्तियाँ और कॉलम साथ सजाता है: grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) जितने कॉलम आएँ उतने बनाता है, बिना किसी मीडिया क्वेरी के। ज़्यादातर भारतीय उपयोगकर्ता फ़ोन पर ब्राउज़ करते हैं, इसलिए मोबाइल-पहले डिज़ाइन करो: पहले एक-कॉलम फ़ोन लेआउट लिखो, फिर चौड़ी स्क्रीन के लिए @media (min-width: 600px) { … } जोड़ो। हमेशा <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> रखो वरना फ़ोन डेस्कटॉप पेज छोटा कर देंगे। 320 px पर, लैंडस्केप में और 200% ज़ूम पर जाँचो; बग़ल में स्क्रॉल और किनारे पर कटा पाठ बग हैं।",
+    "hinglish": "Flexbox items ko ek line mein arrange karta hai — nav bar ya buttons ki row — spacing ke liye gap aur flex-wrap: wrap ke saath taaki items screen se bahar jaane ke bajaye agli line mein jaayein. Grid rows aur columns saath arrange karta hai: grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) jitne columns fit hon utne banata hai, bina kisi media query ke. Zyaadatar Indian users phone par browse karte hain, isliye mobile-first design karo: pehle single-column phone layout likho, phir wider screens ke liye @media (min-width: 600px) { … } jodo. Hamesha <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> rakho warna phones desktop page chhota kar denge. 320 px par, landscape mein aur 200% zoom par test karo; sideways scrolling aur edge par kata text bugs hain."
+   },
+   "analogy": {
+    "en": "Arranging chairs for an assembly: in a narrow corridor one line, in the hall several rows — same chairs, different space.",
+    "hi": "सभा के लिए कुर्सियाँ: संकरे गलियारे में एक पंक्ति, हॉल में कई पंक्तियाँ — वही कुर्सियाँ, अलग जगह।",
+    "hinglish": "Assembly ke liye kursiyan: sankre galiyaare mein ek line, hall mein kai rows — wahi kursiyan, alag jagah."
+   },
+   "realExample": {
+    "en": ".cards{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))} nav ul{display:flex;flex-wrap:wrap;gap:8px}",
+    "hi": ".cards{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))} nav ul{display:flex;flex-wrap:wrap;gap:8px}",
+    "hinglish": ".cards{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))} nav ul{display:flex;flex-wrap:wrap;gap:8px}"
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Style your Tech Club page mobile-first: a wrapping flexbox nav, a grid of activity cards that is one column on a phone and two or three on a laptop, rem font sizes, and the viewport meta tag. Test it at 320 px, in landscape and at 200% zoom, and fix anything that scrolls sideways.",
+   "hi": "अपने Tech Club पेज को मोबाइल-पहले स्टाइल करो: लिपटने वाला flexbox nav, गतिविधि कार्डों का grid जो फ़ोन पर एक कॉलम और लैपटॉप पर दो या तीन हो, rem फ़ॉन्ट आकार, और viewport meta टैग। 320 px, लैंडस्केप और 200% ज़ूम पर जाँचो, और जो भी बग़ल में स्क्रॉल हो उसे ठीक करो।",
+   "hinglish": "Apne Tech Club page ko mobile-first style karo: wrap hone wala flexbox nav, activity cards ka grid jo phone par ek column aur laptop par do ya teen ho, rem font sizes, aur viewport meta tag. 320 px, landscape aur 200% zoom par test karo, aur jo bhi sideways scroll ho use theek karo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Two rules set a paragraph’s colour: p { color: black } and #intro { color: blue }. Which wins for <p id=\"intro\">?",
+     "hi": "दो नियम अनुच्छेद का रंग तय करते हैं: p { color: black } और #intro { color: blue }। <p id=\"intro\"> के लिए कौन जीतेगा?",
+     "hinglish": "Do rules paragraph ka colour set karte hain: p { color: black } aur #intro { color: blue }. <p id=\"intro\"> ke liye kaun jeetega?"
+    },
+    "options": [
+     {
+      "en": "Blue — an id is more specific",
+      "hi": "नीला — id ज़्यादा विशिष्ट",
+      "hinglish": "Blue — id zyada specific"
+     },
+     {
+      "en": "Black — tags always win",
+      "hi": "काला — टैग हमेशा जीतते",
+      "hinglish": "Black — tags hamesha jeette"
+     },
+     {
+      "en": "Neither",
+      "hi": "कोई नहीं",
+      "hinglish": "Koi nahi"
+     },
+     {
+      "en": "A mix of both",
+      "hi": "दोनों का मेल",
+      "hinglish": "Dono ka mix"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Specificity: id > class > tag.",
+     "hi": "विशिष्टता: id > class > tag।",
+     "hinglish": "Specificity: id > class > tag."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "order",
+    "prompt": {
+     "en": "Order the box model from the outside in.",
+     "hi": "बॉक्स मॉडल को बाहर से अंदर क्रम में लगाओ।",
+     "hinglish": "Box model ko bahar se andar order mein lagao."
+    },
+    "options": [
+     "margin",
+     "border",
+     "padding",
+     "content"
+    ],
+    "answer": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "Margin is outside the border; padding is inside.",
+     "hi": "मार्जिन बॉर्डर के बाहर; पैडिंग अंदर।",
+     "hinglish": "Margin border ke bahar; padding andar."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "What does \"mobile-first\" mean?",
+     "hi": "\"मोबाइल-पहले\" का क्या अर्थ है?",
+     "hinglish": "\"Mobile-first\" ka kya matlab hai?"
+    },
+    "options": [
+     {
+      "en": "Write the phone layout first, then add media queries for wider screens",
+      "hi": "पहले फ़ोन लेआउट, फिर चौड़ी स्क्रीन के लिए मीडिया क्वेरी",
+      "hinglish": "Pehle phone layout, phir wider screens ke liye media queries"
+     },
+     {
+      "en": "Only build an app, never a website",
+      "hi": "केवल ऐप, वेबसाइट कभी नहीं",
+      "hinglish": "Sirf app, website kabhi nahi"
+     },
+     {
+      "en": "Make text tiny",
+      "hi": "पाठ बहुत छोटा",
+      "hinglish": "Text bahut chhota"
+     },
+     {
+      "en": "Hide content on phones",
+      "hi": "फ़ोन पर सामग्री छिपाओ",
+      "hinglish": "Phone par content chhupao"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Start small, add more as space grows.",
+     "hi": "छोटे से शुरू, जगह बढ़े तो जोड़ो।",
+     "hinglish": "Chhote se shuru, jagah badhe to jodo."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "multi",
+    "prompt": {
+     "en": "Which help a page fit a 320 px phone?",
+     "hi": "कौन-से पेज को 320 px फ़ोन में फ़िट करते हैं?",
+     "hinglish": "Kaunse page ko 320 px phone mein fit karte hain?"
+    },
+    "options": [
+     {
+      "en": "The viewport meta tag",
+      "hi": "viewport meta टैग",
+      "hinglish": "Viewport meta tag"
+     },
+     {
+      "en": "flex-wrap: wrap",
+      "hi": "flex-wrap: wrap",
+      "hinglish": "flex-wrap: wrap"
+     },
+     {
+      "en": "Fixed widths like width: 900px",
+      "hi": "width: 900px जैसी तय चौड़ाई",
+      "hinglish": "width: 900px jaisi fixed width"
+     },
+     {
+      "en": "grid with minmax() and fr",
+      "hi": "minmax() और fr वाला grid",
+      "hinglish": "minmax() aur fr wala grid"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     3
+    ],
+    "explain": {
+     "en": "Fixed wide boxes cause sideways scrolling.",
+     "hi": "तय चौड़े बॉक्स बग़ल में स्क्रॉल कराते हैं।",
+     "hinglish": "Fixed wide boxes sideways scroll karwate hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Pass mission 3 (Responsive CSS) in the Web Dev Lab.",
+     "hi": "वेब डेव लैब में मिशन 3 (रिस्पॉन्सिव CSS) पास करो।",
+     "hinglish": "Web Dev Lab mein mission 3 (Responsive CSS) pass karo."
+    },
+    "answer": {
+     "event": "css-responsive",
+     "mission": "css"
+    },
+    "explain": {
+     "en": "One column on a phone, two on a tablet, no overflow.",
+     "hi": "फ़ोन पर एक कॉलम, टैबलेट पर दो, कोई ओवरफ़्लो नहीं।",
+     "hinglish": "Phone par ek column, tablet par do, koi overflow nahi."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "web.css"
+ ],
+ "sources": [
+  {
+   "title": "W3C — CSS Grid Layout Module Level 1",
+   "url": "https://www.w3.org/TR/css-grid-1/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "W3C — Media Queries Level 4",
+   "url": "https://www.w3.org/TR/mediaqueries-4/",
+   "licence": "fact reference"
+  }
+ ]
+}

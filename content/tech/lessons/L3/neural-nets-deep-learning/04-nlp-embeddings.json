@@ -1,0 +1,340 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.neural-nets-deep-learning.04",
+ "level": 3,
+ "classes": [
+  11,
+  12
+ ],
+ "unit": "neural-nets-deep-learning",
+ "title": {
+  "en": "Language AI: from words to embeddings",
+  "hi": "भाषा एआई: शब्दों से एम्बेडिंग तक",
+  "hinglish": "Language AI: words se embeddings tak"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [
+  "L3.neural-nets-deep-learning.02"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain why computers turn words into vectors",
+   "hinglish": "Samjhao computers words ko vectors kyun banate hain",
+   "hi": "समझाना कि कंप्यूटर शब्दों को सदिश क्यों बनाते हैं"
+  },
+  {
+   "en": "Compute cosine similarity of two small vectors",
+   "hinglish": "Do chhote vectors ki cosine similarity nikaalo",
+   "hi": "दो छोटे सदिशों की कोसाइन समानता निकालना"
+  },
+  {
+   "en": "Describe how embeddings power search, translation and recommendations",
+   "hinglish": "Embeddings search, translation aur recommendations kaise chalate hain",
+   "hi": "बताना कि एम्बेडिंग खोज, अनुवाद और सुझावों को कैसे चलाते हैं"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "NLP",
+   "hinglish": "Computer ko insaani bhasha samjhana",
+   "en": "Natural language processing",
+   "hi": "प्राकृतिक भाषा प्रसंस्करण"
+  },
+  {
+   "term": "One-hot vector",
+   "hinglish": "Har word ke liye ek lamba 0-1 vector",
+   "en": "A vector with a single 1 marking the word",
+   "hi": "ऐसा सदिश जिसमें शब्द को चिह्नित करने वाला सिर्फ़ एक 1 हो"
+  },
+  {
+   "term": "Embedding",
+   "hinglish": "Word ka matlab numbers mein",
+   "en": "A dense vector where similar meanings are close together",
+   "hi": "घना सदिश जिसमें मिलते-जुलते अर्थ पास-पास होते हैं"
+  },
+  {
+   "term": "Cosine similarity",
+   "hinglish": "Do vectors ki disha kitni milti hai",
+   "en": "cos θ = (a·b)/(|a||b|), from −1 to 1",
+   "hi": "cos θ = (a·b)/(|a||b|), −1 से 1 तक"
+  },
+  {
+   "term": "Semantic search",
+   "hinglish": "Shabd nahi, matlab se dhoondhna",
+   "en": "Searching by meaning using embeddings",
+   "hi": "एम्बेडिंग से अर्थ के आधार पर खोज"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Early NLP counted words. \"Bank\" in \"river bank\" and \"SBI bank\" looked identical.",
+    "hi": "शुरुआती एनएलपी शब्द गिनता था। \"नदी का बैंक\" और \"एसबीआई बैंक\" का \"बैंक\" एक जैसा दिखता था।",
+    "hinglish": "Early NLP words ginta tha. \"River bank\" aur \"SBI bank\" ka \"bank\" ek jaisa dikhta tha."
+   },
+   "visual": "anim:bag-of-words",
+   "narration": {
+    "en": "Early NLP counted words. \"Bank\" in \"river bank\" and \"SBI bank\" looked identical.",
+    "hi": "शुरुआती एनएलपी शब्द गिनता था। \"नदी का बैंक\" और \"एसबीआई बैंक\" का \"बैंक\" एक जैसा दिखता था।",
+    "hinglish": "Early NLP words ginta tha. \"River bank\" aur \"SBI bank\" ka \"bank\" ek jaisa dikhta tha."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Embeddings place each word as a point in space. \"Raja\" and \"Rani\" sit close; \"Raja\" and \"Tamatar\" are far apart.",
+    "hi": "एम्बेडिंग हर शब्द को अंतरिक्ष में एक बिंदु बनाती है। \"राजा\" और \"रानी\" पास; \"राजा\" और \"टमाटर\" दूर।",
+    "hinglish": "Embeddings har word ko space mein ek point banati hain. \"Raja\" aur \"Rani\" paas; \"Raja\" aur \"Tamatar\" door."
+   },
+   "visual": "anim:embedding-3d",
+   "narration": {
+    "en": "Embeddings place each word as a point in space. \"Raja\" and \"Rani\" sit close; \"Raja\" and \"Tamatar\" are far apart.",
+    "hi": "एम्बेडिंग हर शब्द को अंतरिक्ष में एक बिंदु बनाती है। \"राजा\" और \"रानी\" पास; \"राजा\" और \"टमाटर\" दूर।",
+    "hinglish": "Embeddings har word ko space mein ek point banati hain. \"Raja\" aur \"Rani\" paas; \"Raja\" aur \"Tamatar\" door."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Directions carry meaning: king − man + woman lands near queen. Similar sentences in Hindi and Tamil can land in the same neighbourhood.",
+    "hi": "दिशाओं में अर्थ है: किंग − मैन + वुमन क्वीन के पास पहुँचता है। हिंदी और तमिल के मिलते-जुलते वाक्य एक ही पड़ोस में आ सकते हैं।",
+    "hinglish": "Directions mein matlab hai: king − man + woman queen ke paas pahunchta hai. Hindi aur Tamil ke milte-julte sentences ek hi neighbourhood mein aa sakte hain."
+   },
+   "visual": "anim:vector-arithmetic",
+   "narration": {
+    "en": "Directions carry meaning: king − man + woman lands near queen. Similar sentences in Hindi and Tamil can land in the same neighbourhood.",
+    "hi": "दिशाओं में अर्थ है: किंग − मैन + वुमन क्वीन के पास पहुँचता है। हिंदी और तमिल के मिलते-जुलते वाक्य एक ही पड़ोस में आ सकते हैं।",
+    "hinglish": "Directions mein matlab hai: king − man + woman queen ke paas pahunchta hai. Hindi aur Tamil ke milte-julte sentences ek hi neighbourhood mein aa sakte hain."
+   }
+  }
+ ],
+ "play": {
+  "lab": "tokenizer-attention",
+  "config": {
+   "view": "embeddings",
+   "words": [
+    "raja",
+    "rani",
+    "ladka",
+    "ladki",
+    "aam",
+    "kela",
+    "tamatar",
+    "delhi",
+    "mumbai",
+    "chennai"
+   ]
+  },
+  "goal": {
+   "en": "Rotate the 3D embedding cloud. Find the fruit cluster, the city cluster and the royalty/people cluster, then try the king − man + woman arrow.",
+   "hinglish": "3D embedding cloud ko ghumao. Fruit cluster, city cluster aur raja-rani/people cluster dhoondho, phir king − man + woman arrow try karo.",
+   "hi": "3D एम्बेडिंग बादल घुमाओ। फल समूह, शहर समूह और राजसी/लोग समूह ढूँढो, फिर राजा − लड़का + लड़की वाला तीर आज़माओ।"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "From counting words to meaning vectors",
+    "hi": "शब्द गिनने से अर्थ-वेक्टर तक",
+    "hinglish": "Word ginne se meaning vectors tak"
+   },
+   "body": {
+    "en": "Computers need numbers. The simplest encoding is one-hot: with a 50,000-word vocabulary, each word is a vector of 49,999 zeros and one 1. It says nothing about meaning: \"happy\" and \"glad\" are as different as \"happy\" and \"brick\". Word2Vec (Google, 2013) learned dense vectors of about 300 numbers by predicting each word from its neighbours: words used in similar contexts get similar vectors (\"You shall know a word by the company it keeps\", J. R. Firth, 1957). Similarity is measured by the cosine of the angle between vectors. Modern language models produce contextual embeddings, so \"bank\" gets a different vector in \"river bank\" than in \"bank loan\".",
+    "hi": "कंप्यूटर को संख्याएँ चाहिए। सबसे सरल एन्कोडिंग वन-हॉट है: 50,000 शब्दों की शब्दावली में हर शब्द 49,999 शून्य और एक 1 का वेक्टर है। यह अर्थ के बारे में कुछ नहीं कहता: \"खुश\" और \"प्रसन्न\" उतने ही अलग हैं जितने \"खुश\" और \"ईंट\"। वर्ड2वेक (गूगल, 2013) ने लगभग 300 संख्याओं के घने वेक्टर सीखे, हर शब्द को उसके पड़ोसियों से अनुमानित करके: मिलते-जुलते संदर्भ वाले शब्दों के वेक्टर मिलते-जुलते होते हैं (\"शब्द को उसकी संगत से पहचानो\", जे. आर. फ़र्थ, 1957)। समानता वेक्टरों के बीच के कोण के कोसाइन से मापी जाती है। आधुनिक भाषा मॉडल संदर्भ वाली एम्बेडिंग बनाते हैं, तो \"बैंक\" को \"नदी का किनारा\" में \"बैंक लोन\" से अलग वेक्टर मिलता है।",
+    "hinglish": "Computer ko numbers chahiye. Sabse simple encoding one-hot hai: 50,000 words ki vocabulary mein har word 49,999 zeros aur ek 1 ka vector hai. Yeh matlab ke baare mein kuch nahi kehta: \"khush\" aur \"prasann\" utne hi alag jitne \"khush\" aur \"eent\". Word2Vec (Google, 2013) ne lagbhag 300 numbers ke dense vectors seekhe, har word ko uske padosiyon se predict karke: similar context wale words ke vectors similar hote hain (\"Word ko uski sangat se pehchano\", J. R. Firth, 1957). Similarity vectors ke beech ke angle ke cosine se naapi jaati hai. Modern language models contextual embeddings banate hain, to \"bank\" ko \"river bank\" mein \"bank loan\" se alag vector milta hai."
+   },
+   "analogy": {
+    "hinglish": "Embedding ek shehar ka naksha jaisa hai: milte-julte log (words) ek hi mohalle mein rehte hain, aur mohallon ke beech ki disha bhi matlab rakhti hai.",
+    "en": "An embedding is like a city map: similar people (words) live in the same neighbourhood, and the direction between neighbourhoods also has meaning.",
+    "hi": "एम्बेडिंग एक शहर के नक्शे जैसा है: मिलते-जुलते लोग (शब्द) एक ही मोहल्ले में रहते हैं, और मोहल्लों के बीच की दिशा का भी अर्थ होता है।"
+   },
+   "realExample": {
+    "en": "Bhashini and AI4Bharat's IndicTrans2 translate between English and all 22 scheduled Indian languages using neural models built on embeddings and transformers.",
+    "hinglish": "Bhashini aur AI4Bharat ka IndicTrans2 English aur sabhi 22 scheduled Indian languages ke beech embeddings aur transformers par bane neural models se translate karte hain.",
+    "hi": "भाषिणी और AI4Bharat का IndicTrans2 एम्बेडिंग और ट्रांसफ़ॉर्मर पर बने न्यूरल मॉडलों से अंग्रेज़ी और सभी 22 अनुसूचित भारतीय भाषाओं के बीच अनुवाद करते हैं।"
+   }
+  },
+  {
+   "heading": {
+    "en": "What embeddings power",
+    "hi": "एम्बेडिंग किन चीज़ों को चलाती है",
+    "hinglish": "Embeddings kya-kya chalati hain"
+   },
+   "body": {
+    "en": "Semantic search: embed the query and every document, return the closest by cosine similarity, so \"phone garam ho raha hai\" finds an article titled \"Why your smartphone overheats\". Recommendations: embed products and users; recommend what is near the user. Classification: train a small model on top of embeddings, for spam, sentiment or ticket routing. Retrieval-augmented generation (RAG), coming in the LLM unit, uses embedding search to fetch facts for a chatbot. Embeddings can also carry bias from text (e.g. associating jobs with one gender), so they must be tested like any model.",
+    "hi": "अर्थ-आधारित खोज: प्रश्न और हर दस्तावेज़ की एम्बेडिंग बनाओ, कोसाइन समानता से सबसे पास वाले लौटाओ, तो \"फ़ोन गरम हो रहा है\" उस लेख को ढूँढ लेता है जिसका शीर्षक \"आपका स्मार्टफ़ोन ज़्यादा गरम क्यों होता है\" है। सुझाव: उत्पाद और उपयोगकर्ता की एम्बेडिंग; उपयोगकर्ता के पास वाली चीज़ें सुझाओ। क्लासिफ़िकेशन: एम्बेडिंग के ऊपर छोटा मॉडल, स्पैम, भावना या टिकट-रूटिंग के लिए। रिट्रीवल-ऑगमेंटेड जनरेशन (आरएजी), जो एलएलएम इकाई में है, चैटबॉट के लिए तथ्य लाने को एम्बेडिंग खोज इस्तेमाल करता है। एम्बेडिंग पाठ से पक्षपात भी ला सकती हैं (जैसे नौकरियों को एक लिंग से जोड़ना), इसलिए इन्हें भी किसी मॉडल की तरह जाँचना ज़रूरी है।",
+    "hinglish": "Semantic search: query aur har document ka embedding banao, cosine similarity se sabse paas wale lautao, to \"phone garam ho raha hai\" us article ko dhoondh leta hai jiska title \"Why your smartphone overheats\" hai. Recommendations: products aur users ke embeddings; user ke paas wali cheezein suggest karo. Classification: embeddings ke upar chhota model, spam, sentiment ya ticket routing ke liye. RAG, jo LLM unit mein hai, chatbot ke liye facts laane ko embedding search use karta hai. Embeddings text se bias bhi la sakti hain (jaise jobs ko ek gender se jodna), isliye inhe bhi kisi model ki tarah test karna zaroori hai."
+   },
+   "analogy": {
+    "hinglish": "Library ka smart librarian jo tumhare shabd nahi, tumhara matlab samajh ke kitaab deta hai.",
+    "en": "A smart librarian who gives you a book by understanding your meaning, not just your words.",
+    "hi": "पुस्तकालय का समझदार पुस्तकालयाध्यक्ष जो तुम्हारे शब्द नहीं, तुम्हारा अर्थ समझकर किताब देता है।"
+   },
+   "realExample": {
+    "en": "Government grievance portals and bank chatbots route complaints written in Hinglish to the right department using embedding-based classifiers.",
+    "hinglish": "Government grievance portals aur bank chatbots Hinglish mein likhi complaints ko embedding-based classifiers se sahi department tak bhejte hain.",
+    "hi": "सरकारी शिकायत पोर्टल और बैंक चैटबॉट हिंग्लिश में लिखी शिकायतों को एम्बेडिंग-आधारित वर्गीकारकों से सही विभाग तक भेजते हैं।"
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Make 3-number \"embeddings\" (sweetness, size, is-a-fruit) for 6 foods. Compute cosine similarity between mango and banana, and mango and potato. Do the numbers match your intuition?",
+   "hinglish": "6 khaano ke liye 3-number \"embeddings\" banao (meetha-pan, size, fruit hai ya nahi). Aam-kela aur aam-aaloo ki cosine similarity nikaalo. Kya numbers tumhari soch se milte hain?",
+   "hi": "6 खाद्य पदार्थों के लिए 3-संख्या वाले \"एम्बेडिंग\" (मिठास, आकार, फल-है-या-नहीं) बनाओ। आम और केले, तथा आम और आलू के बीच कोसाइन समानता निकालो। क्या संख्याएँ तुम्हारी समझ से मेल खाती हैं?"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Cosine similarity of (1, 0) and (0, 1)?",
+     "hi": "(1, 0) और (0, 1) की कोसाइन समानता?",
+     "hinglish": "(1, 0) aur (0, 1) ki cosine similarity?"
+    },
+    "options": [
+     {
+      "en": "0",
+      "hinglish": "0",
+      "hi": "0"
+     },
+     {
+      "en": "1",
+      "hinglish": "1",
+      "hi": "1"
+     },
+     {
+      "en": "−1",
+      "hinglish": "−1",
+      "hi": "−1"
+     },
+     {
+      "en": "0.5",
+      "hinglish": "0.5",
+      "hi": "0.5"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "They are at 90°, cos 90° = 0: unrelated directions. Same direction gives 1, opposite gives −1.",
+     "hi": "वे 90° पर हैं, cos 90° = 0: असंबंधित दिशाएँ। एक ही दिशा 1, उल्टी −1।",
+     "hinglish": "Woh 90° par hain, cos 90° = 0: unrelated directions. Same direction 1, ulti −1."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why are one-hot vectors poor for meaning?",
+     "hi": "वन-हॉट वेक्टर अर्थ के लिए खराब क्यों हैं?",
+     "hinglish": "One-hot vectors meaning ke liye kharab kyun hain?"
+    },
+    "options": [
+     {
+      "en": "Every pair of words is equally different, so similarity is lost",
+      "hinglish": "Har do words barabar alag hain, similarity kho jaati hai",
+      "hi": "हर शब्द-जोड़ा बराबर अलग होता है, इसलिए समानता खो जाती है"
+     },
+     {
+      "en": "They are too short",
+      "hinglish": "Bahut chhote hain",
+      "hi": "वे बहुत छोटे हैं"
+     },
+     {
+      "en": "They only work in Hindi",
+      "hinglish": "Sirf Hindi mein chalte hain",
+      "hi": "वे सिर्फ़ हिंदी में काम करते हैं"
+     },
+     {
+      "en": "They are random",
+      "hinglish": "Random hain",
+      "hi": "वे यादृच्छिक हैं"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "All one-hot vectors are perpendicular, so cosine similarity is 0 for every pair.",
+     "hi": "सभी वन-हॉट वेक्टर लंबवत हैं, इसलिए हर जोड़े की कोसाइन समानता 0 है।",
+     "hinglish": "Saare one-hot vectors perpendicular hain, isliye har pair ki cosine similarity 0 hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "A search for \"train late\" finds \"railway delay news\". This works because…",
+     "hi": "\"ट्रेन लेट\" की खोज \"रेलवे देरी समाचार\" ढूँढती है। यह इसलिए काम करता है क्योंकि…",
+     "hinglish": "\"Train late\" search \"railway delay news\" dhoondhta hai. Yeh kyun kaam karta hai?"
+    },
+    "options": [
+     {
+      "en": "Their embeddings are close in meaning even though the words differ",
+      "hinglish": "Words alag hain par embeddings matlab mein paas hain",
+      "hi": "शब्द अलग होने पर भी उनके एम्बेडिंग अर्थ में पास हैं"
+     },
+     {
+      "en": "The words are spelled the same",
+      "hinglish": "Spelling same hai",
+      "hi": "शब्दों की वर्तनी एक-सी है"
+     },
+     {
+      "en": "Random luck",
+      "hinglish": "Random luck",
+      "hi": "संयोग"
+     },
+     {
+      "en": "The search engine reads minds",
+      "hinglish": "Search engine mann padhta hai",
+      "hi": "सर्च इंजन मन पढ़ता है"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Semantic search compares meaning vectors, not exact letters.",
+     "hi": "अर्थ-आधारित खोज अर्थ-वेक्टरों की तुलना करती है, अक्षरों की नहीं।",
+     "hinglish": "Semantic search meaning vectors compare karta hai, exact letters nahi."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "lab-check",
+    "prompt": {
+     "en": "In the 3D cloud, tap the word nearest to \"mumbai\".",
+     "hi": "3डी बादल में \"मुंबई\" के सबसे पास वाले शब्द पर टैप करें।",
+     "hinglish": "3D cloud mein \"mumbai\" ke sabse paas wale word par tap karo."
+    },
+    "answer": {
+     "event": "nearest-picked",
+     "word": "mumbai"
+    },
+    "explain": {
+     "en": "Cities cluster together because they appear in similar sentences (\"I travelled to …\").",
+     "hi": "शहर साथ इकट्ठा होते हैं क्योंकि वे मिलते-जुलते वाक्यों में आते हैं (\"मैं … गया\")।",
+     "hinglish": "Cities saath cluster hote hain kyunki similar sentences mein aate hain (\"Main … gaya\")."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "ai.nlp",
+  "ai.llm-embeddings"
+ ],
+ "sources": [
+  {
+   "title": "Mikolov et al. (2013) Efficient Estimation of Word Representations in Vector Space",
+   "url": "https://arxiv.org/abs/1301.3781",
+   "licence": "fact reference"
+  },
+  {
+   "title": "AI4Bharat IndicTrans2",
+   "url": "https://ai4bharat.iitm.ac.in/",
+   "licence": "fact reference"
+  }
+ ]
+}

@@ -1,0 +1,363 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.ai-ml-intuition.03",
+ "level": 2,
+ "classes": [
+  7,
+  8
+ ],
+ "unit": "ai-ml-intuition",
+ "title": {
+  "en": "Finding groups without labels",
+  "hi": "बिना लेबल के समूह खोजना",
+  "hinglish": "Bina labels ke groups dhoondhna"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [
+  "L2.ai-ml-intuition.02"
+ ],
+ "topics": [
+  "ai.ml-unsupervised"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain unsupervised learning and how it differs from supervised",
+   "hi": "बिना निगरानी सीखना और पर्यवेक्षित से अंतर समझा सकते हो",
+   "hinglish": "Unsupervised learning aur supervised se farak samjha sakte ho"
+  },
+  {
+   "en": "Trace the two steps of k-means clustering",
+   "hi": "k-means क्लस्टरिंग के दो कदम ट्रेस कर सकते हो",
+   "hinglish": "k-means clustering ke do steps trace kar sakte ho"
+  },
+  {
+   "en": "Give real uses of clustering",
+   "hi": "क्लस्टरिंग के असली उपयोग बता सकते हो",
+   "hinglish": "Clustering ke real uses bata sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Unsupervised learning",
+   "hinglish": "Bina labels ke seekhna",
+   "en": "Finding patterns in data that has no labels",
+   "hi": "बिना लेबल वाले डेटा में पैटर्न खोजना"
+  },
+  {
+   "term": "Cluster",
+   "hinglish": "Milte-julte cheezon ka group",
+   "en": "A group of data points that are close to each other",
+   "hi": "एक-दूसरे के पास वाले डेटा बिंदुओं का समूह"
+  },
+  {
+   "term": "Centroid",
+   "hinglish": "Group ka beech",
+   "en": "The centre point of a cluster",
+   "hi": "किसी समूह का केंद्र बिंदु"
+  },
+  {
+   "term": "k",
+   "hinglish": "Kitne groups",
+   "en": "The number of groups you ask k-means to find",
+   "hi": "समूहों की संख्या जो आप k-means से खोजने को कहते हो"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Sometimes we have data but no labels. Unsupervised learning finds groups that are naturally close together.",
+    "hi": "कभी हमारे पास डेटा होता है पर लेबल नहीं। बिना निगरानी सीखना स्वाभाविक रूप से पास-पास वाले समूह खोजता है।",
+    "hinglish": "Kabhi hamare paas data hota hai par labels nahi. Unsupervised learning naturally paas-paas wale groups dhoondhta hai."
+   },
+   "visual": "compare:🏷️ Supervised: “these are ripe, these are raw”|🫧 Unsupervised: “find groups on your own”",
+   "narration": {
+    "en": "The AI groups; people decide what the groups mean.",
+    "hi": "AI समूह बनाता है; लोग तय करते हैं समूहों का अर्थ।",
+    "hinglish": "AI group karta hai; log decide karte hain groups ka matlab."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "k-means repeats two steps: ① each point joins its nearest centre ⭐, ② each ⭐ moves to the middle of its points.",
+    "hi": "k-means दो कदम दोहराता है: ① हर बिंदु अपने निकटतम केंद्र ⭐ से जुड़ता है, ② हर ⭐ अपने बिंदुओं के बीच जाता है।",
+    "hinglish": "k-means do steps dohraata hai: ① har point apne nearest centre ⭐ se judta hai, ② har ⭐ apne points ke beech jaata hai."
+   },
+   "visual": "lab:ai-lab#cluster",
+   "narration": {
+    "en": "It stops when no point changes group.",
+    "hi": "जब कोई बिंदु समूह नहीं बदलता, रुक जाता है।",
+    "hinglish": "Jab koi point group nahi badalta, ruk jaata hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Choosing k matters: too few groups mix different customers; too many split real groups.",
+    "hi": "k चुनना मायने रखता है: बहुत कम समूह अलग ग्राहकों को मिला देते हैं; बहुत ज़्यादा असली समूहों को तोड़ देते हैं।",
+    "hinglish": "k chunna matter karta hai: bahut kam groups alag customers ko mila dete hain; bahut zyada asli groups ko tod dete hain."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "Try k = 2, 3 and 4 in the lab and see which looks right.",
+    "hi": "लैब में k = 2, 3 और 4 आज़माओ और देखो कौन-सा सही लगता है।",
+    "hinglish": "Lab mein k = 2, 3 aur 4 try karo aur dekho kaunsa sahi lagta hai."
+   },
+   "code": "repeat:\n   assign each point → nearest ⭐\n   move each ⭐ → average of its points\nuntil nothing changes"
+  }
+ ],
+ "play": {
+  "lab": "ai-lab",
+  "config": {
+   "tab": "cluster"
+  },
+  "goal": {
+   "en": "Step k-means with k = 3 until the groups settle.",
+   "hi": "k = 3 के साथ k-means कदम-दर-कदम चलाओ जब तक समूह स्थिर न हो जाएँ।",
+   "hinglish": "k = 3 ke saath k-means step karo jab tak groups settle na ho jaayein."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Where clustering is used",
+    "hi": "क्लस्टरिंग कहाँ उपयोग होती है",
+    "hinglish": "Clustering kahan use hoti hai"
+   },
+   "body": {
+    "en": "Labelling data is slow and costly, but unlabelled data is everywhere, so unsupervised learning is very useful. k-means, described by Stuart Lloyd in 1957 and named by James MacQueen in 1967, is one of the simplest methods: choose k, place k centres, then repeat “assign” and “update” until the groups stop changing. Each round the total distance from points to their centres goes down, so it always settles, though different starting centres can give different answers. Shops use clustering to find kinds of customers and plan offers; music apps group songs that sound alike; scientists group stars by brightness and colour; banks flag transactions that fit no normal group (possible fraud); and photo apps group pictures of the same face before you name the person. The AI never knows what a group “means” — a human has to look and give it a name.",
+    "hi": "डेटा पर लेबल लगाना धीमा और महँगा है, पर बिना लेबल का डेटा हर जगह है, इसलिए बिना निगरानी सीखना बहुत उपयोगी है। k-means, जिसे स्टुअर्ट लॉयड ने 1957 में बताया और जेम्स मैकक्वीन ने 1967 में नाम दिया, सबसे सरल तरीक़ों में से एक है: k चुनो, k केंद्र रखो, फिर “सौंपो” और “बदलो” तब तक दोहराओ जब तक समूह बदलना बंद न करें। हर चक्र में बिंदुओं से उनके केंद्रों की कुल दूरी घटती है, इसलिए यह हमेशा स्थिर होता है, हालाँकि अलग शुरुआती केंद्र अलग उत्तर दे सकते हैं। दुकानें ग्राहकों के प्रकार खोजकर ऑफ़र बनाने के लिए क्लस्टरिंग करती हैं; संगीत ऐप एक जैसे लगने वाले गानों को समूह में रखते हैं; वैज्ञानिक तारों को चमक और रंग से समूहित करते हैं; बैंक उन लेन-देन को चिह्नित करते हैं जो किसी सामान्य समूह में नहीं आते (संभावित धोखा); और फ़ोटो ऐप आपके नाम देने से पहले एक ही चेहरे की तस्वीरें समूह में रखते हैं। AI कभी नहीं जानता कि समूह का “अर्थ” क्या है — किसी इंसान को देखकर नाम देना पड़ता है।",
+    "hinglish": "Data pe labels lagana slow aur mehnga hai, par bina label ka data har jagah hai, isliye unsupervised learning bahut useful hai. k-means, jise Stuart Lloyd ne 1957 mein describe kiya aur James MacQueen ne 1967 mein naam diya, sabse simple tareekon mein se ek hai: k chuno, k centres rakho, phir “assign” aur “update” tab tak dohraao jab tak groups badalna band na karein. Har round mein points se unke centres ki total doori ghatti hai, isliye yeh hamesha settle hota hai, halaanki alag starting centres alag answers de sakte hain. Shops customers ke types dhoondh ke offers banane ke liye clustering karti hain; music apps ek jaise lagne wale gaanon ko group karti hain; scientists stars ko brightness aur colour se group karte hain; banks un transactions ko flag karte hain jo kisi normal group mein nahi aate (possible fraud); aur photo apps aapke naam dene se pehle ek hi chehre ki photos group karti hain. AI kabhi nahi jaanta ki group ka “matlab” kya hai — kisi insaan ko dekh ke naam dena padta hai."
+   },
+   "analogy": {
+    "en": "Clustering = children on a school ground: without being told, friends gather in their own little crowds. The teacher names them later: “the cricket group”, “the kho-kho group”.",
+    "hi": "क्लस्टरिंग = स्कूल के मैदान में बच्चे: बिना बताए भी दोस्त अपने-अपने झुंड में खड़े हो जाते हैं। शिक्षिका बाद में नाम देती है: “क्रिकेट वाले”, “खो-खो वाले”।",
+    "hinglish": "Clustering = school ke maidan mein bachche: bina bataye bhi dost-dost apne-apne jhund mein khade ho jaate hain. Teacher baad mein naam deti hai: “cricket wale”, “kho-kho wale”."
+   },
+   "realExample": {
+    "en": "Google Photos and phone galleries group photos of the same person’s face together and then ask you, “Who is this?” — that is clustering first, labelling second.",
+    "hi": "Google Photos और फ़ोन गैलरी एक ही व्यक्ति के चेहरे की फ़ोटो समूह में रखती हैं और फिर पूछती हैं, “यह कौन है?” — पहले क्लस्टरिंग, फिर लेबलिंग।",
+    "hinglish": "Google Photos aur phone galleries ek hi insaan ke chehre ki photos group karti hain aur phir poochti hain, “Yeh kaun hai?” — pehle clustering, phir labelling."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write 12 classmates’ (or family members’) favourite hours of sleep and hours of play. Plot them on graph paper and circle the groups you see. Give each group a name.",
+   "hi": "12 सहपाठियों (या परिवार के सदस्यों) के सोने और खेलने के घंटे लिखो। ग्राफ़ पेपर पर बिंदु लगाओ और दिखने वाले समूहों पर घेरा बनाओ। हर समूह को नाम दो।",
+   "hinglish": "12 classmates (ya family members) ke sleep ke ghante aur play ke ghante likho. Graph paper pe plot karo aur jo groups dikhein unhe circle karo. Har group ko naam do."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "What makes learning “unsupervised”?",
+     "hi": "सीखने को “बिना निगरानी” क्या बनाता है?",
+     "hinglish": "Learning ko “unsupervised” kya banata hai?"
+    },
+    "options": [
+     {
+      "en": "No computer is used",
+      "hi": "कोई कंप्यूटर नहीं",
+      "hinglish": "Koi computer nahi"
+     },
+     {
+      "en": "The data has no labels",
+      "hi": "डेटा में लेबल नहीं हैं",
+      "hinglish": "Data mein labels nahi hain"
+     },
+     {
+      "en": "No teacher is in the room",
+      "hi": "कमरे में कोई शिक्षक नहीं",
+      "hinglish": "Kamre mein koi teacher nahi"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "No labels are given; the algorithm finds structure by itself.",
+     "hi": "कोई लेबल नहीं दिए जाते; एल्गोरिदम ख़ुद ढाँचा खोजता है।",
+     "hinglish": "Koi labels nahi diye jaate; algorithm khud structure dhoondhta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "order",
+    "prompt": {
+     "en": "Put one round of k-means in order.",
+     "hi": "k-means के एक चक्र को क्रम में लगाओ।",
+     "hinglish": "k-means ke ek round ko order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Move each centre to the average of its points",
+      "hi": "हर केंद्र को उसके बिंदुओं के औसत पर ले जाओ",
+      "hinglish": "Har centre ko uske points ke average pe le jao"
+     },
+     {
+      "en": "Assign each point to its nearest centre",
+      "hi": "हर बिंदु को निकटतम केंद्र को सौंपो",
+      "hinglish": "Har point ko nearest centre ko assign karo"
+     },
+     {
+      "en": "Stop if no point changed group",
+      "hi": "कोई बिंदु समूह न बदले तो रुको",
+      "hinglish": "Koi point group na badle to ruko"
+     }
+    ],
+    "answer": [
+     1,
+     0,
+     2
+    ],
+    "explain": {
+     "en": "Assign points to the nearest centre, move centres to the average, then check whether anything changed.",
+     "hi": "बिंदुओं को निकटतम केंद्र को सौंपो, केंद्रों को औसत पर ले जाओ, फिर जाँचो कुछ बदला या नहीं।",
+     "hinglish": "Points ko nearest centre ko assign karo, centres ko average pe le jao, phir check karo kuch badla ya nahi."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are uses of clustering? Choose all.",
+     "hi": "क्लस्टरिंग के कौन-से उपयोग हैं? सभी चुनो।",
+     "hinglish": "Clustering ke kaunse uses hain? Saare chuno."
+    },
+    "options": [
+     {
+      "en": "Finding kinds of shop customers",
+      "hi": "दुकान के ग्राहकों के प्रकार खोजना",
+      "hinglish": "Shop customers ke types dhoondhna"
+     },
+     {
+      "en": "Grouping photos of the same face",
+      "hi": "एक ही चेहरे की फ़ोटो समूहित करना",
+      "hinglish": "Ek hi chehre ki photos group karna"
+     },
+     {
+      "en": "Adding up a bill",
+      "hi": "बिल जोड़ना",
+      "hinglish": "Bill jodna"
+     },
+     {
+      "en": "Spotting unusual bank transactions",
+      "hi": "असामान्य बैंक लेन-देन पकड़ना",
+      "hinglish": "Unusual bank transactions pakadna"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     3
+    ],
+    "explain": {
+     "en": "Customer groups, grouping faces and spotting unusual transactions all find structure without labels. Calculating a bill total is plain arithmetic.",
+     "hi": "ग्राहक समूह, चेहरे समूहित करना और असामान्य लेन-देन पकड़ना सब बिना लेबल के ढाँचा खोजते हैं। बिल का योग सीधा गणित है।",
+     "hinglish": "Customer groups, chehre group karna aur unusual transactions pakadna sab bina labels ke structure dhoondhte hain. Bill total seedha maths hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "k-means has found 3 groups. Who decides what each group means?",
+     "hi": "k-means ने 3 समूह खोजे। हर समूह का अर्थ कौन तय करता है?",
+     "hinglish": "k-means ne 3 groups dhoondhe. Har group ka matlab kaun decide karta hai?"
+    },
+    "options": [
+     {
+      "en": "A person looking at the groups",
+      "hi": "समूहों को देखने वाला व्यक्ति",
+      "hinglish": "Groups ko dekhne wala insaan"
+     },
+     {
+      "en": "k-means names them automatically",
+      "hi": "k-means अपने-आप नाम देता है",
+      "hinglish": "k-means apne aap naam deta hai"
+     },
+     {
+      "en": "The centroids",
+      "hi": "केंद्र",
+      "hinglish": "Centroids"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "The algorithm only groups; people interpret and name the groups.",
+     "hi": "एल्गोरिदम केवल समूह बनाता है; लोग समझकर नाम देते हैं।",
+     "hinglish": "Algorithm sirf group karta hai; log samajh ke naam dete hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "short",
+    "prompt": {
+     "en": "In k-means, what is the centre point of a cluster called?",
+     "hi": "k-means में किसी समूह के केंद्र बिंदु को क्या कहते हैं?",
+     "hinglish": "k-means mein kisi cluster ke centre point ko kya kehte hain?"
+    },
+    "answer": [
+     "centroid",
+     "Centroid",
+     "centre",
+     "center"
+    ],
+    "explain": {
+     "en": "The centroid — the average position of the points in the cluster.",
+     "hi": "सेंट्रॉइड — समूह के बिंदुओं की औसत स्थिति।",
+     "hinglish": "Centroid — cluster ke points ki average position."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the lab mission.",
+     "hi": "लैब मिशन पूरा करो।",
+     "hinglish": "Lab mission poora karo."
+    },
+    "answer": {
+     "lab": "ai-lab",
+     "event": "mission:complete",
+     "tab": "cluster"
+    },
+    "explain": {
+     "en": "Use k = 3 and press the step button until it settles.",
+     "hi": "k = 3 उपयोग करो और स्थिर होने तक कदम बटन दबाओ।",
+     "hinglish": "k = 3 use karo aur settle hone tak step button dabao."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "scikit-learn — Clustering: k-means",
+   "url": "https://scikit-learn.org/stable/modules/clustering.html#k-means",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Elements of AI (University of Helsinki & MinnaLearn) — free online course",
+   "url": "https://www.elementsofai.com/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "S. P. Lloyd — Least squares quantization in PCM (IEEE Trans. Inf. Theory, 1982; work from 1957)",
+   "url": "https://doi.org/10.1109/TIT.1982.1056489",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

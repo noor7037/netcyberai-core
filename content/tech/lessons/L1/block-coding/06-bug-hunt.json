@@ -1,0 +1,391 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.block-coding.06",
+ "level": 1,
+ "classes": [
+  1,
+  2,
+  3,
+  4
+ ],
+ "unit": "block-coding",
+ "title": {
+  "en": "Bug hunt: fixing programs",
+  "hi": "बग की खोज: प्रोग्राम ठीक करना",
+  "hinglish": "Bug hunt: programs theek karna"
+ },
+ "minutes": 7,
+ "xp": 30,
+ "prereq": [
+  "L1.block-coding.05"
+ ],
+ "topics": [
+  "prog.debugging",
+  "prog.sequence"
+ ],
+ "outcomes": [
+  {
+   "en": "Run a program, watch it, and find the block that is wrong.",
+   "hi": "प्रोग्राम चलाकर देख सकते हो और ग़लत ब्लॉक ढूँढ सकते हो।",
+   "hinglish": "Program run karke dekh sakte ho aur galat block dhoondh sakte ho."
+  },
+  {
+   "en": "Fix bugs by moving, adding or deleting blocks.",
+   "hi": "ब्लॉक हिलाकर, जोड़कर या हटाकर बग ठीक कर सकते हो।",
+   "hinglish": "Blocks hila kar, jod kar ya hata kar bugs theek kar sakte ho."
+  },
+  {
+   "en": "Explain that every coder makes bugs and fixes them.",
+   "hi": "समझा सकते हो कि हर कोडर से बग होते हैं और वह उन्हें ठीक करता है।",
+   "hinglish": "Samjha sakte ho ki har coder bugs banaata aur theek karta hai."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Bug",
+   "en": "A mistake in a program",
+   "hi": "प्रोग्राम की ग़लती",
+   "hinglish": "Program ki galti"
+  },
+  {
+   "term": "Debug",
+   "en": "To find and fix a mistake",
+   "hi": "ग़लती ढूँढकर ठीक करना",
+   "hinglish": "Galti dhoondh kar theek karna"
+  },
+  {
+   "term": "Test",
+   "en": "Run the program to check it",
+   "hi": "चलाकर जाँचना",
+   "hinglish": "Chala kar check karna"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.block-coding.06.s1",
+   "caption": {
+    "en": "A bug is a mistake in a program.",
+    "hi": "बग प्रोग्राम की एक ग़लती है।",
+    "hinglish": "Bug program ki ek galti hai."
+   },
+   "narration": {
+    "en": "A bug is a mistake in a program. It makes the computer do the wrong thing.",
+    "hinglish": "Bug program ki galti hai. Isse computer galat kaam karta hai.",
+    "hi": "बग प्रोग्राम की ग़लती है। इससे कंप्यूटर ग़लत काम करता है।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.block-coding.06.s2",
+   "caption": {
+    "en": "Run it, watch it, find the wrong step.",
+    "hi": "चलाओ, देखो, ग़लत कदम ढूँढो।",
+    "hinglish": "Run karo, dekho, galat step dhoondho."
+   },
+   "narration": {
+    "en": "Debugging has three steps: run the program, watch carefully, and find the exact block that goes wrong.",
+    "hinglish": "Debugging ke teen steps: program run karo, dhyaan se dekho, aur woh block dhoondho jo galat hota hai.",
+    "hi": "डिबगिंग के तीन कदम: प्रोग्राम चलाओ, ध्यान से देखो, और वह ब्लॉक ढूँढो जो ग़लत होता है।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.block-coding.06.s3",
+   "caption": {
+    "en": "Change one thing, then test again.",
+    "hi": "एक चीज़ बदलो, फिर दोबारा जाँचो।",
+    "hinglish": "Ek cheez badlo, phir dobaara test karo."
+   },
+   "narration": {
+    "en": "Fix one thing at a time, then run it again to see if the bug is gone.",
+    "hinglish": "Ek baar mein ek cheez theek karo, phir dobaara run karke dekho bug gaya ya nahin.",
+    "hi": "एक बार में एक चीज़ ठीक करो, फिर दोबारा चलाकर देखो कि बग गया या नहीं।"
+   }
+  },
+  {
+   "step": 4,
+   "visual": "scene:L1.block-coding.06.s4",
+   "caption": {
+    "en": "The first \"bug\" was a real moth!",
+    "hi": "पहला \"बग\" एक असली पतंगा था!",
+    "hinglish": "Pehla \"bug\" ek asli moth tha!"
+   },
+   "narration": {
+    "en": "In 1947, engineers found a real moth stuck inside the Harvard Mark II computer. They taped it in their notebook as the \"first actual case of bug being found\".",
+    "hinglish": "1947 mein engineers ko Harvard Mark II computer ke andar ek asli moth phansa mila. Unhone use notebook mein chipka diya — \"first actual case of bug being found\".",
+    "hi": "1947 में इंजीनियरों को हार्वर्ड मार्क II कंप्यूटर के अंदर एक असली पतंगा फँसा मिला। उन्होंने उसे नोटबुक में चिपका दिया — \"बग मिलने का पहला असली मामला\"।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "story-blocks",
+  "config": {
+   "mode": "debug"
+  },
+  "goal": {
+   "en": "Gajju’s story is buggy. Run it, then fix it: Gajju must reach Nani, say Namaste, then jump — and never fall asleep.",
+   "hi": "गज्जू की कहानी में बग हैं। चलाओ, फिर ठीक करो: गज्जू नानी तक पहुँचे, नमस्ते बोले, फिर कूदे — और कभी न सोए।",
+   "hinglish": "Gajju ki story mein bugs hain. Run karo, phir theek karo: Gajju Nani tak pahunche, Namaste bole, phir jump kare — aur kabhi na soye."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Every coder makes bugs",
+    "hi": "हर कोडर से बग होते हैं",
+    "hinglish": "Har coder se bugs hote hain"
+   },
+   "body": {
+    "en": "Even expert programmers make mistakes every day. What makes them experts is that they test often and fix calmly. A useful trick is to read the program out loud, one block at a time, and imagine what the computer will do. The bug is where your imagination and the real result stop matching.",
+    "hi": "माहिर प्रोग्रामर से भी रोज़ ग़लतियाँ होती हैं। उन्हें माहिर यह बनाता है कि वे बार-बार जाँचते और शांति से ठीक करते हैं। एक काम की तरकीब: प्रोग्राम को एक-एक ब्लॉक ज़ोर से पढ़ो और सोचो कंप्यूटर क्या करेगा। जहाँ तुम्हारी सोच और असली नतीजा अलग हो जाएँ, बग वहीं है।",
+    "hinglish": "Expert programmers se bhi roz galtiyan hoti hain. Unhe expert yeh banaata hai ki woh baar-baar test karte aur shaanti se theek karte hain. Ek kaam ki trick: program ko ek-ek block zor se padho aur socho computer kya karega. Jahan tumhari soch aur asli result alag ho jaayein, bug wahin hai."
+   },
+   "analogy": {
+    "en": "Like checking a maths sum in your notebook — you look line by line and fix only the line with the mistake, not the whole page.",
+    "hi": "जैसे कॉपी में सवाल जाँचते हो — हर लाइन देखते हो, जहाँ ग़लती मिली वहीं सुधारते हो, पूरा पन्ना नहीं मिटाते।",
+    "hinglish": "Jaise copy mein sawaal check karte ho — har line dekhte ho, jahan galti mili wahi sudhaarte ho, poora page nahin mitaate."
+   }
+  },
+  {
+   "heading": {
+    "en": "Three kinds of fixes",
+    "hi": "ठीक करने के तीन तरीक़े",
+    "hinglish": "Theek karne ke teen tareeke"
+   },
+   "body": {
+    "en": "Most bugs in block programs are one of three kinds: a block in the wrong place (move it), a missing block (add it), or an extra block that should not be there (delete it). Fix one, test, and repeat until the program works.",
+    "hi": "ब्लॉक प्रोग्राम के ज़्यादातर बग तीन तरह के होते हैं: ग़लत जगह पर ब्लॉक (उसे हिलाओ), छूटा हुआ ब्लॉक (जोड़ो), या फ़ालतू ब्लॉक (हटाओ)। एक ठीक करो, जाँचो, और तब तक दोहराओ जब तक प्रोग्राम चल न जाए।",
+    "hinglish": "Block programs ke zyaadatar bugs teen tarah ke hote hain: galat jagah par block (use hilao), chhoota hua block (jodo), ya extra block (hatao). Ek theek karo, test karo, aur tab tak repeat karo jab tak program chal na jaaye."
+   },
+   "realExample": {
+    "en": "Grace Hopper, a pioneering computer scientist, kept the famous 1947 moth story alive; that page with the moth is now in the Smithsonian museum in the USA.",
+    "hi": "महान कंप्यूटर वैज्ञानिक ग्रेस हॉपर ने 1947 की पतंगे वाली कहानी मशहूर की; पतंगे वाला वह पन्ना अब अमेरिका के स्मिथसोनियन संग्रहालय में है।",
+    "hinglish": "Grace Hopper, ek mahaan computer scientist, ne 1947 ki moth wali kahani mashhoor ki; moth wala woh page ab America ke Smithsonian museum mein hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Give a grown-up \"robot\" instructions to walk to the door: \"2 steps, turn, 3 steps\". If they end up in the wrong place, find the bug in your instructions and fix it!",
+   "hi": "किसी बड़े \"रोबोट\" को दरवाज़े तक जाने के निर्देश दो: \"2 कदम, मुड़ो, 3 कदम\"। ग़लत जगह पहुँचें तो अपने निर्देशों का बग ढूँढकर ठीक करो!",
+   "hinglish": "Kisi bade \"robot\" ko darwaaze tak jaane ke instructions do: \"2 steps, mudo, 3 steps\". Galat jagah pahunchein toh apne instructions ka bug dhoondh kar theek karo!"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "A bug is…",
+     "hi": "बग क्या है?",
+     "hinglish": "Bug kya hai?"
+    },
+    "options": [
+     {
+      "en": "a mistake in a program",
+      "hi": "प्रोग्राम की ग़लती",
+      "hinglish": "program ki galti"
+     },
+     {
+      "en": "a kind of computer",
+      "hi": "एक तरह का कंप्यूटर",
+      "hinglish": "ek tarah ka computer"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Bugs make programs do the wrong thing.",
+     "hi": "बग से प्रोग्राम ग़लत काम करता है।",
+     "hinglish": "Bug se program galat kaam karta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "order",
+    "prompt": {
+     "en": "Put the debugging steps in order.",
+     "hi": "डिबगिंग के कदम क्रम में लगाओ।",
+     "hinglish": "Debugging ke steps order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Fix one block",
+      "hi": "एक ब्लॉक ठीक करो",
+      "hinglish": "Ek block theek karo"
+     },
+     {
+      "en": "Run the program",
+      "hi": "प्रोग्राम चलाओ",
+      "hinglish": "Program run karo"
+     },
+     {
+      "en": "Test again",
+      "hi": "फिर से जाँचो",
+      "hinglish": "Phir se test karo"
+     },
+     {
+      "en": "Find the wrong step",
+      "hi": "ग़लत कदम ढूँढो",
+      "hinglish": "Galat step dhoondho"
+     }
+    ],
+    "answer": [
+     1,
+     3,
+     0,
+     2
+    ],
+    "explain": {
+     "en": "Run → find → fix → test again.",
+     "hi": "चलाओ → ढूँढो → ठीक करो → फिर जाँचो।",
+     "hinglish": "Run → find → fix → test again."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Gajju falls asleep in the middle of the story. The fix is to…",
+     "hi": "कहानी के बीच गज्जू सो जाता है। ठीक करने के लिए…",
+     "hinglish": "Story ke beech Gajju so jaata hai. Fix hai…"
+    },
+    "options": [
+     {
+      "en": "delete the Sleep block",
+      "hi": "\"सो जाओ\" ब्लॉक हटाओ",
+      "hinglish": "Sleep block hatao"
+     },
+     {
+      "en": "add more Sleep blocks",
+      "hi": "और \"सो जाओ\" ब्लॉक जोड़ो",
+      "hinglish": "aur Sleep blocks jodo"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Extra block = delete it.",
+     "hi": "फ़ालतू ब्लॉक = हटाओ।",
+     "hinglish": "Extra block = hatao."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "match",
+    "prompt": {
+     "en": "Match the bug to the fix.",
+     "hi": "बग को उसके इलाज से मिलाओ।",
+     "hinglish": "Bug ko fix se milao."
+    },
+    "options": {
+     "left": [
+      {
+       "en": "A block is in the wrong place",
+       "hi": "ब्लॉक ग़लत जगह है",
+       "hinglish": "Block galat jagah hai"
+      },
+      {
+       "en": "A block is missing",
+       "hi": "ब्लॉक छूट गया",
+       "hinglish": "Block chhoot gaya"
+      },
+      {
+       "en": "An extra block",
+       "hi": "फ़ालतू ब्लॉक",
+       "hinglish": "Extra block"
+      }
+     ],
+     "right": [
+      {
+       "en": "Delete it",
+       "hi": "हटाओ",
+       "hinglish": "Hatao"
+      },
+      {
+       "en": "Move it",
+       "hi": "हिलाओ",
+       "hinglish": "Hilao"
+      },
+      {
+       "en": "Add it",
+       "hi": "जोड़ो",
+       "hinglish": "Jodo"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      2
+     ],
+     [
+      2,
+      0
+     ]
+    ],
+    "explain": {
+     "en": "Wrong place → move, missing → add, extra → delete.",
+     "hi": "ग़लत जगह → हिलाओ, छूटा → जोड़ो, फ़ालतू → हटाओ।",
+     "hinglish": "Galat jagah → hilao, missing → jodo, extra → hatao."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "short",
+    "prompt": {
+     "en": "In which year was the famous moth found in a computer?",
+     "hi": "कंप्यूटर में मशहूर पतंगा किस साल मिला?",
+     "hinglish": "Computer mein mashhoor moth kis saal mila?"
+    },
+    "answer": [
+     "1947"
+    ],
+    "explain": {
+     "en": "1947, in the Harvard Mark II computer.",
+     "hi": "1947, हार्वर्ड मार्क II कंप्यूटर में।",
+     "hinglish": "1947, Harvard Mark II computer mein."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Debug Gajju’s story in the lab.",
+     "hi": "लैब में गज्जू की कहानी डिबग करो।",
+     "hinglish": "Lab mein Gajju ki story debug karo."
+    },
+    "answer": {
+     "lab": "story-blocks",
+     "mode": "debug",
+     "solved": true
+    },
+    "explain": {
+     "en": "Delete Sleep, add a Walk, and move Namaste after the walks.",
+     "hi": "\"सो जाओ\" हटाओ, एक \"चलो\" जोड़ो, और नमस्ते को चलने के बाद लगाओ।",
+     "hinglish": "Sleep hatao, ek Walk jodo, aur Namaste ko walks ke baad lagao."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Smithsonian National Museum of American History – log book with computer bug, 1947 (fact reference)",
+   "url": "https://americanhistory.si.edu/collections/object/nmah_334663",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

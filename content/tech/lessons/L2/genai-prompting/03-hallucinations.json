@@ -1,0 +1,373 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.genai-prompting.03",
+ "level": 2,
+ "classes": [
+  7,
+  8
+ ],
+ "unit": "genai-prompting",
+ "title": {
+  "en": "When AI makes things up",
+  "hi": "जब AI बातें गढ़ता है",
+  "hinglish": "Jab AI baatein gadhta hai"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [
+  "L2.genai-prompting.02"
+ ],
+ "topics": [
+  "ai.hallucination",
+  "ai.evaluation"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain what an AI hallucination is and why it happens",
+   "hi": "समझा सकते हो कि AI हैलुसिनेशन क्या है और क्यों होता है",
+   "hinglish": "Samjha sakte ho AI hallucination kya hai aur kyun hota hai"
+  },
+  {
+   "en": "Check AI answers with lateral reading and trusted sources",
+   "hi": "पार्श्व पठन और विश्वसनीय स्रोतों से AI उत्तर जाँच सकते हो",
+   "hinglish": "Lateral reading aur trusted sources se AI answers check kar sakte ho"
+  },
+  {
+   "en": "Know which kinds of answers need the most checking",
+   "hi": "जानते हो किन उत्तरों को सबसे ज़्यादा जाँच चाहिए",
+   "hinglish": "Jaante ho kaunse answers ko sabse zyada checking chahiye"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Hallucination",
+   "hinglish": "AI ka confident jhooth",
+   "en": "When an AI states something false or made-up as if it were true",
+   "hi": "जब AI कुछ ग़लत या मनगढ़ंत ऐसे बताता है जैसे सच हो"
+  },
+  {
+   "term": "Lateral reading",
+   "hinglish": "Doosre tabs mein check",
+   "en": "Checking a claim by opening other trusted sources, not just reading the same page",
+   "hi": "उसी पृष्ठ के बजाय दूसरे विश्वसनीय स्रोत खोलकर दावा जाँचना"
+  },
+  {
+   "term": "Primary source",
+   "hinglish": "Asli source",
+   "en": "The original record: an official site, the actual law, the scientist’s paper",
+   "hi": "मूल अभिलेख: आधिकारिक साइट, असली क़ानून, वैज्ञानिक का पेपर"
+  },
+  {
+   "term": "Citation",
+   "hinglish": "Source ka hawala",
+   "en": "A reference saying where a fact came from",
+   "hi": "संदर्भ जो बताता है तथ्य कहाँ से आया"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Remember: the model picks likely words, not checked facts. When it has no good pattern, it still writes something fluent.",
+    "hi": "याद रखो: मॉडल संभावित शब्द चुनता है, जाँचे तथ्य नहीं। जब उसके पास अच्छा पैटर्न न हो, वह फिर भी कुछ धाराप्रवाह लिखता है।",
+    "hinglish": "Yaad rakho: model likely words chunta hai, checked facts nahi. Jab uske paas achha pattern na ho, woh phir bhi kuch fluent likhta hai."
+   },
+   "visual": "lab:ai-lab#words",
+   "narration": {
+    "en": "Catch the false fact in the lab.",
+    "hi": "लैब में ग़लत तथ्य पकड़ो।",
+    "hinglish": "Lab mein false fact pakdo."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Hallucinations look real: fake book titles, made-up quotes, wrong dates, even fake website links.",
+    "hi": "हैलुसिनेशन असली दिखते हैं: नकली किताबों के नाम, मनगढ़ंत उद्धरण, ग़लत तारीख़ें, नकली वेबसाइट लिंक भी।",
+    "hinglish": "Hallucinations asli dikhte hain: nakli kitaabon ke naam, made-up quotes, galat dates, nakli website links bhi."
+   },
+   "visual": "compare:🤖 “Gandhiji wrote ‘My Robot Friend’ in 1931”|✅ No such book exists — check!",
+   "narration": {
+    "en": "Confidence is not proof.",
+    "hi": "आत्मविश्वास सबूत नहीं है।",
+    "hinglish": "Confidence saboot nahi hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Check with lateral reading: open 2 trusted sources in new tabs before you use the fact.",
+    "hi": "पार्श्व पठन से जाँचो: तथ्य उपयोग करने से पहले नए टैब में 2 विश्वसनीय स्रोत खोलो।",
+    "hinglish": "Lateral reading se check karo: fact use karne se pehle naye tabs mein 2 trusted sources kholo."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "Numbers, names, dates, laws, health and links need the most checking.",
+    "hi": "संख्याएँ, नाम, तारीख़ें, क़ानून, स्वास्थ्य और लिंक को सबसे ज़्यादा जाँच चाहिए।",
+    "hinglish": "Numbers, names, dates, laws, health aur links ko sabse zyada checking chahiye."
+   },
+   "code": "AI says: \"Chandrayaan-3 landed on 23 Aug 2023\"\n  ✔ isro.gov.in  → 23 Aug 2023 ✔\n  ✔ pib.gov.in   → 23 Aug 2023 ✔\n  → 2 trusted sources agree: OK to use"
+  }
+ ],
+ "play": {
+  "lab": "ai-lab",
+  "config": {
+   "tab": "words"
+  },
+  "goal": {
+   "en": "Generate at least 3 sentences and flag the one that sounds right but is false.",
+   "hi": "कम से कम 3 वाक्य बनाओ और वह चिह्नित करो जो सही लगता है पर ग़लत है।",
+   "hinglish": "Kam se kam 3 sentences banao aur woh flag karo jo sahi lagta hai par galat hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Why AI hallucinates and how to check",
+    "hi": "AI क्यों गढ़ता है और कैसे जाँचें",
+    "hinglish": "AI kyun gadhta hai aur kaise check karein"
+   },
+   "body": {
+    "en": "A language model is trained to produce likely-sounding text, not to say “I don’t know”, so when its training text had little or conflicting information it can fill the gap with something plausible but false. Real cases: in February 2023 a promotional demo of Google’s Bard chatbot wrongly said the James Webb Space Telescope took the very first picture of a planet outside our solar system (that was done in 2004 by a telescope in Chile), and Alphabet’s share value fell by about $100 billion that day. In June 2023, lawyers in the US case Mata v. Avianca were fined $5,000 after submitting a court brief that cited six court cases ChatGPT had invented. Tools that let a chatbot search the web or read your document reduce hallucinations but do not remove them. How to check: ask “Where is this from?”; open the cited source yourself; read laterally — search the claim on two or more trusted sites (government .gov.in, NCERT, ISRO, WHO, reputed newspapers); be extra careful with numbers, dates, names, quotes, health, money and legal facts; and if you cannot verify it, do not use it.",
+    "hi": "भाषा मॉडल को संभावित लगने वाला पाठ बनाने के लिए प्रशिक्षित किया जाता है, “मुझे नहीं पता” कहने के लिए नहीं, इसलिए जब उसके प्रशिक्षण पाठ में कम या विरोधी जानकारी थी तो वह कमी को विश्वसनीय लगने वाली पर ग़लत बात से भर सकता है। असली मामले: फ़रवरी 2023 में Google के Bard चैटबॉट के प्रचार डेमो ने ग़लत कहा कि जेम्स वेब स्पेस टेलीस्कोप ने हमारे सौरमंडल के बाहर के ग्रह की सबसे पहली तस्वीर ली (वह 2004 में चिली की एक दूरबीन ने ली थी), और उस दिन Alphabet के शेयर मूल्य में लगभग 100 अरब डॉलर की गिरावट आई। जून 2023 में अमेरिकी मामले Mata v. Avianca में वकीलों पर 5,000 डॉलर का जुर्माना लगा, जब उन्होंने ऐसा अदालती दस्तावेज़ दिया जिसमें ChatGPT द्वारा गढ़े छह मुक़दमों का हवाला था। चैटबॉट को वेब सर्च करने या तुम्हारा दस्तावेज़ पढ़ने देने वाले उपकरण हैलुसिनेशन घटाते हैं पर ख़त्म नहीं करते। कैसे जाँचें: पूछो “यह कहाँ से है?”; उद्धृत स्रोत ख़ुद खोलो; पार्श्व रूप से पढ़ो — दावे को दो या ज़्यादा विश्वसनीय साइटों (सरकारी .gov.in, NCERT, ISRO, WHO, प्रतिष्ठित अख़बार) पर खोजो; संख्याओं, तारीख़ों, नामों, उद्धरणों, स्वास्थ्य, पैसे और क़ानूनी तथ्यों में ख़ास सावधान रहो; और अगर सत्यापित न कर सको, तो उपयोग न करो।",
+    "hinglish": "Language model ko likely-sounding text banane ke liye train kiya jaata hai, “mujhe nahi pata” kehne ke liye nahi, isliye jab uske training text mein kam ya conflicting information thi to woh gap ko plausible par galat baat se bhar sakta hai. Real cases: February 2023 mein Google ke Bard chatbot ke promotional demo ne galat kaha ki James Webb Space Telescope ne hamare solar system ke bahar ke planet ki sabse pehli picture li (woh 2004 mein Chile ki ek telescope ne li thi), aur us din Alphabet ki share value lagbhag $100 billion giri. June 2023 mein US case Mata v. Avianca mein lawyers pe $5,000 ka fine laga, jab unhone aisa court brief diya jisme ChatGPT ke banaye chhe nakli cases cite the. Chatbot ko web search karne ya tumhara document padhne dene wale tools hallucinations ghataate hain par khatam nahi karte. Kaise check karein: poochho “Yeh kahan se hai?”; cited source khud kholo; laterally padho — claim ko do ya zyada trusted sites (government .gov.in, NCERT, ISRO, WHO, reputed newspapers) pe search karo; numbers, dates, names, quotes, health, money aur legal facts mein extra careful raho; aur agar verify na kar sako, to use mat karo."
+   },
+   "analogy": {
+    "en": "A hallucination = the friend who never says “I don’t know”: even when they don’t know the way, they confidently point down the wrong lane.",
+    "hi": "हैलुसिनेशन = वह दोस्त जो कभी “पता नहीं” नहीं कहता: रास्ता न पता हो तब भी आत्मविश्वास से ग़लत गली बता देता है।",
+    "hinglish": "Hallucination = woh dost jo kabhi “pata nahi” nahi bolta: rasta na pata ho tab bhi confidently galat gali bata deta hai."
+   },
+   "realExample": {
+    "en": "PIB Fact Check, the government’s fact-checking unit, regularly flags viral false claims; a quick search there or on two trusted news sites is a good habit before forwarding any AI-written “fact”.",
+    "hi": "PIB फ़ैक्ट चेक, सरकार की तथ्य-जाँच इकाई, वायरल ग़लत दावों को नियमित रूप से चिह्नित करती है; किसी भी AI-लिखे “तथ्य” को आगे भेजने से पहले वहाँ या दो विश्वसनीय समाचार साइटों पर जल्दी खोज अच्छी आदत है।",
+    "hinglish": "PIB Fact Check, sarkar ki fact-checking unit, viral false claims ko regularly flag karti hai; kisi bhi AI-likhe “fact” ko forward karne se pehle wahan ya do trusted news sites pe quick search achhi aadat hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Make a “Fact-check card” for your study table with 4 steps: 1) Where is it from? 2) Open the source. 3) Check 2 trusted sites. 4) Not sure → don’t use. Use it on one fact from your next AI answer or forwarded message.",
+   "hi": "अपनी पढ़ाई की मेज़ के लिए 4 चरणों का “तथ्य-जाँच कार्ड” बनाओ: 1) यह कहाँ से है? 2) स्रोत खोलो। 3) 2 विश्वसनीय साइट जाँचो। 4) पक्का नहीं → उपयोग मत करो। इसे अपने अगले AI उत्तर या फ़ॉरवर्ड संदेश के एक तथ्य पर आज़माओ।",
+   "hinglish": "Apni study table ke liye 4 steps ka “Fact-check card” banao: 1) Yeh kahan se hai? 2) Source kholo. 3) 2 trusted sites check karo. 4) Pakka nahi → use mat karo. Ise apne agle AI answer ya forward message ke ek fact pe use karo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why do language models hallucinate?",
+     "hi": "भाषा मॉडल हैलुसिनेट क्यों करते हैं?",
+     "hinglish": "Language models hallucinate kyun karte hain?"
+    },
+    "options": [
+     {
+      "en": "They want to trick you",
+      "hi": "वे तुम्हें धोखा देना चाहते हैं",
+      "hinglish": "Woh tumhe trick karna chahte hain"
+     },
+     {
+      "en": "They predict likely words, not checked facts",
+      "hi": "वे संभावित शब्द अनुमानित करते हैं, जाँचे तथ्य नहीं",
+      "hinglish": "Woh likely words predict karte hain, checked facts nahi"
+     },
+     {
+      "en": "Their battery is low",
+      "hi": "उनकी बैटरी कम है",
+      "hinglish": "Unki battery low hai"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "They are trained to produce likely-sounding text, not to check facts.",
+     "hi": "उन्हें संभावित लगने वाला पाठ बनाने के लिए प्रशिक्षित किया जाता है, तथ्य जाँचने के लिए नहीं।",
+     "hinglish": "Unhe likely-sounding text banane ke liye train kiya jaata hai, facts check karne ke liye nahi."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "multi",
+    "prompt": {
+     "en": "Which AI answers need the most checking? Choose all.",
+     "hi": "किन AI उत्तरों को सबसे ज़्यादा जाँच चाहिए? सभी चुनो।",
+     "hinglish": "Kin AI answers ko sabse zyada checking chahiye? Saare chuno."
+    },
+    "options": [
+     {
+      "en": "A date for your history project",
+      "hi": "इतिहास प्रोजेक्ट की तारीख़",
+      "hinglish": "History project ki date"
+     },
+     {
+      "en": "Medicine or health advice",
+      "hi": "दवा या स्वास्थ्य सलाह",
+      "hinglish": "Dawai ya health advice"
+     },
+     {
+      "en": "A quote from a famous person",
+      "hi": "किसी प्रसिद्ध व्यक्ति का उद्धरण",
+      "hinglish": "Kisi famous person ka quote"
+     },
+     {
+      "en": "Ideas for a funny poem",
+      "hi": "मज़ेदार कविता के विचार",
+      "hinglish": "Funny poem ke ideas"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2
+    ],
+    "explain": {
+     "en": "Dates, health advice and quotes can cause real harm if wrong. A poem idea is low risk.",
+     "hi": "तारीख़ें, स्वास्थ्य सलाह और उद्धरण ग़लत हों तो असली नुक़सान कर सकते हैं। कविता का विचार कम जोखिम है।",
+     "hinglish": "Dates, health advice aur quotes galat hon to asli nuksaan kar sakte hain. Poem idea low risk hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "order",
+    "prompt": {
+     "en": "Put the fact-checking steps in order.",
+     "hi": "तथ्य-जाँच के चरण क्रम में लगाओ।",
+     "hinglish": "Fact-checking steps order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Open the source yourself",
+      "hi": "स्रोत ख़ुद खोलो",
+      "hinglish": "Source khud kholo"
+     },
+     {
+      "en": "Use it only if they agree",
+      "hi": "केवल सहमति हो तो उपयोग करो",
+      "hinglish": "Sirf agree karein to use karo"
+     },
+     {
+      "en": "Check 2 trusted sites",
+      "hi": "2 विश्वसनीय साइट जाँचो",
+      "hinglish": "2 trusted sites check karo"
+     },
+     {
+      "en": "Ask: where is this from?",
+      "hi": "पूछो: यह कहाँ से है?",
+      "hinglish": "Poochho: yeh kahan se hai?"
+     }
+    ],
+    "answer": [
+     3,
+     0,
+     2,
+     1
+    ],
+    "explain": {
+     "en": "Ask where it is from → open the source → check 2 trusted sites → use or drop.",
+     "hi": "पूछो कहाँ से है → स्रोत खोलो → 2 विश्वसनीय साइट जाँचो → उपयोग करो या छोड़ो।",
+     "hinglish": "Poochho kahan se hai → source kholo → 2 trusted sites check karo → use karo ya chhodo."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "In Mata v. Avianca (2023), what went wrong?",
+     "hi": "Mata v. Avianca (2023) में क्या ग़लत हुआ?",
+     "hinglish": "Mata v. Avianca (2023) mein kya galat hua?"
+    },
+    "options": [
+     {
+      "en": "A robot became a judge",
+      "hi": "एक रोबोट जज बन गया",
+      "hinglish": "Ek robot judge ban gaya"
+     },
+     {
+      "en": "A website was hacked",
+      "hi": "एक वेबसाइट हैक हुई",
+      "hinglish": "Ek website hack hui"
+     },
+     {
+      "en": "Lawyers used fake cases invented by a chatbot",
+      "hi": "वकीलों ने चैटबॉट के गढ़े नकली मुक़दमे उपयोग किए",
+      "hinglish": "Lawyers ne chatbot ke banaye nakli cases use kiye"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "Lawyers cited court cases that ChatGPT had made up, and were fined $5,000.",
+     "hi": "वकीलों ने ChatGPT के गढ़े मुक़दमों का हवाला दिया, और उन पर 5,000 डॉलर जुर्माना लगा।",
+     "hinglish": "Lawyers ne ChatGPT ke banaye cases cite kiye, aur unpe $5,000 fine laga."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "short",
+    "prompt": {
+     "en": "Checking a claim by opening other trusted sources in new tabs is called ___ reading.",
+     "hi": "नए टैब में दूसरे विश्वसनीय स्रोत खोलकर दावा जाँचना ___ reading कहलाता है।",
+     "hinglish": "Naye tabs mein doosre trusted sources khol kar claim check karna ___ reading kehlata hai."
+    },
+    "answer": [
+     "lateral",
+     "Lateral"
+    ],
+    "explain": {
+     "en": "Lateral reading: go sideways to other sources.",
+     "hi": "पार्श्व पठन: बग़ल में दूसरे स्रोतों पर जाओ।",
+     "hinglish": "Lateral reading: side mein doosre sources pe jao."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the lab mission.",
+     "hi": "लैब मिशन पूरा करो।",
+     "hinglish": "Lab mission poora karo."
+    },
+    "answer": {
+     "lab": "ai-lab",
+     "event": "mission:complete",
+     "tab": "words"
+    },
+    "explain": {
+     "en": "Generate 3 sentences and flag the false one.",
+     "hi": "3 वाक्य बनाओ और ग़लत वाले को चिह्नित करो।",
+     "hinglish": "3 sentences banao aur galat wale ko flag karo."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Mata v. Avianca, Inc. — order on sanctions (S.D.N.Y., 22 June 2023), summary",
+   "url": "https://en.wikipedia.org/wiki/Mata_v._Avianca,_Inc.",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NASA — 2M1207 b: first image of an exoplanet (2004)",
+   "url": "https://science.nasa.gov/exoplanet-catalog/2m1207-b/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Stanford History Education Group — Civic Online Reasoning (lateral reading)",
+   "url": "https://cor.inquirygroup.org/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "PIB Fact Check",
+   "url": "https://pib.gov.in/factcheck.aspx",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

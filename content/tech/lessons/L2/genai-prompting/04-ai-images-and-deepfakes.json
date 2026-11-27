@@ -1,0 +1,367 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.genai-prompting.04",
+ "level": 2,
+ "classes": [
+  7,
+  8
+ ],
+ "unit": "genai-prompting",
+ "title": {
+  "en": "AI images and deepfakes",
+  "hi": "AI चित्र और डीपफ़ेक",
+  "hinglish": "AI images aur deepfakes"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [
+  "L2.genai-prompting.03"
+ ],
+ "topics": [
+  "ai.genai-images",
+  "cyber.deepfakes"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain how a diffusion model turns noise into a picture from a text prompt",
+   "hi": "समझा सकते हो कि डिफ़्यूज़न मॉडल पाठ प्रॉम्प्ट से शोर को चित्र कैसे बनाता है",
+   "hinglish": "Samjha sakte ho diffusion model text prompt se noise ko picture kaise banata hai"
+  },
+  {
+   "en": "Spot signs and labels of AI-made images",
+   "hi": "AI-निर्मित चित्रों के संकेत और लेबल पहचान सकते हो",
+   "hinglish": "AI-bani images ke signs aur labels pehchaan sakte ho"
+  },
+  {
+   "en": "Follow rules: consent, labelling, check before sharing",
+   "hi": "नियम मान सकते हो: सहमति, लेबल, शेयर से पहले जाँच",
+   "hinglish": "Rules follow kar sakte ho: consent, label, share se pehle check"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Generative AI",
+   "hinglish": "Naya content banane wala AI",
+   "en": "AI that creates new text, images, audio or video",
+   "hi": "AI जो नया पाठ, चित्र, ध्वनि या वीडियो बनाता है"
+  },
+  {
+   "term": "Diffusion model",
+   "hinglish": "Noise se tasveer",
+   "en": "An image model that starts from random noise and removes it step by step to match a prompt",
+   "hi": "चित्र मॉडल जो यादृच्छिक शोर से शुरू कर प्रॉम्प्ट के अनुसार उसे चरण-दर-चरण हटाता है"
+  },
+  {
+   "term": "Deepfake",
+   "hinglish": "AI se bana nakli video/photo",
+   "en": "AI-made media showing a real person doing or saying something they never did",
+   "hi": "AI-निर्मित मीडिया जिसमें असली व्यक्ति वह करता या कहता दिखे जो उसने कभी नहीं किया"
+  },
+  {
+   "term": "Content Credentials",
+   "hinglish": "Tasveer ka janam-praman",
+   "en": "A digital label (C2PA standard) recording how an image was made and edited",
+   "hi": "डिजिटल लेबल (C2PA मानक) जो दर्ज करता है कि चित्र कैसे बना और संपादित हुआ"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "An image AI learns from millions of captioned pictures. To create, it starts with pure static and removes noise step by step, guided by your words.",
+    "hi": "चित्र AI लाखों कैप्शन वाले चित्रों से सीखता है। बनाने के लिए वह शुद्ध शोर से शुरू करता है और तुम्हारे शब्दों के अनुसार चरण-दर-चरण शोर हटाता है।",
+    "hinglish": "Image AI laakhon captioned pictures se seekhta hai. Banane ke liye woh pure static se shuru karta hai aur tumhare words ke hisaab se step-by-step noise hatata hai."
+   },
+   "visual": "compare:📺 Step 1: random noise ░▒▓|🐘 Step 50: “an elephant painting a rangoli”",
+   "narration": {
+    "en": "It does not copy one photo; it builds a new one from learned patterns.",
+    "hi": "वह एक फ़ोटो कॉपी नहीं करता; सीखे पैटर्न से नई बनाता है।",
+    "hinglish": "Woh ek photo copy nahi karta; seekhe patterns se nayi banata hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "The same power makes deepfakes: a real face on a fake video. Signs: odd hands or teeth, blurry earrings, text that is gibberish, lighting that does not match.",
+    "hi": "यही शक्ति डीपफ़ेक बनाती है: नकली वीडियो पर असली चेहरा। संकेत: अजीब हाथ या दाँत, धुँधली बालियाँ, बेतुका लिखा पाठ, मेल न खाती रोशनी।",
+    "hinglish": "Yahi power deepfakes banati hai: nakli video pe asli chehra. Signs: ajeeb haath ya daant, dhundhli baaliyaan, bakwaas likha text, match na karti roshni."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "Signs get harder to see every year, so check the source too.",
+    "hi": "संकेत हर साल कठिन होते जाते हैं, इसलिए स्रोत भी जाँचो।",
+    "hinglish": "Signs har saal mushkil hote jaate hain, isliye source bhi check karo."
+   },
+   "code": "check an image:\n 1. who posted it first?\n 2. reverse image search (Google Lens)\n 3. look for an \"AI-generated\" label / Content Credentials\n 4. do trusted news sites report it?"
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Practise in the lab: a “shocking flood video” could be AI-made. Sort each post — share, keep private, or check first.",
+    "hi": "लैब में अभ्यास करो: “चौंकाने वाला बाढ़ वीडियो” AI-निर्मित हो सकता है। हर पोस्ट छाँटो — शेयर, निजी, या पहले जाँचो।",
+    "hinglish": "Lab mein practice karo: “shocking flood video” AI-bana ho sakta hai. Har post sort karo — share, private, ya pehle check."
+   },
+   "visual": "lab:cyber-lab#share",
+   "narration": {
+    "en": "Shocking + urgent + no source = check first.",
+    "hi": "चौंकाने वाला + जल्दी + कोई स्रोत नहीं = पहले जाँचो।",
+    "hinglish": "Shocking + urgent + no source = pehle check."
+   }
+  }
+ ],
+ "play": {
+  "lab": "cyber-lab",
+  "config": {
+   "tab": "share"
+  },
+  "goal": {
+   "en": "Sort all 8 posts correctly — watch for shocking videos that may be AI-made.",
+   "hi": "सभी 8 पोस्ट सही छाँटो — AI-निर्मित हो सकने वाले चौंकाने वाले वीडियो पर ध्यान दो।",
+   "hinglish": "Saare 8 posts sahi sort karo — AI-bane ho sakne wale shocking videos pe dhyaan do."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Creative tool, serious responsibility",
+    "hi": "रचनात्मक उपकरण, गंभीर ज़िम्मेदारी",
+    "hinglish": "Creative tool, serious zimmedari"
+   },
+   "body": {
+    "en": "Text-to-image tools such as DALL·E 2, Midjourney and Stable Diffusion became public in 2022; Stable Diffusion is based on the “latent diffusion” research published by Rombach and colleagues in 2021. These tools are useful for posters, story illustrations, design ideas and science diagrams, but they also make deepfakes. In India, deepfake videos of actors and of well-known business leaders promoting fake investment schemes have gone viral, and the government has repeatedly reminded platforms that under the IT Rules, 2021 they must quickly remove impersonating and misleading content when it is reported. Making or sharing a fake intimate or impersonating image of someone can be a crime under the IT Act, 2000 and the Bharatiya Nyaya Sanhita, 2023. Industry groups have created Content Credentials (the C2PA standard, by Adobe, Microsoft, the BBC and others) and invisible watermarks such as Google’s SynthID to label AI-made media. Rules for you: never make AI images of real people without their permission; label your AI-made work as “Made with AI”; and check the source, a reverse image search and trusted news before sharing anything shocking.",
+    "hi": "DALL·E 2, Midjourney और Stable Diffusion जैसे पाठ-से-चित्र उपकरण 2022 में सार्वजनिक हुए; Stable Diffusion, रोम्बाख़ और साथियों द्वारा 2021 में प्रकाशित “लेटेंट डिफ़्यूज़न” शोध पर आधारित है। ये उपकरण पोस्टर, कहानी के चित्र, डिज़ाइन विचार और विज्ञान आरेखों के लिए उपयोगी हैं, पर डीपफ़ेक भी बनाते हैं। भारत में अभिनेताओं और नकली निवेश योजनाओं का प्रचार करते प्रसिद्ध व्यापारियों के डीपफ़ेक वीडियो वायरल हुए हैं, और सरकार ने बार-बार प्लेटफ़ॉर्मों को याद दिलाया है कि IT नियम, 2021 के तहत शिकायत मिलने पर उन्हें प्रतिरूपण और भ्रामक सामग्री जल्दी हटानी होगी। किसी की नकली अंतरंग या प्रतिरूपण छवि बनाना या साझा करना IT अधिनियम, 2000 और भारतीय न्याय संहिता, 2023 के तहत अपराध हो सकता है। उद्योग समूहों ने AI-निर्मित मीडिया को लेबल करने के लिए कंटेंट क्रेडेंशियल्स (C2PA मानक, Adobe, Microsoft, BBC और अन्य द्वारा) और Google के SynthID जैसे अदृश्य वॉटरमार्क बनाए हैं। तुम्हारे लिए नियम: असली लोगों के AI चित्र उनकी अनुमति के बिना कभी न बनाओ; अपने AI-निर्मित काम पर “AI से बना” लिखो; और कुछ भी चौंकाने वाला शेयर करने से पहले स्रोत, रिवर्स इमेज सर्च और विश्वसनीय समाचार जाँचो।",
+    "hinglish": "DALL·E 2, Midjourney aur Stable Diffusion jaise text-to-image tools 2022 mein public hue; Stable Diffusion, Rombach aur saathiyon ki 2021 mein publish hui “latent diffusion” research pe based hai. Yeh tools posters, story illustrations, design ideas aur science diagrams ke liye useful hain, par deepfakes bhi banate hain. India mein actors aur nakli investment schemes promote karte famous business leaders ke deepfake videos viral hue hain, aur sarkar ne baar-baar platforms ko yaad dilaya hai ki IT Rules, 2021 ke under complaint milne pe unhe impersonating aur misleading content jaldi hatana hoga. Kisi ki nakli intimate ya impersonating image banana ya share karna IT Act, 2000 aur Bharatiya Nyaya Sanhita, 2023 ke under crime ho sakta hai. Industry groups ne AI-made media ko label karne ke liye Content Credentials (C2PA standard, Adobe, Microsoft, BBC aur doosron ka) aur Google ke SynthID jaise invisible watermarks banaye hain. Tumhare liye rules: asli logon ki AI images unki permission ke bina kabhi mat banao; apne AI-made kaam pe “Made with AI” likho; aur kuch bhi shocking share karne se pehle source, reverse image search aur trusted news check karo."
+   },
+   "analogy": {
+    "en": "Diffusion = a picture appearing out of fog: morning mist slowly clears and the Taj Mahal appears — the AI clears the “fog” following your words.",
+    "hi": "डिफ़्यूज़न = कोहरे से चित्र उभरना: सुबह का कोहरा धीरे-धीरे हटता है और ताजमहल दिखने लगता है — AI तुम्हारे शब्दों के अनुसार “कोहरा” हटाता है।",
+    "hinglish": "Diffusion = dhundh mein se tasveer ubharna: subah ka kohra dheere dheere hat-ta hai aur Taj Mahal dikhne lagta hai — AI kohra hatata hai tumhare shabdon ke hisaab se."
+   },
+   "realExample": {
+    "en": "Google Lens on most Android phones can do a reverse image search: point it at a viral photo to see where it first appeared online.",
+    "hi": "अधिकतर Android फ़ोन पर Google Lens रिवर्स इमेज सर्च कर सकता है: वायरल फ़ोटो पर लगाओ और देखो वह ऑनलाइन पहली बार कहाँ आई।",
+    "hinglish": "Zyaadatar Android phones pe Google Lens reverse image search kar sakta hai: viral photo pe point karo aur dekho woh online pehli baar kahan aayi."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Design a poster idea for “Save water” and write the prompt you would give an image AI (subject, style, colours, text). Add a “Made with AI” label in the corner. Then write 3 rules your class should follow before sharing AI images.",
+   "hi": "“पानी बचाओ” के लिए पोस्टर विचार बनाओ और वह प्रॉम्प्ट लिखो जो तुम चित्र AI को दोगे (विषय, शैली, रंग, पाठ)। कोने में “AI से बना” लेबल लगाओ। फिर 3 नियम लिखो जो तुम्हारी कक्षा को AI चित्र शेयर करने से पहले मानने चाहिए।",
+   "hinglish": "“Paani bachao” ke liye poster idea design karo aur woh prompt likho jo tum image AI ko doge (subject, style, colours, text). Kone mein “Made with AI” label lagao. Phir 3 rules likho jo tumhari class ko AI images share karne se pehle follow karne chahiye."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "How does a diffusion model make a picture?",
+     "hi": "डिफ़्यूज़न मॉडल चित्र कैसे बनाता है?",
+     "hinglish": "Diffusion model picture kaise banata hai?"
+    },
+    "options": [
+     {
+      "en": "It copies one photo from the internet",
+      "hi": "इंटरनेट से एक फ़ोटो कॉपी करता है",
+      "hinglish": "Internet se ek photo copy karta hai"
+     },
+     {
+      "en": "It removes noise step by step, guided by the prompt",
+      "hi": "प्रॉम्प्ट के अनुसार चरण-दर-चरण शोर हटाता है",
+      "hinglish": "Prompt ke hisaab se step-by-step noise hatata hai"
+     },
+     {
+      "en": "A hidden artist draws it",
+      "hi": "छिपा कलाकार बनाता है",
+      "hinglish": "Chhupa artist banata hai"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "It starts from random noise and removes it step by step, guided by the prompt.",
+     "hi": "वह यादृच्छिक शोर से शुरू करता है और प्रॉम्प्ट के अनुसार चरण-दर-चरण हटाता है।",
+     "hinglish": "Woh random noise se shuru karta hai aur prompt ke hisaab se step-by-step hatata hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "multi",
+    "prompt": {
+     "en": "Which can be signs of an AI-made image? Choose all.",
+     "hi": "AI-निर्मित चित्र के संकेत कौन-से हो सकते हैं? सभी चुनो।",
+     "hinglish": "AI-bani image ke signs kaunse ho sakte hain? Saare chuno."
+    },
+    "options": [
+     {
+      "en": "Six fingers or strange teeth",
+      "hi": "छह उँगलियाँ या अजीब दाँत",
+      "hinglish": "Chhe ungliyaan ya ajeeb daant"
+     },
+     {
+      "en": "Signboard text that is gibberish",
+      "hi": "साइनबोर्ड पर बेतुका पाठ",
+      "hinglish": "Signboard pe bakwaas text"
+     },
+     {
+      "en": "A photo credit from a news agency",
+      "hi": "समाचार एजेंसी का फ़ोटो श्रेय",
+      "hinglish": "News agency ka photo credit"
+     },
+     {
+      "en": "An “AI-generated” label",
+      "hi": "“AI-जनित” लेबल",
+      "hinglish": "“AI-generated” label"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     3
+    ],
+    "explain": {
+     "en": "Odd hands, gibberish text and an AI label are clues. A clear photo credit from a news agency is not a warning sign.",
+     "hi": "अजीब हाथ, बेतुका पाठ और AI लेबल संकेत हैं। समाचार एजेंसी का स्पष्ट फ़ोटो श्रेय चेतावनी नहीं।",
+     "hinglish": "Ajeeb haath, bakwaas text aur AI label clues hain. News agency ka clear photo credit warning sign nahi."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Your friend wants to make a funny AI image of a classmate. What is right?",
+     "hi": "तुम्हारा दोस्त एक सहपाठी की मज़ेदार AI तस्वीर बनाना चाहता है। सही क्या है?",
+     "hinglish": "Tumhara dost ek classmate ki funny AI image banana chahta hai. Sahi kya hai?"
+    },
+    "options": [
+     {
+      "en": "Fine, it is only a joke",
+      "hi": "ठीक है, बस मज़ाक है",
+      "hinglish": "Theek hai, bas mazaak hai"
+     },
+     {
+      "en": "Fine if you post it in a small group",
+      "hi": "छोटे ग्रुप में डालो तो ठीक",
+      "hinglish": "Chhote group mein daalo to theek"
+     },
+     {
+      "en": "Do not, unless the classmate agrees — fakes can hurt",
+      "hi": "मत बनाओ, जब तक सहपाठी सहमत न हो — नकली चोट पहुँचाते हैं",
+      "hinglish": "Mat banao, jab tak classmate agree na kare — fakes hurt karte hain"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "Images of real people need their permission; fake images can hurt and can even be illegal.",
+     "hi": "असली लोगों के चित्रों के लिए उनकी अनुमति चाहिए; नकली चित्र चोट पहुँचा सकते हैं और ग़ैरक़ानूनी भी हो सकते हैं।",
+     "hinglish": "Asli logon ki images ke liye unki permission chahiye; nakli images hurt kar sakti hain aur illegal bhi ho sakti hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "order",
+    "prompt": {
+     "en": "Put the steps for checking a viral image in order.",
+     "hi": "वायरल चित्र जाँचने के चरण क्रम में लगाओ।",
+     "hinglish": "Viral image check karne ke steps order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Reverse image search it",
+      "hi": "रिवर्स इमेज सर्च करो",
+      "hinglish": "Reverse image search karo"
+     },
+     {
+      "en": "See if trusted news reports it",
+      "hi": "देखो विश्वसनीय समाचार बताते हैं या नहीं",
+      "hinglish": "Dekho trusted news report karti hai ya nahi"
+     },
+     {
+      "en": "Pause — don’t forward yet",
+      "hi": "रुको — अभी आगे मत भेजो",
+      "hinglish": "Ruko — abhi forward mat karo"
+     }
+    ],
+    "answer": [
+     2,
+     0,
+     1
+    ],
+    "explain": {
+     "en": "Pause → reverse image search → check trusted news.",
+     "hi": "रुको → रिवर्स इमेज सर्च → विश्वसनीय समाचार जाँचो।",
+     "hinglish": "Ruko → reverse image search → trusted news check karo."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "short",
+    "prompt": {
+     "en": "Write the 4-letter name of the open standard behind Content Credentials.",
+     "hi": "कंटेंट क्रेडेंशियल्स के पीछे के खुले मानक का 4-अक्षर नाम लिखो।",
+     "hinglish": "Content Credentials ke peeche ke open standard ka 4-letter naam likho."
+    },
+    "answer": [
+     "C2PA",
+     "c2pa"
+    ],
+    "explain": {
+     "en": "C2PA — Coalition for Content Provenance and Authenticity.",
+     "hi": "C2PA — कोएलिशन फ़ॉर कंटेंट प्रोवेनेंस एंड ऑथेंटिसिटी।",
+     "hinglish": "C2PA — Coalition for Content Provenance and Authenticity."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the lab mission.",
+     "hi": "लैब मिशन पूरा करो।",
+     "hinglish": "Lab mission poora karo."
+    },
+    "answer": {
+     "lab": "cyber-lab",
+     "event": "mission:complete",
+     "tab": "share"
+    },
+    "explain": {
+     "en": "Sort all 8 posts correctly.",
+     "hi": "सभी 8 पोस्ट सही छाँटो।",
+     "hinglish": "Saare 8 posts sahi sort karo."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Rombach et al. — High-Resolution Image Synthesis with Latent Diffusion Models (2021)",
+   "url": "https://arxiv.org/abs/2112.10752",
+   "licence": "fact reference"
+  },
+  {
+   "title": "C2PA — Coalition for Content Provenance and Authenticity",
+   "url": "https://c2pa.org/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Google DeepMind — SynthID",
+   "url": "https://deepmind.google/technologies/synthid/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "MeitY — Information Technology (Intermediary Guidelines and Digital Media Ethics Code) Rules, 2021",
+   "url": "https://www.meity.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

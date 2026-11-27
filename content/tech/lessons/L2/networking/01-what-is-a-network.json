@@ -1,0 +1,314 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.networking.01",
+ "level": 2,
+ "classes": [
+  6
+ ],
+ "unit": "networking",
+ "title": {
+  "en": "What is a network? Wi-Fi, mobile data and the internet",
+  "hi": "नेटवर्क क्या है? वाई-फ़ाई, मोबाइल डेटा और इंटरनेट",
+  "hinglish": "Network kya hai? Wi-Fi, mobile data aur internet"
+ },
+ "minutes": 8,
+ "xp": 30,
+ "prereq": [],
+ "topics": [
+  "net.what-is-network",
+  "net.wifi-mobile-data"
+ ],
+ "outcomes": [
+  {
+   "en": "Define a network, a LAN and a WAN",
+   "hi": "नेटवर्क, LAN और WAN की परिभाषा दे सकते हो",
+   "hinglish": "Network, LAN aur WAN define kar sakte ho"
+  },
+  {
+   "en": "Compare Wi-Fi and mobile data",
+   "hi": "Wi-Fi और मोबाइल डेटा की तुलना कर सकते हो",
+   "hinglish": "Wi-Fi aur mobile data compare kar sakte ho"
+  },
+  {
+   "en": "Explain that the internet is a network of networks",
+   "hi": "समझा सकते हो कि इंटरनेट नेटवर्कों का नेटवर्क है",
+   "hinglish": "Internet = networks ka network samjha sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Network",
+   "hinglish": "Jude hue devices",
+   "en": "Two or more devices connected to share data",
+   "hi": "डेटा साझा करने के लिए जुड़े दो या ज़्यादा उपकरण"
+  },
+  {
+   "term": "LAN",
+   "hinglish": "Ghar/school ka chhota network",
+   "en": "Local Area Network: one home, school or office",
+   "hi": "लोकल एरिया नेटवर्क: एक घर, स्कूल या दफ़्तर"
+  },
+  {
+   "term": "WAN",
+   "hinglish": "Shehron/deshon ko jodne wala bada network",
+   "en": "Wide Area Network: across cities and countries",
+   "hi": "वाइड एरिया नेटवर्क: शहरों और देशों में फैला"
+  },
+  {
+   "term": "ISP",
+   "hinglish": "Internet dene wali company",
+   "en": "Internet Service Provider: Jio, Airtel, BSNL, Vi, local cable/fibre companies",
+   "hi": "इंटरनेट सेवा प्रदाता: Jio, Airtel, BSNL, Vi, स्थानीय केबल/फ़ाइबर कंपनियाँ"
+  },
+  {
+   "term": "Undersea cable",
+   "hinglish": "Samundar ke neeche ki fibre cable",
+   "en": "Fibre-optic cables on the sea bed that carry most international internet traffic",
+   "hi": "समुद्र तल पर फ़ाइबर-ऑप्टिक केबल जो ज़्यादातर अंतरराष्ट्रीय इंटरनेट ट्रैफ़िक ले जाती हैं"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Connect two devices so they can share data and you have a network. Your home Wi-Fi is a small one (LAN).",
+    "hi": "दो उपकरण जोड़ो ताकि वे डेटा साझा कर सकें — नेटवर्क बन गया। घर का वाई-फ़ाई छोटा नेटवर्क (LAN) है।",
+    "hinglish": "Do devices jodo taaki data share kar sakein — network ban gaya. Ghar ka Wi-Fi ek chhota network (LAN) hai."
+   },
+   "visual": "flow:📱 Phone|📶 Wi-Fi router|💻 Laptop|📺 Smart TV",
+   "narration": {
+    "en": "Phone, laptop and TV all talk through the same router.",
+    "hi": "फ़ोन, लैपटॉप और टीवी सब एक ही राउटर से बात करते हैं।",
+    "hinglish": "Phone, laptop aur TV sab ek hi router se baat karte hain."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Wi-Fi uses radio waves inside a building. Mobile data uses radio waves to a tower, which connects by fibre to the operator.",
+    "hi": "वाई-फ़ाई इमारत के अंदर रेडियो तरंगें उपयोग करता है। मोबाइल डेटा टावर तक रेडियो तरंगें, फिर फ़ाइबर से ऑपरेटर तक।",
+    "hinglish": "Wi-Fi building ke andar radio waves use karta hai. Mobile data tower tak radio waves, phir fibre se operator tak."
+   },
+   "visual": "compare:📶 Wi-Fi ~30 m, router at home|🗼 4G/5G km range, tower",
+   "narration": {
+    "en": "Both are wireless only for the first hop; after that, most of the journey is on glass fibre.",
+    "hi": "दोनों केवल पहले कदम तक बेतार हैं; उसके बाद ज़्यादातर सफ़र काँच के फ़ाइबर पर होता है।",
+    "hinglish": "Dono sirf pehle hop tak wireless hain; uske baad zyaadatar safar glass fibre pe hota hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "The internet joins millions of networks. Undersea fibre cables land in Mumbai and Chennai and link India to the world.",
+    "hi": "इंटरनेट लाखों नेटवर्क जोड़ता है। समुद्र के नीचे की फ़ाइबर केबल मुंबई और चेन्नई में आकर भारत को दुनिया से जोड़ती हैं।",
+    "hinglish": "Internet millions networks jodta hai. Samundar ke neeche ki fibre cables Mumbai aur Chennai mein aakar India ko duniya se jodti hain."
+   },
+   "visual": "flow:🏠 Home LAN|🏢 ISP network|🇮🇳 India backbone|🌊 Undersea cable|🌍 World",
+   "narration": {
+    "en": "Not satellites — over 95% of international data travels through cables under the sea.",
+    "hi": "उपग्रह नहीं — 95% से ज़्यादा अंतरराष्ट्रीय डेटा समुद्र के नीचे केबलों से जाता है।",
+    "hinglish": "Satellite nahi — 95% se zyada international data samundar ke neeche cables se jaata hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "packet-tracer",
+  "config": {
+   "mode": "whatsapp"
+  },
+  "goal": {
+   "en": "Send a message and name every network it passes: home Wi-Fi, ISP, internet routers, mobile tower.",
+   "hi": "संदेश भेजो और हर नेटवर्क का नाम बताओ जिससे वह गुज़रता है: घर का Wi-Fi, ISP, इंटरनेट राउटर, मोबाइल टावर।",
+   "hinglish": "Message bhejo aur har network ka naam batao jisse woh guzarta hai: home Wi-Fi, ISP, internet routers, mobile tower."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Wi-Fi vs mobile data",
+    "hi": "वाई-फ़ाई बनाम मोबाइल डेटा",
+    "hinglish": "Wi-Fi vs mobile data"
+   },
+   "body": {
+    "en": "Wi-Fi connects devices to a router using radio in the 2.4 GHz and 5 GHz bands; range is tens of metres and walls weaken it. The router connects to your ISP by fibre or cable. Mobile data (4G LTE, 5G) connects your phone to a cell tower kilometres away; towers connect to the operator’s core network by fibre or microwave links. 5G can be faster and has lower delay, but needs more towers because higher frequencies travel less far. Both use your phone’s radio — airplane mode switches them off.",
+    "hi": "वाई-फ़ाई 2.4 GHz और 5 GHz बैंड के रेडियो से उपकरणों को राउटर से जोड़ता है; सीमा दसियों मीटर और दीवारें इसे कमज़ोर करती हैं। राउटर फ़ाइबर या केबल से ISP से जुड़ता है। मोबाइल डेटा (4G LTE, 5G) फ़ोन को किलोमीटर दूर सेल टावर से जोड़ता है; टावर फ़ाइबर या माइक्रोवेव लिंक से ऑपरेटर के मुख्य नेटवर्क से जुड़ते हैं। 5G तेज़ और कम देरी वाला हो सकता है, पर ज़्यादा टावर चाहिए क्योंकि ऊँची आवृत्तियाँ कम दूर जाती हैं। दोनों फ़ोन का रेडियो उपयोग करते हैं — एयरप्लेन मोड इन्हें बंद करता है।",
+    "hinglish": "Wi-Fi 2.4 GHz aur 5 GHz bands ke radio se devices ko router se jodta hai; range dasiyon metre aur deewarein isse kamzor karti hain. Router fibre ya cable se ISP se judta hai. Mobile data (4G LTE, 5G) phone ko kilometre door cell tower se jodta hai; towers fibre ya microwave links se operator ke core network se judte hain. 5G fast aur kam delay wala ho sakta hai, par zyada towers chahiye kyunki high frequencies kam door jaati hain. Dono phone ka radio use karte hain — airplane mode inhe band karta hai."
+   },
+   "analogy": {
+    "hinglish": "Wi-Fi = ghar ka intercom; mobile data = mohalle ka bada loudspeaker jo door tak sunai deta hai.",
+    "en": "Wi-Fi = the home intercom; mobile data = the neighbourhood’s big loudspeaker that can be heard far away.",
+    "hi": "Wi-Fi = घर का इंटरकॉम; मोबाइल डेटा = मोहल्ले का बड़ा लाउडस्पीकर जो दूर तक सुनाई देता है।"
+   },
+   "realExample": {
+    "en": "India is one of the world’s biggest users of mobile data — the average user uses over 20 GB per month (TRAI/Nokia MBiT reports).",
+    "hi": "भारत दुनिया में मोबाइल डेटा के सबसे बड़े उपयोगकर्ताओं में है — औसत उपयोगकर्ता हर महीने 20 GB से ज़्यादा उपयोग करता है (TRAI/Nokia MBiT रिपोर्ट)।",
+    "hinglish": "India duniya ke sabse bade mobile data users mein hai — average user har mahine 20 GB se zyada use karta hai (TRAI/Nokia MBiT reports)."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Walk around your home with a phone on Wi-Fi and note where the signal bars drop. What blocks it?",
+   "hi": "Wi-Fi पर फ़ोन लेकर घर में घूमो और देखो कहाँ सिग्नल कम होता है। उसे क्या रोकता है?",
+   "hinglish": "Ghar mein phone le ke ghoomo (Wi-Fi pe) aur note karo kahan signal kam hota hai. Kya rok raha hai?"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Your home Wi-Fi network is a…",
+     "hi": "आपका घर का वाई-फ़ाई नेटवर्क है एक…",
+     "hinglish": "Aapka ghar ka Wi-Fi network hai ek…"
+    },
+    "options": [
+     "LAN",
+     "WAN",
+     "Satellite"
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "It covers one home, so it is a Local Area Network.",
+     "hi": "यह एक घर में है, इसलिए लोकल एरिया नेटवर्क।",
+     "hinglish": "Yeh ek ghar ko cover karta hai, isliye Local Area Network."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "How does most international internet data travel?",
+     "hi": "ज़्यादातर अंतरराष्ट्रीय इंटरनेट डेटा कैसे यात्रा करता है?",
+     "hinglish": "Zyaadatar international internet data kaise travel karta hai?"
+    },
+    "options": [
+     {
+      "en": "Satellites",
+      "hi": "उपग्रह",
+      "hinglish": "Satellites"
+     },
+     {
+      "en": "Undersea fibre cables",
+      "hi": "समुद्र के नीचे फ़ाइबर केबल",
+      "hinglish": "Undersea fibre cables"
+     },
+     {
+      "en": "Radio from the Moon",
+      "hi": "चाँद से रेडियो",
+      "hinglish": "Chaand se radio"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Over 95% goes through undersea fibre-optic cables; satellites carry a small share.",
+     "hi": "95% से ज़्यादा समुद्र के नीचे फ़ाइबर केबल से; उपग्रह थोड़ा हिस्सा।",
+     "hinglish": "95% se zyada undersea fibre cables se; satellite thoda hissa."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "What is an ISP?",
+     "hi": "ISP क्या है?",
+     "hinglish": "ISP kya hai?"
+    },
+    "options": [
+     {
+      "en": "A type of cable",
+      "hi": "एक प्रकार की केबल",
+      "hinglish": "Ek type ki cable"
+     },
+     {
+      "en": "A web browser",
+      "hi": "वेब ब्राउज़र",
+      "hinglish": "Web browser"
+     },
+     {
+      "en": "The company that connects you to the internet",
+      "hi": "कंपनी जो आपको इंटरनेट से जोड़ती है",
+      "hinglish": "Company jo aapko internet se jodti hai"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "An Internet Service Provider connects your home or SIM to the internet.",
+     "hi": "इंटरनेट सेवा प्रदाता आपके घर या SIM को इंटरनेट से जोड़ता है।",
+     "hinglish": "Internet Service Provider aapke ghar ya SIM ko internet se jodta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why does 5G need more towers than 4G?",
+     "hi": "5G को 4G से ज़्यादा टावर क्यों चाहिए?",
+     "hinglish": "5G ko 4G se zyada towers kyun chahiye?"
+    },
+    "options": [
+     {
+      "en": "Its higher frequencies travel less far",
+      "hi": "इसकी ऊँची आवृत्तियाँ कम दूर जाती हैं",
+      "hinglish": "Iski high frequencies kam door jaati hain"
+     },
+     {
+      "en": "5G phones are bigger",
+      "hi": "5G फ़ोन बड़े हैं",
+      "hinglish": "5G phones bade hain"
+     },
+     {
+      "en": "It uses no radio",
+      "hi": "यह रेडियो नहीं उपयोग करता",
+      "hinglish": "Yeh radio use nahi karta"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Higher-frequency radio carries more data but travels shorter distances and passes through walls less well.",
+     "hi": "ऊँची आवृत्ति का रेडियो ज़्यादा डेटा ले जाता है पर कम दूर जाता है और दीवारों से कम गुज़रता है।",
+     "hinglish": "High-frequency radio zyada data le jaata hai par kam door jaata hai aur deewaron se kam guzarta hai."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Send a chat message in the packet tracer and watch it reach Riya.",
+     "hi": "पैकेट ट्रेसर में चैट संदेश भेजो और रिया तक पहुँचते देखो।",
+     "hinglish": "Packet tracer mein chat message bhejo aur Riya tak pahunchte dekho."
+    },
+    "answer": {
+     "lab": "packet-tracer",
+     "event": "delivered"
+    },
+    "explain": {
+     "en": "It crossed home Wi-Fi, the ISP, internet routers, a server and a mobile tower.",
+     "hi": "यह घर के वाई-फ़ाई, ISP, इंटरनेट राउटर, सर्वर और मोबाइल टावर से गुज़रा।",
+     "hinglish": "Yeh home Wi-Fi, ISP, internet routers, server aur mobile tower se guzra."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "TeleGeography — Submarine Cable Map",
+   "url": "https://www.submarinecablemap.com/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "TRAI — Indian Telecom Services Performance Indicators",
+   "url": "https://www.trai.gov.in/release-publication/reports/performance-indicators-reports",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NCERT / CBSE Artificial Intelligence & Computer curriculum (Classes 6–8), 2024–25",
+   "url": "https://cbseacademic.nic.in/",
+   "licence": "fact reference"
+  }
+ ]
+}

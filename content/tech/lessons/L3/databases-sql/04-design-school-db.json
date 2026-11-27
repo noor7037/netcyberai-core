@@ -1,0 +1,377 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.databases-sql.04",
+ "level": 3,
+ "classes": [
+  10,
+  11,
+  12
+ ],
+ "unit": "databases-sql",
+ "title": {
+  "en": "Design a school database",
+  "hi": "स्कूल डेटाबेस डिज़ाइन करो",
+  "hinglish": "School database design karo"
+ },
+ "minutes": 16,
+ "xp": 70,
+ "prereq": [
+  "L3.databases-sql.03"
+ ],
+ "outcomes": [
+  {
+   "en": "Draw an entity–relationship (ER) model from a real requirement",
+   "hi": "असली ज़रूरत से एंटिटी–रिलेशनशिप (ER) मॉडल बनाओ",
+   "hinglish": "Asli zaroorat se entity–relationship (ER) model banao"
+  },
+  {
+   "en": "Normalise tables to remove repeated data (1NF, 2NF, 3NF)",
+   "hi": "दोहराया डेटा हटाने के लिए तालिकाएँ सामान्यीकृत करो (1NF, 2NF, 3NF)",
+   "hinglish": "Repeat data hatane ke liye tables normalise karo (1NF, 2NF, 3NF)"
+  },
+  {
+   "en": "Add constraints and indexes, and protect personal data under the DPDP Act",
+   "hi": "बाधाएँ और इंडेक्स जोड़ो, और DPDP अधिनियम के तहत निजी डेटा बचाओ",
+   "hinglish": "Constraints aur indexes jodo, aur DPDP Act ke tahat personal data bachao"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Entity",
+   "hinglish": "Cheez jiska data rakhna hai",
+   "en": "A thing you store data about: Student, Teacher, Subject",
+   "hi": "वह चीज़ जिसका डेटा रखना है: छात्र, शिक्षक, विषय"
+  },
+  {
+   "term": "Normalisation",
+   "hinglish": "Data repeat na ho, aisa todna",
+   "en": "Splitting tables so each fact is stored once",
+   "hi": "तालिकाओं को ऐसे बाँटना कि हर तथ्य एक बार रखा जाए"
+  },
+  {
+   "term": "Constraint",
+   "hinglish": "Data par rule",
+   "en": "A rule the DBMS enforces: NOT NULL, UNIQUE, CHECK, FOREIGN KEY",
+   "hi": "DBMS द्वारा लागू नियम: NOT NULL, UNIQUE, CHECK, FOREIGN KEY"
+  },
+  {
+   "term": "Index",
+   "hinglish": "Kitaab ki index jaisi tez khoj",
+   "en": "A lookup structure (often a B-tree) that makes searches fast",
+   "hi": "खोज तेज़ करने वाली संरचना (अक्सर B-tree)"
+  },
+  {
+   "term": "Anomaly",
+   "hinglish": "Repeat data se aane wali gadbad",
+   "en": "An error caused by duplicated data — update one copy, forget another",
+   "hi": "दोहराए डेटा से होने वाली गड़बड़ — एक कॉपी बदली, दूसरी भूल गए"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Requirement: \"Track students, their classes, subjects, teachers and exam marks.\" Underline the nouns — those become entities.",
+    "hi": "ज़रूरत: \"छात्र, उनकी कक्षाएँ, विषय, शिक्षक और परीक्षा अंक रखो।\" संज्ञाओं को रेखांकित करो — वही एंटिटी बनती हैं।",
+    "hinglish": "Zaroorat: \"Students, unki classes, subjects, teachers aur exam marks track karo.\" Nouns ko underline karo — wahi entities bante hain."
+   },
+   "visual": "anim:er-nouns",
+   "narration": {
+    "en": "Requirement: \"Track students, their classes, subjects, teachers and exam marks.\" Underline the nouns — those become entities.",
+    "hi": "ज़रूरत: \"छात्र, उनकी कक्षाएँ, विषय, शिक्षक और परीक्षा अंक रखो।\" संज्ञाओं को रेखांकित करो — वही एंटिटी बनती हैं।",
+    "hinglish": "Zaroorat: \"Students, unki classes, subjects, teachers aur exam marks track karo.\" Nouns ko underline karo — wahi entities bante hain."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "One giant sheet repeats the teacher's phone in every row. Change it once and the old copies disagree — an update anomaly.",
+    "hi": "एक बड़ी शीट हर पंक्ति में शिक्षक का फ़ोन दोहराती है। एक बार बदलो तो पुरानी कॉपियाँ मेल नहीं खातीं — अपडेट विसंगति।",
+    "hinglish": "Ek badi sheet har row mein teacher ka phone repeat karti hai. Ek baar badlo to purani copies match nahi karti — update anomaly."
+   },
+   "visual": "anim:anomaly-flash",
+   "narration": {
+    "en": "One giant sheet repeats the teacher's phone in every row. Change it once and the old copies disagree — an update anomaly.",
+    "hi": "एक बड़ी शीट हर पंक्ति में शिक्षक का फ़ोन दोहराती है। एक बार बदलो तो पुरानी कॉपियाँ मेल नहीं खातीं — अपडेट विसंगति।",
+    "hinglish": "Ek badi sheet har row mein teacher ka phone repeat karti hai. Ek baar badlo to purani copies match nahi karti — update anomaly."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Split it: students, teachers, subjects, classes, and marks(student_id, subject_id, exam, score). Each fact now lives in one place.",
+    "hi": "बाँटो: students, teachers, subjects, classes, और marks(student_id, subject_id, exam, score)। अब हर तथ्य एक जगह रहता है।",
+    "hinglish": "Baanto: students, teachers, subjects, classes, aur marks(student_id, subject_id, exam, score). Ab har fact ek jagah rehta hai."
+   },
+   "visual": "anim:er-split",
+   "narration": {
+    "en": "Split it: students, teachers, subjects, classes, and marks(student_id, subject_id, exam, score). Each fact now lives in one place.",
+    "hi": "बाँटो: students, teachers, subjects, classes, और marks(student_id, subject_id, exam, score)। अब हर तथ्य एक जगह रहता है।",
+    "hinglish": "Baanto: students, teachers, subjects, classes, aur marks(student_id, subject_id, exam, score). Ab har fact ek jagah rehta hai."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Add rules: score CHECK (score BETWEEN 0 AND 100), an index on marks(student_id), and keep phone numbers visible only to staff who need them.",
+    "hi": "नियम जोड़ो: score CHECK (score BETWEEN 0 AND 100), marks(student_id) पर इंडेक्स, और फ़ोन नंबर सिर्फ़ ज़रूरतमंद कर्मचारियों को दिखें।",
+    "hinglish": "Rules jodo: score CHECK (score BETWEEN 0 AND 100), marks(student_id) par index, aur phone numbers sirf zaroorat wale staff ko dikhein."
+   },
+   "visual": "anim:constraint-shield",
+   "narration": {
+    "en": "Add rules: score CHECK (score BETWEEN 0 AND 100), an index on marks(student_id), and keep phone numbers visible only to staff who need them.",
+    "hi": "नियम जोड़ो: score CHECK (score BETWEEN 0 AND 100), marks(student_id) पर इंडेक्स, और फ़ोन नंबर सिर्फ़ ज़रूरतमंद कर्मचारियों को दिखें।",
+    "hinglish": "Rules jodo: score CHECK (score BETWEEN 0 AND 100), marks(student_id) par index, aur phone numbers sirf zaroorat wale staff ko dikhein."
+   }
+  }
+ ],
+ "play": {
+  "lab": "sql-playground",
+  "config": {
+   "mode": "free",
+   "sql": "SELECT * FROM houses"
+  },
+  "goal": {
+   "en": "Study the four tables in Free play. Which facts are stored once? Write a query that would break if house names were copied into students instead.",
+   "hi": "खुले अभ्यास में चारों तालिकाएँ देखो। कौन-से तथ्य एक बार रखे हैं? ऐसी क्वेरी लिखो जो टूट जाती अगर सदन के नाम छात्रों में कॉपी होते।",
+   "hinglish": "Free play mein chaaron tables dekho. Kaunse facts ek baar store hain? Ek query likho jo toot jaati agar house names students mein copy hote."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Normal forms in plain words",
+    "hi": "सामान्य रूप आसान शब्दों में",
+    "hinglish": "Normal forms aasaan shabdon mein"
+   },
+   "body": {
+    "en": "1NF: one value per cell — no \"Maths, Science\" lists in one column. 2NF: every non-key column depends on the whole key — in marks(student_id, subject_id, score, student_name), the name depends only on student_id, so move it out. 3NF: no column depends on another non-key column — teacher_phone depends on teacher_id, not the class, so it belongs in teachers. Rule of thumb: \"the key, the whole key, and nothing but the key.\"",
+    "hi": "1NF: हर सेल में एक मान — एक स्तंभ में \"गणित, विज्ञान\" सूची नहीं। 2NF: हर ग़ैर-कुंजी स्तंभ पूरी कुंजी पर निर्भर — marks(student_id, subject_id, score, student_name) में नाम सिर्फ़ student_id पर निर्भर है, तो उसे हटाओ। 3NF: कोई स्तंभ दूसरे ग़ैर-कुंजी स्तंभ पर निर्भर नहीं — teacher_phone, teacher_id पर निर्भर है, कक्षा पर नहीं, तो वह teachers में जाएगा। याद रखने का नियम: \"कुंजी, पूरी कुंजी, और सिर्फ़ कुंजी।\"",
+    "hinglish": "1NF: har cell mein ek value — ek column mein \"Maths, Science\" list nahi. 2NF: har non-key column poori key par depend kare — marks(student_id, subject_id, score, student_name) mein naam sirf student_id par depend hai, to use bahar nikalo. 3NF: koi column doosre non-key column par depend na kare — teacher_phone, teacher_id par depend hai, class par nahi, to woh teachers mein jayega. Thumb rule: \"the key, the whole key, and nothing but the key.\""
+   },
+   "analogy": {
+    "en": "Like keeping one master contact list on your phone instead of writing a friend's number inside every chat.",
+    "hi": "हर चैट में दोस्त का नंबर लिखने की बजाय फ़ोन में एक मुख्य संपर्क सूची रखने जैसा।",
+    "hinglish": "Har chat mein dost ka number likhne ki bajaye phone mein ek master contact list rakhne jaisa."
+   },
+   "realExample": {
+    "en": "Analytics systems sometimes denormalise on purpose (copy data) to make big reports faster — a trade-off you choose knowingly, not by accident.",
+    "hi": "एनालिटिक्स प्रणालियाँ कभी-कभी बड़ी रिपोर्ट तेज़ करने के लिए जानबूझकर डेटा कॉपी करती हैं (डीनॉर्मलाइज़) — यह सोच-समझकर चुना गया सौदा है, ग़लती नहीं।",
+    "hinglish": "Analytics systems kabhi-kabhi badi reports tez karne ke liye jaan-boojhkar data copy karte hain (denormalise) — yeh soch-samajhkar chuna trade-off hai, galti nahi."
+   }
+  },
+  {
+   "heading": {
+    "en": "Privacy is part of the design",
+    "hi": "निजता डिज़ाइन का हिस्सा है",
+    "hinglish": "Privacy design ka hissa hai"
+   },
+   "body": {
+    "en": "India's Digital Personal Data Protection Act, 2023 and its Rules (notified November 2025) require purpose limitation, security safeguards and, for children under 18, verifiable parental consent before processing their data. In a school DB that means: collect only needed fields, restrict who can read phone numbers and addresses (role-based access), encrypt backups, log who viewed records, and delete data you no longer need.",
+    "hi": "भारत का डिजिटल व्यक्तिगत डेटा संरक्षण अधिनियम, 2023 और उसके नियम (नवंबर 2025 में अधिसूचित) उद्देश्य-सीमा, सुरक्षा उपाय, और 18 से कम उम्र के बच्चों के डेटा के लिए सत्यापन योग्य अभिभावक सहमति माँगते हैं। स्कूल डेटाबेस में इसका मतलब: सिर्फ़ ज़रूरी फ़ील्ड लो, फ़ोन और पते कौन पढ़ सके यह सीमित करो (भूमिका-आधारित पहुँच), बैकअप एन्क्रिप्ट करो, किसने रिकॉर्ड देखा यह लॉग करो, और बेकार डेटा मिटाओ।",
+    "hinglish": "India ka Digital Personal Data Protection Act, 2023 aur uske Rules (November 2025 mein notified) purpose limitation, security safeguards aur 18 se kam umar ke bachchon ke data ke liye verifiable parental consent maangte hain. School DB mein iska matlab: sirf zaroori fields lo, phone aur address kaun padh sake yeh limit karo (role-based access), backups encrypt karo, kisne record dekha yeh log karo, aur bekaar data delete karo."
+   },
+   "analogy": {
+    "en": "The school office cupboard has a lock and a register of who took which file — a database needs the digital version of both.",
+    "hi": "स्कूल दफ़्तर की अलमारी पर ताला और कौन-सी फ़ाइल किसने ली उसका रजिस्टर होता है — डेटाबेस को दोनों का डिजिटल रूप चाहिए।",
+    "hinglish": "School office ki almaari par taala aur kaunsi file kisne li uska register hota hai — database ko dono ka digital roop chahiye."
+   },
+   "realExample": {
+    "en": "A marks portal should let a parent see only their own child's marks — enforced in the database query, not just hidden in the app.",
+    "hi": "अंक पोर्टल अभिभावक को सिर्फ़ अपने बच्चे के अंक दिखाए — यह डेटाबेस क्वेरी में लागू हो, सिर्फ़ ऐप में छिपा न हो।",
+    "hinglish": "Marks portal parent ko sirf apne bachche ke marks dikhaye — yeh database query mein lagu ho, sirf app mein chhupa na ho."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Design tables for your school library: books, copies, members and loans. Show keys, two CHECK rules, one index, and which fields count as personal data.",
+   "hi": "अपनी स्कूल लाइब्रेरी के लिए तालिकाएँ डिज़ाइन करो: books, copies, members और loans। कुंजियाँ, दो CHECK नियम, एक इंडेक्स, और कौन-से फ़ील्ड निजी डेटा हैं, दिखाओ।",
+   "hinglish": "Apni school library ke liye tables design karo: books, copies, members aur loans. Keys, do CHECK rules, ek index, aur kaunse fields personal data hain, dikhao."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "A column \"subjects\" holds \"Maths, Science, Hindi\". Which rule does that break?",
+     "hi": "स्तंभ \"subjects\" में \"Maths, Science, Hindi\" है। यह कौन-सा नियम तोड़ता है?",
+     "hinglish": "Column \"subjects\" mein \"Maths, Science, Hindi\" hai. Yeh kaunsa rule todta hai?"
+    },
+    "options": [
+     "1NF",
+     "2NF",
+     "3NF",
+     {
+      "en": "None",
+      "hi": "कोई नहीं",
+      "hinglish": "Koi nahi"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "1NF needs one value per cell.",
+     "hi": "1NF को हर सेल में एक मान चाहिए।",
+     "hinglish": "1NF ko har cell mein ek value chahiye."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Teacher phone is copied into 500 class rows and someone updates only 499. This is…",
+     "hi": "शिक्षक का फ़ोन 500 पंक्तियों में कॉपी है और किसी ने सिर्फ़ 499 बदले। यह है…",
+     "hinglish": "Teacher ka phone 500 rows mein copy hai aur kisi ne sirf 499 badle. Yeh hai…"
+    },
+    "options": [
+     {
+      "en": "An update anomaly",
+      "hi": "अपडेट विसंगति",
+      "hinglish": "Update anomaly"
+     },
+     {
+      "en": "An index",
+      "hi": "इंडेक्स",
+      "hinglish": "Index"
+     },
+     {
+      "en": "A join",
+      "hi": "जॉइन",
+      "hinglish": "Join"
+     },
+     {
+      "en": "Encryption",
+      "hi": "एन्क्रिप्शन",
+      "hinglish": "Encryption"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Duplicated facts drift apart — normalisation prevents this.",
+     "hi": "दोहराए तथ्य अलग हो जाते हैं — सामान्यीकरण यह रोकता है।",
+     "hinglish": "Duplicate facts alag ho jaate hain — normalisation yeh rokta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are good protections for student personal data? (choose all)",
+     "hi": "छात्र निजी डेटा के लिए कौन-से अच्छे बचाव हैं? (सभी चुनो)",
+     "hinglish": "Student personal data ke liye kaunse achhe bachav hain? (saare chuno)"
+    },
+    "options": [
+     {
+      "en": "Role-based access to phone numbers",
+      "hi": "फ़ोन नंबरों तक भूमिका-आधारित पहुँच",
+      "hinglish": "Phone numbers tak role-based access"
+     },
+     {
+      "en": "Encrypted backups",
+      "hi": "एन्क्रिप्टेड बैकअप",
+      "hinglish": "Encrypted backups"
+     },
+     {
+      "en": "Collect every possible field just in case",
+      "hi": "हर संभव फ़ील्ड यूँ ही ले लो",
+      "hinglish": "Har possible field yunhi le lo"
+     },
+     {
+      "en": "Access logs",
+      "hi": "पहुँच लॉग",
+      "hinglish": "Access logs"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     3
+    ],
+    "explain": {
+     "en": "Data minimisation means collecting only what you need.",
+     "hi": "डेटा न्यूनीकरण का मतलब सिर्फ़ ज़रूरी लेना।",
+     "hinglish": "Data minimisation ka matlab sirf zaroori lena."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which constraint stops a mark of 150?",
+     "hi": "कौन-सी बाधा 150 अंक रोकेगी?",
+     "hinglish": "Kaunsa constraint 150 marks rokega?"
+    },
+    "options": [
+     "UNIQUE",
+     "CHECK (score BETWEEN 0 AND 100)",
+     "PRIMARY KEY",
+     "INDEX"
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "CHECK enforces a condition on every row.",
+     "hi": "CHECK हर पंक्ति पर शर्त लागू करता है।",
+     "hinglish": "CHECK har row par condition lagu karta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why add an index on marks(student_id)?",
+     "hi": "marks(student_id) पर इंडेक्स क्यों?",
+     "hinglish": "marks(student_id) par index kyun?"
+    },
+    "options": [
+     {
+      "en": "To make lookups and joins by student fast",
+      "hi": "छात्र से खोज और जॉइन तेज़ करने",
+      "hinglish": "Student se lookup aur join tez karne"
+     },
+     {
+      "en": "To encrypt marks",
+      "hi": "अंक एन्क्रिप्ट करने",
+      "hinglish": "Marks encrypt karne"
+     },
+     {
+      "en": "To stop duplicates of names",
+      "hi": "नामों की नक़ल रोकने",
+      "hinglish": "Naamon ki nakal rokne"
+     },
+     {
+      "en": "To save disk space",
+      "hi": "डिस्क बचाने",
+      "hinglish": "Disk bachane"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "An index costs some space and write time, and buys fast reads.",
+     "hi": "इंडेक्स थोड़ी जगह और लिखने का समय लेता है, बदले में तेज़ पढ़ना देता है।",
+     "hinglish": "Index thodi jagah aur write time leta hai, badle mein tez reads deta hai."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "topics": [
+  "data.modelling-keys",
+  "cyber.dpdp-law"
+ ],
+ "sources": [
+  {
+   "title": "PostgreSQL documentation — SQL language",
+   "url": "https://www.postgresql.org/docs/current/sql.html",
+   "licence": "fact reference"
+  },
+  {
+   "title": "MeitY — Digital Personal Data Protection Act, 2023",
+   "url": "https://www.meity.gov.in/data-protection-framework",
+   "licence": "fact reference"
+  }
+ ]
+}

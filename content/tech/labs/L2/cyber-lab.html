@@ -1,0 +1,243 @@
+<!doctype html><html lang="en-IN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Cyber Defence Lab — NCA Tech & AI Lab</title><style>/* NCA Tech & AI Lab — Level 2 shared lab skin (own work, MIT). Family App lesson tokens: paper, card, ink, saffron, teal, plum. */
+:root{--paper:#FBF8F3;--card:#FFFDF9;--ink:#1C1B1A;--muted:#4B5563;--line:#E7E1D6;--saffron:#E8702A;--saffronD:#C2410C;--teal:#0F766E;--plum:#6D28D9;--sky:#0369A1;
+--mint:#E4F3EA;--butter:#FBF1D3;--lilac:#EFE9FB;--blush:#FBE6E3;--skyT:#E3EEF9;--night:#0B1430;--night2:#16224A;--cyan:#02CFF9;--leaf:#22C55E;--coral:#FF6B57;--gold:#F5B90A;--grape:#8B3DFF;
+--r:16px;--sh:0 1px 0 rgba(28,27,26,.04),0 6px 18px -8px rgba(28,27,26,.18)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans Devanagari",sans-serif;font-variant-numeric:tabular-nums}
+body{background:transparent;min-height:100vh;padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 16px)}
+button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation}
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:8px;padding:10px 14px;background:rgba(251,248,243,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--lilac);flex:none}
+.top h1{font-size:16px;margin:0;line-height:1.2;flex:1;min-width:0}
+.top h1 small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;flex:none;background:var(--card)}
+.lang button{border:0;background:none;padding:6px 9px;font-size:12px;font-weight:600;color:var(--muted);min-height:32px}
+.lang button[aria-pressed=true]{background:var(--ink);color:#fff}
+.wrap{max-width:1100px;margin:0 auto;padding:12px 14px;display:grid;gap:12px;grid-template-columns:minmax(0,1fr)}
+.wrap>*{min-width:0}
+.wrap>div{grid-template-columns:minmax(0,1fr)}
+.card,.stage{min-width:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;box-shadow:var(--sh)}
+.goal{background:var(--butter);border-color:#F1DFA8;display:flex;gap:10px;align-items:flex-start;font-size:14.5px}
+.goal b{color:#8A5300}
+.goal .gi{font-size:20px;line-height:1}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn{border:0;border-radius:12px;padding:11px 16px;font-weight:700;min-height:44px;background:var(--saffron);color:var(--ink);box-shadow:0 3px 0 #B4531B;transition:transform .12s}
+.btn:active{transform:translateY(2px);box-shadow:0 1px 0 #B4531B}
+.btn.ghost{background:var(--card);border:1.5px solid var(--line);box-shadow:none}
+.btn.teal{background:var(--teal);color:#fff;box-shadow:0 3px 0 #0A4F49}
+.btn.plum{background:var(--plum);color:#fff;box-shadow:0 3px 0 #4C1D95}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.chip{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:3px 10px;font-size:12.5px;font-weight:600;background:var(--mint);color:var(--teal)}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;padding-bottom:2px}/* wraps: every mode name always fully visible */
+.tabs button{flex:0 1 auto;max-width:100%;white-space:normal;text-align:center;border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:8px 14px;font-weight:600;font-size:14px;min-height:40px}
+.tabs button[aria-selected=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.stage{background:radial-gradient(120% 90% at 30% 0%,#1D2D63 0%,var(--night) 60%);color:#E8EEFF;border-radius:20px;overflow:hidden;position:relative;border:1px solid #23305E}
+.muted{color:var(--muted)}
+.mission{background:var(--skyT);border-color:#C9DDF2}
+.mission h3{margin:0 0 6px;font-size:15px;color:var(--sky)}
+.toast{position:fixed;left:0;top:0;width:max-content;max-width:min(92vw,340px);background:var(--ink);color:#fff;padding:10px 16px;border-radius:14px;font-weight:600;z-index:50;box-shadow:0 8px 24px rgba(0,0,0,.25);opacity:0;visibility:hidden;transform:scale(.92);transition:opacity .25s,transform .25s,visibility 0s .25s;pointer-events:none;text-align:center;line-height:1.35}
+.toast.on{opacity:1;visibility:visible;transform:none;transition:opacity .25s,transform .25s}
+.toast.inline{position:static;display:block;width:auto;max-width:none;margin:10px 0;grid-column:1/-1;flex:0 0 auto}
+.toast.ok{background:var(--teal)}.toast.bad{background:#B42318}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:-1}/* behind the cards: confetti never covers text */
+.kbd{font-family:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace}
+.hidden{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@keyframes pop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.08);opacity:1}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.shake{animation:shake .3s 2}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
+</style>
+<style>
+.pw{width:100%;font:700 18px ui-monospace,Menlo,monospace;padding:12px;border-radius:12px;border:2px solid var(--line);background:#fff;min-height:48px}
+.bar{height:14px;border-radius:8px;background:#E5E7EB;overflow:hidden;margin:8px 0}.bar i{display:block;height:100%;border-radius:8px;transition:width .4s,background .4s}
+.big{font:800 22px system-ui;margin:4px 0}
+.chk{font-size:13.5px;margin:2px 0}
+.phone{background:#0A1028;color:#E8EEFF;border-radius:18px;padding:12px;font-size:13.5px;display:grid;gap:8px}
+.phone .ln{display:flex;gap:8px;align-items:center;animation:pop .3s both}
+.url{font:600 14px ui-monospace,Menlo,monospace;word-break:break-all;background:#F1F5F9;border-radius:10px;padding:8px 10px;margin:6px 0}
+.url .dom{background:#FDE68A;border-radius:4px;padding:0 2px;font-weight:800}
+.seg{display:flex;gap:6px;flex-wrap:wrap}.seg button{flex:1;min-width:80px;border:1.5px solid var(--line);background:var(--card);border-radius:10px;padding:8px 6px;font-weight:700;min-height:44px}
+.seg button[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.item{border:1.5px solid var(--line);border-radius:14px;padding:10px;margin:8px 0;background:var(--card);animation:pop .3s both}
+.item.ok{border-color:#10B981;background:#ECFDF5}.item.no{border-color:#F43F5E;background:#FFF1F2}
+.why{font-size:13px;margin-top:6px}
+.note{font-size:13.5px;border-radius:12px;padding:8px 10px;background:var(--mint)}.note.bad{background:var(--blush)}
+.shield{font-size:60px;text-align:center;transition:transform .4s}
+@media (orientation:landscape) and (min-width:640px){.wrap{grid-template-columns:1.2fr 1fr}.wrap>.full{grid-column:1/-1}}
+</style></head><body>
+<main class="wrap">
+ <div class="card goal full"><span class="gi">🎯</span><div id="goal"></div></div>
+ <div class="tabs full" role="tablist" id="tabs"></div>
+ <div class="card" id="stage"></div>
+ <div style="display:grid;gap:12px"><div class="card" id="side"></div><div class="card mission"><h3 data-k="mT"></h3><div id="mission"></div></div></div>
+</main>
+<script>/* NCA Tech & AI Lab — Level 2 shared lab runtime (own work, MIT). No eval, no network except an optional same-origin ?lesson= JSON. */
+(function(g){
+  const qs=new URLSearchParams(location.search);
+  const LANGS=['hinglish','en','hi'];
+  let lang=(qs.get('lang')||localStorage.getItem('nca-tl-lang')||'hinglish'); if(!LANGS.includes(lang)) lang='hinglish';
+  const reduced=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const t=x=>x==null?'':(typeof x==='string'||typeof x==='number')?String(x):(x[lang]||x.hinglish||x.en||'');
+  let STR={}; const listeners=[];
+  function applyI18n(root){(root||document).querySelectorAll('[data-k]').forEach(el=>{const v=STR[el.dataset.k]; if(v) el.innerHTML=t(v);});
+    document.documentElement.lang=lang==='hi'?'hi':(lang==='en'?'en':'en-IN');
+    document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.l===lang));}
+  function setLang(l){lang=l;localStorage.setItem('nca-tl-lang',l);applyI18n();listeners.forEach(f=>f(l));}
+  function header(icon,titleK,subK){const h=document.createElement('header');h.className='top';
+    h.innerHTML=`<div class="ic" aria-hidden="true">${icon}</div><h1><span data-k="${titleK}"></span><small data-k="${subK}"></small></h1>
+    <div class="lang" role="group" aria-label="Language"><button data-l="hinglish">Hinglish</button><button data-l="en">EN</button><button data-l="hi">हिं</button></div>`;
+    document.body.prepend(h); h.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>setLang(b.dataset.l));}
+  // Toast: never covers text. It floats in a free band of the screen (bottom first); if the screen has no free band
+  // it sits in the page flow right under what the child just tapped (pushes content down, covers nothing). Closes after 2.5 s.
+  let toastEl,lastTap=null,tapAt=null;document.addEventListener('pointerdown',e=>{lastTap=e.target;tapAt=[e.clientX,e.clientY+scrollY]},true);let rePend=0;const rePlace=()=>{if(!toastEl||!toastEl.classList.contains('on')||rePend)return;rePend=1;requestAnimationFrame(()=>{rePend=0;placeToast();});};
+  addEventListener('scroll',rePlace,{passive:true});addEventListener('resize',rePlace);document.addEventListener('animationend',rePlace,true);document.addEventListener('transitionend',rePlace,true);const toastMO=new MutationObserver(rs=>{if(rs.some(r=>!toastEl.contains(r.target)))rePlace();});
+  function textRects(skip){const vh=innerHeight,out=[],rg=document.createRange(),w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let n;
+    while((n=w.nextNode())){if(!n.nodeValue.trim())continue;const p=n.parentElement;if(!p||skip.contains(p)||/^(SCRIPT|STYLE)$/.test(p.tagName))continue;rg.selectNodeContents(n);
+      for(const q of rg.getClientRects())if(q.width>=1&&q.bottom>0&&q.top<vh)out.push(q);}
+    document.querySelectorAll('input,select,textarea,button,a[href],[role=button]').forEach(e=>{if(skip.contains(e))return;const q=e.getBoundingClientRect();if(q.width&&q.bottom>0&&q.top<vh)out.push(q)});if(0)document.querySelectorAll('x').forEach(e=>{const q=e.getBoundingClientRect();if(q.width&&q.bottom>0&&q.top<vh)out.push(q)});return out;}
+  function freeSpot(el){const vw=document.documentElement.clientWidth,vh=innerHeight,w=el.offsetWidth,h=el.offsetHeight,m=8;let top=m;
+    const bar=document.querySelector('.top');if(bar)top=Math.max(top,bar.getBoundingClientRect().bottom+m);
+    const obs=textRects(el),xs=[(vw-w)/2,m,vw-w-m],free=(x,y)=>!obs.some(q=>q.left<x+w+4&&q.right>x-4&&q.top<y+h+4&&q.bottom>y-4);
+    const cur=el._spot;if(cur&&free(cur.x,cur.y))return cur;
+    for(let y=vh-h-m;y>=top;y-=6)for(const x of xs)if(free(x,y))return{x,y};return null;}
+  /* never drop the note inside a 3D scene, a transformed, positioned-out or clipping box */
+  function boxedIn(a){for(let p=a;p&&p!==document.body;p=p.parentElement){const c=getComputedStyle(p);if(c.transform!=='none'||c.transformStyle==='preserve-3d'||c.perspective!=='none'||c.position==='absolute'||c.position==='fixed'||(p!==a&&c.overflow!=='visible'))return true;}return false;}
+  function inlineAfter(el){let a=lastTap&&lastTap.isConnected&&!el.contains(lastTap)?lastTap:null;
+    if(!a&&tapAt){const y=tapAt[1]-scrollY;if(y>0&&y<innerHeight)a=document.elementFromPoint(tapAt[0],y);}/* the tapped thing was re-drawn: use what is there now */
+    if(!a||el.contains(a))a=document.querySelector('main')||document.body.lastElementChild;
+    while(a.parentElement&&a.parentElement!==document.body){const d=getComputedStyle(a.parentElement),me=getComputedStyle(a);
+      if(me.display!=='inline'&&!(a instanceof SVGElement)&&(d.display==='block'||d.display==='flow-root'||d.display==='grid'||(d.display==='flex'&&d.flexDirection.startsWith('column')))&&a.getBoundingClientRect().width>=Math.min(260,innerWidth*.6)&&!boxedIn(a))break;a=a.parentElement;}
+    a.after(el);}
+  function placeToast(){const el=toastEl;if(!el.classList.contains('on'))return;if(!el.isConnected){el.classList.remove('inline');document.body.appendChild(el);}
+    if(el.classList.contains('inline'))return;const s=freeSpot(el);
+    if(s){el._spot=s;el.style.left=s.x+'px';el.style.top=s.y+'px';}else{el._spot=null;el.classList.add('inline');el.style.left=el.style.top='';inlineAfter(el);el.scrollIntoView({block:'nearest'});}}
+  function toast(msg,kind){if(!toastEl){toastEl=document.createElement('div');toastEl.setAttribute('role','status');document.body.appendChild(toastEl);}
+    const el=toastEl;clearTimeout(el._t);clearInterval(el._iv);if(el.classList.contains('inline'))document.body.appendChild(el);
+    el.className='toast '+(kind||'');el._spot=null;el.innerHTML=typeof msg==='object'?t(msg):msg;el.style.left='0px';el.style.top='0px';
+    el.classList.add('on');placeToast();el._iv=setInterval(placeToast,200);toastMO.observe(document.body,{subtree:true,childList:true,attributes:true,characterData:true});
+    el._t=setTimeout(()=>{clearInterval(el._iv);toastMO.disconnect();el.classList.remove('on');setTimeout(()=>{if(!el.classList.contains('on')&&el.classList.contains('inline')){el.classList.remove('inline');document.body.appendChild(el);}},320);},2500);}
+  function confetti(){if(reduced())return;const c=document.createElement('canvas');c.className='confetti';c.setAttribute('aria-hidden','true');document.body.appendChild(c);
+    const W=c.width=innerWidth,H=c.height=innerHeight,x=c.getContext('2d');const cols=['#E8702A','#0F766E','#6D28D9','#F5B90A','#02CFF9','#FF6B57'];
+    const P=Array.from({length:90},()=>({x:W/2,y:H*.55,vx:(Math.random()-.5)*9,vy:-Math.random()*11-4,r:Math.random()*6+3,c:cols[Math.random()*6|0],a:Math.random()*6}));
+    let n=0;(function f(){x.clearRect(0,0,W,H);P.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.32;p.a+=.2;x.save();x.translate(p.x,p.y);x.rotate(p.a);x.fillStyle=p.c;x.fillRect(-p.r/2,-p.r/4,p.r,p.r/2);x.restore();});
+      if(++n<110)requestAnimationFrame(f);else c.remove();})();}
+  function tween(ms,step,done){if(reduced()||ms<=0){step(1);done&&done();return()=>{};}let stop=0;const t0=performance.now();
+    const f=now=>{if(stop)return;const k=Math.min(1,(now-t0)/ms);step(k);k<1?requestAnimationFrame(f):done&&done();};requestAnimationFrame(f);return()=>{stop=1};}
+  const ease=k=>k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+  const sleep=ms=>new Promise(r=>setTimeout(r,reduced()?0:ms));
+  // Lesson config: ?lesson=<same-origin json path> (its play.config + play.goal), else inline defaults. ?cfg=<json> also accepted (parsed with JSON.parse only).
+  async function lessonConfig(defaults){let cfg=Object.assign({},defaults),goal=null,id=null;
+    const p=qs.get('lesson');
+    if(p&&/^[\w\-./]+\.json$/.test(p)&&!p.includes('..')){try{const r=await fetch(p);if(r.ok){const j=await r.json();id=j.id;if(j.play){Object.assign(cfg,j.play.config||{});goal=j.play.goal||null;}}}catch(e){}}
+    const c=qs.get('cfg'); if(c){try{Object.assign(cfg,JSON.parse(c));}catch(e){}}
+    return {cfg,goal,id};}
+  // Progress events the Family App shell can listen for (postMessage to the parent frame), plus local XP for the prototype.
+  function emit(type,data){const msg={source:'nca-techlab',type,data:data||{},at:Date.now()};try{parent!==window&&parent.postMessage(msg,'*');}catch(e){}
+    document.dispatchEvent(new CustomEvent('nca-lab',{detail:msg}));}
+  g.NCA={qs,esc,t,get lang(){return lang},setLang,onLang:f=>listeners.push(f),strings:o=>{STR=Object.assign(STR,o);applyI18n();},applyI18n,header,toast,confetti,tween,ease,sleep,reduced,lessonConfig,emit};
+})(window);
+</script>
+<script>
+(async function(){
+const N=NCA,T=N.t,E=N.esc,L=(en,hi,hinglish)=>({en,hi,hinglish}),$=id=>document.getElementById(id);
+N.header('🛡️','title','sub');
+N.strings({title:L('Cyber Defence Lab','साइबर रक्षा लैब','Cyber Defence Lab'),sub:L('Passwords, padlocks, sharing and kindness — defence only','पासवर्ड, ताला, शेयरिंग और दयालुता — केवल बचाव','Passwords, padlock, sharing aur kindness — sirf defence'),mT:L('🚀 Mission','🚀 मिशन','🚀 Mission')});
+const {cfg,goal}=await N.lessonConfig({tab:'pass'});
+const TABS=[['pass',L('🔑 Password + 2FA','🔑 पासवर्ड + 2FA','🔑 Password + 2FA')],['url',L('🔒 Padlock check','🔒 ताला जाँच','🔒 Padlock check')],['share',L('📤 Share or not?','📤 शेयर करें या नहीं?','📤 Share karein ya nahi?')],['kind',L('💬 Be kind, be safe','💬 दयालु रहो, सुरक्षित रहो','💬 Kind raho, safe raho')]];
+const GOALS={pass:L('Make up a practice passphrase (never your real one) that would take centuries to crack, then turn on 2-step login and watch the attacker fail.','अभ्यास पासफ़्रेज़ बनाओ (असली कभी नहीं) जिसे तोड़ने में सदियाँ लगें, फिर 2-स्टेप लॉगिन चालू करो और हमलावर को हारते देखो।','Practice passphrase banao (asli kabhi nahi) jise todne mein sadiyaan lagein, phir 2-step login on karo aur attacker ko haarte dekho.'),
+ url:L('A padlock only means the connection is encrypted — not that the site is honest. Find the real domain and mark each link Safe or Scam.','ताला केवल बताता है कि कनेक्शन एन्क्रिप्टेड है — यह नहीं कि साइट ईमानदार है। असली डोमेन ढूँढो और हर लिंक को सुरक्षित या धोखा चिह्नित करो।','Padlock sirf batata hai ki connection encrypted hai — yeh nahi ki site imaandaar hai. Asli domain dhoondo aur har link ko Safe ya Scam mark karo.'),
+ share:L('Sort each post: OK to share, keep private, or check first.','हर पोस्ट छाँटो: शेयर ठीक, निजी रखो, या पहले जाँचो।','Har post sort karo: share OK, private rakho, ya pehle check karo.'),
+ kind:L('Choose the best response in each situation.','हर स्थिति में सबसे अच्छा जवाब चुनो।','Har situation mein sabse achha response chuno.')};
+let tab=TABS.some(x=>x[0]===cfg.tab)?cfg.tab:'pass';const done={};
+function win(k,m){if(done[k])return;done[k]=1;N.confetti();N.toast(m,'ok');N.emit('mission:complete',{lab:'cyber-lab',tab:k});mission();}
+/* ---------- PASSWORD ---------- */
+const COMMON=['123456','123456789','12345678','password','qwerty','111111','123123','abc123','iloveyou','india123','admin','welcome','password1','000000','1234567890','qwerty123','sachin','krishna','cricket','india'];
+const GPS=1e10; // guesses per second by a fast offline attacker rig
+function pool(p){let n=0;if(/[a-z]/.test(p))n+=26;if(/[A-Z]/.test(p))n+=26;if(/[0-9]/.test(p))n+=10;if(/[^A-Za-z0-9]/.test(p))n+=33;return n;}
+function crack(p){const low=p.toLowerCase();if(!p)return 0;if(COMMON.includes(low)||COMMON.some(c=>c.length>4&&low.replace(/[0-9!@#]+$/,'')===c))return 0.001;
+ let lg=p.length*Math.log10(Math.max(pool(p),1));if(/^(.)\1+$/.test(p))lg=1;if(/^[a-z]+[0-9]{2,4}$/i.test(p))lg=Math.min(lg,7.5);/* name+year pattern: attackers try these first */
+ return Math.pow(10,lg-Math.log10(GPS))/2;}
+function human(s){const U=[[3.156e9,L('centuries','सदियाँ','sadiyaan')],[3.156e7,L('years','साल','saal')],[86400,L('days','दिन','din')],[3600,L('hours','घंटे','ghante')],[60,L('minutes','मिनट','minute')],[1,L('seconds','सेकंड','second')]];
+ if(s<1)return T(L('instantly','तुरंत','turant'));if(s>3.156e11)return T(L('millions of years','लाखों साल','laakhon saal'));for(const [d,n] of U)if(s>=d){return (d===3.156e9?'':Math.floor(s/d).toLocaleString('en-IN')+' ')+T(n);}return '';}
+let pw='',twofa=false,attackRan=false,attackBlocked=false;
+function drawPass(){const s=crack(pw),strong=s>3.156e9&&pw.length>=12;const w=Math.min(100,pw?Math.max(6,Math.log10(s+1)*7+10):0);
+ const col=s<86400?'#F43F5E':s<3.156e7?'#F59E0B':'#10B981';
+ const c=(ok,t)=>`<div class="chk">${ok?'✅':'⬜'} ${T(t)}</div>`;
+ $('stage').innerHTML=`<p class="note bad">⚠️ ${T(L('Practice only. Never type a real password into any game or quiz. Nothing here is saved or sent.','केवल अभ्यास। किसी गेम या क्विज़ में असली पासवर्ड कभी मत लिखो। यहाँ कुछ भी सहेजा या भेजा नहीं जाता।','Sirf practice. Kisi game ya quiz mein asli password kabhi mat likho. Yahan kuch bhi save ya send nahi hota.'))}</p>
+ <label style="font-weight:700">${T(L('Practice password','अभ्यास पासवर्ड','Practice password'))}<input class="pw" id="pw" autocomplete="off" autocapitalize="off" spellcheck="false" value="${E(pw)}" placeholder="e.g. mango-kite-river-42"></label>
+ <div class="bar"><i style="width:${w}%;background:${col}"></i></div>
+ <div>${T(L('Time for a fast attacker computer (10 billion guesses a second) to crack it:','तेज़ हमलावर कंप्यूटर (प्रति सेकंड 1000 करोड़ अनुमान) को तोड़ने में समय:','Tez attacker computer (har second 1000 crore guesses) ko todne mein time:'))}</div><div class="big" style="color:${col}">${pw?human(s):'—'}</div>
+ ${c(pw.length>=12,L('12 or more characters','12 या अधिक अक्षर','12 ya zyada characters'))}${c(pw&&!COMMON.includes(pw.toLowerCase()),L('Not on the most-common list','सबसे आम सूची में नहीं','Most-common list mein nahi'))}${c(!/^[a-z]+[0-9]{2,4}$/i.test(pw)&&pw,L('Not a name + year pattern','नाम + वर्ष पैटर्न नहीं','Naam + year pattern nahi'))}${c(pool(pw)>36,L('Mixes kinds of characters','अलग-अलग प्रकार के अक्षर','Alag-alag type ke characters'))}`;
+ $('pw').oninput=e=>{pw=e.target.value;const pos=e.target.selectionStart;drawPass();const i=$('pw');i.focus();i.setSelectionRange(pos,pos);};
+ const lines=[];if(attackRan){lines.push(['🕵️',L('Attacker types your stolen password…','हमलावर आपका चुराया पासवर्ड लिखता है…','Attacker aapka chura hua password type karta hai…')]);
+  if(twofa){lines.push(['📱',L('Your phone: “Was this you? Code sent.” The attacker does not have your phone.','आपका फ़ोन: “क्या यह आप थे? कोड भेजा।” हमलावर के पास आपका फ़ोन नहीं है।','Aapka phone: “Kya yeh aap the? Code bheja.” Attacker ke paas aapka phone nahi hai.')]);lines.push(['🛡️',L('BLOCKED. Password alone was not enough.','रोका गया। केवल पासवर्ड काफ़ी नहीं था।','BLOCKED. Sirf password kaafi nahi tha.')]);}
+  else lines.push(['💥',L('Logged in! With only a password, a leak is all it takes.','लॉग इन हो गया! केवल पासवर्ड हो तो एक लीक ही काफ़ी है।','Log in ho gaya! Sirf password ho to ek leak hi kaafi hai.')]);}
+ $('side').innerHTML=`<b>${T(L('2-step login (2FA)','2-स्टेप लॉगिन (2FA)','2-step login (2FA)'))}</b><div class="seg" style="margin:8px 0"><button data-f="0" aria-pressed="${!twofa}">${T(L('Off','बंद','Off'))}</button><button data-f="1" aria-pressed="${twofa}">${T(L('On','चालू','On'))}</button></div>
+ <div class="shield" style="transform:scale(${twofa?1.1:.8})">${twofa?'🛡️':'🔓'}</div>
+ <button class="btn teal" id="atk" style="width:100%">${T(L('Simulate a password leak','पासवर्ड लीक का अनुकरण करो','Password leak simulate karo'))}</button>
+ <div class="phone" style="margin-top:8px">${lines.map(([e,t])=>`<div class="ln"><span>${e}</span><span>${T(t)}</span></div>`).join('')||T(L('Phone is quiet.','फ़ोन शांत है।','Phone shaant hai.'))}</div>
+ <p style="font-size:13px">${T(L('Something you know (password) + something you have (phone) = two factors. Never share the code with anyone — not even “bank staff”.','जो आप जानते हो (पासवर्ड) + जो आपके पास है (फ़ोन) = दो कारक। कोड किसी को मत बताओ — “बैंक कर्मचारी” को भी नहीं।','Jo aap jaante ho (password) + jo aapke paas hai (phone) = do factors. Code kisi ko mat batao — “bank staff” ko bhi nahi.'))}</p>`;
+ $('side').querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>{twofa=b.dataset.f==='1';attackRan=false;drawPass();});
+ $('atk').onclick=()=>{attackRan=true;attackBlocked=twofa;drawPass();check();};
+ function check(){if(strong&&attackBlocked)win('pass',L('Strong passphrase + 2FA. Account defended!','मज़बूत पासफ़्रेज़ + 2FA। खाता सुरक्षित!','Strong passphrase + 2FA. Account defended!'));
+  else if(attackRan&&!strong)N.toast(L('Make the practice password stronger too: 12+ characters, not common.','अभ्यास पासवर्ड भी मज़बूत करो: 12+ अक्षर, आम नहीं।','Practice password bhi strong karo: 12+ characters, common nahi.'),'bad');}}
+/* ---------- URL / PADLOCK ---------- */
+const SUF=['co.in','gov.in','nic.in','ac.in','org.in','net.in','com','in','org','net','sbi','shop','xyz','top','info','online'];
+function domainOf(u){let h;try{h=new URL(u).hostname;}catch(e){return '';}const parts=h.split('.');for(let n=2;n>=1;n--){const s=parts.slice(-n).join('.');if(SUF.includes(s)&&parts.length>n)return parts.slice(-(n+1)).join('.');}return parts.slice(-2).join('.');}
+const URLS=[{u:'https://www.irctc.co.in/nget/train-search',safe:1,why:L('Real domain irctc.co.in — the official Indian Railways booking site.','असली डोमेन irctc.co.in — भारतीय रेल की आधिकारिक बुकिंग साइट।','Asli domain irctc.co.in — Indian Railways ki official booking site.')},
+ {u:'https://sbi-kyc-update.xyz/login',safe:0,why:L('Padlock, but the real domain is sbi-kyc-update.xyz — not SBI. Banks never send KYC links like this.','ताला है, पर असली डोमेन sbi-kyc-update.xyz है — SBI नहीं। बैंक ऐसे KYC लिंक कभी नहीं भेजते।','Padlock hai, par asli domain sbi-kyc-update.xyz hai — SBI nahi. Banks aise KYC links kabhi nahi bhejte.')},
+ {u:'https://www.irctc.co.in.refund-help.com/claim',safe:0,why:L('Tricky! Read from the right: the real domain is refund-help.com. “irctc.co.in” is just a sub-name added to fool you.','चालाकी! दाएँ से पढ़ो: असली डोमेन refund-help.com है। “irctc.co.in” बस धोखा देने के लिए जोड़ा नाम है।','Tricky! Right se padho: asli domain refund-help.com hai. “irctc.co.in” bas dhokha dene ke liye joda naam hai.')},
+ {u:'https://www.amazon.in/gp/your-account/order-history',safe:1,why:L('Real domain amazon.in.','असली डोमेन amazon.in।','Asli domain amazon.in.')},
+ {u:'http://amaz0n-offers.shop/free-iphone',safe:0,why:L('Zero instead of “o”, a “.shop” domain, no padlock and a free iPhone — four red flags.','“o” की जगह शून्य, “.shop” डोमेन, ताला नहीं और मुफ़्त iPhone — चार ख़तरे के संकेत।','“o” ki jagah zero, “.shop” domain, padlock nahi aur free iPhone — chaar red flags.')},
+ {u:'https://cybercrime.gov.in/',safe:1,why:L('Real domain cybercrime.gov.in — the Government of India’s cybercrime reporting portal. .gov.in is only for government sites.','असली डोमेन cybercrime.gov.in — भारत सरकार का साइबर अपराध शिकायत पोर्टल। .gov.in केवल सरकारी साइटों के लिए है।','Asli domain cybercrime.gov.in — Government of India ka cybercrime reporting portal. .gov.in sirf sarkari sites ke liye hai.')},
+ {u:'https://paytm.com.secure-verify.in/upi-pin',safe:0,why:L('Real domain secure-verify.in. And no real app ever asks for your UPI PIN on a web page.','असली डोमेन secure-verify.in। और कोई असली ऐप वेब पेज पर कभी UPI PIN नहीं माँगता।','Asli domain secure-verify.in. Aur koi asli app web page pe kabhi UPI PIN nahi maangta.')}];
+let ui={},ucur=0;
+function hl(u){const d=domainOf(u);let h;try{h=new URL(u);}catch(e){return E(u);}const i=h.hostname.lastIndexOf(d);const host=E(h.hostname.slice(0,i))+'<span class="dom">'+E(d)+'</span>';return `${h.protocol==='https:'?'🔒':'⚠️'} ${E(h.protocol)}//${host}${E(h.pathname)}`;}
+function drawURL(){const it=URLS[ucur],ans=ui[ucur];
+ $('stage').innerHTML=`<b>${T(L('Link','लिंक','Link'))} ${ucur+1}/${URLS.length}</b><div class="url" id="u0">${ans!==undefined?hl(it.u):(it.u.startsWith('https')?'🔒 ':'⚠️ ')+E(it.u)}</div>
+ <div class="seg"><button data-a="1" aria-pressed="${ans===1}">✅ ${T(L('Safe','सुरक्षित','Safe'))}</button><button data-a="0" aria-pressed="${ans===0}">🚩 ${T(L('Scam','धोखा','Scam'))}</button></div>
+ ${ans!==undefined?`<div class="note ${ans===it.safe?'':'bad'}" style="margin-top:8px">${ans===it.safe?'✔':'✖'} ${T(L('Real domain','असली डोमेन','Asli domain'))}: <b>${E(domainOf(it.u))}</b>. ${T(it.why)}</div>`:''}
+ <div class="row" style="margin-top:8px"><button class="btn ghost" id="up" ${ucur?'':'disabled'}>←</button><button class="btn teal" id="un" ${ucur<URLS.length-1?'':'disabled'}>→</button></div>`;
+ $('stage').querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>{ui[ucur]=+b.dataset.a;drawURL();});$('up').onclick=()=>{ucur--;drawURL();};$('un').onclick=()=>{ucur++;drawURL();};
+ const right=URLS.filter((x,i)=>ui[i]===x.safe).length,answered=Object.keys(ui).length;
+ $('side').innerHTML=`<b>${T(L('How to read a link','लिंक कैसे पढ़ें','Link kaise padhein'))}</b><ol style="font-size:13.5px;padding-left:18px;margin:6px 0"><li>${T(L('Find the first single “/” after “//”. Look only at the part before it.','“//” के बाद पहला अकेला “/” ढूँढो। केवल उससे पहले का भाग देखो।','“//” ke baad pehla akela “/” dhoondo. Sirf usse pehle ka part dekho.'))}</li><li>${T(L('Read it from the RIGHT: the last two parts (three for .co.in, .gov.in) are the real owner.','उसे दाएँ से पढ़ो: आख़िरी दो भाग (.co.in, .gov.in के लिए तीन) असली मालिक हैं।','Use RIGHT se padho: aakhri do parts (.co.in, .gov.in ke liye teen) asli owner hain.'))}</li><li>${T(L('🔒 = encrypted, not honest. Scam sites get padlocks free.','🔒 = एन्क्रिप्टेड, ईमानदार नहीं। धोखेबाज़ साइटों को भी ताला मुफ़्त मिलता है।','🔒 = encrypted, imaandaar nahi. Scam sites ko bhi padlock free milta hai.'))}</li></ol>
+ <div class="big">${right}/${URLS.length} ✔</div><small>${answered}/${URLS.length} ${T(L('answered','उत्तर दिए','answered'))}</small>`;
+ if(right===URLS.length)win('url',L('Link detective! You can read any URL now.','लिंक जासूस! अब आप कोई भी URL पढ़ सकते हो।','Link detective! Ab aap koi bhi URL padh sakte ho.'));}
+/* ---------- SHARE ---------- */
+const CAT=[['ok',L('✅ OK to share','✅ शेयर ठीक','✅ Share OK')],['priv',L('🔒 Keep private','🔒 निजी रखो','🔒 Private rakho')],['check',L('🔍 Check first','🔍 पहले जाँचो','🔍 Pehle check karo')]];
+const POSTS=[{e:'🎨',t:L('A drawing you made, posted without your name or school','आपकी बनाई ड्रॉइंग, बिना नाम या स्कूल के','Aapki banayi drawing, bina naam ya school ke'),c:'ok',why:L('Creative work with no personal details is fine to share (with a parent’s OK).','बिना निजी जानकारी के रचनात्मक काम शेयर करना ठीक है (माता-पिता की अनुमति से)।','Bina personal details ke creative kaam share karna theek hai (parent ki permission se).')},
+ {e:'🪪',t:L('Photo of your school ID card','आपके स्कूल ID कार्ड की फ़ोटो','Aapke school ID card ki photo'),c:'priv',why:L('It shows your full name, school, class and sometimes address and phone — all clues for a stranger.','इसमें पूरा नाम, स्कूल, कक्षा और कभी पता व फ़ोन होता है — अजनबी के लिए सारे सुराग।','Ismein poora naam, school, class aur kabhi address aur phone hota hai — ajnabi ke liye saare clues.')},
+ {e:'📍',t:L('Live location while your family is away on holiday','परिवार छुट्टी पर बाहर हो तब लाइव लोकेशन','Family holiday pe bahar ho tab live location'),c:'priv',why:L('It tells everyone where you are and that your home is empty. Share holiday photos after you are back.','यह सबको बताता है आप कहाँ हो और घर ख़ाली है। छुट्टी की फ़ोटो लौटने के बाद शेयर करो।','Yeh sabko batata hai aap kahan ho aur ghar khaali hai. Holiday photos lautne ke baad share karo.')},
+ {e:'🦠',t:L('Forward: “Hot water with salt cures every virus! Share to 10 groups!”','फ़ॉरवर्ड: “नमक वाला गरम पानी हर वायरस ठीक करता है! 10 ग्रुप में भेजो!”','Forward: “Namak wala garam paani har virus theek karta hai! 10 groups mein bhejo!”'),c:'check',why:L('Health claims with “share to 10 groups” are classic fake news. Check with a doctor, the PIB Fact Check or a trusted news site first.','“10 ग्रुप में भेजो” वाले स्वास्थ्य दावे आम फ़र्ज़ी ख़बर हैं। पहले डॉक्टर, PIB फ़ैक्ट चेक या भरोसेमंद समाचार साइट से जाँचो।','“10 groups mein bhejo” wale health claims classic fake news hain. Pehle doctor, PIB Fact Check ya trusted news site se check karo.')},
+ {e:'🔢',t:L('The OTP your mother just received','आपकी माँ को अभी मिला OTP','Aapki maa ko abhi mila OTP'),c:'priv',why:L('An OTP is a key. Never share it with anyone who calls or messages — that is how UPI scams work.','OTP एक चाबी है। फ़ोन या संदेश करने वाले किसी को कभी मत बताओ — UPI धोखे ऐसे ही होते हैं।','OTP ek chaabi hai. Call ya message karne wale kisi ko kabhi mat batao — UPI scams aise hi hote hain.')},
+ {e:'🏆',t:L('“I won the science fair!” (no uniform, school name or location visible)','“मैंने विज्ञान मेला जीता!” (वर्दी, स्कूल का नाम या जगह नहीं दिखती)','“Maine science fair jeeta!” (uniform, school naam ya location nahi dikhti)'),c:'ok',why:L('Celebrating is great — just keep identifying details out of the picture.','जश्न मनाना बढ़िया है — बस पहचान वाली बातें फ़ोटो से बाहर रखो।','Celebrate karna badhiya hai — bas pehchaan wali details photo se bahar rakho.')},
+ {e:'😳',t:L('A funny-but-embarrassing photo of your friend','दोस्त की मज़ेदार-पर-शर्मनाक फ़ोटो','Dost ki funny-par-sharmnaak photo'),c:'priv',why:L('It is their picture and their choice. Posting it without permission can hurt and can become bullying.','यह उनकी फ़ोटो है और उनकी मर्ज़ी। बिना अनुमति पोस्ट करना दुख दे सकता है और बुलिंग बन सकता है।','Yeh unki photo hai aur unki marzi. Bina permission post karna dukh de sakta hai aur bullying ban sakta hai.')},
+ {e:'📸',t:L('A shocking video: “Flood in your city RIGHT NOW”','चौंकाने वाला वीडियो: “आपके शहर में अभी बाढ़”','Chaunkane wala video: “Aapke shehar mein ABHI baadh”'),c:'check',why:L('Old videos are often re-shared as “new”. Look for the date, a known news source, or do a reverse image search before forwarding.','पुराने वीडियो अक्सर “नए” बताकर फिर शेयर होते हैं। फ़ॉरवर्ड करने से पहले तारीख़, जाना-माना समाचार स्रोत या रिवर्स इमेज सर्च देखो।','Purane videos aksar “naye” bata ke phir share hote hain. Forward karne se pehle date, known news source ya reverse image search dekho.')}];
+let sv={};
+function drawShare(){const right=POSTS.filter((p,i)=>sv[i]===p.c).length;
+ $('stage').innerHTML=POSTS.map((p,i)=>{const a=sv[i];const cls=a===undefined?'':(a===p.c?'ok':'no');return `<div class="item ${cls}"><div><span style="font-size:22px">${p.e}</span> <b>${T(p.t)}</b></div><div class="seg" style="margin-top:6px">${CAT.map(([k,n])=>`<button data-i="${i}" data-c="${k}" aria-pressed="${a===k}">${T(n)}</button>`).join('')}</div>${a!==undefined?`<div class="why">${a===p.c?'✔':'✖ '+T(L('Better:','बेहतर:','Better:'))+' '+T(CAT.find(c=>c[0]===p.c)[1])+'.'} ${T(p.why)}</div>`:''}</div>`;}).join('');
+ $('stage').querySelectorAll('[data-i]').forEach(b=>b.onclick=()=>{sv[+b.dataset.i]=b.dataset.c;const y=scrollY;drawShare();scrollTo(0,y);});
+ $('side').innerHTML=`<div class="big">${right}/${POSTS.length} ✔</div><p style="font-size:13.5px">${T(L('Your digital footprint is everything you post, like, share and search. It can stay online for years and is easy to copy. Ask: Is it true? Is it kind? Is it private? Would I be OK if my teacher saw it?','आपका डिजिटल फ़ुटप्रिंट वह सब है जो आप पोस्ट, लाइक, शेयर और सर्च करते हो। यह सालों ऑनलाइन रह सकता है और आसानी से कॉपी होता है। पूछो: क्या यह सच है? क्या यह दयालु है? क्या यह निजी है? क्या शिक्षक देखें तो ठीक लगेगा?','Aapka digital footprint woh sab hai jo aap post, like, share aur search karte ho. Yeh saalon online reh sakta hai aur aasaani se copy hota hai. Poocho: Kya yeh sach hai? Kya yeh kind hai? Kya yeh private hai? Teacher dekhe to theek lagega?'))}</p>`;
+ if(right===POSTS.length)win('share',L('Smart sharer! Your footprint is safe.','समझदार शेयरर! आपका फ़ुटप्रिंट सुरक्षित है।','Smart sharer! Aapka footprint safe hai.'));}
+/* ---------- KIND ---------- */
+const SC=[{e:'😠',t:L('Someone in a class group keeps posting mean memes about you.','क्लास ग्रुप में कोई बार-बार आपके बारे में बुरे मीम डालता है।','Class group mein koi baar-baar aapke baare mein bure memes daalta hai.'),o:[L('Post an even meaner meme back','उससे भी बुरा मीम वापस डालो','Usse bhi bura meme wapas daalo'),L('Don’t reply, take screenshots, block/report, and tell a trusted adult','जवाब मत दो, स्क्रीनशॉट लो, ब्लॉक/रिपोर्ट करो, और भरोसेमंद बड़े को बताओ','Reply mat karo, screenshots lo, block/report karo, aur trusted adult ko batao'),L('Delete your account and tell nobody','अपना खाता मिटा दो और किसी को मत बताओ','Apna account delete karo aur kisi ko mat batao')],a:1,why:L('Stop, save the evidence, block and report, and talk to an adult. Replying usually makes it worse; hiding it leaves you alone with it.','रुको, सबूत रखो, ब्लॉक और रिपोर्ट करो, और बड़े से बात करो। जवाब देना अक्सर बिगाड़ता है; छिपाने से आप अकेले रह जाते हो।','Ruko, saboot rakho, block aur report karo, aur bade se baat karo. Reply karna aksar bigaadta hai; chhupane se aap akele reh jaate ho.')},
+ {e:'👀',t:L('You see a classmate being teased in a group chat.','आप देखते हो किसी सहपाठी को ग्रुप चैट में चिढ़ाया जा रहा है।','Aap dekhte ho kisi classmate ko group chat mein chidhaya ja raha hai.'),o:[L('Add a laughing emoji so you fit in','घुलने-मिलने के लिए हँसता इमोजी डालो','Fit in hone ke liye hasta emoji daalo'),L('Stay silent, it is not your problem','चुप रहो, यह आपकी समस्या नहीं','Chup raho, yeh aapki problem nahi'),L('Message them privately with support and report the posts','उन्हें निजी रूप से सहारा भेजो और पोस्ट रिपोर्ट करो','Unhe privately support bhejo aur posts report karo')],a:2,why:L('Be an upstander, not a bystander: support the person, do not join in, and report.','तमाशबीन नहीं, साथ खड़े होने वाले बनो: व्यक्ति का साथ दो, शामिल मत हो, और रिपोर्ट करो।','Bystander nahi, upstander bano: person ka saath do, join mat karo, aur report karo.')},
+ {e:'🎮',t:L('A friendly “gamer” you met online asks for your photo and says “keep it our secret”.','ऑनलाइन मिला एक दोस्ताना “गेमर” आपकी फ़ोटो माँगता है और कहता है “यह हमारा राज़ रहे”।','Online mila ek friendly “gamer” aapki photo maangta hai aur kehta hai “yeh hamara secret rahe”.'),o:[L('Send it — they seem nice','भेज दो — वह अच्छा लगता है','Bhej do — woh achha lagta hai'),L('Say no, stop chatting, block, and tell a parent','मना करो, बात बंद करो, ब्लॉक करो, और माता-पिता को बताओ','Mana karo, chat band karo, block karo, aur parent ko batao'),L('Send a cartoon of yourself instead','उसकी जगह अपना कार्टून भेजो','Uski jagah apna cartoon bhejo')],a:1,why:L('“Keep it secret” from an online stranger is a big warning sign. Safe adults never ask children to hide things from parents.','ऑनलाइन अजनबी का “राज़ रखो” बड़ा चेतावनी संकेत है। सुरक्षित बड़े बच्चों से कभी माता-पिता से बातें छिपाने को नहीं कहते।','Online ajnabi ka “secret rakho” bada warning sign hai. Safe adults bachchon se kabhi parents se baatein chhupane ko nahi kehte.')}];
+let kv={};
+function drawKind(){const right=SC.filter((s,i)=>kv[i]===s.a).length;
+ $('stage').innerHTML=SC.map((s,i)=>{const a=kv[i];return `<div class="item ${a===undefined?'':(a===s.a?'ok':'no')}"><div><span style="font-size:22px">${s.e}</span> <b>${T(s.t)}</b></div>${s.o.map((o,j)=>`<button class="btn ${a===j?'teal':'ghost'}" style="display:block;width:100%;text-align:left;margin-top:6px" data-i="${i}" data-j="${j}">${T(o)}</button>`).join('')}${a!==undefined?`<div class="why">${a===s.a?'✔':'✖'} ${T(s.why)}</div>`:''}</div>`;}).join('');
+ $('stage').querySelectorAll('[data-j]').forEach(b=>b.onclick=()=>{kv[+b.dataset.i]=+b.dataset.j;const y=scrollY;drawKind();scrollTo(0,y);});
+ $('side').innerHTML=`<div class="big">${right}/${SC.length} ✔</div><p style="font-size:13.5px"><b>STOP</b>: ${T(L('Stop replying · Take screenshots · Block and report · Tell a trusted adult. In India you can also report on cybercrime.gov.in or call 1930.','जवाब देना रोको · स्क्रीनशॉट लो · ब्लॉक और रिपोर्ट करो · भरोसेमंद बड़े को बताओ। भारत में cybercrime.gov.in पर रिपोर्ट या 1930 पर कॉल भी कर सकते हो।','Reply rokho · Screenshots lo · Block aur report karo · Trusted adult ko batao. India mein cybercrime.gov.in pe report ya 1930 pe call bhi kar sakte ho.'))}</p>`;
+ if(right===SC.length)win('kind',L('Kind and safe online. Upstander badge!','ऑनलाइन दयालु और सुरक्षित। अपस्टैंडर बैज!','Online kind aur safe. Upstander badge!'));}
+function mission(){const st={pass:L('12+ chars, centuries to crack, 2FA blocks the leak','12+ अक्षर, सदियाँ, 2FA लीक रोकता है','12+ chars, sadiyaan, 2FA leak rokta hai'),url:L('All 7 links judged correctly','सभी 7 लिंक सही आँके','Saare 7 links sahi judge'),share:L('All 8 posts sorted','सभी 8 पोस्ट छाँटे','Saare 8 posts sort'),kind:L('All 3 situations','सभी 3 स्थितियाँ','Saari 3 situations')};
+ $('mission').innerHTML=TABS.map(([k,n])=>`<div style="margin:3px 0">${done[k]?'✅':'⬜'} <b>${T(n)}</b> — ${T(st[k])}</div>`).join('');}
+function draw(){$('goal').innerHTML=E(T(goal&&cfg.tab===tab?goal:GOALS[tab]));$('tabs').innerHTML=TABS.map(([k,n])=>`<button role="tab" aria-selected="${k===tab}" data-t="${k}">${T(n)}</button>`).join('');
+ $('tabs').querySelectorAll('button').forEach(b=>b.onclick=()=>{tab=b.dataset.t;draw();});({pass:drawPass,url:drawURL,share:drawShare,kind:drawKind})[tab]();mission();}
+N.onLang(draw);draw();
+window.__lab={tab:k=>{tab=k;draw();},pw:s=>{pw=s;drawPass();},done,domainOf};
+})();
+</script></body></html>

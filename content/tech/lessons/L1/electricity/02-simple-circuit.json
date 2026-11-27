@@ -1,0 +1,325 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.electricity.02",
+ "level": 1,
+ "classes": [
+  1,
+  2,
+  3,
+  4
+ ],
+ "unit": "electricity",
+ "title": {
+  "en": "Make a bulb glow: a closed circuit",
+  "hi": "बल्ब जलाओ: बंद सर्किट",
+  "hinglish": "Bulb jalao: closed circuit"
+ },
+ "minutes": 7,
+ "xp": 25,
+ "prereq": [
+  "L1.electricity.01"
+ ],
+ "topics": [
+  "elec.circuits",
+  "elec.power-batteries"
+ ],
+ "outcomes": [
+  {
+   "en": "Build a circuit with a cell, wires and a bulb.",
+   "hi": "सेल, तार और बल्ब से सर्किट बना सकते हो।",
+   "hinglish": "Cell, taar aur bulb se circuit bana sakte ho."
+  },
+  {
+   "en": "Explain open and closed circuits.",
+   "hi": "खुला और बंद सर्किट समझा सकते हो।",
+   "hinglish": "Open aur closed circuit samjha sakte ho."
+  },
+  {
+   "en": "Know the + and − ends of a cell.",
+   "hi": "सेल के + और − सिरे जानते हो।",
+   "hinglish": "Cell ke + aur − sire jaante ho."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Circuit",
+   "en": "A complete loop that electricity flows around",
+   "hi": "बिजली के बहने का पूरा घेरा",
+   "hinglish": "Bijli ke bahne ka poora ghera"
+  },
+  {
+   "term": "Cell",
+   "en": "A small battery that pushes electricity",
+   "hi": "छोटी बैटरी जो बिजली को धक्का देती है",
+   "hinglish": "Chhoti battery jo bijli ka \"dhakka\" deti hai"
+  },
+  {
+   "term": "Closed circuit",
+   "en": "A loop with no gaps, so current flows",
+   "hi": "बिना टूटा घेरा — बल्ब जलता है",
+   "hinglish": "Bina toote ghera — bulb jalta hai"
+  },
+  {
+   "term": "Open circuit",
+   "en": "A loop with a gap, so nothing flows",
+   "hi": "टूटा घेरा — बल्ब नहीं जलता",
+   "hinglish": "Toota ghera — bulb nahin jalta"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.electricity.02.s1",
+   "caption": {
+    "en": "Cell → wire → bulb → wire → back.",
+    "hi": "सेल → तार → बल्ब → तार → वापस।",
+    "hinglish": "Cell → taar → bulb → taar → wapas."
+   },
+   "narration": {
+    "en": "Electricity flows out of the cell, along a wire, through the bulb, and back to the cell. That round path is a circuit.",
+    "hinglish": "Bijli cell se nikal kar taar se, bulb se hokar, wapas cell mein jaati hai. Yeh gol raasta circuit hai.",
+    "hi": "बिजली सेल से निकलकर तार से, बल्ब से होकर, वापस सेल में जाती है। यह गोल रास्ता सर्किट है।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.electricity.02.s2",
+   "caption": {
+    "en": "A gap stops it. Open circuit!",
+    "hi": "रास्ता टूटा तो रुक गया। खुला सर्किट!",
+    "hinglish": "Gap aaya toh ruk gaya. Open circuit!"
+   },
+   "narration": {
+    "en": "If there is any gap in the loop, electricity stops and the bulb goes dark. That is an open circuit.",
+    "hinglish": "Ghere mein kahin bhi gap ho, bijli ruk jaati hai aur bulb bujh jaata hai. Yeh open circuit hai.",
+    "hi": "घेरे में कहीं भी जगह टूटी हो, बिजली रुक जाती है और बल्ब बुझ जाता है। यह खुला सर्किट है।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.electricity.02.s3",
+   "caption": {
+    "en": "A torch has a circuit inside.",
+    "hi": "टॉर्च के अंदर सर्किट है।",
+    "hinglish": "Torch ke andar circuit hai."
+   },
+   "narration": {
+    "en": "A torch has cells, a bulb or LED, metal strips as wires, and a switch — a circuit you can hold.",
+    "hinglish": "Torch mein cells, bulb ya LED, taar jaisi metal patti, aur switch hai — haath mein pakadne wala circuit.",
+    "hi": "टॉर्च में सेल, बल्ब या LED, तार जैसी धातु की पट्टियाँ, और स्विच है — हाथ में पकड़ने वाला सर्किट।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "circuit-builder",
+  "config": {
+   "mode": "light"
+  },
+  "goal": {
+   "en": "Drag the cell and bulb into the gaps to close the circuit.",
+   "hi": "सेल और बल्ब को ख़ाली जगहों में खींचकर सर्किट पूरा करो।",
+   "hinglish": "Cell aur bulb ko gaps mein drag karke circuit band karo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Why it must be a loop",
+    "hi": "घेरा क्यों ज़रूरी है",
+    "hinglish": "Ghera kyun zaroori hai"
+   },
+   "body": {
+    "en": "The cell pushes electricity out of one end (+) and it must come back to the other end (−). Without a way back, nothing moves at all — not even through the bulb.",
+    "hi": "सेल एक सिरे (+) से बिजली धकेलता है और उसे दूसरे सिरे (−) पर लौटना ज़रूरी है। लौटने का रास्ता न हो तो कुछ भी नहीं बहता — बल्ब में भी नहीं।",
+    "hinglish": "Cell ek sire (+) se bijli dhakelta hai aur use doosre sire (−) par lautna zaroori hai. Lautne ka raasta na ho toh kuch bhi nahin behta — bulb mein bhi nahin."
+   },
+   "analogy": {
+    "en": "Like a school bus route that loops back to the depot — if the road is broken, the bus cannot go round.",
+    "hi": "जैसे स्कूल बस का रास्ता — बस घूमकर वापस डिपो आती है। सड़क टूटी हो तो बस आगे नहीं जाती।",
+    "hinglish": "Jaise school bus ka route — bus ghoom kar wapas depot aati hai. Sadak tooti ho toh bus aage nahin jaati."
+   }
+  },
+  {
+   "heading": {
+    "en": "Inside a bulb",
+    "hi": "बल्ब के अंदर",
+    "hinglish": "Bulb ke andar"
+   },
+   "body": {
+    "en": "An old-style bulb has a very thin wire called a filament. Electricity heats it so much that it glows. LED bulbs make light in a different way and use much less electricity.",
+    "hi": "पुराने तरह के बल्ब में एक बहुत पतला तार होता है जिसे फ़िलामेंट कहते हैं। बिजली उसे इतना गर्म करती है कि वह चमकने लगता है। LED बल्ब अलग तरीके से रोशनी बनाते हैं और बहुत कम बिजली लेते हैं।",
+    "hinglish": "Purane tarah ke bulb mein ek bahut patla taar hota hai jise filament kehte hain. Bijli use itna garam karti hai ki woh chamakne lagta hai. LED bulbs alag tarike se roshni banaate hain aur bahut kam bijli lete hain."
+   },
+   "realExample": {
+    "en": "Under India's UJALA programme, more than 36 crore LED bulbs were given out to save electricity.",
+    "hi": "भारत के उजाला कार्यक्रम में बिजली बचाने के लिए 36 करोड़ से ज़्यादा LED बल्ब बाँटे गए।",
+    "hinglish": "India ke UJALA programme mein bijli bachaane ke liye 36 crore se zyada LED bulbs baante gaye."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "With a grown-up, open a torch (switched off) and find the cells, the bulb or LED, and the switch. Draw the circuit.",
+   "hi": "किसी बड़े के साथ (बंद) टॉर्च खोलो और सेल, बल्ब या LED, और स्विच ढूँढो। सर्किट का चित्र बनाओ।",
+   "hinglish": "Kisi bade ke saath (band) torch kholo aur cells, bulb ya LED, aur switch dhoondo. Circuit ka chitra banao."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "The bulb glows only when the circuit is…",
+     "hi": "बल्ब तभी जलता है जब सर्किट…",
+     "hinglish": "Bulb tabhi jalta hai jab circuit…"
+    },
+    "options": [
+     {
+      "en": "closed (no gaps)",
+      "hi": "बंद (बिना टूटा)",
+      "hinglish": "closed (bina gap)"
+     },
+     {
+      "en": "open (with a gap)",
+      "hi": "खुला (टूटा हुआ)",
+      "hinglish": "open (gap ke saath)"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Electricity needs a complete loop.",
+     "hi": "बिजली को पूरा घेरा चाहिए।",
+     "hinglish": "Bijli ko poora ghera chahiye."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "order",
+    "prompt": {
+     "en": "Follow the electricity round the circuit.",
+     "hi": "सर्किट में बिजली का रास्ता क्रम में लगाओ।",
+     "hinglish": "Circuit mein bijli ka raasta order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Through the bulb",
+      "hi": "बल्ब से होकर",
+      "hinglish": "Bulb se hokar"
+     },
+     {
+      "en": "Out of the cell's + end",
+      "hi": "सेल के + सिरे से बाहर",
+      "hinglish": "Cell ke + sire se bahar"
+     },
+     {
+      "en": "Back into the cell's − end",
+      "hi": "सेल के − सिरे में वापस",
+      "hinglish": "Cell ke − sire mein wapas"
+     },
+     {
+      "en": "Along a wire",
+      "hi": "तार के साथ",
+      "hinglish": "Taar ke saath"
+     }
+    ],
+    "answer": [
+     1,
+     3,
+     0,
+     2
+    ],
+    "explain": {
+     "en": "+ end → wire → bulb → back to − end.",
+     "hi": "+ सिरा → तार → बल्ब → − सिरे पर वापस।",
+     "hinglish": "+ sira → taar → bulb → − sire par wapas."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "What does the cell do?",
+     "hi": "सेल क्या करता है?",
+     "hinglish": "Cell kya karta hai?"
+    },
+    "options": [
+     {
+      "en": "Pushes electricity round the circuit",
+      "hi": "सर्किट में बिजली धकेलता है",
+      "hinglish": "Circuit mein bijli dhakelta hai"
+     },
+     {
+      "en": "Makes the wire longer",
+      "hi": "तार लंबा करता है",
+      "hinglish": "Taar lamba karta hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "The cell is the \"pump\" of the circuit.",
+     "hi": "सेल सर्किट का \"पंप\" है।",
+     "hinglish": "Cell circuit ka \"pump\" hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "short",
+    "prompt": {
+     "en": "A circuit with a gap is called an ______ circuit.",
+     "hi": "टूटे घेरे वाले सर्किट को ______ सर्किट कहते हैं (अंग्रेज़ी: open)।",
+     "hinglish": "Gap wale circuit ko ______ circuit kehte hain."
+    },
+    "answer": [
+     "open",
+     "khula",
+     "खुला"
+    ],
+    "explain": {
+     "en": "Open circuit = gap = no current.",
+     "hi": "खुला सर्किट = टूटा = करंट नहीं।",
+     "hinglish": "Open circuit = gap = current nahin."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Light the bulb in the lab.",
+     "hi": "लैब में बल्ब जलाओ।",
+     "hinglish": "Lab mein bulb jalao."
+    },
+    "answer": {
+     "lab": "circuit-builder",
+     "mode": "light",
+     "solved": true
+    },
+    "explain": {
+     "en": "Fill both gaps: one with the cell, one with the bulb.",
+     "hi": "दोनों ख़ाली जगह भरो: एक में सेल, एक में बल्ब।",
+     "hinglish": "Dono gaps bharo: ek mein cell, ek mein bulb."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "NCERT Class 6 Science – Electricity and Circuits (fact reference)",
+   "url": "https://ncert.nic.in/textbook.php",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Bureau of Energy Efficiency / UJALA LED programme (fact reference)",
+   "url": "https://beeindia.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

@@ -1,0 +1,330 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.rag-agents.03",
+ "level": 3,
+ "classes": [
+  11,
+  12
+ ],
+ "unit": "rag-agents",
+ "title": {
+  "en": "Planning: breaking big goals into steps",
+  "hi": "योजना: बड़े लक्ष्यों को कदमों में तोड़ना",
+  "hinglish": "Planning: bade goals ko steps mein todna"
+ },
+ "minutes": 12,
+ "xp": 50,
+ "prereq": [
+  "L3.rag-agents.02"
+ ],
+ "outcomes": [
+  {
+   "en": "Decompose a goal into a plan of tool calls",
+   "hinglish": "Goal ko tool calls ke plan mein todo",
+   "hi": "किसी लक्ष्य को टूल कॉलों की योजना में तोड़ना"
+  },
+  {
+   "en": "Compare ReAct, plan-and-execute and reflection",
+   "hinglish": "ReAct, plan-and-execute aur reflection compare karo",
+   "hi": "ReAct, योजना-और-निष्पादन और पुनर्विचार की तुलना"
+  },
+  {
+   "en": "Explain why long plans fail and how checkpoints help",
+   "hinglish": "Samjhao lambe plans fail kyun hote hain aur checkpoints kaise madad karte hain",
+   "hi": "समझाना कि लंबी योजनाएँ क्यों विफल होती हैं और जाँच-बिंदु कैसे मदद करते हैं"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Task decomposition",
+   "hinglish": "Bade kaam ko chhote kaamon mein todna",
+   "en": "Splitting a goal into ordered sub-tasks",
+   "hi": "लक्ष्य को क्रमबद्ध उप-कार्यों में बाँटना"
+  },
+  {
+   "term": "Plan-and-execute",
+   "hinglish": "Pehle poora plan, phir ek-ek step",
+   "en": "Write the plan first, then run each step",
+   "hi": "पहले योजना लिखो, फिर हर कदम चलाओ"
+  },
+  {
+   "term": "Reflection",
+   "hinglish": "Apne kaam ko khud check karke sudhaarna",
+   "en": "The agent critiques its own output and retries",
+   "hi": "एजेंट अपने आउटपुट की आलोचना करके फिर कोशिश करता है"
+  },
+  {
+   "term": "Step limit",
+   "hinglish": "Kitne chakkar max",
+   "en": "A cap on loop iterations to prevent runaway agents",
+   "hi": "बेक़ाबू एजेंट रोकने के लिए लूप दोहराव की सीमा"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Goal: \"Plan a ₹3,000 one-day class trip to a science museum in Delhi for 30 students.\"",
+    "hi": "लक्ष्य: \"30 छात्रों के लिए दिल्ली के विज्ञान संग्रहालय की ₹3,000 में एक दिन की कक्षा यात्रा की योजना बनाओ।\"",
+    "hinglish": "Goal: \"30 students ke liye Delhi ke science museum ki ₹3,000 mein ek din ki class trip plan karo.\""
+   },
+   "visual": "anim:plan-goal",
+   "narration": {
+    "en": "Goal: \"Plan a ₹3,000 one-day class trip to a science museum in Delhi for 30 students.\"",
+    "hi": "लक्ष्य: \"30 छात्रों के लिए दिल्ली के विज्ञान संग्रहालय की ₹3,000 में एक दिन की कक्षा यात्रा की योजना बनाओ।\"",
+    "hinglish": "Goal: \"30 students ke liye Delhi ke science museum ki ₹3,000 mein ek din ki class trip plan karo.\""
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "The planner writes steps: find museum hours → ticket price for school groups → metro route → total cost check → draft permission letter.",
+    "hi": "योजनाकार कदम लिखता है: संग्रहालय का समय → स्कूल समूह टिकट दाम → मेट्रो रास्ता → कुल लागत जाँच → अनुमति पत्र का मसौदा।",
+    "hinglish": "Planner steps likhta hai: museum timing → school group ticket price → metro route → total cost check → permission letter draft."
+   },
+   "visual": "anim:plan-tree",
+   "narration": {
+    "en": "The planner writes steps: find museum hours → ticket price for school groups → metro route → total cost check → draft permission letter.",
+    "hi": "योजनाकार कदम लिखता है: संग्रहालय का समय → स्कूल समूह टिकट दाम → मेट्रो रास्ता → कुल लागत जाँच → अनुमति पत्र का मसौदा।",
+    "hinglish": "Planner steps likhta hai: museum timing → school group ticket price → metro route → total cost check → permission letter draft."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "A check fails: cost is ₹4,200. The agent re-plans (fewer paid exhibits) instead of pretending it fits. Reflection catches the error.",
+    "hi": "एक जाँच विफल: लागत ₹4,200। एजेंट दिखावा करने के बजाय फिर योजना बनाता है (कम पेड प्रदर्शनी)। आत्म-समीक्षा गलती पकड़ती है।",
+    "hinglish": "Ek check fail: cost ₹4,200. Agent dikhawa karne ki jagah re-plan karta hai (kam paid exhibits). Reflection galti pakadta hai."
+   },
+   "visual": "anim:replan",
+   "narration": {
+    "en": "A check fails: cost is ₹4,200. The agent re-plans (fewer paid exhibits) instead of pretending it fits. Reflection catches the error.",
+    "hi": "एक जाँच विफल: लागत ₹4,200। एजेंट दिखावा करने के बजाय फिर योजना बनाता है (कम पेड प्रदर्शनी)। आत्म-समीक्षा गलती पकड़ती है।",
+    "hinglish": "Ek check fail: cost ₹4,200. Agent dikhawa karne ki jagah re-plan karta hai (kam paid exhibits). Reflection galti pakadta hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "agent-loop",
+  "config": {
+   "scenario": "class-trip-plan"
+  },
+  "goal": {
+   "en": "Watch the planner build a plan tree, run each step, hit the budget check and re-plan. Toggle \"no reflection\" and see the agent give a wrong answer.",
+   "hinglish": "Planner ko plan tree banate, har step chalate, budget check par atakte aur re-plan karte dekho. \"No reflection\" on karo aur dekho agent galat jawab deta hai.",
+   "hi": "योजनाकार को योजना बनाते, हर कदम चलाते, बजट जाँच पर अटकते और फिर से योजना बनाते देखो। \"पुनर्विचार नहीं\" चालू करो और एजेंट को ग़लत उत्तर देते देखो।"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Three planning styles",
+    "hi": "योजना की तीन शैलियाँ",
+    "hinglish": "Planning ki teen styles"
+   },
+   "body": {
+    "en": "ReAct interleaves one thought and one action at a time; it adapts quickly but can wander on long tasks. Plan-and-execute first writes a full step list, then runs it, re-planning only when a step fails; it is easier to show the user and to approve in advance. Reflection (e.g. Reflexion, 2023) adds a critic step: the agent checks its result against the goal or a test (\"Does the total fit ₹3,000?\", \"Do the unit tests pass?\") and retries with the feedback. Reasoning models trained with RL do much of this planning internally before answering. Errors compound over long plans: if each step succeeds 95% of the time, a 20-step task succeeds only about 36% of the time (0.95²⁰), so good agents verify after each important step.",
+    "hi": "रिएक्ट एक बार में एक विचार और एक काम बारी-बारी करता है; यह जल्दी ढलता है पर लंबे कामों में भटक सकता है। प्लान-एंड-एग्ज़िक्यूट पहले पूरी कदम-सूची लिखता है, फिर चलाता है, सिर्फ़ कदम विफल होने पर फिर योजना बनाता है; इसे उपयोगकर्ता को दिखाना और पहले से मंज़ूर करवाना आसान है। रिफ़्लेक्शन (जैसे रिफ़्लेक्शन, 2023) एक आलोचक कदम जोड़ता है: एजेंट नतीजे को लक्ष्य या परीक्षण से जाँचता है (\"क्या कुल ₹3,000 में आया?\", \"क्या यूनिट टेस्ट पास हुए?\") और फ़ीडबैक के साथ फिर कोशिश करता है। आरएल से प्रशिक्षित रीज़निंग मॉडल ज़्यादातर योजना जवाब से पहले अंदर ही कर लेते हैं। लंबी योजनाओं में गलतियाँ जुड़ती जाती हैं: अगर हर कदम 95% सफल हो, तो 20 कदम का काम सिर्फ़ लगभग 36% सफल होगा (0.95²⁰), इसलिए अच्छे एजेंट हर ज़रूरी कदम के बाद जाँचते हैं।",
+    "hinglish": "ReAct ek baar mein ek thought aur ek action baari-baari karta hai; jaldi adapt hota hai par lambe tasks mein bhatak sakta hai. Plan-and-execute pehle poori step list likhta hai, phir chalata hai, sirf step fail hone par re-plan; ise user ko dikhana aur pehle se approve karwana aasaan hai. Reflection (jaise Reflexion, 2023) ek critic step jodta hai: agent result ko goal ya test se check karta hai (\"Total ₹3,000 mein aaya?\", \"Unit tests pass hue?\") aur feedback ke saath retry karta hai. RL se trained reasoning models zyaadatar planning jawab se pehle andar hi kar lete hain. Lambe plans mein galtiyan judti jaati hain: agar har step 95% successful ho, to 20-step task sirf lagbhag 36% successful hoga (0.95²⁰), isliye achhe agents har important step ke baad check karte hain."
+   },
+   "analogy": {
+    "hinglish": "Shaadi ki planning: pehle list (venue, khaana, card), har kaam ke baad tick aur budget check — budget bigda to list badlo, chhupao mat.",
+    "en": "Wedding planning: first a list (venue, food, cards), tick each task and check the budget after it — if the budget goes wrong, change the list, don't hide it.",
+    "hi": "शादी की योजना: पहले सूची (स्थान, खाना, कार्ड), हर काम के बाद सही का निशान और बजट जाँच — बजट बिगड़ा तो सूची बदलो, छिपाओ मत।"
+   },
+   "realExample": {
+    "en": "Software agents fix a bug by planning (reproduce → locate → patch → run tests) and reflecting when tests fail; benchmarks like SWE-bench measure exactly this.",
+    "hinglish": "Software agents bug fix karne ke liye plan karte hain (reproduce → locate → patch → tests chalao) aur tests fail hone par reflect karte hain; SWE-bench jaise benchmarks yahi naapte hain.",
+    "hi": "सॉफ़्टवेयर एजेंट योजना बनाकर बग ठीक करते हैं (दोहराओ → ढूँढो → सुधारो → परीक्षण चलाओ) और परीक्षण विफल होने पर पुनर्विचार करते हैं; SWE-bench जैसे बेंचमार्क ठीक यही मापते हैं।"
+   }
+  },
+  {
+   "heading": {
+    "en": "Keeping plans safe and bounded",
+    "hi": "योजनाओं को सुरक्षित और सीमित रखना",
+    "hinglish": "Plans ko safe aur bounded rakhna"
+   },
+   "body": {
+    "en": "Agents need limits: a maximum number of steps and a budget for time and money, so a confused agent cannot loop forever or run up a big bill. Show the plan to the user before irreversible steps (booking, paying, sending, deleting) and ask for approval. Prefer reversible actions first (drafts, carts, holds). When a step fails, the agent should report honestly what failed rather than inventing success. These are the same human-in-the-loop principles used by banks, airlines and hospitals for automation.",
+    "hi": "एजेंटों को सीमा चाहिए: अधिकतम कदम और समय-पैसे का बजट, ताकि उलझा एजेंट हमेशा चक्कर न लगाए या बड़ा बिल न बनाए। अपरिवर्तनीय कदमों (बुकिंग, भुगतान, भेजना, मिटाना) से पहले योजना उपयोगकर्ता को दिखाओ और मंज़ूरी लो। पहले पलटे जा सकने वाले काम चुनो (मसौदा, कार्ट, होल्ड)। कदम विफल हो तो एजेंट को ईमानदारी से बताना चाहिए कि क्या विफल हुआ, सफलता गढ़नी नहीं चाहिए। यही मानव-शामिल सिद्धांत बैंक, एयरलाइन और अस्पताल स्वचालन में अपनाते हैं।",
+    "hinglish": "Agents ko limits chahiye: maximum steps aur time-paise ka budget, taaki confused agent hamesha loop na kare ya bada bill na banaye. Irreversible steps (booking, payment, bhejna, delete) se pehle plan user ko dikhao aur approval lo. Pehle reversible actions chuno (draft, cart, hold). Step fail ho to agent ko imaandaari se batana chahiye kya fail hua, success banaana nahi chahiye. Yahi human-in-the-loop principles banks, airlines aur hospitals automation mein use karte hain."
+   },
+   "analogy": {
+    "hinglish": "Naye driver ko pehle parking lot mein chalane dete hain, highway par nahi — agents ko bhi pehle chhote, reversible kaam.",
+    "en": "A new driver first practises in a parking lot, not on the highway — agents too should start with small, reversible jobs.",
+    "hi": "नए ड्राइवर को पहले पार्किंग में चलाने देते हैं, हाईवे पर नहीं — एजेंटों को भी पहले छोटे, पलटे जा सकने वाले काम।"
+   },
+   "realExample": {
+    "en": "IRCTC-style booking agents can search trains and fill passenger details, but the final payment step needs the passenger's own OTP or UPI PIN.",
+    "hinglish": "IRCTC-style booking agents trains search aur passenger details bhar sakte hain, par final payment step ke liye passenger ka apna OTP ya UPI PIN chahiye.",
+    "hi": "IRCTC जैसे बुकिंग एजेंट ट्रेनें खोज सकते हैं और यात्री विवरण भर सकते हैं, पर अंतिम भुगतान के लिए यात्री का अपना OTP या यूपीआई पिन चाहिए।"
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write a 6-step plan for an agent that organises your school's science-fair schedule. Mark which steps are irreversible and need a teacher's approval.",
+   "hinglish": "School ke science-fair schedule ko organise karne wale agent ka 6-step plan likho. Mark karo kaunse steps irreversible hain aur teacher ka approval chahiye.",
+   "hi": "विद्यालय के विज्ञान-मेले का कार्यक्रम बनाने वाले एजेंट के लिए 6-चरण योजना लिखो। चिह्नित करो कौन-से कदम पलटे नहीं जा सकते और शिक्षक की स्वीकृति चाहिए।"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Each step of a 10-step task succeeds 90% of the time independently. Overall success ≈",
+     "hi": "10 कदम के काम का हर कदम स्वतंत्र रूप से 90% सफल। कुल सफलता ≈",
+     "hinglish": "10-step task ka har step independently 90% successful. Overall success ≈"
+    },
+    "options": [
+     {
+      "en": "35%",
+      "hinglish": "35%",
+      "hi": "35%"
+     },
+     {
+      "en": "90%",
+      "hinglish": "90%",
+      "hi": "90%"
+     },
+     {
+      "en": "9%",
+      "hinglish": "9%",
+      "hi": "9%"
+     },
+     {
+      "en": "65%",
+      "hinglish": "65%",
+      "hi": "65%"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "0.9¹⁰ ≈ 0.35. Small error rates compound, so long agent tasks need checks and recovery.",
+     "hi": "0.9¹⁰ ≈ 0.35। छोटी त्रुटि दरें जुड़ती हैं, इसलिए लंबे एजेंट कामों में जाँच और सुधार चाहिए।",
+     "hinglish": "0.9¹⁰ ≈ 0.35. Chhote error rates judte hain, isliye lambe agent tasks mein checks aur recovery chahiye."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which style writes the whole step list first and is easiest for a user to approve in advance?",
+     "hi": "कौन-सी शैली पहले पूरी कदम-सूची लिखती है और पहले से मंज़ूर करवाने में सबसे आसान है?",
+     "hinglish": "Kaunsi style pehle poori step list likhti hai aur pehle se approve karwane mein sabse aasaan hai?"
+    },
+    "options": [
+     {
+      "en": "Plan-and-execute",
+      "hinglish": "Plan-and-execute",
+      "hi": "योजना-और-निष्पादन"
+     },
+     {
+      "en": "ReAct",
+      "hinglish": "ReAct",
+      "hi": "ReAct"
+     },
+     {
+      "en": "Random search",
+      "hinglish": "Random search",
+      "hi": "यादृच्छिक खोज"
+     },
+     {
+      "en": "Pre-training",
+      "hinglish": "Pre-training",
+      "hi": "पूर्व-प्रशिक्षण"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "A visible plan can be reviewed before any step runs; ReAct decides one step at a time.",
+     "hi": "दिखती योजना किसी कदम के चलने से पहले जाँची जा सकती है; रिएक्ट एक-एक कदम तय करता है।",
+     "hinglish": "Dikhta plan kisi step ke chalne se pehle review ho sakta hai; ReAct ek-ek step decide karta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "multi",
+    "prompt": {
+     "en": "Which should require human approval? Choose all.",
+     "hi": "किन कामों के लिए मानव मंज़ूरी ज़रूरी होनी चाहिए? सभी चुनें।",
+     "hinglish": "Kin kaamon ke liye human approval zaroori hona chahiye? Sab chuno."
+    },
+    "options": [
+     {
+      "en": "Paying for museum tickets",
+      "hinglish": "Museum tickets ka payment",
+      "hi": "संग्रहालय टिकटों का भुगतान"
+     },
+     {
+      "en": "Sending a letter to all parents",
+      "hinglish": "Saare parents ko letter bhejna",
+      "hi": "सभी अभिभावकों को पत्र भेजना"
+     },
+     {
+      "en": "Searching museum opening hours",
+      "hinglish": "Museum timing search karna",
+      "hi": "संग्रहालय के खुलने का समय खोजना"
+     },
+     {
+      "en": "Deleting the old trip records",
+      "hinglish": "Purane trip records delete karna",
+      "hi": "पुरानी यात्रा के रिकॉर्ड मिटाना"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     3
+    ],
+    "explain": {
+     "en": "Payments, mass messages and deletions are irreversible or affect others. Searching is read-only and safe.",
+     "hi": "भुगतान, सामूहिक संदेश और मिटाना अपरिवर्तनीय हैं या दूसरों को प्रभावित करते हैं। खोजना सिर्फ़ पढ़ना है और सुरक्षित है।",
+     "hinglish": "Payment, mass messages aur delete irreversible hain ya doosron ko affect karte hain. Search sirf read-only aur safe hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Run the class-trip scenario with reflection on and reach a plan within ₹3,000.",
+     "hi": "आत्म-समीक्षा चालू रखकर कक्षा-यात्रा परिदृश्य चलाएँ और ₹3,000 के भीतर योजना पाएँ।",
+     "hinglish": "Reflection on rakh ke class-trip scenario chalao aur ₹3,000 ke andar plan pao."
+    },
+    "answer": {
+     "event": "scenario-complete",
+     "scenario": "class-trip-plan"
+    },
+    "explain": {
+     "en": "Reflection caught the ₹4,200 total and re-planned to fit the budget.",
+     "hi": "आत्म-समीक्षा ने ₹4,200 कुल पकड़ा और बजट में आने के लिए फिर योजना बनाई।",
+     "hinglish": "Reflection ne ₹4,200 total pakda aur budget mein aane ke liye re-plan kiya."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "ai.agents-planning"
+ ],
+ "sources": [
+  {
+   "title": "Shinn et al. (2023) Reflexion: Language Agents with Verbal Reinforcement Learning",
+   "url": "https://arxiv.org/abs/2303.11366",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Wang et al. (2023) Plan-and-Solve Prompting",
+   "url": "https://arxiv.org/abs/2305.04091",
+   "licence": "fact reference"
+  },
+  {
+   "title": "SWE-bench",
+   "url": "https://www.swebench.com/",
+   "licence": "fact reference"
+  }
+ ]
+}

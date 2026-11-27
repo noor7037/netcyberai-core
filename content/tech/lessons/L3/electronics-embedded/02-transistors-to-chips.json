@@ -1,0 +1,423 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.electronics-embedded.02",
+ "level": 3,
+ "classes": [
+  9,
+  10,
+  11
+ ],
+ "unit": "electronics-embedded",
+ "title": {
+  "en": "From transistors to chips",
+  "hi": "ट्रांजिस्टर से चिप तक",
+  "hinglish": "Transistors se chips tak"
+ },
+ "minutes": 15,
+ "xp": 60,
+ "prereq": [
+  "L3.electronics-embedded.01"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain a transistor as an electrically controlled switch",
+   "hi": "ट्रांजिस्टर को बिजली से चलने वाले स्विच की तरह समझाओ",
+   "hinglish": "Transistor ko bijli se chalne wale switch ki tarah samjhao"
+  },
+  {
+   "en": "Build NOT and NAND from transistors and see why NAND is universal",
+   "hi": "ट्रांजिस्टर से NOT और NAND बनाओ और देखो NAND सार्वभौमिक क्यों है",
+   "hinglish": "Transistors se NOT aur NAND banao aur dekho NAND universal kyun hai"
+  },
+  {
+   "en": "Describe how chips are made and India’s semiconductor plans",
+   "hi": "चिप कैसे बनती है और भारत की सेमीकंडक्टर योजनाएँ बताओ",
+   "hinglish": "Chips kaise banti hain aur India ke semiconductor plans batao"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Transistor",
+   "hinglish": "Bijli wala switch",
+   "en": "A device where a small signal at one terminal switches a larger current on or off",
+   "hi": "उपकरण जिसमें एक टर्मिनल का छोटा संकेत बड़ी धारा चालू या बंद करता है"
+  },
+  {
+   "term": "MOSFET",
+   "hinglish": "MOSFET",
+   "en": "The transistor type in almost all chips; its gate voltage opens or closes a channel",
+   "hi": "लगभग सभी चिपों का ट्रांजिस्टर प्रकार; इसका गेट वोल्टेज चैनल खोलता या बंद करता है"
+  },
+  {
+   "term": "CMOS",
+   "hinglish": "CMOS",
+   "en": "Pairs of complementary transistors; uses power mainly when switching",
+   "hi": "पूरक ट्रांजिस्टरों के जोड़े; मुख्यतः बदलते समय शक्ति लेता है"
+  },
+  {
+   "term": "Integrated circuit (IC)",
+   "hinglish": "Chip",
+   "en": "Many transistors and wires made together on one piece of silicon",
+   "hi": "सिलिकॉन के एक टुकड़े पर साथ बने बहुत से ट्रांजिस्टर और तार"
+  },
+  {
+   "term": "Fab",
+   "hinglish": "Chip factory",
+   "en": "A semiconductor fabrication plant",
+   "hi": "अर्धचालक निर्माण संयंत्र"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "A transistor is a switch with no moving parts: voltage on the gate lets current flow from source to drain.",
+    "hi": "ट्रांजिस्टर बिना हिलने वाले भागों का स्विच है: गेट पर वोल्टेज से सोर्स से ड्रेन तक धारा बहती है।",
+    "hinglish": "Transistor bina hilne wale parts ka switch hai: gate par voltage se source se drain tak current behta hai."
+   },
+   "visual": "flow:gate 1|channel opens|current flows",
+   "narration": {
+    "en": "A transistor is a switch with no moving parts: voltage on the gate lets current flow from source to drain.",
+    "hi": "ट्रांजिस्टर बिना हिलने वाले भागों का स्विच है: गेट पर वोल्टेज से सोर्स से ड्रेन तक धारा बहती है।",
+    "hinglish": "Transistor bina hilne wale parts ka switch hai: gate par voltage se source se drain tak current behta hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Two transistors make NOT. Four make NAND. Every other gate can be built from NANDs.",
+    "hi": "दो ट्रांजिस्टर से NOT बनता है। चार से NAND। हर दूसरा गेट NAND से बन सकता है।",
+    "hinglish": "Do transistors se NOT banta hai. Chaar se NAND. Har doosra gate NAND se ban sakta hai."
+   },
+   "visual": "stack:transistors|gates|adders|CPU",
+   "narration": {
+    "en": "Two transistors make NOT. Four make NAND. Every other gate can be built from NANDs.",
+    "hi": "दो ट्रांजिस्टर से NOT बनता है। चार से NAND। हर दूसरा गेट NAND से बन सकता है।",
+    "hinglish": "Do transistors se NOT banta hai. Chaar se NAND. Har doosra gate NAND se ban sakta hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Gates make adders, adders make ALUs, ALUs make CPUs. An iPhone 15 Pro chip has about 19 billion transistors.",
+    "hi": "गेट से योजक, योजक से ALU, ALU से CPU। iPhone 15 Pro की चिप में लगभग 1,900 करोड़ ट्रांजिस्टर हैं।",
+    "hinglish": "Gates se adders, adders se ALU, ALU se CPU. iPhone 15 Pro ki chip mein lagbhag 19 billion transistors hain."
+   },
+   "visual": "anim:zoom-chip",
+   "narration": {
+    "en": "Gates make adders, adders make ALUs, ALUs make CPUs. An iPhone 15 Pro chip has about 19 billion transistors.",
+    "hi": "गेट से योजक, योजक से ALU, ALU से CPU। iPhone 15 Pro की चिप में लगभग 1,900 करोड़ ट्रांजिस्टर हैं।",
+    "hinglish": "Gates se adders, adders se ALU, ALU se CPU. iPhone 15 Pro ki chip mein lagbhag 19 billion transistors hain."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Chips are printed with light on silicon wafers in fabs — India is now building its first large ones.",
+    "hi": "चिपें फ़ैब में सिलिकॉन वेफ़र पर प्रकाश से छापी जाती हैं — भारत अब अपने पहले बड़े फ़ैब बना रहा है।",
+    "hinglish": "Chips fabs mein silicon wafers par light se chhaapi jaati hain — India ab apne pehle bade fabs bana raha hai."
+   },
+   "visual": "flow:wafer|lithography|etch|test|package",
+   "narration": {
+    "en": "Chips are printed with light on silicon wafers in fabs — India is now building its first large ones.",
+    "hi": "चिपें फ़ैब में सिलिकॉन वेफ़र पर प्रकाश से छापी जाती हैं — भारत अब अपने पहले बड़े फ़ैब बना रहा है।",
+    "hinglish": "Chips fabs mein silicon wafers par light se chhaapi jaati hain — India ab apne pehle bade fabs bana raha hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "bits-lab",
+  "config": {
+   "mode": "gates",
+   "gate": "NAND"
+  },
+  "goal": {
+   "en": "Fill the NAND truth table: try all four input pairs. Notice it is just AND with the answer flipped.",
+   "hi": "NAND की सत्य तालिका भरो: चारों इनपुट जोड़े आज़माओ। देखो यह बस AND है जिसका उत्तर उल्टा है।",
+   "hinglish": "NAND ki truth table bharo: chaaron input jodiyan try karo. Dekho yeh bas AND hai jiska jawab ulta hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "The switch that changed everything",
+    "hi": "वह स्विच जिसने सब बदल दिया",
+    "hinglish": "Woh switch jisne sab badal diya"
+   },
+   "body": {
+    "en": "Early computers used relays and vacuum tubes — big, hot and unreliable. In 1947 John Bardeen, Walter Brattain and William Shockley at Bell Labs built the first transistor (Nobel Prize in Physics, 1956). In 1958 Jack Kilby at Texas Instruments made the first integrated circuit (Nobel Prize, 2000), and Robert Noyce soon made a practical silicon version. Today almost every chip uses MOSFETs in CMOS pairs: one transistor pulls the output up to 1, the other pulls it down to 0, so almost no current flows except while switching. A NOT gate (inverter) needs 2 transistors; a NAND needs 4. Because AND, OR, NOT and XOR can all be made from NANDs alone, NAND is called a universal gate — and NAND flash memory in your phone is named after the same structure.",
+    "hi": "शुरुआती कंप्यूटर रिले और वैक्यूम ट्यूब इस्तेमाल करते थे — बड़े, गरम और अविश्वसनीय। 1947 में बेल लैब्स में जॉन बार्डीन, वॉल्टर ब्रैटेन और विलियम शॉकली ने पहला ट्रांजिस्टर बनाया (भौतिकी नोबेल, 1956)। 1958 में टेक्सस इंस्ट्रूमेंट्स में जैक किल्बी ने पहला एकीकृत परिपथ बनाया (नोबेल, 2000), और रॉबर्ट नॉयस ने जल्द ही व्यावहारिक सिलिकॉन रूप बनाया। आज लगभग हर चिप CMOS जोड़ों में MOSFET इस्तेमाल करती है: एक ट्रांजिस्टर आउटपुट को 1 तक खींचता है, दूसरा 0 तक, इसलिए बदलते समय के अलावा लगभग कोई धारा नहीं बहती। NOT गेट (इन्वर्टर) को 2 ट्रांजिस्टर चाहिए; NAND को 4। क्योंकि AND, OR, NOT और XOR सब केवल NAND से बन सकते हैं, NAND को सार्वभौमिक गेट कहते हैं — और आपके फ़ोन की NAND फ़्लैश मेमोरी का नाम भी इसी संरचना पर है।",
+    "hinglish": "Shuruaati computers relays aur vacuum tubes use karte the — bade, garam aur unreliable. 1947 mein Bell Labs mein John Bardeen, Walter Brattain aur William Shockley ne pehla transistor banaya (Physics Nobel, 1956). 1958 mein Texas Instruments mein Jack Kilby ne pehla integrated circuit banaya (Nobel, 2000), aur Robert Noyce ne jaldi practical silicon version banaya. Aaj lagbhag har chip CMOS pairs mein MOSFETs use karti hai: ek transistor output ko 1 tak kheenchta hai, doosra 0 tak, isliye switching ke alawa lagbhag koi current nahi behta. NOT gate (inverter) ko 2 transistors chahiye; NAND ko 4. Kyunki AND, OR, NOT aur XOR sab sirf NAND se ban sakte hain, NAND ko universal gate kehte hain — aur tumhare phone ki NAND flash memory ka naam bhi isi structure par hai."
+   },
+   "analogy": {
+    "en": "LEGO bricks: one simple brick type, repeated billions of times, builds anything.",
+    "hi": "LEGO ईंटें: एक सरल ईंट, अरबों बार दोहराई, कुछ भी बना देती है।",
+    "hinglish": "LEGO bricks: ek simple brick, arabon baar dohraayi, kuch bhi bana deti hai."
+   },
+   "realExample": {
+    "en": "NOT from NAND: join both inputs together. AND from NAND: a NAND followed by a NOT. Try it on paper with the truth tables.",
+    "hi": "NAND से NOT: दोनों इनपुट जोड़ दो। NAND से AND: NAND के बाद NOT। सत्य तालिकाओं से काग़ज़ पर आज़माओ।",
+    "hinglish": "NAND se NOT: dono inputs jod do. NAND se AND: NAND ke baad NOT. Truth tables se kaagaz par try karo."
+   }
+  },
+  {
+   "heading": {
+    "en": "How chips are made — and India’s part",
+    "hi": "चिप कैसे बनती हैं — और भारत की भूमिका",
+    "hinglish": "Chips kaise banti hain — aur India ka role"
+   },
+   "body": {
+    "en": "Pure silicon is grown into a crystal and sliced into thin round wafers. In a fab, patterns are projected with light through masks (photolithography), then layers are etched, doped and filled with copper wires, hundreds of steps over weeks, in rooms thousands of times cleaner than a hospital. Leading-edge chips use extreme-ultraviolet light to print features only a few nanometres wide. Finished wafers are tested, cut into dies, and packaged (\"ATMP\" or \"OSAT\"). India designs a large share of the world’s chips in Bengaluru, Hyderabad and Noida. Under the India Semiconductor Mission (approved December 2021), Tata Electronics is building a fab at Dholera, Gujarat, and assembly-and-test plants are coming up in Gujarat and Assam — opening jobs in design, process engineering and testing for today’s students.",
+    "hi": "शुद्ध सिलिकॉन को क्रिस्टल में उगाकर पतले गोल वेफ़र में काटा जाता है। फ़ैब में मास्क से प्रकाश द्वारा पैटर्न डाले जाते हैं (फ़ोटोलिथोग्राफ़ी), फिर परतें खोदी, मिलाई और ताँबे के तारों से भरी जाती हैं, हफ़्तों में सैकड़ों चरण, अस्पताल से हज़ारों गुना साफ़ कमरों में। सबसे आधुनिक चिपें केवल कुछ नैनोमीटर चौड़ी आकृतियाँ छापने को चरम-पराबैंगनी प्रकाश इस्तेमाल करती हैं। तैयार वेफ़र जाँचे जाते हैं, डाई में काटे जाते हैं, और पैक होते हैं (\"ATMP\" या \"OSAT\")। भारत बेंगलुरु, हैदराबाद और नोएडा में दुनिया की बहुत सी चिपों का डिज़ाइन करता है। भारत सेमीकंडक्टर मिशन (दिसंबर 2021 में स्वीकृत) के तहत टाटा इलेक्ट्रॉनिक्स धोलेरा, गुजरात में फ़ैब बना रहा है, और गुजरात व असम में असेंबली-और-परीक्षण संयंत्र आ रहे हैं — आज के छात्रों के लिए डिज़ाइन, प्रोसेस इंजीनियरिंग और परीक्षण में नौकरियाँ खुल रही हैं।",
+    "hinglish": "Shuddh silicon ko crystal mein ugaakar patle gol wafers mein kaata jaata hai. Fab mein masks se light dwara patterns daale jaate hain (photolithography), phir layers khodi, dope ki aur copper wires se bhari jaati hain, hafton mein saikdon steps, hospital se hazaaron guna saaf kamron mein. Sabse advanced chips sirf kuch nanometre chaudi features chhaapne ko extreme-ultraviolet light use karti hain. Taiyaar wafers test hote hain, dies mein kaate jaate hain, aur package hote hain (\"ATMP\" ya \"OSAT\"). India Bengaluru, Hyderabad aur Noida mein duniya ki bahut si chips design karta hai. India Semiconductor Mission (December 2021 mein approve) ke tahat Tata Electronics Dholera, Gujarat mein fab bana raha hai, aur Gujarat aur Assam mein assembly-and-test plants aa rahe hain — aaj ke students ke liye design, process engineering aur testing mein jobs khul rahi hain."
+   },
+   "analogy": {
+    "en": "Like screen-printing a T-shirt, but with dozens of layers, each a thousand times thinner than a hair.",
+    "hi": "टी-शर्ट पर स्क्रीन-प्रिंटिंग जैसा, पर दर्जनों परतें, हर एक बाल से हज़ार गुना पतली।",
+    "hinglish": "T-shirt par screen-printing jaisa, par darjanon layers, har ek baal se hazaar guna patli."
+   },
+   "realExample": {
+    "en": "Apple says the A17 Pro chip in the iPhone 15 Pro (2023) has 19 billion transistors on a 3-nanometre process.",
+    "hi": "Apple के अनुसार iPhone 15 Pro (2023) की A17 Pro चिप में 3-नैनोमीटर प्रक्रिया पर 1,900 करोड़ ट्रांजिस्टर हैं।",
+    "hinglish": "Apple ke anusaar iPhone 15 Pro (2023) ki A17 Pro chip mein 3-nanometre process par 19 billion transistors hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "On paper, build NOT, AND and OR using only NAND gates and check each with a truth table. Count how many NANDs each needs. Then find one gadget at home and list three chips you think are inside it (processor, memory, power, radio).",
+   "hi": "काग़ज़ पर केवल NAND गेट से NOT, AND और OR बनाओ और हर एक को सत्य तालिका से जाँचो। गिनो हर एक को कितने NAND चाहिए। फिर घर का एक गैजेट लो और उसके अंदर की तीन चिपें सोचो (प्रोसेसर, मेमोरी, पावर, रेडियो)।",
+   "hinglish": "Kaagaz par sirf NAND gates se NOT, AND aur OR banao aur har ek ko truth table se check karo. Gino har ek ko kitne NAND chahiye. Phir ghar ka ek gadget lo aur uske andar ki teen chips socho (processor, memory, power, radio)."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "What does a transistor do in a digital chip?",
+     "hi": "डिजिटल चिप में ट्रांजिस्टर क्या करता है?",
+     "hinglish": "Digital chip mein transistor kya karta hai?"
+    },
+    "options": [
+     {
+      "en": "Acts as a switch controlled by a voltage",
+      "hi": "वोल्टेज से चलने वाले स्विच का काम",
+      "hinglish": "Voltage se chalne wale switch ka kaam"
+     },
+     {
+      "en": "Stores the battery charge",
+      "hi": "बैटरी का आवेश रखता है",
+      "hinglish": "Battery ka charge rakhta hai"
+     },
+     {
+      "en": "Makes light",
+      "hi": "प्रकाश बनाता है",
+      "hinglish": "Light banata hai"
+     },
+     {
+      "en": "Cools the chip",
+      "hi": "चिप ठंडी करता है",
+      "hinglish": "Chip thandi karta hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Billions of these switches implement logic gates.",
+     "hi": "ऐसे अरबों स्विच लॉजिक गेट बनाते हैं।",
+     "hinglish": "Aise arabon switches logic gates banate hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "NAND outputs 0 only when…",
+     "hi": "NAND का आउटपुट 0 केवल तब होता है जब…",
+     "hinglish": "NAND ka output 0 sirf tab hota hai jab…"
+    },
+    "options": [
+     {
+      "en": "both inputs are 1",
+      "hi": "दोनों इनपुट 1 हों",
+      "hinglish": "dono inputs 1 hon"
+     },
+     {
+      "en": "both inputs are 0",
+      "hi": "दोनों इनपुट 0 हों",
+      "hinglish": "dono inputs 0 hon"
+     },
+     {
+      "en": "one input is 1",
+      "hi": "एक इनपुट 1 हो",
+      "hinglish": "ek input 1 ho"
+     },
+     {
+      "en": "never",
+      "hi": "कभी नहीं",
+      "hinglish": "kabhi nahi"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "NAND = NOT(AND).",
+     "hi": "NAND = NOT(AND)।",
+     "hinglish": "NAND = NOT(AND)."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "order",
+    "prompt": {
+     "en": "Put the chip-making steps in order.",
+     "hi": "चिप बनाने के चरण क्रम में लगाओ।",
+     "hinglish": "Chip banane ke steps order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Grow a silicon crystal and slice wafers",
+      "hi": "सिलिकॉन क्रिस्टल उगाकर वेफ़र काटो",
+      "hinglish": "Silicon crystal ugaakar wafers kaato"
+     },
+     {
+      "en": "Print patterns with light (lithography)",
+      "hi": "प्रकाश से पैटर्न छापो (लिथोग्राफ़ी)",
+      "hinglish": "Light se patterns chhaapo (lithography)"
+     },
+     {
+      "en": "Etch and add layers and wires",
+      "hi": "खोदो और परतें व तार जोड़ो",
+      "hinglish": "Etch karo aur layers aur wires jodo"
+     },
+     {
+      "en": "Test, cut and package the chips",
+      "hi": "चिपें जाँचो, काटो और पैक करो",
+      "hinglish": "Chips test karo, kaato aur package karo"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "Wafer → lithography → etch/layers → test and package.",
+     "hi": "वेफ़र → लिथोग्राफ़ी → खुदाई/परतें → जाँच और पैकिंग।",
+     "hinglish": "Wafer → lithography → etch/layers → test aur package."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "multi",
+    "prompt": {
+     "en": "Which statements are true?",
+     "hi": "कौन-से कथन सही हैं?",
+     "hinglish": "Kaunse statements sahi hain?"
+    },
+    "options": [
+     {
+      "en": "NAND is a universal gate",
+      "hi": "NAND सार्वभौमिक गेट है",
+      "hinglish": "NAND universal gate hai"
+     },
+     {
+      "en": "The first transistor was built in 1947",
+      "hi": "पहला ट्रांजिस्टर 1947 में बना",
+      "hinglish": "Pehla transistor 1947 mein bana"
+     },
+     {
+      "en": "CMOS uses lots of power even when idle",
+      "hi": "CMOS ख़ाली रहकर भी बहुत शक्ति लेता है",
+      "hinglish": "CMOS idle rehkar bhi bahut power leta hai"
+     },
+     {
+      "en": "A NOT gate needs about a thousand transistors",
+      "hi": "NOT गेट को लगभग हज़ार ट्रांजिस्टर चाहिए",
+      "hinglish": "NOT gate ko lagbhag hazaar transistors chahiye"
+     }
+    ],
+    "answer": [
+     0,
+     1
+    ],
+    "explain": {
+     "en": "CMOS uses power mainly when switching; NOT needs 2 transistors.",
+     "hi": "CMOS मुख्यतः बदलते समय शक्ति लेता है; NOT को 2 ट्रांजिस्टर चाहिए।",
+     "hinglish": "CMOS mainly switching ke time power leta hai; NOT ko 2 transistors chahiye."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "short",
+    "prompt": {
+     "en": "How many transistors does a CMOS NOT gate (inverter) use?",
+     "hi": "CMOS NOT गेट (इन्वर्टर) में कितने ट्रांजिस्टर?",
+     "hinglish": "CMOS NOT gate (inverter) mein kitne transistors?"
+    },
+    "answer": {
+     "accept": [
+      "2",
+      "two",
+      "do"
+     ]
+    },
+    "explain": {
+     "en": "One pulls up, one pulls down.",
+     "hi": "एक ऊपर खींचता है, एक नीचे।",
+     "hinglish": "Ek upar kheenchta hai, ek neeche."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the NAND truth table in the lab.",
+     "hi": "लैब में NAND सत्य तालिका पूरी करो।",
+     "hinglish": "Lab mein NAND truth table poori karo."
+    },
+    "answer": {
+     "event": "gate-truth",
+     "gate": "NAND"
+    },
+    "explain": {
+     "en": "1, 1, 1, 0 for inputs 00, 01, 10, 11.",
+     "hi": "इनपुट 00, 01, 10, 11 के लिए 1, 1, 1, 0।",
+     "hinglish": "Inputs 00, 01, 10, 11 ke liye 1, 1, 1, 0."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "elec.components",
+  "elec.digital-ics",
+  "hw.gates"
+ ],
+ "sources": [
+  {
+   "title": "Nobel Prize in Physics 1956 — the transistor",
+   "url": "https://www.nobelprize.org/prizes/physics/1956/summary/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Nobel Prize in Physics 2000 — Jack Kilby, integrated circuit",
+   "url": "https://www.nobelprize.org/prizes/physics/2000/kilby/facts/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Apple Newsroom — iPhone 15 Pro, A17 Pro (Sept 2023)",
+   "url": "https://www.apple.com/newsroom/2023/09/apple-unveils-iphone-15-pro-and-iphone-15-pro-max/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "India Semiconductor Mission",
+   "url": "https://ism.gov.in/",
+   "licence": "fact reference"
+  }
+ ]
+}

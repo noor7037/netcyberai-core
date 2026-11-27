@@ -53,7 +53,7 @@ describe('a tap shows at once', () => {
     expect(tabs).toContain("data-pending={pending === t ? '' : undefined} onClick={() => !open && setPending(t)}");
     expect(tabs).toContain('useEffect(() => setPending(null), [path]);');
     const { FamilyTabs } = await import('@/components/family/FamilyTabs');
-    const html = renderToStaticMarkup(h(FamilyTabs, { tabs: ['home', 'study'], navLabel: 'Main menu', labels: { home: 'Home', study: 'Study', english: 'English', draw: 'Draw', future: 'Future' } }));
+    const html = renderToStaticMarkup(h(FamilyTabs, { tabs: ['home', 'study'], navLabel: 'Main menu', labels: { home: 'Home', study: 'Study', english: 'English', tech: 'Tech Lab', draw: 'Draw', future: 'Future' } }));
     expect(html.match(/class="fam-press fam-tab"/g)?.length).toBe(2);
     expect(html).not.toContain('data-pending');
     expect(SRC('src/app/(family)/family/family.css')).toMatch(/\.fam-tab\[aria-current='page'\],\s*\.fam-tab\[data-pending\] \{/);

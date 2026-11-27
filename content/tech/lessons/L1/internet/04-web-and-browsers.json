@@ -1,0 +1,349 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.internet.04",
+ "level": 1,
+ "classes": [
+  3,
+  4,
+  5
+ ],
+ "unit": "internet",
+ "title": {
+  "en": "The web, browsers and web addresses",
+  "hi": "वेब, ब्राउज़र और वेब पते",
+  "hinglish": "Web, browsers aur web addresses"
+ },
+ "minutes": 8,
+ "xp": 30,
+ "prereq": [
+  "L1.internet.03"
+ ],
+ "topics": [
+  "web.what-is-web",
+  "web.browser-url"
+ ],
+ "outcomes": [
+  {
+   "en": "Tell the difference between the internet (the roads) and the web (pages that travel on them).",
+   "hi": "इंटरनेट (सड़कें) और वेब (उन पर चलने वाले पेज) का फ़र्क़ बता सकते हो।",
+   "hinglish": "Internet (sadkein) aur web (un par chalne wale pages) ka farak bata sakte ho."
+  },
+  {
+   "en": "Read the parts of a web address (URL).",
+   "hi": "वेब पते (URL) के हिस्से पढ़ सकते हो।",
+   "hinglish": "Web address (URL) ke hisse padh sakte ho."
+  },
+  {
+   "en": "Know the padlock means a private connection, not that a site is good.",
+   "hi": "जानते हो कि ताला निजी कनेक्शन बताता है, यह नहीं कि साइट अच्छी है।",
+   "hinglish": "Jaante ho ki taala private connection batata hai, yeh nahin ki site achhi hai."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "World Wide Web",
+   "en": "All the web pages linked together on the internet",
+   "hi": "इंटरनेट पर जुड़े हुए वेब पेज",
+   "hinglish": "Internet par jude hue web pages"
+  },
+  {
+   "term": "Browser",
+   "en": "An app that opens web pages, like Chrome or Firefox",
+   "hi": "वेब पेज खोलने वाला ऐप",
+   "hinglish": "Web pages kholne wala app"
+  },
+  {
+   "term": "URL",
+   "en": "A web page's address, like https://www.isro.gov.in",
+   "hi": "वेब पेज का पता",
+   "hinglish": "Web page ka address"
+  },
+  {
+   "term": "Link",
+   "en": "Words or a picture you tap to go to another page",
+   "hi": "एक पेज से दूसरे पेज का रास्ता",
+   "hinglish": "Ek page se doosre page ka raasta"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.internet.04.s1",
+   "caption": {
+    "en": "Internet = roads. Web = pages on the roads.",
+    "hi": "इंटरनेट = सड़कें। वेब = सड़कों पर चलते पेज।",
+    "hinglish": "Internet = sadkein. Web = sadkon par chalte pages."
+   },
+   "narration": {
+    "en": "The internet is the network of roads. The web is one thing that travels on it: billions of pages joined by links. Email and video calls use the internet too, but they are not the web.",
+    "hinglish": "Internet sadkon ka network hai. Web us par chalne wali ek cheez hai: links se jude arabon pages. Email aur video call bhi internet use karte hain, par woh web nahin hain.",
+    "hi": "इंटरनेट सड़कों का जाल है। वेब उस पर चलने वाली एक चीज़ है: लिंक से जुड़े अरबों पेज। ईमेल और वीडियो कॉल भी इंटरनेट इस्तेमाल करते हैं, पर वे वेब नहीं हैं।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.internet.04.s2",
+   "caption": {
+    "en": "A web address has parts.",
+    "hi": "वेब पते के हिस्से होते हैं।",
+    "hinglish": "Web address ke hisse hote hain."
+   },
+   "narration": {
+    "en": "https:// means a secure connection. www.isro.gov.in is the website's name — .gov.in shows it is an Indian government site. /missions is the page.",
+    "hinglish": "https:// matlab surakshit connection. www.isro.gov.in website ka naam hai — .gov.in batata hai ki yeh Indian government site hai. /missions page hai.",
+    "hi": "https:// मतलब सुरक्षित कनेक्शन। www.isro.gov.in वेबसाइट का नाम है — .gov.in बताता है कि यह भारत सरकार की साइट है। /missions पेज है।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.internet.04.s3",
+   "caption": {
+    "en": "Tim Berners-Lee invented the web in 1989.",
+    "hi": "टिम बर्नर्स-ली ने 1989 में वेब बनाया।",
+    "hinglish": "Tim Berners-Lee ne 1989 mein web banaya."
+   },
+   "narration": {
+    "en": "British scientist Tim Berners-Lee invented the World Wide Web in 1989 at CERN, and shared it free with the world.",
+    "hinglish": "British scientist Tim Berners-Lee ne 1989 mein CERN mein World Wide Web banaya, aur duniya ke saath muft share kiya.",
+    "hi": "ब्रिटिश वैज्ञानिक टिम बर्नर्स-ली ने 1989 में CERN में वर्ल्ड वाइड वेब बनाया, और दुनिया के साथ मुफ़्त बाँटा।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "net-travel",
+  "config": {
+   "mode": "server"
+  },
+  "goal": {
+   "en": "Open 3 websites in the browser and watch how each page reaches you.",
+   "hi": "ब्राउज़र में 3 वेबसाइट खोलो और देखो हर पेज तुम तक कैसे पहुँचता है।",
+   "hinglish": "Browser mein 3 websites kholo aur dekho har page tum tak kaise pahunchta hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "The padlock: private, not \"good\"",
+    "hi": "ताला: निजी, \"अच्छा\" नहीं",
+    "hinglish": "Taala: private, \"achha\" nahin"
+   },
+   "body": {
+    "en": "🔒 and https mean nobody in the middle can read what you send. But a fake website can have a padlock too! Check the name carefully — \"sbi-prizes-free.xyz\" is not your bank.",
+    "hi": "🔒 और https का मतलब है बीच में कोई तुम्हारा भेजा पढ़ नहीं सकता। पर नकली वेबसाइट पर भी ताला हो सकता है! नाम ध्यान से जाँचो — \"sbi-prizes-free.xyz\" तुम्हारा बैंक नहीं है।",
+    "hinglish": "🔒 aur https ka matlab hai beech mein koi tumhara bheja padh nahin sakta. Par nakli website par bhi taala ho sakta hai! Naam dhyaan se check karo — \"sbi-prizes-free.xyz\" tumhara bank nahin hai."
+   },
+   "analogy": {
+    "en": "A sealed envelope means nobody reads the letter on the way — not that the sender is a good person.",
+    "hi": "बंद लिफ़ाफ़ा बताता है कि चिट्ठी रास्ते में कोई नहीं पढ़ेगा — यह नहीं कि भेजने वाला अच्छा इंसान है।",
+    "hinglish": "Band lifaafa batata hai ki chitthi raaste mein koi nahin padhega — yeh nahin ki bhejne wala achha insaan hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "Links join the web",
+    "hi": "लिंक वेब को जोड़ते हैं",
+    "hinglish": "Links web ko jodte hain"
+   },
+   "body": {
+    "en": "Each page can link to others, like threads in a spider's web — that is where the name \"web\" comes from. Search engines follow links to find pages, so you can search for them.",
+    "hi": "हर पेज दूसरों से लिंक हो सकता है, जैसे मकड़ी के जाले के धागे — \"वेब\" नाम यहीं से आया। सर्च इंजन लिंक पकड़कर पेज ढूँढते हैं, ताकि तुम उन्हें खोज सको।",
+    "hinglish": "Har page doosron se link ho sakta hai, jaise makdi ke jaale ke dhaage — \"web\" naam yahin se aaya. Search engines links follow karke pages dhoondhte hain, taaki tum unhe search kar sako."
+   },
+   "realExample": {
+    "en": ".gov.in, .nic.in and .ac.in addresses are only given to Indian government, NIC and academic bodies — a good clue a site is official.",
+    "hi": ".gov.in, .nic.in और .ac.in पते सिर्फ़ भारत सरकार, NIC और शैक्षणिक संस्थाओं को मिलते हैं — आधिकारिक साइट का अच्छा सुराग।",
+    "hinglish": ".gov.in, .nic.in aur .ac.in address sirf Indian government, NIC aur academic sansthaon ko milte hain — official site ka achha suraag."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "With a grown-up, open ncert.nic.in. Find the padlock, the website name and the page part of the address. Write them down.",
+   "hi": "किसी बड़े के साथ ncert.nic.in खोलो। ताला, वेबसाइट का नाम और पते का पेज वाला हिस्सा ढूँढो। लिख लो।",
+   "hinglish": "Kisi bade ke saath ncert.nic.in kholo. Taala, website ka naam aur address ka page wala hissa dhoondo. Likh lo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "The internet is like roads. The web is like…",
+     "hi": "इंटरनेट सड़कों जैसा है। वेब है…",
+     "hinglish": "Internet sadkon jaisa hai. Web hai…"
+    },
+    "options": [
+     {
+      "en": "pages that travel on the roads",
+      "hi": "सड़कों पर चलने वाले पेज",
+      "hinglish": "sadkon par chalne wale pages"
+     },
+     {
+      "en": "the roads themselves",
+      "hi": "ख़ुद सड़कें",
+      "hinglish": "khud sadkein"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "The web is one service running on the internet.",
+     "hi": "वेब इंटरनेट पर चलने वाली एक सेवा है।",
+     "hinglish": "Web internet par chalne wali ek service hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "match",
+    "prompt": {
+     "en": "Match the parts of https://www.isro.gov.in/missions",
+     "hi": "https://www.isro.gov.in/missions के हिस्से मिलाओ",
+     "hinglish": "https://www.isro.gov.in/missions ke hisse milao"
+    },
+    "options": {
+     "left": [
+      {
+       "en": "https://",
+       "hi": "https://",
+       "hinglish": "https://"
+      },
+      {
+       "en": "www.isro.gov.in",
+       "hi": "www.isro.gov.in",
+       "hinglish": "www.isro.gov.in"
+      },
+      {
+       "en": "/missions",
+       "hi": "/missions",
+       "hinglish": "/missions"
+      }
+     ],
+     "right": [
+      {
+       "en": "Which page",
+       "hi": "कौन सा पेज",
+       "hinglish": "Kaun sa page"
+      },
+      {
+       "en": "Secure connection",
+       "hi": "सुरक्षित कनेक्शन",
+       "hinglish": "Secure connection"
+      },
+      {
+       "en": "Website name",
+       "hi": "वेबसाइट का नाम",
+       "hinglish": "Website ka naam"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      2
+     ],
+     [
+      2,
+      0
+     ]
+    ],
+    "explain": {
+     "en": "Scheme → site name → page.",
+     "hi": "तरीका → साइट का नाम → पेज।",
+     "hinglish": "Scheme → site naam → page."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "A website has a 🔒 padlock. This means…",
+     "hi": "वेबसाइट पर 🔒 ताला है। मतलब…",
+     "hinglish": "Website par 🔒 taala hai. Matlab…"
+    },
+    "options": [
+     {
+      "en": "the connection is private — still check the name",
+      "hi": "कनेक्शन निजी है — फिर भी नाम जाँचो",
+      "hinglish": "connection private hai — phir bhi naam check karo"
+     },
+     {
+      "en": "the website is always safe and honest",
+      "hi": "वेबसाइट हमेशा सुरक्षित और सच्ची है",
+      "hinglish": "website hamesha safe aur sachchi hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Fake sites can use https too.",
+     "hi": "नकली साइटें भी https इस्तेमाल कर सकती हैं।",
+     "hinglish": "Nakli sites bhi https use kar sakti hain."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Who invented the World Wide Web?",
+     "hi": "वर्ल्ड वाइड वेब किसने बनाया?",
+     "hinglish": "World Wide Web kisne banaya?"
+    },
+    "options": [
+     {
+      "en": "Tim Berners-Lee",
+      "hi": "टिम बर्नर्स-ली",
+      "hinglish": "Tim Berners-Lee"
+     },
+     {
+      "en": "Thomas Edison",
+      "hi": "थॉमस एडिसन",
+      "hinglish": "Thomas Edison"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "In 1989, at CERN.",
+     "hi": "1989 में, CERN में।",
+     "hinglish": "1989 mein, CERN mein."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Open all 3 websites in the lab browser.",
+     "hi": "लैब ब्राउज़र में तीनों वेबसाइट खोलो।",
+     "hinglish": "Lab browser mein teeno websites kholo."
+    },
+    "answer": {
+     "lab": "net-travel",
+     "mode": "server",
+     "solved": true
+    },
+    "explain": {
+     "en": "Tap each site and watch the request and the page travel.",
+     "hi": "हर साइट पर टैप करो और अनुरोध व पेज की यात्रा देखो।",
+     "hinglish": "Har site par tap karo aur request aur page ki yatra dekho."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "CERN – The birth of the Web (fact reference)",
+   "url": "https://home.cern/science/computing/birth-web",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

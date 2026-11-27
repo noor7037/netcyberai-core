@@ -1,0 +1,346 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#1D4ED8">
+<title>Meet the computer's body · Tech & AI Lab</title>
+<!-- Lab: computer-body (Level 1). Own work, MIT. Modes: find-computers | name-parts | io-sort | brain-desk-bag | phone-teardown -->
+<style>/* L1 lab kit (own work, MIT). Family App palette from src/lib/design-tokens.ts */
+:root{--royal:#1D4ED8;--sapphire:#002357;--grape:#8B3DFF;--violet:#4400F0;--tangerine:#FF7A1A;--coral:#FF6B57;--gold:#F5B90A;--turq:#14B8A6;--emerald:#0F766E;--cyan:#02CFF9;--slate:#1E293B;--off:#F9FAFB;--ink2:#475569;--r:18px;--sh:0 6px 18px rgba(30,41,59,.12),0 1px 3px rgba(30,41,59,.08)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:var(--off);color:var(--slate);font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans Devanagari",sans-serif;overscroll-behavior:none}
+body{background:transparent;-webkit-user-select:none;user-select:none;display:flex;flex-direction:column;min-height:100%;overflow-x:hidden}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;touch-action:manipulation}
+.kbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:8px;padding:10px 12px;background:linear-gradient(120deg,var(--sapphire),var(--royal) 60%,var(--grape));color:#fff;box-shadow:0 2px 10px rgba(0,35,87,.25)}
+.kbar{flex-wrap:wrap;row-gap:6px}
+.kbar h1{flex:1 1 9em;min-width:0;margin:0;font-size:16px;line-height:1.2;font-weight:800;letter-spacing:.2px;overflow-wrap:break-word}/* title never cut: controls move to a 2nd row when needed */
+.kctl{display:flex;align-items:center;gap:8px;margin-left:auto}
+.kbar .kemo{font-size:22px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.25))}
+.kpill{display:flex;background:rgba(255,255,255,.16);border-radius:999px;padding:3px}
+.kpill button{padding:5px 9px;border-radius:999px;font-size:12.5px;font-weight:700;color:#e0e7ff;min-height:32px}
+.kpill button[aria-pressed=true]{background:#fff;color:var(--royal)}
+.kstars{display:flex;align-items:center;gap:4px;background:rgba(255,255,255,.16);padding:6px 10px;border-radius:999px;font-weight:800;font-size:14px;min-width:54px;justify-content:center}
+.kstars.bump{animation:kbump .5s}
+@keyframes kbump{40%{transform:scale(1.35)}}
+.kgoal{margin:10px 12px 0;padding:10px 12px;border-radius:14px;background:#fff;box-shadow:var(--sh);display:flex;gap:10px;align-items:flex-start;font-size:14.5px}
+.kgoal b{color:var(--royal)}
+.kbtn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:46px;padding:10px 18px;border-radius:14px;font-weight:800;background:var(--royal);color:#fff;box-shadow:0 4px 0 #1239a8,var(--sh);transition:transform .08s}
+.kbtn:active{transform:translateY(3px);box-shadow:0 1px 0 #1239a8}
+.kbtn.alt{background:#fff;color:var(--royal);box-shadow:0 4px 0 #c7d2fe,var(--sh)}
+.kbtn.go{background:var(--turq);box-shadow:0 4px 0 #0d8a7c,var(--sh)}
+.kbtn.warn{background:var(--tangerine);box-shadow:0 4px 0 #c75a0c,var(--sh)}
+.kbtn[disabled]{opacity:.45;pointer-events:none}
+.ktoast{pointer-events:none;position:fixed;left:0;top:0;width:max-content;z-index:60;max-width:min(92vw,360px);padding:12px 16px;border-radius:16px;background:var(--slate);color:#fff;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,.3);text-align:center;line-height:1.35;font-size:15px;opacity:0;visibility:hidden;transform:scale(.9);transition:opacity .25s,transform .3s cubic-bezier(.2,1.4,.4,1),visibility 0s .3s}
+.ktoast.show{opacity:1;visibility:visible;transform:none;transition:opacity .25s,transform .3s cubic-bezier(.2,1.4,.4,1)}
+.ktoast.inline{position:static;display:block;width:auto;max-width:none;margin:10px 12px;grid-column:1/-1;flex:0 0 auto}
+.ktoast.good{background:var(--emerald)}.ktoast.bad{background:#b4321f}
+#kconf{position:fixed;inset:0;pointer-events:none;z-index:-1}/* behind content; inside the win dialog it sits behind the card */
+.kwin #kconf{position:absolute;z-index:0}.kwin>div{position:relative;z-index:1}
+.kwin{position:fixed;inset:0;z-index:65;display:none;align-items:center;justify-content:center;background:rgba(6,18,51,.55);backdrop-filter:blur(3px);padding:20px}
+.kwin.show{display:flex}
+.kwin>div{background:#fff;border-radius:24px;padding:22px;text-align:center;max-width:360px;box-shadow:0 20px 50px rgba(0,0,0,.35);animation:kpop .5s cubic-bezier(.2,1.5,.4,1)}
+.kwin .big{font-size:64px;line-height:1;animation:kspin 1.2s ease-out}
+.kwin h2{margin:10px 0 6px;font-size:22px}
+.kwin p{margin:0 0 14px;color:var(--ink2)}
+@keyframes kpop{from{transform:scale(.6);opacity:0}}
+@keyframes kspin{from{transform:rotateY(-540deg) scale(.4)}}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+.kvoice{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.16);font-size:17px;opacity:.6}
+.kvoice[aria-pressed=true]{background:#fff;opacity:1;box-shadow:0 0 0 3px rgba(255,255,255,.4)}
+</style>
+<style>
+main{flex:1;display:flex;flex-direction:column;gap:10px;padding:10px 12px 16px}
+.modes{display:flex;flex-wrap:wrap;gap:6px;padding:2px 0 4px;}
+.modes button{flex:0 1 auto;max-width:100%;white-space:normal;text-align:center;padding:7px 12px;border-radius:999px;background:#fff;box-shadow:var(--sh);font-weight:700;font-size:13px;min-height:36px}
+.modes button[aria-pressed=true]{background:var(--slate);color:#fff}
+.stage{position:relative;height:min(46vh,360px);min-height:250px;border-radius:24px;overflow:hidden;background:radial-gradient(120% 90% at 50% 0%,#dbeafe,#eef2ff 45%,#e0e7ff);box-shadow:inset 0 -30px 60px rgba(29,78,216,.10),var(--sh);perspective:900px;touch-action:pan-y}
+.stage.small{height:min(30vh,240px);min-height:170px}
+.stage .floor{position:absolute;left:-20%;right:-20%;bottom:-40%;height:70%;background:repeating-linear-gradient(90deg,rgba(29,78,216,.08) 0 2px,transparent 2px 40px),repeating-linear-gradient(0deg,rgba(29,78,216,.08) 0 2px,transparent 2px 40px);transform:rotateX(70deg);transform-origin:top}
+.hint3d{position:absolute;right:10px;top:10px;font-size:12px;font-weight:700;background:rgba(255,255,255,.8);padding:4px 9px;border-radius:999px;color:var(--royal)}
+.world{position:absolute;left:50%;top:54%;width:0;height:0;transform-style:preserve-3d;transform:rotateX(-14deg) rotateY(var(--ry,-18deg));will-change:transform}
+.part{position:absolute;transform-style:preserve-3d}
+.box3d{position:absolute;transform-style:preserve-3d}
+.face{position:absolute;backface-visibility:hidden;border-radius:4px}
+.part.glow .face{box-shadow:0 0 0 3px var(--gold) inset,0 0 18px var(--gold)}
+.part.done .face.front{box-shadow:0 0 0 3px var(--turq) inset}
+.tag3d{position:absolute;white-space:nowrap;padding:4px 10px;border-radius:999px;background:var(--turq);color:#fff;font-weight:800;font-size:13px;transform:translate(-50%,-100%);animation:kpop .4s;box-shadow:var(--sh)}
+.screen{background:linear-gradient(160deg,#0b1a3a,#1D4ED8);display:flex;align-items:center;justify-content:center;font-size:38px;color:#fff;overflow:hidden}
+.screen .face-ico{transition:transform .4s}
+.tray{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;min-height:52px}
+.chip{display:flex;align-items:center;gap:6px;padding:9px 14px;border-radius:14px;background:#fff;box-shadow:0 3px 0 #cbd5e1,var(--sh);font-weight:800;font-size:15px;min-height:46px;user-select:none;-webkit-user-select:none}
+.chip .e{font-size:22px}
+.chip.used{visibility:hidden}
+.bins{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.bins.five{grid-template-columns:repeat(3,1fr)}
+.bin{border:3px dashed #c7d2fe;border-radius:18px;padding:8px;min-height:84px;background:#fff;text-align:center;transition:transform .15s,background .15s}
+.bin h3{margin:0 0 4px;font-size:14px}
+.bin.hot{transform:scale(1.04);background:#eef2ff;border-color:var(--royal)}
+.bin .got{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;font-size:22px}
+.bin.in h3{color:var(--royal)}.bin.out h3{color:var(--tangerine)}.bin.pr h3{color:var(--grape)}.bin.st h3{color:var(--emerald)}.bin.pw h3{color:#b45309}
+.room{position:absolute;inset:0}
+.obj{position:absolute;transform:translate(-50%,-50%);font-size:clamp(34px,10vw,52px);line-height:1;filter:drop-shadow(0 4px 3px rgba(0,0,0,.18));transition:transform .2s;padding:6px}
+.obj.yes{animation:kpop .4s;filter:drop-shadow(0 0 10px var(--gold))}
+.obj.yes::after{content:"✓";position:absolute;right:-4px;top:-4px;font-size:16px;background:var(--turq);color:#fff;border-radius:50%;width:22px;height:22px;display:grid;place-items:center}
+.obj.no{animation:shake .45s}
+@keyframes shake{25%{transform:translate(-56%,-50%) rotate(-6deg)}75%{transform:translate(-44%,-50%) rotate(6deg)}}
+.flow{position:absolute;font-size:18px;pointer-events:none;z-index:5}
+.bdb{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:8px;height:100%;padding:10px;align-items:stretch}
+.zone{border-radius:18px;background:rgba(255,255,255,.85);padding:8px;display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;box-shadow:var(--sh)}
+.zone h3{margin:0;font-size:13px;text-align:center}
+.zone .big{font-size:40px;line-height:1}
+.slots{display:flex;flex-direction:column;gap:5px;width:100%}
+.slot{min-height:34px;border:2px dashed #cbd5e1;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;gap:4px}
+.slot.fill{border-style:solid;border-color:var(--royal);background:#eef2ff}
+.app{padding:6px 8px;border-radius:10px;background:#fff;box-shadow:0 2px 0 #cbd5e1;font-weight:800;font-size:13px;display:flex;gap:4px;align-items:center;min-height:36px;user-select:none}
+.cpu.busy .big{animation:kbump .35s infinite}
+.mini{width:100%;aspect-ratio:4/3;background:#fff;border-radius:10px;border:2px solid #e2e8f0}
+.dark{position:absolute;inset:0;background:#020617;opacity:0;pointer-events:none;transition:opacity .4s;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:20px;z-index:8}
+.dark.on{opacity:.92}
+.stage:has(>.dark.on)>:not(.dark){visibility:hidden}/* lights out: the room is hidden, not covered */
+.ctrl{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.count{font-weight:900;color:#b4321f}
+.why{font-size:14px;background:#fff7ed;border-left:4px solid var(--tangerine);padding:8px 10px;border-radius:10px}
+@media (orientation:landscape) and (max-height:520px){main{display:grid;grid-template-columns:1.15fr 1fr;grid-template-rows:auto 1fr;align-items:start}.modes{grid-column:1/-1}.stage{height:calc(100vh - 120px);min-height:200px}#panel{max-height:calc(100vh - 120px);overflow:auto}}
+</style></head><body>
+<main>
+  <div class="modes" id="modes" role="tablist"></div>
+  <div class="stage" id="stage"><div class="floor"></div><div class="world" id="world"></div><div class="room" id="room"></div><div class="hint3d" id="hint3d"></div><div class="dark" id="dark"></div></div>
+  <div id="panel" style="display:flex;flex-direction:column;gap:10px"><div class="kgoal" id="goal"></div><div id="ui"></div></div>
+</main>
+<script>// L1 lab kit (own work, MIT): language, header, stars, toast, confetti, sounds, drag, lesson config, completion events.
+(function (g) {
+  const q = new URLSearchParams(location.search);
+  const LANGS = ['hinglish', 'en', 'hi'];
+  let lang = q.get('lang') || (function () { try { return localStorage.getItem('techlab.lang'); } catch (e) { return null; } })() || 'hinglish';
+  if (!LANGS.includes(lang)) lang = 'hinglish';
+  const t = (o) => (o == null ? '' : typeof o === 'string' ? o : Array.isArray(o) ? (o[{ en: 0, hi: 1, hinglish: 2 }[lang]] ?? o[0]) : (o[lang] ?? o.hinglish ?? o.en));
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const el = (tag, attrs = {}, html) => { const e = document.createElement(tag); for (const k in attrs) { if (k === 'class') e.className = attrs[k]; else if (k === 'style') e.style.cssText = attrs[k]; else if (k.startsWith('on')) e.addEventListener(k.slice(2), attrs[k]); else e.setAttribute(k, attrs[k]); } if (html != null) e.innerHTML = html; return e; };
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+  const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const listeners = [];
+  const cls = +(q.get('class') || 0);
+  let voice = q.get('voice') ? q.get('voice') === '1' : (q.has('class') && cls <= 2);
+  const say = (o) => { if (!voice || !g.speechSynthesis) return; try { const txt = t(o).replace(/[\u{1F000}-\u{1FAFF}\u2600-\u27BF]/gu, ''); speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(txt); u.lang = lang === 'hi' ? 'hi-IN' : 'en-IN'; const v = speechSynthesis.getVoices().find((v) => v.lang === u.lang) || speechSynthesis.getVoices().find((v) => v.lang.startsWith(lang === 'hi' ? 'hi' : 'en')); if (v) u.voice = v; u.rate = cls <= 0 && q.has('class') ? .85 : .95; speechSynthesis.speak(u); } catch (e) {} };
+  const K = { q, t, $, $$, el, esc, reduced, say, get voice() { return voice; }, get lang() { return lang; }, stars: 0,
+    onLang(fn) { listeners.push(fn); },
+    setLang(l) { lang = l; try { localStorage.setItem('techlab.lang', l); } catch (e) {} document.documentElement.lang = l === 'hi' ? 'hi' : 'en'; $$('.kpill button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.l === l)); listeners.forEach((f) => f(l)); },
+    header(title, emoji) {
+      const bar = el('header', { class: 'kbar' });
+      bar.innerHTML = `<span class="kemo" aria-hidden="true">${emoji}</span><h1 id="ktitle"></h1><div class="kctl"><div class="kpill" role="group" aria-label="Language">${[['hinglish', 'Hing'], ['en', 'EN'], ['hi', 'हिं']].map(([l, n]) => `<button data-l="${l}" aria-pressed="${l === lang}">${n}</button>`).join('')}</div><button class="kvoice" id="kvoice" aria-label="Read aloud" aria-pressed="${voice}">🔊</button><div class="kstars" aria-live="polite">⭐ <span id="kstarn">0</span></div></div>`;
+      document.body.prepend(bar); if (window.ResizeObserver) new ResizeObserver(() => document.documentElement.style.setProperty('--kbar-h', bar.offsetHeight + 'px')).observe(bar);
+      const upd = () => { $('#ktitle').textContent = t(title); document.title = t(title) + ' · Tech & AI Lab'; };
+      upd(); listeners.push(upd);
+      $$('.kpill button', bar).forEach((b) => b.addEventListener('click', () => K.setLang(b.dataset.l)));
+      $('#kvoice', bar).addEventListener('click', (e) => { voice = !voice; e.currentTarget.setAttribute('aria-pressed', voice); if (voice) { const gl = $('#goal'); say(gl ? gl.textContent : title); } else if (g.speechSynthesis) speechSynthesis.cancel(); });
+      setTimeout(() => { const gl = $('#goal'); if (gl) new MutationObserver(() => say(gl.textContent)).observe(gl, { childList: true, subtree: true }); }, 0);
+      document.body.append(el('div', { class: 'ktoast', id: 'ktoast', role: 'status' }), el('canvas', { id: 'kconf' }), el('div', { class: 'kwin', id: 'kwin', 'data-ov-modal': '', role: 'dialog', 'aria-modal': 'true' }, '<div><div class="big" id="kwinE">🏆</div><h2 id="kwinH"></h2><p id="kwinP"></p><button class="kbtn" id="kwinB"></button></div>'));
+      document.addEventListener('pointerdown', (ev) => { K._lastTap = ev.target; K._tapAt = [ev.clientX, ev.clientY + scrollY]; }, true); let rp = 0; const re = () => { const e = K._tel || (K._tel = $('#ktoast')); if (!e || !e.classList.contains('show') || rp) return; rp = 1; requestAnimationFrame(() => { rp = 0; K._place(); }); }; K._re = re;
+      addEventListener('scroll', re, { passive: true }); addEventListener('resize', re); document.addEventListener('animationend', re, true); document.addEventListener('transitionend', re, true); K._mo = new MutationObserver((rs) => { const e = K._tel || (K._tel = $('#ktoast')); if (rs.some((r) => !e.contains(r.target))) re(); });
+      $('#kwinB').addEventListener('click', () => { $('#kwin').classList.remove('show'); K._winCb && K._winCb(); });
+    },
+    star(n = 1) { K.stars += n; const s = $('#kstarn'); if (s) { s.textContent = K.stars; s.parentElement.classList.remove('bump'); void s.offsetWidth; s.parentElement.classList.add('bump'); } },
+    // Toast never covers text: it floats in a free band of the screen (bottom first); with no free band it drops into the page
+    // flow under what the child just tapped (pushes content down). Closes on its own (2.5 s by default).
+    toast(msg, kind = '', ms = 2500) { const e = K._tel || (K._tel = $('#ktoast')); clearTimeout(K._tt); clearInterval(K._ti); if (e.classList.contains('inline')) document.body.append(e);
+      e.className = 'ktoast ' + kind; e._spot = null; e.textContent = t(msg); say(msg); e.style.left = e.style.top = '0px'; e.classList.add('show'); K._place(); K._ti = setInterval(K._place, 200); K._mo && K._mo.observe(document.body, { subtree: true, childList: true, attributes: true, characterData: true });
+      K._tt = setTimeout(() => { clearInterval(K._ti); K._mo && K._mo.disconnect(); e.classList.remove('show'); setTimeout(() => { if (!e.classList.contains('show') && e.classList.contains('inline')) { e.classList.remove('inline'); document.body.append(e); } }, 320); }, ms); },
+    _place() { const e = K._tel || (K._tel = $('#ktoast')); if (!e.classList.contains('show')) return; if (!e.isConnected) { e.classList.remove('inline'); document.body.append(e); } if (e.classList.contains('inline')) return;
+      const vw = document.documentElement.clientWidth, vh = innerHeight, w = e.offsetWidth, h = e.offsetHeight, m = 8; let top = m; const bar = $('.kbar'); if (bar) top = Math.max(top, bar.getBoundingClientRect().bottom + m);
+      const obs = [], rg = document.createRange(), tw = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); let n;
+      while ((n = tw.nextNode())) { if (!n.nodeValue.trim()) continue; const p = n.parentElement; if (!p || e.contains(p) || /^(SCRIPT|STYLE)$/.test(p.tagName)) continue; rg.selectNodeContents(n); for (const q of rg.getClientRects()) if (q.width >= 1 && q.bottom > 0 && q.top < vh) obs.push(q); }
+      $$('input,select,textarea,button,a[href],[role=button]').filter((x) => !e.contains(x)).forEach((x) => { const q = x.getBoundingClientRect(); if (q.width && q.bottom > 0 && q.top < vh) obs.push(q); });
+      const free = (x, y) => !obs.some((q) => q.left < x + w + 4 && q.right > x - 4 && q.top < y + h + 4 && q.bottom > y - 4);
+      let s = e._spot && free(e._spot.x, e._spot.y) ? e._spot : null;
+      if (!s) outer: for (let y = vh - h - m; y >= top; y -= 6) for (const x of [(vw - w) / 2, m, vw - w - m]) if (free(x, y)) { s = { x, y }; break outer; }
+      if (s) { e._spot = s; e.style.left = s.x + 'px'; e.style.top = s.y + 'px'; return; }
+      e._spot = null; e.classList.add('inline'); e.style.left = e.style.top = '';
+      let a = K._lastTap && K._lastTap.isConnected && !e.contains(K._lastTap) ? K._lastTap : null; if (!a && K._tapAt) { const y = K._tapAt[1] - scrollY; if (y > 0 && y < innerHeight) a = document.elementFromPoint(K._tapAt[0], y); } if (!a || e.contains(a)) a = $('main') || document.body.lastElementChild;
+      // never drop the note inside a 3D scene, a transformed, positioned-out or clipping box
+      const boxedIn = (a0) => { for (let p = a0; p && p !== document.body; p = p.parentElement) { const c = getComputedStyle(p); if (c.transform !== 'none' || c.transformStyle === 'preserve-3d' || c.perspective !== 'none' || c.position === 'absolute' || c.position === 'fixed' || (p !== a0 && c.overflow !== 'visible')) return true; } return false; };
+      while (a.parentElement && a.parentElement !== document.body) { const d = getComputedStyle(a.parentElement), me = getComputedStyle(a);
+        if (me.display !== 'inline' && !(a instanceof SVGElement) && (d.display === 'block' || d.display === 'flow-root' || d.display === 'grid' || (d.display === 'flex' && d.flexDirection.startsWith('column'))) && a.getBoundingClientRect().width >= Math.min(260, innerWidth * 0.6) && !boxedIn(a)) break; a = a.parentElement; }
+      a.after(e); e.scrollIntoView({ block: 'nearest' }); },
+    win(head, body, btn, emoji = '🏆', cb) { $('#kwinE').textContent = emoji; $('#kwinH').textContent = t(head); $('#kwinP').textContent = t(body); $('#kwinB').textContent = t(btn || ['Play again', 'फिर खेलो', 'Phir khelo']); K._winCb = cb; $('#kwin').classList.add('show'); K.confetti(); K.sfx('win'); say(t(head) + '. ' + t(body)); },
+    done(lab, mode, result) { const msg = { type: 'techlab:lab-complete', lab, mode, result, stars: K.stars }; try { parent !== window && parent.postMessage(msg, '*'); } catch (e) {} g.__labResult = msg; },
+    confetti() { if (reduced()) return; const c = $('#kconf'), x = c.getContext('2d'); const wn = $('#kwin'); if (wn.classList.contains('show')) wn.prepend(c); else document.body.append(c); const W = c.width = innerWidth, H = c.height = innerHeight; const cols = ['#1D4ED8', '#8B3DFF', '#FF7A1A', '#F5B90A', '#14B8A6', '#FF6B57', '#02CFF9']; const P = Array.from({ length: 90 }, () => ({ x: W / 2, y: H / 2.2, vx: (Math.random() - .5) * 14, vy: -Math.random() * 14 - 4, r: Math.random() * 6 + 4, c: cols[Math.random() * cols.length | 0], a: Math.random() * 6, va: (Math.random() - .5) * .4 })); let f = 0; (function tick() { x.clearRect(0, 0, W, H); P.forEach((p) => { p.vy += .45; p.x += p.vx; p.y += p.vy; p.a += p.va; x.save(); x.translate(p.x, p.y); x.rotate(p.a); x.fillStyle = p.c; x.fillRect(-p.r / 2, -p.r / 4, p.r, p.r / 2); x.restore(); }); if (++f < 110) requestAnimationFrame(tick); else x.clearRect(0, 0, W, H); })(); },
+    _ac: null,
+    sfx(kind) { try { const ac = K._ac || (K._ac = new (g.AudioContext || g.webkitAudioContext)()); const n = { good: [[660, .07], [880, .1]], bad: [[220, .15]], tap: [[520, .04]], win: [[523, .1], [659, .1], [784, .1], [1047, .22]], move: [[400, .03]] }[kind] || [[500, .05]]; let t0 = ac.currentTime; n.forEach(([f, d]) => { const o = ac.createOscillator(), gn = ac.createGain(); o.type = kind === 'bad' ? 'sawtooth' : 'triangle'; o.frequency.value = f; gn.gain.setValueAtTime(.0001, t0); gn.gain.exponentialRampToValueAtTime(.18, t0 + .01); gn.gain.exponentialRampToValueAtTime(.0001, t0 + d); o.connect(gn).connect(ac.destination); o.start(t0); o.stop(t0 + d + .02); t0 += d; }); } catch (e) {} },
+    // Pointer drag: el follows finger; onDrop(el, x, y) returns true to accept, else it flies back.
+    draggable(node, onDrop, onStart) {
+      node.style.touchAction = 'none';
+      node.addEventListener('pointerdown', (ev) => {
+        if (node.dataset.locked) return; ev.preventDefault(); node.setPointerCapture(ev.pointerId); onStart && onStart(node);
+        const r = node.getBoundingClientRect(), ox = ev.clientX - r.left, oy = ev.clientY - r.top; const ghost = node.cloneNode(true);
+        ghost.style.cssText += `;position:fixed;left:${r.left}px;top:${r.top}px;width:${r.width}px;height:${r.height}px;margin:0;z-index:50;pointer-events:none;transform:scale(1.08) rotate(-3deg);box-shadow:0 14px 30px rgba(0,0,0,.25);transition:none`; ghost.classList.add('dragging'); document.body.append(ghost); node.style.opacity = '.25'; K.sfx('tap');
+        const mv = (e) => { ghost.style.left = e.clientX - ox + 'px'; ghost.style.top = e.clientY - oy + 'px'; K._hover && K._hover(e.clientX, e.clientY); };
+        const up = (e) => { node.removeEventListener('pointermove', mv); node.removeEventListener('pointerup', up); node.removeEventListener('pointercancel', up); K._hover && K._hover(-1, -1);
+          const ok = onDrop(node, e.clientX, e.clientY); if (ok) { ghost.remove(); node.style.opacity = ''; } else { ghost.style.transition = 'left .3s, top .3s, transform .3s'; ghost.style.left = r.left + 'px'; ghost.style.top = r.top + 'px'; ghost.style.transform = 'none'; setTimeout(() => { ghost.remove(); node.style.opacity = ''; }, 300); } };
+        node.addEventListener('pointermove', mv); node.addEventListener('pointerup', up); node.addEventListener('pointercancel', up);
+      });
+    },
+    hit(node, x, y, pad = 10) { const r = node.getBoundingClientRect(); return x >= r.left - pad && x <= r.right + pad && y >= r.top - pad && y <= r.bottom + pad; },
+    async lessonConfig() { const p = q.get('lesson'); const cfg = {}; if (p) { try { const L = await (await fetch(p)).json(); Object.assign(cfg, L.play && L.play.config, { goal: L.play && L.play.goal }); } catch (e) { console.warn('lesson config not loaded', e); } } for (const k of ['mode', 'level', 'class']) if (q.get(k)) cfg[k] = q.get(k); return cfg; },
+    shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.random() * (i + 1) | 0; [a[i], a[j]] = [a[j], a[i]]; } return a; },
+  };
+  document.documentElement.lang = lang === 'hi' ? 'hi' : 'en';
+  g.K = K;
+})(window);
+</script>
+<script>
+(async function () {
+const { t, $, $$, el } = K;
+K.header(['Meet the computer\'s body', 'कंप्यूटर का शरीर', 'Computer ki body'], '🖥️');
+const cfg = await K.lessonConfig();
+const MODES = {
+  'find-computers': { n: ['Find computers', 'कंप्यूटर ढूँढो', 'Computer dhoondo'], goal: ['Tap every thing that has a computer inside.', 'हर उस चीज़ पर टैप करो जिसमें कंप्यूटर है।', 'Har us cheez par tap karo jiske andar computer hai.'] },
+  'name-parts': { n: ['Name the parts', 'हिस्सों के नाम', 'Parts ke naam'], goal: ['Drag each name onto the right part. Swipe the stage to spin the 3D computer.', 'हर नाम को सही हिस्से पर खींचो। 3D कंप्यूटर घुमाने के लिए स्टेज पर स्वाइप करो।', 'Har naam ko sahi part par drag karo. 3D computer ghumane ke liye stage par swipe karo.'] },
+  'io-sort': { n: ['Input or output?', 'इनपुट या आउटपुट?', 'Input ya output?'], goal: ['Drop each device into INPUT (gives to the computer) or OUTPUT (gets from it).', 'हर डिवाइस को INPUT (कंप्यूटर को देता है) या OUTPUT (उससे मिलता है) में डालो।', 'Har device ko INPUT (computer ko deta hai) ya OUTPUT (usse milta hai) mein daalo.'] },
+  'brain-desk-bag': { n: ['Brain, desk, bag', 'दिमाग, मेज़, बैग', 'Dimaag, desk, bag'], goal: ['Move the Drawing app from Storage to the RAM desk, let the CPU draw, and SAVE before the power cut!', 'ड्रॉइंग ऐप को स्टोरेज से RAM मेज़ पर लाओ, CPU को ड्रॉ करने दो, और बिजली जाने से पहले SAVE करो!', 'Drawing app ko Storage se RAM desk par lao, CPU ko draw karne do, aur power cut se pehle SAVE karo!'] },
+  'phone-teardown': { n: ['Open a phone', 'फ़ोन खोलो', 'Phone kholo'], goal: ['Open the 3D phone and sort every hidden part.', '3D फ़ोन खोलो और हर छिपे हिस्से को छाँटो।', '3D phone kholo aur har chhupe part ko sort karo.'] },
+};
+let mode = MODES[cfg.mode] ? cfg.mode : 'name-parts';
+const modesEl = $('#modes');
+function drawModes() { modesEl.innerHTML = ''; for (const m in MODES) { const b = el('button', { 'aria-pressed': m === mode, role: 'tab' }, t(MODES[m].n)); b.onclick = () => { mode = m; start(); }; modesEl.append(b); } }
+// ---------- 3D helpers ----------
+function box(w, h, d, c, faces = {}) {
+  const b = el('div', { class: 'box3d', style: `width:${w}px;height:${h}px;left:${-w / 2}px;top:${-h / 2}px` });
+  const shade = (k) => faces[k + 'Bg'] || c[k] || c.side || c.front;
+  const F = [['front', w, h, `translateZ(${d / 2}px)`], ['back', w, h, `rotateY(180deg) translateZ(${d / 2}px)`], ['right', d, h, `rotateY(90deg) translateZ(${w / 2}px)`], ['left', d, h, `rotateY(-90deg) translateZ(${w / 2}px)`], ['top', w, d, `rotateX(90deg) translateZ(${h / 2}px)`], ['bottom', w, d, `rotateX(-90deg) translateZ(${h / 2}px)`]];
+  for (const [k, fw, fh, tr] of F) { const f = el('div', { class: 'face ' + k, style: `width:${fw}px;height:${fh}px;left:${(w - fw) / 2}px;top:${(h - fh) / 2}px;transform:${tr};background:${shade(k)}` }, faces[k] || ''); b.append(f); }
+  return b;
+}
+function part(id, x, y, z, b, ry = 0) { const p = el('div', { class: 'part', 'data-id': id, style: `transform:translate3d(${x}px,${y}px,${z}px) rotateY(${ry}deg)` }); p.append(b); return p; }
+let S = 1; const calcS = () => { const r = document.getElementById('stage').getBoundingClientRect(); S = Math.min(1.15, Math.max(.6, Math.min(r.width / 430, r.height / 320))); };
+function buildComputer(world) {
+  world.innerHTML = '';
+  const keys = Array.from({ length: 36 }, () => '<i style="display:inline-block;width:9%;height:22%;margin:1.5% .5%;background:#e2e8f0;border-radius:2px;box-shadow:0 1px 0 #94a3b8"></i>').join('');
+  const P = [
+    part('monitor', -10 * S, -70 * S, 0, box(170 * S, 110 * S, 14 * S, { front: '#1e293b', side: '#334155', back: '#475569' }, { front: `<div class="screen" id="scr" style="position:absolute;inset:7%;border-radius:4px"><span class="face-ico">🙂</span></div>`, back: '<div style="position:absolute;inset:30% 35%;border-radius:6px;background:#334155;box-shadow:inset 0 0 0 2px #64748b"></div>' })),
+    part('stand', -10 * S, -5 * S, 0, box(20 * S, 22 * S, 10 * S, { front: '#64748b', side: '#475569' })),
+    part('cpu', 120 * S, -40 * S, -10 * S, box(56 * S, 140 * S, 120 * S, { front: '#334155', side: '#1e293b', top: '#475569' }, { front: '<div style="position:absolute;left:30%;top:10%;width:40%;height:8%;border-radius:4px;background:#0f172a"></div><div style="position:absolute;left:38%;top:70%;width:24%;aspect-ratio:1;border-radius:50%;background:#14B8A6;box-shadow:0 0 10px #14B8A6"></div>', right: '<div style="position:absolute;inset:14% 12%;background:repeating-linear-gradient(0deg,#0f172a 0 3px,transparent 3px 8px);opacity:.6;border-radius:6px"></div>' })),
+    part('keyboard', -20 * S, 40 * S, 70 * S, box(170 * S, 10 * S, 54 * S, { front: '#cbd5e1', side: '#94a3b8', top: '#f1f5f9' }, { top: `<div style="position:absolute;inset:5%;line-height:0">${keys}</div>` })),
+    part('mouse', 100 * S, 40 * S, 80 * S, box(26 * S, 12 * S, 40 * S, { front: '#e2e8f0', side: '#cbd5e1', top: '#f8fafc' }, { top: '<div style="position:absolute;left:48%;top:0;width:4%;height:45%;background:#94a3b8"></div>' })),
+    part('speaker', -138 * S, -40 * S, 10 * S, box(40 * S, 70 * S, 40 * S, { front: '#0f172a', side: '#1e293b' }, { front: '<div style="position:absolute;left:15%;top:38%;width:70%;aspect-ratio:1;border-radius:50%;background:radial-gradient(#64748b 20%,#1e293b 22% 50%,#334155 52%)"></div><div style="position:absolute;left:32%;top:10%;width:36%;aspect-ratio:1;border-radius:50%;background:radial-gradient(#94a3b8 20%,#1e293b 25%)"></div>' })),
+  ];
+  P.forEach((p) => world.append(p));
+}
+// rotate by swipe + gentle idle sway
+let ry = -18, dragging = false, lastX = 0, idle = true, raf;
+const stage = $('#stage'), world = $('#world');
+stage.addEventListener('pointerdown', (e) => { if (e.target.closest('.obj,.app,.zone button')) return; dragging = true; idle = false; lastX = e.clientX; });
+addEventListener('pointermove', (e) => { if (!dragging) return; ry += (e.clientX - lastX) * .5; lastX = e.clientX; world.style.setProperty('--ry', ry + 'deg'); });
+addEventListener('pointerup', () => { dragging = false; });
+let t0 = performance.now();
+function loop(now) { if (idle && !K.reduced()) world.style.setProperty('--ry', (ry + Math.sin((now - t0) / 1400) * 14) + 'deg'); raf = requestAnimationFrame(loop); }
+// ---------- shared tray helpers ----------
+function chip(e, label, data) { const c = el('div', { class: 'chip', 'data-v': data }, `<span class="e">${e}</span><span>${t(label)}</span>`); return c; }
+function flyTo(fromEl, toEl, glyph) { if (K.reduced()) return; const a = fromEl.getBoundingClientRect(), b = toEl.getBoundingClientRect(); const f = el('div', { class: 'flow', style: `left:${a.left + a.width / 2}px;top:${a.top + a.height / 2}px;position:fixed;transition:left .6s cubic-bezier(.5,0,.5,1),top .6s cubic-bezier(.5,-.6,.5,1),opacity .6s` }, glyph); document.body.append(f); requestAnimationFrame(() => requestAnimationFrame(() => { f.style.left = b.left + b.width / 2 + 'px'; f.style.top = b.top + b.height / 2 + 'px'; })); setTimeout(() => f.remove(), 700); }
+// ---------- modes ----------
+const ui = $('#ui'), room = $('#room'), hint = $('#hint3d');
+function setGoal() { $('#goal').innerHTML = `<span style="font-size:22px">🎯</span><div><b>${t(['Goal', 'लक्ष्य', 'Goal'])}:</b> ${t(cfg.mode === mode && cfg.goal ? [cfg.goal.en, cfg.goal.en, cfg.goal.hinglish] : MODES[mode].goal)}</div>`; }
+function start() { drawModes(); setGoal(); ui.innerHTML = ''; room.innerHTML = ''; world.innerHTML = ''; $('#dark').className = 'dark'; clearInterval(K._iv); clearTimeout(K._to); hint.style.display = 'none'; stage.classList.toggle('small', mode === 'io-sort'); stage.style.height = mode === 'brain-desk-bag' ? '300px' : ''; calcS(); ({ 'find-computers': findMode, 'name-parts': nameMode, 'io-sort': ioMode, 'brain-desk-bag': bdbMode, 'phone-teardown': phoneMode })[mode](); }
+K.onLang(() => start());
+
+function findMode() {
+  const items = [['📱', 1, 20, 30, ['A phone is a small computer.', 'फ़ोन एक छोटा कंप्यूटर है।', 'Phone ek chhota computer hai.']], ['💻', 1, 50, 22, ['A laptop is a computer.', 'लैपटॉप एक कंप्यूटर है।', 'Laptop ek computer hai.']], ['📺', 1, 80, 28, ['A smart TV has a computer inside to run apps.', 'स्मार्ट टीवी में ऐप चलाने के लिए कंप्यूटर है।', 'Smart TV mein apps chalane ke liye computer hai.']], ['⌚', 1, 16, 70, ['A smartwatch is a tiny computer on your wrist.', 'स्मार्टवॉच कलाई पर छोटा कंप्यूटर है।', 'Smartwatch kalaai par chhota computer hai.']], ['🧮', 0, 38, 52, ['An abacus helps us count, but we move the beads ourselves — no instructions, no computer.', 'अबेकस गिनती में मदद करता है, पर मोती हम ख़ुद हिलाते हैं — यह कंप्यूटर नहीं।', 'Abacus ginti mein madad karta hai, par moti hum khud hilaate hain — yeh computer nahin.']], ['🎮', 1, 62, 55, ['A game console is a computer for games.', 'गेम कंसोल खेलों का कंप्यूटर है।', 'Game console games ka computer hai.']], ['🪑', 0, 84, 70, ['A chair cannot follow instructions.', 'कुर्सी निर्देश नहीं मान सकती।', 'Kursi instructions follow nahin kar sakti.']], ['📚', 0, 40, 82, ['A book has information but cannot work on it.', 'किताब में जानकारी है पर वह उस पर काम नहीं कर सकती।', 'Kitaab mein jaankari hai par woh us par kaam nahin kar sakti.']], ['🪴', 0, 64, 84, ['A plant is alive, but it is not a computer.', 'पौधा ज़िंदा है, पर कंप्यूटर नहीं।', 'Paudha zinda hai, par computer nahin.']], ['🏧', 1, 88, 48, ['An ATM is a computer that gives cash.', 'ATM नकद देने वाला कंप्यूटर है।', 'ATM cash dene wala computer hai.']], ['⚽', 0, 12, 48, ['A ball is just a ball!', 'गेंद तो बस गेंद है!', 'Ball toh bas ball hai!']]];
+  const need = items.filter((i) => i[1]).length; let got = 0;
+  room.style.background = 'linear-gradient(#fef3c7 0 62%,#fde68a 62%)';
+  room.innerHTML = '<div style="position:absolute;left:6%;top:8%;width:22%;height:26%;border:6px solid #fff;border-radius:8px;background:linear-gradient(#bae6fd,#e0f2fe)"></div>';
+  const info = el('div', { class: 'why' }, t(['Tip: a computer takes input, follows instructions and gives output.', 'संकेत: कंप्यूटर इनपुट लेता है, निर्देश मानता है और आउटपुट देता है।', 'Tip: computer input leta hai, instructions follow karta hai aur output deta hai.']));
+  const prog = el('div', { class: 'ctrl' }, ''); ui.append(info, prog);
+  const upd = () => prog.innerHTML = `<b>${got} / ${need}</b>&nbsp;${t(['computers found', 'कंप्यूटर मिले', 'computer mile'])}`; upd();
+  items.forEach(([e, yes, x, y, why]) => { const o = el('button', { class: 'obj', style: `left:${x}%;top:${y}%`, 'aria-label': e }, e); o.onclick = () => { info.textContent = t(why); if (yes) { if (o.classList.contains('yes')) return; o.classList.add('yes'); got++; K.star(); K.sfx('good'); upd(); if (got === need) { K.done('computer-body', mode, { found: got }); K.win(['You found them all!', 'तुमने सब ढूँढ लिए!', 'Tumne sab dhoondh liye!'], ['Computers hide inside many things around us.', 'कंप्यूटर हमारे आसपास कई चीज़ों में छिपे हैं।', 'Computer hamare aas-paas kai cheezon mein chhupe hain.'], null, '🔍', start); } } else { o.classList.remove('no'); void o.offsetWidth; o.classList.add('no'); K.sfx('bad'); } }; room.append(o); });
+}
+
+function nameMode() {
+  room.style.background = 'none'; hint.style.display = ''; hint.textContent = t(['↔ swipe to spin', '↔ घुमाने के लिए स्वाइप', '↔ swipe karke ghumao']);
+  buildComputer(world); idle = true;
+  const names = [['monitor', '🖥️', ['Monitor', 'मॉनिटर', 'Monitor'], ['Shows pictures — like a face.', 'तस्वीरें दिखाता है — चेहरे जैसा।', 'Picture dikhata hai — chehre jaisa.']], ['keyboard', '⌨️', ['Keyboard', 'कीबोर्ड', 'Keyboard'], ['For typing letters — like fingers writing.', 'अक्षर लिखने के लिए — उँगलियों जैसा।', 'Letters type karne ke liye — ungliyon jaisa.']], ['mouse', '🖱️', ['Mouse', 'माउस', 'Mouse'], ['Points and clicks — like a pointing finger.', 'इशारा और क्लिक — इशारा करती उँगली जैसा।', 'Point aur click — ishaara karti ungli jaisa.']], ['cpu', '🧠', ['CPU box', 'CPU बॉक्स', 'CPU box'], ['Holds the brain (CPU), memory and storage.', 'दिमाग (CPU), मेमोरी और स्टोरेज रखता है।', 'Dimaag (CPU), memory aur storage rakhta hai.']], ['speaker', '🔊', ['Speaker', 'स्पीकर', 'Speaker'], ['Gives sound — like a mouth.', 'आवाज़ देता है — मुँह जैसा।', 'Awaaz deta hai — munh jaisa.']]];
+  const tray = el('div', { class: 'tray' }); const why = el('div', { class: 'why' }, t(['Drag a name and drop it on the part.', 'नाम खींचकर हिस्से पर छोड़ो।', 'Naam drag karke part par chhodo.'])); ui.append(tray, why);
+  let placed = 0;
+  K._hover = (x, y) => $$('.part', world).forEach((p) => p.classList.toggle('glow', x > 0 && K.hit(p.querySelector('.front'), x, y, 6)));
+  K.shuffle(names).forEach(([id, e, label, about]) => { const c = chip(e, label, id); tray.append(c); K.draggable(c, (node, x, y) => {
+    const target = $$('.part', world).find((p) => K.hit(p.querySelector('.front'), x, y, 6) || K.hit(p.querySelector('.top'), x, y, 4));
+    if (!target) return false;
+    const tid = target.dataset.id === 'stand' ? 'monitor' : target.dataset.id;
+    if (tid !== id) { K.toast(['Not this one — try again!', 'यह नहीं — फिर कोशिश करो!', 'Yeh nahin — phir try karo!'], 'bad'); K.sfx('bad'); return false; }
+    c.classList.add('used'); c.dataset.locked = 1; placed++; const p = $(`.part[data-id="${id}"]`, world); p.classList.add('done');
+    const tag = el('div', { class: 'tag3d', style: 'left:50%;top:0;transform:translate(-50%,-100%) translateZ(60px)' }, `${e} ${t(label)}`); const fb = p.querySelector('.box3d'); tag.style.left = fb.offsetLeft + fb.offsetWidth / 2 + 'px'; tag.style.top = fb.offsetTop - 6 + 'px'; p.append(tag);
+    why.textContent = `${t(label)}: ${t(about)}`; K.star(); K.sfx('good');
+    if (placed === names.length) { const s = $('#scr .face-ico'); s.textContent = '😄'; s.style.transform = 'scale(1.4)'; K.done('computer-body', mode, { placed }); setTimeout(() => K.win(['Computer body complete!', 'कंप्यूटर का शरीर पूरा!', 'Computer ki body complete!'], ['All 5 parts named. Each part has its own job, like our body.', 'पाँचों हिस्सों के नाम लग गए। हर हिस्से का अपना काम है, हमारे शरीर की तरह।', 'Paanchon parts ke naam lag gaye. Har part ka apna kaam hai, hamari body ki tarah.'], null, '🏅', start), 500); }
+    return true; }); });
+}
+
+function ioMode() {
+  room.style.background = 'none'; buildComputer(world); idle = true;
+  const devs = K.shuffle([['⌨️', 'in', ['Keyboard', 'कीबोर्ड', 'Keyboard']], ['🖱️', 'in', ['Mouse', 'माउस', 'Mouse']], ['🎤', 'in', ['Microphone', 'माइक्रोफ़ोन', 'Microphone']], ['📷', 'in', ['Camera', 'कैमरा', 'Camera']], ['🕹️', 'in', ['Joystick', 'जॉयस्टिक', 'Joystick']], ['🖨️', 'out', ['Printer', 'प्रिंटर', 'Printer']], ['🔊', 'out', ['Speaker', 'स्पीकर', 'Speaker']], ['🎧', 'out', ['Headphones', 'हेडफ़ोन', 'Headphones']], ['📽️', 'out', ['Projector', 'प्रोजेक्टर', 'Projector']], ['📱', 'both', ['Touchscreen', 'टचस्क्रीन', 'Touchscreen']]]);
+  const bins = el('div', { class: 'bins' }, `<div class="bin in" data-b="in"><h3>⬅ INPUT</h3><small>${t(['gives to computer', 'कंप्यूटर को देता है', 'computer ko deta hai'])}</small><div class="got"></div></div><div class="bin out" data-b="out"><h3>OUTPUT ➡</h3><small>${t(['gets from computer', 'कंप्यूटर से मिलता है', 'computer se milta hai'])}</small><div class="got"></div></div>`);
+  const tray = el('div', { class: 'tray' }); ui.append(bins, tray); let done = 0;
+  K._hover = (x, y) => $$('.bin', bins).forEach((b) => b.classList.toggle('hot', x > 0 && K.hit(b, x, y)));
+  devs.forEach(([e, kind, label]) => { const c = chip(e, label, kind); tray.append(c); K.draggable(c, (node, x, y) => { const b = $$('.bin', bins).find((b) => K.hit(b, x, y)); if (!b) return false; const bk = b.dataset.b;
+    if (kind !== 'both' && kind !== bk) { K.toast(kind === 'in' ? [`${label[0]} sends information INTO the computer.`, `${label[1]} जानकारी कंप्यूटर के अंदर भेजता है।`, `${label[2]} jaankari computer ke ANDAR bhejta hai.`] : [`${label[0]} brings the result OUT to us.`, `${label[1]} परिणाम बाहर लाता है।`, `${label[2]} result BAHAR laata hai.`], 'bad', 2600); K.sfx('bad'); return false; }
+    c.classList.add('used'); c.dataset.locked = 1; done++; b.querySelector('.got').append(el('span', { title: t(label) }, e)); K.star(); K.sfx('good');
+    const scr = $('#scr'); if (scr) flyTo(bk === 'in' ? b : scr, bk === 'in' ? scr : b, bk === 'in' ? '🔵' : '🟠');
+    if (kind === 'both') K.toast(['Touchscreen is BOTH: it feels your touch and shows pictures!', 'टचस्क्रीन दोनों है: स्पर्श महसूस करती है और तस्वीर दिखाती है!', 'Touchscreen DONO hai: touch feel karti hai aur picture dikhati hai!'], 'good', 3000);
+    if (done === devs.length) { K.done('computer-body', mode, { sorted: done }); K.win(['Sorting champion!', 'छँटाई चैंपियन!', 'Sorting champion!'], ['Input goes in, output comes out — and some devices do both.', 'इनपुट अंदर, आउटपुट बाहर — और कुछ डिवाइस दोनों करते हैं।', 'Input andar, output bahar — aur kuch devices dono karte hain.'], null, '🥇', start); }
+    return true; }); });
+}
+
+function bdbMode() {
+  room.style.background = 'none';
+  room.innerHTML = `<div class="bdb"><div class="zone st" id="bag"><h3>🎒 ${t(['Storage (bag)', 'स्टोरेज (बैग)', 'Storage (bag)'])}</h3><div class="slots" id="bagS"></div></div><div class="zone" id="desk"><h3>🪑 ${t(['RAM (desk)', 'RAM (मेज़)', 'RAM (desk)'])}</h3><div class="slots" id="deskS"><div class="slot">—</div><div class="slot">—</div></div><canvas class="mini" id="mini" width="160" height="120"></canvas></div><div class="zone cpu" id="cpu"><h3>🧠 CPU</h3><div class="big">🧠</div><small id="cpuS">${t(['waiting…', 'इंतज़ार…', 'wait kar raha…'])}</small></div></div>`;
+  const apps = [['🎨', 'draw', ['Drawing app', 'ड्रॉइंग ऐप', 'Drawing app']], ['🎮', 'game', ['Game', 'गेम', 'Game']], ['🎵', 'music', ['Music', 'संगीत', 'Music']]];
+  const bagS = $('#bagS'), deskS = $('#deskS'), mini = $('#mini').getContext('2d'); let onDesk = [], strokes = 0, saved = false, phase = 1;
+  const ctrl = el('div', { class: 'ctrl' }); const why = el('div', { class: 'why' }); ui.append(why, ctrl);
+  const say = (m) => why.textContent = t(m);
+  say(['Step 1: drag the 🎨 Drawing app from the bag onto the RAM desk.', 'कदम 1: 🎨 ड्रॉइंग ऐप को बैग से RAM मेज़ पर खींचो।', 'Step 1: 🎨 Drawing app ko bag se RAM desk par drag karo.']);
+  function renderDesk() { $$('.slot', deskS).forEach((s, i) => { const a = onDesk[i]; s.className = 'slot' + (a ? ' fill' : ''); s.textContent = a ? `${a[0]} ${t(a[2])}` : '—'; }); }
+  apps.forEach((a) => { const c = el('div', { class: 'app' }, `${a[0]} ${t(a[2])}`); bagS.append(c); K.draggable(c, (n, x, y) => { if (!K.hit($('#desk'), x, y)) return false; if (onDesk.find((o) => o[1] === a[1])) return false;
+    if (onDesk.length >= 2) { K.toast(['The desk is full! Small RAM = fewer apps at once. Tap an app on the desk to close it.', 'मेज़ भर गई! कम RAM = एक साथ कम ऐप। बंद करने के लिए मेज़ पर ऐप टैप करो।', 'Desk bhar gaya! Kam RAM = ek saath kam apps. Band karne ke liye desk par app tap karo.'], 'bad', 3200); K.sfx('bad'); return false; }
+    onDesk.push(a); renderDesk(); K.sfx('good'); flyTo(c, $('#desk'), a[0]);
+    if (a[1] === 'draw' && phase === 1) { phase = 2; K.star(); say(['Step 2: the app is on the desk (RAM). Tap "CPU, draw!" 3 times.', 'कदम 2: ऐप मेज़ (RAM) पर है। "CPU, ड्रॉ करो!" 3 बार दबाओ।', 'Step 2: app desk (RAM) par hai. "CPU, draw karo!" 3 baar dabao.']); drawBtn.disabled = false; }
+    return false; }); });
+  deskS.addEventListener('click', (e) => { const s = e.target.closest('.slot'); if (!s) return; const i = $$('.slot', deskS).indexOf(s); if (onDesk[i] && !(onDesk[i][1] === 'draw' && phase > 1 && phase < 5)) { onDesk.splice(i, 1); renderDesk(); K.sfx('tap'); } });
+  const drawBtn = el('button', { class: 'kbtn', disabled: '' }, '🧠 ' + t(['CPU, draw!', 'CPU, ड्रॉ करो!', 'CPU, draw karo!']));
+  const saveBtn = el('button', { class: 'kbtn go', disabled: '' }, '💾 ' + t(['Save', 'सेव', 'Save']));
+  ctrl.append(drawBtn, saveBtn);
+  const cols = ['#FF7A1A', '#1D4ED8', '#14B8A6'];
+  drawBtn.onclick = () => { if (phase !== 2) return; $('#cpu').classList.add('busy'); $('#cpuS').textContent = t(['working…', 'काम कर रहा…', 'kaam kar raha…']); K.sfx('move');
+    setTimeout(() => { $('#cpu').classList.remove('busy'); $('#cpuS').textContent = t(['done ✓', 'हो गया ✓', 'ho gaya ✓']); }, 500);
+    mini.strokeStyle = cols[strokes]; mini.lineWidth = 6; mini.lineCap = 'round'; mini.beginPath(); if (strokes === 0) { mini.arc(80, 60, 30, 0, Math.PI * 2); } else if (strokes === 1) { mini.moveTo(20, 100); mini.lineTo(140, 100); } else { mini.moveTo(80, 10); mini.lineTo(80, 28); mini.moveTo(30, 30); mini.lineTo(44, 42); mini.moveTo(130, 30); mini.lineTo(116, 42); } mini.stroke();
+    if (++strokes === 3) { phase = 3; drawBtn.disabled = true; saveBtn.disabled = false; K.star(); let n = 8; say(['⚠️ Power cut coming! The drawing is only on the desk (RAM). Press Save to put it in the bag (storage)!', '⚠️ बिजली जाने वाली है! ड्रॉइंग सिर्फ़ मेज़ (RAM) पर है। बैग (स्टोरेज) में रखने के लिए Save दबाओ!', '⚠️ Power cut aane wala hai! Drawing sirf desk (RAM) par hai. Bag (storage) mein rakhne ke liye Save dabao!']);
+      const cnt = el('span', { class: 'count' }, ` ${n}s`); why.append(cnt); K._iv = setInterval(() => { n--; cnt.textContent = ` ${n}s`; if (n <= 0) { clearInterval(K._iv); powerCut(); } }, 1000); } };
+  saveBtn.onclick = () => { if (phase !== 3 || saved) return; saved = true; saveBtn.disabled = true; K.star(); K.sfx('good'); const f = el('div', { class: 'app', style: 'border:2px solid var(--emerald)' }, '🖼️ my-drawing.png'); flyTo($('#desk'), $('#bag'), '🖼️'); setTimeout(() => bagS.append(f), 600); K.toast(['Saved! Copied from RAM to storage.', 'सेव हो गया! RAM से स्टोरेज में कॉपी।', 'Save ho gaya! RAM se storage mein copy.'], 'good'); };
+  function powerCut() { phase = 4; const d = $('#dark'); d.textContent = '🔌 ' + t(['Power cut!', 'बिजली गई!', 'Power cut!']); d.classList.add('on'); K.sfx('bad');
+    setTimeout(() => { d.classList.remove('on'); onDesk = []; renderDesk(); mini.clearRect(0, 0, 160, 120); $('#cpuS').textContent = t(['restarted', 'फिर से चालू', 'restart hua']);
+      if (saved) { phase = 5; say(['Power is back. The desk (RAM) is empty, but your drawing is safe in the bag (storage)!', 'बिजली वापस। मेज़ (RAM) ख़ाली है, पर तुम्हारी ड्रॉइंग बैग (स्टोरेज) में सुरक्षित है!', 'Power wapas. Desk (RAM) khaali hai, par tumhari drawing bag (storage) mein safe hai!']); K.done('computer-body', mode, { saved: true }); K.win(['You saved it!', 'तुमने बचा लिया!', 'Tumne bacha liya!'], ['RAM forgets when power goes. Storage remembers. Always press Save!', 'बिजली जाने पर RAM भूल जाती है। स्टोरेज याद रखता है। हमेशा Save दबाओ!', 'Power jaane par RAM bhool jaati hai. Storage yaad rakhta hai. Hamesha Save dabao!'], null, '💾', start); }
+      else { say(['Oh no! The drawing was only in RAM, so it is gone. Try again and press Save in time.', 'अरे! ड्रॉइंग सिर्फ़ RAM में थी, इसलिए चली गई। फिर कोशिश करो और समय पर Save दबाओ।', 'Arre! Drawing sirf RAM mein thi, isliye chali gayi. Phir try karo aur time par Save dabao.']); ctrl.innerHTML = ''; const r = el('button', { class: 'kbtn warn' }, '↻ ' + t(['Try again', 'फिर कोशिश', 'Phir try karo'])); r.onclick = start; ctrl.append(r); } }, 1300); }
+}
+
+function phoneMode() {
+  room.style.background = 'none'; idle = true; hint.style.display = ''; hint.textContent = t(['↔ swipe to spin', '↔ घुमाने के लिए स्वाइप', '↔ swipe karke ghumao']);
+  const W = 120 * S, H = 230 * S, D = 14 * S;
+  const ph = part('phone', 0, -20 * S, 0, box(W, H, D, { front: '#0f172a', side: '#334155', back: '#1e293b' }, { front: `<div class="screen" style="position:absolute;inset:4%;border-radius:12px;font-size:28px">📱</div>`, back: '' }));
+  world.append(ph);
+  const back = el('div', { class: 'face', style: `width:${W}px;height:${H}px;left:${-W / 2}px;top:${-H / 2 - 20 * S}px;transform-origin:left center;transform:translateZ(${-D / 2 - 1}px) rotateY(180deg);background:linear-gradient(150deg,#6d28d9,#1D4ED8);transition:transform 1s cubic-bezier(.5,0,.2,1);backface-visibility:visible;border-radius:14px` }, '<div style="position:absolute;left:10%;top:5%;width:30%;height:15%;border-radius:10px;background:#0f172a;box-shadow:0 0 0 2px #94a3b8"></div>');
+  world.append(back);
+  const inner = el('div', { class: 'face', style: `width:${W * .9}px;height:${H * .92}px;left:${-W * .45}px;top:${-H * .46 - 20 * S}px;transform:translateZ(${-D / 2}px) rotateY(180deg);background:#064e3b;display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:6px;font-size:${20 * S}px;backface-visibility:hidden;border-radius:10px` });
+  world.append(inner);
+  const parts = [['📷', 'in', ['Camera', 'कैमरा', 'Camera']], ['🎤', 'in', ['Microphone', 'माइक्रोफ़ोन', 'Microphone']], ['👆', 'in', ['Fingerprint sensor', 'फ़िंगरप्रिंट सेंसर', 'Fingerprint sensor']], ['🧭', 'in', ['GPS', 'GPS', 'GPS']], ['🧠', 'pr', ['Chip with CPU', 'CPU वाली चिप', 'CPU wali chip']], ['💾', 'st', ['Storage chip', 'स्टोरेज चिप', 'Storage chip']], ['🔊', 'out', ['Speaker', 'स्पीकर', 'Speaker']], ['📳', 'out', ['Vibration motor', 'वाइब्रेशन मोटर', 'Vibration motor']], ['🔋', 'pw', ['Battery', 'बैटरी', 'Battery']], ['📶', 'both', ['Antenna (Wi-Fi, mobile)', 'एंटीना (Wi-Fi, मोबाइल)', 'Antenna (Wi-Fi, mobile)']]];
+  parts.forEach((p) => inner.append(el('div', { style: 'display:grid;place-items:center;background:rgba(255,255,255,.08);border-radius:6px' }, p[0])));
+  const ctrl = el('div', { class: 'ctrl' }); const open = el('button', { class: 'kbtn' }, '🪛 ' + t(['Open the back', 'पीछे का ढक्कन खोलो', 'Peeche ka cover kholo'])); ctrl.append(open); ui.append(ctrl);
+  open.onclick = () => { idle = false; ry = 180; world.style.transition = 'transform 1s'; world.style.setProperty('--ry', '160deg'); setTimeout(() => { world.style.transition = ''; back.style.transform = `translateZ(${-D / 2 - 1}px) rotateY(180deg) rotateY(-110deg)`; }, 900); ctrl.remove(); K.sfx('good'); setTimeout(() => { stage.classList.add('small'); sorter(); }, 1700); };
+  function sorter() {
+    const bins = el('div', { class: 'bins five' }, [['in', '⬅ Input'], ['pr', '🧠 Process'], ['out', 'Output ➡'], ['st', '💾 Storage'], ['pw', '🔋 Power']].map(([k, n]) => `<div class="bin ${k}" data-b="${k}"><h3>${n}</h3><div class="got"></div></div>`).join(''));
+    const tray = el('div', { class: 'tray' }); const why = el('div', { class: 'why' }, t(['Drag each part into its group.', 'हर हिस्से को उसके समूह में खींचो।', 'Har part ko uske group mein drag karo.'])); ui.append(bins, tray, why); let n = 0;
+    K._hover = (x, y) => $$('.bin', bins).forEach((b) => b.classList.toggle('hot', x > 0 && K.hit(b, x, y)));
+    const WHY = { in: ['takes information in', 'जानकारी अंदर लेता है', 'jaankari andar leta hai'], pr: ['does the thinking (processing)', 'सोचने का काम (प्रोसेसिंग) करता है', 'sochne ka kaam (processing) karta hai'], out: ['gives something out to you', 'तुम्हें कुछ बाहर देता है', 'tumhe kuch bahar deta hai'], st: ['keeps photos and apps when off', 'बंद होने पर भी फ़ोटो और ऐप रखता है', 'band hone par bhi photos aur apps rakhta hai'], pw: ['stores energy to run everything', 'सब चलाने के लिए ऊर्जा रखती है', 'sab chalane ke liye energy rakhti hai'] };
+    K.shuffle(parts).forEach(([e, k, label]) => { const c = chip(e, label, k); tray.append(c); K.draggable(c, (node, x, y) => { const b = $$('.bin', bins).find((b) => K.hit(b, x, y)); if (!b) return false; const bk = b.dataset.b; const ok = k === bk || (k === 'both' && (bk === 'in' || bk === 'out'));
+      if (!ok) { K.toast([`${label[0]} ${WHY[k === 'both' ? 'in' : k][0]}.`, `${label[1]} ${WHY[k === 'both' ? 'in' : k][1]}।`, `${label[2]} ${WHY[k === 'both' ? 'in' : k][2]}.`], 'bad', 2600); K.sfx('bad'); return false; }
+      c.classList.add('used'); c.dataset.locked = 1; n++; b.querySelector('.got').append(el('span', {}, e)); K.star(); K.sfx('good');
+      why.textContent = k === 'both' ? t(['The antenna both receives (input) and sends (output) radio signals.', 'एंटीना रेडियो सिग्नल लेता (इनपुट) और भेजता (आउटपुट) दोनों है।', 'Antenna radio signal leta (input) aur bhejta (output) dono hai.']) : `${t(label)}: ${t(WHY[k])}.`;
+      if (n === parts.length) { K.done('computer-body', mode, { sorted: n }); K.win(['Phone engineer!', 'फ़ोन इंजीनियर!', 'Phone engineer!'], ['A phone has input, processing, output, storage and power — a full computer in your pocket.', 'फ़ोन में इनपुट, प्रोसेसिंग, आउटपुट, स्टोरेज और पावर है — जेब में पूरा कंप्यूटर।', 'Phone mein input, processing, output, storage aur power hai — jeb mein poora computer.'], null, '🔧', start); }
+      return true; }); });
+  }
+}
+requestAnimationFrame(loop); start();
+})();
+</script></body></html>

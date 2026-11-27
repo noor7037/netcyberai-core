@@ -1,0 +1,245 @@
+<!doctype html><html lang="en-IN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Virtual micro:bit — NCA Tech & AI Lab</title><style>/* NCA Tech & AI Lab — Level 2 shared lab skin (own work, MIT). Family App lesson tokens: paper, card, ink, saffron, teal, plum. */
+:root{--paper:#FBF8F3;--card:#FFFDF9;--ink:#1C1B1A;--muted:#4B5563;--line:#E7E1D6;--saffron:#E8702A;--saffronD:#C2410C;--teal:#0F766E;--plum:#6D28D9;--sky:#0369A1;
+--mint:#E4F3EA;--butter:#FBF1D3;--lilac:#EFE9FB;--blush:#FBE6E3;--skyT:#E3EEF9;--night:#0B1430;--night2:#16224A;--cyan:#02CFF9;--leaf:#22C55E;--coral:#FF6B57;--gold:#F5B90A;--grape:#8B3DFF;
+--r:16px;--sh:0 1px 0 rgba(28,27,26,.04),0 6px 18px -8px rgba(28,27,26,.18)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans Devanagari",sans-serif;font-variant-numeric:tabular-nums}
+body{background:transparent;min-height:100vh;padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 16px)}
+button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation}
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:8px;padding:10px 14px;background:rgba(251,248,243,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--lilac);flex:none}
+.top h1{font-size:16px;margin:0;line-height:1.2;flex:1;min-width:0}
+.top h1 small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;flex:none;background:var(--card)}
+.lang button{border:0;background:none;padding:6px 9px;font-size:12px;font-weight:600;color:var(--muted);min-height:32px}
+.lang button[aria-pressed=true]{background:var(--ink);color:#fff}
+.wrap{max-width:1100px;margin:0 auto;padding:12px 14px;display:grid;gap:12px;grid-template-columns:minmax(0,1fr)}
+.wrap>*{min-width:0}
+.wrap>div{grid-template-columns:minmax(0,1fr)}
+.card,.stage{min-width:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;box-shadow:var(--sh)}
+.goal{background:var(--butter);border-color:#F1DFA8;display:flex;gap:10px;align-items:flex-start;font-size:14.5px}
+.goal b{color:#8A5300}
+.goal .gi{font-size:20px;line-height:1}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn{border:0;border-radius:12px;padding:11px 16px;font-weight:700;min-height:44px;background:var(--saffron);color:var(--ink);box-shadow:0 3px 0 #B4531B;transition:transform .12s}
+.btn:active{transform:translateY(2px);box-shadow:0 1px 0 #B4531B}
+.btn.ghost{background:var(--card);border:1.5px solid var(--line);box-shadow:none}
+.btn.teal{background:var(--teal);color:#fff;box-shadow:0 3px 0 #0A4F49}
+.btn.plum{background:var(--plum);color:#fff;box-shadow:0 3px 0 #4C1D95}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.chip{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:3px 10px;font-size:12.5px;font-weight:600;background:var(--mint);color:var(--teal)}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;padding-bottom:2px}/* wraps: every mode name always fully visible */
+.tabs button{flex:0 1 auto;max-width:100%;white-space:normal;text-align:center;border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:8px 14px;font-weight:600;font-size:14px;min-height:40px}
+.tabs button[aria-selected=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.stage{background:radial-gradient(120% 90% at 30% 0%,#1D2D63 0%,var(--night) 60%);color:#E8EEFF;border-radius:20px;overflow:hidden;position:relative;border:1px solid #23305E}
+.muted{color:var(--muted)}
+.mission{background:var(--skyT);border-color:#C9DDF2}
+.mission h3{margin:0 0 6px;font-size:15px;color:var(--sky)}
+.toast{position:fixed;left:0;top:0;width:max-content;max-width:min(92vw,340px);background:var(--ink);color:#fff;padding:10px 16px;border-radius:14px;font-weight:600;z-index:50;box-shadow:0 8px 24px rgba(0,0,0,.25);opacity:0;visibility:hidden;transform:scale(.92);transition:opacity .25s,transform .25s,visibility 0s .25s;pointer-events:none;text-align:center;line-height:1.35}
+.toast.on{opacity:1;visibility:visible;transform:none;transition:opacity .25s,transform .25s}
+.toast.inline{position:static;display:block;width:auto;max-width:none;margin:10px 0;grid-column:1/-1;flex:0 0 auto}
+.toast.ok{background:var(--teal)}.toast.bad{background:#B42318}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:-1}/* behind the cards: confetti never covers text */
+.kbd{font-family:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace}
+.hidden{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@keyframes pop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.08);opacity:1}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.shake{animation:shake .3s 2}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
+</style>
+<style>
+#hw{width:100%;display:block}
+.led5{fill:#3A1515;transition:fill .12s}.led5.on{fill:#FF3B30;filter:drop-shadow(0 0 4px #FF3B30)}
+#ledR{transition:fill .1s}
+.wave{fill:none;stroke:#02CFF9;stroke-width:2;opacity:0}
+.sec{border:2px solid var(--line);border-radius:14px;padding:8px;background:#fff;display:grid;gap:6px;transition:border-color .2s}
+.sec.sel{border-color:var(--plum);box-shadow:0 0 0 3px rgba(109,40,217,.15)}
+.sec h4{margin:0;font-size:13px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.blk{display:flex;align-items:center;gap:6px;border-radius:10px;padding:6px 8px;color:#fff;font-weight:700;font-size:13px;animation:pop .25s both;position:relative}
+.blk.run{outline:3px solid #FFD23F;outline-offset:1px}
+.blk select{font:inherit;font-weight:700;border:0;border-radius:6px;padding:3px 4px;background:rgba(255,255,255,.92);color:#1C1B1A;min-height:30px}
+.blk .x{margin-left:auto;border:0;background:rgba(0,0,0,.2);color:#fff;border-radius:8px;width:30px;height:30px}
+.pal{display:flex;gap:6px;flex-wrap:wrap}
+.pal button{border:0;border-radius:10px;padding:8px 10px;color:#fff;font-weight:700;font-size:13px;min-height:40px}
+.empty{font-size:12px;color:var(--muted);padding:4px}
+pre{margin:0;background:#0B1430;color:#C9D4FF;border-radius:12px;padding:10px;font:12.5px/1.5 ui-monospace,Menlo,monospace;white-space:pre-wrap;overflow-wrap:anywhere;overflow-y:auto;max-height:260px}
+pre .k{color:#FF9EC7}pre .c{color:#6B7FB8}pre .n{color:#FFD23F}
+input[type=range]{width:100%;accent-color:var(--saffron);height:32px}
+.readout{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;text-align:center;font-size:11px;color:var(--muted)}
+.readout div{background:var(--paper);border-radius:10px;padding:6px 2px}.readout b{display:block;font-size:16px;color:var(--ink)}
+@media (orientation:landscape) and (min-width:640px){.wrap{grid-template-columns:1fr 1fr}.wrap>.full{grid-column:1/-1}}
+</style></head><body>
+<main class="wrap">
+ <div class="card goal full"><span class="gi">🎯</span><div id="goal"></div></div>
+ <div style="display:grid;gap:12px">
+ <section class="stage" style="padding:8px"><svg id="hw" viewBox="0 0 360 250" role="img" aria-label="micro:bit with LED, buzzer, servo and ultrasonic sensor"></svg></section>
+ <div class="card"><label for="dist" style="font-weight:700;font-size:14px" data-k="obj"></label><input type="range" id="dist" min="2" max="200" value="60">
+  <div class="readout"><div><b id="rD">60 cm</b><span data-k="rD"></span></div><div><b id="rE">0 µs</b><span data-k="rE"></span></div><div><b id="rS">⏹</b><span data-k="rS"></span></div></div>
+  <div class="row" style="margin-top:10px"><button class="btn teal" id="run" data-k="run"></button><button class="btn ghost" id="mute">🔊</button><button class="btn ghost" id="check" data-k="check"></button></div></div>
+ </div>
+ <div style="display:grid;gap:10px">
+  <div class="card" style="display:grid;gap:8px"><div style="font-weight:700;font-size:14px" data-k="blocks"></div>
+   <div class="pal" id="pal"></div>
+   <div class="sec" data-s="start"><h4>▶ <span data-k="onstart"></span></h4><div class="list"></div></div>
+   <div class="sec" style="background:#F5F3FF"><h4>🔁 <span data-k="forever"></span></h4>
+    <div class="blk" style="background:#0369A1">❓ <span data-k="ifd"></span> <select id="thr"></select> cm</div>
+    <div class="sec" data-s="then"><h4>✅ <span data-k="then"></span></h4><div class="list"></div></div>
+    <div class="sec" data-s="else"><h4>↩️ <span data-k="else"></span></h4><div class="list"></div></div></div>
+  </div>
+  <div class="card"><div style="font-weight:700;font-size:14px;margin-bottom:6px" data-k="py"></div><pre id="py"></pre></div>
+ </div>
+ <div class="card mission full"><h3 data-k="mT"></h3><div id="mission"></div></div>
+</main>
+<script>/* NCA Tech & AI Lab — Level 2 shared lab runtime (own work, MIT). No eval, no network except an optional same-origin ?lesson= JSON. */
+(function(g){
+  const qs=new URLSearchParams(location.search);
+  const LANGS=['hinglish','en','hi'];
+  let lang=(qs.get('lang')||localStorage.getItem('nca-tl-lang')||'hinglish'); if(!LANGS.includes(lang)) lang='hinglish';
+  const reduced=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const t=x=>x==null?'':(typeof x==='string'||typeof x==='number')?String(x):(x[lang]||x.hinglish||x.en||'');
+  let STR={}; const listeners=[];
+  function applyI18n(root){(root||document).querySelectorAll('[data-k]').forEach(el=>{const v=STR[el.dataset.k]; if(v) el.innerHTML=t(v);});
+    document.documentElement.lang=lang==='hi'?'hi':(lang==='en'?'en':'en-IN');
+    document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.l===lang));}
+  function setLang(l){lang=l;localStorage.setItem('nca-tl-lang',l);applyI18n();listeners.forEach(f=>f(l));}
+  function header(icon,titleK,subK){const h=document.createElement('header');h.className='top';
+    h.innerHTML=`<div class="ic" aria-hidden="true">${icon}</div><h1><span data-k="${titleK}"></span><small data-k="${subK}"></small></h1>
+    <div class="lang" role="group" aria-label="Language"><button data-l="hinglish">Hinglish</button><button data-l="en">EN</button><button data-l="hi">हिं</button></div>`;
+    document.body.prepend(h); h.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>setLang(b.dataset.l));}
+  // Toast: never covers text. It floats in a free band of the screen (bottom first); if the screen has no free band
+  // it sits in the page flow right under what the child just tapped (pushes content down, covers nothing). Closes after 2.5 s.
+  let toastEl,lastTap=null,tapAt=null;document.addEventListener('pointerdown',e=>{lastTap=e.target;tapAt=[e.clientX,e.clientY+scrollY]},true);let rePend=0;const rePlace=()=>{if(!toastEl||!toastEl.classList.contains('on')||rePend)return;rePend=1;requestAnimationFrame(()=>{rePend=0;placeToast();});};
+  addEventListener('scroll',rePlace,{passive:true});addEventListener('resize',rePlace);document.addEventListener('animationend',rePlace,true);document.addEventListener('transitionend',rePlace,true);const toastMO=new MutationObserver(rs=>{if(rs.some(r=>!toastEl.contains(r.target)))rePlace();});
+  function textRects(skip){const vh=innerHeight,out=[],rg=document.createRange(),w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let n;
+    while((n=w.nextNode())){if(!n.nodeValue.trim())continue;const p=n.parentElement;if(!p||skip.contains(p)||/^(SCRIPT|STYLE)$/.test(p.tagName))continue;rg.selectNodeContents(n);
+      for(const q of rg.getClientRects())if(q.width>=1&&q.bottom>0&&q.top<vh)out.push(q);}
+    document.querySelectorAll('input,select,textarea,button,a[href],[role=button]').forEach(e=>{if(skip.contains(e))return;const q=e.getBoundingClientRect();if(q.width&&q.bottom>0&&q.top<vh)out.push(q)});if(0)document.querySelectorAll('x').forEach(e=>{const q=e.getBoundingClientRect();if(q.width&&q.bottom>0&&q.top<vh)out.push(q)});return out;}
+  function freeSpot(el){const vw=document.documentElement.clientWidth,vh=innerHeight,w=el.offsetWidth,h=el.offsetHeight,m=8;let top=m;
+    const bar=document.querySelector('.top');if(bar)top=Math.max(top,bar.getBoundingClientRect().bottom+m);
+    const obs=textRects(el),xs=[(vw-w)/2,m,vw-w-m],free=(x,y)=>!obs.some(q=>q.left<x+w+4&&q.right>x-4&&q.top<y+h+4&&q.bottom>y-4);
+    const cur=el._spot;if(cur&&free(cur.x,cur.y))return cur;
+    for(let y=vh-h-m;y>=top;y-=6)for(const x of xs)if(free(x,y))return{x,y};return null;}
+  /* never drop the note inside a 3D scene, a transformed, positioned-out or clipping box */
+  function boxedIn(a){for(let p=a;p&&p!==document.body;p=p.parentElement){const c=getComputedStyle(p);if(c.transform!=='none'||c.transformStyle==='preserve-3d'||c.perspective!=='none'||c.position==='absolute'||c.position==='fixed'||(p!==a&&c.overflow!=='visible'))return true;}return false;}
+  function inlineAfter(el){let a=lastTap&&lastTap.isConnected&&!el.contains(lastTap)?lastTap:null;
+    if(!a&&tapAt){const y=tapAt[1]-scrollY;if(y>0&&y<innerHeight)a=document.elementFromPoint(tapAt[0],y);}/* the tapped thing was re-drawn: use what is there now */
+    if(!a||el.contains(a))a=document.querySelector('main')||document.body.lastElementChild;
+    while(a.parentElement&&a.parentElement!==document.body){const d=getComputedStyle(a.parentElement),me=getComputedStyle(a);
+      if(me.display!=='inline'&&!(a instanceof SVGElement)&&(d.display==='block'||d.display==='flow-root'||d.display==='grid'||(d.display==='flex'&&d.flexDirection.startsWith('column')))&&a.getBoundingClientRect().width>=Math.min(260,innerWidth*.6)&&!boxedIn(a))break;a=a.parentElement;}
+    a.after(el);}
+  function placeToast(){const el=toastEl;if(!el.classList.contains('on'))return;if(!el.isConnected){el.classList.remove('inline');document.body.appendChild(el);}
+    if(el.classList.contains('inline'))return;const s=freeSpot(el);
+    if(s){el._spot=s;el.style.left=s.x+'px';el.style.top=s.y+'px';}else{el._spot=null;el.classList.add('inline');el.style.left=el.style.top='';inlineAfter(el);el.scrollIntoView({block:'nearest'});}}
+  function toast(msg,kind){if(!toastEl){toastEl=document.createElement('div');toastEl.setAttribute('role','status');document.body.appendChild(toastEl);}
+    const el=toastEl;clearTimeout(el._t);clearInterval(el._iv);if(el.classList.contains('inline'))document.body.appendChild(el);
+    el.className='toast '+(kind||'');el._spot=null;el.innerHTML=typeof msg==='object'?t(msg):msg;el.style.left='0px';el.style.top='0px';
+    el.classList.add('on');placeToast();el._iv=setInterval(placeToast,200);toastMO.observe(document.body,{subtree:true,childList:true,attributes:true,characterData:true});
+    el._t=setTimeout(()=>{clearInterval(el._iv);toastMO.disconnect();el.classList.remove('on');setTimeout(()=>{if(!el.classList.contains('on')&&el.classList.contains('inline')){el.classList.remove('inline');document.body.appendChild(el);}},320);},2500);}
+  function confetti(){if(reduced())return;const c=document.createElement('canvas');c.className='confetti';c.setAttribute('aria-hidden','true');document.body.appendChild(c);
+    const W=c.width=innerWidth,H=c.height=innerHeight,x=c.getContext('2d');const cols=['#E8702A','#0F766E','#6D28D9','#F5B90A','#02CFF9','#FF6B57'];
+    const P=Array.from({length:90},()=>({x:W/2,y:H*.55,vx:(Math.random()-.5)*9,vy:-Math.random()*11-4,r:Math.random()*6+3,c:cols[Math.random()*6|0],a:Math.random()*6}));
+    let n=0;(function f(){x.clearRect(0,0,W,H);P.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.32;p.a+=.2;x.save();x.translate(p.x,p.y);x.rotate(p.a);x.fillStyle=p.c;x.fillRect(-p.r/2,-p.r/4,p.r,p.r/2);x.restore();});
+      if(++n<110)requestAnimationFrame(f);else c.remove();})();}
+  function tween(ms,step,done){if(reduced()||ms<=0){step(1);done&&done();return()=>{};}let stop=0;const t0=performance.now();
+    const f=now=>{if(stop)return;const k=Math.min(1,(now-t0)/ms);step(k);k<1?requestAnimationFrame(f):done&&done();};requestAnimationFrame(f);return()=>{stop=1};}
+  const ease=k=>k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+  const sleep=ms=>new Promise(r=>setTimeout(r,reduced()?0:ms));
+  // Lesson config: ?lesson=<same-origin json path> (its play.config + play.goal), else inline defaults. ?cfg=<json> also accepted (parsed with JSON.parse only).
+  async function lessonConfig(defaults){let cfg=Object.assign({},defaults),goal=null,id=null;
+    const p=qs.get('lesson');
+    if(p&&/^[\w\-./]+\.json$/.test(p)&&!p.includes('..')){try{const r=await fetch(p);if(r.ok){const j=await r.json();id=j.id;if(j.play){Object.assign(cfg,j.play.config||{});goal=j.play.goal||null;}}}catch(e){}}
+    const c=qs.get('cfg'); if(c){try{Object.assign(cfg,JSON.parse(c));}catch(e){}}
+    return {cfg,goal,id};}
+  // Progress events the Family App shell can listen for (postMessage to the parent frame), plus local XP for the prototype.
+  function emit(type,data){const msg={source:'nca-techlab',type,data:data||{},at:Date.now()};try{parent!==window&&parent.postMessage(msg,'*');}catch(e){}
+    document.dispatchEvent(new CustomEvent('nca-lab',{detail:msg}));}
+  g.NCA={qs,esc,t,get lang(){return lang},setLang,onLang:f=>listeners.push(f),strings:o=>{STR=Object.assign(STR,o);applyI18n();},applyI18n,header,toast,confetti,tween,ease,sleep,reduced,lessonConfig,emit};
+})(window);
+</script>
+<script>
+(async function(){
+const N=NCA,T=N.t,E=N.esc,L=(en,hi,hinglish)=>({en,hi,hinglish}),$=id=>document.getElementById(id);
+N.header('🤖','title','sub');
+N.strings({title:L('Virtual micro:bit','वर्चुअल micro:bit','Virtual micro:bit'),sub:L('Blocks → Python → real-world gadget','ब्लॉक → पायथन → असली गैजेट','Blocks → Python → asli gadget'),obj:L('Move the object in front of the ultrasonic sensor','अल्ट्रासोनिक सेंसर के सामने वस्तु खिसकाओ','Ultrasonic sensor ke saamne object khiskao'),
+rD:L('distance','दूरी','distance'),rE:L('echo time','गूँज समय','echo time'),rS:L('program','प्रोग्राम','program'),run:L('▶ Run','▶ चलाओ','▶ Run'),check:L('✔ Check mission','✔ मिशन जाँचो','✔ Mission check'),blocks:L('Your program — tap a section, then tap a block to add it','आपका प्रोग्राम — कोई भाग चुनो, फिर ब्लॉक जोड़ो','Aapka program — section chuno, phir block tap karke jodo'),
+onstart:L('on start (runs once)','शुरू में (एक बार)','on start (ek baar)'),forever:L('forever (repeats)','हमेशा (दोहराता है)','forever (baar baar)'),ifd:L('if distance <','अगर दूरी <','agar distance <'),then:L('then','तो','to'),else:L('else','वरना','warna'),py:L('The same program in Python (MicroPython style)','यही प्रोग्राम पायथन में (MicroPython शैली)','Yahi program Python mein (MicroPython style)'),mT:L('🚀 Mission','🚀 मिशन','🚀 Mission')});
+const {cfg,goal}=await N.lessonConfig({mission:'parking',preset:'empty'});
+const B={led:{c:'#DC2626',e:'💡',n:L('red LED','लाल LED','red LED'),opts:[['1','ON'],['0','OFF']],d:'1'},
+ icon:{c:'#7C3AED',e:'🟥',n:L('show icon','आइकॉन दिखाओ','icon dikhao'),opts:[['HEART','❤️'],['HAPPY','🙂'],['SAD','🙁'],['NO','✖'],['YES','✔'],['CLEAR','⬛']],d:'HEART'},
+ tone:{c:'#C2410C',e:'🔔',n:L('beep','बीप','beep'),opts:[['262','C4 262 Hz'],['440','A4 440 Hz'],['880','A5 880 Hz'],['1760','A6 1760 Hz']],d:'880'},
+ servo:{c:'#0F766E',e:'⚙️',n:L('servo to','सर्वो को','servo ko'),opts:[['0','0°'],['45','45°'],['90','90°'],['180','180°']],d:'90'},
+ wait:{c:'#475569',e:'⏱️',n:L('wait','रुको','ruko'),opts:[['100','100 ms'],['200','200 ms'],['500','500 ms'],['1000','1 s']],d:'200'}};
+const PRESETS={empty:{start:[['icon','HAPPY']],then:[],else:[],thr:'20'},parking:{start:[['icon','HAPPY']],then:[['led','1'],['tone','880'],['wait','100']],else:[['led','0'],['wait','200']],thr:'20'},gate:{start:[['servo','0']],then:[['servo','90'],['icon','YES']],else:[['servo','0'],['icon','NO']],thr:'15'}};
+let prog=JSON.parse(JSON.stringify(PRESETS[cfg.preset]||PRESETS.empty)),selSec='then',running=false,stopFlag=false,muted=false,curBlk=null,passed=false;
+// hardware state
+const hw={led:0,icon:'CLEAR',servo:0,tone:0};
+const ICONS={HEART:'0101011111111110111000100',HAPPY:'0000001010000001000101110',SAD:'0000001010000000111010001',NO:'1000101010001000101010001',YES:'0000000001000101010001000',CLEAR:'0'.repeat(25)};
+const svg=$('hw');svg.innerHTML=`
+ <defs><radialGradient id="glow"><stop offset="0" stop-color="#FF6B6B" stop-opacity=".9"/><stop offset="1" stop-color="#FF6B6B" stop-opacity="0"/></radialGradient></defs>
+ <rect x="10" y="12" width="120" height="104" rx="14" fill="#1F2937" stroke="#4B5563" stroke-width="2"/><text x="70" y="28" fill="#9CA3AF" font-size="8" text-anchor="middle" font-weight="700">micro:bit</text>
+ ${Array.from({length:25},(_,i)=>`<rect class="led5" id="m${i}" x="${33+(i%5)*16}" y="${34+(i/5|0)*15}" width="7" height="10" rx="2"/>`).join('')}
+ <rect x="10" y="108" width="120" height="14" rx="3" fill="#B8860B"/>${[0,1,2,3,4].map(i=>`<text x="${22+i*24}" y="118" font-size="7" fill="#1C1B1A" font-weight="800">P${i}</text>`).join('')}
+ <path d="M30,122 C30,150 70,150 70,165" stroke="#DC2626" stroke-width="2.5" fill="none"/><path d="M54,122 C54,160 150,140 160,165" stroke="#F59E0B" stroke-width="2.5" fill="none"/><path d="M78,122 C80,190 230,150 240,170" stroke="#10B981" stroke-width="2.5" fill="none"/><path d="M102,122 C102,175 190,110 205,58" stroke="#3B82F6" stroke-width="2.5" fill="none"/>
+ <circle id="ledGlow" cx="70" cy="178" r="26" fill="url(#glow)" opacity="0"/><path d="M60,190 v-18 a10,10 0 0 1 20,0 v18 z" id="ledR" fill="#7F1D1D" stroke="#FCA5A5"/><line x1="64" y1="190" x2="64" y2="205" stroke="#9CA3AF" stroke-width="2"/><line x1="76" y1="190" x2="76" y2="210" stroke="#9CA3AF" stroke-width="2"/><text x="70" y="226" fill="#C9D4FF" font-size="10" text-anchor="middle">LED · P0</text>
+ <g id="buz"><circle cx="160" cy="185" r="17" fill="#111827" stroke="#6B7280" stroke-width="2"/><circle cx="160" cy="185" r="3" fill="#6B7280"/></g><g id="bwaves" opacity="0"><path d="M182,172 q8,13 0,26" stroke="#FFD23F" stroke-width="2" fill="none"/><path d="M190,166 q12,19 0,38" stroke="#FFD23F" stroke-width="2" fill="none"/></g><text x="160" y="226" fill="#C9D4FF" font-size="10" text-anchor="middle">${'Buzzer · P1'}</text>
+ <rect x="222" y="172" width="44" height="30" rx="4" fill="#1E3A8A" stroke="#93C5FD"/><circle cx="234" cy="180" r="5" fill="#E5E7EB"/><g id="arm" style="transform-origin:234px 180px;transition:transform .45s cubic-bezier(.3,1.4,.5,1)"><rect x="232" y="150" width="4" height="32" rx="2" fill="#F9FAFB"/><circle cx="234" cy="152" r="5" fill="#F9FAFB"/></g><text x="244" y="226" fill="#C9D4FF" font-size="10" text-anchor="middle">Servo · P2</text>
+ <rect x="196" y="40" width="40" height="36" rx="4" fill="#1D4ED8" stroke="#93C5FD"/><circle cx="208" cy="58" r="8" fill="#D1D5DB" stroke="#6B7280" stroke-width="2"/><circle cx="226" cy="58" r="8" fill="#D1D5DB" stroke="#6B7280" stroke-width="2"/><text x="216" y="90" fill="#C9D4FF" font-size="9" text-anchor="middle">HC-SR04 · P3</text>
+ ${[0,1,2].map(i=>`<path class="wave" id="w${i}" d="M240,44 q10,14 0,28"/>`).join('')}
+ <line x1="240" y1="104" x2="352" y2="104" stroke="#34457F" stroke-dasharray="3 4"/><g id="objG"><rect x="0" y="34" width="16" height="48" rx="4" fill="#F97316" stroke="#FED7AA"/><text x="8" y="64" font-size="12" text-anchor="middle">🧱</text></g>`;
+function draw(){const bits=ICONS[hw.icon]||ICONS.CLEAR;for(let i=0;i<25;i++)$('m'+i).classList.toggle('on',bits[i]==='1');
+ $('ledR').setAttribute('fill',hw.led?'#FF3B30':'#7F1D1D');$('ledGlow').setAttribute('opacity',hw.led?1:0);
+ $('arm').style.transform=`rotate(${hw.servo-90}deg)`;$('bwaves').setAttribute('opacity',hw.tone?1:0);$('buz').style.transform=hw.tone?`translate(${Math.random()*1.4-.7}px,0)`:'';}
+function dist(){return +$('dist').value;}
+function showDist(){const d=dist();$('rD').textContent=d+' cm';$('rE').textContent=Math.round(2*d/34300*1e6)+' µs';$('objG').setAttribute('transform',`translate(${244+(d-2)/198*96},0)`);}
+$('dist').oninput=showDist;
+// sonar ping animation
+let pingT=0;function ping(now){if(running&&now-pingT>600){pingT=now;[0,1,2].forEach(i=>{const w=$('w'+i);N.tween(500,k=>{w.setAttribute('transform',`translate(${k*((dist()-2)/198*96+4)+i*4},0)`);w.style.opacity=(1-k)*.9;});});}if(hw.tone)draw();requestAnimationFrame(ping);}requestAnimationFrame(ping);
+// audio (WebAudio square wave, like a piezo buzzer)
+let ac=null;function beep(f,ms){if(muted)return;try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();const o=ac.createOscillator(),g=ac.createGain();o.type='square';o.frequency.value=f;g.gain.value=.05;o.connect(g);g.connect(ac.destination);o.start();o.stop(ac.currentTime+ms/1000);}catch(e){}}
+// ---- the interpreter: walks the block lists; every block is one of five known kinds, nothing is evaluated as code
+async function exec(b,real){const [k,v]=b;if(k==='led')hw.led=+v;else if(k==='icon')hw.icon=v;else if(k==='servo')hw.servo=+v;
+ else if(k==='tone'){hw.tone=+v;if(real){draw();beep(+v,150);await N.sleep(150);}hw.tone=0;hw.lastTone=+v;}
+ else if(k==='wait'&&real)await N.sleep(+v);draw();}
+async function run(){if(running){stopFlag=true;return;}running=true;stopFlag=false;$('run').innerHTML=T(L('⏹ Stop','⏹ रोको','⏹ Stop'));$('rS').textContent='▶';
+ for(const b of prog.start){await step('start',b);}
+ let guard=0;while(!stopFlag&&guard++<100000){const sec=dist()<+prog.thr?'then':'else';if(!prog[sec].length)await N.sleep(60);for(const b of prog[sec]){if(stopFlag)break;await step(sec,b);}await N.sleep(20);}
+ running=false;$('rS').textContent='⏹';$('run').innerHTML=T(L('▶ Run','▶ चलाओ','▶ Run'));mark(null);}
+async function step(sec,b){mark(sec,prog[sec].indexOf(b));await exec(b,true);}
+function mark(sec,i){document.querySelectorAll('.blk.run').forEach(x=>x.classList.remove('run'));if(sec){const el=document.querySelector(`.sec[data-s=${sec}] .list`).children[i];el&&el.classList.add('run');}}
+// one dry pass at a given distance → final outputs (used to check the mission without waiting)
+function dry(d){const s={led:0,icon:'CLEAR',servo:0,tones:[]};const ap=(b)=>{const [k,v]=b;if(k==='led')s.led=+v;else if(k==='icon')s.icon=v;else if(k==='servo')s.servo=+v;else if(k==='tone')s.tones.push(+v);};
+ prog.start.forEach(ap);for(let r=0;r<2;r++){s.tones=[];(d<+prog.thr?prog.then:prog.else).forEach(ap);}return s;}
+const MISS={parking:{t:L('Parking sensor: when the object is closer than 20 cm, turn the red LED ON and beep. When it is farther, LED OFF and silent.','पार्किंग सेंसर: वस्तु 20 cm से पास हो तो लाल LED चालू और बीप। दूर हो तो LED बंद और शांत।','Parking sensor: object 20 cm se paas ho to red LED ON aur beep. Door ho to LED OFF aur chup.'),
+  ok:()=>{const a=dry(10),b=dry(50);return +prog.thr<=20&&+prog.thr>10&&a.led===1&&a.tones.length>0&&b.led===0&&b.tones.length===0;}},
+ gate:{t:L('Smart gate: if a car is closer than 15 cm, open the gate (servo 90°) and show ✔; otherwise close it (servo 0°) and show ✖.','स्मार्ट गेट: कार 15 cm से पास हो तो गेट खोलो (सर्वो 90°) और ✔ दिखाओ; वरना बंद करो (सर्वो 0°) और ✖ दिखाओ।','Smart gate: car 15 cm se paas ho to gate kholo (servo 90°) aur ✔ dikhao; warna band karo (servo 0°) aur ✖ dikhao.'),
+  ok:()=>{const a=dry(8),b=dry(60);return +prog.thr===15&&a.servo===90&&a.icon==='YES'&&b.servo===0&&b.icon==='NO';}}};
+const mis=MISS[cfg.mission]||MISS.parking;
+function mission(){$('mission').innerHTML=(passed?'✅ ':'')+T(mis.t);}
+$('check').onclick=()=>{if(mis.ok()){if(!passed){passed=true;N.confetti();N.emit('mission:complete',{lab:'microbit-sim',mission:cfg.mission});}N.toast(L('It works at every distance! Mission complete +XP','हर दूरी पर काम करता है! मिशन पूरा +XP','Har distance pe kaam karta hai! Mission complete +XP'),'ok');}
+ else{const a=dry(10),b=dry(50);N.toast(L(`Not yet. Tested at 10 cm: LED ${a.led?'ON':'OFF'}, ${a.tones.length?'beep':'no beep'}. At 50 cm: LED ${b.led?'ON':'OFF'}, ${b.tones.length?'beep':'no beep'}. Check the threshold too.`,`अभी नहीं। 10 cm पर: LED ${a.led?'चालू':'बंद'}, ${a.tones.length?'बीप':'बीप नहीं'}। 50 cm पर: LED ${b.led?'चालू':'बंद'}, ${b.tones.length?'बीप':'बीप नहीं'}। सीमा भी जाँचो।`,`Abhi nahi. 10 cm pe: LED ${a.led?'ON':'OFF'}, ${a.tones.length?'beep':'no beep'}. 50 cm pe: LED ${b.led?'ON':'OFF'}, ${b.tones.length?'beep':'no beep'}. Threshold bhi check karo.`),'bad');N.emit('answered:wrong');}mission();};
+// editor
+const pal=$('pal');Object.entries(B).forEach(([k,b])=>{const x=document.createElement('button');x.style.background=b.c;x.dataset.b=k;x.onclick=()=>{prog[selSec].push([k,b.d]);ui();};pal.appendChild(x);});
+document.querySelectorAll('.sec[data-s]').forEach(s=>s.addEventListener('click',e=>{if(e.target.closest('select,button'))return;selSec=s.dataset.s;ui();}));
+const thr=$('thr');[5,10,15,20,30,50].forEach(n=>thr.insertAdjacentHTML('beforeend',`<option value="${n}">${n}</option>`));thr.onchange=()=>{prog.thr=thr.value;ui();};
+function ui(){pal.querySelectorAll('button').forEach(x=>x.innerHTML=`+ ${B[x.dataset.b].e} ${E(T(B[x.dataset.b].n))}`);thr.value=prog.thr;
+ document.querySelectorAll('.sec[data-s]').forEach(s=>{const k=s.dataset.s;s.classList.toggle('sel',k===selSec);const list=s.querySelector('.list');list.innerHTML='';
+  if(!prog[k].length)list.innerHTML=`<div class="empty">${T(L('(empty — tap here, then add blocks)','(ख़ाली — यहाँ दबाओ, फिर ब्लॉक जोड़ो)','(khaali — yahan tap karo, phir blocks jodo)'))}</div>`;
+  prog[k].forEach((b,i)=>{const d=B[b[0]],el=document.createElement('div');el.className='blk';el.style.background=d.c;
+   el.innerHTML=`${d.e} ${E(T(d.n))} <select aria-label="value">${d.opts.map(([v,l])=>`<option value="${v}" ${v===b[1]?'selected':''}>${l}</option>`).join('')}</select><button class="x" aria-label="remove">✕</button>`;
+   el.querySelector('select').onchange=e=>{b[1]=e.target.value;ui();};el.querySelector('.x').onclick=()=>{prog[k].splice(i,1);ui();};list.appendChild(el);});});
+ $('py').innerHTML=py();}
+function py(){const line=(b)=>{const [k,v]=b;return k==='led'?`pin0.write_digital(${v})`:k==='icon'?(v==='CLEAR'?'display.clear()':`display.show(Image.${v})`):k==='tone'?`music.pitch(${v}, 150)`:k==='servo'?`servo_angle(pin2, ${v})   <span class="c"># helper: 0.5–2.5 ms pulse</span>`:`sleep(${v})`;};
+ const blk=(arr,ind)=>arr.length?arr.map(b=>ind+line(b)).join('\n'):ind+'<span class="k">pass</span>';
+ return `<span class="k">from</span> microbit <span class="k">import</span> *\n<span class="k">import</span> music\n\n<span class="c"># on start</span>\n${blk(prog.start,'')}\n\n<span class="k">while</span> True:\n    d = distance_cm(pin3)   <span class="c"># helper: echo time × 0.0343 ÷ 2</span>\n    <span class="k">if</span> d &lt; <span class="n">${prog.thr}</span>:\n${blk(prog.then,'        ')}\n    <span class="k">else</span>:\n${blk(prog.else,'        ')}`;}
+$('run').onclick=()=>{try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();ac.resume&&ac.resume();}catch(e){}run();};
+$('mute').onclick=()=>{muted=!muted;$('mute').textContent=muted?'🔇':'🔊';};
+const goalDef=L('Program a real-style gadget. The ultrasonic sensor sends a sound pulse (40 kHz, too high for us to hear) and times its echo; your blocks decide what the LED, buzzer and servo do.','असली जैसा गैजेट प्रोग्राम करो। अल्ट्रासोनिक सेंसर ध्वनि की धड़कन (40 kHz, हमारे सुनने से ऊँची) भेजता है और उसकी गूँज का समय नापता है; आपके ब्लॉक तय करते हैं कि LED, बज़र और सर्वो क्या करें।','Asli jaisa gadget program karo. Ultrasonic sensor ek sound pulse (40 kHz, humare sunne se upar) bhejta hai aur uski echo ka time naapta hai; aapke blocks decide karte hain ki LED, buzzer aur servo kya karein.');
+const setGoal=()=>$('goal').innerHTML=T(goal||goalDef);N.onLang(()=>{setGoal();ui();mission();$('run').innerHTML=T(running?L('⏹ Stop','⏹ रोको','⏹ Stop'):L('▶ Run','▶ चलाओ','▶ Run'));});
+setGoal();ui();mission();showDist();draw();
+window.__lab={load:k=>{prog=JSON.parse(JSON.stringify(PRESETS[k]));ui();},run,dist:d=>{$('dist').value=d;showDist();}};
+})();
+</script></body></html>

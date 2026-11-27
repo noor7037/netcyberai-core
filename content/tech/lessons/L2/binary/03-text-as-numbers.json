@@ -1,0 +1,342 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.binary.03",
+ "level": 2,
+ "classes": [
+  6,
+  7,
+  8
+ ],
+ "unit": "binary",
+ "title": {
+  "en": "How text becomes numbers: ASCII and Unicode",
+  "hi": "टेक्स्ट संख्या कैसे बनता है: ASCII और यूनिकोड",
+  "hinglish": "Text number kaise banta hai: ASCII aur Unicode"
+ },
+ "minutes": 8,
+ "xp": 30,
+ "prereq": [
+  "L2.binary.02"
+ ],
+ "topics": [
+  "hw.binary"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain that each character is stored as an agreed code number",
+   "hi": "समझा सकते हो कि हर अक्षर एक तय कोड संख्या के रूप में रखा जाता है",
+   "hinglish": "Samjha sakte ho ki har character ek tay code number se store hota hai"
+  },
+  {
+   "en": "Use ASCII codes for A–Z, a–z and digits",
+   "hi": "A–Z, a–z और अंकों के ASCII कोड उपयोग कर सकते हो",
+   "hinglish": "A–Z, a–z aur digits ke ASCII codes use kar sakte ho"
+  },
+  {
+   "en": "Explain why Unicode is needed for Hindi, Tamil and emoji",
+   "hi": "समझा सकते हो कि हिंदी, तमिल और इमोजी के लिए यूनिकोड क्यों चाहिए",
+   "hinglish": "Hindi, Tamil aur emoji ke liye Unicode kyun chahiye samjha sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "ASCII",
+   "hinglish": "English letters ke 128 codes",
+   "en": "American Standard Code for Information Interchange: 128 codes (0–127) for English letters, digits and symbols",
+   "hi": "अमेरिकन स्टैंडर्ड कोड फ़ॉर इन्फ़ॉर्मेशन इंटरचेंज: अंग्रेज़ी अक्षरों, अंकों और चिह्नों के 128 कोड (0–127)"
+  },
+  {
+   "term": "Unicode",
+   "hinglish": "Duniya ki har script ka code book",
+   "en": "One universal code for every character in every script, over 1,50,000 characters",
+   "hi": "हर लिपि के हर अक्षर के लिए एक सार्वभौमिक कोड, 1,50,000 से ज़्यादा अक्षर"
+  },
+  {
+   "term": "UTF-8",
+   "hinglish": "Unicode ko bytes mein likhne ka tareeka",
+   "en": "The most common way to store Unicode, using 1 to 4 bytes per character",
+   "hi": "यूनिकोड रखने का सबसे आम तरीक़ा, हर अक्षर के लिए 1 से 4 बाइट"
+  },
+  {
+   "term": "Encoding",
+   "hinglish": "Character → number ka niyam",
+   "en": "A rule that turns characters into numbers and back",
+   "hi": "नियम जो अक्षरों को संख्या में और वापस बदलता है"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Computers only store numbers, so people agreed on a code: A = 65, B = 66, C = 67…",
+    "hi": "कंप्यूटर केवल संख्याएँ रखते हैं, तो लोगों ने एक कोड तय किया: A = 65, B = 66, C = 67…",
+    "hinglish": "Computer sirf numbers rakhta hai, to logon ne ek code tay kiya: A = 65, B = 66, C = 67…"
+   },
+   "visual": "flow:H = 72|i = 105|! = 33",
+   "narration": {
+    "en": "When you type “Hi!”, the phone actually stores 72, 105 and 33.",
+    "hi": "जब आप “Hi!” लिखते हो, तो फ़ोन असल में 72, 105 और 33 रखता है।",
+    "hinglish": "Jab aap “Hi!” type karte ho, phone asal mein 72, 105 aur 33 store karta hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Small letters are exactly 32 more than capitals: A = 65, a = 97. That is one bit!",
+    "hi": "छोटे अक्षर बड़े अक्षरों से ठीक 32 ज़्यादा हैं: A = 65, a = 97। यह एक बिट है!",
+    "hinglish": "Small letters capitals se theek 32 zyada: A = 65, a = 97. Yeh sirf ek bit ka farak hai!"
+   },
+   "visual": "bits:01000001",
+   "narration": {
+    "en": "Flip the 32s bit and A becomes a. Caps Lock is just one bit.",
+    "hi": "32 वाला बिट पलटो और A, a बन जाता है। Caps Lock बस एक बिट है।",
+    "hinglish": "32 wala bit palto aur A ban jaata hai a. Caps Lock bas ek bit hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Unicode gives every script a number: क = U+0915, অ = U+0985, 😀 = U+1F600.",
+    "hi": "यूनिकोड हर लिपि को संख्या देता है: क = U+0915, অ = U+0985, 😀 = U+1F600।",
+    "hinglish": "Unicode har script ko number deta hai: क = U+0915, অ = U+0985, 😀 = U+1F600."
+   },
+   "visual": "flow:क|U+0915|E0 A4 95",
+   "narration": {
+    "en": "ASCII had only English. Unicode includes Hindi, Bengali, Tamil, Urdu and emojis, so everyone can type in their own language.",
+    "hi": "ASCII में केवल अंग्रेज़ी थी। यूनिकोड में हिंदी, बांग्ला, तमिल, उर्दू और इमोजी हैं, ताकि हर कोई अपनी भाषा में लिख सके।",
+    "hinglish": "ASCII mein sirf English tha. Unicode mein Hindi, Bengali, Tamil, Urdu aur emoji sab hain, taaki sab apni bhasha mein type kar sakein."
+   }
+  }
+ ],
+ "play": {
+  "lab": "bit-lab",
+  "config": {
+   "tab": "letter",
+   "letter": "M"
+  },
+  "goal": {
+   "en": "Store the letter M in one byte. Then change one bit to make it small m.",
+   "hi": "अक्षर M को एक बाइट में रखो। फिर एक बिट बदलकर छोटा m बनाओ।",
+   "hinglish": "Ek byte mein letter M store karo. Phir ek bit badal ke small m banao."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "ASCII: the 1963 code",
+    "hi": "ASCII: 1963 का कोड",
+    "hinglish": "ASCII: 1963 ka code"
+   },
+   "body": {
+    "en": "ASCII uses 7 bits, so it has 2⁷ = 128 codes. 0–31 are invisible control codes (like Enter = 13 and Tab = 9), 32 is space, 48–57 are the digits “0”–“9”, 65–90 are A–Z, 97–122 are a–z. Notice: the digit “7” is code 55, not 7 — text “7” and the number 7 are different things to a computer. That is why spreadsheets sometimes cannot add numbers that were typed as text.",
+    "hi": "ASCII 7 बिट का है, यानी 2⁷ = 128 कोड। 0–31 अदृश्य नियंत्रण कोड हैं (जैसे Enter = 13, Tab = 9), 32 स्पेस है, 48–57 अंक “0”–“9”, 65–90 A–Z, 97–122 a–z। ध्यान दो: अंक “7” का कोड 55 है, 7 नहीं — टेक्स्ट “7” और संख्या 7 कंप्यूटर के लिए अलग हैं। इसलिए स्प्रेडशीट कभी-कभी टेक्स्ट के रूप में लिखी संख्याएँ नहीं जोड़ पाती।",
+    "hinglish": "ASCII 7 bits ka hai, yaani 2⁷ = 128 codes. 0–31 invisible control codes (jaise Enter = 13, Tab = 9), 32 space, 48–57 digits “0”–“9”, 65–90 A–Z, 97–122 a–z. Dhyaan do: digit “7” ka code 55 hai, 7 nahi — text “7” aur number 7 computer ke liye alag cheezein hain. Isliye spreadsheet kabhi-kabhi text mein likhe numbers ko jod nahi paati."
+   },
+   "analogy": {
+    "hinglish": "Jaise class ke roll numbers: har bachche ka ek fixed number. Teacher naam ki jagah number se pehchaan leti hai.",
+    "en": "Like class roll numbers: every child has a fixed number. The teacher can recognise them by number instead of name.",
+    "hi": "जैसे कक्षा के रोल नंबर: हर बच्चे का एक तय नंबर। शिक्षिका नाम की जगह नंबर से पहचान लेती हैं।"
+   },
+   "realExample": {
+    "en": "Passwords are case-sensitive because “A” (65) and “a” (97) are different numbers.",
+    "hi": "पासवर्ड में बड़े-छोटे अक्षर अलग माने जाते हैं क्योंकि “A” (65) और “a” (97) अलग संख्याएँ हैं।",
+    "hinglish": "Passwords case-sensitive hote hain kyunki “A” (65) aur “a” (97) alag numbers hain."
+   }
+  },
+  {
+   "heading": {
+    "en": "Unicode and UTF-8: every language",
+    "hi": "यूनिकोड और UTF-8: हर भाषा",
+    "hinglish": "Unicode aur UTF-8: har bhasha"
+   },
+   "body": {
+    "en": "Unicode (first published 1991) has room for over a million characters and already covers more than 1,50,000, including all 22 scheduled languages of India. UTF-8 stores English letters in 1 byte (same as ASCII), Devanagari letters in 3 bytes, and most emojis in 4 bytes. So “नमस्ते” (6 Unicode characters) needs 18 bytes, while “Hello” needs 5. When a message shows boxes or “???”, the app used the wrong encoding or the font lacks that character.",
+    "hi": "यूनिकोड (पहली बार 1991) में दस लाख से ज़्यादा अक्षरों की जगह है और यह पहले से 1,50,000 से ज़्यादा को शामिल करता है, जिसमें भारत की सभी 22 अनुसूचित भाषाएँ हैं। UTF-8 अंग्रेज़ी अक्षर 1 बाइट (ASCII जैसा), देवनागरी अक्षर 3 बाइट, और ज़्यादातर इमोजी 4 बाइट में रखता है। तो “नमस्ते” (6 यूनिकोड अक्षर) को 18 बाइट चाहिए, जबकि “Hello” को 5। जब संदेश में डिब्बे या “???” दिखें, तो ऐप ने गलत एन्कोडिंग ली या फ़ॉन्ट में वह अक्षर नहीं है।",
+    "hinglish": "Unicode (pehli baar 1991) mein 10 lakh se zyada characters ki jagah hai aur yeh pehle se 1,50,000+ cover karta hai, jisme India ki saari 22 scheduled languages hain. UTF-8 English letters 1 byte (ASCII jaisa), Devanagari letters 3 bytes, aur zyaadatar emojis 4 bytes mein rakhta hai. To “नमस्ते” (6 Unicode characters) ko 18 bytes chahiye, jabki “Hello” ko 5. Jab message mein dabbe ya “???” dikhein, to app ne galat encoding li ya font mein woh character nahi hai."
+   },
+   "analogy": {
+    "hinglish": "Unicode ek badi dictionary hai jisme duniya ke har akshar ka page number likha hai.",
+    "en": "Unicode is a giant dictionary that lists a page number for every letter in the world.",
+    "hi": "यूनिकोड एक बड़ा शब्दकोश है जिसमें दुनिया के हर अक्षर का पेज नंबर लिखा है।"
+   },
+   "realExample": {
+    "en": "Indian government websites must support Unicode so content works in every Indian language.",
+    "hi": "भारतीय सरकारी वेबसाइटों को यूनिकोड का समर्थन करना होता है ताकि सामग्री हर भारतीय भाषा में चले।",
+    "hinglish": "Sarkari websites Unicode support karti hain taaki content har Indian bhasha mein chale."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write your name as ASCII numbers and ask a friend to decode it.",
+   "hi": "अपना नाम ASCII संख्याओं में लिखो और दोस्त से उसे पढ़वाओ।",
+   "hinglish": "Apna naam ASCII numbers mein likho aur dost se decode karwao."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "In ASCII, A = 65. What is C?",
+     "hi": "ASCII में A = 65 है। C क्या है?",
+     "hinglish": "ASCII mein A = 65. C kya hai?"
+    },
+    "options": [
+     "66",
+     "67",
+     "68",
+     "99"
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Letters are in order: A 65, B 66, C 67.",
+     "hi": "अक्षर क्रम में हैं: A 65, B 66, C 67।",
+     "hinglish": "Letters order mein hain: A 65, B 66, C 67."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "What is the ASCII code of small “a”?",
+     "hi": "छोटे “a” का ASCII कोड क्या है?",
+     "hinglish": "Small “a” ka ASCII code kya hai?"
+    },
+    "options": [
+     "1",
+     "65",
+     "97",
+     "32"
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "Small letters are 32 more than capitals: 65 + 32 = 97.",
+     "hi": "छोटे अक्षर बड़ों से 32 ज़्यादा: 65 + 32 = 97।",
+     "hinglish": "Small letters capitals se 32 zyada: 65 + 32 = 97."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why was Unicode created?",
+     "hi": "यूनिकोड क्यों बनाया गया?",
+     "hinglish": "Unicode kyun banaya gaya?"
+    },
+    "options": [
+     {
+      "en": "To include every language’s characters and emoji",
+      "hi": "हर भाषा के अक्षर और इमोजी शामिल करने के लिए",
+      "hinglish": "Har bhasha ke characters aur emoji ke liye"
+     },
+     {
+      "en": "To make files smaller",
+      "hi": "फ़ाइलें छोटी करने के लिए",
+      "hinglish": "Files chhoti karne ke liye"
+     },
+     {
+      "en": "To speed up the internet",
+      "hi": "इंटरनेट तेज़ करने के लिए",
+      "hinglish": "Internet fast karne ke liye"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "ASCII had only 128 codes — enough for English but not for Hindi, Tamil, Chinese, Arabic or emoji. Unicode gives every script its own numbers.",
+     "hi": "ASCII में केवल 128 कोड थे — अंग्रेज़ी के लिए काफ़ी, पर हिंदी, तमिल, चीनी, अरबी या इमोजी के लिए नहीं। यूनिकोड हर लिपि को अपने नंबर देता है।",
+     "hinglish": "ASCII mein sirf 128 codes the — English ke liye kaafi, par Hindi, Tamil, Chinese, Arabic ya emoji ke liye nahi. Unicode har script ko apne numbers deta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "In UTF-8, how many bytes does “नमस्ते” take? (each Devanagari character = 3 bytes, 6 characters)",
+     "hi": "UTF-8 में “नमस्ते” कितने बाइट लेता है? (हर देवनागरी अक्षर = 3 बाइट, 6 अक्षर)",
+     "hinglish": "UTF-8 mein “नमस्ते” kitne bytes leta hai? (har Devanagari character = 3 bytes, 6 characters)"
+    },
+    "options": [
+     "6",
+     "12",
+     "18",
+     "24"
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "6 × 3 = 18 bytes.",
+     "hi": "6 × 3 = 18 बाइट।",
+     "hinglish": "6 × 3 = 18 bytes."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "The text “7” and the number 7 are…",
+     "hi": "टेक्स्ट “7” और संख्या 7…",
+     "hinglish": "Text “7” aur number 7…"
+    },
+    "options": [
+     {
+      "en": "exactly the same in memory",
+      "hi": "मेमोरी में बिल्कुल एक जैसे",
+      "hinglish": "memory mein bilkul same"
+     },
+     {
+      "en": "stored differently",
+      "hi": "अलग तरह से रखे जाते हैं",
+      "hinglish": "alag tarah store hote hain"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Text “7” is stored as code 55; the number 7 is stored as 00000111. A program must convert text to a number before doing maths.",
+     "hi": "टेक्स्ट “7” कोड 55 है; संख्या 7 को 00000111 रखा जाता है। गणित से पहले टेक्स्ट को संख्या में बदलना पड़ता है।",
+     "hinglish": "Text “7” code 55 hai; number 7 ko 00000111 rakha jaata hai. Maths se pehle text ko number mein convert karna padta hai."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Store the letter M in the bit lab.",
+     "hi": "बिट लैब में अक्षर M रखो।",
+     "hinglish": "Bit lab mein letter M store karo."
+    },
+    "answer": {
+     "lab": "bit-lab",
+     "event": "mission:complete",
+     "letter": "M"
+    },
+    "explain": {
+     "en": "M = 77 = 01001101.",
+     "hi": "M = 77 = 01001101।",
+     "hinglish": "M = 77 = 01001101."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "The Unicode Standard — Unicode Consortium",
+   "url": "https://www.unicode.org/standard/standard.html",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Devanagari code chart U+0900–U+097F",
+   "url": "https://www.unicode.org/charts/PDF/U0900.pdf",
+   "licence": "fact reference"
+  },
+  {
+   "title": "RFC 3629 — UTF-8",
+   "url": "https://www.rfc-editor.org/rfc/rfc3629",
+   "licence": "fact reference"
+  }
+ ]
+}

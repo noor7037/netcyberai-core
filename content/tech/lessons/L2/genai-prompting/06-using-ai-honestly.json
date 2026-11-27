@@ -1,0 +1,393 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.genai-prompting.06",
+ "level": 2,
+ "classes": [
+  6,
+  7,
+  8
+ ],
+ "unit": "genai-prompting",
+ "title": {
+  "en": "Using AI honestly and safely",
+  "hi": "AI का ईमानदारी और सुरक्षा से उपयोग",
+  "hinglish": "AI ko imaandaari aur safety se use karna"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [
+  "L2.genai-prompting.05"
+ ],
+ "topics": [
+  "ai.ethics",
+  "ai.safety"
+ ],
+ "outcomes": [
+  {
+   "en": "Tell the difference between AI as a tutor and AI doing your work",
+   "hi": "AI शिक्षक और AI से अपना काम करवाने का अंतर बता सकते हो",
+   "hinglish": "AI tutor aur AI se apna kaam karwane ka farak bata sakte ho"
+  },
+  {
+   "en": "Say how you used AI honestly in school work",
+   "hi": "स्कूल के काम में AI उपयोग ईमानदारी से बता सकते हो",
+   "hinglish": "School work mein AI use ko imaandaari se bata sakte ho"
+  },
+  {
+   "en": "Keep personal data private and know when to ask a grown-up",
+   "hi": "निजी डेटा निजी रख सकते हो और जानते हो कब बड़ों से पूछना है",
+   "hinglish": "Personal data private rakh sakte ho aur jaante ho kab grown-up se poochhna hai"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Academic honesty",
+   "hinglish": "Padhai mein imaandaari",
+   "en": "Presenting only your own work as yours, and saying when you had help",
+   "hi": "केवल अपने काम को अपना बताना, और मदद मिलने पर बताना"
+  },
+  {
+   "term": "Disclosure",
+   "hinglish": "Sach batana",
+   "en": "A short note saying how you used AI",
+   "hi": "छोटा नोट जो बताए कि तुमने AI का उपयोग कैसे किया"
+  },
+  {
+   "term": "Personal data",
+   "hinglish": "Niji jaankari",
+   "en": "Information that identifies you: name, address, school, phone, photos",
+   "hi": "जानकारी जो तुम्हें पहचानती है: नाम, पता, स्कूल, फ़ोन, फ़ोटो"
+  },
+  {
+   "term": "Over-reliance",
+   "hinglish": "Zyada nirbharta",
+   "en": "Depending on AI so much that you stop learning or checking",
+   "hi": "AI पर इतना निर्भर होना कि सीखना या जाँचना बंद हो जाए"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "AI can be a great tutor or a shortcut that stops you learning. The difference is who does the thinking.",
+    "hi": "AI एक बढ़िया शिक्षक हो सकता है या ऐसा शॉर्टकट जो सीखना रोक दे। अंतर यह है कि सोचता कौन है।",
+    "hinglish": "AI ek badhiya tutor ho sakta hai ya aisa shortcut jo seekhna rok de. Farak yeh hai ki sochta kaun hai."
+   },
+   "visual": "compare:✅ “Explain my mistake, then give me a similar question”|❌ “Write my essay so I can hand it in”",
+   "narration": {
+    "en": "Your brain must do the work to grow.",
+    "hi": "दिमाग़ को बढ़ने के लिए काम करना पड़ता है।",
+    "hinglish": "Dimaag ko badhne ke liye kaam karna padta hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Write a tutor-style prompt in the lab: role, task, context, format and limits that ask the AI to teach, not to do.",
+    "hi": "लैब में शिक्षक-शैली का प्रॉम्प्ट लिखो: भूमिका, काम, संदर्भ, प्रारूप और सीमाएँ जो AI से सिखाने को कहें, करने को नहीं।",
+    "hinglish": "Lab mein tutor-style prompt likho: role, task, context, format aur limits jo AI se sikhane ko kahein, karne ko nahi."
+   },
+   "visual": "lab:ai-lab#prompt",
+   "narration": {
+    "en": "Add a limit like “do not give the final answer”.",
+    "hi": "“अंतिम उत्तर मत दो” जैसी सीमा जोड़ो।",
+    "hinglish": "“Final answer mat do” jaisi limit jodo."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "If your teacher allows AI, be open about it with a short disclosure note at the end of your work.",
+    "hi": "अगर शिक्षक AI की अनुमति दें, तो अपने काम के अंत में छोटे नोट से खुलकर बताओ।",
+    "hinglish": "Agar teacher AI allow karein, to apne kaam ke end mein chhote note se khul kar batao."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "Honest + checked + private = good AI use.",
+    "hi": "ईमानदार + जाँचा हुआ + निजी = अच्छा AI उपयोग।",
+    "hinglish": "Imaandaar + checked + private = achha AI use."
+   },
+   "code": "AI use note:\n I used a chatbot to explain the water cycle\n and to quiz me. I wrote every sentence myself\n and checked facts in my NCERT book (Ch 5)."
+  }
+ ],
+ "play": {
+  "lab": "ai-lab",
+  "config": {
+   "tab": "prompt"
+  },
+  "goal": {
+   "en": "Build a 5/5 prompt that makes the AI teach you rather than do the work for you.",
+   "hi": "ऐसा 5/5 प्रॉम्प्ट बनाओ जो AI से तुम्हें सिखवाए, तुम्हारा काम न करवाए।",
+   "hinglish": "Aisa 5/5 prompt banao jo AI se tumhe sikhwaye, tumhara kaam na karwaye."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Rules for smart, honest AI use",
+    "hi": "समझदार, ईमानदार AI उपयोग के नियम",
+    "hinglish": "Smart, honest AI use ke rules"
+   },
+   "body": {
+    "en": "UNESCO’s 2023 Guidance for generative AI in education and research asks schools to protect students’ data and suggests 13 as a minimum age for using these tools in the classroom, with teachers guiding their use. Good habits: 1) Follow your school’s rules — some tasks allow AI and some do not; if unsure, ask the teacher. 2) Use AI to learn: ask it to explain, give hints, quiz you, or check your reasoning — then do the work yourself. 3) Disclose: add a one-line note saying what you used AI for. Copying AI text and calling it your own is plagiarism, just like copying a friend. 4) Check: AI can be wrong, so verify facts in NCERT books or trusted sites. 5) Protect privacy: never type your full name, address, school, phone number, passwords, OTPs or photos of yourself or friends; India’s DPDP Act, 2023 gives children’s data extra protection. 6) Stay balanced: do not let AI replace friends, family, teachers or your own creativity, and stop and tell a trusted grown-up if a chatbot says something scary, unkind or asks to keep secrets. 7) Be kind: never use AI to make fake messages, images or rumours about anyone.",
+    "hi": "UNESCO का 2023 का “शिक्षा और शोध में जनरेटिव AI के लिए मार्गदर्शन” स्कूलों से छात्रों का डेटा सुरक्षित रखने को कहता है और कक्षा में इन उपकरणों के उपयोग के लिए न्यूनतम आयु 13 सुझाता है, शिक्षकों के मार्गदर्शन में। अच्छी आदतें: 1) स्कूल के नियम मानो — कुछ कामों में AI की अनुमति है, कुछ में नहीं; पक्का न हो तो शिक्षक से पूछो। 2) सीखने के लिए AI उपयोग करो: उससे समझाने, संकेत देने, परीक्षा लेने या तर्क जाँचने को कहो — फिर काम ख़ुद करो। 3) बताओ: एक पंक्ति का नोट जोड़ो कि AI किसलिए उपयोग किया। AI का पाठ कॉपी करके अपना कहना साहित्यिक चोरी है, बिल्कुल दोस्त से नक़ल की तरह। 4) जाँचो: AI ग़लत हो सकता है, इसलिए तथ्य NCERT किताबों या विश्वसनीय साइटों में सत्यापित करो। 5) निजता बचाओ: कभी अपना पूरा नाम, पता, स्कूल, फ़ोन नंबर, पासवर्ड, OTP या अपनी या दोस्तों की फ़ोटो न लिखो; भारत का DPDP अधिनियम, 2023 बच्चों के डेटा को अतिरिक्त सुरक्षा देता है। 6) संतुलन रखो: AI को दोस्तों, परिवार, शिक्षकों या अपनी रचनात्मकता की जगह न लेने दो, और अगर चैटबॉट कुछ डरावना, बुरा कहे या राज़ रखने को कहे तो रुको और किसी भरोसेमंद बड़े को बताओ। 7) दयालु रहो: किसी के बारे में नकली संदेश, चित्र या अफ़वाह बनाने के लिए कभी AI उपयोग न करो।",
+    "hinglish": "UNESCO ka 2023 ka “Guidance for generative AI in education and research” schools se students ka data protect karne ko kehta hai aur classroom mein in tools ke use ke liye minimum age 13 suggest karta hai, teachers ki guidance mein. Achhi aadatein: 1) School ke rules maano — kuch tasks mein AI allowed hai, kuch mein nahi; pakka na ho to teacher se poochho. 2) Seekhne ke liye AI use karo: usse samjhane, hints dene, quiz lene ya reasoning check karne ko kaho — phir kaam khud karo. 3) Disclose karo: ek line ka note jodo ki AI kis liye use kiya. AI ka text copy karke apna kehna plagiarism hai, bilkul dost se nakal ki tarah. 4) Check karo: AI galat ho sakta hai, isliye facts NCERT books ya trusted sites mein verify karo. 5) Privacy bachao: kabhi apna poora naam, address, school, phone number, passwords, OTPs ya apni ya doston ki photos mat likho; India ka DPDP Act, 2023 bachchon ke data ko extra protection deta hai. 6) Balance rakho: AI ko doston, family, teachers ya apni creativity ki jagah mat lene do, aur agar chatbot kuch darawna, bura kahe ya secret rakhne ko kahe to ruko aur kisi trusted grown-up ko batao. 7) Kind raho: kisi ke baare mein nakli messages, images ya rumours banane ke liye kabhi AI use mat karo."
+   },
+   "analogy": {
+    "en": "AI = a gym trainer: the trainer can coach you, but if the trainer lifts the weights, your muscles will not grow.",
+    "hi": "AI = जिम का ट्रेनर: ट्रेनर तुम्हें सिखा सकता है, पर अगर वज़न वह उठाए तो मांसपेशियाँ तुम्हारी नहीं बनेंगी।",
+    "hinglish": "AI = gym ka trainer: trainer tumhe sikha sakta hai, par agar weights woh uthaye to muscles tumhare nahi banenge."
+   },
+   "realExample": {
+    "en": "Many schools now ask students to attach an “AI use note” to projects, listing what the AI helped with and what the student wrote and checked themselves.",
+    "hi": "कई स्कूल अब छात्रों से प्रोजेक्ट के साथ “AI उपयोग नोट” लगवाते हैं, जिसमें लिखा हो कि AI ने किसमें मदद की और छात्र ने ख़ुद क्या लिखा और जाँचा।",
+    "hinglish": "Kai schools ab students se projects ke saath “AI use note” lagwaate hain, jisme likha ho ki AI ne kis mein madad ki aur student ne khud kya likha aur check kiya."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Make a family “AI agreement” poster with 5 rules (for example: ask before using, no personal details, check facts, say when you used it, tell a grown-up if anything feels wrong). Sign it together with a parent.",
+   "hi": "परिवार का “AI समझौता” पोस्टर बनाओ 5 नियमों के साथ (जैसे: उपयोग से पहले पूछो, निजी जानकारी नहीं, तथ्य जाँचो, उपयोग किया तो बताओ, कुछ ग़लत लगे तो बड़ों को बताओ)। इसे माता-पिता के साथ हस्ताक्षर करो।",
+   "hinglish": "Family ka “AI agreement” poster banao 5 rules ke saath (jaise: use se pehle poochho, personal details nahi, facts check karo, use kiya to batao, kuch galat lage to grown-up ko batao). Ise parent ke saath sign karo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are honest, helpful uses of AI for homework? Choose all.",
+     "hi": "गृहकार्य के लिए AI के ईमानदार, मददगार उपयोग कौन-से हैं? सभी चुनो।",
+     "hinglish": "Homework ke liye AI ke honest, helpful uses kaunse hain? Saare chuno."
+    },
+    "options": [
+     {
+      "en": "“Explain why my answer is wrong”",
+      "hi": "“समझाओ मेरा उत्तर ग़लत क्यों है”",
+      "hinglish": "“Samjhao mera answer galat kyun hai”"
+     },
+     {
+      "en": "Copy the AI essay and submit it",
+      "hi": "AI निबंध कॉपी करके जमा करो",
+      "hinglish": "AI essay copy karke submit karo"
+     },
+     {
+      "en": "“Quiz me on Chapter 3”",
+      "hi": "“अध्याय 3 पर मेरी परीक्षा लो”",
+      "hinglish": "“Chapter 3 pe mera quiz lo”"
+     },
+     {
+      "en": "“Give me a hint, not the answer”",
+      "hi": "“संकेत दो, उत्तर नहीं”",
+      "hinglish": "“Hint do, answer nahi”"
+     }
+    ],
+    "answer": [
+     0,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "Explaining, quizzing and hints help you learn. Submitting AI-written work as your own is plagiarism.",
+     "hi": "समझाना, परीक्षा लेना और संकेत सीखने में मदद करते हैं। AI का लिखा अपना बताकर जमा करना साहित्यिक चोरी है।",
+     "hinglish": "Samjhana, quiz lena aur hints seekhne mein madad karte hain. AI ka likha apna bata kar submit karna plagiarism hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Your teacher allows AI for a project. What should you add?",
+     "hi": "शिक्षक प्रोजेक्ट में AI की अनुमति देते हैं। तुम्हें क्या जोड़ना चाहिए?",
+     "hinglish": "Teacher project mein AI allow karte hain. Tumhe kya jodna chahiye?"
+    },
+    "options": [
+     {
+      "en": "Nothing — nobody will know",
+      "hi": "कुछ नहीं — किसी को पता नहीं चलेगा",
+      "hinglish": "Kuch nahi — kisi ko pata nahi chalega"
+     },
+     {
+      "en": "A short note saying how you used AI",
+      "hi": "छोटा नोट कि तुमने AI कैसे उपयोग किया",
+      "hinglish": "Chhota note ki tumne AI kaise use kiya"
+     },
+     {
+      "en": "Your password, to prove it is you",
+      "hi": "तुम्हारा पासवर्ड, साबित करने के लिए",
+      "hinglish": "Tumhara password, prove karne ke liye"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "A short AI-use note saying what the AI helped with.",
+     "hi": "छोटा AI-उपयोग नोट कि AI ने किसमें मदद की।",
+     "hinglish": "Chhota AI-use note ki AI ne kis mein madad ki."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "A chatbot says “Don’t tell your parents about our chats.” What do you do?",
+     "hi": "चैटबॉट कहता है “अपने माता-पिता को हमारी बातें मत बताना।” तुम क्या करोगे?",
+     "hinglish": "Chatbot kehta hai “Apne parents ko hamari chats ke baare mein mat batana.” Tum kya karoge?"
+    },
+    "options": [
+     {
+      "en": "Keep it secret",
+      "hi": "राज़ रखो",
+      "hinglish": "Secret rakho"
+     },
+     {
+      "en": "Delete the app and say nothing",
+      "hi": "ऐप हटाओ और कुछ मत कहो",
+      "hinglish": "App delete karo aur kuch mat kaho"
+     },
+     {
+      "en": "Stop and tell a trusted grown-up",
+      "hi": "रुको और भरोसेमंद बड़े को बताओ",
+      "hinglish": "Ruko aur trusted grown-up ko batao"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "Asking for secrets is a red flag. Stop and tell a trusted grown-up.",
+     "hi": "राज़ माँगना ख़तरे का संकेत है। रुको और किसी भरोसेमंद बड़े को बताओ।",
+     "hinglish": "Secret maangna red flag hai. Ruko aur kisi trusted grown-up ko batao."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "match",
+    "prompt": {
+     "en": "Match each habit to why it matters.",
+     "hi": "हर आदत को उसके महत्व से मिलाओ।",
+     "hinglish": "Har aadat ko uske importance se match karo."
+    },
+    "options": {
+     "left": [
+      {
+       "en": "Add an AI-use note",
+       "hi": "AI-उपयोग नोट जोड़ो",
+       "hinglish": "AI-use note jodo"
+      },
+      {
+       "en": "Check facts in NCERT",
+       "hi": "NCERT में तथ्य जाँचो",
+       "hinglish": "NCERT mein facts check karo"
+      },
+      {
+       "en": "Never type your address",
+       "hi": "पता कभी मत लिखो",
+       "hinglish": "Address kabhi mat likho"
+      }
+     ],
+     "right": [
+      {
+       "en": "AI can be wrong",
+       "hi": "AI ग़लत हो सकता है",
+       "hinglish": "AI galat ho sakta hai"
+      },
+      {
+       "en": "Your data stays safe",
+       "hi": "तुम्हारा डेटा सुरक्षित रहता है",
+       "hinglish": "Tumhara data safe rehta hai"
+      },
+      {
+       "en": "It keeps your work honest",
+       "hi": "यह तुम्हारा काम ईमानदार रखता है",
+       "hinglish": "Yeh tumhara kaam honest rakhta hai"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      2
+     ],
+     [
+      1,
+      0
+     ],
+     [
+      2,
+      1
+     ]
+    ],
+    "explain": {
+     "en": "Disclose = honesty; check facts = AI can be wrong; keep data private = safety.",
+     "hi": "बताना = ईमानदारी; तथ्य जाँचना = AI ग़लत हो सकता है; डेटा निजी = सुरक्षा।",
+     "hinglish": "Disclose = imaandaari; facts check = AI galat ho sakta hai; data private = safety."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "short",
+    "prompt": {
+     "en": "Copying someone else’s (or an AI’s) work and calling it your own is called ___ .",
+     "hi": "किसी और का (या AI का) काम कॉपी करके अपना बताना ___ कहलाता है।",
+     "hinglish": "Kisi aur ka (ya AI ka) kaam copy karke apna batana ___ kehlata hai."
+    },
+    "answer": [
+     "plagiarism",
+     "Plagiarism",
+     "plagiarising",
+     "cheating"
+    ],
+    "explain": {
+     "en": "Plagiarism — always say when you had help.",
+     "hi": "साहित्यिक चोरी — मदद मिलने पर हमेशा बताओ।",
+     "hinglish": "Plagiarism — madad mili ho to hamesha batao."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the lab mission.",
+     "hi": "लैब मिशन पूरा करो।",
+     "hinglish": "Lab mission poora karo."
+    },
+    "answer": {
+     "lab": "ai-lab",
+     "event": "mission:complete",
+     "tab": "prompt"
+    },
+    "explain": {
+     "en": "Build a 5/5 tutor-style prompt.",
+     "hi": "5/5 शिक्षक-शैली प्रॉम्प्ट बनाओ।",
+     "hinglish": "5/5 tutor-style prompt banao."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "UNESCO — Guidance for generative AI in education and research (2023)",
+   "url": "https://www.unesco.org/en/articles/guidance-generative-ai-education-and-research",
+   "licence": "fact reference"
+  },
+  {
+   "title": "MeitY — Digital Personal Data Protection Act, 2023",
+   "url": "https://www.meity.gov.in/data-protection-framework",
+   "licence": "fact reference"
+  },
+  {
+   "title": "CBSE — Artificial Intelligence curriculum and handbooks",
+   "url": "https://cbseacademic.nic.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

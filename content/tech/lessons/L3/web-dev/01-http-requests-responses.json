@@ -1,0 +1,351 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.web-dev.01",
+ "level": 3,
+ "classes": [
+  9,
+  10,
+  11
+ ],
+ "unit": "web-dev",
+ "title": {
+  "en": "HTTP requests and responses",
+  "hi": "HTTP अनुरोध और उत्तर",
+  "hinglish": "HTTP requests aur responses"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [],
+ "outcomes": [
+  {
+   "en": "Read an HTTP request: method, URL, headers and body",
+   "hi": "HTTP अनुरोध पढ़ो: विधि, URL, हेडर और बॉडी",
+   "hinglish": "HTTP request padho: method, URL, headers aur body"
+  },
+  {
+   "en": "Explain status codes 200, 301, 404, 401/403 and 500",
+   "hi": "स्थिति कोड 200, 301, 404, 401/403 और 500 समझाओ",
+   "hinglish": "Status codes 200, 301, 404, 401/403 aur 500 samjhao"
+  },
+  {
+   "en": "Explain why HTTPS, caching and HTTP/2 and HTTP/3 matter",
+   "hi": "समझाओ HTTPS, कैशिंग और HTTP/2 व HTTP/3 क्यों ज़रूरी हैं",
+   "hinglish": "Samjhao HTTPS, caching aur HTTP/2 aur HTTP/3 kyun zaroori hain"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Method",
+   "hinglish": "Tareeka",
+   "en": "The action: GET reads, POST creates, PUT/PATCH updates, DELETE removes",
+   "hi": "क्रिया: GET पढ़ता, POST बनाता, PUT/PATCH बदलता, DELETE हटाता है"
+  },
+  {
+   "term": "Status code",
+   "hinglish": "Status number",
+   "en": "A 3-digit answer: 2xx ok, 3xx moved, 4xx client error, 5xx server error",
+   "hi": "3 अंकों का उत्तर: 2xx ठीक, 3xx हटाया, 4xx क्लाइंट त्रुटि, 5xx सर्वर त्रुटि"
+  },
+  {
+   "term": "Header",
+   "hinglish": "Header",
+   "en": "A name: value line with extra information, e.g. Content-Type",
+   "hi": "अतिरिक्त जानकारी वाली नाम: मान पंक्ति, जैसे Content-Type"
+  },
+  {
+   "term": "Stateless",
+   "hinglish": "Yaad nahi rakhta",
+   "en": "Each request stands alone; cookies or tokens carry who you are",
+   "hi": "हर अनुरोध अकेला; कुकी या टोकन बताते हैं आप कौन हैं"
+  },
+  {
+   "term": "Cache",
+   "hinglish": "Cache",
+   "en": "A saved copy that avoids downloading the same thing again",
+   "hi": "सहेजी प्रति जो वही चीज़ दोबारा डाउनलोड करने से बचाए"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Browser → server: GET /results HTTP/1.1, Host: school.example",
+    "hi": "ब्राउज़र → सर्वर: GET /results HTTP/1.1, Host: school.example",
+    "hinglish": "Browser → server: GET /results HTTP/1.1, Host: school.example"
+   },
+   "visual": "flow:browser|request|server",
+   "narration": {
+    "en": "Browser → server: GET /results HTTP/1.1, Host: school.example",
+    "hi": "ब्राउज़र → सर्वर: GET /results HTTP/1.1, Host: school.example",
+    "hinglish": "Browser → server: GET /results HTTP/1.1, Host: school.example"
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Server → browser: 200 OK, Content-Type: text/html, then the page.",
+    "hi": "सर्वर → ब्राउज़र: 200 OK, Content-Type: text/html, फिर पेज।",
+    "hinglish": "Server → browser: 200 OK, Content-Type: text/html, phir page."
+   },
+   "visual": "flow:server|response|browser",
+   "narration": {
+    "en": "Server → browser: 200 OK, Content-Type: text/html, then the page.",
+    "hi": "सर्वर → ब्राउज़र: 200 OK, Content-Type: text/html, फिर पेज।",
+    "hinglish": "Server → browser: 200 OK, Content-Type: text/html, phir page."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Status families: 2xx ok · 3xx moved · 4xx your mistake · 5xx server’s mistake.",
+    "hi": "स्थिति परिवार: 2xx ठीक · 3xx हटाया · 4xx आपकी ग़लती · 5xx सर्वर की ग़लती।",
+    "hinglish": "Status families: 2xx ok · 3xx moved · 4xx tumhari galti · 5xx server ki galti."
+   },
+   "visual": "stack:2xx|3xx|4xx|5xx",
+   "narration": {
+    "en": "Status families: 2xx ok · 3xx moved · 4xx your mistake · 5xx server’s mistake.",
+    "hi": "स्थिति परिवार: 2xx ठीक · 3xx हटाया · 4xx आपकी ग़लती · 5xx सर्वर की ग़लती।",
+    "hinglish": "Status families: 2xx ok · 3xx moved · 4xx tumhari galti · 5xx server ki galti."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "HTTPS wraps every request in TLS, so no one on the Wi-Fi can read or change it.",
+    "hi": "HTTPS हर अनुरोध को TLS में लपेटता है, ताकि वाई-फ़ाई पर कोई उसे पढ़ या बदल न सके।",
+    "hinglish": "HTTPS har request ko TLS mein lapet-ta hai, taaki Wi-Fi par koi use padh ya badal na sake."
+   },
+   "visual": "compare:HTTP|HTTPS",
+   "narration": {
+    "en": "HTTPS wraps every request in TLS, so no one on the Wi-Fi can read or change it.",
+    "hi": "HTTPS हर अनुरोध को TLS में लपेटता है, ताकि वाई-फ़ाई पर कोई उसे पढ़ या बदल न सके।",
+    "hinglish": "HTTPS har request ko TLS mein lapet-ta hai, taaki Wi-Fi par koi use padh ya badal na sake."
+   }
+  }
+ ],
+ "play": {
+  "lab": "seq-flow",
+  "config": {
+   "scenario": "http-api"
+  },
+  "goal": {
+   "en": "Step through a REST API call for school marks. Then tick \"Forget the login token\" and see the server refuse with 401 before it touches the database.",
+   "hi": "स्कूल अंकों के लिए REST API कॉल चरण-दर-चरण देखो। फिर \"लॉगिन टोकन भूल जाओ\" चुनो और देखो सर्वर डेटाबेस छूने से पहले 401 से मना करता है।",
+   "hinglish": "School marks ke liye REST API call step by step dekho. Phir \"Login token bhool jao\" tick karo aur dekho server database chhoone se pehle 401 se mana karta hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "A conversation in plain text",
+    "hi": "सादे पाठ में बातचीत",
+    "hinglish": "Plain text mein baatcheet"
+   },
+   "body": {
+    "en": "HTTP (HyperText Transfer Protocol) is how browsers and apps talk to servers. A request has a method (GET to read, POST to send new data, PUT or PATCH to update, DELETE to remove), a path such as /results?class=10, headers such as Host, Accept and Cookie or Authorization, and sometimes a body (a form or JSON). The response has a status code, headers such as Content-Type and Cache-Control, and a body — HTML, CSS, an image or JSON. HTTP is stateless: the server does not remember you between requests, so a login is carried by a cookie or token on every request. One page can need dozens of requests: the HTML, then its CSS, scripts, fonts and images. Its meaning is defined in RFC 9110 (2022).",
+    "hi": "HTTP (हाइपरटेक्स्ट ट्रांसफ़र प्रोटोकॉल) से ब्राउज़र और ऐप सर्वरों से बात करते हैं। अनुरोध में एक विधि होती है (पढ़ने को GET, नया डेटा भेजने को POST, बदलने को PUT या PATCH, हटाने को DELETE), /results?class=10 जैसा पथ, Host, Accept और Cookie या Authorization जैसे हेडर, और कभी बॉडी (फ़ॉर्म या JSON)। उत्तर में स्थिति कोड, Content-Type और Cache-Control जैसे हेडर, और बॉडी होती है — HTML, CSS, चित्र या JSON। HTTP अवस्था-रहित है: सर्वर अनुरोधों के बीच आपको याद नहीं रखता, इसलिए लॉगिन हर अनुरोध पर कुकी या टोकन से जाता है। एक पेज को दर्जनों अनुरोध चाहिए हो सकते हैं: HTML, फिर उसका CSS, स्क्रिप्ट, फ़ॉन्ट और चित्र। इसका अर्थ RFC 9110 (2022) में परिभाषित है।",
+    "hinglish": "HTTP (HyperText Transfer Protocol) se browsers aur apps servers se baat karte hain. Request mein ek method hota hai (padhne ko GET, naya data bhejne ko POST, update ko PUT ya PATCH, hatane ko DELETE), /results?class=10 jaisa path, Host, Accept aur Cookie ya Authorization jaise headers, aur kabhi body (form ya JSON). Response mein status code, Content-Type aur Cache-Control jaise headers, aur body hoti hai — HTML, CSS, image ya JSON. HTTP stateless hai: server requests ke beech tumhe yaad nahi rakhta, isliye login har request par cookie ya token se jaata hai. Ek page ko darjanon requests chahiye ho sakti hain: HTML, phir uska CSS, scripts, fonts aur images. Iska meaning RFC 9110 (2022) mein defined hai."
+   },
+   "analogy": {
+    "en": "Ordering at a canteen counter with a token slip: every order names the item, and the counter replies \"ready\", \"sold out\" or \"kitchen problem\".",
+    "hi": "कैंटीन काउंटर पर टोकन पर्ची से ऑर्डर: हर ऑर्डर में चीज़ का नाम, और काउंटर कहता है \"तैयार\", \"ख़त्म\" या \"रसोई में समस्या\"।",
+    "hinglish": "Canteen counter par token parchi se order: har order mein item ka naam, aur counter kehta hai \"ready\", \"khatam\" ya \"kitchen problem\"."
+   },
+   "realExample": {
+    "en": "GET /results?class=10 → 200 OK · GET /old-page → 301 Moved Permanently · GET /typo → 404 Not Found · GET /marks without login → 401 · server crash → 500",
+    "hi": "GET /results?class=10 → 200 OK · GET /old-page → 301 स्थायी रूप से हटाया · GET /typo → 404 नहीं मिला · बिना लॉगिन GET /marks → 401 · सर्वर क्रैश → 500",
+    "hinglish": "GET /results?class=10 → 200 OK · GET /old-page → 301 Moved Permanently · GET /typo → 404 Not Found · bina login GET /marks → 401 · server crash → 500"
+   }
+  },
+  {
+   "heading": {
+    "en": "HTTPS, caching and faster versions",
+    "hi": "HTTPS, कैशिंग और तेज़ संस्करण",
+    "hinglish": "HTTPS, caching aur faster versions"
+   },
+   "body": {
+    "en": "Plain HTTP travels as readable text, so anyone on the same café Wi-Fi could read or change it. HTTPS runs the same HTTP inside TLS encryption, and the padlock means the connection is encrypted to the site named in the certificate — not that the site is honest, so still check the address. Caching saves time and data: Cache-Control: max-age=31536000 lets the browser reuse a logo for a year, and a 304 Not Modified reply says \"your copy is still fine\". Newer versions keep the same meaning but move it faster: HTTP/2 (2015) sends many requests at once over one connection, and HTTP/3 (RFC 9114, 2022) runs over QUIC on UDP, which recovers better from lost packets on patchy mobile networks. Open your browser’s developer tools, Network tab, to see every request a page makes.",
+    "hi": "सादा HTTP पढ़ने योग्य पाठ में जाता है, इसलिए उसी कैफ़े वाई-फ़ाई पर कोई भी उसे पढ़ या बदल सकता है। HTTPS वही HTTP TLS एन्क्रिप्शन के अंदर चलाता है, और ताला बताता है कि कनेक्शन प्रमाणपत्र में लिखी साइट तक एन्क्रिप्टेड है — यह नहीं कि साइट ईमानदार है, इसलिए पता फिर भी जाँचो। कैशिंग समय और डेटा बचाती है: Cache-Control: max-age=31536000 ब्राउज़र को लोगो एक साल दोबारा इस्तेमाल करने देता है, और 304 Not Modified उत्तर कहता है \"आपकी प्रति अभी ठीक है\"। नए संस्करण वही अर्थ रखते हैं पर तेज़ ले जाते हैं: HTTP/2 (2015) एक कनेक्शन पर एक साथ कई अनुरोध भेजता है, और HTTP/3 (RFC 9114, 2022) UDP पर QUIC से चलता है, जो कमज़ोर मोबाइल नेटवर्क पर खोए पैकेट से बेहतर उबरता है। पेज के हर अनुरोध को देखने के लिए ब्राउज़र के डेवलपर टूल का Network टैब खोलो।",
+    "hinglish": "Plain HTTP readable text mein jaata hai, isliye usi cafe Wi-Fi par koi bhi use padh ya badal sakta hai. HTTPS wahi HTTP TLS encryption ke andar chalata hai, aur padlock batata hai ki connection certificate mein likhi site tak encrypted hai — yeh nahi ki site imaandaar hai, isliye address phir bhi check karo. Caching time aur data bachati hai: Cache-Control: max-age=31536000 browser ko logo ek saal dobara use karne deta hai, aur 304 Not Modified reply kehta hai \"tumhari copy abhi theek hai\". Naye versions wahi meaning rakhte hain par tez le jaate hain: HTTP/2 (2015) ek connection par ek saath kai requests bhejta hai, aur HTTP/3 (RFC 9114, 2022) UDP par QUIC se chalta hai, jo kamzor mobile network par khoye packets se behtar ubharta hai. Page ki har request dekhne ke liye browser ke developer tools ka Network tab kholo."
+   },
+   "analogy": {
+    "en": "A sealed envelope instead of a postcard: the postman still delivers it, but cannot read it.",
+    "hi": "पोस्टकार्ड की जगह बंद लिफ़ाफ़ा: डाकिया पहुँचाता है, पर पढ़ नहीं सकता।",
+    "hinglish": "Postcard ki jagah band lifafa: daakiya pahunchata hai, par padh nahi sakta."
+   },
+   "realExample": {
+    "en": "Response headers: HTTP/2 200 · content-type: text/css · cache-control: max-age=31536000 · content-encoding: br (compressed)",
+    "hi": "उत्तर हेडर: HTTP/2 200 · content-type: text/css · cache-control: max-age=31536000 · content-encoding: br (संपीड़ित)",
+    "hinglish": "Response headers: HTTP/2 200 · content-type: text/css · cache-control: max-age=31536000 · content-encoding: br (compressed)"
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Open any website on a laptop, press F12 and open the Network tab. Reload and find: one 200, one cached request, the Content-Type of the main page, and the HTTP version (h2 or h3). Write down how many requests the page needed and its total size.",
+   "hi": "लैपटॉप पर कोई भी वेबसाइट खोलो, F12 दबाओ और Network टैब खोलो। रीलोड करके ढूँढो: एक 200, एक कैश अनुरोध, मुख्य पेज का Content-Type, और HTTP संस्करण (h2 या h3)। लिखो पेज को कितने अनुरोध चाहिए थे और कुल आकार कितना था।",
+   "hinglish": "Laptop par koi bhi website kholo, F12 dabao aur Network tab kholo. Reload karke dhoondho: ek 200, ek cached request, main page ka Content-Type, aur HTTP version (h2 ya h3). Likho page ko kitni requests chahiye thi aur total size kitna tha."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "match",
+    "prompt": {
+     "en": "Match each status code to its meaning.",
+     "hi": "हर स्थिति कोड को उसके अर्थ से मिलाओ।",
+     "hinglish": "Har status code ko uske meaning se milao."
+    },
+    "options": [
+     "200",
+     "301",
+     "404",
+     "500"
+    ],
+    "answer": [
+     {
+      "en": "OK, here it is",
+      "hi": "ठीक, यह रहा",
+      "hinglish": "OK, yeh raha"
+     },
+     {
+      "en": "Moved permanently",
+      "hi": "स्थायी रूप से हटाया",
+      "hinglish": "Permanently move hua"
+     },
+     {
+      "en": "Not found",
+      "hi": "नहीं मिला",
+      "hinglish": "Nahi mila"
+     },
+     {
+      "en": "Server error",
+      "hi": "सर्वर त्रुटि",
+      "hinglish": "Server error"
+     }
+    ],
+    "explain": {
+     "en": "2xx ok, 3xx moved, 4xx client, 5xx server.",
+     "hi": "2xx ठीक, 3xx हटाया, 4xx क्लाइंट, 5xx सर्वर।",
+     "hinglish": "2xx ok, 3xx moved, 4xx client, 5xx server."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "A form that creates a new account should usually send which method?",
+     "hi": "नया खाता बनाने वाला फ़ॉर्म आमतौर पर कौन-सी विधि भेजे?",
+     "hinglish": "Naya account banane wala form aam taur par kaunsa method bheje?"
+    },
+    "options": [
+     "GET",
+     "POST",
+     "DELETE",
+     "HEAD"
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "POST sends new data in the body; GET puts data in the URL, where it is logged and shared.",
+     "hi": "POST नया डेटा बॉडी में भेजता है; GET डेटा URL में डालता है, जहाँ वह लॉग और साझा होता है।",
+     "hinglish": "POST naya data body mein bhejta hai; GET data URL mein daalta hai, jahan woh log aur share hota hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "What does the HTTPS padlock prove?",
+     "hi": "HTTPS ताला क्या साबित करता है?",
+     "hinglish": "HTTPS padlock kya prove karta hai?"
+    },
+    "options": [
+     {
+      "en": "The connection is encrypted to the site named in the certificate",
+      "hi": "कनेक्शन प्रमाणपत्र वाली साइट तक एन्क्रिप्टेड है",
+      "hinglish": "Connection certificate wali site tak encrypted hai"
+     },
+     {
+      "en": "The site is honest",
+      "hi": "साइट ईमानदार है",
+      "hinglish": "Site imaandaar hai"
+     },
+     {
+      "en": "The site has no bugs",
+      "hi": "साइट में कोई बग नहीं",
+      "hinglish": "Site mein koi bug nahi"
+     },
+     {
+      "en": "The government approved it",
+      "hi": "सरकार ने मंज़ूरी दी",
+      "hinglish": "Sarkar ne approve kiya"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "A scam site can have a padlock too — check the address.",
+     "hi": "घोटाला साइट पर भी ताला हो सकता है — पता जाँचो।",
+     "hinglish": "Scam site par bhi padlock ho sakta hai — address check karo."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "short",
+    "prompt": {
+     "en": "Which status code means \"you are logged in, but not allowed to see this\"?",
+     "hi": "कौन-सा स्थिति कोड कहता है \"आप लॉग इन हैं, पर यह देखने की अनुमति नहीं\"?",
+     "hinglish": "Kaunsa status code kehta hai \"tum logged in ho, par yeh dekhne ki permission nahi\"?"
+    },
+    "answer": {
+     "accept": [
+      "403",
+      "403 forbidden"
+     ]
+    },
+    "explain": {
+     "en": "401 = who are you? 403 = I know you, but no.",
+     "hi": "401 = आप कौन? 403 = पहचानता हूँ, पर नहीं।",
+     "hinglish": "401 = tum kaun? 403 = pehchanta hoon, par nahi."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Finish the REST API scenario in the Protocol Flow Visualiser.",
+     "hi": "प्रोटोकॉल प्रवाह दर्शक में REST API परिदृश्य पूरा करो।",
+     "hinglish": "Protocol Flow Visualiser mein REST API scenario poora karo."
+    },
+    "answer": {
+     "event": "scenario-complete",
+     "scenario": "http-api"
+    },
+    "explain": {
+     "en": "Request, check, query, response.",
+     "hi": "अनुरोध, जाँच, क्वेरी, उत्तर।",
+     "hinglish": "Request, check, query, response."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "web.http",
+  "cyber.https-padlock"
+ ],
+ "sources": [
+  {
+   "title": "IETF — RFC 9110: HTTP Semantics (2022)",
+   "url": "https://www.rfc-editor.org/rfc/rfc9110",
+   "licence": "fact reference"
+  },
+  {
+   "title": "IETF — RFC 9114: HTTP/3 (2022)",
+   "url": "https://www.rfc-editor.org/rfc/rfc9114",
+   "licence": "fact reference"
+  }
+ ]
+}

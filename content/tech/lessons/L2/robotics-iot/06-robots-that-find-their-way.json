@@ -1,0 +1,371 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.robotics-iot.06",
+ "level": 2,
+ "classes": [
+  7,
+  8
+ ],
+ "unit": "robotics-iot",
+ "title": {
+  "en": "Robots that find their way",
+  "hi": "रास्ता खोजने वाले रोबोट",
+  "hinglish": "Raasta dhoondhne wale robots"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [
+  "L2.robotics-iot.05"
+ ],
+ "topics": [
+  "robo.pathfinding",
+  "robo.edge-ai"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain how robots measure distance and avoid obstacles",
+   "hi": "समझा सकते हो कि रोबोट दूरी कैसे मापते और बाधाओं से कैसे बचते हैं",
+   "hinglish": "Samjha sakte ho robots distance kaise naapte aur obstacles se kaise bachte hain"
+  },
+  {
+   "en": "Describe mapping and path planning in simple steps",
+   "hi": "मैपिंग और पथ योजना सरल चरणों में समझा सकते हो",
+   "hinglish": "Mapping aur path planning simple steps mein samjha sakte ho"
+  },
+  {
+   "en": "Explain edge AI: AI that runs on the device itself",
+   "hi": "एज AI समझा सकते हो: AI जो उपकरण पर ही चलता है",
+   "hinglish": "Edge AI samjha sakte ho: AI jo device pe hi chalta hai"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Obstacle avoidance",
+   "hinglish": "Rukawat se bachna",
+   "en": "Sensing something in the way and changing course",
+   "hi": "रास्ते में कुछ महसूस कर दिशा बदलना"
+  },
+  {
+   "term": "Map",
+   "hinglish": "Jagah ka naksha",
+   "en": "A stored model of a space showing free areas and obstacles",
+   "hi": "जगह का सहेजा मॉडल जो ख़ाली क्षेत्र और बाधाएँ दिखाए"
+  },
+  {
+   "term": "Path planning",
+   "hinglish": "Raasta chunna",
+   "en": "Choosing a route from start to goal around obstacles",
+   "hi": "बाधाओं के आसपास शुरू से लक्ष्य तक मार्ग चुनना"
+  },
+  {
+   "term": "Edge AI",
+   "hinglish": "Device pe AI",
+   "en": "AI that runs on the gadget itself instead of in the cloud",
+   "hi": "AI जो क्लाउड के बजाय गैजेट पर ही चलता है"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Step 1 is not bumping into things: an ultrasonic sensor times an echo to measure distance, just like a bat.",
+    "hi": "पहला कदम है चीज़ों से न टकराना: अल्ट्रासोनिक सेंसर गूँज का समय नापकर दूरी मापता है, बिल्कुल चमगादड़ की तरह।",
+    "hinglish": "Step 1 hai cheezon se na takraana: ultrasonic sensor echo ka time naap kar distance measure karta hai, bilkul chamgaadad ki tarah."
+   },
+   "visual": "lab:microbit-sim",
+   "narration": {
+    "en": "Program a parking sensor: closer than 20 cm → beep.",
+    "hi": "पार्किंग सेंसर प्रोग्राम करो: 20 cm से पास → बीप।",
+    "hinglish": "Parking sensor program karo: 20 cm se paas → beep."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Step 2 is a map. A robot vacuum builds a grid of the room: free squares and blocked squares.",
+    "hi": "दूसरा कदम है नक्शा। रोबोट वैक्यूम कमरे का जाल बनाता है: ख़ाली खाने और बंद खाने।",
+    "hinglish": "Step 2 hai map. Robot vacuum room ka grid banata hai: khaali squares aur blocked squares."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "Then it searches for the shortest route around the blocks.",
+    "hi": "फिर वह बाधाओं के आसपास सबसे छोटा रास्ता खोजता है।",
+    "hinglish": "Phir woh blocks ke around sabse chhota raasta dhoondhta hai."
+   },
+   "code": "S . . # . .\n. # . # . G     S = start, G = goal, # = sofa/table\n. # . . . .\n→ route: down, down, right, right, up, right, up …"
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Step 3 is smarts on board: edge AI lets a drone or a phone spot objects without sending video to the cloud.",
+    "hi": "तीसरा कदम है अंदर की समझ: एज AI से ड्रोन या फ़ोन बिना वीडियो क्लाउड भेजे वस्तुएँ पहचानते हैं।",
+    "hinglish": "Step 3 hai andar ki samajh: edge AI se drone ya phone bina video cloud bheje objects pehchaante hain."
+   },
+   "visual": "compare:☁️ Cloud AI: powerful, needs internet, slower|📱 Edge AI: instant, private, works offline",
+   "narration": {
+    "en": "Fast and private, but limited by the small chip.",
+    "hi": "तेज़ और निजी, पर छोटी चिप से सीमित।",
+    "hinglish": "Tez aur private, par chhoti chip se limited."
+   }
+  }
+ ],
+ "play": {
+  "lab": "microbit-sim",
+  "config": {
+   "mission": "parking",
+   "preset": "empty"
+  },
+  "goal": {
+   "en": "Build a parking sensor: closer than 20 cm → LED on and beep; farther → LED off and silent.",
+   "hi": "पार्किंग सेंसर बनाओ: 20 cm से पास → LED चालू और बीप; दूर → LED बंद और शांत।",
+   "hinglish": "Parking sensor banao: 20 cm se paas → LED on aur beep; door → LED off aur chup."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "From bumping to planning",
+    "hi": "टकराने से योजना तक",
+    "hinglish": "Takraane se planning tak"
+   },
+   "body": {
+    "en": "Robots find their way in layers. First, reactive behaviour: an ultrasonic sensor sends a 40 kHz pulse and times the echo — sound travels about 343 m/s in air, so distance = time × 343 ÷ 2 — and the robot stops or turns when something is close; cars use the same idea in parking sensors. Second, localisation and mapping: robot vacuums and warehouse robots use wheel counters, cameras or a spinning laser (LiDAR) to build a map while tracking where they are on it, a technique called SLAM (simultaneous localisation and mapping). Third, path planning: algorithms such as breadth-first search, Dijkstra’s algorithm and A* search the map for the shortest safe route, the same ideas behind Google Maps directions. Self-driving cars combine all three with AI vision. Increasingly the AI runs on the device — edge AI — on small chips in phones, drones and cameras, which is faster, works without internet and keeps video private. In India, Chandrayaan-3’s Pragyan rover used cameras to judge obstacles on the Moon, and many Indian farms now use drones to spray crops along planned routes under the Drone Rules, 2021.",
+    "hi": "रोबोट परतों में रास्ता खोजते हैं। पहला, प्रतिक्रियात्मक व्यवहार: अल्ट्रासोनिक सेंसर 40 kHz पल्स भेजकर गूँज का समय नापता है — हवा में ध्वनि लगभग 343 m/s चलती है, इसलिए दूरी = समय × 343 ÷ 2 — और कुछ पास होने पर रोबोट रुकता या मुड़ता है; कारें पार्किंग सेंसर में यही विचार उपयोग करती हैं। दूसरा, स्थान-निर्धारण और मैपिंग: रोबोट वैक्यूम और गोदाम रोबोट पहिया गणक, कैमरे या घूमते लेज़र (LiDAR) से नक्शा बनाते हैं और साथ में ट्रैक करते हैं कि वे उस पर कहाँ हैं, इसे SLAM (एक साथ स्थान-निर्धारण और मैपिंग) कहते हैं। तीसरा, पथ योजना: ब्रेड्थ-फ़र्स्ट सर्च, डाइक्स्ट्रा एल्गोरिद्म और A* जैसे एल्गोरिद्म नक्शे में सबसे छोटा सुरक्षित मार्ग खोजते हैं, Google Maps के निर्देशों के पीछे भी यही विचार हैं। स्व-चालित कारें AI दृष्टि के साथ तीनों को जोड़ती हैं। अब AI अधिकतर उपकरण पर ही चलता है — एज AI — फ़ोन, ड्रोन और कैमरों की छोटी चिप पर, जो तेज़ है, बिना इंटरनेट काम करता है और वीडियो निजी रखता है। भारत में, चंद्रयान-3 के प्रज्ञान रोवर ने चाँद पर बाधाएँ आँकने के लिए कैमरे उपयोग किए, और कई भारतीय खेत अब ड्रोन नियम, 2021 के तहत योजनाबद्ध मार्गों पर फ़सल छिड़काव के लिए ड्रोन उपयोग करते हैं।",
+    "hinglish": "Robots layers mein raasta dhoondhte hain. Pehla, reactive behaviour: ultrasonic sensor 40 kHz pulse bhej kar echo ka time naapta hai — hawa mein sound lagbhag 343 m/s chalti hai, isliye distance = time × 343 ÷ 2 — aur kuch paas hone pe robot rukta ya mudta hai; cars parking sensors mein yahi idea use karti hain. Doosra, localisation aur mapping: robot vacuums aur warehouse robots wheel counters, cameras ya ghoomte laser (LiDAR) se map banate hain aur saath mein track karte hain ki woh us pe kahan hain, ise SLAM (simultaneous localisation and mapping) kehte hain. Teesra, path planning: breadth-first search, Dijkstra’s algorithm aur A* jaise algorithms map mein sabse chhota safe route dhoondhte hain, Google Maps directions ke peeche bhi yahi ideas hain. Self-driving cars AI vision ke saath teeno ko jodti hain. Ab AI zyaadatar device pe hi chalta hai — edge AI — phones, drones aur cameras ki chhoti chips pe, jo tez hai, bina internet kaam karta hai aur video private rakhta hai. India mein, Chandrayaan-3 ke Pragyan rover ne Chaand pe obstacles judge karne ke liye cameras use kiye, aur kai Indian farms ab Drone Rules, 2021 ke under planned routes pe crop spraying ke liye drones use karte hain."
+   },
+   "analogy": {
+    "en": "Path planning = an auto driver’s brain: skip the jammed lane, pick the shortest open route — and change route the moment a new jam appears.",
+    "hi": "पथ योजना = ऑटो वाले भैया का दिमाग़: जाम वाली गली छोड़कर, सबसे छोटा खुला रास्ता चुनते हैं — और नया जाम दिखे तो तुरंत रास्ता बदलते हैं।",
+    "hinglish": "Path planning = auto-wale bhaiya ka dimaag: jam wali gali chhod ke, sabse chhota khula raasta chunte hain — aur naya jam dikhe to turant raasta badalte hain."
+   },
+   "realExample": {
+    "en": "Kisan drones, promoted by the Government of India since 2022, fly pre-planned GPS routes over fields to spray fertiliser and pesticide evenly while the farmer stays out of the chemical spray.",
+    "hi": "किसान ड्रोन, 2022 से भारत सरकार द्वारा प्रोत्साहित, खेतों के ऊपर पहले से तय GPS मार्गों पर उड़कर खाद और कीटनाशक समान रूप से छिड़कते हैं, जबकि किसान रसायन से दूर रहता है।",
+    "hinglish": "Kisan drones, 2022 se Government of India dwara promote, GPS ke pre-planned routes pe kheton ke upar udte hain aur fertiliser aur pesticide barabar spray karte hain jabki farmer chemical spray se door rehta hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Draw a 6×6 grid map of your room with furniture as blocked squares. Mark a start (door) and a goal (your bed). Find the shortest path by counting squares, then write the robot’s instructions (forward, turn left, turn right).",
+   "hi": "अपने कमरे का 6×6 जाल नक्शा बनाओ, फ़र्नीचर को बंद खाने रखो। शुरुआत (दरवाज़ा) और लक्ष्य (तुम्हारा बिस्तर) चिह्नित करो। खाने गिनकर सबसे छोटा रास्ता खोजो, फिर रोबोट के निर्देश लिखो (आगे, बाएँ मुड़ो, दाएँ मुड़ो)।",
+   "hinglish": "Apne room ka 6×6 grid map banao, furniture ko blocked squares rakho. Start (darwaza) aur goal (tumhara bed) mark karo. Squares gin kar sabse chhota path dhoondo, phir robot ke instructions likho (forward, turn left, turn right)."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "An ultrasonic echo returns after 2 milliseconds. About how far is the wall? (sound ≈ 343 m/s)",
+     "hi": "अल्ट्रासोनिक गूँज 2 मिलीसेकंड बाद लौटती है। दीवार लगभग कितनी दूर है? (ध्वनि ≈ 343 m/s)",
+     "hinglish": "Ultrasonic echo 2 milliseconds baad lautti hai. Deewar lagbhag kitni door hai? (sound ≈ 343 m/s)"
+    },
+    "options": [
+     {
+      "en": "About 69 cm",
+      "hi": "लगभग 69 cm",
+      "hinglish": "Lagbhag 69 cm"
+     },
+     {
+      "en": "About 34 cm",
+      "hi": "लगभग 34 cm",
+      "hinglish": "Lagbhag 34 cm"
+     },
+     {
+      "en": "About 3.4 m",
+      "hi": "लगभग 3.4 m",
+      "hinglish": "Lagbhag 3.4 m"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "0.002 s × 343 m/s = 0.686 m there and back, so ÷ 2 ≈ 34 cm.",
+     "hi": "0.002 s × 343 m/s = 0.686 m आना-जाना, तो ÷ 2 ≈ 34 cm।",
+     "hinglish": "0.002 s × 343 m/s = 0.686 m aana-jaana, to ÷ 2 ≈ 34 cm."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q2",
+    "type": "order",
+    "prompt": {
+     "en": "Put the layers of robot navigation in order, simplest first.",
+     "hi": "रोबोट नेविगेशन की परतों को क्रम में लगाओ, सबसे सरल पहले।",
+     "hinglish": "Robot navigation ki layers ko order mein lagao, sabse simple pehle."
+    },
+    "options": [
+     {
+      "en": "Build a map of the space",
+      "hi": "जगह का नक्शा बनाओ",
+      "hinglish": "Jagah ka map banao"
+     },
+     {
+      "en": "Plan the shortest path on the map",
+      "hi": "नक्शे पर सबसे छोटा रास्ता तय करो",
+      "hinglish": "Map pe sabse chhota path plan karo"
+     },
+     {
+      "en": "Stop or turn when something is close",
+      "hi": "कुछ पास हो तो रुको या मुड़ो",
+      "hinglish": "Kuch paas ho to ruko ya mudo"
+     }
+    ],
+    "answer": [
+     2,
+     0,
+     1
+    ],
+    "explain": {
+     "en": "Avoid obstacles → build a map → plan a path on it.",
+     "hi": "बाधाओं से बचो → नक्शा बनाओ → उस पर रास्ता योजना।",
+     "hinglish": "Obstacles se bacho → map banao → us pe path plan karo."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "multi",
+    "prompt": {
+     "en": "What are advantages of edge AI over cloud AI? Choose all.",
+     "hi": "क्लाउड AI की तुलना में एज AI के क्या फ़ायदे हैं? सभी चुनो।",
+     "hinglish": "Cloud AI ke comparison mein edge AI ke kya fayde hain? Saare chuno."
+    },
+    "options": [
+     {
+      "en": "Faster response",
+      "hi": "तेज़ प्रतिक्रिया",
+      "hinglish": "Tez response"
+     },
+     {
+      "en": "Works without internet",
+      "hi": "बिना इंटरनेट चलता है",
+      "hinglish": "Bina internet chalta hai"
+     },
+     {
+      "en": "Video can stay on the device",
+      "hi": "वीडियो उपकरण पर रह सकता है",
+      "hinglish": "Video device pe reh sakta hai"
+     },
+     {
+      "en": "Can run the largest AI models on a tiny chip",
+      "hi": "छोटी चिप पर सबसे बड़े AI मॉडल चला सकता है",
+      "hinglish": "Chhoti chip pe sabse bade AI models chala sakta hai"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2
+    ],
+    "explain": {
+     "en": "Edge AI is fast, private and works offline; but small chips cannot run the biggest models.",
+     "hi": "एज AI तेज़, निजी और ऑफ़लाइन चलता है; पर छोटी चिप सबसे बड़े मॉडल नहीं चला सकती।",
+     "hinglish": "Edge AI tez, private aur offline chalta hai; par chhoti chips sabse bade models nahi chala sakti."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "A robot vacuum builds a map of the room while tracking where it is. This is called…",
+     "hi": "रोबोट वैक्यूम कमरे का नक्शा बनाता है और साथ में ट्रैक करता है कि वह कहाँ है। इसे कहते हैं…",
+     "hinglish": "Robot vacuum room ka map banata hai aur saath mein track karta hai ki woh kahan hai. Ise kehte hain…"
+    },
+    "options": [
+     {
+      "en": "Wi-Fi",
+      "hi": "Wi-Fi",
+      "hinglish": "Wi-Fi"
+     },
+     {
+      "en": "Bluetooth pairing",
+      "hi": "ब्लूटूथ पेयरिंग",
+      "hinglish": "Bluetooth pairing"
+     },
+     {
+      "en": "SLAM",
+      "hi": "SLAM",
+      "hinglish": "SLAM"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "SLAM — simultaneous localisation and mapping.",
+     "hi": "SLAM — एक साथ स्थान-निर्धारण और मैपिंग।",
+     "hinglish": "SLAM — simultaneous localisation and mapping."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "short",
+    "prompt": {
+     "en": "Name a well-known algorithm that finds the shortest path on a map (e.g. used in games and robots). Hint: a letter and a star.",
+     "hi": "नक्शे पर सबसे छोटा रास्ता खोजने वाला एक प्रसिद्ध एल्गोरिद्म बताओ। संकेत: एक अक्षर और एक तारा।",
+     "hinglish": "Map pe sabse chhota path dhoondhne wala ek famous algorithm batao. Hint: ek letter aur ek star."
+    },
+    "answer": [
+     "A*",
+     "A star",
+     "A-star",
+     "a*",
+     "a star"
+    ],
+    "explain": {
+     "en": "A* search — it is guided towards the goal, so it is fast.",
+     "hi": "A* खोज — यह लक्ष्य की ओर निर्देशित होती है, इसलिए तेज़ है।",
+     "hinglish": "A* search — yeh goal ki taraf guided hai, isliye fast hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the lab mission.",
+     "hi": "लैब मिशन पूरा करो।",
+     "hinglish": "Lab mission poora karo."
+    },
+    "answer": {
+     "lab": "microbit-sim",
+     "event": "mission:complete",
+     "mission": "parking"
+    },
+    "explain": {
+     "en": "Under 20 cm → LED on + beep; otherwise LED off.",
+     "hi": "20 cm से कम → LED चालू + बीप; वरना LED बंद।",
+     "hinglish": "20 cm se kam → LED on + beep; warna LED off."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Hart, Nilsson & Raphael — A formal basis for the heuristic determination of minimum cost paths (A*, 1968)",
+   "url": "https://ieeexplore.ieee.org/document/4082128",
+   "licence": "fact reference"
+  },
+  {
+   "title": "ISRO — Chandrayaan-3",
+   "url": "https://www.isro.gov.in/Chandrayaan3_New.html",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Ministry of Civil Aviation — Drone Rules, 2021 (Digital Sky)",
+   "url": "https://digitalsky.dgca.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Micro:bit Educational Foundation — micro:bit hardware",
+   "url": "https://microbit.org/get-started/features/overview/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

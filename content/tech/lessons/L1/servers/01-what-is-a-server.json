@@ -1,0 +1,326 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.servers.01",
+ "level": 1,
+ "classes": [
+  1,
+  2,
+  3,
+  4
+ ],
+ "unit": "servers",
+ "title": {
+  "en": "Servers: computers that serve",
+  "hi": "सर्वर: सेवा करने वाले कंप्यूटर",
+  "hinglish": "Servers: seva karne wale computers"
+ },
+ "minutes": 7,
+ "xp": 25,
+ "prereq": [
+  "L1.internet.02"
+ ],
+ "topics": [
+  "cloud.servers",
+  "cloud.client-server"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain that a server is a computer that sends things to other computers when they ask.",
+   "hi": "समझा सकते हो कि सर्वर एक कंप्यूटर है जो माँगने पर दूसरे कंप्यूटरों को चीज़ें भेजता है।",
+   "hinglish": "Samjha sakte ho ki server ek computer hai jo maangne par doosre computers ko cheezein bhejta hai."
+  },
+  {
+   "en": "Describe request and response (client asks, server answers).",
+   "hi": "अनुरोध और जवाब बता सकते हो (क्लाइंट माँगता, सर्वर देता)।",
+   "hinglish": "Request aur response bata sakte ho (client maangta, server deta)."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Server",
+   "en": "A computer that is always on and sends pages, videos or files when asked",
+   "hi": "हमेशा चालू कंप्यूटर जो माँगने पर चीज़ें देता है",
+   "hinglish": "Hamesha chaalu computer jo maangne par cheezein deta hai"
+  },
+  {
+   "term": "Client",
+   "en": "The device that asks — your phone or browser",
+   "hi": "माँगने वाला — तुम्हारा फ़ोन या ब्राउज़र",
+   "hinglish": "Maangne wala — tumhara phone ya browser"
+  },
+  {
+   "term": "Request",
+   "en": "A message asking for something",
+   "hi": "माँग",
+   "hinglish": "Maang"
+  },
+  {
+   "term": "Response",
+   "en": "The answer the server sends back",
+   "hi": "जवाब",
+   "hinglish": "Jawab"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.servers.01.s1",
+   "caption": {
+    "en": "Your phone asks: a request.",
+    "hi": "तुम्हारा फ़ोन माँगता है: अनुरोध।",
+    "hinglish": "Tumhara phone maangta hai: request."
+   },
+   "narration": {
+    "en": "When you tap a video, your phone (the client) sends a request across the internet: \"Please send me this video.\"",
+    "hinglish": "Video tap karne par tumhara phone (client) internet par request bhejta hai: \"Mujhe yeh video bhejo.\"",
+    "hi": "वीडियो टैप करने पर तुम्हारा फ़ोन (क्लाइंट) इंटरनेट पर अनुरोध भेजता है: \"मुझे यह वीडियो भेजो।\""
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.servers.01.s2",
+   "caption": {
+    "en": "The server answers: a response.",
+    "hi": "सर्वर जवाब देता है: रिस्पॉन्स।",
+    "hinglish": "Server jawab deta hai: response."
+   },
+   "narration": {
+    "en": "The server finds the video and sends it back in packets. This ask-and-answer is called client and server.",
+    "hinglish": "Server video dhoondh kar packets mein wapas bhejta hai. Is maang-aur-jawab ko client aur server kehte hain.",
+    "hi": "सर्वर वीडियो ढूँढकर पैकेट में वापस भेजता है। इस माँग-और-जवाब को क्लाइंट और सर्वर कहते हैं।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.servers.01.s3",
+   "caption": {
+    "en": "Like a restaurant: you order, the kitchen serves.",
+    "hi": "रेस्तराँ जैसा: तुम ऑर्डर करो, रसोई परोसे।",
+    "hinglish": "Restaurant jaisa: tum order karo, kitchen parose."
+   },
+   "narration": {
+    "en": "It is like a restaurant: you order (request), the kitchen cooks and the waiter brings the food (response). The server \"serves\" you.",
+    "hinglish": "Yeh restaurant jaisa hai: tum order karte ho (request), kitchen banaata hai aur waiter khaana laata hai (response). Server tumhari \"seva\" karta hai.",
+    "hi": "यह रेस्तराँ जैसा है: तुम ऑर्डर करते हो (अनुरोध), रसोई बनाती है और वेटर खाना लाता है (जवाब)। सर्वर तुम्हारी \"सेवा\" करता है।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "net-travel",
+  "config": {
+   "mode": "server"
+  },
+  "goal": {
+   "en": "Open the 3 websites. Watch your request go to the server and the page come back.",
+   "hi": "3 वेबसाइट खोलो। देखो अनुरोध सर्वर तक जाता है और पेज वापस आता है।",
+   "hinglish": "3 websites kholo. Dekho request server tak jaati hai aur page wapas aata hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Servers never sleep",
+    "hi": "सर्वर कभी नहीं सोते",
+    "hinglish": "Servers kabhi nahin sote"
+   },
+   "body": {
+    "en": "A server is a powerful computer with no screen or keyboard of its own, kept running day and night so that millions of people can ask it for things at any time.",
+    "hi": "सर्वर एक ताक़तवर कंप्यूटर है जिसकी अपनी स्क्रीन या कीबोर्ड नहीं होता, दिन-रात चालू रखा जाता है ताकि लाखों लोग कभी भी उससे चीज़ें माँग सकें।",
+    "hinglish": "Server ek taakatwar computer hai jiski apni screen ya keyboard nahin hota, din-raat chaalu rakha jaata hai taaki laakhon log kabhi bhi usse cheezein maang sakein."
+   },
+   "analogy": {
+    "en": "Like a library that never closes — ask for a book any time.",
+    "hi": "जैसे एक लाइब्रेरी जो कभी बंद नहीं होती — जब चाहो किताब माँग लो।",
+    "hinglish": "Jaise ek library jo kabhi band nahin hoti — jab chaaho kitaab maang lo."
+   }
+  },
+  {
+   "heading": {
+    "en": "Many kinds of servers",
+    "hi": "कई तरह के सर्वर",
+    "hinglish": "Kai tarah ke servers"
+   },
+   "body": {
+    "en": "Web servers send pages. Video servers stream cartoons. Email servers keep your messages. Game servers let friends play together. Some phones and computers can even act as small servers.",
+    "hi": "वेब सर्वर पेज भेजते हैं। वीडियो सर्वर कार्टून चलाते हैं। ईमेल सर्वर संदेश रखते हैं। गेम सर्वर दोस्तों को साथ खेलने देते हैं। कुछ फ़ोन और कंप्यूटर छोटे सर्वर का काम भी कर सकते हैं।",
+    "hinglish": "Web servers pages bhejte hain. Video servers cartoons stream karte hain. Email servers messages rakhte hain. Game servers doston ko saath khelne dete hain. Kuch phones aur computers chhote server ka kaam bhi kar sakte hain."
+   },
+   "realExample": {
+    "en": "When you check exam results on a board website, thousands of students ask the same server at once — that is why results sites can be slow.",
+    "hi": "बोर्ड की वेबसाइट पर परिणाम देखते समय हज़ारों छात्र एक साथ उसी सर्वर से माँगते हैं — इसीलिए परिणाम साइटें धीमी हो सकती हैं।",
+    "hinglish": "Board website par result dekhte waqt hazaaron students ek saath same server se maangte hain — isliye result sites slow ho sakti hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Play \"client and server\" at home: one person writes a request on paper, another \"server\" finds the thing and brings it. Swap roles!",
+   "hi": "घर पर \"क्लाइंट और सर्वर\" खेलो: एक काग़ज़ पर माँग लिखे, दूसरा \"सर्वर\" वह चीज़ ढूँढकर लाए। भूमिका बदलो!",
+   "hinglish": "Ghar par \"client aur server\" khelo: ek kaagaz par request likhe, doosra \"server\" woh cheez dhoondh kar laaye. Role badlo!"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Your phone asking for a video is called a…",
+     "hi": "तुम्हारे फ़ोन का वीडियो माँगना कहलाता है…",
+     "hinglish": "Tumhare phone ka video maangna kehlaata hai…"
+    },
+    "options": [
+     {
+      "en": "request",
+      "hi": "अनुरोध (रिक्वेस्ट)",
+      "hinglish": "request"
+     },
+     {
+      "en": "response",
+      "hi": "जवाब (रिस्पॉन्स)",
+      "hinglish": "response"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Client sends a request; server sends a response.",
+     "hi": "क्लाइंट अनुरोध भेजता है; सर्वर जवाब।",
+     "hinglish": "Client request bhejta hai; server response."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "match",
+    "prompt": {
+     "en": "Match each one.",
+     "hi": "हर एक मिलाओ।",
+     "hinglish": "Har ek milao."
+    },
+    "options": {
+     "left": [
+      {
+       "en": "Your browser",
+       "hi": "तुम्हारा ब्राउज़र",
+       "hinglish": "Tumhara browser"
+      },
+      {
+       "en": "Computer with the website",
+       "hi": "वेबसाइट वाला कंप्यूटर",
+       "hinglish": "Website wala computer"
+      }
+     ],
+     "right": [
+      {
+       "en": "Server",
+       "hi": "सर्वर",
+       "hinglish": "Server"
+      },
+      {
+       "en": "Client",
+       "hi": "क्लाइंट",
+       "hinglish": "Client"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      0
+     ]
+    ],
+    "explain": {
+     "en": "The browser asks (client); the website's computer answers (server).",
+     "hi": "ब्राउज़र माँगता है (क्लाइंट); वेबसाइट का कंप्यूटर जवाब देता है (सर्वर)।",
+     "hinglish": "Browser maangta hai (client); website ka computer jawab deta hai (server)."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why are servers kept on all the time?",
+     "hi": "सर्वर हमेशा चालू क्यों रखे जाते हैं?",
+     "hinglish": "Servers hamesha chaalu kyun rakhe jaate hain?"
+    },
+    "options": [
+     {
+      "en": "People can ask for things at any time",
+      "hi": "लोग कभी भी चीज़ें माँग सकते हैं",
+      "hinglish": "Log kabhi bhi cheezein maang sakte hain"
+     },
+     {
+      "en": "They are scared of the dark",
+      "hi": "उन्हें अंधेरे से डर लगता है",
+      "hinglish": "Unhe andhere se darr lagta hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Someone, somewhere, is always asking.",
+     "hi": "कोई न कोई, कहीं न कहीं, हमेशा माँग रहा है।",
+     "hinglish": "Koi na koi, kahin na kahin, hamesha maang raha hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "In the restaurant story, the server is like…",
+     "hi": "रेस्तराँ की कहानी में सर्वर किसके जैसा है?",
+     "hinglish": "Restaurant ki kahani mein server kiske jaisa hai?"
+    },
+    "options": [
+     {
+      "en": "the kitchen and waiter",
+      "hi": "रसोई और वेटर",
+      "hinglish": "kitchen aur waiter"
+     },
+     {
+      "en": "the customer",
+      "hi": "ग्राहक",
+      "hinglish": "grahak"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "The customer is the client who orders.",
+     "hi": "ग्राहक क्लाइंट है जो ऑर्डर करता है।",
+     "hinglish": "Grahak client hai jo order karta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Load all 3 pages in the lab.",
+     "hi": "लैब में तीनों पेज खोलो।",
+     "hinglish": "Lab mein teeno pages kholo."
+    },
+    "answer": {
+     "lab": "net-travel",
+     "mode": "server",
+     "solved": true
+    },
+    "explain": {
+     "en": "Tap each website button and wait for the page.",
+     "hi": "हर वेबसाइट बटन टैप करो और पेज का इंतज़ार करो।",
+     "hinglish": "Har website button tap karo aur page ka intezaar karo."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

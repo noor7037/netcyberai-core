@@ -16,12 +16,13 @@ import { NAV_PENDING_MAX_MS } from '@/lib/family/nav-pending';
 // and Focus Reading tucks it away while the child reads (family.css, html[data-fam-chrome]).
 // C539: a tapped tab lights up at once (data-pending), before the server has answered for its screen; aria-current stays
 // on the open screen until the new one is there.
-const HREF: Record<DockTab, string> = { home: '/family', study: '/family/study', english: '/family/english', draw: '/family/draw', future: '/family/future' };
+const HREF: Record<DockTab, string> = { home: '/family', study: '/family/study', english: '/family/english', tech: '/family/tech', draw: '/family/draw', future: '/family/future' };
 // Each tab's own colour (logo tokens, design-tokens.ts): bright hues, each at least 4.5:1 on the ink dock.
 export const TAB_TONE: Record<DockTab, { text: string; disc: string }> = {
   home: { text: 'text-tangerine', disc: 'bg-tangerine' },
   study: { text: 'text-sunshine', disc: 'bg-sunshine' },
   english: { text: 'text-cyan', disc: 'bg-cyan' },
+  tech: { text: 'text-turquoise', disc: 'bg-turquoise' },
   draw: { text: 'text-coral', disc: 'bg-coral' },
   future: { text: 'text-leaf', disc: 'bg-leaf' },
 };
@@ -29,6 +30,7 @@ const ICON: Record<DockTab, string> = {
   home: 'M4 10l8-6 8 6v10H4zM9 15q3 3 6 0',
   study: 'M6 4h12v16H7a1 1 0 0 1-1-1zM6 17h12M10 8h5',
   english: 'M4 5h16v11h-8l-5 4v-4H4zM9 13l3-6 3 6',
+  tech: 'M9 3h6M10 3v5L5 18a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3L14 8V3M8 14h8',
   // C513: a brush over a dab of paint.
   draw: 'M4 20l1-4L16 5l3 3L8 19zM14 7l3 3',
   future: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM15.5 8.5l-2 5-5 2 2-5z',
@@ -80,7 +82,7 @@ export function FamilyTabs({ tabs, labels, navLabel }: { tabs: DockTab[]; labels
   // The call (W16-A4) is a full-screen task too.
   // The parent area has its own bottom bar (C506): exactly one bar shows, so the child's dock is not shown on its page.
   if (path.replace(/\/$/, '') === '/family/parent') return null;
-  if (path.startsWith('/family/welcome') || path.startsWith('/family/english/lesson') || path.startsWith('/family/english/check') || path.startsWith('/family/call') || path.startsWith('/family/study/book/')) return null;
+  if (path.startsWith('/family/welcome') || path.startsWith('/family/english/lesson') || path.startsWith('/family/english/check') || path.startsWith('/family/tech/lesson') || path.startsWith('/family/call') || path.startsWith('/family/study/book/')) return null;
   const active = (t: DockTab) => (t === 'home' ? path === '/family' || path.startsWith('/family/progress') : t === 'study' ? path.startsWith('/family/study') || path.startsWith('/family/understand') || path.startsWith('/family/tutors') : path.startsWith(HREF[t]));
   return (
     <nav ref={nav} aria-label={navLabel} data-fam-dock className="fixed inset-x-0 bottom-0 z-30 lg:px-4 lg:pb-3">

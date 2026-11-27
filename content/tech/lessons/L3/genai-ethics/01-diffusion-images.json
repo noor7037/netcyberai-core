@@ -1,0 +1,334 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.genai-ethics.01",
+ "level": 3,
+ "classes": [
+  11,
+  12
+ ],
+ "unit": "genai-ethics",
+ "title": {
+  "en": "How AI makes images: diffusion",
+  "hi": "एआई तस्वीरें कैसे बनाता है: डिफ़्यूज़न",
+  "hinglish": "AI images kaise banata hai: diffusion"
+ },
+ "minutes": 12,
+ "xp": 50,
+ "prereq": [
+  "L3.neural-nets-deep-learning.03"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain diffusion as learning to remove noise step by step",
+   "hinglish": "Diffusion ko step-by-step noise hatana seekhna samjhao",
+   "hi": "डिफ़्यूज़न को कदम-दर-कदम शोर हटाना सीखने के रूप में समझाना"
+  },
+  {
+   "en": "Describe how a text prompt guides image generation",
+   "hinglish": "Text prompt image generation ko kaise guide karta hai",
+   "hi": "बताना कि पाठ प्रॉम्प्ट तस्वीर बनाने को कैसे दिशा देता है"
+  },
+  {
+   "en": "Name video and audio generation approaches",
+   "hinglish": "Video aur audio generation ke tareeke batao",
+   "hi": "वीडियो और ऑडियो निर्माण के तरीक़ों के नाम बताना"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Diffusion model",
+   "hinglish": "Noise se dheere-dheere tasveer nikaalne wala model",
+   "en": "A model trained to reverse a gradual noising process",
+   "hi": "धीरे-धीरे शोर जोड़ने की प्रक्रिया को उलटने के लिए प्रशिक्षित मॉडल"
+  },
+  {
+   "term": "Noise",
+   "hinglish": "Random daane, TV ki jhilmil jaisi",
+   "en": "Random pixel values",
+   "hi": "यादृच्छिक पिक्सेल मान"
+  },
+  {
+   "term": "Denoising step",
+   "hinglish": "Thoda sa noise hatana",
+   "en": "One step that predicts and removes part of the noise",
+   "hi": "एक कदम जो शोर के एक भाग का अनुमान लगाकर हटाता है"
+  },
+  {
+   "term": "Latent space",
+   "hinglish": "Image ka compressed roop",
+   "en": "A compressed representation where diffusion runs efficiently",
+   "hi": "संकुचित निरूपण जहाँ डिफ़्यूज़न कुशलता से चलता है"
+  },
+  {
+   "term": "Guidance",
+   "hinglish": "Prompt kitna zor se maana jaaye",
+   "en": "How strongly generation follows the text prompt",
+   "hi": "उत्पादन पाठ प्रॉम्प्ट का कितनी मज़बूती से पालन करे"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Training: take a real photo of a peacock and add a little noise, then more, over 1,000 steps until it is pure static.",
+    "hi": "प्रशिक्षण: मोर की असली फ़ोटो लो और थोड़ा शोर डालो, फिर और, 1,000 कदमों में जब तक पूरी झिलमिल न हो जाए।",
+    "hinglish": "Training: mor ki asli photo lo aur thoda noise daalo, phir aur, 1,000 steps mein jab tak poori jhilmil na ho jaaye."
+   },
+   "visual": "anim:forward-noise",
+   "narration": {
+    "en": "Training: take a real photo of a peacock and add a little noise, then more, over 1,000 steps until it is pure static.",
+    "hi": "प्रशिक्षण: मोर की असली फ़ोटो लो और थोड़ा शोर डालो, फिर और, 1,000 कदमों में जब तक पूरी झिलमिल न हो जाए।",
+    "hinglish": "Training: mor ki asli photo lo aur thoda noise daalo, phir aur, 1,000 steps mein jab tak poori jhilmil na ho jaaye."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "The network learns to predict the noise added at each step, so it can subtract it.",
+    "hi": "नेटवर्क हर कदम पर डाले गए शोर का अनुमान लगाना सीखता है, ताकि उसे घटा सके।",
+    "hinglish": "Network har step par daale gaye noise ko predict karna seekhta hai, taaki use ghata sake."
+   },
+   "visual": "anim:predict-noise",
+   "narration": {
+    "en": "The network learns to predict the noise added at each step, so it can subtract it.",
+    "hi": "नेटवर्क हर कदम पर डाले गए शोर का अनुमान लगाना सीखता है, ताकि उसे घटा सके।",
+    "hinglish": "Network har step par daale gaye noise ko predict karna seekhta hai, taaki use ghata sake."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Generation: start from fresh random noise and denoise step by step, steered by the text \"a peacock dancing in the rain, Madhubani style\".",
+    "hi": "जनरेशन: नए यादृच्छिक शोर से शुरू करो और कदम-दर-कदम शोर हटाओ, पाठ \"बारिश में नाचता मोर, मधुबनी शैली\" से दिशा लेते हुए।",
+    "hinglish": "Generation: naye random noise se shuru karo aur step-by-step denoise karo, text \"baarish mein naachta mor, Madhubani style\" se direction lete hue."
+   },
+   "visual": "anim:reverse-denoise",
+   "narration": {
+    "en": "Generation: start from fresh random noise and denoise step by step, steered by the text \"a peacock dancing in the rain, Madhubani style\".",
+    "hi": "जनरेशन: नए यादृच्छिक शोर से शुरू करो और कदम-दर-कदम शोर हटाओ, पाठ \"बारिश में नाचता मोर, मधुबनी शैली\" से दिशा लेते हुए।",
+    "hinglish": "Generation: naye random noise se shuru karo aur step-by-step denoise karo, text \"baarish mein naachta mor, Madhubani style\" se direction lete hue."
+   }
+  }
+ ],
+ "play": {
+  "lab": "nn-playground",
+  "config": {
+   "mode": "diffusion",
+   "image": "peacock-32",
+   "steps": 20
+  },
+  "goal": {
+   "en": "Slide the step control from pure noise to a clear 32×32 peacock icon. Then switch the prompt guidance and see a different picture emerge from the same noise.",
+   "hinglish": "Step slider ko pure noise se saaf 32×32 mor icon tak le jao. Phir prompt guidance badlo aur same noise se alag tasveer nikalte dekho.",
+   "hi": "कदम नियंत्रण को शुद्ध शोर से साफ़ 32×32 मोर चित्र तक सरकाओ। फिर प्रॉम्प्ट बदलो और उसी शोर से अलग तस्वीर उभरते देखो।"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Diffusion step by step",
+    "hi": "डिफ़्यूज़न कदम दर कदम",
+    "hinglish": "Diffusion step by step"
+   },
+   "body": {
+    "en": "Diffusion models (Ho et al., 2020 built on earlier work) are trained by corrupting real images with Gaussian noise in many small steps and teaching a network, usually a U-Net or a transformer, to predict the noise in a noisy image given the step number. To generate, start from random noise and repeatedly remove the predicted noise. Text guidance comes from a text encoder (e.g. CLIP, trained on image–caption pairs) whose embedding is fed into the denoiser through cross-attention; classifier-free guidance pushes the image further towards the prompt. Stable Diffusion (2022) ran this in a compressed latent space, making it fast enough for home GPUs. Video models such as OpenAI's Sora and Google's Veo extend diffusion across time with transformers on spacetime patches; image tools like Midjourney, DALL·E, Imagen and Firefly use related methods.",
+    "hi": "डिफ़्यूज़न मॉडल (हो व अन्य, 2020, पहले के काम पर आधारित) असली तस्वीरों में कई छोटे कदमों में गॉसियन शोर डालकर और एक नेटवर्क, आमतौर पर यू-नेट या ट्रांसफ़ॉर्मर, को कदम-संख्या दिए जाने पर शोर वाली तस्वीर का शोर अनुमानित करना सिखाकर प्रशिक्षित होते हैं। बनाने के लिए यादृच्छिक शोर से शुरू करो और बार-बार अनुमानित शोर हटाओ। पाठ से दिशा एक टेक्स्ट एनकोडर (जैसे क्लिप, तस्वीर-कैप्शन जोड़ों पर प्रशिक्षित) से आती है जिसकी एम्बेडिंग क्रॉस-अटेंशन से डीनॉइज़र में जाती है; क्लासिफ़ायर-फ़्री गाइडेंस तस्वीर को प्रॉम्प्ट की ओर और धकेलता है। स्टेबल डिफ़्यूज़न (2022) ने यह संकुचित लेटेंट स्पेस में चलाया, जिससे यह घरेलू जीपीयू पर चलने लायक तेज़ हुआ। ओपनएआई का सोरा और गूगल का वीओ जैसे वीडियो मॉडल स्पेसटाइम टुकड़ों पर ट्रांसफ़ॉर्मर से डिफ़्यूज़न को समय में फैलाते हैं; मिडजर्नी, डैल-ई, इमेजन और फ़ायरफ़्लाई जैसे टूल इससे जुड़े तरीके अपनाते हैं।",
+    "hinglish": "Diffusion models (Ho et al., 2020, pehle ke kaam par based) asli images mein kai chhote steps mein Gaussian noise daal ke aur ek network, usually U-Net ya transformer, ko step number diye jaane par noisy image ka noise predict karna sikhaake train hote hain. Generate karne ke liye random noise se shuru karo aur baar-baar predicted noise hatao. Text guidance ek text encoder (jaise CLIP, image-caption pairs par trained) se aati hai jiska embedding cross-attention se denoiser mein jaata hai; classifier-free guidance image ko prompt ki taraf aur dhakelta hai. Stable Diffusion (2022) ne yeh compressed latent space mein chalaya, jisse yeh ghar ke GPUs par chalne laayak tez hua. OpenAI ka Sora aur Google ka Veo jaise video models spacetime patches par transformers se diffusion ko time mein failaate hain; Midjourney, DALL·E, Imagen aur Firefly jaise tools related methods use karte hain."
+   },
+   "analogy": {
+    "hinglish": "Jaise dhundh (fog) mein dheere-dheere Taj Mahal dikhna — model har step par thodi dhundh hatata hai, aur prompt batata hai ki dhundh ke peeche kya hona chahiye.",
+    "en": "Like the Taj Mahal slowly appearing through fog — the model removes a little fog at each step, and the prompt says what should be behind the fog.",
+    "hi": "जैसे कोहरे में धीरे-धीरे ताजमहल दिखना — मॉडल हर कदम पर थोड़ा कोहरा हटाता है, और प्रॉम्प्ट बताता है कि कोहरे के पीछे क्या होना चाहिए।"
+   },
+   "realExample": {
+    "en": "Indian ad agencies and Bollywood VFX studios now use diffusion tools for concept art and storyboards; Adobe Firefly states it is trained on licensed and public-domain content.",
+    "hinglish": "Indian ad agencies aur Bollywood VFX studios ab concept art aur storyboards ke liye diffusion tools use karte hain; Adobe Firefly kehta hai woh licensed aur public-domain content par trained hai.",
+    "hi": "भारतीय विज्ञापन एजेंसियाँ और बॉलीवुड VFX स्टूडियो अब अवधारणा-चित्र और स्टोरीबोर्ड के लिए डिफ़्यूज़न उपकरण इस्तेमाल करते हैं; एडोब फ़ायरफ़्लाई कहता है कि वह लाइसेंस-प्राप्त और सार्वजनिक-क्षेत्र सामग्री पर प्रशिक्षित है।"
+   }
+  },
+  {
+   "heading": {
+    "en": "Audio and voice generation",
+    "hi": "ऑडियो और आवाज़ बनाना",
+    "hinglish": "Audio aur voice generation"
+   },
+   "body": {
+    "en": "Text-to-speech systems turn text into a spectrogram (a picture of sound frequencies over time) and a vocoder turns that into a waveform; modern systems use transformers or diffusion and can speak many Indian languages, as in Bhashini's TTS. Voice cloning can copy a person's voice from a few seconds of audio, and music models generate songs from prompts. These are powerful accessibility tools (reading aloud for visually impaired users, dubbing lessons into regional languages) but also enable scams: in \"voice-clone\" frauds, criminals imitate a relative asking for urgent UPI money. Defence: agree a family code word, call back on a known number, and never act on urgency alone.",
+    "hi": "टेक्स्ट-टू-स्पीच सिस्टम पाठ को स्पेक्ट्रोग्राम (समय के साथ ध्वनि आवृत्तियों का चित्र) में बदलते हैं और वोकोडर उसे तरंग में; आधुनिक सिस्टम ट्रांसफ़ॉर्मर या डिफ़्यूज़न इस्तेमाल करते हैं और कई भारतीय भाषाएँ बोल सकते हैं, जैसे भाषिणी का टीटीएस। वॉइस क्लोनिंग कुछ सेकंड के ऑडियो से किसी की आवाज़ नकल कर सकती है, और संगीत मॉडल प्रॉम्प्ट से गाने बनाते हैं। ये शक्तिशाली सुलभता औज़ार हैं (दृष्टिबाधित उपयोगकर्ताओं के लिए पढ़कर सुनाना, पाठों को क्षेत्रीय भाषाओं में डब करना) पर धोखे भी संभव करते हैं: \"वॉइस-क्लोन\" ठगी में अपराधी किसी रिश्तेदार की नकल कर तुरंत यूपीआई पैसे माँगते हैं। बचाव: परिवार का कोड-वर्ड तय करो, जाने हुए नंबर पर वापस कॉल करो, और सिर्फ़ जल्दबाज़ी पर कभी काम मत करो।",
+    "hinglish": "Text-to-speech systems text ko spectrogram (time ke saath sound frequencies ki picture) mein badalte hain aur vocoder use waveform mein; modern systems transformers ya diffusion use karte hain aur kai Indian languages bol sakte hain, jaise Bhashini ka TTS. Voice cloning kuch seconds ke audio se kisi ki awaaz copy kar sakti hai, aur music models prompt se gaane banate hain. Yeh powerful accessibility tools hain (visually impaired users ke liye padh ke sunana, lessons ko regional languages mein dub karna) par scams bhi sambhav karte hain: \"voice-clone\" fraud mein criminals kisi rishtedaar ki nakal karke turant UPI paise maangte hain. Bachaav: family code word tay karo, jaane hue number par wapas call karo, aur sirf jaldbaazi par kabhi action mat lo."
+   },
+   "analogy": {
+    "hinglish": "Voice clone ek perfect mimicry artist jaisa hai — awaaz bilkul papa jaisi, par sawaal poochho jo sirf papa jaante hain.",
+    "en": "A voice clone is like a perfect mimicry artist — the voice sounds exactly like papa, but ask a question only papa would know.",
+    "hi": "आवाज़ क्लोन एक परफ़ेक्ट नक़ल कलाकार जैसा है — आवाज़ बिल्कुल पापा जैसी, पर ऐसा सवाल पूछो जो सिर्फ़ पापा जानते हों।"
+   },
+   "realExample": {
+    "en": "Indian police cyber cells and the I4C (Indian Cyber Crime Coordination Centre) have warned about AI voice-clone calls; report such fraud at cybercrime.gov.in or helpline 1930.",
+    "hinglish": "Indian police cyber cells aur I4C (Indian Cyber Crime Coordination Centre) ne AI voice-clone calls ke baare mein warning di hai; aisa fraud cybercrime.gov.in ya helpline 1930 par report karo.",
+    "hi": "भारतीय पुलिस साइबर सेल और I4C (भारतीय साइबर अपराध समन्वय केंद्र) ने एआई आवाज़-क्लोन कॉल के बारे में चेताया है; ऐसी धोखाधड़ी cybercrime.gov.in या हेल्पलाइन 1930 पर रिपोर्ट करो।"
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write a prompt for an image of your town's festival in a traditional Indian art style. List 3 things in the generated image you would check before sharing it (accuracy, people's consent, labelling it as AI-made).",
+   "hinglish": "Apne shehar ke tyohaar ki ek traditional Indian art style image ka prompt likho. Generated image mein 3 cheezein likho jo share karne se pehle check karoge (accuracy, logon ki consent, AI-made label).",
+   "hi": "अपने शहर के त्योहार की पारंपरिक भारतीय कला शैली में तस्वीर के लिए प्रॉम्प्ट लिखो। बनी तस्वीर में 3 चीज़ें लिखो जो साझा करने से पहले जाँचोगे (सटीकता, लोगों की सहमति, एआई-निर्मित का लेबल)।"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "During training, what does a diffusion network learn to predict?",
+     "hi": "प्रशिक्षण में डिफ़्यूज़न नेटवर्क क्या अनुमानित करना सीखता है?",
+     "hinglish": "Training mein diffusion network kya predict karna seekhta hai?"
+    },
+    "options": [
+     {
+      "en": "The noise that was added to an image",
+      "hinglish": "Image mein daala gaya noise",
+      "hi": "तस्वीर में जोड़ा गया शोर"
+     },
+     {
+      "en": "The next word",
+      "hinglish": "Agla word",
+      "hi": "अगला शब्द"
+     },
+     {
+      "en": "The camera brand",
+      "hinglish": "Camera brand",
+      "hi": "कैमरे का ब्रांड"
+     },
+     {
+      "en": "The file size",
+      "hinglish": "File size",
+      "hi": "फ़ाइल का आकार"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Predicting the added noise lets the model subtract it step by step during generation.",
+     "hi": "डाले गए शोर का अनुमान मॉडल को जनरेशन में उसे कदम-दर-कदम घटाने देता है।",
+     "hinglish": "Daale gaye noise ko predict karna model ko generation mein use step-by-step ghatane deta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Generation in a diffusion model starts from…",
+     "hi": "डिफ़्यूज़न मॉडल में जनरेशन किससे शुरू होता है?",
+     "hinglish": "Diffusion model mein generation kisse shuru hota hai?"
+    },
+    "options": [
+     {
+      "en": "Random noise",
+      "hinglish": "Random noise",
+      "hi": "यादृच्छिक शोर"
+     },
+     {
+      "en": "A copy of a training photo",
+      "hinglish": "Training photo ki copy",
+      "hi": "किसी प्रशिक्षण फ़ोटो की नक़ल"
+     },
+     {
+      "en": "A blank white canvas only",
+      "hinglish": "Sirf blank white canvas",
+      "hi": "सिर्फ़ ख़ाली सफ़ेद कैनवास"
+     },
+     {
+      "en": "The prompt as pixels",
+      "hinglish": "Prompt pixels ki tarah",
+      "hi": "पिक्सेल के रूप में प्रॉम्प्ट"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Fresh noise plus the prompt-guided denoiser produces a new image each time; a different noise seed gives a different picture.",
+     "hi": "नया शोर और प्रॉम्प्ट-निर्देशित डीनॉइज़र हर बार नई तस्वीर बनाते हैं; अलग शोर-बीज अलग तस्वीर देता है।",
+     "hinglish": "Naya noise aur prompt-guided denoiser har baar nayi image banate hain; alag noise seed alag picture deta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "\"Beta, main hospital mein hoon, jaldi ₹20,000 bhejo\" in your uncle's exact voice, from an unknown number. Best response?",
+     "hi": "अनजान नंबर से आपके चाचा की हूबहू आवाज़: \"बेटा, मैं अस्पताल में हूँ, जल्दी ₹20,000 भेजो\"। सबसे अच्छी प्रतिक्रिया?",
+     "hinglish": "Unknown number se chacha ki exact awaaz: \"Beta, main hospital mein hoon, jaldi ₹20,000 bhejo\". Best response?"
+    },
+    "options": [
+     {
+      "en": "Hang up and call your uncle on his known number; tell a parent",
+      "hinglish": "Phone kaato aur chacha ko unke known number par call karo; parent ko batao",
+      "hi": "फ़ोन रखो और चाचा को उनके जाने-पहचाने नंबर पर कॉल करो; माता-पिता को बताओ"
+     },
+     {
+      "en": "Send the money quickly",
+      "hinglish": "Jaldi paise bhejo",
+      "hi": "जल्दी से पैसे भेज दो"
+     },
+     {
+      "en": "Share your UPI PIN to help",
+      "hinglish": "Madad ke liye UPI PIN share karo",
+      "hi": "मदद के लिए अपना यूपीआई पिन बता दो"
+     },
+     {
+      "en": "Ignore and never tell anyone",
+      "hinglish": "Ignore karo aur kisi ko mat batao",
+      "hi": "अनदेखा करो और किसी को मत बताओ"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Voices can be cloned from a few seconds of audio. Verify through a known channel; urgency and secrecy are scam signals. Report to 1930.",
+     "hi": "आवाज़ कुछ सेकंड के ऑडियो से नकल हो सकती है। जाने हुए रास्ते से पुष्टि करो; जल्दबाज़ी और गोपनीयता ठगी के संकेत हैं। 1930 पर रिपोर्ट करो।",
+     "hinglish": "Awaaz kuch seconds ke audio se clone ho sakti hai. Known channel se verify karo; jaldbaazi aur secrecy scam signals hain. 1930 par report karo."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Run the denoiser from step 20 to step 0 and reveal the image.",
+     "hi": "डीनॉइज़र को कदम 20 से 0 तक चलाकर तस्वीर दिखाएँ।",
+     "hinglish": "Denoiser ko step 20 se 0 tak chala ke image reveal karo."
+    },
+    "answer": {
+     "event": "diffusion-complete"
+    },
+    "explain": {
+     "en": "Each step removes part of the predicted noise; structure appears first, fine detail last.",
+     "hi": "हर कदम अनुमानित शोर का हिस्सा हटाता है; पहले ढाँचा दिखता है, बारीकी आखिर में।",
+     "hinglish": "Har step predicted noise ka hissa hatata hai; pehle structure dikhta hai, fine detail aakhir mein."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "ai.genai-images",
+  "ai.genai-audio"
+ ],
+ "sources": [
+  {
+   "title": "Ho, Jain, Abbeel (2020) Denoising Diffusion Probabilistic Models",
+   "url": "https://arxiv.org/abs/2006.11239",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Rombach et al. (2022) High-Resolution Image Synthesis with Latent Diffusion Models",
+   "url": "https://arxiv.org/abs/2112.10752",
+   "licence": "fact reference"
+  },
+  {
+   "title": "National Cyber Crime Reporting Portal",
+   "url": "https://cybercrime.gov.in/",
+   "licence": "fact reference"
+  }
+ ]
+}

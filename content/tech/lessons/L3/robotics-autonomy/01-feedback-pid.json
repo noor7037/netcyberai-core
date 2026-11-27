@@ -1,0 +1,426 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.robotics-autonomy.01",
+ "level": 3,
+ "classes": [
+  10,
+  11,
+  12
+ ],
+ "unit": "robotics-autonomy",
+ "title": {
+  "en": "Feedback control and PID",
+  "hi": "फ़ीडबैक नियंत्रण और PID",
+  "hinglish": "Feedback control aur PID"
+ },
+ "minutes": 16,
+ "xp": 65,
+ "prereq": [
+  "L3.electronics-embedded.04"
+ ],
+ "outcomes": [
+  {
+   "en": "Describe open-loop and closed-loop control with examples",
+   "hi": "उदाहरणों से खुला-लूप और बंद-लूप नियंत्रण बताओ",
+   "hinglish": "Examples se open-loop aur closed-loop control batao"
+  },
+  {
+   "en": "Explain what P, I and D each do",
+   "hi": "बताओ P, I और D हर एक क्या करता है",
+   "hinglish": "Batao P, I aur D har ek kya karta hai"
+  },
+  {
+   "en": "Tune a PID controller by reading overshoot, settling time and steady-state error",
+   "hi": "अधिक्रमण, स्थिर होने के समय और स्थायी त्रुटि पढ़कर PID ट्यून करो",
+   "hinglish": "Overshoot, settling time aur steady-state error padhkar PID tune karo"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Setpoint",
+   "hinglish": "Lakshya",
+   "en": "The value you want, like 10 m height or 24 °C",
+   "hi": "वह मान जो चाहिए, जैसे 10 m ऊँचाई या 24 °C"
+  },
+  {
+   "term": "Error",
+   "hinglish": "Farak",
+   "en": "Setpoint minus the measured value",
+   "hi": "लक्ष्य में से मापा मान"
+  },
+  {
+   "term": "Closed loop",
+   "hinglish": "Band loop",
+   "en": "Control that measures the result and corrects itself",
+   "hi": "नियंत्रण जो परिणाम मापकर ख़ुद सुधारे"
+  },
+  {
+   "term": "Overshoot",
+   "hinglish": "Aage nikal jaana",
+   "en": "How far the output goes past the setpoint",
+   "hi": "आउटपुट लक्ष्य से कितना आगे जाता है"
+  },
+  {
+   "term": "Steady-state error",
+   "hinglish": "Tikne wali galti",
+   "en": "Error that remains after things settle",
+   "hi": "सब स्थिर होने के बाद बची त्रुटि"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Open loop: run the pump for 10 minutes and hope. Closed loop: measure, compare, correct, repeat.",
+    "hi": "खुला लूप: पंप 10 मिनट चलाओ और उम्मीद करो। बंद लूप: मापो, तुलना करो, सुधारो, दोहराओ।",
+    "hinglish": "Open loop: pump 10 minute chalao aur umeed karo. Closed loop: naapo, compare karo, sudhaaro, dohrao."
+   },
+   "visual": "cycle:measure|compare|correct",
+   "narration": {
+    "en": "Open loop: run the pump for 10 minutes and hope. Closed loop: measure, compare, correct, repeat.",
+    "hi": "खुला लूप: पंप 10 मिनट चलाओ और उम्मीद करो। बंद लूप: मापो, तुलना करो, सुधारो, दोहराओ।",
+    "hinglish": "Open loop: pump 10 minute chalao aur umeed karo. Closed loop: naapo, compare karo, sudhaaro, dohrao."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "P pushes in proportion to the error. Alone it leaves the drone hanging below the target.",
+    "hi": "P त्रुटि के अनुपात में धक्का देता है। अकेला यह ड्रोन को लक्ष्य से नीचे लटकाता है।",
+    "hinglish": "P error ke anupaat mein dhakka deta hai. Akela yeh drone ko target se neeche latkata hai."
+   },
+   "visual": "anim:p-only",
+   "narration": {
+    "en": "P pushes in proportion to the error. Alone it leaves the drone hanging below the target.",
+    "hi": "P त्रुटि के अनुपात में धक्का देता है। अकेला यह ड्रोन को लक्ष्य से नीचे लटकाता है।",
+    "hinglish": "P error ke anupaat mein dhakka deta hai. Akela yeh drone ko target se neeche latkata hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "I adds up past error and removes what is left. D watches speed and brakes before overshooting.",
+    "hi": "I पिछली त्रुटि जोड़कर बची त्रुटि हटाता है। D गति देखकर आगे निकलने से पहले ब्रेक लगाता है।",
+    "hinglish": "I pichhli error jodkar bachi error hatata hai. D speed dekhkar aage nikalne se pehle brake lagata hai."
+   },
+   "visual": "stack:P now|I past|D future",
+   "narration": {
+    "en": "I adds up past error and removes what is left. D watches speed and brakes before overshooting.",
+    "hi": "I पिछली त्रुटि जोड़कर बची त्रुटि हटाता है। D गति देखकर आगे निकलने से पहले ब्रेक लगाता है।",
+    "hinglish": "I pichhli error jodkar bachi error hatata hai. D speed dekhkar aage nikalne se pehle brake lagata hai."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Tuned PID: fast, little overshoot, zero lasting error — even after a wind gust.",
+    "hi": "ट्यून PID: तेज़, कम अधिक्रमण, कोई टिकी त्रुटि नहीं — हवा के झोंके के बाद भी।",
+    "hinglish": "Tuned PID: tez, kam overshoot, koi tikne wali error nahi — hawa ke jhonke ke baad bhi."
+   },
+   "visual": "anim:pid-tuned",
+   "narration": {
+    "en": "Tuned PID: fast, little overshoot, zero lasting error — even after a wind gust.",
+    "hi": "ट्यून PID: तेज़, कम अधिक्रमण, कोई टिकी त्रुटि नहीं — हवा के झोंके के बाद भी।",
+    "hinglish": "Tuned PID: tez, kam overshoot, koi tikne wali error nahi — hawa ke jhonke ke baad bhi."
+   }
+  }
+ ],
+ "play": {
+  "lab": "control-lab",
+  "config": {
+   "mode": "pid"
+  },
+  "goal": {
+   "en": "Fly the drone to 10 m. Try \"P only\" and see it hang low, then tune Kp, Ki and Kd until overshoot is under 10%, it settles within 6 s and the final error is under 0.2 m. Turn on the wind gust to test it.",
+   "hi": "ड्रोन को 10 m तक उड़ाओ। \"केवल P\" आज़माओ और उसे नीचे लटका देखो, फिर Kp, Ki और Kd ट्यून करो जब तक अधिक्रमण 10% से कम, 6 s में स्थिर और अंतिम त्रुटि 0.2 m से कम न हो। हवा का झोंका चालू करके जाँचो।",
+   "hinglish": "Drone ko 10 m tak udao. \"Sirf P\" try karo aur use neeche latakta dekho, phir Kp, Ki aur Kd tune karo jab tak overshoot 10% se kam, 6 s mein settle aur aakhri error 0.2 m se kam na ho. Wind gust on karke test karo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Three terms, three jobs",
+    "hi": "तीन पद, तीन काम",
+    "hinglish": "Teen terms, teen kaam"
+   },
+   "body": {
+    "en": "A PID controller computes its output from the error e = setpoint − measurement: output = Kp·e + Ki·∫e dt + Kd·de/dt. The P term reacts to the present: big error, big push. But a drone must make thrust just to cancel gravity, and with P alone the only way to make that thrust is to keep some error — so it hovers a little below the target (steady-state error). The I term remembers the past: it keeps adding up the error, so any lasting error grows the push until the error is gone. The D term predicts the future: it reacts to how fast the error is changing and brakes before the drone overshoots. Too much P or I causes overshoot and wobbles; too much D makes it sluggish and amplifies sensor noise. Engineers tune by trying values and watching three numbers: overshoot, settling time and steady-state error.",
+    "hi": "PID नियंत्रक त्रुटि e = लक्ष्य − माप से आउटपुट निकालता है: आउटपुट = Kp·e + Ki·∫e dt + Kd·de/dt। P पद वर्तमान पर प्रतिक्रिया देता है: बड़ी त्रुटि, बड़ा धक्का। पर ड्रोन को गुरुत्व रद्द करने भर के लिए भी थ्रस्ट चाहिए, और केवल P के साथ वह थ्रस्ट बनाने का एकमात्र तरीक़ा कुछ त्रुटि बनाए रखना है — इसलिए वह लक्ष्य से थोड़ा नीचे मँडराता है (स्थायी त्रुटि)। I पद अतीत याद रखता है: वह त्रुटि जोड़ता रहता है, इसलिए कोई भी टिकी त्रुटि धक्का बढ़ाती जाती है जब तक त्रुटि ख़त्म न हो। D पद भविष्य का अनुमान लगाता है: त्रुटि कितनी तेज़ी से बदल रही है उस पर प्रतिक्रिया देकर आगे निकलने से पहले ब्रेक लगाता है। ज़्यादा P या I से अधिक्रमण और डगमगाहट; ज़्यादा D से सुस्ती और सेंसर शोर बढ़ता है। इंजीनियर मान आज़माकर तीन संख्याएँ देखते हुए ट्यून करते हैं: अधिक्रमण, स्थिर होने का समय और स्थायी त्रुटि।",
+    "hinglish": "PID controller error e = setpoint − measurement se output nikaalta hai: output = Kp·e + Ki·∫e dt + Kd·de/dt. P term present par react karta hai: badi error, bada dhakka. Par drone ko gravity cancel karne bhar ke liye bhi thrust chahiye, aur sirf P ke saath woh thrust banane ka ek hi tareeka kuch error banaye rakhna hai — isliye woh target se thoda neeche hover karta hai (steady-state error). I term past yaad rakhta hai: woh error jodta rehta hai, isliye koi bhi tikne wali error dhakka badhaati jaati hai jab tak error khatam na ho. D term future ka andaaza lagata hai: error kitni tezi se badal rahi hai us par react karke overshoot se pehle brake lagata hai. Zyada P ya I se overshoot aur wobble; zyada D se susti aur sensor noise badhta hai. Engineers values try karke teen numbers dekhte hue tune karte hain: overshoot, settling time aur steady-state error."
+   },
+   "analogy": {
+    "en": "Parking a scooter: P is how hard you twist the throttle for the distance left, I is noticing you keep stopping short, D is easing off as you get close fast.",
+    "hi": "स्कूटर पार्क करना: P बची दूरी के लिए एक्सीलरेटर कितना घुमाते हो, I यह ध्यान कि तुम बार-बार पहले रुक जाते हो, D तेज़ी से पास आते हुए ढील देना।",
+    "hinglish": "Scooter park karna: P bachi doori ke liye throttle kitna ghumaate ho, I yeh dhyaan ki tum baar-baar pehle ruk jaate ho, D tezi se paas aate hue dheel dena."
+   },
+   "realExample": {
+    "en": "Drone flight controllers such as PX4 run nested PID loops for rate, attitude and position; the inner loops run hundreds to thousands of times per second.",
+    "hi": "PX4 जैसे ड्रोन फ़्लाइट कंट्रोलर दर, अभिवृत्ति और स्थिति के लिए नेस्टेड PID लूप चलाते हैं; अंदर के लूप प्रति सेकंड सैकड़ों से हज़ारों बार चलते हैं।",
+    "hinglish": "PX4 jaise drone flight controllers rate, attitude aur position ke liye nested PID loops chalate hain; andar ke loops per second saikdon se hazaaron baar chalte hain."
+   }
+  },
+  {
+   "heading": {
+    "en": "Feedback is everywhere",
+    "hi": "फ़ीडबैक हर जगह है",
+    "hinglish": "Feedback har jagah hai"
+   },
+   "body": {
+    "en": "Your body is a feedback system: you sweat when hot and shiver when cold. An inverter AC measures room temperature and smoothly changes compressor speed — closed loop. An old geyser that just heats for a fixed time would be open loop; a thermostat that cuts off at 60 °C is simple on/off feedback. Car cruise control holds speed up hills, a self-balancing robot keeps upright, and a 3D printer holds its nozzle at 200 °C — all with PID or close relatives. Chandrayaan-3’s Vikram lander touched down near the Moon’s south pole on 23 August 2023 using closed-loop guidance fed by sensors such as laser altimeters, velocity meters and hazard-detection cameras — no human could steer it live from 3.8 lakh km away. Feedback only works if the sensor is right: a faulty sensor makes a perfect controller do the wrong thing confidently.",
+    "hi": "आपका शरीर फ़ीडबैक तंत्र है: गर्मी में पसीना, ठंड में कँपकँपी। इन्वर्टर AC कमरे का तापमान मापकर कंप्रेसर की गति सहज रूप से बदलता है — बंद लूप। तय समय तक गरम करने वाला पुराना गीज़र खुला लूप होगा; 60 °C पर बंद होने वाला थर्मोस्टेट सरल चालू/बंद फ़ीडबैक है। कार का क्रूज़ कंट्रोल चढ़ाई पर गति बनाए रखता है, स्वयं-संतुलित रोबोट सीधा रहता है, और 3D प्रिंटर अपनी नोज़ल 200 °C पर रखता है — सब PID या उसके करीबी तरीक़ों से। चंद्रयान-3 का विक्रम लैंडर 23 अगस्त 2023 को चंद्रमा के दक्षिणी ध्रुव के पास उतरा, लेज़र अल्टीमीटर, वेग मापक और ख़तरा-पहचान कैमरों जैसे सेंसरों से चलने वाले बंद-लूप मार्गदर्शन से — 3.8 लाख किमी दूर से कोई इंसान उसे लाइव नहीं चला सकता था। फ़ीडबैक तभी काम करता है जब सेंसर सही हो: ख़राब सेंसर एक उत्तम नियंत्रक से भी आत्मविश्वास से ग़लत काम करवाता है।",
+    "hinglish": "Tumhara shareer feedback system hai: garmi mein paseena, thand mein kaanpna. Inverter AC kamre ka temperature naapkar compressor ki speed smoothly badalta hai — closed loop. Fixed time tak garam karne wala purana geyser open loop hoga; 60 °C par band hone wala thermostat simple on/off feedback hai. Car ka cruise control chadhai par speed banaye rakhta hai, self-balancing robot seedha rehta hai, aur 3D printer apni nozzle 200 °C par rakhta hai — sab PID ya uske kareebi tareekon se. Chandrayaan-3 ka Vikram lander 23 August 2023 ko Chaand ke south pole ke paas utra, laser altimeters, velocity meters aur hazard-detection cameras jaise sensors se chalne wale closed-loop guidance se — 3.8 lakh km door se koi insaan use live nahi chala sakta tha. Feedback tabhi kaam karta hai jab sensor sahi ho: kharaab sensor ek perfect controller se bhi confidently galat kaam karwata hai."
+   },
+   "analogy": {
+    "en": "Balancing a stick on your palm: your eyes measure the tilt, your hand moves to correct, again and again.",
+    "hi": "हथेली पर छड़ी संतुलित करना: आँखें झुकाव मापती हैं, हाथ सुधारने को हिलता है, बार-बार।",
+    "hinglish": "Hatheli par chhadi balance karna: aankhein jhukaav naapti hain, haath sudhaarne ko hilta hai, baar-baar."
+   },
+   "realExample": {
+    "en": "A school line-follower robot uses PID on the line position from IR sensors to steer smoothly instead of zig-zagging.",
+    "hi": "स्कूल का लाइन-फ़ॉलोअर रोबोट IR सेंसरों से लाइन की स्थिति पर PID लगाकर टेढ़ा-मेढ़ा चलने के बजाय सहज मुड़ता है।",
+    "hinglish": "School ka line-follower robot IR sensors se line ki position par PID lagaakar zig-zag ke bajaye smoothly mudta hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "List four feedback systems in your home or school. For each, name the setpoint, the sensor and the actuator. Then, in the lab, find two different Kp/Ki/Kd sets that both pass the tuning check and explain which you would trust in strong wind.",
+   "hi": "घर या स्कूल के चार फ़ीडबैक तंत्र लिखो। हर एक का लक्ष्य, सेंसर और प्रवर्तक बताओ। फिर लैब में दो अलग Kp/Ki/Kd सेट ढूँढो जो दोनों ट्यूनिंग जाँच पास करें और समझाओ तेज़ हवा में किस पर भरोसा करोगे।",
+   "hinglish": "Ghar ya school ke chaar feedback systems likho. Har ek ka setpoint, sensor aur actuator batao. Phir lab mein do alag Kp/Ki/Kd sets dhoondo jo dono tuning check pass karein aur samjhao tez hawa mein kis par bharosa karoge."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "With P control only, the drone hovers below 10 m. Which term fixes that lasting error?",
+     "hi": "केवल P नियंत्रण में ड्रोन 10 m से नीचे मँडराता है। कौन-सा पद वह टिकी त्रुटि ठीक करता है?",
+     "hinglish": "Sirf P control mein drone 10 m se neeche hover karta hai. Kaunsa term woh tikne wali error theek karta hai?"
+    },
+    "options": [
+     {
+      "en": "I (integral)",
+      "hi": "I (समाकल)",
+      "hinglish": "I (integral)"
+     },
+     {
+      "en": "D (derivative)",
+      "hi": "D (अवकलज)",
+      "hinglish": "D (derivative)"
+     },
+     {
+      "en": "A bigger battery",
+      "hi": "बड़ी बैटरी",
+      "hinglish": "Badi battery"
+     },
+     {
+      "en": "Nothing can",
+      "hi": "कुछ नहीं कर सकता",
+      "hinglish": "Kuch nahi kar sakta"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "The integral grows while any error remains.",
+     "hi": "जब तक त्रुटि रहे, समाकल बढ़ता है।",
+     "hinglish": "Jab tak error rahe, integral badhta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "The output shoots past the target and wobbles. What usually helps?",
+     "hi": "आउटपुट लक्ष्य से आगे निकलकर डगमगाता है। आम तौर पर क्या मदद करता है?",
+     "hinglish": "Output target se aage nikalkar wobble karta hai. Aam taur par kya madad karta hai?"
+    },
+    "options": [
+     {
+      "en": "More Kd, or less Kp",
+      "hi": "ज़्यादा Kd, या कम Kp",
+      "hinglish": "Zyada Kd, ya kam Kp"
+     },
+     {
+      "en": "More Kp",
+      "hi": "ज़्यादा Kp",
+      "hinglish": "Zyada Kp"
+     },
+     {
+      "en": "More Ki",
+      "hi": "ज़्यादा Ki",
+      "hinglish": "Zyada Ki"
+     },
+     {
+      "en": "Remove the sensor",
+      "hi": "सेंसर हटाओ",
+      "hinglish": "Sensor hatao"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "D brakes on speed; less P pushes less hard.",
+     "hi": "D गति पर ब्रेक लगाता है; कम P कम धक्का देता है।",
+     "hinglish": "D speed par brake lagata hai; kam P kam dhakka deta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "match",
+    "prompt": {
+     "en": "Match each term to its job.",
+     "hi": "हर पद को उसके काम से मिलाओ।",
+     "hinglish": "Har term ko uske kaam se milao."
+    },
+    "options": [
+     "P",
+     "I",
+     "D"
+    ],
+    "answer": [
+     {
+      "en": "Reacts to the present error",
+      "hi": "वर्तमान त्रुटि पर प्रतिक्रिया",
+      "hinglish": "Present error par react"
+     },
+     {
+      "en": "Removes lasting error from the past",
+      "hi": "अतीत की टिकी त्रुटि हटाता है",
+      "hinglish": "Past ki tikne wali error hatata hai"
+     },
+     {
+      "en": "Brakes on how fast error changes",
+      "hi": "त्रुटि बदलने की गति पर ब्रेक",
+      "hinglish": "Error badalne ki speed par brake"
+     }
+    ],
+    "explain": {
+     "en": "Present, past, future.",
+     "hi": "वर्तमान, अतीत, भविष्य।",
+     "hinglish": "Present, past, future."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are closed-loop systems?",
+     "hi": "कौन-से बंद-लूप तंत्र हैं?",
+     "hinglish": "Kaunse closed-loop systems hain?"
+    },
+    "options": [
+     {
+      "en": "An inverter AC holding 24 °C",
+      "hi": "24 °C बनाए रखने वाला इन्वर्टर AC",
+      "hinglish": "24 °C banaye rakhne wala inverter AC"
+     },
+     {
+      "en": "Cruise control in a car",
+      "hi": "कार का क्रूज़ कंट्रोल",
+      "hinglish": "Car ka cruise control"
+     },
+     {
+      "en": "A toaster on a fixed timer",
+      "hi": "तय टाइमर वाला टोस्टर",
+      "hinglish": "Fixed timer wala toaster"
+     },
+     {
+      "en": "A drone holding its height",
+      "hi": "ऊँचाई बनाए रखने वाला ड्रोन",
+      "hinglish": "Height banaye rakhne wala drone"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     3
+    ],
+    "explain": {
+     "en": "A fixed timer does not measure the result.",
+     "hi": "तय टाइमर परिणाम नहीं मापता।",
+     "hinglish": "Fixed timer result nahi naapta."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "order",
+    "prompt": {
+     "en": "Order one cycle of a control loop.",
+     "hi": "नियंत्रण लूप का एक चक्र क्रम में लगाओ।",
+     "hinglish": "Control loop ka ek cycle order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Measure with the sensor",
+      "hi": "सेंसर से मापो",
+      "hinglish": "Sensor se naapo"
+     },
+     {
+      "en": "Compute error = setpoint − measurement",
+      "hi": "त्रुटि = लक्ष्य − माप निकालो",
+      "hinglish": "Error = setpoint − measurement nikaalo"
+     },
+     {
+      "en": "Compute the PID output",
+      "hi": "PID आउटपुट निकालो",
+      "hinglish": "PID output nikaalo"
+     },
+     {
+      "en": "Drive the motor, then repeat",
+      "hi": "मोटर चलाओ, फिर दोहराओ",
+      "hinglish": "Motor chalao, phir dohrao"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "Sense → compare → compute → act → repeat.",
+     "hi": "अनुभव → तुलना → गणना → क्रिया → दोहराव।",
+     "hinglish": "Sense → compare → compute → act → repeat."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Tune the drone so it passes the check.",
+     "hi": "ड्रोन को ऐसे ट्यून करो कि जाँच पास हो।",
+     "hinglish": "Drone ko aise tune karo ki check pass ho."
+    },
+    "answer": {
+     "event": "pid-tuned"
+    },
+    "explain": {
+     "en": "For example Kp 4, Ki 1.2, Kd 2.5.",
+     "hi": "जैसे Kp 4, Ki 1.2, Kd 2.5।",
+     "hinglish": "Jaise Kp 4, Ki 1.2, Kd 2.5."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "topics": [
+  "robo.feedback-loops",
+  "robo.sensors-motors"
+ ],
+ "sources": [
+  {
+   "title": "PX4 Autopilot docs — Multicopter PID tuning guide",
+   "url": "https://docs.px4.io/main/en/config_mc/pid_tuning_guide_multicopter.html",
+   "licence": "fact reference"
+  },
+  {
+   "title": "ISRO — Chandrayaan-3",
+   "url": "https://www.isro.gov.in/Chandrayaan3_Details.html",
+   "licence": "fact reference"
+  }
+ ]
+}

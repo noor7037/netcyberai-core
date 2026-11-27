@@ -1,0 +1,308 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.web.02",
+ "level": 2,
+ "classes": [
+  7
+ ],
+ "unit": "web",
+ "title": {
+  "en": "HTML: the skeleton of a web page",
+  "hi": "HTML: वेब पेज का ढाँचा",
+  "hinglish": "HTML: web page ka dhaancha"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [
+  "L2.web.01"
+ ],
+ "topics": [
+  "web.html",
+  "web.accessibility"
+ ],
+ "outcomes": [
+  {
+   "en": "Write a page with headings, paragraphs, lists, links and images",
+   "hi": "शीर्षक, अनुच्छेद, सूची, लिंक और चित्रों वाला पेज लिख सकते हो",
+   "hinglish": "Headings, paragraphs, lists, links aur images wala page likh sakte ho"
+  },
+  {
+   "en": "Explain tags, elements and attributes",
+   "hi": "टैग, तत्व और गुण समझा सकते हो",
+   "hinglish": "Tags, elements aur attributes samjha sakte ho"
+  },
+  {
+   "en": "Add alt text so pages work for everyone",
+   "hi": "alt टेक्स्ट जोड़कर पेज सबके लिए उपयोगी बना सकते हो",
+   "hinglish": "Alt text daal ke page sabke liye accessible bana sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "HTML",
+   "hinglish": "Page ka dhaancha likhne ki bhasha",
+   "en": "HyperText Markup Language: describes the structure of a page",
+   "hi": "हाइपरटेक्स्ट मार्कअप लैंग्वेज: पेज की संरचना बताती है"
+  },
+  {
+   "term": "Tag",
+   "hinglish": "<p> jaise angle bracket ke andar ka naam",
+   "en": "A name in angle brackets like <p> … </p>",
+   "hi": "कोण कोष्ठक में नाम, जैसे <p> … </p>"
+  },
+  {
+   "term": "Element",
+   "hinglish": "Opening tag + content + closing tag",
+   "en": "A tag with its content: <h1>Hello</h1>",
+   "hi": "अपनी सामग्री के साथ टैग: <h1>Hello</h1>"
+  },
+  {
+   "term": "Attribute",
+   "hinglish": "Tag ke andar extra jaankari",
+   "en": "Extra information inside a tag: <a href=\"…\">, <img alt=\"…\">",
+   "hi": "टैग के अंदर अतिरिक्त जानकारी: <a href=\"…\">, <img alt=\"…\">"
+  },
+  {
+   "term": "Accessibility",
+   "hinglish": "Har koi use kar sake",
+   "en": "Making pages usable by everyone, including people who use screen readers",
+   "hi": "पेज को सबके लिए उपयोगी बनाना, स्क्रीन रीडर उपयोग करने वालों सहित"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "HTML marks up content with tags: <h1> big heading, <p> paragraph, <ul><li> list, <a> link, <img> picture.",
+    "hi": "HTML टैग से सामग्री चिह्नित करता है: <h1> बड़ा शीर्षक, <p> अनुच्छेद, <ul><li> सूची, <a> लिंक, <img> चित्र।",
+    "hinglish": "HTML tags se content mark karta hai: <h1> bada heading, <p> paragraph, <ul><li> list, <a> link, <img> picture."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "Tags say what each piece IS, not how it looks.",
+    "hi": "टैग बताते हैं हर भाग क्या है, वह कैसा दिखता है यह नहीं।",
+    "hinglish": "Tags batate hain har hissa KYA hai, kaisa dikhta hai nahi."
+   },
+   "code": "<h1>My School Trip</h1>\n<p>We visited the <b>Science City</b>.</p>\n<ul>\n  <li>Robot show</li>\n  <li>Planetarium</li>\n</ul>"
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Attributes add details: <a href=\"https://ncert.nic.in\">NCERT</a> and <img src=\"tiger.jpg\" alt=\"A tiger resting in the grass\">.",
+    "hi": "गुण विवरण जोड़ते हैं: <a href=\"https://ncert.nic.in\">NCERT</a> और <img src=\"tiger.jpg\" alt=\"घास में आराम करता बाघ\">।",
+    "hinglish": "Attributes details jodte hain: <a href=\"https://ncert.nic.in\">NCERT</a> aur <img src=\"tiger.jpg\" alt=\"Ghaas mein aaram karta tiger\">."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "href says where the link goes; alt describes the image for people who cannot see it.",
+    "hi": "href बताता है लिंक कहाँ जाता है; alt उन लोगों के लिए चित्र बताता है जो देख नहीं सकते।",
+    "hinglish": "href batata hai link kahan jaata hai; alt image ko un logon ke liye describe karta hai jo dekh nahi sakte."
+   },
+   "code": "<a href=\"https://ncert.nic.in\">NCERT books</a>\n<img src=\"tiger.jpg\" alt=\"A tiger resting in tall grass\">"
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Edit the HTML in the studio and the preview updates instantly.",
+    "hi": "स्टूडियो में HTML बदलो और पूर्वावलोकन तुरंत बदलता है।",
+    "hinglish": "Studio mein HTML badlo aur preview turant update hota hai."
+   },
+   "visual": "lab:web-studio#html",
+   "narration": {
+    "en": "This is exactly how web developers work: change, look, change again.",
+    "hi": "वेब डेवलपर ठीक ऐसे ही काम करते हैं: बदलो, देखो, फिर बदलो।",
+    "hinglish": "Web developers bilkul aise hi kaam karte hain: badlo, dekho, phir badlo."
+   }
+  }
+ ],
+ "play": {
+  "lab": "web-studio",
+  "config": {
+   "tab": "html"
+  },
+  "goal": {
+   "en": "Build an “About me” page with an <h1>, a <p>, a list of 3 hobbies and an image with alt text.",
+   "hi": "एक <h1>, एक <p>, 3 शौक़ की सूची और alt टेक्स्ट वाले चित्र के साथ “About me” पेज बनाओ।",
+   "hinglish": "“About me” page banao: ek <h1>, ek <p>, 3 hobbies ki list aur alt text wali image."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "How HTML is organised",
+    "hi": "HTML कैसे व्यवस्थित है",
+    "hinglish": "HTML kaise organised hai"
+   },
+   "body": {
+    "en": "Most elements have an opening and closing tag: <p>…</p>. Some are empty: <img> and <br>. Elements nest inside each other like boxes: <ul> holds <li> items. A full page has <html>, a <head> (title, links to CSS) and a <body> (what you see). Use headings in order (<h1> once, then <h2>, <h3>), because screen readers and search engines use them like a table of contents. Always give images meaningful alt text — India’s accessibility rules for government websites (GIGW) and the international WCAG guidelines require it.",
+    "hi": "ज़्यादातर तत्वों के खुलने और बंद होने के टैग होते हैं: <p>…</p>। कुछ ख़ाली होते हैं: <img> और <br>। तत्व डिब्बों की तरह एक-दूसरे में आते हैं: <ul> में <li> आइटम। पूरे पेज में <html>, एक <head> (शीर्षक, CSS के लिंक) और एक <body> (जो दिखता है) होता है। शीर्षक क्रम में लो (<h1> एक बार, फिर <h2>, <h3>), क्योंकि स्क्रीन रीडर और सर्च इंजन इन्हें विषय-सूची की तरह उपयोग करते हैं। चित्रों को हमेशा अर्थपूर्ण alt टेक्स्ट दो — भारत के सरकारी वेबसाइट नियम (GIGW) और अंतरराष्ट्रीय WCAG दिशानिर्देश इसे ज़रूरी बताते हैं।",
+    "hinglish": "Zyaadatar elements ka opening aur closing tag hota hai: <p>…</p>. Kuch empty hote hain: <img> aur <br>. Elements dabbon ki tarah ek doosre ke andar aate hain: <ul> mein <li> items. Poore page mein <html>, ek <head> (title, CSS ke links) aur ek <body> (jo dikhta hai) hota hai. Headings order mein lo (<h1> ek baar, phir <h2>, <h3>), kyunki screen readers aur search engines inhe table of contents ki tarah use karte hain. Images ko hamesha meaningful alt text do — India ke sarkari website rules (GIGW) aur international WCAG guidelines isse zaroori bataate hain."
+   },
+   "analogy": {
+    "hinglish": "HTML = ghar ka dhaancha: deewarein, kamre, darwaze. CSS = paint aur furniture. JavaScript = bijli ke switch jo cheezein chalaate hain.",
+    "en": "HTML = the frame of a house: walls, rooms, doors. CSS = paint and furniture. JavaScript = the electric switches that make things work.",
+    "hi": "HTML = घर का ढाँचा: दीवारें, कमरे, दरवाज़े। CSS = रंग और फ़र्नीचर। JavaScript = बिजली के स्विच जो चीज़ें चलाते हैं।"
+   },
+   "realExample": {
+    "en": "Press Ctrl+U in a desktop browser to see the HTML of any page.",
+    "hi": "डेस्कटॉप ब्राउज़र में Ctrl+U दबाकर किसी भी पेज का HTML देखो।",
+    "hinglish": "Desktop browser mein Ctrl+U dabao — kisi bhi page ka HTML dikh jaayega."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write the HTML for a short page about your favourite festival with a heading, two paragraphs and a list.",
+   "hi": "अपने पसंदीदा त्योहार पर एक शीर्षक, दो अनुच्छेद और एक सूची वाले छोटे पेज का HTML लिखो।",
+   "hinglish": "Apne favourite tyohaar pe chhota page likho: ek heading, do paragraphs aur ek list."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which tag makes the biggest heading?",
+     "hi": "कौन-सा टैग सबसे बड़ा शीर्षक बनाता है?",
+     "hinglish": "Kaunsa tag sabse bada heading banata hai?"
+    },
+    "options": [
+     "<h1>",
+     "<h6>",
+     "<p>",
+     "<big>"
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "<h1> is the top-level heading; <h6> is the smallest.",
+     "hi": "<h1> सबसे ऊपर का शीर्षक है; <h6> सबसे छोटा।",
+     "hinglish": "<h1> top-level heading hai; <h6> sabse chhota."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "In <a href=\"https://ncert.nic.in\">Books</a>, what does href hold?",
+     "hi": "<a href=\"https://ncert.nic.in\">Books</a> में href में क्या है?",
+     "hinglish": "<a href=\"https://ncert.nic.in\">Books</a> mein href mein kya hai?"
+    },
+    "options": [
+     {
+      "en": "The link text",
+      "hi": "लिंक टेक्स्ट",
+      "hinglish": "Link text"
+     },
+     {
+      "en": "Where the link goes",
+      "hi": "लिंक कहाँ जाता है",
+      "hinglish": "Link kahan jaata hai"
+     },
+     {
+      "en": "The font",
+      "hi": "फ़ॉन्ट",
+      "hinglish": "Font"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "href is the address the link goes to; “Books” is the clickable text.",
+     "hi": "href वह पता है जहाँ लिंक जाता है; “Books” दबाने वाला टेक्स्ट।",
+     "hinglish": "href woh address hai jahan link jaata hai; “Books” click hone wala text."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why add alt text to images?",
+     "hi": "चित्रों में alt टेक्स्ट क्यों जोड़ें?",
+     "hinglish": "Images mein alt text kyun jodein?"
+    },
+    "options": [
+     {
+      "en": "To make the image bigger",
+      "hi": "चित्र बड़ा करने के लिए",
+      "hinglish": "Image badi karne ke liye"
+     },
+     {
+      "en": "To add colour",
+      "hi": "रंग जोड़ने के लिए",
+      "hinglish": "Colour jodne ke liye"
+     },
+     {
+      "en": "So people who cannot see it know what it shows",
+      "hi": "ताकि जो देख नहीं सकते वे जानें उसमें क्या है",
+      "hinglish": "Taaki jo dekh nahi sakte woh jaanein usme kya hai"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "Screen readers read it aloud for blind users, and it shows if the image fails to load.",
+     "hi": "स्क्रीन रीडर दृष्टिबाधित उपयोगकर्ताओं के लिए इसे पढ़ते हैं, और चित्र न खुले तो यह दिखता है।",
+     "hinglish": "Screen readers isse blind users ke liye padhte hain, aur image load na ho to yeh dikhta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which is written correctly?",
+     "hi": "कौन-सा सही लिखा है?",
+     "hinglish": "Kaunsa sahi likha hai?"
+    },
+    "options": [
+     "<p><b>Hi</p></b>",
+     "<p><b>Hi</b></p>",
+     "<p><b>Hi<p></b>"
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Tags close in the reverse order they opened: <p><b>Hi</b></p>.",
+     "hi": "टैग उल्टे क्रम में बंद होते हैं: <p><b>Hi</b></p>।",
+     "hinglish": "Tags ulte order mein band hote hain: <p><b>Hi</b></p>."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Build the “About me” page in the web studio.",
+     "hi": "वेब स्टूडियो में “About me” पेज बनाओ।",
+     "hinglish": "Web studio mein “About me” page banao."
+    },
+    "answer": {
+     "lab": "web-studio",
+     "event": "mission:complete",
+     "tab": "html"
+    },
+    "explain": {
+     "en": "It needs <h1>, <p>, a <ul> with 3 <li>, and an <img> with alt text.",
+     "hi": "इसमें <h1>, <p>, 3 <li> वाली <ul>, और alt टेक्स्ट वाली <img> चाहिए।",
+     "hinglish": "Isme <h1>, <p>, 3 <li> wali <ul>, aur alt text wali <img> chahiye."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "MDN — HTML basics",
+   "url": "https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/HTML_basics",
+   "licence": "CC BY-SA 2.5 (fact reference only)"
+  },
+  {
+   "title": "GIGW 3.0 — Guidelines for Indian Government Websites",
+   "url": "https://guidelines.india.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "W3C WCAG 2.2",
+   "url": "https://www.w3.org/TR/WCAG22/",
+   "licence": "fact reference"
+  }
+ ]
+}

@@ -1,0 +1,364 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.data-science.02",
+ "level": 3,
+ "classes": [
+  10,
+  11,
+  12
+ ],
+ "unit": "data-science",
+ "title": {
+  "en": "Correlation is not causation",
+  "hi": "सहसंबंध कारण नहीं है",
+  "hinglish": "Correlation causation nahi hai"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [
+  "L3.data-science.01"
+ ],
+ "outcomes": [
+  {
+   "en": "Read a scatter plot and the correlation coefficient r",
+   "hi": "स्कैटर प्लॉट और सहसंबंध गुणांक r पढ़ो",
+   "hinglish": "Scatter plot aur correlation coefficient r padho"
+  },
+  {
+   "en": "Spot confounders and reverse causation",
+   "hi": "भ्रमित करने वाले कारक और उल्टा कारण पहचानो",
+   "hinglish": "Confounders aur reverse causation pehchaano"
+  },
+  {
+   "en": "Explain why randomised experiments can show cause",
+   "hi": "समझाओ यादृच्छिक प्रयोग कारण क्यों दिखा सकते हैं",
+   "hinglish": "Samjhao randomised experiments cause kyun dikha sakte hain"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Correlation (r)",
+   "hinglish": "Saath badalna",
+   "en": "A number from −1 to +1 for how closely two variables follow a straight line",
+   "hi": "−1 से +1 तक संख्या कि दो चर सीधी रेखा पर कितना चलते हैं"
+  },
+  {
+   "term": "Causation",
+   "hinglish": "Kaaran aur asar",
+   "en": "One thing actually produces a change in another",
+   "hi": "एक चीज़ सच में दूसरी में बदलाव लाती है"
+  },
+  {
+   "term": "Confounder",
+   "hinglish": "Chhupa kaaran",
+   "en": "A hidden third variable that drives both",
+   "hi": "छुपा तीसरा चर जो दोनों को चलाता है"
+  },
+  {
+   "term": "Line of best fit",
+   "hinglish": "Sabse theek seedhi line",
+   "en": "The straight line closest to the points (least squares)",
+   "hi": "बिंदुओं के सबसे पास की सीधी रेखा (न्यूनतम वर्ग)"
+  },
+  {
+   "term": "Randomised controlled trial",
+   "hinglish": "Random group wala prayog",
+   "en": "Experiment where chance decides who gets the treatment",
+   "hi": "प्रयोग जिसमें संयोग तय करता है किसे उपचार मिले"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Study hours vs marks: points climb from left to right; r ≈ 0.8, a strong positive link.",
+    "hi": "पढ़ाई के घंटे बनाम अंक: बिंदु बाएँ से दाएँ चढ़ते हैं; r ≈ 0.8, मज़बूत धनात्मक संबंध।",
+    "hinglish": "Study hours vs marks: points left se right chadhte hain; r ≈ 0.8, strong positive link."
+   },
+   "visual": "anim:scatter-up",
+   "narration": {
+    "en": "Study hours vs marks: points climb from left to right; r ≈ 0.8, a strong positive link.",
+    "hi": "पढ़ाई के घंटे बनाम अंक: बिंदु बाएँ से दाएँ चढ़ते हैं; r ≈ 0.8, मज़बूत धनात्मक संबंध।",
+    "hinglish": "Study hours vs marks: points left se right chadhte hain; r ≈ 0.8, strong positive link."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Ice-cream sales vs drownings: also r ≈ 0.8! Does ice-cream make people drown?",
+    "hi": "आइसक्रीम बिक्री बनाम डूबना: यह भी r ≈ 0.8! क्या आइसक्रीम से लोग डूबते हैं?",
+    "hinglish": "Ice-cream sales vs drownings: yeh bhi r ≈ 0.8! Kya ice-cream se log doobte hain?"
+   },
+   "visual": "anim:scatter-ice",
+   "narration": {
+    "en": "Ice-cream sales vs drownings: also r ≈ 0.8! Does ice-cream make people drown?",
+    "hi": "आइसक्रीम बिक्री बनाम डूबना: यह भी r ≈ 0.8! क्या आइसक्रीम से लोग डूबते हैं?",
+    "hinglish": "Ice-cream sales vs drownings: yeh bhi r ≈ 0.8! Kya ice-cream se log doobte hain?"
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Colour the points by temperature: hot days (red) are top-right. Heat drives both — a confounder.",
+    "hi": "बिंदुओं को तापमान से रंगो: गर्म दिन (लाल) ऊपर-दाएँ। गर्मी दोनों को चलाती है — भ्रमित करने वाला कारक।",
+    "hinglish": "Points ko temperature se rang do: garam din (laal) upar-right. Garmi dono ko chalati hai — confounder."
+   },
+   "visual": "anim:heat-colour",
+   "narration": {
+    "en": "Colour the points by temperature: hot days (red) are top-right. Heat drives both — a confounder.",
+    "hi": "बिंदुओं को तापमान से रंगो: गर्म दिन (लाल) ऊपर-दाएँ। गर्मी दोनों को चलाती है — भ्रमित करने वाला कारक।",
+    "hinglish": "Points ko temperature se rang do: garam din (laal) upar-right. Garmi dono ko chalati hai — confounder."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Roll number vs height: r ≈ 0, a cloud with no pattern.",
+    "hi": "रोल नंबर बनाम ऊँचाई: r ≈ 0, बिना पैटर्न का बादल।",
+    "hinglish": "Roll number vs height: r ≈ 0, bina pattern ka baadal."
+   },
+   "visual": "anim:cloud",
+   "narration": {
+    "en": "Roll number vs height: r ≈ 0, a cloud with no pattern.",
+    "hi": "रोल नंबर बनाम ऊँचाई: r ≈ 0, बिना पैटर्न का बादल।",
+    "hinglish": "Roll number vs height: r ≈ 0, bina pattern ka baadal."
+   }
+  }
+ ],
+ "play": {
+  "lab": "data-lab",
+  "config": {
+   "mode": "corr",
+   "corr": "ice"
+  },
+  "goal": {
+   "en": "Look at the ice-cream and drowning plot and its r. Then tick \"Colour by temperature\" to reveal the hidden cause. Try the shoe-size dataset too.",
+   "hi": "आइसक्रीम और डूबने का प्लॉट और उसका r देखो। फिर \"तापमान से रंग दो\" चुनकर छुपा कारण दिखाओ। जूते के नाप वाला डेटासेट भी आज़माओ।",
+   "hinglish": "Ice-cream aur drowning plot aur uska r dekho. Phir \"Temperature se rang do\" tick karke chhupa kaaran dikhao. Shoe-size dataset bhi try karo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Reading r",
+    "hi": "r पढ़ना",
+    "hinglish": "r padhna"
+   },
+   "body": {
+    "en": "r = +1 means the points lie exactly on a rising line, −1 on a falling line, 0 means no straight-line pattern. As a rough guide |r| above 0.7 is strong, 0.4–0.7 moderate, below 0.3 weak. r² is the share of variation in y that the straight line explains: r = 0.8 gives r² = 0.64, so 64%. Cautions: r only measures straight-line patterns (a perfect U-shape can have r ≈ 0); a single outlier can create or destroy a correlation; and r says nothing about which variable causes which.",
+    "hi": "r = +1 का अर्थ बिंदु ठीक चढ़ती रेखा पर, −1 उतरती रेखा पर, 0 का अर्थ कोई सीधी-रेखा पैटर्न नहीं। मोटे तौर पर |r| 0.7 से ऊपर मज़बूत, 0.4–0.7 मध्यम, 0.3 से नीचे कमज़ोर। r² y के बदलाव का वह हिस्सा है जो सीधी रेखा समझाती है: r = 0.8 से r² = 0.64, यानी 64%। सावधानियाँ: r सिर्फ़ सीधी-रेखा पैटर्न नापता है (पूरे U-आकार का r ≈ 0 हो सकता है); एक बाहरी मान सहसंबंध बना या मिटा सकता है; और r यह नहीं बताता कौन-सा चर किसका कारण है।",
+    "hinglish": "r = +1 ka matlab points theek chadhti line par, −1 utarti line par, 0 ka matlab koi straight-line pattern nahi. Rough guide: |r| 0.7 se upar strong, 0.4–0.7 moderate, 0.3 se neeche weak. r² y ke variation ka woh hissa hai jo seedhi line samjhaati hai: r = 0.8 se r² = 0.64, yaani 64%. Saavdhaaniyaan: r sirf straight-line patterns naapta hai (perfect U-shape ka r ≈ 0 ho sakta hai); ek outlier correlation bana ya mita sakta hai; aur r yeh nahi batata kaunsa variable kiska kaaran hai."
+   },
+   "analogy": {
+    "en": "Two friends always arriving late together does not mean one makes the other late — maybe they take the same slow bus.",
+    "hi": "दो दोस्तों का हमेशा साथ देर से आना यह नहीं बताता कि एक दूसरे को देर कराता है — शायद वे एक ही धीमी बस लेते हैं।",
+    "hinglish": "Do doston ka hamesha saath late aana yeh nahi batata ki ek doosre ko late karata hai — shayad woh ek hi slow bus lete hain."
+   },
+   "realExample": {
+    "en": "Countries that eat more chocolate win more Nobel prizes per person (r ≈ 0.8 in a 2012 note) — wealth is the likely confounder.",
+    "hi": "ज़्यादा चॉकलेट खाने वाले देश प्रति व्यक्ति ज़्यादा नोबेल जीतते हैं (2012 की एक टिप्पणी में r ≈ 0.8) — संपन्नता संभावित भ्रमित करने वाला कारक है।",
+    "hinglish": "Zyaada chocolate khaane wale desh per person zyaada Nobel jeet-te hain (2012 ke ek note mein r ≈ 0.8) — wealth likely confounder hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "From correlation to cause",
+    "hi": "सहसंबंध से कारण तक",
+    "hinglish": "Correlation se cause tak"
+   },
+   "body": {
+    "en": "When A and B move together there are four explanations: A causes B; B causes A (reverse causation — do hospitals make people ill, or do ill people go to hospitals?); a confounder C causes both; or pure coincidence, which becomes likely when you search thousands of variable pairs. The gold standard for cause is a randomised controlled trial: randomly split people into groups, change only one thing, and compare. Randomisation balances hidden confounders on average. That is how vaccines and medicines are approved. When experiments are impossible or unethical (smoking), scientists combine many lines of evidence.",
+    "hi": "जब A और B साथ बदलते हैं तो चार व्याख्याएँ हैं: A, B का कारण; B, A का कारण (उल्टा कारण — क्या अस्पताल लोगों को बीमार करते हैं, या बीमार लोग अस्पताल जाते हैं?); एक भ्रमित कारक C दोनों का कारण; या शुद्ध संयोग, जो हज़ारों चर-जोड़ियाँ खोजने पर संभावित हो जाता है। कारण का सर्वोत्तम प्रमाण यादृच्छिक नियंत्रित परीक्षण है: लोगों को यादृच्छिक रूप से समूहों में बाँटो, सिर्फ़ एक चीज़ बदलो, और तुलना करो। यादृच्छिकता औसतन छुपे कारकों को संतुलित करती है। टीके और दवाएँ ऐसे ही स्वीकृत होती हैं। जब प्रयोग असंभव या अनैतिक हो (धूम्रपान), वैज्ञानिक कई प्रमाण-रेखाएँ जोड़ते हैं।",
+    "hinglish": "Jab A aur B saath badalte hain to chaar explanations hain: A, B ka kaaran; B, A ka kaaran (reverse causation — kya hospitals logon ko bimaar karte hain, ya bimaar log hospital jaate hain?); ek confounder C dono ka kaaran; ya pure coincidence, jo hazaaron variable pairs dhoondhne par likely ho jaata hai. Cause ka gold standard randomised controlled trial hai: logon ko randomly groups mein baanto, sirf ek cheez badlo, aur compare karo. Randomisation average mein chhupe confounders ko balance karta hai. Vaccines aur medicines aise hi approve hote hain. Jab experiments impossible ya unethical hon (smoking), scientists kai lines of evidence jodte hain."
+   },
+   "analogy": {
+    "en": "A rooster crows before sunrise every day; it does not make the sun rise.",
+    "hi": "मुर्गा हर दिन सूर्योदय से पहले बाँग देता है; वह सूरज नहीं उगाता।",
+    "hinglish": "Murga har din suraj nikalne se pehle baang deta hai; woh suraj nahi ugata."
+   },
+   "realExample": {
+    "en": "A headline says \"Students who use phones at night score lower\". Possible confounders: stress, less sleep, workload — a trial would randomly assign phone-free nights.",
+    "hi": "शीर्षक कहता है \"रात में फ़ोन चलाने वाले छात्रों के अंक कम\"। संभावित भ्रमित कारक: तनाव, कम नींद, काम का बोझ — परीक्षण यादृच्छिक रूप से बिना-फ़ोन रातें तय करेगा।",
+    "hinglish": "Headline kehti hai \"Raat mein phone chalane wale students ke marks kam\". Possible confounders: stress, kam neend, workload — trial randomly phone-free raatein assign karega."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Find a news or social media claim of the form \"X linked to Y\". Write the four possible explanations (X→Y, Y→X, confounder, chance) and design a fair experiment that could test it.",
+   "hi": "कोई ख़बर या सोशल मीडिया दावा खोजो जो \"X, Y से जुड़ा\" जैसा हो। चार संभावित व्याख्याएँ लिखो (X→Y, Y→X, भ्रमित कारक, संयोग) और एक निष्पक्ष प्रयोग बनाओ जो इसे परख सके।",
+   "hinglish": "Koi news ya social media claim dhoondho jo \"X linked to Y\" jaisa ho. Chaar possible explanations likho (X→Y, Y→X, confounder, chance) aur ek fair experiment design karo jo ise test kar sake."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "r = −0.9 means…",
+     "hi": "r = −0.9 का अर्थ…",
+     "hinglish": "r = −0.9 ka matlab…"
+    },
+    "options": [
+     {
+      "en": "A strong falling straight-line pattern",
+      "hi": "मज़बूत उतरती सीधी-रेखा पैटर्न",
+      "hinglish": "Strong girti seedhi-line pattern"
+     },
+     {
+      "en": "No relationship",
+      "hi": "कोई संबंध नहीं",
+      "hinglish": "Koi rishta nahi"
+     },
+     {
+      "en": "A weak rise",
+      "hi": "कमज़ोर चढ़ाव",
+      "hinglish": "Weak chadhaav"
+     },
+     {
+      "en": "X causes Y to fall",
+      "hi": "X, Y गिराता है",
+      "hinglish": "X, Y ko girata hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Sign = direction, size = strength. It still is not proof of cause.",
+     "hi": "चिह्न = दिशा, आकार = शक्ति। फिर भी कारण का प्रमाण नहीं।",
+     "hinglish": "Sign = direction, size = strength. Phir bhi cause ka proof nahi."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Ice-cream sales and drownings rise together because of…",
+     "hi": "आइसक्रीम बिक्री और डूबना साथ बढ़ते हैं क्योंकि…",
+     "hinglish": "Ice-cream sales aur drownings saath badhte hain kyunki…"
+    },
+    "options": [
+     {
+      "en": "Hot weather (a confounder)",
+      "hi": "गर्म मौसम (भ्रमित कारक)",
+      "hinglish": "Garam mausam (confounder)"
+     },
+     {
+      "en": "Ice-cream causes cramps",
+      "hi": "आइसक्रीम से ऐंठन",
+      "hinglish": "Ice-cream se cramps"
+     },
+     {
+      "en": "Drowning makes people buy ice-cream",
+      "hi": "डूबने से लोग आइसक्रीम ख़रीदते हैं",
+      "hinglish": "Drowning se log ice-cream khareedte hain"
+     },
+     {
+      "en": "Pure chance",
+      "hi": "शुद्ध संयोग",
+      "hinglish": "Pure chance"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Heat increases both swimming and ice-cream eating.",
+     "hi": "गर्मी तैराकी और आइसक्रीम दोनों बढ़ाती है।",
+     "hinglish": "Garmi swimming aur ice-cream dono badhati hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "short",
+    "prompt": {
+     "en": "r = 0.7. What is r²?",
+     "hi": "r = 0.7। r² क्या है?",
+     "hinglish": "r = 0.7. r² kya hai?"
+    },
+    "answer": {
+     "accept": [
+      "0.49",
+      ".49",
+      "49%"
+     ]
+    },
+    "explain": {
+     "en": "0.7 × 0.7 = 0.49: the line explains about 49% of the variation.",
+     "hi": "0.7 × 0.7 = 0.49: रेखा लगभग 49% बदलाव समझाती है।",
+     "hinglish": "0.7 × 0.7 = 0.49: line lagbhag 49% variation samjhaati hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Best way to prove a new teaching app improves marks?",
+     "hi": "नया पढ़ाई ऐप अंक सुधारता है, यह साबित करने का सबसे अच्छा तरीक़ा?",
+     "hinglish": "Naya teaching app marks sudhaarta hai, yeh prove karne ka best tareeka?"
+    },
+    "options": [
+     {
+      "en": "Randomly give it to half the students and compare",
+      "hi": "यादृच्छिक रूप से आधे छात्रों को दो और तुलना करो",
+      "hinglish": "Randomly aadhe students ko do aur compare karo"
+     },
+     {
+      "en": "Ask users if they like it",
+      "hi": "उपयोगकर्ताओं से पूछो पसंद है क्या",
+      "hinglish": "Users se poocho pasand hai kya"
+     },
+     {
+      "en": "Compare students who chose it with those who did not",
+      "hi": "चुनने वालों की न चुनने वालों से तुलना",
+      "hinglish": "Chunne walon ki na chunne walon se tulna"
+     },
+     {
+      "en": "Look at the app's ads",
+      "hi": "ऐप के विज्ञापन देखो",
+      "hinglish": "App ke ads dekho"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Self-chosen groups differ in motivation — a confounder.",
+     "hi": "ख़ुद चुने समूह प्रेरणा में अलग होते हैं — भ्रमित कारक।",
+     "hinglish": "Khud chune groups motivation mein alag hote hain — confounder."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Reveal the confounder in a dataset.",
+     "hi": "किसी डेटासेट में भ्रमित कारक दिखाओ।",
+     "hinglish": "Kisi dataset mein confounder dikhao."
+    },
+    "answer": {
+     "event": "confounder-revealed"
+    },
+    "explain": {
+     "en": "Colour exposed the hidden third variable.",
+     "hi": "रंग ने छुपा तीसरा चर उजागर किया।",
+     "hinglish": "Rang ne chhupa teesra variable dikha diya."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "ds.correlation"
+ ],
+ "sources": [
+  {
+   "title": "OpenIntro Statistics, 4th ed. (CC BY-SA; used as a fact reference)",
+   "url": "https://www.openintro.org/book/os/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Messerli, F. H. (2012) Chocolate Consumption, Cognitive Function, and Nobel Laureates, NEJM 367:1562",
+   "url": "https://doi.org/10.1056/NEJMon1211064",
+   "licence": "fact reference"
+  }
+ ]
+}

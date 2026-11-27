@@ -1,0 +1,369 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.robots.02",
+ "level": 1,
+ "classes": [
+  1,
+  2,
+  3,
+  4
+ ],
+ "unit": "robots",
+ "title": {
+  "en": "Sensors: a robot's senses",
+  "hi": "सेंसर: रोबोट की इंद्रियाँ",
+  "hinglish": "Sensors: robot ki indriyan"
+ },
+ "minutes": 8,
+ "xp": 30,
+ "prereq": [
+  "L1.robots.01"
+ ],
+ "topics": [
+  "robo.sensors-motors",
+  "elec.sensors"
+ ],
+ "outcomes": [
+  {
+   "en": "Match sensors to human senses: camera–eyes, microphone–ears, touch sensor–skin.",
+   "hi": "सेंसर को इंसानी इंद्रियों से मिला सकते हो: कैमरा–आँख, माइक–कान, टच सेंसर–त्वचा।",
+   "hinglish": "Sensors ko insaani indriyon se milaa sakte ho: camera–aankh, mic–kaan, touch sensor–tvacha."
+  },
+  {
+   "en": "Explain how an ultrasonic sensor measures distance with echoes.",
+   "hi": "समझा सकते हो कि अल्ट्रासोनिक सेंसर गूँज से दूरी कैसे नापता है।",
+   "hinglish": "Samjha sakte ho ki ultrasonic sensor echo se doori kaise naapta hai."
+  },
+  {
+   "en": "Explain how an IR sensor tells black from white.",
+   "hi": "समझा सकते हो कि IR सेंसर काले और सफ़ेद में फ़र्क़ कैसे करता है।",
+   "hinglish": "Samjha sakte ho ki IR sensor kaale aur safed mein farak kaise karta hai."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Sensor",
+   "en": "A part that measures something about the world, like light, sound or distance",
+   "hi": "रोबोट की \"इंद्रिय\" — जो दुनिया की जानकारी पढ़ता है",
+   "hinglish": "Robot ka \"sense\" — jo duniya ki jaankari padhta hai"
+  },
+  {
+   "term": "Ultrasonic",
+   "en": "Sound too high-pitched for people to hear",
+   "hi": "इतनी ऊँची आवाज़ जो हम सुन नहीं सकते",
+   "hinglish": "Itni oonchi awaaz jo hum sun nahin sakte"
+  },
+  {
+   "term": "Echo",
+   "en": "Sound that bounces back off something",
+   "hi": "टकराकर वापस आई आवाज़",
+   "hinglish": "Takra kar wapas aayi awaaz"
+  },
+  {
+   "term": "Infrared (IR)",
+   "en": "Light our eyes cannot see",
+   "hi": "ऐसी रोशनी जो आँख को नहीं दिखती",
+   "hinglish": "Aisi roshni jo aankh ko nahin dikhti"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.robots.02.s1",
+   "caption": {
+    "en": "Ping! The echo comes back. Close or far?",
+    "hi": "पिंग! गूँज लौटती है। पास या दूर?",
+    "hinglish": "Ping! Echo wapas aati hai. Paas ya door?"
+   },
+   "narration": {
+    "en": "The ultrasonic sensor sends a sound ping and listens for the echo. A quick echo means the box is close — bats find their way the same way.",
+    "hinglish": "Ultrasonic sensor ek awaaz ki ping bhejta hai aur echo sunta hai. Jaldi echo matlab box paas hai — chamgaadad bhi aise hi raasta dhoondhte hain.",
+    "hi": "अल्ट्रासोनिक सेंसर आवाज़ की पिंग भेजता है और गूँज सुनता है। जल्दी गूँज मतलब डिब्बा पास है — चमगादड़ भी ऐसे ही रास्ता ढूँढते हैं।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.robots.02.s2",
+   "caption": {
+    "en": "White bounces light back. Black soaks it up.",
+    "hi": "सफ़ेद रोशनी लौटाता है। काला सोख लेता है।",
+    "hinglish": "White roshni lautaata hai. Kaala sokh leta hai."
+   },
+   "narration": {
+    "en": "An IR sensor shines invisible light at the floor. White reflects lots of it back; black soaks it up. That is how a robot finds a black line.",
+    "hinglish": "IR sensor zameen par na dikhne wali roshni daalta hai. White zyada roshni lautaata hai; kaala sokh leta hai. Aise robot kaali line dhoondhta hai.",
+    "hi": "IR सेंसर ज़मीन पर न दिखने वाली रोशनी डालता है। सफ़ेद ज़्यादा रोशनी लौटाता है; काला सोख लेता है। ऐसे रोबोट काली लाइन ढूँढता है।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.robots.02.s3",
+   "caption": {
+    "en": "Robots have many kinds of sensors.",
+    "hi": "रोबोट में कई तरह के सेंसर होते हैं।",
+    "hinglish": "Robot mein kai tarah ke sensors hote hain."
+   },
+   "narration": {
+    "en": "Cameras are like eyes, microphones like ears, touch sensors like skin, and temperature sensors feel hot and cold.",
+    "hinglish": "Camera aankh jaisa, mic kaan jaisa, touch sensor tvacha jaisa, aur temperature sensor garam-thanda mehsoos karta hai.",
+    "hi": "कैमरा आँख जैसा, माइक कान जैसा, टच सेंसर त्वचा जैसा, और तापमान सेंसर गर्म-ठंडा महसूस करता है।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "robot-sensors",
+  "config": {
+   "mode": "sense"
+  },
+  "goal": {
+   "en": "Drag the robot and the box. Make the distance sensor read under 15 cm, and put an IR eye on the line.",
+   "hi": "रोबोट और डिब्बा खींचो। दूरी सेंसर 15 सेमी से कम दिखाए, और एक IR सेंसर लाइन पर रखो।",
+   "hinglish": "Robot aur box drag karo. Distance sensor 15 cm se kam dikhaye, aur ek IR eye line par rakho."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Measuring distance with sound",
+    "hi": "आवाज़ से दूरी नापना",
+    "hinglish": "Awaaz se doori naapna"
+   },
+   "body": {
+    "en": "Sound travels about 343 metres every second in air. The sensor times how long the echo takes, then works out the distance. A longer wait means the object is farther away.",
+    "hi": "हवा में आवाज़ हर सेकंड लगभग 343 मीटर चलती है। सेंसर गूँज लौटने का समय नापकर दूरी निकालता है। ज़्यादा देर मतलब चीज़ दूर है।",
+    "hinglish": "Hawa mein awaaz har second lagbhag 343 metre chalti hai. Sensor echo lautne ka time naap kar doori nikaalta hai. Zyada der matlab cheez door hai."
+   },
+   "analogy": {
+    "en": "Shout \"Hello!\" at a hill — if the echo takes long, the hill is far away.",
+    "hi": "पहाड़ पर \"हेलो!\" चिल्लाओ — गूँज देर से आए तो पहाड़ दूर है।",
+    "hinglish": "Pahad par \"Hello!\" chillao — echo der se aaye toh pahad door hai."
+   },
+   "realExample": {
+    "en": "Car parking sensors beep faster as you get closer to a wall — they use ultrasonic sensors.",
+    "hi": "गाड़ी के पार्किंग सेंसर दीवार के पास आने पर तेज़ बीप करते हैं — ये अल्ट्रासोनिक सेंसर हैं।",
+    "hinglish": "Car ke parking sensor deewar ke paas aane par tez beep karte hain — yeh ultrasonic sensors hain."
+   }
+  },
+  {
+   "heading": {
+    "en": "Sensors only give numbers",
+    "hi": "सेंसर सिर्फ़ संख्याएँ देते हैं",
+    "hinglish": "Sensors sirf numbers dete hain"
+   },
+   "body": {
+    "en": "A sensor does not \"know\" anything. It just turns the world into numbers — like \"32 cm\" or \"line: yes\". The robot's program (its rules) decides what those numbers mean.",
+    "hi": "सेंसर कुछ \"जानता\" नहीं। वह बस दुनिया को संख्याओं में बदलता है — जैसे \"32 सेमी\" या \"लाइन: हाँ\"। रोबोट का प्रोग्राम (नियम) तय करता है कि उन संख्याओं का मतलब क्या है।",
+    "hinglish": "Sensor kuch \"jaanta\" nahin. Woh bas duniya ko numbers mein badalta hai — jaise \"32 cm\" ya \"line: haan\". Robot ka program (rules) tay karta hai ki un numbers ka matlab kya hai."
+   },
+   "realExample": {
+    "en": "Automatic doors in malls and metro stations open when a sensor detects you coming.",
+    "hi": "मॉल और मेट्रो स्टेशन के अपने आप खुलने वाले दरवाज़े सेंसर के तुम्हें पहचानने पर खुलते हैं।",
+    "hinglish": "Mall aur metro station ke automatic darwaze sensor ke tumhe dekhne par khulte hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Clap near a wall and near open space. Where do you hear an echo? Tell a grown-up why.",
+   "hi": "दीवार के पास और खुली जगह में ताली बजाओ। गूँज कहाँ सुनाई दी? किसी बड़े को बताओ क्यों।",
+   "hinglish": "Deewar ke paas aur khuli jagah mein taali bajao. Echo kahan suna? Kisi bade ko batao kyun."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "match",
+    "prompt": {
+     "en": "Match each sensor to the human sense.",
+     "hi": "हर सेंसर को इंसानी इंद्रिय से मिलाओ।",
+     "hinglish": "Har sensor ko insaani indriya se milao."
+    },
+    "options": {
+     "left": [
+      {
+       "en": "📷 Camera",
+       "hi": "📷 कैमरा",
+       "hinglish": "📷 Camera"
+      },
+      {
+       "en": "🎤 Microphone",
+       "hi": "🎤 माइक",
+       "hinglish": "🎤 Mic"
+      },
+      {
+       "en": "👆 Touch sensor",
+       "hi": "👆 टच सेंसर",
+       "hinglish": "👆 Touch sensor"
+      }
+     ],
+     "right": [
+      {
+       "en": "Skin",
+       "hi": "त्वचा",
+       "hinglish": "Tvacha"
+      },
+      {
+       "en": "Eyes",
+       "hi": "आँखें",
+       "hinglish": "Aankhen"
+      },
+      {
+       "en": "Ears",
+       "hi": "कान",
+       "hinglish": "Kaan"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      2
+     ],
+     [
+      2,
+      0
+     ]
+    ],
+    "explain": {
+     "en": "Camera = eyes, microphone = ears, touch = skin.",
+     "hi": "कैमरा = आँख, माइक = कान, टच = त्वचा।",
+     "hinglish": "Camera = aankh, mic = kaan, touch = tvacha."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "The echo comes back very quickly. The wall is…",
+     "hi": "गूँज बहुत जल्दी लौटती है। दीवार है…",
+     "hinglish": "Echo bahut jaldi lautti hai. Deewar hai…"
+    },
+    "options": [
+     {
+      "en": "close",
+      "hi": "पास",
+      "hinglish": "paas"
+     },
+     {
+      "en": "far",
+      "hi": "दूर",
+      "hinglish": "door"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "A short trip for the sound means a short distance.",
+     "hi": "आवाज़ का छोटा सफ़र मतलब कम दूरी।",
+     "hinglish": "Awaaz ka chhota safar matlab kam doori."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "An IR line sensor sees very little light coming back. It is over…",
+     "hi": "IR सेंसर को बहुत कम रोशनी लौटती दिखती है। वह किसके ऊपर है?",
+     "hinglish": "IR sensor ko bahut kam roshni wapas milti hai. Woh kiske upar hai?"
+    },
+    "options": [
+     {
+      "en": "the black line",
+      "hi": "काली लाइन",
+      "hinglish": "kaali line"
+     },
+     {
+      "en": "white floor",
+      "hi": "सफ़ेद फ़र्श",
+      "hinglish": "white farsh"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Black soaks up light, so little comes back.",
+     "hi": "काला रोशनी सोखता है, इसलिए कम लौटती है।",
+     "hinglish": "Kaala roshni sokhta hai, isliye kam lautti hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are sensors?",
+     "hi": "इनमें सेंसर कौन से हैं?",
+     "hinglish": "Inmein sensors kaun se hain?"
+    },
+    "options": [
+     {
+      "en": "Camera",
+      "hi": "कैमरा",
+      "hinglish": "Camera"
+     },
+     {
+      "en": "Wheel",
+      "hi": "पहिया",
+      "hinglish": "Pahiya"
+     },
+     {
+      "en": "Microphone",
+      "hi": "माइक",
+      "hinglish": "Mic"
+     },
+     {
+      "en": "Temperature sensor",
+      "hi": "तापमान सेंसर",
+      "hinglish": "Temperature sensor"
+     }
+    ],
+    "answer": [
+     0,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "A wheel moves the robot — it does not sense anything.",
+     "hi": "पहिया रोबोट को चलाता है — वह कुछ महसूस नहीं करता।",
+     "hinglish": "Pahiya robot ko chalaata hai — woh kuch sense nahin karta."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Finish \"Meet the sensors\" in the lab.",
+     "hi": "लैब में \"सेंसर से मिलो\" पूरा करो।",
+     "hinglish": "Lab mein \"Sensors se milo\" poora karo."
+    },
+    "answer": {
+     "lab": "robot-sensors",
+     "mode": "sense",
+     "solved": true
+    },
+    "explain": {
+     "en": "Distance under 15 cm, and one eye on the black line.",
+     "hi": "दूरी 15 सेमी से कम, और एक सेंसर काली लाइन पर।",
+     "hinglish": "Distance 15 cm se kam, aur ek eye kaali line par."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "NASA – How bats use echolocation / sound speed (fact reference)",
+   "url": "https://www.nasa.gov/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

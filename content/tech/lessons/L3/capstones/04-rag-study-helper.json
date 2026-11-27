@@ -1,0 +1,390 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.capstones.04",
+ "level": 3,
+ "classes": [
+  11,
+  12
+ ],
+ "unit": "capstones",
+ "title": {
+  "en": "A RAG study helper",
+  "hi": "RAG अध्ययन सहायक",
+  "hinglish": "RAG study helper"
+ },
+ "minutes": 25,
+ "xp": 100,
+ "prereq": [
+  "L3.rag-agents.06"
+ ],
+ "outcomes": [
+  {
+   "en": "Build a retrieval-augmented helper that answers only from your notes and cites them",
+   "hi": "ऐसा सहायक बनाओ जो केवल आपके नोट्स से उत्तर दे और हवाला दे",
+   "hinglish": "Aisa helper banao jo sirf tumhare notes se jawab de aur cite kare"
+  },
+  {
+   "en": "Chunk, embed and retrieve documents",
+   "hi": "दस्तावेज़ों को टुकड़े करो, एम्बेड करो और खोजो",
+   "hinglish": "Documents ko chunk, embed aur retrieve karo"
+  },
+  {
+   "en": "Evaluate faithfulness and make it say \"I don’t know\"",
+   "hi": "विश्वसनीयता जाँचो और \"मुझे नहीं पता\" कहलवाओ",
+   "hinglish": "Faithfulness evaluate karo aur \"I don’t know\" kehlwao"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Chunk",
+   "hinglish": "Tukda",
+   "en": "A short passage (a few hundred words) of a document",
+   "hi": "दस्तावेज़ का छोटा अंश (कुछ सौ शब्द)"
+  },
+  {
+   "term": "Embedding",
+   "hinglish": "Arth ke numbers",
+   "en": "A vector of numbers capturing meaning, so similar text is close",
+   "hi": "अर्थ पकड़ने वाली संख्याओं का सदिश, ताकि समान पाठ पास हो"
+  },
+  {
+   "term": "Retriever",
+   "hinglish": "Dhoondhne wala",
+   "en": "Finds the chunks most similar to the question",
+   "hi": "प्रश्न से सबसे मिलते टुकड़े ढूँढता है"
+  },
+  {
+   "term": "Grounding",
+   "hinglish": "Aadhaar",
+   "en": "Answering only from retrieved sources",
+   "hi": "केवल खोजे गए स्रोतों से उत्तर देना"
+  },
+  {
+   "term": "Faithfulness",
+   "hinglish": "Imaandaari",
+   "en": "Whether every claim in the answer is supported by the sources",
+   "hi": "क्या उत्तर का हर दावा स्रोतों से समर्थित है"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Load your notes and NCERT chapters; split them into chunks with page numbers.",
+    "hi": "अपने नोट्स और NCERT अध्याय लोड करो; पृष्ठ संख्या के साथ टुकड़ों में बाँटो।",
+    "hinglish": "Apne notes aur NCERT chapters load karo; page numbers ke saath chunks mein baanto."
+   },
+   "visual": "flow:load|chunk|embed|store",
+   "narration": {
+    "en": "Load your notes and NCERT chapters; split them into chunks with page numbers.",
+    "hi": "अपने नोट्स और NCERT अध्याय लोड करो; पृष्ठ संख्या के साथ टुकड़ों में बाँटो।",
+    "hinglish": "Apne notes aur NCERT chapters load karo; page numbers ke saath chunks mein baanto."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Question → embed → find the top 3 chunks.",
+    "hi": "प्रश्न → एम्बेड → शीर्ष 3 टुकड़े ढूँढो।",
+    "hinglish": "Question → embed → top 3 chunks dhoondho."
+   },
+   "visual": "flow:question|embed|top-3",
+   "narration": {
+    "en": "Question → embed → find the top 3 chunks.",
+    "hi": "प्रश्न → एम्बेड → शीर्ष 3 टुकड़े ढूँढो।",
+    "hinglish": "Question → embed → top 3 chunks dhoondho."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Prompt: \"Answer only from these sources, cite them, or say I don’t know.\"",
+    "hi": "प्रॉम्प्ट: \"केवल इन स्रोतों से उत्तर दो, हवाला दो, या कहो मुझे नहीं पता।\"",
+    "hinglish": "Prompt: \"Sirf in sources se jawab do, cite karo, ya kaho I don’t know.\""
+   },
+   "visual": "stack:sources|rules|question",
+   "narration": {
+    "en": "Prompt: \"Answer only from these sources, cite them, or say I don’t know.\"",
+    "hi": "प्रॉम्प्ट: \"केवल इन स्रोतों से उत्तर दो, हवाला दो, या कहो मुझे नहीं पता।\"",
+    "hinglish": "Prompt: \"Sirf in sources se jawab do, cite karo, ya kaho I don’t know.\""
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Test with 20 questions, including 5 that the notes cannot answer.",
+    "hi": "20 प्रश्नों से जाँचो, जिनमें 5 ऐसे जिनका उत्तर नोट्स में नहीं।",
+    "hinglish": "20 questions se test karo, jinmein 5 aise jinka jawab notes mein nahi."
+   },
+   "visual": "compare:answered + cited|abstained",
+   "narration": {
+    "en": "Test with 20 questions, including 5 that the notes cannot answer.",
+    "hi": "20 प्रश्नों से जाँचो, जिनमें 5 ऐसे जिनका उत्तर नोट्स में नहीं।",
+    "hinglish": "20 questions se test karo, jinmein 5 aise jinka jawab notes mein nahi."
+   }
+  }
+ ],
+ "play": {
+  "lab": "agent-loop",
+  "config": {
+   "scenario": "rag-school-circulars"
+  },
+  "goal": {
+   "en": "Ask the helper about school circulars, including one question the circulars do not cover. Check that it cites a source each time and refuses to make up the missing answer.",
+   "hi": "सहायक से स्कूल परिपत्रों के बारे में पूछो, एक ऐसा प्रश्न भी जो परिपत्रों में नहीं। जाँचो कि वह हर बार स्रोत का हवाला दे और न मिला उत्तर गढ़ने से मना करे।",
+   "hinglish": "Helper se school circulars ke baare mein poocho, ek aisa sawaal bhi jo circulars mein nahi. Check karo ki woh har baar source cite kare aur missing jawab banane se mana kare."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "The build, step by step",
+    "hi": "निर्माण, चरण-दर-चरण",
+    "hinglish": "Build, step by step"
+   },
+   "body": {
+    "en": "1) Corpus: your own notes and openly available textbooks; keep the source and page for every chunk. 2) Chunk: split into passages of about 200–400 words with a small overlap, so an idea is not cut in half. 3) Embed and store: compute an embedding for every chunk with an open embedding model, and store vectors in a simple index (a NumPy array is enough for a few thousand chunks). 4) Retrieve: embed the question and take the top 3 chunks by cosine similarity; optionally add keyword search for names and numbers. 5) Generate: send the chunks plus strict instructions to a language model — answer only from the sources, cite them like [Ch 11, p. 4], and say \"I don’t know from these notes\" otherwise. A small open model running on a laptop works for this, which also keeps your notes private.",
+    "hi": "1) संग्रह: आपके नोट्स और खुले उपलब्ध पाठ्यपुस्तक; हर टुकड़े का स्रोत और पृष्ठ रखो। 2) टुकड़े: लगभग 200–400 शब्दों के अंशों में थोड़े ओवरलैप के साथ बाँटो, ताकि कोई विचार आधा न कटे। 3) एम्बेड और संग्रह: खुले एम्बेडिंग मॉडल से हर टुकड़े का एम्बेडिंग निकालो, और सदिश सरल सूचकांक में रखो (कुछ हज़ार टुकड़ों के लिए NumPy सरणी काफ़ी)। 4) खोज: प्रश्न एम्बेड करके कोसाइन समानता से शीर्ष 3 टुकड़े लो; नाम और संख्याओं के लिए वैकल्पिक कीवर्ड खोज जोड़ो। 5) उत्पादन: टुकड़े और सख़्त निर्देश भाषा मॉडल को भेजो — केवल स्रोतों से उत्तर, [Ch 11, p. 4] जैसा हवाला, वरना \"इन नोट्स से मुझे नहीं पता\"। लैपटॉप पर चलने वाला छोटा खुला मॉडल इसके लिए काफ़ी है, जो आपके नोट्स निजी भी रखता है।",
+    "hinglish": "1) Corpus: tumhare notes aur openly available textbooks; har chunk ka source aur page rakho. 2) Chunk: lagbhag 200–400 words ke passages mein thode overlap ke saath baanto, taaki koi idea aadha na kate. 3) Embed aur store: open embedding model se har chunk ka embedding nikaalo, aur vectors simple index mein rakho (kuch hazaar chunks ke liye NumPy array kaafi). 4) Retrieve: question embed karke cosine similarity se top 3 chunks lo; naam aur numbers ke liye optional keyword search jodo. 5) Generate: chunks aur strict instructions language model ko bhejo — sirf sources se jawab, [Ch 11, p. 4] jaisa citation, warna \"in notes se mujhe nahi pata\". Laptop par chalne wala chhota open model iske liye kaafi hai, jo tumhare notes private bhi rakhta hai."
+   },
+   "analogy": {
+    "en": "An open-book exam: you may only write what you can point to in the book, with the page number.",
+    "hi": "खुली-किताब परीक्षा: केवल वही लिख सकते हो जो किताब में दिखा सको, पृष्ठ संख्या के साथ।",
+    "hinglish": "Open-book exam: sirf wahi likh sakte ho jo kitaab mein dikha sako, page number ke saath."
+   },
+   "realExample": {
+    "en": "Q: \"What is Ohm’s law?\" → A: \"V = I × R [your Science notes, Ch 11, p. 3].\" Q: \"Who won the 2030 World Cup?\" → \"I don’t know from these notes.\"",
+    "hi": "प्रश्न: \"ओम का नियम क्या है?\" → उत्तर: \"V = I × R [आपके विज्ञान नोट्स, अध्याय 11, पृ. 3]।\" प्रश्न: \"2030 विश्व कप किसने जीता?\" → \"इन नोट्स से मुझे नहीं पता।\"",
+    "hinglish": "Q: \"Ohm’s law kya hai?\" → A: \"V = I × R [tumhare Science notes, Ch 11, p. 3].\" Q: \"2030 World Cup kisne jeeta?\" → \"In notes se mujhe nahi pata.\""
+   }
+  },
+  {
+   "heading": {
+    "en": "Evaluating it honestly",
+    "hi": "ईमानदारी से मूल्यांकन",
+    "hinglish": "Imaandaari se evaluate karna"
+   },
+   "body": {
+    "en": "Write a test set of 20 questions with the expected answer and source: 15 answerable, 5 deliberately not in the notes. Score three things for each answer. Retrieval: did the right chunk appear in the top 3? Faithfulness: is every claim supported by the cited chunk? Abstention: on the 5 unanswerable questions, did it say \"I don’t know\" instead of inventing? Track the numbers as you change chunk size, the number of chunks retrieved and the prompt — change one thing at a time. Common fixes: smaller chunks for precise facts, adding keyword search for formulas, and stricter wording in the prompt. Remember the limits: it is only as good as your notes, so wrong notes give wrong answers with confident citations. Use it to revise and check, not to write your exam answers.",
+    "hi": "अपेक्षित उत्तर और स्रोत के साथ 20 प्रश्नों का परीक्षण सेट लिखो: 15 उत्तर योग्य, 5 जानबूझकर नोट्स में नहीं। हर उत्तर के लिए तीन चीज़ें आँको। खोज: क्या सही टुकड़ा शीर्ष 3 में आया? विश्वसनीयता: क्या हर दावा हवाला दिए टुकड़े से समर्थित है? परहेज़: 5 अनुत्तरित प्रश्नों पर क्या उसने गढ़ने के बजाय \"मुझे नहीं पता\" कहा? टुकड़े का आकार, खोजे गए टुकड़ों की संख्या और प्रॉम्प्ट बदलते हुए संख्याएँ देखो — एक बार में एक चीज़ बदलो। आम सुधार: सटीक तथ्यों के लिए छोटे टुकड़े, सूत्रों के लिए कीवर्ड खोज, और प्रॉम्प्ट में सख़्त शब्द। सीमाएँ याद रखो: यह आपके नोट्स जितना ही अच्छा है, इसलिए ग़लत नोट्स आत्मविश्वास भरे हवालों के साथ ग़लत उत्तर देते हैं। इसे दोहराने और जाँचने के लिए इस्तेमाल करो, परीक्षा उत्तर लिखने के लिए नहीं।",
+    "hinglish": "Expected answer aur source ke saath 20 questions ka test set likho: 15 answerable, 5 jaanboojhkar notes mein nahi. Har answer ke liye teen cheezein score karo. Retrieval: kya sahi chunk top 3 mein aaya? Faithfulness: kya har claim cite kiye chunk se supported hai? Abstention: 5 unanswerable questions par kya usne banaane ke bajaye \"I don’t know\" kaha? Chunk size, retrieve kiye chunks ki sankhya aur prompt badalte hue numbers dekho — ek baar mein ek cheez badlo. Common fixes: precise facts ke liye chhote chunks, formulas ke liye keyword search, aur prompt mein strict wording. Limits yaad rakho: yeh tumhare notes jitna hi achha hai, isliye galat notes confident citations ke saath galat jawab dete hain. Ise revise aur check karne ke liye use karo, exam answers likhne ke liye nahi."
+   },
+   "analogy": {
+    "en": "A new library assistant is tested by asking for books the library has — and some it doesn’t.",
+    "hi": "नए पुस्तकालय सहायक की जाँच उन किताबों के बारे में पूछकर होती है जो पुस्तकालय में हैं — और कुछ जो नहीं।",
+    "hinglish": "Naye library assistant ki jaanch un kitaabon ke baare mein poochkar hoti hai jo library mein hain — aur kuch jo nahi."
+   },
+   "realExample": {
+    "en": "Score card: retrieval 14/15, faithfulness 13/15, abstention 4/5 → next: tighten the prompt and re-test.",
+    "hi": "स्कोर कार्ड: खोज 14/15, विश्वसनीयता 13/15, परहेज़ 4/5 → अगला: प्रॉम्प्ट कसो और दोबारा जाँचो।",
+    "hinglish": "Score card: retrieval 14/15, faithfulness 13/15, abstention 4/5 → agla: prompt tight karo aur re-test."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Build it for one subject: chunk and embed your notes, retrieve the top 3 chunks per question, and generate cited answers with a local open model. Write the 20-question test set (5 unanswerable) and report retrieval, faithfulness and abstention scores before and after one improvement.",
+   "hi": "एक विषय के लिए बनाओ: नोट्स के टुकड़े और एम्बेड करो, हर प्रश्न के शीर्ष 3 टुकड़े खोजो, और स्थानीय खुले मॉडल से हवाले वाले उत्तर बनाओ। 20-प्रश्न परीक्षण सेट (5 अनुत्तरित) लिखो और एक सुधार से पहले और बाद खोज, विश्वसनीयता और परहेज़ अंक बताओ।",
+   "hinglish": "Ek subject ke liye banao: notes chunk aur embed karo, har question ke top 3 chunks retrieve karo, aur local open model se cited answers generate karo. 20-question test set (5 unanswerable) likho aur ek improvement se pehle aur baad retrieval, faithfulness aur abstention scores report karo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "order",
+    "prompt": {
+     "en": "Order the RAG pipeline for one question.",
+     "hi": "एक प्रश्न के लिए RAG प्रवाह क्रम में लगाओ।",
+     "hinglish": "Ek question ke liye RAG pipeline order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Embed the question",
+      "hi": "प्रश्न एम्बेड करो",
+      "hinglish": "Question embed karo"
+     },
+     {
+      "en": "Retrieve the most similar chunks",
+      "hi": "सबसे मिलते टुकड़े खोजो",
+      "hinglish": "Sabse milte chunks retrieve karo"
+     },
+     {
+      "en": "Put chunks and rules in the prompt",
+      "hi": "टुकड़े और नियम प्रॉम्प्ट में डालो",
+      "hinglish": "Chunks aur rules prompt mein daalo"
+     },
+     {
+      "en": "Generate a cited answer",
+      "hi": "हवाले वाला उत्तर बनाओ",
+      "hinglish": "Cited answer generate karo"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "Retrieve, then generate.",
+     "hi": "पहले खोज, फिर उत्पादन।",
+     "hinglish": "Pehle retrieve, phir generate."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why include questions the notes cannot answer in the test set?",
+     "hi": "परीक्षण सेट में ऐसे प्रश्न क्यों जिनका उत्तर नोट्स में नहीं?",
+     "hinglish": "Test set mein aise questions kyun jinka jawab notes mein nahi?"
+    },
+    "options": [
+     {
+      "en": "To check it says \"I don’t know\" instead of inventing",
+      "hi": "जाँचने को कि वह गढ़ने के बजाय \"मुझे नहीं पता\" कहे",
+      "hinglish": "Check karne ko ki woh banaane ke bajaye \"I don’t know\" kahe"
+     },
+     {
+      "en": "To make the score higher",
+      "hi": "अंक बढ़ाने को",
+      "hinglish": "Score badhaane ko"
+     },
+     {
+      "en": "To confuse the model for fun",
+      "hi": "मज़े के लिए मॉडल उलझाने को",
+      "hinglish": "Maze ke liye model uljhaane ko"
+     },
+     {
+      "en": "No reason",
+      "hi": "कोई कारण नहीं",
+      "hinglish": "Koi kaaran nahi"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Abstention is a safety feature.",
+     "hi": "परहेज़ सुरक्षा सुविधा है।",
+     "hinglish": "Abstention safety feature hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "multi",
+    "prompt": {
+     "en": "Which improve faithfulness?",
+     "hi": "कौन-से विश्वसनीयता बढ़ाते हैं?",
+     "hinglish": "Kaunse faithfulness badhaate hain?"
+    },
+    "options": [
+     {
+      "en": "Instructing \"answer only from the sources\"",
+      "hi": "\"केवल स्रोतों से उत्तर दो\" निर्देश",
+      "hinglish": "\"Sirf sources se jawab do\" instruction"
+     },
+     {
+      "en": "Requiring citations",
+      "hi": "हवाले अनिवार्य करना",
+      "hinglish": "Citations zaroori karna"
+     },
+     {
+      "en": "Removing the retrieved chunks",
+      "hi": "खोजे टुकड़े हटाना",
+      "hinglish": "Retrieve kiye chunks hatana"
+     },
+     {
+      "en": "Testing with a fixed question set",
+      "hi": "तय प्रश्न सेट से जाँचना",
+      "hinglish": "Fixed question set se test karna"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     3
+    ],
+    "explain": {
+     "en": "Ground, cite, measure.",
+     "hi": "आधार, हवाला, माप।",
+     "hinglish": "Ground, cite, measure."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Your notes have a wrong formula. What will the helper do?",
+     "hi": "आपके नोट्स में ग़लत सूत्र है। सहायक क्या करेगा?",
+     "hinglish": "Tumhare notes mein galat formula hai. Helper kya karega?"
+    },
+    "options": [
+     {
+      "en": "Repeat the wrong formula, with a citation",
+      "hi": "हवाले के साथ ग़लत सूत्र दोहराएगा",
+      "hinglish": "Citation ke saath galat formula dohraayega"
+     },
+     {
+      "en": "Fix it automatically",
+      "hi": "अपने आप ठीक करेगा",
+      "hinglish": "Apne aap theek karega"
+     },
+     {
+      "en": "Refuse every question",
+      "hi": "हर प्रश्न से मना करेगा",
+      "hinglish": "Har question se mana karega"
+     },
+     {
+      "en": "Delete the notes",
+      "hi": "नोट्स मिटाएगा",
+      "hinglish": "Notes mitaayega"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Garbage in, garbage out — check your sources.",
+     "hi": "ग़लत डालो, ग़लत पाओ — स्रोत जाँचो।",
+     "hinglish": "Galat daalo, galat pao — sources check karo."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Make the helper refuse an unanswerable question in the lab.",
+     "hi": "लैब में सहायक से अनुत्तरित प्रश्न पर मना करवाओ।",
+     "hinglish": "Lab mein helper se unanswerable question par mana karwao."
+    },
+    "answer": {
+     "event": "rag-abstained"
+    },
+    "explain": {
+     "en": "\"I don’t know from these circulars.\"",
+     "hi": "\"इन परिपत्रों से मुझे नहीं पता।\"",
+     "hinglish": "\"In circulars se mujhe nahi pata.\""
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "ai.rag",
+  "ai.evaluation",
+  "ai.llm-embeddings",
+  "ai.hallucination"
+ ],
+ "sources": [
+  {
+   "title": "Lewis et al. (2020) — Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (arXiv)",
+   "url": "https://arxiv.org/abs/2005.11401",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NCERT textbooks",
+   "url": "https://ncert.nic.in/",
+   "licence": "fact reference"
+  }
+ ]
+}

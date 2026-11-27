@@ -1,0 +1,364 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.cloud.02",
+ "level": 2,
+ "classes": [
+  8
+ ],
+ "unit": "cloud",
+ "title": {
+  "en": "Data centres and the cloud",
+  "hi": "डेटा सेंटर और क्लाउड",
+  "hinglish": "Data centres aur cloud"
+ },
+ "minutes": 10,
+ "xp": 40,
+ "prereq": [
+  "L2.cloud.01"
+ ],
+ "topics": [
+  "cloud.data-centres",
+  "cloud.what-is-cloud",
+  "cloud.scaling-cdn",
+  "cloud.saas-paas-iaas"
+ ],
+ "outcomes": [
+  {
+   "en": "Describe what is inside a data centre",
+   "hi": "डेटा सेंटर के अंदर क्या है, बता सकते हो",
+   "hinglish": "Data centre ke andar kya hai bata sakte ho"
+  },
+  {
+   "en": "Explain “the cloud” as renting computers over the internet",
+   "hi": "“क्लाउड” को इंटरनेट पर कंप्यूटर किराए पर लेने के रूप में समझा सकते हो",
+   "hinglish": "“Cloud” = internet se computers kiraye pe — samjha sakte ho"
+  },
+  {
+   "en": "Explain scaling, CDNs and SaaS/PaaS/IaaS",
+   "hi": "स्केलिंग, CDN और SaaS/PaaS/IaaS समझा सकते हो",
+   "hinglish": "Scaling, CDN aur SaaS/PaaS/IaaS samjha sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Data centre",
+   "hinglish": "Hazaaron servers wali building",
+   "en": "A building full of servers with power, cooling and fast networks",
+   "hi": "बिजली, ठंडक और तेज़ नेटवर्क वाली सर्वरों से भरी इमारत"
+  },
+  {
+   "term": "Cloud",
+   "hinglish": "Doosre ke computers internet se kiraye pe",
+   "en": "Using computers and storage in someone else’s data centre over the internet",
+   "hi": "इंटरनेट पर किसी और के डेटा सेंटर के कंप्यूटर और स्टोरेज का उपयोग"
+  },
+  {
+   "term": "Scaling",
+   "hinglish": "Zaroorat ke hisaab se servers badhana/ghatana",
+   "en": "Adding or removing servers as demand changes",
+   "hi": "माँग बदलने पर सर्वर जोड़ना या हटाना"
+  },
+  {
+   "term": "CDN",
+   "hinglish": "Paas ke servers pe copies",
+   "en": "Content Delivery Network: copies of videos/pages kept near users",
+   "hi": "कंटेंट डिलीवरी नेटवर्क: उपयोगकर्ताओं के पास रखी वीडियो/पेज की प्रतियाँ"
+  },
+  {
+   "term": "SaaS / PaaS / IaaS",
+   "hinglish": "Software / platform / infrastructure as a service",
+   "en": "Renting ready software / a platform to run your code / raw servers",
+   "hi": "तैयार सॉफ़्टवेयर / कोड चलाने का प्लेटफ़ॉर्म / कच्चे सर्वर किराए पर लेना"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "A data centre is a giant room of server racks, with backup generators and huge cooling systems.",
+    "hi": "डेटा सेंटर सर्वर रैकों का विशाल कमरा है, बैकअप जनरेटर और बड़ी कूलिंग प्रणालियों के साथ।",
+    "hinglish": "Data centre server racks ka bada kamra hai, backup generators aur badi cooling systems ke saath."
+   },
+   "visual": "icon:🏭",
+   "narration": {
+    "en": "Servers make heat, so a lot of electricity goes into cooling them.",
+    "hi": "सर्वर गर्मी पैदा करते हैं, इसलिए बहुत बिजली उन्हें ठंडा करने में जाती है।",
+    "hinglish": "Servers garmi banate hain, isliye bahut bijli unhe thanda karne mein jaati hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "“The cloud” is not in the sky. It means your photos and apps live on computers in data centres, reached over the internet.",
+    "hi": "“क्लाउड” आसमान में नहीं है। इसका अर्थ है आपकी फ़ोटो और ऐप डेटा सेंटर के कंप्यूटरों पर हैं, इंटरनेट से पहुँचते हैं।",
+    "hinglish": "“Cloud” aasmaan mein nahi hai. Matlab aapki photos aur apps data centres ke computers pe hain, internet se pahunchte hain."
+   },
+   "visual": "flow:📱 You|🌐 Internet|🏭 Data centre in Mumbai|🗄️ Your photo on a server",
+   "narration": {
+    "en": "There is no cloud, just someone else’s computer — kept safe and backed up for you.",
+    "hi": "कोई बादल नहीं, बस किसी और का कंप्यूटर — आपके लिए सुरक्षित और बैकअप के साथ।",
+    "hinglish": "Cloud kuch nahi, bas kisi aur ka computer — aapke liye safe aur backup ke saath."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "When a cricket final starts, streaming apps add thousands of servers in minutes, and remove them after. That is scaling.",
+    "hi": "क्रिकेट फ़ाइनल शुरू होते ही स्ट्रीमिंग ऐप मिनटों में हज़ारों सर्वर जोड़ते हैं, और बाद में हटा देते हैं। यही स्केलिंग है।",
+    "hinglish": "Cricket final shuru hote hi streaming apps minuton mein hazaaron servers jodte hain, aur baad mein hata dete hain. Yahi scaling hai."
+   },
+   "visual": "compare:🌙 Normal night: 100 servers|🏏 World Cup final: 5,000 servers",
+   "narration": {
+    "en": "In 2023, a cricket stream in India reached over 5 crore viewers at the same time.",
+    "hi": "2023 में भारत में एक क्रिकेट स्ट्रीम एक साथ 5 करोड़ से ज़्यादा दर्शकों तक पहुँची।",
+    "hinglish": "2023 mein India mein ek cricket stream ek saath 5 crore se zyada viewers tak pahunchi."
+   }
+  }
+ ],
+ "play": {
+  "lab": "packet-tracer",
+  "config": {
+   "mode": "whatsapp"
+  },
+  "goal": {
+   "en": "Send a message and imagine the chat server is one of thousands in a data centre. What would happen if it failed?",
+   "hi": "संदेश भेजो और सोचो कि चैट सर्वर डेटा सेंटर के हज़ारों में से एक है। अगर वह बंद हो जाए तो क्या होगा?",
+   "hinglish": "Message bhejo aur socho chat server data centre ke hazaaron mein se ek hai. Fail ho jaaye to kya hoga?"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Inside the cloud",
+    "hi": "क्लाउड के अंदर",
+    "hinglish": "Cloud ke andar"
+   },
+   "body": {
+    "en": "Cloud companies (AWS, Microsoft Azure, Google Cloud, and Indian providers like those in the MeghRaj government cloud) run data centres in regions such as Mumbai, Hyderabad, Pune and Delhi-NCR. You rent instead of buying: IaaS gives raw virtual servers; PaaS runs your code without you managing servers; SaaS is ready software like Gmail or Google Docs. A CDN keeps copies of videos and pages in many cities, so a video in Lucknow comes from a nearby server, not from the USA — lower latency, less load. Data centres use a lot of electricity and water for cooling, so companies now report their energy use and move to solar and wind power. India’s DPDP Act and RBI rules require certain data (like payment data) to be stored in India.",
+    "hi": "क्लाउड कंपनियाँ (AWS, Microsoft Azure, Google Cloud, और सरकारी मेघराज क्लाउड जैसे भारतीय प्रदाता) मुंबई, हैदराबाद, पुणे और दिल्ली-NCR जैसे क्षेत्रों में डेटा सेंटर चलाती हैं। आप ख़रीदने की जगह किराए पर लेते हो: IaaS कच्चे आभासी सर्वर देता है; PaaS बिना सर्वर संभाले आपका कोड चलाता है; SaaS तैयार सॉफ़्टवेयर है जैसे Gmail या Google Docs। CDN कई शहरों में वीडियो और पेज की प्रतियाँ रखता है, तो लखनऊ में वीडियो पास के सर्वर से आता है, अमेरिका से नहीं — कम लेटेंसी, कम भार। डेटा सेंटर कूलिंग के लिए बहुत बिजली और पानी लेते हैं, इसलिए कंपनियाँ अब ऊर्जा उपयोग बताती हैं और सौर व पवन ऊर्जा अपनाती हैं। भारत का DPDP अधिनियम और RBI के नियम कुछ डेटा (जैसे भुगतान डेटा) भारत में रखने को कहते हैं।",
+    "hinglish": "Cloud companies (AWS, Microsoft Azure, Google Cloud, aur sarkari MeghRaj cloud jaise Indian providers) Mumbai, Hyderabad, Pune aur Delhi-NCR jaise regions mein data centres chalati hain. Aap khareedne ki jagah kiraye pe lete ho: IaaS raw virtual servers deta hai; PaaS bina servers sambhale aapka code chalata hai; SaaS ready software hai jaise Gmail ya Google Docs. CDN kai shehron mein videos aur pages ki copies rakhta hai, to Lucknow mein video paas ke server se aata hai, USA se nahi — kam latency, kam load. Data centres cooling ke liye bahut bijli aur paani lete hain, isliye companies ab energy use report karti hain aur solar aur wind power apnaati hain. India ka DPDP Act aur RBI rules kuch data (jaise payment data) India mein rakhne ko kehte hain."
+   },
+   "analogy": {
+    "hinglish": "Cloud = bijli ka connection: aap ghar mein power plant nahi banate, jitni bijli use ki utna bill. Cloud mein jitna computer use kiya utna bill.",
+    "en": "Cloud = an electricity connection: you don’t build a power plant at home, you pay for what you use. In the cloud, you pay for the computing you use.",
+    "hi": "क्लाउड = बिजली का कनेक्शन: आप घर में बिजलीघर नहीं बनाते, जितनी बिजली उपयोग की उतना बिल। क्लाउड में जितना कंप्यूटर उपयोग किया उतना बिल।"
+   },
+   "realExample": {
+    "en": "RBI’s 2018 rule requires all payment system data (like UPI) to be stored only in India.",
+    "hi": "RBI के 2018 के नियम के अनुसार सारा भुगतान प्रणाली डेटा (जैसे UPI) केवल भारत में रखना होता है।",
+    "hinglish": "RBI ka 2018 ka rule kehta hai saara payment system data (jaise UPI) sirf India mein store ho."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Find out where your family’s photos are backed up (Google Photos, iCloud, a pen drive?) and whether that is “the cloud”.",
+   "hi": "पता करो कि परिवार की फ़ोटो कहाँ बैकअप होती हैं (Google Photos, iCloud, पेन ड्राइव?) और क्या वह “क्लाउड” है।",
+   "hinglish": "Pata karo ghar ki photos ka backup kahan hai (Google Photos, iCloud, pen drive?) aur kya woh “cloud” hai."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "What is “the cloud”?",
+     "hi": "“क्लाउड” क्या है?",
+     "hinglish": "“Cloud” kya hai?"
+    },
+    "options": [
+     {
+      "en": "Storage in satellites",
+      "hi": "उपग्रहों में स्टोरेज",
+      "hinglish": "Satellites mein storage"
+     },
+     {
+      "en": "Computers in data centres used over the internet",
+      "hi": "इंटरनेट से उपयोग होने वाले डेटा सेंटर के कंप्यूटर",
+      "hinglish": "Internet se use hone wale data centre computers"
+     },
+     {
+      "en": "Wi-Fi in the air",
+      "hi": "हवा में वाई-फ़ाई",
+      "hinglish": "Hawa mein Wi-Fi"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "It means using servers in data centres over the internet.",
+     "hi": "इसका अर्थ इंटरनेट से डेटा सेंटर के सर्वरों का उपयोग।",
+     "hinglish": "Iska matlab internet se data centres ke servers use karna."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "match",
+    "prompt": {
+     "en": "Match the service type to an example.",
+     "hi": "सेवा प्रकार को उदाहरण से मिलाओ।",
+     "hinglish": "Service type ko example se milao."
+    },
+    "options": {
+     "left": [
+      "SaaS",
+      "PaaS",
+      "IaaS"
+     ],
+     "right": [
+      {
+       "en": "Rent a raw virtual server",
+       "hi": "कच्चा वर्चुअल सर्वर किराए पर",
+       "hinglish": "Raw virtual server kiraye pe"
+      },
+      {
+       "en": "Use Gmail in a browser",
+       "hi": "ब्राउज़र में Gmail",
+       "hinglish": "Browser mein Gmail"
+      },
+      {
+       "en": "Upload your code and it runs",
+       "hi": "कोड डालो और चलता है",
+       "hinglish": "Code upload karo aur chalta hai"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      2
+     ],
+     [
+      2,
+      0
+     ]
+    ],
+    "explain": {
+     "en": "SaaS: ready apps (Gmail). PaaS: run your code without managing servers. IaaS: rent raw virtual machines.",
+     "hi": "SaaS: तैयार ऐप (Gmail)। PaaS: सर्वर संभाले बिना कोड चलाओ। IaaS: कच्ची वर्चुअल मशीन किराए पर।",
+     "hinglish": "SaaS: ready apps (Gmail). PaaS: bina servers sambhale code chalao. IaaS: raw virtual machines kiraye pe."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "What does a CDN do?",
+     "hi": "CDN क्या करता है?",
+     "hinglish": "CDN kya karta hai?"
+    },
+    "options": [
+     {
+      "en": "Keeps copies of content near users",
+      "hi": "सामग्री की प्रतियाँ पास रखता है",
+      "hinglish": "Content ki copies paas rakhta hai"
+     },
+     {
+      "en": "Encrypts passwords",
+      "hi": "पासवर्ड एन्क्रिप्ट करता है",
+      "hinglish": "Passwords encrypt karta hai"
+     },
+     {
+      "en": "Charges phones",
+      "hi": "फ़ोन चार्ज करता है",
+      "hinglish": "Phones charge karta hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "It keeps copies of content near users, lowering latency and load on the main server.",
+     "hi": "यह सामग्री की प्रतियाँ उपयोगकर्ताओं के पास रखता है, लेटेंसी और मुख्य सर्वर का भार घटाता है।",
+     "hinglish": "Yeh content ki copies users ke paas rakhta hai, latency aur main server ka load kam karta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why do streaming apps “scale up” during a cricket final?",
+     "hi": "क्रिकेट फ़ाइनल में स्ट्रीमिंग ऐप “स्केल अप” क्यों करते हैं?",
+     "hinglish": "Cricket final mein streaming apps “scale up” kyun karte hain?"
+    },
+    "options": [
+     {
+      "en": "To make videos longer",
+      "hi": "वीडियो लंबे करने के लिए",
+      "hinglish": "Videos lambe karne ke liye"
+     },
+     {
+      "en": "Because servers get bored",
+      "hi": "क्योंकि सर्वर ऊब जाते हैं",
+      "hinglish": "Kyunki servers bore hote hain"
+     },
+     {
+      "en": "Huge numbers of viewers arrive at once",
+      "hi": "एक साथ बहुत दर्शक आते हैं",
+      "hinglish": "Ek saath bahut viewers aate hain"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "Crores of viewers arrive at once; extra servers share the load, then are released to save cost.",
+     "hi": "करोड़ों दर्शक एक साथ आते हैं; अतिरिक्त सर्वर भार बाँटते हैं, फिर ख़र्च बचाने को हटाए जाते हैं।",
+     "hinglish": "Crores viewers ek saath aate hain; extra servers load share karte hain, phir cost bachane ke liye hata diye jaate hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "Where must Indian payment data (like UPI) be stored, by RBI rules?",
+     "hi": "RBI नियमों से भारतीय भुगतान डेटा (जैसे UPI) कहाँ रखना ज़रूरी है?",
+     "hinglish": "RBI rules se Indian payment data (jaise UPI) kahan store karna zaroori hai?"
+    },
+    "options": [
+     {
+      "en": "Only in India",
+      "hi": "केवल भारत में",
+      "hinglish": "Sirf India mein"
+     },
+     {
+      "en": "Anywhere",
+      "hi": "कहीं भी",
+      "hinglish": "Kahin bhi"
+     },
+     {
+      "en": "On your phone only",
+      "hi": "केवल आपके फ़ोन पर",
+      "hinglish": "Sirf aapke phone pe"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "RBI’s 2018 storage-of-payment-data rule requires it to be stored only in India.",
+     "hi": "RBI के 2018 नियम के अनुसार केवल भारत में।",
+     "hinglish": "RBI ke 2018 rule ke hisaab se sirf India mein."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "RBI — Storage of Payment System Data (2018)",
+   "url": "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11244",
+   "licence": "fact reference"
+  },
+  {
+   "title": "MeghRaj — GI Cloud initiative (MeitY)",
+   "url": "https://www.meity.gov.in/content/gi-cloud-meghraj",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NIST SP 800-145 — Definition of Cloud Computing",
+   "url": "https://csrc.nist.gov/pubs/sp/800/145/final",
+   "licence": "fact reference"
+  }
+ ]
+}

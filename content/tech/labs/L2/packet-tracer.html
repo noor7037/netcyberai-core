@@ -1,0 +1,289 @@
+<!doctype html><html lang="en-IN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Packet Tracer — NCA Tech & AI Lab</title><style>/* NCA Tech & AI Lab — Level 2 shared lab skin (own work, MIT). Family App lesson tokens: paper, card, ink, saffron, teal, plum. */
+:root{--paper:#FBF8F3;--card:#FFFDF9;--ink:#1C1B1A;--muted:#4B5563;--line:#E7E1D6;--saffron:#E8702A;--saffronD:#C2410C;--teal:#0F766E;--plum:#6D28D9;--sky:#0369A1;
+--mint:#E4F3EA;--butter:#FBF1D3;--lilac:#EFE9FB;--blush:#FBE6E3;--skyT:#E3EEF9;--night:#0B1430;--night2:#16224A;--cyan:#02CFF9;--leaf:#22C55E;--coral:#FF6B57;--gold:#F5B90A;--grape:#8B3DFF;
+--r:16px;--sh:0 1px 0 rgba(28,27,26,.04),0 6px 18px -8px rgba(28,27,26,.18)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans Devanagari",sans-serif;font-variant-numeric:tabular-nums}
+body{background:transparent;min-height:100vh;padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 16px)}
+button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation}
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:8px;padding:10px 14px;background:rgba(251,248,243,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--lilac);flex:none}
+.top h1{font-size:16px;margin:0;line-height:1.2;flex:1;min-width:0}
+.top h1 small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;flex:none;background:var(--card)}
+.lang button{border:0;background:none;padding:6px 9px;font-size:12px;font-weight:600;color:var(--muted);min-height:32px}
+.lang button[aria-pressed=true]{background:var(--ink);color:#fff}
+.wrap{max-width:1100px;margin:0 auto;padding:12px 14px;display:grid;gap:12px;grid-template-columns:minmax(0,1fr)}
+.wrap>*{min-width:0}
+.wrap>div{grid-template-columns:minmax(0,1fr)}
+.card,.stage{min-width:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;box-shadow:var(--sh)}
+.goal{background:var(--butter);border-color:#F1DFA8;display:flex;gap:10px;align-items:flex-start;font-size:14.5px}
+.goal b{color:#8A5300}
+.goal .gi{font-size:20px;line-height:1}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn{border:0;border-radius:12px;padding:11px 16px;font-weight:700;min-height:44px;background:var(--saffron);color:var(--ink);box-shadow:0 3px 0 #B4531B;transition:transform .12s}
+.btn:active{transform:translateY(2px);box-shadow:0 1px 0 #B4531B}
+.btn.ghost{background:var(--card);border:1.5px solid var(--line);box-shadow:none}
+.btn.teal{background:var(--teal);color:#fff;box-shadow:0 3px 0 #0A4F49}
+.btn.plum{background:var(--plum);color:#fff;box-shadow:0 3px 0 #4C1D95}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.chip{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:3px 10px;font-size:12.5px;font-weight:600;background:var(--mint);color:var(--teal)}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;padding-bottom:2px}/* wraps: every mode name always fully visible */
+.tabs button{flex:0 1 auto;max-width:100%;white-space:normal;text-align:center;border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:8px 14px;font-weight:600;font-size:14px;min-height:40px}
+.tabs button[aria-selected=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.stage{background:radial-gradient(120% 90% at 30% 0%,#1D2D63 0%,var(--night) 60%);color:#E8EEFF;border-radius:20px;overflow:hidden;position:relative;border:1px solid #23305E}
+.muted{color:var(--muted)}
+.mission{background:var(--skyT);border-color:#C9DDF2}
+.mission h3{margin:0 0 6px;font-size:15px;color:var(--sky)}
+.toast{position:fixed;left:0;top:0;width:max-content;max-width:min(92vw,340px);background:var(--ink);color:#fff;padding:10px 16px;border-radius:14px;font-weight:600;z-index:50;box-shadow:0 8px 24px rgba(0,0,0,.25);opacity:0;visibility:hidden;transform:scale(.92);transition:opacity .25s,transform .25s,visibility 0s .25s;pointer-events:none;text-align:center;line-height:1.35}
+.toast.on{opacity:1;visibility:visible;transform:none;transition:opacity .25s,transform .25s}
+.toast.inline{position:static;display:block;width:auto;max-width:none;margin:10px 0;grid-column:1/-1;flex:0 0 auto}
+.toast.ok{background:var(--teal)}.toast.bad{background:#B42318}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:-1}/* behind the cards: confetti never covers text */
+.kbd{font-family:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace}
+.hidden{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@keyframes pop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.08);opacity:1}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.shake{animation:shake .3s 2}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
+</style>
+<style>
+#stage{height:min(68vh,560px);min-height:430px}
+#svg{width:100%;height:100%;display:block}
+.node circle.halo{fill:rgba(2,207,249,.08);stroke:rgba(2,207,249,.35);stroke-width:1.5}
+.node .disc{fill:#1B2A5C;stroke:#5B73C9;stroke-width:1.5}
+.node.hot .disc{stroke:#02CFF9;stroke-width:3}
+.node text{fill:#E8EEFF;font-size:11px;font-weight:600;text-anchor:middle}
+.lbl text{paint-order:stroke;stroke:#0B1430;stroke-width:3px;stroke-linejoin:round}
+.node text.sub{fill:#9FB1E8;font-weight:500;font-size:9.5px}
+.node .emo{font-size:20px}
+.edge{stroke:#34457F;stroke-width:3;fill:none;stroke-linecap:round}
+.edge.live{stroke:#02CFF9;stroke-dasharray:6 8;animation:flow 0.6s linear infinite}
+.edge.dns{stroke:#8B3DFF}
+@keyframes flow{to{stroke-dashoffset:-14}}
+.pk rect{rx:5;stroke:#fff;stroke-width:1.2}
+.pk text{fill:#1C1B1A;font-size:10px;font-weight:800;text-anchor:middle}
+.bubble{fill:#FFFDF9}
+#strip{display:flex;flex-wrap:wrap;gap:8px;padding:4px 2px 8px;min-height:92px}
+.pcard{flex:none;width:132px;border-radius:12px;border:1.5px solid var(--line);background:#fff;font-size:11.5px;overflow:hidden;animation:pop .35s both}
+.pcard .h{padding:4px 8px;font-weight:800;color:#fff}
+.pcard .b{padding:6px 8px;display:grid;gap:2px}
+.pcard .d{font-family:ui-monospace,Menlo,monospace;background:var(--paper);border-radius:6px;padding:3px 5px;word-break:break-all}
+.pcard.lost{opacity:.45;text-decoration:line-through}
+.pcard.ok{border-color:var(--teal)}
+#log{font-size:14px;display:grid;gap:6px;max-height:200px;overflow:auto}
+#log div{padding:6px 10px;border-radius:10px;background:var(--paper);border-left:4px solid var(--sky);animation:pop .3s both}
+#log div.dns{border-color:var(--plum)}#log div.bad{border-color:#B42318}#log div.ok{border-color:var(--teal)}
+textarea{width:100%;font:inherit;border:1.5px solid var(--line);border-radius:12px;padding:10px;resize:none;background:#fff;min-height:48px}
+.tog{display:flex;align-items:center;gap:8px;font-size:14px;padding:6px 10px;border:1.5px solid var(--line);border-radius:12px;background:#fff;min-height:44px}
+.tog input{width:20px;height:20px;accent-color:var(--teal)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;text-align:center}
+.stats div{background:var(--paper);border-radius:10px;padding:6px 2px;font-size:11px;color:var(--muted)}
+.stats b{display:block;font-size:18px;color:var(--ink)}
+@media (orientation:landscape) and (min-width:640px){.wrap{grid-template-columns:1.6fr 1fr;align-items:start}.wrap>.full{grid-column:1/-1}#stage{height:min(74vh,520px);min-height:300px}}
+</style></head><body>
+<main class="wrap">
+  <div class="card goal full"><span class="gi">🎯</span><div id="goal"></div></div>
+  <div class="full tabs" role="tablist"><button role="tab" data-m="whatsapp" data-k="mWa"></button><button role="tab" data-m="upi" data-k="mUpi"></button></div>
+  <section class="stage" id="stage" aria-label="Network map"><svg id="svg" role="img"></svg></section>
+  <div style="display:grid;gap:12px">
+    <div class="card"><label for="msg" style="font-weight:700;font-size:14px" data-k="type"></label>
+      <textarea id="msg" maxlength="48" rows="2"></textarea>
+      <div class="row" style="margin-top:8px"><label class="tog"><input type="checkbox" id="lose"><span data-k="lose"></span></label><label class="tog"><input type="checkbox" id="enc" checked><span data-k="enc"></span></label></div>
+      <div class="row" style="margin-top:10px"><button class="btn" id="send" data-k="send"></button><button class="btn ghost" id="slow" data-k="slow"></button></div></div>
+    <div class="card stats"><div><b id="sP">0</b><span data-k="sP"></span></div><div><b id="sB">0</b><span data-k="sB"></span></div><div><b id="sH">0</b><span data-k="sH"></span></div><div><b id="sT">0</b><span data-k="sT"></span></div></div>
+  </div>
+  <div class="card full"><div style="font-weight:700;font-size:14px;margin-bottom:6px" data-k="packets"></div><div id="strip"></div></div>
+  <div class="card full"><div style="font-weight:700;font-size:14px;margin-bottom:6px" data-k="steps"></div><div id="log" aria-live="polite"></div></div>
+  <div class="card mission full"><h3 data-k="mT"></h3><div id="mission"></div></div>
+</main>
+<script>/* NCA Tech & AI Lab — Level 2 shared lab runtime (own work, MIT). No eval, no network except an optional same-origin ?lesson= JSON. */
+(function(g){
+  const qs=new URLSearchParams(location.search);
+  const LANGS=['hinglish','en','hi'];
+  let lang=(qs.get('lang')||localStorage.getItem('nca-tl-lang')||'hinglish'); if(!LANGS.includes(lang)) lang='hinglish';
+  const reduced=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const t=x=>x==null?'':(typeof x==='string'||typeof x==='number')?String(x):(x[lang]||x.hinglish||x.en||'');
+  let STR={}; const listeners=[];
+  function applyI18n(root){(root||document).querySelectorAll('[data-k]').forEach(el=>{const v=STR[el.dataset.k]; if(v) el.innerHTML=t(v);});
+    document.documentElement.lang=lang==='hi'?'hi':(lang==='en'?'en':'en-IN');
+    document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.l===lang));}
+  function setLang(l){lang=l;localStorage.setItem('nca-tl-lang',l);applyI18n();listeners.forEach(f=>f(l));}
+  function header(icon,titleK,subK){const h=document.createElement('header');h.className='top';
+    h.innerHTML=`<div class="ic" aria-hidden="true">${icon}</div><h1><span data-k="${titleK}"></span><small data-k="${subK}"></small></h1>
+    <div class="lang" role="group" aria-label="Language"><button data-l="hinglish">Hinglish</button><button data-l="en">EN</button><button data-l="hi">हिं</button></div>`;
+    document.body.prepend(h); h.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>setLang(b.dataset.l));}
+  // Toast: never covers text. It floats in a free band of the screen (bottom first); if the screen has no free band
+  // it sits in the page flow right under what the child just tapped (pushes content down, covers nothing). Closes after 2.5 s.
+  let toastEl,lastTap=null,tapAt=null;document.addEventListener('pointerdown',e=>{lastTap=e.target;tapAt=[e.clientX,e.clientY+scrollY]},true);let rePend=0;const rePlace=()=>{if(!toastEl||!toastEl.classList.contains('on')||rePend)return;rePend=1;requestAnimationFrame(()=>{rePend=0;placeToast();});};
+  addEventListener('scroll',rePlace,{passive:true});addEventListener('resize',rePlace);document.addEventListener('animationend',rePlace,true);document.addEventListener('transitionend',rePlace,true);const toastMO=new MutationObserver(rs=>{if(rs.some(r=>!toastEl.contains(r.target)))rePlace();});
+  function textRects(skip){const vh=innerHeight,out=[],rg=document.createRange(),w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let n;
+    while((n=w.nextNode())){if(!n.nodeValue.trim())continue;const p=n.parentElement;if(!p||skip.contains(p)||/^(SCRIPT|STYLE)$/.test(p.tagName))continue;rg.selectNodeContents(n);
+      for(const q of rg.getClientRects())if(q.width>=1&&q.bottom>0&&q.top<vh)out.push(q);}
+    document.querySelectorAll('input,select,textarea,button,a[href],[role=button]').forEach(e=>{if(skip.contains(e))return;const q=e.getBoundingClientRect();if(q.width&&q.bottom>0&&q.top<vh)out.push(q)});if(0)document.querySelectorAll('x').forEach(e=>{const q=e.getBoundingClientRect();if(q.width&&q.bottom>0&&q.top<vh)out.push(q)});return out;}
+  function freeSpot(el){const vw=document.documentElement.clientWidth,vh=innerHeight,w=el.offsetWidth,h=el.offsetHeight,m=8;let top=m;
+    const bar=document.querySelector('.top');if(bar)top=Math.max(top,bar.getBoundingClientRect().bottom+m);
+    const obs=textRects(el),xs=[(vw-w)/2,m,vw-w-m],free=(x,y)=>!obs.some(q=>q.left<x+w+4&&q.right>x-4&&q.top<y+h+4&&q.bottom>y-4);
+    const cur=el._spot;if(cur&&free(cur.x,cur.y))return cur;
+    for(let y=vh-h-m;y>=top;y-=6)for(const x of xs)if(free(x,y))return{x,y};return null;}
+  /* never drop the note inside a 3D scene, a transformed, positioned-out or clipping box */
+  function boxedIn(a){for(let p=a;p&&p!==document.body;p=p.parentElement){const c=getComputedStyle(p);if(c.transform!=='none'||c.transformStyle==='preserve-3d'||c.perspective!=='none'||c.position==='absolute'||c.position==='fixed'||(p!==a&&c.overflow!=='visible'))return true;}return false;}
+  function inlineAfter(el){let a=lastTap&&lastTap.isConnected&&!el.contains(lastTap)?lastTap:null;
+    if(!a&&tapAt){const y=tapAt[1]-scrollY;if(y>0&&y<innerHeight)a=document.elementFromPoint(tapAt[0],y);}/* the tapped thing was re-drawn: use what is there now */
+    if(!a||el.contains(a))a=document.querySelector('main')||document.body.lastElementChild;
+    while(a.parentElement&&a.parentElement!==document.body){const d=getComputedStyle(a.parentElement),me=getComputedStyle(a);
+      if(me.display!=='inline'&&!(a instanceof SVGElement)&&(d.display==='block'||d.display==='flow-root'||d.display==='grid'||(d.display==='flex'&&d.flexDirection.startsWith('column')))&&a.getBoundingClientRect().width>=Math.min(260,innerWidth*.6)&&!boxedIn(a))break;a=a.parentElement;}
+    a.after(el);}
+  function placeToast(){const el=toastEl;if(!el.classList.contains('on'))return;if(!el.isConnected){el.classList.remove('inline');document.body.appendChild(el);}
+    if(el.classList.contains('inline'))return;const s=freeSpot(el);
+    if(s){el._spot=s;el.style.left=s.x+'px';el.style.top=s.y+'px';}else{el._spot=null;el.classList.add('inline');el.style.left=el.style.top='';inlineAfter(el);el.scrollIntoView({block:'nearest'});}}
+  function toast(msg,kind){if(!toastEl){toastEl=document.createElement('div');toastEl.setAttribute('role','status');document.body.appendChild(toastEl);}
+    const el=toastEl;clearTimeout(el._t);clearInterval(el._iv);if(el.classList.contains('inline'))document.body.appendChild(el);
+    el.className='toast '+(kind||'');el._spot=null;el.innerHTML=typeof msg==='object'?t(msg):msg;el.style.left='0px';el.style.top='0px';
+    el.classList.add('on');placeToast();el._iv=setInterval(placeToast,200);toastMO.observe(document.body,{subtree:true,childList:true,attributes:true,characterData:true});
+    el._t=setTimeout(()=>{clearInterval(el._iv);toastMO.disconnect();el.classList.remove('on');setTimeout(()=>{if(!el.classList.contains('on')&&el.classList.contains('inline')){el.classList.remove('inline');document.body.appendChild(el);}},320);},2500);}
+  function confetti(){if(reduced())return;const c=document.createElement('canvas');c.className='confetti';c.setAttribute('aria-hidden','true');document.body.appendChild(c);
+    const W=c.width=innerWidth,H=c.height=innerHeight,x=c.getContext('2d');const cols=['#E8702A','#0F766E','#6D28D9','#F5B90A','#02CFF9','#FF6B57'];
+    const P=Array.from({length:90},()=>({x:W/2,y:H*.55,vx:(Math.random()-.5)*9,vy:-Math.random()*11-4,r:Math.random()*6+3,c:cols[Math.random()*6|0],a:Math.random()*6}));
+    let n=0;(function f(){x.clearRect(0,0,W,H);P.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.32;p.a+=.2;x.save();x.translate(p.x,p.y);x.rotate(p.a);x.fillStyle=p.c;x.fillRect(-p.r/2,-p.r/4,p.r,p.r/2);x.restore();});
+      if(++n<110)requestAnimationFrame(f);else c.remove();})();}
+  function tween(ms,step,done){if(reduced()||ms<=0){step(1);done&&done();return()=>{};}let stop=0;const t0=performance.now();
+    const f=now=>{if(stop)return;const k=Math.min(1,(now-t0)/ms);step(k);k<1?requestAnimationFrame(f):done&&done();};requestAnimationFrame(f);return()=>{stop=1};}
+  const ease=k=>k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+  const sleep=ms=>new Promise(r=>setTimeout(r,reduced()?0:ms));
+  // Lesson config: ?lesson=<same-origin json path> (its play.config + play.goal), else inline defaults. ?cfg=<json> also accepted (parsed with JSON.parse only).
+  async function lessonConfig(defaults){let cfg=Object.assign({},defaults),goal=null,id=null;
+    const p=qs.get('lesson');
+    if(p&&/^[\w\-./]+\.json$/.test(p)&&!p.includes('..')){try{const r=await fetch(p);if(r.ok){const j=await r.json();id=j.id;if(j.play){Object.assign(cfg,j.play.config||{});goal=j.play.goal||null;}}}catch(e){}}
+    const c=qs.get('cfg'); if(c){try{Object.assign(cfg,JSON.parse(c));}catch(e){}}
+    return {cfg,goal,id};}
+  // Progress events the Family App shell can listen for (postMessage to the parent frame), plus local XP for the prototype.
+  function emit(type,data){const msg={source:'nca-techlab',type,data:data||{},at:Date.now()};try{parent!==window&&parent.postMessage(msg,'*');}catch(e){}
+    document.dispatchEvent(new CustomEvent('nca-lab',{detail:msg}));}
+  g.NCA={qs,esc,t,get lang(){return lang},setLang,onLang:f=>listeners.push(f),strings:o=>{STR=Object.assign(STR,o);applyI18n();},applyI18n,header,toast,confetti,tween,ease,sleep,reduced,lessonConfig,emit};
+})(window);
+</script>
+<script>
+(async function(){
+const N=window.NCA, T=N.t, E=N.esc;
+N.header('📦','title','sub');
+N.strings({title:{en:'Packet Tracer',hi:'पैकेट ट्रेसर',hinglish:'Packet Tracer'},sub:{en:'Watch a message cross the internet',hi:'देखो संदेश इंटरनेट कैसे पार करता है',hinglish:'Dekho message internet kaise cross karta hai'},
+mWa:{en:'💬 Chat message',hi:'💬 चैट संदेश',hinglish:'💬 Chat message'},mUpi:{en:'₹ UPI payment',hi:'₹ UPI भुगतान',hinglish:'₹ UPI payment'},
+type:{en:'Type your message',hi:'अपना संदेश लिखो',hinglish:'Apna message type karo'},lose:{en:'Lose a packet on the way',hi:'रास्ते में एक पैकेट खो जाए',hinglish:'Raste mein ek packet kho jaaye'},
+enc:{en:'End-to-end encryption',hi:'एंड-टू-एंड एन्क्रिप्शन',hinglish:'End-to-end encryption'},send:{en:'Send ▶',hi:'भेजो ▶',hinglish:'Bhejo ▶'},slow:{en:'🐢 Slow motion',hi:'🐢 धीमी गति',hinglish:'🐢 Slow motion'},
+sP:{en:'packets',hi:'पैकेट',hinglish:'packets'},sB:{en:'bytes',hi:'बाइट',hinglish:'bytes'},sH:{en:'hops',hi:'हॉप',hinglish:'hops'},sT:{en:'ms (approx)',hi:'ms (लगभग)',hinglish:'ms (lagbhag)'},
+packets:{en:'Packets (each one carries a header + a small piece of data)',hi:'पैकेट (हर एक में हेडर + डेटा का छोटा टुकड़ा)',hinglish:'Packets (har ek mein header + data ka chhota tukda)'},
+steps:{en:'What is happening',hi:'क्या हो रहा है',hinglish:'Kya ho raha hai'},mT:{en:'🚀 Mission',hi:'🚀 मिशन',hinglish:'🚀 Mission'}});
+const {cfg,goal}=await N.lessonConfig({mode:'whatsapp',message:'Kal 5 baje cricket? 🏏',packetBytes:6,mission:'lost-packet'});
+const S={en:(e,h,hl)=>({en:e,hi:h,hinglish:hl})};const L=S.en;
+// ---- two real-world routes (addresses use the RFC 5737 documentation ranges, never real hosts)
+const MODES={
+ whatsapp:{dns:true,host:'chat.example.in',hostIP:'198.51.100.20',src:'192.168.1.7',dst:'Riya',
+  nodes:{phone:{e:'📱',n:L('Your phone','आपका फ़ोन','Aapka phone'),s:'192.168.1.7',p:[.2,.08],q:[.06,.3]},
+   wifi:{e:'📶',n:L('Home Wi-Fi router','घर का वाई-फ़ाई राउटर','Ghar ka Wi-Fi router'),s:'192.168.1.1',p:[.62,.2],q:[.2,.62]},
+   isp:{e:'🏢',n:L('ISP router','ISP राउटर','ISP router'),s:'203.0.113.1',p:[.25,.36],q:[.36,.3]},
+   dns:{e:'📖',n:L('DNS resolver','DNS रिज़ॉल्वर','DNS resolver'),s:L('name → IP','नाम → IP','naam → IP'),p:[.8,.42],q:[.36,.84]},
+   ra:{e:'🔀',n:L('Router A (Mumbai)','राउटर A (मुंबई)','Router A (Mumbai)'),s:L('fast path','तेज़ रास्ता','fast raasta'),p:[.16,.58],q:[.53,.14]},
+   rb:{e:'🔀',n:L('Router B (Chennai)','राउटर B (चेन्नई)','Router B (Chennai)'),s:L('busy path','भीड़ वाला रास्ता','busy raasta'),p:[.62,.6],q:[.53,.56]},
+   server:{e:'🗄️',n:L('Chat server','चैट सर्वर','Chat server'),s:'198.51.100.20',p:[.4,.74],q:[.7,.34]},
+   tower:{e:'🗼',n:L('4G/5G tower','4G/5G टावर','4G/5G tower'),s:L('mobile data','मोबाइल डेटा','mobile data'),p:[.78,.84],q:[.84,.62]},
+   friend:{e:'📱',n:L("Riya's phone",'रिया का फ़ोन','Riya ka phone'),s:L('receiver','प्राप्तकर्ता','receiver'),p:[.3,.93],q:[.95,.3]}},
+  edges:[['phone','wifi'],['wifi','isp'],['isp','dns',1],['isp','ra'],['isp','rb'],['ra','server'],['rb','server'],['server','tower'],['tower','friend']],
+  pathA:['phone','wifi','isp','ra','server','tower','friend'],pathB:['phone','wifi','isp','rb','server','tower','friend'],
+  lat:{wifi:3,isp:6,ra:14,rb:31,server:12,tower:18,friend:9}},
+ upi:{dns:true,host:'upi.examplebank.in',hostIP:'198.51.100.77',src:'10.24.8.15',dst:'Shopkeeper',
+  nodes:{phone:{e:'📱',n:L('Your UPI app','आपका UPI ऐप','Aapka UPI app'),s:'10.24.8.15',p:[.2,.08],q:[.06,.3]},
+   wifi:{e:'🗼',n:L('Mobile tower','मोबाइल टावर','Mobile tower'),s:'4G/5G',p:[.62,.2],q:[.2,.62]},
+   isp:{e:'🏢',n:L('Telecom network','टेलीकॉम नेटवर्क','Telecom network'),s:'ISP',p:[.25,.36],q:[.36,.3]},
+   dns:{e:'📖',n:L('DNS resolver','DNS रिज़ॉल्वर','DNS resolver'),s:L('name → IP','नाम → IP','naam → IP'),p:[.8,.42],q:[.36,.84]},
+   ra:{e:'🏦',n:L('App’s bank (PSP)','ऐप का बैंक (PSP)','App ka bank (PSP)'),s:L('checks your request','अनुरोध जाँचता है','request check'),p:[.16,.58],q:[.53,.14]},
+   rb:{e:'🔀',n:L('Backup link','बैकअप लिंक','Backup link'),s:L('slower path','धीमा रास्ता','slow raasta'),p:[.62,.6],q:[.53,.56]},
+   server:{e:'🇮🇳',n:L('NPCI UPI switch','NPCI UPI स्विच','NPCI UPI switch'),s:L('routes between banks','बैंकों के बीच','banks ke beech'),p:[.4,.74],q:[.7,.34]},
+   tower:{e:'🏦',n:L("Receiver's bank",'प्राप्तकर्ता का बैंक','Receiver ka bank'),s:L('credits ₹','₹ जमा करता है','₹ credit karta hai'),p:[.78,.84],q:[.84,.62]},
+   friend:{e:'🏪',n:L("Shop's phone",'दुकान का फ़ोन','Dukaan ka phone'),s:L('“₹ received”','“₹ प्राप्त”','“₹ received”'),p:[.3,.93],q:[.95,.3]}},
+  edges:[['phone','wifi'],['wifi','isp'],['isp','dns',1],['isp','ra'],['isp','rb'],['ra','server'],['rb','server'],['server','tower'],['tower','friend']],
+  pathA:['phone','wifi','isp','ra','server','tower','friend'],pathB:['phone','wifi','isp','rb','ra','server','tower','friend'],
+  lat:{wifi:9,isp:7,ra:22,rb:35,server:40,tower:30,friend:25}}};
+let mode=MODES[cfg.mode]?cfg.mode:'whatsapp', M, busy=false, slowMo=false, sentOnceWithLoss=false;
+const svg=document.getElementById('svg'), NS='http://www.w3.org/2000/svg';
+const $=id=>document.getElementById(id);
+$('msg').value=cfg.message;
+const goalDef=L('Send a message and follow every packet: DNS lookup first, then packets take different roads and get re-joined in order.','संदेश भेजो और हर पैकेट को देखो: पहले DNS खोज, फिर पैकेट अलग रास्तों से जाते हैं और क्रम से जुड़ते हैं।','Message bhejo aur har packet follow karo: pehle DNS lookup, phir packets alag raaston se jaate hain aur order mein jud jaate hain.');const setGoal=()=>$('goal').innerHTML=T(goal||goalDef);setGoal();
+function mission(){ $('mission').innerHTML=sentOnceWithLoss?('✅ '+T(L('Done! A packet was lost, the receiver noticed the missing sequence number, asked again, and the message still arrived complete. That is how TCP keeps data reliable.','हो गया! एक पैकेट खोया, प्राप्तकर्ता ने ग़ायब क्रम संख्या देखी, दोबारा माँगा, और संदेश फिर भी पूरा पहुँचा। TCP ऐसे ही डेटा को भरोसेमंद रखता है।','Ho gaya! Ek packet kho gaya, receiver ne missing sequence number pakda, dobara maanga, aur message phir bhi poora pahuncha. TCP aise hi data reliable rakhta hai.'))):T(L('Turn on “Lose a packet”, send a message, and make sure it still arrives complete and in the right order.','“एक पैकेट खो जाए” चालू करो, संदेश भेजो, और देखो कि वह फिर भी पूरा और सही क्रम में पहुँचे।','“Raste mein ek packet kho jaaye” ON karo, message bhejo, aur dekho ki woh phir bhi poora aur sahi order mein pahunche.'));}
+function pos(id){const r=svg.getBoundingClientRect(),land=r.width>r.height*1.15,n=M.nodes[id],k=land?n.q:n.p;return [k[0]*(r.width-70)+35,k[1]*(r.height-56)+26];}
+function draw(){M=MODES[mode];const r=svg.getBoundingClientRect();svg.setAttribute('viewBox',`0 0 ${r.width} ${r.height}`);svg.innerHTML='';
+ const gE=document.createElementNS(NS,'g');svg.appendChild(gE);
+ M.edges.forEach(([a,b,d])=>{const [x1,y1]=pos(a),[x2,y2]=pos(b);const p=document.createElementNS(NS,'path');p.setAttribute('d',`M${x1},${y1} Q${(x1+x2)/2+(y2-y1)*.12},${(y1+y2)/2-(x2-x1)*.12} ${x2},${y2}`);p.setAttribute('class','edge'+(d?' dns':''));p.id='e-'+a+'-'+b;gE.appendChild(p);});
+ if(mode==='upi'){const [x1,y1]=pos('rb'),[x2,y2]=pos('ra');const p=document.createElementNS(NS,'path');p.setAttribute('d',`M${x1},${y1} L${x2},${y2}`);p.setAttribute('class','edge');p.id='e-rb-ra';gE.appendChild(p);}
+ const labels=[];Object.keys(M.nodes).forEach(id=>{const n=M.nodes[id],[x,y]=pos(id);const g=document.createElementNS(NS,'g');g.setAttribute('class','node');g.id='n-'+id;g.setAttribute('transform',`translate(${x},${y})`);
+  g.innerHTML=`<circle class="halo" r="24"/><circle class="disc" r="18"/><text class="emo" y="7">${n.e}</text>`;svg.appendChild(g);
+  const lb=document.createElementNS(NS,'g');lb.setAttribute('class','node lbl');lb.setAttribute('transform',`translate(${x},${y})`);lb.innerHTML=`<text y="34">${E(T(n.n))}</text><text class="sub" y="46">${E(T(n.s))}</text>`;labels.push(lb);});
+ const pl=document.createElementNS(NS,'g');pl.id='pk';svg.appendChild(pl);
+ labels.forEach(l=>svg.appendChild(l));/* names on top: never hidden by a halo, an edge or a flying packet */}
+function edgeEl(a,b){return $('e-'+a+'-'+b)||$('e-'+b+'-'+a);}
+function hop(el,a,b,ms){return new Promise(res=>{const path=edgeEl(a,b);if(!path){res();return;}const len=path.getTotalLength(),rev=!$('e-'+a+'-'+b);path.classList.add('live');
+ N.tween(ms*(slowMo?2.6:1),k=>{const e=N.ease(k),pt=path.getPointAtLength(rev?len*(1-e):len*e);el.setAttribute('transform',`translate(${pt.x},${pt.y})`);},()=>{path.classList.remove('live');res();});});}
+function hot(id,on){const g=$('n-'+id);g&&g.classList.toggle('hot',on);}
+function log(html,cls){const d=document.createElement('div');d.className=cls||'';d.innerHTML=html;$('log').appendChild(d);$('log').scrollTop=1e6;}
+function mkPk(label,color){const g=document.createElementNS(NS,'g');g.setAttribute('class','pk');g.setAttribute('data-ov-sprite','');g.innerHTML=`<rect x="-15" y="-10" width="30" height="20" fill="${color}"/><text y="4">${E(label)}</text>`;$('pk').appendChild(g);return g;}
+const COLS=['#FFD23F','#02CFF9','#22C55E','#FF7A1A','#FF6B57','#C4B5FD','#5EEAD4','#FDA4AF'];
+function bytesOf(s){return Array.from(new TextEncoder().encode(s));}
+function scramble(bytes,seq){return bytes.map((b,i)=>((b^(0x5A+seq*31+i*7))&0xff).toString(16).padStart(2,'0')).join('');}
+async function walk(el,path,stat){for(let i=1;i<path.length;i++){hot(path[i-1],true);await hop(el,path[i-1],path[i],420);hot(path[i-1],false);}}
+async function send(){if(busy)return;busy=true;$('send').disabled=true;$('log').innerHTML='';$('strip').innerHTML='';draw();
+ const text=$('msg').value.trim()||cfg.message, lose=$('lose').checked, enc=$('enc').checked, size=Math.max(3,Math.min(12,cfg.packetBytes|0||6));
+ const bytes=bytesOf(text);const chunks=[];
+ // split on byte boundaries but never inside one UTF-8 character
+ let cur=[];Array.from(text).forEach(ch=>{const b=bytesOf(ch);if(cur.length&&cur.length+b.length>size){chunks.push(cur);cur=[];}cur=cur.concat(b);});if(cur.length)chunks.push(cur);
+ const dec=new TextDecoder();const stat={h:0,t:0};$('sP').textContent=chunks.length;$('sB').textContent=bytes.length;$('sH').textContent=0;$('sT').textContent=0;
+ log('✂️ '+T(L(`Your message is ${bytes.length} bytes. The phone cuts it into ${chunks.length} packets of up to ${size} bytes and numbers each one (sequence number).`,`आपका संदेश ${bytes.length} बाइट का है। फ़ोन इसे ${size} बाइट तक के ${chunks.length} पैकेट में काटकर हर एक पर क्रम संख्या लिखता है।`,`Aapka message ${bytes.length} bytes ka hai. Phone isse ${size} bytes tak ke ${chunks.length} packets mein kaat ke har ek pe number (sequence number) likhta hai.`)));
+ const cards=chunks.map((c,i)=>{const d=document.createElement('div');d.className='pcard';d.style.animationDelay=(i*70)+'ms';
+  d.innerHTML=`<div class="h" style="background:${COLS[i%8]};color:#1C1B1A">#${i+1} / ${chunks.length}</div><div class="b"><span>From: ${M.src}</span><span class="to">To: ?</span><span class="d">${E(enc?scramble(c,i):dec.decode(new Uint8Array(c)))}</span></div>`;$('strip').appendChild(d);return d;});
+ if(enc) log('🔒 '+T(L('Encryption ON: the data is scrambled with a key only the two phones have. Routers and even the server see only gibberish.','एन्क्रिप्शन चालू: डेटा ऐसी चाबी से उलझाया गया जो सिर्फ़ दोनों फ़ोनों के पास है। राउटर और सर्वर को केवल बेमतलब अक्षर दिखते हैं।','Encryption ON: data ek aisi key se scramble hua jo sirf dono phones ke paas hai. Routers aur server ko sirf gibberish dikhta hai.')));
+ await N.sleep(500);
+ // DNS
+ log('📖 '+T(L(`DNS lookup: “Where is ${M.host}?” Computers need a number (IP address), not a name.`,`DNS खोज: “${M.host} कहाँ है?” कंप्यूटर को नाम नहीं, नंबर (IP पता) चाहिए।`,`DNS lookup: “${M.host} kahan hai?” Computer ko naam nahi, number (IP address) chahiye.`)),'dns');
+ const sum=p=>p.slice(1).reduce((a,n)=>a+(M.lat[n]||4),0);stat.h=M.pathB.length-1;stat.t=2*sum(['phone','wifi','isp','dns'])+Math.max(sum(M.pathA),sum(M.pathB))+(lose&&chunks.length>1?200:0);
+ const q=mkPk('?','#C4B5FD');await walk(q,['phone','wifi','isp','dns'],stat);hot('dns',true);await N.sleep(300);q.querySelector('text').textContent='IP';await walk(q,['dns','isp','wifi','phone'],stat);hot('dns',false);q.remove();
+ log('✅ '+T(L(`DNS answer: ${M.host} = ${M.hostIP}. Now every packet gets this address in its header.`,`DNS उत्तर: ${M.host} = ${M.hostIP}। अब हर पैकेट के हेडर में यह पता लिखा जाएगा।`,`DNS ka jawab: ${M.host} = ${M.hostIP}. Ab har packet ke header mein yeh address likha jaayega.`)),'ok');
+ cards.forEach(c=>c.querySelector('.to').textContent='To: '+M.hostIP);
+ // send packets: odd ones take the busy road, so they arrive out of order
+ const arrived=[];const lostIdx=lose&&chunks.length>1?1:-1;
+ const toServer=chunks.map((c,i)=>new Promise(async res=>{await N.sleep(i*260);const el=mkPk('#'+(i+1),COLS[i%8]);const path=(i%2?M.pathB:M.pathA);const upto=path.indexOf('server');
+   if(i===lostIdx){await walk(el,path.slice(0,3),stat);const [x,y]=[...el.getAttribute('transform').matchAll(/-?[\d.]+/g)].map(m=>+m[0]);
+     N.tween(500,k=>{el.setAttribute('transform',`translate(${x},${y-k*30}) scale(${1+k})`);el.style.opacity=1-k;},()=>el.remove());
+     cards[i].classList.add('lost');log('💥 '+T(L(`Packet #${i+1} was dropped by a busy router! Nobody “sees” it go missing… yet.`,`व्यस्त राउटर ने पैकेट #${i+1} गिरा दिया! अभी किसी को पता नहीं चला…`,`Packet #${i+1} ek busy router ne drop kar diya! Abhi kisi ko pata nahi chala…`)),'bad');res();return;}
+   await walk(el,path.slice(0,upto+1),stat);arrived.push(i);el.remove();res();}));
+ await Promise.all(toServer);
+ log('📥 '+T(L(`Server received packets in this order: ${arrived.map(i=>'#'+(i+1)).join(', ')} — not in order, because they took different roads.`,`सर्वर को पैकेट इस क्रम में मिले: ${arrived.map(i=>'#'+(i+1)).join(', ')} — क्रम में नहीं, क्योंकि रास्ते अलग थे।`,`Server ko packets is order mein mile: ${arrived.map(i=>'#'+(i+1)).join(', ')} — order mein nahi, kyunki raaste alag the.`)));
+ if(lostIdx>=0){await N.sleep(400);log('🔁 '+T(L(`Sequence numbers show #${lostIdx+1} is missing, so no acknowledgement (ACK) goes back for it. The sender's timer runs out and it sends #${lostIdx+1} again.`,`क्रम संख्याओं से पता चला कि #${lostIdx+1} ग़ायब है, इसलिए उसकी पावती (ACK) नहीं गई। भेजने वाले का टाइमर ख़त्म हुआ और उसने #${lostIdx+1} फिर भेजा।`,`Sequence numbers se pata chala #${lostIdx+1} missing hai, isliye uska ACK (receipt) wapas nahi gaya. Sender ka timer khatam hua aur usne #${lostIdx+1} dobara bheja.`)),'bad');
+   const el=mkPk('#'+(lostIdx+1),COLS[lostIdx%8]);await walk(el,M.pathA.slice(0,M.pathA.indexOf('server')+1),stat);el.remove();arrived.push(lostIdx);cards[lostIdx].classList.remove('lost');}
+ // server -> receiver
+ const tail=M.pathA.slice(M.pathA.indexOf('server'));const order=arrived.slice();
+ await Promise.all(order.map((i,k)=>new Promise(async res=>{await N.sleep(k*160);const el=mkPk('#'+(i+1),COLS[i%8]);await walk(el,tail,stat);el.remove();res();})));
+ const sorted=order.slice().sort((a,b)=>a-b);const full=dec.decode(new Uint8Array(sorted.flatMap(i=>chunks[i])));
+ sorted.forEach(i=>cards[i].classList.add('ok'));
+ log('🧩 '+T(L(`The receiver sorts by sequence number ${sorted.map(i=>'#'+(i+1)).join(' → ')} and joins the pieces${enc?', then unlocks them with its key':''}.`,`प्राप्तकर्ता क्रम संख्या ${sorted.map(i=>'#'+(i+1)).join(' → ')} से जोड़ता है${enc?' और फिर अपनी चाबी से खोलता है':''}।`,`Receiver sequence number ${sorted.map(i=>'#'+(i+1)).join(' → ')} se sort karke jodta hai${enc?', phir apni key se unlock karta hai':''}.`)),'ok');
+ const [fx,fy]=pos('friend');const b=document.createElementNS(NS,'g');const w=Math.min(260,svg.getBoundingClientRect().width-20);const bx=Math.max(8,Math.min(fx-w/2,svg.getBoundingClientRect().width-w-8));const H0=svg.getBoundingClientRect().height,occ=[...svg.querySelectorAll('.node circle.halo,.lbl text')].map(e=>{const r=e.getBBox(),m=e.getCTM(),s0=svg.getCTM().inverse().multiply(m);const p1=new DOMPoint(r.x,r.y).matrixTransform(s0),p2=new DOMPoint(r.x+r.width,r.y+r.height).matrixTransform(s0);return [p1.x,p1.y,p2.x,p2.y];});
+ const freeY=y=>!occ.some(o=>o[0]<bx+w+4&&o[2]>bx-4&&o[1]<y+44&&o[3]>y-4);let by=null;const pref=fy>120?fy-96:fy+52;
+ for(let d=0;d<H0;d+=6){for(const y of [pref-d,pref+d])if(by==null&&y>=4&&y<=H0-44&&freeY(y))by=y;if(by!=null)break;}/* the delivered bubble goes where it covers no node or name */
+ if(by!=null)b.innerHTML=`<rect class="bubble" x="${bx}" y="${by}" width="${w}" height="40" rx="12" fill="${mode==='upi'?'#E4F3EA':'#DCF8C6'}" stroke="#0F766E"/><text x="${bx+12}" y="${by+25}" fill="#1C1B1A" font-size="13" font-weight="700">${E(mode==='upi'?'₹ '+full:full)} <tspan fill="#0369A1">✓✓</tspan></text>`;
+ b.style.animation='pop .4s both';if(by!=null)$('pk').appendChild(b);else log('📩 '+E(mode==='upi'?'₹ '+full:full)+' ✓✓');
+ $('sH').textContent=stat.h;$('sT').textContent=stat.t;
+ log('🎉 '+T(L(`Delivered: “${E(full)}” in about ${stat.t} ms (${stat.h} hops). ${lose&&chunks.length>1?'(+200 ms waiting to resend the lost packet)':'Faster than a blink (≈100–150 ms)!'}`,`पहुँच गया: “${E(full)}” लगभग ${stat.t} ms में (${stat.h} हॉप)। ${lose&&chunks.length>1?'(+200 ms खोया पैकेट दोबारा भेजने में)':'पलक झपकने (≈100–150 ms) जितना तेज़!'}`,`Deliver ho gaya: “${E(full)}” lagbhag ${stat.t} ms mein (${stat.h} hops). ${lose&&chunks.length>1?'(+200 ms lost packet dobara bhejne mein)':'Palak jhapakne (≈100–150 ms) jitna fast!'}`)),'ok');
+ N.emit('delivered',{packets:chunks.length,lost:lostIdx>=0,mode});
+ if(lostIdx>=0&&!sentOnceWithLoss){sentOnceWithLoss=true;N.emit('mission:complete',{lab:'packet-tracer'});N.confetti();N.toast(L('Mission complete! +XP','मिशन पूरा! +XP','Mission complete! +XP'),'ok');}
+ mission();busy=false;$('send').disabled=false;}
+document.querySelectorAll('.tabs button').forEach(b=>{b.onclick=()=>{if(busy)return;mode=b.dataset.m;document.querySelectorAll('.tabs button').forEach(x=>x.setAttribute('aria-selected',x===b));$('msg').value=mode==='upi'?'250 to Sharma Kirana':cfg.message;$('log').innerHTML='';$('strip').innerHTML='';draw();};b.setAttribute('aria-selected',b.dataset.m===mode);});
+if(mode==='upi')$('msg').value=cfg.mode==='upi'&&cfg.message?cfg.message:'250 to Sharma Kirana';
+$('send').onclick=send;$('slow').onclick=()=>{slowMo=!slowMo;$('slow').style.background=slowMo?'var(--mint)':'';};
+$('lose').checked=cfg.mission==='lost-packet'&&N.qs.get('lose')==='1';
+N.onLang(()=>{if(!busy){draw();}mission();setGoal();});
+addEventListener('resize',()=>{if(!busy)draw();});
+draw();mission();window.__lab={send,setMode:m=>document.querySelector(`.tabs [data-m=${m}]`).click()};
+})();
+</script></body></html>

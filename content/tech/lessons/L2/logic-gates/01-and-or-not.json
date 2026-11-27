@@ -1,0 +1,282 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.logic-gates.01",
+ "level": 2,
+ "classes": [
+  6,
+  7
+ ],
+ "unit": "logic-gates",
+ "title": {
+  "en": "AND, OR and NOT gates",
+  "hi": "AND, OR और NOT गेट",
+  "hinglish": "AND, OR aur NOT gates"
+ },
+ "minutes": 8,
+ "xp": 30,
+ "prereq": [],
+ "topics": [
+  "hw.gates"
+ ],
+ "outcomes": [
+  {
+   "en": "Describe what AND, OR and NOT gates do",
+   "hi": "AND, OR और NOT गेट क्या करते हैं, बता सकते हो",
+   "hinglish": "AND, OR, NOT gates kya karte hain bata sakte ho"
+  },
+  {
+   "en": "Complete a truth table",
+   "hi": "सत्य तालिका पूरी कर सकते हो",
+   "hinglish": "Truth table bhar sakte ho"
+  },
+  {
+   "en": "Spot gate logic in daily life",
+   "hi": "रोज़मर्रा की ज़िंदगी में गेट का तर्क पहचान सकते हो",
+   "hinglish": "Rozmarra ki zindagi mein gate logic pehchaan sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Logic gate",
+   "hinglish": "Chhota circuit jo 0/1 inputs se 0/1 output deta hai",
+   "en": "A tiny circuit that takes 0/1 inputs and gives a 0/1 output",
+   "hi": "छोटा सर्किट जो 0/1 इनपुट लेकर 0/1 आउटपुट देता है"
+  },
+  {
+   "term": "Truth table",
+   "hinglish": "Har input ka output wali table",
+   "en": "A table listing the output for every possible input",
+   "hi": "हर संभव इनपुट का आउटपुट बताने वाली तालिका"
+  },
+  {
+   "term": "Input / Output",
+   "hinglish": "Andar aane wala / bahar jaane wala signal",
+   "en": "The signals going into and coming out of a gate",
+   "hi": "गेट में जाने और उससे निकलने वाले संकेत"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "An AND gate outputs 1 only when BOTH inputs are 1.",
+    "hi": "AND गेट तभी 1 देता है जब दोनों इनपुट 1 हों।",
+    "hinglish": "AND gate tabhi 1 deta hai jab DONO inputs 1 hon."
+   },
+   "visual": "lab:bit-lab#gates-AND",
+   "narration": {
+    "en": "Two switches in a row: the bulb glows only if both are on.",
+    "hi": "एक के बाद एक दो स्विच: बल्ब तभी जलता है जब दोनों चालू हों।",
+    "hinglish": "Line mein do switches: bulb tabhi jalega jab dono ON hon."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "An OR gate outputs 1 when AT LEAST ONE input is 1.",
+    "hi": "OR गेट तब 1 देता है जब कम से कम एक इनपुट 1 हो।",
+    "hinglish": "OR gate tab 1 deta hai jab KAM SE KAM EK input 1 ho."
+   },
+   "visual": "lab:bit-lab#gates-OR",
+   "narration": {
+    "en": "Two switches side by side: either one can light the bulb.",
+    "hi": "बग़ल-बग़ल दो स्विच: कोई भी एक बल्ब जला सकता है।",
+    "hinglish": "Do switches side by side: koi bhi ek bulb jala sakta hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "A NOT gate flips its single input: 0 becomes 1, 1 becomes 0.",
+    "hi": "NOT गेट अपने एक इनपुट को उलट देता है: 0 → 1, 1 → 0।",
+    "hinglish": "NOT gate apne ek input ko ulta kar deta hai: 0 → 1, 1 → 0."
+   },
+   "visual": "lab:bit-lab#gates-NOT",
+   "narration": {
+    "en": "NOT is the “opposite” machine.",
+    "hi": "NOT “उल्टा” करने वाली मशीन है।",
+    "hinglish": "NOT “ulta” karne wali machine hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "bit-lab",
+  "config": {
+   "tab": "gates",
+   "gate": "AND"
+  },
+  "goal": {
+   "en": "Fill the full AND truth table by trying all four input combinations.",
+   "hi": "चारों इनपुट संयोजन आज़माकर पूरी AND सत्य तालिका भरो।",
+   "hinglish": "Chaaron input combinations try karke poori AND truth table bharo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Truth tables",
+    "hi": "सत्य तालिका",
+    "hinglish": "Truth tables"
+   },
+   "body": {
+    "en": "With 2 inputs there are 4 combinations: 00, 01, 10, 11. AND: 0, 0, 0, 1. OR: 0, 1, 1, 1. NOT has 1 input: NOT 0 = 1, NOT 1 = 0. Gates are made from transistors; an AND gate needs about 6 in the CMOS technology used in phones. Combine gates and you can build any decision: “unlock if (fingerprint matches OR PIN correct) AND NOT (too many wrong tries)”.",
+    "hi": "2 इनपुट में 4 संयोजन हैं: 00, 01, 10, 11। AND: 0, 0, 0, 1। OR: 0, 1, 1, 1। NOT में 1 इनपुट: NOT 0 = 1, NOT 1 = 0। गेट ट्रांजिस्टर से बनते हैं; फ़ोन में प्रयुक्त CMOS तकनीक में AND गेट को लगभग 6 ट्रांजिस्टर चाहिए। गेट जोड़कर कोई भी निर्णय बन सकता है: “खोलो अगर (फ़िंगरप्रिंट मिले या PIN सही) और नहीं (बहुत ग़लत कोशिशें)”।",
+    "hinglish": "2 inputs mein 4 combinations: 00, 01, 10, 11. AND: 0, 0, 0, 1. OR: 0, 1, 1, 1. NOT mein 1 input: NOT 0 = 1, NOT 1 = 0. Gates transistors se bante hain; phones ki CMOS technology mein AND gate ko lagbhag 6 transistors chahiye. Gates jodo to koi bhi decision ban sakta hai: “unlock karo agar (fingerprint match OR PIN sahi) AND NOT (bahut galat tries)”."
+   },
+   "analogy": {
+    "hinglish": "AND = Mummy AUR Papa dono haan bolein tabhi picnic. OR = Mummy YA Papa koi bhi haan bol de to ice-cream. NOT = ulta: baarish NAHI ho rahi to cricket.",
+    "en": "AND = picnic only if Mummy AND Papa both say yes. OR = ice-cream if Mummy OR Papa says yes. NOT = the opposite: if it is NOT raining, cricket.",
+    "hi": "AND = मम्मी और पापा दोनों हाँ कहें तभी पिकनिक। OR = मम्मी या पापा कोई भी हाँ कहे तो आइसक्रीम। NOT = उल्टा: बारिश नहीं हो रही तो क्रिकेट।"
+   },
+   "realExample": {
+    "en": "A car seat-belt alarm: beep if (engine ON) AND NOT (belt buckled).",
+    "hi": "कार का सीट-बेल्ट अलार्म: बीप करे अगर (इंजन चालू) AND NOT (बेल्ट लगी)।",
+    "hinglish": "Car seat-belt alarm: beep agar (engine ON) AND NOT (belt laga)."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write the gate logic for your school gate: open if (bell has rung OR it is a holiday event) AND guard approves.",
+   "hi": "अपने स्कूल के गेट का तर्क लिखो: खुले अगर (घंटी बजी हो या छुट्टी का कार्यक्रम हो) और गार्ड अनुमति दे।",
+   "hinglish": "Apne school gate ka logic likho: kholo agar (bell baji OR holiday event) AND guard ne haan kaha."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "AND gate inputs are 1 and 0. Output?",
+     "hi": "AND गेट के इनपुट 1 और 0। आउटपुट?",
+     "hinglish": "AND gate ke inputs 1 aur 0. Output?"
+    },
+    "options": [
+     "0",
+     "1"
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "AND needs both inputs to be 1.",
+     "hi": "AND को दोनों इनपुट 1 चाहिए।",
+     "hinglish": "AND ko dono inputs 1 chahiye."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "OR gate inputs are 1 and 0. Output?",
+     "hi": "OR गेट के इनपुट 1 और 0। आउटपुट?",
+     "hinglish": "OR gate ke inputs 1 aur 0. Output?"
+    },
+    "options": [
+     "0",
+     "1"
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "OR needs at least one 1.",
+     "hi": "OR को कम से कम एक 1 चाहिए।",
+     "hinglish": "OR ko kam se kam ek 1 chahiye."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which gate fits: “The fan runs if the switch is ON and the power is ON”?",
+     "hi": "कौन-सा गेट: “पंखा तब चले जब स्विच चालू और बिजली चालू हो”?",
+     "hinglish": "Kaunsa gate: “Pankha tab chale jab switch ON aur bijli ON ho”?"
+    },
+    "options": [
+     "AND",
+     "OR",
+     "NOT"
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Both conditions must be true → AND.",
+     "hi": "दोनों शर्तें सच होनी चाहिए → AND।",
+     "hinglish": "Dono conditions true honi chahiye → AND."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "How many rows does a 2-input truth table have?",
+     "hi": "2 इनपुट की सत्य तालिका में कितनी पंक्तियाँ?",
+     "hinglish": "2-input truth table mein kitni rows?"
+    },
+    "options": [
+     "2",
+     "3",
+     "4",
+     "8"
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "2 × 2 = 4 combinations: 00, 01, 10, 11.",
+     "hi": "2 × 2 = 4 संयोजन: 00, 01, 10, 11।",
+     "hinglish": "2 × 2 = 4 combinations: 00, 01, 10, 11."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "What is NOT (1 AND 1)?",
+     "hi": "NOT (1 AND 1) क्या है?",
+     "hinglish": "NOT (1 AND 1) kya hai?"
+    },
+    "options": [
+     "0",
+     "1"
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "1 AND 1 = 1, and NOT 1 = 0.",
+     "hi": "1 AND 1 = 1, और NOT 1 = 0।",
+     "hinglish": "1 AND 1 = 1, aur NOT 1 = 0."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Fill the complete AND truth table in the lab.",
+     "hi": "लैब में पूरी AND सत्य तालिका भरो।",
+     "hinglish": "Lab mein poori AND truth table bharo."
+    },
+    "answer": {
+     "lab": "bit-lab",
+     "event": "mission:complete",
+     "gate": "AND"
+    },
+    "explain": {
+     "en": "AND gives 1 only for input 11.",
+     "hi": "AND केवल 11 पर 1 देता है।",
+     "hinglish": "AND sirf 11 pe 1 deta hai."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "NCERT / CBSE Artificial Intelligence & Computer curriculum (Classes 6–8), 2024–25",
+   "url": "https://cbseacademic.nic.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NCERT Class 12 Physics (old syllabus) Ch. 14 — Digital electronics and logic gates",
+   "url": "https://ncert.nic.in/textbook.php?leph2=14-14",
+   "licence": "fact reference"
+  }
+ ]
+}

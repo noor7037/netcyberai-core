@@ -1,0 +1,365 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.cyber-essentials.01",
+ "level": 2,
+ "classes": [
+  6,
+  7
+ ],
+ "unit": "cyber-essentials",
+ "title": {
+  "en": "Spot a phishing message",
+  "hi": "फ़िशिंग संदेश पहचानो",
+  "hinglish": "Phishing message pehchaano"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [],
+ "topics": [
+  "cyber.phishing"
+ ],
+ "outcomes": [
+  {
+   "en": "Name the red flags of a phishing message",
+   "hi": "फ़िशिंग संदेश के ख़तरे के संकेत बता सकते हो",
+   "hinglish": "Phishing message ke red flags bata sakte ho"
+  },
+  {
+   "en": "Tell a real message from a fake one",
+   "hi": "असली और नक़ली संदेश में अंतर बता सकते हो",
+   "hinglish": "Asli aur nakli message mein farak bata sakte ho"
+  },
+  {
+   "en": "Know what to do instead of clicking",
+   "hi": "क्लिक करने की जगह क्या करना है, जानते हो",
+   "hinglish": "Click karne ki jagah kya karna hai jaante ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Phishing",
+   "hinglish": "Nakli message jo jaankari churaata hai",
+   "en": "A fake message that pretends to be someone trusted to steal details or money",
+   "hi": "नक़ली संदेश जो भरोसेमंद बनकर जानकारी या पैसे चुराता है"
+  },
+  {
+   "term": "Red flag",
+   "hinglish": "Khatre ka sanket",
+   "en": "A warning sign that something is wrong",
+   "hi": "ख़तरे का संकेत कि कुछ ग़लत है"
+  },
+  {
+   "term": "Sender ID",
+   "hinglish": "Bhejne wale ka naam/number",
+   "en": "The name or number a message comes from, e.g. AX-HDFCBK",
+   "hi": "संदेश भेजने वाले का नाम या नंबर, जैसे AX-HDFCBK"
+  },
+  {
+   "term": "Urgency",
+   "hinglish": "Jaldi karo ka dabaav",
+   "en": "Pressure to act right now so you do not stop to think",
+   "hi": "अभी करो का दबाव ताकि आप सोचने न रुको"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Phishing messages pretend to be a bank, a company, a job offer or even family, so that you click a link or share details.",
+    "hi": "फ़िशिंग संदेश बैंक, कंपनी, नौकरी या परिवार भी बनकर आते हैं, ताकि आप लिंक दबाओ या जानकारी दो।",
+    "hinglish": "Phishing messages bank, company, job offer ya family bhi bankar aate hain, taaki aap link dabao ya details do."
+   },
+   "visual": "compare:🚩 “Your account will be blocked TODAY!”|✅ “Your OTP is 4821. Do not share it with anyone.”",
+   "narration": {
+    "en": "Real banks warn you never to share codes; scammers ask for them.",
+    "hi": "असली बैंक कोड न बताने की चेतावनी देते हैं; धोखेबाज़ कोड माँगते हैं।",
+    "hinglish": "Asli bank code share na karne ki warning dete hain; scammers code maangte hain."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Look for five red flags: urgency, an unknown sender, a strange link, a request for PIN/OTP/password, and an offer too good to be true.",
+    "hi": "पाँच ख़तरे के संकेत देखो: जल्दबाज़ी, अनजान भेजने वाला, अजीब लिंक, PIN/OTP/पासवर्ड की माँग, और सच होने से अच्छा ऑफ़र।",
+    "hinglish": "Paanch red flags dekho: urgency, anjaan sender, ajeeb link, PIN/OTP/password ki maang, aur sach hone se achha offer."
+   },
+   "visual": "lab:scam-inbox",
+   "narration": {
+    "en": "Tap the suspicious parts of each message in the lab to reveal the flags.",
+    "hi": "लैब में हर संदेश के संदिग्ध हिस्से दबाकर संकेत देखो।",
+    "hinglish": "Lab mein har message ke shaky parts tap karo aur flags dekho."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "When in doubt: do not click, do not reply. Open the official app or call the number on the back of the card yourself.",
+    "hi": "शक हो तो: क्लिक मत करो, जवाब मत दो। ख़ुद आधिकारिक ऐप खोलो या कार्ड के पीछे वाले नंबर पर कॉल करो।",
+    "hinglish": "Shak ho to: click mat karo, reply mat karo. Khud official app kholo ya card ke peeche wale number pe call karo."
+   },
+   "visual": "compare:❌ Tap the link in the message|✅ Type the official site or open the official app yourself",
+   "narration": {
+    "en": "You choose the route — never the route the message hands you.",
+    "hi": "रास्ता आप चुनो — कभी वह नहीं जो संदेश दे।",
+    "hinglish": "Raasta aap chuno — kabhi woh nahi jo message de."
+   }
+  }
+ ],
+ "play": {
+  "lab": "scam-inbox",
+  "config": {
+   "only": [
+    "kyc",
+    "job",
+    "free",
+    "ptm",
+    "food",
+    "otp"
+   ],
+   "need": 6
+  },
+  "goal": {
+   "en": "Sort all six messages into Real or Scam and find the red flags in each scam.",
+   "hi": "छह संदेशों को असली या धोखा में छाँटो और हर धोखे के ख़तरे के संकेत ढूँढो।",
+   "hinglish": "Chhe messages ko Real ya Scam mein sort karo aur har scam ke red flags dhoondo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Why phishing works, and how to beat it",
+    "hi": "फ़िशिंग क्यों काम करता है, और उसे कैसे हराएँ",
+    "hinglish": "Phishing kyun kaam karta hai, aur use kaise harayein"
+   },
+   "body": {
+    "en": "Phishing is the most common kind of cyber attack because it tricks people instead of breaking computers. The word comes from “fishing”: the scammer throws out bait and waits for someone to bite. In India the most common baits are fake KYC-update SMS, fake electricity-bill disconnection warnings, part-time “like videos and earn” job offers, lottery or free-gift forwards, and fake delivery messages. Real Indian businesses send SMS with registered sender IDs such as AX-SBIBNK or VM-AMAZON (two letters, a dash and a name), while scams often come from ordinary 10-digit mobile numbers or foreign numbers — although a sender ID alone can be faked, so the content still matters. Banks, UPI apps and government offices will never ask for your OTP, UPI PIN, CVV or password. If a message makes you feel scared or excited and asks you to act fast, that feeling is the biggest red flag. Delete it, block the sender and report it on Sanchar Saathi’s Chakshu or the cybercrime portal.",
+    "hi": "फ़िशिंग सबसे आम साइबर हमला है क्योंकि यह कंप्यूटर तोड़ने की जगह लोगों को धोखा देता है। यह शब्द “फ़िशिंग” (मछली पकड़ना) से आया है: धोखेबाज़ चारा डालता है और किसी के फँसने का इंतज़ार करता है। भारत में सबसे आम चारे हैं नक़ली KYC-अपडेट SMS, नक़ली बिजली-कटौती चेतावनी, “वीडियो लाइक करो और कमाओ” वाली पार्ट-टाइम नौकरी, लॉटरी या मुफ़्त उपहार वाले फ़ॉरवर्ड, और नक़ली डिलीवरी संदेश। असली भारतीय कंपनियाँ AX-SBIBNK या VM-AMAZON जैसे पंजीकृत सेंडर ID (दो अक्षर, डैश और नाम) से SMS भेजती हैं, जबकि धोखे अक्सर सामान्य 10 अंकों के मोबाइल नंबर या विदेशी नंबर से आते हैं — हालाँकि केवल सेंडर ID भी नक़ली हो सकता है, इसलिए सामग्री फिर भी मायने रखती है। बैंक, UPI ऐप और सरकारी दफ़्तर कभी आपका OTP, UPI PIN, CVV या पासवर्ड नहीं माँगेंगे। अगर कोई संदेश आपको डराए या उत्साहित करे और जल्दी करने को कहे, तो वह भावना ही सबसे बड़ा ख़तरे का संकेत है। उसे मिटाओ, भेजने वाले को ब्लॉक करो और संचार साथी के चक्षु या साइबर अपराध पोर्टल पर रिपोर्ट करो।",
+    "hinglish": "Phishing sabse common cyber attack hai kyunki yeh computer todne ki jagah logon ko dhokha deta hai. Yeh word “fishing” se aaya hai: scammer chaara daalta hai aur kisi ke phasne ka intezaar karta hai. India mein sabse common chaare hain nakli KYC-update SMS, nakli bijli-katauti warning, “videos like karo aur kamao” wali part-time job, lottery ya free gift wale forwards, aur nakli delivery messages. Asli Indian businesses AX-SBIBNK ya VM-AMAZON jaise registered sender IDs (do letters, dash aur naam) se SMS bhejte hain, jabki scams aksar normal 10-digit mobile numbers ya foreign numbers se aate hain — halaanki sirf sender ID bhi fake ho sakta hai, isliye content phir bhi matter karta hai. Banks, UPI apps aur sarkari offices kabhi aapka OTP, UPI PIN, CVV ya password nahi maangenge. Agar koi message aapko daraaye ya excited kare aur jaldi karne ko kahe, to woh feeling hi sabse bada red flag hai. Use delete karo, sender ko block karo aur Sanchar Saathi ke Chakshu ya cybercrime portal pe report karo."
+   },
+   "analogy": {
+    "en": "Phishing = a fishing hook: the bait (a free gift, a scare) is shiny, and the hook (the link) hides inside.",
+    "hi": "फ़िशिंग = मछली पकड़ने का काँटा: चारा (मुफ़्त उपहार, डर) चमकदार होता है, अंदर काँटा (लिंक) छिपा होता है।",
+    "hinglish": "Phishing = machhli pakadne ka kaanta: chaara (free gift, darr) chamakdaar hota hai, andar kaanta (link) chhupa hota hai."
+   },
+   "realExample": {
+    "en": "“Dear customer, your electricity will be disconnected tonight at 9:30 pm. Call our officer 98••••••••” is one of the most reported SMS scams in India; real power companies send bills, not midnight threats from mobile numbers.",
+    "hi": "“प्रिय ग्राहक, आज रात 9:30 बजे बिजली कट जाएगी। अधिकारी को 98•••••••• पर कॉल करें” भारत के सबसे ज़्यादा रिपोर्ट होने वाले SMS धोखों में से है; असली बिजली कंपनियाँ बिल भेजती हैं, मोबाइल नंबर से रात की धमकी नहीं।",
+    "hinglish": "“Dear customer, aaj raat 9:30 baje bijli kat jaayegi. Officer ko 98•••••••• pe call karo” India ke sabse zyada report hone wale SMS scams mein se hai; asli bijli companies bill bhejti hain, mobile number se raat ki dhamki nahi."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Look at the last 20 SMS on a family phone (with permission). Count how many were real and how many had red flags. Show your family the flags you found.",
+   "hi": "परिवार के फ़ोन के आख़िरी 20 SMS देखो (अनुमति से)। गिनो कितने असली थे और कितनों में ख़तरे के संकेत थे। परिवार को दिखाओ।",
+   "hinglish": "Family phone ke last 20 SMS dekho (permission ke saath). Ginno kitne real the aur kitno mein red flags the. Family ko dikhao."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are red flags? Choose all.",
+     "hi": "कौन-से ख़तरे के संकेत हैं? सभी चुनो।",
+     "hinglish": "Kaunse red flags hain? Saare chuno."
+    },
+    "options": [
+     {
+      "en": "“Act within 1 hour or lose your account”",
+      "hi": "“1 घंटे में करो वरना खाता बंद”",
+      "hinglish": "“1 ghante mein karo warna account band”"
+     },
+     {
+      "en": "“Reply with the OTP to verify”",
+      "hi": "“पुष्टि के लिए OTP भेजो”",
+      "hinglish": "“Verify karne ke liye OTP bhejo”"
+     },
+     {
+      "en": "“Do not share this OTP with anyone”",
+      "hi": "“यह OTP किसी को मत बताओ”",
+      "hinglish": "“Yeh OTP kisi ko mat batao”"
+     },
+     {
+      "en": "“You won ₹25 lakh in a lucky draw!”",
+      "hi": "“आपने लकी ड्रॉ में ₹25 लाख जीते!”",
+      "hinglish": "“Aapne lucky draw mein ₹25 lakh jeete!”"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     3
+    ],
+    "explain": {
+     "en": "Urgency, a request for your OTP and a too-good prize are classic flags. A message telling you NOT to share your OTP is a good sign.",
+     "hi": "जल्दबाज़ी, OTP की माँग और बहुत अच्छा इनाम आम संकेत हैं। OTP न बताने वाला संदेश अच्छा संकेत है।",
+     "hinglish": "Urgency, OTP ki maang aur bahut achha prize classic flags hain. OTP share NA karne wala message achha sign hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "A message says your KYC expires today and gives a link. What should you do?",
+     "hi": "संदेश कहता है आपका KYC आज ख़त्म होगा और लिंक देता है। क्या करोगे?",
+     "hinglish": "Message kehta hai aapka KYC aaj khatam hoga aur link deta hai. Kya karoge?"
+    },
+    "options": [
+     {
+      "en": "Tap the link quickly before it expires",
+      "hi": "ख़त्म होने से पहले जल्दी लिंक दबाओ",
+      "hinglish": "Expire hone se pehle jaldi link dabao"
+     },
+     {
+      "en": "Reply asking if it is real",
+      "hi": "पूछो कि क्या यह असली है",
+      "hinglish": "Reply karke poocho kya yeh real hai"
+     },
+     {
+      "en": "Ignore the link and check in the official bank app",
+      "hi": "लिंक छोड़ो और आधिकारिक बैंक ऐप में जाँचो",
+      "hinglish": "Link chhodo aur official bank app mein check karo"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "Never use the link in the message. Open the official app or visit the branch yourself.",
+     "hi": "संदेश का लिंक कभी मत उपयोग करो। ख़ुद आधिकारिक ऐप खोलो या शाखा जाओ।",
+     "hinglish": "Message ka link kabhi use mat karo. Khud official app kholo ya branch jao."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which of these will NEVER ask for your OTP?",
+     "hi": "इनमें से कौन आपका OTP कभी नहीं माँगेगा?",
+     "hinglish": "Inmein se kaun aapka OTP kabhi nahi maangega?"
+    },
+    "options": [
+     {
+      "en": "Your real bank",
+      "hi": "आपका असली बैंक",
+      "hinglish": "Aapka asli bank"
+     },
+     {
+      "en": "A “lottery office” caller",
+      "hi": "“लॉटरी दफ़्तर” से कॉल करने वाला",
+      "hinglish": "“Lottery office” wala caller"
+     },
+     {
+      "en": "A “KYC update” SMS",
+      "hi": "“KYC अपडेट” SMS",
+      "hinglish": "“KYC update” SMS"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Banks, UPI apps, police and government never ask for OTPs. Anyone who asks is a scammer.",
+     "hi": "बैंक, UPI ऐप, पुलिस और सरकार कभी OTP नहीं माँगते। जो माँगे वह धोखेबाज़ है।",
+     "hinglish": "Banks, UPI apps, police aur sarkar kabhi OTP nahi maangte. Jo maange woh scammer hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "short",
+    "prompt": {
+     "en": "Phishing tricks people instead of breaking computers. Which English word does “phishing” come from?",
+     "hi": "फ़िशिंग कंप्यूटर तोड़ने की जगह लोगों को धोखा देता है। “फ़िशिंग” किस अंग्रेज़ी शब्द से आया?",
+     "hinglish": "Phishing computers todne ki jagah logon ko dhokha deta hai. “Phishing” kis English word se aaya?"
+    },
+    "answer": [
+     "fishing",
+     "Fishing"
+    ],
+    "explain": {
+     "en": "Like fishing: bait is thrown out and the scammer waits for a bite.",
+     "hi": "मछली पकड़ने की तरह: चारा डालो और फँसने का इंतज़ार करो।",
+     "hinglish": "Fishing ki tarah: chaara daalo aur phasne ka intezaar karo."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "order",
+    "prompt": {
+     "en": "You get a scary “account blocked” SMS. Put the safe steps in order.",
+     "hi": "डरावना “खाता बंद” SMS आया। सुरक्षित कदम क्रम में लगाओ।",
+     "hinglish": "Darawna “account blocked” SMS aaya. Safe steps order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Block and report the sender",
+      "hi": "भेजने वाले को ब्लॉक और रिपोर्ट करो",
+      "hinglish": "Sender ko block aur report karo"
+     },
+     {
+      "en": "Pause — do not click or reply",
+      "hi": "रुको — क्लिक या जवाब मत दो",
+      "hinglish": "Ruko — click ya reply mat karo"
+     },
+     {
+      "en": "Check in the official app yourself",
+      "hi": "ख़ुद आधिकारिक ऐप में जाँचो",
+      "hinglish": "Khud official app mein check karo"
+     }
+    ],
+    "answer": [
+     1,
+     2,
+     0
+    ],
+    "explain": {
+     "en": "Pause, check through the official app, then block and report.",
+     "hi": "रुको, आधिकारिक ऐप से जाँचो, फिर ब्लॉक और रिपोर्ट करो।",
+     "hinglish": "Ruko, official app se check karo, phir block aur report karo."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the lab mission.",
+     "hi": "लैब मिशन पूरा करो।",
+     "hinglish": "Lab mission poora karo."
+    },
+    "answer": {
+     "lab": "scam-inbox",
+     "event": "mission:complete"
+    },
+    "explain": {
+     "en": "Get all six right: three scams, three real.",
+     "hi": "सभी छह सही करो: तीन धोखे, तीन असली।",
+     "hinglish": "Saare chhe sahi karo: teen scams, teen real."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "CERT-In — Indian Computer Emergency Response Team",
+   "url": "https://www.cert-in.org.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Department of Telecommunications — Sanchar Saathi (Chakshu: report suspected fraud calls and messages)",
+   "url": "https://sancharsaathi.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "RBI — BE(A)WARE: a booklet on the modus operandi of financial fraudsters",
+   "url": "https://rbidocs.rbi.org.in/rdocs/content/pdfs/BEAWARE07032022.pdf",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

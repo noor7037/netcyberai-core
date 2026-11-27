@@ -1,0 +1,329 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.friendly-ai.05",
+ "level": 1,
+ "classes": [
+  4,
+  5
+ ],
+ "unit": "friendly-ai",
+ "title": {
+  "en": "AI makes mistakes: bias and made-up answers",
+  "hi": "AI ग़लती करता है: पक्षपात और गढ़े हुए जवाब",
+  "hinglish": "AI galti karta hai: bias aur banaaye hue jawab"
+ },
+ "minutes": 10,
+ "xp": 40,
+ "prereq": [
+  "L1.friendly-ai.04"
+ ],
+ "topics": [
+  "ai.data-bias",
+  "ai.hallucination"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain how unfair (biased) training data makes an unfair AI.",
+   "hi": "समझा सकते हो कि एकतरफ़ा ट्रेनिंग डेटा से एकतरफ़ा AI कैसे बनता है।",
+   "hinglish": "Samjha sakte ho ki biased training data se biased AI kaise banta hai."
+  },
+  {
+   "en": "Fix a biased AI by adding varied examples.",
+   "hi": "अलग-अलग उदाहरण जोड़कर एकतरफ़ा AI सुधार सकते हो।",
+   "hinglish": "Alag-alag examples jod kar biased AI theek kar sakte ho."
+  },
+  {
+   "en": "Know that chat AI can sound sure but be wrong, so always check facts with a trusted source and a grown-up.",
+   "hi": "जानते हो कि चैट AI पक्का लगकर भी ग़लत हो सकता है, इसलिए तथ्य हमेशा भरोसेमंद स्रोत और बड़े के साथ जाँचो।",
+   "hinglish": "Jaante ho ki chat AI pakka lag kar bhi galat ho sakta hai, isliye facts hamesha trusted source aur bade ke saath check karo."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Bias",
+   "en": "When data or AI unfairly leans one way",
+   "hi": "पक्षपात — डेटा में कुछ चीज़ें ज़्यादा, कुछ कम",
+   "hinglish": "Ek-taraf jhukaav — data mein kuch cheezein zyada, kuch kam"
+  },
+  {
+   "term": "Data",
+   "en": "The information an AI learns from",
+   "hi": "जानकारी का ढेर जिससे AI सीखता है",
+   "hinglish": "Jaankari ka dher jisse AI seekhta hai"
+  },
+  {
+   "term": "Hallucination",
+   "en": "When AI makes up something that is not true",
+   "hi": "जब AI ऐसी बात गढ़ दे जो सच नहीं",
+   "hinglish": "Jab AI aisi baat bana de jo sach nahin"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.friendly-ai.05.s1",
+   "caption": {
+    "en": "Only red fruits and green vegetables…",
+    "hi": "सिर्फ़ लाल फल और हरी सब्ज़ियाँ…",
+    "hinglish": "Sirf laal fruits aur hari sabziyan…"
+   },
+   "narration": {
+    "en": "This AI was trained only with red fruits and green vegetables. It learnt a wrong shortcut: red means fruit, green means vegetable.",
+    "hinglish": "Is AI ko sirf laal fruits aur hari sabziyon se train kiya gaya. Usne galat shortcut seekh liya: laal matlab fruit, hara matlab sabzi.",
+    "hi": "इस AI को सिर्फ़ लाल फलों और हरी सब्ज़ियों से सिखाया गया। उसने ग़लत शॉर्टकट सीख लिया: लाल मतलब फल, हरा मतलब सब्ज़ी।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.friendly-ai.05.s2",
+   "caption": {
+    "en": "So it calls a red chilli a fruit!",
+    "hi": "इसलिए वह लाल मिर्च को फल कहता है!",
+    "hinglish": "Isliye woh laal mirch ko fruit kehta hai!"
+   },
+   "narration": {
+    "en": "When it sees a red chilli, it says \"fruit!\" — and a green kiwi becomes a \"vegetable\". The AI is only as fair as its data.",
+    "hinglish": "Laal mirch dekh kar woh bolta hai \"fruit!\" — aur hara kiwi \"sabzi\" ban jaata hai. AI utna hi fair hai jitna uska data.",
+    "hi": "लाल मिर्च देखकर वह कहता है \"फल!\" — और हरा कीवी \"सब्ज़ी\" बन जाता है। AI उतना ही निष्पक्ष है जितना उसका डेटा।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.friendly-ai.05.s3",
+   "caption": {
+    "en": "Chat AI can sound sure and still be wrong.",
+    "hi": "चैट AI पक्का लगकर भी ग़लत हो सकता है।",
+    "hinglish": "Chat AI pakka lag kar bhi galat ho sakta hai."
+   },
+   "narration": {
+    "en": "Chat AI writes answers by predicting likely words. Sometimes it makes up facts that sound real — this is called a hallucination. Always check with a book, a teacher or a trusted website.",
+    "hinglish": "Chat AI agle sambhavit words ka andaaza laga kar jawab likhta hai. Kabhi-kabhi woh asli lagne wale jhoothe facts bana deta hai — ise hallucination kehte hain. Hamesha kitaab, teacher ya trusted website se check karo.",
+    "hi": "चैट AI अगले संभावित शब्दों का अंदाज़ा लगाकर जवाब लिखता है। कभी-कभी वह असली लगने वाले झूठे तथ्य गढ़ देता है — इसे \"हैलुसिनेशन\" कहते हैं। हमेशा किताब, शिक्षक या भरोसेमंद वेबसाइट से जाँचो।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "teach-sorter",
+  "config": {
+   "mode": "bias"
+  },
+  "goal": {
+   "en": "Test the biased AI, then teach it fairer examples until it scores 5 out of 6.",
+   "hi": "एकतरफ़ा AI को जाँचो, फिर बेहतर उदाहरण सिखाओ जब तक 6 में से 5 सही न हों।",
+   "hinglish": "Biased AI ko test karo, phir fair examples sikhao jab tak 6 mein se 5 na aayein."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Why bias matters",
+    "hi": "पक्षपात क्यों मायने रखता है",
+    "hinglish": "Bias kyun matter karta hai"
+   },
+   "body": {
+    "en": "If a face-recognition AI learnt mostly from one group of people, it may work worse for others. If a voice AI heard mostly one accent, it may not understand other accents. Fair AI needs data from many kinds of people and things.",
+    "hi": "अगर चेहरा पहचानने वाला AI ज़्यादातर एक समूह के लोगों से सीखे, तो दूसरों के लिए ख़राब काम कर सकता है। अगर आवाज़ वाले AI ने ज़्यादातर एक लहजा सुना, तो दूसरे लहजे न समझे। निष्पक्ष AI के लिए कई तरह के लोगों और चीज़ों का डेटा चाहिए।",
+    "hinglish": "Agar face-recognition AI zyaadatar ek group ke logon se seekhe, toh doosron ke liye kharaab kaam kar sakta hai. Agar voice AI ne zyaadatar ek accent suna, toh doosre accents na samjhe. Fair AI ke liye kai tarah ke logon aur cheezon ka data chahiye."
+   },
+   "analogy": {
+    "en": "If you had only ever seen white cats, you might not recognise a black cat at first.",
+    "hi": "अगर तुमने सिर्फ़ सफ़ेद बिल्लियाँ देखी हों, तो काली बिल्ली को बिल्ली मानने में देर लगेगी।",
+    "hinglish": "Agar tumne sirf safed billiyan dekhi hon, toh kaali billi ko billi maanne mein der lagegi."
+   }
+  },
+  {
+   "heading": {
+    "en": "Using AI safely: the 3 checks",
+    "hi": "AI का सुरक्षित इस्तेमाल: 3 जाँच",
+    "hinglish": "AI ka safe use: 3 checks"
+   },
+   "body": {
+    "en": "1) Check facts with a trusted source. 2) Never type personal details (full name, address, school, photos, passwords) into an AI chat. 3) Use AI with a grown-up — many AI chat apps are only for ages 13 and up.",
+    "hi": "1) तथ्य भरोसेमंद स्रोत से जाँचो। 2) AI चैट में कभी निजी जानकारी (पूरा नाम, पता, स्कूल, फ़ोटो, पासवर्ड) मत लिखो। 3) AI किसी बड़े के साथ इस्तेमाल करो — कई AI चैट ऐप सिर्फ़ 13 साल और उससे बड़ों के लिए हैं।",
+    "hinglish": "1) Facts trusted source se check karo. 2) AI chat mein kabhi personal details (poora naam, address, school, photos, passwords) mat likho. 3) AI kisi bade ke saath use karo — kai AI chat apps sirf 13 saal aur usse bade logon ke liye hain."
+   },
+   "realExample": {
+    "en": "If an AI says \"the Taj Mahal is in Mumbai\", a quick check in your textbook shows it is in Agra.",
+    "hi": "अगर AI कहे \"ताजमहल मुंबई में है\", तो पाठ्यपुस्तक में जल्दी देखने पर पता चलेगा वह आगरा में है।",
+    "hinglish": "Agar AI kahe \"Taj Mahal Mumbai mein hai\", toh textbook mein jaldi check karne par pata chalega woh Agra mein hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Find one fact in your science book. With a grown-up, ask an AI the same question. Did they match? Which one do you trust, and why?",
+   "hi": "अपनी विज्ञान की किताब से एक तथ्य चुनो। किसी बड़े के साथ AI से वही सवाल पूछो। क्या दोनों मिले? तुम किस पर भरोसा करोगे, और क्यों?",
+   "hinglish": "Apni science book se ek fact chuno. Kisi bade ke saath AI se wahi sawaal poocho. Kya dono mile? Tum kis par bharosa karoge, aur kyun?"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "An AI trained only on red fruits calls a red chilli a fruit. The cause is…",
+     "hi": "सिर्फ़ लाल फलों से सीखा AI लाल मिर्च को फल कहता है। कारण है…",
+     "hinglish": "Sirf laal fruits se seekha AI laal mirch ko fruit kehta hai. Kaaran hai…"
+    },
+    "options": [
+     {
+      "en": "biased training data",
+      "hi": "एकतरफ़ा ट्रेनिंग डेटा",
+      "hinglish": "biased training data"
+     },
+     {
+      "en": "a broken screen",
+      "hi": "टूटी स्क्रीन",
+      "hinglish": "tooti screen"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "It learnt the shortcut \"red = fruit\" from one-sided data.",
+     "hi": "उसने एकतरफ़ा डेटा से \"लाल = फल\" शॉर्टकट सीखा।",
+     "hinglish": "Usne one-sided data se \"laal = fruit\" shortcut seekha."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Best way to fix a biased AI?",
+     "hi": "एकतरफ़ा AI को सुधारने का सबसे अच्छा तरीका?",
+     "hinglish": "Biased AI ko theek karne ka best tarika?"
+    },
+    "options": [
+     {
+      "en": "Train it with more varied, fair examples",
+      "hi": "ज़्यादा अलग-अलग, निष्पक्ष उदाहरणों से सिखाओ",
+      "hinglish": "Zyada alag-alag, fair examples se sikhao"
+     },
+     {
+      "en": "Use it less often",
+      "hi": "कम इस्तेमाल करो",
+      "hinglish": "Kam use karo"
+     },
+     {
+      "en": "Make the screen brighter",
+      "hi": "स्क्रीन चमकीली करो",
+      "hinglish": "Screen bright karo"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Better, wider data teaches better patterns.",
+     "hi": "बेहतर, अलग-अलग डेटा बेहतर पैटर्न सिखाता है।",
+     "hinglish": "Behtar, alag-alag data behtar patterns sikhaata hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "A chatbot gives a confident answer you cannot find anywhere else. You should…",
+     "hi": "चैटबॉट पक्का जवाब देता है जो कहीं और नहीं मिलता। तुम्हें…",
+     "hinglish": "Chatbot pakka jawab deta hai jo kahin aur nahin milta. Tumhe…"
+    },
+    "options": [
+     {
+      "en": "check with a book, teacher or trusted site",
+      "hi": "किताब, शिक्षक या भरोसेमंद साइट से जाँचना चाहिए",
+      "hinglish": "kitaab, teacher ya trusted site se check karna chahiye"
+     },
+     {
+      "en": "believe it because it sounds sure",
+      "hi": "मान लेना चाहिए क्योंकि पक्का लगता है",
+      "hinglish": "maan lena chahiye kyunki pakka lagta hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "AI can hallucinate — sounding sure is not the same as being right.",
+     "hi": "AI गढ़ सकता है — पक्का लगना सही होना नहीं है।",
+     "hinglish": "AI hallucinate kar sakta hai — pakka lagna sahi hona nahin hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "multi",
+    "prompt": {
+     "en": "Which should you NEVER type into an AI chat?",
+     "hi": "AI चैट में क्या कभी नहीं लिखना चाहिए?",
+     "hinglish": "AI chat mein kya kabhi nahin likhna chahiye?"
+    },
+    "options": [
+     {
+      "en": "Your home address",
+      "hi": "घर का पता",
+      "hinglish": "Ghar ka address"
+     },
+     {
+      "en": "Your password",
+      "hi": "तुम्हारा पासवर्ड",
+      "hinglish": "Tumhara password"
+     },
+     {
+      "en": "\"What do pandas eat?\"",
+      "hi": "\"पांडा क्या खाते हैं?\"",
+      "hinglish": "\"Panda kya khaate hain?\""
+     },
+     {
+      "en": "Your school name and class",
+      "hi": "स्कूल का नाम और कक्षा",
+      "hinglish": "School ka naam aur class"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     3
+    ],
+    "explain": {
+     "en": "Keep personal details private. General questions are fine with a grown-up.",
+     "hi": "निजी जानकारी छिपाकर रखो। सामान्य सवाल बड़े के साथ ठीक हैं।",
+     "hinglish": "Personal details private rakho. General sawaal bade ke saath theek hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Fix the biased AI in the lab (5 of 6 right).",
+     "hi": "लैब में एकतरफ़ा AI सुधारो (6 में से 5 सही)।",
+     "hinglish": "Lab mein biased AI theek karo (6 mein se 5 sahi)."
+    },
+    "answer": {
+     "lab": "teach-sorter",
+     "mode": "bias",
+     "solved": true
+    },
+    "explain": {
+     "en": "Teach green fruits and red/orange vegetables too.",
+     "hi": "हरे फल और लाल/नारंगी सब्ज़ियाँ भी सिखाओ।",
+     "hinglish": "Hare fruits aur laal/orange sabziyan bhi sikhao."
+    },
+    "difficulty": 3
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "UNICEF – Policy guidance on AI for children (fact reference)",
+   "url": "https://www.unicef.org/innocenti/reports/policy-guidance-ai-children",
+   "licence": "fact reference"
+  },
+  {
+   "title": "AI4K12 – Five Big Ideas in AI (fact reference)",
+   "url": "https://ai4k12.org/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

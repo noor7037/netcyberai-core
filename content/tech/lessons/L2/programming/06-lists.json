@@ -1,0 +1,330 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.programming.06",
+ "level": 2,
+ "classes": [
+  8
+ ],
+ "unit": "programming",
+ "title": {
+  "en": "Lists: many values in one variable",
+  "hi": "लिस्ट: एक वेरिएबल में कई मान",
+  "hinglish": "Lists: ek variable mein kai values"
+ },
+ "minutes": 12,
+ "xp": 45,
+ "prereq": [
+  "L2.programming.05"
+ ],
+ "topics": [
+  "prog.lists-dicts"
+ ],
+ "outcomes": [
+  {
+   "en": "Create lists, read items by index and slice them",
+   "hi": "लिस्ट बना सकते हो, इंडेक्स से चीज़ें पढ़ सकते हो और स्लाइस कर सकते हो",
+   "hinglish": "Lists bana sakte ho, index se items padh sakte ho aur slice kar sakte ho"
+  },
+  {
+   "en": "Loop over a list to find totals, averages and the maximum",
+   "hi": "लिस्ट पर लूप चलाकर योग, औसत और अधिकतम निकाल सकते हो",
+   "hinglish": "List pe loop karke total, average aur maximum nikaal sakte ho"
+  },
+  {
+   "en": "Use append, len, sorted and know what a dictionary is",
+   "hi": "append, len, sorted उपयोग कर सकते हो और डिक्शनरी क्या है जानते हो",
+   "hinglish": "append, len, sorted use kar sakte ho aur dictionary kya hai jaante ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "List",
+   "hinglish": "Ek line mein rakhi values",
+   "en": "An ordered collection: [72, 88, 95]",
+   "hi": "क्रमबद्ध संग्रह: [72, 88, 95]"
+  },
+  {
+   "term": "Index",
+   "hinglish": "Position number, 0 se shuru",
+   "en": "The position of an item, starting at 0",
+   "hi": "किसी चीज़ का स्थान, 0 से शुरू"
+  },
+  {
+   "term": "Slice",
+   "hinglish": "List ka tukda",
+   "en": "Part of a list: marks[1:3]",
+   "hi": "लिस्ट का हिस्सा: marks[1:3]"
+  },
+  {
+   "term": "append",
+   "hinglish": "List ke end mein jodna",
+   "en": "Adds an item to the end of a list",
+   "hi": "लिस्ट के अंत में चीज़ जोड़ता है"
+  },
+  {
+   "term": "Dictionary",
+   "hinglish": "Naam → value ki jodi",
+   "en": "Key → value pairs: {\"Asha\": 88}",
+   "hi": "कुंजी → मान जोड़े: {\"Asha\": 88}"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "A list keeps many values in order. Positions (indexes) start at 0.",
+    "hi": "लिस्ट कई मान क्रम में रखती है। स्थान (इंडेक्स) 0 से शुरू।",
+    "hinglish": "List kai values order mein rakhti hai. Positions (indexes) 0 se shuru."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "marks[0] is the first item, marks[-1] is the last.",
+    "hi": "marks[0] पहली चीज़ है, marks[-1] आख़िरी।",
+    "hinglish": "marks[0] pehla item hai, marks[-1] aakhri."
+   },
+   "code": "marks = [72, 88, 95, 64, 81]\nprint(marks[0])\nprint(marks[-1])\nprint(len(marks))\nprint(marks[1:3])"
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Loop through the list to build a total and track the best score.",
+    "hi": "लिस्ट पर लूप चलाकर योग बनाओ और सबसे अच्छा अंक पकड़ो।",
+    "hinglish": "List pe loop chala ke total banao aur best score track karo."
+   },
+   "visual": "lab:py-tracer#lists",
+   "narration": {
+    "en": "The bars show the list; watch best update only when a bigger mark appears.",
+    "hi": "बार लिस्ट दिखाते हैं; देखो best केवल बड़ा अंक आने पर बदलता है।",
+    "hinglish": "Bars list dikhate hain; dekho best sirf tab badalta hai jab bada mark aata hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Lists can grow: append adds at the end. A dictionary looks values up by name instead of position.",
+    "hi": "लिस्ट बढ़ सकती है: append अंत में जोड़ता है। डिक्शनरी स्थान की जगह नाम से मान ढूँढती है।",
+    "hinglish": "List badh sakti hai: append end mein jodta hai. Dictionary position ki jagah naam se value dhoondti hai."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "Use a list for “a line of things”, a dictionary for “look up by name”.",
+    "hi": "“चीज़ों की पंक्ति” के लिए लिस्ट, “नाम से ढूँढो” के लिए डिक्शनरी।",
+    "hinglish": "“Cheezon ki line” ke liye list, “naam se dhoondo” ke liye dictionary."
+   },
+   "code": "cart = [\"pen\", \"notebook\"]\ncart.append(\"eraser\")\nprint(cart)\n\nprice = {\"pen\": 10, \"notebook\": 45}\nprint(price[\"notebook\"])"
+  }
+ ],
+ "play": {
+  "lab": "py-tracer",
+  "config": {
+   "program": "lists"
+  },
+  "goal": {
+   "en": "Step through the marks program and predict marks[2]. Then add your own marks in Edit mode.",
+   "hi": "अंक प्रोग्राम कदम-दर-कदम चलाओ और marks[2] का अनुमान लगाओ। फिर Edit मोड में अपने अंक डालो।",
+   "hinglish": "Marks program step karo aur marks[2] predict karo. Phir Edit mode mein apne marks daalo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Working with lists",
+    "hi": "लिस्ट के साथ काम",
+    "hinglish": "Lists ke saath kaam"
+   },
+   "body": {
+    "en": "Indexes start at 0, so a list of 5 items has indexes 0–4; marks[5] gives IndexError. Negative indexes count from the end. Slices take [start:stop] and, like range, stop before stop. Useful tools: len(list), sum(list), max(list), min(list), sorted(list) (a new sorted copy), list.append(x), list.insert(i, x), list.pop() and x in list (True/False). Strings behave like lists of characters: \"Namaste\"[0] is \"N\". Dictionaries store key → value pairs and are how JSON data from apps appears inside Python programs.",
+    "hi": "इंडेक्स 0 से शुरू होते हैं, इसलिए 5 चीज़ों की लिस्ट के इंडेक्स 0–4 हैं; marks[5] IndexError देता है। ऋणात्मक इंडेक्स अंत से गिनते हैं। स्लाइस [start:stop] लेते हैं और range की तरह stop से पहले रुकते हैं। उपयोगी औज़ार: len(list), sum(list), max(list), min(list), sorted(list) (नई क्रमबद्ध प्रति), list.append(x), list.insert(i, x), list.pop() और x in list (True/False)। स्ट्रिंग अक्षरों की लिस्ट जैसी होती है: \"Namaste\"[0] है \"N\"। डिक्शनरी key → value जोड़े रखती है और ऐप का JSON डेटा पायथन में ऐसे ही दिखता है।",
+    "hinglish": "Indexes 0 se shuru hote hain, isliye 5 items ki list ke indexes 0–4 hain; marks[5] IndexError deta hai. Negative indexes end se ginte hain. Slices [start:stop] lete hain aur range ki tarah stop se pehle rukte hain. Useful tools: len(list), sum(list), max(list), min(list), sorted(list) (nayi sorted copy), list.append(x), list.insert(i, x), list.pop() aur x in list (True/False). Strings characters ki list jaisi hoti hain: \"Namaste\"[0] hai \"N\". Dictionaries key → value pairs rakhti hain aur apps ka JSON data Python mein aise hi dikhta hai."
+   },
+   "analogy": {
+    "hinglish": "List = train ke dibbe: dibba 0 engine ke baad pehla. Dictionary = phone contacts: naam se number dhoondo, position se nahi.",
+    "en": "A list = train coaches: coach 0 is the first after the engine. A dictionary = phone contacts: find the number by name, not by position.",
+    "hi": "लिस्ट = ट्रेन के डिब्बे: डिब्बा 0 इंजन के बाद पहला। डिक्शनरी = फ़ोन संपर्क: नाम से नंबर ढूँढो, स्थान से नहीं।"
+   },
+   "realExample": {
+    "en": "Your music app’s playlist is a list; “shuffle” rearranges it and “add to queue” is append.",
+    "hi": "आपके संगीत ऐप की प्लेलिस्ट एक लिस्ट है; “शफ़ल” उसे फिर से सजाता है और “कतार में जोड़ो” append है।",
+    "hinglish": "Aapke music app ki playlist ek list hai; “shuffle” usse rearrange karta hai aur “add to queue” append hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Make a list of 5 friends’ heights, then print the tallest, the shortest and the average.",
+   "hi": "5 दोस्तों की लंबाई की लिस्ट बनाओ, फिर सबसे लंबी, सबसे छोटी और औसत छापो।",
+   "hinglish": "5 dosto ki height ki list banao, phir sabse lambi, sabse chhoti aur average print karo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "nums = [5, 10, 15, 20]. What is nums[1]?",
+     "hi": "nums = [5, 10, 15, 20]। nums[1] क्या है?",
+     "hinglish": "nums = [5, 10, 15, 20]. nums[1] kya hai?"
+    },
+    "options": [
+     "5",
+     "10",
+     "15"
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Index 0 is 5, index 1 is 10.",
+     "hi": "इंडेक्स 0 पर 5, इंडेक्स 1 पर 10।",
+     "hinglish": "Index 0 pe 5, index 1 pe 10."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "nums = [5, 10, 15, 20]. What does nums[4] give?",
+     "hi": "nums = [5, 10, 15, 20]। nums[4] क्या देगा?",
+     "hinglish": "nums = [5, 10, 15, 20]. nums[4] kya dega?"
+    },
+    "options": [
+     "20",
+     "None",
+     "IndexError"
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "Valid indexes are 0–3, so 4 is out of range.",
+     "hi": "मान्य इंडेक्स 0–3 हैं, 4 सीमा से बाहर।",
+     "hinglish": "Valid indexes 0–3 hain, 4 range se bahar."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "short",
+    "prompt": {
+     "en": "What does print(len([\"a\", \"b\", \"c\"])) show?",
+     "hi": "print(len([\"a\", \"b\", \"c\"])) क्या दिखाता है?",
+     "hinglish": "print(len([\"a\", \"b\", \"c\"])) kya dikhata hai?"
+    },
+    "answer": [
+     "3"
+    ],
+    "explain": {
+     "en": "len counts items: 3.",
+     "hi": "len चीज़ें गिनता है: 3।",
+     "hinglish": "len items ginta hai: 3."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "cart = [\"pen\"]; cart.append(\"ruler\"). What is cart now?",
+     "hi": "cart = [\"pen\"]; cart.append(\"ruler\")। अब cart क्या है?",
+     "hinglish": "cart = [\"pen\"]; cart.append(\"ruler\"). Ab cart kya hai?"
+    },
+    "options": [
+     "[\"pen\", \"ruler\"]",
+     "[\"ruler\", \"pen\"]",
+     "[\"ruler\"]"
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "append adds to the end.",
+     "hi": "append अंत में जोड़ता है।",
+     "hinglish": "append end mein jodta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "When is a dictionary better than a list?",
+     "hi": "डिक्शनरी कब लिस्ट से बेहतर है?",
+     "hinglish": "Dictionary kab list se behtar hai?"
+    },
+    "options": [
+     {
+      "en": "When order is all that matters",
+      "hi": "जब केवल क्रम मायने रखे",
+      "hinglish": "Jab sirf order matter kare"
+     },
+     {
+      "en": "When you look things up by name",
+      "hi": "जब नाम से ढूँढना हो",
+      "hinglish": "Jab naam se dhoondna ho"
+     },
+     {
+      "en": "Never",
+      "hi": "कभी नहीं",
+      "hinglish": "Kabhi nahi"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Dictionaries find values by key (name), like a phone book.",
+     "hi": "डिक्शनरी key (नाम) से मान ढूँढती है, फ़ोन बुक की तरह।",
+     "hinglish": "Dictionary key (naam) se value dhoondti hai, phone book ki tarah."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q6",
+    "type": "short",
+    "prompt": {
+     "en": "marks = [72, 88, 95]. What is marks[-1]?",
+     "hi": "marks = [72, 88, 95]। marks[-1] क्या है?",
+     "hinglish": "marks = [72, 88, 95]. marks[-1] kya hai?"
+    },
+    "answer": [
+     "95"
+    ],
+    "explain": {
+     "en": "-1 means the last item.",
+     "hi": "-1 का अर्थ आख़िरी चीज़।",
+     "hinglish": "-1 matlab aakhri item."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "lc",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Answer the predict question for the Lists program.",
+     "hi": "Lists प्रोग्राम का अनुमान प्रश्न हल करो।",
+     "hinglish": "Lists program ka predict sawaal solve karo."
+    },
+    "answer": {
+     "lab": "py-tracer",
+     "event": "mission:complete",
+     "program": "lists"
+    },
+    "explain": {
+     "en": "marks[2] is 95.",
+     "hi": "marks[2] = 95।",
+     "hinglish": "marks[2] = 95."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Python documentation — The Python Tutorial",
+   "url": "https://docs.python.org/3/tutorial/",
+   "licence": "PSF licence (fact reference only)"
+  },
+  {
+   "title": "Python docs — Data structures",
+   "url": "https://docs.python.org/3/tutorial/datastructures.html",
+   "licence": "PSF licence (fact reference only)"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

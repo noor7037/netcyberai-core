@@ -1,0 +1,385 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.programming.10",
+ "level": 2,
+ "classes": [
+  7,
+  8
+ ],
+ "unit": "programming",
+ "title": {
+  "en": "How software is made and tested",
+  "hi": "सॉफ़्टवेयर कैसे बनता और जाँचा जाता है",
+  "hinglish": "Software kaise banta aur test hota hai"
+ },
+ "minutes": 12,
+ "xp": 45,
+ "prereq": [
+  "L2.programming.09"
+ ],
+ "topics": [
+  "sw.how-made",
+  "sw.testing",
+  "sw.version-control"
+ ],
+ "outcomes": [
+  {
+   "en": "Describe the software development cycle: plan, design, build, test, release, improve",
+   "hi": "सॉफ़्टवेयर विकास चक्र समझा सकते हो: योजना, डिज़ाइन, निर्माण, परीक्षण, जारी, सुधार",
+   "hinglish": "Software development cycle samjha sakte ho: plan, design, build, test, release, improve"
+  },
+  {
+   "en": "Write test cases including normal, edge and wrong inputs",
+   "hi": "सामान्य, किनारे और ग़लत इनपुट वाले परीक्षण मामले लिख सकते हो",
+   "hinglish": "Normal, edge aur galat inputs wale test cases likh sakte ho"
+  },
+  {
+   "en": "Explain why teams use version control like Git",
+   "hi": "समझा सकते हो कि टीमें Git जैसा वर्ज़न कंट्रोल क्यों उपयोग करती हैं",
+   "hinglish": "Samjha sakte ho teams Git jaisa version control kyun use karti hain"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Requirement",
+   "hinglish": "Kya chahiye",
+   "en": "A clear statement of what the software must do",
+   "hi": "स्पष्ट कथन कि सॉफ़्टवेयर को क्या करना चाहिए"
+  },
+  {
+   "term": "Test case",
+   "hinglish": "Jaanch ka udaaharan",
+   "en": "An input plus the output you expect, used to check code",
+   "hi": "एक इनपुट और अपेक्षित आउटपुट, कोड जाँचने के लिए"
+  },
+  {
+   "term": "Edge case",
+   "hinglish": "Kinaare wala case",
+   "en": "An unusual input at the limits: 0, empty, very large, negative",
+   "hi": "सीमाओं पर असामान्य इनपुट: 0, ख़ाली, बहुत बड़ा, ऋणात्मक"
+  },
+  {
+   "term": "Version control",
+   "hinglish": "Badlaav ka itihaas",
+   "en": "A system (like Git) that records every change so teams can work together and undo mistakes",
+   "hi": "प्रणाली (जैसे Git) जो हर बदलाव दर्ज करे ताकि टीमें साथ काम करें और ग़लतियाँ पलटें"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Apps are not written in one go. Teams go round a cycle again and again.",
+    "hi": "ऐप एक बार में नहीं लिखे जाते। टीमें बार-बार एक चक्र में घूमती हैं।",
+    "hinglish": "Apps ek baar mein nahi likhe jaate. Teams baar-baar ek cycle mein ghoomti hain."
+   },
+   "visual": "compare:📝 Plan → 🎨 Design → 💻 Build|→ 🧪 Test → 🚀 Release → 💬 Feedback → repeat",
+   "narration": {
+    "en": "Small steps, frequent testing, real user feedback.",
+    "hi": "छोटे कदम, बार-बार परीक्षण, असली उपयोगकर्ता प्रतिक्रिया।",
+    "hinglish": "Chhote steps, baar-baar testing, asli user feedback."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Testing means trying normal inputs, edge cases and wrong inputs — and comparing with what you expected.",
+    "hi": "परीक्षण का अर्थ है सामान्य इनपुट, किनारे के मामले और ग़लत इनपुट आज़माना — और अपेक्षा से तुलना करना।",
+    "hinglish": "Testing ka matlab hai normal inputs, edge cases aur galat inputs try karna — aur expected se compare karna."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "A failing test is good news: you found the bug before users did.",
+    "hi": "विफल परीक्षण अच्छी ख़बर है: बग उपयोगकर्ताओं से पहले मिल गया।",
+    "hinglish": "Fail hota test achhi khabar hai: bug users se pehle mil gaya."
+   },
+   "code": "def grade(marks):          # requirement: 0–100 → A/B/C/F\n    ...\nassert grade(95) == \"A\"     # normal\nassert grade(40) == \"C\"     # edge: the pass mark\nassert grade(0)  == \"F\"     # edge: lowest\nassert grade(-5) == \"error\" # wrong input"
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Now be the tester: run the buggy program, read the error, fix the one wrong line and run again.",
+    "hi": "अब परीक्षक बनो: बग वाला प्रोग्राम चलाओ, त्रुटि पढ़ो, एक ग़लत लाइन ठीक करो और फिर चलाओ।",
+    "hinglish": "Ab tester bano: buggy program chalao, error padho, ek galat line theek karo aur phir chalao."
+   },
+   "visual": "lab:py-tracer",
+   "narration": {
+    "en": "Test → fix → test again is the heart of software work.",
+    "hi": "परीक्षण → सुधार → फिर परीक्षण सॉफ़्टवेयर काम का दिल है।",
+    "hinglish": "Test → fix → dobara test software kaam ka dil hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "py-tracer",
+  "config": {
+   "program": "bug"
+  },
+  "goal": {
+   "en": "Run the bug program, read the error, fix the one wrong line and run again to print “Total: 125”.",
+   "hi": "बग प्रोग्राम चलाओ, त्रुटि पढ़ो, एक ग़लत लाइन ठीक करो और फिर चलाओ ताकि “Total: 125” छपे।",
+   "hinglish": "Bug program chalao, error padho, ek galat line theek karo aur phir chalao taaki “Total: 125” print ho."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "From idea to app in your hand",
+    "hi": "विचार से तुम्हारे हाथ के ऐप तक",
+    "hinglish": "Idea se tumhare haath ke app tak"
+   },
+   "body": {
+    "en": "Most software teams today work in short cycles, often one to two weeks long, called sprints in the Agile approach (the Agile Manifesto was written in 2001). They start with requirements — what users need — then design screens and data, build a small working piece, test it, release it, and collect feedback before the next cycle. Testing happens at many levels: unit tests check one function; integration tests check that parts work together; user testing watches real people use the app; and security testing looks for weaknesses. Good testers try normal inputs, edge cases (0, empty, the largest value, the exact pass mark) and wrong inputs (letters instead of numbers). Teams use version control — most commonly Git, created by Linus Torvalds in 2005 — so every change is recorded with a message, several people can work at once on branches, and a bad change can be undone; code is often shared on platforms such as GitHub. Bugs can be costly: in 1996 the first Ariane 5 rocket exploded about 40 seconds after launch because a number too large for its variable caused a software error. India’s UPI, built by NPCI, went from launch in 2016 to over 10 billion transactions a month in 2023, which needs careful design, testing and monitoring at huge scale.",
+    "hi": "आज अधिकतर सॉफ़्टवेयर टीमें छोटे चक्रों में काम करती हैं, अक्सर एक से दो सप्ताह लंबे, जिन्हें एजाइल पद्धति में स्प्रिंट कहते हैं (एजाइल घोषणापत्र 2001 में लिखा गया)। वे आवश्यकताओं से शुरू करती हैं — उपयोगकर्ताओं को क्या चाहिए — फिर स्क्रीन और डेटा डिज़ाइन करती हैं, एक छोटा चलता हिस्सा बनाती हैं, उसे जाँचती हैं, जारी करती हैं, और अगले चक्र से पहले प्रतिक्रिया लेती हैं। परीक्षण कई स्तरों पर होता है: यूनिट टेस्ट एक फ़ंक्शन जाँचते हैं; इंटीग्रेशन टेस्ट जाँचते हैं कि भाग साथ काम करते हैं; उपयोगकर्ता परीक्षण असली लोगों को ऐप चलाते देखता है; और सुरक्षा परीक्षण कमज़ोरियाँ ढूँढता है। अच्छे परीक्षक सामान्य इनपुट, किनारे के मामले (0, ख़ाली, सबसे बड़ा मान, ठीक पास अंक) और ग़लत इनपुट (संख्याओं की जगह अक्षर) आज़माते हैं। टीमें वर्ज़न कंट्रोल उपयोग करती हैं — सबसे आम Git, जिसे लिनुस टॉरवाल्ड्स ने 2005 में बनाया — ताकि हर बदलाव संदेश के साथ दर्ज हो, कई लोग शाखाओं पर एक साथ काम कर सकें, और बुरा बदलाव पलटा जा सके; कोड अक्सर GitHub जैसे प्लेटफ़ॉर्म पर साझा होता है। बग महँगे हो सकते हैं: 1996 में पहला एरियन 5 रॉकेट प्रक्षेपण के लगभग 40 सेकंड बाद फट गया क्योंकि अपने चर के लिए बहुत बड़ी संख्या से सॉफ़्टवेयर त्रुटि हुई। NPCI द्वारा बनाया भारत का UPI 2016 में शुरू होकर 2023 में हर महीने 10 अरब से ज़्यादा लेन-देन तक पहुँचा, जिसके लिए विशाल स्तर पर सावधान डिज़ाइन, परीक्षण और निगरानी चाहिए।",
+    "hinglish": "Aaj zyaadatar software teams chhote cycles mein kaam karti hain, aksar ek se do hafte lambe, jinhe Agile approach mein sprints kehte hain (Agile Manifesto 2001 mein likha gaya). Woh requirements se shuru karti hain — users ko kya chahiye — phir screens aur data design karti hain, ek chhota working piece banati hain, use test karti hain, release karti hain, aur agle cycle se pehle feedback leti hain. Testing kai levels pe hoti hai: unit tests ek function check karte hain; integration tests check karte hain ki parts saath kaam karte hain; user testing asli logon ko app use karte dekhti hai; aur security testing weaknesses dhoondhti hai. Achhe testers normal inputs, edge cases (0, empty, sabse badi value, exact pass mark) aur galat inputs (numbers ki jagah letters) try karte hain. Teams version control use karti hain — sabse common Git, jise Linus Torvalds ne 2005 mein banaya — taaki har change message ke saath record ho, kai log branches pe ek saath kaam kar sakein, aur bura change undo ho sake; code aksar GitHub jaise platforms pe share hota hai. Bugs mehenge ho sakte hain: 1996 mein pehla Ariane 5 rocket launch ke lagbhag 40 second baad phat gaya kyunki apne variable ke liye bahut badi number se software error hua. NPCI ka banaya India ka UPI 2016 mein launch hokar 2023 mein har mahine 10 billion se zyada transactions tak pahuncha, jiske liye huge scale pe careful design, testing aur monitoring chahiye."
+   },
+   "analogy": {
+    "en": "Making software = cooking for a wedding: plan the menu, taste as you cook (testing), get guests’ feedback, and do even better next time.",
+    "hi": "सॉफ़्टवेयर बनाना = शादी का खाना बनाना: मेन्यू योजना, चख-चखकर बनाना (परीक्षण), मेहमानों की प्रतिक्रिया, और अगली बार और बेहतर।",
+    "hinglish": "Software banana = shaadi ka khaana banana: menu plan, chakh-chakh ke banana (testing), mehmaanon ka feedback, aur agli baar aur behtar."
+   },
+   "realExample": {
+    "en": "NPCI reported that UPI crossed 10 billion transactions in a single month for the first time in August 2023 — software that has to be tested to work every second of every day.",
+    "hi": "NPCI ने बताया कि UPI ने अगस्त 2023 में पहली बार एक महीने में 10 अरब लेन-देन पार किए — सॉफ़्टवेयर जिसे हर दिन के हर सेकंड काम करने के लिए जाँचा जाना चाहिए।",
+    "hinglish": "NPCI ne report kiya ki UPI ne August 2023 mein pehli baar ek mahine mein 10 billion transactions paar kiye — software jise har din ke har second kaam karne ke liye test karna padta hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Pick a simple app idea (a homework reminder or a class quiz). Write 3 requirements, sketch one screen, and write 4 test cases: 2 normal, 1 edge and 1 wrong input, each with the expected result.",
+   "hi": "एक सरल ऐप विचार चुनो (गृहकार्य अनुस्मारक या कक्षा प्रश्नोत्तरी)। 3 आवश्यकताएँ लिखो, एक स्क्रीन बनाओ, और 4 परीक्षण मामले लिखो: 2 सामान्य, 1 किनारे का और 1 ग़लत इनपुट, हर एक अपेक्षित परिणाम के साथ।",
+   "hinglish": "Ek simple app idea chuno (homework reminder ya class quiz). 3 requirements likho, ek screen sketch karo, aur 4 test cases likho: 2 normal, 1 edge aur 1 galat input, har ek expected result ke saath."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "order",
+    "prompt": {
+     "en": "Put the software development cycle in order.",
+     "hi": "सॉफ़्टवेयर विकास चक्र को क्रम में लगाओ।",
+     "hinglish": "Software development cycle ko order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Design screens and data",
+      "hi": "स्क्रीन और डेटा डिज़ाइन",
+      "hinglish": "Screens aur data design"
+     },
+     {
+      "en": "Test",
+      "hi": "परीक्षण",
+      "hinglish": "Test"
+     },
+     {
+      "en": "Plan the requirements",
+      "hi": "आवश्यकताएँ तय करो",
+      "hinglish": "Requirements plan karo"
+     },
+     {
+      "en": "Build (write code)",
+      "hi": "निर्माण (कोड लिखो)",
+      "hinglish": "Build (code likho)"
+     },
+     {
+      "en": "Release to users",
+      "hi": "उपयोगकर्ताओं को जारी करो",
+      "hinglish": "Users ko release karo"
+     }
+    ],
+    "answer": [
+     2,
+     0,
+     3,
+     1,
+     4
+    ],
+    "explain": {
+     "en": "Plan → design → build → test → release (then feedback and repeat).",
+     "hi": "योजना → डिज़ाइन → निर्माण → परीक्षण → जारी (फिर प्रतिक्रिया और दोहराव)।",
+     "hinglish": "Plan → design → build → test → release (phir feedback aur repeat)."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "multi",
+    "prompt": {
+     "en": "A function accepts marks from 0 to 100. Which are edge cases? Choose all.",
+     "hi": "एक फ़ंक्शन 0 से 100 तक अंक लेता है। किनारे के मामले कौन-से हैं? सभी चुनो।",
+     "hinglish": "Ek function 0 se 100 tak marks leta hai. Edge cases kaunse hain? Saare chuno."
+    },
+    "options": [
+     {
+      "en": "0",
+      "hi": "0",
+      "hinglish": "0"
+     },
+     {
+      "en": "67",
+      "hi": "67",
+      "hinglish": "67"
+     },
+     {
+      "en": "100",
+      "hi": "100",
+      "hinglish": "100"
+     },
+     {
+      "en": "Exactly the pass mark (33)",
+      "hi": "ठीक पास अंक (33)",
+      "hinglish": "Exactly pass mark (33)"
+     }
+    ],
+    "answer": [
+     0,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "0, 100 and the exact pass mark sit at the limits. 67 is a normal case.",
+     "hi": "0, 100 और ठीक पास अंक सीमाओं पर हैं। 67 सामान्य मामला है।",
+     "hinglish": "0, 100 aur exact pass mark limits pe hain. 67 normal case hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why do teams use version control such as Git?",
+     "hi": "टीमें Git जैसा वर्ज़न कंट्रोल क्यों उपयोग करती हैं?",
+     "hinglish": "Teams Git jaisa version control kyun use karti hain?"
+    },
+    "options": [
+     {
+      "en": "To make the code run faster",
+      "hi": "कोड तेज़ चलाने के लिए",
+      "hinglish": "Code tez chalane ke liye"
+     },
+     {
+      "en": "To record changes, work together and undo mistakes",
+      "hi": "बदलाव दर्ज करने, साथ काम करने और ग़लतियाँ पलटने के लिए",
+      "hinglish": "Changes record karne, saath kaam karne aur galtiyaan undo karne ke liye"
+     },
+     {
+      "en": "To hide the code from teammates",
+      "hi": "टीम से कोड छिपाने के लिए",
+      "hinglish": "Team se code chhupane ke liye"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "It records every change, lets many people work at once and lets you undo mistakes.",
+     "hi": "यह हर बदलाव दर्ज करता है, कई लोगों को साथ काम करने देता है और ग़लतियाँ पलटने देता है।",
+     "hinglish": "Yeh har change record karta hai, kai logon ko saath kaam karne deta hai aur galtiyaan undo karne deta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Your test fails. What does that tell you?",
+     "hi": "तुम्हारा परीक्षण विफल होता है। इससे क्या पता चलता है?",
+     "hinglish": "Tumhara test fail hota hai. Isse kya pata chalta hai?"
+    },
+    "options": [
+     {
+      "en": "There is a bug to fix before release",
+      "hi": "जारी करने से पहले बग ठीक करना है",
+      "hinglish": "Release se pehle bug fix karna hai"
+     },
+     {
+      "en": "Testing is a waste of time",
+      "hi": "परीक्षण समय की बर्बादी है",
+      "hinglish": "Testing time ki barbaadi hai"
+     },
+     {
+      "en": "Delete the test so it passes",
+      "hi": "परीक्षण हटा दो ताकि पास हो",
+      "hinglish": "Test delete kar do taaki pass ho"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "The code (or the expectation) is wrong somewhere — good, you found it before users did.",
+     "hi": "कोड (या अपेक्षा) कहीं ग़लत है — अच्छा, तुमने उपयोगकर्ताओं से पहले पकड़ लिया।",
+     "hinglish": "Code (ya expectation) kahin galat hai — achha, tumne users se pehle pakad liya."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "short",
+    "prompt": {
+     "en": "A test input at the limits, like 0 or an empty list, is called an ___ case.",
+     "hi": "सीमाओं पर परीक्षण इनपुट, जैसे 0 या ख़ाली सूची, ___ case कहलाता है।",
+     "hinglish": "Limits pe test input, jaise 0 ya empty list, ___ case kehlata hai."
+    },
+    "answer": [
+     "edge",
+     "Edge"
+    ],
+    "explain": {
+     "en": "Edge case.",
+     "hi": "एज (किनारे का) केस।",
+     "hinglish": "Edge case."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "lc",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Fix the bug program so it prints “Total: 125”.",
+     "hi": "बग प्रोग्राम ठीक करो ताकि “Total: 125” छपे।",
+     "hinglish": "Bug program theek karo taaki “Total: 125” print ho."
+    },
+    "answer": {
+     "lab": "py-tracer",
+     "event": "mission:complete",
+     "program": "bug"
+    },
+    "explain": {
+     "en": "Read the error line, fix that one line, run again.",
+     "hi": "त्रुटि की लाइन पढ़ो, वही एक लाइन ठीक करो, फिर चलाओ।",
+     "hinglish": "Error line padho, wahi ek line theek karo, phir chalao."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Manifesto for Agile Software Development (2001)",
+   "url": "https://agilemanifesto.org/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Git — About version control (Pro Git book)",
+   "url": "https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control",
+   "licence": "fact reference"
+  },
+  {
+   "title": "ESA — Ariane 501 inquiry board report (1996)",
+   "url": "https://www.esa.int/Newsroom/Press_Releases/Ariane_501_-_Presentation_of_Inquiry_Board_report",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NPCI — UPI product statistics",
+   "url": "https://www.npci.org.in/what-we-do/upi/product-statistics",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Python documentation — The Python Tutorial",
+   "url": "https://docs.python.org/3/tutorial/",
+   "licence": "PSF licence (fact reference only)"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

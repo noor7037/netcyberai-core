@@ -1,0 +1,377 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.os-internals.01",
+ "level": 3,
+ "classes": [
+  10,
+  11
+ ],
+ "unit": "os-internals",
+ "title": {
+  "en": "Kernel and system calls",
+  "hi": "कर्नेल और सिस्टम कॉल",
+  "hinglish": "Kernel aur system calls"
+ },
+ "minutes": 12,
+ "xp": 50,
+ "prereq": [],
+ "outcomes": [
+  {
+   "en": "Explain the role of the kernel and the difference between user mode and kernel mode",
+   "hi": "कर्नेल की भूमिका और उपयोगकर्ता मोड व कर्नेल मोड का अंतर समझाओ",
+   "hinglish": "Kernel ka role aur user mode aur kernel mode ka fark samjhao"
+  },
+  {
+   "en": "Trace a system call such as reading a file",
+   "hi": "फ़ाइल पढ़ने जैसी सिस्टम कॉल को देखो",
+   "hinglish": "File padhne jaisi system call trace karo"
+  },
+  {
+   "en": "Describe drivers, interrupts and why updates matter",
+   "hi": "ड्राइवर, इंटरप्ट और अपडेट क्यों ज़रूरी, बताओ",
+   "hinglish": "Drivers, interrupts aur updates kyun zaroori, batao"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Kernel",
+   "hinglish": "OS ka dil",
+   "en": "The core of the OS that controls CPU, memory and devices",
+   "hi": "OS का मूल जो CPU, मेमोरी और उपकरण नियंत्रित करता है"
+  },
+  {
+   "term": "System call",
+   "hinglish": "Kernel se sevaa maangna",
+   "en": "A request from a program to the kernel (open, read, write, fork)",
+   "hi": "प्रोग्राम का कर्नेल से अनुरोध (open, read, write, fork)"
+  },
+  {
+   "term": "Kernel mode",
+   "hinglish": "Poori taakat wala mode",
+   "en": "Privileged CPU mode where hardware can be accessed directly",
+   "hi": "विशेषाधिकार CPU मोड जहाँ हार्डवेयर सीधे छुआ जा सकता है"
+  },
+  {
+   "term": "Driver",
+   "hinglish": "Device ka translator",
+   "en": "Kernel code that talks to one kind of hardware",
+   "hi": "एक तरह के हार्डवेयर से बात करने वाला कर्नेल कोड"
+  },
+  {
+   "term": "Interrupt",
+   "hinglish": "Hardware ki ghanti",
+   "en": "A signal that makes the CPU pause and handle an event",
+   "hi": "संकेत जो CPU को रुककर घटना सँभालने को कहता है"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Apps run in user mode with limited power. Only the kernel runs in kernel mode and can touch hardware directly.",
+    "hi": "ऐप सीमित ताक़त वाले उपयोगकर्ता मोड में चलते हैं। सिर्फ़ कर्नेल कर्नेल मोड में चलता है और हार्डवेयर सीधे छू सकता है।",
+    "hinglish": "Apps limited taakat wale user mode mein chalte hain. Sirf kernel, kernel mode mein chalta hai aur hardware seedha chhoo sakta hai."
+   },
+   "visual": "anim:rings",
+   "narration": {
+    "en": "Apps run in user mode with limited power. Only the kernel runs in kernel mode and can touch hardware directly.",
+    "hi": "ऐप सीमित ताक़त वाले उपयोगकर्ता मोड में चलते हैं। सिर्फ़ कर्नेल कर्नेल मोड में चलता है और हार्डवेयर सीधे छू सकता है।",
+    "hinglish": "Apps limited taakat wale user mode mein chalte hain. Sirf kernel, kernel mode mein chalta hai aur hardware seedha chhoo sakta hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "To read a file, an app makes a system call. The CPU traps into the kernel, which checks permission and does the work.",
+    "hi": "फ़ाइल पढ़ने के लिए ऐप सिस्टम कॉल करता है। CPU कर्नेल में ट्रैप करता है, जो अनुमति जाँचकर काम करता है।",
+    "hinglish": "File padhne ke liye app system call karta hai. CPU kernel mein trap karta hai, jo permission check karke kaam karta hai."
+   },
+   "visual": "anim:syscall-trap",
+   "narration": {
+    "en": "To read a file, an app makes a system call. The CPU traps into the kernel, which checks permission and does the work.",
+    "hi": "फ़ाइल पढ़ने के लिए ऐप सिस्टम कॉल करता है। CPU कर्नेल में ट्रैप करता है, जो अनुमति जाँचकर काम करता है।",
+    "hinglish": "File padhne ke liye app system call karta hai. CPU kernel mein trap karta hai, jo permission check karke kaam karta hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Devices announce events with interrupts: a key press, a network packet, a finished disk read.",
+    "hi": "उपकरण इंटरप्ट से घटनाएँ बताते हैं: कुंजी दबाना, नेटवर्क पैकेट, पूरा हुआ डिस्क पढ़ना।",
+    "hinglish": "Devices interrupts se events batate hain: key press, network packet, poora hua disk read."
+   },
+   "visual": "anim:irq-bell",
+   "narration": {
+    "en": "Devices announce events with interrupts: a key press, a network packet, a finished disk read.",
+    "hi": "उपकरण इंटरप्ट से घटनाएँ बताते हैं: कुंजी दबाना, नेटवर्क पैकेट, पूरा हुआ डिस्क पढ़ना।",
+    "hinglish": "Devices interrupts se events batate hain: key press, network packet, poora hua disk read."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Linux (in Android, servers and most of the cloud), Windows NT, and Apple's XNU (macOS, iOS) are the big kernels today.",
+    "hi": "लिनक्स (एंड्रॉइड, सर्वर और ज़्यादातर क्लाउड में), Windows NT, और ऐप्पल का XNU (macOS, iOS) आज के बड़े कर्नेल हैं।",
+    "hinglish": "Linux (Android, servers aur zyaadatar cloud mein), Windows NT, aur Apple ka XNU (macOS, iOS) aaj ke bade kernels hain."
+   },
+   "visual": "anim:kernel-logos",
+   "narration": {
+    "en": "Linux (in Android, servers and most of the cloud), Windows NT, and Apple's XNU (macOS, iOS) are the big kernels today.",
+    "hi": "लिनक्स (एंड्रॉइड, सर्वर और ज़्यादातर क्लाउड में), Windows NT, और ऐप्पल का XNU (macOS, iOS) आज के बड़े कर्नेल हैं।",
+    "hinglish": "Linux (Android, servers aur zyaadatar cloud mein), Windows NT, aur Apple ka XNU (macOS, iOS) aaj ke bade kernels hain."
+   }
+  }
+ ],
+ "play": {
+  "lab": "seq-flow",
+  "config": {
+   "scenario": "syscall-read"
+  },
+  "goal": {
+   "en": "Follow open() and read() from the app into the kernel, the file system and the SSD driver and back. Mark each moment the CPU switches mode.",
+   "hi": "open() और read() को ऐप से कर्नेल, फ़ाइल सिस्टम और SSD ड्राइवर तक और वापस देखो। हर बार CPU मोड बदले, निशान लगाओ।",
+   "hinglish": "open() aur read() ko app se kernel, file system aur SSD driver tak aur wapas follow karo. Har baar CPU mode badle, mark karo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Why the wall between user and kernel?",
+    "hi": "उपयोगकर्ता और कर्नेल के बीच दीवार क्यों?",
+    "hinglish": "User aur kernel ke beech deewar kyun?"
+   },
+   "body": {
+    "en": "Protection. If every app could write to any memory or disk block, one bug or one piece of malware could crash or spy on everything. The CPU enforces privilege levels in hardware; the kernel checks every request against permissions. Kernel designs differ: Linux is monolithic (drivers inside the kernel, fast), microkernels keep most services outside (safer, more message passing). The Linux kernel, started by Linus Torvalds in 1991, now has tens of millions of lines of code from thousands of contributors.",
+    "hi": "सुरक्षा। अगर हर ऐप किसी भी मेमोरी या डिस्क ब्लॉक में लिख सकता, तो एक बग या एक मैलवेयर सब कुछ क्रैश कर सकता या जासूसी कर सकता। CPU हार्डवेयर में विशेषाधिकार स्तर लागू करता है; कर्नेल हर अनुरोध को अनुमतियों से जाँचता है। कर्नेल डिज़ाइन अलग होते हैं: लिनक्स मोनोलिथिक है (ड्राइवर कर्नेल के अंदर, तेज़), माइक्रोकर्नेल ज़्यादातर सेवाएँ बाहर रखते हैं (सुरक्षित, ज़्यादा संदेश)। लिनस टॉरवाल्ड्स द्वारा 1991 में शुरू किए लिनक्स कर्नेल में अब हज़ारों योगदानकर्ताओं की करोड़ों पंक्तियाँ हैं।",
+    "hinglish": "Protection. Agar har app kisi bhi memory ya disk block mein likh sakta, to ek bug ya ek malware sab kuch crash kar sakta ya jaasoosi kar sakta. CPU hardware mein privilege levels lagu karta hai; kernel har request ko permissions se check karta hai. Kernel designs alag hote hain: Linux monolithic hai (drivers kernel ke andar, tez), microkernels zyaadatar services bahar rakhte hain (safe, zyaada message passing). Linus Torvalds dwara 1991 mein shuru kiye Linux kernel mein ab hazaaron contributors ki karodon lines hain."
+   },
+   "analogy": {
+    "en": "A bank: customers (apps) fill a slip at the counter (system call); only staff (kernel) enter the vault (hardware).",
+    "hi": "बैंक: ग्राहक (ऐप) काउंटर पर पर्ची भरते हैं (सिस्टम कॉल); सिर्फ़ कर्मचारी (कर्नेल) तिजोरी (हार्डवेयर) में जाते हैं।",
+    "hinglish": "Bank: customers (apps) counter par slip bharte hain (system call); sirf staff (kernel) vault (hardware) mein jaate hain."
+   },
+   "realExample": {
+    "en": "On Linux, strace ls shows every system call the ls command makes — openat, read, write, close and more.",
+    "hi": "लिनक्स पर strace ls, ls कमांड की हर सिस्टम कॉल दिखाता है — openat, read, write, close और अधिक।",
+    "hinglish": "Linux par strace ls, ls command ki har system call dikhata hai — openat, read, write, close aur aur bhi."
+   }
+  },
+  {
+   "heading": {
+    "en": "Drivers and updates",
+    "hi": "ड्राइवर और अपडेट",
+    "hinglish": "Drivers aur updates"
+   },
+   "body": {
+    "en": "Drivers run with kernel power, so a buggy or malicious driver can crash or compromise the whole machine. That is why OS vendors sign and test drivers, and why security updates matter: many attacks use known kernel or driver flaws that a patch already fixes. In July 2024 a faulty update to a security product's kernel driver crashed about 8.5 million Windows PCs worldwide, grounding flights — a reminder to test and stage updates carefully, not to skip them.",
+    "hi": "ड्राइवर कर्नेल की ताक़त से चलते हैं, इसलिए गड़बड़ या दुर्भावनापूर्ण ड्राइवर पूरी मशीन क्रैश या कब्ज़ा कर सकता है। इसीलिए OS विक्रेता ड्राइवर पर हस्ताक्षर और जाँच करते हैं, और सुरक्षा अपडेट ज़रूरी हैं: कई हमले ज्ञात कर्नेल या ड्राइवर कमियाँ इस्तेमाल करते हैं जिन्हें पैच पहले ही ठीक कर चुका। जुलाई 2024 में एक सुरक्षा उत्पाद के कर्नेल ड्राइवर के ग़लत अपडेट ने दुनिया भर में लगभग 85 लाख Windows पीसी क्रैश किए, उड़ानें रुकीं — याद दिलाने के लिए कि अपडेट सावधानी से परखो और चरणों में लगाओ, छोड़ो नहीं।",
+    "hinglish": "Drivers kernel ki taakat se chalte hain, isliye buggy ya malicious driver poori machine crash ya compromise kar sakta hai. Isiliye OS vendors drivers sign aur test karte hain, aur security updates zaroori hain: kai attacks known kernel ya driver flaws use karte hain jinhe patch pehle hi fix kar chuka. July 2024 mein ek security product ke kernel driver ke galat update ne duniya bhar mein lagbhag 85 lakh Windows PCs crash kiye, flights rukin — yaad dilane ke liye ki updates dhyaan se test aur stage karo, skip mat karo."
+   },
+   "analogy": {
+    "en": "Giving someone the master key to your building: choose carefully, and check them regularly.",
+    "hi": "किसी को इमारत की मास्टर चाबी देना: सोच-समझकर चुनो, और नियमित जाँचो।",
+    "hinglish": "Kisi ko building ki master chaabi dena: soch-samajhkar chuno, aur regularly check karo."
+   },
+   "realExample": {
+    "en": "Android monthly security bulletins list kernel and driver fixes; installing them closes publicly known holes.",
+    "hi": "एंड्रॉइड मासिक सुरक्षा बुलेटिन कर्नेल और ड्राइवर सुधार बताते हैं; उन्हें लगाने से सार्वजनिक रूप से ज्ञात छेद बंद होते हैं।",
+    "hinglish": "Android monthly security bulletins kernel aur driver fixes batate hain; unhe install karne se publicly known holes band hote hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "List five things you did on your phone today (open camera, play music…). For each, name one system call or kernel job it probably needed.",
+   "hi": "आज फ़ोन पर किए पाँच काम लिखो (कैमरा खोलना, संगीत चलाना…)। हर एक के लिए एक सिस्टम कॉल या कर्नेल का काम बताओ जो शायद लगा।",
+   "hinglish": "Aaj phone par kiye paanch kaam likho (camera kholna, music chalana…). Har ek ke liye ek system call ya kernel ka kaam batao jo shayad laga."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why can't apps access hardware directly?",
+     "hi": "ऐप हार्डवेयर सीधे क्यों नहीं छू सकते?",
+     "hinglish": "Apps hardware seedha kyun nahi chhoo sakte?"
+    },
+    "options": [
+     {
+      "en": "To protect the system from bugs and malware",
+      "hi": "प्रणाली को बग और मैलवेयर से बचाने",
+      "hinglish": "System ko bugs aur malware se bachane"
+     },
+     {
+      "en": "Hardware is too slow",
+      "hi": "हार्डवेयर बहुत धीमा है",
+      "hinglish": "Hardware bahut slow hai"
+     },
+     {
+      "en": "It costs money",
+      "hi": "पैसे लगते हैं",
+      "hinglish": "Paise lagte hain"
+     },
+     {
+      "en": "Apps are written in Python",
+      "hi": "ऐप Python में लिखे हैं",
+      "hinglish": "Apps Python mein likhe hain"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "The kernel checks every request.",
+     "hi": "कर्नेल हर अनुरोध जाँचता है।",
+     "hinglish": "Kernel har request check karta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "read() and open() are examples of…",
+     "hi": "read() और open() किसके उदाहरण हैं…",
+     "hinglish": "read() aur open() kiske examples hain…"
+    },
+    "options": [
+     {
+      "en": "System calls",
+      "hi": "सिस्टम कॉल",
+      "hinglish": "System calls"
+     },
+     {
+      "en": "Interrupts",
+      "hi": "इंटरप्ट",
+      "hinglish": "Interrupts"
+     },
+     {
+      "en": "Drivers",
+      "hi": "ड्राइवर",
+      "hinglish": "Drivers"
+     },
+     {
+      "en": "Viruses",
+      "hi": "वायरस",
+      "hinglish": "Viruses"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "They ask the kernel for a service.",
+     "hi": "वे कर्नेल से सेवा माँगते हैं।",
+     "hinglish": "Woh kernel se service maangte hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "How does an SSD tell the CPU it finished a read?",
+     "hi": "SSD CPU को कैसे बताता है कि पढ़ना पूरा हुआ?",
+     "hinglish": "SSD CPU ko kaise batata hai ki read poora hua?"
+    },
+    "options": [
+     {
+      "en": "An interrupt",
+      "hi": "इंटरप्ट",
+      "hinglish": "Interrupt"
+     },
+     {
+      "en": "An email",
+      "hi": "ईमेल",
+      "hinglish": "Email"
+     },
+     {
+      "en": "A system call",
+      "hi": "सिस्टम कॉल",
+      "hinglish": "System call"
+     },
+     {
+      "en": "It does not",
+      "hi": "नहीं बताता",
+      "hinglish": "Nahi batata"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "The CPU pauses, runs the handler, then continues.",
+     "hi": "CPU रुकता है, हैंडलर चलाता है, फिर जारी रखता है।",
+     "hinglish": "CPU rukta hai, handler chalata hai, phir continue karta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "match",
+    "prompt": {
+     "en": "Match the kernel to where it runs.",
+     "hi": "कर्नेल को उसकी जगह से मिलाओ।",
+     "hinglish": "Kernel ko uski jagah se milao."
+    },
+    "options": [
+     "Linux",
+     "Windows NT",
+     "XNU"
+    ],
+    "answer": [
+     {
+      "en": "Android phones and most servers",
+      "hi": "एंड्रॉइड फ़ोन और ज़्यादातर सर्वर",
+      "hinglish": "Android phones aur zyaadatar servers"
+     },
+     {
+      "en": "Windows PCs",
+      "hi": "Windows पीसी",
+      "hinglish": "Windows PCs"
+     },
+     {
+      "en": "iPhones and Macs",
+      "hi": "आईफ़ोन और मैक",
+      "hinglish": "iPhones aur Macs"
+     }
+    ],
+    "explain": {
+     "en": "All three use the same core ideas.",
+     "hi": "तीनों एक जैसे मूल विचार इस्तेमाल करते हैं।",
+     "hinglish": "Teeno same core ideas use karte hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Run the system-call scenario to the end.",
+     "hi": "सिस्टम-कॉल परिदृश्य अंत तक चलाओ।",
+     "hinglish": "System-call scenario end tak chalao."
+    },
+    "answer": {
+     "event": "scenario-complete",
+     "scenario": "syscall-read"
+    },
+    "explain": {
+     "en": "Two traps into the kernel, one interrupt from the SSD.",
+     "hi": "कर्नेल में दो ट्रैप, SSD से एक इंटरप्ट।",
+     "hinglish": "Kernel mein do traps, SSD se ek interrupt."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "os.what-is-os",
+  "os.updates-drivers"
+ ],
+ "sources": [
+  {
+   "title": "Arpaci-Dusseau, Operating Systems: Three Easy Pieces (free online)",
+   "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "The Linux Kernel documentation",
+   "url": "https://docs.kernel.org/",
+   "licence": "fact reference"
+  }
+ ]
+}

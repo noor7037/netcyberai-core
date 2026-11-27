@@ -1,0 +1,98 @@
+// Interface words for the Tech Lab screens, in the three lesson languages. The dock label stays in the app's
+// en/hi message files (fam.tab.tech). Lesson content is never in this map.
+
+import { fill, type TechLang } from './text';
+
+export const TECH_WORDS = {
+  kicker: { hinglish: 'Future Tech & AI Lab', en: 'Future Tech & AI Lab', hi: 'फ़्यूचर टेक और AI लैब' },
+  hello: { hinglish: 'Chalo, aaj kuch naya banate hain!', en: "Let's build something new today!", hi: 'चलो, आज कुछ नया बनाते हैं!' },
+  yourClass: { hinglish: 'Tumhari class', en: 'Your class', hi: 'तुम्हारी कक्षा' },
+  explore: { hinglish: 'Doosri class explore karo', en: 'Explore another class', hi: 'दूसरी कक्षा देखो' },
+  level: { hinglish: 'Level', en: 'Level', hi: 'लेवल' },
+  classes: { hinglish: 'Class', en: 'Classes', hi: 'कक्षा' },
+  classN: { hinglish: 'Class {n}', en: 'Class {n}', hi: 'कक्षा {n}' },
+  nursery: { hinglish: 'Nursery', en: 'Nursery', hi: 'नर्सरी' },
+  lkg: { hinglish: 'LKG', en: 'LKG', hi: 'एलकेजी' },
+  ukg: { hinglish: 'UKG', en: 'UKG', hi: 'यूकेजी' },
+  forYou: { hinglish: 'Tumhari class ke units', en: 'Units for your class', hi: 'तुम्हारी कक्षा की इकाइयाँ' },
+  alsoLevel: { hinglish: 'Is level mein aur bhi', en: 'More in this level', hi: 'इस लेवल में और भी' },
+  lessons: { hinglish: 'lessons', en: 'lessons', hi: 'पाठ' },
+  ready: { hinglish: 'taiyaar', en: 'ready', hi: 'तैयार' },
+  start: { hinglish: 'Shuru', en: 'Start', hi: 'शुरू' },
+  again: { hinglish: 'Phir se', en: 'Again', hi: 'फिर से' },
+  soon: { hinglish: 'Jald aa raha', en: 'Coming soon', hi: 'जल्द आ रहा' },
+  all: { hinglish: 'Sab', en: 'All', hi: 'सभी' },
+  badges: { hinglish: 'Tumhare badges', en: 'Your badges', hi: 'तुम्हारे बैज' },
+  labs: { hinglish: 'Labs: khud karke dekho', en: 'Labs: try it yourself', hi: 'लैब: खुद करके देखो' },
+  see: { hinglish: 'Dekho', en: 'See', hi: 'देखो' },
+  play: { hinglish: 'Khelo', en: 'Play', hi: 'खेलो' },
+  understand: { hinglish: 'Samjho', en: 'Understand', hi: 'समझो' },
+  try: { hinglish: 'Karo', en: 'Try', hi: 'करो' },
+  next: { hinglish: 'Aage', en: 'Next', hi: 'आगे' },
+  back: { hinglish: 'Peeche', en: 'Back', hi: 'पीछे' },
+  listen: { hinglish: 'Suno', en: 'Listen', hi: 'सुनो' },
+  close: { hinglish: 'Band karo', en: 'Close', hi: 'बंद करो' },
+  openLab: { hinglish: 'Lab kholo', en: 'Open the lab', hi: 'लैब खोलो' },
+  closeLab: { hinglish: 'Lab band karo', en: 'Close the lab', hi: 'लैब बंद करो' },
+  labData: { hinglish: 'Lab tabhi load hogi jab tum khologe (data bachta hai).', en: 'The lab loads only when you open it (saves data).', hi: 'लैब तभी लोड होगी जब तुम खोलोगे (डेटा बचता है)।' },
+  noLab: { hinglish: 'Is lesson ki lab abhi ban rahi hai. Tab tak See aur Understand dobara dekho.', en: "This lesson's lab is still being built. Meanwhile, replay See and Understand.", hi: 'इस पाठ की लैब अभी बन रही है। तब तक देखो और समझो फिर से देखो।' },
+  words: { hinglish: 'Naye words', en: 'New words', hi: 'नए शब्द' },
+  outcomes: { hinglish: 'Is lesson ke baad tum…', en: 'After this lesson you can…', hi: 'इस पाठ के बाद तुम…' },
+  mission: { hinglish: 'Mission', en: 'Mission', hi: 'मिशन' },
+  check: { hinglish: 'Check karo', en: 'Check', hi: 'जाँचो' },
+  right: { hinglish: 'Sahi jawab!', en: 'Correct!', hi: 'सही जवाब!' },
+  wrong: { hinglish: 'Abhi nahi. Samjho kyun:', en: 'Not yet. Here is why:', hi: 'अभी नहीं। समझो क्यों:' },
+  qOf: { hinglish: 'Sawaal {a} / {b}', en: 'Question {a} of {b}', hi: 'प्रश्न {a} / {b}' },
+  finish: { hinglish: 'Lesson poora karo', en: 'Finish the lesson', hi: 'पाठ पूरा करो' },
+  done: { hinglish: 'Lesson poora!', en: 'Lesson complete!', hi: 'पाठ पूरा!' },
+  score: { hinglish: '{r} / {n} sahi', en: '{r} of {n} right', hi: '{r} / {n} सही' },
+  pass: { hinglish: 'Pass karne ke liye {n} percent chahiye. Ek baar aur try karo, explanations padh ke.', en: 'You need {n} percent to pass. Read the explanations and try once more.', hi: 'पास होने के लिए {n} प्रतिशत चाहिए। व्याख्या पढ़कर एक बार और कोशिश करो।' },
+  toCourse: { hinglish: 'Course par wapas', en: 'Back to the course', hi: 'कोर्स पर वापस' },
+  nextLesson: { hinglish: 'Agla lesson', en: 'Next lesson', hi: 'अगला पाठ' },
+  pick: { hinglish: 'Jo sahi lage sab chuno', en: 'Pick all that are right', hi: 'जो सही लगें सब चुनो' },
+  orderHint: { hinglish: 'Upar-neeche karke sahi order banao', en: 'Move items up or down into the right order', hi: 'ऊपर-नीचे करके सही क्रम बनाओ' },
+  typeHere: { hinglish: 'Yahan likho', en: 'Type here', hi: 'यहाँ लिखो' },
+  labWait: { hinglish: 'Lab mein karo, phir check karo', en: 'Do it in the lab, then check', hi: 'लैब में करो, फिर जाँचो' },
+  labConfirmed: { hinglish: 'Lab ne confirm kiya', en: 'The lab confirmed it', hi: 'लैब ने पुष्टि की' },
+  answerFirst: { hinglish: 'Pehle jawab do', en: 'Answer first', hi: 'पहले जवाब दो' },
+  newBadge: { hinglish: 'Naya badge mila!', en: 'New badge!', hi: 'नया बैज मिला!' },
+  sources: { hinglish: 'Sources', en: 'Sources', hi: 'स्रोत' },
+  preview: { hinglish: 'Nursery/LKG/UKG: Level 1 ke picture-wale lessons, kisi bade ke saath.', en: 'Nursery/LKG/UKG: Level 1 picture lessons, with a grown-up.', hi: 'नर्सरी/LKG/UKG: लेवल 1 के चित्र वाले पाठ, किसी बड़े के साथ।' },
+  notFound: { hinglish: 'Lesson nahi mila', en: 'Lesson not found', hi: 'पाठ नहीं मिला' },
+  up: { hinglish: 'Upar', en: 'Up', hi: 'ऊपर' },
+  down: { hinglish: 'Neeche', en: 'Down', hi: 'नीचे' },
+  language: { hinglish: 'Bhasha', en: 'Language', hi: 'भाषा' },
+  savedLater: { hinglish: 'Stars is phone par hain. Course save hoga jab database ready hoga.', en: 'Stars are on this phone for now. They are kept once the course database is ready.', hi: 'अभी सितारे इस फ़ोन पर हैं। डेटाबेस तैयार होते ही ये सुरक्षित रहेंगे।' },
+  checking: { hinglish: 'Dekh rahe hain…', en: 'Checking…', hi: 'जाँच हो रही है…' },
+  versus: { hinglish: 'banam', en: 'versus', hi: 'बनाम' },
+  xpNow: { hinglish: '{n} XP', en: '{n} XP', hi: '{n} XP' },
+  xpLine: { hinglish: '+{gain} XP · {total} XP', en: '+{gain} XP · {total} XP', hi: '+{gain} XP · {total} XP' },
+  starsLabel: { hinglish: '{n} stars', en: '{n} stars', hi: '{n} सितारे' },
+  couldNot: { hinglish: 'Abhi check nahi ho paya. Ek baar aur try karo.', en: 'That could not be checked. Try once more.', hi: 'अभी जाँच नहीं हो पाई। एक बार और कोशिश करो।' },
+  pathTitle: { hinglish: '{name} ka Tech & AI Learning Path', en: "{name}'s Tech & AI Learning Path", hi: '{name} का टेक और AI लर्निंग पाथ' },
+  pathDone: { hinglish: '{c}: {d} / {t} lessons poore', en: '{c}: {d} of {t} lessons done', hi: '{c}: {t} में से {d} पाठ पूरे' },
+  upNext: { hinglish: 'Ab tumhare liye', en: 'Up next for you', hi: 'अब तुम्हारे लिए' },
+  whyStart: { hinglish: 'Naya unit shuru karo', en: 'Start a new unit', hi: 'नई इकाई शुरू करो' },
+  whyContinue: { hinglish: 'Jahan ruke the, wahin se aage', en: 'Carry on where you stopped', hi: 'जहाँ रुके थे, वहीं से आगे' },
+  whyStretch: { hinglish: 'Tumhari class ke sab lessons poore! Ab ek challenge, agli class se:', en: 'Every lesson of your class is done! A challenge from the next class:', hi: 'तुम्हारी कक्षा के सब पाठ पूरे! अब अगली कक्षा से एक चुनौती:' },
+  allDone: { hinglish: 'Sab lessons poore. Labs mein naye experiment try karo.', en: 'Every lesson is done. Try new experiments in the labs.', hi: 'सब पाठ पूरे। लैब में नए प्रयोग करके देखो।' },
+  revise: { hinglish: 'Ek baar revise kar lo', en: 'Worth a quick revision', hi: 'एक बार दोहरा लो' },
+  goLesson: { hinglish: 'Kholo', en: 'Open', hi: 'खोलो' },
+  exploring: { hinglish: 'Tum doosri class dekh rahe ho. Tumhari apni class nahi badli.', en: 'You are looking at another class. Your own class has not changed.', hi: 'तुम दूसरी कक्षा देख रहे हो। तुम्हारी अपनी कक्षा नहीं बदली।' },
+  backToMine: { hinglish: 'Apni class par wapas', en: 'Back to my class', hi: 'अपनी कक्षा पर वापस' },
+  summary: { hinglish: 'Aaj ka saar', en: "Today's summary", hi: 'आज का सार' },
+  hey: { hinglish: 'Shuru karte hain', en: "Let's begin", hi: 'शुरू करते हैं' },
+} as const;
+
+export type TechWordKey = keyof typeof TECH_WORDS;
+
+export function tw(lang: TechLang, key: TechWordKey, params?: Record<string, string | number>): string {
+  return fill(TECH_WORDS[key][lang], params);
+}
+
+export function classWord(lang: TechLang, level: number): string {
+  if (level === -2) return tw(lang, 'nursery');
+  if (level === -1) return tw(lang, 'lkg');
+  if (level === 0) return tw(lang, 'ukg');
+  return tw(lang, 'classN', { n: level });
+}

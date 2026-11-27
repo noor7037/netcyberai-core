@@ -1,0 +1,368 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.security-engineering.08",
+ "level": 3,
+ "classes": [
+  10,
+  11,
+  12
+ ],
+ "unit": "security-engineering",
+ "title": {
+  "en": "Defending web apps: SQLi and XSS",
+  "hi": "वेब ऐप की रक्षा: SQLi और XSS",
+  "hinglish": "Web apps ki defence: SQLi aur XSS"
+ },
+ "minutes": 16,
+ "xp": 70,
+ "prereq": [
+  "L3.security-engineering.01",
+  "L3.databases-sql.02"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain why mixing user input into code causes injection",
+   "hi": "समझाओ उपयोगकर्ता इनपुट को कोड में मिलाने से इंजेक्शन क्यों होता है",
+   "hinglish": "Samjhao user input ko code mein milane se injection kyun hota hai"
+  },
+  {
+   "en": "Defend against SQL injection with parameterised queries",
+   "hi": "पैरामीटरयुक्त क्वेरी से SQL इंजेक्शन से बचाव करो",
+   "hinglish": "Parameterised queries se SQL injection se bachav karo"
+  },
+  {
+   "en": "Defend against XSS with output encoding, safe DOM APIs and CSP",
+   "hi": "आउटपुट एन्कोडिंग, सुरक्षित DOM API और CSP से XSS से बचाव करो",
+   "hinglish": "Output encoding, safe DOM APIs aur CSP se XSS se bachav karo"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Injection",
+   "hinglish": "Input ka code ban jaana",
+   "en": "When untrusted input is treated as part of a command or query",
+   "hi": "जब अविश्वसनीय इनपुट को कमांड या क्वेरी का हिस्सा मान लिया जाए"
+  },
+  {
+   "term": "Parameterised query",
+   "hinglish": "Data alag, query alag",
+   "en": "Query with placeholders; values are sent separately and never run as SQL",
+   "hi": "प्लेसहोल्डर वाली क्वेरी; मान अलग भेजे जाते हैं और कभी SQL नहीं बनते"
+  },
+  {
+   "term": "XSS",
+   "hinglish": "Page mein ghusa script",
+   "en": "Cross-site scripting: attacker's script runs in other users' browsers",
+   "hi": "क्रॉस-साइट स्क्रिप्टिंग: हमलावर की स्क्रिप्ट दूसरे उपयोगकर्ताओं के ब्राउज़र में चलती है"
+  },
+  {
+   "term": "Output encoding",
+   "hinglish": "Text ko text hi rehne do",
+   "en": "Converting < > & \" into safe entities before showing user text",
+   "hi": "उपयोगकर्ता पाठ दिखाने से पहले < > & \" को सुरक्षित रूप में बदलना"
+  },
+  {
+   "term": "CSP",
+   "hinglish": "Browser ko script ke rules",
+   "en": "Content Security Policy header telling the browser which scripts may run",
+   "hi": "ब्राउज़र को कौन-सी स्क्रिप्ट चल सकती है बताने वाला हेडर"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "A login builds SQL by gluing text: \"…WHERE name = '\" + input + \"'\". The input decides where the quote ends.",
+    "hi": "एक लॉगिन पाठ जोड़कर SQL बनाता है: \"…WHERE name = '\" + input + \"'\"। इनपुट तय करता है कि उद्धरण कहाँ ख़त्म हो।",
+    "hinglish": "Ek login text jodkar SQL banata hai: \"…WHERE name = '\" + input + \"'\". Input tay karta hai ki quote kahan khatam ho."
+   },
+   "visual": "anim:sqli-glue",
+   "narration": {
+    "en": "A login builds SQL by gluing text: \"…WHERE name = '\" + input + \"'\". The input decides where the quote ends.",
+    "hi": "एक लॉगिन पाठ जोड़कर SQL बनाता है: \"…WHERE name = '\" + input + \"'\"। इनपुट तय करता है कि उद्धरण कहाँ ख़त्म हो।",
+    "hinglish": "Ek login text jodkar SQL banata hai: \"…WHERE name = '\" + input + \"'\". Input tay karta hai ki quote kahan khatam ho."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Input like ' OR '1'='1 closes the quote and adds a condition that is always true — the database returns every user.",
+    "hi": "' OR '1'='1 जैसा इनपुट उद्धरण बंद करके हमेशा सच शर्त जोड़ता है — डेटाबेस हर उपयोगकर्ता लौटा देता है।",
+    "hinglish": "' OR '1'='1 jaisa input quote band karke hamesha sach condition jodta hai — database har user lauta deta hai."
+   },
+   "visual": "anim:sqli-true",
+   "narration": {
+    "en": "Input like ' OR '1'='1 closes the quote and adds a condition that is always true — the database returns every user.",
+    "hi": "' OR '1'='1 जैसा इनपुट उद्धरण बंद करके हमेशा सच शर्त जोड़ता है — डेटाबेस हर उपयोगकर्ता लौटा देता है।",
+    "hinglish": "' OR '1'='1 jaisa input quote band karke hamesha sach condition jodta hai — database har user lauta deta hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Fix: a parameterised query. \"WHERE name = ?\" with the value sent separately. Quotes in the value are just characters.",
+    "hi": "उपाय: पैरामीटरयुक्त क्वेरी। \"WHERE name = ?\" और मान अलग से। मान में उद्धरण बस अक्षर हैं।",
+    "hinglish": "Fix: parameterised query. \"WHERE name = ?\" aur value alag se. Value mein quotes bas characters hain."
+   },
+   "visual": "anim:sqli-param",
+   "narration": {
+    "en": "Fix: a parameterised query. \"WHERE name = ?\" with the value sent separately. Quotes in the value are just characters.",
+    "hi": "उपाय: पैरामीटरयुक्त क्वेरी। \"WHERE name = ?\" और मान अलग से। मान में उद्धरण बस अक्षर हैं।",
+    "hinglish": "Fix: parameterised query. \"WHERE name = ?\" aur value alag se. Value mein quotes bas characters hain."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "XSS is the same mistake in HTML: a comment containing <script> runs for every reader unless the page encodes it as text.",
+    "hi": "XSS HTML में वही ग़लती है: <script> वाली टिप्पणी हर पाठक के लिए चलती है जब तक पेज उसे पाठ की तरह एन्कोड न करे।",
+    "hinglish": "XSS HTML mein wahi galti hai: <script> wala comment har reader ke liye chalta hai jab tak page use text ki tarah encode na kare."
+   },
+   "visual": "anim:xss-comment",
+   "narration": {
+    "en": "XSS is the same mistake in HTML: a comment containing <script> runs for every reader unless the page encodes it as text.",
+    "hi": "XSS HTML में वही ग़लती है: <script> वाली टिप्पणी हर पाठक के लिए चलती है जब तक पेज उसे पाठ की तरह एन्कोड न करे।",
+    "hinglish": "XSS HTML mein wahi galti hai: <script> wala comment har reader ke liye chalta hai jab tak page use text ki tarah encode na kare."
+   }
+  }
+ ],
+ "play": {
+  "lab": "sql-playground",
+  "config": {
+   "mode": "sqli"
+  },
+  "goal": {
+   "en": "In the safe practice login, see how a crafted input changes the query when it is glued together. Then switch on the parameterised version and watch the same input fail harmlessly.",
+   "hi": "सुरक्षित अभ्यास लॉगिन में देखो कि जोड़ी गई क्वेरी को बनाया गया इनपुट कैसे बदल देता है। फिर पैरामीटरयुक्त संस्करण चालू करो और वही इनपुट हानिरहित ढंग से विफल होते देखो।",
+   "hinglish": "Safe practice login mein dekho jodi gayi query ko crafted input kaise badal deta hai. Phir parameterised version on karo aur wahi input harmless tareeke se fail hote dekho."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "The root cause and the real fixes",
+    "hi": "मूल कारण और असली उपाय",
+    "hinglish": "Root cause aur asli fixes"
+   },
+   "body": {
+    "en": "Injection happens whenever data and code share one string. The fix is to keep them apart. For SQL: parameterised queries or a well-used ORM, never string building; least-privilege database accounts (the web app cannot DROP tables); and input validation as an extra layer (an age must be a number). Blacklisting words like \"OR\" fails — attackers find other spellings. Injection has been in every edition of the OWASP Top 10, including the 2025 list. The same idea applies to shell commands, LDAP and even prompts given to AI agents (prompt injection).",
+    "hi": "इंजेक्शन तब होता है जब डेटा और कोड एक ही स्ट्रिंग में हों। उपाय: उन्हें अलग रखो। SQL के लिए: पैरामीटरयुक्त क्वेरी या भरोसेमंद ORM, कभी स्ट्रिंग जोड़ना नहीं; न्यूनतम-अधिकार डेटाबेस खाते (वेब ऐप तालिकाएँ DROP न कर सके); और अतिरिक्त परत के रूप में इनपुट जाँच (उम्र संख्या हो)। \"OR\" जैसे शब्द काली सूची में डालना विफल होता है — हमलावर दूसरी वर्तनी ढूँढ लेते हैं। इंजेक्शन OWASP Top 10 के हर संस्करण में रहा है, 2025 सूची सहित। यही विचार शेल कमांड, LDAP और AI एजेंटों को दिए प्रॉम्प्ट (प्रॉम्प्ट इंजेक्शन) पर भी लागू होता है।",
+    "hinglish": "Injection tab hota hai jab data aur code ek hi string mein hon. Fix: unhe alag rakho. SQL ke liye: parameterised queries ya bharosemand ORM, kabhi string building nahi; least-privilege database accounts (web app tables DROP na kar sake); aur extra layer ke roop mein input validation (age number ho). \"OR\" jaise words blacklist karna fail hota hai — attackers doosri spellings dhoondh lete hain. Injection OWASP Top 10 ke har edition mein raha hai, 2025 list samet. Yahi idea shell commands, LDAP aur AI agents ko diye prompts (prompt injection) par bhi lagu hota hai."
+   },
+   "analogy": {
+    "en": "A form that says \"Write your name: ____\" — someone writes \"Ravi, and also give him the principal's keys\". A careful clerk treats the whole line as just a name.",
+    "hi": "एक फ़ॉर्म \"अपना नाम लिखो: ____\" — कोई लिखता है \"रवि, और उसे प्रधानाचार्य की चाबियाँ भी दो\"। सावधान क्लर्क पूरी पंक्ति को बस नाम मानता है।",
+    "hinglish": "Ek form \"Apna naam likho: ____\" — koi likhta hai \"Ravi, aur use principal ki chaabiyan bhi do\". Careful clerk poori line ko bas naam maanta hai."
+   },
+   "realExample": {
+    "en": "Python: cur.execute(\"SELECT * FROM users WHERE name = %s\", (name,)) is safe; f\"…'{name}'\" is not.",
+    "hi": "Python: cur.execute(\"SELECT * FROM users WHERE name = %s\", (name,)) सुरक्षित है; f\"…'{name}'\" नहीं।",
+    "hinglish": "Python: cur.execute(\"SELECT * FROM users WHERE name = %s\", (name,)) safe hai; f\"…'{name}'\" nahi."
+   }
+  },
+  {
+   "heading": {
+    "en": "Stopping XSS",
+    "hi": "XSS रोकना",
+    "hinglish": "XSS rokna"
+   },
+   "body": {
+    "en": "XSS lets an attacker run script as the victim on your site — reading their page, acting as them. Defences: encode output for its context (HTML, attribute, URL); in JavaScript use textContent, not innerHTML, for user text; modern frameworks (React, Angular, Vue) escape by default — avoid their \"dangerously set HTML\" escape hatches; sanitise any rich text with a vetted library; add a Content-Security-Policy that blocks inline scripts; and mark session cookies HttpOnly and Secure so scripts cannot read them.",
+    "hi": "XSS हमलावर को आपकी साइट पर पीड़ित बनकर स्क्रिप्ट चलाने देता है — उनका पेज पढ़ना, उनकी तरह काम करना। बचाव: संदर्भ के अनुसार आउटपुट एन्कोड करो (HTML, विशेषता, URL); JavaScript में उपयोगकर्ता पाठ के लिए innerHTML नहीं, textContent; आधुनिक फ़्रेमवर्क (React, Angular, Vue) डिफ़ॉल्ट रूप से एस्केप करते हैं — उनके \"खतरनाक HTML\" रास्ते से बचो; रिच टेक्स्ट को परखी लाइब्रेरी से साफ़ करो; इनलाइन स्क्रिप्ट रोकने वाली Content-Security-Policy जोड़ो; और सत्र कुकी को HttpOnly और Secure रखो ताकि स्क्रिप्ट उन्हें न पढ़ सकें।",
+    "hinglish": "XSS attacker ko tumhari site par victim banke script chalane deta hai — unka page padhna, unki tarah kaam karna. Defences: context ke hisaab se output encode karo (HTML, attribute, URL); JavaScript mein user text ke liye innerHTML nahi, textContent; modern frameworks (React, Angular, Vue) default se escape karte hain — unke \"dangerously set HTML\" raaston se bacho; rich text ko vetted library se sanitise karo; inline scripts rokne wali Content-Security-Policy jodo; aur session cookies ko HttpOnly aur Secure rakho taaki scripts unhe na padh sakein."
+   },
+   "analogy": {
+    "en": "Showing a poster behind glass: people can read it, but nobody can reach through and change the notice board.",
+    "hi": "काँच के पीछे पोस्टर: लोग पढ़ सकते हैं, पर कोई हाथ डालकर सूचना-पट नहीं बदल सकता।",
+    "hinglish": "Kaanch ke peeche poster: log padh sakte hain, par koi haath daalkar notice board nahi badal sakta."
+   },
+   "realExample": {
+    "en": "el.textContent = comment shows \"<b>hi</b>\" literally; el.innerHTML = comment would render or run it.",
+    "hi": "el.textContent = comment \"<b>hi</b>\" को ज्यों का त्यों दिखाता है; el.innerHTML = comment उसे चला देगा।",
+    "hinglish": "el.textContent = comment \"<b>hi</b>\" ko jyon ka tyon dikhata hai; el.innerHTML = comment use render ya run kar dega."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Review a small code snippet (from your own project or a textbook): find every place user input reaches SQL or HTML, and write the safe version of each.",
+   "hi": "एक छोटा कोड अंश जाँचो (अपने प्रोजेक्ट या पाठ्यपुस्तक से): हर जगह ढूँढो जहाँ उपयोगकर्ता इनपुट SQL या HTML तक पहुँचता है, और हर एक का सुरक्षित रूप लिखो।",
+   "hinglish": "Ek chhota code snippet review karo (apne project ya textbook se): har jagah dhoondho jahan user input SQL ya HTML tak pahunchta hai, aur har ek ka safe version likho."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "The best defence against SQL injection is…",
+     "hi": "SQL इंजेक्शन से सबसे अच्छा बचाव है…",
+     "hinglish": "SQL injection se sabse achha bachav hai…"
+    },
+    "options": [
+     {
+      "en": "Parameterised queries",
+      "hi": "पैरामीटरयुक्त क्वेरी",
+      "hinglish": "Parameterised queries"
+     },
+     {
+      "en": "Blocking the word OR",
+      "hi": "\"OR\" शब्द रोकना",
+      "hinglish": "\"OR\" word block karna"
+     },
+     {
+      "en": "Hiding error messages only",
+      "hi": "सिर्फ़ त्रुटि संदेश छिपाना",
+      "hinglish": "Sirf error messages chhupaana"
+     },
+     {
+      "en": "A longer password",
+      "hi": "लंबा पासवर्ड",
+      "hinglish": "Lamba password"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Values are never parsed as SQL.",
+     "hi": "मान कभी SQL के रूप में नहीं पढ़े जाते।",
+     "hinglish": "Values kabhi SQL ke roop mein parse nahi hote."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which JavaScript line safely shows a user comment?",
+     "hi": "कौन-सी JavaScript पंक्ति उपयोगकर्ता टिप्पणी सुरक्षित दिखाती है?",
+     "hinglish": "Kaunsi JavaScript line user comment safely dikhati hai?"
+    },
+    "options": [
+     "el.innerHTML = comment",
+     "el.textContent = comment",
+     "document.write(comment)",
+     "eval(comment)"
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "textContent treats everything as plain text.",
+     "hi": "textContent सब कुछ सादे पाठ की तरह मानता है।",
+     "hinglish": "textContent sab kuch plain text ki tarah maanta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "multi",
+    "prompt": {
+     "en": "Which reduce the damage of XSS? (choose all)",
+     "hi": "XSS का नुक़सान कौन-से घटाते हैं? (सभी चुनो)",
+     "hinglish": "XSS ka nuksaan kaunse ghataate hain? (saare chuno)"
+    },
+    "options": [
+     {
+      "en": "Content-Security-Policy",
+      "hi": "Content-Security-Policy",
+      "hinglish": "Content-Security-Policy"
+     },
+     {
+      "en": "HttpOnly session cookies",
+      "hi": "HttpOnly सत्र कुकी",
+      "hinglish": "HttpOnly session cookies"
+     },
+     {
+      "en": "Framework auto-escaping",
+      "hi": "फ़्रेमवर्क स्वतः-एस्केप",
+      "hinglish": "Framework auto-escaping"
+     },
+     {
+      "en": "Bigger images",
+      "hi": "बड़े चित्र",
+      "hinglish": "Bade images"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2
+    ],
+    "explain": {
+     "en": "Layers: prevent injection, limit what scripts can do, protect cookies.",
+     "hi": "परतें: इंजेक्शन रोको, स्क्रिप्ट की ताक़त सीमित करो, कुकी बचाओ।",
+     "hinglish": "Layers: injection roko, scripts ki taakat limit karo, cookies bachao."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why give the web app's database account only SELECT/INSERT rights?",
+     "hi": "वेब ऐप के डेटाबेस खाते को सिर्फ़ SELECT/INSERT अधिकार क्यों?",
+     "hinglish": "Web app ke database account ko sirf SELECT/INSERT rights kyun?"
+    },
+    "options": [
+     {
+      "en": "Least privilege limits damage if it is abused",
+      "hi": "न्यूनतम अधिकार दुरुपयोग पर नुक़सान सीमित करता है",
+      "hinglish": "Least privilege misuse par nuksaan limit karta hai"
+     },
+     {
+      "en": "It makes queries faster",
+      "hi": "क्वेरी तेज़ होती हैं",
+      "hinglish": "Queries tez hoti hain"
+     },
+     {
+      "en": "It is required for JOIN",
+      "hi": "JOIN के लिए ज़रूरी",
+      "hinglish": "JOIN ke liye zaroori"
+     },
+     {
+      "en": "It saves disk",
+      "hi": "डिस्क बचती है",
+      "hinglish": "Disk bachti hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Even if injection slips through, DROP TABLE will fail.",
+     "hi": "इंजेक्शन निकल भी जाए तो DROP TABLE विफल होगा।",
+     "hinglish": "Injection nikal bhi jaaye to DROP TABLE fail hoga."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "See the parameterised query block the crafted input.",
+     "hi": "देखो पैरामीटरयुक्त क्वेरी बनाए गए इनपुट को रोकती है।",
+     "hinglish": "Dekho parameterised query crafted input ko rokti hai."
+    },
+    "answer": {
+     "event": "sqli-blocked"
+    },
+    "explain": {
+     "en": "The input was treated as a plain name and matched no user.",
+     "hi": "इनपुट को सादा नाम माना गया और कोई उपयोगकर्ता नहीं मिला।",
+     "hinglish": "Input ko plain naam maana gaya aur koi user nahi mila."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "topics": [
+  "cyber.web-vulns-defence"
+ ],
+ "sources": [
+  {
+   "title": "OWASP Top 10 (2025) — fact reference",
+   "url": "https://owasp.org/Top10/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "W3C Content Security Policy Level 3",
+   "url": "https://www.w3.org/TR/CSP3/",
+   "licence": "fact reference"
+  }
+ ]
+}

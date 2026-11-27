@@ -1,0 +1,363 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.careers-pro.02",
+ "level": 3,
+ "classes": [
+  9,
+  10,
+  11,
+  12
+ ],
+ "unit": "careers-pro",
+ "title": {
+  "en": "Build a portfolio and GitHub",
+  "hi": "पोर्टफ़ोलियो और GitHub बनाओ",
+  "hinglish": "Portfolio aur GitHub banao"
+ },
+ "minutes": 13,
+ "xp": 50,
+ "prereq": [
+  "L3.careers-pro.01"
+ ],
+ "outcomes": [
+  {
+   "en": "Choose and present three projects that prove your skills",
+   "hi": "अपने कौशल साबित करने वाली तीन परियोजनाएँ चुनो और दिखाओ",
+   "hinglish": "Apne skills prove karne wale teen projects chuno aur dikhao"
+  },
+  {
+   "en": "Write a clear README",
+   "hi": "स्पष्ट README लिखो",
+   "hinglish": "Clear README likho"
+  },
+  {
+   "en": "Publish safely, without leaking personal data",
+   "hi": "निजी डेटा लीक किए बिना सुरक्षित प्रकाशित करो",
+   "hinglish": "Personal data leak kiye bina safely publish karo"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Portfolio",
+   "hinglish": "Kaam ka sangrah",
+   "en": "A collection of your best work with explanations",
+   "hi": "स्पष्टीकरण के साथ आपके सबसे अच्छे काम का संग्रह"
+  },
+  {
+   "term": "README",
+   "hinglish": "Parichay file",
+   "en": "The front page of a repository: what, why, how to run",
+   "hi": "रिपॉज़िटरी का मुख पृष्ठ: क्या, क्यों, कैसे चलाएँ"
+  },
+  {
+   "term": "GitHub Pages",
+   "hinglish": "Free website",
+   "en": "Free static website hosting from a repository",
+   "hi": "रिपॉज़िटरी से मुफ़्त स्थिर वेबसाइट होस्टिंग"
+  },
+  {
+   "term": "Demo",
+   "hinglish": "Chalta namoona",
+   "en": "A screenshot, GIF, video or live link that shows it working",
+   "hi": "स्क्रीनशॉट, GIF, वीडियो या लाइव लिंक जो चलता दिखाए"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Three strong projects beat thirty half-finished ones.",
+    "hi": "तीन मज़बूत परियोजनाएँ तीस अधूरी से बेहतर।",
+    "hinglish": "Teen mazboot projects tees adhoore se behtar."
+   },
+   "visual": "compare:3 finished|30 half-done",
+   "narration": {
+    "en": "Three strong projects beat thirty half-finished ones.",
+    "hi": "तीन मज़बूत परियोजनाएँ तीस अधूरी से बेहतर।",
+    "hinglish": "Teen mazboot projects tees adhoore se behtar."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Each README: problem, demo, how to run, what you learned, licence.",
+    "hi": "हर README: समस्या, डेमो, कैसे चलाएँ, क्या सीखा, लाइसेंस।",
+    "hinglish": "Har README: problem, demo, kaise chalayein, kya seekha, licence."
+   },
+   "visual": "stack:problem|demo|run|learned",
+   "narration": {
+    "en": "Each README: problem, demo, how to run, what you learned, licence.",
+    "hi": "हर README: समस्या, डेमो, कैसे चलाएँ, क्या सीखा, लाइसेंस।",
+    "hinglish": "Har README: problem, demo, kaise chalayein, kya seekha, licence."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Push to GitHub and switch on Pages for a free https site.",
+    "hi": "GitHub पर पुश करो और मुफ़्त https साइट के लिए Pages चालू करो।",
+    "hinglish": "GitHub par push karo aur free https site ke liye Pages on karo."
+   },
+   "visual": "flow:code|push|Pages|live",
+   "narration": {
+    "en": "Push to GitHub and switch on Pages for a free https site.",
+    "hi": "GitHub पर पुश करो और मुफ़्त https साइट के लिए Pages चालू करो।",
+    "hinglish": "GitHub par push karo aur free https site ke liye Pages on karo."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Never publish your phone number, address or passwords.",
+    "hi": "अपना फ़ोन नंबर, पता या पासवर्ड कभी प्रकाशित मत करो।",
+    "hinglish": "Apna phone number, address ya passwords kabhi publish mat karo."
+   },
+   "visual": "compare:safe contact|personal data",
+   "narration": {
+    "en": "Never publish your phone number, address or passwords.",
+    "hi": "अपना फ़ोन नंबर, पता या पासवर्ड कभी प्रकाशित मत करो।",
+    "hinglish": "Apna phone number, address ya passwords kabhi publish mat karo."
+   }
+  }
+ ],
+ "play": {
+  "lab": "seq-flow",
+  "config": {
+   "scenario": "portfolio-pages"
+  },
+  "goal": {
+   "en": "Publish a portfolio site step by step. Then tick \"Phone number in the README\" and see the privacy warning.",
+   "hi": "पोर्टफ़ोलियो साइट चरण-दर-चरण प्रकाशित करो। फिर \"README में फ़ोन नंबर\" चुनो और निजता चेतावनी देखो।",
+   "hinglish": "Portfolio site step by step publish karo. Phir \"README mein phone number\" tick karo aur privacy warning dekho."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "What makes a portfolio convincing",
+    "hi": "पोर्टफ़ोलियो को विश्वसनीय क्या बनाता है",
+    "hinglish": "Portfolio ko convincing kya banata hai"
+   },
+   "body": {
+    "en": "A reviewer spends about a minute per portfolio, so lead with impact. Pick three projects that show different skills — for example a data project with honest charts, a hardware or IoT build, and an AI project with an evaluation. For each, show the problem in one sentence, a demo picture or short video, the code link, and what you would improve. Projects that solve a real problem for real people (your school, a local shop, a farmer relative) stand out more than copied tutorials. Show your process: commits over weeks, issues you fixed, tests you wrote. If you used AI tools, say how — honesty is a professional skill. Include a licence in each repository so others know how they may reuse it.",
+    "hi": "समीक्षक हर पोर्टफ़ोलियो पर लगभग एक मिनट देता है, इसलिए असर से शुरू करो। अलग कौशल दिखाने वाली तीन परियोजनाएँ चुनो — जैसे ईमानदार चार्ट वाली डेटा परियोजना, हार्डवेयर या आईओटी निर्माण, और मूल्यांकन वाली एआई परियोजना। हर एक के लिए एक वाक्य में समस्या, डेमो चित्र या छोटा वीडियो, कोड लिंक, और क्या सुधारोगे दिखाओ। असली लोगों (आपका स्कूल, स्थानीय दुकान, किसान रिश्तेदार) की असली समस्या हल करने वाली परियोजनाएँ नक़ल किए ट्यूटोरियल से ज़्यादा उभरती हैं। अपनी प्रक्रिया दिखाओ: हफ़्तों के कमिट, सुलझाए मुद्दे, लिखे परीक्षण। एआई टूल इस्तेमाल किए तो बताओ कैसे — ईमानदारी पेशेवर कौशल है। हर रिपॉज़िटरी में लाइसेंस रखो ताकि दूसरे जानें कैसे दोबारा उपयोग कर सकते हैं।",
+    "hinglish": "Reviewer har portfolio par lagbhag ek minute deta hai, isliye impact se shuru karo. Alag skills dikhane wale teen projects chuno — jaise honest charts wala data project, hardware ya IoT build, aur evaluation wala AI project. Har ek ke liye ek sentence mein problem, demo picture ya chhota video, code link, aur kya improve karoge dikhao. Asli logon (tumhara school, local dukaan, kisan rishtedaar) ki asli problem solve karne wale projects copy kiye tutorials se zyada ubharte hain. Apna process dikhao: hafton ke commits, solve kiye issues, likhe tests. AI tools use kiye to batao kaise — imaandaari professional skill hai. Har repository mein licence rakho taaki doosre jaanein kaise reuse kar sakte hain."
+   },
+   "analogy": {
+    "en": "An art exhibition shows a few finished paintings with a label each — not every sketch in your notebook.",
+    "hi": "कला प्रदर्शनी हर एक के लेबल के साथ कुछ पूरी पेंटिंग दिखाती है — कॉपी का हर स्केच नहीं।",
+    "hinglish": "Art exhibition har ek ke label ke saath kuch poori paintings dikhati hai — copy ka har sketch nahi."
+   },
+   "realExample": {
+    "en": "README opening line: \"Soil-moisture alert for my grandfather’s farm — ESP32 + MQTT, cut pump use by about a third over two weeks.\"",
+    "hi": "README की पहली पंक्ति: \"दादाजी के खेत के लिए मिट्टी-नमी अलर्ट — ESP32 + MQTT, दो सप्ताह में पंप का उपयोग लगभग एक-तिहाई घटा।\"",
+    "hinglish": "README ki pehli line: \"Dadaji ke khet ke liye soil-moisture alert — ESP32 + MQTT, do hafte mein pump use lagbhag ek-tihaai ghata.\""
+   }
+  },
+  {
+   "heading": {
+    "en": "Publishing safely",
+    "hi": "सुरक्षित प्रकाशन",
+    "hinglish": "Safely publish karna"
+   },
+   "body": {
+    "en": "GitHub Pages hosts a static site free from a repository at yourname.github.io, over HTTPS. Before you push, check every file: no phone numbers, home address, school ID, passwords or API keys — anything pushed to a public repository can be copied and stays in history. Use a contact form or a professional email instead. If you are under 18, ask a parent before publishing photos of yourself or others, and never publish other students’ data. Check the platform’s minimum age in its terms. Keep your profile professional: a clear bio, pinned projects, and respectful comments — future colleges and employers may read them.",
+    "hi": "GitHub Pages रिपॉज़िटरी से yourname.github.io पर HTTPS के साथ मुफ़्त स्थिर साइट होस्ट करता है। पुश करने से पहले हर फ़ाइल जाँचो: फ़ोन नंबर, घर का पता, स्कूल ID, पासवर्ड या API कुंजी नहीं — सार्वजनिक रिपॉज़िटरी में पुश हुई कोई भी चीज़ नक़ल हो सकती है और इतिहास में रहती है। इसके बजाय संपर्क फ़ॉर्म या पेशेवर ईमेल इस्तेमाल करो। 18 से कम हो तो अपनी या दूसरों की फ़ोटो प्रकाशित करने से पहले माता-पिता से पूछो, और दूसरे छात्रों का डेटा कभी प्रकाशित मत करो। प्लेटफ़ॉर्म की शर्तों में न्यूनतम आयु जाँचो। प्रोफ़ाइल पेशेवर रखो: स्पष्ट परिचय, पिन की गई परियोजनाएँ, और सम्मानजनक टिप्पणियाँ — भविष्य के कॉलेज और नियोक्ता उन्हें पढ़ सकते हैं।",
+    "hinglish": "GitHub Pages repository se yourname.github.io par HTTPS ke saath free static site host karta hai. Push karne se pehle har file check karo: phone number, ghar ka address, school ID, passwords ya API keys nahi — public repository mein push hui koi bhi cheez copy ho sakti hai aur history mein rehti hai. Iske bajaye contact form ya professional email use karo. 18 se kam ho to apni ya doosron ki photos publish karne se pehle parents se poocho, aur doosre students ka data kabhi publish mat karo. Platform ki terms mein minimum age check karo. Profile professional rakho: clear bio, pinned projects, aur respectful comments — future colleges aur employers unhe padh sakte hain."
+   },
+   "analogy": {
+    "en": "A shop window: show your best goods, but keep the safe and the cash box out of sight.",
+    "hi": "दुकान की खिड़की: सबसे अच्छा सामान दिखाओ, पर तिजोरी और नक़दी डिब्बा नज़र से दूर रखो।",
+    "hinglish": "Dukaan ki khidki: sabse achha samaan dikhao, par tijori aur cash box nazar se door rakho."
+   },
+   "realExample": {
+    "en": "Settings → Pages → Deploy from branch: main → your site is live in about a minute.",
+    "hi": "Settings → Pages → Deploy from branch: main → लगभग एक मिनट में साइट चालू।",
+    "hinglish": "Settings → Pages → Deploy from branch: main → lagbhag ek minute mein site live."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write the README for one project you have done (or plan to do) using the five headings: Problem, Demo, How to run, What I learned, Licence. Then check it and your profile against a privacy checklist: no phone, address, school ID or secrets.",
+   "hi": "अपनी किसी परियोजना (या योजना) का README पाँच शीर्षकों से लिखो: समस्या, डेमो, कैसे चलाएँ, क्या सीखा, लाइसेंस। फिर उसे और अपनी प्रोफ़ाइल को निजता सूची से जाँचो: कोई फ़ोन, पता, स्कूल ID या रहस्य नहीं।",
+   "hinglish": "Apne kisi project (ya planned project) ka README paanch headings se likho: Problem, Demo, How to run, What I learned, Licence. Phir use aur apni profile ko privacy checklist se check karo: koi phone, address, school ID ya secrets nahi."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "multi",
+    "prompt": {
+     "en": "What belongs in a good project README?",
+     "hi": "अच्छे परियोजना README में क्या होना चाहिए?",
+     "hinglish": "Achhe project README mein kya hona chahiye?"
+    },
+    "options": [
+     {
+      "en": "The problem it solves",
+      "hi": "वह कौन-सी समस्या हल करती है",
+      "hinglish": "Woh kaunsi problem solve karta hai"
+     },
+     {
+      "en": "A demo screenshot or video",
+      "hi": "डेमो स्क्रीनशॉट या वीडियो",
+      "hinglish": "Demo screenshot ya video"
+     },
+     {
+      "en": "How to run it",
+      "hi": "कैसे चलाएँ",
+      "hinglish": "Kaise chalayein"
+     },
+     {
+      "en": "Your home address",
+      "hi": "आपका घर का पता",
+      "hinglish": "Tumhara ghar ka address"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2
+    ],
+    "explain": {
+     "en": "Never personal details.",
+     "hi": "निजी विवरण कभी नहीं।",
+     "hinglish": "Personal details kabhi nahi."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which portfolio is stronger?",
+     "hi": "कौन-सा पोर्टफ़ोलियो मज़बूत है?",
+     "hinglish": "Kaunsa portfolio mazboot hai?"
+    },
+    "options": [
+     {
+      "en": "Three finished projects with demos and clear READMEs",
+      "hi": "डेमो और स्पष्ट README वाली तीन पूरी परियोजनाएँ",
+      "hinglish": "Demos aur clear READMEs wale teen poore projects"
+     },
+     {
+      "en": "Thirty copied tutorials with no README",
+      "hi": "बिना README के तीस नक़ल किए ट्यूटोरियल",
+      "hinglish": "Bina README ke tees copy kiye tutorials"
+     },
+     {
+      "en": "One repo called \"test\"",
+      "hi": "\"test\" नाम की एक रिपॉज़िटरी",
+      "hinglish": "\"test\" naam ki ek repository"
+     },
+     {
+      "en": "Only certificates",
+      "hi": "केवल प्रमाणपत्र",
+      "hinglish": "Sirf certificates"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Quality and explanation win.",
+     "hi": "गुणवत्ता और स्पष्टीकरण जीतते हैं।",
+     "hinglish": "Quality aur explanation jeet-te hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "You pushed your phone number in a public README. What is true?",
+     "hi": "आपने सार्वजनिक README में फ़ोन नंबर पुश किया। क्या सच है?",
+     "hinglish": "Tumne public README mein phone number push kiya. Kya sach hai?"
+    },
+    "options": [
+     {
+      "en": "It may already be copied and stays in history; remove it and be cautious",
+      "hi": "वह पहले ही नक़ल हो सकता है और इतिहास में रहता है; हटाओ और सावधान रहो",
+      "hinglish": "Woh pehle hi copy ho sakta hai aur history mein rehta hai; hatao aur saavdhaan raho"
+     },
+     {
+      "en": "Deleting the line erases it everywhere",
+      "hi": "पंक्ति मिटाने से हर जगह मिट जाता है",
+      "hinglish": "Line mitaane se har jagah mit jaata hai"
+     },
+     {
+      "en": "Nobody reads GitHub",
+      "hi": "GitHub कोई नहीं पढ़ता",
+      "hinglish": "GitHub koi nahi padhta"
+     },
+     {
+      "en": "It is required",
+      "hi": "यह ज़रूरी है",
+      "hinglish": "Yeh zaroori hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Public means public.",
+     "hi": "सार्वजनिक मतलब सार्वजनिक।",
+     "hinglish": "Public matlab public."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "short",
+    "prompt": {
+     "en": "What is the default GitHub Pages address pattern for a user named asha?",
+     "hi": "asha नाम के उपयोगकर्ता का डिफ़ॉल्ट GitHub Pages पता?",
+     "hinglish": "asha naam ke user ka default GitHub Pages address?"
+    },
+    "answer": {
+     "accept": [
+      "asha.github.io",
+      "https://asha.github.io"
+     ]
+    },
+    "explain": {
+     "en": "username.github.io",
+     "hi": "username.github.io",
+     "hinglish": "username.github.io"
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Publish the portfolio site in the lab.",
+     "hi": "लैब में पोर्टफ़ोलियो साइट प्रकाशित करो।",
+     "hinglish": "Lab mein portfolio site publish karo."
+    },
+    "answer": {
+     "event": "scenario-complete",
+     "scenario": "portfolio-pages"
+    },
+    "explain": {
+     "en": "Files → push → Pages → visitors.",
+     "hi": "फ़ाइलें → पुश → Pages → आगंतुक।",
+     "hinglish": "Files → push → Pages → visitors."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "career.portfolio",
+  "sw.version-control"
+ ],
+ "sources": [
+  {
+   "title": "GitHub Docs — GitHub Pages",
+   "url": "https://docs.github.com/en/pages",
+   "licence": "fact reference"
+  },
+  {
+   "title": "choosealicense.com",
+   "url": "https://choosealicense.com/licenses/",
+   "licence": "fact reference"
+  }
+ ]
+}

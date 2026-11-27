@@ -1,0 +1,333 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.data-science.05",
+ "level": 3,
+ "classes": [
+  10,
+  11,
+  12
+ ],
+ "unit": "data-science",
+ "title": {
+  "en": "Probability and Bayes",
+  "hi": "प्रायिकता और बेयस",
+  "hinglish": "Probability aur Bayes"
+ },
+ "minutes": 15,
+ "xp": 65,
+ "prereq": [
+  "L3.data-science.01"
+ ],
+ "outcomes": [
+  {
+   "en": "Compute simple probabilities and expected frequencies",
+   "hi": "सरल प्रायिकता और अपेक्षित आवृत्तियाँ निकालो",
+   "hinglish": "Simple probabilities aur expected frequencies nikalo"
+  },
+  {
+   "en": "Explain the law of large numbers and the gambler's fallacy",
+   "hi": "बड़ी संख्याओं का नियम और जुआरी की भ्रांति समझाओ",
+   "hinglish": "Law of large numbers aur gambler's fallacy samjhao"
+  },
+  {
+   "en": "Use Bayes' rule with natural frequencies for medical and spam tests",
+   "hi": "चिकित्सा और स्पैम परीक्षणों के लिए प्राकृतिक आवृत्तियों के साथ बेयस नियम लगाओ",
+   "hinglish": "Medical aur spam tests ke liye natural frequencies ke saath Bayes' rule lagao"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Probability",
+   "hinglish": "Sambhavna",
+   "en": "A number from 0 (impossible) to 1 (certain)",
+   "hi": "0 (असंभव) से 1 (निश्चित) तक की संख्या"
+  },
+  {
+   "term": "Independent events",
+   "hinglish": "Ek doosre se azaad",
+   "en": "One outcome does not change the other's chance",
+   "hi": "एक परिणाम दूसरे की संभावना नहीं बदलता"
+  },
+  {
+   "term": "Conditional probability",
+   "hinglish": "Shart ke saath",
+   "en": "P(A | B): the chance of A given B happened",
+   "hi": "P(A | B): B होने पर A की संभावना"
+  },
+  {
+   "term": "Base rate",
+   "hinglish": "Mool dar",
+   "en": "How common something is before any test",
+   "hi": "किसी परीक्षण से पहले कोई चीज़ कितनी आम है"
+  },
+  {
+   "term": "False positive",
+   "hinglish": "Galat alarm",
+   "en": "A test says yes when the truth is no",
+   "hi": "सच नहीं होने पर भी परीक्षण हाँ कहे"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Flip a coin 10 times: you might get 7 heads. Flip 1,000 times: the share settles near 50%.",
+    "hi": "सिक्का 10 बार उछालो: 7 चित आ सकते हैं। 1,000 बार उछालो: हिस्सा 50% के पास टिकता है।",
+    "hinglish": "Coin 10 baar uchhalo: 7 heads aa sakte hain. 1,000 baar uchhalo: share 50% ke paas tikta hai."
+   },
+   "visual": "anim:lln",
+   "narration": {
+    "en": "Flip a coin 10 times: you might get 7 heads. Flip 1,000 times: the share settles near 50%.",
+    "hi": "सिक्का 10 बार उछालो: 7 चित आ सकते हैं। 1,000 बार उछालो: हिस्सा 50% के पास टिकता है।",
+    "hinglish": "Coin 10 baar uchhalo: 7 heads aa sakte hain. 1,000 baar uchhalo: share 50% ke paas tikta hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Two dice: 36 equally likely pairs. Six of them sum to 7, so P(7) = 6/36 = 1/6.",
+    "hi": "दो पासे: 36 बराबर संभावित जोड़े। उनमें छह का योग 7, तो P(7) = 6/36 = 1/6।",
+    "hinglish": "Do dice: 36 barabar likely pairs. Unmein chhe ka sum 7, to P(7) = 6/36 = 1/6."
+   },
+   "visual": "anim:dice-grid",
+   "narration": {
+    "en": "Two dice: 36 equally likely pairs. Six of them sum to 7, so P(7) = 6/36 = 1/6.",
+    "hi": "दो पासे: 36 बराबर संभावित जोड़े। उनमें छह का योग 7, तो P(7) = 6/36 = 1/6।",
+    "hinglish": "Do dice: 36 barabar likely pairs. Unmein chhe ka sum 7, to P(7) = 6/36 = 1/6."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "1,000 people, 1% sick: 10 sick. A 90%-sensitive test catches 9. 5% false alarms among 990 healthy = about 50.",
+    "hi": "1,000 लोग, 1% बीमार: 10 बीमार। 90% संवेदनशील परीक्षण 9 पकड़ता है। 990 स्वस्थ में 5% ग़लत चेतावनी = लगभग 50।",
+    "hinglish": "1,000 log, 1% bimaar: 10 bimaar. 90% sensitive test 9 pakadta hai. 990 swasth mein 5% galat alarm = lagbhag 50."
+   },
+   "visual": "anim:dot-grid",
+   "narration": {
+    "en": "1,000 people, 1% sick: 10 sick. A 90%-sensitive test catches 9. 5% false alarms among 990 healthy = about 50.",
+    "hi": "1,000 लोग, 1% बीमार: 10 बीमार। 90% संवेदनशील परीक्षण 9 पकड़ता है। 990 स्वस्थ में 5% ग़लत चेतावनी = लगभग 50।",
+    "hinglish": "1,000 log, 1% bimaar: 10 bimaar. 90% sensitive test 9 pakadta hai. 990 swasth mein 5% galat alarm = lagbhag 50."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "So a positive result means only 9 out of 59 ≈ 15% chance of being sick. The base rate matters!",
+    "hi": "तो पॉज़िटिव परिणाम का अर्थ सिर्फ़ 59 में 9 ≈ 15% बीमार होने की संभावना। मूल दर मायने रखती है!",
+    "hinglish": "To positive result ka matlab sirf 59 mein 9 ≈ 15% bimaar hone ki sambhavna. Base rate matter karta hai!"
+   },
+   "visual": "anim:ppv",
+   "narration": {
+    "en": "So a positive result means only 9 out of 59 ≈ 15% chance of being sick. The base rate matters!",
+    "hi": "तो पॉज़िटिव परिणाम का अर्थ सिर्फ़ 59 में 9 ≈ 15% बीमार होने की संभावना। मूल दर मायने रखती है!",
+    "hinglish": "To positive result ka matlab sirf 59 mein 9 ≈ 15% bimaar hone ki sambhavna. Base rate matter karta hai!"
+   }
+  }
+ ],
+ "play": {
+  "lab": "data-lab",
+  "config": {
+   "mode": "prob",
+   "sim": "coin",
+   "prevalence": 1
+  },
+  "goal": {
+   "en": "Flip 1,000 coins and watch the share settle. Then move the Bayes sliders: what happens to \"If you test positive\" when the condition becomes common, or the false-alarm rate drops?",
+   "hi": "1,000 सिक्के उछालो और हिस्सा टिकते देखो। फिर बेयस स्लाइडर हिलाओ: जब रोग आम हो जाए, या ग़लत-चेतावनी दर घटे, तो \"पॉज़िटिव आए तो\" का क्या होता है?",
+   "hinglish": "1,000 coins flip karo aur share tikte dekho. Phir Bayes sliders hilao: jab bimaari common ho jaaye, ya false-alarm rate ghate, to \"Positive aaye to\" ka kya hota hai?"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Rules of chance",
+    "hi": "संयोग के नियम",
+    "hinglish": "Chance ke rules"
+   },
+   "body": {
+    "en": "For equally likely outcomes, P(event) = favourable outcomes ÷ all outcomes. P(not A) = 1 − P(A). For independent events multiply: two heads in a row = ½ × ½ = ¼. For \"either/or\" of events that cannot both happen, add. Expected frequency = probability × trials: in 600 dice rolls expect about 100 sixes. The law of large numbers says the observed share approaches the true probability over many trials — but it does not \"correct\" itself: after five heads the next flip is still 50–50. Believing otherwise is the gambler's fallacy, and it is how betting apps and lottery systems keep winning.",
+    "hi": "बराबर संभावित परिणामों के लिए P(घटना) = अनुकूल परिणाम ÷ सभी परिणाम। P(A नहीं) = 1 − P(A)। स्वतंत्र घटनाओं के लिए गुणा करो: लगातार दो चित = ½ × ½ = ¼। एक साथ न हो सकने वाली घटनाओं के \"या\" के लिए जोड़ो। अपेक्षित आवृत्ति = प्रायिकता × प्रयास: 600 बार पासा फेंकने में लगभग 100 छक्के। बड़ी संख्याओं का नियम कहता है देखा हिस्सा कई प्रयासों में असली प्रायिकता के पास जाता है — पर यह ख़ुद को \"सुधारता\" नहीं: पाँच चित के बाद अगला उछाल भी 50–50 है। उल्टा मानना जुआरी की भ्रांति है, और इसी से सट्टेबाज़ी ऐप और लॉटरी जीतते रहते हैं।",
+    "hinglish": "Barabar likely outcomes ke liye P(event) = favourable outcomes ÷ saare outcomes. P(A nahi) = 1 − P(A). Independent events ke liye multiply karo: lagaataar do heads = ½ × ½ = ¼. Ek saath na ho sakne wale events ke \"ya\" ke liye jodo. Expected frequency = probability × trials: 600 dice rolls mein lagbhag 100 sixes. Law of large numbers kehta hai observed share kai trials mein asli probability ke paas jaata hai — par yeh khud ko \"correct\" nahi karta: paanch heads ke baad agla flip bhi 50–50 hai. Ulta maanna gambler's fallacy hai, aur isi se betting apps aur lottery jeet-te rehte hain."
+   },
+   "analogy": {
+    "en": "A coin has no memory and no sense of fairness — only very many flips look fair.",
+    "hi": "सिक्के की न याददाश्त है न न्याय की समझ — सिर्फ़ बहुत सारे उछाल निष्पक्ष दिखते हैं।",
+    "hinglish": "Coin ki na memory hai na fairness ki samajh — sirf bahut saare flips fair dikhte hain."
+   },
+   "realExample": {
+    "en": "Cricket: winning the toss is 50–50 every match, even if a captain has lost five tosses in a row.",
+    "hi": "क्रिकेट: हर मैच में टॉस जीतना 50–50 है, भले कप्तान लगातार पाँच टॉस हारा हो।",
+    "hinglish": "Cricket: har match mein toss jeetna 50–50 hai, bhale captain lagaataar paanch toss haara ho."
+   }
+  },
+  {
+   "heading": {
+    "en": "Bayes' rule without fear",
+    "hi": "बिना डर बेयस नियम",
+    "hinglish": "Bina dar Bayes' rule"
+   },
+   "body": {
+    "en": "Bayes' rule updates a belief with evidence: P(A | B) = P(B | A) × P(A) ÷ P(B). The easiest way to use it is natural frequencies: imagine 1,000 people, split them by the base rate, then by the test's accuracy, and count. With a rare condition (1%), a 90%-sensitive test with 5% false positives gives 9 true positives and about 50 false positives, so P(sick | positive) ≈ 15%. If 20% have the condition, the same test gives 180 true and 40 false positives: ≈ 82%. Spam filters use the same logic word by word (\"lottery\" is far more common in spam), and naive Bayes was one of the first successful machine-learning spam filters.",
+    "hi": "बेयस नियम प्रमाण से विश्वास बदलता है: P(A | B) = P(B | A) × P(A) ÷ P(B)। इसे इस्तेमाल करने का सबसे आसान तरीक़ा प्राकृतिक आवृत्तियाँ हैं: 1,000 लोग सोचो, उन्हें मूल दर से बाँटो, फिर परीक्षण की सटीकता से, और गिनो। दुर्लभ रोग (1%) के साथ, 5% ग़लत पॉज़िटिव वाला 90% संवेदनशील परीक्षण 9 सही पॉज़िटिव और लगभग 50 ग़लत पॉज़िटिव देता है, तो P(बीमार | पॉज़िटिव) ≈ 15%। अगर 20% को रोग हो, वही परीक्षण 180 सही और 40 ग़लत पॉज़िटिव देता है: ≈ 82%। स्पैम फ़िल्टर शब्द-दर-शब्द यही तर्क लगाते हैं (\"lottery\" स्पैम में कहीं ज़्यादा आम है), और नाइव बेयस शुरुआती सफल मशीन-लर्निंग स्पैम फ़िल्टरों में से एक था।",
+    "hinglish": "Bayes' rule evidence se belief update karta hai: P(A | B) = P(B | A) × P(A) ÷ P(B). Ise use karne ka sabse aasaan tareeka natural frequencies hain: 1,000 log socho, unhe base rate se baanto, phir test ki accuracy se, aur gino. Rare condition (1%) ke saath, 5% false positives wala 90%-sensitive test 9 true positives aur lagbhag 50 false positives deta hai, to P(bimaar | positive) ≈ 15%. Agar 20% ko condition ho, wahi test 180 true aur 40 false positives deta hai: ≈ 82%. Spam filters word-by-word yahi logic lagaate hain (\"lottery\" spam mein kahin zyaada common hai), aur naive Bayes pehle successful machine-learning spam filters mein se ek tha."
+   },
+   "analogy": {
+    "en": "A smoke alarm that beeps for toast: in a kitchen most beeps are toast, not fire — the base rate of fires is low.",
+    "hi": "टोस्ट पर बजने वाला धुआँ अलार्म: रसोई में ज़्यादातर बीप टोस्ट के हैं, आग के नहीं — आग की मूल दर कम है।",
+    "hinglish": "Toast par bajne wala smoke alarm: kitchen mein zyaadatar beeps toast ke hain, aag ke nahi — aag ka base rate kam hai."
+   },
+   "realExample": {
+    "en": "Face-recognition at a busy station that is \"99% accurate\" can still flag many innocent people per day when it scans lakhs of faces for a handful of suspects.",
+    "hi": "व्यस्त स्टेशन पर \"99% सटीक\" चेहरा-पहचान भी हर दिन कई निर्दोष लोगों को चिह्नित कर सकती है जब वह मुट्ठी भर संदिग्धों के लिए लाखों चेहरे देखती है।",
+    "hinglish": "Busy station par \"99% accurate\" face-recognition bhi har din kai innocent logon ko flag kar sakti hai jab woh mutthi bhar suspects ke liye lakhs chehre scan karti hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Roll two dice (or use the lab) 100 times and tally the totals. Compare with the theory 1/36, 2/36 … 6/36. Then, using 1,000 imaginary students, work out: 2% cheat, a detector catches 95% of cheaters and wrongly flags 4% of honest students. If flagged, what is the chance a student cheated?",
+   "hi": "दो पासे (या लैब) 100 बार फेंको और योग गिनो। सिद्धांत 1/36, 2/36 … 6/36 से मिलाओ। फिर 1,000 काल्पनिक छात्र लेकर निकालो: 2% नक़ल करते हैं, जाँचक 95% नक़ल करने वालों को पकड़ता है और 4% ईमानदार छात्रों को ग़लती से चिह्नित करता है। चिह्नित होने पर छात्र ने नक़ल की होने की संभावना क्या है?",
+   "hinglish": "Do dice (ya lab) 100 baar roll karo aur totals gino. Theory 1/36, 2/36 … 6/36 se milao. Phir 1,000 kalpanik students lekar nikalo: 2% cheat karte hain, detector 95% cheaters pakadta hai aur 4% imaandaar students ko galti se flag karta hai. Flag hone par student ne cheat kiya hone ki sambhavna kya hai?"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "short",
+    "prompt": {
+     "en": "P(sum = 7) with two fair dice, as a fraction?",
+     "hi": "दो निष्पक्ष पासों से P(योग = 7), भिन्न में?",
+     "hinglish": "Do fair dice se P(sum = 7), fraction mein?"
+    },
+    "answer": {
+     "accept": [
+      "1/6",
+      "6/36"
+     ]
+    },
+    "explain": {
+     "en": "(1,6) (2,5) (3,4) (4,3) (5,2) (6,1): 6 of 36.",
+     "hi": "(1,6) (2,5) (3,4) (4,3) (5,2) (6,1): 36 में 6।",
+     "hinglish": "(1,6) (2,5) (3,4) (4,3) (5,2) (6,1): 36 mein 6."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "After 5 heads in a row, the next fair flip is…",
+     "hi": "लगातार 5 चित के बाद अगला निष्पक्ष उछाल…",
+     "hinglish": "Lagaataar 5 heads ke baad agla fair flip…"
+    },
+    "options": [
+     {
+      "en": "Still 50% heads",
+      "hi": "फिर भी 50% चित",
+      "hinglish": "Phir bhi 50% heads"
+     },
+     {
+      "en": "More likely tails",
+      "hi": "पट की संभावना ज़्यादा",
+      "hinglish": "Tails zyaada likely"
+     },
+     {
+      "en": "More likely heads",
+      "hi": "चित की संभावना ज़्यादा",
+      "hinglish": "Heads zyaada likely"
+     },
+     {
+      "en": "Impossible to know",
+      "hi": "जानना असंभव",
+      "hinglish": "Jaanna impossible"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Independent events: the gambler's fallacy is believing otherwise.",
+     "hi": "स्वतंत्र घटनाएँ: उल्टा मानना जुआरी की भ्रांति है।",
+     "hinglish": "Independent events: ulta maanna gambler's fallacy hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "1% have a condition; test: 90% sensitivity, 5% false positives. P(sick | positive) is about…",
+     "hi": "1% को रोग; परीक्षण: 90% संवेदनशीलता, 5% ग़लत पॉज़िटिव। P(बीमार | पॉज़िटिव) लगभग…",
+     "hinglish": "1% ko condition; test: 90% sensitivity, 5% false positives. P(bimaar | positive) lagbhag…"
+    },
+    "options": [
+     "90%",
+     "50%",
+     "15%",
+     "1%"
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "9 true positives vs ~50 false positives: 9/59.",
+     "hi": "9 सही पॉज़िटिव बनाम ~50 ग़लत: 9/59।",
+     "hinglish": "9 true positives vs ~50 false: 9/59."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q4",
+    "type": "short",
+    "prompt": {
+     "en": "Cheating detector task: 2% of 1,000 cheat, 95% caught, 4% of honest wrongly flagged. P(cheated | flagged) to the nearest %?",
+     "hi": "नक़ल जाँचक: 1,000 में 2% नक़ल, 95% पकड़े, 4% ईमानदार ग़लती से चिह्नित। P(नक़ल | चिह्नित) निकटतम % में?",
+     "hinglish": "Cheating detector: 1,000 mein 2% cheat, 95% pakde, 4% imaandaar galti se flag. P(cheated | flagged) nearest % mein?"
+    },
+    "answer": {
+     "accept": [
+      "33",
+      "33%",
+      "32",
+      "32%"
+     ]
+    },
+    "explain": {
+     "en": "20 cheat → 19 flagged; 980 honest → about 39 flagged; 19 / 58 ≈ 33%.",
+     "hi": "20 नक़ल → 19 चिह्नित; 980 ईमानदार → लगभग 39 चिह्नित; 19 / 58 ≈ 33%।",
+     "hinglish": "20 cheat → 19 flagged; 980 imaandaar → lagbhag 39 flagged; 19 / 58 ≈ 33%."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Change the Bayes sliders and read the new answer.",
+     "hi": "बेयस स्लाइडर बदलकर नया उत्तर पढ़ो।",
+     "hinglish": "Bayes sliders badalkar naya answer padho."
+    },
+    "answer": {
+     "event": "bayes-computed"
+    },
+    "explain": {
+     "en": "Base rates rule.",
+     "hi": "मूल दर ही राजा है।",
+     "hinglish": "Base rate hi raja hai."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "ds.probability"
+ ],
+ "sources": [
+  {
+   "title": "OpenIntro Statistics, 4th ed. (CC BY-SA; used as a fact reference)",
+   "url": "https://www.openintro.org/book/os/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Gigerenzer & Hoffrage (1995) How to improve Bayesian reasoning without instruction: frequency formats, Psychological Review 102(4)",
+   "url": "https://doi.org/10.1037/0033-295X.102.4.684",
+   "licence": "fact reference"
+  }
+ ]
+}

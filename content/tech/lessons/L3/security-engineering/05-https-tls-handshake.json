@@ -1,0 +1,390 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.security-engineering.05",
+ "level": 3,
+ "classes": [
+  10,
+  11,
+  12
+ ],
+ "unit": "security-engineering",
+ "title": {
+  "en": "The HTTPS/TLS handshake",
+  "hi": "HTTPS/TLS हैंडशेक",
+  "hinglish": "HTTPS/TLS handshake"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [
+  "L3.security-engineering.04"
+ ],
+ "outcomes": [
+  {
+   "en": "Walk through the TLS 1.3 handshake step by step",
+   "hi": "TLS 1.3 हैंडशेक चरण-दर-चरण समझो",
+   "hinglish": "TLS 1.3 handshake step-by-step samjho"
+  },
+  {
+   "en": "Explain certificates, certificate authorities and the chain of trust",
+   "hi": "प्रमाणपत्र, प्रमाणन प्राधिकरण और भरोसे की श्रृंखला समझाओ",
+   "hinglish": "Certificates, certificate authorities aur chain of trust samjhao"
+  },
+  {
+   "en": "Read the padlock correctly: what HTTPS does and does not prove",
+   "hi": "पैडलॉक सही पढ़ो: HTTPS क्या साबित करता है और क्या नहीं",
+   "hinglish": "Padlock sahi padho: HTTPS kya prove karta hai aur kya nahi"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "TLS",
+   "hinglish": "Web ki surakshit parat",
+   "en": "Transport Layer Security: encrypts and authenticates connections (HTTPS = HTTP over TLS)",
+   "hi": "ट्रांसपोर्ट लेयर सिक्योरिटी: कनेक्शन एन्क्रिप्ट और प्रमाणित करती है (HTTPS = TLS पर HTTP)"
+  },
+  {
+   "term": "Certificate",
+   "hinglish": "Website ka digital ID card",
+   "en": "Signed file binding a domain name to a public key",
+   "hi": "डोमेन नाम को सार्वजनिक कुंजी से जोड़ने वाली हस्ताक्षरित फ़ाइल"
+  },
+  {
+   "term": "Certificate authority (CA)",
+   "hinglish": "ID card jaari karne wala",
+   "en": "Trusted organisation that checks domain control and signs certificates",
+   "hi": "डोमेन नियंत्रण जाँचकर प्रमाणपत्र पर हस्ताक्षर करने वाली भरोसेमंद संस्था"
+  },
+  {
+   "term": "Forward secrecy",
+   "hinglish": "Purani baatein surakshit",
+   "en": "Fresh keys per session, so a stolen server key cannot decrypt old traffic",
+   "hi": "हर सत्र की नई कुंजी, ताकि चोरी हुई सर्वर कुंजी पुराना ट्रैफ़िक न खोल सके"
+  },
+  {
+   "term": "Man-in-the-middle",
+   "hinglish": "Beech mein chhupa hamlavar",
+   "en": "An attacker who secretly relays and reads traffic between two parties",
+   "hi": "दो पक्षों के बीच चुपके से ट्रैफ़िक पढ़ने-भेजने वाला हमलावर"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "ClientHello: the browser sends supported ciphers and its key share (an ECDHE public value) right away.",
+    "hi": "ClientHello: ब्राउज़र समर्थित सिफ़र और अपना कुंजी हिस्सा (ECDHE सार्वजनिक मान) तुरंत भेजता है।",
+    "hinglish": "ClientHello: browser supported ciphers aur apna key share (ECDHE public value) turant bhejta hai."
+   },
+   "visual": "anim:tls-hello",
+   "narration": {
+    "en": "ClientHello: the browser sends supported ciphers and its key share (an ECDHE public value) right away.",
+    "hi": "ClientHello: ब्राउज़र समर्थित सिफ़र और अपना कुंजी हिस्सा (ECDHE सार्वजनिक मान) तुरंत भेजता है।",
+    "hinglish": "ClientHello: browser supported ciphers aur apna key share (ECDHE public value) turant bhejta hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "ServerHello: the server picks a cipher, sends its key share, and both compute the same session key. Everything after is encrypted.",
+    "hi": "ServerHello: सर्वर सिफ़र चुनता है, अपना कुंजी हिस्सा भेजता है, और दोनों एक ही सत्र कुंजी निकालते हैं। उसके बाद सब एन्क्रिप्टेड।",
+    "hinglish": "ServerHello: server cipher chunta hai, apna key share bhejta hai, aur dono same session key nikaalte hain. Uske baad sab encrypted."
+   },
+   "visual": "anim:tls-keys",
+   "narration": {
+    "en": "ServerHello: the server picks a cipher, sends its key share, and both compute the same session key. Everything after is encrypted.",
+    "hi": "ServerHello: सर्वर सिफ़र चुनता है, अपना कुंजी हिस्सा भेजता है, और दोनों एक ही सत्र कुंजी निकालते हैं। उसके बाद सब एन्क्रिप्टेड।",
+    "hinglish": "ServerHello: server cipher chunta hai, apna key share bhejta hai, aur dono same session key nikaalte hain. Uske baad sab encrypted."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "The server sends its certificate and signs the handshake with its private key. The browser checks the CA chain, the name and the dates.",
+    "hi": "सर्वर अपना प्रमाणपत्र भेजता है और निजी कुंजी से हैंडशेक पर हस्ताक्षर करता है। ब्राउज़र CA श्रृंखला, नाम और तारीख़ें जाँचता है।",
+    "hinglish": "Server apna certificate bhejta hai aur private key se handshake sign karta hai. Browser CA chain, naam aur dates check karta hai."
+   },
+   "visual": "anim:cert-chain",
+   "narration": {
+    "en": "The server sends its certificate and signs the handshake with its private key. The browser checks the CA chain, the name and the dates.",
+    "hi": "सर्वर अपना प्रमाणपत्र भेजता है और निजी कुंजी से हैंडशेक पर हस्ताक्षर करता है। ब्राउज़र CA श्रृंखला, नाम और तारीख़ें जाँचता है।",
+    "hinglish": "Server apna certificate bhejta hai aur private key se handshake sign karta hai. Browser CA chain, naam aur dates check karta hai."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Finished messages confirm nobody tampered. Total: one round trip (1-RTT) before the first encrypted request.",
+    "hi": "Finished संदेश पुष्टि करते हैं कि किसी ने छेड़छाड़ नहीं की। कुल: पहले एन्क्रिप्टेड अनुरोध से पहले एक राउंड ट्रिप (1-RTT)।",
+    "hinglish": "Finished messages confirm karte hain ki kisi ne tamper nahi kiya. Total: pehli encrypted request se pehle ek round trip (1-RTT)."
+   },
+   "visual": "anim:tls-finished",
+   "narration": {
+    "en": "Finished messages confirm nobody tampered. Total: one round trip (1-RTT) before the first encrypted request.",
+    "hi": "Finished संदेश पुष्टि करते हैं कि किसी ने छेड़छाड़ नहीं की। कुल: पहले एन्क्रिप्टेड अनुरोध से पहले एक राउंड ट्रिप (1-RTT)।",
+    "hinglish": "Finished messages confirm karte hain ki kisi ne tamper nahi kiya. Total: pehli encrypted request se pehle ek round trip (1-RTT)."
+   }
+  }
+ ],
+ "play": {
+  "lab": "crypto-lab",
+  "config": {
+   "mode": "tls"
+  },
+  "goal": {
+   "en": "Walk through all TLS 1.3 steps and match each one to what you learned: key exchange, symmetric encryption, hashes and signatures.",
+   "hi": "TLS 1.3 के सभी चरण चलाओ और हर एक को सीखी चीज़ से मिलाओ: कुंजी विनिमय, सममित एन्क्रिप्शन, हैश और हस्ताक्षर।",
+   "hinglish": "TLS 1.3 ke saare steps chalao aur har ek ko seekhi cheez se milao: key exchange, symmetric encryption, hashes aur signatures."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Chain of trust",
+    "hi": "भरोसे की श्रृंखला",
+    "hinglish": "Chain of trust"
+   },
+   "body": {
+    "en": "Your phone ships with about 100–150 trusted root CA certificates. A root signs an intermediate CA, which signs the site's certificate. The browser checks each signature up to a trusted root, that the name matches (SAN field), and that it has not expired or been revoked. Certificate Transparency logs publish every issued certificate so mis-issuance is spotted. Lifetimes are shrinking: the CA/Browser Forum agreed in 2025 to cut the maximum from 398 days to 200 days (March 2026), 100 days (2027) and 47 days (2029), so automation (ACME, as used by Let's Encrypt) is essential.",
+    "hi": "आपके फ़ोन में लगभग 100–150 भरोसेमंद रूट CA प्रमाणपत्र आते हैं। रूट एक मध्यवर्ती CA पर हस्ताक्षर करता है, जो साइट के प्रमाणपत्र पर करता है। ब्राउज़र हर हस्ताक्षर भरोसेमंद रूट तक जाँचता है, नाम मिलता है (SAN फ़ील्ड), और वह समाप्त या रद्द नहीं हुआ। सर्टिफ़िकेट ट्रांसपेरेंसी लॉग हर जारी प्रमाणपत्र छापते हैं ताकि ग़लत जारी होना पकड़ा जाए। अवधि घट रही है: CA/Browser Forum ने 2025 में अधिकतम 398 दिन से घटाकर 200 दिन (मार्च 2026), 100 दिन (2027) और 47 दिन (2029) करने पर सहमति दी, इसलिए स्वचालन (ACME, जैसा Let's Encrypt करता है) ज़रूरी है।",
+    "hinglish": "Tumhare phone mein lagbhag 100–150 trusted root CA certificates aate hain. Root ek intermediate CA ko sign karta hai, jo site ke certificate ko sign karta hai. Browser har signature trusted root tak check karta hai, naam match karta hai (SAN field), aur woh expire ya revoke nahi hua. Certificate Transparency logs har issued certificate publish karte hain taaki galat issue pakda jaaye. Lifetime ghat rahi hai: CA/Browser Forum ne 2025 mein maximum 398 din se ghatakar 200 din (March 2026), 100 din (2027) aur 47 din (2029) karne par sehmati di, isliye automation (ACME, jaisa Let's Encrypt karta hai) zaroori hai."
+   },
+   "analogy": {
+    "en": "Like a passport: the government (root) authorises the passport office (intermediate), which issues your passport (certificate); immigration checks the chain.",
+    "hi": "पासपोर्ट जैसा: सरकार (रूट) पासपोर्ट कार्यालय (मध्यवर्ती) को अधिकृत करती है, जो आपका पासपोर्ट (प्रमाणपत्र) जारी करता है; आव्रजन श्रृंखला जाँचता है।",
+    "hinglish": "Passport jaisa: sarkar (root) passport office (intermediate) ko authorise karti hai, jo tumhara passport (certificate) jaari karta hai; immigration chain check karta hai."
+   },
+   "realExample": {
+    "en": "If a café Wi-Fi tries a man-in-the-middle with its own certificate, your browser shows a full-page warning. Never click \"proceed anyway\" on a banking site.",
+    "hi": "अगर कैफ़े वाई-फ़ाई अपने प्रमाणपत्र से बीच में घुसने की कोशिश करे, ब्राउज़र पूरे पेज की चेतावनी दिखाता है। बैंक साइट पर कभी \"फिर भी आगे बढ़ो\" न दबाओ।",
+    "hinglish": "Agar cafe Wi-Fi apne certificate se man-in-the-middle try kare, browser poore page ki warning dikhata hai. Banking site par kabhi \"proceed anyway\" mat dabao."
+   }
+  },
+  {
+   "heading": {
+    "en": "What the padlock does NOT mean",
+    "hi": "पैडलॉक का क्या मतलब नहीं",
+    "hinglish": "Padlock ka kya matlab NAHI"
+   },
+   "body": {
+    "en": "HTTPS proves the connection is encrypted and you are talking to whoever controls that domain name. It does not prove the site is honest. Phishing sites get free certificates too, so \"sbi-kyc-update.in\" can show a padlock. Always check the exact domain, and type known addresses yourself. TLS 1.3 (RFC 8446, 2018) removed old weak options, always uses forward secrecy, and encrypts more of the handshake than TLS 1.2.",
+    "hi": "HTTPS साबित करता है कि कनेक्शन एन्क्रिप्टेड है और आप उस डोमेन नाम के नियंत्रक से बात कर रहे हो। यह साबित नहीं करता कि साइट ईमानदार है। फ़िशिंग साइटों को भी मुफ़्त प्रमाणपत्र मिलते हैं, तो \"sbi-kyc-update.in\" भी पैडलॉक दिखा सकती है। हमेशा सटीक डोमेन जाँचो, और जाने-पहचाने पते ख़ुद टाइप करो। TLS 1.3 (RFC 8446, 2018) ने पुराने कमज़ोर विकल्प हटाए, हमेशा फ़ॉरवर्ड सीक्रेसी इस्तेमाल करता है, और TLS 1.2 से ज़्यादा हैंडशेक एन्क्रिप्ट करता है।",
+    "hinglish": "HTTPS prove karta hai ki connection encrypted hai aur tum us domain name ke controller se baat kar rahe ho. Yeh prove nahi karta ki site imaandaar hai. Phishing sites ko bhi free certificates milte hain, to \"sbi-kyc-update.in\" bhi padlock dikha sakti hai. Hamesha exact domain check karo, aur jaane-pehchaane address khud type karo. TLS 1.3 (RFC 8446, 2018) ne purane weak options hataye, hamesha forward secrecy use karta hai, aur TLS 1.2 se zyaada handshake encrypt karta hai."
+   },
+   "analogy": {
+    "en": "A sealed envelope keeps the letter private, but a scammer can also seal an envelope.",
+    "hi": "मोहरबंद लिफ़ाफ़ा चिट्ठी निजी रखता है, पर ठग भी लिफ़ाफ़ा मोहरबंद कर सकता है।",
+    "hinglish": "Sealed envelope chitthi private rakhta hai, par scammer bhi envelope seal kar sakta hai."
+   },
+   "realExample": {
+    "en": "Under RBI rules from 2025, Indian banks are moving their websites to the .bank.in domain, which only verified banks can register — a \"bank\" link on any other domain deserves suspicion.",
+    "hi": "2025 से RBI नियमों के तहत भारतीय बैंक अपनी वेबसाइटें .bank.in डोमेन पर ला रहे हैं, जिसे सिर्फ़ सत्यापित बैंक पंजीकृत कर सकते हैं — किसी और डोमेन पर \"बैंक\" लिंक संदिग्ध है।",
+    "hinglish": "2025 se RBI rules ke tahat Indian banks apni websites .bank.in domain par la rahe hain, jise sirf verified banks register kar sakte hain — kisi aur domain par \"bank\" link suspicious hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Open three sites you use. Tap the padlock and note: who issued the certificate, when it expires, and whether the domain is exactly right.",
+   "hi": "तीन साइटें खोलो जो आप इस्तेमाल करते हो। पैडलॉक टैप करो और लिखो: प्रमाणपत्र किसने जारी किया, कब समाप्त होगा, और डोमेन बिल्कुल सही है या नहीं।",
+   "hinglish": "Teen sites kholo jo tum use karte ho. Padlock tap karo aur note karo: certificate kisne jaari kiya, kab expire hoga, aur domain bilkul sahi hai ya nahi."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "order",
+    "prompt": {
+     "en": "Order the TLS 1.3 handshake.",
+     "hi": "TLS 1.3 हैंडशेक क्रम में लगाओ।",
+     "hinglish": "TLS 1.3 handshake order mein lagao."
+    },
+    "options": [
+     {
+      "en": "ClientHello + key share",
+      "hi": "ClientHello + कुंजी हिस्सा",
+      "hinglish": "ClientHello + key share"
+     },
+     {
+      "en": "ServerHello + key share",
+      "hi": "ServerHello + कुंजी हिस्सा",
+      "hinglish": "ServerHello + key share"
+     },
+     {
+      "en": "Certificate + signature",
+      "hi": "प्रमाणपत्र + हस्ताक्षर",
+      "hinglish": "Certificate + signature"
+     },
+     {
+      "en": "Finished",
+      "hi": "Finished",
+      "hinglish": "Finished"
+     },
+     {
+      "en": "Encrypted HTTP request",
+      "hi": "एन्क्रिप्टेड HTTP अनुरोध",
+      "hinglish": "Encrypted HTTP request"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ],
+    "explain": {
+     "en": "Keys first, then identity, then confirmation, then data.",
+     "hi": "पहले कुंजियाँ, फिर पहचान, फिर पुष्टि, फिर डेटा।",
+     "hinglish": "Pehle keys, phir identity, phir confirmation, phir data."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "A phishing site shows a padlock. What does that prove?",
+     "hi": "फ़िशिंग साइट पैडलॉक दिखाती है। इससे क्या साबित होता है?",
+     "hinglish": "Phishing site padlock dikhati hai. Isse kya prove hota hai?"
+    },
+    "options": [
+     {
+      "en": "The site is safe",
+      "hi": "साइट सुरक्षित है",
+      "hinglish": "Site safe hai"
+     },
+     {
+      "en": "Only that the connection to that domain is encrypted",
+      "hi": "सिर्फ़ इतना कि उस डोमेन से कनेक्शन एन्क्रिप्टेड है",
+      "hinglish": "Sirf itna ki us domain se connection encrypted hai"
+     },
+     {
+      "en": "The bank approved it",
+      "hi": "बैंक ने मंज़ूरी दी",
+      "hinglish": "Bank ne approve kiya"
+     },
+     {
+      "en": "The government checked it",
+      "hi": "सरकार ने जाँचा",
+      "hinglish": "Sarkar ne check kiya"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Check the domain name, not just the padlock.",
+     "hi": "सिर्फ़ पैडलॉक नहीं, डोमेन नाम जाँचो।",
+     "hinglish": "Sirf padlock nahi, domain name check karo."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "What does forward secrecy protect?",
+     "hi": "फ़ॉरवर्ड सीक्रेसी क्या बचाती है?",
+     "hinglish": "Forward secrecy kya bachati hai?"
+    },
+    "options": [
+     {
+      "en": "Past sessions, even if the server key is stolen later",
+      "hi": "पिछले सत्र, भले बाद में सर्वर कुंजी चोरी हो",
+      "hinglish": "Pichhle sessions, bhale baad mein server key chori ho"
+     },
+     {
+      "en": "Your password",
+      "hi": "आपका पासवर्ड",
+      "hinglish": "Tumhara password"
+     },
+     {
+      "en": "The website design",
+      "hi": "वेबसाइट डिज़ाइन",
+      "hinglish": "Website design"
+     },
+     {
+      "en": "Battery life",
+      "hi": "बैटरी",
+      "hinglish": "Battery"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Each session uses fresh ECDHE keys that are thrown away.",
+     "hi": "हर सत्र नई ECDHE कुंजियाँ इस्तेमाल करता है जो फेंक दी जाती हैं।",
+     "hinglish": "Har session nayi ECDHE keys use karta hai jo phenk di jaati hain."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Who signs a website's certificate?",
+     "hi": "वेबसाइट के प्रमाणपत्र पर कौन हस्ताक्षर करता है?",
+     "hinglish": "Website ke certificate ko kaun sign karta hai?"
+    },
+    "options": [
+     {
+      "en": "A certificate authority",
+      "hi": "प्रमाणन प्राधिकरण",
+      "hinglish": "Certificate authority"
+     },
+     {
+      "en": "The browser",
+      "hi": "ब्राउज़र",
+      "hinglish": "Browser"
+     },
+     {
+      "en": "Your ISP",
+      "hi": "आपका ISP",
+      "hinglish": "Tumhara ISP"
+     },
+     {
+      "en": "The user",
+      "hi": "उपयोगकर्ता",
+      "hinglish": "User"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Browsers trust a set of root CAs and chains from them.",
+     "hi": "ब्राउज़र कुछ रूट CA और उनसे निकली श्रृंखलाओं पर भरोसा करते हैं।",
+     "hinglish": "Browsers kuch root CAs aur unse nikli chains par bharosa karte hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Finish the TLS walkthrough in the crypto lab.",
+     "hi": "क्रिप्टो प्रयोगशाला में TLS walkthrough पूरा करो।",
+     "hinglish": "Crypto lab mein TLS walkthrough poora karo."
+    },
+    "answer": {
+     "event": "tls-walkthrough"
+    },
+    "explain": {
+     "en": "You saw key exchange, AEAD encryption, hashing and signatures working together.",
+     "hi": "आपने कुंजी विनिमय, AEAD एन्क्रिप्शन, हैशिंग और हस्ताक्षर साथ काम करते देखे।",
+     "hinglish": "Tumne key exchange, AEAD encryption, hashing aur signatures saath kaam karte dekhe."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "topics": [
+  "cyber.https-padlock"
+ ],
+ "sources": [
+  {
+   "title": "RFC 8446 TLS 1.3",
+   "url": "https://www.rfc-editor.org/rfc/rfc8446",
+   "licence": "fact reference"
+  },
+  {
+   "title": "CA/Browser Forum Ballot SC-081 (2025)",
+   "url": "https://cabforum.org/",
+   "licence": "fact reference"
+  }
+ ]
+}

@@ -1,0 +1,373 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.llms.02",
+ "level": 3,
+ "classes": [
+  11,
+  12
+ ],
+ "unit": "llms",
+ "title": {
+  "en": "Transformers and attention",
+  "hi": "ट्रांसफ़ॉर्मर और अटेंशन",
+  "hinglish": "Transformers aur attention"
+ },
+ "minutes": 15,
+ "xp": 60,
+ "prereq": [
+  "L3.llms.01"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain self-attention with queries, keys and values",
+   "hinglish": "Queries, keys aur values ke saath self-attention samjhao",
+   "hi": "क्वेरी, की और वैल्यू से सेल्फ़-अटेंशन समझाना"
+  },
+  {
+   "en": "Read an attention heatmap",
+   "hinglish": "Attention heatmap padho",
+   "hi": "अटेंशन हीटमैप पढ़ना"
+  },
+  {
+   "en": "Describe a transformer block and why it trains in parallel",
+   "hinglish": "Transformer block samjhao aur yeh parallel kyun train hota hai",
+   "hi": "ट्रांसफ़ॉर्मर ब्लॉक का वर्णन और वह समानांतर में क्यों प्रशिक्षित होता है"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Attention",
+   "hinglish": "Har word ka doosre words par dhyaan",
+   "en": "Weighting other tokens by relevance when building a token's meaning",
+   "hi": "किसी टोकन का अर्थ बनाते समय दूसरे टोकनों को प्रासंगिकता से भार देना"
+  },
+  {
+   "term": "Query, Key, Value",
+   "hinglish": "Sawaal, label, aur asli jaankari",
+   "en": "Vectors each token makes: what it seeks, what it offers, what it passes on",
+   "hi": "हर टोकन के सदिश: वह क्या खोजता है, क्या देता है, क्या आगे भेजता है"
+  },
+  {
+   "term": "Softmax",
+   "hinglish": "Scores ko 1 tak judne wali probabilities mein badalna",
+   "en": "Turns scores into positive weights summing to 1",
+   "hi": "अंकों को ऐसे धनात्मक भारों में बदलता है जिनका योग 1 हो"
+  },
+  {
+   "term": "Multi-head attention",
+   "hinglish": "Kai alag nazariyon se ek saath dhyaan",
+   "en": "Several attention patterns computed in parallel",
+   "hi": "कई अटेंशन पैटर्न समानांतर में"
+  },
+  {
+   "term": "Positional encoding",
+   "hinglish": "Word kis jagah hai, yeh batana",
+   "en": "Information about token order added to embeddings",
+   "hi": "एम्बेडिंग में जोड़ी गई टोकन-क्रम की जानकारी"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "\"The animal didn't cross the road because it was tired.\" What does \"it\" mean? Attention lets \"it\" look back at every word.",
+    "hi": "\"जानवर सड़क पार नहीं कर पाया क्योंकि वह थका था।\" \"वह\" का मतलब क्या? अटेंशन \"वह\" को हर शब्द पर पीछे देखने देता है।",
+    "hinglish": "\"The animal didn't cross the road because it was tired.\" \"It\" ka matlab kya? Attention \"it\" ko har word par peeche dekhne deta hai."
+   },
+   "visual": "anim:attention-it",
+   "narration": {
+    "en": "\"The animal didn't cross the road because it was tired.\" What does \"it\" mean? Attention lets \"it\" look back at every word.",
+    "hi": "\"जानवर सड़क पार नहीं कर पाया क्योंकि वह थका था।\" \"वह\" का मतलब क्या? अटेंशन \"वह\" को हर शब्द पर पीछे देखने देता है।",
+    "hinglish": "\"The animal didn't cross the road because it was tired.\" \"It\" ka matlab kya? Attention \"it\" ko har word par peeche dekhne deta hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Each token makes a query (\"what am I looking for?\") and a key (\"what do I contain?\"). Query · key gives a match score.",
+    "hi": "हर टोकन एक क्वेरी (\"मैं क्या ढूँढ रहा हूँ?\") और एक की (\"मुझमें क्या है?\") बनाता है। क्वेरी · की से मेल स्कोर मिलता है।",
+    "hinglish": "Har token ek query (\"main kya dhoondh raha hoon?\") aur ek key (\"mujhmein kya hai?\") banata hai. Query · key se match score milta hai."
+   },
+   "visual": "anim:qk-dot",
+   "narration": {
+    "en": "Each token makes a query (\"what am I looking for?\") and a key (\"what do I contain?\"). Query · key gives a match score.",
+    "hi": "हर टोकन एक क्वेरी (\"मैं क्या ढूँढ रहा हूँ?\") और एक की (\"मुझमें क्या है?\") बनाता है। क्वेरी · की से मेल स्कोर मिलता है।",
+    "hinglish": "Har token ek query (\"main kya dhoondh raha hoon?\") aur ek key (\"mujhmein kya hai?\") banata hai. Query · key se match score milta hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Softmax turns scores into weights; the token's new meaning is the weighted mix of all values. The heatmap shows \"it\" attending strongly to \"animal\".",
+    "hi": "सॉफ़्टमैक्स स्कोर को भार में बदलता है; टोकन का नया अर्थ सभी वैल्यू का भारित मिश्रण है। हीटमैप दिखाता है \"it\" ज़ोर से \"animal\" पर ध्यान देता है।",
+    "hinglish": "Softmax scores ko weights banata hai; token ka naya matlab saari values ka weighted mix hai. Heatmap dikhata hai \"it\" zor se \"animal\" par dhyaan deta hai."
+   },
+   "visual": "anim:attention-heatmap",
+   "narration": {
+    "en": "Softmax turns scores into weights; the token's new meaning is the weighted mix of all values. The heatmap shows \"it\" attending strongly to \"animal\".",
+    "hi": "सॉफ़्टमैक्स स्कोर को भार में बदलता है; टोकन का नया अर्थ सभी वैल्यू का भारित मिश्रण है। हीटमैप दिखाता है \"it\" ज़ोर से \"animal\" पर ध्यान देता है।",
+    "hinglish": "Softmax scores ko weights banata hai; token ka naya matlab saari values ka weighted mix hai. Heatmap dikhata hai \"it\" zor se \"animal\" par dhyaan deta hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "tokenizer-attention",
+  "config": {
+   "view": "attention",
+   "text": "The animal did not cross the road because it was tired",
+   "heads": 2
+  },
+  "goal": {
+   "en": "Tap each word to see where it attends. Switch heads: one head links pronouns to nouns, another links each word to its neighbours.",
+   "hinglish": "Har word tap karke dekho woh kahan dhyaan deta hai. Heads badlo: ek head pronoun ko noun se jodta hai, doosra har word ko padosi se.",
+   "hi": "हर शब्द दबाकर देखो वह कहाँ ध्यान देता है। हेड बदलो: एक हेड सर्वनाम को संज्ञा से जोड़ता है, दूसरा हर शब्द को पड़ोसियों से।"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Self-attention step by step",
+    "hi": "सेल्फ़-अटेंशन कदम दर कदम",
+    "hinglish": "Self-attention step by step"
+   },
+   "body": {
+    "en": "Each token embedding x is multiplied by three learned matrices to make a query q, key k and value v. For token i, the score with every token j is qᵢ·kⱼ / √d (d is the vector size; dividing keeps numbers stable). Softmax turns the scores into weights that add to 1. The output for token i is Σ weightᵢⱼ·vⱼ, a blend of information from the tokens that matter most to it. In a language model a causal mask stops a token from looking at future tokens. Multi-head attention runs, for example, 32 of these in parallel, each free to learn a different relationship (grammar, coreference, nearby words). The whole formula is Attention(Q, K, V) = softmax(QKᵀ/√d)·V.",
+    "hi": "हर टोकन एम्बेडिंग x को तीन सीखे गए मैट्रिक्स से गुणा कर क्वेरी q, की k और वैल्यू v बनते हैं। टोकन i के लिए हर टोकन j के साथ स्कोर qᵢ·kⱼ / √d है (d वेक्टर का आकार; भाग देने से संख्याएँ स्थिर रहती हैं)। सॉफ़्टमैक्स स्कोर को 1 तक जुड़ने वाले भार बनाता है। टोकन i का आउटपुट Σ भारᵢⱼ·vⱼ है, यानी उसके लिए सबसे ज़रूरी टोकनों की जानकारी का मिश्रण। भाषा मॉडल में कॉज़ल मास्क टोकन को भविष्य के टोकन देखने से रोकता है। मल्टी-हेड अटेंशन ऐसे, मान लो, 32 समानांतर चलाता है, हर एक अलग रिश्ता सीखने को आज़ाद (व्याकरण, सर्वनाम-संज्ञा, पास के शब्द)। पूरा सूत्र: Attention(Q, K, V) = softmax(QKᵀ/√d)·V।",
+    "hinglish": "Har token embedding x ko teen learned matrices se multiply karke query q, key k aur value v bante hain. Token i ke liye har token j ke saath score qᵢ·kⱼ / √d hai (d vector size; divide karne se numbers stable rehte hain). Softmax scores ko 1 tak judne wale weights banata hai. Token i ka output Σ weightᵢⱼ·vⱼ hai, yaani uske liye sabse zaroori tokens ki info ka mix. Language model mein causal mask token ko future tokens dekhne se rokta hai. Multi-head attention aise, maan lo, 32 parallel chalata hai, har ek alag rishta seekhne ko free (grammar, pronoun-noun, paas ke words). Poora formula: Attention(Q, K, V) = softmax(QKᵀ/√d)·V."
+   },
+   "analogy": {
+    "hinglish": "Class mein teacher sawaal poochti hai (query). Har bachche ke paas ek topic ka label hai (key). Jiska label sawaal se sabse zyada milta hai, uski baat (value) sabse zyada suni jaati hai.",
+    "en": "In class the teacher asks a question (query). Each child holds a topic label (key). The child whose label best matches the question is listened to most (value).",
+    "hi": "कक्षा में शिक्षिका प्रश्न पूछती हैं (क्वेरी)। हर बच्चे के पास एक विषय का लेबल है (की)। जिसका लेबल प्रश्न से सबसे ज़्यादा मिलता है, उसकी बात (वैल्यू) सबसे ज़्यादा सुनी जाती है।"
+   },
+   "realExample": {
+    "en": "Google Translate, Bhashini's translation models, GitHub Copilot and every major chatbot today are built on transformer attention.",
+    "hinglish": "Google Translate, Bhashini ke translation models, GitHub Copilot aur aaj ka har bada chatbot transformer attention par bana hai.",
+    "hi": "गूगल ट्रांसलेट, भाषिणी के अनुवाद मॉडल, गिटहब कोपायलट और आज का हर बड़ा चैटबॉट ट्रांसफ़ॉर्मर अटेंशन पर बना है।"
+   }
+  },
+  {
+   "heading": {
+    "en": "The transformer block and why it won",
+    "hi": "ट्रांसफ़ॉर्मर ब्लॉक और यह क्यों जीता",
+    "hinglish": "Transformer block aur yeh kyun jeeta"
+   },
+   "body": {
+    "en": "The 2017 paper \"Attention Is All You Need\" (Vaswani et al., Google) introduced the transformer. One block = multi-head self-attention → add & normalise → a feed-forward network applied to each token → add & normalise. Positional encodings tell the model word order, since attention by itself ignores order. Models stack dozens of blocks (GPT-3 had 96 layers and 175 billion parameters). Earlier recurrent networks (RNNs, LSTMs) read one word at a time, which was slow and forgot long-range links. Transformers process all tokens of a sequence at once on GPUs and connect any two tokens directly, so they scale to huge data. The cost: attention compares every token with every other, so compute grows with the square of the context length.",
+    "hi": "2017 के पेपर \"अटेंशन इज़ ऑल यू नीड\" (वासवानी व अन्य, गूगल) ने ट्रांसफ़ॉर्मर पेश किया। एक ब्लॉक = मल्टी-हेड सेल्फ़-अटेंशन → जोड़ और नॉर्मलाइज़ → हर टोकन पर फ़ीड-फ़ॉरवर्ड नेटवर्क → जोड़ और नॉर्मलाइज़। पोज़िशनल एन्कोडिंग मॉडल को शब्द-क्रम बताती है, क्योंकि अटेंशन खुद क्रम नहीं देखता। मॉडल दर्जनों ब्लॉक लगाते हैं (जीपीटी-3 में 96 परतें और 175 अरब पैरामीटर थे)। पहले के रिकरेंट नेटवर्क (आरएनएन, एलएसटीएम) एक बार में एक शब्द पढ़ते थे, जो धीमा था और लंबी दूरी के रिश्ते भूल जाता था। ट्रांसफ़ॉर्मर जीपीयू पर क्रम के सारे टोकन एक साथ संसाधित करते हैं और किन्हीं दो टोकनों को सीधे जोड़ते हैं, इसलिए विशाल डेटा तक बढ़ पाते हैं। कीमत: अटेंशन हर टोकन की हर दूसरे से तुलना करता है, तो गणना कॉन्टेक्स्ट लंबाई के वर्ग के साथ बढ़ती है।",
+    "hinglish": "2017 ke paper \"Attention Is All You Need\" (Vaswani et al., Google) ne transformer introduce kiya. Ek block = multi-head self-attention → add & normalise → har token par feed-forward network → add & normalise. Positional encodings model ko word order batati hain, kyunki attention khud order nahi dekhta. Models darjanon blocks lagate hain (GPT-3 mein 96 layers aur 175 billion parameters the). Pehle ke recurrent networks (RNNs, LSTMs) ek baar mein ek word padhte the, jo slow tha aur long-range links bhool jaata tha. Transformers GPUs par sequence ke saare tokens ek saath process karte hain aur kinhi bhi do tokens ko seedha jodte hain, isliye huge data tak scale hote hain. Keemat: attention har token ko har doosre se compare karta hai, to compute context length ke square ke saath badhta hai."
+   },
+   "analogy": {
+    "hinglish": "RNN ek-ek page padhne wala student hai jo pehla chapter bhool jaata hai; transformer poori kitaab table par khol ke kisi bhi do pages ko ek saath dekh sakta hai.",
+    "en": "An RNN is a student who reads one page at a time and forgets chapter one; a transformer opens the whole book on the table and can look at any two pages together.",
+    "hi": "RNN एक-एक पन्ना पढ़ने वाला छात्र है जो पहला अध्याय भूल जाता है; ट्रांसफ़ॉर्मर पूरी किताब मेज़ पर खोलकर कोई भी दो पन्ने एक साथ देख सकता है।"
+   },
+   "realExample": {
+    "en": "India's Sarvam-M, BharatGen and AI4Bharat models are transformers trained or tuned for Indian languages under the IndiaAI Mission and research labs.",
+    "hinglish": "India ke Sarvam, BharatGen aur AI4Bharat models transformers hain jo IndiaAI Mission aur research labs ke under Indian languages ke liye train ya tune hue.",
+    "hi": "भारत के सर्वम-M, भारतजेन और AI4Bharat मॉडल इंडियाएआई मिशन और शोध प्रयोगशालाओं के तहत भारतीय भाषाओं के लिए प्रशिक्षित या ट्यून किए गए ट्रांसफ़ॉर्मर हैं।"
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write a sentence with an ambiguous pronoun in Hindi (e.g. \"Riya ne Meera ko kitaab di kyunki woh jaa rahi thi\"). Predict which word \"woh\" should attend to, then check the lab heatmap with your sentence in English.",
+   "hinglish": "Hindi mein ambiguous pronoun wala sentence likho (jaise \"Riya ne Meera ko kitaab di kyunki woh jaa rahi thi\"). Predict karo \"woh\" kis word par dhyaan dega, phir lab heatmap mein English version check karo.",
+   "hi": "हिंदी में अस्पष्ट सर्वनाम वाला वाक्य लिखो (जैसे \"रिया ने मीरा को किताब दी क्योंकि वह जा रही थी\")। अनुमान लगाओ \"वह\" को किस शब्द पर ध्यान देना चाहिए, फिर अंग्रेज़ी वाक्य के साथ लैब हीटमैप जाँचो।"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "In attention, the match score between two tokens is computed from…",
+     "hi": "अटेंशन में दो टोकनों का मेल स्कोर किससे निकलता है?",
+     "hinglish": "Attention mein do tokens ka match score kisse nikalta hai?"
+    },
+    "options": [
+     {
+      "en": "The dot product of one token's query and the other's key",
+      "hinglish": "Ek token ki query aur doosre ki key ka dot product",
+      "hi": "एक टोकन की क्वेरी और दूसरे की की का डॉट गुणनफल"
+     },
+     {
+      "en": "Their spelling",
+      "hinglish": "Spelling",
+      "hi": "उनकी वर्तनी"
+     },
+     {
+      "en": "Their position only",
+      "hinglish": "Sirf position",
+      "hi": "सिर्फ़ उनका स्थान"
+     },
+     {
+      "en": "A random number",
+      "hinglish": "Random number",
+      "hi": "एक यादृच्छिक संख्या"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Score = q·k / √d, then softmax. The values are then mixed using these weights.",
+     "hi": "स्कोर = q·k / √d, फिर सॉफ़्टमैक्स। फिर इन भारों से वैल्यू मिलाई जाती हैं।",
+     "hinglish": "Score = q·k / √d, phir softmax. Phir in weights se values mix hoti hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Softmax of scores (2, 0) gives weights of about…",
+     "hi": "स्कोर (2, 0) का सॉफ़्टमैक्स लगभग कौन-से भार देता है?",
+     "hinglish": "Scores (2, 0) ka softmax lagbhag kaunse weights deta hai?"
+    },
+    "options": [
+     {
+      "en": "0.88 and 0.12",
+      "hinglish": "0.88 aur 0.12",
+      "hi": "0.88 और 0.12"
+     },
+     {
+      "en": "1 and 0",
+      "hinglish": "1 aur 0",
+      "hi": "1 और 0"
+     },
+     {
+      "en": "0.5 and 0.5",
+      "hinglish": "0.5 aur 0.5",
+      "hi": "0.5 और 0.5"
+     },
+     {
+      "en": "2 and 0",
+      "hinglish": "2 aur 0",
+      "hi": "2 और 0"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "e² ≈ 7.39, e⁰ = 1; 7.39/8.39 ≈ 0.88 and 1/8.39 ≈ 0.12. Weights are positive and add to 1.",
+     "hi": "e² ≈ 7.39, e⁰ = 1; 7.39/8.39 ≈ 0.88 और 1/8.39 ≈ 0.12। भार धनात्मक और कुल 1।",
+     "hinglish": "e² ≈ 7.39, e⁰ = 1; 7.39/8.39 ≈ 0.88 aur 1/8.39 ≈ 0.12. Weights positive aur total 1."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why did transformers replace RNNs for large models?",
+     "hi": "बड़े मॉडलों में ट्रांसफ़ॉर्मर ने आरएनएन की जगह क्यों ली?",
+     "hinglish": "Bade models mein transformers ne RNNs ki jagah kyun li?"
+    },
+    "options": [
+     {
+      "en": "They process all tokens in parallel and link distant words directly",
+      "hinglish": "Saare tokens parallel process karte hain aur door ke words seedha jodte hain",
+      "hi": "वे सभी टोकन समानांतर में संसाधित करते हैं और दूर के शब्दों को सीधे जोड़ते हैं"
+     },
+     {
+      "en": "They use no maths",
+      "hinglish": "Koi maths nahi",
+      "hi": "वे गणित इस्तेमाल नहीं करते"
+     },
+     {
+      "en": "They need no data",
+      "hinglish": "Data nahi chahiye",
+      "hi": "उन्हें डेटा नहीं चाहिए"
+     },
+     {
+      "en": "They are smaller",
+      "hinglish": "Chhote hain",
+      "hi": "वे छोटे हैं"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Parallelism lets them use GPUs fully and scale; direct attention handles long-range dependencies.",
+     "hi": "समानांतर गणना जीपीयू का पूरा उपयोग और विस्तार देती है; सीधा अटेंशन लंबी दूरी के रिश्ते सँभालता है।",
+     "hinglish": "Parallelism GPUs ka poora use aur scaling deta hai; direct attention long-range links sambhaalta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Doubling the context length roughly multiplies attention compute by…",
+     "hi": "कॉन्टेक्स्ट लंबाई दोगुनी करने पर अटेंशन गणना लगभग कितनी गुना?",
+     "hinglish": "Context length double karne par attention compute lagbhag kitna guna?"
+    },
+    "options": [
+     {
+      "en": "4",
+      "hinglish": "4",
+      "hi": "4"
+     },
+     {
+      "en": "2",
+      "hinglish": "2",
+      "hi": "2"
+     },
+     {
+      "en": "1",
+      "hinglish": "1",
+      "hi": "1"
+     },
+     {
+      "en": "8",
+      "hinglish": "8",
+      "hi": "8"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Every token attends to every token: n² pairs. (2n)² = 4n².",
+     "hi": "हर टोकन हर टोकन पर ध्यान देता है: n² जोड़े। (2n)² = 4n²।",
+     "hinglish": "Har token har token par dhyaan deta hai: n² pairs. (2n)² = 4n²."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Tap \"it\" and find the word it attends to most in head 1.",
+     "hi": "\"it\" पर टैप करें और हेड 1 में सबसे ज़्यादा ध्यान वाला शब्द ढूँढें।",
+     "hinglish": "\"it\" tap karo aur head 1 mein sabse zyada attention wala word dhoondho."
+    },
+    "answer": {
+     "event": "attention-inspected",
+     "token": "it"
+    },
+    "explain": {
+     "en": "In the lab's built-in model head 1 links \"it\" to \"animal\", the noun that is tired.",
+     "hi": "लैब के मॉडल में हेड 1 \"it\" को \"animal\" से जोड़ता है, वह संज्ञा जो थकी है।",
+     "hinglish": "Lab ke model mein head 1 \"it\" ko \"animal\" se jodta hai, woh noun jo thaka hai."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "topics": [
+  "ai.llm-attention",
+  "ai.deep-learning"
+ ],
+ "sources": [
+  {
+   "title": "Vaswani et al. (2017) Attention Is All You Need",
+   "url": "https://arxiv.org/abs/1706.03762",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Jay Alammar — The Illustrated Transformer",
+   "url": "https://jalammar.github.io/illustrated-transformer/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Brown et al. (2020) Language Models are Few-Shot Learners (GPT-3)",
+   "url": "https://arxiv.org/abs/2005.14165",
+   "licence": "fact reference"
+  }
+ ]
+}

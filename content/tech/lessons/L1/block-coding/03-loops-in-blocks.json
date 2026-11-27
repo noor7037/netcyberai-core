@@ -1,0 +1,288 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.block-coding.03",
+ "level": 1,
+ "classes": [
+  3,
+  4,
+  5
+ ],
+ "unit": "block-coding",
+ "title": {
+  "en": "Loops in blocks: short, smart programs",
+  "hi": "ब्लॉक में लूप: छोटे, समझदार प्रोग्राम",
+  "hinglish": "Blocks mein loops: chhote, smart programs"
+ },
+ "minutes": 8,
+ "xp": 35,
+ "prereq": [
+  "L1.block-coding.02"
+ ],
+ "topics": [
+  "prog.loops",
+  "prog.blocks"
+ ],
+ "outcomes": [
+  {
+   "en": "Put blocks inside a Repeat block.",
+   "hi": "दोहराओ ब्लॉक के अंदर ब्लॉक रख सकते हो।",
+   "hinglish": "Repeat block ke andar blocks rakh sakte ho."
+  },
+  {
+   "en": "Turn a long program into a short one with a loop.",
+   "hi": "लंबे प्रोग्राम को लूप से छोटा बना सकते हो।",
+   "hinglish": "Lambe program ko loop se chhota bana sakte ho."
+  },
+  {
+   "en": "Read the Python for-loop that matches the blocks.",
+   "hi": "ब्लॉक से मेल खाता Python का for-लूप पढ़ सकते हो।",
+   "hinglish": "Blocks se match karta Python for-loop padh sakte ho."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Repeat block",
+   "en": "A block that runs the blocks inside it a number of times",
+   "hi": "वह ब्लॉक जो अपने अंदर के ब्लॉक कई बार चलाता है",
+   "hinglish": "Andar ke blocks ko kai baar chalane wala block"
+  },
+  {
+   "term": "for loop",
+   "en": "Python's way to repeat: for i in range(5):",
+   "hi": "Python में दोहराने का तरीका: for i in range(5):",
+   "hinglish": "Python mein repeat: for i in range(5):"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.block-coding.03.s1",
+   "caption": {
+    "en": "Repeat 4 [forward, turn] draws a square.",
+    "hi": "दोहराओ 4 [आगे, मुड़ो] = वर्ग।",
+    "hinglish": "Repeat 4 [forward, turn] = square."
+   },
+   "narration": {
+    "en": "A square has 4 equal sides and 4 turns. So: Repeat 4 [forward, turn right].",
+    "hinglish": "Square mein 4 barabar sides aur 4 mod hain. Toh: Repeat 4 [forward, right mudo].",
+    "hi": "दोहराओ 4 [आगे, मुड़ो] = वर्ग।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.block-coding.03.s2",
+   "caption": {
+    "en": "The same loop in Python.",
+    "hi": "वही लूप Python में।",
+    "hinglish": "Wahi loop Python mein."
+   },
+   "narration": {
+    "en": "In Python we write: for i in range(4): then the steps indented below.",
+    "hinglish": "Python mein likhte hain: for i in range(4): phir neeche khisak kar steps.",
+    "hi": "वही लूप Python में।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.block-coding.03.s3",
+   "caption": {
+    "en": "Find the repeating part, loop it.",
+    "hi": "दोहराने वाला हिस्सा ढूँढो, लूप करो।",
+    "hinglish": "Repeat hone wala hissa dhoondo, loop karo."
+   },
+   "narration": {
+    "en": "Stairs = (forward, up) again and again. Put that pair inside a loop.",
+    "hinglish": "Seedhiyan = (forward, upar) baar-baar. Us jodi ko loop ke andar rakho.",
+    "hi": "दोहराने वाला हिस्सा ढूँढो, लूप करो।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "loop-coder",
+  "config": {
+   "level": 8,
+   "code": true
+  },
+  "goal": {
+   "en": "Plan the whole trip with loops in 8 blocks or fewer. Tap </> to see your Python.",
+   "hi": "लूप से पूरी यात्रा 8 या कम ब्लॉक में बनाओ। अपना Python देखने के लिए </> दबाओ।",
+   "hinglish": "Loops se poori trip 8 ya kam blocks mein plan karo. </> dabao aur apna Python dekho."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Nesting blocks",
+    "hi": "ब्लॉक अंदर रखना",
+    "hinglish": "Blocks andar rakhna"
+   },
+   "body": {
+    "en": "Blocks inside a Repeat are \"nested\". They run in order, then the loop starts again from the top, until it has repeated the set number of times.",
+    "hi": "Repeat के अंदर के ब्लॉक \"नेस्टेड\" होते हैं। वे क्रम से चलते हैं, फिर लूप ऊपर से दोबारा शुरू होता है, जब तक तय बार पूरे न हों।",
+    "hinglish": "Repeat ke andar ke blocks \"nested\" hote hain. Woh order mein chalte hain, phir loop upar se dobara shuru hota hai, jab tak tay baar poore na hon."
+   },
+   "analogy": {
+    "en": "Bowls on a thali — the loop is the plate, the blocks inside are the bowls.",
+    "hi": "थाली में कटोरी — लूप थाली है, अंदर के ब्लॉक कटोरियाँ।",
+    "hinglish": "Thali mein katori — loop thali hai, andar ke blocks katoriyan."
+   }
+  },
+  {
+   "heading": {
+    "en": "From blocks to Python",
+    "hi": "ब्लॉक से Python तक",
+    "hinglish": "Blocks se Python tak"
+   },
+   "body": {
+    "en": "Repeat 4 [forward] in Python is:\nfor i in range(4):\n    forward()\nThe spaces before forward() show it is inside the loop. Python counts i = 0, 1, 2, 3 — four times.",
+    "hi": "Python में दोहराओ 4 [आगे]:\nfor i in range(4):\n    forward()\nforward() के आगे की जगह बताती है कि यह लूप के अंदर है। Python i = 0, 1, 2, 3 गिनता है — चार बार।",
+    "hinglish": "Python mein Repeat 4 [forward]:\nfor i in range(4):\n    forward()\nforward() se pehle ki jagah batati hai ki yeh loop ke andar hai. Python i = 0, 1, 2, 3 ginta hai — chaar baar."
+   },
+   "realExample": {
+    "en": "YouTube shows \"next video\" in a loop until you stop — autoplay is a loop with a condition.",
+    "hi": "यूट्यूब तब तक \"अगला वीडियो\" लूप में दिखाता है जब तक तुम न रोको — ऑटोप्ले शर्त वाला लूप है।",
+    "hinglish": "YouTube \"next video\" loop mein dikhata hai jab tak tum roko nahin — autoplay condition wala loop hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "On paper, draw a star or a staircase and write the loop that would draw it.",
+   "hi": "कागज़ पर तारा या सीढ़ी बनाओ और उसे बनाने वाला लूप लिखो।",
+   "hinglish": "Kaagaz par star ya seedhi banao aur use banane wala loop likho."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which loop draws a square?",
+     "hi": "कौन-सा लूप वर्ग बनाता है?",
+     "hinglish": "Kaun sa loop square banata hai?"
+    },
+    "options": [
+     {
+      "en": "Repeat 4 [forward, turn right]",
+      "hi": "दोहराओ 4 [आगे, दाएँ]",
+      "hinglish": "Repeat 4 [forward, right]"
+     },
+     {
+      "en": "Repeat 3 [forward, turn right]",
+      "hi": "दोहराओ 3 [आगे, दाएँ]",
+      "hinglish": "Repeat 3 [forward, right]"
+     },
+     {
+      "en": "Repeat 4 [forward]",
+      "hi": "दोहराओ 4 [आगे]",
+      "hinglish": "Repeat 4 [forward]"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "4 sides and 4 turns. Without turns you just walk in a line.",
+     "hi": "4 भुजाएँ और 4 मोड़। मोड़ के बिना सीधी लाइन।",
+     "hinglish": "4 sides aur 4 turns. Turn ke bina seedhi line."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "for i in range(5): runs the inside part how many times?",
+     "hi": "for i in range(5): अंदर का हिस्सा कितनी बार चलाता है?",
+     "hinglish": "for i in range(5): andar ka hissa kitni baar chalata hai?"
+    },
+    "options": [
+     {
+      "en": "5",
+      "hi": "5",
+      "hinglish": "5"
+     },
+     {
+      "en": "4",
+      "hi": "4",
+      "hinglish": "4"
+     },
+     {
+      "en": "6",
+      "hi": "6",
+      "hinglish": "6"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "range(5) gives 0, 1, 2, 3, 4 — five values, five runs.",
+     "hi": "range(5) देता है 0, 1, 2, 3, 4 — पाँच मान, पाँच बार।",
+     "hinglish": "range(5) deta hai 0, 1, 2, 3, 4 — paanch values, paanch baar."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "A program has forward, forward, forward, forward, forward. The shortest version is…",
+     "hi": "प्रोग्राम में आगे ×5 है। सबसे छोटा रूप…",
+     "hinglish": "Program mein forward ×5 hai. Sabse chhota version…"
+    },
+    "options": [
+     {
+      "en": "Repeat 5 [forward]",
+      "hi": "दोहराओ 5 [आगे]",
+      "hinglish": "Repeat 5 [forward]"
+     },
+     {
+      "en": "Repeat 1 [forward]",
+      "hi": "दोहराओ 1 [आगे]",
+      "hinglish": "Repeat 1 [forward]"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Five of the same step = repeat 5.",
+     "hi": "एक ही कदम 5 बार = दोहराओ 5।",
+     "hinglish": "Same step 5 baar = repeat 5."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Solve Level 8 in 8 blocks or fewer.",
+     "hi": "स्तर 8 को 8 या कम ब्लॉक में हल करो।",
+     "hinglish": "Level 8 ko 8 ya kam blocks mein solve karo."
+    },
+    "answer": {
+     "lab": "loop-coder",
+     "level": 8,
+     "solved": true
+    },
+    "explain": {
+     "en": "Repeat 2 [forward], turn left, Repeat 4 [forward], turn left, forward.",
+     "hi": "दोहराओ 2 [आगे], बाएँ, दोहराओ 4 [आगे], बाएँ, आगे।",
+     "hinglish": "Repeat 2 [forward], left, Repeat 4 [forward], left, forward."
+    },
+    "difficulty": 3
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Python Software Foundation – the for statement (fact reference)",
+   "url": "https://docs.python.org/3/tutorial/controlflow.html",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Scratch / ScratchJr – MIT Media Lab, free block coding (fact reference)",
+   "url": "https://scratch.mit.edu/about",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

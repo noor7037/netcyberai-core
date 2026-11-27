@@ -1,0 +1,370 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.binary-secret-codes.01",
+ "level": 1,
+ "classes": [
+  2,
+  3,
+  4,
+  5
+ ],
+ "unit": "binary-secret-codes",
+ "title": {
+  "en": "On and off: 0 and 1",
+  "hi": "चालू और बंद: 0 और 1",
+  "hinglish": "On aur off: 0 aur 1"
+ },
+ "minutes": 7,
+ "xp": 30,
+ "prereq": [
+  "L1.thinking-logic.01"
+ ],
+ "topics": [
+  "hw.binary"
+ ],
+ "outcomes": [
+  {
+   "en": "Say that a computer stores everything as ON (1) and OFF (0).",
+   "hi": "बता सकते हो कि कंप्यूटर सब कुछ चालू (1) और बंद (0) में रखता है।",
+   "hinglish": "Bata sakte ho ki computer sab kuch ON (1) aur OFF (0) mein rakhta hai."
+  },
+  {
+   "en": "Make small numbers with bulbs worth 4, 2 and 1.",
+   "hi": "4, 2 और 1 वाले बल्बों से छोटी संख्याएँ बना सकते हो।",
+   "hinglish": "4, 2 aur 1 wale bulbs se chhote numbers bana sakte ho."
+  },
+  {
+   "en": "Know that one 0 or 1 is called a bit.",
+   "hi": "जानते हो कि एक 0 या 1 को बिट कहते हैं।",
+   "hinglish": "Jaante ho ki ek 0 ya 1 ko bit kehte hain."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Bit",
+   "en": "One 0 or one 1 — the smallest piece of computer information",
+   "hi": "एक 0 या एक 1 — कंप्यूटर की सबसे छोटी जानकारी",
+   "hinglish": "Ek 0 ya ek 1 — computer ki sabse chhoti jaankari"
+  },
+  {
+   "term": "Binary",
+   "en": "A way of writing numbers using only 0 and 1",
+   "hi": "सिर्फ़ 0 और 1 से लिखने का तरीका",
+   "hinglish": "Sirf 0 aur 1 se likhne ka tareeka"
+  },
+  {
+   "term": "Byte",
+   "en": "A group of 8 bits",
+   "hi": "8 बिट का एक समूह",
+   "hinglish": "8 bits ka ek group"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.binary-secret-codes.01.s1",
+   "caption": {
+    "en": "A bulb is ON or OFF.",
+    "hi": "बल्ब या तो जला है या बुझा।",
+    "hinglish": "Bulb ya toh ON hai ya OFF."
+   },
+   "narration": {
+    "en": "A bulb can only be ON or OFF. Computers count ON as 1 and OFF as 0.",
+    "hinglish": "Bulb sirf ON ya OFF ho sakta hai. Computer ON ko 1 aur OFF ko 0 maanta hai.",
+    "hi": "बल्ब सिर्फ़ जला या बुझा हो सकता है। कंप्यूटर जले को 1 और बुझे को 0 मानता है।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.binary-secret-codes.01.s2",
+   "caption": {
+    "en": "Inside, a computer has billions of tiny switches.",
+    "hi": "अंदर कंप्यूटर में अरबों छोटे स्विच हैं।",
+    "hinglish": "Andar computer mein arabon chhote switches hain."
+   },
+   "narration": {
+    "en": "A computer chip has billions of tiny switches called transistors. Each one is ON or OFF: 1 or 0.",
+    "hinglish": "Computer chip mein arabon chhote switches hote hain jinhe transistor kehte hain. Har ek ON ya OFF hai: 1 ya 0.",
+    "hi": "कंप्यूटर चिप में अरबों छोटे स्विच होते हैं जिन्हें ट्रांज़िस्टर कहते हैं। हर एक चालू या बंद है: 1 या 0।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.binary-secret-codes.01.s3",
+   "caption": {
+    "en": "Bulbs worth 4, 2, 1: ON-OFF-ON makes 5.",
+    "hi": "4, 2, 1 वाले बल्ब: जला-बुझा-जला = 5।",
+    "hinglish": "4, 2, 1 wale bulbs: ON-OFF-ON = 5."
+   },
+   "narration": {
+    "en": "Give the bulbs values 4, 2 and 1. ON, OFF, ON means 4 plus 1, which is 5. In binary we write 101.",
+    "hinglish": "Bulbs ko 4, 2 aur 1 do. ON, OFF, ON matlab 4 plus 1, yaani 5. Binary mein hum 101 likhte hain.",
+    "hi": "बल्बों को 4, 2 और 1 दो। जला, बुझा, जला मतलब 4 और 1, यानी 5। बाइनरी में हम 101 लिखते हैं।"
+   }
+  },
+  {
+   "step": 4,
+   "visual": "scene:L1.binary-secret-codes.01.s4",
+   "caption": {
+    "en": "Even letters are stored as 0s and 1s.",
+    "hi": "अक्षर भी 0 और 1 बनकर रखे जाते हैं।",
+    "hinglish": "Letters bhi 0 aur 1 ban kar rakhe jaate hain."
+   },
+   "narration": {
+    "en": "Letters, photos and songs are all turned into 0s and 1s. The capital letter A is stored as 01000001.",
+    "hinglish": "Letters, photos aur gaane sab 0 aur 1 mein badal jaate hain. Capital letter A 01000001 ban kar rakha jaata hai.",
+    "hi": "अक्षर, फ़ोटो और गाने सब 0 और 1 में बदल जाते हैं। बड़ा अक्षर A 01000001 बनकर रखा जाता है।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "secret-codes",
+  "config": {
+   "mode": "bulbs"
+  },
+  "goal": {
+   "en": "Switch the bulbs (worth 4, 2, 1) to make 2, then 5, then 7.",
+   "hi": "बल्ब (4, 2, 1 वाले) जलाकर पहले 2, फिर 5, फिर 7 बनाओ।",
+   "hinglish": "Bulbs (4, 2, 1 wale) jala kar pehle 2, phir 5, phir 7 banao."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Why only two signs?",
+    "hi": "सिर्फ़ दो निशान क्यों?",
+    "hinglish": "Sirf do nishaan kyon?"
+   },
+   "body": {
+    "en": "A tiny switch inside a chip is easy to keep in just two states: electricity flowing (ON) or not flowing (OFF). Two states are quick and hard to mix up, so computers write everything with only 1 and 0. One 1 or 0 is a bit, and 8 bits make a byte. A photo on a phone can use millions of bytes.",
+    "hi": "चिप के अंदर छोटे स्विच को सिर्फ़ दो हालत में रखना आसान है: बिजली बह रही है (चालू) या नहीं बह रही (बंद)। दो हालतें तेज़ हैं और उलझती नहीं, इसलिए कंप्यूटर सब कुछ सिर्फ़ 1 और 0 से लिखते हैं। एक 1 या 0 एक बिट है, और 8 बिट से एक बाइट बनता है। फ़ोन की एक फ़ोटो लाखों बाइट ले सकती है।",
+    "hinglish": "Chip ke andar chhote switch ko sirf do haalat mein rakhna aasaan hai: bijli beh rahi hai (ON) ya nahin beh rahi (OFF). Do haalatein tez hain aur uljhti nahin, isliye computer sab kuch sirf 1 aur 0 se likhte hain. Ek 1 ya 0 ek bit hai, aur 8 bits se ek byte banta hai. Phone ki ek photo laakhon bytes le sakti hai."
+   },
+   "analogy": {
+    "en": "Like the light switch at home — it is either on or off, nothing in between.",
+    "hi": "जैसे घर का बत्ती का स्विच — या तो चालू, या बंद। बीच का कोई झंझट नहीं।",
+    "hinglish": "Jaise ghar ka light switch — ya toh on, ya off. Beech ka koi jhanjhat nahin."
+   }
+  },
+  {
+   "heading": {
+    "en": "Reading bulbs as a number",
+    "hi": "बल्बों को संख्या की तरह पढ़ना",
+    "hinglish": "Bulbs ko number ki tarah padhna"
+   },
+   "body": {
+    "en": "Each bulb has a value, and every value is double the one on its right: 1, 2, 4, 8… Add up the values of the bulbs that are ON. ON-ON-ON with values 4-2-1 is 4 + 2 + 1 = 7, written 111. So three bulbs can show every number from 0 to 7.",
+    "hi": "हर बल्ब का एक मूल्य है, और हर मूल्य अपने दाएँ वाले का दुगना है: 1, 2, 4, 8… जले बल्बों के मूल्य जोड़ो। 4-2-1 वाले तीनों जले हों तो 4 + 2 + 1 = 7, लिखा 111। यानी तीन बल्ब 0 से 7 तक हर संख्या दिखा सकते हैं।",
+    "hinglish": "Har bulb ki ek value hai, aur har value apne right wale ki double hai: 1, 2, 4, 8… Jo bulbs ON hain unki values jodo. 4-2-1 wale teeno ON hon toh 4 + 2 + 1 = 7, likha 111. Yaani teen bulbs 0 se 7 tak har number dikha sakte hain."
+   },
+   "realExample": {
+    "en": "The capital letter A is stored as the byte 01000001, which is the number 65 (64 + 1).",
+    "hi": "बड़ा अक्षर A बाइट 01000001 बनकर रखा जाता है, जो संख्या 65 है (64 + 1)।",
+    "hinglish": "Capital A byte 01000001 ban kar store hota hai, jo number 65 hai (64 + 1)."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Make 3 \"bulb cards\" from paper (one side yellow = ON, other side black = OFF) and write 4, 2, 1 on them. Show a grown-up how to make 6.",
+   "hi": "काग़ज़ से 3 \"बल्ब कार्ड\" बनाओ (एक तरफ़ पीला = चालू, दूसरी तरफ़ काला = बंद) और उन पर 4, 2, 1 लिखो। बड़े को 6 बनाकर दिखाओ।",
+   "hinglish": "Kaagaz se 3 \"bulb cards\" banao (ek taraf peela = ON, doosri taraf kaala = OFF) aur un par 4, 2, 1 likho. Bade ko 6 bana kar dikhao."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "In binary, an ON switch is written as…",
+     "hi": "बाइनरी में चालू स्विच को लिखते हैं…",
+     "hinglish": "Binary mein ON switch ko likhte hain…"
+    },
+    "options": [
+     {
+      "en": "1",
+      "hi": "1",
+      "hinglish": "1"
+     },
+     {
+      "en": "0",
+      "hi": "0",
+      "hinglish": "0"
+     },
+     {
+      "en": "2",
+      "hi": "2",
+      "hinglish": "2"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "ON = 1, OFF = 0.",
+     "hi": "चालू = 1, बंद = 0।",
+     "hinglish": "ON = 1, OFF = 0."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Bulbs worth 4, 2, 1 show ON, ON, OFF. What number is that?",
+     "hi": "4, 2, 1 वाले बल्ब जला, जला, बुझा दिखाते हैं। कौन सी संख्या?",
+     "hinglish": "4, 2, 1 wale bulbs ON, ON, OFF dikhate hain. Kaun sa number?"
+    },
+    "options": [
+     {
+      "en": "6",
+      "hi": "6",
+      "hinglish": "6"
+     },
+     {
+      "en": "3",
+      "hi": "3",
+      "hinglish": "3"
+     },
+     {
+      "en": "7",
+      "hi": "7",
+      "hinglish": "7"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "4 + 2 = 6 (written 110).",
+     "hi": "4 + 2 = 6 (लिखा 110)।",
+     "hinglish": "4 + 2 = 6 (likha 110)."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "short",
+    "prompt": {
+     "en": "How many bits make one byte? (type a number)",
+     "hi": "एक बाइट में कितने बिट होते हैं? (संख्या लिखो)",
+     "hinglish": "Ek byte mein kitne bits hote hain? (number likho)"
+    },
+    "answer": [
+     "8",
+     "eight",
+     "आठ",
+     "aath"
+    ],
+    "explain": {
+     "en": "8 bits = 1 byte.",
+     "hi": "8 बिट = 1 बाइट।",
+     "hinglish": "8 bits = 1 byte."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "multi",
+    "prompt": {
+     "en": "Which of these does a computer store as 0s and 1s?",
+     "hi": "कंप्यूटर इनमें से किसे 0 और 1 में रखता है?",
+     "hinglish": "Computer inme se kise 0 aur 1 mein rakhta hai?"
+    },
+    "options": [
+     {
+      "en": "📷 Photos",
+      "hi": "📷 फ़ोटो",
+      "hinglish": "📷 Photos"
+     },
+     {
+      "en": "🎵 Songs",
+      "hi": "🎵 गाने",
+      "hinglish": "🎵 Gaane"
+     },
+     {
+      "en": "🔤 Letters",
+      "hi": "🔤 अक्षर",
+      "hinglish": "🔤 Letters"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2
+    ],
+    "explain": {
+     "en": "Everything inside a computer is 0s and 1s.",
+     "hi": "कंप्यूटर के अंदर सब कुछ 0 और 1 है।",
+     "hinglish": "Computer ke andar sab kuch 0 aur 1 hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "What is the biggest number 3 bulbs (4, 2, 1) can show?",
+     "hi": "3 बल्ब (4, 2, 1) सबसे बड़ी कौन सी संख्या दिखा सकते हैं?",
+     "hinglish": "3 bulbs (4, 2, 1) sabse bada kaun sa number dikha sakte hain?"
+    },
+    "options": [
+     {
+      "en": "7",
+      "hi": "7",
+      "hinglish": "7"
+     },
+     {
+      "en": "8",
+      "hi": "8",
+      "hinglish": "8"
+     },
+     {
+      "en": "3",
+      "hi": "3",
+      "hinglish": "3"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "All ON: 4 + 2 + 1 = 7.",
+     "hi": "सब जले: 4 + 2 + 1 = 7।",
+     "hinglish": "Sab ON: 4 + 2 + 1 = 7."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Make 2, 5 and 7 with the bulbs in the lab.",
+     "hi": "लैब में बल्बों से 2, 5 और 7 बनाओ।",
+     "hinglish": "Lab mein bulbs se 2, 5 aur 7 banao."
+    },
+    "answer": {
+     "lab": "secret-codes",
+     "mode": "bulbs",
+     "solved": true
+    },
+    "explain": {
+     "en": "2 = 010, 5 = 101, 7 = 111.",
+     "hi": "2 = 010, 5 = 101, 7 = 111।",
+     "hinglish": "2 = 010, 5 = 101, 7 = 111."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Computer Science Unplugged – Binary numbers (fact reference)",
+   "url": "https://www.csunplugged.org/en/topics/binary-numbers/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Encyclopaedia Britannica – Binary number system (fact reference)",
+   "url": "https://www.britannica.com/science/binary-number-system",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

@@ -1,0 +1,361 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.cyber-essentials.07",
+ "level": 2,
+ "classes": [
+  6,
+  7,
+  8
+ ],
+ "unit": "cyber-essentials",
+ "title": {
+  "en": "Report it: 1930 and cybercrime.gov.in",
+  "hi": "रिपोर्ट करो: 1930 और cybercrime.gov.in",
+  "hinglish": "Report karo: 1930 aur cybercrime.gov.in"
+ },
+ "minutes": 10,
+ "xp": 35,
+ "prereq": [
+  "L2.cyber-essentials.06"
+ ],
+ "topics": [
+  "cyber.incident-response",
+  "cyber.ethics-law"
+ ],
+ "outcomes": [
+  {
+   "en": "Know where and how to report cyber fraud in India",
+   "hi": "भारत में साइबर धोखे की रिपोर्ट कहाँ और कैसे करनी है, जानते हो",
+   "hinglish": "India mein cyber fraud kahan aur kaise report karna hai jaante ho"
+  },
+  {
+   "en": "Collect the right evidence before reporting",
+   "hi": "रिपोर्ट से पहले सही सबूत जमा कर सकते हो",
+   "hinglish": "Report se pehle sahi saboot jama kar sakte ho"
+  },
+  {
+   "en": "Explain why reporting fast matters",
+   "hi": "समझा सकते हो कि जल्दी रिपोर्ट करना क्यों ज़रूरी है",
+   "hinglish": "Samjha sakte ho jaldi report karna kyun zaroori hai"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "1930",
+   "hinglish": "Cyber crime helpline",
+   "en": "India’s national cyber crime helpline number for reporting fraud fast",
+   "hi": "भारत का राष्ट्रीय साइबर अपराध हेल्पलाइन नंबर, धोखे की तुरंत रिपोर्ट के लिए"
+  },
+  {
+   "term": "cybercrime.gov.in",
+   "hinglish": "Online complaint portal",
+   "en": "The government portal to file cybercrime complaints online",
+   "hi": "साइबर अपराध की ऑनलाइन शिकायत का सरकारी पोर्टल"
+  },
+  {
+   "term": "Evidence",
+   "hinglish": "Saboot",
+   "en": "Screenshots, numbers, links and transaction IDs that prove what happened",
+   "hi": "स्क्रीनशॉट, नंबर, लिंक और लेन-देन ID जो साबित करें क्या हुआ"
+  },
+  {
+   "term": "Golden hour",
+   "hinglish": "Pehle ghante ka keemti samay",
+   "en": "The first hours after a fraud, when money can still be frozen",
+   "hi": "धोखे के बाद के पहले घंटे, जब पैसे अभी भी रोके जा सकते हैं"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "If money is lost, call 1930 immediately. The faster you report, the better the chance the money can be frozen.",
+    "hi": "पैसे गए तो तुरंत 1930 पर कॉल करो। जितनी जल्दी रिपोर्ट, पैसे रोके जाने की उतनी अच्छी संभावना।",
+    "hinglish": "Paise gaye to turant 1930 pe call karo. Jitni jaldi report, paise freeze hone ka utna achha chance."
+   },
+   "visual": "compare:⏱️ Report in the first hours → money can be frozen|🐢 Wait days → money is moved away",
+   "narration": {
+    "en": "Do not feel ashamed — scams fool adults, doctors and engineers too.",
+    "hi": "शर्माओ मत — धोखे बड़ों, डॉक्टरों और इंजीनियरों को भी फँसाते हैं।",
+    "hinglish": "Sharmao mat — scams bado, doctors aur engineers ko bhi phansaate hain."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Save evidence before blocking or deleting: screenshots, the phone number, the link, the UPI ID and the transaction ID.",
+    "hi": "ब्लॉक या मिटाने से पहले सबूत रखो: स्क्रीनशॉट, फ़ोन नंबर, लिंक, UPI ID और लेन-देन ID।",
+    "hinglish": "Block ya delete karne se pehle saboot rakho: screenshots, phone number, link, UPI ID aur transaction ID."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "Police need these details to trace the scammer.",
+    "hi": "पुलिस को धोखेबाज़ का पता लगाने के लिए ये विवरण चाहिए।",
+    "hinglish": "Police ko scammer trace karne ke liye yeh details chahiye."
+   },
+   "code": "EVIDENCE CHECKLIST\n☐ screenshot of the chat / SMS\n☐ scammer’s number, UPI ID or link\n☐ date and time\n☐ transaction ID (UTR) + bank name\n☐ amount lost"
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Practise on the full scam inbox in the lab: decide what is a scam and what you would report.",
+    "hi": "लैब में पूरे स्कैम इनबॉक्स पर अभ्यास करो: तय करो क्या धोखा है और क्या रिपोर्ट करोगे।",
+    "hinglish": "Lab mein poore scam inbox pe practice karo: decide karo kya scam hai aur kya report karoge."
+   },
+   "visual": "lab:scam-inbox",
+   "narration": {
+    "en": "Every scam you report helps protect someone else.",
+    "hi": "हर रिपोर्ट किया धोखा किसी और को बचाता है।",
+    "hinglish": "Har report kiya scam kisi aur ko bachata hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "scam-inbox",
+  "config": {
+   "need": 8
+  },
+  "goal": {
+   "en": "Sort the full inbox and get at least 8 of 10 right.",
+   "hi": "पूरा इनबॉक्स छाँटो और 10 में से कम से कम 8 सही करो।",
+   "hinglish": "Poora inbox sort karo aur 10 mein se kam se kam 8 sahi karo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Who to tell, and what happens next",
+    "hi": "किसे बताएँ, और आगे क्या होता है",
+    "hinglish": "Kise batayein, aur aage kya hota hai"
+   },
+   "body": {
+    "en": "The Indian Cyber Crime Coordination Centre (I4C), under the Ministry of Home Affairs, runs the National Cyber Crime Reporting Portal at cybercrime.gov.in and the 1930 helpline. When you call 1930 about a money fraud, the details go into the Citizen Financial Cyber Fraud Reporting and Management System, which alerts the banks and wallets involved so they can put a hold on the money before it is withdrawn. You get an acknowledgement number and should then complete the full complaint on the portal. Crimes without money loss, such as cyberbullying, fake profiles or obscene messages, can be reported on the portal too, and crimes against women and children can be reported anonymously. Suspected fraud calls, SMS and WhatsApp messages (even if you lost nothing) can be reported on the Department of Telecommunications’ Sanchar Saathi portal under “Chakshu”. Also tell your bank (use the number on the back of your card or in the official app) to block cards or UPI, then change passwords and turn on 2FA. As a child, the first step is always to tell a parent or trusted adult — you will not be in trouble for reporting.",
+    "hi": "गृह मंत्रालय के तहत भारतीय साइबर अपराध समन्वय केंद्र (I4C) cybercrime.gov.in पर राष्ट्रीय साइबर अपराध रिपोर्टिंग पोर्टल और 1930 हेल्पलाइन चलाता है। जब आप पैसे के धोखे के बारे में 1930 पर कॉल करते हो, तो विवरण नागरिक वित्तीय साइबर धोखाधड़ी रिपोर्टिंग और प्रबंधन प्रणाली में जाते हैं, जो संबंधित बैंकों और वॉलेट को सचेत करती है ताकि पैसे निकाले जाने से पहले रोके जा सकें। आपको एक पावती संख्या मिलती है और फिर पोर्टल पर पूरी शिकायत दर्ज करनी चाहिए। बिना पैसे के नुक़सान वाले अपराध, जैसे साइबर बुलिंग, नक़ली प्रोफ़ाइल या अश्लील संदेश, भी पोर्टल पर रिपोर्ट हो सकते हैं, और महिलाओं व बच्चों के विरुद्ध अपराध गुमनाम रूप से रिपोर्ट हो सकते हैं। संदिग्ध धोखे वाली कॉल, SMS और WhatsApp संदेश (भले कुछ न गया हो) दूरसंचार विभाग के संचार साथी पोर्टल पर “चक्षु” में रिपोर्ट हो सकते हैं। अपने बैंक को भी बताओ (कार्ड के पीछे या आधिकारिक ऐप वाला नंबर उपयोग करो) ताकि कार्ड या UPI बंद हो, फिर पासवर्ड बदलो और 2FA चालू करो। एक बच्चे के रूप में पहला कदम हमेशा माता-पिता या भरोसेमंद बड़े को बताना है — रिपोर्ट करने से आप मुसीबत में नहीं पड़ोगे।",
+    "hinglish": "Ministry of Home Affairs ke under Indian Cyber Crime Coordination Centre (I4C) cybercrime.gov.in pe National Cyber Crime Reporting Portal aur 1930 helpline chalata hai. Jab aap paise ke fraud ke baare mein 1930 pe call karte ho, to details Citizen Financial Cyber Fraud Reporting and Management System mein jaati hain, jo related banks aur wallets ko alert karta hai taaki paise nikaale jaane se pehle hold ho sakein. Aapko acknowledgement number milta hai aur phir portal pe poori complaint file karni chahiye. Bina paise ke nuksaan wale crimes, jaise cyberbullying, fake profiles ya obscene messages, bhi portal pe report ho sakte hain, aur women aur children ke khilaaf crimes anonymously report ho sakte hain. Suspected fraud calls, SMS aur WhatsApp messages (bhale kuch na gaya ho) Department of Telecommunications ke Sanchar Saathi portal pe “Chakshu” mein report ho sakte hain. Apne bank ko bhi batao (card ke peeche ya official app wala number use karo) taaki card ya UPI block ho, phir passwords badlo aur 2FA on karo. Ek bachche ke roop mein pehla step hamesha parent ya trusted adult ko batana hai — report karne se aap musibat mein nahi padoge."
+   },
+   "analogy": {
+    "en": "1930 = a cyber ambulance: the sooner you call, the more can be saved. Call in the golden hour.",
+    "hi": "1930 = साइबर की एम्बुलेंस: जितनी जल्दी बुलाओ, उतना ज़्यादा बचा सकते हो। गोल्डन आवर में कॉल करो।",
+    "hinglish": "1930 = cyber ki ambulance: jitni jaldi bulao, utna zyada bacha sakte ho. Golden hour mein call karo."
+   },
+   "realExample": {
+    "en": "The Ministry of Home Affairs reports that the 1930 helpline and its fraud-reporting system have helped hold back thousands of crores of rupees from reaching fraudsters since 2021.",
+    "hi": "गृह मंत्रालय के अनुसार 1930 हेल्पलाइन और उसकी धोखाधड़ी-रिपोर्टिंग प्रणाली ने 2021 से हज़ारों करोड़ रुपये धोखेबाज़ों तक पहुँचने से रोके हैं।",
+    "hinglish": "Ministry of Home Affairs ke anusaar 1930 helpline aur uske fraud-reporting system ne 2021 se hazaaron crore rupaye fraudsters tak pahunchne se roke hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Make a “Cyber Safety” card for your home: 1930, cybercrime.gov.in, your bank’s official helpline, and the evidence checklist. Stick it near the family phone charger.",
+   "hi": "घर के लिए “साइबर सुरक्षा” कार्ड बनाओ: 1930, cybercrime.gov.in, बैंक की आधिकारिक हेल्पलाइन, और सबूत सूची। परिवार के फ़ोन चार्जर के पास चिपकाओ।",
+   "hinglish": "Ghar ke liye “Cyber Safety” card banao: 1930, cybercrime.gov.in, bank ki official helpline, aur evidence checklist. Family phone charger ke paas chipkao."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "short",
+    "prompt": {
+     "en": "What is India’s cyber crime helpline number?",
+     "hi": "भारत का साइबर अपराध हेल्पलाइन नंबर क्या है?",
+     "hinglish": "India ka cyber crime helpline number kya hai?"
+    },
+    "answer": [
+     "1930"
+    ],
+    "explain": {
+     "en": "1930, run by I4C under the Ministry of Home Affairs.",
+     "hi": "1930, गृह मंत्रालय के तहत I4C द्वारा चलाया जाता है।",
+     "hinglish": "1930, Ministry of Home Affairs ke under I4C chalata hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why report a money fraud within the first hours?",
+     "hi": "पैसे के धोखे की पहले घंटों में रिपोर्ट क्यों?",
+     "hinglish": "Paise ke fraud ki pehle ghanton mein report kyun?"
+    },
+    "options": [
+     {
+      "en": "The money can still be frozen",
+      "hi": "पैसे अभी भी रोके जा सकते हैं",
+      "hinglish": "Paise abhi bhi freeze ho sakte hain"
+     },
+     {
+      "en": "Police stations close at night",
+      "hi": "थाने रात को बंद होते हैं",
+      "hinglish": "Police stations raat ko band hote hain"
+     },
+     {
+      "en": "It is not important",
+      "hi": "ज़रूरी नहीं है",
+      "hinglish": "Zaroori nahi hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Banks can be alerted to hold the money before it is withdrawn.",
+     "hi": "बैंकों को सचेत किया जा सकता है ताकि पैसे निकालने से पहले रोके जाएँ।",
+     "hinglish": "Banks ko alert kiya ja sakta hai taaki paise nikaalne se pehle hold ho sakein."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are useful evidence? Choose all.",
+     "hi": "कौन-से उपयोगी सबूत हैं? सभी चुनो।",
+     "hinglish": "Kaunse useful saboot hain? Saare chuno."
+    },
+    "options": [
+     {
+      "en": "Screenshots of the chat",
+      "hi": "चैट के स्क्रीनशॉट",
+      "hinglish": "Chat ke screenshots"
+     },
+     {
+      "en": "The scammer’s UPI ID",
+      "hi": "धोखेबाज़ की UPI ID",
+      "hinglish": "Scammer ki UPI ID"
+     },
+     {
+      "en": "Your own UPI PIN",
+      "hi": "आपका अपना UPI PIN",
+      "hinglish": "Aapka apna UPI PIN"
+     },
+     {
+      "en": "The transaction ID (UTR)",
+      "hi": "लेन-देन ID (UTR)",
+      "hinglish": "Transaction ID (UTR)"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     3
+    ],
+    "explain": {
+     "en": "Screenshots, the scammer’s UPI ID and the transaction ID help trace the fraud. Your own PIN must never be shared, even with police.",
+     "hi": "स्क्रीनशॉट, धोखेबाज़ की UPI ID और लेन-देन ID पता लगाने में मदद करते हैं। अपना PIN कभी मत बताओ, पुलिस को भी नहीं।",
+     "hinglish": "Screenshots, scammer ki UPI ID aur transaction ID trace karne mein madad karte hain. Apna PIN kabhi share mat karo, police ko bhi nahi."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "You got a fraud SMS but lost no money. Where can you report the number?",
+     "hi": "धोखे वाला SMS आया पर पैसे नहीं गए। नंबर कहाँ रिपोर्ट करोगे?",
+     "hinglish": "Fraud SMS aaya par paise nahi gaye. Number kahan report karoge?"
+    },
+    "options": [
+     {
+      "en": "Nowhere, only money losses count",
+      "hi": "कहीं नहीं, केवल पैसे का नुक़सान गिना जाता है",
+      "hinglish": "Kahin nahi, sirf paise ka nuksaan gina jaata hai"
+     },
+     {
+      "en": "Sanchar Saathi → Chakshu",
+      "hi": "संचार साथी → चक्षु",
+      "hinglish": "Sanchar Saathi → Chakshu"
+     },
+     {
+      "en": "Reply STOP to the scammer",
+      "hi": "धोखेबाज़ को STOP भेजो",
+      "hinglish": "Scammer ko STOP bhejo"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Sanchar Saathi’s Chakshu takes reports of suspected fraud calls and messages.",
+     "hi": "संचार साथी का चक्षु संदिग्ध धोखे वाली कॉल और संदेशों की रिपोर्ट लेता है।",
+     "hinglish": "Sanchar Saathi ka Chakshu suspected fraud calls aur messages ki report leta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "order",
+    "prompt": {
+     "en": "A scammer took ₹3,000 from your family’s account. Put the steps in order.",
+     "hi": "धोखेबाज़ ने परिवार के खाते से ₹3,000 लिए। कदम क्रम में लगाओ।",
+     "hinglish": "Scammer ne family ke account se ₹3,000 liye. Steps order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Complete the complaint on cybercrime.gov.in",
+      "hi": "cybercrime.gov.in पर शिकायत पूरी करो",
+      "hinglish": "cybercrime.gov.in pe complaint poori karo"
+     },
+     {
+      "en": "Tell a parent or trusted adult",
+      "hi": "माता-पिता या भरोसेमंद बड़े को बताओ",
+      "hinglish": "Parent ya trusted adult ko batao"
+     },
+     {
+      "en": "Call 1930 with the transaction details",
+      "hi": "लेन-देन विवरण के साथ 1930 पर कॉल करो",
+      "hinglish": "Transaction details ke saath 1930 pe call karo"
+     }
+    ],
+    "answer": [
+     1,
+     2,
+     0
+    ],
+    "explain": {
+     "en": "Tell an adult, call 1930 at once with the details, then complete the complaint on the portal.",
+     "hi": "बड़े को बताओ, विवरण के साथ तुरंत 1930 पर कॉल करो, फिर पोर्टल पर शिकायत पूरी करो।",
+     "hinglish": "Bade ko batao, details ke saath turant 1930 pe call karo, phir portal pe complaint poori karo."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the lab mission.",
+     "hi": "लैब मिशन पूरा करो।",
+     "hinglish": "Lab mission poora karo."
+    },
+    "answer": {
+     "lab": "scam-inbox",
+     "event": "mission:complete"
+    },
+    "explain": {
+     "en": "Get at least 8 of 10 right in the full inbox.",
+     "hi": "पूरे इनबॉक्स में 10 में से कम से कम 8 सही करो।",
+     "hinglish": "Poore inbox mein 10 mein se kam se kam 8 sahi karo."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "National Cyber Crime Reporting Portal (I4C, Ministry of Home Affairs) — report online or call 1930",
+   "url": "https://cybercrime.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Department of Telecommunications — Sanchar Saathi (Chakshu: report suspected fraud calls and messages)",
+   "url": "https://sancharsaathi.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Ministry of Home Affairs — Indian Cyber Crime Coordination Centre (I4C)",
+   "url": "https://i4c.mha.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

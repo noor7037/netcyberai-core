@@ -5,9 +5,9 @@ export { FAMILY_MODULES, type Entitlement, type FamilyModule, type FamilyTab } f
 
 // The bottom dock (C391): the Family tab is gone, the parent area is one door, Parent space under Profile, behind the
 // PIN. The 'family' value stays on FamilyTab only as the module group of the parent-area modules. C513: Draw sits
-// between English and Future (five tabs; the dock packs them tighter, src/app/(family)/family/family.css).
+// between English and Future. Tech Lab is the sixth tab, directly after English (family.css / tech-lab.css).
 export type DockTab = Exclude<FamilyTab, 'family'>;
-export const TABS: readonly DockTab[] = ['home', 'study', 'english', 'draw', 'future'];
+export const TABS: readonly DockTab[] = ['home', 'study', 'english', 'tech', 'draw', 'future'];
 
 // Home is always there; the others when a module of theirs is built and switched on.
 export function visibleTabs(isOn: (flag: string) => boolean): DockTab[] {

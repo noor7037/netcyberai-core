@@ -1,0 +1,368 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.dsa.06",
+ "level": 3,
+ "classes": [
+  11,
+  12
+ ],
+ "unit": "dsa",
+ "title": {
+  "en": "Trees, graphs and BFS",
+  "hi": "पेड़, ग्राफ़ और BFS",
+  "hinglish": "Trees, graphs aur BFS"
+ },
+ "minutes": 16,
+ "xp": 70,
+ "prereq": [
+  "L3.dsa.05"
+ ],
+ "outcomes": [
+  {
+   "en": "Describe trees and graphs with nodes and edges",
+   "hi": "नोड और किनारों से पेड़ और ग्राफ़ बताओ",
+   "hinglish": "Nodes aur edges se trees aur graphs batao"
+  },
+  {
+   "en": "Run BFS with a queue and DFS with a stack",
+   "hi": "कतार से BFS और स्टैक से DFS चलाओ",
+   "hinglish": "Queue se BFS aur stack se DFS chalao"
+  },
+  {
+   "en": "Explain why BFS finds the shortest path in an unweighted graph",
+   "hi": "समझाओ भार-रहित ग्राफ़ में BFS सबसे छोटा रास्ता क्यों पाता है",
+   "hinglish": "Samjhao unweighted graph mein BFS shortest path kyun paata hai"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Node / edge",
+   "hinglish": "Bindu / jod",
+   "en": "A point, and a connection between two points",
+   "hi": "एक बिंदु, और दो बिंदुओं के बीच संबंध"
+  },
+  {
+   "term": "Tree",
+   "hinglish": "Ped jaisa dhaancha",
+   "en": "A connected graph with no cycles and one root",
+   "hi": "बिना चक्र का जुड़ा ग्राफ़ जिसकी एक जड़ हो"
+  },
+  {
+   "term": "Binary search tree",
+   "hinglish": "Chhota baayein, bada daayein",
+   "en": "A tree where left < node < right, so search is fast",
+   "hi": "पेड़ जहाँ बायाँ < नोड < दायाँ, इसलिए खोज तेज़"
+  },
+  {
+   "term": "BFS",
+   "hinglish": "Parat dar parat",
+   "en": "Breadth-first search: explore level by level with a queue",
+   "hi": "चौड़ाई-पहले खोज: कतार से स्तर-दर-स्तर"
+  },
+  {
+   "term": "DFS",
+   "hinglish": "Gehraai pehle",
+   "en": "Depth-first search: go deep first with a stack or recursion",
+   "hi": "गहराई-पहले खोज: स्टैक या पुनरावर्तन से पहले गहराई"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "A graph: places (nodes) joined by roads (edges). A maze grid is a graph — each open cell links to its neighbours.",
+    "hi": "ग्राफ़: सड़कों (किनारों) से जुड़े स्थान (नोड)। भूलभुलैया ग्रिड एक ग्राफ़ है — हर खुला खाना पड़ोसियों से जुड़ा।",
+    "hinglish": "Graph: sadkon (edges) se jude places (nodes). Maze grid ek graph hai — har khula cell neighbours se juda."
+   },
+   "visual": "anim:graph",
+   "narration": {
+    "en": "A graph: places (nodes) joined by roads (edges). A maze grid is a graph — each open cell links to its neighbours.",
+    "hi": "ग्राफ़: सड़कों (किनारों) से जुड़े स्थान (नोड)। भूलभुलैया ग्रिड एक ग्राफ़ है — हर खुला खाना पड़ोसियों से जुड़ा।",
+    "hinglish": "Graph: sadkon (edges) se jude places (nodes). Maze grid ek graph hai — har khula cell neighbours se juda."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "BFS puts the start in a queue, then visits all cells 1 step away, then 2 steps, like ripples in a pond.",
+    "hi": "BFS शुरुआत को कतार में डालता है, फिर 1 क़दम दूर के सब खाने, फिर 2 क़दम, तालाब की लहरों जैसा।",
+    "hinglish": "BFS start ko queue mein daalta hai, phir 1 step door ke saare cells, phir 2 steps, talaab ki lehron jaisa."
+   },
+   "visual": "anim:ripples",
+   "narration": {
+    "en": "BFS puts the start in a queue, then visits all cells 1 step away, then 2 steps, like ripples in a pond.",
+    "hi": "BFS शुरुआत को कतार में डालता है, फिर 1 क़दम दूर के सब खाने, फिर 2 क़दम, तालाब की लहरों जैसा।",
+    "hinglish": "BFS start ko queue mein daalta hai, phir 1 step door ke saare cells, phir 2 steps, talaab ki lehron jaisa."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "DFS uses a stack and dives down one corridor until stuck, then backtracks — it finds a path, not always the shortest.",
+    "hi": "DFS स्टैक से एक गलियारे में फँसने तक गहरा जाता है, फिर लौटता है — रास्ता पाता है, हमेशा सबसे छोटा नहीं।",
+    "hinglish": "DFS stack se ek corridor mein phansne tak gehra jaata hai, phir lautta hai — raasta paata hai, hamesha sabse chhota nahi."
+   },
+   "visual": "anim:dfs-dive",
+   "narration": {
+    "en": "DFS uses a stack and dives down one corridor until stuck, then backtracks — it finds a path, not always the shortest.",
+    "hi": "DFS स्टैक से एक गलियारे में फँसने तक गहरा जाता है, फिर लौटता है — रास्ता पाता है, हमेशा सबसे छोटा नहीं।",
+    "hinglish": "DFS stack se ek corridor mein phansne tak gehra jaata hai, phir lautta hai — raasta paata hai, hamesha sabse chhota nahi."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "A tree is a graph with no loops: folders, the HTML DOM, a family tree, a decision tree.",
+    "hi": "पेड़ बिना चक्र वाला ग्राफ़ है: फ़ोल्डर, HTML DOM, वंश वृक्ष, निर्णय वृक्ष।",
+    "hinglish": "Tree bina loops wala graph hai: folders, HTML DOM, family tree, decision tree."
+   },
+   "visual": "anim:tree",
+   "narration": {
+    "en": "A tree is a graph with no loops: folders, the HTML DOM, a family tree, a decision tree.",
+    "hi": "पेड़ बिना चक्र वाला ग्राफ़ है: फ़ोल्डर, HTML DOM, वंश वृक्ष, निर्णय वृक्ष।",
+    "hinglish": "Tree bina loops wala graph hai: folders, HTML DOM, family tree, decision tree."
+   }
+  }
+ ],
+ "play": {
+  "lab": "astar-arena",
+  "config": {
+   "mode": "search",
+   "algo": "bfs",
+   "grid": "maze-1"
+  },
+  "goal": {
+   "en": "Run BFS, then DFS, then A* on the same maze. Compare cells expanded and path length. Draw a wall and run BFS again.",
+   "hi": "एक ही भूलभुलैया पर BFS, फिर DFS, फिर A* चलाओ। फैलाए खाने और रास्ते की लंबाई मिलाओ। एक दीवार बनाओ और BFS दोबारा चलाओ।",
+   "hinglish": "Same maze par BFS, phir DFS, phir A* chalao. Expanded cells aur path length compare karo. Ek deewar banao aur BFS dobaara chalao."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Trees and binary search trees",
+    "hi": "पेड़ और द्विआधारी खोज पेड़",
+    "hinglish": "Trees aur binary search trees"
+   },
+   "body": {
+    "en": "A tree has a root, children, and leaves (nodes with no children); every node except the root has exactly one parent. In a binary search tree each node has at most two children, with smaller keys to the left and larger to the right, so finding a key follows one path from the root: O(log n) if the tree is balanced, but O(n) if it degenerates into a line. Self-balancing trees (red-black, AVL) and B-trees used by databases keep the height small. Traversals: in-order visits a BST in sorted order; pre-order copies a tree; level-order is BFS.",
+    "hi": "पेड़ की एक जड़, बच्चे, और पत्तियाँ (बिना बच्चों के नोड) होती हैं; जड़ के अलावा हर नोड का ठीक एक माता-पिता होता है। द्विआधारी खोज पेड़ में हर नोड के अधिकतम दो बच्चे होते हैं, छोटी कुंजियाँ बाएँ और बड़ी दाएँ, इसलिए कुंजी खोजना जड़ से एक रास्ता है: संतुलित हो तो O(log n), पर एक रेखा बन जाए तो O(n)। स्व-संतुलित पेड़ (रेड-ब्लैक, AVL) और डेटाबेस के B-tree ऊँचाई कम रखते हैं। ट्रैवर्सल: इन-ऑर्डर BST को क्रमबद्ध क्रम में देखता है; प्री-ऑर्डर पेड़ की नक़ल बनाता है; लेवल-ऑर्डर BFS है।",
+    "hinglish": "Tree ki ek root, children, aur leaves (bina children ke nodes) hoti hain; root ke alawa har node ka theek ek parent hota hai. Binary search tree mein har node ke maximum do children, chhoti keys left aur badi right, isliye key dhoondhna root se ek raasta hai: balanced ho to O(log n), par ek line ban jaaye to O(n). Self-balancing trees (red-black, AVL) aur databases ke B-trees height kam rakhte hain. Traversals: in-order BST ko sorted order mein visit karta hai; pre-order tree copy karta hai; level-order BFS hai."
+   },
+   "analogy": {
+    "en": "An organisation chart: principal at the root, then vice-principals, then class teachers — each person has one boss.",
+    "hi": "संगठन चार्ट: जड़ पर प्रधानाचार्य, फिर उप-प्रधानाचार्य, फिर कक्षा शिक्षक — हर व्यक्ति का एक बॉस।",
+    "hinglish": "Organisation chart: root par principal, phir vice-principals, phir class teachers — har insaan ka ek boss."
+   },
+   "realExample": {
+    "en": "Every web page is a tree: <html> contains <body>, which contains <div>s; JavaScript walks this DOM tree to update the page.",
+    "hi": "हर वेब पेज एक पेड़ है: <html> में <body>, उसमें <div>; JavaScript इस DOM पेड़ पर चलकर पेज बदलता है।",
+    "hinglish": "Har web page ek tree hai: <html> mein <body>, usmein <div>s; JavaScript is DOM tree par chalkar page update karta hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "Graphs and BFS",
+    "hi": "ग्राफ़ और BFS",
+    "hinglish": "Graphs aur BFS"
+   },
+   "body": {
+    "en": "Graphs model networks: friends on social media, roads, metro lines, web links, computer networks. Store them as an adjacency list — a dict mapping each node to its neighbours. BFS: put the start in a queue and mark it seen; repeatedly dequeue a node and enqueue its unseen neighbours. Because it explores in rings of distance 1, 2, 3…, the first time BFS reaches the goal is along a shortest path (when every edge costs the same). Its cost is O(V + E): every node and edge is handled once. For weighted roads use Dijkstra; with a good distance guess use A*, which you will meet in robotics.",
+    "hi": "ग्राफ़ नेटवर्क दर्शाते हैं: सोशल मीडिया दोस्त, सड़कें, मेट्रो लाइनें, वेब लिंक, कंप्यूटर नेटवर्क। उन्हें आसन्नता सूची के रूप में रखो — हर नोड को उसके पड़ोसियों से जोड़ने वाली डिक्ट। BFS: शुरुआत को कतार में डालो और देखा चिह्नित करो; बार-बार नोड निकालो और उसके न देखे पड़ोसी डालो। क्योंकि यह दूरी 1, 2, 3… के छल्लों में खोजता है, BFS पहली बार लक्ष्य पर सबसे छोटे रास्ते से पहुँचता है (जब हर किनारे की लागत बराबर हो)। लागत O(V + E): हर नोड और किनारा एक बार। भार वाली सड़कों के लिए डाइक्स्ट्रा; अच्छे दूरी अनुमान के साथ A*, जो रोबोटिक्स में मिलेगा।",
+    "hinglish": "Graphs networks dikhate hain: social media friends, sadkein, metro lines, web links, computer networks. Unhe adjacency list ki tarah rakho — har node ko uske neighbours se jodne wali dict. BFS: start ko queue mein daalo aur seen mark karo; baar-baar node nikaalo aur uske unseen neighbours daalo. Kyunki yeh distance 1, 2, 3… ke rings mein explore karta hai, BFS pehli baar goal par shortest path se pahunchta hai (jab har edge ki cost barabar ho). Cost O(V + E): har node aur edge ek baar. Weighted roads ke liye Dijkstra; achhe distance guess ke saath A*, jo robotics mein milega."
+   },
+   "analogy": {
+    "en": "Spreading news in a WhatsApp-free village: first your neighbours hear, then their neighbours — BFS order.",
+    "hi": "बिना WhatsApp वाले गाँव में ख़बर फैलना: पहले आपके पड़ोसी सुनते हैं, फिर उनके पड़ोसी — BFS क्रम।",
+    "hinglish": "Bina WhatsApp wale gaon mein khabar phailna: pehle tumhare padosi sunte hain, phir unke padosi — BFS order."
+   },
+   "realExample": {
+    "en": "\"Fewest metro changes from Rajiv Chowk to the airport\" is BFS on a graph of stations and lines; \"shortest travel time\" needs Dijkstra.",
+    "hi": "\"राजीव चौक से हवाई अड्डे तक सबसे कम मेट्रो बदलाव\" स्टेशनों और लाइनों के ग्राफ़ पर BFS है; \"सबसे कम यात्रा समय\" के लिए डाइक्स्ट्रा चाहिए।",
+    "hinglish": "\"Rajiv Chowk se airport tak sabse kam metro changes\" stations aur lines ke graph par BFS hai; \"sabse kam travel time\" ke liye Dijkstra chahiye."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Draw 6 friends as nodes and connect those who know each other. Write the adjacency list as a Python dict and run BFS by hand from one friend: list who is 1 step and 2 steps away.",
+   "hi": "6 दोस्तों को नोड बनाकर बनाओ और जो एक-दूसरे को जानते हैं उन्हें जोड़ो। आसन्नता सूची को पायथन डिक्ट की तरह लिखो और एक दोस्त से हाथ से BFS चलाओ: कौन 1 क़दम और 2 क़दम दूर है लिखो।",
+   "hinglish": "6 doston ko nodes banakar draw karo aur jo ek doosre ko jaante hain unhe jodo. Adjacency list ko Python dict ki tarah likho aur ek dost se haath se BFS chalao: kaun 1 step aur 2 steps door hai likho."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "BFS uses which data structure?",
+     "hi": "BFS कौन-सी डेटा संरचना इस्तेमाल करता है?",
+     "hinglish": "BFS kaunsa data structure use karta hai?"
+    },
+    "options": [
+     {
+      "en": "Queue",
+      "hi": "कतार",
+      "hinglish": "Queue"
+     },
+     {
+      "en": "Stack",
+      "hi": "स्टैक",
+      "hinglish": "Stack"
+     },
+     {
+      "en": "Set only",
+      "hi": "सिर्फ़ सेट",
+      "hinglish": "Sirf set"
+     },
+     {
+      "en": "Tuple",
+      "hi": "टपल",
+      "hinglish": "Tuple"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "FIFO gives level-by-level order; DFS uses a stack.",
+     "hi": "FIFO स्तर-दर-स्तर क्रम देता है; DFS स्टैक इस्तेमाल करता है।",
+     "hinglish": "FIFO level-by-level order deta hai; DFS stack use karta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "In an unweighted maze, which always finds a shortest path?",
+     "hi": "भार-रहित भूलभुलैया में कौन हमेशा सबसे छोटा रास्ता पाता है?",
+     "hinglish": "Unweighted maze mein kaun hamesha shortest path paata hai?"
+    },
+    "options": [
+     "BFS",
+     "DFS",
+     "Random walk",
+     "Greedy best-first"
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "BFS reaches nodes in order of distance.",
+     "hi": "BFS दूरी के क्रम में नोडों तक पहुँचता है।",
+     "hinglish": "BFS distance ke order mein nodes tak pahunchta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "In a BST, where are keys smaller than the root?",
+     "hi": "BST में जड़ से छोटी कुंजियाँ कहाँ होती हैं?",
+     "hinglish": "BST mein root se chhoti keys kahan hoti hain?"
+    },
+    "options": [
+     {
+      "en": "Left subtree",
+      "hi": "बायाँ उप-पेड़",
+      "hinglish": "Left subtree"
+     },
+     {
+      "en": "Right subtree",
+      "hi": "दायाँ उप-पेड़",
+      "hinglish": "Right subtree"
+     },
+     {
+      "en": "Anywhere",
+      "hi": "कहीं भी",
+      "hinglish": "Kahin bhi"
+     },
+     {
+      "en": "At the leaves only",
+      "hi": "सिर्फ़ पत्तियों पर",
+      "hinglish": "Sirf leaves par"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "left < node < right.",
+     "hi": "बायाँ < नोड < दायाँ।",
+     "hinglish": "left < node < right."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are trees (no cycles, one root)?",
+     "hi": "कौन-से पेड़ हैं (बिना चक्र, एक जड़)?",
+     "hinglish": "Kaunse trees hain (bina cycles, ek root)?"
+    },
+    "options": [
+     {
+      "en": "Folders on a disk",
+      "hi": "डिस्क पर फ़ोल्डर",
+      "hinglish": "Disk par folders"
+     },
+     {
+      "en": "The HTML DOM",
+      "hi": "HTML DOM",
+      "hinglish": "HTML DOM"
+     },
+     {
+      "en": "A city road map",
+      "hi": "शहर का सड़क नक़्शा",
+      "hinglish": "Shahar ka road map"
+     },
+     {
+      "en": "Instagram followers",
+      "hi": "इंस्टाग्राम फ़ॉलोअर्स",
+      "hinglish": "Instagram followers"
+     }
+    ],
+    "answer": [
+     0,
+     1
+    ],
+    "explain": {
+     "en": "Roads and followers form cycles — they are general graphs.",
+     "hi": "सड़कें और फ़ॉलोअर्स चक्र बनाते हैं — वे सामान्य ग्राफ़ हैं।",
+     "hinglish": "Roads aur followers cycles banate hain — woh general graphs hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Find a path with BFS in the arena.",
+     "hi": "एरीना में BFS से रास्ता खोजो।",
+     "hinglish": "Arena mein BFS se raasta dhoondho."
+    },
+    "answer": {
+     "event": "path-found",
+     "algo": "bfs"
+    },
+    "explain": {
+     "en": "Ripples of a queue found the shortest route.",
+     "hi": "कतार की लहरों ने सबसे छोटा रास्ता पाया।",
+     "hinglish": "Queue ki lehron ne shortest route paaya."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "prog.ds-trees-graphs"
+ ],
+ "sources": [
+  {
+   "title": "Cormen, Leiserson, Rivest, Stein — Introduction to Algorithms (4th ed., MIT Press, 2022)",
+   "url": "https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Red Blob Games — Introduction to A* and BFS",
+   "url": "https://www.redblobgames.com/pathfinding/a-star/introduction.html",
+   "licence": "fact reference"
+  }
+ ]
+}

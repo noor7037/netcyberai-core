@@ -1,0 +1,375 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.inside-computer.05",
+ "level": 2,
+ "classes": [
+  7,
+  8
+ ],
+ "unit": "inside-computer",
+ "title": {
+  "en": "Chips: from sand to silicon",
+  "hi": "चिप: रेत से सिलिकॉन तक",
+  "hinglish": "Chip: ret se silicon tak"
+ },
+ "minutes": 10,
+ "xp": 40,
+ "prereq": [
+  "L2.inside-computer.04"
+ ],
+ "topics": [
+  "hw.semiconductor",
+  "hw.transistor",
+  "hw.fab"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain what a semiconductor is and why silicon is used",
+   "hi": "समझा सकते हो कि सेमीकंडक्टर क्या है और सिलिकॉन क्यों इस्तेमाल होता है",
+   "hinglish": "Semiconductor kya hai aur silicon kyun use hota hai samjha sakte ho"
+  },
+  {
+   "en": "Describe a transistor as a switch that electricity controls",
+   "hi": "ट्रांज़िस्टर को बिजली से चलने वाले स्विच की तरह समझा सकते हो",
+   "hinglish": "Transistor ko bijli se chalne wala switch samjha sakte ho"
+  },
+  {
+   "en": "Put the main steps of making a chip in order",
+   "hi": "चिप बनाने के मुख्य कदम क्रम में लगा सकते हो",
+   "hinglish": "Chip banane ke main steps order mein laga sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Semiconductor",
+   "en": "A material that conducts electricity only under the right conditions",
+   "hi": "ऐसा पदार्थ जो सही हालात में ही बिजली चलने देता है",
+   "hinglish": "Aisa material jo sahi haalat mein hi bijli chalne deta hai"
+  },
+  {
+   "term": "Transistor",
+   "en": "A tiny switch turned on and off by a small voltage",
+   "hi": "एक छोटा स्विच जिसे छोटा वोल्टेज चालू-बंद करता है",
+   "hinglish": "Ek chhota switch jise chhota voltage on-off karta hai"
+  },
+  {
+   "term": "Wafer",
+   "en": "A thin, round slice of pure silicon on which many chips are made",
+   "hi": "शुद्ध सिलिकॉन की पतली गोल परत जिस पर कई चिप बनती हैं",
+   "hinglish": "Pure silicon ki patli gol plate jis par kai chips bante hain"
+  },
+  {
+   "term": "Fab",
+   "en": "A chip factory with ultra-clean rooms",
+   "hi": "बेहद साफ़ कमरों वाली चिप फ़ैक्ट्री",
+   "hinglish": "Bahut saaf kamron wali chip factory"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Sand is mostly silica: silicon joined with oxygen. Purified, melted and grown into one big crystal, it becomes the starting block of every chip.",
+    "hi": "रेत में ज़्यादातर सिलिका होता है: सिलिकॉन और ऑक्सीजन। इसे शुद्ध करके, पिघलाकर एक बड़ा क्रिस्टल बनाया जाता है, यही हर चिप की शुरुआत है।",
+    "hinglish": "Ret mein zyaadatar silica hota hai: silicon aur oxygen. Isko pure karke, pighla ke ek bada crystal banaya jata hai, yahi har chip ki shuruaat hai."
+   },
+   "visual": "flow:🏖️ Sand|🔥 Purify & melt|💎 Crystal ingot|🍪 Thin wafers",
+   "narration": {
+    "en": "The crystal is sliced into wafers thinner than a fingernail.",
+    "hi": "क्रिस्टल को नाख़ून से भी पतली परतों में काटा जाता है।",
+    "hinglish": "Crystal ko naakhoon se bhi patli wafers mein kaata jata hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Pure silicon barely conducts. Adding a few atoms of phosphorus or boron (doping) lets us decide exactly where current can flow.",
+    "hi": "शुद्ध सिलिकॉन मुश्किल से बिजली चलाता है। फ़ॉस्फ़ोरस या बोरॉन के कुछ परमाणु मिलाने (डोपिंग) से हम तय करते हैं कि बिजली कहाँ बहेगी।",
+    "hinglish": "Pure silicon mushkil se bijli chalata hai. Phosphorus ya boron ke thode atoms milane (doping) se hum decide karte hain ki current kahan behega."
+   },
+   "visual": "compare:🧱 Pure silicon: almost no current|⚡ Doped silicon: current where we want it",
+   "narration": {
+    "en": "That control is what makes it a semiconductor.",
+    "hi": "यही नियंत्रण इसे सेमीकंडक्टर बनाता है।",
+    "hinglish": "Yahi control isko semiconductor banata hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Light shines through a stencil (a mask) to print the pattern of billions of transistors, layer after layer, in rooms far cleaner than a hospital.",
+    "hi": "रोशनी एक स्टेंसिल (मास्क) से गुज़रकर अरबों ट्रांज़िस्टर का पैटर्न छापती है, परत दर परत, अस्पताल से भी कहीं ज़्यादा साफ़ कमरों में।",
+    "hinglish": "Roshni ek stencil (mask) se guzar ke arabon transistors ka pattern chhaapti hai, layer by layer, hospital se bhi zyada saaf kamron mein."
+   },
+   "visual": "stack:🔌 Metal wires|🧩 Transistor layer|🍪 Silicon wafer",
+   "narration": {
+    "en": "One speck of dust can ruin a chip, so workers wear full suits.",
+    "hi": "धूल का एक कण चिप ख़राब कर सकता है, इसलिए कर्मचारी पूरा सूट पहनते हैं।",
+    "hinglish": "Dhool ka ek kan chip kharaab kar sakta hai, isliye workers poora suit pehente hain."
+   }
+  }
+ ],
+ "play": {
+  "lab": "bit-lab",
+  "config": {
+   "tab": "gates",
+   "gate": "AND"
+  },
+  "goal": {
+   "en": "Transistors are joined into gates. Flip the two inputs and find when the AND gate's light turns on.",
+   "hi": "ट्रांज़िस्टर जुड़कर गेट बनाते हैं। दोनों इनपुट बदलो और देखो AND गेट की बत्ती कब जलती है।",
+   "hinglish": "Transistors jud ke gates banate hain. Dono inputs badlo aur dekho AND gate ki light kab jalti hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "A transistor is a switch with no moving parts",
+    "hi": "ट्रांज़िस्टर बिना हिलने वाले हिस्सों का स्विच है",
+    "hinglish": "Transistor bina hilne wale parts ka switch hai"
+   },
+   "body": {
+    "en": "A transistor has three connections. A small voltage on the middle one (the gate) lets a current flow between the other two, or stops it. On = 1, off = 0. Two transistors in a row make an AND gate; billions of gates make a CPU. A modern phone chip holds over ten billion transistors, each far thinner than a hair. {{name}}, every app you open is these switches flipping on and off very fast.",
+    "hi": "ट्रांज़िस्टर के तीन सिरे होते हैं। बीच वाले (गेट) पर छोटा वोल्टेज बाक़ी दो के बीच बिजली बहने देता है, या रोक देता है। चालू = 1, बंद = 0। एक के बाद एक दो ट्रांज़िस्टर AND गेट बनाते हैं; अरबों गेट मिलकर CPU बनाते हैं। आज की फ़ोन चिप में एक हज़ार करोड़ से ज़्यादा ट्रांज़िस्टर होते हैं, हर एक बाल से कहीं पतला। {{name}}, तुम्हारा खोला हर ऐप इन्हीं स्विच का बहुत तेज़ी से चालू-बंद होना है।",
+    "hinglish": "Transistor ke teen sire hote hain. Beech wale (gate) par chhota voltage baaki do ke beech current behne deta hai, ya rok deta hai. On = 1, off = 0. Ek ke baad ek do transistors AND gate banate hain; arabon gates mil ke CPU banate hain. Aaj ki phone chip mein das arab se zyada transistors hote hain, har ek baal se kahin patla. {{name}}, tumhara khola har app inhi switches ka bahut tezi se on-off hona hai."
+   },
+   "analogy": {
+    "en": "A transistor is like a water tap: a small turn of the handle controls a big flow.",
+    "hi": "ट्रांज़िस्टर नल जैसा है: हैंडल का छोटा-सा घुमाव बड़े बहाव को नियंत्रित करता है।",
+    "hinglish": "Transistor nal jaisa hai: handle ka chhota sa ghumaav bade flow ko control karta hai."
+   },
+   "realExample": {
+    "en": "The chip in a budget phone and in a ₹1 lakh phone are both made this way; the difference is how small and how many transistors.",
+    "hi": "सस्ते फ़ोन और ₹1 लाख के फ़ोन की चिप दोनों ऐसे ही बनती हैं; फ़र्क़ है ट्रांज़िस्टर कितने छोटे और कितने ज़्यादा हैं।",
+    "hinglish": "Saste phone aur ₹1 lakh ke phone ki chip dono aise hi banti hain; fark hai transistors kitne chhote aur kitne zyada hain."
+   }
+  },
+  {
+   "heading": {
+    "en": "Why chips matter for India",
+    "hi": "भारत के लिए चिप क्यों ज़रूरी हैं",
+    "hinglish": "India ke liye chips kyun zaroori hain"
+   },
+   "body": {
+    "en": "Cars, phones, satellites, UPI servers and hospital machines all need chips, and only a few companies in the world can make the most advanced ones. A modern fab costs more than a big dam and takes years to build. In 2021 India started the India Semiconductor Mission to bring chip making and chip testing to the country, with plants coming up in Gujarat and Assam. Chip design is already big in India: engineers in Bengaluru, Hyderabad and Noida design parts of chips used worldwide.",
+    "hi": "कार, फ़ोन, उपग्रह, UPI सर्वर और अस्पताल की मशीनें सबको चिप चाहिए, और दुनिया में कुछ ही कंपनियाँ सबसे उन्नत चिप बना पाती हैं। एक आधुनिक फ़ैब एक बड़े बाँध से भी महँगा होता है और बनने में सालों लगते हैं। 2021 में भारत ने इंडिया सेमीकंडक्टर मिशन शुरू किया ताकि चिप बनाना और जाँचना देश में हो, गुजरात और असम में प्लांट बन रहे हैं। चिप डिज़ाइन भारत में पहले से बड़ा है: बेंगलुरु, हैदराबाद और नोएडा के इंजीनियर दुनिया भर में इस्तेमाल होने वाली चिप के हिस्से डिज़ाइन करते हैं।",
+    "hinglish": "Car, phone, satellite, UPI servers aur hospital ki machines sabko chips chahiye, aur duniya mein kuch hi companies sabse advanced chips bana paati hain. Ek modern fab ek bade dam se bhi mehenga hota hai aur banne mein saal lagte hain. 2021 mein India ne India Semiconductor Mission shuru kiya taaki chip banana aur test karna desh mein ho, Gujarat aur Assam mein plants ban rahe hain. Chip design India mein pehle se bada hai: Bengaluru, Hyderabad aur Noida ke engineers duniya bhar mein use hone wali chips ke hisse design karte hain."
+   },
+   "realExample": {
+    "en": "Chip design and chip testing are careers you can study for after Class 12 (electronics or electrical engineering).",
+    "hi": "चिप डिज़ाइन और चिप टेस्टिंग ऐसे करियर हैं जिनकी पढ़ाई कक्षा 12 के बाद (इलेक्ट्रॉनिक्स या इलेक्ट्रिकल इंजीनियरिंग) हो सकती है।",
+    "hinglish": "Chip design aur chip testing aise careers hain jinki padhai Class 12 ke baad (electronics ya electrical engineering) ho sakti hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Look at the back of an old charger or remote with a grown-up. Find the small black chip on its board and say what job it might do.",
+   "hi": "किसी बड़े के साथ पुराने चार्जर या रिमोट का बोर्ड देखो। उस पर छोटी काली चिप ढूँढो और बताओ वह क्या काम करती होगी।",
+   "hinglish": "Kisi bade ke saath purane charger ya remote ka board dekho. Uspar chhoti kaali chip dhoondo aur batao woh kya kaam karti hogi."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "What is the starting material for most computer chips?",
+     "hi": "ज़्यादातर कंप्यूटर चिप किस पदार्थ से बनती हैं?",
+     "hinglish": "Zyaadatar computer chips kis material se banti hain?"
+    },
+    "options": [
+     {
+      "en": "Copper",
+      "hi": "ताँबा",
+      "hinglish": "Copper"
+     },
+     {
+      "en": "Silicon from sand",
+      "hi": "रेत से मिला सिलिकॉन",
+      "hinglish": "Ret se mila silicon"
+     },
+     {
+      "en": "Plastic",
+      "hi": "प्लास्टिक",
+      "hinglish": "Plastic"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Chips start as very pure silicon, which comes from silica in sand.",
+     "hi": "चिप बहुत शुद्ध सिलिकॉन से बनती हैं, जो रेत के सिलिका से आता है।",
+     "hinglish": "Chips bahut pure silicon se banti hain, jo ret ke silica se aata hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "What does doping do to silicon?",
+     "hi": "डोपिंग सिलिकॉन के साथ क्या करती है?",
+     "hinglish": "Doping silicon ke saath kya karti hai?"
+    },
+    "options": [
+     {
+      "en": "Makes it shiny",
+      "hi": "उसे चमकदार बनाती है",
+      "hinglish": "Usko chamakdaar banati hai"
+     },
+     {
+      "en": "Lets us control where current flows",
+      "hi": "तय करने देती है कि बिजली कहाँ बहे",
+      "hinglish": "Decide karne deti hai ki current kahan bahe"
+     },
+     {
+      "en": "Makes it melt",
+      "hi": "उसे पिघला देती है",
+      "hinglish": "Usko pighla deti hai"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "A few added atoms change how silicon conducts, so current flows only where the design wants it.",
+     "hi": "मिलाए गए कुछ परमाणु सिलिकॉन के बिजली चलाने का तरीक़ा बदलते हैं, ताकि बिजली वहीं बहे जहाँ डिज़ाइन चाहता है।",
+     "hinglish": "Milaye gaye kuch atoms silicon ke bijli chalane ka tareeka badalte hain, taaki current wahin bahe jahan design chahta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "A transistor in a chip works most like…",
+     "hi": "चिप में ट्रांज़िस्टर सबसे ज़्यादा किसकी तरह काम करता है?",
+     "hinglish": "Chip mein transistor sabse zyada kiski tarah kaam karta hai?"
+    },
+    "options": [
+     {
+      "en": "A switch controlled by electricity",
+      "hi": "बिजली से चलने वाला स्विच",
+      "hinglish": "Bijli se chalne wala switch"
+     },
+     {
+      "en": "A battery",
+      "hi": "बैटरी",
+      "hinglish": "Battery"
+     },
+     {
+      "en": "A speaker",
+      "hi": "स्पीकर",
+      "hinglish": "Speaker"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "A small voltage on its gate turns the current on or off: 1 or 0.",
+     "hi": "उसके गेट पर छोटा वोल्टेज बिजली को चालू या बंद करता है: 1 या 0।",
+     "hinglish": "Uske gate par chhota voltage current ko on ya off karta hai: 1 ya 0."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "order",
+    "prompt": {
+     "en": "Put the chip-making steps in order.",
+     "hi": "चिप बनाने के कदम क्रम में लगाओ।",
+     "hinglish": "Chip banane ke steps order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Print transistor patterns with light",
+      "hi": "रोशनी से ट्रांज़िस्टर के पैटर्न छापो",
+      "hinglish": "Roshni se transistor patterns chhaapo"
+     },
+     {
+      "en": "Purify silicon and grow a crystal",
+      "hi": "सिलिकॉन शुद्ध करके क्रिस्टल बनाओ",
+      "hinglish": "Silicon pure karke crystal banao"
+     },
+     {
+      "en": "Slice the crystal into wafers",
+      "hi": "क्रिस्टल को वेफ़र में काटो",
+      "hinglish": "Crystal ko wafers mein kaato"
+     },
+     {
+      "en": "Cut the wafer into chips and test them",
+      "hi": "वेफ़र को चिप में काटो और जाँचो",
+      "hinglish": "Wafer ko chips mein kaato aur test karo"
+     }
+    ],
+    "answer": [
+     1,
+     2,
+     0,
+     3
+    ],
+    "explain": {
+     "en": "Crystal first, then wafers, then patterns layer by layer, then cutting and testing.",
+     "hi": "पहले क्रिस्टल, फिर वेफ़र, फिर परत दर परत पैटर्न, फिर काटना और जाँचना।",
+     "hinglish": "Pehle crystal, phir wafers, phir layer by layer patterns, phir kaatna aur test karna."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "multi",
+    "prompt": {
+     "en": "Which of these need chips? (choose all)",
+     "hi": "इनमें से किसे चिप चाहिए? (सभी चुनो)",
+     "hinglish": "Inmein se kise chips chahiye? (saare chuno)"
+    },
+    "options": [
+     {
+      "en": "A smartphone",
+      "hi": "स्मार्टफ़ोन",
+      "hinglish": "Smartphone"
+     },
+     {
+      "en": "A car's airbag system",
+      "hi": "कार का एयरबैग सिस्टम",
+      "hinglish": "Car ka airbag system"
+     },
+     {
+      "en": "A wooden chair",
+      "hi": "लकड़ी की कुर्सी",
+      "hinglish": "Lakdi ki kursi"
+     },
+     {
+      "en": "A UPI payment server",
+      "hi": "UPI पेमेंट सर्वर",
+      "hinglish": "UPI payment server"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     3
+    ],
+    "explain": {
+     "en": "Phones, car safety systems and servers all run on chips; a wooden chair has no electronics.",
+     "hi": "फ़ोन, कार के सुरक्षा सिस्टम और सर्वर सब चिप पर चलते हैं; लकड़ी की कुर्सी में कोई इलेक्ट्रॉनिक्स नहीं।",
+     "hinglish": "Phone, car ke safety systems aur servers sab chips par chalte hain; lakdi ki kursi mein koi electronics nahi."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "India Semiconductor Mission (MeitY)",
+   "url": "https://ism.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "How transistors work — Khan Academy / physics references",
+   "url": "https://www.khanacademy.org/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NCERT / CBSE Artificial Intelligence & Computer curriculum (Classes 6–8), 2024–25",
+   "url": "https://cbseacademic.nic.in/",
+   "licence": "fact reference"
+  }
+ ]
+}

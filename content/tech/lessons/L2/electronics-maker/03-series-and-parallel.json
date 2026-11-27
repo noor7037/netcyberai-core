@@ -1,0 +1,387 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.electronics-maker.03",
+ "level": 2,
+ "classes": [
+  7,
+  8
+ ],
+ "unit": "electronics-maker",
+ "title": {
+  "en": "Series and parallel circuits",
+  "hi": "श्रेणी और समानांतर परिपथ",
+  "hinglish": "Series aur parallel circuits"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [
+  "L2.electronics-maker.02"
+ ],
+ "topics": [
+  "elec.circuits"
+ ],
+ "outcomes": [
+  {
+   "en": "Tell series and parallel circuits apart",
+   "hi": "श्रेणी और समानांतर परिपथ में अंतर बता सकते हो",
+   "hinglish": "Series aur parallel circuits mein farak bata sakte ho"
+  },
+  {
+   "en": "Predict what happens when one bulb is removed",
+   "hi": "एक बल्ब निकालने पर क्या होगा, अनुमान लगा सकते हो",
+   "hinglish": "Ek bulb nikaalne pe kya hoga predict kar sakte ho"
+  },
+  {
+   "en": "Explain why houses are wired in parallel",
+   "hi": "समझा सकते हो कि घर समानांतर में क्यों जोड़े जाते हैं",
+   "hinglish": "Samjha sakte ho ki ghar parallel mein wire kyun hote hain"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Series",
+   "hinglish": "Ek ke baad ek, ek hi raasta",
+   "en": "Parts in one single loop, one after another",
+   "hi": "एक ही घेरे में एक के बाद एक भाग"
+  },
+  {
+   "term": "Parallel",
+   "hinglish": "Alag-alag branches",
+   "en": "Parts on separate branches, each connected across the battery",
+   "hi": "अलग-अलग शाखाओं पर भाग, हर एक बैटरी के आर-पार जुड़ा"
+  },
+  {
+   "term": "Branch",
+   "hinglish": "Circuit ka alag raasta",
+   "en": "One separate path in a parallel circuit",
+   "hi": "समानांतर परिपथ का एक अलग रास्ता"
+  },
+  {
+   "term": "Open circuit",
+   "hinglish": "Toota hua loop",
+   "en": "A broken loop: no current flows",
+   "hi": "टूटा हुआ घेरा: धारा नहीं बहती"
+  },
+  {
+   "term": "Short circuit",
+   "hinglish": "Bina rukawat ka shortcut",
+   "en": "A path with almost no resistance, causing dangerous current",
+   "hi": "लगभग बिना प्रतिरोध का रास्ता, जिससे ख़तरनाक धारा बहती है"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "In series, current has only one road. Remove one bulb and the whole chain goes dark.",
+    "hi": "श्रेणी में धारा का केवल एक रास्ता है। एक बल्ब निकालो और पूरी लड़ी बुझ जाती है।",
+    "hinglish": "Series mein current ka sirf ek raasta hai. Ek bulb nikaalo aur poori chain bujh jaati hai."
+   },
+   "visual": "compare:➡️ Series: one path, bulbs share the voltage|🔀 Parallel: each bulb gets the full voltage",
+   "narration": {
+    "en": "Old Diwali light strings were in series — one dead bulb and the whole string went off.",
+    "hi": "पुरानी दिवाली की लड़ियाँ श्रेणी में होती थीं — एक बल्ब ख़राब और पूरी लड़ी बंद।",
+    "hinglish": "Purani Diwali ki lights series mein hoti thi — ek bulb kharab aur poori ladi band."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "In parallel, each bulb has its own branch. Remove one and the others stay bright.",
+    "hi": "समानांतर में हर बल्ब की अपनी शाखा है। एक निकालो, बाक़ी जलते रहते हैं।",
+    "hinglish": "Parallel mein har bulb ki apni branch hai. Ek nikaalo, baaki jalte rehte hain."
+   },
+   "visual": "lab:circuit-lab#sp",
+   "narration": {
+    "en": "Try it: remove a bulb in each circuit in the lab and compare.",
+    "hi": "आज़माओ: लैब में हर परिपथ से एक बल्ब निकालो और तुलना करो।",
+    "hinglish": "Try karo: lab mein har circuit se ek bulb nikaalo aur compare karo."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Series resistances add up; parallel branches each draw their own current, so the battery supplies the total.",
+    "hi": "श्रेणी में प्रतिरोध जुड़ते हैं; समानांतर में हर शाखा अपनी धारा लेती है, और बैटरी कुल देती है।",
+    "hinglish": "Series mein resistances jud jaati hain; parallel mein har branch apna current leti hai, aur battery total deti hai."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "More bulbs in parallel = brighter house, but more current from the supply.",
+    "hi": "समानांतर में ज़्यादा बल्ब = रोशन घर, पर आपूर्ति से ज़्यादा धारा।",
+    "hinglish": "Parallel mein zyada bulb = roshan ghar, par supply se zyada current."
+   },
+   "code": "Series:   R_total = R1 + R2 = 100 + 200 = 300 Ω\nParallel: I_total = I1 + I2 = 20 mA + 20 mA = 40 mA"
+  }
+ ],
+ "play": {
+  "lab": "circuit-lab",
+  "config": {
+   "tab": "sp"
+  },
+  "goal": {
+   "en": "Remove one bulb in the series circuit and one in the parallel circuit, and explain what changes.",
+   "hi": "श्रेणी परिपथ में एक बल्ब और समानांतर में एक बल्ब निकालो, और बताओ क्या बदला।",
+   "hinglish": "Series circuit mein ek bulb aur parallel mein ek bulb nikaalo, aur batao kya badla."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Why your home is wired in parallel",
+    "hi": "आपका घर समानांतर में क्यों जुड़ा है",
+    "hinglish": "Aapka ghar parallel mein kyun wired hai"
+   },
+   "body": {
+    "en": "In a series circuit the same current flows through every part and the battery’s voltage is shared between them, so two identical bulbs in series each get half the voltage and glow dimmer. In a parallel circuit every branch gets the full voltage, so each bulb glows at full brightness, and switching one off does not affect the rest. That is why every fan, light and socket in a home is connected in parallel across the 230 V supply, each with its own switch. The total current from the supply is the sum of the branch currents, so too many heavy appliances on one line can overheat the wires — fuses and MCBs (miniature circuit breakers) cut the supply when current gets too high. A short circuit is a path with almost no resistance; it causes a huge current and is dangerous, so never connect a battery’s + and − directly with a wire.",
+    "hi": "श्रेणी परिपथ में हर भाग से वही धारा बहती है और बैटरी का वोल्टेज उनमें बँट जाता है, इसलिए श्रेणी में दो एक जैसे बल्ब आधा-आधा वोल्टेज पाकर मंद जलते हैं। समानांतर परिपथ में हर शाखा को पूरा वोल्टेज मिलता है, इसलिए हर बल्ब पूरी चमक से जलता है, और एक बंद करने से बाक़ी पर असर नहीं पड़ता। इसीलिए घर का हर पंखा, बत्ती और सॉकेट 230 V आपूर्ति के आर-पार समानांतर में जुड़ा है, हर एक का अपना स्विच। आपूर्ति से कुल धारा शाखाओं की धाराओं का योग है, इसलिए एक लाइन पर बहुत भारी उपकरण तारों को गरम कर सकते हैं — फ़्यूज़ और MCB (मिनिएचर सर्किट ब्रेकर) धारा बहुत बढ़ने पर आपूर्ति काट देते हैं। शॉर्ट सर्किट लगभग बिना प्रतिरोध का रास्ता है; इससे बहुत बड़ी धारा बहती है और यह ख़तरनाक है, इसलिए बैटरी के + और − को कभी सीधे तार से मत जोड़ो।",
+    "hinglish": "Series circuit mein har part se same current behta hai aur battery ka voltage unmein bant jaata hai, isliye series mein do same bulb aadha-aadha voltage paake dim jalte hain. Parallel circuit mein har branch ko poora voltage milta hai, isliye har bulb full brightness pe jalta hai, aur ek band karne se baaki pe asar nahi padta. Isiliye ghar ka har pankha, light aur socket 230 V supply ke across parallel mein juda hai, har ek ka apna switch. Supply se total current branch currents ka jod hai, isliye ek line pe bahut heavy appliances wires ko garam kar sakte hain — fuse aur MCB (miniature circuit breaker) current bahut badhne pe supply kaat dete hain. Short circuit lagbhag bina resistance ka raasta hai; isse bahut bada current behta hai aur yeh khatarnaak hai, isliye battery ke + aur − ko kabhi seedha wire se mat jodo."
+   },
+   "analogy": {
+    "en": "Series = a one-lane road: one car stops and everyone stops. Parallel = a road with many lanes: each lane is separate, close one and the others keep moving.",
+    "hi": "श्रेणी = एक लेन की सड़क: एक गाड़ी रुकी तो सब रुके। समानांतर = कई लेन की सड़क: हर लेन अलग, एक बंद तो बाक़ी चलती रहें।",
+    "hinglish": "Series = ek lane ki sadak: ek gaadi ruki to sab ruke. Parallel = flyover wali sadak: har lane alag, ek band to baaki chalti rahein."
+   },
+   "realExample": {
+    "en": "When the MCB in your home’s switchboard “trips”, it has detected too much current — usually a fault or a short circuit — and cut the supply to keep the wires from overheating.",
+    "hi": "जब घर के स्विचबोर्ड का MCB “ट्रिप” होता है, उसने ज़्यादा धारा पकड़ी है — अक्सर ख़राबी या शॉर्ट सर्किट — और तारों को गरम होने से बचाने के लिए आपूर्ति काट दी।",
+    "hinglish": "Jab ghar ke switchboard ka MCB “trip” hota hai, usne zyada current pakda hai — aksar fault ya short circuit — aur wires garam hone se bachane ke liye supply kaat di."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Draw your bedroom’s lights, fan and sockets as a circuit diagram. Are they in series or parallel? How do you know?",
+   "hi": "अपने कमरे की बत्तियों, पंखे और सॉकेट का परिपथ चित्र बनाओ। श्रेणी या समानांतर? कैसे पता?",
+   "hinglish": "Apne kamre ki lights, pankha aur sockets ka circuit diagram banao. Series ya parallel? Kaise pata?"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "In a series circuit one bulb breaks. The others…",
+     "hi": "श्रेणी परिपथ में एक बल्ब टूटता है। बाक़ी…",
+     "hinglish": "Series circuit mein ek bulb toot-ta hai. Baaki…"
+    },
+    "options": [
+     {
+      "en": "all go off",
+      "hi": "सब बुझ जाते हैं",
+      "hinglish": "sab bujh jaate hain"
+     },
+     {
+      "en": "get brighter",
+      "hi": "और चमकते हैं",
+      "hinglish": "aur chamakte hain"
+     },
+     {
+      "en": "stay the same",
+      "hi": "वैसे ही रहते हैं",
+      "hinglish": "waise hi rehte hain"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "There is only one path, so the loop is broken and all go off.",
+     "hi": "केवल एक रास्ता है, इसलिए घेरा टूटता है और सब बुझते हैं।",
+     "hinglish": "Sirf ek raasta hai, to loop toot-ta hai aur sab bujhte hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why are homes wired in parallel?",
+     "hi": "घर समानांतर में क्यों जुड़े होते हैं?",
+     "hinglish": "Ghar parallel mein kyun wired hote hain?"
+    },
+    "options": [
+     {
+      "en": "It uses less wire",
+      "hi": "कम तार लगता है",
+      "hinglish": "Kam wire lagta hai"
+     },
+     {
+      "en": "So all lights switch together",
+      "hi": "ताकि सब बत्तियाँ साथ जलें",
+      "hinglish": "Taaki saari lights saath jalein"
+     },
+     {
+      "en": "Each appliance gets full voltage and its own switch",
+      "hi": "हर उपकरण को पूरा वोल्टेज और अपना स्विच मिलता है",
+      "hinglish": "Har appliance ko poora voltage aur apna switch milta hai"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "Each appliance gets the full 230 V and works on its own switch.",
+     "hi": "हर उपकरण को पूरे 230 V मिलते हैं और वह अपने स्विच से चलता है।",
+     "hinglish": "Har appliance ko poore 230 V milte hain aur woh apne switch se chalta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "short",
+    "prompt": {
+     "en": "100 Ω and 200 Ω in series. Total resistance in ohms?",
+     "hi": "100 Ω और 200 Ω श्रेणी में। कुल प्रतिरोध कितने ओम?",
+     "hinglish": "100 Ω aur 200 Ω series mein. Total resistance kitne ohm?"
+    },
+    "answer": [
+     "300",
+     "300 Ω",
+     "300 ohm"
+    ],
+    "explain": {
+     "en": "In series, resistances add: 100 + 200 = 300 Ω.",
+     "hi": "श्रेणी में प्रतिरोध जुड़ते हैं: 100 + 200 = 300 Ω।",
+     "hinglish": "Series mein resistances judti hain: 100 + 200 = 300 Ω."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "match",
+    "prompt": {
+     "en": "Match each term to what it means.",
+     "hi": "हर शब्द को उसके अर्थ से मिलाओ।",
+     "hinglish": "Har term ko uske matlab se milao."
+    },
+    "options": {
+     "left": [
+      {
+       "en": "Open circuit",
+       "hi": "खुला परिपथ",
+       "hinglish": "Open circuit"
+      },
+      {
+       "en": "Short circuit",
+       "hi": "शॉर्ट सर्किट",
+       "hinglish": "Short circuit"
+      },
+      {
+       "en": "Parallel",
+       "hi": "समानांतर",
+       "hinglish": "Parallel"
+      }
+     ],
+     "right": [
+      {
+       "en": "Separate branches",
+       "hi": "अलग शाखाएँ",
+       "hinglish": "Alag branches"
+      },
+      {
+       "en": "Broken loop, no current",
+       "hi": "टूटा घेरा, धारा नहीं",
+       "hinglish": "Toota loop, current nahi"
+      },
+      {
+       "en": "Shortcut with almost no resistance",
+       "hi": "लगभग बिना प्रतिरोध का शॉर्टकट",
+       "hinglish": "Lagbhag bina resistance ka shortcut"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      2
+     ],
+     [
+      2,
+      0
+     ]
+    ],
+    "explain": {
+     "en": "Open = broken loop; short = no-resistance shortcut; parallel = separate branches.",
+     "hi": "खुला = टूटा घेरा; शॉर्ट = बिना प्रतिरोध का शॉर्टकट; समानांतर = अलग शाखाएँ।",
+     "hinglish": "Open = toota loop; short = bina resistance ka shortcut; parallel = alag branches."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "Two identical bulbs in series on one battery glow…",
+     "hi": "एक बैटरी पर श्रेणी में दो एक जैसे बल्ब जलते हैं…",
+     "hinglish": "Ek battery pe series mein do same bulbs jalte hain…"
+    },
+    "options": [
+     {
+      "en": "brighter than one bulb",
+      "hi": "एक बल्ब से तेज़",
+      "hinglish": "ek bulb se tez"
+     },
+     {
+      "en": "dimmer than one bulb",
+      "hi": "एक बल्ब से मंद",
+      "hinglish": "ek bulb se dim"
+     },
+     {
+      "en": "not at all",
+      "hi": "बिलकुल नहीं",
+      "hinglish": "bilkul nahi"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "They share the voltage, so each gets half and is dimmer than one bulb alone.",
+     "hi": "वे वोल्टेज बाँटते हैं, हर एक को आधा मिलता है और अकेले बल्ब से मंद हैं।",
+     "hinglish": "Woh voltage share karte hain, har ek ko aadha milta hai aur akele bulb se dim hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Finish the series vs parallel experiment in the circuit lab.",
+     "hi": "सर्किट लैब में श्रेणी बनाम समानांतर प्रयोग पूरा करो।",
+     "hinglish": "Circuit lab mein series vs parallel experiment poora karo."
+    },
+    "answer": {
+     "lab": "circuit-lab",
+     "event": "mission:complete",
+     "tab": "sp"
+    },
+    "explain": {
+     "en": "Remove a bulb in each circuit and compare.",
+     "hi": "हर परिपथ में एक बल्ब निकालो और तुलना करो।",
+     "hinglish": "Har circuit mein ek bulb nikaalo aur compare karo."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "SparkFun Learn — Series and Parallel Circuits",
+   "url": "https://learn.sparkfun.com/tutorials/series-and-parallel-circuits",
+   "licence": "fact reference"
+  },
+  {
+   "title": "PhET Interactive Simulations — Circuit Construction Kit: DC (University of Colorado Boulder)",
+   "url": "https://phet.colorado.edu/en/simulations/circuit-construction-kit-dc",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Bureau of Energy Efficiency / BIS — electrical safety basics (MCB, fuses)",
+   "url": "https://www.bis.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

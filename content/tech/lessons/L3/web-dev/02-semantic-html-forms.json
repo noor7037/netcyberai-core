@@ -1,0 +1,346 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.web-dev.02",
+ "level": 3,
+ "classes": [
+  9,
+  10,
+  11
+ ],
+ "unit": "web-dev",
+ "title": {
+  "en": "Semantic HTML and forms",
+  "hi": "अर्थपूर्ण HTML और फ़ॉर्म",
+  "hinglish": "Semantic HTML aur forms"
+ },
+ "minutes": 15,
+ "xp": 60,
+ "prereq": [
+  "L3.web-dev.01"
+ ],
+ "outcomes": [
+  {
+   "en": "Structure a page with header, nav, main, footer and headings",
+   "hi": "header, nav, main, footer और शीर्षकों से पेज बनाओ",
+   "hinglish": "Header, nav, main, footer aur headings se page banao"
+  },
+  {
+   "en": "Build a form with labels, the right input types and validation",
+   "hi": "लेबल, सही इनपुट प्रकार और सत्यापन वाला फ़ॉर्म बनाओ",
+   "hinglish": "Labels, sahi input types aur validation wala form banao"
+  },
+  {
+   "en": "Explain why server-side checks are still needed",
+   "hi": "समझाओ सर्वर की जाँच फिर भी क्यों ज़रूरी है",
+   "hinglish": "Samjhao server-side checks phir bhi kyun zaroori hain"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Element",
+   "hinglish": "Tag wala hissa",
+   "en": "A piece of HTML like <p>…</p>, with a start tag, content and end tag",
+   "hi": "<p>…</p> जैसा HTML भाग, शुरुआती टैग, सामग्री और अंतिम टैग के साथ"
+  },
+  {
+   "term": "Semantic",
+   "hinglish": "Arth wala",
+   "en": "Tags that say what content is (nav, main, button), not how it looks",
+   "hi": "टैग जो बताएँ सामग्री क्या है (nav, main, button), कैसी दिखती है नहीं"
+  },
+  {
+   "term": "Attribute",
+   "hinglish": "Attribute",
+   "en": "Extra information on a tag, e.g. alt, type, required",
+   "hi": "टैग पर अतिरिक्त जानकारी, जैसे alt, type, required"
+  },
+  {
+   "term": "Label",
+   "hinglish": "Label",
+   "en": "Text tied to an input with for=\"id\", read by screen readers and tappable",
+   "hi": "for=\"id\" से इनपुट से जुड़ा पाठ, स्क्रीन रीडर पढ़ते हैं और टैप होता है"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "<div><b>Notice</b></div> looks fine but means nothing to a screen reader or search engine.",
+    "hi": "<div><b>Notice</b></div> ठीक दिखता है पर स्क्रीन रीडर या सर्च इंजन के लिए कुछ नहीं कहता।",
+    "hinglish": "<div><b>Notice</b></div> theek dikhta hai par screen reader ya search engine ke liye kuch nahi kehta."
+   },
+   "visual": "compare:div soup|semantic",
+   "narration": {
+    "en": "<div><b>Notice</b></div> looks fine but means nothing to a screen reader or search engine.",
+    "hi": "<div><b>Notice</b></div> ठीक दिखता है पर स्क्रीन रीडर या सर्च इंजन के लिए कुछ नहीं कहता।",
+    "hinglish": "<div><b>Notice</b></div> theek dikhta hai par screen reader ya search engine ke liye kuch nahi kehta."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Page skeleton: header · nav · main · footer, with one h1 and h2s below it.",
+    "hi": "पेज ढाँचा: header · nav · main · footer, एक h1 और उसके नीचे h2।",
+    "hinglish": "Page skeleton: header · nav · main · footer, ek h1 aur uske neeche h2."
+   },
+   "visual": "stack:header|nav|main|footer",
+   "narration": {
+    "en": "Page skeleton: header · nav · main · footer, with one h1 and h2s below it.",
+    "hi": "पेज ढाँचा: header · nav · main · footer, एक h1 और उसके नीचे h2।",
+    "hinglish": "Page skeleton: header · nav · main · footer, ek h1 aur uske neeche h2."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "<label for=\"email\">Email</label> <input id=\"email\" type=\"email\" required>",
+    "hi": "लेबल और इनपुट जुड़े: <label for=\"email\">Email</label> <input id=\"email\" type=\"email\" required>",
+    "hinglish": "<label for=\"email\">Email</label> <input id=\"email\" type=\"email\" required>"
+   },
+   "visual": "flow:label|input|validation",
+   "narration": {
+    "en": "<label for=\"email\">Email</label> <input id=\"email\" type=\"email\" required>",
+    "hi": "लेबल और इनपुट जुड़े: <label for=\"email\">Email</label> <input id=\"email\" type=\"email\" required>",
+    "hinglish": "<label for=\"email\">Email</label> <input id=\"email\" type=\"email\" required>"
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Browser checks help users; the server must check again, because anyone can skip the browser.",
+    "hi": "ब्राउज़र की जाँच उपयोगकर्ताओं की मदद करती है; सर्वर को फिर जाँचना होगा, क्योंकि कोई भी ब्राउज़र छोड़ सकता है।",
+    "hinglish": "Browser checks users ki madad karti hain; server ko phir check karna hoga, kyunki koi bhi browser skip kar sakta hai."
+   },
+   "visual": "compare:browser check|server check",
+   "narration": {
+    "en": "Browser checks help users; the server must check again, because anyone can skip the browser.",
+    "hi": "ब्राउज़र की जाँच उपयोगकर्ताओं की मदद करती है; सर्वर को फिर जाँचना होगा, क्योंकि कोई भी ब्राउज़र छोड़ सकता है।",
+    "hinglish": "Browser checks users ki madad karti hain; server ko phir check karna hoga, kyunki koi bhi browser skip kar sakta hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "web-lab",
+  "config": {
+   "mission": "html"
+  },
+  "goal": {
+   "en": "Mission 1: rewrite the div-only notice page with header, nav, main, footer, one h1, a h2 and alt text. Then open mission 2 and fix the club sign-up form.",
+   "hi": "मिशन 1: केवल-div वाले सूचना पेज को header, nav, main, footer, एक h1, एक h2 और alt पाठ के साथ दोबारा लिखो। फिर मिशन 2 खोलो और क्लब साइन-अप फ़ॉर्म ठीक करो।",
+   "hinglish": "Mission 1: sirf-div wale notice page ko header, nav, main, footer, ek h1, ek h2 aur alt text ke saath dobara likho. Phir mission 2 kholo aur club sign-up form theek karo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Meaning first, looks later",
+    "hi": "पहले अर्थ, फिर रूप",
+    "hinglish": "Pehle meaning, phir looks"
+   },
+   "body": {
+    "en": "HTML describes what each part of a page is; CSS decides how it looks. Semantic tags give meaning that browsers, screen readers, search engines and translation tools all use: <header> and <footer> for the top and bottom, <nav> for menus, <main> for the main content (one per page), <article> and <section> for blocks, and headings h1 to h6 in order like a book’s chapters. Use <button> for actions and <a href> for going somewhere — a clickable <div> cannot be reached with a keyboard and is announced as nothing. Every <img> needs alt text that says what the image shows, or alt=\"\" if it is only decoration. The HTML Living Standard is maintained by WHATWG, and browsers are very forgiving of mistakes, so check your page with the W3C validator.",
+    "hi": "HTML बताता है पेज का हर हिस्सा क्या है; CSS तय करता है कैसा दिखे। अर्थपूर्ण टैग ऐसा अर्थ देते हैं जिसे ब्राउज़र, स्क्रीन रीडर, सर्च इंजन और अनुवाद टूल सब इस्तेमाल करते हैं: ऊपर-नीचे के लिए <header> और <footer>, मेनू के लिए <nav>, मुख्य सामग्री के लिए <main> (हर पेज में एक), खंडों के लिए <article> और <section>, और किताब के अध्यायों जैसे क्रम में h1 से h6 शीर्षक। क्रियाओं के लिए <button> और कहीं जाने के लिए <a href> — क्लिक होने वाला <div> कीबोर्ड से नहीं पहुँचता और कुछ नहीं बोला जाता। हर <img> को alt पाठ चाहिए जो बताए चित्र में क्या है, या केवल सजावट हो तो alt=\"\"। HTML Living Standard WHATWG बनाए रखता है, और ब्राउज़र ग़लतियाँ बहुत माफ़ करते हैं, इसलिए पेज W3C वैलिडेटर से जाँचो।",
+    "hinglish": "HTML batata hai page ka har hissa kya hai; CSS tay karta hai kaisa dikhe. Semantic tags aisa meaning dete hain jo browsers, screen readers, search engines aur translation tools sab use karte hain: upar-neeche ke liye <header> aur <footer>, menus ke liye <nav>, main content ke liye <main> (har page mein ek), blocks ke liye <article> aur <section>, aur kitaab ke chapters jaise order mein h1 se h6 headings. Actions ke liye <button> aur kahin jaane ke liye <a href> — clickable <div> keyboard se nahi pahunchta aur kuch nahi bola jaata. Har <img> ko alt text chahiye jo bataye image mein kya hai, ya sirf decoration ho to alt=\"\". HTML Living Standard WHATWG maintain karta hai, aur browsers galtiyan bahut maaf karte hain, isliye page W3C validator se check karo."
+   },
+   "analogy": {
+    "en": "A school register with labelled columns versus a heap of loose papers: both hold the data, only one can be read quickly by anyone.",
+    "hi": "लेबल वाले कॉलम का स्कूल रजिस्टर बनाम खुले काग़ज़ों का ढेर: दोनों में डेटा है, केवल एक कोई भी जल्दी पढ़ सकता है।",
+    "hinglish": "Labelled columns wala school register vs khule kaagazon ka dher: dono mein data hai, sirf ek koi bhi jaldi padh sakta hai."
+   },
+   "realExample": {
+    "en": "<main><h2>Annual Science Fair</h2><img src=\"fair.png\" alt=\"Students showing a solar car model\"><p>12 December, main hall.</p></main>",
+    "hi": "<main><h2>Annual Science Fair</h2><img src=\"fair.png\" alt=\"सौर कार मॉडल दिखाते छात्र\"><p>12 दिसंबर, मुख्य हॉल।</p></main>",
+    "hinglish": "<main><h2>Annual Science Fair</h2><img src=\"fair.png\" alt=\"Solar car model dikhate students\"><p>12 December, main hall.</p></main>"
+   }
+  },
+  {
+   "heading": {
+    "en": "Forms that work for everyone",
+    "hi": "सबके लिए काम करने वाले फ़ॉर्म",
+    "hinglish": "Sabke liye kaam karne wale forms"
+   },
+   "body": {
+    "en": "A good form has a visible <label> for every field, linked with for and id, so tapping the label focuses the field and a screen reader announces it. Pick the right input type: email, tel, number, date and password bring the right phone keyboard and built-in checks. Add required, minlength, maxlength or pattern for simple rules, and autocomplete=\"email\" or \"name\" so phones can fill details. The form needs a real <button type=\"submit\">, and errors should say how to fix the problem (\"Enter an email like name@example.com\"), not just turn red. Browser checks are a convenience, not security: anyone can send a request without your page, so the server must validate everything again, and never put passwords or personal data in a GET URL.",
+    "hi": "अच्छे फ़ॉर्म में हर फ़ील्ड का दिखने वाला <label> होता है, for और id से जुड़ा, ताकि लेबल टैप करने पर फ़ील्ड चुना जाए और स्क्रीन रीडर उसे बोले। सही इनपुट प्रकार चुनो: email, tel, number, date और password सही फ़ोन कीबोर्ड और अंतर्निहित जाँच लाते हैं। सरल नियमों के लिए required, minlength, maxlength या pattern जोड़ो, और autocomplete=\"email\" या \"name\" ताकि फ़ोन विवरण भर सकें। फ़ॉर्म को असली <button type=\"submit\"> चाहिए, और त्रुटियाँ बताएँ समस्या कैसे ठीक करें (\"name@example.com जैसा ईमेल लिखो\"), केवल लाल न हों। ब्राउज़र जाँच सुविधा है, सुरक्षा नहीं: कोई भी आपके पेज के बिना अनुरोध भेज सकता है, इसलिए सर्वर को सब दोबारा जाँचना होगा, और पासवर्ड या व्यक्तिगत डेटा कभी GET URL में मत डालो।",
+    "hinglish": "Achhe form mein har field ka dikhne wala <label> hota hai, for aur id se juda, taaki label tap karne par field select ho aur screen reader use bole. Sahi input type chuno: email, tel, number, date aur password sahi phone keyboard aur built-in checks laate hain. Simple rules ke liye required, minlength, maxlength ya pattern jodo, aur autocomplete=\"email\" ya \"name\" taaki phones details bhar sakein. Form ko asli <button type=\"submit\"> chahiye, aur errors batayein problem kaise theek karein (\"name@example.com jaisa email likho\"), sirf laal na hon. Browser checks convenience hain, security nahi: koi bhi tumhare page ke bina request bhej sakta hai, isliye server ko sab dobara check karna hoga, aur passwords ya personal data kabhi GET URL mein mat daalo."
+   },
+   "analogy": {
+    "en": "A railway reservation form: clear boxes, the right kind of answer in each, and the clerk still checks your ID at the counter.",
+    "hi": "रेलवे आरक्षण फ़ॉर्म: साफ़ खाने, हर एक में सही तरह का उत्तर, और क्लर्क फिर भी काउंटर पर पहचान जाँचता है।",
+    "hinglish": "Railway reservation form: saaf khaane, har ek mein sahi tarah ka jawab, aur clerk phir bhi counter par ID check karta hai."
+   },
+   "realExample": {
+    "en": "<label for=\"ph\">Parent’s phone</label><input id=\"ph\" type=\"tel\" inputmode=\"numeric\" pattern=\"[0-9]{10}\" autocomplete=\"tel\" required>",
+    "hi": "<label for=\"ph\">अभिभावक का फ़ोन</label><input id=\"ph\" type=\"tel\" inputmode=\"numeric\" pattern=\"[0-9]{10}\" autocomplete=\"tel\" required>",
+    "hinglish": "<label for=\"ph\">Parent ka phone</label><input id=\"ph\" type=\"tel\" inputmode=\"numeric\" pattern=\"[0-9]{10}\" autocomplete=\"tel\" required>"
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Build a one-page \"School Tech Club\" site in plain HTML: header, nav, main with three sections, footer, and a join form with name, email, class and a submit button. Check it in the W3C validator and with your phone’s screen reader (TalkBack or VoiceOver).",
+   "hi": "सादे HTML में एक पेज की \"School Tech Club\" साइट बनाओ: header, nav, तीन खंडों वाला main, footer, और नाम, ईमेल, कक्षा और submit बटन वाला जुड़ने का फ़ॉर्म। इसे W3C वैलिडेटर में और फ़ोन के स्क्रीन रीडर (TalkBack या VoiceOver) से जाँचो।",
+   "hinglish": "Plain HTML mein ek page ki \"School Tech Club\" site banao: header, nav, teen sections wala main, footer, aur name, email, class aur submit button wala join form. Ise W3C validator mein aur phone ke screen reader (TalkBack ya VoiceOver) se check karo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which tag should hold the main content of a page?",
+     "hi": "पेज की मुख्य सामग्री किस टैग में हो?",
+     "hinglish": "Page ka main content kis tag mein ho?"
+    },
+    "options": [
+     "<main>",
+     "<div id=\"main\">",
+     "<b>",
+     "<span>"
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "<main> tells every tool where the content is.",
+     "hi": "<main> हर टूल को बताता है सामग्री कहाँ है।",
+     "hinglish": "<main> har tool ko batata hai content kahan hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "multi",
+    "prompt": {
+     "en": "Which make a form field accessible?",
+     "hi": "कौन-से फ़ॉर्म फ़ील्ड को सुलभ बनाते हैं?",
+     "hinglish": "Kaunse form field ko accessible banate hain?"
+    },
+    "options": [
+     {
+      "en": "A <label> linked with for and id",
+      "hi": "for और id से जुड़ा <label>",
+      "hinglish": "for aur id se juda <label>"
+     },
+     {
+      "en": "The right input type, e.g. type=\"email\"",
+      "hi": "सही इनपुट प्रकार, जैसे type=\"email\"",
+      "hinglish": "Sahi input type, jaise type=\"email\""
+     },
+     {
+      "en": "Grey hint text inside the box instead of a label",
+      "hi": "लेबल की जगह बॉक्स के अंदर धूसर संकेत पाठ",
+      "hinglish": "Label ki jagah box ke andar grey hint text"
+     },
+     {
+      "en": "Error messages that say how to fix it",
+      "hi": "ठीक करने का तरीका बताती त्रुटियाँ",
+      "hinglish": "Theek karne ka tareeka batate errors"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     3
+    ],
+    "explain": {
+     "en": "Hint text inside the box vanishes when you type, so it cannot replace a label.",
+     "hi": "बॉक्स के अंदर का संकेत पाठ टाइप करते ही ग़ायब, इसलिए लेबल की जगह नहीं ले सकता।",
+     "hinglish": "Box ke andar ka hint text type karte hi gaayab, isliye label ki jagah nahi le sakta."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "The form has required and type=\"email\". Does the server still need to check the email?",
+     "hi": "फ़ॉर्म में required और type=\"email\" है। क्या सर्वर को फिर भी ईमेल जाँचना चाहिए?",
+     "hinglish": "Form mein required aur type=\"email\" hai. Kya server ko phir bhi email check karna chahiye?"
+    },
+    "options": [
+     {
+      "en": "Yes — anyone can send a request without the page",
+      "hi": "हाँ — कोई भी पेज के बिना अनुरोध भेज सकता है",
+      "hinglish": "Haan — koi bhi page ke bina request bhej sakta hai"
+     },
+     {
+      "en": "No, the browser already checked",
+      "hi": "नहीं, ब्राउज़र ने जाँच लिया",
+      "hinglish": "Nahi, browser ne check kar liya"
+     },
+     {
+      "en": "Only on Sundays",
+      "hi": "केवल रविवार को",
+      "hinglish": "Sirf Sunday ko"
+     },
+     {
+      "en": "Only for long emails",
+      "hi": "केवल लंबे ईमेल के लिए",
+      "hinglish": "Sirf lambe emails ke liye"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Never trust the client.",
+     "hi": "क्लाइंट पर कभी भरोसा मत करो।",
+     "hinglish": "Client par kabhi bharosa mat karo."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "short",
+    "prompt": {
+     "en": "Which attribute gives an image its text description?",
+     "hi": "कौन-सा गुण चित्र को उसका पाठ विवरण देता है?",
+     "hinglish": "Kaunsa attribute image ko uska text description deta hai?"
+    },
+    "answer": {
+     "accept": [
+      "alt",
+      "alt="
+     ]
+    },
+    "explain": {
+     "en": "alt=\"what the image shows\".",
+     "hi": "alt=\"चित्र में क्या है\"।",
+     "hinglish": "alt=\"image mein kya hai\"."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Pass mission 2 (Forms) in the Web Dev Lab.",
+     "hi": "वेब डेव लैब में मिशन 2 (फ़ॉर्म) पास करो।",
+     "hinglish": "Web Dev Lab mein mission 2 (Forms) pass karo."
+    },
+    "answer": {
+     "event": "form-accessible",
+     "mission": "form"
+    },
+    "explain": {
+     "en": "Labels, email type, submit button, validation.",
+     "hi": "लेबल, ईमेल प्रकार, submit बटन, सत्यापन।",
+     "hinglish": "Labels, email type, submit button, validation."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "web.html",
+  "web.accessibility"
+ ],
+ "sources": [
+  {
+   "title": "WHATWG — HTML Living Standard",
+   "url": "https://html.spec.whatwg.org/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "W3C — Web Content Accessibility Guidelines (WCAG) 2.2",
+   "url": "https://www.w3.org/TR/WCAG22/",
+   "licence": "fact reference"
+  }
+ ]
+}

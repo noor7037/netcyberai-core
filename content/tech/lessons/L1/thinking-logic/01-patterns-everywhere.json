@@ -1,0 +1,276 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.thinking-logic.01",
+ "level": 1,
+ "classes": [
+  -2,
+  -1,
+  0,
+  1,
+  2
+ ],
+ "unit": "thinking-logic",
+ "title": {
+  "en": "Patterns everywhere",
+  "hi": "हर जगह पैटर्न",
+  "hinglish": "Har jagah patterns"
+ },
+ "minutes": 5,
+ "xp": 20,
+ "prereq": [],
+ "topics": [
+  "prog.patterns"
+ ],
+ "outcomes": [
+  {
+   "en": "Find and continue a repeating pattern.",
+   "hi": "दोहराने वाला पैटर्न ढूँढकर आगे बढ़ा सकते हो।",
+   "hinglish": "Repeat hone wala pattern dhoondh kar aage badha sakte ho."
+  },
+  {
+   "en": "Spot patterns in rangoli, beads and days of the week.",
+   "hi": "रंगोली, मोतियों और हफ़्ते के दिनों में पैटर्न पहचान सकते हो।",
+   "hinglish": "Rangoli, motiyon aur hafte ke dino mein pattern pehchaan sakte ho."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Pattern",
+   "en": "Something that repeats in a regular way",
+   "hi": "ऐसी चीज़ जो नियमित तरीके से दोहराती है",
+   "hinglish": "Baar-baar dohrane wala design ya kram"
+  },
+  {
+   "term": "Repeat",
+   "en": "To do or show again",
+   "hi": "फिर से करना या दिखाना",
+   "hinglish": "Dobara karna"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.thinking-logic.01.s1",
+   "caption": {
+    "en": "Red, blue, red, blue… what comes next?",
+    "hi": "लाल, नीला, लाल, नीला… आगे क्या?",
+    "hinglish": "Laal, neela, laal, neela… aage kya?"
+   },
+   "narration": {
+    "en": "Red, blue, red, blue, red… next is blue! That is a pattern.",
+    "hinglish": "Laal, neela, laal, neela, laal… agla neela! Yeh pattern hai.",
+    "hi": "लाल, नीला, लाल, नीला… आगे क्या?"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.thinking-logic.01.s2",
+   "caption": {
+    "en": "Rangoli has patterns.",
+    "hi": "रंगोली में पैटर्न हैं।",
+    "hinglish": "Rangoli mein patterns hain."
+   },
+   "narration": {
+    "en": "A rangoli repeats the same shapes around the middle.",
+    "hinglish": "Rangoli beech ke chaaron taraf same shapes dohrati hai.",
+    "hi": "रंगोली में पैटर्न हैं।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.thinking-logic.01.s3",
+   "caption": {
+    "en": "Days of the week repeat too.",
+    "hi": "हफ़्ते के दिन भी दोहराते हैं।",
+    "hinglish": "Hafte ke din bhi repeat hote hain."
+   },
+   "narration": {
+    "en": "After Sunday comes Monday again. Computers love patterns because they can repeat them fast.",
+    "hinglish": "Ravivaar ke baad phir Somvaar. Computer ko pattern pasand hain kyunki woh unhe tezi se repeat kar sakte hain.",
+    "hi": "हफ़्ते के दिन भी दोहराते हैं।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "loop-coder",
+  "config": {
+   "level": 3
+  },
+  "goal": {
+   "en": "Help Chintu paint the red-blue pattern on the path.",
+   "hi": "चिंटू की रास्ते पर लाल-नीला पैटर्न रँगने में मदद करो।",
+   "hinglish": "Chintu ki madad karo raaste par laal-neela pattern paint karne mein."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "What is a pattern?",
+    "hi": "पैटर्न क्या है?",
+    "hinglish": "Pattern kya hai?"
+   },
+   "body": {
+    "en": "A pattern is something that repeats. If you find the part that repeats, you can guess what comes next.",
+    "hi": "पैटर्न वह है जो दोहराता है। दोहराने वाला हिस्सा मिल जाए तो अगला अंदाज़ा लगा सकते हो।",
+    "hinglish": "Pattern woh hai jo repeat hota hai. Repeat hone wala hissa mil jaaye toh agla guess kar sakte ho."
+   },
+   "analogy": {
+    "en": "Beads on a mala: red-yellow-red-yellow — which comes next? Yellow!",
+    "hi": "माला में मोती: लाल-पीला-लाल-पीला — अगला कौन-सा? पीला!",
+    "hinglish": "Mala mein moti: laal-peela-laal-peela — agla kaunsa? Peela!"
+   }
+  },
+  {
+   "heading": {
+    "en": "Computers and patterns",
+    "hi": "कंप्यूटर और पैटर्न",
+    "hinglish": "Computer aur patterns"
+   },
+   "body": {
+    "en": "Computers find patterns to help us: a phone keyboard guesses your next word from patterns in what people type.",
+    "hi": "कंप्यूटर हमारी मदद के लिए पैटर्न ढूँढते हैं: फ़ोन का कीबोर्ड लोगों के लिखने के पैटर्न से अगला शब्द अंदाज़ा लगाता है।",
+    "hinglish": "Computer humari madad ke liye pattern dhoondte hain: phone keyboard logon ke likhne ke pattern se agla word guess karta hai."
+   },
+   "realExample": {
+    "en": "Type \"Happy\" and the phone suggests \"Birthday\".",
+    "hi": "\"Happy\" लिखो तो फ़ोन \"Birthday\" सुझाता है।",
+    "hinglish": "\"Happy\" likho toh phone \"Birthday\" suggest karta hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Make a bead or clap pattern (clap, clap, stamp) and ask a family member to continue it.",
+   "hi": "मोती या ताली का पैटर्न बनाओ (ताली, ताली, पैर) और परिवार के किसी सदस्य से आगे बढ़वाओ।",
+   "hinglish": "Moti ya taali ka pattern banao (taali, taali, pair) aur family member se aage badhwao."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "🔴🔵🔴🔵🔴 … what comes next?",
+     "hi": "🔴🔵🔴🔵🔴 … आगे क्या?",
+     "hinglish": "🔴🔵🔴🔵🔴 … aage kya?"
+    },
+    "options": [
+     {
+      "en": "🔵",
+      "hi": "🔵",
+      "hinglish": "🔵"
+     },
+     {
+      "en": "🔴",
+      "hi": "🔴",
+      "hinglish": "🔴"
+     },
+     {
+      "en": "🟢",
+      "hi": "🟢",
+      "hinglish": "🟢"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Red and blue take turns, so after red comes blue.",
+     "hi": "लाल और नीला बारी-बारी आते हैं, इसलिए लाल के बाद नीला।",
+     "hinglish": "Laal aur neela baari-baari aate hain, isliye laal ke baad neela."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "⭐⭐🌙⭐⭐🌙⭐⭐ … next?",
+     "hi": "⭐⭐🌙⭐⭐🌙⭐⭐ … आगे?",
+     "hinglish": "⭐⭐🌙⭐⭐🌙⭐⭐ … aage?"
+    },
+    "options": [
+     {
+      "en": "🌙",
+      "hi": "🌙",
+      "hinglish": "🌙"
+     },
+     {
+      "en": "⭐",
+      "hi": "⭐",
+      "hinglish": "⭐"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "The repeating part is star, star, moon.",
+     "hi": "दोहराने वाला हिस्सा है तारा, तारा, चाँद।",
+     "hinglish": "Repeat hone wala hissa hai star, star, moon."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "2, 4, 6, 8, … next number?",
+     "hi": "2, 4, 6, 8, … अगली संख्या?",
+     "hinglish": "2, 4, 6, 8, … agla number?"
+    },
+    "options": [
+     {
+      "en": "10",
+      "hi": "10",
+      "hinglish": "10"
+     },
+     {
+      "en": "9",
+      "hi": "9",
+      "hinglish": "9"
+     },
+     {
+      "en": "12",
+      "hi": "12",
+      "hinglish": "12"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Each number goes up by 2. 8 + 2 = 10.",
+     "hi": "हर संख्या 2 बढ़ती है। 8 + 2 = 10।",
+     "hinglish": "Har number 2 badhta hai. 8 + 2 = 10."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "lab-check",
+    "prompt": {
+     "en": "In the lab, paint the red-blue-red-blue path (Level 3).",
+     "hi": "लैब में लाल-नीला-लाल-नीला रास्ता रँगो (स्तर 3)।",
+     "hinglish": "Lab mein laal-neela-laal-neela raasta paint karo (Level 3)."
+    },
+    "answer": {
+     "lab": "loop-coder",
+     "level": 3,
+     "solved": true
+    },
+    "explain": {
+     "en": "Paint each dotted tile in the right colour, then reach the mango.",
+     "hi": "हर बिंदु वाली टाइल सही रंग में रँगो, फिर आम तक पहुँचो।",
+     "hinglish": "Har dotted tile sahi rang mein paint karo, phir mango tak pahuncho."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "CS Unplugged – computational thinking ideas (fact reference only)",
+   "url": "https://www.csunplugged.org/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

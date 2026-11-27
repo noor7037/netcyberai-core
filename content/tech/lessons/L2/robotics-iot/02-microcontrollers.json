@@ -1,0 +1,384 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.robotics-iot.02",
+ "level": 2,
+ "classes": [
+  6,
+  7,
+  8
+ ],
+ "unit": "robotics-iot",
+ "title": {
+  "en": "Microcontrollers: tiny computers inside gadgets",
+  "hi": "माइक्रोकंट्रोलर: गैजेट के अंदर छोटे कंप्यूटर",
+  "hinglish": "Microcontrollers: gadgets ke andar chhote computers"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [
+  "L2.robotics-iot.01"
+ ],
+ "topics": [
+  "robo.microcontroller"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain what a microcontroller is and how it differs from a laptop CPU",
+   "hi": "समझा सकते हो कि माइक्रोकंट्रोलर क्या है और लैपटॉप CPU से कैसे अलग है",
+   "hinglish": "Samjha sakte ho microcontroller kya hai aur laptop CPU se kaise alag hai"
+  },
+  {
+   "en": "Name micro:bit, Arduino and ESP32 and what each is good for",
+   "hi": "micro:bit, Arduino और ESP32 के नाम और उनके उपयोग बता सकते हो",
+   "hinglish": "micro:bit, Arduino aur ESP32 ke naam aur unke use bata sakte ho"
+  },
+  {
+   "en": "Program input → decision → output on a virtual micro:bit",
+   "hi": "आभासी micro:bit पर इनपुट → निर्णय → आउटपुट प्रोग्राम कर सकते हो",
+   "hinglish": "Virtual micro:bit pe input → decision → output program kar sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Microcontroller",
+   "hinglish": "Ek chip wala computer",
+   "en": "A whole small computer (CPU, memory, input/output pins) on one chip",
+   "hi": "एक चिप पर पूरा छोटा कंप्यूटर (CPU, मेमोरी, इनपुट/आउटपुट पिन)"
+  },
+  {
+   "term": "Pin",
+   "hinglish": "Taar jodne ki jagah",
+   "en": "A metal connection where sensors and motors are wired to the chip",
+   "hi": "धातु का जोड़ जहाँ सेंसर और मोटर चिप से जुड़ते हैं"
+  },
+  {
+   "term": "Firmware",
+   "hinglish": "Chip ka program",
+   "en": "The program stored inside a gadget’s chip",
+   "hi": "गैजेट की चिप में रखा प्रोग्राम"
+  },
+  {
+   "term": "Embedded system",
+   "hinglish": "Andar chhupa computer",
+   "en": "A computer built into a machine to do one job",
+   "hi": "मशीन में बना कंप्यूटर जो एक काम करे"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Your washing machine, TV remote and digital thermometer each hide a tiny computer called a microcontroller.",
+    "hi": "तुम्हारी वॉशिंग मशीन, टीवी रिमोट और डिजिटल थर्मामीटर में एक छोटा कंप्यूटर छिपा है जिसे माइक्रोकंट्रोलर कहते हैं।",
+    "hinglish": "Tumhari washing machine, TV remote aur digital thermometer mein ek chhota computer chhupa hai jise microcontroller kehte hain."
+   },
+   "visual": "compare:💻 Laptop CPU: GHz, GBs of RAM, runs many apps|🔲 Microcontroller: MHz, KBs of RAM, runs one program forever",
+   "narration": {
+    "en": "Small, cheap, low-power, one job.",
+    "hi": "छोटा, सस्ता, कम बिजली, एक काम।",
+    "hinglish": "Chhota, sasta, kam bijli, ek kaam."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "It runs one loop forever: read the input pins, decide, set the output pins.",
+    "hi": "यह हमेशा एक लूप चलाता है: इनपुट पिन पढ़ो, निर्णय लो, आउटपुट पिन सेट करो।",
+    "hinglish": "Yeh hamesha ek loop chalata hai: input pins padho, decide karo, output pins set karo."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "This is what you program on a micro:bit or Arduino.",
+    "hi": "यही तुम micro:bit या Arduino पर प्रोग्राम करते हो।",
+    "hinglish": "Yahi tum micro:bit ya Arduino pe program karte ho."
+   },
+   "code": "# micro:bit-style Python\nwhile True:\n    d = sonar.distance_cm()      # input pin\n    if d < 15:\n        servo.angle(90)          # output: open gate\n        display.show(\"✔\")\n    else:\n        servo.angle(0)\n        display.show(\"✖\")"
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Build a smart gate on the virtual micro:bit: a car comes close → the servo opens the gate.",
+    "hi": "आभासी micro:bit पर स्मार्ट गेट बनाओ: कार पास आए → सर्वो गेट खोले।",
+    "hinglish": "Virtual micro:bit pe smart gate banao: car paas aaye → servo gate khole."
+   },
+   "visual": "lab:microbit-sim",
+   "narration": {
+    "en": "Test it with the distance slider.",
+    "hi": "दूरी स्लाइडर से जाँचो।",
+    "hinglish": "Distance slider se test karo."
+   }
+  }
+ ],
+ "play": {
+  "lab": "microbit-sim",
+  "config": {
+   "mission": "gate",
+   "preset": "empty"
+  },
+  "goal": {
+   "en": "Build a smart gate: car closer than 15 cm → servo to 90° and show ✔; otherwise servo to 0° and show ✖.",
+   "hi": "स्मार्ट गेट बनाओ: कार 15 cm से पास → सर्वो 90° और ✔ दिखाओ; वरना सर्वो 0° और ✖।",
+   "hinglish": "Smart gate banao: car 15 cm se paas → servo 90° aur ✔ dikhao; warna servo 0° aur ✖."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "micro:bit, Arduino and ESP32",
+    "hi": "micro:bit, Arduino और ESP32",
+    "hinglish": "micro:bit, Arduino aur ESP32"
+   },
+   "body": {
+    "en": "A microcontroller puts a processor, memory and input/output pins on one chip, so it is cheap (often under ₹300 for the chip) and uses very little power. A laptop CPU runs at several gigahertz with gigabytes of memory; an Arduino Uno’s ATmega328P chip runs at 16 MHz with just 2 KB of RAM and 32 KB of program memory — enough to run one control program forever. The BBC micro:bit (first given to UK pupils in 2016) has a 5×5 LED grid, buttons, an accelerometer, a compass, a temperature sensor and Bluetooth, and is programmed with blocks (MakeCode) or Python. The ESP32 adds Wi-Fi and Bluetooth, which makes it popular for Internet of Things projects. Microcontrollers are in washing machines, microwave ovens, cars (a modern car has dozens), toys, drones and medical devices. In India, more than 10,000 Atal Tinkering Labs set up in schools under the Atal Innovation Mission give students boards like these, sensors and 3D printers to build their own projects.",
+    "hi": "माइक्रोकंट्रोलर एक चिप पर प्रोसेसर, मेमोरी और इनपुट/आउटपुट पिन रखता है, इसलिए यह सस्ता होता है (चिप अक्सर ₹300 से कम) और बहुत कम बिजली लेता है। लैपटॉप CPU कई गीगाहर्ट्ज़ और गीगाबाइट मेमोरी पर चलता है; Arduino Uno की ATmega328P चिप 16 MHz पर केवल 2 KB RAM और 32 KB प्रोग्राम मेमोरी के साथ चलती है — एक नियंत्रण प्रोग्राम हमेशा चलाने के लिए काफ़ी। BBC micro:bit (2016 में पहली बार UK के छात्रों को दिया गया) में 5×5 LED जाल, बटन, एक्सेलेरोमीटर, कम्पास, तापमान सेंसर और ब्लूटूथ है, और इसे ब्लॉक (MakeCode) या Python से प्रोग्राम करते हैं। ESP32 में Wi-Fi और ब्लूटूथ जुड़ते हैं, जिससे यह इंटरनेट ऑफ़ थिंग्स प्रोजेक्टों में लोकप्रिय है। माइक्रोकंट्रोलर वॉशिंग मशीन, माइक्रोवेव ओवन, कारों (आधुनिक कार में दर्जनों), खिलौनों, ड्रोन और चिकित्सा उपकरणों में होते हैं। भारत में, अटल इनोवेशन मिशन के तहत स्कूलों में बनी 10,000 से ज़्यादा अटल टिंकरिंग लैब छात्रों को ऐसे बोर्ड, सेंसर और 3D प्रिंटर देती हैं ताकि वे अपने प्रोजेक्ट बना सकें।",
+    "hinglish": "Microcontroller ek chip pe processor, memory aur input/output pins rakhta hai, isliye yeh sasta hota hai (chip aksar ₹300 se kam) aur bahut kam bijli leta hai. Laptop CPU kai gigahertz aur gigabytes memory pe chalta hai; Arduino Uno ki ATmega328P chip 16 MHz pe sirf 2 KB RAM aur 32 KB program memory ke saath chalti hai — ek control program hamesha chalane ke liye kaafi. BBC micro:bit (2016 mein pehli baar UK ke students ko diya gaya) mein 5×5 LED grid, buttons, accelerometer, compass, temperature sensor aur Bluetooth hai, aur ise blocks (MakeCode) ya Python se program karte hain. ESP32 mein Wi-Fi aur Bluetooth judte hain, jisse yeh Internet of Things projects mein popular hai. Microcontrollers washing machines, microwave ovens, cars (modern car mein darjanon), toys, drones aur medical devices mein hote hain. India mein, Atal Innovation Mission ke under schools mein bani 10,000 se zyada Atal Tinkering Labs students ko aise boards, sensors aur 3D printers deti hain taaki woh apne projects bana sakein."
+   },
+   "analogy": {
+    "en": "A microcontroller = a gatekeeper: one job day and night — watch the gate, open for cars, close after. A laptop = an office manager juggling a hundred jobs.",
+    "hi": "माइक्रोकंट्रोलर = चौकीदार: दिन-रात एक ही काम — गेट पर देखो, गाड़ी आए तो खोलो, जाए तो बंद करो। लैपटॉप = ऑफ़िस मैनेजर जो सौ काम एक साथ संभालता है।",
+    "hinglish": "Microcontroller = chowkidaar: din-raat ek hi kaam — gate pe dekho, gaadi aaye to kholo, jaaye to band karo. Laptop = office manager jo sau kaam ek saath sambhalta hai."
+   },
+   "realExample": {
+    "en": "Many Atal Tinkering Lab students have built Arduino projects such as automatic street lights, gas-leak alarms and plant-watering systems for their schools.",
+    "hi": "कई अटल टिंकरिंग लैब छात्रों ने Arduino प्रोजेक्ट बनाए हैं जैसे स्वचालित स्ट्रीट लाइट, गैस-रिसाव अलार्म और स्कूल के लिए पौधों को पानी देने की प्रणाली।",
+    "hinglish": "Kai Atal Tinkering Lab students ne Arduino projects banaye hain jaise automatic street lights, gas-leak alarms aur school ke liye plant-watering systems."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Find 3 gadgets at home that must contain a microcontroller (hint: anything with buttons and a display). For one, write its loop: what are its inputs, what does it decide, what are its outputs?",
+   "hi": "घर में 3 गैजेट ढूँढो जिनमें माइक्रोकंट्रोलर ज़रूर होगा (संकेत: जिसमें बटन और डिस्प्ले हो)। एक के लिए उसका लूप लिखो: इनपुट क्या हैं, क्या निर्णय लेता है, आउटपुट क्या हैं?",
+   "hinglish": "Ghar mein 3 gadgets dhoondo jinme microcontroller zaroor hoga (hint: jisme buttons aur display ho). Ek ke liye uska loop likho: inputs kya hain, kya decide karta hai, outputs kya hain?"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "What is a microcontroller?",
+     "hi": "माइक्रोकंट्रोलर क्या है?",
+     "hinglish": "Microcontroller kya hai?"
+    },
+    "options": [
+     {
+      "en": "A very small battery",
+      "hi": "बहुत छोटी बैटरी",
+      "hinglish": "Bahut chhoti battery"
+     },
+     {
+      "en": "A whole small computer on one chip",
+      "hi": "एक चिप पर पूरा छोटा कंप्यूटर",
+      "hinglish": "Ek chip pe poora chhota computer"
+     },
+     {
+      "en": "A type of Wi-Fi router",
+      "hi": "एक प्रकार का Wi-Fi राउटर",
+      "hinglish": "Ek type ka Wi-Fi router"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "A small computer — processor, memory and I/O pins — on one chip.",
+     "hi": "एक चिप पर छोटा कंप्यूटर — प्रोसेसर, मेमोरी और I/O पिन।",
+     "hinglish": "Ek chip pe chhota computer — processor, memory aur I/O pins."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "match",
+    "prompt": {
+     "en": "Match each board to its stand-out feature.",
+     "hi": "हर बोर्ड को उसकी ख़ास विशेषता से मिलाओ।",
+     "hinglish": "Har board ko uske khaas feature se match karo."
+    },
+    "options": {
+     "left": [
+      "micro:bit",
+      "Arduino Uno",
+      "ESP32"
+     ],
+     "right": [
+      {
+       "en": "Built-in Wi-Fi and Bluetooth for IoT",
+       "hi": "IoT के लिए Wi-Fi और ब्लूटूथ",
+       "hinglish": "IoT ke liye Wi-Fi aur Bluetooth"
+      },
+      {
+       "en": "5×5 LED grid, buttons and sensors built in",
+       "hi": "5×5 LED जाल, बटन और सेंसर बने",
+       "hinglish": "5×5 LED grid, buttons aur sensors built-in"
+      },
+      {
+       "en": "Classic maker board, ATmega328P at 16 MHz",
+       "hi": "क्लासिक मेकर बोर्ड, 16 MHz पर ATmega328P",
+       "hinglish": "Classic maker board, 16 MHz pe ATmega328P"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      2
+     ],
+     [
+      2,
+      0
+     ]
+    ],
+    "explain": {
+     "en": "micro:bit has an LED grid and sensors built in; Arduino Uno is the classic 16 MHz maker board; ESP32 adds Wi-Fi.",
+     "hi": "micro:bit में LED जाल और सेंसर बने हैं; Arduino Uno क्लासिक 16 MHz बोर्ड; ESP32 में Wi-Fi।",
+     "hinglish": "micro:bit mein LED grid aur sensors built-in; Arduino Uno classic 16 MHz board; ESP32 mein Wi-Fi."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "multi",
+    "prompt": {
+     "en": "Which gadgets contain a microcontroller? Choose all.",
+     "hi": "किन गैजेट में माइक्रोकंट्रोलर होता है? सभी चुनो।",
+     "hinglish": "Kin gadgets mein microcontroller hota hai? Saare chuno."
+    },
+    "options": [
+     {
+      "en": "Washing machine",
+      "hi": "वॉशिंग मशीन",
+      "hinglish": "Washing machine"
+     },
+     {
+      "en": "Digital thermometer",
+      "hi": "डिजिटल थर्मामीटर",
+      "hinglish": "Digital thermometer"
+     },
+     {
+      "en": "A plain bulb on a wall switch",
+      "hi": "दीवार स्विच पर सादा बल्ब",
+      "hinglish": "Wall switch pe plain bulb"
+     },
+     {
+      "en": "TV remote",
+      "hi": "टीवी रिमोट",
+      "hinglish": "TV remote"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     3
+    ],
+    "explain": {
+     "en": "Anything that reads buttons or sensors and decides has one. A plain bulb with a switch does not.",
+     "hi": "जो भी बटन या सेंसर पढ़कर निर्णय ले उसमें होता है। स्विच वाला सादा बल्ब नहीं।",
+     "hinglish": "Jo bhi buttons ya sensors padh kar decide kare usme hota hai. Switch wala plain bulb nahi."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why use a microcontroller instead of a laptop to run a smart gate?",
+     "hi": "स्मार्ट गेट चलाने के लिए लैपटॉप के बजाय माइक्रोकंट्रोलर क्यों?",
+     "hinglish": "Smart gate chalane ke liye laptop ke bajaye microcontroller kyun?"
+    },
+    "options": [
+     {
+      "en": "Cheap, small, low power, one job",
+      "hi": "सस्ता, छोटा, कम बिजली, एक काम",
+      "hinglish": "Sasta, chhota, kam bijli, ek kaam"
+     },
+     {
+      "en": "It can play video games",
+      "hi": "वीडियो गेम खेल सकता है",
+      "hinglish": "Video games khel sakta hai"
+     },
+     {
+      "en": "It has more RAM than a laptop",
+      "hi": "लैपटॉप से ज़्यादा RAM",
+      "hinglish": "Laptop se zyada RAM"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "It is cheap, tiny and uses little power, and the job needs only one simple program.",
+     "hi": "यह सस्ता, छोटा और कम बिजली वाला है, और काम को केवल एक सरल प्रोग्राम चाहिए।",
+     "hinglish": "Yeh sasta, chhota aur kam bijli wala hai, aur kaam ko sirf ek simple program chahiye."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "short",
+    "prompt": {
+     "en": "The program stored inside a gadget’s chip is called ___ .",
+     "hi": "गैजेट की चिप में रखा प्रोग्राम ___ कहलाता है।",
+     "hinglish": "Gadget ki chip mein rakha program ___ kehlata hai."
+    },
+    "answer": [
+     "firmware",
+     "Firmware"
+    ],
+    "explain": {
+     "en": "Firmware — software that lives in hardware.",
+     "hi": "फ़र्मवेयर — हार्डवेयर में रहने वाला सॉफ़्टवेयर।",
+     "hinglish": "Firmware — hardware mein rehne wala software."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the lab mission.",
+     "hi": "लैब मिशन पूरा करो।",
+     "hinglish": "Lab mission poora karo."
+    },
+    "answer": {
+     "lab": "microbit-sim",
+     "event": "mission:complete",
+     "mission": "gate"
+    },
+    "explain": {
+     "en": "Gate opens (90°, ✔) under 15 cm, closes (0°, ✖) otherwise.",
+     "hi": "15 cm से कम पर गेट खुले (90°, ✔), वरना बंद (0°, ✖)।",
+     "hinglish": "15 cm se kam pe gate khule (90°, ✔), warna band (0°, ✖)."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Micro:bit Educational Foundation — micro:bit hardware",
+   "url": "https://microbit.org/get-started/features/overview/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Arduino — UNO R3 documentation",
+   "url": "https://docs.arduino.cc/hardware/uno-rev3/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Espressif — ESP32 overview",
+   "url": "https://www.espressif.com/en/products/socs/esp32",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Atal Innovation Mission — Atal Tinkering Labs (NITI Aayog)",
+   "url": "https://aim.gov.in/atl.php",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}
