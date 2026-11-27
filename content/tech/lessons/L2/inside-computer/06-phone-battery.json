@@ -1,0 +1,364 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.inside-computer.06",
+ "level": 2,
+ "classes": [
+  7,
+  8
+ ],
+ "unit": "inside-computer",
+ "title": {
+  "en": "Batteries: how a phone stores energy",
+  "hi": "बैटरी: फ़ोन ऊर्जा कैसे रखता है",
+  "hinglish": "Battery: phone energy kaise store karta hai"
+ },
+ "minutes": 10,
+ "xp": 40,
+ "prereq": [
+  "L2.inside-computer.05"
+ ],
+ "topics": [
+  "hw.battery",
+  "elec.energy",
+  "hw.mobile"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain how a lithium-ion battery charges and discharges",
+   "hi": "समझा सकते हो कि लिथियम-आयन बैटरी चार्ज और डिस्चार्ज कैसे होती है",
+   "hinglish": "Lithium-ion battery charge aur discharge kaise hoti hai samjha sakte ho"
+  },
+  {
+   "en": "Read mAh, volts and watt-hours on a battery",
+   "hi": "बैटरी पर mAh, वोल्ट और वॉट-घंटे पढ़ सकते हो",
+   "hinglish": "Battery par mAh, volt aur watt-hour padh sakte ho"
+  },
+  {
+   "en": "Name safe habits for charging and using batteries",
+   "hi": "बैटरी चार्ज करने और इस्तेमाल की सुरक्षित आदतें बता सकते हो",
+   "hinglish": "Battery charge aur use karne ki safe aadatein bata sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Lithium-ion",
+   "en": "The rechargeable battery type in phones and laptops",
+   "hi": "फ़ोन और लैपटॉप में लगने वाली रिचार्जेबल बैटरी",
+   "hinglish": "Phone aur laptop wali rechargeable battery"
+  },
+  {
+   "term": "mAh",
+   "en": "Milliamp-hours: how much charge a battery holds",
+   "hi": "मिलीएम्पियर-घंटा: बैटरी कितना चार्ज रखती है",
+   "hinglish": "Milliamp-hour: battery kitna charge rakhti hai"
+  },
+  {
+   "term": "Watt-hour (Wh)",
+   "en": "Energy stored: volts × amp-hours",
+   "hi": "रखी गई ऊर्जा: वोल्ट × एम्पियर-घंटा",
+   "hinglish": "Store hui energy: volt × amp-hour"
+  },
+  {
+   "term": "BMS",
+   "en": "Battery management system: a chip that protects the battery",
+   "hi": "बैटरी मैनेजमेंट सिस्टम: बैटरी की रक्षा करने वाली चिप",
+   "hinglish": "Battery management system: battery ko bachane wali chip"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Inside the battery are two layers, graphite on one side and a metal oxide on the other, with a liquid (the electrolyte) between them.",
+    "hi": "बैटरी के अंदर दो परतें हैं, एक तरफ़ ग्रेफ़ाइट और दूसरी तरफ़ धातु ऑक्साइड, बीच में एक द्रव (इलेक्ट्रोलाइट)।",
+    "hinglish": "Battery ke andar do layers hain, ek taraf graphite aur doosri taraf metal oxide, beech mein ek liquid (electrolyte)."
+   },
+   "visual": "stack:➕ Metal oxide (cathode)|💧 Electrolyte + separator|➖ Graphite (anode)",
+   "narration": {
+    "en": "A thin separator stops the two sides from touching.",
+    "hi": "एक पतली परत दोनों तरफ़ को छूने से रोकती है।",
+    "hinglish": "Ek patli separator layer dono side ko chhoone se rokti hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Using the phone: lithium ions move through the liquid to the metal-oxide side, while electrons travel the long way, through the phone's circuits, and power them.",
+    "hi": "फ़ोन चलाते समय: लिथियम आयन द्रव से होकर धातु-ऑक्साइड की तरफ़ जाते हैं, और इलेक्ट्रॉन लंबा रास्ता, फ़ोन के सर्किट से होकर, जाते हैं और उन्हें चलाते हैं।",
+    "hinglish": "Phone chalate waqt: lithium ions liquid se hokar metal-oxide side jaate hain, aur electrons lamba raasta, phone ke circuits se hokar, jaate hain aur unhe chalate hain."
+   },
+   "visual": "flow:➖ Graphite|⚡ Electrons through the phone|➕ Metal oxide",
+   "narration": {
+    "en": "Charging pushes the ions back to the graphite side, ready for next time.",
+    "hi": "चार्ज करने से आयन वापस ग्रेफ़ाइट की तरफ़ जाते हैं, अगली बार के लिए तैयार।",
+    "hinglish": "Charge karne se ions wapas graphite side chale jaate hain, agli baar ke liye taiyaar."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "A 5000 mAh battery at 3.85 volts stores about 19 watt-hours, enough to run a 1-watt LED bulb for 19 hours.",
+    "hi": "3.85 वोल्ट की 5000 mAh बैटरी लगभग 19 वॉट-घंटे रखती है, 1 वॉट का LED बल्ब 19 घंटे चलाने लायक़।",
+    "hinglish": "3.85 volt ki 5000 mAh battery lagbhag 19 watt-hour rakhti hai, 1 watt ka LED bulb 19 ghante chalane layak."
+   },
+   "visual": "compare:🔋 5000 mAh × 3.85 V|💡 ≈ 19 Wh of energy",
+   "narration": {
+    "en": "Watt-hours let you compare batteries fairly, even with different voltages.",
+    "hi": "वॉट-घंटे से अलग वोल्टेज वाली बैटरियों की भी सही तुलना होती है।",
+    "hinglish": "Watt-hour se alag voltage wali batteries ka bhi sahi comparison hota hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "circuit-lab",
+  "config": {
+   "tab": "ohm"
+  },
+  "goal": {
+   "en": "Change the battery's voltage and watch the current through the bulb rise and fall.",
+   "hi": "बैटरी का वोल्टेज बदलो और देखो बल्ब से होकर बहती बिजली कैसे घटती-बढ़ती है।",
+   "hinglish": "Battery ka voltage badlo aur dekho bulb se behta current kaise ghat-badh raha hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Why batteries get weaker",
+    "hi": "बैटरी कमज़ोर क्यों होती है",
+    "hinglish": "Battery kamzor kyun hoti hai"
+   },
+   "body": {
+    "en": "Every full charge and use is a cycle. Each cycle leaves a tiny layer behind on the graphite, so fewer ions can move, and the battery slowly holds less. Heat speeds this up a lot. That is why phones stop fast charging when they are hot, and why a phone left in a car in the summer sun ages faster. Keeping the battery between about one-fifth and four-fifths full is gentler than going from empty to full every day.",
+    "hi": "हर पूरा चार्ज और इस्तेमाल एक चक्र है। हर चक्र ग्रेफ़ाइट पर एक बहुत पतली परत छोड़ता है, इसलिए कम आयन चल पाते हैं और बैटरी धीरे-धीरे कम चार्ज रखती है। गर्मी इसे बहुत तेज़ करती है। इसीलिए गर्म होने पर फ़ोन फ़ास्ट चार्जिंग रोक देते हैं, और गर्मी की धूप में कार में छूटा फ़ोन जल्दी बूढ़ा होता है। बैटरी को रोज़ ख़ाली से पूरा करने के बजाय लगभग पाँचवें हिस्से से चार-पाँचवें हिस्से के बीच रखना ज़्यादा अच्छा है।",
+    "hinglish": "Har poora charge aur use ek cycle hai. Har cycle graphite par ek bahut patli layer chhod deti hai, isliye kam ions chal paate hain aur battery dheere-dheere kam charge rakhti hai. Garmi isko bahut tez karti hai. Isiliye garam hone par phone fast charging rok dete hain, aur garmi ki dhoop mein car mein chhoota phone jaldi boodha hota hai. Battery ko roz khaali se full karne ke bajaay lagbhag paanchve hisse se chaar-paanchve hisse ke beech rakhna zyada achha hai."
+   },
+   "analogy": {
+    "en": "A battery is like a school bag's zip: used gently it lasts years; yanked hard every day, it wears out sooner.",
+    "hi": "बैटरी स्कूल बैग की ज़िप जैसी है: धीरे इस्तेमाल करो तो सालों चले; रोज़ ज़ोर से खींचो तो जल्दी ख़राब।",
+    "hinglish": "Battery school bag ki zip jaisi hai: aaram se use karo to saalon chale; roz zor se kheecho to jaldi kharaab."
+   },
+   "realExample": {
+    "en": "Phone settings often have an option like 'protect battery' that stops charging early. It uses exactly this idea.",
+    "hi": "फ़ोन की सेटिंग में अक्सर 'बैटरी बचाओ' जैसा विकल्प होता है जो चार्जिंग पहले रोक देता है। वह यही विचार इस्तेमाल करता है।",
+    "hinglish": "Phone settings mein aksar 'protect battery' jaisa option hota hai jo charging pehle rok deta hai. Woh yahi idea use karta hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "Battery safety",
+    "hi": "बैटरी की सुरक्षा",
+    "hinglish": "Battery ki safety"
+   },
+   "body": {
+    "en": "A lithium-ion battery packs a lot of energy into a small space. If it is punctured, crushed or badly overheated, the inside can short-circuit and catch fire. A chip called the battery management system watches voltage and temperature and cuts off charging when something is wrong. Use a certified charger, never charge under a pillow, and if a battery swells up, stop using the device and tell a grown-up. {{name}}, old batteries go to an e-waste collection point, never in the dustbin.",
+    "hi": "लिथियम-आयन बैटरी छोटी जगह में बहुत ऊर्जा रखती है। अगर उसमें छेद हो, वह दब जाए या बहुत गर्म हो जाए, तो अंदर शॉर्ट-सर्किट होकर आग लग सकती है। बैटरी मैनेजमेंट सिस्टम नाम की चिप वोल्टेज और तापमान देखती है और गड़बड़ होने पर चार्जिंग काट देती है। प्रमाणित चार्जर इस्तेमाल करो, तकिए के नीचे कभी चार्ज मत करो, और बैटरी फूल जाए तो डिवाइस इस्तेमाल करना बंद करो और किसी बड़े को बताओ। {{name}}, पुरानी बैटरी ई-कचरा केंद्र पर जाती है, कभी कूड़ेदान में नहीं।",
+    "hinglish": "Lithium-ion battery chhoti jagah mein bahut energy rakhti hai. Agar usme chhed ho, woh dab jaaye ya bahut garam ho jaaye, to andar short-circuit hokar aag lag sakti hai. Battery management system naam ki chip voltage aur temperature dekhti hai aur gadbad hone par charging kaat deti hai. Certified charger use karo, takiye ke neeche kabhi charge mat karo, aur battery phool jaaye to device use karna band karo aur kisi bade ko batao. {{name}}, purani battery e-waste collection point par jaati hai, kabhi dustbin mein nahi."
+   },
+   "realExample": {
+    "en": "Airlines ask that power banks travel in cabin bags, not checked luggage, so a fire can be seen and stopped quickly.",
+    "hi": "एयरलाइन कहती हैं कि पावर बैंक चेक-इन सामान में नहीं, हाथ के बैग में जाएँ, ताकि आग दिखे और जल्दी बुझे।",
+    "hinglish": "Airlines kehti hain ki power bank check-in luggage mein nahi, cabin bag mein jaaye, taaki aag dikhe aur jaldi bujhe."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Find your family phone's battery size (mAh) in Settings → About phone. Multiply by 3.85 and divide by 1000 to get its watt-hours.",
+   "hi": "सेटिंग → फ़ोन के बारे में, परिवार के फ़ोन की बैटरी (mAh) ढूँढो। उसे 3.85 से गुणा करके 1000 से भाग दो, वॉट-घंटे मिलेंगे।",
+   "hinglish": "Settings → About phone mein family phone ki battery (mAh) dhoondo. Use 3.85 se multiply karke 1000 se divide karo, watt-hour mil jayenge."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "When you use the phone, what flows through its circuits to power them?",
+     "hi": "फ़ोन चलाते समय उसके सर्किट से होकर क्या बहता है जो उन्हें चलाता है?",
+     "hinglish": "Phone chalate waqt uske circuits se hokar kya behta hai jo unhe chalata hai?"
+    },
+    "options": [
+     {
+      "en": "Lithium ions",
+      "hi": "लिथियम आयन",
+      "hinglish": "Lithium ions"
+     },
+     {
+      "en": "Electrons",
+      "hi": "इलेक्ट्रॉन",
+      "hinglish": "Electrons"
+     },
+     {
+      "en": "Water",
+      "hi": "पानी",
+      "hinglish": "Paani"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Ions move inside the battery through the electrolyte; electrons take the outside path through the circuits.",
+     "hi": "आयन बैटरी के अंदर इलेक्ट्रोलाइट से चलते हैं; इलेक्ट्रॉन बाहर सर्किट वाला रास्ता लेते हैं।",
+     "hinglish": "Ions battery ke andar electrolyte se chalte hain; electrons bahar circuits wala raasta lete hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Battery A: 4000 mAh at 3.85 V. Battery B: 4000 mAh at 7.7 V. Which stores more energy?",
+     "hi": "बैटरी A: 3.85 V पर 4000 mAh। बैटरी B: 7.7 V पर 4000 mAh। किसमें ज़्यादा ऊर्जा है?",
+     "hinglish": "Battery A: 3.85 V par 4000 mAh. Battery B: 7.7 V par 4000 mAh. Kisme zyada energy hai?"
+    },
+    "options": [
+     {
+      "en": "A",
+      "hi": "A",
+      "hinglish": "A"
+     },
+     {
+      "en": "B",
+      "hi": "B",
+      "hinglish": "B"
+     },
+     {
+      "en": "They are the same",
+      "hi": "दोनों बराबर",
+      "hinglish": "Dono barabar"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Energy = volts × amp-hours. Same mAh but double the voltage means double the watt-hours.",
+     "hi": "ऊर्जा = वोल्ट × एम्पियर-घंटा। mAh बराबर पर वोल्टेज दोगुना, तो वॉट-घंटे भी दोगुने।",
+     "hinglish": "Energy = volt × amp-hour. mAh barabar par voltage double, to watt-hour bhi double."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "What speeds up a battery's ageing the most?",
+     "hi": "बैटरी को सबसे जल्दी बूढ़ा क्या करता है?",
+     "hinglish": "Battery ko sabse jaldi boodha kya karta hai?"
+    },
+    "options": [
+     {
+      "en": "Heat",
+      "hi": "गर्मी",
+      "hinglish": "Garmi"
+     },
+     {
+      "en": "Using a dark wallpaper",
+      "hi": "गहरा वॉलपेपर",
+      "hinglish": "Dark wallpaper"
+     },
+     {
+      "en": "Turning on Wi-Fi",
+      "hi": "Wi-Fi चालू करना",
+      "hinglish": "Wi-Fi on karna"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Heat speeds up the chemical changes that leave layers inside the battery.",
+     "hi": "गर्मी उन रासायनिक बदलावों को तेज़ करती है जो बैटरी के अंदर परत छोड़ते हैं।",
+     "hinglish": "Garmi un chemical changes ko tez karti hai jo battery ke andar layer chhodte hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are safe battery habits? (choose all)",
+     "hi": "बैटरी की सुरक्षित आदतें कौन-सी हैं? (सभी चुनो)",
+     "hinglish": "Battery ki safe aadatein kaunsi hain? (saare chuno)"
+    },
+    "options": [
+     {
+      "en": "Use a certified charger",
+      "hi": "प्रमाणित चार्जर इस्तेमाल करो",
+      "hinglish": "Certified charger use karo"
+     },
+     {
+      "en": "Charge under the pillow at night",
+      "hi": "रात को तकिए के नीचे चार्ज करो",
+      "hinglish": "Raat ko takiye ke neeche charge karo"
+     },
+     {
+      "en": "Stop using a swollen battery",
+      "hi": "फूली बैटरी का इस्तेमाल बंद करो",
+      "hinglish": "Phooli battery ka use band karo"
+     },
+     {
+      "en": "Give old batteries to e-waste collection",
+      "hi": "पुरानी बैटरी ई-कचरा केंद्र को दो",
+      "hinglish": "Purani battery e-waste collection ko do"
+     }
+    ],
+    "answer": [
+     0,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "A pillow traps heat; the other three keep you and the battery safe.",
+     "hi": "तकिया गर्मी रोकता है; बाक़ी तीन तुम्हें और बैटरी को सुरक्षित रखते हैं।",
+     "hinglish": "Takiya garmi rokta hai; baaki teen tumhe aur battery ko safe rakhte hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "What does the battery management system (BMS) do?",
+     "hi": "बैटरी मैनेजमेंट सिस्टम (BMS) क्या करता है?",
+     "hinglish": "Battery management system (BMS) kya karta hai?"
+    },
+    "options": [
+     {
+      "en": "Makes the screen brighter",
+      "hi": "स्क्रीन चमकदार करता है",
+      "hinglish": "Screen bright karta hai"
+     },
+     {
+      "en": "Watches voltage and heat and stops charging when unsafe",
+      "hi": "वोल्टेज और गर्मी देखता है और ख़तरे पर चार्जिंग रोकता है",
+      "hinglish": "Voltage aur garmi dekhta hai aur khatre par charging rokta hai"
+     },
+     {
+      "en": "Stores your photos",
+      "hi": "तुम्हारी फ़ोटो रखता है",
+      "hinglish": "Tumhari photos rakhta hai"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "The BMS is a protective chip: it cuts off charging or use when the battery is too full, too empty or too hot.",
+     "hi": "BMS एक रक्षक चिप है: बैटरी बहुत भरी, बहुत ख़ाली या बहुत गर्म हो तो चार्जिंग या इस्तेमाल रोक देती है।",
+     "hinglish": "BMS ek protective chip hai: battery bahut bhari, bahut khaali ya bahut garam ho to charging ya use rok deti hai."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "How lithium-ion batteries work — U.S. Department of Energy",
+   "url": "https://www.energy.gov/energysaver/articles/how-lithium-ion-batteries-work",
+   "licence": "fact reference"
+  },
+  {
+   "title": "E-Waste (Management) Rules, 2022 — CPCB",
+   "url": "https://cpcb.nic.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NCERT / CBSE Artificial Intelligence & Computer curriculum (Classes 6–8), 2024–25",
+   "url": "https://cbseacademic.nic.in/",
+   "licence": "fact reference"
+  }
+ ]
+}

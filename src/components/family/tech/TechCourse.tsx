@@ -7,6 +7,7 @@ import { mergeProgress, readLocalProgress } from '@/lib/family/tech/local-progre
 import { levelOfClass } from '@/lib/family/tech/score';
 import { pick, TECH_LANGS, type TechLang } from '@/lib/family/tech/text';
 import { MILESTONE_BADGES, unitBadges } from '@/lib/family/tech/badges';
+import { childPath, type PathStep } from '@/lib/family/tech/personal';
 import type { CourseCatalog, TechProgress } from '@/lib/family/tech/types';
 
 const CLASSES = [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
@@ -24,15 +25,29 @@ function Ring({ done, total, colour }: { done: number; total: number; colour: st
   );
 }
 
-export function TechCourse({ catalog, progress, classLevel, initialLang, view }: { catalog: CourseCatalog; progress: TechProgress; classLevel: number; initialLang: TechLang; view: number | null }) {
+// One child's course (C555): their name, their own class (exploring another class never changes it), their progress,
+// and what to do next. `childId` keeps this phone's stars for this child only.
+export function TechCourse({ catalog, progress, classLevel, initialLang, view, childId, name }: { catalog: CourseCatalog; progress: TechProgress; classLevel: number; initialLang: TechLang; view: number | null; childId: string; name: string }) {
   const [lang, setLang] = useState<TechLang>(initialLang);
   const [cls, setCls] = useState(view != null && CLASSES.includes(view) ? view : classLevel);
   const [strand, setStrand] = useState('all');
   const [exploring, setExploring] = useState(false);
   const [open, setOpen] = useState<string | null>(null);
   const [local, setLocal] = useState<TechProgress | null>(null);
-  useEffect(() => setLocal(readLocalProgress()), []);
+  useEffect(() => setLocal(readLocalProgress(childId)), [childId]);
   const state = useMemo(() => mergeProgress(progress, local), [progress, local]);
+  const path = useMemo(() => childPath(catalog, classLevel, state), [catalog, classLevel, state]);
+  const lessonHref = (key: string) => `/family/tech/lesson/${key}?lang=${lang}`;
+  const pathRow = (item: PathStep, label: string) => (
+    <Link key={item.key} className="tl-lesson tl-press ready" href={lessonHref(item.key)} data-path={item.why}>
+      <span className="tl-num" aria-hidden="true">{item.why === 'revise' ? '🔁' : item.why === 'stretch' ? '🚀' : '▶'}</span>
+      <span className="tl-lesson-copy">
+        <span className="tl-lt">{pick(lang, item.title)}</span>
+        <span className="tl-ls">{`${label} · ${pick(lang, item.unit)}`}</span>
+      </span>
+      <span className="tl-go">{tw(lang, 'goLesson')}</span>
+    </Link>
+  );
   const level = levelOfClass(Math.max(1, cls));
   const inLevel = catalog.units.filter((unit) => unit.level === level);
   const show = (unit: (typeof inLevel)[number]) => strand === 'all' || unit.strand === strand;
@@ -93,7 +108,8 @@ export function TechCourse({ catalog, progress, classLevel, initialLang, view }:
             <span className="tl-kicker">{tw(lang, 'kicker')}</span>
             <span className="tl-xp">⚡ <b>{tw(lang, 'xpNow', { n: state.xp })}</b></span>
           </div>
-          <h1>{tw(lang, 'hello')}</h1>
+          <h1>{name ? tw(lang, 'pathTitle', { name }) : tw(lang, 'kicker')}</h1>
+          <p className="tl-band-sub">{tw(lang, 'hello')}</p>
           <div className="tl-seg" role="group" aria-label={tw(lang, 'language')}>
             {TECH_LANGS.map((item) => (
               <button key={item.id} type="button" aria-pressed={lang === item.id} lang={item.id === 'hi' ? 'hi' : undefined} onClick={() => setLang(item.id)}>{item.label}</button>
@@ -102,6 +118,18 @@ export function TechCourse({ catalog, progress, classLevel, initialLang, view }:
         </div>
       </header>
       <main className="tl-wrap tl-main">
+        <section className="tl-card tl-pad tl-path" data-path-for={classLevel}>
+          <div className="tl-class-row">
+            <h2>{tw(lang, 'upNext')}</h2>
+            <span className="tl-pill tl-pill-ink">{tw(lang, 'pathDone', { c: classWord(lang, classLevel), d: path.done, t: path.total })}</span>
+          </div>
+          <ul className="tl-lessons">
+            {path.next && <li>{pathRow(path.next, tw(lang, path.next.why === 'continue' ? 'whyContinue' : 'whyStart'))}</li>}
+            {!path.next && path.stretch && <li><p className="tl-quiet">{tw(lang, 'whyStretch')}</p>{pathRow(path.stretch, classWord(lang, Math.max(1, classLevel) + 1))}</li>}
+            {!path.next && !path.stretch && <li><p className="tl-quiet">{tw(lang, 'allDone')}</p></li>}
+            {path.revise.map((item) => <li key={item.key}>{pathRow(item, tw(lang, 'revise'))}</li>)}
+          </ul>
+        </section>
         <section className="tl-card tl-pad">
           <div className="tl-class-row">
             <h2>{tw(lang, 'yourClass')}</h2>
@@ -114,6 +142,12 @@ export function TechCourse({ catalog, progress, classLevel, initialLang, view }:
                 <button key={item} type="button" className="tl-chip tl-press" aria-pressed={item === cls} onClick={() => { setCls(item); setStrand('all'); setOpen(null); }}>{item <= 0 ? classWord(lang, item) : String(item)}{item === classLevel ? ' •' : ''}</button>
               ))}
             </div>
+          )}
+          {cls !== classLevel && (
+            <p className="tl-note">
+              {tw(lang, 'exploring')}{' '}
+              <button type="button" className="tl-chip tl-press" onClick={() => { setCls(classLevel); setStrand('all'); setOpen(null); setExploring(false); }}>{tw(lang, 'backToMine')}</button>
+            </p>
           )}
           {cls <= 0 && <p className="tl-note">{tw(lang, 'preview')}</p>}
         </section>

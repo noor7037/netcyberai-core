@@ -1,13 +1,15 @@
-// Progress kept on this phone only until the Tech Lab tables exist. Stars and XP, never an answer.
+// Progress kept on this phone only until the Tech Lab tables exist. Stars and XP, never an answer. Kept per child
+// (C555): brothers and sisters share a phone, so one child's stars never show on another child's course.
 
 import { EMPTY_PROGRESS, type TechProgress } from './types';
 
-const KEY = 'nca.tech.local.v1';
+const KEY = 'nca.tech.local.v2';
+const keyFor = (child: string) => `${KEY}.${child}`;
 
-export function readLocalProgress(): TechProgress {
-  if (typeof sessionStorage === 'undefined') return { ...EMPTY_PROGRESS, done: {} };
+export function readLocalProgress(child: string): TechProgress {
+  if (typeof sessionStorage === 'undefined' || !child) return { ...EMPTY_PROGRESS, done: {} };
   try {
-    const raw = JSON.parse(sessionStorage.getItem(KEY) || 'null') as TechProgress | null;
+    const raw = JSON.parse(sessionStorage.getItem(keyFor(child)) || 'null') as TechProgress | null;
     if (!raw || typeof raw !== 'object' || !raw.done) return { ...EMPTY_PROGRESS, done: {} };
     return { xp: Number(raw.xp) || 0, done: raw.done, badges: raw.badges ?? [], labs: raw.labs ?? [] };
   } catch {
@@ -15,27 +17,28 @@ export function readLocalProgress(): TechProgress {
   }
 }
 
-function write(progress: TechProgress) {
+function write(child: string, progress: TechProgress) {
+  if (!child) return;
   try {
-    sessionStorage.setItem(KEY, JSON.stringify(progress));
+    sessionStorage.setItem(keyFor(child), JSON.stringify(progress));
   } catch {
     /* a full store must not block the lesson */
   }
 }
 
-export function rememberPass(lessonKey: string, stars: number, best: number, xp: number, gain: number, badgeIds: string[]) {
-  const progress = readLocalProgress();
+export function rememberPass(child: string, lessonKey: string, stars: number, best: number, xp: number, gain: number, badgeIds: string[]) {
+  const progress = readLocalProgress(child);
   const prev = progress.done[lessonKey];
   progress.done[lessonKey] = { stars: Math.max(stars, prev?.stars || 0), best: Math.max(best, prev?.best || 0), xp: Math.max(xp, prev?.xp || 0) };
   progress.xp += gain;
   for (const id of badgeIds) if (!progress.badges.includes(id)) progress.badges.push(id);
-  write(progress);
+  write(child, progress);
 }
 
-export function rememberLab(labId: string) {
-  const progress = readLocalProgress();
+export function rememberLab(child: string, labId: string) {
+  const progress = readLocalProgress(child);
   if (!progress.labs.includes(labId)) progress.labs.push(labId);
-  write(progress);
+  write(child, progress);
 }
 
 export function mergeProgress(server: TechProgress, local: TechProgress | null): TechProgress {

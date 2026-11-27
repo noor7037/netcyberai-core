@@ -1,0 +1,380 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.software-engineering.05",
+ "level": 3,
+ "classes": [
+  11,
+  12
+ ],
+ "unit": "software-engineering",
+ "title": {
+  "en": "Product design: from a real problem to a prototype",
+  "hi": "प्रोडक्ट डिज़ाइन: असली समस्या से प्रोटोटाइप तक",
+  "hinglish": "Product design: asli problem se prototype tak"
+ },
+ "minutes": 12,
+ "xp": 50,
+ "prereq": [
+  "L3.software-engineering.04"
+ ],
+ "topics": [
+  "sw.design",
+  "sw.ux",
+  "career.product"
+ ],
+ "outcomes": [
+  {
+   "en": "Run the design-thinking loop: understand, define, ideate, prototype, test",
+   "hi": "डिज़ाइन-थिंकिंग चक्र चला सकते हो: समझो, परिभाषित करो, विचार करो, प्रोटोटाइप, जाँचो",
+   "hinglish": "Design-thinking loop chala sakte ho: samjho, define karo, ideas, prototype, test"
+  },
+  {
+   "en": "Write a clear problem statement from user interviews",
+   "hi": "यूज़र इंटरव्यू से साफ़ समस्या-कथन लिख सकते हो",
+   "hinglish": "User interviews se clear problem statement likh sakte ho"
+  },
+  {
+   "en": "Plan a cheap test of an idea before building it",
+   "hi": "बनाने से पहले किसी विचार की सस्ती जाँच की योजना बना सकते हो",
+   "hinglish": "Banane se pehle kisi idea ka sasta test plan kar sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "User research",
+   "en": "Watching and asking real users before designing",
+   "hi": "डिज़ाइन से पहले असली यूज़र को देखना और उनसे पूछना",
+   "hinglish": "Design se pehle asli users ko dekhna aur unse poochhna"
+  },
+  {
+   "term": "Problem statement",
+   "en": "Who has what problem, and why it matters",
+   "hi": "किसे क्या समस्या है, और वह क्यों मायने रखती है",
+   "hinglish": "Kise kya problem hai, aur woh kyun matter karti hai"
+  },
+  {
+   "term": "Prototype",
+   "en": "A quick, cheap model of an idea to test it",
+   "hi": "विचार को जाँचने के लिए जल्दी और सस्ता बना नमूना",
+   "hinglish": "Idea test karne ke liye jaldi aur sasta bana model"
+  },
+  {
+   "term": "MVP",
+   "en": "Minimum viable product: the smallest version that really helps users",
+   "hi": "न्यूनतम उपयोगी प्रोडक्ट: सबसे छोटा संस्करण जो सच में मदद करे",
+   "hinglish": "Minimum viable product: sabse chhota version jo sach mein help kare"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Most failed apps were built well but solved a problem nobody really had. Good products start by watching people, not by writing code.",
+    "hi": "ज़्यादातर नाकाम ऐप अच्छे बने थे पर उन्होंने ऐसी समस्या हल की जो किसी को थी ही नहीं। अच्छे प्रोडक्ट कोड लिखने से नहीं, लोगों को देखने से शुरू होते हैं।",
+    "hinglish": "Zyaadatar fail hue apps achhe bane the par unhone aisi problem solve ki jo kisi ko thi hi nahi. Achhe products code likhne se nahi, logon ko dekhne se shuru hote hain."
+   },
+   "visual": "cycle:👂 Understand users|🎯 Define the problem|💡 Ideas|✏️ Prototype|🧪 Test",
+   "narration": {
+    "en": "The loop goes round again and again until the product really helps.",
+    "hi": "यह चक्र बार-बार घूमता है जब तक प्रोडक्ट सच में मदद न करे।",
+    "hinglish": "Yeh loop baar-baar ghoomta hai jab tak product sach mein help na kare."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Five short interviews with real users teach more than a week of guessing. Ask what they did last time, not what they would like.",
+    "hi": "असली यूज़र से पाँच छोटे इंटरव्यू एक हफ़्ते के अंदाज़ों से ज़्यादा सिखाते हैं। पूछो कि उन्होंने पिछली बार क्या किया, यह नहीं कि उन्हें क्या पसंद आएगा।",
+    "hinglish": "Asli users se paanch chhote interviews ek hafte ke andaazon se zyada sikhaate hain. Poochho ki unhone pichhli baar kya kiya, yeh nahi ki unhe kya pasand aayega."
+   },
+   "visual": "compare:❌ Would you use an app for this?|✅ Tell me about the last time this happened",
+   "narration": {
+    "en": "People are kind about ideas, but honest about what they actually did.",
+    "hi": "लोग विचारों पर नरमी दिखाते हैं, पर अपने किए काम के बारे में ईमानदार होते हैं।",
+    "hinglish": "Log ideas par narmi dikhaate hain, par apne kiye kaam ke baare mein imaandaar hote hain."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "A paper sketch or a clickable mock-up takes an hour. If users get stuck on it, you learnt that before spending weeks on code.",
+    "hi": "काग़ज़ का स्केच या क्लिक होने वाला मॉक-अप एक घंटे में बनता है। अगर यूज़र उसमें अटकें, तो तुमने हफ़्तों का कोड लिखने से पहले सीख लिया।",
+    "hinglish": "Kaagaz ka sketch ya clickable mock-up ek ghante mein banta hai. Agar users usme atkein, to tumne hafton ka code likhne se pehle seekh liya."
+   },
+   "visual": "flow:✏️ Paper sketch|🖱️ Clickable mock-up|🧱 MVP|🚀 Real product",
+   "narration": {
+    "en": "Each step costs more, so test as early and as cheaply as you can.",
+    "hi": "हर कदम ज़्यादा महँगा है, इसलिए जितना जल्दी और सस्ता हो सके, जाँचो।",
+    "hinglish": "Har step zyada mehenga hai, isliye jitna jaldi aur sasta ho sake, test karo."
+   }
+  }
+ ],
+ "play": {
+  "lab": "seq-flow",
+  "config": {
+   "scenario": "sprint-cycle"
+  },
+  "goal": {
+   "en": "Run a sprint and note where user feedback enters the cycle.",
+   "hi": "एक स्प्रिंट चलाओ और देखो यूज़र का फ़ीडबैक चक्र में कहाँ आता है।",
+   "hinglish": "Ek sprint chalao aur dekho user feedback cycle mein kahan aata hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "A worked example: the school bus problem",
+    "hi": "एक हल किया उदाहरण: स्कूल बस की समस्या",
+    "hinglish": "Ek worked example: school bus ki problem"
+   },
+   "body": {
+    "en": "Idea: 'an app with live bus tracking'. Interviews with ten parents show the real pain: they wait at the stop not knowing whether the bus has already passed, and many have basic phones. Problem statement: 'Parents of young children waste time and worry at the stop because they do not know when the bus will arrive.' A cheap test: for one week, the bus helper sends one WhatsApp message to a parents' group at two stops before each stop. If parents say they wait less, build more; if not, learn why. The final product might be an SMS, not an app at all.",
+    "hi": "विचार: 'लाइव बस ट्रैकिंग वाला ऐप'। दस माता-पिता के इंटरव्यू असली परेशानी दिखाते हैं: वे स्टॉप पर इंतज़ार करते हैं, यह न जानते हुए कि बस निकल चुकी या नहीं, और कई के पास साधारण फ़ोन हैं। समस्या-कथन: 'छोटे बच्चों के माता-पिता स्टॉप पर समय और चिंता गँवाते हैं क्योंकि उन्हें नहीं पता बस कब आएगी।' सस्ती जाँच: एक हफ़्ते तक बस का सहायक हर स्टॉप से दो स्टॉप पहले माता-पिता के ग्रुप में एक WhatsApp संदेश भेजे। अगर माता-पिता कहें कि इंतज़ार कम हुआ, तो आगे बनाओ; नहीं, तो कारण समझो। आख़िरी प्रोडक्ट शायद ऐप नहीं, एक SMS हो।",
+    "hinglish": "Idea: 'live bus tracking wala app'. Das parents ke interviews asli pareshani dikhaate hain: woh stop par wait karte hain, yeh na jaante hue ki bus nikal chuki ya nahi, aur kai ke paas basic phones hain. Problem statement: 'Chhote bachchon ke parents stop par time aur chinta gawaate hain kyunki unhe nahi pata bus kab aayegi.' Sasta test: ek hafte tak bus ka helper har stop se do stop pehle parents ke group mein ek WhatsApp message bheje. Agar parents kahein ki wait kam hua, to aage banao; nahi, to wajah samjho. Final product shayad app nahi, ek SMS ho."
+   },
+   "analogy": {
+    "en": "Designing without users is like a tailor stitching a uniform without measuring the child.",
+    "hi": "यूज़र के बिना डिज़ाइन करना वैसा है जैसे दर्ज़ी बच्चे का नाप लिए बिना यूनिफ़ॉर्म सिल दे।",
+    "hinglish": "Users ke bina design karna waisa hai jaise darzi bachche ka naap liye bina uniform sil de."
+   },
+   "realExample": {
+    "en": "UPI succeeded partly because paying needs only a phone number or a QR scan and a PIN, steps almost anyone can follow.",
+    "hi": "UPI की सफलता का एक कारण यह है कि भुगतान के लिए सिर्फ़ फ़ोन नंबर या QR स्कैन और PIN चाहिए, ऐसे कदम जो लगभग कोई भी कर सके।",
+    "hinglish": "UPI ki success ka ek kaaran yeh hai ki payment ke liye sirf phone number ya QR scan aur PIN chahiye, aise steps jo lagbhag koi bhi kar sake."
+   }
+  },
+  {
+   "heading": {
+    "en": "Design for everyone, and design for trust",
+    "hi": "सबके लिए डिज़ाइन, भरोसे के लिए डिज़ाइन",
+    "hinglish": "Sabke liye design, bharose ke liye design"
+   },
+   "body": {
+    "en": "A good product works for people who are not like the designer: someone with weak eyesight, someone who reads Hindi better than English, someone on slow 3G, someone using a screen reader. Large text, clear contrast, simple words and big tap targets help everyone. Design for trust too: collect only the data you truly need, explain why, and make it easy to say no. {{name}}, a product that is kind to its weakest user is usually better for every user.",
+    "hi": "अच्छा प्रोडक्ट उन लोगों के लिए भी चलता है जो डिज़ाइनर जैसे नहीं: कमज़ोर नज़र वाले, अंग्रेज़ी से बेहतर हिंदी पढ़ने वाले, धीमे 3G वाले, स्क्रीन रीडर इस्तेमाल करने वाले। बड़ा अक्षर, साफ़ कंट्रास्ट, सरल शब्द और बड़े टैप बटन सबकी मदद करते हैं। भरोसे के लिए भी डिज़ाइन करो: सिर्फ़ उतना डेटा लो जितना सच में चाहिए, बताओ क्यों, और 'नहीं' कहना आसान बनाओ। {{name}}, जो प्रोडक्ट अपने सबसे कमज़ोर यूज़र के लिए अच्छा है, वह आमतौर पर हर यूज़र के लिए बेहतर होता है।",
+    "hinglish": "Achha product un logon ke liye bhi chalta hai jo designer jaise nahi: kamzor nazar wale, English se behtar Hindi padhne wale, slow 3G wale, screen reader use karne wale. Bada text, clear contrast, simple words aur bade tap buttons sabki help karte hain. Bharose ke liye bhi design karo: sirf utna data lo jitna sach mein chahiye, batao kyun, aur 'nahi' kehna aasaan banao. {{name}}, jo product apne sabse kamzor user ke liye achha hai, woh aam taur par har user ke liye behtar hota hai."
+   },
+   "realExample": {
+    "en": "India's Digital Personal Data Protection Act, 2023 asks apps to take clear consent and to collect only what they need.",
+    "hi": "भारत का डिजिटल व्यक्तिगत डेटा संरक्षण अधिनियम, 2023 ऐप से साफ़ सहमति लेने और सिर्फ़ ज़रूरी डेटा लेने को कहता है।",
+    "hinglish": "India ka Digital Personal Data Protection Act, 2023 apps se clear consent lene aur sirf zaroori data lene ko kehta hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Pick one small problem in your school or home. Interview three people about the last time it happened, write a one-line problem statement, and sketch a paper prototype.",
+   "hi": "अपने स्कूल या घर की एक छोटी समस्या चुनो। तीन लोगों से पूछो कि पिछली बार यह कब हुआ, एक पंक्ति का समस्या-कथन लिखो, और काग़ज़ पर प्रोटोटाइप बनाओ।",
+   "hinglish": "Apne school ya ghar ki ek chhoti problem chuno. Teen logon se poochho ki pichhli baar yeh kab hua, ek line ka problem statement likho, aur kaagaz par prototype banao."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "order",
+    "prompt": {
+     "en": "Put the design-thinking loop in order.",
+     "hi": "डिज़ाइन-थिंकिंग चक्र को क्रम में लगाओ।",
+     "hinglish": "Design-thinking loop ko order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Prototype",
+      "hi": "प्रोटोटाइप",
+      "hinglish": "Prototype"
+     },
+     {
+      "en": "Understand users",
+      "hi": "यूज़र को समझो",
+      "hinglish": "Users ko samjho"
+     },
+     {
+      "en": "Test with users",
+      "hi": "यूज़र के साथ जाँचो",
+      "hinglish": "Users ke saath test karo"
+     },
+     {
+      "en": "Define the problem",
+      "hi": "समस्या परिभाषित करो",
+      "hinglish": "Problem define karo"
+     },
+     {
+      "en": "Generate ideas",
+      "hi": "विचार बनाओ",
+      "hinglish": "Ideas banao"
+     }
+    ],
+    "answer": [
+     1,
+     3,
+     4,
+     0,
+     2
+    ],
+    "explain": {
+     "en": "Understand, define, ideate, prototype, test, then go round again.",
+     "hi": "समझो, परिभाषित करो, विचार, प्रोटोटाइप, जाँचो, फिर दोबारा घूमो।",
+     "hinglish": "Samjho, define karo, ideas, prototype, test, phir dobara ghoomo."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which interview question gives the most honest answer?",
+     "hi": "कौन-सा इंटरव्यू सवाल सबसे ईमानदार जवाब देता है?",
+     "hinglish": "Kaunsa interview sawaal sabse imaandaar jawab deta hai?"
+    },
+    "options": [
+     {
+      "en": "Would you pay for an app like this?",
+      "hi": "क्या तुम ऐसे ऐप के लिए पैसे दोगे?",
+      "hinglish": "Kya tum aise app ke liye paise doge?"
+     },
+     {
+      "en": "Tell me about the last time you waited for the bus.",
+      "hi": "मुझे बताओ पिछली बार तुमने बस का इंतज़ार कब किया।",
+      "hinglish": "Mujhe batao pichhli baar tumne bus ka wait kab kiya."
+     },
+     {
+      "en": "Don't you think tracking is a great idea?",
+      "hi": "क्या तुम्हें नहीं लगता ट्रैकिंग बढ़िया विचार है?",
+      "hinglish": "Kya tumhe nahi lagta tracking badhiya idea hai?"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Asking about real past behaviour avoids polite guesses and leading questions.",
+     "hi": "असली पिछले व्यवहार के बारे में पूछने से विनम्र अंदाज़े और झुकाने वाले सवाल नहीं होते।",
+     "hinglish": "Asli pichhle behaviour ke baare mein poochhne se polite guesses aur leading questions nahi hote."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why build a paper prototype before code?",
+     "hi": "कोड से पहले काग़ज़ का प्रोटोटाइप क्यों?",
+     "hinglish": "Code se pehle kaagaz ka prototype kyun?"
+    },
+    "options": [
+     {
+      "en": "It is cheaper to find mistakes early",
+      "hi": "ग़लतियाँ जल्दी ढूँढना सस्ता है",
+      "hinglish": "Galtiyan jaldi dhoondhna sasta hai"
+     },
+     {
+      "en": "Users prefer paper",
+      "hi": "यूज़र को काग़ज़ पसंद है",
+      "hinglish": "Users ko kaagaz pasand hai"
+     },
+     {
+      "en": "Code cannot be changed later",
+      "hi": "कोड बाद में बदल नहीं सकता",
+      "hinglish": "Code baad mein badal nahi sakta"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "An hour of sketching can save weeks of building the wrong thing.",
+     "hi": "एक घंटे का स्केच ग़लत चीज़ बनाने के हफ़्ते बचा सकता है।",
+     "hinglish": "Ek ghante ka sketch galat cheez banane ke hafte bacha sakta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "multi",
+    "prompt": {
+     "en": "Which choices make a product work for more people? (choose all)",
+     "hi": "कौन-से फ़ैसले प्रोडक्ट को ज़्यादा लोगों के लिए चलाते हैं? (सभी चुनो)",
+     "hinglish": "Kaunse faisle product ko zyada logon ke liye chalaate hain? (saare chuno)"
+    },
+    "options": [
+     {
+      "en": "Large text and clear contrast",
+      "hi": "बड़ा अक्षर और साफ़ कंट्रास्ट",
+      "hinglish": "Bada text aur clear contrast"
+     },
+     {
+      "en": "Only English, small grey text",
+      "hi": "सिर्फ़ अंग्रेज़ी, छोटा स्लेटी अक्षर",
+      "hinglish": "Sirf English, chhota grey text"
+     },
+     {
+      "en": "Works on slow connections",
+      "hi": "धीमे नेटवर्क पर भी चले",
+      "hinglish": "Slow network par bhi chale"
+     },
+     {
+      "en": "Asks only for data it needs",
+      "hi": "सिर्फ़ ज़रूरी डेटा माँगे",
+      "hinglish": "Sirf zaroori data maange"
+     }
+    ],
+    "answer": [
+     0,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "Readable text, low data needs and asking for little personal data help every user.",
+     "hi": "पढ़ने लायक़ अक्षर, कम डेटा की ज़रूरत और कम निजी डेटा माँगना हर यूज़र की मदद करता है।",
+     "hinglish": "Padhne layak text, kam data ki zaroorat aur kam personal data maangna har user ki help karta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "A one-week WhatsApp test shows parents still wait just as long. What should the team do?",
+     "hi": "एक हफ़्ते के WhatsApp टेस्ट से पता चला कि माता-पिता अब भी उतना ही इंतज़ार करते हैं। टीम क्या करे?",
+     "hinglish": "Ek hafte ke WhatsApp test se pata chala ki parents ab bhi utna hi wait karte hain. Team kya kare?"
+    },
+    "options": [
+     {
+      "en": "Build the full app anyway",
+      "hi": "फिर भी पूरा ऐप बनाओ",
+      "hinglish": "Phir bhi poora app banao"
+     },
+     {
+      "en": "Talk to parents again to learn why, then change the idea",
+      "hi": "माता-पिता से फिर बात करके कारण समझो, फिर विचार बदलो",
+      "hinglish": "Parents se phir baat karke wajah samjho, phir idea badlo"
+     },
+     {
+      "en": "Stop all work and never try again",
+      "hi": "सब काम बंद करो और फिर कभी कोशिश मत करो",
+      "hinglish": "Sab kaam band karo aur phir kabhi try mat karo"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "A failed test is learning, not failure: go back round the loop with what you found.",
+     "hi": "नाकाम टेस्ट भी सीख है, हार नहीं: जो पता चला उसे लेकर चक्र में वापस जाओ।",
+     "hinglish": "Fail hua test bhi seekh hai, haar nahi: jo pata chala use lekar loop mein wapas jao."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Design thinking — Stanford d.school resources",
+   "url": "https://dschool.stanford.edu/resources",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Digital Personal Data Protection Act, 2023 — MeitY",
+   "url": "https://www.meity.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Web Content Accessibility Guidelines (WCAG) 2.2 — W3C",
+   "url": "https://www.w3.org/TR/WCAG22/",
+   "licence": "fact reference"
+  }
+ ]
+}

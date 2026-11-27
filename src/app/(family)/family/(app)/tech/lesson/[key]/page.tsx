@@ -3,6 +3,7 @@ import { TechPlayer } from '@/components/family/tech/TechPlayer';
 import { WORD_MENU_KEYS } from '@/lib/family/word-menu-words';
 import { courseCatalog, LESSON_KEY, lessonForChild } from '@/lib/family/tech/catalog';
 import { isTechLang, langForChild } from '@/lib/family/tech/text';
+import { passPercent, readProgress } from '@/lib/family/tech/progress';
 import { readFamilySwitches, switchOn } from '@/lib/family/flags';
 import { familyPageRead, firstStepsNext, requireFamilyPage } from '@/lib/family/server';
 import { familyWords } from '@/lib/family/words';
@@ -20,7 +21,8 @@ export default async function FamilyTechLessonPage({ params, searchParams }: { p
   if (!child) redirect('/family/welcome/child');
   const open = await familyPageRead(page, async (db) => {
     const switches = await readFamilySwitches(db, page.session.accountId);
-    return { on: switchOn(switches, 'tech_lab'), voice: await serverVoiceReady(db, page.session.accountId) };
+    if (!switchOn(switches, 'tech_lab')) return { on: false as const };
+    return { on: true as const, voice: await serverVoiceReady(db, page.session.accountId), progress: await readProgress(db, child.childId), pass: await passPercent(db) };
   });
   if (!open.on) redirect('/family');
   const lesson = lessonForChild(params.key);
@@ -29,6 +31,14 @@ export default async function FamilyTechLessonPage({ params, searchParams }: { p
   const unit = catalog.units.find((item) => item.lessons.some((row) => row.key === lesson.id));
   const index = unit?.lessons.findIndex((row) => row.key === lesson.id) ?? -1;
   const nextKey = unit && index >= 0 ? unit.lessons[index + 1]?.key ?? null : null;
+  const prev = unit && index > 0 ? unit.lessons[index - 1] : null;
+  // Where this lesson sits in this child's path: the lesson before (when passed), the one after, and a revisit.
+  const personal = {
+    name: child.firstName,
+    prevTitle: prev && open.progress.done[prev.key] ? prev.title : null,
+    nextTitle: nextKey ? unit?.lessons[index + 1]?.title ?? null : null,
+    returning: !!open.progress.done[lesson.id],
+  };
   const lab = catalog.labs.find((item) => item.id === lesson.play?.lab);
   const view = searchParams.view && /^-?[0-9]+$/.test(searchParams.view) ? `?view=${searchParams.view}` : '';
   const lang = isTechLang(searchParams.lang) ? searchParams.lang : langForChild(child.style);
@@ -42,6 +52,9 @@ export default async function FamilyTechLessonPage({ params, searchParams }: { p
       voice={open.voice ? 'server' : 'phone'}
       words={familyWords(page.childLang, WORD_MENU_KEYS)}
       labLevel={lab?.level ?? null}
+      childId={child.childId}
+      personal={personal}
+      passPercent={open.pass}
     />
   );
 }

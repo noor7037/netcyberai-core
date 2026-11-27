@@ -8,6 +8,7 @@ import { rememberLab, rememberPass } from '@/lib/family/tech/local-progress';
 import { pick, TECH_LANGS, voiceLang, type TechLang } from '@/lib/family/tech/text';
 import type { FinishResult, StrandInfo, TechLesson, TechQuestion } from '@/lib/family/tech/types';
 import { tw } from '@/lib/family/tech/words';
+import { named, rightLine, toPlayLine, type TechPersonal } from '@/lib/family/tech/personal';
 import type { VoiceMode } from '@/components/family/voice/lineVoice';
 import { stopLine } from '@/components/family/voice/lineVoice';
 import { SeeVisual } from './SeeVisual';
@@ -47,7 +48,9 @@ function Burst() {
   );
 }
 
-export function TechPlayer({ lesson, strand, nextKey, backHref, initialLang, voice, words, labLevel }: { lesson: TechLesson; strand?: StrandInfo; nextKey: string | null; backHref: string; initialLang: TechLang; voice: VoiceMode; words: Words; labLevel: string | null }) {
+// One lesson, for one child (C555): `personal` carries the child's first name and where this lesson sits in their path;
+// the lesson file stays the same copy for every child.
+export function TechPlayer({ lesson, strand, nextKey, backHref, initialLang, voice, words, labLevel, childId, personal, passPercent }: { lesson: TechLesson; strand?: StrandInfo; nextKey: string | null; backHref: string; initialLang: TechLang; voice: VoiceMode; words: Words; labLevel: string | null; childId: string; personal: TechPersonal; passPercent: number }) {
   const [lang, setLang] = useState<TechLang>(initialLang);
   const [phase, setPhase] = useState<Phase>('see');
   const [seen, setSeen] = useState<Phase[]>(['see']);
@@ -64,6 +67,8 @@ export function TechPlayer({ lesson, strand, nextKey, backHref, initialLang, voi
   const frame = useRef<HTMLIFrameElement>(null);
   const questions = lesson.try?.questions ?? [];
   const level = lesson.level === 1 || lesson.level === 2 || lesson.level === 3 ? lesson.level : 2;
+  const say = (value: unknown) => named(pick(lang, value), personal.name);
+  const rightSoFar = (id: string) => Object.entries(results).filter(([key, row]) => row.right && key !== id).length;
 
   useEffect(() => () => stopLine(), []);
   useEffect(() => {
@@ -77,14 +82,14 @@ export function TechPlayer({ lesson, strand, nextKey, backHref, initialLang, voi
       setEvents((current) => current.length >= 40 ? current : [...current, message]);
       const done = (message.source === 'nca-techlab' && (message.type === 'done' || message.type === 'mission:complete')) || (message.source === 'nca-labs' && message.type === 'done') || message.type === 'techlab:lab-complete';
       if (done && lesson.play?.lab) {
-        rememberLab(lesson.play.lab);
+        rememberLab(childId, lesson.play.lab);
         void fetch(`/api/family/tech/labs/${lesson.play.lab}/done`, { method: 'POST', credentials: 'same-origin' });
         setToast('🧪 ✓');
       }
     };
     window.addEventListener('message', onMessage);
     return () => window.removeEventListener('message', onMessage);
-  }, [lesson.play?.lab]);
+  }, [lesson.play?.lab, childId]);
 
   useEffect(() => {
     if (!toast) return;
@@ -144,7 +149,7 @@ export function TechPlayer({ lesson, strand, nextKey, backHref, initialLang, voi
       setFinished(body);
       if (body.passed) {
         cheer();
-        if (!body.saved) rememberPass(lesson.id, body.stars, body.total ? Math.round((body.right / body.total) * 100) : 100, body.xp, body.gain, body.badges.map((badge) => badge.id));
+        if (!body.saved) rememberPass(childId, lesson.id, body.stars, body.total ? Math.round((body.right / body.total) * 100) : 100, body.xp, body.gain, body.badges.map((badge) => badge.id));
       }
     } finally {
       setBusy(false);
@@ -200,15 +205,21 @@ export function TechPlayer({ lesson, strand, nextKey, backHref, initialLang, voi
       <main className="tl-wrap tl-player-main">
         {phase === 'see' && (
           <>
+            {step === 0 && (
+              <section className="tl-card tl-pad tl-intro" data-intro>
+                <span className="tl-pill tl-pill-go">{`👋 ${tw(lang, 'hey')}`}</span>
+                <TechRead lesson={lesson} blockId={`${lesson.id}.intro`} lang={lang} label={tw(lang, 'listen')} words={words} voice={voice} personal={personal} />
+              </section>
+            )}
             {step === 0 && (lesson.outcomes ?? []).length > 0 && (
               <section className="tl-card tl-pad">
                 <h3>{tw(lang, 'outcomes')}</h3>
-                <ul className="tl-outcomes">{(lesson.outcomes ?? []).map((outcome, index) => <li key={index}>{pick(lang, outcome)}</li>)}</ul>
+                <ul className="tl-outcomes">{(lesson.outcomes ?? []).map((outcome, index) => <li key={index}>{say(outcome)}</li>)}</ul>
               </section>
             )}
             <div className="tl-see">
               {current ? <SeeVisual spec={String(current.visual || '')} level={level} strand={strand} lang={lang} /> : <SeeVisual spec="" level={level} strand={strand} lang={lang} />}
-              {current && <TechRead lesson={lesson} blockId={`${lesson.id}.see.${step + 1}`} lang={lang} label={tw(lang, 'listen')} words={words} voice={voice} />}
+              {current && <TechRead lesson={lesson} blockId={`${lesson.id}.see.${step + 1}`} lang={lang} label={tw(lang, 'listen')} words={words} voice={voice} personal={personal} />}
             </div>
             <div className="tl-footer">
               <button type="button" className="tl-btn tl-btn-soft" disabled={step === 0} onClick={() => setStep((value) => Math.max(0, value - 1))}>{`← ${tw(lang, 'back')}`}</button>
@@ -220,7 +231,8 @@ export function TechPlayer({ lesson, strand, nextKey, backHref, initialLang, voi
           <>
             <section className="tl-card tl-pad">
               <span className="tl-pill tl-pill-lab">{`🧪 ${lesson.play?.lab || '—'}`}</span>
-              <h3>{pick(lang, lesson.play?.goal) || tw(lang, 'play')}</h3>
+              {lesson.play?.lab && <p className="tl-analogy" data-to-play>{toPlayLine(lesson.id, lang, personal.name)}</p>}
+              <h3>{say(lesson.play?.goal) || tw(lang, 'play')}</h3>
               {lesson.play?.lab && labLevel ? (
                 labOpen ? (
                   <>
@@ -229,7 +241,7 @@ export function TechPlayer({ lesson, strand, nextKey, backHref, initialLang, voi
                   </>
                 ) : (
                   <>
-                    <button type="button" className="tl-btn tl-btn-go" onClick={() => { setLabOpen(true); if (lesson.play?.lab) rememberLab(lesson.play.lab); }}>{tw(lang, 'openLab')}</button>
+                    <button type="button" className="tl-btn tl-btn-go" onClick={() => setLabOpen(true)}>{tw(lang, 'openLab')}</button>
                     <p className="tl-quiet">{tw(lang, 'labData')}</p>
                   </>
                 )
@@ -245,13 +257,17 @@ export function TechPlayer({ lesson, strand, nextKey, backHref, initialLang, voi
           <>
             {(lesson.understand ?? []).map((card, index) => (
               <section key={index} className="tl-card tl-pad">
-                <h3>{pick(lang, card.heading)}</h3>
-                {pick(lang, card.analogy) && <p className="tl-analogy">{pick(lang, card.analogy)}</p>}
-                {pick(lang, card.body) && <p>{pick(lang, card.body)}</p>}
-                {pick(lang, card.realExample) && <p className="tl-real">{pick(lang, card.realExample)}</p>}
-                <TechRead lesson={lesson} blockId={`${lesson.id}.understand.${index + 1}`} lang={lang} label={tw(lang, 'listen')} words={words} voice={voice} />
+                <h3>{say(card.heading)}</h3>
+                {say(card.analogy) && <p className="tl-analogy">{say(card.analogy)}</p>}
+                {say(card.body) && <p>{say(card.body)}</p>}
+                {say(card.realExample) && <p className="tl-real">{say(card.realExample)}</p>}
+                <TechRead lesson={lesson} blockId={`${lesson.id}.understand.${index + 1}`} lang={lang} label={tw(lang, 'listen')} words={words} voice={voice} personal={personal} showText={false} />
               </section>
             ))}
+            <section className="tl-card tl-pad tl-wrap-card" data-summary>
+              <h3>{tw(lang, 'summary')}</h3>
+              <TechRead lesson={lesson} blockId={`${lesson.id}.wrap`} lang={lang} label={tw(lang, 'listen')} words={words} voice={voice} personal={personal} />
+            </section>
             {(lesson.vocab ?? []).length > 0 && (
               <section className="tl-card tl-pad">
                 <h3>{tw(lang, 'words')}</h3>
@@ -287,7 +303,9 @@ export function TechPlayer({ lesson, strand, nextKey, backHref, initialLang, voi
             question={question}
             index={qi}
             total={questions.length}
-            mission={qi === 0 ? pick(lang, lesson.try?.mission) : ''}
+            mission={qi === 0 ? say(lesson.try?.mission) : ''}
+            name={personal.name}
+            praise={rightLine(lesson.id, lang, personal.name, rightSoFar(question.id))}
             answer={answers[question.id]}
             result={results[question.id]}
             confirmed={labConfirmed(question)}
@@ -301,13 +319,14 @@ export function TechPlayer({ lesson, strand, nextKey, backHref, initialLang, voi
           <section className="tl-card tl-pad tl-finish">
             <div className="tl-trophy">{finished.passed ? '🏆' : '🔁'}</div>
             <h2>{finished.passed ? tw(lang, 'done') : tw(lang, 'wrong').replace(/:$/, '')}</h2>
+            {finished.passed && personal.name && <p className="tl-analogy">{rightLine(lesson.id, lang, personal.name, 0)}</p>}
             <p>{tw(lang, 'score', { r: finished.right, n: finished.total })}</p>
             {finished.passed ? (
               <>
                 <div className="tl-stars" aria-label={tw(lang, 'starsLabel', { n: finished.stars })}>{`${'⭐'.repeat(finished.stars)}${'☆'.repeat(3 - finished.stars)}`}</div>
                 <span className="tl-xp">⚡ <b>{tw(lang, 'xpLine', { gain: finished.gain, total: finished.totalXp })}</b></span>
               </>
-            ) : <p>{tw(lang, 'pass')}</p>}
+            ) : <p>{tw(lang, 'pass', { n: passPercent })}</p>}
             {!finished.saved && finished.passed && <p className="tl-quiet">{tw(lang, 'savedLater')}</p>}
             {finished.badges.map((badge) => (
               <div key={badge.id} className="tl-badge"><span className="tl-badge-disc">{badge.emoji}</span><b>{tw(lang, 'newBadge')}</b><span>{badge.name}</span></div>
@@ -326,8 +345,10 @@ export function TechPlayer({ lesson, strand, nextKey, backHref, initialLang, voi
   );
 }
 
-function QuestionCard({ lang, question, index, total, mission, answer, result, confirmed, busy, onAnswer, onCheck, onNext }: {
+function QuestionCard({ lang, question, index, total, mission, name, praise, answer, result, confirmed, busy, onAnswer, onCheck, onNext }: {
   lang: TechLang;
+  name: string;
+  praise: string | null;
   question: TechQuestion;
   index: number;
   total: number;
@@ -357,7 +378,7 @@ function QuestionCard({ lang, question, index, total, mission, answer, result, c
           <span className="tl-pill">{tw(lang, 'qOf', { a: index + 1, b: total })}</span>
           <span aria-hidden="true">{`${'●'.repeat(question.difficulty || 1)}${'○'.repeat(Math.max(0, 3 - (question.difficulty || 1)))}`}</span>
         </div>
-        <h3>{pick(lang, question.prompt)}</h3>
+        <h3>{named(pick(lang, question.prompt), name)}</h3>
         <div className="tl-options">
           {question.type === 'order' && <p className="tl-quiet">{tw(lang, 'orderHint')}</p>}
           {question.type === 'multi' && <p className="tl-quiet">{tw(lang, 'pick')}</p>}
@@ -409,7 +430,7 @@ function QuestionCard({ lang, question, index, total, mission, answer, result, c
             );
           })}
         </div>
-        {result && <div className={`tl-feedback ${result.right ? 'ok' : 'no'}`} role="status"><b>{result.right ? tw(lang, 'right') : tw(lang, 'wrong')}</b> {result.explain}</div>}
+        {result && <div className={`tl-feedback ${result.right ? 'ok' : 'no'}`} role="status"><b>{result.right ? praise || tw(lang, 'right') : tw(lang, 'wrong')}</b> {named(result.explain, name)}</div>}
       </section>
       <div className="tl-footer">
         {checked ? (

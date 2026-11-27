@@ -46,7 +46,7 @@ export const TECH_WORDS = {
   finish: { hinglish: 'Lesson poora karo', en: 'Finish the lesson', hi: 'पाठ पूरा करो' },
   done: { hinglish: 'Lesson poora!', en: 'Lesson complete!', hi: 'पाठ पूरा!' },
   score: { hinglish: '{r} / {n} sahi', en: '{r} of {n} right', hi: '{r} / {n} सही' },
-  pass: { hinglish: 'Pass karne ke liye 60% chahiye. Ek baar aur try karo, explanations padh ke.', en: 'You need 60% to pass. Read the explanations and try once more.', hi: 'पास होने के लिए 60% चाहिए। व्याख्या पढ़कर एक बार और कोशिश करो।' },
+  pass: { hinglish: 'Pass karne ke liye {n} percent chahiye. Ek baar aur try karo, explanations padh ke.', en: 'You need {n} percent to pass. Read the explanations and try once more.', hi: 'पास होने के लिए {n} प्रतिशत चाहिए। व्याख्या पढ़कर एक बार और कोशिश करो।' },
   toCourse: { hinglish: 'Course par wapas', en: 'Back to the course', hi: 'कोर्स पर वापस' },
   nextLesson: { hinglish: 'Agla lesson', en: 'Next lesson', hi: 'अगला पाठ' },
   pick: { hinglish: 'Jo sahi lage sab chuno', en: 'Pick all that are right', hi: 'जो सही लगें सब चुनो' },
@@ -69,6 +69,19 @@ export const TECH_WORDS = {
   xpLine: { hinglish: '+{gain} XP · {total} XP', en: '+{gain} XP · {total} XP', hi: '+{gain} XP · {total} XP' },
   starsLabel: { hinglish: '{n} stars', en: '{n} stars', hi: '{n} सितारे' },
   couldNot: { hinglish: 'Abhi check nahi ho paya. Ek baar aur try karo.', en: 'That could not be checked. Try once more.', hi: 'अभी जाँच नहीं हो पाई। एक बार और कोशिश करो।' },
+  pathTitle: { hinglish: '{name} ka Tech & AI Learning Path', en: "{name}'s Tech & AI Learning Path", hi: '{name} का टेक और AI लर्निंग पाथ' },
+  pathDone: { hinglish: '{c}: {d} / {t} lessons poore', en: '{c}: {d} of {t} lessons done', hi: '{c}: {t} में से {d} पाठ पूरे' },
+  upNext: { hinglish: 'Ab tumhare liye', en: 'Up next for you', hi: 'अब तुम्हारे लिए' },
+  whyStart: { hinglish: 'Naya unit shuru karo', en: 'Start a new unit', hi: 'नई इकाई शुरू करो' },
+  whyContinue: { hinglish: 'Jahan ruke the, wahin se aage', en: 'Carry on where you stopped', hi: 'जहाँ रुके थे, वहीं से आगे' },
+  whyStretch: { hinglish: 'Tumhari class ke sab lessons poore! Ab ek challenge, agli class se:', en: 'Every lesson of your class is done! A challenge from the next class:', hi: 'तुम्हारी कक्षा के सब पाठ पूरे! अब अगली कक्षा से एक चुनौती:' },
+  allDone: { hinglish: 'Sab lessons poore. Labs mein naye experiment try karo.', en: 'Every lesson is done. Try new experiments in the labs.', hi: 'सब पाठ पूरे। लैब में नए प्रयोग करके देखो।' },
+  revise: { hinglish: 'Ek baar revise kar lo', en: 'Worth a quick revision', hi: 'एक बार दोहरा लो' },
+  goLesson: { hinglish: 'Kholo', en: 'Open', hi: 'खोलो' },
+  exploring: { hinglish: 'Tum doosri class dekh rahe ho. Tumhari apni class nahi badli.', en: 'You are looking at another class. Your own class has not changed.', hi: 'तुम दूसरी कक्षा देख रहे हो। तुम्हारी अपनी कक्षा नहीं बदली।' },
+  backToMine: { hinglish: 'Apni class par wapas', en: 'Back to my class', hi: 'अपनी कक्षा पर वापस' },
+  summary: { hinglish: 'Aaj ka saar', en: "Today's summary", hi: 'आज का सार' },
+  hey: { hinglish: 'Shuru karte hain', en: "Let's begin", hi: 'शुरू करते हैं' },
 } as const;
 
 export type TechWordKey = keyof typeof TECH_WORDS;

@@ -84,7 +84,7 @@ describe('Tech Lab read-aloud blocks', () => {
 
 describe('Tech Lab catalog', () => {
   it('loads every written lesson and keeps the three levels', () => {
-    expect(lessonCount()).toBe(277);
+    expect(lessonCount()).toBe(281);
     const course = courseCatalog();
     expect(course.units).toHaveLength(50);
     expect(course.units.filter((unit) => unit.level === 1)).toHaveLength(14);

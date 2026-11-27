@@ -23,5 +23,5 @@ export default async function FamilyTechPage({ searchParams }: { searchParams: {
   if (!ready) redirect('/family');
   const view = Number(searchParams.view);
   const lang = isTechLang(searchParams.lang) ? searchParams.lang : langForChild(child.style);
-  return <TechCourse catalog={courseCatalog()} progress={ready} classLevel={child.classLevel} initialLang={lang} view={Number.isInteger(view) ? view : null} />;
+  return <TechCourse catalog={courseCatalog()} progress={ready} classLevel={child.classLevel} initialLang={lang} view={Number.isInteger(view) ? view : null} childId={child.childId} name={child.firstName} />;
 }

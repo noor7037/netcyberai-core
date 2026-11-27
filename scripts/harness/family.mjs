@@ -263,6 +263,12 @@ export const FAMILY_SCREENS = [
   ['full', 'family-home-tutors', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutors-tile]' }],
   // W19-C: the child's own Progress and Settings.
   ['full', 'family-progress', '/family/progress', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-week-chart]' }],
+  // C555: Tech Lab, personal to each child: Asha (Class 7, Hinglish) and Kabir (Class 9, English) each see their own name,
+  // class and next lesson; a lesson opens by name and closes with its summary.
+  ['full', 'family-tech-asha', '/family/tech', { child: 'f0000000-0000-4000-8000-0000000fc001', settle: '[data-path-for="7"]' }],
+  ['full', 'family-tech-kabir', '/family/tech', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-path-for="9"]' }],
+  ['full', 'family-tech-lesson-intro', '/family/tech/lesson/L2.inside-computer.06', { child: 'f0000000-0000-4000-8000-0000000fc001', settle: '[data-intro]' }],
+  ['full', 'family-tech-lesson-summary', '/family/tech/lesson/L2.inside-computer.06', { child: 'f0000000-0000-4000-8000-0000000fc001', settle: '[data-intro]', steps: [{ tap: '.tl-phase:nth-child(3)', wait: '[data-summary]' }, { scroll: '[data-summary]' }] }],
   ['full', 'family-settings', '/family/settings', { settle: '[data-setting="readAloud"]' }],
   ['full', 'family-study', '/family/study', {}],
   // W16-B1: the Quick quiz card on the Study feed and on the home, and the quiz itself.

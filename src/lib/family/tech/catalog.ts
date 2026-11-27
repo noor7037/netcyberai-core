@@ -82,7 +82,7 @@ function build(): Loaded {
         badge: unit.badge?.emoji ? { id: unit.badge.id || `unit:${unit.id}`, name: unit.badge.name || unit.title, emoji: unit.badge.emoji } : null,
         lessons: keys.map((key) => {
           const lesson = lessons.get(key)!;
-          return { key, title: lesson.title, minutes: Number(lesson.minutes) || 8, xp: Number(lesson.xp) || 20, lab: lesson.play?.lab ?? null };
+          return { key, title: lesson.title, minutes: Number(lesson.minutes) || 8, xp: Number(lesson.xp) || 20, lab: lesson.play?.lab ?? null, prereq: (lesson.prereq ?? []).filter((id) => typeof id === 'string' && LESSON_KEY.test(id)) };
         }),
       };
     })

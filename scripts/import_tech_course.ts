@@ -60,7 +60,7 @@ for (const unit of course.units) {
   }
 }
 
-if (lessonCount() !== 277 || course.units.length !== 50) fail(`expected 277 lessons and 50 units, found ${lessonCount()} and ${course.units.length}`);
+if (lessonCount() !== 281 || course.units.length !== 50) fail(`expected 281 lessons and 50 units, found ${lessonCount()} and ${course.units.length}`);
 if (problems) fail(`${problems} problem(s)`);
 console.log(`Tech Lab files OK: ${lessonCount()} lessons, ${course.units.length} units, ${labs.size} lab pages.`);
-console.log('Not applied. At merge, run supabase/migrations/20261128000000_tl1_tech_lab.sql, then supabase/seeds/seed_tl1_tech_catalog.sql, on a database that is not the live project. Publish that catalog version with a second staff member.');
+console.log('The tables are applied (migration 20261127224657). The catalog seed (supabase/seeds/seed_tl1_tech_catalog.sql) is optional: the app reads the lesson files.');

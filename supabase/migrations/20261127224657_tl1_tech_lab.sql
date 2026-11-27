@@ -1,5 +1,5 @@
--- PROPOSED, NOT APPLIED. Written by the Family App Lead for Claude Code to review and apply (never run against the live
--- netcyberai-dev). Mirrors supabase/migrations/20261021232416_wb1_english_course.sql (content versions, two-person
+-- TL-1 (C555): the Tech & AI Lab tables, written by the Family App Lead (PR #461) and reviewed and applied by the lead
+-- (Claude Code). Mirrors supabase/migrations/20261021232416_wb1_english_course.sql (content versions, two-person
 -- rule, families read only what is published) and 20261113120000_c514_draw_completions.sql (own account twice, plus
 -- the one-child rule on a child's own phone, Z1 / test/z1/hardening.test.ts).
 --

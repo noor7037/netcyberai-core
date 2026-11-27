@@ -39,7 +39,12 @@
 .tl-title-row, .tl-class-row, .tl-qhead, .tl-footer, .tl-finish-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .tl-title-row { justify-content: space-between; }
 .tl-kicker { font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; font-size: 0.78rem; }
-.tl-band h1 { font-size: clamp(1.45rem, 6vw, 2.1rem); font-weight: 800; }
+.tl-band h1 { font-size: clamp(1.45rem, 6vw, 2.1rem); font-weight: 800; overflow-wrap: anywhere; }
+.tl-band-sub { margin: 0; font-weight: 700; }
+.tl-path { border: 2px solid #1c1b1a; }
+.tl-intro { display: grid; gap: 8px; }
+.tl-intro .tl-caption:first-of-type { font-weight: 800; font-size: 1.05rem; }
+.tl-wrap-card { border-left: 6px solid #22c55e; }
 .tl-xp { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px; background: #1c1b1a; color: #fff; font-weight: 800; }
 .tl-xp b { color: #ffd23f; }
 .tl-seg { display: inline-flex; flex-wrap: wrap; gap: 2px; padding: 3px; border-radius: 14px; background: rgb(28 27 26 / 0.08); }
@@ -91,7 +96,8 @@
 .tl-badges { display: flex; flex-wrap: wrap; gap: 8px; }
 .tl-badge { display: flex; flex-direction: column; align-items: center; gap: 4px; width: 92px; max-width: 100%; text-align: center; font-size: 0.75rem; font-weight: 700; }
 .tl-badge-disc { width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center; font-size: 26px; background: #fff; border: 3px solid #ffd23f; }
-.tl-badge.locked { opacity: 0.45; }
+.tl-badge.locked .tl-badge-disc { opacity: 0.45; filter: grayscale(1); }
+.tl-badge.locked { color: #57534e; }
 .tl-player-main { display: grid; gap: 14px; padding-top: 16px; padding-bottom: 28px; }
 .tl-phases { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
 .tl-phase { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 52px; padding: 6px 2px; border: 0; border-radius: 14px; background: rgb(255 255 255 / 0.16); color: inherit; font-weight: 800; font-size: 0.78rem; }

@@ -1,0 +1,365 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.inside-computer.07",
+ "level": 2,
+ "classes": [
+  7,
+  8
+ ],
+ "unit": "inside-computer",
+ "title": {
+  "en": "Screens: pixels, LCD, OLED and touch",
+  "hi": "स्क्रीन: पिक्सेल, LCD, OLED और टच",
+  "hinglish": "Screen: pixels, LCD, OLED aur touch"
+ },
+ "minutes": 10,
+ "xp": 40,
+ "prereq": [
+  "L2.inside-computer.06"
+ ],
+ "topics": [
+  "hw.display",
+  "hw.touch",
+  "hw.mobile"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain how red, green and blue subpixels make every colour",
+   "hi": "समझा सकते हो कि लाल, हरे और नीले सबपिक्सेल से हर रंग कैसे बनता है",
+   "hinglish": "Red, green aur blue subpixels se har colour kaise banta hai samjha sakte ho"
+  },
+  {
+   "en": "Compare how LCD and OLED screens make light",
+   "hi": "LCD और OLED स्क्रीन के रोशनी बनाने के तरीक़े की तुलना कर सकते हो",
+   "hinglish": "LCD aur OLED screen roshni kaise banati hain compare kar sakte ho"
+  },
+  {
+   "en": "Explain how a touch screen finds your finger",
+   "hi": "समझा सकते हो कि टच स्क्रीन तुम्हारी उँगली कैसे ढूँढती है",
+   "hinglish": "Touch screen tumhari ungli kaise dhoondti hai samjha sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Pixel",
+   "en": "One dot of the picture, made of red, green and blue subpixels",
+   "hi": "चित्र का एक बिंदु, लाल, हरे और नीले सबपिक्सेल से बना",
+   "hinglish": "Picture ka ek dot, red, green aur blue subpixels se bana"
+  },
+  {
+   "term": "Refresh rate",
+   "en": "How many times a second the picture is redrawn (Hz)",
+   "hi": "चित्र एक सेकंड में कितनी बार दोबारा बनता है (Hz)",
+   "hinglish": "Picture ek second mein kitni baar dobara banti hai (Hz)"
+  },
+  {
+   "term": "OLED",
+   "en": "A screen where every subpixel makes its own light",
+   "hi": "ऐसी स्क्रीन जिसमें हर सबपिक्सेल अपनी रोशनी ख़ुद बनाता है",
+   "hinglish": "Aisi screen jisme har subpixel apni roshni khud banata hai"
+  },
+  {
+   "term": "Capacitive touch",
+   "en": "Touch sensing that feels the electric charge of your finger",
+   "hi": "छूने का पता जो तुम्हारी उँगली के विद्युत आवेश से चलता है",
+   "hinglish": "Touch sensing jo tumhari ungli ke electric charge ko feel karti hai"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Zoom in very close on a screen and every pixel is three tiny lights: red, green and blue. Mixing their brightness makes every colour you see.",
+    "hi": "स्क्रीन को बहुत पास से देखो तो हर पिक्सेल तीन छोटी बत्तियाँ हैं: लाल, हरी और नीली। इनकी चमक मिलाकर हर रंग बनता है।",
+    "hinglish": "Screen ko bahut paas se dekho to har pixel teen chhoti lights hain: red, green aur blue. Inki chamak mila ke har colour banta hai."
+   },
+   "visual": "flow:🔴 Red|🟢 Green|🔵 Blue|🎨 Any colour",
+   "narration": {
+    "en": "All three at full brightness look white; all off looks black.",
+    "hi": "तीनों पूरी चमक पर सफ़ेद दिखते हैं; तीनों बंद तो काला।",
+    "hinglish": "Teeno full chamak par white dikhte hain; teeno band to black."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "LCD: one white backlight shines all the time, and liquid crystals twist to block or let light through each colour filter. OLED: each subpixel glows by itself, and is fully off for black.",
+    "hi": "LCD: एक सफ़ेद बैकलाइट हमेशा जलती है, और लिक्विड क्रिस्टल मुड़कर हर रंग फ़िल्टर से रोशनी रोकते या जाने देते हैं। OLED: हर सबपिक्सेल ख़ुद चमकता है, और काले के लिए पूरा बंद होता है।",
+    "hinglish": "LCD: ek white backlight hamesha jalti hai, aur liquid crystals mud ke har colour filter se roshni rokte ya jaane dete hain. OLED: har subpixel khud chamakta hai, aur black ke liye poora band hota hai."
+   },
+   "visual": "compare:💡 LCD: backlight + crystal shutters|✨ OLED: every subpixel is its own light",
+   "narration": {
+    "en": "That is why OLED blacks look deeper and OLED phones can be thinner.",
+    "hi": "इसीलिए OLED का काला ज़्यादा गहरा दिखता है और OLED फ़ोन पतले हो सकते हैं।",
+    "hinglish": "Isiliye OLED ka black zyada gehra dikhta hai aur OLED phones patle ho sakte hain."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Under the glass is an invisible grid of wires. Your finger holds a little electric charge, so where it touches, the grid's charge changes, and a chip works out the exact spot.",
+    "hi": "काँच के नीचे तारों की एक अदृश्य जाली है। तुम्हारी उँगली में थोड़ा विद्युत आवेश होता है, इसलिए जहाँ वह छूती है वहाँ जाली का आवेश बदलता है, और एक चिप सही जगह निकाल लेती है।",
+    "hinglish": "Kaanch ke neeche taaron ki ek invisible jaali hai. Tumhari ungli mein thoda electric charge hota hai, isliye jahan woh chhooti hai wahan jaali ka charge badalta hai, aur ek chip exact jagah nikaal leti hai."
+   },
+   "visual": "flow:👆 Finger|🕸️ Grid charge changes|🧠 Touch chip finds x, y|📱 App reacts",
+   "narration": {
+    "en": "It checks the grid many times every second, so a swipe feels smooth.",
+    "hi": "यह जाली को हर सेकंड कई बार जाँचती है, इसलिए स्वाइप स्मूद लगता है।",
+    "hinglish": "Yeh jaali ko har second kai baar check karti hai, isliye swipe smooth lagta hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "bit-lab",
+  "config": {
+   "tab": "colour"
+  },
+  "goal": {
+   "en": "Mix red, green and blue numbers to make yellow, white and your favourite colour.",
+   "hi": "लाल, हरे और नीले नंबर मिलाकर पीला, सफ़ेद और अपना पसंदीदा रंग बनाओ।",
+   "hinglish": "Red, green aur blue numbers mila ke yellow, white aur apna favourite colour banao."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "How sharp and how smooth",
+    "hi": "कितनी साफ़ और कितनी स्मूद",
+    "hinglish": "Kitni saaf aur kitni smooth"
+   },
+   "body": {
+    "en": "Resolution is how many pixels the screen has: a 1080 × 2400 phone has about 26 lakh pixels. Refresh rate is how often the picture is redrawn: 60 Hz means 60 times a second, 120 Hz means 120. A higher refresh rate makes scrolling and games look smoother but uses more battery, so many phones drop to a lower rate when you are just reading. Each time, the GPU has to work out the colour of every pixel.",
+    "hi": "रेज़ोल्यूशन यानी स्क्रीन में कितने पिक्सेल हैं: 1080 × 2400 वाले फ़ोन में लगभग 26 लाख पिक्सेल होते हैं। रिफ़्रेश रेट यानी चित्र कितनी बार दोबारा बनता है: 60 Hz मतलब सेकंड में 60 बार, 120 Hz मतलब 120 बार। ज़्यादा रिफ़्रेश रेट से स्क्रॉल और गेम ज़्यादा स्मूद दिखते हैं पर बैटरी ज़्यादा लगती है, इसलिए कई फ़ोन सिर्फ़ पढ़ते समय कम रेट पर आ जाते हैं। हर बार GPU को हर पिक्सेल का रंग निकालना पड़ता है।",
+    "hinglish": "Resolution yaani screen mein kitne pixels hain: 1080 × 2400 wale phone mein lagbhag 26 lakh pixels hote hain. Refresh rate yaani picture kitni baar dobara banti hai: 60 Hz matlab second mein 60 baar, 120 Hz matlab 120 baar. Zyada refresh rate se scroll aur games zyada smooth dikhte hain par battery zyada lagti hai, isliye kai phones sirf padhte waqt kam rate par aa jaate hain. Har baar GPU ko har pixel ka colour nikaalna padta hai."
+   },
+   "analogy": {
+    "en": "A screen is like a flip book: more pages a second (refresh rate) makes the movement smoother.",
+    "hi": "स्क्रीन फ़्लिप बुक जैसी है: सेकंड में ज़्यादा पन्ने (रिफ़्रेश रेट) तो हरकत ज़्यादा स्मूद।",
+    "hinglish": "Screen flip book jaisi hai: second mein zyada pages (refresh rate) to movement zyada smooth."
+   },
+   "realExample": {
+    "en": "On an OLED phone, dark mode saves battery, because black pixels are switched off. On an LCD phone it saves almost nothing, because the backlight stays on.",
+    "hi": "OLED फ़ोन पर डार्क मोड बैटरी बचाता है, क्योंकि काले पिक्सेल बंद होते हैं। LCD फ़ोन पर लगभग कुछ नहीं बचता, क्योंकि बैकलाइट जलती रहती है।",
+    "hinglish": "OLED phone par dark mode battery bachata hai, kyunki black pixels band hote hain. LCD phone par lagbhag kuch nahi bachta, kyunki backlight jalti rehti hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "Why touch needs your finger, not your glove",
+    "hi": "टच को दस्ताना नहीं, उँगली क्यों चाहिए",
+    "hinglish": "Touch ko dastana nahi, ungli kyun chahiye"
+   },
+   "body": {
+    "en": "A capacitive screen senses electric charge, and your skin conducts. A woollen glove or a dry pencil does not, so the grid feels nothing. A stylus for a phone has a soft conductive tip that acts like a fingertip. Two fingers make two changes in the grid at once, which is how pinch-to-zoom works. {{name}}, next time you zoom a photo, picture the grid finding both your fingers.",
+    "hi": "कैपेसिटिव स्क्रीन विद्युत आवेश को महसूस करती है, और तुम्हारी त्वचा बिजली चलाती है। ऊनी दस्ताना या सूखी पेंसिल नहीं चलाती, इसलिए जाली को कुछ महसूस नहीं होता। फ़ोन के स्टाइलस की नोक नरम और बिजली चलाने वाली होती है, उँगली जैसी। दो उँगलियाँ जाली में एक साथ दो बदलाव करती हैं, यही पिंच-टू-ज़ूम है। {{name}}, अगली बार फ़ोटो ज़ूम करो तो सोचो कि जाली तुम्हारी दोनों उँगलियाँ ढूँढ रही है।",
+    "hinglish": "Capacitive screen electric charge ko feel karti hai, aur tumhari skin bijli chalati hai. Woollen glove ya sookhi pencil nahi chalati, isliye jaali ko kuch feel nahi hota. Phone ke stylus ki nok naram aur conductive hoti hai, ungli jaisi. Do ungliyan jaali mein ek saath do badlaav karti hain, yahi pinch-to-zoom hai. {{name}}, agli baar photo zoom karo to socho ki jaali tumhari dono ungliyan dhoondh rahi hai."
+   },
+   "realExample": {
+    "en": "Some winter gloves have special fingertips with conductive thread sewn in, so they work on touch screens.",
+    "hi": "कुछ सर्दी के दस्तानों की उँगलियों में बिजली चलाने वाला धागा सिला होता है, ताकि वे टच स्क्रीन पर चलें।",
+    "hinglish": "Kuch sardi ke gloves ki ungliyon mein conductive dhaaga sila hota hai, taaki woh touch screen par chalein."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "With a grown-up's phone, open a white page, then a black page, and look closely at the screen. Guess: is it LCD or OLED? (Hint: does black glow faintly?)",
+   "hi": "किसी बड़े के फ़ोन पर पहले सफ़ेद, फिर काला पेज खोलो और स्क्रीन को पास से देखो। अंदाज़ा लगाओ: LCD या OLED? (संकेत: क्या काला हल्का चमकता है?)",
+   "hinglish": "Kisi bade ke phone par pehle white, phir black page kholo aur screen ko paas se dekho. Guess karo: LCD ya OLED? (Hint: kya black halka chamakta hai?)"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which three colours does every pixel mix?",
+     "hi": "हर पिक्सेल कौन-से तीन रंग मिलाता है?",
+     "hinglish": "Har pixel kaunse teen colours milata hai?"
+    },
+    "options": [
+     {
+      "en": "Red, yellow, blue",
+      "hi": "लाल, पीला, नीला",
+      "hinglish": "Red, yellow, blue"
+     },
+     {
+      "en": "Red, green, blue",
+      "hi": "लाल, हरा, नीला",
+      "hinglish": "Red, green, blue"
+     },
+     {
+      "en": "Black, white, grey",
+      "hi": "काला, सफ़ेद, स्लेटी",
+      "hinglish": "Black, white, grey"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Screens add light, and red, green and blue light together can make every colour.",
+     "hi": "स्क्रीन रोशनी जोड़ती है, और लाल, हरी और नीली रोशनी मिलकर हर रंग बना सकती हैं।",
+     "hinglish": "Screen roshni jodti hai, aur red, green aur blue light mil ke har colour bana sakti hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why does dark mode save more battery on OLED than on LCD?",
+     "hi": "डार्क मोड OLED पर LCD से ज़्यादा बैटरी क्यों बचाता है?",
+     "hinglish": "Dark mode OLED par LCD se zyada battery kyun bachata hai?"
+    },
+    "options": [
+     {
+      "en": "OLED black pixels are switched off",
+      "hi": "OLED के काले पिक्सेल बंद होते हैं",
+      "hinglish": "OLED ke black pixels band hote hain"
+     },
+     {
+      "en": "LCD has no pixels",
+      "hi": "LCD में पिक्सेल नहीं होते",
+      "hinglish": "LCD mein pixels nahi hote"
+     },
+     {
+      "en": "Dark colours are smaller files",
+      "hi": "गहरे रंग छोटी फ़ाइलें हैं",
+      "hinglish": "Dark colours chhoti files hain"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "An OLED subpixel makes its own light, so black means off. An LCD's backlight stays on behind black.",
+     "hi": "OLED सबपिक्सेल अपनी रोशनी ख़ुद बनाता है, इसलिए काला यानी बंद। LCD की बैकलाइट काले के पीछे भी जलती रहती है।",
+     "hinglish": "OLED subpixel apni roshni khud banata hai, isliye black matlab band. LCD ki backlight black ke peeche bhi jalti rehti hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "A 120 Hz screen redraws the picture…",
+     "hi": "120 Hz स्क्रीन चित्र को दोबारा बनाती है…",
+     "hinglish": "120 Hz screen picture ko dobara banati hai…"
+    },
+    "options": [
+     {
+      "en": "120 times a minute",
+      "hi": "मिनट में 120 बार",
+      "hinglish": "Minute mein 120 baar"
+     },
+     {
+      "en": "120 times a second",
+      "hi": "सेकंड में 120 बार",
+      "hinglish": "Second mein 120 baar"
+     },
+     {
+      "en": "Once every 120 seconds",
+      "hi": "हर 120 सेकंड में एक बार",
+      "hinglish": "Har 120 second mein ek baar"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Hertz means 'per second', so 120 Hz is 120 new pictures every second.",
+     "hi": "हर्ट्ज़ यानी 'प्रति सेकंड', तो 120 Hz यानी हर सेकंड 120 नए चित्र।",
+     "hinglish": "Hertz matlab 'per second', to 120 Hz matlab har second 120 nayi pictures."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why doesn't a woollen glove work on a phone screen?",
+     "hi": "ऊनी दस्ताना फ़ोन की स्क्रीन पर क्यों नहीं चलता?",
+     "hinglish": "Woollen glove phone ki screen par kyun nahi chalta?"
+    },
+    "options": [
+     {
+      "en": "Wool does not conduct electricity",
+      "hi": "ऊन बिजली नहीं चलाती",
+      "hinglish": "Wool bijli nahi chalati"
+     },
+     {
+      "en": "The screen is too cold",
+      "hi": "स्क्रीन बहुत ठंडी है",
+      "hinglish": "Screen bahut thandi hai"
+     },
+     {
+      "en": "Gloves are too heavy",
+      "hi": "दस्ताने बहुत भारी हैं",
+      "hinglish": "Gloves bahut bhaari hain"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "The capacitive grid feels the charge of a conductor like skin; wool blocks it.",
+     "hi": "कैपेसिटिव जाली त्वचा जैसे चालक का आवेश महसूस करती है; ऊन उसे रोक देती है।",
+     "hinglish": "Capacitive jaali skin jaise conductor ka charge feel karti hai; wool use rok deti hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "order",
+    "prompt": {
+     "en": "Put a tap on the screen in order.",
+     "hi": "स्क्रीन पर एक टैप को क्रम में लगाओ।",
+     "hinglish": "Screen par ek tap ko order mein lagao."
+    },
+    "options": [
+     {
+      "en": "The app reacts",
+      "hi": "ऐप जवाब देता है",
+      "hinglish": "App react karta hai"
+     },
+     {
+      "en": "Your finger touches the glass",
+      "hi": "उँगली काँच को छूती है",
+      "hinglish": "Ungli kaanch ko chhooti hai"
+     },
+     {
+      "en": "The touch chip calculates the spot",
+      "hi": "टच चिप जगह निकालती है",
+      "hinglish": "Touch chip jagah nikaalti hai"
+     },
+     {
+      "en": "The grid's charge changes",
+      "hi": "जाली का आवेश बदलता है",
+      "hinglish": "Jaali ka charge badalta hai"
+     }
+    ],
+    "answer": [
+     1,
+     3,
+     2,
+     0
+    ],
+    "explain": {
+     "en": "Touch, charge change, the chip finds x and y, then the app reacts.",
+     "hi": "छूना, आवेश बदलना, चिप x और y निकालती है, फिर ऐप जवाब देता है।",
+     "hinglish": "Touch, charge change, chip x aur y nikaalti hai, phir app react karta hai."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "How OLED displays work — Display physics references (OLED-Info)",
+   "url": "https://www.oled-info.com/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Capacitive sensing — overview",
+   "url": "https://en.wikipedia.org/wiki/Capacitive_sensing",
+   "licence": "CC BY-SA 4.0 (fact reference)"
+  },
+  {
+   "title": "NCERT / CBSE Artificial Intelligence & Computer curriculum (Classes 6–8), 2024–25",
+   "url": "https://cbseacademic.nic.in/",
+   "licence": "fact reference"
+  }
+ ]
+}

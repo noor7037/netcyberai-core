@@ -23,6 +23,7 @@ export type TechLesson = {
   title: Localized;
   minutes: number;
   xp: number;
+  prereq?: string[];
   outcomes?: Localized[];
   vocab?: { term: string; en?: string; hi?: string; hinglish?: string }[];
   see?: { step?: number; caption?: Localized; visual?: string; narration?: Localized }[];
@@ -38,6 +39,7 @@ export type LessonSummary = {
   minutes: number;
   xp: number;
   lab: string | null;
+  prereq: string[];
 };
 
 export type UnitSummary = {

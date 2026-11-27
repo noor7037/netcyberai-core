@@ -57,7 +57,7 @@ function Flow({ nodes, ring, level, motion, wide }: { nodes: string[]; ring: boo
   const colour = level === 3 ? '#A78BFA' : level === 2 ? '#14B8A6' : '#E8702A';
   const ink = level === 3 ? '#1E1B4B' : '#fff';
   return (
-    <svg viewBox={'0 0 ' + width + ' ' + height} width="100%" role="img" aria-label={nodes.join(' → ')} style={{ maxWidth: row && !ring ? 640 : 380 }}>
+    <svg viewBox={'0 0 ' + width + ' ' + height} role="img" aria-label={nodes.join(' → ')} style={{ width: '100%', maxWidth: row && !ring ? 640 : 380 }}>
       <path d={path} fill="none" stroke={colour} strokeOpacity="0.28" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
       <path d={path} fill="none" stroke={colour} strokeWidth="3" strokeDasharray="6 10" strokeLinecap="round" />
       {points.map((point, index) => {

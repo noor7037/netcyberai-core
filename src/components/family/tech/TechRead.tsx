@@ -3,7 +3,8 @@
 import { useMemo, useRef } from 'react';
 import { blockIds, narrationScript } from '@/lib/family/blocks';
 import type { Words } from '@/lib/family/fill';
-import { techlabToBlocks } from '@/lib/family/tech/blocks';
+import { INTRO_BLOCK, techlabToBlocks, WRAP_BLOCK } from '@/lib/family/tech/blocks';
+import type { TechPersonal } from '@/lib/family/tech/personal';
 import { voiceLang, type TechLang } from '@/lib/family/tech/text';
 import type { TechLesson } from '@/lib/family/tech/types';
 import { rateOf } from '@/components/family/reader/narration';
@@ -12,25 +13,32 @@ import { WordTapLayer } from '@/components/family/words/WordTapLayer';
 
 // See and Understand, read the way Study reads a chapter: tap a sentence, then the server voice (the phone's voice
 // if the server voice is not set up). The line the server speaks is looked up by lesson, block and sentence.
-export function TechRead({ lesson, blockId, lang, label, words, voice }: { lesson: TechLesson; blockId: string; lang: TechLang; label: string; words: Words; voice: VoiceMode }) {
+// The opening, the summary and any sentence that holds the child's name are read by the phone's own voice, so the name
+// never leaves the phone (the server's copy of the lesson has no name in it). `showText` false: the card already shows
+// the words (Understand), so only the Listen button is added.
+export function TechRead({ lesson, blockId, lang, label, words, voice, personal, showText = true }: { lesson: TechLesson; blockId: string; lang: TechLang; label: string; words: Words; voice: VoiceMode; personal?: TechPersonal; showText?: boolean }) {
   const root = useRef<HTMLDivElement>(null);
   const mode = useRef<VoiceMode>(voice);
   const lines = useMemo(() => {
-    const blocks = techlabToBlocks(lesson, lang);
+    const blocks = techlabToBlocks(lesson, lang, personal);
     const ids = blockIds(blocks);
     const at = blocks.findIndex((block) => block.id === blockId);
     if (at < 0) return [];
-    return narrationScript(blocks).filter((line) => line.blockId === ids[at]);
-  }, [lesson, lang, blockId]);
+    const own = blockId.endsWith(INTRO_BLOCK) || blockId.endsWith(WRAP_BLOCK);
+    const name = personal?.name.trim() ?? '';
+    return narrationScript(blocks)
+      .filter((line) => line.blockId === ids[at])
+      .map((line) => ({ ...line, phoneOnly: own || (!!name && line.text.includes(name)) }));
+  }, [lesson, lang, blockId, personal]);
 
   const readFrom = (from: number) => {
     stopLine();
     const run = async () => {
       for (let index = from; index < lines.length; index++) {
         const line = lines[index];
-        const spoken = await speakLine(mode.current, { kind: 'techlab', lessonId: lesson.id, blockId: line.blockId, sentence: line.sentence, lang }, { text: line.text, lang: voiceLang(lang), rate: rateOf(1) });
+        const spoken = await speakLine(line.phoneOnly ? 'phone' : mode.current, { kind: 'techlab', lessonId: lesson.id, blockId: line.blockId, sentence: line.sentence, lang }, { text: line.text, lang: voiceLang(lang), rate: rateOf(1) });
         if (spoken.cancelled || spoken.blocked) return;
-        mode.current = spoken.mode;
+        if (!line.phoneOnly) mode.current = spoken.mode;
       }
     };
     void run();
@@ -40,7 +48,7 @@ export function TechRead({ lesson, blockId, lang, label, words, voice }: { lesso
   return (
     <div ref={root} className="tl-read">
       <WordTapLayer root={root} w={words} lang={voiceLang(lang)} sentences={lines.map((line) => line.text)} onReadFrom={readFrom} />
-      {lines.map((line) => (
+      {showText && lines.map((line) => (
         <p key={`${line.blockId}-${line.sentence}`} className="tl-caption">{line.text}</p>
       ))}
       <button type="button" className="tl-btn tl-btn-soft" onClick={() => readFrom(0)}>{`🔊 ${label}`}</button>
