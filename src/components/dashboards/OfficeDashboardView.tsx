@@ -161,6 +161,8 @@ export function OfficeDashboardView({ data, lang = 'en', tour, help, now = new D
         lang={lang}
         actions={[
           { label: t(lang, 'dash.quick.student'), href: '/app/students?new=1', icon: 'student', tone: 'sapphire' },
+          { label: t(lang, 'dash.quick.scan'), href: '/app/ask?scan=1', icon: 'sparkle', tone: 'royal' },
+          { label: t(lang, 'dash.quick.register'), href: '/app/students/read-register', icon: 'reports', tone: 'sapphire' },
           { label: t(lang, 'dash.quick.attendance'), href: '/app/attendance', icon: 'attendance', tone: 'royal' },
           { label: t(lang, 'dash.quick.ticket'), href: '/app/help/ticket/new', icon: 'ticket', tone: 'gold' },
           { label: t(lang, 'dash.quick.help'), href: '/app/help', icon: 'support', tone: 'gold' },

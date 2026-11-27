@@ -37,7 +37,7 @@ async function shrink(file: File): Promise<Photo> {
 
 // The Ask screen (C546, C549): one box to type, speak or add a photo, the conversation, the assistant's face and what
 // it is doing right now, and the changes waiting to be checked.
-export function AgentView({ lang }: { lang: string }) {
+export function AgentView({ lang, scan = false }: { lang: string; scan?: boolean }) {
   const w = agentWords(lang);
   const [messages, setMessages] = useState<Msg[]>([]);
   const [requests, setRequests] = useState<Req[]>([]);
@@ -62,6 +62,8 @@ export function AgentView({ lang }: { lang: string }) {
 
   async function addPhotos(files: FileList | null) {
     if (!files) return;
+    // From the dashboard's "Scan a document" (C554): the ask that reads the paper is written for them; they can change it.
+    if (scan && !text.trim()) setText(w.scanAsk);
     const room = MAX_PHOTOS - photos.length;
     const made = await Promise.all([...files].slice(0, room).filter((f) => f.type.startsWith('image/')).map(shrink));
     setPhotos((p) => [...p, ...made].slice(0, MAX_PHOTOS));
@@ -118,6 +120,16 @@ export function AgentView({ lang }: { lang: string }) {
   const done = requests.filter((r) => r.status !== 'ready');
   return (
     <div className="flex flex-col gap-4" lang={lang}>
+      {scan && photos.length === 0 && (
+        <section aria-label={w.scanTitle} data-scan-card className="flex flex-col gap-3 rounded-xl border-2 border-royal bg-white p-4">
+          <h2 className="text-lg font-semibold text-slate">{w.scanTitle}</h2>
+          <p className="text-base text-slate">{w.scanSay}</p>
+          <button type="button" disabled={busy} onClick={() => fileInput.current?.click()} className="min-h-[56px] rounded-lg bg-royal px-5 text-base font-semibold text-white disabled:opacity-50">
+            📷 {w.scanTake}
+          </button>
+          <a href="/app/students/read-register" className="inline-flex min-h-[44px] items-center text-base font-semibold text-sapphire underline">{w.scanRegister}</a>
+        </section>
+      )}
       {waiting.length > 0 && (
         <section aria-label={w.ready} className="flex flex-col gap-2">
           {waiting.map((r) => (

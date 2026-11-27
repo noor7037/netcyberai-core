@@ -43,7 +43,7 @@ export function CreateSchoolForm() {
       setStatus({ kind: 'error', message: data.error ?? `request failed (${res.status})` });
       return;
     }
-    setStatus({ kind: 'ok', message: `Created. Onboarding stage: ${data.school.onboarding_stage}` });
+    setStatus({ kind: 'ok', message: `Created ${data.school.school_code}. Onboarding stage: ${data.school.onboarding_stage}` });
     setName('');
     router.refresh();
   }

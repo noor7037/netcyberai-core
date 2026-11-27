@@ -91,6 +91,16 @@ export function StudentsView({ title, description, statusFilter, openNew = false
   const [state, setState] = useState<'loading' | 'ready' | 'error'>('loading');
   const [errorMessage, setErrorMessage] = useState('');
   const [modalOpen, setModalOpen] = useState(openNew);
+  // The numbers a new student would be given (C554), shown in the form; left blank, the system gives them.
+  const [next, setNext] = useState<{ admissionNo: string | null; rollNo: string | null }>({ admissionNo: null, rollNo: null });
+  const loadNext = (classId: string) =>
+    fetch(`/api/app/students/next-numbers${classId ? `?classId=${encodeURIComponent(classId)}` : ''}`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((n) => n && setNext({ admissionNo: n.admissionNo ?? null, rollNo: n.rollNo ?? null }))
+      .catch(() => undefined);
+  useEffect(() => {
+    if (modalOpen) void loadNext('');
+  }, [modalOpen]);
   useEffect(() => {
     if (openNew) setModalOpen(true);
   }, [openNew]);
@@ -464,8 +474,8 @@ export function StudentsView({ title, description, statusFilter, openNew = false
       <Modal open={modalOpen} onClose={closeModal} title="Add student">
         <form onSubmit={handleCreate} className="flex flex-col gap-4">
           <Input id="name" name="name" label="Full name" required />
-          <Input id="admissionNo" name="admissionNo" label="Admission number" />
-          <Select id="classId" name="classId" label="Class">
+          <Input id="admissionNo" name="admissionNo" label="Admission number" placeholder={next.admissionNo ?? undefined} helperText={next.admissionNo ? t('students.next.admission', { no: next.admissionNo }) : t('students.next.admissionBlank')} data-next-admission />
+          <Select id="classId" name="classId" label="Class" onChange={(e) => void loadNext(e.target.value)}>
             <option value="">— Unassigned —</option>
             {classes.map((c) => (
               <option key={c.class_id} value={c.class_id}>
@@ -473,7 +483,7 @@ export function StudentsView({ title, description, statusFilter, openNew = false
               </option>
             ))}
           </Select>
-          <Input id="rollNo" name="rollNo" label="Roll number" />
+          <Input id="rollNo" name="rollNo" label="Roll number" placeholder={next.rollNo ?? undefined} helperText={next.rollNo ? t('students.next.roll', { no: next.rollNo }) : t('students.next.rollBlank')} data-next-roll />
           <Input id="dob" name="dob" label="Date of birth" type="date" />
           {office && (
             <Select id="gender" name="gender" label={t('students.gender.label')} defaultValue="not_given" data-student-gender>

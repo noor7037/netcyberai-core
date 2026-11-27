@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { nextAdmissionNumbers, nextRollNumbers } from '@/lib/numbering/allocate';
 import { requireAppSession, canWriteMasterData } from '@/lib/auth/require-app-session';
 import { withTenantContext } from '@/lib/auth/db';
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
@@ -118,12 +119,18 @@ export async function POST(req: NextRequest) {
     const student = await withTenantContext(guard.claims, async (client) => {
       // A roll number is one student's in a class (W14-H): say who has it.
       const clash = await findRollClash(client, guard.claims.schoolId, classId, rollNo);
-      if (clash) return { clash };
+      if (clash) return { clash: `The roll number was not saved: ${clash}.` };
+      if (admissionNo && (await client.query(`select 1 from students where school_id = $1 and lower(btrim(admission_no)) = lower($2)`, [guard.claims.schoolId, admissionNo])).rows[0]) {
+        return { clash: `The student was not saved: admission number ${admissionNo} is already another student's. Leave it blank to get the next one.` };
+      }
+      // Left blank, the next admission number and the class's next roll number are given (C554).
+      const givenAdmissionNo = admissionNo ?? (await nextAdmissionNumbers(client, guard.claims.schoolId))[0];
+      const givenRollNo = rollNo ?? (classId ? (await nextRollNumbers(client, guard.claims.schoolId, classId))[0] : null);
       const { rows } = await client.query(
         `insert into students (school_id, admission_no, name, class_id, roll_no, dob, gender, status)
          values ($1, $2, $3, $4, $5, $6, $7, 'pending_consent')
          returning student_id, admission_no, name, class_id, roll_no, dob::text as dob, gender, status, created_at`,
-        [guard.claims.schoolId, admissionNo, name, classId, rollNo, dob, gender.value ?? 'not_given']
+        [guard.claims.schoolId, givenAdmissionNo, name, classId, givenRollNo, dob, gender.value ?? 'not_given']
       );
       const row = rows[0];
       // The record made, never the child's name, date of birth or gender (C224): its class and state, and which
@@ -139,10 +146,13 @@ export async function POST(req: NextRequest) {
       });
       return row;
     });
-    if ('clash' in student) return NextResponse.json({ error: `The roll number was not saved: ${student.clash}.` }, { status: 409 });
+    if ('clash' in student) return NextResponse.json({ error: student.clash }, { status: 409 });
     return NextResponse.json({ student }, { status: 201 });
   } catch (err) {
     if (isRollClashViolation(err)) return NextResponse.json({ error: ROLL_RACE_TEXT }, { status: 409 });
+    if ((err as { code?: string; constraint?: string })?.constraint === 'students_admission_no_per_school') {
+      return NextResponse.json({ error: 'The student was not saved: that admission number is already another student\'s. Leave it blank to get the next one.' }, { status: 409 });
+    }
     if (isForeignKeyViolation(err)) {
       return NextResponse.json(validationError('class_not_in_school'), { status: 400 });
     }
