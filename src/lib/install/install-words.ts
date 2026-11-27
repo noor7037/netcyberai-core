@@ -18,9 +18,9 @@ export const INSTALL_WORDS = {
       steps: ['Open the NetCyberAI Family app from your home screen.', 'Sign in with your phone or email code.', 'Add your child and start learning.'],
     },
     teacher: {
-      name: 'NetCyberAI Teacher',
-      what: "NetCyberAI Teacher is an app for school teachers. It shows your day, helps you take attendance and keeps your classes in one place on your phone. To install it, tap the big Install button below. On an iPhone, tap Share, then Add to Home Screen, and sign in with your school login.",
-      steps: ['Open the NetCyberAI Teacher app from your home screen.', 'Sign in with your school login.', 'See your day and take attendance.'],
+      name: 'NetCyberAI School',
+      what: "Teachers use the NetCyberAI School app, the same app the principal and the office use. After you sign in with your own school login it shows your day, your classes and attendance, and only what a teacher may see. To install it, tap the big Install button below. On an iPhone, tap Share, then Add to Home Screen.",
+      steps: ['Open the NetCyberAI School app from your home screen.', 'Sign in with your own school login.', 'See your day and take attendance.'],
     },
     school: {
       name: 'NetCyberAI School',
@@ -43,9 +43,9 @@ export const INSTALL_WORDS = {
       steps: ['होम स्क्रीन से NetCyberAI Family ऐप खोलें।', 'अपने फ़ोन या ईमेल के कोड से साइन इन करें।', 'अपने बच्चे को जोड़ें और पढ़ाई शुरू करें।'],
     },
     teacher: {
-      name: 'NetCyberAI Teacher',
-      what: 'NetCyberAI Teacher स्कूल के शिक्षकों के लिए एक ऐप है। इसमें आप अपना दिन देखते हैं, उपस्थिति लेते हैं और अपनी कक्षाएँ अपने फ़ोन पर एक जगह रखते हैं। इसे इंस्टॉल करने के लिए नीचे का बड़ा इंस्टॉल बटन दबाएँ। iPhone पर Share दबाएँ, फिर Add to Home Screen दबाएँ, और अपने स्कूल के लॉगिन से साइन इन करें।',
-      steps: ['होम स्क्रीन से NetCyberAI Teacher ऐप खोलें।', 'अपने स्कूल के लॉगिन से साइन इन करें।', 'अपना दिन देखें और उपस्थिति लें।'],
+      name: 'NetCyberAI School',
+      what: 'शिक्षक NetCyberAI School ऐप इस्तेमाल करते हैं, वही ऐप जो प्रधानाचार्य और ऑफ़िस इस्तेमाल करते हैं। अपने स्कूल के लॉगिन से साइन इन करने के बाद यह आपका दिन, आपकी कक्षाएँ और हाज़िरी दिखाता है, और सिर्फ़ वही जो एक शिक्षक देख सकता है। इंस्टॉल करने के लिए नीचे बड़ा Install बटन दबाएँ। iPhone पर Share दबाएँ, फिर Add to Home Screen दबाएँ।',
+      steps: ['होम स्क्रीन से NetCyberAI School ऐप खोलें।', 'अपने स्कूल के लॉगिन से साइन इन करें।', 'अपना दिन देखें और हाज़िरी लें।'],
     },
     school: {
       name: 'NetCyberAI School',

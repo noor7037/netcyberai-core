@@ -160,3 +160,67 @@ export const artColors = {
   lavender: '#D9CCF6',
   table: '#F4EADB',
 } as const;
+
+// ---- School app themes and dark mode (C553) ---------------------------------------------------------------------------
+// The school app (principal, office, teachers) only: the Family app, the website, Control and every printed or PDF
+// document stay as they are. A theme swaps the brand hues the app's classes use (bg-sapphire, text-royal, …) through
+// CSS variables, so no screen is rewritten; dark mode swaps the surfaces, the text and the text-safe tints. Every pair a
+// screen shows is checked for contrast in each theme and mode (test/theme/school-themes.test.ts).
+export const SCHOOL_THEME_IDS = ['classic', 'emerald', 'royal'] as const;
+export type SchoolThemeId = (typeof SCHOOL_THEME_IDS)[number];
+export const SCHOOL_MODE_IDS = ['light', 'dark', 'system'] as const;
+export type SchoolModeId = (typeof SCHOOL_MODE_IDS)[number];
+
+type ThemeHues = {
+  sapphire: string; // primary buttons and the deepest brand surface (white text)
+  midnight: string; // the dashboard band (white text)
+  royal: string; // the product colour: links, active states, primary chips (white text on it; text on white)
+  electric: string;
+  azure: string;
+  chart: readonly [string, string, string, string, string, string];
+  // Text-safe tints of the brand hues on the dark surface (dark mode).
+  darkText: { sapphire: string; royal: string; azure: string; electric: string };
+};
+
+export const schoolThemes: Record<SchoolThemeId, ThemeHues> = {
+  // Today's NetCyberAI blue.
+  classic: {
+    sapphire: colors.sapphire,
+    midnight: colors.midnight,
+    royal: colors.royal,
+    electric: colors.electric,
+    azure: colors.azure,
+    chart: [colors.royal, colors.tangerine, colors.turquoise, colors.grape, colors.azure, colors.violet],
+    darkText: { sapphire: '#BFDBFE', royal: '#93C5FD', azure: '#7DD3FC', electric: '#93C5FD' },
+  },
+  // Calm green and teal.
+  emerald: {
+    sapphire: '#064E3B',
+    midnight: '#022C22',
+    royal: '#047857',
+    electric: '#05805A', // white text 4.95:1
+    azure: '#0E7490',
+    chart: ['#047857', '#F59E0B', '#0EA5E9', '#7C3AED', '#E11D48', '#65A30D'],
+    darkText: { sapphire: '#A7F3D0', royal: '#6EE7B7', azure: '#67E8F9', electric: '#6EE7B7' },
+  },
+  // Deep plum with gold.
+  royal: {
+    sapphire: '#3B0764',
+    midnight: '#1E0436',
+    royal: '#6D28D9',
+    electric: '#7C3AED',
+    azure: '#9333EA',
+    chart: ['#6D28D9', '#D97706', '#DB2777', '#0891B2', '#059669', '#4F46E5'],
+    darkText: { sapphire: '#E9D5FF', royal: '#C4B5FD', azure: '#D8B4FE', electric: '#C4B5FD' },
+  },
+};
+
+// Dark mode, the same for every theme: surfaces, text, lines, and text-safe tints of the shared accent hues.
+export const schoolDark = {
+  page: '#0B1220', // the page (bg-off-white)
+  surface: '#141C2E', // cards, inputs, bars (bg-white)
+  text: '#E2E8F0', // body text (text-slate) and the hairlines drawn in it (border-slate/10)
+  chartGrid: '#334155',
+  chartText: '#CBD5E1',
+  textTints: { emerald: '#5EEAD4', grape: '#C4B5FD', tangerine: '#FDBA74', coral: '#FCA5A5', violet: '#C4B5FD', turquoise: '#5EEAD4', cyan: '#67E8F9', amber: '#FCD34D', gold: '#FCD34D' },
+} as const;

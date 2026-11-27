@@ -4,11 +4,14 @@ import type { MetadataRoute } from 'next';
 // opens the school app full screen at My Day. Colours are the logo's.
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'NetCyberAI',
-    short_name: 'NetCyberAI',
+    name: 'NetCyberAI School',
+    short_name: 'NCA School',
     description: 'The school app: your day, attendance and classes.',
+    // The same app as public/school.webmanifest (C552): it owns /app only, never the whole site, so the Family app
+    // (/family) can be installed beside it on the same phone.
+    id: '/school-app',
     start_url: '/app',
-    scope: '/',
+    scope: '/app',
     display: 'standalone',
     background_color: '#020a2a',
     theme_color: '#020a2a',

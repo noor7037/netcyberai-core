@@ -22,12 +22,12 @@ import type { ModuleId, SchoolRole } from '@/lib/contracts/modules';
 // anything about learning (docs/26 §3 rules 4 and 5).
 
 export const FACT_IDS = [
-  'attendance.classes_marked', 'attendance.classes_unmarked', 'attendance.students_marked', 'attendance.present', 'attendance.absent', 'attendance.late', 'attendance.leave', 'attendance.present_rate',
-  'students.active', 'students.waiting_consent', 'admissions.conversion',
-  'fees.collected', 'fees.owed', 'fees.overdue', 'fees.promises_due', 'fees.upi_to_verify',
+  'attendance.classes_marked', 'attendance.classes_unmarked', 'attendance.students_marked', 'attendance.present', 'attendance.absent', 'attendance.late', 'attendance.leave', 'attendance.present_rate', 'attendance.by_class',
+  'students.active', 'students.waiting_consent', 'students.by_class', 'admissions.conversion', 'admissions.funnel',
+  'fees.collected', 'fees.collected_daily', 'fees.owed', 'fees.overdue', 'fees.promises_due', 'fees.upi_to_verify',
   'pulse.sent', 'pulse.understood', 'pulse.needs_help', 'followups.open',
   'homework.set', 'homework.checked', 'homework.not_done',
-  'syllabus.coverage',
+  'syllabus.coverage', 'syllabus.by_class',
   'messages.total', 'messages.failed', 'messages.held', 'whatsapp.spend',
   'complaints.open', 'complaints.overdue', 'notices.waiting', 'ptm.coming', 'events.coming', 'parent_ai.drafts',
   'tickets.open', 'tickets.waiting',

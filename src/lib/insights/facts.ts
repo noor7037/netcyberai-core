@@ -1,14 +1,16 @@
-import { PRESENT_RATE_RULE_VERSION, classesOnDay, dayTotals, marksByDay, marksTotal, presentRate } from '@/lib/attendance/day';
+import { PRESENT_RATE_RULE_VERSION, classesOnDay, dayTotals, marksByDay, marksTotal, presentRate, type ClassDay } from '@/lib/attendance/day';
+import { classOrderSql } from '@/lib/classes/class-order';
+import { classLabel } from '@/lib/frameworks/class-label';
 import { listNotices } from '@/lib/communication/notices';
 import { complaintsShown } from '@/lib/complaints/complaints';
 import { SCHOOL_ROLES, type SchoolRole } from '@/lib/contracts/modules';
 import type { TicketShow } from '@/lib/contracts/tickets';
 import { listEvents } from '@/lib/events/events';
 import { loadFeesSummary } from '@/lib/fees/overdue';
-import { collectedBetween } from '@/lib/fees/payments';
+import { collectedBetween, collectedByDay, type CollectedDay } from '@/lib/fees/payments';
 import { promisesDue } from '@/lib/fees/recovery';
-import { coverageTable } from '@/lib/academics/coverage';
-import { CONVERSION_HREF, conversion } from '@/lib/admissions/conversion';
+import { coverageTable, type CoverageRow } from '@/lib/academics/coverage';
+import { CONVERSION_HREF, FUNNEL, conversion } from '@/lib/admissions/conversion';
 import { countAssignmentsIn } from '@/lib/homework/homework';
 import { listAnswers } from '@/lib/parent-ai/answers';
 import { waitingReports } from '@/lib/payments/upi';
@@ -21,7 +23,7 @@ import { TICKET_ROWS_MAX, listTickets } from '@/lib/support/tickets';
 import { schoolSpend } from '@/lib/whatsapp/cost';
 import { MESSAGE_STATES, countMessages, messagesInAll } from '@/lib/whatsapp/delivery';
 import { datesIn, screenFor } from './screens';
-import type { FactContext, FactDefinition, FactId, FactNumbers, InsightsSql } from './types';
+import type { FactContext, FactDefinition, FactId, FactNumbers, FactPart, FactPoint, InsightsSql } from './types';
 
 // The school facts themselves (docs/26 slice 8d, C203). Read types.ts first.
 //
@@ -81,7 +83,12 @@ const NOT_SET_UP: FactNumbers = { state: 'not_set_up', value: null };
 
 // ---- Shared reads: each runs once for a load ---------------------------------
 
-const attendanceToday = (db: InsightsSql, ctx: FactContext) => ctx.once('attendance.day', async () => dayTotals(await classesOnDay(db, ctx.schoolId, ctx.today)));
+// Today's classes, each with its marks: read once, for the day's totals and for the chart of each class.
+const classesToday = (db: InsightsSql, ctx: FactContext) => ctx.once('attendance.classes', () => classesOnDay(db, ctx.schoolId, ctx.today));
+const attendanceToday = (db: InsightsSql, ctx: FactContext) => ctx.once('attendance.day', async () => dayTotals(await classesToday(db, ctx)));
+// The Syllabus screen's coverage table and the Admissions screen's conversion, each read once for the tile and its chart.
+const coverage = (db: InsightsSql, ctx: FactContext) => ctx.once('syllabus.coverage', () => coverageTable(db as never, ctx.schoolId, ctx.role, ctx.today));
+const admissions = (db: InsightsSql, ctx: FactContext) => ctx.once('admissions.conversion', () => conversion(db as never, ctx.schoolId, ctx.today));
 const studentCounts = (db: InsightsSql, ctx: FactContext) =>
   ctx.once('students', async () => {
     const r = (await db.query(`select count(*) filter (where status = 'active') as active, count(*) filter (where status = 'pending_consent') as pending, count(*) as records from students where school_id = $1`, [ctx.schoolId])).rows[0];
@@ -121,6 +128,49 @@ const attendanceCount = (pick: (t: Awaited<ReturnType<typeof attendanceToday>>) 
   const t = await attendanceToday(db, ctx);
   return t.students === 0 ? NOT_SET_UP : pick(t);
 };
+
+// ---- The rows of the charts, shaped from what was read (pure, so they are tested without a database) ----------
+// Every list keeps the classes in the school's own class order (classOrderSql): never sorted by a rate or a count,
+// so no chart ranks a class or, through it, its teacher (docs/26 §3 rules 4 and 5).
+
+// Each class marked today: in school (present or late) out of its marks, by the present rate's own rule
+// (presentRate), opening that class's register. A class with no mark yet has no rate and is not drawn: the
+// chart's title says how many classes are marked of how many.
+export function classPresentParts(classes: readonly ClassDay[], href: (classId: string) => string): FactPart[] {
+  return classes.flatMap((c) => {
+    const rate = c.marked > 0 ? presentRate(c) : null;
+    return rate === null ? [] : [{ key: c.class_name, value: rate, unit: 'percent' as const, href: href(c.class_id) }];
+  });
+}
+
+// Active students per class, in class order; the active students in no class come last under the key ''.
+export type ClassCountRow = { class_id: string | null; name: string | null; section: string | null; active: number };
+export function studentsByClassParts(rows: readonly ClassCountRow[]): FactPart[] {
+  const inClass = rows.filter((r) => r.class_id !== null && r.active > 0).map((r) => ({ key: classLabel(r.name, r.section) ?? '', value: r.active }));
+  const none = rows.filter((r) => r.class_id === null).reduce((a, r) => a + r.active, 0);
+  return none > 0 ? [...inClass, { key: '', value: none }] : inClass;
+}
+
+// What came in on each day of the range: the receipts that still stand, every way of paying added together. A day
+// with no receipt took nothing in: that is a real zero, not a gap.
+export function collectedDaily(dates: readonly string[], rows: readonly Pick<CollectedDay, 'day' | 'minor'>[]): FactPoint[] {
+  const byDay = new Map<string, number>();
+  for (const r of rows) byDay.set(r.day, (byDay.get(r.day) ?? 0) + r.minor);
+  return dates.map((date) => ({ date, value: byDay.get(date) ?? 0 }));
+}
+
+// Taught units over planned units per class, all its subjects together, as a whole percent (the coverage table's
+// own rule, a class at a time), in the table's class order.
+export function coverageByClass(rows: readonly Pick<CoverageRow, 'class_id' | 'class_name' | 'class_section' | 'planned' | 'taught'>[]): FactPart[] {
+  const classes = new Map<string, { key: string; planned: number; taught: number }>();
+  for (const r of rows) {
+    const c = classes.get(r.class_id) ?? { key: classLabel(r.class_name, r.class_section) ?? '', planned: 0, taught: 0 };
+    c.planned += r.planned;
+    c.taught += r.taught;
+    classes.set(r.class_id, c);
+  }
+  return [...classes.values()].filter((c) => c.planned > 0).map((c) => ({ key: c.key, value: Math.round((c.taught / c.planned) * 100), unit: 'percent' as const }));
+}
 
 export const FACTS: readonly FactDefinition[] = [
   // ---- Attendance (today, and the present rate over the range) -----------------
@@ -163,6 +213,16 @@ export const FACTS: readonly FactDefinition[] = [
       };
     },
   },
+  {
+    // Class by class: the classes marked today (the list it opens, as "Classes marked today" counts it), and for
+    // each the share in school, which opens that class's register.
+    id: 'attendance.by_class', moduleId: 'attendance', roles: TEACHING, unit: 'count', period: 'today', drill: 'rows', version: 1, sources: ['classes', 'students', 'attendance'],
+    load: async (db, ctx) => {
+      const t = await attendanceToday(db, ctx);
+      if (t.students === 0) return NOT_SET_UP;
+      return { value: t.classesMarked, total: t.classes, href: screenFor.attendance('marked'), parts: classPresentParts(await classesToday(db, ctx), screenFor.attendanceClass) };
+    },
+  },
 
   // ---- Students ----------------------------------------------------------------
   {
@@ -179,6 +239,24 @@ export const FACTS: readonly FactDefinition[] = [
       return s.records === 0 ? NOT_SET_UP : { value: s.pending, total: s.active + s.pending, href: screenFor.students('pending_consent'), attention: s.pending > 0 };
     },
   },
+  {
+    // The active students (the list "Active students" opens), class by class, in one query.
+    id: 'students.by_class', moduleId: 'students', roles: SCHOOL_ROLES, unit: 'count', period: 'now', drill: 'rows', version: 1, sources: ['students', 'classes'],
+    load: async (db, ctx) => {
+      const { rows } = await db.query(
+        `select c.class_id, c.name, c.section, count(*)::int as active
+           from students s
+           left join classes c on c.school_id = s.school_id and c.class_id = s.class_id
+          where s.school_id = $1 and s.status = 'active'
+          group by c.class_id, c.name, c.section, c.grade
+          order by (c.class_id is null), ${classOrderSql('c')}, c.class_id`,
+        [ctx.schoolId]
+      );
+      const parts = studentsByClassParts(rows.map((r) => ({ class_id: (r.class_id as string | null) ?? null, name: (r.name as string | null) ?? null, section: (r.section as string | null) ?? null, active: n(r.active) })));
+      if (parts.length === 0) return { ...NOT_SET_UP, href: screenFor.students('active') };
+      return { value: parts.reduce((a, p) => a + p.value, 0), href: screenFor.students('active'), parts };
+    },
+  },
   // Admitted over enquiries recorded this session, as a whole percent, out of the enquiries; the detail says how many
   // were admitted (W21-M1). The conversion table on the Admissions screen is the same call.
   {
@@ -186,9 +264,19 @@ export const FACTS: readonly FactDefinition[] = [
     load: async (db, ctx) => {
       // The office's own numbers: nobody else of the school reads an enquiry (as row level security holds).
       if (!OFFICE.includes(ctx.role)) return { ...NOT_SET_UP, href: CONVERSION_HREF };
-      const c = await conversion(db as never, ctx.schoolId, ctx.today);
+      const c = await admissions(db, ctx);
       if (c.rate === null) return { ...NOT_SET_UP, href: CONVERSION_HREF };
       return { value: c.rate, total: c.total.enquiries, href: CONVERSION_HREF, parts: [{ key: 'admitted', value: c.total.admitted }] };
+    },
+  },
+  {
+    // The same enquiries as the conversion, step by step in the pipeline's order (FUNNEL): how many reached each.
+    id: 'admissions.funnel', moduleId: 'admissions', roles: OFFICE, unit: 'percent', period: 'now', drill: 'figure', version: 1, sources: ['admission_enquiries', 'admission_events', 'academic_sessions'],
+    load: async (db, ctx) => {
+      if (!OFFICE.includes(ctx.role)) return { ...NOT_SET_UP, href: CONVERSION_HREF };
+      const c = await admissions(db, ctx);
+      if (c.rate === null) return { ...NOT_SET_UP, href: CONVERSION_HREF };
+      return { value: c.rate, total: c.total.enquiries, href: CONVERSION_HREF, parts: FUNNEL.map((step) => ({ key: step, value: c.total[step] })) };
     },
   },
 
@@ -198,6 +286,15 @@ export const FACTS: readonly FactDefinition[] = [
     load: async (db, ctx) => {
       const got = await collectedBetween(db as never, ctx.schoolId, ctx.range.from, ctx.range.to);
       return { value: got.minor, count: got.count, href: screenFor.collected(ctx.range), parts: [{ key: 'receipts', value: got.count }, { key: 'reversed', value: got.reversed }] };
+    },
+  },
+  {
+    // The same receipts as "Fees received", a day at a time (collectedByDay, the daily collection report's own
+    // query): the days add up to that total.
+    id: 'fees.collected_daily', moduleId: 'fees', roles: FINANCE, unit: 'inr_paise', period: 'range', drill: 'rows', version: 1, sources: ['receipts'],
+    load: async (db, ctx) => {
+      const days = await collectedByDay(db as never, ctx.schoolId, ctx.range.from, ctx.range.to);
+      return { value: days.reduce((a, d) => a + d.minor, 0), count: days.reduce((a, d) => a + d.count, 0), href: screenFor.collected(ctx.range), series: collectedDaily(datesIn(ctx.range), days) };
     },
   },
   {
@@ -266,9 +363,19 @@ export const FACTS: readonly FactDefinition[] = [
     load: async (db, ctx) => {
       // A school-wide figure: only the office is answered, whatever the rows a narrower role could read (as leaveWaiting does).
       if (!OFFICE.includes(ctx.role)) return { ...NOT_SET_UP, href: '/app/syllabus' };
-      const { total } = await coverageTable(db as never, ctx.schoolId, ctx.role, ctx.today);
+      const { total } = await coverage(db, ctx);
       if (total.percent === null) return { ...NOT_SET_UP, href: '/app/syllabus' };
       return { value: total.percent, total: total.classSubjects, href: '/app/syllabus', parts: [{ key: 'behind', value: total.behind }] };
+    },
+  },
+  {
+    // The same table, a class at a time: the school-wide figure is the number, each class's share is a part.
+    id: 'syllabus.by_class', moduleId: 'academics', roles: OFFICE, unit: 'percent', period: 'now', drill: 'figure', version: 1, sources: ['syllabus_units', 'syllabus_progress', 'academic_sessions'],
+    load: async (db, ctx) => {
+      if (!OFFICE.includes(ctx.role)) return { ...NOT_SET_UP, href: '/app/syllabus' };
+      const table = await coverage(db, ctx);
+      if (table.total.percent === null) return { ...NOT_SET_UP, href: '/app/syllabus' };
+      return { value: table.total.percent, total: table.total.classSubjects, href: '/app/syllabus', parts: coverageByClass(table.rows) };
     },
   },
 

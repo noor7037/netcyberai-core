@@ -17,8 +17,8 @@ const who = (w: Who) => ({ schoolId: A, userId: w.user, role: w.role as never })
 const ids = async (w: Who) => (await asWho(db, w, (c) => loadFacts(c, who(w), ents(), { range: '30d' }))).facts;
 const byId = (facts: FactResult[]) => Object.fromEntries(facts.map((f) => [f.id, f])) as Record<FactId, FactResult>;
 
-const ATTENDANCE: FactId[] = ['attendance.classes_marked', 'attendance.classes_unmarked', 'attendance.students_marked', 'attendance.present', 'attendance.absent', 'attendance.late', 'attendance.leave', 'attendance.present_rate'];
-const FEES: FactId[] = ['fees.collected', 'fees.owed', 'fees.overdue', 'fees.promises_due', 'fees.upi_to_verify'];
+const ATTENDANCE: FactId[] = ['attendance.classes_marked', 'attendance.classes_unmarked', 'attendance.students_marked', 'attendance.present', 'attendance.absent', 'attendance.late', 'attendance.leave', 'attendance.present_rate', 'attendance.by_class'];
+const FEES: FactId[] = ['fees.collected', 'fees.collected_daily', 'fees.owed', 'fees.overdue', 'fees.promises_due', 'fees.upi_to_verify'];
 const PULSE: FactId[] = ['pulse.sent', 'pulse.understood', 'pulse.needs_help'];
 const HOMEWORK: FactId[] = ['homework.set', 'homework.checked', 'homework.not_done'];
 const MESSAGES: FactId[] = ['messages.total', 'messages.failed', 'messages.held', 'whatsapp.spend'];
@@ -34,9 +34,9 @@ const inOrder = (list: FactId[]) => FACT_IDS.filter((id) => list.includes(id));
 const GIVEN: Record<SchoolRole, FactId[]> = {
   principal: [...FACT_IDS],
   school_admin: [...FACT_IDS],
-  accountant: inOrder(['students.active', ...FEES, ...TICKETS]),
-  teacher: inOrder([...ATTENDANCE, 'students.active', 'students.waiting_consent', ...PULSE, 'followups.open', ...HOMEWORK, ...PARENTS, ...TICKETS]),
-  academic_coordinator: inOrder([...ATTENDANCE, 'students.active', 'followups.open', ...HOMEWORK, ...TICKETS, ...COVERS]),
+  accountant: inOrder(['students.active', 'students.by_class', ...FEES, ...TICKETS]),
+  teacher: inOrder([...ATTENDANCE, 'students.active', 'students.waiting_consent', 'students.by_class', ...PULSE, 'followups.open', ...HOMEWORK, ...PARENTS, ...TICKETS]),
+  academic_coordinator: inOrder([...ATTENDANCE, 'students.active', 'students.by_class', 'followups.open', ...HOMEWORK, ...TICKETS, ...COVERS]),
 };
 
 // attendance, pulse_messages, pulse_response_log and communication_log carry role policies (C210), so the database

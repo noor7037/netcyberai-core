@@ -1,16 +1,52 @@
 import type { Config } from 'tailwindcss';
 import { colors, deepColors, accessibleTextColors, onAccentColors, lessonColors, lessonTints, artColors } from './src/lib/design-tokens';
 
+// School app themes and dark mode (C553): these colours read a CSS variable first and fall back to the token itself, so
+// every page outside the school app (which never sets the variables) looks exactly as before. Text, background and line
+// utilities can take different values (a brand blue as a button stays deep; as text on the dark surface it turns light).
+const rgb = (hex: string) => [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16)).join(' ');
+const themed = (name: string, hex: string) => `rgb(var(--c-${name}, ${rgb(hex)}) / <alpha-value>)`;
+const textOf = (name: string, hex: string) => `rgb(var(--t-${name}, var(--c-${name}, ${rgb(hex)})) / <alpha-value>)`;
+const lineOf = (name: string, hex: string) => `rgb(var(--l-${name}, var(--c-${name}, ${rgb(hex)})) / <alpha-value>)`;
+const TEXT_TINTED = ['sapphire', 'royal', 'azure', 'electric', 'emerald', 'grape', 'tangerine', 'coral', 'violet', 'turquoise', 'cyan', 'amber', 'gold'] as const;
+
 const config: Config = {
   content: ['./src/**/*.{ts,tsx}'],
   theme: {
     extend: {
+      // Dark mode (C553): the page and the cards become dark surfaces; text-white stays white on coloured buttons.
+      backgroundColor: {
+        white: `rgb(var(--s-white, 255 255 255) / <alpha-value>)`,
+        'off-white': `rgb(var(--s-page, ${rgb(colors.offWhite)}) / <alpha-value>)`,
+        slate: `rgb(var(--b-slate, ${rgb(colors.slate)}) / <alpha-value>)`,
+      },
+      textColor: Object.fromEntries(([
+        ['slate', textOf('slate', colors.slate)] as [string, unknown],
+        ...TEXT_TINTED.map((n) => [n, { DEFAULT: textOf(n, colors[n]) }] as [string, unknown]),
+      ] as [string, unknown][]).map(([n, v]) => {
+        // The text-safe variants (text-royal-deep, text-emerald-text, …) turn to tints on the dark surface too; as a
+        // background (bg-grape-deep behind white text) they keep their own value.
+        const variants: Record<string, Record<string, string>> = {
+          royal: { deep: textOf('royal-deep', deepColors.royalDeep) },
+          grape: { deep: textOf('grape-deep', deepColors.grapeDeep) },
+          tangerine: { deep: textOf('tangerine-deep', deepColors.tangerineDeep) },
+          coral: { deep: textOf('coral-deep', deepColors.coralDeep) },
+          gold: { deep: textOf('gold-deep', deepColors.goldDeep), text: onAccentColors.onGold },
+          emerald: { text: textOf('emerald-text', accessibleTextColors.emeraldText) },
+          amber: { text: textOf('amber-text', accessibleTextColors.amberText) },
+          cyan: { text: onAccentColors.onCyan },
+        };
+        return [n, typeof v === 'string' ? v : { ...(v as object), ...(variants[n] ?? {}) }];
+      })),
+      borderColor: { slate: lineOf('slate', colors.slate) },
+      ringColor: { slate: lineOf('slate', colors.slate) },
+      divideColor: { slate: lineOf('slate', colors.slate) },
       colors: {
-        sapphire: colors.sapphire,
-        midnight: colors.midnight,
-        azure: colors.azure,
-        royal: { DEFAULT: colors.royal, deep: deepColors.royalDeep },
-        electric: colors.electric,
+        sapphire: themed('sapphire', colors.sapphire),
+        midnight: themed('midnight', colors.midnight),
+        azure: themed('azure', colors.azure),
+        royal: { DEFAULT: themed('royal', colors.royal), deep: deepColors.royalDeep },
+        electric: themed('electric', colors.electric),
         cyan: { DEFAULT: colors.cyan, text: onAccentColors.onCyan },
         turquoise: colors.turquoise,
         leaf: colors.leaf,
@@ -23,7 +59,7 @@ const config: Config = {
         emerald: { DEFAULT: colors.emerald, text: accessibleTextColors.emeraldText },
         amber: { DEFAULT: colors.amber, text: accessibleTextColors.amberText },
         gold: { DEFAULT: colors.gold, text: onAccentColors.onGold, deep: deepColors.goldDeep },
-        slate: colors.slate,
+        slate: themed('slate', colors.slate),
         'off-white': colors.offWhite,
         // W10-4 (C413): the lesson identity on every Family screen (src/lib/design-tokens.ts lessonColors).
         ink: lessonColors.ink,

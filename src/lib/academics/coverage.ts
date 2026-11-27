@@ -17,6 +17,8 @@ export type SessionSpan = { start: string; end: string };
 export type CoverageRow = {
   class_id: string;
   class_name: string;
+  // The class's section, so a class is named "5-A" where its name alone is "5" (classLabel).
+  class_section: string | null;
   subject_id: string;
   subject_name: string;
   planned: number;
@@ -56,7 +58,7 @@ export async function currentSessionSpan(db: PoolClient, schoolId: string): Prom
 // One row per class and subject that has a syllabus map. A teacher is limited to their own classes (also by RLS).
 export async function coverageTable(db: PoolClient, schoolId: string, role: string, today: string): Promise<CoverageTable> {
   const rows = (await db.query(
-    `select u.class_id, c.name as class_name, u.subject_id, s.name as subject_name,
+    `select u.class_id, c.name as class_name, c.section as class_section, u.subject_id, s.name as subject_name,
             count(*)::int as planned,
             count(*) filter (where t.unit_id is not null)::int as taught,
             count(*) filter (where n.unit_id is not null)::int as noted
@@ -69,7 +71,7 @@ export async function coverageTable(db: PoolClient, schoolId: string, role: stri
       group by u.class_id, c.name, c.grade, c.section, u.subject_id, s.name
       order by ${classOrderSql('c')}, s.name, u.subject_id`,
     [schoolId, role]
-  )).rows as Pick<CoverageRow, 'class_id' | 'class_name' | 'subject_id' | 'subject_name' | 'planned' | 'taught' | 'noted'>[];
+  )).rows as Pick<CoverageRow, 'class_id' | 'class_name' | 'class_section' | 'subject_id' | 'subject_name' | 'planned' | 'taught' | 'noted'>[];
   const span = await currentSessionSpan(db, schoolId);
   const elapsed = span ? elapsedPercent(today, span) : null;
   const table: CoverageRow[] = rows.map((r) => {

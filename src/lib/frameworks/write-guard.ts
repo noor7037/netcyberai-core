@@ -154,6 +154,8 @@ export const WRITE_ROUTES: readonly (readonly [string, WriteModule, 'even-read-o
   // module's switch, refused when the account is paused or read-only. The route admits the principal and the school
   // admin only, and the database holds the same line.
   ['school/branding', 'any-module'],
+  // The school app's theme (C553): the principal's or the school admin's, like the name and the logo.
+  ['school/theme', 'any-module'],
   // c235-b end
   // What is recorded about a guardian sits with Parents (17 §3: guardians,
   // verification, consent, data requests), wherever its button is drawn.

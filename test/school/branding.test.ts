@@ -75,7 +75,7 @@ describe('the school’s name and logo (C235-B)', () => {
     expect(done.ok && done.logoVersion).toBe(String(new Date(r.logo_updated_at).getTime()));
     expect(storage.files.get(r.logo_path)).toMatchObject({ contentType: 'image/png' });
     // What the header reads, and the address it asks.
-    expect(await as(principal, (c) => loadSchoolBrand(c, A))).toEqual({ name: 'Made-up Public School A', logoVersion: done.ok ? done.logoVersion : null });
+    expect(await as(principal, (c) => loadSchoolBrand(c, A))).toEqual({ name: 'Made-up Public School A', logoVersion: done.ok ? done.logoVersion : null, theme: 'classic' });
     expect(logoAddress('123', A)).toBe(`/api/branding/logo?school=${A}&v=123`);
     expect(logoAddress(null, A)).toBeNull();
   });
