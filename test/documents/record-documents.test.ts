@@ -458,7 +458,8 @@ describe('the list exports', () => {
     expect(staff.status).toBe(200);
     const text = new TextDecoder('utf-8', { ignoreBOM: true }).decode(staff.raw); // keep the byte order mark
     expect(text.startsWith('﻿Name,Staff code,Designation,Role,Email,Mobile,Account,In this school since\r\n')).toBe(true);
-    expect(text).toContain('Tara Teacher,,,Teacher,t@school-a.example,\'+91 90000 00013,Active,');
+    // The staff code was given when Tara joined (C554).
+    expect(text).toMatch(/Tara Teacher,EMP-\d{3},,Teacher,t@school-a\.example,'\+91 90000 00013,Active,/);
     expect(text).not.toContain('Bina Principal');
     expect(text).not.toContain('Rekha Parent');
     const classes = await call(principal, exportClasses, '/api/app/classes/export?format=xlsx', {});
