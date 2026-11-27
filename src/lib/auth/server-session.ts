@@ -14,5 +14,6 @@ export async function getServerSession(): Promise<SessionClaims | null> {
   } catch {
     /* outside a request (a test or a script): the area cannot be told */
   }
-  return sessionForRequest((name) => jar.get(name)?.value, isSurface(said) ? said : null);
+  // Pages only: their area is their own address (the middleware names it), and their layouts guard the role.
+  return sessionForRequest((name) => jar.get(name)?.value, isSurface(said) ? said : null, true);
 }

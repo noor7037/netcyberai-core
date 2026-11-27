@@ -121,6 +121,7 @@ describe('a view lives in the School app’s sign-in; Control’s is never touch
     const started = await startView({ nca_access: founder, nca_refresh: refresh });
     expect(started.status).toBe(200);
     expect(started.cookies.get('nca_control_refresh')?.value).toBe(refresh);
+    expect(started.cookies.get('nca_control_refresh')?.maxAge).toBeUndefined();
     expect(started.cookies.get('nca_control_access')?.value).toBe(founder);
     expect(started.cookies.get('nca_refresh')?.value ?? '').toBe('');
     expect((await (await import('@/lib/auth/jwt')).verifyAccessToken(started.cookies.get('nca_access')!.value))?.role).toBe('school_admin');
@@ -178,6 +179,16 @@ describe('one sign-in per area: Control, the School app and the parent home at o
     expect((await requireSession(new NextRequest('https://www.netcyberai.test/api/control/schools', { headers: { cookie: both } })))?.role).toBe('super_admin');
     expect((await requireSession(new NextRequest('https://www.netcyberai.test/api/app/students', { headers: { cookie: both, referer: 'https://www.netcyberai.test/app/students' } })))?.role).toBe('school_admin');
     expect((await requireSession(new NextRequest('https://www.netcyberai.test/api/auth/tours', { headers: { cookie: both, referer: 'https://www.netcyberai.test/control' } })))?.role).toBe('super_admin');
+  });
+
+  it('a Control page whose sign-in ran out never acts as the School app’s person on a shared route (security review)', async () => {
+    const onlyPrincipal = cookieHeader({ nca_access: await principalAccess() });
+    const { requireSession } = await import('@/lib/auth/require-session');
+    expect(await requireSession(new NextRequest('https://www.netcyberai.test/api/auth/logout-all', { method: 'POST', headers: { cookie: onlyPrincipal, referer: 'https://www.netcyberai.test/control/account' } }))).toBeNull();
+    const { POST: logoutAll } = await import('@/app/api/auth/logout-all/route');
+    expect((await logoutAll(new NextRequest('https://www.netcyberai.test/api/auth/logout-all', { method: 'POST', headers: { cookie: onlyPrincipal, referer: 'https://www.netcyberai.test/control/account' } }))).status).toBe(401);
+    // On Control's own routes the School app's person is still identified, and refused there with 403 by the guard.
+    expect((await requireSession(new NextRequest('https://www.netcyberai.test/api/control/schools', { headers: { cookie: onlyPrincipal } })))?.role).toBe('school_admin');
   });
 
   it('a School app session never opens Control or the parent home: those ask for their own sign-in', async () => {

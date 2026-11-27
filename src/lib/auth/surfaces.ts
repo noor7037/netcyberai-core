@@ -88,10 +88,14 @@ export async function sessionOf(get: CookieGet, surface: Surface): Promise<Sessi
 // none of their own, the School app's session (whose role those routes then refuse with 403, as before C556). A request
 // whose area cannot be told (no address, no Referer, no header: a script or a test) takes the first valid session,
 // School app first. Signing out and ending a view read sessionOf, strictly, so they never end another area's session.
-export async function sessionForRequest(get: CookieGet, surface: Surface | null): Promise<SessionClaims | null> {
+//
+// The fallback is for guarded addresses only (`guarded`: the request's OWN address is Control's or the parent home's,
+// whose guards refuse any other role). A shared route (/api/auth, /api/app) whose area comes from the Referer reads that
+// area strictly, so a Control page whose sign-in ran out never acts as the School app's person (security review, C556).
+export async function sessionForRequest(get: CookieGet, surface: Surface | null, guarded = false): Promise<SessionClaims | null> {
   if (surface) {
     const own = await sessionOf(get, surface);
-    if (own || surface === 'app') return own;
+    if (own || surface === 'app' || !guarded) return own;
     const app = get(accessCookieOf('app'));
     return app ? verifyAccessToken(app) : null;
   }

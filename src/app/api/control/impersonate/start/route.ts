@@ -9,7 +9,7 @@ import type { SessionClaims } from '@/lib/auth/types';
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import { writeImpersonationAudit } from '@/lib/audit/log';
 import { membershipToViewAs, viewAsReason } from '@/lib/control/people';
-import { IMPERSONATION_RETURN_COOKIE, IMPERSONATION_TTL_SECONDS, REFRESH_TTL_SECONDS, cookieOptions } from '@/lib/auth/cookies';
+import { IMPERSONATION_RETURN_COOKIE, IMPERSONATION_TTL_SECONDS, REFRESH_TTL_SECONDS, cookieOptions, sessionCookieOptions } from '@/lib/auth/cookies';
 import { accessCookieOf, refreshCookieOf, surfaceForRole } from '@/lib/auth/surfaces';
 import { decodeJwt } from 'jose';
 
@@ -119,8 +119,10 @@ export async function POST(req: NextRequest) {
   // refresh token is still checked in full when it is used).
   const legacySub = legacy?.sub ?? (legacyAccess ? subOf(legacyAccess) : null);
   if (!get(refreshCookieOf('control')) && legacyRefresh && (!legacyAccess || legacySub === guard.claims.sub)) {
-    if (legacyAccess && legacy) res.cookies.set(accessCookieOf('control'), legacyAccess, cookieOptions(IMPERSONATION_TTL_SECONDS));
-    res.cookies.set(refreshCookieOf('control'), legacyRefresh, cookieOptions(REFRESH_TTL_SECONDS));
+    // Session-only (ends with the browser): whether the old sign-in was kept cannot be told here, so it is never made
+    // longer than it may have been; its next renewal sets the real choice (security review, C556).
+    if (legacyAccess && legacy) res.cookies.set(accessCookieOf('control'), legacyAccess, sessionCookieOptions(IMPERSONATION_TTL_SECONDS, false));
+    res.cookies.set(refreshCookieOf('control'), legacyRefresh, sessionCookieOptions(REFRESH_TTL_SECONDS, false));
     res.cookies.delete(refreshCookieOf('app'));
   }
   res.cookies.delete(IMPERSONATION_RETURN_COOKIE);
