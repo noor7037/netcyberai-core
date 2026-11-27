@@ -107,8 +107,9 @@ describe('on the real schema, as each person’s own session', () => {
     // The record made is audited without the child's name, date of birth or gender.
     const audit = (await db.pg.query(`select after_state from audit_log where event_action = 'student.create'`)).rows;
     expect(audit.map((r: { after_state: unknown }) => r.after_state)).toEqual([
-      { classId: C5A, status: 'pending_consent', withAdmissionNo: false, withDob: false, withGender: true },
-      { classId: C5A, status: 'pending_consent', withAdmissionNo: false, withDob: false, withGender: false },
+      // Left blank, the admission number is given (C554).
+      { classId: C5A, status: 'pending_consent', withAdmissionNo: true, withDob: false, withGender: true },
+      { classId: C5A, status: 'pending_consent', withAdmissionNo: true, withDob: false, withGender: false },
     ]);
   });
 

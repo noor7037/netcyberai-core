@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
       const { rows } = await client.query(
         `insert into schools (name, board, tenant_type, jurisdiction)
          values ($1, $2, $3, $4)
-         returning school_id, name, board, tenant_type, jurisdiction, onboarding_stage, is_pilot, pilot_allow_outbound`,
+         returning school_id, school_code, name, board, tenant_type, jurisdiction, onboarding_stage, is_pilot, pilot_allow_outbound`,
         [name, board, tenantType, jurisdiction]
       );
       const row = rows[0];

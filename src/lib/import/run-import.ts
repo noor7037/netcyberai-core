@@ -1,4 +1,5 @@
 import { createHash, randomUUID } from 'crypto';
+import { fillBlankNumbers } from '@/lib/numbering/allocate';
 import { writeAuditLog } from '@/lib/audit/log';
 import { withTenantContext } from '@/lib/auth/db';
 import type { SessionClaims, SessionRole } from '@/lib/auth/types';
@@ -290,6 +291,8 @@ export async function importStudentRecords(
   // correct behavior per this task's own instruction, not a bug to
   // catch and paper over.
   let importedCount = 0;
+  // Blank admission and roll numbers are given now, in file order (C554).
+  await fillBlankNumbers(client, claims.schoolId, valid);
   if (valid.length > 0) {
     const insertResult = await client.query(
       `insert into students (student_id, school_id, admission_no, name, class_id, roll_no, dob, gender, status)

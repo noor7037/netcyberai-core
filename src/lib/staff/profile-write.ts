@@ -1,4 +1,5 @@
 import { randomUUID } from 'crypto';
+import { nextStaffCodes } from '@/lib/numbering/allocate';
 import type { PoolClient } from 'pg';
 import { writeAuditLog } from '@/lib/audit/log';
 import type { StaffRole } from '@/lib/auth/types';
@@ -56,7 +57,9 @@ export async function saveStaffProfile(db: Sql, actor: ProfileActor, staffId: st
       [actor.schoolId, staffId]
     )
   ).rows[0] as Record<ProfileField, string | null> | undefined;
-  const after = checked.values;
+  const after = { ...checked.values };
+  // A staff member with no code gets the school's next one (C554); a code once given stays unless the office changes it.
+  if (!after.staff_code && !before?.staff_code) after.staff_code = (await nextStaffCodes(db, actor.schoolId))[0];
   const changed = PROFILE_FIELDS.filter((f) => (before?.[f] ?? null) !== after[f]);
   if (changed.length === 0) return { ok: true, created: false, changed };
   // The staff code is unique in the school: the database decides, behind a savepoint, so a code already taken is

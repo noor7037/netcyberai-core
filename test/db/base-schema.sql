@@ -18,6 +18,7 @@ create type board_type as enum ('CBSE', 'ICSE', 'STATE', 'IB', 'OTHER');
 create type tenant_type as enum ('school', 'coaching', 'college');
 create type onboarding_stage as enum ('tenant_created', 'admin_invited', 'data_imported', 'data_validated', 'consent_collection', 'configuration', 'training', 'pilot_outbound_approved', 'go_live');
 
+create sequence school_code_seq;
 create table schools (
   school_id uuid primary key default gen_random_uuid(),
   name text not null,
@@ -29,6 +30,8 @@ create table schools (
   jurisdiction text not null,
   is_test_fixture boolean not null default false,
   timezone text not null default 'Asia/Kolkata',
+  -- C554 (20261127074927_c554_auto_numbers.sql): given by a sequence, never twice.
+  school_code text not null default ('NCA-' || lpad(nextval('school_code_seq')::text, 4, '0')) unique,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
@@ -89,6 +92,7 @@ create trigger audit_hash_chain_trigger before insert on audit_log for each row 
 grant usage on schema public, extensions to app_user, nca_super, app_backend, anon, authenticated;
 grant execute on all functions in schema extensions to app_user, nca_super;
 grant select, insert, update, delete on schools, users, memberships to app_user, nca_super;
+grant usage on sequence school_code_seq to app_user, nca_super;
 grant select, insert on audit_log to app_user, nca_super;
 grant usage on sequence audit_log_audit_id_seq to app_user, nca_super;
 -- Supabase's defaults: anon and authenticated get every new public table.

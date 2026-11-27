@@ -54,12 +54,19 @@ const idOf = async (seed: string) => String((await db.pg.query(`select listing_i
 const audits = async (id: string) => (await db.pg.query(`select event_action, actor_user_id from audit_log where target_id = $1 order by audit_id`, [id])).rows;
 
 beforeAll(async () => {
+  // Approving brings a listing's status up to today's (src/lib/future/review.ts). The seed's dates are as of TODAY, so
+  // the clock is held there: only Date, so the database's own timers run as they are.
+  vi.useFakeTimers({ toFake: ['Date'] });
+  vi.setSystemTime(new Date(`${TODAY}T06:30:00Z`));
   db = await startHarnessDb({ port: 0 });
   await db.pg.query(`insert into users (user_id, school_id, role, display_name) values ($1, null, 'super_admin', 'Illustrative Staff')`, [STAFF]);
   await db.pg.query(`insert into family.accounts (account_id, email) values ($1, 'review.parent@example.org')`, [ACCOUNT]);
   await importSeed(db.pg, SEED, TODAY);
 }, 120_000);
-afterAll(async () => db?.stop());
+afterAll(async () => {
+  vi.useRealTimers();
+  await db?.stop();
+});
 
 describe('the review queue', () => {
   it('is staff only', async () => {

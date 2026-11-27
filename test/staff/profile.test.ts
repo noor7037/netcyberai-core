@@ -148,6 +148,8 @@ beforeAll(async () => {
       ('${PRINCIPAL}', '${A}', 'principal', true), ('${ADMIN}', '${A}', 'school_admin', true), ('${TEACHER}', '${A}', 'teacher', true),
       ('${OTHER_TEACHER}', '${A}', 'teacher', true), ('${ACCOUNTANT}', '${A}', 'accountant', true), ('${PARENT}', '${A}', 'parent', true),
       ('${B_PRINCIPAL}', '${B}', 'principal', true);
+    -- Joining gave each staff member a code (C554, proven in test/numbering); these tests start from no profile at all.
+    delete from staff_profiles;
     insert into classes (class_id, school_id, name, class_teacher_id) values ('${C5}', '${A}', '5-A', '${TEACHER}');
     insert into subjects (subject_id, school_id, name) values ('${MATHS}', '${A}', 'Maths');
     insert into teachers (teacher_id, school_id, user_id, name, joining_date) values ('${T_ROW}', '${A}', '${TEACHER}', 'Tara Teacher', '2023-06-01');

@@ -1,4 +1,5 @@
 import type { PoolClient } from 'pg';
+import { nextAdmissionNumbers, nextRollNumbers } from '@/lib/numbering/allocate';
 import { writeAuditLog } from '@/lib/audit/log';
 import type { StaffRole } from '@/lib/auth/types';
 import { structureInForce } from '@/lib/fees/structures';
@@ -391,15 +392,17 @@ export async function admit(db: Sql, actor: Actor, enquiryId: string, input: Adm
   if (!e) return { ok: false, reason: 'not_found' };
   if (e.stage === 'admitted') return { ok: false, reason: 'admitted' };
   if (e.stage === 'not_joining') return { ok: false, reason: 'closed' };
-  const no = admissionNo === null ? null : admissionNo.trim();
-  if (no && (await db.query(`select 1 from students where school_id = $1 and lower(admission_no) = lower($2)`, [actor.schoolId, no])).rows[0]) return { ok: false, reason: 'admission_no_taken' };
+  // Left blank, the school's next admission number is given (C554), and the class's next roll number.
+  const no = admissionNo === null ? (await nextAdmissionNumbers(db, actor.schoolId))[0] : admissionNo.trim();
+  const roll = e.class_id ? (await nextRollNumbers(db, actor.schoolId, e.class_id))[0] : null;
+  if (admissionNo !== null && (await db.query(`select 1 from students where school_id = $1 and lower(admission_no) = lower($2)`, [actor.schoolId, no])).rows[0]) return { ok: false, reason: 'admission_no_taken' };
 
   // The child's record, exactly as a new pupil enters today (POST /api/app/students): waiting for consent.
   const student = (await db.query(
-    `insert into students (school_id, admission_no, name, class_id, dob, status)
-     values ($1, $2, $3, $4, $5, 'pending_consent')
+    `insert into students (school_id, admission_no, name, class_id, roll_no, dob, status)
+     values ($1, $2, $3, $4, $5, $6, 'pending_consent')
      returning student_id, class_id, status`,
-    [actor.schoolId, no, e.child_name, e.class_id, dob]
+    [actor.schoolId, no, e.child_name, e.class_id, roll, dob]
   )).rows[0];
   // The record made, never the child's name or date of birth (C224): its class and state, and which details it has.
   await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'student.create', targetType: 'students', targetId: student.student_id, afterState: { classId: student.class_id, status: student.status, withAdmissionNo: no !== null, withDob: dob !== null, fromEnquiry: enquiryId } });
