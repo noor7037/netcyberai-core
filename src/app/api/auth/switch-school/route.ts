@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { requireSession } from '@/lib/auth/require-session';
 import { switchSchool } from '@/lib/auth/resolve';
 import { AuthError } from '@/lib/auth/errors';
-import { ACCESS_COOKIE, REFRESH_COOKIE, ACCESS_TTL_SECONDS, REFRESH_TTL_SECONDS, cookieOptions } from '@/lib/auth/cookies';
+import { setSessionCookies } from '@/lib/auth/cookies';
 
 export async function POST(req: NextRequest) {
   const session = await requireSession(req);
@@ -20,8 +20,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'unexpected outcome after switch' }, { status: 500 });
     }
     const res = NextResponse.json({ status: 'ok', role: outcome.claims.role, schoolId: outcome.claims.schoolId });
-    res.cookies.set(ACCESS_COOKIE, outcome.accessToken, cookieOptions(ACCESS_TTL_SECONDS));
-    res.cookies.set(REFRESH_COOKIE, outcome.refreshToken, cookieOptions(REFRESH_TTL_SECONDS));
+    setSessionCookies(res.cookies, outcome.claims.role, outcome.accessToken, outcome.refreshToken, true);
     return res;
   } catch (err) {
     if (err instanceof AuthError) {

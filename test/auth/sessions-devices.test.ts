@@ -140,10 +140,12 @@ describe('keep me signed in: the sliding session', () => {
     const notKept = await newSession(false);
     const res = await POST(new NextRequest('http://localhost/api/auth/refresh', { method: 'POST', headers: { cookie: `nca_refresh=${notKept.token}` } }));
     expect(res.status).toBe(200);
-    expect(res.cookies.get('nca_refresh')?.maxAge).toBeUndefined();
+    // C556: a platform admin's session from before C556 (in the School app's cookies) moves to Control's own.
+    expect(res.cookies.get('nca_control_refresh')?.value).toBeTruthy();
+    expect(res.cookies.get('nca_control_refresh')?.maxAge).toBeUndefined();
     const kept = await newSession(true);
     const res2 = await POST(new NextRequest('http://localhost/api/auth/refresh', { method: 'POST', headers: { cookie: `nca_refresh=${kept.token}` } }));
-    expect(res2.cookies.get('nca_refresh')?.maxAge).toBe(30 * 24 * 60 * 60);
+    expect(res2.cookies.get('nca_control_refresh')?.maxAge).toBe(30 * 24 * 60 * 60);
   });
 });
 

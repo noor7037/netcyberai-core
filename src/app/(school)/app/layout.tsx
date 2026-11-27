@@ -28,6 +28,9 @@ import { storageHealth, type StorageHealth } from '@/lib/observability/storage-h
 import { showsStorageAlert, StorageAlert } from '@/components/app-shell/StorageAlert';
 import { shellWords } from '@/components/app-shell/shell-words';
 
+// C556: its own installable app with its own sign-in, beside the others on one phone.
+export const metadata = { manifest: '/school.webmanifest' };
+
 // Every page under this route group renders through THIS layout by
 // Next.js's own nesting rules. The guard below runs first and is checked
 // by scripts/check_route_guards.py; nothing after it can widen access.

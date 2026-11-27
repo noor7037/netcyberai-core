@@ -1,3 +1,8 @@
+import { accessCookieOf, refreshCookieOf, surfaceForRole, type Surface } from './surfaces';
+import type { SessionRole } from './types';
+
+// The School app's session cookies (and, before C556, every staff area's). Control's and the parent home's are in
+// src/lib/auth/surfaces.ts.
 export const ACCESS_COOKIE = 'nca_access';
 export const REFRESH_COOKIE = 'nca_refresh';
 export const PENDING_COOKIE = 'nca_pending';
@@ -50,4 +55,20 @@ export function cookieOptions(maxAgeSeconds: number) {
     path: '/',
     maxAge: maxAgeSeconds,
   };
+}
+
+// ---- one sign-in per area (C556) --------------------------------------------------------------------------------------
+// A session's cookies go under its own area's names (src/lib/auth/surfaces.ts): Control's, the parent home's or the
+// School app's, chosen by the role, never by the page that asked.
+type CookieJar = { set: (name: string, value: string, options: Record<string, unknown>) => unknown; delete: (name: string) => unknown };
+
+export function setSessionCookies(jar: CookieJar, role: SessionRole, accessToken: string, refreshToken: string, persistent: boolean) {
+  const surface = surfaceForRole(role);
+  jar.set(accessCookieOf(surface), accessToken, sessionCookieOptions(ACCESS_TTL_SECONDS, persistent));
+  jar.set(refreshCookieOf(surface), refreshToken, sessionCookieOptions(REFRESH_TTL_SECONDS, persistent));
+}
+
+export function clearSessionCookies(jar: CookieJar, surface: Surface) {
+  jar.delete(accessCookieOf(surface));
+  jar.delete(refreshCookieOf(surface));
 }

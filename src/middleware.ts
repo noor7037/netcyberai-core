@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { verifyAccessToken } from '@/lib/auth/jwt';
 import { canAccessControl, canAccessApp, canAccessFamily } from '@/lib/auth/guards';
-import { ACCESS_COOKIE, REFRESH_COOKIE } from '@/lib/auth/cookies';
+import { refreshCookieFor, sessionOf, surfaceForRole, surfaceOfRequest, SURFACE_HEADER, type Surface } from '@/lib/auth/surfaces';
 import type { SessionRole } from '@/lib/auth/types';
 import { REQUEST_ID_HEADER, requestIdFrom } from '@/lib/observability/request-id';
 import { FAMILY_SESSION_COOKIE, verifyFamilySession } from '@/lib/family/session';
@@ -34,9 +33,13 @@ export async function middleware(req: NextRequest) {
   return res;
 }
 
-function next(req: NextRequest, requestId: string): NextResponse {
+// C556: the area this request belongs to is passed on to the route or page (any value the browser sent is replaced), so
+// each reads its own area's sign-in.
+function next(req: NextRequest, requestId: string, surface: Surface | null = surfaceOfRequest(req.nextUrl, req.headers)): NextResponse {
   const headers = new Headers(req.headers);
   headers.set(REQUEST_ID_HEADER, requestId);
+  if (surface) headers.set(SURFACE_HEADER, surface);
+  else headers.delete(SURFACE_HEADER);
   return NextResponse.next({ request: { headers } });
 }
 
@@ -61,15 +64,17 @@ async function gate(req: NextRequest, requestId: string): Promise<NextResponse> 
   // The school parent home (C230-D, at /parent since C248): a parent's school session only.
   const isFamily = pathname === '/parent' || pathname.startsWith('/parent/');
   if (!isControl && !isApp && !isFamily) return next(req, requestId);
+  // C556: each area has its own sign-in; this page reads only its own area's.
+  const surface: Surface = isControl ? 'control' : isApp ? 'app' : 'parent';
+  const get = (name: string) => req.cookies.get(name)?.value;
 
-  const accessToken = req.cookies.get(ACCESS_COOKIE)?.value;
-  let claims: GateClaims | null = accessToken ? await verifyAccessToken(accessToken) : null;
+  let claims: GateClaims | null = await sessionOf(get, surface);
   let refreshed: ReturnType<NextResponse['cookies']['getAll']> = [];
 
-  if (!claims && req.cookies.get(REFRESH_COOKIE)?.value) {
+  if (!claims && (await refreshCookieFor(get, surface))) {
     const refreshRes = await fetch(new URL('/api/auth/refresh', req.url), {
       method: 'POST',
-      headers: { cookie: req.headers.get('cookie') ?? '' },
+      headers: { cookie: req.headers.get('cookie') ?? '', [SURFACE_HEADER]: surface },
     });
     if (refreshRes.ok) {
       const body = (await refreshRes.json()) as { role: SessionRole; schoolId: string | null };
@@ -87,8 +92,10 @@ async function gate(req: NextRequest, requestId: string): Promise<NextResponse> 
     return res;
   };
 
-  if (!claims) {
-    return NextResponse.redirect(new URL('/login', req.url));
+  // No session for this area (or only another area's, renewed above and kept): sign in here. Another area's sign-in
+  // is never taken for this one, so the founder can be in Control and the School app at once as different people.
+  if (!claims || (surface !== 'app' && surfaceForRole(claims.role) !== surface)) {
+    return keep(NextResponse.redirect(new URL('/login', req.url)));
   }
 
   const allowed = isControl ? canAccessControl(claims) : isApp ? canAccessApp(claims) : canAccessFamily(claims);
@@ -103,7 +110,7 @@ async function gate(req: NextRequest, requestId: string): Promise<NextResponse> 
     return keep(NextResponse.redirect(new URL('/login', req.url)));
   }
 
-  return keep(next(req, requestId));
+  return keep(next(req, requestId, surface));
 }
 
 // The refresh route's Set-Cookie lines, each read as a cookie (a plain headers.get joins them into one line, which the

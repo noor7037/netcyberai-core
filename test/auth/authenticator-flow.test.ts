@@ -40,7 +40,7 @@ vi.mock('@/lib/auth/db', async (importOriginal) => {
 import { changePassword, completeEmailStep, loginWithEmailCode, passwordLogin, resetPasswordWithCode } from '@/lib/auth/account';
 import { signAccessToken, signDeviceToken, signPendingToken } from '@/lib/auth/jwt';
 import { trustDevice } from '@/lib/auth/devices';
-import { ACCESS_COOKIE, AUTHENTICATOR_COOKIE, DEVICE_COOKIE, KEEP_COOKIE, PENDING_COOKIE, REFRESH_COOKIE } from '@/lib/auth/cookies';
+import { ACCESS_COOKIE, AUTHENTICATOR_COOKIE, DEVICE_COOKIE, KEEP_COOKIE, PENDING_COOKIE } from '@/lib/auth/cookies';
 import { authenticatorFriendlyName } from '@/lib/auth/authenticator-rules';
 import { POST as loginRoute } from '@/app/api/auth/login/route';
 import { POST as emailStepRoute } from '@/app/api/auth/email-step/route';
@@ -416,7 +416,8 @@ describe('F1-1: trust this browser for 30 days, and keep me signed in', () => {
     const { user, device } = await trustedAdmin();
     const again = await login(user.email, device);
     expect(await again.json()).toMatchObject({ status: 'ok', role: 'super_admin' });
-    expect(again.cookies.get(ACCESS_COOKIE)?.value).toBeTruthy();
+    // C556: a platform admin's session goes under Control's own cookies.
+    expect(again.cookies.get('nca_control_access')?.value).toBeTruthy();
     expect(fake.sentCodes).toEqual([]);
     // The account page lists it by a short name, never the whole user agent.
     const list = await (await devicesRoute(new NextRequest('http://localhost/api/auth/devices', { headers: { cookie: Object.entries({ ...(await accessCookie(user)), ...device }).map(([k, v]) => `${k}=${v}`).join('; ') } }))).json();
@@ -496,12 +497,12 @@ describe('F1-1: trust this browser for 30 days, and keep me signed in', () => {
       return mfaVerifyRoute(post('/api/auth/mfa/verify', { code: fake.codeFor(factor) }, cookies));
     };
     const kept = await finish({});
-    expect(kept.cookies.get(REFRESH_COOKIE)?.maxAge).toBe(30 * 24 * 60 * 60);
+    expect(kept.cookies.get('nca_control_refresh')?.maxAge).toBe(30 * 24 * 60 * 60);
     expect(fake.notPersistent).toEqual([]);
     const notKept = await finish({ keepSignedIn: false });
-    expect(notKept.cookies.get(REFRESH_COOKIE)?.value).toBeTruthy();
-    expect(notKept.cookies.get(REFRESH_COOKIE)?.maxAge).toBeUndefined();
-    expect(notKept.cookies.get(ACCESS_COOKIE)?.maxAge).toBeUndefined();
+    expect(notKept.cookies.get('nca_control_refresh')?.value).toBeTruthy();
+    expect(notKept.cookies.get('nca_control_refresh')?.maxAge).toBeUndefined();
+    expect(notKept.cookies.get('nca_control_access')?.maxAge).toBeUndefined();
     expect(fake.notPersistent).toHaveLength(1);
   });
 
