@@ -1,0 +1,363 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.networking.04",
+ "level": 2,
+ "classes": [
+  7,
+  8
+ ],
+ "unit": "networking",
+ "title": {
+  "en": "Packets and TCP: how a WhatsApp message travels",
+  "hi": "पैकेट और TCP: WhatsApp संदेश कैसे जाता है",
+  "hinglish": "Packets aur TCP: WhatsApp message kaise travel karta hai"
+ },
+ "minutes": 10,
+ "xp": 40,
+ "prereq": [
+  "L2.networking.03"
+ ],
+ "topics": [
+  "net.packets",
+  "net.tcp-ip-layers"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain why data is split into packets",
+   "hi": "समझा सकते हो कि डेटा पैकेटों में क्यों बाँटा जाता है",
+   "hinglish": "Data packets mein kyun toot-ta hai samjha sakte ho"
+  },
+  {
+   "en": "Describe how TCP reorders and resends packets",
+   "hi": "बता सकते हो कि TCP पैकेट कैसे क्रम में लगाता और फिर भेजता है",
+   "hinglish": "TCP packets ko reorder aur resend kaise karta hai bata sakte ho"
+  },
+  {
+   "en": "Trace a chat message end to end, including encryption",
+   "hi": "एन्क्रिप्शन सहित चैट संदेश को शुरू से अंत तक ट्रेस कर सकते हो",
+   "hinglish": "Chat message ka poora safar encryption samet trace kar sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Packet",
+   "hinglish": "Data ka chhota parcel",
+   "en": "A small chunk of data with a header (addresses, sequence number)",
+   "hi": "हेडर (पते, क्रम संख्या) वाला डेटा का छोटा टुकड़ा"
+  },
+  {
+   "term": "Header",
+   "hinglish": "Packet pe likha pata",
+   "en": "The label on a packet: from, to, sequence number",
+   "hi": "पैकेट पर लेबल: किससे, किसको, क्रम संख्या"
+  },
+  {
+   "term": "TCP",
+   "hinglish": "Bharosemand delivery ka niyam",
+   "en": "Transmission Control Protocol: numbers, acknowledges and resends packets",
+   "hi": "ट्रांसमिशन कंट्रोल प्रोटोकॉल: पैकेटों को नंबर देता, पावती लेता और फिर भेजता है"
+  },
+  {
+   "term": "ACK",
+   "hinglish": "“Mil gaya” ki receipt",
+   "en": "Acknowledgement that a packet arrived",
+   "hi": "पावती कि पैकेट पहुँच गया"
+  },
+  {
+   "term": "End-to-end encryption",
+   "hinglish": "Sirf bhejne aur paane wala padh sake",
+   "en": "Only sender and receiver hold the keys to read the message",
+   "hi": "संदेश पढ़ने की चाबियाँ केवल भेजने और पाने वाले के पास"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Your message is cut into packets. Each gets a header: from, to, and a sequence number.",
+    "hi": "आपका संदेश पैकेटों में काटा जाता है। हर एक पर हेडर: किससे, किसको, और क्रम संख्या।",
+    "hinglish": "Aapka message packets mein kaata jaata hai. Har ek pe header: kisse, kisko, aur sequence number."
+   },
+   "visual": "lab:packet-tracer",
+   "narration": {
+    "en": "Like posting a big book as numbered parcels.",
+    "hi": "जैसे एक मोटी किताब को नंबर वाले पार्सलों में भेजना।",
+    "hinglish": "Jaise badi kitaab ko numbered parcels mein bhejna."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Packets may take different roads and arrive out of order. The receiver sorts them by sequence number.",
+    "hi": "पैकेट अलग रास्ते लेकर उल्टे क्रम में पहुँच सकते हैं। प्राप्तकर्ता क्रम संख्या से जमाता है।",
+    "hinglish": "Packets alag raaste le ke ulte order mein pahunch sakte hain. Receiver sequence number se sort karta hai."
+   },
+   "visual": "flow:#1|#3|#2|→ sort → #1 #2 #3",
+   "narration": {
+    "en": "One road is busy, another is free — the network uses both.",
+    "hi": "एक सड़क व्यस्त है, दूसरी ख़ाली — नेटवर्क दोनों उपयोग करता है।",
+    "hinglish": "Ek road busy, doosri free — network dono use karta hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "If a packet is lost, no “got it” (ACK) comes back, so the sender resends it.",
+    "hi": "अगर पैकेट खो जाए, तो “मिल गया” (ACK) वापस नहीं आता, इसलिए भेजने वाला फिर भेजता है।",
+    "hinglish": "Agar packet kho jaaye, to “mil gaya” (ACK) wapas nahi aata, isliye sender dobara bhejta hai."
+   },
+   "visual": "icon:🔁",
+   "narration": {
+    "en": "This is how your message arrives complete even on a patchy network.",
+    "hi": "इसी तरह कमज़ोर नेटवर्क पर भी आपका संदेश पूरा पहुँचता है।",
+    "hinglish": "Isi tarah patchy network pe bhi message poora pahunchta hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "packet-tracer",
+  "config": {
+   "mode": "whatsapp",
+   "mission": "lost-packet"
+  },
+  "goal": {
+   "en": "Turn on “Lose a packet” and prove the message still arrives complete and in order.",
+   "hi": "“पैकेट खोओ” चालू करो और साबित करो कि संदेश फिर भी पूरा और क्रम में पहुँचता है।",
+   "hinglish": "“Lose a packet” ON karo aur saabit karo ki message phir bhi poora aur sahi order mein pahunchta hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Layers: each does one job",
+    "hi": "परतें: हर एक एक काम करती है",
+    "hinglish": "Layers: har ek ek kaam karti hai"
+   },
+   "body": {
+    "en": "Networking is built in layers. Application (WhatsApp, browser) makes the message. Transport (TCP) cuts it into numbered segments, checks for errors, resends lost ones and puts them back in order. Internet (IP) puts the from/to IP addresses on each packet so routers can forward it. Link (Wi-Fi, Ethernet, 4G) moves it across one hop using radio, copper or light. Each layer wraps the one above, like an envelope inside an envelope. Video calls often use UDP instead of TCP: a late packet is useless for live video, so it is skipped rather than resent.",
+    "hi": "नेटवर्किंग परतों में बनी है। ऐप्लिकेशन (WhatsApp, ब्राउज़र) संदेश बनाता है। ट्रांसपोर्ट (TCP) उसे क्रमांकित टुकड़ों में काटता, त्रुटियाँ जाँचता, खोए हुए फिर भेजता और क्रम में लगाता है। इंटरनेट (IP) हर पैकेट पर किससे/किसको IP पते लिखता है ताकि राउटर आगे भेजें। लिंक (वाई-फ़ाई, ईथरनेट, 4G) रेडियो, तांबे या प्रकाश से एक क़दम पार कराता है। हर परत ऊपर वाली को लपेटती है, लिफ़ाफ़े में लिफ़ाफ़े की तरह। वीडियो कॉल अक्सर TCP की जगह UDP लेते हैं: लाइव वीडियो के लिए देर से आया पैकेट बेकार है, तो उसे छोड़ दिया जाता है।",
+    "hinglish": "Networking layers mein bana hai. Application (WhatsApp, browser) message banata hai. Transport (TCP) usse numbered segments mein kaatta, errors check karta, khoye hue dobara bhejta aur order mein lagata hai. Internet (IP) har packet pe from/to IP address likhta hai taaki routers aage bhejein. Link (Wi-Fi, Ethernet, 4G) radio, copper ya light se ek hop paar karata hai. Har layer upar wali ko lapet-ti hai, lifaafe mein lifaafa jaisa. Video calls aksar TCP ki jagah UDP use karte hain: live video ke liye late packet bekaar hai, to usse skip kar dete hain."
+   },
+   "analogy": {
+    "hinglish": "Shaadi ka card: card (application) → lifaafa pe naam (transport) → courier ka address label (IP) → courier ki bike (link).",
+    "en": "A wedding card: the card (application) → the name on the envelope (transport) → the courier’s address label (IP) → the courier’s bike (link).",
+    "hi": "शादी का कार्ड: कार्ड (एप्लिकेशन) → लिफ़ाफ़े पर नाम (ट्रांसपोर्ट) → कूरियर का पता लेबल (IP) → कूरियर की बाइक (लिंक)।"
+   },
+   "realExample": {
+    "en": "WhatsApp uses the Signal Protocol for end-to-end encryption: its servers pass the packets along but cannot read the message.",
+    "hi": "WhatsApp एंड-टू-एंड एन्क्रिप्शन के लिए सिग्नल प्रोटोकॉल उपयोग करता है: उसके सर्वर पैकेट आगे बढ़ाते हैं पर संदेश पढ़ नहीं सकते।",
+    "hinglish": "WhatsApp end-to-end encryption ke liye Signal Protocol use karta hai: uske servers packets aage bhejte hain par message padh nahi sakte."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Explain to a family member, in your own words, why a message still arrives correctly when the network is weak.",
+   "hi": "परिवार के किसी सदस्य को अपने शब्दों में समझाओ कि कमज़ोर नेटवर्क पर भी संदेश सही क्यों पहुँचता है।",
+   "hinglish": "Ghar mein kisi ko apne shabdon mein samjhao ki weak network mein bhi message sahi kaise pahunchta hai."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why is data split into packets?",
+     "hi": "डेटा पैकेटों में क्यों बाँटा जाता है?",
+     "hinglish": "Data packets mein kyun baanta jaata hai?"
+    },
+    "options": [
+     {
+      "en": "To make it secret",
+      "hi": "गुप्त बनाने के लिए",
+      "hinglish": "Secret banane ke liye"
+     },
+     {
+      "en": "So pieces can share routes and only lost ones are resent",
+      "hi": "ताकि टुकड़े रास्ते बाँटें और केवल खोए फिर भेजे जाएँ",
+      "hinglish": "Taaki tukde raaste share karein aur sirf khoye dobara bheje jaayein"
+     },
+     {
+      "en": "Because cables are short",
+      "hi": "क्योंकि केबल छोटी हैं",
+      "hinglish": "Kyunki cables chhoti hain"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Small packets share the network fairly, can take different routes, and only a lost piece needs resending.",
+     "hi": "छोटे पैकेट नेटवर्क को बराबर बाँटते हैं, अलग रास्ते ले सकते हैं, और केवल खोया टुकड़ा फिर भेजना पड़ता है।",
+     "hinglish": "Chhote packets network ko barabar baant-te hain, alag raaste le sakte hain, aur sirf khoya tukda dobara bhejna padta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Packets arrive as #3, #1, #2. What puts them back in order?",
+     "hi": "पैकेट #3, #1, #2 पहुँचे। उन्हें क्रम में क्या लगाता है?",
+     "hinglish": "Packets #3, #1, #2 pahunche. Unhe order mein kya lagata hai?"
+    },
+    "options": [
+     {
+      "en": "Sequence numbers (TCP)",
+      "hi": "क्रम संख्याएँ (TCP)",
+      "hinglish": "Sequence numbers (TCP)"
+     },
+     {
+      "en": "The Wi-Fi password",
+      "hi": "वाई-फ़ाई पासवर्ड",
+      "hinglish": "Wi-Fi password"
+     },
+     {
+      "en": "DNS",
+      "hi": "DNS",
+      "hinglish": "DNS"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "TCP at the receiver uses sequence numbers to reorder them.",
+     "hi": "प्राप्तकर्ता पर TCP क्रम संख्याओं से उन्हें जमाता है।",
+     "hinglish": "Receiver pe TCP sequence numbers se unhe reorder karta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "How does the sender know a packet was lost?",
+     "hi": "भेजने वाले को कैसे पता चलता है कि पैकेट खो गया?",
+     "hinglish": "Sender ko kaise pata chalta hai ki packet kho gaya?"
+    },
+    "options": [
+     {
+      "en": "The router phones it",
+      "hi": "राउटर फ़ोन करता है",
+      "hinglish": "Router phone karta hai"
+     },
+     {
+      "en": "It never knows",
+      "hi": "उसे कभी पता नहीं चलता",
+      "hinglish": "Usse kabhi pata nahi chalta"
+     },
+     {
+      "en": "No ACK comes back in time",
+      "hi": "समय पर ACK नहीं आता",
+      "hinglish": "Time pe ACK nahi aata"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "No acknowledgement (ACK) arrives before its timer runs out, so it resends.",
+     "hi": "टाइमर ख़त्म होने से पहले पावती (ACK) नहीं आती, तो वह फिर भेजता है।",
+     "hinglish": "Timer khatam hone se pehle ACK nahi aata, to woh dobara bhejta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "With end-to-end encryption, who can read your WhatsApp message?",
+     "hi": "एंड-टू-एंड एन्क्रिप्शन में आपका WhatsApp संदेश कौन पढ़ सकता है?",
+     "hinglish": "End-to-end encryption mein aapka WhatsApp message kaun padh sakta hai?"
+    },
+    "options": [
+     {
+      "en": "Anyone on the same Wi-Fi",
+      "hi": "उसी वाई-फ़ाई पर कोई भी",
+      "hinglish": "Same Wi-Fi pe koi bhi"
+     },
+     {
+      "en": "Only you and the receiver",
+      "hi": "केवल आप और प्राप्तकर्ता",
+      "hinglish": "Sirf aap aur receiver"
+     },
+     {
+      "en": "Every router on the way",
+      "hi": "रास्ते का हर राउटर",
+      "hinglish": "Raaste ka har router"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Only the two phones hold the keys. Routers, the ISP and WhatsApp’s server see scrambled data.",
+     "hi": "केवल दोनों फ़ोन के पास चाबियाँ हैं। राउटर, ISP और WhatsApp सर्वर को उलझा डेटा दिखता है।",
+     "hinglish": "Sirf dono phones ke paas keys hain. Routers, ISP aur WhatsApp server ko scrambled data dikhta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why do live video calls often use UDP instead of TCP?",
+     "hi": "लाइव वीडियो कॉल अक्सर TCP की जगह UDP क्यों लेते हैं?",
+     "hinglish": "Live video calls aksar TCP ki jagah UDP kyun lete hain?"
+    },
+    "options": [
+     {
+      "en": "A late packet is useless for live video",
+      "hi": "लाइव वीडियो के लिए देर का पैकेट बेकार है",
+      "hinglish": "Live video ke liye late packet bekaar hai"
+     },
+     {
+      "en": "UDP is more secure",
+      "hi": "UDP ज़्यादा सुरक्षित है",
+      "hinglish": "UDP zyada secure hai"
+     },
+     {
+      "en": "TCP cannot carry video",
+      "hi": "TCP वीडियो नहीं ले जा सकता",
+      "hinglish": "TCP video nahi le ja sakta"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Waiting to resend old frames would freeze the call; skipping a late packet keeps it live.",
+     "hi": "पुराने फ़्रेम फिर भेजने का इंतज़ार कॉल रोक देगा; देर वाला पैकेट छोड़ने से कॉल लाइव रहती है।",
+     "hinglish": "Purane frames dobara bhejne ka wait call freeze kar dega; late packet skip karne se call live rehti hai."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Deliver a message with a lost packet in the packet tracer.",
+     "hi": "पैकेट ट्रेसर में खोए पैकेट के साथ संदेश पहुँचाओ।",
+     "hinglish": "Packet tracer mein lost packet ke saath message deliver karo."
+    },
+    "answer": {
+     "lab": "packet-tracer",
+     "event": "mission:complete"
+    },
+    "explain": {
+     "en": "The missing sequence number triggered a resend, and the receiver reassembled everything in order.",
+     "hi": "ग़ायब क्रम संख्या से फिर भेजा गया, और प्राप्तकर्ता ने सब क्रम में जोड़ा।",
+     "hinglish": "Missing sequence number se resend hua, aur receiver ne sab order mein joda."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "RFC 9293 — Transmission Control Protocol",
+   "url": "https://www.rfc-editor.org/rfc/rfc9293",
+   "licence": "fact reference"
+  },
+  {
+   "title": "WhatsApp Encryption Overview (technical white paper)",
+   "url": "https://www.whatsapp.com/security/WhatsApp-Security-Whitepaper.pdf",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NCERT / CBSE Artificial Intelligence & Computer curriculum (Classes 6–8), 2024–25",
+   "url": "https://cbseacademic.nic.in/",
+   "licence": "fact reference"
+  }
+ ]
+}

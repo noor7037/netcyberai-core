@@ -1,0 +1,438 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.software-engineering.03",
+ "level": 3,
+ "classes": [
+  11,
+  12
+ ],
+ "unit": "software-engineering",
+ "title": {
+  "en": "Open-source licences",
+  "hi": "मुक्त-स्रोत लाइसेंस",
+  "hinglish": "Open-source licences"
+ },
+ "minutes": 13,
+ "xp": 55,
+ "prereq": [
+  "L3.software-engineering.02"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain why code and media need a licence before reuse",
+   "hi": "समझाओ कोड और मीडिया को दोबारा उपयोग से पहले लाइसेंस क्यों चाहिए",
+   "hinglish": "Samjhao code aur media ko reuse se pehle licence kyun chahiye"
+  },
+  {
+   "en": "Tell permissive, copyleft and Creative Commons licences apart",
+   "hi": "अनुमतिपूर्ण, कॉपीलेफ़्ट और क्रिएटिव कॉमन्स लाइसेंस में अंतर बताओ",
+   "hinglish": "Permissive, copyleft aur Creative Commons licences mein farak batao"
+  },
+  {
+   "en": "Credit work correctly in an attribution file",
+   "hi": "श्रेय फ़ाइल में काम का सही श्रेय दो",
+   "hinglish": "Attribution file mein kaam ka sahi credit do"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Copyright",
+   "hinglish": "Copyright",
+   "en": "The creator’s legal right over their work, automatic in India and most countries",
+   "hi": "अपने काम पर रचनाकार का क़ानूनी अधिकार, भारत और ज़्यादातर देशों में अपने आप"
+  },
+  {
+   "term": "Open source",
+   "hinglish": "Khula code",
+   "en": "Code whose licence lets anyone use, study, change and share it",
+   "hi": "कोड जिसका लाइसेंस किसी को भी उपयोग, अध्ययन, बदलने और बाँटने दे"
+  },
+  {
+   "term": "Permissive licence",
+   "hinglish": "Khula licence",
+   "en": "MIT, Apache-2.0, BSD: reuse almost freely, keep the notice",
+   "hi": "MIT, Apache-2.0, BSD: लगभग मुक्त उपयोग, सूचना रखो"
+  },
+  {
+   "term": "Copyleft",
+   "hinglish": "Share-alike",
+   "en": "GPL family: derived software you distribute must use the same licence",
+   "hi": "GPL परिवार: बाँटा गया व्युत्पन्न सॉफ़्टवेयर उसी लाइसेंस में हो"
+  },
+  {
+   "term": "Attribution",
+   "hinglish": "Shrey",
+   "en": "Giving credit: title, author, source and licence",
+   "hi": "श्रेय देना: शीर्षक, लेखक, स्रोत और लाइसेंस"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Found it online ≠ free to use. No licence means all rights reserved.",
+    "hi": "ऑनलाइन मिला ≠ उपयोग के लिए मुक्त। लाइसेंस नहीं तो सर्वाधिकार सुरक्षित।",
+    "hinglish": "Online mila ≠ use ke liye free. Licence nahi to all rights reserved."
+   },
+   "visual": "compare:licence|no licence",
+   "narration": {
+    "en": "Found it online ≠ free to use. No licence means all rights reserved.",
+    "hi": "ऑनलाइन मिला ≠ उपयोग के लिए मुक्त। लाइसेंस नहीं तो सर्वाधिकार सुरक्षित।",
+    "hinglish": "Online mila ≠ use ke liye free. Licence nahi to all rights reserved."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Permissive (MIT, Apache-2.0): use even in paid apps; keep the copyright notice.",
+    "hi": "अनुमतिपूर्ण (MIT, Apache-2.0): सशुल्क ऐप में भी उपयोग; कॉपीराइट सूचना रखो।",
+    "hinglish": "Permissive (MIT, Apache-2.0): paid apps mein bhi use; copyright notice rakho."
+   },
+   "visual": "stack:use|modify|sell|keep notice",
+   "narration": {
+    "en": "Permissive (MIT, Apache-2.0): use even in paid apps; keep the copyright notice.",
+    "hi": "अनुमतिपूर्ण (MIT, Apache-2.0): सशुल्क ऐप में भी उपयोग; कॉपीराइट सूचना रखो।",
+    "hinglish": "Permissive (MIT, Apache-2.0): paid apps mein bhi use; copyright notice rakho."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Copyleft (GPL): if you distribute, share your source under the GPL too.",
+    "hi": "कॉपीलेफ़्ट (GPL): बाँटो तो अपना स्रोत भी GPL में साझा करो।",
+    "hinglish": "Copyleft (GPL): distribute karo to apna source bhi GPL mein share karo."
+   },
+   "visual": "flow:GPL code|your app|GPL source",
+   "narration": {
+    "en": "Copyleft (GPL): if you distribute, share your source under the GPL too.",
+    "hi": "कॉपीलेफ़्ट (GPL): बाँटो तो अपना स्रोत भी GPL में साझा करो।",
+    "hinglish": "Copyleft (GPL): distribute karo to apna source bhi GPL mein share karo."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Media: CC BY needs credit, CC0 needs nothing. Record everything in an attribution file.",
+    "hi": "मीडिया: CC BY को श्रेय चाहिए, CC0 को कुछ नहीं। सब श्रेय फ़ाइल में लिखो।",
+    "hinglish": "Media: CC BY ko credit chahiye, CC0 ko kuch nahi. Sab attribution file mein likho."
+   },
+   "visual": "stack:title|author|source|licence",
+   "narration": {
+    "en": "Media: CC BY needs credit, CC0 needs nothing. Record everything in an attribution file.",
+    "hi": "मीडिया: CC BY को श्रेय चाहिए, CC0 को कुछ नहीं। सब श्रेय फ़ाइल में लिखो।",
+    "hinglish": "Media: CC BY ko credit chahiye, CC0 ko kuch nahi. Sab attribution file mein likho."
+   }
+  }
+ ],
+ "play": {
+  "lab": "seq-flow",
+  "config": {
+   "scenario": "licence-check"
+  },
+  "goal": {
+   "en": "Check a library’s licence before adding it to your app. Then tick \"The repo has no LICENSE file\" and see what changes.",
+   "hi": "लाइब्रेरी को ऐप में जोड़ने से पहले उसका लाइसेंस जाँचो। फिर \"रिपॉज़िटरी में LICENSE फ़ाइल नहीं\" चुनो और देखो क्या बदलता है।",
+   "hinglish": "Library ko app mein jodne se pehle uska licence check karo. Phir \"Repo mein LICENSE file nahi\" tick karo aur dekho kya badalta hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Copyright is automatic; permission is not",
+    "hi": "कॉपीराइट अपने आप; अनुमति नहीं",
+    "hinglish": "Copyright apne aap; permission nahi"
+   },
+   "body": {
+    "en": "Under India’s Copyright Act, 1957, and the Berne Convention used by most countries, anything original you write, draw or code is protected the moment you create it — you do not have to register. So code or images you find online are, by default, \"all rights reserved\": you may look, but not copy. A licence is the author’s written permission. Open-source licences approved by the Open Source Initiative all let anyone use, study, modify and share the code, but they differ in conditions. Permissive licences (MIT, BSD, Apache-2.0) ask only that you keep the copyright and licence notice; Apache-2.0 also gives an explicit patent licence. Copyleft licences (GPL-3.0, AGPL-3.0) require that if you distribute software built on the code — or, for AGPL, let users reach it over a network — you release your source under the same licence. Linux uses GPL-2.0; Android’s framework uses Apache-2.0; Python has its own permissive PSF licence.",
+    "hi": "भारत के कॉपीराइट अधिनियम, 1957 और ज़्यादातर देशों द्वारा प्रयुक्त बर्न कन्वेंशन के तहत, आप जो भी मौलिक लिखते, बनाते या कोड करते हो वह बनाते ही सुरक्षित है — पंजीकरण ज़रूरी नहीं। इसलिए ऑनलाइन मिला कोड या चित्र डिफ़ॉल्ट रूप से \"सर्वाधिकार सुरक्षित\" है: देख सकते हो, नक़ल नहीं कर सकते। लाइसेंस लेखक की लिखित अनुमति है। ओपन सोर्स इनिशिएटिव द्वारा स्वीकृत मुक्त-स्रोत लाइसेंस सब किसी को भी कोड उपयोग, अध्ययन, बदलने और बाँटने देते हैं, पर शर्तें अलग हैं। अनुमतिपूर्ण लाइसेंस (MIT, BSD, Apache-2.0) केवल कॉपीराइट और लाइसेंस सूचना रखने को कहते हैं; Apache-2.0 स्पष्ट पेटेंट लाइसेंस भी देता है। कॉपीलेफ़्ट लाइसेंस (GPL-3.0, AGPL-3.0) माँगते हैं कि अगर आप उस कोड पर बना सॉफ़्टवेयर बाँटो — या AGPL में उपयोगकर्ताओं को नेटवर्क से पहुँच दो — तो अपना स्रोत उसी लाइसेंस में जारी करो। लिनक्स GPL-2.0 इस्तेमाल करता है; Android का ढाँचा Apache-2.0; Python का अपना अनुमतिपूर्ण PSF लाइसेंस है।",
+    "hinglish": "India ke Copyright Act, 1957 aur zyaadatar deshon dwara use hone wale Berne Convention ke tahat, tum jo bhi original likhte, banaate ya code karte ho woh banaate hi protected hai — register zaroori nahi. Isliye online mila code ya images default roop se \"all rights reserved\" hain: dekh sakte ho, copy nahi kar sakte. Licence author ki likhit permission hai. Open Source Initiative dwara approved open-source licences sab kisi ko bhi code use, study, modify aur share karne dete hain, par conditions alag hain. Permissive licences (MIT, BSD, Apache-2.0) sirf copyright aur licence notice rakhne ko kehte hain; Apache-2.0 explicit patent licence bhi deta hai. Copyleft licences (GPL-3.0, AGPL-3.0) maangte hain ki agar tum us code par bana software distribute karo — ya AGPL mein users ko network se access do — to apna source usi licence mein release karo. Linux GPL-2.0 use karta hai; Android ka framework Apache-2.0; Python ka apna permissive PSF licence hai."
+   },
+   "analogy": {
+    "en": "A recipe book a friend lends you: some friends say \"cook and sell, just mention me\" (permissive), others say \"share your improved recipe the same way\" (copyleft).",
+    "hi": "दोस्त की दी रेसिपी किताब: कुछ कहते हैं \"बनाओ और बेचो, बस मेरा नाम लो\" (अनुमतिपूर्ण), कुछ कहते हैं \"अपनी बेहतर रेसिपी भी ऐसे ही बाँटो\" (कॉपीलेफ़्ट)।",
+    "hinglish": "Dost ki di recipe book: kuch kehte hain \"banao aur becho, bas mera naam lo\" (permissive), kuch kehte hain \"apni behtar recipe bhi aise hi baanto\" (copyleft)."
+   },
+   "realExample": {
+    "en": "This Tech Lab only uses MIT, Apache, CC BY or CC0 material and lists every source in an ATTRIBUTION file.",
+    "hi": "यह टेक लैब केवल MIT, Apache, CC BY या CC0 सामग्री इस्तेमाल करती है और हर स्रोत ATTRIBUTION फ़ाइल में लिखती है।",
+    "hinglish": "Yeh Tech Lab sirf MIT, Apache, CC BY ya CC0 material use karti hai aur har source ATTRIBUTION file mein likhti hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "Creative Commons and giving credit",
+    "hi": "क्रिएटिव कॉमन्स और श्रेय देना",
+    "hinglish": "Creative Commons aur credit dena"
+   },
+   "body": {
+    "en": "For images, music, video and text, Creative Commons licences are common. CC0 is \"no rights reserved\" — use freely. CC BY allows any use, even commercial, if you credit the creator. Extra conditions can be added: SA (share-alike: your version must use the same licence), NC (non-commercial only) and ND (no changes). Wikipedia text, for example, is CC BY-SA — fine to quote with credit, but your copy must stay share-alike, so it is not compatible with a project that allows only CC BY or CC0. A good credit has four parts — title, author, source link and licence (TASL): \"Peacock photo by R. Iyer, from example.org, CC BY 4.0\". Using AI image or code generators does not remove these questions: check the tool’s terms, and never pass off someone else’s work, or an AI’s, as entirely your own in school work.",
+    "hi": "चित्र, संगीत, वीडियो और पाठ के लिए क्रिएटिव कॉमन्स लाइसेंस आम हैं। CC0 \"कोई अधिकार सुरक्षित नहीं\" है — मुक्त उपयोग करो। CC BY किसी भी उपयोग की अनुमति देता है, व्यावसायिक भी, अगर रचनाकार को श्रेय दो। अतिरिक्त शर्तें जुड़ सकती हैं: SA (समान-साझा: आपका रूप भी उसी लाइसेंस में), NC (केवल गैर-व्यावसायिक) और ND (कोई बदलाव नहीं)। उदाहरण के लिए विकिपीडिया का पाठ CC BY-SA है — श्रेय के साथ उद्धृत करना ठीक, पर आपकी प्रति समान-साझा रहनी चाहिए, इसलिए यह केवल CC BY या CC0 की अनुमति वाली परियोजना के अनुकूल नहीं। अच्छे श्रेय के चार भाग हैं — शीर्षक, लेखक, स्रोत लिंक और लाइसेंस (TASL): \"मोर फ़ोटो, आर. अय्यर द्वारा, example.org से, CC BY 4.0\"। एआई चित्र या कोड जनरेटर इस्तेमाल करने से ये प्रश्न ख़त्म नहीं होते: टूल की शर्तें जाँचो, और स्कूल के काम में किसी और का, या एआई का, काम पूरी तरह अपना बताकर कभी मत दो।",
+    "hinglish": "Images, music, video aur text ke liye Creative Commons licences common hain. CC0 \"no rights reserved\" hai — freely use karo. CC BY kisi bhi use ki permission deta hai, commercial bhi, agar creator ko credit do. Extra conditions jud sakti hain: SA (share-alike: tumhara version bhi usi licence mein), NC (sirf non-commercial) aur ND (koi change nahi). Example ke liye Wikipedia ka text CC BY-SA hai — credit ke saath quote karna theek, par tumhari copy share-alike rehni chahiye, isliye yeh sirf CC BY ya CC0 allow karne wale project ke compatible nahi. Achhe credit ke chaar parts hain — title, author, source link aur licence (TASL): \"Peacock photo by R. Iyer, from example.org, CC BY 4.0\". AI image ya code generators use karne se yeh sawaal khatam nahi hote: tool ki terms check karo, aur school ke kaam mein kisi aur ka, ya AI ka, kaam poori tarah apna bataakar kabhi mat do."
+   },
+   "analogy": {
+    "en": "Quoting a friend in your essay: you use their words, and you say whose they are.",
+    "hi": "निबंध में दोस्त को उद्धृत करना: उनके शब्द इस्तेमाल करते हो, और बताते हो किसके हैं।",
+    "hinglish": "Essay mein dost ko quote karna: unke shabd use karte ho, aur batate ho kiske hain."
+   },
+   "realExample": {
+    "en": "An ATTRIBUTION.md line: \"nn-playground.js — inspired by TensorFlow Playground — Apache-2.0 — github.com/tensorflow/playground\".",
+    "hi": "ATTRIBUTION.md की एक पंक्ति: \"nn-playground.js — TensorFlow Playground से प्रेरित — Apache-2.0 — github.com/tensorflow/playground\"।",
+    "hinglish": "ATTRIBUTION.md ki ek line: \"nn-playground.js — TensorFlow Playground se prerit — Apache-2.0 — github.com/tensorflow/playground\"."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Choose three things you might reuse in a school project: a code library, a photo and a music clip. Find each one’s licence, decide whether you may use it (and how), and write a correct TASL credit line for each in an ATTRIBUTION.md file. Then pick a licence for your own project and explain why.",
+   "hi": "स्कूल परियोजना में दोबारा इस्तेमाल की तीन चीज़ें चुनो: एक कोड लाइब्रेरी, एक फ़ोटो और एक संगीत अंश। हर एक का लाइसेंस ढूँढो, तय करो कि उपयोग कर सकते हो या नहीं (और कैसे), और ATTRIBUTION.md फ़ाइल में हर एक की सही TASL श्रेय पंक्ति लिखो। फिर अपनी परियोजना के लिए लाइसेंस चुनो और समझाओ क्यों।",
+   "hinglish": "School project mein reuse karne ki teen cheezein chuno: ek code library, ek photo aur ek music clip. Har ek ka licence dhoondho, tay karo ki use kar sakte ho ya nahi (aur kaise), aur ATTRIBUTION.md file mein har ek ki sahi TASL credit line likho. Phir apne project ke liye licence chuno aur samjhao kyun."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "A GitHub repository has no LICENSE file. Can you copy its code into your app?",
+     "hi": "GitHub रिपॉज़िटरी में LICENSE फ़ाइल नहीं है। क्या उसका कोड अपने ऐप में कॉपी कर सकते हो?",
+     "hinglish": "GitHub repository mein LICENSE file nahi hai. Kya uska code apne app mein copy kar sakte ho?"
+    },
+    "options": [
+     {
+      "en": "No — without a licence, all rights are reserved",
+      "hi": "नहीं — लाइसेंस बिना सर्वाधिकार सुरक्षित",
+      "hinglish": "Nahi — licence bina all rights reserved"
+     },
+     {
+      "en": "Yes — public means free",
+      "hi": "हाँ — सार्वजनिक मतलब मुक्त",
+      "hinglish": "Haan — public matlab free"
+     },
+     {
+      "en": "Yes, if you change the variable names",
+      "hi": "हाँ, अगर वेरिएबल के नाम बदलो",
+      "hinglish": "Haan, agar variable ke naam badlo"
+     },
+     {
+      "en": "Yes, for school only",
+      "hi": "हाँ, केवल स्कूल के लिए",
+      "hinglish": "Haan, sirf school ke liye"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Ask the author to add a licence.",
+     "hi": "लेखक से लाइसेंस जोड़ने को कहो।",
+     "hinglish": "Author se licence jodne ko kaho."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "match",
+    "prompt": {
+     "en": "Match each licence to its key condition.",
+     "hi": "हर लाइसेंस को उसकी मुख्य शर्त से मिलाओ।",
+     "hinglish": "Har licence ko uski main condition se milao."
+    },
+    "options": [
+     "MIT",
+     "GPL-3.0",
+     "CC BY 4.0",
+     "CC0"
+    ],
+    "answer": [
+     {
+      "en": "Keep the copyright notice",
+      "hi": "कॉपीराइट सूचना रखो",
+      "hinglish": "Copyright notice rakho"
+     },
+     {
+      "en": "Share derived source under the same licence when distributing",
+      "hi": "बाँटते समय व्युत्पन्न स्रोत उसी लाइसेंस में साझा करो",
+      "hinglish": "Distribute karte waqt derived source usi licence mein share karo"
+     },
+     {
+      "en": "Credit the creator",
+      "hi": "रचनाकार को श्रेय दो",
+      "hinglish": "Creator ko credit do"
+     },
+     {
+      "en": "No conditions",
+      "hi": "कोई शर्त नहीं",
+      "hinglish": "Koi condition nahi"
+     }
+    ],
+    "explain": {
+     "en": "Permissive, copyleft, attribution, public-domain dedication.",
+     "hi": "अनुमतिपूर्ण, कॉपीलेफ़्ट, श्रेय, सार्वजनिक-क्षेत्र समर्पण।",
+     "hinglish": "Permissive, copyleft, attribution, public-domain dedication."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "multi",
+    "prompt": {
+     "en": "Which belong in a good attribution (TASL)?",
+     "hi": "अच्छे श्रेय (TASL) में क्या होता है?",
+     "hinglish": "Achhe attribution (TASL) mein kya hota hai?"
+    },
+    "options": [
+     {
+      "en": "Title",
+      "hi": "शीर्षक",
+      "hinglish": "Title"
+     },
+     {
+      "en": "Author",
+      "hi": "लेखक",
+      "hinglish": "Author"
+     },
+     {
+      "en": "Source link",
+      "hi": "स्रोत लिंक",
+      "hinglish": "Source link"
+     },
+     {
+      "en": "Licence",
+      "hi": "लाइसेंस",
+      "hinglish": "Licence"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "All four.",
+     "hi": "चारों।",
+     "hinglish": "Chaaron."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Your project allows only MIT, Apache, CC BY or CC0. Can you paste a paragraph of Wikipedia text (CC BY-SA)?",
+     "hi": "आपकी परियोजना केवल MIT, Apache, CC BY या CC0 की अनुमति देती है। क्या विकिपीडिया (CC BY-SA) का अनुच्छेद चिपका सकते हो?",
+     "hinglish": "Tumhara project sirf MIT, Apache, CC BY ya CC0 allow karta hai. Kya Wikipedia (CC BY-SA) ka paragraph paste kar sakte ho?"
+    },
+    "options": [
+     {
+      "en": "No — share-alike is not on the allowed list; write it yourself and cite facts",
+      "hi": "नहीं — समान-साझा अनुमत सूची में नहीं; ख़ुद लिखो और तथ्यों का हवाला दो",
+      "hinglish": "Nahi — share-alike allowed list mein nahi; khud likho aur facts cite karo"
+     },
+     {
+      "en": "Yes, always",
+      "hi": "हाँ, हमेशा",
+      "hinglish": "Haan, hamesha"
+     },
+     {
+      "en": "Yes, if it is short",
+      "hi": "हाँ, अगर छोटा हो",
+      "hinglish": "Haan, agar chhota ho"
+     },
+     {
+      "en": "Yes, if you remove the credit",
+      "hi": "हाँ, अगर श्रेय हटाओ",
+      "hinglish": "Haan, agar credit hatao"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Facts are free; the exact wording carries the licence.",
+     "hi": "तथ्य मुक्त हैं; सटीक शब्दों पर लाइसेंस है।",
+     "hinglish": "Facts free hain; exact wording par licence hai."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which licence explicitly grants patent rights as well?",
+     "hi": "कौन-सा लाइसेंस स्पष्ट रूप से पेटेंट अधिकार भी देता है?",
+     "hinglish": "Kaunsa licence explicitly patent rights bhi deta hai?"
+    },
+    "options": [
+     {
+      "en": "Apache-2.0",
+      "hi": "Apache-2.0",
+      "hinglish": "Apache-2.0"
+     },
+     {
+      "en": "CC0",
+      "hi": "CC0",
+      "hinglish": "CC0"
+     },
+     {
+      "en": "No licence",
+      "hi": "कोई लाइसेंस नहीं",
+      "hinglish": "Koi licence nahi"
+     },
+     {
+      "en": "CC BY-ND",
+      "hi": "CC BY-ND",
+      "hinglish": "CC BY-ND"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Apache-2.0 includes a patent grant.",
+     "hi": "Apache-2.0 में पेटेंट अनुदान है।",
+     "hinglish": "Apache-2.0 mein patent grant hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Finish the licence check in the lab.",
+     "hi": "लैब में लाइसेंस जाँच पूरी करो।",
+     "hinglish": "Lab mein licence check poora karo."
+    },
+    "answer": {
+     "event": "scenario-complete",
+     "scenario": "licence-check"
+    },
+    "explain": {
+     "en": "Read → decide → credit.",
+     "hi": "पढ़ो → तय करो → श्रेय दो।",
+     "hinglish": "Padho → tay karo → credit do."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "sw.open-source-licences",
+  "cyber.ethics-law"
+ ],
+ "sources": [
+  {
+   "title": "Open Source Initiative — Licenses",
+   "url": "https://opensource.org/licenses",
+   "licence": "fact reference"
+  },
+  {
+   "title": "choosealicense.com (GitHub) — Licenses",
+   "url": "https://choosealicense.com/licenses/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Creative Commons — CC BY 4.0",
+   "url": "https://creativecommons.org/licenses/by/4.0/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Apache License 2.0",
+   "url": "https://www.apache.org/licenses/LICENSE-2.0",
+   "licence": "fact reference"
+  }
+ ]
+}

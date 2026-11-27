@@ -1,0 +1,326 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.friendly-ai.04",
+ "level": 1,
+ "classes": [
+  3,
+  4,
+  5
+ ],
+ "unit": "friendly-ai",
+ "title": {
+  "en": "Smart speakers: how AI hears and reads",
+  "hi": "स्मार्ट स्पीकर: AI कैसे सुनता और पढ़ता है",
+  "hinglish": "Smart speakers: AI kaise sunta aur padhta hai"
+ },
+ "minutes": 8,
+ "xp": 30,
+ "prereq": [
+  "L1.friendly-ai.03"
+ ],
+ "topics": [
+  "ai.nlp",
+  "ai.everyday-ai"
+ ],
+ "outcomes": [
+  {
+   "en": "Describe the steps: wake word → sound to text → understand → answer.",
+   "hi": "कदम बता सकते हो: वेक वर्ड → आवाज़ से शब्द → समझना → जवाब।",
+   "hinglish": "Steps bata sakte ho: wake word → awaaz se text → samajhna → jawab."
+  },
+  {
+   "en": "Explain that AI learns which words go with which meaning.",
+   "hi": "समझा सकते हो कि AI सीखता है कौन से शब्द किस मतलब के साथ आते हैं।",
+   "hinglish": "Samjha sakte ho ki AI seekhta hai kaunse words kis matlab ke saath aate hain."
+  },
+  {
+   "en": "Know that AI can misunderstand jokes, sarcasm and accents.",
+   "hi": "जानते हो कि AI मज़ाक, व्यंग्य और लहजा ग़लत समझ सकता है।",
+   "hinglish": "Jaante ho ki AI mazaak, taana aur accent galat samajh sakta hai."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Wake word",
+   "en": "The word that makes a smart speaker start listening",
+   "hi": "वह शब्द जो स्मार्ट स्पीकर को सुनने के लिए जगाता है",
+   "hinglish": "Woh shabd jo smart speaker ko jagaata hai"
+  },
+  {
+   "term": "Speech-to-text",
+   "en": "Turning spoken words into written words",
+   "hi": "बोली गई आवाज़ को लिखे शब्दों में बदलना",
+   "hinglish": "Awaaz ko likhe shabdon mein badalna"
+  },
+  {
+   "term": "Sarcasm",
+   "en": "Saying the opposite of what you mean, often to tease",
+   "hi": "व्यंग्य — जो कहा उसका उल्टा मतलब",
+   "hinglish": "Ulta matlab wala taana"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.friendly-ai.04.s1",
+   "caption": {
+    "en": "A wake word wakes the speaker.",
+    "hi": "वेक वर्ड स्पीकर को जगाता है।",
+    "hinglish": "Wake word speaker ko jagaata hai."
+   },
+   "narration": {
+    "en": "A smart speaker waits for its wake word. Only then does it start sending what you say to be understood.",
+    "hinglish": "Smart speaker apne wake word ka intezaar karta hai. Tabhi woh tumhari baat samajhne ke liye bhejna shuru karta hai.",
+    "hi": "स्मार्ट स्पीकर अपने वेक वर्ड का इंतज़ार करता है। तभी वह तुम्हारी बात समझने के लिए भेजना शुरू करता है।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.friendly-ai.04.s2",
+   "caption": {
+    "en": "Sound → words → meaning → answer.",
+    "hi": "आवाज़ → शब्द → मतलब → जवाब।",
+    "hinglish": "Awaaz → words → matlab → jawab."
+   },
+   "narration": {
+    "en": "Your voice becomes sound waves. AI turns the waves into words, works out what you mean, and finds an answer — like today's weather.",
+    "hinglish": "Tumhari awaaz sound waves banti hai. AI waves ko words mein badalta hai, matlab samajhta hai, aur jawab dhoondhta hai — jaise aaj ka mausam.",
+    "hi": "तुम्हारी आवाज़ ध्वनि तरंगें बनती है। AI तरंगों को शब्दों में बदलता है, मतलब समझता है, और जवाब ढूँढता है — जैसे आज का मौसम।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.friendly-ai.04.s3",
+   "caption": {
+    "en": "Jokes and sarcasm can confuse AI.",
+    "hi": "मज़ाक और व्यंग्य AI को उलझा सकते हैं।",
+    "hinglish": "Mazaak aur taana AI ko confuse kar sakte hain."
+   },
+   "narration": {
+    "en": "AI learns from words, so it can miss the real meaning when people joke, use sarcasm, or have an accent it heard less often.",
+    "hinglish": "AI words se seekhta hai, isliye jab log mazaak karte hain, taana maarte hain, ya aisa accent ho jo usne kam suna, toh woh asli matlab miss kar sakta hai.",
+    "hi": "AI शब्दों से सीखता है, इसलिए जब लोग मज़ाक करते हैं, व्यंग्य करते हैं, या ऐसा लहजा हो जो उसने कम सुना, तो वह असली मतलब चूक सकता है।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "teach-sorter",
+  "config": {
+   "mode": "words"
+  },
+  "goal": {
+   "en": "Teach the AI kind and unkind messages, then test it. Can sarcasm fool it?",
+   "hi": "AI को दयालु और बुरे संदेश सिखाओ, फिर जाँचो। क्या व्यंग्य उसे धोखा दे सकता है?",
+   "hinglish": "AI ko kind aur unkind messages sikhao, phir test karo. Kya taana use bewakoof bana sakta hai?"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "AI counts words, it does not feel",
+    "hi": "AI शब्द गिनता है, महसूस नहीं करता",
+    "hinglish": "AI words ginta hai, mehsoos nahin karta"
+   },
+   "body": {
+    "en": "Our word-AI gives each word a score: words seen in kind messages get +1, in unkind ones −1. It adds them up. Real language AI is far more advanced, but it still learns from patterns in words, not from feelings.",
+    "hi": "हमारा शब्द-AI हर शब्द को स्कोर देता है: दयालु संदेशों के शब्द +1, बुरे संदेशों के −1। फिर जोड़ता है। असली भाषा-AI कहीं ज़्यादा उन्नत है, पर वह भी भावनाओं से नहीं, शब्दों के पैटर्न से सीखता है।",
+    "hinglish": "Hamara word-AI har word ko score deta hai: kind messages ke words +1, unkind ke −1. Phir jodta hai. Asli language AI kahin zyada advanced hai, par woh bhi feelings se nahin, words ke patterns se seekhta hai."
+   },
+   "analogy": {
+    "en": "A parrot can say \"Namaste\" without knowing what it means — AI also puts words together without truly feeling them.",
+    "hi": "तोता \"नमस्ते\" बोल सकता है बिना मतलब समझे — AI भी कई बार शब्द जोड़ता है बिना सच में महसूस किए।",
+    "hinglish": "Tota \"Namaste\" bol sakta hai bina matlab samjhe — AI bhi kai baar shabd jodta hai bina sach mein mehsoos kiye."
+   }
+  },
+  {
+   "heading": {
+    "en": "AI speaks Indian languages too",
+    "hi": "AI भारतीय भाषाएँ भी बोलता है",
+    "hinglish": "AI Indian languages bhi bolta hai"
+   },
+   "body": {
+    "en": "India has 22 languages in the Constitution's Eighth Schedule. The government's Bhashini project builds AI that translates and speaks Indian languages, so more people can use the internet in their own language.",
+    "hi": "भारत के संविधान की आठवीं अनुसूची में 22 भाषाएँ हैं। सरकार का भाषिणी प्रोजेक्ट ऐसा AI बनाता है जो भारतीय भाषाओं में अनुवाद करता और बोलता है, ताकि ज़्यादा लोग अपनी भाषा में इंटरनेट चला सकें।",
+    "hinglish": "India ke Constitution ki Eighth Schedule mein 22 languages hain. Sarkar ka Bhashini project aisa AI banaata hai jo Indian languages mein translate karta aur bolta hai, taaki zyada log apni bhasha mein internet chala sakein."
+   },
+   "realExample": {
+    "en": "Smart speakers keep listening only for the wake word; you can press the mute button to turn the microphone off.",
+    "hi": "स्मार्ट स्पीकर सिर्फ़ वेक वर्ड सुनने के लिए तैयार रहते हैं; माइक बंद करने के लिए म्यूट बटन दबा सकते हो।",
+    "hinglish": "Smart speaker sirf wake word sunne ke liye taiyaar rehte hain; mic band karne ke liye mute button daba sakte ho."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "With a grown-up, ask a voice assistant the same question in English and in Hindi. Did it understand both? Which was better?",
+   "hi": "किसी बड़े के साथ वॉइस असिस्टेंट से एक ही सवाल अंग्रेज़ी और हिंदी में पूछो। क्या उसने दोनों समझे? कौन बेहतर था?",
+   "hinglish": "Kisi bade ke saath voice assistant se ek hi sawaal English aur Hindi mein poocho. Kya usne dono samjhe? Kaun behtar tha?"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "order",
+    "prompt": {
+     "en": "Order what a smart speaker does.",
+     "hi": "स्मार्ट स्पीकर क्या करता है, क्रम में लगाओ।",
+     "hinglish": "Smart speaker kya karta hai, order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Understand the meaning",
+      "hi": "मतलब समझो",
+      "hinglish": "Matlab samjho"
+     },
+     {
+      "en": "Hear the wake word",
+      "hi": "वेक वर्ड सुनो",
+      "hinglish": "Wake word suno"
+     },
+     {
+      "en": "Speak the answer",
+      "hi": "जवाब बोलो",
+      "hinglish": "Jawab bolo"
+     },
+     {
+      "en": "Turn sound into text",
+      "hi": "आवाज़ को शब्दों में बदलो",
+      "hinglish": "Awaaz ko text mein badlo"
+     }
+    ],
+    "answer": [
+     1,
+     3,
+     0,
+     2
+    ],
+    "explain": {
+     "en": "Wake word → speech-to-text → meaning → answer.",
+     "hi": "वेक वर्ड → आवाज़ से शब्द → मतलब → जवाब।",
+     "hinglish": "Wake word → speech-to-text → matlab → jawab."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "\"Wow, you are SO smart… NOT.\" Why might AI get this wrong?",
+     "hi": "\"वाह, तुम कितने होशियार हो… बिल्कुल नहीं।\" AI इसे ग़लत क्यों समझ सकता है?",
+     "hinglish": "\"Wah, tum kitne smart ho… bilkul NAHIN.\" AI ise galat kyun samajh sakta hai?"
+    },
+    "options": [
+     {
+      "en": "It is sarcasm: nice words, mean meaning",
+      "hi": "यह व्यंग्य है: अच्छे शब्द, बुरा मतलब",
+      "hinglish": "Yeh taana hai: achhe words, bura matlab"
+     },
+     {
+      "en": "It is too short",
+      "hi": "यह बहुत छोटा है",
+      "hinglish": "Yeh bahut chhota hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "AI learns from words, so sarcasm can fool it.",
+     "hi": "AI शब्दों से सीखता है, इसलिए व्यंग्य उसे धोखा दे सकता है।",
+     "hinglish": "AI words se seekhta hai, isliye taana use dhokha de sakta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "A word the AI never saw in training gets a score of…",
+     "hi": "जो शब्द AI ने ट्रेनिंग में कभी नहीं देखा, उसका स्कोर होगा…",
+     "hinglish": "Jo word AI ne training mein kabhi nahin dekha, uska score hoga…"
+    },
+    "options": [
+     {
+      "en": "0",
+      "hi": "0",
+      "hinglish": "0"
+     },
+     {
+      "en": "+10",
+      "hi": "+10",
+      "hinglish": "+10"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "It has no evidence about that word.",
+     "hi": "उस शब्द के बारे में उसके पास कोई सबूत नहीं।",
+     "hinglish": "Us word ke baare mein uske paas koi saboot nahin."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "How can you stop a smart speaker's microphone listening?",
+     "hi": "स्मार्ट स्पीकर का माइक सुनना कैसे रोको?",
+     "hinglish": "Smart speaker ka mic sunna kaise roko?"
+    },
+    "options": [
+     {
+      "en": "Press the mute button",
+      "hi": "म्यूट बटन दबाओ",
+      "hinglish": "Mute button dabao"
+     },
+     {
+      "en": "Shout at it",
+      "hi": "उस पर चिल्लाओ",
+      "hinglish": "Us par chillao"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Mute turns the microphone off.",
+     "hi": "म्यूट माइक बंद कर देता है।",
+     "hinglish": "Mute mic band kar deta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Train and test the word-AI in the lab.",
+     "hi": "लैब में शब्द-AI को सिखाओ और जाँचो।",
+     "hinglish": "Lab mein word-AI ko train aur test karo."
+    },
+    "answer": {
+     "lab": "teach-sorter",
+     "mode": "words",
+     "solved": true
+    },
+    "explain": {
+     "en": "Sort 8 messages, then judge 5 AI guesses honestly.",
+     "hi": "8 संदेश छाँटो, फिर AI के 5 अंदाज़ों को ईमानदारी से जाँचो।",
+     "hinglish": "8 messages sort karo, phir AI ke 5 guesses imaandaari se judge karo."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Bhashini – National Language Translation Mission (fact reference)",
+   "url": "https://bhashini.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "AI4K12 – Five Big Ideas in AI (fact reference)",
+   "url": "https://ai4k12.org/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

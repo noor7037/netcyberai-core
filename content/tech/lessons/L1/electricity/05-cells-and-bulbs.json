@@ -1,0 +1,303 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.electricity.05",
+ "level": 1,
+ "classes": [
+  4,
+  5
+ ],
+ "unit": "electricity",
+ "title": {
+  "en": "More cells, more bulbs: brightness and short circuits",
+  "hi": "ज़्यादा सेल, ज़्यादा बल्ब: चमक और शॉर्ट सर्किट",
+  "hinglish": "Zyada cells, zyada bulbs: chamak aur short circuit"
+ },
+ "minutes": 9,
+ "xp": 35,
+ "prereq": [
+  "L1.electricity.04"
+ ],
+ "topics": [
+  "elec.power-batteries",
+  "elec.circuits"
+ ],
+ "outcomes": [
+  {
+   "en": "Predict how adding bulbs or cells changes brightness in a single loop.",
+   "hi": "अनुमान लगा सकते हो कि एक घेरे में बल्ब या सेल जोड़ने से चमक कैसे बदलती है।",
+   "hinglish": "Andaaza laga sakte ho ki ek ghere mein bulb ya cell jodne se chamak kaise badalti hai."
+  },
+  {
+   "en": "Explain what a short circuit is and why it is dangerous.",
+   "hi": "समझा सकते हो कि शॉर्ट सर्किट क्या है और ख़तरनाक क्यों है।",
+   "hinglish": "Samjha sakte ho ki short circuit kya hai aur khatarnaak kyun hai."
+  },
+  {
+   "en": "Know that voltage (V) measures how hard a cell pushes.",
+   "hi": "जानते हो कि वोल्टेज (V) बताता है सेल कितने ज़ोर से धकेलता है।",
+   "hinglish": "Jaante ho ki voltage (V) batata hai cell kitna zor se dhakelta hai."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Voltage",
+   "en": "How hard a cell pushes electricity, measured in volts (V)",
+   "hi": "सेल का धक्का — वोल्ट (V) में नापा जाता है",
+   "hinglish": "Cell ka dhakka — volt (V) mein naapa jaata hai"
+  },
+  {
+   "term": "Series circuit",
+   "en": "Parts joined one after another in a single loop",
+   "hi": "सब पुर्ज़े एक ही घेरे में, एक के बाद एक",
+   "hinglish": "Sab parts ek hi ghere mein, ek ke baad ek"
+  },
+  {
+   "term": "Short circuit",
+   "en": "A path with no bulb or device, so too much current flows and things heat up",
+   "hi": "बिना बल्ब के सीधा रास्ता — बहुत गर्म",
+   "hinglish": "Bina bulb ke seedha raasta — bahut garam"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.electricity.05.s1",
+   "caption": {
+    "en": "Two bulbs, one cell: both are dim.",
+    "hi": "दो बल्ब, एक सेल: दोनों धीमे।",
+    "hinglish": "Do bulb, ek cell: dono dheeme."
+   },
+   "narration": {
+    "en": "In one loop, two bulbs share one cell's push, so each glows more dimly.",
+    "hinglish": "Ek ghere mein do bulb ek cell ka dhakka baant-te hain, isliye har ek dheema jalta hai.",
+    "hi": "एक घेरे में दो बल्ब एक सेल का धक्का बाँटते हैं, इसलिए हर एक धीमा जलता है।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.electricity.05.s2",
+   "caption": {
+    "en": "Add a second cell: both shine brightly.",
+    "hi": "दूसरा सेल जोड़ो: दोनों तेज़ चमकते हैं।",
+    "hinglish": "Doosra cell jodo: dono tez chamakte hain."
+   },
+   "narration": {
+    "en": "Two 1.5 V cells in a row give a 3 V push — enough for two bulbs to shine brightly.",
+    "hinglish": "Line mein do 1.5 V cells 3 V ka dhakka dete hain — do bulbs ko tez chamkaane ke liye kaafi.",
+    "hi": "एक कतार में दो 1.5 V सेल 3 V का धक्का देते हैं — दो बल्बों को तेज़ चमकाने के लिए काफ़ी।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.electricity.05.s3",
+   "caption": {
+    "en": "No bulb, just wire: short circuit! Hot!",
+    "hi": "बल्ब नहीं, बस तार: शॉर्ट सर्किट! गर्म!",
+    "hinglish": "Bulb nahin, bas taar: short circuit! Garam!"
+   },
+   "narration": {
+    "en": "Joining a cell's ends with only a wire lets a huge current rush round. The cell and wire get hot. At home, a short circuit can start a fire — that is why we have fuses and MCBs.",
+    "hinglish": "Cell ke dono sire sirf taar se jodne par bahut bada current daudta hai. Cell aur taar garam ho jaate hain. Ghar mein short circuit se aag lag sakti hai — isiliye fuse aur MCB hote hain.",
+    "hi": "सेल के दोनों सिरे सिर्फ़ तार से जोड़ने पर बहुत बड़ा करंट दौड़ता है। सेल और तार गर्म हो जाते हैं। घर में शॉर्ट सर्किट से आग लग सकती है — इसीलिए फ़्यूज़ और MCB होते हैं।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "circuit-builder",
+  "config": {
+   "mode": "bright"
+  },
+  "goal": {
+   "en": "Build one loop where 2 bulbs both shine brightly. Watch out for short circuits!",
+   "hi": "एक घेरा बनाओ जिसमें 2 बल्ब दोनों तेज़ चमकें। शॉर्ट सर्किट से बचो!",
+   "hinglish": "Ek ghera banao jismein 2 bulb dono tez chamkein. Short circuit se bacho!"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Push and share",
+    "hi": "धक्का और बँटवारा",
+    "hinglish": "Dhakka aur bantwaara"
+   },
+   "body": {
+    "en": "Cells push; bulbs use up the push to make light. In a single loop (a series circuit): more cells = more push = brighter; more bulbs = push shared = dimmer. If one bulb in a series loop breaks, the loop opens and all go dark.",
+    "hi": "सेल धकेलते हैं; बल्ब उस धक्के से रोशनी बनाते हैं। एक घेरे (श्रेणी सर्किट) में: ज़्यादा सेल = ज़्यादा धक्का = ज़्यादा चमक; ज़्यादा बल्ब = धक्का बँटा = धीमी चमक। श्रेणी में एक बल्ब टूटे तो घेरा खुल जाता है और सब बुझ जाते हैं।",
+    "hinglish": "Cells dhakelte hain; bulbs us dhakke se roshni banaate hain. Ek ghere (series circuit) mein: zyada cells = zyada dhakka = zyada chamak; zyada bulbs = dhakka bant gaya = dheemi chamak. Series mein ek bulb toote toh ghera khul jaata hai aur sab bujh jaate hain."
+   },
+   "analogy": {
+    "en": "Open more taps on one water pump and each flows slower; add a second pump and they all flow strongly.",
+    "hi": "एक पंप से ज़्यादा नल खोलो तो हर नल में पानी धीमा आता है; दूसरा पंप लगाओ तो सब तेज़।",
+    "hinglish": "Ek pump se zyada nal kholo toh har nal mein paani dheema aata hai; doosra pump lagao toh sab tez."
+   }
+  },
+  {
+   "heading": {
+    "en": "Fuses and MCBs keep homes safe",
+    "hi": "फ़्यूज़ और MCB घर सुरक्षित रखते हैं",
+    "hinglish": "Fuse aur MCB ghar safe rakhte hain"
+   },
+   "body": {
+    "en": "A fuse has a thin wire that melts if too much current flows, opening the circuit. An MCB (miniature circuit breaker) does the same job with a switch that trips off by itself. Only a grown-up or electrician should reset them.",
+    "hi": "फ़्यूज़ में पतला तार होता है जो ज़्यादा करंट बहने पर पिघलकर सर्किट खोल देता है। MCB (मिनिएचर सर्किट ब्रेकर) यही काम एक स्विच से करता है जो अपने आप गिर जाता है। इन्हें सिर्फ़ बड़े या इलेक्ट्रीशियन ही दोबारा चालू करें।",
+    "hinglish": "Fuse mein patla taar hota hai jo zyada current behne par pighal kar circuit khol deta hai. MCB (miniature circuit breaker) yahi kaam ek switch se karta hai jo apne aap gir jaata hai. Inhe sirf bade ya electrician hi dobara ON karein."
+   },
+   "realExample": {
+    "en": "Old festival \"serial\" lights were wired in series — one loose bulb could make the whole string go dark.",
+    "hi": "पुरानी त्योहार वाली \"सीरियल\" लाइटें श्रेणी में जुड़ी होती थीं — एक ढीला बल्ब पूरी लड़ी बुझा देता था।",
+    "hinglish": "Purani tyohaar wali \"serial\" lights series mein judi hoti thi — ek dheela bulb poori ladi bujha deta tha."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "With a grown-up, find your home's MCB box (don't touch the switches). Ask: when did it last trip, and why?",
+   "hi": "किसी बड़े के साथ घर का MCB बॉक्स ढूँढो (स्विच मत छुओ)। पूछो: यह आख़िरी बार कब गिरा, और क्यों?",
+   "hinglish": "Kisi bade ke saath ghar ka MCB box dhoondo (switches mat chhuo). Poocho: yeh aakhri baar kab gira, aur kyun?"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "One cell, two bulbs in one loop. Compared with one bulb, each bulb is…",
+     "hi": "एक घेरे में एक सेल, दो बल्ब। एक बल्ब की तुलना में हर बल्ब…",
+     "hinglish": "Ek ghere mein ek cell, do bulb. Ek bulb ke mukaable har bulb…"
+    },
+    "options": [
+     {
+      "en": "dimmer",
+      "hi": "धीमा",
+      "hinglish": "dheema"
+     },
+     {
+      "en": "brighter",
+      "hi": "तेज़",
+      "hinglish": "tez"
+     },
+     {
+      "en": "the same",
+      "hi": "वैसा ही",
+      "hinglish": "waisa hi"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "The bulbs share the push.",
+     "hi": "बल्ब धक्का बाँटते हैं।",
+     "hinglish": "Bulbs dhakka baant-te hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "short",
+    "prompt": {
+     "en": "Two 1.5 V cells in a row give how many volts?",
+     "hi": "कतार में दो 1.5 V सेल कितने वोल्ट देते हैं?",
+     "hinglish": "Line mein do 1.5 V cells kitne volt dete hain?"
+    },
+    "answer": [
+     "3",
+     "3v",
+     "3 v",
+     "3 volts"
+    ],
+    "explain": {
+     "en": "1.5 + 1.5 = 3 V.",
+     "hi": "1.5 + 1.5 = 3 V।",
+     "hinglish": "1.5 + 1.5 = 3 V."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Joining a cell's two ends with only a wire is a…",
+     "hi": "सेल के दोनों सिरे सिर्फ़ तार से जोड़ना…",
+     "hinglish": "Cell ke dono sire sirf taar se jodna…"
+    },
+    "options": [
+     {
+      "en": "short circuit — dangerous, it gets hot",
+      "hi": "शॉर्ट सर्किट — ख़तरनाक, गर्म होता है",
+      "hinglish": "short circuit — khatarnaak, garam hota hai"
+     },
+     {
+      "en": "good way to save power",
+      "hi": "बिजली बचाने का अच्छा तरीका",
+      "hinglish": "bijli bachaane ka achha tarika"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Too much current flows with nothing to slow it.",
+     "hi": "रोकने को कुछ नहीं, तो बहुत ज़्यादा करंट बहता है।",
+     "hinglish": "Rokne ko kuch nahin, toh bahut zyada current behta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "What does an MCB do?",
+     "hi": "MCB क्या करता है?",
+     "hinglish": "MCB kya karta hai?"
+    },
+    "options": [
+     {
+      "en": "Switches off the power if too much current flows",
+      "hi": "ज़्यादा करंट पर बिजली बंद कर देता है",
+      "hinglish": "Zyada current par power band kar deta hai"
+     },
+     {
+      "en": "Makes the bulbs brighter",
+      "hi": "बल्ब तेज़ करता है",
+      "hinglish": "Bulbs tez karta hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "It protects wires from overheating and fires.",
+     "hi": "यह तारों को गर्म होने और आग से बचाता है।",
+     "hinglish": "Yeh taaron ko garam hone aur aag se bachaata hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Light 2 bulbs brightly in one loop.",
+     "hi": "एक घेरे में 2 बल्ब तेज़ जलाओ।",
+     "hinglish": "Ek ghere mein 2 bulb tez jalao."
+    },
+    "answer": {
+     "lab": "circuit-builder",
+     "mode": "bright",
+     "solved": true
+    },
+    "explain": {
+     "en": "Two bulbs need two cells. Fill every gap — no short circuits!",
+     "hi": "दो बल्बों को दो सेल चाहिए। हर जगह भरो — शॉर्ट सर्किट नहीं!",
+     "hinglish": "Do bulbs ko do cells chahiye. Har gap bharo — short circuit nahin!"
+    },
+    "difficulty": 3
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "NCERT Class 6 Science – Electricity and Circuits (fact reference)",
+   "url": "https://ncert.nic.in/textbook.php",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

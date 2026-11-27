@@ -1,0 +1,400 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.networking-engineering.05",
+ "level": 3,
+ "classes": [
+  10,
+  11,
+  12
+ ],
+ "unit": "networking-engineering",
+ "title": {
+  "en": "How routing works",
+  "hi": "रूटिंग कैसे काम करती है",
+  "hinglish": "Routing kaise kaam karti hai"
+ },
+ "minutes": 15,
+ "xp": 60,
+ "prereq": [
+  "L3.networking-engineering.02"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain how a router forwards a packet using its routing table and longest-prefix match",
+   "hi": "समझाओ राउटर अपनी रूटिंग तालिका और सबसे लंबे प्रीफ़िक्स मिलान से पैकेट कैसे आगे भेजता है",
+   "hinglish": "Samjhao router apni routing table aur longest-prefix match se packet kaise aage bhejta hai"
+  },
+  {
+   "en": "Use TTL and traceroute to see the path a packet takes",
+   "hi": "TTL और traceroute से पैकेट का रास्ता देखो",
+   "hinglish": "TTL aur traceroute se packet ka raasta dekho"
+  },
+  {
+   "en": "Describe how BGP connects networks and why route hijacks are dangerous",
+   "hi": "बताओ बीजीपी नेटवर्कों को कैसे जोड़ता है और रूट हाईजैक ख़तरनाक क्यों हैं",
+   "hinglish": "Batao BGP networks ko kaise jodta hai aur route hijacks khatarnaak kyun hain"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Router",
+   "hinglish": "Network ke beech packet aage bhejne wala",
+   "en": "Device that forwards packets between networks",
+   "hi": "नेटवर्कों के बीच पैकेट आगे भेजने वाला उपकरण"
+  },
+  {
+   "term": "Switch",
+   "hinglish": "Ek hi network ke andar frames bhejne wala",
+   "en": "Device that forwards frames inside one local network using MAC addresses",
+   "hi": "एक ही स्थानीय नेटवर्क में MAC पतों से फ़्रेम भेजने वाला उपकरण"
+  },
+  {
+   "term": "Routing table",
+   "hinglish": "Router ki raaston ki list",
+   "en": "List of destination prefixes and the next hop for each",
+   "hi": "गंतव्य प्रीफ़िक्स और हर एक के अगले पड़ाव की सूची"
+  },
+  {
+   "term": "Autonomous System (AS)",
+   "hinglish": "Ek company ka poora network",
+   "en": "A network under one operator with its own routing policy and AS number",
+   "hi": "एक संचालक का नेटवर्क, अपनी रूटिंग नीति और AS संख्या के साथ"
+  },
+  {
+   "term": "BGP",
+   "hinglish": "Networks ke beech raaste batane ka protocol",
+   "en": "Border Gateway Protocol: how autonomous systems exchange routes",
+   "hi": "बॉर्डर गेटवे प्रोटोकॉल: स्वायत्त प्रणालियाँ रास्ते कैसे साझा करती हैं"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "A packet to 142.250.x.x leaves your phone. Your home router does not know the whole internet — it just knows \"everything else goes to my ISP\".",
+    "hi": "142.250.x.x को जाता पैकेट फ़ोन छोड़ता है। घर का राउटर पूरा इंटरनेट नहीं जानता — वह बस जानता है \"बाक़ी सब मेरे ISP को\"।",
+    "hinglish": "142.250.x.x ko jaata packet phone chhodta hai. Ghar ka router poora internet nahi jaanta — woh bas jaanta hai \"baaki sab mere ISP ko\"."
+   },
+   "visual": "anim:default-route",
+   "narration": {
+    "en": "A packet to 142.250.x.x leaves your phone. Your home router does not know the whole internet — it just knows \"everything else goes to my ISP\".",
+    "hi": "142.250.x.x को जाता पैकेट फ़ोन छोड़ता है। घर का राउटर पूरा इंटरनेट नहीं जानता — वह बस जानता है \"बाक़ी सब मेरे ISP को\"।",
+    "hinglish": "142.250.x.x ko jaata packet phone chhodta hai. Ghar ka router poora internet nahi jaanta — woh bas jaanta hai \"baaki sab mere ISP ko\"."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Each router looks up the destination in its table and picks the most specific matching prefix, then passes the packet to that next hop.",
+    "hi": "हर राउटर तालिका में गंतव्य देखता है, सबसे विशिष्ट मिलता प्रीफ़िक्स चुनता है, फिर पैकेट उस अगले पड़ाव को देता है।",
+    "hinglish": "Har router table mein destination dekhta hai, sabse specific matching prefix chunta hai, phir packet us next hop ko deta hai."
+   },
+   "visual": "anim:lpm-table",
+   "narration": {
+    "en": "Each router looks up the destination in its table and picks the most specific matching prefix, then passes the packet to that next hop.",
+    "hi": "हर राउटर तालिका में गंतव्य देखता है, सबसे विशिष्ट मिलता प्रीफ़िक्स चुनता है, फिर पैकेट उस अगले पड़ाव को देता है।",
+    "hinglish": "Har router table mein destination dekhta hai, sabse specific matching prefix chunta hai, phir packet us next hop ko deta hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Every hop subtracts 1 from TTL. At 0 the packet is dropped and an error comes back — that stops loops and lets traceroute map the path.",
+    "hi": "हर पड़ाव TTL से 1 घटाता है। 0 होने पर पैकेट गिरा दिया जाता है और त्रुटि लौटती है — इससे चक्कर रुकते हैं और traceroute रास्ता नापता है।",
+    "hinglish": "Har hop TTL se 1 ghatata hai. 0 hone par packet gira diya jaata hai aur error lautta hai — isse loops rukte hain aur traceroute raasta naapta hai."
+   },
+   "visual": "anim:ttl-countdown",
+   "narration": {
+    "en": "Every hop subtracts 1 from TTL. At 0 the packet is dropped and an error comes back — that stops loops and lets traceroute map the path.",
+    "hi": "हर पड़ाव TTL से 1 घटाता है। 0 होने पर पैकेट गिरा दिया जाता है और त्रुटि लौटती है — इससे चक्कर रुकते हैं और traceroute रास्ता नापता है।",
+    "hinglish": "Har hop TTL se 1 ghatata hai. 0 hone par packet gira diya jaata hai aur error lautta hai — isse loops rukte hain aur traceroute raasta naapta hai."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Between companies, BGP carries routes: Jio, Airtel, BSNL, Google and about 75,000+ other autonomous systems announce which addresses they can reach.",
+    "hi": "कंपनियों के बीच बीजीपी रास्ते ले जाता है: जियो, एयरटेल, बीएसएनएल, गूगल और लगभग 75,000+ अन्य स्वायत्त प्रणालियाँ बताती हैं वे कौन-से पते तक पहुँच सकती हैं।",
+    "hinglish": "Companies ke beech BGP routes le jaata hai: Jio, Airtel, BSNL, Google aur lagbhag 75,000+ aur autonomous systems announce karte hain woh kaunse addresses tak pahunch sakte hain."
+   },
+   "visual": "anim:bgp-map",
+   "narration": {
+    "en": "Between companies, BGP carries routes: Jio, Airtel, BSNL, Google and about 75,000+ other autonomous systems announce which addresses they can reach.",
+    "hi": "कंपनियों के बीच बीजीपी रास्ते ले जाता है: जियो, एयरटेल, बीएसएनएल, गूगल और लगभग 75,000+ अन्य स्वायत्त प्रणालियाँ बताती हैं वे कौन-से पते तक पहुँच सकती हैं।",
+    "hinglish": "Companies ke beech BGP routes le jaata hai: Jio, Airtel, BSNL, Google aur lagbhag 75,000+ aur autonomous systems announce karte hain woh kaunse addresses tak pahunch sakte hain."
+   }
+  }
+ ],
+ "play": {
+  "lab": "seq-flow",
+  "config": {
+   "scenario": "routing-ttl"
+  },
+  "goal": {
+   "en": "Follow a packet hop by hop. Watch TTL count down at every router and see what the last router sends back.",
+   "hi": "पैकेट को पड़ाव-दर-पड़ाव देखो। हर राउटर पर TTL घटते देखो और आख़िरी राउटर क्या लौटाता है, देखो।",
+   "hinglish": "Packet ko hop by hop follow karo. Har router par TTL ghatte dekho aur aakhri router kya wapas bhejta hai, dekho."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Longest-prefix match",
+    "hi": "सबसे लंबा प्रीफ़िक्स मिलान",
+    "hinglish": "Longest-prefix match"
+   },
+   "body": {
+    "en": "A table might hold 0.0.0.0/0 → ISP, 10.0.0.0/8 → office VPN and 10.20.5.0/24 → lab switch. A packet to 10.20.5.9 matches all three; the router picks /24 because it is the most specific. Hardware in big routers does this lookup for millions of packets per second using special memory (TCAM).",
+    "hi": "तालिका में हो सकता है 0.0.0.0/0 → ISP, 10.0.0.0/8 → दफ़्तर VPN और 10.20.5.0/24 → लैब स्विच। 10.20.5.9 को जाता पैकेट तीनों से मिलता है; राउटर /24 चुनता है क्योंकि वह सबसे विशिष्ट है। बड़े राउटरों का हार्डवेयर ख़ास मेमोरी (TCAM) से हर सेकंड लाखों पैकेटों के लिए यह खोज करता है।",
+    "hinglish": "Table mein ho sakta hai 0.0.0.0/0 → ISP, 10.0.0.0/8 → office VPN aur 10.20.5.0/24 → lab switch. 10.20.5.9 ko jaata packet teeno se milta hai; router /24 chunta hai kyunki woh sabse specific hai. Bade routers ka hardware khaas memory (TCAM) se har second laakhon packets ke liye yeh lookup karta hai."
+   },
+   "analogy": {
+    "en": "A letter to \"Room 12, Block B, DPS, Pune\" goes to the most detailed address you know, not just \"Pune\".",
+    "hi": "\"कमरा 12, ब्लॉक B, डीपीएस, पुणे\" वाला पत्र सबसे विस्तृत पते पर जाता है जो आप जानते हो, सिर्फ़ \"पुणे\" नहीं।",
+    "hinglish": "\"Room 12, Block B, DPS, Pune\" wala letter sabse detailed address par jaata hai jo tum jaante ho, sirf \"Pune\" nahi."
+   },
+   "realExample": {
+    "en": "\"ip route\" on Linux or \"route print\" on Windows shows your computer's own little routing table, with a default route to the Wi-Fi router.",
+    "hi": "लिनक्स पर \"ip route\" या विंडोज़ पर \"route print\" आपके कंप्यूटर की छोटी रूटिंग तालिका दिखाता है, वाई-फ़ाई राउटर की ओर डिफ़ॉल्ट रास्ते के साथ।",
+    "hinglish": "Linux par \"ip route\" ya Windows par \"route print\" tumhare computer ki chhoti routing table dikhata hai, Wi-Fi router ki taraf default route ke saath."
+   }
+  },
+  {
+   "heading": {
+    "en": "Inside a network vs between networks",
+    "hi": "नेटवर्क के अंदर बनाम नेटवर्कों के बीच",
+    "hinglish": "Network ke andar vs networks ke beech"
+   },
+   "body": {
+    "en": "Inside one organisation, routers use an interior protocol such as OSPF, which finds the shortest paths using Dijkstra's algorithm. Between organisations, BGP is about policy and business: an ISP may prefer a cheaper or a paid route rather than the shortest. Networks meet at Internet Exchange Points (NIXI runs IXPs in many Indian cities) so local traffic stays in India instead of looping abroad.",
+    "hi": "एक संगठन के अंदर राउटर OSPF जैसा आंतरिक प्रोटोकॉल इस्तेमाल करते हैं, जो डाइक्स्ट्रा एल्गोरिद्म से सबसे छोटे रास्ते ढूँढता है। संगठनों के बीच बीजीपी नीति और व्यापार पर चलता है: ISP सबसे छोटे के बजाय सस्ता या भुगतान वाला रास्ता पसंद कर सकता है। नेटवर्क इंटरनेट एक्सचेंज पॉइंट पर मिलते हैं (NIXI कई भारतीय शहरों में IXP चलाता है) ताकि स्थानीय ट्रैफ़िक विदेश घूमने के बजाय भारत में रहे।",
+    "hinglish": "Ek organisation ke andar routers OSPF jaisa interior protocol use karte hain, jo Dijkstra algorithm se shortest paths dhoondhta hai. Organisations ke beech BGP policy aur business par chalta hai: ISP shortest ke bajaye sasta ya paid route pasand kar sakta hai. Networks Internet Exchange Points par milte hain (NIXI kai Indian cities mein IXPs chalata hai) taaki local traffic videsh ghoomne ke bajaye India mein rahe."
+   },
+   "analogy": {
+    "en": "OSPF is the school timetable office finding the fastest corridor; BGP is states agreeing which highways goods may use.",
+    "hi": "OSPF स्कूल का टाइमटेबल दफ़्तर है जो सबसे तेज़ गलियारा ढूँढता है; बीजीपी राज्यों का समझौता है कि माल किन राजमार्गों से जाए।",
+    "hinglish": "OSPF school ka timetable office hai jo sabse tez corridor dhoondhta hai; BGP states ka samjhauta hai ki maal kin highways se jaaye."
+   },
+   "realExample": {
+    "en": "Undersea cables land in Mumbai and Chennai and carry most of India's international traffic; BGP decides which cable a packet to Europe takes.",
+    "hi": "समुद्र के नीचे की केबलें मुंबई और चेन्नई में उतरती हैं और भारत का ज़्यादातर अंतरराष्ट्रीय ट्रैफ़िक ले जाती हैं; यूरोप जाते पैकेट की केबल बीजीपी तय करता है।",
+    "hinglish": "Undersea cables Mumbai aur Chennai mein utarti hain aur India ka zyaadatar international traffic le jaati hain; Europe jaate packet ki cable BGP decide karta hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "When routing goes wrong (and the defence)",
+    "hi": "जब रूटिंग गड़बड़ाए (और बचाव)",
+    "hinglish": "Jab routing gadbadaye (aur bachaav)"
+   },
+   "body": {
+    "en": "BGP was built on trust. In February 2008 Pakistan Telecom announced a more specific route for YouTube's addresses to block it locally; the route leaked worldwide and YouTube was unreachable for much of the internet for about two hours, because longest-prefix match preferred the false route. The defence is RPKI: cryptographically signed records of which AS may announce which prefix, so routers can reject invalid routes.",
+    "hi": "बीजीपी भरोसे पर बना था। फ़रवरी 2008 में पाकिस्तान टेलीकॉम ने यूट्यूब को स्थानीय रूप से रोकने के लिए उसके पतों का ज़्यादा विशिष्ट रास्ता घोषित किया; वह रास्ता दुनिया भर फैल गया और लगभग दो घंटे इंटरनेट के बड़े हिस्से से यूट्यूब नहीं खुला, क्योंकि सबसे लंबे प्रीफ़िक्स मिलान ने ग़लत रास्ता चुना। बचाव है RPKI: क्रिप्टोग्राफ़िक रूप से हस्ताक्षरित रिकॉर्ड कि कौन-सा AS कौन-सा प्रीफ़िक्स घोषित कर सकता है, ताकि राउटर अमान्य रास्ते ठुकरा सकें।",
+    "hinglish": "BGP bharose par bana tha. February 2008 mein Pakistan Telecom ne YouTube ko locally block karne ke liye uske addresses ka zyaada specific route announce kiya; woh route duniya bhar phail gaya aur lagbhag do ghante internet ke bade hisse se YouTube nahi khula, kyunki longest-prefix match ne galat route chuna. Bachaav hai RPKI: cryptographically signed records ki kaunsa AS kaunsa prefix announce kar sakta hai, taaki routers invalid routes reject kar sakein."
+   },
+   "analogy": {
+    "en": "Like someone putting up a fake \"diversion\" board on a highway; RPKI is the official stamp that proves a sign is genuine.",
+    "hi": "जैसे कोई राजमार्ग पर नक़ली \"डायवर्ज़न\" बोर्ड लगा दे; RPKI वह सरकारी मुहर है जो साबित करती है बोर्ड असली है।",
+    "hinglish": "Jaise koi highway par nakli \"diversion\" board laga de; RPKI woh sarkari mohar hai jo saabit karti hai board asli hai."
+   },
+   "realExample": {
+    "en": "Large networks, including major Indian ISPs, publish RPKI records; you can check a prefix's status on public RPKI validators.",
+    "hi": "बड़े भारतीय ISP समेत कई बड़े नेटवर्क RPKI रिकॉर्ड प्रकाशित करते हैं; सार्वजनिक RPKI जाँचकर्ताओं पर किसी प्रीफ़िक्स की स्थिति देखी जा सकती है।",
+    "hinglish": "Bade Indian ISPs samet kai bade networks RPKI records publish karte hain; public RPKI validators par kisi prefix ka status dekha ja sakta hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Run \"tracert\" (Windows) or \"traceroute\" (Linux/macOS) to an Indian site and to a foreign site. Count the hops and note where the delay jumps — that is often an undersea cable.",
+   "hi": "किसी भारतीय साइट और किसी विदेशी साइट पर \"tracert\" (विंडोज़) या \"traceroute\" (लिनक्स/मैकओएस) चलाओ। पड़ाव गिनो और देखो देरी कहाँ उछलती है — अक्सर वह समुद्री केबल होती है।",
+   "hinglish": "Kisi Indian site aur kisi foreign site par \"tracert\" (Windows) ya \"traceroute\" (Linux/macOS) chalao. Hops gino aur dekho delay kahan uchhalta hai — aksar woh undersea cable hoti hai."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "A table has 0.0.0.0/0, 10.0.0.0/8 and 10.20.5.0/24. Which route is used for 10.20.5.9?",
+     "hi": "तालिका में 0.0.0.0/0, 10.0.0.0/8 और 10.20.5.0/24 हैं। 10.20.5.9 के लिए कौन-सा रास्ता?",
+     "hinglish": "Table mein 0.0.0.0/0, 10.0.0.0/8 aur 10.20.5.0/24 hain. 10.20.5.9 ke liye kaunsa route?"
+    },
+    "options": [
+     "0.0.0.0/0",
+     "10.0.0.0/8",
+     "10.20.5.0/24",
+     {
+      "en": "All three equally",
+      "hi": "तीनों बराबर",
+      "hinglish": "Teeno barabar"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "Longest (most specific) prefix wins: /24.",
+     "hi": "सबसे लंबा (विशिष्ट) प्रीफ़िक्स जीतता है: /24।",
+     "hinglish": "Sabse lamba (specific) prefix jeet-ta hai: /24."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "A packet starts with TTL 64 and crosses 9 routers. What is its TTL on arrival?",
+     "hi": "पैकेट TTL 64 से शुरू होकर 9 राउटर पार करता है। पहुँचने पर TTL कितना?",
+     "hinglish": "Packet TTL 64 se shuru hokar 9 routers paar karta hai. Pahunchne par TTL kitna?"
+    },
+    "options": [
+     "64",
+     "63",
+     "55",
+     "9"
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "Each router subtracts 1: 64 − 9 = 55.",
+     "hi": "हर राउटर 1 घटाता है: 64 − 9 = 55।",
+     "hinglish": "Har router 1 ghatata hai: 64 − 9 = 55."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "match",
+    "prompt": {
+     "en": "Match the device or protocol to its job.",
+     "hi": "उपकरण या प्रोटोकॉल को उसके काम से मिलाओ।",
+     "hinglish": "Device ya protocol ko uske kaam se milao."
+    },
+    "options": [
+     {
+      "en": "Switch",
+      "hi": "स्विच",
+      "hinglish": "Switch"
+     },
+     {
+      "en": "Router",
+      "hi": "राउटर",
+      "hinglish": "Router"
+     },
+     {
+      "en": "OSPF",
+      "hi": "OSPF",
+      "hinglish": "OSPF"
+     },
+     {
+      "en": "BGP",
+      "hi": "बीजीपी",
+      "hinglish": "BGP"
+     }
+    ],
+    "answer": [
+     {
+      "en": "Forwards frames by MAC inside a LAN",
+      "hi": "LAN के अंदर MAC से फ़्रेम भेजता है",
+      "hinglish": "LAN ke andar MAC se frames bhejta hai"
+     },
+     {
+      "en": "Forwards packets between networks by IP",
+      "hi": "आईपी से नेटवर्कों के बीच पैकेट भेजता है",
+      "hinglish": "IP se networks ke beech packets bhejta hai"
+     },
+     {
+      "en": "Shortest paths inside one organisation",
+      "hi": "एक संगठन के अंदर सबसे छोटे रास्ते",
+      "hinglish": "Ek organisation ke andar shortest paths"
+     },
+     {
+      "en": "Routes between autonomous systems",
+      "hi": "स्वायत्त प्रणालियों के बीच रास्ते",
+      "hinglish": "Autonomous systems ke beech routes"
+     }
+    ],
+    "explain": {
+     "en": "Switch = layer 2, router = layer 3, OSPF = interior routing, BGP = exterior routing.",
+     "hi": "स्विच = परत 2, राउटर = परत 3, OSPF = आंतरिक रूटिंग, बीजीपी = बाहरी रूटिंग।",
+     "hinglish": "Switch = layer 2, router = layer 3, OSPF = interior routing, BGP = exterior routing."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "What protects against a BGP route hijack like the 2008 YouTube incident?",
+     "hi": "2008 यूट्यूब घटना जैसे बीजीपी रूट हाईजैक से क्या बचाता है?",
+     "hinglish": "2008 YouTube incident jaise BGP route hijack se kya bachata hai?"
+    },
+    "options": [
+     {
+      "en": "A longer TTL",
+      "hi": "लंबा TTL",
+      "hinglish": "Lamba TTL"
+     },
+     {
+      "en": "RPKI route origin validation",
+      "hi": "RPKI रूट मूल सत्यापन",
+      "hinglish": "RPKI route origin validation"
+     },
+     {
+      "en": "Using UDP",
+      "hi": "यूडीपी इस्तेमाल करना",
+      "hinglish": "UDP use karna"
+     },
+     {
+      "en": "A faster router",
+      "hi": "तेज़ राउटर",
+      "hinglish": "Tez router"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "RPKI lets routers reject announcements from an AS not authorised for that prefix.",
+     "hi": "RPKI से राउटर उस प्रीफ़िक्स के लिए अनधिकृत AS की घोषणाएँ ठुकरा सकते हैं।",
+     "hinglish": "RPKI se routers us prefix ke liye unauthorised AS ki announcements reject kar sakte hain."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Finish the routing and TTL scenario.",
+     "hi": "रूटिंग और TTL परिदृश्य पूरा करो।",
+     "hinglish": "Routing aur TTL scenario poora karo."
+    },
+    "answer": {
+     "event": "scenario-complete",
+     "scenario": "routing-ttl"
+    },
+    "explain": {
+     "en": "You watched TTL fall at every hop.",
+     "hi": "आपने हर पड़ाव पर TTL घटते देखा।",
+     "hinglish": "Tumne har hop par TTL ghatte dekha."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "net.routers-switches"
+ ],
+ "sources": [
+  {
+   "title": "RFC 4271 — BGP-4",
+   "url": "https://www.rfc-editor.org/rfc/rfc4271",
+   "licence": "fact reference"
+  },
+  {
+   "title": "RIPE NCC — YouTube hijacking: a RIPE NCC RIS case study (2008)",
+   "url": "https://www.ripe.net/publications/news/industry-developments/youtube-hijacking-a-ripe-ncc-ris-case-study",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NIXI — National Internet Exchange of India",
+   "url": "https://nixi.in/",
+   "licence": "fact reference"
+  }
+ ]
+}

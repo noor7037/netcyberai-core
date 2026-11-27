@@ -1,0 +1,366 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.ai-ml-intuition.06",
+ "level": 2,
+ "classes": [
+  6,
+  7,
+  8
+ ],
+ "unit": "ai-ml-intuition",
+ "title": {
+  "en": "How computers see",
+  "hi": "कंप्यूटर कैसे देखते हैं",
+  "hinglish": "Computers kaise dekhte hain"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [
+  "L2.ai-ml-intuition.05"
+ ],
+ "topics": [
+  "ai.vision",
+  "ai.neural-nets"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain that an image is a grid of pixel numbers",
+   "hi": "समझा सकते हो कि चित्र पिक्सेल संख्याओं का जाल है",
+   "hinglish": "Samjha sakte ho ki image pixel numbers ka grid hai"
+  },
+  {
+   "en": "Describe how vision AI builds up from edges to shapes to objects",
+   "hi": "समझा सकते हो कि विज़न AI किनारों से आकृतियों से वस्तुओं तक कैसे बनाता है",
+   "hinglish": "Samjha sakte ho vision AI edges se shapes se objects tak kaise banata hai"
+  },
+  {
+   "en": "Name everyday uses and limits of computer vision",
+   "hi": "कंप्यूटर विज़न के रोज़ के उपयोग और सीमाएँ बता सकते हो",
+   "hinglish": "Computer vision ke rozana uses aur limits bata sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Pixel",
+   "hinglish": "Tasveer ka sabse chhota bindu",
+   "en": "The smallest dot of an image, stored as numbers",
+   "hi": "चित्र का सबसे छोटा बिंदु, संख्याओं के रूप में सहेजा"
+  },
+  {
+   "term": "RGB",
+   "hinglish": "Red, Green, Blue",
+   "en": "Each colour pixel stores red, green and blue amounts from 0 to 255",
+   "hi": "हर रंगीन पिक्सेल लाल, हरा और नीला 0 से 255 तक रखता है"
+  },
+  {
+   "term": "Computer vision",
+   "hinglish": "Computer ka dekhna",
+   "en": "AI that finds meaning in images and video",
+   "hi": "AI जो चित्रों और वीडियो में अर्थ खोजता है"
+  },
+  {
+   "term": "Neural network",
+   "hinglish": "Neurons jaisi layers",
+   "en": "Layers of simple maths units that learn patterns from examples",
+   "hi": "सरल गणितीय इकाइयों की परतें जो उदाहरणों से पैटर्न सीखती हैं"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "To a computer, a photo is just a grid of numbers. Black = 0, white = 255; colour pixels have three numbers (R, G, B).",
+    "hi": "कंप्यूटर के लिए फ़ोटो बस संख्याओं का जाल है। काला = 0, सफ़ेद = 255; रंगीन पिक्सेल में तीन संख्याएँ (R, G, B) होती हैं।",
+    "hinglish": "Computer ke liye photo bas numbers ka grid hai. Kaala = 0, safed = 255; colour pixels mein teen numbers (R, G, B) hote hain."
+   },
+   "visual": "lab:bit-lab#pixel",
+   "narration": {
+    "en": "Draw a picture with pixels in the lab and see the numbers behind it.",
+    "hi": "लैब में पिक्सेल से चित्र बनाओ और उसके पीछे की संख्याएँ देखो।",
+    "hinglish": "Lab mein pixels se tasveer banao aur uske peeche ke numbers dekho."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "A vision AI (a neural network) learns in layers: first edges, then shapes like circles and corners, then whole objects like faces or cats.",
+    "hi": "विज़न AI (न्यूरल नेटवर्क) परतों में सीखता है: पहले किनारे, फिर गोले और कोने जैसी आकृतियाँ, फिर चेहरे या बिल्ली जैसी पूरी वस्तुएँ।",
+    "hinglish": "Vision AI (neural network) layers mein seekhta hai: pehle edges, phir circle aur corners jaisi shapes, phir chehre ya billi jaise poore objects."
+   },
+   "visual": "compare:1️⃣ edges ╱╲|2️⃣ shapes ◯ ◣|3️⃣ objects 🐱 😀",
+   "narration": {
+    "en": "Nobody programs “what an ear looks like”; it is learned from labelled photos.",
+    "hi": "कोई “कान कैसा दिखता है” प्रोग्राम नहीं करता; लेबल वाली फ़ोटो से सीखा जाता है।",
+    "hinglish": "Koi “kaan kaisa dikhta hai” program nahi karta; labelled photos se seekha jaata hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Vision AI can be fooled: odd lighting, angles or a few changed pixels can make it wrong while a person sees no difference.",
+    "hi": "विज़न AI को धोखा दिया जा सकता है: अजीब रोशनी, कोण या कुछ बदले पिक्सेल उसे ग़लत कर सकते हैं जबकि इंसान को कोई अंतर न दिखे।",
+    "hinglish": "Vision AI ko dhokha diya ja sakta hai: ajeeb roshni, angles ya kuch badle pixels use galat kar sakte hain jabki insaan ko koi farak na dikhe."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "That is why important decisions should not rest on vision AI alone.",
+    "hi": "इसीलिए महत्वपूर्ण निर्णय केवल विज़न AI पर नहीं छोड़ने चाहिए।",
+    "hinglish": "Isiliye important decisions sirf vision AI pe nahi chhodne chahiye."
+   },
+   "code": "a 3×3 grey image:\n  0   0   0\n255 255 255   ← an edge between dark and bright\n255 255 255"
+  }
+ ],
+ "play": {
+  "lab": "bit-lab",
+  "config": {
+   "tab": "pixel"
+  },
+  "goal": {
+   "en": "Draw the target picture on the pixel grid and see each pixel as a number.",
+   "hi": "पिक्सेल जाल पर लक्ष्य चित्र बनाओ और हर पिक्सेल को संख्या के रूप में देखो।",
+   "hinglish": "Pixel grid pe target tasveer banao aur har pixel ko number ki tarah dekho."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "From pixels to “that is a cat”",
+    "hi": "पिक्सेल से “यह बिल्ली है” तक",
+    "hinglish": "Pixels se “yeh billi hai” tak"
+   },
+   "body": {
+    "en": "A 12-megapixel phone photo has about 12 million pixels, each with three numbers — about 36 million numbers. Early programs tried hand-written rules (“look for two triangles for ears”), which failed on real photos. Modern computer vision uses convolutional neural networks (CNNs): small filters slide across the image and respond to patterns such as edges; deeper layers combine them into textures, parts and objects. In 2012 a CNN called AlexNet won the ImageNet challenge by a large margin, sparking the deep-learning boom; ImageNet had more than a million photos labelled by people into 1,000 categories. Today vision AI unlocks phones with your face, reads number plates at toll plazas, lets Digi Yatra passengers board at Indian airports with a face scan, helps doctors screen eye scans for diabetic retinopathy, and helps farmers spot crop disease. Limits: it only knows what it was trained on, it can be fooled by unusual images, and face recognition raises privacy questions — so consent and human checks matter.",
+    "hi": "12-मेगापिक्सेल फ़ोन फ़ोटो में लगभग 1.2 करोड़ पिक्सेल होते हैं, हर एक में तीन संख्याएँ — लगभग 3.6 करोड़ संख्याएँ। शुरुआती प्रोग्रामों ने हाथ से लिखे नियम आज़माए (“कानों के लिए दो त्रिभुज ढूँढो”), जो असली फ़ोटो पर विफल रहे। आधुनिक कंप्यूटर विज़न कनवल्यूशनल न्यूरल नेटवर्क (CNN) उपयोग करता है: छोटे फ़िल्टर चित्र पर खिसकते हैं और किनारों जैसे पैटर्न पर प्रतिक्रिया देते हैं; गहरी परतें उन्हें बनावट, भागों और वस्तुओं में जोड़ती हैं। 2012 में AlexNet नाम के CNN ने ImageNet चुनौती बड़े अंतर से जीती, जिससे डीप-लर्निंग की लहर शुरू हुई; ImageNet में लोगों द्वारा 1,000 श्रेणियों में लेबल की गई दस लाख से ज़्यादा फ़ोटो थीं। आज विज़न AI आपके चेहरे से फ़ोन खोलता है, टोल प्लाज़ा पर नंबर प्लेट पढ़ता है, डिजी यात्रा से भारतीय हवाई अड्डों पर चेहरा स्कैन कर यात्रियों को चढ़ने देता है, डॉक्टरों को मधुमेह रेटिनोपैथी के लिए आँख के स्कैन जाँचने में मदद करता है, और किसानों को फ़सल रोग पहचानने में मदद करता है। सीमाएँ: वह केवल वही जानता है जिस पर प्रशिक्षित हुआ, असामान्य चित्रों से धोखा खा सकता है, और चेहरा पहचान निजता के प्रश्न उठाती है — इसलिए सहमति और मानवीय जाँच ज़रूरी हैं।",
+    "hinglish": "12-megapixel phone photo mein lagbhag 1.2 crore pixels hote hain, har ek mein teen numbers — lagbhag 3.6 crore numbers. Shuruaati programs ne haath se likhe rules try kiye (“kaanon ke liye do triangle dhoondo”), jo real photos pe fail hue. Modern computer vision convolutional neural networks (CNNs) use karta hai: chhote filters image pe khiskte hain aur edges jaise patterns pe react karte hain; gehri layers unhe textures, parts aur objects mein jodti hain. 2012 mein AlexNet naam ke CNN ne ImageNet challenge bade margin se jeeta, jisse deep-learning boom shuru hua; ImageNet mein logon dwara 1,000 categories mein label ki gayi das lakh se zyada photos thi. Aaj vision AI aapke chehre se phone kholta hai, toll plazas pe number plates padhta hai, Digi Yatra se Indian airports pe face scan karke passengers ko board karne deta hai, doctors ko diabetic retinopathy ke liye eye scans check karne mein madad karta hai, aur farmers ko crop disease pehchaanne mein madad karta hai. Limits: woh sirf wahi jaanta hai jis pe train hua, unusual images se dhokha kha sakta hai, aur face recognition privacy ke sawaal uthata hai — isliye consent aur human checks zaroori hain."
+   },
+   "analogy": {
+    "en": "A neural network = a factory assembly line: the first worker only spots lines, the next joins them into shapes, and the last says “this is a cat”.",
+    "hi": "न्यूरल नेटवर्क = फ़ैक्टरी की असेंबली लाइन: पहला कर्मचारी केवल रेखाएँ देखता है, अगला उन्हें आकृतियों में जोड़ता है, और आख़िरी कहता है “यह बिल्ली है”।",
+    "hinglish": "Neural network = factory ki assembly line: pehla worker sirf lines dekhta hai, doosra shapes jodta hai, aakhri bolta hai “yeh billi hai”."
+   },
+   "realExample": {
+    "en": "Digi Yatra, launched at Indian airports in December 2022, lets passengers who opt in walk through gates using a face scan instead of showing a boarding pass and ID.",
+    "hi": "डिजी यात्रा, दिसंबर 2022 में भारतीय हवाई अड्डों पर शुरू हुई, स्वेच्छा से जुड़ने वाले यात्रियों को बोर्डिंग पास और ID दिखाने की जगह चेहरा स्कैन से गेट पार करने देती है।",
+    "hinglish": "Digi Yatra, December 2022 mein Indian airports pe shuru hua, opt-in karne wale passengers ko boarding pass aur ID dikhane ki jagah face scan se gates paar karne deta hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Take one photo on a phone (with permission) and zoom in until you see the square pixels. Estimate how many pixels wide it is. What could a vision AI learn from this photo, and what might confuse it?",
+   "hi": "फ़ोन पर एक फ़ोटो लो (अनुमति से) और इतना ज़ूम करो कि चौकोर पिक्सेल दिखें। अंदाज़ा लगाओ कितने पिक्सेल चौड़ी है। विज़न AI इस फ़ोटो से क्या सीख सकता है, और उसे क्या उलझा सकता है?",
+   "hinglish": "Phone pe ek photo lo (permission ke saath) aur itna zoom karo ki square pixels dikhein. Andaaza lagao kitne pixels chaudi hai. Vision AI is photo se kya seekh sakta hai, aur use kya confuse kar sakta hai?"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "To a computer, a black-and-white photo is…",
+     "hi": "कंप्यूटर के लिए श्वेत-श्याम फ़ोटो है…",
+     "hinglish": "Computer ke liye black-and-white photo hai…"
+    },
+    "options": [
+     {
+      "en": "a grid of numbers",
+      "hi": "संख्याओं का जाल",
+      "hinglish": "numbers ka grid"
+     },
+     {
+      "en": "a list of words",
+      "hi": "शब्दों की सूची",
+      "hinglish": "words ki list"
+     },
+     {
+      "en": "a sound file",
+      "hi": "ध्वनि फ़ाइल",
+      "hinglish": "sound file"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "A grid of numbers, one per pixel (0 = black, 255 = white).",
+     "hi": "संख्याओं का जाल, हर पिक्सेल की एक (0 = काला, 255 = सफ़ेद)।",
+     "hinglish": "Numbers ka grid, har pixel ka ek (0 = kaala, 255 = safed)."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "order",
+    "prompt": {
+     "en": "Put what the layers of a vision network detect in order, first to last.",
+     "hi": "विज़न नेटवर्क की परतें क्या पहचानती हैं, पहले से आख़िर तक क्रम में लगाओ।",
+     "hinglish": "Vision network ki layers kya pehchaanti hain, pehle se aakhir tak order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Shapes and parts (eyes, wheels)",
+      "hi": "आकृतियाँ और भाग (आँखें, पहिए)",
+      "hinglish": "Shapes aur parts (aankhein, pahiye)"
+     },
+     {
+      "en": "Whole objects (face, bus)",
+      "hi": "पूरी वस्तुएँ (चेहरा, बस)",
+      "hinglish": "Poore objects (chehra, bus)"
+     },
+     {
+      "en": "Edges and lines",
+      "hi": "किनारे और रेखाएँ",
+      "hinglish": "Edges aur lines"
+     }
+    ],
+    "answer": [
+     2,
+     0,
+     1
+    ],
+    "explain": {
+     "en": "Edges first, then shapes and parts, then whole objects.",
+     "hi": "पहले किनारे, फिर आकृतियाँ और भाग, फिर पूरी वस्तुएँ।",
+     "hinglish": "Pehle edges, phir shapes aur parts, phir poore objects."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "short",
+    "prompt": {
+     "en": "A colour pixel stores three numbers. What do the letters RGB stand for? (write the three colours)",
+     "hi": "रंगीन पिक्सेल तीन संख्याएँ रखता है। RGB किसके लिए है? (तीनों रंग लिखो)",
+     "hinglish": "Colour pixel teen numbers rakhta hai. RGB kis ke liye hai? (teeno colours likho)"
+    },
+    "answer": [
+     "red green blue",
+     "Red Green Blue",
+     "red, green, blue",
+     "Red, Green, Blue",
+     "red green and blue"
+    ],
+    "explain": {
+     "en": "Red, Green, Blue — each from 0 to 255.",
+     "hi": "लाल, हरा, नीला — हर एक 0 से 255।",
+     "hinglish": "Red, Green, Blue — har ek 0 se 255."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are real uses of computer vision in India? Choose all.",
+     "hi": "भारत में कंप्यूटर विज़न के कौन-से असली उपयोग हैं? सभी चुनो।",
+     "hinglish": "India mein computer vision ke kaunse real uses hain? Saare chuno."
+    },
+    "options": [
+     {
+      "en": "Digi Yatra face boarding",
+      "hi": "डिजी यात्रा चेहरे से बोर्डिंग",
+      "hinglish": "Digi Yatra face boarding"
+     },
+     {
+      "en": "Reading number plates at tolls",
+      "hi": "टोल पर नंबर प्लेट पढ़ना",
+      "hinglish": "Tolls pe number plates padhna"
+     },
+     {
+      "en": "Spotting crop disease from leaf photos",
+      "hi": "पत्ते की फ़ोटो से फ़सल रोग पहचानना",
+      "hinglish": "Patte ki photo se crop disease pehchaanna"
+     },
+     {
+      "en": "Sending an SMS",
+      "hi": "SMS भेजना",
+      "hinglish": "SMS bhejna"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2
+    ],
+    "explain": {
+     "en": "Face boarding, number-plate reading and crop-disease apps all use vision. Sending an SMS does not.",
+     "hi": "चेहरे से बोर्डिंग, नंबर प्लेट पढ़ना और फ़सल रोग ऐप सब विज़न उपयोग करते हैं। SMS भेजना नहीं।",
+     "hinglish": "Face boarding, number-plate reading aur crop-disease apps sab vision use karte hain. SMS bhejna nahi."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why should vision AI not make big decisions alone?",
+     "hi": "विज़न AI को अकेले बड़े निर्णय क्यों नहीं लेने चाहिए?",
+     "hinglish": "Vision AI ko akele bade decisions kyun nahi lene chahiye?"
+    },
+    "options": [
+     {
+      "en": "It is too slow",
+      "hi": "बहुत धीमा है",
+      "hinglish": "Bahut slow hai"
+     },
+     {
+      "en": "It can be fooled and can be biased",
+      "hi": "धोखा खा सकता है और पक्षपाती हो सकता है",
+      "hinglish": "Dhokha kha sakta hai aur biased ho sakta hai"
+     },
+     {
+      "en": "It cannot see colours",
+      "hi": "रंग नहीं देख सकता",
+      "hinglish": "Colours nahi dekh sakta"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "It can be fooled by unusual images and may be biased by its training data.",
+     "hi": "असामान्य चित्रों से धोखा खा सकता है और प्रशिक्षण डेटा से पक्षपाती हो सकता है।",
+     "hinglish": "Unusual images se dhokha kha sakta hai aur training data se biased ho sakta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the lab mission.",
+     "hi": "लैब मिशन पूरा करो।",
+     "hinglish": "Lab mission poora karo."
+    },
+    "answer": {
+     "lab": "bit-lab",
+     "event": "mission:complete",
+     "tab": "pixel"
+    },
+    "explain": {
+     "en": "Draw the target picture on the pixel grid.",
+     "hi": "पिक्सेल जाल पर लक्ष्य चित्र बनाओ।",
+     "hinglish": "Pixel grid pe target picture banao."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "ImageNet — about the dataset (Stanford Vision Lab)",
+   "url": "https://www.image-net.org/about.php",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Krizhevsky, Sutskever & Hinton — ImageNet Classification with Deep Convolutional Neural Networks (NeurIPS 2012)",
+   "url": "https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Digi Yatra Foundation",
+   "url": "https://www.digiyatrafoundation.com/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

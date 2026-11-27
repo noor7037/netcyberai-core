@@ -1,0 +1,262 @@
+<!doctype html><html lang="en" data-lab="control-lab"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#061233"><title>Circuits & Control Lab · NCA Tech Lab L3</title><style>:root{--bg:#061233;--bg2:#0b1b4a;--card:rgba(255,255,255,.06);--line:rgba(255,255,255,.12);--tx:#eef4ff;--mut:#9fb0d6;--grape:#8B3DFF;--cyan:#02CFF9;--leaf:#22C55E;--coral:#FF6B57;--gold:#F5B90A;--tang:#FF7A1A;--royal:#2563EB;--r:16px}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:radial-gradient(120% 80% at 10% -10%,#22145e 0%,transparent 55%),radial-gradient(120% 80% at 110% 10%,#04395e 0%,transparent 50%),var(--bg);color:var(--tx);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans Devanagari",sans-serif;min-height:100%}
+body{padding:0 0 24px}
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:8px;padding:10px 12px;background:rgba(6,18,51,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top h1{font-size:16px;margin:0;flex:1;letter-spacing:.2px}
+.top h1 small{display:block;font-size:11px;color:var(--mut);font-weight:500}
+.badge{font-size:11px;padding:3px 8px;border-radius:99px;background:linear-gradient(90deg,var(--grape),var(--cyan));color:#061233;font-weight:700}
+.langs{display:flex;border:1px solid var(--line);border-radius:99px;overflow:hidden}
+.langs button{background:none;border:0;color:var(--mut);padding:5px 8px;font:inherit;font-size:12px;min-height:30px}
+.langs button.on{background:var(--grape);color:#fff}
+.wrap{max-width:1100px;margin:0 auto;padding:12px}
+.goal{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:var(--r);background:linear-gradient(135deg,rgba(139,61,255,.22),rgba(2,207,249,.12));border:1px solid rgba(139,61,255,.4);margin-bottom:12px;font-size:14px}
+.goal b{color:var(--gold)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px;margin-bottom:12px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.card h2{font-size:14px;margin:0 0 8px;color:var(--cyan);letter-spacing:.3px;text-transform:uppercase}
+.grid{display:grid;gap:12px}
+@media(min-width:720px){.grid.two{grid-template-columns:1.25fr 1fr}}
+@media(orientation:landscape) and (max-height:500px){.grid.two{grid-template-columns:1.2fr 1fr}.top{padding:6px 12px}}
+.btn{appearance:none;border:1px solid var(--line);background:rgba(255,255,255,.08);color:var(--tx);border-radius:12px;padding:9px 12px;font:inherit;font-weight:600;min-height:40px;cursor:pointer;transition:transform .12s,background .2s}
+.btn:active{transform:scale(.96)}
+.btn.pri{background:linear-gradient(135deg,var(--grape),#5b2be0);border-color:transparent;color:#fff;box-shadow:0 6px 18px rgba(139,61,255,.4)}
+.btn.ok{background:var(--leaf);color:#062;border-color:transparent}
+.btn.on{outline:2px solid var(--cyan)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{border-radius:99px;padding:6px 11px;min-height:34px;font-size:13px}
+label.sl{display:flex;flex-direction:column;gap:3px;font-size:12px;color:var(--mut);flex:1;min-width:120px}
+input[type=range]{width:100%;accent-color:var(--grape)}
+input[type=text],textarea,select{width:100%;background:rgba(0,0,0,.25);border:1px solid var(--line);color:var(--tx);border-radius:12px;padding:10px;font:inherit}
+.stat{display:flex;flex-direction:column;padding:8px 10px;border-radius:12px;background:rgba(0,0,0,.22);min-width:80px}
+.stat b{font-size:18px;font-variant-numeric:tabular-nums}
+.stat span{font-size:11px;color:var(--mut)}
+.mut{color:var(--mut)}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px}
+canvas,svg{display:block;max-width:100%;touch-action:none}
+
+
+.explain{font-size:13.5px;color:#d7e2ff;background:rgba(0,0,0,.2);border-left:3px solid var(--cyan);padding:8px 10px;border-radius:8px;margin-top:8px}
+.pill{display:inline-block;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:700}
+@keyframes pop{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(2,207,249,.0)}50%{box-shadow:0 0 0 6px rgba(2,207,249,.25)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.top h1 .hstat{display:none;font-size:12px;font-weight:700;color:#4ade80;animation:pop .3s both}.top h1.toasting small{display:none}.top h1.toasting .hstat{display:block}
+.seg.chips{margin:4px 0}.seg.chips button{white-space:normal;text-align:left;line-height:1.25;max-width:100%}
+.seg.chips.big .pick{width:100%;font-weight:700}
+</style></head><body><script>// NCA Tech Lab L3 shared kit: language, config from ?cfg= / ?lesson= / inline, mission events, small helpers. No eval.
+(function(g){
+  const qs=new URLSearchParams(location.search);
+  const K={lang:qs.get('lang')||localStorage.getItem('nca-lang')||'hinglish',cfg:{},goal:null,lab:document.documentElement.dataset.lab,listeners:[]};
+  K.reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  K.t=(o)=>o==null?'':typeof o==='string'?o:(o[K.lang]||o.hinglish||o.en||'');
+  K.$=(s,r)=>(r||document).querySelector(s);K.$$=(s,r)=>[...(r||document).querySelectorAll(s)];
+  K.el=(tag,attrs,html)=>{const e=document.createElement(tag);if(attrs)for(const k in attrs){if(k==='on')for(const ev in attrs.on)e.addEventListener(ev,attrs.on[ev]);else e.setAttribute(k,attrs[k]);}if(html!=null)e.innerHTML=html;return e;};
+  K.esc=(s)=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+  K.rng=(seed)=>{let s=seed>>>0||1;return()=>{s^=s<<13;s>>>=0;s^=s>>17;s^=s<<5;s>>>=0;return s/4294967296;};};
+  K.clamp=(v,a,b)=>Math.max(a,Math.min(b,v));K.lerp=(a,b,t)=>a+(b-a)*t;K.ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+  K.sleep=(ms)=>new Promise(r=>setTimeout(r,K.reduced?0:ms));
+  K.tween=(ms,fn)=>new Promise(res=>{if(K.reduced||ms<=0){fn(1);return res();}const t0=performance.now();const f=n=>{const t=Math.min(1,(n-t0)/ms);fn(K.ease(t));t<1?requestAnimationFrame(f):res();};requestAnimationFrame(f);});
+  // Toasts never cover content (readability rule): the message temporarily replaces the header subtitle, then the subtitle returns after 2.5 s.
+  K.toast=(msg)=>{const h=K.$('header.top h1');if(!h)return;let st=h.querySelector('.hstat');if(!st){st=K.el('span',{class:'hstat',role:'status','aria-live':'polite'});h.appendChild(st);}st.textContent=msg;h.classList.add('toasting');clearTimeout(K._tt);K._tt=setTimeout(()=>h.classList.remove('toasting'),2500);};
+  K.events=[];
+  // emit a lab event; the lesson player listens via postMessage and matches it against try.questions[type=lab-check].answer
+  K.emit=(event,data)=>{const m={type:'nca-lab-event',lab:K.lab,event,data:data||{},at:Date.now()};K.events.push(m);try{parent!==window&&parent.postMessage(m,'*');}catch(e){}g.dispatchEvent(new CustomEvent('nca-lab-event',{detail:m}));document.documentElement.dataset.lastEvent=event;};
+  K.check=(event,data,msg)=>{K.emit(event,data);K.toast('✓ '+(msg||K.t({en:'Mission check passed',hinglish:'Mission check pass!',hi:'मिशन जाँच पास!'})));};
+  K.onLang=(fn)=>K.listeners.push(fn);
+  K.setLang=(l)=>{K.lang=l;localStorage.setItem('nca-lang',l);K.$$('.langs button').forEach(b=>b.classList.toggle('on',b.dataset.l===l));K.$$('[data-t]').forEach(e=>{const o=K.T[e.dataset.t];if(o)e.innerHTML=K.t(o);});K.renderGoal();K.listeners.forEach(f=>f(l));};
+  K.T={};// string table: key -> {en,hi,hinglish}
+  K.renderGoal=()=>{const gEl=K.$('#goal');if(!gEl)return;const goal=K.goal||K.T.__goal;gEl.style.display=goal?'flex':'none';if(goal)gEl.innerHTML='<span>🎯</span><div><b>'+K.esc(K.t({en:'Goal',hinglish:'Goal',hi:'लक्ष्य'}))+':</b> '+K.esc(K.t(goal))+'</div>';};
+  K.header=(title,sub)=>{const h=K.el('header',{class:'top'});h.innerHTML='<span class="badge">L3</span><h1>'+K.esc(K.t(title))+'<small>'+K.esc(K.t(sub))+'</small></h1><div class="langs" role="group" aria-label="Language"><button data-l="hinglish">Hinglish</button><button data-l="en">EN</button><button data-l="hi">हिं</button></div>';document.body.prepend(h);K.$$('.langs button',h).forEach(b=>b.onclick=()=>{K.setLang(b.dataset.l);h.querySelector('h1').firstChild.textContent=K.t(title);h.querySelector('small').textContent=K.t(sub);});};
+  // Readability rule: native <select> boxes cut long option text on phones, so every select is shown as a wrapping row of chips.
+  K.chipify=(sel)=>{if(sel._chips||sel.dataset.keep!=null)return;const box=K.el('div',{class:'seg chips',role:'radiogroup','aria-label':sel.getAttribute('aria-label')||'options'});sel.after(box);sel.style.display='none';sel._chips=box;let last='';
+    let open=false;const render=(force)=>{const n=sel.options.length,big=n>6;const sig=[...sel.options].map(o=>o.value+'\u0001'+o.textContent).join('\u0002')+'|'+sel.value+'|'+open;if(sig===last&&!force)return;last=sig;box.innerHTML='';box.classList.toggle('big',big);
+      if(big){const cur=sel.options[sel.selectedIndex];const t=K.el('button',{class:'btn on pick',type:'button','aria-expanded':open?'true':'false'});t.textContent=(open?'▴ ':'▾ ')+(cur?cur.textContent:'');t.onclick=()=>{open=!open;render(true);};box.appendChild(t);if(!open)return;}
+      [...sel.options].forEach(o=>{if(big&&o.value===sel.value)return;const b=K.el('button',{class:'btn'+(o.value===sel.value?' on':''),type:'button',role:'radio','aria-checked':o.value===sel.value?'true':'false'});b.textContent=o.textContent;b.onclick=()=>{if(sel.disabled)return;sel.value=o.value;open=false;render(true);sel.dispatchEvent(new Event('change',{bubbles:true}));};box.appendChild(b);});};
+    render();new MutationObserver(render).observe(sel,{childList:true,subtree:true,characterData:true});setInterval(render,250);};
+  K.chipAll=()=>{K.$$('select').forEach(K.chipify);if(!K._mo){K._mo=new MutationObserver(()=>K.$$('select').forEach(K.chipify));K._mo.observe(document.body,{childList:true,subtree:true});}};
+  K.boot=async(defaults)=>{let cfg=Object.assign({},defaults||{});
+    const inl=document.getElementById('lesson-inline');
+    try{if(inl){const L=JSON.parse(inl.textContent);if(L.play){Object.assign(cfg,L.play.config||{});K.goal=L.play.goal;}}}catch(e){}
+    const lp=qs.get('lesson');if(lp){try{const L=await (await fetch(lp)).json();if(L.play&&L.play.lab===K.lab){Object.assign(cfg,L.play.config||{});K.goal=L.play.goal;}}catch(e){}}
+    const c=qs.get('cfg');if(c){try{Object.assign(cfg,JSON.parse(c));}catch(e){}}
+    for(const [k,v] of qs){if(!['cfg','lesson','lang'].includes(k))cfg[k]=v;}
+    K.cfg=cfg;K.setLang(K.lang);setTimeout(K.chipAll,0);return cfg;};
+  g.K=K;
+})(window);
+</script><div class="wrap">
+ <div id="goal" class="goal" style="display:none"></div>
+ <div class="seg" id="modes" role="tablist" style="margin-bottom:10px"></div>
+ <div id="pane-ohm" class="pane"><div class="card">
+  <svg id="circ" viewBox="0 0 320 206" role="img" aria-label="circuit"></svg>
+  <label class="sl"><span><span data-t="volt"></span>: <b id="vV"></b></span><input type="range" id="vs" min="1" max="24" value="10" step="1"></label>
+  <label class="sl"><span><span data-t="res"></span>: <b id="rV"></b></span><input type="range" id="rs" min="0" max="13" value="6" step="1"></label>
+  <label class="row mut ck"><input type="checkbox" id="led" checked> <span data-t="ledOn"></span></label>
+  <div class="nums" id="ohmNums"></div><div class="explain" id="ohmInfo"></div></div></div>
+ <div id="pane-adc" class="pane"><div class="card">
+  <svg id="adcs" viewBox="0 0 320 196" role="img" aria-label="analog signal and samples"></svg>
+  <label class="sl"><span><span data-t="bits"></span>: <b id="bV"></b></span><input type="range" id="bs" min="1" max="12" value="3"></label>
+  <label class="sl"><span><span data-t="rate"></span>: <b id="fV"></b></span><input type="range" id="fs" min="2" max="60" value="8"></label>
+  <div class="nums" id="adcNums"></div><div class="explain" id="adcInfo"></div></div></div>
+ <div id="pane-pwm" class="pane"><div class="card">
+  <svg id="pwms" viewBox="0 0 320 196" role="img" aria-label="PWM wave, LED and fan"></svg>
+  <label class="sl"><span><span data-t="duty"></span>: <b id="dV"></b></span><input type="range" id="ds" min="0" max="100" value="25"></label>
+  <div class="seg" id="freq"></div>
+  <div class="nums" id="pwmNums"></div><div class="explain" id="pwmInfo"></div></div></div>
+ <div id="pane-pid" class="pane"><div class="card">
+  <svg id="pids" viewBox="0 0 320 210" role="img" aria-label="drone height over time"></svg>
+  <div class="seg" id="presets"></div>
+  <label class="sl"><span>Kp (<span data-t="kp"></span>): <b id="kpV"></b></span><input type="range" id="kp" min="0" max="10" step="0.1" value="2"></label>
+  <label class="sl"><span>Ki (<span data-t="ki"></span>): <b id="kiV"></b></span><input type="range" id="ki" min="0" max="4" step="0.1" value="0"></label>
+  <label class="sl"><span>Kd (<span data-t="kd"></span>): <b id="kdV"></b></span><input type="range" id="kd" min="0" max="6" step="0.1" value="0"></label>
+  <label class="row mut ck"><input type="checkbox" id="wind"> <span data-t="wind"></span></label>
+  <div class="row" style="gap:6px"><button class="btn pri" id="fly" data-t="fly"></button></div>
+  <div class="nums" id="pidNums"></div><div class="explain" id="pidInfo"></div></div></div>
+ <div id="pane-avoid" class="pane"><div class="card">
+  <svg id="arena" viewBox="0 0 320 220" role="img" aria-label="robot arena"></svg>
+  <label class="sl"><span><span data-t="thr"></span>: <b id="thV"></b></span><input type="range" id="th" min="5" max="70" value="5"></label>
+  <label class="sl"><span><span data-t="spd"></span>: <b id="spV"></b></span><input type="range" id="sp" min="1" max="5" step="0.5" value="4"></label>
+  <div class="seg" id="rules"></div>
+  <div class="row" style="gap:6px"><button class="btn pri" id="drive" data-t="drive"></button></div>
+  <div class="nums" id="avNums"></div><div class="explain" id="avInfo"></div></div></div>
+</div>
+<style>
+.pane{display:none}.pane.on{display:block;animation:pop .3s both}
+svg{width:100%;height:auto;display:block}
+.sl{display:block;margin:8px 0 2px;font-size:13px;color:#cbd5e1}.sl input{width:100%;height:30px;accent-color:#00C2B8}
+.ck{font-size:13px;gap:6px;margin:6px 0;min-height:32px}.ck input{width:20px;height:20px}
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px}.nums div{background:#020817;border-radius:10px;padding:6px 8px;min-width:0}.nums small{display:block;color:#9fb0d6;font-size:11px}.nums b{font:800 16px ui-monospace,monospace;overflow-wrap:anywhere}
+.nums .good b{color:#4ade80}.nums .bad b{color:#f87171}.nums .warn b{color:#FFD23F}
+.explain b{color:#fff}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+<script>
+const T=K.T,t3=(en,hinglish,hi)=>({en,hinglish,hi});
+Object.assign(T,{volt:t3('Battery voltage','Battery voltage','बैटरी वोल्टेज'),res:t3('Resistor','Resistor','प्रतिरोधक'),ledOn:t3('Red LED in the circuit (drops about 2 V)','Circuit mein laal LED (lagbhag 2 V leti hai)','परिपथ में लाल LED (लगभग 2 V लेती है)'),
+ bits:t3('ADC resolution (bits)','ADC resolution (bits)','ADC विभेदन (बिट)'),rate:t3('Sampling rate (samples per second)','Sampling rate (samples per second)','नमूना दर (नमूने प्रति सेकंड)'),
+ duty:t3('Duty cycle (time ON)','Duty cycle (ON ka samay)','ड्यूटी साइकिल (ON समय)'),kp:t3('push by error','error ke hisaab se dhakka','त्रुटि के अनुसार धक्का'),ki:t3('fix lasting error','tikne wali error theek karo','टिकी त्रुटि ठीक करो'),kd:t3('brake on speed','speed par brake','गति पर ब्रेक'),
+ wind:t3('Wind gust at 8 s','8 s par hawa ka jhonka','8 s पर हवा का झोंका'),fly:t3('▶ Fly to 10 m','▶ 10 m tak udao','▶ 10 m तक उड़ाओ'),thr:t3('Turn when an obstacle is closer than (px)','Obstacle itna paas ho to mudo (px)','बाधा इससे पास हो तो मुड़ो (px)'),spd:t3('Speed (px per tick)','Speed (px per tick)','गति (px प्रति टिक)'),drive:t3('▶ Drive for 30 s','▶ 30 s chalao','▶ 30 s चलाओ')});
+const MODES={ohm:t3('⚡ Ohm’s law','⚡ Ohm ka niyam','⚡ ओम का नियम'),adc:t3('📶 ADC','📶 ADC','📶 ADC'),pwm:t3('〰️ PWM','〰️ PWM','〰️ PWM'),pid:t3('🚁 PID','🚁 PID','🚁 PID'),avoid:t3('🤖 Avoid','🤖 Avoid','🤖 बचाव')};
+let cfg,mode='ohm';const fmt=(x,d=1)=>Number.isFinite(x)?(+x.toFixed(d)).toLocaleString('en-IN'):'–';
+const cell=(cls,l,v)=>`<div class="${cls}"><small>${K.esc(K.t(l))}</small><b>${v}</b></div>`;
+// ---------- Ohm
+const RS=[10,22,47,68,100,150,220,330,470,680,1000,2200,4700,10000];let ohmFlow=0,ohmI=0,ohmRAF=0,ledDone=false;
+const rFmt=r=>r>=1000?(r/1000)+' kΩ':r+' Ω';
+function ohmCalc(){const V=+K.$('#vs').value/2,R=RS[+K.$('#rs').value],led=K.$('#led').checked;const vr=led?Math.max(0,V-2):V,I=vr/R,P=I*I*R;return{V,R,led,I,mA:I*1000,P};}
+function drawOhm(emit){const s=ohmCalc();K.$('#vV').textContent=fmt(s.V)+' V';K.$('#rV').textContent=rFmt(s.R);ohmI=s.I;
+ const burnt=s.led&&s.mA>30,hot=s.P>0.25,glow=s.led&&!burnt?K.clamp(s.mA/20,0,1):0;
+ let zig='M120,30';for(let i=0;i<8;i++)zig+=` L${125+i*10},${i%2?22:38}`;zig+=' L200,30';
+ let g=`<defs><radialGradient id="lg"><stop offset="0" stop-color="#ff5a5a" stop-opacity="${glow}"/><stop offset="1" stop-color="#ff5a5a" stop-opacity="0"/></radialGradient></defs>`;
+ g+=`<path id="wire" d="M40,30 H120 M200,30 H280 V160 H40 V30" fill="none" stroke="#475569" stroke-width="3"/><path d="M40,30 H280 V160 H40 Z" id="loop" fill="none" stroke="none"/>`;
+ g+=`<path d="${zig}" fill="none" stroke="${hot?'#f97316':'#FFD23F'}" stroke-width="3"/><text x="160" y="58" fill="#FFD23F" font-size="11" text-anchor="middle">R = ${rFmt(s.R)}</text>`;
+ g+=`<rect x="30" y="84" width="20" height="36" fill="#061233"/><line x1="24" y1="90" x2="56" y2="90" stroke="#e2e8f0" stroke-width="3"/><line x1="31" y1="100" x2="49" y2="100" stroke="#e2e8f0" stroke-width="5"/><line x1="24" y1="110" x2="56" y2="110" stroke="#e2e8f0" stroke-width="3"/><text x="62" y="104" fill="#e2e8f0" font-size="11">${fmt(s.V)} V</text>`;
+ if(s.led){g+=`<circle cx="280" cy="95" r="34" fill="url(#lg)"/><rect x="266" y="80" width="28" height="30" fill="#061233"/><path d="M268,84 H292 L280,104 Z" fill="${burnt?'#334155':'#ef4444'}" opacity="${burnt?1:.5+glow/2}"/><line x1="268" y1="106" x2="292" y2="106" stroke="#ef4444" stroke-width="3"/><text x="258" y="99" fill="#fca5a5" font-size="11" text-anchor="end">${burnt?'💥 LED':'LED'}</text>`;}
+ g+=`<text x="160" y="104" fill="#00C2B8" font-size="15" font-weight="800" text-anchor="middle">I = ${fmt(s.mA,1)} mA</text><text x="160" y="124" fill="#9fb0d6" font-size="10" text-anchor="middle">${s.led?'I = (V − 2 V) ÷ R':'I = V ÷ R'}</text>`;
+ g+=`<g id="elec"></g><text x="160" y="190" fill="#9fb0d6" font-size="10" text-anchor="middle">${K.esc(K.t(t3('dots = charge flow (faster = more current)','dots = charge ka bahaav (tez = zyada current)','बिंदु = आवेश प्रवाह (तेज़ = ज़्यादा धारा)')))}</text>`;
+ K.$('#circ').innerHTML=g;
+ K.$('#ohmNums').innerHTML=cell('','I',fmt(s.mA,1)+' mA')+cell(hot?'bad':'',t3('Resistor heat','Resistor ki garmi','प्रतिरोधक ऊष्मा'),fmt(s.P*1000,0)+' mW')+cell(burnt?'bad':glow>0.2?'good':'',t3('LED','LED','LED'),s.led?(burnt?'💥':Math.round(glow*100)+'%'):'—');
+ let msg=burnt?t3(`Too much current: ${fmt(s.mA,0)} mA. A small red LED is rated about 20 mA — it would burn out. Use a bigger resistor.`,`Bahut zyada current: ${fmt(s.mA,0)} mA. Chhoti laal LED lagbhag 20 mA ke liye bani hai — jal jaayegi. Bada resistor lagao.`,`बहुत ज़्यादा धारा: ${fmt(s.mA,0)} mA। छोटी लाल LED लगभग 20 mA के लिए बनी है — जल जाएगी। बड़ा प्रतिरोधक लगाओ।`)
+  :hot?t3(`The resistor turns ${fmt(s.P*1000,0)} mW into heat. A common ¼-watt resistor is rated 250 mW — it would overheat.`,`Resistor ${fmt(s.P*1000,0)} mW ko garmi mein badalta hai. Aam ¼-watt resistor 250 mW tak — garam ho jaayega.`,`प्रतिरोधक ${fmt(s.P*1000,0)} mW को ऊष्मा में बदलता है। आम ¼-वाट प्रतिरोधक 250 mW तक — ज़्यादा गरम होगा।`)
+  :s.led&&s.mA<5?t3('Safe but dim: below about 5 mA the LED barely glows.','Safe par dhundhla: lagbhag 5 mA se kam par LED mushkil se jalti hai.','सुरक्षित पर धुँधला: लगभग 5 mA से कम पर LED मुश्किल से जलती है।')
+  :s.led?t3('Safe and bright: current between 5 and 20 mA. This is how every indicator LED on a board is sized.','Safe aur bright: current 5 se 20 mA ke beech. Har board ki indicator LED aise hi size hoti hai.','सुरक्षित और चमकीली: धारा 5 से 20 mA के बीच। बोर्ड की हर सूचक LED ऐसे ही चुनी जाती है।')
+  :t3('Ohm’s law: V = I × R. Double the voltage → double the current. Double the resistance → half the current.','Ohm ka niyam: V = I × R. Voltage double → current double. Resistance double → current aadha.','ओम का नियम: V = I × R। वोल्टेज दोगुना → धारा दोगुनी। प्रतिरोध दोगुना → धारा आधी।');
+ K.$('#ohmInfo').innerHTML=K.esc(K.t(msg));
+ if(emit){K.emit('ohm-solved',{V:s.V,R:s.R,mA:+s.mA.toFixed(2),led:s.led});if(burnt)K.emit('led-burnt',{V:s.V,R:s.R});
+  if(s.led&&!burnt&&!hot&&s.mA>=5&&s.mA<=20&&!ledDone){ledDone=true;K.check('led-safe',{V:s.V,R:s.R,mA:+s.mA.toFixed(1)});}}
+ startFlow();}
+function startFlow(){cancelAnimationFrame(ohmRAF);if(K.reduced||mode!=='ohm')return drawDots();const f=()=>{ohmFlow=(ohmFlow+Math.min(6,ohmI*120))%40;drawDots();ohmRAF=requestAnimationFrame(f);};ohmRAF=requestAnimationFrame(f);}
+function drawDots(){const p=K.$('#loop'),e=K.$('#elec');if(!p||!e)return;if(ohmI<=0){e.innerHTML='';return;}const L=p.getTotalLength();let h='';for(let d=ohmFlow;d<L;d+=40){const q=p.getPointAtLength(d);h+=`<circle cx="${q.x}" cy="${q.y}" r="3" fill="#7dd3fc"/>`;}e.innerHTML=h;}
+// ---------- ADC
+const sig=t=>2.5+1.6*Math.sin(2*Math.PI*1*t)+0.5*Math.sin(2*Math.PI*3*t+1);let aliasDone=false,adcDone=false;
+function drawADC(emit){const n=+K.$('#bs').value,fs=+K.$('#fs').value,lev=2**n,step=5/lev;K.$('#bV').textContent=n+' bits = '+lev.toLocaleString('en-IN')+' levels';K.$('#fV').textContent=fs+' /s';
+ const X=t=>20+t/2*292,Y=v=>170-v/5*150;let g=`<line x1="20" y1="170" x2="312" y2="170" stroke="#334155"/><line x1="20" y1="20" x2="20" y2="170" stroke="#334155"/><text x="16" y="24" fill="#64748b" font-size="9" text-anchor="end">5V</text><text x="16" y="172" fill="#64748b" font-size="9" text-anchor="end">0</text><text x="312" y="186" fill="#64748b" font-size="9" text-anchor="end">2 s</text>`;
+ if(n<=5)for(let k=1;k<lev;k++)g+=`<line x1="20" y1="${Y(k*step)}" x2="312" y2="${Y(k*step)}" stroke="#1e293b" stroke-width="1"/>`;
+ let a='';for(let i=0;i<=200;i++){const t=i/100;a+=(i?'L':'M')+X(t).toFixed(1)+','+Y(sig(t)).toFixed(1);}g+=`<path d="${a}" fill="none" stroke="#00C2B8" stroke-width="2" opacity=".55"/>`;
+ let st='',dots='',maxErr=0;const N=Math.floor(2*fs);for(let i=0;i<=N;i++){const t=i/fs,code=Math.min(lev-1,Math.floor(sig(t)/step)),q=(code+.5)*step;maxErr=Math.max(maxErr,Math.abs(q-sig(t)));const t2=Math.min(2,(i+1)/fs);st+=(i?'L':'M')+X(t).toFixed(1)+','+Y(q).toFixed(1)+' L'+X(t2).toFixed(1)+','+Y(q).toFixed(1);dots+=`<circle cx="${X(t).toFixed(1)}" cy="${Y(q).toFixed(1)}" r="2.6" fill="#FFD23F"/>`;}
+ g+=`<path d="${st}" fill="none" stroke="#FFD23F" stroke-width="2"/>`+dots;
+ g+=`<rect x="26" y="4" width="10" height="3" fill="#00C2B8"/><text x="40" y="9" fill="#9fb0d6" font-size="9">${K.esc(K.t(t3('real (analog)','asli (analog)','वास्तविक (एनालॉग)')))}</text><rect x="150" y="4" width="10" height="3" fill="#FFD23F"/><text x="164" y="9" fill="#9fb0d6" font-size="9">${K.esc(K.t(t3('what the chip stores','chip kya store karta hai','चिप क्या सहेजती है')))}</text>`;
+ K.$('#adcs').innerHTML=g;const code=Math.min(lev-1,Math.floor(sig(0.25)/step));
+ K.$('#adcNums').innerHTML=cell('',t3('Step size','Step size','चरण आकार'),fmt(step*1000,step<0.01?2:0)+' mV')+cell(fs<=6?'bad':fs>=20?'good':'warn',t3('Samples in 2 s','2 s mein samples','2 s में नमूने'),N+1)+cell('',t3('Reading at 0.25 s','0.25 s par reading','0.25 s पर पढ़ाई'),code.toString(2).padStart(n,'0'));
+ const msg=fs<=6?t3('Too few samples! The signal wiggles 3 times a second, so you must sample faster than 6 per second (Nyquist: more than twice the highest frequency). Now the yellow line shows a fake, slower wave — aliasing.','Bahut kam samples! Signal ek second mein 3 baar hilta hai, to 6 per second se tez sample karna zaroori hai (Nyquist: sabse oonchi frequency ka double se zyada). Ab peeli line nakli, dheemi wave dikha rahi hai — aliasing.','बहुत कम नमूने! संकेत एक सेकंड में 3 बार हिलता है, इसलिए 6 प्रति सेकंड से तेज़ नमूना लेना ज़रूरी है (नाइक्विस्ट: सबसे ऊँची आवृत्ति के दोगुने से ज़्यादा)। अब पीली रेखा नकली, धीमी तरंग दिखा रही है — एलियासिंग।')
+  :n<=4?t3(`Only ${lev} levels: the staircase is coarse and each reading can be off by up to ${fmt(step/2*1000,0)} mV. Add bits.`,`Sirf ${lev} levels: seedhi motti hai aur har reading ${fmt(step/2*1000,0)} mV tak galat ho sakti hai. Bits badhao.`,`केवल ${lev} स्तर: सीढ़ी मोटी है और हर पढ़ाई ${fmt(step/2*1000,0)} mV तक ग़लत हो सकती है। बिट बढ़ाओ।`)
+  :t3(`${lev.toLocaleString('en-IN')} levels of ${fmt(step*1000,2)} mV each. An Arduino Uno's ADC is 10-bit (1,024 levels); an ESP32's is 12-bit (4,096).`,`${lev.toLocaleString('en-IN')} levels, har ek ${fmt(step*1000,2)} mV. Arduino Uno ka ADC 10-bit (1,024 levels) hai; ESP32 ka 12-bit (4,096).`,`${lev.toLocaleString('en-IN')} स्तर, हर एक ${fmt(step*1000,2)} mV। Arduino Uno का ADC 10-बिट (1,024 स्तर) है; ESP32 का 12-बिट (4,096)।`);
+ K.$('#adcInfo').innerHTML=K.esc(K.t(msg));
+ if(emit){K.emit('adc-sampled',{bits:n,rate:fs});if(fs<=6&&!aliasDone){aliasDone=true;K.check('aliasing-seen',{rate:fs},K.t(t3('Aliasing spotted','Aliasing pakdi','एलियासिंग पकड़ी')));}if(n>=8&&fs>=20&&!adcDone){adcDone=true;K.check('adc-good',{bits:n,rate:fs});}}}
+// ---------- PWM
+const FQ={slow:t3('1 Hz (see it blink)','1 Hz (blink dikhega)','1 Hz (टिमटिमाना दिखेगा)'),fast:t3('1 kHz (looks smooth)','1 kHz (smooth lagta hai)','1 kHz (सहज लगता है)')};let fq='fast',pwmDone=false;
+function drawPWM(emit){const d=+K.$('#ds').value,avg=5*d/100;K.$('#dV').textContent=d+'%';K.$$('#freq button').forEach(b=>b.classList.toggle('on',b.dataset.f===fq));
+ const Y=v=>110-v/5*80,per=73;let p='M20,'+Y(0);for(let k=0;k<4;k++){const x0=20+k*per,x1=x0+per*d/100;p+=` L${x0},${Y(0)} L${x0},${Y(5)} L${x1},${Y(5)} L${x1},${Y(0)} L${x0+per},${Y(0)}`;}
+ if(d===0)p=`M20,${Y(0)} L312,${Y(0)}`;if(d===100)p=`M20,${Y(5)} L312,${Y(5)}`;
+ let g=`<text x="20" y="20" fill="#9fb0d6" font-size="10">5 V</text><text x="20" y="124" fill="#9fb0d6" font-size="10">0 V</text><path d="${p}" fill="none" stroke="#02CFF9" stroke-width="2.5"/>`;
+ g+=`<line x1="20" y1="${Y(avg)}" x2="312" y2="${Y(avg)}" stroke="#FFD23F" stroke-width="2" stroke-dasharray="6 4"/><text x="312" y="${Math.max(24,Y(avg)-5)}" fill="#FFD23F" font-size="11" text-anchor="end">${K.esc(K.t(t3('average','average','औसत')))} ${fmt(avg,2)} V</text>`;
+ const blink=fq==='slow'&&!K.reduced&&d>0&&d<100;
+ g+=`<defs><radialGradient id="pg"><stop offset="0" stop-color="#4ade80"/><stop offset="1" stop-color="#4ade80" stop-opacity="0"/></radialGradient></defs><g><circle cx="90" cy="160" r="26" fill="url(#pg)" opacity="${blink?1:d/100}">${blink?`<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;${d/100};${d/100};1" calcMode="discrete" dur="1s" repeatCount="indefinite"/>`:''}</circle><circle cx="90" cy="160" r="8" fill="#22c55e"/></g><text x="124" y="164" fill="#cbd5e1" font-size="10">LED</text>`;
+ const dur=d>0?(1.6/(d/100)).toFixed(2):0;g+=`<g transform="translate(230,160)"><g style="${d>0&&!K.reduced?`animation:spin ${dur}s linear infinite;transform-origin:0 0`:''}">${[0,120,240].map(a=>`<ellipse rx="6" ry="17" transform="rotate(${a}) translate(0,-13)" fill="#8B3DFF"/>`).join('')}</g><circle r="5" fill="#e2e8f0"/></g><text x="198" y="164" fill="#cbd5e1" font-size="10" text-anchor="end">${K.esc(K.t(t3('fan','pankha','पंखा')))}</text>`;
+ K.$('#pwms').innerHTML=g;
+ K.$('#pwmNums').innerHTML=cell('',t3('Duty','Duty','ड्यूटी'),d+'%')+cell('warn',t3('Average','Average','औसत'),fmt(avg,2)+' V')+cell('',t3('Power vs full','Full ke mukable power','पूर्ण की तुलना में शक्ति'),d+'%');
+ K.$('#pwmInfo').innerHTML=K.esc(K.t(t3(`The pin is only ever 0 V or 5 V. Switching it on for ${d}% of each cycle gives the motor an average of ${fmt(avg,2)} V. ${fq==='slow'?'At 1 Hz your eye sees the blinking.':'At 1,000 switches a second your eye and the motor only feel the average.'} Mission: make the fan run at 3 V average.`,`Pin sirf 0 V ya 5 V hota hai. Har cycle ke ${d}% samay ON karne se motor ko average ${fmt(avg,2)} V milta hai. ${fq==='slow'?'1 Hz par aankh blink dekhti hai.':'Ek second mein 1,000 baar switch karne par aankh aur motor sirf average mehsoos karte hain.'} Mission: pankha 3 V average par chalao.`,`पिन केवल 0 V या 5 V होता है। हर चक्र के ${d}% समय ON करने से मोटर को औसत ${fmt(avg,2)} V मिलता है। ${fq==='slow'?'1 Hz पर आँख टिमटिमाना देखती है।':'एक सेकंड में 1,000 बार बदलने पर आँख और मोटर केवल औसत महसूस करते हैं।'} मिशन: पंखा 3 V औसत पर चलाओ।`)));
+ if(emit){K.emit('pwm-set',{duty:d,freq:fq});if(d>=58&&d<=62&&!pwmDone){pwmDone=true;K.check('pwm-matched',{duty:d,avg:+avg.toFixed(2)});}}}
+// ---------- PID
+const PRE={p:[t3('P only','Sirf P','केवल P'),5,0,0],pd:[t3('PD','PD','PD'),5,0,3],pid:[t3('PID tuned','PID tuned','PID ट्यून'),4,1.2,2.5]};let pidRun=null,pidDone=false;
+function pidSim(kp,ki,kd,wind){let h=0,v=0,I=0,pe=10;const dt=0.02,g=9.8,hs=[];for(let i=0;i<750;i++){const t=i*dt,e=10-h;I=K.clamp(I+e*dt,-20,20);const d=i?(e-pe)/dt:0;pe=e;const u=K.clamp(kp*e+ki*I+kd*d,0,30);const a=u-g-0.6*v-(wind&&t>=8&&t<9?6:0);v+=a*dt;h+=v*dt;if(h<0){h=0;v=Math.max(0,v);}hs.push(h);}
+ const mx=Math.max(...hs),over=Math.max(0,(mx-10)/10*100);let settle=0;const lim=wind?400:750;for(let i=0;i<lim;i++)if(Math.abs(hs[i]-10)>0.5)settle=(i+1)*dt;if(settle>=lim*dt-0.02)settle=Infinity;return{hs,over,settle,err:10-hs[749]};}
+function pidVals(){return[+K.$('#kp').value,+K.$('#ki').value,+K.$('#kd').value];}
+function drawPIDFrame(r,upto){const X=i=>56+i/750*256,Y=h=>180-h/16*160;let g=`<line x1="56" y1="180" x2="312" y2="180" stroke="#334155"/><line x1="56" y1="20" x2="56" y2="180" stroke="#334155"/><rect x="56" y="${Y(10.5)}" width="256" height="${Y(9.5)-Y(10.5)}" fill="#22c55e" opacity=".12"/><line x1="56" y1="${Y(10)}" x2="312" y2="${Y(10)}" stroke="#22c55e" stroke-dasharray="5 4"/><text x="312" y="${Y(10)-8}" fill="#4ade80" font-size="10" text-anchor="end">${K.esc(K.t(t3('target 10 m','target 10 m','लक्ष्य 10 m')))}</text><text x="50" y="${Y(0)+3}" fill="#64748b" font-size="9" text-anchor="end">0</text><text x="50" y="${Y(10)+3}" fill="#64748b" font-size="9" text-anchor="end">10</text><text x="312" y="196" fill="#64748b" font-size="9" text-anchor="end">15 s</text><text x="56" y="196" fill="#64748b" font-size="9">0 s</text>`;
+ if(K.$('#wind').checked)g+=`<line x1="${X(400)}" y1="24" x2="${X(400)}" y2="180" stroke="#f97316" stroke-dasharray="2 3"/><text x="${X(400)+4}" y="${Y(1)}" fill="#f97316" font-size="10">💨</text>`;
+ if(r){let p='';for(let i=0;i<=upto;i+=3)p+=(i?'L':'M')+X(i).toFixed(1)+','+Y(Math.min(16,r.hs[i])).toFixed(1);g+=`<path d="${p}" fill="none" stroke="#02CFF9" stroke-width="2.5"/>`;const h=r.hs[Math.min(upto,749)];g+=`<text x="16" y="${Y(Math.min(15,h))+5}" font-size="16" text-anchor="middle">🚁</text>`;}
+ else g+=`<text x="16" y="${Y(0)}" font-size="16" text-anchor="middle">🚁</text>`;
+ K.$('#pids').innerHTML=g;}
+async function fly(fast){const [kp,ki,kd]=pidVals(),wind=K.$('#wind').checked,r=pidSim(kp,ki,kd,wind);pidRun=r;
+ if(!fast&&!K.reduced){for(let i=0;i<750;i+=15){drawPIDFrame(r,i);await K.sleep(16);}}drawPIDFrame(r,749);
+ const ok=r.over<10&&r.settle<6&&Math.abs(r.err)<0.2;
+ K.$('#pidNums').innerHTML=cell(r.over<10?'good':'bad',t3('Overshoot','Overshoot','अधिक्रमण'),fmt(r.over,1)+'%')+cell(r.settle<6?'good':'bad',t3('Settles in','Settle hota','स्थिर होने में'),Number.isFinite(r.settle)?fmt(r.settle,1)+' s':'✗')+cell(Math.abs(r.err)<0.2?'good':'bad',t3('Final error','Aakhri error','अंतिम त्रुटि'),fmt(r.err,2)+' m');
+ const msg=ok?t3('Tuned! Fast, little overshoot, and no lasting error. Flight controllers in drones run loops like this hundreds of times a second.','Tuned! Tez, kam overshoot, aur koi tikne wali error nahi. Drones ke flight controller aise loops second mein saikdon baar chalate hain.','ट्यून हो गया! तेज़, कम अधिक्रमण, और कोई टिकी त्रुटि नहीं। ड्रोन के फ़्लाइट कंट्रोलर ऐसे लूप सेकंड में सैकड़ों बार चलाते हैं।')
+  :Math.abs(r.err)>=0.2&&ki===0?t3(`It hangs ${fmt(r.err,1)} m low. With P only, some error is needed to make enough thrust to fight gravity. Add Ki: it adds up the error over time and pushes until it is gone.`,`Yeh ${fmt(r.err,1)} m neeche latak gaya. Sirf P ke saath, gravity se ladne ke liye kuch error chahiye hi. Ki jodo: yeh error ko samay ke saath jodta hai aur tab tak dhakelta hai jab tak woh khatam na ho.`,`यह ${fmt(r.err,1)} m नीचे लटका रहा। केवल P के साथ, गुरुत्व से लड़ने के लिए कुछ त्रुटि ज़रूरी है। Ki जोड़ो: यह समय के साथ त्रुटि जोड़ता है और तब तक धकेलता है जब तक वह ख़त्म न हो।`)
+  :r.over>=10?t3('It shoots past the target and swings. Raise Kd — the brake that reacts to speed — or lower Kp.','Target se aage nikal ke jhoolta hai. Kd badhao — speed par react karne wala brake — ya Kp kam karo.','यह लक्ष्य से आगे निकलकर झूलता है। Kd बढ़ाओ — गति पर प्रतिक्रिया देने वाला ब्रेक — या Kp घटाओ।')
+  :t3('Too slow to settle. Raise Kp a little, or Ki.','Settle hone mein bahut dheema. Kp thoda badhao, ya Ki.','स्थिर होने में बहुत धीमा। Kp थोड़ा बढ़ाओ, या Ki।');
+ K.$('#pidInfo').innerHTML=K.esc(K.t(msg));
+ K.emit('pid-run',{kp,ki,kd,overshoot:+r.over.toFixed(1),settle:Number.isFinite(r.settle)?+r.settle.toFixed(2):null,error:+r.err.toFixed(2),wind});
+ if(ok&&!pidDone){pidDone=true;K.check('pid-tuned',{kp,ki,kd});}return r;}
+// ---------- Obstacle avoidance
+const OBS=[[70,40,40,30],[180,20,24,70],[240,120,50,24],[110,130,30,60],[30,120,30,20],[200,170,30,30]];const RUL={open:t3('Turn to the more open side','Zyada khule taraf mudo','अधिक खुली ओर मुड़ो'),right:t3('Always turn right','Hamesha daayein mudo','हमेशा दाएँ मुड़ो')};let rule='open',avDone=false,avAnim=0;
+const W=320,H=220,RR=8;function blocked(x,y){if(x<RR||y<RR||x>W-RR||y>H-RR)return true;return OBS.some(([a,b,w,h])=>x>a-RR&&x<a+w+RR&&y>b-RR&&y<b+h+RR);}
+function ray(x,y,a){for(let d=0;d<90;d+=2){const px=x+Math.cos(a)*d,py=y+Math.sin(a)*d;if(px<0||py<0||px>W||py>H||OBS.some(([a1,b,w,h])=>px>a1&&px<a1+w&&py>b&&py<b+h))return d;}return 90;}
+function avSim(th,sp,rl){const R=K.rng(7);let x=20,y=200,a=-Math.PI/2,col=0;const vis=new Set(),trail=[[x,y]],frames=[];for(let i=0;i<900;i++){const f=Math.min(ray(x,y,a),ray(x,y,a-0.35),ray(x,y,a+0.35))-RR,l=ray(x,y,a-0.9)-RR,r=ray(x,y,a+0.9)-RR;let go=sp;
+ if(f<th){a+=(rl==='right'||r>=l)?0.35:-0.35;go=0;}else if(l<th*0.5)a+=0.1;else if(r<th*0.5)a-=0.1;else a+=(R()-0.5)*0.15;
+ const nx=x+Math.cos(a)*go,ny=y+Math.sin(a)*go;if(go&&blocked(nx,ny)){col++;a+=Math.PI*0.75;}else{x=nx;y=ny;}vis.add(Math.floor(x/20)+','+Math.floor(y/20));if(i%3==0)trail.push([x,y]);if(i%6==0)frames.push([x,y,a,f,l,r,col,trail.length]);}
+ let free=0;for(let cx=0;cx<16;cx++)for(let cy=0;cy<11;cy++)if(!blocked(cx*20+10,cy*20+10))free++;
+ return{col,cov:Math.min(100,vis.size/free*100),trail,frames};}
+function drawArena(s,fi){let g=`<rect x="1" y="1" width="318" height="218" rx="8" fill="#020817" stroke="#334155" stroke-width="2"/>`+OBS.map(([a,b,w,h])=>`<rect x="${a}" y="${b}" width="${w}" height="${h}" rx="4" fill="#1e2b55" stroke="#475569"/>`).join('')+`<text x="20" y="214" fill="#64748b" font-size="9" text-anchor="middle">▲</text>`;
+ if(s){const fr=s.frames[Math.min(fi,s.frames.length-1)];const [x,y,a,f,l,r,c,tl]=fr;g+=`<polyline points="${s.trail.slice(0,tl).map(p=>p[0].toFixed(0)+','+p[1].toFixed(0)).join(' ')}" fill="none" stroke="#00C2B8" stroke-width="2" opacity=".45"/>`;
+  const th=+K.$('#th').value;[[f,0],[l,-0.6],[r,0.6]].forEach(([d,o])=>{const dd=d+RR;g+=`<line x1="${x}" y1="${y}" x2="${x+Math.cos(a+o)*dd}" y2="${y+Math.sin(a+o)*dd}" stroke="${d<th?'#f87171':'#4ade80'}" stroke-width="1.5" opacity=".8"/>`;});
+  g+=`<g transform="translate(${x},${y}) rotate(${a*180/Math.PI})"><rect x="-8" y="-7" width="16" height="14" rx="4" fill="#8B3DFF"/><circle cx="5" cy="0" r="2.5" fill="#fff"/></g>`;}
+ K.$('#arena').innerHTML=g;}
+async function drive(fast){const th=+K.$('#th').value,sp=+K.$('#sp').value;cancelAnimationFrame(avAnim);const s=avSim(th,sp,rule);
+ if(!fast&&!K.reduced){for(let i=0;i<s.frames.length;i+=2){drawArena(s,i);await K.sleep(12);}}drawArena(s,s.frames.length-1);
+ const ok=s.col===0&&s.cov>=35;K.$('#avNums').innerHTML=cell(s.col?'bad':'good',t3('Crashes','Takkar','टक्कर'),s.col)+cell(s.cov>=35?'good':'warn',t3('Area explored','Area explore kiya','क्षेत्र खोजा'),fmt(s.cov,0)+'%')+cell('',t3('Rule','Rule','नियम'),rule==='open'?'↔':'↻');
+ const msg=ok?t3('Zero crashes and good coverage. Robot vacuums use the same sense → decide → act loop, plus a map.','Zero takkar aur achhi coverage. Robot vacuum bhi yahi sense → decide → act loop chalate hain, saath mein map.','शून्य टक्कर और अच्छा कवरेज। रोबोट वैक्यूम भी यही अनुभव → निर्णय → क्रिया लूप चलाते हैं, साथ में नक्शा।')
+  :s.col?t3(`${s.col} crashes. The robot reacts too late: raise the turn distance or slow down — it needs room to turn at this speed.`,`${s.col} takkar. Robot der se react karta hai: turn distance badhao ya speed kam karo — is speed par mudne ke liye jagah chahiye.`,`${s.col} टक्कर। रोबोट देर से प्रतिक्रिया करता है: मुड़ने की दूरी बढ़ाओ या धीमा करो — इस गति पर मुड़ने को जगह चाहिए।`)
+  :t3('No crashes, but it stays in one area. A very large turn distance makes it timid; try a middle value or the other rule.','Koi takkar nahi, par ek hi area mein rehta hai. Bahut bada turn distance use darpok banata hai; beech ki value ya doosra rule try karo.','कोई टक्कर नहीं, पर एक ही क्षेत्र में रहता है। बहुत बड़ी दूरी उसे डरपोक बनाती है; बीच का मान या दूसरा नियम आज़माओ।');
+ K.$('#avInfo').innerHTML=K.esc(K.t(msg));K.emit('avoid-run',{collisions:s.col,coverage:Math.round(s.cov),threshold:th,speed:sp,rule});if(ok&&!avDone){avDone=true;K.check('avoid-clear',{threshold:th,coverage:Math.round(s.cov)});}return{col:s.col,cov:s.cov};}
+// ---------- modes
+function setMode(m){mode=MODES[m]?m:'ohm';K.$$('#modes button').forEach(b=>b.classList.toggle('on',b.dataset.m===mode));K.$$('.pane').forEach(p=>p.classList.toggle('on',p.id==='pane-'+mode));
+ if(mode==='ohm')drawOhm(false);else cancelAnimationFrame(ohmRAF);if(mode==='adc')drawADC(false);if(mode==='pwm')drawPWM(false);if(mode==='pid')drawPIDFrame(pidRun,749);if(mode==='avoid')drawArena(null,0);K.emit('mode-opened',{mode});}
+function segs(){K.$('#freq').innerHTML=Object.keys(FQ).map(k=>`<button class="btn" data-f="${k}">${K.esc(K.t(FQ[k]))}</button>`).join('');K.$$('#freq button').forEach(b=>b.onclick=()=>{fq=b.dataset.f;drawPWM(true);});
+ K.$('#presets').innerHTML=Object.keys(PRE).map(k=>`<button class="btn" data-p="${k}">${K.esc(K.t(PRE[k][0]))}</button>`).join('');K.$$('#presets button').forEach(b=>b.onclick=()=>{const p=PRE[b.dataset.p];K.$('#kp').value=p[1];K.$('#ki').value=p[2];K.$('#kd').value=p[3];pidLbl();fly(false);});
+ K.$('#rules').innerHTML=Object.keys(RUL).map(k=>`<button class="btn ${k===rule?'on':''}" data-r="${k}">${K.esc(K.t(RUL[k]))}</button>`).join('');K.$$('#rules button').forEach(b=>b.onclick=()=>{rule=b.dataset.r;segs();});}
+function pidLbl(){const [a,b,c]=pidVals();K.$('#kpV').textContent=a;K.$('#kiV').textContent=b;K.$('#kdV').textContent=c;}
+function avLbl(){K.$('#thV').textContent=K.$('#th').value;K.$('#spV').textContent=K.$('#sp').value;}
+(async()=>{K.lab='control-lab';K.header(t3('Circuits & Control Lab','Circuits & Control Lab','परिपथ और नियंत्रण लैब'),t3('Ohm’s law, ADC, PWM, PID and robot reflexes','Ohm ka niyam, ADC, PWM, PID aur robot reflexes','ओम का नियम, ADC, PWM, PID और रोबोट प्रतिवर्त'));
+ cfg=await K.boot({mode:'ohm',volts:5,bits:3,rate:8,duty:25,rule:'open'});
+ K.$('#modes').innerHTML=Object.keys(MODES).map(k=>`<button class="btn" data-m="${k}">${K.esc(K.t(MODES[k]))}</button>`).join('');K.$$('#modes button').forEach(b=>b.onclick=()=>setMode(b.dataset.m));
+ K.$('#vs').value=String(K.clamp(Math.round(+cfg.volts*2),1,24));K.$('#bs').value=String(K.clamp(+cfg.bits,1,12));K.$('#fs').value=String(K.clamp(+cfg.rate,2,60));K.$('#ds').value=String(K.clamp(+cfg.duty,0,100));rule=RUL[cfg.rule]?cfg.rule:'open';
+ ['#vs','#rs'].forEach(s=>K.$(s).oninput=()=>drawOhm(true));K.$('#led').onchange=()=>drawOhm(true);['#bs','#fs'].forEach(s=>K.$(s).oninput=()=>drawADC(true));K.$('#ds').oninput=()=>drawPWM(true);
+ ['#kp','#ki','#kd'].forEach(s=>K.$(s).oninput=pidLbl);K.$('#fly').onclick=()=>fly(false);K.$('#wind').onchange=()=>drawPIDFrame(null,0);['#th','#sp'].forEach(s=>K.$(s).oninput=avLbl);K.$('#drive').onclick=()=>drive(false);
+ segs();pidLbl();avLbl();setMode(cfg.mode);
+ K.onLang(()=>{K.$$('#modes button').forEach(b=>b.textContent=K.t(MODES[b.dataset.m]));segs();setMode(mode);});
+ const set=(s,v)=>{K.$(s).value=v;};
+ window.__k={ohm:(v,r,led=true)=>{set('#vs',v*2);set('#rs',RS.indexOf(r));K.$('#led').checked=led;drawOhm(true);return ohmCalc();},adc:(b,f)=>{set('#bs',b);set('#fs',f);drawADC(true);},pwm:(d,f)=>{if(f)fq=f;set('#ds',d);drawPWM(true);},
+  pid:(p,i,d,w=false)=>{set('#kp',p);set('#ki',i);set('#kd',d);K.$('#wind').checked=w;pidLbl();return fly(true);},avoid:(th,sp,rl)=>{set('#th',th);set('#sp',sp);if(rl)rule=rl;segs();avLbl();return drive(true);},sim:avSim,mode:setMode};})();
+</script>
+</body></html>

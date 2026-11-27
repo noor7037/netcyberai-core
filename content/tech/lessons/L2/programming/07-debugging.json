@@ -1,0 +1,398 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.programming.07",
+ "level": 2,
+ "classes": [
+  7,
+  8
+ ],
+ "unit": "programming",
+ "title": {
+  "en": "Debugging: finding and fixing bugs",
+  "hi": "डिबगिंग: बग ढूँढना और ठीक करना",
+  "hinglish": "Debugging: bugs dhoondna aur theek karna"
+ },
+ "minutes": 12,
+ "xp": 45,
+ "prereq": [
+  "L2.programming.06"
+ ],
+ "topics": [
+  "prog.debugging",
+  "prog.files-exceptions"
+ ],
+ "outcomes": [
+  {
+   "en": "Read an error message: type, line and meaning",
+   "hi": "त्रुटि संदेश पढ़ सकते हो: प्रकार, लाइन और अर्थ",
+   "hinglish": "Error message padh sakte ho: type, line aur matlab"
+  },
+  {
+   "en": "Tell syntax, runtime and logic errors apart",
+   "hi": "सिंटैक्स, रनटाइम और लॉजिक त्रुटियों में अंतर बता सकते हो",
+   "hinglish": "Syntax, runtime aur logic errors mein farak bata sakte ho"
+  },
+  {
+   "en": "Debug step by step: reproduce, trace, fix, retest",
+   "hi": "कदम-दर-कदम डिबग कर सकते हो: दोहराओ, ट्रेस करो, ठीक करो, फिर जाँचो",
+   "hinglish": "Step by step debug kar sakte ho: reproduce, trace, fix, retest"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Bug",
+   "hinglish": "Program ki galti",
+   "en": "A mistake in a program",
+   "hi": "प्रोग्राम में ग़लती"
+  },
+  {
+   "term": "Syntax error",
+   "hinglish": "Grammar ki galti, program chalta hi nahi",
+   "en": "Code that breaks the language rules, so it cannot start",
+   "hi": "भाषा के नियम तोड़ने वाला कोड, जो शुरू ही नहीं हो पाता"
+  },
+  {
+   "term": "Runtime error",
+   "hinglish": "Chalte-chalte crash",
+   "en": "An error that happens while running: TypeError, ZeroDivisionError",
+   "hi": "चलते समय होने वाली त्रुटि: TypeError, ZeroDivisionError"
+  },
+  {
+   "term": "Logic error",
+   "hinglish": "Chalta hai par galat jawab",
+   "en": "The program runs but gives the wrong answer",
+   "hi": "प्रोग्राम चलता है पर ग़लत उत्तर देता है"
+  },
+  {
+   "term": "Tracing",
+   "hinglish": "Line by line chala ke dekhna",
+   "en": "Following the program step by step to see what really happens",
+   "hi": "असल में क्या होता है देखने के लिए प्रोग्राम को कदम-दर-कदम चलाना"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Errors are clues, not failures. Python tells you the type of error and the line.",
+    "hi": "त्रुटियाँ सुराग़ हैं, असफलता नहीं। पायथन त्रुटि का प्रकार और लाइन बताता है।",
+    "hinglish": "Errors clues hain, failure nahi. Python error ka type aur line batata hai."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "Read the last line first: it names the problem.",
+    "hi": "पहले आख़िरी लाइन पढ़ो: वह समस्या का नाम बताती है।",
+    "hinglish": "Pehle aakhri line padho: woh problem ka naam batati hai."
+   },
+   "code": "Traceback (most recent call last):\n  File \"shop.py\", line 5\n    print(\"Total: \" + total)\nTypeError: can only concatenate str (not \"int\") to str"
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "This program should print “Total: 125” but crashes. Find the one wrong line.",
+    "hi": "इस प्रोग्राम को “Total: 125” छापना चाहिए पर यह टूटता है। एक ग़लत लाइन ढूँढो।",
+    "hinglish": "Is program ko “Total: 125” print karna chahiye par yeh crash hota hai. Ek galat line dhoondo."
+   },
+   "visual": "lab:py-tracer#bug",
+   "narration": {
+    "en": "Fix: str(total) turns the number into text, so it can be joined.",
+    "hi": "सुधार: str(total) संख्या को टेक्स्ट बनाता है, ताकि वह जुड़ सके।",
+    "hinglish": "Fix: str(total) number ko text bana deta hai, taaki jud sake."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Logic errors are sneaky — no crash, just a wrong answer. Trace with small test inputs you can check by hand.",
+    "hi": "लॉजिक त्रुटियाँ छिपी होती हैं — क्रैश नहीं, बस ग़लत उत्तर। छोटे इनपुट से ट्रेस करो जिन्हें हाथ से जाँच सको।",
+    "hinglish": "Logic errors chhupi hoti hain — crash nahi, bas galat jawab. Chhote inputs se trace karo jinhe haath se check kar sako."
+   },
+   "visual": "compare:Syntax: will not start|Runtime: crashes midway|Logic: wrong answer",
+   "narration": {
+    "en": "A test is an input with an answer you already know.",
+    "hi": "टेस्ट ऐसा इनपुट है जिसका उत्तर आप पहले से जानते हो।",
+    "hinglish": "Test ek input hai jiska jawab aap pehle se jaante ho."
+   },
+   "code": "# average of 4 and 6 should be 5\navg = 4 + 6 / 2   # gives 7.0 — bug!\navg = (4 + 6) / 2 # gives 5.0 ✓"
+  }
+ ],
+ "play": {
+  "lab": "py-tracer",
+  "config": {
+   "program": "bug"
+  },
+  "goal": {
+   "en": "Run the bug program, read the error, press Edit, fix the ONE wrong line and run again to print “Total: 125”.",
+   "hi": "बग प्रोग्राम चलाओ, त्रुटि पढ़ो, Edit दबाओ, एक ग़लत लाइन ठीक करो और फिर चलाओ ताकि “Total: 125” छपे।",
+   "hinglish": "Bug program chalao, error padho, Edit dabao, EK galat line theek karo aur phir chalao taaki “Total: 125” print ho."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "A debugging method that always works",
+    "hi": "डिबगिंग का तरीक़ा जो हमेशा काम करे",
+    "hinglish": "Debugging ka tareeka jo hamesha kaam kare"
+   },
+   "body": {
+    "en": "1) Reproduce: make the bug happen every time. 2) Read the error: type + line number (but the real mistake may be a line or two earlier, e.g. a missing bracket). 3) Trace: step through or add print() lines to see the values. 4) Form a guess, change ONE thing, retest. 5) Test edge cases: 0, negative numbers, an empty list. Common errors: NameError (misspelt or undefined name), TypeError (wrong type, like str + int), IndexError (position out of range), ZeroDivisionError, IndentationError. Real programs use try/except to handle expected errors politely instead of crashing. Fun fact: in 1947, engineers working on the Harvard Mark II found a real moth stuck in a relay and taped it in the logbook as the “first actual case of bug being found”.",
+    "hi": "1) दोहराओ: बग को हर बार होने दो। 2) त्रुटि पढ़ो: प्रकार + लाइन संख्या (पर असली ग़लती एक-दो लाइन पहले भी हो सकती है, जैसे छूटा कोष्ठक)। 3) ट्रेस करो: कदम-दर-कदम चलाओ या print() लाइनें जोड़कर मान देखो। 4) अनुमान लगाओ, एक चीज़ बदलो, फिर जाँचो। 5) किनारे के मामले जाँचो: 0, ऋणात्मक संख्या, ख़ाली लिस्ट। आम त्रुटियाँ: NameError (ग़लत या अपरिभाषित नाम), TypeError (ग़लत टाइप, जैसे str + int), IndexError (सीमा से बाहर स्थान), ZeroDivisionError, IndentationError। असली प्रोग्राम अपेक्षित त्रुटियों को try/except से शालीनता से सँभालते हैं। रोचक तथ्य: 1947 में Harvard Mark II पर काम करने वाले इंजीनियरों को रिले में फँसा असली पतंगा मिला और उन्होंने उसे लॉगबुक में “बग मिलने का पहला असली मामला” लिखकर चिपकाया।",
+    "hinglish": "1) Reproduce: bug ko har baar hone do. 2) Error padho: type + line number (par asli galti ek-do line pehle bhi ho sakti hai, jaise chhoota bracket). 3) Trace: step karo ya print() lines jod ke values dekho. 4) Guess banao, EK cheez badlo, retest karo. 5) Edge cases test karo: 0, negative numbers, khaali list. Common errors: NameError (galat spelling ya undefined naam), TypeError (galat type, jaise str + int), IndexError (range se bahar position), ZeroDivisionError, IndentationError. Real programs expected errors ko try/except se politely handle karte hain, crash nahi hote. Fun fact: 1947 mein Harvard Mark II pe kaam karne wale engineers ko relay mein phansa asli moth mila aur unhone usse logbook mein “first actual case of bug being found” likh ke chipkaya."
+   },
+   "analogy": {
+    "hinglish": "Debugging = doctor ka diagnosis: symptom (error) dekho, test karo, ek dawa badlo, phir check karo.",
+    "en": "Debugging = a doctor’s diagnosis: look at the symptom (error), run a test, change one medicine, check again.",
+    "hi": "डिबगिंग = डॉक्टर की जाँच: लक्षण (त्रुटि) देखो, टेस्ट करो, एक दवा बदलो, फिर जाँचो।"
+   },
+   "realExample": {
+    "en": "Big apps like IRCTC and banking apps run thousands of automatic tests before every update to catch bugs early.",
+    "hi": "IRCTC और बैंकिंग ऐप जैसे बड़े ऐप हर अपडेट से पहले हज़ारों स्वचालित टेस्ट चलाते हैं ताकि बग जल्दी पकड़े जाएँ।",
+    "hinglish": "IRCTC aur banking apps jaise bade apps har update se pehle hazaaron automatic tests chalate hain taaki bugs jaldi pakde jaayein."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Ask a friend to hide one bug in a 5-line program you wrote. Find it using only the error message and tracing.",
+   "hi": "दोस्त से अपने लिखे 5 लाइन के प्रोग्राम में एक बग छिपवाओ। केवल त्रुटि संदेश और ट्रेसिंग से उसे ढूँढो।",
+   "hinglish": "Dost se apne 5-line program mein ek bug chhupwao. Sirf error message aur tracing se dhoondo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "match",
+    "prompt": {
+     "en": "Match each error to its cause.",
+     "hi": "हर त्रुटि को उसके कारण से मिलाओ।",
+     "hinglish": "Har error ko uske cause se milao."
+    },
+    "options": {
+     "left": [
+      "NameError",
+      "TypeError",
+      "IndexError",
+      "ZeroDivisionError"
+     ],
+     "right": [
+      {
+       "en": "\"5\" + 5",
+       "hi": "\"5\" + 5",
+       "hinglish": "\"5\" + 5"
+      },
+      {
+       "en": "10 / 0",
+       "hi": "10 / 0",
+       "hinglish": "10 / 0"
+      },
+      {
+       "en": "print(totl) — misspelt name",
+       "hi": "print(totl) — ग़लत वर्तनी",
+       "hinglish": "print(totl) — galat spelling"
+      },
+      {
+       "en": "nums[10] in a 3-item list",
+       "hi": "3 चीज़ों की लिस्ट में nums[10]",
+       "hinglish": "3 items ki list mein nums[10]"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      2
+     ],
+     [
+      1,
+      0
+     ],
+     [
+      2,
+      3
+     ],
+     [
+      3,
+      1
+     ]
+    ],
+    "explain": {
+     "en": "NameError: unknown name; TypeError: wrong type; IndexError: bad position; ZeroDivisionError: ÷ 0.",
+     "hi": "NameError: अनजान नाम; TypeError: ग़लत टाइप; IndexError: ग़लत स्थान; ZeroDivisionError: ÷ 0।",
+     "hinglish": "NameError: anjaan naam; TypeError: galat type; IndexError: galat position; ZeroDivisionError: ÷ 0."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "A program runs without crashing but says 2 + 3 = 6. What kind of error?",
+     "hi": "प्रोग्राम बिना टूटे चलता है पर कहता है 2 + 3 = 6। कौन-सी त्रुटि?",
+     "hinglish": "Program bina crash chalta hai par kehta hai 2 + 3 = 6. Kaunsa error?"
+    },
+    "options": [
+     {
+      "en": "Syntax error",
+      "hi": "सिंटैक्स त्रुटि",
+      "hinglish": "Syntax error"
+     },
+     {
+      "en": "Runtime error",
+      "hi": "रनटाइम त्रुटि",
+      "hinglish": "Runtime error"
+     },
+     {
+      "en": "Logic error",
+      "hi": "लॉजिक त्रुटि",
+      "hinglish": "Logic error"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "No crash but a wrong answer is a logic error.",
+     "hi": "क्रैश नहीं पर ग़लत उत्तर = लॉजिक त्रुटि।",
+     "hinglish": "Crash nahi par galat jawab = logic error."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "How do you fix print(\"Total: \" + total) when total = 125?",
+     "hi": "total = 125 हो तो print(\"Total: \" + total) कैसे ठीक करें?",
+     "hinglish": "total = 125 ho to print(\"Total: \" + total) kaise theek karein?"
+    },
+    "options": [
+     "print(\"Total: \" - total)",
+     "print(\"Total: \" + str(total))",
+     "print(Total: + total)"
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "str(total) converts 125 to \"125\" so the two strings join.",
+     "hi": "str(total) 125 को \"125\" बनाता है ताकि दोनों स्ट्रिंग जुड़ें।",
+     "hinglish": "str(total) 125 ko \"125\" banata hai taaki dono strings judein."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "order",
+    "prompt": {
+     "en": "Order the debugging steps.",
+     "hi": "डिबगिंग के कदम क्रम में लगाओ।",
+     "hinglish": "Debugging steps order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Read the error type and line",
+      "hi": "त्रुटि का प्रकार और लाइन पढ़ो",
+      "hinglish": "Error type aur line padho"
+     },
+     {
+      "en": "Run the tests again",
+      "hi": "टेस्ट फिर चलाओ",
+      "hinglish": "Tests phir chalao"
+     },
+     {
+      "en": "Make the bug happen again",
+      "hi": "बग फिर से होने दो",
+      "hinglish": "Bug phir se hone do"
+     },
+     {
+      "en": "Trace values and change ONE thing",
+      "hi": "मान ट्रेस करो और एक चीज़ बदलो",
+      "hinglish": "Values trace karo aur EK cheez badlo"
+     }
+    ],
+    "answer": [
+     2,
+     0,
+     3,
+     1
+    ],
+    "explain": {
+     "en": "Reproduce → read the error → trace/fix one thing → retest.",
+     "hi": "दोहराओ → त्रुटि पढ़ो → ट्रेस/एक चीज़ ठीक → फिर जाँचो।",
+     "hinglish": "Reproduce → error padho → trace/ek cheez fix → retest."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "avg = 4 + 6 / 2 gives 7.0, not 5.0. Why?",
+     "hi": "avg = 4 + 6 / 2, 5.0 नहीं 7.0 देता है। क्यों?",
+     "hinglish": "avg = 4 + 6 / 2, 5.0 nahi 7.0 deta hai. Kyun?"
+    },
+    "options": [
+     {
+      "en": "Division happens before addition",
+      "hi": "भाग जोड़ से पहले होता है",
+      "hinglish": "Division addition se pehle hota hai"
+     },
+     {
+      "en": "Python cannot add",
+      "hi": "पायथन जोड़ नहीं सकता",
+      "hinglish": "Python jod nahi sakta"
+     },
+     {
+      "en": "6 / 2 is 4",
+      "hi": "6 / 2 = 4 है",
+      "hinglish": "6 / 2 = 4 hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Division happens before addition (BODMAS). Write (4 + 6) / 2.",
+     "hi": "भाग जोड़ से पहले होता है (BODMAS)। (4 + 6) / 2 लिखो।",
+     "hinglish": "Division addition se pehle hota hai (BODMAS). (4 + 6) / 2 likho."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "lc",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Fix the bug program in the tracer so it prints “Total: 125”.",
+     "hi": "ट्रेसर में बग प्रोग्राम ठीक करो ताकि “Total: 125” छपे।",
+     "hinglish": "Tracer mein bug program theek karo taaki “Total: 125” print ho."
+    },
+    "answer": {
+     "lab": "py-tracer",
+     "event": "mission:complete",
+     "program": "bug"
+    },
+    "explain": {
+     "en": "Change the last line to print(\"Total: \" + str(total)).",
+     "hi": "आख़िरी लाइन को print(\"Total: \" + str(total)) करो।",
+     "hinglish": "Last line ko print(\"Total: \" + str(total)) karo."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Python documentation — The Python Tutorial",
+   "url": "https://docs.python.org/3/tutorial/",
+   "licence": "PSF licence (fact reference only)"
+  },
+  {
+   "title": "Python docs — Errors and exceptions",
+   "url": "https://docs.python.org/3/tutorial/errors.html",
+   "licence": "PSF licence (fact reference only)"
+  },
+  {
+   "title": "Smithsonian National Museum of American History — Log book with computer bug (1947)",
+   "url": "https://americanhistory.si.edu/collections/object/nmah_334663",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

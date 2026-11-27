@@ -1,0 +1,267 @@
+<!doctype html><html lang="en" data-lab="sql-playground"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#061233"><title>SQL Playground · NCA Tech Lab L3</title><style>:root{--bg:#061233;--bg2:#0b1b4a;--card:rgba(255,255,255,.06);--line:rgba(255,255,255,.12);--tx:#eef4ff;--mut:#9fb0d6;--grape:#8B3DFF;--cyan:#02CFF9;--leaf:#22C55E;--coral:#FF6B57;--gold:#F5B90A;--tang:#FF7A1A;--royal:#2563EB;--r:16px}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:radial-gradient(120% 80% at 10% -10%,#22145e 0%,transparent 55%),radial-gradient(120% 80% at 110% 10%,#04395e 0%,transparent 50%),var(--bg);color:var(--tx);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans Devanagari",sans-serif;min-height:100%}
+body{padding:0 0 24px}
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:8px;padding:10px 12px;background:rgba(6,18,51,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top h1{font-size:16px;margin:0;flex:1;letter-spacing:.2px}
+.top h1 small{display:block;font-size:11px;color:var(--mut);font-weight:500}
+.badge{font-size:11px;padding:3px 8px;border-radius:99px;background:linear-gradient(90deg,var(--grape),var(--cyan));color:#061233;font-weight:700}
+.langs{display:flex;border:1px solid var(--line);border-radius:99px;overflow:hidden}
+.langs button{background:none;border:0;color:var(--mut);padding:5px 8px;font:inherit;font-size:12px;min-height:30px}
+.langs button.on{background:var(--grape);color:#fff}
+.wrap{max-width:1100px;margin:0 auto;padding:12px}
+.goal{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:var(--r);background:linear-gradient(135deg,rgba(139,61,255,.22),rgba(2,207,249,.12));border:1px solid rgba(139,61,255,.4);margin-bottom:12px;font-size:14px}
+.goal b{color:var(--gold)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px;margin-bottom:12px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.card h2{font-size:14px;margin:0 0 8px;color:var(--cyan);letter-spacing:.3px;text-transform:uppercase}
+.grid{display:grid;gap:12px}
+@media(min-width:720px){.grid.two{grid-template-columns:1.25fr 1fr}}
+@media(orientation:landscape) and (max-height:500px){.grid.two{grid-template-columns:1.2fr 1fr}.top{padding:6px 12px}}
+.btn{appearance:none;border:1px solid var(--line);background:rgba(255,255,255,.08);color:var(--tx);border-radius:12px;padding:9px 12px;font:inherit;font-weight:600;min-height:40px;cursor:pointer;transition:transform .12s,background .2s}
+.btn:active{transform:scale(.96)}
+.btn.pri{background:linear-gradient(135deg,var(--grape),#5b2be0);border-color:transparent;color:#fff;box-shadow:0 6px 18px rgba(139,61,255,.4)}
+.btn.ok{background:var(--leaf);color:#062;border-color:transparent}
+.btn.on{outline:2px solid var(--cyan)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{border-radius:99px;padding:6px 11px;min-height:34px;font-size:13px}
+label.sl{display:flex;flex-direction:column;gap:3px;font-size:12px;color:var(--mut);flex:1;min-width:120px}
+input[type=range]{width:100%;accent-color:var(--grape)}
+input[type=text],textarea,select{width:100%;background:rgba(0,0,0,.25);border:1px solid var(--line);color:var(--tx);border-radius:12px;padding:10px;font:inherit}
+.stat{display:flex;flex-direction:column;padding:8px 10px;border-radius:12px;background:rgba(0,0,0,.22);min-width:80px}
+.stat b{font-size:18px;font-variant-numeric:tabular-nums}
+.stat span{font-size:11px;color:var(--mut)}
+.mut{color:var(--mut)}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px}
+canvas,svg{display:block;max-width:100%;touch-action:none}
+
+
+.explain{font-size:13.5px;color:#d7e2ff;background:rgba(0,0,0,.2);border-left:3px solid var(--cyan);padding:8px 10px;border-radius:8px;margin-top:8px}
+.pill{display:inline-block;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:700}
+@keyframes pop{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(2,207,249,.0)}50%{box-shadow:0 0 0 6px rgba(2,207,249,.25)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.top h1 .hstat{display:none;font-size:12px;font-weight:700;color:#4ade80;animation:pop .3s both}.top h1.toasting small{display:none}.top h1.toasting .hstat{display:block}
+.seg.chips{margin:4px 0}.seg.chips button{white-space:normal;text-align:left;line-height:1.25;max-width:100%}
+.seg.chips.big .pick{width:100%;font-weight:700}
+</style></head><body><script>// NCA Tech Lab L3 shared kit: language, config from ?cfg= / ?lesson= / inline, mission events, small helpers. No eval.
+(function(g){
+  const qs=new URLSearchParams(location.search);
+  const K={lang:qs.get('lang')||localStorage.getItem('nca-lang')||'hinglish',cfg:{},goal:null,lab:document.documentElement.dataset.lab,listeners:[]};
+  K.reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  K.t=(o)=>o==null?'':typeof o==='string'?o:(o[K.lang]||o.hinglish||o.en||'');
+  K.$=(s,r)=>(r||document).querySelector(s);K.$$=(s,r)=>[...(r||document).querySelectorAll(s)];
+  K.el=(tag,attrs,html)=>{const e=document.createElement(tag);if(attrs)for(const k in attrs){if(k==='on')for(const ev in attrs.on)e.addEventListener(ev,attrs.on[ev]);else e.setAttribute(k,attrs[k]);}if(html!=null)e.innerHTML=html;return e;};
+  K.esc=(s)=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+  K.rng=(seed)=>{let s=seed>>>0||1;return()=>{s^=s<<13;s>>>=0;s^=s>>17;s^=s<<5;s>>>=0;return s/4294967296;};};
+  K.clamp=(v,a,b)=>Math.max(a,Math.min(b,v));K.lerp=(a,b,t)=>a+(b-a)*t;K.ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+  K.sleep=(ms)=>new Promise(r=>setTimeout(r,K.reduced?0:ms));
+  K.tween=(ms,fn)=>new Promise(res=>{if(K.reduced||ms<=0){fn(1);return res();}const t0=performance.now();const f=n=>{const t=Math.min(1,(n-t0)/ms);fn(K.ease(t));t<1?requestAnimationFrame(f):res();};requestAnimationFrame(f);});
+  // Toasts never cover content (readability rule): the message temporarily replaces the header subtitle, then the subtitle returns after 2.5 s.
+  K.toast=(msg)=>{const h=K.$('header.top h1');if(!h)return;let st=h.querySelector('.hstat');if(!st){st=K.el('span',{class:'hstat',role:'status','aria-live':'polite'});h.appendChild(st);}st.textContent=msg;h.classList.add('toasting');clearTimeout(K._tt);K._tt=setTimeout(()=>h.classList.remove('toasting'),2500);};
+  K.events=[];
+  // emit a lab event; the lesson player listens via postMessage and matches it against try.questions[type=lab-check].answer
+  K.emit=(event,data)=>{const m={type:'nca-lab-event',lab:K.lab,event,data:data||{},at:Date.now()};K.events.push(m);try{parent!==window&&parent.postMessage(m,'*');}catch(e){}g.dispatchEvent(new CustomEvent('nca-lab-event',{detail:m}));document.documentElement.dataset.lastEvent=event;};
+  K.check=(event,data,msg)=>{K.emit(event,data);K.toast('✓ '+(msg||K.t({en:'Mission check passed',hinglish:'Mission check pass!',hi:'मिशन जाँच पास!'})));};
+  K.onLang=(fn)=>K.listeners.push(fn);
+  K.setLang=(l)=>{K.lang=l;localStorage.setItem('nca-lang',l);K.$$('.langs button').forEach(b=>b.classList.toggle('on',b.dataset.l===l));K.$$('[data-t]').forEach(e=>{const o=K.T[e.dataset.t];if(o)e.innerHTML=K.t(o);});K.renderGoal();K.listeners.forEach(f=>f(l));};
+  K.T={};// string table: key -> {en,hi,hinglish}
+  K.renderGoal=()=>{const gEl=K.$('#goal');if(!gEl)return;const goal=K.goal||K.T.__goal;gEl.style.display=goal?'flex':'none';if(goal)gEl.innerHTML='<span>🎯</span><div><b>'+K.esc(K.t({en:'Goal',hinglish:'Goal',hi:'लक्ष्य'}))+':</b> '+K.esc(K.t(goal))+'</div>';};
+  K.header=(title,sub)=>{const h=K.el('header',{class:'top'});h.innerHTML='<span class="badge">L3</span><h1>'+K.esc(K.t(title))+'<small>'+K.esc(K.t(sub))+'</small></h1><div class="langs" role="group" aria-label="Language"><button data-l="hinglish">Hinglish</button><button data-l="en">EN</button><button data-l="hi">हिं</button></div>';document.body.prepend(h);K.$$('.langs button',h).forEach(b=>b.onclick=()=>{K.setLang(b.dataset.l);h.querySelector('h1').firstChild.textContent=K.t(title);h.querySelector('small').textContent=K.t(sub);});};
+  // Readability rule: native <select> boxes cut long option text on phones, so every select is shown as a wrapping row of chips.
+  K.chipify=(sel)=>{if(sel._chips||sel.dataset.keep!=null)return;const box=K.el('div',{class:'seg chips',role:'radiogroup','aria-label':sel.getAttribute('aria-label')||'options'});sel.after(box);sel.style.display='none';sel._chips=box;let last='';
+    let open=false;const render=(force)=>{const n=sel.options.length,big=n>6;const sig=[...sel.options].map(o=>o.value+'\u0001'+o.textContent).join('\u0002')+'|'+sel.value+'|'+open;if(sig===last&&!force)return;last=sig;box.innerHTML='';box.classList.toggle('big',big);
+      if(big){const cur=sel.options[sel.selectedIndex];const t=K.el('button',{class:'btn on pick',type:'button','aria-expanded':open?'true':'false'});t.textContent=(open?'▴ ':'▾ ')+(cur?cur.textContent:'');t.onclick=()=>{open=!open;render(true);};box.appendChild(t);if(!open)return;}
+      [...sel.options].forEach(o=>{if(big&&o.value===sel.value)return;const b=K.el('button',{class:'btn'+(o.value===sel.value?' on':''),type:'button',role:'radio','aria-checked':o.value===sel.value?'true':'false'});b.textContent=o.textContent;b.onclick=()=>{if(sel.disabled)return;sel.value=o.value;open=false;render(true);sel.dispatchEvent(new Event('change',{bubbles:true}));};box.appendChild(b);});};
+    render();new MutationObserver(render).observe(sel,{childList:true,subtree:true,characterData:true});setInterval(render,250);};
+  K.chipAll=()=>{K.$$('select').forEach(K.chipify);if(!K._mo){K._mo=new MutationObserver(()=>K.$$('select').forEach(K.chipify));K._mo.observe(document.body,{childList:true,subtree:true});}};
+  K.boot=async(defaults)=>{let cfg=Object.assign({},defaults||{});
+    const inl=document.getElementById('lesson-inline');
+    try{if(inl){const L=JSON.parse(inl.textContent);if(L.play){Object.assign(cfg,L.play.config||{});K.goal=L.play.goal;}}}catch(e){}
+    const lp=qs.get('lesson');if(lp){try{const L=await (await fetch(lp)).json();if(L.play&&L.play.lab===K.lab){Object.assign(cfg,L.play.config||{});K.goal=L.play.goal;}}catch(e){}}
+    const c=qs.get('cfg');if(c){try{Object.assign(cfg,JSON.parse(c));}catch(e){}}
+    for(const [k,v] of qs){if(!['cfg','lesson','lang'].includes(k))cfg[k]=v;}
+    K.cfg=cfg;K.setLang(K.lang);setTimeout(K.chipAll,0);return cfg;};
+  g.K=K;
+})(window);
+</script><div class="wrap">
+ <div id="goal" class="goal" style="display:none"></div>
+ <div class="seg" id="modes" style="margin-bottom:10px"></div>
+ <div class="grid two">
+  <div>
+   <div class="card" id="sqliCard" style="display:none"><h2 data-t="sqliTitle"></h2><div id="sqli"></div></div>
+   <div class="card" id="missionCard"><h2 data-t="mission"></h2><div id="mText"></div><div class="row" style="margin-top:8px;flex-wrap:wrap" id="mNav"></div></div>
+   <div class="card"><h2 data-t="query"></h2>
+    <textarea id="sql" rows="5" spellcheck="false" autocapitalize="off" class="mono" style="width:100%;font-size:14px"></textarea>
+    <div class="row" style="margin-top:8px;flex-wrap:wrap"><button class="btn pri" id="run">▶ Run</button><button class="btn" id="hint">💡</button><span id="chips" class="seg"></span></div>
+    <div id="pipe" class="pipe"></div>
+    <div id="err" class="err" style="display:none"></div>
+    <div id="res" class="res"></div>
+   </div>
+  </div>
+  <div>
+   <div class="card" id="schemaCard"><h2 data-t="schema"></h2><div id="schema"></div></div>
+  </div>
+ </div>
+</div>
+<style>
+.pipe{display:flex;flex-wrap:wrap;gap:4px;margin:10px 0 4px}.pipe span{font:700 11px ui-monospace,monospace;padding:4px 7px;border-radius:8px;background:rgba(255,255,255,.08);color:#cbd5e1;opacity:.35;transition:all .3s}.pipe span.on{opacity:1;background:rgba(2,207,249,.18);color:#fff;transform:translateY(-2px)}.pipe span b{color:#F5B90A;margin-left:3px}
+.res{overflow:auto;max-height:320px;border-radius:10px}.res table{border-collapse:collapse;width:100%;font-size:13px}.res th{position:sticky;top:0;background:#0b1b4a;color:#02CFF9;text-align:left;padding:6px 8px;font-size:12px}.res td{padding:5px 8px;border-top:1px solid rgba(255,255,255,.07);font-variant-numeric:tabular-nums}.res tr{animation:rowin .35s both}@keyframes rowin{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
+.err{background:rgba(255,107,87,.15);border:1px solid #FF6B57;border-radius:10px;padding:8px;margin-top:8px;font-size:13px}
+.tbl{margin:6px 0;border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:7px 9px;cursor:pointer}.tbl b{color:#F5B90A}.tbl .cols{font:12px ui-monospace,monospace;color:#cbd5e1;margin-top:3px}.tbl .pk{color:#22C55E}.tbl .fk{color:#c4a3ff}
+.ok{color:#22C55E;font-weight:800}.mbtn{font-size:12px;padding:5px 9px}.mbtn.done{border-color:#22C55E;color:#22C55E}
+.login{display:grid;gap:6px}.login .q{font:12.5px ui-monospace,monospace;background:#020817;border-radius:8px;padding:8px;white-space:pre-wrap;word-break:break-all}.login .q i{color:#FF6B57;font-style:normal;font-weight:800}
+</style>
+<script>
+const T=K.T,t3=(en,hinglish,hi)=>({en,hinglish,hi});
+Object.assign(T,{mission:t3('Mission','Mission','मिशन'),query:t3('Your SQL','Tumhara SQL','आपका SQL'),schema:t3('Tables (tap to preview)','Tables (preview ke liye tap karo)','तालिकाएँ (देखने के लिए टैप करो)'),sqliTitle:t3('Login form: unsafe vs safe','Login form: unsafe vs safe','लॉगिन फ़ॉर्म: असुरक्षित बनाम सुरक्षित')});
+// ---------- data (fictional school) ----------
+const DB={
+ houses:{cols:['id','name','colour'],pk:'id',rows:[[1,'Aryabhata','red'],[2,'Raman','blue'],[3,'Kalpana','green'],[4,'Sarabhai','yellow']]},
+ students:{cols:['id','name','class','house_id','city'],pk:'id',fk:{house_id:'houses.id'},rows:[[1,'Aanya',9,1,'Pune'],[2,'Kabir',9,2,'Lucknow'],[3,'Meera',10,3,'Chennai'],[4,'Arjun',10,1,'Pune'],[5,'Zoya',11,4,'Srinagar'],[6,'Rohan',11,2,'Patna'],[7,'Ishita',12,3,'Kolkata'],[8,'Dev',12,4,'Jaipur'],[9,'Sana',10,2,'Hyderabad'],[10,'Vikram',9,3,'Chennai'],[11,'Priya',11,1,'Bhopal'],[12,'Nikhil',12,2,'Guwahati']]},
+ marks:{cols:['student_id','subject','marks'],fk:{student_id:'students.id'},rows:[]},
+ users:{cols:['id','username','password_hash'],pk:'id',rows:[[1,'admin','$2b$12$Q9…(bcrypt hash)'],[2,'teacher1','$2b$12$x7…(bcrypt hash)'],[3,'aanya','$2b$12$Lm…(bcrypt hash)']]}};
+{const r=K.rng(42),subs=['maths','science','english'];for(let s=1;s<=12;s++)for(const sb of subs)DB.marks.rows.push([s,sb,45+Math.floor(r()*55)]);}
+// ---------- tokenizer ----------
+const KW=new Set('SELECT DISTINCT FROM WHERE AND OR NOT JOIN INNER LEFT ON GROUP BY HAVING ORDER ASC DESC LIMIT AS LIKE IN IS NULL BETWEEN COUNT SUM AVG MIN MAX ROUND UPPER LOWER LENGTH'.split(' '));
+function lex(s){const out=[];let i=0;while(i<s.length){const c=s[i];if(/\s/.test(c)){i++;continue;}
+ if(c==='-'&&s[i+1]==='-'){while(i<s.length&&s[i]!=='\n')i++;continue;}
+ if(c==="'"){let j=i+1,v='';for(;;){if(j>=s.length)throw err('unclosed',"Unclosed text quote ' — add the closing quote.");if(s[j]==="'"){if(s[j+1]==="'"){v+="'";j+=2;continue;}break;}v+=s[j++];}out.push({t:'str',v});i=j+1;continue;}
+ if(/[0-9]/.test(c)){let j=i;while(j<s.length&&/[0-9.]/.test(s[j]))j++;out.push({t:'num',v:+s.slice(i,j)});i=j;continue;}
+ if(/[A-Za-z_]/.test(c)){let j=i;while(j<s.length&&/[A-Za-z0-9_]/.test(s[j]))j++;const w=s.slice(i,j);out.push(KW.has(w.toUpperCase())?{t:'kw',v:w.toUpperCase()}:{t:'id',v:w.toLowerCase()});i=j;continue;}
+ const two=s.slice(i,i+2);if(['<=','>=','!=','<>'].includes(two)){out.push({t:'op',v:two==='<>'?'!=':two});i+=2;continue;}
+ if('=<>+-*/(),.;'.includes(c)){out.push({t:'op',v:c});i++;continue;}
+ throw err('char','Unexpected character "'+c+'".');}
+ return out;}
+function err(code,msg){const e=new Error(msg);e.code=code;return e;}
+// ---------- parser ----------
+function parse(src){const tk=lex(src).filter(x=>!(x.t==='op'&&x.v===';'));let p=0;const pk=()=>tk[p],nx=()=>tk[p++];
+ const is=(t,v)=>tk[p]&&tk[p].t===t&&(v===undefined||tk[p].v===v),kw=v=>is('kw',v),eat=(t,v)=>{if(!is(t,v))throw err('expect','Expected '+(v||t)+(pk()?' near "'+pk().v+'"':' at the end')+'.');return nx();};
+ function primary(){const x=pk();if(!x)throw err('end','The query ended too early.');
+  if(x.t==='num'){p++;return{k:'lit',v:x.v};}if(x.t==='str'){p++;return{k:'lit',v:x.v};}
+  if(kw('NULL')){p++;return{k:'lit',v:null};}
+  if(x.t==='op'&&x.v==='('){p++;const e=expr();eat('op',')');return e;}
+  if(x.t==='op'&&x.v==='-'){p++;return{k:'neg',e:primary()};}
+  if(x.t==='kw'&&['COUNT','SUM','AVG','MIN','MAX','ROUND','UPPER','LOWER','LENGTH'].includes(x.v)){p++;eat('op','(');let a;if(is('op','*')){p++;a={k:'star'};}else{const d=kw('DISTINCT');if(d)p++;a=expr();a.distinct=d;}const args=[a];while(is('op',',')){p++;args.push(expr());}eat('op',')');return{k:'fn',f:x.v,args};}
+  if(x.t==='id'){p++;if(is('op','.')){p++;if(is('op','*')){p++;return{k:'tstar',t:x.v};}const c=eat('id');return{k:'col',t:x.v,c:c.v};}return{k:'col',c:x.v};}
+  throw err('unexpected','Did not expect "'+x.v+'" here.');}
+ function mul(){let l=primary();while(is('op','*')||is('op','/')){const o=nx().v;l={k:'bin',o,l,r:primary()};}return l;}
+ function add(){let l=mul();while(is('op','+')||is('op','-')){const o=nx().v;l={k:'bin',o,l,r:mul()};}return l;}
+ function cmp(){let l=add();let neg=false;if(kw('NOT')&&tk[p+1]&&tk[p+1].t==='kw'&&['LIKE','IN','BETWEEN'].includes(tk[p+1].v)){p++;neg=true;}
+  if(is('op')&&['=','!=','<','>','<=','>='].includes(pk().v)){const o=nx().v;return{k:'bin',o,l,r:add()};}
+  if(kw('LIKE')){p++;return wrap({k:'like',l,r:add()});}
+  if(kw('IN')){p++;eat('op','(');const xs=[expr()];while(is('op',',')){p++;xs.push(expr());}eat('op',')');return wrap({k:'in',l,xs});}
+  if(kw('BETWEEN')){p++;const a=add();eat('kw','AND');const b=add();return wrap({k:'between',l,a,b});}
+  if(kw('IS')){p++;let n=false;if(kw('NOT')){p++;n=true;}eat('kw','NULL');return{k:'isnull',l,n};}
+  return l;function wrap(e){return neg?{k:'not',e}:e;}}
+ function not(){if(kw('NOT')){p++;return{k:'not',e:not()};}return cmp();}
+ function and(){let l=not();while(kw('AND')){p++;l={k:'and',l,r:not()};}return l;}
+ function expr(){let l=and();while(kw('OR')){p++;l={k:'or',l,r:and()};}return l;}
+ const q={items:[],joins:[],group:[],order:[]};
+ if(!kw('SELECT'))throw err('select','This playground runs SELECT queries only (reading data). Start with SELECT.');
+ p++;if(kw('DISTINCT')){p++;q.distinct=true;}
+ do{if(is('op',',')&&q.items.length)p++;if(is('op','*')){p++;q.items.push({e:{k:'star'}});}else{const e=expr();let as=null;if(kw('AS')){p++;as=eat('id').v;}else if(is('id'))as=nx().v;q.items.push({e,as});}}while(is('op',','));
+ eat('kw','FROM');const tb=()=>{const n=eat('id').v;if(!DB[n])throw err('table','There is no table called "'+n+'". Tables: '+Object.keys(DB).join(', ')+'.');let a=n;if(kw('AS')){p++;a=eat('id').v;}else if(is('id'))a=nx().v;return{n,a};};
+ q.from=tb();
+ while(kw('JOIN')||kw('INNER')||kw('LEFT')){let left=false;if(kw('LEFT')){left=true;p++;}else if(kw('INNER'))p++;eat('kw','JOIN');const t=tb();eat('kw','ON');q.joins.push({...t,on:expr(),left});}
+ if(kw('WHERE')){p++;q.where=expr();}
+ if(kw('GROUP')){p++;eat('kw','BY');do{if(is('op',','))p++;q.group.push(expr());}while(is('op',','));}
+ if(kw('HAVING')){p++;q.having=expr();}
+ if(kw('ORDER')){p++;eat('kw','BY');do{if(is('op',','))p++;const e=expr();let d=false;if(kw('DESC')){p++;d=true;}else if(kw('ASC'))p++;q.order.push({e,d});}while(is('op',','));}
+ if(kw('LIMIT')){p++;q.limit=eat('num').v;}
+ if(p<tk.length)throw err('extra','Unexpected "'+tk[p].v+'" — check the order: SELECT … FROM … JOIN … WHERE … GROUP BY … HAVING … ORDER BY … LIMIT.');
+ return q;}
+// ---------- evaluator ----------
+const AGG=new Set(['COUNT','SUM','AVG','MIN','MAX']);
+const hasAgg=e=>!!e&&typeof e==='object'&&((e.k==='fn'&&AGG.has(e.f))||Object.values(e).some(v=>Array.isArray(v)?v.some(hasAgg):typeof v==='object'&&hasAgg(v)));
+function getCol(row,e){if(e.t){const k=e.t+'.'+e.c;if(!(k in row))throw err('col','Unknown column "'+e.t+'.'+e.c+'".');return row[k];}
+ const ks=Object.keys(row).filter(k=>k.endsWith('.'+e.c));if(e.c in row.__alias)return row.__alias[e.c];if(!ks.length)throw err('col','Unknown column "'+e.c+'". Check the table list on the right.');
+ if(ks.length>1&&new Set(ks.map(k=>row[k])).size>1)throw err('ambig','Column "'+e.c+'" is in more than one table — write it as table.'+e.c+'.');return row[ks[0]];}
+function ev(e,row,grp){switch(e.k){case 'lit':return e.v;case 'col':return getCol(row,e);case 'neg':return -ev(e.e,row,grp);
+ case 'bin':{const a=ev(e.l,row,grp),b=ev(e.r,row,grp);if(['+','-','*','/'].includes(e.o)){if(a==null||b==null)return null;return e.o==='+'?a+b:e.o==='-'?a-b:e.o==='*'?a*b:(b===0?null:a/b);}
+  if(a==null||b==null)return false;const x=typeof a==='string'&&typeof b==='string'?[a.toLowerCase(),b.toLowerCase()]:[a,b];return e.o==='='?x[0]==x[1]:e.o==='!='?x[0]!=x[1]:e.o==='<'?x[0]<x[1]:e.o==='>'?x[0]>x[1]:e.o==='<='?x[0]<=x[1]:x[0]>=x[1];}
+ case 'and':return !!ev(e.l,row,grp)&&!!ev(e.r,row,grp);case 'or':return !!ev(e.l,row,grp)||!!ev(e.r,row,grp);case 'not':return !ev(e.e,row,grp);
+ case 'like':{const v=ev(e.l,row,grp),pt=String(ev(e.r,row,grp));if(v==null)return false;const re=new RegExp('^'+pt.replace(/[.*+?^${}()|[\]\\]/g,'\\$&').replace(/%/g,'.*').replace(/_/g,'.')+'$','i');return re.test(String(v));}
+ case 'in':{const v=ev(e.l,row,grp);return e.xs.some(x=>{const w=ev(x,row,grp);return typeof v==='string'&&typeof w==='string'?v.toLowerCase()===w.toLowerCase():v==w;});}
+ case 'between':{const v=ev(e.l,row,grp);return v>=ev(e.a,row,grp)&&v<=ev(e.b,row,grp);}
+ case 'isnull':{const v=ev(e.l,row,grp);return e.n?v!=null:v==null;}
+ case 'fn':{if(AGG.has(e.f)){if(!grp)throw err('agg',e.f+'() needs a group — use it in SELECT or HAVING, not WHERE.');const a=e.args[0];let vs=a.k==='star'?grp.map(()=>1):grp.map(r=>ev(a,r,null)).filter(v=>v!=null);if(a.distinct)vs=[...new Set(vs)];
+   if(e.f==='COUNT')return vs.length;if(!vs.length)return null;if(e.f==='SUM')return vs.reduce((s,v)=>s+v,0);if(e.f==='AVG')return Math.round(vs.reduce((s,v)=>s+v,0)/vs.length*100)/100;if(e.f==='MIN')return vs.reduce((m,v)=>v<m?v:m);return vs.reduce((m,v)=>v>m?v:m);}
+  const v=ev(e.args[0],row,grp);if(e.f==='ROUND'){const d=e.args[1]?ev(e.args[1],row,grp):0;return v==null?null:Math.round(v*10**d)/10**d;}if(e.f==='UPPER')return v==null?null:String(v).toUpperCase();if(e.f==='LOWER')return v==null?null:String(v).toLowerCase();return v==null?null:String(v).length;}
+ case 'star':return 1;}
+ throw err('expr','Could not work out this expression.');}
+const label=e=>e.k==='col'?e.c:e.k==='fn'?e.f.toLowerCase()+'('+(e.args[0].k==='star'?'*':label(e.args[0]))+')':e.k==='lit'?String(e.v):'expr';
+function run(src){const q=parse(src);const stages=[];const load=(t,a)=>DB[t].rows.map(r=>{const o={__alias:{}};DB[t].cols.forEach((c,i)=>o[a+'.'+c]=r[i]);return o;});
+ let rows=load(q.from.n,q.from.a);stages.push(['FROM',rows.length]);
+ for(const j of q.joins){const right=load(j.n,j.a),out=[];for(const l of rows){let m=false;for(const r of right){const c={...l,...r,__alias:{}};if(ev(j.on,c,null)){out.push(c);m=true;}}if(!m&&j.left){const c={...l,__alias:{}};DB[j.n].cols.forEach(cn=>c[j.a+'.'+cn]=null);out.push(c);}}rows=out;stages.push(['JOIN',rows.length]);}
+ if(q.where){rows=rows.filter(r=>ev(q.where,r,null));stages.push(['WHERE',rows.length]);}
+ const agg=q.group.length||q.items.some(i=>hasAgg(i.e))||(q.having&&hasAgg(q.having));
+ let groups=null;if(agg){const m=new Map();for(const r of rows){const key=JSON.stringify(q.group.map(g=>ev(g,r,null)));if(!m.has(key))m.set(key,[]);m.get(key).push(r);}groups=[...m.values()];if(!q.group.length&&!groups.length)groups=[[]];stages.push(['GROUP BY',groups.length]);
+  if(q.having){groups=groups.filter(g=>ev(q.having,g[0]||{__alias:{}},g));stages.push(['HAVING',groups.length]);}}
+ // projection
+ let cols=[];const units=agg?groups.map(g=>({row:g[0]||{__alias:{}},grp:g})):rows.map(r=>({row:r,grp:null}));
+ for(const it of q.items){if(it.e.k==='star'){if(agg)throw err('star','SELECT * cannot be used with GROUP BY — name the columns.');const ks=Object.keys(units[0]?units[0].row:{}).filter(k=>k!=='__alias');const base=ks.length?ks:[q.from,...q.joins].flatMap(t=>DB[t.n].cols.map(c=>t.a+'.'+c));base.forEach(k=>cols.push({name:k.split('.')[1],get:u=>u.row[k]}));}
+  else{if(agg&&!hasAgg(it.e)&&it.e.k==='col'&&!q.group.some(g=>g.k==='col'&&g.c===it.e.c))throw err('group','"'+it.e.c+'" must be in GROUP BY, or wrapped in COUNT/SUM/AVG/MIN/MAX.');const name=it.as||label(it.e);cols.push({name,get:u=>ev(it.e,u.row,u.grp)});}}
+ let out=units.map(u=>{const vals=cols.map(c=>c.get(u));cols.forEach((c,i)=>u.row.__alias[c.name]=vals[i]);return{vals,u};});
+ stages.push(['SELECT',out.length]);
+ if(q.distinct){const s=new Set();out=out.filter(o=>{const k=JSON.stringify(o.vals);if(s.has(k))return false;s.add(k);return true;});}
+ if(q.order.length){out.sort((a,b)=>{for(const o of q.order){let x,y;if(o.e.k==='col'&&cols.some(c=>c.name===o.e.c)&&!o.e.t){const i=cols.findIndex(c=>c.name===o.e.c);x=a.vals[i];y=b.vals[i];}else{x=ev(o.e,a.u.row,a.u.grp);y=ev(o.e,b.u.row,b.u.grp);}if(x==y)continue;if(x==null)return 1;if(y==null)return -1;const r=x<y?-1:1;return o.d?-r:r;}return 0;});stages.push(['ORDER BY',out.length]);}
+ if(q.limit!=null){out=out.slice(0,q.limit);stages.push(['LIMIT',out.length]);}
+ return{cols:cols.map(c=>c.name),rows:out.map(o=>o.vals),stages,q};}
+// ---------- missions ----------
+const M=[
+ {id:'select-all',ref:'SELECT * FROM students',start:'SELECT * FROM students',text:t3('Show every row and column of the students table.','students table ki saari rows aur columns dikhao.','students तालिका की सभी पंक्तियाँ और स्तंभ दिखाओ।'),hint:'SELECT * FROM students'},
+ {id:'where',ref:"SELECT name, city FROM students WHERE class = 10",start:'SELECT name, city FROM students WHERE ',text:t3('List the name and city of every Class 10 student.','Class 10 ke har student ka name aur city dikhao.','कक्षा 10 के हर छात्र का name और city दिखाओ।'),hint:"WHERE class = 10"},
+ {id:'order-limit',ref:"SELECT student_id, marks FROM marks WHERE subject = 'maths' ORDER BY marks DESC LIMIT 3",ordered:true,start:"SELECT student_id, marks FROM marks WHERE subject = 'maths'",text:t3('Show the top 3 maths scores (student_id and marks), highest first.','Maths ke top 3 scores (student_id aur marks) dikhao, sabse upar sabse zyaada.','गणित के शीर्ष 3 अंक (student_id और marks) दिखाओ, सबसे ऊपर सबसे ज़्यादा।'),hint:'ORDER BY marks DESC LIMIT 3'},
+ {id:'like-in',ref:"SELECT name FROM students WHERE city IN ('Pune','Chennai') AND name LIKE '%a%'",start:"SELECT name FROM students WHERE ",text:t3('Find students from Pune or Chennai whose name contains the letter "a".','Pune ya Chennai ke woh students dhoondho jinke naam mein "a" hai.','पुणे या चेन्नई के वे छात्र ढूँढो जिनके नाम में "a" है।'),hint:"city IN ('Pune','Chennai') AND name LIKE '%a%'"},
+ {id:'join',ref:"SELECT s.name, h.name AS house FROM students s JOIN houses h ON s.house_id = h.id",start:'SELECT s.name, h.name AS house\nFROM students s\nJOIN houses h ON ',text:t3('Show each student\'s name with their house name (JOIN students to houses).','Har student ka naam uske house ke naam ke saath dikhao (students ko houses se JOIN karo).','हर छात्र का नाम उसके सदन के नाम के साथ दिखाओ (students को houses से JOIN करो)।'),hint:'ON s.house_id = h.id'},
+ {id:'group',ref:"SELECT class, AVG(marks) AS avg_marks FROM students s JOIN marks m ON m.student_id = s.id GROUP BY class",start:'SELECT class, AVG(marks) AS avg_marks\nFROM students s JOIN marks m ON m.student_id = s.id\n',text:t3('Average marks for each class (all subjects together).','Har class ke average marks (saare subjects milake).','हर कक्षा के औसत अंक (सभी विषय मिलाकर)।'),hint:'GROUP BY class'},
+ {id:'having',ref:"SELECT h.name, COUNT(*) AS students FROM students s JOIN houses h ON s.house_id = h.id GROUP BY h.name HAVING COUNT(*) >= 3",start:'SELECT h.name, COUNT(*) AS students\nFROM students s JOIN houses h ON s.house_id = h.id\nGROUP BY h.name\n',text:t3('Which houses have at least 3 students? Show the house name and the count.','Kaunse houses mein kam se kam 3 students hain? House ka naam aur count dikhao.','किन सदनों में कम से कम 3 छात्र हैं? सदन का नाम और गिनती दिखाओ।'),hint:'HAVING COUNT(*) >= 3'}];
+const same=(a,b,ord)=>{if(a.rows.length!==b.rows.length||a.cols.length!==b.cols.length)return false;const f=r=>JSON.stringify(r.map(v=>typeof v==='number'?Math.round(v*100)/100:typeof v==='string'?v.toLowerCase():v));const A=a.rows.map(f),B=b.rows.map(f);if(ord)return A.every((x,i)=>x===B[i]);return JSON.stringify([...A].sort())===JSON.stringify([...B].sort());};
+let cfg,mi=0,done={},mode='missions';
+function renderMission(){const m=M[mi];K.$('#mText').innerHTML=`<b>${mi+1}/${M.length}.</b> ${K.esc(K.t(m.text))} ${done[m.id]?'<span class="ok">✓</span>':''}`;
+ K.$('#mNav').innerHTML=M.map((x,i)=>`<button class="btn mbtn ${done[x.id]?'done':''} ${i===mi?'on':''}" data-i="${i}">${i+1}</button>`).join('');K.$$('#mNav button').forEach(b=>b.onclick=()=>{mi=+b.dataset.i;K.$('#sql').value=M[mi].start;renderMission();});}
+function renderSchema(){K.$('#schema').innerHTML=Object.entries(DB).filter(([n])=>n!=='users'||mode==='sqli').map(([n,t])=>`<div class="tbl" data-n="${n}"><b>${n}</b> <span class="mut">(${t.rows.length} ${K.t(t3('rows','rows','पंक्तियाँ'))})</span><div class="cols">${t.cols.map(c=>c===t.pk?`<span class="pk">🔑${c}</span>`:t.fk&&t.fk[c]?`<span class="fk">🔗${c}→${t.fk[c]}</span>`:c).join(', ')}</div></div>`).join('')+`<div class="explain">${K.t(t3('🔑 primary key: unique for each row. 🔗 foreign key: points to a row in another table — that is how JOIN connects tables.','🔑 primary key: har row ke liye unique. 🔗 foreign key: doosri table ki row ki taraf ishaara — isi se JOIN tables ko jodta hai.','🔑 प्राथमिक कुंजी: हर पंक्ति के लिए अनोखी। 🔗 विदेशी कुंजी: दूसरी तालिका की पंक्ति की ओर इशारा — इसी से JOIN तालिकाओं को जोड़ता है।'))}</div>`;
+ K.$$('.tbl').forEach(d=>d.onclick=()=>{K.$('#sql').value='SELECT * FROM '+d.dataset.n+' LIMIT 5';exec();});}
+async function showPipe(st){const el=K.$('#pipe');el.innerHTML=st.map(s=>`<span>${s[0]}<b>${s[1]}</b></span>`).join('');const sp=K.$$('span',el);for(const s of sp){s.classList.add('on');if(!K.reduced)await K.sleep(120);}}
+function table(r){if(!r.rows.length)return `<div class="mut" style="padding:8px">${K.t(t3('0 rows — the query ran but nothing matched.','0 rows — query chali par kuch match nahi hua.','0 पंक्तियाँ — क्वेरी चली पर कुछ नहीं मिला।'))}</div>`;
+ return `<table><tr>${r.cols.map(c=>`<th>${K.esc(c)}</th>`).join('')}</tr>${r.rows.slice(0,60).map((row,i)=>`<tr style="animation-delay:${Math.min(i,20)*25}ms">${row.map(v=>`<td>${v==null?'<span class="mut">NULL</span>':K.esc(v)}</td>`).join('')}</tr>`).join('')}</table><div class="mut" style="font-size:12px;padding:4px 2px">${r.rows.length} ${K.t(t3('rows','rows','पंक्तियाँ'))}</div>`;}
+function exec(){const src=K.$('#sql').value;K.$('#err').style.display='none';let r;
+ try{r=run(src);}catch(e){K.$('#err').style.display='';K.$('#err').innerHTML='⚠ '+K.esc(e.message);K.$('#res').innerHTML='';K.$('#pipe').innerHTML='';K.emit('query-error',{code:e.code||'error'});return;}
+ K.$('#res').innerHTML=table(r);showPipe(r.stages);K.emit('query-run',{rows:r.rows.length,clauses:r.stages.map(s=>s[0])});
+ if(mode==='missions'){const m=M[mi];const ref=run(m.ref);if(same(r,ref,m.ordered)){if(!done[m.id]){done[m.id]=1;K.check('query-correct',{mission:m.id});if(Object.keys(done).length===M.length)K.emit('all-missions',{count:M.length});}renderMission();}
+  else if(r.rows.length!==ref.rows.length)K.toast(K.t(t3('Ran fine, but expected '+ref.rows.length+' rows — got '+r.rows.length+'.','Chal gayi, par '+ref.rows.length+' rows chahiye — mili '+r.rows.length+'.','चल गई, पर '+ref.rows.length+' पंक्तियाँ चाहिए — मिलीं '+r.rows.length+'।')));}}
+// ---------- SQL injection demo (defensive) ----------
+function renderSqli(){const el=K.$('#sqli');const u=st.u??'aanya',p=st.p??'',safe=!!st.safe;
+ const unsafeQ=`SELECT * FROM users WHERE username = '${u}' AND password_hash = hash('${p}')`;
+ let html=`<div class="login"><label class="mut">username <input type="text" id="lu" value="${K.esc(u)}" autocomplete="off"></label><label class="mut">password <input type="text" id="lp" value="${K.esc(p)}" autocomplete="off"></label>
+ <div class="seg"><button class="btn ${safe?'':'on'}" data-s="0">${K.t(t3('String concatenation (unsafe)','String jodna (unsafe)','स्ट्रिंग जोड़ना (असुरक्षित)'))}</button><button class="btn ${safe?'on':''}" data-s="1">${K.t(t3('Parameterised (safe)','Parameterised (safe)','पैरामीटर वाली (सुरक्षित)'))}</button></div>
+ <button class="btn" id="try1">${K.t(t3("Try the classic attack: ' OR '1'='1",'Classic attack try karo: \' OR \'1\'=\'1','पुराना हमला आज़माओ: \' OR \'1\'=\'1'))}</button>
+ <div class="q">${safe?K.esc("SELECT * FROM users WHERE username = ? AND password_hash = hash(?)")+'\n-- params: ['+K.esc(JSON.stringify(u))+', '+K.esc(JSON.stringify(p))+']':K.esc(unsafeQ).replace(K.esc(u),'<i>'+K.esc(u)+'</i>')}</div><div id="lres"></div></div>`;
+ el.innerHTML=html;K.$('#lu').oninput=e=>{st.u=e.target.value;};K.$('#lp').oninput=e=>{st.p=e.target.value;};
+ K.$('#lu').onchange=K.$('#lp').onchange=()=>{renderSqli();login();};
+ K.$$('button[data-s]',el).forEach(b=>b.onclick=()=>{st.safe=b.dataset.s==='1';renderSqli();login();});
+ K.$('#try1').onclick=()=>{st.u="x' OR '1'='1' --";st.p='';renderSqli();login();};}
+const st={};
+function login(){const u=st.u??'aanya',safe=!!st.safe;const out=K.$('#lres');let rows;
+ if(safe){  out.innerHTML=`<div class="ok">🛡 ${K.t(t3('Blocked. The input is treated as plain text, so the username really is "'+u+'" — no such user. 0 rows, login refused.','Block. Input sirf text maana gaya, to username sach mein "'+u+'" hai — aisa koi user nahi. 0 rows, login mana.','रोका गया। इनपुट सादा पाठ माना गया, तो उपयोगकर्ता नाम सच में "'+u+'" है — ऐसा कोई उपयोगकर्ता नहीं। 0 पंक्तियाँ, लॉगिन अस्वीकार।'))}</div>`;
+  if(/'\s*or\s*'?1'?\s*=\s*'?1/i.test(u)){K.check('sqli-blocked',{});}return;}
+ const injected=/'\s*or\s*'?1'?\s*=\s*'?1/i.test(u);rows=injected?DB.users.rows:[];
+ out.innerHTML=injected?`<div class="err">⚠ ${K.t(t3('The quote ended the text early and OR \'1\'=\'1\' made the condition always true; -- hid the password check. The database returned ALL '+rows.length+' users and would log you in as admin. This is SQL injection — never build queries by joining strings.','Quote ne text jaldi khatam kar diya aur OR \'1\'=\'1\' ne condition hamesha true bana di; -- ne password check chhupa diya. Database ne SAARE '+rows.length+' users lautaye aur admin bana deta. Yeh SQL injection hai — query kabhi strings jod ke mat banao.','उद्धरण चिह्न ने पाठ जल्दी ख़त्म किया और OR \'1\'=\'1\' ने शर्त हमेशा सच बना दी; -- ने पासवर्ड जाँच छिपा दी। डेटाबेस ने सभी '+rows.length+' उपयोगकर्ता लौटाए और एडमिन के रूप में लॉगिन करा देता। यह SQL इंजेक्शन है — क्वेरी कभी स्ट्रिंग जोड़कर मत बनाओ।'))}</div>`:`<div class="mut">${K.t(t3('Normal input: 0 rows (wrong password).','Normal input: 0 rows (galat password).','सामान्य इनपुट: 0 पंक्तियाँ (ग़लत पासवर्ड)।'))}</div>`;
+ if(injected)K.emit('sqli-seen',{rows:rows.length});}
+function setMode(m){mode=m;K.$$('#modes button').forEach(b=>b.classList.toggle('on',b.dataset.m===m));K.$('#missionCard').style.display=m==='missions'?'':'none';K.$('#sqliCard').style.display=m==='sqli'?'':'none';renderSchema();if(m==='sqli'){renderSqli();login();}if(m==='free')K.$('#sql').value='SELECT city, COUNT(*) AS n FROM students GROUP BY city ORDER BY n DESC';}
+(async()=>{K.lab='sql-playground';K.header(t3('SQL Playground','SQL Playground','SQL खेल-मैदान'),t3('Query a school database right in your browser','Browser mein hi school database se sawaal poochho','ब्राउज़र में ही स्कूल डेटाबेस से सवाल पूछो'));
+ cfg=await K.boot({mode:'missions',mission:'select-all'});
+ K.$('#modes').innerHTML=[['missions',t3('🎯 Missions','🎯 Missions','🎯 मिशन')],['free',t3('🧪 Free play','🧪 Free play','🧪 खुला अभ्यास')],['sqli',t3('🛡 SQL injection defence','🛡 SQL injection se bachaav','🛡 SQL इंजेक्शन से बचाव')]].map(([k,l])=>`<button class="btn" data-m="${k}">${K.t(l)}</button>`).join('');
+ K.$$('#modes button').forEach(b=>b.onclick=()=>setMode(b.dataset.m));
+ mi=Math.max(0,M.findIndex(m=>m.id===cfg.mission));K.$('#sql').value=cfg.sql||M[mi].start;
+ K.$('#chips').innerHTML=['WHERE','ORDER BY','GROUP BY','JOIN','COUNT(*)','LIMIT'].map(c=>`<button class="btn mbtn" data-c="${c}">${c}</button>`).join('');
+ K.$$('#chips button').forEach(b=>b.onclick=()=>{const ta=K.$('#sql');ta.value=ta.value.replace(/\s*$/,'')+' '+b.dataset.c+' ';ta.focus();});
+ K.$('#run').onclick=exec;K.$('#sql').onkeydown=e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)){e.preventDefault();exec();}};
+ K.$('#hint').onclick=()=>{K.toast('💡 '+M[mi].hint);K.emit('hint-used',{mission:M[mi].id});};
+ setMode(cfg.mode);renderMission();
+ K.onLang(()=>{renderMission();renderSchema();if(mode==='sqli'){renderSqli();login();}const ms=[['missions',t3('🎯 Missions','🎯 Missions','🎯 मिशन')],['free',t3('🧪 Free play','🧪 Free play','🧪 खुला अभ्यास')],['sqli',t3('🛡 SQL injection defence','🛡 SQL injection se bachaav','🛡 SQL इंजेक्शन से बचाव')]];K.$$('#modes button').forEach((b,i)=>b.textContent=K.t(ms[i][1]));});
+ window.__sql={run,M};})();
+</script>
+</body></html>

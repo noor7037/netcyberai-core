@@ -1,0 +1,314 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.thinking-logic.04",
+ "level": 1,
+ "classes": [
+  3,
+  4,
+  5
+ ],
+ "unit": "thinking-logic",
+ "title": {
+  "en": "If-then: computers make choices",
+  "hi": "अगर-तो: कंप्यूटर फ़ैसले करते हैं",
+  "hinglish": "If-then: computer faisle karte hain"
+ },
+ "minutes": 8,
+ "xp": 35,
+ "prereq": [
+  "L1.thinking-logic.03"
+ ],
+ "topics": [
+  "prog.conditions"
+ ],
+ "outcomes": [
+  {
+   "en": "Write simple IF … THEN … ELSE rules.",
+   "hi": "आसान अगर … तो … वरना नियम लिख सकते हो।",
+   "hinglish": "Simple IF … THEN … ELSE rules likh sakte ho."
+  },
+  {
+   "en": "Explain how a condition (true/false) decides what happens.",
+   "hi": "समझा सकते हो कि शर्त (सच/झूठ) कैसे तय करती है क्या होगा।",
+   "hinglish": "Samjha sakte ho ki condition (sach/jhooth) kaise tay karti hai kya hoga."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Condition",
+   "en": "A question that is either true or false",
+   "hi": "सवाल जो या तो सच हो या झूठ",
+   "hinglish": "Shart — jo sach ya jhooth ho"
+  },
+  {
+   "term": "IF … THEN",
+   "en": "If the condition is true, do this",
+   "hi": "अगर शर्त सच है, तो यह करो",
+   "hinglish": "Agar … toh"
+  },
+  {
+   "term": "ELSE",
+   "en": "Otherwise, do this other thing",
+   "hi": "वरना, यह दूसरा काम करो",
+   "hinglish": "Warna"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.thinking-logic.04.s1",
+   "caption": {
+    "en": "IF it is raining, THEN take an umbrella.",
+    "hi": "अगर बारिश हो रही है, तो छाता लो।",
+    "hinglish": "AGAR baarish ho rahi hai, TOH chhata lo."
+   },
+   "narration": {
+    "en": "IF it is raining (true), THEN we take an umbrella.",
+    "hinglish": "Agar baarish ho rahi hai (sach), toh chhata lete hain.",
+    "hi": "अगर बारिश हो रही है, तो छाता लो।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.thinking-logic.04.s2",
+   "caption": {
+    "en": "Traffic lights use IF-ELSE.",
+    "hi": "ट्रैफ़िक लाइट IF-ELSE से चलती है।",
+    "hinglish": "Traffic light IF-ELSE se chalti hai."
+   },
+   "narration": {
+    "en": "IF the light is red, stop. ELSE, if green, go.",
+    "hinglish": "Agar batti laal hai, ruko. Warna, hari hai toh chalo.",
+    "hi": "ट्रैफ़िक लाइट IF-ELSE से चलती है।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.thinking-logic.04.s3",
+   "caption": {
+    "en": "Robots use IF with sensors.",
+    "hi": "रोबोट सेंसर के साथ IF लगाते हैं।",
+    "hinglish": "Robot sensors ke saath IF lagate hain."
+   },
+   "narration": {
+    "en": "IF the sensor sees a wall ahead, THEN turn. ELSE go forward.",
+    "hinglish": "Agar sensor ko aage deewar dikhe, toh mudo. Warna aage chalo.",
+    "hi": "रोबोट सेंसर के साथ IF लगाते हैं।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "loop-coder",
+  "config": {
+   "level": 7
+  },
+  "goal": {
+   "en": "Use IF wall ahead → turn right ELSE forward inside a loop to escape the maze.",
+   "hi": "लूप के अंदर \"अगर आगे दीवार → दाएँ मुड़ो वरना आगे\" लगाकर भूलभुलैया से निकलो।",
+   "hinglish": "Loop ke andar IF aage deewar → right mudo ELSE forward lagakar maze se niklo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Conditions are true or false",
+    "hi": "शर्त सच या झूठ होती है",
+    "hinglish": "Condition sach ya jhooth hoti hai"
+   },
+   "body": {
+    "en": "\"Is it raining?\" can only be true or false. IF it is true, the THEN part runs. IF it is false, the ELSE part runs.",
+    "hi": "\"क्या बारिश हो रही है?\" सिर्फ़ सच या झूठ हो सकता है। सच हो तो THEN वाला हिस्सा चलता है। झूठ हो तो ELSE वाला।",
+    "hinglish": "\"Kya baarish ho rahi hai?\" sirf sach ya jhooth ho sakta hai. Sach ho toh THEN wala hissa chalta hai. Jhooth ho toh ELSE wala."
+   },
+   "analogy": {
+    "en": "Mummy: \"If homework is done, go and play; else, homework first.\" That is IF-ELSE!",
+    "hi": "मम्मी: \"अगर होमवर्क हो गया तो खेलने जाओ, वरना पहले होमवर्क।\" यह IF-ELSE है!",
+    "hinglish": "Mummy: \"Agar homework ho gaya toh khelne jao, warna pehle homework.\" Yeh IF-ELSE hai!"
+   }
+  },
+  {
+   "heading": {
+    "en": "Loops + IF = smart robots",
+    "hi": "लूप + IF = समझदार रोबोट",
+    "hinglish": "Loop + IF = smart robots"
+   },
+   "body": {
+    "en": "Put an IF inside a loop and the robot checks again at every step. That is how a robot vacuum cleaner turns when it bumps into a sofa.",
+    "hi": "लूप के अंदर IF रखो तो रोबोट हर कदम पर फिर जाँचता है। ऐसे ही रोबोट वैक्यूम क्लीनर सोफ़े से टकराकर मुड़ता है।",
+    "hinglish": "Loop ke andar IF rakho toh robot har step par phir check karta hai. Aise hi robot vacuum cleaner sofa se takra kar mudta hai."
+   },
+   "realExample": {
+    "en": "A phone: IF battery < 20% THEN show \"Low battery\" warning.",
+    "hi": "फ़ोन: अगर बैटरी 20% से कम तो \"Low battery\" चेतावनी दिखाओ।",
+    "hinglish": "Phone: AGAR battery 20% se kam TOH \"Low battery\" warning dikhao."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write 3 IF-THEN-ELSE rules for your day (e.g., IF it is Sunday THEN play cricket ELSE go to school).",
+   "hi": "अपने दिन के लिए 3 IF-THEN-ELSE नियम लिखो (जैसे, अगर रविवार है तो क्रिकेट वरना स्कूल)।",
+   "hinglish": "Apne din ke liye 3 IF-THEN-ELSE rules likho (jaise, AGAR Sunday hai TOH cricket WARNA school)."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "IF the light is green THEN go ELSE stop. The light is red. What do you do?",
+     "hi": "अगर बत्ती हरी है तो चलो वरना रुको। बत्ती लाल है। क्या करोगे?",
+     "hinglish": "AGAR batti hari hai TOH chalo WARNA ruko. Batti laal hai. Kya karoge?"
+    },
+    "options": [
+     {
+      "en": "Stop",
+      "hi": "रुको",
+      "hinglish": "Ruko"
+     },
+     {
+      "en": "Go",
+      "hi": "चलो",
+      "hinglish": "Chalo"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "\"Green\" is false, so the ELSE part (stop) runs.",
+     "hi": "\"हरी\" झूठ है, इसलिए ELSE (रुको) चलता है।",
+     "hinglish": "\"Hari\" jhooth hai, isliye ELSE (ruko) chalta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "A condition can be…",
+     "hi": "शर्त हो सकती है…",
+     "hinglish": "Condition ho sakti hai…"
+    },
+    "options": [
+     {
+      "en": "true or false",
+      "hi": "सच या झूठ",
+      "hinglish": "sach ya jhooth"
+     },
+     {
+      "en": "red or blue",
+      "hi": "लाल या नीली",
+      "hinglish": "laal ya neeli"
+     },
+     {
+      "en": "big or small",
+      "hi": "बड़ी या छोटी",
+      "hinglish": "badi ya chhoti"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Conditions are yes/no questions: true or false.",
+     "hi": "शर्तें हाँ/ना वाले सवाल हैं: सच या झूठ।",
+     "hinglish": "Conditions haan/na wale sawaal hain: sach ya jhooth."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "match",
+    "prompt": {
+     "en": "Match the condition with the action.",
+     "hi": "शर्त को काम से मिलाओ।",
+     "hinglish": "Condition ko action se milao."
+    },
+    "options": {
+     "left": [
+      {
+       "en": "IF battery is low",
+       "hi": "अगर बैटरी कम",
+       "hinglish": "AGAR battery kam"
+      },
+      {
+       "en": "IF it is dark",
+       "hi": "अगर अँधेरा",
+       "hinglish": "AGAR andhera"
+      },
+      {
+       "en": "IF wall ahead",
+       "hi": "अगर आगे दीवार",
+       "hinglish": "AGAR aage deewar"
+      }
+     ],
+     "right": [
+      {
+       "en": "robot turns",
+       "hi": "रोबोट मुड़ता है",
+       "hinglish": "robot mudta hai"
+      },
+      {
+       "en": "charge the phone",
+       "hi": "फ़ोन चार्ज करो",
+       "hinglish": "phone charge karo"
+      },
+      {
+       "en": "switch on the light",
+       "hi": "बत्ती जलाओ",
+       "hinglish": "light jalao"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      2
+     ],
+     [
+      2,
+      0
+     ]
+    ],
+    "explain": {
+     "en": "Each condition leads to the action that makes sense.",
+     "hi": "हर शर्त सही काम तक ले जाती है।",
+     "hinglish": "Har condition sahi action tak le jaati hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Escape the maze in Level 7 using only 2 blocks.",
+     "hi": "स्तर 7 का भूलभुलैया सिर्फ़ 2 ब्लॉक से पार करो।",
+     "hinglish": "Level 7 ka maze sirf 2 blocks se paar karo."
+    },
+    "answer": {
+     "lab": "loop-coder",
+     "level": 7,
+     "solved": true
+    },
+    "explain": {
+     "en": "Repeat 15 [ IF wall ahead → turn right ELSE forward ].",
+     "hi": "दोहराओ 15 [ अगर आगे दीवार → दाएँ वरना आगे ]।",
+     "hinglish": "Repeat 15 [ IF aage deewar → right ELSE forward ]."
+    },
+    "difficulty": 3
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "CS Unplugged – computational thinking ideas (fact reference only)",
+   "url": "https://www.csunplugged.org/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

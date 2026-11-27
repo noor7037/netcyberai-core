@@ -1,0 +1,248 @@
+<!doctype html><html lang="en-IN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Scam Spotter Inbox — NCA Tech & AI Lab</title><style>/* NCA Tech & AI Lab — Level 2 shared lab skin (own work, MIT). Family App lesson tokens: paper, card, ink, saffron, teal, plum. */
+:root{--paper:#FBF8F3;--card:#FFFDF9;--ink:#1C1B1A;--muted:#4B5563;--line:#E7E1D6;--saffron:#E8702A;--saffronD:#C2410C;--teal:#0F766E;--plum:#6D28D9;--sky:#0369A1;
+--mint:#E4F3EA;--butter:#FBF1D3;--lilac:#EFE9FB;--blush:#FBE6E3;--skyT:#E3EEF9;--night:#0B1430;--night2:#16224A;--cyan:#02CFF9;--leaf:#22C55E;--coral:#FF6B57;--gold:#F5B90A;--grape:#8B3DFF;
+--r:16px;--sh:0 1px 0 rgba(28,27,26,.04),0 6px 18px -8px rgba(28,27,26,.18)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans Devanagari",sans-serif;font-variant-numeric:tabular-nums}
+body{background:transparent;min-height:100vh;padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 16px)}
+button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation}
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:8px;padding:10px 14px;background:rgba(251,248,243,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--lilac);flex:none}
+.top h1{font-size:16px;margin:0;line-height:1.2;flex:1;min-width:0}
+.top h1 small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;flex:none;background:var(--card)}
+.lang button{border:0;background:none;padding:6px 9px;font-size:12px;font-weight:600;color:var(--muted);min-height:32px}
+.lang button[aria-pressed=true]{background:var(--ink);color:#fff}
+.wrap{max-width:1100px;margin:0 auto;padding:12px 14px;display:grid;gap:12px;grid-template-columns:minmax(0,1fr)}
+.wrap>*{min-width:0}
+.wrap>div{grid-template-columns:minmax(0,1fr)}
+.card,.stage{min-width:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;box-shadow:var(--sh)}
+.goal{background:var(--butter);border-color:#F1DFA8;display:flex;gap:10px;align-items:flex-start;font-size:14.5px}
+.goal b{color:#8A5300}
+.goal .gi{font-size:20px;line-height:1}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn{border:0;border-radius:12px;padding:11px 16px;font-weight:700;min-height:44px;background:var(--saffron);color:var(--ink);box-shadow:0 3px 0 #B4531B;transition:transform .12s}
+.btn:active{transform:translateY(2px);box-shadow:0 1px 0 #B4531B}
+.btn.ghost{background:var(--card);border:1.5px solid var(--line);box-shadow:none}
+.btn.teal{background:var(--teal);color:#fff;box-shadow:0 3px 0 #0A4F49}
+.btn.plum{background:var(--plum);color:#fff;box-shadow:0 3px 0 #4C1D95}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.chip{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:3px 10px;font-size:12.5px;font-weight:600;background:var(--mint);color:var(--teal)}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;padding-bottom:2px}/* wraps: every mode name always fully visible */
+.tabs button{flex:0 1 auto;max-width:100%;white-space:normal;text-align:center;border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:8px 14px;font-weight:600;font-size:14px;min-height:40px}
+.tabs button[aria-selected=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.stage{background:radial-gradient(120% 90% at 30% 0%,#1D2D63 0%,var(--night) 60%);color:#E8EEFF;border-radius:20px;overflow:hidden;position:relative;border:1px solid #23305E}
+.muted{color:var(--muted)}
+.mission{background:var(--skyT);border-color:#C9DDF2}
+.mission h3{margin:0 0 6px;font-size:15px;color:var(--sky)}
+.toast{position:fixed;left:0;top:0;width:max-content;max-width:min(92vw,340px);background:var(--ink);color:#fff;padding:10px 16px;border-radius:14px;font-weight:600;z-index:50;box-shadow:0 8px 24px rgba(0,0,0,.25);opacity:0;visibility:hidden;transform:scale(.92);transition:opacity .25s,transform .25s,visibility 0s .25s;pointer-events:none;text-align:center;line-height:1.35}
+.toast.on{opacity:1;visibility:visible;transform:none;transition:opacity .25s,transform .25s}
+.toast.inline{position:static;display:block;width:auto;max-width:none;margin:10px 0;grid-column:1/-1;flex:0 0 auto}
+.toast.ok{background:var(--teal)}.toast.bad{background:#B42318}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:-1}/* behind the cards: confetti never covers text */
+.kbd{font-family:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace}
+.hidden{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@keyframes pop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.08);opacity:1}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.shake{animation:shake .3s 2}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
+</style>
+<style>
+.phone{max-width:400px;margin:0 auto;width:100%;background:#0B1430;border-radius:30px;padding:10px;box-shadow:0 20px 40px -18px rgba(11,20,48,.6);border:2px solid #23305E}
+.scr{background:#F3F4F6;border-radius:22px;overflow:hidden;height:min(64vh,560px);min-height:440px;position:relative}
+.bar{display:flex;justify-content:space-between;align-items:center;padding:8px 14px;background:#fff;font-size:12px;font-weight:700;border-bottom:1px solid #E5E7EB}
+.meter{display:flex;align-items:center;gap:6px}.meter i{display:block;width:70px;height:8px;border-radius:4px;background:#E5E7EB;overflow:hidden}.meter i b{display:block;height:100%;background:linear-gradient(90deg,#22C55E,#0F766E);transition:width .5s}
+.list,.det{position:absolute;inset:36px 0 0 0;overflow-y:auto;transition:transform .35s cubic-bezier(.3,.9,.3,1)}
+.det{transform:translateX(100%);background:#ECE5DD;visibility:hidden;transition:transform .35s cubic-bezier(.3,.9,.3,1),visibility 0s .35s}/* closed panel is hidden, not just pushed outside */
+.scr.open .list{transform:translateX(-100%);visibility:hidden;transition:transform .35s cubic-bezier(.3,.9,.3,1),visibility 0s .35s}/* list and message slide side by side: they never overlap */.scr.open .det{transform:none;visibility:visible;transition:transform .35s cubic-bezier(.3,.9,.3,1)}
+.item{display:flex;gap:10px;padding:11px 12px;background:#fff;border-bottom:1px solid #EEF0F3;width:100%;border-left:0;border-right:0;border-top:0;text-align:left;align-items:flex-start}
+.av{width:42px;height:42px;border-radius:50%;flex:none;display:grid;place-items:center;font-size:19px;color:#fff;font-weight:800}
+.item .m{flex:1;min-width:0;display:flex;flex-direction:column;align-items:flex-start}.item .s{width:100%;font-weight:800;font-size:14px;display:flex;justify-content:space-between;gap:6px}.item .s small{font-weight:600;color:#6B7280;font-size:11px;flex:none}
+.item .p{display:block;width:100%;font-size:13px;line-height:1.35;color:#4B5563}/* short preview written out in full (no cut-off text) */
+.item .tag{font-size:10.5px;font-weight:800;border-radius:6px;padding:1px 6px;margin-top:3px;display:inline-block}
+.tag.scam{background:#FEE2E2;color:#B42318}.tag.safe{background:#DCFCE7;color:#0F766E}
+.dh{position:sticky;top:0;display:flex;align-items:center;gap:8px;padding:8px 10px;background:#075E54;color:#fff;z-index:2}
+.dh button{border:0;background:none;color:#fff;font-size:20px;min-width:40px;min-height:40px}
+.dh .who{font-weight:800;font-size:14px;line-height:1.2}.dh .who small{display:block;font-weight:500;opacity:.85;font-size:11.5px}
+.msg{margin:12px;background:#fff;border-radius:4px 14px 14px 14px;padding:10px 12px;font-size:14.5px;line-height:1.5;box-shadow:0 1px 1px rgba(0,0,0,.1);white-space:pre-wrap;word-break:break-word}
+.msg .tm{display:block;text-align:right;font-size:11px;color:#6B7280;margin-top:4px}
+.fl{background:none;border:0;padding:0;font:inherit;color:inherit;text-decoration:underline dotted #9CA3AF;text-underline-offset:3px;cursor:pointer;border-radius:4px}
+.fl.found{background:#FFE4E1;text-decoration:none;box-shadow:0 0 0 2px #FF6B57;animation:pop .3s}
+.fl.miss{background:#FEF3C7;text-decoration:none;box-shadow:0 0 0 2px #F5B90A}
+.flinfo{margin:0 12px 8px;background:#FFFDF9;border-left:4px solid #FF6B57;border-radius:10px;padding:8px 10px;font-size:13.5px;animation:pop .3s both}
+.flinfo.g{border-color:#0F766E}
+.acts{position:sticky;bottom:0;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px;background:linear-gradient(transparent,#ECE5DD 30%)}
+.acts .btn{font-size:14px}
+.verdict{margin:8px 12px;border-radius:14px;padding:12px;font-size:14px;animation:pop .35s both}
+.verdict.ok{background:#DCFCE7;border:2px solid #0F766E}.verdict.no{background:#FEE2E2;border:2px solid #B42318}
+.hint{font-size:12.5px;color:#4B5563;margin:4px 14px}
+.help{font-size:14px}.help li{margin:4px 0}
+@media (orientation:landscape) and (min-width:640px){.wrap{grid-template-columns:420px 1fr}.wrap>.full{grid-column:1/-1}.scr{height:min(78vh,520px);min-height:300px}}
+</style></head><body>
+<main class="wrap">
+ <div class="card goal full"><span class="gi">🎯</span><div id="goal"></div></div>
+ <div class="phone"><div class="scr" id="scr"><div class="bar"><span>📶 4G  🔋 78%</span><span class="meter">🛡️ <i><b id="mb" style="width:0"></b></i> <span id="sc">0/10</span></span></div>
+  <div class="list" id="list"></div><div class="det" id="det"></div></div></div>
+ <div style="display:grid;gap:12px">
+  <div class="card mission"><h3 data-k="mT"></h3><div id="mission"></div></div>
+  <div class="card help" id="help"></div>
+ </div>
+</main>
+<script>/* NCA Tech & AI Lab — Level 2 shared lab runtime (own work, MIT). No eval, no network except an optional same-origin ?lesson= JSON. */
+(function(g){
+  const qs=new URLSearchParams(location.search);
+  const LANGS=['hinglish','en','hi'];
+  let lang=(qs.get('lang')||localStorage.getItem('nca-tl-lang')||'hinglish'); if(!LANGS.includes(lang)) lang='hinglish';
+  const reduced=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const t=x=>x==null?'':(typeof x==='string'||typeof x==='number')?String(x):(x[lang]||x.hinglish||x.en||'');
+  let STR={}; const listeners=[];
+  function applyI18n(root){(root||document).querySelectorAll('[data-k]').forEach(el=>{const v=STR[el.dataset.k]; if(v) el.innerHTML=t(v);});
+    document.documentElement.lang=lang==='hi'?'hi':(lang==='en'?'en':'en-IN');
+    document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.l===lang));}
+  function setLang(l){lang=l;localStorage.setItem('nca-tl-lang',l);applyI18n();listeners.forEach(f=>f(l));}
+  function header(icon,titleK,subK){const h=document.createElement('header');h.className='top';
+    h.innerHTML=`<div class="ic" aria-hidden="true">${icon}</div><h1><span data-k="${titleK}"></span><small data-k="${subK}"></small></h1>
+    <div class="lang" role="group" aria-label="Language"><button data-l="hinglish">Hinglish</button><button data-l="en">EN</button><button data-l="hi">हिं</button></div>`;
+    document.body.prepend(h); h.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>setLang(b.dataset.l));}
+  // Toast: never covers text. It floats in a free band of the screen (bottom first); if the screen has no free band
+  // it sits in the page flow right under what the child just tapped (pushes content down, covers nothing). Closes after 2.5 s.
+  let toastEl,lastTap=null,tapAt=null;document.addEventListener('pointerdown',e=>{lastTap=e.target;tapAt=[e.clientX,e.clientY+scrollY]},true);let rePend=0;const rePlace=()=>{if(!toastEl||!toastEl.classList.contains('on')||rePend)return;rePend=1;requestAnimationFrame(()=>{rePend=0;placeToast();});};
+  addEventListener('scroll',rePlace,{passive:true});addEventListener('resize',rePlace);document.addEventListener('animationend',rePlace,true);document.addEventListener('transitionend',rePlace,true);const toastMO=new MutationObserver(rs=>{if(rs.some(r=>!toastEl.contains(r.target)))rePlace();});
+  function textRects(skip){const vh=innerHeight,out=[],rg=document.createRange(),w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let n;
+    while((n=w.nextNode())){if(!n.nodeValue.trim())continue;const p=n.parentElement;if(!p||skip.contains(p)||/^(SCRIPT|STYLE)$/.test(p.tagName))continue;rg.selectNodeContents(n);
+      for(const q of rg.getClientRects())if(q.width>=1&&q.bottom>0&&q.top<vh)out.push(q);}
+    document.querySelectorAll('input,select,textarea,button,a[href],[role=button]').forEach(e=>{if(skip.contains(e))return;const q=e.getBoundingClientRect();if(q.width&&q.bottom>0&&q.top<vh)out.push(q)});if(0)document.querySelectorAll('x').forEach(e=>{const q=e.getBoundingClientRect();if(q.width&&q.bottom>0&&q.top<vh)out.push(q)});return out;}
+  function freeSpot(el){const vw=document.documentElement.clientWidth,vh=innerHeight,w=el.offsetWidth,h=el.offsetHeight,m=8;let top=m;
+    const bar=document.querySelector('.top');if(bar)top=Math.max(top,bar.getBoundingClientRect().bottom+m);
+    const obs=textRects(el),xs=[(vw-w)/2,m,vw-w-m],free=(x,y)=>!obs.some(q=>q.left<x+w+4&&q.right>x-4&&q.top<y+h+4&&q.bottom>y-4);
+    const cur=el._spot;if(cur&&free(cur.x,cur.y))return cur;
+    for(let y=vh-h-m;y>=top;y-=6)for(const x of xs)if(free(x,y))return{x,y};return null;}
+  /* never drop the note inside a 3D scene, a transformed, positioned-out or clipping box */
+  function boxedIn(a){for(let p=a;p&&p!==document.body;p=p.parentElement){const c=getComputedStyle(p);if(c.transform!=='none'||c.transformStyle==='preserve-3d'||c.perspective!=='none'||c.position==='absolute'||c.position==='fixed'||(p!==a&&c.overflow!=='visible'))return true;}return false;}
+  function inlineAfter(el){let a=lastTap&&lastTap.isConnected&&!el.contains(lastTap)?lastTap:null;
+    if(!a&&tapAt){const y=tapAt[1]-scrollY;if(y>0&&y<innerHeight)a=document.elementFromPoint(tapAt[0],y);}/* the tapped thing was re-drawn: use what is there now */
+    if(!a||el.contains(a))a=document.querySelector('main')||document.body.lastElementChild;
+    while(a.parentElement&&a.parentElement!==document.body){const d=getComputedStyle(a.parentElement),me=getComputedStyle(a);
+      if(me.display!=='inline'&&!(a instanceof SVGElement)&&(d.display==='block'||d.display==='flow-root'||d.display==='grid'||(d.display==='flex'&&d.flexDirection.startsWith('column')))&&a.getBoundingClientRect().width>=Math.min(260,innerWidth*.6)&&!boxedIn(a))break;a=a.parentElement;}
+    a.after(el);}
+  function placeToast(){const el=toastEl;if(!el.classList.contains('on'))return;if(!el.isConnected){el.classList.remove('inline');document.body.appendChild(el);}
+    if(el.classList.contains('inline'))return;const s=freeSpot(el);
+    if(s){el._spot=s;el.style.left=s.x+'px';el.style.top=s.y+'px';}else{el._spot=null;el.classList.add('inline');el.style.left=el.style.top='';inlineAfter(el);el.scrollIntoView({block:'nearest'});}}
+  function toast(msg,kind){if(!toastEl){toastEl=document.createElement('div');toastEl.setAttribute('role','status');document.body.appendChild(toastEl);}
+    const el=toastEl;clearTimeout(el._t);clearInterval(el._iv);if(el.classList.contains('inline'))document.body.appendChild(el);
+    el.className='toast '+(kind||'');el._spot=null;el.innerHTML=typeof msg==='object'?t(msg):msg;el.style.left='0px';el.style.top='0px';
+    el.classList.add('on');placeToast();el._iv=setInterval(placeToast,200);toastMO.observe(document.body,{subtree:true,childList:true,attributes:true,characterData:true});
+    el._t=setTimeout(()=>{clearInterval(el._iv);toastMO.disconnect();el.classList.remove('on');setTimeout(()=>{if(!el.classList.contains('on')&&el.classList.contains('inline')){el.classList.remove('inline');document.body.appendChild(el);}},320);},2500);}
+  function confetti(){if(reduced())return;const c=document.createElement('canvas');c.className='confetti';c.setAttribute('aria-hidden','true');document.body.appendChild(c);
+    const W=c.width=innerWidth,H=c.height=innerHeight,x=c.getContext('2d');const cols=['#E8702A','#0F766E','#6D28D9','#F5B90A','#02CFF9','#FF6B57'];
+    const P=Array.from({length:90},()=>({x:W/2,y:H*.55,vx:(Math.random()-.5)*9,vy:-Math.random()*11-4,r:Math.random()*6+3,c:cols[Math.random()*6|0],a:Math.random()*6}));
+    let n=0;(function f(){x.clearRect(0,0,W,H);P.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.32;p.a+=.2;x.save();x.translate(p.x,p.y);x.rotate(p.a);x.fillStyle=p.c;x.fillRect(-p.r/2,-p.r/4,p.r,p.r/2);x.restore();});
+      if(++n<110)requestAnimationFrame(f);else c.remove();})();}
+  function tween(ms,step,done){if(reduced()||ms<=0){step(1);done&&done();return()=>{};}let stop=0;const t0=performance.now();
+    const f=now=>{if(stop)return;const k=Math.min(1,(now-t0)/ms);step(k);k<1?requestAnimationFrame(f):done&&done();};requestAnimationFrame(f);return()=>{stop=1};}
+  const ease=k=>k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+  const sleep=ms=>new Promise(r=>setTimeout(r,reduced()?0:ms));
+  // Lesson config: ?lesson=<same-origin json path> (its play.config + play.goal), else inline defaults. ?cfg=<json> also accepted (parsed with JSON.parse only).
+  async function lessonConfig(defaults){let cfg=Object.assign({},defaults),goal=null,id=null;
+    const p=qs.get('lesson');
+    if(p&&/^[\w\-./]+\.json$/.test(p)&&!p.includes('..')){try{const r=await fetch(p);if(r.ok){const j=await r.json();id=j.id;if(j.play){Object.assign(cfg,j.play.config||{});goal=j.play.goal||null;}}}catch(e){}}
+    const c=qs.get('cfg'); if(c){try{Object.assign(cfg,JSON.parse(c));}catch(e){}}
+    return {cfg,goal,id};}
+  // Progress events the Family App shell can listen for (postMessage to the parent frame), plus local XP for the prototype.
+  function emit(type,data){const msg={source:'nca-techlab',type,data:data||{},at:Date.now()};try{parent!==window&&parent.postMessage(msg,'*');}catch(e){}
+    document.dispatchEvent(new CustomEvent('nca-lab',{detail:msg}));}
+  g.NCA={qs,esc,t,get lang(){return lang},setLang,onLang:f=>listeners.push(f),strings:o=>{STR=Object.assign(STR,o);applyI18n();},applyI18n,header,toast,confetti,tween,ease,sleep,reduced,lessonConfig,emit};
+})(window);
+</script>
+<script>
+(async function(){
+const N=NCA,T=N.t,E=N.esc,L=(en,hi,hinglish)=>({en,hi,hinglish}),$=id=>document.getElementById(id);
+N.header('🛡️','title','sub');
+N.strings({title:L('Scam Spotter Inbox','स्कैम पहचानो इनबॉक्स','Scam Spotter Inbox'),sub:L('Find the red flags before you tap anything','कुछ भी दबाने से पहले ख़तरे के निशान ढूँढो','Kuch bhi tap karne se pehle red flags dhoondo'),mT:L('🚀 Mission','🚀 मिशन','🚀 Mission')});
+const {cfg,goal}=await N.lessonConfig({need:8,only:null});
+// Every message is a real pattern reported to Indian police / CERT-In / RBI awareness campaigns. Names, numbers and links are made up.
+// Body text uses [[visible text|flag]]; flags explain why that part is a warning sign (scams) or a good sign (safe).
+const FL={
+ num:L('Sent from an ordinary 10-digit mobile number. Real banks and companies send SMS from short registered headers like “AX-XYZBNK-S”.','सामान्य 10 अंकों के मोबाइल नंबर से भेजा गया। असली बैंक और कंपनियाँ “AX-XYZBNK-S” जैसे पंजीकृत हेडर से SMS भेजते हैं।','Normal 10-digit mobile number se aaya. Asli banks aur companies “AX-XYZBNK-S” jaise registered header se SMS bhejte hain.'),
+ urg:L('Panic and a deadline (“today”, “tonight”, “immediately”). Scammers rush you so you do not stop to think or ask an adult.','घबराहट और समय-सीमा (“आज”, “आज रात”, “तुरंत”)। ठग जल्दी कराते हैं ताकि आप सोचें नहीं या किसी बड़े से न पूछें।','Panic aur deadline (“aaj”, “aaj raat”, “turant”). Scammers jaldi karwaate hain taaki aap soch na sako ya kisi bade se pooch na sako.'),
+ link:L('A look-alike link. The real website name is the part just before the first single “/”. “xyzbank-kyc-verify.top” is NOT xyzbank.com. Never update KYC from an SMS link.','मिलता-जुलता नकली लिंक। असली वेबसाइट का नाम पहले अकेले “/” से ठीक पहले वाला भाग है। “xyzbank-kyc-verify.top”, xyzbank.com नहीं है। SMS लिंक से कभी KYC न करो।','Look-alike nakli link. Asli website ka naam pehle single “/” se theek pehle wala hissa hota hai. “xyzbank-kyc-verify.top” xyzbank.com NAHI hai. SMS link se kabhi KYC update mat karo.'),
+ kyc:L('Asks for KYC/PAN/card details through a message. RBI says banks never ask for these by SMS, call or link — KYC is done in the branch or the official app.','संदेश से KYC/PAN/कार्ड विवरण माँगता है। RBI के अनुसार बैंक ये SMS, कॉल या लिंक से कभी नहीं माँगते — KYC शाखा या आधिकारिक ऐप में होता है।','Message se KYC/PAN/card details maangta hai. RBI kehta hai banks yeh kabhi SMS, call ya link se nahi maangte — KYC branch ya official app mein hota hai.'),
+ money:L('Too good to be true: easy money for tiny tasks. These “task scams” pay ₹100–200 first to win trust, then ask you to “invest” to unlock bigger earnings — and the money vanishes.','सच होने के लिए बहुत अच्छा: छोटे काम के लिए आसान पैसा। ये “टास्क स्कैम” पहले ₹100–200 देकर भरोसा जीतते हैं, फिर बड़ी कमाई के लिए “निवेश” माँगते हैं — और पैसा ग़ायब।','Too good to be true: chhote kaam ke liye aasaan paisa. Yeh “task scams” pehle ₹100–200 dekar bharosa jeette hain, phir badi kamaai unlock karne ke liye “invest” maangte hain — aur paisa gayab.'),
+ foreign:L('An unknown international number (+44, +62, +84…). Most job and investment scam chats start this way.','अनजान अंतरराष्ट्रीय नंबर (+44, +62, +84…)। ज़्यादातर नौकरी और निवेश स्कैम ऐसे ही शुरू होते हैं।','Anjaan international number (+44, +62, +84…). Zyaadatar job aur investment scam chats aise hi shuru hote hain.'),
+ move:L('Moves you to another app (Telegram) where there are fewer safety checks and the group admins are the scammers.','आपको दूसरे ऐप (टेलीग्राम) पर ले जाता है जहाँ कम सुरक्षा है और ग्रुप एडमिन ही ठग हैं।','Aapko doosre app (Telegram) pe le jaata hai jahan kam safety checks hain aur group admins hi scammers hain.'),
+ pin:L('The golden UPI rule: you enter your UPI PIN ONLY to SEND money, never to receive it. A “collect request” that asks for your PIN takes money OUT of your account.','UPI का सुनहरा नियम: UPI PIN केवल पैसे भेजने के लिए डालते हैं, पाने के लिए कभी नहीं। PIN माँगने वाला “कलेक्ट अनुरोध” आपके खाते से पैसा निकालता है।','UPI ka golden rule: UPI PIN SIRF paisa BHEJNE ke liye daalte hain, paane ke liye kabhi nahi. PIN maangne wala “collect request” aapke account se paisa NIKAALTA hai.'),
+ stranger:L('A stranger from a buying/selling site. Real buyers pay you; they do not need you to approve anything.','ख़रीद-बिक्री साइट का अजनबी। असली ख़रीदार आपको भुगतान करते हैं; उन्हें आपसे कुछ स्वीकृत नहीं कराना होता।','Buying/selling site ka ajnabi. Asli buyer aapko pay karta hai; usse aapse kuch approve nahi karwana hota.'),
+ callnum:L('Asks you to call a private number. Electricity boards never send disconnection warnings with an officer’s personal mobile number; check on the official board app or bill.','निजी नंबर पर कॉल करने को कहता है। बिजली बोर्ड कभी अधिकारी के निजी मोबाइल नंबर के साथ कटौती की चेतावनी नहीं भेजते; आधिकारिक ऐप या बिल पर जाँचो।','Private number pe call karne ko kehta hai. Bijli board kabhi officer ke personal mobile number ke saath disconnection warning nahi bhejte; official app ya bill pe check karo.'),
+ grammar:L('Strange grammar and spelling (“bill was not update”). Official messages are checked carefully; scam templates are copied in a hurry.','अजीब व्याकरण और वर्तनी (“bill was not update”)। आधिकारिक संदेश ध्यान से जाँचे जाते हैं; स्कैम जल्दबाज़ी में कॉपी होते हैं।','Ajeeb grammar aur spelling (“bill was not update”). Official messages dhyaan se check hote hain; scam templates jaldi mein copy hote hain.'),
+ newnum:L('“New number, old phone lost” is the classic start of family-impersonation fraud. AI tools can now copy a voice from a few seconds of audio (a voice deepfake).','“नया नंबर, पुराना फ़ोन खो गया” परिवार बनकर ठगी की पुरानी शुरुआत है। AI अब कुछ सेकंड की आवाज़ से आवाज़ की नक़ल कर सकता है (वॉइस डीपफ़ेक)।','“Naya number, purana phone kho gaya” family ban ke thagi ki classic shuruaat hai. AI ab kuch seconds ki audio se awaaz copy kar sakta hai (voice deepfake).'),
+ secret:L('Asks you to keep it secret (“don’t tell Mummy”). Secrecy is a huge red flag — a real family member will be fine with you checking.','गुप्त रखने को कहता है (“मम्मी को मत बताना”)। गोपनीयता बड़ा ख़तरा संकेत है — असली परिवारवाला जाँचने पर बुरा नहीं मानेगा।','Secret rakhne ko kehta hai (“Mummy ko mat batana”). Secrecy bahut bada red flag hai — asli family member check karne pe bura nahi maanega.'),
+ qr:L('Pay to an unknown QR or UPI ID. Call back on the number you already have saved before sending any money.','किसी अनजान QR या UPI ID पर भुगतान। पैसे भेजने से पहले पहले से सेव नंबर पर वापस कॉल करो।','Anjaan QR ya UPI ID pe payment. Paisa bhejne se pehle pehle se saved number pe call back karo.'),
+ police:L('Pretends to be police/CBI/customs. There is no such thing as a “digital arrest” in Indian law; police never question you or collect money over a video call.','पुलिस/CBI/कस्टम बनता है। भारतीय क़ानून में “डिजिटल अरेस्ट” जैसा कुछ नहीं है; पुलिस वीडियो कॉल पर न पूछताछ करती है न पैसा लेती है।','Police/CBI/customs ban ke aata hai. Indian law mein “digital arrest” jaisa kuch nahi hota; police video call pe na poochtaachh karti hai na paisa leti hai.'),
+ fear:L('Uses fear (drugs, arrest, your name in a case) so you obey. Hang up, tell a parent, and call 1930 or your local police station yourself.','डर दिखाता है (ड्रग्स, गिरफ़्तारी, केस में नाम) ताकि आप मान जाओ। फ़ोन काटो, माता-पिता को बताओ, और ख़ुद 1930 या स्थानीय थाने को कॉल करो।','Darr dikhata hai (drugs, arrest, case mein naam) taaki aap maan jao. Phone kaato, parent ko batao, aur khud 1930 ya local police station ko call karo.'),
+ share:L('“Forward to 10 groups to activate” — chain-message trick that spreads the scam and harvests your details on a fake form.','“10 ग्रुप में भेजो तो चालू होगा” — चेन-मैसेज की चाल जो स्कैम फैलाती है और नकली फ़ॉर्म पर आपकी जानकारी चुराती है।','“10 groups mein forward karo tab activate hoga” — chain message ki chaal jo scam phailati hai aur nakli form pe aapki details churaati hai.'),
+ free:L('Free gifts for “every Indian” are bait. No company or government gives recharge by forwarding links.','“हर भारतीय” को मुफ़्त उपहार चारा है। कोई कंपनी या सरकार लिंक भेजने पर रिचार्ज नहीं देती।','“Har Indian” ko free gift = chaara. Koi company ya government link forward karne pe recharge nahi deti.'),
+ generic:L('Generic greeting (“Dear Customer / Dear Member”) — the sender does not actually know who you are.','सामान्य संबोधन (“Dear Customer / Dear Member”) — भेजने वाला असल में आपको नहीं जानता।','Generic greeting (“Dear Customer / Dear Member”) — bhejne wala asal mein aapko jaanta hi nahi.'),
+ g_head:L('Good sign: a registered business header ending in -S (service) or -T (transactional), not a personal number.','अच्छा संकेत: -S (सेवा) या -T (लेन-देन) पर ख़त्म होने वाला पंजीकृत हेडर, निजी नंबर नहीं।','Achha sign: registered business header jo -S (service) ya -T (transactional) pe khatam hota hai, personal number nahi.'),
+ g_you:L('Good sign: you asked for this OTP yourself a moment ago. Still — an OTP is like the key to your house. Type it only into the app you are using; never read it out to anyone, not even “bank staff”.','अच्छा संकेत: आपने अभी ख़ुद यह OTP माँगा था। फिर भी — OTP घर की चाबी जैसा है। इसे केवल उसी ऐप में डालो; किसी को न बताओ, “बैंक कर्मचारी” को भी नहीं।','Achha sign: aapne abhi khud yeh OTP maanga tha. Phir bhi — OTP ghar ki chaabi jaisa hai. Sirf usi app mein type karo; kisi ko mat batao, “bank staff” ko bhi nahi.'),
+ g_contact:L('Good sign: a saved contact you know, talking about something you expect (a PTM), with no link, no money and no secret.','अच्छा संकेत: जाना-पहचाना सेव संपर्क, अपेक्षित बात (PTM), कोई लिंक, पैसा या राज़ नहीं।','Achha sign: jaana-pehchaana saved contact, expected baat (PTM), koi link, paisa ya secret nahi.'),
+ g_nolink:L('Good sign: it only informs you. It asks for nothing — no link, no OTP, no payment.','अच्छा संकेत: केवल जानकारी देता है। कुछ नहीं माँगता — न लिंक, न OTP, न भुगतान।','Achha sign: sirf jaankari deta hai. Kuch nahi maangta — na link, na OTP, na payment.')};
+const M=[
+ {id:'kyc',scam:1,ch:'SMS',from:'+91 98271 41207',av:'#9CA3AF',e:'💬',time:'9:41',body:'[[+91 98271 41207|num]]\n\n[[Dear Customer|generic]], your XYZ Bank account will be [[BLOCKED TODAY|urg]]. [[Update your PAN/KYC immediately|kyc]]: [[http://xyzbank-kyc-verify.top/login|link]]'},
+ {id:'job',scam:1,ch:'WhatsApp',from:'+44 7700 900123',av:'#25D366',e:'💼',time:'10:02',body:'Hello! I am Priya from a [[+44 7700 900123|foreign]] digital agency. [[Earn ₹3,000/day just by liking YouTube videos|money]] from home. Students welcome. [[Join our Telegram group to start: t.me/likejob_in|move]]'},
+ {id:'otp',scam:0,ch:'SMS',from:'AX-XYZBNK-S',av:'#0369A1',e:'🏦',time:'10:15',body:'[[AX-XYZBNK-S|g_head]]\n\n[[481920 is your OTP to log in to XYZ Bank NetBanking|g_you]]. Valid for 5 minutes. Do NOT share this OTP with anyone. XYZ Bank never asks for your OTP.'},
+ {id:'collect',scam:1,ch:'UPI',from:'Collect request',av:'#6D28D9',e:'₹',time:'11:30',body:'💸 Payment request\n\n[[“Rahul (OLX buyer)”|stranger]] has requested ₹4,999\nNote: “advance for your cycle”\n\n[[Enter your UPI PIN to RECEIVE ₹4,999|pin]]\n\n[ Decline ]   [ Pay ]'},
+ {id:'bill',scam:1,ch:'SMS',from:'+91 70456 88213',av:'#F59E0B',e:'⚡',time:'12:05',body:'[[+91 70456 88213|num]]\n\nDear consumer your electricity power will be [[disconnected tonight at 9.30 pm|urg]] because your previous month [[bill was not update|grammar]]. Please immediately [[contact our electricity officer 70456 88213|callnum]]. Thank you.'},
+ {id:'ptm',scam:0,ch:'WhatsApp',from:'Mrs. Iyer (Class Teacher)',av:'#0F766E',e:'👩‍🏫',time:'1:10',body:'[[Good afternoon parents. PTM for Class 7B is on Saturday, 10 am to 12 noon. Please bring the report card diary.|g_contact]] — Mrs. Iyer'},
+ {id:'papa',scam:1,ch:'WhatsApp',from:'+91 63890 12045',av:'#EF4444',e:'🎙️',time:'2:47',body:'🎙️ Voice note (0:14) — sounds like Papa\n\n“Beta, [[main Papa bol raha hoon, mera phone kho gaya, yeh naya number hai|newnum]]. Hospital mein ek dost ke liye [[abhi ₹20,000 chahiye|urg]]. [[Mummy ko mat batana|secret]], woh pareshaan ho jayegi. [[Is QR pe jaldi bhej do|qr]].”'},
+ {id:'police',scam:1,ch:'Video call',from:'“Mumbai Police Cyber Cell”',av:'#1E3A8A',e:'👮',time:'3:20',body:'📹 Missed video call + message:\n\n“This is [[Inspector Sharma, Mumbai Police Cyber Cell|police]]. A [[parcel in your name has drugs and 5 fake passports|fear]]. You are under [[DIGITAL ARREST|police]]. [[Stay on video call, do not tell anyone|secret]] and transfer your savings to an RBI verification account to prove you are innocent.”'},
+ {id:'food',scam:0,ch:'SMS',from:'VM-FOODIE-T',av:'#E8702A',e:'🛵',time:'7:58',body:'[[VM-FOODIE-T|g_head]]\n\n[[Your order #4417 from Annapurna Tiffins is out for delivery and will arrive by 8:20 pm.|g_nolink]]'},
+ {id:'free',scam:1,ch:'WhatsApp',from:'Family Group (forwarded)',av:'#16A34A',e:'🎁',time:'8:30',body:'↪️ Forwarded many times\n\n[[🎉 FREE 3-month ₹749 recharge for every Indian!|free]] [[Share this with 10 groups to activate|share]], then fill your number here 👉 [[http://free-recharge-offer.click|link]]'}];
+let state={},openId=null;const list=(cfg.only?M.filter(m=>cfg.only.includes(m.id)):M);
+const CHI={SMS:'💬 SMS',WhatsApp:'🟢 WhatsApp',UPI:'₹ UPI','Video call':'📹 Video call'};
+function body(m){return E(m.body).replace(/\[\[(.+?)\|(\w+)\]\]/g,(_,txt,f)=>`<button class="fl" data-f="${f}">${txt}</button>`);}
+function score(){const n=list.filter(m=>state[m.id]&&state[m.id].right).length,d=list.filter(m=>state[m.id]&&state[m.id].done).length;$('sc').textContent=n+'/'+list.length;$('mb').style.width=(100*n/list.length)+'%';return {n,d};}
+const preview=t=>{t=t.replace(/\s+/g,' ').trim();if(t.length<=70)return t;const c=t.lastIndexOf(' ',66);return t.slice(0,c>30?c:66)+' …';};
+function drawList(){$('list').innerHTML=list.map(m=>{const s=state[m.id];return `<button class="item" data-id="${m.id}"><span class="av" style="background:${m.av}">${m.e}</span><span class="m"><span class="s"><span>${E(m.from)}</span><small>${m.time}</small></span><span class="p">${E(preview(m.body.replace(/\[\[(.+?)\|\w+\]\]/g,'$1').replace(/\n/g,' ')))}</span>
+ <span style="font-size:11px;color:#6B7280">${CHI[m.ch]||m.ch}</span> ${s&&s.done?`<span class="tag ${m.scam?'scam':'safe'}">${m.scam?'🚩 SCAM':'✅ SAFE'} ${s.right?'✓':'✗'}</span>`:''}</span></button>`;}).join('');
+ $('list').querySelectorAll('.item').forEach(b=>b.onclick=()=>open(b.dataset.id));}
+function open(id){openId=id;const m=M.find(x=>x.id===id);const s=state[id]=state[id]||{found:new Set(),done:false};
+ $('det').innerHTML=`<div class="dh"><button id="back" aria-label="back">←</button><span class="av" style="background:${m.av};width:34px;height:34px;font-size:15px">${m.e}</span><span class="who">${E(m.from)}<small>${CHI[m.ch]||m.ch}</small></span></div>
+ <p class="hint">👆 ${T(L('Tap the parts that look suspicious (or reassuring). Then decide.','जो हिस्से संदिग्ध (या भरोसेमंद) लगें उन्हें दबाओ। फिर फ़ैसला करो।','Jo hisse suspicious (ya bharosemand) lagein unhe tap karo. Phir decide karo.'))}</p>
+ <div class="msg">${body(m)}<span class="tm">${m.time}</span></div><div id="infos"></div><div id="ver"></div>
+ <div class="acts" id="acts"><button class="btn" style="background:#FF6B57;box-shadow:0 3px 0 #B42318" data-v="1">🚩 ${T(L('Scam — report','स्कैम — रिपोर्ट','Scam — report'))}</button><button class="btn teal" data-v="0">✅ ${T(L('Looks safe','सुरक्षित है','Safe lagta hai'))}</button></div>`;
+ $('scr').classList.add('open');$('back').onclick=()=>{$('scr').classList.remove('open');openId=null;drawList();};
+ $('det').querySelectorAll('.fl').forEach(b=>b.onclick=()=>{const f=b.dataset.f;if(!s.found.has(f)){s.found.add(f);}showFlags(m,s);});
+ $('acts').querySelectorAll('button').forEach(b=>b.onclick=()=>decide(m,s,+b.dataset.v));showFlags(m,s);if(s.done)verdict(m,s);}
+function showFlags(m,s){$('det').querySelectorAll('.fl').forEach(b=>{b.classList.toggle('found',s.found.has(b.dataset.f));if(s.done&&!s.found.has(b.dataset.f))b.classList.add('miss');});
+ const fs=[...new Set([...$('det').querySelectorAll('.fl')].map(b=>b.dataset.f))].filter(f=>s.found.has(f)||s.done);
+ $('infos').innerHTML=fs.map(f=>`<div class="flinfo ${f.startsWith('g_')?'g':''}">${f.startsWith('g_')?'🟢':'🚩'} ${T(FL[f])}</div>`).join('');}
+const ACT={kyc:L('Delete it. If worried, open your bank’s official app or call the number printed on your passbook/card. Report the SMS on Sanchar Saathi → Chakshu.','मिटा दो। चिंता हो तो बैंक का आधिकारिक ऐप खोलो या पासबुक/कार्ड पर छपे नंबर पर कॉल करो। SMS को संचार साथी → चक्षु पर रिपोर्ट करो।','Delete karo. Chinta ho to bank ka official app kholo ya passbook/card pe chhape number pe call karo. SMS ko Sanchar Saathi → Chakshu pe report karo.'),
+ job:L('Block and report the number in WhatsApp. Real jobs never ask you to pay or “invest” to earn.','WhatsApp में नंबर ब्लॉक और रिपोर्ट करो। असली नौकरी कमाने के लिए कभी भुगतान या “निवेश” नहीं माँगती।','WhatsApp mein number block aur report karo. Asli job kabhi kamaane ke liye pay ya “invest” karne ko nahi kehti.'),
+ collect:L('Tap Decline. To receive money you only share your UPI ID or QR — the payer enters THEIR PIN.','Decline दबाओ। पैसा पाने के लिए केवल अपनी UPI ID या QR दो — भुगतान करने वाला अपना PIN डालता है।','Decline dabao. Paisa paane ke liye sirf apni UPI ID ya QR do — pay karne wala APNA PIN daalta hai.'),
+ bill:L('Do not call. Check your bill on the electricity board’s official app/website. Report the number on Chakshu.','कॉल मत करो। बिजली बोर्ड के आधिकारिक ऐप/वेबसाइट पर बिल देखो। नंबर को चक्षु पर रिपोर्ट करो।','Call mat karo. Bijli board ke official app/website pe bill check karo. Number ko Chakshu pe report karo.'),
+ papa:L('Stop. Call Papa back on his OLD saved number, or ask your family’s secret code word. Tell Mummy — secrecy is the scam.','रुको। पापा को उनके पुराने सेव नंबर पर कॉल करो, या परिवार का गुप्त कोड शब्द पूछो। मम्मी को बताओ — गोपनीयता ही स्कैम है।','Ruko. Papa ko unke PURANE saved number pe call back karo, ya family ka secret code word poocho. Mummy ko batao — secrecy hi scam hai.'),
+ police:L('Cut the call. Tell your parents. If anyone lost money, call 1930 (National Cyber Crime Helpline) at once or report on cybercrime.gov.in — the first hours matter most.','कॉल काटो। माता-पिता को बताओ। किसी का पैसा गया हो तो तुरंत 1930 (राष्ट्रीय साइबर अपराध हेल्पलाइन) पर कॉल करो या cybercrime.gov.in पर रिपोर्ट करो — पहले घंटे सबसे अहम हैं।','Call kaato. Parents ko batao. Kisi ka paisa gaya ho to turant 1930 (National Cyber Crime Helpline) call karo ya cybercrime.gov.in pe report karo — pehle kuch ghante sabse important hain.'),
+ free:L('Do not forward or tap. Reply kindly in the group that it is a known scam, so others are protected too.','आगे मत भेजो, मत दबाओ। ग्रुप में शालीनता से बताओ कि यह जाना-माना स्कैम है, ताकि दूसरे भी बचें।','Forward mat karo, tap mat karo. Group mein politely batao ki yeh known scam hai, taaki doosre bhi bachein.'),
+ otp:L('It is genuine because you requested it — use it in your app and never share it.','यह असली है क्योंकि आपने माँगा था — अपने ऐप में डालो और कभी साझा मत करो।','Yeh asli hai kyunki aapne maanga tha — apne app mein daalo aur kabhi share mat karo.'),
+ ptm:L('Safe. Note the date.','सुरक्षित। तारीख़ नोट करो।','Safe. Date note kar lo.'),food:L('Safe — just an update.','सुरक्षित — केवल जानकारी।','Safe — sirf update.')};
+function decide(m,s,v){if(s.done)return;s.done=true;s.right=(v===m.scam);s.found.forEach(()=>{});N.emit(s.right?'answered:right':'answered:wrong',{msg:m.id});showFlags(m,s);verdict(m,s);score();mission();}
+function verdict(m,s){$('ver').innerHTML=`<div class="verdict ${s.right?'ok':'no'}"><b>${s.right?'✅ '+T(L('Correct!','सही!','Sahi!')):'❌ '+T(L('Not quite.','ठीक नहीं।','Galat.'))}</b> ${T(m.scam?L('This is a SCAM.','यह स्कैम है।','Yeh SCAM hai.'):L('This one is SAFE.','यह सुरक्षित है।','Yeh SAFE hai.'))}<br>👉 ${T(ACT[m.id])}</div>`;$('acts').style.display='none';}
+function mission(){const {n,d}=score(),need=Math.min(cfg.need||8,list.length);const ok=n>=need;
+ $('mission').innerHTML=(ok?'✅ ':'')+T(L(`Sort the inbox: get at least ${need} of ${list.length} right. Done ${d}, correct ${n}.`,`इनबॉक्स छाँटो: ${list.length} में से कम से कम ${need} सही करो। किए ${d}, सही ${n}।`,`Inbox sort karo: ${list.length} mein se kam se kam ${need} sahi karo. Kiye ${d}, sahi ${n}.`));
+ if(ok&&!mission.done){mission.done=1;N.confetti();N.toast(L('Cyber Defender! Mission complete +XP','साइबर रक्षक! मिशन पूरा +XP','Cyber Defender! Mission complete +XP'),'ok');N.emit('mission:complete',{lab:'scam-inbox',score:n});}}
+function help(){$('help').innerHTML=`<b>🆘 ${T(L('If something goes wrong','अगर कुछ गड़बड़ हो','Agar kuch galat ho jaaye'))}</b><ul>
+ <li>${T(L('Tell a parent or teacher at once — you will not be in trouble.','तुरंत माता-पिता या शिक्षक को बताओ — आप मुसीबत में नहीं पड़ोगे।','Turant parent ya teacher ko batao — aap musibat mein nahi padoge.'))}</li>
+ <li>📞 <b>1930</b> — ${T(L('National Cyber Crime Helpline (call quickly if money was lost)','राष्ट्रीय साइबर अपराध हेल्पलाइन (पैसा गया हो तो जल्दी कॉल करो)','National Cyber Crime Helpline (paisa gaya ho to jaldi call karo)'))}</li>
+ <li>🌐 <b>cybercrime.gov.in</b> — ${T(L('report online','ऑनलाइन रिपोर्ट','online report'))}</li>
+ <li>📱 <b>Sanchar Saathi → Chakshu</b> — ${T(L('report a suspected fraud call, SMS or WhatsApp','संदिग्ध धोखाधड़ी कॉल, SMS या WhatsApp की रिपोर्ट','suspected fraud call, SMS ya WhatsApp report karo'))}</li></ul>
+ <div class="muted" style="font-size:12px">${T(L('All names, numbers and links here are made up for practice.','यहाँ सभी नाम, नंबर और लिंक अभ्यास के लिए काल्पनिक हैं।','Yahan saare naam, numbers aur links practice ke liye kaalpanik hain.'))}</div>`;}
+const goalDef=L('Open each message, tap anything that feels off, then decide: scam or safe? Real scammers copy banks, police, jobs and even family voices.','हर संदेश खोलो, जो अजीब लगे उसे दबाओ, फिर तय करो: स्कैम या सुरक्षित? असली ठग बैंक, पुलिस, नौकरी और परिवार की आवाज़ तक की नक़ल करते हैं।','Har message kholo, jo ajeeb lage use tap karo, phir decide karo: scam ya safe? Asli scammers bank, police, job aur family ki awaaz tak copy karte hain.');
+const setGoal=()=>$('goal').innerHTML=T(goal||goalDef);N.onLang(()=>{setGoal();drawList();help();mission();if(openId)open(openId);});
+setGoal();drawList();help();mission();
+window.__lab={open,decide:(id,v)=>{open(id);const m=M.find(x=>x.id===id);decide(m,state[id],v);},tapAll:()=>$('det').querySelectorAll('.fl').forEach(b=>b.click())};
+})();
+</script></body></html>

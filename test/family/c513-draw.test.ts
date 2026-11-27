@@ -43,7 +43,7 @@ describe('the Draw module', () => {
     expect(en['control.apps.module.label.draw' as keyof typeof en]).toBeTruthy();
   });
   it('sits between English and Future, and its switch hides the tab', () => {
-    expect(TABS).toEqual(['home', 'study', 'english', 'draw', 'future']);
+    expect(TABS).toEqual(['home', 'study', 'english', 'tech', 'draw', 'future']);
     expect(visibleTabs(() => true)).toContain('draw');
     expect(visibleTabs((f) => f !== 'draw')).not.toContain('draw');
   });
@@ -60,25 +60,26 @@ describe('the Draw module', () => {
   });
 });
 
-describe('the dock with five tabs', () => {
-  const labels = { home: 'Home', study: 'Study', english: 'English', draw: 'Draw', future: 'Future' };
-  it('shows Draw between English and Future, each tab a link with its name', () => {
+describe('the dock with six tabs', () => {
+  const labels = { home: 'Home', study: 'Study', english: 'English', tech: 'Tech Lab', draw: 'Draw', future: 'Future' };
+  it('shows Tech Lab after English and Draw before Future, each tab a link with its name', () => {
     const html = renderToStaticMarkup(h(FamilyTabs, { tabs: [...TABS], navLabel: 'Main menu', labels }));
-    expect(html.match(/class="fam-press fam-tab"/g)?.length).toBe(5);
+    expect(html.match(/class="fam-press fam-tab"/g)?.length).toBe(6);
     const order = [...html.matchAll(/href="([^"]+)"/g)].map((m) => m[1]);
-    expect(order).toEqual(['/family', '/family/study', '/family/english', '/family/draw', '/family/future']);
+    expect(order).toEqual(['/family', '/family/study', '/family/english', '/family/tech', '/family/draw', '/family/future']);
     expect(html).toContain('>Draw<');
-    expect(html).toContain('data-count="5"');
+    expect(html).toContain('>Tech Lab<');
+    expect(html).toContain('data-count="6"');
   });
-  // 17 Nov 2026: edge to edge on a phone, five equal columns, each its icon over its name.
-  it('fits a 360 px phone with five equal tabs of 56 px and more', () => {
+  // 17 Nov 2026: edge to edge on a phone, equal columns, each its icon over its name.
+  // 27 Nov 2026: six tabs, about 58 px each on a 360 px phone, still at least 56 px tall.
+  it('fits a 360 px phone with six equal tabs of 56 px and more', () => {
     const css = SRC('src/app/(family)/family/family.css');
     expect(css).toMatch(/\.fam-tab \{[^}]*flex-direction: column/);
     expect(css).toMatch(/\.fam-tab \{[^}]*min-height: 56px/);
     const html = renderToStaticMarkup(h(FamilyTabs, { tabs: [...TABS], navLabel: 'Main menu', labels }));
-    expect(html.match(/class="min-w-0 flex-1"/g)?.length).toBe(5);
-    // 360 px less the dock's 4 px sides: each of the five columns is wider than 56 px.
-    expect((360 - 2 * 4) / 5).toBeGreaterThan(56);
+    expect(html.match(/class="min-w-0 flex-1"/g)?.length).toBe(6);
+    expect((360 - 2 * 4) / 6).toBeGreaterThan(56);
   });
 });
 

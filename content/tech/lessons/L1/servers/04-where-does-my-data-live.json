@@ -1,0 +1,358 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.servers.04",
+ "level": 1,
+ "classes": [
+  1,
+  2,
+  3
+ ],
+ "unit": "servers",
+ "title": {
+  "en": "Where do my photos and games live?",
+  "hi": "मेरी फ़ोटो और गेम कहाँ रहते हैं?",
+  "hinglish": "Meri photos aur games kahan rehte hain?"
+ },
+ "minutes": 6,
+ "xp": 25,
+ "prereq": [
+  "L1.servers.01"
+ ],
+ "topics": [
+  "cloud.what-is-cloud",
+  "cloud.servers",
+  "hw.storage"
+ ],
+ "outcomes": [
+  {
+   "en": "Say that saved things live either on your device or on a server far away.",
+   "hi": "बता सकते हो कि सहेजी चीज़ें या तो डिवाइस पर रहती हैं या दूर किसी सर्वर पर।",
+   "hinglish": "Bata sakte ho ki save ki hui cheezein ya toh device par rehti hain ya door kisi server par."
+  },
+  {
+   "en": "Explain \"the cloud is someone else’s computer\".",
+   "hi": "समझा सकते हो कि \"क्लाउड किसी और का कंप्यूटर है\"।",
+   "hinglish": "Samjha sakte ho ki \"cloud kisi aur ka computer hai\"."
+  },
+  {
+   "en": "Know why keeping a backup copy is smart.",
+   "hi": "जानते हो कि बैकअप कॉपी रखना क्यों समझदारी है।",
+   "hinglish": "Jaante ho ki backup copy rakhna kyon samajhdaari hai."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Cloud",
+   "en": "Servers far away that store our files and run apps",
+   "hi": "दूर के सर्वर जहाँ हमारी फ़ाइलें रहती हैं",
+   "hinglish": "Door ke servers jahan hamari files rehti hain"
+  },
+  {
+   "term": "Backup",
+   "en": "A spare copy kept somewhere else",
+   "hi": "कहीं और रखी एक अतिरिक्त कॉपी",
+   "hinglish": "Ek extra copy"
+  },
+  {
+   "term": "Upload",
+   "en": "Sending a file from your device to a server",
+   "hi": "डिवाइस से सर्वर पर फ़ाइल भेजना",
+   "hinglish": "Device se server par bhejna"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.servers.04.s1",
+   "caption": {
+    "en": "Some photos live inside your phone.",
+    "hi": "कुछ फ़ोटो फ़ोन के अंदर रहती हैं।",
+    "hinglish": "Kuch photos phone ke andar rehti hain."
+   },
+   "narration": {
+    "en": "Photos you take are saved in your phone’s own storage — like keeping toys in your own cupboard.",
+    "hinglish": "Tumhari kheenchi photos phone ki apni storage mein save hoti hain — jaise khilaune apni almaari mein rakhna.",
+    "hi": "तुम्हारी खींची फ़ोटो फ़ोन की अपनी स्टोरेज में सहेजी जाती हैं — जैसे खिलौने अपनी अलमारी में रखना।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.servers.04.s2",
+   "caption": {
+    "en": "Uploaded photos travel to a server.",
+    "hi": "अपलोड की फ़ोटो सर्वर तक जाती हैं।",
+    "hinglish": "Upload ki photos server tak jaati hain."
+   },
+   "narration": {
+    "en": "When you upload a photo, it travels over the internet and is saved on a server in a big building.",
+    "hinglish": "Jab tum photo upload karte ho, woh internet se jaakar ek bade building ke server par save hoti hai.",
+    "hi": "जब तुम फ़ोटो अपलोड करते हो, वह इंटरनेट से जाकर एक बड़ी इमारत के सर्वर पर सहेजी जाती है।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.servers.04.s3",
+   "caption": {
+    "en": "The cloud is someone else’s computer.",
+    "hi": "क्लाउड किसी और का कंप्यूटर है।",
+    "hinglish": "Cloud kisi aur ka computer hai."
+   },
+   "narration": {
+    "en": "The \"cloud\" is not in the sky. It is someone else’s computers, kept safe for you.",
+    "hinglish": "\"Cloud\" aasmaan mein nahin hai. Yeh kisi aur ke computers hain, jo tumhare liye sambhaal kar rakhe gaye hain.",
+    "hi": "\"क्लाउड\" आसमान में नहीं है। यह किसी और के कंप्यूटर हैं, जो तुम्हारे लिए सँभालकर रखे गए हैं।"
+   }
+  },
+  {
+   "step": 4,
+   "visual": "scene:L1.servers.04.s4",
+   "caption": {
+    "en": "Two copies keep your photos safe.",
+    "hi": "दो कॉपी से फ़ोटो सुरक्षित रहती हैं।",
+    "hinglish": "Do copies se photos safe rehti hain."
+   },
+   "narration": {
+    "en": "If a phone is lost, a backup copy on a server can bring your photos back.",
+    "hinglish": "Agar phone kho jaaye, toh server par rakhi backup copy tumhari photos waapas la sakti hai.",
+    "hi": "अगर फ़ोन खो जाए, तो सर्वर पर रखी बैकअप कॉपी तुम्हारी फ़ोटो वापस ला सकती है।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "net-travel",
+  "config": {
+   "mode": "server"
+  },
+  "goal": {
+   "en": "Open all 3 websites. Watch each request travel to a server and come back — that is where the pages live!",
+   "hi": "तीनों वेबसाइटें खोलो। देखो हर अनुरोध सर्वर तक जाकर वापस आता है — पन्ने वहीं रहते हैं!",
+   "hinglish": "Teeno websites kholo. Dekho har request server tak jaakar waapas aati hai — pages wahin rehte hain!"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "On the device or in the cloud?",
+    "hi": "डिवाइस पर या क्लाउड में?",
+    "hinglish": "Device par ya cloud mein?"
+   },
+   "body": {
+    "en": "Things saved on your device (its storage) open even without the internet, but they are lost if the device breaks and there is no copy. Things saved in the cloud live on servers in data centres, so you can open them from any phone or computer after signing in — but you need the internet to reach them. Many apps keep a copy in both places.",
+    "hi": "डिवाइस (उसकी स्टोरेज) पर सहेजी चीज़ें बिना इंटरनेट के भी खुलती हैं, पर डिवाइस टूटे और कॉपी न हो तो खो जाती हैं। क्लाउड में सहेजी चीज़ें डेटा सेंटर के सर्वर पर रहती हैं, इसलिए साइन इन करके किसी भी फ़ोन या कंप्यूटर से खोल सकते हो — पर वहाँ पहुँचने के लिए इंटरनेट चाहिए। कई ऐप दोनों जगह कॉपी रखते हैं।",
+    "hinglish": "Device (uski storage) par save cheezein bina internet ke bhi khulti hain, par device toote aur copy na ho toh kho jaati hain. Cloud mein save cheezein data centre ke servers par rehti hain, isliye sign in karke kisi bhi phone ya computer se khol sakte ho — par wahan pahunchne ke liye internet chahiye. Kai apps dono jagah copy rakhte hain."
+   },
+   "analogy": {
+    "en": "Device storage is like the cupboard at home; the cloud is like a bank locker — far away but safe, and opened with a key (your password).",
+    "hi": "डिवाइस की स्टोरेज घर की अलमारी जैसी है; क्लाउड बैंक के लॉकर जैसा — दूर है, पर सुरक्षित, और चाबी (पासवर्ड) से खुलता है।",
+    "hinglish": "Device ki storage ghar ki almaari jaisi hai; cloud bank ke locker jaisa — door hai, par surakshit, aur chaabi (password) se khulta hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "Real clouds you may know",
+    "hi": "असली क्लाउड जो तुम जानते होगे",
+    "hinglish": "Asli clouds jo tum jaante hoge"
+   },
+   "body": {
+    "en": "Google Photos, iCloud and OneDrive store photos and files on their companies’ servers. India’s DigiLocker keeps documents like mark sheets and Aadhaar safely on government servers, so families can show them from a phone. Always let a grown-up decide what gets uploaded.",
+    "hi": "गूगल फ़ोटोज़, आईक्लाउड और वनड्राइव फ़ोटो और फ़ाइलें अपनी कंपनियों के सर्वर पर रखते हैं। भारत का डिजिलॉकर अंकपत्र और आधार जैसे दस्तावेज़ सरकारी सर्वर पर सुरक्षित रखता है, ताकि परिवार उन्हें फ़ोन से दिखा सकें। क्या अपलोड हो, यह हमेशा बड़े को तय करने दो।",
+    "hinglish": "Google Photos, iCloud aur OneDrive photos aur files apni companies ke servers par rakhte hain. India ka DigiLocker mark sheets aur Aadhaar jaise documents sarkaari servers par safe rakhta hai, taaki families unhe phone se dikha sakein. Kya upload ho, yeh hamesha bade ko tay karne do."
+   },
+   "realExample": {
+    "en": "Ask at home: are the family photos only on one phone, or is there a backup copy too?",
+    "hi": "घर पर पूछो: क्या परिवार की फ़ोटो सिर्फ़ एक फ़ोन पर हैं, या बैकअप कॉपी भी है?",
+    "hinglish": "Ghar par poochho: kya family photos sirf ek phone par hain, ya backup copy bhi hai?"
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "With a grown-up, find one photo on a phone and check: is it only on the phone, or also backed up to the cloud?",
+   "hi": "किसी बड़े के साथ फ़ोन में एक फ़ोटो ढूँढो और देखो: क्या वह सिर्फ़ फ़ोन पर है, या क्लाउड में भी बैकअप है?",
+   "hinglish": "Kisi bade ke saath phone mein ek photo dhoondho aur dekho: kya woh sirf phone par hai, ya cloud mein bhi backup hai?"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "\"The cloud\" is really…",
+     "hi": "\"क्लाउड\" असल में क्या है?",
+     "hinglish": "\"Cloud\" asal mein kya hai?"
+    },
+    "options": [
+     {
+      "en": "🖥️ someone else’s computers (servers)",
+      "hi": "🖥️ किसी और के कंप्यूटर (सर्वर)",
+      "hinglish": "🖥️ kisi aur ke computers (servers)"
+     },
+     {
+      "en": "☁️ a real cloud in the sky",
+      "hi": "☁️ आसमान का असली बादल",
+      "hinglish": "☁️ aasmaan ka asli baadal"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Cloud files live on servers in buildings.",
+     "hi": "क्लाउड फ़ाइलें इमारतों के सर्वर पर रहती हैं।",
+     "hinglish": "Cloud files buildings ke servers par rehti hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Your phone falls in water. Which photos are safe?",
+     "hi": "फ़ोन पानी में गिर गया। कौन सी फ़ोटो सुरक्षित हैं?",
+     "hinglish": "Phone paani mein gir gaya. Kaun si photos safe hain?"
+    },
+    "options": [
+     {
+      "en": "The ones backed up to the cloud",
+      "hi": "जिनका क्लाउड में बैकअप है",
+      "hinglish": "Jinka cloud mein backup hai"
+     },
+     {
+      "en": "Only the newest ones",
+      "hi": "सिर्फ़ सबसे नई",
+      "hinglish": "Sirf sabse nayi"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "A backup copy lives somewhere else.",
+     "hi": "बैकअप कॉपी कहीं और रहती है।",
+     "hinglish": "Backup copy kahin aur rehti hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Can you open a cloud file with no internet at all?",
+     "hi": "क्या बिल्कुल बिना इंटरनेट के क्लाउड फ़ाइल खुलेगी?",
+     "hinglish": "Kya bilkul bina internet ke cloud file khulegi?"
+    },
+    "options": [
+     {
+      "en": "Yes",
+      "hi": "हाँ",
+      "hinglish": "Haan"
+     },
+     {
+      "en": "No",
+      "hi": "नहीं",
+      "hinglish": "Nahin"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "You need the internet to reach the server — unless the app saved a copy on your device too.",
+     "hi": "सर्वर तक पहुँचने के लिए इंटरनेट चाहिए — जब तक ऐप ने डिवाइस पर भी कॉपी न रखी हो।",
+     "hinglish": "Server tak pahunchne ke liye internet chahiye — jab tak app ne device par bhi copy na rakhi ho."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "match",
+    "prompt": {
+     "en": "Match each to where it lives.",
+     "hi": "हर चीज़ को उसकी जगह से मिलाओ।",
+     "hinglish": "Har cheez ko uski jagah se milao."
+    },
+    "options": {
+     "left": [
+      {
+       "en": "Photo you just took",
+       "hi": "अभी खींची फ़ोटो",
+       "hinglish": "Abhi kheenchi photo"
+      },
+      {
+       "en": "Mark sheet in DigiLocker",
+       "hi": "डिजिलॉकर में अंकपत्र",
+       "hinglish": "DigiLocker mein mark sheet"
+      },
+      {
+       "en": "A website’s pages",
+       "hi": "वेबसाइट के पन्ने",
+       "hinglish": "Website ke pages"
+      }
+     ],
+     "right": [
+      {
+       "en": "Government servers",
+       "hi": "सरकारी सर्वर",
+       "hinglish": "Sarkaari servers"
+      },
+      {
+       "en": "A web server",
+       "hi": "वेब सर्वर",
+       "hinglish": "Web server"
+      },
+      {
+       "en": "Your phone’s storage",
+       "hi": "फ़ोन की स्टोरेज",
+       "hinglish": "Phone ki storage"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      2
+     ],
+     [
+      1,
+      0
+     ],
+     [
+      2,
+      1
+     ]
+    ],
+    "explain": {
+     "en": "Phone storage, government servers, a web server.",
+     "hi": "फ़ोन की स्टोरेज, सरकारी सर्वर, वेब सर्वर।",
+     "hinglish": "Phone storage, sarkaari servers, web server."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Open all 3 websites in the lab.",
+     "hi": "लैब में तीनों वेबसाइटें खोलो।",
+     "hinglish": "Lab mein teeno websites kholo."
+    },
+    "answer": {
+     "lab": "net-travel",
+     "mode": "server",
+     "solved": true
+    },
+    "explain": {
+     "en": "Tap each site and watch the request go to the server.",
+     "hi": "हर साइट टैप करो और अनुरोध को सर्वर तक जाते देखो।",
+     "hinglish": "Har site tap karo aur request ko server tak jaate dekho."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "DigiLocker – Government of India (fact reference)",
+   "url": "https://www.digilocker.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

@@ -1,0 +1,381 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.servers-cloud.02",
+ "level": 3,
+ "classes": [
+  11,
+  12
+ ],
+ "unit": "servers-cloud",
+ "title": {
+  "en": "Client, server and APIs",
+  "hi": "क्लाइंट, सर्वर और एपीआई",
+  "hinglish": "Client, server aur APIs"
+ },
+ "minutes": 15,
+ "xp": 60,
+ "prereq": [
+  "L3.servers-cloud.01"
+ ],
+ "outcomes": [
+  {
+   "en": "Read an HTTP request and response: method, path, headers, status and JSON body",
+   "hi": "HTTP अनुरोध और जवाब पढ़ो: मेथड, पाथ, हेडर, स्थिति और JSON बॉडी",
+   "hinglish": "HTTP request aur response padho: method, path, headers, status aur JSON body"
+  },
+  {
+   "en": "Design a small REST API with sensible paths and status codes",
+   "hi": "सही पाथ और स्थिति कोड वाला छोटा REST API बनाओ",
+   "hinglish": "Sahi paths aur status codes wala chhota REST API design karo"
+  },
+  {
+   "en": "Explain authentication tokens, rate limits and why the server must never trust the client",
+   "hi": "प्रमाणीकरण टोकन, दर-सीमा और सर्वर को क्लाइंट पर कभी भरोसा क्यों नहीं करना चाहिए, समझाओ",
+   "hinglish": "Authentication tokens, rate limits aur server ko client par kabhi bharosa kyun nahi karna chahiye, samjhao"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Client",
+   "hinglish": "Request bhejne wala app ya browser",
+   "en": "Program that sends requests, such as a browser or mobile app",
+   "hi": "अनुरोध भेजने वाला प्रोग्राम, जैसे ब्राउज़र या मोबाइल ऐप"
+  },
+  {
+   "term": "API",
+   "hinglish": "Programs ke beech baat ka tay tareeka",
+   "en": "Application Programming Interface: a defined way for programs to talk",
+   "hi": "एप्लिकेशन प्रोग्रामिंग इंटरफ़ेस: प्रोग्रामों के बीच बात का तय तरीक़ा"
+  },
+  {
+   "term": "Endpoint",
+   "hinglish": "API ka ek pata jaise /api/v1/marks",
+   "en": "A specific URL path and method an API offers",
+   "hi": "एपीआई का एक ख़ास URL पाथ और मेथड"
+  },
+  {
+   "term": "JSON",
+   "hinglish": "Data likhne ka halka text format",
+   "en": "Lightweight text format for structured data",
+   "hi": "संरचित डेटा के लिए हल्का पाठ प्रारूप"
+  },
+  {
+   "term": "Token",
+   "hinglish": "Login ke baad mila digital pass",
+   "en": "Proof of login sent with each request",
+   "hi": "हर अनुरोध के साथ भेजा जाने वाला लॉगिन का प्रमाण"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Your school app is a client. When you open \"My marks\" it sends GET /api/v1/marks?term=1 to the school server — an API endpoint.",
+    "hi": "आपका स्कूल ऐप एक क्लाइंट है। \"मेरे अंक\" खोलने पर वह स्कूल सर्वर को GET /api/v1/marks?term=1 भेजता है — एक एपीआई एंडपॉइंट।",
+    "hinglish": "Tumhara school app ek client hai. \"My marks\" kholne par woh school server ko GET /api/v1/marks?term=1 bhejta hai — ek API endpoint."
+   },
+   "visual": "anim:api-request",
+   "narration": {
+    "en": "Your school app is a client. When you open \"My marks\" it sends GET /api/v1/marks?term=1 to the school server — an API endpoint.",
+    "hi": "आपका स्कूल ऐप एक क्लाइंट है। \"मेरे अंक\" खोलने पर वह स्कूल सर्वर को GET /api/v1/marks?term=1 भेजता है — एक एपीआई एंडपॉइंट।",
+    "hinglish": "Tumhara school app ek client hai. \"My marks\" kholne par woh school server ko GET /api/v1/marks?term=1 bhejta hai — ek API endpoint."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "The request carries a token in the Authorization header. No token or a fake one? The server answers 401 Unauthorized.",
+    "hi": "अनुरोध Authorization हेडर में टोकन लेकर जाता है। टोकन नहीं या नक़ली? सर्वर 401 Unauthorized जवाब देता है।",
+    "hinglish": "Request Authorization header mein token le kar jaata hai. Token nahi ya nakli? Server 401 Unauthorized jawab deta hai."
+   },
+   "visual": "anim:token-check",
+   "narration": {
+    "en": "The request carries a token in the Authorization header. No token or a fake one? The server answers 401 Unauthorized.",
+    "hi": "अनुरोध Authorization हेडर में टोकन लेकर जाता है। टोकन नहीं या नक़ली? सर्वर 401 Unauthorized जवाब देता है।",
+    "hinglish": "Request Authorization header mein token le kar jaata hai. Token nahi ya nakli? Server 401 Unauthorized jawab deta hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "With a valid token, the server checks the student may see these marks, queries the database safely and replies 200 OK with JSON.",
+    "hi": "सही टोकन के साथ सर्वर जाँचता है कि छात्र ये अंक देख सकता है, डेटाबेस से सुरक्षित पूछता है और JSON के साथ 200 OK लौटाता है।",
+    "hinglish": "Sahi token ke saath server check karta hai ki student ye marks dekh sakta hai, database se safely poochta hai aur JSON ke saath 200 OK lautata hai."
+   },
+   "visual": "anim:json-reply",
+   "narration": {
+    "en": "With a valid token, the server checks the student may see these marks, queries the database safely and replies 200 OK with JSON.",
+    "hi": "सही टोकन के साथ सर्वर जाँचता है कि छात्र ये अंक देख सकता है, डेटाबेस से सुरक्षित पूछता है और JSON के साथ 200 OK लौटाता है।",
+    "hinglish": "Sahi token ke saath server check karta hai ki student ye marks dekh sakta hai, database se safely poochta hai aur JSON ke saath 200 OK lautata hai."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "The same API can feed the Android app, the website and the parents' app — that is the power of a clean API.",
+    "hi": "वही एपीआई एंड्रॉइड ऐप, वेबसाइट और अभिभावक ऐप को डेटा दे सकता है — यही साफ़ एपीआई की ताक़त है।",
+    "hinglish": "Wahi API Android app, website aur parents' app ko data de sakta hai — yahi clean API ki taakat hai."
+   },
+   "visual": "anim:one-api-many-apps",
+   "narration": {
+    "en": "The same API can feed the Android app, the website and the parents' app — that is the power of a clean API.",
+    "hi": "वही एपीआई एंड्रॉइड ऐप, वेबसाइट और अभिभावक ऐप को डेटा दे सकता है — यही साफ़ एपीआई की ताक़त है।",
+    "hinglish": "Wahi API Android app, website aur parents' app ko data de sakta hai — yahi clean API ki taakat hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "seq-flow",
+  "config": {
+   "scenario": "http-api"
+  },
+  "goal": {
+   "en": "Fetch marks through the API with a valid token. Then tick \"Forget the login token\" and see the 401 response.",
+   "hi": "सही टोकन के साथ एपीआई से अंक लाओ। फिर \"लॉगिन टोकन भूल जाओ\" चुनो और 401 जवाब देखो।",
+   "hinglish": "Valid token ke saath API se marks laao. Phir \"Login token bhool jao\" tick karo aur 401 response dekho."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Methods and status codes",
+    "hi": "मेथड और स्थिति कोड",
+    "hinglish": "Methods aur status codes"
+   },
+   "body": {
+    "en": "GET reads, POST creates, PUT/PATCH update, DELETE removes. Status codes tell the client what happened: 200 OK, 201 Created, 204 No Content; 301/302 redirect; 400 Bad Request (your input was wrong), 401 Unauthorized (not logged in), 403 Forbidden (logged in but not allowed), 404 Not Found, 429 Too Many Requests; 500 Internal Server Error and 503 Service Unavailable mean the server failed.",
+    "hi": "GET पढ़ता है, POST बनाता है, PUT/PATCH बदलते हैं, DELETE हटाता है। स्थिति कोड क्लाइंट को बताते हैं क्या हुआ: 200 OK, 201 Created, 204 No Content; 301/302 पुनर्निर्देशन; 400 Bad Request (आपका इनपुट ग़लत), 401 Unauthorized (लॉगिन नहीं), 403 Forbidden (लॉगिन है पर अनुमति नहीं), 404 Not Found, 429 Too Many Requests; 500 Internal Server Error और 503 Service Unavailable का मतलब सर्वर विफल हुआ।",
+    "hinglish": "GET padhta hai, POST banata hai, PUT/PATCH badalte hain, DELETE hatata hai. Status codes client ko batate hain kya hua: 200 OK, 201 Created, 204 No Content; 301/302 redirect; 400 Bad Request (tumhara input galat), 401 Unauthorized (login nahi), 403 Forbidden (login hai par permission nahi), 404 Not Found, 429 Too Many Requests; 500 Internal Server Error aur 503 Service Unavailable matlab server fail hua."
+   },
+   "analogy": {
+    "en": "2xx = \"done\", 3xx = \"go there\", 4xx = \"your mistake\", 5xx = \"our mistake\".",
+    "hi": "2xx = \"हो गया\", 3xx = \"वहाँ जाओ\", 4xx = \"आपकी ग़लती\", 5xx = \"हमारी ग़लती\"।",
+    "hinglish": "2xx = \"ho gaya\", 3xx = \"wahan jao\", 4xx = \"tumhari galti\", 5xx = \"hamari galti\"."
+   },
+   "realExample": {
+    "en": "When a ticket-booking site shows \"Service Unavailable\" at Tatkal time (10 am for AC classes), that is a 503: too many requests for the servers.",
+    "hi": "जब टिकट बुकिंग साइट तत्काल समय (एसी श्रेणी के लिए सुबह 10 बजे) पर \"Service Unavailable\" दिखाती है, वह 503 है: सर्वरों के लिए बहुत ज़्यादा अनुरोध।",
+    "hinglish": "Jab ticket-booking site Tatkal time (AC classes ke liye subah 10 baje) par \"Service Unavailable\" dikhati hai, woh 503 hai: servers ke liye bahut zyaada requests."
+   }
+  },
+  {
+   "heading": {
+    "en": "Designing a clean REST API",
+    "hi": "साफ़ REST API बनाना",
+    "hinglish": "Clean REST API design karna"
+   },
+   "body": {
+    "en": "Use nouns for resources and methods for actions: GET /students/42, POST /students/42/homework, PATCH /homework/7. Version the API (/v1/) so old apps keep working. Return JSON like {\"subject\":\"maths\",\"marks\":88}. Paginate long lists (?page=2&limit=50). Document every endpoint (OpenAPI is the common standard) so other teams can build on it.",
+    "hi": "संसाधनों के लिए संज्ञा और कामों के लिए मेथड: GET /students/42, POST /students/42/homework, PATCH /homework/7। एपीआई का संस्करण रखो (/v1/) ताकि पुराने ऐप चलते रहें। {\"subject\":\"maths\",\"marks\":88} जैसा JSON लौटाओ। लंबी सूचियाँ पन्नों में बाँटो (?page=2&limit=50)। हर एंडपॉइंट का दस्तावेज़ बनाओ (OpenAPI आम मानक है) ताकि दूसरी टीमें उस पर बना सकें।",
+    "hinglish": "Resources ke liye nouns aur actions ke liye methods: GET /students/42, POST /students/42/homework, PATCH /homework/7. API ka version rakho (/v1/) taaki purane apps chalte rahein. {\"subject\":\"maths\",\"marks\":88} jaisa JSON lautao. Lambi lists pages mein baanto (?page=2&limit=50). Har endpoint document karo (OpenAPI common standard hai) taaki doosri teams us par bana sakein."
+   },
+   "analogy": {
+    "en": "A good API is like a well-labelled library: shelves (resources) have clear names, and the rules for borrowing (methods) are the same everywhere.",
+    "hi": "अच्छा एपीआई अच्छी तरह लेबल किए पुस्तकालय जैसा है: अलमारियों (संसाधनों) के साफ़ नाम, और उधार लेने के नियम (मेथड) हर जगह एक जैसे।",
+    "hinglish": "Achha API achhi tarah label kiye library jaisa hai: shelves (resources) ke saaf naam, aur borrow karne ke rules (methods) har jagah ek jaise."
+   },
+   "realExample": {
+    "en": "India Stack is built on public APIs: UPI for payments, DigiLocker for documents, and Aadhaar-based e-KYC let thousands of apps reuse the same services.",
+    "hi": "इंडिया स्टैक सार्वजनिक एपीआई पर बना है: भुगतान के लिए यूपीआई, दस्तावेज़ों के लिए डिजिलॉकर, और आधार-आधारित ई-केवाईसी से हज़ारों ऐप वही सेवाएँ दोबारा इस्तेमाल करते हैं।",
+    "hinglish": "India Stack public APIs par bana hai: payments ke liye UPI, documents ke liye DigiLocker, aur Aadhaar-based e-KYC se hazaaron apps wahi services dobaara use karte hain."
+   }
+  },
+  {
+   "heading": {
+    "en": "Never trust the client",
+    "hi": "क्लाइंट पर कभी भरोसा मत करो",
+    "hinglish": "Client par kabhi bharosa mat karo"
+   },
+   "body": {
+    "en": "Anyone can send any request — not just your app. So the server must check the token on every request, check permission for that exact record (student 42 must not read student 43's marks just by changing the number), validate every input, use parameterised database queries, and rate-limit (reply 429) to slow down abuse. Hiding a button in the app is not security.",
+    "hi": "कोई भी कोई भी अनुरोध भेज सकता है — सिर्फ़ आपका ऐप नहीं। इसलिए सर्वर को हर अनुरोध पर टोकन जाँचना होगा, उसी रिकॉर्ड की अनुमति जाँचनी होगी (छात्र 42 बस संख्या बदलकर छात्र 43 के अंक न पढ़ सके), हर इनपुट सत्यापित करना होगा, पैरामीटर वाली डेटाबेस क्वेरी इस्तेमाल करनी होगी, और दुरुपयोग धीमा करने के लिए दर-सीमा (429 जवाब) लगानी होगी। ऐप में बटन छिपाना सुरक्षा नहीं है।",
+    "hinglish": "Koi bhi koi bhi request bhej sakta hai — sirf tumhara app nahi. Isliye server ko har request par token check karna hoga, usi record ki permission check karni hogi (student 42 bas number badal ke student 43 ke marks na padh sake), har input validate karna hoga, parameterised database queries use karni hongi, aur abuse dheema karne ke liye rate-limit (429 reply) lagana hoga. App mein button chhupana security nahi hai."
+   },
+   "analogy": {
+    "en": "A school gate guard checks every visitor's ID card, even if they came in the school bus.",
+    "hi": "स्कूल गेट का गार्ड हर आने वाले का पहचान-पत्र जाँचता है, भले वह स्कूल बस से आया हो।",
+    "hinglish": "School gate ka guard har aane wale ka ID card check karta hai, bhale woh school bus se aaya ho."
+   },
+   "realExample": {
+    "en": "\"Broken object level authorisation\" — changing an ID in the URL to see someone else's data — is number 1 on the OWASP API Security Top 10 (2023).",
+    "hi": "\"Broken object level authorisation\" — URL में आईडी बदलकर किसी और का डेटा देखना — OWASP API Security Top 10 (2023) में पहले नंबर पर है।",
+    "hinglish": "\"Broken object level authorisation\" — URL mein ID badal ke kisi aur ka data dekhna — OWASP API Security Top 10 (2023) mein number 1 par hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Design four endpoints for a school library API (list books, borrow, return, my loans). For each, write the method, path, a sample JSON reply and two error codes it might return.",
+   "hi": "स्कूल पुस्तकालय एपीआई के चार एंडपॉइंट बनाओ (किताबें सूची, उधार, वापसी, मेरे उधार)। हर एक का मेथड, पाथ, नमूना JSON जवाब और दो संभावित त्रुटि कोड लिखो।",
+   "hinglish": "School library API ke chaar endpoints design karo (books list, borrow, return, my loans). Har ek ka method, path, sample JSON reply aur do possible error codes likho."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "match",
+    "prompt": {
+     "en": "Match each status code to its meaning.",
+     "hi": "हर स्थिति कोड को उसके अर्थ से मिलाओ।",
+     "hinglish": "Har status code ko uske matlab se milao."
+    },
+    "options": [
+     "200",
+     "401",
+     "403",
+     "429"
+    ],
+    "answer": [
+     {
+      "en": "OK",
+      "hi": "ठीक",
+      "hinglish": "OK"
+     },
+     {
+      "en": "Not logged in",
+      "hi": "लॉगिन नहीं",
+      "hinglish": "Login nahi"
+     },
+     {
+      "en": "Logged in but not allowed",
+      "hi": "लॉगिन है पर अनुमति नहीं",
+      "hinglish": "Login hai par permission nahi"
+     },
+     {
+      "en": "Too many requests",
+      "hi": "बहुत ज़्यादा अनुरोध",
+      "hinglish": "Bahut zyaada requests"
+     }
+    ],
+    "explain": {
+     "en": "401 = who are you?; 403 = I know you, but no.",
+     "hi": "401 = आप कौन?; 403 = पहचानता हूँ, पर नहीं।",
+     "hinglish": "401 = tum kaun?; 403 = pehchaanta hoon, par nahi."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which request creates a new homework entry for student 42?",
+     "hi": "छात्र 42 के लिए नई गृहकार्य प्रविष्टि कौन-सा अनुरोध बनाता है?",
+     "hinglish": "Student 42 ke liye nayi homework entry kaunsi request banati hai?"
+    },
+    "options": [
+     "GET /students/42/homework",
+     "POST /students/42/homework",
+     "DELETE /students/42",
+     "GET /createHomework?student=42"
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "POST to the collection creates a new item.",
+     "hi": "संग्रह पर POST नई चीज़ बनाता है।",
+     "hinglish": "Collection par POST naya item banata hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "A student changes /marks/42 to /marks/43 in the URL and sees a classmate's marks. What is broken?",
+     "hi": "छात्र URL में /marks/42 को /marks/43 करता है और सहपाठी के अंक देख लेता है। क्या टूटा है?",
+     "hinglish": "Student URL mein /marks/42 ko /marks/43 karta hai aur classmate ke marks dekh leta hai. Kya toota hai?"
+    },
+    "options": [
+     {
+      "en": "DNS",
+      "hi": "डीएनएस",
+      "hinglish": "DNS"
+     },
+     {
+      "en": "Object-level authorisation on the server",
+      "hi": "सर्वर पर वस्तु-स्तर की अनुमति जाँच",
+      "hinglish": "Server par object-level authorisation"
+     },
+     {
+      "en": "The phone's browser",
+      "hi": "फ़ोन का ब्राउज़र",
+      "hinglish": "Phone ka browser"
+     },
+     {
+      "en": "JSON format",
+      "hi": "JSON प्रारूप",
+      "hinglish": "JSON format"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "The server must check that the logged-in user owns record 43 before returning it. Report such bugs responsibly to the school.",
+     "hi": "सर्वर को रिकॉर्ड 43 लौटाने से पहले जाँचना चाहिए कि लॉगिन उपयोगकर्ता उसका मालिक है। ऐसी ख़ामी ज़िम्मेदारी से स्कूल को बताओ।",
+     "hinglish": "Server ko record 43 lautane se pehle check karna chahiye ki logged-in user uska maalik hai. Aisi khaami zimmedaari se school ko batao."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q4",
+    "type": "short",
+    "prompt": {
+     "en": "Which data format do most web APIs return? (4 letters)",
+     "hi": "ज़्यादातर वेब एपीआई कौन-सा डेटा प्रारूप लौटाते हैं? (4 अक्षर)",
+     "hinglish": "Zyaadatar web APIs kaunsa data format lautate hain? (4 letters)"
+    },
+    "answer": {
+     "accept": [
+      "JSON",
+      "json"
+     ]
+    },
+    "explain": {
+     "en": "JSON: JavaScript Object Notation.",
+     "hi": "JSON: जावास्क्रिप्ट ऑब्जेक्ट नोटेशन।",
+     "hinglish": "JSON: JavaScript Object Notation."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Run the API scenario with the token forgotten and see the 401.",
+     "hi": "टोकन भूलकर एपीआई परिदृश्य चलाओ और 401 देखो।",
+     "hinglish": "Token bhool ke API scenario chalao aur 401 dekho."
+    },
+    "answer": {
+     "event": "scenario-complete",
+     "scenario": "http-api",
+     "flags": {
+      "notoken": true
+     }
+    },
+    "explain": {
+     "en": "No token, no data — the server rejected the request before touching the database.",
+     "hi": "टोकन नहीं, डेटा नहीं — सर्वर ने डेटाबेस छूने से पहले अनुरोध ठुकराया।",
+     "hinglish": "Token nahi, data nahi — server ne database chhune se pehle request reject ki."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "cloud.client-server"
+ ],
+ "sources": [
+  {
+   "title": "MDN — HTTP response status codes",
+   "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status",
+   "licence": "fact reference"
+  },
+  {
+   "title": "OWASP API Security Top 10 (2023)",
+   "url": "https://owasp.org/API-Security/editions/2023/en/0x11-t10/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "OpenAPI Specification",
+   "url": "https://spec.openapis.org/oas/latest.html",
+   "licence": "Apache-2.0"
+  }
+ ]
+}

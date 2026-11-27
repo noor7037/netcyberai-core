@@ -1,0 +1,404 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.servers-cloud.03",
+ "level": 3,
+ "classes": [
+  11,
+  12
+ ],
+ "unit": "servers-cloud",
+ "title": {
+  "en": "IaaS, PaaS, SaaS and serverless",
+  "hi": "IaaS, PaaS, SaaS और सर्वरलेस",
+  "hinglish": "IaaS, PaaS, SaaS aur serverless"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [
+  "L3.servers-cloud.01"
+ ],
+ "outcomes": [
+  {
+   "en": "Define cloud computing by its five essential characteristics",
+   "hi": "क्लाउड कंप्यूटिंग को उसकी पाँच ज़रूरी विशेषताओं से परिभाषित करो",
+   "hinglish": "Cloud computing ko uski paanch zaroori visheshtaon se define karo"
+  },
+  {
+   "en": "Classify a service as IaaS, PaaS, SaaS or serverless and say who manages what",
+   "hi": "किसी सेवा को IaaS, PaaS, SaaS या सर्वरलेस में बाँटो और बताओ कौन क्या सँभालता है",
+   "hinglish": "Kisi service ko IaaS, PaaS, SaaS ya serverless mein baanto aur batao kaun kya sambhalta hai"
+  },
+  {
+   "en": "Explain serverless cold starts and the shared-responsibility model",
+   "hi": "सर्वरलेस कोल्ड स्टार्ट और साझा-ज़िम्मेदारी मॉडल समझाओ",
+   "hinglish": "Serverless cold starts aur shared-responsibility model samjhao"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Cloud computing",
+   "hinglish": "Internet se kiraye par computing",
+   "en": "On-demand computing resources over a network, paid for as used",
+   "hi": "नेटवर्क पर माँग के अनुसार कंप्यूटिंग संसाधन, जितना इस्तेमाल उतना भुगतान"
+  },
+  {
+   "term": "IaaS",
+   "hinglish": "Kiraye ki virtual machine",
+   "en": "Infrastructure as a Service: rent VMs, storage and networks",
+   "hi": "इन्फ़्रास्ट्रक्चर ऐज़ अ सर्विस: वीएम, स्टोरेज और नेटवर्क किराये पर"
+  },
+  {
+   "term": "PaaS",
+   "hinglish": "Code do, platform chala dega",
+   "en": "Platform as a Service: deploy code; the platform runs servers for you",
+   "hi": "प्लेटफ़ॉर्म ऐज़ अ सर्विस: कोड डालो; प्लेटफ़ॉर्म आपके लिए सर्वर चलाता है"
+  },
+  {
+   "term": "SaaS",
+   "hinglish": "Seedha tayyar app use karo",
+   "en": "Software as a Service: use a finished app in the browser",
+   "hi": "सॉफ़्टवेयर ऐज़ अ सर्विस: ब्राउज़र में तैयार ऐप इस्तेमाल करो"
+  },
+  {
+   "term": "Cold start",
+   "hinglish": "Pehli request par function jagne ka delay",
+   "en": "Extra delay when a serverless function starts from idle",
+   "hi": "निष्क्रिय सर्वरलेस फ़ंक्शन के शुरू होने पर अतिरिक्त देरी"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "\"The cloud\" is someone else's data centre that you rent by the minute: computers, storage and networks on demand.",
+    "hi": "\"क्लाउड\" किसी और का डेटा सेंटर है जिसे आप मिनट के हिसाब से किराये पर लेते हो: माँग पर कंप्यूटर, स्टोरेज और नेटवर्क।",
+    "hinglish": "\"Cloud\" kisi aur ka data centre hai jise tum minute ke hisaab se kiraye par lete ho: demand par computers, storage aur networks."
+   },
+   "visual": "anim:cloud-rent",
+   "narration": {
+    "en": "\"The cloud\" is someone else's data centre that you rent by the minute: computers, storage and networks on demand.",
+    "hi": "\"क्लाउड\" किसी और का डेटा सेंटर है जिसे आप मिनट के हिसाब से किराये पर लेते हो: माँग पर कंप्यूटर, स्टोरेज और नेटवर्क।",
+    "hinglish": "\"Cloud\" kisi aur ka data centre hai jise tum minute ke hisaab se kiraye par lete ho: demand par computers, storage aur networks."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "IaaS: you get a virtual machine and manage the OS and app. PaaS: you upload code. SaaS: you just use the app, like Gmail or Google Classroom.",
+    "hi": "IaaS: आपको वर्चुअल मशीन मिलती है और ओएस व ऐप आप सँभालते हो। PaaS: आप कोड डालते हो। SaaS: आप बस ऐप इस्तेमाल करते हो, जैसे जीमेल या गूगल क्लासरूम।",
+    "hinglish": "IaaS: tumhe virtual machine milti hai aur OS aur app tum sambhalte ho. PaaS: tum code daalte ho. SaaS: tum bas app use karte ho, jaise Gmail ya Google Classroom."
+   },
+   "visual": "anim:pizza-stack",
+   "narration": {
+    "en": "IaaS: you get a virtual machine and manage the OS and app. PaaS: you upload code. SaaS: you just use the app, like Gmail or Google Classroom.",
+    "hi": "IaaS: आपको वर्चुअल मशीन मिलती है और ओएस व ऐप आप सँभालते हो। PaaS: आप कोड डालते हो। SaaS: आप बस ऐप इस्तेमाल करते हो, जैसे जीमेल या गूगल क्लासरूम।",
+    "hinglish": "IaaS: tumhe virtual machine milti hai aur OS aur app tum sambhalte ho. PaaS: tum code daalte ho. SaaS: tum bas app use karte ho, jaise Gmail ya Google Classroom."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Serverless (functions) runs your code only when a request arrives and bills per request. There are still servers — you just never see them.",
+    "hi": "सर्वरलेस (फ़ंक्शन) आपका कोड तभी चलाता है जब अनुरोध आता है और हर अनुरोध का बिल बनाता है। सर्वर फिर भी हैं — बस आप उन्हें कभी नहीं देखते।",
+    "hinglish": "Serverless (functions) tumhara code tabhi chalata hai jab request aati hai aur har request ka bill banata hai. Servers phir bhi hain — bas tum unhe kabhi nahi dekhte."
+   },
+   "visual": "anim:function-wake",
+   "narration": {
+    "en": "Serverless (functions) runs your code only when a request arrives and bills per request. There are still servers — you just never see them.",
+    "hi": "सर्वरलेस (फ़ंक्शन) आपका कोड तभी चलाता है जब अनुरोध आता है और हर अनुरोध का बिल बनाता है। सर्वर फिर भी हैं — बस आप उन्हें कभी नहीं देखते।",
+    "hinglish": "Serverless (functions) tumhara code tabhi chalata hai jab request aati hai aur har request ka bill banata hai. Servers phir bhi hain — bas tum unhe kabhi nahi dekhte."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "First request after a quiet spell: a cold start of a few hundred ms. Next requests reuse the warm copy and answer in tens of ms.",
+    "hi": "शांत समय के बाद पहला अनुरोध: कुछ सौ ms का कोल्ड स्टार्ट। अगले अनुरोध गर्म प्रति दोबारा इस्तेमाल करके दसियों ms में जवाब देते हैं।",
+    "hinglish": "Shaant samay ke baad pehli request: kuch sau ms ka cold start. Agli requests warm copy dobaara use karke dasiyon ms mein jawab deti hain."
+   },
+   "visual": "anim:cold-warm",
+   "narration": {
+    "en": "First request after a quiet spell: a cold start of a few hundred ms. Next requests reuse the warm copy and answer in tens of ms.",
+    "hi": "शांत समय के बाद पहला अनुरोध: कुछ सौ ms का कोल्ड स्टार्ट। अगले अनुरोध गर्म प्रति दोबारा इस्तेमाल करके दसियों ms में जवाब देते हैं।",
+    "hinglish": "Shaant samay ke baad pehli request: kuch sau ms ka cold start. Agli requests warm copy dobaara use karke dasiyon ms mein jawab deti hain."
+   }
+  }
+ ],
+ "play": {
+  "lab": "seq-flow",
+  "config": {
+   "scenario": "serverless-coldstart"
+  },
+  "goal": {
+   "en": "Submit a quiz twice through a serverless function. Compare the cold first call with the warm second call.",
+   "hi": "सर्वरलेस फ़ंक्शन से क्विज़ दो बार जमा करो। पहली ठंडी कॉल की तुलना दूसरी गर्म कॉल से करो।",
+   "hinglish": "Serverless function se quiz do baar submit karo. Pehli cold call ko doosri warm call se compare karo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "What makes something \"cloud\"",
+    "hi": "किसी चीज़ को \"क्लाउड\" क्या बनाता है",
+    "hinglish": "Kisi cheez ko \"cloud\" kya banata hai"
+   },
+   "body": {
+    "en": "NIST's definition lists five characteristics: on-demand self-service (click to get a server, no phone call), broad network access, resource pooling (many customers share hardware), rapid elasticity (grow or shrink in minutes) and measured service (pay for what you use). A school server in a cupboard is not a cloud; a provider's VM that you start from a web console is.",
+    "hi": "NIST की परिभाषा पाँच विशेषताएँ बताती है: माँग पर स्व-सेवा (क्लिक करो और सर्वर लो, फ़ोन कॉल नहीं), व्यापक नेटवर्क पहुँच, संसाधन साझा करना (कई ग्राहक हार्डवेयर साझा करते हैं), तेज़ लचीलापन (मिनटों में बढ़ाओ या घटाओ) और मापी गई सेवा (जितना इस्तेमाल उतना भुगतान)। अलमारी में रखा स्कूल सर्वर क्लाउड नहीं है; वेब कंसोल से शुरू किया प्रदाता का वीएम है।",
+    "hinglish": "NIST ki definition paanch characteristics batati hai: on-demand self-service (click karo aur server lo, phone call nahi), broad network access, resource pooling (kai customers hardware share karte hain), rapid elasticity (minutes mein badhao ya ghatao) aur measured service (jitna use utna payment). Almaari mein rakha school server cloud nahi hai; web console se start kiya provider ka VM hai."
+   },
+   "analogy": {
+    "en": "Electricity from the grid instead of your own generator: switch on, use, pay per unit.",
+    "hi": "अपने जनरेटर के बजाय ग्रिड की बिजली: चालू करो, इस्तेमाल करो, यूनिट के हिसाब से भुगतान करो।",
+    "hinglish": "Apne generator ke bajaye grid ki bijli: chalu karo, use karo, unit ke hisaab se payment karo."
+   },
+   "realExample": {
+    "en": "The Government of India's MeghRaj (GI Cloud) initiative and MeitY's empanelment of cloud providers let government departments rent cloud services instead of buying servers.",
+    "hi": "भारत सरकार की मेघराज (GI Cloud) पहल और MeitY द्वारा क्लाउड प्रदाताओं की सूचीबद्धता से सरकारी विभाग सर्वर ख़रीदने के बजाय क्लाउड सेवाएँ किराये पर लेते हैं।",
+    "hinglish": "Government of India ki MeghRaj (GI Cloud) pehal aur MeitY dwara cloud providers ki empanelment se sarkari vibhaag servers khareedne ke bajaye cloud services kiraye par lete hain."
+   }
+  },
+  {
+   "heading": {
+    "en": "Who manages what",
+    "hi": "कौन क्या सँभालता है",
+    "hinglish": "Kaun kya sambhalta hai"
+   },
+   "body": {
+    "en": "Picture a stack: data centre, hardware, virtualisation, OS, runtime, app, data. On-premises you run all of it. IaaS (for example Amazon EC2, Google Compute Engine): the provider runs up to virtualisation, you run OS and above. PaaS (Google App Engine, Heroku, Vercel): you bring only app and data. SaaS (Gmail, Zoho, Microsoft 365): you bring only your data and settings. Whatever the model, your data, passwords and access settings are always your responsibility — the shared-responsibility model.",
+    "hi": "एक ढेर सोचो: डेटा सेंटर, हार्डवेयर, वर्चुअलाइज़ेशन, ओएस, रनटाइम, ऐप, डेटा। अपने परिसर में सब आप चलाते हो। IaaS (जैसे Amazon EC2, Google Compute Engine): प्रदाता वर्चुअलाइज़ेशन तक चलाता है, ओएस और ऊपर आप। PaaS (Google App Engine, Heroku, Vercel): आप बस ऐप और डेटा लाते हो। SaaS (Gmail, Zoho, Microsoft 365): आप बस अपना डेटा और सेटिंग लाते हो। मॉडल जो भी हो, आपका डेटा, पासवर्ड और पहुँच सेटिंग हमेशा आपकी ज़िम्मेदारी है — साझा-ज़िम्मेदारी मॉडल।",
+    "hinglish": "Ek stack socho: data centre, hardware, virtualisation, OS, runtime, app, data. On-premises sab tum chalate ho. IaaS (jaise Amazon EC2, Google Compute Engine): provider virtualisation tak chalata hai, OS aur upar tum. PaaS (Google App Engine, Heroku, Vercel): tum bas app aur data laate ho. SaaS (Gmail, Zoho, Microsoft 365): tum bas apna data aur settings laate ho. Model jo bhi ho, tumhara data, passwords aur access settings hamesha tumhari zimmedaari hain — shared-responsibility model."
+   },
+   "analogy": {
+    "en": "Pizza: make it at home (on-prem), buy a ready base and bake it (IaaS), order delivery and eat at home (PaaS), or eat at the restaurant (SaaS).",
+    "hi": "पिज़्ज़ा: घर पर बनाओ (अपना परिसर), तैयार बेस ख़रीदकर पकाओ (IaaS), डिलीवरी मँगाकर घर पर खाओ (PaaS), या रेस्तराँ में खाओ (SaaS)।",
+    "hinglish": "Pizza: ghar par banao (on-prem), ready base khareed ke bake karo (IaaS), delivery mangwa ke ghar par khao (PaaS), ya restaurant mein khao (SaaS)."
+   },
+   "realExample": {
+    "en": "Many data leaks happen not because the cloud was hacked but because a customer left a storage bucket set to \"public\" — the customer's side of shared responsibility.",
+    "hi": "कई डेटा लीक इसलिए नहीं होते कि क्लाउड हैक हुआ, बल्कि इसलिए कि ग्राहक ने स्टोरेज बकेट \"सार्वजनिक\" छोड़ दिया — साझा ज़िम्मेदारी में ग्राहक का हिस्सा।",
+    "hinglish": "Kai data leaks isliye nahi hote ki cloud hack hua, balki isliye ki customer ne storage bucket \"public\" chhod diya — shared responsibility mein customer ka hissa."
+   }
+  },
+  {
+   "heading": {
+    "en": "Serverless: when it fits",
+    "hi": "सर्वरलेस: कब ठीक है",
+    "hinglish": "Serverless: kab theek hai"
+   },
+   "body": {
+    "en": "Functions (AWS Lambda, Google Cloud Run functions, Azure Functions, Cloudflare Workers) suit bursty, event-driven jobs: resize a photo on upload, send a reminder at 7 am, handle a form. They scale to zero, so a quiet app costs almost nothing. Downsides: cold starts, time limits per run, and costs that can exceed a plain server for steady heavy traffic. Lightweight runtimes such as V8 isolates cut cold starts to a few milliseconds.",
+    "hi": "फ़ंक्शन (AWS Lambda, Google Cloud Run functions, Azure Functions, Cloudflare Workers) अचानक आने वाले, घटना-आधारित कामों के लिए ठीक हैं: अपलोड पर फ़ोटो छोटी करना, सुबह 7 बजे रिमाइंडर भेजना, फ़ॉर्म सँभालना। ये शून्य तक घटते हैं, तो शांत ऐप का ख़र्च लगभग कुछ नहीं। कमियाँ: कोल्ड स्टार्ट, हर बार चलने की समय-सीमा, और लगातार भारी ट्रैफ़िक में सादे सर्वर से ज़्यादा ख़र्च। V8 isolates जैसे हल्के रनटाइम कोल्ड स्टार्ट को कुछ मिलीसेकंड तक घटाते हैं।",
+    "hinglish": "Functions (AWS Lambda, Google Cloud Run functions, Azure Functions, Cloudflare Workers) bursty, event-driven jobs ke liye theek hain: upload par photo resize karna, subah 7 baje reminder bhejna, form handle karna. Ye zero tak scale hote hain, to shaant app ka kharcha lagbhag kuch nahi. Kamiyan: cold starts, har run ki time limit, aur steady heavy traffic mein plain server se zyaada kharcha. V8 isolates jaise halke runtimes cold starts ko kuch milliseconds tak ghatate hain."
+   },
+   "analogy": {
+    "en": "An auto-rickshaw you hail when needed versus a car you own: perfect for occasional trips, expensive if you ride all day.",
+    "hi": "ज़रूरत पर बुलाया ऑटो-रिक्शा बनाम अपनी कार: कभी-कभार के सफ़र के लिए बढ़िया, दिन भर चलो तो महँगा।",
+    "hinglish": "Zaroorat par bulaya auto-rickshaw vs apni car: kabhi-kabhaar ke safar ke liye badhiya, din bhar chalo to mehenga."
+   },
+   "realExample": {
+    "en": "A school's \"send homework reminders at 7 pm\" job runs for 20 seconds a day — ideal for a scheduled serverless function.",
+    "hi": "स्कूल का \"शाम 7 बजे गृहकार्य रिमाइंडर भेजो\" काम दिन में 20 सेकंड चलता है — तय समय वाले सर्वरलेस फ़ंक्शन के लिए आदर्श।",
+    "hinglish": "School ka \"shaam 7 baje homework reminders bhejo\" job din mein 20 second chalta hai — scheduled serverless function ke liye ideal."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "List five apps you use and classify each as SaaS or say what model its maker probably uses underneath (IaaS, PaaS or serverless). Give one reason each.",
+   "hi": "पाँच ऐप जो आप इस्तेमाल करते हो, उन्हें SaaS में रखो या बताओ उनका निर्माता नीचे शायद कौन-सा मॉडल इस्तेमाल करता है (IaaS, PaaS या सर्वरलेस)। हर एक का एक कारण दो।",
+   "hinglish": "Paanch apps jo tum use karte ho, unhe SaaS mein rakho ya batao unka maker neeche shayad kaunsa model use karta hai (IaaS, PaaS ya serverless). Har ek ka ek kaaran do."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "match",
+    "prompt": {
+     "en": "Match each product to its model.",
+     "hi": "हर उत्पाद को उसके मॉडल से मिलाओ।",
+     "hinglish": "Har product ko uske model se milao."
+    },
+    "options": [
+     "Gmail",
+     "Amazon EC2 virtual machine",
+     "Google App Engine",
+     "AWS Lambda"
+    ],
+    "answer": [
+     "SaaS",
+     "IaaS",
+     "PaaS",
+     {
+      "en": "Serverless (FaaS)",
+      "hi": "सर्वरलेस (FaaS)",
+      "hinglish": "Serverless (FaaS)"
+     }
+    ],
+    "explain": {
+     "en": "Finished app = SaaS; raw VM = IaaS; deploy code to a platform = PaaS; run single functions on events = FaaS.",
+     "hi": "तैयार ऐप = SaaS; कच्चा वीएम = IaaS; प्लेटफ़ॉर्म पर कोड = PaaS; घटनाओं पर अकेले फ़ंक्शन = FaaS।",
+     "hinglish": "Ready app = SaaS; raw VM = IaaS; platform par code = PaaS; events par single functions = FaaS."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "In IaaS, who installs security updates on the operating system?",
+     "hi": "IaaS में ऑपरेटिंग सिस्टम पर सुरक्षा अपडेट कौन लगाता है?",
+     "hinglish": "IaaS mein operating system par security updates kaun lagata hai?"
+    },
+    "options": [
+     {
+      "en": "The cloud provider",
+      "hi": "क्लाउड प्रदाता",
+      "hinglish": "Cloud provider"
+     },
+     {
+      "en": "You, the customer",
+      "hi": "आप, ग्राहक",
+      "hinglish": "Tum, customer"
+     },
+     {
+      "en": "Nobody",
+      "hi": "कोई नहीं",
+      "hinglish": "Koi nahi"
+     },
+     {
+      "en": "The internet exchange",
+      "hi": "इंटरनेट एक्सचेंज",
+      "hinglish": "Internet exchange"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "In IaaS the OS and everything above it is the customer's job.",
+     "hi": "IaaS में ओएस और उसके ऊपर सब ग्राहक का काम है।",
+     "hinglish": "IaaS mein OS aur uske upar sab customer ka kaam hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why is the first serverless request after a quiet hour slower?",
+     "hi": "शांत घंटे के बाद पहला सर्वरलेस अनुरोध धीमा क्यों?",
+     "hinglish": "Shaant ghante ke baad pehli serverless request dheemi kyun?"
+    },
+    "options": [
+     {
+      "en": "DNS forgot the name",
+      "hi": "डीएनएस नाम भूल गया",
+      "hinglish": "DNS naam bhool gaya"
+     },
+     {
+      "en": "A new instance must start: a cold start",
+      "hi": "नई प्रति शुरू करनी पड़ती है: कोल्ड स्टार्ट",
+      "hinglish": "Naya instance start karna padta hai: cold start"
+     },
+     {
+      "en": "The database was deleted",
+      "hi": "डेटाबेस मिट गया",
+      "hinglish": "Database mit gaya"
+     },
+     {
+      "en": "TCP is turned off at night",
+      "hi": "रात में टीसीपी बंद होता है",
+      "hinglish": "Raat mein TCP band hota hai"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Idle functions are scaled to zero, so the first call pays the start-up cost.",
+     "hi": "निष्क्रिय फ़ंक्शन शून्य तक घटा दिए जाते हैं, तो पहली कॉल शुरुआत की क़ीमत चुकाती है।",
+     "hinglish": "Idle functions zero tak scale kar diye jaate hain, to pehli call start-up ki keemat chukati hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are essential cloud characteristics (NIST)? Choose all.",
+     "hi": "कौन-सी क्लाउड की ज़रूरी विशेषताएँ (NIST) हैं? सभी चुनो।",
+     "hinglish": "Kaunsi cloud ki zaroori characteristics (NIST) hain? Sab chuno."
+    },
+    "options": [
+     {
+      "en": "On-demand self-service",
+      "hi": "माँग पर स्व-सेवा",
+      "hinglish": "On-demand self-service"
+     },
+     {
+      "en": "Rapid elasticity",
+      "hi": "तेज़ लचीलापन",
+      "hinglish": "Rapid elasticity"
+     },
+     {
+      "en": "Must be free",
+      "hi": "मुफ़्त होना ज़रूरी",
+      "hinglish": "Free hona zaroori"
+     },
+     {
+      "en": "Measured service",
+      "hi": "मापी गई सेवा",
+      "hinglish": "Measured service"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     3
+    ],
+    "explain": {
+     "en": "Cloud is metered and paid for, not free; the other three are on NIST's list.",
+     "hi": "क्लाउड मापा जाता है और उसका भुगतान होता है, मुफ़्त नहीं; बाक़ी तीन NIST सूची में हैं।",
+     "hinglish": "Cloud meter hota hai aur uska payment hota hai, free nahi; baaki teen NIST list mein hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Run the serverless scenario and see both the cold and the warm call.",
+     "hi": "सर्वरलेस परिदृश्य चलाओ और ठंडी व गर्म दोनों कॉल देखो।",
+     "hinglish": "Serverless scenario chalao aur cold aur warm dono calls dekho."
+    },
+    "answer": {
+     "event": "scenario-complete",
+     "scenario": "serverless-coldstart"
+    },
+    "explain": {
+     "en": "About 380 ms cold vs about 40 ms warm in this example.",
+     "hi": "इस उदाहरण में लगभग 380 ms ठंडी बनाम लगभग 40 ms गर्म।",
+     "hinglish": "Is example mein lagbhag 380 ms cold vs lagbhag 40 ms warm."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "cloud.saas-paas-iaas",
+  "cloud.what-is-cloud"
+ ],
+ "sources": [
+  {
+   "title": "NIST SP 800-145 — The NIST Definition of Cloud Computing",
+   "url": "https://csrc.nist.gov/pubs/sp/800/145/final",
+   "licence": "fact reference"
+  },
+  {
+   "title": "MeitY — GI Cloud (MeghRaj)",
+   "url": "https://www.meity.gov.in/content/gi-cloud-meghraj",
+   "licence": "fact reference"
+  },
+  {
+   "title": "AWS — Shared Responsibility Model",
+   "url": "https://aws.amazon.com/compliance/shared-responsibility-model/",
+   "licence": "fact reference"
+  }
+ ]
+}

@@ -1,0 +1,386 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.cyber-essentials.06",
+ "level": 2,
+ "classes": [
+  7,
+  8
+ ],
+ "unit": "cyber-essentials",
+ "title": {
+  "en": "Deepfakes, voice clones and fake calls",
+  "hi": "डीपफ़ेक, आवाज़ की नक़ल और नक़ली कॉल",
+  "hinglish": "Deepfakes, voice clones aur fake calls"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [
+  "L2.cyber-essentials.05"
+ ],
+ "topics": [
+  "cyber.deepfakes",
+  "ai.genai-audio"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain what deepfakes and voice clones are",
+   "hi": "समझा सकते हो कि डीपफ़ेक और आवाज़ की नक़ल क्या हैं",
+   "hinglish": "Samjha sakte ho deepfakes aur voice clones kya hain"
+  },
+  {
+   "en": "Recognise “emergency” and “digital arrest” call scams",
+   "hi": "“इमरजेंसी” और “डिजिटल अरेस्ट” कॉल धोखे पहचान सकते हो",
+   "hinglish": "“Emergency” aur “digital arrest” call scams pehchaan sakte ho"
+  },
+  {
+   "en": "Use a family code word and call-back check",
+   "hi": "पारिवारिक कोड शब्द और वापस कॉल करके जाँच का उपयोग कर सकते हो",
+   "hinglish": "Family code word aur call-back check use kar sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Deepfake",
+   "hinglish": "AI se bana nakli video/photo",
+   "en": "A fake video or photo made with AI that shows someone doing or saying something they never did",
+   "hi": "AI से बना नक़ली वीडियो या फ़ोटो जिसमें कोई ऐसा करता या कहता दिखे जो उसने कभी नहीं किया"
+  },
+  {
+   "term": "Voice clone",
+   "hinglish": "AI se nakal ki hui aawaaz",
+   "en": "An AI copy of a real person’s voice made from a short recording",
+   "hi": "छोटी रिकॉर्डिंग से बनी किसी असली व्यक्ति की आवाज़ की AI नक़ल"
+  },
+  {
+   "term": "Digital arrest",
+   "hinglish": "Video call pe nakli giraftari",
+   "en": "A scam where fake “police” on a video call claim you are under arrest and demand money",
+   "hi": "धोखा जिसमें वीडियो कॉल पर नक़ली “पुलिस” कहती है आप गिरफ़्तार हो और पैसे माँगती है"
+  },
+  {
+   "term": "Code word",
+   "hinglish": "Family ka secret shabd",
+   "en": "A secret word your family agrees on to prove a call is real",
+   "hi": "परिवार का तय गुप्त शब्द जो साबित करे कि कॉल असली है"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "AI can now copy a voice from a few seconds of audio and swap faces in video. Seeing or hearing is no longer proof.",
+    "hi": "AI अब कुछ सेकंड की आवाज़ से आवाज़ की नक़ल और वीडियो में चेहरे बदल सकता है। देखना या सुनना अब सबूत नहीं।",
+    "hinglish": "AI ab kuch second ki audio se aawaaz copy aur video mein chehre badal sakta hai. Dekhna ya sunna ab saboot nahi."
+   },
+   "visual": "compare:🎙️ “Papa, I am in trouble, send money now!”|📞 Hang up → call Papa on his saved number",
+   "narration": {
+    "en": "Scammers mix a familiar voice with panic and a deadline.",
+    "hi": "धोखेबाज़ जानी-पहचानी आवाज़ को घबराहट और समय-सीमा के साथ मिलाते हैं।",
+    "hinglish": "Scammers jaani-pehchaani aawaaz ko ghabraahat aur deadline ke saath milaate hain."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "“Digital arrest” does not exist. Real police never arrest anyone over a video call or ask for money to “clear your name”.",
+    "hi": "“डिजिटल अरेस्ट” होता ही नहीं। असली पुलिस कभी वीडियो कॉल पर गिरफ़्तार नहीं करती या “नाम साफ़ करने” के पैसे नहीं माँगती।",
+    "hinglish": "“Digital arrest” hota hi nahi. Asli police kabhi video call pe arrest nahi karti ya “naam saaf karne” ke paise nahi maangti."
+   },
+   "visual": "lab:scam-inbox",
+   "narration": {
+    "en": "Open the voice note and the video call in the lab and find the flags.",
+    "hi": "लैब में वॉइस नोट और वीडियो कॉल खोलो और संकेत ढूँढो।",
+    "hinglish": "Lab mein voice note aur video call kholo aur flags dhoondo."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Defence: pause, hang up, call back on a number you already have, and ask the family code word.",
+    "hi": "बचाव: रुको, फ़ोन रखो, पहले से सहेजे नंबर पर वापस कॉल करो, और पारिवारिक कोड शब्द पूछो।",
+    "hinglish": "Defence: ruko, phone rakho, pehle se saved number pe call back karo, aur family code word poocho."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "A clone can copy a voice, not a secret it never heard.",
+    "hi": "नक़ल आवाज़ कॉपी कर सकती है, वह राज़ नहीं जो उसने कभी सुना नहीं।",
+    "hinglish": "Clone aawaaz copy kar sakta hai, woh secret nahi jo usne kabhi suna nahi."
+   },
+   "code": "1. PAUSE   — panic is the weapon\n2. HANG UP — you are allowed to\n3. CALL BACK on the saved number\n4. ASK the family code word\n5. REPORT on 1930 / cybercrime.gov.in"
+  }
+ ],
+ "play": {
+  "lab": "scam-inbox",
+  "config": {
+   "only": [
+    "papa",
+    "police",
+    "ptm",
+    "free"
+   ],
+   "need": 4
+  },
+  "goal": {
+   "en": "Sort all four messages and find the deepfake and fake-call flags.",
+   "hi": "चारों संदेश छाँटो और डीपफ़ेक और नक़ली कॉल के संकेत ढूँढो।",
+   "hinglish": "Chaaron messages sort karo aur deepfake aur fake-call flags dhoondo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "How deepfakes are made and how to stay safe",
+    "hi": "डीपफ़ेक कैसे बनते हैं और कैसे सुरक्षित रहें",
+    "hinglish": "Deepfakes kaise bante hain aur kaise safe rahein"
+   },
+   "body": {
+    "en": "Deepfakes are made by AI models trained on many images or recordings of a person; the model learns to generate new frames or speech in that style. Some modern voice-cloning tools need only a few seconds of clear audio — often taken from public videos or reels. Clues sometimes give fakes away (lips out of sync, odd blinking, blurry edges around the face, flat emotion in the voice, strange background noise), but the best fakes show no visible clues, so do not rely on spotting them. Rely on a process instead: verify through a second channel you already trust. In India the “digital arrest” scam grew quickly in 2024: callers pose as police, CBI, customs or courier officials on video calls, sometimes in fake police-station sets, claim a parcel with drugs was found in your name, and keep victims on camera for hours until they transfer money. The Prime Minister, I4C and the police have repeatedly warned that no agency arrests anyone over a video call. Agree on a family code word, keep social-media accounts private to limit voice and photo samples, and report fake calls on Sanchar Saathi’s Chakshu or 1930.",
+    "hi": "डीपफ़ेक ऐसे AI मॉडल से बनते हैं जिन्हें किसी व्यक्ति की कई तस्वीरों या रिकॉर्डिंग पर प्रशिक्षित किया गया हो; मॉडल उसी शैली में नए फ़्रेम या बोली बनाना सीखता है। कुछ आधुनिक आवाज़-नक़ल उपकरणों को केवल कुछ सेकंड की साफ़ आवाज़ चाहिए — अक्सर सार्वजनिक वीडियो या रील से ली गई। कभी-कभी सुराग नक़ल पकड़ा देते हैं (होंठ और आवाज़ मेल न खाना, अजीब पलक झपकना, चेहरे के किनारे धुँधले, आवाज़ में भाव न होना, अजीब पृष्ठभूमि शोर), पर सबसे अच्छी नक़लों में कोई दिखने वाला सुराग नहीं होता, इसलिए पहचानने पर भरोसा मत करो। इसके बजाय एक प्रक्रिया पर भरोसा करो: किसी दूसरे भरोसेमंद माध्यम से जाँचो। भारत में “डिजिटल अरेस्ट” धोखा 2024 में तेज़ी से बढ़ा: कॉल करने वाले वीडियो कॉल पर पुलिस, CBI, कस्टम या कूरियर अधिकारी बनते हैं, कभी नक़ली थाने के सेट में, दावा करते हैं कि आपके नाम के पार्सल में ड्रग्स मिले, और पीड़ितों को घंटों कैमरे पर रखते हैं जब तक वे पैसे न भेज दें। प्रधानमंत्री, I4C और पुलिस ने बार-बार चेताया है कि कोई भी एजेंसी वीडियो कॉल पर गिरफ़्तार नहीं करती। एक पारिवारिक कोड शब्द तय करो, आवाज़ और फ़ोटो के नमूने कम करने के लिए सोशल-मीडिया खाते निजी रखो, और नक़ली कॉल की रिपोर्ट संचार साथी के चक्षु या 1930 पर करो।",
+    "hinglish": "Deepfakes aise AI models se bante hain jinhe kisi insaan ki kai images ya recordings pe train kiya gaya ho; model usi style mein naye frames ya speech banana seekhta hai. Kuch modern voice-cloning tools ko sirf kuch second ki saaf audio chahiye — aksar public videos ya reels se li gayi. Kabhi-kabhi clues fake pakda dete hain (hoth aur aawaaz match na hona, ajeeb palak jhapakna, chehre ke kinare dhundhle, aawaaz mein emotion na hona, ajeeb background noise), par sabse achhe fakes mein koi dikhne wala clue nahi hota, isliye pehchaanne pe bharosa mat karo. Iske bajaye ek process pe bharosa karo: kisi doosre trusted channel se verify karo. India mein “digital arrest” scam 2024 mein tezi se badha: callers video call pe police, CBI, customs ya courier officials bante hain, kabhi nakli police station sets mein, claim karte hain ki aapke naam ke parcel mein drugs mile, aur victims ko ghanton camera pe rakhte hain jab tak woh paise na bhej dein. Prime Minister, I4C aur police ne baar-baar warn kiya hai ki koi agency video call pe arrest nahi karti. Ek family code word tay karo, aawaaz aur photo samples kam karne ke liye social-media accounts private rakho, aur fake calls ki report Sanchar Saathi ke Chakshu ya 1930 pe karo."
+   },
+   "analogy": {
+    "en": "A voice clone = a mimicry artist: the voice sounds just like Papa, but it does not know your family code word, and it cannot answer Papa’s real number.",
+    "hi": "आवाज़ की नक़ल = मिमिक्री कलाकार: आवाज़ बिलकुल पापा जैसी, पर वह आपका पारिवारिक कोड शब्द नहीं जानता, और न ही पापा का असली नंबर उठाता है।",
+    "hinglish": "Voice clone = mimicry artist: aawaaz bilkul papa jaisi, par woh aapka family code word nahi jaanta, aur na hi papa ka asli number uthata hai."
+   },
+   "realExample": {
+    "en": "In his Mann Ki Baat broadcast of October 2024, the Prime Minister warned citizens about “digital arrest” and gave three steps: stop, think, take action — and report on 1930.",
+    "hi": "अक्टूबर 2024 के मन की बात प्रसारण में प्रधानमंत्री ने “डिजिटल अरेस्ट” की चेतावनी दी और तीन कदम बताए: रुको, सोचो, कार्रवाई करो — और 1930 पर रिपोर्ट करो।",
+    "hinglish": "October 2024 ke Mann Ki Baat mein Prime Minister ne “digital arrest” ki warning di aur teen steps diye: ruko, socho, action lo — aur 1930 pe report karo."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Agree on a family code word tonight. Write down who knows it and practise one pretend “emergency” call where you ask for it.",
+   "hi": "आज रात पारिवारिक कोड शब्द तय करो। लिखो कौन जानता है और एक नाटकीय “इमरजेंसी” कॉल का अभ्यास करो जिसमें आप कोड शब्द पूछो।",
+   "hinglish": "Aaj raat family code word tay karo. Likho kaun jaanta hai aur ek pretend “emergency” call practise karo jismein aap code word poochho."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "A voice note sounds exactly like your uncle asking for ₹20,000 urgently. Best first step?",
+     "hi": "वॉइस नोट बिलकुल आपके चाचा जैसा है जो तुरंत ₹20,000 माँग रहे हैं। सबसे अच्छा पहला कदम?",
+     "hinglish": "Voice note bilkul aapke chacha jaisa hai jo turant ₹20,000 maang rahe hain. Sabse achha pehla step?"
+    },
+    "options": [
+     {
+      "en": "Send the money, it is his voice",
+      "hi": "पैसे भेजो, उनकी आवाज़ है",
+      "hinglish": "Paise bhejo, unki aawaaz hai"
+     },
+     {
+      "en": "Call him back on his saved number",
+      "hi": "उनके सहेजे नंबर पर वापस कॉल करो",
+      "hinglish": "Unke saved number pe call back karo"
+     },
+     {
+      "en": "Reply with your bank details",
+      "hi": "बैंक विवरण भेजो",
+      "hinglish": "Bank details bhejo"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Voices can be cloned. Verify on a number you already have before anything else.",
+     "hi": "आवाज़ की नक़ल हो सकती है। कुछ भी करने से पहले सहेजे नंबर पर जाँचो।",
+     "hinglish": "Aawaaz clone ho sakti hai. Kuch bhi karne se pehle saved number pe verify karo."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "A video caller in police uniform says you are under “digital arrest”. This is…",
+     "hi": "पुलिस वर्दी में वीडियो कॉल करने वाला कहता है आप “डिजिटल अरेस्ट” में हो। यह…",
+     "hinglish": "Police uniform mein video caller kehta hai aap “digital arrest” mein ho. Yeh…"
+    },
+    "options": [
+     {
+      "en": "always a scam",
+      "hi": "हमेशा धोखा",
+      "hinglish": "hamesha scam"
+     },
+     {
+      "en": "real if the uniform looks real",
+      "hi": "वर्दी असली लगे तो असली",
+      "hinglish": "uniform asli lage to asli"
+     },
+     {
+      "en": "real if they show an ID card",
+      "hi": "ID कार्ड दिखाएँ तो असली",
+      "hinglish": "ID card dikhayein to asli"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "There is no such thing as digital arrest. Hang up and report on 1930.",
+     "hi": "डिजिटल अरेस्ट जैसी कोई चीज़ नहीं। फ़ोन रखो और 1930 पर रिपोर्ट करो।",
+     "hinglish": "Digital arrest jaisi koi cheez nahi. Phone rakho aur 1930 pe report karo."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "multi",
+    "prompt": {
+     "en": "Which help protect your family from voice clones? Choose all.",
+     "hi": "कौन-से उपाय परिवार को आवाज़ की नक़ल से बचाते हैं? सभी चुनो।",
+     "hinglish": "Kaunse upaay family ko voice clones se bachate hain? Saare chuno."
+    },
+    "options": [
+     {
+      "en": "A family code word",
+      "hi": "पारिवारिक कोड शब्द",
+      "hinglish": "Family code word"
+     },
+     {
+      "en": "Trusting a familiar voice",
+      "hi": "जानी-पहचानी आवाज़ पर भरोसा",
+      "hinglish": "Jaani-pehchaani aawaaz pe bharosa"
+     },
+     {
+      "en": "Calling back on a saved number",
+      "hi": "सहेजे नंबर पर वापस कॉल",
+      "hinglish": "Saved number pe call back"
+     },
+     {
+      "en": "Keeping social accounts private",
+      "hi": "सोशल खाते निजी रखना",
+      "hinglish": "Social accounts private rakhna"
+     }
+    ],
+    "answer": [
+     0,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "Code word, call-back and private accounts all help. Clones can sound perfect, so trusting the voice does not.",
+     "hi": "कोड शब्द, वापस कॉल और निजी खाते मदद करते हैं। नक़ल सटीक लग सकती है, इसलिए आवाज़ पर भरोसा मदद नहीं करता।",
+     "hinglish": "Code word, call-back aur private accounts madad karte hain. Clone perfect lag sakta hai, isliye aawaaz pe bharosa madad nahi karta."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why is “spot the glitch” not enough to catch deepfakes?",
+     "hi": "डीपफ़ेक पकड़ने के लिए “गड़बड़ी ढूँढो” काफ़ी क्यों नहीं?",
+     "hinglish": "Deepfakes pakadne ke liye “glitch dhoondo” kaafi kyun nahi?"
+    },
+    "options": [
+     {
+      "en": "Deepfakes are always cartoons",
+      "hi": "डीपफ़ेक हमेशा कार्टून होते हैं",
+      "hinglish": "Deepfakes hamesha cartoon hote hain"
+     },
+     {
+      "en": "Glitches only appear at night",
+      "hi": "गड़बड़ी केवल रात में दिखती है",
+      "hinglish": "Glitch sirf raat mein dikhta hai"
+     },
+     {
+      "en": "Good fakes may show no glitches at all",
+      "hi": "अच्छी नक़लों में कोई गड़बड़ी नहीं दिखती",
+      "hinglish": "Achhe fakes mein koi glitch nahi dikhta"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "The best fakes have no visible glitches. Verify through a trusted second channel instead.",
+     "hi": "सबसे अच्छी नक़लों में कोई दिखने वाली गड़बड़ी नहीं होती। इसके बजाय भरोसेमंद दूसरे माध्यम से जाँचो।",
+     "hinglish": "Sabse achhe fakes mein koi visible glitch nahi hota. Iske bajaye trusted second channel se verify karo."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q5",
+    "type": "order",
+    "prompt": {
+     "en": "Put the three steps against digital arrest in order.",
+     "hi": "डिजिटल अरेस्ट के विरुद्ध तीन कदम क्रम में लगाओ।",
+     "hinglish": "Digital arrest ke khilaaf teen steps order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Think",
+      "hi": "सोचो",
+      "hinglish": "Socho"
+     },
+     {
+      "en": "Take action / report",
+      "hi": "कार्रवाई करो / रिपोर्ट",
+      "hinglish": "Action lo / report"
+     },
+     {
+      "en": "Stop",
+      "hi": "रुको",
+      "hinglish": "Ruko"
+     }
+    ],
+    "answer": [
+     2,
+     0,
+     1
+    ],
+    "explain": {
+     "en": "Stop, think, take action (report on 1930).",
+     "hi": "रुको, सोचो, कार्रवाई करो (1930 पर रिपोर्ट)।",
+     "hinglish": "Ruko, socho, action lo (1930 pe report)."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the lab mission.",
+     "hi": "लैब मिशन पूरा करो।",
+     "hinglish": "Lab mission poora karo."
+    },
+    "answer": {
+     "lab": "scam-inbox",
+     "event": "mission:complete"
+    },
+    "explain": {
+     "en": "Find the flags in the voice note and the “police” video call.",
+     "hi": "वॉइस नोट और “पुलिस” वीडियो कॉल में संकेत ढूँढो।",
+     "hinglish": "Voice note aur “police” video call mein flags dhoondo."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "National Cyber Crime Reporting Portal (I4C, Ministry of Home Affairs) — report online or call 1930",
+   "url": "https://cybercrime.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Department of Telecommunications — Sanchar Saathi (Chakshu: report suspected fraud calls and messages)",
+   "url": "https://sancharsaathi.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Press Information Bureau — Mann Ki Baat, 115th episode (27 Oct 2024): warning on digital arrest",
+   "url": "https://pib.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "CERT-In — Indian Computer Emergency Response Team",
+   "url": "https://www.cert-in.org.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

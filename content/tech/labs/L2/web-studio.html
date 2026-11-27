@@ -1,0 +1,272 @@
+<!doctype html><html lang="en-IN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Web Studio — NCA Tech & AI Lab</title><style>/* NCA Tech & AI Lab — Level 2 shared lab skin (own work, MIT). Family App lesson tokens: paper, card, ink, saffron, teal, plum. */
+:root{--paper:#FBF8F3;--card:#FFFDF9;--ink:#1C1B1A;--muted:#4B5563;--line:#E7E1D6;--saffron:#E8702A;--saffronD:#C2410C;--teal:#0F766E;--plum:#6D28D9;--sky:#0369A1;
+--mint:#E4F3EA;--butter:#FBF1D3;--lilac:#EFE9FB;--blush:#FBE6E3;--skyT:#E3EEF9;--night:#0B1430;--night2:#16224A;--cyan:#02CFF9;--leaf:#22C55E;--coral:#FF6B57;--gold:#F5B90A;--grape:#8B3DFF;
+--r:16px;--sh:0 1px 0 rgba(28,27,26,.04),0 6px 18px -8px rgba(28,27,26,.18)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans Devanagari",sans-serif;font-variant-numeric:tabular-nums}
+body{background:transparent;min-height:100vh;padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 16px)}
+button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation}
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:8px;padding:10px 14px;background:rgba(251,248,243,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--lilac);flex:none}
+.top h1{font-size:16px;margin:0;line-height:1.2;flex:1;min-width:0}
+.top h1 small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;flex:none;background:var(--card)}
+.lang button{border:0;background:none;padding:6px 9px;font-size:12px;font-weight:600;color:var(--muted);min-height:32px}
+.lang button[aria-pressed=true]{background:var(--ink);color:#fff}
+.wrap{max-width:1100px;margin:0 auto;padding:12px 14px;display:grid;gap:12px;grid-template-columns:minmax(0,1fr)}
+.wrap>*{min-width:0}
+.wrap>div{grid-template-columns:minmax(0,1fr)}
+.card,.stage{min-width:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;box-shadow:var(--sh)}
+.goal{background:var(--butter);border-color:#F1DFA8;display:flex;gap:10px;align-items:flex-start;font-size:14.5px}
+.goal b{color:#8A5300}
+.goal .gi{font-size:20px;line-height:1}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn{border:0;border-radius:12px;padding:11px 16px;font-weight:700;min-height:44px;background:var(--saffron);color:var(--ink);box-shadow:0 3px 0 #B4531B;transition:transform .12s}
+.btn:active{transform:translateY(2px);box-shadow:0 1px 0 #B4531B}
+.btn.ghost{background:var(--card);border:1.5px solid var(--line);box-shadow:none}
+.btn.teal{background:var(--teal);color:#fff;box-shadow:0 3px 0 #0A4F49}
+.btn.plum{background:var(--plum);color:#fff;box-shadow:0 3px 0 #4C1D95}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.chip{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:3px 10px;font-size:12.5px;font-weight:600;background:var(--mint);color:var(--teal)}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;padding-bottom:2px}/* wraps: every mode name always fully visible */
+.tabs button{flex:0 1 auto;max-width:100%;white-space:normal;text-align:center;border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:8px 14px;font-weight:600;font-size:14px;min-height:40px}
+.tabs button[aria-selected=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.stage{background:radial-gradient(120% 90% at 30% 0%,#1D2D63 0%,var(--night) 60%);color:#E8EEFF;border-radius:20px;overflow:hidden;position:relative;border:1px solid #23305E}
+.muted{color:var(--muted)}
+.mission{background:var(--skyT);border-color:#C9DDF2}
+.mission h3{margin:0 0 6px;font-size:15px;color:var(--sky)}
+.toast{position:fixed;left:0;top:0;width:max-content;max-width:min(92vw,340px);background:var(--ink);color:#fff;padding:10px 16px;border-radius:14px;font-weight:600;z-index:50;box-shadow:0 8px 24px rgba(0,0,0,.25);opacity:0;visibility:hidden;transform:scale(.92);transition:opacity .25s,transform .25s,visibility 0s .25s;pointer-events:none;text-align:center;line-height:1.35}
+.toast.on{opacity:1;visibility:visible;transform:none;transition:opacity .25s,transform .25s}
+.toast.inline{position:static;display:block;width:auto;max-width:none;margin:10px 0;grid-column:1/-1;flex:0 0 auto}
+.toast.ok{background:var(--teal)}.toast.bad{background:#B42318}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:-1}/* behind the cards: confetti never covers text */
+.kbd{font-family:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace}
+.hidden{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@keyframes pop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.08);opacity:1}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.shake{animation:shake .3s 2}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
+</style>
+<style>
+.ed{width:100%;min-height:210px;resize:vertical;border-radius:14px;border:1.5px solid #2A3A70;background:#0B1430;color:#E8EEFF;font:13.5px/1.55 ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;padding:10px 12px;tab-size:2;white-space:pre;overflow:auto}
+.ed:focus{outline:3px solid var(--cyan);outline-offset:1px}
+.pv{width:100%;height:260px;border:0;border-radius:14px;background:#fff;box-shadow:inset 0 0 0 1.5px var(--line)}
+.bro{border:1.5px solid var(--line);border-radius:16px;overflow:hidden;background:#fff}
+.bro .bb{display:flex;gap:6px;align-items:center;background:#F1EDE6;padding:7px 10px;font-size:12px}
+.bro .bb i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.bro .bb .u{flex:1;background:#fff;border-radius:999px;padding:4px 10px;font-family:ui-monospace,Menlo,monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chk{list-style:none;padding:0;margin:6px 0 0;font-size:14px}.chk li{padding:4px 0}
+.urlin{width:100%;font:14px ui-monospace,Menlo,Consolas,monospace;padding:11px 12px;border-radius:12px;border:1.5px solid var(--line);background:#fff}
+.parts{display:flex;flex-wrap:wrap;gap:2px;margin:12px 0;font:15px/1.9 ui-monospace,Menlo,Consolas,monospace;word-break:break-all}
+.parts button{border:0;border-radius:6px;padding:2px 4px;font:inherit;color:#0B1430;font-weight:700;transition:transform .15s}
+.parts button[aria-pressed=true]{transform:translateY(-3px);box-shadow:0 4px 0 rgba(0,0,0,.25)}
+.pdesc{font-size:14px;border-radius:12px;padding:10px;background:var(--lilac);animation:pop .3s both;min-height:44px}
+.wire{position:relative;height:150px;margin:8px 0}
+.wire .end{position:absolute;top:30px;width:74px;text-align:center;font-size:12px;font-weight:700;overflow-wrap:anywhere}
+.wire .end b{display:block;font-size:34px}
+.wire .ln{position:absolute;left:80px;right:80px;top:58px;height:3px;background:repeating-linear-gradient(90deg,#3B4B85 0 8px,transparent 8px 14px)}
+.env{position:absolute;top:30px;left:80px;max-width:min(150px,calc(100% - 168px));background:#FFFDF9;color:#1C1B1A;border-radius:10px;padding:5px 8px;font:11.5px/1.35 ui-monospace,Menlo,monospace;box-shadow:0 8px 20px -8px #000;white-space:pre-wrap;overflow-wrap:anywhere;opacity:0}
+.status{font:800 15px ui-monospace,Menlo,monospace;border-radius:10px;padding:8px 10px;text-align:center;animation:pop .35s both}
+.s2{background:#DCFCE7;color:#0F766E}.s3{background:#E3EEF9;color:#0369A1}.s4{background:#FEE2E2;color:#B42318}.s5{background:#FEF3C7;color:#8A5300}
+.blk{display:grid;gap:8px}
+.blk label{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-weight:700;font-size:14px;background:var(--card);border-radius:12px;padding:8px 10px;border-left:6px solid}
+.blk select{font:inherit;font-weight:700;border-radius:10px;padding:7px 8px;border:1.5px solid var(--line);background:#fff;min-height:40px}
+.code{font:12.5px/1.6 ui-monospace,Menlo,Consolas,monospace;background:#0B1430;color:#E8EEFF;border-radius:12px;padding:10px 12px;white-space:pre-wrap;overflow-wrap:anywhere;margin:0}
+.code .k{color:#C4B5FD}.code .s{color:#7DF9C9}.code .n{color:#F5B90A}.code .c{color:#6B7AA8}
+.like{font-size:22px;font-weight:800;border:0;border-radius:999px;padding:12px 22px;background:#EFE9FB;color:#6D28D9;min-height:52px;transition:transform .12s,background .3s}
+.like:active{transform:scale(.94)}
+.json{font:12.5px/1.5 ui-monospace,Menlo,monospace;background:#0B1430;color:#7DF9C9;border-radius:12px;padding:10px;white-space:pre-wrap;overflow-wrap:anywhere;min-height:40px}
+.score{display:flex;gap:10px;align-items:center;background:linear-gradient(120deg,#0F766E,#0369A1);color:#fff;border-radius:14px;padding:10px 14px;font-weight:800;animation:pop .35s both}
+@media (orientation:landscape) and (min-width:640px){.wrap{grid-template-columns:1fr 1fr}.wrap>.full{grid-column:1/-1}.pv{height:240px}}
+</style></head><body>
+<main class="wrap">
+ <div class="card goal full"><span class="gi">🎯</span><div id="goal"></div></div>
+ <div class="tabs full" role="tablist" id="tabs"></div>
+ <div class="card" id="left"></div>
+ <div style="display:grid;gap:12px"><div class="card" id="right"></div><div class="card mission"><h3 data-k="mT"></h3><div id="mission"></div></div></div>
+</main>
+<script>/* NCA Tech & AI Lab — Level 2 shared lab runtime (own work, MIT). No eval, no network except an optional same-origin ?lesson= JSON. */
+(function(g){
+  const qs=new URLSearchParams(location.search);
+  const LANGS=['hinglish','en','hi'];
+  let lang=(qs.get('lang')||localStorage.getItem('nca-tl-lang')||'hinglish'); if(!LANGS.includes(lang)) lang='hinglish';
+  const reduced=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const t=x=>x==null?'':(typeof x==='string'||typeof x==='number')?String(x):(x[lang]||x.hinglish||x.en||'');
+  let STR={}; const listeners=[];
+  function applyI18n(root){(root||document).querySelectorAll('[data-k]').forEach(el=>{const v=STR[el.dataset.k]; if(v) el.innerHTML=t(v);});
+    document.documentElement.lang=lang==='hi'?'hi':(lang==='en'?'en':'en-IN');
+    document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.l===lang));}
+  function setLang(l){lang=l;localStorage.setItem('nca-tl-lang',l);applyI18n();listeners.forEach(f=>f(l));}
+  function header(icon,titleK,subK){const h=document.createElement('header');h.className='top';
+    h.innerHTML=`<div class="ic" aria-hidden="true">${icon}</div><h1><span data-k="${titleK}"></span><small data-k="${subK}"></small></h1>
+    <div class="lang" role="group" aria-label="Language"><button data-l="hinglish">Hinglish</button><button data-l="en">EN</button><button data-l="hi">हिं</button></div>`;
+    document.body.prepend(h); h.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>setLang(b.dataset.l));}
+  // Toast: never covers text. It floats in a free band of the screen (bottom first); if the screen has no free band
+  // it sits in the page flow right under what the child just tapped (pushes content down, covers nothing). Closes after 2.5 s.
+  let toastEl,lastTap=null,tapAt=null;document.addEventListener('pointerdown',e=>{lastTap=e.target;tapAt=[e.clientX,e.clientY+scrollY]},true);let rePend=0;const rePlace=()=>{if(!toastEl||!toastEl.classList.contains('on')||rePend)return;rePend=1;requestAnimationFrame(()=>{rePend=0;placeToast();});};
+  addEventListener('scroll',rePlace,{passive:true});addEventListener('resize',rePlace);document.addEventListener('animationend',rePlace,true);document.addEventListener('transitionend',rePlace,true);const toastMO=new MutationObserver(rs=>{if(rs.some(r=>!toastEl.contains(r.target)))rePlace();});
+  function textRects(skip){const vh=innerHeight,out=[],rg=document.createRange(),w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let n;
+    while((n=w.nextNode())){if(!n.nodeValue.trim())continue;const p=n.parentElement;if(!p||skip.contains(p)||/^(SCRIPT|STYLE)$/.test(p.tagName))continue;rg.selectNodeContents(n);
+      for(const q of rg.getClientRects())if(q.width>=1&&q.bottom>0&&q.top<vh)out.push(q);}
+    document.querySelectorAll('input,select,textarea,button,a[href],[role=button]').forEach(e=>{if(skip.contains(e))return;const q=e.getBoundingClientRect();if(q.width&&q.bottom>0&&q.top<vh)out.push(q)});if(0)document.querySelectorAll('x').forEach(e=>{const q=e.getBoundingClientRect();if(q.width&&q.bottom>0&&q.top<vh)out.push(q)});return out;}
+  function freeSpot(el){const vw=document.documentElement.clientWidth,vh=innerHeight,w=el.offsetWidth,h=el.offsetHeight,m=8;let top=m;
+    const bar=document.querySelector('.top');if(bar)top=Math.max(top,bar.getBoundingClientRect().bottom+m);
+    const obs=textRects(el),xs=[(vw-w)/2,m,vw-w-m],free=(x,y)=>!obs.some(q=>q.left<x+w+4&&q.right>x-4&&q.top<y+h+4&&q.bottom>y-4);
+    const cur=el._spot;if(cur&&free(cur.x,cur.y))return cur;
+    for(let y=vh-h-m;y>=top;y-=6)for(const x of xs)if(free(x,y))return{x,y};return null;}
+  /* never drop the note inside a 3D scene, a transformed, positioned-out or clipping box */
+  function boxedIn(a){for(let p=a;p&&p!==document.body;p=p.parentElement){const c=getComputedStyle(p);if(c.transform!=='none'||c.transformStyle==='preserve-3d'||c.perspective!=='none'||c.position==='absolute'||c.position==='fixed'||(p!==a&&c.overflow!=='visible'))return true;}return false;}
+  function inlineAfter(el){let a=lastTap&&lastTap.isConnected&&!el.contains(lastTap)?lastTap:null;
+    if(!a&&tapAt){const y=tapAt[1]-scrollY;if(y>0&&y<innerHeight)a=document.elementFromPoint(tapAt[0],y);}/* the tapped thing was re-drawn: use what is there now */
+    if(!a||el.contains(a))a=document.querySelector('main')||document.body.lastElementChild;
+    while(a.parentElement&&a.parentElement!==document.body){const d=getComputedStyle(a.parentElement),me=getComputedStyle(a);
+      if(me.display!=='inline'&&!(a instanceof SVGElement)&&(d.display==='block'||d.display==='flow-root'||d.display==='grid'||(d.display==='flex'&&d.flexDirection.startsWith('column')))&&a.getBoundingClientRect().width>=Math.min(260,innerWidth*.6)&&!boxedIn(a))break;a=a.parentElement;}
+    a.after(el);}
+  function placeToast(){const el=toastEl;if(!el.classList.contains('on'))return;if(!el.isConnected){el.classList.remove('inline');document.body.appendChild(el);}
+    if(el.classList.contains('inline'))return;const s=freeSpot(el);
+    if(s){el._spot=s;el.style.left=s.x+'px';el.style.top=s.y+'px';}else{el._spot=null;el.classList.add('inline');el.style.left=el.style.top='';inlineAfter(el);el.scrollIntoView({block:'nearest'});}}
+  function toast(msg,kind){if(!toastEl){toastEl=document.createElement('div');toastEl.setAttribute('role','status');document.body.appendChild(toastEl);}
+    const el=toastEl;clearTimeout(el._t);clearInterval(el._iv);if(el.classList.contains('inline'))document.body.appendChild(el);
+    el.className='toast '+(kind||'');el._spot=null;el.innerHTML=typeof msg==='object'?t(msg):msg;el.style.left='0px';el.style.top='0px';
+    el.classList.add('on');placeToast();el._iv=setInterval(placeToast,200);toastMO.observe(document.body,{subtree:true,childList:true,attributes:true,characterData:true});
+    el._t=setTimeout(()=>{clearInterval(el._iv);toastMO.disconnect();el.classList.remove('on');setTimeout(()=>{if(!el.classList.contains('on')&&el.classList.contains('inline')){el.classList.remove('inline');document.body.appendChild(el);}},320);},2500);}
+  function confetti(){if(reduced())return;const c=document.createElement('canvas');c.className='confetti';c.setAttribute('aria-hidden','true');document.body.appendChild(c);
+    const W=c.width=innerWidth,H=c.height=innerHeight,x=c.getContext('2d');const cols=['#E8702A','#0F766E','#6D28D9','#F5B90A','#02CFF9','#FF6B57'];
+    const P=Array.from({length:90},()=>({x:W/2,y:H*.55,vx:(Math.random()-.5)*9,vy:-Math.random()*11-4,r:Math.random()*6+3,c:cols[Math.random()*6|0],a:Math.random()*6}));
+    let n=0;(function f(){x.clearRect(0,0,W,H);P.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.32;p.a+=.2;x.save();x.translate(p.x,p.y);x.rotate(p.a);x.fillStyle=p.c;x.fillRect(-p.r/2,-p.r/4,p.r,p.r/2);x.restore();});
+      if(++n<110)requestAnimationFrame(f);else c.remove();})();}
+  function tween(ms,step,done){if(reduced()||ms<=0){step(1);done&&done();return()=>{};}let stop=0;const t0=performance.now();
+    const f=now=>{if(stop)return;const k=Math.min(1,(now-t0)/ms);step(k);k<1?requestAnimationFrame(f):done&&done();};requestAnimationFrame(f);return()=>{stop=1};}
+  const ease=k=>k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+  const sleep=ms=>new Promise(r=>setTimeout(r,reduced()?0:ms));
+  // Lesson config: ?lesson=<same-origin json path> (its play.config + play.goal), else inline defaults. ?cfg=<json> also accepted (parsed with JSON.parse only).
+  async function lessonConfig(defaults){let cfg=Object.assign({},defaults),goal=null,id=null;
+    const p=qs.get('lesson');
+    if(p&&/^[\w\-./]+\.json$/.test(p)&&!p.includes('..')){try{const r=await fetch(p);if(r.ok){const j=await r.json();id=j.id;if(j.play){Object.assign(cfg,j.play.config||{});goal=j.play.goal||null;}}}catch(e){}}
+    const c=qs.get('cfg'); if(c){try{Object.assign(cfg,JSON.parse(c));}catch(e){}}
+    return {cfg,goal,id};}
+  // Progress events the Family App shell can listen for (postMessage to the parent frame), plus local XP for the prototype.
+  function emit(type,data){const msg={source:'nca-techlab',type,data:data||{},at:Date.now()};try{parent!==window&&parent.postMessage(msg,'*');}catch(e){}
+    document.dispatchEvent(new CustomEvent('nca-lab',{detail:msg}));}
+  g.NCA={qs,esc,t,get lang(){return lang},setLang,onLang:f=>listeners.push(f),strings:o=>{STR=Object.assign(STR,o);applyI18n();},applyI18n,header,toast,confetti,tween,ease,sleep,reduced,lessonConfig,emit};
+})(window);
+</script>
+<script>
+(async function(){
+const N=NCA,T=N.t,E=N.esc,L=(en,hi,hinglish)=>({en,hi,hinglish}),$=id=>document.getElementById(id);
+N.header('🕸️','title','sub');
+N.strings({title:L('Web Studio','वेब स्टूडियो','Web Studio'),sub:L('URLs, HTTP, HTML, CSS and JavaScript — hands on','URL, HTTP, HTML, CSS और JavaScript — ख़ुद करके','URLs, HTTP, HTML, CSS aur JavaScript — khud karke'),mT:L('🚀 Mission','🚀 मिशन','🚀 Mission')});
+const {cfg,goal}=await N.lessonConfig({tab:'url'});
+const TABS=[['url',L('🔗 URL & HTTP','🔗 URL और HTTP','🔗 URL & HTTP')],['html',L('🧱 HTML','🧱 HTML','🧱 HTML')],['css',L('🎨 CSS','🎨 CSS','🎨 CSS')],['js',L('⚡ JavaScript','⚡ JavaScript','⚡ JavaScript')]];
+const GOALS={url:L('Take apart three URLs, then send an HTTP request for a page that does not exist.','तीन URL तोड़कर देखो, फिर ऐसे पेज का HTTP अनुरोध भेजो जो है ही नहीं।','Teen URLs tod ke dekho, phir aise page ki HTTP request bhejo jo hai hi nahi.'),
+ html:L('Build an “About me” page: an <h1>, a <p>, a list of 3 hobbies and an image with alt text.','“About me” पेज बनाओ: एक <h1>, एक <p>, 3 शौक़ की सूची और alt टेक्स्ट वाला चित्र।','“About me” page banao: ek <h1>, ek <p>, 3 hobbies ki list aur alt text wali image.'),
+ css:L('Style the card: background colour, rounded corners, padding and a teal heading.','कार्ड सजाओ: पृष्ठभूमि रंग, गोल कोने, पैडिंग और टील शीर्षक।','Card style karo: background colour, rounded corners, padding aur teal heading.'),
+ js:L('Wire the like button with blocks, then click it 5 times.','ब्लॉक से लाइक बटन जोड़ो, फिर 5 बार दबाओ।','Blocks se like button jodo, phir 5 baar click karo.')};
+let tab=TABS.some(x=>x[0]===cfg.tab)?cfg.tab:'url';const done={};
+function win(k,m){if(done[k])return;done[k]=1;N.confetti();N.toast(m,'ok');N.emit('mission:complete',{lab:'web-studio',tab:k});mission();}
+/* ---------- URL & HTTP (simulated server; no network) ---------- */
+const PRE=['https://ncert.nic.in/textbook.php?class=7#maths','https://www.irctc.co.in/nget/train-search','https://cbse.gov.in/results?roll=12345','https://ncert.nic.in/old-books'];
+const SITES={'ncert.nic.in':{'/textbook.php':200,'/':200,'/old-books':301},'www.irctc.co.in':{'/nget/train-search':200,'/':200},'cbse.gov.in':{'/results':503,'/':200},'example.org':{'/':200}};
+const COL={scheme:'#F5B90A',host:'#7DD3FC',path:'#86EFAC',query:'#F9A8D4',hash:'#C4B5FD'};
+const PD={scheme:L('Scheme — the protocol. “https” means HTTP with encryption (the padlock). Plain “http” is not encrypted.','स्कीम — प्रोटोकॉल। “https” यानी एन्क्रिप्शन वाला HTTP (ताला)। साधारण “http” एन्क्रिप्टेड नहीं।','Scheme — protocol. “https” matlab encryption wala HTTP (padlock). Plain “http” encrypted nahi hota.'),
+ host:L('Domain — which website (server). DNS turns it into an IP address. Read it from the right: .in → nic.in → ncert.nic.in.','डोमेन — कौन-सी वेबसाइट (सर्वर)। DNS इसे IP पते में बदलता है। दाएँ से पढ़ो: .in → nic.in → ncert.nic.in।','Domain — kaunsi website (server). DNS isse IP address mein badalta hai. Right se padho: .in → nic.in → ncert.nic.in.'),
+ path:L('Path — which page or file on that server, like folders.','पथ — उस सर्वर पर कौन-सा पेज या फ़ाइल, फ़ोल्डरों की तरह।','Path — us server pe kaunsa page ya file, folders ki tarah.'),
+ query:L('Query — extra details sent to the server after “?”, as name=value pairs joined by “&”.','क्वेरी — “?” के बाद सर्वर को भेजी अतिरिक्त जानकारी, name=value जोड़े “&” से जुड़े।','Query — “?” ke baad server ko bheji extra details, name=value pairs “&” se jude.'),
+ hash:L('Fragment — after “#”, a spot inside the page. It stays in the browser and is not sent to the server.','फ़्रैगमेंट — “#” के बाद, पेज के अंदर एक जगह। यह ब्राउज़र में ही रहता है, सर्वर को नहीं जाता।','Fragment — “#” ke baad, page ke andar ek jagah. Yeh browser mein hi rehta hai, server ko nahi jaata.')};
+const MSG={200:'OK',301:'Moved Permanently',404:'Not Found',503:'Service Unavailable'};
+const SD={200:L('Found! The server sends the HTML and the browser draws the page.','मिल गया! सर्वर HTML भेजता है और ब्राउज़र पेज बनाता है।','Mil gaya! Server HTML bhejta hai aur browser page draw karta hai.'),301:L('This page has moved. The server gives the new address and the browser follows it automatically.','यह पेज हट गया है। सर्वर नया पता देता है और ब्राउज़र अपने-आप वहाँ जाता है।','Yeh page shift ho gaya. Server naya address deta hai aur browser apne aap wahan jaata hai.'),404:L('The server is fine, but there is no page at this path. Check the spelling!','सर्वर ठीक है, पर इस पथ पर कोई पेज नहीं। वर्तनी जाँचो!','Server theek hai, par is path pe koi page nahi. Spelling check karo!'),503:L('Too many people at once (like results day). Try again later.','एक साथ बहुत लोग (जैसे परिणाम दिन)। बाद में फिर कोशिश करो।','Ek saath bahut log (jaise result day). Baad mein phir try karo.'),0:L('No such website in this practice internet. DNS cannot find it.','इस अभ्यास इंटरनेट में ऐसी वेबसाइट नहीं। DNS इसे ढूँढ नहीं पाता।','Is practice internet mein aisi website nahi. DNS isse dhoondh nahi paata.')};
+let url=PRE[0],seen=new Set(),got404=false,partSel=null,busy=false,lastStatus=null;
+function split(u){let x;try{x=new URL(u);}catch(e){return null;}if(!/^https?:$/.test(x.protocol))return null;return [['scheme',x.protocol+'//'],['host',x.host],['path',x.pathname],['query',x.search],['hash',x.hash]].filter(p=>p[1]);}
+function drawURL(){const P=split(url);
+ $('left').innerHTML=`<label for="u" style="font-weight:700;font-size:14px">${T(L('Type or pick a URL','URL लिखो या चुनो','URL likho ya chuno'))}</label>
+ <input id="u" class="urlin" value="${E(url)}" inputmode="url" autocapitalize="off" spellcheck="false">
+ <div class="row" style="margin-top:8px">${PRE.map((p,i)=>`<button class="chip" data-p="${i}" style="border:0">${E(new URL(p).host+new URL(p).pathname)}</button>`).join('')}</div>
+ ${P?`<div class="parts">${P.map(([k,v])=>`<button data-k="${k}" aria-pressed="${partSel===k}" style="background:${COL[k]}">${E(v)}</button>`).join('')}</div>
+ <div class="pdesc">${partSel?`<b>${E((P.find(p=>p[0]===partSel)||['',''])[1])}</b><br>${T(PD[partSel])}`:T(L('👆 Tap a coloured part.','👆 किसी रंगीन भाग को दबाओ।','👆 Kisi coloured part pe tap karo.'))}</div>`:`<p class="status s4">${T(L('Not a valid web address. It should start with https://','मान्य वेब पता नहीं। https:// से शुरू होना चाहिए','Valid web address nahi. https:// se shuru hona chahiye'))}</p>`}`;
+ const u=$('u');u.onchange=()=>{url=u.value.trim();partSel=null;drawURL();};u.onkeydown=e=>{if(e.key==='Enter'){url=u.value.trim();partSel=null;drawURL();}};
+ $('left').querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>{url=PRE[+b.dataset.p];partSel=null;drawURL();});
+ $('left').querySelectorAll('.parts [data-k]').forEach(b=>b.onclick=()=>{partSel=b.dataset.k;seen.add(url);drawURL();mission();});
+ drawWire();}
+function drawWire(){const P=split(url);const host=P?new URL(url).host:'';
+ $('right').innerHTML=`<h3 style="margin:0 0 4px;font-size:15px">${T(L('📨 Send the HTTP request','📨 HTTP अनुरोध भेजो','📨 HTTP request bhejo'))}</h3>
+ <div class="stage wire"><div class="end" style="left:6px"><b>📱</b>${T(L('Browser','ब्राउज़र','Browser'))}</div><div class="ln"></div><div class="end" style="right:6px"><b>🗄️</b>${E(host.slice(0,14))||'?'}</div><div class="env" id="env"></div></div>
+ <div class="row"><button class="btn teal" id="go" ${P&&!busy?'':'disabled'}>${T(L('Send GET request','GET अनुरोध भेजो','GET request bhejo'))}</button><button class="btn ghost" id="bad" ${busy?'disabled':''}>${T(L('Try a wrong path','ग़लत पथ आज़माओ','Galat path try karo'))}</button></div>
+ <div id="st" style="margin-top:10px">${lastStatus!=null?statusHTML(lastStatus):''}</div>`;
+ $('go').onclick=send;$('bad').onclick=()=>{try{const x=new URL(split(url)?url:PRE[0]);x.pathname='/textbok.php';x.search='';x.hash='';url=x.href;}catch(e){url='https://ncert.nic.in/textbok.php';}partSel=null;drawURL();send();};}
+function statusHTML(c){return `<div class="status s${String(c||5)[0]}">${c?`HTTP/1.1 ${c} ${MSG[c]}`:'DNS: NXDOMAIN'}</div><p style="font-size:14px;margin:8px 0 0">${T(SD[c])}</p>`;}
+async function send(){if(busy)return;const P=split(url);if(!P)return;busy=true;const x=new URL(url);seen.add(url);const site=SITES[x.host];
+ const code=site?(site[x.pathname]!=null?site[x.pathname]:404):0;lastStatus=null;drawWire();const env=$('env'),w=$('env').parentElement.clientWidth;
+ env.textContent=`GET ${x.pathname}${x.search}\nHost: ${x.host}`;const F=()=>Math.max(0,w-172-env.offsetWidth);/* stops short of the server's name, measured live */
+ await new Promise(r=>N.tween(900,k=>{env.style.opacity=1;env.style.transform=`translateX(${N.ease(k)*F()}px)`;},r));
+ if(code){env.textContent=`HTTP/1.1 ${code} ${MSG[code]}\nContent-Type: text/html`;env.style.background=code<300?'#DCFCE7':code<400?'#E3EEF9':code<500?'#FEE2E2':'#FEF3C7';
+  await new Promise(r=>N.tween(900,k=>{env.style.transform=`translateX(${(1-N.ease(k))*F()}px)`;},r));}
+ busy=false;lastStatus=code;drawWire();if(code===404)got404=true;mission();if(got404&&seen.size>=3)win('url',L('You can read URLs and HTTP replies!','अब आप URL और HTTP उत्तर पढ़ सकते हो!','Ab aap URLs aur HTTP replies padh sakte ho!'));}
+/* ---------- HTML (sandboxed preview: no scripts, no network) ---------- */
+const ME="data:image/svg+xml,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><rect width="120" height="120" rx="24" fill="#EFE9FB"/><circle cx="60" cy="48" r="22" fill="#E8702A"/><rect x="26" y="76" width="68" height="34" rx="17" fill="#0F766E"/><circle cx="52" cy="45" r="3" fill="#1C1B1A"/><circle cx="68" cy="45" r="3" fill="#1C1B1A"/><path d="M50 56q10 8 20 0" stroke="#1C1B1A" stroke-width="3" fill="none"/></svg>');
+const CSP=`<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src data:; style-src 'unsafe-inline'">`;
+let html=`<h1>About me</h1>\n<p>My name is Asha. I study in Class 7.</p>\n<h2>My hobbies</h2>\n<ul>\n  <li>Cricket</li>\n</ul>\n<img src="me.svg">\n`;
+const BASE='<style>body{font:15px/1.5 system-ui,sans-serif;margin:12px;color:#1C1B1A}img{width:90px}</style>';
+function doc(h,css){return CSP+BASE+(css?`<style>${css}</style>`:'')+h.replace(/<\s*script[\s\S]*?(<\/\s*script\s*>|$)/gi,'').replace(/\son\w+\s*=/gi,' data-x=').replace(/src\s*=\s*"me\.svg"/g,`src="${ME}"`);}
+function htmlChecks(h){const d=new DOMParser().parseFromString(h,'text/html');const li=[...d.querySelectorAll('ul > li, ol > li')].filter(x=>x.textContent.trim());const img=d.querySelector('img');
+ return [[L('An <h1> heading with text','पाठ वाला <h1> शीर्षक','Text wala <h1> heading'),!!(d.querySelector('h1')&&d.querySelector('h1').textContent.trim())],[L('A <p> paragraph','एक <p> अनुच्छेद','Ek <p> paragraph'),!!(d.querySelector('p')&&d.querySelector('p').textContent.trim())],
+  [L(`A list with at least 3 <li> items (${li.length}/3)`,`कम से कम 3 <li> वाली सूची (${li.length}/3)`,`Kam se kam 3 <li> wali list (${li.length}/3)`),li.length>=3],[L('An <img> with alt="…" text','alt="…" टेक्स्ट वाला <img>','alt="…" text wala <img>'),!!(img&&(img.getAttribute('alt')||'').trim().length>=3)]];}
+function drawHTML(){$('left').innerHTML=`<label for="ed" style="font-weight:700;font-size:14px">index.html</label><textarea id="ed" class="ed" spellcheck="false" autocapitalize="off">${E(html)}</textarea>
+ <p class="muted" style="font-size:12.5px;margin:6px 0 0">${T(L('Tip: src="me.svg" is a picture we provide. Scripts are switched off in this preview for safety.','सुझाव: src="me.svg" हमारा दिया चित्र है। सुरक्षा के लिए इस पूर्वावलोकन में स्क्रिप्ट बंद हैं।','Tip: src="me.svg" humari di hui picture hai. Safety ke liye is preview mein scripts band hain.'))}</p>`;
+ $('right').innerHTML=`<div class="bro"><div class="bb"><i style="background:#FF6B57"></i><i style="background:#F5B90A"></i><i style="background:#22C55E"></i><span class="u">about-me.html</span></div><iframe id="pv" class="pv" sandbox title="preview"></iframe></div><ul class="chk" id="chk"></ul>`;
+ const ed=$('ed');let tmo;ed.oninput=()=>{html=ed.value;clearTimeout(tmo);tmo=setTimeout(updHTML,250);};updHTML();}
+function updHTML(){$('pv').srcdoc=doc(html);const c=htmlChecks(html);$('chk').innerHTML=c.map(([n,ok])=>`<li>${ok?'✅':'⬜'} ${E(T(n))}</li>`).join('');if(c.every(x=>x[1]))win('html',L('Your first web page is ready!','आपका पहला वेब पेज तैयार!','Aapka pehla web page ready!'));}
+/* ---------- CSS ---------- */
+const CARD=`<div class="card">\n  <h1>Science Club</h1>\n  <p>Every Friday, 3 pm, Lab 2. Bring your ideas!</p>\n</div>`;
+let css=`.card {\n  background: white;\n  border: 2px solid #E7E1D6;\n}\nh1 {\n  color: black;\n}\n`;
+function drawCSS(){$('left').innerHTML=`<label for="ed" style="font-weight:700;font-size:14px">style.css</label><textarea id="ed" class="ed" spellcheck="false" autocapitalize="off">${E(css)}</textarea>
+ <div class="row" style="margin-top:8px">${[['background: #FBF1D3;','🎨'],['border-radius: 16px;','⭕'],['padding: 16px;','📦'],['color: #0F766E;','🟢']].map(([s,i])=>`<button class="chip" style="border:0" data-ins="${E(s)}">${i} ${E(s)}</button>`).join('')}</div>
+ <p class="muted" style="font-size:12.5px;margin:6px 0 0">${T(L('Tap a chip to copy it into the editor where your cursor is, or type it yourself.','चिप दबाकर कर्सर की जगह जोड़ो, या ख़ुद लिखो।','Chip tap karke cursor ki jagah daalo, ya khud likho.'))}</p>
+ <pre class="code" style="margin-top:8px">${E(CARD)}</pre>`;
+ $('right').innerHTML=`<div class="bro"><div class="bb"><i style="background:#FF6B57"></i><i style="background:#F5B90A"></i><i style="background:#22C55E"></i><span class="u">club.html</span></div><iframe id="pv" class="pv" sandbox="allow-same-origin" title="preview"></iframe></div><ul class="chk" id="chk"></ul>`;
+ const ed=$('ed');let tmo;ed.oninput=()=>{css=ed.value;clearTimeout(tmo);tmo=setTimeout(updCSS,250);};
+ $('left').querySelectorAll('[data-ins]').forEach(b=>b.onclick=()=>{const s=b.dataset.ins,p=ed.selectionStart||css.length;css=css.slice(0,p)+s+css.slice(p);ed.value=css;ed.focus();ed.selectionStart=ed.selectionEnd=p+s.length;updCSS();});
+ const pv=$('pv');pv.onload=checkCSS;pv.srcdoc=doc(CARD,css);}
+function updCSS(){$('pv').srcdoc=doc(CARD,css.replace(/<\/?style/gi,''));}
+function checkCSS(){let d;try{d=$('pv').contentDocument;}catch(e){}if(!d||!d.querySelector('.card'))return;const cs=d.defaultView.getComputedStyle(d.querySelector('.card')),hs=d.defaultView.getComputedStyle(d.querySelector('h1'));
+ const rgb=s=>(s.match(/[\d.]+/g)||[]).map(Number);const bg=rgb(cs.backgroundColor),hc=rgb(hs.color);
+ const c=[[L('Card background is a colour (not white)','कार्ड की पृष्ठभूमि रंगीन (सफ़ेद नहीं)','Card ka background coloured (white nahi)'),bg.length>=3&&(bg[3]===undefined||bg[3]>0)&&!(bg[0]>245&&bg[1]>245&&bg[2]>245)],[L('Rounded corners (border-radius)','गोल कोने (border-radius)','Rounded corners (border-radius)'),parseFloat(cs.borderTopLeftRadius)>0],
+  [L('Padding inside the card','कार्ड के अंदर पैडिंग','Card ke andar padding'),parseFloat(cs.paddingTop)>0],[L('Teal heading colour','टील शीर्षक रंग','Teal heading colour'),hc[1]>hc[0]+30&&hc[2]>hc[0]+20&&hc[1]>70]];
+ $('chk').innerHTML=c.map(([n,ok])=>`<li>${ok?'✅':'⬜'} ${E(T(n))}</li>`).join('');if(c.every(x=>x[1]))win('css',L('Stylish! Same HTML, new look.','शानदार! वही HTML, नया रूप।','Stylish! Same HTML, naya look.'));}
+/* ---------- JavaScript (blocks → generated code; runs our own fixed handlers, never user code) ---------- */
+let ev='none',act='none',show='none',likes=0,score=null;
+const EV={none:'—',click:'click',dblclick:'dblclick',load:'load'},ACT={none:'—',add:'likes = likes + 1;',sub:'likes = likes - 1;',zero:'likes = 0;'},SH={none:'—',text:'btn.textContent = "👍 " + likes;',color:'btn.style.background = "gold";'};
+function gen(){const h=s=>E(s).replace(/(&quot;.*?&quot;)/g,'<span class="s">$1</span>').replace(/\b(let|const)\b/g,'<span class="k">$1</span>').replace(/\b(\d+)\b/g,'<span class="n">$1</span>');
+ const target=ev==='load'?'window':'btn';
+ return `<span class="k">let</span> likes = <span class="n">0</span>;\n<span class="k">const</span> btn = document.querySelector(<span class="s">"#like"</span>);\n`+(ev==='none'?'<span class="c">// choose an event…</span>':`${target}.addEventListener(<span class="s">"${ev}"</span>, () =&gt; {\n  ${act==='none'?'<span class="c">// choose an action…</span>':h(ACT[act])}\n  ${show==='none'?'<span class="c">// show it…</span>':h(SH[show])}\n});`);}
+function sel(id,obj,val,col,lab){return `<label style="border-color:${col}">${T(lab)} <select id="${id}">${Object.keys(obj).map(k=>`<option value="${k}" ${k===val?'selected':''}>${E(obj[k])}</option>`).join('')}</select></label>`;}
+function drawJS(){$('left').innerHTML=`<div class="blk">${sel('sev',EV,ev,'#E8702A',L('When this happens:','जब यह हो:','Jab yeh ho:'))}${sel('sact',ACT,act,'#6D28D9',L('Do this:','यह करो:','Yeh karo:'))}${sel('ssh',SH,show,'#0F766E',L('Then:','फिर:','Phir:'))}</div>
+ <pre class="code" style="margin-top:10px" id="gc">${gen()}</pre>`;
+ ['sev','sact','ssh'].forEach(i=>$(i).onchange=()=>{ev=$('sev').value;act=$('sact').value;show=$('ssh').value;likes=0;$('gc').innerHTML=gen();drawBtn();if(ev==='load')fire('load');});
+ $('right').innerHTML=`<div class="bro"><div class="bb"><i style="background:#FF6B57"></i><i style="background:#F5B90A"></i><i style="background:#22C55E"></i><span class="u">post.html</span></div><div style="padding:16px;text-align:center;display:grid;gap:10px;place-items:center">
+ <div style="font-weight:800">${T(L('🚀 Our robot won the science fair!','🚀 हमारे रोबोट ने विज्ञान मेला जीता!','🚀 Humare robot ne science fair jeeta!'))}</div><button class="like" id="like">👍 Like</button><small class="muted" id="lk"></small></div></div>
+ <h3 style="margin:12px 0 6px;font-size:15px">${T(L('📡 Bonus: get live data from an API','📡 बोनस: API से लाइव डेटा','📡 Bonus: API se live data'))}</h3>
+ <pre class="code"><span class="k">const</span> res = <span class="k">await</span> fetch(<span class="s">"/api/score"</span>);\n<span class="k">const</span> data = <span class="k">await</span> res.json();</pre>
+ <div class="row" style="margin-top:8px"><button class="btn plum" id="fx">fetch()</button></div><div id="jout" style="display:grid;gap:8px;margin-top:8px"></div>`;
+ const b=$('like');b.onclick=()=>fire('click');b.ondblclick=()=>fire('dblclick');$('fx').onclick=fetchSim;drawBtn();if(score)renderScore();}
+function drawBtn(){const b=$('like');if(!b)return;b.textContent=show==='text'&&likes!==0||show==='text'&&act==='zero'?'👍 '+likes:'👍 Like';$('lk').textContent=`likes = ${likes}`;}
+function fire(e){if(e!==ev||act==='none'){if(e==='click'&&ev==='none')N.toast(L('Nothing happens — no event listener yet!','कुछ नहीं हुआ — अभी कोई इवेंट लिसनर नहीं!','Kuch nahi hua — abhi koi event listener nahi!'));return;}
+ likes=act==='add'?likes+1:act==='sub'?likes-1:0;const b=$('like');if(show==='color'){b.style.background='gold';}else b.style.background='';drawBtn();
+ if(!N.reduced())b.animate([{transform:'scale(1)'},{transform:'scale(1.15)'},{transform:'scale(1)'}],{duration:220});
+ if(ev==='click'&&act==='add'&&show==='text'&&likes>=5)win('js',L('Your button is alive — that is JavaScript!','आपका बटन जीवित है — यही JavaScript है!','Aapka button zinda hai — yahi JavaScript hai!'));mission();}
+async function fetchSim(){const o=$('jout');o.innerHTML=`<div class="json">… waiting for server …</div>`;await N.sleep(700);
+ score={match:'IND vs AUS',score:'287/4',overs:45.2,batting:'India'};o.innerHTML=`<div class="json">${E(JSON.stringify(score,null,2))}</div>`;await N.sleep(300);renderScore();}
+function renderScore(){const o=$('jout');if(!o)return;if(!o.querySelector('.json'))o.innerHTML=`<div class="json">${E(JSON.stringify(score,null,2))}</div>`;o.insertAdjacentHTML('beforeend',`<div class="score">🏏 <div>${E(score.match)}<br><span style="font-size:22px">${E(score.score)}</span> <small>(${score.overs} ov)</small></div></div>
+ <p class="muted" style="font-size:13px;margin:0">${T(L('The app read data.score from the JSON and showed it. Real apps do this every few seconds for live scores. (This demo uses a pretend server.)','ऐप ने JSON से data.score पढ़कर दिखाया। असली ऐप लाइव स्कोर के लिए हर कुछ सेकंड यही करते हैं। (यह डेमो नक़ली सर्वर उपयोग करता है।)','App ne JSON se data.score padh ke dikhaya. Asli apps live score ke liye har kuch seconds yahi karte hain. (Yeh demo pretend server use karta hai.)'))}</p>`);}
+/* ---------- shell ---------- */
+function mission(){const st={url:L(`URLs taken apart: ${Math.min(seen.size,3)}/3 · got a 404: ${got404?'✔':'✘'}`,`तोड़े गए URL: ${Math.min(seen.size,3)}/3 · 404 मिला: ${got404?'✔':'✘'}`,`URLs tode: ${Math.min(seen.size,3)}/3 · 404 mila: ${got404?'✔':'✘'}`),html:L('All 4 HTML checks green','सभी 4 HTML जाँच हरी','Saare 4 HTML checks green'),css:L('All 4 CSS checks green','सभी 4 CSS जाँच हरी','Saare 4 CSS checks green'),js:L(`click → add 1 → show · likes ${Math.max(0,likes)}/5`,`click → 1 जोड़ो → दिखाओ · likes ${Math.max(0,likes)}/5`,`click → 1 jodo → dikhao · likes ${Math.max(0,likes)}/5`)};
+ $('mission').innerHTML=TABS.map(([k,n])=>`<div style="margin:3px 0">${done[k]?'✅':'⬜'} <b>${T(n)}</b> — ${T(st[k])}</div>`).join('');}
+function draw(){$('goal').innerHTML=E(T(goal&&cfg.tab===tab?goal:GOALS[tab]));$('tabs').innerHTML=TABS.map(([k,n])=>`<button role="tab" aria-selected="${k===tab}" data-t="${k}">${T(n)}</button>`).join('');
+ $('tabs').querySelectorAll('button').forEach(b=>b.onclick=()=>{tab=b.dataset.t;draw();});({url:drawURL,html:drawHTML,css:drawCSS,js:drawJS})[tab]();mission();}
+N.onLang(draw);draw();
+window.__lab={tab:k=>{tab=k;draw();},url:u=>{url=u;seen.add(u);drawURL();},send,setHTML:h=>{html=h;drawHTML();},setCSS:c=>{css=c;drawCSS();},blocks:(e,a,s)=>{ev=e;act=a;show=s;drawJS();},fire,done};
+})();
+</script></body></html>

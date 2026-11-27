@@ -1,0 +1,375 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.llms.01",
+ "level": 3,
+ "classes": [
+  11,
+  12
+ ],
+ "unit": "llms",
+ "title": {
+  "en": "Tokens: how an LLM reads text",
+  "hi": "टोकन: एलएलएम पाठ कैसे पढ़ता है",
+  "hinglish": "Tokens: LLM text kaise padhta hai"
+ },
+ "minutes": 12,
+ "xp": 50,
+ "prereq": [
+  "L3.neural-nets-deep-learning.04"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain what a token is and why models use sub-word tokens",
+   "hinglish": "Token kya hai aur models sub-word tokens kyun use karte hain",
+   "hi": "समझाना कि टोकन क्या है और मॉडल उप-शब्द टोकन क्यों इस्तेमाल करते हैं"
+  },
+  {
+   "en": "Describe next-token prediction and sampling with temperature",
+   "hinglish": "Next-token prediction aur temperature ke saath sampling samjhao",
+   "hi": "अगले-टोकन अनुमान और तापमान के साथ नमूना लेने का वर्णन करना"
+  },
+  {
+   "en": "Explain why Indian languages can cost more tokens",
+   "hinglish": "Samjhao Indian languages mein zyada tokens kyun lag sakte hain",
+   "hi": "समझाना कि भारतीय भाषाओं में अधिक टोकन क्यों लग सकते हैं"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Token",
+   "hinglish": "Text ka chhota tukda jo model padhta hai",
+   "en": "A chunk of text (word, sub-word or character) mapped to an ID",
+   "hi": "पाठ का टुकड़ा (शब्द, उप-शब्द या अक्षर) जिसे एक आईडी दी जाती है"
+  },
+  {
+   "term": "Tokenizer",
+   "hinglish": "Text ko tokens mein todne wala",
+   "en": "The algorithm that splits text into tokens, e.g. BPE",
+   "hi": "पाठ को टोकन में तोड़ने वाला एल्गोरिद्म, जैसे BPE"
+  },
+  {
+   "term": "BPE",
+   "hinglish": "Baar-baar aane wale jode milaake naye tokens banana",
+   "en": "Byte-pair encoding: merge frequent pairs into new tokens",
+   "hi": "बाइट-पेयर एन्कोडिंग: बार-बार आने वाले जोड़ों को नए टोकन में मिलाना"
+  },
+  {
+   "term": "Next-token prediction",
+   "hinglish": "Agla tukda kya hoga, andaaza",
+   "en": "Predicting a probability for every possible next token",
+   "hi": "हर संभावित अगले टोकन के लिए संभावना का अनुमान"
+  },
+  {
+   "term": "Temperature",
+   "hinglish": "Jawab kitna \"creative\" ya fixed",
+   "en": "A setting that sharpens or flattens the next-token probabilities",
+   "hi": "एक सेटिंग जो अगले-टोकन की संभावनाओं को तीखा या सपाट करती है"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "\"Unbelievable\" becomes three tokens: \"Un\", \"belie\", \"vable\". Each token is just an ID number for the model.",
+    "hi": "\"Unbelievable\" तीन टोकन बनता है: \"Un\", \"belie\", \"vable\"। मॉडल के लिए हर टोकन बस एक आईडी संख्या है।",
+    "hinglish": "\"Unbelievable\" teen tokens banta hai: \"Un\", \"belie\", \"vable\". Model ke liye har token bas ek ID number hai."
+   },
+   "visual": "anim:token-split",
+   "narration": {
+    "en": "\"Unbelievable\" becomes three tokens: \"Un\", \"belie\", \"vable\". Each token is just an ID number for the model.",
+    "hi": "\"Unbelievable\" तीन टोकन बनता है: \"Un\", \"belie\", \"vable\"। मॉडल के लिए हर टोकन बस एक आईडी संख्या है।",
+    "hinglish": "\"Unbelievable\" teen tokens banta hai: \"Un\", \"belie\", \"vable\". Model ke liye har token bas ek ID number hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "The model reads all tokens so far and outputs a probability for every token in its vocabulary for what comes next.",
+    "hi": "मॉडल अब तक के सारे टोकन पढ़कर अपनी शब्दावली के हर टोकन को अगले के लिए संभावना देता है।",
+    "hinglish": "Model ab tak ke saare tokens padh ke apni vocabulary ke har token ko agle ke liye probability deta hai."
+   },
+   "visual": "anim:next-token-bars",
+   "narration": {
+    "en": "The model reads all tokens so far and outputs a probability for every token in its vocabulary for what comes next.",
+    "hi": "मॉडल अब तक के सारे टोकन पढ़कर अपनी शब्दावली के हर टोकन को अगले के लिए संभावना देता है।",
+    "hinglish": "Model ab tak ke saare tokens padh ke apni vocabulary ke har token ko agle ke liye probability deta hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "It picks one, appends it, and repeats. A whole essay is written one token at a time.",
+    "hi": "वह एक चुनता है, जोड़ता है, और दोहराता है। पूरा निबंध एक-एक टोकन करके लिखा जाता है।",
+    "hinglish": "Woh ek chunta hai, jodta hai, aur repeat karta hai. Poora essay ek-ek token karke likha jaata hai."
+   },
+   "visual": "anim:autoregressive-typing",
+   "narration": {
+    "en": "It picks one, appends it, and repeats. A whole essay is written one token at a time.",
+    "hi": "वह एक चुनता है, जोड़ता है, और दोहराता है। पूरा निबंध एक-एक टोकन करके लिखा जाता है।",
+    "hinglish": "Woh ek chunta hai, jodta hai, aur repeat karta hai. Poora essay ek-ek token karke likha jaata hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "tokenizer-attention",
+  "config": {
+   "view": "tokens",
+   "text": "Nanhe ki train lambi hai. Unbelievable!"
+  },
+  "goal": {
+   "en": "Type an English, Hinglish and Hindi sentence. Compare how many tokens each takes, then watch next-token probabilities change with temperature.",
+   "hinglish": "Ek English, Hinglish aur Hindi sentence type karo. Compare karo kitne tokens lagte hain, phir temperature ke saath next-token probabilities badalte dekho.",
+   "hi": "एक अंग्रेज़ी, हिंग्लिश और हिंदी वाक्य लिखो। तुलना करो हर एक में कितने टोकन लगते हैं, फिर तापमान के साथ अगले-टोकन की संभावनाएँ बदलते देखो।"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Why sub-word tokens?",
+    "hi": "सब-वर्ड टोकन क्यों?",
+    "hinglish": "Sub-word tokens kyun?"
+   },
+   "body": {
+    "en": "A model needs a fixed vocabulary. Whole words would need millions of entries and still miss new words like \"UPI-fied\"; single characters make sequences very long. Byte-pair encoding (BPE) and similar tokenizers start from bytes or characters and repeatedly merge the most frequent pairs, ending with roughly 30,000 to 2,00,000 tokens. Common words become one token; rare words split into pieces. In English one token is on average about 4 characters, or ¾ of a word. Tokenizers trained mostly on English text split Devanagari, Tamil or Bengali into many more tokens per word, so the same message can cost several times more tokens and fill the context window faster; Indian models such as Sarvam's and AI4Bharat's use tokenizers trained on Indic text to fix this.",
+    "hi": "मॉडल को तय शब्दावली चाहिए। पूरे शब्दों के लिए लाखों प्रविष्टियाँ लगतीं और फिर भी \"UPI-fied\" जैसे नए शब्द छूट जाते; अकेले अक्षर क्रम बहुत लंबा कर देते हैं। बाइट-पेयर एन्कोडिंग (बीपीई) और ऐसे टोकनाइज़र बाइट या अक्षरों से शुरू कर बार-बार सबसे आम जोड़ों को मिलाते हैं, और लगभग 30,000 से 2,00,000 टोकन पर रुकते हैं। आम शब्द एक टोकन बनते हैं; दुर्लभ शब्द टुकड़ों में बँटते हैं। अंग्रेज़ी में औसतन एक टोकन लगभग 4 अक्षर, या शब्द का ¾ होता है। मुख्यतः अंग्रेज़ी पर प्रशिक्षित टोकनाइज़र देवनागरी, तमिल या बांग्ला को प्रति शब्द कहीं ज़्यादा टोकन में तोड़ते हैं, तो वही संदेश कई गुना ज़्यादा टोकन ले सकता है और कॉन्टेक्स्ट विंडो जल्दी भरता है; सर्वम और एआई4भारत जैसे भारतीय मॉडल इसे ठीक करने को भारतीय पाठ पर प्रशिक्षित टोकनाइज़र इस्तेमाल करते हैं।",
+    "hinglish": "Model ko fixed vocabulary chahiye. Poore words ke liye lakhon entries lagti aur phir bhi \"UPI-fied\" jaise naye words chhoot jaate; single characters sequence bahut lambi kar dete hain. BPE aur aise tokenizers bytes ya characters se shuru karke baar-baar sabse common pairs milaate hain, aur lagbhag 30,000 se 2,00,000 tokens par rukte hain. Common words ek token; rare words tukdon mein. English mein average ek token lagbhag 4 characters, ya word ka ¾. Zyaadatar English par trained tokenizers Devanagari, Tamil ya Bengali ko har word mein kahin zyada tokens mein todte hain, to wahi message kai guna zyada tokens le sakta hai aur context window jaldi bharta hai; Sarvam aur AI4Bharat jaise Indian models ise theek karne ke liye Indic text par trained tokenizers use karte hain."
+   },
+   "analogy": {
+    "hinglish": "Tokens LEGO bricks jaise hain: common shapes ke ready bricks hain, rare shape ke liye chhote bricks jodne padte hain.",
+    "en": "Tokens are like LEGO bricks: common shapes have ready-made bricks, a rare shape has to be built from small bricks.",
+    "hi": "टोकन लेगो ईंटों जैसे हैं: आम आकारों की तैयार ईंटें हैं, दुर्लभ आकार के लिए छोटी ईंटें जोड़नी पड़ती हैं।"
+   },
+   "realExample": {
+    "en": "API pricing for LLMs is per million tokens, so a Hindi chatbot built on an English-heavy tokenizer can cost noticeably more to run than an English one.",
+    "hinglish": "LLM API pricing per million tokens hoti hai, isliye English-heavy tokenizer par bana Hindi chatbot English wale se kaafi mehenga chal sakta hai.",
+    "hi": "एलएलएम एपीआई का मूल्य प्रति दस लाख टोकन होता है, इसलिए अंग्रेज़ी-प्रधान टोकनाइज़र पर बना हिंदी चैटबॉट चलाने में अंग्रेज़ी वाले से काफ़ी महँगा पड़ सकता है।"
+   }
+  },
+  {
+   "heading": {
+    "en": "Next-token prediction and temperature",
+    "hi": "अगले टोकन का अनुमान और टेम्परेचर",
+    "hinglish": "Next-token prediction aur temperature"
+   },
+   "body": {
+    "en": "An LLM is trained on one simple job: given the tokens so far, predict a probability for each possible next token. After \"Bharat ki rajdhani\", the model might give \"Nai\" 92%, \"Delhi\" 6%, others tiny. To generate, it picks a token, appends it and repeats (autoregressive generation). Temperature reshapes the probabilities: at 0 it almost always picks the top token (focused, repeatable); at 1 it samples normally; above 1 the choices become flatter and more random. Top-p (nucleus) sampling picks only from the smallest set of tokens covering, say, 90% of probability. Everything an LLM does, from code to poems, comes from repeating this step.",
+    "hi": "एलएलएम एक सरल काम पर प्रशिक्षित होता है: अब तक के टोकन देखकर हर संभव अगले टोकन की संभावना बताओ। \"भारत की राजधानी\" के बाद मॉडल \"नई\" को 92%, \"दिल्ली\" को 6%, बाकी को बहुत कम दे सकता है। लिखने के लिए वह एक टोकन चुनता है, जोड़ता है और दोहराता है (ऑटोरिग्रेसिव जनरेशन)। टेम्परेचर संभावनाओं को बदलता है: 0 पर लगभग हमेशा सबसे ऊपर का टोकन (केंद्रित, दोहराने योग्य); 1 पर सामान्य; 1 से ऊपर चुनाव ज़्यादा बराबर और यादृच्छिक। टॉप-पी सैंपलिंग सिर्फ़ उन सबसे कम टोकनों से चुनती है जो मिलकर, मान लो, 90% संभावना बनाएँ। एलएलएम जो भी करता है, कोड से कविता तक, इसी कदम को दोहराने से आता है।",
+    "hinglish": "LLM ek simple kaam par train hota hai: ab tak ke tokens dekh ke har possible next token ki probability batao. \"Bharat ki rajdhani\" ke baad model \"Nai\" ko 92%, \"Delhi\" ko 6%, baaki ko bahut kam de sakta hai. Likhne ke liye woh ek token chunta hai, jodta hai aur repeat karta hai (autoregressive generation). Temperature probabilities badalta hai: 0 par lagbhag hamesha top token (focused, repeatable); 1 par normal; 1 se upar choices zyada flat aur random. Top-p sampling sirf un sabse kam tokens se chunti hai jo milkar, maan lo, 90% probability banayein. LLM jo bhi karta hai, code se kavita tak, isi step ko repeat karne se aata hai."
+   },
+   "analogy": {
+    "hinglish": "Antakshari jaisa: pichhle shabd sun ke agla sochna. Low temperature = hamesha famous gaana; high temperature = koi bhi gaana jo yaad aaye.",
+    "en": "Like antakshari: hear the last word and think of the next. Low temperature = always the famous song; high temperature = any song that comes to mind.",
+    "hi": "अंताक्षरी जैसा: पिछला शब्द सुनकर अगला सोचना। कम तापमान = हमेशा मशहूर गाना; ऊँचा तापमान = कोई भी गाना जो याद आए।"
+   },
+   "realExample": {
+    "en": "Phone keyboards (Gboard, SwiftKey) do tiny next-word prediction; ChatGPT, Gemini, Claude and India's Sarvam models do the same at a vastly larger scale.",
+    "hinglish": "Phone keyboards (Gboard, SwiftKey) chhota next-word prediction karte hain; ChatGPT, Gemini, Claude aur India ke Sarvam models wahi bahut bade scale par karte hain.",
+    "hi": "फ़ोन कीबोर्ड (Gboard, SwiftKey) छोटा अगला-शब्द अनुमान करते हैं; चैटजीपीटी, जेमिनी, क्लॉड और भारत के सर्वम मॉडल यही कहीं बड़े पैमाने पर करते हैं।"
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "In the lab, find a Hindi sentence and its English translation. Record the token counts and compute the ratio. Explain what this means for cost and context length.",
+   "hinglish": "Lab mein ek Hindi sentence aur uska English translation lo. Token counts note karo aur ratio nikaalo. Samjhao iska cost aur context length par kya matlab hai.",
+   "hi": "लैब में एक हिंदी वाक्य और उसका अंग्रेज़ी अनुवाद लो। टोकन गिनती लिखो और अनुपात निकालो। समझाओ इसका लागत और संदर्भ-लंबाई के लिए क्या अर्थ है।"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "About how many tokens is a 300-word English essay?",
+     "hi": "300 शब्दों का अंग्रेज़ी निबंध लगभग कितने टोकन?",
+     "hinglish": "300 words ka English essay lagbhag kitne tokens?"
+    },
+    "options": [
+     {
+      "en": "About 400",
+      "hinglish": "Lagbhag 400",
+      "hi": "लगभग 400"
+     },
+     {
+      "en": "About 30",
+      "hinglish": "Lagbhag 30",
+      "hi": "लगभग 30"
+     },
+     {
+      "en": "About 3,000",
+      "hinglish": "Lagbhag 3,000",
+      "hi": "लगभग 3,000"
+     },
+     {
+      "en": "Exactly 300",
+      "hinglish": "Exactly 300",
+      "hi": "ठीक 300"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "A token is about ¾ of an English word, so 300 ÷ 0.75 ≈ 400 tokens.",
+     "hi": "एक टोकन अंग्रेज़ी शब्द का लगभग ¾ है, तो 300 ÷ 0.75 ≈ 400।",
+     "hinglish": "Ek token English word ka lagbhag ¾ hai, to 300 ÷ 0.75 ≈ 400."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "You need the same factual answer every time. Which temperature?",
+     "hi": "हर बार एक ही तथ्यात्मक जवाब चाहिए। कौन-सा टेम्परेचर?",
+     "hinglish": "Har baar same factual jawab chahiye. Kaunsa temperature?"
+    },
+    "options": [
+     {
+      "en": "0 or close to 0",
+      "hinglish": "0 ya 0 ke paas",
+      "hi": "0 या 0 के क़रीब"
+     },
+     {
+      "en": "1.5",
+      "hinglish": "1.5",
+      "hi": "1.5"
+     },
+     {
+      "en": "2",
+      "hinglish": "2",
+      "hi": "2"
+     },
+     {
+      "en": "It does not matter",
+      "hinglish": "Koi farak nahi",
+      "hi": "इससे फ़र्क नहीं पड़ता"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Low temperature concentrates on the most likely token, making output focused and repeatable.",
+     "hi": "कम टेम्परेचर सबसे संभावित टोकन पर केंद्रित करता है, आउटपुट स्थिर बनता है।",
+     "hinglish": "Low temperature sabse likely token par focus karta hai, output stable banta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why might a Hindi message use more tokens than its English translation?",
+     "hi": "हिंदी संदेश अपने अंग्रेज़ी अनुवाद से ज़्यादा टोकन क्यों ले सकता है?",
+     "hinglish": "Hindi message apne English translation se zyada tokens kyun le sakta hai?"
+    },
+    "options": [
+     {
+      "en": "The tokenizer was trained mostly on English, so Devanagari is split into smaller pieces",
+      "hinglish": "Tokenizer zyaadatar English par train hua, to Devanagari chhote tukdon mein tootta hai",
+      "hi": "टोकनाइज़र ज़्यादातर अंग्रेज़ी पर प्रशिक्षित था, इसलिए देवनागरी छोटे टुकड़ों में बँटती है"
+     },
+     {
+      "en": "Hindi has more ideas",
+      "hinglish": "Hindi mein zyada ideas hain",
+      "hi": "हिंदी में ज़्यादा विचार हैं"
+     },
+     {
+      "en": "Hindi is not allowed",
+      "hinglish": "Hindi allowed nahi",
+      "hi": "हिंदी की अनुमति नहीं है"
+     },
+     {
+      "en": "Tokens are random",
+      "hinglish": "Tokens random hain",
+      "hi": "टोकन यादृच्छिक हैं"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "BPE merges frequent pairs from its training text; scripts it rarely saw stay in small pieces.",
+     "hi": "बीपीई अपने प्रशिक्षण पाठ के आम जोड़े मिलाता है; कम देखी लिपियाँ छोटे टुकड़ों में रहती हैं।",
+     "hinglish": "BPE apne training text ke common pairs milaata hai; kam dekhi scripts chhote tukdon mein rehti hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "order",
+    "prompt": {
+     "en": "Order how an LLM writes the word after \"Mera naam\".",
+     "hi": "\"मेरा नाम\" के बाद का शब्द एलएलएम कैसे लिखता है, क्रम में लगाएँ।",
+     "hinglish": "\"Mera naam\" ke baad ka word LLM kaise likhta hai, order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Split the prompt into tokens",
+      "hinglish": "Prompt ko tokens mein todo",
+      "hi": "प्रॉम्प्ट को टोकन में तोड़ो"
+     },
+     {
+      "en": "Run the network on all tokens",
+      "hinglish": "Network ko saare tokens par chalao",
+      "hi": "सभी टोकन पर नेटवर्क चलाओ"
+     },
+     {
+      "en": "Get probabilities for the next token",
+      "hinglish": "Next token ki probabilities lo",
+      "hi": "अगले टोकन की संभावनाएँ पाओ"
+     },
+     {
+      "en": "Sample one token and append it",
+      "hinglish": "Ek token sample karke jodo",
+      "hi": "एक टोकन चुनकर जोड़ दो"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "Tokenise, compute, score, sample; then repeat for the following token.",
+     "hi": "टोकन बनाओ, गणना, अंक, चुनाव; फिर अगले टोकन के लिए दोहराओ।",
+     "hinglish": "Tokenise, compute, score, sample; phir agle token ke liye repeat."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Tokenise a Hindi sentence and its English translation in the lab.",
+     "hi": "लैब में एक हिंदी वाक्य और उसका अंग्रेज़ी अनुवाद टोकन करें।",
+     "hinglish": "Lab mein ek Hindi sentence aur uska English translation tokenise karo."
+    },
+    "answer": {
+     "event": "compared-scripts"
+    },
+    "explain": {
+     "en": "The lab shows token counts side by side so you can see the script cost difference.",
+     "hi": "लैब टोकन गिनती साथ-साथ दिखाता है ताकि लिपि की लागत का अंतर दिखे।",
+     "hinglish": "Lab token counts side-by-side dikhata hai taaki script cost ka farak dikhe."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "ai.llm-tokens"
+ ],
+ "sources": [
+  {
+   "title": "Sennrich, Haddow, Birch (2016) Neural Machine Translation of Rare Words with Subword Units (BPE)",
+   "url": "https://arxiv.org/abs/1508.07909",
+   "licence": "fact reference"
+  },
+  {
+   "title": "OpenAI — What are tokens and how to count them",
+   "url": "https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Sarvam AI",
+   "url": "https://www.sarvam.ai/",
+   "licence": "fact reference"
+  }
+ ]
+}

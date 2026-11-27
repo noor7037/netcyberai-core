@@ -1,0 +1,383 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.security-engineering.11",
+ "level": 3,
+ "classes": [
+  10,
+  11,
+  12
+ ],
+ "unit": "security-engineering",
+ "title": {
+  "en": "DPDP Act and IT Act basics",
+  "hi": "DPDP अधिनियम और आईटी अधिनियम की मूल बातें",
+  "hinglish": "DPDP Act aur IT Act ki basics"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [
+  "L3.security-engineering.01"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain the main duties of the Digital Personal Data Protection Act, 2023",
+   "hi": "डिजिटल व्यक्तिगत डेटा संरक्षण अधिनियम, 2023 के मुख्य कर्तव्य समझाओ",
+   "hinglish": "Digital Personal Data Protection Act, 2023 ke main duties samjhao"
+  },
+  {
+   "en": "List your rights as a data principal and the special rules for children",
+   "hi": "डेटा प्रधान के रूप में अपने अधिकार और बच्चों के ख़ास नियम बताओ",
+   "hinglish": "Data principal ke roop mein apne rights aur bachchon ke special rules batao"
+  },
+  {
+   "en": "Recognise key IT Act offences and where to report",
+   "hi": "आईटी अधिनियम के मुख्य अपराध और शिकायत कहाँ करें पहचानो",
+   "hinglish": "IT Act ke main offences aur report kahan karein pehchaano"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Personal data",
+   "hinglish": "Tumhe pehchaanne wala data",
+   "en": "Any data about an individual who can be identified by it",
+   "hi": "किसी व्यक्ति के बारे में डेटा जिससे उसकी पहचान हो सके"
+  },
+  {
+   "term": "Data principal",
+   "hinglish": "Jiska data hai",
+   "en": "The person the data is about (for a child, the parent acts too)",
+   "hi": "वह व्यक्ति जिसका डेटा है (बच्चे के लिए अभिभावक भी)"
+  },
+  {
+   "term": "Data fiduciary",
+   "hinglish": "Data rakhne wali company",
+   "en": "The organisation that decides why and how personal data is processed",
+   "hi": "वह संगठन जो तय करता है निजी डेटा क्यों और कैसे संसाधित हो"
+  },
+  {
+   "term": "Consent",
+   "hinglish": "Saaf ijaazat",
+   "en": "Free, specific, informed, unambiguous permission that can be withdrawn",
+   "hi": "स्वतंत्र, विशिष्ट, सूचित, स्पष्ट अनुमति जो वापस ली जा सके"
+  },
+  {
+   "term": "Data Protection Board",
+   "hinglish": "Shikayat sunne wala board",
+   "en": "The body that hears complaints and imposes penalties under the DPDP Act",
+   "hi": "DPDP अधिनियम के तहत शिकायतें सुनने और जुर्माना लगाने वाली संस्था"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "An app asks for your contacts, location and photos just to show cricket scores. Under DPDP, data must be limited to a stated purpose.",
+    "hi": "एक ऐप सिर्फ़ क्रिकेट स्कोर दिखाने के लिए आपके संपर्क, स्थान और फ़ोटो माँगता है। DPDP के तहत डेटा बताए उद्देश्य तक सीमित होना चाहिए।",
+    "hinglish": "Ek app sirf cricket scores dikhane ke liye tumhare contacts, location aur photos maangta hai. DPDP ke tahat data bataye purpose tak limited hona chahiye."
+   },
+   "visual": "anim:permission-pile",
+   "narration": {
+    "en": "An app asks for your contacts, location and photos just to show cricket scores. Under DPDP, data must be limited to a stated purpose.",
+    "hi": "एक ऐप सिर्फ़ क्रिकेट स्कोर दिखाने के लिए आपके संपर्क, स्थान और फ़ोटो माँगता है। DPDP के तहत डेटा बताए उद्देश्य तक सीमित होना चाहिए।",
+    "hinglish": "Ek app sirf cricket scores dikhane ke liye tumhare contacts, location aur photos maangta hai. DPDP ke tahat data bataye purpose tak limited hona chahiye."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Consent must be clear and as easy to withdraw as to give. Notices must be available in English or any of the 22 scheduled Indian languages.",
+    "hi": "सहमति स्पष्ट हो और देने जितनी आसानी से वापस ली जा सके। सूचना अंग्रेज़ी या 22 अनुसूचित भारतीय भाषाओं में उपलब्ध हो।",
+    "hinglish": "Consent clear ho aur dene jitni aasaani se wapas li ja sake. Notice English ya 22 scheduled Indian languages mein available ho."
+   },
+   "visual": "anim:consent-toggle",
+   "narration": {
+    "en": "Consent must be clear and as easy to withdraw as to give. Notices must be available in English or any of the 22 scheduled Indian languages.",
+    "hi": "सहमति स्पष्ट हो और देने जितनी आसानी से वापस ली जा सके। सूचना अंग्रेज़ी या 22 अनुसूचित भारतीय भाषाओं में उपलब्ध हो।",
+    "hinglish": "Consent clear ho aur dene jitni aasaani se wapas li ja sake. Notice English ya 22 scheduled Indian languages mein available ho."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "For anyone under 18, companies need verifiable parental consent, and must not track or target ads at children.",
+    "hi": "18 से कम किसी के लिए कंपनियों को सत्यापन योग्य अभिभावक सहमति चाहिए, और वे बच्चों को ट्रैक या उन पर विज्ञापन लक्षित नहीं कर सकतीं।",
+    "hinglish": "18 se kam kisi ke liye companies ko verifiable parental consent chahiye, aur woh bachchon ko track ya un par ads target nahi kar sakti."
+   },
+   "visual": "anim:child-shield",
+   "narration": {
+    "en": "For anyone under 18, companies need verifiable parental consent, and must not track or target ads at children.",
+    "hi": "18 से कम किसी के लिए कंपनियों को सत्यापन योग्य अभिभावक सहमति चाहिए, और वे बच्चों को ट्रैक या उन पर विज्ञापन लक्षित नहीं कर सकतीं।",
+    "hinglish": "18 se kam kisi ke liye companies ko verifiable parental consent chahiye, aur woh bachchon ko track ya un par ads target nahi kar sakti."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Breaches must be reported to the Board and to affected people. Penalties reach ₹250 crore per breach for failing to protect data.",
+    "hi": "लीक की सूचना बोर्ड और प्रभावित लोगों को देनी होगी। डेटा न बचाने पर जुर्माना प्रति उल्लंघन ₹250 करोड़ तक।",
+    "hinglish": "Breaches ki report Board aur affected logon ko deni hogi. Data na bachane par penalty per breach ₹250 crore tak."
+   },
+   "visual": "anim:penalty-scale",
+   "narration": {
+    "en": "Breaches must be reported to the Board and to affected people. Penalties reach ₹250 crore per breach for failing to protect data.",
+    "hi": "लीक की सूचना बोर्ड और प्रभावित लोगों को देनी होगी। डेटा न बचाने पर जुर्माना प्रति उल्लंघन ₹250 करोड़ तक।",
+    "hinglish": "Breaches ki report Board aur affected logon ko deni hogi. Data na bachane par penalty per breach ₹250 crore tak."
+   }
+  }
+ ],
+ "play": {
+  "lab": "agent-loop",
+  "config": {
+   "scenario": "guardrail-gauntlet"
+  },
+  "goal": {
+   "en": "Act as the guardrail for a school helpdesk agent. Block requests that would leak another student's personal data, and allow honest ones. Think about which DPDP duty each decision protects.",
+   "hi": "स्कूल सहायता एजेंट के सुरक्षा-घेरा बनो। वे अनुरोध रोको जो दूसरे छात्र का निजी डेटा लीक करते, और ईमानदार अनुरोध आने दो। सोचो हर फ़ैसला कौन-सा DPDP कर्तव्य बचाता है।",
+   "hinglish": "School helpdesk agent ke guardrail bano. Woh requests block karo jo doosre student ka personal data leak karti, aur honest requests allow karo. Socho har faisla kaunsi DPDP duty bachata hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "DPDP Act, 2023 in brief",
+    "hi": "DPDP अधिनियम, 2023 संक्षेप में",
+    "hinglish": "DPDP Act, 2023 short mein"
+   },
+   "body": {
+    "en": "Passed in August 2023, with the DPDP Rules notified in November 2025 and duties phasing in over about 18 months. Fiduciaries must: process data only for a lawful, stated purpose with consent (or certain legitimate uses), give a clear notice, keep data accurate, protect it with reasonable security safeguards, report breaches, and erase data when the purpose is over. Data principals have rights to access a summary of their data, correct and erase it, nominate someone, and get grievances redressed. Large \"significant data fiduciaries\" have extra duties such as a Data Protection Officer and audits.",
+    "hi": "अगस्त 2023 में पारित, DPDP नियम नवंबर 2025 में अधिसूचित, और कर्तव्य लगभग 18 महीनों में चरणबद्ध लागू। प्रत्ययी को: सिर्फ़ वैध, बताए उद्देश्य के लिए सहमति (या कुछ वैध उपयोगों) से डेटा संसाधित करना, स्पष्ट सूचना देना, डेटा सही रखना, उचित सुरक्षा उपायों से बचाना, लीक बताना, और उद्देश्य पूरा होने पर डेटा मिटाना होगा। डेटा प्रधानों को अपने डेटा का सार देखने, सुधारने और मिटवाने, किसी को नामित करने, और शिकायत निवारण का अधिकार है। बड़े \"महत्वपूर्ण डेटा प्रत्ययी\" के अतिरिक्त कर्तव्य हैं, जैसे डेटा संरक्षण अधिकारी और ऑडिट।",
+    "hinglish": "August 2023 mein paas, DPDP Rules November 2025 mein notified, aur duties lagbhag 18 mahino mein phase-wise lagu. Fiduciaries ko: sirf lawful, bataye purpose ke liye consent (ya kuch legitimate uses) se data process karna, clear notice dena, data accurate rakhna, reasonable security safeguards se bachana, breaches report karna, aur purpose khatam hone par data erase karna hoga. Data principals ko apne data ka summary dekhne, correct aur erase karwane, kisi ko nominate karne, aur grievance redressal ka right hai. Bade \"significant data fiduciaries\" ke extra duties hain jaise Data Protection Officer aur audits."
+   },
+   "analogy": {
+    "en": "Lending your notebook to a friend for one chapter: they should use it for that chapter, keep it safe, and give it back — not photocopy it for the whole class.",
+    "hi": "दोस्त को एक अध्याय के लिए कॉपी देना: वह उसी अध्याय के लिए इस्तेमाल करे, सँभालकर रखे, और लौटा दे — पूरी कक्षा के लिए फ़ोटोकॉपी न करे।",
+    "hinglish": "Dost ko ek chapter ke liye notebook dena: woh usi chapter ke liye use kare, sambhaal ke rakhe, aur lauta de — poori class ke liye photocopy na kare."
+   },
+   "realExample": {
+    "en": "This Tech Lab app follows the same idea: the parent chooses the language and consents for the child, and only learning progress needed for the lessons is stored.",
+    "hi": "यह टेक लैब ऐप भी यही विचार अपनाता है: अभिभावक भाषा चुनते और बच्चे के लिए सहमति देते हैं, और सिर्फ़ पाठों के लिए ज़रूरी सीखने की प्रगति रखी जाती है।",
+    "hinglish": "Yeh Tech Lab app bhi yahi idea follow karta hai: parent language chunte aur bachche ke liye consent dete hain, aur sirf lessons ke liye zaroori learning progress store hoti hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "IT Act offences everyone should know",
+    "hi": "आईटी अधिनियम के अपराध जो सबको पता हों",
+    "hinglish": "IT Act ke offences jo sabko pata hon"
+   },
+   "body": {
+    "en": "The Information Technology Act, 2000 (amended 2008) covers: Section 66 — hacking/unauthorised access and damage; 66C — identity theft (misusing someone's password, signature or ID); 66D — cheating by impersonation online (fake bank calls, fake profiles); 66E — capturing or sharing private images without consent; 67 — publishing obscene material. Cyberbullying and threats may also fall under the Bharatiya Nyaya Sanhita, 2023. Report at cybercrime.gov.in, call 1930 for financial fraud (fast reporting can freeze money in transit), and keep screenshots as evidence.",
+    "hi": "सूचना प्रौद्योगिकी अधिनियम, 2000 (2008 में संशोधित) में: धारा 66 — हैकिंग/अनधिकृत पहुँच और नुक़सान; 66C — पहचान की चोरी (किसी का पासवर्ड, हस्ताक्षर या आईडी दुरुपयोग); 66D — ऑनलाइन रूप धरकर धोखा (नक़ली बैंक कॉल, नक़ली प्रोफ़ाइल); 66E — बिना सहमति निजी चित्र लेना या बाँटना; 67 — अश्लील सामग्री प्रकाशित करना। साइबर धमकी और डराना भारतीय न्याय संहिता, 2023 के तहत भी आ सकते हैं। cybercrime.gov.in पर शिकायत करो, वित्तीय धोखाधड़ी के लिए 1930 पर कॉल करो (जल्दी रिपोर्ट से रास्ते में पैसा रुक सकता है), और सबूत के लिए स्क्रीनशॉट रखो।",
+    "hinglish": "Information Technology Act, 2000 (2008 mein amended) mein: Section 66 — hacking/unauthorised access aur nuksaan; 66C — identity theft (kisi ka password, signature ya ID misuse); 66D — online impersonation se cheating (fake bank calls, fake profiles); 66E — bina consent private images lena ya share karna; 67 — obscene material publish karna. Cyberbullying aur dhamki Bharatiya Nyaya Sanhita, 2023 ke tahat bhi aa sakte hain. cybercrime.gov.in par report karo, financial fraud ke liye 1930 par call karo (jaldi report se raaste mein paisa ruk sakta hai), aur saboot ke liye screenshots rakho."
+   },
+   "analogy": {
+    "en": "Laws are the referee: they do not stop every foul, but they define fouls and give you someone to call.",
+    "hi": "क़ानून रेफ़री हैं: हर फ़ाउल नहीं रोकते, पर फ़ाउल तय करते हैं और आपको बुलाने के लिए कोई देते हैं।",
+    "hinglish": "Laws referee hain: har foul nahi rokte, par fouls define karte hain aur tumhe bulane ke liye koi dete hain."
+   },
+   "realExample": {
+    "en": "Someone makes a fake Instagram profile using a classmate's photos to ask friends for money: that is impersonation (66D) and identity theft (66C) — report it to the platform and on cybercrime.gov.in.",
+    "hi": "कोई सहपाठी की फ़ोटो से नक़ली इंस्टाग्राम प्रोफ़ाइल बनाकर दोस्तों से पैसे माँगता है: यह रूप धरना (66D) और पहचान की चोरी (66C) है — प्लेटफ़ॉर्म और cybercrime.gov.in पर रिपोर्ट करो।",
+    "hinglish": "Koi classmate ki photos se fake Instagram profile banakar doston se paise maangta hai: yeh impersonation (66D) aur identity theft (66C) hai — platform aur cybercrime.gov.in par report karo."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Pick one app on your family's phone. Read its privacy notice: what data does it collect, why, how can you withdraw consent, and who is its grievance officer? Write a 5-line summary.",
+   "hi": "घर के फ़ोन का एक ऐप चुनो। उसकी निजता सूचना पढ़ो: कौन-सा डेटा लेता है, क्यों, सहमति कैसे वापस ले सकते हो, और शिकायत अधिकारी कौन है? 5 पंक्तियों का सार लिखो।",
+   "hinglish": "Ghar ke phone ka ek app chuno. Uska privacy notice padho: kaunsa data leta hai, kyun, consent kaise wapas le sakte ho, aur grievance officer kaun hai? 5 lines ka summary likho."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Under DPDP, a company processing a 15-year-old's data needs…",
+     "hi": "DPDP के तहत 15 साल के बच्चे का डेटा संसाधित करने वाली कंपनी को चाहिए…",
+     "hinglish": "DPDP ke tahat 15 saal ke bachche ka data process karne wali company ko chahiye…"
+    },
+    "options": [
+     {
+      "en": "Verifiable parental consent",
+      "hi": "सत्यापन योग्य अभिभावक सहमति",
+      "hinglish": "Verifiable parental consent"
+     },
+     {
+      "en": "Nothing special",
+      "hi": "कुछ ख़ास नहीं",
+      "hinglish": "Kuch khaas nahi"
+     },
+     {
+      "en": "Only the child's click",
+      "hi": "सिर्फ़ बच्चे का क्लिक",
+      "hinglish": "Sirf bachche ka click"
+     },
+     {
+      "en": "A police permit",
+      "hi": "पुलिस अनुमति",
+      "hinglish": "Police permit"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "A child under DPDP is anyone under 18.",
+     "hi": "DPDP में 18 से कम हर कोई बच्चा है।",
+     "hinglish": "DPDP mein 18 se kam har koi bachcha hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are rights of a data principal? (choose all)",
+     "hi": "डेटा प्रधान के अधिकार कौन-से हैं? (सभी चुनो)",
+     "hinglish": "Data principal ke rights kaunse hain? (saare chuno)"
+    },
+    "options": [
+     {
+      "en": "Correct and erase their data",
+      "hi": "अपना डेटा सुधारना और मिटवाना",
+      "hinglish": "Apna data correct aur erase karwana"
+     },
+     {
+      "en": "Withdraw consent",
+      "hi": "सहमति वापस लेना",
+      "hinglish": "Consent wapas lena"
+     },
+     {
+      "en": "Grievance redressal",
+      "hi": "शिकायत निवारण",
+      "hinglish": "Grievance redressal"
+     },
+     {
+      "en": "Read other people's data",
+      "hi": "दूसरों का डेटा पढ़ना",
+      "hinglish": "Doosron ka data padhna"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2
+    ],
+    "explain": {
+     "en": "Rights cover your own data, never others'.",
+     "hi": "अधिकार आपके अपने डेटा के हैं, दूसरों के नहीं।",
+     "hinglish": "Rights tumhare apne data ke hain, doosron ke nahi."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "match",
+    "prompt": {
+     "en": "Match the IT Act section to the offence.",
+     "hi": "आईटी अधिनियम धारा को अपराध से मिलाओ।",
+     "hinglish": "IT Act section ko offence se milao."
+    },
+    "options": [
+     "66",
+     "66C",
+     "66D"
+    ],
+    "answer": [
+     {
+      "en": "Unauthorised access and damage",
+      "hi": "अनधिकृत पहुँच और नुक़सान",
+      "hinglish": "Unauthorised access aur nuksaan"
+     },
+     {
+      "en": "Identity theft",
+      "hi": "पहचान की चोरी",
+      "hinglish": "Identity theft"
+     },
+     {
+      "en": "Cheating by impersonation",
+      "hi": "रूप धरकर धोखा",
+      "hinglish": "Impersonation se cheating"
+     }
+    ],
+    "explain": {
+     "en": "These three cover most everyday cyber fraud.",
+     "hi": "ये तीनों ज़्यादातर रोज़मर्रा की साइबर धोखाधड़ी कवर करती हैं।",
+     "hinglish": "Yeh teeno zyaadatar rozmarra ke cyber fraud cover karte hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Money was just stolen through a UPI scam. Fastest step?",
+     "hi": "यूपीआई ठगी से अभी पैसे गए। सबसे तेज़ क़दम?",
+     "hinglish": "UPI scam se abhi paise gaye. Sabse tez step?"
+    },
+    "options": [
+     {
+      "en": "Call 1930 immediately",
+      "hi": "तुरंत 1930 पर कॉल करो",
+      "hinglish": "Turant 1930 par call karo"
+     },
+     {
+      "en": "Wait a week",
+      "hi": "एक हफ़्ता रुको",
+      "hinglish": "Ek hafta ruko"
+     },
+     {
+      "en": "Delete the app",
+      "hi": "ऐप मिटाओ",
+      "hinglish": "App delete karo"
+     },
+     {
+      "en": "Post about it only",
+      "hi": "बस पोस्ट करो",
+      "hinglish": "Bas post karo"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Quick reports can freeze money before it is withdrawn.",
+     "hi": "जल्दी रिपोर्ट से निकालने से पहले पैसा रोका जा सकता है।",
+     "hinglish": "Jaldi report se nikaalne se pehle paisa roka ja sakta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the guardrail gauntlet.",
+     "hi": "सुरक्षा-घेरा चुनौती पूरी करो।",
+     "hinglish": "Guardrail gauntlet poora karo."
+    },
+    "answer": {
+     "event": "guardrail-score"
+    },
+    "explain": {
+     "en": "You protected personal data while still helping honest users.",
+     "hi": "आपने ईमानदार उपयोगकर्ताओं की मदद करते हुए निजी डेटा बचाया।",
+     "hinglish": "Tumne honest users ki madad karte hue personal data bachaya."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "topics": [
+  "cyber.dpdp-law",
+  "cyber.ethics-law"
+ ],
+ "sources": [
+  {
+   "title": "MeitY — DPDP Act 2023 and DPDP Rules 2025",
+   "url": "https://www.meity.gov.in/data-protection-framework",
+   "licence": "fact reference"
+  },
+  {
+   "title": "National Cyber Crime Reporting Portal",
+   "url": "https://cybercrime.gov.in/",
+   "licence": "fact reference"
+  }
+ ]
+}

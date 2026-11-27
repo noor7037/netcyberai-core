@@ -1,0 +1,336 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.machine-learning.07",
+ "level": 3,
+ "classes": [
+  10,
+  11
+ ],
+ "unit": "machine-learning",
+ "title": {
+  "en": "Data, bias and fairness",
+  "hi": "डेटा, पक्षपात और निष्पक्षता",
+  "hinglish": "Data, bias aur fairness"
+ },
+ "minutes": 12,
+ "xp": 50,
+ "prereq": [
+  "L3.machine-learning.04"
+ ],
+ "outcomes": [
+  {
+   "en": "Name five sources of bias in ML systems",
+   "hinglish": "ML systems mein bias ke paanch source batao",
+   "hi": "एमएल प्रणालियों में पक्षपात के पाँच स्रोत बताना"
+  },
+  {
+   "en": "Check a model's error rate per group",
+   "hinglish": "Har group ke liye model ka error rate check karo",
+   "hi": "हर समूह के लिए मॉडल की त्रुटि दर जाँचना"
+  },
+  {
+   "en": "Propose fixes: better data, audits, human review",
+   "hinglish": "Upaay batao: behtar data, audits, human review",
+   "hi": "सुधार सुझाना: बेहतर डेटा, ऑडिट, मानव समीक्षा"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Bias (fairness)",
+   "hinglish": "Kisi group ke saath galat jhukaav",
+   "en": "Systematic unfair difference in outcomes between groups",
+   "hi": "समूहों के बीच परिणामों में व्यवस्थित अनुचित अंतर"
+  },
+  {
+   "term": "Representation bias",
+   "hinglish": "Data mein kuch log kam dikhe",
+   "en": "Some groups are under-represented in training data",
+   "hi": "प्रशिक्षण डेटा में कुछ समूहों का कम प्रतिनिधित्व"
+  },
+  {
+   "term": "Proxy",
+   "hinglish": "Chhupa sanket jo group bata de",
+   "en": "A feature that indirectly reveals a protected attribute",
+   "hi": "ऐसा फ़ीचर जो परोक्ष रूप से संरक्षित गुण उजागर करता है"
+  },
+  {
+   "term": "Audit",
+   "hinglish": "Model ki group-wise jaanch",
+   "en": "Systematic testing of a model across groups",
+   "hi": "समूहों में मॉडल का व्यवस्थित परीक्षण"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "A voice assistant trained mostly on city accents mishears a farmer speaking Bhojpuri-accented Hindi.",
+    "hi": "मुख्य रूप से शहरी लहजे पर प्रशिक्षित वॉइस असिस्टेंट भोजपुरी लहजे वाली हिंदी बोलने वाले किसान को गलत सुनता है।",
+    "hinglish": "Zyaadatar city accents par trained voice assistant Bhojpuri-accent wali Hindi bolne wale kisan ko galat sunta hai."
+   },
+   "visual": "anim:accent-mishear",
+   "narration": {
+    "en": "A voice assistant trained mostly on city accents mishears a farmer speaking Bhojpuri-accented Hindi.",
+    "hi": "मुख्य रूप से शहरी लहजे पर प्रशिक्षित वॉइस असिस्टेंट भोजपुरी लहजे वाली हिंदी बोलने वाले किसान को गलत सुनता है।",
+    "hinglish": "Zyaadatar city accents par trained voice assistant Bhojpuri-accent wali Hindi bolne wale kisan ko galat sunta hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Bias enters at every stage: who is in the data, how labels were made, which features are used, and how the model is deployed.",
+    "hi": "पक्षपात हर चरण में घुसता है: डेटा में कौन है, लेबल कैसे बने, कौन-से फ़ीचर लगे और मॉडल कैसे तैनात हुआ।",
+    "hinglish": "Bias har stage mein ghusta hai: data mein kaun hai, labels kaise bane, kaunse features lage aur model kaise deploy hua."
+   },
+   "visual": "anim:bias-pipeline",
+   "narration": {
+    "en": "Bias enters at every stage: who is in the data, how labels were made, which features are used, and how the model is deployed.",
+    "hi": "पक्षपात हर चरण में घुसता है: डेटा में कौन है, लेबल कैसे बने, कौन-से फ़ीचर लगे और मॉडल कैसे तैनात हुआ।",
+    "hinglish": "Bias har stage mein ghusta hai: data mein kaun hai, labels kaise bane, kaunse features lage aur model kaise deploy hua."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Fix: measure error per group, collect representative data, remove proxies, keep humans in the loop for big decisions.",
+    "hi": "सुधार: हर समूह की त्रुटि मापो, प्रतिनिधि डेटा जुटाओ, प्रॉक्सी हटाओ, बड़े फ़ैसलों में इंसान रखो।",
+    "hinglish": "Fix: har group ka error naapo, representative data jodo, proxies hatao, bade faislon mein insaan rakho."
+   },
+   "visual": "anim:bias-fixes",
+   "narration": {
+    "en": "Fix: measure error per group, collect representative data, remove proxies, keep humans in the loop for big decisions.",
+    "hi": "सुधार: हर समूह की त्रुटि मापो, प्रतिनिधि डेटा जुटाओ, प्रॉक्सी हटाओ, बड़े फ़ैसलों में इंसान रखो।",
+    "hinglish": "Fix: har group ka error naapo, representative data jodo, proxies hatao, bade faislon mein insaan rakho."
+   }
+  }
+ ],
+ "play": {
+  "lab": "nn-playground",
+  "config": {
+   "mode": "classify",
+   "dataset": "imbalanced-groups",
+   "hidden": [
+    4
+   ],
+   "showGroups": true
+  },
+  "goal": {
+   "en": "Train on data where group B has only 10% of the points. Compare accuracy for groups A and B, then balance the data.",
+   "hinglish": "Aisa data train karo jahan group B ke sirf 10% points hain. Group A aur B ki accuracy compare karo, phir data balance karo.",
+   "hi": "ऐसे डेटा पर प्रशिक्षित करो जिसमें समूह B के सिर्फ़ 10% बिंदु हैं। समूह A और B की सटीकता की तुलना करो, फिर डेटा संतुलित करो।"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Where bias comes from",
+    "hi": "पक्षपात कहाँ से आता है",
+    "hinglish": "Bias kahan se aata hai"
+   },
+   "body": {
+    "en": "Historical bias: the world was unfair, so past data teaches unfairness (old hiring records that favoured men). Representation bias: rare groups get worse results; the 2018 Gender Shades study found commercial face-analysis error rates under 1% for lighter-skinned men but up to about 35% for darker-skinned women. Measurement bias: labels or features collected differently for different groups. Proxy bias: delete \"religion\" or \"caste\" and surname or PIN code can still reveal it. Deployment bias: a model used for a purpose or place it was not built for.",
+    "hi": "ऐतिहासिक पक्षपात: दुनिया अन्यायपूर्ण थी, तो पुराना डेटा अन्याय सिखाता है (पुराने भर्ती रिकॉर्ड जो पुरुषों को तरजीह देते थे)। प्रतिनिधित्व पक्षपात: कम दिखने वाले समूहों को खराब नतीजे; 2018 के जेंडर शेड्स अध्ययन में व्यावसायिक चेहरा-विश्लेषण की त्रुटि गोरे पुरुषों के लिए 1% से कम पर साँवली महिलाओं के लिए लगभग 35% तक मिली। माप पक्षपात: अलग समूहों के लिए लेबल या फ़ीचर अलग तरह से जुटाए गए। प्रॉक्सी पक्षपात: \"धर्म\" या \"जाति\" हटाओ तब भी उपनाम या पिन कोड उसे बता सकते हैं। तैनाती पक्षपात: मॉडल ऐसे काम या जगह में लगे जिसके लिए बना ही नहीं।",
+    "hinglish": "Historical bias: duniya unfair thi, to purana data unfairness sikhata hai (purane hiring records jo mardon ko tarjeeh dete the). Representation bias: kam dikhne wale groups ko kharab results; 2018 ki Gender Shades study mein commercial face-analysis ka error gore mardon ke liye 1% se kam par saanvli mahilaon ke liye lagbhag 35% tak mila. Measurement bias: alag groups ke labels ya features alag tareeke se collect hue. Proxy bias: \"dharm\" ya \"jaati\" hatao phir bhi surname ya PIN code bata sakte hain. Deployment bias: model aise kaam ya jagah lage jiske liye bana hi nahi."
+   },
+   "analogy": {
+    "hinglish": "Agar sirf Mumbai ke bachchon se poochh ke \"India ka favourite khaana\" decide karo, to jawab poore desh ka nahi hoga.",
+    "en": "If you decide \"India's favourite food\" by asking only Mumbai children, the answer will not represent the whole country.",
+    "hi": "अगर सिर्फ़ मुंबई के बच्चों से पूछकर \"भारत का पसंदीदा खाना\" तय करो, तो उत्तर पूरे देश का नहीं होगा।"
+   },
+   "realExample": {
+    "en": "India's Bhashini programme crowdsources speech and text in the 22 scheduled languages (Bhasha Daan) so that AI works for speakers of every Indian language, not only English and Hindi.",
+    "hinglish": "India ka Bhashini programme 22 scheduled languages mein speech aur text crowdsource karta hai (Bhasha Daan) taaki AI har Indian language bolne wale ke liye kaam kare, sirf English-Hindi nahi.",
+    "hi": "भारत का भाषिणी कार्यक्रम 22 अनुसूचित भाषाओं में वाणी और पाठ जनसहयोग से जुटाता है (भाषा दान) ताकि एआई हर भारतीय भाषा के बोलने वालों के लिए काम करे, सिर्फ़ अंग्रेज़ी और हिंदी के लिए नहीं।"
+   }
+  },
+  {
+   "heading": {
+    "en": "Measuring and fixing unfairness",
+    "hi": "अन्याय मापना और सुधारना",
+    "hinglish": "Unfairness naapna aur theek karna"
+   },
+   "body": {
+    "en": "Measure first: split the test set by group (gender, language, region, age) and compare accuracy, false-positive and false-negative rates. A loan model with good overall accuracy may still reject qualified applicants from one region twice as often. Then fix: collect representative data, re-weight or resample small groups, test and remove proxy features, document the model with a \"model card\", and keep human review plus an appeal route for decisions that affect people's lives. India's DPDP Act 2023 also requires personal data to be processed for a stated lawful purpose and kept accurate.",
+    "hi": "पहले मापो: टेस्ट सेट को समूह (लिंग, भाषा, क्षेत्र, आयु) से बाँटो और सटीकता, झूठे-पॉज़िटिव और झूठे-नेगेटिव दरों की तुलना करो। अच्छी कुल सटीकता वाला ऋण मॉडल भी एक क्षेत्र के योग्य आवेदकों को दोगुना नकार सकता है। फिर सुधारो: प्रतिनिधि डेटा जुटाओ, छोटे समूहों को फिर से भार दो, प्रॉक्सी फ़ीचर जाँचो-हटाओ, \"मॉडल कार्ड\" से दस्तावेज़ बनाओ, और लोगों के जीवन पर असर डालने वाले फ़ैसलों में मानवीय समीक्षा और अपील रखो। भारत का डीपीडीपी अधिनियम 2023 भी कहता है कि निजी डेटा बताए गए कानूनी उद्देश्य के लिए संसाधित हो और सटीक रखा जाए।",
+    "hinglish": "Pehle naapo: test set ko group (gender, language, region, age) se baanto aur accuracy, false-positive aur false-negative rates compare karo. Achhi overall accuracy wala loan model bhi ek region ke qualified applicants ko double reject kar sakta hai. Phir theek karo: representative data jodo, chhote groups ko re-weight karo, proxy features test karke hatao, \"model card\" se document karo, aur logon ki life par asar daalne wale faislon mein human review aur appeal rakho. India ka DPDP Act 2023 bhi kehta hai personal data bataye gaye lawful purpose ke liye process ho aur accurate rakha jaaye."
+   },
+   "analogy": {
+    "hinglish": "Cricket selector sirf ek city ke trials dekhe to doosre shehron ke achhe khiladi chhoot jaayenge — har region ka trial = group-wise audit.",
+    "en": "If a cricket selector watches trials in only one city, good players from other cities are missed — a trial in every region = a group-wise audit.",
+    "hi": "क्रिकेट चयनकर्ता सिर्फ़ एक शहर के ट्रायल देखे तो दूसरे शहरों के अच्छे खिलाड़ी छूट जाएँगे — हर क्षेत्र का ट्रायल = समूह-वार ऑडिट।"
+   },
+   "realExample": {
+    "en": "Responsible teams publish model cards listing performance per language and known failure cases, as AI4Bharat (IIT Madras) does for its open Indic language models.",
+    "hinglish": "Responsible teams model cards publish karti hain jinmein har language ki performance aur known failures hote hain, jaise AI4Bharat (IIT Madras) apne open Indic models ke liye karta hai.",
+    "hi": "ज़िम्मेदार टीमें हर भाषा का प्रदर्शन और ज्ञात विफलताएँ बताने वाले मॉडल कार्ड प्रकाशित करती हैं, जैसे AI4Bharat (आईआईटी मद्रास) अपने खुले भारतीय भाषा मॉडलों के लिए करता है।"
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write a one-page \"model card\" for an imaginary school-attendance face-recognition system: who it is for, data used, the per-group test results you would demand, and its risks.",
+   "hinglish": "Ek imaginary school-attendance face-recognition system ka ek page ka \"model card\" likho: kiske liye, kaunsa data, kaunse per-group results maangoge, aur risks.",
+   "hi": "एक काल्पनिक स्कूल-उपस्थिति चेहरा-पहचान प्रणाली के लिए एक पेज का \"मॉडल कार्ड\" लिखो: यह किसके लिए है, कौन-सा डेटा, तुम कौन-से समूह-वार परीक्षण परिणाम माँगोगे, और इसके जोखिम।"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "A model is 95% accurate overall but 70% for Odia speakers. What should you do first?",
+     "hi": "एक मॉडल कुल 95% सटीक है पर ओड़िया बोलने वालों के लिए 70%। पहले क्या करें?",
+     "hinglish": "Model overall 95% accurate hai par Odia bolne walon ke liye 70%. Pehle kya karein?"
+    },
+    "options": [
+     {
+      "en": "Collect more Odia data and re-test per group before launch",
+      "hinglish": "Zyada Odia data jodo aur launch se pehle group-wise re-test karo",
+      "hi": "लॉन्च से पहले और ओड़िया डेटा जुटाओ और हर समूह पर फिर से जाँचो"
+     },
+     {
+      "en": "Launch anyway, 95% is great",
+      "hinglish": "Launch kar do, 95% badhiya hai",
+      "hi": "फिर भी लॉन्च करो, 95% बढ़िया है"
+     },
+     {
+      "en": "Remove Odia users from the app",
+      "hinglish": "Odia users hata do",
+      "hi": "ऐप से ओड़िया उपयोगकर्ताओं को हटा दो"
+     },
+     {
+      "en": "Report only the 95%",
+      "hinglish": "Sirf 95% report karo",
+      "hi": "सिर्फ़ 95% बताओ"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "The overall number hides a group the model fails. Representative data and per-group testing fix the cause.",
+     "hi": "कुल संख्या उस समूह को छिपाती है जिस पर मॉडल विफल है। प्रतिनिधि डेटा और समूह-वार जाँच कारण सुधारते हैं।",
+     "hinglish": "Overall number us group ko chhupata hai jahan model fail hai. Representative data aur group-wise testing asli wajah theek karte hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "You removed \"caste\" from a loan dataset, but bias remains. The most likely reason is…",
+     "hi": "आपने ऋण डेटा से \"जाति\" हटा दी, पर पक्षपात बना है। सबसे संभावित कारण?",
+     "hinglish": "Loan data se \"caste\" hata diya, par bias bacha hai. Sabse likely wajah?"
+    },
+    "options": [
+     {
+      "en": "Proxy features such as surname or locality still carry the information",
+      "hinglish": "Surname ya locality jaise proxy features abhi bhi woh info rakhte hain",
+      "hi": "उपनाम या इलाक़े जैसे प्रॉक्सी फ़ीचर अब भी वह जानकारी रखते हैं"
+     },
+     {
+      "en": "The model is too small",
+      "hinglish": "Model chhota hai",
+      "hi": "मॉडल बहुत छोटा है"
+     },
+     {
+      "en": "Deleting columns never matters",
+      "hinglish": "Column delete karna kabhi matter nahi karta",
+      "hi": "कॉलम हटाने से कभी फ़र्क नहीं पड़ता"
+     },
+     {
+      "en": "Bias only exists in images",
+      "hinglish": "Bias sirf images mein hota hai",
+      "hi": "पक्षपात सिर्फ़ तस्वीरों में होता है"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Correlated features let the model reconstruct the removed attribute. Test outcomes by group, do not just drop columns.",
+     "hi": "सहसंबद्ध फ़ीचर हटाई गई जानकारी फिर बना देते हैं। सिर्फ़ कॉलम हटाना नहीं, समूह-वार नतीजे जाँचो।",
+     "hinglish": "Correlated features hata di gayi info dobara bana dete hain. Sirf column hatana nahi, group-wise results test karo."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q3",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are good fairness practices? Choose all.",
+     "hi": "कौन-सी अच्छी निष्पक्षता प्रथाएँ हैं? सभी चुनें।",
+     "hinglish": "Kaunsi achhi fairness practices hain? Sab chuno."
+    },
+    "options": [
+     {
+      "en": "Per-group error reporting",
+      "hinglish": "Group-wise error report",
+      "hi": "समूह-वार त्रुटि रिपोर्ट"
+     },
+     {
+      "en": "Human appeal for important decisions",
+      "hinglish": "Important faislon par human appeal",
+      "hi": "महत्वपूर्ण निर्णयों पर मानव अपील"
+     },
+     {
+      "en": "Publishing a model card",
+      "hinglish": "Model card publish karna",
+      "hi": "मॉडल कार्ड प्रकाशित करना"
+     },
+     {
+      "en": "Hiding the test results",
+      "hinglish": "Test results chhupana",
+      "hi": "परीक्षण परिणाम छिपाना"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2
+    ],
+    "explain": {
+     "en": "Measurement, documentation and human recourse are standard responsible-AI practice. Hiding results stops anyone spotting harm.",
+     "hi": "माप, दस्तावेज़ और मानवीय सहारा ज़िम्मेदार एआई की मानक प्रथा है। नतीजे छिपाने से नुकसान पकड़ा नहीं जाता।",
+     "hinglish": "Measurement, documentation aur human recourse responsible AI ki standard practice hai. Results chhupane se nuksaan pakda nahi jaata."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Balance the groups and get group B accuracy within 5 points of group A.",
+     "hi": "समूहों को संतुलित करें और समूह B की सटीकता समूह A के 5 अंकों के भीतर लाएँ।",
+     "hinglish": "Groups balance karo aur group B ki accuracy group A ke 5 points ke andar lao."
+    },
+    "answer": {
+     "event": "group-gap-below",
+     "value": 0.05
+    },
+    "explain": {
+     "en": "When group B is properly represented, the boundary is shaped by both groups and the gap closes.",
+     "hi": "जब समूह B ठीक से शामिल हो, सीमा दोनों समूहों से बनती है और अंतर घटता है।",
+     "hinglish": "Jab group B theek se represent ho, boundary dono groups se banti hai aur gap kam hota hai."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "topics": [
+  "ai.data-bias",
+  "ai.ethics"
+ ],
+ "sources": [
+  {
+   "title": "Buolamwini & Gebru (2018) Gender Shades",
+   "url": "https://proceedings.mlr.press/v81/buolamwini18a.html",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Bhashini — National Language Translation Mission",
+   "url": "https://bhashini.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Mitchell et al. (2019) Model Cards for Model Reporting",
+   "url": "https://arxiv.org/abs/1810.03993",
+   "licence": "fact reference"
+  }
+ ]
+}

@@ -1,0 +1,319 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.computer-architecture.05",
+ "level": 3,
+ "classes": [
+  9,
+  10
+ ],
+ "unit": "computer-architecture",
+ "title": {
+  "en": "Hex and two's complement",
+  "hi": "हेक्स और टूज़ कॉम्प्लिमेंट",
+  "hinglish": "Hex aur two's complement"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [
+  "L3.computer-architecture.01"
+ ],
+ "outcomes": [
+  {
+   "en": "Convert between binary, decimal and hexadecimal",
+   "hi": "बाइनरी, दशमलव और हेक्साडेसिमल के बीच बदलो",
+   "hinglish": "Binary, decimal aur hexadecimal ke beech convert karo"
+  },
+  {
+   "en": "Represent negative numbers with two's complement",
+   "hi": "टूज़ कॉम्प्लिमेंट से ऋणात्मक संख्याएँ दिखाओ",
+   "hinglish": "Two's complement se negative numbers dikhao"
+  },
+  {
+   "en": "Explain overflow and why number ranges are limited",
+   "hi": "ओवरफ़्लो और संख्या-सीमा क्यों सीमित है, समझाओ",
+   "hinglish": "Overflow aur number range limited kyun hai, samjhao"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Bit / byte",
+   "hinglish": "0 ya 1 / 8 bits",
+   "en": "A binary digit / a group of 8 bits",
+   "hi": "एक बाइनरी अंक / 8 बिट का समूह"
+  },
+  {
+   "term": "Hexadecimal",
+   "hinglish": "Base 16: 0–9, A–F",
+   "en": "Base-16 notation; each digit is exactly 4 bits",
+   "hi": "आधार-16 लिपि; हर अंक ठीक 4 बिट"
+  },
+  {
+   "term": "Two's complement",
+   "hinglish": "Negative number ka tareeka",
+   "en": "Standard way to store signed integers: invert the bits and add 1 to negate",
+   "hi": "चिह्नित पूर्णांक रखने का मानक तरीक़ा: ऋण के लिए बिट पलटो और 1 जोड़ो"
+  },
+  {
+   "term": "Overflow",
+   "hinglish": "Number range se bahar",
+   "en": "A result too big for the available bits",
+   "hi": "उपलब्ध बिट के लिए बहुत बड़ा परिणाम"
+  },
+  {
+   "term": "MSB",
+   "hinglish": "Sabse bada bit",
+   "en": "Most significant bit; in signed numbers it shows the sign",
+   "hi": "सबसे महत्वपूर्ण बिट; चिह्नित संख्याओं में चिह्न दिखाता है"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "8 bits give 2^8 = 256 patterns: 0 to 255. Bit values from left: 128, 64, 32, 16, 8, 4, 2, 1.",
+    "hi": "8 बिट से 2^8 = 256 पैटर्न: 0 से 255। बाएँ से बिट मान: 128, 64, 32, 16, 8, 4, 2, 1।",
+    "hinglish": "8 bits se 2^8 = 256 patterns: 0 se 255. Left se bit values: 128, 64, 32, 16, 8, 4, 2, 1."
+   },
+   "visual": "anim:byte-weights",
+   "narration": {
+    "en": "8 bits give 2^8 = 256 patterns: 0 to 255. Bit values from left: 128, 64, 32, 16, 8, 4, 2, 1.",
+    "hi": "8 बिट से 2^8 = 256 पैटर्न: 0 से 255। बाएँ से बिट मान: 128, 64, 32, 16, 8, 4, 2, 1।",
+    "hinglish": "8 bits se 2^8 = 256 patterns: 0 se 255. Left se bit values: 128, 64, 32, 16, 8, 4, 2, 1."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Hex groups bits in fours: 1100 1000 = C8. Colours like #00C2B8 (our turquoise) and memory addresses are written in hex.",
+    "hi": "हेक्स बिट को चार-चार में बाँटता है: 1100 1000 = C8। #00C2B8 (हमारा फ़िरोज़ी) जैसे रंग और मेमोरी पते हेक्स में लिखे जाते हैं।",
+    "hinglish": "Hex bits ko chaar-chaar mein baant-ta hai: 1100 1000 = C8. #00C2B8 (hamara turquoise) jaise colours aur memory addresses hex mein likhe jaate hain."
+   },
+   "visual": "anim:hex-nibbles",
+   "narration": {
+    "en": "Hex groups bits in fours: 1100 1000 = C8. Colours like #00C2B8 (our turquoise) and memory addresses are written in hex.",
+    "hi": "हेक्स बिट को चार-चार में बाँटता है: 1100 1000 = C8। #00C2B8 (हमारा फ़िरोज़ी) जैसे रंग और मेमोरी पते हेक्स में लिखे जाते हैं।",
+    "hinglish": "Hex bits ko chaar-chaar mein baant-ta hai: 1100 1000 = C8. #00C2B8 (hamara turquoise) jaise colours aur memory addresses hex mein likhe jaate hain."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Two's complement gives the top bit a weight of −128. So 1111 1111 = −128 + 127 = −1, and 1000 0000 = −128.",
+    "hi": "टूज़ कॉम्प्लिमेंट ऊपरी बिट को −128 का भार देता है। तो 1111 1111 = −128 + 127 = −1, और 1000 0000 = −128।",
+    "hinglish": "Two's complement upar ke bit ko −128 ka weight deta hai. To 1111 1111 = −128 + 127 = −1, aur 1000 0000 = −128."
+   },
+   "visual": "anim:sign-weight",
+   "narration": {
+    "en": "Two's complement gives the top bit a weight of −128. So 1111 1111 = −128 + 127 = −1, and 1000 0000 = −128.",
+    "hi": "टूज़ कॉम्प्लिमेंट ऊपरी बिट को −128 का भार देता है। तो 1111 1111 = −128 + 127 = −1, और 1000 0000 = −128।",
+    "hinglish": "Two's complement upar ke bit ko −128 ka weight deta hai. To 1111 1111 = −128 + 127 = −1, aur 1000 0000 = −128."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "To negate: flip every bit, then add 1. 5 = 0000 0101 → 1111 1010 → 1111 1011 = −5. The same adder now does subtraction.",
+    "hi": "ऋण करने के लिए: हर बिट पलटो, फिर 1 जोड़ो। 5 = 0000 0101 → 1111 1010 → 1111 1011 = −5। वही योजक अब घटाना भी करता है।",
+    "hinglish": "Negate karne ke liye: har bit palto, phir 1 jodo. 5 = 0000 0101 → 1111 1010 → 1111 1011 = −5. Wahi adder ab subtraction bhi karta hai."
+   },
+   "visual": "anim:negate-flip",
+   "narration": {
+    "en": "To negate: flip every bit, then add 1. 5 = 0000 0101 → 1111 1010 → 1111 1011 = −5. The same adder now does subtraction.",
+    "hi": "ऋण करने के लिए: हर बिट पलटो, फिर 1 जोड़ो। 5 = 0000 0101 → 1111 1010 → 1111 1011 = −5। वही योजक अब घटाना भी करता है।",
+    "hinglish": "Negate karne ke liye: har bit palto, phir 1 jodo. 5 = 0000 0101 → 1111 1010 → 1111 1011 = −5. Wahi adder ab subtraction bhi karta hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "bits-lab",
+  "config": {
+   "mode": "bits",
+   "value": 0
+  },
+  "goal": {
+   "en": "Complete all five byte missions: 65 (\"A\"), 0x7F, −1, −128 and 0xC8. Use the Negate button and watch how the signed and unsigned readings differ for the same bits.",
+   "hi": "पाँचों बाइट मिशन पूरे करो: 65 (\"A\"), 0x7F, −1, −128 और 0xC8। ऋण बटन इस्तेमाल करो और देखो एक ही बिट की साइन्ड और अनसाइन्ड रीडिंग कैसे अलग है।",
+   "hinglish": "Paanchon byte missions poore karo: 65 (\"A\"), 0x7F, −1, −128 aur 0xC8. Negate button use karo aur dekho same bits ki signed aur unsigned reading kaise alag hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Converting quickly",
+    "hi": "जल्दी बदलना",
+    "hinglish": "Jaldi convert karna"
+   },
+   "body": {
+    "en": "Binary → decimal: add the weights of the 1 bits (1100 1000 = 128 + 64 + 8 = 200). Decimal → binary: subtract the biggest weight that fits, repeat. Binary ↔ hex: split into groups of 4 bits and use 0–9, A=10 … F=15 (1100 = C, 1000 = 8, so 0xC8). Hex is popular because it is compact and maps exactly to bits: a 32-bit address is 8 hex digits, an IPv6 address 32, a SHA-256 hash 64. Text is numbers too: Unicode gives \"A\" the code 65 and \"अ\" the code U+0905.",
+    "hi": "बाइनरी → दशमलव: 1 वाले बिटों के भार जोड़ो (1100 1000 = 128 + 64 + 8 = 200)। दशमलव → बाइनरी: सबसे बड़ा समाने वाला भार घटाओ, दोहराओ। बाइनरी ↔ हेक्स: 4 बिट के समूह बनाओ और 0–9, A=10 … F=15 इस्तेमाल करो (1100 = C, 1000 = 8, तो 0xC8)। हेक्स लोकप्रिय है क्योंकि छोटा है और बिट से सटीक मेल खाता है: 32-बिट पता 8 हेक्स अंक, IPv6 पता 32, SHA-256 हैश 64। पाठ भी संख्या है: यूनिकोड \"A\" को 65 और \"अ\" को U+0905 कोड देता है।",
+    "hinglish": "Binary → decimal: 1 wale bits ke weights jodo (1100 1000 = 128 + 64 + 8 = 200). Decimal → binary: sabse bada fit hone wala weight ghatao, repeat karo. Binary ↔ hex: 4 bits ke groups banao aur 0–9, A=10 … F=15 use karo (1100 = C, 1000 = 8, to 0xC8). Hex popular hai kyunki compact hai aur bits se exact match karta hai: 32-bit address 8 hex digits, IPv6 address 32, SHA-256 hash 64. Text bhi numbers hai: Unicode \"A\" ko 65 aur \"अ\" ko U+0905 code deta hai."
+   },
+   "analogy": {
+    "en": "Hex is like writing money in ₹100 notes instead of ₹1 coins — same amount, far fewer symbols.",
+    "hi": "हेक्स पैसे को ₹1 के सिक्कों की जगह ₹100 के नोटों में लिखने जैसा है — वही रक़म, बहुत कम चिह्न।",
+    "hinglish": "Hex paise ko ₹1 ke sikkon ki jagah ₹100 ke noton mein likhne jaisa hai — wahi rakam, bahut kam symbols."
+   },
+   "realExample": {
+    "en": "#FF0000 is pure red: red = FF (255), green = 00, blue = 00.",
+    "hi": "#FF0000 शुद्ध लाल है: लाल = FF (255), हरा = 00, नीला = 00।",
+    "hinglish": "#FF0000 pure red hai: red = FF (255), green = 00, blue = 00."
+   }
+  },
+  {
+   "heading": {
+    "en": "Overflow in the real world",
+    "hi": "असली दुनिया में ओवरफ़्लो",
+    "hinglish": "Asli duniya mein overflow"
+   },
+   "body": {
+    "en": "An 8-bit signed number holds −128 to 127; add 1 to 127 and you get −128. 32-bit signed integers top out at 2,147,483,647. Overflow has caused real failures: the Ariane 5 rocket (1996) was lost when a 64-bit value was squeezed into a 16-bit integer, and many systems that count seconds since 1970 in a signed 32-bit integer will overflow on 19 January 2038 unless upgraded to 64-bit. Good code checks ranges or uses bigger types; Python integers grow automatically, but C, Java and hardware registers do not.",
+    "hi": "8-बिट चिह्नित संख्या −128 से 127 रखती है; 127 में 1 जोड़ो तो −128 मिलता है। 32-बिट चिह्नित पूर्णांक 2,147,483,647 पर रुकते हैं। ओवरफ़्लो से असली विफलताएँ हुई हैं: Ariane 5 रॉकेट (1996) तब नष्ट हुआ जब एक 64-बिट मान को 16-बिट पूर्णांक में ठूँसा गया, और 1970 से सेकंड गिनने वाली कई प्रणालियाँ जो चिह्नित 32-बिट पूर्णांक इस्तेमाल करती हैं, 19 जनवरी 2038 को ओवरफ़्लो होंगी अगर 64-बिट पर न बदलीं। अच्छा कोड सीमाएँ जाँचता है या बड़े प्रकार लेता है; Python के पूर्णांक अपने-आप बढ़ते हैं, पर C, Java और हार्डवेयर रजिस्टर नहीं।",
+    "hinglish": "8-bit signed number −128 se 127 rakhta hai; 127 mein 1 jodo to −128 milta hai. 32-bit signed integers 2,147,483,647 par rukte hain. Overflow se asli failures hue hain: Ariane 5 rocket (1996) tab nasht hua jab ek 64-bit value ko 16-bit integer mein thoonsa gaya, aur 1970 se seconds ginne wale kai systems jo signed 32-bit integer use karte hain, 19 January 2038 ko overflow honge agar 64-bit par na badle. Achha code ranges check karta hai ya bade types leta hai; Python ke integers apne-aap badhte hain, par C, Java aur hardware registers nahi."
+   },
+   "analogy": {
+    "en": "A car odometer with 6 digits rolls from 999999 back to 000000.",
+    "hi": "6 अंकों वाला गाड़ी का ओडोमीटर 999999 से वापस 000000 पर आ जाता है।",
+    "hinglish": "6 digits wala car odometer 999999 se wapas 000000 par aa jaata hai."
+   },
+   "realExample": {
+    "en": "In 2014 a video passed 2,147,483,647 views and YouTube had to upgrade its view counter to 64-bit.",
+    "hi": "2014 में एक वीडियो 2,147,483,647 बार देखा गया और YouTube को अपना काउंटर 64-बिट करना पड़ा।",
+    "hinglish": "2014 mein ek video 2,147,483,647 views paar kar gaya aur YouTube ko apna view counter 64-bit karna pada."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Convert your birth year and your house number to binary and hex by hand. Then write −(your age) in 8-bit two's complement and check it in the lab.",
+   "hi": "अपना जन्म वर्ष और घर नंबर हाथ से बाइनरी और हेक्स में बदलो। फिर −(अपनी उम्र) को 8-बिट टूज़ कॉम्प्लिमेंट में लिखो और प्रयोगशाला में जाँचो।",
+   "hinglish": "Apna janm varsh aur ghar number haath se binary aur hex mein badlo. Phir −(apni umar) ko 8-bit two's complement mein likho aur lab mein check karo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "short",
+    "prompt": {
+     "en": "What is binary 1100 1000 in decimal?",
+     "hi": "बाइनरी 1100 1000 दशमलव में क्या है?",
+     "hinglish": "Binary 1100 1000 decimal mein kya hai?"
+    },
+    "answer": {
+     "accept": [
+      "200"
+     ]
+    },
+    "explain": {
+     "en": "128 + 64 + 8 = 200.",
+     "hi": "128 + 64 + 8 = 200।",
+     "hinglish": "128 + 64 + 8 = 200."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "short",
+    "prompt": {
+     "en": "Write decimal 255 in hex (like 0x..).",
+     "hi": "दशमलव 255 को हेक्स में लिखो (0x.. जैसे)।",
+     "hinglish": "Decimal 255 ko hex mein likho (0x.. jaise)."
+    },
+    "answer": {
+     "accept": [
+      "0xFF",
+      "0xff",
+      "FF",
+      "ff"
+     ]
+    },
+    "explain": {
+     "en": "1111 1111 = F F.",
+     "hi": "1111 1111 = F F।",
+     "hinglish": "1111 1111 = F F."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "In 8-bit two's complement, what is 1111 1111?",
+     "hi": "8-बिट टूज़ कॉम्प्लिमेंट में 1111 1111 क्या है?",
+     "hinglish": "8-bit two's complement mein 1111 1111 kya hai?"
+    },
+    "options": [
+     "255",
+     "−1",
+     "−127",
+     "−128"
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "−128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 = −1.",
+     "hi": "−128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 = −1।",
+     "hinglish": "−128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 = −1."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "An 8-bit signed counter at 127 adds 1. Result?",
+     "hi": "127 पर 8-बिट चिह्नित काउंटर में 1 जुड़ा। परिणाम?",
+     "hinglish": "127 par 8-bit signed counter mein 1 juda. Result?"
+    },
+    "options": [
+     "128",
+     "0",
+     "−128",
+     {
+      "en": "Error",
+      "hi": "त्रुटि",
+      "hinglish": "Error"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "0111 1111 + 1 = 1000 0000 = −128: overflow.",
+     "hi": "0111 1111 + 1 = 1000 0000 = −128: ओवरफ़्लो।",
+     "hinglish": "0111 1111 + 1 = 1000 0000 = −128: overflow."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Make −128 in the byte lab.",
+     "hi": "बाइट प्रयोगशाला में −128 बनाओ।",
+     "hinglish": "Byte lab mein −128 banao."
+    },
+    "answer": {
+     "event": "bits-target",
+     "target": "minus-128"
+    },
+    "explain": {
+     "en": "Only the sign bit is on: 1000 0000.",
+     "hi": "सिर्फ़ चिह्न बिट चालू: 1000 0000।",
+     "hinglish": "Sirf sign bit on: 1000 0000."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "topics": [
+  "hw.binary"
+ ],
+ "sources": [
+  {
+   "title": "Patterson & Hennessy, Computer Organization and Design — fact reference",
+   "url": "https://www.elsevier.com/books/computer-organization-and-design-risc-v-edition/patterson/978-0-12-820331-6",
+   "licence": "fact reference"
+  },
+  {
+   "title": "The Unicode Standard — Devanagari block",
+   "url": "https://www.unicode.org/charts/PDF/U0900.pdf",
+   "licence": "fact reference"
+  }
+ ]
+}

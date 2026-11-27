@@ -5,12 +5,16 @@ import { chapterView } from './chapters';
 import { activeChild, isPrePrimary, listChildren, type FamilyChild } from './children';
 import { callGate } from './call-gate';
 import { chunkEnd, spokenSentences } from './call';
-import { parseBlockLine, type Block } from './blocks';
+import { narrationScript, parseBlockLine, type Block } from './blocks';
 import { consentState } from './consent';
 import { LIVE_REPLY_MAX, isUuid, liveChild } from './english/live';
 import { familyHashKey } from './secret';
 import { indiaDate } from '@/lib/time/india';
 import { drawStepText } from './draw-voice';
+import { readFamilySwitches, switchOn } from './flags';
+import { techlabToBlocks } from './tech/blocks';
+import { lessonById } from './tech/catalog';
+import { isTechLang, voiceLang } from './tech/text';
 
 // The server voice (C386; C230-AR item 2): which line the speak route may read aloud. It speaks only text this server
 // holds, never text a phone sends, so it is no open text-to-speech service:
@@ -85,12 +89,15 @@ export function openCallLine(token: unknown, ctx: { accountId: string; childId: 
 
 // ---- what may be spoken ----------------------------------------------------------------------------------------------
 
-export type SpeakAsk = { kind: 'chapter'; chapterKey: string; blockId: string; sentence: number } | { kind: 'live_line'; token: string } | { kind: 'live_turn'; sessionId: string; position: number } | { kind: 'call_line'; token: string } | { kind: 'tutor_answer'; messageId: string; from?: number; max?: number } | { kind: 'draw'; templateId: string; step: number; lang: 'en' | 'hi' };
+export type SpeakAsk = { kind: 'chapter'; chapterKey: string; blockId: string; sentence: number } | { kind: 'techlab'; lessonId: string; blockId: string; sentence: number; lang: 'en' | 'hi' | 'hinglish' } | { kind: 'live_line'; token: string } | { kind: 'live_turn'; sessionId: string; position: number } | { kind: 'call_line'; token: string } | { kind: 'tutor_answer'; messageId: string; from?: number; max?: number } | { kind: 'draw'; templateId: string; step: number; lang: 'en' | 'hi' };
 
 // The request's body, checked for shape only (what it names is checked against the database below).
 export function speakAsk(body: Record<string, unknown>): SpeakAsk | null {
   if (body.kind === 'chapter' && typeof body.chapterKey === 'string' && body.chapterKey.length <= 200 && typeof body.blockId === 'string' && body.blockId.length <= 100 && Number.isInteger(body.sentence) && (body.sentence as number) >= 0)
     return { kind: 'chapter', chapterKey: body.chapterKey, blockId: body.blockId, sentence: body.sentence as number };
+  // Tech Lab: a See or Understand sentence. The phone names the lesson, the block and the sentence. The words come from the lesson file.
+  if (body.kind === 'techlab' && typeof body.lessonId === 'string' && /^L[1-3]\.[a-z0-9][a-z0-9-]{1,40}\.[0-9]{2}$/.test(body.lessonId) && typeof body.blockId === 'string' && body.blockId.length <= 80 && Number.isInteger(body.sentence) && (body.sentence as number) >= 0 && (body.sentence as number) <= 500 && isTechLang(body.lang))
+    return { kind: 'techlab', lessonId: body.lessonId, blockId: body.blockId, sentence: body.sentence as number, lang: body.lang };
   // C519: a step of a Draw template's guide, by template id, step place and language; the server holds the words.
   if (body.kind === 'draw' && typeof body.templateId === 'string' && body.templateId.length <= 80 && Number.isInteger(body.step) && (body.step as number) >= 0 && (body.step as number) <= 60 && (body.lang === 'en' || body.lang === 'hi'))
     return { kind: 'draw', templateId: body.templateId, step: body.step as number, lang: body.lang };
@@ -135,6 +142,18 @@ export async function speakLine(db: Db, accountId: string, chosen: string | unde
     const line = view.script.find((l) => l.blockId === ask.blockId && l.sentence === ask.sentence);
     if (!line) return { ok: false, status: 404, error: 'not_found' };
     return { ok: true, child, children, text: line.text, language: view.lang };
+  }
+  if (ask.kind === 'techlab') {
+    const children = await listChildren(db as never, accountId);
+    const child = activeChild(children, chosen);
+    if (!child) return { ok: false, status: 404, error: 'not_found' };
+    if (!(await consentState(db as never, accountId)).study_core) return { ok: false, status: 403, error: 'consent_needed' };
+    if (!switchOn(await readFamilySwitches(db as never, accountId), 'tech_lab')) return { ok: false, status: 403, error: 'off' };
+    const lesson = lessonById(ask.lessonId);
+    if (!lesson) return { ok: false, status: 404, error: 'not_found' };
+    const line = narrationScript(techlabToBlocks(lesson, ask.lang)).find((item) => item.blockId === ask.blockId && item.sentence === ask.sentence);
+    if (!line) return { ok: false, status: 404, error: 'not_found' };
+    return { ok: true, child, children, text: line.text, language: voiceLang(ask.lang) };
   }
   if (ask.kind === 'draw') {
     // C519: the Draw guide, for the child this phone has chosen. The words are the template manifest's own, so nothing

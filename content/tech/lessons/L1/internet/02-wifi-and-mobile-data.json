@@ -1,0 +1,333 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.internet.02",
+ "level": 1,
+ "classes": [
+  1,
+  2,
+  3,
+  4
+ ],
+ "unit": "internet",
+ "title": {
+  "en": "Wi-Fi, mobile towers and sea cables",
+  "hi": "वाई-फ़ाई, मोबाइल टावर और समुद्री केबल",
+  "hinglish": "Wi-Fi, mobile towers aur sea cables"
+ },
+ "minutes": 7,
+ "xp": 25,
+ "prereq": [
+  "L1.internet.01"
+ ],
+ "topics": [
+  "net.wifi-mobile-data",
+  "net.routers-switches"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain that Wi-Fi and mobile data use invisible radio waves.",
+   "hi": "समझा सकते हो कि वाई-फ़ाई और मोबाइल डेटा न दिखने वाली रेडियो तरंगें इस्तेमाल करते हैं।",
+   "hinglish": "Samjha sakte ho ki Wi-Fi aur mobile data na dikhne wali radio waves use karte hain."
+  },
+  {
+   "en": "Trace a message: phone → router or tower → cables → far away.",
+   "hi": "संदेश का रास्ता बता सकते हो: फ़ोन → राउटर या टावर → केबल → दूर तक।",
+   "hinglish": "Message ka raasta bata sakte ho: phone → router ya tower → cables → door tak."
+  },
+  {
+   "en": "Know that undersea cables carry most data between countries.",
+   "hi": "जानते हो कि देशों के बीच ज़्यादातर डेटा समुद्र के नीचे के केबल ले जाते हैं।",
+   "hinglish": "Jaante ho ki deshon ke beech zyaadatar data samundar ke neeche ki cables le jaati hain."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Wi-Fi",
+   "en": "Wireless internet from a router, over a short distance",
+   "hi": "घर के राउटर से बिना तार का इंटरनेट",
+   "hinglish": "Ghar ke router se bina taar ka internet"
+  },
+  {
+   "term": "Router",
+   "en": "A box that sends messages the right way",
+   "hi": "संदेश को सही रास्ते भेजने वाला डिब्बा",
+   "hinglish": "Message ko sahi raaste bhejne wala dabba"
+  },
+  {
+   "term": "Mobile data",
+   "en": "Internet that reaches your phone from a mobile tower",
+   "hi": "टावर से फ़ोन तक इंटरनेट",
+   "hinglish": "Tower se phone tak internet"
+  },
+  {
+   "term": "Undersea cable",
+   "en": "An internet cable laid on the sea floor between countries",
+   "hi": "समुद्र के नीचे बिछा इंटरनेट केबल",
+   "hinglish": "Samundar ke neeche bichhi internet cable"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.internet.02.s1",
+   "caption": {
+    "en": "Wi-Fi sends messages through the air.",
+    "hi": "वाई-फ़ाई हवा से संदेश भेजता है।",
+    "hinglish": "Wi-Fi hawa se messages bhejta hai."
+   },
+   "narration": {
+    "en": "Your phone and the Wi-Fi router talk using radio waves you cannot see. The router is joined to the internet by a cable.",
+    "hinglish": "Tumhara phone aur Wi-Fi router na dikhne wali radio waves se baat karte hain. Router cable se internet se juda hota hai.",
+    "hi": "तुम्हारा फ़ोन और वाई-फ़ाई राउटर न दिखने वाली रेडियो तरंगों से बात करते हैं। राउटर केबल से इंटरनेट से जुड़ा होता है।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.internet.02.s2",
+   "caption": {
+    "en": "Outside, mobile towers carry the internet.",
+    "hi": "बाहर, मोबाइल टावर इंटरनेट पहुँचाते हैं।",
+    "hinglish": "Bahar, mobile towers internet pahunchaate hain."
+   },
+   "narration": {
+    "en": "When you are away from Wi-Fi, a phone uses mobile data from a tower. 4G and 5G are names for newer, faster kinds.",
+    "hinglish": "Wi-Fi se door hone par phone tower se mobile data use karta hai. 4G aur 5G naye, tez types ke naam hain.",
+    "hi": "वाई-फ़ाई से दूर होने पर फ़ोन टावर से मोबाइल डेटा इस्तेमाल करता है। 4G और 5G नए, तेज़ प्रकारों के नाम हैं।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.internet.02.s3",
+   "caption": {
+    "en": "Under the sea, cables join countries.",
+    "hi": "समुद्र के नीचे केबल देशों को जोड़ते हैं।",
+    "hinglish": "Samundar ke neeche cables deshon ko jodti hain."
+   },
+   "narration": {
+    "en": "Long cables on the sea floor carry most internet data between countries — as flashes of light inside thin glass fibres. Many land in Mumbai and Chennai.",
+    "hinglish": "Samundar ki zameen par lambi cables deshon ke beech zyaadatar internet data le jaati hain — patle kaanch ke fibre mein roshni ki chamak ke roop mein. Kai Mumbai aur Chennai mein utarti hain.",
+    "hi": "समुद्र की तलहटी पर लंबे केबल देशों के बीच ज़्यादातर इंटरनेट डेटा ले जाते हैं — पतले काँच के फ़ाइबर में रोशनी की चमक के रूप में। कई मुंबई और चेन्नई में उतरते हैं।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "net-travel",
+  "config": {
+   "mode": "send"
+  },
+  "goal": {
+   "en": "Route the message: your phone → Wi-Fi → tower → routers → Nani. Try the shortest way!",
+   "hi": "संदेश का रास्ता बनाओ: फ़ोन → वाई-फ़ाई → टावर → राउटर → नानी। सबसे छोटा रास्ता आज़माओ!",
+   "hinglish": "Message ka raasta banao: phone → Wi-Fi → tower → routers → Nani. Sabse chhota raasta try karo!"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Wireless is only the first few metres",
+    "hi": "बिना तार सिर्फ़ शुरू के कुछ मीटर",
+    "hinglish": "Wireless sirf shuru ke kuch metre"
+   },
+   "body": {
+    "en": "Wi-Fi reaches only around your home. Mobile signals reach a few kilometres from a tower. After that, almost every message travels through cables — copper wires and glass fibres — across cities and under oceans.",
+    "hi": "वाई-फ़ाई बस घर के आसपास पहुँचता है। मोबाइल सिग्नल टावर से कुछ किलोमीटर तक जाते हैं। उसके बाद लगभग हर संदेश केबल से जाता है — तांबे के तार और काँच के फ़ाइबर — शहरों के पार और समुद्रों के नीचे।",
+    "hinglish": "Wi-Fi bas ghar ke aas-paas pahunchta hai. Mobile signals tower se kuch kilometre tak jaate hain. Uske baad lagbhag har message cables se jaata hai — copper wires aur glass fibres — shehron ke paar aur samundar ke neeche."
+   },
+   "analogy": {
+    "en": "Wi-Fi is like your courtyard; the long journey happens on the cable highway.",
+    "hi": "वाई-फ़ाई घर के आँगन जैसा है; असली लंबा सफ़र केबल वाले हाईवे पर होता है।",
+    "hinglish": "Wi-Fi ghar ke aangan jaisa hai; asli lamba safar cables wale highway par hota hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "Routers: traffic police of the internet",
+    "hi": "राउटर: इंटरनेट की ट्रैफ़िक पुलिस",
+    "hinglish": "Routers: internet ki traffic police"
+   },
+   "body": {
+    "en": "A router reads where a message is going and sends it to the next router closer to that place. Messages hop from router to router, often more than ten times, in a fraction of a second.",
+    "hi": "राउटर पढ़ता है कि संदेश कहाँ जा रहा है और उसे उस जगह के पास वाले अगले राउटर को भेजता है। संदेश राउटर से राउटर कूदते हैं, अक्सर दस से ज़्यादा बार, एक सेकंड के छोटे हिस्से में।",
+    "hinglish": "Router padhta hai ki message kahan ja raha hai aur use us jagah ke paas wale agle router ko bhejta hai. Messages router se router koodte hain, aksar das se zyada baar, ek second ke chhote hisse mein."
+   },
+   "realExample": {
+    "en": "Fibre-optic cables carry data as light pulses, which is why fibre broadband is so fast.",
+    "hi": "फ़ाइबर-ऑप्टिक केबल डेटा को रोशनी की धड़कनों की तरह ले जाते हैं, इसलिए फ़ाइबर ब्रॉडबैंड इतना तेज़ है।",
+    "hinglish": "Fibre-optic cables data ko roshni ki pulses ki tarah le jaati hain, isliye fibre broadband itna tez hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Walk around your home with a grown-up's phone. Where are the Wi-Fi bars strongest and weakest? Why might that be?",
+   "hi": "किसी बड़े का फ़ोन लेकर घर में घूमो। वाई-फ़ाई की लकीरें कहाँ सबसे ज़्यादा और कहाँ सबसे कम हैं? ऐसा क्यों होगा?",
+   "hinglish": "Kisi bade ka phone le kar ghar mein ghoomo. Wi-Fi ki bars kahan sabse zyada aur kahan sabse kam hain? Aisa kyun hoga?"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Wi-Fi sends messages using…",
+     "hi": "वाई-फ़ाई संदेश भेजता है…",
+     "hinglish": "Wi-Fi messages bhejta hai…"
+    },
+    "options": [
+     {
+      "en": "radio waves",
+      "hi": "रेडियो तरंगों से",
+      "hinglish": "radio waves se"
+     },
+     {
+      "en": "pigeons",
+      "hi": "कबूतरों से",
+      "hinglish": "kabootaron se"
+     },
+     {
+      "en": "water pipes",
+      "hi": "पानी के पाइप से",
+      "hinglish": "paani ke pipe se"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Invisible radio waves carry data through the air.",
+     "hi": "न दिखने वाली रेडियो तरंगें हवा से डेटा ले जाती हैं।",
+     "hinglish": "Na dikhne wali radio waves hawa se data le jaati hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "order",
+    "prompt": {
+     "en": "Order a message's trip from your home.",
+     "hi": "घर से संदेश की यात्रा क्रम में लगाओ।",
+     "hinglish": "Ghar se message ki yatra order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Routers far away",
+      "hi": "दूर के राउटर",
+      "hinglish": "Door ke routers"
+     },
+     {
+      "en": "Your phone",
+      "hi": "तुम्हारा फ़ोन",
+      "hinglish": "Tumhara phone"
+     },
+     {
+      "en": "Wi-Fi router",
+      "hi": "वाई-फ़ाई राउटर",
+      "hinglish": "Wi-Fi router"
+     },
+     {
+      "en": "Friend's phone",
+      "hi": "दोस्त का फ़ोन",
+      "hinglish": "Dost ka phone"
+     }
+    ],
+    "answer": [
+     1,
+     2,
+     0,
+     3
+    ],
+    "explain": {
+     "en": "Phone → Wi-Fi router → routers → friend.",
+     "hi": "फ़ोन → वाई-फ़ाई राउटर → राउटर → दोस्त।",
+     "hinglish": "Phone → Wi-Fi router → routers → dost."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Most internet data between countries travels…",
+     "hi": "देशों के बीच ज़्यादातर इंटरनेट डेटा जाता है…",
+     "hinglish": "Deshon ke beech zyaadatar internet data jaata hai…"
+    },
+    "options": [
+     {
+      "en": "through cables under the sea",
+      "hi": "समुद्र के नीचे केबल से",
+      "hinglish": "samundar ke neeche cables se"
+     },
+     {
+      "en": "by aeroplane",
+      "hi": "हवाई जहाज़ से",
+      "hinglish": "hawaai jahaaz se"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Undersea fibre-optic cables carry most of it.",
+     "hi": "समुद्री फ़ाइबर-ऑप्टिक केबल ज़्यादातर डेटा ले जाते हैं।",
+     "hinglish": "Samudri fibre-optic cables zyaadatar data le jaati hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "What does a router do?",
+     "hi": "राउटर क्या करता है?",
+     "hinglish": "Router kya karta hai?"
+    },
+    "options": [
+     {
+      "en": "Sends messages the right way",
+      "hi": "संदेश सही रास्ते भेजता है",
+      "hinglish": "Messages sahi raaste bhejta hai"
+     },
+     {
+      "en": "Charges the phone",
+      "hi": "फ़ोन चार्ज करता है",
+      "hinglish": "Phone charge karta hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Like traffic police, it directs messages.",
+     "hi": "ट्रैफ़िक पुलिस की तरह, यह संदेशों को राह दिखाता है।",
+     "hinglish": "Traffic police ki tarah, yeh messages ko raah dikhaata hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Send the message to Nani using the shortest route.",
+     "hi": "सबसे छोटे रास्ते से नानी को संदेश भेजो।",
+     "hinglish": "Sabse chhote raaste se Nani ko message bhejo."
+    },
+    "answer": {
+     "lab": "net-travel",
+     "mode": "send",
+     "solved": true
+    },
+    "explain": {
+     "en": "The shortest route has 6 hops.",
+     "hi": "सबसे छोटे रास्ते में 6 हॉप हैं।",
+     "hinglish": "Sabse chhote raaste mein 6 hops hain."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "TeleGeography – Submarine Cable Map (fact reference)",
+   "url": "https://www.submarinecablemap.com/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

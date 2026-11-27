@@ -1,0 +1,383 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.networking-engineering.02",
+ "level": 3,
+ "classes": [
+  10,
+  11,
+  12
+ ],
+ "unit": "networking-engineering",
+ "title": {
+  "en": "IPv4, subnets and IPv6",
+  "hi": "IPv4, सबनेट और IPv6",
+  "hinglish": "IPv4, subnets aur IPv6"
+ },
+ "minutes": 16,
+ "xp": 70,
+ "prereq": [
+  "L3.networking-engineering.01"
+ ],
+ "outcomes": [
+  {
+   "en": "Read an IPv4 address in dotted-decimal and binary",
+   "hi": "IPv4 पते को डॉटेड-डेसिमल और बाइनरी में पढ़ो",
+   "hinglish": "IPv4 address ko dotted-decimal aur binary mein padho"
+  },
+  {
+   "en": "Work out network, broadcast and host count from CIDR notation like /24 or /26",
+   "hi": "/24 या /26 जैसे CIDR से नेटवर्क, ब्रॉडकास्ट और होस्ट संख्या निकालो",
+   "hinglish": "/24 ya /26 jaise CIDR se network, broadcast aur host count nikaalo"
+  },
+  {
+   "en": "Explain private addresses, NAT and why IPv6 exists",
+   "hi": "निजी पते, NAT और IPv6 क्यों है, समझाओ",
+   "hinglish": "Private addresses, NAT aur IPv6 kyun hai, samjhao"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "IP address",
+   "hinglish": "Internet par device ka pata",
+   "en": "Number that identifies a device interface on an IP network",
+   "hi": "आईपी नेटवर्क पर उपकरण की पहचान करने वाली संख्या"
+  },
+  {
+   "term": "Subnet",
+   "hinglish": "Bade network ka chhota hissa",
+   "en": "A block of addresses sharing the same network prefix",
+   "hi": "एक ही नेटवर्क उपसर्ग वाले पतों का खंड"
+  },
+  {
+   "term": "CIDR prefix",
+   "hinglish": "/24 jaisa number: kitne bits network ke",
+   "en": "Number after the slash: how many leading bits are the network part",
+   "hi": "स्लैश के बाद की संख्या: शुरू के कितने बिट नेटवर्क के"
+  },
+  {
+   "term": "NAT",
+   "hinglish": "Kai devices ek public IP share karein",
+   "en": "Network Address Translation: many private devices share one public address",
+   "hi": "नेटवर्क एड्रेस ट्रांसलेशन: कई निजी उपकरण एक सार्वजनिक पता साझा करते हैं"
+  },
+  {
+   "term": "IPv6",
+   "hinglish": "128-bit wala naya address system",
+   "en": "The 128-bit successor to IPv4",
+   "hi": "IPv4 का 128-बिट उत्तराधिकारी"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "An IPv4 address is 32 bits, written as four numbers 0–255: 192.168.1.37. That gives about 4.3 billion addresses — fewer than the number of people on Earth.",
+    "hi": "IPv4 पता 32 बिट का होता है, चार संख्याओं (0–255) में लिखा: 192.168.1.37। इससे लगभग 4.3 अरब पते बनते हैं — धरती के लोगों से भी कम।",
+    "hinglish": "IPv4 address 32 bits ka hota hai, chaar numbers (0–255) mein likha: 192.168.1.37. Isse lagbhag 4.3 billion addresses bante hain — duniya ke logon se bhi kam."
+   },
+   "visual": "anim:ipv4-bits",
+   "narration": {
+    "en": "An IPv4 address is 32 bits, written as four numbers 0–255: 192.168.1.37. That gives about 4.3 billion addresses — fewer than the number of people on Earth.",
+    "hi": "IPv4 पता 32 बिट का होता है, चार संख्याओं (0–255) में लिखा: 192.168.1.37। इससे लगभग 4.3 अरब पते बनते हैं — धरती के लोगों से भी कम।",
+    "hinglish": "IPv4 address 32 bits ka hota hai, chaar numbers (0–255) mein likha: 192.168.1.37. Isse lagbhag 4.3 billion addresses bante hain — duniya ke logon se bhi kam."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "/24 means the first 24 bits name the network and the last 8 bits name the host: 192.168.1.0/24 holds 256 addresses, 254 usable for devices.",
+    "hi": "/24 का मतलब पहले 24 बिट नेटवर्क और आख़िरी 8 बिट होस्ट बताते हैं: 192.168.1.0/24 में 256 पते, 254 उपकरणों के लिए।",
+    "hinglish": "/24 matlab pehle 24 bits network aur aakhri 8 bits host batate hain: 192.168.1.0/24 mein 256 addresses, 254 devices ke liye."
+   },
+   "visual": "anim:cidr-split",
+   "narration": {
+    "en": "/24 means the first 24 bits name the network and the last 8 bits name the host: 192.168.1.0/24 holds 256 addresses, 254 usable for devices.",
+    "hi": "/24 का मतलब पहले 24 बिट नेटवर्क और आख़िरी 8 बिट होस्ट बताते हैं: 192.168.1.0/24 में 256 पते, 254 उपकरणों के लिए।",
+    "hinglish": "/24 matlab pehle 24 bits network aur aakhri 8 bits host batate hain: 192.168.1.0/24 mein 256 addresses, 254 devices ke liye."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Homes use private ranges such as 192.168.x.x. The router rewrites them to one public IP using NAT, so a whole family shares one address.",
+    "hi": "घर 192.168.x.x जैसी निजी श्रेणियाँ इस्तेमाल करते हैं। राउटर NAT से उन्हें एक सार्वजनिक आईपी में बदलता है, तो पूरा परिवार एक पता साझा करता है।",
+    "hinglish": "Ghar 192.168.x.x jaisi private ranges use karte hain. Router NAT se unhe ek public IP mein badalta hai, to poora parivaar ek address share karta hai."
+   },
+   "visual": "anim:nat-share",
+   "narration": {
+    "en": "Homes use private ranges such as 192.168.x.x. The router rewrites them to one public IP using NAT, so a whole family shares one address.",
+    "hi": "घर 192.168.x.x जैसी निजी श्रेणियाँ इस्तेमाल करते हैं। राउटर NAT से उन्हें एक सार्वजनिक आईपी में बदलता है, तो पूरा परिवार एक पता साझा करता है।",
+    "hinglish": "Ghar 192.168.x.x jaisi private ranges use karte hain. Router NAT se unhe ek public IP mein badalta hai, to poora parivaar ek address share karta hai."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "IPv6 uses 128 bits (2001:db8::1), about 3.4 × 10³⁸ addresses — enough for every device to have its own. Most Indian mobile traffic already uses IPv6.",
+    "hi": "IPv6 में 128 बिट (2001:db8::1), लगभग 3.4 × 10³⁸ पते — हर उपकरण को अपना पता देने के लिए काफ़ी। भारत का ज़्यादातर मोबाइल ट्रैफ़िक पहले से IPv6 पर है।",
+    "hinglish": "IPv6 mein 128 bits (2001:db8::1), lagbhag 3.4 × 10³⁸ addresses — har device ko apna address dene ke liye kaafi. India ka zyaadatar mobile traffic pehle se IPv6 par hai."
+   },
+   "visual": "anim:ipv6-sky",
+   "narration": {
+    "en": "IPv6 uses 128 bits (2001:db8::1), about 3.4 × 10³⁸ addresses — enough for every device to have its own. Most Indian mobile traffic already uses IPv6.",
+    "hi": "IPv6 में 128 बिट (2001:db8::1), लगभग 3.4 × 10³⁸ पते — हर उपकरण को अपना पता देने के लिए काफ़ी। भारत का ज़्यादातर मोबाइल ट्रैफ़िक पहले से IPv6 पर है।",
+    "hinglish": "IPv6 mein 128 bits (2001:db8::1), lagbhag 3.4 × 10³⁸ addresses — har device ko apna address dene ke liye kaafi. India ka zyaadatar mobile traffic pehle se IPv6 par hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "seq-flow",
+  "config": {
+   "scenario": "nat-router"
+  },
+  "goal": {
+   "en": "Watch two phones at home share one public IP. Note how the router rewrites the source address and port on the way out and back.",
+   "hi": "घर के दो फ़ोनों को एक सार्वजनिक आईपी साझा करते देखो। ध्यान दो राउटर जाते और आते समय स्रोत पता और पोर्ट कैसे बदलता है।",
+   "hinglish": "Ghar ke do phones ko ek public IP share karte dekho. Dhyaan do router jaate aur aate waqt source address aur port kaise badalta hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Doing the subnet maths",
+    "hi": "सबनेट का गणित",
+    "hinglish": "Subnet ka maths"
+   },
+   "body": {
+    "en": "Host bits = 32 − prefix. Addresses = 2^(host bits). Usable hosts = addresses − 2 (the first is the network address, the last is broadcast). Example 10.0.5.70/26: 6 host bits → 64 addresses per block, blocks start at 0, 64, 128, 192, so 70 is in 10.0.5.64–10.0.5.127; network .64, broadcast .127, 62 usable hosts.",
+    "hi": "होस्ट बिट = 32 − प्रीफ़िक्स। पते = 2^(होस्ट बिट)। उपयोगी होस्ट = पते − 2 (पहला नेटवर्क पता, आख़िरी ब्रॉडकास्ट)। उदाहरण 10.0.5.70/26: 6 होस्ट बिट → हर खंड में 64 पते, खंड 0, 64, 128, 192 से शुरू, तो 70 है 10.0.5.64–10.0.5.127 में; नेटवर्क .64, ब्रॉडकास्ट .127, 62 उपयोगी होस्ट।",
+    "hinglish": "Host bits = 32 − prefix. Addresses = 2^(host bits). Usable hosts = addresses − 2 (pehla network address, aakhri broadcast). Example 10.0.5.70/26: 6 host bits → har block mein 64 addresses, blocks 0, 64, 128, 192 se shuru, to 70 hai 10.0.5.64–10.0.5.127 mein; network .64, broadcast .127, 62 usable hosts."
+   },
+   "analogy": {
+    "en": "A PIN code names the area, the house number names the home inside it. The prefix is the PIN code part.",
+    "hi": "पिन कोड इलाक़ा बताता है, मकान नंबर उसके अंदर घर। प्रीफ़िक्स पिन कोड वाला हिस्सा है।",
+    "hinglish": "PIN code ilaaka batata hai, makaan number uske andar ghar. Prefix PIN code wala hissa hai."
+   },
+   "realExample": {
+    "en": "A school lab of 50 computers fits in a /26 (62 hosts); staff Wi-Fi and CCTV can sit in separate subnets so a problem in one does not spread.",
+    "hi": "50 कंप्यूटरों की स्कूल लैब /26 (62 होस्ट) में आ जाती है; स्टाफ़ वाई-फ़ाई और सीसीटीवी अलग सबनेट में रह सकते हैं ताकि एक की समस्या दूसरे में न फैले।",
+    "hinglish": "50 computers ki school lab /26 (62 hosts) mein aa jaati hai; staff Wi-Fi aur CCTV alag subnets mein reh sakte hain taaki ek ki problem doosre mein na phaile."
+   }
+  },
+  {
+   "heading": {
+    "en": "Private ranges and NAT",
+    "hi": "निजी श्रेणियाँ और NAT",
+    "hinglish": "Private ranges aur NAT"
+   },
+   "body": {
+    "en": "RFC 1918 reserves 10.0.0.0/8, 172.16.0.0/12 and 192.168.0.0/16 for private networks; they are never routed on the public internet. NAT on your router keeps a table: (192.168.1.5:51514) ↔ (public IP:40001). Mobile operators often use carrier-grade NAT, so thousands of phones share a pool of public IPv4 addresses.",
+    "hi": "RFC 1918 ने 10.0.0.0/8, 172.16.0.0/12 और 192.168.0.0/16 निजी नेटवर्क के लिए आरक्षित किए हैं; ये सार्वजनिक इंटरनेट पर कभी रूट नहीं होते। राउटर का NAT एक तालिका रखता है: (192.168.1.5:51514) ↔ (सार्वजनिक आईपी:40001)। मोबाइल कंपनियाँ अक्सर कैरियर-ग्रेड NAT इस्तेमाल करती हैं, तो हज़ारों फ़ोन सार्वजनिक IPv4 पतों का एक समूह साझा करते हैं।",
+    "hinglish": "RFC 1918 ne 10.0.0.0/8, 172.16.0.0/12 aur 192.168.0.0/16 private networks ke liye reserve kiye hain; ye public internet par kabhi route nahi hote. Router ka NAT ek table rakhta hai: (192.168.1.5:51514) ↔ (public IP:40001). Mobile operators aksar carrier-grade NAT use karte hain, to hazaaron phones public IPv4 addresses ka ek pool share karte hain."
+   },
+   "analogy": {
+    "en": "Like a school reception: outsiders only know the school's phone number; reception remembers which classroom asked for the call.",
+    "hi": "जैसे स्कूल का स्वागत कक्ष: बाहर वालों को सिर्फ़ स्कूल का फ़ोन नंबर पता है; स्वागत कक्ष याद रखता है किस कक्षा ने कॉल माँगी थी।",
+    "hinglish": "Jaise school ki reception: bahar walon ko sirf school ka phone number pata hai; reception yaad rakhti hai kis classroom ne call maangi thi."
+   },
+   "realExample": {
+    "en": "Your phone shows 192.168.1.5 in Wi-Fi settings, but a \"what is my IP\" website shows a completely different public address — that is NAT at work.",
+    "hi": "आपका फ़ोन वाई-फ़ाई सेटिंग में 192.168.1.5 दिखाता है, पर \"मेरा आईपी क्या है\" वेबसाइट बिल्कुल अलग सार्वजनिक पता दिखाती है — यही NAT है।",
+    "hinglish": "Tumhara phone Wi-Fi settings mein 192.168.1.5 dikhata hai, par \"what is my IP\" website bilkul alag public address dikhati hai — yahi NAT hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "Why IPv6",
+    "hi": "IPv6 क्यों",
+    "hinglish": "IPv6 kyun"
+   },
+   "body": {
+    "en": "IANA handed out its last free IPv4 blocks in February 2011, and APNIC (which serves India) reached its final block in April 2011. IPv6 has 128-bit addresses written in hex groups, with :: shortening a run of zeros. Devices can configure their own address (SLAAC), and end-to-end connections no longer need NAT. Google's IPv6 statistics show India among the highest-adoption countries in the world.",
+    "hi": "IANA ने अपने आख़िरी मुफ़्त IPv4 खंड फ़रवरी 2011 में दिए, और APNIC (जो भारत की सेवा करता है) अप्रैल 2011 में अंतिम खंड पर पहुँचा। IPv6 में 128-बिट पते हेक्स समूहों में लिखे जाते हैं, और :: शून्यों की लड़ी को छोटा करता है। उपकरण ख़ुद अपना पता बना सकते हैं (SLAAC), और सीधे कनेक्शन को NAT की ज़रूरत नहीं रहती। गूगल के IPv6 आँकड़ों में भारत दुनिया के सबसे ज़्यादा अपनाने वाले देशों में है।",
+    "hinglish": "IANA ne apne aakhri free IPv4 blocks February 2011 mein diye, aur APNIC (jo India ko serve karta hai) April 2011 mein final block par pahuncha. IPv6 mein 128-bit addresses hex groups mein likhe jaate hain, aur :: zeros ki ladi ko chhota karta hai. Devices khud apna address bana sakte hain (SLAAC), aur end-to-end connections ko NAT ki zaroorat nahi rehti. Google ke IPv6 statistics mein India duniya ke sabse zyaada adoption wale deshon mein hai."
+   },
+   "analogy": {
+    "en": "IPv4 is a 10-digit phone plan that ran out of numbers; IPv6 gives every grain of sand its own number.",
+    "hi": "IPv4 दस अंकों वाला फ़ोन प्लान है जिसके नंबर ख़त्म हो गए; IPv6 रेत के हर दाने को अपना नंबर देता है।",
+    "hinglish": "IPv4 das digit wala phone plan hai jiske numbers khatam ho gaye; IPv6 ret ke har daane ko apna number deta hai."
+   },
+   "realExample": {
+    "en": "2001:db8::1 is the documentation example address, short for 2001:0db8:0000:0000:0000:0000:0000:0001.",
+    "hi": "2001:db8::1 दस्तावेज़ों का उदाहरण पता है, 2001:0db8:0000:0000:0000:0000:0000:0001 का छोटा रूप।",
+    "hinglish": "2001:db8::1 documentation ka example address hai, 2001:0db8:0000:0000:0000:0000:0000:0001 ka short form."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Your school has 3 labs of 40, 25 and 12 computers. Split 10.20.0.0/24 into subnets that fit each lab and write the network address of each.",
+   "hi": "आपके स्कूल में 40, 25 और 12 कंप्यूटर वाली 3 लैब हैं। 10.20.0.0/24 को ऐसे सबनेट में बाँटो जिनमें हर लैब आ जाए, और हर एक का नेटवर्क पता लिखो।",
+   "hinglish": "Tumhare school mein 40, 25 aur 12 computers wali 3 labs hain. 10.20.0.0/24 ko aise subnets mein baanto jinmein har lab aa jaaye, aur har ek ka network address likho."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "short",
+    "prompt": {
+     "en": "How many usable host addresses are in a /26 subnet?",
+     "hi": "/26 सबनेट में कितने उपयोगी होस्ट पते होते हैं?",
+     "hinglish": "/26 subnet mein kitne usable host addresses hote hain?"
+    },
+    "answer": {
+     "accept": [
+      "62"
+     ]
+    },
+    "explain": {
+     "en": "6 host bits → 2⁶ = 64 addresses, minus network and broadcast = 62.",
+     "hi": "6 होस्ट बिट → 2⁶ = 64 पते, नेटवर्क और ब्रॉडकास्ट घटाकर = 62।",
+     "hinglish": "6 host bits → 2⁶ = 64 addresses, network aur broadcast ghatake = 62."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which subnet contains 10.0.5.70/26?",
+     "hi": "10.0.5.70/26 किस सबनेट में है?",
+     "hinglish": "10.0.5.70/26 kis subnet mein hai?"
+    },
+    "options": [
+     "10.0.5.0 – 10.0.5.63",
+     "10.0.5.64 – 10.0.5.127",
+     "10.0.5.128 – 10.0.5.191",
+     "10.0.5.70 – 10.0.5.133"
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "/26 blocks are 64 wide: 0, 64, 128, 192. 70 falls between 64 and 127.",
+     "hi": "/26 के खंड 64 चौड़े: 0, 64, 128, 192। 70 आता है 64 और 127 के बीच।",
+     "hinglish": "/26 ke blocks 64 chaude: 0, 64, 128, 192. 70 aata hai 64 aur 127 ke beech."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q3",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are private (RFC 1918) addresses? Choose all.",
+     "hi": "कौन-से निजी (RFC 1918) पते हैं? सभी चुनो।",
+     "hinglish": "Kaunse private (RFC 1918) addresses hain? Sab chuno."
+    },
+    "options": [
+     "192.168.0.10",
+     "172.20.3.4",
+     "8.8.8.8",
+     "10.1.2.3"
+    ],
+    "answer": [
+     0,
+     1,
+     3
+    ],
+    "explain": {
+     "en": "192.168/16, 172.16/12 (172.16–172.31) and 10/8 are private; 8.8.8.8 is Google's public DNS.",
+     "hi": "192.168/16, 172.16/12 (172.16–172.31) और 10/8 निजी हैं; 8.8.8.8 गूगल का सार्वजनिक डीएनएस है।",
+     "hinglish": "192.168/16, 172.16/12 (172.16–172.31) aur 10/8 private hain; 8.8.8.8 Google ka public DNS hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "How many bits are in an IPv6 address?",
+     "hi": "IPv6 पते में कितने बिट होते हैं?",
+     "hinglish": "IPv6 address mein kitne bits hote hain?"
+    },
+    "options": [
+     "32",
+     "64",
+     "128",
+     "256"
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "IPv6 is 128 bits, compared with 32 for IPv4.",
+     "hi": "IPv6 में 128 बिट, IPv4 के 32 के मुक़ाबले।",
+     "hinglish": "IPv6 mein 128 bits, IPv4 ke 32 ke muqaable."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why can 5 phones at home reach the internet with one public IPv4 address?",
+     "hi": "घर के 5 फ़ोन एक सार्वजनिक IPv4 पते से इंटरनेट तक कैसे पहुँचते हैं?",
+     "hinglish": "Ghar ke 5 phones ek public IPv4 address se internet tak kaise pahunchte hain?"
+    },
+    "options": [
+     {
+      "en": "DNS gives each a name",
+      "hi": "डीएनएस हर एक को नाम देता है",
+      "hinglish": "DNS har ek ko naam deta hai"
+     },
+     {
+      "en": "The router uses NAT and tracks ports",
+      "hi": "राउटर NAT से पोर्ट का हिसाब रखता है",
+      "hinglish": "Router NAT use karke ports track karta hai"
+     },
+     {
+      "en": "Phones take turns every second",
+      "hi": "फ़ोन हर सेकंड बारी लेते हैं",
+      "hinglish": "Phones har second baari lete hain"
+     },
+     {
+      "en": "Wi-Fi encryption",
+      "hi": "वाई-फ़ाई एन्क्रिप्शन",
+      "hinglish": "Wi-Fi encryption"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "NAT maps each private address and port to a unique public port and back.",
+     "hi": "NAT हर निजी पता-पोर्ट को एक अनोखे सार्वजनिक पोर्ट से जोड़ता है और वापस भी।",
+     "hinglish": "NAT har private address-port ko ek unique public port se jodta hai aur wapas bhi."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the NAT scenario in the Protocol Flow Visualiser.",
+     "hi": "प्रोटोकॉल प्रवाह दर्शक में NAT परिदृश्य पूरा करो।",
+     "hinglish": "Protocol Flow Visualiser mein NAT scenario poora karo."
+    },
+    "answer": {
+     "event": "scenario-complete",
+     "scenario": "nat-router"
+    },
+    "explain": {
+     "en": "You followed the translation table out and back.",
+     "hi": "आपने अनुवाद तालिका को जाते और आते देखा।",
+     "hinglish": "Tumne translation table ko jaate aur aate dekha."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "net.ip"
+ ],
+ "sources": [
+  {
+   "title": "RFC 1918 — Address Allocation for Private Internets",
+   "url": "https://www.rfc-editor.org/rfc/rfc1918",
+   "licence": "fact reference"
+  },
+  {
+   "title": "APNIC — IPv4 exhaustion details",
+   "url": "https://www.apnic.net/manage-ip/ipv4-exhaustion/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Google IPv6 statistics (per-country adoption)",
+   "url": "https://www.google.com/intl/en/ipv6/statistics.html",
+   "licence": "fact reference"
+  }
+ ]
+}

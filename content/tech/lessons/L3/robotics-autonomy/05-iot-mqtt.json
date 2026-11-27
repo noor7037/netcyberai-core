@@ -1,0 +1,429 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.robotics-autonomy.05",
+ "level": 3,
+ "classes": [
+  10,
+  11,
+  12
+ ],
+ "unit": "robotics-autonomy",
+ "title": {
+  "en": "IoT systems and MQTT",
+  "hi": "आईओटी तंत्र और MQTT",
+  "hinglish": "IoT systems aur MQTT"
+ },
+ "minutes": 15,
+ "xp": 65,
+ "prereq": [
+  "L3.robotics-autonomy.04",
+  "L3.networking-engineering.03"
+ ],
+ "outcomes": [
+  {
+   "en": "Describe the layers of an IoT system: devices, connectivity, broker or cloud, apps",
+   "hi": "आईओटी तंत्र की परतें बताओ: उपकरण, कनेक्टिविटी, ब्रोकर या क्लाउड, ऐप",
+   "hinglish": "IoT system ki layers batao: devices, connectivity, broker ya cloud, apps"
+  },
+  {
+   "en": "Explain MQTT publish/subscribe, topics, QoS, retained messages and last will",
+   "hi": "MQTT प्रकाशन/सदस्यता, विषय, QoS, रखे संदेश और अंतिम इच्छा समझाओ",
+   "hinglish": "MQTT publish/subscribe, topics, QoS, retained messages aur last will samjhao"
+  },
+  {
+   "en": "Secure an IoT device: unique passwords, TLS, least privilege and updates",
+   "hi": "आईओटी उपकरण सुरक्षित करो: अलग पासवर्ड, TLS, न्यूनतम अधिकार और अपडेट",
+   "hinglish": "IoT device secure karo: unique passwords, TLS, least privilege aur updates"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "IoT",
+   "hinglish": "Internet of Things",
+   "en": "Everyday objects with sensors and network connections",
+   "hi": "सेंसर और नेटवर्क कनेक्शन वाली रोज़मर्रा की चीज़ें"
+  },
+  {
+   "term": "Broker",
+   "hinglish": "Daakghar",
+   "en": "The MQTT server that receives messages and forwards them to subscribers",
+   "hi": "MQTT सर्वर जो संदेश लेकर सदस्यों को भेजता है"
+  },
+  {
+   "term": "Topic",
+   "hinglish": "Pata",
+   "en": "A path-like label such as farm/field7/moisture",
+   "hi": "पथ जैसा लेबल जैसे farm/field7/moisture"
+  },
+  {
+   "term": "QoS",
+   "hinglish": "Delivery guarantee",
+   "en": "Quality of service: 0 at most once, 1 at least once, 2 exactly once",
+   "hi": "सेवा गुणवत्ता: 0 अधिकतम एक बार, 1 कम से कम एक बार, 2 ठीक एक बार"
+  },
+  {
+   "term": "Last will",
+   "hinglish": "Aakhri sandesh",
+   "en": "A message the broker publishes if a device disconnects unexpectedly",
+   "hi": "संदेश जो उपकरण अचानक कटने पर ब्रोकर प्रकाशित करता है"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Sensor → Wi-Fi or mobile → broker → app and pump. Devices never talk to each other directly.",
+    "hi": "सेंसर → वाई-फ़ाई या मोबाइल → ब्रोकर → ऐप और पंप। उपकरण कभी सीधे आपस में बात नहीं करते।",
+    "hinglish": "Sensor → Wi-Fi ya mobile → broker → app aur pump. Devices kabhi seedhe aapas mein baat nahi karte."
+   },
+   "visual": "flow:sensor|broker|app|pump",
+   "narration": {
+    "en": "Sensor → Wi-Fi or mobile → broker → app and pump. Devices never talk to each other directly.",
+    "hi": "सेंसर → वाई-फ़ाई या मोबाइल → ब्रोकर → ऐप और पंप। उपकरण कभी सीधे आपस में बात नहीं करते।",
+    "hinglish": "Sensor → Wi-Fi ya mobile → broker → app aur pump. Devices kabhi seedhe aapas mein baat nahi karte."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Publish to a topic; everyone subscribed to it gets a copy.",
+    "hi": "विषय पर प्रकाशित करो; जिसने सदस्यता ली उसे प्रति मिलती है।",
+    "hinglish": "Topic par publish karo; jisne subscribe kiya use copy milti hai."
+   },
+   "visual": "anim:pubsub",
+   "narration": {
+    "en": "Publish to a topic; everyone subscribed to it gets a copy.",
+    "hi": "विषय पर प्रकाशित करो; जिसने सदस्यता ली उसे प्रति मिलती है।",
+    "hinglish": "Topic par publish karo; jisne subscribe kiya use copy milti hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "QoS 1, retained values and a last-will \"offline\" keep the system honest.",
+    "hi": "QoS 1, रखे मान और अंतिम इच्छा \"offline\" तंत्र को ईमानदार रखते हैं।",
+    "hinglish": "QoS 1, retained values aur last-will \"offline\" system ko imaandaar rakhte hain."
+   },
+   "visual": "stack:QoS|retain|last will",
+   "narration": {
+    "en": "QoS 1, retained values and a last-will \"offline\" keep the system honest.",
+    "hi": "QoS 1, रखे मान और अंतिम इच्छा \"offline\" तंत्र को ईमानदार रखते हैं।",
+    "hinglish": "QoS 1, retained values aur last-will \"offline\" system ko imaandaar rakhte hain."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Security: TLS on port 8883, a unique login per device, and access rules per topic.",
+    "hi": "सुरक्षा: पोर्ट 8883 पर TLS, हर उपकरण का अलग लॉगिन, और हर विषय के पहुँच नियम।",
+    "hinglish": "Security: port 8883 par TLS, har device ka alag login, aur har topic ke access rules."
+   },
+   "visual": "stack:TLS|unique login|ACL|updates",
+   "narration": {
+    "en": "Security: TLS on port 8883, a unique login per device, and access rules per topic.",
+    "hi": "सुरक्षा: पोर्ट 8883 पर TLS, हर उपकरण का अलग लॉगिन, और हर विषय के पहुँच नियम।",
+    "hinglish": "Security: port 8883 par TLS, har device ka alag login, aur har topic ke access rules."
+   }
+  }
+ ],
+ "play": {
+  "lab": "seq-flow",
+  "config": {
+   "scenario": "mqtt-iot"
+  },
+  "goal": {
+   "en": "Step through the soil sensor’s MQTT conversation until the pump turns on. Then switch on \"Sensor battery dies\" and see how the last will warns the farmer.",
+   "hi": "मिट्टी सेंसर की MQTT बातचीत चरण-दर-चरण चलाओ जब तक पंप चालू न हो। फिर \"सेंसर की बैटरी ख़त्म\" चालू करो और देखो अंतिम इच्छा किसान को कैसे चेताती है।",
+   "hinglish": "Soil sensor ki MQTT baatcheet step by step chalao jab tak pump on na ho. Phir \"Sensor ki battery khatam\" on karo aur dekho last will kisan ko kaise chetaati hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Why publish/subscribe fits IoT",
+    "hi": "प्रकाशन/सदस्यता आईओटी के लिए सही क्यों",
+    "hinglish": "Publish/subscribe IoT ke liye sahi kyun"
+   },
+   "body": {
+    "en": "MQTT was designed in 1999 by Andy Stanford-Clark (IBM) and Arlen Nipper to monitor oil pipelines over expensive satellite links, so it is tiny: a message header can be just 2 bytes, and it runs over TCP. It is now an OASIS open standard (version 5.0 in 2019). Instead of every device knowing every other device, each one connects only to a broker. Devices publish to topics like school/lab2/temperature; apps subscribe, and wildcards help: + matches one level, # matches everything below. QoS 0 sends once with no check (fine for a reading every few seconds), QoS 1 resends until acknowledged (may duplicate), and QoS 2 guarantees exactly once at more cost. A retained message lets a new subscriber see the latest value at once. A last will is registered when connecting, and the broker publishes it if the device vanishes — so dashboards can show \"offline\" instead of a stale value.",
+    "hi": "MQTT 1999 में एंडी स्टैनफ़ोर्ड-क्लार्क (IBM) और आर्लेन निपर ने महँगे उपग्रह लिंक पर तेल पाइपलाइनों की निगरानी के लिए बनाया, इसलिए यह बहुत छोटा है: संदेश शीर्ष केवल 2 बाइट का हो सकता है, और यह TCP पर चलता है। अब यह OASIS खुला मानक है (2019 में संस्करण 5.0)। हर उपकरण को हर दूसरे उपकरण को जानने के बजाय, हर एक केवल ब्रोकर से जुड़ता है। उपकरण school/lab2/temperature जैसे विषयों पर प्रकाशित करते हैं; ऐप सदस्यता लेते हैं, और वाइल्डकार्ड मदद करते हैं: + एक स्तर से मेल खाता है, # नीचे की हर चीज़ से। QoS 0 बिना जाँच एक बार भेजता है (हर कुछ सेकंड की पढ़ाई के लिए ठीक), QoS 1 पावती तक दोबारा भेजता है (दोहराव हो सकता है), और QoS 2 ज़्यादा लागत पर ठीक एक बार की गारंटी देता है। रखा गया संदेश नए सदस्य को तुरंत नवीनतम मान दिखाता है। अंतिम इच्छा जुड़ते समय दर्ज होती है, और उपकरण ग़ायब होने पर ब्रोकर उसे प्रकाशित करता है — ताकि डैशबोर्ड पुराने मान के बजाय \"offline\" दिखाएँ।",
+    "hinglish": "MQTT 1999 mein Andy Stanford-Clark (IBM) aur Arlen Nipper ne mehenge satellite links par oil pipelines ki monitoring ke liye banaya, isliye yeh bahut chhota hai: message header sirf 2 bytes ka ho sakta hai, aur yeh TCP par chalta hai. Ab yeh OASIS open standard hai (2019 mein version 5.0). Har device ko har doosre device ko jaanne ke bajaye, har ek sirf broker se judta hai. Devices school/lab2/temperature jaise topics par publish karte hain; apps subscribe karte hain, aur wildcards madad karte hain: + ek level se match karta hai, # neeche ki har cheez se. QoS 0 bina check ek baar bhejta hai (har kuch second ki reading ke liye theek), QoS 1 acknowledgement tak dobaara bhejta hai (duplicate ho sakta hai), aur QoS 2 zyada cost par exactly once ki guarantee deta hai. Retained message naye subscriber ko turant latest value dikhata hai. Last will connect karte waqt register hoti hai, aur device gayab hone par broker use publish karta hai — taaki dashboards purani value ke bajaye \"offline\" dikhayein."
+   },
+   "analogy": {
+    "en": "A school notice board: teachers pin notices under subject headings, students check only the headings they care about, and nobody needs everyone’s phone number.",
+    "hi": "स्कूल सूचना पट: शिक्षक विषय शीर्षकों के नीचे सूचनाएँ लगाते हैं, छात्र केवल अपने शीर्षक देखते हैं, और किसी को सबका फ़ोन नंबर नहीं चाहिए।",
+    "hinglish": "School notice board: teachers subject headings ke neeche notices lagate hain, students sirf apne headings dekhte hain, aur kisi ko sabka phone number nahi chahiye."
+   },
+   "realExample": {
+    "en": "Smart electricity meters, factory machines, cold-chain trucks carrying vaccines, and home automation systems such as Home Assistant commonly use MQTT.",
+    "hi": "स्मार्ट बिजली मीटर, फ़ैक्टरी मशीनें, टीके ले जाने वाले कोल्ड-चेन ट्रक, और Home Assistant जैसे गृह स्वचालन तंत्र आम तौर पर MQTT इस्तेमाल करते हैं।",
+    "hinglish": "Smart electricity meters, factory machines, vaccines le jaane wale cold-chain trucks, aur Home Assistant jaise home automation systems aam taur par MQTT use karte hain."
+   }
+  },
+  {
+   "heading": {
+    "en": "Securing the Internet of Things (defensive)",
+    "hi": "इंटरनेट ऑफ़ थिंग्स की सुरक्षा (रक्षात्मक)",
+    "hinglish": "Internet of Things ki security (defensive)"
+   },
+   "body": {
+    "en": "Cheap devices often ship with weak security, and attackers scan the internet for them. In 2016 the Mirai malware took over hundreds of thousands of cameras and routers that still used factory-default passwords, and used them to knock major websites offline. Defences are simple but must be designed in from day one: a unique password or certificate per device (never a shared default); TLS encryption (MQTT over port 8883 rather than plain 1883); access rules so that a soil sensor may only publish to its own topic and only the pump may subscribe to pump commands; no admin ports open to the internet; signed over-the-air firmware updates; and safety limits in the device itself, like a pump timer that switches off after 15 minutes even if the network fails. India’s CERT-In issues advisories for vulnerable IoT products — follow them and update.",
+    "hi": "सस्ते उपकरण अक्सर कमज़ोर सुरक्षा के साथ आते हैं, और हमलावर इंटरनेट पर उन्हें खोजते हैं। 2016 में Mirai मैलवेयर ने लाखों कैमरों और राउटरों पर क़ब्ज़ा कर लिया जो अब भी फ़ैक्टरी के डिफ़ॉल्ट पासवर्ड इस्तेमाल करते थे, और उनसे बड़ी वेबसाइटें बंद करा दीं। बचाव सरल हैं पर पहले दिन से डिज़ाइन में होने चाहिए: हर उपकरण का अलग पासवर्ड या प्रमाणपत्र (कभी साझा डिफ़ॉल्ट नहीं); TLS एन्क्रिप्शन (सादे 1883 के बजाय पोर्ट 8883 पर MQTT); पहुँच नियम ताकि मिट्टी सेंसर केवल अपने विषय पर प्रकाशित करे और केवल पंप ही पंप आदेशों की सदस्यता ले; कोई एडमिन पोर्ट इंटरनेट के लिए खुला नहीं; हस्ताक्षरित ओवर-द-एयर फ़र्मवेयर अपडेट; और उपकरण में ही सुरक्षा सीमाएँ, जैसे पंप टाइमर जो नेटवर्क विफल होने पर भी 15 मिनट बाद बंद कर दे। भारत का CERT-In कमज़ोर आईओटी उत्पादों के लिए सलाह जारी करता है — उनका पालन करो और अपडेट करो।",
+    "hinglish": "Saste devices aksar kamzor security ke saath aate hain, aur attackers internet par unhe scan karte hain. 2016 mein Mirai malware ne laakhon cameras aur routers par kabza kar liya jo ab bhi factory default passwords use karte the, aur unse badi websites band kara di. Defences simple hain par pehle din se design mein hone chahiye: har device ka alag password ya certificate (kabhi shared default nahi); TLS encryption (plain 1883 ke bajaye port 8883 par MQTT); access rules taaki soil sensor sirf apne topic par publish kare aur sirf pump hi pump commands subscribe kare; koi admin port internet ke liye khula nahi; signed over-the-air firmware updates; aur device mein hi safety limits, jaise pump timer jo network fail hone par bhi 15 minute baad band kar de. India ka CERT-In kamzor IoT products ke liye advisories jaari karta hai — unka paalan karo aur update karo."
+   },
+   "analogy": {
+    "en": "Giving every flat in a building its own key instead of one master key taped to the gate.",
+    "hi": "इमारत के हर फ़्लैट को अपनी चाबी देना, गेट पर चिपकी एक मास्टर चाबी के बजाय।",
+    "hinglish": "Building ke har flat ko apni chaabi dena, gate par chipki ek master chaabi ke bajaye."
+   },
+   "realExample": {
+    "en": "Before connecting a new Wi-Fi camera at home: change the default password, update its firmware, and turn off remote access you do not need.",
+    "hi": "घर पर नया वाई-फ़ाई कैमरा जोड़ने से पहले: डिफ़ॉल्ट पासवर्ड बदलो, फ़र्मवेयर अपडेट करो, और अनचाही रिमोट पहुँच बंद करो।",
+    "hinglish": "Ghar par naya Wi-Fi camera jodne se pehle: default password badlo, firmware update karo, aur jo remote access nahi chahiye use band karo."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Design an MQTT topic tree for a smart classroom with a temperature sensor, a light sensor, a fan and lights in each of four rooms. Write which device publishes and which subscribes to each topic, the QoS you would choose, and two access rules that stop a student’s phone from switching off another room’s fan.",
+   "hi": "चार कमरों वाली स्मार्ट कक्षा के लिए MQTT विषय वृक्ष बनाओ — हर कमरे में तापमान सेंसर, प्रकाश सेंसर, पंखा और बत्तियाँ। हर विषय पर कौन प्रकाशित और कौन सदस्यता लेता है, कौन-सा QoS चुनोगे, और दो पहुँच नियम लिखो जो छात्र के फ़ोन को दूसरे कमरे का पंखा बंद करने से रोकें।",
+   "hinglish": "Chaar rooms wale smart classroom ke liye MQTT topic tree design karo — har room mein temperature sensor, light sensor, fan aur lights. Har topic par kaun publish aur kaun subscribe karta hai, kaunsa QoS chunoge, aur do access rules likho jo student ke phone ko doosre room ka fan band karne se rokein."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "In MQTT, how does a sensor’s reading reach the app?",
+     "hi": "MQTT में सेंसर की पढ़ाई ऐप तक कैसे पहुँचती है?",
+     "hinglish": "MQTT mein sensor ki reading app tak kaise pahunchti hai?"
+    },
+    "options": [
+     {
+      "en": "Sensor publishes to a topic on the broker; the broker forwards it to subscribers",
+      "hi": "सेंसर ब्रोकर पर विषय में प्रकाशित करता है; ब्रोकर सदस्यों को भेजता है",
+      "hinglish": "Sensor broker par topic mein publish karta hai; broker subscribers ko bhejta hai"
+     },
+     {
+      "en": "Sensor calls the app directly",
+      "hi": "सेंसर सीधे ऐप को बुलाता है",
+      "hinglish": "Sensor seedhe app ko bulata hai"
+     },
+     {
+      "en": "By email",
+      "hi": "ईमेल से",
+      "hinglish": "Email se"
+     },
+     {
+      "en": "The app reads the sensor’s memory",
+      "hi": "ऐप सेंसर की मेमोरी पढ़ता है",
+      "hinglish": "App sensor ki memory padhta hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Publish/subscribe through a broker.",
+     "hi": "ब्रोकर द्वारा प्रकाशन/सदस्यता।",
+     "hinglish": "Broker dwara publish/subscribe."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which topic filter receives every topic under farm/field7?",
+     "hi": "कौन-सा विषय फ़िल्टर farm/field7 के नीचे हर विषय पाता है?",
+     "hinglish": "Kaunsa topic filter farm/field7 ke neeche har topic paata hai?"
+    },
+    "options": [
+     {
+      "en": "farm/field7/#",
+      "hi": "farm/field7/#",
+      "hinglish": "farm/field7/#"
+     },
+     {
+      "en": "farm/field7",
+      "hi": "farm/field7",
+      "hinglish": "farm/field7"
+     },
+     {
+      "en": "farm/+",
+      "hi": "farm/+",
+      "hinglish": "farm/+"
+     },
+     {
+      "en": "#/field7",
+      "hi": "#/field7",
+      "hinglish": "#/field7"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "# matches all levels below.",
+     "hi": "# नीचे के सभी स्तरों से मेल खाता है।",
+     "hinglish": "# neeche ke sabhi levels se match karta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "match",
+    "prompt": {
+     "en": "Match the QoS level to its guarantee.",
+     "hi": "QoS स्तर को उसकी गारंटी से मिलाओ।",
+     "hinglish": "QoS level ko uski guarantee se milao."
+    },
+    "options": [
+     "QoS 0",
+     "QoS 1",
+     "QoS 2"
+    ],
+    "answer": [
+     {
+      "en": "At most once",
+      "hi": "अधिकतम एक बार",
+      "hinglish": "At most once"
+     },
+     {
+      "en": "At least once",
+      "hi": "कम से कम एक बार",
+      "hinglish": "At least once"
+     },
+     {
+      "en": "Exactly once",
+      "hi": "ठीक एक बार",
+      "hinglish": "Exactly once"
+     }
+    ],
+    "explain": {
+     "en": "Higher QoS costs more messages.",
+     "hi": "ऊँचा QoS ज़्यादा संदेश लेता है।",
+     "hinglish": "Ooncha QoS zyada messages leta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "multi",
+    "prompt": {
+     "en": "Which steps secure an IoT device?",
+     "hi": "कौन-से कदम आईओटी उपकरण सुरक्षित करते हैं?",
+     "hinglish": "Kaunse steps IoT device secure karte hain?"
+    },
+    "options": [
+     {
+      "en": "A unique password or certificate per device",
+      "hi": "हर उपकरण का अलग पासवर्ड या प्रमाणपत्र",
+      "hinglish": "Har device ka alag password ya certificate"
+     },
+     {
+      "en": "TLS encryption",
+      "hi": "TLS एन्क्रिप्शन",
+      "hinglish": "TLS encryption"
+     },
+     {
+      "en": "Keeping the factory default password",
+      "hi": "फ़ैक्टरी डिफ़ॉल्ट पासवर्ड रखना",
+      "hinglish": "Factory default password rakhna"
+     },
+     {
+      "en": "Signed firmware updates",
+      "hi": "हस्ताक्षरित फ़र्मवेयर अपडेट",
+      "hinglish": "Signed firmware updates"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     3
+    ],
+    "explain": {
+     "en": "Mirai spread through default passwords.",
+     "hi": "Mirai डिफ़ॉल्ट पासवर्डों से फैला।",
+     "hinglish": "Mirai default passwords se faila."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "What is a last will message for?",
+     "hi": "अंतिम इच्छा संदेश किस लिए है?",
+     "hinglish": "Last will message kis liye hai?"
+    },
+    "options": [
+     {
+      "en": "Announcing that a device disconnected unexpectedly",
+      "hi": "घोषणा कि उपकरण अचानक कट गया",
+      "hinglish": "Announce karna ki device achanak kat gaya"
+     },
+     {
+      "en": "Deleting all data",
+      "hi": "सारा डेटा मिटाना",
+      "hinglish": "Saara data mitaana"
+     },
+     {
+      "en": "Updating firmware",
+      "hi": "फ़र्मवेयर अपडेट",
+      "hinglish": "Firmware update"
+     },
+     {
+      "en": "Encrypting traffic",
+      "hi": "ट्रैफ़िक एन्क्रिप्ट करना",
+      "hinglish": "Traffic encrypt karna"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "So apps do not trust stale readings.",
+     "hi": "ताकि ऐप पुरानी पढ़ाई पर भरोसा न करें।",
+     "hinglish": "Taaki apps purani readings par bharosa na karein."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Finish the MQTT scenario in the lab.",
+     "hi": "लैब में MQTT परिदृश्य पूरा करो।",
+     "hinglish": "Lab mein MQTT scenario poora karo."
+    },
+    "answer": {
+     "event": "scenario-complete",
+     "scenario": "mqtt-iot"
+    },
+    "explain": {
+     "en": "Connect, subscribe, publish, forward, command, confirm.",
+     "hi": "जुड़ो, सदस्यता, प्रकाशन, आगे भेजना, आदेश, पुष्टि।",
+     "hinglish": "Connect, subscribe, publish, forward, command, confirm."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "robo.iot",
+  "net.packets",
+  "cyber.malware"
+ ],
+ "sources": [
+  {
+   "title": "MQTT.org — the MQTT standard",
+   "url": "https://mqtt.org/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "OASIS — MQTT Version 5.0 (2019)",
+   "url": "https://docs.oasis-open.org/mqtt/mqtt/v5.0/mqtt-v5.0.html",
+   "licence": "fact reference"
+  },
+  {
+   "title": "CERT-In — Indian Computer Emergency Response Team",
+   "url": "https://www.cert-in.org.in/",
+   "licence": "fact reference"
+  }
+ ]
+}

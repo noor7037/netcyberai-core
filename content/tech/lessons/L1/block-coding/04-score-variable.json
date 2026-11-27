@@ -1,0 +1,340 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.block-coding.04",
+ "level": 1,
+ "classes": [
+  4,
+  5
+ ],
+ "unit": "block-coding",
+ "title": {
+  "en": "Make a score: variables",
+  "hi": "स्कोर बनाओ: वेरिएबल",
+  "hinglish": "Score banao: variables"
+ },
+ "minutes": 9,
+ "xp": 40,
+ "prereq": [
+  "L1.block-coding.03"
+ ],
+ "topics": [
+  "prog.variables",
+  "prog.blocks"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain a variable as a labelled box that holds a value.",
+   "hi": "वेरिएबल को मान रखने वाले नाम लिखे डिब्बे की तरह समझा सकते हो।",
+   "hinglish": "Variable ko naam wale dabbe ki tarah samjha sakte ho jo value rakhta hai."
+  },
+  {
+   "en": "Change a variable: stars = stars + 1.",
+   "hi": "वेरिएबल बदल सकते हो: stars = stars + 1।",
+   "hinglish": "Variable badal sakte ho: stars = stars + 1."
+  },
+  {
+   "en": "Use a variable to decide if a game is won.",
+   "hi": "वेरिएबल से तय कर सकते हो कि गेम जीता या नहीं।",
+   "hinglish": "Variable se tay kar sakte ho ki game jeeta ya nahin."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Variable",
+   "en": "A named box in memory that stores a value that can change",
+   "hi": "मेमोरी में नाम वाला डिब्बा जिसमें बदलने वाला मान रहता है",
+   "hinglish": "Naam wala dabba jismein value rakhte hain"
+  },
+  {
+   "term": "Value",
+   "en": "The data stored in a variable, like 3 or \"Chintu\"",
+   "hi": "वेरिएबल में रखा डेटा, जैसे 3 या \"चिंटू\"",
+   "hinglish": "Dabbe ke andar ki cheez — jaise 3"
+  },
+  {
+   "term": "Score",
+   "en": "Points in a game, usually kept in a variable",
+   "hi": "गेम के अंक, जो आमतौर पर वेरिएबल में रहते हैं",
+   "hinglish": "Game mein ank"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.block-coding.04.s1",
+   "caption": {
+    "en": "A variable is a box with a name.",
+    "hi": "वेरिएबल नाम वाला डिब्बा है।",
+    "hinglish": "Variable naam wala dabba hai."
+   },
+   "narration": {
+    "en": "Make a box named stars. At the start, put 0 in it.",
+    "hinglish": "Ek dabba banao jiska naam stars. Shuru mein usmein 0 rakho.",
+    "hi": "वेरिएबल नाम वाला डिब्बा है।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.block-coding.04.s2",
+   "caption": {
+    "en": "Collect a star: stars = stars + 1.",
+    "hi": "तारा उठाओ: stars = stars + 1।",
+    "hinglish": "Star uthao: stars = stars + 1."
+   },
+   "narration": {
+    "en": "Each time Chintu picks a star, the program adds 1 to the box.",
+    "hinglish": "Har baar Chintu star uthata hai, program dabbe mein 1 jodta hai.",
+    "hi": "तारा उठाओ: stars = stars + 1।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.block-coding.04.s3",
+   "caption": {
+    "en": "Use the variable to decide.",
+    "hi": "वेरिएबल से फ़ैसला करो।",
+    "hinglish": "Variable se decide karo."
+   },
+   "narration": {
+    "en": "IF stars is 3 or more AND Chintu reaches the mango, THEN you win.",
+    "hinglish": "AGAR stars 3 ya zyada hai AUR Chintu mango tak pahunchta hai, TOH tum jeete.",
+    "hi": "वेरिएबल से फ़ैसला करो।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "loop-coder",
+  "config": {
+   "level": 10,
+   "code": true
+  },
+  "goal": {
+   "en": "Collect at least 3 stars (watch the stars variable) and reach the mango.",
+   "hi": "कम से कम 3 तारे उठाओ (stars वेरिएबल देखो) और आम तक पहुँचो।",
+   "hinglish": "Kam se kam 3 stars lo (stars variable dekho) aur mango tak pahuncho."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Boxes in memory",
+    "hi": "मेमोरी में डिब्बे",
+    "hinglish": "Memory mein dabbe"
+   },
+   "body": {
+    "en": "A variable is a named place in the computer's memory (RAM). Its value can change while the program runs: score, lives, time left, player name.",
+    "hi": "वेरिएबल कंप्यूटर की मेमोरी (RAM) में नाम वाली जगह है। प्रोग्राम चलते समय उसका मान बदल सकता है: स्कोर, जान, बचा समय, खिलाड़ी का नाम।",
+    "hinglish": "Variable computer ki memory (RAM) mein naam wali jagah hai. Program chalte waqt uski value badal sakti hai: score, lives, time left, player ka naam."
+   },
+   "analogy": {
+    "en": "A cricket scoreboard: \"Runs\" is a variable — every four adds 4.",
+    "hi": "क्रिकेट का स्कोरबोर्ड: \"रन\" एक वेरिएबल है — हर चौके पर 4 जुड़ते हैं।",
+    "hinglish": "Cricket ka scoreboard: \"Runs\" ek variable hai — har chauke par 4 judta hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "Reading \"stars = stars + 1\"",
+    "hi": "\"stars = stars + 1\" पढ़ना",
+    "hinglish": "\"stars = stars + 1\" padhna"
+   },
+   "body": {
+    "en": "In code, \"=\" means \"put into the box\". stars = stars + 1 means: take what is in stars, add 1, and put the answer back in stars. If stars was 2, it becomes 3.",
+    "hi": "कोड में \"=\" का अर्थ है \"डिब्बे में रखो\"। stars = stars + 1 का अर्थ: stars में जो है, उसमें 1 जोड़ो, और जवाब वापस stars में रखो। stars 2 था तो 3 हो जाएगा।",
+    "hinglish": "Code mein \"=\" ka matlab hai \"dabbe mein rakho\". stars = stars + 1 ka matlab: stars mein jo hai, usmein 1 jodo, aur jawab wapas stars mein rakho. stars 2 tha toh 3 ho jayega."
+   },
+   "realExample": {
+    "en": "A step-counter app keeps steps in a variable and adds 1 for every step you walk.",
+    "hi": "कदम गिनने वाला ऐप कदम एक वेरिएबल में रखता है और हर कदम पर 1 जोड़ता है।",
+    "hinglish": "Step-counter app steps ko variable mein rakhta hai aur har kadam par 1 jodta hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Keep a \"glasses of water\" variable for one day on paper. Start at 0 and do water = water + 1 each time.",
+   "hi": "एक दिन कागज़ पर \"पानी के गिलास\" वेरिएबल रखो। 0 से शुरू करो और हर बार water = water + 1 करो।",
+   "hinglish": "Ek din kaagaz par \"paani ke glass\" variable rakho. 0 se shuru karo aur har baar water = water + 1 karo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "stars is 4. After stars = stars + 1, stars is…",
+     "hi": "stars 4 है। stars = stars + 1 के बाद stars…",
+     "hinglish": "stars 4 hai. stars = stars + 1 ke baad stars…"
+    },
+    "options": [
+     {
+      "en": "5",
+      "hi": "5",
+      "hinglish": "5"
+     },
+     {
+      "en": "4",
+      "hi": "4",
+      "hinglish": "4"
+     },
+     {
+      "en": "1",
+      "hi": "1",
+      "hinglish": "1"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "4 + 1 = 5, stored back in stars.",
+     "hi": "4 + 1 = 5, वापस stars में।",
+     "hinglish": "4 + 1 = 5, wapas stars mein."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "A variable is like…",
+     "hi": "वेरिएबल है जैसे…",
+     "hinglish": "Variable hai jaise…"
+    },
+    "options": [
+     {
+      "en": "a labelled box holding a value",
+      "hi": "मान रखने वाला नाम लिखा डिब्बा",
+      "hinglish": "value rakhne wala naam likha dabba"
+     },
+     {
+      "en": "a loop",
+      "hi": "एक लूप",
+      "hinglish": "ek loop"
+     },
+     {
+      "en": "a printer",
+      "hi": "प्रिंटर",
+      "hinglish": "printer"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "It has a name and keeps a value that can change.",
+     "hi": "इसका नाम होता है और यह बदलने वाला मान रखता है।",
+     "hinglish": "Iska naam hota hai aur yeh badalne wali value rakhta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "multi",
+    "prompt": {
+     "en": "Which could be variables in a game?",
+     "hi": "गेम में कौन-से वेरिएबल हो सकते हैं?",
+     "hinglish": "Game mein kaun se variables ho sakte hain?"
+    },
+    "options": [
+     {
+      "en": "score",
+      "hi": "स्कोर",
+      "hinglish": "score"
+     },
+     {
+      "en": "lives",
+      "hi": "जान",
+      "hinglish": "lives"
+     },
+     {
+      "en": "time left",
+      "hi": "बचा समय",
+      "hinglish": "time left"
+     },
+     {
+      "en": "the screen glass",
+      "hi": "स्क्रीन का काँच",
+      "hinglish": "screen ka kaanch"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2
+    ],
+    "explain": {
+     "en": "Score, lives and time change during play; the screen glass is hardware.",
+     "hi": "स्कोर, जान और समय खेल में बदलते हैं; स्क्रीन का काँच हार्डवेयर है।",
+     "hinglish": "Score, lives aur time khel mein badalte hain; screen ka kaanch hardware hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Start: lives = 3. You lose a life twice: lives = lives − 1 (two times). lives = ?",
+     "hi": "शुरू: lives = 3। दो बार lives = lives − 1। lives = ?",
+     "hinglish": "Shuru: lives = 3. Do baar lives = lives − 1. lives = ?"
+    },
+    "options": [
+     {
+      "en": "1",
+      "hi": "1",
+      "hinglish": "1"
+     },
+     {
+      "en": "2",
+      "hi": "2",
+      "hinglish": "2"
+     },
+     {
+      "en": "5",
+      "hi": "5",
+      "hinglish": "5"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "3 − 1 = 2, then 2 − 1 = 1.",
+     "hi": "3 − 1 = 2, फिर 2 − 1 = 1।",
+     "hinglish": "3 − 1 = 2, phir 2 − 1 = 1."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Win Level 10 with stars ≥ 3.",
+     "hi": "स्तर 10 को stars ≥ 3 के साथ जीतो।",
+     "hinglish": "Level 10 ko stars ≥ 3 ke saath jeeto."
+    },
+    "answer": {
+     "lab": "loop-coder",
+     "level": 10,
+     "solved": true
+    },
+    "explain": {
+     "en": "Repeat 4 [forward] along the top row collects 2 stars; turn right and Repeat 3 [forward] collects the third and reaches the mango.",
+     "hi": "ऊपर की पंक्ति में दोहराओ 4 [आगे] से 2 तारे; दाएँ मुड़कर दोहराओ 3 [आगे] से तीसरा तारा और आम।",
+     "hinglish": "Upar ki line mein Repeat 4 [forward] se 2 stars; right mud kar Repeat 3 [forward] se teesra star aur mango."
+    },
+    "difficulty": 3
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Scratch / ScratchJr – MIT Media Lab, free block coding (fact reference)",
+   "url": "https://scratch.mit.edu/about",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Python Software Foundation – variables and assignment (fact reference)",
+   "url": "https://docs.python.org/3/tutorial/introduction.html",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

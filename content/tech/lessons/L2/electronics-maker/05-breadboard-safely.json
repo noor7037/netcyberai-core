@@ -1,0 +1,387 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.electronics-maker.05",
+ "level": 2,
+ "classes": [
+  7,
+  8
+ ],
+ "unit": "electronics-maker",
+ "title": {
+  "en": "A breadboard, safely",
+  "hi": "ब्रेडबोर्ड, सुरक्षित रूप से",
+  "hinglish": "Breadboard, safely"
+ },
+ "minutes": 14,
+ "xp": 45,
+ "prereq": [
+  "L2.electronics-maker.04"
+ ],
+ "topics": [
+  "elec.circuits",
+  "elec.power-batteries"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain how breadboard rows and power rails connect",
+   "hi": "समझा सकते हो कि ब्रेडबोर्ड की पंक्तियाँ और पावर रेल कैसे जुड़ती हैं",
+   "hinglish": "Samjha sakte ho breadboard ki rows aur power rails kaise judti hain"
+  },
+  {
+   "en": "Debug a circuit: open switch, reversed LED, flat battery",
+   "hi": "परिपथ डिबग कर सकते हो: खुला स्विच, उल्टा LED, ख़त्म बैटरी",
+   "hinglish": "Circuit debug kar sakte ho: khula switch, ulta LED, khatam battery"
+  },
+  {
+   "en": "Follow battery and electrical safety rules",
+   "hi": "बैटरी और बिजली के सुरक्षा नियम मान सकते हो",
+   "hinglish": "Battery aur bijli ki safety rules follow kar sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Breadboard",
+   "hinglish": "Bina solder ka circuit board",
+   "en": "A board with holes for building circuits without soldering",
+   "hi": "बिना सोल्डरिंग परिपथ बनाने के छेदों वाला बोर्ड"
+  },
+  {
+   "term": "Power rail",
+   "hinglish": "Side ki + aur − lines",
+   "en": "The long + and − lines along the sides of a breadboard",
+   "hi": "ब्रेडबोर्ड के किनारों पर लंबी + और − लाइनें"
+  },
+  {
+   "term": "Jumper wire",
+   "hinglish": "Jodne wala chhota taar",
+   "en": "A short wire used to connect points on a breadboard",
+   "hi": "ब्रेडबोर्ड पर बिंदु जोड़ने वाला छोटा तार"
+  },
+  {
+   "term": "Multimeter",
+   "hinglish": "Volt, amp, ohm naapne wala meter",
+   "en": "A meter that measures volts, amps and ohms",
+   "hi": "वोल्ट, एम्पियर और ओम मापने वाला मीटर"
+  },
+  {
+   "term": "Polarity",
+   "hinglish": "Kaunsa + kaunsa −",
+   "en": "Which side is + and which is −",
+   "hi": "कौन-सी ओर + और कौन-सी −"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Inside a breadboard, each short row of 5 holes is joined by a metal clip. The long side rails carry + and −.",
+    "hi": "ब्रेडबोर्ड के अंदर 5 छेदों की हर छोटी पंक्ति धातु की क्लिप से जुड़ी है। किनारों की लंबी रेल + और − ले जाती हैं।",
+    "hinglish": "Breadboard ke andar 5 holes ki har chhoti row metal clip se judi hai. Side ki lambi rails + aur − le jaati hain."
+   },
+   "visual": "compare:🟩 Row of 5 = one connection|🟥🟦 Side rails = + and − all the way along",
+   "narration": {
+    "en": "Two legs in the same row are connected; across the middle gap they are not.",
+    "hi": "एक ही पंक्ति में दो टाँगें जुड़ी हैं; बीच के खाँचे के पार नहीं।",
+    "hinglish": "Same row mein do taangein judi hain; beech ke gap ke paar nahi."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "When a circuit fails, check in order: power, polarity, connections, parts.",
+    "hi": "परिपथ न चले तो क्रम से जाँचो: बिजली, ध्रुवता, जोड़, भाग।",
+    "hinglish": "Circuit na chale to order mein check karo: power, polarity, connections, parts."
+   },
+   "visual": "lab:circuit-lab#fix",
+   "narration": {
+    "en": "The lab has three broken circuits. Find each fault.",
+    "hi": "लैब में तीन टूटे परिपथ हैं। हर ख़राबी ढूँढो।",
+    "hinglish": "Lab mein teen toote circuits hain. Har fault dhoondo."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Safety first: low-voltage cells only, never short a battery, never touch mains, unplug before changing wires.",
+    "hi": "सुरक्षा पहले: केवल कम वोल्टेज सेल, बैटरी को कभी शॉर्ट मत करो, मेन्स कभी मत छुओ, तार बदलने से पहले निकालो।",
+    "hinglish": "Safety pehle: sirf low-voltage cells, battery ko kabhi short mat karo, mains kabhi mat chhuo, wires badalne se pehle nikaalo."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "A swollen or hot battery is a warning — stop and tell a grown-up.",
+    "hi": "फूली या गरम बैटरी चेतावनी है — रुको और बड़े को बताओ।",
+    "hinglish": "Phooli ya garam battery warning hai — ruko aur bade ko batao."
+   },
+   "code": "SAFE CHECKLIST\n✔ 3–9 V cells or USB power only\n✔ resistor with every LED\n✔ disconnect power before rewiring\n✘ never wire + straight to −\n✘ never use 230 V mains\n✘ never puncture or heat a battery"
+  }
+ ],
+ "play": {
+  "lab": "circuit-lab",
+  "config": {
+   "tab": "fix"
+  },
+  "goal": {
+   "en": "Find and fix the fault in all three broken circuits.",
+   "hi": "तीनों टूटे परिपथों की ख़राबी ढूँढो और ठीक करो।",
+   "hinglish": "Teeno toote circuits ka fault dhoondo aur theek karo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Building and debugging like an engineer",
+    "hi": "इंजीनियर की तरह बनाना और डिबग करना",
+    "hinglish": "Engineer ki tarah banana aur debug karna"
+   },
+   "body": {
+    "en": "A standard breadboard has terminal strips: rows of 5 connected holes on each side of a centre gap, so a chip can straddle the gap with each pin on its own row. Power rails run the full length and are usually marked red (+) and blue (−). Most circuit faults are simple: no power (switch open, flat or reversed battery), wrong polarity (LED or electrolytic capacitor backwards), a loose wire or a leg in the wrong row, or a wrong part value. A multimeter helps: on the volts setting, measure across the battery (a “9 V” battery reading 6 V is nearly flat); on continuity it beeps if two points are connected. Battery safety matters: shorting a battery makes it heat up quickly, and lithium-ion cells can catch fire if shorted, punctured or crushed. Coin cells are very dangerous if swallowed, so keep them away from small children. Dispose of old batteries at e-waste collection points, not in household rubbish — India’s Battery Waste Management Rules, 2022 make producers responsible for collecting them.",
+    "hi": "मानक ब्रेडबोर्ड में टर्मिनल पट्टियाँ होती हैं: बीच के खाँचे के दोनों ओर 5 जुड़े छेदों की पंक्तियाँ, ताकि कोई चिप खाँचे के ऊपर बैठे और हर पिन अपनी पंक्ति में हो। पावर रेल पूरी लंबाई में चलती हैं और आमतौर पर लाल (+) और नीली (−) होती हैं। ज़्यादातर ख़राबियाँ सरल होती हैं: बिजली नहीं (स्विच खुला, बैटरी ख़त्म या उल्टी), ग़लत ध्रुवता (LED या इलेक्ट्रोलिटिक संधारित्र उल्टा), ढीला तार या ग़लत पंक्ति में टाँग, या ग़लत मान का भाग। मल्टीमीटर मदद करता है: वोल्ट सेटिंग पर बैटरी के आर-पार मापो (6 V दिखाने वाली “9 V” बैटरी लगभग ख़त्म है); निरंतरता पर दो बिंदु जुड़े हों तो बीप करता है। बैटरी सुरक्षा ज़रूरी है: बैटरी शॉर्ट करने से वह जल्दी गरम होती है, और लिथियम-आयन सेल शॉर्ट, छेद या दबने पर आग पकड़ सकते हैं। सिक्का सेल निगलने पर बहुत ख़तरनाक हैं, इसलिए छोटे बच्चों से दूर रखो। पुरानी बैटरियाँ घरेलू कचरे में नहीं, ई-कचरा संग्रह केंद्रों पर दो — भारत के बैटरी अपशिष्ट प्रबंधन नियम, 2022 उत्पादकों को उन्हें इकट्ठा करने का ज़िम्मेदार बनाते हैं।",
+    "hinglish": "Standard breadboard mein terminal strips hoti hain: beech ke gap ke dono taraf 5 jude holes ki rows, taaki koi chip gap ke upar baithe aur har pin apni row mein ho. Power rails poori lambai mein chalti hain aur aksar red (+) aur blue (−) hoti hain. Zyaadatar faults simple hote hain: power nahi (switch khula, battery khatam ya ulti), galat polarity (LED ya electrolytic capacitor ulta), dheela wire ya galat row mein taang, ya galat value ka part. Multimeter madad karta hai: volts setting pe battery ke across naapo (6 V dikhane wali “9 V” battery lagbhag khatam hai); continuity pe do points jude hon to beep karta hai. Battery safety zaroori hai: battery short karne se woh jaldi garam hoti hai, aur lithium-ion cells short, ched ya dabne pe aag pakad sakte hain. Coin cells nigalne pe bahut khatarnaak hain, isliye chhote bachchon se door rakho. Purani batteries ghar ke kachre mein nahi, e-waste collection points pe do — India ke Battery Waste Management Rules, 2022 producers ko unhe collect karne ka zimmedaar banate hain."
+   },
+   "analogy": {
+    "en": "A breadboard = a Lego base plate: put anything on, take it off, put it on again — nothing has to be stuck down for good.",
+    "hi": "ब्रेडबोर्ड = लेगो की बेस प्लेट: कुछ भी लगाओ, निकालो, फिर लगाओ — कुछ भी पक्का चिपकाना नहीं पड़ता।",
+    "hinglish": "Breadboard = Lego ka base plate: kuch bhi lagao, nikaalo, phir lagao — kuch pakka chipkaana nahi padta."
+   },
+   "realExample": {
+    "en": "Engineers at ISRO and phone companies build every new circuit idea on a breadboard or test board first, before it becomes a printed circuit board (PCB).",
+    "hi": "ISRO और फ़ोन कंपनियों के इंजीनियर हर नए परिपथ विचार को पहले ब्रेडबोर्ड या टेस्ट बोर्ड पर बनाते हैं, फिर वह प्रिंटेड सर्किट बोर्ड (PCB) बनता है।",
+    "hinglish": "ISRO aur phone companies ke engineers har naye circuit idea ko pehle breadboard ya test board pe banate hain, phir woh printed circuit board (PCB) banta hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "With a grown-up, plan an LED + resistor + switch circuit on paper as a breadboard drawing: mark which row every leg goes in and where + and − connect.",
+   "hi": "बड़े के साथ, LED + प्रतिरोधक + स्विच परिपथ को काग़ज़ पर ब्रेडबोर्ड चित्र की तरह योजना बनाओ: हर टाँग किस पंक्ति में और + और − कहाँ जुड़ते हैं, चिह्नित करो।",
+   "hinglish": "Bade ke saath, LED + resistor + switch circuit ko kaagaz pe breadboard drawing ki tarah plan karo: har taang kis row mein aur + aur − kahan judte hain, mark karo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Two component legs are in the same 5-hole row. They are…",
+     "hi": "दो भागों की टाँगें एक ही 5-छेद पंक्ति में हैं। वे…",
+     "hinglish": "Do parts ki taangein same 5-hole row mein hain. Woh…"
+    },
+    "options": [
+     {
+      "en": "connected",
+      "hi": "जुड़ी हैं",
+      "hinglish": "judi hain"
+     },
+     {
+      "en": "not connected",
+      "hi": "नहीं जुड़ी",
+      "hinglish": "nahi judi"
+     },
+     {
+      "en": "short-circuited to mains",
+      "hi": "मेन्स से शॉर्ट",
+      "hinglish": "mains se short"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Holes in the same row share a metal clip.",
+     "hi": "एक पंक्ति के छेद एक ही धातु क्लिप से जुड़े हैं।",
+     "hinglish": "Same row ke holes ek hi metal clip se jude hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "order",
+    "prompt": {
+     "en": "Put the debugging checks in a sensible order.",
+     "hi": "डिबग जाँचों को सही क्रम में लगाओ।",
+     "hinglish": "Debugging checks ko sahi order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Polarity (LED the right way?)",
+      "hi": "ध्रुवता (LED सही दिशा में?)",
+      "hinglish": "Polarity (LED sahi taraf?)"
+     },
+     {
+      "en": "Part values (right resistor?)",
+      "hi": "भागों के मान (सही प्रतिरोधक?)",
+      "hinglish": "Part values (sahi resistor?)"
+     },
+     {
+      "en": "Power (battery and switch)",
+      "hi": "बिजली (बैटरी और स्विच)",
+      "hinglish": "Power (battery aur switch)"
+     },
+     {
+      "en": "Connections (right rows?)",
+      "hi": "जोड़ (सही पंक्तियाँ?)",
+      "hinglish": "Connections (sahi rows?)"
+     }
+    ],
+    "answer": [
+     2,
+     0,
+     3,
+     1
+    ],
+    "explain": {
+     "en": "Power first, then polarity, then connections, then the part values.",
+     "hi": "पहले बिजली, फिर ध्रुवता, फिर जोड़, फिर भागों के मान।",
+     "hinglish": "Pehle power, phir polarity, phir connections, phir part values."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are safe habits? Choose all.",
+     "hi": "कौन-सी सुरक्षित आदतें हैं? सभी चुनो।",
+     "hinglish": "Kaunsi safe habits hain? Saare chuno."
+    },
+    "options": [
+     {
+      "en": "Disconnect power before changing wires",
+      "hi": "तार बदलने से पहले बिजली निकालो",
+      "hinglish": "Wires badalne se pehle power nikaalo"
+     },
+     {
+      "en": "Join + straight to − to test a battery",
+      "hi": "बैटरी जाँचने के लिए + को सीधे − से जोड़ो",
+      "hinglish": "Battery test karne ke liye + ko seedha − se jodo"
+     },
+     {
+      "en": "Use 3–9 V cells or USB power",
+      "hi": "3–9 V सेल या USB बिजली उपयोग करो",
+      "hinglish": "3–9 V cells ya USB power use karo"
+     },
+     {
+      "en": "Plug the project into a 230 V socket",
+      "hi": "प्रोजेक्ट को 230 V सॉकेट में लगाओ",
+      "hinglish": "Project ko 230 V socket mein lagao"
+     }
+    ],
+    "answer": [
+     0,
+     2
+    ],
+    "explain": {
+     "en": "Disconnect before rewiring and use low-voltage cells. Never short a battery or use mains.",
+     "hi": "तार बदलने से पहले निकालो और कम वोल्टेज सेल उपयोग करो। बैटरी कभी शॉर्ट मत करो, मेन्स मत उपयोग करो।",
+     "hinglish": "Rewiring se pehle nikaalo aur low-voltage cells use karo. Battery kabhi short mat karo, mains mat use karo."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "A “9 V” battery reads 6 V on a multimeter. It is probably…",
+     "hi": "“9 V” बैटरी मल्टीमीटर पर 6 V दिखाती है। शायद वह…",
+     "hinglish": "“9 V” battery multimeter pe 6 V dikhati hai. Shayad woh…"
+    },
+    "options": [
+     {
+      "en": "brand new",
+      "hi": "बिलकुल नई है",
+      "hinglish": "bilkul nayi hai"
+     },
+     {
+      "en": "nearly flat",
+      "hi": "लगभग ख़त्म है",
+      "hinglish": "lagbhag khatam hai"
+     },
+     {
+      "en": "a 12 V battery",
+      "hi": "12 V बैटरी है",
+      "hinglish": "12 V battery hai"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "A big drop below the rated voltage means it is nearly flat.",
+     "hi": "निर्धारित वोल्टेज से बड़ी गिरावट का अर्थ है लगभग ख़त्म।",
+     "hinglish": "Rated voltage se badi giravat matlab lagbhag khatam."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "Where should old batteries go?",
+     "hi": "पुरानी बैटरियाँ कहाँ जानी चाहिए?",
+     "hinglish": "Purani batteries kahan jaani chahiye?"
+    },
+    "options": [
+     {
+      "en": "Household dustbin",
+      "hi": "घरेलू कूड़ादान",
+      "hinglish": "Ghar ka dustbin"
+     },
+     {
+      "en": "Burn them",
+      "hi": "जला दो",
+      "hinglish": "Jala do"
+     },
+     {
+      "en": "An e-waste collection point",
+      "hi": "ई-कचरा संग्रह केंद्र",
+      "hinglish": "E-waste collection point"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "Batteries are e-waste and go to collection points for recycling.",
+     "hi": "बैटरियाँ ई-कचरा हैं और पुनर्चक्रण के लिए संग्रह केंद्रों पर जाती हैं।",
+     "hinglish": "Batteries e-waste hain aur recycling ke liye collection points pe jaati hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Fix all three broken circuits in the circuit lab.",
+     "hi": "सर्किट लैब में तीनों टूटे परिपथ ठीक करो।",
+     "hinglish": "Circuit lab mein teeno toote circuits theek karo."
+    },
+    "answer": {
+     "lab": "circuit-lab",
+     "event": "mission:complete",
+     "tab": "fix"
+    },
+    "explain": {
+     "en": "Look for an open switch, a reversed LED and a flat battery.",
+     "hi": "खुला स्विच, उल्टा LED और ख़त्म बैटरी ढूँढो।",
+     "hinglish": "Khula switch, ulta LED aur khatam battery dhoondo."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "SparkFun Learn — How to Use a Breadboard",
+   "url": "https://learn.sparkfun.com/tutorials/how-to-use-a-breadboard",
+   "licence": "fact reference"
+  },
+  {
+   "title": "SparkFun Learn — How to Use a Multimeter",
+   "url": "https://learn.sparkfun.com/tutorials/how-to-use-a-multimeter",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Ministry of Environment, Forest and Climate Change — Battery Waste Management Rules, 2022",
+   "url": "https://cpcb.nic.in/rules-6/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

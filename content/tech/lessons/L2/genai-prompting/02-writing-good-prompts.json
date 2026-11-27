@@ -1,0 +1,393 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.genai-prompting.02",
+ "level": 2,
+ "classes": [
+  6,
+  7,
+  8
+ ],
+ "unit": "genai-prompting",
+ "title": {
+  "en": "Writing good prompts",
+  "hi": "अच्छे प्रॉम्प्ट लिखना",
+  "hinglish": "Achhe prompts likhna"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [
+  "L2.genai-prompting.01"
+ ],
+ "topics": [
+  "ai.prompting"
+ ],
+ "outcomes": [
+  {
+   "en": "Build a prompt from five parts: role, task, context, format, limits",
+   "hi": "पाँच भागों से प्रॉम्प्ट बना सकते हो: भूमिका, काम, संदर्भ, प्रारूप, सीमाएँ",
+   "hinglish": "Paanch parts se prompt bana sakte ho: role, task, context, format, limits"
+  },
+  {
+   "en": "Improve a weak prompt step by step",
+   "hi": "कमज़ोर प्रॉम्प्ट को चरण-दर-चरण बेहतर कर सकते हो",
+   "hinglish": "Weak prompt ko step-by-step behtar kar sakte ho"
+  },
+  {
+   "en": "Use follow-up prompts to refine an answer",
+   "hi": "अनुवर्ती प्रॉम्प्ट से उत्तर सुधार सकते हो",
+   "hinglish": "Follow-up prompts se answer sudhaar sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Prompt",
+   "hinglish": "AI ko diya instruction",
+   "en": "The instruction or question you give an AI",
+   "hi": "AI को दिया गया निर्देश या प्रश्न"
+  },
+  {
+   "term": "Context",
+   "hinglish": "Background jaankari",
+   "en": "Background facts that help the AI give a fitting answer",
+   "hi": "पृष्ठभूमि तथ्य जो AI को उचित उत्तर देने में मदद करते हैं"
+  },
+  {
+   "term": "Format",
+   "hinglish": "Jawab ka roop",
+   "en": "The shape of the answer: list, table, 3 lines, a poem",
+   "hi": "उत्तर का आकार: सूची, तालिका, 3 पंक्तियाँ, कविता"
+  },
+  {
+   "term": "Iterate",
+   "hinglish": "Baar baar sudhaarna",
+   "en": "Improve in rounds: ask, read, then ask again more precisely",
+   "hi": "दौरों में सुधारना: पूछो, पढ़ो, फिर और सटीक पूछो"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "A weak prompt: “tell me about water”. The AI has to guess who you are, what you need and how long the answer should be.",
+    "hi": "कमज़ोर प्रॉम्प्ट: “पानी के बारे में बताओ”। AI को अंदाज़ा लगाना पड़ता है कि तुम कौन हो, क्या चाहिए और उत्तर कितना लंबा हो।",
+    "hinglish": "Weak prompt: “paani ke baare mein batao”. AI ko guess karna padta hai ki tum kaun ho, kya chahiye aur answer kitna lamba ho."
+   },
+   "visual": "compare:😕 “tell me about water”|🎯 Role + task + context + format + limits",
+   "narration": {
+    "en": "Vague in, vague out.",
+    "hi": "अस्पष्ट अंदर, अस्पष्ट बाहर।",
+    "hinglish": "Vague andar, vague bahar."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Build a strong prompt in the lab: pick the best option for each of the five slots and watch the answer improve.",
+    "hi": "लैब में मज़बूत प्रॉम्प्ट बनाओ: पाँचों खानों के लिए सबसे अच्छा विकल्प चुनो और उत्तर सुधरता देखो।",
+    "hinglish": "Lab mein strong prompt banao: paancho slots ke liye best option chuno aur answer improve hota dekho."
+   },
+   "visual": "lab:ai-lab#prompt",
+   "narration": {
+    "en": "Each slot removes one guess.",
+    "hi": "हर खाना एक अंदाज़ा हटा देता है।",
+    "hinglish": "Har slot ek guess hata deta hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Here is the same request as a strong prompt.",
+    "hi": "यहाँ वही अनुरोध मज़बूत प्रॉम्प्ट के रूप में है।",
+    "hinglish": "Yeh raha wahi request strong prompt ke roop mein."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "Then iterate: “make it simpler”, “add one Indian example”.",
+    "hi": "फिर दोहराओ: “और सरल करो”, “एक भारतीय उदाहरण जोड़ो”।",
+    "hinglish": "Phir iterate karo: “aur simple karo”, “ek Indian example jodo”."
+   },
+   "code": "ROLE:    You are a friendly science teacher.\nTASK:    Explain the water cycle.\nCONTEXT: I am in Class 6; we have a test tomorrow.\nFORMAT:  4 numbered steps + 1 real example.\nLIMITS:  Under 100 words, simple words."
+  }
+ ],
+ "play": {
+  "lab": "ai-lab",
+  "config": {
+   "tab": "prompt"
+  },
+  "goal": {
+   "en": "Fill all five prompt slots with the strongest choice and get a 5/5 prompt.",
+   "hi": "पाँचों प्रॉम्प्ट खानों को सबसे मज़बूत विकल्प से भरो और 5/5 प्रॉम्प्ट बनाओ।",
+   "hinglish": "Paancho prompt slots ko strongest choice se bharo aur 5/5 prompt banao."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "The five-part prompt recipe",
+    "hi": "पाँच भागों वाली प्रॉम्प्ट विधि",
+    "hinglish": "Paanch parts wali prompt recipe"
+   },
+   "body": {
+    "en": "A language model continues from what you give it, so clearer input gives better output. A useful recipe has five parts. Role: who the AI should act as (“a patient maths tutor”). Task: the exact job, with an action verb (“explain”, “list”, “compare”, “quiz me”). Context: facts it cannot guess — your class, the chapter, what you already know. Format: the shape you want — bullet points, a table, a short dialogue, five MCQs with answers. Limits: length, reading level, language (“in Hinglish”), and what to avoid. Good prompting is a conversation: read the answer, then refine (“shorter”, “use a cricket example”, “now test me”). Asking it to “explain step by step” often improves reasoning answers. Prompting does not make the AI always correct, so still check facts. Asking AI to quiz you or explain your mistakes helps you learn; asking it to do your homework for you does not.",
+    "hi": "भाषा मॉडल तुम्हारे दिए पाठ से आगे बढ़ता है, इसलिए स्पष्ट इनपुट बेहतर आउटपुट देता है। एक उपयोगी विधि के पाँच भाग हैं। भूमिका: AI को किसके रूप में काम करना है (“धैर्यवान गणित शिक्षक”)। काम: सटीक काम, क्रिया शब्द के साथ (“समझाओ”, “सूची बनाओ”, “तुलना करो”, “मेरी परीक्षा लो”)। संदर्भ: वे तथ्य जिनका वह अंदाज़ा नहीं लगा सकता — तुम्हारी कक्षा, अध्याय, जो तुम पहले से जानते हो। प्रारूप: जैसा आकार चाहिए — बिंदु, तालिका, छोटा संवाद, उत्तरों सहित पाँच MCQ। सीमाएँ: लंबाई, पढ़ने का स्तर, भाषा (“हिंग्लिश में”), और किससे बचना है। अच्छी प्रॉम्प्टिंग एक बातचीत है: उत्तर पढ़ो, फिर सुधारो (“छोटा करो”, “क्रिकेट का उदाहरण दो”, “अब मेरी परीक्षा लो”)। “चरण-दर-चरण समझाओ” कहना अक्सर तर्क वाले उत्तर सुधारता है। प्रॉम्प्टिंग AI को हमेशा सही नहीं बनाती, इसलिए तथ्य फिर भी जाँचो। AI से अपनी परीक्षा लेने या ग़लतियाँ समझाने को कहना सीखने में मदद करता है; अपना गृहकार्य करवाना नहीं।",
+    "hinglish": "Language model tumhare diye text se aage badhta hai, isliye clear input better output deta hai. Ek useful recipe ke paanch parts hain. Role: AI ko kiske roop mein kaam karna hai (“ek patient maths tutor”). Task: exact kaam, action verb ke saath (“explain”, “list”, “compare”, “quiz me”). Context: woh facts jinka woh guess nahi kar sakta — tumhari class, chapter, jo tum pehle se jaante ho. Format: jaisa shape chahiye — bullet points, table, chhota dialogue, answers ke saath paanch MCQs. Limits: length, reading level, language (“Hinglish mein”), aur kis cheez se bachna hai. Achhi prompting ek conversation hai: answer padho, phir refine karo (“chhota karo”, “cricket ka example do”, “ab mera test lo”). “Step by step explain karo” kehna aksar reasoning answers sudhaarta hai. Prompting AI ko hamesha sahi nahi banati, isliye facts phir bhi check karo. AI se apna quiz lene ya galtiyaan samjhane ko kehna seekhne mein madad karta hai; apna homework karwana nahi."
+   },
+   "analogy": {
+    "en": "A prompt = ordering at a tea stall: “give tea” gets you anything; “one cutting, less sugar, with ginger, now” gets exactly what you want.",
+    "hi": "प्रॉम्प्ट = चायवाले को ऑर्डर देना: “चाय दो” से कुछ भी मिलेगा; “एक कटिंग, कम चीनी, अदरक वाली, अभी” से बिल्कुल वही मिलेगा जो चाहिए।",
+    "hinglish": "Prompt = chaiwale ko order dena: “chai do” se kuch bhi milega; “ek cutting, kam cheeni, adrak wali, abhi” se bilkul wahi milega jo chahiye."
+   },
+   "realExample": {
+    "en": "Teachers use prompts like “Make 5 MCQs on Class 7 Chapter 4 with answers and one-line explanations” to create practice quizzes, then check every answer before using them.",
+    "hi": "शिक्षक “कक्षा 7 अध्याय 4 पर उत्तरों और एक-पंक्ति व्याख्या के साथ 5 MCQ बनाओ” जैसे प्रॉम्प्ट से अभ्यास प्रश्नोत्तरी बनाते हैं, फिर उपयोग से पहले हर उत्तर जाँचते हैं।",
+    "hinglish": "Teachers “Class 7 Chapter 4 pe answers aur one-line explanations ke saath 5 MCQs banao” jaise prompts se practice quizzes banate hain, phir use karne se pehle har answer check karte hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write a weak prompt and a strong five-part prompt for “help me revise fractions”. Label each part (role, task, context, format, limits). If a grown-up lets you, try both and compare.",
+   "hi": "“भिन्न दोहराने में मदद करो” के लिए एक कमज़ोर और एक मज़बूत पाँच-भाग वाला प्रॉम्प्ट लिखो। हर भाग का नाम लिखो (भूमिका, काम, संदर्भ, प्रारूप, सीमाएँ)। अगर बड़े अनुमति दें, दोनों आज़माओ और तुलना करो।",
+   "hinglish": "“Fractions revise karne mein madad karo” ke liye ek weak aur ek strong five-part prompt likho. Har part label karo (role, task, context, format, limits). Agar grown-up allow kare, dono try karo aur compare karo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "match",
+    "prompt": {
+     "en": "Match each prompt part to an example.",
+     "hi": "हर प्रॉम्प्ट भाग को उदाहरण से मिलाओ।",
+     "hinglish": "Har prompt part ko example se match karo."
+    },
+    "options": {
+     "left": [
+      {
+       "en": "Role",
+       "hi": "भूमिका",
+       "hinglish": "Role"
+      },
+      {
+       "en": "Format",
+       "hi": "प्रारूप",
+       "hinglish": "Format"
+      },
+      {
+       "en": "Context",
+       "hi": "संदर्भ",
+       "hinglish": "Context"
+      }
+     ],
+     "right": [
+      {
+       "en": "“as a table with 3 columns”",
+       "hi": "“3 कॉलम की तालिका में”",
+       "hinglish": "“3 columns ki table mein”"
+      },
+      {
+       "en": "“I am in Class 7 and find decimals hard”",
+       "hi": "“मैं कक्षा 7 में हूँ और दशमलव कठिन लगते हैं”",
+       "hinglish": "“Main Class 7 mein hoon aur decimals mushkil lagte hain”"
+      },
+      {
+       "en": "“You are a friendly maths tutor”",
+       "hi": "“तुम एक मित्रवत गणित शिक्षक हो”",
+       "hinglish": "“Tum ek friendly maths tutor ho”"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      2
+     ],
+     [
+      1,
+      0
+     ],
+     [
+      2,
+      1
+     ]
+    ],
+    "explain": {
+     "en": "Role = who it acts as; format = shape of the answer; context = facts about you.",
+     "hi": "भूमिका = किसके रूप में; प्रारूप = उत्तर का आकार; संदर्भ = तुम्हारे बारे में तथ्य।",
+     "hinglish": "Role = kiske roop mein; format = answer ka shape; context = tumhare baare mein facts."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which prompt is strongest?",
+     "hi": "कौन-सा प्रॉम्प्ट सबसे मज़बूत है?",
+     "hinglish": "Kaunsa prompt sabse strong hai?"
+    },
+    "options": [
+     {
+      "en": "“plants”",
+      "hi": "“पौधे”",
+      "hinglish": "“plants”"
+     },
+     {
+      "en": "“List 5 parts of a plant for a Class 6 student, one line each, in Hinglish”",
+      "hi": "“कक्षा 6 के छात्र के लिए पौधे के 5 भाग सूचीबद्ध करो, हर एक पंक्ति, हिंग्लिश में”",
+      "hinglish": "“Class 6 student ke liye plant ke 5 parts list karo, har ek line, Hinglish mein”"
+     },
+     {
+      "en": "“tell me everything about plants”",
+      "hi": "“पौधों के बारे में सब कुछ बताओ”",
+      "hinglish": "“plants ke baare mein sab kuch batao”"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "It has a task, context, format and limit.",
+     "hi": "इसमें काम, संदर्भ, प्रारूप और सीमा है।",
+     "hinglish": "Isme task, context, format aur limit hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "order",
+    "prompt": {
+     "en": "Put a good prompting conversation in order.",
+     "hi": "अच्छी प्रॉम्प्टिंग बातचीत को क्रम में लगाओ।",
+     "hinglish": "Achhi prompting conversation ko order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Read the answer carefully",
+      "hi": "उत्तर ध्यान से पढ़ो",
+      "hinglish": "Answer dhyaan se padho"
+     },
+     {
+      "en": "Check key facts in a trusted source",
+      "hi": "मुख्य तथ्य विश्वसनीय स्रोत में जाँचो",
+      "hinglish": "Key facts trusted source mein check karo"
+     },
+     {
+      "en": "Write a clear five-part prompt",
+      "hi": "स्पष्ट पाँच-भाग वाला प्रॉम्प्ट लिखो",
+      "hinglish": "Clear five-part prompt likho"
+     },
+     {
+      "en": "Refine: “simpler, with an Indian example”",
+      "hi": "सुधारो: “और सरल, भारतीय उदाहरण के साथ”",
+      "hinglish": "Refine karo: “simpler, Indian example ke saath”"
+     }
+    ],
+    "answer": [
+     2,
+     0,
+     3,
+     1
+    ],
+    "explain": {
+     "en": "Write a clear prompt → read → refine → check facts.",
+     "hi": "स्पष्ट प्रॉम्प्ट लिखो → पढ़ो → सुधारो → तथ्य जाँचो।",
+     "hinglish": "Clear prompt likho → padho → refine karo → facts check karo."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which use of a prompt helps you learn most?",
+     "hi": "प्रॉम्प्ट का कौन-सा उपयोग सबसे ज़्यादा सीखने में मदद करता है?",
+     "hinglish": "Prompt ka kaunsa use sabse zyada seekhne mein madad karta hai?"
+    },
+    "options": [
+     {
+      "en": "“Quiz me with 5 questions and explain my mistakes”",
+      "hi": "“मुझसे 5 प्रश्न पूछो और मेरी ग़लतियाँ समझाओ”",
+      "hinglish": "“Mujhse 5 sawaal poochho aur meri galtiyaan samjhao”"
+     },
+     {
+      "en": "“Write my whole essay so I can hand it in”",
+      "hi": "“मेरा पूरा निबंध लिखो ताकि मैं जमा कर दूँ”",
+      "hinglish": "“Mera poora essay likho taaki main submit kar doon”"
+     },
+     {
+      "en": "“Give me only the answers to the worksheet”",
+      "hi": "“वर्कशीट के केवल उत्तर दो”",
+      "hinglish": "“Worksheet ke sirf answers do”"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Being quizzed and getting explanations builds your own understanding.",
+     "hi": "परीक्षा देना और व्याख्या पाना तुम्हारी अपनी समझ बनाता है।",
+     "hinglish": "Quiz dena aur explanations paana tumhari apni samajh banata hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "short",
+    "prompt": {
+     "en": "Improving a prompt in rounds — ask, read, ask again — is called to ___ .",
+     "hi": "दौरों में प्रॉम्प्ट सुधारना — पूछो, पढ़ो, फिर पूछो — को ___ कहते हैं।",
+     "hinglish": "Rounds mein prompt sudhaarna — poochho, padho, phir poochho — ko ___ kehte hain."
+    },
+    "answer": [
+     "iterate",
+     "Iterate",
+     "iteration",
+     "iterating"
+    ],
+    "explain": {
+     "en": "Iterate: each round gets closer to what you need.",
+     "hi": "दोहराना (iterate): हर दौर ज़रूरत के क़रीब लाता है।",
+     "hinglish": "Iterate: har round zaroorat ke kareeb laata hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the lab mission.",
+     "hi": "लैब मिशन पूरा करो।",
+     "hinglish": "Lab mission poora karo."
+    },
+    "answer": {
+     "lab": "ai-lab",
+     "event": "mission:complete",
+     "tab": "prompt"
+    },
+    "explain": {
+     "en": "Choose the strongest option in all five slots.",
+     "hi": "पाँचों खानों में सबसे मज़बूत विकल्प चुनो।",
+     "hinglish": "Paancho slots mein strongest option chuno."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Google — Prompt design strategies (Gemini API docs)",
+   "url": "https://ai.google.dev/gemini-api/docs/prompting-strategies",
+   "licence": "fact reference"
+  },
+  {
+   "title": "OpenAI — Prompt engineering guide",
+   "url": "https://platform.openai.com/docs/guides/prompt-engineering",
+   "licence": "fact reference"
+  },
+  {
+   "title": "UNESCO — Guidance for generative AI in education and research (2023)",
+   "url": "https://www.unesco.org/en/articles/guidance-generative-ai-education-and-research",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

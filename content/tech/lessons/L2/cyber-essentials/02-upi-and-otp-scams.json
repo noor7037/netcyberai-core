@@ -1,0 +1,352 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.cyber-essentials.02",
+ "level": 2,
+ "classes": [
+  6,
+  7,
+  8
+ ],
+ "unit": "cyber-essentials",
+ "title": {
+  "en": "UPI and OTP scams",
+  "hi": "UPI और OTP धोखे",
+  "hinglish": "UPI aur OTP scams"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [
+  "L2.cyber-essentials.01"
+ ],
+ "topics": [
+  "cyber.upi-scams",
+  "cyber.otp-never-share"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain that a UPI PIN is only needed to send money, never to receive",
+   "hi": "समझा सकते हो कि UPI PIN केवल पैसे भेजने के लिए चाहिए, लेने के लिए कभी नहीं",
+   "hinglish": "Samjha sakte ho ki UPI PIN sirf paise bhejne ke liye chahiye, lene ke liye kabhi nahi"
+  },
+  {
+   "en": "Spot collect-request, QR-code and screen-sharing tricks",
+   "hi": "कलेक्ट रिक्वेस्ट, QR कोड और स्क्रीन-शेयरिंग चालें पहचान सकते हो",
+   "hinglish": "Collect request, QR code aur screen-sharing tricks pehchaan sakte ho"
+  },
+  {
+   "en": "Never share an OTP with anyone",
+   "hi": "कभी किसी को OTP नहीं बताते",
+   "hinglish": "Kabhi kisi ko OTP nahi batate"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "UPI",
+   "hinglish": "Unified Payments Interface",
+   "en": "India’s instant payment system run by NPCI",
+   "hi": "भारत की तुरंत भुगतान प्रणाली, जिसे NPCI चलाता है"
+  },
+  {
+   "term": "UPI PIN",
+   "hinglish": "Paise bhejne ka secret number",
+   "en": "A 4- or 6-digit secret that approves money LEAVING your account",
+   "hi": "4 या 6 अंकों का गुप्त नंबर जो आपके खाते से पैसे जाने की अनुमति देता है"
+  },
+  {
+   "term": "Collect request",
+   "hinglish": "Paise maangne ki request",
+   "en": "A request asking YOU to pay; approving it sends money away",
+   "hi": "आपसे भुगतान माँगने वाला अनुरोध; मंज़ूर करने पर पैसे चले जाते हैं"
+  },
+  {
+   "term": "OTP",
+   "hinglish": "Ek baar ka password",
+   "en": "One-time password: a short code that proves it is really you",
+   "hi": "एक बार का पासवर्ड: छोटा कोड जो साबित करता है कि आप ही हो"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Golden rule: you enter your UPI PIN only to PAY. Receiving money never needs a PIN, a scan or an approval.",
+    "hi": "सुनहरा नियम: UPI PIN केवल भुगतान करने के लिए डालते हो। पैसे पाने के लिए कभी PIN, स्कैन या मंज़ूरी नहीं चाहिए।",
+    "hinglish": "Golden rule: UPI PIN sirf PAY karne ke liye daalte ho. Paise paane ke liye kabhi PIN, scan ya approval nahi chahiye."
+   },
+   "visual": "compare:💸 Enter PIN → money LEAVES|💰 Receive money → no PIN, nothing to do",
+   "narration": {
+    "en": "“Enter PIN to receive ₹5,000” is always a scam.",
+    "hi": "“₹5,000 पाने के लिए PIN डालो” हमेशा धोखा है।",
+    "hinglish": "“₹5,000 paane ke liye PIN daalo” hamesha scam hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Common tricks: a fake buyer sends a “collect request”, a QR code “to receive money”, or asks you to install a screen-sharing app.",
+    "hi": "आम चालें: नक़ली ख़रीदार “कलेक्ट रिक्वेस्ट” भेजता है, “पैसे पाने” का QR कोड, या स्क्रीन-शेयरिंग ऐप डलवाता है।",
+    "hinglish": "Common tricks: nakli buyer “collect request” bhejta hai, “paise paane” ka QR code, ya screen-sharing app install karwata hai."
+   },
+   "visual": "lab:scam-inbox",
+   "narration": {
+    "en": "Open the UPI request in the lab and look at who is asking whom to pay.",
+    "hi": "लैब में UPI अनुरोध खोलो और देखो कौन किससे भुगतान करवा रहा है।",
+    "hinglish": "Lab mein UPI request kholo aur dekho kaun kisse pay karwa raha hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "An OTP is the last lock on your account. Anyone who asks for it — “bank officer”, “delivery boy”, “KBC” — is trying to open it.",
+    "hi": "OTP आपके खाते का आख़िरी ताला है। जो भी माँगे — “बैंक अधिकारी”, “डिलीवरी बॉय”, “KBC” — वह उसे खोलने की कोशिश कर रहा है।",
+    "hinglish": "OTP aapke account ka aakhri taala hai. Jo bhi maange — “bank officer”, “delivery boy”, “KBC” — woh use kholne ki koshish kar raha hai."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "Read the whole OTP SMS: it says what it is for and warns you not to share it.",
+    "hi": "पूरा OTP SMS पढ़ो: वह बताता है किस चीज़ के लिए है और न बताने की चेतावनी देता है।",
+    "hinglish": "Poora OTP SMS padho: woh batata hai kis cheez ke liye hai aur share na karne ko kehta hai."
+   },
+   "code": "482913 is your OTP to PAY ₹9,999 to\nABC Merchant. Valid 5 min.\nNEVER share it with anyone. -Bank"
+  }
+ ],
+ "play": {
+  "lab": "scam-inbox",
+  "config": {
+   "only": [
+    "collect",
+    "otp",
+    "kyc",
+    "bill",
+    "food"
+   ],
+   "need": 5
+  },
+  "goal": {
+   "en": "Sort all five messages and explain the trick in each scam.",
+   "hi": "पाँचों संदेश छाँटो और हर धोखे की चाल समझाओ।",
+   "hinglish": "Paancho messages sort karo aur har scam ki trick samjhao."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "How UPI fraud really happens",
+    "hi": "UPI धोखा असल में कैसे होता है",
+    "hinglish": "UPI fraud asal mein kaise hota hai"
+   },
+   "body": {
+    "en": "UPI, built by the National Payments Corporation of India (NPCI) and launched in 2016, now handles well over 10 billion transactions a month, so scammers target it. Almost every UPI fraud needs YOU to do one thing: enter your PIN, approve a collect request, scan a QR code, or share an OTP or your screen. A collect request is a “pull” payment — the other person requests money and the app asks you to approve it with your PIN; if you do, money leaves your account. Scanning a QR code is also for paying: the code contains the receiver’s UPI ID and often an amount. Screen-sharing apps let a stranger watch you type your PIN and OTP, so never install them on a caller’s request. OTP SMS from banks clearly say what the payment is for and that you should never share the code. If you make a mistake, act fast: call 1930 or report on cybercrime.gov.in within the first hours (the “golden hour”), so the money can be frozen before it is moved.",
+    "hi": "UPI को भारतीय राष्ट्रीय भुगतान निगम (NPCI) ने बनाया और 2016 में शुरू किया; अब यह हर महीने 1000 करोड़ से कहीं ज़्यादा लेन-देन संभालता है, इसलिए धोखेबाज़ इसे निशाना बनाते हैं। लगभग हर UPI धोखे में आपको ही एक काम करना पड़ता है: PIN डालना, कलेक्ट रिक्वेस्ट मंज़ूर करना, QR कोड स्कैन करना, या OTP या स्क्रीन शेयर करना। कलेक्ट रिक्वेस्ट “पुल” भुगतान है — दूसरा व्यक्ति पैसे माँगता है और ऐप आपसे PIN से मंज़ूरी माँगता है; मंज़ूर किया तो पैसे आपके खाते से चले जाते हैं। QR कोड स्कैन करना भी भुगतान के लिए है: कोड में पाने वाले का UPI ID और अक्सर राशि होती है। स्क्रीन-शेयरिंग ऐप अजनबी को आपका PIN और OTP लिखते देखने देते हैं, इसलिए कॉल करने वाले के कहने पर उन्हें कभी इंस्टॉल मत करो। बैंक के OTP SMS साफ़ बताते हैं कि भुगतान किसके लिए है और कोड कभी न बताएँ। ग़लती हो जाए तो जल्दी करो: पहले घंटों (“गोल्डन आवर”) में 1930 पर कॉल करो या cybercrime.gov.in पर रिपोर्ट करो, ताकि पैसे आगे जाने से पहले रोके जा सकें।",
+    "hinglish": "UPI ko National Payments Corporation of India (NPCI) ne banaya aur 2016 mein launch kiya; ab yeh har mahine 1000 crore se kahin zyada transactions handle karta hai, isliye scammers ise target karte hain. Lagbhag har UPI fraud mein AAPKO hi ek kaam karna padta hai: PIN daalna, collect request approve karna, QR code scan karna, ya OTP ya screen share karna. Collect request “pull” payment hai — doosra insaan paise maangta hai aur app aapse PIN se approval maangta hai; approve kiya to paise aapke account se chale jaate hain. QR code scan karna bhi pay karne ke liye hai: code mein receiver ka UPI ID aur aksar amount hota hai. Screen-sharing apps ajnabi ko aapka PIN aur OTP type karte dekhne dete hain, isliye caller ke kehne pe unhe kabhi install mat karo. Bank ke OTP SMS saaf batate hain payment kis cheez ke liye hai aur code kabhi share na karein. Galti ho jaaye to jaldi karo: pehle ghanton (“golden hour”) mein 1930 pe call karo ya cybercrime.gov.in pe report karo, taaki paise aage jaane se pehle freeze ho sakein."
+   },
+   "analogy": {
+    "en": "A UPI PIN = a house key that only opens the door for things going OUT. If someone comes to “give” you money and asks for the key, they came to take, not to give.",
+    "hi": "UPI PIN = घर की चाबी जो केवल बाहर जाने वाला दरवाज़ा खोलती है। कोई पैसे “देने” आए और चाबी माँगे, तो वह देने नहीं, लेने आया है।",
+    "hinglish": "UPI PIN = ghar ki chaabi jo sirf bahar jaane wala darwaza kholti hai. Koi paise “dene” aaye aur chaabi maange, to woh dene nahi, lene aaya hai."
+   },
+   "realExample": {
+    "en": "On OLX-style selling sites, fake “army officer” buyers often say “I will send a QR code, scan it to receive the payment” — scanning and entering the PIN pays THEM instead.",
+    "hi": "OLX जैसी बिक्री साइटों पर नक़ली “आर्मी अफ़सर” ख़रीदार अक्सर कहते हैं “मैं QR कोड भेजता हूँ, स्कैन करके भुगतान लो” — स्कैन करके PIN डाला तो पैसे उन्हें चले जाते हैं।",
+    "hinglish": "OLX jaisi selling sites pe nakli “army officer” buyers aksar kehte hain “main QR code bhejta hoon, scan karke payment lo” — scan karke PIN daala to paise UNHE chale jaate hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Teach one grown-up at home the golden rule: “PIN only to pay, never to receive.” Ask them to repeat it back and write 1930 on a sticky note near the phone.",
+   "hi": "घर के एक बड़े को सुनहरा नियम सिखाओ: “PIN केवल भुगतान के लिए, पाने के लिए कभी नहीं।” उनसे दोहरवाओ और फ़ोन के पास पर्ची पर 1930 लिखो।",
+   "hinglish": "Ghar ke ek bade ko golden rule sikhao: “PIN sirf pay karne ke liye, lene ke liye kabhi nahi.” Unse dohrwao aur phone ke paas sticky note pe 1930 likho."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "To RECEIVE ₹500 on UPI, you need to…",
+     "hi": "UPI पर ₹500 पाने के लिए आपको…",
+     "hinglish": "UPI pe ₹500 paane ke liye aapko…"
+    },
+    "options": [
+     {
+      "en": "enter your UPI PIN",
+      "hi": "UPI PIN डालना",
+      "hinglish": "UPI PIN daalna"
+     },
+     {
+      "en": "scan their QR code",
+      "hi": "उनका QR कोड स्कैन करना",
+      "hinglish": "Unka QR code scan karna"
+     },
+     {
+      "en": "do nothing — just share your UPI ID",
+      "hi": "कुछ नहीं — बस UPI ID बताओ",
+      "hinglish": "Kuch nahi — bas UPI ID batao"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "Receiving needs nothing from you. Any request for a PIN or scan means money will leave.",
+     "hi": "पाने के लिए आपको कुछ नहीं करना। PIN या स्कैन की माँग का अर्थ है पैसे जाएँगे।",
+     "hinglish": "Paane ke liye aapko kuch nahi karna. PIN ya scan ki maang matlab paise jaayenge."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "A “buyer” sends a collect request of ₹2,000 “to pay you”. Approving it will…",
+     "hi": "“ख़रीदार” आपको “भुगतान के लिए” ₹2,000 की कलेक्ट रिक्वेस्ट भेजता है। मंज़ूर करने पर…",
+     "hinglish": "“Buyer” aapko “pay karne ke liye” ₹2,000 ki collect request bhejta hai. Approve karne pe…"
+    },
+    "options": [
+     {
+      "en": "send ₹2,000 to them",
+      "hi": "उन्हें ₹2,000 भेजेगा",
+      "hinglish": "Unhe ₹2,000 bhejega"
+     },
+     {
+      "en": "give you ₹2,000",
+      "hi": "आपको ₹2,000 देगा",
+      "hinglish": "Aapko ₹2,000 dega"
+     },
+     {
+      "en": "do nothing",
+      "hi": "कुछ नहीं करेगा",
+      "hinglish": "Kuch nahi karega"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "A collect request asks YOU to pay. Approving it sends ₹2,000 to the scammer.",
+     "hi": "कलेक्ट रिक्वेस्ट आपसे भुगतान माँगती है। मंज़ूर करने पर ₹2,000 धोखेबाज़ को जाते हैं।",
+     "hinglish": "Collect request aapse payment maangti hai. Approve karne pe ₹2,000 scammer ko jaate hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "multi",
+    "prompt": {
+     "en": "Which should you NEVER share? Choose all.",
+     "hi": "क्या कभी नहीं बताना चाहिए? सभी चुनो।",
+     "hinglish": "Kya kabhi share nahi karna chahiye? Saare chuno."
+    },
+    "options": [
+     "OTP",
+     "UPI PIN",
+     {
+      "en": "Your UPI ID (name@bank)",
+      "hi": "आपकी UPI ID (name@bank)",
+      "hinglish": "Aapki UPI ID (name@bank)"
+     },
+     "CVV"
+    ],
+    "answer": [
+     0,
+     1,
+     3
+    ],
+    "explain": {
+     "en": "OTP, UPI PIN and card CVV are secrets. Your UPI ID is meant to be shared to receive money.",
+     "hi": "OTP, UPI PIN और कार्ड CVV गुप्त हैं। UPI ID पैसे पाने के लिए बताई जाती है।",
+     "hinglish": "OTP, UPI PIN aur card CVV secrets hain. UPI ID paise paane ke liye share ki jaati hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "A caller from “bank support” asks you to install a screen-sharing app. Why is that dangerous?",
+     "hi": "“बैंक सपोर्ट” से कॉल करने वाला स्क्रीन-शेयरिंग ऐप डलवाना चाहता है। यह ख़तरनाक क्यों?",
+     "hinglish": "“Bank support” se caller screen-sharing app install karwana chahta hai. Yeh khatarnaak kyun?"
+    },
+    "options": [
+     {
+      "en": "It uses too much battery",
+      "hi": "बहुत बैटरी खाता है",
+      "hinglish": "Bahut battery khaata hai"
+     },
+     {
+      "en": "They can see your PIN and OTP on screen",
+      "hi": "वे स्क्रीन पर PIN और OTP देख सकते हैं",
+      "hinglish": "Woh screen pe PIN aur OTP dekh sakte hain"
+     },
+     {
+      "en": "It is not dangerous",
+      "hi": "ख़तरनाक नहीं है",
+      "hinglish": "Khatarnaak nahi hai"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "They can watch your PIN and OTP as you type them.",
+     "hi": "वे आपके लिखते समय PIN और OTP देख सकते हैं।",
+     "hinglish": "Woh aapke type karte waqt PIN aur OTP dekh sakte hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "short",
+    "prompt": {
+     "en": "Which number do you call in India to report a cyber fraud fast?",
+     "hi": "भारत में साइबर धोखे की तुरंत रिपोर्ट के लिए कौन-सा नंबर?",
+     "hinglish": "India mein cyber fraud jaldi report karne ke liye kaunsa number?"
+    },
+    "answer": [
+     "1930"
+    ],
+    "explain": {
+     "en": "1930 is the National Cyber Crime Helpline.",
+     "hi": "1930 राष्ट्रीय साइबर अपराध हेल्पलाइन है।",
+     "hinglish": "1930 National Cyber Crime Helpline hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the lab mission.",
+     "hi": "लैब मिशन पूरा करो।",
+     "hinglish": "Lab mission poora karo."
+    },
+    "answer": {
+     "lab": "scam-inbox",
+     "event": "mission:complete"
+    },
+    "explain": {
+     "en": "Remember: PIN only to pay; nobody needs your OTP.",
+     "hi": "याद रखो: PIN केवल भुगतान के लिए; OTP किसी को नहीं चाहिए।",
+     "hinglish": "Yaad rakho: PIN sirf pay ke liye; OTP kisi ko nahi chahiye."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "NPCI — UPI product statistics",
+   "url": "https://www.npci.org.in/what-we-do/upi/product-statistics",
+   "licence": "fact reference"
+  },
+  {
+   "title": "RBI — BE(A)WARE: a booklet on the modus operandi of financial fraudsters",
+   "url": "https://rbidocs.rbi.org.in/rdocs/content/pdfs/BEAWARE07032022.pdf",
+   "licence": "fact reference"
+  },
+  {
+   "title": "National Cyber Crime Reporting Portal (I4C, Ministry of Home Affairs) — report online or call 1930",
+   "url": "https://cybercrime.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

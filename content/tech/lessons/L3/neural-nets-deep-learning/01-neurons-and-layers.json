@@ -1,0 +1,334 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.neural-nets-deep-learning.01",
+ "level": 3,
+ "classes": [
+  10,
+  11
+ ],
+ "unit": "neural-nets-deep-learning",
+ "title": {
+  "en": "Artificial neurons and layers",
+  "hi": "कृत्रिम न्यूरॉन और परतें",
+  "hinglish": "Artificial neurons aur layers"
+ },
+ "minutes": 12,
+ "xp": 50,
+ "prereq": [
+  "L3.machine-learning.03"
+ ],
+ "outcomes": [
+  {
+   "en": "Compute a neuron's output from inputs, weights, bias and activation",
+   "hinglish": "Inputs, weights, bias aur activation se neuron ka output nikaalo",
+   "hi": "इनपुट, भार, बायस और एक्टिवेशन से न्यूरॉन का आउटपुट निकालना"
+  },
+  {
+   "en": "Explain why hidden layers and non-linear activations matter",
+   "hinglish": "Samjhao hidden layers aur non-linear activations kyun zaroori hain",
+   "hi": "समझाना कि छिपी परतें और अरेखीय एक्टिवेशन क्यों ज़रूरी हैं"
+  },
+  {
+   "en": "Count the parameters of a small network",
+   "hinglish": "Chhote network ke parameters gino",
+   "hi": "छोटे नेटवर्क के पैरामीटर गिनना"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Neuron",
+   "hinglish": "Inputs ko weights se jodke ek number nikaalne wali unit",
+   "en": "Computes activation(w·x + b)",
+   "hi": "activation(w·x + b) की गणना करता है"
+  },
+  {
+   "term": "Activation function",
+   "hinglish": "Faisla ka \"mod\" — ReLU, sigmoid",
+   "en": "A non-linear function applied to a neuron's sum",
+   "hi": "न्यूरॉन के योग पर लगाया गया अरेखीय फ़ंक्शन"
+  },
+  {
+   "term": "ReLU",
+   "hinglish": "Negative ko 0, positive waisa hi",
+   "en": "max(0, z)",
+   "hi": "max(0, z) — ऋणात्मक को 0, धनात्मक को वैसा ही"
+  },
+  {
+   "term": "Hidden layer",
+   "hinglish": "Input aur output ke beech ki layer",
+   "en": "Layers between input and output that build features",
+   "hi": "इनपुट और आउटपुट के बीच की परतें जो फ़ीचर बनाती हैं"
+  },
+  {
+   "term": "Parameter",
+   "hinglish": "Model ke seekhne wale numbers",
+   "en": "A learned weight or bias",
+   "hi": "सीखा गया भार या बायस"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "A neuron multiplies each input by a weight, adds them with a bias, then passes the sum through an activation such as ReLU.",
+    "hi": "एक न्यूरॉन हर इनपुट को भार से गुणा करता है, बायस के साथ जोड़ता है, फिर योग को ReLU जैसे एक्टिवेशन से गुज़ारता है।",
+    "hinglish": "Neuron har input ko weight se multiply karta hai, bias ke saath jodta hai, phir sum ko ReLU jaise activation se guzaarta hai."
+   },
+   "visual": "anim:neuron-sum",
+   "narration": {
+    "en": "A neuron multiplies each input by a weight, adds them with a bias, then passes the sum through an activation such as ReLU.",
+    "hi": "एक न्यूरॉन हर इनपुट को भार से गुणा करता है, बायस के साथ जोड़ता है, फिर योग को ReLU जैसे एक्टिवेशन से गुज़ारता है।",
+    "hinglish": "Neuron har input ko weight se multiply karta hai, bias ke saath jodta hai, phir sum ko ReLU jaise activation se guzaarta hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Stack neurons into layers. Layer 1 detects simple patterns, deeper layers combine them into complex ones.",
+    "hi": "न्यूरॉन को परतों में लगाओ। परत 1 सरल पैटर्न पकड़ती है, गहरी परतें उन्हें जोड़कर जटिल पैटर्न बनाती हैं।",
+    "hinglish": "Neurons ko layers mein lagao. Layer 1 simple patterns pakadti hai, gehri layers unhe jodke complex patterns banati hain."
+   },
+   "visual": "anim:layers-stack",
+   "narration": {
+    "en": "Stack neurons into layers. Layer 1 detects simple patterns, deeper layers combine them into complex ones.",
+    "hi": "न्यूरॉन को परतों में लगाओ। परत 1 सरल पैटर्न पकड़ती है, गहरी परतें उन्हें जोड़कर जटिल पैटर्न बनाती हैं।",
+    "hinglish": "Neurons ko layers mein lagao. Layer 1 simple patterns pakadti hai, gehri layers unhe jodke complex patterns banati hain."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Without non-linear activations, 100 layers collapse into one straight line. ReLU lets the network bend.",
+    "hi": "गैर-रेखीय एक्टिवेशन के बिना 100 परतें एक सीधी रेखा बन जाती हैं। ReLU नेटवर्क को मुड़ने देता है।",
+    "hinglish": "Non-linear activation ke bina 100 layers ek seedhi line ban jaati hain. ReLU network ko mudne deta hai."
+   },
+   "visual": "anim:relu-bend",
+   "narration": {
+    "en": "Without non-linear activations, 100 layers collapse into one straight line. ReLU lets the network bend.",
+    "hi": "गैर-रेखीय एक्टिवेशन के बिना 100 परतें एक सीधी रेखा बन जाती हैं। ReLU नेटवर्क को मुड़ने देता है।",
+    "hinglish": "Non-linear activation ke bina 100 layers ek seedhi line ban jaati hain. ReLU network ko mudne deta hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "nn-playground",
+  "config": {
+   "mode": "classify",
+   "dataset": "circle",
+   "hidden": [
+    4
+   ],
+   "activation": "relu",
+   "showNeurons": true
+  },
+  "goal": {
+   "en": "Train a network with one hidden layer of 4 ReLU neurons on the circle data. Tap a hidden neuron to see the region it detects.",
+   "hinglish": "Circle data par 4 ReLU neurons ki ek hidden layer train karo. Hidden neuron tap karke dekho woh kaunsa region pakadta hai.",
+   "hi": "वृत्त डेटा पर 4 ReLU न्यूरॉनों की एक छिपी परत वाला नेटवर्क प्रशिक्षित करो। कोई छिपा न्यूरॉन दबाकर देखो वह कौन-सा क्षेत्र पहचानता है।"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Inside one neuron",
+    "hi": "एक न्यूरॉन के अंदर",
+    "hinglish": "Ek neuron ke andar"
+   },
+   "body": {
+    "en": "An artificial neuron computes z = w₁x₁ + w₂x₂ + … + b, then outputs a = f(z). Example: inputs (2, 3), weights (0.5, −1), bias 1: z = 1 − 3 + 1 = −1; with ReLU, a = max(0, −1) = 0, so this neuron stays silent. Common activations: ReLU max(0, z), the default in hidden layers; sigmoid for probabilities between 0 and 1; tanh between −1 and 1; and softmax on the output layer to turn scores for many classes into probabilities that add to 1. The idea is loosely inspired by brain neurons that fire when their input is strong enough, but real neurons are far more complex.",
+    "hi": "कृत्रिम न्यूरॉन z = w₁x₁ + w₂x₂ + … + b निकालता है, फिर a = f(z) देता है। उदाहरण: इनपुट (2, 3), भार (0.5, −1), बायस 1: z = 1 − 3 + 1 = −1; ReLU से a = max(0, −1) = 0, तो यह न्यूरॉन चुप रहता है। आम एक्टिवेशन: ReLU max(0, z), छिपी परतों में मानक; 0 से 1 के बीच संभावना के लिए सिग्मॉइड; −1 से 1 के बीच tanh; और आउटपुट परत पर सॉफ़्टमैक्स जो कई श्रेणियों के स्कोर को 1 तक जुड़ने वाली संभावनाओं में बदलता है। यह विचार दिमाग के न्यूरॉन से ढीला-ढाला प्रेरित है जो इनपुट तेज़ होने पर सक्रिय होते हैं, पर असली न्यूरॉन कहीं ज़्यादा जटिल हैं।",
+    "hinglish": "Artificial neuron z = w₁x₁ + w₂x₂ + … + b nikaalta hai, phir a = f(z) deta hai. Example: inputs (2, 3), weights (0.5, −1), bias 1: z = 1 − 3 + 1 = −1; ReLU se a = max(0, −1) = 0, to yeh neuron chup rehta hai. Common activations: ReLU max(0, z), hidden layers ka default; 0-1 probability ke liye sigmoid; −1 se 1 ke liye tanh; aur output layer par softmax jo kai classes ke scores ko 1 tak judne wali probabilities banata hai. Idea dimaag ke neurons se loosely inspired hai jo input strong hone par fire karte hain, par asli neurons kahin zyada complex hain."
+   },
+   "analogy": {
+    "hinglish": "Neuron ek judge jaisa hai: har gawaah (input) ki baat ko alag importance (weight) deta hai, sab jodta hai, aur threshold paar hua to \"haan\" bolta hai.",
+    "en": "A neuron is like a judge: gives each witness (input) a different importance (weight), adds it all up, and says \"yes\" if it crosses a threshold.",
+    "hi": "न्यूरॉन एक न्यायाधीश जैसा है: हर गवाह (इनपुट) की बात को अलग महत्व (भार) देता है, सब जोड़ता है, और सीमा पार हुई तो \"हाँ\" कहता है।"
+   },
+   "realExample": {
+    "en": "A handwritten-digit network for PIN codes on Indian Post envelopes takes 28×28 = 784 pixel inputs and has 10 output neurons, one per digit 0–9.",
+    "hinglish": "India Post ke envelopes par PIN code padhne wala handwritten-digit network 28×28 = 784 pixel inputs leta hai aur 10 output neurons rakhta hai, har digit 0-9 ke liye ek.",
+    "hi": "भारतीय डाक के लिफ़ाफ़ों पर पिन कोड पढ़ने वाला हस्तलिखित-अंक नेटवर्क 28×28 = 784 पिक्सेल इनपुट लेता है और उसके 10 आउटपुट न्यूरॉन हैं, हर अंक 0–9 के लिए एक।"
+   }
+  },
+  {
+   "heading": {
+    "en": "Layers, depth and parameter count",
+    "hi": "परतें, गहराई और पैरामीटर गिनती",
+    "hinglish": "Layers, depth aur parameter count"
+   },
+   "body": {
+    "en": "In a fully connected layer every neuron connects to every neuron in the previous layer. A layer from 784 inputs to 128 neurons has 784×128 weights + 128 biases = 100,480 parameters. \"Deep\" learning simply means many layers. Depth lets the network build a hierarchy of features: in vision, edges → textures → parts → objects. The universal approximation theorem says one wide enough hidden layer can approximate any reasonable function, but deep networks usually need far fewer neurons for the same job. Modern LLMs have from about a billion to over a trillion parameters.",
+    "hi": "पूरी तरह जुड़ी परत में हर न्यूरॉन पिछली परत के हर न्यूरॉन से जुड़ता है। 784 इनपुट से 128 न्यूरॉन वाली परत में 784×128 भार + 128 बायस = 1,00,480 पैरामीटर होते हैं। \"डीप\" लर्निंग का मतलब बस कई परतें हैं। गहराई नेटवर्क को फ़ीचर का पदानुक्रम बनाने देती है: दृष्टि में किनारे → बनावट → हिस्से → वस्तुएँ। सार्वभौमिक सन्निकटन प्रमेय कहता है कि पर्याप्त चौड़ी एक छिपी परत किसी भी उचित फ़ंक्शन का अनुमान लगा सकती है, पर गहरे नेटवर्क को उसी काम के लिए आमतौर पर बहुत कम न्यूरॉन चाहिए। आधुनिक एलएलएम में लगभग एक अरब से एक लाख करोड़ से ज़्यादा पैरामीटर होते हैं।",
+    "hinglish": "Fully connected layer mein har neuron pichhli layer ke har neuron se judta hai. 784 inputs se 128 neurons wali layer mein 784×128 weights + 128 biases = 1,00,480 parameters. \"Deep\" learning ka matlab bas kai layers. Depth network ko features ki hierarchy banane deti hai: vision mein edges → textures → parts → objects. Universal approximation theorem kehta hai ek kaafi chaudi hidden layer koi bhi reasonable function approximate kar sakti hai, par deep networks ko usi kaam ke liye usually bahut kam neurons chahiye. Modern LLMs mein lagbhag ek arab se ek trillion se zyada parameters hote hain."
+   },
+   "analogy": {
+    "hinglish": "Factory assembly line: pehla worker sirf screw lagata hai, doosra panel jodta hai, aakhri poori gaadi banata hai — har layer pichhli ke kaam par build karti hai.",
+    "en": "A factory assembly line: the first worker only fits screws, the second adds panels, the last builds the whole car — each layer builds on the previous one's work.",
+    "hi": "कारख़ाने की असेंबली लाइन: पहला कामगार सिर्फ़ पेंच लगाता है, दूसरा पैनल जोड़ता है, आख़िरी पूरी गाड़ी बनाता है — हर परत पिछली के काम पर बनती है।"
+   },
+   "realExample": {
+    "en": "Phone cameras run small deep networks on the chip (a neural processing unit) for portrait blur and night mode without sending photos to the cloud.",
+    "hinglish": "Phone cameras chip par (neural processing unit) chhote deep networks chalate hain portrait blur aur night mode ke liye, photos cloud bheje bina.",
+    "hi": "फ़ोन कैमरे पोर्ट्रेट धुंधलापन और नाइट मोड के लिए चिप पर (न्यूरल प्रोसेसिंग यूनिट) छोटे डीप नेटवर्क चलाते हैं, फ़ोटो क्लाउड भेजे बिना।"
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Draw a network with 2 inputs, a hidden layer of 3 neurons and 1 output. Count its parameters, then compute its output by hand for inputs (1, 2) with weights you choose.",
+   "hinglish": "2 inputs, 3 neurons ki hidden layer aur 1 output wala network banao. Parameters gino, phir apne chune weights se inputs (1, 2) ka output haath se nikaalo.",
+   "hi": "2 इनपुट, 3 न्यूरॉन की छिपी परत और 1 आउटपुट वाला नेटवर्क बनाओ। इसके पैरामीटर गिनो, फिर अपने चुने भारों से इनपुट (1, 2) के लिए हाथ से आउटपुट निकालो।"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Inputs (1, 2), weights (3, −1), bias −2, ReLU. Output?",
+     "hi": "इनपुट (1, 2), भार (3, −1), बायस −2, ReLU। आउटपुट?",
+     "hinglish": "Inputs (1, 2), weights (3, −1), bias −2, ReLU. Output?"
+    },
+    "options": [
+     {
+      "en": "0",
+      "hinglish": "0",
+      "hi": "0"
+     },
+     {
+      "en": "−1",
+      "hinglish": "−1",
+      "hi": "−1"
+     },
+     {
+      "en": "1",
+      "hinglish": "1",
+      "hi": "1"
+     },
+     {
+      "en": "3",
+      "hinglish": "3",
+      "hi": "3"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "z = 3 − 2 − 2 = −1, and ReLU(−1) = 0.",
+     "hi": "z = 3 − 2 − 2 = −1, और ReLU(−1) = 0।",
+     "hinglish": "z = 3 − 2 − 2 = −1, aur ReLU(−1) = 0."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "How many parameters in a fully connected layer from 3 inputs to 4 neurons?",
+     "hi": "3 इनपुट से 4 न्यूरॉन वाली पूर्ण जुड़ी परत में कितने पैरामीटर?",
+     "hinglish": "3 inputs se 4 neurons wali fully connected layer mein kitne parameters?"
+    },
+    "options": [
+     {
+      "en": "16",
+      "hinglish": "16",
+      "hi": "16"
+     },
+     {
+      "en": "12",
+      "hinglish": "12",
+      "hi": "12"
+     },
+     {
+      "en": "7",
+      "hinglish": "7",
+      "hi": "7"
+     },
+     {
+      "en": "4",
+      "hinglish": "4",
+      "hi": "4"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "3 × 4 = 12 weights plus 4 biases = 16.",
+     "hi": "3 × 4 = 12 भार और 4 बायस = 16।",
+     "hinglish": "3 × 4 = 12 weights plus 4 biases = 16."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why do we need non-linear activations?",
+     "hi": "गैर-रेखीय एक्टिवेशन क्यों चाहिए?",
+     "hinglish": "Non-linear activations kyun chahiye?"
+    },
+    "options": [
+     {
+      "en": "Without them, stacked layers equal one linear layer and cannot learn curves",
+      "hinglish": "Inke bina layers milkar ek linear layer ban jaati hain, curves nahi seekh sakti",
+      "hi": "इनके बिना कई परतें मिलकर एक रेखीय परत के बराबर हैं और वक्र नहीं सीख सकतीं"
+     },
+     {
+      "en": "They make training slower",
+      "hinglish": "Training slow karte hain",
+      "hi": "ये प्रशिक्षण धीमा करते हैं"
+     },
+     {
+      "en": "They store the data",
+      "hinglish": "Data store karte hain",
+      "hi": "ये डेटा संग्रहीत करते हैं"
+     },
+     {
+      "en": "They are only for images",
+      "hinglish": "Sirf images ke liye",
+      "hi": "ये सिर्फ़ तस्वीरों के लिए हैं"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "A linear function of a linear function is still linear. Non-linearity is what lets depth add power.",
+     "hi": "रेखीय फ़ंक्शन का रेखीय फ़ंक्शन रेखीय ही रहता है। गैर-रेखीयता से ही गहराई ताकत जोड़ती है।",
+     "hinglish": "Linear function ka linear function linear hi rehta hai. Non-linearity se hi depth power jodti hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Train the circle dataset to at least 95% accuracy.",
+     "hi": "सर्कल डेटा को कम से कम 95% सटीकता तक प्रशिक्षित करें।",
+     "hinglish": "Circle data ko kam se kam 95% accuracy tak train karo."
+    },
+    "answer": {
+     "event": "test-accuracy",
+     "min": 0.95,
+     "dataset": "circle"
+    },
+    "explain": {
+     "en": "Four ReLU neurons can each cut off one side, and together they enclose the inner circle.",
+     "hi": "चार ReLU न्यूरॉन हर एक तरफ़ काटते हैं, और मिलकर अंदर के घेरे को घेर लेते हैं।",
+     "hinglish": "Chaar ReLU neurons har ek side kaat-te hain, aur milkar andar ke circle ko gher lete hain."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "topics": [
+  "ai.neural-nets"
+ ],
+ "sources": [
+  {
+   "title": "Goodfellow, Bengio, Courville — Deep Learning (2016), ch. 6",
+   "url": "https://www.deeplearningbook.org/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "3Blue1Brown — Neural networks series",
+   "url": "https://www.3blue1brown.com/topics/neural-networks",
+   "licence": "fact reference"
+  }
+ ]
+}

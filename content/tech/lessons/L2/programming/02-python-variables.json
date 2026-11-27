@@ -1,0 +1,334 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.programming.02",
+ "level": 2,
+ "classes": [
+  6,
+  7
+ ],
+ "unit": "programming",
+ "title": {
+  "en": "Python: print, variables and types",
+  "hi": "पायथन: print, वेरिएबल और टाइप",
+  "hinglish": "Python: print, variables aur types"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [
+  "L2.programming.01"
+ ],
+ "topics": [
+  "prog.python-basics",
+  "prog.variables"
+ ],
+ "outcomes": [
+  {
+   "en": "Use print() and store values in variables",
+   "hi": "print() उपयोग कर सकते हो और वेरिएबल में मान रख सकते हो",
+   "hinglish": "print() use kar sakte ho aur variables mein values rakh sakte ho"
+  },
+  {
+   "en": "Tell int, float, str and bool apart",
+   "hi": "int, float, str और bool में अंतर बता सकते हो",
+   "hinglish": "int, float, str aur bool mein farak bata sakte ho"
+  },
+  {
+   "en": "Predict how a variable changes, line by line",
+   "hi": "लाइन-दर-लाइन वेरिएबल कैसे बदलता है, अनुमान लगा सकते हो",
+   "hinglish": "Line by line variable kaise badalta hai predict kar sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Variable",
+   "hinglish": "Naam wala dibba jisme value rakhte hain",
+   "en": "A named box that stores a value",
+   "hi": "नाम वाला डिब्बा जो एक मान रखता है"
+  },
+  {
+   "term": "Assignment (=)",
+   "hinglish": "Dibbe mein value daalna",
+   "en": "= puts the value on the right into the name on the left",
+   "hi": "= दाईं ओर के मान को बाईं ओर के नाम में रखता है"
+  },
+  {
+   "term": "int / float",
+   "hinglish": "Poori sankhya / dashamlav sankhya",
+   "en": "Whole number (12) / decimal number (3.5)",
+   "hi": "पूर्ण संख्या (12) / दशमलव संख्या (3.5)"
+  },
+  {
+   "term": "str",
+   "hinglish": "Text, quotes ke andar",
+   "en": "A string of text in quotes: \"Asha\"",
+   "hi": "उद्धरण चिह्नों में टेक्स्ट: \"Asha\""
+  },
+  {
+   "term": "bool",
+   "hinglish": "True ya False",
+   "en": "A truth value: True or False",
+   "hi": "सत्य मान: True या False"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "A variable is a labelled box. age = 12 puts 12 in the box called age.",
+    "hi": "वेरिएबल एक लेबल वाला डिब्बा है। age = 12, age नाम के डिब्बे में 12 रखता है।",
+    "hinglish": "Variable ek label wala dibba hai. age = 12, age naam ke dibbe mein 12 rakhta hai."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "= does not mean “equals” like maths — it means “store”.",
+    "hi": "= का अर्थ गणित वाला “बराबर” नहीं — अर्थ है “रखो”।",
+    "hinglish": "= ka matlab maths wala “barabar” nahi — matlab hai “rakho”."
+   },
+   "code": "name = \"Asha\"\nage = 12\nprint(name, age)"
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "age = age + 1: first work out the right side (13), then store it back. The old value is replaced.",
+    "hi": "age = age + 1: पहले दायाँ भाग हल करो (13), फिर वापस रखो। पुराना मान हट जाता है।",
+    "hinglish": "age = age + 1: pehle right side solve karo (13), phir wapas rakho. Purana value hat jaata hai."
+   },
+   "visual": "lab:py-tracer#variables",
+   "narration": {
+    "en": "Step through and watch the Memory box flash when age changes.",
+    "hi": "कदम-दर-कदम चलाओ और age बदलने पर मेमोरी डिब्बे को चमकते देखो।",
+    "hinglish": "Step karke dekho age badalne pe Memory box kaise chamakta hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Types matter: \"5\" + \"5\" is \"55\" (text joined), 5 + 5 is 10, and \"5\" + 5 is an error.",
+    "hi": "टाइप मायने रखते हैं: \"5\" + \"5\" = \"55\" (टेक्स्ट जुड़ा), 5 + 5 = 10, और \"5\" + 5 त्रुटि है।",
+    "hinglish": "Types matter karte hain: \"5\" + \"5\" = \"55\" (text juda), 5 + 5 = 10, aur \"5\" + 5 error hai."
+   },
+   "visual": "compare:\"5\" + \"5\" → \"55\"|5 + 5 → 10|\"5\" + 5 → TypeError",
+   "narration": {
+    "en": "Python will not guess whether you meant text or a number.",
+    "hi": "पायथन अनुमान नहीं लगाएगा कि आपका अर्थ टेक्स्ट था या संख्या।",
+    "hinglish": "Python guess nahi karega ki aapka matlab text tha ya number."
+   },
+   "code": "print(\"5\" + \"5\")\nprint(5 + 5)\nprint(7 / 2, 7 // 2, 7 % 2)"
+  }
+ ],
+ "play": {
+  "lab": "py-tracer",
+  "config": {
+   "program": "variables"
+  },
+  "goal": {
+   "en": "Step through the Variables program and predict what age holds after line 3.",
+   "hi": "Variables प्रोग्राम कदम-दर-कदम चलाओ और अनुमान लगाओ लाइन 3 के बाद age में क्या है।",
+   "hinglish": "Variables program ko step-by-step chalao aur predict karo line 3 ke baad age mein kya hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "How Python stores and calculates",
+    "hi": "पायथन कैसे रखता और गणना करता है",
+    "hinglish": "Python kaise store aur calculate karta hai"
+   },
+   "body": {
+    "en": "Rules for names: letters, digits and _, must not start with a digit, no spaces (marks_total, not marks total), and case matters (Age ≠ age). Python runs top to bottom, one line at a time. Arithmetic: + − * (multiply), / (divide, always gives a float: 7 / 2 = 3.5), // (whole-number division: 7 // 2 = 3), % (remainder: 7 % 2 = 1) and ** (power: 2 ** 10 = 1024). Convert types with int(\"42\"), float(\"3.5\") and str(13). print() can show several things separated by commas and puts a space between them.",
+    "hi": "नाम के नियम: अक्षर, अंक और _, अंक से शुरू नहीं, कोई स्पेस नहीं (marks_total, marks total नहीं), और बड़े-छोटे अक्षर अलग (Age ≠ age)। पायथन ऊपर से नीचे, एक बार में एक लाइन चलाता है। गणित: + − * (गुणा), / (भाग, हमेशा float देता है: 7 / 2 = 3.5), // (पूर्ण भाग: 7 // 2 = 3), % (शेषफल: 7 % 2 = 1) और ** (घात: 2 ** 10 = 1024)। टाइप बदलो int(\"42\"), float(\"3.5\") और str(13) से। print() कई चीज़ें अल्पविराम से अलग करके दिखा सकता है और बीच में स्पेस डालता है।",
+    "hinglish": "Naam ke rules: letters, digits aur _, digit se shuru nahi, koi space nahi (marks_total, marks total nahi), aur capital-small alag (Age ≠ age). Python upar se neeche, ek baar mein ek line chalata hai. Arithmetic: + − * (multiply), / (divide, hamesha float deta hai: 7 / 2 = 3.5), // (whole-number division: 7 // 2 = 3), % (remainder: 7 % 2 = 1) aur ** (power: 2 ** 10 = 1024). Types badlo int(\"42\"), float(\"3.5\") aur str(13) se. print() kai cheezein comma se alag karke dikha sakta hai aur beech mein space daalta hai."
+   },
+   "analogy": {
+    "hinglish": "Variable = tiffin box pe naam ki sticker. Box mein naya khaana daala to purana nikal gaya — box ek, value nayi.",
+    "en": "A variable = a name sticker on a tiffin box. Put new food in and the old food comes out — one box, a new value.",
+    "hi": "वेरिएबल = टिफ़िन बॉक्स पर नाम का स्टिकर। डिब्बे में नया खाना डाला तो पुराना निकल गया — डिब्बा एक, मान नया।"
+   },
+   "realExample": {
+    "en": "Your phone’s battery percentage is a variable the OS updates every few seconds.",
+    "hi": "आपके फ़ोन की बैटरी प्रतिशत एक वेरिएबल है जिसे OS हर कुछ सेकंड में बदलता है।",
+    "hinglish": "Aapke phone ki battery percentage ek variable hai jise OS har kuch seconds mein update karta hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write a program that stores your name, class and favourite number, then prints “Hi, I am … from Class …”.",
+   "hi": "ऐसा प्रोग्राम लिखो जो आपका नाम, कक्षा और पसंदीदा संख्या रखे, फिर छापे “Hi, I am … from Class …”।",
+   "hinglish": "Ek program likho jo aapka naam, class aur favourite number store kare, phir print kare “Hi, I am … from Class …”."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "After x = 4 and then x = x * 3, what is x?",
+     "hi": "x = 4 और फिर x = x * 3 के बाद x क्या है?",
+     "hinglish": "x = 4 aur phir x = x * 3 ke baad x kya hai?"
+    },
+    "options": [
+     "4",
+     "12",
+     "x * 3",
+     "7"
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Right side first: 4 × 3 = 12, stored back in x.",
+     "hi": "पहले दायाँ भाग: 4 × 3 = 12, x में वापस।",
+     "hinglish": "Pehle right side: 4 × 3 = 12, x mein wapas."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "match",
+    "prompt": {
+     "en": "Match each value to its Python type.",
+     "hi": "हर मान को उसके पायथन टाइप से मिलाओ।",
+     "hinglish": "Har value ko uske Python type se milao."
+    },
+    "options": {
+     "left": [
+      "12",
+      "3.5",
+      "\"12\"",
+      "True"
+     ],
+     "right": [
+      "float",
+      "bool",
+      "int",
+      "str"
+     ]
+    },
+    "answer": [
+     [
+      0,
+      2
+     ],
+     [
+      1,
+      0
+     ],
+     [
+      2,
+      3
+     ],
+     [
+      3,
+      1
+     ]
+    ],
+    "explain": {
+     "en": "12 is int, 3.5 is float, \"12\" (in quotes) is str, True is bool.",
+     "hi": "12 int, 3.5 float, \"12\" (उद्धरण में) str, True bool।",
+     "hinglish": "12 int, 3.5 float, \"12\" (quotes mein) str, True bool."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "short",
+    "prompt": {
+     "en": "What does print(7 // 2) show?",
+     "hi": "print(7 // 2) क्या दिखाता है?",
+     "hinglish": "print(7 // 2) kya dikhata hai?"
+    },
+    "answer": [
+     "3"
+    ],
+    "explain": {
+     "en": "// is whole-number division: 7 ÷ 2 = 3 remainder 1, so 3.",
+     "hi": "// पूर्ण भाग है: 7 ÷ 2 = 3 शेष 1, तो 3।",
+     "hinglish": "// whole-number division hai: 7 ÷ 2 = 3 remainder 1, to 3."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which is a valid variable name?",
+     "hi": "कौन-सा मान्य वेरिएबल नाम है?",
+     "hinglish": "Kaunsa valid variable name hai?"
+    },
+    "options": [
+     "2nd_place",
+     "total marks",
+     "total_marks",
+     "total-marks"
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "Names cannot start with a digit or contain spaces or “-”.",
+     "hi": "नाम अंक से शुरू नहीं हो सकते, न स्पेस या “-” रख सकते।",
+     "hinglish": "Names digit se shuru nahi ho sakte, na space ya “-” rakh sakte."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "What does print(\"Class \" + 7) do?",
+     "hi": "print(\"Class \" + 7) क्या करता है?",
+     "hinglish": "print(\"Class \" + 7) kya karta hai?"
+    },
+    "options": [
+     {
+      "en": "TypeError",
+      "hi": "TypeError",
+      "hinglish": "TypeError"
+     },
+     "Class 7",
+     "Class7"
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "You cannot add text and a number. Use \"Class \" + str(7) or print(\"Class\", 7).",
+     "hi": "टेक्स्ट और संख्या नहीं जुड़ते। \"Class \" + str(7) या print(\"Class\", 7) लिखो।",
+     "hinglish": "Text aur number jud nahi sakte. \"Class \" + str(7) ya print(\"Class\", 7) likho."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "lc",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Answer the predict question in the Variables program.",
+     "hi": "Variables प्रोग्राम में अनुमान वाला प्रश्न हल करो।",
+     "hinglish": "Variables program mein predict wala sawaal solve karo."
+    },
+    "answer": {
+     "lab": "py-tracer",
+     "event": "mission:complete",
+     "program": "variables"
+    },
+    "explain": {
+     "en": "age becomes 13 after line 3.",
+     "hi": "लाइन 3 के बाद age 13 हो जाता है।",
+     "hinglish": "Line 3 ke baad age 13 ho jaata hai."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Python documentation — The Python Tutorial",
+   "url": "https://docs.python.org/3/tutorial/",
+   "licence": "PSF licence (fact reference only)"
+  },
+  {
+   "title": "Python docs — Built-in types",
+   "url": "https://docs.python.org/3/library/stdtypes.html",
+   "licence": "PSF licence (fact reference only)"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

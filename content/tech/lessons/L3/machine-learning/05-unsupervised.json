@@ -1,0 +1,329 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.machine-learning.05",
+ "level": 3,
+ "classes": [
+  10,
+  11
+ ],
+ "unit": "machine-learning",
+ "title": {
+  "en": "Unsupervised learning: clusters and anomalies",
+  "hi": "अनसुपरवाइज़्ड लर्निंग: समूह और विसंगतियाँ",
+  "hinglish": "Unsupervised learning: clusters aur anomalies"
+ },
+ "minutes": 12,
+ "xp": 50,
+ "prereq": [
+  "L3.machine-learning.01"
+ ],
+ "outcomes": [
+  {
+   "en": "Run k-means by hand for one iteration",
+   "hinglish": "k-means ka ek iteration haath se chalao",
+   "hi": "एक पुनरावृत्ति के लिए हाथ से k-means चलाना"
+  },
+  {
+   "en": "Explain anomaly detection and dimensionality reduction",
+   "hinglish": "Anomaly detection aur dimensionality reduction samjhao",
+   "hi": "विसंगति पहचान और आयाम घटाने को समझाना"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Clustering",
+   "hinglish": "Milti-julti cheezon ke group banana",
+   "en": "Grouping unlabelled data by similarity",
+   "hi": "बिना लेबल वाले डेटा को समानता से समूहों में बाँटना"
+  },
+  {
+   "term": "Centroid",
+   "hinglish": "Group ka centre point",
+   "en": "The mean position of a cluster",
+   "hi": "किसी समूह की औसत स्थिति"
+  },
+  {
+   "term": "k-means",
+   "hinglish": "k centres ko baar-baar adjust karna",
+   "en": "Alternates assign-to-nearest-centre and move-centre",
+   "hi": "बारी-बारी से निकटतम केंद्र को सौंपना और केंद्र खिसकाना"
+  },
+  {
+   "term": "Anomaly",
+   "hinglish": "Jo baaki sab se bilkul alag ho",
+   "en": "A data point far from normal patterns",
+   "hi": "सामान्य पैटर्न से बहुत दूर का डेटा बिंदु"
+  },
+  {
+   "term": "PCA",
+   "hinglish": "Bahut saare features ko kam mein dabana",
+   "en": "Principal component analysis; reduces dimensions keeping most variation",
+   "hi": "प्रमुख घटक विश्लेषण; अधिकांश भिन्नता रखते हुए आयाम घटाता है"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Unlabelled points float on the screen. k-means drops 3 random centres.",
+    "hi": "बिना लेबल वाले बिंदु स्क्रीन पर हैं। के-मीन्स 3 यादृच्छिक केंद्र रखता है।",
+    "hinglish": "Bina label ke points screen par hain. k-means 3 random centres rakhta hai."
+   },
+   "visual": "anim:kmeans-init",
+   "narration": {
+    "en": "Unlabelled points float on the screen. k-means drops 3 random centres.",
+    "hi": "बिना लेबल वाले बिंदु स्क्रीन पर हैं। के-मीन्स 3 यादृच्छिक केंद्र रखता है।",
+    "hinglish": "Bina label ke points screen par hain. k-means 3 random centres rakhta hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Step 1: every point joins its nearest centre. Step 2: each centre moves to the average of its points. Repeat until nothing moves.",
+    "hi": "चरण 1: हर बिंदु सबसे नज़दीकी केंद्र से जुड़ता है। चरण 2: हर केंद्र अपने बिंदुओं के औसत पर जाता है। कुछ न हिले तब तक दोहराओ।",
+    "hinglish": "Step 1: har point sabse paas ke centre se judta hai. Step 2: har centre apne points ke average par jaata hai. Kuch na hile tab tak repeat."
+   },
+   "visual": "anim:kmeans-iterate",
+   "narration": {
+    "en": "Step 1: every point joins its nearest centre. Step 2: each centre moves to the average of its points. Repeat until nothing moves.",
+    "hi": "चरण 1: हर बिंदु सबसे नज़दीकी केंद्र से जुड़ता है। चरण 2: हर केंद्र अपने बिंदुओं के औसत पर जाता है। कुछ न हिले तब तक दोहराओ।",
+    "hinglish": "Step 1: har point sabse paas ke centre se judta hai. Step 2: har centre apne points ke average par jaata hai. Kuch na hile tab tak repeat."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "A point far from every cluster is an anomaly: maybe fraud, a faulty sensor or a new kind of event.",
+    "hi": "हर समूह से दूर का बिंदु विसंगति है: शायद धोखाधड़ी, खराब सेंसर या नई तरह की घटना।",
+    "hinglish": "Har cluster se door wala point anomaly hai: shayad fraud, kharab sensor ya naya event."
+   },
+   "visual": "anim:anomaly-pulse",
+   "narration": {
+    "en": "A point far from every cluster is an anomaly: maybe fraud, a faulty sensor or a new kind of event.",
+    "hi": "हर समूह से दूर का बिंदु विसंगति है: शायद धोखाधड़ी, खराब सेंसर या नई तरह की घटना।",
+    "hinglish": "Har cluster se door wala point anomaly hai: shayad fraud, kharab sensor ya naya event."
+   }
+  }
+ ],
+ "play": {
+  "lab": "nn-playground",
+  "config": {
+   "mode": "kmeans",
+   "dataset": "three-blobs",
+   "k": 3
+  },
+  "goal": {
+   "en": "Step k-means one move at a time. Try k = 2 and k = 5. Which k fits the data best?",
+   "hinglish": "k-means ko ek-ek step chalao. k = 2 aur k = 5 try karo. Data ke liye kaunsa k best hai?",
+   "hi": "k-means को एक-एक कदम चलाओ। k = 2 और k = 5 आज़माओ। कौन-सा k डेटा पर सबसे अच्छा बैठता है?"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "k-means clustering",
+    "hi": "के-मीन्स क्लस्टरिंग",
+    "hinglish": "k-means clustering"
+   },
+   "body": {
+    "en": "k-means needs only the data and a number k. It places k centroids, assigns every point to the nearest one, moves each centroid to the mean of its points, and repeats until assignments stop changing. It always converges, but the result depends on the starting positions, so libraries run it several times (k-means++ picks smarter starts). To choose k, plot the within-cluster spread for k = 1…10 and look for the \"elbow\" where extra clusters stop helping. DBSCAN is an alternative that finds clusters of any shape and marks sparse points as noise.",
+    "hi": "के-मीन्स को सिर्फ़ डेटा और एक संख्या k चाहिए। वह k केंद्रक रखता है, हर बिंदु को सबसे नज़दीकी को देता है, हर केंद्रक को उसके बिंदुओं के औसत पर ले जाता है, और असाइनमेंट बदलना बंद होने तक दोहराता है। यह हमेशा रुकता है, पर नतीजा शुरुआती जगह पर निर्भर है, इसलिए लाइब्रेरी इसे कई बार चलाती हैं (के-मीन्स++ बेहतर शुरुआत चुनता है)। k चुनने के लिए k = 1…10 का अंदरूनी फैलाव प्लॉट करो और \"कोहनी\" ढूँढो जहाँ और समूह फ़ायदा न दें। डीबीस्कैन एक विकल्प है जो किसी भी आकार के समूह ढूँढता है और विरल बिंदुओं को शोर मानता है।",
+    "hinglish": "k-means ko sirf data aur number k chahiye. Woh k centroids rakhta hai, har point ko sabse paas wale ko deta hai, har centroid ko uske points ke average par le jaata hai, aur assignments badalna band hone tak repeat karta hai. Hamesha ruk jaata hai, par result starting positions par depend karta hai, isliye libraries ise kai baar chalati hain (k-means++ smarter start chunta hai). k chunne ke liye k = 1…10 ka within-cluster spread plot karo aur \"elbow\" dhoondho jahan extra clusters fayda na dein. DBSCAN alternative hai jo kisi bhi shape ke clusters dhoondhta hai aur akele points ko noise maanta hai."
+   },
+   "analogy": {
+    "hinglish": "Class mein bina bataaye bachche apne aap groups bana lete hain — cricket wale, drawing wale, gaane wale. Label kisi ne nahi diya.",
+    "en": "In class, without being told, children form groups on their own — cricket lovers, drawing lovers, singers. Nobody gave the labels.",
+    "hi": "कक्षा में बिना बताए बच्चे अपने आप समूह बना लेते हैं — क्रिकेट वाले, चित्रकारी वाले, गाने वाले। लेबल किसी ने नहीं दिया।"
+   },
+   "realExample": {
+    "en": "E-commerce marketplaces cluster shoppers into segments (budget, festive-only, premium) to plan offers; telecom operators cluster towers by traffic pattern.",
+    "hinglish": "E-commerce marketplaces shoppers ko segments (budget, sirf tyohaar wale, premium) mein cluster karte hain; telecom operators towers ko traffic pattern se cluster karte hain.",
+    "hi": "ई-कॉमर्स बाज़ार ऑफ़र की योजना के लिए ख़रीदारों को खंडों (बजट, सिर्फ़-त्योहार, प्रीमियम) में बाँटते हैं; दूरसंचार कंपनियाँ ट्रैफ़िक पैटर्न से टावरों का समूह बनाती हैं।"
+   }
+  },
+  {
+   "heading": {
+    "en": "Anomalies and fewer dimensions",
+    "hi": "विसंगतियाँ और कम आयाम",
+    "hinglish": "Anomalies aur kam dimensions"
+   },
+   "body": {
+    "en": "Anomaly detection learns what \"normal\" looks like and flags what is far from it: distance from cluster centres, isolation forests (anomalies get isolated in few random splits), or autoencoders (a network that compresses and rebuilds data; badly rebuilt items are unusual). Because fraudsters keep inventing tricks, banks use it to catch patterns no one has labelled. Dimensionality reduction such as PCA squeezes hundreds of features into 2 or 3 that keep most of the variation, which is how we draw maps of high-dimensional data, like the word-embedding plots in the LLM unit.",
+    "hi": "विसंगति पहचान सीखती है कि \"सामान्य\" कैसा है और उससे दूर चीज़ें चिह्नित करती है: समूह-केंद्र से दूरी, आइसोलेशन फ़ॉरेस्ट (विसंगतियाँ कुछ ही यादृच्छिक विभाजनों में अलग हो जाती हैं), या ऑटोएनकोडर (डेटा को दबाकर फिर बनाने वाला नेटवर्क; जो खराब बने वह असामान्य)। चूँकि धोखेबाज़ नई चालें बनाते रहते हैं, बैंक इससे बिना लेबल वाले पैटर्न पकड़ते हैं। पीसीए जैसी तकनीक सैकड़ों फ़ीचर को 2 या 3 में दबाती है जो ज़्यादातर भिन्नता रखें; इसी से बहु-आयामी डेटा के नक्शे बनते हैं, जैसे एलएलएम इकाई के शब्द-एम्बेडिंग चित्र।",
+    "hinglish": "Anomaly detection seekhta hai \"normal\" kaisa hai aur usse door cheezein flag karta hai: cluster centre se distance, isolation forests (anomalies kuch hi random splits mein alag ho jaati hain), ya autoencoders (data dabaake phir banane wala network; jo kharab bane woh unusual). Kyunki fraudsters nayi tricks banate rehte hain, banks isse bina label wale patterns pakadte hain. PCA jaisi technique sainkdon features ko 2-3 mein dabati hai jo zyaadatar variation rakhein; isi se high-dimensional data ke maps bante hain, jaise LLM unit ke word-embedding plots."
+   },
+   "analogy": {
+    "hinglish": "Society ka watchman sabki aadat jaanta hai; raat 3 baje anjaan gaadi aaye to turant dhyaan jaata hai — yahi anomaly detection hai.",
+    "en": "The society watchman knows everyone's habits; an unknown car at 3 am gets noticed at once — that is anomaly detection.",
+    "hi": "सोसाइटी का चौकीदार सबकी आदत जानता है; रात 3 बजे अनजान गाड़ी आए तो तुरंत ध्यान जाता है — यही विसंगति पहचान है।"
+   },
+   "realExample": {
+    "en": "If your card is used in another country two minutes after a payment in Lucknow, an anomaly model flags it and the bank sends an alert.",
+    "hinglish": "Agar Lucknow mein payment ke do minute baad tumhara card doosre desh mein use ho, anomaly model flag karta hai aur bank alert bhejta hai.",
+    "hi": "यदि लखनऊ में भुगतान के दो मिनट बाद आपका कार्ड दूसरे देश में इस्तेमाल हो, तो विसंगति मॉडल उसे चिह्नित करता है और बैंक चेतावनी भेजता है।"
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Take 10 friends' (hours of sleep, hours on phone). Plot them and run 2 rounds of k-means with k = 2 by hand. Describe each cluster in words.",
+   "hinglish": "10 doston ka (neend ke ghante, phone ke ghante) lo. Plot karo aur k = 2 ke saath k-means ke 2 rounds haath se chalao. Har cluster ko shabdon mein describe karo.",
+   "hi": "10 दोस्तों के (नींद के घंटे, फ़ोन के घंटे) लो। उन्हें प्लॉट करो और k = 2 के साथ हाथ से k-means के 2 दौर चलाओ। हर समूह को शब्दों में बताओ।"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "order",
+    "prompt": {
+     "en": "Order the k-means loop.",
+     "hi": "के-मीन्स चक्र को क्रम में लगाएँ।",
+     "hinglish": "k-means loop ko order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Pick k starting centres",
+      "hinglish": "k starting centres chuno",
+      "hi": "k आरंभिक केंद्र चुनो"
+     },
+     {
+      "en": "Assign each point to its nearest centre",
+      "hinglish": "Har point ko nearest centre do",
+      "hi": "हर बिंदु को निकटतम केंद्र को सौंपो"
+     },
+     {
+      "en": "Move each centre to the mean of its points",
+      "hinglish": "Har centre ko uske points ke mean par le jao",
+      "hi": "हर केंद्र को उसके बिंदुओं के औसत पर ले जाओ"
+     },
+     {
+      "en": "Repeat until assignments stop changing",
+      "hinglish": "Assignments rukne tak repeat",
+      "hi": "तब तक दोहराओ जब तक सौंपना बदलना बंद न हो"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "Initialise, assign, update, repeat until stable.",
+     "hi": "आरंभ, असाइन, अपडेट, स्थिर होने तक दोहराओ।",
+     "hinglish": "Initialise, assign, update, stable hone tak repeat."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Centroid of points (2, 4) and (4, 8)?",
+     "hi": "बिंदुओं (2, 4) और (4, 8) का केंद्रक?",
+     "hinglish": "Points (2, 4) aur (4, 8) ka centroid?"
+    },
+    "options": [
+     {
+      "en": "(3, 6)",
+      "hinglish": "(3, 6)",
+      "hi": "(3, 6)"
+     },
+     {
+      "en": "(6, 12)",
+      "hinglish": "(6, 12)",
+      "hi": "(6, 12)"
+     },
+     {
+      "en": "(2, 8)",
+      "hinglish": "(2, 8)",
+      "hi": "(2, 8)"
+     },
+     {
+      "en": "(4, 4)",
+      "hinglish": "(4, 4)",
+      "hi": "(4, 4)"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Average each coordinate: x = (2+4)/2 = 3, y = (4+8)/2 = 6.",
+     "hi": "हर निर्देशांक का औसत: x = 3, y = 6।",
+     "hinglish": "Har coordinate ka average: x = 3, y = 6."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which task is unsupervised?",
+     "hi": "कौन-सा काम अनसुपरवाइज़्ड है?",
+     "hinglish": "Kaunsa task unsupervised hai?"
+    },
+    "options": [
+     {
+      "en": "Grouping news articles by topic with no labels",
+      "hinglish": "Bina labels news articles ko topic se group karna",
+      "hi": "बिना लेबल के समाचार लेखों को विषय से समूहित करना"
+     },
+     {
+      "en": "Predicting marks from study hours",
+      "hinglish": "Study hours se marks predict karna",
+      "hi": "पढ़ाई के घंटों से अंकों का अनुमान"
+     },
+     {
+      "en": "Cats vs dogs from labelled photos",
+      "hinglish": "Labelled photos se cats vs dogs",
+      "hi": "लेबल वाली फ़ोटो से बिल्ली बनाम कुत्ता"
+     },
+     {
+      "en": "Learning chess from wins and losses",
+      "hinglish": "Jeet-haar se chess seekhna",
+      "hi": "जीत-हार से शतरंज सीखना"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "No labels means unsupervised. Marks and cats vs dogs are supervised; learning from wins is reinforcement.",
+     "hi": "लेबल नहीं तो अनसुपरवाइज़्ड। अंक और बिल्ली-कुत्ता सुपरवाइज़्ड हैं; जीत से सीखना रीइनफ़ोर्समेंट है।",
+     "hinglish": "Labels nahi to unsupervised. Marks aur cats vs dogs supervised; jeet se seekhna reinforcement."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Run k-means with k = 3 until it converges.",
+     "hi": "k = 3 के साथ के-मीन्स को अभिसरण तक चलाएँ।",
+     "hinglish": "k = 3 ke saath k-means ko converge hone tak chalao."
+    },
+    "answer": {
+     "event": "kmeans-converged",
+     "k": 3
+    },
+    "explain": {
+     "en": "With three real blobs and k = 3, the centres settle in the middle of each blob in a few iterations.",
+     "hi": "तीन असली गुच्छों और k = 3 के साथ केंद्र कुछ ही चक्रों में हर गुच्छे के बीच टिक जाते हैं।",
+     "hinglish": "Teen asli blobs aur k = 3 ke saath centres kuch iterations mein har blob ke beech tik jaate hain."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "ai.ml-unsupervised"
+ ],
+ "sources": [
+  {
+   "title": "scikit-learn — clustering",
+   "url": "https://scikit-learn.org/stable/modules/clustering.html",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Lloyd, S. (1982) Least squares quantization in PCM",
+   "url": "https://ieeexplore.ieee.org/document/1056489",
+   "licence": "fact reference"
+  }
+ ]
+}

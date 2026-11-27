@@ -1,0 +1,391 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.digital-life.04",
+ "level": 2,
+ "classes": [
+  7,
+  8
+ ],
+ "unit": "digital-life",
+ "title": {
+  "en": "Copyright and Creative Commons",
+  "hi": "कॉपीराइट और क्रिएटिव कॉमन्स",
+  "hinglish": "Copyright aur Creative Commons"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [
+  "L2.digital-life.03"
+ ],
+ "topics": [
+  "cit.copyright",
+  "sw.open-source-licences"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain that creative work is copyrighted automatically",
+   "hi": "समझा सकते हो कि रचनात्मक काम अपने-आप कॉपीराइट होता है",
+   "hinglish": "Samjha sakte ho creative work apne-aap copyrighted hota hai"
+  },
+  {
+   "en": "Read Creative Commons licence symbols: BY, NC, ND, SA, CC0",
+   "hi": "क्रिएटिव कॉमन्स लाइसेंस चिह्न पढ़ सकते हो: BY, NC, ND, SA, CC0",
+   "hinglish": "Creative Commons licence symbols padh sakte ho: BY, NC, ND, SA, CC0"
+  },
+  {
+   "en": "Give a proper credit and find free-to-use images",
+   "hi": "सही श्रेय दे सकते हो और उपयोग-योग्य मुक्त चित्र खोज सकते हो",
+   "hinglish": "Sahi credit de sakte ho aur free-to-use images dhoondh sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Copyright",
+   "hinglish": "Rachnakar ka adhikaar",
+   "en": "The creator’s legal right to decide how their work is copied and used",
+   "hi": "रचनाकार का क़ानूनी अधिकार कि उसका काम कैसे कॉपी और उपयोग हो"
+  },
+  {
+   "term": "Creative Commons",
+   "hinglish": "Khule licence",
+   "en": "Free licences that let creators allow some uses in advance",
+   "hi": "मुफ़्त लाइसेंस जिनसे रचनाकार कुछ उपयोगों की पहले से अनुमति देते हैं"
+  },
+  {
+   "term": "Attribution",
+   "hinglish": "Credit dena",
+   "en": "Naming the creator, title, licence and source when you use a work",
+   "hi": "काम उपयोग करते समय रचनाकार, शीर्षक, लाइसेंस और स्रोत बताना"
+  },
+  {
+   "term": "Public domain",
+   "hinglish": "Sabka",
+   "en": "Work no longer under copyright, free for anyone to use",
+   "hi": "वह काम जो अब कॉपीराइट में नहीं, किसी के भी उपयोग के लिए मुक्त"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "The moment you draw, write or photograph something, you own its copyright. Being on the internet does not make a picture free.",
+    "hi": "जिस क्षण तुम कुछ बनाते, लिखते या फ़ोटो खींचते हो, उसका कॉपीराइट तुम्हारा होता है। इंटरनेट पर होने से चित्र मुफ़्त नहीं होता।",
+    "hinglish": "Jis pal tum kuch draw, likhte ya photo khinchte ho, uska copyright tumhara hota hai. Internet pe hone se picture free nahi hoti."
+   },
+   "visual": "compare:© All rights reserved: ask permission|🅭 Creative Commons: some uses allowed in advance",
+   "narration": {
+    "en": "Online ≠ free to use.",
+    "hi": "ऑनलाइन ≠ उपयोग के लिए मुक्त।",
+    "hinglish": "Online ≠ free to use."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Creative Commons licences are built from four blocks: BY (credit), NC (non-commercial), ND (no changes), SA (share alike). CC0 gives everything away.",
+    "hi": "क्रिएटिव कॉमन्स लाइसेंस चार खंडों से बने हैं: BY (श्रेय), NC (ग़ैर-व्यावसायिक), ND (कोई बदलाव नहीं), SA (समान साझा)। CC0 सब कुछ दे देता है।",
+    "hinglish": "Creative Commons licences chaar blocks se bane hain: BY (credit), NC (non-commercial), ND (no changes), SA (share alike). CC0 sab kuch de deta hai."
+   },
+   "visual": "lab:life-lab#licence",
+   "narration": {
+    "en": "Decide which pictures your magazine can use.",
+    "hi": "तय करो तुम्हारी पत्रिका कौन-से चित्र उपयोग कर सकती है।",
+    "hinglish": "Decide karo tumhari magazine kaunsi pictures use kar sakti hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "A good credit has TASL: Title, Author, Source, Licence.",
+    "hi": "अच्छे श्रेय में TASL होता है: शीर्षक, लेखक, स्रोत, लाइसेंस।",
+    "hinglish": "Achhe credit mein TASL hota hai: Title, Author, Source, Licence."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "Put credits under the picture or at the end of your work.",
+    "hi": "श्रेय चित्र के नीचे या काम के अंत में लगाओ।",
+    "hinglish": "Credits picture ke neeche ya kaam ke end mein lagao."
+   },
+   "code": "\"Bengal tiger at Ranthambore\" (Title)\nby A. Kumar (Author)\nvia Wikimedia Commons (Source)\nCC BY 4.0 (Licence)"
+  }
+ ],
+ "play": {
+  "lab": "life-lab",
+  "config": {
+   "tab": "licence"
+  },
+  "goal": {
+   "en": "Judge all 6 pictures for a magazine that will be sold and edited.",
+   "hi": "बेची और संपादित की जाने वाली पत्रिका के लिए सभी 6 चित्र आँको।",
+   "hinglish": "Bechi aur edit ki jaane wali magazine ke liye saari 6 pictures judge karo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Respecting creators — and sharing your own work",
+    "hi": "रचनाकारों का सम्मान — और अपना काम साझा करना",
+    "hinglish": "Creators ki respect — aur apna kaam share karna"
+   },
+   "body": {
+    "en": "In India, the Copyright Act, 1957 protects books, music, art, photos, films and software automatically, without registration; for most works by a person it lasts for the author’s lifetime plus 60 years, after which the work enters the public domain (for example, Rabindranath Tagore’s writings, since he died in 1941). Section 52 allows limited “fair dealing” — such as quoting for review, news reporting, research, and some use in teaching — but copying whole images or songs into your own posts or products usually needs permission. Creative Commons, a non-profit founded in 2001, created free licences (now version 4.0) so creators can say “yes” in advance: CC BY lets anyone reuse with credit; BY-SA also requires adaptations to use the same licence (Wikipedia uses it); NC forbids commercial use; ND forbids changes; CC0 places a work in the public domain. Wikimedia Commons holds over 100 million freely usable media files, and search engines can filter images by licence. Software has similar open-source licences such as MIT, Apache and GPL — this lab itself is MIT and CC BY. Using AI image tools does not remove these rules: avoid prompts that copy a living artist’s style or real people, and check each tool’s terms.",
+    "hi": "भारत में कॉपीराइट अधिनियम, 1957 किताबें, संगीत, कला, फ़ोटो, फ़िल्म और सॉफ़्टवेयर को बिना पंजीकरण अपने-आप सुरक्षित करता है; किसी व्यक्ति के अधिकतर कामों के लिए यह लेखक के जीवनकाल और उसके बाद 60 वर्ष तक रहता है, फिर काम सार्वजनिक क्षेत्र में आ जाता है (जैसे रवींद्रनाथ टैगोर की रचनाएँ, क्योंकि उनका निधन 1941 में हुआ)। धारा 52 सीमित “उचित व्यवहार” की अनुमति देती है — जैसे समीक्षा के लिए उद्धरण, समाचार, शोध, और शिक्षण में कुछ उपयोग — पर पूरे चित्र या गाने अपनी पोस्ट या उत्पादों में कॉपी करने के लिए आमतौर पर अनुमति चाहिए। 2001 में स्थापित ग़ैर-लाभकारी संस्था क्रिएटिव कॉमन्स ने मुफ़्त लाइसेंस (अब संस्करण 4.0) बनाए ताकि रचनाकार पहले से “हाँ” कह सकें: CC BY श्रेय के साथ किसी को भी पुनः उपयोग करने देता है; BY-SA में रूपांतरणों को भी वही लाइसेंस चाहिए (विकिपीडिया इसे उपयोग करता है); NC व्यावसायिक उपयोग मना करता है; ND बदलाव मना करता है; CC0 काम को सार्वजनिक क्षेत्र में रखता है। विकिमीडिया कॉमन्स में 10 करोड़ से ज़्यादा मुक्त उपयोग योग्य मीडिया फ़ाइलें हैं, और सर्च इंजन चित्रों को लाइसेंस से छाँट सकते हैं। सॉफ़्टवेयर के लिए भी MIT, Apache और GPL जैसे ओपन-सोर्स लाइसेंस हैं — यह लैब स्वयं MIT और CC BY है। AI चित्र उपकरण उपयोग करने से ये नियम ख़त्म नहीं होते: किसी जीवित कलाकार की शैली या असली लोगों की नक़ल वाले प्रॉम्प्ट से बचो, और हर उपकरण की शर्तें जाँचो।",
+    "hinglish": "India mein Copyright Act, 1957 books, music, art, photos, films aur software ko bina registration apne-aap protect karta hai; kisi vyakti ke zyaadatar kaamon ke liye yeh author ke lifetime aur uske baad 60 saal tak rehta hai, phir kaam public domain mein aa jaata hai (jaise Rabindranath Tagore ki rachnaayein, kyunki unka nidhan 1941 mein hua). Section 52 limited “fair dealing” allow karta hai — jaise review ke liye quote, news reporting, research, aur teaching mein kuch use — par poori images ya songs apni posts ya products mein copy karne ke liye aamtaur pe permission chahiye. 2001 mein bani non-profit Creative Commons ne free licences (ab version 4.0) banaye taaki creators pehle se “haan” keh sakein: CC BY credit ke saath kisi ko bhi reuse karne deta hai; BY-SA mein adaptations ko bhi wahi licence chahiye (Wikipedia ise use karta hai); NC commercial use mana karta hai; ND changes mana karta hai; CC0 kaam ko public domain mein rakhta hai. Wikimedia Commons mein 10 crore se zyada freely usable media files hain, aur search engines images ko licence se filter kar sakte hain. Software ke liye bhi MIT, Apache aur GPL jaise open-source licences hain — yeh lab khud MIT aur CC BY hai. AI image tools use karne se yeh rules khatam nahi hote: kisi living artist ki style ya real logon ki nakal wale prompts se bacho, aur har tool ki terms check karo."
+   },
+   "analogy": {
+    "en": "Copyright = your bicycle: taking it without asking is stealing. Creative Commons = a sign on the bike saying “borrow it, just say whose it is” — open permission with rules.",
+    "hi": "कॉपीराइट = तुम्हारी साइकिल: बिना पूछे ले जाए तो चोरी। क्रिएटिव कॉमन्स = साइकिल पर लिखा बोर्ड “ले जाओ, बस नाम बताना” — नियमों के साथ खुली अनुमति।",
+    "hinglish": "Copyright = tumhari cycle: koi bina poochhe le jaaye to chori. Creative Commons = cycle pe likha board “le jao, bas naam batana” — rules ke saath khuli ijaazat."
+   },
+   "realExample": {
+    "en": "NCERT publishes its textbooks free online through ePathshala, and India’s National Digital Library offers millions of resources — always check each item’s terms before reusing it.",
+    "hi": "NCERT अपनी पाठ्यपुस्तकें ePathshala पर मुफ़्त ऑनलाइन प्रकाशित करता है, और भारत की राष्ट्रीय डिजिटल लाइब्रेरी लाखों संसाधन देती है — पुनः उपयोग से पहले हर चीज़ की शर्तें जाँचो।",
+    "hinglish": "NCERT apni textbooks ePathshala pe free online publish karta hai, aur India ki National Digital Library laakhon resources deti hai — reuse se pehle har item ki terms check karo."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Make a poster for your class using only CC0 or CC BY images from Wikimedia Commons (with a parent). Add a TASL credit under each image. Then add your own drawing and choose a CC licence for it — which one and why?",
+   "hi": "माता-पिता के साथ विकिमीडिया कॉमन्स के केवल CC0 या CC BY चित्रों से कक्षा के लिए पोस्टर बनाओ। हर चित्र के नीचे TASL श्रेय लगाओ। फिर अपनी ड्रॉइंग जोड़ो और उसके लिए CC लाइसेंस चुनो — कौन-सा और क्यों?",
+   "hinglish": "Parent ke saath Wikimedia Commons ki sirf CC0 ya CC BY images se class ke liye poster banao. Har image ke neeche TASL credit lagao. Phir apni drawing jodo aur uske liye CC licence chuno — kaunsa aur kyun?"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "You find a great photo on a random website with no licence shown. Can you use it in a magazine you will sell?",
+     "hi": "तुम्हें किसी वेबसाइट पर बिना लाइसेंस वाली बढ़िया फ़ोटो मिलती है। क्या बेचने वाली पत्रिका में उपयोग कर सकते हो?",
+     "hinglish": "Tumhe kisi website pe bina licence wali badhiya photo milti hai. Kya bechne wali magazine mein use kar sakte ho?"
+    },
+    "options": [
+     {
+      "en": "Yes, it is on the internet",
+      "hi": "हाँ, यह इंटरनेट पर है",
+      "hinglish": "Haan, yeh internet pe hai"
+     },
+     {
+      "en": "No — ask the owner for permission",
+      "hi": "नहीं — मालिक से अनुमति लो",
+      "hinglish": "Nahi — owner se permission lo"
+     },
+     {
+      "en": "Yes, if you change one colour",
+      "hi": "हाँ, अगर एक रंग बदलो",
+      "hinglish": "Haan, agar ek colour badlo"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "No licence means all rights reserved by default — ask the owner first.",
+     "hi": "लाइसेंस नहीं = डिफ़ॉल्ट रूप से सर्वाधिकार सुरक्षित — पहले मालिक से पूछो।",
+     "hinglish": "Licence nahi = default mein all rights reserved — pehle owner se poochho."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "match",
+    "prompt": {
+     "en": "Match each licence block to its rule.",
+     "hi": "हर लाइसेंस खंड को उसके नियम से मिलाओ।",
+     "hinglish": "Har licence block ko uske rule se match karo."
+    },
+    "options": {
+     "left": [
+      "BY",
+      "NC",
+      "ND",
+      "SA"
+     ],
+     "right": [
+      {
+       "en": "No commercial use",
+       "hi": "व्यावसायिक उपयोग नहीं",
+       "hinglish": "Commercial use nahi"
+      },
+      {
+       "en": "Share edits under the same licence",
+       "hi": "बदलाव उसी लाइसेंस में साझा करो",
+       "hinglish": "Edits usi licence mein share karo"
+      },
+      {
+       "en": "Give credit to the creator",
+       "hi": "रचनाकार को श्रेय दो",
+       "hinglish": "Creator ko credit do"
+      },
+      {
+       "en": "No changes allowed",
+       "hi": "बदलाव की अनुमति नहीं",
+       "hinglish": "Badlaav allowed nahi"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      2
+     ],
+     [
+      1,
+      0
+     ],
+     [
+      2,
+      3
+     ],
+     [
+      3,
+      1
+     ]
+    ],
+    "explain": {
+     "en": "BY = credit, NC = no selling, ND = no changes, SA = share edits under the same licence.",
+     "hi": "BY = श्रेय, NC = बेचना नहीं, ND = बदलाव नहीं, SA = बदलाव उसी लाइसेंस में।",
+     "hinglish": "BY = credit, NC = bechna nahi, ND = badlaav nahi, SA = edits usi licence mein."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "order",
+    "prompt": {
+     "en": "Put the parts of a TASL credit in order.",
+     "hi": "TASL श्रेय के भागों को क्रम में लगाओ।",
+     "hinglish": "TASL credit ke parts ko order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Source (where you found it)",
+      "hi": "स्रोत (कहाँ मिला)",
+      "hinglish": "Source (kahan mila)"
+     },
+     {
+      "en": "Title of the work",
+      "hi": "काम का शीर्षक",
+      "hinglish": "Kaam ka title"
+     },
+     {
+      "en": "Licence (e.g. CC BY 4.0)",
+      "hi": "लाइसेंस (जैसे CC BY 4.0)",
+      "hinglish": "Licence (jaise CC BY 4.0)"
+     },
+     {
+      "en": "Author (creator’s name)",
+      "hi": "लेखक (रचनाकार का नाम)",
+      "hinglish": "Author (creator ka naam)"
+     }
+    ],
+    "answer": [
+     1,
+     3,
+     0,
+     2
+    ],
+    "explain": {
+     "en": "Title, Author, Source, Licence.",
+     "hi": "शीर्षक, लेखक, स्रोत, लाइसेंस।",
+     "hinglish": "Title, Author, Source, Licence."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "In India, how long does copyright usually last for a book by one author?",
+     "hi": "भारत में एक लेखक की किताब का कॉपीराइट आमतौर पर कितने समय रहता है?",
+     "hinglish": "India mein ek author ki book ka copyright aamtaur pe kitne time rehta hai?"
+    },
+    "options": [
+     {
+      "en": "Lifetime + 60 years",
+      "hi": "जीवनकाल + 60 वर्ष",
+      "hinglish": "Lifetime + 60 saal"
+     },
+     {
+      "en": "Exactly 5 years",
+      "hi": "ठीक 5 वर्ष",
+      "hinglish": "Exactly 5 saal"
+     },
+     {
+      "en": "Forever",
+      "hi": "हमेशा",
+      "hinglish": "Hamesha"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "The author’s lifetime plus 60 years (Copyright Act, 1957).",
+     "hi": "लेखक का जीवनकाल और 60 वर्ष (कॉपीराइट अधिनियम, 1957)।",
+     "hinglish": "Author ka lifetime plus 60 saal (Copyright Act, 1957)."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "short",
+    "prompt": {
+     "en": "Which Creative Commons tool puts a work in the public domain? (write it)",
+     "hi": "कौन-सा क्रिएटिव कॉमन्स उपकरण काम को सार्वजनिक क्षेत्र में रखता है? (लिखो)",
+     "hinglish": "Kaunsa Creative Commons tool kaam ko public domain mein rakhta hai? (likho)"
+    },
+    "answer": [
+     "CC0",
+     "cc0",
+     "CC 0",
+     "CC zero"
+    ],
+    "explain": {
+     "en": "CC0 — “no rights reserved”.",
+     "hi": "CC0 — “कोई अधिकार सुरक्षित नहीं”।",
+     "hinglish": "CC0 — “no rights reserved”."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the lab mission.",
+     "hi": "लैब मिशन पूरा करो।",
+     "hinglish": "Lab mission poora karo."
+    },
+    "answer": {
+     "lab": "life-lab",
+     "event": "mission:complete",
+     "tab": "licence"
+    },
+    "explain": {
+     "en": "Judge all 6 pictures correctly.",
+     "hi": "सभी 6 चित्र सही आँको।",
+     "hinglish": "Saari 6 pictures sahi judge karo."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Creative Commons — About the licences",
+   "url": "https://creativecommons.org/share-your-work/cclicenses/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Copyright Office, Government of India — The Copyright Act, 1957",
+   "url": "https://copyright.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Wikimedia Commons",
+   "url": "https://commons.wikimedia.org/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

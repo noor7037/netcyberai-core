@@ -1,0 +1,375 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.web-dev.05",
+ "level": 3,
+ "classes": [
+  10,
+  11
+ ],
+ "unit": "web-dev",
+ "title": {
+  "en": "APIs, JSON and fetch",
+  "hi": "API, JSON और fetch",
+  "hinglish": "APIs, JSON aur fetch"
+ },
+ "minutes": 15,
+ "xp": 60,
+ "prereq": [
+  "L3.web-dev.04",
+  "L3.web-dev.01"
+ ],
+ "outcomes": [
+  {
+   "en": "Read and write JSON data",
+   "hi": "JSON डेटा पढ़ो और लिखो",
+   "hinglish": "JSON data padho aur likho"
+  },
+  {
+   "en": "Load data from an API with fetch, async and await",
+   "hi": "fetch, async और await से API से डेटा लाओ",
+   "hinglish": "fetch, async aur await se API se data laao"
+  },
+  {
+   "en": "Handle errors, loading states and API keys safely",
+   "hi": "त्रुटियाँ, लोडिंग स्थिति और API कुंजियाँ सुरक्षित सँभालो",
+   "hinglish": "Errors, loading states aur API keys safely handle karo"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "API",
+   "hinglish": "API",
+   "en": "A published way for programs to ask another program for data or actions",
+   "hi": "प्रोग्रामों के लिए दूसरे प्रोग्राम से डेटा या काम माँगने का प्रकाशित तरीका"
+  },
+  {
+   "term": "JSON",
+   "hinglish": "JSON",
+   "en": "JavaScript Object Notation: text data made of objects {}, arrays [], strings, numbers, true/false and null",
+   "hi": "जावास्क्रिप्ट ऑब्जेक्ट नोटेशन: वस्तुओं {}, सरणियों [], स्ट्रिंग, संख्या, true/false और null से बना पाठ डेटा"
+  },
+  {
+   "term": "Promise",
+   "hinglish": "Vaada",
+   "en": "An object for a result that arrives later",
+   "hi": "बाद में आने वाले परिणाम के लिए वस्तु"
+  },
+  {
+   "term": "async / await",
+   "hinglish": "async / await",
+   "en": "Syntax that waits for a promise without freezing the page",
+   "hi": "सिंटैक्स जो पेज रोके बिना promise का इंतज़ार करे"
+  },
+  {
+   "term": "CORS",
+   "hinglish": "CORS",
+   "en": "Browser rule: a page can read another site’s API only if that site allows it",
+   "hi": "ब्राउज़र नियम: पेज दूसरी साइट का API तभी पढ़े जब वह साइट अनुमति दे"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "JSON: [{\"period\":1,\"subject\":\"Maths\",\"time\":\"08:00\"}, …]",
+    "hi": "JSON डेटा: [{\"period\":1,\"subject\":\"Maths\",\"time\":\"08:00\"}, …]",
+    "hinglish": "JSON: [{\"period\":1,\"subject\":\"Maths\",\"time\":\"08:00\"}, …]"
+   },
+   "visual": "tokens:{|\"subject\"|:|\"Maths\"|}",
+   "narration": {
+    "en": "JSON: [{\"period\":1,\"subject\":\"Maths\",\"time\":\"08:00\"}, …]",
+    "hi": "JSON डेटा: [{\"period\":1,\"subject\":\"Maths\",\"time\":\"08:00\"}, …]",
+    "hinglish": "JSON: [{\"period\":1,\"subject\":\"Maths\",\"time\":\"08:00\"}, …]"
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "fetch(url) → wait → response.json() → data → build the page.",
+    "hi": "fetch(url) → इंतज़ार → response.json() → डेटा → पेज बनाओ।",
+    "hinglish": "fetch(url) → wait → response.json() → data → page banao."
+   },
+   "visual": "flow:fetch|json|render",
+   "narration": {
+    "en": "fetch(url) → wait → response.json() → data → build the page.",
+    "hi": "fetch(url) → इंतज़ार → response.json() → डेटा → पेज बनाओ।",
+    "hinglish": "fetch(url) → wait → response.json() → data → page banao."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Check response.ok; show \"Loading…\" and a friendly error.",
+    "hi": "response.ok जाँचो; \"लोड हो रहा है…\" और अच्छी त्रुटि दिखाओ।",
+    "hinglish": "response.ok check karo; \"Loading…\" aur friendly error dikhao."
+   },
+   "visual": "compare:ok|error",
+   "narration": {
+    "en": "Check response.ok; show \"Loading…\" and a friendly error.",
+    "hi": "response.ok जाँचो; \"लोड हो रहा है…\" और अच्छी त्रुटि दिखाओ।",
+    "hinglish": "response.ok check karo; \"Loading…\" aur friendly error dikhao."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Secret API keys stay on the server, never in browser code.",
+    "hi": "गुप्त API कुंजियाँ सर्वर पर रहें, ब्राउज़र कोड में कभी नहीं।",
+    "hinglish": "Secret API keys server par rahein, browser code mein kabhi nahi."
+   },
+   "visual": "compare:server|browser",
+   "narration": {
+    "en": "Secret API keys stay on the server, never in browser code.",
+    "hi": "गुप्त API कुंजियाँ सर्वर पर रहें, ब्राउज़र कोड में कभी नहीं।",
+    "hinglish": "Secret API keys server par rahein, browser code mein kabhi nahi."
+   }
+  }
+ ],
+ "play": {
+  "lab": "web-lab",
+  "config": {
+   "mission": "json"
+  },
+  "goal": {
+   "en": "Mission 5: fetch today’s timetable from the pretend school API, turn it into list items, and add a .catch that shows a message if loading fails.",
+   "hi": "मिशन 5: नक़ली स्कूल API से आज की समय-सारणी लाओ, उसे सूची मदों में बदलो, और .catch जोड़ो जो लोड विफल होने पर संदेश दिखाए।",
+   "hinglish": "Mission 5: pretend school API se aaj ka timetable fetch karo, use list items mein badlo, aur .catch jodo jo load fail hone par message dikhaye."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Data in, page out",
+    "hi": "डेटा अंदर, पेज बाहर",
+    "hinglish": "Data andar, page bahar"
+   },
+   "body": {
+    "en": "An API is a menu a server publishes, such as GET /api/timetable?class=10, that returns data instead of a whole page. Most web APIs reply in JSON (RFC 8259): objects in { } with \"key\": value pairs, arrays in [ ], strings in double quotes, numbers, true, false and null — no comments and no trailing commas. In JavaScript, JSON.parse(text) turns JSON into objects and JSON.stringify(obj) turns them back. To call an API, use fetch: const res = await fetch(url); then check res.ok (true for 200–299) and read const data = await res.json(). await only works inside an async function (or a module), and it waits without freezing the page. Then loop over the data and build elements with createElement and textContent. Real Indian examples of public data APIs include the government’s data.gov.in portal and the Indian Railways enquiry services used by travel apps.",
+    "hi": "API वह मेनू है जो सर्वर प्रकाशित करता है, जैसे GET /api/timetable?class=10, जो पूरे पेज की जगह डेटा लौटाता है। ज़्यादातर वेब API JSON (RFC 8259) में उत्तर देते हैं: { } में \"key\": value जोड़ों वाली वस्तुएँ, [ ] में सरणियाँ, दोहरे उद्धरण में स्ट्रिंग, संख्याएँ, true, false और null — कोई टिप्पणी नहीं और अंत में अल्पविराम नहीं। JavaScript में JSON.parse(text) JSON को वस्तुओं में और JSON.stringify(obj) वापस बदलता है। API बुलाने के लिए fetch इस्तेमाल करो: const res = await fetch(url); फिर res.ok जाँचो (200–299 के लिए true) और const data = await res.json() पढ़ो। await केवल async फ़ंक्शन (या मॉड्यूल) के अंदर चलता है, और पेज रोके बिना इंतज़ार करता है। फिर डेटा पर लूप चलाकर createElement और textContent से तत्व बनाओ। सार्वजनिक डेटा API के असली भारतीय उदाहरणों में सरकार का data.gov.in पोर्टल और यात्रा ऐप्स द्वारा इस्तेमाल भारतीय रेलवे पूछताछ सेवाएँ शामिल हैं।",
+    "hinglish": "API woh menu hai jo server publish karta hai, jaise GET /api/timetable?class=10, jo poore page ki jagah data lautata hai. Zyaadatar web APIs JSON (RFC 8259) mein reply karte hain: { } mein \"key\": value pairs wale objects, [ ] mein arrays, double quotes mein strings, numbers, true, false aur null — koi comments nahi aur end mein comma nahi. JavaScript mein JSON.parse(text) JSON ko objects mein aur JSON.stringify(obj) wapas badalta hai. API call karne ke liye fetch use karo: const res = await fetch(url); phir res.ok check karo (200–299 ke liye true) aur const data = await res.json() padho. await sirf async function (ya module) ke andar chalta hai, aur page roke bina wait karta hai. Phir data par loop chalakar createElement aur textContent se elements banao. Public data APIs ke asli Indian examples mein sarkar ka data.gov.in portal aur travel apps dwara use hone wali Indian Railways enquiry services shaamil hain."
+   },
+   "analogy": {
+    "en": "Ordering from a restaurant menu: you ask for item 12 in a fixed format, wait without freezing, and the kitchen sends the dish — or says it is unavailable.",
+    "hi": "रेस्टोरेंट मेनू से ऑर्डर: तय तरीके से आइटम 12 माँगो, बिना रुके इंतज़ार करो, और रसोई पकवान भेजती है — या कहती है उपलब्ध नहीं।",
+    "hinglish": "Restaurant menu se order: fixed format mein item 12 maango, bina ruke wait karo, aur kitchen dish bhejti hai — ya kehti hai available nahi."
+   },
+   "realExample": {
+    "en": "async function load(){ const res = await fetch(\"/api/timetable?class=10\"); if(!res.ok) throw new Error(\"HTTP \" + res.status); const data = await res.json(); return data; }",
+    "hi": "async function load(){ const res = await fetch(\"/api/timetable?class=10\"); if(!res.ok) throw new Error(\"HTTP \" + res.status); const data = await res.json(); return data; }",
+    "hinglish": "async function load(){ const res = await fetch(\"/api/timetable?class=10\"); if(!res.ok) throw new Error(\"HTTP \" + res.status); const data = await res.json(); return data; }"
+   }
+  },
+  {
+   "heading": {
+    "en": "Errors, CORS and secret keys",
+    "hi": "त्रुटियाँ, CORS और गुप्त कुंजियाँ",
+    "hinglish": "Errors, CORS aur secret keys"
+   },
+   "body": {
+    "en": "Networks fail, especially on mobile data, so plan for it: show \"Loading…\" while you wait, wrap the call in try { … } catch (err) { … } or add .catch(), and show a message that helps (\"Could not load the timetable — check your connection and tap Retry\"). fetch only rejects when the network fails; a 404 or 500 still arrives as a response, so check res.ok yourself. Browsers enforce the same-origin policy: a page from one site can only read another site’s API if that server sends CORS headers allowing it. Many APIs need a key. A key that costs money or reads private data must stay on your server — anything in browser JavaScript can be read by anyone with developer tools — so the browser calls your server, and your server calls the API. Respect rate limits and the API’s terms, and cache results you reuse.",
+    "hi": "नेटवर्क विफल होते हैं, ख़ासकर मोबाइल डेटा पर, इसलिए योजना बनाओ: इंतज़ार में \"लोड हो रहा है…\" दिखाओ, कॉल को try { … } catch (err) { … } में लपेटो या .catch() जोड़ो, और मदद करने वाला संदेश दिखाओ (\"समय-सारणी लोड नहीं हुई — कनेक्शन जाँचो और फिर कोशिश करो दबाओ\")। fetch केवल नेटवर्क विफल होने पर reject करता है; 404 या 500 फिर भी उत्तर बनकर आता है, इसलिए res.ok ख़ुद जाँचो। ब्राउज़र समान-मूल नीति लागू करते हैं: एक साइट का पेज दूसरी साइट का API तभी पढ़ सकता है जब वह सर्वर अनुमति देने वाले CORS हेडर भेजे। कई API को कुंजी चाहिए। पैसे लगने वाली या निजी डेटा पढ़ने वाली कुंजी आपके सर्वर पर रहनी चाहिए — ब्राउज़र JavaScript में कुछ भी डेवलपर टूल वाला कोई भी पढ़ सकता है — इसलिए ब्राउज़र आपके सर्वर को बुलाता है, और आपका सर्वर API को। दर सीमाओं और API की शर्तों का सम्मान करो, और दोबारा इस्तेमाल होने वाले परिणाम कैश करो।",
+    "hinglish": "Networks fail hote hain, khaaskar mobile data par, isliye plan karo: wait mein \"Loading…\" dikhao, call ko try { … } catch (err) { … } mein lapeto ya .catch() jodo, aur madad karne wala message dikhao (\"Timetable load nahi hua — connection check karo aur Retry dabao\"). fetch sirf network fail hone par reject karta hai; 404 ya 500 phir bhi response banke aata hai, isliye res.ok khud check karo. Browsers same-origin policy lagate hain: ek site ka page doosri site ka API tabhi padh sakta hai jab woh server allow karne wale CORS headers bheje. Kai APIs ko key chahiye. Paise lagne wali ya private data padhne wali key tumhare server par rehni chahiye — browser JavaScript mein kuch bhi developer tools wala koi bhi padh sakta hai — isliye browser tumhare server ko call karta hai, aur tumhara server API ko. Rate limits aur API ki terms ka respect karo, aur dobara use hone wale results cache karo."
+   },
+   "analogy": {
+    "en": "You would not write your ATM PIN on the outside of an envelope; a secret key in browser code is the same.",
+    "hi": "आप ATM पिन लिफ़ाफ़े के बाहर नहीं लिखोगे; ब्राउज़र कोड में गुप्त कुंजी वही है।",
+    "hinglish": "Tum ATM PIN lifafe ke bahar nahi likhoge; browser code mein secret key wahi hai."
+   },
+   "realExample": {
+    "en": "try { status.textContent = \"Loading…\"; const data = await load(); render(data); } catch (e) { status.textContent = \"Could not load — tap Retry\"; }",
+    "hi": "try { status.textContent = \"लोड हो रहा है…\"; const data = await load(); render(data); } catch (e) { status.textContent = \"लोड नहीं हुआ — फिर कोशिश करो\"; }",
+    "hinglish": "try { status.textContent = \"Loading…\"; const data = await load(); render(data); } catch (e) { status.textContent = \"Load nahi hua — Retry dabao\"; }"
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write a JSON file for your Tech Club’s events (name, date, room) and a page that fetches it, shows the events as cards, shows \"Loading…\" while waiting, and shows a friendly error if the file name is wrong. Test the error by misspelling the file name.",
+   "hi": "अपने Tech Club के कार्यक्रमों (नाम, तारीख़, कमरा) की JSON फ़ाइल लिखो और एक पेज जो उसे fetch करे, कार्यक्रमों को कार्ड में दिखाए, इंतज़ार में \"लोड हो रहा है…\" दिखाए, और फ़ाइल नाम ग़लत हो तो अच्छी त्रुटि दिखाए। फ़ाइल नाम ग़लत लिखकर त्रुटि जाँचो।",
+   "hinglish": "Apne Tech Club ke events (name, date, room) ki JSON file likho aur ek page jo use fetch kare, events ko cards mein dikhaye, wait mein \"Loading…\" dikhaye, aur file name galat ho to friendly error dikhaye. File name galat likhkar error test karo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which is valid JSON?",
+     "hi": "कौन-सा मान्य JSON है?",
+     "hinglish": "Kaunsa valid JSON hai?"
+    },
+    "options": [
+     "{\"name\": \"Asha\", \"class\": 10}",
+     "{name: 'Asha', class: 10,}",
+     "{\"name\": Asha}",
+     "[1, 2, 3,]"
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Keys and strings need double quotes; no trailing commas.",
+     "hi": "कुंजियों और स्ट्रिंग को दोहरे उद्धरण चाहिए; अंत में अल्पविराम नहीं।",
+     "hinglish": "Keys aur strings ko double quotes chahiye; end mein comma nahi."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "order",
+    "prompt": {
+     "en": "Order the steps to show API data.",
+     "hi": "API डेटा दिखाने के चरण क्रम में लगाओ।",
+     "hinglish": "API data dikhane ke steps order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Call fetch(url)",
+      "hi": "fetch(url) बुलाओ",
+      "hinglish": "fetch(url) call karo"
+     },
+     {
+      "en": "Check response.ok",
+      "hi": "response.ok जाँचो",
+      "hinglish": "response.ok check karo"
+     },
+     {
+      "en": "Read response.json()",
+      "hi": "response.json() पढ़ो",
+      "hinglish": "response.json() padho"
+     },
+     {
+      "en": "Build elements from the data",
+      "hi": "डेटा से तत्व बनाओ",
+      "hinglish": "Data se elements banao"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "Fetch, check, parse, render.",
+     "hi": "लाओ, जाँचो, पढ़ो, दिखाओ।",
+     "hinglish": "Fetch, check, parse, render."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "fetch returns a 404 response. What happens?",
+     "hi": "fetch 404 उत्तर लौटाता है। क्या होता है?",
+     "hinglish": "fetch 404 response lautata hai. Kya hota hai?"
+    },
+    "options": [
+     {
+      "en": "The promise still resolves; you must check response.ok",
+      "hi": "promise फिर भी पूरा होता है; response.ok जाँचना होगा",
+      "hinglish": "Promise phir bhi resolve hota hai; response.ok check karna hoga"
+     },
+     {
+      "en": "The browser crashes",
+      "hi": "ब्राउज़र क्रैश",
+      "hinglish": "Browser crash"
+     },
+     {
+      "en": "fetch retries for ever",
+      "hi": "fetch हमेशा दोबारा कोशिश",
+      "hinglish": "fetch hamesha retry"
+     },
+     {
+      "en": "The page reloads",
+      "hi": "पेज रीलोड",
+      "hinglish": "Page reload"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Only network failures reject.",
+     "hi": "केवल नेटवर्क विफलता reject करती है।",
+     "hinglish": "Sirf network failures reject karte hain."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Your weather app uses a paid API key. Where should the key live?",
+     "hi": "आपका मौसम ऐप पैसे वाली API कुंजी इस्तेमाल करता है। कुंजी कहाँ रहे?",
+     "hinglish": "Tumhara weather app paid API key use karta hai. Key kahan rahe?"
+    },
+    "options": [
+     {
+      "en": "On your server, which calls the API for the browser",
+      "hi": "आपके सर्वर पर, जो ब्राउज़र के लिए API बुलाए",
+      "hinglish": "Tumhare server par, jo browser ke liye API call kare"
+     },
+     {
+      "en": "In the page’s JavaScript",
+      "hi": "पेज की JavaScript में",
+      "hinglish": "Page ki JavaScript mein"
+     },
+     {
+      "en": "In the HTML comments",
+      "hi": "HTML टिप्पणियों में",
+      "hinglish": "HTML comments mein"
+     },
+     {
+      "en": "In the URL",
+      "hi": "URL में",
+      "hinglish": "URL mein"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Anything in the browser can be read.",
+     "hi": "ब्राउज़र में सब कुछ पढ़ा जा सकता है।",
+     "hinglish": "Browser mein sab kuch padha ja sakta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Pass mission 5 (APIs & JSON) in the Web Dev Lab.",
+     "hi": "वेब डेव लैब में मिशन 5 (API और JSON) पास करो।",
+     "hinglish": "Web Dev Lab mein mission 5 (APIs aur JSON) pass karo."
+    },
+    "answer": {
+     "event": "json-rendered",
+     "mission": "json"
+    },
+    "explain": {
+     "en": "All 5 periods listed, with error handling.",
+     "hi": "सभी 5 पीरियड, त्रुटि सँभाल के साथ।",
+     "hinglish": "Saare 5 periods, error handling ke saath."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "web.apis-json",
+  "cloud.client-server"
+ ],
+ "sources": [
+  {
+   "title": "IETF — RFC 8259: The JSON Data Interchange Format",
+   "url": "https://www.rfc-editor.org/rfc/rfc8259",
+   "licence": "fact reference"
+  },
+  {
+   "title": "WHATWG — Fetch Living Standard",
+   "url": "https://fetch.spec.whatwg.org/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Open Government Data Platform India",
+   "url": "https://data.gov.in/",
+   "licence": "fact reference"
+  }
+ ]
+}

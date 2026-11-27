@@ -1,0 +1,374 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.python-pro.06",
+ "level": 3,
+ "classes": [
+  9,
+  10
+ ],
+ "unit": "python-pro",
+ "title": {
+  "en": "Testing your code",
+  "hi": "अपने कोड का परीक्षण",
+  "hinglish": "Apne code ki testing"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [
+  "L3.python-pro.05"
+ ],
+ "outcomes": [
+  {
+   "en": "Write assert-based unit tests, including edge cases",
+   "hi": "assert आधारित यूनिट परीक्षण लिखो, सीमांत स्थितियों सहित",
+   "hinglish": "assert based unit tests likho, edge cases ke saath"
+  },
+  {
+   "en": "Use a failing test to find and fix a bug",
+   "hi": "विफल परीक्षण से बग खोजो और ठीक करो",
+   "hinglish": "Failing test se bug dhoondho aur fix karo"
+  },
+  {
+   "en": "Debug systematically with prints, a debugger and rubber-duck explaining",
+   "hi": "प्रिंट, डीबगर और रबर-डक समझाने से व्यवस्थित डीबग करो",
+   "hinglish": "Prints, debugger aur rubber-duck explaining se systematically debug karo"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Unit test",
+   "hinglish": "Chhote hisse ki jaanch",
+   "en": "A small automatic check of one function",
+   "hi": "एक फ़ंक्शन की छोटी स्वचालित जाँच"
+  },
+  {
+   "term": "assert",
+   "hinglish": "Pakka karo",
+   "en": "Stops with AssertionError if a condition is False",
+   "hi": "शर्त False हो तो AssertionError से रोकता है"
+  },
+  {
+   "term": "Edge case",
+   "hinglish": "Kinare wali sthiti",
+   "en": "An unusual input at the limits: empty, zero, huge, negative",
+   "hi": "सीमा पर असामान्य इनपुट: ख़ाली, शून्य, बहुत बड़ा, ऋणात्मक"
+  },
+  {
+   "term": "Regression",
+   "hinglish": "Purana bug wapas",
+   "en": "A bug that returns after a later change",
+   "hi": "बाद के बदलाव से लौटा बग"
+  },
+  {
+   "term": "Debugger",
+   "hinglish": "Ruk-ruk kar dekhna",
+   "en": "Tool to pause code and inspect variables (breakpoint())",
+   "hi": "कोड रोककर वेरिएबल देखने का टूल (breakpoint())"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "average(nums) looks fine and passes the first test: average([2, 4, 6]) == 4.",
+    "hi": "average(nums) ठीक दिखता है और पहला परीक्षण पास करता है: average([2, 4, 6]) == 4।",
+    "hinglish": "average(nums) theek dikhta hai aur pehla test pass karta hai: average([2, 4, 6]) == 4."
+   },
+   "visual": "anim:test-green",
+   "narration": {
+    "en": "average(nums) looks fine and passes the first test: average([2, 4, 6]) == 4.",
+    "hi": "average(nums) ठीक दिखता है और पहला परीक्षण पास करता है: average([2, 4, 6]) == 4।",
+    "hinglish": "average(nums) theek dikhta hai aur pehla test pass karta hai: average([2, 4, 6]) == 4."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Edge case: average([]) divides by len([]) = 0 → ZeroDivisionError. The test fails.",
+    "hi": "सीमांत स्थिति: average([]) len([]) = 0 से भाग देता है → ZeroDivisionError। परीक्षण विफल।",
+    "hinglish": "Edge case: average([]) len([]) = 0 se divide karta hai → ZeroDivisionError. Test fail."
+   },
+   "visual": "anim:test-red",
+   "narration": {
+    "en": "Edge case: average([]) divides by len([]) = 0 → ZeroDivisionError. The test fails.",
+    "hi": "सीमांत स्थिति: average([]) len([]) = 0 से भाग देता है → ZeroDivisionError। परीक्षण विफल।",
+    "hinglish": "Edge case: average([]) len([]) = 0 se divide karta hai → ZeroDivisionError. Test fail."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "The fix: if not nums: return 0. Now both tests pass.",
+    "hi": "सुधार: if not nums: return 0। अब दोनों परीक्षण पास।",
+    "hinglish": "Fix: if not nums: return 0. Ab dono tests pass."
+   },
+   "visual": "anim:test-green2",
+   "narration": {
+    "en": "The fix: if not nums: return 0. Now both tests pass.",
+    "hi": "सुधार: if not nums: return 0। अब दोनों परीक्षण पास।",
+    "hinglish": "Fix: if not nums: return 0. Ab dono tests pass."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Keep the test: it guards against the bug returning. pytest runs every test_ function automatically.",
+    "hi": "परीक्षण रखो: यह बग लौटने से बचाता है। pytest हर test_ फ़ंक्शन अपने-आप चलाता है।",
+    "hinglish": "Test rakho: yeh bug wapas aane se bachata hai. pytest har test_ function apne aap chalata hai."
+   },
+   "visual": "anim:shield",
+   "narration": {
+    "en": "Keep the test: it guards against the bug returning. pytest runs every test_ function automatically.",
+    "hi": "परीक्षण रखो: यह बग लौटने से बचाता है। pytest हर test_ फ़ंक्शन अपने-आप चलाता है।",
+    "hinglish": "Test rakho: yeh bug wapas aane se bachata hai. pytest har test_ function apne aap chalata hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "code-lab",
+  "config": {
+   "mode": "trace",
+   "scenario": "test-assert"
+  },
+  "goal": {
+   "en": "Run the test and watch it fail on the empty list. Then tick \"Apply the bug fix\" and run again until all tests pass.",
+   "hi": "परीक्षण चलाओ और ख़ाली सूची पर विफल होते देखो। फिर \"बग सुधार लगाओ\" चुनो और दोबारा चलाओ जब तक सभी परीक्षण पास न हों।",
+   "hinglish": "Test chalao aur khaali list par fail hote dekho. Phir \"Bug fix lagao\" tick karo aur dobaara chalao jab tak saare tests pass na hon."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Testing like a professional",
+    "hi": "पेशेवर की तरह परीक्षण",
+    "hinglish": "Professional ki tarah testing"
+   },
+   "body": {
+    "en": "Tests are small programs that check your program. Think of cases in three groups: normal (average([2, 4, 6])), edge (empty list, one item, zero, negative numbers, very large values) and wrong input (a string). With pytest you write plain functions named test_something containing asserts, save them in test_*.py files, and run pytest; it finds and runs them all and shows exactly which failed. Test-driven development writes the failing test first, then the code. Teams run tests automatically on every change (continuous integration), so a broken feature is caught before it reaches users.",
+    "hi": "परीक्षण छोटे प्रोग्राम हैं जो आपके प्रोग्राम को जाँचते हैं। स्थितियाँ तीन समूहों में सोचो: सामान्य (average([2, 4, 6])), सीमांत (ख़ाली सूची, एक वस्तु, शून्य, ऋणात्मक संख्याएँ, बहुत बड़े मान) और ग़लत इनपुट (स्ट्रिंग)। pytest में आप assert वाले test_something नाम के सादे फ़ंक्शन लिखते हो, उन्हें test_*.py फ़ाइलों में रखते हो, और pytest चलाते हो; यह सबको ढूँढकर चलाता है और ठीक बताता है कौन विफल हुआ। टेस्ट-ड्रिवन डेवलपमेंट पहले विफल परीक्षण लिखता है, फिर कोड। टीमें हर बदलाव पर परीक्षण अपने-आप चलाती हैं (निरंतर एकीकरण), ताकि टूटी सुविधा उपयोगकर्ताओं तक पहुँचने से पहले पकड़ी जाए।",
+    "hinglish": "Tests chhote programs hain jo tumhare program ko check karte hain. Cases teen groups mein socho: normal (average([2, 4, 6])), edge (khaali list, ek item, zero, negative numbers, bahut badi values) aur galat input (string). pytest mein tum asserts wale test_something naam ke simple functions likhte ho, unhe test_*.py files mein rakhte ho, aur pytest chalate ho; yeh sabko dhoondh kar chalata hai aur theek batata hai kaun fail hua. Test-driven development pehle failing test likhta hai, phir code. Teams har change par tests apne aap chalati hain (continuous integration), taaki toota feature users tak pahunchne se pehle pakda jaaye."
+   },
+   "analogy": {
+    "en": "A seat-belt check before every drive: boring, quick, and it saves you on the day something goes wrong.",
+    "hi": "हर सफ़र से पहले सीट-बेल्ट जाँच: उबाऊ, तेज़, और जिस दिन कुछ ग़लत हो उस दिन बचाती है।",
+    "hinglish": "Har drive se pehle seat-belt check: boring, jaldi, aur jis din kuch galat ho us din bachata hai."
+   },
+   "realExample": {
+    "en": "In 1996 the Ariane 5 rocket was lost 37 seconds after launch because reused code overflowed on a value it had never been tested with.",
+    "hi": "1996 में Ariane 5 रॉकेट प्रक्षेपण के 37 सेकंड बाद नष्ट हुआ क्योंकि दोबारा इस्तेमाल कोड ऐसे मान पर ओवरफ़्लो हुआ जिस पर उसे कभी परखा नहीं गया था।",
+    "hinglish": "1996 mein Ariane 5 rocket launch ke 37 second baad nasht hua kyunki dobaara use hua code aisi value par overflow hua jis par use kabhi test nahi kiya gaya tha."
+   }
+  },
+  {
+   "heading": {
+    "en": "Debugging step by step",
+    "hi": "चरण-दर-चरण डीबगिंग",
+    "hinglish": "Step by step debugging"
+   },
+   "body": {
+    "en": "1. Reproduce the bug reliably with the smallest input. 2. Read the full traceback. 3. Form a guess, then check it: print the variables just before the failing line, or put breakpoint() there to pause in the debugger (type p name to print, n for next line, c to continue). 4. Change one thing at a time. 5. Add a test that would have caught it. Explaining your code line by line to someone — even a rubber duck — often reveals the mistake. AI assistants can suggest fixes, but you must still understand and test them.",
+    "hi": "1. सबसे छोटे इनपुट से बग भरोसे से दोहराओ। 2. पूरा ट्रेसबैक पढ़ो। 3. अनुमान बनाओ, फिर जाँचो: विफल पंक्ति से ठीक पहले वेरिएबल छापो, या वहाँ breakpoint() लगाकर डीबगर में रुको (छापने के लिए p name, अगली पंक्ति n, आगे c)। 4. एक बार में एक चीज़ बदलो। 5. ऐसा परीक्षण जोड़ो जो इसे पकड़ लेता। किसी को — रबर की बत्तख़ को भी — कोड पंक्ति-दर-पंक्ति समझाने से अक्सर ग़लती दिख जाती है। AI सहायक सुधार सुझा सकते हैं, पर आपको उन्हें समझना और परखना होगा।",
+    "hinglish": "1. Sabse chhote input se bug reliably dohraao. 2. Poora traceback padho. 3. Guess banao, phir check karo: failing line se theek pehle variables print karo, ya wahan breakpoint() lagakar debugger mein ruko (print ke liye p name, agli line n, aage c). 4. Ek baar mein ek cheez badlo. 5. Aisa test jodo jo ise pakad leta. Kisi ko — rubber duck ko bhi — code line by line samjhaane se aksar galti dikh jaati hai. AI assistants fixes suggest kar sakte hain, par tumhe unhe samajhna aur test karna hoga."
+   },
+   "analogy": {
+    "en": "A doctor does not guess one medicine after another; they test, narrow down, then treat.",
+    "hi": "डॉक्टर एक के बाद एक दवा का अनुमान नहीं लगाते; जाँचते हैं, घटाते हैं, फिर इलाज करते हैं।",
+    "hinglish": "Doctor ek ke baad ek dawai guess nahi karte; test karte hain, narrow karte hain, phir ilaaj karte hain."
+   },
+   "realExample": {
+    "en": "The word \"bug\" was popularised in 1947 when Grace Hopper's team taped a real moth found in the Harvard Mark II into their logbook.",
+    "hi": "\"बग\" शब्द 1947 में लोकप्रिय हुआ जब ग्रेस हॉपर की टीम ने Harvard Mark II में मिला असली पतंगा अपनी लॉगबुक में चिपकाया।",
+    "hinglish": "\"Bug\" shabd 1947 mein popular hua jab Grace Hopper ki team ne Harvard Mark II mein mila asli patanga apni logbook mein chipkaaya."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Take your grade(marks) function from lesson 3. Write five asserts: two normal cases, the boundaries (exactly 75 and 0), and 100. Run them; fix anything that fails.",
+   "hi": "पाठ 3 का अपना grade(marks) फ़ंक्शन लो। पाँच assert लिखो: दो सामान्य स्थितियाँ, सीमाएँ (ठीक 75 और 0), और 100। चलाओ; जो विफल हो उसे ठीक करो।",
+   "hinglish": "Lesson 3 ka apna grade(marks) function lo. Paanch asserts likho: do normal cases, boundaries (theek 75 aur 0), aur 100. Chalao; jo fail ho use fix karo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which is an edge case for average(nums)?",
+     "hi": "average(nums) के लिए सीमांत स्थिति कौन-सी?",
+     "hinglish": "average(nums) ke liye edge case kaunsa?"
+    },
+    "options": [
+     "[2, 4, 6]",
+     "[]",
+     "[10, 20]",
+     "[5, 5]"
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "An empty list makes len 0 and crashes the naive version.",
+     "hi": "ख़ाली सूची से len 0 होता है और साधारण संस्करण क्रैश।",
+     "hinglish": "Khaali list se len 0 hota hai aur naive version crash."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "What does assert x == 4 do when x is 5?",
+     "hi": "x 5 हो तो assert x == 4 क्या करता है?",
+     "hinglish": "x 5 ho to assert x == 4 kya karta hai?"
+    },
+    "options": [
+     {
+      "en": "Raises AssertionError",
+      "hi": "AssertionError उठाता है",
+      "hinglish": "AssertionError raise karta hai"
+     },
+     {
+      "en": "Sets x to 4",
+      "hi": "x को 4 करता है",
+      "hinglish": "x ko 4 karta hai"
+     },
+     {
+      "en": "Prints 4",
+      "hi": "4 छापता है",
+      "hinglish": "4 print karta hai"
+     },
+     {
+      "en": "Nothing",
+      "hi": "कुछ नहीं",
+      "hinglish": "Kuch nahi"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "assert never changes values; it only checks.",
+     "hi": "assert कभी मान नहीं बदलता; सिर्फ़ जाँचता है।",
+     "hinglish": "assert kabhi value nahi badalta; sirf check karta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why keep a test after fixing the bug?",
+     "hi": "बग ठीक करने के बाद परीक्षण क्यों रखें?",
+     "hinglish": "Bug fix karne ke baad test kyun rakhein?"
+    },
+    "options": [
+     {
+      "en": "It stops the bug from silently coming back (regression)",
+      "hi": "बग चुपचाप लौटने से रोकता है (रिग्रेशन)",
+      "hinglish": "Bug chupchaap wapas aane se rokta hai (regression)"
+     },
+     {
+      "en": "Tests make code faster",
+      "hi": "परीक्षण कोड तेज़ करते हैं",
+      "hinglish": "Tests code tez karte hain"
+     },
+     {
+      "en": "It is required by Python",
+      "hi": "पायथन इसे ज़रूरी मानता है",
+      "hinglish": "Python ise zaroori maanta hai"
+     },
+     {
+      "en": "No reason",
+      "hi": "कोई कारण नहीं",
+      "hinglish": "Koi kaaran nahi"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Later changes can re-break old fixes.",
+     "hi": "बाद के बदलाव पुराने सुधार फिर तोड़ सकते हैं।",
+     "hinglish": "Baad ke changes purane fixes phir tod sakte hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "order",
+    "prompt": {
+     "en": "Put the debugging steps in order.",
+     "hi": "डीबगिंग चरण क्रम में लगाओ।",
+     "hinglish": "Debugging steps order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Reproduce the bug",
+      "hi": "बग दोहराओ",
+      "hinglish": "Bug dohraao"
+     },
+     {
+      "en": "Read the traceback",
+      "hi": "ट्रेसबैक पढ़ो",
+      "hinglish": "Traceback padho"
+     },
+     {
+      "en": "Inspect variables near the failing line",
+      "hi": "विफल पंक्ति के पास वेरिएबल देखो",
+      "hinglish": "Failing line ke paas variables dekho"
+     },
+     {
+      "en": "Fix one thing and add a test",
+      "hi": "एक चीज़ ठीक करो और परीक्षण जोड़ो",
+      "hinglish": "Ek cheez fix karo aur test jodo"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "Reproduce → read → inspect → fix and protect.",
+     "hi": "दोहराओ → पढ़ो → देखो → ठीक करो और बचाओ।",
+     "hinglish": "Dohraao → padho → dekho → fix karo aur bachao."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Apply the fix and make all tests pass.",
+     "hi": "सुधार लगाओ और सभी परीक्षण पास कराओ।",
+     "hinglish": "Fix lagao aur saare tests pass karao."
+    },
+    "answer": {
+     "event": "tests-pass"
+    },
+    "explain": {
+     "en": "Red → green: the professional testing loop.",
+     "hi": "लाल → हरा: पेशेवर परीक्षण चक्र।",
+     "hinglish": "Red → green: professional testing loop."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "topics": [
+  "sw.testing",
+  "prog.debugging"
+ ],
+ "sources": [
+  {
+   "title": "Python Software Foundation — The Python Tutorial",
+   "url": "https://docs.python.org/3/tutorial/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "pytest documentation (MIT)",
+   "url": "https://docs.pytest.org/",
+   "licence": "MIT"
+  },
+  {
+   "title": "Python docs — pdb debugger",
+   "url": "https://docs.python.org/3/library/pdb.html",
+   "licence": "fact reference"
+  }
+ ]
+}

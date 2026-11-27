@@ -1,0 +1,327 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.binary.01",
+ "level": 2,
+ "classes": [
+  6,
+  7
+ ],
+ "unit": "binary",
+ "title": {
+  "en": "Bits and bytes: the alphabet of computers",
+  "hi": "बिट और बाइट: कंप्यूटर की वर्णमाला",
+  "hinglish": "Bits aur bytes: computer ki ABCD"
+ },
+ "minutes": 8,
+ "xp": 30,
+ "prereq": [],
+ "topics": [
+  "hw.binary"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain what a bit and a byte are",
+   "hi": "बिट और बाइट क्या हैं, समझा सकते हो",
+   "hinglish": "Bit aur byte kya hote hain samjha sakte ho"
+  },
+  {
+   "en": "Convert between KB, MB, GB and TB",
+   "hi": "KB, MB, GB और TB के बीच बदल सकते हो",
+   "hinglish": "KB, MB, GB, TB mein convert kar sakte ho"
+  },
+  {
+   "en": "Count how many values n bits can store (2ⁿ)",
+   "hi": "गिन सकते हो कि n बिट कितने मान रख सकते हैं (2ⁿ)",
+   "hinglish": "n bits kitni values store kar sakte hain (2ⁿ) gin sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Bit",
+   "hinglish": "Ek chhota switch: 0 ya 1",
+   "en": "A binary digit, 0 or 1 — the smallest unit of data",
+   "hi": "बाइनरी अंक, 0 या 1 — डेटा की सबसे छोटी इकाई"
+  },
+  {
+   "term": "Byte",
+   "hinglish": "8 bits ka group",
+   "en": "A group of 8 bits; can store 256 different values",
+   "hi": "8 बिट का समूह; 256 अलग मान रख सकता है"
+  },
+  {
+   "term": "Binary",
+   "hinglish": "Sirf 0 aur 1 wali number system",
+   "en": "A number system with only two digits, 0 and 1",
+   "hi": "केवल दो अंकों, 0 और 1, वाली संख्या पद्धति"
+  },
+  {
+   "term": "Transistor",
+   "hinglish": "Chip ke andar ka tiny electric switch",
+   "en": "A tiny electronic switch; billions form a chip",
+   "hi": "छोटा इलेक्ट्रॉनिक स्विच; अरबों मिलकर एक चिप बनाते हैं"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "A computer chip has billions of tiny switches called transistors. Each is either OFF (0) or ON (1).",
+    "hi": "कंप्यूटर चिप में अरबों छोटे स्विच (ट्रांजिस्टर) होते हैं। हर एक या तो बंद (0) है या चालू (1)।",
+    "hinglish": "Computer chip mein billions chhote switches (transistors) hote hain. Har ek ya to OFF (0) hai ya ON (1)."
+   },
+   "visual": "icon:💡",
+   "narration": {
+    "en": "Think of a light switch. Off is zero, on is one. A computer is built from billions of such switches.",
+    "hi": "बिजली के स्विच के बारे में सोचो। बंद यानी शून्य, चालू यानी एक। कंप्यूटर ऐसे अरबों स्विचों से बना है।",
+    "hinglish": "Light switch socho. OFF matlab zero, ON matlab one. Computer billions aise switches se bana hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "One switch = 1 bit. Eight switches together = 1 byte.",
+    "hi": "एक स्विच = 1 बिट। आठ स्विच साथ = 1 बाइट।",
+    "hinglish": "Ek switch = 1 bit. Aath switches saath = 1 byte."
+   },
+   "visual": "bits:01001101",
+   "narration": {
+    "en": "One bit can only say yes or no. Group eight of them and you get a byte.",
+    "hi": "एक बिट केवल हाँ या ना कह सकता है। आठ बिट मिलाओ तो एक बाइट बनती है।",
+    "hinglish": "Ek bit sirf haan ya na bol sakta hai. Aath bits ko jodo to ek byte banta hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Each extra bit doubles the possibilities: 1 bit → 2, 2 bits → 4, 8 bits → 256.",
+    "hi": "हर अतिरिक्त बिट संभावनाएँ दोगुनी करता है: 1 बिट → 2, 2 बिट → 4, 8 बिट → 256।",
+    "hinglish": "Har extra bit possibilities double karta hai: 1 bit → 2, 2 bits → 4, 8 bits → 256."
+   },
+   "visual": "flow:1 bit = 2|2 bits = 4|3 bits = 8|8 bits = 256",
+   "narration": {
+    "en": "Add one more switch and the number of patterns doubles. With 8 switches there are 256 patterns.",
+    "hi": "एक स्विच और जोड़ो तो पैटर्न दोगुने हो जाते हैं। 8 स्विचों से 256 पैटर्न बनते हैं।",
+    "hinglish": "Ek switch aur jodo to patterns double ho jaate hain. 8 switches mein 256 patterns."
+   }
+  }
+ ],
+ "play": {
+  "lab": "bit-lab",
+  "config": {
+   "tab": "number",
+   "target": 255
+  },
+  "goal": {
+   "en": "Turn on all 8 bits. What is the biggest number one byte can hold?",
+   "hi": "सभी 8 बिट चालू करो। एक बाइट में सबसे बड़ी संख्या कौन-सी आ सकती है?",
+   "hinglish": "Saare 8 bits ON karo. Ek byte mein sabse bada number kitna aata hai?"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Why only 0 and 1?",
+    "hi": "सिर्फ़ 0 और 1 क्यों?",
+    "hinglish": "Sirf 0 aur 1 hi kyun?"
+   },
+   "body": {
+    "en": "Electricity is easy to detect as two clear states: voltage present (1) or almost none (0). Two states are hard to confuse even if the signal is a little noisy, so computers stay reliable. Everything — numbers, text, photos, games — is stored as long patterns of these two digits.",
+    "hi": "बिजली को दो साफ़ अवस्थाओं में पहचानना आसान है: वोल्टेज है (1) या लगभग नहीं (0)। सिग्नल थोड़ा गड़बड़ हो तब भी दो अवस्थाएँ उलझती नहीं, इसलिए कंप्यूटर भरोसेमंद रहते हैं। सब कुछ — संख्या, टेक्स्ट, फ़ोटो, गेम — इन दो अंकों के लंबे पैटर्न में रखा जाता है।",
+    "hinglish": "Bijli ko do saaf states mein pehchanna aasaan hai: voltage hai (1) ya lagbhag nahi (0). Signal thoda noisy ho tab bhi do states confuse nahi hoti, isliye computer reliable rehta hai. Sab kuch — numbers, text, photos, games — inhi do digits ke lambe patterns mein store hota hai."
+   },
+   "analogy": {
+    "hinglish": "Jaise cricket umpire ka signal: ungli upar = OUT, neeche = NOT OUT. Sirf do signal, isliye koi confusion nahi.",
+    "en": "Like a cricket umpire’s signal: finger up = OUT, down = NOT OUT. Only two signals, so there is no confusion.",
+    "hi": "जैसे क्रिकेट अंपायर का इशारा: उँगली ऊपर = आउट, नीचे = नॉट आउट। केवल दो इशारे, इसलिए कोई भ्रम नहीं।"
+   },
+   "realExample": {
+    "en": "Morse code used only dots and dashes to send whole messages by telegraph in the 1800s.",
+    "hi": "1800 के दशक में मोर्स कोड केवल बिंदु और डैश से टेलीग्राफ़ पर पूरे संदेश भेजता था।",
+    "hinglish": "1800s mein Morse code sirf dots aur dashes se poore messages telegraph pe bhejta tha."
+   }
+  },
+  {
+   "heading": {
+    "en": "Measuring data: KB, MB, GB, TB",
+    "hi": "डेटा का माप: KB, MB, GB, TB",
+    "hinglish": "Data ka naap: KB, MB, GB, TB"
+   },
+   "body": {
+    "en": "8 bits = 1 byte. 1 kilobyte (KB) ≈ 1,000 bytes, 1 megabyte (MB) ≈ 1,000 KB, 1 gigabyte (GB) ≈ 1,000 MB, 1 terabyte (TB) ≈ 1,000 GB. (Computers often use 1,024 instead of 1,000 because 1,024 = 2¹⁰ — that is why a “64 GB” phone shows a little less space.) A WhatsApp text is about 100 bytes, a phone photo about 3 MB, a 1-hour HD movie about 1.5–3 GB. Internet speed is measured in bits per second: 40 Mbps means 40 million bits, or 5 MB, each second.",
+    "hi": "8 बिट = 1 बाइट। 1 किलोबाइट (KB) ≈ 1,000 बाइट, 1 मेगाबाइट (MB) ≈ 1,000 KB, 1 गीगाबाइट (GB) ≈ 1,000 MB, 1 टेराबाइट (TB) ≈ 1,000 GB। (कंप्यूटर अक्सर 1,000 की जगह 1,024 = 2¹⁰ लेते हैं — इसलिए “64 GB” फ़ोन में थोड़ी कम जगह दिखती है।) एक WhatsApp संदेश लगभग 100 बाइट, फ़ोन फ़ोटो लगभग 3 MB, 1 घंटे की HD फ़िल्म लगभग 1.5–3 GB। इंटरनेट की गति बिट प्रति सेकंड में नापी जाती है: 40 Mbps = हर सेकंड 4 करोड़ बिट, यानी 5 MB।",
+    "hinglish": "8 bits = 1 byte. 1 kilobyte (KB) ≈ 1,000 bytes, 1 megabyte (MB) ≈ 1,000 KB, 1 gigabyte (GB) ≈ 1,000 MB, 1 terabyte (TB) ≈ 1,000 GB. (Computer aksar 1,000 ki jagah 1,024 = 2¹⁰ use karte hain — isliye “64 GB” phone mein thodi kam space dikhti hai.) Ek WhatsApp text lagbhag 100 bytes, phone photo lagbhag 3 MB, 1 ghante ki HD movie lagbhag 1.5–3 GB. Internet speed bits per second mein naapi jaati hai: 40 Mbps = har second 4 crore bits, yaani 5 MB."
+   },
+   "analogy": {
+    "hinglish": "Jaise paise: 100 paise = 1 rupaya, 1,000 rupaye = 1 hazaar. Data mein 8 bits = 1 byte, phir har step lagbhag 1,000 guna.",
+    "en": "Like money: 100 paise = 1 rupee, 1,000 rupees = 1 thousand. In data, 8 bits = 1 byte, then each step is about 1,000 times bigger.",
+    "hi": "जैसे पैसे: 100 पैसे = 1 रुपया, 1,000 रुपये = 1 हज़ार। डेटा में 8 बिट = 1 बाइट, फिर हर कदम लगभग 1,000 गुना।"
+   },
+   "realExample": {
+    "en": "A 1.5 GB daily mobile data pack lets you watch roughly 1–2 hours of SD video.",
+    "hi": "1.5 GB रोज़ के मोबाइल डेटा पैक में लगभग 1–2 घंटे का SD वीडियो देख सकते हो।",
+    "hinglish": "1.5 GB daily data pack se lagbhag 1–2 ghante SD video dekh sakte ho."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Build 255 in the bit lab, then work out how many photos of 3 MB fit in a 64 GB phone.",
+   "hi": "बिट लैब में 255 बनाओ, फिर हिसाब लगाओ कि 64 GB फ़ोन में 3 MB की कितनी फ़ोटो आएँगी।",
+   "hinglish": "Bit lab mein 255 banao, phir socho 64 GB phone mein 3 MB ki kitni photos aayengi."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "How many bits make one byte?",
+     "hi": "एक बाइट में कितने बिट होते हैं?",
+     "hinglish": "Ek byte mein kitne bits hote hain?"
+    },
+    "options": [
+     "2",
+     "4",
+     "8",
+     "10"
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "A byte is a group of 8 bits.",
+     "hi": "बाइट 8 बिट का समूह है।",
+     "hinglish": "Byte 8 bits ka group hota hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "How many different values can 3 bits store?",
+     "hi": "3 बिट कितने अलग मान रख सकते हैं?",
+     "hinglish": "3 bits kitni alag values store kar sakte hain?"
+    },
+    "options": [
+     "3",
+     "6",
+     "8",
+     "9"
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "Each bit doubles the count: 2 × 2 × 2 = 2³ = 8 (000 to 111).",
+     "hi": "हर बिट संख्या दोगुनी करता है: 2 × 2 × 2 = 2³ = 8 (000 से 111)।",
+     "hinglish": "Har bit count double karta hai: 2 × 2 × 2 = 2³ = 8 (000 se 111)."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "order",
+    "prompt": {
+     "en": "Arrange from smallest to biggest.",
+     "hi": "सबसे छोटे से सबसे बड़े के क्रम में लगाओ।",
+     "hinglish": "Chhote se bade ke order mein lagao."
+    },
+    "options": [
+     "byte",
+     "gigabyte",
+     "bit",
+     "megabyte"
+    ],
+    "answer": [
+     2,
+     0,
+     3,
+     1
+    ],
+    "explain": {
+     "en": "bit < byte (8 bits) < megabyte (≈ 1 million bytes) < gigabyte (≈ 1,000 MB).",
+     "hi": "बिट < बाइट (8 बिट) < मेगाबाइट (≈ 10 लाख बाइट) < गीगाबाइट (≈ 1,000 MB)।",
+     "hinglish": "bit < byte (8 bits) < megabyte (≈ 10 lakh bytes) < gigabyte (≈ 1,000 MB)."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "A phone has 64 GB free. About how many 3 MB photos fit?",
+     "hi": "फ़ोन में 64 GB ख़ाली है। 3 MB की लगभग कितनी फ़ोटो आएँगी?",
+     "hinglish": "Phone mein 64 GB free hai. 3 MB ki lagbhag kitni photos aayengi?"
+    },
+    "options": [
+     "About 210",
+     "About 21,000",
+     "About 2 crore",
+     "About 64"
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "64 GB ≈ 64,000 MB. 64,000 ÷ 3 ≈ 21,000 photos.",
+     "hi": "64 GB ≈ 64,000 MB। 64,000 ÷ 3 ≈ 21,000 फ़ोटो।",
+     "hinglish": "64 GB ≈ 64,000 MB. 64,000 ÷ 3 ≈ 21,000 photos."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "Your plan says 40 Mbps. How many megabytes per second is that at best?",
+     "hi": "प्लान 40 Mbps है। अधिकतम कितने मेगाबाइट प्रति सेकंड?",
+     "hinglish": "Plan 40 Mbps hai. Maximum kitne megabytes per second?"
+    },
+    "options": [
+     "5 MB/s",
+     "40 MB/s",
+     "320 MB/s",
+     "8 MB/s"
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Mbps = megabits. Divide by 8 bits per byte: 40 ÷ 8 = 5 MB per second.",
+     "hi": "Mbps = मेगाबिट। 8 से भाग दो: 40 ÷ 8 = 5 MB प्रति सेकंड।",
+     "hinglish": "Mbps = megabits. 8 se divide karo: 40 ÷ 8 = 5 MB per second."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "In the bit lab, make the biggest number one byte can hold.",
+     "hi": "बिट लैब में एक बाइट की सबसे बड़ी संख्या बनाओ।",
+     "hinglish": "Bit lab mein ek byte ka sabse bada number banao."
+    },
+    "answer": {
+     "lab": "bit-lab",
+     "event": "mission:complete",
+     "value": 255
+    },
+    "explain": {
+     "en": "All eight bits ON: 128+64+32+16+8+4+2+1 = 255.",
+     "hi": "आठों बिट चालू: 128+64+32+16+8+4+2+1 = 255।",
+     "hinglish": "Aathon bits ON: 128+64+32+16+8+4+2+1 = 255."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "NCERT / CBSE Artificial Intelligence & Computer curriculum (Classes 6–8), 2024–25",
+   "url": "https://cbseacademic.nic.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "International System of Units — SI prefixes (kilo, mega, giga)",
+   "url": "https://www.bipm.org/en/measurement-units/si-prefixes",
+   "licence": "fact reference"
+  },
+  {
+   "title": "IEC 80000-13: binary prefixes (KiB, MiB)",
+   "url": "https://en.wikipedia.org/wiki/Binary_prefix",
+   "licence": "CC BY-SA (fact reference only)"
+  }
+ ]
+}

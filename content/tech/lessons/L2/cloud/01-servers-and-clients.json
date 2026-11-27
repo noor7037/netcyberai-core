@@ -1,0 +1,328 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.cloud.01",
+ "level": 2,
+ "classes": [
+  7
+ ],
+ "unit": "cloud",
+ "title": {
+  "en": "Servers and clients",
+  "hi": "सर्वर और क्लाइंट",
+  "hinglish": "Servers aur clients"
+ },
+ "minutes": 8,
+ "xp": 35,
+ "prereq": [],
+ "topics": [
+  "cloud.servers",
+  "cloud.client-server"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain the client–server model",
+   "hi": "क्लाइंट–सर्वर मॉडल समझा सकते हो",
+   "hinglish": "Client–server model samjha sakte ho"
+  },
+  {
+   "en": "Give examples of servers behind everyday apps",
+   "hi": "रोज़ के ऐप के पीछे के सर्वरों के उदाहरण दे सकते हो",
+   "hinglish": "Rozana ke apps ke peeche ke servers ke examples de sakte ho"
+  },
+  {
+   "en": "Explain request and response",
+   "hi": "अनुरोध और उत्तर समझा सकते हो",
+   "hinglish": "Request aur response samjha sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Server",
+   "hinglish": "Doosron ko service dene wala computer",
+   "en": "A computer that stores data and answers requests from other computers",
+   "hi": "कंप्यूटर जो डेटा रखता है और दूसरे कंप्यूटरों के अनुरोधों का उत्तर देता है"
+  },
+  {
+   "term": "Client",
+   "hinglish": "Service maangne wala device/app",
+   "en": "A device or app that sends requests, e.g. your phone’s browser",
+   "hi": "अनुरोध भेजने वाला उपकरण या ऐप, जैसे आपके फ़ोन का ब्राउज़र"
+  },
+  {
+   "term": "Request / response",
+   "hinglish": "Maang / jawab",
+   "en": "A message asking for something, and the reply",
+   "hi": "कुछ माँगने वाला संदेश, और उसका उत्तर"
+  },
+  {
+   "term": "Uptime",
+   "hinglish": "Kitna time chalu raha",
+   "en": "The share of time a service is working, e.g. 99.9%",
+   "hi": "सेवा कितने समय चालू रहती है उसका हिस्सा, जैसे 99.9%"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Your phone is a client. It asks; a server somewhere answers.",
+    "hi": "आपका फ़ोन क्लाइंट है। वह पूछता है; कहीं एक सर्वर जवाब देता है।",
+    "hinglish": "Aapka phone client hai. Woh poochta hai; kahin ek server jawab deta hai."
+   },
+   "visual": "flow:📱 Client: “Show my marks”|🌐 Internet|🗄️ Server finds data|📱 Response: marks page",
+   "narration": {
+    "en": "Every refresh, every message, every video is a request and a response.",
+    "hi": "हर रीफ़्रेश, हर संदेश, हर वीडियो एक अनुरोध और एक उत्तर है।",
+    "hinglish": "Har refresh, har message, har video ek request aur response hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "A server is just a computer — no screen, lots of memory and storage, running all day in a rack.",
+    "hi": "सर्वर बस एक कंप्यूटर है — स्क्रीन नहीं, बहुत मेमोरी और स्टोरेज, दिन-रात रैक में चलता।",
+    "hinglish": "Server bas ek computer hai — screen nahi, bahut memory aur storage, din-raat rack mein chalta."
+   },
+   "visual": "icon:🗄️",
+   "narration": {
+    "en": "Same parts as the PC you built: CPU, RAM, SSD, power — just built to run non-stop.",
+    "hi": "आपके बनाए PC जैसे ही भाग: CPU, RAM, SSD, पावर — बस लगातार चलने के लिए बने।",
+    "hinglish": "Wahi parts jo aapne PC mein lagaye: CPU, RAM, SSD, power — bas non-stop chalne ke liye bane."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "One server can answer thousands of clients at once; popular apps use thousands of servers.",
+    "hi": "एक सर्वर एक साथ हज़ारों क्लाइंट को जवाब दे सकता है; लोकप्रिय ऐप हज़ारों सर्वर उपयोग करते हैं।",
+    "hinglish": "Ek server ek saath hazaaron clients ko jawab de sakta hai; popular apps hazaaron servers use karte hain."
+   },
+   "visual": "lab:packet-tracer",
+   "narration": {
+    "en": "In the packet tracer, the chat server passes packets between you and Riya.",
+    "hi": "पैकेट ट्रेसर में चैट सर्वर आपके और रिया के बीच पैकेट पहुँचाता है।",
+    "hinglish": "Packet tracer mein chat server aapke aur Riya ke beech packets pahunchata hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "packet-tracer",
+  "config": {
+   "mode": "whatsapp"
+  },
+  "goal": {
+   "en": "Send a message and find the server in the middle. What job is it doing?",
+   "hi": "संदेश भेजो और बीच वाला सर्वर ढूँढो। वह क्या काम कर रहा है?",
+   "hinglish": "Message bhejo aur beech mein server dhoondo. Woh kya kaam kar raha hai?"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Kinds of servers",
+    "hi": "सर्वर के प्रकार",
+    "hinglish": "Servers ke types"
+   },
+   "body": {
+    "en": "Web servers send web pages; database servers store records (marks, orders); file servers store files (Google Drive); mail servers deliver email; game servers keep every player’s position in sync; DNS servers answer name lookups. A school app like NetCyberAI has app servers that check your sign-in, then ask a database server for your class’s timetable, then send it back to your phone. Servers run 24×7, so they have backup power, two network links and copies of the data, aiming for 99.9% uptime or better (under 9 hours of downtime a year).",
+    "hi": "वेब सर्वर वेब पेज भेजते हैं; डेटाबेस सर्वर रिकॉर्ड रखते हैं (अंक, ऑर्डर); फ़ाइल सर्वर फ़ाइलें रखते हैं (Google Drive); मेल सर्वर ईमेल पहुँचाते हैं; गेम सर्वर हर खिलाड़ी की स्थिति मिलाए रखते हैं; DNS सर्वर नाम खोज का जवाब देते हैं। NetCyberAI जैसे स्कूल ऐप के ऐप सर्वर आपका साइन-इन जाँचते हैं, फिर डेटाबेस सर्वर से आपकी कक्षा की समय-सारणी माँगते हैं, फिर फ़ोन को भेजते हैं। सर्वर 24×7 चलते हैं, इसलिए उनके पास बैकअप बिजली, दो नेटवर्क लिंक और डेटा की प्रतियाँ होती हैं, 99.9% या बेहतर अपटाइम (साल में 9 घंटे से कम बंद) का लक्ष्य।",
+    "hinglish": "Web servers web pages bhejte hain; database servers records rakhte hain (marks, orders); file servers files rakhte hain (Google Drive); mail servers email pahunchate hain; game servers har player ki position sync rakhte hain; DNS servers name lookups ka jawab dete hain. NetCyberAI jaise school app ke app servers aapka sign-in check karte hain, phir database server se class ka timetable maangte hain, phir phone ko bhejte hain. Servers 24×7 chalte hain, isliye unke paas backup power, do network links aur data ki copies hoti hain, 99.9% ya better uptime (saal mein 9 ghante se kam band) ka target."
+   },
+   "analogy": {
+    "hinglish": "Restaurant: aap (client) waiter ko order dete ho (request), kitchen (server) khana banata hai, waiter laata hai (response).",
+    "en": "A restaurant: you (client) give the waiter an order (request), the kitchen (server) cooks, and the waiter brings it (response).",
+    "hi": "रेस्टोरेंट: आप (क्लाइंट) वेटर को ऑर्डर देते हो (अनुरोध), रसोई (सर्वर) खाना बनाती है, वेटर लाता है (उत्तर)।"
+   },
+   "realExample": {
+    "en": "IRCTC’s servers handle lakhs of Tatkal bookings within minutes every morning at 10 and 11 am.",
+    "hi": "IRCTC के सर्वर हर सुबह 10 और 11 बजे कुछ ही मिनटों में लाखों तत्काल बुकिंग सँभालते हैं।",
+    "hinglish": "IRCTC ke servers har subah 10 aur 11 baje minuton mein lakhon Tatkal bookings handle karte hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "List five apps you or your family use and guess what kind of server each one talks to.",
+   "hi": "आपके या परिवार के उपयोग के पाँच ऐप लिखो और अनुमान लगाओ हर एक किस तरह के सर्वर से बात करता है।",
+   "hinglish": "Paanch apps ki list banao jo aap ya family use karte ho aur andaaza lagao har ek kis type ke server se baat karta hai."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "In the client–server model, your phone’s browser is the…",
+     "hi": "क्लाइंट-सर्वर मॉडल में आपके फ़ोन का ब्राउज़र है…",
+     "hinglish": "Client–server model mein phone ka browser hai…"
+    },
+    "options": [
+     {
+      "en": "client",
+      "hi": "क्लाइंट",
+      "hinglish": "client"
+     },
+     {
+      "en": "server",
+      "hi": "सर्वर",
+      "hinglish": "server"
+     },
+     {
+      "en": "router",
+      "hi": "राउटर",
+      "hinglish": "router"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "It sends requests, so it is a client.",
+     "hi": "यह अनुरोध भेजता है, इसलिए क्लाइंट है।",
+     "hinglish": "Yeh requests bhejta hai, isliye client hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "match",
+    "prompt": {
+     "en": "Match the server to what it stores or does.",
+     "hi": "सर्वर को उसके काम से मिलाओ।",
+     "hinglish": "Server ko uske kaam se milao."
+    },
+    "options": {
+     "left": [
+      {
+       "en": "Database server",
+       "hi": "डेटाबेस सर्वर",
+       "hinglish": "Database server"
+      },
+      {
+       "en": "File server",
+       "hi": "फ़ाइल सर्वर",
+       "hinglish": "File server"
+      },
+      {
+       "en": "DNS server",
+       "hi": "DNS सर्वर",
+       "hinglish": "DNS server"
+      }
+     ],
+     "right": [
+      {
+       "en": "Photos and documents",
+       "hi": "फ़ोटो और दस्तावेज़",
+       "hinglish": "Photos aur documents"
+      },
+      {
+       "en": "Turns names into IPs",
+       "hi": "नाम को IP में बदलता है",
+       "hinglish": "Naam ko IP mein badalta hai"
+      },
+      {
+       "en": "Marks, orders, accounts",
+       "hi": "अंक, ऑर्डर, खाते",
+       "hinglish": "Marks, orders, accounts"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      2
+     ],
+     [
+      1,
+      0
+     ],
+     [
+      2,
+      1
+     ]
+    ],
+    "explain": {
+     "en": "Database: records; file server: files; DNS: names → IPs.",
+     "hi": "डेटाबेस: रिकॉर्ड; फ़ाइल सर्वर: फ़ाइलें; DNS: नाम → IP।",
+     "hinglish": "Database: records; file server: files; DNS: names → IPs."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "99.9% uptime allows about how much downtime per year?",
+     "hi": "99.9% अपटाइम में साल में लगभग कितना बंद समय?",
+     "hinglish": "99.9% uptime mein saal mein lagbhag kitna downtime?"
+    },
+    "options": [
+     {
+      "en": "About 9 minutes",
+      "hi": "लगभग 9 मिनट",
+      "hinglish": "Lagbhag 9 minute"
+     },
+     {
+      "en": "About 9 hours",
+      "hi": "लगभग 9 घंटे",
+      "hinglish": "Lagbhag 9 ghante"
+     },
+     {
+      "en": "About 9 days",
+      "hi": "लगभग 9 दिन",
+      "hinglish": "Lagbhag 9 din"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "0.1% of 8,760 hours ≈ 8.8 hours.",
+     "hi": "8,760 घंटों का 0.1% ≈ 8.8 घंटे।",
+     "hinglish": "8,760 ghanton ka 0.1% ≈ 8.8 ghante."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "How is a server different from your laptop?",
+     "hi": "सर्वर आपके लैपटॉप से कैसे अलग है?",
+     "hinglish": "Server aapke laptop se kaise alag hai?"
+    },
+    "options": [
+     {
+      "en": "It has no CPU",
+      "hi": "इसमें CPU नहीं",
+      "hinglish": "Isme CPU nahi"
+     },
+     {
+      "en": "It cannot connect to the internet",
+      "hi": "यह इंटरनेट से नहीं जुड़ता",
+      "hinglish": "Yeh internet se nahi judta"
+     },
+     {
+      "en": "It runs non-stop serving many users",
+      "hi": "यह कई उपयोगकर्ताओं के लिए बिना रुके चलता है",
+      "hinglish": "Yeh kai users ke liye non-stop chalta hai"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "Same kinds of parts, but built to run non-stop for many users, usually with no screen and with backups.",
+     "hi": "वही पुर्ज़े, पर कई उपयोगकर्ताओं के लिए बिना रुके चलने को बना, आमतौर पर बिना स्क्रीन और बैकअप के साथ।",
+     "hinglish": "Wahi parts, par kai users ke liye non-stop chalne ke liye bana, aam taur pe bina screen aur backups ke saath."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "NCERT / CBSE Artificial Intelligence & Computer curriculum (Classes 6–8), 2024–25",
+   "url": "https://cbseacademic.nic.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "IRCTC — Tatkal booking timings",
+   "url": "https://www.irctc.co.in/",
+   "licence": "fact reference"
+  }
+ ]
+}

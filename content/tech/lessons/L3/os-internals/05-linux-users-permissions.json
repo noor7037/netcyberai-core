@@ -1,0 +1,346 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.os-internals.05",
+ "level": 3,
+ "classes": [
+  10,
+  11
+ ],
+ "unit": "os-internals",
+ "title": {
+  "en": "Linux users and permissions",
+  "hi": "लिनक्स उपयोगकर्ता और अनुमतियाँ",
+  "hinglish": "Linux users aur permissions"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [
+  "L3.os-internals.04"
+ ],
+ "outcomes": [
+  {
+   "en": "Read rwx permission strings for owner, group and others",
+   "hi": "मालिक, समूह और अन्य के लिए rwx अनुमति पढ़ो",
+   "hinglish": "Owner, group aur others ke liye rwx permission strings padho"
+  },
+  {
+   "en": "Set permissions with chmod in symbolic and octal form",
+   "hi": "chmod से प्रतीकात्मक और अष्टाधारी रूप में अनुमतियाँ लगाओ",
+   "hinglish": "chmod se symbolic aur octal form mein permissions lagao"
+  },
+  {
+   "en": "Apply least privilege: root, sudo and app permissions",
+   "hi": "न्यूनतम अधिकार लागू करो: root, sudo और ऐप अनुमतियाँ",
+   "hinglish": "Least privilege lagu karo: root, sudo aur app permissions"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "User / group",
+   "hinglish": "Account / team",
+   "en": "An account, and a named set of accounts that share access",
+   "hi": "एक खाता, और पहुँच साझा करने वाले खातों का नामित समूह"
+  },
+  {
+   "term": "rwx",
+   "hinglish": "Padho, likho, chalao",
+   "en": "Read, write and execute permission bits",
+   "hi": "पढ़ने, लिखने और चलाने के अनुमति बिट"
+  },
+  {
+   "term": "chmod",
+   "hinglish": "Permission badlo",
+   "en": "Command that changes a file's permissions",
+   "hi": "फ़ाइल की अनुमतियाँ बदलने वाला कमांड"
+  },
+  {
+   "term": "root",
+   "hinglish": "Sabse badi taakat wala user",
+   "en": "The superuser who can do anything on a Unix system",
+   "hi": "Unix प्रणाली पर कुछ भी कर सकने वाला सुपरयूज़र"
+  },
+  {
+   "term": "sudo",
+   "hinglish": "Ek command ke liye root",
+   "en": "Run one command with administrator rights, after checking you are allowed",
+   "hi": "अनुमति जाँचकर एक कमांड प्रशासक अधिकार से चलाना"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "ls -l shows -rw-r--r-- riya students marks.csv. The first character is the type (- file, d directory).",
+    "hi": "ls -l दिखाता है -rw-r--r-- riya students marks.csv। पहला अक्षर प्रकार है (- फ़ाइल, d डायरेक्टरी)।",
+    "hinglish": "ls -l dikhata hai -rw-r--r-- riya students marks.csv. Pehla character type hai (- file, d directory)."
+   },
+   "visual": "anim:perm-string",
+   "narration": {
+    "en": "ls -l shows -rw-r--r-- riya students marks.csv. The first character is the type (- file, d directory).",
+    "hi": "ls -l दिखाता है -rw-r--r-- riya students marks.csv। पहला अक्षर प्रकार है (- फ़ाइल, d डायरेक्टरी)।",
+    "hinglish": "ls -l dikhata hai -rw-r--r-- riya students marks.csv. Pehla character type hai (- file, d directory)."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Then three groups of rwx: owner (riya: rw-), group (students: r--), others (r--). Everyone can read marks.csv!",
+    "hi": "फिर rwx के तीन समूह: मालिक (riya: rw-), समूह (students: r--), अन्य (r--)। हर कोई marks.csv पढ़ सकता है!",
+    "hinglish": "Phir rwx ke teen groups: owner (riya: rw-), group (students: r--), others (r--). Har koi marks.csv padh sakta hai!"
+   },
+   "visual": "anim:perm-triplets",
+   "narration": {
+    "en": "Then three groups of rwx: owner (riya: rw-), group (students: r--), others (r--). Everyone can read marks.csv!",
+    "hi": "फिर rwx के तीन समूह: मालिक (riya: rw-), समूह (students: r--), अन्य (r--)। हर कोई marks.csv पढ़ सकता है!",
+    "hinglish": "Phir rwx ke teen groups: owner (riya: rw-), group (students: r--), others (r--). Har koi marks.csv padh sakta hai!"
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Octal: r = 4, w = 2, x = 1. rw- = 6, r-- = 4, so the file is 644. chmod 600 marks.csv makes it owner-only.",
+    "hi": "अष्टाधारी: r = 4, w = 2, x = 1। rw- = 6, r-- = 4, तो फ़ाइल 644 है। chmod 600 marks.csv उसे सिर्फ़ मालिक का बनाता है।",
+    "hinglish": "Octal: r = 4, w = 2, x = 1. rw- = 6, r-- = 4, to file 644 hai. chmod 600 marks.csv use sirf owner ka banata hai."
+   },
+   "visual": "anim:octal-calc",
+   "narration": {
+    "en": "Octal: r = 4, w = 2, x = 1. rw- = 6, r-- = 4, so the file is 644. chmod 600 marks.csv makes it owner-only.",
+    "hi": "अष्टाधारी: r = 4, w = 2, x = 1। rw- = 6, r-- = 4, तो फ़ाइल 644 है। chmod 600 marks.csv उसे सिर्फ़ मालिक का बनाता है।",
+    "hinglish": "Octal: r = 4, w = 2, x = 1. rw- = 6, r-- = 4, to file 644 hai. chmod 600 marks.csv use sirf owner ka banata hai."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "root can do anything, so admins log in as normal users and use sudo only when needed — least privilege.",
+    "hi": "root कुछ भी कर सकता है, इसलिए प्रशासक सामान्य उपयोगकर्ता से लॉगिन करते हैं और ज़रूरत पर ही sudo — न्यूनतम अधिकार।",
+    "hinglish": "root kuch bhi kar sakta hai, isliye admins normal users se login karte hain aur zaroorat par hi sudo — least privilege."
+   },
+   "visual": "anim:sudo-key",
+   "narration": {
+    "en": "root can do anything, so admins log in as normal users and use sudo only when needed — least privilege.",
+    "hi": "root कुछ भी कर सकता है, इसलिए प्रशासक सामान्य उपयोगकर्ता से लॉगिन करते हैं और ज़रूरत पर ही sudo — न्यूनतम अधिकार।",
+    "hinglish": "root kuch bhi kar sakta hai, isliye admins normal users se login karte hain aur zaroorat par hi sudo — least privilege."
+   }
+  }
+ ],
+ "play": {
+  "lab": "seq-flow",
+  "config": {
+   "scenario": "linux-shell"
+  },
+  "goal": {
+   "en": "Run ls -l, read the permissions of marks.csv, then protect it with chmod 600 and check again. Try reading /etc/shadow and see why you are refused.",
+   "hi": "ls -l चलाओ, marks.csv की अनुमतियाँ पढ़ो, फिर chmod 600 से सुरक्षित करो और दोबारा जाँचो। /etc/shadow पढ़ने की कोशिश करो और देखो मना क्यों होता है।",
+   "hinglish": "ls -l chalao, marks.csv ki permissions padho, phir chmod 600 se surakshit karo aur dobaara check karo. /etc/shadow padhne ki koshish karo aur dekho mana kyun hota hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Reading and setting permissions",
+    "hi": "अनुमतियाँ पढ़ना और लगाना",
+    "hinglish": "Permissions padhna aur lagana"
+   },
+   "body": {
+    "en": "For files: r lets you read, w lets you change, x lets you run it as a program. For directories: r lists names, w creates or deletes entries, x lets you enter (cd) it. Common values: 755 (rwxr-xr-x) for programs and folders, 644 (rw-r--r--) for normal files, 600 (rw-------) for private files like SSH keys, 700 for private folders. Symbolic form: chmod u+x script.sh adds execute for the owner; chmod go-r notes.txt removes read for group and others. chown changes the owner (only root may give files away).",
+    "hi": "फ़ाइलों के लिए: r पढ़ने देता है, w बदलने, x प्रोग्राम की तरह चलाने। डायरेक्टरी के लिए: r नाम सूचीबद्ध करता है, w प्रविष्टियाँ बनाता या मिटाता है, x उसमें जाने (cd) देता है। आम मान: प्रोग्राम और फ़ोल्डर के लिए 755 (rwxr-xr-x), सामान्य फ़ाइलों के लिए 644 (rw-r--r--), SSH कुंजी जैसी निजी फ़ाइलों के लिए 600 (rw-------), निजी फ़ोल्डरों के लिए 700। प्रतीकात्मक रूप: chmod u+x script.sh मालिक के लिए चलाना जोड़ता है; chmod go-r notes.txt समूह और अन्य से पढ़ना हटाता है। chown मालिक बदलता है (सिर्फ़ root फ़ाइलें दूसरों को दे सकता है)।",
+    "hinglish": "Files ke liye: r padhne deta hai, w badalne, x program ki tarah chalane. Directories ke liye: r naam list karta hai, w entries banata ya mitata hai, x usmein jaane (cd) deta hai. Common values: programs aur folders ke liye 755 (rwxr-xr-x), normal files ke liye 644 (rw-r--r--), SSH keys jaisi private files ke liye 600 (rw-------), private folders ke liye 700. Symbolic form: chmod u+x script.sh owner ke liye execute jodta hai; chmod go-r notes.txt group aur others se read hatata hai. chown owner badalta hai (sirf root files doosron ko de sakta hai)."
+   },
+   "analogy": {
+    "en": "A class register: the teacher (owner) can write, the class monitor group can read, and visitors (others) cannot see it at all with 640.",
+    "hi": "कक्षा रजिस्टर: शिक्षक (मालिक) लिख सकते हैं, मॉनिटर समूह पढ़ सकता है, और 640 पर आगंतुक (अन्य) देख ही नहीं सकते।",
+    "hinglish": "Class register: teacher (owner) likh sakte hain, monitor group padh sakta hai, aur 640 par visitors (others) dekh hi nahi sakte."
+   },
+   "realExample": {
+    "en": "/etc/shadow, which stores password hashes, is readable only by root, so normal users get \"Permission denied\".",
+    "hi": "/etc/shadow, जिसमें पासवर्ड हैश हैं, सिर्फ़ root पढ़ सकता है, इसलिए सामान्य उपयोगकर्ता को \"Permission denied\" मिलता है।",
+    "hinglish": "/etc/shadow, jismein password hashes hain, sirf root padh sakta hai, isliye normal users ko \"Permission denied\" milta hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "Least privilege everywhere",
+    "hi": "हर जगह न्यूनतम अधिकार",
+    "hinglish": "Har jagah least privilege"
+   },
+   "body": {
+    "en": "Give every user and program only the access it needs. A web server runs as its own low-privilege user, so a hacked website cannot read everyone's home folder. Phones apply the same idea: each Android app runs as a separate Linux user in a sandbox and must ask for permissions like camera, location or contacts — and you can grant \"only while using the app\" or revoke later. Review app permissions every few months.",
+    "hi": "हर उपयोगकर्ता और प्रोग्राम को सिर्फ़ ज़रूरी पहुँच दो। वेब सर्वर अपने कम-अधिकार उपयोगकर्ता के रूप में चलता है, ताकि हैक हुई वेबसाइट सबका होम फ़ोल्डर न पढ़ सके। फ़ोन यही विचार अपनाते हैं: हर एंड्रॉइड ऐप सैंडबॉक्स में अलग लिनक्स उपयोगकर्ता के रूप में चलता है और कैमरा, स्थान या संपर्क जैसी अनुमतियाँ माँगता है — और आप \"सिर्फ़ ऐप इस्तेमाल करते समय\" दे सकते हो या बाद में वापस ले सकते हो। हर कुछ महीने ऐप अनुमतियाँ जाँचो।",
+    "hinglish": "Har user aur program ko sirf zaroori access do. Web server apne low-privilege user ke roop mein chalta hai, taaki hack hui website sabka home folder na padh sake. Phones yahi idea follow karte hain: har Android app sandbox mein alag Linux user ke roop mein chalta hai aur camera, location ya contacts jaisi permissions maangta hai — aur tum \"sirf app use karte samay\" de sakte ho ya baad mein wapas le sakte ho. Har kuch mahine app permissions check karo."
+   },
+   "analogy": {
+    "en": "A hotel key card opens only your room and the gym, not every room — so a lost card does limited damage.",
+    "hi": "होटल का की-कार्ड सिर्फ़ आपका कमरा और जिम खोलता है, हर कमरा नहीं — तो खोया कार्ड सीमित नुक़सान करता है।",
+    "hinglish": "Hotel ka key card sirf tumhara kamra aur gym kholta hai, har kamra nahi — to khoya card limited nuksaan karta hai."
+   },
+   "realExample": {
+    "en": "A torch app asking for contacts and SMS permission is a red flag — deny it or uninstall the app.",
+    "hi": "संपर्क और SMS अनुमति माँगता टॉर्च ऐप ख़तरे का संकेत है — मना करो या ऐप हटाओ।",
+    "hinglish": "Contacts aur SMS permission maangta torch app red flag hai — deny karo ya app uninstall karo."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "On a phone, open Settings → Privacy/Permissions. List three apps with camera or location access. For each, decide whether it truly needs it, and change any that do not.",
+   "hi": "फ़ोन पर Settings → Privacy/Permissions खोलो। कैमरा या स्थान पहुँच वाले तीन ऐप लिखो। हर एक के लिए तय करो क्या उसे सच में चाहिए, और जिसे नहीं चाहिए उसे बदलो।",
+   "hinglish": "Phone par Settings → Privacy/Permissions kholo. Camera ya location access wale teen apps likho. Har ek ke liye tay karo kya use sach mein chahiye, aur jo nahi chahiye use badlo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "What does -rwxr-x--- mean for \"others\"?",
+     "hi": "-rwxr-x--- का \"अन्य\" के लिए क्या मतलब है?",
+     "hinglish": "-rwxr-x--- ka \"others\" ke liye kya matlab hai?"
+    },
+    "options": [
+     {
+      "en": "No access at all",
+      "hi": "कोई पहुँच नहीं",
+      "hinglish": "Koi access nahi"
+     },
+     {
+      "en": "Read only",
+      "hi": "सिर्फ़ पढ़ना",
+      "hinglish": "Sirf read"
+     },
+     {
+      "en": "Read and execute",
+      "hi": "पढ़ना और चलाना",
+      "hinglish": "Read aur execute"
+     },
+     {
+      "en": "Full access",
+      "hi": "पूरी पहुँच",
+      "hinglish": "Full access"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "The last three characters are ---.",
+     "hi": "आख़िरी तीन अक्षर --- हैं।",
+     "hinglish": "Aakhri teen characters --- hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "short",
+    "prompt": {
+     "en": "What octal number is rw-r-----?",
+     "hi": "rw-r----- कौन-सी अष्टाधारी संख्या है?",
+     "hinglish": "rw-r----- kaunsa octal number hai?"
+    },
+    "answer": {
+     "accept": [
+      "640",
+      "0640"
+     ]
+    },
+    "explain": {
+     "en": "rw- = 6, r-- = 4, --- = 0.",
+     "hi": "rw- = 6, r-- = 4, --- = 0।",
+     "hinglish": "rw- = 6, r-- = 4, --- = 0."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which command makes notes.txt private to you?",
+     "hi": "कौन-सा कमांड notes.txt को सिर्फ़ आपका बनाता है?",
+     "hinglish": "Kaunsa command notes.txt ko sirf tumhara banata hai?"
+    },
+    "options": [
+     "chmod 600 notes.txt",
+     "chmod 777 notes.txt",
+     "rm notes.txt",
+     "ls notes.txt"
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "600 = rw------- : only the owner can read and write.",
+     "hi": "600 = rw------- : सिर्फ़ मालिक पढ़-लिख सकता है।",
+     "hinglish": "600 = rw------- : sirf owner read aur write kar sakta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why should admins avoid logging in as root all day?",
+     "hi": "प्रशासकों को पूरे दिन root से लॉगिन क्यों नहीं करना चाहिए?",
+     "hinglish": "Admins ko poore din root se login kyun nahi karna chahiye?"
+    },
+    "options": [
+     {
+      "en": "A mistake or malware would have unlimited power",
+      "hi": "ग़लती या मैलवेयर के पास असीमित ताक़त होगी",
+      "hinglish": "Galti ya malware ke paas unlimited taakat hogi"
+     },
+     {
+      "en": "root is slower",
+      "hi": "root धीमा है",
+      "hinglish": "root slow hai"
+     },
+     {
+      "en": "root cannot use the internet",
+      "hi": "root इंटरनेट नहीं चला सकता",
+      "hinglish": "root internet nahi chala sakta"
+     },
+     {
+      "en": "It is illegal",
+      "hi": "यह ग़ैरक़ानूनी है",
+      "hinglish": "Yeh illegal hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Use sudo for single commands: least privilege.",
+     "hi": "एक-एक कमांड के लिए sudo: न्यूनतम अधिकार।",
+     "hinglish": "Single commands ke liye sudo: least privilege."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Protect marks.csv with chmod in the practice terminal.",
+     "hi": "अभ्यास टर्मिनल में chmod से marks.csv सुरक्षित करो।",
+     "hinglish": "Practice terminal mein chmod se marks.csv protect karo."
+    },
+    "answer": {
+     "event": "shell-task-done",
+     "task": "chmod"
+    },
+    "explain": {
+     "en": "marks.csv is now rw------- (600).",
+     "hi": "marks.csv अब rw------- (600) है।",
+     "hinglish": "marks.csv ab rw------- (600) hai."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "os.users-permissions"
+ ],
+ "sources": [
+  {
+   "title": "Arpaci-Dusseau, Operating Systems: Three Easy Pieces (free online)",
+   "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Android — App permissions overview",
+   "url": "https://developer.android.com/guide/topics/permissions/overview",
+   "licence": "fact reference"
+  }
+ ]
+}

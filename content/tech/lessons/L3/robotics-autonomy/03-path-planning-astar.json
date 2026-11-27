@@ -1,0 +1,415 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.robotics-autonomy.03",
+ "level": 3,
+ "classes": [
+  10,
+  11,
+  12
+ ],
+ "unit": "robotics-autonomy",
+ "title": {
+  "en": "Path planning with A*",
+  "hi": "A* से रास्ते की योजना",
+  "hinglish": "A* se path planning"
+ },
+ "minutes": 15,
+ "xp": 65,
+ "prereq": [
+  "L3.robotics-autonomy.02",
+  "L3.ai-foundations.03"
+ ],
+ "outcomes": [
+  {
+   "en": "Represent a floor or city as a grid or graph with costs",
+   "hi": "फ़र्श या शहर को लागत वाले ग्रिड या ग्राफ़ की तरह दिखाओ",
+   "hinglish": "Floor ya shehar ko costs wale grid ya graph ki tarah dikhao"
+  },
+  {
+   "en": "Explain how A* uses f = g + h to find the cheapest path",
+   "hi": "समझाओ A* सबसे सस्ता रास्ता खोजने को f = g + h कैसे इस्तेमाल करता है",
+   "hinglish": "Samjhao A* sabse sasta raasta dhoondhne ko f = g + h kaise use karta hai"
+  },
+  {
+   "en": "Compare A* with BFS and Dijkstra on nodes explored",
+   "hi": "खोजे गए नोड पर A* की तुलना BFS और डाइकस्ट्रा से करो",
+   "hinglish": "Explore kiye nodes par A* ki tulna BFS aur Dijkstra se karo"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Graph",
+   "hinglish": "Jode hue bindu",
+   "en": "Nodes (places) joined by edges (roads) with costs",
+   "hi": "लागत वाले किनारों (सड़कों) से जुड़े नोड (स्थान)"
+  },
+  {
+   "term": "g(n)",
+   "hinglish": "Ab tak ka kharcha",
+   "en": "Cost of the path so far from the start to n",
+   "hi": "शुरू से n तक अब तक के रास्ते की लागत"
+  },
+  {
+   "term": "h(n)",
+   "hinglish": "Andaaza",
+   "en": "Heuristic: estimated cost from n to the goal",
+   "hi": "अनुमानी: n से लक्ष्य तक अनुमानित लागत"
+  },
+  {
+   "term": "Admissible",
+   "hinglish": "Kabhi zyada nahi aankta",
+   "en": "A heuristic that never overestimates, so A* stays optimal",
+   "hi": "अनुमानी जो कभी ज़्यादा न आँके, ताकि A* इष्टतम रहे"
+  },
+  {
+   "term": "Dijkstra",
+   "hinglish": "Dijkstra",
+   "en": "Cheapest-path search with no heuristic (h = 0)",
+   "hi": "बिना अनुमानी (h = 0) सबसे सस्ता-रास्ता खोज"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Turn the map into a grid: free cells, walls, and slow \"mud\" cells that cost more.",
+    "hi": "नक्शे को ग्रिड बनाओ: ख़ाली कोठरियाँ, दीवारें, और धीमी \"कीचड़\" कोठरियाँ जिनकी लागत ज़्यादा।",
+    "hinglish": "Map ko grid banao: khaali cells, deewarein, aur dheemi \"keechad\" cells jinki cost zyada."
+   },
+   "visual": "anim:grid",
+   "narration": {
+    "en": "Turn the map into a grid: free cells, walls, and slow \"mud\" cells that cost more.",
+    "hi": "नक्शे को ग्रिड बनाओ: ख़ाली कोठरियाँ, दीवारें, और धीमी \"कीचड़\" कोठरियाँ जिनकी लागत ज़्यादा।",
+    "hinglish": "Map ko grid banao: khaali cells, deewarein, aur dheemi \"keechad\" cells jinki cost zyada."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "BFS spreads in rings and ignores costs. Dijkstra spreads by cost.",
+    "hi": "BFS छल्लों में फैलता है और लागत नहीं देखता। डाइकस्ट्रा लागत से फैलता है।",
+    "hinglish": "BFS chhallon mein failta hai aur cost nahi dekhta. Dijkstra cost se failta hai."
+   },
+   "visual": "compare:BFS rings|Dijkstra cost",
+   "narration": {
+    "en": "BFS spreads in rings and ignores costs. Dijkstra spreads by cost.",
+    "hi": "BFS छल्लों में फैलता है और लागत नहीं देखता। डाइकस्ट्रा लागत से फैलता है।",
+    "hinglish": "BFS chhallon mein failta hai aur cost nahi dekhta. Dijkstra cost se failta hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "A* adds a guess towards the goal: f = g + h. It explores far fewer cells.",
+    "hi": "A* लक्ष्य की ओर अनुमान जोड़ता है: f = g + h। यह बहुत कम कोठरियाँ खोजता है।",
+    "hinglish": "A* goal ki taraf andaaza jodta hai: f = g + h. Yeh bahut kam cells explore karta hai."
+   },
+   "visual": "stack:f|g + h",
+   "narration": {
+    "en": "A* adds a guess towards the goal: f = g + h. It explores far fewer cells.",
+    "hi": "A* लक्ष्य की ओर अनुमान जोड़ता है: f = g + h। यह बहुत कम कोठरियाँ खोजता है।",
+    "hinglish": "A* goal ki taraf andaaza jodta hai: f = g + h. Yeh bahut kam cells explore karta hai."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "With an admissible h (like Manhattan distance on a grid) A* still finds the cheapest path.",
+    "hi": "स्वीकार्य h (जैसे ग्रिड पर मैनहट्टन दूरी) के साथ A* फिर भी सबसे सस्ता रास्ता पाता है।",
+    "hinglish": "Admissible h (jaise grid par Manhattan distance) ke saath A* phir bhi sabse sasta raasta paata hai."
+   },
+   "visual": "flow:start|frontier|goal",
+   "narration": {
+    "en": "With an admissible h (like Manhattan distance on a grid) A* still finds the cheapest path.",
+    "hi": "स्वीकार्य h (जैसे ग्रिड पर मैनहट्टन दूरी) के साथ A* फिर भी सबसे सस्ता रास्ता पाता है।",
+    "hinglish": "Admissible h (jaise grid par Manhattan distance) ke saath A* phir bhi sabse sasta raasta paata hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "astar-arena",
+  "config": {
+   "mode": "search",
+   "algo": "compare",
+   "grid": "city-1",
+   "heuristic": "manhattan"
+  },
+  "goal": {
+   "en": "On the city map with slow mud cells, race BFS, Dijkstra and A*. Which finds the cheapest route, and which explores the fewest cells?",
+   "hi": "धीमी कीचड़ कोठरियों वाले शहर के नक्शे पर BFS, डाइकस्ट्रा और A* की दौड़ कराओ। कौन सबसे सस्ता रास्ता पाता है, और कौन सबसे कम कोठरियाँ खोजता है?",
+   "hinglish": "Dheemi keechad cells wale city map par BFS, Dijkstra aur A* ki race karao. Kaun sabse sasta raasta dhoondhta hai, aur kaun sabse kam cells explore karta hai?"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "How A* decides where to look next",
+    "hi": "A* कैसे तय करता है आगे कहाँ देखे",
+    "hinglish": "A* kaise tay karta hai aage kahan dekhe"
+   },
+   "body": {
+    "en": "A* (Hart, Nilsson and Raphael, 1968, first built for the Shakey robot at SRI) keeps a \"frontier\" of cells to explore, stored in a priority queue. For each cell n it computes f(n) = g(n) + h(n): the real cost so far plus a guess of the cost still to go, and always expands the cell with the smallest f. If h is always 0 you get Dijkstra’s algorithm, which is correct but explores in every direction. If h never overestimates the true remaining cost — it is admissible — A* is guaranteed to return the cheapest path while exploring far fewer cells. On a grid where you can move only up, down, left and right, the Manhattan distance |dx| + |dy| is admissible. BFS ignores costs completely: it finds the path with the fewest steps, which may wade through slow mud.",
+    "hi": "A* (हार्ट, निल्सन और राफ़ेल, 1968, पहले SRI के Shakey रोबोट के लिए बना) खोजने को कोठरियों का \"मोर्चा\" रखता है, प्राथमिकता कतार में। हर कोठरी n के लिए f(n) = g(n) + h(n) निकालता है: अब तक की असली लागत और बची लागत का अनुमान, और हमेशा सबसे छोटे f वाली कोठरी खोलता है। अगर h हमेशा 0 हो तो डाइकस्ट्रा एल्गोरिदम मिलता है, जो सही है पर हर दिशा में खोजता है। अगर h असली बची लागत को कभी ज़्यादा न आँके — वह स्वीकार्य है — तो A* सबसे सस्ता रास्ता लौटाने की गारंटी देता है और बहुत कम कोठरियाँ खोजता है। ग्रिड पर जहाँ केवल ऊपर, नीचे, बाएँ और दाएँ चल सकते हो, मैनहट्टन दूरी |dx| + |dy| स्वीकार्य है। BFS लागत पूरी तरह अनदेखी करता है: वह सबसे कम कदमों वाला रास्ता पाता है, जो धीमे कीचड़ से गुज़र सकता है।",
+    "hinglish": "A* (Hart, Nilsson aur Raphael, 1968, pehle SRI ke Shakey robot ke liye bana) explore karne ko cells ka \"frontier\" rakhta hai, priority queue mein. Har cell n ke liye f(n) = g(n) + h(n) nikaalta hai: ab tak ki asli cost aur bachi cost ka andaaza, aur hamesha sabse chhote f wali cell kholta hai. Agar h hamesha 0 ho to Dijkstra ka algorithm milta hai, jo sahi hai par har direction mein explore karta hai. Agar h asli bachi cost ko kabhi zyada na aanke — woh admissible hai — to A* sabse sasta raasta lautane ki guarantee deta hai aur bahut kam cells explore karta hai. Grid par jahan sirf upar, neeche, left aur right chal sakte ho, Manhattan distance |dx| + |dy| admissible hai. BFS cost poori tarah ignore karta hai: woh sabse kam steps wala raasta paata hai, jo dheeme keechad se guzar sakta hai."
+   },
+   "analogy": {
+    "en": "Finding a classroom in a new school: you head roughly towards it (h) while counting how far you have walked (g), instead of opening every door.",
+    "hi": "नए स्कूल में कक्षा ढूँढना: हर दरवाज़ा खोलने के बजाय तुम मोटे तौर पर उसकी ओर जाते हो (h) और गिनते हो कितना चले (g)।",
+    "hinglish": "Naye school mein classroom dhoondhna: har darwaaza kholne ke bajaye tum mote taur par uski taraf jaate ho (h) aur ginte ho kitna chale (g)."
+   },
+   "realExample": {
+    "en": "Game characters, warehouse robots and delivery drones use A* or its variants; map apps use faster pre-computed versions of the same shortest-path ideas.",
+    "hi": "गेम पात्र, गोदाम रोबोट और डिलीवरी ड्रोन A* या उसके रूप इस्तेमाल करते हैं; नक्शा ऐप उन्हीं सबसे-छोटे-रास्ते विचारों के तेज़ पहले-से-गणना किए रूप।",
+    "hinglish": "Game characters, warehouse robots aur delivery drones A* ya uske variants use karte hain; map apps unhi shortest-path ideas ke tez pre-computed versions."
+   }
+  },
+  {
+   "heading": {
+    "en": "From grid to real robot",
+    "hi": "ग्रिड से असली रोबोट तक",
+    "hinglish": "Grid se asli robot tak"
+   },
+   "body": {
+    "en": "A real robot plans in layers. A global planner such as A* finds a route on the map. A local planner follows it while dodging people and new obstacles the map does not know (the reactive rules from the last lesson). A controller such as PID turns the plan into motor commands. If the path is blocked, the robot marks the cell and re-plans. Costs can encode anything you care about: distance, time, battery use, slopes, or \"stay away from the crowded canteen\". ROS 2 — the open-source Robot Operating System used in universities and industry — ships this exact stack in its Nav2 navigation system. Choosing the right cost is a human decision with real consequences: a delivery robot told only to minimise time may cut across a playground.",
+    "hi": "असली रोबोट परतों में योजना बनाता है। A* जैसा वैश्विक योजक नक्शे पर रास्ता पाता है। स्थानीय योजक उस पर चलते हुए लोगों और नई बाधाओं से बचता है जो नक्शे में नहीं (पिछले पाठ के प्रतिक्रियाशील नियम)। PID जैसा नियंत्रक योजना को मोटर आदेशों में बदलता है। रास्ता बंद हो तो रोबोट कोठरी चिह्नित करके दोबारा योजना बनाता है। लागत कुछ भी दर्शा सकती है जिसकी परवाह हो: दूरी, समय, बैटरी, ढलान, या \"भीड़ वाली कैंटीन से दूर रहो\"। ROS 2 — विश्वविद्यालयों और उद्योग में प्रयुक्त मुक्त-स्रोत रोबोट ऑपरेटिंग सिस्टम — अपने Nav2 नेविगेशन तंत्र में ठीक यही परतें देता है। सही लागत चुनना असली परिणामों वाला मानवीय निर्णय है: केवल समय घटाने को कहा गया डिलीवरी रोबोट खेल के मैदान से होकर निकल सकता है।",
+    "hinglish": "Asli robot layers mein planning karta hai. A* jaisa global planner map par raasta paata hai. Local planner us par chalte hue logon aur naye obstacles se bachta hai jo map mein nahi (pichhle lesson ke reactive rules). PID jaisa controller plan ko motor commands mein badalta hai. Raasta band ho to robot cell mark karke dobaara plan karta hai. Cost kuch bhi dikha sakti hai jiski parwah ho: doori, time, battery, slope, ya \"bheed wali canteen se door raho\". ROS 2 — universities aur industry mein use hone wala open-source Robot Operating System — apne Nav2 navigation system mein bilkul yahi layers deta hai. Sahi cost chunna asli consequences wala insaani decision hai: sirf time ghataane ko kaha gaya delivery robot playground se hokar nikal sakta hai."
+   },
+   "analogy": {
+    "en": "A cab ride: the app plans the route (global), the driver dodges a cow on the road (local), and the feet on the pedals keep the speed (control).",
+    "hi": "कैब यात्रा: ऐप रास्ता बनाता है (वैश्विक), ड्राइवर सड़क पर गाय से बचता है (स्थानीय), और पैडल पर पैर गति बनाए रखते हैं (नियंत्रण)।",
+    "hinglish": "Cab ride: app raasta banata hai (global), driver sadak par gaay se bachta hai (local), aur pedals par pair speed banaye rakhte hain (control)."
+   },
+   "realExample": {
+    "en": "Mars rovers like NASA’s Perseverance plan their own drives between commands from Earth because radio signals take several minutes each way.",
+    "hi": "NASA के Perseverance जैसे मंगल रोवर पृथ्वी के आदेशों के बीच अपनी यात्रा ख़ुद योजनाबद्ध करते हैं क्योंकि रेडियो संकेत हर तरफ़ कई मिनट लेते हैं।",
+    "hinglish": "NASA ke Perseverance jaise Mars rovers Earth ke commands ke beech apni drive khud plan karte hain kyunki radio signals har taraf kai minute lete hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Draw a 6×6 grid of your school floor with walls and one slow staircase cell (cost 3). By hand, compute f = g + h with Manhattan distance for the first five cells A* expands from the gate to the library. Would BFS choose the same path?",
+   "hi": "अपने स्कूल के फ़र्श का 6×6 ग्रिड बनाओ, दीवारें और एक धीमी सीढ़ी कोठरी (लागत 3) के साथ। हाथ से गेट से पुस्तकालय तक A* जो पहली पाँच कोठरियाँ खोलता है उनके लिए मैनहट्टन दूरी से f = g + h निकालो। क्या BFS वही रास्ता चुनेगा?",
+   "hinglish": "Apne school floor ka 6×6 grid banao, deewarein aur ek dheemi staircase cell (cost 3) ke saath. Haath se gate se library tak A* jo pehli paanch cells kholta hai unke liye Manhattan distance se f = g + h nikaalo. Kya BFS wahi raasta chunega?"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "In A*, f(n) = g(n) + h(n). What is h(n)?",
+     "hi": "A* में f(n) = g(n) + h(n)। h(n) क्या है?",
+     "hinglish": "A* mein f(n) = g(n) + h(n). h(n) kya hai?"
+    },
+    "options": [
+     {
+      "en": "An estimate of the cost from n to the goal",
+      "hi": "n से लक्ष्य तक लागत का अनुमान",
+      "hinglish": "n se goal tak cost ka andaaza"
+     },
+     {
+      "en": "The cost from the start to n",
+      "hi": "शुरू से n तक लागत",
+      "hinglish": "Start se n tak cost"
+     },
+     {
+      "en": "The number of walls",
+      "hi": "दीवारों की संख्या",
+      "hinglish": "Deewaron ki sankhya"
+     },
+     {
+      "en": "The robot’s battery",
+      "hi": "रोबोट की बैटरी",
+      "hinglish": "Robot ki battery"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "g is the past, h is the guess for the future.",
+     "hi": "g अतीत है, h भविष्य का अनुमान।",
+     "hinglish": "g past hai, h future ka andaaza."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "short",
+    "prompt": {
+     "en": "On a 4-direction grid, what is the Manhattan distance from (1, 2) to (5, 7)?",
+     "hi": "4-दिशा ग्रिड पर (1, 2) से (5, 7) तक मैनहट्टन दूरी?",
+     "hinglish": "4-direction grid par (1, 2) se (5, 7) tak Manhattan distance?"
+    },
+    "answer": {
+     "accept": [
+      "9"
+     ]
+    },
+    "explain": {
+     "en": "|5 − 1| + |7 − 2| = 4 + 5 = 9.",
+     "hi": "|5 − 1| + |7 − 2| = 4 + 5 = 9।",
+     "hinglish": "|5 − 1| + |7 − 2| = 4 + 5 = 9."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why can BFS give a worse route on a map with mud cells?",
+     "hi": "कीचड़ वाले नक्शे पर BFS ख़राब रास्ता क्यों दे सकता है?",
+     "hinglish": "Keechad wale map par BFS kharaab raasta kyun de sakta hai?"
+    },
+    "options": [
+     {
+      "en": "It minimises steps, not cost",
+      "hi": "यह कदम घटाता है, लागत नहीं",
+      "hinglish": "Yeh steps ghatata hai, cost nahi"
+     },
+     {
+      "en": "It cannot find any path",
+      "hi": "कोई रास्ता नहीं पा सकता",
+      "hinglish": "Koi raasta nahi pa sakta"
+     },
+     {
+      "en": "It is too fast",
+      "hi": "बहुत तेज़ है",
+      "hinglish": "Bahut tez hai"
+     },
+     {
+      "en": "It uses a heuristic",
+      "hi": "अनुमानी इस्तेमाल करता है",
+      "hinglish": "Heuristic use karta hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Fewest steps can still be the most expensive.",
+     "hi": "सबसे कम कदम भी सबसे महँगा हो सकता है।",
+     "hinglish": "Sabse kam steps bhi sabse mehenga ho sakta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "What happens if h(n) = 0 for every cell?",
+     "hi": "अगर हर कोठरी के लिए h(n) = 0 हो तो?",
+     "hinglish": "Agar har cell ke liye h(n) = 0 ho to?"
+    },
+    "options": [
+     {
+      "en": "A* becomes Dijkstra: still correct, explores more",
+      "hi": "A* डाइकस्ट्रा बन जाता है: फिर भी सही, ज़्यादा खोजता है",
+      "hinglish": "A* Dijkstra ban jaata hai: phir bhi sahi, zyada explore karta hai"
+     },
+     {
+      "en": "It never finds a path",
+      "hi": "कभी रास्ता नहीं पाता",
+      "hinglish": "Kabhi raasta nahi paata"
+     },
+     {
+      "en": "It becomes random",
+      "hi": "यादृच्छिक हो जाता है",
+      "hinglish": "Random ho jaata hai"
+     },
+     {
+      "en": "It finds a longer path",
+      "hi": "लंबा रास्ता पाता है",
+      "hinglish": "Lamba raasta paata hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Zero never overestimates, so it is admissible — just uninformed.",
+     "hi": "शून्य कभी ज़्यादा नहीं आँकता, तो स्वीकार्य है — बस बिना जानकारी।",
+     "hinglish": "Zero kabhi zyada nahi aankta, to admissible hai — bas bina jaankari."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q5",
+    "type": "order",
+    "prompt": {
+     "en": "Order a robot’s navigation layers from the big picture to the wheels.",
+     "hi": "रोबोट की नेविगेशन परतें बड़ी तस्वीर से पहियों तक क्रम में लगाओ।",
+     "hinglish": "Robot ki navigation layers badi tasveer se pahiyon tak order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Map",
+      "hi": "नक्शा",
+      "hinglish": "Map"
+     },
+     {
+      "en": "Global planner (A*)",
+      "hi": "वैश्विक योजक (A*)",
+      "hinglish": "Global planner (A*)"
+     },
+     {
+      "en": "Local planner (dodge obstacles)",
+      "hi": "स्थानीय योजक (बाधा से बचाव)",
+      "hinglish": "Local planner (obstacles se bachaav)"
+     },
+     {
+      "en": "Motor controller (PID)",
+      "hi": "मोटर नियंत्रक (PID)",
+      "hinglish": "Motor controller (PID)"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "Map → plan → follow → control.",
+     "hi": "नक्शा → योजना → अनुसरण → नियंत्रण।",
+     "hinglish": "Map → plan → follow → control."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Find a path with A* on the city map.",
+     "hi": "शहर के नक्शे पर A* से रास्ता खोजो।",
+     "hinglish": "City map par A* se raasta dhoondho."
+    },
+    "answer": {
+     "event": "path-found",
+     "algo": "astar"
+    },
+    "explain": {
+     "en": "A* matches Dijkstra’s cost while expanding fewer cells.",
+     "hi": "A* डाइकस्ट्रा जितनी लागत पर कम कोठरियाँ खोलता है।",
+     "hinglish": "A* Dijkstra jitni cost par kam cells kholta hai."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "robo.pathfinding",
+  "ai.search"
+ ],
+ "sources": [
+  {
+   "title": "Hart, Nilsson, Raphael (1968) — A Formal Basis for the Heuristic Determination of Minimum Cost Paths, IEEE",
+   "url": "https://doi.org/10.1109/TSSC.1968.300136",
+   "licence": "fact reference"
+  },
+  {
+   "title": "ROS 2 documentation",
+   "url": "https://docs.ros.org/en/rolling/index.html",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Nav2 — ROS 2 Navigation",
+   "url": "https://docs.nav2.org/",
+   "licence": "fact reference"
+  }
+ ]
+}

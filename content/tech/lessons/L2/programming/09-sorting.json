@@ -1,0 +1,353 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.programming.09",
+ "level": 2,
+ "classes": [
+  8
+ ],
+ "unit": "programming",
+ "title": {
+  "en": "Sorting: putting things in order",
+  "hi": "छँटाई: चीज़ों को क्रम में लगाना",
+  "hinglish": "Sorting: cheezon ko order mein lagana"
+ },
+ "minutes": 12,
+ "xp": 45,
+ "prereq": [
+  "L2.programming.08"
+ ],
+ "topics": [
+  "prog.algo-sort",
+  "prog.complexity"
+ ],
+ "outcomes": [
+  {
+   "en": "Trace bubble sort pass by pass",
+   "hi": "बबल सॉर्ट को दौर-दर-दौर ट्रेस कर सकते हो",
+   "hinglish": "Bubble sort ko pass by pass trace kar sakte ho"
+  },
+  {
+   "en": "Explain why sorting makes searching faster",
+   "hi": "समझा सकते हो कि छँटाई से खोज तेज़ क्यों होती है",
+   "hinglish": "Samjha sakte ho sorting se searching fast kyun hoti hai"
+  },
+  {
+   "en": "Compare simple sorts with faster ones like merge sort",
+   "hi": "सरल सॉर्ट की तुलना मर्ज सॉर्ट जैसे तेज़ सॉर्ट से कर सकते हो",
+   "hinglish": "Simple sorts ko merge sort jaise fast sorts se compare kar sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Sorting",
+   "hinglish": "Order mein lagana",
+   "en": "Arranging items in order (smallest → largest, A → Z)",
+   "hi": "चीज़ों को क्रम में लगाना (छोटे → बड़े, A → Z)"
+  },
+  {
+   "term": "Swap",
+   "hinglish": "Do cheezon ki jagah badalna",
+   "en": "Exchanging the positions of two items",
+   "hi": "दो चीज़ों की जगह बदलना"
+  },
+  {
+   "term": "Pass",
+   "hinglish": "List pe ek poora chakkar",
+   "en": "One complete trip through the list",
+   "hi": "लिस्ट पर एक पूरा चक्कर"
+  },
+  {
+   "term": "Bubble sort",
+   "hinglish": "Bada number end tak tairta hai",
+   "en": "Repeatedly compare neighbours and swap if out of order",
+   "hi": "बार-बार पड़ोसियों की तुलना करो और क्रम ग़लत हो तो बदलो"
+  },
+  {
+   "term": "Merge sort",
+   "hinglish": "Todo, sort karo, jodo",
+   "en": "Split the list, sort the halves, merge them in order",
+   "hi": "लिस्ट तोड़ो, आधों को छाँटो, उन्हें क्रम में जोड़ो"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Bubble sort compares neighbours and swaps them if the left one is bigger.",
+    "hi": "बबल सॉर्ट पड़ोसियों की तुलना करता है और बायाँ बड़ा हो तो अदला-बदली।",
+    "hinglish": "Bubble sort padosiyon ko compare karta hai aur left wala bada ho to swap."
+   },
+   "visual": "lab:py-tracer#bubble",
+   "narration": {
+    "en": "Watch the bars: after each pass, the biggest remaining bar reaches the end.",
+    "hi": "बार देखो: हर दौर के बाद बचा हुआ सबसे बड़ा बार अंत तक पहुँचता है।",
+    "hinglish": "Bars dekho: har pass ke baad sabse badi bachi bar end tak pahunchti hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Python swaps two values in one line: a, b = b, a.",
+    "hi": "पायथन एक लाइन में दो मान बदलता है: a, b = b, a।",
+    "hinglish": "Python ek line mein do values swap karta hai: a, b = b, a."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "Without this trick you would need a temporary variable.",
+    "hi": "इस तरकीब के बिना एक अस्थायी वेरिएबल चाहिए होता।",
+    "hinglish": "Is trick ke bina ek temporary variable chahiye hota."
+   },
+   "code": "nums = [29, 10]\nnums[0], nums[1] = nums[1], nums[0]\nprint(nums)   # [10, 29]"
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Bubble sort is simple but slow: about n² comparisons. Merge sort splits and merges: about n × log₂ n.",
+    "hi": "बबल सॉर्ट सरल पर धीमा: लगभग n² तुलनाएँ। मर्ज सॉर्ट तोड़ता और जोड़ता है: लगभग n × log₂ n।",
+    "hinglish": "Bubble sort simple par slow: lagbhag n² comparisons. Merge sort todta aur jodta hai: lagbhag n × log₂ n."
+   },
+   "visual": "compare:1,000 items: bubble ≈ 5,00,000 comparisons|merge ≈ 10,000 comparisons",
+   "narration": {
+    "en": "Python’s built-in sorted() uses a very fast method called Timsort.",
+    "hi": "पायथन का बिल्ट-इन sorted() Timsort नाम की बहुत तेज़ विधि उपयोग करता है।",
+    "hinglish": "Python ka built-in sorted() Timsort naam ka bahut fast method use karta hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "py-tracer",
+  "config": {
+   "program": "bubble"
+  },
+  "goal": {
+   "en": "Step through bubble sort and predict which number is surely in its final place after the first pass.",
+   "hi": "बबल सॉर्ट कदम-दर-कदम चलाओ और अनुमान लगाओ पहले दौर के बाद कौन-सी संख्या पक्की अपनी जगह पर है।",
+   "hinglish": "Bubble sort step karo aur predict karo pehle pass ke baad kaunsa number pakka apni final jagah pe hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "How sorting algorithms compare",
+    "hi": "छँटाई एल्गोरिदम की तुलना",
+    "hinglish": "Sorting algorithms ka comparison"
+   },
+   "body": {
+    "en": "Bubble sort: in each pass, compare positions j and j+1 and swap if out of order. After pass 1 the largest item is last; after pass 2 the second largest is second-last, so each pass can be one step shorter. For n items it needs about n(n−1)/2 comparisons — 45 for 10 items but about 5 lakh for 1,000. Selection sort (pick the smallest, put it first) and insertion sort (like arranging playing cards in your hand) are similar. Merge sort splits the list in halves until single items remain, then merges sorted halves — about n × log₂ n comparisons, around 10,000 for 1,000 items. Real software uses built-in sorts (Python’s sorted() uses Timsort, a merge/insertion hybrid). Sorting is everywhere: exam rank lists, cheapest-first shopping, newest-first chats.",
+    "hi": "बबल सॉर्ट: हर दौर में स्थान j और j+1 की तुलना करो और क्रम ग़लत हो तो बदलो। पहले दौर के बाद सबसे बड़ी चीज़ आख़िर में; दूसरे के बाद दूसरी सबसे बड़ी उससे पहले, इसलिए हर दौर एक कदम छोटा हो सकता है। n चीज़ों के लिए लगभग n(n−1)/2 तुलनाएँ — 10 चीज़ों में 45 पर 1,000 में लगभग 5 लाख। सेलेक्शन सॉर्ट (सबसे छोटी चुनो, पहले रखो) और इंसर्शन सॉर्ट (हाथ के ताश सजाने जैसा) मिलते-जुलते हैं। मर्ज सॉर्ट लिस्ट को आधा-आधा तब तक तोड़ता है जब तक एक-एक चीज़ न बचे, फिर क्रमबद्ध आधों को जोड़ता है — लगभग n × log₂ n तुलनाएँ, 1,000 चीज़ों में लगभग 10,000। असली सॉफ़्टवेयर बिल्ट-इन सॉर्ट उपयोग करता है (पायथन का sorted() Timsort उपयोग करता है, मर्ज/इंसर्शन का मिश्रण)। छँटाई हर जगह है: परीक्षा रैंक सूची, सबसे सस्ता पहले, सबसे नई चैट पहले।",
+    "hinglish": "Bubble sort: har pass mein positions j aur j+1 compare karo aur order galat ho to swap. Pass 1 ke baad sabse bada item last mein; pass 2 ke baad doosra sabse bada usse pehle, isliye har pass ek step chhota ho sakta hai. n items ke liye lagbhag n(n−1)/2 comparisons — 10 items mein 45 par 1,000 mein lagbhag 5 lakh. Selection sort (sabse chhota chuno, pehle rakho) aur insertion sort (haath ke taash sajaane jaisa) milte-julte hain. Merge sort list ko aadha-aadha tab tak todta hai jab tak ek-ek item na bache, phir sorted halves ko jodta hai — lagbhag n × log₂ n comparisons, 1,000 items mein lagbhag 10,000. Real software built-in sorts use karta hai (Python ka sorted() Timsort use karta hai, merge/insertion ka mix). Sorting har jagah hai: exam rank lists, cheapest-first shopping, newest-first chats."
+   },
+   "analogy": {
+    "hinglish": "Bubble sort = assembly line mein height se khade hona: padosi se compare karo, lamba ho to jagah badlo, baar-baar.",
+    "en": "Bubble sort = lining up by height at assembly: compare with your neighbour, swap if you are taller, again and again.",
+    "hi": "बबल सॉर्ट = प्रार्थना सभा में ऊँचाई से खड़े होना: पड़ोसी से तुलना करो, लंबे हो तो जगह बदलो, बार-बार।"
+   },
+   "realExample": {
+    "en": "When JEE or board results publish rank lists of lakhs of students, servers sort them using fast n log n algorithms, not bubble sort.",
+    "hi": "जब JEE या बोर्ड परिणाम लाखों छात्रों की रैंक सूची जारी करते हैं, सर्वर उन्हें बबल सॉर्ट नहीं, तेज़ n log n एल्गोरिदम से छाँटते हैं।",
+    "hinglish": "Jab JEE ya board results lakhon students ki rank list publish karte hain, servers fast n log n algorithms se sort karte hain, bubble sort se nahi."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Take 8 playing cards (or number slips) and sort them using bubble sort. Count the swaps. Then try insertion sort and compare.",
+   "hi": "8 ताश के पत्ते (या संख्या पर्चियाँ) लो और बबल सॉर्ट से छाँटो। अदला-बदली गिनो। फिर इंसर्शन सॉर्ट आज़माकर तुलना करो।",
+   "hinglish": "8 taash ke patte (ya number parchiyan) lo aur bubble sort se sort karo. Swaps gino. Phir insertion sort try karo aur compare karo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "[5, 2, 4]: what does bubble sort do first?",
+     "hi": "[5, 2, 4]: बबल सॉर्ट पहले क्या करता है?",
+     "hinglish": "[5, 2, 4]: bubble sort pehle kya karta hai?"
+    },
+    "options": [
+     {
+      "en": "Swaps 5 and 4",
+      "hi": "5 और 4 बदलता है",
+      "hinglish": "5 aur 4 swap karta hai"
+     },
+     {
+      "en": "Compares 5 and 2 and swaps them",
+      "hi": "5 और 2 की तुलना करके बदलता है",
+      "hinglish": "5 aur 2 compare karke swap karta hai"
+     },
+     {
+      "en": "Moves 2 to the end",
+      "hi": "2 को अंत में ले जाता है",
+      "hinglish": "2 ko end mein le jaata hai"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "It compares 5 and 2; 5 > 2, so it swaps → [2, 5, 4].",
+     "hi": "5 और 2 की तुलना; 5 > 2, तो बदलो → [2, 5, 4]।",
+     "hinglish": "5 aur 2 compare; 5 > 2, to swap → [2, 5, 4]."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "short",
+    "prompt": {
+     "en": "After one full pass of bubble sort on [3, 1, 4, 2], which number is last?",
+     "hi": "[3, 1, 4, 2] पर बबल सॉर्ट के एक पूरे दौर के बाद आख़िर में कौन-सी संख्या है?",
+     "hinglish": "[3, 1, 4, 2] pe bubble sort ke ek poore pass ke baad last mein kaunsa number hai?"
+    },
+    "answer": [
+     "4"
+    ],
+    "explain": {
+     "en": "The biggest value bubbles to the end in the first pass: [1, 3, 2, 4].",
+     "hi": "सबसे बड़ा मान पहले दौर में अंत तक जाता है: [1, 3, 2, 4]।",
+     "hinglish": "Sabse badi value pehle pass mein end tak jaati hai: [1, 3, 2, 4]."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why does the inner loop use range(n - 1 - i)?",
+     "hi": "अंदर का लूप range(n - 1 - i) क्यों उपयोग करता है?",
+     "hinglish": "Inner loop range(n - 1 - i) kyun use karta hai?"
+    },
+    "options": [
+     {
+      "en": "The last i items are already sorted",
+      "hi": "आख़िरी i चीज़ें पहले से क्रम में हैं",
+      "hinglish": "Last i items pehle se sorted hain"
+     },
+     {
+      "en": "To avoid a syntax error",
+      "hi": "सिंटैक्स त्रुटि से बचने को",
+      "hinglish": "Syntax error se bachne ke liye"
+     },
+     {
+      "en": "Python needs it",
+      "hi": "पायथन को चाहिए",
+      "hinglish": "Python ko chahiye"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "After i passes, the last i items are already in place, so we skip them.",
+     "hi": "i दौर के बाद आख़िरी i चीज़ें पहले से सही जगह हैं, इसलिए छोड़ देते हैं।",
+     "hinglish": "i passes ke baad last i items pehle se sahi jagah hain, isliye skip."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which is fastest for sorting 10 lakh items?",
+     "hi": "10 लाख चीज़ें छाँटने के लिए सबसे तेज़ कौन?",
+     "hinglish": "10 lakh items sort karne ke liye sabse fast kaun?"
+    },
+    "options": [
+     {
+      "en": "Bubble sort",
+      "hi": "बबल सॉर्ट",
+      "hinglish": "Bubble sort"
+     },
+     {
+      "en": "Checking every possible order",
+      "hi": "हर संभव क्रम जाँचना",
+      "hinglish": "Har possible order check karna"
+     },
+     {
+      "en": "Merge sort",
+      "hi": "मर्ज सॉर्ट",
+      "hinglish": "Merge sort"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "Merge sort is about n log n; bubble sort is about n² — far slower on big data.",
+     "hi": "मर्ज सॉर्ट लगभग n log n; बबल सॉर्ट लगभग n² — बड़े डेटा पर बहुत धीमा।",
+     "hinglish": "Merge sort lagbhag n log n; bubble sort lagbhag n² — bade data pe bahut slow."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why do apps keep data sorted?",
+     "hi": "ऐप डेटा क्रम में क्यों रखते हैं?",
+     "hinglish": "Apps data sorted kyun rakhte hain?"
+    },
+    "options": [
+     {
+      "en": "It uses less storage",
+      "hi": "कम स्टोरेज लगता है",
+      "hinglish": "Kam storage lagta hai"
+     },
+     {
+      "en": "So searches can be fast (binary search)",
+      "hi": "ताकि खोज तेज़ हो (द्विआधारी)",
+      "hinglish": "Taaki search fast ho (binary search)"
+     },
+     {
+      "en": "It looks nicer",
+      "hi": "अच्छा दिखता है",
+      "hinglish": "Achha dikhta hai"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Sorted data allows binary search: one sort, then many fast searches.",
+     "hi": "क्रमबद्ध डेटा पर द्विआधारी खोज: एक बार छाँटो, फिर कई तेज़ खोजें।",
+     "hinglish": "Sorted data pe binary search: ek baar sort, phir kai fast searches."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "lc",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Answer the predict question for the Bubble sort program.",
+     "hi": "Bubble sort प्रोग्राम का अनुमान प्रश्न हल करो।",
+     "hinglish": "Bubble sort program ka predict sawaal solve karo."
+    },
+    "answer": {
+     "lab": "py-tracer",
+     "event": "mission:complete",
+     "program": "bubble"
+    },
+    "explain": {
+     "en": "37 reaches the end after the first pass.",
+     "hi": "पहले दौर के बाद 37 अंत में पहुँचता है।",
+     "hinglish": "Pehle pass ke baad 37 end mein pahunchta hai."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Python docs — Sorting HOW TO",
+   "url": "https://docs.python.org/3/howto/sorting.html",
+   "licence": "PSF licence (fact reference only)"
+  },
+  {
+   "title": "CS Unplugged — Sorting algorithms",
+   "url": "https://www.csunplugged.org/en/topics/sorting-algorithms/",
+   "licence": "CC BY-SA 4.0 (idea reference only)"
+  },
+  {
+   "title": "Khan Academy — Merge sort",
+   "url": "https://www.khanacademy.org/computing/computer-science/algorithms/merge-sort/a/overview-of-merge-sort",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

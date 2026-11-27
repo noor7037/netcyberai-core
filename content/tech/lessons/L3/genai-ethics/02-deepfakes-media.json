@@ -1,0 +1,336 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.genai-ethics.02",
+ "level": 3,
+ "classes": [
+  11,
+  12
+ ],
+ "unit": "genai-ethics",
+ "title": {
+  "en": "Deepfakes and media literacy",
+  "hi": "डीपफ़ेक और मीडिया साक्षरता",
+  "hinglish": "Deepfakes aur media literacy"
+ },
+ "minutes": 10,
+ "xp": 40,
+ "prereq": [
+  "L3.genai-ethics.01"
+ ],
+ "outcomes": [
+  {
+   "en": "Spot common signs of manipulated media and verify with sources",
+   "hinglish": "Manipulated media ke common signs pehchano aur sources se verify karo",
+   "hi": "हेरफेर किए मीडिया के आम संकेत पहचानना और स्रोतों से सत्यापित करना"
+  },
+  {
+   "en": "Explain content credentials and watermarking",
+   "hinglish": "Content credentials aur watermarking samjhao",
+   "hi": "सामग्री प्रमाण-पत्र और वॉटरमार्किंग समझाना"
+  },
+  {
+   "en": "Know Indian rules and where to report",
+   "hinglish": "Indian rules aur report kahan karein jaano",
+   "hi": "भारतीय नियम और रिपोर्ट करने की जगह जानना"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Deepfake",
+   "hinglish": "AI se banaya nakli video/audio jismein asli insaan dikhe",
+   "en": "Synthetic media that convincingly shows a real person saying or doing something they did not",
+   "hi": "कृत्रिम मीडिया जो किसी असली व्यक्ति को ऐसा कहते या करते दिखाता है जो उसने नहीं किया"
+  },
+  {
+   "term": "Content credentials (C2PA)",
+   "hinglish": "Photo/video ke saath uski \"janam-patri\"",
+   "en": "Signed metadata recording how media was created or edited",
+   "hi": "हस्ताक्षरित मेटाडेटा जो दर्ज करता है कि मीडिया कैसे बना या बदला गया"
+  },
+  {
+   "term": "Watermark",
+   "hinglish": "Chhupa nishaan jo batata hai AI ne banaya",
+   "en": "A hidden or visible signal marking AI-generated content",
+   "hi": "एआई-निर्मित सामग्री को चिह्नित करने वाला छिपा या दिखता संकेत"
+  },
+  {
+   "term": "Reverse image search",
+   "hinglish": "Photo se uska asli source dhoondhna",
+   "en": "Searching with an image to find where it appeared before",
+   "hi": "तस्वीर से खोजकर पता करना कि वह पहले कहाँ दिखी थी"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "A viral clip shows a cricketer endorsing a betting app. His lips are slightly out of sync, and the voice has no breaths.",
+    "hi": "एक वायरल क्लिप में एक क्रिकेटर सट्टेबाज़ी ऐप का प्रचार करता दिखता है। होंठ थोड़े बेमेल हैं, और आवाज़ में साँस नहीं।",
+    "hinglish": "Viral clip mein ek cricketer betting app endorse karta dikhta hai. Hothon ka sync thoda galat hai, aur awaaz mein saans nahi."
+   },
+   "visual": "anim:deepfake-clues",
+   "narration": {
+    "en": "A viral clip shows a cricketer endorsing a betting app. His lips are slightly out of sync, and the voice has no breaths.",
+    "hi": "एक वायरल क्लिप में एक क्रिकेटर सट्टेबाज़ी ऐप का प्रचार करता दिखता है। होंठ थोड़े बेमेल हैं, और आवाज़ में साँस नहीं।",
+    "hinglish": "Viral clip mein ek cricketer betting app endorse karta dikhta hai. Hothon ka sync thoda galat hai, aur awaaz mein saans nahi."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Check: who posted first, is it on the person's verified account or a major news site, does a reverse image search find an older original?",
+    "hi": "जाँचो: सबसे पहले किसने पोस्ट किया, क्या यह व्यक्ति के सत्यापित खाते या बड़ी समाचार साइट पर है, क्या रिवर्स इमेज सर्च पुराना असली ढूँढती है?",
+    "hinglish": "Check karo: sabse pehle kisne post kiya, kya yeh us insaan ke verified account ya badi news site par hai, kya reverse image search purana original dhoondhta hai?"
+   },
+   "visual": "anim:verify-chain",
+   "narration": {
+    "en": "Check: who posted first, is it on the person's verified account or a major news site, does a reverse image search find an older original?",
+    "hi": "जाँचो: सबसे पहले किसने पोस्ट किया, क्या यह व्यक्ति के सत्यापित खाते या बड़ी समाचार साइट पर है, क्या रिवर्स इमेज सर्च पुराना असली ढूँढती है?",
+    "hinglish": "Check karo: sabse pehle kisne post kiya, kya yeh us insaan ke verified account ya badi news site par hai, kya reverse image search purana original dhoondhta hai?"
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "If it is fake, do not share. Report it on the platform and at cybercrime.gov.in.",
+    "hi": "अगर नकली है, शेयर मत करो। प्लेटफ़ॉर्म पर और cybercrime.gov.in पर रिपोर्ट करो।",
+    "hinglish": "Agar nakli hai, share mat karo. Platform par aur cybercrime.gov.in par report karo."
+   },
+   "visual": "anim:report-flow",
+   "narration": {
+    "en": "If it is fake, do not share. Report it on the platform and at cybercrime.gov.in.",
+    "hi": "अगर नकली है, शेयर मत करो। प्लेटफ़ॉर्म पर और cybercrime.gov.in पर रिपोर्ट करो।",
+    "hinglish": "Agar nakli hai, share mat karo. Platform par aur cybercrime.gov.in par report karo."
+   }
+  }
+ ],
+ "play": {
+  "lab": "seq-flow",
+  "config": {
+   "scenario": "fact-check-flow"
+  },
+  "goal": {
+   "en": "Follow the fact-check flow for three viral posts. At each node choose the next check; the flow shows what a careful verifier would find.",
+   "hinglish": "Teen viral posts ke liye fact-check flow follow karo. Har node par agla check chuno; flow dikhata hai ek careful verifier kya paata.",
+   "hi": "तीन वायरल पोस्ट के लिए फ़ैक्ट-चेक प्रवाह का पालन करो। हर नोड पर अगली जाँच चुनो; प्रवाह दिखाता है कि सावधान जाँचकर्ता क्या पाता।"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Detecting and verifying",
+    "hi": "पहचानना और सत्यापित करना",
+    "hinglish": "Pehchanna aur verify karna"
+   },
+   "body": {
+    "en": "Visual clues can help but are getting weaker as models improve: mismatched lip-sync, odd blinking, warped jewellery or text, inconsistent lighting and shadows, extra or merged fingers, and audio without natural breaths. Process beats eyeballing. Ask: Who is the original source? Is it reported by multiple reliable outlets or the person's official account? What does a reverse image or keyframe search show? Is the emotional push (\"share before it is deleted!\") a manipulation signal? Professional fact-checkers in India (such as PIB Fact Check, BOOM, Alt News and Vishvas News) publish verifications. Detection software exists but is not reliable on its own.",
+    "hi": "दृश्य संकेत मदद कर सकते हैं पर मॉडल बेहतर होने से कमज़ोर हो रहे हैं: बेमेल होंठ, अजीब पलक झपकना, टेढ़े गहने या पाठ, असंगत रोशनी और छाया, अतिरिक्त या जुड़ी उँगलियाँ, और बिना स्वाभाविक साँस की आवाज़। आँख से देखने से बेहतर प्रक्रिया है। पूछो: मूल स्रोत कौन है? क्या कई भरोसेमंद माध्यमों या व्यक्ति के आधिकारिक खाते ने बताया? रिवर्स इमेज या कीफ़्रेम सर्च क्या दिखाती है? क्या भावनात्मक धक्का (\"मिटने से पहले शेयर करो!\") चालबाज़ी का संकेत है? भारत में पेशेवर तथ्य-जाँचकर्ता (जैसे पीआईबी फ़ैक्ट चेक, बूम, ऑल्ट न्यूज़ और विश्वास न्यूज़) सत्यापन प्रकाशित करते हैं। पहचान सॉफ़्टवेयर है पर अकेले भरोसेमंद नहीं।",
+    "hinglish": "Visual clues madad kar sakte hain par models behtar hone se kamzor ho rahe hain: galat lip-sync, ajeeb blinking, tedhe gehne ya text, inconsistent lighting aur shadows, extra ya jude ungliyan, aur bina natural saans ki awaaz. Aankh se dekhne se behtar process hai. Poochho: original source kaun hai? Kya kai reliable outlets ya us insaan ke official account ne bataya? Reverse image ya keyframe search kya dikhata hai? Kya emotional push (\"delete hone se pehle share karo!\") manipulation signal hai? India mein professional fact-checkers (jaise PIB Fact Check, BOOM, Alt News aur Vishvas News) verifications publish karte hain. Detection software hai par akele reliable nahi."
+   },
+   "analogy": {
+    "hinglish": "Jaise nakli note pehchanna: sirf rang dekhna kaafi nahi — watermark, security thread aur bank se confirm.",
+    "en": "Like spotting a fake note: looking at the colour is not enough — check the watermark, the security thread and confirm with the bank.",
+    "hi": "जैसे नक़ली नोट पहचानना: सिर्फ़ रंग देखना काफ़ी नहीं — वॉटरमार्क, सुरक्षा धागा और बैंक से पुष्टि।"
+   },
+   "realExample": {
+    "en": "In 2023 a deepfake video of actor Rashmika Mandanna went viral; the Government of India then issued advisories reminding platforms to remove deepfakes quickly under the IT Rules.",
+    "hinglish": "2023 mein actress Rashmika Mandanna ka deepfake video viral hua; phir Government of India ne advisories jaari ki jo platforms ko IT Rules ke under deepfakes jaldi hatane ki yaad dilati hain.",
+    "hi": "2023 में अभिनेत्री रश्मिका मंदाना का एक डीपफ़ेक वीडियो वायरल हुआ; इसके बाद भारत सरकार ने आईटी नियमों के तहत प्लेटफ़ॉर्मों को डीपफ़ेक जल्दी हटाने की याद दिलाने वाली सलाह जारी की।"
+   }
+  },
+  {
+   "heading": {
+    "en": "Labels, credentials and the law",
+    "hi": "लेबल, क्रेडेंशियल और कानून",
+    "hinglish": "Labels, credentials aur law"
+   },
+   "body": {
+    "en": "Technical defences: content credentials (the C2PA standard, backed by Adobe, Microsoft, Google, the BBC and camera makers) attach signed records of how a photo or video was made and edited; invisible watermarks such as Google DeepMind's SynthID mark AI-generated images, audio, video and text. Neither is universal yet, and metadata can be stripped, so missing credentials do not prove something is fake. Legal: under India's IT Act 2000 and IT Rules 2021, platforms must remove unlawful content such as impersonation and non-consensual intimate images when notified, and MeitY has pushed for clear labelling of synthetically generated content. Creating sexual or defamatory deepfakes of real people is a crime. Ethical rule: label your own AI-made media, and never make fakes of real people without their consent.",
+    "hi": "तकनीकी बचाव: कंटेंट क्रेडेंशियल (सी2पीए मानक, एडोब, माइक्रोसॉफ़्ट, गूगल, बीबीसी और कैमरा निर्माताओं का समर्थन) फ़ोटो या वीडियो कैसे बना और संपादित हुआ इसके हस्ताक्षरित रिकॉर्ड जोड़ते हैं; गूगल डीपमाइंड के सिंथआईडी जैसे अदृश्य वॉटरमार्क एआई-निर्मित तस्वीरें, ऑडियो, वीडियो और पाठ चिह्नित करते हैं। दोनों अभी सार्वभौमिक नहीं, और मेटाडेटा हटाया जा सकता है, इसलिए क्रेडेंशियल न होना नकली होने का सबूत नहीं। कानूनी: भारत के आईटी अधिनियम 2000 और आईटी नियम 2021 के तहत प्लेटफ़ॉर्म को सूचना मिलने पर प्रतिरूपण और बिना सहमति के अंतरंग चित्र जैसी गैरकानूनी सामग्री हटानी होती है, और मीटीवाई ने कृत्रिम रूप से बनी सामग्री पर साफ़ लेबल के लिए ज़ोर दिया है। असली लोगों के यौन या मानहानिकारक डीपफ़ेक बनाना अपराध है। नैतिक नियम: अपने एआई-निर्मित मीडिया पर लेबल लगाओ, और किसी असली व्यक्ति का नकली बिना सहमति कभी मत बनाओ।",
+    "hinglish": "Technical defences: content credentials (C2PA standard, Adobe, Microsoft, Google, BBC aur camera makers ka support) photo ya video kaise bana aur edit hua iske signed records jodte hain; Google DeepMind ke SynthID jaise invisible watermarks AI-generated images, audio, video aur text mark karte hain. Dono abhi universal nahi, aur metadata hataya ja sakta hai, isliye credentials na hona nakli hone ka saboot nahi. Legal: India ke IT Act 2000 aur IT Rules 2021 ke under platforms ko notice milne par impersonation aur bina consent intimate images jaisa unlawful content hatana hota hai, aur MeitY ne synthetic content par clear labelling ke liye zor diya hai. Asli logon ke sexual ya defamatory deepfakes banana crime hai. Ethical rule: apne AI-made media par label lagao, aur kisi asli insaan ka fake bina consent kabhi mat banao."
+   },
+   "analogy": {
+    "hinglish": "Content credentials ek parcel ki tracking history jaise hain: kahan bana, kisne khola, kisne badla — sab record mein.",
+    "en": "Content credentials are like a parcel's tracking history: where it was made, who opened it, who changed it — all on record.",
+    "hi": "सामग्री प्रमाण-पत्र पार्सल के ट्रैकिंग इतिहास जैसे हैं: कहाँ बना, किसने खोला, किसने बदला — सब रिकॉर्ड में।"
+   },
+   "realExample": {
+    "en": "YouTube and Instagram now ask creators to label realistic AI-generated or altered content, and show \"Made with AI\" style labels to viewers.",
+    "hinglish": "YouTube aur Instagram ab creators se realistic AI-generated ya altered content label karne ko kehte hain, aur viewers ko \"Made with AI\" jaise labels dikhate hain.",
+    "hi": "यूट्यूब और इंस्टाग्राम अब रचनाकारों से यथार्थवादी एआई-निर्मित या बदली सामग्री पर लेबल लगाने को कहते हैं, और दर्शकों को \"एआई से बना\" जैसे लेबल दिखाते हैं।"
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Pick a viral claim from this week. Run the 5-step check (source, other outlets, reverse search, date, emotional push) and write a 4-line verdict with links.",
+   "hinglish": "Is hafte ka ek viral claim chuno. 5-step check chalao (source, doosre outlets, reverse search, date, emotional push) aur links ke saath 4 line ka verdict likho.",
+   "hi": "इस सप्ताह का कोई वायरल दावा चुनो। 5-चरण जाँच चलाओ (स्रोत, अन्य समाचार, उल्टी तस्वीर खोज, तिथि, भावनात्मक दबाव) और लिंक के साथ 4 पंक्तियों का निर्णय लिखो।"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are strong verification steps? Choose all.",
+     "hi": "कौन-से मज़बूत सत्यापन कदम हैं? सभी चुनें।",
+     "hinglish": "Kaunse strong verification steps hain? Sab chuno."
+    },
+    "options": [
+     {
+      "en": "Find the original source",
+      "hinglish": "Original source dhoondho",
+      "hi": "मूल स्रोत ढूँढो"
+     },
+     {
+      "en": "Check reliable news or official accounts",
+      "hinglish": "Reliable news ya official accounts check karo",
+      "hi": "विश्वसनीय समाचार या आधिकारिक खाते जाँचो"
+     },
+     {
+      "en": "Reverse image search",
+      "hinglish": "Reverse image search",
+      "hi": "उल्टी तस्वीर खोज"
+     },
+     {
+      "en": "Count the likes",
+      "hinglish": "Likes gino",
+      "hi": "लाइक गिनो"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2
+    ],
+    "explain": {
+     "en": "Source, corroboration and reverse search are real checks. Popularity says nothing about truth.",
+     "hi": "स्रोत, पुष्टि और रिवर्स सर्च असली जाँच हैं। लोकप्रियता सच के बारे में कुछ नहीं बताती।",
+     "hinglish": "Source, corroboration aur reverse search asli checks hain. Popularity sach ke baare mein kuch nahi batati."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "A photo has no content credentials. This proves…",
+     "hi": "एक फ़ोटो में कंटेंट क्रेडेंशियल नहीं हैं। इससे क्या साबित होता है?",
+     "hinglish": "Photo mein content credentials nahi hain. Isse kya prove hota hai?"
+    },
+    "options": [
+     {
+      "en": "Nothing by itself; most media still has none and metadata can be stripped",
+      "hinglish": "Akele kuch nahi; zyaadatar media mein abhi nahi hote aur metadata hata sakte hain",
+      "hi": "अपने आप में कुछ नहीं; ज़्यादातर मीडिया में यह अभी नहीं होता और मेटाडेटा हटाया जा सकता है"
+     },
+     {
+      "en": "It is a deepfake",
+      "hinglish": "Yeh deepfake hai",
+      "hi": "यह डीपफ़ेक है"
+     },
+     {
+      "en": "It is real",
+      "hinglish": "Yeh asli hai",
+      "hi": "यह असली है"
+     },
+     {
+      "en": "It is illegal",
+      "hinglish": "Yeh illegal hai",
+      "hi": "यह ग़ैरक़ानूनी है"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Credentials help when present; their absence is not evidence either way.",
+     "hi": "क्रेडेंशियल मौजूद हों तो मदद करते हैं; न हों तो किसी ओर का सबूत नहीं।",
+     "hinglish": "Credentials hon to madad karte hain; na hon to kisi taraf ka saboot nahi."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which Indian helpline number is for reporting cyber financial fraud?",
+     "hi": "साइबर वित्तीय धोखाधड़ी की रिपोर्ट के लिए कौन-सा भारतीय हेल्पलाइन नंबर है?",
+     "hinglish": "Cyber financial fraud report karne ka Indian helpline number kaunsa hai?"
+    },
+    "options": [
+     {
+      "en": "1930",
+      "hinglish": "1930",
+      "hi": "1930"
+     },
+     {
+      "en": "100",
+      "hinglish": "100",
+      "hi": "100"
+     },
+     {
+      "en": "108",
+      "hinglish": "108",
+      "hi": "108"
+     },
+     {
+      "en": "1098",
+      "hinglish": "1098",
+      "hi": "1098"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "1930 is the national cyber-fraud helpline run with I4C; report online at cybercrime.gov.in. (100/112 is police, 108 ambulance, 1098 Childline.)",
+     "hi": "1930 आई4सी के साथ चलने वाली राष्ट्रीय साइबर-धोखाधड़ी हेल्पलाइन है; ऑनलाइन cybercrime.gov.in पर। (100/112 पुलिस, 108 एम्बुलेंस, 1098 चाइल्डलाइन।)",
+     "hinglish": "1930 I4C ke saath chalne wali national cyber-fraud helpline hai; online cybercrime.gov.in par. (100/112 police, 108 ambulance, 1098 Childline.)"
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Finish the fact-check flow for all three posts.",
+     "hi": "तीनों पोस्ट के लिए फ़ैक्ट-चेक प्रवाह पूरा करें।",
+     "hinglish": "Teeno posts ke liye fact-check flow poora karo."
+    },
+    "answer": {
+     "event": "scenario-complete",
+     "scenario": "fact-check-flow"
+    },
+    "explain": {
+     "en": "Two posts were manipulated (an old flood photo re-dated, and a cloned-voice clip); one was genuine and confirmed by the official account.",
+     "hi": "दो पोस्ट में हेरफेर था (पुरानी बाढ़ की फ़ोटो नई तारीख से, और क्लोन-आवाज़ क्लिप); एक असली थी और आधिकारिक खाते से पुष्ट।",
+     "hinglish": "Do posts manipulated the (purani baadh ki photo nayi date se, aur cloned-voice clip); ek asli thi aur official account se confirm."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "cyber.deepfakes",
+  "cit.fake-news"
+ ],
+ "sources": [
+  {
+   "title": "C2PA — Coalition for Content Provenance and Authenticity",
+   "url": "https://c2pa.org/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Google DeepMind — SynthID",
+   "url": "https://deepmind.google/technologies/synthid/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "PIB Fact Check",
+   "url": "https://factcheck.pib.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Information Technology Rules, 2021 (MeitY)",
+   "url": "https://www.meity.gov.in/",
+   "licence": "fact reference"
+  }
+ ]
+}

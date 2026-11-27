@@ -1,0 +1,394 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.electronics-maker.04",
+ "level": 2,
+ "classes": [
+  7,
+  8
+ ],
+ "unit": "electronics-maker",
+ "title": {
+  "en": "Sensors are electronics",
+  "hi": "सेंसर भी इलेक्ट्रॉनिक्स हैं",
+  "hinglish": "Sensors bhi electronics hain"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [
+  "L2.electronics-maker.03"
+ ],
+ "topics": [
+  "elec.sensors",
+  "robo.sensors-motors"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain how a sensor turns the real world into an electrical signal",
+   "hi": "समझा सकते हो कि सेंसर असली दुनिया को विद्युत संकेत में कैसे बदलता है",
+   "hinglish": "Samjha sakte ho ki sensor real duniya ko electrical signal mein kaise badalta hai"
+  },
+  {
+   "en": "Name common sensors: light, temperature, distance, motion",
+   "hi": "आम सेंसर बता सकते हो: प्रकाश, तापमान, दूरी, गति",
+   "hinglish": "Common sensors bata sakte ho: light, temperature, distance, motion"
+  },
+  {
+   "en": "Use a threshold to turn a reading into a decision",
+   "hi": "सीमा (थ्रेशोल्ड) से रीडिंग को निर्णय में बदल सकते हो",
+   "hinglish": "Threshold se reading ko decision mein badal sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Sensor",
+   "hinglish": "Duniya ko measure karne wala part",
+   "en": "A part that measures something in the world and turns it into a signal",
+   "hi": "भाग जो दुनिया की किसी चीज़ को मापकर संकेत में बदलता है"
+  },
+  {
+   "term": "LDR",
+   "hinglish": "Light Dependent Resistor",
+   "en": "Light-dependent resistor: its resistance drops in bright light",
+   "hi": "प्रकाश-निर्भर प्रतिरोधक: तेज़ रोशनी में उसका प्रतिरोध घटता है"
+  },
+  {
+   "term": "Thermistor",
+   "hinglish": "Taapmaan se badalne wala resistor",
+   "en": "A resistor whose resistance changes with temperature",
+   "hi": "प्रतिरोधक जिसका प्रतिरोध तापमान से बदलता है"
+  },
+  {
+   "term": "Ultrasonic sensor",
+   "hinglish": "Echo se doori naapta hai",
+   "en": "Measures distance by timing an echo of sound too high to hear",
+   "hi": "न सुनाई देने वाली ऊँची ध्वनि की गूँज का समय मापकर दूरी मापता है"
+  },
+  {
+   "term": "Threshold",
+   "hinglish": "Seema jahan decision badalta hai",
+   "en": "The value where a decision flips, e.g. “closer than 20 cm”",
+   "hi": "वह मान जहाँ निर्णय पलटता है, जैसे “20 cm से पास”"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "A sensor changes something physical — light, heat, distance — into a voltage the microcontroller can read.",
+    "hi": "सेंसर किसी भौतिक चीज़ — प्रकाश, ऊष्मा, दूरी — को ऐसे वोल्टेज में बदलता है जिसे माइक्रोकंट्रोलर पढ़ सके।",
+    "hinglish": "Sensor kisi physical cheez — light, heat, distance — ko aise voltage mein badalta hai jo microcontroller padh sake."
+   },
+   "visual": "compare:☀️ LDR: brighter → less resistance|🌡️ Thermistor: hotter → less resistance (NTC)|🦇 Ultrasonic: echo time → distance",
+   "narration": {
+    "en": "Inside, many sensors are just resistors that change with the world.",
+    "hi": "अंदर से कई सेंसर बस प्रतिरोधक हैं जो दुनिया के साथ बदलते हैं।",
+    "hinglish": "Andar se kai sensors bas resistors hain jo duniya ke saath badalte hain."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "An ultrasonic sensor sends a 40 kHz ping and times the echo. Sound travels about 343 m/s, so distance = time × 343 ÷ 2.",
+    "hi": "अल्ट्रासोनिक सेंसर 40 kHz की ध्वनि भेजकर गूँज का समय मापता है। ध्वनि लगभग 343 m/s चलती है, इसलिए दूरी = समय × 343 ÷ 2।",
+    "hinglish": "Ultrasonic sensor 40 kHz ping bhejkar echo ka time naapta hai. Sound lagbhag 343 m/s chalti hai, isliye distance = time × 343 ÷ 2."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "Divide by 2 because the sound goes there and back.",
+    "hi": "2 से भाग क्योंकि ध्वनि जाती है और वापस आती है।",
+    "hinglish": "2 se bhaag kyunki sound jaata hai aur wapas aata hai."
+   },
+   "code": "echo time = 0.00117 s\ndistance  = 0.00117 × 343 ÷ 2\n          ≈ 0.20 m = 20 cm"
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "A reading becomes a decision with a threshold: if distance < 20 cm, beep. Build it on the virtual micro:bit.",
+    "hi": "सीमा से रीडिंग निर्णय बनती है: अगर दूरी < 20 cm, बीप। आभासी micro:bit पर बनाओ।",
+    "hinglish": "Threshold se reading decision banti hai: agar distance < 20 cm, beep. Virtual micro:bit pe banao."
+   },
+   "visual": "lab:microbit-sim",
+   "narration": {
+    "en": "Test both sides of the threshold: near AND far.",
+    "hi": "सीमा के दोनों ओर जाँचो: पास और दूर।",
+    "hinglish": "Threshold ke dono taraf test karo: paas AUR door."
+   }
+  }
+ ],
+ "play": {
+  "lab": "microbit-sim",
+  "config": {
+   "mission": "parking",
+   "preset": "empty"
+  },
+  "goal": {
+   "en": "Build a parking sensor: closer than 20 cm → LED on and beep; farther → LED off and silent. Test both.",
+   "hi": "पार्किंग सेंसर बनाओ: 20 cm से पास → LED चालू और बीप; दूर → LED बंद और शांत। दोनों जाँचो।",
+   "hinglish": "Parking sensor banao: 20 cm se paas → LED on aur beep; door → LED off aur chup. Dono test karo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Sensors all around you",
+    "hi": "आपके चारों ओर सेंसर",
+    "hinglish": "Aapke chaaron taraf sensors"
+   },
+   "body": {
+    "en": "An LDR is made of a material whose resistance falls when light shines on it — from about a million ohms in the dark to a few hundred ohms in bright light. An NTC thermistor’s resistance falls as it warms up. Put either one in a voltage divider with a fixed resistor and the voltage between them rises and falls with light or heat; the microcontroller’s analog-to-digital converter turns that voltage into a number. The BBC micro:bit even uses its own LED grid as a light sensor and reports light level from 0 to 255, and reads temperature from a sensor on its processor. An HC-SR04 ultrasonic module measures roughly 2 cm to 4 m. Your phone holds many sensors: an accelerometer (rotates the screen), a proximity sensor (turns the screen off near your ear), an ambient light sensor (auto-brightness), GPS and a fingerprint sensor.",
+    "hi": "LDR ऐसे पदार्थ का बना है जिसका प्रतिरोध प्रकाश पड़ने पर घटता है — अंधेरे में लगभग दस लाख ओम से तेज़ रोशनी में कुछ सौ ओम तक। NTC थर्मिस्टर का प्रतिरोध गरम होने पर घटता है। किसी को भी एक स्थिर प्रतिरोधक के साथ वोल्टेज विभाजक में लगाओ तो उनके बीच का वोल्टेज प्रकाश या ऊष्मा के साथ बढ़ता-घटता है; माइक्रोकंट्रोलर का एनालॉग-से-डिजिटल कनवर्टर उस वोल्टेज को संख्या में बदलता है। BBC micro:bit तो अपनी LED ग्रिड को ही प्रकाश सेंसर की तरह उपयोग करता है और प्रकाश स्तर 0 से 255 तक बताता है, और तापमान अपने प्रोसेसर के सेंसर से पढ़ता है। HC-SR04 अल्ट्रासोनिक मॉड्यूल लगभग 2 cm से 4 m तक मापता है। आपके फ़ोन में कई सेंसर हैं: एक्सेलेरोमीटर (स्क्रीन घुमाता है), प्रॉक्सिमिटी सेंसर (कान के पास स्क्रीन बंद करता है), परिवेश प्रकाश सेंसर (ऑटो-ब्राइटनेस), GPS और फ़िंगरप्रिंट सेंसर।",
+    "hinglish": "LDR aise material ka bana hai jiska resistance light padne pe ghatta hai — andhere mein lagbhag das lakh ohm se tez roshni mein kuch sau ohm tak. NTC thermistor ka resistance garam hone pe ghatta hai. Kisi ko bhi ek fixed resistor ke saath voltage divider mein lagao to unke beech ka voltage light ya heat ke saath badhta-ghatta hai; microcontroller ka analog-to-digital converter us voltage ko number mein badalta hai. BBC micro:bit to apni LED grid ko hi light sensor ki tarah use karta hai aur light level 0 se 255 tak batata hai, aur temperature apne processor ke sensor se padhta hai. HC-SR04 ultrasonic module lagbhag 2 cm se 4 m tak naapta hai. Aapke phone mein kai sensors hain: accelerometer (screen ghumata hai), proximity sensor (kaan ke paas screen band karta hai), ambient light sensor (auto-brightness), GPS aur fingerprint sensor."
+   },
+   "analogy": {
+    "en": "A sensor = a machine’s senses: the LDR is its eye, the thermistor its skin, the microphone its ear. The microcontroller = the brain that decides.",
+    "hi": "सेंसर = मशीन की इंद्रियाँ: LDR आँख, थर्मिस्टर त्वचा, माइक्रोफ़ोन कान। माइक्रोकंट्रोलर = दिमाग़ जो निर्णय लेता है।",
+    "hinglish": "Sensor = machine ki indriyaan: LDR aankh, thermistor tvacha, microphone kaan. Microcontroller = dimaag jo decide karta hai."
+   },
+   "realExample": {
+    "en": "Street lights in many Indian cities switch on automatically at dusk using a light sensor and a threshold, saving electricity.",
+    "hi": "कई भारतीय शहरों की स्ट्रीट लाइटें प्रकाश सेंसर और सीमा से शाम को अपने-आप जलती हैं, बिजली बचाती हैं।",
+    "hinglish": "Kai Indian shehron ki street lights light sensor aur threshold se shaam ko apne aap jalti hain, bijli bachati hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "List 6 sensors in your home or phone. For each, write what it measures and what decision it helps make.",
+   "hi": "घर या फ़ोन में 6 सेंसर की सूची बनाओ। हर एक के लिए लिखो वह क्या मापता है और कौन-सा निर्णय लेने में मदद करता है।",
+   "hinglish": "Ghar ya phone mein 6 sensors ki list banao. Har ek ke liye likho woh kya naapta hai aur kaunsa decision lene mein madad karta hai."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "In bright light, an LDR’s resistance…",
+     "hi": "तेज़ रोशनी में LDR का प्रतिरोध…",
+     "hinglish": "Tez roshni mein LDR ka resistance…"
+    },
+    "options": [
+     {
+      "en": "goes up",
+      "hi": "बढ़ता है",
+      "hinglish": "badhta hai"
+     },
+     {
+      "en": "goes down",
+      "hi": "घटता है",
+      "hinglish": "ghatta hai"
+     },
+     {
+      "en": "does not change",
+      "hi": "नहीं बदलता",
+      "hinglish": "nahi badalta"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "More light → lower resistance.",
+     "hi": "ज़्यादा रोशनी → कम प्रतिरोध।",
+     "hinglish": "Zyada roshni → kam resistance."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "match",
+    "prompt": {
+     "en": "Match each sensor to what it measures.",
+     "hi": "हर सेंसर को उसकी माप से मिलाओ।",
+     "hinglish": "Har sensor ko uske measurement se milao."
+    },
+    "options": {
+     "left": [
+      "LDR",
+      {
+       "en": "Thermistor",
+       "hi": "थर्मिस्टर",
+       "hinglish": "Thermistor"
+      },
+      {
+       "en": "Ultrasonic",
+       "hi": "अल्ट्रासोनिक",
+       "hinglish": "Ultrasonic"
+      }
+     ],
+     "right": [
+      {
+       "en": "Temperature",
+       "hi": "तापमान",
+       "hinglish": "Temperature"
+      },
+      {
+       "en": "Distance",
+       "hi": "दूरी",
+       "hinglish": "Distance"
+      },
+      {
+       "en": "Light",
+       "hi": "प्रकाश",
+       "hinglish": "Light"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      2
+     ],
+     [
+      1,
+      0
+     ],
+     [
+      2,
+      1
+     ]
+    ],
+    "explain": {
+     "en": "LDR → light, thermistor → temperature, ultrasonic → distance.",
+     "hi": "LDR → प्रकाश, थर्मिस्टर → तापमान, अल्ट्रासोनिक → दूरी।",
+     "hinglish": "LDR → light, thermistor → temperature, ultrasonic → distance."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why does the ultrasonic formula divide by 2?",
+     "hi": "अल्ट्रासोनिक सूत्र में 2 से भाग क्यों?",
+     "hinglish": "Ultrasonic formula mein 2 se bhaag kyun?"
+    },
+    "options": [
+     {
+      "en": "Sound goes there and back",
+      "hi": "ध्वनि जाती और लौटती है",
+      "hinglish": "Sound jaati aur lautti hai"
+     },
+     {
+      "en": "There are two sensors",
+      "hi": "दो सेंसर हैं",
+      "hinglish": "Do sensors hain"
+     },
+     {
+      "en": "To convert cm to m",
+      "hi": "cm को m में बदलने के लिए",
+      "hinglish": "cm ko m mein badalne ke liye"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "The echo time covers the trip to the object and back.",
+     "hi": "गूँज का समय वस्तु तक जाने और लौटने का है।",
+     "hinglish": "Echo time object tak jaane aur lautne ka hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "multi",
+    "prompt": {
+     "en": "Which of these are sensors in a typical phone? Choose all.",
+     "hi": "सामान्य फ़ोन में इनमें से कौन-से सेंसर हैं? सभी चुनो।",
+     "hinglish": "Typical phone mein inmein se kaunse sensors hain? Saare chuno."
+    },
+    "options": [
+     {
+      "en": "Accelerometer",
+      "hi": "एक्सेलेरोमीटर",
+      "hinglish": "Accelerometer"
+     },
+     {
+      "en": "Proximity sensor",
+      "hi": "प्रॉक्सिमिटी सेंसर",
+      "hinglish": "Proximity sensor"
+     },
+     {
+      "en": "Speaker",
+      "hi": "स्पीकर",
+      "hinglish": "Speaker"
+     },
+     {
+      "en": "Ambient light sensor",
+      "hi": "परिवेश प्रकाश सेंसर",
+      "hinglish": "Ambient light sensor"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     3
+    ],
+    "explain": {
+     "en": "Accelerometer, proximity and ambient light are sensors. A speaker is an output, not a sensor.",
+     "hi": "एक्सेलेरोमीटर, प्रॉक्सिमिटी और परिवेश प्रकाश सेंसर हैं। स्पीकर आउटपुट है, सेंसर नहीं।",
+     "hinglish": "Accelerometer, proximity aur ambient light sensors hain. Speaker output hai, sensor nahi."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "short",
+    "prompt": {
+     "en": "A parking sensor should beep when the car is closer than how many cm in the lab?",
+     "hi": "लैब में पार्किंग सेंसर गाड़ी कितने cm से पास होने पर बीप करे?",
+     "hinglish": "Lab mein parking sensor car kitne cm se paas hone pe beep kare?"
+    },
+    "answer": [
+     "20",
+     "20 cm",
+     "20cm"
+    ],
+    "explain": {
+     "en": "The mission threshold is 20 cm.",
+     "hi": "मिशन की सीमा 20 cm है।",
+     "hinglish": "Mission threshold 20 cm hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the parking sensor mission on the virtual micro:bit.",
+     "hi": "आभासी micro:bit पर पार्किंग सेंसर मिशन पूरा करो।",
+     "hinglish": "Virtual micro:bit pe parking sensor mission poora karo."
+    },
+    "answer": {
+     "lab": "microbit-sim",
+     "event": "mission:complete",
+     "mission": "parking"
+    },
+    "explain": {
+     "en": "THEN: LED on + beep. ELSE: LED off. Threshold 20.",
+     "hi": "THEN: LED चालू + बीप। ELSE: LED बंद। सीमा 20।",
+     "hinglish": "THEN: LED on + beep. ELSE: LED off. Threshold 20."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "micro:bit — Features overview (Micro:bit Educational Foundation)",
+   "url": "https://microbit.org/get-started/features/overview/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "MakeCode for micro:bit — light level reference",
+   "url": "https://makecode.microbit.org/reference/input/light-level",
+   "licence": "fact reference"
+  },
+  {
+   "title": "SparkFun Learn — Photocell (LDR) hookup guide",
+   "url": "https://learn.sparkfun.com/tutorials/photocell-hookup-guide",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

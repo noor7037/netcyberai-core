@@ -1,0 +1,379 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.security-engineering.04",
+ "level": 3,
+ "classes": [
+  10,
+  11,
+  12
+ ],
+ "unit": "security-engineering",
+ "title": {
+  "en": "Public-key encryption",
+  "hi": "सार्वजनिक-कुंजी एन्क्रिप्शन",
+  "hinglish": "Public-key encryption"
+ },
+ "minutes": 16,
+ "xp": 70,
+ "prereq": [
+  "L3.security-engineering.03"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain public and private key pairs and what each is used for",
+   "hi": "सार्वजनिक और निजी कुंजी-जोड़ी और हर एक का उपयोग समझाओ",
+   "hinglish": "Public aur private key pairs aur har ek ka use samjhao"
+  },
+  {
+   "en": "Work through Diffie–Hellman and toy RSA with small numbers",
+   "hi": "छोटी संख्याओं से डिफ़ी–हेलमैन और खिलौना RSA हल करो",
+   "hinglish": "Chhote numbers se Diffie–Hellman aur toy RSA solve karo"
+  },
+  {
+   "en": "Describe digital signatures and the move to post-quantum cryptography",
+   "hi": "डिजिटल हस्ताक्षर और पोस्ट-क्वांटम क्रिप्टोग्राफ़ी की ओर बदलाव बताओ",
+   "hinglish": "Digital signatures aur post-quantum cryptography ki taraf badlav batao"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Public key",
+   "hinglish": "Sabko di ja sakne wali chaabi",
+   "en": "Key you can share with everyone; used to encrypt to you or verify your signature",
+   "hi": "सबसे बाँटी जा सकने वाली कुंजी; आपको एन्क्रिप्ट करने या आपका हस्ताक्षर जाँचने के लिए"
+  },
+  {
+   "term": "Private key",
+   "hinglish": "Sirf tumhari chaabi",
+   "en": "Key only you hold; used to decrypt or to sign",
+   "hi": "सिर्फ़ आपके पास कुंजी; डिक्रिप्ट या हस्ताक्षर के लिए"
+  },
+  {
+   "term": "Key exchange",
+   "hinglish": "Khule mein shared secret banana",
+   "en": "Agreeing a shared secret over a public channel (Diffie–Hellman)",
+   "hi": "सार्वजनिक चैनल पर साझा राज़ तय करना (डिफ़ी–हेलमैन)"
+  },
+  {
+   "term": "Digital signature",
+   "hinglish": "Digital dastakhat",
+   "en": "Proof that a message came from the private-key holder and was not changed",
+   "hi": "प्रमाण कि संदेश निजी-कुंजी धारक से आया और बदला नहीं गया"
+  },
+  {
+   "term": "Post-quantum",
+   "hinglish": "Quantum computer se bhi surakshit",
+   "en": "Algorithms designed to resist future quantum computers (ML-KEM, ML-DSA)",
+   "hi": "भविष्य के क्वांटम कंप्यूटरों से बचने के लिए बने एल्गोरिदम (ML-KEM, ML-DSA)"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "A padlock anyone can snap shut, but only you have the key to open: that is a public key (padlock) and private key (key).",
+    "hi": "ऐसा ताला जिसे कोई भी बंद कर सके, पर खोलने की चाबी सिर्फ़ आपके पास: यही सार्वजनिक कुंजी (ताला) और निजी कुंजी (चाबी) है।",
+    "hinglish": "Aisa taala jise koi bhi band kar sake, par kholne ki chaabi sirf tumhare paas: yahi public key (taala) aur private key (chaabi) hai."
+   },
+   "visual": "anim:padlock-pair",
+   "narration": {
+    "en": "A padlock anyone can snap shut, but only you have the key to open: that is a public key (padlock) and private key (key).",
+    "hi": "ऐसा ताला जिसे कोई भी बंद कर सके, पर खोलने की चाबी सिर्फ़ आपके पास: यही सार्वजनिक कुंजी (ताला) और निजी कुंजी (चाबी) है।",
+    "hinglish": "Aisa taala jise koi bhi band kar sake, par kholne ki chaabi sirf tumhare paas: yahi public key (taala) aur private key (chaabi) hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Diffie–Hellman (1976): Asha and Ravi mix a public colour with their own secret colour, swap the mixes, and each ends up with the same final colour — never sent.",
+    "hi": "डिफ़ी–हेलमैन (1976): आशा और रवि एक सार्वजनिक रंग में अपना गुप्त रंग मिलाते हैं, मिश्रण बदलते हैं, और दोनों को एक ही अंतिम रंग मिलता है — जो कभी भेजा नहीं गया।",
+    "hinglish": "Diffie–Hellman (1976): Asha aur Ravi ek public colour mein apna secret colour milate hain, mixes swap karte hain, aur dono ko same final colour milta hai — jo kabhi bheja nahi gaya."
+   },
+   "visual": "anim:dh-paint",
+   "narration": {
+    "en": "Diffie–Hellman (1976): Asha and Ravi mix a public colour with their own secret colour, swap the mixes, and each ends up with the same final colour — never sent.",
+    "hi": "डिफ़ी–हेलमैन (1976): आशा और रवि एक सार्वजनिक रंग में अपना गुप्त रंग मिलाते हैं, मिश्रण बदलते हैं, और दोनों को एक ही अंतिम रंग मिलता है — जो कभी भेजा नहीं गया।",
+    "hinglish": "Diffie–Hellman (1976): Asha aur Ravi ek public colour mein apna secret colour milate hain, mixes swap karte hain, aur dono ko same final colour milta hai — jo kabhi bheja nahi gaya."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "RSA (1977): n = p × q is public, but finding p and q from a 2048-bit n is practically impossible today. That one-way gap is the security.",
+    "hi": "RSA (1977): n = p × q सार्वजनिक है, पर 2048-बिट n से p और q निकालना आज व्यावहारिक रूप से असंभव है। यही एकतरफ़ा अंतर सुरक्षा है।",
+    "hinglish": "RSA (1977): n = p × q public hai, par 2048-bit n se p aur q nikaalna aaj practically namumkin hai. Yahi one-way gap security hai."
+   },
+   "visual": "anim:rsa-factor",
+   "narration": {
+    "en": "RSA (1977): n = p × q is public, but finding p and q from a 2048-bit n is practically impossible today. That one-way gap is the security.",
+    "hi": "RSA (1977): n = p × q सार्वजनिक है, पर 2048-बिट n से p और q निकालना आज व्यावहारिक रूप से असंभव है। यही एकतरफ़ा अंतर सुरक्षा है।",
+    "hinglish": "RSA (1977): n = p × q public hai, par 2048-bit n se p aur q nikaalna aaj practically namumkin hai. Yahi one-way gap security hai."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Sign with your private key, anyone verifies with your public key. Change one byte and verification fails.",
+    "hi": "निजी कुंजी से हस्ताक्षर करो, कोई भी सार्वजनिक कुंजी से जाँचे। एक बाइट बदलो तो जाँच विफल।",
+    "hinglish": "Private key se sign karo, koi bhi public key se verify kare. Ek byte badlo to verification fail."
+   },
+   "visual": "anim:sign-verify",
+   "narration": {
+    "en": "Sign with your private key, anyone verifies with your public key. Change one byte and verification fails.",
+    "hi": "निजी कुंजी से हस्ताक्षर करो, कोई भी सार्वजनिक कुंजी से जाँचे। एक बाइट बदलो तो जाँच विफल।",
+    "hinglish": "Private key se sign karo, koi bhi public key se verify kare. Ek byte badlo to verification fail."
+   }
+  }
+ ],
+ "play": {
+  "lab": "crypto-lab",
+  "config": {
+   "mode": "dh"
+  },
+  "goal": {
+   "en": "Run Diffie–Hellman with p = 23, g = 5 and see both sides reach the same shared key. Then switch to RSA, encrypt m = 65 and decrypt it back.",
+   "hi": "p = 23, g = 5 के साथ डिफ़ी–हेलमैन चलाओ और देखो दोनों तरफ़ एक ही साझा कुंजी आती है। फिर RSA पर जाओ, m = 65 एन्क्रिप्ट करो और वापस डिक्रिप्ट करो।",
+   "hinglish": "p = 23, g = 5 ke saath Diffie–Hellman chalao aur dekho dono taraf same shared key aati hai. Phir RSA par jao, m = 65 encrypt karo aur wapas decrypt karo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "The maths, small enough to check",
+    "hi": "गणित, जाँचने लायक़ छोटा",
+    "hinglish": "Maths, check karne layak chhota"
+   },
+   "body": {
+    "en": "DH: public p = 23, g = 5. Asha picks a = 6 and sends A = 5^6 mod 23 = 8. Ravi picks b = 15 and sends B = 5^15 mod 23 = 19. Asha computes 19^6 mod 23 = 2; Ravi computes 8^15 mod 23 = 2. Shared key 2 was never on the wire. RSA: p = 61, q = 53, n = 3233, φ = 3120, e = 17, d = 2753 (because 17 × 2753 mod 3120 = 1). Encrypt m = 65: c = 65^17 mod 3233 = 2790. Decrypt: 2790^2753 mod 3233 = 65. Real systems use 2048-bit+ RSA or elliptic curves (X25519), with careful padding.",
+    "hi": "DH: सार्वजनिक p = 23, g = 5। आशा a = 6 चुनती है और A = 5^6 mod 23 = 8 भेजती है। रवि b = 15 चुनता है और B = 5^15 mod 23 = 19 भेजता है। आशा 19^6 mod 23 = 2 निकालती है; रवि 8^15 mod 23 = 2। साझा कुंजी 2 कभी तार पर नहीं गई। RSA: p = 61, q = 53, n = 3233, φ = 3120, e = 17, d = 2753 (क्योंकि 17 × 2753 mod 3120 = 1)। m = 65 एन्क्रिप्ट: c = 65^17 mod 3233 = 2790। डिक्रिप्ट: 2790^2753 mod 3233 = 65। असली प्रणालियाँ 2048-बिट+ RSA या दीर्घवृत्तीय वक्र (X25519) सावधान पैडिंग के साथ इस्तेमाल करती हैं।",
+    "hinglish": "DH: public p = 23, g = 5. Asha a = 6 chunti hai aur A = 5^6 mod 23 = 8 bhejti hai. Ravi b = 15 chunta hai aur B = 5^15 mod 23 = 19 bhejta hai. Asha 19^6 mod 23 = 2 nikaalti hai; Ravi 8^15 mod 23 = 2. Shared key 2 kabhi wire par nahi gayi. RSA: p = 61, q = 53, n = 3233, φ = 3120, e = 17, d = 2753 (kyunki 17 × 2753 mod 3120 = 1). m = 65 encrypt: c = 65^17 mod 3233 = 2790. Decrypt: 2790^2753 mod 3233 = 65. Asli systems 2048-bit+ RSA ya elliptic curves (X25519) careful padding ke saath use karte hain."
+   },
+   "analogy": {
+    "en": "Multiplying 61 × 53 takes seconds by hand; going back from 3233 to 61 and 53 means trial and error — and for 617-digit numbers, no one can.",
+    "hi": "61 × 53 हाथ से सेकंडों में; 3233 से 61 और 53 पर लौटना प्रयास-त्रुटि है — और 617 अंकों की संख्याओं के लिए कोई नहीं कर सकता।",
+    "hinglish": "61 × 53 haath se seconds mein; 3233 se 61 aur 53 par lautna trial and error hai — aur 617 digit ke numbers ke liye koi nahi kar sakta."
+   },
+   "realExample": {
+    "en": "Aadhaar eSign and DigiLocker documents carry digital signatures you can verify, so a forged certificate is detected.",
+    "hi": "आधार ई-साइन और डिजिलॉकर दस्तावेज़ों में जाँचने योग्य डिजिटल हस्ताक्षर होते हैं, इसलिए नक़ली प्रमाणपत्र पकड़ा जाता है।",
+    "hinglish": "Aadhaar eSign aur DigiLocker documents mein verify karne layak digital signatures hote hain, isliye nakli certificate pakda jaata hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "Hybrid crypto and the quantum future",
+    "hi": "हाइब्रिड क्रिप्टो और क्वांटम भविष्य",
+    "hinglish": "Hybrid crypto aur quantum future"
+   },
+   "body": {
+    "en": "Public-key maths is slow, so real protocols are hybrid: use key exchange (ECDHE) to agree a fresh session key, then encrypt data with AES or ChaCha20, and use signatures to prove identity. A large quantum computer running Shor's algorithm could break RSA and elliptic curves, and attackers may \"harvest now, decrypt later\". So in August 2024 NIST published post-quantum standards: FIPS 203 (ML-KEM for key exchange), FIPS 204 (ML-DSA) and FIPS 205 (SLH-DSA) for signatures. Browsers and messaging apps have begun using hybrid X25519 + ML-KEM key exchange.",
+    "hi": "सार्वजनिक-कुंजी गणित धीमा है, इसलिए असली प्रोटोकॉल हाइब्रिड हैं: नई सत्र कुंजी तय करने के लिए कुंजी विनिमय (ECDHE), फिर डेटा AES या ChaCha20 से एन्क्रिप्ट, और पहचान साबित करने के लिए हस्ताक्षर। शोर एल्गोरिदम चलाता बड़ा क्वांटम कंप्यूटर RSA और दीर्घवृत्तीय वक्र तोड़ सकता है, और हमलावर \"अभी इकट्ठा करो, बाद में खोलो\" कर सकते हैं। इसलिए अगस्त 2024 में NIST ने पोस्ट-क्वांटम मानक छापे: FIPS 203 (कुंजी विनिमय के लिए ML-KEM), हस्ताक्षर के लिए FIPS 204 (ML-DSA) और FIPS 205 (SLH-DSA)। ब्राउज़र और मैसेजिंग ऐप हाइब्रिड X25519 + ML-KEM कुंजी विनिमय शुरू कर चुके हैं।",
+    "hinglish": "Public-key maths slow hai, isliye asli protocols hybrid hain: nayi session key tay karne ke liye key exchange (ECDHE), phir data AES ya ChaCha20 se encrypt, aur identity prove karne ke liye signatures. Shor ka algorithm chalata bada quantum computer RSA aur elliptic curves tod sakta hai, aur attackers \"harvest now, decrypt later\" kar sakte hain. Isliye August 2024 mein NIST ne post-quantum standards publish kiye: FIPS 203 (key exchange ke liye ML-KEM), signatures ke liye FIPS 204 (ML-DSA) aur FIPS 205 (SLH-DSA). Browsers aur messaging apps hybrid X25519 + ML-KEM key exchange shuru kar chuke hain."
+   },
+   "analogy": {
+    "en": "Public-key is the armoured van that delivers the key once; symmetric is the fast lock used all day after that.",
+    "hi": "सार्वजनिक-कुंजी वह बख़्तरबंद गाड़ी है जो चाबी एक बार पहुँचाती है; सममित उसके बाद दिन भर चलने वाला तेज़ ताला है।",
+    "hinglish": "Public-key woh armoured van hai jo chaabi ek baar pahunchaati hai; symmetric uske baad din bhar chalne wala tez taala hai."
+   },
+   "realExample": {
+    "en": "Every HTTPS visit does this hybrid dance in about one round trip before the page loads.",
+    "hi": "हर HTTPS यात्रा पेज खुलने से पहले लगभग एक राउंड ट्रिप में यह हाइब्रिड नाच करती है।",
+    "hinglish": "Har HTTPS visit page khulne se pehle lagbhag ek round trip mein yeh hybrid dance karti hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "With p = 23 and g = 5, pick your own secrets a and b (between 2 and 20). Compute A, B and the shared key on paper, then check them in the lab.",
+   "hi": "p = 23 और g = 5 के साथ अपने गुप्त a और b चुनो (2 से 20 के बीच)। काग़ज़ पर A, B और साझा कुंजी निकालो, फिर प्रयोगशाला में जाँचो।",
+   "hinglish": "p = 23 aur g = 5 ke saath apne secrets a aur b chuno (2 se 20 ke beech). Kaagaz par A, B aur shared key nikaalo, phir lab mein check karo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "To send Riya a secret, which key do you use?",
+     "hi": "रिया को राज़ भेजने के लिए कौन-सी कुंजी?",
+     "hinglish": "Riya ko secret bhejne ke liye kaunsi key?"
+    },
+    "options": [
+     {
+      "en": "Riya's public key",
+      "hi": "रिया की सार्वजनिक कुंजी",
+      "hinglish": "Riya ki public key"
+     },
+     {
+      "en": "Riya's private key",
+      "hi": "रिया की निजी कुंजी",
+      "hinglish": "Riya ki private key"
+     },
+     {
+      "en": "Your private key",
+      "hi": "आपकी निजी कुंजी",
+      "hinglish": "Tumhari private key"
+     },
+     {
+      "en": "No key",
+      "hi": "कोई कुंजी नहीं",
+      "hinglish": "Koi key nahi"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Encrypt with her public key; only her private key decrypts.",
+     "hi": "उसकी सार्वजनिक कुंजी से एन्क्रिप्ट; सिर्फ़ उसकी निजी कुंजी खोलती है।",
+     "hinglish": "Uski public key se encrypt; sirf uski private key decrypt karti hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "A digital signature is made with…",
+     "hi": "डिजिटल हस्ताक्षर किससे बनता है…",
+     "hinglish": "Digital signature kisse banta hai…"
+    },
+    "options": [
+     {
+      "en": "The signer's private key",
+      "hi": "हस्ताक्षरकर्ता की निजी कुंजी",
+      "hinglish": "Signer ki private key"
+     },
+     {
+      "en": "The signer's public key",
+      "hi": "हस्ताक्षरकर्ता की सार्वजनिक कुंजी",
+      "hinglish": "Signer ki public key"
+     },
+     {
+      "en": "A password",
+      "hi": "पासवर्ड",
+      "hinglish": "Password"
+     },
+     {
+      "en": "The receiver's private key",
+      "hi": "प्राप्तकर्ता की निजी कुंजी",
+      "hinglish": "Receiver ki private key"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Private key signs, public key verifies.",
+     "hi": "निजी कुंजी हस्ताक्षर करती है, सार्वजनिक जाँचती है।",
+     "hinglish": "Private key sign karti hai, public key verify karti hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "short",
+    "prompt": {
+     "en": "DH with p = 23, g = 5, a = 6: what is A = 5^6 mod 23?",
+     "hi": "DH में p = 23, g = 5, a = 6: A = 5^6 mod 23 क्या है?",
+     "hinglish": "DH mein p = 23, g = 5, a = 6: A = 5^6 mod 23 kya hai?"
+    },
+    "answer": {
+     "accept": [
+      "8"
+     ]
+    },
+    "explain": {
+     "en": "5^6 = 15625; 15625 mod 23 = 8.",
+     "hi": "5^6 = 15625; 15625 mod 23 = 8।",
+     "hinglish": "5^6 = 15625; 15625 mod 23 = 8."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why did NIST publish ML-KEM in 2024?",
+     "hi": "NIST ने 2024 में ML-KEM क्यों छापा?",
+     "hinglish": "NIST ne 2024 mein ML-KEM kyun publish kiya?"
+    },
+    "options": [
+     {
+      "en": "To resist future quantum computers",
+      "hi": "भविष्य के क्वांटम कंप्यूटरों से बचने",
+      "hinglish": "Future quantum computers se bachne"
+     },
+     {
+      "en": "To speed up Wi-Fi",
+      "hi": "वाई-फ़ाई तेज़ करने",
+      "hinglish": "Wi-Fi tez karne"
+     },
+     {
+      "en": "To replace hashing",
+      "hi": "हैशिंग बदलने",
+      "hinglish": "Hashing badalne"
+     },
+     {
+      "en": "To store passwords",
+      "hi": "पासवर्ड रखने",
+      "hinglish": "Passwords rakhne"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Shor's algorithm would break RSA and ECC on a large quantum computer.",
+     "hi": "बड़े क्वांटम कंप्यूटर पर शोर एल्गोरिदम RSA और ECC तोड़ देगा।",
+     "hinglish": "Bade quantum computer par Shor ka algorithm RSA aur ECC tod dega."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Reach the shared key in Diffie–Hellman.",
+     "hi": "डिफ़ी–हेलमैन में साझा कुंजी तक पहुँचो।",
+     "hinglish": "Diffie–Hellman mein shared key tak pahuncho."
+    },
+    "answer": {
+     "event": "dh-shared"
+    },
+    "explain": {
+     "en": "Both sides computed 2.",
+     "hi": "दोनों तरफ़ 2 निकला।",
+     "hinglish": "Dono taraf 2 nikla."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Do an RSA encrypt-decrypt round trip.",
+     "hi": "RSA एन्क्रिप्ट-डिक्रिप्ट चक्र करो।",
+     "hinglish": "RSA encrypt-decrypt round trip karo."
+    },
+    "answer": {
+     "event": "rsa-roundtrip"
+    },
+    "explain": {
+     "en": "65 → 2790 → 65.",
+     "hi": "65 → 2790 → 65।",
+     "hinglish": "65 → 2790 → 65."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "topics": [
+  "cyber.encryption-asym"
+ ],
+ "sources": [
+  {
+   "title": "NIST — Post-quantum FIPS 203, 204, 205 (Aug 2024)",
+   "url": "https://csrc.nist.gov/projects/post-quantum-cryptography",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Diffie & Hellman (1976) New Directions in Cryptography",
+   "url": "https://ee.stanford.edu/~hellman/publications/24.pdf",
+   "licence": "fact reference"
+  }
+ ]
+}

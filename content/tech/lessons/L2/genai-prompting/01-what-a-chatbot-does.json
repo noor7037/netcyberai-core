@@ -1,0 +1,378 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.genai-prompting.01",
+ "level": 2,
+ "classes": [
+  6,
+  7,
+  8
+ ],
+ "unit": "genai-prompting",
+ "title": {
+  "en": "What a chatbot really does",
+  "hi": "चैटबॉट असल में क्या करता है",
+  "hinglish": "Chatbot asal mein kya karta hai"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [],
+ "topics": [
+  "ai.llm-training",
+  "ai.llm-rlhf",
+  "ai.everyday-ai"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain the two training stages of a chatbot: reading text, then human feedback",
+   "hi": "चैटबॉट के प्रशिक्षण के दो चरण समझा सकते हो: पाठ पढ़ना, फिर मानवीय प्रतिक्रिया",
+   "hinglish": "Chatbot ki do training stages samjha sakte ho: text padhna, phir human feedback"
+  },
+  {
+   "en": "Say what a chatbot can and cannot do",
+   "hi": "बता सकते हो कि चैटबॉट क्या कर सकता है और क्या नहीं",
+   "hinglish": "Bata sakte ho chatbot kya kar sakta hai aur kya nahi"
+  },
+  {
+   "en": "Follow safe-use rules: age limits, a grown-up, no personal details",
+   "hi": "सुरक्षित-उपयोग नियम मान सकते हो: आयु सीमा, बड़ों का साथ, निजी जानकारी नहीं",
+   "hinglish": "Safe-use rules follow kar sakte ho: age limit, grown-up saath, personal details nahi"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Chatbot",
+   "hinglish": "Baat karne wala AI",
+   "en": "A program you chat with in ordinary language",
+   "hi": "प्रोग्राम जिससे तुम साधारण भाषा में बात करते हो"
+  },
+  {
+   "term": "Pre-training",
+   "hinglish": "Pehli badi padhai",
+   "en": "Stage 1: the model reads huge amounts of text and learns to predict the next token",
+   "hi": "चरण 1: मॉडल विशाल पाठ पढ़कर अगला टोकन अनुमानित करना सीखता है"
+  },
+  {
+   "term": "Human feedback (RLHF)",
+   "hinglish": "Insaanon se rating",
+   "en": "Stage 2: people rate answers and the model is tuned to give helpful, safe ones",
+   "hi": "चरण 2: लोग उत्तरों को अंक देते हैं और मॉडल को मददगार, सुरक्षित उत्तर देने के लिए ट्यून किया जाता है"
+  },
+  {
+   "term": "Knowledge cutoff",
+   "hinglish": "Jaankari ki aakhri date",
+   "en": "The date after which the model saw no training text",
+   "hi": "वह तारीख़ जिसके बाद मॉडल ने कोई प्रशिक्षण पाठ नहीं देखा"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Stage 1: the model reads a huge library of text and learns one skill — predict the next word. Try that skill in the lab.",
+    "hi": "चरण 1: मॉडल पाठ का विशाल पुस्तकालय पढ़ता है और एक कौशल सीखता है — अगला शब्द अनुमानित करना। लैब में यह कौशल आज़माओ।",
+    "hinglish": "Stage 1: model text ki huge library padhta hai aur ek skill seekhta hai — agla word predict karna. Lab mein yeh skill try karo."
+   },
+   "visual": "lab:ai-lab#words",
+   "narration": {
+    "en": "A chatbot is a very large next-word predictor.",
+    "hi": "चैटबॉट एक बहुत बड़ा अगला-शब्द अनुमानक है।",
+    "hinglish": "Chatbot ek bahut bada next-word predictor hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Stage 2: people write example answers and rate the model’s replies. The model is tuned towards the helpful, polite, safe ones.",
+    "hi": "चरण 2: लोग उदाहरण उत्तर लिखते हैं और मॉडल के जवाबों को अंक देते हैं। मॉडल को मददगार, विनम्र, सुरक्षित जवाबों की ओर ट्यून किया जाता है।",
+    "hinglish": "Stage 2: log example answers likhte hain aur model ke replies ko rate karte hain. Model ko helpful, polite, safe replies ki taraf tune kiya jaata hai."
+   },
+   "visual": "compare:📚 Pre-training: predict the next word|👍👎 Human feedback: prefer helpful, safe answers",
+   "narration": {
+    "en": "That is why it sounds like a helpful assistant.",
+    "hi": "इसीलिए वह मददगार सहायक जैसा लगता है।",
+    "hinglish": "Isiliye woh helpful assistant jaisa lagta hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "When you chat, your message becomes tokens, the model predicts a reply token by token, and the app shows it.",
+    "hi": "जब तुम बात करते हो, तुम्हारा संदेश टोकन बनता है, मॉडल टोकन-दर-टोकन जवाब अनुमानित करता है, और ऐप उसे दिखाता है।",
+    "hinglish": "Jab tum chat karte ho, tumhara message tokens banta hai, model token-by-token reply predict karta hai, aur app use dikhata hai."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "It does not think or feel; it calculates likely words.",
+    "hi": "वह सोचता या महसूस नहीं करता; संभावित शब्द गणना करता है।",
+    "hinglish": "Woh sochta ya mehsoos nahi karta; likely words calculate karta hai."
+   },
+   "code": "you:  \"Explain photosynthesis in 2 lines\"\n→ tokens → model → \"Plants\" \" use\" \" sunlight\" ...\nchatbot: \"Plants use sunlight, water and CO₂\n          to make food and release oxygen.\""
+  }
+ ],
+ "play": {
+  "lab": "ai-lab",
+  "config": {
+   "tab": "words"
+  },
+  "goal": {
+   "en": "Generate 3 sentences with the word predictor and catch one that sounds right but is false.",
+   "hi": "शब्द अनुमानक से 3 वाक्य बनाओ और एक पकड़ो जो सही लगता है पर ग़लत है।",
+   "hinglish": "Word predictor se 3 sentences banao aur ek pakdo jo sahi lagta hai par galat hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "What chatbots are good and bad at",
+    "hi": "चैटबॉट किसमें अच्छे और किसमें कमज़ोर हैं",
+    "hinglish": "Chatbots kis mein achhe aur kis mein kamzor hain"
+   },
+   "body": {
+    "en": "Chatbots such as ChatGPT (released November 2022), Gemini, Claude and Meta AI are built on large language models. They are good at explaining ideas in simple words, giving examples, summarising, translating, brainstorming and checking grammar or code. They are weak at exact facts, recent news (they only know what was in their training text unless they are connected to search), maths without a calculator tool, and anything needing real-world experience. They do not truly understand or have feelings, even when they say “I think” — those words are predicted too. Most services keep your chats on their servers and may use them to improve the model, so never type passwords, OTPs, your address, school name, photos of ID or other private details. Many chatbots set a minimum age (OpenAI’s is 13, with a parent’s permission under 18), and India’s Digital Personal Data Protection Act, 2023 requires verifiable parental consent before a child’s data is processed — so use chatbots with a parent or teacher who knows.",
+    "hi": "ChatGPT (नवंबर 2022 में जारी), Gemini, Claude और Meta AI जैसे चैटबॉट बड़े भाषा मॉडल पर बने हैं। वे सरल शब्दों में विचार समझाने, उदाहरण देने, सारांश बनाने, अनुवाद करने, विचार-मंथन और व्याकरण या कोड जाँचने में अच्छे हैं। वे सटीक तथ्यों, ताज़ा ख़बरों (जब तक सर्च से न जुड़े हों वे केवल प्रशिक्षण पाठ वाली बातें जानते हैं), कैलकुलेटर उपकरण के बिना गणित, और वास्तविक अनुभव वाली चीज़ों में कमज़ोर हैं। वे सच में समझते नहीं या भावनाएँ नहीं रखते, भले ही वे “मुझे लगता है” कहें — ये शब्द भी अनुमानित हैं। अधिकतर सेवाएँ तुम्हारी बातचीत अपने सर्वर पर रखती हैं और मॉडल सुधारने में उपयोग कर सकती हैं, इसलिए कभी पासवर्ड, OTP, पता, स्कूल का नाम, ID की फ़ोटो या अन्य निजी जानकारी न लिखो। कई चैटबॉट न्यूनतम आयु तय करते हैं (OpenAI की 13 है, 18 से कम के लिए माता-पिता की अनुमति के साथ), और भारत का डिजिटल व्यक्तिगत डेटा संरक्षण अधिनियम, 2023 बच्चे का डेटा संसाधित करने से पहले सत्यापन योग्य माता-पिता की सहमति माँगता है — इसलिए चैटबॉट किसी जानकार माता-पिता या शिक्षक के साथ उपयोग करो।",
+    "hinglish": "ChatGPT (November 2022 mein release), Gemini, Claude aur Meta AI jaise chatbots large language models pe bane hain. Woh simple words mein ideas samjhane, examples dene, summarise karne, translate karne, brainstorming aur grammar ya code check karne mein achhe hain. Woh exact facts, recent news (jab tak search se connected na hon woh sirf training text wali baatein jaante hain), calculator tool ke bina maths, aur real-world experience wali cheezon mein kamzor hain. Woh sach mein samajhte nahi ya feelings nahi rakhte, bhale hi “I think” kahein — yeh words bhi predicted hain. Zyaadatar services tumhari chats apne servers pe rakhti hain aur model improve karne mein use kar sakti hain, isliye kabhi password, OTP, address, school ka naam, ID ki photo ya doosri private details mat likho. Kai chatbots minimum age rakhte hain (OpenAI ki 13 hai, 18 se kam ke liye parent ki permission ke saath), aur India ka Digital Personal Data Protection Act, 2023 bachche ka data process karne se pehle verifiable parental consent maangta hai — isliye chatbots kisi jaankar parent ya teacher ke saath use karo."
+   },
+   "analogy": {
+    "en": "A chatbot = a very well-read parrot: it can repeat and remix ideas from millions of books, but it does not check whether what it says is true.",
+    "hi": "चैटबॉट = बहुत पढ़ा-लिखा तोता: लाखों किताबों से बातें दोहरा और जोड़ सकता है, पर जो बोलता है उसका सच ख़ुद नहीं जाँचता।",
+    "hinglish": "Chatbot = bahut padha-likha tota: lakhon kitaabon se baatein dohra sakta hai aur jod sakta hai, par jo bolta hai uska sach khud check nahi karta."
+   },
+   "realExample": {
+    "en": "Farmers can ask Kisan e-Mitra, a government AI chatbot for PM-KISAN, questions in Indian languages by voice or text.",
+    "hi": "किसान PM-KISAN के सरकारी AI चैटबॉट किसान ई-मित्र से भारतीय भाषाओं में आवाज़ या पाठ से प्रश्न पूछ सकते हैं।",
+    "hinglish": "Farmers Kisan e-Mitra, PM-KISAN ka government AI chatbot, se Indian languages mein voice ya text se sawaal pooch sakte hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "With a grown-up, ask a chatbot (or imagine its answer) “Who won yesterday’s cricket match?” and “Explain gravity to a Class 6 student.” Which answer can you trust more, and why? Write 3 “good at” and 3 “weak at” points.",
+   "hi": "किसी बड़े के साथ चैटबॉट से पूछो (या उसका उत्तर सोचो) “कल का क्रिकेट मैच किसने जीता?” और “कक्षा 6 के छात्र को गुरुत्वाकर्षण समझाओ।” किस उत्तर पर ज़्यादा भरोसा कर सकते हो, और क्यों? 3 “अच्छा है” और 3 “कमज़ोर है” बिंदु लिखो।",
+   "hinglish": "Kisi grown-up ke saath chatbot se poochho (ya uska jawab imagine karo) “Kal ka cricket match kisne jeeta?” aur “Class 6 student ko gravity samjhao.” Kaunse jawab pe zyada bharosa kar sakte ho, aur kyun? 3 “achha hai” aur 3 “kamzor hai” points likho."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "order",
+    "prompt": {
+     "en": "Put the steps of building a chatbot in order.",
+     "hi": "चैटबॉट बनाने के चरण क्रम में लगाओ।",
+     "hinglish": "Chatbot banane ke steps order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Tune it with human ratings",
+      "hi": "मानवीय रेटिंग से ट्यून करो",
+      "hinglish": "Human ratings se tune karo"
+     },
+     {
+      "en": "Collect huge amounts of text",
+      "hi": "विशाल पाठ जमा करो",
+      "hinglish": "Huge text jama karo"
+     },
+     {
+      "en": "Pre-train it to predict the next token",
+      "hi": "अगला टोकन अनुमानित करने के लिए पूर्व-प्रशिक्षित करो",
+      "hinglish": "Next token predict karne ke liye pre-train karo"
+     }
+    ],
+    "answer": [
+     1,
+     2,
+     0
+    ],
+    "explain": {
+     "en": "Collect text → pre-train to predict next tokens → tune with human feedback.",
+     "hi": "पाठ जमा करो → अगला टोकन अनुमानित करने के लिए पूर्व-प्रशिक्षण → मानवीय प्रतिक्रिया से ट्यून।",
+     "hinglish": "Text jama karo → next token predict karne ke liye pre-train → human feedback se tune."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "multi",
+    "prompt": {
+     "en": "Which tasks are chatbots usually good at? Choose all.",
+     "hi": "चैटबॉट आमतौर पर किन कामों में अच्छे हैं? सभी चुनो।",
+     "hinglish": "Chatbots aamtaur pe kin kaamon mein achhe hain? Saare chuno."
+    },
+    "options": [
+     {
+      "en": "Explaining an idea simply",
+      "hi": "विचार सरलता से समझाना",
+      "hinglish": "Idea simply samjhana"
+     },
+     {
+      "en": "Knowing today’s match score without search",
+      "hi": "बिना सर्च के आज का स्कोर जानना",
+      "hinglish": "Bina search ke aaj ka score jaanna"
+     },
+     {
+      "en": "Summarising a long paragraph",
+      "hi": "लंबे अनुच्छेद का सारांश",
+      "hinglish": "Lambe paragraph ka summary"
+     },
+     {
+      "en": "Brainstorming project ideas",
+      "hi": "प्रोजेक्ट विचार सोचना",
+      "hinglish": "Project ideas brainstorm karna"
+     }
+    ],
+    "answer": [
+     0,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "Explaining, summarising and brainstorming are strengths. Today’s news is weak unless it can search.",
+     "hi": "समझाना, सारांश और विचार-मंथन ताक़त हैं। आज की ख़बरें कमज़ोर हैं जब तक सर्च न कर सके।",
+     "hinglish": "Samjhana, summarise aur brainstorming strengths hain. Aaj ki news kamzor hai jab tak search na kar sake."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "A chatbot says “I feel happy to help you!” What is true?",
+     "hi": "चैटबॉट कहता है “मुझे आपकी मदद करके ख़ुशी होती है!” क्या सच है?",
+     "hinglish": "Chatbot kehta hai “Mujhe aapki madad karke khushi hoti hai!” Kya sach hai?"
+    },
+    "options": [
+     {
+      "en": "It really feels happy",
+      "hi": "उसे सच में ख़ुशी होती है",
+      "hinglish": "Use sach mein khushi hoti hai"
+     },
+     {
+      "en": "It is a real person typing",
+      "hi": "कोई असली इंसान टाइप कर रहा है",
+      "hinglish": "Koi asli insaan type kar raha hai"
+     },
+     {
+      "en": "It predicted polite words; it has no feelings",
+      "hi": "उसने विनम्र शब्द अनुमानित किए; भावनाएँ नहीं",
+      "hinglish": "Usne polite words predict kiye; feelings nahi"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "Those words are predicted like any others; the model has no feelings.",
+     "hi": "ये शब्द बाक़ी शब्दों की तरह अनुमानित हैं; मॉडल में भावनाएँ नहीं।",
+     "hinglish": "Yeh words baaki words ki tarah predicted hain; model mein feelings nahi."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "multi",
+    "prompt": {
+     "en": "Which should you NEVER type into a chatbot? Choose all.",
+     "hi": "चैटबॉट में क्या कभी नहीं लिखना चाहिए? सभी चुनो।",
+     "hinglish": "Chatbot mein kya kabhi nahi likhna chahiye? Saare chuno."
+    },
+    "options": [
+     {
+      "en": "An OTP",
+      "hi": "OTP (वन-टाइम पासवर्ड)",
+      "hinglish": "OTP"
+     },
+     {
+      "en": "Your password",
+      "hi": "तुम्हारा पासवर्ड",
+      "hinglish": "Tumhara password"
+     },
+     {
+      "en": "“What is a food chain?”",
+      "hi": "“खाद्य शृंखला क्या है?”",
+      "hinglish": "“Food chain kya hai?”"
+     },
+     {
+      "en": "Your home address",
+      "hi": "घर का पता",
+      "hinglish": "Ghar ka address"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     3
+    ],
+    "explain": {
+     "en": "OTPs, passwords and your home address are private. A science question is fine.",
+     "hi": "OTP, पासवर्ड और घर का पता निजी हैं। विज्ञान का प्रश्न ठीक है।",
+     "hinglish": "OTP, password aur ghar ka address private hain. Science question theek hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "short",
+    "prompt": {
+     "en": "The date after which a model saw no training text is its knowledge ___ .",
+     "hi": "वह तारीख़ जिसके बाद मॉडल ने कोई प्रशिक्षण पाठ नहीं देखा, उसकी knowledge ___ है।",
+     "hinglish": "Woh date jiske baad model ne koi training text nahi dekha, uski knowledge ___ hai."
+    },
+    "answer": [
+     "cutoff",
+     "cut-off",
+     "cut off",
+     "Cutoff"
+    ],
+    "explain": {
+     "en": "Knowledge cutoff: newer events are unknown unless it can search.",
+     "hi": "नॉलेज कटऑफ़: नई घटनाएँ अज्ञात हैं जब तक वह सर्च न कर सके।",
+     "hinglish": "Knowledge cutoff: nayi events unknown hain jab tak woh search na kar sake."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the lab mission.",
+     "hi": "लैब मिशन पूरा करो।",
+     "hinglish": "Lab mission poora karo."
+    },
+    "answer": {
+     "lab": "ai-lab",
+     "event": "mission:complete",
+     "tab": "words"
+    },
+    "explain": {
+     "en": "Generate 3 sentences and mark the false one.",
+     "hi": "3 वाक्य बनाओ और ग़लत वाले को चिह्नित करो।",
+     "hinglish": "3 sentences banao aur galat wale ko mark karo."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "OpenAI Help — How ChatGPT and our foundation models are developed",
+   "url": "https://help.openai.com/en/articles/7842364-how-chatgpt-and-our-language-models-are-developed",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Ouyang et al. — Training language models to follow instructions with human feedback (2022)",
+   "url": "https://arxiv.org/abs/2203.02155",
+   "licence": "fact reference"
+  },
+  {
+   "title": "MeitY — Digital Personal Data Protection Act, 2023",
+   "url": "https://www.meity.gov.in/data-protection-framework",
+   "licence": "fact reference"
+  },
+  {
+   "title": "PIB — Kisan e-Mitra AI chatbot for PM-KISAN",
+   "url": "https://pib.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

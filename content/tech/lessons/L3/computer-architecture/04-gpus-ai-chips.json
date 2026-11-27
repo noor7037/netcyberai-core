@@ -1,0 +1,387 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.computer-architecture.04",
+ "level": 3,
+ "classes": [
+  9,
+  10
+ ],
+ "unit": "computer-architecture",
+ "title": {
+  "en": "GPUs and AI chips",
+  "hi": "GPU और AI चिप",
+  "hinglish": "GPUs aur AI chips"
+ },
+ "minutes": 12,
+ "xp": 50,
+ "prereq": [
+  "L3.computer-architecture.02"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain why GPUs suit graphics and AI: massive parallel maths",
+   "hi": "समझाओ GPU ग्राफ़िक्स और AI के लिए क्यों: भारी समानांतर गणित",
+   "hinglish": "Samjhao GPUs graphics aur AI ke liye kyun: massive parallel maths"
+  },
+  {
+   "en": "Compare CPU, GPU, TPU and phone NPU",
+   "hi": "CPU, GPU, TPU और फ़ोन NPU की तुलना करो",
+   "hinglish": "CPU, GPU, TPU aur phone NPU ki tulna karo"
+  },
+  {
+   "en": "Describe India's AI-compute and semiconductor efforts",
+   "hi": "भारत के AI-कंप्यूट और सेमीकंडक्टर प्रयास बताओ",
+   "hinglish": "India ke AI-compute aur semiconductor efforts batao"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "GPU",
+   "hinglish": "Hazaaron chhote cores",
+   "en": "Graphics processing unit with thousands of simple cores working in parallel",
+   "hi": "हज़ारों सरल कोर वाला ग्राफ़िक्स प्रोसेसर जो साथ-साथ काम करते हैं"
+  },
+  {
+   "term": "Matrix multiplication",
+   "hinglish": "Numbers ki table ka guna",
+   "en": "The core maths of neural networks: many multiply-adds at once",
+   "hi": "तंत्रिका नेटवर्क का मुख्य गणित: एक साथ कई गुणा-जोड़"
+  },
+  {
+   "term": "NPU",
+   "hinglish": "Phone ka AI chip",
+   "en": "Neural processing unit for running AI efficiently on devices",
+   "hi": "डिवाइस पर AI कुशलता से चलाने वाली इकाई"
+  },
+  {
+   "term": "TOPS",
+   "hinglish": "Har second kitne kharab operations",
+   "en": "Trillions of operations per second, a common AI-chip speed figure",
+   "hi": "प्रति सेकंड खरबों क्रियाएँ, AI-चिप गति का आम आँकड़ा"
+  },
+  {
+   "term": "HBM",
+   "hinglish": "Chip ke paas tez memory",
+   "en": "High-bandwidth memory stacked next to AI chips",
+   "hi": "AI चिप के पास ढेर की गई उच्च-बैंडविड्थ मेमोरी"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "A CPU has a few powerful cores for varied tasks. A GPU has thousands of simple cores that all do the same maths on different data.",
+    "hi": "CPU के कुछ शक्तिशाली कोर अलग-अलग कामों के लिए। GPU के हज़ारों सरल कोर अलग डेटा पर एक ही गणित करते हैं।",
+    "hinglish": "CPU ke kuch powerful cores alag-alag kaamon ke liye. GPU ke hazaaron simple cores alag data par ek hi maths karte hain."
+   },
+   "visual": "anim:cpu-vs-gpu",
+   "narration": {
+    "en": "A CPU has a few powerful cores for varied tasks. A GPU has thousands of simple cores that all do the same maths on different data.",
+    "hi": "CPU के कुछ शक्तिशाली कोर अलग-अलग कामों के लिए। GPU के हज़ारों सरल कोर अलग डेटा पर एक ही गणित करते हैं।",
+    "hinglish": "CPU ke kuch powerful cores alag-alag kaamon ke liye. GPU ke hazaaron simple cores alag data par ek hi maths karte hain."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Graphics: every pixel's colour can be computed at the same time. A 4K screen has about 8.3 million pixels, redrawn 60+ times a second.",
+    "hi": "ग्राफ़िक्स: हर पिक्सेल का रंग एक साथ निकाला जा सकता है। 4K स्क्रीन में लगभग 83 लाख पिक्सेल, हर सेकंड 60+ बार दोबारा बनते हैं।",
+    "hinglish": "Graphics: har pixel ka colour ek saath nikaala ja sakta hai. 4K screen mein lagbhag 83 lakh pixels, har second 60+ baar dobaara bante hain."
+   },
+   "visual": "anim:pixels-parallel",
+   "narration": {
+    "en": "Graphics: every pixel's colour can be computed at the same time. A 4K screen has about 8.3 million pixels, redrawn 60+ times a second.",
+    "hi": "ग्राफ़िक्स: हर पिक्सेल का रंग एक साथ निकाला जा सकता है। 4K स्क्रीन में लगभग 83 लाख पिक्सेल, हर सेकंड 60+ बार दोबारा बनते हैं।",
+    "hinglish": "Graphics: har pixel ka colour ek saath nikaala ja sakta hai. 4K screen mein lagbhag 83 lakh pixels, har second 60+ baar dobaara bante hain."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "A neural network layer is a big matrix multiply: millions of multiply-adds that do not depend on each other — perfect for GPUs.",
+    "hi": "तंत्रिका नेटवर्क की परत एक बड़ा मैट्रिक्स गुणा है: लाखों गुणा-जोड़ जो एक-दूसरे पर निर्भर नहीं — GPU के लिए एकदम सही।",
+    "hinglish": "Neural network layer ek bada matrix multiply hai: laakhon multiply-adds jo ek-doosre par depend nahi — GPUs ke liye perfect."
+   },
+   "visual": "anim:matmul-grid",
+   "narration": {
+    "en": "A neural network layer is a big matrix multiply: millions of multiply-adds that do not depend on each other — perfect for GPUs.",
+    "hi": "तंत्रिका नेटवर्क की परत एक बड़ा मैट्रिक्स गुणा है: लाखों गुणा-जोड़ जो एक-दूसरे पर निर्भर नहीं — GPU के लिए एकदम सही।",
+    "hinglish": "Neural network layer ek bada matrix multiply hai: laakhon multiply-adds jo ek-doosre par depend nahi — GPUs ke liye perfect."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Training a large language model uses thousands of GPUs for weeks. Your phone's NPU runs smaller models locally for photos, voice and translation.",
+    "hi": "बड़े भाषा मॉडल का प्रशिक्षण हफ़्तों तक हज़ारों GPU लेता है। आपके फ़ोन का NPU फ़ोटो, आवाज़ और अनुवाद के लिए छोटे मॉडल स्थानीय रूप से चलाता है।",
+    "hinglish": "Bade language model ki training hafton tak hazaaron GPUs leti hai. Tumhare phone ka NPU photos, voice aur translation ke liye chhote models locally chalata hai."
+   },
+   "visual": "anim:datacentre-phone",
+   "narration": {
+    "en": "Training a large language model uses thousands of GPUs for weeks. Your phone's NPU runs smaller models locally for photos, voice and translation.",
+    "hi": "बड़े भाषा मॉडल का प्रशिक्षण हफ़्तों तक हज़ारों GPU लेता है। आपके फ़ोन का NPU फ़ोटो, आवाज़ और अनुवाद के लिए छोटे मॉडल स्थानीय रूप से चलाता है।",
+    "hinglish": "Bade language model ki training hafton tak hazaaron GPUs leti hai. Tumhare phone ka NPU photos, voice aur translation ke liye chhote models locally chalata hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "nn-playground",
+  "config": {
+   "mode": "classify",
+   "dataset": "spiral",
+   "hidden": [
+    8,
+    8
+   ],
+   "activation": "relu",
+   "showLoss": true
+  },
+  "goal": {
+   "en": "Train the network on the spiral. Every training step is hundreds of multiply-adds; count roughly how many for one pass of this small net, then imagine a model with billions of weights.",
+   "hi": "सर्पिल पर नेटवर्क प्रशिक्षित करो। हर प्रशिक्षण क़दम सैकड़ों गुणा-जोड़ है; इस छोटे नेट के एक पास के लिए लगभग कितने, गिनो, फिर अरबों भार वाला मॉडल सोचो।",
+   "hinglish": "Spiral par network train karo. Har training step saikdon multiply-adds hai; is chhote net ke ek pass ke liye lagbhag kitne, gino, phir arbon weights wala model socho."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "CPU, GPU, TPU, NPU",
+    "hi": "CPU, GPU, TPU, NPU",
+    "hinglish": "CPU, GPU, TPU, NPU"
+   },
+   "body": {
+    "en": "CPUs are flexible and great at branching logic. GPUs (NVIDIA, AMD) add \"tensor cores\" that multiply small matrices in one step and use stacked HBM memory with several TB/s of bandwidth. NVIDIA's Blackwell B200 (2024) packs 208 billion transistors. Google's TPUs are chips designed only for neural-network maths. Phone NPUs (in Snapdragon, Apple, MediaTek chips) are rated in tens of TOPS and run AI at low power. Lower-precision numbers (16-, 8- or even 4-bit) make AI faster and cheaper with little accuracy loss.",
+    "hi": "CPU लचीले और शाखा-तर्क में बढ़िया हैं। GPU (NVIDIA, AMD) \"टेंसर कोर\" जोड़ते हैं जो छोटे मैट्रिक्स एक क़दम में गुणा करते हैं और कई TB/s बैंडविड्थ वाली ढेर HBM मेमोरी इस्तेमाल करते हैं। NVIDIA का Blackwell B200 (2024) 208 अरब ट्रांज़िस्टर रखता है। गूगल के TPU सिर्फ़ तंत्रिका-नेटवर्क गणित के लिए बने चिप हैं। फ़ोन NPU (Snapdragon, Apple, MediaTek चिप में) दसियों TOPS के होते हैं और कम बिजली में AI चलाते हैं। कम-परिशुद्धता संख्याएँ (16-, 8- या 4-बिट भी) AI को थोड़े सटीकता नुक़सान के साथ तेज़ और सस्ता बनाती हैं।",
+    "hinglish": "CPUs flexible aur branching logic mein badhiya hain. GPUs (NVIDIA, AMD) \"tensor cores\" jodte hain jo chhote matrices ek step mein multiply karte hain aur kai TB/s bandwidth wali stacked HBM memory use karte hain. NVIDIA ka Blackwell B200 (2024) 208 billion transistors rakhta hai. Google ke TPUs sirf neural-network maths ke liye bane chips hain. Phone NPUs (Snapdragon, Apple, MediaTek chips mein) dasiyon TOPS ke hote hain aur kam power mein AI chalate hain. Low-precision numbers (16-, 8- ya 4-bit bhi) AI ko thode accuracy loss ke saath tez aur sasta banate hain."
+   },
+   "analogy": {
+    "en": "A CPU is a few expert professors; a GPU is a stadium full of students each solving one simple sum at the same moment.",
+    "hi": "CPU कुछ विशेषज्ञ प्रोफ़ेसर हैं; GPU स्टेडियम भर छात्र हैं जो एक ही पल में एक-एक सरल सवाल हल करते हैं।",
+    "hinglish": "CPU kuch expert professors hain; GPU stadium bhar students hain jo ek hi pal mein ek-ek simple sum solve karte hain."
+   },
+   "realExample": {
+    "en": "Google Lens translating a Hindi signboard offline on your phone runs on the phone's NPU or GPU.",
+    "hi": "आपके फ़ोन पर ऑफ़लाइन हिंदी साइनबोर्ड का अनुवाद करता Google Lens फ़ोन के NPU या GPU पर चलता है।",
+    "hinglish": "Tumhare phone par offline Hindi signboard translate karta Google Lens phone ke NPU ya GPU par chalta hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "India and chips",
+    "hi": "भारत और चिप",
+    "hinglish": "India aur chips"
+   },
+   "body": {
+    "en": "The IndiaAI Mission (approved March 2024, about ₹10,372 crore) makes subsidised GPU compute available to Indian start-ups, students and researchers through a shared portal, with tens of thousands of GPUs onboarded. The India Semiconductor Mission supports chip fabs and packaging plants (for example in Gujarat and Assam). India already has a large chip-design workforce: many global companies design processors in Bengaluru, Hyderabad and Noida. Chip design (VLSI) and AI-systems engineering are growing careers.",
+    "hi": "IndiaAI मिशन (मार्च 2024 में स्वीकृत, लगभग ₹10,372 करोड़) एक साझा पोर्टल से भारतीय स्टार्ट-अप, छात्रों और शोधकर्ताओं को रियायती GPU कंप्यूट देता है, जिसमें दसियों हज़ार GPU जुड़े हैं। भारत सेमीकंडक्टर मिशन चिप फ़ैब और पैकेजिंग संयंत्रों (जैसे गुजरात और असम में) का समर्थन करता है। भारत में पहले से बड़ी चिप-डिज़ाइन कार्यबल है: कई वैश्विक कंपनियाँ बेंगलुरु, हैदराबाद और नोएडा में प्रोसेसर डिज़ाइन करती हैं। चिप डिज़ाइन (VLSI) और AI-प्रणाली इंजीनियरिंग बढ़ते करियर हैं।",
+    "hinglish": "IndiaAI Mission (March 2024 mein approve, lagbhag ₹10,372 crore) ek shared portal se Indian start-ups, students aur researchers ko subsidised GPU compute deta hai, jismein dasiyon hazaar GPUs jude hain. India Semiconductor Mission chip fabs aur packaging plants (jaise Gujarat aur Assam mein) ko support karta hai. India mein pehle se bada chip-design workforce hai: kai global companies Bengaluru, Hyderabad aur Noida mein processors design karti hain. Chip design (VLSI) aur AI-systems engineering badhte careers hain."
+   },
+   "analogy": {
+    "en": "Designing a chip is like drawing the plan of a city; the fab is the builder who makes billions of tiny buildings exactly to plan.",
+    "hi": "चिप डिज़ाइन करना शहर का नक़्शा बनाने जैसा है; फ़ैब वह बिल्डर है जो अरबों छोटी इमारतें बिल्कुल नक़्शे से बनाता है।",
+    "hinglish": "Chip design karna shehar ka naksha banane jaisa hai; fab woh builder hai jo arbon chhoti imaartein bilkul nakshe se banata hai."
+   },
+   "realExample": {
+    "en": "Indian language AI models (for example under the BharatGen and IndiaAI foundation-model programmes) are trained on this shared GPU compute.",
+    "hi": "भारतीय भाषा AI मॉडल (जैसे BharatGen और IndiaAI फ़ाउंडेशन-मॉडल कार्यक्रमों के तहत) इसी साझा GPU कंप्यूट पर प्रशिक्षित होते हैं।",
+    "hinglish": "Indian language AI models (jaise BharatGen aur IndiaAI foundation-model programmes ke tahat) isi shared GPU compute par train hote hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Compare three devices (a phone, a laptop and a gaming console or AI server) in a table: CPU cores, GPU, NPU and what AI features each can run locally.",
+   "hi": "तीन डिवाइस (फ़ोन, लैपटॉप और गेमिंग कंसोल या AI सर्वर) की तालिका में तुलना करो: CPU कोर, GPU, NPU और हर एक कौन-सी AI सुविधाएँ स्थानीय रूप से चला सकता है।",
+   "hinglish": "Teen devices (phone, laptop aur gaming console ya AI server) ko table mein compare karo: CPU cores, GPU, NPU aur har ek kaunse AI features locally chala sakta hai."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why are GPUs good for neural networks?",
+     "hi": "GPU तंत्रिका नेटवर्क के लिए अच्छे क्यों हैं?",
+     "hinglish": "GPUs neural networks ke liye achhe kyun hain?"
+    },
+    "options": [
+     {
+      "en": "They do many independent multiply-adds in parallel",
+      "hi": "वे कई स्वतंत्र गुणा-जोड़ साथ-साथ करते हैं",
+      "hinglish": "Woh kai independent multiply-adds parallel karte hain"
+     },
+     {
+      "en": "They have the fastest single core",
+      "hi": "उनका एक कोर सबसे तेज़",
+      "hinglish": "Unka single core sabse tez"
+     },
+     {
+      "en": "They store more files",
+      "hi": "वे ज़्यादा फ़ाइलें रखते हैं",
+      "hinglish": "Woh zyaada files rakhte hain"
+     },
+     {
+      "en": "They need no power",
+      "hi": "उन्हें बिजली नहीं चाहिए",
+      "hinglish": "Unhe bijli nahi chahiye"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Matrix maths splits into thousands of identical small jobs.",
+     "hi": "मैट्रिक्स गणित हज़ारों एक जैसे छोटे कामों में बँटता है।",
+     "hinglish": "Matrix maths hazaaron same chhote kaamon mein bant-ta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "match",
+    "prompt": {
+     "en": "Match the chip to its strength.",
+     "hi": "चिप को उसकी ताक़त से मिलाओ।",
+     "hinglish": "Chip ko uski taakat se milao."
+    },
+    "options": [
+     "CPU",
+     "GPU",
+     "NPU"
+    ],
+    "answer": [
+     {
+      "en": "Flexible, branch-heavy tasks",
+      "hi": "लचीले, शाखा-भरे काम",
+      "hinglish": "Flexible, branch-heavy tasks"
+     },
+     {
+      "en": "Massive parallel maths and graphics",
+      "hi": "भारी समानांतर गणित और ग्राफ़िक्स",
+      "hinglish": "Massive parallel maths aur graphics"
+     },
+     {
+      "en": "Low-power AI on a phone",
+      "hi": "फ़ोन पर कम-बिजली AI",
+      "hinglish": "Phone par low-power AI"
+     }
+    ],
+    "explain": {
+     "en": "Modern devices use all three together.",
+     "hi": "आधुनिक डिवाइस तीनों साथ इस्तेमाल करते हैं।",
+     "hinglish": "Modern devices teeno saath use karte hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "A 4K screen has about how many pixels?",
+     "hi": "4K स्क्रीन में लगभग कितने पिक्सेल?",
+     "hinglish": "4K screen mein lagbhag kitne pixels?"
+    },
+    "options": [
+     {
+      "en": "8.3 million",
+      "hi": "83 लाख",
+      "hinglish": "8.3 million"
+     },
+     {
+      "en": "83 thousand",
+      "hi": "83 हज़ार",
+      "hinglish": "83 thousand"
+     },
+     {
+      "en": "830 million",
+      "hi": "83 करोड़",
+      "hinglish": "830 million"
+     },
+     {
+      "en": "1 million",
+      "hi": "10 लाख",
+      "hinglish": "1 million"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "3840 × 2160 ≈ 8.29 million.",
+     "hi": "3840 × 2160 ≈ 82.9 लाख।",
+     "hinglish": "3840 × 2160 ≈ 8.29 million."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why use 8-bit or 4-bit numbers for AI?",
+     "hi": "AI के लिए 8-बिट या 4-बिट संख्याएँ क्यों?",
+     "hinglish": "AI ke liye 8-bit ya 4-bit numbers kyun?"
+    },
+    "options": [
+     {
+      "en": "Faster and cheaper with little accuracy loss",
+      "hi": "थोड़े सटीकता नुक़सान के साथ तेज़ और सस्ता",
+      "hinglish": "Thode accuracy loss ke saath tez aur sasta"
+     },
+     {
+      "en": "They are more accurate",
+      "hi": "वे ज़्यादा सटीक हैं",
+      "hinglish": "Woh zyaada accurate hain"
+     },
+     {
+      "en": "Screens need them",
+      "hi": "स्क्रीन को चाहिए",
+      "hinglish": "Screens ko chahiye"
+     },
+     {
+      "en": "They are required by law",
+      "hi": "क़ानून से ज़रूरी",
+      "hinglish": "Law se zaroori"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Fewer bits mean less memory traffic and more operations per second.",
+     "hi": "कम बिट = कम मेमोरी ट्रैफ़िक और प्रति सेकंड ज़्यादा क्रियाएँ।",
+     "hinglish": "Kam bits = kam memory traffic aur per second zyaada operations."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Train the spiral network until loss falls below 0.1.",
+     "hi": "सर्पिल नेटवर्क को तब तक प्रशिक्षित करो जब तक हानि 0.1 से नीचे न आए।",
+     "hinglish": "Spiral network ko tab tak train karo jab tak loss 0.1 se neeche na aaye."
+    },
+    "answer": {
+     "event": "loss-below",
+     "value": 0.1,
+     "dataset": "spiral"
+    },
+    "explain": {
+     "en": "Thousands of multiply-adds per step — a GPU does this in parallel.",
+     "hi": "हर क़दम हज़ारों गुणा-जोड़ — GPU यह साथ-साथ करता है।",
+     "hinglish": "Har step hazaaron multiply-adds — GPU yeh parallel karta hai."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "topics": [
+  "hw.gpu",
+  "ai.deep-learning"
+ ],
+ "sources": [
+  {
+   "title": "IndiaAI Mission (MeitY)",
+   "url": "https://indiaai.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "India Semiconductor Mission",
+   "url": "https://ism.gov.in/",
+   "licence": "fact reference"
+  }
+ ]
+}

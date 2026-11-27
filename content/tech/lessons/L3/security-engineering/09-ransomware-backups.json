@@ -1,0 +1,384 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.security-engineering.09",
+ "level": 3,
+ "classes": [
+  9,
+  10,
+  11,
+  12
+ ],
+ "unit": "security-engineering",
+ "title": {
+  "en": "Ransomware and backups",
+  "hi": "रैनसमवेयर और बैकअप",
+  "hinglish": "Ransomware aur backups"
+ },
+ "minutes": 12,
+ "xp": 50,
+ "prereq": [
+  "L3.security-engineering.02"
+ ],
+ "outcomes": [
+  {
+   "en": "Describe how ransomware gets in and what it does",
+   "hi": "बताओ रैनसमवेयर कैसे घुसता है और क्या करता है",
+   "hinglish": "Batao ransomware kaise ghusta hai aur kya karta hai"
+  },
+  {
+   "en": "Apply the 3-2-1 backup rule, with an offline or immutable copy",
+   "hi": "3-2-1 बैकअप नियम लागू करो, ऑफ़लाइन या अपरिवर्तनीय कॉपी के साथ",
+   "hinglish": "3-2-1 backup rule lagu karo, offline ya immutable copy ke saath"
+  },
+  {
+   "en": "Verify backups with hashes and practise restoring",
+   "hi": "हैश से बैकअप जाँचो और बहाल करने का अभ्यास करो",
+   "hinglish": "Hashes se backups verify karo aur restore karne ki practice karo"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Malware",
+   "hinglish": "Nuksaan karne wala software",
+   "en": "Software designed to harm, spy or steal",
+   "hi": "नुक़सान, जासूसी या चोरी के लिए बना सॉफ़्टवेयर"
+  },
+  {
+   "term": "Ransomware",
+   "hinglish": "Files band karke phiroti",
+   "en": "Malware that encrypts files (and often steals them) to demand payment",
+   "hi": "फ़ाइलें एन्क्रिप्ट करके (और अक्सर चुराकर) फिरौती माँगने वाला मैलवेयर"
+  },
+  {
+   "term": "3-2-1 rule",
+   "hinglish": "Teen copy, do media, ek bahar",
+   "en": "3 copies, on 2 kinds of storage, 1 kept off-site",
+   "hi": "3 कॉपियाँ, 2 तरह के भंडारण पर, 1 बाहर रखी"
+  },
+  {
+   "term": "Immutable backup",
+   "hinglish": "Badli na ja sakne wali copy",
+   "en": "A backup that cannot be changed or deleted for a set time",
+   "hi": "तय समय तक न बदली न मिटाई जा सकने वाली कॉपी"
+  },
+  {
+   "term": "Patch",
+   "hinglish": "Security update",
+   "en": "An update that fixes a known weakness",
+   "hi": "ज्ञात कमज़ोरी ठीक करने वाला अपडेट"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Ransomware usually arrives by phishing, a stolen password on remote access, or an unpatched server.",
+    "hi": "रैनसमवेयर आम तौर पर फ़िशिंग, रिमोट पहुँच पर चोरी पासवर्ड, या बिना अपडेट सर्वर से आता है।",
+    "hinglish": "Ransomware aam taur par phishing, remote access par chori password, ya unpatched server se aata hai."
+   },
+   "visual": "anim:ransom-entry",
+   "narration": {
+    "en": "Ransomware usually arrives by phishing, a stolen password on remote access, or an unpatched server.",
+    "hi": "रैनसमवेयर आम तौर पर फ़िशिंग, रिमोट पहुँच पर चोरी पासवर्ड, या बिना अपडेट सर्वर से आता है।",
+    "hinglish": "Ransomware aam taur par phishing, remote access par chori password, ya unpatched server se aata hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "It spreads, deletes backups it can reach, steals data, then encrypts files and shows a ransom note.",
+    "hi": "यह फैलता है, पहुँच वाले बैकअप मिटाता है, डेटा चुराता है, फिर फ़ाइलें एन्क्रिप्ट कर फिरौती नोट दिखाता है।",
+    "hinglish": "Yeh phailta hai, pahunch wale backups mitata hai, data churata hai, phir files encrypt karke ransom note dikhata hai."
+   },
+   "visual": "anim:ransom-lock",
+   "narration": {
+    "en": "It spreads, deletes backups it can reach, steals data, then encrypts files and shows a ransom note.",
+    "hi": "यह फैलता है, पहुँच वाले बैकअप मिटाता है, डेटा चुराता है, फिर फ़ाइलें एन्क्रिप्ट कर फिरौती नोट दिखाता है।",
+    "hinglish": "Yeh phailta hai, pahunch wale backups mitata hai, data churata hai, phir files encrypt karke ransom note dikhata hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "In November 2022 a ransomware attack disrupted AIIMS Delhi's servers for about two weeks; staff fell back to paper.",
+    "hi": "नवंबर 2022 में रैनसमवेयर हमले ने एम्स दिल्ली के सर्वर लगभग दो हफ़्ते बाधित किए; कर्मचारी काग़ज़ पर लौटे।",
+    "hinglish": "November 2022 mein ransomware attack ne AIIMS Delhi ke servers lagbhag do hafte disrupt kiye; staff kaagaz par laute."
+   },
+   "visual": "anim:hospital-paper",
+   "narration": {
+    "en": "In November 2022 a ransomware attack disrupted AIIMS Delhi's servers for about two weeks; staff fell back to paper.",
+    "hi": "नवंबर 2022 में रैनसमवेयर हमले ने एम्स दिल्ली के सर्वर लगभग दो हफ़्ते बाधित किए; कर्मचारी काग़ज़ पर लौटे।",
+    "hinglish": "November 2022 mein ransomware attack ne AIIMS Delhi ke servers lagbhag do hafte disrupt kiye; staff kaagaz par laute."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Defence: patches, MFA, least privilege — and 3-2-1 backups with one copy offline, tested by actually restoring.",
+    "hi": "बचाव: अपडेट, MFA, न्यूनतम अधिकार — और 3-2-1 बैकअप जिसमें एक कॉपी ऑफ़लाइन, असल में बहाल करके परखी।",
+    "hinglish": "Defence: patches, MFA, least privilege — aur 3-2-1 backups jismein ek copy offline, asal mein restore karke tested."
+   },
+   "visual": "anim:backup-321",
+   "narration": {
+    "en": "Defence: patches, MFA, least privilege — and 3-2-1 backups with one copy offline, tested by actually restoring.",
+    "hi": "बचाव: अपडेट, MFA, न्यूनतम अधिकार — और 3-2-1 बैकअप जिसमें एक कॉपी ऑफ़लाइन, असल में बहाल करके परखी।",
+    "hinglish": "Defence: patches, MFA, least privilege — aur 3-2-1 backups jismein ek copy offline, asal mein restore karke tested."
+   }
+  }
+ ],
+ "play": {
+  "lab": "crypto-lab",
+  "config": {
+   "mode": "hash"
+  },
+  "goal": {
+   "en": "Hash a short \"backup file\" text, then change one character and compare. This is how you prove a restored backup is exactly the original.",
+   "hi": "एक छोटे \"बैकअप फ़ाइल\" पाठ का हैश बनाओ, फिर एक अक्षर बदलो और मिलाओ। इसी से साबित होता है कि बहाल बैकअप बिल्कुल मूल है।",
+   "hinglish": "Ek chhote \"backup file\" text ka hash banao, phir ek character badlo aur compare karo. Isi se prove hota hai ki restore hua backup bilkul original hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Prevent, then be able to recover",
+    "hi": "रोको, फिर उबरने लायक़ रहो",
+    "hinglish": "Roko, phir recover karne layak raho"
+   },
+   "body": {
+    "en": "Prevention: keep systems patched (many attacks use flaws fixed months earlier), require MFA on email and remote access, give users least privilege, filter email attachments and macros, and segment networks so one infected PC cannot reach everything. Recovery: the 3-2-1 rule — 3 copies, 2 media, 1 off-site — with at least one offline or immutable copy that ransomware cannot delete. Verify backups (hash checks) and run restore drills; an untested backup is a hope, not a plan.",
+    "hi": "रोकथाम: प्रणालियाँ अपडेट रखो (कई हमले महीनों पहले ठीक हुई कमियाँ इस्तेमाल करते हैं), ईमेल और रिमोट पहुँच पर MFA, उपयोगकर्ताओं को न्यूनतम अधिकार, ईमेल अटैचमेंट और मैक्रो छानो, और नेटवर्क बाँटो ताकि एक संक्रमित पीसी सब तक न पहुँचे। बहाली: 3-2-1 नियम — 3 कॉपियाँ, 2 माध्यम, 1 बाहर — कम से कम एक ऑफ़लाइन या अपरिवर्तनीय कॉपी जिसे रैनसमवेयर मिटा न सके। बैकअप जाँचो (हैश) और बहाली अभ्यास करो; बिना परखा बैकअप उम्मीद है, योजना नहीं।",
+    "hinglish": "Prevention: systems patched rakho (kai attacks mahino pehle fix hui kamiyan use karte hain), email aur remote access par MFA, users ko least privilege, email attachments aur macros filter karo, aur networks segment karo taaki ek infected PC sab tak na pahunche. Recovery: 3-2-1 rule — 3 copies, 2 media, 1 off-site — kam se kam ek offline ya immutable copy jise ransomware mita na sake. Backups verify karo (hash checks) aur restore drills chalao; untested backup ummeed hai, plan nahi."
+   },
+   "analogy": {
+    "en": "Keep photocopies of your certificates at home, at a relative's house and in DigiLocker — one fire cannot take them all.",
+    "hi": "अपने प्रमाणपत्रों की फ़ोटोकॉपी घर पर, रिश्तेदार के घर और डिजिलॉकर में रखो — एक आग सब नहीं ले जा सकती।",
+    "hinglish": "Apne certificates ki photocopies ghar par, rishtedaar ke ghar aur DigiLocker mein rakho — ek aag sab nahi le ja sakti."
+   },
+   "realExample": {
+    "en": "For a family: phone photos sync to the cloud (copy 2), plus a monthly copy to an external drive kept unplugged (copy 3, offline).",
+    "hi": "परिवार के लिए: फ़ोन फ़ोटो क्लाउड में सिंक (कॉपी 2), और हर महीने एक बाहरी ड्राइव पर कॉपी जो अलग रखी जाए (कॉपी 3, ऑफ़लाइन)।",
+    "hinglish": "Family ke liye: phone photos cloud mein sync (copy 2), plus har mahine ek external drive par copy jo unplugged rakhi jaaye (copy 3, offline)."
+   }
+  },
+  {
+   "heading": {
+    "en": "If it happens",
+    "hi": "अगर हो जाए",
+    "hinglish": "Agar ho jaaye"
+   },
+   "body": {
+    "en": "Disconnect affected devices from the network (do not switch them off — memory may hold evidence), alert the IT or security team, and report: organisations must report to CERT-In within 6 hours; individuals can report on cybercrime.gov.in or call 1930. Paying is discouraged — there is no guarantee of a working key, stolen data may still leak, and it funds more crime. Restore from clean backups after the entry point is closed.",
+    "hi": "प्रभावित डिवाइस नेटवर्क से अलग करो (बंद मत करो — मेमोरी में सबूत हो सकते हैं), आईटी या सुरक्षा टीम को बताओ, और रिपोर्ट करो: संगठनों को 6 घंटे में CERT-In को बताना होता है; व्यक्ति cybercrime.gov.in पर या 1930 पर शिकायत कर सकते हैं। भुगतान करना ठीक नहीं — काम करने वाली कुंजी की कोई गारंटी नहीं, चुराया डेटा फिर भी लीक हो सकता है, और इससे और अपराध पलते हैं। घुसने का रास्ता बंद करने के बाद साफ़ बैकअप से बहाल करो।",
+    "hinglish": "Affected devices network se alag karo (band mat karo — memory mein saboot ho sakte hain), IT ya security team ko batao, aur report karo: organisations ko 6 ghante mein CERT-In ko batana hota hai; individuals cybercrime.gov.in par ya 1930 par report kar sakte hain. Paying discourage kiya jaata hai — working key ki koi guarantee nahi, chori data phir bhi leak ho sakta hai, aur isse aur crime palte hain. Entry point band karne ke baad clean backups se restore karo."
+   },
+   "analogy": {
+    "en": "If one room catches fire, close its door first (isolate), call the fire brigade (report), then rebuild from insurance (backups).",
+    "hi": "अगर एक कमरे में आग लगे, पहले दरवाज़ा बंद करो (अलग करो), दमकल बुलाओ (रिपोर्ट), फिर बीमे से दोबारा बनाओ (बैकअप)।",
+    "hinglish": "Agar ek kamre mein aag lage, pehle darwaaza band karo (isolate), fire brigade bulao (report), phir insurance se dobaara banao (backups)."
+   },
+   "realExample": {
+    "en": "A school whose admin PC shows a ransom note pulls its network cable, informs the IT vendor and police, and restores records from last night's offline backup.",
+    "hi": "जिस स्कूल के प्रशासन पीसी पर फिरौती नोट दिखे, वह नेटवर्क केबल निकालता है, आईटी विक्रेता और पुलिस को बताता है, और पिछली रात के ऑफ़लाइन बैकअप से रिकॉर्ड बहाल करता है।",
+    "hinglish": "Jis school ke admin PC par ransom note dikhe, woh network cable nikaalta hai, IT vendor aur police ko batata hai, aur pichhli raat ke offline backup se records restore karta hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Design a backup plan for your family's photos and documents using 3-2-1. Say where each copy lives, how often it updates, and how you will test a restore.",
+   "hi": "अपने घर की फ़ोटो और दस्तावेज़ों के लिए 3-2-1 से बैकअप योजना बनाओ। बताओ हर कॉपी कहाँ है, कितनी बार अपडेट होती है, और बहाली कैसे परखोगे।",
+   "hinglish": "Apne ghar ki photos aur documents ke liye 3-2-1 se backup plan banao. Batao har copy kahan hai, kitni baar update hoti hai, aur restore kaise test karoge."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "In the 3-2-1 rule, the \"1\" means…",
+     "hi": "3-2-1 नियम में \"1\" का मतलब…",
+     "hinglish": "3-2-1 rule mein \"1\" ka matlab…"
+    },
+    "options": [
+     {
+      "en": "One copy kept off-site",
+      "hi": "एक कॉपी बाहर रखी",
+      "hinglish": "Ek copy off-site"
+     },
+     {
+      "en": "One password",
+      "hi": "एक पासवर्ड",
+      "hinglish": "Ek password"
+     },
+     {
+      "en": "One day a week",
+      "hi": "हफ़्ते में एक दिन",
+      "hinglish": "Hafte mein ek din"
+     },
+     {
+      "en": "One antivirus",
+      "hi": "एक एंटीवायरस",
+      "hinglish": "Ek antivirus"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Off-site (and ideally offline) survives fire, theft and ransomware.",
+     "hi": "बाहर (और बेहतर ऑफ़लाइन) कॉपी आग, चोरी और रैनसमवेयर से बचती है।",
+     "hinglish": "Off-site (aur behtar offline) copy aag, chori aur ransomware se bachti hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Ransomware is found on one PC. First step?",
+     "hi": "एक पीसी पर रैनसमवेयर मिला। पहला क़दम?",
+     "hinglish": "Ek PC par ransomware mila. Pehla step?"
+    },
+    "options": [
+     {
+      "en": "Disconnect it from the network",
+      "hi": "नेटवर्क से अलग करो",
+      "hinglish": "Network se alag karo"
+     },
+     {
+      "en": "Pay quickly",
+      "hi": "जल्दी भुगतान करो",
+      "hinglish": "Jaldi pay karo"
+     },
+     {
+      "en": "Format all servers",
+      "hi": "सब सर्वर फ़ॉर्मेट करो",
+      "hinglish": "Saare servers format karo"
+     },
+     {
+      "en": "Ignore it",
+      "hi": "नज़रअंदाज़ करो",
+      "hinglish": "Ignore karo"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Isolation stops spread; then report and investigate.",
+     "hi": "अलग करने से फैलाव रुकता है; फिर रिपोर्ट और जाँच।",
+     "hinglish": "Isolation se phailaav rukta hai; phir report aur jaanch."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "multi",
+    "prompt": {
+     "en": "Which help prevent ransomware getting in? (choose all)",
+     "hi": "कौन-से रैनसमवेयर को घुसने से रोकते हैं? (सभी चुनो)",
+     "hinglish": "Kaunse ransomware ko ghusne se rokte hain? (saare chuno)"
+    },
+    "options": [
+     {
+      "en": "Prompt patching",
+      "hi": "समय पर अपडेट",
+      "hinglish": "Time par patching"
+     },
+     {
+      "en": "MFA on remote access",
+      "hi": "रिमोट पहुँच पर MFA",
+      "hinglish": "Remote access par MFA"
+     },
+     {
+      "en": "Everyone as administrator",
+      "hi": "सब प्रशासक",
+      "hinglish": "Sab administrator"
+     },
+     {
+      "en": "Email attachment filtering",
+      "hi": "ईमेल अटैचमेंट छानना",
+      "hinglish": "Email attachment filtering"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     3
+    ],
+    "explain": {
+     "en": "Admin rights for everyone let malware spread further.",
+     "hi": "सबको प्रशासक अधिकार मैलवेयर को और फैलने देते हैं।",
+     "hinglish": "Sabko admin rights malware ko aur phailne dete hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "How do you prove a restored backup file is unchanged?",
+     "hi": "कैसे साबित करो कि बहाल बैकअप फ़ाइल बदली नहीं?",
+     "hinglish": "Kaise prove karo ki restored backup file badli nahi?"
+    },
+    "options": [
+     {
+      "en": "Compare its SHA-256 hash with the original's",
+      "hi": "उसका SHA-256 हैश मूल से मिलाओ",
+      "hinglish": "Uska SHA-256 hash original se milao"
+     },
+     {
+      "en": "Check the file name",
+      "hi": "फ़ाइल नाम देखो",
+      "hinglish": "File naam dekho"
+     },
+     {
+      "en": "Look at the icon",
+      "hi": "आइकन देखो",
+      "hinglish": "Icon dekho"
+     },
+     {
+      "en": "Ask a friend",
+      "hi": "दोस्त से पूछो",
+      "hinglish": "Dost se poocho"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Any change gives a completely different hash.",
+     "hi": "कोई भी बदलाव पूरा अलग हैश देता है।",
+     "hinglish": "Koi bhi badlav poora alag hash deta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "See the avalanche effect in the hash lab.",
+     "hi": "हैश प्रयोगशाला में हिमस्खलन प्रभाव देखो।",
+     "hinglish": "Hash lab mein avalanche effect dekho."
+    },
+    "answer": {
+     "event": "avalanche-seen"
+    },
+    "explain": {
+     "en": "One character changed about half the bits.",
+     "hi": "एक अक्षर ने लगभग आधे बिट बदले।",
+     "hinglish": "Ek character ne lagbhag aadhe bits badle."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "cyber.malware"
+ ],
+ "sources": [
+  {
+   "title": "CERT-In — Directions under Section 70B (28 April 2022)",
+   "url": "https://www.cert-in.org.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "CISA #StopRansomware Guide",
+   "url": "https://www.cisa.gov/stopransomware",
+   "licence": "public domain"
+  }
+ ]
+}

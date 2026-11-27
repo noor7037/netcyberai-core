@@ -1,0 +1,338 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.data-science.03",
+ "level": 3,
+ "classes": [
+  10,
+  11,
+  12
+ ],
+ "unit": "data-science",
+ "title": {
+  "en": "Analysing data with Python",
+  "hi": "पायथन से डेटा विश्लेषण",
+  "hinglish": "Python se data analysis"
+ },
+ "minutes": 15,
+ "xp": 60,
+ "prereq": [
+  "L3.data-science.02",
+  "L3.python-pro.04"
+ ],
+ "outcomes": [
+  {
+   "en": "Group and summarise records with plain Python dicts",
+   "hi": "सादी पायथन डिक्ट से रिकॉर्ड समूहित और सारांशित करो",
+   "hinglish": "Plain Python dicts se records group aur summarise karo"
+  },
+  {
+   "en": "Do the same with pandas: read_csv, groupby, mean",
+   "hi": "pandas से वही करो: read_csv, groupby, mean",
+   "hinglish": "pandas se wahi karo: read_csv, groupby, mean"
+  },
+  {
+   "en": "Clean data: missing values, duplicates, wrong types",
+   "hi": "डेटा साफ़ करो: ग़ायब मान, दोहराव, ग़लत प्रकार",
+   "hinglish": "Data clean karo: missing values, duplicates, galat types"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "DataFrame",
+   "hinglish": "Python ki table",
+   "en": "A pandas table of rows and named columns",
+   "hi": "पंक्तियों और नामित स्तंभों की pandas तालिका"
+  },
+  {
+   "term": "Group by",
+   "hinglish": "Group bana kar",
+   "en": "Split rows into groups by a column, then summarise each",
+   "hi": "स्तंभ से पंक्तियों को समूहों में बाँटकर हर एक का सारांश"
+  },
+  {
+   "term": "Missing value",
+   "hinglish": "Khaali jagah",
+   "en": "An empty cell, shown as NaN in pandas",
+   "hi": "ख़ाली खाना, pandas में NaN"
+  },
+  {
+   "term": "Data cleaning",
+   "hinglish": "Data saaf karna",
+   "en": "Fixing errors, gaps and duplicates before analysis",
+   "hi": "विश्लेषण से पहले त्रुटियाँ, ख़ाली और दोहराव ठीक करना"
+  },
+  {
+   "term": "Notebook",
+   "hinglish": "Code aur result ek saath",
+   "en": "A document mixing code, output and notes (Jupyter, Colab)",
+   "hi": "कोड, आउटपुट और नोट्स वाला दस्तावेज़ (Jupyter, Colab)"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Five records: (name, house, marks). Goal: the average marks of each house.",
+    "hi": "पाँच रिकॉर्ड: (name, house, marks)। लक्ष्य: हर हाउस के औसत अंक।",
+    "hinglish": "Paanch records: (name, house, marks). Goal: har house ke average marks."
+   },
+   "visual": "anim:rows",
+   "narration": {
+    "en": "Five records: (name, house, marks). Goal: the average marks of each house.",
+    "hi": "पाँच रिकॉर्ड: (name, house, marks)। लक्ष्य: हर हाउस के औसत अंक।",
+    "hinglish": "Paanch records: (name, house, marks). Goal: har house ke average marks."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Split: each row goes into its house bucket — totals and counts grow in two dicts.",
+    "hi": "बाँटो: हर पंक्ति अपने हाउस की बाल्टी में — totals और counts दो डिक्ट में बढ़ते हैं।",
+    "hinglish": "Split: har row apne house ki bucket mein — totals aur counts do dicts mein badhte hain."
+   },
+   "visual": "anim:buckets",
+   "narration": {
+    "en": "Split: each row goes into its house bucket — totals and counts grow in two dicts.",
+    "hi": "बाँटो: हर पंक्ति अपने हाउस की बाल्टी में — totals और counts दो डिक्ट में बढ़ते हैं।",
+    "hinglish": "Split: har row apne house ki bucket mein — totals aur counts do dicts mein badhte hain."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Apply and combine: total ÷ count per house → Red 86.5, Blue 70.5, Green 88.0.",
+    "hi": "लागू करो और जोड़ो: हर हाउस का कुल ÷ गिनती → Red 86.5, Blue 70.5, Green 88.0।",
+    "hinglish": "Apply aur combine: har house ka total ÷ count → Red 86.5, Blue 70.5, Green 88.0."
+   },
+   "visual": "anim:combine",
+   "narration": {
+    "en": "Apply and combine: total ÷ count per house → Red 86.5, Blue 70.5, Green 88.0.",
+    "hi": "लागू करो और जोड़ो: हर हाउस का कुल ÷ गिनती → Red 86.5, Blue 70.5, Green 88.0।",
+    "hinglish": "Apply aur combine: har house ka total ÷ count → Red 86.5, Blue 70.5, Green 88.0."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Green \"wins\" with one student. Always report the count (n) next to an average.",
+    "hi": "Green एक छात्र से \"जीतता\" है। औसत के साथ हमेशा गिनती (n) बताओ।",
+    "hinglish": "Green ek student se \"jeet-ta\" hai. Average ke saath hamesha count (n) batao."
+   },
+   "visual": "anim:small-n",
+   "narration": {
+    "en": "Green \"wins\" with one student. Always report the count (n) next to an average.",
+    "hi": "Green एक छात्र से \"जीतता\" है। औसत के साथ हमेशा गिनती (n) बताओ।",
+    "hinglish": "Green ek student se \"jeet-ta\" hai. Average ke saath hamesha count (n) batao."
+   }
+  }
+ ],
+ "play": {
+  "lab": "code-lab",
+  "config": {
+   "mode": "trace",
+   "scenario": "csv-analysis"
+  },
+  "goal": {
+   "en": "Predict which house has the highest average, then trace the program and watch totals and counts fill up. Notice how many students Green has.",
+   "hi": "अनुमान लगाओ किस हाउस का औसत सबसे ज़्यादा है, फिर प्रोग्राम ट्रेस करो और totals और counts भरते देखो। देखो Green में कितने छात्र हैं।",
+   "hinglish": "Predict karo kis house ka average sabse zyaada hai, phir program trace karo aur totals aur counts bharte dekho. Dekho Green mein kitne students hain."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "The same analysis in pandas",
+    "hi": "pandas में वही विश्लेषण",
+    "hinglish": "pandas mein wahi analysis"
+   },
+   "body": {
+    "en": "pandas (BSD-licensed, free) is the standard Python library for tables. import pandas as pd; df = pd.read_csv(\"marks.csv\") loads a file into a DataFrame. df.head() shows the first rows, df.describe() gives count, mean, SD, min, quartiles and max for every number column. df[df[\"marks\"] >= 75] filters rows. df.groupby(\"house\")[\"marks\"].agg([\"mean\", \"count\"]) does the split–apply–combine you traced, in one line. df.sort_values(\"marks\", ascending=False) ranks. Google Colab and Jupyter notebooks run this in a browser with no setup.",
+    "hi": "pandas (BSD लाइसेंस, मुफ़्त) तालिकाओं की मानक पायथन लाइब्रेरी है। import pandas as pd; df = pd.read_csv(\"marks.csv\") फ़ाइल को DataFrame में लाता है। df.head() पहली पंक्तियाँ दिखाता है, df.describe() हर संख्या स्तंभ का count, mean, SD, min, चतुर्थक और max देता है। df[df[\"marks\"] >= 75] पंक्तियाँ छाँटता है। df.groupby(\"house\")[\"marks\"].agg([\"mean\", \"count\"]) वही बाँटो–लागू करो–जोड़ो एक पंक्ति में करता है जो आपने ट्रेस किया। df.sort_values(\"marks\", ascending=False) क्रम देता है। Google Colab और Jupyter नोटबुक इसे बिना सेटअप ब्राउज़र में चलाते हैं।",
+    "hinglish": "pandas (BSD licence, free) tables ki standard Python library hai. import pandas as pd; df = pd.read_csv(\"marks.csv\") file ko DataFrame mein laata hai. df.head() pehli rows dikhata hai, df.describe() har number column ka count, mean, SD, min, quartiles aur max deta hai. df[df[\"marks\"] >= 75] rows filter karta hai. df.groupby(\"house\")[\"marks\"].agg([\"mean\", \"count\"]) wahi split–apply–combine ek line mein karta hai jo tumne trace kiya. df.sort_values(\"marks\", ascending=False) rank karta hai. Google Colab aur Jupyter notebooks ise bina setup browser mein chalate hain."
+   },
+   "analogy": {
+    "en": "Plain Python is cooking from scratch; pandas is a well-equipped kitchen — same dish, much faster.",
+    "hi": "सादा पायथन शुरू से खाना बनाना है; pandas सुसज्जित रसोई — वही पकवान, बहुत तेज़।",
+    "hinglish": "Plain Python scratch se khaana banana hai; pandas ek fully equipped kitchen — wahi dish, bahut tez."
+   },
+   "realExample": {
+    "en": "data.gov.in, India's Open Government Data platform, publishes thousands of CSV datasets (rainfall, schools, transport) you can load with pd.read_csv.",
+    "hi": "भारत का खुला सरकारी डेटा मंच data.gov.in हज़ारों CSV डेटासेट (वर्षा, स्कूल, परिवहन) प्रकाशित करता है जिन्हें pd.read_csv से लोड कर सकते हो।",
+    "hinglish": "data.gov.in, India ka Open Government Data platform, hazaaron CSV datasets (rainfall, schools, transport) publish karta hai jinhe pd.read_csv se load kar sakte ho."
+   }
+  },
+  {
+   "heading": {
+    "en": "Cleaning comes first",
+    "hi": "पहले सफ़ाई",
+    "hinglish": "Pehle safaai"
+   },
+   "body": {
+    "en": "Real data is messy, and analysts often spend most of their time cleaning it. Check df.info() for column types — marks read as text cannot be averaged: use pd.to_numeric(df[\"marks\"], errors=\"coerce\"). Find gaps with df.isna().sum() and decide: drop the rows, or fill with a sensible value — and say which you did. Remove duplicates with df.drop_duplicates(). Standardise spellings (\"Delhi\", \"delhi \", \"New Delhi\"). Look for impossible values (marks 105, age −3). Keep the raw file untouched and write every cleaning step in code, so anyone can repeat your analysis.",
+    "hi": "असली डेटा बिखरा होता है, और विश्लेषक अक्सर ज़्यादातर समय उसे साफ़ करने में लगाते हैं। स्तंभ प्रकारों के लिए df.info() देखो — पाठ के रूप में पढ़े अंकों का औसत नहीं निकलता: pd.to_numeric(df[\"marks\"], errors=\"coerce\") इस्तेमाल करो। df.isna().sum() से ख़ाली जगहें खोजो और तय करो: पंक्तियाँ हटाओ, या समझदार मान भरो — और बताओ क्या किया। df.drop_duplicates() से दोहराव हटाओ। वर्तनी एक करो (\"Delhi\", \"delhi \", \"New Delhi\")। असंभव मान खोजो (अंक 105, आयु −3)। मूल फ़ाइल अछूती रखो और हर सफ़ाई चरण कोड में लिखो, ताकि कोई भी विश्लेषण दोहरा सके।",
+    "hinglish": "Asli data messy hota hai, aur analysts aksar zyaadatar time use saaf karne mein lagaate hain. Column types ke liye df.info() dekho — text ki tarah padhe marks ka average nahi nikalta: pd.to_numeric(df[\"marks\"], errors=\"coerce\") use karo. df.isna().sum() se gaps dhoondho aur tay karo: rows hatao, ya sensible value bharo — aur batao kya kiya. df.drop_duplicates() se duplicates hatao. Spellings ek karo (\"Delhi\", \"delhi \", \"New Delhi\"). Impossible values dhoondho (marks 105, age −3). Raw file ko untouched rakho aur har cleaning step code mein likho, taaki koi bhi analysis dohra sake."
+   },
+   "analogy": {
+    "en": "Washing and cutting vegetables before cooking: skip it and the best recipe still tastes of mud.",
+    "hi": "पकाने से पहले सब्ज़ियाँ धोना और काटना: छोड़ दो तो सबसे अच्छी रेसिपी भी मिट्टी जैसी लगे।",
+    "hinglish": "Khaana banane se pehle sabziyaan dhona aur kaatna: chhod do to best recipe bhi mitti jaisi lage."
+   },
+   "realExample": {
+    "en": "A survey sheet where one student typed \"eighty\" instead of 80 silently breaks the class average until it is cleaned.",
+    "hi": "सर्वे शीट जिसमें एक छात्र ने 80 की जगह \"eighty\" लिखा, साफ़ होने तक कक्षा का औसत चुपचाप बिगाड़ देती है।",
+    "hinglish": "Survey sheet jismein ek student ne 80 ki jagah \"eighty\" likha, saaf hone tak class average chupchaap bigaad deti hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Make a CSV of 10 rows (name, class, favourite sport, hours of sleep) from a class survey with permission and no surnames. In Colab or on paper, find the average sleep per sport and the count in each group. Write one honest sentence about what you found.",
+   "hi": "अनुमति लेकर और बिना उपनाम के कक्षा सर्वे से 10 पंक्तियों (name, class, favourite sport, hours of sleep) की CSV बनाओ। Colab में या काग़ज़ पर हर खेल की औसत नींद और हर समूह की गिनती निकालो। जो मिला उस पर एक ईमानदार वाक्य लिखो।",
+   "hinglish": "Class survey se permission lekar aur bina surname ke 10 rows (name, class, favourite sport, hours of sleep) ki CSV banao. Colab mein ya kaagaz par har sport ka average sleep aur har group ka count nikalo. Jo mila us par ek imaandaar sentence likho."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which pandas call gives the average marks per house?",
+     "hi": "कौन-सी pandas कॉल हर हाउस के औसत अंक देती है?",
+     "hinglish": "Kaunsi pandas call har house ke average marks deti hai?"
+    },
+    "options": [
+     "df.groupby(\"house\")[\"marks\"].mean()",
+     "df.sort_values(\"house\")",
+     "df.head()",
+     "df.drop_duplicates()"
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "groupby splits, mean applies, pandas combines.",
+     "hi": "groupby बाँटता है, mean लागू करता है, pandas जोड़ता है।",
+     "hinglish": "groupby split karta hai, mean apply karta hai, pandas combine karta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "short",
+    "prompt": {
+     "en": "Red house has marks 82 and 91. Average?",
+     "hi": "Red हाउस के अंक 82 और 91। औसत?",
+     "hinglish": "Red house ke marks 82 aur 91. Average?"
+    },
+    "answer": {
+     "accept": [
+      "86.5"
+     ]
+    },
+    "explain": {
+     "en": "(82 + 91) / 2 = 86.5.",
+     "hi": "(82 + 91) / 2 = 86.5।",
+     "hinglish": "(82 + 91) / 2 = 86.5."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why report the count next to each average?",
+     "hi": "हर औसत के साथ गिनती क्यों बताओ?",
+     "hinglish": "Har average ke saath count kyun batao?"
+    },
+    "options": [
+     {
+      "en": "A group of 1 can look best by chance",
+      "hi": "1 का समूह संयोग से सबसे अच्छा दिख सकता है",
+      "hinglish": "1 ka group chance se best dikh sakta hai"
+     },
+     {
+      "en": "pandas requires it",
+      "hi": "pandas को ज़रूरी",
+      "hinglish": "pandas ko zaroori"
+     },
+     {
+      "en": "It makes tables longer",
+      "hi": "तालिका लंबी करता है",
+      "hinglish": "Table lambi karta hai"
+     },
+     {
+      "en": "No reason",
+      "hi": "कोई कारण नहीं",
+      "hinglish": "Koi kaaran nahi"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Small groups give unreliable averages.",
+     "hi": "छोटे समूह अविश्वसनीय औसत देते हैं।",
+     "hinglish": "Chhote groups unreliable averages dete hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "A marks column was read as text. Fix?",
+     "hi": "अंक स्तंभ पाठ के रूप में पढ़ा गया। सुधार?",
+     "hinglish": "Marks column text ki tarah padha gaya. Fix?"
+    },
+    "options": [
+     "pd.to_numeric(df[\"marks\"], errors=\"coerce\")",
+     "df.head()",
+     "Delete the file",
+     "Ignore it"
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Bad entries become NaN, which you then handle explicitly.",
+     "hi": "ख़राब प्रविष्टियाँ NaN बनती हैं, जिन्हें फिर साफ़-साफ़ सँभालो।",
+     "hinglish": "Kharaab entries NaN banti hain, jinhe phir saaf-saaf sambhalo."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Trace the house-average analysis to the end.",
+     "hi": "हाउस-औसत विश्लेषण अंत तक ट्रेस करो।",
+     "hinglish": "House-average analysis end tak trace karo."
+    },
+    "answer": {
+     "event": "trace-done",
+     "scenario": "csv-analysis"
+    },
+    "explain": {
+     "en": "Split, apply, combine — by hand.",
+     "hi": "बाँटो, लागू करो, जोड़ो — हाथ से।",
+     "hinglish": "Split, apply, combine — haath se."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "ds.analysis-python",
+  "ds.collect"
+ ],
+ "sources": [
+  {
+   "title": "OpenIntro Statistics, 4th ed. (CC BY-SA; used as a fact reference)",
+   "url": "https://www.openintro.org/book/os/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "pandas documentation (BSD-3-Clause)",
+   "url": "https://pandas.pydata.org/docs/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Open Government Data Platform India",
+   "url": "https://data.gov.in/",
+   "licence": "fact reference"
+  }
+ ]
+}

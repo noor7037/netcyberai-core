@@ -1,0 +1,229 @@
+<!doctype html><html lang="en-IN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Circuit Lab — NCA Tech & AI Lab</title><style>/* NCA Tech & AI Lab — Level 2 shared lab skin (own work, MIT). Family App lesson tokens: paper, card, ink, saffron, teal, plum. */
+:root{--paper:#FBF8F3;--card:#FFFDF9;--ink:#1C1B1A;--muted:#4B5563;--line:#E7E1D6;--saffron:#E8702A;--saffronD:#C2410C;--teal:#0F766E;--plum:#6D28D9;--sky:#0369A1;
+--mint:#E4F3EA;--butter:#FBF1D3;--lilac:#EFE9FB;--blush:#FBE6E3;--skyT:#E3EEF9;--night:#0B1430;--night2:#16224A;--cyan:#02CFF9;--leaf:#22C55E;--coral:#FF6B57;--gold:#F5B90A;--grape:#8B3DFF;
+--r:16px;--sh:0 1px 0 rgba(28,27,26,.04),0 6px 18px -8px rgba(28,27,26,.18)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans Devanagari",sans-serif;font-variant-numeric:tabular-nums}
+body{background:transparent;min-height:100vh;padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 16px)}
+button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation}
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:8px;padding:10px 14px;background:rgba(251,248,243,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--lilac);flex:none}
+.top h1{font-size:16px;margin:0;line-height:1.2;flex:1;min-width:0}
+.top h1 small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;flex:none;background:var(--card)}
+.lang button{border:0;background:none;padding:6px 9px;font-size:12px;font-weight:600;color:var(--muted);min-height:32px}
+.lang button[aria-pressed=true]{background:var(--ink);color:#fff}
+.wrap{max-width:1100px;margin:0 auto;padding:12px 14px;display:grid;gap:12px;grid-template-columns:minmax(0,1fr)}
+.wrap>*{min-width:0}
+.wrap>div{grid-template-columns:minmax(0,1fr)}
+.card,.stage{min-width:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;box-shadow:var(--sh)}
+.goal{background:var(--butter);border-color:#F1DFA8;display:flex;gap:10px;align-items:flex-start;font-size:14.5px}
+.goal b{color:#8A5300}
+.goal .gi{font-size:20px;line-height:1}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn{border:0;border-radius:12px;padding:11px 16px;font-weight:700;min-height:44px;background:var(--saffron);color:var(--ink);box-shadow:0 3px 0 #B4531B;transition:transform .12s}
+.btn:active{transform:translateY(2px);box-shadow:0 1px 0 #B4531B}
+.btn.ghost{background:var(--card);border:1.5px solid var(--line);box-shadow:none}
+.btn.teal{background:var(--teal);color:#fff;box-shadow:0 3px 0 #0A4F49}
+.btn.plum{background:var(--plum);color:#fff;box-shadow:0 3px 0 #4C1D95}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.chip{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:3px 10px;font-size:12.5px;font-weight:600;background:var(--mint);color:var(--teal)}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;padding-bottom:2px}/* wraps: every mode name always fully visible */
+.tabs button{flex:0 1 auto;max-width:100%;white-space:normal;text-align:center;border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:8px 14px;font-weight:600;font-size:14px;min-height:40px}
+.tabs button[aria-selected=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.stage{background:radial-gradient(120% 90% at 30% 0%,#1D2D63 0%,var(--night) 60%);color:#E8EEFF;border-radius:20px;overflow:hidden;position:relative;border:1px solid #23305E}
+.muted{color:var(--muted)}
+.mission{background:var(--skyT);border-color:#C9DDF2}
+.mission h3{margin:0 0 6px;font-size:15px;color:var(--sky)}
+.toast{position:fixed;left:0;top:0;width:max-content;max-width:min(92vw,340px);background:var(--ink);color:#fff;padding:10px 16px;border-radius:14px;font-weight:600;z-index:50;box-shadow:0 8px 24px rgba(0,0,0,.25);opacity:0;visibility:hidden;transform:scale(.92);transition:opacity .25s,transform .25s,visibility 0s .25s;pointer-events:none;text-align:center;line-height:1.35}
+.toast.on{opacity:1;visibility:visible;transform:none;transition:opacity .25s,transform .25s}
+.toast.inline{position:static;display:block;width:auto;max-width:none;margin:10px 0;grid-column:1/-1;flex:0 0 auto}
+.toast.ok{background:var(--teal)}.toast.bad{background:#B42318}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:-1}/* behind the cards: confetti never covers text */
+.kbd{font-family:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace}
+.hidden{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@keyframes pop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.08);opacity:1}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.shake{animation:shake .3s 2}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
+</style>
+<style>
+.board{width:100%;height:auto;display:block}
+.meter{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:10px}
+.meter div{background:#0A1028;border:1px solid #2A3A70;border-radius:12px;padding:6px;text-align:center;font-size:11.5px;color:#9FB0D8}
+.meter b{display:block;font:800 20px ui-monospace,Menlo,monospace;color:#7DF9C9}
+.ctl{display:grid;gap:10px}
+.ctl label{font-weight:700;font-size:14px;display:grid;gap:4px}
+.ctl input[type=range]{width:100%;accent-color:var(--teal);height:28px}
+.seg{display:flex;gap:6px;flex-wrap:wrap}.seg button{flex:1;min-width:52px;border:1.5px solid var(--line);background:var(--card);border-radius:10px;padding:8px 6px;font-weight:700;min-height:42px}
+.seg button[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.note{font-size:13.5px;border-radius:12px;padding:8px 10px;background:var(--mint);animation:pop .3s both}
+.note.bad{background:var(--blush)}
+.comp{cursor:pointer}
+.e{pointer-events:none}
+.comp:focus{outline:none}.comp:focus-visible rect.hl{stroke:#02CFF9;stroke-width:3}
+@keyframes boom{0%{transform:scale(1)}40%{transform:scale(1.6);opacity:1}100%{transform:scale(2.2);opacity:0}}
+@media (orientation:landscape) and (min-width:640px){.wrap{grid-template-columns:1.25fr 1fr}.wrap>.full{grid-column:1/-1}}
+</style></head><body>
+<main class="wrap">
+ <div class="card goal full"><span class="gi">🎯</span><div id="goal"></div></div>
+ <div class="tabs full" role="tablist" id="tabs"></div>
+ <div class="stage" id="stage"></div>
+ <div style="display:grid;gap:12px"><div class="card" id="side"></div><div class="card mission"><h3 data-k="mT"></h3><div id="mission"></div></div></div>
+</main>
+<script>/* NCA Tech & AI Lab — Level 2 shared lab runtime (own work, MIT). No eval, no network except an optional same-origin ?lesson= JSON. */
+(function(g){
+  const qs=new URLSearchParams(location.search);
+  const LANGS=['hinglish','en','hi'];
+  let lang=(qs.get('lang')||localStorage.getItem('nca-tl-lang')||'hinglish'); if(!LANGS.includes(lang)) lang='hinglish';
+  const reduced=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const t=x=>x==null?'':(typeof x==='string'||typeof x==='number')?String(x):(x[lang]||x.hinglish||x.en||'');
+  let STR={}; const listeners=[];
+  function applyI18n(root){(root||document).querySelectorAll('[data-k]').forEach(el=>{const v=STR[el.dataset.k]; if(v) el.innerHTML=t(v);});
+    document.documentElement.lang=lang==='hi'?'hi':(lang==='en'?'en':'en-IN');
+    document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.l===lang));}
+  function setLang(l){lang=l;localStorage.setItem('nca-tl-lang',l);applyI18n();listeners.forEach(f=>f(l));}
+  function header(icon,titleK,subK){const h=document.createElement('header');h.className='top';
+    h.innerHTML=`<div class="ic" aria-hidden="true">${icon}</div><h1><span data-k="${titleK}"></span><small data-k="${subK}"></small></h1>
+    <div class="lang" role="group" aria-label="Language"><button data-l="hinglish">Hinglish</button><button data-l="en">EN</button><button data-l="hi">हिं</button></div>`;
+    document.body.prepend(h); h.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>setLang(b.dataset.l));}
+  // Toast: never covers text. It floats in a free band of the screen (bottom first); if the screen has no free band
+  // it sits in the page flow right under what the child just tapped (pushes content down, covers nothing). Closes after 2.5 s.
+  let toastEl,lastTap=null,tapAt=null;document.addEventListener('pointerdown',e=>{lastTap=e.target;tapAt=[e.clientX,e.clientY+scrollY]},true);let rePend=0;const rePlace=()=>{if(!toastEl||!toastEl.classList.contains('on')||rePend)return;rePend=1;requestAnimationFrame(()=>{rePend=0;placeToast();});};
+  addEventListener('scroll',rePlace,{passive:true});addEventListener('resize',rePlace);document.addEventListener('animationend',rePlace,true);document.addEventListener('transitionend',rePlace,true);const toastMO=new MutationObserver(rs=>{if(rs.some(r=>!toastEl.contains(r.target)))rePlace();});
+  function textRects(skip){const vh=innerHeight,out=[],rg=document.createRange(),w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let n;
+    while((n=w.nextNode())){if(!n.nodeValue.trim())continue;const p=n.parentElement;if(!p||skip.contains(p)||/^(SCRIPT|STYLE)$/.test(p.tagName))continue;rg.selectNodeContents(n);
+      for(const q of rg.getClientRects())if(q.width>=1&&q.bottom>0&&q.top<vh)out.push(q);}
+    document.querySelectorAll('input,select,textarea,button,a[href],[role=button]').forEach(e=>{if(skip.contains(e))return;const q=e.getBoundingClientRect();if(q.width&&q.bottom>0&&q.top<vh)out.push(q)});if(0)document.querySelectorAll('x').forEach(e=>{const q=e.getBoundingClientRect();if(q.width&&q.bottom>0&&q.top<vh)out.push(q)});return out;}
+  function freeSpot(el){const vw=document.documentElement.clientWidth,vh=innerHeight,w=el.offsetWidth,h=el.offsetHeight,m=8;let top=m;
+    const bar=document.querySelector('.top');if(bar)top=Math.max(top,bar.getBoundingClientRect().bottom+m);
+    const obs=textRects(el),xs=[(vw-w)/2,m,vw-w-m],free=(x,y)=>!obs.some(q=>q.left<x+w+4&&q.right>x-4&&q.top<y+h+4&&q.bottom>y-4);
+    const cur=el._spot;if(cur&&free(cur.x,cur.y))return cur;
+    for(let y=vh-h-m;y>=top;y-=6)for(const x of xs)if(free(x,y))return{x,y};return null;}
+  /* never drop the note inside a 3D scene, a transformed, positioned-out or clipping box */
+  function boxedIn(a){for(let p=a;p&&p!==document.body;p=p.parentElement){const c=getComputedStyle(p);if(c.transform!=='none'||c.transformStyle==='preserve-3d'||c.perspective!=='none'||c.position==='absolute'||c.position==='fixed'||(p!==a&&c.overflow!=='visible'))return true;}return false;}
+  function inlineAfter(el){let a=lastTap&&lastTap.isConnected&&!el.contains(lastTap)?lastTap:null;
+    if(!a&&tapAt){const y=tapAt[1]-scrollY;if(y>0&&y<innerHeight)a=document.elementFromPoint(tapAt[0],y);}/* the tapped thing was re-drawn: use what is there now */
+    if(!a||el.contains(a))a=document.querySelector('main')||document.body.lastElementChild;
+    while(a.parentElement&&a.parentElement!==document.body){const d=getComputedStyle(a.parentElement),me=getComputedStyle(a);
+      if(me.display!=='inline'&&!(a instanceof SVGElement)&&(d.display==='block'||d.display==='flow-root'||d.display==='grid'||(d.display==='flex'&&d.flexDirection.startsWith('column')))&&a.getBoundingClientRect().width>=Math.min(260,innerWidth*.6)&&!boxedIn(a))break;a=a.parentElement;}
+    a.after(el);}
+  function placeToast(){const el=toastEl;if(!el.classList.contains('on'))return;if(!el.isConnected){el.classList.remove('inline');document.body.appendChild(el);}
+    if(el.classList.contains('inline'))return;const s=freeSpot(el);
+    if(s){el._spot=s;el.style.left=s.x+'px';el.style.top=s.y+'px';}else{el._spot=null;el.classList.add('inline');el.style.left=el.style.top='';inlineAfter(el);el.scrollIntoView({block:'nearest'});}}
+  function toast(msg,kind){if(!toastEl){toastEl=document.createElement('div');toastEl.setAttribute('role','status');document.body.appendChild(toastEl);}
+    const el=toastEl;clearTimeout(el._t);clearInterval(el._iv);if(el.classList.contains('inline'))document.body.appendChild(el);
+    el.className='toast '+(kind||'');el._spot=null;el.innerHTML=typeof msg==='object'?t(msg):msg;el.style.left='0px';el.style.top='0px';
+    el.classList.add('on');placeToast();el._iv=setInterval(placeToast,200);toastMO.observe(document.body,{subtree:true,childList:true,attributes:true,characterData:true});
+    el._t=setTimeout(()=>{clearInterval(el._iv);toastMO.disconnect();el.classList.remove('on');setTimeout(()=>{if(!el.classList.contains('on')&&el.classList.contains('inline')){el.classList.remove('inline');document.body.appendChild(el);}},320);},2500);}
+  function confetti(){if(reduced())return;const c=document.createElement('canvas');c.className='confetti';c.setAttribute('aria-hidden','true');document.body.appendChild(c);
+    const W=c.width=innerWidth,H=c.height=innerHeight,x=c.getContext('2d');const cols=['#E8702A','#0F766E','#6D28D9','#F5B90A','#02CFF9','#FF6B57'];
+    const P=Array.from({length:90},()=>({x:W/2,y:H*.55,vx:(Math.random()-.5)*9,vy:-Math.random()*11-4,r:Math.random()*6+3,c:cols[Math.random()*6|0],a:Math.random()*6}));
+    let n=0;(function f(){x.clearRect(0,0,W,H);P.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.32;p.a+=.2;x.save();x.translate(p.x,p.y);x.rotate(p.a);x.fillStyle=p.c;x.fillRect(-p.r/2,-p.r/4,p.r,p.r/2);x.restore();});
+      if(++n<110)requestAnimationFrame(f);else c.remove();})();}
+  function tween(ms,step,done){if(reduced()||ms<=0){step(1);done&&done();return()=>{};}let stop=0;const t0=performance.now();
+    const f=now=>{if(stop)return;const k=Math.min(1,(now-t0)/ms);step(k);k<1?requestAnimationFrame(f):done&&done();};requestAnimationFrame(f);return()=>{stop=1};}
+  const ease=k=>k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+  const sleep=ms=>new Promise(r=>setTimeout(r,reduced()?0:ms));
+  // Lesson config: ?lesson=<same-origin json path> (its play.config + play.goal), else inline defaults. ?cfg=<json> also accepted (parsed with JSON.parse only).
+  async function lessonConfig(defaults){let cfg=Object.assign({},defaults),goal=null,id=null;
+    const p=qs.get('lesson');
+    if(p&&/^[\w\-./]+\.json$/.test(p)&&!p.includes('..')){try{const r=await fetch(p);if(r.ok){const j=await r.json();id=j.id;if(j.play){Object.assign(cfg,j.play.config||{});goal=j.play.goal||null;}}}catch(e){}}
+    const c=qs.get('cfg'); if(c){try{Object.assign(cfg,JSON.parse(c));}catch(e){}}
+    return {cfg,goal,id};}
+  // Progress events the Family App shell can listen for (postMessage to the parent frame), plus local XP for the prototype.
+  function emit(type,data){const msg={source:'nca-techlab',type,data:data||{},at:Date.now()};try{parent!==window&&parent.postMessage(msg,'*');}catch(e){}
+    document.dispatchEvent(new CustomEvent('nca-lab',{detail:msg}));}
+  g.NCA={qs,esc,t,get lang(){return lang},setLang,onLang:f=>listeners.push(f),strings:o=>{STR=Object.assign(STR,o);applyI18n();},applyI18n,header,toast,confetti,tween,ease,sleep,reduced,lessonConfig,emit};
+})(window);
+</script>
+<script>
+(async function(){
+const N=NCA,T=N.t,E=N.esc,L=(en,hi,hinglish)=>({en,hi,hinglish}),$=id=>document.getElementById(id);
+N.header('🔋','title','sub');
+N.strings({title:L('Circuit Lab','सर्किट लैब','Circuit Lab'),sub:L('Voltage, current, resistance — safely on screen','वोल्टेज, करंट, प्रतिरोध — स्क्रीन पर सुरक्षित','Voltage, current, resistance — screen pe safely'),mT:L('🚀 Mission','🚀 मिशन','🚀 Mission')});
+const {cfg,goal}=await N.lessonConfig({tab:'ohm'});
+const TABS=[['ohm',L('⚡ Ohm’s law','⚡ ओम का नियम','⚡ Ohm’s law')],['led',L('💡 LED + resistor','💡 LED + प्रतिरोधक','💡 LED + resistor')],['sp',L('🔀 Series / parallel','🔀 श्रेणी / समांतर','🔀 Series / parallel')],['fix',L('🛠️ Fix it','🛠️ ठीक करो','🛠️ Fix it')]];
+const GOALS={ohm:L('Change voltage and resistance and watch the current. Then predict: 6 V across 300 Ω gives how many mA?','वोल्टेज और प्रतिरोध बदलो और करंट देखो। फिर अनुमान: 300 Ω पर 6 V से कितने mA?','Voltage aur resistance badlo aur current dekho. Phir predict: 300 Ω pe 6 V se kitne mA?'),
+ led:L('Light the LED safely: pick a battery and resistor so the current is between 10 and 20 mA.','LED सुरक्षित जलाओ: ऐसी बैटरी और प्रतिरोधक चुनो कि करंट 10 से 20 mA के बीच हो।','LED safely jalao: aisi battery aur resistor chuno ki current 10 se 20 mA ke beech ho.'),
+ sp:L('Compare series and parallel: remove one bulb in each and see what happens to the other.','श्रेणी और समांतर की तुलना करो: हर एक में एक बल्ब हटाओ और देखो दूसरे का क्या होता है।','Series aur parallel compare karo: har ek mein ek bulb hatao aur dekho doosre ka kya hota hai.'),
+ fix:L('Three circuits are broken. Tap the faulty part in each to fix it.','तीन सर्किट ख़राब हैं। हर एक में ख़राब भाग दबाकर ठीक करो।','Teen circuits kharab hain. Har ek mein kharab part tap karke theek karo.')};
+let tab=TABS.some(x=>x[0]===cfg.tab)?cfg.tab:'ohm';const done={};let raf=0,flow=0,electrons=[];
+function win(k,m){if(done[k])return;done[k]=1;N.confetti();N.toast(m,'ok');N.emit('mission:complete',{lab:'circuit-lab',tab:k});mission();}
+// Electron animation: dots move along #wire at a speed proportional to current (conventional current shown + → −).
+function animate(){cancelAnimationFrame(raf);const paths=[...document.querySelectorAll('[data-wire]')];const dots=[...document.querySelectorAll('.e')];if(!paths.length)return;
+ const lens=paths.map(p=>p.getTotalLength());let t=0,last=performance.now();
+ // electrons hide while they pass behind a label, so moving dots never cover text
+ const sv=paths[0].ownerSVGElement,inv=sv.getCTM()?sv.getCTM().inverse():null,shields=[];
+ if(inv)sv.querySelectorAll('text').forEach(tx=>{try{const b=tx.getBBox(),m=inv.multiply(tx.getCTM());const c=[[b.x,b.y],[b.x+b.width,b.y],[b.x,b.y+b.height],[b.x+b.width,b.y+b.height]].map(([x,y])=>new DOMPoint(x,y).matrixTransform(m));
+   shields.push([Math.min(...c.map(q=>q.x))-5,Math.min(...c.map(q=>q.y))-5,Math.max(...c.map(q=>q.x))+5,Math.max(...c.map(q=>q.y))+5]);}catch(e){}});
+ const shielded=(x,y)=>shields.some(b=>x>b[0]&&x<b[2]&&y>b[1]&&y<b[3]);
+ const f=now=>{const dt=Math.min(50,now-last);last=now;t+=dt*flow*(N.reduced()?0:1);dots.forEach((d,i)=>{const pi=+d.dataset.p||0,p=paths[pi];if(!p)return;const sp=+(p.dataset.speed||1);const L=lens[pi];const s=((+d.dataset.o)*L+t*0.06*sp)%L;const pt=p.getPointAtLength(s);d.setAttribute('cx',pt.x.toFixed(1));d.setAttribute('cy',pt.y.toFixed(1));d.style.opacity=(flow>0&&sp>0&&!shielded(pt.x,pt.y))?1:0;});raf=requestAnimationFrame(f);};raf=requestAnimationFrame(f);}
+const dotsOn=(n,p=0)=>Array.from({length:n},(_,i)=>`<circle class="e" r="3.2" fill="#F5B90A" data-p="${p}" data-o="${(i/n).toFixed(3)}"/>`).join('');
+const batt=(x,y,v)=>`<g transform="translate(${x},${y})"><rect x="-16" y="-34" width="32" height="68" rx="6" fill="#1F2937" stroke="#9CA3AF"/><rect x="-16" y="-34" width="32" height="14" rx="4" fill="#E8702A"/><text y="5" text-anchor="middle" font-size="13" font-weight="800" fill="#fff">${v}V</text><text y="-23" text-anchor="middle" font-size="11" fill="#fff">+</text><text y="30" text-anchor="middle" font-size="12" fill="#fff">−</text></g>`;
+const resistor=(x,y,label,rot=0)=>`<g transform="translate(${x},${y}) rotate(${rot})"><rect x="-26" y="-9" width="52" height="18" rx="9" fill="#D6B98C" stroke="#8A6A3B"/><rect x="-16" y="-9" width="5" height="18" fill="#7C2D12"/><rect x="-6" y="-9" width="5" height="18" fill="#111"/><rect x="4" y="-9" width="5" height="18" fill="#B45309"/><text y="26" text-anchor="middle" font-size="12" font-weight="700" fill="#E8EEFF">${label}</text></g>`;
+const bulb=(x,y,b,id)=>`<g transform="translate(${x},${y})" ${id?`class="comp" data-c="${id}" role="button" tabindex="0"`:''}><circle r="${18+10*b}" fill="#FDE68A" opacity="${(b*.55).toFixed(2)}"/><circle r="15" fill="${b>0.02?'#FEF3C7':'#374151'}" stroke="#9CA3AF" stroke-width="2"/><path d="M-6 3q6-12 12 0" stroke="${b>0.02?'#F59E0B':'#6B7280'}" stroke-width="2" fill="none"/><rect x="-7" y="14" width="14" height="9" rx="2" fill="#6B7280"/></g>`;
+function ledSVG(x,y,b,burnt,rev){return `<g transform="translate(${x},${y})">${burnt?`<circle r="16" fill="#FF6B57" style="animation:boom .6s both;transform-origin:0 0"/>`:''}<circle r="${16+14*b}" fill="#FF4E45" opacity="${(b*.5).toFixed(2)}"/><path d="M-11 6v-10a11 11 0 0 1 22 0v10z" fill="${burnt?'#3F3F46':b>0.02?'#FF6B6B':'#7F1D1D'}" stroke="#FCA5A5"/><rect x="-13" y="6" width="26" height="4" fill="#9CA3AF"/><text y="28" text-anchor="middle" font-size="11" fill="#E8EEFF">${rev?'LED ↺':'LED'}</text></g>`;}
+const loop=(sp=1)=>`<path data-wire data-speed="${sp}" d="M60 170 V60 H300 V280 H60 Z" fill="none" stroke="#64748B" stroke-width="5" stroke-linejoin="round"/>`;
+/* ---------- OHM ---------- */
+let V=6,R=300,predOK=false;
+function drawOhm(){const I=V/R*1000;flow=Math.min(3,I/20);
+ $('stage').innerHTML=`<svg class="board" viewBox="0 0 360 330">${loop()}${batt(60,170,V)}${resistor(180,60,R+' Ω')}${bulb(300,170,Math.min(1,I/60))}${dotsOn(14)}<text x="180" y="315" text-anchor="middle" font-size="12" fill="#9FB0D8">${T(L('Yellow dots = flow of charge (current)','पीले बिंदु = आवेश का बहाव (करंट)','Yellow dots = charge ka flow (current)'))}</text></svg>
+ <div class="meter"><div>V<b>${V}</b>volt</div><div>R<b>${R}</b>ohm</div><div>I = V ÷ R<b>${I.toFixed(1)}</b>mA</div></div>`;
+ $('side').innerHTML=`<div class="ctl"><label>${T(L('Voltage (push)','वोल्टेज (धक्का)','Voltage (push)'))}: ${V} V<input type="range" id="v" min="1" max="12" step="1" value="${V}"></label><label>${T(L('Resistance (narrow pipe)','प्रतिरोध (पतला पाइप)','Resistance (patla pipe)'))}: ${R} Ω<input type="range" id="r" min="50" max="1000" step="50" value="${R}"></label></div>
+ <p style="font-size:13.5px">${T(L('Ohm’s law: current I = V ÷ R. Double the voltage → double the current. Double the resistance → half the current. 1 A = 1000 mA.','ओम का नियम: करंट I = V ÷ R। वोल्टेज दोगुना → करंट दोगुना। प्रतिरोध दोगुना → करंट आधा। 1 A = 1000 mA।','Ohm’s law: current I = V ÷ R. Voltage double → current double. Resistance double → current aadha. 1 A = 1000 mA.'))}</p>
+ <label style="font-weight:700;font-size:14px;display:flex;gap:6px;align-items:center;flex-wrap:wrap">${T(L('Predict: 6 V, 300 Ω →','अनुमान: 6 V, 300 Ω →','Predict: 6 V, 300 Ω →'))} <input id="pr" inputmode="decimal" style="width:70px;font:inherit;padding:8px;border-radius:10px;border:1.5px solid var(--line)"> mA <button class="btn teal" id="pc">✔</button></label>${predOK?`<div class="note">✅ 6 ÷ 300 = 0.02 A = 20 mA</div>`:''}`;
+ $('v').oninput=e=>{V=+e.target.value;drawOhm();};$('r').oninput=e=>{R=+e.target.value;drawOhm();};
+ $('pc').onclick=()=>{if(Math.abs(parseFloat($('pr').value)-20)<0.01){predOK=true;drawOhm();win('ohm',L('You used Ohm’s law!','आपने ओम का नियम लगाया!','Aapne Ohm’s law lagaya!'));}else N.toast(L('Divide volts by ohms, then × 1000 for mA','वोल्ट ÷ ओम, फिर mA के लिए × 1000','Volts ÷ ohms, phir mA ke liye × 1000'),'bad');};animate();}
+/* ---------- LED ---------- */
+const RES=[0,47,100,150,220,330,470,1000],VB=[3,5,9];let lv=5,lr=0,burnt=false;
+function drawLED(){const VF=2;const I=lr?Math.max(0,(lv-VF)/lr*1000):Infinity;burnt=!isFinite(I)||I>30;const ok=I>=10&&I<=20;flow=burnt?0:Math.min(3,I/12);
+ $('stage').innerHTML=`<svg class="board" viewBox="0 0 360 330">${loop()}${batt(60,170,lv)}${lr?resistor(180,60,lr+' Ω'):`<text x="180" y="50" text-anchor="middle" font-size="12" fill="#FCA5A5">${T(L('no resistor!','प्रतिरोधक नहीं!','resistor nahi!'))}</text>`}${ledSVG(300,170,burnt?0:Math.min(1,I/20),burnt)}${dotsOn(14)}</svg>
+ <div class="meter"><div>${T(L('Battery','बैटरी','Battery'))}<b>${lv} V</b></div><div>${T(L('Resistor','प्रतिरोधक','Resistor'))}<b>${lr||'—'}</b>Ω</div><div>${T(L('LED current','LED करंट','LED current'))}<b style="color:${burnt?'#FF6B57':ok?'#7DF9C9':'#F5B90A'}">${burnt?'💥':I.toFixed(1)}</b>mA</div></div>`;
+ $('side').innerHTML=`<div class="ctl"><b>${T(L('Battery','बैटरी','Battery'))}</b><div class="seg">${VB.map(v=>`<button data-v="${v}" aria-pressed="${v===lv}">${v} V</button>`).join('')}</div>
+ <b>${T(L('Resistor','प्रतिरोधक','Resistor'))}</b><div class="seg">${RES.map(r=>`<button data-r="${r}" aria-pressed="${r===lr}">${r||T(L('none','कोई नहीं','none'))}</button>`).join('')}</div></div>
+ <div class="note ${burnt||!ok?'bad':''}" style="margin-top:10px">${burnt?T(L('💥 Too much current! A red LED drops about 2 V and is safe up to about 20 mA. Without a resistor the current shoots up and the LED burns out.','💥 बहुत ज़्यादा करंट! लाल LED लगभग 2 V लेती है और लगभग 20 mA तक सुरक्षित है। बिना प्रतिरोधक करंट बहुत बढ़ता है और LED जल जाती है।','💥 Bahut zyada current! Red LED lagbhag 2 V leti hai aur lagbhag 20 mA tak safe hai. Bina resistor current bahut badh jaata hai aur LED jal jaati hai.')):ok?T(L(`✅ Safe and bright: I = (${lv} − 2) ÷ ${lr} = ${I.toFixed(1)} mA.`,`✅ सुरक्षित और चमकीली: I = (${lv} − 2) ÷ ${lr} = ${I.toFixed(1)} mA।`,`✅ Safe aur bright: I = (${lv} − 2) ÷ ${lr} = ${I.toFixed(1)} mA.`)):T(L(`I = (${lv} − 2) ÷ ${lr} = ${I.toFixed(1)} mA — ${I<10?'too dim':'too much'}. Aim for 10–20 mA.`,`I = (${lv} − 2) ÷ ${lr} = ${I.toFixed(1)} mA — ${I<10?'बहुत मंद':'बहुत ज़्यादा'}। 10–20 mA रखो।`,`I = (${lv} − 2) ÷ ${lr} = ${I.toFixed(1)} mA — ${I<10?'bahut dim':'bahut zyada'}. 10–20 mA rakho.`))}</div>`;
+ $('side').querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>{lv=+b.dataset.v;drawLED();});$('side').querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{lr=+b.dataset.r;drawLED();});
+ if(ok)win('led',L('LED glowing safely!','LED सुरक्षित चमक रही है!','LED safely chamak rahi hai!'));animate();}
+/* ---------- SERIES / PARALLEL ---------- */
+let mode='series',gone={a:false,b:false},seen={series:false,parallel:false};
+function drawSP(){const V0=6,Rb=60;let ba,bb;
+ if(mode==='series'){const on=!gone.a&&!gone.b;const I=on?V0/(2*Rb):0;ba=bb=on?.45:0;flow=on?1:0;}else{ba=gone.a?0:1;bb=gone.b?0:1;flow=(ba||bb)?1.6:0;}
+ const hole=(x,y,id)=>`<g class="comp" data-c="${id}" role="button" tabindex="0" transform="translate(${x},${y})"><rect class="hl" x="-20" y="-20" width="40" height="40" rx="10" fill="#0A1028" stroke="#F5B90A" stroke-dasharray="4 3"/><text y="5" text-anchor="middle" font-size="11" fill="#F5B90A">+</text></g>`;
+ const wires=mode==='series'?`<path data-wire d="M60 170 V60 H300 V280 H60 Z" fill="none" stroke="#64748B" stroke-width="5"/>`:`<path data-wire data-speed="${ba?1:0}" d="M60 170 V60 H300 V280 H60 Z" fill="none" stroke="#64748B" stroke-width="5"/><path data-wire data-speed="${bb?1:0}" d="M60 120 H190 V230 H60" fill="none" stroke="#64748B" stroke-width="5"/>`;
+ const bA=gone.a?hole(180,60,'a'):bulb(180,60,ba,'a'),bB=mode==='series'?(gone.b?hole(300,170,'b'):bulb(300,170,bb,'b')):(gone.b?hole(190,175,'b'):bulb(190,175,bb,'b'));
+ $('stage').innerHTML=`<svg class="board" viewBox="0 0 360 330">${wires}${batt(60,170,V0)}${bA}${bB}${dotsOn(12,0)}${mode==='parallel'?dotsOn(8,1):''}<text x="180" y="315" text-anchor="middle" font-size="9.5" fill="#9FB0D8">${T(L('Tap a bulb to remove it, tap the gap to put it back','बल्ब हटाने के लिए दबाओ, वापस लगाने के लिए ख़ाली जगह दबाओ','Bulb hataane ke liye tap karo, wapas lagaane ke liye khaali jagah tap karo'))}</text></svg>`;
+ $('stage').querySelectorAll('[data-c]').forEach(g=>g.onclick=()=>{const k=g.dataset.c;gone[k]=!gone[k];if(gone[k])seen[mode]=true;drawSP();});
+ $('side').innerHTML=`<div class="seg">${['series','parallel'].map(m=>`<button data-m="${m}" aria-pressed="${m===mode}">${T(m==='series'?L('Series (one path)','श्रेणी (एक रास्ता)','Series (ek raasta)'):L('Parallel (two paths)','समांतर (दो रास्ते)','Parallel (do raaste)'))}</button>`).join('')}</div>
+ <div class="note" style="margin-top:10px">${T(mode==='series'?L('Series: one single path. The bulbs share the 6 V, so each is dimmer — and if one is removed the path breaks and BOTH go out (old festival light strings did this).','श्रेणी: केवल एक रास्ता। बल्ब 6 V बाँटते हैं, इसलिए दोनों मंद — और एक हटा तो रास्ता टूटता है और दोनों बुझते हैं (पुरानी त्योहार लड़ियाँ ऐसी थीं)।','Series: sirf ek raasta. Bulbs 6 V baant-te hain, isliye dono dim — aur ek hataya to raasta toot-ta hai aur DONO bujh jaate hain (purani tyohaar ladiyan aisi thi).'):L('Parallel: each bulb has its own path with the full 6 V, so both are bright — remove one and the other stays on. Your home wiring is parallel.','समांतर: हर बल्ब का अपना रास्ता और पूरा 6 V, इसलिए दोनों चमकीले — एक हटाओ तो दूसरा जलता रहता है। घर की वायरिंग समांतर है।','Parallel: har bulb ka apna raasta aur poora 6 V, isliye dono bright — ek hatao to doosra jalta rehta hai. Ghar ki wiring parallel hai.'))}</div>
+ <p style="font-size:13px">${seen.series?'✅':'⬜'} ${T(L('Removed a bulb in series','श्रेणी में बल्ब हटाया','Series mein bulb hataya'))}<br>${seen.parallel?'✅':'⬜'} ${T(L('Removed a bulb in parallel','समांतर में बल्ब हटाया','Parallel mein bulb hataya'))}</p>`;
+ $('side').querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{mode=b.dataset.m;gone={a:false,b:false};drawSP();});
+ if(seen.series&&seen.parallel)win('sp',L('You know why homes use parallel wiring!','अब पता है घर में समांतर वायरिंग क्यों!','Ab pata hai ghar mein parallel wiring kyun!'));animate();}
+/* ---------- FIX ---------- */
+const PZ=[{bad:'sw',parts:['batt','sw','res','led'],why:L('The switch was open — the path was broken, so no current could flow. A circuit must be a closed loop.','स्विच खुला था — रास्ता टूटा था, इसलिए करंट नहीं बहा। सर्किट बंद लूप होना चाहिए।','Switch khula tha — raasta toota tha, isliye current nahi baha. Circuit closed loop hona chahiye.')},
+ {bad:'led',parts:['batt','sw','res','led'],why:L('The LED was in backwards. An LED is a diode: current flows only from its long leg (+, anode) to its short leg (−, cathode).','LED उल्टी लगी थी। LED एक डायोड है: करंट केवल लंबी टाँग (+, एनोड) से छोटी टाँग (−, कैथोड) तक बहता है।','LED ulti lagi thi. LED ek diode hai: current sirf lambi taang (+, anode) se chhoti taang (−, cathode) tak bahta hai.')},
+ {bad:'batt',parts:['batt','sw','res','led'],why:L('The battery was flat (0.2 V left). No push, no current. Recycle old batteries at an e-waste point — never throw them in a fire.','बैटरी ख़त्म थी (0.2 V बचा)। धक्का नहीं, तो करंट नहीं। पुरानी बैटरी ई-कचरा केंद्र में दो — आग में कभी मत डालो।','Battery khatam thi (0.2 V bacha). Push nahi, to current nahi. Purani batteries e-waste point pe do — aag mein kabhi mat daalo.')}];
+let pz=0,fixed={},wrongTap=null;
+function drawFix(){const P=PZ[pz],fx=fixed[pz];const sw=P.bad==='sw'&&!fx,rev=P.bad==='led'&&!fx,flat=P.bad==='batt'&&!fx;flow=fx?1:0;
+ const C=(id,x,y,inner)=>`<g class="comp" data-c="${id}" role="button" tabindex="0" transform="translate(${x},${y})"><rect class="hl" x="-34" y="-36" width="68" height="72" rx="12" fill="${wrongTap===id?'rgba(255,107,87,.25)':'rgba(255,255,255,.04)'}" stroke="${wrongTap===id?'#FF6B57':'transparent'}"/>${inner}</g>`;
+ $('stage').innerHTML=`<svg class="board" viewBox="0 0 360 330">${loop()}
+ ${C('batt',60,170,batt(0,0,flat?'0.2':'9').replace('translate(0,0)',''))}
+ ${C('sw',130,60,`<circle cx="-18" r="5" fill="#E8EEFF"/><circle cx="18" r="5" fill="#E8EEFF"/><line x1="-18" y1="0" x2="${sw?12:18}" y2="${sw?-18:0}" stroke="#E8EEFF" stroke-width="4" stroke-linecap="round"/><text y="26" text-anchor="middle" font-size="11" fill="#E8EEFF">${T(L('switch','स्विच','switch'))}</text>`)}
+ ${C('res',230,60,resistor(0,0,'470 Ω'))}
+ ${C('led',300,170,ledSVG(0,0,fx?1:0,false,rev))}${dotsOn(12)}</svg>`;
+ $('stage').querySelectorAll('[data-c]').forEach(g=>g.onclick=()=>{if(fixed[pz])return;const id=g.dataset.c;if(id===P.bad){fixed[pz]=1;wrongTap=null;N.toast(L('Fixed! ✨','ठीक हो गया! ✨','Theek ho gaya! ✨'),'ok');drawFix();if(PZ.every((_,i)=>fixed[i]))win('fix',L('Circuit doctor!','सर्किट डॉक्टर!','Circuit doctor!'));mission();}else{wrongTap=id;N.toast(L('That part looks fine — check the others','यह भाग ठीक है — बाक़ी जाँचो','Yeh part theek hai — baaki check karo'),'bad');drawFix();}});
+ $('side').innerHTML=`<b>${T(L('Broken circuit','ख़राब सर्किट','Kharab circuit'))} ${pz+1}/3</b><p style="font-size:13.5px">${T(L('The LED will not light. Look closely at each part: switch, battery, resistor and LED. Tap the one at fault.','LED नहीं जल रही। हर भाग ध्यान से देखो: स्विच, बैटरी, प्रतिरोधक और LED। ख़राब वाला दबाओ।','LED nahi jal rahi. Har part dhyaan se dekho: switch, battery, resistor aur LED. Kharab wala tap karo.'))}</p>${fx?`<div class="note">✅ ${T(P.why)}</div>`:''}
+ <div class="row" style="margin-top:8px"><button class="btn ghost" id="pp" ${pz?'':'disabled'}>←</button><button class="btn teal" id="pn" ${pz<2?'':'disabled'}>→</button></div>`;
+ $('pp').onclick=()=>{pz--;wrongTap=null;drawFix();};$('pn').onclick=()=>{pz++;wrongTap=null;drawFix();};animate();}
+function mission(){const st={ohm:L('Predict 6 V ÷ 300 Ω in mA','6 V ÷ 300 Ω का mA अनुमान','6 V ÷ 300 Ω ka mA predict'),led:L('LED current 10–20 mA','LED करंट 10–20 mA','LED current 10–20 mA'),sp:L('Remove a bulb in both circuits','दोनों सर्किट में बल्ब हटाओ','Dono circuits mein bulb hatao'),fix:L(`Fix ${Object.keys(fixed).length}/3 circuits`,`${Object.keys(fixed).length}/3 सर्किट ठीक`,`${Object.keys(fixed).length}/3 circuits theek`)};
+ $('mission').innerHTML=TABS.map(([k,n])=>`<div style="margin:3px 0">${done[k]?'✅':'⬜'} <b>${T(n)}</b> — ${T(st[k])}</div>`).join('');}
+function draw(){$('goal').innerHTML=E(T(goal&&cfg.tab===tab?goal:GOALS[tab]));$('tabs').innerHTML=TABS.map(([k,n])=>`<button role="tab" aria-selected="${k===tab}" data-t="${k}">${T(n)}</button>`).join('');
+ $('tabs').querySelectorAll('button').forEach(b=>b.onclick=()=>{tab=b.dataset.t;draw();});({ohm:drawOhm,led:drawLED,sp:drawSP,fix:drawFix})[tab]();mission();}
+N.onLang(draw);draw();
+window.__lab={tab:k=>{tab=k;draw();},led:(v,r)=>{lv=v;lr=r;drawLED();},done};
+})();
+</script></body></html>

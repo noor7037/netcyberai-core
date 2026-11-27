@@ -1,0 +1,376 @@
+<!doctype html><html lang="en-IN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Python Step Tracer — NCA Tech & AI Lab</title><style>/* NCA Tech & AI Lab — Level 2 shared lab skin (own work, MIT). Family App lesson tokens: paper, card, ink, saffron, teal, plum. */
+:root{--paper:#FBF8F3;--card:#FFFDF9;--ink:#1C1B1A;--muted:#4B5563;--line:#E7E1D6;--saffron:#E8702A;--saffronD:#C2410C;--teal:#0F766E;--plum:#6D28D9;--sky:#0369A1;
+--mint:#E4F3EA;--butter:#FBF1D3;--lilac:#EFE9FB;--blush:#FBE6E3;--skyT:#E3EEF9;--night:#0B1430;--night2:#16224A;--cyan:#02CFF9;--leaf:#22C55E;--coral:#FF6B57;--gold:#F5B90A;--grape:#8B3DFF;
+--r:16px;--sh:0 1px 0 rgba(28,27,26,.04),0 6px 18px -8px rgba(28,27,26,.18)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans Devanagari",sans-serif;font-variant-numeric:tabular-nums}
+body{background:transparent;min-height:100vh;padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 16px)}
+button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation}
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:8px;padding:10px 14px;background:rgba(251,248,243,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--lilac);flex:none}
+.top h1{font-size:16px;margin:0;line-height:1.2;flex:1;min-width:0}
+.top h1 small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;flex:none;background:var(--card)}
+.lang button{border:0;background:none;padding:6px 9px;font-size:12px;font-weight:600;color:var(--muted);min-height:32px}
+.lang button[aria-pressed=true]{background:var(--ink);color:#fff}
+.wrap{max-width:1100px;margin:0 auto;padding:12px 14px;display:grid;gap:12px;grid-template-columns:minmax(0,1fr)}
+.wrap>*{min-width:0}
+.wrap>div{grid-template-columns:minmax(0,1fr)}
+.card,.stage{min-width:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;box-shadow:var(--sh)}
+.goal{background:var(--butter);border-color:#F1DFA8;display:flex;gap:10px;align-items:flex-start;font-size:14.5px}
+.goal b{color:#8A5300}
+.goal .gi{font-size:20px;line-height:1}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn{border:0;border-radius:12px;padding:11px 16px;font-weight:700;min-height:44px;background:var(--saffron);color:var(--ink);box-shadow:0 3px 0 #B4531B;transition:transform .12s}
+.btn:active{transform:translateY(2px);box-shadow:0 1px 0 #B4531B}
+.btn.ghost{background:var(--card);border:1.5px solid var(--line);box-shadow:none}
+.btn.teal{background:var(--teal);color:#fff;box-shadow:0 3px 0 #0A4F49}
+.btn.plum{background:var(--plum);color:#fff;box-shadow:0 3px 0 #4C1D95}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.chip{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:3px 10px;font-size:12.5px;font-weight:600;background:var(--mint);color:var(--teal)}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;padding-bottom:2px}/* wraps: every mode name always fully visible */
+.tabs button{flex:0 1 auto;max-width:100%;white-space:normal;text-align:center;border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:8px 14px;font-weight:600;font-size:14px;min-height:40px}
+.tabs button[aria-selected=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.stage{background:radial-gradient(120% 90% at 30% 0%,#1D2D63 0%,var(--night) 60%);color:#E8EEFF;border-radius:20px;overflow:hidden;position:relative;border:1px solid #23305E}
+.muted{color:var(--muted)}
+.mission{background:var(--skyT);border-color:#C9DDF2}
+.mission h3{margin:0 0 6px;font-size:15px;color:var(--sky)}
+.toast{position:fixed;left:0;top:0;width:max-content;max-width:min(92vw,340px);background:var(--ink);color:#fff;padding:10px 16px;border-radius:14px;font-weight:600;z-index:50;box-shadow:0 8px 24px rgba(0,0,0,.25);opacity:0;visibility:hidden;transform:scale(.92);transition:opacity .25s,transform .25s,visibility 0s .25s;pointer-events:none;text-align:center;line-height:1.35}
+.toast.on{opacity:1;visibility:visible;transform:none;transition:opacity .25s,transform .25s}
+.toast.inline{position:static;display:block;width:auto;max-width:none;margin:10px 0;grid-column:1/-1;flex:0 0 auto}
+.toast.ok{background:var(--teal)}.toast.bad{background:#B42318}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:-1}/* behind the cards: confetti never covers text */
+.kbd{font-family:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace}
+.hidden{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@keyframes pop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.08);opacity:1}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.shake{animation:shake .3s 2}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
+</style>
+<style>
+.code{background:#0B1430;border-radius:14px;padding:8px 0;font:14px/1.65 ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;color:#E8EEFF}
+.ln>span:last-child{flex:1;min-width:0;white-space:pre-wrap;overflow-wrap:anywhere}/* long lines wrap: no hidden code */
+.ln{display:flex;white-space:pre;padding:0 10px 0 0;transition:background .15s;position:relative}
+.ln .no{width:34px;flex:none;text-align:right;padding-right:10px;color:#56679F;user-select:none}
+.ln.cur{background:rgba(255,210,63,.16);box-shadow:inset 4px 0 0 #FFD23F}
+.ln.cur .no{color:#FFD23F}
+.ln.err{background:rgba(255,107,87,.22);box-shadow:inset 4px 0 0 #FF6B57}
+.kw{color:#FF9EC7}.st{color:#A7F3D0}.nm{color:#FFD23F}.cm{color:#6B7FB8}.bi{color:#7DD3FC}
+textarea.ed{width:100%;min-height:260px;font:14px/1.6 ui-monospace,Menlo,monospace;background:#0B1430;color:#E8EEFF;border-radius:14px;border:2px solid var(--plum);padding:10px;resize:vertical}
+.vars{display:flex;flex-wrap:wrap;gap:8px}
+.var{border-radius:12px;background:#fff;border:2px solid var(--line);padding:4px 10px 6px;min-width:70px;animation:pop .3s both}
+.var .n{font:700 12px ui-monospace,monospace;color:var(--plum)}
+.var .v{font:800 16px ui-monospace,monospace;word-break:break-all}
+.var .ty{font-size:10px;color:var(--muted)}
+.var.chg{border-color:var(--saffron);background:#FFF1E6}
+.cons{background:#111827;color:#A7F3D0;border-radius:12px;padding:10px;font:13.5px/1.5 ui-monospace,monospace;min-height:60px;white-space:pre-wrap}
+.errbox{background:var(--blush);border:1.5px solid #F3B8B0;border-radius:12px;padding:10px;font-size:14px}
+.bars{display:flex;align-items:flex-end;gap:6px;height:150px;padding:20px 6px 26px;position:relative}
+.barc{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;position:relative}
+.bar{width:100%;border-radius:8px 8px 3px 3px;background:linear-gradient(180deg,#8B3DFF,#6D28D9);transition:height .35s cubic-bezier(.3,1.3,.5,1),background .2s;display:grid;place-items:start center;color:#fff;font:800 12px ui-monospace,monospace;padding-top:3px}
+.barc .ix{position:absolute;bottom:-20px;font:600 11px ui-monospace,monospace;color:#9FB1E8}
+.barc .ptr{position:absolute;top:-18px;font:800 11px ui-monospace,monospace;color:#FFD23F;white-space:nowrap}
+.barc.hl .bar{background:linear-gradient(180deg,#FFD23F,#F5B90A);color:#1C1B1A}
+.opts{display:grid;gap:6px;margin-top:8px}
+.opts button{text-align:left;border:2px solid var(--line);background:#fff;border-radius:12px;padding:10px 12px;font-weight:600;min-height:44px}
+.opts button.right{border-color:var(--teal);background:var(--mint)}.opts button.wrong{border-color:#B42318;background:var(--blush)}
+input[type=range]{accent-color:var(--plum);width:110px}
+@media (orientation:landscape) and (min-width:640px){.wrap{grid-template-columns:1.15fr 1fr}.wrap>.full{grid-column:1/-1}}
+</style></head><body>
+<main class="wrap">
+ <div class="card goal full"><span class="gi">🎯</span><div id="goal"></div></div>
+ <div class="tabs full" id="progs" role="tablist"></div>
+ <div style="display:grid;gap:10px">
+  <div id="codeBox"></div>
+  <div class="row"><button class="btn ghost" id="reset" aria-label="reset">⏮</button><button class="btn plum" id="step" data-k="step"></button><button class="btn" id="auto" data-k="auto"></button><button class="btn ghost" id="edit" data-k="edit"></button>
+   <label class="muted" style="font-size:12px;display:flex;align-items:center;gap:4px">🐢<input type="range" id="spd" min="1" max="10" value="5">🐇</label></div>
+  <div class="muted" style="font-size:13px" id="stepInfo"></div>
+ </div>
+ <div style="display:grid;gap:10px">
+  <section class="stage hidden" id="viz" style="padding:6px 10px"><div class="bars" id="bars"></div></section>
+  <div class="card"><div style="font-weight:700;font-size:14px;margin-bottom:8px" data-k="mem"></div><div class="vars" id="vars"></div></div>
+  <div class="card"><div style="font-weight:700;font-size:14px;margin-bottom:6px" data-k="out"></div><div class="cons" id="cons"></div><div id="err" style="margin-top:8px"></div></div>
+ </div>
+ <div class="card mission full"><h3 data-k="mT"></h3><div id="mission"></div></div>
+</main>
+<script>/* NCA Tech & AI Lab — Level 2 shared lab runtime (own work, MIT). No eval, no network except an optional same-origin ?lesson= JSON. */
+(function(g){
+  const qs=new URLSearchParams(location.search);
+  const LANGS=['hinglish','en','hi'];
+  let lang=(qs.get('lang')||localStorage.getItem('nca-tl-lang')||'hinglish'); if(!LANGS.includes(lang)) lang='hinglish';
+  const reduced=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const t=x=>x==null?'':(typeof x==='string'||typeof x==='number')?String(x):(x[lang]||x.hinglish||x.en||'');
+  let STR={}; const listeners=[];
+  function applyI18n(root){(root||document).querySelectorAll('[data-k]').forEach(el=>{const v=STR[el.dataset.k]; if(v) el.innerHTML=t(v);});
+    document.documentElement.lang=lang==='hi'?'hi':(lang==='en'?'en':'en-IN');
+    document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.l===lang));}
+  function setLang(l){lang=l;localStorage.setItem('nca-tl-lang',l);applyI18n();listeners.forEach(f=>f(l));}
+  function header(icon,titleK,subK){const h=document.createElement('header');h.className='top';
+    h.innerHTML=`<div class="ic" aria-hidden="true">${icon}</div><h1><span data-k="${titleK}"></span><small data-k="${subK}"></small></h1>
+    <div class="lang" role="group" aria-label="Language"><button data-l="hinglish">Hinglish</button><button data-l="en">EN</button><button data-l="hi">हिं</button></div>`;
+    document.body.prepend(h); h.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>setLang(b.dataset.l));}
+  // Toast: never covers text. It floats in a free band of the screen (bottom first); if the screen has no free band
+  // it sits in the page flow right under what the child just tapped (pushes content down, covers nothing). Closes after 2.5 s.
+  let toastEl,lastTap=null,tapAt=null;document.addEventListener('pointerdown',e=>{lastTap=e.target;tapAt=[e.clientX,e.clientY+scrollY]},true);let rePend=0;const rePlace=()=>{if(!toastEl||!toastEl.classList.contains('on')||rePend)return;rePend=1;requestAnimationFrame(()=>{rePend=0;placeToast();});};
+  addEventListener('scroll',rePlace,{passive:true});addEventListener('resize',rePlace);document.addEventListener('animationend',rePlace,true);document.addEventListener('transitionend',rePlace,true);const toastMO=new MutationObserver(rs=>{if(rs.some(r=>!toastEl.contains(r.target)))rePlace();});
+  function textRects(skip){const vh=innerHeight,out=[],rg=document.createRange(),w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let n;
+    while((n=w.nextNode())){if(!n.nodeValue.trim())continue;const p=n.parentElement;if(!p||skip.contains(p)||/^(SCRIPT|STYLE)$/.test(p.tagName))continue;rg.selectNodeContents(n);
+      for(const q of rg.getClientRects())if(q.width>=1&&q.bottom>0&&q.top<vh)out.push(q);}
+    document.querySelectorAll('input,select,textarea,button,a[href],[role=button]').forEach(e=>{if(skip.contains(e))return;const q=e.getBoundingClientRect();if(q.width&&q.bottom>0&&q.top<vh)out.push(q)});if(0)document.querySelectorAll('x').forEach(e=>{const q=e.getBoundingClientRect();if(q.width&&q.bottom>0&&q.top<vh)out.push(q)});return out;}
+  function freeSpot(el){const vw=document.documentElement.clientWidth,vh=innerHeight,w=el.offsetWidth,h=el.offsetHeight,m=8;let top=m;
+    const bar=document.querySelector('.top');if(bar)top=Math.max(top,bar.getBoundingClientRect().bottom+m);
+    const obs=textRects(el),xs=[(vw-w)/2,m,vw-w-m],free=(x,y)=>!obs.some(q=>q.left<x+w+4&&q.right>x-4&&q.top<y+h+4&&q.bottom>y-4);
+    const cur=el._spot;if(cur&&free(cur.x,cur.y))return cur;
+    for(let y=vh-h-m;y>=top;y-=6)for(const x of xs)if(free(x,y))return{x,y};return null;}
+  /* never drop the note inside a 3D scene, a transformed, positioned-out or clipping box */
+  function boxedIn(a){for(let p=a;p&&p!==document.body;p=p.parentElement){const c=getComputedStyle(p);if(c.transform!=='none'||c.transformStyle==='preserve-3d'||c.perspective!=='none'||c.position==='absolute'||c.position==='fixed'||(p!==a&&c.overflow!=='visible'))return true;}return false;}
+  function inlineAfter(el){let a=lastTap&&lastTap.isConnected&&!el.contains(lastTap)?lastTap:null;
+    if(!a&&tapAt){const y=tapAt[1]-scrollY;if(y>0&&y<innerHeight)a=document.elementFromPoint(tapAt[0],y);}/* the tapped thing was re-drawn: use what is there now */
+    if(!a||el.contains(a))a=document.querySelector('main')||document.body.lastElementChild;
+    while(a.parentElement&&a.parentElement!==document.body){const d=getComputedStyle(a.parentElement),me=getComputedStyle(a);
+      if(me.display!=='inline'&&!(a instanceof SVGElement)&&(d.display==='block'||d.display==='flow-root'||d.display==='grid'||(d.display==='flex'&&d.flexDirection.startsWith('column')))&&a.getBoundingClientRect().width>=Math.min(260,innerWidth*.6)&&!boxedIn(a))break;a=a.parentElement;}
+    a.after(el);}
+  function placeToast(){const el=toastEl;if(!el.classList.contains('on'))return;if(!el.isConnected){el.classList.remove('inline');document.body.appendChild(el);}
+    if(el.classList.contains('inline'))return;const s=freeSpot(el);
+    if(s){el._spot=s;el.style.left=s.x+'px';el.style.top=s.y+'px';}else{el._spot=null;el.classList.add('inline');el.style.left=el.style.top='';inlineAfter(el);el.scrollIntoView({block:'nearest'});}}
+  function toast(msg,kind){if(!toastEl){toastEl=document.createElement('div');toastEl.setAttribute('role','status');document.body.appendChild(toastEl);}
+    const el=toastEl;clearTimeout(el._t);clearInterval(el._iv);if(el.classList.contains('inline'))document.body.appendChild(el);
+    el.className='toast '+(kind||'');el._spot=null;el.innerHTML=typeof msg==='object'?t(msg):msg;el.style.left='0px';el.style.top='0px';
+    el.classList.add('on');placeToast();el._iv=setInterval(placeToast,200);toastMO.observe(document.body,{subtree:true,childList:true,attributes:true,characterData:true});
+    el._t=setTimeout(()=>{clearInterval(el._iv);toastMO.disconnect();el.classList.remove('on');setTimeout(()=>{if(!el.classList.contains('on')&&el.classList.contains('inline')){el.classList.remove('inline');document.body.appendChild(el);}},320);},2500);}
+  function confetti(){if(reduced())return;const c=document.createElement('canvas');c.className='confetti';c.setAttribute('aria-hidden','true');document.body.appendChild(c);
+    const W=c.width=innerWidth,H=c.height=innerHeight,x=c.getContext('2d');const cols=['#E8702A','#0F766E','#6D28D9','#F5B90A','#02CFF9','#FF6B57'];
+    const P=Array.from({length:90},()=>({x:W/2,y:H*.55,vx:(Math.random()-.5)*9,vy:-Math.random()*11-4,r:Math.random()*6+3,c:cols[Math.random()*6|0],a:Math.random()*6}));
+    let n=0;(function f(){x.clearRect(0,0,W,H);P.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.32;p.a+=.2;x.save();x.translate(p.x,p.y);x.rotate(p.a);x.fillStyle=p.c;x.fillRect(-p.r/2,-p.r/4,p.r,p.r/2);x.restore();});
+      if(++n<110)requestAnimationFrame(f);else c.remove();})();}
+  function tween(ms,step,done){if(reduced()||ms<=0){step(1);done&&done();return()=>{};}let stop=0;const t0=performance.now();
+    const f=now=>{if(stop)return;const k=Math.min(1,(now-t0)/ms);step(k);k<1?requestAnimationFrame(f):done&&done();};requestAnimationFrame(f);return()=>{stop=1};}
+  const ease=k=>k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+  const sleep=ms=>new Promise(r=>setTimeout(r,reduced()?0:ms));
+  // Lesson config: ?lesson=<same-origin json path> (its play.config + play.goal), else inline defaults. ?cfg=<json> also accepted (parsed with JSON.parse only).
+  async function lessonConfig(defaults){let cfg=Object.assign({},defaults),goal=null,id=null;
+    const p=qs.get('lesson');
+    if(p&&/^[\w\-./]+\.json$/.test(p)&&!p.includes('..')){try{const r=await fetch(p);if(r.ok){const j=await r.json();id=j.id;if(j.play){Object.assign(cfg,j.play.config||{});goal=j.play.goal||null;}}}catch(e){}}
+    const c=qs.get('cfg'); if(c){try{Object.assign(cfg,JSON.parse(c));}catch(e){}}
+    return {cfg,goal,id};}
+  // Progress events the Family App shell can listen for (postMessage to the parent frame), plus local XP for the prototype.
+  function emit(type,data){const msg={source:'nca-techlab',type,data:data||{},at:Date.now()};try{parent!==window&&parent.postMessage(msg,'*');}catch(e){}
+    document.dispatchEvent(new CustomEvent('nca-lab',{detail:msg}));}
+  g.NCA={qs,esc,t,get lang(){return lang},setLang,onLang:f=>listeners.push(f),strings:o=>{STR=Object.assign(STR,o);applyI18n();},applyI18n,header,toast,confetti,tween,ease,sleep,reduced,lessonConfig,emit};
+})(window);
+</script><script>/* MiniPy — a tiny, deterministic, step-by-step interpreter for a safe subset of Python (own work, MIT).
+   No eval / Function / DOM access: source text → tokens → AST → a generator that yields once per executed line.
+   Supports: int, float, str, bool, None, lists; + - * / // % **; comparisons; and/or/not; if/elif/else, while, for-in
+   (range / list / str), break, continue, pass, def/return (recursion ok), print, len, range, str, int, float, abs, min,
+   max, sum, round, sorted, list.append/pop/insert/index, str.upper/lower, indexing, slicing a[i:j], augmented assign. */
+(function(g){
+class PyErr extends Error{constructor(kind,msg,line){super(msg);this.kind=kind;this.line=line;}}
+class F{constructor(v){this.v=v;}} // a float (so 4.0 prints as 4.0)
+const KW=new Set(['if','elif','else','while','for','in','def','return','and','or','not','True','False','None','break','continue','pass']);
+function tokenize(src){const lines=src.replace(/\t/g,'    ').split('\n');const T=[];const ind=[0];let paren=0;
+ lines.forEach((raw,li)=>{const ln=li+1;let s=raw;
+  if(paren===0){if(/^\s*(#.*)?$/.test(s))return;const w=s.match(/^ */)[0].length;
+   if(w>ind[ind.length-1]){ind.push(w);T.push({t:'INDENT',ln});}
+   else{while(w<ind[ind.length-1]){ind.pop();T.push({t:'DEDENT',ln});}if(w!==ind[ind.length-1])throw new PyErr('IndentationError','unindent does not match any outer indentation level',ln);}}
+  let i=s.match(/^ */)[0].length;
+  while(i<s.length){const c=s[i];
+   if(c===' '){i++;continue;} if(c==='#')break;
+   let m;const rest=s.slice(i);
+   if((m=rest.match(/^\d+\.\d*|^\d+/))){T.push({t:'NUM',v:m[0].includes('.')?new F(parseFloat(m[0])):parseInt(m[0],10),ln});i+=m[0].length;continue;}
+   if((m=rest.match(/^[A-Za-z_]\w*/))){T.push({t:KW.has(m[0])?m[0]:'NAME',v:m[0],ln});i+=m[0].length;continue;}
+   if(c==='"'||c==="'"){let j=i+1,out='';while(j<s.length&&s[j]!==c){if(s[j]==='\\'&&j+1<s.length){const n=s[j+1];out+=n==='n'?'\n':n==='t'?'\t':n;j+=2;}else out+=s[j++];}
+     if(j>=s.length)throw new PyErr('SyntaxError','unterminated string literal',ln);T.push({t:'STR',v:out,ln});i=j+1;continue;}
+   if((m=rest.match(/^(\*\*|\/\/|==|!=|<=|>=|\+=|-=|\*=|\/\/=|%=|[+\-*/%<>=()\[\],:.])/))){const op=m[0];if('(['.includes(op))paren++;if(')]'.includes(op))paren=Math.max(0,paren-1);T.push({t:'OP',v:op,ln});i+=op.length;continue;}
+   throw new PyErr('SyntaxError',`invalid character '${c}'`,ln);}
+  if(paren===0)T.push({t:'NL',ln});});
+ while(ind.length>1){ind.pop();T.push({t:'DEDENT',ln:lines.length});}T.push({t:'EOF',ln:lines.length});return T;}
+function parse(src){const T=tokenize(src);let p=0;const pk=()=>T[p],nx=()=>T[p++];
+ const is=(t,v)=>{const k=T[p];return k.t===t&&(v===undefined||k.v===v)||(t===v&&k.t===t);};
+ const isop=v=>T[p].t==='OP'&&T[p].v===v;
+ const want=(t,v)=>{const k=T[p];if(k.t===t&&(v===undefined||k.v===v)){p++;return k;}throw new PyErr('SyntaxError',`expected ${v||t}, got ${k.v||k.t}`,k.ln);};
+ const wop=v=>want('OP',v);
+ function block(){wop(':');want('NL');want('INDENT');const body=[];while(!is('DEDENT')&&!is('EOF'))body.push(stmt());if(is('DEDENT'))nx();return body;}
+ function stmt(){const k=pk(),ln=k.ln;
+  if(k.t==='if'){nx();const c=expr();const b=block();const br=[[c,b]];let el=null;while(is('elif')){nx();const c2=expr();br.push([c2,block()]);}if(is('else')){nx();el=block();}return {k:'if',ln,br,el};}
+  if(k.t==='while'){nx();const c=expr();return {k:'while',ln,c,b:block()};}
+  if(k.t==='for'){nx();const v=want('NAME').v;want('in');const it=expr();return {k:'for',ln,v,it,b:block()};}
+  if(k.t==='def'){nx();const name=want('NAME').v;wop('(');const ps=[];while(!isop(')')){ps.push(want('NAME').v);if(isop(','))nx();}wop(')');return {k:'def',ln,name,ps,b:block()};}
+  let s;
+  if(k.t==='return'){nx();s={k:'return',ln,e:is('NL')?null:expr()};}
+  else if(k.t==='break'||k.t==='continue'||k.t==='pass'){nx();s={k:k.t,ln};}
+  else{let e=expr();if(isop(',')){const tgs=[e];while(isop(',')){nx();tgs.push(expr());}wop('=');const vals=[expr()];while(isop(',')){nx();vals.push(expr());}
+    if(tgs.length!==vals.length)throw new PyErr('ValueError',`cannot unpack ${vals.length} values into ${tgs.length} names`,ln);tgs.forEach(t=>{if(!(t.k==='name'||t.k==='index'))throw new PyErr('SyntaxError','cannot assign to expression',ln);});want('NL');return {k:'multi',ln,tgs,vals};}
+   if(T[p].t==='OP'&&['=','+=','-=','*=','//=','%='].includes(T[p].v)){const op=nx().v;if(!(e.k==='name'||e.k==='index'))throw new PyErr('SyntaxError','cannot assign to expression',ln);s={k:'assign',ln,tg:e,op,e:expr()};}else s={k:'expr',ln,e};}
+  want('NL');return s;}
+ function expr(){return or();}
+ function or(){let a=and();while(is('or')){nx();a={k:'or',a,b:and()};}return a;}
+ function and(){let a=not();while(is('and')){nx();a={k:'and',a,b:not()};}return a;}
+ function not(){if(is('not')){nx();return {k:'not',a:not()};}return cmp();}
+ function cmp(){let a=add();const ops=['==','!=','<','<=','>','>='];if(T[p].t==='OP'&&ops.includes(T[p].v)){const op=nx().v;return {k:'bin',op,a,b:add()};}if(is('in')){nx();return {k:'bin',op:'in',a,b:add()};}if(is('not')&&T[p+1].t==='in'){p+=2;return {k:'not',a:{k:'bin',op:'in',a,b:add()}};}return a;}
+ function add(){let a=mul();while(isop('+')||isop('-')){const op=nx().v;a={k:'bin',op,a,b:mul()};}return a;}
+ function mul(){let a=un();while(isop('*')||isop('/')||isop('//')||isop('%')){const op=nx().v;a={k:'bin',op,a,b:un()};}return a;}
+ function un(){if(isop('-')){nx();return {k:'neg',a:un()};}if(isop('+')){nx();return un();}return pow();}
+ function pow(){const a=post();if(isop('**')){nx();return {k:'bin',op:'**',a,b:un()};}return a;}
+ function post(){let a=atom();for(;;){if(isop('(')){nx();const args=[];while(!isop(')')){args.push(expr());if(isop(','))nx();else break;}wop(')');a={k:'call',f:a,args,ln:T[p-1].ln};}
+   else if(isop('[')){nx();let i=null,j=null,sl=false;if(!isop(':'))i=expr();if(isop(':')){nx();sl=true;if(!isop(']'))j=expr();}wop(']');a=sl?{k:'slice',a,i,j}:{k:'index',a,i};}
+   else if(isop('.')){nx();a={k:'attr',a,n:want('NAME').v};}else return a;}}
+ function atom(){const k=nx();if(k.t==='NUM')return {k:'lit',v:k.v};if(k.t==='STR')return {k:'lit',v:k.v};if(k.t==='True')return {k:'lit',v:true};if(k.t==='False')return {k:'lit',v:false};if(k.t==='None')return {k:'lit',v:null};
+  if(k.t==='NAME')return {k:'name',n:k.v,ln:k.ln};
+  if(k.t==='OP'&&k.v==='('){const e=expr();wop(')');return e;}
+  if(k.t==='OP'&&k.v==='['){const items=[];while(!isop(']')){items.push(expr());if(isop(','))nx();else break;}wop(']');return {k:'list',items};}
+  throw new PyErr('SyntaxError',`invalid syntax near '${k.v||k.t}'`,k.ln);}
+ const body=[];while(!is('EOF')){if(is('NL')){nx();continue;}body.push(stmt());}return body;}
+// ---- values
+const num=x=>x instanceof F?x.v:x, isNum=x=>typeof x==='number'||x instanceof F||typeof x==='boolean';
+const tname=x=>x===null?'NoneType':typeof x==='boolean'?'bool':typeof x==='number'?'int':x instanceof F?'float':typeof x==='string'?'str':Array.isArray(x)?'list':x&&x.fn?'function':'object';
+function repr(x,inner){if(x===null)return 'None';if(x===true)return 'True';if(x===false)return 'False';if(x instanceof F){const v=x.v;return Number.isInteger(v)?v.toFixed(1):String(+v.toPrecision(12));}
+ if(typeof x==='string')return inner?`'${x}'`:x;if(Array.isArray(x))return '['+x.map(v=>repr(v,true)).join(', ')+']';if(x&&x.fn)return `<function ${x.name}>`;return String(x);}
+const truthy=x=>x instanceof F?x.v!==0:Array.isArray(x)?x.length>0:!!x;
+function arith(op,a,b,ln){
+ if(op==='+'){if(typeof a==='string'&&typeof b==='string')return a+b;if(Array.isArray(a)&&Array.isArray(b))return a.concat(b);
+  if(typeof a==='string'||typeof b==='string')throw new PyErr('TypeError',typeof a==='string'?`can only concatenate str (not "${tname(b)}") to str`:`unsupported operand type(s) for +: '${tname(a)}' and '${tname(b)}'`,ln);}
+ if(op==='*'&&(typeof a==='string'||Array.isArray(a))&&typeof b==='number'){return typeof a==='string'?a.repeat(Math.max(0,b)):[].concat(...Array(Math.max(0,b)).fill(a));}
+ if(!isNum(a)||!isNum(b))throw new PyErr('TypeError',`unsupported operand type(s) for ${op}: '${tname(a)}' and '${tname(b)}'`,ln);
+ const fl=a instanceof F||b instanceof F,x=num(a),y=num(b);
+ if((op==='/'||op==='//'||op==='%')&&y===0)throw new PyErr('ZeroDivisionError','division by zero',ln);
+ let r;switch(op){case '+':r=x+y;break;case '-':r=x-y;break;case '*':r=x*y;break;case '/':return new F(x/y);case '//':r=Math.floor(x/y);break;case '%':r=((x%y)+y)%y;break;case '**':r=Math.pow(x,y);if(!fl&&y<0)return new F(r);break;}
+ return fl?new F(r):r;}
+function eq(a,b){if(Array.isArray(a)&&Array.isArray(b))return a.length===b.length&&a.every((v,i)=>eq(v,b[i]));if(isNum(a)&&isNum(b))return num(a)===num(b);return a===b;}
+function compare(op,a,b,ln){if(op==='==')return eq(a,b);if(op==='!=')return !eq(a,b);
+ if(op==='in'){if(typeof b==='string'){if(typeof a!=='string')throw new PyErr('TypeError',"'in <string>' requires string as left operand",ln);return b.includes(a);}if(Array.isArray(b))return b.some(v=>eq(v,a));throw new PyErr('TypeError',`argument of type '${tname(b)}' is not iterable`,ln);}
+ const ok=(isNum(a)&&isNum(b))||(typeof a==='string'&&typeof b==='string');if(!ok)throw new PyErr('TypeError',`'${op}' not supported between instances of '${tname(a)}' and '${tname(b)}'`,ln);
+ const x=isNum(a)?num(a):a,y=isNum(b)?num(b):b;return op==='<'?x<y:op==='<='?x<=y:op==='>'?x>y:x>=y;}
+function idx(seq,i,ln){if(!(typeof seq==='string'||Array.isArray(seq)))throw new PyErr('TypeError',`'${tname(seq)}' object is not subscriptable`,ln);if(typeof i!=='number')throw new PyErr('TypeError',`indices must be integers, not ${tname(i)}`,ln);
+ const n=i<0?seq.length+i:i;if(n<0||n>=seq.length)throw new PyErr('IndexError',`${Array.isArray(seq)?'list':'string'} index out of range`,ln);return n;}
+// ---- the stepper
+function run(src,opt){opt=opt||{};const MAX=opt.maxSteps||5000;const ast=parse(src);const out=[];const globals=Object.create(null);const stack=[{name:'<module>',vars:globals}];let steps=0;
+ const BRK={},CNT={};class Ret{constructor(v){this.v=v;}}
+ const lookup=(n,ln)=>{const f=stack[stack.length-1].vars;if(n in f)return f[n];if(n in globals)return globals[n];if(n in BUILTIN)return BUILTIN[n];throw new PyErr('NameError',`name '${n}' is not defined`,ln);};
+ const BUILTIN={print:{bi:'print'},len:{bi:'len'},range:{bi:'range'},str:{bi:'str'},int:{bi:'int'},float:{bi:'float'},abs:{bi:'abs'},min:{bi:'min'},max:{bi:'max'},sum:{bi:'sum'},round:{bi:'round'},sorted:{bi:'sorted'},bool:{bi:'bool'}};
+ function callBI(n,args,ln){const a=args;switch(n){
+  case 'print':out.push(a.map(v=>repr(v)).join(' '));return null;
+  case 'len':if(typeof a[0]==='string'||Array.isArray(a[0]))return a[0].length;throw new PyErr('TypeError',`object of type '${tname(a[0])}' has no len()`,ln);
+  case 'range':{const [s,e,st]=a.length===1?[0,a[0],1]:[a[0],a[1],a[2]===undefined?1:a[2]];if([s,e,st].some(v=>typeof v!=='number'))throw new PyErr('TypeError','range() needs whole numbers',ln);if(st===0)throw new PyErr('ValueError','range() arg 3 must not be zero',ln);const r=[];for(let i=s;st>0?i<e:i>e;i+=st){r.push(i);if(r.length>10000)break;}return r;}
+  case 'str':return repr(a[0]);
+  case 'int':{const v=a[0];if(typeof v==='string'){if(!/^\s*[-+]?\d+\s*$/.test(v))throw new PyErr('ValueError',`invalid literal for int() with base 10: '${v}'`,ln);return parseInt(v,10);}return Math.trunc(num(v));}
+  case 'float':{const v=a[0];if(typeof v==='string'&&isNaN(parseFloat(v)))throw new PyErr('ValueError',`could not convert string to float: '${v}'`,ln);return new F(typeof v==='string'?parseFloat(v):num(v));}
+  case 'abs':return a[0] instanceof F?new F(Math.abs(a[0].v)):Math.abs(a[0]);
+  case 'bool':return truthy(a[0]);
+  case 'min':case 'max':{const xs=a.length===1&&Array.isArray(a[0])?a[0]:a;if(!xs.length)throw new PyErr('ValueError',`${n}() arg is an empty sequence`,ln);return xs.reduce((m,v)=>compare(n==='min'?'<':'>',v,m,ln)?v:m);}
+  case 'sum':return a[0].reduce((s,v)=>arith('+',s,v,ln),0);
+  case 'round':{const d=a[1]||0,v=num(a[0]);if(!d)return Math.round(v);const k=Math.pow(10,d);return new F(Math.round(v*k)/k);}
+  case 'sorted':return a[0].slice().sort((x,y)=>compare('<',x,y,ln)?-1:compare('>',x,y,ln)?1:0);}
+  throw new PyErr('NameError',`name '${n}' is not defined`,ln);}
+ function method(obj,n,args,ln){if(Array.isArray(obj)){if(n==='append'){obj.push(args[0]);return null;}if(n==='pop'){if(!obj.length)throw new PyErr('IndexError','pop from empty list',ln);return args.length?obj.splice(idx(obj,args[0],ln),1)[0]:obj.pop();}
+   if(n==='insert'){obj.splice(args[0],0,args[1]);return null;}if(n==='index'){const i=obj.findIndex(v=>eq(v,args[0]));if(i<0)throw new PyErr('ValueError',`${repr(args[0],true)} is not in list`,ln);return i;}}
+  if(typeof obj==='string'){if(n==='upper')return obj.toUpperCase();if(n==='lower')return obj.toLowerCase();}
+  throw new PyErr('AttributeError',`'${tname(obj)}' object has no attribute '${n}'`,ln);}
+ function* ev(e,ln){switch(e.k){
+  case 'lit':return e.v;case 'name':return lookup(e.n,ln);
+  case 'list':{const r=[];for(const x of e.items)r.push(yield* ev(x,ln));return r;}
+  case 'neg':{const v=yield* ev(e.a,ln);if(!isNum(v))throw new PyErr('TypeError',`bad operand type for unary -: '${tname(v)}'`,ln);return v instanceof F?new F(-v.v):-v;}
+  case 'not':return !truthy(yield* ev(e.a,ln));
+  case 'and':{const a=yield* ev(e.a,ln);return truthy(a)?yield* ev(e.b,ln):a;}
+  case 'or':{const a=yield* ev(e.a,ln);return truthy(a)?a:yield* ev(e.b,ln);}
+  case 'bin':{const a=yield* ev(e.a,ln),b=yield* ev(e.b,ln);return ['==','!=','<','<=','>','>=','in'].includes(e.op)?compare(e.op,a,b,ln):arith(e.op,a,b,ln);}
+  case 'index':{const s=yield* ev(e.a,ln),i=yield* ev(e.i,ln);return s[idx(s,i,ln)];}
+  case 'slice':{const s=yield* ev(e.a,ln);const i=e.i?yield* ev(e.i,ln):0,j=e.j?yield* ev(e.j,ln):s.length;return s.slice(i,j);}
+  case 'attr':throw new PyErr('AttributeError',`attribute '${e.n}' must be called, like .${e.n}()`,ln);
+  case 'call':{const args=[];for(const x of e.args)args.push(yield* ev(x,ln));
+   if(e.f.k==='attr'){const o=yield* ev(e.f.a,ln);return method(o,e.f.n,args,ln);}
+   const f=yield* ev(e.f,ln);if(f&&f.bi)return callBI(f.bi,args,ln);
+   if(f&&f.fn){if(args.length!==f.ps.length)throw new PyErr('TypeError',`${f.name}() takes ${f.ps.length} argument(s) but ${args.length} were given`,ln);
+    if(stack.length>60)throw new PyErr('RecursionError','maximum recursion depth exceeded',ln);
+    const vars=Object.create(null);f.ps.forEach((p,i)=>vars[p]=args[i]);stack.push({name:f.name,vars});
+    try{yield* blk(f.b);}catch(r){if(r instanceof Ret){stack.pop();return r.v;}throw r;}stack.pop();return null;}
+   throw new PyErr('TypeError',`'${tname(f)}' object is not callable`,ln);}}}
+ function assign(tg,v,ln){const f=stack[stack.length-1].vars;if(tg.k==='name'){f[tg.n]=v;return function*(){}();}
+  return (function*(){const s=yield* ev(tg.a,ln),i=yield* ev(tg.i,ln);if(!Array.isArray(s))throw new PyErr('TypeError',`'${tname(s)}' object does not support item assignment`,ln);s[idx(s,i,ln)]=v;})();}
+ function* blk(b){for(const s of b)yield* st(s);}
+ function* st(s){if(++steps>MAX)throw new PyErr('TimeoutError',`stopped after ${MAX} steps — is there a loop that never ends?`,s.ln);
+  yield {line:s.ln};
+  switch(s.k){
+   case 'expr':yield* ev(s.e,s.ln);break;
+   case 'assign':{let v=yield* ev(s.e,s.ln);if(s.op!=='='){const old=yield* ev(s.tg,s.ln);v=arith(s.op.slice(0,-1),old,v,s.ln);}yield* assign(s.tg,v,s.ln);break;}
+   case 'multi':{const vs=[];for(const v of s.vals)vs.push(yield* ev(v,s.ln));for(let i=0;i<s.tgs.length;i++)yield* assign(s.tgs[i],vs[i],s.ln);break;}
+   case 'if':{for(const [c,b] of s.br){if(truthy(yield* ev(c,s.ln))){yield* blk(b);return;}}if(s.el)yield* blk(s.el);break;}
+   case 'while':while(truthy(yield* ev(s.c,s.ln))){try{yield* blk(s.b);}catch(x){if(x===BRK)break;if(x===CNT)continue;throw x;}if(++steps>MAX)throw new PyErr('TimeoutError',`stopped after ${MAX} steps — is there a loop that never ends?`,s.ln);yield {line:s.ln,loop:true};}break;
+   case 'for':{const it=yield* ev(s.it,s.ln);if(!(Array.isArray(it)||typeof it==='string'))throw new PyErr('TypeError',`'${tname(it)}' object is not iterable`,s.ln);const items=Array.from(it);
+    for(let k=0;k<items.length;k++){stack[stack.length-1].vars[s.v]=items[k];try{yield* blk(s.b);}catch(x){if(x===BRK)break;if(x===CNT)continue;throw x;}if(k<items.length-1)yield {line:s.ln,loop:true};}break;}
+   case 'def':stack[stack.length-1].vars[s.name]={fn:1,name:s.name,ps:s.ps,b:s.b};break;
+   case 'return':throw new Ret(s.e?yield* ev(s.e,s.ln):null);
+   case 'break':throw BRK;case 'continue':throw CNT;case 'pass':break;}}
+ const gen=(function*(){try{yield* blk(ast);}catch(x){if(x===BRK||x===CNT)throw new PyErr('SyntaxError',"'break' / 'continue' outside loop",0);if(x instanceof Ret)throw new PyErr('SyntaxError',"'return' outside function",0);throw x;}})();
+ return {gen,out,stack,globals,steps:()=>steps};}
+const api={parse,run,repr,tname,PyErr,F};
+if(typeof module!=='undefined')module.exports=api;else g.MiniPy=api;
+})(typeof window!=='undefined'?window:globalThis);
+</script>
+<script>
+(async function(){
+const N=NCA,T=N.t,E=N.esc,L=(en,hi,hinglish)=>({en,hi,hinglish}),$=id=>document.getElementById(id);
+N.header('🐍','title','sub');
+N.strings({title:L('Python Step Tracer','पायथन स्टेप ट्रेसर','Python Step Tracer'),sub:L('Run code one line at a time and watch memory change','कोड एक-एक लाइन चलाओ और मेमोरी बदलते देखो','Code ek-ek line chalao aur memory badalte dekho'),step:L('▶ Step','▶ अगला','▶ Step'),auto:L('⏩ Auto','⏩ ऑटो','⏩ Auto'),edit:L('✏️ Edit','✏️ बदलो','✏️ Edit'),
+mem:L('Memory (variables)','मेमोरी (वेरिएबल)','Memory (variables)'),out:L('Output','आउटपुट','Output'),mT:L('🚀 Mission','🚀 मिशन','🚀 Mission')});
+const {cfg,goal}=await N.lessonConfig({program:'variables'});
+const PROGS={
+ variables:{n:L('Variables','वेरिएबल','Variables'),code:`name = "Asha"\nage = 12\nage = age + 1\ncity = "Pune"\nprint(name, "is", age, "and lives in", city)`,ask:{q:L('What is stored in age after line 3?','लाइन 3 के बाद age में क्या है?','Line 3 ke baad age mein kya hai?'),o:['12','13','age + 1'],a:1,why:L('Python first works out the right side (12 + 1 = 13), then puts the answer into the box called age. The old 12 is replaced.','पायथन पहले दायाँ भाग हल करता है (12 + 1 = 13), फिर उत्तर को age नाम के डिब्बे में रखता है। पुराना 12 हट जाता है।','Python pehle right side solve karta hai (12 + 1 = 13), phir jawab ko age naam ke dibbe mein rakhta hai. Purana 12 hat jaata hai.')}},
+ ifelse:{n:L('If / elif / else','अगर / वरना','If / elif / else'),code:`marks = 78\nif marks >= 90:\n    grade = "A1"\nelif marks >= 75:\n    grade = "A2"\nelif marks >= 60:\n    grade = "B1"\nelse:\n    grade = "C"\nprint("Grade:", grade)`,ask:{q:L('Which lines were skipped?','कौन-सी लाइनें छोड़ी गईं?','Kaun si lines skip hui?'),o:['3, 6–9','4–5','None — all lines ran'],a:0,why:L('78 >= 90 is False, so line 3 is skipped. 78 >= 75 is True, so line 5 runs and Python jumps out — it never checks the remaining elif/else.','78 >= 90 असत्य है, इसलिए लाइन 3 छूटी। 78 >= 75 सत्य है, तो लाइन 5 चली और पायथन बाहर निकल गया — बाक़ी elif/else नहीं जाँचे।','78 >= 90 False hai, isliye line 3 skip. 78 >= 75 True hai, to line 5 chali aur Python bahar nikal gaya — baaki elif/else check hi nahi kiye.')}},
+ loop:{n:L('Loops','लूप','Loops'),code:`total = 0\nfor n in range(1, 6):\n    total = total + n\nprint("1+2+3+4+5 =", total)\n\ncount = 3\nwhile count > 0:\n    print("Countdown", count)\n    count = count - 1\nprint("Launch! 🚀")`,ask:{q:L('How many times does line 3 run?','लाइन 3 कितनी बार चलती है?','Line 3 kitni baar chalti hai?'),o:['5','6','4'],a:0,why:L('range(1, 6) gives 1, 2, 3, 4, 5 — it stops BEFORE 6. So the loop body runs 5 times.','range(1, 6) देता है 1, 2, 3, 4, 5 — 6 से पहले रुकता है। इसलिए लूप 5 बार चलता है।','range(1, 6) deta hai 1, 2, 3, 4, 5 — 6 se PEHLE ruk jaata hai. Isliye loop body 5 baar chalti hai.')}},
+ function:{n:L('Functions','फ़ंक्शन','Functions'),code:`def area(length, width):\n    result = length * width\n    return result\n\nroom = area(4, 5)\nfloor = area(10, 12)\nprint("Room:", room, "Floor:", floor)`,ask:{q:L('Where do length and width live?','length और width कहाँ रहते हैं?','length aur width kahan rehte hain?'),o:[L('Only inside area() while it runs','केवल area() के चलने तक उसके अंदर','Sirf area() ke andar jab tak woh chal raha hai'),L('Everywhere in the program','पूरे प्रोग्राम में','Poore program mein'),L('In the output','आउटपुट में','Output mein')],a:0,why:L('Parameters are local variables. A fresh set is made on each call and thrown away when the function returns — watch them appear and disappear in Memory.','पैरामीटर स्थानीय वेरिएबल हैं। हर कॉल पर नए बनते हैं और return पर मिट जाते हैं — मेमोरी में देखो।','Parameters local variables hote hain. Har call pe naye bante hain aur return pe mit jaate hain — Memory mein aate-jaate dekho.')}},
+ lists:{n:L('Lists','लिस्ट','Lists'),code:`marks = [72, 88, 95, 64, 81]\ntotal = 0\nbest = marks[0]\nfor m in marks:\n    total = total + m\n    if m > best:\n        best = m\naverage = total / len(marks)\nprint("Average:", average, "Best:", best)`,ask:{q:L('What is marks[2]?','marks[2] क्या है?','marks[2] kya hai?'),o:['88','95','72'],a:1,why:L('Python counts positions from 0. marks[0] = 72, marks[1] = 88, marks[2] = 95.','पायथन स्थान 0 से गिनता है। marks[0] = 72, marks[1] = 88, marks[2] = 95।','Python positions 0 se ginta hai. marks[0] = 72, marks[1] = 88, marks[2] = 95.')}},
+ linear:{n:L('Linear search','रैखिक खोज','Linear search'),code:`nums = [14, 7, 31, 22, 9, 40, 18]\ntarget = 9\nfound = -1\nfor i in range(len(nums)):\n    if nums[i] == target:\n        found = i\n        break\nprint("Found at index", found)`,ask:{q:L('How many items did it check before finding 9?','9 मिलने तक कितनी चीज़ें जाँचीं?','9 milne tak kitne items check kiye?'),o:['5','1','7'],a:0,why:L('Linear search checks one by one: 14, 7, 31, 22, 9 — five checks. In the worst case (not found) it checks all n items.','रैखिक खोज एक-एक करके जाँचती है: 14, 7, 31, 22, 9 — पाँच बार। सबसे बुरी स्थिति में सभी n चीज़ें।','Linear search ek-ek karke check karta hai: 14, 7, 31, 22, 9 — paanch checks. Worst case (nahi mila) mein saare n items.')}},
+ binary:{n:L('Binary search','द्विआधारी खोज','Binary search'),code:`nums = [3, 8, 12, 19, 25, 31, 44, 50, 67]\ntarget = 44\nlo = 0\nhi = len(nums) - 1\nsteps = 0\nwhile lo <= hi:\n    steps = steps + 1\n    mid = (lo + hi) // 2\n    if nums[mid] == target:\n        break\n    elif nums[mid] < target:\n        lo = mid + 1\n    else:\n        hi = mid - 1\nprint("Index", mid, "in", steps, "steps")`,ask:{q:L('Binary search only works if the list is…','द्विआधारी खोज तभी चलती है जब लिस्ट…','Binary search tabhi kaam karta hai jab list…'),o:[L('sorted','क्रम में (sorted) हो','sorted ho'),L('short','छोटी हो','chhoti ho'),L('full of even numbers','सम संख्याओं की हो','even numbers ki ho')],a:0,why:L('It throws away half the list each step by comparing with the middle. That only makes sense if smaller values are on the left. 1,000,000 sorted items need at most 20 steps!','यह बीच वाले से तुलना करके हर बार आधी लिस्ट हटा देती है। यह तभी सही है जब छोटे मान बाईं ओर हों। 10 लाख क्रमित चीज़ों में अधिकतम 20 कदम!','Yeh middle se compare karke har step mein aadhi list hata deta hai. Yeh tabhi sahi hai jab chhoti values left mein hon. 10 lakh sorted items mein maximum 20 steps!')}},
+ bubble:{n:L('Bubble sort','बबल सॉर्ट','Bubble sort'),code:`nums = [29, 10, 14, 37, 13]\nn = len(nums)\nfor i in range(n - 1):\n    for j in range(n - 1 - i):\n        if nums[j] > nums[j + 1]:\n            nums[j], nums[j + 1] = nums[j + 1], nums[j]\nprint("Sorted:", nums)`,ask:{q:L('After the FIRST pass (i = 0), which number is surely in its final place?','पहले दौर (i = 0) के बाद कौन-सी संख्या पक्की अपनी जगह पर है?','Pehle pass (i = 0) ke baad kaunsa number pakka apni final jagah pe hai?'),o:['37','10','13'],a:0,why:L('Each pass “bubbles” the biggest remaining number to the end, like a big bubble rising. So after pass 1, 37 is last. That is why the inner loop gets shorter (n − 1 − i).','हर दौर बची हुई सबसे बड़ी संख्या को अंत तक “बुलबुले” की तरह ले जाता है। पहले दौर के बाद 37 आख़िर में। इसलिए अंदर का लूप छोटा होता जाता है (n − 1 − i)।','Har pass bachi hui sabse badi number ko end tak “bubble” karta hai. Pass 1 ke baad 37 last mein. Isliye inner loop chhota hota jaata hai (n − 1 − i).')}},
+ bug:{n:L('🐞 Fix the bug','🐞 बग ठीक करो','🐞 Bug fix karo'),code:`prices = [40, 25, 60]\ntotal = 0\nfor p in prices:\n    total = total + p\nprint("Total: " + total)`,expect:'Total: 125'}};
+let key=PROGS[cfg.program]?cfg.program:'variables',code=PROGS[key].code,editing=false,R=null,cur=0,done=false,err=null,prev={},timer=null,answered=false,passed=new Set();
+const tabs=$('progs');Object.keys(PROGS).forEach(k=>{const b=document.createElement('button');b.dataset.p=k;b.setAttribute('role','tab');b.onclick=()=>{key=k;code=PROGS[k].code;editing=false;reset();};tabs.appendChild(b);});
+const KWS=/\b(if|elif|else|while|for|in|def|return|and|or|not|True|False|None|break|continue|pass)\b/g,BIS=/\b(print|len|range|str|int|float|abs|min|max|sum|round|sorted)\b/g;
+function hl(line){const ci=line.indexOf('#');let c='',s=line;if(ci>=0&&!/["']/.test(line.slice(0,ci))){c=line.slice(ci);s=line.slice(0,ci);}
+ const parts=s.split(/("[^"]*"|'[^']*')/);return parts.map((x,i)=>i%2?`<span class="st">${E(x)}</span>`:E(x).replace(KWS,'<span class="kw">$1</span>').replace(BIS,'<span class="bi">$1</span>').replace(/\b(\d+)\b/g,'<span class="nm">$1</span>')).join('')+(c?`<span class="cm">${E(c)}</span>`:'');}
+function drawCode(){if(editing){$('codeBox').innerHTML=`<textarea class="ed" id="ed" spellcheck="false" autocapitalize="off" autocomplete="off">${E(code)}</textarea>`;$('ed').oninput=e=>code=e.target.value;return;}
+ $('codeBox').innerHTML=`<div class="code" role="list">${code.split('\n').map((l,i)=>`<div class="ln ${cur===i+1?(err?'err':'cur'):''}" role="listitem"><span class="no">${i+1}</span><span>${hl(l)||' '}</span></div>`).join('')}</div>`;}
+function reset(){clearInterval(timer);timer=null;cur=0;done=false;err=null;prev={};answered=false;$('cons').textContent='';$('err').innerHTML='';
+ try{R=MiniPy.run(code,{maxSteps:3000});}catch(e){R=null;showErr(e);}
+ tabs.querySelectorAll('button').forEach(b=>{b.innerHTML=T(PROGS[b.dataset.p].n);b.setAttribute('aria-selected',b.dataset.p===key);});drawCode();drawMem();info();mission();$('auto').innerHTML=T(L('⏩ Auto','⏩ ऑटो','⏩ Auto'));}
+const TIPS={NameError:L('Python does not know this name yet. Check spelling (Python is case-sensitive: Total ≠ total) and make sure the variable is created before it is used.','पायथन यह नाम अभी नहीं जानता। वर्तनी जाँचो (Total ≠ total) और देखो कि वेरिएबल इस्तेमाल से पहले बना हो।','Python yeh naam abhi nahi jaanta. Spelling check karo (Python case-sensitive hai: Total ≠ total) aur dekho variable use se pehle bana ho.'),
+ TypeError:L('Two kinds of values were mixed that cannot be combined, like text + number. Convert one: str(total) turns a number into text.','दो ऐसे प्रकार मिले जो जुड़ नहीं सकते, जैसे टेक्स्ट + संख्या। एक को बदलो: str(total) संख्या को टेक्स्ट बनाता है।','Do aise types mix ho gaye jo jud nahi sakte, jaise text + number. Ek ko convert karo: str(total) number ko text bana deta hai.'),
+ IndexError:L('You asked for a position that does not exist. A list of 5 items has positions 0 to 4.','ऐसा स्थान माँगा जो है ही नहीं। 5 चीज़ों की लिस्ट में स्थान 0 से 4 हैं।','Aisi position maangi jo exist nahi karti. 5 items ki list mein positions 0 se 4 hoti hain.'),
+ SyntaxError:L('Python could not read this line — check for a missing colon (:), bracket or quote.','पायथन यह लाइन पढ़ नहीं पाया — छूटा कोलन (:), कोष्ठक या उद्धरण चिह्न देखो।','Python yeh line padh nahi paaya — missing colon (:), bracket ya quote check karo.'),
+ IndentationError:L('The spaces at the start of the line do not match. Lines inside an if/for/def must be indented by the same amount (4 spaces).','लाइन की शुरुआत की जगहें मेल नहीं खातीं। if/for/def के अंदर की लाइनें बराबर (4 स्पेस) अंदर हों।','Line ke shuru ke spaces match nahi karte. if/for/def ke andar ki lines barabar (4 spaces) andar honi chahiye.'),
+ ZeroDivisionError:L('Dividing by zero has no answer, so Python stops.','शून्य से भाग का कोई उत्तर नहीं, इसलिए पायथन रुकता है।','Zero se divide ka koi jawab nahi, isliye Python ruk jaata hai.'),
+ TimeoutError:L('The loop never ended. Make sure something inside the loop changes the condition (for example count = count - 1).','लूप कभी ख़त्म नहीं हुआ। देखो कि लूप के अंदर कुछ शर्त को बदले (जैसे count = count - 1)।','Loop kabhi khatam nahi hua. Dekho loop ke andar kuch condition ko badle (jaise count = count - 1).')};
+function showErr(e){err=e;if(e.line)cur=e.line;N.emit('error',{kind:e.kind});$('err').innerHTML=`<div class="errbox"><b>${E(e.kind||'Error')}</b> ${e.line?T(L('on line','लाइन','line'))+' '+e.line:''}: <span class="kbd">${E(e.message)}</span><br>💡 ${T(TIPS[e.kind]||L('Read the message, find the line, fix one thing and run again.','संदेश पढ़ो, लाइन ढूँढो, एक चीज़ ठीक करो और फिर चलाओ।','Message padho, line dhoondo, ek cheez theek karo aur dobara chalao.'))}</div>`;}
+function step(){if(!R||done||err)return false;try{const s=R.gen.next();if(s.done){done=true;cur=0;N.emit('finished',{program:key,output:R.out.slice()});}else cur=s.value.line;}catch(e){if(e instanceof MiniPy.PyErr||e.kind)showErr(e);else showErr({kind:'Error',message:String(e.message||e)});}
+ $('cons').textContent=R.out.join('\n');drawCode();drawMem();info();if(done||err){clearInterval(timer);timer=null;$('auto').innerHTML=T(L('⏩ Auto','⏩ ऑटो','⏩ Auto'));mission();}return !(done||err);}
+function drawMem(){const box=$('vars');if(!R){box.innerHTML='';return;}const fr=R.stack[R.stack.length-1];const rows=[];
+ const add=(scope,vars)=>Object.keys(vars).forEach(n=>{const v=vars[n];if(v&&v.fn)return;rows.push([scope,n,v]);});add('',R.globals);if(R.stack.length>1)add(fr.name+'()',fr.vars);
+ const now={};box.innerHTML=rows.map(([s,n,v])=>{const r=MiniPy.repr(v,true),k=s+n;now[k]=r;const chg=prev[k]!==undefined&&prev[k]!==r||prev[k]===undefined&&Object.keys(prev).length>=0&&!(k in prev);
+  return `<div class="var ${chg?'chg':''}"><div class="n">${s?`<span style="color:#0369A1">${E(s)} › </span>`:''}${E(n)}</div><div class="v">${E(r)}</div><div class="ty">${MiniPy.tname(v)}</div></div>`;}).join('')||`<span class="muted" style="font-size:13px">${T(L('(empty — press Step)','(ख़ाली — Step दबाओ)','(khaali — Step dabao)'))}</span>`;prev=now;
+ // bars for the first list of numbers, with i / j / lo / hi / mid pointers
+ const all=Object.assign({},R.globals,fr.vars);const ln=Object.keys(all).find(n=>Array.isArray(all[n])&&all[n].length>1&&all[n].length<=12&&all[n].every(x=>typeof x==='number'));
+ $('viz').classList.toggle('hidden',!ln);if(!ln)return;const a=all[ln],mx=Math.max(...a,1);const ptr={};['i','j','lo','hi','mid','found'].forEach(p=>{if(typeof all[p]==='number'&&all[p]>=0&&all[p]<a.length)(ptr[all[p]]=ptr[all[p]]||[]).push(p);});
+ const tg=all.target;$('bars').innerHTML=a.map((v,i)=>`<div class="barc ${ptr[i]&&(ptr[i].includes('j')||ptr[i].includes('mid')||ptr[i].includes('found'))||(key==='linear'&&ptr[i])?'hl':''}"><span class="ptr">${(ptr[i]||[]).join(',')}</span><div class="bar" style="height:${12+88*v/mx}%">${v}</div><span class="ix">[${i}]</span></div>`).join('')+(tg!=null?`<div style="position:absolute;right:8px;top:2px;font:700 11px ui-monospace,monospace;color:#9FB1E8">${E(ln)} · target=${tg}</div>`:`<div style="position:absolute;right:8px;top:2px;font:700 11px ui-monospace,monospace;color:#9FB1E8">${E(ln)}</div>`);}
+function info(){$('stepInfo').innerHTML=R?(done?'✅ '+T(L(`Finished in ${R.steps()} steps.`,`${R.steps()} कदमों में पूरा।`,`${R.steps()} steps mein khatam.`)):err?'⛔ '+T(L('Stopped with an error.','त्रुटि के साथ रुका।','Error ke saath ruk gaya.')):cur?T(L(`Step ${R.steps()}: the yellow line is running now. Watch Memory.`,`कदम ${R.steps()}: पीली लाइन अभी चली। मेमोरी देखो।`,`Step ${R.steps()}: peeli line abhi chal rahi hai. Memory dekho.`)):T(L('Press ▶ Step to run the first line.','पहली लाइन चलाने के लिए ▶ अगला दबाओ।','Pehli line chalane ke liye ▶ Step dabao.'))):'';}
+function mission(){const P=PROGS[key];const m=$('mission');
+ if(P.expect){const ok=done&&!err&&R&&R.out[R.out.length-1]===P.expect;m.innerHTML=(ok?'✅ ':'')+T(L(`This program should print <span class="kbd">${P.expect}</span> but it crashes. Run it, read the error, press ✏️ Edit, fix the ONE line, and run again.`,`इस प्रोग्राम को <span class="kbd">${P.expect}</span> छापना चाहिए पर यह टूट जाता है। चलाओ, त्रुटि पढ़ो, ✏️ बदलो दबाओ, एक लाइन ठीक करो और फिर चलाओ।`,`Is program ko <span class="kbd">${P.expect}</span> print karna chahiye par yeh crash hota hai. Chalao, error padho, ✏️ Edit dabao, EK line theek karo aur dobara chalao.`))+(ok?' — '+T(L('Bug fixed! You just debugged like a real programmer.','बग ठीक! आपने असली प्रोग्रामर की तरह डीबग किया।','Bug fix! Aapne asli programmer ki tarah debug kiya.')):'');
+  if(ok&&!passed.has(key)){passed.add(key);N.confetti();N.toast(L('Mission complete +XP','मिशन पूरा +XP','Mission complete +XP'),'ok');N.emit('mission:complete',{lab:'py-tracer',program:key});}return;}
+ const A=P.ask;if(!done){m.innerHTML=T(L('Step through the whole program, then answer the question that appears here.','पूरे प्रोग्राम को कदम-दर-कदम चलाओ, फिर यहाँ आने वाले प्रश्न का उत्तर दो।','Poora program step-by-step chalao, phir yahan aane wale sawaal ka jawab do.'));return;}
+ m.innerHTML=`<b>${T(A.q)}</b><div class="opts">${A.o.map((o,i)=>`<button data-i="${i}">${E(T(o))}</button>`).join('')}</div><div id="why" style="margin-top:8px"></div>`;
+ m.querySelectorAll('.opts button').forEach(b=>b.onclick=()=>{const ok=+b.dataset.i===A.a;b.classList.add(ok?'right':'wrong');$('why').innerHTML=(ok?'✅ ':'❌ ')+T(A.why);N.emit(ok?'answered:right':'answered:wrong',{program:key});
+  if(ok&&!passed.has(key)){passed.add(key);N.confetti();N.toast(L('Correct! +XP','सही! +XP','Sahi! +XP'),'ok');N.emit('mission:complete',{lab:'py-tracer',program:key});}});}
+$('step').onclick=()=>{if(editing){editing=false;reset();}if(done||err)reset();step();};
+$('reset').onclick=()=>{editing=false;reset();};
+$('edit').onclick=()=>{editing=!editing;if(!editing)reset();else{clearInterval(timer);drawCode();}$('edit').innerHTML=T(editing?L('✅ Done','✅ हो गया','✅ Done'):L('✏️ Edit','✏️ बदलो','✏️ Edit'));};
+$('auto').onclick=()=>{if(editing){editing=false;$('edit').innerHTML=T(L('✏️ Edit','✏️ बदलो','✏️ Edit'));reset();}if(timer){clearInterval(timer);timer=null;$('auto').innerHTML=T(L('⏩ Auto','⏩ ऑटो','⏩ Auto'));return;}if(done||err)reset();
+ $('auto').innerHTML=T(L('⏸ Pause','⏸ रुको','⏸ Pause'));timer=setInterval(()=>{if(!step()){clearInterval(timer);timer=null;}},1100-$('spd').value*100);};
+const goalDef=L('A program is a list of instructions run from top to bottom, one line at a time. Step through it and watch the variables (labelled boxes in memory) change.','प्रोग्राम ऊपर से नीचे, एक-एक लाइन चलने वाले निर्देशों की सूची है। कदम-दर-कदम चलाओ और वेरिएबल (मेमोरी के नाम वाले डिब्बे) बदलते देखो।','Program = instructions ki list jo upar se neeche, ek-ek line chalti hai. Step karo aur variables (memory ke naam wale dibbe) badalte dekho.');
+const setGoal=()=>$('goal').innerHTML=T(goal||goalDef);N.onLang(()=>{setGoal();tabs.querySelectorAll('button').forEach(b=>b.innerHTML=T(PROGS[b.dataset.p].n));drawMem();info();mission();if(err)showErr(err);});
+setGoal();reset();
+window.__lab={load:k=>{key=k;code=PROGS[k].code;reset();},runAll:()=>{let g=0;while(step()&&g++<5000);},setCode:c=>{code=c;reset();}};
+})();
+</script></body></html>

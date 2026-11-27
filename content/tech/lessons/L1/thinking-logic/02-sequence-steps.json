@@ -1,0 +1,286 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.thinking-logic.02",
+ "level": 1,
+ "classes": [
+  -1,
+  0,
+  1,
+  2,
+  3
+ ],
+ "unit": "thinking-logic",
+ "title": {
+  "en": "Steps in order: sequence",
+  "hi": "क्रम से कदम: सीक्वेंस",
+  "hinglish": "Order mein steps: sequence"
+ },
+ "minutes": 6,
+ "xp": 25,
+ "prereq": [
+  "L1.thinking-logic.01"
+ ],
+ "topics": [
+  "prog.sequence"
+ ],
+ "outcomes": [
+  {
+   "en": "Put steps of a daily task in the right order.",
+   "hi": "रोज़ के काम के कदम सही क्रम में लगा सकते हो।",
+   "hinglish": "Roz ke kaam ke steps sahi order mein laga sakte ho."
+  },
+  {
+   "en": "Explain why the order of instructions matters to a computer.",
+   "hi": "समझा सकते हो कि कंप्यूटर के लिए निर्देशों का क्रम क्यों ज़रूरी है।",
+   "hinglish": "Samjha sakte ho ki computer ke liye instructions ka order kyun zaroori hai."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Sequence",
+   "en": "Steps done one after another in a set order",
+   "hi": "तय क्रम में एक के बाद एक किए गए कदम",
+   "hinglish": "Kram — steps ek ke baad ek"
+  },
+  {
+   "term": "Instruction",
+   "en": "One step that tells someone or something what to do",
+   "hi": "एक कदम जो किसी को बताता है क्या करना है",
+   "hinglish": "Hukum / step"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.thinking-logic.02.s1",
+   "caption": {
+    "en": "Brushing teeth has steps.",
+    "hi": "दाँत ब्रश करने के कदम हैं।",
+    "hinglish": "Daant brush karne ke steps hain."
+   },
+   "narration": {
+    "en": "Pick the brush, put paste, brush, rinse. Step by step.",
+    "hinglish": "Brush uthao, paste lagao, brush karo, kulla karo. Ek-ek step.",
+    "hi": "दाँत ब्रश करने के कदम हैं।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.thinking-logic.02.s2",
+   "caption": {
+    "en": "Wrong order? It goes wrong!",
+    "hi": "गलत क्रम? काम बिगड़ जाता है!",
+    "hinglish": "Galat order? Kaam bigad jaata hai!"
+   },
+   "narration": {
+    "en": "Paste after brushing? Silly! The order matters.",
+    "hinglish": "Brush ke baad paste? Ulta ho gaya! Order zaroori hai.",
+    "hi": "गलत क्रम? काम बिगड़ जाता है!"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.thinking-logic.02.s3",
+   "caption": {
+    "en": "Computers do steps exactly in order.",
+    "hi": "कंप्यूटर कदम बिल्कुल क्रम से करते हैं।",
+    "hinglish": "Computer steps bilkul order mein karte hain."
+   },
+   "narration": {
+    "en": "A robot does exactly what we say, in exactly that order — even if it is wrong.",
+    "hinglish": "Robot bilkul wahi karta hai jo hum kahein, usi order mein — galat ho tab bhi.",
+    "hi": "कंप्यूटर कदम बिल्कुल क्रम से करते हैं।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "loop-coder",
+  "config": {
+   "level": 2
+  },
+  "goal": {
+   "en": "Give Chintu the steps in the right order to reach the mango.",
+   "hi": "चिंटू को सही क्रम में कदम दो ताकि वह आम तक पहुँचे।",
+   "hinglish": "Chintu ko sahi order mein steps do taaki woh mango tak pahunche."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Sequence = right order",
+    "hi": "सीक्वेंस = सही क्रम",
+    "hinglish": "Sequence = sahi order"
+   },
+   "body": {
+    "en": "A sequence is a set of steps done one after another. Change the order and you can get a different — or wrong — result.",
+    "hi": "सीक्वेंस कदमों का समूह है जो एक के बाद एक होते हैं। क्रम बदलो तो परिणाम बदल या बिगड़ सकता है।",
+    "hinglish": "Sequence steps ka set hai jo ek ke baad ek hote hain. Order badlo toh result badal ya bigad sakta hai."
+   },
+   "analogy": {
+    "en": "First socks, then shoes. What if you do it the other way round?",
+    "hi": "पहले मोज़ा, फिर जूता। उल्टा करो तो?",
+    "hinglish": "Pehle juraab, phir joota. Ulta karo toh?"
+   }
+  },
+  {
+   "heading": {
+    "en": "Computers follow exactly",
+    "hi": "कंप्यूटर बिल्कुल वैसा करते हैं",
+    "hinglish": "Computer bilkul waisa karte hain"
+   },
+   "body": {
+    "en": "People can guess what you meant. A computer cannot — it follows each instruction exactly. So programmers write steps very clearly.",
+    "hi": "लोग समझ लेते हैं तुम्हारा मतलब। कंप्यूटर नहीं — वह हर निर्देश बिल्कुल वैसा ही मानता है। इसलिए प्रोग्रामर कदम बहुत साफ़ लिखते हैं।",
+    "hinglish": "Log samajh lete hain tumhara matlab. Computer nahin — woh har instruction bilkul waisa hi maanta hai. Isliye programmers steps bahut clearly likhte hain."
+   },
+   "realExample": {
+    "en": "A recipe for chai: boil water, add tea leaves, add milk and sugar, boil, strain. Strain first and you get no chai!",
+    "hi": "चाय की विधि: पानी उबालो, पत्ती डालो, दूध-चीनी डालो, उबालो, छानो। पहले छान दिया तो चाय नहीं बनेगी!",
+    "hinglish": "Chai ki recipe: paani ubaalo, patti daalo, doodh-cheeni daalo, ubaalo, chhaano. Pehle chhaan diya toh chai nahin banegi!"
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write or draw 5 steps for making a sandwich. Ask someone to follow them exactly — did it work?",
+   "hi": "सैंडविच बनाने के 5 कदम लिखो या बनाओ। किसी से बिल्कुल वैसा करवाओ — क्या बना?",
+   "hinglish": "Sandwich banane ke 5 steps likho ya draw karo. Kisi se bilkul waisa karwao — kya bana?"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "order",
+    "prompt": {
+     "en": "Put the morning steps in order.",
+     "hi": "सुबह के कदम क्रम में लगाओ।",
+     "hinglish": "Subah ke steps order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Put on shoes",
+      "hi": "जूते पहनो",
+      "hinglish": "Joote pehno"
+     },
+     {
+      "en": "Wake up",
+      "hi": "जागो",
+      "hinglish": "Jaago"
+     },
+     {
+      "en": "Put on socks",
+      "hi": "मोज़े पहनो",
+      "hinglish": "Moze pehno"
+     }
+    ],
+    "answer": [
+     1,
+     2,
+     0
+    ],
+    "explain": {
+     "en": "Wake up → socks → shoes.",
+     "hi": "जागो → मोज़े → जूते।",
+     "hinglish": "Jaago → moze → joote."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "order",
+    "prompt": {
+     "en": "Order the steps to make chai.",
+     "hi": "चाय बनाने के कदम क्रम में लगाओ।",
+     "hinglish": "Chai banane ke steps order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Strain into a cup",
+      "hi": "कप में छानो",
+      "hinglish": "Cup mein chhaano"
+     },
+     {
+      "en": "Boil water",
+      "hi": "पानी उबालो",
+      "hinglish": "Paani ubaalo"
+     },
+     {
+      "en": "Add tea leaves, milk, sugar",
+      "hi": "पत्ती, दूध, चीनी डालो",
+      "hinglish": "Patti, doodh, cheeni daalo"
+     }
+    ],
+    "answer": [
+     1,
+     2,
+     0
+    ],
+    "explain": {
+     "en": "Boil → add → strain. Straining first would leave nothing to drink!",
+     "hi": "उबालो → डालो → छानो। पहले छानोगे तो पीने को कुछ नहीं!",
+     "hinglish": "Ubaalo → daalo → chhaano. Pehle chhaanoge toh peene ko kuch nahin!"
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why must robot steps be in the right order?",
+     "hi": "रोबोट के कदम सही क्रम में क्यों होने चाहिए?",
+     "hinglish": "Robot ke steps sahi order mein kyun hone chahiye?"
+    },
+    "options": [
+     {
+      "en": "It does exactly what we say, in order",
+      "hi": "वह हमारे कहे अनुसार, क्रम से करता है",
+      "hinglish": "Woh bilkul wahi karta hai jo kahein, order mein"
+     },
+     {
+      "en": "It guesses what we mean",
+      "hi": "वह हमारा मतलब अंदाज़ा लगाता है",
+      "hinglish": "Woh humara matlab guess karta hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Computers follow instructions exactly; they do not guess.",
+     "hi": "कंप्यूटर निर्देश बिल्कुल मानते हैं; अंदाज़ा नहीं लगाते।",
+     "hinglish": "Computer instructions bilkul follow karte hain; guess nahin karte."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Solve Level 2 in the lab (pick up the ⭐ too).",
+     "hi": "लैब में स्तर 2 हल करो (⭐ भी उठाओ)।",
+     "hinglish": "Lab mein Level 2 solve karo (⭐ bhi uthao)."
+    },
+    "answer": {
+     "lab": "loop-coder",
+     "level": 2,
+     "solved": true
+    },
+    "explain": {
+     "en": "Forward, forward, turn left, then forward 3 times.",
+     "hi": "आगे, आगे, बाएँ मुड़ो, फिर 3 बार आगे।",
+     "hinglish": "Forward, forward, left mudo, phir 3 baar forward."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "CS Unplugged – computational thinking ideas (fact reference only)",
+   "url": "https://www.csunplugged.org/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

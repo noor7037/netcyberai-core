@@ -1,0 +1,362 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.dsa.04",
+ "level": 3,
+ "classes": [
+  11,
+  12
+ ],
+ "unit": "dsa",
+ "title": {
+  "en": "Recursion",
+  "hi": "पुनरावर्तन",
+  "hinglish": "Recursion"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [
+  "L3.dsa.03"
+ ],
+ "outcomes": [
+  {
+   "en": "Write a recursive function with a base case and a recursive case",
+   "hi": "आधार स्थिति और पुनरावर्ती स्थिति वाला फ़ंक्शन लिखो",
+   "hinglish": "Base case aur recursive case wala function likho"
+  },
+  {
+   "en": "Trace the call stack as recursion goes down and unwinds",
+   "hi": "पुनरावर्तन नीचे जाते और लौटते समय कॉल स्टैक ट्रेस करो",
+   "hinglish": "Recursion neeche jaate aur lautte waqt call stack trace karo"
+  },
+  {
+   "en": "Recognise when recursion is slow and fix it with memoisation",
+   "hi": "पहचानो कब पुनरावर्तन धीमा है और मेमोइज़ेशन से ठीक करो",
+   "hinglish": "Pehchaano kab recursion slow hai aur memoisation se fix karo"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Recursion",
+   "hinglish": "Khud ko bulana",
+   "en": "A function that solves a problem by calling itself on a smaller version",
+   "hi": "फ़ंक्शन जो छोटे रूप पर ख़ुद को बुलाकर समस्या हल करे"
+  },
+  {
+   "term": "Base case",
+   "hinglish": "Rukne ki shart",
+   "en": "The smallest case answered directly, which stops the recursion",
+   "hi": "सबसे छोटी स्थिति जिसका उत्तर सीधा, जो पुनरावर्तन रोकती है"
+  },
+  {
+   "term": "Call stack",
+   "hinglish": "Calls ka dher",
+   "en": "The stack of active function frames",
+   "hi": "सक्रिय फ़ंक्शन फ़्रेमों का ढेर"
+  },
+  {
+   "term": "Stack overflow",
+   "hinglish": "Dher ka bhar jaana",
+   "en": "Too many nested calls; in Python a RecursionError",
+   "hi": "बहुत ज़्यादा नेस्टेड कॉल; पायथन में RecursionError"
+  },
+  {
+   "term": "Memoisation",
+   "hinglish": "Jawab yaad rakhna",
+   "en": "Storing results of calls so they are not recomputed",
+   "hi": "कॉल के परिणाम सहेजना ताकि दोबारा न गिनने पड़ें"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "fact(4) = 4 × fact(3). It cannot finish yet, so it waits on the stack.",
+    "hi": "fact(4) = 4 × fact(3)। यह अभी पूरा नहीं हो सकता, इसलिए स्टैक पर रुकता है।",
+    "hinglish": "fact(4) = 4 × fact(3). Yeh abhi poora nahi ho sakta, isliye stack par rukta hai."
+   },
+   "visual": "anim:stack-grow",
+   "narration": {
+    "en": "fact(4) = 4 × fact(3). It cannot finish yet, so it waits on the stack.",
+    "hi": "fact(4) = 4 × fact(3)। यह अभी पूरा नहीं हो सकता, इसलिए स्टैक पर रुकता है।",
+    "hinglish": "fact(4) = 4 × fact(3). Yeh abhi poora nahi ho sakta, isliye stack par rukta hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "fact(3), fact(2), fact(1), fact(0) pile up — five frames deep.",
+    "hi": "fact(3), fact(2), fact(1), fact(0) जमा होते हैं — पाँच फ़्रेम गहरे।",
+    "hinglish": "fact(3), fact(2), fact(1), fact(0) jama hote hain — paanch frames gehre."
+   },
+   "visual": "anim:stack-deep",
+   "narration": {
+    "en": "fact(3), fact(2), fact(1), fact(0) pile up — five frames deep.",
+    "hi": "fact(3), fact(2), fact(1), fact(0) जमा होते हैं — पाँच फ़्रेम गहरे।",
+    "hinglish": "fact(3), fact(2), fact(1), fact(0) jama hote hain — paanch frames gehre."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "fact(0) is the base case: it returns 1 without calling anything.",
+    "hi": "fact(0) आधार स्थिति है: बिना कुछ बुलाए 1 लौटाता है।",
+    "hinglish": "fact(0) base case hai: bina kuch bulaaye 1 return karta hai."
+   },
+   "visual": "anim:base",
+   "narration": {
+    "en": "fact(0) is the base case: it returns 1 without calling anything.",
+    "hi": "fact(0) आधार स्थिति है: बिना कुछ बुलाए 1 लौटाता है।",
+    "hinglish": "fact(0) base case hai: bina kuch bulaaye 1 return karta hai."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Unwinding: 1 → 1 → 2 → 6 → 24. Each frame finishes its multiplication and pops off.",
+    "hi": "लौटना: 1 → 1 → 2 → 6 → 24। हर फ़्रेम अपना गुणा पूरा करके हटता है।",
+    "hinglish": "Unwinding: 1 → 1 → 2 → 6 → 24. Har frame apna multiplication poora karke hat-ta hai."
+   },
+   "visual": "anim:stack-unwind",
+   "narration": {
+    "en": "Unwinding: 1 → 1 → 2 → 6 → 24. Each frame finishes its multiplication and pops off.",
+    "hi": "लौटना: 1 → 1 → 2 → 6 → 24। हर फ़्रेम अपना गुणा पूरा करके हटता है।",
+    "hinglish": "Unwinding: 1 → 1 → 2 → 6 → 24. Har frame apna multiplication poora karke hat-ta hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "code-lab",
+  "config": {
+   "mode": "trace",
+   "scenario": "factorial"
+  },
+  "goal": {
+   "en": "Predict the deepest stack size, then step through fact(4). Watch frames pile up, hit the base case, and unwind to 24.",
+   "hi": "सबसे गहरे स्टैक का अनुमान लगाओ, फिर fact(4) चरण-दर-चरण चलाओ। फ़्रेम जमा होते, आधार स्थिति तक पहुँचते, और 24 तक खुलते देखो।",
+   "hinglish": "Sabse gehra stack size predict karo, phir fact(4) step by step chalao. Frames ko jama hote, base case tak pahunchte, aur 24 tak wapas khulte dekho."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Thinking recursively",
+    "hi": "पुनरावर्ती सोच",
+    "hinglish": "Recursive soch"
+   },
+   "body": {
+    "en": "To write a recursive function, answer two questions. 1) What is the smallest case I can answer directly? (base case: an empty list, n == 0, a single file). 2) How can I solve the problem using the answer to a slightly smaller problem? (recursive case). Recursion fits naturally shaped problems: folders inside folders, family trees, HTML elements inside elements, and divide-and-conquer algorithms like merge sort and binary search. Every recursive function can be rewritten with a loop and an explicit stack — that is what the computer does underneath.",
+    "hi": "पुनरावर्ती फ़ंक्शन लिखने के लिए दो प्रश्नों के उत्तर दो। 1) सबसे छोटी स्थिति कौन-सी है जिसका उत्तर मैं सीधे दे सकूँ? (आधार स्थिति: ख़ाली सूची, n == 0, एक फ़ाइल)। 2) थोड़ी छोटी समस्या के उत्तर से मैं समस्या कैसे हल करूँ? (पुनरावर्ती स्थिति)। पुनरावर्तन स्वाभाविक आकार वाली समस्याओं पर फ़िट बैठता है: फ़ोल्डरों के अंदर फ़ोल्डर, वंश वृक्ष, तत्वों के अंदर HTML तत्व, और मर्ज सॉर्ट व द्विआधारी खोज जैसे बाँटो-जीतो एल्गोरिदम। हर पुनरावर्ती फ़ंक्शन लूप और स्पष्ट स्टैक से दोबारा लिखा जा सकता है — कंप्यूटर अंदर यही करता है।",
+    "hinglish": "Recursive function likhne ke liye do sawaalon ke jawab do. 1) Sabse chhota case kaunsa hai jiska jawab main seedha de sakoon? (base case: khaali list, n == 0, ek file). 2) Thodi chhoti problem ke jawab se main problem kaise hal karoon? (recursive case). Recursion natural shape wali problems par fit baithta hai: folders ke andar folders, family trees, elements ke andar HTML elements, aur merge sort aur binary search jaise divide-and-conquer algorithms. Har recursive function loop aur explicit stack se dobaara likha ja sakta hai — computer andar yahi karta hai."
+   },
+   "analogy": {
+    "en": "Russian dolls: open one, find a smaller one inside, until the tiniest doll that does not open (the base case).",
+    "hi": "रूसी गुड़ियाँ: एक खोलो, अंदर छोटी मिलती है, जब तक सबसे छोटी गुड़िया न आए जो नहीं खुलती (आधार स्थिति)।",
+    "hinglish": "Russian dolls: ek kholo, andar chhoti milti hai, jab tak sabse chhoti doll na aaye jo nahi khulti (base case)."
+   },
+   "realExample": {
+    "en": "def folder_size(path): add the sizes of files, plus folder_size(sub) for each sub-folder — how \"Properties → Size\" works.",
+    "hi": "def folder_size(path): फ़ाइलों के आकार जोड़ो, साथ में हर उप-फ़ोल्डर का folder_size(sub) — \"Properties → Size\" ऐसे ही काम करता है।",
+    "hinglish": "def folder_size(path): files ke size jodo, saath mein har sub-folder ka folder_size(sub) — \"Properties → Size\" aise hi kaam karta hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "When recursion goes wrong",
+    "hi": "जब पुनरावर्तन बिगड़ता है",
+    "hinglish": "Jab recursion bigadta hai"
+   },
+   "body": {
+    "en": "Forget the base case and the calls never stop: Python raises RecursionError after about 1,000 nested frames (sys.getrecursionlimit()). Naive Fibonacci, fib(n) = fib(n-1) + fib(n-2), recomputes the same values again and again and takes exponential time: fib(40) makes over 30 crore calls. Memoisation fixes it — add @functools.cache above the function and each value is computed once, so fib(40) needs only 41 distinct calls. This idea, storing answers to sub-problems, is called dynamic programming.",
+    "hi": "आधार स्थिति भूलो और कॉल कभी नहीं रुकतीं: पायथन लगभग 1,000 नेस्टेड फ़्रेम के बाद RecursionError उठाता है (sys.getrecursionlimit())। साधारण फ़िबोनाची, fib(n) = fib(n-1) + fib(n-2), वही मान बार-बार गिनता है और घातीय समय लेता है: fib(40) 30 करोड़ से ज़्यादा कॉल करता है। मेमोइज़ेशन इसे ठीक करता है — फ़ंक्शन के ऊपर @functools.cache लगाओ और हर मान एक बार गिना जाता है, तो fib(40) को सिर्फ़ 41 अलग कॉल चाहिए। उप-समस्याओं के उत्तर सहेजने का यह विचार डायनेमिक प्रोग्रामिंग कहलाता है।",
+    "hinglish": "Base case bhoolo aur calls kabhi nahi rukti: Python lagbhag 1,000 nested frames ke baad RecursionError raise karta hai (sys.getrecursionlimit()). Naive Fibonacci, fib(n) = fib(n-1) + fib(n-2), wahi values baar-baar ginta hai aur exponential time leta hai: fib(40) 30 crore se zyaada calls karta hai. Memoisation ise fix karta hai — function ke upar @functools.cache lagao aur har value ek baar gini jaati hai, to fib(40) ko sirf 41 alag calls chahiye. Sub-problems ke answers save karne ka yeh idea dynamic programming kehlata hai."
+   },
+   "analogy": {
+    "en": "Two mirrors facing each other: reflections forever, unless something stops them.",
+    "hi": "आमने-सामने दो शीशे: अनंत प्रतिबिंब, जब तक कुछ उन्हें रोके नहीं।",
+    "hinglish": "Aamne-saamne do sheeshe: anant reflections, jab tak kuch unhe roke nahi."
+   },
+   "realExample": {
+    "en": "Google Maps-style route planners and spell-checkers rely on dynamic programming to avoid recomputing sub-results.",
+    "hi": "Google Maps जैसे रास्ता योजक और वर्तनी-जाँचक उप-परिणाम दोबारा न गिनने के लिए डायनेमिक प्रोग्रामिंग पर निर्भर हैं।",
+    "hinglish": "Google Maps jaise route planners aur spell-checkers sub-results dobaara na ginne ke liye dynamic programming par nirbhar hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write a recursive function count_down(n) that prints n down to 1 and then \"Lift off!\". Then write a recursive sum_list(items) without using sum(). What is the base case of each?",
+   "hi": "पुनरावर्ती फ़ंक्शन count_down(n) लिखो जो n से 1 तक छापे और फिर \"Lift off!\"। फिर sum() के बिना पुनरावर्ती sum_list(items) लिखो। हर एक की आधार स्थिति क्या है?",
+   "hinglish": "Recursive function count_down(n) likho jo n se 1 tak print kare aur phir \"Lift off!\". Phir sum() use kiye bina recursive sum_list(items) likho. Har ek ka base case kya hai?"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "What stops a recursive function?",
+     "hi": "पुनरावर्ती फ़ंक्शन को क्या रोकता है?",
+     "hinglish": "Recursive function ko kya rokta hai?"
+    },
+    "options": [
+     {
+      "en": "The base case",
+      "hi": "आधार स्थिति",
+      "hinglish": "Base case"
+     },
+     {
+      "en": "print()",
+      "hi": "print()",
+      "hinglish": "print()"
+     },
+     {
+      "en": "A global variable",
+      "hi": "वैश्विक वेरिएबल",
+      "hinglish": "Global variable"
+     },
+     {
+      "en": "Nothing",
+      "hi": "कुछ नहीं",
+      "hinglish": "Kuch nahi"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Without a base case you get RecursionError.",
+     "hi": "आधार स्थिति के बिना RecursionError।",
+     "hinglish": "Base case ke bina RecursionError."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "short",
+    "prompt": {
+     "en": "fact(5) = ?",
+     "hi": "fact(5) = ?",
+     "hinglish": "fact(5) = ?"
+    },
+    "answer": {
+     "accept": [
+      "120"
+     ]
+    },
+    "explain": {
+     "en": "5 × 4 × 3 × 2 × 1 = 120.",
+     "hi": "5 × 4 × 3 × 2 × 1 = 120।",
+     "hinglish": "5 × 4 × 3 × 2 × 1 = 120."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why is naive recursive fib(40) slow?",
+     "hi": "साधारण पुनरावर्ती fib(40) धीमा क्यों?",
+     "hinglish": "Naive recursive fib(40) slow kyun?"
+    },
+    "options": [
+     {
+      "en": "It recomputes the same values many times",
+      "hi": "वही मान कई बार गिनता है",
+      "hinglish": "Wahi values kai baar ginta hai"
+     },
+     {
+      "en": "Python cannot add",
+      "hi": "पायथन जोड़ नहीं सकता",
+      "hinglish": "Python jod nahi sakta"
+     },
+     {
+      "en": "Integers are too big",
+      "hi": "पूर्णांक बहुत बड़े",
+      "hinglish": "Integers bahut bade"
+     },
+     {
+      "en": "It uses a set",
+      "hi": "यह सेट इस्तेमाल करता है",
+      "hinglish": "Yeh set use karta hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Memoisation (functools.cache) makes it fast.",
+     "hi": "मेमोइज़ेशन (functools.cache) तेज़ बनाता है।",
+     "hinglish": "Memoisation (functools.cache) tez banata hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which problem is most naturally recursive?",
+     "hi": "कौन-सी समस्या सबसे स्वाभाविक रूप से पुनरावर्ती है?",
+     "hinglish": "Kaunsi problem sabse natural recursive hai?"
+    },
+    "options": [
+     {
+      "en": "Total size of a folder with sub-folders",
+      "hi": "उप-फ़ोल्डर वाले फ़ोल्डर का कुल आकार",
+      "hinglish": "Sub-folders wale folder ka total size"
+     },
+     {
+      "en": "Adding two numbers",
+      "hi": "दो संख्याएँ जोड़ना",
+      "hinglish": "Do numbers jodna"
+     },
+     {
+      "en": "Printing \"hello\"",
+      "hi": "\"hello\" छापना",
+      "hinglish": "\"hello\" print karna"
+     },
+     {
+      "en": "Reading one input",
+      "hi": "एक इनपुट पढ़ना",
+      "hinglish": "Ek input padhna"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Folders contain folders: the shape is recursive.",
+     "hi": "फ़ोल्डरों में फ़ोल्डर: आकार ही पुनरावर्ती है।",
+     "hinglish": "Folders mein folders: shape hi recursive hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Trace fact(4) to the end.",
+     "hi": "fact(4) अंत तक ट्रेस करो।",
+     "hinglish": "fact(4) end tak trace karo."
+    },
+    "answer": {
+     "event": "trace-done",
+     "scenario": "factorial"
+    },
+    "explain": {
+     "en": "Down to the base case, and back up to 24.",
+     "hi": "आधार स्थिति तक नीचे, और 24 तक वापस।",
+     "hinglish": "Base case tak neeche, aur 24 tak wapas."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "prog.recursion"
+ ],
+ "sources": [
+  {
+   "title": "Cormen, Leiserson, Rivest, Stein — Introduction to Algorithms (4th ed., MIT Press, 2022)",
+   "url": "https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Python docs — functools.cache",
+   "url": "https://docs.python.org/3/library/functools.html",
+   "licence": "fact reference"
+  }
+ ]
+}

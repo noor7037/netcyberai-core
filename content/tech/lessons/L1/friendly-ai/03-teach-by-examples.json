@@ -1,0 +1,326 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.friendly-ai.03",
+ "level": 1,
+ "classes": [
+  3,
+  4,
+  5
+ ],
+ "unit": "friendly-ai",
+ "title": {
+  "en": "Teaching a computer with examples",
+  "hi": "उदाहरणों से कंप्यूटर को सिखाना",
+  "hinglish": "Examples se computer ko sikhaana"
+ },
+ "minutes": 9,
+ "xp": 35,
+ "prereq": [
+  "L1.friendly-ai.02"
+ ],
+ "topics": [
+  "ai.ml-supervised"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain training (learning from labelled examples) and testing (checking on new examples).",
+   "hi": "ट्रेनिंग (लेबल वाले उदाहरणों से सीखना) और टेस्टिंग (नए उदाहरणों पर जाँचना) समझा सकते हो।",
+   "hinglish": "Training (label wale examples se seekhna) aur testing (naye examples par check karna) samjha sakte ho."
+  },
+  {
+   "en": "Read a feature map and explain how \"nearest neighbours\" vote.",
+   "hi": "फ़ीचर मैप पढ़ सकते हो और समझा सकते हो कि \"सबसे पास के पड़ोसी\" कैसे वोट करते हैं।",
+   "hinglish": "Feature map padh sakte ho aur samjha sakte ho ki \"sabse paas ke padosi\" kaise vote karte hain."
+  },
+  {
+   "en": "Explain confidence: how sure the AI is.",
+   "hi": "भरोसा (कॉन्फ़िडेंस) समझा सकते हो: AI कितना पक्का है।",
+   "hinglish": "Confidence samjha sakte ho: AI kitna pakka hai."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Training",
+   "en": "Teaching AI with examples that have the right answer",
+   "hi": "AI को सही जवाब वाले उदाहरणों से सिखाना",
+   "hinglish": "AI ko label wale examples se sikhaana"
+  },
+  {
+   "term": "Label",
+   "en": "The correct answer attached to an example, like \"fruit\"",
+   "hi": "उदाहरण के साथ सही जवाब, जैसे \"फल\"",
+   "hinglish": "Sahi jawab ka naam, jaise \"fruit\""
+  },
+  {
+   "term": "Feature",
+   "en": "A clue the AI measures, like sweetness or colour",
+   "hi": "एक सुराग जो AI नापता है, जैसे मिठास या रंग",
+   "hinglish": "Ek suraag jo AI dekhta hai, jaise meethaapan"
+  },
+  {
+   "term": "Confidence",
+   "en": "How sure the AI is about its answer",
+   "hi": "AI अपने जवाब पर कितना पक्का है",
+   "hinglish": "AI kitna pakka hai"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.friendly-ai.03.s1",
+   "caption": {
+    "en": "Training: examples WITH the right answer.",
+    "hi": "ट्रेनिंग: सही जवाब के साथ उदाहरण।",
+    "hinglish": "Training: sahi jawab ke SAATH examples."
+   },
+   "narration": {
+    "en": "First we train: we give the AI examples with labels — \"this is a fruit\", \"this is a vegetable\".",
+    "hinglish": "Pehle training: hum AI ko label ke saath examples dete hain — \"yeh fruit hai\", \"yeh sabzi hai\".",
+    "hi": "पहले ट्रेनिंग: हम AI को लेबल के साथ उदाहरण देते हैं — \"यह फल है\", \"यह सब्ज़ी है\"।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.friendly-ai.03.s2",
+   "caption": {
+    "en": "On the map, it looks for the closest examples.",
+    "hi": "नक्शे पर वह सबसे पास के उदाहरण ढूँढता है।",
+    "hinglish": "Map par woh sabse paas ke examples dhoondhta hai."
+   },
+   "narration": {
+    "en": "The AI turns each example into numbers called features, like \"how sweet\" and \"how bright\". A new orange lands near the apples and mangoes, so they vote: fruit!",
+    "hinglish": "AI har example ko features naam ke numbers mein badalta hai, jaise \"kitna meetha\" aur \"kitna chatak\". Naya santra seb aur aam ke paas girta hai, toh woh vote karte hain: fruit!",
+    "hi": "AI हर उदाहरण को फ़ीचर नाम की संख्याओं में बदलता है, जैसे \"कितना मीठा\" और \"कितना चटक\"। नया संतरा सेब और आम के पास आता है, तो वे वोट करते हैं: फल!"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.friendly-ai.03.s3",
+   "caption": {
+    "en": "Testing: new examples. Is it sure?",
+    "hi": "टेस्टिंग: नए उदाहरण। क्या वह पक्का है?",
+    "hinglish": "Testing: naye examples. Kya woh pakka hai?"
+   },
+   "narration": {
+    "en": "Then we test with new examples it has never seen. A carrot is quite sweet and bright, so the AI may wrongly say \"fruit\" — with low confidence.",
+    "hinglish": "Phir naye examples se test karte hain jo usne kabhi nahin dekhe. Gaajar kaafi meethi aur chatak hai, toh AI galti se \"fruit\" bol sakta hai — kam confidence ke saath.",
+    "hi": "फिर नए उदाहरणों से जाँचते हैं जो उसने कभी नहीं देखे। गाजर काफ़ी मीठी और चटक है, तो AI ग़लती से \"फल\" कह सकता है — कम भरोसे के साथ।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "teach-sorter",
+  "config": {
+   "mode": "teach"
+  },
+  "goal": {
+   "en": "Train the AI with 8 examples, then test it on 6 new ones. Watch the map lines to see who votes.",
+   "hi": "AI को 8 उदाहरणों से सिखाओ, फिर 6 नए पर जाँचो। नक्शे की लाइनें देखो — कौन वोट कर रहा है।",
+   "hinglish": "AI ko 8 examples se train karo, phir 6 naye par test karo. Map ki lines dekho — kaun vote kar raha hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Train, then test",
+    "hi": "पहले ट्रेन, फिर टेस्ट",
+    "hinglish": "Pehle train, phir test"
+   },
+   "body": {
+    "en": "If we only test on pictures the AI already saw, it is like a quiz where you have seen the answers. A fair test uses NEW examples. That shows whether the AI really learnt.",
+    "hi": "अगर हम सिर्फ़ उन्हीं चित्रों पर जाँचें जो AI पहले देख चुका है, तो यह ऐसी परीक्षा है जिसके जवाब तुम देख चुके हो। सही जाँच नए उदाहरणों से होती है। उससे पता चलता है कि AI ने सच में सीखा या नहीं।",
+    "hinglish": "Agar hum sirf unhi pictures par test karein jo AI pehle dekh chuka hai, toh yeh aisa exam hai jiske answers tum dekh chuke ho. Sahi test NAYE examples se hota hai. Usse pata chalta hai ki AI ne sach mein seekha ya nahin."
+   },
+   "analogy": {
+    "en": "Memorising answers is not the same as understanding — only a new question tells the difference.",
+    "hi": "रट्टा मारकर जवाब याद करना और सच में समझना अलग है — नया सवाल ही बताता है।",
+    "hinglish": "Ratta maar ke answer yaad karna aur sach mein samajhna alag hai — naya sawaal hi batata hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "Features: the clues AI uses",
+    "hi": "फ़ीचर: AI के सुराग",
+    "hinglish": "Features: AI ke suraag"
+   },
+   "body": {
+    "en": "Our AI uses only two clues: sweetness and bright colour. A lemon is sour and yellow, so it can fool the AI. Real AI uses thousands of clues it finds by itself, so it is much better — but it still makes mistakes.",
+    "hi": "हमारा AI सिर्फ़ दो सुराग इस्तेमाल करता है: मिठास और चटक रंग। नींबू खट्टा और पीला है, इसलिए वह AI को धोखा दे सकता है। असली AI ख़ुद हज़ारों सुराग ढूँढता है, इसलिए बहुत बेहतर है — फिर भी ग़लती करता है।",
+    "hinglish": "Hamara AI sirf do suraag use karta hai: meethaapan aur chatak rang. Nimbu khatta aur peela hai, isliye woh AI ko dhokha de sakta hai. Asli AI khud hazaaron suraag dhoondhta hai, isliye bahut behtar hai — phir bhi galti karta hai."
+   },
+   "realExample": {
+    "en": "Email apps learn to spot spam from millions of emails that people marked \"spam\" or \"not spam\".",
+    "hi": "ईमेल ऐप लाखों ईमेल से स्पैम पहचानना सीखते हैं जिन्हें लोगों ने \"स्पैम\" या \"स्पैम नहीं\" चिह्नित किया।",
+    "hinglish": "Email apps laakhon emails se spam pehchaanna seekhte hain jinhe logon ne \"spam\" ya \"not spam\" mark kiya."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Play \"teach the robot\" with a family member: show 5 things that are \"heavy\" and 5 that are \"light\". Then test them with a new object!",
+   "hi": "परिवार के किसी सदस्य के साथ \"रोबोट को सिखाओ\" खेलो: 5 \"भारी\" और 5 \"हल्की\" चीज़ें दिखाओ। फिर एक नई चीज़ से जाँचो!",
+   "hinglish": "Family member ke saath \"robot ko sikhao\" khelo: 5 \"bhaari\" aur 5 \"halki\" cheezein dikhao. Phir ek nayi cheez se test karo!"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "order",
+    "prompt": {
+     "en": "Put the steps of teaching an AI in order.",
+     "hi": "AI सिखाने के कदम क्रम में लगाओ।",
+     "hinglish": "AI sikhaane ke steps order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Test on new examples",
+      "hi": "नए उदाहरणों पर जाँचो",
+      "hinglish": "Naye examples par test karo"
+     },
+     {
+      "en": "Collect labelled examples",
+      "hi": "लेबल वाले उदाहरण इकट्ठा करो",
+      "hinglish": "Label wale examples ikattha karo"
+     },
+     {
+      "en": "Train the AI",
+      "hi": "AI को ट्रेन करो",
+      "hinglish": "AI ko train karo"
+     },
+     {
+      "en": "Add more examples if it fails",
+      "hi": "फ़ेल हो तो और उदाहरण जोड़ो",
+      "hinglish": "Fail ho toh aur examples jodo"
+     }
+    ],
+    "answer": [
+     1,
+     2,
+     0,
+     3
+    ],
+    "explain": {
+     "en": "Collect → train → test → improve.",
+     "hi": "इकट्ठा → ट्रेन → टेस्ट → सुधार।",
+     "hinglish": "Collect → train → test → improve."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why test on NEW examples?",
+     "hi": "नए उदाहरणों पर क्यों जाँचें?",
+     "hinglish": "NAYE examples par kyun test karein?"
+    },
+    "options": [
+     {
+      "en": "To see if the AI really learnt",
+      "hi": "यह देखने के लिए कि AI ने सच में सीखा",
+      "hinglish": "Yeh dekhne ke liye ki AI ne sach mein seekha"
+     },
+     {
+      "en": "Because old ones are boring",
+      "hi": "क्योंकि पुराने उबाऊ हैं",
+      "hinglish": "Kyunki purane boring hain"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Old examples only show it remembered; new ones show it learnt.",
+     "hi": "पुराने उदाहरण दिखाते हैं कि उसे याद है; नए दिखाते हैं कि उसने सीखा।",
+     "hinglish": "Purane examples dikhaate hain ki use yaad hai; naye dikhaate hain ki usne seekha."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "The AI says \"Fruit 52%, Vegetable 48%\". This means…",
+     "hi": "AI कहता है \"फल 52%, सब्ज़ी 48%\"। इसका मतलब…",
+     "hinglish": "AI kehta hai \"Fruit 52%, Sabzi 48%\". Iska matlab…"
+    },
+    "options": [
+     {
+      "en": "It is NOT sure — check it",
+      "hi": "वह पक्का नहीं — जाँचो",
+      "hinglish": "Woh pakka nahin — check karo"
+     },
+     {
+      "en": "It is 100% correct",
+      "hi": "वह 100% सही है",
+      "hinglish": "Woh 100% sahi hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Close percentages mean low confidence.",
+     "hi": "पास-पास के प्रतिशत मतलब कम भरोसा।",
+     "hinglish": "Paas-paas ke percent matlab kam confidence."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "In our lab, a \"feature\" is…",
+     "hi": "हमारी लैब में \"फ़ीचर\" क्या है?",
+     "hinglish": "Hamari lab mein \"feature\" kya hai?"
+    },
+    "options": [
+     {
+      "en": "a clue like sweetness or colour",
+      "hi": "मिठास या रंग जैसा सुराग",
+      "hinglish": "meethaapan ya rang jaisa suraag"
+     },
+     {
+      "en": "a button on the screen",
+      "hi": "स्क्रीन पर एक बटन",
+      "hinglish": "screen par ek button"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Features are the measurements the AI uses to compare examples.",
+     "hi": "फ़ीचर वे माप हैं जिनसे AI उदाहरणों की तुलना करता है।",
+     "hinglish": "Features woh measurements hain jinse AI examples compare karta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Train and test your AI in the lab (at least 4 of 6 right).",
+     "hi": "लैब में अपने AI को सिखाओ और जाँचो (6 में से कम से कम 4 सही)।",
+     "hinglish": "Lab mein apne AI ko train aur test karo (6 mein se kam se kam 4 sahi)."
+    },
+    "answer": {
+     "lab": "teach-sorter",
+     "mode": "teach",
+     "solved": true
+    },
+    "explain": {
+     "en": "Sort the training pictures correctly — good examples make a good AI.",
+     "hi": "ट्रेनिंग चित्र सही छाँटो — अच्छे उदाहरण से अच्छा AI बनता है।",
+     "hinglish": "Training pictures sahi sort karo — achhe examples se achha AI banta hai."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "AI4K12 – Five Big Ideas in AI (fact reference)",
+   "url": "https://ai4k12.org/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

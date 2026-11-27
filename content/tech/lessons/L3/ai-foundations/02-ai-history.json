@@ -1,0 +1,374 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.ai-foundations.02",
+ "level": 3,
+ "classes": [
+  9
+ ],
+ "unit": "ai-foundations",
+ "title": {
+  "en": "A short history of AI: 1950 to today",
+  "hi": "एआई का संक्षिप्त इतिहास: 1950 से आज तक",
+  "hinglish": "AI ka chhota itihaas: 1950 se aaj tak"
+ },
+ "minutes": 10,
+ "xp": 40,
+ "prereq": [
+  "L3.ai-foundations.01"
+ ],
+ "outcomes": [
+  {
+   "en": "Place 10 key AI milestones on a timeline",
+   "hinglish": "AI ke 10 bade milestones timeline par lagao",
+   "hi": "10 प्रमुख एआई पड़ावों को समयरेखा पर रखना"
+  },
+  {
+   "en": "Explain why AI had \"winters\" and what ended them (data, compute, better algorithms)",
+   "hinglish": "Samjhao AI winters kyun aaye aur kis cheez ne unhe khatam kiya (data, compute, better algorithms)",
+   "hi": "समझाना कि एआई में \"सर्दियाँ\" क्यों आईं और किसने उन्हें ख़त्म किया (डेटा, कंप्यूट, बेहतर एल्गोरिद्म)"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Turing Test",
+   "hinglish": "Kya machine baaton mein insaan jaisi lagti hai — yeh test",
+   "en": "Alan Turing's 1950 \"imitation game\" for judging machine conversation",
+   "hi": "मशीन की बातचीत परखने के लिए एलन ट्यूरिंग का 1950 का \"नकल खेल\""
+  },
+  {
+   "term": "AI winter",
+   "hinglish": "Jab funding aur ummeed dono gir gaye",
+   "en": "A period when AI funding and interest collapsed after hype",
+   "hi": "वह दौर जब बढ़ा-चढ़ा प्रचार टूटने के बाद एआई का धन और रुचि गिर गई"
+  },
+  {
+   "term": "Perceptron",
+   "hinglish": "Sabse pehla seekhne wala artificial neuron",
+   "en": "An early single-layer neural network (Rosenblatt, 1958)",
+   "hi": "एक शुरुआती एक-परत न्यूरल नेटवर्क (रोज़ेनब्लैट, 1958)"
+  },
+  {
+   "term": "Compute",
+   "hinglish": "Calculation karne ki taakat (GPU, chips)",
+   "en": "The processing power available to train and run models",
+   "hi": "मॉडल प्रशिक्षित करने और चलाने के लिए उपलब्ध प्रोसेसिंग शक्ति"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "1950: Alan Turing asks \"Can machines think?\" and proposes the imitation game. 1956: the Dartmouth workshop names the field.",
+    "hi": "1950: एलन ट्यूरिंग पूछते हैं \"क्या मशीनें सोच सकती हैं?\" और नकल का खेल प्रस्तावित करते हैं। 1956: डार्टमाउथ कार्यशाला इस क्षेत्र को नाम देती है।",
+    "hinglish": "1950: Alan Turing poochhte hain \"Kya machines soch sakti hain?\" aur imitation game propose karte hain. 1956: Dartmouth workshop field ko naam deta hai."
+   },
+   "visual": "anim:timeline-1950",
+   "narration": {
+    "en": "1950: Alan Turing asks \"Can machines think?\" and proposes the imitation game. 1956: the Dartmouth workshop names the field.",
+    "hi": "1950: एलन ट्यूरिंग पूछते हैं \"क्या मशीनें सोच सकती हैं?\" और नकल का खेल प्रस्तावित करते हैं। 1956: डार्टमाउथ कार्यशाला इस क्षेत्र को नाम देती है।",
+    "hinglish": "1950: Alan Turing poochhte hain \"Kya machines soch sakti hain?\" aur imitation game propose karte hain. 1956: Dartmouth workshop field ko naam deta hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "1958 perceptron, 1970s–80s expert systems, then two AI winters when promises outran results.",
+    "hi": "1958 परसेप्ट्रॉन, 1970-80 के दशक में एक्सपर्ट सिस्टम, फिर दो एआई विंटर जब वादे नतीजों से आगे निकल गए।",
+    "hinglish": "1958 perceptron, 1970s-80s expert systems, phir do AI winters jab promises results se aage nikal gaye."
+   },
+   "visual": "anim:timeline-winters",
+   "narration": {
+    "en": "1958 perceptron, 1970s–80s expert systems, then two AI winters when promises outran results.",
+    "hi": "1958 परसेप्ट्रॉन, 1970-80 के दशक में एक्सपर्ट सिस्टम, फिर दो एआई विंटर जब वादे नतीजों से आगे निकल गए।",
+    "hinglish": "1958 perceptron, 1970s-80s expert systems, phir do AI winters jab promises results se aage nikal gaye."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "1997 Deep Blue beats Kasparov at chess. 2012 AlexNet wins ImageNet with GPUs and deep learning takes off. 2016 AlphaGo beats Lee Sedol.",
+    "hi": "1997 डीप ब्लू ने शतरंज में कास्पारोव को हराया। 2012 एलेक्सनेट ने जीपीयू से इमेजनेट जीता और डीप लर्निंग उड़ान भरने लगी। 2016 अल्फ़ागो ने ली सेडोल को हराया।",
+    "hinglish": "1997 Deep Blue ne chess mein Kasparov ko haraya. 2012 AlexNet ne GPUs ke saath ImageNet jeeta aur deep learning udne laga. 2016 AlphaGo ne Lee Sedol ko haraya."
+   },
+   "visual": "anim:timeline-deep",
+   "narration": {
+    "en": "1997 Deep Blue beats Kasparov at chess. 2012 AlexNet wins ImageNet with GPUs and deep learning takes off. 2016 AlphaGo beats Lee Sedol.",
+    "hi": "1997 डीप ब्लू ने शतरंज में कास्पारोव को हराया। 2012 एलेक्सनेट ने जीपीयू से इमेजनेट जीता और डीप लर्निंग उड़ान भरने लगी। 2016 अल्फ़ागो ने ली सेडोल को हराया।",
+    "hinglish": "1997 Deep Blue ne chess mein Kasparov ko haraya. 2012 AlexNet ne GPUs ke saath ImageNet jeeta aur deep learning udne laga. 2016 AlphaGo ne Lee Sedol ko haraya."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "2017 the Transformer paper. Nov 2022 ChatGPT reaches millions in days. 2024–2026: multimodal models and AI agents that use tools.",
+    "hi": "2017 ट्रांसफ़ॉर्मर पेपर। नवंबर 2022 चैटजीपीटी कुछ ही दिनों में लाखों तक पहुँचा। 2024–2026: मल्टीमॉडल मॉडल और औज़ार चलाने वाले एआई एजेंट।",
+    "hinglish": "2017 Transformer paper. Nov 2022 ChatGPT kuch hi dinon mein millions tak pahuncha. 2024-2026: multimodal models aur tools use karne wale AI agents."
+   },
+   "visual": "anim:timeline-llm",
+   "narration": {
+    "en": "2017 the Transformer paper. Nov 2022 ChatGPT reaches millions in days. 2024–2026: multimodal models and AI agents that use tools.",
+    "hi": "2017 ट्रांसफ़ॉर्मर पेपर। नवंबर 2022 चैटजीपीटी कुछ ही दिनों में लाखों तक पहुँचा। 2024–2026: मल्टीमॉडल मॉडल और औज़ार चलाने वाले एआई एजेंट।",
+    "hinglish": "2017 Transformer paper. Nov 2022 ChatGPT kuch hi dinon mein millions tak pahuncha. 2024-2026: multimodal models aur tools use karne wale AI agents."
+   }
+  }
+ ],
+ "play": {
+  "lab": "seq-flow",
+  "config": {
+   "scenario": "ai-timeline"
+  },
+  "goal": {
+   "en": "Step through the animated AI timeline and stop at each milestone to see what changed.",
+   "hinglish": "Animated AI timeline ko step-by-step chalao aur har milestone par ruk ke dekho kya badla.",
+   "hi": "एनिमेटेड एआई समयरेखा को कदम-दर-कदम चलाओ और हर पड़ाव पर रुककर देखो क्या बदला।"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Three waves of AI",
+    "hi": "एआई की तीन लहरें",
+    "hinglish": "AI ki teen lehrein"
+   },
+   "body": {
+    "en": "Wave 1 (1950s–1980s), symbolic AI: people hand-wrote logic and rules; programs proved theorems, played draughts and ran expert systems such as MYCIN for infections. Wave 2 (1990s–2000s), statistical machine learning: systems learned from data, powering spam filters, search ranking and recommendation. Wave 3 (2012–now), deep learning: many-layered neural networks trained on huge data with GPUs; this gave speech recognition, image recognition, translation and, from 2017, transformers and large language models.",
+    "hi": "लहर 1 (1950–1980 का दशक), प्रतीकात्मक एआई: लोग तर्क और नियम हाथ से लिखते थे; प्रोग्राम प्रमेय सिद्ध करते, ड्राफ़्ट खेलते और संक्रमण के लिए माइसिन जैसे एक्सपर्ट सिस्टम चलाते थे। लहर 2 (1990–2000 का दशक), सांख्यिकीय मशीन लर्निंग: सिस्टम डेटा से सीखने लगे, जिससे स्पैम फ़िल्टर, सर्च रैंकिंग और सुझाव बने। लहर 3 (2012–अब), डीप लर्निंग: जीपीयू पर विशाल डेटा से प्रशिक्षित कई परतों वाले न्यूरल नेटवर्क; इनसे वाक् पहचान, छवि पहचान, अनुवाद और 2017 से ट्रांसफ़ॉर्मर व बड़े भाषा मॉडल आए।",
+    "hinglish": "Wave 1 (1950s-1980s), symbolic AI: log logic aur rules haath se likhte the; programs theorems prove karte, draughts khelte aur MYCIN jaise expert systems chalate the. Wave 2 (1990s-2000s), statistical machine learning: systems data se seekhne lage — spam filter, search ranking, recommendations. Wave 3 (2012-ab), deep learning: GPUs par huge data se train hue kai layers wale neural networks; isse speech recognition, image recognition, translation aur 2017 se transformers aur LLMs aaye."
+   },
+   "analogy": {
+    "hinglish": "Jaise khaana banana: pehle recipe book ke rules (symbolic), phir chakh-chakh ke seekhna (statistical), phir lakhon dishes chakh ke master chef banna (deep learning).",
+    "en": "Like learning to cook: first rules from a recipe book (symbolic), then learning by tasting (statistical), then tasting lakhs of dishes to become a master chef (deep learning).",
+    "hi": "जैसे खाना बनाना सीखना: पहले रेसिपी किताब के नियम (प्रतीकात्मक), फिर चख-चखकर सीखना (सांख्यिकीय), फिर लाखों व्यंजन चखकर मास्टर शेफ़ बनना (डीप लर्निंग)।"
+   },
+   "realExample": {
+    "en": "Google Translate switched from phrase-based statistics to neural machine translation in 2016, and translation quality for Indian languages jumped.",
+    "hinglish": "Google Translate ne 2016 mein phrase-based statistics se neural machine translation par switch kiya, aur Indian languages ki translation quality kaafi badh gayi.",
+    "hi": "गूगल ट्रांसलेट ने 2016 में वाक्यांश-आधारित सांख्यिकी से न्यूरल मशीन अनुवाद अपनाया, और भारतीय भाषाओं के अनुवाद की गुणवत्ता में बड़ी छलांग आई।"
+   }
+  },
+  {
+   "heading": {
+    "en": "Why the winters ended: data, compute, algorithms",
+    "hi": "विंटर क्यों खत्म हुए: डेटा, कंप्यूट, एल्गोरिदम",
+    "hinglish": "Winters kyun khatam hue: data, compute, algorithms"
+   },
+   "body": {
+    "en": "Early AI failed to deliver because computers were slow, digital data was scarce and hand-written rules broke on messy real life. Three things changed. The internet and smartphones created enormous datasets (ImageNet had over 14 million labelled images). GPUs, built for video games, turned out to be perfect for the matrix maths of neural networks. And better methods arrived: backpropagation tricks, ReLU activations, dropout, and in 2017 the attention-based transformer, which trains in parallel on huge text collections.",
+    "hi": "शुरुआती एआई असफल रहा क्योंकि कंप्यूटर धीमे थे, डिजिटल डेटा कम था और हाथ से लिखे नियम असली गड़बड़ ज़िंदगी में टूट जाते थे। तीन चीज़ें बदलीं। इंटरनेट और स्मार्टफ़ोन ने विशाल डेटासेट बनाए (इमेजनेट में 1.4 करोड़ से ज़्यादा लेबल वाली तस्वीरें थीं)। वीडियो गेम के लिए बने जीपीयू न्यूरल नेटवर्क के मैट्रिक्स गणित के लिए एकदम सही निकले। और बेहतर तरीके आए: बैकप्रोपेगेशन की तरकीबें, ReLU, ड्रॉपआउट, और 2017 में अटेंशन-आधारित ट्रांसफ़ॉर्मर, जो विशाल पाठ पर समानांतर प्रशिक्षित होता है।",
+    "hinglish": "Early AI fail hua kyunki computers slow the, digital data kam tha aur haath se likhe rules messy real life mein toot jaate the. Teen cheezein badlin. Internet aur smartphones ne huge datasets banaye (ImageNet mein 1.4 crore se zyada labelled images thi). Video games ke liye bane GPUs neural networks ke matrix maths ke liye perfect nikle. Aur better methods aaye: backpropagation tricks, ReLU, dropout, aur 2017 mein attention-based transformer, jo huge text par parallel train hota hai."
+   },
+   "analogy": {
+    "hinglish": "Engine (algorithm), petrol (data) aur road (compute) — teeno ek saath mile tabhi gaadi tez bhaagi.",
+    "en": "Engine (algorithm), petrol (data) and road (compute) — only when all three came together did the car speed up.",
+    "hi": "इंजन (एल्गोरिद्म), पेट्रोल (डेटा) और सड़क (कंप्यूट) — तीनों एक साथ मिले तभी गाड़ी तेज़ भागी।"
+   },
+   "realExample": {
+    "en": "India's IndiaAI Mission (approved March 2024) funds shared GPU compute so that Indian startups and researchers can train models, including for Indian languages.",
+    "hinglish": "India ka IndiaAI Mission (March 2024 mein approve hua) shared GPU compute fund karta hai taaki Indian startups aur researchers models train kar sakein, Indian languages ke liye bhi.",
+    "hi": "भारत का इंडियाएआई मिशन (मार्च 2024 में स्वीकृत) साझा GPU कंप्यूट का ख़र्च उठाता है ताकि भारतीय स्टार्टअप और शोधकर्ता भारतीय भाषाओं समेत मॉडल प्रशिक्षित कर सकें।"
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Make a 10-card timeline of AI on paper; for each card write the year, the event and one sentence on why it mattered.",
+   "hinglish": "Kagaz par AI ki 10-card timeline banao; har card par saal, event aur ek line likho ki yeh kyun important tha.",
+   "hi": "काग़ज़ पर एआई की 10 कार्डों वाली समयरेखा बनाओ; हर कार्ड पर वर्ष, घटना और एक वाक्य लिखो कि वह क्यों महत्वपूर्ण था।"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "order",
+    "prompt": {
+     "en": "Put these in time order.",
+     "hi": "इन्हें समय के क्रम में लगाएँ।",
+     "hinglish": "Inhe time ke order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Turing's imitation game",
+      "hinglish": "Turing ka imitation game",
+      "hi": "ट्यूरिंग का नकल खेल"
+     },
+     {
+      "en": "Dartmouth workshop",
+      "hinglish": "Dartmouth workshop",
+      "hi": "डार्टमाउथ कार्यशाला"
+     },
+     {
+      "en": "Deep Blue beats Kasparov",
+      "hinglish": "Deep Blue ne Kasparov ko haraya",
+      "hi": "डीप ब्लू ने कास्पारोव को हराया"
+     },
+     {
+      "en": "AlexNet wins ImageNet",
+      "hinglish": "AlexNet ne ImageNet jeeta",
+      "hi": "एलेक्सनेट ने इमेजनेट जीता"
+     },
+     {
+      "en": "Transformer paper",
+      "hinglish": "Transformer paper",
+      "hi": "ट्रांसफ़ॉर्मर शोधपत्र"
+     },
+     {
+      "en": "ChatGPT launch",
+      "hinglish": "ChatGPT launch",
+      "hi": "चैटजीपीटी का शुभारंभ"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "explain": {
+     "en": "1950, 1956, 1997, 2012, 2017, 2022.",
+     "hi": "1950, 1956, 1997, 2012, 2017, 2022।",
+     "hinglish": "1950, 1956, 1997, 2012, 2017, 2022."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "What mainly caused AI winters?",
+     "hi": "एआई विंटर मुख्य रूप से किस कारण आए?",
+     "hinglish": "AI winters mainly kis wajah se aaye?"
+    },
+    "options": [
+     {
+      "en": "Hype and promises that early computers and methods could not deliver",
+      "hinglish": "Hype aur promises jo us time ke computers aur methods poore nahi kar sake",
+      "hi": "ऐसा प्रचार और वादे जो शुरुआती कंप्यूटर और तरीक़े पूरे नहीं कर सके"
+     },
+     {
+      "en": "A ban on computers",
+      "hinglish": "Computers par ban",
+      "hi": "कंप्यूटरों पर प्रतिबंध"
+     },
+     {
+      "en": "Too much data",
+      "hinglish": "Bahut zyada data",
+      "hi": "बहुत ज़्यादा डेटा"
+     },
+     {
+      "en": "Cold weather in labs",
+      "hinglish": "Labs mein thand",
+      "hi": "प्रयोगशालाओं में ठंडा मौसम"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Researchers predicted human-level AI within decades; when results lagged, governments and companies cut funding (around 1974–80 and 1987–93).",
+     "hi": "शोधकर्ताओं ने दशकों में मानव-स्तर के एआई की भविष्यवाणी की; जब नतीजे पीछे रहे, सरकारों और कंपनियों ने पैसे काटे (लगभग 1974–80 और 1987–93)।",
+     "hinglish": "Researchers ne kuch dashakon mein human-level AI predict kiya; jab results peeche rahe, governments aur companies ne funding kaat di (lagbhag 1974-80 aur 1987-93)."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "multi",
+    "prompt": {
+     "en": "Which three ingredients made modern deep learning possible?",
+     "hi": "आधुनिक डीप लर्निंग को कौन-सी तीन चीज़ों ने संभव बनाया?",
+     "hinglish": "Modern deep learning ko kin teen cheezon ne possible banaya?"
+    },
+    "options": [
+     {
+      "en": "Large datasets",
+      "hinglish": "Bade datasets",
+      "hi": "बड़े डेटासेट"
+     },
+     {
+      "en": "GPU compute",
+      "hinglish": "GPU compute",
+      "hi": "GPU कंप्यूट"
+     },
+     {
+      "en": "Better algorithms",
+      "hinglish": "Better algorithms",
+      "hi": "बेहतर एल्गोरिद्म"
+     },
+     {
+      "en": "Floppy disks",
+      "hinglish": "Floppy disks",
+      "hi": "फ़्लॉपी डिस्क"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2
+    ],
+    "explain": {
+     "en": "Data, compute and algorithms improved together. Floppy disks are old storage and played no part.",
+     "hi": "डेटा, कंप्यूट और एल्गोरिदम साथ-साथ बेहतर हुए। फ़्लॉपी डिस्क पुराना स्टोरेज है, इसकी कोई भूमिका नहीं थी।",
+     "hinglish": "Data, compute aur algorithms saath-saath behtar hue. Floppy disk purana storage hai, iska koi role nahi tha."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Deep Blue (1997) mostly won by…",
+     "hi": "डीप ब्लू (1997) मुख्य रूप से किस तरह जीता?",
+     "hinglish": "Deep Blue (1997) mainly kaise jeeta?"
+    },
+    "options": [
+     {
+      "en": "Searching about 200 million chess positions per second with hand-tuned evaluation",
+      "hinglish": "Har second lagbhag 20 crore chess positions search karke, haath se tune kiye evaluation ke saath",
+      "hi": "हाथ से ट्यून किए मूल्यांकन के साथ प्रति सेकंड लगभग 20 करोड़ शतरंज स्थितियाँ खोजना"
+     },
+     {
+      "en": "Training a large language model",
+      "hinglish": "LLM train karke",
+      "hi": "एक बड़ा भाषा मॉडल प्रशिक्षित करना"
+     },
+     {
+      "en": "Copying Kasparov",
+      "hinglish": "Kasparov ko copy karke",
+      "hi": "कास्पारोव की नकल करना"
+     },
+     {
+      "en": "Random moves",
+      "hinglish": "Random moves",
+      "hi": "यादृच्छिक चालें"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Deep Blue was classic search AI on special hardware. AlphaGo (2016) was different: it combined search with deep neural networks learned from games.",
+     "hi": "डीप ब्लू विशेष हार्डवेयर पर क्लासिक खोज एआई था। अल्फ़ागो (2016) अलग था: उसने खेलों से सीखे डीप न्यूरल नेटवर्क को खोज से जोड़ा।",
+     "hinglish": "Deep Blue special hardware par classic search AI tha. AlphaGo (2016) alag tha: usne search ko games se seekhe deep neural networks ke saath joda."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "topics": [
+  "ai.history"
+ ],
+ "sources": [
+  {
+   "title": "Turing, A. M. (1950) Computing Machinery and Intelligence, Mind",
+   "url": "https://academic.oup.com/mind/article/LIX/236/433/986238",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Vaswani et al. (2017) Attention Is All You Need",
+   "url": "https://arxiv.org/abs/1706.03762",
+   "licence": "fact reference"
+  },
+  {
+   "title": "IndiaAI Mission — Press Information Bureau, 7 March 2024",
+   "url": "https://pib.gov.in/PressReleasePage.aspx?PRID=2012375",
+   "licence": "fact reference"
+  }
+ ]
+}

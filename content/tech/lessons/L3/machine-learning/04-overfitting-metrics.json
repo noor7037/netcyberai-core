@@ -1,0 +1,378 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.machine-learning.04",
+ "level": 3,
+ "classes": [
+  10,
+  11
+ ],
+ "unit": "machine-learning",
+ "title": {
+  "en": "Overfitting and how we measure models",
+  "hi": "ओवरफ़िटिंग और मॉडल को कैसे मापें",
+  "hinglish": "Overfitting aur models ko kaise naapein"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [
+  "L3.machine-learning.03"
+ ],
+ "outcomes": [
+  {
+   "en": "Spot overfitting from train vs validation curves",
+   "hinglish": "Train vs validation curves se overfitting pehchano",
+   "hi": "प्रशिक्षण बनाम सत्यापन वक्रों से ओवरफ़िटिंग पहचानना"
+  },
+  {
+   "en": "Compute accuracy, precision, recall and F1 from a confusion matrix",
+   "hinglish": "Confusion matrix se accuracy, precision, recall aur F1 nikaalo",
+   "hi": "कन्फ़्यूज़न मैट्रिक्स से सटीकता, प्रिसिज़न, रिकॉल और F1 निकालना"
+  },
+  {
+   "en": "Choose the right metric for imbalanced problems like fraud",
+   "hinglish": "Fraud jaise imbalanced problems ke liye sahi metric chuno",
+   "hi": "धोखाधड़ी जैसी असंतुलित समस्याओं के लिए सही मापदंड चुनना"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Overfitting",
+   "hinglish": "Ratta maar lena — training par perfect, naye data par fail",
+   "en": "Fitting noise in training data so the model fails on new data",
+   "hi": "प्रशिक्षण डेटा के शोर को फ़िट कर लेना जिससे मॉडल नए डेटा पर विफल हो"
+  },
+  {
+   "term": "Underfitting",
+   "hinglish": "Itna simple model ki pattern hi na pakde",
+   "en": "A model too simple to capture the real pattern",
+   "hi": "असली पैटर्न पकड़ने के लिए बहुत सरल मॉडल"
+  },
+  {
+   "term": "Validation set",
+   "hinglish": "Tuning ke liye alag rakha data",
+   "en": "Data used to tune settings, separate from the final test",
+   "hi": "सेटिंग ट्यून करने का डेटा, अंतिम परीक्षण से अलग"
+  },
+  {
+   "term": "Precision",
+   "hinglish": "Jinhe positive bola, unmein sach mein kitne",
+   "en": "TP / (TP + FP)",
+   "hi": "TP / (TP + FP)"
+  },
+  {
+   "term": "Recall",
+   "hinglish": "Asli positives mein se kitne pakde",
+   "en": "TP / (TP + FN)",
+   "hi": "TP / (TP + FN)"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "A wiggly curve passes through every training point but misses new ones: overfitting. A flat line misses everything: underfitting.",
+    "hi": "एक टेढ़ी-मेढ़ी वक्र हर प्रशिक्षण बिंदु से गुज़रती है पर नए बिंदु चूकती है: ओवरफ़िटिंग। सपाट रेखा सब चूकती है: अंडरफ़िटिंग।",
+    "hinglish": "Ek tedhi-medhi curve har training point se guzarti hai par naye miss karti hai: overfitting. Flat line sab miss karti hai: underfitting."
+   },
+   "visual": "anim:fit-three-curves",
+   "narration": {
+    "en": "A wiggly curve passes through every training point but misses new ones: overfitting. A flat line misses everything: underfitting.",
+    "hi": "एक टेढ़ी-मेढ़ी वक्र हर प्रशिक्षण बिंदु से गुज़रती है पर नए बिंदु चूकती है: ओवरफ़िटिंग। सपाट रेखा सब चूकती है: अंडरफ़िटिंग।",
+    "hinglish": "Ek tedhi-medhi curve har training point se guzarti hai par naye miss karti hai: overfitting. Flat line sab miss karti hai: underfitting."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Training loss keeps falling, but validation loss turns upward: stop here (early stopping).",
+    "hi": "प्रशिक्षण लॉस गिरता रहता है, पर वैलिडेशन लॉस ऊपर मुड़ता है: यहीं रुको (अर्ली स्टॉपिंग)।",
+    "hinglish": "Training loss girta rehta hai, par validation loss upar mudta hai: yahin ruko (early stopping)."
+   },
+   "visual": "anim:val-curve-u",
+   "narration": {
+    "en": "Training loss keeps falling, but validation loss turns upward: stop here (early stopping).",
+    "hi": "प्रशिक्षण लॉस गिरता रहता है, पर वैलिडेशन लॉस ऊपर मुड़ता है: यहीं रुको (अर्ली स्टॉपिंग)।",
+    "hinglish": "Training loss girta rehta hai, par validation loss upar mudta hai: yahin ruko (early stopping)."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "A confusion matrix counts true positives, false positives, false negatives and true negatives.",
+    "hi": "कन्फ़्यूज़न मैट्रिक्स सच्चे पॉज़िटिव, झूठे पॉज़िटिव, झूठे नेगेटिव और सच्चे नेगेटिव गिनता है।",
+    "hinglish": "Confusion matrix true positives, false positives, false negatives aur true negatives ginta hai."
+   },
+   "visual": "anim:confusion-matrix",
+   "narration": {
+    "en": "A confusion matrix counts true positives, false positives, false negatives and true negatives.",
+    "hi": "कन्फ़्यूज़न मैट्रिक्स सच्चे पॉज़िटिव, झूठे पॉज़िटिव, झूठे नेगेटिव और सच्चे नेगेटिव गिनता है।",
+    "hinglish": "Confusion matrix true positives, false positives, false negatives aur true negatives ginta hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "nn-playground",
+  "config": {
+   "mode": "classify",
+   "dataset": "noisy-circle",
+   "hidden": [
+    8,
+    8
+   ],
+   "noise": 0.3,
+   "showSplit": true,
+   "showConfusion": true
+  },
+  "goal": {
+   "en": "Train a big network on noisy data and watch train accuracy beat test accuracy. Then shrink the network and compare.",
+   "hinglish": "Noisy data par bada network train karo aur dekho train accuracy test se aage nikalti hai. Phir network chhota karke compare karo.",
+   "hi": "शोर वाले डेटा पर बड़ा नेटवर्क प्रशिक्षित करो और देखो प्रशिक्षण सटीकता टेस्ट सटीकता से आगे निकलती है। फिर नेटवर्क छोटा करके तुलना करो।"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Bias, variance and overfitting",
+    "hi": "बायस, वेरिएंस और ओवरफ़िटिंग",
+    "hinglish": "Bias, variance aur overfitting"
+   },
+   "body": {
+    "en": "An underfit model (high bias) is too simple: a straight line for a curved pattern. An overfit model (high variance) is so flexible that it memorises noise. The sign of overfitting is a gap: training accuracy 99%, validation accuracy 80%. Remedies: more and more varied data, a simpler model, regularisation (penalising large weights, dropout), data augmentation, and early stopping when validation loss starts rising. We split data three ways: train (learn weights), validation (choose settings) and test (report once at the end). Cross-validation rotates the validation slice when data is scarce.",
+    "hi": "अंडरफ़िट मॉडल (उच्च बायस) बहुत सरल होता है: घुमावदार पैटर्न के लिए सीधी रेखा। ओवरफ़िट मॉडल (उच्च वेरिएंस) इतना लचीला कि शोर रट लेता है। ओवरफ़िटिंग का संकेत अंतर है: प्रशिक्षण सटीकता 99%, वैलिडेशन 80%। उपाय: ज़्यादा और विविध डेटा, सरल मॉडल, रेगुलराइज़ेशन (बड़े भार पर दंड, ड्रॉपआउट), डेटा ऑगमेंटेशन, और वैलिडेशन लॉस बढ़ने पर अर्ली स्टॉपिंग। डेटा तीन भागों में: ट्रेन (भार सीखना), वैलिडेशन (सेटिंग चुनना), टेस्ट (अंत में एक बार रिपोर्ट)। डेटा कम हो तो क्रॉस-वैलिडेशन वैलिडेशन हिस्सा घुमाता है।",
+    "hinglish": "Underfit model (high bias) bahut simple: curved pattern ke liye seedhi line. Overfit model (high variance) itna flexible ki noise ratta maar leta hai. Overfitting ka signal gap hai: training accuracy 99%, validation 80%. Upaay: zyada aur varied data, simpler model, regularisation (bade weights par penalty, dropout), data augmentation, aur validation loss badhne par early stopping. Data teen hisson mein: train (weights seekhna), validation (settings chunna), test (end mein ek baar report). Data kam ho to cross-validation validation hissa ghumata hai."
+   },
+   "analogy": {
+    "hinglish": "Overfitting = sirf pichhle saal ka paper ratna; naya paper aaya to fail. Underfitting = padhai hi na karna.",
+    "en": "Overfitting = mugging up only last year's paper; a new paper comes and you fail. Underfitting = not studying at all.",
+    "hi": "ओवरफ़िटिंग = सिर्फ़ पिछले साल का पेपर रटना; नया पेपर आया तो फ़ेल। अंडरफ़िटिंग = पढ़ाई ही न करना।"
+   },
+   "realExample": {
+    "en": "A crop-disease model trained only on photos from one district scored high there but dropped on photos from other states with different soil and light: overfitting to one environment.",
+    "hinglish": "Ek crop-disease model jo sirf ek district ki photos par train hua, wahan high score kiya par alag mitti aur roshni wale states ki photos par gir gaya: ek environment par overfitting.",
+    "hi": "एक ही ज़िले की फ़ोटो पर प्रशिक्षित फ़सल-रोग मॉडल वहाँ ऊँचे अंक लाया, पर अलग मिट्टी और रोशनी वाले दूसरे राज्यों की फ़ोटो पर गिर गया: एक ही वातावरण पर ओवरफ़िटिंग।"
+   }
+  },
+  {
+   "heading": {
+    "en": "Accuracy is not enough: precision, recall, F1",
+    "hi": "सिर्फ़ सटीकता काफ़ी नहीं: प्रिसिज़न, रिकॉल, एफ़1",
+    "hinglish": "Sirf accuracy kaafi nahi: precision, recall, F1"
+   },
+   "body": {
+    "en": "Suppose 1 in 1,000 payments is fraud. A model that always says \"not fraud\" is 99.9% accurate and useless. So we use the confusion matrix. Precision = TP/(TP+FP): of everything flagged, how much was really fraud. Recall = TP/(TP+FN): of all real fraud, how much was caught. F1 = 2·P·R/(P+R) balances both. Medical screening wants high recall (do not miss a sick patient); a spam filter wants high precision (do not bin an important email). For regression we use MAE or RMSE.",
+    "hi": "मान लो 1,000 में से 1 भुगतान धोखाधड़ी है। जो मॉडल हमेशा \"धोखाधड़ी नहीं\" कहे वह 99.9% सटीक और बेकार है। इसलिए कन्फ़्यूज़न मैट्रिक्स। प्रिसिज़न = TP/(TP+FP): जो चिह्नित हुआ उसमें कितना सच में धोखाधड़ी था। रिकॉल = TP/(TP+FN): सारी असली धोखाधड़ी में से कितनी पकड़ी गई। F1 = 2·P·R/(P+R) दोनों को संतुलित करता है। मेडिकल स्क्रीनिंग को ऊँचा रिकॉल चाहिए; स्पैम फ़िल्टर को ऊँचा प्रिसिज़न। रिग्रेशन के लिए MAE या RMSE।",
+    "hinglish": "Maan lo 1,000 mein 1 payment fraud hai. Jo model hamesha \"not fraud\" bole woh 99.9% accurate aur bekaar hai. Isliye confusion matrix. Precision = TP/(TP+FP): jo flag hua usmein kitna sach mein fraud tha. Recall = TP/(TP+FN): saare asli fraud mein se kitna pakda. F1 = 2·P·R/(P+R) dono balance karta hai. Medical screening ko high recall chahiye; spam filter ko high precision. Regression ke liye MAE ya RMSE."
+   },
+   "analogy": {
+    "hinglish": "Machhuaare ka jaal: recall = talaab ki kitni machhliyan pakdi; precision = jaal mein jo aaya usmein kitni machhli thi aur kitna kachra.",
+    "en": "A fisherman's net: recall = how many of the pond's fish you caught; precision = of what came up in the net, how much was fish and how much was rubbish.",
+    "hi": "मछुआरे का जाल: रिकॉल = तालाब की कितनी मछलियाँ पकड़ीं; प्रिसिज़न = जाल में जो आया उसमें कितनी मछली थी और कितना कचरा।"
+   },
+   "realExample": {
+    "en": "Bank fraud teams track recall at a fixed false-positive rate, because each false alarm means a customer's genuine UPI payment was stopped.",
+    "hinglish": "Bank fraud teams fixed false-positive rate par recall track karti hain, kyunki har false alarm matlab customer ki genuine UPI payment ruk gayi.",
+    "hi": "बैंक की धोखाधड़ी टीमें तय झूठी-चेतावनी दर पर रिकॉल पर नज़र रखती हैं, क्योंकि हर झूठी चेतावनी का मतलब है किसी ग्राहक का असली यूपीआई भुगतान रुका।"
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "A test caught 90 of 100 sick people and wrongly flagged 30 of 900 healthy ones. Build its confusion matrix and compute precision, recall and accuracy.",
+   "hinglish": "Ek test ne 100 beemaron mein se 90 pakde aur 900 healthy mein se 30 ko galat flag kiya. Confusion matrix banao aur precision, recall, accuracy nikaalo.",
+   "hi": "एक जाँच ने 100 बीमारों में से 90 पकड़े और 900 स्वस्थ में से 30 को ग़लत चिह्नित किया। इसका कन्फ़्यूज़न मैट्रिक्स बनाओ और प्रिसिज़न, रिकॉल और सटीकता निकालो।"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "TP = 40, FP = 10, FN = 40. What is precision?",
+     "hi": "TP = 40, FP = 10, FN = 40। प्रिसिज़न क्या है?",
+     "hinglish": "TP = 40, FP = 10, FN = 40. Precision kya hai?"
+    },
+    "options": [
+     {
+      "en": "0.8",
+      "hinglish": "0.8",
+      "hi": "0.8"
+     },
+     {
+      "en": "0.5",
+      "hinglish": "0.5",
+      "hi": "0.5"
+     },
+     {
+      "en": "0.4",
+      "hinglish": "0.4",
+      "hi": "0.4"
+     },
+     {
+      "en": "0.25",
+      "hinglish": "0.25",
+      "hi": "0.25"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Precision = 40/(40+10) = 0.8. Recall would be 40/(40+40) = 0.5.",
+     "hi": "प्रिसिज़न = 40/(40+10) = 0.8। रिकॉल 40/(40+40) = 0.5 होगा।",
+     "hinglish": "Precision = 40/(40+10) = 0.8. Recall 40/(40+40) = 0.5 hoga."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Train accuracy 99%, validation accuracy 72%. This is most likely…",
+     "hi": "प्रशिक्षण सटीकता 99%, वैलिडेशन 72%। यह सबसे संभावित क्या है?",
+     "hinglish": "Train accuracy 99%, validation 72%. Yeh sabse likely kya hai?"
+    },
+    "options": [
+     {
+      "en": "Overfitting",
+      "hinglish": "Overfitting",
+      "hi": "ओवरफ़िटिंग"
+     },
+     {
+      "en": "Underfitting",
+      "hinglish": "Underfitting",
+      "hi": "अंडरफ़िटिंग"
+     },
+     {
+      "en": "A perfect model",
+      "hinglish": "Perfect model",
+      "hi": "एक परफ़ेक्ट मॉडल"
+     },
+     {
+      "en": "A bug in the chart",
+      "hinglish": "Chart ka bug",
+      "hi": "चार्ट में बग"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "A big gap between training and validation means the model memorised training data instead of the general pattern.",
+     "hi": "प्रशिक्षण और वैलिडेशन में बड़ा अंतर बताता है कि मॉडल ने सामान्य पैटर्न के बजाय प्रशिक्षण डेटा रट लिया।",
+     "hinglish": "Training aur validation mein bada gap matlab model ne general pattern ki jagah training data ratta maar liya."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "For cancer screening, which metric matters most?",
+     "hi": "कैंसर स्क्रीनिंग के लिए कौन-सा मेट्रिक सबसे ज़रूरी है?",
+     "hinglish": "Cancer screening ke liye kaunsa metric sabse zaroori hai?"
+    },
+    "options": [
+     {
+      "en": "Recall",
+      "hinglish": "Recall",
+      "hi": "रिकॉल"
+     },
+     {
+      "en": "Precision only",
+      "hinglish": "Sirf precision",
+      "hi": "सिर्फ़ प्रिसिज़न"
+     },
+     {
+      "en": "Training speed",
+      "hinglish": "Training speed",
+      "hi": "प्रशिक्षण की गति"
+     },
+     {
+      "en": "Model size",
+      "hinglish": "Model size",
+      "hi": "मॉडल का आकार"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Missing a real case (a false negative) is very costly, so we catch as many true cases as possible; flagged cases get a confirmatory test.",
+     "hi": "असली मामला छूटना (झूठा नेगेटिव) बहुत महँगा है, इसलिए जितने हो सके सच्चे मामले पकड़ते हैं; चिह्नित मामलों की पुष्टि जाँच होती है।",
+     "hinglish": "Asli case miss karna (false negative) bahut mehenga hai, isliye jitne ho sake true cases pakadte hain; flagged cases ka confirm test hota hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "multi",
+    "prompt": {
+     "en": "Which help reduce overfitting? Choose all.",
+     "hi": "ओवरफ़िटिंग घटाने में कौन मदद करते हैं? सभी चुनें।",
+     "hinglish": "Overfitting kam karne mein kaun madad karte hain? Sab chuno."
+    },
+    "options": [
+     {
+      "en": "More varied training data",
+      "hinglish": "Zyada varied training data",
+      "hi": "अधिक विविध प्रशिक्षण डेटा"
+     },
+     {
+      "en": "Early stopping",
+      "hinglish": "Early stopping",
+      "hi": "जल्दी रोकना (early stopping)"
+     },
+     {
+      "en": "Dropout / regularisation",
+      "hinglish": "Dropout / regularisation",
+      "hi": "ड्रॉपआउट / नियमितीकरण"
+     },
+     {
+      "en": "Training on the test set",
+      "hinglish": "Test set par train karna",
+      "hi": "टेस्ट सेट पर प्रशिक्षण"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2
+    ],
+    "explain": {
+     "en": "Data, early stopping and regularisation fight memorisation. Training on the test set is cheating and hides overfitting rather than fixing it.",
+     "hi": "डेटा, अर्ली स्टॉपिंग और रेगुलराइज़ेशन रटने से लड़ते हैं। टेस्ट सेट पर प्रशिक्षण धोखा है और ओवरफ़िटिंग छिपाता है।",
+     "hinglish": "Data, early stopping aur regularisation ratte se ladte hain. Test set par training cheating hai, overfitting chhupaata hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Shrink the network until the train–test accuracy gap is under 5 points.",
+     "hi": "नेटवर्क को तब तक छोटा करें जब तक ट्रेन-टेस्ट सटीकता का अंतर 5 अंक से कम न हो।",
+     "hinglish": "Network ko tab tak chhota karo jab tak train-test gap 5 points se kam na ho."
+    },
+    "answer": {
+     "event": "gap-below",
+     "value": 0.05
+    },
+    "explain": {
+     "en": "A smaller network has less capacity to memorise noise, so its train and test scores move closer.",
+     "hi": "छोटे नेटवर्क में शोर रटने की क्षमता कम होती है, इसलिए ट्रेन और टेस्ट स्कोर पास आते हैं।",
+     "hinglish": "Chhote network mein noise ratne ki capacity kam hoti hai, isliye train aur test scores paas aate hain."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "topics": [
+  "ai.evaluation",
+  "ai.ml-supervised"
+ ],
+ "sources": [
+  {
+   "title": "Google ML Crash Course — classification metrics",
+   "url": "https://developers.google.com/machine-learning/crash-course/classification",
+   "licence": "CC BY 4.0"
+  },
+  {
+   "title": "scikit-learn — model evaluation",
+   "url": "https://scikit-learn.org/stable/modules/model_evaluation.html",
+   "licence": "fact reference"
+  }
+ ]
+}

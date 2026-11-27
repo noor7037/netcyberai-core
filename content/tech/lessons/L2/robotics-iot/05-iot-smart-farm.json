@@ -1,0 +1,372 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.robotics-iot.05",
+ "level": 2,
+ "classes": [
+  7,
+  8
+ ],
+ "unit": "robotics-iot",
+ "title": {
+  "en": "The Internet of Things: a smart farm",
+  "hi": "इंटरनेट ऑफ़ थिंग्स: स्मार्ट खेत",
+  "hinglish": "Internet of Things: smart farm"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [
+  "L2.robotics-iot.04"
+ ],
+ "topics": [
+  "robo.iot"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain IoT as sensors and devices connected to the internet",
+   "hi": "IoT को इंटरनेट से जुड़े सेंसर और उपकरणों के रूप में समझा सकते हो",
+   "hinglish": "IoT ko internet se jude sensors aur devices ke roop mein samjha sakte ho"
+  },
+  {
+   "en": "Trace data from sensor to cloud to app and back to a pump",
+   "hi": "डेटा को सेंसर से क्लाउड से ऐप और वापस पंप तक ट्रेस कर सकते हो",
+   "hinglish": "Data ko sensor se cloud se app aur wapas pump tak trace kar sakte ho"
+  },
+  {
+   "en": "Secure IoT devices: change default passwords and update them",
+   "hi": "IoT उपकरण सुरक्षित कर सकते हो: डिफ़ॉल्ट पासवर्ड बदलो और अपडेट करो",
+   "hinglish": "IoT devices secure kar sakte ho: default passwords badlo aur update karo"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "IoT",
+   "hinglish": "Internet se judi cheezein",
+   "en": "Internet of Things: everyday objects with sensors that share data over the internet",
+   "hi": "इंटरनेट ऑफ़ थिंग्स: सेंसर वाली रोज़ की वस्तुएँ जो इंटरनेट पर डेटा साझा करती हैं"
+  },
+  {
+   "term": "Threshold",
+   "hinglish": "Seema rekha",
+   "en": "The value at which a rule switches, like “pump on below 40%”",
+   "hi": "वह मान जिस पर नियम बदलता है, जैसे “40% से कम पर पंप चालू”"
+  },
+  {
+   "term": "Dashboard",
+   "hinglish": "Data ki screen",
+   "en": "An app screen showing live sensor data and controls",
+   "hi": "ऐप स्क्रीन जो लाइव सेंसर डेटा और नियंत्रण दिखाती है"
+  },
+  {
+   "term": "Default password",
+   "hinglish": "Factory wala password",
+   "en": "The password a device ships with; it must be changed",
+   "hi": "वह पासवर्ड जिसके साथ उपकरण आता है; इसे बदलना ज़रूरी है"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "IoT = a sensor + a small computer + the internet. Data flows from the field to the cloud to a phone, and commands flow back.",
+    "hi": "IoT = सेंसर + छोटा कंप्यूटर + इंटरनेट। डेटा खेत से क्लाउड से फ़ोन तक जाता है, और आदेश वापस आते हैं।",
+    "hinglish": "IoT = sensor + chhota computer + internet. Data khet se cloud se phone tak jaata hai, aur commands wapas aate hain."
+   },
+   "visual": "compare:🌡️ sensor → 🔲 ESP32 → 📶 Wi-Fi/4G|→ ☁️ cloud → 📱 farmer app → 💧 pump",
+   "narration": {
+    "en": "Things that talk to the internet.",
+    "hi": "वस्तुएँ जो इंटरनेट से बात करती हैं।",
+    "hinglish": "Cheezein jo internet se baat karti hain."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Run the smart farm in the lab: set when the pump starts, and let the cloud use the weather forecast.",
+    "hi": "लैब में स्मार्ट खेत चलाओ: तय करो पंप कब शुरू हो, और क्लाउड को मौसम पूर्वानुमान उपयोग करने दो।",
+    "hinglish": "Lab mein smart farm chalao: set karo pump kab shuru ho, aur cloud ko weather forecast use karne do."
+   },
+   "visual": "lab:robot-lab#farm",
+   "narration": {
+    "en": "Too low → plants dry; too high or ignoring rain → waterlogged and wasted water.",
+    "hi": "बहुत कम → पौधे सूखे; बहुत ज़्यादा या बारिश अनदेखी → पानी भरा और बर्बाद।",
+    "hinglish": "Bahut kam → paudhe sookhe; bahut zyada ya baarish ignore → paani bhara aur waste."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Each reading is a tiny message, often sent with a light protocol like MQTT.",
+    "hi": "हर रीडिंग एक छोटा संदेश है, अक्सर MQTT जैसे हल्के प्रोटोकॉल से भेजा जाता है।",
+    "hinglish": "Har reading ek chhota message hai, aksar MQTT jaise light protocol se bheja jaata hai."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "Small messages work even on slow rural networks.",
+    "hi": "छोटे संदेश धीमे ग्रामीण नेटवर्क पर भी चलते हैं।",
+    "hinglish": "Chhote messages slow rural networks pe bhi chalte hain."
+   },
+   "code": "topic:   farm/plot7/soil\nmessage: {\"moisture\": 38, \"temp\": 31, \"time\": \"09:00\"}\nrule:    if moisture < 40 and not rain_soon: pump ON"
+  }
+ ],
+ "play": {
+  "lab": "robot-lab",
+  "config": {
+   "tab": "farm"
+  },
+  "goal": {
+   "en": "Set the pump threshold and use the forecast so the seedlings stay between 30% and 70% all day.",
+   "hi": "पंप सीमा तय करो और पूर्वानुमान उपयोग करो ताकि पौधे पूरे दिन 30% और 70% के बीच रहें।",
+   "hinglish": "Pump threshold set karo aur forecast use karo taaki seedlings poore din 30% aur 70% ke beech rahein."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "IoT in India — and keeping it safe",
+    "hi": "भारत में IoT — और उसे सुरक्षित रखना",
+    "hinglish": "India mein IoT — aur use safe rakhna"
+   },
+   "body": {
+    "en": "The term “Internet of Things” was popularised by Kevin Ashton in 1999. An IoT system has four parts: sensors and actuators, a microcontroller with a network link (Wi-Fi, Bluetooth, 4G or low-power radio such as LoRa), a cloud server that stores data and runs rules, and an app or dashboard for people. India uses IoT widely: FASTag RFID tags let vehicles pay tolls without stopping; smart electricity meters under the government’s smart-metering programme send readings automatically; and soil-moisture sensors with drip irrigation help farmers water only when the soil needs it, saving water. IoT devices can also be attacked. In 2016 the Mirai malware took over hundreds of thousands of cameras and routers that still used factory default passwords and used them to knock big websites offline. Defensive habits: change default passwords, keep firmware updated, turn off features you do not use, put smart gadgets on a separate guest Wi-Fi, and buy from makers who promise security updates. CERT-In publishes advisories about vulnerable IoT devices in India.",
+    "hi": "“इंटरनेट ऑफ़ थिंग्स” शब्द को 1999 में केविन एश्टन ने लोकप्रिय बनाया। IoT प्रणाली के चार भाग हैं: सेंसर और एक्चुएटर, नेटवर्क लिंक (Wi-Fi, ब्लूटूथ, 4G या LoRa जैसा कम-बिजली रेडियो) वाला माइक्रोकंट्रोलर, एक क्लाउड सर्वर जो डेटा रखता और नियम चलाता है, और लोगों के लिए ऐप या डैशबोर्ड। भारत IoT का व्यापक उपयोग करता है: FASTag RFID टैग से वाहन बिना रुके टोल देते हैं; सरकार के स्मार्ट-मीटरिंग कार्यक्रम के स्मार्ट बिजली मीटर अपने-आप रीडिंग भेजते हैं; और ड्रिप सिंचाई के साथ मिट्टी-नमी सेंसर किसानों को तभी पानी देने में मदद करते हैं जब मिट्टी को ज़रूरत हो, जिससे पानी बचता है। IoT उपकरणों पर हमला भी हो सकता है। 2016 में Mirai मैलवेयर ने लाखों कैमरों और राउटरों पर क़ब्ज़ा किया जो अब भी फ़ैक्टरी डिफ़ॉल्ट पासवर्ड उपयोग कर रहे थे, और उनसे बड़ी वेबसाइटें ठप कीं। बचाव की आदतें: डिफ़ॉल्ट पासवर्ड बदलो, फ़र्मवेयर अपडेट रखो, जो सुविधाएँ उपयोग नहीं करते उन्हें बंद करो, स्मार्ट गैजेट को अलग गेस्ट Wi-Fi पर रखो, और उन निर्माताओं से ख़रीदो जो सुरक्षा अपडेट का वादा करें। CERT-In भारत में असुरक्षित IoT उपकरणों के बारे में सलाह प्रकाशित करता है।",
+    "hinglish": "“Internet of Things” term ko 1999 mein Kevin Ashton ne popular banaya. IoT system ke chaar parts hain: sensors aur actuators, network link (Wi-Fi, Bluetooth, 4G ya LoRa jaisa low-power radio) wala microcontroller, ek cloud server jo data rakhta aur rules chalata hai, aur logon ke liye app ya dashboard. India IoT ka wide use karta hai: FASTag RFID tags se vehicles bina ruke toll dete hain; sarkar ke smart-metering programme ke smart electricity meters apne-aap readings bhejte hain; aur drip irrigation ke saath soil-moisture sensors farmers ko tabhi paani dene mein madad karte hain jab mitti ko zaroorat ho, jisse paani bachta hai. IoT devices pe attack bhi ho sakta hai. 2016 mein Mirai malware ne laakhon cameras aur routers pe kabza kiya jo ab bhi factory default passwords use kar rahe the, aur unse badi websites down ki. Defensive habits: default passwords badlo, firmware update rakho, jo features use nahi karte unhe band karo, smart gadgets ko alag guest Wi-Fi pe rakho, aur un makers se kharido jo security updates ka promise karein. CERT-In India mein vulnerable IoT devices ke baare mein advisories publish karta hai."
+   },
+   "analogy": {
+    "en": "An IoT farm = a watchman in the field who messages your phone every hour “the soil is drying” — and you can switch the pump on from home.",
+    "hi": "IoT खेत = खेत में एक चौकीदार जो हर घंटे फ़ोन पर संदेश भेजता है “मिट्टी सूख रही है” — और तुम घर बैठे पंप चालू कर सकते हो।",
+    "hinglish": "IoT khet = khet mein ek chowkidaar jo har ghante phone pe message bhejta hai “mitti sookh rahi hai” — aur tum ghar baithe pump on kar sakte ho."
+   },
+   "realExample": {
+    "en": "FASTag, made mandatory on national highways from 15 February 2021, uses an RFID sticker on the windscreen that a toll-plaza reader scans while the car keeps moving.",
+    "hi": "FASTag, 15 फ़रवरी 2021 से राष्ट्रीय राजमार्गों पर अनिवार्य, विंडस्क्रीन पर RFID स्टिकर उपयोग करता है जिसे टोल-प्लाज़ा रीडर कार चलते-चलते स्कैन करता है।",
+    "hinglish": "FASTag, 15 February 2021 se national highways pe mandatory, windscreen pe RFID sticker use karta hai jise toll-plaza reader car chalte-chalte scan karta hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Design an IoT system for your school or home (examples: water-tank level alarm, classroom air-quality monitor). Draw the four parts — sensor, controller with network, cloud rule, app — and write one security step you would add.",
+   "hi": "अपने स्कूल या घर के लिए IoT प्रणाली डिज़ाइन करो (उदाहरण: पानी-टंकी स्तर अलार्म, कक्षा वायु-गुणवत्ता मॉनिटर)। चारों भाग बनाओ — सेंसर, नेटवर्क वाला नियंत्रक, क्लाउड नियम, ऐप — और एक सुरक्षा कदम लिखो जो तुम जोड़ोगे।",
+   "hinglish": "Apne school ya ghar ke liye IoT system design karo (examples: water-tank level alarm, classroom air-quality monitor). Chaaron parts draw karo — sensor, network wala controller, cloud rule, app — aur ek security step likho jo tum jodoge."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "order",
+    "prompt": {
+     "en": "Put the smart-farm data flow in order.",
+     "hi": "स्मार्ट-खेत डेटा प्रवाह को क्रम में लगाओ।",
+     "hinglish": "Smart-farm data flow ko order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Cloud server stores it and runs the rule",
+      "hi": "क्लाउड सर्वर रखता है और नियम चलाता है",
+      "hinglish": "Cloud server store karta hai aur rule chalata hai"
+     },
+     {
+      "en": "Microcontroller sends it over Wi-Fi/4G",
+      "hi": "माइक्रोकंट्रोलर Wi-Fi/4G से भेजता है",
+      "hinglish": "Microcontroller Wi-Fi/4G se bhejta hai"
+     },
+     {
+      "en": "Farmer sees it on the app",
+      "hi": "किसान ऐप पर देखता है",
+      "hinglish": "Farmer app pe dekhta hai"
+     },
+     {
+      "en": "Soil sensor measures moisture",
+      "hi": "मिट्टी सेंसर नमी मापता है",
+      "hinglish": "Soil sensor moisture naapta hai"
+     }
+    ],
+    "answer": [
+     3,
+     1,
+     0,
+     2
+    ],
+    "explain": {
+     "en": "Sensor → controller → cloud → farmer’s app.",
+     "hi": "सेंसर → नियंत्रक → क्लाउड → किसान का ऐप।",
+     "hinglish": "Sensor → controller → cloud → farmer ka app."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are IoT examples in India? Choose all.",
+     "hi": "भारत में IoT के उदाहरण कौन-से हैं? सभी चुनो।",
+     "hinglish": "India mein IoT ke examples kaunse hain? Saare chuno."
+    },
+    "options": [
+     {
+      "en": "FASTag at toll plazas",
+      "hi": "टोल प्लाज़ा पर FASTag",
+      "hinglish": "Toll plazas pe FASTag"
+     },
+     {
+      "en": "Smart electricity meters",
+      "hi": "स्मार्ट बिजली मीटर",
+      "hinglish": "Smart electricity meters"
+     },
+     {
+      "en": "A paper attendance register",
+      "hi": "काग़ज़ का उपस्थिति रजिस्टर",
+      "hinglish": "Paper attendance register"
+     },
+     {
+      "en": "Soil sensors that message farmers",
+      "hi": "किसानों को संदेश भेजने वाले मिट्टी सेंसर",
+      "hinglish": "Farmers ko message bhejne wale soil sensors"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     3
+    ],
+    "explain": {
+     "en": "FASTag, smart meters and connected soil sensors share data over networks. A paper notebook does not.",
+     "hi": "FASTag, स्मार्ट मीटर और जुड़े मिट्टी सेंसर नेटवर्क पर डेटा साझा करते हैं। काग़ज़ की कॉपी नहीं।",
+     "hinglish": "FASTag, smart meters aur connected soil sensors network pe data share karte hain. Paper notebook nahi."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "In the smart farm, why use the weather forecast?",
+     "hi": "स्मार्ट खेत में मौसम पूर्वानुमान क्यों उपयोग करें?",
+     "hinglish": "Smart farm mein weather forecast kyun use karein?"
+    },
+    "options": [
+     {
+      "en": "Forecasts make the pump faster",
+      "hi": "पूर्वानुमान पंप तेज़ करता है",
+      "hinglish": "Forecast pump tez karta hai"
+     },
+     {
+      "en": "To skip watering before rain and avoid waterlogging",
+      "hi": "बारिश से पहले पानी न देकर जलभराव से बचना",
+      "hinglish": "Baarish se pehle paani na dekar waterlogging se bachna"
+     },
+     {
+      "en": "Plants like to read the news",
+      "hi": "पौधे ख़बरें पढ़ना पसंद करते हैं",
+      "hinglish": "Paudhe news padhna pasand karte hain"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Skipping the pump before rain stops waterlogging and saves water.",
+     "hi": "बारिश से पहले पंप रोकने से पानी भरना रुकता और पानी बचता है।",
+     "hinglish": "Baarish se pehle pump rokne se paani bharna rukta aur paani bachta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "How did the 2016 Mirai malware take over so many cameras and routers?",
+     "hi": "2016 में Mirai मैलवेयर ने इतने कैमरों और राउटरों पर क़ब्ज़ा कैसे किया?",
+     "hinglish": "2016 mein Mirai malware ne itne cameras aur routers pe kabza kaise kiya?"
+    },
+    "options": [
+     {
+      "en": "They used factory default passwords",
+      "hi": "वे फ़ैक्टरी डिफ़ॉल्ट पासवर्ड उपयोग कर रहे थे",
+      "hinglish": "Woh factory default passwords use kar rahe the"
+     },
+     {
+      "en": "Their batteries were removed",
+      "hi": "उनकी बैटरी निकाली गई",
+      "hinglish": "Unki battery nikali gayi"
+     },
+     {
+      "en": "They were turned off",
+      "hi": "वे बंद थे",
+      "hinglish": "Woh band the"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "They still used factory default passwords. Always change them.",
+     "hi": "वे अब भी फ़ैक्टरी डिफ़ॉल्ट पासवर्ड उपयोग कर रहे थे। उन्हें हमेशा बदलो।",
+     "hinglish": "Woh ab bhi factory default passwords use kar rahe the. Unhe hamesha badlo."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "short",
+    "prompt": {
+     "en": "The value where a rule switches, like “pump on below 40%”, is called the ___ .",
+     "hi": "वह मान जहाँ नियम बदलता है, जैसे “40% से कम पर पंप चालू”, ___ कहलाता है।",
+     "hinglish": "Woh value jahan rule badalta hai, jaise “40% se kam pe pump on”, ___ kehlata hai."
+    },
+    "answer": [
+     "threshold",
+     "Threshold"
+    ],
+    "explain": {
+     "en": "Threshold — the switching point of the rule.",
+     "hi": "थ्रेशोल्ड — नियम का बदलाव बिंदु।",
+     "hinglish": "Threshold — rule ka switching point."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the lab mission.",
+     "hi": "लैब मिशन पूरा करो।",
+     "hinglish": "Lab mission poora karo."
+    },
+    "answer": {
+     "lab": "robot-lab",
+     "event": "mission:complete",
+     "tab": "farm"
+    },
+    "explain": {
+     "en": "Threshold 35–40% with the forecast switched on.",
+     "hi": "पूर्वानुमान चालू के साथ सीमा 35–40%।",
+     "hinglish": "Forecast on ke saath threshold 35–40%."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "NHAI — FASTag",
+   "url": "https://ihmcl.co.in/fastag-user/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "CERT-In — advisories",
+   "url": "https://www.cert-in.org.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "US CISA — Heightened DDoS threat posed by Mirai and other botnets (2016)",
+   "url": "https://www.cisa.gov/news-events/alerts/2016/10/14/heightened-ddos-threat-posed-mirai-and-other-botnets",
+   "licence": "fact reference"
+  },
+  {
+   "title": "MQTT.org — the standard for IoT messaging",
+   "url": "https://mqtt.org/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

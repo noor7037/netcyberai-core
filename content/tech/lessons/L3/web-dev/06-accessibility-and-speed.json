@@ -1,0 +1,378 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.web-dev.06",
+ "level": 3,
+ "classes": [
+  9,
+  10,
+  11
+ ],
+ "unit": "web-dev",
+ "title": {
+  "en": "Accessibility and speed",
+  "hi": "सुलभता और गति",
+  "hinglish": "Accessibility aur speed"
+ },
+ "minutes": 15,
+ "xp": 60,
+ "prereq": [
+  "L3.web-dev.05"
+ ],
+ "outcomes": [
+  {
+   "en": "Apply the main WCAG 2.2 checks: alt text, contrast, keyboard use, labels",
+   "hi": "मुख्य WCAG 2.2 जाँच लगाओ: alt पाठ, कंट्रास्ट, कीबोर्ड, लेबल",
+   "hinglish": "Main WCAG 2.2 checks lagao: alt text, contrast, keyboard use, labels"
+  },
+  {
+   "en": "Measure speed with Core Web Vitals: LCP, INP, CLS",
+   "hi": "Core Web Vitals से गति मापो: LCP, INP, CLS",
+   "hinglish": "Core Web Vitals se speed naapo: LCP, INP, CLS"
+  },
+  {
+   "en": "Make pages light for low-end phones and slow networks",
+   "hi": "सस्ते फ़ोन और धीमे नेटवर्क के लिए पेज हल्के बनाओ",
+   "hinglish": "Sasta phones aur slow networks ke liye pages halke banao"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Accessibility (a11y)",
+   "hinglish": "Sabke liye",
+   "en": "Making sites usable by people with disabilities — and better for everyone",
+   "hi": "साइटें विकलांग लोगों के लिए उपयोगी बनाना — और सबके लिए बेहतर"
+  },
+  {
+   "term": "Screen reader",
+   "hinglish": "Padhne wala software",
+   "en": "Software that reads the page aloud, e.g. TalkBack, VoiceOver, NVDA",
+   "hi": "पेज ज़ोर से पढ़ने वाला सॉफ़्टवेयर, जैसे TalkBack, VoiceOver, NVDA"
+  },
+  {
+   "term": "Contrast ratio",
+   "hinglish": "Rang ka antar",
+   "en": "How different text and background brightness are; at least 4.5 : 1 for normal text",
+   "hi": "पाठ और पृष्ठभूमि की चमक में अंतर; सामान्य पाठ के लिए कम से कम 4.5 : 1"
+  },
+  {
+   "term": "LCP",
+   "hinglish": "LCP",
+   "en": "Largest Contentful Paint: when the main content appears; good is 2.5 s or less",
+   "hi": "Largest Contentful Paint: मुख्य सामग्री कब दिखे; अच्छा 2.5 s या कम"
+  },
+  {
+   "term": "Lazy loading",
+   "hinglish": "Baad mein load",
+   "en": "Loading images only when they are about to scroll into view",
+   "hi": "चित्र तभी लोड करना जब वे दिखने वाले हों"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Four checks anyone can do: alt text · contrast · keyboard only · labels.",
+    "hi": "चार जाँच कोई भी कर सकता है: alt पाठ · कंट्रास्ट · केवल कीबोर्ड · लेबल।",
+    "hinglish": "Chaar checks koi bhi kar sakta hai: alt text · contrast · keyboard only · labels."
+   },
+   "visual": "stack:alt|contrast|keyboard|labels",
+   "narration": {
+    "en": "Four checks anyone can do: alt text · contrast · keyboard only · labels.",
+    "hi": "चार जाँच कोई भी कर सकता है: alt पाठ · कंट्रास्ट · केवल कीबोर्ड · लेबल।",
+    "hinglish": "Chaar checks koi bhi kar sakta hai: alt text · contrast · keyboard only · labels."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Grey #bbb on white is 1.9 : 1 — fails. #444 on white is 9.7 : 1 — passes.",
+    "hi": "सफ़ेद पर धूसर #bbb 1.9 : 1 — विफल। सफ़ेद पर #444 9.7 : 1 — पास।",
+    "hinglish": "White par grey #bbb 1.9 : 1 — fail. White par #444 9.7 : 1 — pass."
+   },
+   "visual": "compare:1.9 : 1|9.7 : 1",
+   "narration": {
+    "en": "Grey #bbb on white is 1.9 : 1 — fails. #444 on white is 9.7 : 1 — passes.",
+    "hi": "सफ़ेद पर धूसर #bbb 1.9 : 1 — विफल। सफ़ेद पर #444 9.7 : 1 — पास।",
+    "hinglish": "White par grey #bbb 1.9 : 1 — fail. White par #444 9.7 : 1 — pass."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Core Web Vitals: LCP ≤ 2.5 s · INP ≤ 200 ms · CLS ≤ 0.1.",
+    "hi": "Core Web Vitals: LCP ≤ 2.5 s · INP ≤ 200 ms · CLS ≤ 0.1।",
+    "hinglish": "Core Web Vitals: LCP ≤ 2.5 s · INP ≤ 200 ms · CLS ≤ 0.1."
+   },
+   "visual": "stack:LCP|INP|CLS",
+   "narration": {
+    "en": "Core Web Vitals: LCP ≤ 2.5 s · INP ≤ 200 ms · CLS ≤ 0.1.",
+    "hi": "Core Web Vitals: LCP ≤ 2.5 s · INP ≤ 200 ms · CLS ≤ 0.1।",
+    "hinglish": "Core Web Vitals: LCP ≤ 2.5 s · INP ≤ 200 ms · CLS ≤ 0.1."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Lighter pages: compressed WebP/AVIF images, width and height set, loading=\"lazy\", less JavaScript.",
+    "hi": "हल्के पेज: संपीड़ित WebP/AVIF चित्र, width और height तय, loading=\"lazy\", कम JavaScript।",
+    "hinglish": "Halke pages: compressed WebP/AVIF images, width aur height set, loading=\"lazy\", kam JavaScript."
+   },
+   "visual": "flow:compress|size|lazy|less JS",
+   "narration": {
+    "en": "Lighter pages: compressed WebP/AVIF images, width and height set, loading=\"lazy\", less JavaScript.",
+    "hi": "हल्के पेज: संपीड़ित WebP/AVIF चित्र, width और height तय, loading=\"lazy\", कम JavaScript।",
+    "hinglish": "Halke pages: compressed WebP/AVIF images, width aur height set, loading=\"lazy\", kam JavaScript."
+   }
+  }
+ ],
+ "play": {
+  "lab": "web-lab",
+  "config": {
+   "mission": "a11y"
+  },
+  "goal": {
+   "en": "Mission 6: fix the library page — alt text, contrast of at least 4.5 : 1, a real button instead of a clickable div, and width, height and loading=\"lazy\" on the image. The console names any text with low contrast.",
+   "hi": "मिशन 6: पुस्तकालय पेज ठीक करो — alt पाठ, कम से कम 4.5 : 1 कंट्रास्ट, क्लिक वाले div की जगह असली बटन, और चित्र पर width, height और loading=\"lazy\"। कंसोल कम कंट्रास्ट वाला पाठ बताता है।",
+   "hinglish": "Mission 6: library page theek karo — alt text, kam se kam 4.5 : 1 contrast, clickable div ki jagah asli button, aur image par width, height aur loading=\"lazy\". Console kam contrast wala text batata hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Built for everyone",
+    "hi": "सबके लिए बना",
+    "hinglish": "Sabke liye bana"
+   },
+   "body": {
+    "en": "About 1 in 6 people worldwide live with a significant disability (WHO, 2023), and many more have a broken screen, bright sunlight, a slow phone or are learning a language. WCAG 2.2 (W3C, October 2023) is the international standard; in India the Rights of Persons with Disabilities Act 2016 and the Guidelines for Indian Government Websites (GIGW 3.0) require accessible public sites. Start with four checks. Alt text: every meaningful image says what it shows. Contrast: normal text at least 4.5 : 1 against its background, large text 3 : 1. Keyboard: unplug the mouse and use Tab, Enter and Space — every control must be reachable, in order, with a visible focus outline. Labels and structure: form fields have labels, headings are in order, buttons are <button>, and <html lang=\"hi\"> or \"en\" tells screen readers which voice to use. Then test with TalkBack on an Android phone.",
+    "hi": "दुनिया भर में लगभग 6 में से 1 व्यक्ति किसी गंभीर विकलांगता के साथ रहता है (WHO, 2023), और कई और के पास टूटी स्क्रीन, तेज़ धूप, धीमा फ़ोन है या वे भाषा सीख रहे हैं। WCAG 2.2 (W3C, अक्टूबर 2023) अंतरराष्ट्रीय मानक है; भारत में दिव्यांगजन अधिकार अधिनियम 2016 और भारतीय सरकारी वेबसाइटों के दिशानिर्देश (GIGW 3.0) सुलभ सार्वजनिक साइटें माँगते हैं। चार जाँच से शुरू करो। Alt पाठ: हर अर्थपूर्ण चित्र बताए उसमें क्या है। कंट्रास्ट: सामान्य पाठ पृष्ठभूमि से कम से कम 4.5 : 1, बड़ा पाठ 3 : 1। कीबोर्ड: माउस हटाओ और Tab, Enter और Space इस्तेमाल करो — हर नियंत्रण क्रम में, दिखने वाली फ़ोकस रेखा के साथ पहुँचे। लेबल और ढाँचा: फ़ॉर्म फ़ील्ड पर लेबल, शीर्षक क्रम में, बटन <button> हों, और <html lang=\"hi\"> या \"en\" स्क्रीन रीडर को बताए कौन-सी आवाज़ इस्तेमाल करे। फिर Android फ़ोन पर TalkBack से जाँचो।",
+    "hinglish": "Duniya bhar mein lagbhag 6 mein se 1 vyakti kisi significant disability ke saath rehta hai (WHO, 2023), aur kai aur ke paas tooti screen, tez dhoop, slow phone hai ya woh language seekh rahe hain. WCAG 2.2 (W3C, October 2023) international standard hai; India mein Rights of Persons with Disabilities Act 2016 aur Guidelines for Indian Government Websites (GIGW 3.0) accessible public sites maangte hain. Chaar checks se shuru karo. Alt text: har meaningful image bataye usmein kya hai. Contrast: normal text background se kam se kam 4.5 : 1, bada text 3 : 1. Keyboard: mouse hatao aur Tab, Enter aur Space use karo — har control order mein, dikhne wali focus outline ke saath pahunche. Labels aur structure: form fields par labels, headings order mein, buttons <button> hon, aur <html lang=\"hi\"> ya \"en\" screen reader ko bataye kaunsi awaaz use kare. Phir Android phone par TalkBack se test karo."
+   },
+   "analogy": {
+    "en": "A ramp at the school entrance helps wheelchair users — and also the canteen trolley, the parent with a pram and the student with a sprained ankle.",
+    "hi": "स्कूल द्वार पर रैंप व्हीलचेयर उपयोगकर्ताओं की मदद करता है — और कैंटीन ट्रॉली, प्रैम वाले अभिभावक और मोच वाले छात्र की भी।",
+    "hinglish": "School entrance par ramp wheelchair users ki madad karta hai — aur canteen trolley, pram wale parent aur moch wale student ki bhi."
+   },
+   "realExample": {
+    "en": "<img src=\"lab.webp\" alt=\"Class 9 students testing a line-follower robot\" width=\"640\" height=\"360\" loading=\"lazy\">  ·  button:focus-visible { outline: 3px solid #1d4ed8; }",
+    "hi": "<img src=\"lab.webp\" alt=\"लाइन-फ़ॉलोअर रोबोट जाँचते कक्षा 9 के छात्र\" width=\"640\" height=\"360\" loading=\"lazy\">  ·  button:focus-visible { outline: 3px solid #1d4ed8; }",
+    "hinglish": "<img src=\"lab.webp\" alt=\"Line-follower robot test karte Class 9 students\" width=\"640\" height=\"360\" loading=\"lazy\">  ·  button:focus-visible { outline: 3px solid #1d4ed8; }"
+   }
+  },
+  {
+   "heading": {
+    "en": "Fast on a ₹8,000 phone",
+    "hi": "₹8,000 के फ़ोन पर तेज़",
+    "hinglish": "₹8,000 ke phone par fast"
+   },
+   "body": {
+    "en": "Speed is accessibility too: many users have budget phones, data packs and patchy signal. Google’s Core Web Vitals measure what users feel: Largest Contentful Paint (main content visible) should be 2.5 s or less, Interaction to Next Paint (how fast the page responds to a tap; it replaced First Input Delay in March 2024) 200 ms or less, and Cumulative Layout Shift (how much things jump around) 0.1 or less. The biggest wins are usually images: resize them to the size shown, use WebP or AVIF, set width and height so the layout does not jump, and add loading=\"lazy\" to images below the first screen. Then ship less JavaScript, let the server compress text with gzip or Brotli, and cache files. Measure with Lighthouse in Chrome developer tools using a \"Slow 4G\" setting.",
+    "hi": "गति भी सुलभता है: कई उपयोगकर्ताओं के पास सस्ते फ़ोन, डेटा पैक और कमज़ोर सिग्नल हैं। Google के Core Web Vitals वह मापते हैं जो उपयोगकर्ता महसूस करते हैं: Largest Contentful Paint (मुख्य सामग्री दिखे) 2.5 s या कम हो, Interaction to Next Paint (पेज टैप का कितनी जल्दी जवाब दे; इसने मार्च 2024 में First Input Delay की जगह ली) 200 ms या कम, और Cumulative Layout Shift (चीज़ें कितना उछलती हैं) 0.1 या कम। सबसे बड़ा फ़ायदा आमतौर पर चित्रों से: उन्हें दिखाए आकार तक छोटा करो, WebP या AVIF इस्तेमाल करो, width और height तय करो ताकि लेआउट न उछले, और पहली स्क्रीन के नीचे के चित्रों पर loading=\"lazy\" जोड़ो। फिर कम JavaScript भेजो, सर्वर को gzip या Brotli से पाठ संपीड़ित करने दो, और फ़ाइलें कैश करो। Chrome डेवलपर टूल में Lighthouse से \"Slow 4G\" सेटिंग पर मापो।",
+    "hinglish": "Speed bhi accessibility hai: kai users ke paas budget phones, data packs aur kamzor signal hain. Google ke Core Web Vitals woh naapte hain jo users mehsoos karte hain: Largest Contentful Paint (main content dikhe) 2.5 s ya kam ho, Interaction to Next Paint (page tap ka kitni jaldi jawab de; isne March 2024 mein First Input Delay ki jagah li) 200 ms ya kam, aur Cumulative Layout Shift (cheezein kitna uchhalti hain) 0.1 ya kam. Sabse bada fayda aam taur par images se: unhe dikhaye size tak chhota karo, WebP ya AVIF use karo, width aur height set karo taaki layout na uchhle, aur pehli screen ke neeche ki images par loading=\"lazy\" jodo. Phir kam JavaScript bhejo, server ko gzip ya Brotli se text compress karne do, aur files cache karo. Chrome developer tools mein Lighthouse se \"Slow 4G\" setting par naapo."
+   },
+   "analogy": {
+    "en": "Packing for a school trip: a light bag gets you up the hill first.",
+    "hi": "स्कूल यात्रा की पैकिंग: हल्का बैग आपको पहाड़ी पर पहले पहुँचाता है।",
+    "hinglish": "School trip ki packing: halka bag tumhe pahadi par pehle pahunchata hai."
+   },
+   "realExample": {
+    "en": "Before: hero.jpg 3.2 MB, LCP 6.1 s on Slow 4G. After: hero.webp 140 KB at 1200 px with width/height, LCP 2.2 s.",
+    "hi": "पहले: hero.jpg 3.2 MB, Slow 4G पर LCP 6.1 s। बाद में: 1200 px पर width/height के साथ hero.webp 140 KB, LCP 2.2 s।",
+    "hinglish": "Pehle: hero.jpg 3.2 MB, Slow 4G par LCP 6.1 s. Baad mein: 1200 px par width/height ke saath hero.webp 140 KB, LCP 2.2 s."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Audit your Tech Club site: use only the keyboard, turn on TalkBack or VoiceOver, check text contrast, and run Lighthouse with \"Slow 4G\". Fix the three worst problems, run Lighthouse again, and write down the before and after scores and LCP.",
+   "hi": "अपनी Tech Club साइट की जाँच करो: केवल कीबोर्ड इस्तेमाल करो, TalkBack या VoiceOver चालू करो, पाठ कंट्रास्ट जाँचो, और \"Slow 4G\" के साथ Lighthouse चलाओ। तीन सबसे बुरी समस्याएँ ठीक करो, Lighthouse फिर चलाओ, और पहले और बाद के अंक और LCP लिखो।",
+   "hinglish": "Apni Tech Club site audit karo: sirf keyboard use karo, TalkBack ya VoiceOver on karo, text contrast check karo, aur \"Slow 4G\" ke saath Lighthouse chalao. Teen sabse buri problems theek karo, Lighthouse phir chalao, aur pehle aur baad ke scores aur LCP likho."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "short",
+    "prompt": {
+     "en": "What is the minimum WCAG contrast ratio for normal-size text? (write it like 4.5)",
+     "hi": "सामान्य आकार के पाठ के लिए न्यूनतम WCAG कंट्रास्ट अनुपात? (4.5 जैसा लिखो)",
+     "hinglish": "Normal-size text ke liye minimum WCAG contrast ratio? (4.5 jaisa likho)"
+    },
+    "answer": {
+     "accept": [
+      "4.5",
+      "4.5:1",
+      "4.5 : 1"
+     ]
+    },
+    "explain": {
+     "en": "4.5 : 1 for normal text, 3 : 1 for large text.",
+     "hi": "सामान्य पाठ 4.5 : 1, बड़ा पाठ 3 : 1।",
+     "hinglish": "Normal text 4.5 : 1, bada text 3 : 1."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are real accessibility fixes?",
+     "hi": "कौन-से असली सुलभता सुधार हैं?",
+     "hinglish": "Kaunse asli accessibility fixes hain?"
+    },
+    "options": [
+     {
+      "en": "alt text that describes the image",
+      "hi": "चित्र बताने वाला alt पाठ",
+      "hinglish": "Image batane wala alt text"
+     },
+     {
+      "en": "A <button> instead of a clickable <div>",
+      "hi": "क्लिक वाले <div> की जगह <button>",
+      "hinglish": "Clickable <div> ki jagah <button>"
+     },
+     {
+      "en": "Removing the focus outline so it looks cleaner",
+      "hi": "साफ़ दिखने को फ़ोकस रेखा हटाना",
+      "hinglish": "Saaf dikhne ko focus outline hatana"
+     },
+     {
+      "en": "Setting <html lang=\"hi\"> on a Hindi page",
+      "hi": "हिंदी पेज पर <html lang=\"hi\">",
+      "hinglish": "Hindi page par <html lang=\"hi\">"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     3
+    ],
+    "explain": {
+     "en": "Keyboard users need to see where focus is.",
+     "hi": "कीबोर्ड उपयोगकर्ताओं को फ़ोकस दिखना चाहिए।",
+     "hinglish": "Keyboard users ko focus dikhna chahiye."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "match",
+    "prompt": {
+     "en": "Match each Core Web Vital to what it measures.",
+     "hi": "हर Core Web Vital को उसके माप से मिलाओ।",
+     "hinglish": "Har Core Web Vital ko uske maap se milao."
+    },
+    "options": [
+     "LCP",
+     "INP",
+     "CLS"
+    ],
+    "answer": [
+     {
+      "en": "When the main content appears",
+      "hi": "मुख्य सामग्री कब दिखती है",
+      "hinglish": "Main content kab dikhta hai"
+     },
+     {
+      "en": "How fast the page responds to a tap",
+      "hi": "पेज टैप का कितनी जल्दी जवाब देता है",
+      "hinglish": "Page tap ka kitni jaldi jawab deta hai"
+     },
+     {
+      "en": "How much the layout jumps",
+      "hi": "लेआउट कितना उछलता है",
+      "hinglish": "Layout kitna uchhalta hai"
+     }
+    ],
+    "explain": {
+     "en": "Loading, responsiveness, stability.",
+     "hi": "लोडिंग, प्रतिक्रिया, स्थिरता।",
+     "hinglish": "Loading, responsiveness, stability."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which change usually makes the biggest speed difference on a phone?",
+     "hi": "फ़ोन पर आमतौर पर कौन-सा बदलाव सबसे ज़्यादा गति बढ़ाता है?",
+     "hinglish": "Phone par aam taur par kaunsa change sabse zyada speed badhata hai?"
+    },
+    "options": [
+     {
+      "en": "Resizing and compressing large images",
+      "hi": "बड़े चित्रों को छोटा और संपीड़ित करना",
+      "hinglish": "Bade images ko resize aur compress karna"
+     },
+     {
+      "en": "Adding more fonts",
+      "hi": "ज़्यादा फ़ॉन्ट जोड़ना",
+      "hinglish": "Zyada fonts jodna"
+     },
+     {
+      "en": "Using bigger videos",
+      "hi": "बड़े वीडियो",
+      "hinglish": "Bade videos"
+     },
+     {
+      "en": "Adding animations",
+      "hi": "एनिमेशन जोड़ना",
+      "hinglish": "Animations jodna"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Images are often most of a page’s bytes.",
+     "hi": "चित्र अक्सर पेज के ज़्यादातर बाइट होते हैं।",
+     "hinglish": "Images aksar page ke zyaadatar bytes hote hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Pass mission 6 (Accessibility & speed) in the Web Dev Lab.",
+     "hi": "वेब डेव लैब में मिशन 6 (सुलभता और गति) पास करो।",
+     "hinglish": "Web Dev Lab mein mission 6 (Accessibility aur speed) pass karo."
+    },
+    "answer": {
+     "event": "a11y-fixed",
+     "mission": "a11y"
+    },
+    "explain": {
+     "en": "Alt, contrast, button, lazy image.",
+     "hi": "Alt, कंट्रास्ट, बटन, lazy चित्र।",
+     "hinglish": "Alt, contrast, button, lazy image."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "web.accessibility",
+  "web.what-is-web"
+ ],
+ "sources": [
+  {
+   "title": "W3C — Web Content Accessibility Guidelines (WCAG) 2.2",
+   "url": "https://www.w3.org/TR/WCAG22/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "web.dev — Web Vitals",
+   "url": "https://web.dev/articles/vitals",
+   "licence": "fact reference"
+  },
+  {
+   "title": "WHO — Disability fact sheet (2023)",
+   "url": "https://www.who.int/news-room/fact-sheets/detail/disability-and-health",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Guidelines for Indian Government Websites (GIGW 3.0)",
+   "url": "https://guidelines.india.gov.in/",
+   "licence": "fact reference"
+  }
+ ]
+}

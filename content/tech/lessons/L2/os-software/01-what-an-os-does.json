@@ -1,0 +1,337 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.os-software.01",
+ "level": 2,
+ "classes": [
+  6,
+  7
+ ],
+ "unit": "os-software",
+ "title": {
+  "en": "What an operating system does",
+  "hi": "ऑपरेटिंग सिस्टम क्या करता है",
+  "hinglish": "Operating system kya karta hai"
+ },
+ "minutes": 8,
+ "xp": 30,
+ "prereq": [],
+ "topics": [
+  "os.what-is-os",
+  "sw.types"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain the jobs of an operating system",
+   "hi": "ऑपरेटिंग सिस्टम के काम समझा सकते हो",
+   "hinglish": "Operating system ke kaam bata sakte ho"
+  },
+  {
+   "en": "Tell system software from application software",
+   "hi": "सिस्टम सॉफ़्टवेयर और एप्लिकेशन सॉफ़्टवेयर में अंतर बता सकते हो",
+   "hinglish": "System software aur application software mein farak bata sakte ho"
+  },
+  {
+   "en": "Name common OSes: Android, iOS, Windows, macOS, Linux",
+   "hi": "आम OS के नाम बता सकते हो: Android, iOS, Windows, macOS, Linux",
+   "hinglish": "Common OS ke naam: Android, iOS, Windows, macOS, Linux"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Operating system (OS)",
+   "hinglish": "Hardware aur apps ke beech ka manager",
+   "en": "The main software that manages hardware and runs apps",
+   "hi": "मुख्य सॉफ़्टवेयर जो हार्डवेयर सँभालता और ऐप चलाता है"
+  },
+  {
+   "term": "Kernel",
+   "hinglish": "OS ka dil",
+   "en": "The core of the OS that talks directly to hardware",
+   "hi": "OS का केंद्र जो सीधे हार्डवेयर से बात करता है"
+  },
+  {
+   "term": "Application software",
+   "hinglish": "Kaam ke apps",
+   "en": "Programs for users: WhatsApp, browser, games",
+   "hi": "उपयोगकर्ताओं के प्रोग्राम: WhatsApp, ब्राउज़र, गेम"
+  },
+  {
+   "term": "System software",
+   "hinglish": "Computer chalane wala software",
+   "en": "Software that runs the computer itself: OS, drivers, firmware",
+   "hi": "कंप्यूटर को ही चलाने वाला सॉफ़्टवेयर: OS, ड्राइवर, फ़र्मवेयर"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Apps never touch the hardware directly. They ask the OS, and the OS talks to the hardware.",
+    "hi": "ऐप कभी सीधे हार्डवेयर नहीं छूते। वे OS से कहते हैं, और OS हार्डवेयर से बात करता है।",
+    "hinglish": "Apps kabhi seedhe hardware ko nahi chhoote. Woh OS se kehte hain, aur OS hardware se baat karta hai."
+   },
+   "visual": "flow:📱 Apps|🪟 Operating system|⚙️ Kernel & drivers|🔩 Hardware",
+   "narration": {
+    "en": "Think of the OS as a hotel manager: guests (apps) ask the manager, the manager gets the staff (hardware) to do it.",
+    "hi": "OS को होटल मैनेजर समझो: मेहमान (ऐप) मैनेजर से कहते हैं, मैनेजर कर्मचारियों (हार्डवेयर) से काम करवाता है।",
+    "hinglish": "OS ko hotel manager socho: guests (apps) manager se kehte hain, manager staff (hardware) se kaam karwata hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "The OS shares the CPU between apps, gives each one memory, saves files, and shows windows and notifications.",
+    "hi": "OS ऐप्स के बीच CPU बाँटता है, हर एक को मेमोरी देता है, फ़ाइलें सहेजता है, और विंडो व सूचनाएँ दिखाता है।",
+    "hinglish": "OS apps ke beech CPU baantta hai, har ek ko memory deta hai, files save karta hai, aur windows aur notifications dikhata hai."
+   },
+   "visual": "lab:os-sim#tasks",
+   "narration": {
+    "en": "Open three apps in the simulator and watch the OS give each one a slice of CPU and RAM.",
+    "hi": "सिम्युलेटर में तीन ऐप खोलो और देखो OS हर एक को CPU और RAM का हिस्सा कैसे देता है।",
+    "hinglish": "Simulator mein teen apps kholo aur dekho OS har ek ko CPU aur RAM ka hissa kaise deta hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "About 7 in 10 smartphones in the world run Android, which is built on the Linux kernel. Most laptops run Windows; servers mostly run Linux.",
+    "hi": "दुनिया के लगभग 10 में से 7 स्मार्टफ़ोन Android पर चलते हैं, जो Linux कर्नेल पर बना है। ज़्यादातर लैपटॉप Windows; सर्वर ज़्यादातर Linux।",
+    "hinglish": "Duniya ke lagbhag 10 mein se 7 smartphones Android pe chalte hain, jo Linux kernel pe bana hai. Zyaadatar laptops Windows; servers zyaadatar Linux."
+   },
+   "visual": "compare:🤖 Android (phones)|🍎 iOS (iPhones)|🪟 Windows (PCs)|🐧 Linux (servers)",
+   "narration": {
+    "en": "In India, more than 9 in 10 phones are Android.",
+    "hi": "भारत में 10 में से 9 से ज़्यादा फ़ोन Android हैं।",
+    "hinglish": "India mein 10 mein se 9 se zyada phones Android hain."
+   }
+  }
+ ],
+ "play": {
+  "lab": "os-sim",
+  "config": {
+   "tab": "tasks"
+  },
+  "goal": {
+   "en": "Open apps until the RAM is nearly full, then see what the OS does to keep the phone running.",
+   "hi": "RAM लगभग भरने तक ऐप खोलो, फिर देखो फ़ोन चलाते रहने के लिए OS क्या करता है।",
+   "hinglish": "Apps kholte jao jab tak RAM lagbhag bhar na jaaye, phir dekho phone chalane ke liye OS kya karta hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "The five big jobs of an OS",
+    "hi": "OS के पाँच बड़े काम",
+    "hinglish": "OS ke paanch bade kaam"
+   },
+   "body": {
+    "en": "1) Process management — decides which app gets the CPU, switching thousands of times a second so everything seems to run at once. 2) Memory management — gives each app its own RAM and keeps apps from reading each other’s memory. 3) File management — stores files in folders on storage. 4) Device management — uses drivers to talk to the screen, camera, Wi-Fi and printer. 5) Security and user interface — sign-in, permissions, and the home screen you see. Without an OS every app would need to know how to control every kind of hardware.",
+    "hi": "1) प्रोसेस प्रबंधन — तय करता है किस ऐप को CPU मिले, प्रति सेकंड हज़ारों बार बदलते हुए ताकि सब एक साथ चलता लगे। 2) मेमोरी प्रबंधन — हर ऐप को उसकी RAM देता है और ऐप्स को एक-दूसरे की मेमोरी पढ़ने से रोकता है। 3) फ़ाइल प्रबंधन — फ़ाइलें फ़ोल्डरों में रखता है। 4) डिवाइस प्रबंधन — ड्राइवरों से स्क्रीन, कैमरा, वाई-फ़ाई और प्रिंटर से बात करता है। 5) सुरक्षा और यूज़र इंटरफ़ेस — साइन-इन, अनुमतियाँ, और होम स्क्रीन। OS के बिना हर ऐप को हर हार्डवेयर चलाना सीखना पड़ता।",
+    "hinglish": "1) Process management — decide karta hai kis app ko CPU mile, har second hazaaron baar switch karke taaki sab ek saath chalta lage. 2) Memory management — har app ko uski RAM deta hai aur apps ko ek doosre ki memory padhne se rokta hai. 3) File management — files folders mein rakhta hai. 4) Device management — drivers se screen, camera, Wi-Fi aur printer se baat karta hai. 5) Security aur user interface — sign-in, permissions, aur home screen. OS ke bina har app ko har hardware chalana seekhna padta."
+   },
+   "analogy": {
+    "hinglish": "Railway station ka control room: kaunsi train kis platform pe (CPU), kitni der (time slice), signal (drivers), aur safety (security) — sab OS jaisa.",
+    "en": "A railway station control room: which train on which platform (CPU), for how long (time slice), signals (drivers) and safety (security) — all just like an OS.",
+    "hi": "रेलवे स्टेशन का कंट्रोल रूम: कौन-सी ट्रेन किस प्लेटफ़ॉर्म पर (CPU), कितनी देर (टाइम स्लाइस), सिग्नल (ड्राइवर) और सुरक्षा (सिक्योरिटी) — सब OS जैसा।"
+   },
+   "realExample": {
+    "en": "BOSS Linux is an Indian Linux distribution made by C-DAC for Indian languages.",
+    "hi": "BOSS Linux भारतीय भाषाओं के लिए C-DAC द्वारा बनाया गया भारतीय लिनक्स वितरण है।",
+    "hinglish": "BOSS Linux C-DAC ka banaya Indian Linux hai jo Indian bhashaon ke liye bana."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "List 5 apps on a family phone and mark each as system software or application software.",
+   "hi": "परिवार के फ़ोन के 5 ऐप लिखो और हर एक को सिस्टम या एप्लिकेशन सॉफ़्टवेयर चिह्नित करो।",
+   "hinglish": "Ghar ke phone ke 5 apps ki list banao aur har ek ko system ya application software likho."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which is system software?",
+     "hi": "कौन-सा सिस्टम सॉफ़्टवेयर है?",
+     "hinglish": "Kaunsa system software hai?"
+    },
+    "options": [
+     {
+      "en": "WhatsApp",
+      "hi": "WhatsApp",
+      "hinglish": "WhatsApp"
+     },
+     {
+      "en": "A calculator app",
+      "hi": "कैलकुलेटर ऐप",
+      "hinglish": "Calculator app"
+     },
+     {
+      "en": "Android",
+      "hi": "Android",
+      "hinglish": "Android"
+     },
+     {
+      "en": "A game",
+      "hi": "गेम",
+      "hinglish": "Game"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "Android is an operating system. The others are applications that run on it.",
+     "hi": "Android ऑपरेटिंग सिस्टम है। बाक़ी उस पर चलने वाले ऐप हैं।",
+     "hinglish": "Android operating system hai. Baaki uspe chalne wale apps hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "What is the kernel?",
+     "hi": "कर्नेल क्या है?",
+     "hinglish": "Kernel kya hai?"
+    },
+    "options": [
+     {
+      "en": "The core of the OS that talks to hardware",
+      "hi": "OS का केंद्र जो हार्डवेयर से बात करता है",
+      "hinglish": "OS ka core jo hardware se baat karta hai"
+     },
+     {
+      "en": "A type of app",
+      "hi": "एक प्रकार का ऐप",
+      "hinglish": "Ek tarah ka app"
+     },
+     {
+      "en": "The battery",
+      "hi": "बैटरी",
+      "hinglish": "Battery"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "The kernel is the core of the OS that directly controls the CPU, memory and devices.",
+     "hi": "कर्नेल OS का केंद्र है जो सीधे CPU, मेमोरी और उपकरणों को नियंत्रित करता है।",
+     "hinglish": "Kernel OS ka core hai jo seedhe CPU, memory aur devices control karta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are jobs of an OS? (choose all)",
+     "hi": "OS के काम कौन-से हैं? (सभी चुनो)",
+     "hinglish": "OS ke kaam kaun se hain? (saare chuno)"
+    },
+    "options": [
+     {
+      "en": "Share the CPU between apps",
+      "hi": "ऐप्स के बीच CPU बाँटना",
+      "hinglish": "Apps ke beech CPU baantna"
+     },
+     {
+      "en": "Give apps memory",
+      "hi": "ऐप्स को मेमोरी देना",
+      "hinglish": "Apps ko memory dena"
+     },
+     {
+      "en": "Save files in folders",
+      "hi": "फ़ाइलें फ़ोल्डर में रखना",
+      "hinglish": "Files folders mein rakhna"
+     },
+     {
+      "en": "Write your homework",
+      "hi": "आपका होमवर्क लिखना",
+      "hinglish": "Aapka homework likhna"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2
+    ],
+    "explain": {
+     "en": "Sharing the CPU, managing memory and saving files are OS jobs. Writing your homework is your job!",
+     "hi": "CPU बाँटना, मेमोरी संभालना और फ़ाइलें सहेजना OS के काम हैं। होमवर्क लिखना आपका काम है!",
+     "hinglish": "CPU baantna, memory sambhalna aur files save karna OS ke kaam hain. Homework likhna aapka kaam hai!"
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Android is built on which kernel?",
+     "hi": "Android किस कर्नेल पर बना है?",
+     "hinglish": "Android kis kernel pe bana hai?"
+    },
+    "options": [
+     "Windows",
+     "Linux",
+     "iOS"
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Android uses a modified Linux kernel.",
+     "hi": "Android संशोधित Linux कर्नेल उपयोग करता है।",
+     "hinglish": "Android modified Linux kernel use karta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "How can many apps seem to run at once on one CPU core?",
+     "hi": "एक CPU कोर पर कई ऐप एक साथ कैसे चलते लगते हैं?",
+     "hinglish": "Ek CPU core pe kai apps ek saath kaise chalte lagte hain?"
+    },
+    "options": [
+     {
+      "en": "The OS switches quickly between them",
+      "hi": "OS तेज़ी से उनके बीच बदलता है",
+      "hinglish": "OS tezi se unke beech switch karta hai"
+     },
+     {
+      "en": "Each app has its own CPU",
+      "hi": "हर ऐप का अपना CPU है",
+      "hinglish": "Har app ka apna CPU hai"
+     },
+     {
+      "en": "Apps take turns once a day",
+      "hi": "ऐप दिन में एक बार बारी लेते हैं",
+      "hinglish": "Apps din mein ek baar baari lete hain"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "The OS switches between them in tiny time slices (milliseconds), faster than we can notice.",
+     "hi": "OS उनके बीच छोटे समय-खंडों (मिलीसेकंड) में बदलता है, जितना हम देख न सकें।",
+     "hinglish": "OS unke beech chhote time slices (milliseconds) mein switch karta hai, itna fast ki humein pata nahi chalta."
+    },
+    "difficulty": 3
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "StatCounter Global Stats — mobile OS market share (India & worldwide)",
+   "url": "https://gs.statcounter.com/os-market-share/mobile/india",
+   "licence": "fact reference"
+  },
+  {
+   "title": "C-DAC BOSS Linux",
+   "url": "https://www.cdac.in/index.aspx?id=st_osd_boss",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NCERT / CBSE Artificial Intelligence & Computer curriculum (Classes 6–8), 2024–25",
+   "url": "https://cbseacademic.nic.in/",
+   "licence": "fact reference"
+  }
+ ]
+}

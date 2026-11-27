@@ -1,0 +1,365 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.security-engineering.03",
+ "level": 3,
+ "classes": [
+  9,
+  10,
+  11,
+  12
+ ],
+ "unit": "security-engineering",
+ "title": {
+  "en": "Symmetric encryption",
+  "hi": "सममित एन्क्रिप्शन",
+  "hinglish": "Symmetric encryption"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [
+  "L3.security-engineering.01"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain symmetric encryption: one shared key locks and unlocks",
+   "hi": "सममित एन्क्रिप्शन समझाओ: एक साझा कुंजी बंद और खोलती है",
+   "hinglish": "Symmetric encryption samjhao: ek shared key lock aur unlock karti hai"
+  },
+  {
+   "en": "Break a Caesar cipher and explain why key space matters",
+   "hi": "सीज़र सिफ़र तोड़ो और समझाओ कुंजी-स्थान क्यों मायने रखता है",
+   "hinglish": "Caesar cipher todo aur samjhao key space kyun matter karta hai"
+  },
+  {
+   "en": "Describe modern ciphers (AES, ChaCha20) and the key-sharing problem",
+   "hi": "आधुनिक सिफ़र (AES, ChaCha20) और कुंजी बाँटने की समस्या बताओ",
+   "hinglish": "Modern ciphers (AES, ChaCha20) aur key-sharing problem batao"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Plaintext / ciphertext",
+   "hinglish": "Saaf sandesh / taala laga sandesh",
+   "en": "The readable message / the scrambled version",
+   "hi": "पढ़ने योग्य संदेश / उलझाया हुआ रूप"
+  },
+  {
+   "term": "Key",
+   "hinglish": "Taale ki chaabi",
+   "en": "The secret value that controls encryption and decryption",
+   "hi": "एन्क्रिप्शन और डिक्रिप्शन चलाने वाला गुप्त मान"
+  },
+  {
+   "term": "Key space",
+   "hinglish": "Kitni chaabiyan possible",
+   "en": "The number of possible keys; Caesar has 25, AES-128 has 2^128",
+   "hi": "संभव कुंजियों की संख्या; सीज़र में 25, AES-128 में 2^128"
+  },
+  {
+   "term": "AES",
+   "hinglish": "Duniya ka standard cipher",
+   "en": "Advanced Encryption Standard (FIPS 197), used in Wi-Fi, disks and HTTPS",
+   "hi": "उन्नत एन्क्रिप्शन मानक (FIPS 197), वाई-फ़ाई, डिस्क और HTTPS में"
+  },
+  {
+   "term": "XOR",
+   "hinglish": "Bit-wise ulat-pulat",
+   "en": "Bit operation: same bits → 0, different → 1; applying it twice undoes it",
+   "hi": "बिट क्रिया: एक जैसे बिट → 0, अलग → 1; दो बार लगाने से वापस"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Caesar shifts every letter by a key: with key 3, A→D, B→E. Julius Caesar used this over 2,000 years ago.",
+    "hi": "सीज़र हर अक्षर को कुंजी से खिसकाता है: कुंजी 3 पर A→D, B→E। जूलियस सीज़र ने इसे 2,000 साल पहले इस्तेमाल किया।",
+    "hinglish": "Caesar har letter ko key se khiskata hai: key 3 par A→D, B→E. Julius Caesar ne ise 2,000 saal pehle use kiya."
+   },
+   "visual": "anim:caesar-wheel",
+   "narration": {
+    "en": "Caesar shifts every letter by a key: with key 3, A→D, B→E. Julius Caesar used this over 2,000 years ago.",
+    "hi": "सीज़र हर अक्षर को कुंजी से खिसकाता है: कुंजी 3 पर A→D, B→E। जूलियस सीज़र ने इसे 2,000 साल पहले इस्तेमाल किया।",
+    "hinglish": "Caesar har letter ko key se khiskata hai: key 3 par A→D, B→E. Julius Caesar ne ise 2,000 saal pehle use kiya."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "With only 25 keys, an attacker just tries them all — or counts letters, since E is the most common in English.",
+    "hi": "सिर्फ़ 25 कुंजियों के साथ, हमलावर सब आज़मा लेता है — या अक्षर गिनता है, क्योंकि अंग्रेज़ी में E सबसे आम है।",
+    "hinglish": "Sirf 25 keys ke saath, attacker sab try kar leta hai — ya letters ginta hai, kyunki English mein E sabse common hai."
+   },
+   "visual": "anim:freq-bars",
+   "narration": {
+    "en": "With only 25 keys, an attacker just tries them all — or counts letters, since E is the most common in English.",
+    "hi": "सिर्फ़ 25 कुंजियों के साथ, हमलावर सब आज़मा लेता है — या अक्षर गिनता है, क्योंकि अंग्रेज़ी में E सबसे आम है।",
+    "hinglish": "Sirf 25 keys ke saath, attacker sab try kar leta hai — ya letters ginta hai, kyunki English mein E sabse common hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "XOR with a key scrambles bits; XOR again with the same key restores them. Modern stream ciphers like ChaCha20 build on this idea.",
+    "hi": "कुंजी से XOR बिट उलझाता है; उसी कुंजी से फिर XOR उन्हें वापस लाता है। ChaCha20 जैसे आधुनिक स्ट्रीम सिफ़र इसी विचार पर बने हैं।",
+    "hinglish": "Key se XOR bits uljhata hai; usi key se phir XOR unhe wapas laata hai. ChaCha20 jaise modern stream ciphers isi idea par bane hain."
+   },
+   "visual": "anim:xor-bits",
+   "narration": {
+    "en": "XOR with a key scrambles bits; XOR again with the same key restores them. Modern stream ciphers like ChaCha20 build on this idea.",
+    "hi": "कुंजी से XOR बिट उलझाता है; उसी कुंजी से फिर XOR उन्हें वापस लाता है। ChaCha20 जैसे आधुनिक स्ट्रीम सिफ़र इसी विचार पर बने हैं।",
+    "hinglish": "Key se XOR bits uljhata hai; usi key se phir XOR unhe wapas laata hai. ChaCha20 jaise modern stream ciphers isi idea par bane hain."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "AES-128 has 2^128 keys. Trying a trillion keys a second would still take far longer than the age of the universe.",
+    "hi": "AES-128 में 2^128 कुंजियाँ हैं। एक खरब कुंजी प्रति सेकंड आज़माने पर भी ब्रह्मांड की उम्र से कहीं ज़्यादा समय लगेगा।",
+    "hinglish": "AES-128 mein 2^128 keys hain. Ek trillion keys per second try karne par bhi universe ki umar se kahin zyaada time lagega."
+   },
+   "visual": "anim:aes-rounds",
+   "narration": {
+    "en": "AES-128 has 2^128 keys. Trying a trillion keys a second would still take far longer than the age of the universe.",
+    "hi": "AES-128 में 2^128 कुंजियाँ हैं। एक खरब कुंजी प्रति सेकंड आज़माने पर भी ब्रह्मांड की उम्र से कहीं ज़्यादा समय लगेगा।",
+    "hinglish": "AES-128 mein 2^128 keys hain. Ek trillion keys per second try karne par bhi universe ki umar se kahin zyaada time lagega."
+   }
+  }
+ ],
+ "play": {
+  "lab": "crypto-lab",
+  "config": {
+   "mode": "caesar"
+  },
+  "goal": {
+   "en": "Crack the intercepted Caesar message using the frequency chart, then switch to XOR and do a full encrypt-decrypt round trip.",
+   "hi": "पकड़े गए सीज़र संदेश को आवृत्ति चार्ट से तोड़ो, फिर XOR पर जाओ और पूरा एन्क्रिप्ट-डिक्रिप्ट चक्र करो।",
+   "hinglish": "Intercepted Caesar message ko frequency chart se crack karo, phir XOR par jao aur poora encrypt-decrypt round trip karo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "From toy ciphers to AES",
+    "hi": "खिलौना सिफ़र से AES तक",
+    "hinglish": "Toy ciphers se AES tak"
+   },
+   "body": {
+    "en": "Kerckhoffs's principle: a cipher must stay safe even if everyone knows how it works — only the key is secret. AES (chosen by NIST in 2001) mixes 128-bit blocks through 10, 12 or 14 rounds of substitution and permutation for 128-, 192- or 256-bit keys. It is so common that phone and laptop chips have AES instructions built in. Encryption alone is not enough: modern modes such as AES-GCM and ChaCha20-Poly1305 add an authentication tag, so any tampering is detected (integrity as well as confidentiality).",
+    "hi": "केर्कहॉफ़्स का सिद्धांत: सिफ़र तब भी सुरक्षित रहे जब सब जानते हों वह कैसे काम करता है — सिर्फ़ कुंजी गुप्त हो। AES (NIST ने 2001 में चुना) 128-बिट खंडों को 128-, 192- या 256-बिट कुंजियों के लिए 10, 12 या 14 दौर के प्रतिस्थापन और क्रम-परिवर्तन से मिलाता है। यह इतना आम है कि फ़ोन और लैपटॉप चिप में AES निर्देश बने होते हैं। सिर्फ़ एन्क्रिप्शन काफ़ी नहीं: AES-GCM और ChaCha20-Poly1305 जैसे आधुनिक मोड प्रमाणीकरण टैग जोड़ते हैं, ताकि कोई भी छेड़छाड़ पकड़ी जाए (गोपनीयता के साथ अखंडता भी)।",
+    "hinglish": "Kerckhoffs ka principle: cipher tab bhi safe rahe jab sab jaante hon woh kaise kaam karta hai — sirf key secret ho. AES (NIST ne 2001 mein chuna) 128-bit blocks ko 128-, 192- ya 256-bit keys ke liye 10, 12 ya 14 rounds ke substitution aur permutation se milata hai. Yeh itna common hai ki phone aur laptop chips mein AES instructions bane hote hain. Sirf encryption kaafi nahi: AES-GCM aur ChaCha20-Poly1305 jaise modern modes authentication tag jodte hain, taaki koi bhi tampering pakdi jaaye (confidentiality ke saath integrity bhi)."
+   },
+   "analogy": {
+    "en": "A good lock design is published so experts can test it; your safety comes from keeping your own key private.",
+    "hi": "अच्छे ताले का डिज़ाइन छपता है ताकि विशेषज्ञ परख सकें; सुरक्षा अपनी चाबी निजी रखने से आती है।",
+    "hinglish": "Achhe taale ka design publish hota hai taaki experts test kar sakein; safety apni chaabi private rakhne se aati hai."
+   },
+   "realExample": {
+    "en": "WhatsApp chats, Wi-Fi WPA3, BitLocker and Android file encryption all use AES or ChaCha20 under the hood.",
+    "hi": "व्हाट्सऐप चैट, वाई-फ़ाई WPA3, BitLocker और एंड्रॉइड फ़ाइल एन्क्रिप्शन सब अंदर AES या ChaCha20 इस्तेमाल करते हैं।",
+    "hinglish": "WhatsApp chats, Wi-Fi WPA3, BitLocker aur Android file encryption sab andar AES ya ChaCha20 use karte hain."
+   }
+  },
+  {
+   "heading": {
+    "en": "The key-sharing problem",
+    "hi": "कुंजी बाँटने की समस्या",
+    "hinglish": "Key-sharing problem"
+   },
+   "body": {
+    "en": "Symmetric encryption is fast, but both sides need the same key. How do you send the key to a website you have never met without anyone copying it? Sending it in the same channel defeats the point. With n people, every pair needs its own key: n(n−1)/2 keys — 4,950 for 100 people. This problem is solved by public-key cryptography (next lesson), which is used only to agree a fresh symmetric key; then fast AES or ChaCha20 does the bulk work.",
+    "hi": "सममित एन्क्रिप्शन तेज़ है, पर दोनों तरफ़ एक ही कुंजी चाहिए। जिस वेबसाइट से कभी नहीं मिले उसे कुंजी कैसे भेजोगे कि कोई कॉपी न करे? उसी चैनल में भेजना बेकार है। n लोगों में हर जोड़े को अलग कुंजी चाहिए: n(n−1)/2 कुंजियाँ — 100 लोगों के लिए 4,950। यह समस्या सार्वजनिक-कुंजी क्रिप्टोग्राफ़ी (अगला पाठ) हल करती है, जो सिर्फ़ एक नई सममित कुंजी तय करने में इस्तेमाल होती है; फिर तेज़ AES या ChaCha20 बाक़ी काम करता है।",
+    "hinglish": "Symmetric encryption tez hai, par dono taraf same key chahiye. Jis website se kabhi nahi mile use key kaise bhejoge ki koi copy na kare? Usi channel mein bhejna bekaar hai. n logon mein har pair ko alag key chahiye: n(n−1)/2 keys — 100 logon ke liye 4,950. Yeh problem public-key cryptography (agla lesson) solve karti hai, jo sirf ek nayi symmetric key tay karne mein use hoti hai; phir tez AES ya ChaCha20 baaki kaam karta hai."
+   },
+   "analogy": {
+    "en": "You and a friend have matching diaries with a secret code — but you had to meet in person once to agree it.",
+    "hi": "आपके और दोस्त के पास गुप्त कोड वाली मिलती-जुलती डायरी है — पर उसे तय करने के लिए एक बार आमने-सामने मिलना पड़ा।",
+    "hinglish": "Tumhare aur dost ke paas secret code wali matching diaries hain — par use tay karne ke liye ek baar aamne-saamne milna pada."
+   },
+   "realExample": {
+    "en": "Your home Wi-Fi password is a shared symmetric secret; anyone you tell it to can decrypt traffic on that network, which is why guest networks exist.",
+    "hi": "घर का वाई-फ़ाई पासवर्ड साझा सममित राज़ है; जिसे बताओ वह उस नेटवर्क का ट्रैफ़िक खोल सकता है, इसलिए अतिथि नेटवर्क होते हैं।",
+    "hinglish": "Ghar ka Wi-Fi password shared symmetric secret hai; jise batao woh us network ka traffic khol sakta hai, isliye guest networks hote hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Encrypt a short message to a friend with Caesar on paper. Ask them to crack it without the key and time how long it takes. Then explain in three lines why AES cannot be cracked the same way.",
+   "hi": "दोस्त के लिए काग़ज़ पर सीज़र से छोटा संदेश एन्क्रिप्ट करो। उनसे बिना कुंजी तोड़ने को कहो और समय नोट करो। फिर तीन पंक्तियों में समझाओ AES को ऐसे क्यों नहीं तोड़ सकते।",
+   "hinglish": "Dost ke liye kaagaz par Caesar se chhota message encrypt karo. Unse bina key ke crack karne ko kaho aur time note karo. Phir teen lines mein samjhao AES ko aise kyun crack nahi kar sakte."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "short",
+    "prompt": {
+     "en": "Caesar key 3: what does \"CAT\" become?",
+     "hi": "सीज़र कुंजी 3: \"CAT\" क्या बनेगा?",
+     "hinglish": "Caesar key 3: \"CAT\" kya banega?"
+    },
+    "answer": {
+     "accept": [
+      "FDW",
+      "fdw"
+     ]
+    },
+    "explain": {
+     "en": "C→F, A→D, T→W.",
+     "hi": "C→F, A→D, T→W।",
+     "hinglish": "C→F, A→D, T→W."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why is Caesar weak?",
+     "hi": "सीज़र कमज़ोर क्यों है?",
+     "hinglish": "Caesar weak kyun hai?"
+    },
+    "options": [
+     {
+      "en": "Only 25 keys and letter patterns remain",
+      "hi": "सिर्फ़ 25 कुंजियाँ और अक्षर पैटर्न बचे रहते हैं",
+      "hinglish": "Sirf 25 keys aur letter patterns bache rehte hain"
+     },
+     {
+      "en": "It is too slow",
+      "hi": "बहुत धीमा है",
+      "hinglish": "Bahut slow hai"
+     },
+     {
+      "en": "It needs a computer",
+      "hi": "कंप्यूटर चाहिए",
+      "hinglish": "Computer chahiye"
+     },
+     {
+      "en": "It uses numbers",
+      "hi": "संख्याएँ इस्तेमाल करता है",
+      "hinglish": "Numbers use karta hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Brute force or frequency analysis breaks it in seconds.",
+     "hi": "ब्रूट फ़ोर्स या आवृत्ति विश्लेषण इसे सेकंडों में तोड़ता है।",
+     "hinglish": "Brute force ya frequency analysis ise seconds mein todta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Kerckhoffs's principle says security should depend on…",
+     "hi": "केर्कहॉफ़्स का सिद्धांत कहता है सुरक्षा किस पर निर्भर हो…",
+     "hinglish": "Kerckhoffs ka principle kehta hai security kis par depend ho…"
+    },
+    "options": [
+     {
+      "en": "Keeping the algorithm secret",
+      "hi": "एल्गोरिदम गुप्त रखने पर",
+      "hinglish": "Algorithm secret rakhne par"
+     },
+     {
+      "en": "Only the secrecy of the key",
+      "hi": "सिर्फ़ कुंजी की गोपनीयता पर",
+      "hinglish": "Sirf key ki secrecy par"
+     },
+     {
+      "en": "Using long messages",
+      "hi": "लंबे संदेशों पर",
+      "hinglish": "Lambe messages par"
+     },
+     {
+      "en": "A fast computer",
+      "hi": "तेज़ कंप्यूटर पर",
+      "hinglish": "Tez computer par"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Published, tested algorithms with secret keys are the standard.",
+     "hi": "छपे, परखे एल्गोरिदम और गुप्त कुंजियाँ ही मानक हैं।",
+     "hinglish": "Published, tested algorithms aur secret keys hi standard hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "How many pairwise keys do 100 people need with symmetric crypto only?",
+     "hi": "सिर्फ़ सममित क्रिप्टो से 100 लोगों को कितनी जोड़ी-कुंजियाँ चाहिए?",
+     "hinglish": "Sirf symmetric crypto se 100 logon ko kitni pairwise keys chahiye?"
+    },
+    "options": [
+     "100",
+     "200",
+     "4,950",
+     "10,000"
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "n(n−1)/2 = 100 × 99 / 2 = 4,950.",
+     "hi": "n(n−1)/2 = 100 × 99 / 2 = 4,950।",
+     "hinglish": "n(n−1)/2 = 100 × 99 / 2 = 4,950."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Crack the intercepted Caesar message.",
+     "hi": "पकड़ा गया सीज़र संदेश तोड़ो।",
+     "hinglish": "Intercepted Caesar message crack karo."
+    },
+    "answer": {
+     "event": "caesar-cracked"
+    },
+    "explain": {
+     "en": "The key was 7: \"MEET AT THE SCIENCE LAB AFTER LUNCH\".",
+     "hi": "कुंजी 7 थी: \"MEET AT THE SCIENCE LAB AFTER LUNCH\"।",
+     "hinglish": "Key 7 thi: \"MEET AT THE SCIENCE LAB AFTER LUNCH\"."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Do an XOR encrypt-and-decrypt round trip.",
+     "hi": "XOR एन्क्रिप्ट-और-डिक्रिप्ट चक्र करो।",
+     "hinglish": "XOR encrypt-aur-decrypt round trip karo."
+    },
+    "answer": {
+     "event": "xor-roundtrip"
+    },
+    "explain": {
+     "en": "(m ⊕ k) ⊕ k = m.",
+     "hi": "(m ⊕ k) ⊕ k = m।",
+     "hinglish": "(m ⊕ k) ⊕ k = m."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "topics": [
+  "cyber.encryption-sym"
+ ],
+ "sources": [
+  {
+   "title": "NIST FIPS 197 Advanced Encryption Standard",
+   "url": "https://csrc.nist.gov/pubs/fips/197/final",
+   "licence": "fact reference"
+  },
+  {
+   "title": "RFC 8439 ChaCha20 and Poly1305",
+   "url": "https://www.rfc-editor.org/rfc/rfc8439",
+   "licence": "fact reference"
+  }
+ ]
+}

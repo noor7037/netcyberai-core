@@ -1,0 +1,398 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.security-engineering.01",
+ "level": 3,
+ "classes": [
+  9,
+  10,
+  11,
+  12
+ ],
+ "unit": "security-engineering",
+ "title": {
+  "en": "The CIA triad and ethics",
+  "hi": "CIA त्रिकोण और नैतिकता",
+  "hinglish": "CIA triad aur ethics"
+ },
+ "minutes": 12,
+ "xp": 50,
+ "prereq": [],
+ "outcomes": [
+  {
+   "en": "Explain confidentiality, integrity and availability with real examples",
+   "hi": "गोपनीयता, अखंडता और उपलब्धता असली उदाहरणों से समझाओ",
+   "hinglish": "Confidentiality, integrity aur availability asli examples se samjhao"
+  },
+  {
+   "en": "Name the defensive control that protects each part of the triad",
+   "hi": "त्रिकोण के हर हिस्से को बचाने वाला रक्षात्मक उपाय बताओ",
+   "hinglish": "Triad ke har hisse ko bachane wala defensive control batao"
+  },
+  {
+   "en": "State the ethical and legal line: test only with written permission",
+   "hi": "नैतिक और क़ानूनी सीमा बताओ: सिर्फ़ लिखित अनुमति से जाँचो",
+   "hinglish": "Ethical aur legal line batao: sirf written permission se test karo"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Confidentiality",
+   "hinglish": "Sirf sahi log padh sakein",
+   "en": "Only authorised people can read the data",
+   "hi": "सिर्फ़ अधिकृत लोग डेटा पढ़ सकें"
+  },
+  {
+   "term": "Integrity",
+   "hinglish": "Data badla na jaaye",
+   "en": "Data is not changed without detection",
+   "hi": "डेटा बिना पकड़े बदला न जाए"
+  },
+  {
+   "term": "Availability",
+   "hinglish": "Zaroorat par chale",
+   "en": "The system works when people need it",
+   "hi": "ज़रूरत पड़ने पर प्रणाली काम करे"
+  },
+  {
+   "term": "Threat model",
+   "hinglish": "Kaun, kya, kaise hamla kar sakta hai",
+   "en": "A list of what you protect, from whom, and how they might attack",
+   "hi": "क्या बचाना है, किससे, और वे कैसे हमला कर सकते हैं — इसकी सूची"
+  },
+  {
+   "term": "Authorisation",
+   "hinglish": "Likhit ijaazat",
+   "en": "Written permission from the system owner before any security test",
+   "hi": "किसी भी सुरक्षा जाँच से पहले प्रणाली मालिक की लिखित अनुमति"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Confidentiality: your marks and Aadhaar number are seen only by the right people. Encryption and access control protect it.",
+    "hi": "गोपनीयता: आपके अंक और आधार संख्या सिर्फ़ सही लोग देखें। एन्क्रिप्शन और पहुँच नियंत्रण इसे बचाते हैं।",
+    "hinglish": "Confidentiality: tumhare marks aur Aadhaar number sirf sahi log dekhein. Encryption aur access control ise bachate hain."
+   },
+   "visual": "anim:cia-lock",
+   "narration": {
+    "en": "Confidentiality: your marks and Aadhaar number are seen only by the right people. Encryption and access control protect it.",
+    "hi": "गोपनीयता: आपके अंक और आधार संख्या सिर्फ़ सही लोग देखें। एन्क्रिप्शन और पहुँच नियंत्रण इसे बचाते हैं।",
+    "hinglish": "Confidentiality: tumhare marks aur Aadhaar number sirf sahi log dekhein. Encryption aur access control ise bachate hain."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Integrity: nobody secretly changes ₹500 into ₹5,000 or edits a result. Hashes, digital signatures and audit logs reveal tampering.",
+    "hi": "अखंडता: कोई चुपके से ₹500 को ₹5,000 न करे या परिणाम न बदले। हैश, डिजिटल हस्ताक्षर और ऑडिट लॉग छेड़छाड़ दिखाते हैं।",
+    "hinglish": "Integrity: koi chupke se ₹500 ko ₹5,000 na kare ya result na badle. Hashes, digital signatures aur audit logs chhedchhaad dikhate hain."
+   },
+   "visual": "anim:cia-hash",
+   "narration": {
+    "en": "Integrity: nobody secretly changes ₹500 into ₹5,000 or edits a result. Hashes, digital signatures and audit logs reveal tampering.",
+    "hi": "अखंडता: कोई चुपके से ₹500 को ₹5,000 न करे या परिणाम न बदले। हैश, डिजिटल हस्ताक्षर और ऑडिट लॉग छेड़छाड़ दिखाते हैं।",
+    "hinglish": "Integrity: koi chupke se ₹500 ko ₹5,000 na kare ya result na badle. Hashes, digital signatures aur audit logs chhedchhaad dikhate hain."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Availability: the results site stays up on results day. Backups, spare servers and DDoS protection keep it running.",
+    "hi": "उपलब्धता: परिणाम दिवस पर परिणाम साइट चलती रहे। बैकअप, अतिरिक्त सर्वर और DDoS सुरक्षा इसे चालू रखते हैं।",
+    "hinglish": "Availability: results day par results site chalti rahe. Backups, spare servers aur DDoS protection ise chaalu rakhte hain."
+   },
+   "visual": "anim:cia-uptime",
+   "narration": {
+    "en": "Availability: the results site stays up on results day. Backups, spare servers and DDoS protection keep it running.",
+    "hi": "उपलब्धता: परिणाम दिवस पर परिणाम साइट चलती रहे। बैकअप, अतिरिक्त सर्वर और DDoS सुरक्षा इसे चालू रखते हैं।",
+    "hinglish": "Availability: results day par results site chalti rahe. Backups, spare servers aur DDoS protection ise chaalu rakhte hain."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Ethics: defenders test only systems they own or have written permission for. Breaking in \"to help\" without permission is a crime under the IT Act.",
+    "hi": "नैतिकता: रक्षक सिर्फ़ अपनी या लिखित अनुमति वाली प्रणालियाँ जाँचते हैं। बिना अनुमति \"मदद के लिए\" घुसना भी आईटी अधिनियम के तहत अपराध है।",
+    "hinglish": "Ethics: defenders sirf apne ya written permission wale systems test karte hain. Bina permission \"madad ke liye\" ghusna bhi IT Act ke tahat crime hai."
+   },
+   "visual": "anim:permission-scroll",
+   "narration": {
+    "en": "Ethics: defenders test only systems they own or have written permission for. Breaking in \"to help\" without permission is a crime under the IT Act.",
+    "hi": "नैतिकता: रक्षक सिर्फ़ अपनी या लिखित अनुमति वाली प्रणालियाँ जाँचते हैं। बिना अनुमति \"मदद के लिए\" घुसना भी आईटी अधिनियम के तहत अपराध है।",
+    "hinglish": "Ethics: defenders sirf apne ya written permission wale systems test karte hain. Bina permission \"madad ke liye\" ghusna bhi IT Act ke tahat crime hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "seq-flow",
+  "config": {
+   "scenario": "https-tls"
+  },
+  "goal": {
+   "en": "Step through an HTTPS connection and spot all three parts of the triad: encryption (C), integrity checks (I), and a working, verified server (A). Then turn on the fake certificate and see which part breaks.",
+   "hi": "HTTPS कनेक्शन चरण-दर-चरण देखो और त्रिकोण के तीनों हिस्से पहचानो: एन्क्रिप्शन (C), अखंडता जाँच (I), और चालू, सत्यापित सर्वर (A)। फिर नकली प्रमाणपत्र चालू करो और देखो कौन-सा हिस्सा टूटता है।",
+   "hinglish": "HTTPS connection step-by-step dekho aur triad ke teeno hisse pehchaano: encryption (C), integrity checks (I), aur chalta, verified server (A). Phir fake certificate on karo aur dekho kaunsa hissa toot-ta hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Thinking like a defender",
+    "hi": "रक्षक की तरह सोचना",
+    "hinglish": "Defender ki tarah sochna"
+   },
+   "body": {
+    "en": "Security starts with a threat model: what are the assets (student records, money, the website), who might attack (a scammer, a curious classmate, ransomware gangs), and how (phishing, stolen passwords, unpatched software). Then pick controls in layers — \"defence in depth\": prevent (MFA, patching, least privilege), detect (logs and alerts), respond (incident plan) and recover (backups). The NIST Cybersecurity Framework 2.0 (2024) groups this as Govern, Identify, Protect, Detect, Respond, Recover.",
+    "hi": "सुरक्षा ख़तरा-मॉडल से शुरू होती है: संपत्ति क्या है (छात्र रिकॉर्ड, पैसा, वेबसाइट), कौन हमला कर सकता है (ठग, जिज्ञासु सहपाठी, रैनसमवेयर गिरोह), और कैसे (फ़िशिंग, चोरी पासवर्ड, बिना अपडेट सॉफ़्टवेयर)। फिर परतों में उपाय चुनो — \"गहराई में रक्षा\": रोको (MFA, अपडेट, न्यूनतम अधिकार), पकड़ो (लॉग और अलर्ट), जवाब दो (घटना योजना) और उबरो (बैकअप)। NIST साइबर सुरक्षा ढाँचा 2.0 (2024) इसे Govern, Identify, Protect, Detect, Respond, Recover में बाँटता है।",
+    "hinglish": "Security threat model se shuru hoti hai: assets kya hain (student records, paisa, website), kaun hamla kar sakta hai (scammer, curious classmate, ransomware gangs), aur kaise (phishing, chori passwords, unpatched software). Phir layers mein controls chuno — \"defence in depth\": roko (MFA, patching, least privilege), pakdo (logs aur alerts), respond karo (incident plan) aur recover karo (backups). NIST Cybersecurity Framework 2.0 (2024) ise Govern, Identify, Protect, Detect, Respond, Recover mein baant-ta hai."
+   },
+   "analogy": {
+    "en": "A fort has walls, guards, alarms and a plan for fire — not just one big lock.",
+    "hi": "क़िले में दीवारें, पहरेदार, अलार्म और आग की योजना होती है — सिर्फ़ एक बड़ा ताला नहीं।",
+    "hinglish": "Qile mein deewarein, pehredaar, alarms aur aag ka plan hota hai — sirf ek bada taala nahi."
+   },
+   "realExample": {
+    "en": "A UPI app uses device binding (C), signed transactions (I) and many data centres (A) — and still asks for your PIN as another layer.",
+    "hi": "यूपीआई ऐप डिवाइस बाइंडिंग (C), हस्ताक्षरित लेन-देन (I) और कई डेटा सेंटर (A) इस्तेमाल करता है — और फिर भी एक और परत के रूप में आपका पिन माँगता है।",
+    "hinglish": "UPI app device binding (C), signed transactions (I) aur kai data centres (A) use karta hai — aur phir bhi ek aur layer ke roop mein tumhara PIN maangta hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "The legal and ethical line",
+    "hi": "क़ानूनी और नैतिक सीमा",
+    "hinglish": "Legal aur ethical line"
+   },
+   "body": {
+    "en": "India's Information Technology Act, 2000 makes unauthorised access, damage and data theft offences: Section 43 (civil liability) and Section 66 (up to 3 years in jail and/or a fine up to ₹5 lakh), plus 66C (identity theft) and 66D (cheating by impersonation). Ethical security work means written scope, testing only what you are allowed to, never keeping or sharing data you see, and reporting problems responsibly — many companies and CERT-In accept vulnerability reports. Practise only in labs built for it, like this one.",
+    "hi": "भारत का सूचना प्रौद्योगिकी अधिनियम, 2000 अनधिकृत पहुँच, नुक़सान और डेटा चोरी को अपराध बनाता है: धारा 43 (दीवानी दायित्व) और धारा 66 (3 साल तक जेल और/या ₹5 लाख तक जुर्माना), साथ में 66C (पहचान की चोरी) और 66D (रूप धरकर धोखा)। नैतिक सुरक्षा काम का मतलब: लिखित दायरा, सिर्फ़ अनुमत चीज़ों की जाँच, देखा हुआ डेटा कभी न रखना न बाँटना, और समस्याएँ ज़िम्मेदारी से बताना — कई कंपनियाँ और CERT-In कमज़ोरी रिपोर्ट स्वीकार करते हैं। अभ्यास सिर्फ़ इसके लिए बनी प्रयोगशालाओं में करो, जैसे यह।",
+    "hinglish": "India ka Information Technology Act, 2000 unauthorised access, nuksaan aur data chori ko offence banata hai: Section 43 (civil liability) aur Section 66 (3 saal tak jail aur/ya ₹5 lakh tak fine), saath mein 66C (identity theft) aur 66D (impersonation se cheating). Ethical security kaam ka matlab: written scope, sirf allowed cheezon ka test, dekha hua data kabhi na rakhna na share karna, aur problems zimmedaari se report karna — kai companies aur CERT-In vulnerability reports accept karte hain. Practice sirf iske liye bani labs mein karo, jaise yeh."
+   },
+   "analogy": {
+    "en": "A locksmith may open your door only when you ask — the same skill used without asking is burglary.",
+    "hi": "ताला बनाने वाला आपका दरवाज़ा तभी खोल सकता है जब आप कहो — बिना पूछे वही हुनर चोरी है।",
+    "hinglish": "Locksmith tumhara darwaaza tabhi khol sakta hai jab tum kaho — bina pooche wahi hunar chori hai."
+   },
+   "realExample": {
+    "en": "If you notice a school portal shows other students' marks by changing a number in the link, stop, do not download anything, and tell the school IT team in writing.",
+    "hi": "अगर दिखे कि लिंक में संख्या बदलने से स्कूल पोर्टल दूसरे छात्रों के अंक दिखाता है, तो रुको, कुछ डाउनलोड न करो, और स्कूल आईटी टीम को लिखकर बताओ।",
+    "hinglish": "Agar dikhe ki link mein number badalne se school portal doosre students ke marks dikhata hai, to ruko, kuch download na karo, aur school IT team ko likhkar batao."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Make a one-page threat model for your family's phone: three assets, three threats, and one control each for C, I and A.",
+   "hi": "अपने घर के फ़ोन का एक पन्ने का ख़तरा-मॉडल बनाओ: तीन संपत्तियाँ, तीन ख़तरे, और C, I और A के लिए एक-एक उपाय।",
+   "hinglish": "Apne ghar ke phone ka ek page ka threat model banao: teen assets, teen threats, aur C, I aur A ke liye ek-ek control."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "match",
+    "prompt": {
+     "en": "Match each incident to the part of the triad it hits.",
+     "hi": "हर घटना को त्रिकोण के उस हिस्से से मिलाओ जिस पर वह चोट करती है।",
+     "hinglish": "Har incident ko triad ke us hisse se milao jis par woh chot karta hai."
+    },
+    "options": [
+     {
+      "en": "Marks list leaked online",
+      "hi": "अंक सूची ऑनलाइन लीक",
+      "hinglish": "Marks list online leak"
+     },
+     {
+      "en": "Fee receipt amount edited",
+      "hi": "शुल्क रसीद की राशि बदली",
+      "hinglish": "Fee receipt amount edit"
+     },
+     {
+      "en": "Results site down from a flood of traffic",
+      "hi": "ट्रैफ़िक की बाढ़ से परिणाम साइट बंद",
+      "hinglish": "Traffic ki baadh se results site down"
+     }
+    ],
+    "answer": [
+     {
+      "en": "Confidentiality",
+      "hi": "गोपनीयता",
+      "hinglish": "Confidentiality"
+     },
+     {
+      "en": "Integrity",
+      "hi": "अखंडता",
+      "hinglish": "Integrity"
+     },
+     {
+      "en": "Availability",
+      "hi": "उपलब्धता",
+      "hinglish": "Availability"
+     }
+    ],
+    "explain": {
+     "en": "Leak = C, tampering = I, outage = A.",
+     "hi": "लीक = C, छेड़छाड़ = I, बंद = A।",
+     "hinglish": "Leak = C, tampering = I, outage = A."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which control mainly protects integrity?",
+     "hi": "कौन-सा उपाय मुख्य रूप से अखंडता बचाता है?",
+     "hinglish": "Kaunsa control mainly integrity bachata hai?"
+    },
+    "options": [
+     {
+      "en": "Digital signature",
+      "hi": "डिजिटल हस्ताक्षर",
+      "hinglish": "Digital signature"
+     },
+     {
+      "en": "Extra servers",
+      "hi": "अतिरिक्त सर्वर",
+      "hinglish": "Extra servers"
+     },
+     {
+      "en": "Screen privacy filter",
+      "hi": "स्क्रीन निजता फ़िल्टर",
+      "hinglish": "Screen privacy filter"
+     },
+     {
+      "en": "Bigger internet plan",
+      "hi": "बड़ा इंटरनेट प्लान",
+      "hinglish": "Bada internet plan"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "A signature fails if even one bit changes.",
+     "hi": "एक बिट भी बदले तो हस्ताक्षर विफल।",
+     "hinglish": "Ek bit bhi badle to signature fail."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Your friend asks you to \"test\" a shop's website for bugs without asking the shop. What is right?",
+     "hi": "दोस्त कहता है दुकान से पूछे बिना उसकी वेबसाइट में बग \"जाँचो\"। सही क्या है?",
+     "hinglish": "Dost kehta hai dukaan se pooche bina uski website mein bugs \"test\" karo. Sahi kya hai?"
+    },
+    "options": [
+     {
+      "en": "Do it quietly",
+      "hi": "चुपचाप करो",
+      "hinglish": "Chupchaap karo"
+     },
+     {
+      "en": "Refuse — testing needs the owner's written permission",
+      "hi": "मना करो — जाँच के लिए मालिक की लिखित अनुमति चाहिए",
+      "hinglish": "Mana karo — testing ke liye owner ki written permission chahiye"
+     },
+     {
+      "en": "Do it only at night",
+      "hi": "सिर्फ़ रात में करो",
+      "hinglish": "Sirf raat mein karo"
+     },
+     {
+      "en": "Do it from a friend's phone",
+      "hi": "दोस्त के फ़ोन से करो",
+      "hinglish": "Dost ke phone se karo"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Unauthorised testing is an offence under the IT Act, whatever the intention.",
+     "hi": "इरादा जो भी हो, अनधिकृत जाँच आईटी अधिनियम के तहत अपराध है।",
+     "hinglish": "Irada jo bhi ho, unauthorised testing IT Act ke tahat offence hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "order",
+    "prompt": {
+     "en": "Order the NIST CSF 2.0 response-side functions as they happen in an incident.",
+     "hi": "घटना में NIST CSF 2.0 के कार्य जिस क्रम में होते हैं, लगाओ।",
+     "hinglish": "Incident mein NIST CSF 2.0 ke functions jis order mein hote hain, lagao."
+    },
+    "options": [
+     {
+      "en": "Protect",
+      "hi": "बचाओ",
+      "hinglish": "Protect"
+     },
+     {
+      "en": "Detect",
+      "hi": "पकड़ो",
+      "hinglish": "Detect"
+     },
+     {
+      "en": "Respond",
+      "hi": "जवाब दो",
+      "hinglish": "Respond"
+     },
+     {
+      "en": "Recover",
+      "hi": "उबरो",
+      "hinglish": "Recover"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "Prevent first, notice what slips through, contain it, then restore.",
+     "hi": "पहले रोको, जो निकल जाए उसे पकड़ो, रोक-थाम करो, फिर बहाल करो।",
+     "hinglish": "Pehle roko, jo nikal jaaye use pakdo, contain karo, phir restore karo."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Run the HTTPS flow with the fake certificate switched on.",
+     "hi": "नकली प्रमाणपत्र चालू करके HTTPS प्रवाह चलाओ।",
+     "hinglish": "Fake certificate on karke HTTPS flow chalao."
+    },
+    "answer": {
+     "event": "scenario-complete",
+     "scenario": "https-tls",
+     "flags": {
+      "fake": true
+     }
+    },
+    "explain": {
+     "en": "The browser refuses: authenticity (and so confidentiality) cannot be guaranteed.",
+     "hi": "ब्राउज़र मना करता है: प्रामाणिकता (और इसलिए गोपनीयता) पक्की नहीं।",
+     "hinglish": "Browser mana karta hai: authenticity (aur isliye confidentiality) guarantee nahi."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "topics": [
+  "cyber.ethics-law"
+ ],
+ "sources": [
+  {
+   "title": "NIST Cybersecurity Framework 2.0 (2024)",
+   "url": "https://www.nist.gov/cyberframework",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Information Technology Act, 2000 (India Code)",
+   "url": "https://www.indiacode.nic.in/handle/123456789/1999",
+   "licence": "fact reference"
+  }
+ ]
+}

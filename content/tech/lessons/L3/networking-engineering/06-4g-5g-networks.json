@@ -1,0 +1,427 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.networking-engineering.06",
+ "level": 3,
+ "classes": [
+  10,
+  11,
+  12
+ ],
+ "unit": "networking-engineering",
+ "title": {
+  "en": "4G and 5G networks",
+  "hi": "4G और 5G नेटवर्क",
+  "hinglish": "4G aur 5G networks"
+ },
+ "minutes": 15,
+ "xp": 60,
+ "prereq": [
+  "L3.networking-engineering.02"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain how a phone joins a mobile network: SIM authentication, tower, core and IP session",
+   "hi": "समझाओ फ़ोन मोबाइल नेटवर्क से कैसे जुड़ता है: सिम प्रमाणीकरण, टावर, कोर और आईपी सत्र",
+   "hinglish": "Samjhao phone mobile network se kaise judta hai: SIM authentication, tower, core aur IP session"
+  },
+  {
+   "en": "Compare 4G and 5G on speed, latency, bands and use cases",
+   "hi": "गति, विलंब, बैंड और उपयोग में 4G और 5G की तुलना करो",
+   "hinglish": "Speed, latency, bands aur use cases mein 4G aur 5G compare karo"
+  },
+  {
+   "en": "Explain the trade-off between frequency, range and capacity",
+   "hi": "आवृत्ति, दूरी और क्षमता के बीच का समझौता समझाओ",
+   "hinglish": "Frequency, range aur capacity ke beech ka trade-off samjhao"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Cell / base station",
+   "hinglish": "Mobile tower jo ek ilaaka cover kare",
+   "en": "Radio site serving phones in one area (eNB in 4G, gNB in 5G)",
+   "hi": "एक इलाक़े के फ़ोनों को सेवा देने वाली रेडियो साइट (4G में eNB, 5G में gNB)"
+  },
+  {
+   "term": "Core network",
+   "hinglish": "Operator ka dimaag: login, billing, internet gateway",
+   "en": "Operator systems that authenticate users and route their data to the internet",
+   "hi": "उपयोगकर्ता प्रमाणित करने और उनका डेटा इंटरनेट तक भेजने वाली ऑपरेटर प्रणालियाँ"
+  },
+  {
+   "term": "Spectrum band",
+   "hinglish": "Radio frequencies ka hissa",
+   "en": "A range of radio frequencies licensed for a service",
+   "hi": "किसी सेवा के लिए लाइसेंस प्राप्त रेडियो आवृत्तियों की श्रेणी"
+  },
+  {
+   "term": "Handover",
+   "hinglish": "Chalte-chalte ek tower se doosre par jaana",
+   "en": "Moving an active connection from one cell to another",
+   "hi": "चालू कनेक्शन को एक सेल से दूसरे पर ले जाना"
+  },
+  {
+   "term": "Latency",
+   "hinglish": "Packet ko jaane-aane mein lagne wala samay",
+   "en": "Time delay for data to travel, often measured as round-trip time",
+   "hi": "डेटा के आने-जाने में लगने वाली देरी, अक्सर राउंड-ट्रिप समय में मापी"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Your phone talks by radio to the nearest tower. In 5G it is called a gNB. The tower turns radio into fibre and sends it to the operator's core.",
+    "hi": "आपका फ़ोन रेडियो से सबसे पास के टावर से बात करता है। 5G में इसे gNB कहते हैं। टावर रेडियो को फ़ाइबर में बदलकर ऑपरेटर के कोर को भेजता है।",
+    "hinglish": "Tumhara phone radio se sabse paas ke tower se baat karta hai. 5G mein ise gNB kehte hain. Tower radio ko fibre mein badal ke operator ke core ko bhejta hai."
+   },
+   "visual": "anim:tower-to-core",
+   "narration": {
+    "en": "Your phone talks by radio to the nearest tower. In 5G it is called a gNB. The tower turns radio into fibre and sends it to the operator's core.",
+    "hi": "आपका फ़ोन रेडियो से सबसे पास के टावर से बात करता है। 5G में इसे gNB कहते हैं। टावर रेडियो को फ़ाइबर में बदलकर ऑपरेटर के कोर को भेजता है।",
+    "hinglish": "Tumhara phone radio se sabse paas ke tower se baat karta hai. 5G mein ise gNB kehte hain. Tower radio ko fibre mein badal ke operator ke core ko bhejta hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "The SIM holds a secret key. The core checks it (5G-AKA), turns on encryption and gives your phone an IP address — usually IPv6 in India.",
+    "hi": "सिम में एक गुप्त कुंजी होती है। कोर उसे जाँचता है (5G-AKA), एन्क्रिप्शन चालू करता है और फ़ोन को आईपी पता देता है — भारत में अक्सर IPv6।",
+    "hinglish": "SIM mein ek secret key hoti hai. Core use check karta hai (5G-AKA), encryption chalu karta hai aur phone ko IP address deta hai — India mein aksar IPv6."
+   },
+   "visual": "anim:sim-auth",
+   "narration": {
+    "en": "The SIM holds a secret key. The core checks it (5G-AKA), turns on encryption and gives your phone an IP address — usually IPv6 in India.",
+    "hi": "सिम में एक गुप्त कुंजी होती है। कोर उसे जाँचता है (5G-AKA), एन्क्रिप्शन चालू करता है और फ़ोन को आईपी पता देता है — भारत में अक्सर IPv6।",
+    "hinglish": "SIM mein ek secret key hoti hai. Core use check karta hai (5G-AKA), encryption chalu karta hai aur phone ko IP address deta hai — India mein aksar IPv6."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Low bands (700–900 MHz) travel far and through walls. Mid band (3.3–3.6 GHz, n78) balances range and speed. mmWave (26 GHz) is very fast but short-range.",
+    "hi": "निचले बैंड (700–900 MHz) दूर तक और दीवारों के पार जाते हैं। मध्य बैंड (3.3–3.6 GHz, n78) दूरी और गति में संतुलन रखता है। mmWave (26 GHz) बहुत तेज़ पर कम दूरी वाला है।",
+    "hinglish": "Low bands (700–900 MHz) door tak aur deewaron ke paar jaate hain. Mid band (3.3–3.6 GHz, n78) range aur speed mein balance rakhta hai. mmWave (26 GHz) bahut tez par short-range hai."
+   },
+   "visual": "anim:band-range",
+   "narration": {
+    "en": "Low bands (700–900 MHz) travel far and through walls. Mid band (3.3–3.6 GHz, n78) balances range and speed. mmWave (26 GHz) is very fast but short-range.",
+    "hi": "निचले बैंड (700–900 MHz) दूर तक और दीवारों के पार जाते हैं। मध्य बैंड (3.3–3.6 GHz, n78) दूरी और गति में संतुलन रखता है। mmWave (26 GHz) बहुत तेज़ पर कम दूरी वाला है।",
+    "hinglish": "Low bands (700–900 MHz) door tak aur deewaron ke paar jaate hain. Mid band (3.3–3.6 GHz, n78) range aur speed mein balance rakhta hai. mmWave (26 GHz) bahut tez par short-range hai."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "India launched 5G on 1 October 2022 and built one of the fastest roll-outs in the world. 5G adds network slicing: separate virtual networks for, say, ambulances and video.",
+    "hi": "भारत ने 1 अक्टूबर 2022 को 5G शुरू किया और दुनिया के सबसे तेज़ विस्तारों में से एक किया। 5G नेटवर्क स्लाइसिंग जोड़ता है: जैसे एम्बुलेंस और वीडियो के लिए अलग आभासी नेटवर्क।",
+    "hinglish": "India ne 1 October 2022 ko 5G launch kiya aur duniya ke sabse tez roll-outs mein se ek kiya. 5G network slicing jodta hai: jaise ambulance aur video ke liye alag virtual networks."
+   },
+   "visual": "anim:5g-slices",
+   "narration": {
+    "en": "India launched 5G on 1 October 2022 and built one of the fastest roll-outs in the world. 5G adds network slicing: separate virtual networks for, say, ambulances and video.",
+    "hi": "भारत ने 1 अक्टूबर 2022 को 5G शुरू किया और दुनिया के सबसे तेज़ विस्तारों में से एक किया। 5G नेटवर्क स्लाइसिंग जोड़ता है: जैसे एम्बुलेंस और वीडियो के लिए अलग आभासी नेटवर्क।",
+    "hinglish": "India ne 1 October 2022 ko 5G launch kiya aur duniya ke sabse tez roll-outs mein se ek kiya. 5G network slicing jodta hai: jaise ambulance aur video ke liye alag virtual networks."
+   }
+  }
+ ],
+ "play": {
+  "lab": "seq-flow",
+  "config": {
+   "scenario": "mobile-5g"
+  },
+  "goal": {
+   "en": "Follow a 5G phone from switching on to watching a video. Then tick \"Move to the next tower\" and see the handover keep your session alive.",
+   "hi": "5G फ़ोन को चालू होने से वीडियो देखने तक देखो। फिर \"वीडियो के बीच अगले टावर पर जाओ\" चुनो और देखो हैंडओवर सत्र को कैसे चालू रखता है।",
+   "hinglish": "5G phone ko on hone se video dekhne tak follow karo. Phir \"Video ke beech agle tower par jao\" tick karo aur dekho handover session ko kaise zinda rakhta hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "4G vs 5G in numbers",
+    "hi": "संख्याओं में 4G बनाम 5G",
+    "hinglish": "Numbers mein 4G vs 5G"
+   },
+   "body": {
+    "en": "The ITU targets for 5G (IMT-2020) include peak download of 20 Gbit/s, user-plane latency of 1 ms for ultra-reliable links, and up to 1 million devices per square kilometre. Real phones see much less: typical 4G gives tens of Mbit/s and 30–50 ms round trips; mid-band 5G often gives a few hundred Mbit/s and lower latency. The gains come from wider channels, many-antenna beamforming (massive MIMO) and a leaner core.",
+    "hi": "5G के लिए ITU लक्ष्य (IMT-2020) में 20 Gbit/s अधिकतम डाउनलोड, अति-विश्वसनीय लिंक के लिए 1 ms यूज़र-प्लेन विलंब, और प्रति वर्ग किलोमीटर 10 लाख उपकरण तक शामिल हैं। असली फ़ोन बहुत कम देखते हैं: आम 4G दसियों Mbit/s और 30–50 ms राउंड ट्रिप देता है; मध्य-बैंड 5G अक्सर कुछ सौ Mbit/s और कम विलंब देता है। फ़ायदे चौड़े चैनलों, कई-एंटीना बीमफ़ॉर्मिंग (massive MIMO) और हल्के कोर से आते हैं।",
+    "hinglish": "5G ke liye ITU targets (IMT-2020) mein 20 Gbit/s peak download, ultra-reliable links ke liye 1 ms user-plane latency, aur prati square kilometre 10 lakh devices tak shaamil hain. Asli phones bahut kam dekhte hain: aam 4G dasiyon Mbit/s aur 30–50 ms round trips deta hai; mid-band 5G aksar kuch sau Mbit/s aur kam latency deta hai. Fayde wide channels, many-antenna beamforming (massive MIMO) aur lean core se aate hain."
+   },
+   "analogy": {
+    "en": "A wider road (bandwidth), smarter traffic police aiming each lane at one car (beamforming), and fewer toll booths (core) make the trip faster.",
+    "hi": "चौड़ी सड़क (बैंडविड्थ), हर लेन को एक गाड़ी की ओर मोड़ती होशियार ट्रैफ़िक पुलिस (बीमफ़ॉर्मिंग), और कम टोल बूथ (कोर) सफ़र तेज़ बनाते हैं।",
+    "hinglish": "Chaudi sadak (bandwidth), har lane ko ek gaadi ki taraf modti smart traffic police (beamforming), aur kam toll booths (core) safar tez banate hain."
+   },
+   "realExample": {
+    "en": "A speed-test app on 4G and then on 5G in the same spot shows the difference in both Mbit/s and ping (ms).",
+    "hi": "एक ही जगह पर 4G और फिर 5G पर स्पीड-टेस्ट ऐप Mbit/s और पिंग (ms) दोनों में फ़र्क़ दिखाता है।",
+    "hinglish": "Ek hi jagah par 4G aur phir 5G par speed-test app Mbit/s aur ping (ms) dono mein farak dikhata hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "Frequency, range and capacity",
+    "hi": "आवृत्ति, दूरी और क्षमता",
+    "hinglish": "Frequency, range aur capacity"
+   },
+   "body": {
+    "en": "Higher frequencies carry more data because wider blocks of spectrum are available there, but they fade faster with distance and are blocked by walls, rain and even hands. So operators use low bands for coverage in villages and inside buildings, mid band for city capacity, and mmWave for crowded spots like stadiums. More towers closer together (small cells) also add capacity.",
+    "hi": "ऊँची आवृत्तियाँ ज़्यादा डेटा ले जाती हैं क्योंकि वहाँ स्पेक्ट्रम के चौड़े खंड मिलते हैं, पर वे दूरी के साथ जल्दी कमज़ोर होती हैं और दीवारें, बारिश, यहाँ तक कि हाथ भी उन्हें रोकते हैं। इसलिए ऑपरेटर गाँवों और इमारतों के अंदर कवरेज के लिए निचले बैंड, शहर की क्षमता के लिए मध्य बैंड, और स्टेडियम जैसी भीड़ वाली जगहों के लिए mmWave इस्तेमाल करते हैं। पास-पास ज़्यादा टावर (छोटे सेल) भी क्षमता बढ़ाते हैं।",
+    "hinglish": "Oonchi frequencies zyaada data le jaati hain kyunki wahan spectrum ke chaude blocks milte hain, par woh doori ke saath jaldi kamzor hoti hain aur deewarein, baarish, yahan tak ki haath bhi unhe rokte hain. Isliye operators gaon aur buildings ke andar coverage ke liye low bands, city capacity ke liye mid band, aur stadium jaisi bheed wali jagahon ke liye mmWave use karte hain. Paas-paas zyaada towers (small cells) bhi capacity badhate hain."
+   },
+   "analogy": {
+    "en": "A drum (low band) is heard across the village; a whistle (high band) is sharper but only nearby.",
+    "hi": "ढोल (निचला बैंड) पूरे गाँव में सुनाई देता है; सीटी (ऊँचा बैंड) तेज़ है पर बस पास में।",
+    "hinglish": "Dhol (low band) poore gaon mein sunayi deta hai; seeti (high band) tez hai par bas paas mein."
+   },
+   "realExample": {
+    "en": "Your phone may show 5G outdoors but drop to 4G in a basement parking — the mid-band signal could not get through the concrete.",
+    "hi": "आपका फ़ोन बाहर 5G दिखा सकता है पर बेसमेंट पार्किंग में 4G पर आ जाता है — मध्य-बैंड सिग्नल कंक्रीट के पार नहीं जा सका।",
+    "hinglish": "Tumhara phone bahar 5G dikha sakta hai par basement parking mein 4G par aa jaata hai — mid-band signal concrete ke paar nahi ja saka."
+   }
+  },
+  {
+   "heading": {
+    "en": "Security and privacy in mobile networks",
+    "hi": "मोबाइल नेटवर्क में सुरक्षा और निजता",
+    "hinglish": "Mobile networks mein security aur privacy"
+   },
+   "body": {
+    "en": "5G conceals your permanent subscriber ID (SUPI) by encrypting it into a SUCI, which defeats the cheap \"IMSI catcher\" trackers that worked on older networks. The radio link is encrypted after authentication. Your own defences still matter: a SIM-swap fraud starts with someone convincing the operator to move your number, so never share OTPs, and lock your SIM with a PIN.",
+    "hi": "5G आपकी स्थायी ग्राहक पहचान (SUPI) को एन्क्रिप्ट करके SUCI बनाता है, जो पुराने नेटवर्क पर चलने वाले सस्ते \"IMSI कैचर\" ट्रैकरों को नाकाम करता है। प्रमाणीकरण के बाद रेडियो लिंक एन्क्रिप्ट होता है। आपकी अपनी सावधानी फिर भी ज़रूरी है: सिम-स्वैप धोखा इससे शुरू होता है कि कोई ऑपरेटर को आपका नंबर दूसरी सिम पर डालने के लिए मना ले, इसलिए कभी OTP साझा मत करो, और अपनी सिम पर पिन लगाओ।",
+    "hinglish": "5G tumhari permanent subscriber ID (SUPI) ko encrypt karke SUCI banata hai, jo purane networks par chalne wale saste \"IMSI catcher\" trackers ko naakaam karta hai. Authentication ke baad radio link encrypt hota hai. Tumhari apni defences phir bhi zaroori hain: SIM-swap fraud isse shuru hota hai ki koi operator ko tumhara number doosri SIM par daalne ke liye mana le, isliye kabhi OTP share mat karo, aur apni SIM par PIN lagao."
+   },
+   "analogy": {
+    "en": "Like wearing a mask in a crowd so strangers cannot read your name badge.",
+    "hi": "जैसे भीड़ में मास्क पहनना ताकि अजनबी आपका नाम-बिल्ला न पढ़ सकें।",
+    "hinglish": "Jaise bheed mein mask pehenna taaki ajnabi tumhara naam-billa na padh sakein."
+   },
+   "realExample": {
+    "en": "Android: Settings → Security → SIM card lock. iPhone: Settings → Mobile Service → SIM PIN.",
+    "hi": "एंड्रॉइड: सेटिंग → सुरक्षा → सिम कार्ड लॉक। आईफ़ोन: सेटिंग → मोबाइल सेवा → SIM PIN।",
+    "hinglish": "Android: Settings → Security → SIM card lock. iPhone: Settings → Mobile Service → SIM PIN."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Run a speed test at three places (home, school gate, a crowded market). Record download, upload and ping, and explain the differences using bands, distance and crowding.",
+   "hi": "तीन जगह (घर, स्कूल गेट, भीड़ वाला बाज़ार) स्पीड टेस्ट चलाओ। डाउनलोड, अपलोड और पिंग लिखो, और बैंड, दूरी और भीड़ से अंतर समझाओ।",
+   "hinglish": "Teen jagah (ghar, school gate, bheed wala bazaar) speed test chalao. Download, upload aur ping likho, aur bands, doori aur bheed se antar samjhao."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "order",
+    "prompt": {
+     "en": "Order what happens when your 5G phone switches on.",
+     "hi": "जब 5G फ़ोन चालू होता है तो क्या होता है, क्रम में लगाओ।",
+     "hinglish": "5G phone on hone par kya hota hai, order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Find a cell and connect by radio",
+      "hi": "सेल ढूँढकर रेडियो से जुड़ना",
+      "hinglish": "Cell dhoondh ke radio se judna"
+     },
+     {
+      "en": "Send concealed identity (SUCI)",
+      "hi": "छिपी पहचान (SUCI) भेजना",
+      "hinglish": "Chhupi identity (SUCI) bhejna"
+     },
+     {
+      "en": "Mutual authentication with the SIM key",
+      "hi": "सिम कुंजी से आपसी प्रमाणीकरण",
+      "hinglish": "SIM key se mutual authentication"
+     },
+     {
+      "en": "Get an IP and a data session",
+      "hi": "आईपी और डेटा सत्र मिलना",
+      "hinglish": "IP aur data session milna"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "Radio first, then identity, then authentication, then the data session.",
+     "hi": "पहले रेडियो, फिर पहचान, फिर प्रमाणीकरण, फिर डेटा सत्र।",
+     "hinglish": "Pehle radio, phir identity, phir authentication, phir data session."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which band reaches furthest and best inside buildings?",
+     "hi": "कौन-सा बैंड सबसे दूर और इमारतों के अंदर सबसे अच्छा पहुँचता है?",
+     "hinglish": "Kaunsa band sabse door aur buildings ke andar sabse acha pahunchta hai?"
+    },
+    "options": [
+     "700 MHz",
+     "3.5 GHz",
+     "26 GHz",
+     {
+      "en": "All the same",
+      "hi": "सब बराबर",
+      "hinglish": "Sab barabar"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Lower frequencies travel further and pass through walls better.",
+     "hi": "निचली आवृत्तियाँ दूर तक जाती हैं और दीवारों के पार बेहतर निकलती हैं।",
+     "hinglish": "Low frequencies door tak jaati hain aur deewaron ke paar behtar nikalti hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "multi",
+    "prompt": {
+     "en": "Which help 5G give more speed than 4G? Choose all.",
+     "hi": "5G को 4G से ज़्यादा गति देने में क्या मदद करता है? सभी चुनो।",
+     "hinglish": "5G ko 4G se zyaada speed dene mein kya madad karta hai? Sab chuno."
+    },
+    "options": [
+     {
+      "en": "Wider channels",
+      "hi": "चौड़े चैनल",
+      "hinglish": "Wide channels"
+     },
+     {
+      "en": "Massive MIMO beamforming",
+      "hi": "Massive MIMO बीमफ़ॉर्मिंग",
+      "hinglish": "Massive MIMO beamforming"
+     },
+     {
+      "en": "Bigger SIM cards",
+      "hi": "बड़े सिम कार्ड",
+      "hinglish": "Bade SIM cards"
+     },
+     {
+      "en": "Smaller, denser cells",
+      "hi": "छोटे, घने सेल",
+      "hinglish": "Chhote, ghane cells"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     3
+    ],
+    "explain": {
+     "en": "Spectrum width, antennas and cell density raise capacity; SIM size does nothing.",
+     "hi": "स्पेक्ट्रम चौड़ाई, एंटीना और सेल घनत्व क्षमता बढ़ाते हैं; सिम के आकार से कुछ नहीं होता।",
+     "hinglish": "Spectrum width, antennas aur cell density capacity badhate hain; SIM size se kuch nahi hota."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why does 5G send a SUCI instead of your permanent ID?",
+     "hi": "5G आपकी स्थायी पहचान के बजाय SUCI क्यों भेजता है?",
+     "hinglish": "5G tumhari permanent ID ke bajaye SUCI kyun bhejta hai?"
+    },
+    "options": [
+     {
+      "en": "To save battery",
+      "hi": "बैटरी बचाने",
+      "hinglish": "Battery bachane"
+     },
+     {
+      "en": "So radio eavesdroppers cannot track you",
+      "hi": "ताकि रेडियो पर छिपकर सुनने वाले आपको ट्रैक न कर सकें",
+      "hinglish": "Taaki radio par chhup ke sunne wale tumhe track na kar sakein"
+     },
+     {
+      "en": "To make calls cheaper",
+      "hi": "कॉल सस्ती करने",
+      "hinglish": "Calls sasti karne"
+     },
+     {
+      "en": "To get IPv6",
+      "hi": "IPv6 पाने",
+      "hinglish": "IPv6 paane"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "It is encrypted with the operator's public key, defeating IMSI catchers.",
+     "hi": "यह ऑपरेटर की सार्वजनिक कुंजी से एन्क्रिप्ट होता है, IMSI कैचर को नाकाम करता है।",
+     "hinglish": "Yeh operator ki public key se encrypt hota hai, IMSI catchers ko naakaam karta hai."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q5",
+    "type": "short",
+    "prompt": {
+     "en": "In which year did India launch commercial 5G?",
+     "hi": "भारत ने व्यावसायिक 5G किस वर्ष शुरू किया?",
+     "hinglish": "India ne commercial 5G kis saal launch kiya?"
+    },
+    "answer": {
+     "accept": [
+      "2022"
+     ]
+    },
+    "explain": {
+     "en": "On 1 October 2022, at the India Mobile Congress.",
+     "hi": "1 अक्टूबर 2022 को, इंडिया मोबाइल कांग्रेस में।",
+     "hinglish": "1 October 2022 ko, India Mobile Congress mein."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Run the 5G scenario with the handover option on.",
+     "hi": "हैंडओवर विकल्प चालू करके 5G परिदृश्य चलाओ।",
+     "hinglish": "Handover option on karke 5G scenario chalao."
+    },
+    "answer": {
+     "event": "scenario-complete",
+     "scenario": "mobile-5g",
+     "flags": {
+      "handover": true
+     }
+    },
+    "explain": {
+     "en": "The session and IP stayed the same across towers.",
+     "hi": "टावर बदलने पर भी सत्र और आईपी वही रहे।",
+     "hinglish": "Tower badalne par bhi session aur IP wahi rahe."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "net.wifi-mobile-data"
+ ],
+ "sources": [
+  {
+   "title": "ITU-R M.2410 — Minimum requirements for IMT-2020 (5G)",
+   "url": "https://www.itu.int/pub/R-REP-M.2410",
+   "licence": "fact reference"
+  },
+  {
+   "title": "PIB — PM launches 5G services (1 Oct 2022)",
+   "url": "https://pib.gov.in/PressReleasePage.aspx?PRID=1864150",
+   "licence": "fact reference"
+  },
+  {
+   "title": "3GPP — 5G system overview",
+   "url": "https://www.3gpp.org/technologies/5g-system-overview",
+   "licence": "fact reference"
+  }
+ ]
+}

@@ -1,0 +1,323 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.dsa.05",
+ "level": 3,
+ "classes": [
+  11,
+  12
+ ],
+ "unit": "dsa",
+ "title": {
+  "en": "Stacks and queues",
+  "hi": "स्टैक और कतार",
+  "hinglish": "Stacks aur queues"
+ },
+ "minutes": 13,
+ "xp": 55,
+ "prereq": [
+  "L3.dsa.04"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain LIFO and FIFO with real examples",
+   "hi": "असली उदाहरणों से LIFO और FIFO समझाओ",
+   "hinglish": "Asli examples se LIFO aur FIFO samjhao"
+  },
+  {
+   "en": "Use a stack to check balanced brackets",
+   "hi": "संतुलित कोष्ठक जाँचने के लिए स्टैक इस्तेमाल करो",
+   "hinglish": "Balanced brackets check karne ke liye stack use karo"
+  },
+  {
+   "en": "Pick the right Python tool: list, collections.deque, heapq",
+   "hi": "सही पायथन टूल चुनो: list, collections.deque, heapq",
+   "hinglish": "Sahi Python tool chuno: list, collections.deque, heapq"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Stack",
+   "hinglish": "Upar se lena-dena",
+   "en": "Last in, first out (LIFO): push and pop at the top",
+   "hi": "आख़िरी अंदर, पहले बाहर (LIFO): ऊपर push और pop"
+  },
+  {
+   "term": "Queue",
+   "hinglish": "Line",
+   "en": "First in, first out (FIFO): join at the back, leave at the front",
+   "hi": "पहले अंदर, पहले बाहर (FIFO): पीछे जुड़ो, आगे से निकलो"
+  },
+  {
+   "term": "push / pop",
+   "hinglish": "Daalo / nikaalo",
+   "en": "Add to / remove from the top of a stack",
+   "hi": "स्टैक के ऊपर जोड़ना / हटाना"
+  },
+  {
+   "term": "enqueue / dequeue",
+   "hinglish": "Line mein lago / line se niklo",
+   "en": "Add to the back / remove from the front of a queue",
+   "hi": "कतार के पीछे जोड़ना / आगे से हटाना"
+  },
+  {
+   "term": "Priority queue",
+   "hinglish": "Zaroori pehle",
+   "en": "Always serves the most urgent item next (heapq)",
+   "hi": "हमेशा सबसे ज़रूरी वस्तु पहले परोसता है (heapq)"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Stack: push 1, push 2, pop → 2 comes out first. Like a pile of plates.",
+    "hi": "स्टैक: push 1, push 2, pop → 2 पहले निकलता है। थालियों के ढेर जैसा।",
+    "hinglish": "Stack: push 1, push 2, pop → 2 pehle nikalta hai. Plates ke dher jaisa."
+   },
+   "visual": "anim:plates",
+   "narration": {
+    "en": "Stack: push 1, push 2, pop → 2 comes out first. Like a pile of plates.",
+    "hi": "स्टैक: push 1, push 2, pop → 2 पहले निकलता है। थालियों के ढेर जैसा।",
+    "hinglish": "Stack: push 1, push 2, pop → 2 pehle nikalta hai. Plates ke dher jaisa."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Queue: enqueue 1, enqueue 2, dequeue → 1 comes out first. Like a ticket counter line.",
+    "hi": "कतार: enqueue 1, enqueue 2, dequeue → 1 पहले निकलता है। टिकट काउंटर की लाइन जैसा।",
+    "hinglish": "Queue: enqueue 1, enqueue 2, dequeue → 1 pehle nikalta hai. Ticket counter ki line jaisa."
+   },
+   "visual": "anim:line",
+   "narration": {
+    "en": "Queue: enqueue 1, enqueue 2, dequeue → 1 comes out first. Like a ticket counter line.",
+    "hi": "कतार: enqueue 1, enqueue 2, dequeue → 1 पहले निकलता है। टिकट काउंटर की लाइन जैसा।",
+    "hinglish": "Queue: enqueue 1, enqueue 2, dequeue → 1 pehle nikalta hai. Ticket counter ki line jaisa."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Bracket check: push every opener; for each closer, pop and compare. \"{[()]}\" is balanced.",
+    "hi": "कोष्ठक जाँच: हर खुला push करो; हर बंद पर pop करके मिलाओ। \"{[()]}\" संतुलित है।",
+    "hinglish": "Bracket check: har opener push karo; har closer par pop karke milao. \"{[()]}\" balanced hai."
+   },
+   "visual": "anim:brackets",
+   "narration": {
+    "en": "Bracket check: push every opener; for each closer, pop and compare. \"{[()]}\" is balanced.",
+    "hi": "कोष्ठक जाँच: हर खुला push करो; हर बंद पर pop करके मिलाओ। \"{[()]}\" संतुलित है।",
+    "hinglish": "Bracket check: har opener push karo; har closer par pop karke milao. \"{[()]}\" balanced hai."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "\"([)]\" fails: the closer ) meets [ on top. Your code editor uses exactly this check.",
+    "hi": "\"([)]\" विफल: बंद ) को ऊपर [ मिलता है। आपका कोड एडिटर ठीक यही जाँच करता है।",
+    "hinglish": "\"([)]\" fail: closer ) ko upar [ milta hai. Tumhara code editor theek yahi check karta hai."
+   },
+   "visual": "anim:bracket-fail",
+   "narration": {
+    "en": "\"([)]\" fails: the closer ) meets [ on top. Your code editor uses exactly this check.",
+    "hi": "\"([)]\" विफल: बंद ) को ऊपर [ मिलता है। आपका कोड एडिटर ठीक यही जाँच करता है।",
+    "hinglish": "\"([)]\" fail: closer ) ko upar [ milta hai. Tumhara code editor theek yahi check karta hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "code-lab",
+  "config": {
+   "mode": "stack",
+   "input": "{[()()]}"
+  },
+  "goal": {
+   "en": "Push and pop a few items, enqueue and dequeue a few, and watch which one leaves first. Then check \"{[()()]}\" and also try \"([)]\".",
+   "hi": "कुछ वस्तुएँ push और pop करो, कुछ enqueue और dequeue करो, और देखो पहले कौन निकलता है। फिर \"{[()()]}\" जाँचो और \"([)]\" भी आज़माओ।",
+   "hinglish": "Kuch items push aur pop karo, kuch enqueue aur dequeue karo, aur dekho pehle kaun nikalta hai. Phir \"{[()()]}\" check karo aur \"([)]\" bhi try karo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Where stacks and queues hide",
+    "hi": "स्टैक और कतार कहाँ छुपे हैं",
+    "hinglish": "Stacks aur queues kahan chhupe hain"
+   },
+   "body": {
+    "en": "Stacks: the function call stack you saw in recursion; Undo (Ctrl+Z) in editors; the browser Back button; checking brackets; depth-first search. Queues: printer jobs, messages waiting for a server, CPU scheduling (round robin), breadth-first search, video buffering. Priority queues: hospital triage, Dijkstra's shortest-path algorithm, an OS picking the most urgent task. In Python a list is a good stack (append and pop are O(1)) but a slow queue (pop(0) is O(n)), so use collections.deque with append and popleft, both O(1). heapq gives a priority queue.",
+    "hi": "स्टैक: पुनरावर्तन में देखा फ़ंक्शन कॉल स्टैक; एडिटर में Undo (Ctrl+Z); ब्राउज़र Back बटन; कोष्ठक जाँच; डेप्थ-फ़र्स्ट खोज। कतार: प्रिंटर काम, सर्वर का इंतज़ार करते संदेश, CPU शेड्यूलिंग (राउंड रॉबिन), ब्रेड्थ-फ़र्स्ट खोज, वीडियो बफ़रिंग। प्राथमिकता कतार: अस्पताल ट्राइएज, डाइक्स्ट्रा का सबसे छोटा रास्ता एल्गोरिदम, OS का सबसे ज़रूरी काम चुनना। पायथन में सूची अच्छा स्टैक है (append और pop O(1)) पर धीमी कतार (pop(0) O(n)), इसलिए append और popleft वाला collections.deque इस्तेमाल करो, दोनों O(1)। heapq प्राथमिकता कतार देता है।",
+    "hinglish": "Stacks: recursion mein dekha function call stack; editors mein Undo (Ctrl+Z); browser Back button; brackets check; depth-first search. Queues: printer jobs, server ka intezaar karte messages, CPU scheduling (round robin), breadth-first search, video buffering. Priority queues: hospital triage, Dijkstra ka shortest-path algorithm, OS ka sabse urgent task chunna. Python mein list achha stack hai (append aur pop O(1)) par slow queue (pop(0) O(n)), isliye append aur popleft wala collections.deque use karo, dono O(1). heapq priority queue deta hai."
+   },
+   "analogy": {
+    "en": "Stack = a pile of rotis (you eat the top, hottest one first); queue = the line at the school canteen.",
+    "hi": "स्टैक = रोटियों का ढेर (ऊपर वाली, सबसे गरम, पहले खाते हो); कतार = स्कूल कैंटीन की लाइन।",
+    "hinglish": "Stack = rotiyon ka dher (upar wali, sabse garam, pehle khaate ho); queue = school canteen ki line."
+   },
+   "realExample": {
+    "en": "IRCTC Tatkal booking puts lakhs of requests into queues so the servers serve them in order instead of crashing.",
+    "hi": "IRCTC तत्काल बुकिंग लाखों अनुरोधों को कतारों में डालती है ताकि सर्वर क्रैश होने की जगह उन्हें क्रम से परोसें।",
+    "hinglish": "IRCTC Tatkal booking lakhs requests ko queues mein daalti hai taaki servers crash hone ki jagah unhe order se serve karein."
+   }
+  },
+  {
+   "heading": {
+    "en": "The bracket checker, in code",
+    "hi": "कोड में कोष्ठक जाँचक",
+    "hinglish": "Code mein bracket checker"
+   },
+   "body": {
+    "en": "def balanced(s):\n    pairs = {\")\": \"(\", \"]\": \"[\", \"}\": \"{\"}\n    stack = []\n    for ch in s:\n        if ch in \"([{\": stack.append(ch)\n        elif ch in pairs:\n            if not stack or stack.pop() != pairs[ch]: return False\n    return not stack\nIt is O(n): each character is pushed and popped at most once. The final \"return not stack\" catches leftover openers like \"((\". Compilers, JSON parsers and calculators that respect brackets all build on this idea.",
+    "hi": "def balanced(s):\n    pairs = {\")\": \"(\", \"]\": \"[\", \"}\": \"{\"}\n    stack = []\n    for ch in s:\n        if ch in \"([{\": stack.append(ch)\n        elif ch in pairs:\n            if not stack or stack.pop() != pairs[ch]: return False\n    return not stack\nयह O(n) है: हर अक्षर अधिकतम एक बार push और pop होता है। अंतिम \"return not stack\" \"((\" जैसे बचे खुले कोष्ठक पकड़ता है। कंपाइलर, JSON पार्सर और कोष्ठक मानने वाले कैलकुलेटर सब इसी विचार पर बने हैं।",
+    "hinglish": "def balanced(s):\n    pairs = {\")\": \"(\", \"]\": \"[\", \"}\": \"{\"}\n    stack = []\n    for ch in s:\n        if ch in \"([{\": stack.append(ch)\n        elif ch in pairs:\n            if not stack or stack.pop() != pairs[ch]: return False\n    return not stack\nYeh O(n) hai: har character maximum ek baar push aur pop hota hai. Aakhri \"return not stack\" \"((\" jaise bache openers pakadta hai. Compilers, JSON parsers aur brackets maanne wale calculators sab isi idea par bane hain."
+   },
+   "analogy": {
+    "en": "Matching socks from a laundry pile: the last unmatched sock you picked up must match the next one.",
+    "hi": "कपड़ों के ढेर से मोज़े मिलाना: आख़िरी उठाया बेजोड़ मोज़ा अगले से मिलना चाहिए।",
+    "hinglish": "Kapdon ke dher se mozey milana: aakhri uthaya bejod moza agle se milna chahiye."
+   },
+   "realExample": {
+    "en": "VS Code highlights the matching bracket as you move the cursor — a stack-based matcher at work.",
+    "hi": "VS Code कर्सर हिलाते ही मेल खाता कोष्ठक चमकाता है — स्टैक आधारित मिलान काम पर।",
+    "hinglish": "VS Code cursor hilaate hi matching bracket highlight karta hai — stack based matcher kaam par."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Implement a browser history with two stacks: back and forward. visit(url), back() and forward(). Test it with 4 visits, 2 backs, and 1 new visit — what happens to the forward stack?",
+   "hi": "दो स्टैक से ब्राउज़र इतिहास बनाओ: back और forward। visit(url), back() और forward()। 4 visit, 2 back और 1 नई visit से परखो — forward स्टैक का क्या होता है?",
+   "hinglish": "Do stacks se browser history banao: back aur forward. visit(url), back() aur forward(). 4 visits, 2 backs aur 1 naye visit se test karo — forward stack ka kya hota hai?"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "push A, push B, push C, pop. What comes out?",
+     "hi": "push A, push B, push C, pop। क्या निकलता है?",
+     "hinglish": "push A, push B, push C, pop. Kya nikalta hai?"
+    },
+    "options": [
+     "A",
+     "B",
+     "C",
+     "Nothing"
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "LIFO: the last pushed leaves first.",
+     "hi": "LIFO: आख़िरी डाला पहले निकलता है।",
+     "hinglish": "LIFO: aakhri daala pehle nikalta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "enqueue A, B, C, then dequeue. What comes out?",
+     "hi": "enqueue A, B, C, फिर dequeue। क्या निकलता है?",
+     "hinglish": "enqueue A, B, C, phir dequeue. Kya nikalta hai?"
+    },
+    "options": [
+     "A",
+     "B",
+     "C",
+     "Nothing"
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "FIFO: the first in leaves first.",
+     "hi": "FIFO: पहले आया पहले जाता है।",
+     "hinglish": "FIFO: pehle aaya pehle jaata hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "multi",
+    "prompt": {
+     "en": "Which strings are balanced?",
+     "hi": "कौन-सी स्ट्रिंग संतुलित हैं?",
+     "hinglish": "Kaunsi strings balanced hain?"
+    },
+    "options": [
+     "{[()]}",
+     "([)]",
+     "(()",
+     "[]{}()"
+    ],
+    "answer": [
+     0,
+     3
+    ],
+    "explain": {
+     "en": "\"([)]\" crosses pairs; \"(()\" leaves an opener.",
+     "hi": "\"([)]\" जोड़े काटता है; \"(()\" एक खुला छोड़ता है।",
+     "hinglish": "\"([)]\" pairs cross karta hai; \"(()\" ek opener chhodta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Best Python structure for a fast queue?",
+     "hi": "तेज़ कतार के लिए सबसे अच्छी पायथन संरचना?",
+     "hinglish": "Fast queue ke liye best Python structure?"
+    },
+    "options": [
+     "list with pop(0)",
+     "collections.deque",
+     "str",
+     "tuple"
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "deque.popleft() is O(1); list.pop(0) is O(n).",
+     "hi": "deque.popleft() O(1); list.pop(0) O(n)।",
+     "hinglish": "deque.popleft() O(1); list.pop(0) O(n)."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Run the bracket checker.",
+     "hi": "कोष्ठक जाँचक चलाओ।",
+     "hinglish": "Bracket checker chalao."
+    },
+    "answer": {
+     "event": "brackets-checked"
+    },
+    "explain": {
+     "en": "A stack checked every pair.",
+     "hi": "स्टैक ने हर जोड़ा जाँचा।",
+     "hinglish": "Stack ne har pair check kiya."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "prog.ds-stack-queue"
+ ],
+ "sources": [
+  {
+   "title": "Cormen, Leiserson, Rivest, Stein — Introduction to Algorithms (4th ed., MIT Press, 2022)",
+   "url": "https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Python Wiki — TimeComplexity of built-in operations",
+   "url": "https://wiki.python.org/moin/TimeComplexity",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Python docs — collections.deque",
+   "url": "https://docs.python.org/3/library/collections.html#collections.deque",
+   "licence": "fact reference"
+  }
+ ]
+}

@@ -1,0 +1,325 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.rag-agents.04",
+ "level": 3,
+ "classes": [
+  11,
+  12
+ ],
+ "unit": "rag-agents",
+ "title": {
+  "en": "Agent memory: short-term, long-term and private",
+  "hi": "एजेंट मेमोरी: अल्पकालिक, दीर्घकालिक और निजी",
+  "hinglish": "Agent memory: short-term, long-term aur private"
+ },
+ "minutes": 12,
+ "xp": 50,
+ "prereq": [
+  "L3.rag-agents.02"
+ ],
+ "outcomes": [
+  {
+   "en": "Tell context (short-term) memory from stored (long-term) memory",
+   "hinglish": "Context (short-term) aur stored (long-term) memory ka farak batao",
+   "hi": "संदर्भ (अल्पकालिक) स्मृति और संग्रहीत (दीर्घकालिक) स्मृति में अंतर करना"
+  },
+  {
+   "en": "Describe how agents save and recall memories with embeddings",
+   "hinglish": "Agents embeddings se memories kaise save aur recall karte hain",
+   "hi": "बताना कि एजेंट एम्बेडिंग से स्मृतियाँ कैसे सहेजते और याद करते हैं"
+  },
+  {
+   "en": "Apply privacy rules: consent, minimisation, deletion",
+   "hinglish": "Privacy rules lagao: consent, minimisation, deletion",
+   "hi": "निजता नियम लागू करना: सहमति, न्यूनीकरण, मिटाना"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Short-term memory",
+   "hinglish": "Abhi ki baatcheet — context window mein",
+   "en": "What is in the current context window",
+   "hi": "वर्तमान संदर्भ-खिड़की में जो है"
+  },
+  {
+   "term": "Long-term memory",
+   "hinglish": "Baad ke liye save ki gayi baatein",
+   "en": "Facts stored outside the model and retrieved later",
+   "hi": "मॉडल के बाहर संग्रहीत और बाद में लाए गए तथ्य"
+  },
+  {
+   "term": "Episodic memory",
+   "hinglish": "Pichhli ghatnaon ki yaad",
+   "en": "Records of past interactions or tasks",
+   "hi": "पिछली बातचीत या कार्यों के रिकॉर्ड"
+  },
+  {
+   "term": "Data minimisation",
+   "hinglish": "Sirf zaroori data rakhna",
+   "en": "Collect and keep only what is needed for the purpose",
+   "hi": "उद्देश्य के लिए जितना ज़रूरी उतना ही जुटाओ और रखो"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Inside one chat, the agent \"remembers\" because everything is still in the context window.",
+    "hi": "एक बातचीत के अंदर एजेंट \"याद रखता\" है क्योंकि सब अब भी कॉन्टेक्स्ट विंडो में है।",
+    "hinglish": "Ek chat ke andar agent \"yaad rakhta\" hai kyunki sab abhi bhi context window mein hai."
+   },
+   "visual": "anim:memory-desk",
+   "narration": {
+    "en": "Inside one chat, the agent \"remembers\" because everything is still in the context window.",
+    "hi": "एक बातचीत के अंदर एजेंट \"याद रखता\" है क्योंकि सब अब भी कॉन्टेक्स्ट विंडो में है।",
+    "hinglish": "Ek chat ke andar agent \"yaad rakhta\" hai kyunki sab abhi bhi context window mein hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "To remember across days, it writes notes (\"Aarav is in Class 10, prefers Hinglish\") to a store and retrieves relevant ones next time.",
+    "hi": "दिनों के पार याद रखने के लिए वह नोट्स (\"आरव कक्षा 10 में है, हिंग्लिश पसंद करता है\") भंडार में लिखता है और अगली बार ज़रूरी वाले लाता है।",
+    "hinglish": "Dino ke paar yaad rakhne ke liye woh notes (\"Aarav Class 10 mein hai, Hinglish pasand karta hai\") store mein likhta hai aur agli baar zaroori wale laata hai."
+   },
+   "visual": "anim:memory-store",
+   "narration": {
+    "en": "To remember across days, it writes notes (\"Aarav is in Class 10, prefers Hinglish\") to a store and retrieves relevant ones next time.",
+    "hi": "दिनों के पार याद रखने के लिए वह नोट्स (\"आरव कक्षा 10 में है, हिंग्लिश पसंद करता है\") भंडार में लिखता है और अगली बार ज़रूरी वाले लाता है।",
+    "hinglish": "Dino ke paar yaad rakhne ke liye woh notes (\"Aarav Class 10 mein hai, Hinglish pasand karta hai\") store mein likhta hai aur agli baar zaroori wale laata hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Memory must be visible, editable and deletable by the user, and must never store secrets like OTPs or passwords.",
+    "hi": "मेमोरी उपयोगकर्ता को दिखनी, बदलनी और मिटानी संभव होनी चाहिए, और ओटीपी या पासवर्ड जैसे राज़ कभी नहीं रखने चाहिए।",
+    "hinglish": "Memory user ko dikhni, edit aur delete ho sakni chahiye, aur OTP ya password jaise secrets kabhi nahi rakhne chahiye."
+   },
+   "visual": "anim:memory-privacy",
+   "narration": {
+    "en": "Memory must be visible, editable and deletable by the user, and must never store secrets like OTPs or passwords.",
+    "hi": "मेमोरी उपयोगकर्ता को दिखनी, बदलनी और मिटानी संभव होनी चाहिए, और ओटीपी या पासवर्ड जैसे राज़ कभी नहीं रखने चाहिए।",
+    "hinglish": "Memory user ko dikhni, edit aur delete ho sakni chahiye, aur OTP ya password jaise secrets kabhi nahi rakhne chahiye."
+   }
+  }
+ ],
+ "play": {
+  "lab": "agent-loop",
+  "config": {
+   "scenario": "study-buddy-memory"
+  },
+  "goal": {
+   "en": "Day 1: tell the study-buddy agent your class and weak topic. Day 2: see which memories it retrieves. Then delete one memory and watch the Day 2 answer change.",
+   "hinglish": "Day 1: study-buddy agent ko apni class aur weak topic batao. Day 2: dekho kaunsi memories retrieve hoti hain. Phir ek memory delete karo aur Day 2 ka jawab badalte dekho.",
+   "hi": "पहला दिन: स्टडी-बडी एजेंट को अपनी कक्षा और कमज़ोर विषय बताओ। अगला सत्र: देखो वह कौन-सी स्मृतियाँ लाता है। फिर एक स्मृति मिटाओ और उत्तर बदलते देखो।"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "How agent memory works",
+    "hi": "एजेंट मेमोरी कैसे काम करती है",
+    "hinglish": "Agent memory kaise kaam karti hai"
+   },
+   "body": {
+    "en": "LLMs do not learn from your chat; their weights stay fixed. Short-term memory is just the context window. Long-term memory is an application feature: the agent (or the app) decides that a fact is worth keeping, writes it to a database, often with an embedding, and on later turns retrieves the most relevant memories and puts them into the prompt, exactly like RAG over your own history. Types include semantic memory (facts and preferences), episodic memory (what happened in past tasks) and procedural memory (learned how-to instructions or skills). Problems: stale memories (\"Class 9\" a year later), wrong memories that keep resurfacing, and memories retrieved in the wrong context.",
+    "hi": "एलएलएम आपकी बातचीत से नहीं सीखते; उनके भार स्थिर रहते हैं। अल्पकालिक मेमोरी बस कॉन्टेक्स्ट विंडो है। दीर्घकालिक मेमोरी ऐप की सुविधा है: एजेंट (या ऐप) तय करता है कि कोई तथ्य रखने लायक है, उसे डेटाबेस में लिखता है, अक्सर एम्बेडिंग के साथ, और बाद में सबसे ज़रूरी यादें लाकर प्रॉम्प्ट में डालता है, ठीक आपके अपने इतिहास पर आरएजी की तरह। प्रकार: अर्थ-स्मृति (तथ्य और पसंद), घटना-स्मृति (पिछले कामों में क्या हुआ) और प्रक्रिया-स्मृति (सीखे गए कैसे-करें निर्देश या कौशल)। समस्याएँ: पुरानी यादें (एक साल बाद भी \"कक्षा 9\"), गलत यादें जो बार-बार लौटें, और गलत संदर्भ में लाई गई यादें।",
+    "hinglish": "LLMs tumhari chat se nahi seekhte; unke weights fixed rehte hain. Short-term memory bas context window hai. Long-term memory app ka feature hai: agent (ya app) decide karta hai ki koi fact rakhne laayak hai, use database mein likhta hai, aksar embedding ke saath, aur baad mein sabse relevant memories laake prompt mein daalta hai, bilkul tumhari apni history par RAG ki tarah. Types: semantic memory (facts aur preferences), episodic memory (pichhle tasks mein kya hua) aur procedural memory (seekhe hue how-to instructions ya skills). Problems: purani memories (ek saal baad bhi \"Class 9\"), galat memories jo baar-baar lautein, aur galat context mein laayi gayi memories."
+   },
+   "analogy": {
+    "hinglish": "Short-term memory = whiteboard jo class ke baad mit jaata hai; long-term memory = diary jismein zaroori baatein likhte ho aur zaroorat par palat-te ho.",
+    "en": "Short-term memory = the whiteboard wiped after class; long-term memory = the diary where you write important things and flip back when needed.",
+    "hi": "अल्पकालिक स्मृति = व्हाइटबोर्ड जो कक्षा के बाद मिट जाता है; दीर्घकालिक स्मृति = डायरी जिसमें ज़रूरी बातें लिखते हो और ज़रूरत पर पलटते हो।"
+   },
+   "realExample": {
+    "en": "ChatGPT, Gemini and Claude apps offer a \"memory\" setting you can view, edit or turn off; good apps let parents see what a child-facing assistant has stored.",
+    "hinglish": "ChatGPT, Gemini aur Claude apps mein \"memory\" setting hai jise dekh, edit ya band kar sakte ho; achhi apps parents ko dikhati hain ki bachchon wale assistant ne kya store kiya.",
+    "hi": "ChatGPT, Gemini और Claude ऐप \"स्मृति\" सेटिंग देते हैं जिसे आप देख, बदल या बंद कर सकते हो; अच्छे ऐप अभिभावकों को दिखाते हैं कि बच्चों के सहायक ने क्या सहेजा है।"
+   }
+  },
+  {
+   "heading": {
+    "en": "Memory and the law: privacy by design",
+    "hi": "मेमोरी और कानून: डिज़ाइन से निजता",
+    "hinglish": "Memory aur law: privacy by design"
+   },
+   "body": {
+    "en": "Stored memories are personal data. India's Digital Personal Data Protection Act, 2023 and the DPDP Rules notified in November 2025 require a clear notice and consent, use only for the stated purpose, reasonable security, deletion when the purpose is over or consent is withdrawn, and verifiable parental consent before processing data of anyone under 18. Design rules for agent memory: store the minimum, never store passwords, OTPs, Aadhaar or card numbers, show memories to the user with an easy delete button, expire old memories, and keep each family's memories isolated with database access controls.",
+    "hi": "रखी गई यादें निजी डेटा हैं। भारत का डिजिटल व्यक्तिगत डेटा संरक्षण अधिनियम, 2023 और नवंबर 2025 में अधिसूचित डीपीडीपी नियम माँगते हैं: साफ़ सूचना और सहमति, सिर्फ़ बताए उद्देश्य के लिए उपयोग, उचित सुरक्षा, उद्देश्य पूरा होने या सहमति वापस लेने पर मिटाना, और 18 से कम उम्र के किसी के डेटा से पहले सत्यापन योग्य अभिभावक सहमति। एजेंट मेमोरी के डिज़ाइन नियम: न्यूनतम रखो, पासवर्ड, ओटीपी, आधार या कार्ड नंबर कभी मत रखो, यादें उपयोगकर्ता को आसान मिटाने वाले बटन के साथ दिखाओ, पुरानी यादें समाप्त करो, और हर परिवार की यादें डेटाबेस पहुँच-नियंत्रण से अलग रखो।",
+    "hinglish": "Stored memories personal data hain. India ka Digital Personal Data Protection Act, 2023 aur November 2025 mein notify hue DPDP Rules maangte hain: clear notice aur consent, sirf bataye purpose ke liye use, reasonable security, purpose poora hone ya consent wapas lene par delete, aur 18 se kam umar ke kisi ke data se pehle verifiable parental consent. Agent memory ke design rules: minimum rakho, passwords, OTPs, Aadhaar ya card numbers kabhi mat rakho, memories user ko easy delete button ke saath dikhao, purani memories expire karo, aur har family ki memories database access controls se alag rakho."
+   },
+   "analogy": {
+    "hinglish": "Achha tuition teacher yaad rakhta hai ki tumhe fractions mein dikkat hai — par tumhare ghar ki chaabi ki copy nahi rakhta.",
+    "en": "A good tuition teacher remembers that you struggle with fractions — but does not keep a copy of your house key.",
+    "hi": "अच्छा ट्यूशन शिक्षक याद रखता है कि तुम्हें भिन्नों में दिक़्क़त है — पर तुम्हारे घर की चाबी की नक़ल नहीं रखता।"
+   },
+   "realExample": {
+    "en": "A school chatbot that remembers \"child has asthma\" for trip planning must keep that health note private to the family and staff who need it, and delete it when asked.",
+    "hinglish": "Trip planning ke liye \"bachche ko asthma hai\" yaad rakhne wala school chatbot us health note ko family aur zaroori staff tak private rakhe, aur maangne par delete kare.",
+    "hi": "यात्रा योजना के लिए \"बच्चे को दमा है\" याद रखने वाले स्कूल चैटबॉट को यह स्वास्थ्य नोट सिर्फ़ परिवार और ज़रूरी स्टाफ़ तक निजी रखना होगा, और माँगने पर मिटाना होगा।"
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "List 5 things a study-buddy agent may remember about you and 5 it must never store. For each \"never\", give the reason.",
+   "hinglish": "5 cheezein likho jo study-buddy agent tumhare baare mein yaad rakh sakta hai aur 5 jo kabhi store nahi karni chahiye. Har \"kabhi nahi\" ki wajah do.",
+   "hi": "5 चीज़ें लिखो जो स्टडी-बडी एजेंट तुम्हारे बारे में याद रख सकता है और 5 जो उसे कभी नहीं रखनी चाहिए। हर \"कभी नहीं\" का कारण बताओ।"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "An LLM app \"remembers\" your name across sessions. Where is that memory?",
+     "hi": "एक एलएलएम ऐप सत्रों के पार आपका नाम \"याद\" रखता है। वह याद कहाँ है?",
+     "hinglish": "LLM app sessions ke paar tumhara naam \"yaad\" rakhta hai. Woh memory kahan hai?"
+    },
+    "options": [
+     {
+      "en": "In a database the app retrieves into the prompt",
+      "hinglish": "Ek database mein jise app prompt mein laati hai",
+      "hi": "डेटाबेस में, जिसे ऐप प्रॉम्प्ट में लाता है"
+     },
+     {
+      "en": "In the model's weights, updated live",
+      "hinglish": "Model ke weights mein, live update",
+      "hi": "मॉडल के भारों में, लाइव अद्यतन"
+     },
+     {
+      "en": "In your keyboard",
+      "hinglish": "Keyboard mein",
+      "hi": "तुम्हारे कीबोर्ड में"
+     },
+     {
+      "en": "Nowhere, it guesses",
+      "hinglish": "Kahin nahi, guess karta hai",
+      "hi": "कहीं नहीं, अंदाज़ा लगाता है"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Weights do not change during chat. Long-term memory is stored data retrieved like RAG.",
+     "hi": "बातचीत में भार नहीं बदलते। दीर्घकालिक मेमोरी रखा गया डेटा है जो आरएजी की तरह लाया जाता है।",
+     "hinglish": "Chat mein weights nahi badalte. Long-term memory stored data hai jo RAG ki tarah laaya jaata hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "multi",
+    "prompt": {
+     "en": "Which should an agent never store in memory? Choose all.",
+     "hi": "एजेंट को मेमोरी में क्या कभी नहीं रखना चाहिए? सभी चुनें।",
+     "hinglish": "Agent ko memory mein kya kabhi nahi rakhna chahiye? Sab chuno."
+    },
+    "options": [
+     {
+      "en": "Bank OTPs",
+      "hinglish": "Bank OTPs",
+      "hi": "बैंक OTP"
+     },
+     {
+      "en": "Passwords",
+      "hinglish": "Passwords",
+      "hi": "पासवर्ड"
+     },
+     {
+      "en": "Preferred language",
+      "hinglish": "Pasandida bhasha",
+      "hi": "पसंदीदा भाषा"
+     },
+     {
+      "en": "Full card numbers",
+      "hinglish": "Poore card numbers",
+      "hi": "पूरे कार्ड नंबर"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     3
+    ],
+    "explain": {
+     "en": "Secrets and payment credentials create serious risk if leaked. A language preference is low-risk and useful.",
+     "hi": "राज़ और भुगतान विवरण लीक होने पर गंभीर खतरा बनाते हैं। भाषा की पसंद कम-जोखिम और उपयोगी है।",
+     "hinglish": "Secrets aur payment credentials leak hone par serious risk banate hain. Language preference low-risk aur useful hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Under India's DPDP Act, processing the personal data of a 15-year-old needs…",
+     "hi": "भारत के डीपीडीपी अधिनियम के तहत 15 साल के बच्चे के निजी डेटा के लिए क्या चाहिए?",
+     "hinglish": "India ke DPDP Act ke under 15 saal ke bachche ke personal data ke liye kya chahiye?"
+    },
+    "options": [
+     {
+      "en": "Verifiable consent of a parent or lawful guardian",
+      "hinglish": "Parent ya lawful guardian ki verifiable consent",
+      "hi": "माता-पिता या वैध अभिभावक की सत्यापन-योग्य सहमति"
+     },
+     {
+      "en": "Nothing special",
+      "hinglish": "Kuch khaas nahi",
+      "hi": "कुछ ख़ास नहीं"
+     },
+     {
+      "en": "Only the child's click",
+      "hinglish": "Sirf bachche ka click",
+      "hi": "सिर्फ़ बच्चे का क्लिक"
+     },
+     {
+      "en": "A police permit",
+      "hinglish": "Police permit",
+      "hi": "पुलिस परमिट"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "The Act defines a child as under 18 and requires verifiable parental consent; it also bars tracking, behavioural monitoring and targeted ads aimed at children.",
+     "hi": "अधिनियम 18 से कम को बच्चा मानता है और सत्यापन योग्य अभिभावक सहमति माँगता है; यह बच्चों की ट्रैकिंग, व्यवहार-निगरानी और लक्षित विज्ञापन पर भी रोक लगाता है।",
+     "hinglish": "Act 18 se kam ko child maanta hai aur verifiable parental consent maangta hai; yeh bachchon ki tracking, behavioural monitoring aur targeted ads par bhi rok lagata hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Delete the \"weak topic\" memory and re-run Day 2.",
+     "hi": "\"कमज़ोर विषय\" वाली याद मिटाकर दिन 2 फिर चलाएँ।",
+     "hinglish": "\"Weak topic\" memory delete karke Day 2 phir chalao."
+    },
+    "answer": {
+     "event": "memory-deleted"
+    },
+    "explain": {
+     "en": "Without that memory the agent no longer tailors practice to your weak topic, proving memories are just retrieved data you control.",
+     "hi": "उस याद के बिना एजेंट अभ्यास को आपके कमज़ोर विषय पर नहीं ढालता, यानी यादें बस लाया गया डेटा हैं जिस पर आपका नियंत्रण है।",
+     "hinglish": "Us memory ke bina agent practice ko tumhare weak topic par nahi dhaalta, yaani memories bas retrieved data hain jin par tumhara control hai."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "ai.agents-memory",
+  "cyber.dpdp-law"
+ ],
+ "sources": [
+  {
+   "title": "Digital Personal Data Protection Act, 2023 (MeitY)",
+   "url": "https://www.meity.gov.in/data-protection-framework",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Park et al. (2023) Generative Agents: Interactive Simulacra of Human Behavior",
+   "url": "https://arxiv.org/abs/2304.03442",
+   "licence": "fact reference"
+  }
+ ]
+}

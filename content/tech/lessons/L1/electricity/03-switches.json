@@ -1,0 +1,294 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.electricity.03",
+ "level": 1,
+ "classes": [
+  2,
+  3,
+  4,
+  5
+ ],
+ "unit": "electricity",
+ "title": {
+  "en": "Switches: ON and OFF",
+  "hi": "स्विच: चालू और बंद",
+  "hinglish": "Switch: ON aur OFF"
+ },
+ "minutes": 7,
+ "xp": 25,
+ "prereq": [
+  "L1.electricity.02"
+ ],
+ "topics": [
+  "elec.circuits",
+  "elec.components"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain that a switch opens and closes a circuit.",
+   "hi": "समझा सकते हो कि स्विच सर्किट खोलता और बंद करता है।",
+   "hinglish": "Samjha sakte ho ki switch circuit kholta aur band karta hai."
+  },
+  {
+   "en": "Connect switches to computers: ON/OFF is like 1 and 0.",
+   "hi": "स्विच को कंप्यूटर से जोड़ सकते हो: चालू/बंद 1 और 0 जैसा है।",
+   "hinglish": "Switch ko computer se jod sakte ho: ON/OFF 1 aur 0 jaisa hai."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Switch",
+   "en": "A part that closes (ON) or opens (OFF) a circuit",
+   "hi": "सर्किट को जोड़ने-तोड़ने वाला पुर्ज़ा",
+   "hinglish": "Circuit ko jodne-todne wala part"
+  },
+  {
+   "term": "Binary",
+   "en": "Counting with only two digits, 0 and 1",
+   "hi": "सिर्फ़ दो अंक — 0 और 1",
+   "hinglish": "Sirf do ank — 0 aur 1"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.electricity.03.s1",
+   "caption": {
+    "en": "Switch ON: the gap closes, the bulb glows.",
+    "hi": "स्विच चालू: रास्ता जुड़ा, बल्ब जला।",
+    "hinglish": "Switch ON: gap band, bulb jala."
+   },
+   "narration": {
+    "en": "When you press the switch ON, a metal piece closes the gap and the circuit is complete.",
+    "hinglish": "Switch ON karne par ek metal ka tukda gap band kar deta hai aur circuit poora ho jaata hai.",
+    "hi": "स्विच चालू करने पर धातु का टुकड़ा जगह जोड़ देता है और सर्किट पूरा हो जाता है।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.electricity.03.s2",
+   "caption": {
+    "en": "Switch OFF: a gap, the bulb is dark.",
+    "hi": "स्विच बंद: रास्ता टूटा, बल्ब बुझा।",
+    "hinglish": "Switch OFF: gap, bulb bujha."
+   },
+   "narration": {
+    "en": "Switch OFF lifts the metal piece and makes a gap. The circuit is open, so the light goes off.",
+    "hinglish": "Switch OFF metal ka tukda utha kar gap bana deta hai. Circuit open ho jaata hai, toh light band.",
+    "hi": "स्विच बंद करने पर धातु का टुकड़ा उठता है और जगह खुल जाती है। सर्किट खुल जाता है, तो बत्ती बुझ जाती है।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.electricity.03.s3",
+   "caption": {
+    "en": "Computers have billions of tiny switches!",
+    "hi": "कंप्यूटर में अरबों छोटे स्विच हैं!",
+    "hinglish": "Computer mein arabon chhote switches hain!"
+   },
+   "narration": {
+    "en": "A computer chip has billions of tiny switches called transistors. ON means 1 and OFF means 0. All computer data is made of these 1s and 0s.",
+    "hinglish": "Computer chip mein arabon chhote switches hote hain jinhe transistor kehte hain. ON matlab 1, OFF matlab 0. Computer ka saara data inhi 1 aur 0 se bana hai.",
+    "hi": "कंप्यूटर चिप में अरबों छोटे स्विच होते हैं जिन्हें ट्रांज़िस्टर कहते हैं। चालू मतलब 1, बंद मतलब 0। कंप्यूटर का सारा डेटा इन्हीं 1 और 0 से बना है।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "circuit-builder",
+  "config": {
+   "mode": "switch"
+  },
+  "goal": {
+   "en": "Add the switch, then turn the bulb ON, OFF and ON again.",
+   "hi": "स्विच लगाओ, फिर बल्ब चालू, बंद और फिर चालू करो।",
+   "hinglish": "Switch lagao, phir bulb ON, OFF aur phir ON karo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "A switch is a bridge",
+    "hi": "स्विच एक पुल है",
+    "hinglish": "Switch ek pul hai"
+   },
+   "body": {
+    "en": "Think of the gap as a river and the switch as a drawbridge. Bridge down (ON): electricity crosses. Bridge up (OFF): it cannot. The switch does not make electricity — it only lets it pass or stops it.",
+    "hi": "जगह को नदी और स्विच को उठने वाला पुल समझो। पुल नीचे (चालू): बिजली पार होती है। पुल ऊपर (बंद): नहीं हो पाती। स्विच बिजली बनाता नहीं — बस जाने देता या रोकता है।",
+    "hinglish": "Gap ko nadi aur switch ko uthne wala pul samjho. Pul neeche (ON): bijli paar hoti hai. Pul upar (OFF): nahin ho paati. Switch bijli banaata nahin — bas jaane deta ya rokta hai."
+   },
+   "analogy": {
+    "en": "Like a railway level-crossing gate: open and traffic passes, closed and it stops.",
+    "hi": "रेलवे फाटक जैसा: फाटक खुला तो गाड़ी गुज़रती है, बंद तो रुक जाती है।",
+    "hinglish": "Railway phaatak jaisa: phaatak khula toh gaadi guzarti hai, band toh ruk jaati hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "From switches to computers",
+    "hi": "स्विच से कंप्यूटर तक",
+    "hinglish": "Switch se computer tak"
+   },
+   "body": {
+    "en": "With 8 switches you can make 256 different ON/OFF patterns — enough to stand for every letter, digit and symbol on a keyboard. Modern chips pack billions of switches that flip billions of times every second.",
+    "hi": "8 स्विच से 256 अलग चालू/बंद पैटर्न बनते हैं — कीबोर्ड के हर अक्षर, अंक और चिह्न के लिए काफ़ी। आधुनिक चिप में अरबों स्विच होते हैं जो हर सेकंड अरबों बार बदलते हैं।",
+    "hinglish": "8 switches se 256 alag ON/OFF patterns bante hain — keyboard ke har letter, digit aur symbol ke liye kaafi. Modern chips mein arabon switches hote hain jo har second arabon baar badalte hain."
+   },
+   "realExample": {
+    "en": "The fan regulator and the TV remote's buttons are also switches controlling circuits.",
+    "hi": "पंखे का रेगुलेटर और टीवी रिमोट के बटन भी सर्किट नियंत्रित करने वाले स्विच हैं।",
+    "hinglish": "Pankhe ka regulator aur TV remote ke buttons bhi circuits ko control karne wale switches hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Make a \"light code\" with a torch (with a grown-up): ON = 1, OFF = 0. Flash 1-0-1 to a family member and see if they can read it.",
+   "hi": "टॉर्च से \"रोशनी का कोड\" बनाओ (बड़े के साथ): चालू = 1, बंद = 0। परिवार को 1-0-1 चमकाओ और देखो वे पढ़ पाते हैं।",
+   "hinglish": "Torch se \"light code\" banao (bade ke saath): ON = 1, OFF = 0. Family ko 1-0-1 flash karo aur dekho woh padh paate hain."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "When the switch is OFF, the circuit is…",
+     "hi": "स्विच बंद होने पर सर्किट…",
+     "hinglish": "Switch OFF hone par circuit…"
+    },
+    "options": [
+     {
+      "en": "open",
+      "hi": "खुला",
+      "hinglish": "open"
+     },
+     {
+      "en": "closed",
+      "hi": "बंद",
+      "hinglish": "closed"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "OFF makes a gap, so the circuit is open.",
+     "hi": "बंद करने से जगह टूटती है, तो सर्किट खुला है।",
+     "hinglish": "OFF se gap banta hai, toh circuit open hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "In a computer, ON usually stands for…",
+     "hi": "कंप्यूटर में चालू आमतौर पर किसके लिए है?",
+     "hinglish": "Computer mein ON aam taur par kiske liye hai?"
+    },
+    "options": [
+     {
+      "en": "1",
+      "hi": "1",
+      "hinglish": "1"
+     },
+     {
+      "en": "0",
+      "hi": "0",
+      "hinglish": "0"
+     },
+     {
+      "en": "5",
+      "hi": "5",
+      "hinglish": "5"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "ON = 1, OFF = 0.",
+     "hi": "चालू = 1, बंद = 0।",
+     "hinglish": "ON = 1, OFF = 0."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Tiny switches inside computer chips are called…",
+     "hi": "कंप्यूटर चिप के छोटे स्विच कहलाते हैं…",
+     "hinglish": "Computer chip ke chhote switches kehlaate hain…"
+    },
+    "options": [
+     {
+      "en": "transistors",
+      "hi": "ट्रांज़िस्टर",
+      "hinglish": "transistors"
+     },
+     {
+      "en": "batteries",
+      "hi": "बैटरियाँ",
+      "hinglish": "batteries"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Chips hold billions of transistors.",
+     "hi": "चिप में अरबों ट्रांज़िस्टर होते हैं।",
+     "hinglish": "Chips mein arabon transistors hote hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "short",
+    "prompt": {
+     "en": "How many ON/OFF patterns can 2 switches make?",
+     "hi": "2 स्विच कितने चालू/बंद पैटर्न बना सकते हैं?",
+     "hinglish": "2 switches kitne ON/OFF patterns bana sakte hain?"
+    },
+    "answer": [
+     "4",
+     "four",
+     "chaar",
+     "चार"
+    ],
+    "explain": {
+     "en": "00, 01, 10, 11 — that is 4.",
+     "hi": "00, 01, 10, 11 — यानी 4।",
+     "hinglish": "00, 01, 10, 11 — yaani 4."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Use the switch in the lab: ON, OFF, ON.",
+     "hi": "लैब में स्विच चलाओ: चालू, बंद, चालू।",
+     "hinglish": "Lab mein switch chalao: ON, OFF, ON."
+    },
+    "answer": {
+     "lab": "circuit-builder",
+     "mode": "switch",
+     "solved": true
+    },
+    "explain": {
+     "en": "Drop the switch into the gap and tap it three times.",
+     "hi": "स्विच को ख़ाली जगह में डालो और तीन बार टैप करो।",
+     "hinglish": "Switch ko gap mein daalo aur teen baar tap karo."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "NCERT Class 6 Science – Electricity and Circuits (fact reference)",
+   "url": "https://ncert.nic.in/textbook.php",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

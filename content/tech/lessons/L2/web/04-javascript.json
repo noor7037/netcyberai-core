@@ -1,0 +1,385 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.web.04",
+ "level": 2,
+ "classes": [
+  8
+ ],
+ "unit": "web",
+ "title": {
+  "en": "JavaScript: making pages interactive",
+  "hi": "JavaScript: पेज को इंटरैक्टिव बनाना",
+  "hinglish": "JavaScript: page ko interactive banana"
+ },
+ "minutes": 12,
+ "xp": 45,
+ "prereq": [
+  "L2.web.03"
+ ],
+ "topics": [
+  "web.js",
+  "web.apis-json",
+  "prog.events"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain what JavaScript adds to a page",
+   "hi": "समझा सकते हो कि JavaScript पेज में क्या जोड़ता है",
+   "hinglish": "JavaScript page mein kya jodta hai samjha sakte ho"
+  },
+  {
+   "en": "Read simple JS: variables, events and changing the page",
+   "hi": "सरल JS पढ़ सकते हो: वेरिएबल, इवेंट और पेज बदलना",
+   "hinglish": "Simple JS padh sakte ho: variables, events aur page badalna"
+  },
+  {
+   "en": "Explain APIs and JSON at a basic level",
+   "hi": "API और JSON को बुनियादी स्तर पर समझा सकते हो",
+   "hinglish": "APIs aur JSON basic level pe samjha sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "JavaScript",
+   "hinglish": "Page ko chalane wali programming language",
+   "en": "The programming language that runs inside every browser",
+   "hi": "हर ब्राउज़र के अंदर चलने वाली प्रोग्रामिंग भाषा"
+  },
+  {
+   "term": "Event",
+   "hinglish": "Koi kuch kare: click, type",
+   "en": "Something that happens: a click, a key press, a page load",
+   "hi": "कुछ होना: क्लिक, कुंजी दबाना, पेज लोड"
+  },
+  {
+   "term": "DOM",
+   "hinglish": "Page ka tree jise JS badal sakta hai",
+   "en": "Document Object Model: the page as objects JavaScript can change",
+   "hi": "डॉक्यूमेंट ऑब्जेक्ट मॉडल: पेज को ऐसे ऑब्जेक्ट के रूप में जिन्हें JavaScript बदल सके"
+  },
+  {
+   "term": "API",
+   "hinglish": "Do programs ke baat karne ka tareeka",
+   "en": "A way for programs to ask each other for data or actions",
+   "hi": "प्रोग्रामों का एक-दूसरे से डेटा या काम माँगने का तरीक़ा"
+  },
+  {
+   "term": "JSON",
+   "hinglish": "Data likhne ka simple format",
+   "en": "A text format for data: {\"name\": \"Asha\", \"class\": 8}",
+   "hi": "डेटा का टेक्स्ट प्रारूप: {\"name\": \"Asha\", \"class\": 8}"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "HTML is structure, CSS is style, JavaScript is behaviour: “when this is clicked, do that”.",
+    "hi": "HTML ढाँचा, CSS शैली, JavaScript व्यवहार: “जब यह दबे, तो वह करो”।",
+    "hinglish": "HTML dhaancha, CSS style, JavaScript behaviour: “jab yeh click ho, to woh karo”."
+   },
+   "visual": "compare:🧱 HTML structure|🎨 CSS style|⚡ JS behaviour",
+   "narration": {
+    "en": "Every like button, form check and live score uses JavaScript.",
+    "hi": "हर लाइक बटन, फ़ॉर्म जाँच और लाइव स्कोर JavaScript उपयोग करता है।",
+    "hinglish": "Har like button, form check aur live score JavaScript use karta hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "An event listener waits for a click, then a function runs and changes the page.",
+    "hi": "इवेंट लिसनर क्लिक का इंतज़ार करता है, फिर एक फ़ंक्शन चलकर पेज बदलता है।",
+    "hinglish": "Event listener click ka wait karta hai, phir ek function chal ke page badalta hai."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "Read it like a sentence: “when the button is clicked, add one and show the new count”.",
+    "hi": "इसे वाक्य की तरह पढ़ो: “जब बटन दबे, एक जोड़ो और नई गिनती दिखाओ”।",
+    "hinglish": "Isse sentence ki tarah padho: “jab button click ho, ek jodo aur naya count dikhao”."
+   },
+   "code": "let likes = 0;\nconst btn = document.querySelector(\"#like\");\nbtn.addEventListener(\"click\", () => {\n  likes = likes + 1;\n  btn.textContent = \"👍 \" + likes;\n});"
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Apps fetch live data from APIs as JSON — cricket scores, weather, train status.",
+    "hi": "ऐप API से JSON में लाइव डेटा लाते हैं — क्रिकेट स्कोर, मौसम, ट्रेन स्थिति।",
+    "hinglish": "Apps APIs se JSON mein live data laate hain — cricket score, weather, train status."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "JSON is just labelled data that any program can read.",
+    "hi": "JSON बस लेबल वाला डेटा है जिसे कोई भी प्रोग्राम पढ़ सकता है।",
+    "hinglish": "JSON bas label wala data hai jise koi bhi program padh sakta hai."
+   },
+   "code": "{\n  \"match\": \"IND vs AUS\",\n  \"score\": \"287/4\",\n  \"overs\": 45.2\n}"
+  }
+ ],
+ "play": {
+  "lab": "web-studio",
+  "config": {
+   "tab": "js"
+  },
+  "goal": {
+   "en": "Wire up the counter: choose the event and the action blocks, then click the button 5 times.",
+   "hi": "काउंटर जोड़ो: इवेंट और क्रिया ब्लॉक चुनो, फिर बटन 5 बार दबाओ।",
+   "hinglish": "Counter jodo: event aur action blocks chuno, phir button 5 baar click karo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "JavaScript in the browser, safely",
+    "hi": "ब्राउज़र में JavaScript, सुरक्षित रूप से",
+    "hinglish": "Browser mein JavaScript, safely"
+   },
+   "body": {
+    "en": "JavaScript (created in 1995 by Brendan Eich) runs in a “sandbox”: a page’s script can change that page but cannot read your files or other tabs. It can respond to events (click, input, scroll), change the DOM (text, styles, show/hide), and call APIs with fetch() to get JSON data. The same language also runs on servers (Node.js). Safety rules for you: never paste code a stranger gives you into the browser console — “self-XSS” scams use this to steal accounts — and only install browser extensions from trusted publishers, because extensions can read the pages you visit.",
+    "hi": "JavaScript (1995 में ब्रेंडन आइक ने बनाया) “सैंडबॉक्स” में चलता है: पेज की स्क्रिप्ट उस पेज को बदल सकती है पर आपकी फ़ाइलें या दूसरे टैब नहीं पढ़ सकती। यह इवेंट (क्लिक, इनपुट, स्क्रॉल) पर प्रतिक्रिया दे सकता है, DOM बदल सकता है (टेक्स्ट, शैली, दिखाना/छिपाना), और fetch() से API बुलाकर JSON डेटा ला सकता है। यही भाषा सर्वर पर भी चलती है (Node.js)। आपके लिए सुरक्षा नियम: किसी अजनबी का दिया कोड ब्राउज़र कंसोल में कभी मत चिपकाओ — “सेल्फ़-XSS” स्कैम इससे खाते चुराते हैं — और ब्राउज़र एक्सटेंशन केवल भरोसेमंद प्रकाशकों से लो, क्योंकि एक्सटेंशन आपके देखे पेज पढ़ सकते हैं।",
+    "hinglish": "JavaScript (1995 mein Brendan Eich ne banaya) “sandbox” mein chalta hai: page ki script us page ko badal sakti hai par aapki files ya doosre tabs nahi padh sakti. Yeh events (click, input, scroll) pe react kar sakta hai, DOM badal sakta hai (text, styles, show/hide), aur fetch() se APIs bula ke JSON data la sakta hai. Yahi language servers pe bhi chalti hai (Node.js). Aapke liye safety rules: kisi ajnabi ka diya code browser console mein kabhi paste mat karo — “self-XSS” scams isse accounts churaate hain — aur browser extensions sirf trusted publishers se lo, kyunki extensions aapke dekhe pages padh sakte hain."
+   },
+   "analogy": {
+    "hinglish": "JavaScript = ghar ke switch aur wiring: switch dabao (event) → pankha chale (action).",
+    "en": "JavaScript = the switches and wiring in a house: press the switch (event) → the fan runs (action).",
+    "hi": "JavaScript = घर के स्विच और वायरिंग: स्विच दबाओ (इवेंट) → पंखा चले (क्रिया)।"
+   },
+   "realExample": {
+    "en": "IRCTC and DigiLocker pages use JavaScript to check your form before it is sent — e.g. a 10-digit mobile number.",
+    "hi": "IRCTC और DigiLocker पेज फ़ॉर्म भेजने से पहले JavaScript से जाँचते हैं — जैसे 10 अंकों का मोबाइल नंबर।",
+    "hinglish": "IRCTC aur DigiLocker pages form bhejne se pehle JavaScript se check karte hain — jaise 10-digit mobile number."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Describe, as “when … then …” sentences, three interactive things on an app you use every day.",
+   "hi": "रोज़ उपयोग होने वाले ऐप की तीन इंटरैक्टिव चीज़ों को “जब … तब …” वाक्यों में बताओ।",
+   "hinglish": "Rozana use hone wale app ki teen interactive cheezon ko “jab … to …” sentences mein likho."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "match",
+    "prompt": {
+     "en": "Match each web language to its job.",
+     "hi": "हर वेब भाषा को उसके काम से मिलाओ।",
+     "hinglish": "Har web language ko uske kaam se milao."
+    },
+    "options": {
+     "left": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+     ],
+     "right": [
+      {
+       "en": "How it looks",
+       "hi": "कैसा दिखता है",
+       "hinglish": "Kaisa dikhta hai"
+      },
+      {
+       "en": "What it does when you interact",
+       "hi": "बातचीत पर क्या करता है",
+       "hinglish": "Interact karne pe kya karta hai"
+      },
+      {
+       "en": "What the content is",
+       "hi": "सामग्री क्या है",
+       "hinglish": "Content kya hai"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      2
+     ],
+     [
+      1,
+      0
+     ],
+     [
+      2,
+      1
+     ]
+    ],
+    "explain": {
+     "en": "HTML structure, CSS style, JavaScript behaviour.",
+     "hi": "HTML ढाँचा, CSS शैली, JavaScript व्यवहार।",
+     "hinglish": "HTML structure, CSS style, JavaScript behaviour."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "What is an “event” in JavaScript?",
+     "hi": "JavaScript में “इवेंट” क्या है?",
+     "hinglish": "JavaScript mein “event” kya hai?"
+    },
+    "options": [
+     {
+      "en": "Something that happens, like a click",
+      "hi": "कुछ होना, जैसे क्लिक",
+      "hinglish": "Kuch hona, jaise click"
+     },
+     {
+      "en": "A type of image",
+      "hi": "एक प्रकार का चित्र",
+      "hinglish": "Ek type ki image"
+     },
+     {
+      "en": "A server",
+      "hi": "सर्वर",
+      "hinglish": "Server"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "An event is something that happens — a click, a key press, a page loading — that code can respond to.",
+     "hi": "इवेंट कुछ घटना है — क्लिक, कुंजी दबाना, पेज लोड — जिस पर कोड प्रतिक्रिया दे सकता है।",
+     "hinglish": "Event kuch hone wali cheez hai — click, key press, page load — jispe code react kar sakta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "In the like-button code, what does likes = likes + 1 do?",
+     "hi": "लाइक-बटन कोड में likes = likes + 1 क्या करता है?",
+     "hinglish": "Like-button code mein likes = likes + 1 kya karta hai?"
+    },
+    "options": [
+     {
+      "en": "Checks if likes equals likes + 1",
+      "hi": "जाँचता है likes, likes + 1 के बराबर है",
+      "hinglish": "Check karta hai likes, likes + 1 ke barabar hai"
+     },
+     {
+      "en": "Increases likes by one",
+      "hi": "likes को एक बढ़ाता है",
+      "hinglish": "likes ko ek badhata hai"
+     },
+     {
+      "en": "Deletes likes",
+      "hi": "likes मिटाता है",
+      "hinglish": "likes delete karta hai"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "It reads the old value, adds one, and stores the new value back in the variable.",
+     "hi": "पुराना मान पढ़कर एक जोड़ता है और नया मान वापस रखता है।",
+     "hinglish": "Purana value padh ke ek jodta hai aur naya value wapas rakhta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "A stranger in a game chat says “paste this code in your browser console to get free coins”. You…",
+     "hi": "गेम चैट में अजनबी कहता है “मुफ़्त सिक्कों के लिए यह कोड ब्राउज़र कंसोल में चिपकाओ”। आप…",
+     "hinglish": "Game chat mein ajnabi kehta hai “free coins ke liye yeh code browser console mein paste karo”. Aap…"
+    },
+    "options": [
+     {
+      "en": "Paste it — free coins!",
+      "hi": "चिपकाओ — मुफ़्त सिक्के!",
+      "hinglish": "Paste karo — free coins!"
+     },
+     {
+      "en": "Paste it on a friend’s phone",
+      "hi": "दोस्त के फ़ोन पर चिपकाओ",
+      "hinglish": "Dost ke phone pe paste karo"
+     },
+     {
+      "en": "Refuse and report — it can steal your account",
+      "hi": "मना करो और रिपोर्ट करो — खाता चुरा सकता है",
+      "hinglish": "Mana karo aur report karo — account chura sakta hai"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "This is a self-XSS scam: the code runs as you and can steal your account. Never paste it.",
+     "hi": "यह सेल्फ़-XSS स्कैम है: कोड आपके रूप में चलकर खाता चुरा सकता है। कभी मत चिपकाओ।",
+     "hinglish": "Yeh self-XSS scam hai: code aapke naam pe chal ke account chura sakta hai. Kabhi paste mat karo."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "What is JSON?",
+     "hi": "JSON क्या है?",
+     "hinglish": "JSON kya hai?"
+    },
+    "options": [
+     {
+      "en": "A text format for labelled data",
+      "hi": "लेबल वाले डेटा का टेक्स्ट प्रारूप",
+      "hinglish": "Labelled data ka text format"
+     },
+     {
+      "en": "A video format",
+      "hi": "वीडियो प्रारूप",
+      "hinglish": "Video format"
+     },
+     {
+      "en": "A kind of virus",
+      "hi": "एक प्रकार का वायरस",
+      "hinglish": "Ek type ka virus"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "JSON is a simple text format of labelled data that apps send through APIs.",
+     "hi": "JSON लेबल वाले डेटा का सरल टेक्स्ट प्रारूप है जिसे ऐप API से भेजते हैं।",
+     "hinglish": "JSON label wale data ka simple text format hai jo apps APIs se bhejte hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Make the counter work in the web studio.",
+     "hi": "वेब स्टूडियो में काउंटर चालू करो।",
+     "hinglish": "Web studio mein counter chalu karo."
+    },
+    "answer": {
+     "lab": "web-studio",
+     "event": "mission:complete",
+     "tab": "js"
+    },
+    "explain": {
+     "en": "Event “click” + action “add 1 and show it”.",
+     "hi": "इवेंट “click” + क्रिया “1 जोड़ो और दिखाओ”।",
+     "hinglish": "Event “click” + action “1 jodo aur dikhao”."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "MDN — JavaScript first steps",
+   "url": "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps",
+   "licence": "CC BY-SA 2.5 (fact reference only)"
+  },
+  {
+   "title": "ECMA-262 — ECMAScript language specification",
+   "url": "https://tc39.es/ecma262/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "RFC 8259 — JSON",
+   "url": "https://www.rfc-editor.org/rfc/rfc8259",
+   "licence": "fact reference"
+  }
+ ]
+}

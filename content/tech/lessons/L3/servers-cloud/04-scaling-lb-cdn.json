@@ -1,0 +1,417 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.servers-cloud.04",
+ "level": 3,
+ "classes": [
+  11,
+  12
+ ],
+ "unit": "servers-cloud",
+ "title": {
+  "en": "Scaling, load balancers and CDNs",
+  "hi": "स्केलिंग, लोड बैलेंसर और सीडीएन",
+  "hinglish": "Scaling, load balancers aur CDNs"
+ },
+ "minutes": 15,
+ "xp": 60,
+ "prereq": [
+  "L3.servers-cloud.02",
+  "L3.servers-cloud.03",
+  "L3.networking-engineering.07"
+ ],
+ "outcomes": [
+  {
+   "en": "Compare scaling up and scaling out",
+   "hi": "स्केल-अप और स्केल-आउट की तुलना करो",
+   "hinglish": "Scale-up aur scale-out compare karo"
+  },
+  {
+   "en": "Explain how a load balancer, health checks and autoscaling keep a site alive under a rush",
+   "hi": "समझाओ लोड बैलेंसर, स्वास्थ्य जाँच और ऑटोस्केलिंग भीड़ में साइट को कैसे चालू रखते हैं",
+   "hinglish": "Samjhao load balancer, health checks aur autoscaling bheed mein site ko kaise chalu rakhte hain"
+  },
+  {
+   "en": "Plan caching and a CDN for a results-day website",
+   "hi": "परिणाम-दिवस वेबसाइट के लिए कैशिंग और सीडीएन की योजना बनाओ",
+   "hinglish": "Results-day website ke liye caching aur CDN ka plan banao"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Scale up (vertical)",
+   "hinglish": "Ek server ko bada karna",
+   "en": "Give one server more CPU and memory",
+   "hi": "एक सर्वर को ज़्यादा सीपीयू और मेमोरी देना"
+  },
+  {
+   "term": "Scale out (horizontal)",
+   "hinglish": "Zyaada servers jodna",
+   "en": "Add more servers that share the work",
+   "hi": "काम बाँटने वाले और सर्वर जोड़ना"
+  },
+  {
+   "term": "Load balancer",
+   "hinglish": "Requests ko servers mein baantne wala",
+   "en": "Distributes incoming requests across healthy servers",
+   "hi": "आने वाले अनुरोधों को स्वस्थ सर्वरों में बाँटने वाला"
+  },
+  {
+   "term": "Health check",
+   "hinglish": "Server zinda hai ya nahi, baar-baar poochhna",
+   "en": "Regular probe that removes failing servers from rotation",
+   "hi": "नियमित जाँच जो विफल सर्वरों को बारी से हटाती है"
+  },
+  {
+   "term": "Stateless",
+   "hinglish": "Server kuch yaad na rakhe, sab database mein",
+   "en": "Servers keep no user session in memory, so any server can answer",
+   "hi": "सर्वर मेमोरी में उपयोगकर्ता सत्र नहीं रखते, तो कोई भी सर्वर जवाब दे सकता है"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Board results go live at 10 am and traffic jumps 20×. One bigger server (scale up) hits a ceiling; many servers (scale out) share the load.",
+    "hi": "बोर्ड परिणाम सुबह 10 बजे आते हैं और ट्रैफ़िक 20 गुना हो जाता है। एक बड़ा सर्वर (स्केल-अप) छत से टकराता है; कई सर्वर (स्केल-आउट) बोझ बाँटते हैं।",
+    "hinglish": "Board results subah 10 baje aate hain aur traffic 20 guna ho jaata hai. Ek bada server (scale up) chhat se takrata hai; kai servers (scale out) bojh baant-te hain."
+   },
+   "visual": "anim:up-vs-out",
+   "narration": {
+    "en": "Board results go live at 10 am and traffic jumps 20×. One bigger server (scale up) hits a ceiling; many servers (scale out) share the load.",
+    "hi": "बोर्ड परिणाम सुबह 10 बजे आते हैं और ट्रैफ़िक 20 गुना हो जाता है। एक बड़ा सर्वर (स्केल-अप) छत से टकराता है; कई सर्वर (स्केल-आउट) बोझ बाँटते हैं।",
+    "hinglish": "Board results subah 10 baje aate hain aur traffic 20 guna ho jaata hai. Ek bada server (scale up) chhat se takrata hai; kai servers (scale out) bojh baant-te hain."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "A load balancer sits in front and hands each request to the next healthy server — round-robin or \"least connections\".",
+    "hi": "लोड बैलेंसर सामने बैठकर हर अनुरोध अगले स्वस्थ सर्वर को देता है — बारी-बारी (round-robin) या \"सबसे कम कनेक्शन\"।",
+    "hinglish": "Load balancer saamne baith ke har request agle healthy server ko deta hai — round-robin ya \"least connections\"."
+   },
+   "visual": "anim:lb-fanout",
+   "narration": {
+    "en": "A load balancer sits in front and hands each request to the next healthy server — round-robin or \"least connections\".",
+    "hi": "लोड बैलेंसर सामने बैठकर हर अनुरोध अगले स्वस्थ सर्वर को देता है — बारी-बारी (round-robin) या \"सबसे कम कनेक्शन\"।",
+    "hinglish": "Load balancer saamne baith ke har request agle healthy server ko deta hai — round-robin ya \"least connections\"."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Autoscaling watches CPU or queue length. Above 70% for a few minutes? Start another server. Quiet at night? Remove extras to save money.",
+    "hi": "ऑटोस्केलिंग सीपीयू या कतार की लंबाई देखती है। कुछ मिनट 70% से ऊपर? एक और सर्वर शुरू करो। रात में शांत? पैसे बचाने के लिए अतिरिक्त हटाओ।",
+    "hinglish": "Autoscaling CPU ya queue length dekhti hai. Kuch minute 70% se upar? Ek aur server shuru karo. Raat mein shaant? Paise bachane ke liye extra hatao."
+   },
+   "visual": "anim:autoscale-graph",
+   "narration": {
+    "en": "Autoscaling watches CPU or queue length. Above 70% for a few minutes? Start another server. Quiet at night? Remove extras to save money.",
+    "hi": "ऑटोस्केलिंग सीपीयू या कतार की लंबाई देखती है। कुछ मिनट 70% से ऊपर? एक और सर्वर शुरू करो। रात में शांत? पैसे बचाने के लिए अतिरिक्त हटाओ।",
+    "hinglish": "Autoscaling CPU ya queue length dekhti hai. Kuch minute 70% se upar? Ek aur server shuru karo. Raat mein shaant? Paise bachane ke liye extra hatao."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Static files (logos, CSS, PDFs) go to a CDN, so millions of downloads never reach your servers at all.",
+    "hi": "स्थिर फ़ाइलें (लोगो, CSS, PDF) सीडीएन पर जाती हैं, तो करोड़ों डाउनलोड आपके सर्वरों तक पहुँचते ही नहीं।",
+    "hinglish": "Static files (logos, CSS, PDFs) CDN par jaati hain, to crore-on downloads tumhare servers tak pahunchte hi nahi."
+   },
+   "visual": "anim:cdn-offload",
+   "narration": {
+    "en": "Static files (logos, CSS, PDFs) go to a CDN, so millions of downloads never reach your servers at all.",
+    "hi": "स्थिर फ़ाइलें (लोगो, CSS, PDF) सीडीएन पर जाती हैं, तो करोड़ों डाउनलोड आपके सर्वरों तक पहुँचते ही नहीं।",
+    "hinglish": "Static files (logos, CSS, PDFs) CDN par jaati hain, to crore-on downloads tumhare servers tak pahunchte hi nahi."
+   }
+  }
+ ],
+ "play": {
+  "lab": "seq-flow",
+  "config": {
+   "scenario": "lb-autoscale"
+  },
+  "goal": {
+   "en": "Play results-day traffic through a load balancer. Watch CPU cross the threshold and the autoscaler add a server.",
+   "hi": "परिणाम-दिवस ट्रैफ़िक को लोड बैलेंसर से चलाओ। सीपीयू को सीमा पार करते और ऑटोस्केलर को सर्वर जोड़ते देखो।",
+   "hinglish": "Results-day traffic ko load balancer se chalao. CPU ko threshold paar karte aur autoscaler ko server jodte dekho."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Up or out?",
+    "hi": "ऊपर या बाहर?",
+    "hinglish": "Up ya out?"
+   },
+   "body": {
+    "en": "Scaling up is simple — no code changes — but the biggest machine has a limit, costs rise steeply, and it is still one point of failure. Scaling out needs the app to be stateless: keep sessions in a shared store such as Redis or the database, and store uploads in object storage, so any server can answer any request. Then you can add servers in minutes and lose one without anyone noticing.",
+    "hi": "स्केल-अप आसान है — कोड नहीं बदलना — पर सबसे बड़ी मशीन की भी सीमा है, लागत तेज़ी से बढ़ती है, और वह फिर भी विफलता का एक बिंदु है। स्केल-आउट के लिए ऐप का स्टेटलेस होना ज़रूरी: सत्र Redis या डेटाबेस जैसी साझा जगह में रखो, और अपलोड ऑब्जेक्ट स्टोरेज में, ताकि कोई भी सर्वर कोई भी अनुरोध सँभाल सके। फिर आप मिनटों में सर्वर जोड़ सकते हो और एक के गिरने पर किसी को पता भी नहीं चलता।",
+    "hinglish": "Scale up aasaan hai — code nahi badalna — par sabse badi machine ki bhi limit hai, cost tezi se badhti hai, aur woh phir bhi failure ka ek point hai. Scale out ke liye app ka stateless hona zaroori: sessions Redis ya database jaisi shared jagah mein rakho, aur uploads object storage mein, taaki koi bhi server koi bhi request sambhal sake. Phir tum minutes mein servers jod sakte ho aur ek ke girne par kisi ko pata bhi nahi chalta."
+   },
+   "analogy": {
+    "en": "One super-fast cashier versus ten normal counters: the counters win at a festival sale, and if one cashier falls ill the shop stays open.",
+    "hi": "एक बहुत तेज़ कैशियर बनाम दस सामान्य काउंटर: त्योहार की सेल में काउंटर जीतते हैं, और एक कैशियर बीमार हो तो भी दुकान खुली रहती है।",
+    "hinglish": "Ek bahut tez cashier vs das normal counters: festival sale mein counters jeet-te hain, aur ek cashier bimaar ho to bhi dukaan khuli rehti hai."
+   },
+   "realExample": {
+    "en": "Big shopping sales in India (festive season) are planned months ahead with load tests that simulate millions of users before the real day.",
+    "hi": "भारत में बड़ी ख़रीदारी सेल (त्योहारी मौसम) महीनों पहले लोड टेस्ट से तैयार होती हैं जो असली दिन से पहले लाखों उपयोगकर्ताओं की नक़ल करते हैं।",
+    "hinglish": "India mein badi shopping sales (festive season) mahino pehle load tests se taiyaar hoti hain jo asli din se pehle laakhon users ki nakal karte hain."
+   }
+  },
+  {
+   "heading": {
+    "en": "Load balancers and health checks",
+    "hi": "लोड बैलेंसर और स्वास्थ्य जाँच",
+    "hinglish": "Load balancers aur health checks"
+   },
+   "body": {
+    "en": "A layer-4 balancer spreads TCP connections; a layer-7 balancer reads HTTP and can route /api to app servers and /images to storage. Algorithms: round-robin, least connections, or hashing the user so they keep the same server. Every few seconds it calls a health endpoint such as /healthz; a server that fails is taken out until it recovers. Balancers also end TLS, so certificates live in one place.",
+    "hi": "लेयर-4 बैलेंसर टीसीपी कनेक्शन बाँटता है; लेयर-7 बैलेंसर HTTP पढ़ता है और /api को ऐप सर्वरों और /images को स्टोरेज की ओर भेज सकता है। एल्गोरिद्म: बारी-बारी, सबसे कम कनेक्शन, या उपयोगकर्ता का हैश ताकि वह उसी सर्वर पर रहे। हर कुछ सेकंड वह /healthz जैसा स्वास्थ्य एंडपॉइंट बुलाता है; विफल सर्वर ठीक होने तक हटा दिया जाता है। बैलेंसर TLS भी समाप्त करते हैं, तो प्रमाणपत्र एक जगह रहते हैं।",
+    "hinglish": "Layer-4 balancer TCP connections baant-ta hai; layer-7 balancer HTTP padhta hai aur /api ko app servers aur /images ko storage ki taraf bhej sakta hai. Algorithms: round-robin, least connections, ya user ka hash taaki woh usi server par rahe. Har kuch second woh /healthz jaisa health endpoint bulata hai; fail server theek hone tak hata diya jaata hai. Balancers TLS bhi terminate karte hain, to certificates ek jagah rehte hain."
+   },
+   "analogy": {
+    "en": "A traffic policeman at a junction who waves cars to free lanes and closes a lane with a pothole.",
+    "hi": "चौराहे का ट्रैफ़िक पुलिसवाला जो गाड़ियों को ख़ाली लेन में भेजता है और गड्ढे वाली लेन बंद कर देता है।",
+    "hinglish": "Chauraahe ka traffic policeman jo gaadiyon ko khaali lanes mein bhejta hai aur gaddhe wali lane band kar deta hai."
+   },
+   "realExample": {
+    "en": "nginx, HAProxy and cloud load balancers (such as AWS ELB or Google Cloud Load Balancing) are the common choices.",
+    "hi": "nginx, HAProxy और क्लाउड लोड बैलेंसर (जैसे AWS ELB या Google Cloud Load Balancing) आम विकल्प हैं।",
+    "hinglish": "nginx, HAProxy aur cloud load balancers (jaise AWS ELB ya Google Cloud Load Balancing) common choices hain."
+   }
+  },
+  {
+   "heading": {
+    "en": "Caching layers",
+    "hi": "कैशिंग की परतें",
+    "hinglish": "Caching ki layers"
+   },
+   "body": {
+    "en": "Cache at every level: the browser (Cache-Control: max-age), the CDN edge, an in-memory cache like Redis for hot database answers, and database read replicas for heavy reading. The famous rule: there are only two hard things — cache invalidation and naming things. Give each cached item a sensible lifetime and change the file name (logo.v2.png) when content changes.",
+    "hi": "हर स्तर पर कैश: ब्राउज़र (Cache-Control: max-age), सीडीएन एज, गर्म डेटाबेस जवाबों के लिए Redis जैसा मेमोरी कैश, और भारी पढ़ाई के लिए डेटाबेस की पढ़ने वाली प्रतियाँ। मशहूर नियम: बस दो चीज़ें कठिन हैं — कैश को अमान्य करना और चीज़ों के नाम रखना। हर कैश चीज़ को सही जीवनकाल दो और सामग्री बदलने पर फ़ाइल का नाम बदलो (logo.v2.png)।",
+    "hinglish": "Har level par cache: browser (Cache-Control: max-age), CDN edge, hot database answers ke liye Redis jaisa in-memory cache, aur heavy reading ke liye database read replicas. Mashhoor rule: bas do cheezein kathin hain — cache invalidation aur cheezon ke naam rakhna. Har cached item ko sensible lifetime do aur content badalne par file ka naam badlo (logo.v2.png)."
+   },
+   "analogy": {
+    "en": "Keep the most-asked answers on a sticky note at the front desk instead of fetching the register every time.",
+    "hi": "सबसे ज़्यादा पूछे जाने वाले जवाब हर बार रजिस्टर लाने के बजाय स्वागत मेज़ पर चिपकी पर्ची पर रखो।",
+    "hinglish": "Sabse zyaada poochhe jaane wale jawab har baar register laane ke bajaye front desk par sticky note par rakho."
+   },
+   "realExample": {
+    "en": "A results site can cache each roll number's result for 5 minutes: if a lakh students refresh repeatedly, the database is asked once per roll number.",
+    "hi": "परिणाम साइट हर रोल नंबर का परिणाम 5 मिनट कैश कर सकती है: एक लाख छात्र बार-बार रिफ़्रेश करें, तो भी डेटाबेस से हर रोल नंबर के लिए एक बार पूछा जाता है।",
+    "hinglish": "Results site har roll number ka result 5 minute cache kar sakti hai: ek lakh students baar-baar refresh karein, to bhi database se har roll number ke liye ek baar poocha jaata hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Draw the architecture for a results-day website: CDN, load balancer, at least 3 app servers, cache and database. Mark which part handles each of: the logo, the login, and one student's result.",
+   "hi": "परिणाम-दिवस वेबसाइट का ढाँचा बनाओ: सीडीएन, लोड बैलेंसर, कम से कम 3 ऐप सर्वर, कैश और डेटाबेस। निशान लगाओ कौन-सा हिस्सा सँभालता है: लोगो, लॉगिन, और एक छात्र का परिणाम।",
+   "hinglish": "Results-day website ka architecture banao: CDN, load balancer, kam se kam 3 app servers, cache aur database. Mark karo kaunsa hissa sambhalta hai: logo, login, aur ek student ka result."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why must servers be stateless to scale out easily?",
+     "hi": "आसानी से स्केल-आउट के लिए सर्वर स्टेटलेस क्यों होने चाहिए?",
+     "hinglish": "Aasaani se scale out ke liye servers stateless kyun hone chahiye?"
+    },
+    "options": [
+     {
+      "en": "So any server can answer any user",
+      "hi": "ताकि कोई भी सर्वर किसी भी उपयोगकर्ता को जवाब दे सके",
+      "hinglish": "Taaki koi bhi server kisi bhi user ko jawab de sake"
+     },
+     {
+      "en": "To save electricity",
+      "hi": "बिजली बचाने",
+      "hinglish": "Bijli bachane"
+     },
+     {
+      "en": "To avoid DNS",
+      "hi": "डीएनएस से बचने",
+      "hinglish": "DNS se bachne"
+     },
+     {
+      "en": "Because JSON needs it",
+      "hi": "क्योंकि JSON को चाहिए",
+      "hinglish": "Kyunki JSON ko chahiye"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "If session data lives in one server's memory, users break when the balancer sends them elsewhere.",
+     "hi": "सत्र डेटा एक सर्वर की मेमोरी में हो तो बैलेंसर के कहीं और भेजने पर उपयोगकर्ता का काम टूटता है।",
+     "hinglish": "Session data ek server ki memory mein ho to balancer ke kahin aur bhejne par user ka kaam toot-ta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "order",
+    "prompt": {
+     "en": "Order what happens as traffic rises on results day.",
+     "hi": "परिणाम-दिवस पर ट्रैफ़िक बढ़ने पर क्या होता है, क्रम में लगाओ।",
+     "hinglish": "Results day par traffic badhne par kya hota hai, order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Requests spread across servers",
+      "hi": "अनुरोध सर्वरों में बँटते हैं",
+      "hinglish": "Requests servers mein bant-ti hain"
+     },
+     {
+      "en": "Average CPU passes 70%",
+      "hi": "औसत सीपीयू 70% पार",
+      "hinglish": "Average CPU 70% paar"
+     },
+     {
+      "en": "Autoscaler starts a new server",
+      "hi": "ऑटोस्केलर नया सर्वर शुरू करता है",
+      "hinglish": "Autoscaler naya server shuru karta hai"
+     },
+     {
+      "en": "Health check passes and the server joins the pool",
+      "hi": "स्वास्थ्य जाँच पास, सर्वर समूह में जुड़ता है",
+      "hinglish": "Health check pass, server pool mein judta hai"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "Measure, decide, launch, verify, then send traffic.",
+     "hi": "मापो, तय करो, शुरू करो, जाँचो, फिर ट्रैफ़िक भेजो।",
+     "hinglish": "Maapo, tay karo, shuru karo, check karo, phir traffic bhejo."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "A server's /healthz starts failing. What does the load balancer do?",
+     "hi": "सर्वर का /healthz विफल होने लगता है। लोड बैलेंसर क्या करता है?",
+     "hinglish": "Server ka /healthz fail hone lagta hai. Load balancer kya karta hai?"
+    },
+    "options": [
+     {
+      "en": "Sends it more traffic",
+      "hi": "उसे ज़्यादा ट्रैफ़िक भेजता है",
+      "hinglish": "Use zyaada traffic bhejta hai"
+     },
+     {
+      "en": "Removes it from rotation",
+      "hi": "उसे बारी से हटाता है",
+      "hinglish": "Use rotation se hatata hai"
+     },
+     {
+      "en": "Deletes the database",
+      "hi": "डेटाबेस मिटाता है",
+      "hinglish": "Database mitata hai"
+     },
+     {
+      "en": "Changes DNS for the world",
+      "hi": "दुनिया के लिए डीएनएस बदलता है",
+      "hinglish": "Duniya ke liye DNS badalta hai"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Unhealthy servers get no requests until they recover.",
+     "hi": "अस्वस्थ सर्वरों को ठीक होने तक अनुरोध नहीं मिलते।",
+     "hinglish": "Unhealthy servers ko theek hone tak requests nahi milti."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "multi",
+    "prompt": {
+     "en": "Which should go on a CDN? Choose all.",
+     "hi": "सीडीएन पर क्या जाना चाहिए? सभी चुनो।",
+     "hinglish": "CDN par kya jaana chahiye? Sab chuno."
+    },
+    "options": [
+     {
+      "en": "The school logo",
+      "hi": "स्कूल का लोगो",
+      "hinglish": "School ka logo"
+     },
+     {
+      "en": "CSS and JavaScript files",
+      "hi": "CSS और जावास्क्रिप्ट फ़ाइलें",
+      "hinglish": "CSS aur JavaScript files"
+     },
+     {
+      "en": "A student's private marks without access control",
+      "hi": "बिना पहुँच-नियंत्रण के छात्र के निजी अंक",
+      "hinglish": "Bina access control ke student ke private marks"
+     },
+     {
+      "en": "The public exam timetable PDF",
+      "hi": "सार्वजनिक परीक्षा समय-सारणी PDF",
+      "hinglish": "Public exam timetable PDF"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     3
+    ],
+    "explain": {
+     "en": "Public, unchanging files suit a CDN; private personal data must not be cached publicly.",
+     "hi": "सार्वजनिक, न बदलने वाली फ़ाइलें सीडीएन के लिए ठीक; निजी व्यक्तिगत डेटा सार्वजनिक रूप से कैश नहीं होना चाहिए।",
+     "hinglish": "Public, na badalne wali files CDN ke liye theek; private personal data publicly cache nahi hona chahiye."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Run the load balancer and autoscaling scenario.",
+     "hi": "लोड बैलेंसर और ऑटोस्केलिंग परिदृश्य चलाओ।",
+     "hinglish": "Load balancer aur autoscaling scenario chalao."
+    },
+    "answer": {
+     "event": "scenario-complete",
+     "scenario": "lb-autoscale"
+    },
+    "explain": {
+     "en": "The pool grew when CPU crossed 70%.",
+     "hi": "सीपीयू 70% पार होने पर समूह बढ़ा।",
+     "hinglish": "CPU 70% paar hone par pool badha."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "cloud.scaling-cdn"
+ ],
+ "sources": [
+  {
+   "title": "Google SRE Book — Load balancing in the datacenter",
+   "url": "https://sre.google/sre-book/load-balancing-datacenter/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "The Twelve-Factor App — Processes (stateless)",
+   "url": "https://12factor.net/processes",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Cloudflare Learning — What is a CDN?",
+   "url": "https://www.cloudflare.com/learning/cdn/what-is-a-cdn/",
+   "licence": "fact reference"
+  }
+ ]
+}

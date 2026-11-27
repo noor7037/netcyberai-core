@@ -1,0 +1,298 @@
+<!doctype html><html lang="en-IN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sheet & Database Lab — NCA Tech & AI Lab</title><style>/* NCA Tech & AI Lab — Level 2 shared lab skin (own work, MIT). Family App lesson tokens: paper, card, ink, saffron, teal, plum. */
+:root{--paper:#FBF8F3;--card:#FFFDF9;--ink:#1C1B1A;--muted:#4B5563;--line:#E7E1D6;--saffron:#E8702A;--saffronD:#C2410C;--teal:#0F766E;--plum:#6D28D9;--sky:#0369A1;
+--mint:#E4F3EA;--butter:#FBF1D3;--lilac:#EFE9FB;--blush:#FBE6E3;--skyT:#E3EEF9;--night:#0B1430;--night2:#16224A;--cyan:#02CFF9;--leaf:#22C55E;--coral:#FF6B57;--gold:#F5B90A;--grape:#8B3DFF;
+--r:16px;--sh:0 1px 0 rgba(28,27,26,.04),0 6px 18px -8px rgba(28,27,26,.18)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans Devanagari",sans-serif;font-variant-numeric:tabular-nums}
+body{background:transparent;min-height:100vh;padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 16px)}
+button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation}
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:8px;padding:10px 14px;background:rgba(251,248,243,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--lilac);flex:none}
+.top h1{font-size:16px;margin:0;line-height:1.2;flex:1;min-width:0}
+.top h1 small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;flex:none;background:var(--card)}
+.lang button{border:0;background:none;padding:6px 9px;font-size:12px;font-weight:600;color:var(--muted);min-height:32px}
+.lang button[aria-pressed=true]{background:var(--ink);color:#fff}
+.wrap{max-width:1100px;margin:0 auto;padding:12px 14px;display:grid;gap:12px;grid-template-columns:minmax(0,1fr)}
+.wrap>*{min-width:0}
+.wrap>div{grid-template-columns:minmax(0,1fr)}
+.card,.stage{min-width:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;box-shadow:var(--sh)}
+.goal{background:var(--butter);border-color:#F1DFA8;display:flex;gap:10px;align-items:flex-start;font-size:14.5px}
+.goal b{color:#8A5300}
+.goal .gi{font-size:20px;line-height:1}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn{border:0;border-radius:12px;padding:11px 16px;font-weight:700;min-height:44px;background:var(--saffron);color:var(--ink);box-shadow:0 3px 0 #B4531B;transition:transform .12s}
+.btn:active{transform:translateY(2px);box-shadow:0 1px 0 #B4531B}
+.btn.ghost{background:var(--card);border:1.5px solid var(--line);box-shadow:none}
+.btn.teal{background:var(--teal);color:#fff;box-shadow:0 3px 0 #0A4F49}
+.btn.plum{background:var(--plum);color:#fff;box-shadow:0 3px 0 #4C1D95}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.chip{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:3px 10px;font-size:12.5px;font-weight:600;background:var(--mint);color:var(--teal)}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;padding-bottom:2px}/* wraps: every mode name always fully visible */
+.tabs button{flex:0 1 auto;max-width:100%;white-space:normal;text-align:center;border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:8px 14px;font-weight:600;font-size:14px;min-height:40px}
+.tabs button[aria-selected=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.stage{background:radial-gradient(120% 90% at 30% 0%,#1D2D63 0%,var(--night) 60%);color:#E8EEFF;border-radius:20px;overflow:hidden;position:relative;border:1px solid #23305E}
+.muted{color:var(--muted)}
+.mission{background:var(--skyT);border-color:#C9DDF2}
+.mission h3{margin:0 0 6px;font-size:15px;color:var(--sky)}
+.toast{position:fixed;left:0;top:0;width:max-content;max-width:min(92vw,340px);background:var(--ink);color:#fff;padding:10px 16px;border-radius:14px;font-weight:600;z-index:50;box-shadow:0 8px 24px rgba(0,0,0,.25);opacity:0;visibility:hidden;transform:scale(.92);transition:opacity .25s,transform .25s,visibility 0s .25s;pointer-events:none;text-align:center;line-height:1.35}
+.toast.on{opacity:1;visibility:visible;transform:none;transition:opacity .25s,transform .25s}
+.toast.inline{position:static;display:block;width:auto;max-width:none;margin:10px 0;grid-column:1/-1;flex:0 0 auto}
+.toast.ok{background:var(--teal)}.toast.bad{background:#B42318}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:-1}/* behind the cards: confetti never covers text */
+.kbd{font-family:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace}
+.hidden{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@keyframes pop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.08);opacity:1}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.shake{animation:shake .3s 2}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
+</style>
+<style>
+.grid{border-collapse:collapse;width:100%;font-size:13.5px;background:#fff;border-radius:12px;overflow:hidden;table-layout:fixed}
+.grid th{background:#EEE9DF;color:#4B5563;font-weight:700;font-size:12px;padding:5px;border:1px solid var(--line)}
+.grid th.rh{width:28px}
+.grid td{border:1px solid var(--line);padding:0;height:36px;position:relative}
+.grid td button{width:100%;height:100%;border:0;background:none;text-align:right;padding:0 6px;font:inherit;font-variant-numeric:tabular-nums;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.grid td.txt button{text-align:left;font-weight:600}
+.grid td.y{background:#FFF7D6}.grid td.ok{background:#DCFCE7}
+.grid td.sel{outline:2.5px solid var(--teal);outline-offset:-2px;z-index:1}
+.grid td.dep{background:#E3EEF9}
+.grid td.flash button{animation:fl .7s}
+@keyframes fl{0%{background:#FDE68A}100%{background:transparent}}
+.fbar{display:flex;gap:6px;align-items:center;margin-bottom:8px}
+.fbar b{font:700 13px ui-monospace,Menlo,monospace;background:var(--ink);color:#fff;border-radius:8px;padding:8px 9px;min-width:40px;text-align:center}
+.fbar input{flex:1;min-width:0;font:15px ui-monospace,Menlo,Consolas,monospace;padding:9px 10px;border-radius:10px;border:1.5px solid var(--line)}
+.chk{list-style:none;padding:0;margin:8px 0 0;font-size:14px}.chk li{padding:3px 0}
+.qcard{border-radius:14px;padding:10px;background:var(--lilac);margin-bottom:10px}
+.qcard .row button{flex:1}
+.svgc{width:100%;height:auto;background:#fff;border-radius:14px;border:1px solid var(--line)}
+.stat{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px}
+.stat div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:6px;text-align:center;font-size:12px}
+.stat b{display:block;font-size:18px}
+.db{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:12px;overflow:hidden}
+.db th{background:var(--night);color:#E8EEFF;padding:6px 4px;font-size:11.5px;text-align:left}
+.db td{padding:6px 4px;border-bottom:1px solid #EEF0F3;transition:background .3s,opacity .3s}
+.db tr.hit td{background:#DCFCE7}.db tr.miss td{opacity:.35}
+.db .pk{color:#B45309}
+.sql{font:13px/1.6 ui-monospace,Menlo,Consolas,monospace;background:#0B1430;color:#E8EEFF;border-radius:12px;padding:10px;white-space:pre-wrap;margin:8px 0}
+.sql .k{color:#C4B5FD;font-weight:700}.sql .s{color:#7DF9C9}
+.qb{display:grid;gap:6px}.qb label{display:flex;gap:6px;align-items:center;flex-wrap:wrap;font-weight:700;font-size:13.5px}
+.qb select,.qb input,.ins input{font:inherit;border-radius:10px;padding:7px;border:1.5px solid var(--line);background:#fff;min-height:40px;min-width:0}
+.ins{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}.ins input{width:90px;flex:1}
+@media (orientation:landscape) and (min-width:640px){.wrap{grid-template-columns:1.2fr 1fr}.wrap>.full{grid-column:1/-1}}
+</style></head><body>
+<main class="wrap">
+ <div class="card goal full"><span class="gi">🎯</span><div id="goal"></div></div>
+ <div class="tabs full" role="tablist" id="tabs"></div>
+ <div class="card" id="left"></div>
+ <div style="display:grid;gap:12px"><div class="card" id="right"></div><div class="card mission"><h3 data-k="mT"></h3><div id="mission"></div></div></div>
+</main>
+<script>/* NCA Tech & AI Lab — Level 2 shared lab runtime (own work, MIT). No eval, no network except an optional same-origin ?lesson= JSON. */
+(function(g){
+  const qs=new URLSearchParams(location.search);
+  const LANGS=['hinglish','en','hi'];
+  let lang=(qs.get('lang')||localStorage.getItem('nca-tl-lang')||'hinglish'); if(!LANGS.includes(lang)) lang='hinglish';
+  const reduced=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const t=x=>x==null?'':(typeof x==='string'||typeof x==='number')?String(x):(x[lang]||x.hinglish||x.en||'');
+  let STR={}; const listeners=[];
+  function applyI18n(root){(root||document).querySelectorAll('[data-k]').forEach(el=>{const v=STR[el.dataset.k]; if(v) el.innerHTML=t(v);});
+    document.documentElement.lang=lang==='hi'?'hi':(lang==='en'?'en':'en-IN');
+    document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.l===lang));}
+  function setLang(l){lang=l;localStorage.setItem('nca-tl-lang',l);applyI18n();listeners.forEach(f=>f(l));}
+  function header(icon,titleK,subK){const h=document.createElement('header');h.className='top';
+    h.innerHTML=`<div class="ic" aria-hidden="true">${icon}</div><h1><span data-k="${titleK}"></span><small data-k="${subK}"></small></h1>
+    <div class="lang" role="group" aria-label="Language"><button data-l="hinglish">Hinglish</button><button data-l="en">EN</button><button data-l="hi">हिं</button></div>`;
+    document.body.prepend(h); h.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>setLang(b.dataset.l));}
+  // Toast: never covers text. It floats in a free band of the screen (bottom first); if the screen has no free band
+  // it sits in the page flow right under what the child just tapped (pushes content down, covers nothing). Closes after 2.5 s.
+  let toastEl,lastTap=null,tapAt=null;document.addEventListener('pointerdown',e=>{lastTap=e.target;tapAt=[e.clientX,e.clientY+scrollY]},true);let rePend=0;const rePlace=()=>{if(!toastEl||!toastEl.classList.contains('on')||rePend)return;rePend=1;requestAnimationFrame(()=>{rePend=0;placeToast();});};
+  addEventListener('scroll',rePlace,{passive:true});addEventListener('resize',rePlace);document.addEventListener('animationend',rePlace,true);document.addEventListener('transitionend',rePlace,true);const toastMO=new MutationObserver(rs=>{if(rs.some(r=>!toastEl.contains(r.target)))rePlace();});
+  function textRects(skip){const vh=innerHeight,out=[],rg=document.createRange(),w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let n;
+    while((n=w.nextNode())){if(!n.nodeValue.trim())continue;const p=n.parentElement;if(!p||skip.contains(p)||/^(SCRIPT|STYLE)$/.test(p.tagName))continue;rg.selectNodeContents(n);
+      for(const q of rg.getClientRects())if(q.width>=1&&q.bottom>0&&q.top<vh)out.push(q);}
+    document.querySelectorAll('input,select,textarea,button,a[href],[role=button]').forEach(e=>{if(skip.contains(e))return;const q=e.getBoundingClientRect();if(q.width&&q.bottom>0&&q.top<vh)out.push(q)});if(0)document.querySelectorAll('x').forEach(e=>{const q=e.getBoundingClientRect();if(q.width&&q.bottom>0&&q.top<vh)out.push(q)});return out;}
+  function freeSpot(el){const vw=document.documentElement.clientWidth,vh=innerHeight,w=el.offsetWidth,h=el.offsetHeight,m=8;let top=m;
+    const bar=document.querySelector('.top');if(bar)top=Math.max(top,bar.getBoundingClientRect().bottom+m);
+    const obs=textRects(el),xs=[(vw-w)/2,m,vw-w-m],free=(x,y)=>!obs.some(q=>q.left<x+w+4&&q.right>x-4&&q.top<y+h+4&&q.bottom>y-4);
+    const cur=el._spot;if(cur&&free(cur.x,cur.y))return cur;
+    for(let y=vh-h-m;y>=top;y-=6)for(const x of xs)if(free(x,y))return{x,y};return null;}
+  /* never drop the note inside a 3D scene, a transformed, positioned-out or clipping box */
+  function boxedIn(a){for(let p=a;p&&p!==document.body;p=p.parentElement){const c=getComputedStyle(p);if(c.transform!=='none'||c.transformStyle==='preserve-3d'||c.perspective!=='none'||c.position==='absolute'||c.position==='fixed'||(p!==a&&c.overflow!=='visible'))return true;}return false;}
+  function inlineAfter(el){let a=lastTap&&lastTap.isConnected&&!el.contains(lastTap)?lastTap:null;
+    if(!a&&tapAt){const y=tapAt[1]-scrollY;if(y>0&&y<innerHeight)a=document.elementFromPoint(tapAt[0],y);}/* the tapped thing was re-drawn: use what is there now */
+    if(!a||el.contains(a))a=document.querySelector('main')||document.body.lastElementChild;
+    while(a.parentElement&&a.parentElement!==document.body){const d=getComputedStyle(a.parentElement),me=getComputedStyle(a);
+      if(me.display!=='inline'&&!(a instanceof SVGElement)&&(d.display==='block'||d.display==='flow-root'||d.display==='grid'||(d.display==='flex'&&d.flexDirection.startsWith('column')))&&a.getBoundingClientRect().width>=Math.min(260,innerWidth*.6)&&!boxedIn(a))break;a=a.parentElement;}
+    a.after(el);}
+  function placeToast(){const el=toastEl;if(!el.classList.contains('on'))return;if(!el.isConnected){el.classList.remove('inline');document.body.appendChild(el);}
+    if(el.classList.contains('inline'))return;const s=freeSpot(el);
+    if(s){el._spot=s;el.style.left=s.x+'px';el.style.top=s.y+'px';}else{el._spot=null;el.classList.add('inline');el.style.left=el.style.top='';inlineAfter(el);el.scrollIntoView({block:'nearest'});}}
+  function toast(msg,kind){if(!toastEl){toastEl=document.createElement('div');toastEl.setAttribute('role','status');document.body.appendChild(toastEl);}
+    const el=toastEl;clearTimeout(el._t);clearInterval(el._iv);if(el.classList.contains('inline'))document.body.appendChild(el);
+    el.className='toast '+(kind||'');el._spot=null;el.innerHTML=typeof msg==='object'?t(msg):msg;el.style.left='0px';el.style.top='0px';
+    el.classList.add('on');placeToast();el._iv=setInterval(placeToast,200);toastMO.observe(document.body,{subtree:true,childList:true,attributes:true,characterData:true});
+    el._t=setTimeout(()=>{clearInterval(el._iv);toastMO.disconnect();el.classList.remove('on');setTimeout(()=>{if(!el.classList.contains('on')&&el.classList.contains('inline')){el.classList.remove('inline');document.body.appendChild(el);}},320);},2500);}
+  function confetti(){if(reduced())return;const c=document.createElement('canvas');c.className='confetti';c.setAttribute('aria-hidden','true');document.body.appendChild(c);
+    const W=c.width=innerWidth,H=c.height=innerHeight,x=c.getContext('2d');const cols=['#E8702A','#0F766E','#6D28D9','#F5B90A','#02CFF9','#FF6B57'];
+    const P=Array.from({length:90},()=>({x:W/2,y:H*.55,vx:(Math.random()-.5)*9,vy:-Math.random()*11-4,r:Math.random()*6+3,c:cols[Math.random()*6|0],a:Math.random()*6}));
+    let n=0;(function f(){x.clearRect(0,0,W,H);P.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.32;p.a+=.2;x.save();x.translate(p.x,p.y);x.rotate(p.a);x.fillStyle=p.c;x.fillRect(-p.r/2,-p.r/4,p.r,p.r/2);x.restore();});
+      if(++n<110)requestAnimationFrame(f);else c.remove();})();}
+  function tween(ms,step,done){if(reduced()||ms<=0){step(1);done&&done();return()=>{};}let stop=0;const t0=performance.now();
+    const f=now=>{if(stop)return;const k=Math.min(1,(now-t0)/ms);step(k);k<1?requestAnimationFrame(f):done&&done();};requestAnimationFrame(f);return()=>{stop=1};}
+  const ease=k=>k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+  const sleep=ms=>new Promise(r=>setTimeout(r,reduced()?0:ms));
+  // Lesson config: ?lesson=<same-origin json path> (its play.config + play.goal), else inline defaults. ?cfg=<json> also accepted (parsed with JSON.parse only).
+  async function lessonConfig(defaults){let cfg=Object.assign({},defaults),goal=null,id=null;
+    const p=qs.get('lesson');
+    if(p&&/^[\w\-./]+\.json$/.test(p)&&!p.includes('..')){try{const r=await fetch(p);if(r.ok){const j=await r.json();id=j.id;if(j.play){Object.assign(cfg,j.play.config||{});goal=j.play.goal||null;}}}catch(e){}}
+    const c=qs.get('cfg'); if(c){try{Object.assign(cfg,JSON.parse(c));}catch(e){}}
+    return {cfg,goal,id};}
+  // Progress events the Family App shell can listen for (postMessage to the parent frame), plus local XP for the prototype.
+  function emit(type,data){const msg={source:'nca-techlab',type,data:data||{},at:Date.now()};try{parent!==window&&parent.postMessage(msg,'*');}catch(e){}
+    document.dispatchEvent(new CustomEvent('nca-lab',{detail:msg}));}
+  g.NCA={qs,esc,t,get lang(){return lang},setLang,onLang:f=>listeners.push(f),strings:o=>{STR=Object.assign(STR,o);applyI18n();},applyI18n,header,toast,confetti,tween,ease,sleep,reduced,lessonConfig,emit};
+})(window);
+</script>
+<script>
+(async function(){
+const N=NCA,T=N.t,E=N.esc,L=(en,hi,hinglish)=>({en,hi,hinglish}),$=id=>document.getElementById(id);
+N.header('📊','title','sub');
+N.strings({title:L('Sheet & Database Lab','शीट और डेटाबेस लैब','Sheet & Database Lab'),sub:L('Formulas, charts and queries — no cloud needed','सूत्र, चार्ट और क्वेरी — बिना क्लाउड','Formulas, charts aur queries — bina cloud'),mT:L('🚀 Mission','🚀 मिशन','🚀 Mission')});
+const {cfg,goal}=await N.lessonConfig({tab:'sheet'});
+const TABS=[['sheet',L('🧮 Sheet','🧮 शीट','🧮 Sheet')],['chart',L('📈 Charts','📈 चार्ट','📈 Charts')],['db',L('🗄️ Database','🗄️ डेटाबेस','🗄️ Database')],['chance',L('🎲 Chance','🎲 संभावना','🎲 Chance')]];
+const GOALS={chance:L('Predict the chance of rolling a 6, then roll the dice at least 300 times and compare your prediction with what really happens.','6 आने की संभावना का अनुमान लगाओ, फिर पासा कम से कम 300 बार फेंको और अनुमान की तुलना असल परिणाम से करो।','6 aane ki probability predict karo, phir dice kam se kam 300 baar pheko aur prediction ko asli result se compare karo.'),sheet:L('Write formulas in the yellow cells: Total (row 7) and Average (row 8) for Maths and Science.','पीले सेल में सूत्र लिखो: गणित और विज्ञान का योग (पंक्ति 7) और औसत (पंक्ति 8)।','Yellow cells mein formulas likho: Maths aur Science ka Total (row 7) aur Average (row 8).'),
+ chart:L('Pick the best chart for each question, then find the median of the runs.','हर प्रश्न के लिए सबसे अच्छा चार्ट चुनो, फिर रनों की माध्यिका निकालो।','Har sawaal ke liye best chart chuno, phir runs ka median nikaalo.'),
+ db:L('Build queries to answer the three questions. Then try adding a duplicate roll number.','तीनों प्रश्नों के उत्तर के लिए क्वेरी बनाओ। फिर दोहराया रोल नंबर जोड़कर देखो।','Teeno sawaalon ke liye queries banao. Phir duplicate roll number jod ke dekho.')};
+let tab=TABS.some(x=>x[0]===cfg.tab)?cfg.tab:'sheet';const done={};
+function win(k,m){if(done[k])return;done[k]=1;N.confetti();N.toast(m,'ok');N.emit('mission:complete',{lab:'sheet-lab',tab:k});mission();}
+/* ---------- SHEET: safe formula engine (tokenizer + recursive-descent parser; no eval) ---------- */
+const COLS=['A','B','C'];
+const S={A1:'Name',B1:'Maths',C1:'Science',A2:'Asha',B2:'78',C2:'85',A3:'Ravi',B3:'92',C3:'74',A4:'Meera',B4:'65',C4:'90',A5:'Kabir',B5:'88',C5:'69',A6:'Zoya',B6:'71',C6:'82',A7:'Total',B7:'',C7:'',A8:'Average',B8:'',C8:''};
+const YEL=['B7','C7','B8','C8'];let selC='B7',flash=new Set();
+const ref=s=>{const m=/^([A-C])([1-8])$/.exec(s);return m?s:null;};
+function rangeCells(a,b){const c1=COLS.indexOf(a[0]),c2=COLS.indexOf(b[0]),r1=+a.slice(1),r2=+b.slice(1);const out=[];for(let c=Math.min(c1,c2);c<=Math.max(c1,c2);c++)for(let r=Math.min(r1,r2);r<=Math.max(r1,r2);r++)out.push(COLS[c]+r);return out;}
+class FErr extends Error{}
+function evalF(src,seen){const toks=[];const re=/\s*(?:(\d+(?:\.\d+)?)|([A-Za-z]+\d*)|(:|,|\(|\)|\+|-|\*|\/))/y;let m;re.lastIndex=0;const s=src.trim();
+ while(re.lastIndex<s.length){const at=re.lastIndex;m=re.exec(s);if(!m||m.index!==at)throw new FErr('#ERROR');toks.push(m[1]!=null?{n:+m[1]}:m[2]!=null?{w:m[2].toUpperCase()}:{o:m[3]});}
+ let i=0;const pk=()=>toks[i],nx=()=>toks[i++],need=o=>{const t=nx();if(!t||t.o!==o)throw new FErr('#ERROR');};const deps=[];
+ function val(c){deps.push(c);if(seen.has(c))throw new FErr('#CYCLE');const v=cellVal(c,new Set([...seen,c]));if(typeof v==='string'&&v.startsWith('#'))throw new FErr(v);return v;}
+ function args(){const out=[];need('(');do{const t=pk();if(t&&t.w&&ref(t.w)&&toks[i+1]&&toks[i+1].o===':'){nx();nx();const b=nx();if(!b||!b.w||!ref(b.w))throw new FErr('#REF');rangeCells(t.w,b.w).forEach(c=>out.push(val(c)));}else out.push(expr());}while(pk()&&pk().o===','&&nx());need(')');return out;}
+ const FN={SUM:a=>a.filter(x=>typeof x==='number').reduce((p,q)=>p+q,0),AVERAGE:a=>{const n=a.filter(x=>typeof x==='number');if(!n.length)throw new FErr('#DIV/0');return n.reduce((p,q)=>p+q,0)/n.length;},MAX:a=>Math.max(...a.filter(x=>typeof x==='number')),MIN:a=>Math.min(...a.filter(x=>typeof x==='number')),COUNT:a=>a.filter(x=>typeof x==='number').length};
+ function atom(){const t=nx();if(!t)throw new FErr('#ERROR');if(t.n!=null)return t.n;if(t.o==='-')return -atom();if(t.o==='('){const v=expr();need(')');return v;}
+  if(t.w){if(FN[t.w])return FN[t.w](args());if(ref(t.w)){const v=val(t.w);return typeof v==='number'?v:0;}throw new FErr('#NAME?');}throw new FErr('#ERROR');}
+ function term(){let v=atom();while(pk()&&(pk().o==='*'||pk().o==='/')){const o=nx().o,b=atom();if(o==='/'&&b===0)throw new FErr('#DIV/0');v=o==='*'?v*b:v/b;}return v;}
+ function expr(){let v=term();while(pk()&&(pk().o==='+'||pk().o==='-')){const o=nx().o,b=term();v=o==='+'?v+b:v-b;}return v;}
+ const v=expr();if(i<toks.length)throw new FErr('#ERROR');return {v,deps};}
+function cellVal(c,seen){const raw=(S[c]||'').trim();if(raw.startsWith('=')){try{return evalF(raw.slice(1),seen||new Set([c])).v;}catch(e){return e instanceof FErr?e.message:'#ERROR';}}
+ if(raw!==''&&!isNaN(+raw))return +raw;return raw;}
+const fmt=v=>typeof v==='number'?(Math.round(v*100)/100).toString():v;
+function deps(c){const raw=(S[c]||'').trim();if(!raw.startsWith('='))return [];try{return evalF(raw.slice(1),new Set([c])).deps;}catch(e){return [];}}
+const TARGET={B7:[394,'SUM'],C7:[400,'SUM'],B8:[78.8,'AVERAGE'],C8:[80,'AVERAGE']};
+function cellOK(c){const raw=(S[c]||'').trim();const v=cellVal(c);if(!raw.startsWith('=')||typeof v!=='number')return false;
+ const exp=c[1]==='7'?rangeCells(c[0]+'2',c[0]+'6').reduce((s,x)=>s+(+cellVal(x)||0),0):rangeCells(c[0]+'2',c[0]+'6').reduce((s,x)=>s+(+cellVal(x)||0),0)/5;
+ const d=deps(c);return Math.abs(v-exp)<1e-9&&rangeCells(c[0]+'2',c[0]+'6').every(x=>d.includes(x));}
+function drawSheet(){const dp=new Set(deps(selC));
+ $('left').innerHTML=`<div class="fbar"><b>${selC}</b><input id="fx" value="${E(S[selC]||'')}" spellcheck="false" autocapitalize="characters" aria-label="formula" placeholder="="></div>
+ <table class="grid"><tr><th class="rh"></th>${COLS.map(c=>`<th>${c}</th>`).join('')}</tr>${[1,2,3,4,5,6,7,8].map(r=>`<tr><th class="rh">${r}</th>${COLS.map(c=>{const id=c+r;const cls=[c==='A'||r===1?'txt':'',YEL.includes(id)?(cellOK(id)?'ok':'y'):'',id===selC?'sel':'',dp.has(id)?'dep':'',flash.has(id)?'flash':''].join(' ');return `<td class="${cls}"><button data-c="${id}" aria-label="${id}">${E(fmt(cellVal(id)))}</button></td>`}).join('')}</tr>`).join('')}</table>
+ <p class="muted" style="font-size:12.5px;margin:8px 0 0">${T(L('Tap a cell, type in the bar, press Enter. Blue cells are the ones the selected formula uses. Try changing a mark and watch the totals update.','सेल दबाओ, ऊपर लिखो, Enter दबाओ। नीले सेल वे हैं जिन्हें चुना सूत्र उपयोग करता है। कोई अंक बदलकर योग बदलते देखो।','Cell tap karo, upar bar mein likho, Enter dabao. Blue cells woh hain jo selected formula use karta hai. Koi mark badlo aur totals update hote dekho.'))}</p>`;
+ $('left').querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>{selC=b.dataset.c;flash.clear();drawSheet();});
+ const fx=$('fx');const commit=()=>{const before={};Object.keys(S).forEach(k=>before[k]=fmt(cellVal(k)));S[selC]=fx.value;flash=new Set(Object.keys(S).filter(k=>k!==selC&&fmt(cellVal(k))!==before[k]));drawSheet();checkSheet();};
+ fx.onkeydown=e=>{if(e.key==='Enter'){commit();}};fx.onchange=commit;
+ const chips=[['=SUM(B2:B6)','Σ'],['=AVERAGE(B2:B6)','x̄'],['=MAX(B2:B6)','⬆'],['=B2+C2','+']];
+ $('right').innerHTML=`<h3 style="margin:0 0 6px;font-size:15px">${T(L('🧰 Formula helper','🧰 सूत्र सहायक','🧰 Formula helper'))}</h3><div class="row">${chips.map(([f,i])=>`<button class="chip" style="border:0" data-f="${E(f)}">${i} ${E(f)}</button>`).join('')}</div>
+ <p style="font-size:13.5px">${T(L('Every formula starts with “=”. B2:B6 means the range from B2 to B6. Functions: SUM, AVERAGE, MAX, MIN, COUNT. You can also use + − * / and brackets.','हर सूत्र “=” से शुरू होता है। B2:B6 का अर्थ B2 से B6 तक की रेंज। फ़ंक्शन: SUM, AVERAGE, MAX, MIN, COUNT। + − * / और कोष्ठक भी चलते हैं।','Har formula “=” se shuru hota hai. B2:B6 matlab B2 se B6 tak ki range. Functions: SUM, AVERAGE, MAX, MIN, COUNT. + − * / aur brackets bhi chalte hain.'))}</p>
+ <ul class="chk">${YEL.map(c=>`<li>${cellOK(c)?'✅':'⬜'} ${c}: ${T(c[1]==='7'?L('Total with SUM','SUM से योग','SUM se total'):L('Average with AVERAGE','AVERAGE से औसत','AVERAGE se average'))}</li>`).join('')}</ul>`;
+ $('right').querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>{const f=b.dataset.f;fx.value=selC[0]==='C'?f.replace(/B/g,'C'):f;fx.focus();});}
+function checkSheet(){if(YEL.every(cellOK))win('sheet',L('Your sheet calculates itself!','आपकी शीट ख़ुद गणना करती है!','Aapki sheet khud calculate karti hai!'));mission();}
+/* ---------- CHARTS ---------- */
+const QS=[{q:L('How did Delhi’s temperature change across the week?','हफ़्ते भर दिल्ली का तापमान कैसे बदला?','Hafte bhar Delhi ka temperature kaise badla?'),a:'line',lab:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],d:[31,33,34,32,29,30,33],u:'°C'},
+ {q:L('Which sport did Class 8 vote for most?','कक्षा 8 ने किस खेल को सबसे ज़्यादा वोट दिए?','Class 8 ne kis sport ko sabse zyada vote diye?'),a:'bar',lab:['Cricket','Kabaddi','Football','Badminton'],d:[14,9,7,5],u:'votes'},
+ {q:L('What share of ₹200 pocket money goes to each thing?','₹200 जेब ख़र्च का कितना हिस्सा किस पर जाता है?','₹200 pocket money ka kitna hissa kis pe jaata hai?'),a:'pie',lab:['Snacks','Savings','Stationery','Recharge'],d:[80,60,40,20],u:'₹'}];
+const RUNS=[12,45,8,45,30,22,60];let qi=0,picks={},kind='bar',medOK=false,sortedView=false;
+const PAL=['#0F766E','#E8702A','#6D28D9','#0369A1','#F5B90A','#FF6B57','#22C55E'];
+function chartSVG(k,lab,d,u){const W=320,H=200,P=30,mx=Math.max(...d)*1.15;let g='';
+ if(k==='pie'){const tot=d.reduce((a,b)=>a+b,0);let a0=-Math.PI/2;d.forEach((v,i)=>{const a1=a0+v/tot*2*Math.PI;const x0=110+80*Math.cos(a0),y0=100+80*Math.sin(a0),x1=110+80*Math.cos(a1),y1=100+80*Math.sin(a1);
+   g+=`<path d="M110 100L${x0.toFixed(1)} ${y0.toFixed(1)}A80 80 0 ${a1-a0>Math.PI?1:0} 1 ${x1.toFixed(1)} ${y1.toFixed(1)}Z" fill="${PAL[i]}" style="transform-origin:110px 100px;animation:pop .5s ${i*.08}s both"/>`;g+=`<rect x="210" y="${40+i*26}" width="12" height="12" rx="3" fill="${PAL[i]}"/><text x="228" y="${51+i*26}" font-size="12">${E(lab[i])} ${Math.round(v/tot*100)}%</text>`;a0=a1;});}
+ else{g+=`<line x1="${P}" y1="${H-P}" x2="${W-6}" y2="${H-P}" stroke="#9CA3AF"/><line x1="${P}" y1="10" x2="${P}" y2="${H-P}" stroke="#9CA3AF"/><text x="4" y="14" font-size="10" fill="#6B7280">${E(u)}</text><text x="18" y="${H-P+4}" font-size="10" fill="#6B7280">0</text>`;
+  const bw=(W-P-16)/d.length;const pts=d.map((v,i)=>[P+8+bw*i+bw/2,H-P-(v/mx)*(H-P-16)]);
+  if(k==='bar')d.forEach((v,i)=>{const h=(v/mx)*(H-P-16);g+=`<rect x="${(P+8+bw*i+bw*.15).toFixed(1)}" y="${(H-P-h).toFixed(1)}" width="${(bw*.7).toFixed(1)}" height="${h.toFixed(1)}" rx="4" fill="${PAL[i%7]}" style="transform-origin:0 ${H-P}px;animation:grow .6s ${i*.06}s both"/><text x="${pts[i][0]}" y="${(H-P-h-4).toFixed(1)}" font-size="11" text-anchor="middle" font-weight="700">${v}</text>`;});
+  else{g+=`<polyline points="${pts.map(p=>p.map(n=>n.toFixed(1)).join(',')).join(' ')}" fill="none" stroke="#0F766E" stroke-width="3" stroke-linejoin="round" stroke-dasharray="1000" style="animation:draw 1.2s both"/>`;pts.forEach((p,i)=>g+=`<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="4" fill="#E8702A"/><text x="${p[0].toFixed(1)}" y="${(p[1]-8).toFixed(1)}" font-size="11" text-anchor="middle">${d[i]}</text>`);}
+  lab.forEach((l,i)=>g+=`<text x="${(P+8+bw*i+bw/2).toFixed(1)}" y="${H-P+15}" font-size="10.5" text-anchor="middle" fill="#4B5563">${E(String(l).slice(0,9))}</text>`);}
+ return `<svg class="svgc" viewBox="0 0 ${W} ${H}" role="img"><style>@keyframes grow{from{transform:scaleY(0)}}@keyframes draw{from{stroke-dashoffset:1000}to{stroke-dashoffset:0}}</style>${g}</svg>`;}
+function stats(a){const s=a.slice().sort((x,y)=>x-y),n=s.length;const mean=a.reduce((p,q)=>p+q,0)/n;const med=n%2?s[(n-1)/2]:(s[n/2-1]+s[n/2])/2;const cnt={};a.forEach(x=>cnt[x]=(cnt[x]||0)+1);const top=Math.max(...Object.values(cnt));const mode=Object.keys(cnt).filter(k=>cnt[k]===top).map(Number);return {mean,med,mode:top>1?mode.join(', '):'—',range:s[n-1]-s[0],s};}
+function drawChart(){const Q=QS[qi];
+ $('left').innerHTML=`<div class="qcard"><b>${qi+1}/3 · ${T(Q.q)}</b><div class="row" style="margin-top:8px">${['bar','line','pie'].map(k=>`<button class="btn ${kind===k?'teal':'ghost'}" data-k="${k}">${{bar:'📊',line:'📈',pie:'🥧'}[k]} ${T({bar:L('Bar','बार','Bar'),line:L('Line','रेखा','Line'),pie:L('Pie','पाई','Pie')}[k])}</button>`).join('')}</div></div>
+ ${chartSVG(kind,Q.lab,Q.d,Q.u)}<div class="row" style="margin-top:8px"><button class="btn" id="pick">${T(L('This chart tells it best','यही चार्ट सबसे अच्छा बताता है','Yahi chart sabse achha batata hai'))}</button>${qi?'<button class="btn ghost" id="prev">←</button>':''}${qi<2?'<button class="btn ghost" id="next">→</button>':''}</div><div id="why"></div>`;
+ $('left').querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>{kind=b.dataset.k;drawChart();});
+ $('pick').onclick=()=>{const ok=kind===Q.a;picks[qi]=ok;$('why').innerHTML=`<div class="qcard" style="background:${ok?'#DCFCE7':'#FEE2E2'};margin-top:8px">${ok?'✅':'❌'} ${T({line:L('Line charts show change over time — you can see the dip on Friday.','रेखा चार्ट समय के साथ बदलाव दिखाते हैं — शुक्रवार की गिरावट दिखती है।','Line charts time ke saath change dikhate hain — Friday ki girawat dikhti hai.'),bar:L('Bar charts compare separate categories — the tallest bar wins.','बार चार्ट अलग श्रेणियों की तुलना करते हैं — सबसे लंबा बार जीतता है।','Bar charts alag categories compare karte hain — sabse lamba bar jeet-ta hai.'),pie:L('Pie charts show parts of one whole (here ₹200 = 100 %).','पाई चार्ट एक पूरे के हिस्से दिखाते हैं (यहाँ ₹200 = 100 %)।','Pie charts ek poore ke parts dikhate hain (yahan ₹200 = 100 %).')}[Q.a])}</div>`;
+  N.toast(ok?L('Right chart!','सही चार्ट!','Sahi chart!'):L('Try another type','दूसरा प्रकार आज़माओ','Doosra type try karo'),ok?'ok':'bad');if(ok&&qi<2)setTimeout(()=>{qi++;kind='bar';drawChart();},1100);checkChart();};
+ if($('prev'))$('prev').onclick=()=>{qi--;drawChart();};if($('next'))$('next').onclick=()=>{qi++;drawChart();};
+ const st=stats(RUNS);const show=sortedView?st.s:RUNS;
+ $('right').innerHTML=`<h3 style="margin:0 0 6px;font-size:15px">${T(L('🏏 Runs in 7 matches','🏏 7 मैचों के रन','🏏 7 matches ke runs'))}</h3>${chartSVG('bar',show.map((_,i)=>sortedView?'#'+(i+1):'M'+(i+1)),show,'runs')}
+ <div class="row" style="margin-top:6px"><button class="btn ghost" id="srt">${T(sortedView?L('Original order','मूल क्रम','Original order'):L('Sort the bars','बार क्रम में लगाओ','Bars sort karo'))}</button></div>
+ <label style="display:flex;gap:6px;align-items:center;margin-top:8px;font-weight:700;font-size:14px">${T(L('Median =','माध्यिका =','Median ='))} <input id="med" inputmode="decimal" style="width:80px;font:inherit;padding:8px;border-radius:10px;border:1.5px solid var(--line)"> <button class="btn teal" id="mc">✔</button></label>
+ ${medOK?`<div class="stat"><div>${T(L('Mean','माध्य','Mean'))}<b>${(Math.round(st.mean*10)/10)}</b></div><div>${T(L('Median','माध्यिका','Median'))}<b>${st.med}</b></div><div>${T(L('Mode','बहुलक','Mode'))}<b>${st.mode}</b></div><div>${T(L('Range','परिसर','Range'))}<b>${st.range}</b></div></div>`:''}`;
+ $('srt').onclick=()=>{sortedView=!sortedView;drawChart();};$('mc').onclick=()=>{const v=parseFloat($('med').value);if(v===st.med){medOK=true;N.toast(L('Yes! 30 is the middle of 7 sorted values.','हाँ! 7 क्रमबद्ध मानों के बीच में 30।','Haan! 7 sorted values ke beech mein 30.'),'ok');drawChart();checkChart();}else{N.toast(L('Sort the bars first, then take the 4th of 7.','पहले बार क्रम में लगाओ, फिर 7 में से चौथा लो।','Pehle bars sort karo, phir 7 mein se 4th lo.'),'bad');}};}
+function checkChart(){if(QS.every((_,i)=>picks[i])&&medOK)win('chart',L('You read data like a pro!','आप डेटा प्रो की तरह पढ़ते हो!','Aap data pro ki tarah padhte ho!'));mission();}
+/* ---------- DATABASE (in-memory table, tiny query engine over chosen blocks) ---------- */
+let ROWS=[{roll:1,name:'Asha',class:8,marks:91,city:'Pune'},{roll:2,name:'Ravi',class:7,marks:74,city:'Patna'},{roll:3,name:'Meera',class:8,marks:68,city:'Kochi'},{roll:4,name:'Kabir',class:6,marks:88,city:'Pune'},
+ {roll:5,name:'Zoya',class:8,marks:84,city:'Delhi'},{roll:6,name:'Arjun',class:7,marks:95,city:'Jaipur'},{roll:7,name:'Isha',class:6,marks:59,city:'Delhi'},{roll:8,name:'Dev',class:8,marks:77,city:'Pune'}];
+const CH=[{q:L('Names of Class 8 students who scored more than 80','कक्षा 8 के वे छात्र जिनके 80 से ज़्यादा अंक','Class 8 ke woh students jinke 80 se zyada marks'),want:[1,5]},{q:L('Everyone who lives in Pune','पुणे में रहने वाले सभी','Pune mein rehne wale sab'),want:[1,4,8]},{q:L('Students with marks less than 70','70 से कम अंक वाले छात्र','70 se kam marks wale students'),want:[3,7]}];
+let Q={c1:'class',o1:'=',v1:'8',and:true,c2:'marks',o2:'>',v2:'80',order:'none'},solved={},ci=0,insMsg=null;
+const FIELDS=['roll','name','class','marks','city'];
+function test(r,c,o,v){const a=r[c],b=typeof a==='number'?parseFloat(v):String(v).trim().toLowerCase();const x=typeof a==='number'?a:String(a).toLowerCase();if(typeof a==='number'&&isNaN(b))return false;
+ return o==='='?x===b:o==='!='?x!==b:o==='>'?x>b:o==='<'?x<b:o==='>='?x>=b:x<=b;}
+function run(){let r=ROWS.filter(x=>test(x,Q.c1,Q.o1,Q.v1)&&(!Q.and||test(x,Q.c2,Q.o2,Q.v2)));if(Q.order!=='none')r=r.slice().sort((a,b)=>b.marks-a.marks);return r;}
+function sqlText(){const lit=(c,v)=>typeof ROWS[0][c]==='number'?E(v):`<span class="s">'${E(v)}'</span>`;return `<span class="k">SELECT</span> roll, name\n<span class="k">FROM</span> students\n<span class="k">WHERE</span> ${Q.c1} ${E(Q.o1)} ${lit(Q.c1,Q.v1)}${Q.and?`\n  <span class="k">AND</span> ${Q.c2} ${E(Q.o2)} ${lit(Q.c2,Q.v2)}`:''}${Q.order!=='none'?'\n<span class="k">ORDER BY</span> marks <span class="k">DESC</span>':''};`;}
+const selH=(id,opts,v)=>`<select id="${id}">${opts.map(o=>`<option ${o===v?'selected':''}>${E(o)}</option>`).join('')}</select>`;
+function drawDB(){const res=run(),hit=new Set(res.map(r=>r.roll));
+ $('left').innerHTML=`<table class="db"><tr>${FIELDS.map(f=>`<th>${f==='roll'?'🔑 roll':f}</th>`).join('')}</tr>${ROWS.map(r=>`<tr class="${hit.has(r.roll)?'hit':'miss'}">${FIELDS.map(f=>`<td class="${f==='roll'?'pk':''}">${E(r[f])}</td>`).join('')}</tr>`).join('')}</table>
+ <p class="muted" style="font-size:12.5px;margin:6px 0">${T(L(`${res.length} matching rows (green). 🔑 roll is the primary key.`,`${res.length} मेल खाती पंक्तियाँ (हरी)। 🔑 roll प्राथमिक कुंजी है।`,`${res.length} matching rows (green). 🔑 roll primary key hai.`))}</p>
+ <b style="font-size:14px">${T(L('➕ Insert a student','➕ छात्र जोड़ो','➕ Student jodo'))}</b><div class="ins"><input id="ir" inputmode="numeric" placeholder="roll"><input id="in" placeholder="name"><button class="btn ghost" id="ib">INSERT</button></div>${insMsg?`<div class="sql">${insMsg}</div>`:''}`;
+ $('ib').onclick=()=>{const r=parseInt($('ir').value),n=$('in').value.trim()||'New';if(!r){insMsg=E('ERROR: roll must be a number');}else if(ROWS.some(x=>x.roll===r)){insMsg=`<span style="color:#FCA5A5">ERROR: duplicate key value violates unique constraint "students_pkey"\nKey (roll)=(${r}) already exists.</span>`;N.toast(L('Rejected: that roll number already exists!','अस्वीकार: वह रोल नंबर पहले से है!','Reject: woh roll number pehle se hai!'),'bad');}else{ROWS.push({roll:r,name:n.slice(0,12),class:7,marks:70,city:'Delhi'});insMsg=E(`INSERT 0 1 — added roll ${r}`);}drawDB();};
+ const C=CH[ci];
+ $('right').innerHTML=`<div class="qcard"><b>${ci+1}/3 · ${T(C.q)}</b> ${solved[ci]?'✅':''}</div>
+ <div class="qb"><label>WHERE ${selH('c1',FIELDS,Q.c1)} ${selH('o1',['=','!=','>','<','>=','<='],Q.o1)} <input id="v1" value="${E(Q.v1)}" style="width:80px"></label>
+ <label><input type="checkbox" id="and" ${Q.and?'checked':''} style="min-height:auto"> AND ${selH('c2',FIELDS,Q.c2)} ${selH('o2',['=','!=','>','<','>=','<='],Q.o2)} <input id="v2" value="${E(Q.v2)}" style="width:80px"></label>
+ <label>ORDER BY ${selH('ord',['none','marks DESC'],Q.order==='none'?'none':'marks DESC')}</label></div>
+ <div class="sql">${sqlText()}</div><div class="row"><button class="btn teal" id="chk">${T(L('Run & check','चलाओ और जाँचो','Run & check'))}</button>${ci?'<button class="btn ghost" id="pv">←</button>':''}${ci<2?'<button class="btn ghost" id="nx">→</button>':''}</div>`;
+ const upd=()=>{Q={c1:$('c1').value,o1:$('o1').value,v1:$('v1').value,and:$('and').checked,c2:$('c2').value,o2:$('o2').value,v2:$('v2').value,order:$('ord').value==='none'?'none':'desc'};drawDB();};
+ ['c1','o1','c2','o2','ord','and'].forEach(i=>$(i).onchange=upd);['v1','v2'].forEach(i=>{$(i).onchange=upd;$(i).onkeydown=e=>{if(e.key==='Enter')upd();};});
+ $('chk').onclick=()=>{upd();const got=run().map(r=>r.roll).sort((a,b)=>a-b).join(),want=CH[ci].want.join();if(got===want){solved[ci]=1;N.toast(L('Correct query!','सही क्वेरी!','Sahi query!'),'ok');if(ci<2)setTimeout(()=>{ci++;drawDB();},900);}else N.toast(L(`Not yet: you got ${run().length} rows. Check the column, operator and value.`,`अभी नहीं: ${run().length} पंक्तियाँ आईं। स्तंभ, संकारक और मान जाँचो।`,`Abhi nahi: ${run().length} rows aayi. Column, operator aur value check karo.`),'bad');drawDB();if(CH.every((_,i)=>solved[i]))win('db',L('You speak SQL!','आप SQL बोलते हो!','Aap SQL bolte ho!'));mission();};
+ if($('pv'))$('pv').onclick=()=>{ci--;drawDB();};if($('nx'))$('nx').onclick=()=>{ci++;drawDB();};}
+/* ---------- chance ---------- */
+let seed=20261127,rolls=[0,0,0,0,0,0],nR=0,pred=null,last=[];
+const rnd=()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};
+const FACES=['⚀','⚁','⚂','⚃','⚄','⚅'];
+const PR=[['1/2',L('1 in 2','2 में 1','2 mein 1')],['1/3',L('1 in 3','3 में 1','3 mein 1')],['1/6',L('1 in 6','6 में 1','6 mein 1')],['1/12',L('1 in 12','12 में 1','12 mein 1')]];
+function roll(k){last=[];for(let i=0;i<k;i++){const f=Math.floor(rnd()*6);rolls[f]++;nR++;if(i<8)last.push(f);}drawChance();}
+function drawChance(){const mx=Math.max(1,...rolls),exp=nR/6,p6=nR?rolls[5]/nR:0;
+ const W=300,H=150,bw=36;
+ $('left').innerHTML=`<div style="font-weight:800;font-size:14px;margin-bottom:6px">${T(L('1. Predict: what is the chance of rolling a 6?','1. अनुमान: 6 आने की संभावना क्या है?','1. Predict: 6 aane ki probability kya hai?'))}</div>
+ <div class="row" style="gap:6px;flex-wrap:wrap">${PR.map(([k,n])=>`<button class="btn ${pred===k?'teal':'ghost'}" data-pr="${k}" style="flex:1;min-width:70px">${k}<br><span style="font-size:11px">${T(n)}</span></button>`).join('')}</div>
+ <div style="font-weight:800;font-size:14px;margin:10px 0 6px">${T(L('2. Roll the dice','2. पासा फेंको','2. Dice phenko'))}</div>
+ <div class="row" style="gap:6px"><button class="btn teal" id="r1">🎲 ×1</button><button class="btn teal" id="r10">🎲 ×10</button><button class="btn plum" id="r100">🎲 ×100</button><button class="btn ghost" id="r0">↺</button></div>
+ <div style="font-size:30px;letter-spacing:4px;min-height:40px;margin-top:6px" aria-live="polite">${last.map(f=>`<span style="display:inline-block;animation:pop .3s both">${FACES[f]}</span>`).join('')}</div>
+ <svg viewBox="0 0 ${W} ${H+44}" style="width:100%;display:block" role="img" aria-label="${E(T(L('Bar chart of how often each face came up','हर अंक कितनी बार आया उसका दंड चार्ट','Har face kitni baar aaya uska bar chart')))}">
+ ${rolls.map((c,i)=>{const h=c/mx*H;return `<rect x="${14+i*48}" y="${H-h}" width="${bw}" height="${h}" rx="5" fill="${i===5?'#F59E0B':'#0EA5E9'}" style="transition:all .3s"/><text x="${32+i*48}" y="${H+18}" text-anchor="middle" font-size="16">${FACES[i]}</text><text x="${32+i*48}" y="${H+38}" text-anchor="middle" font-size="11" font-weight="700" fill="#334155">${c}</text>`;}).join('')}
+ ${nR?`<line x1="8" x2="${W-6}" y1="${H-exp/mx*H}" y2="${H-exp/mx*H}" stroke="#DC2626" stroke-dasharray="5 4" stroke-width="1.5"/>`:''}</svg>${nR?`<div style="font-size:12.5px;color:#DC2626;font-weight:700;margin-top:2px">- - - ${E(T(L('expected for each face','हर अंक के लिए अपेक्षित','har face ke liye expected')))} ≈ ${exp.toFixed(0)}</div>`:''}`;/* labels sit under the bars: the dashed line crosses no text */
+ $('left').querySelectorAll('[data-pr]').forEach(b=>b.onclick=()=>{pred=b.dataset.pr;drawChance();});
+ $('r1').onclick=()=>roll(1);$('r10').onclick=()=>roll(10);$('r100').onclick=()=>roll(100);$('r0').onclick=()=>{rolls=[0,0,0,0,0,0];nR=0;last=[];drawChance();};
+ $('right').innerHTML=`<div style="font:800 20px system-ui">${T(L('Rolls','फेंक','Rolls'))}: ${nR}</div>
+ <div style="font-size:14px;margin:6px 0">⚅ ${T(L('Theory','सिद्धांत','Theory'))}: <b>1/6 ≈ 16.7%</b><br>⚅ ${T(L('Your experiment','तुम्हारा प्रयोग','Tumhara experiment'))}: <b>${nR?rolls[5]+'/'+nR+' = '+(p6*100).toFixed(1)+'%':'—'}</b></div>
+ <p style="font-size:13px">${T(L('Probability = favourable outcomes ÷ all equally likely outcomes. A fair die has 6 faces, so P(6) = 1/6. With only a few rolls the bars look uneven; with hundreds they get closer to the red line — the law of large numbers.','संभावना = अनुकूल परिणाम ÷ सभी समान संभावित परिणाम। निष्पक्ष पासे के 6 फलक हैं, तो P(6) = 1/6। कम फेंक में दंड असमान दिखते हैं; सैकड़ों फेंक में वे लाल रेखा के पास आते हैं — बड़ी संख्याओं का नियम।','Probability = favourable outcomes ÷ saare equally likely outcomes. Fair dice ke 6 faces hain, to P(6) = 1/6. Kam rolls mein bars uneven dikhte hain; saikdon rolls mein woh red line ke paas aate hain — law of large numbers.'))}</p>
+ ${pred&&pred!=='1/6'?`<div style="font-size:13px;background:var(--blush);border-radius:10px;padding:6px 8px">${T(L('Look at your bars: does a 6 really come up that often? Count the faces on a die.','अपने दंड देखो: क्या 6 सच में इतनी बार आता है? पासे के फलक गिनो।','Apne bars dekho: kya 6 sach mein itni baar aata hai? Dice ke faces gino.'))}</div>`:''}`;
+ if(pred==='1/6'&&nR>=300)win('chance',L('Prediction confirmed by experiment — that is how scientists work!','प्रयोग ने अनुमान की पुष्टि की — वैज्ञानिक ऐसे ही काम करते हैं!','Experiment ne prediction confirm kiya — scientists aise hi kaam karte hain!'));mission();}
+/* ---------- shell ---------- */
+function mission(){const st={sheet:L(`${YEL.filter(cellOK).length}/4 formula cells correct`,`${YEL.filter(cellOK).length}/4 सूत्र सेल सही`,`${YEL.filter(cellOK).length}/4 formula cells sahi`),chart:L(`charts ${Object.values(picks).filter(Boolean).length}/3 · median ${medOK?'✔':'✘'}`,`चार्ट ${Object.values(picks).filter(Boolean).length}/3 · माध्यिका ${medOK?'✔':'✘'}`,`charts ${Object.values(picks).filter(Boolean).length}/3 · median ${medOK?'✔':'✘'}`),db:L(`queries ${Object.keys(solved).length}/3`,`क्वेरी ${Object.keys(solved).length}/3`,`queries ${Object.keys(solved).length}/3`),chance:L(`predict 1/6 + ${Math.min(nR,300)}/300 rolls`,`1/6 अनुमान + ${Math.min(nR,300)}/300 फेंक`,`predict 1/6 + ${Math.min(nR,300)}/300 rolls`)};
+ $('mission').innerHTML=TABS.map(([k,n])=>`<div style="margin:3px 0">${done[k]?'✅':'⬜'} <b>${T(n)}</b> — ${T(st[k])}</div>`).join('');}
+function draw(){$('goal').innerHTML=E(T(goal&&cfg.tab===tab?goal:GOALS[tab]));$('tabs').innerHTML=TABS.map(([k,n])=>`<button role="tab" aria-selected="${k===tab}" data-t="${k}">${T(n)}</button>`).join('');
+ $('tabs').querySelectorAll('button').forEach(b=>b.onclick=()=>{tab=b.dataset.t;draw();});({sheet:drawSheet,chart:drawChart,db:drawDB,chance:drawChance})[tab]();mission();}
+N.onLang(draw);draw();
+window.__lab={roll,tab:k=>{tab=k;draw();},set:(c,v)=>{S[c]=v;drawSheet();checkSheet();},val:c=>cellVal(c),done};
+})();
+</script></body></html>

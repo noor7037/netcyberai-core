@@ -1,0 +1,202 @@
+<!doctype html><html lang="en" data-lab="bits-lab"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#061233"><title>Bits, Gates & Adders · NCA Tech Lab L3</title><style>:root{--bg:#061233;--bg2:#0b1b4a;--card:rgba(255,255,255,.06);--line:rgba(255,255,255,.12);--tx:#eef4ff;--mut:#9fb0d6;--grape:#8B3DFF;--cyan:#02CFF9;--leaf:#22C55E;--coral:#FF6B57;--gold:#F5B90A;--tang:#FF7A1A;--royal:#2563EB;--r:16px}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:radial-gradient(120% 80% at 10% -10%,#22145e 0%,transparent 55%),radial-gradient(120% 80% at 110% 10%,#04395e 0%,transparent 50%),var(--bg);color:var(--tx);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans Devanagari",sans-serif;min-height:100%}
+body{padding:0 0 24px}
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:8px;padding:10px 12px;background:rgba(6,18,51,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top h1{font-size:16px;margin:0;flex:1;letter-spacing:.2px}
+.top h1 small{display:block;font-size:11px;color:var(--mut);font-weight:500}
+.badge{font-size:11px;padding:3px 8px;border-radius:99px;background:linear-gradient(90deg,var(--grape),var(--cyan));color:#061233;font-weight:700}
+.langs{display:flex;border:1px solid var(--line);border-radius:99px;overflow:hidden}
+.langs button{background:none;border:0;color:var(--mut);padding:5px 8px;font:inherit;font-size:12px;min-height:30px}
+.langs button.on{background:var(--grape);color:#fff}
+.wrap{max-width:1100px;margin:0 auto;padding:12px}
+.goal{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:var(--r);background:linear-gradient(135deg,rgba(139,61,255,.22),rgba(2,207,249,.12));border:1px solid rgba(139,61,255,.4);margin-bottom:12px;font-size:14px}
+.goal b{color:var(--gold)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px;margin-bottom:12px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.card h2{font-size:14px;margin:0 0 8px;color:var(--cyan);letter-spacing:.3px;text-transform:uppercase}
+.grid{display:grid;gap:12px}
+@media(min-width:720px){.grid.two{grid-template-columns:1.25fr 1fr}}
+@media(orientation:landscape) and (max-height:500px){.grid.two{grid-template-columns:1.2fr 1fr}.top{padding:6px 12px}}
+.btn{appearance:none;border:1px solid var(--line);background:rgba(255,255,255,.08);color:var(--tx);border-radius:12px;padding:9px 12px;font:inherit;font-weight:600;min-height:40px;cursor:pointer;transition:transform .12s,background .2s}
+.btn:active{transform:scale(.96)}
+.btn.pri{background:linear-gradient(135deg,var(--grape),#5b2be0);border-color:transparent;color:#fff;box-shadow:0 6px 18px rgba(139,61,255,.4)}
+.btn.ok{background:var(--leaf);color:#062;border-color:transparent}
+.btn.on{outline:2px solid var(--cyan)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{border-radius:99px;padding:6px 11px;min-height:34px;font-size:13px}
+label.sl{display:flex;flex-direction:column;gap:3px;font-size:12px;color:var(--mut);flex:1;min-width:120px}
+input[type=range]{width:100%;accent-color:var(--grape)}
+input[type=text],textarea,select{width:100%;background:rgba(0,0,0,.25);border:1px solid var(--line);color:var(--tx);border-radius:12px;padding:10px;font:inherit}
+.stat{display:flex;flex-direction:column;padding:8px 10px;border-radius:12px;background:rgba(0,0,0,.22);min-width:80px}
+.stat b{font-size:18px;font-variant-numeric:tabular-nums}
+.stat span{font-size:11px;color:var(--mut)}
+.mut{color:var(--mut)}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px}
+canvas,svg{display:block;max-width:100%;touch-action:none}
+
+
+.explain{font-size:13.5px;color:#d7e2ff;background:rgba(0,0,0,.2);border-left:3px solid var(--cyan);padding:8px 10px;border-radius:8px;margin-top:8px}
+.pill{display:inline-block;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:700}
+@keyframes pop{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(2,207,249,.0)}50%{box-shadow:0 0 0 6px rgba(2,207,249,.25)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.top h1 .hstat{display:none;font-size:12px;font-weight:700;color:#4ade80;animation:pop .3s both}.top h1.toasting small{display:none}.top h1.toasting .hstat{display:block}
+.seg.chips{margin:4px 0}.seg.chips button{white-space:normal;text-align:left;line-height:1.25;max-width:100%}
+.seg.chips.big .pick{width:100%;font-weight:700}
+</style></head><body><script>// NCA Tech Lab L3 shared kit: language, config from ?cfg= / ?lesson= / inline, mission events, small helpers. No eval.
+(function(g){
+  const qs=new URLSearchParams(location.search);
+  const K={lang:qs.get('lang')||localStorage.getItem('nca-lang')||'hinglish',cfg:{},goal:null,lab:document.documentElement.dataset.lab,listeners:[]};
+  K.reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  K.t=(o)=>o==null?'':typeof o==='string'?o:(o[K.lang]||o.hinglish||o.en||'');
+  K.$=(s,r)=>(r||document).querySelector(s);K.$$=(s,r)=>[...(r||document).querySelectorAll(s)];
+  K.el=(tag,attrs,html)=>{const e=document.createElement(tag);if(attrs)for(const k in attrs){if(k==='on')for(const ev in attrs.on)e.addEventListener(ev,attrs.on[ev]);else e.setAttribute(k,attrs[k]);}if(html!=null)e.innerHTML=html;return e;};
+  K.esc=(s)=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+  K.rng=(seed)=>{let s=seed>>>0||1;return()=>{s^=s<<13;s>>>=0;s^=s>>17;s^=s<<5;s>>>=0;return s/4294967296;};};
+  K.clamp=(v,a,b)=>Math.max(a,Math.min(b,v));K.lerp=(a,b,t)=>a+(b-a)*t;K.ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+  K.sleep=(ms)=>new Promise(r=>setTimeout(r,K.reduced?0:ms));
+  K.tween=(ms,fn)=>new Promise(res=>{if(K.reduced||ms<=0){fn(1);return res();}const t0=performance.now();const f=n=>{const t=Math.min(1,(n-t0)/ms);fn(K.ease(t));t<1?requestAnimationFrame(f):res();};requestAnimationFrame(f);});
+  // Toasts never cover content (readability rule): the message temporarily replaces the header subtitle, then the subtitle returns after 2.5 s.
+  K.toast=(msg)=>{const h=K.$('header.top h1');if(!h)return;let st=h.querySelector('.hstat');if(!st){st=K.el('span',{class:'hstat',role:'status','aria-live':'polite'});h.appendChild(st);}st.textContent=msg;h.classList.add('toasting');clearTimeout(K._tt);K._tt=setTimeout(()=>h.classList.remove('toasting'),2500);};
+  K.events=[];
+  // emit a lab event; the lesson player listens via postMessage and matches it against try.questions[type=lab-check].answer
+  K.emit=(event,data)=>{const m={type:'nca-lab-event',lab:K.lab,event,data:data||{},at:Date.now()};K.events.push(m);try{parent!==window&&parent.postMessage(m,'*');}catch(e){}g.dispatchEvent(new CustomEvent('nca-lab-event',{detail:m}));document.documentElement.dataset.lastEvent=event;};
+  K.check=(event,data,msg)=>{K.emit(event,data);K.toast('✓ '+(msg||K.t({en:'Mission check passed',hinglish:'Mission check pass!',hi:'मिशन जाँच पास!'})));};
+  K.onLang=(fn)=>K.listeners.push(fn);
+  K.setLang=(l)=>{K.lang=l;localStorage.setItem('nca-lang',l);K.$$('.langs button').forEach(b=>b.classList.toggle('on',b.dataset.l===l));K.$$('[data-t]').forEach(e=>{const o=K.T[e.dataset.t];if(o)e.innerHTML=K.t(o);});K.renderGoal();K.listeners.forEach(f=>f(l));};
+  K.T={};// string table: key -> {en,hi,hinglish}
+  K.renderGoal=()=>{const gEl=K.$('#goal');if(!gEl)return;const goal=K.goal||K.T.__goal;gEl.style.display=goal?'flex':'none';if(goal)gEl.innerHTML='<span>🎯</span><div><b>'+K.esc(K.t({en:'Goal',hinglish:'Goal',hi:'लक्ष्य'}))+':</b> '+K.esc(K.t(goal))+'</div>';};
+  K.header=(title,sub)=>{const h=K.el('header',{class:'top'});h.innerHTML='<span class="badge">L3</span><h1>'+K.esc(K.t(title))+'<small>'+K.esc(K.t(sub))+'</small></h1><div class="langs" role="group" aria-label="Language"><button data-l="hinglish">Hinglish</button><button data-l="en">EN</button><button data-l="hi">हिं</button></div>';document.body.prepend(h);K.$$('.langs button',h).forEach(b=>b.onclick=()=>{K.setLang(b.dataset.l);h.querySelector('h1').firstChild.textContent=K.t(title);h.querySelector('small').textContent=K.t(sub);});};
+  // Readability rule: native <select> boxes cut long option text on phones, so every select is shown as a wrapping row of chips.
+  K.chipify=(sel)=>{if(sel._chips||sel.dataset.keep!=null)return;const box=K.el('div',{class:'seg chips',role:'radiogroup','aria-label':sel.getAttribute('aria-label')||'options'});sel.after(box);sel.style.display='none';sel._chips=box;let last='';
+    let open=false;const render=(force)=>{const n=sel.options.length,big=n>6;const sig=[...sel.options].map(o=>o.value+'\u0001'+o.textContent).join('\u0002')+'|'+sel.value+'|'+open;if(sig===last&&!force)return;last=sig;box.innerHTML='';box.classList.toggle('big',big);
+      if(big){const cur=sel.options[sel.selectedIndex];const t=K.el('button',{class:'btn on pick',type:'button','aria-expanded':open?'true':'false'});t.textContent=(open?'▴ ':'▾ ')+(cur?cur.textContent:'');t.onclick=()=>{open=!open;render(true);};box.appendChild(t);if(!open)return;}
+      [...sel.options].forEach(o=>{if(big&&o.value===sel.value)return;const b=K.el('button',{class:'btn'+(o.value===sel.value?' on':''),type:'button',role:'radio','aria-checked':o.value===sel.value?'true':'false'});b.textContent=o.textContent;b.onclick=()=>{if(sel.disabled)return;sel.value=o.value;open=false;render(true);sel.dispatchEvent(new Event('change',{bubbles:true}));};box.appendChild(b);});};
+    render();new MutationObserver(render).observe(sel,{childList:true,subtree:true,characterData:true});setInterval(render,250);};
+  K.chipAll=()=>{K.$$('select').forEach(K.chipify);if(!K._mo){K._mo=new MutationObserver(()=>K.$$('select').forEach(K.chipify));K._mo.observe(document.body,{childList:true,subtree:true});}};
+  K.boot=async(defaults)=>{let cfg=Object.assign({},defaults||{});
+    const inl=document.getElementById('lesson-inline');
+    try{if(inl){const L=JSON.parse(inl.textContent);if(L.play){Object.assign(cfg,L.play.config||{});K.goal=L.play.goal;}}}catch(e){}
+    const lp=qs.get('lesson');if(lp){try{const L=await (await fetch(lp)).json();if(L.play&&L.play.lab===K.lab){Object.assign(cfg,L.play.config||{});K.goal=L.play.goal;}}catch(e){}}
+    const c=qs.get('cfg');if(c){try{Object.assign(cfg,JSON.parse(c));}catch(e){}}
+    for(const [k,v] of qs){if(!['cfg','lesson','lang'].includes(k))cfg[k]=v;}
+    K.cfg=cfg;K.setLang(K.lang);setTimeout(K.chipAll,0);return cfg;};
+  g.K=K;
+})(window);
+</script><div class="wrap">
+ <div id="goal" class="goal" style="display:none"></div>
+ <div class="seg" id="modes" role="tablist"></div>
+ <div id="pane-bits" class="pane">
+  <div class="card"><h2 data-t="byte"></h2>
+   <div class="bits" id="bitrow"></div>
+   <div class="nums" id="nums"></div>
+   <div class="row" style="flex-wrap:wrap;gap:6px;margin-top:8px"><button class="btn" id="inc">+1</button><button class="btn" id="dec">−1</button><button class="btn" id="not">NOT</button><button class="btn" id="neg" data-t="negate"></button><button class="btn" id="clr">0</button></div>
+   <div class="mut" id="bitExplain" style="font-size:13px;margin-top:8px"></div>
+  </div>
+  <div class="card"><h2 data-t="missions"></h2><div id="targets"></div></div>
+ </div>
+ <div id="pane-gates" class="pane">
+  <div class="card"><h2 data-t="gates"></h2>
+   <div class="seg" id="gatesel"></div>
+   <svg id="gsvg" viewBox="0 0 320 150" role="img" aria-label="logic gate"></svg>
+   <div class="row" style="justify-content:center;gap:10px"><button class="btn big2" id="inA">A = 0</button><button class="btn big2" id="inB">B = 0</button></div>
+   <table class="tt" id="tt"></table>
+   <div class="mut" id="gateInfo" style="font-size:13px;margin-top:6px"></div>
+  </div>
+ </div>
+ <div id="pane-adder" class="pane">
+  <div class="card"><h2 data-t="adder"></h2>
+   <div class="row" style="flex-wrap:wrap;gap:12px;justify-content:center">
+    <div class="num4"><b>A</b><div class="bits sm" id="aBits"></div><span id="aDec"></span></div>
+    <div class="num4"><b>B</b><div class="bits sm" id="bBits"></div><span id="bDec"></span></div>
+   </div>
+   <svg id="asvg" viewBox="0 0 340 190" role="img" aria-label="ripple carry adder"></svg>
+   <div class="row" style="justify-content:center;gap:8px"><button class="btn pri" id="run" data-t="run"></button><label class="row mut" style="font-size:13px;gap:4px"><input type="checkbox" id="signed"> <span data-t="signedView"></span></label></div>
+   <div class="big3" id="sumOut"></div>
+   <div class="mut" id="adderInfo" style="font-size:13px"></div>
+  </div>
+ </div>
+</div>
+<style>
+.pane{display:none}.pane.on{display:block;animation:pop .3s both}
+.bits{display:grid;grid-template-columns:repeat(8,1fr);gap:5px;margin:8px 0}
+.bits.sm{grid-template-columns:repeat(4,38px)}
+.bit{border:1px solid rgba(255,255,255,.15);border-radius:10px;background:#0b1a3f;color:#9fb0d6;padding:8px 0 4px;text-align:center;font:800 20px ui-monospace,monospace;cursor:pointer;transition:background .2s,transform .15s;min-height:44px}
+.bit small{display:block;font:600 10px system-ui;opacity:.75;margin-top:2px}
+.bit.on{background:linear-gradient(160deg,#00C2B8,#0891b2);color:#fff;box-shadow:0 0 14px #00C2B866;transform:translateY(-2px)}
+.bit.sign small{color:#FFD23F}
+.nums{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}
+.nums div{background:#020817;border-radius:10px;padding:8px}.nums small{display:block;color:#9fb0d6;font-size:11px}.nums b{font:800 20px ui-monospace,monospace}
+.tgt{display:flex;align-items:center;gap:8px;padding:8px 0;border-top:1px solid rgba(255,255,255,.07);font-size:14px}.tgt .ck{width:22px;height:22px;border-radius:50%;border:2px solid #9fb0d6;display:grid;place-items:center;font-size:13px;flex:none}.tgt.done .ck{background:#22C55E;border-color:#22C55E}
+.big2{font:800 16px ui-monospace,monospace;min-width:92px}
+.tt{width:100%;border-collapse:collapse;margin-top:10px;font:600 14px ui-monospace,monospace;text-align:center}.tt td,.tt th{padding:5px;border-bottom:1px solid rgba(255,255,255,.08)}.tt tr.cur{background:#00C2B833}.tt tr.seen td:last-child{color:#22C55E}
+.num4{text-align:center}.num4 span{font:800 16px ui-monospace,monospace;color:#FFD23F}
+.big3{font:800 22px ui-monospace,monospace;text-align:center;margin:8px 0}
+svg{width:100%;height:auto;display:block}
+</style>
+<script>
+const T=K.T,t3=(en,hinglish,hi)=>({en,hinglish,hi});
+Object.assign(T,{byte:t3('One byte = 8 bits (tap a bit)','Ek byte = 8 bits (bit tap karo)','एक बाइट = 8 बिट (बिट टैप करो)'),negate:t3('Negate (NOT, then +1)','Negate (NOT, phir +1)','ऋण करो (NOT, फिर +1)'),missions:t3('Missions','Missions','मिशन'),gates:t3('Logic gates','Logic gates','लॉजिक गेट'),adder:t3('4-bit ripple-carry adder','4-bit ripple-carry adder','4-बिट रिपल-कैरी योजक'),run:t3('Add ▶','Jodo ▶','जोड़ो ▶'),signedView:t3('Read as signed (two\'s complement)','Signed padho (two\'s complement)','साइन्ड पढ़ो (टूज़ कॉम्प्लिमेंट)')});
+const MODES={bits:t3('Binary · hex · signed','Binary · hex · signed','बाइनरी · हेक्स · साइन्ड'),gates:t3('Logic gates','Logic gates','लॉजिक गेट'),adder:t3('Adder','Adder','योजक')};
+let cfg,mode='bits',v=0,done={};
+const TG=[{id:'ascii-A',val:65,t:t3('Make 65 — the ASCII/Unicode code for "A"','65 banao — "A" ka ASCII/Unicode code','65 बनाओ — "A" का ASCII/यूनिकोड कोड')},{id:'hex-7f',val:0x7F,t:t3('Make 0x7F — the largest positive signed byte (127)','0x7F banao — sabse bada positive signed byte (127)','0x7F बनाओ — सबसे बड़ा धनात्मक साइन्ड बाइट (127)')},{id:'minus-1',val:0xFF,t:t3('Make −1 in two\'s complement','Two\'s complement mein −1 banao','टूज़ कॉम्प्लिमेंट में −1 बनाओ')},{id:'minus-128',val:0x80,t:t3('Make −128, the most negative byte','−128 banao, sabse negative byte','−128 बनाओ, सबसे ऋणात्मक बाइट')},{id:'hex-c8',val:0xC8,t:t3('Make 0xC8 (decimal 200; signed −56)','0xC8 banao (decimal 200; signed −56)','0xC8 बनाओ (दशमलव 200; साइन्ड −56)')}];
+const sgn=x=>x>127?x-256:x,hex=x=>'0x'+x.toString(16).toUpperCase().padStart(2,'0'),bin=x=>x.toString(2).padStart(8,'0').replace(/(\d{4})/,'$1 ');
+function drawBits(){const r=K.$('#bitrow');r.innerHTML='';for(let i=7;i>=0;i--){const on=(v>>i)&1;const b=K.el('button',{class:'bit'+(on?' on':'')+(i===7?' sign':''),'aria-pressed':on?'true':'false','aria-label':'bit '+i},on+'<small>'+(i===7?'128 / −128':(1<<i))+'</small>');b.onclick=()=>{v^=(1<<i);upd();};r.appendChild(b);}
+ K.$('#nums').innerHTML=`<div><small>${K.t(t3('Unsigned','Unsigned','अचिह्नित'))}</small><b>${v}</b></div><div><small>${K.t(t3('Signed (two\'s complement)','Signed (two\'s complement)','साइन्ड (टूज़ कॉम्प्लिमेंट)'))}</small><b>${sgn(v)}</b></div><div><small>Hex</small><b>${hex(v)}</b></div><div><small>${K.t(t3('Binary','Binary','बाइनरी'))}</small><b style="font-size:16px">${bin(v)}</b></div>`;
+ const parts=[];for(let i=7;i>=0;i--)if((v>>i)&1)parts.push(i===7?'(−128)':String(1<<i));
+ K.$('#bitExplain').innerHTML=K.esc(K.t(t3('Signed value = ','Signed value = ','साइन्ड मान = ')))+(parts.length?K.esc(parts.join(' + ')):'0')+' = <b>'+sgn(v)+'</b>. '+K.esc(K.t(t3('Each hex digit is exactly 4 bits: ','Har hex digit theek 4 bits hai: ','हर हेक्स अंक ठीक 4 बिट है: ')))+'<code>'+bin(v).split(' ').map(n=>n+'→'+parseInt(n,2).toString(16).toUpperCase()).join(', ')+'</code>';
+ K.$('#targets').innerHTML=TG.map(g=>`<div class="tgt ${done[g.id]?'done':''}"><span class="ck">${done[g.id]?'✓':''}</span><span>${K.esc(K.t(g.t))}</span></div>`).join('');}
+function upd(){v&=255;drawBits();for(const g of TG)if(!done[g.id]&&v===g.val){done[g.id]=1;K.check('bits-target',{target:g.id,value:v});drawBits();if(TG.every(x=>done[x.id]))K.emit('bits-all',{});}}
+// ---- gates
+const G={AND:{f:(a,b)=>a&b,t:t3('Output 1 only if A AND B are 1.','Output 1 sirf tab jab A AUR B dono 1.','आउटपुट 1 सिर्फ़ तब जब A और B दोनों 1।')},OR:{f:(a,b)=>a|b,t:t3('Output 1 if A OR B (or both) is 1.','Output 1 agar A YA B (ya dono) 1.','आउटपुट 1 अगर A या B (या दोनों) 1।')},XOR:{f:(a,b)=>a^b,t:t3('Output 1 if A and B differ. XOR is the "sum" bit of an adder.','Output 1 agar A aur B alag. XOR adder ka "sum" bit hai.','आउटपुट 1 अगर A और B अलग। XOR योजक का "योग" बिट है।')},NAND:{f:(a,b)=>1-(a&b),t:t3('NOT AND. NAND is universal: every other gate — and so a whole CPU — can be built from NANDs alone. One CMOS NAND uses 4 transistors.','NOT AND. NAND universal hai: har doosra gate — aur isliye poora CPU — sirf NANDs se ban sakta hai. Ek CMOS NAND mein 4 transistors.','NOT AND। NAND सार्वभौमिक है: हर दूसरा गेट — और इसलिए पूरा CPU — सिर्फ़ NAND से बन सकता है। एक CMOS NAND में 4 ट्रांज़िस्टर।')},NOT:{f:a=>1-a,one:true,t:t3('Flips the input: 0→1, 1→0.','Input palat-ta hai: 0→1, 1→0.','इनपुट पलटता है: 0→1, 1→0।')}};
+let gate='AND',A=0,B=0,seen={};
+function drawGate(){const g=G[gate],o=g.one?g.f(A):g.f(A,B);const on='#00C2B8',off='#33415c';
+ K.$('#gsvg').innerHTML=`<defs><filter id="gl"><feGaussianBlur stdDeviation="3"/></filter></defs>
+ <line x1="20" y1="${g.one?75:50}" x2="120" y2="${g.one?75:50}" stroke="${A?on:off}" stroke-width="5"/>${g.one?'':`<line x1="20" y1="100" x2="120" y2="100" stroke="${B?on:off}" stroke-width="5"/>`}
+ <rect x="110" y="30" width="100" height="90" rx="${gate==='OR'||gate==='XOR'?45:16}" fill="#0b1a3f" stroke="#8B3DFF" stroke-width="3"/>
+ <text x="160" y="82" text-anchor="middle" fill="#fff" font-size="22" font-weight="800" font-family="ui-monospace,monospace">${gate}</text>
+ <line x1="210" y1="75" x2="270" y2="75" stroke="${o?on:off}" stroke-width="5"/>
+ <circle cx="290" cy="75" r="18" fill="${o?'#FFD23F':'#1e293b'}" ${o?'filter="url(#gl)"':''}/><circle cx="290" cy="75" r="14" fill="${o?'#FFD23F':'#1e293b'}" stroke="#9fb0d6"/>
+ <text x="290" y="81" text-anchor="middle" font-size="16" font-weight="800" fill="${o?'#061233':'#9fb0d6'}">${o}</text>
+ <text x="12" y="${g.one?70:45}" fill="#9fb0d6" font-size="13">A</text>${g.one?'':'<text x="12" y="95" fill="#9fb0d6" font-size="13">B</text>'}`;
+ K.$('#inA').textContent='A = '+A;K.$('#inB').textContent='B = '+B;K.$('#inB').style.display=g.one?'none':'';
+ const rows=g.one?[[0],[1]]:[[0,0],[0,1],[1,0],[1,1]];const key=r=>gate+r.join('');
+ K.$('#tt').innerHTML='<tr><th>A</th>'+(g.one?'':'<th>B</th>')+'<th>'+gate+'</th></tr>'+rows.map(r=>`<tr class="${(g.one?r[0]===A:(r[0]===A&&r[1]===B))?'cur':''} ${seen[key(r)]?'seen':''}"><td>${r.join('</td><td>')}</td><td>${seen[key(r)]?(g.one?g.f(r[0]):g.f(r[0],r[1])):'?'}</td></tr>`).join('');
+ K.$('#gateInfo').textContent=K.t(g.t);
+ seen[gate+(g.one?[A]:[A,B]).join('')]=1;K.$$('#tt tr').forEach((tr,i)=>{if(i&&seen[key(rows[i-1])]){tr.classList.add('seen');tr.lastChild.textContent=g.one?g.f(rows[i-1][0]):g.f(rows[i-1][0],rows[i-1][1]);}});
+ if(rows.every(r=>seen[key(r)])&&!seen['done'+gate]){seen['done'+gate]=1;K.check('gate-truth',{gate});}}
+// ---- adder
+let a=cfg?0:0,b=0,ripple=-1,res=null;
+function nb(id,get,set){const r=K.$(id);r.innerHTML='';const x=get();for(let i=3;i>=0;i--){const on=(x>>i)&1;const e=K.el('button',{class:'bit'+(on?' on':''),'aria-label':'bit '+i},on+'<small>'+(1<<i)+'</small>');e.onclick=()=>{set(get()^(1<<i));res=null;ripple=-1;drawAdder();};r.appendChild(e);}}
+const s4=x=>x>7?x-16:x;
+function drawAdder(){const sg=K.$('#signed').checked;nb('#aBits',()=>a,x=>a=x);nb('#bBits',()=>b,x=>b=x);K.$('#aDec').textContent='= '+(sg?s4(a):a);K.$('#bDec').textContent='= '+(sg?s4(b):b);
+ let c=0,cols=[];for(let i=0;i<4;i++){const ai=(a>>i)&1,bi=(b>>i)&1,s=ai^bi^c,co=(ai&bi)|(c&(ai^bi));cols.push({ai,bi,ci:c,s,co});c=co;}
+ let svg='';for(let i=0;i<4;i++){const x=262-i*78,k=cols[i],act=ripple>=i;const hl=ripple===i;
+  svg+=`<g><text x="${x+30}" y="16" text-anchor="middle" fill="#9fb0d6" font-size="11">bit ${i}</text>
+  <text x="${x+16}" y="36" text-anchor="middle" fill="#FFD23F" font-size="15" font-family="ui-monospace,monospace">a${k.ai}</text><text x="${x+46}" y="36" text-anchor="middle" fill="#02CFF9" font-size="15" font-family="ui-monospace,monospace">b${k.bi}</text>
+  <rect x="${x}" y="46" width="62" height="62" rx="12" fill="${hl?'#8B3DFF55':'#0b1a3f'}" stroke="${act?'#00C2B8':'#33415c'}" stroke-width="${hl?4:2}"/>
+  <text x="${x+31}" y="74" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">FULL</text><text x="${x+31}" y="90" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">ADDER</text>
+  <line x1="${x+31}" y1="108" x2="${x+31}" y2="134" stroke="${act&&k.s?'#00C2B8':'#33415c'}" stroke-width="4"/>
+  <text x="${x+31}" y="156" text-anchor="middle" font-size="20" font-weight="800" fill="${act?'#fff':'#475569'}" font-family="ui-monospace,monospace">${act?k.s:'?'}</text>
+  <path d="M${x} 77 L${x-14} 77" stroke="${act&&k.co?'#FF6B6B':'#33415c'}" stroke-width="4"/>
+  <text x="${x-8}" y="70" text-anchor="middle" font-size="11" fill="${act&&k.co?'#FF6B6B':'#64748b'}">c${act?k.co:''}</text></g>`;}
+ svg+=`<text x="10" y="182" fill="#9fb0d6" font-size="11">${K.esc(K.t(t3('carry ripples right → left','carry daayein → baayein behta hai','कैरी दाएँ → बाएँ बहता है')))}</text>`;
+ K.$('#asvg').innerHTML=svg;
+ if(res){const sum=res.sum,co=res.co;const ov=sg&&((s4(a)+s4(b))>7||(s4(a)+s4(b))<-8);
+  K.$('#sumOut').innerHTML=`${sg?s4(a):a} + ${sg?s4(b):b} = <span style="color:${(co&&!sg)||ov?'#FF6B6B':'#22C55E'}">${sg?s4(sum):sum}</span> <small class="mut">(${sum.toString(2).padStart(4,'0')}${co?' carry 1':''})</small>`;
+  K.$('#adderInfo').textContent=K.t(!sg?(co?t3(`Overflow! The true answer ${a+b} needs 5 bits; 4 bits keep only ${sum}. The carry-out flag warns the CPU.`,`Overflow! Sahi jawab ${a+b} ko 5 bits chahiye; 4 bits sirf ${sum} rakhte hain. Carry-out flag CPU ko warn karta hai.`,`ओवरफ़्लो! सही उत्तर ${a+b} को 5 बिट चाहिए; 4 बिट सिर्फ़ ${sum} रखते हैं। कैरी-आउट फ़्लैग CPU को चेताता है।`):t3('Fits in 4 bits. Each full adder: sum = a XOR b XOR carry-in; carry-out = majority of the three.','4 bits mein fit. Har full adder: sum = a XOR b XOR carry-in; carry-out = teeno ka majority.','4 बिट में आ गया। हर पूर्ण योजक: योग = a XOR b XOR carry-in; carry-out = तीनों का बहुमत।')):(ov?t3('Signed overflow: two positives gave a negative (or two negatives a positive). Range is −8…7.','Signed overflow: do positive se negative aaya (ya do negative se positive). Range −8…7.','साइन्ड ओवरफ़्लो: दो धनात्मक से ऋणात्मक आया (या दो ऋणात्मक से धनात्मक)। सीमा −8…7।'):t3('Two\'s complement magic: the same adder circuit adds negative numbers too — no separate subtractor needed.','Two\'s complement ka jaadu: wahi adder circuit negative numbers bhi jodta hai — alag subtractor nahi chahiye.','टूज़ कॉम्प्लिमेंट का जादू: वही योजक परिपथ ऋणात्मक संख्याएँ भी जोड़ता है — अलग घटाने वाला नहीं चाहिए।')));}
+ else{K.$('#sumOut').textContent='';K.$('#adderInfo').textContent='';}}
+async function run(){if(run.busy)return;run.busy=1;res=null;for(ripple=0;ripple<4;ripple++){drawAdder();await K.sleep(450);}ripple=4;let s=(a+b)&15,co=(a+b)>15?1:0;res={sum:s,co};drawAdder();K.check('adder-run',{a,b,sum:s,carry:co});if(co)K.emit('overflow-seen',{a,b});run.busy=0;}
+function setMode(m){mode=MODES[m]?m:'bits';K.$$('#modes button').forEach(b=>b.classList.toggle('on',b.dataset.m===mode));K.$$('.pane').forEach(p=>p.classList.toggle('on',p.id==='pane-'+mode));if(mode==='bits')drawBits();if(mode==='gates')drawGate();if(mode==='adder')drawAdder();K.emit('mode-opened',{mode});}
+(async()=>{K.lab='bits-lab';K.header(t3('Bits, Gates & Adders','Bits, Gates aur Adders','बिट, गेट और योजक'),t3('How a computer stores numbers and does maths','Computer numbers kaise rakhta hai aur maths kaise karta hai','कंप्यूटर संख्याएँ कैसे रखता है और गणित कैसे करता है'));
+ cfg=await K.boot({mode:'bits',value:0,gate:'AND',a:5,b:6});v=(+cfg.value)&255;gate=G[cfg.gate]?cfg.gate:'AND';a=(+cfg.a)&15;b=(+cfg.b)&15;
+ K.$('#modes').innerHTML=Object.keys(MODES).map(k=>`<button class="btn" data-m="${k}">${K.esc(K.t(MODES[k]))}</button>`).join('');K.$$('#modes button').forEach(b=>b.onclick=()=>setMode(b.dataset.m));
+ K.$('#gatesel').innerHTML=Object.keys(G).map(k=>`<button class="btn" data-g="${k}">${k}</button>`).join('');K.$$('#gatesel button').forEach(b=>b.onclick=()=>{gate=b.dataset.g;K.$$('#gatesel button').forEach(x=>x.classList.toggle('on',x===b));drawGate();});K.$$('#gatesel button').forEach(x=>x.classList.toggle('on',x.dataset.g===gate));
+ K.$('#inA').onclick=()=>{A^=1;drawGate();};K.$('#inB').onclick=()=>{B^=1;drawGate();};
+ K.$('#inc').onclick=()=>{v++;upd();};K.$('#dec').onclick=()=>{v=(v+255)&255;upd();};K.$('#not').onclick=()=>{v=~v;upd();};K.$('#neg').onclick=()=>{v=(~v)+1;upd();};K.$('#clr').onclick=()=>{v=0;upd();};
+ K.$('#run').onclick=run;K.$('#signed').onchange=()=>{res=null;ripple=-1;drawAdder();};
+ setMode(cfg.mode);K.onLang(()=>{K.$$('#modes button').forEach(b=>b.textContent=K.t(MODES[b.dataset.m]));setMode(mode);});window.__b={set:x=>{v=x;upd();},run,setAB:(x,y)=>{a=x;b=y;drawAdder();},press:(x,y)=>{A=x;B=y;drawGate();}};})();
+</script>
+</body></html>

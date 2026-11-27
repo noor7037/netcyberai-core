@@ -1,0 +1,347 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.dsa.02",
+ "level": 3,
+ "classes": [
+  11,
+  12
+ ],
+ "unit": "dsa",
+ "title": {
+  "en": "Linear and binary search",
+  "hi": "रैखिक और द्विआधारी खोज",
+  "hinglish": "Linear aur binary search"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [
+  "L3.dsa.01"
+ ],
+ "outcomes": [
+  {
+   "en": "Run linear and binary search by hand",
+   "hi": "रैखिक और द्विआधारी खोज हाथ से चलाओ",
+   "hinglish": "Linear aur binary search haath se chalao"
+  },
+  {
+   "en": "Explain why binary search needs sorted data and is O(log n)",
+   "hi": "समझाओ द्विआधारी खोज को क्रमबद्ध डेटा क्यों चाहिए और यह O(log n) क्यों है",
+   "hinglish": "Samjhao binary search ko sorted data kyun chahiye aur yeh O(log n) kyun hai"
+  },
+  {
+   "en": "Write binary search in Python without off-by-one bugs",
+   "hi": "बिना एक-से-चूक बग के पायथन में द्विआधारी खोज लिखो",
+   "hinglish": "Bina off-by-one bugs ke Python mein binary search likho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Linear search",
+   "hinglish": "Ek-ek karke dekhna",
+   "en": "Check items one by one: O(n)",
+   "hi": "वस्तुएँ एक-एक करके जाँचो: O(n)"
+  },
+  {
+   "term": "Binary search",
+   "hinglish": "Beech se aadha karna",
+   "en": "Check the middle of a sorted list and discard half: O(log n)",
+   "hi": "क्रमबद्ध सूची का बीच जाँचो और आधा हटाओ: O(log n)"
+  },
+  {
+   "term": "Index",
+   "hinglish": "Jagah ka number",
+   "en": "Position in a list, starting at 0",
+   "hi": "सूची में स्थान, 0 से शुरू"
+  },
+  {
+   "term": "Off-by-one",
+   "hinglish": "Ek se chook",
+   "en": "A bug where a loop goes one step too far or stops one short",
+   "hi": "बग जहाँ लूप एक क़दम ज़्यादा या कम चलता है"
+  },
+  {
+   "term": "Invariant",
+   "hinglish": "Hamesha sach",
+   "en": "A fact that stays true every loop: \"if present, target is between lo and hi\"",
+   "hi": "हर लूप में सच रहने वाला तथ्य: \"अगर है तो लक्ष्य lo और hi के बीच है\""
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "32 sorted numbers. Linear search for 88 checks index 0, 1, 2, … and finds it at index 24 after 25 checks.",
+    "hi": "32 क्रमबद्ध संख्याएँ। 88 की रैखिक खोज सूचकांक 0, 1, 2, … जाँचती है और 25 जाँच के बाद सूचकांक 24 पर पाती है।",
+    "hinglish": "32 sorted numbers. 88 ka linear search index 0, 1, 2, … check karta hai aur 25 checks ke baad index 24 par paata hai."
+   },
+   "visual": "anim:linear-scan",
+   "narration": {
+    "en": "32 sorted numbers. Linear search for 88 checks index 0, 1, 2, … and finds it at index 24 after 25 checks.",
+    "hi": "32 क्रमबद्ध संख्याएँ। 88 की रैखिक खोज सूचकांक 0, 1, 2, … जाँचती है और 25 जाँच के बाद सूचकांक 24 पर पाती है।",
+    "hinglish": "32 sorted numbers. 88 ka linear search index 0, 1, 2, … check karta hai aur 25 checks ke baad index 24 par paata hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Binary search checks the middle (index 15 = 56). 56 < 88, so the whole left half is dropped.",
+    "hi": "द्विआधारी खोज बीच (सूचकांक 15 = 56) जाँचती है। 56 < 88, तो पूरा बायाँ आधा हटा।",
+    "hinglish": "Binary search beech (index 15 = 56) check karta hai. 56 < 88, to poora left half hata."
+   },
+   "visual": "anim:halve",
+   "narration": {
+    "en": "Binary search checks the middle (index 15 = 56). 56 < 88, so the whole left half is dropped.",
+    "hi": "द्विआधारी खोज बीच (सूचकांक 15 = 56) जाँचती है। 56 < 88, तो पूरा बायाँ आधा हटा।",
+    "hinglish": "Binary search beech (index 15 = 56) check karta hai. 56 < 88, to poora left half hata."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Each check halves the range: 32 → 16 → 8 → 4 → 2 → 1. 88 is found in 5 checks.",
+    "hi": "हर जाँच दायरा आधा करती है: 32 → 16 → 8 → 4 → 2 → 1। 88 पाँच जाँच में मिला।",
+    "hinglish": "Har check range aadhi karta hai: 32 → 16 → 8 → 4 → 2 → 1. 88 paanch checks mein mila."
+   },
+   "visual": "anim:halving-bars",
+   "narration": {
+    "en": "Each check halves the range: 32 → 16 → 8 → 4 → 2 → 1. 88 is found in 5 checks.",
+    "hi": "हर जाँच दायरा आधा करती है: 32 → 16 → 8 → 4 → 2 → 1। 88 पाँच जाँच में मिला।",
+    "hinglish": "Har check range aadhi karta hai: 32 → 16 → 8 → 4 → 2 → 1. 88 paanch checks mein mila."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "10 lakh items: linear needs up to 10 lakh checks; binary needs at most 20, because 2²⁰ ≈ 10.5 lakh.",
+    "hi": "10 लाख वस्तुएँ: रैखिक को 10 लाख तक जाँच; द्विआधारी को अधिकतम 20, क्योंकि 2²⁰ ≈ 10.5 लाख।",
+    "hinglish": "10 lakh items: linear ko 10 lakh tak checks; binary ko maximum 20, kyunki 2²⁰ ≈ 10.5 lakh."
+   },
+   "visual": "anim:million",
+   "narration": {
+    "en": "10 lakh items: linear needs up to 10 lakh checks; binary needs at most 20, because 2²⁰ ≈ 10.5 lakh.",
+    "hi": "10 लाख वस्तुएँ: रैखिक को 10 लाख तक जाँच; द्विआधारी को अधिकतम 20, क्योंकि 2²⁰ ≈ 10.5 लाख।",
+    "hinglish": "10 lakh items: linear ko 10 lakh tak checks; binary ko maximum 20, kyunki 2²⁰ ≈ 10.5 lakh."
+   }
+  }
+ ],
+ "play": {
+  "lab": "code-lab",
+  "config": {
+   "mode": "search",
+   "target": 88
+  },
+  "goal": {
+   "en": "Search for 88 with Linear, then with Binary. Compare the checks. Then try a number that is not in the list.",
+   "hi": "88 को पहले रैखिक, फिर द्विआधारी से खोजो। जाँचों की तुलना करो। फिर ऐसी संख्या आज़माओ जो सूची में नहीं है।",
+   "hinglish": "88 ko pehle Linear, phir Binary se dhoondho. Checks compare karo. Phir aisa number try karo jo list mein nahi hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Binary search in Python",
+    "hi": "पायथन में द्विआधारी खोज",
+    "hinglish": "Python mein binary search"
+   },
+   "body": {
+    "en": "def binary_search(a, target):\n    lo, hi = 0, len(a) - 1\n    while lo <= hi:\n        mid = (lo + hi) // 2\n        if a[mid] == target: return mid\n        if a[mid] < target: lo = mid + 1\n        else: hi = mid - 1\n    return -1\nThe invariant: if the target is in the list, it is always between lo and hi. Using lo <= hi (not <) and mid ± 1 avoids the classic off-by-one bugs. In real code use the bisect module: bisect.bisect_left(a, target).",
+    "hi": "def binary_search(a, target):\n    lo, hi = 0, len(a) - 1\n    while lo <= hi:\n        mid = (lo + hi) // 2\n        if a[mid] == target: return mid\n        if a[mid] < target: lo = mid + 1\n        else: hi = mid - 1\n    return -1\nनिश्चर: अगर लक्ष्य सूची में है, तो वह हमेशा lo और hi के बीच है। lo <= hi (न कि <) और mid ± 1 इस्तेमाल करने से पुराने एक-से-चूक बग से बचते हो। असली कोड में bisect मॉड्यूल इस्तेमाल करो: bisect.bisect_left(a, target)।",
+    "hinglish": "def binary_search(a, target):\n    lo, hi = 0, len(a) - 1\n    while lo <= hi:\n        mid = (lo + hi) // 2\n        if a[mid] == target: return mid\n        if a[mid] < target: lo = mid + 1\n        else: hi = mid - 1\n    return -1\nInvariant: agar target list mein hai, to woh hamesha lo aur hi ke beech hai. lo <= hi (na ki <) aur mid ± 1 use karne se classic off-by-one bugs se bachte ho. Asli code mein bisect module use karo: bisect.bisect_left(a, target)."
+   },
+   "analogy": {
+    "en": "Guess-the-number from 1 to 100: always guess the middle, and you never need more than 7 guesses.",
+    "hi": "1 से 100 तक संख्या अनुमान: हमेशा बीच का अनुमान लगाओ, और 7 से ज़्यादा अनुमान कभी नहीं चाहिए।",
+    "hinglish": "1 se 100 tak guess-the-number: hamesha beech ka guess lagao, aur 7 se zyaada guesses kabhi nahi chahiye."
+   },
+   "realExample": {
+    "en": "git bisect uses binary search over commits to find which change introduced a bug — 1,000 commits need about 10 tests.",
+    "hi": "git bisect कमिट पर द्विआधारी खोज करके पता लगाता है किस बदलाव से बग आया — 1,000 कमिट को लगभग 10 परीक्षण।",
+    "hinglish": "git bisect commits par binary search karke pata lagata hai kis change se bug aaya — 1,000 commits ko lagbhag 10 tests."
+   }
+  },
+  {
+   "heading": {
+    "en": "When to use which",
+    "hi": "कब कौन-सा",
+    "hinglish": "Kab kaunsa"
+   },
+   "body": {
+    "en": "Binary search only works on sorted data. Sorting costs O(n log n), so for a single search on unsorted data, linear search is cheaper. If you will search many times, sort once and binary-search each time — or, better, put the items in a set or dict for O(1) average lookups. Databases use B-tree indexes, a multi-way cousin of binary search, to find one row among crores in a handful of disk reads.",
+    "hi": "द्विआधारी खोज सिर्फ़ क्रमबद्ध डेटा पर चलती है। क्रमबद्ध करना O(n log n) है, इसलिए बिना क्रम डेटा पर एक खोज के लिए रैखिक खोज सस्ती है। अगर कई बार खोजना है, एक बार क्रमबद्ध करो और हर बार द्विआधारी खोज — या बेहतर, वस्तुओं को सेट या डिक्ट में डालो ताकि औसतन O(1) खोज हो। डेटाबेस B-tree सूचकांक इस्तेमाल करते हैं, द्विआधारी खोज का बहु-मार्गी रिश्तेदार, ताकि करोड़ों में से एक पंक्ति कुछ ही डिस्क पठन में मिले।",
+    "hinglish": "Binary search sirf sorted data par chalta hai. Sort karna O(n log n) hai, isliye unsorted data par ek search ke liye linear search sasta hai. Agar kai baar search karna hai, ek baar sort karo aur har baar binary search — ya behtar, items ko set ya dict mein daalo taaki average O(1) lookup ho. Databases B-tree indexes use karte hain, binary search ka multi-way rishtedaar, taaki crore rows mein se ek row kuch hi disk reads mein mile."
+   },
+   "analogy": {
+    "en": "A dictionary (the book) is sorted so you can jump to the middle; a shuffled pile of notes must be read one by one.",
+    "hi": "शब्दकोश (किताब) क्रमबद्ध है ताकि आप बीच में कूद सको; फेंटे नोट्स का ढेर एक-एक करके पढ़ना पड़ता है।",
+    "hinglish": "Dictionary (kitaab) sorted hai taaki tum beech mein kood sako; mixed notes ka dher ek-ek karke padhna padta hai."
+   },
+   "realExample": {
+    "en": "Your phone's contacts are kept sorted so the search box can find a name instantly as you type.",
+    "hi": "आपके फ़ोन के संपर्क क्रमबद्ध रखे जाते हैं ताकि खोज बॉक्स लिखते ही नाम तुरंत ढूँढ ले।",
+    "hinglish": "Tumhare phone ke contacts sorted rakhe jaate hain taaki search box type karte hi naam turant dhoondh le."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Play guess-the-number with a friend from 1 to 1000 using the middle strategy. Count your guesses for three different secret numbers. Is it ever more than 10? Why?",
+   "hi": "दोस्त के साथ 1 से 1000 तक बीच वाली रणनीति से संख्या अनुमान खेलो। तीन अलग गुप्त संख्याओं के लिए अनुमान गिनो। क्या कभी 10 से ज़्यादा होते हैं? क्यों?",
+   "hinglish": "Dost ke saath 1 se 1000 tak beech wali strategy se guess-the-number khelo. Teen alag secret numbers ke liye guesses gino. Kya kabhi 10 se zyaada hote hain? Kyun?"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Binary search requires the list to be…",
+     "hi": "द्विआधारी खोज के लिए सूची होनी चाहिए…",
+     "hinglish": "Binary search ke liye list honi chahiye…"
+    },
+    "options": [
+     {
+      "en": "Sorted",
+      "hi": "क्रमबद्ध",
+      "hinglish": "Sorted"
+     },
+     {
+      "en": "Short",
+      "hi": "छोटी",
+      "hinglish": "Chhoti"
+     },
+     {
+      "en": "Of strings",
+      "hi": "स्ट्रिंग की",
+      "hinglish": "Strings ki"
+     },
+     {
+      "en": "Unique only",
+      "hi": "सिर्फ़ अनोखी",
+      "hinglish": "Sirf unique"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Discarding half only works if order tells you which half.",
+     "hi": "आधा हटाना तभी चलता है जब क्रम बताए कौन-सा आधा।",
+     "hinglish": "Aadha hatana tabhi chalta hai jab order bataye kaunsa aadha."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "short",
+    "prompt": {
+     "en": "Maximum binary-search checks for 1,024 sorted items?",
+     "hi": "1,024 क्रमबद्ध वस्तुओं के लिए अधिकतम द्विआधारी जाँच?",
+     "hinglish": "1,024 sorted items ke liye maximum binary-search checks?"
+    },
+    "answer": {
+     "accept": [
+      "11",
+      "10"
+     ]
+    },
+    "explain": {
+     "en": "log₂ 1024 = 10 halvings, so at most 11 checks (10 or 11 depending on how you count the last).",
+     "hi": "log₂ 1024 = 10 बार आधा, तो अधिकतम 11 जाँच (आख़िरी कैसे गिनो उस पर 10 या 11)।",
+     "hinglish": "log₂ 1024 = 10 baar aadha, to maximum 11 checks (aakhri kaise gino us par 10 ya 11)."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "a = [3, 8, 15, 21, 30]. First mid index checked by binary search?",
+     "hi": "a = [3, 8, 15, 21, 30]। द्विआधारी खोज पहला mid सूचकांक?",
+     "hinglish": "a = [3, 8, 15, 21, 30]. Binary search ka pehla mid index?"
+    },
+    "options": [
+     "0",
+     "2",
+     "3",
+     "4"
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "(0 + 4) // 2 = 2, value 15.",
+     "hi": "(0 + 4) // 2 = 2, मान 15।",
+     "hinglish": "(0 + 4) // 2 = 2, value 15."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "One search in unsorted data. Best choice?",
+     "hi": "बिना क्रम डेटा में एक खोज। सबसे अच्छा?",
+     "hinglish": "Unsorted data mein ek search. Best choice?"
+    },
+    "options": [
+     {
+      "en": "Linear search",
+      "hi": "रैखिक खोज",
+      "hinglish": "Linear search"
+     },
+     {
+      "en": "Sort, then binary search",
+      "hi": "क्रमबद्ध करो, फिर द्विआधारी",
+      "hinglish": "Sort karo, phir binary"
+     },
+     {
+      "en": "Try random positions",
+      "hi": "यादृच्छिक स्थान",
+      "hinglish": "Random positions"
+     },
+     {
+      "en": "Recursion",
+      "hi": "पुनरावर्तन",
+      "hinglish": "Recursion"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "O(n) beats O(n log n) + O(log n) for a single search.",
+     "hi": "एक खोज के लिए O(n), O(n log n) + O(log n) से अच्छा।",
+     "hinglish": "Ek search ke liye O(n), O(n log n) + O(log n) se achha."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Find a number using binary search.",
+     "hi": "द्विआधारी खोज से संख्या खोजो।",
+     "hinglish": "Binary search se number dhoondho."
+    },
+    "answer": {
+     "event": "search-found",
+     "algo": "binary"
+    },
+    "explain": {
+     "en": "Halving beats scanning.",
+     "hi": "आधा करना छानने से जीतता है।",
+     "hinglish": "Aadha karna scan karne se jeet-ta hai."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "prog.algo-search"
+ ],
+ "sources": [
+  {
+   "title": "Cormen, Leiserson, Rivest, Stein — Introduction to Algorithms (4th ed., MIT Press, 2022)",
+   "url": "https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Python docs — bisect",
+   "url": "https://docs.python.org/3/library/bisect.html",
+   "licence": "fact reference"
+  }
+ ]
+}

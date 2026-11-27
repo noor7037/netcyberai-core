@@ -1,0 +1,334 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.robots.07",
+ "level": 1,
+ "classes": [
+  2,
+  3,
+  4
+ ],
+ "unit": "robots",
+ "title": {
+  "en": "Guide the robot through the maze",
+  "hi": "रोबोट को भूलभुलैया से निकालो",
+  "hinglish": "Robot ko maze se nikaalo"
+ },
+ "minutes": 7,
+ "xp": 30,
+ "prereq": [
+  "L1.robots.01"
+ ],
+ "topics": [
+  "robo.pathfinding",
+  "prog.sequence"
+ ],
+ "outcomes": [
+  {
+   "en": "Plan a path around walls before the robot moves.",
+   "hi": "रोबोट के चलने से पहले दीवारों के आसपास रास्ता बना सकते हो।",
+   "hinglish": "Robot ke chalne se pehle deewaaron ke aas-paas raasta plan kar sakte ho."
+  },
+  {
+   "en": "Compare two paths and pick the shorter one.",
+   "hi": "दो रास्तों की तुलना करके छोटा चुन सकते हो।",
+   "hinglish": "Do raaste compare karke chhota chun sakte ho."
+  },
+  {
+   "en": "Say how real robots, like Mars rovers, find their way.",
+   "hi": "बता सकते हो असली रोबोट, जैसे मंगल रोवर, रास्ता कैसे ढूँढते हैं।",
+   "hinglish": "Bata sakte ho asli robots, jaise Mars rovers, raasta kaise dhoondte hain."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Path",
+   "en": "The way from start to goal",
+   "hi": "शुरू से मंज़िल तक का रास्ता",
+   "hinglish": "Shuru se manzil tak ka raasta"
+  },
+  {
+   "term": "Maze",
+   "en": "A puzzle of paths and walls",
+   "hi": "दीवारों वाला उलझा रास्ता",
+   "hinglish": "Deewaaron wala uljha raasta"
+  },
+  {
+   "term": "Shortest path",
+   "en": "The way with the fewest steps",
+   "hi": "सबसे कम कदमों वाला रास्ता",
+   "hinglish": "Sabse kam steps wala raasta"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.robots.07.s1",
+   "caption": {
+    "en": "Chintu must reach the mango. Walls block the way!",
+    "hi": "चिंटू को आम तक पहुँचना है। दीवारें रास्ता रोकती हैं!",
+    "hinglish": "Chintu ko mango tak pahunchna hai. Deewaarein raasta rokti hain!"
+   },
+   "narration": {
+    "en": "Chintu the robot wants the mango, but walls are in the way. He needs a plan.",
+    "hinglish": "Chintu robot ko mango chahiye, par raaste mein deewaarein hain. Use plan chahiye.",
+    "hi": "चिंटू रोबोट को आम चाहिए, पर रास्ते में दीवारें हैं। उसे योजना चाहिए।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.robots.07.s2",
+   "caption": {
+    "en": "Trace the path with your finger first.",
+    "hi": "पहले उँगली से रास्ता बनाओ।",
+    "hinglish": "Pehle ungli se raasta banao."
+   },
+   "narration": {
+    "en": "Before writing any steps, trace a path with your finger around the walls.",
+    "hinglish": "Koi bhi step likhne se pehle, ungli se deewaaron ke aas-paas raasta banao.",
+    "hi": "कोई भी कदम लिखने से पहले, उँगली से दीवारों के आसपास रास्ता बनाओ।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.robots.07.s3",
+   "caption": {
+    "en": "Pick the path with fewer steps.",
+    "hi": "कम कदमों वाला रास्ता चुनो।",
+    "hinglish": "Kam steps wala raasta chuno."
+   },
+   "narration": {
+    "en": "There can be more than one path. Count the steps and choose the shortest one.",
+    "hinglish": "Ek se zyaada raaste ho sakte hain. Steps gino aur sabse chhota chuno.",
+    "hi": "एक से ज़्यादा रास्ते हो सकते हैं। कदम गिनो और सबसे छोटा चुनो।"
+   }
+  },
+  {
+   "step": 4,
+   "visual": "scene:L1.robots.07.s4",
+   "caption": {
+    "en": "Mars rovers plan paths around rocks too.",
+    "hi": "मंगल रोवर भी पत्थरों के आसपास रास्ता बनाते हैं।",
+    "hinglish": "Mars rovers bhi pattharon ke aas-paas raasta banate hain."
+   },
+   "narration": {
+    "en": "On Mars, NASA’s Perseverance rover uses cameras to map rocks and plans its own safe path.",
+    "hinglish": "Mars par NASA ka Perseverance rover cameras se pattharon ka map banata hai aur khud safe raasta plan karta hai.",
+    "hi": "मंगल पर NASA का पर्सिवियरेंस रोवर कैमरों से पत्थरों का नक्शा बनाता है और ख़ुद सुरक्षित रास्ता बनाता है।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "loop-coder",
+  "config": {
+   "level": 2
+  },
+  "goal": {
+   "en": "Plan Chintu’s path around the wall, pick up the ⭐, and reach the mango.",
+   "hi": "चिंटू का रास्ता दीवार के आसपास बनाओ, ⭐ उठाओ, और आम तक पहुँचो।",
+   "hinglish": "Chintu ka raasta deewaar ke aas-paas plan karo, ⭐ uthao, aur mango tak pahuncho."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Plan before you move",
+    "hi": "चलने से पहले योजना",
+    "hinglish": "Chalne se pehle plan"
+   },
+   "body": {
+    "en": "Finding a way from a start to a goal is called pathfinding. A robot cannot see the whole maze the way you see it on paper, so it needs a map and a plan. Good plans avoid walls, never go in circles, and use as few steps as possible. When there are two ways, count the steps of each and choose the shorter one: that is the shortest path.",
+    "hi": "शुरू से मंज़िल तक रास्ता ढूँढने को पाथफ़ाइंडिंग कहते हैं। रोबोट पूरी भूलभुलैया वैसे नहीं देख पाता जैसे तुम काग़ज़ पर देखते हो, इसलिए उसे नक्शा और योजना चाहिए। अच्छी योजना दीवारों से बचती है, गोल-गोल नहीं घूमती, और जितने कम हो सकें उतने कदम लेती है। जब दो रास्ते हों, तो हर एक के कदम गिनो और छोटा चुनो: यही सबसे छोटा रास्ता है।",
+    "hinglish": "Shuru se manzil tak raasta dhoondne ko pathfinding kehte hain. Robot poora maze waise nahin dekh paata jaise tum kaagaz par dekhte ho, isliye use map aur plan chahiye. Achha plan deewaaron se bachta hai, gol-gol nahin ghoomta, aur jitne kam ho sakein utne steps leta hai. Jab do raaste hon, toh har ek ke steps gino aur chhota chuno: yahi shortest path hai."
+   },
+   "analogy": {
+    "en": "Like having two ways to school: you choose the one that is shorter and safe.",
+    "hi": "जैसे स्कूल जाने के दो रास्ते हों — तुम वह चुनते हो जो छोटा और सुरक्षित हो।",
+    "hinglish": "Jaise school jaane ke do raaste hon — tum woh chunte ho jo chhota aur safe ho."
+   }
+  },
+  {
+   "heading": {
+    "en": "Robots that find their way",
+    "hi": "रास्ता ढूँढने वाले रोबोट",
+    "hinglish": "Raasta dhoondne wale robots"
+   },
+   "body": {
+    "en": "A simple maze trick is the wall follower: keep one hand on the same wall and keep walking, and in many mazes you will reach the exit. Smarter robots make a map and work out the shortest path, like the maps app on a phone. In Micromouse contests, small robot mice explore a maze, then race through it by the shortest path they found.",
+    "hi": "भूलभुलैया की एक आसान तरकीब है दीवार के साथ चलना: एक हाथ एक ही दीवार पर रखो और चलते रहो, तो कई भूलभुलैयों में तुम बाहर पहुँच जाओगे। होशियार रोबोट नक्शा बनाकर सबसे छोटा रास्ता निकालते हैं, जैसे फ़ोन का नक्शा ऐप। माइक्रोमाउस प्रतियोगिताओं में छोटे रोबोट चूहे भूलभुलैया खोजते हैं, फिर खोजे गए सबसे छोटे रास्ते से दौड़ लगाते हैं।",
+    "hinglish": "Maze ki ek aasaan trick hai wall follower: ek haath ek hi deewaar par rakho aur chalte raho, toh kai mazes mein tum bahar pahunch jaoge. Hoshiyaar robots map bana kar shortest path nikaalte hain, jaise phone ka maps app. Micromouse contests mein chhote robot chooh maze explore karte hain, phir dhoondhe gaye shortest path se race lagate hain."
+   },
+   "realExample": {
+    "en": "Warehouse robots in India, used by big online shops, follow planned paths across the floor to carry shelves to workers.",
+    "hi": "भारत में बड़ी ऑनलाइन दुकानों के गोदाम रोबोट फ़र्श पर तय रास्तों पर चलकर अलमारियाँ कर्मचारियों तक ले जाते हैं।",
+    "hinglish": "India mein bade online shops ke warehouse robots floor par planned raaston par chal kar shelves workers tak le jaate hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Draw a maze on paper with a start and a mango. Ask a family member to find the shortest path. Count the steps together.",
+   "hi": "काग़ज़ पर शुरू और आम वाली भूलभुलैया बनाओ। परिवार के किसी सदस्य से सबसे छोटा रास्ता ढूँढवाओ। साथ में कदम गिनो।",
+   "hinglish": "Kaagaz par start aur mango wala maze banao. Family ke kisi member se shortest path dhoondhvao. Saath mein steps gino."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Finding a way from start to goal is called…",
+     "hi": "शुरू से मंज़िल तक रास्ता ढूँढना कहलाता है…",
+     "hinglish": "Start se goal tak raasta dhoondna kehlaata hai…"
+    },
+    "options": [
+     {
+      "en": "pathfinding",
+      "hi": "पाथफ़ाइंडिंग",
+      "hinglish": "pathfinding"
+     },
+     {
+      "en": "painting",
+      "hi": "रँगना",
+      "hinglish": "painting"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Path + finding.",
+     "hi": "रास्ता + ढूँढना।",
+     "hinglish": "Path + finding."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Path A takes 6 steps, path B takes 10. Which is the shortest path?",
+     "hi": "रास्ता A में 6 कदम, रास्ता B में 10। सबसे छोटा कौन सा?",
+     "hinglish": "Path A mein 6 steps, path B mein 10. Shortest kaun sa?"
+    },
+    "options": [
+     {
+      "en": "A (6 steps)",
+      "hi": "A (6 कदम)",
+      "hinglish": "A (6 steps)"
+     },
+     {
+      "en": "B (10 steps)",
+      "hi": "B (10 कदम)",
+      "hinglish": "B (10 steps)"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Fewer steps = shorter path.",
+     "hi": "कम कदम = छोटा रास्ता।",
+     "hinglish": "Kam steps = chhota raasta."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "order",
+    "prompt": {
+     "en": "Put the robot’s plan in order.",
+     "hi": "रोबोट की योजना क्रम से लगाओ।",
+     "hinglish": "Robot ka plan order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Look at the map",
+      "hi": "नक्शा देखो",
+      "hinglish": "Map dekho"
+     },
+     {
+      "en": "Plan a path around the walls",
+      "hi": "दीवारों के आसपास रास्ता बनाओ",
+      "hinglish": "Deewaaron ke aas-paas raasta banao"
+     },
+     {
+      "en": "Move along the path",
+      "hi": "रास्ते पर चलो",
+      "hinglish": "Raaste par chalo"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2
+    ],
+    "explain": {
+     "en": "Look, plan, then move.",
+     "hi": "देखो, योजना बनाओ, फिर चलो।",
+     "hinglish": "Dekho, plan karo, phir chalo."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which robot plans its own path around rocks on Mars?",
+     "hi": "कौन सा रोबोट मंगल पर पत्थरों के आसपास अपना रास्ता ख़ुद बनाता है?",
+     "hinglish": "Kaun sa robot Mars par pattharon ke aas-paas apna raasta khud banata hai?"
+    },
+    "options": [
+     {
+      "en": "NASA’s Perseverance rover",
+      "hi": "NASA का पर्सिवियरेंस रोवर",
+      "hinglish": "NASA ka Perseverance rover"
+     },
+     {
+      "en": "A ceiling fan",
+      "hi": "छत का पंखा",
+      "hinglish": "Chhat ka pankha"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Perseverance maps rocks with cameras and drives itself.",
+     "hi": "पर्सिवियरेंस कैमरों से पत्थरों का नक्शा बनाकर ख़ुद चलता है।",
+     "hinglish": "Perseverance cameras se pattharon ka map bana kar khud chalta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Guide Chintu around the wall in Level 2 of the lab.",
+     "hi": "लैब के स्तर 2 में चिंटू को दीवार के आसपास ले जाओ।",
+     "hinglish": "Lab ke Level 2 mein Chintu ko deewaar ke aas-paas le jao."
+    },
+    "answer": {
+     "lab": "loop-coder",
+     "level": 2,
+     "solved": true
+    },
+    "explain": {
+     "en": "Go down, turn, and go across to the mango.",
+     "hi": "नीचे जाओ, मुड़ो, और आम तक सीधे जाओ।",
+     "hinglish": "Neeche jao, mudo, aur mango tak seedhe jao."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "NASA – Perseverance rover AutoNav self-driving (fact reference)",
+   "url": "https://science.nasa.gov/mission/mars-2020-perseverance/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "IEEE – Micromouse competition history (fact reference)",
+   "url": "https://spectrum.ieee.org/the-amazing-maze-solving-micromouse",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

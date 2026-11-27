@@ -1,0 +1,384 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.os-internals.06",
+ "level": 3,
+ "classes": [
+  10,
+  11
+ ],
+ "unit": "os-internals",
+ "title": {
+  "en": "The command line",
+  "hi": "कमांड लाइन",
+  "hinglish": "Command line"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [
+  "L3.os-internals.05"
+ ],
+ "outcomes": [
+  {
+   "en": "Navigate and manage files with pwd, ls, cd, mkdir, cp, mv, rm, cat",
+   "hi": "pwd, ls, cd, mkdir, cp, mv, rm, cat से फ़ाइलें चलाओ और सँभालो",
+   "hinglish": "pwd, ls, cd, mkdir, cp, mv, rm, cat se files navigate aur manage karo"
+  },
+  {
+   "en": "Search and combine commands with grep, pipes and redirection",
+   "hi": "grep, पाइप और रीडायरेक्शन से खोजो और कमांड जोड़ो",
+   "hinglish": "grep, pipes aur redirection se search karo aur commands jodo"
+  },
+  {
+   "en": "Keep a system updated with a package manager and use commands safely",
+   "hi": "पैकेज मैनेजर से प्रणाली अपडेट रखो और कमांड सुरक्षित इस्तेमाल करो",
+   "hinglish": "Package manager se system updated rakho aur commands safely use karo"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Shell",
+   "hinglish": "Command samajhne wala program",
+   "en": "Program that reads your commands and runs them (bash, zsh)",
+   "hi": "आपके कमांड पढ़कर चलाने वाला प्रोग्राम (bash, zsh)"
+  },
+  {
+   "term": "Pipe |",
+   "hinglish": "Ek ka output doosre ka input",
+   "en": "Sends one command's output into another command",
+   "hi": "एक कमांड का आउटपुट दूसरे में भेजता है"
+  },
+  {
+   "term": "Redirection >",
+   "hinglish": "Output file mein",
+   "en": "Saves output to a file (> overwrite, >> append)",
+   "hi": "आउटपुट फ़ाइल में सहेजता है (> ऊपर लिखो, >> जोड़ो)"
+  },
+  {
+   "term": "Package manager",
+   "hinglish": "Software ki dukaan",
+   "en": "Tool that installs and updates software (apt, dnf, winget, brew)",
+   "hi": "सॉफ़्टवेयर इंस्टॉल और अपडेट करने वाला टूल (apt, dnf, winget, brew)"
+  },
+  {
+   "term": "Script",
+   "hinglish": "Commands ki list",
+   "en": "A file of commands run together to automate a task",
+   "hi": "किसी काम को स्वचालित करने के लिए साथ चलने वाले कमांडों की फ़ाइल"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "pwd tells you where you are; ls lists files; cd moves you; mkdir makes a folder. The prompt waits for your next command.",
+    "hi": "pwd बताता है आप कहाँ हो; ls फ़ाइलें दिखाता है; cd आगे ले जाता है; mkdir फ़ोल्डर बनाता है। प्रॉम्प्ट अगले कमांड का इंतज़ार करता है।",
+    "hinglish": "pwd batata hai tum kahan ho; ls files dikhata hai; cd aage le jaata hai; mkdir folder banata hai. Prompt agle command ka intezaar karta hai."
+   },
+   "visual": "anim:prompt",
+   "narration": {
+    "en": "pwd tells you where you are; ls lists files; cd moves you; mkdir makes a folder. The prompt waits for your next command.",
+    "hi": "pwd बताता है आप कहाँ हो; ls फ़ाइलें दिखाता है; cd आगे ले जाता है; mkdir फ़ोल्डर बनाता है। प्रॉम्प्ट अगले कमांड का इंतज़ार करता है।",
+    "hinglish": "pwd batata hai tum kahan ho; ls files dikhata hai; cd aage le jaata hai; mkdir folder banata hai. Prompt agle command ka intezaar karta hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "cat notice.txt prints a file. grep exam notice.txt prints only lines containing \"exam\".",
+    "hi": "cat notice.txt फ़ाइल छापता है। grep exam notice.txt सिर्फ़ \"exam\" वाली पंक्तियाँ छापता है।",
+    "hinglish": "cat notice.txt file print karta hai. grep exam notice.txt sirf \"exam\" wali lines print karta hai."
+   },
+   "visual": "anim:grep-filter",
+   "narration": {
+    "en": "cat notice.txt prints a file. grep exam notice.txt prints only lines containing \"exam\".",
+    "hi": "cat notice.txt फ़ाइल छापता है। grep exam notice.txt सिर्फ़ \"exam\" वाली पंक्तियाँ छापता है।",
+    "hinglish": "cat notice.txt file print karta hai. grep exam notice.txt sirf \"exam\" wali lines print karta hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Pipes chain small tools: cat log.txt | grep ERROR | wc -l counts error lines. Each tool does one job well.",
+    "hi": "पाइप छोटे टूल जोड़ते हैं: cat log.txt | grep ERROR | wc -l त्रुटि पंक्तियाँ गिनता है। हर टूल एक काम अच्छे से करता है।",
+    "hinglish": "Pipes chhote tools jodte hain: cat log.txt | grep ERROR | wc -l error lines ginta hai. Har tool ek kaam achhe se karta hai."
+   },
+   "visual": "anim:pipe-chain",
+   "narration": {
+    "en": "Pipes chain small tools: cat log.txt | grep ERROR | wc -l counts error lines. Each tool does one job well.",
+    "hi": "पाइप छोटे टूल जोड़ते हैं: cat log.txt | grep ERROR | wc -l त्रुटि पंक्तियाँ गिनता है। हर टूल एक काम अच्छे से करता है।",
+    "hinglish": "Pipes chhote tools jodte hain: cat log.txt | grep ERROR | wc -l error lines ginta hai. Har tool ek kaam achhe se karta hai."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "sudo apt update && sudo apt upgrade keeps a Debian/Ubuntu system patched. Read before you run — rm has no recycle bin.",
+    "hi": "sudo apt update && sudo apt upgrade Debian/Ubuntu प्रणाली को अपडेट रखता है। चलाने से पहले पढ़ो — rm में रीसायकल बिन नहीं।",
+    "hinglish": "sudo apt update && sudo apt upgrade Debian/Ubuntu system ko patched rakhta hai. Chalane se pehle padho — rm mein recycle bin nahi."
+   },
+   "visual": "anim:apt-update",
+   "narration": {
+    "en": "sudo apt update && sudo apt upgrade keeps a Debian/Ubuntu system patched. Read before you run — rm has no recycle bin.",
+    "hi": "sudo apt update && sudo apt upgrade Debian/Ubuntu प्रणाली को अपडेट रखता है। चलाने से पहले पढ़ो — rm में रीसायकल बिन नहीं।",
+    "hinglish": "sudo apt update && sudo apt upgrade Debian/Ubuntu system ko patched rakhta hai. Chalane se pehle padho — rm mein recycle bin nahi."
+   }
+  }
+ ],
+ "play": {
+  "lab": "seq-flow",
+  "config": {
+   "scenario": "linux-shell"
+  },
+  "goal": {
+   "en": "Finish every task in the practice terminal: pwd, ls -l, cat, mkdir projects, chmod 600 marks.csv and grep. Type help to see commands.",
+   "hi": "अभ्यास टर्मिनल के सभी काम पूरे करो: pwd, ls -l, cat, mkdir projects, chmod 600 marks.csv और grep। कमांड देखने के लिए help लिखो।",
+   "hinglish": "Practice terminal ke saare tasks poore karo: pwd, ls -l, cat, mkdir projects, chmod 600 marks.csv aur grep. Commands dekhne ke liye help likho."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Why professionals still use the terminal",
+    "hi": "पेशेवर अब भी टर्मिनल क्यों इस्तेमाल करते हैं",
+    "hinglish": "Professionals ab bhi terminal kyun use karte hain"
+   },
+   "body": {
+    "en": "Most servers and cloud machines have no screen at all; engineers manage them over SSH with a shell. Commands can be repeated, scripted and automated, and they are precise: a script that renames 5,000 photos takes seconds. The Unix idea — small tools joined with pipes — lets you build powerful one-liners. Windows has PowerShell and also runs Linux through WSL; macOS has zsh; Android has Termux.",
+    "hi": "ज़्यादातर सर्वर और क्लाउड मशीनों में स्क्रीन ही नहीं होती; इंजीनियर उन्हें SSH पर शेल से सँभालते हैं। कमांड दोहराए, स्क्रिप्ट और स्वचालित किए जा सकते हैं, और सटीक होते हैं: 5,000 फ़ोटो का नाम बदलने वाली स्क्रिप्ट सेकंड लेती है। Unix विचार — पाइप से जुड़े छोटे टूल — शक्तिशाली एक-पंक्ति कमांड बनाने देता है। Windows में PowerShell है और WSL से लिनक्स भी चलता है; macOS में zsh; एंड्रॉइड में Termux।",
+    "hinglish": "Zyaadatar servers aur cloud machines mein screen hi nahi hoti; engineers unhe SSH par shell se sambhalte hain. Commands repeat, script aur automate kiye ja sakte hain, aur precise hote hain: 5,000 photos ka naam badalne wali script seconds leti hai. Unix idea — pipes se jude chhote tools — powerful one-liners banane deta hai. Windows mein PowerShell hai aur WSL se Linux bhi chalta hai; macOS mein zsh; Android mein Termux."
+   },
+   "analogy": {
+    "en": "Menus are like ordering from pictures; the command line is like speaking the language — slower to learn, far faster once fluent.",
+    "hi": "मेन्यू तस्वीरों से ऑर्डर करने जैसे हैं; कमांड लाइन भाषा बोलने जैसी — सीखने में धीमी, आने पर कहीं तेज़।",
+    "hinglish": "Menus pictures se order karne jaise hain; command line bhasha bolne jaisi — seekhne mein slow, aane par kahin tez."
+   },
+   "realExample": {
+    "en": "grep -c \"Failed password\" /var/log/auth.log counts failed SSH logins — a first check after a security alert.",
+    "hi": "grep -c \"Failed password\" /var/log/auth.log विफल SSH लॉगिन गिनता है — सुरक्षा अलर्ट के बाद पहली जाँच।",
+    "hinglish": "grep -c \"Failed password\" /var/log/auth.log failed SSH logins ginta hai — security alert ke baad pehli jaanch."
+   }
+  },
+  {
+   "heading": {
+    "en": "Using the shell safely",
+    "hi": "शेल को सुरक्षित इस्तेमाल करना",
+    "hinglish": "Shell ko safely use karna"
+   },
+   "body": {
+    "en": "Never paste commands from strangers, especially ones with sudo, curl … | sh, or rm -rf: they run with your rights immediately. Check your current folder (pwd) before deleting. Use ls first to see what a wildcard like *.txt will match. Prefer the package manager over random downloads, because it verifies signatures and handles updates. Keep secrets out of commands — they are saved in your shell history.",
+    "hi": "अजनबियों के कमांड कभी पेस्ट मत करो, ख़ासकर sudo, curl … | sh, या rm -rf वाले: वे तुरंत आपके अधिकारों से चलते हैं। मिटाने से पहले वर्तमान फ़ोल्डर (pwd) जाँचो। *.txt जैसा वाइल्डकार्ड क्या पकड़ेगा, पहले ls से देखो। अनजान डाउनलोड की जगह पैकेज मैनेजर चुनो, क्योंकि वह हस्ताक्षर जाँचता है और अपडेट सँभालता है। राज़ कमांड में मत डालो — वे शेल इतिहास में सहेजे जाते हैं।",
+    "hinglish": "Ajnabiyon ke commands kabhi paste mat karo, khaaskar sudo, curl … | sh, ya rm -rf wale: woh turant tumhare rights se chalte hain. Delete karne se pehle current folder (pwd) check karo. *.txt jaisa wildcard kya match karega, pehle ls se dekho. Random downloads ki jagah package manager chuno, kyunki woh signatures verify karta hai aur updates sambhalta hai. Secrets commands mein mat daalo — woh shell history mein save hote hain."
+   },
+   "analogy": {
+    "en": "A sharp kitchen knife: incredibly useful, and you always look where you are cutting.",
+    "hi": "तेज़ रसोई चाकू: बेहद उपयोगी, और आप हमेशा देखते हो कहाँ काट रहे हो।",
+    "hinglish": "Tez kitchen knife: bahut useful, aur tum hamesha dekhte ho kahan kaat rahe ho."
+   },
+   "realExample": {
+    "en": "A \"free game hack\" video telling you to paste a long command into your terminal is a classic way to install malware.",
+    "hi": "टर्मिनल में लंबा कमांड पेस्ट करने को कहता \"मुफ़्त गेम हैक\" वीडियो मैलवेयर इंस्टॉल कराने का क्लासिक तरीक़ा है।",
+    "hinglish": "Terminal mein lamba command paste karne ko kehta \"free game hack\" video malware install karane ka classic tareeka hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write a 5-line cheat sheet of commands you would use to: make a folder for a project, copy two files into it, find every line mentioning \"deadline\" in them, and save the result to todo.txt.",
+   "hi": "कमांडों की 5 पंक्तियों की चीट शीट लिखो जिससे: प्रोजेक्ट के लिए फ़ोल्डर बनाओ, उसमें दो फ़ाइलें कॉपी करो, उनमें \"deadline\" वाली हर पंक्ति ढूँढो, और परिणाम todo.txt में सहेजो।",
+   "hinglish": "Commands ki 5 line ki cheat sheet likho jisse: project ke liye folder banao, usmein do files copy karo, unmein \"deadline\" wali har line dhoondho, aur result todo.txt mein save karo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "match",
+    "prompt": {
+     "en": "Match the command to its job.",
+     "hi": "कमांड को उसके काम से मिलाओ।",
+     "hinglish": "Command ko uske kaam se milao."
+    },
+    "options": [
+     "pwd",
+     "ls -l",
+     "mkdir",
+     "grep"
+    ],
+    "answer": [
+     {
+      "en": "Show current folder",
+      "hi": "वर्तमान फ़ोल्डर दिखाओ",
+      "hinglish": "Current folder dikhao"
+     },
+     {
+      "en": "List files with details",
+      "hi": "विवरण सहित फ़ाइलें",
+      "hinglish": "Details ke saath files"
+     },
+     {
+      "en": "Make a folder",
+      "hi": "फ़ोल्डर बनाओ",
+      "hinglish": "Folder banao"
+     },
+     {
+      "en": "Find matching lines",
+      "hi": "मिलती पंक्तियाँ ढूँढो",
+      "hinglish": "Matching lines dhoondho"
+     }
+    ],
+    "explain": {
+     "en": "These cover most daily navigation.",
+     "hi": "ये ज़्यादातर रोज़ का काम सँभालते हैं।",
+     "hinglish": "Yeh zyaadatar rozana ka kaam sambhalte hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "What does cat log.txt | grep ERROR | wc -l do?",
+     "hi": "cat log.txt | grep ERROR | wc -l क्या करता है?",
+     "hinglish": "cat log.txt | grep ERROR | wc -l kya karta hai?"
+    },
+    "options": [
+     {
+      "en": "Counts lines containing ERROR",
+      "hi": "ERROR वाली पंक्तियाँ गिनता है",
+      "hinglish": "ERROR wali lines ginta hai"
+     },
+     {
+      "en": "Deletes errors",
+      "hi": "त्रुटियाँ मिटाता है",
+      "hinglish": "Errors mitata hai"
+     },
+     {
+      "en": "Renames the file",
+      "hi": "फ़ाइल का नाम बदलता है",
+      "hinglish": "File ka naam badalta hai"
+     },
+     {
+      "en": "Prints the first line",
+      "hi": "पहली पंक्ति छापता है",
+      "hinglish": "Pehli line print karta hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Each pipe passes output to the next tool.",
+     "hi": "हर पाइप आउटपुट अगले टूल को देता है।",
+     "hinglish": "Har pipe output agle tool ko deta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Difference between > and >>?",
+     "hi": "> और >> में अंतर?",
+     "hinglish": "> aur >> mein fark?"
+    },
+    "options": [
+     {
+      "en": "> overwrites, >> appends",
+      "hi": "> ऊपर लिखता है, >> जोड़ता है",
+      "hinglish": "> overwrite karta hai, >> append karta hai"
+     },
+     {
+      "en": "They are the same",
+      "hi": "एक जैसे हैं",
+      "hinglish": "Ek jaise hain"
+     },
+     {
+      "en": ">> deletes the file",
+      "hi": ">> फ़ाइल मिटाता है",
+      "hinglish": ">> file mitata hai"
+     },
+     {
+      "en": "> reads a file",
+      "hi": "> फ़ाइल पढ़ता है",
+      "hinglish": "> file padhta hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Use >> to add to a log without losing it.",
+     "hi": "लॉग खोए बिना जोड़ने के लिए >>।",
+     "hinglish": "Log khoye bina jodne ke liye >>."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "A video says \"paste this sudo curl … | sh command for free coins\". You should…",
+     "hi": "वीडियो कहता है \"मुफ़्त सिक्कों के लिए यह sudo curl … | sh कमांड पेस्ट करो\"। आपको…",
+     "hinglish": "Video kehta hai \"free coins ke liye yeh sudo curl … | sh command paste karo\". Tumhe…"
+    },
+    "options": [
+     {
+      "en": "Not run it — it executes unknown code with admin rights",
+      "hi": "न चलाओ — यह अनजान कोड प्रशासक अधिकार से चलाता है",
+      "hinglish": "Na chalao — yeh unknown code admin rights se chalata hai"
+     },
+     {
+      "en": "Run it quickly",
+      "hi": "जल्दी चलाओ",
+      "hinglish": "Jaldi chalao"
+     },
+     {
+      "en": "Run it without sudo",
+      "hi": "sudo के बिना चलाओ",
+      "hinglish": "sudo ke bina chalao"
+     },
+     {
+      "en": "Share it with friends",
+      "hi": "दोस्तों से बाँटो",
+      "hinglish": "Doston se share karo"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Never run commands you do not understand from strangers.",
+     "hi": "अजनबियों के समझ न आने वाले कमांड कभी न चलाओ।",
+     "hinglish": "Ajnabiyon ke samajh na aane wale commands kabhi na chalao."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete all practice-terminal tasks.",
+     "hi": "अभ्यास टर्मिनल के सभी काम पूरे करो।",
+     "hinglish": "Practice terminal ke saare tasks poore karo."
+    },
+    "answer": {
+     "event": "shell-mission-complete"
+    },
+    "explain": {
+     "en": "pwd, ls, cat, mkdir, chmod and grep — your first shell toolkit.",
+     "hi": "pwd, ls, cat, mkdir, chmod और grep — आपकी पहली शेल टूलकिट।",
+     "hinglish": "pwd, ls, cat, mkdir, chmod aur grep — tumhari pehli shell toolkit."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "topics": [
+  "os.files-folders",
+  "os.updates-drivers"
+ ],
+ "sources": [
+  {
+   "title": "Arpaci-Dusseau, Operating Systems: Three Easy Pieces (free online)",
+   "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "GNU Bash manual",
+   "url": "https://www.gnu.org/software/bash/manual/",
+   "licence": "fact reference"
+  }
+ ]
+}

@@ -1,0 +1,370 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.capstones.03",
+ "level": 3,
+ "classes": [
+  11,
+  12
+ ],
+ "unit": "capstones",
+ "title": {
+  "en": "Secure a school network",
+  "hi": "स्कूल नेटवर्क सुरक्षित करो",
+  "hinglish": "School network secure karo"
+ },
+ "minutes": 25,
+ "xp": 100,
+ "prereq": [
+  "L3.security-engineering.10"
+ ],
+ "outcomes": [
+  {
+   "en": "Map a network’s assets, users and risks",
+   "hi": "नेटवर्क की संपत्तियाँ, उपयोगकर्ता और जोखिम चिह्नित करो",
+   "hinglish": "Network ke assets, users aur risks map karo"
+  },
+  {
+   "en": "Apply layered defences: segmentation, strong authentication, updates, backups",
+   "hi": "परतदार बचाव लगाओ: विभाजन, मज़बूत प्रमाणीकरण, अपडेट, बैकअप",
+   "hinglish": "Layered defences lagao: segmentation, strong authentication, updates, backups"
+  },
+  {
+   "en": "Write an incident-response and awareness plan",
+   "hi": "घटना-प्रतिक्रिया और जागरूकता योजना लिखो",
+   "hinglish": "Incident-response aur awareness plan likho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Asset inventory",
+   "hinglish": "Saamaan ki soochi",
+   "en": "A list of every device, account and dataset to protect",
+   "hi": "बचाने योग्य हर उपकरण, खाते और डेटा की सूची"
+  },
+  {
+   "term": "Segmentation",
+   "hinglish": "Hisson mein baantna",
+   "en": "Separate networks (VLANs) so guests and cameras cannot reach staff systems",
+   "hi": "अलग नेटवर्क (VLAN) ताकि मेहमान और कैमरे स्टाफ़ तंत्र तक न पहुँचें"
+  },
+  {
+   "term": "Least privilege",
+   "hinglish": "Kam se kam adhikaar",
+   "en": "Give each account only the access it needs",
+   "hi": "हर खाते को केवल ज़रूरी पहुँच दो"
+  },
+  {
+   "term": "3-2-1 backup",
+   "hinglish": "3-2-1 backup",
+   "en": "3 copies, 2 kinds of storage, 1 offline or off-site",
+   "hi": "3 प्रतियाँ, 2 प्रकार का भंडारण, 1 ऑफ़लाइन या बाहर"
+  },
+  {
+   "term": "Defence in depth",
+   "hinglish": "Kai parat suraksha",
+   "en": "Several independent layers, so one failure is not a disaster",
+   "hi": "कई स्वतंत्र परतें, ताकि एक विफलता आपदा न बने"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "List what to protect: student records, fee system, staff email, lab PCs, CCTV, Wi-Fi.",
+    "hi": "बचाने योग्य सूची: छात्र रिकॉर्ड, शुल्क तंत्र, स्टाफ़ ईमेल, लैब PC, CCTV, वाई-फ़ाई।",
+    "hinglish": "Bachaane wali list: student records, fee system, staff email, lab PCs, CCTV, Wi-Fi."
+   },
+   "visual": "stack:data|accounts|devices|network",
+   "narration": {
+    "en": "List what to protect: student records, fee system, staff email, lab PCs, CCTV, Wi-Fi.",
+    "hi": "बचाने योग्य सूची: छात्र रिकॉर्ड, शुल्क तंत्र, स्टाफ़ ईमेल, लैब PC, CCTV, वाई-फ़ाई।",
+    "hinglish": "Bachaane wali list: student records, fee system, staff email, lab PCs, CCTV, Wi-Fi."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Split the network: staff, students, guests and cameras on separate VLANs with firewall rules.",
+    "hi": "नेटवर्क बाँटो: स्टाफ़, छात्र, मेहमान और कैमरे अलग VLAN पर फ़ायरवॉल नियमों के साथ।",
+    "hinglish": "Network baanto: staff, students, guests aur cameras alag VLANs par firewall rules ke saath."
+   },
+   "visual": "compare:flat network|segmented",
+   "narration": {
+    "en": "Split the network: staff, students, guests and cameras on separate VLANs with firewall rules.",
+    "hi": "नेटवर्क बाँटो: स्टाफ़, छात्र, मेहमान और कैमरे अलग VLAN पर फ़ायरवॉल नियमों के साथ।",
+    "hinglish": "Network baanto: staff, students, guests aur cameras alag VLANs par firewall rules ke saath."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Accounts: long passphrases, MFA for staff and admins, no shared passwords.",
+    "hi": "खाते: लंबे पासफ़्रेज़, स्टाफ़ और एडमिन के लिए MFA, कोई साझा पासवर्ड नहीं।",
+    "hinglish": "Accounts: lambe passphrases, staff aur admins ke liye MFA, koi shared passwords nahi."
+   },
+   "visual": "stack:passphrase|MFA|least privilege",
+   "narration": {
+    "en": "Accounts: long passphrases, MFA for staff and admins, no shared passwords.",
+    "hi": "खाते: लंबे पासफ़्रेज़, स्टाफ़ और एडमिन के लिए MFA, कोई साझा पासवर्ड नहीं।",
+    "hinglish": "Accounts: lambe passphrases, staff aur admins ke liye MFA, koi shared passwords nahi."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Patch, back up 3-2-1, train people, and practise the incident plan.",
+    "hi": "पैच करो, 3-2-1 बैकअप, लोगों को सिखाओ, और घटना योजना का अभ्यास करो।",
+    "hinglish": "Patch karo, 3-2-1 backup, logon ko sikhao, aur incident plan ka practice karo."
+   },
+   "visual": "cycle:prepare|detect|respond|recover",
+   "narration": {
+    "en": "Patch, back up 3-2-1, train people, and practise the incident plan.",
+    "hi": "पैच करो, 3-2-1 बैकअप, लोगों को सिखाओ, और घटना योजना का अभ्यास करो।",
+    "hinglish": "Patch karo, 3-2-1 backup, logon ko sikhao, aur incident plan ka practice karo."
+   }
+  }
+ ],
+ "play": {
+  "lab": "password-lab",
+  "config": {
+   "seed": 11
+  },
+  "goal": {
+   "en": "Design the staff password policy: generate a passphrase of at least 4 words in the lab and compare its strength with a typical \"Name@123\" password.",
+   "hi": "स्टाफ़ पासवर्ड नीति बनाओ: लैब में कम से कम 4 शब्दों का पासफ़्रेज़ बनाओ और आम \"Name@123\" पासवर्ड से उसकी मज़बूती की तुलना करो।",
+   "hinglish": "Staff password policy design karo: lab mein kam se kam 4 words ka passphrase generate karo aur typical \"Name@123\" password se uski strength compare karo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "The plan, layer by layer (defensive only)",
+    "hi": "योजना, परत-दर-परत (केवल रक्षात्मक)",
+    "hinglish": "Plan, layer by layer (sirf defensive)"
+   },
+   "body": {
+    "en": "This capstone is a paper-and-settings project done with the school’s written permission and its IT person — never test or scan systems you do not own. 1) Inventory: list devices, accounts and data, and rank them by harm if lost. 2) Network: change all default router and camera passwords; use WPA3 (or WPA2 with a strong key) for Wi-Fi; put guests, students, staff and CCTV on separate VLANs or SSIDs, and let the firewall block guest and camera traffic from reaching staff systems; turn off remote admin from the internet. 3) Accounts: one person, one account; passphrases of four or more words; MFA for email and admin accounts; remove accounts of people who have left. 4) Updates: automatic OS and browser updates, and replace devices that no longer get security patches. 5) Backups: 3-2-1, with one copy offline so ransomware cannot encrypt it, and a test restore every term.",
+    "hi": "यह कैपस्टोन स्कूल की लिखित अनुमति और उसके आईटी व्यक्ति के साथ काग़ज़-और-सेटिंग परियोजना है — जो तंत्र आपके नहीं उन्हें कभी जाँचो या स्कैन मत करो। 1) सूची: उपकरण, खाते और डेटा लिखो, और खोने पर नुक़सान से क्रम दो। 2) नेटवर्क: सभी डिफ़ॉल्ट राउटर और कैमरा पासवर्ड बदलो; वाई-फ़ाई के लिए WPA3 (या मज़बूत कुंजी के साथ WPA2); मेहमान, छात्र, स्टाफ़ और CCTV को अलग VLAN या SSID पर रखो, और फ़ायरवॉल मेहमान व कैमरा ट्रैफ़िक को स्टाफ़ तंत्रों तक पहुँचने से रोके; इंटरनेट से रिमोट एडमिन बंद करो। 3) खाते: एक व्यक्ति, एक खाता; चार या ज़्यादा शब्दों के पासफ़्रेज़; ईमेल और एडमिन खातों के लिए MFA; छोड़ चुके लोगों के खाते हटाओ। 4) अपडेट: स्वचालित OS और ब्राउज़र अपडेट, और जिन उपकरणों को सुरक्षा पैच नहीं मिलते उन्हें बदलो। 5) बैकअप: 3-2-1, एक प्रति ऑफ़लाइन ताकि रैनसमवेयर उसे एन्क्रिप्ट न कर सके, और हर सत्र में परीक्षण पुनर्स्थापना।",
+    "hinglish": "Yeh capstone school ki likhit permission aur uske IT person ke saath paper-and-settings project hai — jo systems tumhare nahi unhe kabhi test ya scan mat karo. 1) Inventory: devices, accounts aur data likho, aur khone par nuksaan se rank karo. 2) Network: saare default router aur camera passwords badlo; Wi-Fi ke liye WPA3 (ya strong key ke saath WPA2); guests, students, staff aur CCTV ko alag VLANs ya SSIDs par rakho, aur firewall guest aur camera traffic ko staff systems tak pahunchne se roke; internet se remote admin band karo. 3) Accounts: ek vyakti, ek account; chaar ya zyada words ke passphrases; email aur admin accounts ke liye MFA; chhod chuke logon ke accounts hatao. 4) Updates: automatic OS aur browser updates, aur jin devices ko security patches nahi milte unhe badlo. 5) Backups: 3-2-1, ek copy offline taaki ransomware use encrypt na kar sake, aur har term test restore."
+   },
+   "analogy": {
+    "en": "A school building: a gate guard, locked staff rooms, a separate visitor area, a fire drill — no single lock does everything.",
+    "hi": "स्कूल भवन: गेट गार्ड, बंद स्टाफ़ कमरे, अलग आगंतुक क्षेत्र, फ़ायर ड्रिल — कोई एक ताला सब नहीं करता।",
+    "hinglish": "School building: gate guard, band staff rooms, alag visitor area, fire drill — koi ek taala sab nahi karta."
+   },
+   "realExample": {
+    "en": "Firewall rule: deny GUEST-VLAN → STAFF-VLAN (any); allow GUEST-VLAN → internet (80, 443) only.",
+    "hi": "फ़ायरवॉल नियम: GUEST-VLAN → STAFF-VLAN (सब) अस्वीकार; GUEST-VLAN → इंटरनेट (80, 443) ही अनुमत।",
+    "hinglish": "Firewall rule: deny GUEST-VLAN → STAFF-VLAN (any); allow GUEST-VLAN → internet (80, 443) only."
+   }
+  },
+  {
+   "heading": {
+    "en": "People, incidents and the law",
+    "hi": "लोग, घटनाएँ और क़ानून",
+    "hinglish": "Log, incidents aur kanoon"
+   },
+   "body": {
+    "en": "Most attacks start with people: a phishing email to the accounts office or a fake \"principal\" WhatsApp asking for gift cards. Plan short awareness sessions for staff and students with real Indian examples, and a simple rule: verify any request for money or passwords through a second channel. Write a one-page incident plan: who to call, how to isolate an infected PC (unplug the network cable, do not switch it off if forensics may be needed), how to restore from backup, and how to inform families. In India, CERT-In’s 2022 directions require many organisations to report certain cyber incidents within 6 hours, and the DPDP Act 2023 requires protecting personal data — student records are personal data, much of it about children. Finish with a measurable checklist the school can review every term.",
+    "hi": "ज़्यादातर हमले लोगों से शुरू होते हैं: लेखा कार्यालय को फ़िशिंग ईमेल या उपहार कार्ड माँगता नकली \"प्रधानाचार्य\" WhatsApp। स्टाफ़ और छात्रों के लिए असली भारतीय उदाहरणों के साथ छोटे जागरूकता सत्र बनाओ, और एक सरल नियम: पैसे या पासवर्ड का कोई भी अनुरोध दूसरे माध्यम से सत्यापित करो। एक पेज की घटना योजना लिखो: किसे कॉल करें, संक्रमित PC को कैसे अलग करें (नेटवर्क केबल निकालो, फ़ॉरेंसिक की ज़रूरत हो तो बंद मत करो), बैकअप से कैसे पुनर्स्थापित करें, और परिवारों को कैसे बताएँ। भारत में CERT-In के 2022 निर्देश कई संगठनों से कुछ साइबर घटनाएँ 6 घंटे में रिपोर्ट करने को कहते हैं, और DPDP अधिनियम 2023 व्यक्तिगत डेटा की सुरक्षा माँगता है — छात्र रिकॉर्ड व्यक्तिगत डेटा हैं, जिनमें से बहुत सा बच्चों का है। अंत में मापने योग्य जाँच-सूची दो जिसकी स्कूल हर सत्र समीक्षा कर सके।",
+    "hinglish": "Zyaadatar attacks logon se shuru hote hain: accounts office ko phishing email ya gift cards maangta nakli \"principal\" WhatsApp. Staff aur students ke liye asli Indian examples ke saath chhote awareness sessions banao, aur ek simple rule: paise ya passwords ki koi bhi request doosre channel se verify karo. Ek page ka incident plan likho: kise call karein, infected PC ko kaise isolate karein (network cable nikaalo, forensics ki zaroorat ho to band mat karo), backup se kaise restore karein, aur families ko kaise batayein. India mein CERT-In ke 2022 directions kai organisations se kuch cyber incidents 6 ghante mein report karne ko kehte hain, aur DPDP Act 2023 personal data ki protection maangta hai — student records personal data hain, jinmein se bahut sa bachchon ka hai. End mein measurable checklist do jiska school har term review kar sake."
+   },
+   "analogy": {
+    "en": "A fire drill: you hope you never need it, but everyone knows where to go.",
+    "hi": "फ़ायर ड्रिल: उम्मीद है कभी ज़रूरत न पड़े, पर सबको पता है कहाँ जाना है।",
+    "hinglish": "Fire drill: umeed hai kabhi zaroorat na pade, par sabko pata hai kahan jaana hai."
+   },
+   "realExample": {
+    "en": "Checklist item: \"All staff email accounts have MFA — target 100% by end of term; currently 64%.\"",
+    "hi": "जाँच-सूची मद: \"सभी स्टाफ़ ईमेल खातों पर MFA — सत्र के अंत तक 100% लक्ष्य; अभी 64%।\"",
+    "hinglish": "Checklist item: \"Saare staff email accounts par MFA — term ke end tak 100% target; abhi 64%.\""
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "With your teacher’s permission and the school IT person, produce: an asset inventory, a network diagram with segments and firewall rules, an account and password policy, a 3-2-1 backup plan, a one-page incident plan, and a 10-item checklist with targets. Do not scan or test any system yourself.",
+   "hi": "शिक्षक की अनुमति और स्कूल आईटी व्यक्ति के साथ बनाओ: संपत्ति सूची, खंडों और फ़ायरवॉल नियमों वाला नेटवर्क चित्र, खाता और पासवर्ड नीति, 3-2-1 बैकअप योजना, एक पेज की घटना योजना, और लक्ष्यों के साथ 10-मद जाँच-सूची। किसी तंत्र को ख़ुद स्कैन या जाँच मत करो।",
+   "hinglish": "Teacher ki permission aur school IT person ke saath banao: asset inventory, segments aur firewall rules wala network diagram, account aur password policy, 3-2-1 backup plan, ek page ka incident plan, aur targets ke saath 10-item checklist. Kisi system ko khud scan ya test mat karo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why put CCTV cameras on their own network segment?",
+     "hi": "CCTV कैमरों को अलग नेटवर्क खंड पर क्यों रखें?",
+     "hinglish": "CCTV cameras ko alag network segment par kyun rakhein?"
+    },
+    "options": [
+     {
+      "en": "A compromised camera then cannot reach staff computers",
+      "hi": "तब हैक कैमरा स्टाफ़ कंप्यूटरों तक नहीं पहुँच सकता",
+      "hinglish": "Tab hacked camera staff computers tak nahi pahunch sakta"
+     },
+     {
+      "en": "Cameras need more Wi-Fi",
+      "hi": "कैमरों को ज़्यादा वाई-फ़ाई चाहिए",
+      "hinglish": "Cameras ko zyada Wi-Fi chahiye"
+     },
+     {
+      "en": "It makes video clearer",
+      "hi": "वीडियो साफ़ होता है",
+      "hinglish": "Video saaf hota hai"
+     },
+     {
+      "en": "It is required by cameras",
+      "hi": "कैमरों की ज़रूरत है",
+      "hinglish": "Cameras ki zaroorat hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Segmentation limits how far an attacker can move.",
+     "hi": "विभाजन सीमित करता है कि हमलावर कितनी दूर जाए।",
+     "hinglish": "Segmentation limit karta hai ki attacker kitni door jaaye."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "multi",
+    "prompt": {
+     "en": "Which make a 3-2-1 backup?",
+     "hi": "3-2-1 बैकअप में क्या होता है?",
+     "hinglish": "3-2-1 backup mein kya hota hai?"
+    },
+    "options": [
+     {
+      "en": "Three copies of the data",
+      "hi": "डेटा की तीन प्रतियाँ",
+      "hinglish": "Data ki teen copies"
+     },
+     {
+      "en": "Two different kinds of storage",
+      "hi": "दो अलग प्रकार का भंडारण",
+      "hinglish": "Do alag tarah ka storage"
+     },
+     {
+      "en": "One copy offline or off-site",
+      "hi": "एक प्रति ऑफ़लाइन या बाहर",
+      "hinglish": "Ek copy offline ya bahar"
+     },
+     {
+      "en": "One password for everyone",
+      "hi": "सबके लिए एक पासवर्ड",
+      "hinglish": "Sabke liye ek password"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2
+    ],
+    "explain": {
+     "en": "The offline copy survives ransomware.",
+     "hi": "ऑफ़लाइन प्रति रैनसमवेयर से बचती है।",
+     "hinglish": "Offline copy ransomware se bachti hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "The accounts office gets a WhatsApp from the \"principal\" asking to buy gift cards urgently. What should the policy say?",
+     "hi": "लेखा कार्यालय को \"प्रधानाचार्य\" का WhatsApp आता है जो तुरंत उपहार कार्ड ख़रीदने को कहता है। नीति क्या कहे?",
+     "hinglish": "Accounts office ko \"principal\" ka WhatsApp aata hai jo turant gift cards khareedne ko kehta hai. Policy kya kahe?"
+    },
+    "options": [
+     {
+      "en": "Verify through a second channel, like calling the known number",
+      "hi": "दूसरे माध्यम से सत्यापित करो, जैसे ज्ञात नंबर पर कॉल",
+      "hinglish": "Doosre channel se verify karo, jaise known number par call"
+     },
+     {
+      "en": "Buy them quickly",
+      "hi": "जल्दी ख़रीदो",
+      "hinglish": "Jaldi khareedo"
+     },
+     {
+      "en": "Reply with bank details",
+      "hi": "बैंक विवरण भेजो",
+      "hinglish": "Bank details bhejo"
+     },
+     {
+      "en": "Forward to all parents",
+      "hi": "सब अभिभावकों को भेजो",
+      "hinglish": "Sab parents ko bhejo"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Classic impersonation scam.",
+     "hi": "आम नक़ल घोटाला।",
+     "hinglish": "Classic impersonation scam."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "short",
+    "prompt": {
+     "en": "CERT-In’s 2022 directions require reporting certain cyber incidents within how many hours?",
+     "hi": "CERT-In के 2022 निर्देश कुछ साइबर घटनाएँ कितने घंटों में रिपोर्ट करने को कहते हैं?",
+     "hinglish": "CERT-In ke 2022 directions kuch cyber incidents kitne ghanton mein report karne ko kehte hain?"
+    },
+    "answer": {
+     "accept": [
+      "6",
+      "six",
+      "6 hours"
+     ]
+    },
+    "explain": {
+     "en": "Six hours of noticing.",
+     "hi": "पता चलने के छह घंटे में।",
+     "hinglish": "Pata chalne ke chhe ghante mein."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Generate a strong passphrase in the lab.",
+     "hi": "लैब में मज़बूत पासफ़्रेज़ बनाओ।",
+     "hinglish": "Lab mein strong passphrase banao."
+    },
+    "answer": {
+     "event": "passphrase-made"
+    },
+    "explain": {
+     "en": "Four or more random words.",
+     "hi": "चार या ज़्यादा यादृच्छिक शब्द।",
+     "hinglish": "Chaar ya zyada random words."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "cyber.firewall",
+  "cyber.mfa",
+  "cyber.passwords",
+  "cyber.incident-response",
+  "net.routers-switches"
+ ],
+ "sources": [
+  {
+   "title": "CERT-In — Directions under section 70B(6) of the IT Act, 28 April 2022",
+   "url": "https://www.cert-in.org.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "MeitY — Digital Personal Data Protection Act, 2023",
+   "url": "https://www.meity.gov.in/",
+   "licence": "fact reference"
+  }
+ ]
+}

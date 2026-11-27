@@ -1,0 +1,315 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.friendly-ai.07",
+ "level": 1,
+ "classes": [
+  -2,
+  -1,
+  0,
+  1,
+  2
+ ],
+ "unit": "friendly-ai",
+ "title": {
+  "en": "AI helpers at home",
+  "hi": "घर के AI मददगार",
+  "hinglish": "Ghar ke AI helpers"
+ },
+ "minutes": 5,
+ "xp": 20,
+ "prereq": [
+  "L1.friendly-ai.01"
+ ],
+ "topics": [
+  "ai.everyday-ai",
+  "ai.nlp"
+ ],
+ "outcomes": [
+  {
+   "en": "Name AI helpers at home: smart speakers, voice typing, video suggestions.",
+   "hi": "घर के AI मददगारों के नाम ले सकते हो: स्मार्ट स्पीकर, बोलकर टाइपिंग, वीडियो सुझाव।",
+   "hinglish": "Ghar ke AI helpers ke naam le sakte ho: smart speakers, voice typing, video suggestions."
+  },
+  {
+   "en": "Say that AI helpers can make mistakes, so we check with a grown-up.",
+   "hi": "बता सकते हो कि AI मददगार ग़लती कर सकते हैं, इसलिए बड़े से पूछते हैं।",
+   "hinglish": "Bata sakte ho ki AI helpers galti kar sakte hain, isliye bade se check karte hain."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Smart speaker",
+   "en": "A speaker that listens and answers when you talk to it",
+   "hi": "बोलने पर जवाब देने वाला स्पीकर",
+   "hinglish": "Bolne par jawaab dene wala speaker"
+  },
+  {
+   "term": "Suggestion",
+   "en": "The app’s guess about what you might like",
+   "hi": "ऐप का अंदाज़ा कि तुम्हें क्या पसंद आएगा",
+   "hinglish": "App ka andaaza ki tumhe kya pasand aayega"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.friendly-ai.07.s1",
+   "caption": {
+    "en": "Say a wake word, then ask a question.",
+    "hi": "पहले जगाने वाला शब्द बोलो, फिर सवाल पूछो।",
+    "hinglish": "Pehle jagaane wala word bolo, phir sawaal poochho."
+   },
+   "narration": {
+    "en": "A smart speaker waits for its wake word, like \"Alexa\" or \"Hey Google\". Then it listens and answers.",
+    "hinglish": "Smart speaker apne wake word ka intezaar karta hai, jaise \"Alexa\" ya \"Hey Google\". Phir woh sunta aur jawaab deta hai.",
+    "hi": "स्मार्ट स्पीकर अपने जगाने वाले शब्द का इंतज़ार करता है, जैसे \"Alexa\" या \"Hey Google\"। फिर वह सुनता और जवाब देता है।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.friendly-ai.07.s2",
+   "caption": {
+    "en": "You like a cartoon, it suggests more.",
+    "hi": "तुम्हें कार्टून पसंद आया, वह और सुझाता है।",
+    "hinglish": "Tumhe cartoon pasand aaya, woh aur suggest karta hai."
+   },
+   "narration": {
+    "en": "Video apps learn what you like and suggest more of the same. That is AI too.",
+    "hinglish": "Video apps seekhte hain tumhe kya pasand hai aur waisa hi aur suggest karte hain. Yeh bhi AI hai.",
+    "hi": "वीडियो ऐप सीखते हैं कि तुम्हें क्या पसंद है और वैसा ही और सुझाते हैं। यह भी AI है।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.friendly-ai.07.s3",
+   "caption": {
+    "en": "AI can be wrong. Check with a grown-up.",
+    "hi": "AI ग़लत हो सकता है। बड़े से जाँचो।",
+    "hinglish": "AI galat ho sakta hai. Bade se check karo."
+   },
+   "narration": {
+    "en": "Sometimes AI mishears you or gives a wrong answer. Ask a grown-up to check.",
+    "hinglish": "Kabhi kabhi AI galat sun leta hai ya galat jawaab deta hai. Bade se check karwao.",
+    "hi": "कभी-कभी AI ग़लत सुन लेता है या ग़लत जवाब देता है। बड़े से जँचवाओ।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "teach-sorter",
+  "config": {
+   "mode": "recommend"
+  },
+  "goal": {
+   "en": "Tell the AI what you like and do not like. Then see if it can guess what else you will enjoy!",
+   "hi": "AI को बताओ तुम्हें क्या पसंद है और क्या नहीं। फिर देखो क्या वह अंदाज़ा लगा पाता है कि तुम्हें और क्या अच्छा लगेगा!",
+   "hinglish": "AI ko batao tumhe kya pasand hai aur kya nahin. Phir dekho kya woh andaaza laga paata hai ki tumhe aur kya achha lagega!"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "How a smart speaker answers",
+    "hi": "स्मार्ट स्पीकर कैसे जवाब देता है",
+    "hinglish": "Smart speaker kaise jawaab deta hai"
+   },
+   "body": {
+    "en": "The speaker listens only for its wake word. After it hears it, your question is turned from sound into words — usually by AI running on faraway servers — then the answer is found and spoken back to you. It does not truly understand like a person; it has learned patterns from huge amounts of examples. That is why it sometimes mishears a name or gives a silly answer.",
+    "hi": "स्पीकर सिर्फ़ अपने जगाने वाले शब्द को सुनता रहता है। उसे सुनने के बाद तुम्हारा सवाल आवाज़ से शब्दों में बदला जाता है — आमतौर पर दूर के सर्वर पर चलने वाले AI से — फिर जवाब ढूँढकर तुम्हें बोलकर सुनाया जाता है। वह इंसान की तरह सच में नहीं समझता; उसने बहुत सारे उदाहरणों से पैटर्न सीखे हैं। इसीलिए वह कभी नाम ग़लत सुन लेता है या बेतुका जवाब देता है।",
+    "hinglish": "Speaker sirf apne wake word ko sunta rehta hai. Use sunne ke baad tumhara sawaal awaaz se words mein badla jaata hai — aam taur par door ke servers par chalne wale AI se — phir jawaab dhoondh kar tumhe bol kar sunaaya jaata hai. Woh insaan ki tarah sach mein nahin samajhta; usne bahut saare examples se patterns seekhe hain. Isiliye woh kabhi naam galat sun leta hai ya bematlab jawaab deta hai."
+   },
+   "analogy": {
+    "en": "A smart speaker is a bit like a parrot — it has learned lots of phrases, but it does not always understand the meaning.",
+    "hi": "स्मार्ट स्पीकर तोते जैसा है — बहुत सारी बातें सीख ली हैं, पर हर बार सही मतलब समझे, ज़रूरी नहीं।",
+    "hinglish": "Smart speaker tote jaisa hai — bahut saari baatein seekh li hain, par har baar sahi matlab samjhe, zaroori nahin."
+   }
+  },
+  {
+   "heading": {
+    "en": "Using AI helpers safely",
+    "hi": "AI मददगारों का सुरक्षित इस्तेमाल",
+    "hinglish": "AI helpers ka safe istemaal"
+   },
+   "body": {
+    "en": "Use AI helpers together with a grown-up. Never tell a speaker or chat app your full name, address, school or passwords. If an answer sounds strange or scary, stop and ask a grown-up. Most AI chat apps are made for people aged 13 and above.",
+    "hi": "AI मददगार किसी बड़े के साथ इस्तेमाल करो। स्पीकर या चैट ऐप को कभी अपना पूरा नाम, पता, स्कूल या पासवर्ड मत बताओ। कोई जवाब अजीब या डरावना लगे तो रुको और बड़े से पूछो। ज़्यादातर AI चैट ऐप 13 साल और उससे बड़े लोगों के लिए बने हैं।",
+    "hinglish": "AI helpers kisi bade ke saath use karo. Speaker ya chat app ko kabhi apna poora naam, address, school ya password mat batao. Koi jawaab ajeeb ya daraavna lage toh ruko aur bade se poochho. Zyaadatar AI chat apps 13 saal aur usse bade logon ke liye bane hain."
+   },
+   "realExample": {
+    "en": "India’s Bhashini project builds AI that understands and translates Indian languages, so voice helpers can work in Hindi, Tamil, Bengali and more.",
+    "hi": "भारत का भाषिणी प्रोजेक्ट ऐसा AI बनाता है जो भारतीय भाषाएँ समझता और अनुवाद करता है, ताकि आवाज़ वाले मददगार हिंदी, तमिल, बांग्ला और कई भाषाओं में काम कर सकें।",
+    "hinglish": "India ka Bhashini project aisa AI banaata hai jo Indian languages samajhta aur translate karta hai, taaki voice helpers Hindi, Tamil, Bengali aur aur bhi bhashaon mein kaam kar sakein."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "With a grown-up, ask a voice helper (on a phone or speaker) the weather. Then look out of the window — was it right?",
+   "hi": "किसी बड़े के साथ आवाज़ वाले मददगार (फ़ोन या स्पीकर) से मौसम पूछो। फिर खिड़की से देखो — क्या वह सही था?",
+   "hinglish": "Kisi bade ke saath voice helper (phone ya speaker) se mausam poochho. Phir khidki se dekho — kya woh sahi tha?"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are AI helpers?",
+     "hi": "कौन से AI मददगार हैं?",
+     "hinglish": "Kaun se AI helpers hain?"
+    },
+    "options": [
+     {
+      "en": "🔊 Smart speaker",
+      "hi": "🔊 स्मार्ट स्पीकर",
+      "hinglish": "🔊 Smart speaker"
+     },
+     {
+      "en": "🎬 Video suggestions",
+      "hi": "🎬 वीडियो सुझाव",
+      "hinglish": "🎬 Video suggestions"
+     },
+     {
+      "en": "🪑 A chair",
+      "hi": "🪑 कुर्सी",
+      "hinglish": "🪑 Kursi"
+     }
+    ],
+    "answer": [
+     0,
+     1
+    ],
+    "explain": {
+     "en": "A chair cannot listen or learn.",
+     "hi": "कुर्सी न सुन सकती है, न सीख सकती है।",
+     "hinglish": "Kursi na sun sakti hai, na seekh sakti hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "The speaker gives a strange answer. You…",
+     "hi": "स्पीकर अजीब जवाब देता है। तुम…",
+     "hinglish": "Speaker ajeeb jawaab deta hai. Tum…"
+    },
+    "options": [
+     {
+      "en": "👩 ask a grown-up",
+      "hi": "👩 बड़े से पूछोगे",
+      "hinglish": "👩 bade se poochhoge"
+     },
+     {
+      "en": "✅ always believe it",
+      "hi": "✅ हमेशा मान लोगे",
+      "hinglish": "✅ hamesha maan loge"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "AI can be wrong.",
+     "hi": "AI ग़लत हो सकता है।",
+     "hinglish": "AI galat ho sakta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Should you tell a smart speaker your home address?",
+     "hi": "क्या स्मार्ट स्पीकर को अपना घर का पता बताना चाहिए?",
+     "hinglish": "Kya smart speaker ko apna ghar ka address batana chahiye?"
+    },
+    "options": [
+     {
+      "en": "Yes",
+      "hi": "हाँ",
+      "hinglish": "Haan"
+     },
+     {
+      "en": "No",
+      "hi": "नहीं",
+      "hinglish": "Nahin"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Keep private details private.",
+     "hi": "निजी बातें निजी रखो।",
+     "hinglish": "Private baatein private rakho."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "A smart speaker starts listening after…",
+     "hi": "स्मार्ट स्पीकर कब सुनना शुरू करता है?",
+     "hinglish": "Smart speaker kab sunna shuru karta hai?"
+    },
+    "options": [
+     {
+      "en": "its wake word",
+      "hi": "जगाने वाले शब्द के बाद",
+      "hinglish": "wake word ke baad"
+     },
+     {
+      "en": "you clap three times",
+      "hi": "तीन ताली के बाद",
+      "hinglish": "teen taali ke baad"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Like \"Alexa\" or \"Hey Google\".",
+     "hi": "जैसे \"Alexa\" या \"Hey Google\"।",
+     "hinglish": "Jaise \"Alexa\" ya \"Hey Google\"."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Train the recommender in the lab.",
+     "hi": "लैब में सुझाव देने वाले AI को सिखाओ।",
+     "hinglish": "Lab mein recommender ko train karo."
+    },
+    "answer": {
+     "lab": "teach-sorter",
+     "mode": "recommend",
+     "solved": true
+    },
+    "explain": {
+     "en": "Mark a few things Like or Not for me, then test.",
+     "hi": "कुछ चीज़ों को पसंद या पसंद नहीं पर लगाओ, फिर जाँचो।",
+     "hinglish": "Kuch cheezon ko Like ya Not for me mark karo, phir test karo."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "AI4K12 – Five Big Ideas in AI (fact reference)",
+   "url": "https://ai4k12.org/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "UNICEF – Policy guidance on AI for children (fact reference)",
+   "url": "https://www.unicef.org/innocenti/reports/policy-guidance-ai-children",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Bhashini – National Language Translation Mission, MeitY (fact reference)",
+   "url": "https://bhashini.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

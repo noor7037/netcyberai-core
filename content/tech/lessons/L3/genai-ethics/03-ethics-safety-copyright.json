@@ -1,0 +1,383 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.genai-ethics.03",
+ "level": 3,
+ "classes": [
+  11,
+  12
+ ],
+ "unit": "genai-ethics",
+ "title": {
+  "en": "AI ethics, safety and copyright",
+  "hi": "एआई नैतिकता, सुरक्षा और कॉपीराइट",
+  "hinglish": "AI ethics, safety aur copyright"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [
+  "L3.genai-ethics.02",
+  "L3.machine-learning.07"
+ ],
+ "outcomes": [
+  {
+   "en": "Apply five responsible-AI principles to a real product",
+   "hinglish": "Ek real product par paanch responsible-AI principles lagao",
+   "hi": "किसी असली उत्पाद पर पाँच ज़िम्मेदार-एआई सिद्धांत लागू करना"
+  },
+  {
+   "en": "Explain AI safety concerns from misuse to alignment",
+   "hinglish": "AI safety concerns samjhao, misuse se alignment tak",
+   "hi": "दुरुपयोग से संरेखण तक एआई सुरक्षा चिंताएँ समझाना"
+  },
+  {
+   "en": "Explain copyright questions for training data and AI outputs",
+   "hinglish": "Training data aur AI outputs ke copyright sawaal samjhao",
+   "hi": "प्रशिक्षण डेटा और एआई आउटपुट के कॉपीराइट प्रश्न समझाना"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Transparency",
+   "hinglish": "Batana ki AI use ho raha hai aur kaise",
+   "en": "Being open that AI is used, how it works and its limits",
+   "hi": "खुलकर बताना कि एआई इस्तेमाल हो रहा है, कैसे काम करता है और उसकी सीमाएँ"
+  },
+  {
+   "term": "Accountability",
+   "hinglish": "Galti hui to zimmedaar kaun",
+   "en": "Clear human responsibility for AI decisions",
+   "hi": "एआई निर्णयों के लिए स्पष्ट मानवीय ज़िम्मेदारी"
+  },
+  {
+   "term": "Alignment",
+   "hinglish": "AI wahi kare jo hum sach mein chahte hain",
+   "en": "Making AI systems pursue intended goals and values",
+   "hi": "एआई प्रणालियों से इच्छित लक्ष्य और मूल्य पूरे करवाना"
+  },
+  {
+   "term": "Copyright",
+   "hinglish": "Rachna par rachnakar ka haq",
+   "en": "Legal right of creators over original works",
+   "hi": "मौलिक कृतियों पर रचनाकारों का क़ानूनी अधिकार"
+  },
+  {
+   "term": "Fair use / fair dealing",
+   "hinglish": "Kuch seemit use bina permission",
+   "en": "Limited legal exceptions for using copyrighted work",
+   "hi": "कॉपीराइट कृति के उपयोग के सीमित क़ानूनी अपवाद"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Five principles appear in almost every framework: fairness, transparency, privacy, safety and accountability.",
+    "hi": "लगभग हर ढाँचे में पाँच सिद्धांत हैं: निष्पक्षता, पारदर्शिता, निजता, सुरक्षा और जवाबदेही।",
+    "hinglish": "Lagbhag har framework mein paanch principles hain: fairness, transparency, privacy, safety aur accountability."
+   },
+   "visual": "anim:five-pillars",
+   "narration": {
+    "en": "Five principles appear in almost every framework: fairness, transparency, privacy, safety and accountability.",
+    "hi": "लगभग हर ढाँचे में पाँच सिद्धांत हैं: निष्पक्षता, पारदर्शिता, निजता, सुरक्षा और जवाबदेही।",
+    "hinglish": "Lagbhag har framework mein paanch principles hain: fairness, transparency, privacy, safety aur accountability."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Safety ranges from today's misuse (scams, deepfakes, unsafe advice) to the long-term question of keeping very capable systems aligned with human intent.",
+    "hi": "सुरक्षा आज के दुरुपयोग (ठगी, डीपफ़ेक, असुरक्षित सलाह) से लेकर बहुत सक्षम सिस्टमों को मानवीय इरादे के अनुरूप रखने के दीर्घकालिक सवाल तक है।",
+    "hinglish": "Safety aaj ke misuse (scams, deepfakes, unsafe advice) se lekar bahut capable systems ko human intent ke saath aligned rakhne ke long-term sawaal tak hai."
+   },
+   "visual": "anim:safety-spectrum",
+   "narration": {
+    "en": "Safety ranges from today's misuse (scams, deepfakes, unsafe advice) to the long-term question of keeping very capable systems aligned with human intent.",
+    "hi": "सुरक्षा आज के दुरुपयोग (ठगी, डीपफ़ेक, असुरक्षित सलाह) से लेकर बहुत सक्षम सिस्टमों को मानवीय इरादे के अनुरूप रखने के दीर्घकालिक सवाल तक है।",
+    "hinglish": "Safety aaj ke misuse (scams, deepfakes, unsafe advice) se lekar bahut capable systems ko human intent ke saath aligned rakhne ke long-term sawaal tak hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Copyright: models learn from books, art and code made by people. Courts worldwide, including in India, are now deciding what is allowed.",
+    "hi": "कॉपीराइट: मॉडल लोगों की बनाई किताबों, कला और कोड से सीखते हैं। भारत समेत दुनिया भर की अदालतें अब तय कर रही हैं क्या अनुमत है।",
+    "hinglish": "Copyright: models logon ki banaayi kitaabon, art aur code se seekhte hain. India samet duniya bhar ki courts ab decide kar rahi hain kya allowed hai."
+   },
+   "visual": "anim:copyright-scales",
+   "narration": {
+    "en": "Copyright: models learn from books, art and code made by people. Courts worldwide, including in India, are now deciding what is allowed.",
+    "hi": "कॉपीराइट: मॉडल लोगों की बनाई किताबों, कला और कोड से सीखते हैं। भारत समेत दुनिया भर की अदालतें अब तय कर रही हैं क्या अनुमत है।",
+    "hinglish": "Copyright: models logon ki banaayi kitaabon, art aur code se seekhte hain. India samet duniya bhar ki courts ab decide kar rahi hain kya allowed hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "agent-loop",
+  "config": {
+   "scenario": "ethics-review-board"
+  },
+  "goal": {
+   "en": "Sit on the school's AI review board. For four proposals (face-recognition attendance, essay-feedback AI, crop-disease app, a chatbot as the only counsellor), pick approve, approve-with-conditions or reject, and read the board's reasoning.",
+   "hinglish": "School ke AI review board par baitho. Chaar proposals (face-recognition attendance, essay-feedback AI, crop-disease app, akela counsellor chatbot) ke liye approve, shartein ke saath, ya reject chuno, aur board ka reasoning padho.",
+   "hi": "विद्यालय के एआई समीक्षा बोर्ड पर बैठो। चार प्रस्तावों (चेहरा-पहचान उपस्थिति, निबंध-प्रतिक्रिया एआई, फ़सल-रोग ऐप, एकमात्र परामर्शदाता चैटबॉट) के लिए स्वीकृत, शर्तों के साथ, या अस्वीकृत चुनो, और बोर्ड का तर्क पढ़ो।"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Responsible AI and safety",
+    "hi": "ज़िम्मेदार एआई और सुरक्षा",
+    "hinglish": "Responsible AI aur safety"
+   },
+   "body": {
+    "en": "Fairness: test and fix unequal outcomes (lesson on bias). Transparency: tell people when they are dealing with AI, explain decisions that affect them, and publish limits. Privacy: collect the minimum, get consent, secure data (DPDP Act). Safety: test for harmful outputs and misuse, with human oversight of high-stakes uses such as health, credit, policing and exams. Accountability: a named human or organisation is responsible and there is a way to appeal. Frameworks include the OECD AI Principles, UNESCO's Recommendation on the Ethics of AI, the EU AI Act (in force since 2024, risk-based, with some uses banned), NIST's AI Risk Management Framework, and India's IndiaAI Safety Institute (announced January 2025) and AI governance guidelines. Longer-term safety research studies alignment (systems following intended goals rather than proxies, as in reward hacking), robustness, and interpretability (understanding what happens inside models).",
+    "hi": "निष्पक्षता: असमान नतीजे परखो और सुधारो (पक्षपात वाला पाठ)। पारदर्शिता: लोगों को बताओ कि वे एआई से बात कर रहे हैं, उन पर असर डालने वाले फ़ैसले समझाओ, और सीमाएँ प्रकाशित करो। निजता: न्यूनतम जुटाओ, सहमति लो, डेटा सुरक्षित रखो (डीपीडीपी अधिनियम)। सुरक्षा: हानिकारक आउटपुट और दुरुपयोग परखो, स्वास्थ्य, ऋण, पुलिस और परीक्षा जैसे गंभीर उपयोगों पर मानवीय निगरानी के साथ। जवाबदेही: कोई नामित व्यक्ति या संस्था ज़िम्मेदार हो और अपील का रास्ता हो। ढाँचे: ओईसीडी एआई सिद्धांत, यूनेस्को की एआई नैतिकता सिफ़ारिश, ईयू एआई अधिनियम (2024 से लागू, जोखिम-आधारित, कुछ उपयोग प्रतिबंधित), एनआईएसटी का एआई जोखिम प्रबंधन ढाँचा, और भारत का इंडियाएआई सेफ़्टी इंस्टीट्यूट (जनवरी 2025 में घोषित) व एआई शासन दिशानिर्देश। दीर्घकालिक सुरक्षा शोध संरेखण (सिस्टम असली लक्ष्य अपनाएँ, प्रॉक्सी नहीं, जैसे रिवॉर्ड हैकिंग में), मज़बूती और व्याख्येयता (मॉडल के अंदर क्या होता है समझना) पढ़ता है।",
+    "hinglish": "Fairness: unequal outcomes test karo aur theek karo (bias wala lesson). Transparency: logon ko batao ki woh AI se deal kar rahe hain, unpar asar daalne wale faisle samjhao, aur limits publish karo. Privacy: minimum collect karo, consent lo, data secure rakho (DPDP Act). Safety: harmful outputs aur misuse test karo, health, credit, policing aur exams jaise high-stakes uses par human oversight ke saath. Accountability: koi named insaan ya organisation zimmedaar ho aur appeal ka raasta ho. Frameworks: OECD AI Principles, UNESCO ki AI Ethics Recommendation, EU AI Act (2024 se lagu, risk-based, kuch uses banned), NIST ka AI RMF, aur India ka IndiaAI Safety Institute (January 2025 mein announce) aur AI governance guidelines. Long-term safety research alignment (systems asli goals follow karein, proxies nahi, jaise reward hacking mein), robustness aur interpretability (model ke andar kya hota hai samajhna) padhta hai."
+   },
+   "analogy": {
+    "hinglish": "AI ko car jaisa socho: fairness = sabke liye same road rules, transparency = dashboard, privacy = lock, safety = brakes aur airbags, accountability = driving licence aur insurance.",
+    "en": "Think of AI like a car: fairness = the same road rules for everyone, transparency = the dashboard, privacy = the lock, safety = brakes and airbags, accountability = driving licence and insurance.",
+    "hi": "एआई को कार जैसा सोचो: निष्पक्षता = सबके लिए एक जैसे सड़क नियम, पारदर्शिता = डैशबोर्ड, निजता = ताला, सुरक्षा = ब्रेक और एयरबैग, जवाबदेही = ड्राइविंग लाइसेंस और बीमा।"
+   },
+   "realExample": {
+    "en": "The EU AI Act bans emotion recognition in schools and workplaces (with narrow exceptions) and treats AI used for exam scoring or admissions as \"high risk\", requiring human oversight and documentation.",
+    "hinglish": "EU AI Act schools aur workplaces mein emotion recognition ban karta hai (kuch narrow exceptions ke saath) aur exam scoring ya admissions mein AI ko \"high risk\" maanta hai, jismein human oversight aur documentation zaroori hai.",
+    "hi": "यूरोपीय संघ का एआई अधिनियम स्कूलों और कार्यस्थलों में भावना-पहचान पर रोक लगाता है (संकीर्ण अपवादों के साथ) और परीक्षा-अंकन या प्रवेश में इस्तेमाल एआई को \"उच्च जोखिम\" मानकर मानव निगरानी और दस्तावेज़ीकरण माँगता है।"
+   }
+  },
+  {
+   "heading": {
+    "en": "Copyright, credit and honest use",
+    "hi": "कॉपीराइट, श्रेय और ईमानदार उपयोग",
+    "hinglish": "Copyright, credit aur honest use"
+   },
+   "body": {
+    "en": "Training data: models are trained on huge amounts of text, images, music and code, much of it copyrighted. Whether this is allowed is being decided in courts: The New York Times v. OpenAI and authors' cases in the US, Getty Images v. Stability AI in the UK, and ANI v. OpenAI in the Delhi High Court (filed in 2024). Some companies now license data or let creators opt out. Outputs: in many countries copyright protects human authorship, so purely machine-made output may not be protected, and output that closely copies a protected work can still infringe. For students: AI help on homework can be a tutor or a cheat. Follow your school's rules, say when and how you used AI, never submit AI text as your own original work, check facts, and respect licences (for example CC BY needs credit; this course's labs use only MIT, Apache, CC BY or CC0 material).",
+    "hi": "प्रशिक्षण डेटा: मॉडल विशाल पाठ, चित्र, संगीत और कोड पर प्रशिक्षित होते हैं, जिनमें बहुत कुछ कॉपीराइट वाला है। क्या यह अनुमत है, अदालतें तय कर रही हैं: अमेरिका में द न्यूयॉर्क टाइम्स बनाम ओपनएआई और लेखकों के मामले, ब्रिटेन में गेटी इमेजेज़ बनाम स्टेबिलिटी एआई, और दिल्ली उच्च न्यायालय में एएनआई बनाम ओपनएआई (2024 में दायर)। कुछ कंपनियाँ अब डेटा का लाइसेंस लेती हैं या रचनाकारों को बाहर निकलने देती हैं। आउटपुट: कई देशों में कॉपीराइट मानवीय लेखन की रक्षा करता है, तो पूरी तरह मशीन-निर्मित आउटपुट संरक्षित न हो, और जो आउटपुट किसी संरक्षित रचना की करीबी नकल हो वह फिर भी उल्लंघन कर सकता है। छात्रों के लिए: होमवर्क में एआई ट्यूटर भी हो सकता है और नकल भी। स्कूल के नियम मानो, बताओ कब और कैसे एआई इस्तेमाल किया, एआई का पाठ कभी अपनी मौलिक रचना कहकर जमा मत करो, तथ्य जाँचो, और लाइसेंस का सम्मान करो (जैसे CC BY में श्रेय देना ज़रूरी; इस पाठ्यक्रम की लैब सिर्फ़ MIT, Apache, CC BY या CC0 सामग्री इस्तेमाल करती हैं)।",
+    "hinglish": "Training data: models huge text, images, music aur code par train hote hain, jismein bahut kuch copyrighted hai. Kya yeh allowed hai, courts decide kar rahi hain: US mein The New York Times v. OpenAI aur authors ke cases, UK mein Getty Images v. Stability AI, aur Delhi High Court mein ANI v. OpenAI (2024 mein file hua). Kuch companies ab data license karti hain ya creators ko opt out karne deti hain. Outputs: kai deshon mein copyright human authorship ko protect karta hai, to poori tarah machine-made output protected na ho, aur jo output kisi protected work ki close copy ho woh phir bhi infringe kar sakta hai. Students ke liye: homework mein AI tutor bhi ho sakta hai aur cheat bhi. School ke rules maano, batao kab aur kaise AI use kiya, AI text ko kabhi apna original kaam keh ke submit mat karo, facts check karo, aur licences respect karo (jaise CC BY mein credit zaroori; is course ki labs sirf MIT, Apache, CC BY ya CC0 material use karti hain)."
+   },
+   "analogy": {
+    "hinglish": "AI ko calculator jaisa use karo jo teacher allow kare — par uttar-pustika mein \"maine khud kiya\" likhna aur calculator se karna, yeh beimaani hai.",
+    "en": "Use AI like a calculator the teacher allows — but writing \"I did it myself\" on the answer sheet when the calculator did it is dishonest.",
+    "hi": "एआई को शिक्षक द्वारा अनुमत कैलकुलेटर की तरह इस्तेमाल करो — पर उत्तर-पुस्तिका में \"मैंने ख़ुद किया\" लिखना और कैलकुलेटर से करना, यह बेईमानी है।"
+   },
+   "realExample": {
+    "en": "CBSE and many universities now publish guidance on acceptable AI use in projects; the common rule is disclose AI assistance and keep your own reasoning visible.",
+    "hinglish": "CBSE aur kai universities ab projects mein acceptable AI use ki guidance publish karti hain; common rule: AI help disclose karo aur apni reasoning dikhai do.",
+    "hi": "सीबीएसई और कई विश्वविद्यालय अब परियोजनाओं में स्वीकार्य एआई उपयोग पर मार्गदर्शन प्रकाशित करते हैं; आम नियम है एआई की मदद बताओ और अपना तर्क दिखता रहे।"
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write your own 5-rule \"AI use policy\" for your class project, covering disclosure, fact-checking, privacy, credit and what is not allowed. Explain one rule with an example.",
+   "hinglish": "Apne class project ke liye 5 rules ki \"AI use policy\" likho: disclosure, fact-checking, privacy, credit aur kya allowed nahi. Ek rule ko example se samjhao.",
+   "hi": "अपनी कक्षा परियोजना के लिए अपनी 5-नियम वाली \"एआई उपयोग नीति\" लिखो, जिसमें प्रकटीकरण, तथ्य-जाँच, निजता, श्रेय और क्या मना है शामिल हो। एक नियम को उदाहरण से समझाओ।"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "match",
+    "prompt": {
+     "en": "Match each problem to the principle it breaks.",
+     "hi": "हर समस्या को उस सिद्धांत से मिलाएँ जिसे वह तोड़ती है।",
+     "hinglish": "Har problem ko us principle se milao jise woh todti hai."
+    },
+    "options": [
+     {
+      "en": "A chatbot hides that it is AI",
+      "hinglish": "Chatbot chhupata hai ki woh AI hai",
+      "hi": "चैटबॉट छिपाता है कि वह एआई है"
+     },
+     {
+      "en": "A loan model rejects one region more",
+      "hinglish": "Loan model ek region ko zyada reject kare",
+      "hi": "ऋण मॉडल एक क्षेत्र को ज़्यादा अस्वीकार करता है"
+     },
+     {
+      "en": "An app stores children's voice clips without consent",
+      "hinglish": "App bina consent bachchon ki voice clips store kare",
+      "hi": "ऐप बिना सहमति बच्चों की आवाज़ की क्लिप रखता है"
+     },
+     {
+      "en": "Nobody can be contacted to appeal a decision",
+      "hinglish": "Faisle par appeal ke liye koi contact nahi",
+      "hi": "निर्णय पर अपील के लिए किसी से संपर्क नहीं हो सकता"
+     }
+    ],
+    "answer": [
+     "transparency",
+     "fairness",
+     "privacy",
+     "accountability"
+    ],
+    "explain": {
+     "en": "Each maps to a core principle; real reviews check all five together.",
+     "hi": "हर एक मुख्य सिद्धांत से जुड़ता है; असली समीक्षाएँ पाँचों एक साथ जाँचती हैं।",
+     "hinglish": "Har ek core principle se judta hai; real reviews paanchon ek saath check karte hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "You used an AI tool to help outline your essay. The honest approach is…",
+     "hi": "आपने निबंध की रूपरेखा में एआई टूल की मदद ली। ईमानदार तरीका क्या है?",
+     "hinglish": "Tumne essay ki outline mein AI tool ki madad li. Imaandaar tareeka kya hai?"
+    },
+    "options": [
+     {
+      "en": "Follow school rules and disclose how you used it; write and check the content yourself",
+      "hinglish": "School rules maano aur batao kaise use kiya; content khud likho aur check karo",
+      "hi": "स्कूल के नियम मानो और बताओ कैसे इस्तेमाल किया; सामग्री ख़ुद लिखो और जाँचो"
+     },
+     {
+      "en": "Submit the AI text as your own",
+      "hinglish": "AI text apna keh ke submit karo",
+      "hi": "एआई का पाठ अपना बताकर जमा करो"
+     },
+     {
+      "en": "Hide it because everyone does it",
+      "hinglish": "Chhupao kyunki sab karte hain",
+      "hi": "छिपाओ क्योंकि सब करते हैं"
+     },
+     {
+      "en": "Copy a friend's AI essay",
+      "hinglish": "Dost ka AI essay copy karo",
+      "hi": "दोस्त का एआई निबंध नक़ल करो"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Disclosure plus your own thinking keeps it learning, not cheating, and respects academic integrity rules.",
+     "hi": "बताना और अपनी सोच रखना इसे सीखना बनाता है, नकल नहीं, और शैक्षणिक ईमानदारी के नियमों का सम्मान करता है।",
+     "hinglish": "Disclose karna aur apni soch rakhna ise learning banata hai, cheating nahi, aur academic integrity rules respect karta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which Indian court case concerns AI training on news content?",
+     "hi": "कौन-सा भारतीय अदालती मामला समाचार सामग्री पर एआई प्रशिक्षण से जुड़ा है?",
+     "hinglish": "Kaunsa Indian court case news content par AI training se juda hai?"
+    },
+    "options": [
+     {
+      "en": "ANI v. OpenAI in the Delhi High Court",
+      "hinglish": "Delhi High Court mein ANI v. OpenAI",
+      "hi": "दिल्ली उच्च न्यायालय में ANI बनाम OpenAI"
+     },
+     {
+      "en": "Kesavananda Bharati",
+      "hinglish": "Kesavananda Bharati",
+      "hi": "केशवानंद भारती"
+     },
+     {
+      "en": "Puttaswamy (privacy)",
+      "hinglish": "Puttaswamy (privacy)",
+      "hi": "पुट्टस्वामी (निजता)"
+     },
+     {
+      "en": "There is none",
+      "hinglish": "Koi nahi",
+      "hi": "कोई नहीं है"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "ANI sued OpenAI in late 2024 over use of its news content; Puttaswamy (2017) established privacy as a fundamental right, which underlies the DPDP Act.",
+     "hi": "एएनआई ने 2024 के अंत में अपनी समाचार सामग्री के उपयोग पर ओपनएआई पर मुकदमा किया; पुट्टास्वामी (2017) ने निजता को मौलिक अधिकार माना, जो डीपीडीपी अधिनियम का आधार है।",
+     "hinglish": "ANI ne late 2024 mein apne news content ke use par OpenAI par case kiya; Puttaswamy (2017) ne privacy ko fundamental right maana, jo DPDP Act ka aadhaar hai."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "\"Alignment\" in AI safety means…",
+     "hi": "एआई सुरक्षा में \"संरेखण\" का अर्थ?",
+     "hinglish": "AI safety mein \"alignment\" ka matlab?"
+    },
+    "options": [
+     {
+      "en": "Making AI pursue the goals and values we actually intend",
+      "hinglish": "AI ko woh goals aur values follow karwana jo hum sach mein chahte hain",
+      "hi": "एआई से वे लक्ष्य और मूल्य पूरे करवाना जो हम सच में चाहते हैं"
+     },
+     {
+      "en": "Lining up GPUs",
+      "hinglish": "GPUs line mein lagana",
+      "hi": "GPU एक लाइन में लगाना"
+     },
+     {
+      "en": "Formatting text",
+      "hinglish": "Text format karna",
+      "hi": "पाठ का प्रारूपण"
+     },
+     {
+      "en": "Making AI faster",
+      "hinglish": "AI tez karna",
+      "hi": "एआई को तेज़ बनाना"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Reward hacking shows the gap between a proxy objective and true intent; alignment research tries to close it.",
+     "hi": "रिवॉर्ड हैकिंग प्रॉक्सी लक्ष्य और असली इरादे के बीच का अंतर दिखाती है; संरेखण शोध इसे भरने की कोशिश करता है।",
+     "hinglish": "Reward hacking proxy objective aur asli intent ka gap dikhati hai; alignment research ise bharne ki koshish karti hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Review all four proposals on the board.",
+     "hi": "बोर्ड पर चारों प्रस्तावों की समीक्षा करें।",
+     "hinglish": "Board par chaaron proposals review karo."
+    },
+    "answer": {
+     "event": "scenario-complete",
+     "scenario": "ethics-review-board"
+    },
+    "explain": {
+     "en": "Experts approve the dubbing tool with consent and labelling, the homework bot with disclosure, the loan scorer only with audits and appeals, and reject emotion-tracking proctoring of minors.",
+     "hi": "विशेषज्ञ डबिंग टूल को सहमति और लेबल के साथ, होमवर्क बॉट को बताने की शर्त पर, ऋण स्कोरर को सिर्फ़ ऑडिट और अपील के साथ मंज़ूर करते हैं, और नाबालिगों की भावना-ट्रैकिंग वाली निगरानी नकारते हैं।",
+     "hinglish": "Experts dubbing tool ko consent aur labelling ke saath, homework bot ko disclosure ke saath, loan scorer ko sirf audits aur appeals ke saath approve karte hain, aur minors ki emotion-tracking proctoring reject karte hain."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "topics": [
+  "ai.ethics",
+  "ai.safety",
+  "cit.copyright"
+ ],
+ "sources": [
+  {
+   "title": "OECD AI Principles",
+   "url": "https://oecd.ai/en/ai-principles",
+   "licence": "fact reference"
+  },
+  {
+   "title": "UNESCO Recommendation on the Ethics of Artificial Intelligence (2021)",
+   "url": "https://www.unesco.org/en/artificial-intelligence/recommendation-ethics",
+   "licence": "fact reference"
+  },
+  {
+   "title": "EU Artificial Intelligence Act",
+   "url": "https://artificialintelligenceact.eu/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "IndiaAI Mission",
+   "url": "https://indiaai.gov.in/",
+   "licence": "fact reference"
+  }
+ ]
+}

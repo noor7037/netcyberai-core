@@ -1,0 +1,357 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.servers.06",
+ "level": 1,
+ "classes": [
+  3,
+  4,
+  5
+ ],
+ "unit": "servers",
+ "title": {
+  "en": "Keeping servers safe",
+  "hi": "सर्वर को सुरक्षित रखना",
+  "hinglish": "Servers ko safe rakhna"
+ },
+ "minutes": 8,
+ "xp": 30,
+ "prereq": [
+  "L1.servers.03"
+ ],
+ "topics": [
+  "cloud.servers",
+  "cyber.passwords",
+  "cyber.mfa"
+ ],
+ "outcomes": [
+  {
+   "en": "Name the layers that protect a server: guards, locks, strong logins, updates, firewalls and backups.",
+   "hi": "सर्वर की सुरक्षा की परतें बता सकते हो: गार्ड, ताले, मज़बूत लॉगिन, अपडेट, फ़ायरवॉल और बैकअप।",
+   "hinglish": "Server ki suraksha ki layers bata sakte ho: guards, locks, strong logins, updates, firewalls aur backups."
+  },
+  {
+   "en": "Explain how your strong password and OTP protect your account on a server.",
+   "hi": "समझा सकते हो कि तुम्हारा मज़बूत पासवर्ड और OTP सर्वर पर तुम्हारे खाते को कैसे बचाते हैं।",
+   "hinglish": "Samjha sakte ho ki tumhara strong password aur OTP server par tumhare account ko kaise bachaata hai."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Firewall",
+   "en": "A filter that blocks unwanted network traffic",
+   "hi": "अनचाहे नेटवर्क ट्रैफ़िक को रोकने वाला फ़िल्टर",
+   "hinglish": "Galat traffic rokne wala darwaaza"
+  },
+  {
+   "term": "Two-step login",
+   "en": "Logging in with a password plus a second check, like an OTP",
+   "hi": "पासवर्ड के साथ दूसरी जाँच, जैसे OTP",
+   "hinglish": "Password ke saath OTP bhi"
+  },
+  {
+   "term": "Patch",
+   "en": "An update that fixes a weakness",
+   "hi": "कमज़ोरी ठीक करने वाला अपडेट",
+   "hinglish": "Galti theek karne wala update"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.servers.06.s1",
+   "caption": {
+    "en": "Servers are guarded in layers, like a fort.",
+    "hi": "सर्वर क़िले की तरह परतों में सुरक्षित होते हैं।",
+    "hinglish": "Servers kile ki tarah layers mein safe hote hain."
+   },
+   "narration": {
+    "en": "Like a fort with walls, gates and guards, a server is protected by many layers.",
+    "hinglish": "Jaise kile mein deewarein, darwaaze aur guards hote hain, waise server ki suraksha ki kai layers hoti hain.",
+    "hi": "जैसे क़िले में दीवारें, फाटक और पहरेदार होते हैं, वैसे सर्वर की सुरक्षा की कई परतें होती हैं।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.servers.06.s2",
+   "caption": {
+    "en": "Strong password plus OTP keeps accounts safe.",
+    "hi": "मज़बूत पासवर्ड और OTP खाते सुरक्षित रखते हैं।",
+    "hinglish": "Strong password aur OTP accounts safe rakhte hain."
+   },
+   "narration": {
+    "en": "Your account lives on a server. A strong password plus a one-time code keeps strangers out.",
+    "hinglish": "Tumhara account server par rehta hai. Strong password aur one-time code ajnabiyon ko bahar rakhte hain.",
+    "hi": "तुम्हारा खाता सर्वर पर रहता है। मज़बूत पासवर्ड और एक बार वाला कोड अजनबियों को बाहर रखते हैं।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.servers.06.s3",
+   "caption": {
+    "en": "Updates patch the weak spots.",
+    "hi": "अपडेट कमज़ोर जगहें ठीक करते हैं।",
+    "hinglish": "Updates kamzor jagah theek karte hain."
+   },
+   "narration": {
+    "en": "Server teams install updates quickly, because each patch closes a weak spot.",
+    "hinglish": "Server teams updates jaldi install karti hain, kyonki har patch ek kamzor jagah band karta hai.",
+    "hi": "सर्वर टीमें अपडेट जल्दी इंस्टॉल करती हैं, क्योंकि हर पैच एक कमज़ोर जगह बंद करता है।"
+   }
+  },
+  {
+   "step": 4,
+   "visual": "scene:L1.servers.06.s4",
+   "caption": {
+    "en": "Backups in another place save the day.",
+    "hi": "दूसरी जगह का बैकअप काम आता है।",
+    "hinglish": "Doosri jagah ka backup kaam aata hai."
+   },
+   "narration": {
+    "en": "Teams keep backup copies in another place, so data can be brought back after a problem.",
+    "hinglish": "Teams doosri jagah backup copies rakhti hain, taaki problem ke baad data waapas laaya ja sake.",
+    "hi": "टीमें दूसरी जगह बैकअप कॉपी रखती हैं, ताकि समस्या के बाद डेटा वापस लाया जा सके।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "safety-sort",
+  "config": {
+   "deck": "passwords",
+   "meter": true
+  },
+  "goal": {
+   "en": "Your password guards your account on the server. Build a strong one with the meter, then sort strong and weak passwords.",
+   "hi": "तुम्हारा पासवर्ड सर्वर पर तुम्हारे खाते का पहरेदार है। मीटर से मज़बूत पासवर्ड बनाओ, फिर मज़बूत और कमज़ोर पासवर्ड छाँटो।",
+   "hinglish": "Tumhara password server par tumhare account ka guard hai. Meter se strong password banao, phir strong aur weak passwords sort karo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Defence in depth",
+    "hi": "परत-दर-परत सुरक्षा",
+    "hinglish": "Parat-dar-parat suraksha"
+   },
+   "body": {
+    "en": "Security teams never rely on just one lock. A data centre has fences, guards, ID cards and cameras. Inside, servers sit behind firewalls that only let in the right kind of traffic. Staff log in with strong passwords and a second step. Software is updated quickly, unusual activity sets off alarms, and backups are kept somewhere else. If one layer fails, the next one still protects the data. This idea is called \"defence in depth\".",
+    "hi": "सुरक्षा टीमें कभी सिर्फ़ एक ताले पर भरोसा नहीं करतीं। डेटा सेंटर में बाड़, पहरेदार, पहचान पत्र और कैमरे होते हैं। अंदर, सर्वर फ़ायरवॉल के पीछे होते हैं जो सिर्फ़ सही ट्रैफ़िक अंदर आने देते हैं। कर्मचारी मज़बूत पासवर्ड और दूसरे चरण से लॉगिन करते हैं। सॉफ़्टवेयर जल्दी अपडेट होता है, अजीब गतिविधि पर अलार्म बजता है, और बैकअप कहीं और रखे जाते हैं। एक परत टूटे तो अगली परत डेटा बचाती है। इसे \"परत-दर-परत सुरक्षा\" कहते हैं।",
+    "hinglish": "Security teams kabhi sirf ek taale par bharosa nahin kartin. Data centre mein fences, guards, ID cards aur cameras hote hain. Andar, servers firewalls ke peechhe hote hain jo sirf sahi traffic andar aane dete hain. Staff strong passwords aur doosre step se login karta hai. Software jaldi update hota hai, ajeeb activity par alarm bajta hai, aur backups kahin aur rakhe jaate hain. Ek layer toote toh agli layer data bachaati hai. Ise \"defence in depth\" kehte hain."
+   },
+   "analogy": {
+    "en": "Like a home with a gate, a door lock, a cupboard lock and a watchdog — each one stops a thief in turn.",
+    "hi": "जैसे घर में गेट, दरवाज़े का ताला, अलमारी का ताला और कुत्ता — एक-एक करके चोर को रोकते हैं।",
+    "hinglish": "Jaise ghar mein gate, darwaaze ka taala, almaari ka taala aur kutta — ek-ek karke chor ko rokte hain."
+   }
+  },
+  {
+   "heading": {
+    "en": "Your part in server safety",
+    "hi": "सर्वर सुरक्षा में तुम्हारा हिस्सा",
+    "hinglish": "Server safety mein tumhara hissa"
+   },
+   "body": {
+    "en": "Even the safest server cannot protect an account if someone gives away the key. That is why you should use a long password that is different for each account, never share an OTP (no real bank, school or company ever asks for it), and tell a grown-up about strange messages. In India, CERT-In helps organisations respond to cyber attacks, and families can report fraud on the 1930 helpline.",
+    "hi": "सबसे सुरक्षित सर्वर भी किसी खाते को नहीं बचा सकता अगर कोई चाबी ही दे दे। इसलिए हर खाते का अलग, लंबा पासवर्ड रखो, OTP कभी साझा मत करो (कोई असली बैंक, स्कूल या कंपनी इसे नहीं माँगती), और अजीब संदेशों के बारे में बड़े को बताओ। भारत में CERT-In संस्थाओं को साइबर हमलों से निपटने में मदद करता है, और परिवार 1930 हेल्पलाइन पर धोखाधड़ी की शिकायत कर सकते हैं।",
+    "hinglish": "Sabse safe server bhi kisi account ko nahin bacha sakta agar koi chaabi hi de de. Isliye har account ka alag, lamba password rakho, OTP kabhi share mat karo (koi asli bank, school ya company ise nahin maangti), aur ajeeb messages ke baare mein bade ko batao. India mein CERT-In organisations ko cyber attacks se nipatne mein madad karta hai, aur families 1930 helpline par fraud report kar sakti hain."
+   },
+   "realExample": {
+    "en": "A common backup rule is 3-2-1: keep 3 copies of important data, on 2 different kinds of storage, with 1 copy in another place.",
+    "hi": "एक आम बैकअप नियम है 3-2-1: ज़रूरी डेटा की 3 कॉपी, 2 अलग तरह की स्टोरेज पर, और 1 कॉपी दूसरी जगह।",
+    "hinglish": "Ek common backup rule hai 3-2-1: zaroori data ki 3 copies, 2 alag tarah ki storage par, aur 1 copy doosri jagah."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Draw your own \"server fort\" with at least 4 layers of protection. Label each one: guard, lock, firewall, password + OTP, update, backup.",
+   "hi": "अपना \"सर्वर क़िला\" बनाओ जिसमें सुरक्षा की कम से कम 4 परतें हों। हर एक पर लिखो: पहरेदार, ताला, फ़ायरवॉल, पासवर्ड + OTP, अपडेट, बैकअप।",
+   "hinglish": "Apna \"server kila\" banao jismein suraksha ki kam se kam 4 layers hon. Har ek label karo: guard, lock, firewall, password + OTP, update, backup."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "multi",
+    "prompt": {
+     "en": "Which help keep a server safe?",
+     "hi": "कौन सी चीज़ें सर्वर को सुरक्षित रखती हैं?",
+     "hinglish": "Kaun si cheezein server ko safe rakhti hain?"
+    },
+    "options": [
+     {
+      "en": "Firewall",
+      "hi": "फ़ायरवॉल",
+      "hinglish": "Firewall"
+     },
+     {
+      "en": "Quick updates",
+      "hi": "जल्दी अपडेट",
+      "hinglish": "Jaldi updates"
+     },
+     {
+      "en": "Backups in another place",
+      "hi": "दूसरी जगह बैकअप",
+      "hinglish": "Doosri jagah backup"
+     },
+     {
+      "en": "One password shared by everyone",
+      "hi": "सबका एक ही पासवर्ड",
+      "hinglish": "Sabka ek hi password"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2
+    ],
+    "explain": {
+     "en": "Shared passwords make it easy for the wrong person to get in.",
+     "hi": "साझा पासवर्ड से ग़लत व्यक्ति आसानी से घुस सकता है।",
+     "hinglish": "Shared password se galat insaan aasaani se ghus sakta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "A firewall is like…",
+     "hi": "फ़ायरवॉल किसके जैसा है?",
+     "hinglish": "Firewall kiske jaisa hai?"
+    },
+    "options": [
+     {
+      "en": "a gate guard who lets in only the right visitors",
+      "hi": "गेट का पहरेदार जो सिर्फ़ सही लोगों को आने देता है",
+      "hinglish": "gate guard jo sirf sahi logon ko aane deta hai"
+     },
+     {
+      "en": "a fan that cools the room",
+      "hi": "कमरा ठंडा करने वाला पंखा",
+      "hinglish": "kamra thanda karne wala pankha"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "It filters network traffic.",
+     "hi": "यह नेटवर्क ट्रैफ़िक छानता है।",
+     "hinglish": "Yeh network traffic filter karta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Someone on the phone says they are from the bank and asks for your OTP. You…",
+     "hi": "फ़ोन पर कोई ख़ुद को बैंक वाला बताकर OTP माँगता है। तुम…",
+     "hinglish": "Phone par koi khud ko bank wala bata kar OTP maangta hai. Tum…"
+    },
+    "options": [
+     {
+      "en": "never share it and tell a grown-up",
+      "hi": "कभी नहीं बताओगे और बड़े को बताओगे",
+      "hinglish": "kabhi nahin bataoge aur bade ko bataoge"
+     },
+     {
+      "en": "read it out quickly",
+      "hi": "जल्दी से पढ़कर बता दोगे",
+      "hinglish": "jaldi se padh kar bata doge"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Real banks never ask for your OTP.",
+     "hi": "असली बैंक कभी OTP नहीं माँगते।",
+     "hinglish": "Asli banks kabhi OTP nahin maangte."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "\"Defence in depth\" means…",
+     "hi": "\"परत-दर-परत सुरक्षा\" का मतलब…",
+     "hinglish": "\"Defence in depth\" ka matlab…"
+    },
+    "options": [
+     {
+      "en": "many layers, so one failure is not a disaster",
+      "hi": "कई परतें, ताकि एक के टूटने पर भी आफ़त न हो",
+      "hinglish": "kai layers, taaki ek toote toh bhi musibat na ho"
+     },
+     {
+      "en": "one very big lock",
+      "hi": "एक बहुत बड़ा ताला",
+      "hinglish": "ek bahut bada taala"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Layers back each other up.",
+     "hi": "परतें एक-दूसरे को सहारा देती हैं।",
+     "hinglish": "Layers ek-doosre ko sahaara deti hain."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "short",
+    "prompt": {
+     "en": "In the 3-2-1 backup rule, how many copies of important data do you keep?",
+     "hi": "3-2-1 बैकअप नियम में ज़रूरी डेटा की कितनी कॉपी रखते हैं?",
+     "hinglish": "3-2-1 backup rule mein zaroori data ki kitni copies rakhte hain?"
+    },
+    "answer": [
+     "3",
+     "three",
+     "teen",
+     "तीन"
+    ],
+    "explain": {
+     "en": "3 copies, 2 kinds of storage, 1 somewhere else.",
+     "hi": "3 कॉपी, 2 तरह की स्टोरेज, 1 कहीं और।",
+     "hinglish": "3 copies, 2 tarah ki storage, 1 kahin aur."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Pass the password game.",
+     "hi": "पासवर्ड खेल पास करो।",
+     "hinglish": "Password game pass karo."
+    },
+    "answer": {
+     "lab": "safety-sort",
+     "mode": "passwords",
+     "pass": true
+    },
+    "explain": {
+     "en": "Long, mixed and unique beats short and common.",
+     "hi": "लंबा, मिला-जुला और अनोखा पासवर्ड छोटे और आम से बेहतर।",
+     "hinglish": "Lamba, mixed aur unique password chhote aur common se behtar."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "CERT-In – Indian Computer Emergency Response Team (fact reference)",
+   "url": "https://www.cert-in.org.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "National Cyber Crime Reporting Portal, helpline 1930 (fact reference)",
+   "url": "https://cybercrime.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

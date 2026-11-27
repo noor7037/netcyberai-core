@@ -1,0 +1,385 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.ai-ml-intuition.01",
+ "level": 2,
+ "classes": [
+  6,
+  7
+ ],
+ "unit": "ai-ml-intuition",
+ "title": {
+  "en": "Rules vs learning",
+  "hi": "नियम बनाम सीखना",
+  "hinglish": "Rules vs learning"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [],
+ "topics": [
+  "ai.what-is-intelligence",
+  "ai.rules-expert",
+  "ai.ml-supervised"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain the difference between a hand-written rule and a learned model",
+   "hi": "हाथ से लिखे नियम और सीखे हुए मॉडल में अंतर समझा सकते हो",
+   "hinglish": "Haath se likhe rule aur seekhe hue model mein farak samjha sakte ho"
+  },
+  {
+   "en": "Say when rules work well and when learning is better",
+   "hi": "बता सकते हो कब नियम अच्छे हैं और कब सीखना बेहतर है",
+   "hinglish": "Bata sakte ho kab rules achhe hain aur kab learning behtar hai"
+  },
+  {
+   "en": "Describe AI as computers doing tasks that need human-like thinking",
+   "hi": "AI को ऐसे समझा सकते हो: कंप्यूटर जो इंसान जैसी सोच वाले काम करते हैं",
+   "hinglish": "AI ko aise samjha sakte ho: computer jo insaan jaisi soch wale kaam karte hain"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Artificial intelligence (AI)",
+   "hinglish": "Insaan jaisi soch wale kaam karne wale computers",
+   "en": "Computer systems that do tasks which normally need human intelligence",
+   "hi": "कंप्यूटर प्रणालियाँ जो ऐसे काम करती हैं जिनके लिए सामान्यतः मानव बुद्धि चाहिए"
+  },
+  {
+   "term": "Rule-based system",
+   "hinglish": "If-then rules se chalne wala",
+   "en": "A program that follows if-then rules written by people",
+   "hi": "ऐसा प्रोग्राम जो लोगों के लिखे if-then नियम मानता है"
+  },
+  {
+   "term": "Machine learning (ML)",
+   "hinglish": "Examples se khud pattern seekhna",
+   "en": "Computers finding patterns from examples instead of being given rules",
+   "hi": "नियम दिए जाने की जगह उदाहरणों से पैटर्न खोजना"
+  },
+  {
+   "term": "Model",
+   "hinglish": "Seekha hua pattern",
+   "en": "What a machine-learning system has learned, used to make predictions",
+   "hi": "मशीन लर्निंग प्रणाली ने जो सीखा, जिससे अनुमान लगाए जाते हैं"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "A rule is written by a person: “if the mango is yellow, it is ripe.” Simple, clear — and sometimes wrong.",
+    "hi": "नियम कोई व्यक्ति लिखता है: “अगर आम पीला है, तो पका है।” सरल, साफ़ — और कभी-कभी ग़लत।",
+    "hinglish": "Rule koi insaan likhta hai: “agar aam peela hai, to pakka hai.” Simple, clear — aur kabhi-kabhi galat."
+   },
+   "visual": "compare:📏 Rule: a person writes the logic|🧠 Learning: the computer finds the logic from examples",
+   "narration": {
+    "en": "Rules break when the world has exceptions the writer did not think of.",
+    "hi": "नियम तब टूटते हैं जब दुनिया में ऐसे अपवाद हों जो लिखने वाले ने सोचे नहीं।",
+    "hinglish": "Rules tab toot-te hain jab duniya mein aise exceptions hon jo likhne wale ne soche nahi."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Machine learning flips it: give the computer many labelled examples and let it find the pattern itself.",
+    "hi": "मशीन लर्निंग इसे उलट देती है: कंप्यूटर को कई लेबल वाले उदाहरण दो और उसे ख़ुद पैटर्न खोजने दो।",
+    "hinglish": "Machine learning ise ulat deti hai: computer ko kai labelled examples do aur use khud pattern dhoondhne do."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "Traditional programming: rules + data → answers. Machine learning: data + answers → rules.",
+    "hi": "पारंपरिक प्रोग्रामिंग: नियम + डेटा → उत्तर। मशीन लर्निंग: डेटा + उत्तर → नियम।",
+    "hinglish": "Traditional programming: rules + data → answers. Machine learning: data + answers → rules."
+   },
+   "code": "Programming:      rules + data    →  answers\nMachine learning: data + answers  →  rules (a model)"
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "In the lab, switch between the yellow rule and the learning brain, and test both on six mangoes.",
+    "hi": "लैब में पीले नियम और सीखने वाले दिमाग़ के बीच बदलो, और दोनों को छह आमों पर जाँचो।",
+    "hinglish": "Lab mein yellow rule aur learning brain ke beech switch karo, aur dono ko chhe aamon pe test karo."
+   },
+   "visual": "lab:ai-lab#learn",
+   "narration": {
+    "en": "Then add examples so the learner beats the rule.",
+    "hi": "फिर उदाहरण जोड़ो ताकि सीखने वाला नियम को हरा दे।",
+    "hinglish": "Phir examples jodo taaki learner rule ko hara de."
+   }
+  }
+ ],
+ "play": {
+  "lab": "ai-lab",
+  "config": {
+   "tab": "learn"
+  },
+  "goal": {
+   "en": "Compare the rule with the learner, then add examples until the learner gets all 6 test mangoes right.",
+   "hi": "नियम और सीखने वाले की तुलना करो, फिर उदाहरण जोड़ो जब तक सीखने वाला सभी 6 परीक्षण आम सही न करे।",
+   "hinglish": "Rule aur learner compare karo, phir examples jodo jab tak learner saare 6 test aam sahi na kare."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Two ways to make a computer “smart”",
+    "hi": "कंप्यूटर को “समझदार” बनाने के दो तरीक़े",
+    "hinglish": "Computer ko “smart” banane ke do tareeke"
+   },
+   "body": {
+    "en": "Early AI, from the 1950s to the 1980s, was mostly rule-based. “Expert systems” stored hundreds of if-then rules written with the help of human experts — for example MYCIN (1970s) suggested antibiotics for infections. Rules are great when the logic is clear and fixed: tax calculations, traffic-light timing, a UPI app checking that your balance is enough. But for messy tasks — recognising a face, understanding speech, spotting a ripe mango of any variety — nobody can write all the rules. Machine learning solves this by learning from examples. You give it inputs with the right answers (labels), it adjusts a model until its predictions match, and then it can predict answers for new inputs it has never seen. Most modern AI — face unlock, voice typing, YouTube recommendations, chatbots — is machine learning. Many real systems mix both: a learned model to recognise things, plus rules for safety.",
+    "hi": "शुरुआती AI, 1950 से 1980 के दशक तक, ज़्यादातर नियम-आधारित था। “विशेषज्ञ प्रणालियाँ” मानव विशेषज्ञों की मदद से लिखे सैकड़ों if-then नियम रखती थीं — जैसे MYCIN (1970 का दशक) संक्रमण के लिए एंटीबायोटिक सुझाता था। नियम तब बढ़िया हैं जब तर्क साफ़ और स्थिर हो: कर की गणना, ट्रैफ़िक लाइट का समय, UPI ऐप का जाँचना कि शेष राशि काफ़ी है। पर उलझे कामों के लिए — चेहरा पहचानना, बोली समझना, किसी भी किस्म का पका आम पहचानना — कोई सारे नियम नहीं लिख सकता। मशीन लर्निंग उदाहरणों से सीखकर इसे हल करती है। आप उसे सही उत्तरों (लेबल) के साथ इनपुट देते हो, वह मॉडल को तब तक बदलती है जब तक अनुमान मेल न खाएँ, और फिर वह नए, कभी न देखे इनपुट के उत्तर अनुमान लगा सकती है। ज़्यादातर आधुनिक AI — फ़ेस अनलॉक, वॉइस टाइपिंग, YouTube सुझाव, चैटबॉट — मशीन लर्निंग है। कई असली प्रणालियाँ दोनों मिलाती हैं: पहचानने के लिए सीखा मॉडल, और सुरक्षा के लिए नियम।",
+    "hinglish": "Shuruaati AI, 1950 se 1980 ke dashak tak, zyaadatar rule-based tha. “Expert systems” human experts ki madad se likhe saikdon if-then rules rakhte the — jaise MYCIN (1970s) infections ke liye antibiotics suggest karta tha. Rules tab badhiya hain jab logic saaf aur fixed ho: tax calculation, traffic light timing, UPI app ka check karna ki balance kaafi hai. Par uljhe kaamon ke liye — chehra pehchaanna, speech samajhna, kisi bhi variety ka pakka aam pehchaanna — koi saare rules nahi likh sakta. Machine learning examples se seekhkar ise solve karti hai. Aap use sahi answers (labels) ke saath inputs dete ho, woh model ko tab tak adjust karti hai jab tak predictions match na karein, aur phir woh naye, kabhi na dekhe inputs ke answers predict kar sakti hai. Zyaadatar modern AI — face unlock, voice typing, YouTube recommendations, chatbots — machine learning hai. Kai real systems dono milaate hain: pehchaanne ke liye learned model, aur safety ke liye rules."
+   },
+   "analogy": {
+    "en": "A rule = a recipe book Maa wrote; learning = a new cook who watches Maa cook 100 times and learns to judge by themselves.",
+    "hi": "नियम = माँ की लिखी रेसिपी किताब; सीखना = नया रसोइया जो माँ को 100 बार खाना बनाते देखकर ख़ुद अंदाज़ा लगाना सीख जाता है।",
+    "hinglish": "Rule = recipe book jo maa ne likhi; learning = naya cook jo 100 baar maa ko khaana banate dekh ke khud andaaza lagana seekh jaata hai."
+   },
+   "realExample": {
+    "en": "Gmail’s spam filter learns from millions of messages that people mark as spam, so it catches new tricks that no hand-written rule listed.",
+    "hi": "Gmail का स्पैम फ़िल्टर उन लाखों संदेशों से सीखता है जिन्हें लोग स्पैम चिह्नित करते हैं, इसलिए वह नई चालें पकड़ता है जो किसी हाथ से लिखे नियम में नहीं थीं।",
+    "hinglish": "Gmail ka spam filter un laakhon messages se seekhta hai jinhe log spam mark karte hain, isliye woh naye tricks pakadta hai jo kisi haath se likhe rule mein nahi the."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "List 5 apps or machines at home. For each, decide: does it follow fixed rules (like a washing machine timer) or does it learn (like a keyboard that suggests your next word)?",
+   "hi": "घर के 5 ऐप या मशीनों की सूची बनाओ। हर एक के लिए तय करो: स्थिर नियम (जैसे वॉशिंग मशीन टाइमर) या सीखना (जैसे कीबोर्ड जो अगला शब्द सुझाए)?",
+   "hinglish": "Ghar ke 5 apps ya machines ki list banao. Har ek ke liye decide karo: fixed rules (jaise washing machine timer) ya learning (jaise keyboard jo agla word suggest kare)?"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "In machine learning, what does the computer get as input?",
+     "hi": "मशीन लर्निंग में कंप्यूटर को इनपुट में क्या मिलता है?",
+     "hinglish": "Machine learning mein computer ko input mein kya milta hai?"
+    },
+    "options": [
+     {
+      "en": "Only rules",
+      "hi": "केवल नियम",
+      "hinglish": "Sirf rules"
+     },
+     {
+      "en": "Examples with answers",
+      "hi": "उत्तरों वाले उदाहरण",
+      "hinglish": "Answers wale examples"
+     },
+     {
+      "en": "Nothing",
+      "hi": "कुछ नहीं",
+      "hinglish": "Kuch nahi"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Data plus correct answers; it works out the rules (the model) itself.",
+     "hi": "डेटा और सही उत्तर; नियम (मॉडल) वह ख़ुद निकालता है।",
+     "hinglish": "Data plus sahi answers; rules (model) woh khud nikaalta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "multi",
+    "prompt": {
+     "en": "Which tasks are better done by learning than by hand-written rules? Choose all.",
+     "hi": "कौन-से काम हाथ से लिखे नियमों की जगह सीखने से बेहतर होते हैं? सभी चुनो।",
+     "hinglish": "Kaunse kaam haath ke rules ki jagah learning se better hote hain? Saare chuno."
+    },
+    "options": [
+     {
+      "en": "Recognising faces in photos",
+      "hi": "फ़ोटो में चेहरे पहचानना",
+      "hinglish": "Photos mein chehre pehchaanna"
+     },
+     {
+      "en": "Adding 18% GST to a bill",
+      "hi": "बिल में 18% GST जोड़ना",
+      "hinglish": "Bill mein 18% GST jodna"
+     },
+     {
+      "en": "Turning speech into text",
+      "hi": "बोली को टेक्स्ट में बदलना",
+      "hinglish": "Speech ko text mein badalna"
+     }
+    ],
+    "answer": [
+     0,
+     2
+    ],
+    "explain": {
+     "en": "Faces and speech are too varied for rules. Adding GST is fixed arithmetic.",
+     "hi": "चेहरे और बोली नियमों के लिए बहुत विविध हैं। GST जोड़ना स्थिर गणित है।",
+     "hinglish": "Faces aur speech rules ke liye bahut varied hain. GST jodna fixed maths hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why did the “yellow = ripe” rule fail in the lab?",
+     "hi": "लैब में “पीला = पका” नियम क्यों विफल हुआ?",
+     "hinglish": "Lab mein “yellow = pakka” rule kyun fail hua?"
+    },
+    "options": [
+     {
+      "en": "Rules are always wrong",
+      "hi": "नियम हमेशा ग़लत होते हैं",
+      "hinglish": "Rules hamesha galat hote hain"
+     },
+     {
+      "en": "The computer was too slow",
+      "hi": "कंप्यूटर बहुत धीमा था",
+      "hinglish": "Computer bahut slow tha"
+     },
+     {
+      "en": "Some ripe mangoes stay green",
+      "hi": "कुछ पके आम हरे रहते हैं",
+      "hinglish": "Kuch pakke aam hare rehte hain"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "Langra mangoes stay green when ripe — an exception the rule writer missed.",
+     "hi": "लंगड़ा आम पकने पर भी हरा रहता है — ऐसा अपवाद जो नियम लिखने वाले से छूट गया।",
+     "hinglish": "Langra aam pakne pe bhi hara rehta hai — aisa exception jo rule writer se chhoot gaya."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "match",
+    "prompt": {
+     "en": "Match each system to how it works.",
+     "hi": "हर प्रणाली को उसके काम करने के तरीक़े से मिलाओ।",
+     "hinglish": "Har system ko uske kaam karne ke tareeke se milao."
+    },
+    "options": {
+     "left": [
+      {
+       "en": "Washing-machine timer",
+       "hi": "वॉशिंग-मशीन टाइमर",
+       "hinglish": "Washing-machine timer"
+      },
+      {
+       "en": "Spam filter",
+       "hi": "स्पैम फ़िल्टर",
+       "hinglish": "Spam filter"
+      },
+      {
+       "en": "UPI “enough balance?” check",
+       "hi": "UPI “शेष काफ़ी?” जाँच",
+       "hinglish": "UPI “balance kaafi?” check"
+      }
+     ],
+     "right": [
+      {
+       "en": "Learns from emails people mark as spam",
+       "hi": "लोगों के स्पैम चिह्नित ईमेल से सीखता है",
+       "hinglish": "Logon ke spam mark kiye emails se seekhta hai"
+      },
+      {
+       "en": "Runs for a fixed set time (rule)",
+       "hi": "तय समय तक चलता है (नियम)",
+       "hinglish": "Fixed time tak chalta hai (rule)"
+      },
+      {
+       "en": "Compares two numbers (rule)",
+       "hi": "दो संख्याओं की तुलना करता है (नियम)",
+       "hinglish": "Do numbers compare karta hai (rule)"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      0
+     ],
+     [
+      2,
+      2
+     ]
+    ],
+    "explain": {
+     "en": "The timer and the balance check follow fixed rules; the spam filter learns from emails people mark.",
+     "hi": "टाइमर और शेष-राशि जाँच स्थिर नियम मानते हैं; स्पैम फ़िल्टर लोगों के चिह्नित ईमेल से सीखता है।",
+     "hinglish": "Timer aur balance check fixed rules follow karte hain; spam filter logon ke mark kiye emails se seekhta hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "short",
+    "prompt": {
+     "en": "Fill the blank: machine learning turns data + answers into ___.",
+     "hi": "रिक्त भरो: मशीन लर्निंग डेटा + उत्तर को ___ में बदलती है।",
+     "hinglish": "Blank bharo: machine learning data + answers ko ___ mein badalti hai."
+    },
+    "answer": [
+     "rules",
+     "a model",
+     "model",
+     "rules (a model)"
+    ],
+    "explain": {
+     "en": "It produces rules, called a model.",
+     "hi": "यह नियम बनाती है, जिसे मॉडल कहते हैं।",
+     "hinglish": "Yeh rules banati hai, jise model kehte hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the lab mission.",
+     "hi": "लैब मिशन पूरा करो।",
+     "hinglish": "Lab mission poora karo."
+    },
+    "answer": {
+     "lab": "ai-lab",
+     "event": "mission:complete",
+     "tab": "learn"
+    },
+    "explain": {
+     "en": "Use the 🧠 learner and add soft-but-green ripe examples.",
+     "hi": "🧠 सीखने वाला चुनो और नरम-पर-हरे पके उदाहरण जोड़ो।",
+     "hinglish": "🧠 learner chuno aur soft-par-hare pakke examples jodo."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Elements of AI (University of Helsinki & MinnaLearn) — free online course",
+   "url": "https://www.elementsofai.com/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Google — Machine Learning Crash Course",
+   "url": "https://developers.google.com/machine-learning/crash-course",
+   "licence": "fact reference"
+  },
+  {
+   "title": "CBSE — Artificial Intelligence curriculum and handbooks",
+   "url": "https://cbseacademic.nic.in/curriculum_2025.html",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

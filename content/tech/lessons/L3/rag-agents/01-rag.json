@@ -1,0 +1,376 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.rag-agents.01",
+ "level": 3,
+ "classes": [
+  11,
+  12
+ ],
+ "unit": "rag-agents",
+ "title": {
+  "en": "RAG: giving an LLM a library",
+  "hi": "आरएजी: एलएलएम को पुस्तकालय देना",
+  "hinglish": "RAG: LLM ko library dena"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [
+  "L3.llms.05",
+  "L3.neural-nets-deep-learning.04"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain the RAG pipeline: chunk, embed, store, retrieve, generate",
+   "hinglish": "RAG pipeline samjhao: chunk, embed, store, retrieve, generate",
+   "hi": "RAG पाइपलाइन समझाना: टुकड़े करो, एम्बेड करो, संग्रहीत करो, पुनर्प्राप्त करो, उत्पन्न करो"
+  },
+  {
+   "en": "Decide when to use RAG versus fine-tuning",
+   "hinglish": "Decide karo kab RAG aur kab fine-tuning",
+   "hi": "तय करना कि कब RAG और कब फ़ाइन-ट्यूनिंग"
+  },
+  {
+   "en": "Evaluate a RAG answer for faithfulness and citation",
+   "hinglish": "RAG answer ko faithfulness aur citation ke liye evaluate karo",
+   "hi": "RAG उत्तर को निष्ठा और स्रोत-उल्लेख के लिए परखना"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "RAG",
+   "hinglish": "Pehle sahi documents dhoondho, phir unke saath jawab likho",
+   "en": "Retrieval-augmented generation",
+   "hi": "पुनर्प्राप्ति-संवर्धित उत्पादन (Retrieval-augmented generation)"
+  },
+  {
+   "term": "Chunk",
+   "hinglish": "Document ka chhota tukda",
+   "en": "A passage (e.g. 300–800 tokens) a document is split into",
+   "hi": "वह अंश (जैसे 300–800 टोकन) जिसमें दस्तावेज़ बाँटा जाता है"
+  },
+  {
+   "term": "Vector database",
+   "hinglish": "Embeddings ka smart godown",
+   "en": "A store that finds the nearest embeddings fast",
+   "hi": "ऐसा भंडार जो निकटतम एम्बेडिंग तेज़ी से ढूँढता है"
+  },
+  {
+   "term": "Top-k retrieval",
+   "hinglish": "Sabse milte-julte k tukde laana",
+   "en": "Returning the k most similar chunks",
+   "hi": "k सबसे समान टुकड़े लौटाना"
+  },
+  {
+   "term": "Faithfulness",
+   "hinglish": "Jawab sirf source par tika hai ya nahi",
+   "en": "Whether every claim is supported by the retrieved text",
+   "hi": "क्या हर दावा प्राप्त पाठ से समर्थित है"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Offline: split school circulars into chunks, embed each one, and store the vectors in a vector database.",
+    "hi": "ऑफ़लाइन: स्कूल परिपत्रों को टुकड़ों में बाँटो, हर एक की एम्बेडिंग बनाओ, और वेक्टर डेटाबेस में रखो।",
+    "hinglish": "Offline: school circulars ko chunks mein baanto, har ek ka embedding banao, aur vector database mein rakho."
+   },
+   "visual": "anim:rag-index",
+   "narration": {
+    "en": "Offline: split school circulars into chunks, embed each one, and store the vectors in a vector database.",
+    "hi": "ऑफ़लाइन: स्कूल परिपत्रों को टुकड़ों में बाँटो, हर एक की एम्बेडिंग बनाओ, और वेक्टर डेटाबेस में रखो।",
+    "hinglish": "Offline: school circulars ko chunks mein baanto, har ek ka embedding banao, aur vector database mein rakho."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Online: embed the question \"Kal school khula hai?\", fetch the 3 closest chunks, and paste them into the prompt.",
+    "hi": "ऑनलाइन: सवाल \"कल स्कूल खुला है?\" की एम्बेडिंग बनाओ, 3 सबसे पास के टुकड़े लाओ, और प्रॉम्प्ट में डालो।",
+    "hinglish": "Online: sawaal \"Kal school khula hai?\" ka embedding banao, 3 sabse paas ke chunks lao, aur prompt mein daalo."
+   },
+   "visual": "anim:rag-retrieve",
+   "narration": {
+    "en": "Online: embed the question \"Kal school khula hai?\", fetch the 3 closest chunks, and paste them into the prompt.",
+    "hi": "ऑनलाइन: सवाल \"कल स्कूल खुला है?\" की एम्बेडिंग बनाओ, 3 सबसे पास के टुकड़े लाओ, और प्रॉम्प्ट में डालो।",
+    "hinglish": "Online: sawaal \"Kal school khula hai?\" ka embedding banao, 3 sabse paas ke chunks lao, aur prompt mein daalo."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "The LLM answers only from those chunks and cites them: \"Closed for Diwali, see circular 14 Oct.\"",
+    "hi": "एलएलएम सिर्फ़ उन टुकड़ों से जवाब देता है और हवाला देता है: \"दिवाली के लिए बंद, परिपत्र 14 अक्टूबर देखें।\"",
+    "hinglish": "LLM sirf un chunks se jawab deta hai aur cite karta hai: \"Diwali ke liye band, circular 14 Oct dekho.\""
+   },
+   "visual": "anim:rag-cite",
+   "narration": {
+    "en": "The LLM answers only from those chunks and cites them: \"Closed for Diwali, see circular 14 Oct.\"",
+    "hi": "एलएलएम सिर्फ़ उन टुकड़ों से जवाब देता है और हवाला देता है: \"दिवाली के लिए बंद, परिपत्र 14 अक्टूबर देखें।\"",
+    "hinglish": "LLM sirf un chunks se jawab deta hai aur cite karta hai: \"Diwali ke liye band, circular 14 Oct dekho.\""
+   }
+  }
+ ],
+ "play": {
+  "lab": "agent-loop",
+  "config": {
+   "scenario": "rag-school-circulars"
+  },
+  "goal": {
+   "en": "Ask the school-circular bot three questions. Watch each step: score the circulars against the question, take the top 3, answer only from them with a citation. Then ask something no circular covers.",
+   "hinglish": "School-circular bot se teen sawaal poochho. Har step dekho: circulars ko sawaal se score karna, top 3 lena, sirf unse citation ke saath jawab. Phir kuch aisa poochho jo kisi circular mein nahi.",
+   "hi": "स्कूल-परिपत्र बॉट से तीन प्रश्न पूछो। हर चरण देखो: परिपत्रों को प्रश्न से अंक देना, शीर्ष 3 लेना, सिर्फ़ उन्हीं से स्रोत सहित उत्तर। फिर कुछ ऐसा पूछो जो किसी परिपत्र में नहीं।"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "The RAG pipeline",
+    "hi": "आरएजी पाइपलाइन",
+    "hinglish": "RAG pipeline"
+   },
+   "body": {
+    "en": "RAG (Lewis et al., 2020) connects a language model to a searchable collection of documents. Indexing (done once, updated as documents change): clean the documents, split them into chunks of a few hundred tokens with some overlap, compute an embedding for each chunk, and store vectors plus text and metadata (source, date) in a vector database such as FAISS, pgvector or Milvus. Answering: embed the user's question, retrieve the top-k most similar chunks (often combined with keyword search, called hybrid search, and re-ranked by a second model), insert them into the prompt with an instruction such as \"Answer only from the sources below; cite them; if the answer is not there, say you don't know\", and generate. RAG keeps answers current without retraining, lets you cite sources, and keeps private documents out of the model's weights.",
+    "hi": "आरएजी (लुईस व अन्य, 2020) भाषा मॉडल को दस्तावेज़ों के खोजने योग्य संग्रह से जोड़ता है। इंडेक्सिंग (एक बार, दस्तावेज़ बदलने पर अपडेट): दस्तावेज़ साफ़ करो, कुछ सौ टोकन के टुकड़ों में थोड़े ओवरलैप के साथ बाँटो, हर टुकड़े की एम्बेडिंग बनाओ, और वेक्टर, पाठ और मेटाडेटा (स्रोत, तारीख) को FAISS, pgvector या Milvus जैसे वेक्टर डेटाबेस में रखो। जवाब देना: सवाल की एम्बेडिंग बनाओ, सबसे मिलते k टुकड़े लाओ (अक्सर कीवर्ड खोज के साथ, जिसे हाइब्रिड सर्च कहते हैं, और दूसरे मॉडल से फिर से क्रमित), उन्हें प्रॉम्प्ट में ऐसे निर्देश के साथ डालो \"सिर्फ़ नीचे के स्रोतों से जवाब दो; उनका हवाला दो; जवाब न हो तो कहो पता नहीं\", और लिखो। आरएजी बिना फिर से प्रशिक्षण के जवाब ताज़ा रखता है, स्रोत बताने देता है, और निजी दस्तावेज़ मॉडल के भार से बाहर रखता है।",
+    "hinglish": "RAG (Lewis et al., 2020) language model ko documents ke searchable collection se jodta hai. Indexing (ek baar, documents badalne par update): documents saaf karo, kuch sau tokens ke chunks mein thode overlap ke saath baanto, har chunk ka embedding banao, aur vectors, text aur metadata (source, date) ko FAISS, pgvector ya Milvus jaise vector database mein rakho. Answering: question ka embedding banao, top-k sabse similar chunks lao (aksar keyword search ke saath, jise hybrid search kehte hain, aur doosre model se re-rank), unhe prompt mein aise instruction ke saath daalo \"Sirf neeche ke sources se jawab do; cite karo; jawab na ho to bolo pata nahi\", aur generate karo. RAG bina retraining ke jawab fresh rakhta hai, sources cite karne deta hai, aur private documents model ke weights se bahar rakhta hai."
+   },
+   "analogy": {
+    "hinglish": "RAG open-book exam jaisa hai: student (LLM) pehle index se sahi page dhoondhta hai, phir usi page se jawab likhta hai aur page number bhi batata hai.",
+    "en": "RAG is like an open-book exam: the student (LLM) first finds the right page in the index, then writes the answer from that page and gives the page number too.",
+    "hi": "RAG खुली-किताब परीक्षा जैसा है: छात्र (एलएलएम) पहले सूची से सही पन्ना ढूँढता है, फिर उसी पन्ने से उत्तर लिखता है और पन्ना संख्या भी बताता है।"
+   },
+   "realExample": {
+    "en": "Government and bank help-bots answer from official FAQs and circulars using RAG; NetCyberAI-style school apps can answer parents from the school's own notices.",
+    "hinglish": "Government aur bank help-bots official FAQs aur circulars se RAG ke saath jawab dete hain; NetCyberAI jaisi school apps parents ko school ke apne notices se jawab de sakti hain.",
+    "hi": "सरकारी और बैंक सहायता-बॉट RAG से आधिकारिक FAQ और परिपत्रों से उत्तर देते हैं; NetCyberAI जैसे स्कूल ऐप विद्यालय की अपनी सूचनाओं से अभिभावकों को उत्तर दे सकते हैं।"
+   }
+  },
+  {
+   "heading": {
+    "en": "RAG or fine-tuning? And how to test it",
+    "hi": "आरएजी या फ़ाइन-ट्यूनिंग? और कैसे परखें",
+    "hinglish": "RAG ya fine-tuning? Aur kaise test karein"
+   },
+   "body": {
+    "en": "Use RAG when knowledge changes often, must be cited, or is private (notices, policies, product catalogues). Use fine-tuning to change behaviour or style (always answer in polite Marathi, follow a strict format, a specialised vocabulary). Many products use both. RAG failures come from retrieval (the right chunk was not fetched: poor chunking, a question phrased differently, missing documents) or from generation (the model ignored or misread the chunk). Evaluate with a test set of real questions and known answers, measuring retrieval recall@k (was the right chunk in the top k?), faithfulness (is every claim supported by the sources?) and answer correctness. Access control matters too: a student must not retrieve another family's fee records, so filtering by user permissions must happen before retrieval.",
+    "hi": "आरएजी तब इस्तेमाल करो जब ज्ञान अक्सर बदले, उसका हवाला ज़रूरी हो, या वह निजी हो (सूचनाएँ, नीतियाँ, उत्पाद सूची)। फ़ाइन-ट्यूनिंग व्यवहार या शैली बदलने के लिए (हमेशा विनम्र मराठी में जवाब, सख्त ढंग, खास शब्दावली)। कई उत्पाद दोनों इस्तेमाल करते हैं। आरएजी की गलतियाँ खोज से आती हैं (सही टुकड़ा नहीं आया: खराब बँटवारा, अलग शब्दों में सवाल, गायब दस्तावेज़) या लेखन से (मॉडल ने टुकड़ा अनदेखा किया या गलत पढ़ा)। असली सवालों और ज्ञात जवाबों के टेस्ट सेट से परखो: खोज रिकॉल@k (क्या सही टुकड़ा शीर्ष k में था?), विश्वसनीयता (क्या हर दावा स्रोतों से समर्थित है?) और जवाब की सटीकता। पहुँच नियंत्रण भी ज़रूरी है: एक छात्र दूसरे परिवार का फ़ीस रिकॉर्ड न पाए, इसलिए उपयोगकर्ता अनुमति से छँटाई खोज से पहले होनी चाहिए।",
+    "hinglish": "RAG tab use karo jab knowledge aksar badle, cite karna zaroori ho, ya private ho (notices, policies, product catalogues). Fine-tuning behaviour ya style badalne ke liye (hamesha polite Marathi mein jawab, strict format, khaas vocabulary). Kai products dono use karte hain. RAG failures retrieval se aate hain (sahi chunk nahi aaya: kharab chunking, alag words mein sawaal, missing documents) ya generation se (model ne chunk ignore kiya ya galat padha). Real questions aur known answers ke test set se evaluate karo: retrieval recall@k (sahi chunk top k mein tha?), faithfulness (har claim sources se supported hai?) aur answer correctness. Access control bhi zaroori: ek student doosri family ka fee record na paaye, isliye user permissions se filtering retrieval se pehle honi chahiye."
+   },
+   "analogy": {
+    "hinglish": "RAG = naya circular aaya to bas notice board par laga do. Fine-tuning = poore staff ko nayi training dena. Notice badalne ke liye training nahi karwaate.",
+    "en": "RAG = a new circular comes, just pin it on the notice board. Fine-tuning = retraining the whole staff. You do not retrain everyone to change a notice.",
+    "hi": "RAG = नया परिपत्र आया तो बस सूचना-पट पर लगा दो। फ़ाइन-ट्यूनिंग = पूरे स्टाफ़ को नया प्रशिक्षण देना। सूचना बदलने के लिए प्रशिक्षण नहीं करवाते।"
+   },
+   "realExample": {
+    "en": "Supabase's pgvector extension lets a Postgres app store embeddings next to normal tables and enforce row-level security on retrieval, the same database family the Family App uses.",
+    "hinglish": "Supabase ka pgvector extension Postgres app ko normal tables ke saath embeddings rakhne aur retrieval par row-level security lagaane deta hai, wahi database family jo Family App use karti hai.",
+    "hi": "सुपाबेस का pgvector एक्सटेंशन पोस्टग्रेस ऐप को सामान्य तालिकाओं के साथ एम्बेडिंग रखने और पुनर्प्राप्ति पर पंक्ति-स्तरीय सुरक्षा लागू करने देता है — वही डेटाबेस परिवार जो फ़ैमिली ऐप इस्तेमाल करता है।"
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Design a RAG bot for your school's 20 most recent notices: chunk size, what metadata to store, the system prompt, and 5 test questions with expected answers (including one the notices cannot answer).",
+   "hinglish": "Apne school ke 20 latest notices ke liye RAG bot design karo: chunk size, kaunsa metadata rakhoge, system prompt, aur expected answers ke saath 5 test questions (ek aisa jo notices se answer na ho sake).",
+   "hi": "अपने विद्यालय की 20 ताज़ा सूचनाओं के लिए RAG बॉट डिज़ाइन करो: टुकड़े का आकार, कौन-सा मेटाडेटा रखना है, सिस्टम प्रॉम्प्ट, और अपेक्षित उत्तरों के साथ 5 परीक्षण प्रश्न (एक ऐसा भी जिसका उत्तर सूचनाओं में नहीं)।"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "order",
+    "prompt": {
+     "en": "Order the RAG answering steps.",
+     "hi": "आरएजी जवाब के कदमों को क्रम में लगाएँ।",
+     "hinglish": "RAG answering steps ko order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Embed the question",
+      "hinglish": "Question ka embedding",
+      "hi": "प्रश्न को एम्बेड करो"
+     },
+     {
+      "en": "Retrieve top-k similar chunks",
+      "hinglish": "Top-k similar chunks retrieve",
+      "hi": "शीर्ष-k समान टुकड़े लाओ"
+     },
+     {
+      "en": "Insert chunks into the prompt with instructions",
+      "hinglish": "Chunks ko instructions ke saath prompt mein daalo",
+      "hi": "निर्देशों के साथ टुकड़े प्रॉम्प्ट में डालो"
+     },
+     {
+      "en": "Generate an answer with citations",
+      "hinglish": "Citations ke saath answer generate",
+      "hi": "स्रोतों सहित उत्तर बनाओ"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "Question → vector → nearest chunks → grounded prompt → cited answer.",
+     "hi": "सवाल → वेक्टर → नज़दीकी टुकड़े → आधारित प्रॉम्प्ट → हवाले वाला जवाब।",
+     "hinglish": "Question → vector → nearest chunks → grounded prompt → cited answer."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "The school timetable changes every week. Best approach for a timetable bot?",
+     "hi": "स्कूल की समय-सारणी हर हफ़्ते बदलती है। समय-सारणी बॉट के लिए सबसे अच्छा तरीका?",
+     "hinglish": "School timetable har hafte badalta hai. Timetable bot ke liye best approach?"
+    },
+    "options": [
+     {
+      "en": "RAG over the latest timetable",
+      "hinglish": "Latest timetable par RAG",
+      "hi": "नवीनतम समय-सारिणी पर RAG"
+     },
+     {
+      "en": "Fine-tune weekly",
+      "hinglish": "Har hafte fine-tune",
+      "hi": "हर सप्ताह फ़ाइन-ट्यून"
+     },
+     {
+      "en": "Pre-train a new model",
+      "hinglish": "Naya model pre-train",
+      "hi": "नया मॉडल पूर्व-प्रशिक्षित करो"
+     },
+     {
+      "en": "Hope the model knows",
+      "hinglish": "Ummeed karo model jaanta hai",
+      "hi": "उम्मीद करो मॉडल जानता है"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Changing facts belong in a retrievable store; updating a document is instant and cheap, retraining is not.",
+     "hi": "बदलते तथ्य खोजने योग्य भंडार में होने चाहिए; दस्तावेज़ बदलना तुरंत और सस्ता है, फिर से प्रशिक्षण नहीं।",
+     "hinglish": "Badalte facts retrievable store mein hone chahiye; document update karna turant aur sasta hai, retraining nahi."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "The bot answers wrongly, and the right chunk was not in the top 3. This is a…",
+     "hi": "बॉट गलत जवाब देता है, और सही टुकड़ा शीर्ष 3 में नहीं था। यह कैसी गलती है?",
+     "hinglish": "Bot galat jawab deta hai, aur sahi chunk top 3 mein nahi tha. Yeh kaisi galti hai?"
+    },
+    "options": [
+     {
+      "en": "Retrieval failure",
+      "hinglish": "Retrieval failure",
+      "hi": "पुनर्प्राप्ति विफलता"
+     },
+     {
+      "en": "Generation failure",
+      "hinglish": "Generation failure",
+      "hi": "उत्पादन विफलता"
+     },
+     {
+      "en": "Tokenizer failure",
+      "hinglish": "Tokenizer failure",
+      "hi": "टोकनाइज़र विफलता"
+     },
+     {
+      "en": "GPU failure",
+      "hinglish": "GPU failure",
+      "hi": "GPU विफलता"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "The generator never saw the evidence. Fix chunking, add hybrid keyword search or a re-ranker, or increase k.",
+     "hi": "लेखक ने सबूत देखा ही नहीं। बँटवारा सुधारो, कीवर्ड खोज या री-रैंकर जोड़ो, या k बढ़ाओ।",
+     "hinglish": "Generator ne evidence dekha hi nahi. Chunking sudhaaro, hybrid keyword search ya re-ranker jodo, ya k badhao."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Where must a RAG system check that a parent may see only their own child's records?",
+     "hi": "आरएजी सिस्टम को कहाँ जाँचना चाहिए कि अभिभावक सिर्फ़ अपने बच्चे के रिकॉर्ड देखें?",
+     "hinglish": "RAG system ko kahan check karna chahiye ki parent sirf apne bachche ke records dekhein?"
+    },
+    "options": [
+     {
+      "en": "In retrieval, before chunks reach the model",
+      "hinglish": "Retrieval mein, chunks model tak pahunchne se pehle",
+      "hi": "पुनर्प्राप्ति में, टुकड़ों के मॉडल तक पहुँचने से पहले"
+     },
+     {
+      "en": "Only in the system prompt",
+      "hinglish": "Sirf system prompt mein",
+      "hi": "सिर्फ़ सिस्टम प्रॉम्प्ट में"
+     },
+     {
+      "en": "After the answer is shown",
+      "hinglish": "Answer dikhne ke baad",
+      "hi": "उत्तर दिखने के बाद"
+     },
+     {
+      "en": "Nowhere",
+      "hinglish": "Kahin nahi",
+      "hi": "कहीं नहीं"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "A prompt instruction can be bypassed; permission filtering in the database (e.g. row-level security) guarantees the model never receives other families' data.",
+     "hi": "प्रॉम्प्ट निर्देश को चकमा दिया जा सकता है; डेटाबेस में अनुमति छँटाई (जैसे रो-लेवल सिक्योरिटी) पक्का करती है कि मॉडल को दूसरे परिवारों का डेटा मिले ही नहीं।",
+     "hinglish": "Prompt instruction bypass ho sakta hai; database mein permission filtering (jaise row-level security) pakka karti hai ki model ko doosri families ka data mile hi nahi."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Ask the bot a question that no circular answers and confirm it says it does not know.",
+     "hi": "बॉट से ऐसा सवाल पूछें जिसका जवाब किसी परिपत्र में नहीं, और पुष्टि करें कि वह कहता है पता नहीं।",
+     "hinglish": "Bot se aisa sawaal poochho jiska jawab kisi circular mein nahi, aur confirm karo ki woh kehta hai pata nahi."
+    },
+    "answer": {
+     "event": "rag-abstained"
+    },
+    "explain": {
+     "en": "Low similarity scores and the \"answer only from sources\" instruction make a well-built RAG bot abstain instead of guessing.",
+     "hi": "कम समानता स्कोर और \"सिर्फ़ स्रोतों से जवाब\" निर्देश से अच्छा आरएजी बॉट अनुमान के बजाय मना करता है।",
+     "hinglish": "Low similarity scores aur \"sirf sources se jawab\" instruction se achha RAG bot guess karne ki jagah mana karta hai."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "topics": [
+  "ai.rag",
+  "ai.evaluation"
+ ],
+ "sources": [
+  {
+   "title": "Lewis et al. (2020) Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+   "url": "https://arxiv.org/abs/2005.11401",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Supabase — pgvector and AI docs",
+   "url": "https://supabase.com/docs/guides/ai",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Es et al. (2023) RAGAS: Automated Evaluation of RAG",
+   "url": "https://arxiv.org/abs/2309.15217",
+   "licence": "fact reference"
+  }
+ ]
+}

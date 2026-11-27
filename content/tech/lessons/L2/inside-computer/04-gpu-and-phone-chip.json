@@ -1,0 +1,356 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.inside-computer.04",
+ "level": 2,
+ "classes": [
+  8
+ ],
+ "unit": "inside-computer",
+ "title": {
+  "en": "GPUs and the chip inside your phone",
+  "hi": "GPU और आपके फ़ोन की चिप",
+  "hinglish": "GPU aur aapke phone ki chip"
+ },
+ "minutes": 10,
+ "xp": 40,
+ "prereq": [
+  "L2.inside-computer.03"
+ ],
+ "topics": [
+  "hw.gpu",
+  "hw.mobile",
+  "hw.architecture"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain why GPUs suit graphics and AI",
+   "hi": "समझा सकते हो कि GPU ग्राफ़िक्स और AI के लिए क्यों उपयुक्त हैं",
+   "hinglish": "GPU graphics aur AI ke liye kyun achha hai samjha sakte ho"
+  },
+  {
+   "en": "Name the parts of a phone System-on-Chip",
+   "hi": "फ़ोन के सिस्टम-ऑन-चिप के भागों के नाम बता सकते हो",
+   "hinglish": "Phone System-on-Chip ke parts bata sakte ho"
+  },
+  {
+   "en": "Read a phone’s spec sheet sensibly",
+   "hi": "फ़ोन की स्पेसिफ़िकेशन सूची समझदारी से पढ़ सकते हो",
+   "hinglish": "Phone ki spec sheet samajh ke padh sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "GPU",
+   "hinglish": "Graphics Processing Unit — hazaaron chhote cores",
+   "en": "A processor with thousands of small cores for parallel work",
+   "hi": "समानांतर काम के लिए हज़ारों छोटे कोर वाला प्रोसेसर"
+  },
+  {
+   "term": "Parallel",
+   "hinglish": "Ek saath bahut kaam",
+   "en": "Doing many calculations at the same time",
+   "hi": "एक ही समय में कई गणनाएँ करना"
+  },
+  {
+   "term": "SoC",
+   "hinglish": "Ek chip mein poora computer",
+   "en": "System-on-Chip: CPU, GPU, NPU, modem and more on one chip",
+   "hi": "सिस्टम-ऑन-चिप: एक चिप पर CPU, GPU, NPU, मॉडेम और भी बहुत कुछ"
+  },
+  {
+   "term": "NPU",
+   "hinglish": "AI ke liye special hissa",
+   "en": "Neural Processing Unit: hardware for AI tasks",
+   "hi": "न्यूरल प्रोसेसिंग यूनिट: AI कार्यों के लिए हार्डवेयर"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "A Full-HD screen has about 20 lakh pixels, redrawn 60 times a second. That is over 12 crore pixel jobs every second!",
+    "hi": "फ़ुल-HD स्क्रीन में लगभग 20 लाख पिक्सेल हैं, जो प्रति सेकंड 60 बार बनते हैं। यानी हर सेकंड 12 करोड़ से ज़्यादा पिक्सेल काम!",
+    "hinglish": "Full-HD screen mein lagbhag 20 lakh pixels hain, jo har second 60 baar bante hain. Yaani har second 12 crore se zyada pixel jobs!"
+   },
+   "visual": "icon:🎮",
+   "narration": {
+    "en": "Each pixel is a small, similar job — perfect for many small workers.",
+    "hi": "हर पिक्सेल एक छोटा, एक जैसा काम है — कई छोटे कामगारों के लिए बिल्कुल सही।",
+    "hinglish": "Har pixel ek chhota, milta-julta kaam — bahut saare chhote workers ke liye perfect."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "CPU: a few very smart cores. GPU: thousands of simpler cores doing the same kind of maths together.",
+    "hi": "CPU: कुछ बहुत होशियार कोर। GPU: हज़ारों सरल कोर एक साथ एक जैसा गणित करते हैं।",
+    "hinglish": "CPU: kuch bahut smart cores. GPU: hazaaron simple cores ek saath ek jaisa maths karte hain."
+   },
+   "visual": "compare:🧠 CPU 4–16 strong cores|🎨 GPU 1,000s of small cores",
+   "narration": {
+    "en": "One professor vs a stadium full of students each solving one sum.",
+    "hi": "एक प्रोफ़ेसर बनाम छात्रों से भरा स्टेडियम, जहाँ हर छात्र एक सवाल हल करता है।",
+    "hinglish": "Ek professor vs stadium bhar ke students jo ek-ek sum solve karein."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Your phone puts CPU, GPU, NPU, modem, camera processor and memory controller on ONE chip: a System-on-Chip.",
+    "hi": "फ़ोन CPU, GPU, NPU, मॉडेम, कैमरा प्रोसेसर और मेमोरी नियंत्रक को एक ही चिप पर रखता है: सिस्टम-ऑन-चिप।",
+    "hinglish": "Phone CPU, GPU, NPU, modem, camera processor aur memory controller ko EK chip pe rakhta hai: System-on-Chip."
+   },
+   "visual": "flow:🧠 CPU|🎨 GPU|🤖 NPU|📡 Modem|📷 ISP",
+   "narration": {
+    "en": "Fewer separate parts means less power and a thinner phone.",
+    "hi": "कम अलग भाग यानी कम बिजली और पतला फ़ोन।",
+    "hinglish": "Kam alag parts matlab kam bijli aur patla phone."
+   }
+  }
+ ],
+ "play": {
+  "lab": "pc-builder-3d",
+  "config": {},
+  "goal": {
+   "en": "Rebuild the PC and watch the CPU hand drawing work to the GPU.",
+   "hi": "PC फिर बनाओ और CPU को चित्र बनाने का काम GPU को सौंपते देखो।",
+   "hinglish": "PC dobara banao aur dekho CPU drawing ka kaam GPU ko kaise deta hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Why AI runs on GPUs",
+    "hi": "AI GPU पर क्यों चलता है",
+    "hinglish": "AI GPU pe kyun chalta hai"
+   },
+   "body": {
+    "en": "Training an AI model means multiplying huge grids of numbers (matrices) millions of times. That is the same kind of parallel maths as colouring pixels, so GPUs are thousands of times faster at it than a CPU alone. Big AI models are trained on thousands of GPUs in data centres for weeks. Phones add an NPU to run smaller AI tasks — face unlock, photo enhancement, live translation — on the device, using little battery and without sending your data to a server.",
+    "hi": "AI मॉडल प्रशिक्षित करने का मतलब है संख्याओं के विशाल ग्रिड (मैट्रिक्स) को लाखों बार गुणा करना। यह पिक्सेल रंगने जैसा ही समानांतर गणित है, इसलिए GPU अकेले CPU से हज़ारों गुना तेज़ हैं। बड़े AI मॉडल हफ़्तों तक डेटा सेंटर के हज़ारों GPU पर प्रशिक्षित होते हैं। फ़ोन छोटे AI काम — फ़ेस अनलॉक, फ़ोटो सुधार, लाइव अनुवाद — डिवाइस पर ही चलाने के लिए NPU जोड़ते हैं, कम बैटरी में और आपका डेटा सर्वर पर भेजे बिना।",
+    "hinglish": "AI model train karne ka matlab hai numbers ke bahut bade grids (matrices) ko millions baar multiply karna. Yeh pixels colour karne jaisa hi parallel maths hai, isliye GPU akele CPU se hazaaron guna fast hai. Bade AI models hafton tak data centres ke hazaaron GPUs pe train hote hain. Phones chhote AI kaam — face unlock, photo enhance, live translation — device pe hi chalane ke liye NPU jodte hain, kam battery mein aur aapka data server pe bheje bina."
+   },
+   "analogy": {
+    "hinglish": "GPU = shaadi ke khaane ke liye 500 log jo ek saath puri bel rahe hain. CPU = ek master chef jo mushkil dish banata hai.",
+    "en": "GPU = 500 people rolling puris together for a wedding feast. CPU = one master chef who makes the difficult dish.",
+    "hi": "GPU = शादी के खाने के लिए 500 लोग जो एक साथ पूरियाँ बेल रहे हैं। CPU = एक मास्टर शेफ़ जो कठिन व्यंजन बनाता है।"
+   },
+   "realExample": {
+    "en": "India’s AI mission (IndiaAI, 2024) set up shared GPU compute for Indian startups and researchers.",
+    "hi": "भारत के AI मिशन (IndiaAI, 2024) ने भारतीय स्टार्टअप और शोधकर्ताओं के लिए साझा GPU कंप्यूट बनाया।",
+    "hinglish": "India ke IndiaAI mission (2024) ne Indian startups aur researchers ke liye shared GPU compute banaya."
+   }
+  },
+  {
+   "heading": {
+    "en": "Reading a phone spec sheet",
+    "hi": "फ़ोन की विशेषता सूची पढ़ना",
+    "hinglish": "Phone spec sheet padhna"
+   },
+   "body": {
+    "en": "“Octa-core 2.4 GHz” = 8 CPU cores, top speed 2.4 GHz. “8 GB RAM” = working memory for open apps. “128 GB UFS” = flash storage for files. “5G modem” = mobile data radio. “5000 mAh” = battery capacity. More is not always better: a well-designed 6 GB phone can feel faster than a badly optimised 12 GB one, and good software updates matter as much as numbers.",
+    "hi": "“ऑक्टा-कोर 2.4 GHz” = 8 CPU कोर, अधिकतम 2.4 GHz। “8 GB RAM” = खुले ऐप के लिए कार्य मेमोरी। “128 GB UFS” = फ़ाइलों के लिए फ़्लैश स्टोरेज। “5G मॉडेम” = मोबाइल डेटा रेडियो। “5000 mAh” = बैटरी क्षमता। ज़्यादा हमेशा बेहतर नहीं: अच्छा डिज़ाइन किया 6 GB फ़ोन ख़राब 12 GB फ़ोन से तेज़ लग सकता है, और अच्छे सॉफ़्टवेयर अपडेट संख्याओं जितने ही ज़रूरी हैं।",
+    "hinglish": "“Octa-core 2.4 GHz” = 8 CPU cores, top speed 2.4 GHz. “8 GB RAM” = khule apps ke liye working memory. “128 GB UFS” = files ke liye flash storage. “5G modem” = mobile data radio. “5000 mAh” = battery capacity. Zyada hamesha better nahi: achhe design wala 6 GB phone kharab optimise kiye 12 GB phone se fast lag sakta hai, aur achhe software updates numbers jitne hi zaroori hain."
+   },
+   "analogy": {
+    "hinglish": "Cricket team jaisa: sirf 11 strong players kaafi nahi, team work (design) bhi chahiye.",
+    "en": "Like a cricket team: 11 strong players are not enough, you also need teamwork (design).",
+    "hi": "क्रिकेट टीम जैसा: केवल 11 मज़बूत खिलाड़ी काफ़ी नहीं, टीमवर्क (डिज़ाइन) भी चाहिए।"
+   },
+   "realExample": {
+    "en": "Phone companies list “AnTuTu” or “Geekbench” scores — benchmark programs that time the same tasks on every phone.",
+    "hi": "फ़ोन कंपनियाँ “AnTuTu” या “Geekbench” स्कोर बताती हैं — बेंचमार्क प्रोग्राम जो हर फ़ोन पर एक जैसे काम का समय मापते हैं।",
+    "hinglish": "Companies “AnTuTu” ya “Geekbench” scores batati hain — benchmark programs jo har phone pe same kaam ka time naapte hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Compare two phone spec sheets from a newspaper ad and explain which is better for a student and why.",
+   "hi": "अख़बार के विज्ञापन से दो फ़ोन की स्पेसिफ़िकेशन की तुलना करो और बताओ छात्र के लिए कौन बेहतर है और क्यों।",
+   "hinglish": "Akhbaar ke ad se do phone spec sheets compare karo aur batao student ke liye kaunsa better aur kyun."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why are GPUs good for AI training?",
+     "hi": "GPU AI प्रशिक्षण के लिए अच्छे क्यों हैं?",
+     "hinglish": "GPU AI training ke liye achhe kyun hain?"
+    },
+    "options": [
+     {
+      "en": "They store more files",
+      "hi": "वे ज़्यादा फ़ाइलें रखते हैं",
+      "hinglish": "Woh zyada files rakhte hain"
+     },
+     {
+      "en": "They do thousands of similar calculations at once",
+      "hi": "वे एक साथ हज़ारों एक जैसी गणनाएँ करते हैं",
+      "hinglish": "Woh ek saath hazaaron similar calculations karte hain"
+     },
+     {
+      "en": "They connect to Wi-Fi",
+      "hi": "वे वाई-फ़ाई से जुड़ते हैं",
+      "hinglish": "Woh Wi-Fi se judte hain"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "AI training is mostly huge parallel matrix maths — exactly what thousands of GPU cores do.",
+     "hi": "AI प्रशिक्षण ज़्यादातर विशाल समानांतर मैट्रिक्स गणित है — ठीक वही जो हज़ारों GPU कोर करते हैं।",
+     "hinglish": "AI training zyaadatar bahut bada parallel matrix maths hai — theek wahi jo hazaaron GPU cores karte hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are usually inside a phone SoC? (choose all)",
+     "hi": "फ़ोन SoC में आमतौर पर क्या होता है? (सभी चुनो)",
+     "hinglish": "Phone SoC mein aam taur pe kya hota hai? (saare chuno)"
+    },
+    "options": [
+     {
+      "en": "CPU",
+      "hi": "CPU",
+      "hinglish": "CPU"
+     },
+     {
+      "en": "GPU",
+      "hi": "GPU",
+      "hinglish": "GPU"
+     },
+     {
+      "en": "NPU",
+      "hi": "NPU",
+      "hinglish": "NPU"
+     },
+     {
+      "en": "Battery",
+      "hi": "बैटरी",
+      "hinglish": "Battery"
+     },
+     {
+      "en": "Modem",
+      "hi": "मॉडेम",
+      "hinglish": "Modem"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2,
+     4
+    ],
+    "explain": {
+     "en": "CPU, GPU, NPU and the modem are on the chip. The battery is a separate part.",
+     "hi": "CPU, GPU, NPU और मॉडेम चिप पर हैं। बैटरी अलग पुर्ज़ा है।",
+     "hinglish": "CPU, GPU, NPU aur modem chip pe hain. Battery alag part hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "What does an NPU in a phone do?",
+     "hi": "फ़ोन में NPU क्या करता है?",
+     "hinglish": "Phone mein NPU kya karta hai?"
+    },
+    "options": [
+     {
+      "en": "Runs AI tasks on the device",
+      "hi": "डिवाइस पर AI काम चलाता है",
+      "hinglish": "Device pe AI kaam chalata hai"
+     },
+     {
+      "en": "Charges the battery",
+      "hi": "बैटरी चार्ज करता है",
+      "hinglish": "Battery charge karta hai"
+     },
+     {
+      "en": "Stores photos",
+      "hi": "फ़ोटो रखता है",
+      "hinglish": "Photos rakhta hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "It runs AI tasks efficiently on the device — face unlock, photo effects, voice typing.",
+     "hi": "यह AI काम डिवाइस पर कुशलता से चलाता है — फ़ेस अनलॉक, फ़ोटो इफ़ेक्ट, वॉइस टाइपिंग।",
+     "hinglish": "Yeh AI kaam device pe efficiently chalata hai — face unlock, photo effects, voice typing."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "“128 GB UFS” on a spec sheet means…",
+     "hi": "स्पेक शीट पर “128 GB UFS” का अर्थ…",
+     "hinglish": "Spec sheet pe “128 GB UFS” ka matlab…"
+    },
+    "options": [
+     {
+      "en": "RAM size",
+      "hi": "RAM का आकार",
+      "hinglish": "RAM size"
+     },
+     {
+      "en": "Battery size",
+      "hi": "बैटरी का आकार",
+      "hinglish": "Battery size"
+     },
+     {
+      "en": "Storage size",
+      "hi": "स्टोरेज का आकार",
+      "hinglish": "Storage size"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "UFS is the flash storage type; 128 GB is how much you can keep.",
+     "hi": "UFS फ़्लैश स्टोरेज का प्रकार है; 128 GB रखने की क्षमता।",
+     "hinglish": "UFS flash storage ka type hai; 128 GB kitna rakh sakte ho."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "A Full-HD screen at 60 frames per second draws about how many pixels per second?",
+     "hi": "60 फ़्रेम/सेकंड पर फ़ुल-HD स्क्रीन प्रति सेकंड लगभग कितने पिक्सेल बनाती है?",
+     "hinglish": "60 fps pe Full-HD screen har second lagbhag kitne pixels banati hai?"
+    },
+    "options": [
+     "20 lakh",
+     "60 lakh",
+     "12 crore",
+     "12 lakh crore"
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "1920 × 1080 ≈ 20.7 lakh × 60 ≈ 12.4 crore.",
+     "hi": "1920 × 1080 ≈ 20.7 लाख × 60 ≈ 12.4 करोड़।",
+     "hinglish": "1920 × 1080 ≈ 20.7 lakh × 60 ≈ 12.4 crore."
+    },
+    "difficulty": 3
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "IndiaAI Mission — compute capacity",
+   "url": "https://indiaai.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NCERT / CBSE Artificial Intelligence & Computer curriculum (Classes 6–8), 2024–25",
+   "url": "https://cbseacademic.nic.in/",
+   "licence": "fact reference"
+  }
+ ]
+}

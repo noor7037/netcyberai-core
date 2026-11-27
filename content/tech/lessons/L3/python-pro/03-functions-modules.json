@@ -1,0 +1,351 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.python-pro.03",
+ "level": 3,
+ "classes": [
+  9,
+  10
+ ],
+ "unit": "python-pro",
+ "title": {
+  "en": "Functions and modules",
+  "hi": "फ़ंक्शन और मॉड्यूल",
+  "hinglish": "Functions aur modules"
+ },
+ "minutes": 14,
+ "xp": 60,
+ "prereq": [
+  "L3.python-pro.02"
+ ],
+ "outcomes": [
+  {
+   "en": "Write functions with parameters, defaults and return values",
+   "hi": "पैरामीटर, डिफ़ॉल्ट और रिटर्न मान वाले फ़ंक्शन लिखो",
+   "hinglish": "Parameters, defaults aur return values wale functions likho"
+  },
+  {
+   "en": "Explain local vs global scope using call frames",
+   "hi": "कॉल फ़्रेम से स्थानीय बनाम वैश्विक स्कोप समझाओ",
+   "hinglish": "Call frames se local vs global scope samjhao"
+  },
+  {
+   "en": "Import modules from the standard library and your own files",
+   "hi": "मानक लाइब्रेरी और अपनी फ़ाइलों से मॉड्यूल import करो",
+   "hinglish": "Standard library aur apni files se modules import karo"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Function",
+   "hinglish": "Naam wala kaam",
+   "en": "A named, reusable block of code",
+   "hi": "नाम वाला, दोबारा उपयोगी कोड भाग"
+  },
+  {
+   "term": "Parameter / argument",
+   "hinglish": "Input ka naam / asli value",
+   "en": "The name in def / the value passed in the call",
+   "hi": "def में नाम / कॉल में भेजा मान"
+  },
+  {
+   "term": "Return value",
+   "hinglish": "Wapas aane wala result",
+   "en": "What a function sends back to its caller",
+   "hi": "फ़ंक्शन बुलाने वाले को जो वापस भेजता है"
+  },
+  {
+   "term": "Scope",
+   "hinglish": "Naam kahan dikhta hai",
+   "en": "Where a name can be seen: local (inside a function) or global",
+   "hi": "नाम कहाँ दिखता है: स्थानीय (फ़ंक्शन के अंदर) या वैश्विक"
+  },
+  {
+   "term": "Module",
+   "hinglish": "Code ki file",
+   "en": "A .py file you can import; a package is a folder of modules",
+   "hi": "import करने योग्य .py फ़ाइल; पैकेज मॉड्यूलों का फ़ोल्डर"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "def with_gst(price, rate=5): defines a function. Nothing runs until it is called.",
+    "hi": "def with_gst(price, rate=5): फ़ंक्शन बनाता है। बुलाए जाने तक कुछ नहीं चलता।",
+    "hinglish": "def with_gst(price, rate=5): function banata hai. Call hone tak kuch nahi chalta."
+   },
+   "visual": "anim:def-box",
+   "narration": {
+    "en": "def with_gst(price, rate=5): defines a function. Nothing runs until it is called.",
+    "hi": "def with_gst(price, rate=5): फ़ंक्शन बनाता है। बुलाए जाने तक कुछ नहीं चलता।",
+    "hinglish": "def with_gst(price, rate=5): function banata hai. Call hone tak kuch nahi chalta."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Each call gets its own frame with local variables: price, rate, tax.",
+    "hi": "हर कॉल को स्थानीय वेरिएबल price, rate, tax वाला अपना फ़्रेम मिलता है।",
+    "hinglish": "Har call ko local variables price, rate, tax wala apna frame milta hai."
+   },
+   "visual": "anim:frame-stack",
+   "narration": {
+    "en": "Each call gets its own frame with local variables: price, rate, tax.",
+    "hi": "हर कॉल को स्थानीय वेरिएबल price, rate, tax वाला अपना फ़्रेम मिलता है।",
+    "hinglish": "Har call ko local variables price, rate, tax wala apna frame milta hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "return sends 210.0 back; the frame disappears, so tax is gone.",
+    "hi": "return 210.0 वापस भेजता है; फ़्रेम ग़ायब, तो tax भी गया।",
+    "hinglish": "return 210.0 wapas bhejta hai; frame gayab, to tax bhi gaya."
+   },
+   "visual": "anim:return-arrow",
+   "narration": {
+    "en": "return sends 210.0 back; the frame disappears, so tax is gone.",
+    "hi": "return 210.0 वापस भेजता है; फ़्रेम ग़ायब, तो tax भी गया।",
+    "hinglish": "return 210.0 wapas bhejta hai; frame gayab, to tax bhi gaya."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "import math, from statistics import mean, or import gst from your own gst.py file.",
+    "hi": "import math, from statistics import mean, या अपनी gst.py फ़ाइल से import gst।",
+    "hinglish": "import math, from statistics import mean, ya apni gst.py file se import gst."
+   },
+   "visual": "anim:import",
+   "narration": {
+    "en": "import math, from statistics import mean, or import gst from your own gst.py file.",
+    "hi": "import math, from statistics import mean, या अपनी gst.py फ़ाइल से import gst।",
+    "hinglish": "import math, from statistics import mean, ya apni gst.py file se import gst."
+   }
+  }
+ ],
+ "play": {
+  "lab": "code-lab",
+  "config": {
+   "mode": "trace",
+   "scenario": "func-scope"
+  },
+  "goal": {
+   "en": "Trace the GST program. Watch a new frame appear for each call, and notice which rate is used each time.",
+   "hi": "GST प्रोग्राम ट्रेस करो। हर कॉल पर नया फ़्रेम आते देखो, और देखो हर बार कौन-सा rate इस्तेमाल होता है।",
+   "hinglish": "GST program trace karo. Har call par naya frame aate dekho, aur dekho har baar kaunsa rate use hota hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Good functions",
+    "hi": "अच्छे फ़ंक्शन",
+    "hinglish": "Achhe functions"
+   },
+   "body": {
+    "en": "A good function does one job, has a clear name (calculate_gst, not f2), takes inputs as parameters and returns a result instead of printing it — so other code can use the answer. Default parameters (rate=5) make common cases short; keyword arguments (with_gst(200, rate=12)) make calls readable. Add a docstring explaining what it does. Avoid changing global variables inside functions: pass values in and return them out. Watch out for mutable defaults: def add(x, items=[]) shares one list across calls — use items=None instead.",
+    "hi": "अच्छा फ़ंक्शन एक काम करता है, उसका नाम साफ़ होता है (calculate_gst, न कि f2), इनपुट पैरामीटर से लेता है और परिणाम छापने की जगह लौटाता है — ताकि दूसरा कोड उत्तर इस्तेमाल कर सके। डिफ़ॉल्ट पैरामीटर (rate=5) आम स्थितियाँ छोटी करते हैं; कीवर्ड तर्क (with_gst(200, rate=12)) कॉल पढ़ने योग्य बनाते हैं। क्या करता है बताने वाला docstring जोड़ो। फ़ंक्शन के अंदर वैश्विक वेरिएबल बदलने से बचो: मान अंदर भेजो और बाहर लौटाओ। परिवर्तनीय डिफ़ॉल्ट से सावधान: def add(x, items=[]) सभी कॉल में एक ही सूची बाँटता है — items=None इस्तेमाल करो।",
+    "hinglish": "Achha function ek kaam karta hai, uska naam saaf hota hai (calculate_gst, na ki f2), inputs parameters se leta hai aur result print karne ki jagah return karta hai — taaki doosra code answer use kar sake. Default parameters (rate=5) common cases chhote karte hain; keyword arguments (with_gst(200, rate=12)) calls readable banate hain. Kya karta hai batane wala docstring jodo. Function ke andar global variables badalne se bacho: values andar bhejo aur bahar return karo. Mutable defaults se saavdhaan: def add(x, items=[]) saare calls mein ek hi list share karta hai — items=None use karo."
+   },
+   "analogy": {
+    "en": "A function is like a recipe card: ingredients in (parameters), dish out (return value), and the kitchen mess stays in the kitchen (local scope).",
+    "hi": "फ़ंक्शन रेसिपी कार्ड जैसा है: सामग्री अंदर (पैरामीटर), पकवान बाहर (रिटर्न मान), और रसोई का बिखराव रसोई में (स्थानीय स्कोप)।",
+    "hinglish": "Function recipe card jaisa hai: ingredients andar (parameters), dish bahar (return value), aur kitchen ka bikhraav kitchen mein (local scope)."
+   },
+   "realExample": {
+    "en": "Real Indian GST slabs changed in September 2025 to mainly 5% and 18% (plus 40% for some sin and luxury goods) — a default parameter makes such updates a one-line change.",
+    "hi": "भारत के GST स्लैब सितंबर 2025 में मुख्यतः 5% और 18% (कुछ हानिकारक और विलासिता वस्तुओं पर 40%) हो गए — डिफ़ॉल्ट पैरामीटर ऐसे बदलाव को एक पंक्ति का काम बना देता है।",
+    "hinglish": "India ke GST slabs September 2025 mein mainly 5% aur 18% (kuch sin aur luxury goods par 40%) ho gaye — default parameter aise update ko ek line ka kaam bana deta hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "Modules and packages",
+    "hi": "मॉड्यूल और पैकेज",
+    "hinglish": "Modules aur packages"
+   },
+   "body": {
+    "en": "Any .py file is a module. Put helper functions in gst.py and use them elsewhere with import gst then gst.with_gst(200). The standard library ships with Python: math, random, statistics, datetime, csv, json, pathlib. Third-party packages come from PyPI and are installed with pip install requests, ideally inside a virtual environment (python -m venv .venv) so projects do not clash. Only install well-known packages — attackers upload look-alike names (typosquatting) to steal data.",
+    "hi": "हर .py फ़ाइल एक मॉड्यूल है। सहायक फ़ंक्शन gst.py में रखो और कहीं और import gst फिर gst.with_gst(200) से इस्तेमाल करो। मानक लाइब्रेरी पायथन के साथ आती है: math, random, statistics, datetime, csv, json, pathlib। तीसरे-पक्ष के पैकेज PyPI से आते हैं और pip install requests से इंस्टॉल होते हैं, अच्छा हो वर्चुअल वातावरण (python -m venv .venv) में ताकि प्रोजेक्ट न टकराएँ। सिर्फ़ जाने-माने पैकेज इंस्टॉल करो — हमलावर डेटा चुराने के लिए मिलते-जुलते नाम (टाइपोस्क्वैटिंग) अपलोड करते हैं।",
+    "hinglish": "Har .py file ek module hai. Helper functions gst.py mein rakho aur kahin aur import gst phir gst.with_gst(200) se use karo. Standard library Python ke saath aati hai: math, random, statistics, datetime, csv, json, pathlib. Third-party packages PyPI se aate hain aur pip install requests se install hote hain, behtar hai virtual environment (python -m venv .venv) mein taaki projects na takraayein. Sirf jaane-maane packages install karo — attackers data churane ke liye milte-julte naam (typosquatting) upload karte hain."
+   },
+   "analogy": {
+    "en": "Modules are like LEGO sets you can reuse; PyPI is a giant toy shop — buy from known brands.",
+    "hi": "मॉड्यूल दोबारा इस्तेमाल होने वाले LEGO सेट जैसे हैं; PyPI एक विशाल खिलौना दुकान — जाने-माने ब्रांड से ख़रीदो।",
+    "hinglish": "Modules dobaara use hone wale LEGO sets jaise hain; PyPI ek bahut badi toy shop — jaane-maane brands se khareedo."
+   },
+   "realExample": {
+    "en": "from statistics import mean; mean([72, 85, 91, 64]) → 78 — no loop needed.",
+    "hi": "from statistics import mean; mean([72, 85, 91, 64]) → 78 — लूप की ज़रूरत नहीं।",
+    "hinglish": "from statistics import mean; mean([72, 85, 91, 64]) → 78 — loop ki zaroorat nahi."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Create a file school_utils.py with two functions: grade(marks) returning \"A\"/\"B\"/\"C\", and percent(got, total). Import it from another file and print the grades for three students.",
+   "hi": "school_utils.py फ़ाइल बनाओ जिसमें दो फ़ंक्शन हों: grade(marks) जो \"A\"/\"B\"/\"C\" लौटाए, और percent(got, total)। दूसरी फ़ाइल से import करो और तीन छात्रों के ग्रेड छापो।",
+   "hinglish": "school_utils.py file banao jismein do functions hon: grade(marks) jo \"A\"/\"B\"/\"C\" return kare, aur percent(got, total). Doosri file se import karo aur teen students ke grades print karo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "with_gst(200) uses which rate?",
+     "hi": "with_gst(200) कौन-सा rate इस्तेमाल करता है?",
+     "hinglish": "with_gst(200) kaunsa rate use karta hai?"
+    },
+    "options": [
+     {
+      "en": "The default 5",
+      "hi": "डिफ़ॉल्ट 5",
+      "hinglish": "Default 5"
+     },
+     {
+      "en": "The global 18",
+      "hi": "वैश्विक 18",
+      "hinglish": "Global 18"
+     },
+     {
+      "en": "0",
+      "hi": "0",
+      "hinglish": "0"
+     },
+     {
+      "en": "An error",
+      "hi": "त्रुटि",
+      "hinglish": "Error"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "The parameter rate is local and gets its default; it hides the global rate.",
+     "hi": "पैरामीटर rate स्थानीय है और डिफ़ॉल्ट पाता है; वह वैश्विक rate को छुपाता है।",
+     "hinglish": "Parameter rate local hai aur default paata hai; woh global rate ko chhupata hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "After the call, print(tax) at the top level gives…",
+     "hi": "कॉल के बाद ऊपरी स्तर पर print(tax) देता है…",
+     "hinglish": "Call ke baad top level par print(tax) deta hai…"
+    },
+    "options": [
+     "10.0",
+     "36.0",
+     "NameError",
+     "0"
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "tax was local to the call frame, which no longer exists.",
+     "hi": "tax कॉल फ़्रेम का स्थानीय था, जो अब नहीं है।",
+     "hinglish": "tax call frame ka local tha, jo ab nahi hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why return a value instead of printing it?",
+     "hi": "मान छापने की जगह लौटाना क्यों?",
+     "hinglish": "Value print karne ki jagah return kyun?"
+    },
+    "options": [
+     {
+      "en": "Other code can use the result",
+      "hi": "दूसरा कोड परिणाम इस्तेमाल कर सके",
+      "hinglish": "Doosra code result use kar sake"
+     },
+     {
+      "en": "Printing is illegal",
+      "hi": "छापना मना है",
+      "hinglish": "Print karna mana hai"
+     },
+     {
+      "en": "return is faster to type",
+      "hi": "return लिखना तेज़ है",
+      "hinglish": "return likhna tez hai"
+     },
+     {
+      "en": "It hides bugs",
+      "hi": "यह बग छुपाता है",
+      "hinglish": "Yeh bugs chhupata hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Returned values can be tested, stored and combined.",
+     "hi": "लौटाए मान परखे, रखे और जोड़े जा सकते हैं।",
+     "hinglish": "Return ki gayi values test, store aur combine ho sakti hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "short",
+    "prompt": {
+     "en": "Which keyword brings in another module?",
+     "hi": "कौन-सा कीवर्ड दूसरा मॉड्यूल लाता है?",
+     "hinglish": "Kaunsa keyword doosra module laata hai?"
+    },
+    "answer": {
+     "accept": [
+      "import"
+     ]
+    },
+    "explain": {
+     "en": "import math, or from math import sqrt.",
+     "hi": "import math, या from math import sqrt।",
+     "hinglish": "import math, ya from math import sqrt."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Trace the GST program to the end.",
+     "hi": "GST प्रोग्राम अंत तक ट्रेस करो।",
+     "hinglish": "GST program end tak trace karo."
+    },
+    "answer": {
+     "event": "trace-done",
+     "scenario": "func-scope"
+    },
+    "explain": {
+     "en": "You watched two call frames come and go.",
+     "hi": "आपने दो कॉल फ़्रेम आते-जाते देखे।",
+     "hinglish": "Tumne do call frames aate-jaate dekhe."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "prog.functions"
+ ],
+ "sources": [
+  {
+   "title": "Python Software Foundation — The Python Tutorial",
+   "url": "https://docs.python.org/3/tutorial/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Python Packaging User Guide — virtual environments",
+   "url": "https://packaging.python.org/en/latest/tutorials/installing-packages/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "CBIC — GST rate notifications (Sept 2025)",
+   "url": "https://cbic-gst.gov.in/",
+   "licence": "fact reference"
+  }
+ ]
+}

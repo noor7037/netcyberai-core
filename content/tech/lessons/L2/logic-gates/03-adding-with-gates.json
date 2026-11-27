@@ -1,0 +1,286 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.logic-gates.03",
+ "level": 2,
+ "classes": [
+  8
+ ],
+ "unit": "logic-gates",
+ "title": {
+  "en": "How gates add numbers: the adder",
+  "hi": "गेट संख्याएँ कैसे जोड़ते हैं: ऐडर",
+  "hinglish": "Gates numbers kaise jodte hain: adder"
+ },
+ "minutes": 10,
+ "xp": 40,
+ "prereq": [
+  "L2.logic-gates.02"
+ ],
+ "topics": [
+  "hw.gates",
+  "hw.architecture"
+ ],
+ "outcomes": [
+  {
+   "en": "Add two binary numbers by hand with carries",
+   "hi": "हासिल के साथ दो बाइनरी संख्याएँ हाथ से जोड़ सकते हो",
+   "hinglish": "Carry ke saath do binary numbers haath se jod sakte ho"
+  },
+  {
+   "en": "Explain a half adder (XOR + AND)",
+   "hi": "हाफ़ ऐडर (XOR + AND) समझा सकते हो",
+   "hinglish": "Half adder (XOR + AND) samjha sakte ho"
+  },
+  {
+   "en": "Explain how full adders chain to add bytes",
+   "hi": "समझा सकते हो कि फ़ुल ऐडर जुड़कर बाइट कैसे जोड़ते हैं",
+   "hinglish": "Full adders jud ke bytes kaise jodte hain samjha sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Sum bit",
+   "hinglish": "Jod ka bit",
+   "en": "The result bit of adding two bits",
+   "hi": "दो बिट जोड़ने का परिणाम बिट"
+  },
+  {
+   "term": "Carry",
+   "hinglish": "Haasil — agle column mein jaata hai",
+   "en": "The bit carried to the next column",
+   "hi": "अगले स्तंभ में ले जाया गया बिट"
+  },
+  {
+   "term": "Half adder",
+   "hinglish": "XOR + AND, do bits jodta hai",
+   "en": "A circuit adding two bits: sum = XOR, carry = AND",
+   "hi": "दो बिट जोड़ने वाला सर्किट: योग = XOR, हासिल = AND"
+  },
+  {
+   "term": "Full adder",
+   "hinglish": "Teen bits jodta hai (carry samet)",
+   "en": "Adds two bits plus a carry-in; chained to add bigger numbers",
+   "hi": "दो बिट और आया हासिल जोड़ता है; बड़ी संख्याओं के लिए शृंखला में जुड़ता है"
+  },
+  {
+   "term": "ALU",
+   "hinglish": "CPU ka hisaab-kitaab wala hissa",
+   "en": "Arithmetic Logic Unit: the part of the CPU that does maths and logic",
+   "hi": "अंकगणित तर्क इकाई: CPU का वह भाग जो गणित और तर्क करता है"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Binary adding rules: 0+0 = 0, 0+1 = 1, 1+1 = 10 (write 0, carry 1).",
+    "hi": "बाइनरी जोड़ के नियम: 0+0 = 0, 0+1 = 1, 1+1 = 10 (0 लिखो, 1 हासिल)।",
+    "hinglish": "Binary jod ke rules: 0+0 = 0, 0+1 = 1, 1+1 = 10 (0 likho, 1 carry)."
+   },
+   "visual": "flow:0+0 = 0|0+1 = 1|1+0 = 1|1+1 = 10",
+   "narration": {
+    "en": "Just like 5 + 5 = 10 in decimal, 1 + 1 = 10 in binary.",
+    "hi": "जैसे दशमलव में 5 + 5 = 10, वैसे बाइनरी में 1 + 1 = 10।",
+    "hinglish": "Jaise decimal mein 5 + 5 = 10, binary mein 1 + 1 = 10."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Look: the sum bit follows XOR, the carry follows AND. So XOR + AND = a half adder.",
+    "hi": "देखो: योग बिट XOR जैसा, हासिल AND जैसा। तो XOR + AND = हाफ़ ऐडर।",
+    "hinglish": "Dekho: sum bit XOR jaisa, carry AND jaisa. To XOR + AND = half adder."
+   },
+   "visual": "lab:bit-lab#gates-XOR",
+   "narration": {
+    "en": "Compare the XOR truth table with the sum column. They match exactly.",
+    "hi": "XOR सत्य तालिका की तुलना योग वाले स्तंभ से करो। दोनों बिल्कुल मेल खाते हैं।",
+    "hinglish": "XOR truth table ko sum column se milao. Bilkul same."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Chain 8 full adders and the CPU can add two bytes, carrying from column to column.",
+    "hi": "8 फ़ुल ऐडर जोड़ो तो CPU दो बाइट जोड़ सकता है, कॉलम से कॉलम हासिल ले जाते हुए।",
+    "hinglish": "8 full adders jodo to CPU do bytes jod sakta hai, column se column carry le jaate hue."
+   },
+   "visual": "flow:bit0 FA|carry → bit1 FA|carry → …|bit7 FA",
+   "narration": {
+    "en": "This chain is called a ripple-carry adder.",
+    "hi": "इस शृंखला को रिपल-कैरी ऐडर कहते हैं।",
+    "hinglish": "Is chain ko ripple-carry adder kehte hain."
+   }
+  }
+ ],
+ "play": {
+  "lab": "bit-lab",
+  "config": {
+   "tab": "gates",
+   "gate": "XOR"
+  },
+  "goal": {
+   "en": "Compare XOR with the sum column of 1-bit addition. Then switch to AND and compare with the carry.",
+   "hi": "XOR की तुलना 1-बिट जोड़ के योग स्तंभ से करो। फिर AND पर जाकर हासिल से तुलना करो।",
+   "hinglish": "XOR ko 1-bit jod ke sum column se milao. Phir AND pe jao aur carry se milao."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Adding 0101 + 0011 like a computer",
+    "hi": "कंप्यूटर की तरह 0101 + 0011 जोड़ना",
+    "hinglish": "Computer ki tarah 0101 + 0011 jodna"
+   },
+   "body": {
+    "en": "Right column: 1 + 1 = 0 carry 1. Next: 0 + 1 + carry 1 = 0 carry 1. Next: 1 + 0 + 1 = 0 carry 1. Last: 0 + 0 + 1 = 1. Answer 1000 = 8, and indeed 5 + 3 = 8 ✓. A full adder does one column with three inputs (A, B, carry-in): sum = A XOR B XOR Cin, carry-out = (A AND B) OR (Cin AND (A XOR B)). The CPU’s ALU contains adders like this plus circuits for subtract, compare, AND/OR, and shifting.",
+    "hi": "दायाँ कॉलम: 1 + 1 = 0 हासिल 1। अगला: 0 + 1 + हासिल 1 = 0 हासिल 1। अगला: 1 + 0 + 1 = 0 हासिल 1। अंतिम: 0 + 0 + 1 = 1। उत्तर 1000 = 8, और सच में 5 + 3 = 8 ✓। फ़ुल ऐडर तीन इनपुट (A, B, हासिल-इन) से एक कॉलम करता है: योग = A XOR B XOR Cin, हासिल-आउट = (A AND B) OR (Cin AND (A XOR B))। CPU के ALU में ऐसे ऐडर और घटाने, तुलना, AND/OR और खिसकाने के सर्किट होते हैं।",
+    "hinglish": "Right column: 1 + 1 = 0 carry 1. Agla: 0 + 1 + carry 1 = 0 carry 1. Agla: 1 + 0 + 1 = 0 carry 1. Last: 0 + 0 + 1 = 1. Answer 1000 = 8, aur sach mein 5 + 3 = 8 ✓. Full adder teen inputs (A, B, carry-in) se ek column karta hai: sum = A XOR B XOR Cin, carry-out = (A AND B) OR (Cin AND (A XOR B)). CPU ke ALU mein aise adders aur subtract, compare, AND/OR aur shifting ke circuits hote hain."
+   },
+   "analogy": {
+    "hinglish": "Jaise school mein jodte waqt “haasil” agle column mein likhte the. Computer bhi wahi karta hai, bas sirf 0 aur 1 ke saath.",
+    "en": "Just as in school you wrote the “carry” in the next column while adding. The computer does the same, only with 0 and 1.",
+    "hi": "जैसे स्कूल में जोड़ते समय “हासिल” अगले स्तंभ में लिखते थे। कंप्यूटर भी वही करता है, बस केवल 0 और 1 के साथ।"
+   },
+   "realExample": {
+    "en": "A 64-bit phone CPU adds two 64-bit numbers in a single clock tick — under a nanosecond.",
+    "hi": "64-बिट फ़ोन CPU दो 64-बिट संख्याएँ एक क्लॉक टिक में जोड़ता है — एक नैनोसेकंड से कम में।",
+    "hinglish": "64-bit phone CPU do 64-bit numbers ek clock tick mein jodta hai — ek nanosecond se kam."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Add 0110 + 0111 by hand in binary, showing every carry, and check by converting to decimal.",
+   "hi": "बाइनरी में 0110 + 0111 हाथ से जोड़ो, हर हासिल दिखाओ, और दशमलव में बदलकर जाँचो।",
+   "hinglish": "0110 + 0111 ko haath se binary mein jodo, har carry dikhao, aur decimal mein check karo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "short",
+    "prompt": {
+     "en": "What is 1 + 1 in binary?",
+     "hi": "बाइनरी में 1 + 1 क्या है?",
+     "hinglish": "Binary mein 1 + 1 kya hai?"
+    },
+    "answer": [
+     "10"
+    ],
+    "explain": {
+     "en": "Two in binary is 10: write 0, carry 1.",
+     "hi": "दो बाइनरी में 10 है: 0 लिखो, 1 हासिल।",
+     "hinglish": "Do binary mein 10 hai: 0 likho, 1 carry."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "In a half adder, which gate produces the SUM bit?",
+     "hi": "हाफ़ ऐडर में योग बिट कौन-सा गेट बनाता है?",
+     "hinglish": "Half adder mein SUM bit kaunsa gate banata hai?"
+    },
+    "options": [
+     "AND",
+     "OR",
+     "XOR",
+     "NOT"
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "Sum is 1 when exactly one input is 1 → XOR.",
+     "hi": "योग तब 1 जब ठीक एक इनपुट 1 → XOR।",
+     "hinglish": "Sum tab 1 jab theek ek input 1 → XOR."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "…and which gate produces the CARRY bit?",
+     "hi": "…और हासिल बिट कौन-सा गेट?",
+     "hinglish": "…aur CARRY bit kaunsa gate?"
+    },
+    "options": [
+     "AND",
+     "OR",
+     "XOR",
+     "NOT"
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Carry is 1 only for 1 + 1 → AND.",
+     "hi": "हासिल केवल 1 + 1 पर 1 → AND।",
+     "hinglish": "Carry sirf 1 + 1 pe 1 → AND."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "short",
+    "prompt": {
+     "en": "Work out 0101 + 0011 in binary (4 bits).",
+     "hi": "बाइनरी में 0101 + 0011 हल करो (4 बिट)।",
+     "hinglish": "Binary mein 0101 + 0011 solve karo (4 bits)."
+    },
+    "answer": [
+     "1000"
+    ],
+    "explain": {
+     "en": "5 + 3 = 8 = 1000.",
+     "hi": "5 + 3 = 8 = 1000।",
+     "hinglish": "5 + 3 = 8 = 1000."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which part of the CPU does the adding?",
+     "hi": "CPU का कौन-सा भाग जोड़ता है?",
+     "hinglish": "CPU ka kaunsa hissa jodta hai?"
+    },
+    "options": [
+     {
+      "en": "Cache",
+      "hi": "कैश",
+      "hinglish": "Cache"
+     },
+     {
+      "en": "ALU",
+      "hi": "ALU",
+      "hinglish": "ALU"
+     },
+     {
+      "en": "SSD",
+      "hi": "SSD",
+      "hinglish": "SSD"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "The Arithmetic Logic Unit (ALU) does maths and logic; the control unit directs it.",
+     "hi": "अंकगणित तर्क इकाई (ALU) गणित और तर्क करती है; नियंत्रण इकाई उसे निर्देश देती है।",
+     "hinglish": "Arithmetic Logic Unit (ALU) maths aur logic karta hai; control unit usse direct karta hai."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "NCERT / CBSE Artificial Intelligence & Computer curriculum (Classes 6–8), 2024–25",
+   "url": "https://cbseacademic.nic.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Adder (electronics) — half and full adder equations",
+   "url": "https://en.wikipedia.org/wiki/Adder_(electronics)",
+   "licence": "CC BY-SA (fact reference only)"
+  }
+ ]
+}

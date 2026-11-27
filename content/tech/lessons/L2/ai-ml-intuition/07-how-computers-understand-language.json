@@ -1,0 +1,388 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.ai-ml-intuition.07",
+ "level": 2,
+ "classes": [
+  7,
+  8
+ ],
+ "unit": "ai-ml-intuition",
+ "title": {
+  "en": "How computers understand language",
+  "hi": "कंप्यूटर भाषा कैसे समझते हैं",
+  "hinglish": "Computers language kaise samajhte hain"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [
+  "L2.ai-ml-intuition.06"
+ ],
+ "topics": [
+  "ai.nlp",
+  "ai.llm-tokens"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain that text is split into tokens and turned into numbers",
+   "hi": "समझा सकते हो कि पाठ टोकन में बँटकर संख्याएँ बनता है",
+   "hinglish": "Samjha sakte ho text tokens mein toot kar numbers banta hai"
+  },
+  {
+   "en": "Describe next-word prediction as the core of language models",
+   "hi": "अगले-शब्द के अनुमान को भाषा मॉडल का मूल समझा सकते हो",
+   "hinglish": "Next-word prediction ko language models ka core samjha sakte ho"
+  },
+  {
+   "en": "Explain why fluent AI text can still be false",
+   "hi": "समझा सकते हो कि धाराप्रवाह AI पाठ भी ग़लत क्यों हो सकता है",
+   "hinglish": "Samjha sakte ho fluent AI text bhi galat kyun ho sakta hai"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "NLP",
+   "hinglish": "Bhasha ka processing",
+   "en": "Natural Language Processing: AI that works with human language",
+   "hi": "प्राकृतिक भाषा संसाधन: मानव भाषा के साथ काम करने वाला AI"
+  },
+  {
+   "term": "Token",
+   "hinglish": "Text ka tukda",
+   "en": "A piece of text (a word or part of a word) a model reads as one unit",
+   "hi": "पाठ का टुकड़ा (शब्द या शब्द का भाग) जिसे मॉडल एक इकाई के रूप में पढ़ता है"
+  },
+  {
+   "term": "Language model",
+   "hinglish": "Agla shabd guess karne wala",
+   "en": "A model that predicts the next token from the ones before",
+   "hi": "मॉडल जो पिछले टोकन से अगला टोकन अनुमानित करता है"
+  },
+  {
+   "term": "Temperature",
+   "hinglish": "Randomness ka knob",
+   "en": "A setting: low = safest next word, high = more surprising choices",
+   "hi": "एक सेटिंग: कम = सबसे सुरक्षित अगला शब्द, ज़्यादा = अधिक चौंकाने वाले चुनाव"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "First, text is cut into tokens and each token gets a number ID. “unbelievable” might become “un” + “believ” + “able”.",
+    "hi": "पहले पाठ टोकन में काटा जाता है और हर टोकन को एक संख्या ID मिलती है। “unbelievable” बन सकता है “un” + “believ” + “able”।",
+    "hinglish": "Pehle text tokens mein kaata jaata hai aur har token ko ek number ID milti hai. “unbelievable” ban sakta hai “un” + “believ” + “able”."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "Computers only do maths, so words must become numbers.",
+    "hi": "कंप्यूटर केवल गणित करते हैं, इसलिए शब्दों को संख्याएँ बनना पड़ता है।",
+    "hinglish": "Computer sirf maths karte hain, isliye words ko numbers banna padta hai."
+   },
+   "code": "\"my school is new\"\n → [my] [ school] [ is] [ new]\n → [ 1820, 2524, 318, 649 ]   (example IDs)"
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "A language model guesses the next word from patterns it counted in lots of text. Try it in the lab.",
+    "hi": "भाषा मॉडल बहुत सारे पाठ में गिने पैटर्न से अगला शब्द अनुमानित करता है। लैब में आज़माओ।",
+    "hinglish": "Language model bahut saare text mein gine patterns se agla word guess karta hai. Lab mein try karo."
+   },
+   "visual": "lab:ai-lab#words",
+   "narration": {
+    "en": "Slide temperature up for surprise, down for the safest word.",
+    "hi": "चौंकाने के लिए तापमान बढ़ाओ, सबसे सुरक्षित शब्द के लिए घटाओ।",
+    "hinglish": "Surprise ke liye temperature badhao, safest word ke liye ghatao."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Notice: the model wrote “the capital of france is new delhi”. It sounds smooth but it is false — it follows word patterns, not facts.",
+    "hi": "ध्यान दो: मॉडल ने लिखा “the capital of france is new delhi”। सुनने में सहज पर ग़लत — यह शब्द-पैटर्न मानता है, तथ्य नहीं।",
+    "hinglish": "Dhyaan do: model ne likha “the capital of france is new delhi”. Sunne mein smooth par galat — yeh word patterns follow karta hai, facts nahi."
+   },
+   "visual": "compare:✅ Fluent: grammar looks perfect|❌ True? Paris! Always check facts",
+   "narration": {
+    "en": "Fluent is not the same as true.",
+    "hi": "धाराप्रवाह होना सच होना नहीं है।",
+    "hinglish": "Fluent hona sach hona nahi hai."
+   }
+  }
+ ],
+ "play": {
+  "lab": "ai-lab",
+  "config": {
+   "tab": "words"
+  },
+  "goal": {
+   "en": "Generate at least 3 sentences and catch one that sounds right but is false.",
+   "hi": "कम से कम 3 वाक्य बनाओ और एक पकड़ो जो सही लगता है पर ग़लत है।",
+   "hinglish": "Kam se kam 3 sentences generate karo aur ek pakdo jo sahi lagta hai par galat hai."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "From counting words to large language models",
+    "hi": "शब्द गिनने से बड़े भाषा मॉडल तक",
+    "hinglish": "Words ginne se large language models tak"
+   },
+   "body": {
+    "en": "Our lab model is a bigram model: it only looks at the one previous word and picks the next from counts. Real large language models (LLMs) such as those behind ChatGPT, Gemini or Claude use the Transformer design (introduced by Google researchers in 2017), which uses “attention” to look back over thousands of earlier tokens at once, and they are trained on huge amounts of text to predict the next token. They are then tuned with human feedback to follow instructions and be helpful. Because they predict likely words rather than look up facts, they can “hallucinate” — confidently produce false statements, fake quotes or made-up references. Other NLP tasks include translation (Google Translate, Bhashini), speech-to-text, spam filtering and sentiment analysis. Indian languages are harder for many models because there is less digital text in them and scripts like Devanagari often split into more tokens — work by Bhashini and AI4Bharat (IIT Madras) builds open datasets and models for Indian languages.",
+    "hi": "हमारा लैब मॉडल बाइग्राम मॉडल है: वह केवल एक पिछला शब्द देखता है और गिनती से अगला चुनता है। असली बड़े भाषा मॉडल (LLM), जैसे ChatGPT, Gemini या Claude के पीछे वाले, ट्रांसफ़ॉर्मर डिज़ाइन (2017 में Google शोधकर्ताओं द्वारा प्रस्तुत) उपयोग करते हैं, जो “अटेंशन” से एक साथ हज़ारों पिछले टोकन देखता है, और उन्हें अगला टोकन अनुमानित करने के लिए विशाल पाठ पर प्रशिक्षित किया जाता है। फिर उन्हें निर्देश मानने और मददगार होने के लिए मानवीय प्रतिक्रिया से ट्यून किया जाता है। क्योंकि वे तथ्य खोजने के बजाय संभावित शब्द अनुमानित करते हैं, वे “हैलुसिनेट” कर सकते हैं — आत्मविश्वास से ग़लत कथन, नकली उद्धरण या मनगढ़ंत संदर्भ बना सकते हैं। अन्य NLP कार्यों में अनुवाद (Google Translate, भाषिणी), वाक्-से-पाठ, स्पैम फ़िल्टर और भावना विश्लेषण शामिल हैं। भारतीय भाषाएँ कई मॉडलों के लिए कठिन हैं क्योंकि उनमें डिजिटल पाठ कम है और देवनागरी जैसी लिपियाँ अक्सर ज़्यादा टोकन में बँटती हैं — भाषिणी और AI4Bharat (IIT मद्रास) का काम भारतीय भाषाओं के लिए खुले डेटासेट और मॉडल बनाता है।",
+    "hinglish": "Hamara lab model bigram model hai: woh sirf ek pichla word dekhta hai aur counts se agla chunta hai. Asli large language models (LLMs), jaise ChatGPT, Gemini ya Claude ke peeche wale, Transformer design (2017 mein Google researchers ne introduce kiya) use karte hain, jo “attention” se ek saath hazaaron pichle tokens dekhta hai, aur unhe agla token predict karne ke liye huge text pe train kiya jaata hai. Phir unhe instructions follow karne aur helpful hone ke liye human feedback se tune kiya jaata hai. Kyunki woh facts dhoondhne ke bajaye likely words predict karte hain, woh “hallucinate” kar sakte hain — confidently galat statements, nakli quotes ya made-up references bana sakte hain. Doosre NLP tasks mein translation (Google Translate, Bhashini), speech-to-text, spam filtering aur sentiment analysis shaamil hain. Indian languages kai models ke liye mushkil hain kyunki unme digital text kam hai aur Devanagari jaisi scripts aksar zyada tokens mein toot-ti hain — Bhashini aur AI4Bharat (IIT Madras) ka kaam Indian languages ke liye open datasets aur models banata hai."
+   },
+   "analogy": {
+    "en": "A language model = your phone’s autocomplete, only much bigger: type “Happy” and it suggests “birthday” because it has seen that pair many times.",
+    "hi": "भाषा मॉडल = फ़ोन का ऑटो-कम्प्लीट, बस बहुत बड़ा: “Happy” लिखो तो वह “birthday” सुझाता है क्योंकि उसने यह जोड़ी बहुत बार देखी है।",
+    "hinglish": "Language model = phone ka autocomplete, bas bahut bada: “Happy” likho to woh “birthday” suggest karta hai kyunki usne yeh jodi bahut baar dekhi hai."
+   },
+   "realExample": {
+    "en": "AI4Bharat at IIT Madras releases open models such as IndicTrans2 that translate between English and all 22 scheduled Indian languages.",
+    "hi": "IIT मद्रास का AI4Bharat IndicTrans2 जैसे खुले मॉडल जारी करता है जो अंग्रेज़ी और सभी 22 अनुसूचित भारतीय भाषाओं के बीच अनुवाद करते हैं।",
+    "hinglish": "IIT Madras ka AI4Bharat IndicTrans2 jaise open models release karta hai jo English aur sabhi 22 scheduled Indian languages ke beech translate karte hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Play “human language model” with family: one person says a word, the next adds the most likely next word, and so on for 10 words. Then do it again choosing surprising words (high temperature). Which story made more sense? Was every sentence true?",
+   "hi": "परिवार के साथ “मानव भाषा मॉडल” खेलो: एक व्यक्ति एक शब्द बोले, अगला सबसे संभावित अगला शब्द जोड़े, ऐसे 10 शब्दों तक। फिर चौंकाने वाले शब्द चुनकर दोबारा करो (उच्च तापमान)। कौन-सी कहानी ज़्यादा समझ आई? क्या हर वाक्य सच था?",
+   "hinglish": "Family ke saath “human language model” khelo: ek insaan ek word bole, agla sabse likely next word jode, aise 10 words tak. Phir surprising words chun kar dobara karo (high temperature). Kaunsi story zyada samajh aayi? Kya har sentence sach tha?"
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "What does a language model mainly do?",
+     "hi": "भाषा मॉडल मुख्य रूप से क्या करता है?",
+     "hinglish": "Language model mainly kya karta hai?"
+    },
+    "options": [
+     {
+      "en": "Looks up every answer in an encyclopedia",
+      "hi": "हर उत्तर विश्वकोश में खोजता है",
+      "hinglish": "Har answer encyclopedia mein dhoondhta hai"
+     },
+     {
+      "en": "Understands feelings like a person",
+      "hi": "इंसान की तरह भावनाएँ समझता है",
+      "hinglish": "Insaan ki tarah feelings samajhta hai"
+     },
+     {
+      "en": "Predicts the next token",
+      "hi": "अगला टोकन अनुमानित करता है",
+      "hinglish": "Agla token predict karta hai"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "It predicts the next token from the tokens before it.",
+     "hi": "वह पिछले टोकन से अगला टोकन अनुमानित करता है।",
+     "hinglish": "Woh pichle tokens se agla token predict karta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "What is a token?",
+     "hi": "टोकन क्या है?",
+     "hinglish": "Token kya hai?"
+    },
+    "options": [
+     {
+      "en": "A piece of text turned into a number",
+      "hi": "संख्या में बदला गया पाठ का टुकड़ा",
+      "hinglish": "Number mein badla text ka tukda"
+     },
+     {
+      "en": "A coin for games",
+      "hi": "खेल का सिक्का",
+      "hinglish": "Game ka coin"
+     },
+     {
+      "en": "A password",
+      "hi": "पासवर्ड",
+      "hinglish": "Password"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "A word or piece of a word that the model treats as one unit and turns into a number.",
+     "hi": "शब्द या शब्द का टुकड़ा जिसे मॉडल एक इकाई मानकर संख्या में बदलता है।",
+     "hinglish": "Word ya word ka tukda jise model ek unit maan kar number mein badalta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "match",
+    "prompt": {
+     "en": "Match the temperature setting to what happens.",
+     "hi": "तापमान सेटिंग को परिणाम से मिलाओ।",
+     "hinglish": "Temperature setting ko result se match karo."
+    },
+    "options": {
+     "left": [
+      {
+       "en": "Low temperature",
+       "hi": "कम तापमान",
+       "hinglish": "Low temperature"
+      },
+      {
+       "en": "High temperature",
+       "hi": "ज़्यादा तापमान",
+       "hinglish": "High temperature"
+      },
+      {
+       "en": "Very high temperature",
+       "hi": "बहुत ज़्यादा तापमान",
+       "hinglish": "Very high temperature"
+      }
+     ],
+     "right": [
+      {
+       "en": "More surprising, creative choices",
+       "hi": "अधिक चौंकाने वाले, रचनात्मक चुनाव",
+       "hinglish": "Zyada surprising, creative choices"
+      },
+      {
+       "en": "Always picks the most likely word",
+       "hi": "हमेशा सबसे संभावित शब्द चुनता है",
+       "hinglish": "Hamesha most likely word chunta hai"
+      },
+      {
+       "en": "Often random nonsense",
+       "hi": "अक्सर बेतरतीब बेतुकापन",
+       "hinglish": "Aksar random bakwaas"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      0
+     ],
+     [
+      2,
+      2
+     ]
+    ],
+    "explain": {
+     "en": "Low = always the safest word, high = more surprising, very high = often nonsense.",
+     "hi": "कम = हमेशा सबसे सुरक्षित शब्द, ज़्यादा = अधिक चौंकाने वाला, बहुत ज़्यादा = अक्सर बेतुका।",
+     "hinglish": "Low = hamesha safest word, high = zyada surprising, very high = aksar bakwaas."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "A chatbot writes a smooth paragraph with a fact you are not sure about. What should you do?",
+     "hi": "चैटबॉट एक सहज अनुच्छेद लिखता है जिसमें एक तथ्य पर तुम्हें शक है। क्या करोगे?",
+     "hinglish": "Chatbot ek smooth paragraph likhta hai jisme ek fact pe tumhe shak hai. Kya karoge?"
+    },
+    "options": [
+     {
+      "en": "Trust it because the grammar is perfect",
+      "hi": "व्याकरण सही है तो भरोसा करो",
+      "hinglish": "Grammar perfect hai to trust karo"
+     },
+     {
+      "en": "Check it in a trusted source",
+      "hi": "विश्वसनीय स्रोत में जाँचो",
+      "hinglish": "Trusted source mein check karo"
+     },
+     {
+      "en": "Ask the chatbot to promise it is true",
+      "hi": "चैटबॉट से सच होने का वादा माँगो",
+      "hinglish": "Chatbot se sach hone ka promise maango"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "Check it in a trusted source (textbook, official site). Fluent is not the same as true.",
+     "hi": "विश्वसनीय स्रोत (पाठ्यपुस्तक, आधिकारिक साइट) में जाँचो। धाराप्रवाह सच के बराबर नहीं।",
+     "hinglish": "Trusted source (textbook, official site) mein check karo. Fluent ka matlab true nahi."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "short",
+    "prompt": {
+     "en": "Which neural network design, introduced in 2017, powers most modern LLMs? (one word)",
+     "hi": "2017 में प्रस्तुत कौन-सा न्यूरल नेटवर्क डिज़ाइन अधिकतर आधुनिक LLM चलाता है? (एक शब्द)",
+     "hinglish": "2017 mein introduce hua kaunsa neural network design zyaadatar modern LLMs chalata hai? (ek word)"
+    },
+    "answer": [
+     "Transformer",
+     "transformer",
+     "Transformers",
+     "transformers"
+    ],
+    "explain": {
+     "en": "The Transformer, from the paper “Attention Is All You Need”.",
+     "hi": "ट्रांसफ़ॉर्मर, “Attention Is All You Need” पेपर से।",
+     "hinglish": "Transformer, “Attention Is All You Need” paper se."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the lab mission.",
+     "hi": "लैब मिशन पूरा करो।",
+     "hinglish": "Lab mission poora karo."
+    },
+    "answer": {
+     "lab": "ai-lab",
+     "event": "mission:complete",
+     "tab": "words"
+    },
+    "explain": {
+     "en": "Generate 3 or more sentences and mark a false one.",
+     "hi": "3 या ज़्यादा वाक्य बनाओ और एक ग़लत को चिह्नित करो।",
+     "hinglish": "3 ya zyada sentences generate karo aur ek galat ko mark karo."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Vaswani et al. — Attention Is All You Need (NeurIPS 2017)",
+   "url": "https://arxiv.org/abs/1706.03762",
+   "licence": "fact reference"
+  },
+  {
+   "title": "AI4Bharat — IIT Madras",
+   "url": "https://ai4bharat.iitm.ac.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Bhashini — National Language Translation Mission (MeitY)",
+   "url": "https://bhashini.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Google — Machine Learning Crash Course",
+   "url": "https://developers.google.com/machine-learning/crash-course",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

@@ -1,0 +1,315 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.robots.04",
+ "level": 1,
+ "classes": [
+  3,
+  4,
+  5
+ ],
+ "unit": "robots",
+ "title": {
+  "en": "Rules make robots smart",
+  "hi": "नियम रोबोट को समझदार बनाते हैं",
+  "hinglish": "Rules robot ko smart banaate hain"
+ },
+ "minutes": 9,
+ "xp": 35,
+ "prereq": [
+  "L1.robots.03"
+ ],
+ "topics": [
+  "robo.rules",
+  "robo.feedback-loops"
+ ],
+ "outcomes": [
+  {
+   "en": "Write an IF–THEN–ELSE rule that uses a sensor reading.",
+   "hi": "सेंसर रीडिंग वाला अगर–तो–वरना नियम लिख सकते हो।",
+   "hinglish": "Sensor reading wala IF–THEN–ELSE rule likh sakte ho."
+  },
+  {
+   "en": "Explain the Sense → Think → Act loop and why it repeats many times a second.",
+   "hi": "सेंस → थिंक → ऐक्ट लूप समझा सकते हो और क्यों वह हर सेकंड कई बार चलता है।",
+   "hinglish": "Sense → Think → Act loop samjha sakte ho aur kyun woh har second kai baar chalta hai."
+  },
+  {
+   "en": "Test and fix a rule (choose a safe distance).",
+   "hi": "नियम जाँचकर सुधार सकते हो (सही सुरक्षित दूरी चुनना)।",
+   "hinglish": "Rule test karke theek kar sakte ho (sahi safe doori chunna)."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Rule",
+   "en": "An IF–THEN instruction the robot follows",
+   "hi": "अगर–तो वाला निर्देश जो रोबोट मानता है",
+   "hinglish": "Agar-toh wali hidayat jo robot maanta hai"
+  },
+  {
+   "term": "Threshold",
+   "en": "The number where the decision changes, like \"closer than 20 cm\"",
+   "hi": "सीमा — वह संख्या जिस पर फ़ैसला बदलता है",
+   "hinglish": "Seema — jis number par faisla badalta hai"
+  },
+  {
+   "term": "Loop",
+   "en": "Doing the same steps again and again",
+   "hi": "बार-बार दोहराया जाने वाला काम",
+   "hinglish": "Baar-baar chalne wala kaam"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.robots.04.s1",
+   "caption": {
+    "en": "Sense, think, act — again and again!",
+    "hi": "महसूस करो, सोचो, करो — बार-बार!",
+    "hinglish": "Sense, think, act — baar-baar!"
+   },
+   "narration": {
+    "en": "Robots run a loop: read the sensors, check the rules, move the motors. Then they do it again — many times every second.",
+    "hinglish": "Robots ek loop chalaate hain: sensors padho, rules check karo, motors chalao. Phir dobara — har second kai baar.",
+    "hi": "रोबोट एक लूप चलाते हैं: सेंसर पढ़ो, नियम जाँचो, मोटर चलाओ। फिर दोबारा — हर सेकंड कई बार।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.robots.04.s2",
+   "caption": {
+    "en": "IF the sofa is close, THEN turn.",
+    "hi": "अगर सोफ़ा पास है, तो मुड़ो।",
+    "hinglish": "AGAR sofa paas hai, TOH mudo."
+   },
+   "narration": {
+    "en": "A robot vacuum has a rule: IF something is closer than a few centimetres, THEN turn. ELSE keep cleaning forward.",
+    "hinglish": "Robot vacuum ka rule: AGAR kuch kuch centimetre se paas hai, TOH mudo. WARNA aage saaf karte raho.",
+    "hi": "रोबोट वैक्यूम का नियम: अगर कोई चीज़ कुछ सेंटीमीटर से पास है, तो मुड़ो। वरना आगे सफ़ाई करते रहो।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.robots.04.s3",
+   "caption": {
+    "en": "Number too small? CRASH! Fix the rule.",
+    "hi": "संख्या बहुत छोटी? टक्कर! नियम सुधारो।",
+    "hinglish": "Number bahut chhota? Takkar! Rule theek karo."
+   },
+   "narration": {
+    "en": "If the rule waits until 2 cm, the robot cannot turn in time and crashes. Engineers test, find the bug and pick a better number.",
+    "hinglish": "Agar rule 2 cm tak ruka rahe, robot time par mud nahin paata aur takra jaata hai. Engineers test karke bug dhoondhte hain aur behtar number chunte hain.",
+    "hi": "अगर नियम 2 सेमी तक रुका रहे, रोबोट समय पर मुड़ नहीं पाता और टकरा जाता है। इंजीनियर जाँचकर गड़बड़ी ढूँढते हैं और बेहतर संख्या चुनते हैं।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "robot-sensors",
+  "config": {
+   "mode": "avoid"
+  },
+  "goal": {
+   "en": "Set the rule so the robot drives for 25 seconds and never crashes.",
+   "hi": "नियम ऐसा बनाओ कि रोबोट 25 सेकंड चले और कभी न टकराए।",
+   "hinglish": "Rule aisa banao ki robot 25 second chale aur kabhi na takraye."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "IF – THEN – ELSE with a sensor",
+    "hi": "सेंसर के साथ अगर – तो – वरना",
+    "hinglish": "Sensor ke saath AGAR – TOH – WARNA"
+   },
+   "body": {
+    "en": "IF distance < 25 cm THEN turn right ELSE go forward. The condition is a question with a yes/no answer. Yes → do the THEN part. No → do the ELSE part.",
+    "hi": "अगर दूरी < 25 सेमी तो दाएँ मुड़ो वरना आगे चलो। शर्त एक सवाल है जिसका जवाब हाँ/नहीं है। हाँ → \"तो\" वाला काम। नहीं → \"वरना\" वाला काम।",
+    "hinglish": "AGAR distance < 25 cm TOH right mudo WARNA aage chalo. Condition ek sawaal hai jiska jawab haan/nahin hai. Haan → TOH wala kaam. Nahin → WARNA wala kaam."
+   },
+   "analogy": {
+    "en": "Crossing a road: IF a vehicle is close THEN wait, ELSE walk — and keep looking again and again.",
+    "hi": "सड़क पार करते समय: अगर गाड़ी पास है तो रुको, वरना चलो — और बार-बार देखते रहो।",
+    "hinglish": "Sadak paar karte waqt: AGAR gaadi paas hai TOH ruko, WARNA chalo — aur baar-baar dekhte raho."
+   }
+  },
+  {
+   "heading": {
+    "en": "Why the loop must be fast",
+    "hi": "लूप तेज़ क्यों होना चाहिए",
+    "hinglish": "Loop fast kyun hona chahiye"
+   },
+   "body": {
+    "en": "The world keeps changing — a cat walks in, a door closes. A robot checks its sensors again and again so it can react in time. Checking once at the start would not be enough.",
+    "hi": "दुनिया बदलती रहती है — बिल्ली आ जाती है, दरवाज़ा बंद हो जाता है। रोबोट बार-बार सेंसर जाँचता है ताकि समय पर प्रतिक्रिया दे सके। शुरुआत में एक बार जाँचना काफ़ी नहीं।",
+    "hinglish": "Duniya badalti rehti hai — billi aa jaati hai, darwaza band ho jaata hai. Robot baar-baar sensors check karta hai taaki time par react kar sake. Shuru mein ek baar check karna kaafi nahin."
+   },
+   "realExample": {
+    "en": "Robot vacuums also have cliff sensors pointing down so they do not fall down the stairs.",
+    "hi": "रोबोट वैक्यूम में नीचे देखने वाले \"क्लिफ़\" सेंसर भी होते हैं ताकि वे सीढ़ियों से न गिरें।",
+    "hinglish": "Robot vacuum mein neeche dekhne wale cliff sensors bhi hote hain taaki woh seedhiyon se na girein."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Write a robot rule for crossing your school corridor: IF … THEN … ELSE … . Read it to a friend and test it by walking.",
+   "hi": "अपने स्कूल के गलियारे के लिए रोबोट नियम लिखो: अगर … तो … वरना … । दोस्त को सुनाओ और चलकर जाँचो।",
+   "hinglish": "Apne school corridor ke liye robot rule likho: AGAR … TOH … WARNA … . Dost ko sunao aur chal kar test karo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "order",
+    "prompt": {
+     "en": "Put the robot loop in order.",
+     "hi": "रोबोट लूप को क्रम में लगाओ।",
+     "hinglish": "Robot loop ko order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Move the motors",
+      "hi": "मोटर चलाओ",
+      "hinglish": "Motors chalao"
+     },
+     {
+      "en": "Read the sensors",
+      "hi": "सेंसर पढ़ो",
+      "hinglish": "Sensors padho"
+     },
+     {
+      "en": "Check the rule",
+      "hi": "नियम जाँचो",
+      "hinglish": "Rule check karo"
+     }
+    ],
+    "answer": [
+     1,
+     2,
+     0
+    ],
+    "explain": {
+     "en": "Sense (read) → Think (rule) → Act (motors).",
+     "hi": "सेंस (पढ़ो) → थिंक (नियम) → ऐक्ट (मोटर)।",
+     "hinglish": "Sense (padho) → Think (rule) → Act (motors)."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Rule: IF distance < 20 cm THEN turn ELSE forward. Distance is 50 cm. The robot…",
+     "hi": "नियम: अगर दूरी < 20 सेमी तो मुड़ो वरना आगे। दूरी 50 सेमी है। रोबोट…",
+     "hinglish": "Rule: AGAR distance < 20 cm TOH mudo WARNA aage. Distance 50 cm hai. Robot…"
+    },
+    "options": [
+     {
+      "en": "goes forward",
+      "hi": "आगे चलेगा",
+      "hinglish": "aage chalega"
+     },
+     {
+      "en": "turns",
+      "hi": "मुड़ेगा",
+      "hinglish": "mudega"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "50 is not less than 20, so the ELSE part runs.",
+     "hi": "50, 20 से कम नहीं, इसलिए \"वरना\" वाला काम होगा।",
+     "hinglish": "50, 20 se kam nahin, isliye WARNA wala kaam hoga."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "The robot keeps crashing even with a turn rule. Best fix?",
+     "hi": "मुड़ने का नियम होने पर भी रोबोट टकराता है। सबसे अच्छा सुधार?",
+     "hinglish": "Turn rule hone par bhi robot takraata hai. Best fix?"
+    },
+    "options": [
+     {
+      "en": "Make the distance number bigger so it turns earlier",
+      "hi": "दूरी की संख्या बढ़ाओ ताकि वह पहले मुड़े",
+      "hinglish": "Distance number bada karo taaki woh pehle mude"
+     },
+     {
+      "en": "Remove the sensor",
+      "hi": "सेंसर हटा दो",
+      "hinglish": "Sensor hata do"
+     },
+     {
+      "en": "Make it go faster",
+      "hi": "उसे और तेज़ चलाओ",
+      "hinglish": "Use aur tez chalao"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "A bigger threshold gives the robot more time to turn.",
+     "hi": "बड़ी सीमा रोबोट को मुड़ने का ज़्यादा समय देती है।",
+     "hinglish": "Badi threshold robot ko mudne ka zyada time deti hai."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why does a robot check its sensors many times a second?",
+     "hi": "रोबोट हर सेकंड कई बार सेंसर क्यों जाँचता है?",
+     "hinglish": "Robot har second kai baar sensors kyun check karta hai?"
+    },
+    "options": [
+     {
+      "en": "Because the world keeps changing",
+      "hi": "क्योंकि दुनिया बदलती रहती है",
+      "hinglish": "Kyunki duniya badalti rehti hai"
+     },
+     {
+      "en": "To use up the battery",
+      "hi": "बैटरी ख़त्म करने के लिए",
+      "hinglish": "Battery khatam karne ke liye"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "New obstacles can appear any time.",
+     "hi": "नई रुकावट कभी भी आ सकती है।",
+     "hinglish": "Nayi rukawat kabhi bhi aa sakti hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Pass \"Don't crash!\" in the lab.",
+     "hi": "लैब में \"टकराना मत!\" पास करो।",
+     "hinglish": "Lab mein \"Takrana mat!\" pass karo."
+    },
+    "answer": {
+     "lab": "robot-sensors",
+     "mode": "avoid",
+     "solved": true
+    },
+    "explain": {
+     "en": "Try: IF distance < 25 cm THEN turn right ELSE forward.",
+     "hi": "आज़माओ: अगर दूरी < 25 सेमी तो दाएँ मुड़ो वरना आगे।",
+     "hinglish": "Try karo: AGAR distance < 25 cm TOH right mudo WARNA aage."
+    },
+    "difficulty": 3
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

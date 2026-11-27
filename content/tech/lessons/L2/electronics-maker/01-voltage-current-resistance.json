@@ -1,0 +1,374 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.electronics-maker.01",
+ "level": 2,
+ "classes": [
+  7,
+  8
+ ],
+ "unit": "electronics-maker",
+ "title": {
+  "en": "Voltage, current and resistance",
+  "hi": "वोल्टेज, धारा और प्रतिरोध",
+  "hinglish": "Voltage, current aur resistance"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [],
+ "topics": [
+  "elec.electricity",
+  "elec.ohms-law"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain voltage, current and resistance with units",
+   "hi": "वोल्टेज, धारा और प्रतिरोध को इकाइयों के साथ समझा सकते हो",
+   "hinglish": "Voltage, current aur resistance ko units ke saath samjha sakte ho"
+  },
+  {
+   "en": "Use Ohm’s law V = I × R to find any one of the three",
+   "hi": "ओम के नियम V = I × R से तीनों में से कोई एक निकाल सकते हो",
+   "hinglish": "Ohm’s law V = I × R se teeno mein se koi ek nikaal sakte ho"
+  },
+  {
+   "en": "Convert milliamps and amps",
+   "hi": "मिलीएम्पियर और एम्पियर में बदल सकते हो",
+   "hinglish": "Milliamp aur amp mein badal sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Voltage (V)",
+   "hinglish": "Dhakka jo current chalata hai, volt mein",
+   "en": "The electrical “push” from a battery, measured in volts",
+   "hi": "विद्युत “धक्का” जो बैटरी देती है, वोल्ट में मापा जाता है"
+  },
+  {
+   "term": "Current (I)",
+   "hinglish": "Charge ka bahaav, ampere mein",
+   "en": "The flow of electric charge, measured in amperes (A)",
+   "hi": "विद्युत आवेश का बहाव, एम्पियर (A) में मापा जाता है"
+  },
+  {
+   "term": "Resistance (R)",
+   "hinglish": "Rukawat, ohm (Ω) mein",
+   "en": "How much a part opposes current, measured in ohms (Ω)",
+   "hi": "कोई भाग धारा का कितना विरोध करता है, ओम (Ω) में मापा जाता है"
+  },
+  {
+   "term": "Circuit",
+   "hinglish": "Poora band raasta",
+   "en": "A complete closed loop that current can flow around",
+   "hi": "पूरा बंद रास्ता जिसमें धारा घूम सकती है"
+  },
+  {
+   "term": "mA",
+   "hinglish": "1 A ka hazaarwan hissa",
+   "en": "Milliamp: one thousandth of an amp (1000 mA = 1 A)",
+   "hi": "मिलीएम्पियर: एम्पियर का हज़ारवाँ भाग (1000 mA = 1 A)"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "A battery pushes (voltage), charge flows (current), and parts resist the flow (resistance).",
+    "hi": "बैटरी धक्का देती है (वोल्टेज), आवेश बहता है (धारा), और भाग बहाव रोकते हैं (प्रतिरोध)।",
+    "hinglish": "Battery push karti hai (voltage), charge behta hai (current), aur parts flow rokte hain (resistance)."
+   },
+   "visual": "compare:🔋 Voltage = push (V)|🌊 Current = flow (A)|🚧 Resistance = squeeze (Ω)",
+   "narration": {
+    "en": "Current only flows when the loop is complete — break it anywhere and everything stops.",
+    "hi": "धारा तभी बहती है जब घेरा पूरा हो — कहीं भी तोड़ो तो सब रुक जाता है।",
+    "hinglish": "Current sirf tab behta hai jab loop poora ho — kahin bhi toda to sab ruk jaata hai."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Ohm’s law links them: V = I × R. So I = V ÷ R and R = V ÷ I.",
+    "hi": "ओम का नियम इन्हें जोड़ता है: V = I × R। इसलिए I = V ÷ R और R = V ÷ I।",
+    "hinglish": "Ohm’s law inko jodta hai: V = I × R. Isliye I = V ÷ R aur R = V ÷ I."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "Cover the one you want in the triangle: V on top, I and R below.",
+    "hi": "त्रिभुज में जो चाहिए उसे ढक दो: ऊपर V, नीचे I और R।",
+    "hinglish": "Triangle mein jo chahiye use dhak do: upar V, neeche I aur R."
+   },
+   "code": "      V\n    -----\n    I × R\n\n6 V ÷ 300 Ω = 0.02 A = 20 mA"
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Slide the voltage and resistance in the lab and watch the electrons speed up or slow down.",
+    "hi": "लैब में वोल्टेज और प्रतिरोध खिसकाओ और इलेक्ट्रॉनों को तेज़ या धीमा होते देखो।",
+    "hinglish": "Lab mein voltage aur resistance slide karo aur electrons ko tez ya dheema hote dekho."
+   },
+   "visual": "lab:circuit-lab#ohm",
+   "narration": {
+    "en": "Double the voltage → double the current. Double the resistance → half the current.",
+    "hi": "वोल्टेज दोगुना → धारा दोगुनी। प्रतिरोध दोगुना → धारा आधी।",
+    "hinglish": "Voltage double → current double. Resistance double → current aadha."
+   }
+  }
+ ],
+ "play": {
+  "lab": "circuit-lab",
+  "config": {
+   "tab": "ohm"
+  },
+  "goal": {
+   "en": "Predict the current for 6 V across 300 Ω, then set the sliders and check your answer.",
+   "hi": "6 V और 300 Ω पर धारा का अनुमान लगाओ, फिर स्लाइडर सेट करके उत्तर जाँचो।",
+   "hinglish": "6 V aur 300 Ω pe current predict karo, phir sliders set karke answer check karo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Ohm’s law and units",
+    "hi": "ओम का नियम और इकाइयाँ",
+    "hinglish": "Ohm’s law aur units"
+   },
+   "body": {
+    "en": "Georg Ohm published his law in 1827: for many materials, current is proportional to voltage. Voltage is measured in volts (V), current in amperes (A) and resistance in ohms (Ω). An AA cell gives 1.5 V, a phone’s lithium-ion battery about 3.7 V, a micro:bit runs on 3 V, and Indian home sockets supply 230 V AC — which is dangerous and never used in school projects. Small currents are written in milliamps: 20 mA = 0.02 A. Example: a 9 V battery across 450 Ω gives I = 9 ÷ 450 = 0.02 A = 20 mA. Electrons actually drift from the negative terminal to the positive one, but by an old convention we draw “conventional current” flowing from + to −.",
+    "hi": "जॉर्ज ओम ने 1827 में अपना नियम प्रकाशित किया: कई पदार्थों में धारा वोल्टेज के समानुपाती होती है। वोल्टेज वोल्ट (V) में, धारा एम्पियर (A) में और प्रतिरोध ओम (Ω) में मापा जाता है। AA सेल 1.5 V देता है, फ़ोन की लिथियम-आयन बैटरी लगभग 3.7 V, micro:bit 3 V पर चलता है, और भारत के घरेलू सॉकेट 230 V AC देते हैं — जो ख़तरनाक है और स्कूल प्रोजेक्ट में कभी उपयोग नहीं होता। छोटी धाराएँ मिलीएम्पियर में लिखते हैं: 20 mA = 0.02 A। उदाहरण: 450 Ω पर 9 V बैटरी देती है I = 9 ÷ 450 = 0.02 A = 20 mA। इलेक्ट्रॉन असल में ऋण सिरे से धन सिरे की ओर खिसकते हैं, पर पुरानी परंपरा से हम “परंपरागत धारा” को + से − की ओर दिखाते हैं।",
+    "hinglish": "Georg Ohm ne 1827 mein apna law publish kiya: kai materials mein current voltage ke proportional hota hai. Voltage volt (V) mein, current ampere (A) mein aur resistance ohm (Ω) mein naapte hain. AA cell 1.5 V deta hai, phone ki lithium-ion battery lagbhag 3.7 V, micro:bit 3 V pe chalta hai, aur India ke ghar ke sockets 230 V AC dete hain — jo khatarnaak hai aur school projects mein kabhi use nahi hota. Chhote currents milliamp mein likhte hain: 20 mA = 0.02 A. Example: 9 V battery 450 Ω pe deti hai I = 9 ÷ 450 = 0.02 A = 20 mA. Electrons asal mein negative terminal se positive ki taraf khiskte hain, par purane convention se hum “conventional current” ko + se − ki taraf banate hain."
+   },
+   "analogy": {
+    "en": "A water tank: voltage = how high the tank is (pressure), current = water flowing in the pipe, resistance = a narrow pipe. A high tank and a wide pipe = more water.",
+    "hi": "पानी की टंकी: वोल्टेज = टंकी की ऊँचाई (दबाव), धारा = पाइप में बहता पानी, प्रतिरोध = पतला पाइप। ऊँची टंकी और मोटा पाइप = ज़्यादा पानी।",
+    "hinglish": "Paani ki tanki: voltage = tanki ki oonchai (pressure), current = pipe mein behta paani, resistance = patla pipe. Oonchi tanki aur mota pipe = zyada paani."
+   },
+   "realExample": {
+    "en": "A phone charger label says “Output 5 V ⎓ 2 A”: it pushes 5 volts and can supply up to 2 amps.",
+    "hi": "फ़ोन चार्जर के लेबल पर “Output 5 V ⎓ 2 A” लिखा होता है: वह 5 वोल्ट धक्का देता है और 2 एम्पियर तक दे सकता है।",
+    "hinglish": "Phone charger ke label pe “Output 5 V ⎓ 2 A” likha hota hai: woh 5 volt push karta hai aur 2 amp tak de sakta hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Find 3 labels at home (charger, TV remote cells, a bulb box). Write down the volts, amps or watts on each and what they mean.",
+   "hi": "घर पर 3 लेबल ढूँढो (चार्जर, रिमोट के सेल, बल्ब का डिब्बा)। हर एक पर वोल्ट, एम्पियर या वाट और उनका अर्थ लिखो।",
+   "hinglish": "Ghar pe 3 labels dhoondo (charger, remote ke cells, bulb ka dabba). Har ek pe volts, amps ya watts likho aur unka matlab."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "What is the unit of resistance?",
+     "hi": "प्रतिरोध की इकाई क्या है?",
+     "hinglish": "Resistance ki unit kya hai?"
+    },
+    "options": [
+     {
+      "en": "Volt",
+      "hi": "वोल्ट",
+      "hinglish": "Volt"
+     },
+     {
+      "en": "Ampere",
+      "hi": "एम्पियर",
+      "hinglish": "Ampere"
+     },
+     {
+      "en": "Ohm",
+      "hi": "ओम",
+      "hinglish": "Ohm"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "Resistance is measured in ohms, written Ω.",
+     "hi": "प्रतिरोध ओम में मापा जाता है, Ω लिखते हैं।",
+     "hinglish": "Resistance ohm mein naapte hain, Ω likhte hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "short",
+    "prompt": {
+     "en": "12 V across 600 Ω. What is the current in mA?",
+     "hi": "600 Ω पर 12 V। धारा कितने mA है?",
+     "hinglish": "600 Ω pe 12 V. Current kitne mA hai?"
+    },
+    "answer": [
+     "20",
+     "20 mA",
+     "20mA"
+    ],
+    "explain": {
+     "en": "I = V ÷ R = 12 ÷ 600 = 0.02 A = 20 mA.",
+     "hi": "I = V ÷ R = 12 ÷ 600 = 0.02 A = 20 mA।",
+     "hinglish": "I = V ÷ R = 12 ÷ 600 = 0.02 A = 20 mA."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "match",
+    "prompt": {
+     "en": "Match each quantity to its unit.",
+     "hi": "हर राशि को उसकी इकाई से मिलाओ।",
+     "hinglish": "Har quantity ko uski unit se milao."
+    },
+    "options": {
+     "left": [
+      {
+       "en": "Voltage",
+       "hi": "वोल्टेज",
+       "hinglish": "Voltage"
+      },
+      {
+       "en": "Current",
+       "hi": "धारा",
+       "hinglish": "Current"
+      },
+      {
+       "en": "Resistance",
+       "hi": "प्रतिरोध",
+       "hinglish": "Resistance"
+      }
+     ],
+     "right": [
+      "V",
+      "A",
+      "Ω"
+     ]
+    },
+    "answer": [
+     [
+      0,
+      0
+     ],
+     [
+      1,
+      1
+     ],
+     [
+      2,
+      2
+     ]
+    ],
+    "explain": {
+     "en": "Voltage → volt, current → ampere, resistance → ohm.",
+     "hi": "वोल्टेज → वोल्ट, धारा → एम्पियर, प्रतिरोध → ओम।",
+     "hinglish": "Voltage → volt, current → ampere, resistance → ohm."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "You double the resistance and keep the voltage the same. The current…",
+     "hi": "प्रतिरोध दोगुना करते हो, वोल्टेज वही। धारा…",
+     "hinglish": "Resistance double karte ho, voltage same. Current…"
+    },
+    "options": [
+     {
+      "en": "doubles",
+      "hi": "दोगुनी होती है",
+      "hinglish": "double hota hai"
+     },
+     {
+      "en": "halves",
+      "hi": "आधी होती है",
+      "hinglish": "aadha hota hai"
+     },
+     {
+      "en": "stays the same",
+      "hi": "वही रहती है",
+      "hinglish": "same rehta hai"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "I = V ÷ R, so a bigger R means a smaller I: it halves.",
+     "hi": "I = V ÷ R, इसलिए बड़ा R यानी छोटा I: आधी हो जाती है।",
+     "hinglish": "I = V ÷ R, to bada R matlab chhota I: aadha ho jaata hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "mcq",
+    "prompt": {
+     "en": "Why are 230 V home sockets never used for school circuits?",
+     "hi": "230 V घरेलू सॉकेट स्कूल परिपथों में कभी क्यों नहीं उपयोग होते?",
+     "hinglish": "230 V ghar ke sockets school circuits mein kabhi kyun use nahi hote?"
+    },
+    "options": [
+     {
+      "en": "It can push a dangerous current through your body",
+      "hi": "यह शरीर से ख़तरनाक धारा भेज सकता है",
+      "hinglish": "Yeh body se khatarnaak current bhej sakta hai"
+     },
+     {
+      "en": "It is too weak to light an LED",
+      "hi": "यह LED जलाने के लिए बहुत कमज़ोर है",
+      "hinglish": "Yeh LED jalane ke liye bahut kamzor hai"
+     },
+     {
+      "en": "Sockets only work at night",
+      "hi": "सॉकेट केवल रात में चलते हैं",
+      "hinglish": "Sockets sirf raat mein chalte hain"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Mains voltage can push a deadly current through the body. Projects use cells of a few volts.",
+     "hi": "मेन्स वोल्टेज शरीर से जानलेवा धारा भेज सकता है। प्रोजेक्ट कुछ वोल्ट के सेल उपयोग करते हैं।",
+     "hinglish": "Mains voltage body se jaanleva current bhej sakta hai. Projects kuch volt ke cells use karte hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the Ohm’s law challenge in the circuit lab.",
+     "hi": "सर्किट लैब में ओम के नियम की चुनौती पूरी करो।",
+     "hinglish": "Circuit lab mein Ohm’s law challenge poora karo."
+    },
+    "answer": {
+     "lab": "circuit-lab",
+     "event": "mission:complete",
+     "tab": "ohm"
+    },
+    "explain": {
+     "en": "6 ÷ 300 = 0.02 A = 20 mA.",
+     "hi": "6 ÷ 300 = 0.02 A = 20 mA।",
+     "hinglish": "6 ÷ 300 = 0.02 A = 20 mA."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "SparkFun Learn — Voltage, Current, Resistance, and Ohm’s Law",
+   "url": "https://learn.sparkfun.com/tutorials/voltage-current-resistance-and-ohms-law",
+   "licence": "fact reference"
+  },
+  {
+   "title": "PhET Interactive Simulations — Circuit Construction Kit: DC (University of Colorado Boulder)",
+   "url": "https://phet.colorado.edu/en/simulations/circuit-construction-kit-dc",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NCERT / CBSE Artificial Intelligence & Computer curriculum (Classes 6–8), 2024–25",
+   "url": "https://cbseacademic.nic.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

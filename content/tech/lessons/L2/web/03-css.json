@@ -1,0 +1,323 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.web.03",
+ "level": 2,
+ "classes": [
+  7,
+  8
+ ],
+ "unit": "web",
+ "title": {
+  "en": "CSS: colours, fonts and layout",
+  "hi": "CSS: रंग, फ़ॉन्ट और लेआउट",
+  "hinglish": "CSS: colours, fonts aur layout"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [
+  "L2.web.02"
+ ],
+ "topics": [
+  "web.css"
+ ],
+ "outcomes": [
+  {
+   "en": "Write CSS rules with selectors, properties and values",
+   "hi": "सिलेक्टर, प्रॉपर्टी और मान से CSS नियम लिख सकते हो",
+   "hinglish": "Selectors, properties aur values se CSS rules likh sakte ho"
+  },
+  {
+   "en": "Use the box model: margin, border, padding",
+   "hi": "बॉक्स मॉडल उपयोग कर सकते हो: मार्जिन, बॉर्डर, पैडिंग",
+   "hinglish": "Box model use kar sakte ho: margin, border, padding"
+  },
+  {
+   "en": "Make a page work on phones with flexible layout",
+   "hi": "लचीले लेआउट से पेज को फ़ोन पर चला सकते हो",
+   "hinglish": "Flexible layout se page phone pe chala sakte ho"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "CSS",
+   "hinglish": "Page ka design likhne ki bhasha",
+   "en": "Cascading Style Sheets: describe how HTML looks",
+   "hi": "कैस्केडिंग स्टाइल शीट्स: बताती हैं HTML कैसा दिखे"
+  },
+  {
+   "term": "Selector",
+   "hinglish": "Kis element pe rule lagega",
+   "en": "Picks which elements a rule styles: h1, .card, #top",
+   "hi": "चुनता है कि नियम किन तत्वों को सजाए: h1, .card, #top"
+  },
+  {
+   "term": "Property / value",
+   "hinglish": "Kya badalna hai / kitna",
+   "en": "What to change and to what: color: teal;",
+   "hi": "क्या बदलना है और किसमें: color: teal;"
+  },
+  {
+   "term": "Box model",
+   "hinglish": "Har element ek dabba",
+   "en": "Every element is a box: content, padding, border, margin",
+   "hi": "हर तत्व एक डिब्बा है: सामग्री, पैडिंग, बॉर्डर, मार्जिन"
+  },
+  {
+   "term": "Responsive",
+   "hinglish": "Har screen pe sahi",
+   "en": "A layout that adapts to phone, tablet and laptop screens",
+   "hi": "ऐसा लेआउट जो फ़ोन, टैबलेट और लैपटॉप स्क्रीन के अनुसार ढल जाए"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "A CSS rule: selector { property: value; }",
+    "hi": "CSS नियम: selector { property: value; }",
+    "hinglish": "CSS rule: selector { property: value; }"
+   },
+   "visual": "code",
+   "narration": {
+    "en": "Pick the element, then say what to change.",
+    "hi": "तत्व चुनो, फिर बताओ क्या बदलना है।",
+    "hinglish": "Element chuno, phir batao kya badalna hai."
+   },
+   "code": "h1 {\n  color: #0F766E;\n  font-size: 28px;\n}\n.card {\n  background: #FBF1D3;\n  border-radius: 16px;\n  padding: 12px;\n}"
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Every element is a box: content, then padding, then border, then margin outside.",
+    "hi": "हर तत्व एक डिब्बा है: सामग्री, फिर पैडिंग, फिर बॉर्डर, फिर बाहर मार्जिन।",
+    "hinglish": "Har element ek dabba hai: content, phir padding, phir border, phir bahar margin."
+   },
+   "visual": "flow:Content|Padding|Border|Margin",
+   "narration": {
+    "en": "Like a photo in a frame on a wall: picture, mount, frame, gap to the next frame.",
+    "hi": "जैसे दीवार पर फ़्रेम में फ़ोटो: चित्र, माउंट, फ़्रेम, अगले फ़्रेम तक जगह।",
+    "hinglish": "Jaise deewar pe frame mein photo: photo, mount, frame, agle frame tak gap."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Change the CSS in the studio and watch the same HTML transform.",
+    "hi": "स्टूडियो में CSS बदलो और वही HTML बदलते देखो।",
+    "hinglish": "Studio mein CSS badlo aur wahi HTML badalte dekho."
+   },
+   "visual": "lab:web-studio#css",
+   "narration": {
+    "en": "Same structure, completely new look.",
+    "hi": "वही ढाँचा, बिल्कुल नया रूप।",
+    "hinglish": "Same dhaancha, bilkul naya look."
+   }
+  }
+ ],
+ "play": {
+  "lab": "web-studio",
+  "config": {
+   "tab": "css"
+  },
+  "goal": {
+   "en": "Style the card: change the background, round the corners, add padding and make the heading teal.",
+   "hi": "कार्ड सजाओ: पृष्ठभूमि बदलो, कोने गोल करो, पैडिंग जोड़ो और शीर्षक टील करो।",
+   "hinglish": "Card ko style karo: background badlo, corners round karo, padding daalo aur heading teal karo."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Selectors, the cascade and responsive design",
+    "hi": "सिलेक्टर, कैस्केड और रेस्पॉन्सिव डिज़ाइन",
+    "hinglish": "Selectors, cascade aur responsive design"
+   },
+   "body": {
+    "en": "Selectors: p (all paragraphs), .note (class=\"note\"), #header (id=\"header\"). If two rules clash, the more specific or later one wins — that is the “cascade”. Colours can be names (teal), hex (#0F766E) or rgb(15, 118, 110). For phones, use flexible units (%, rem), “display: flex” or “grid” to arrange boxes, and media queries like @media (max-width: 600px) { … } to change the layout on small screens. Keep text contrast high (dark text on light background) so everyone can read it in sunlight.",
+    "hi": "सिलेक्टर: p (सभी अनुच्छेद), .note (class=\"note\"), #header (id=\"header\")। दो नियम टकराएँ तो ज़्यादा विशिष्ट या बाद वाला जीतता है — यही “कैस्केड” है। रंग नाम (teal), हेक्स (#0F766E) या rgb(15, 118, 110) हो सकते हैं। फ़ोन के लिए लचीली इकाइयाँ (%, rem), डिब्बे सजाने को “display: flex” या “grid”, और छोटी स्क्रीन पर लेआउट बदलने को @media (max-width: 600px) { … } जैसी मीडिया क्वेरी लो। टेक्स्ट का कंट्रास्ट ऊँचा रखो (हल्की पृष्ठभूमि पर गहरा टेक्स्ट) ताकि धूप में भी सब पढ़ सकें।",
+    "hinglish": "Selectors: p (saare paragraphs), .note (class=\"note\"), #header (id=\"header\"). Do rules takraayein to zyada specific ya baad wala jeetta hai — yahi “cascade” hai. Colours naam (teal), hex (#0F766E) ya rgb(15, 118, 110) ho sakte hain. Phones ke liye flexible units (%, rem), dabbe sajaane ke liye “display: flex” ya “grid”, aur chhoti screen pe layout badalne ke liye @media (max-width: 600px) { … } jaisi media queries lo. Text contrast high rakho (light background pe dark text) taaki dhoop mein bhi sab padh sakein."
+   },
+   "analogy": {
+    "hinglish": "HTML ek saada kurta, CSS uski kadhaai, rang aur fitting. Wahi kurta, alag CSS, naya style.",
+    "en": "HTML is a plain kurta; CSS is its embroidery, colour and fit. Same kurta, different CSS, new style.",
+    "hi": "HTML एक सादा कुर्ता, CSS उसकी कढ़ाई, रंग और फ़िटिंग। वही कुर्ता, अलग CSS, नया स्टाइल।"
+   },
+   "realExample": {
+    "en": "This lab itself uses CSS 3D transforms to tilt the motherboard and CSS animations for the flipping bits.",
+    "hi": "यह लैब ख़ुद मदरबोर्ड झुकाने के लिए CSS 3D ट्रांसफ़ॉर्म और पलटते बिट के लिए CSS एनिमेशन उपयोग करती है।",
+    "hinglish": "Yeh lab khud CSS 3D transforms se motherboard tilt karti hai aur CSS animations se bits flip karti hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Style your “About me” page with a background colour, rounded cards and a readable font size of at least 16px.",
+   "hi": "अपने “About me” पेज को पृष्ठभूमि रंग, गोल कार्ड और कम से कम 16px के पढ़ने योग्य फ़ॉन्ट से सजाओ।",
+   "hinglish": "Apne “About me” page ko style karo: background colour, rounded cards aur kam se kam 16px font size."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "In “h1 { color: red; }”, what is “color”?",
+     "hi": "“h1 { color: red; }” में “color” क्या है?",
+     "hinglish": "“h1 { color: red; }” mein “color” kya hai?"
+    },
+    "options": [
+     {
+      "en": "Selector",
+      "hi": "सिलेक्टर",
+      "hinglish": "Selector"
+     },
+     {
+      "en": "Property",
+      "hi": "प्रॉपर्टी",
+      "hinglish": "Property"
+     },
+     {
+      "en": "Value",
+      "hi": "मान",
+      "hinglish": "Value"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "h1 is the selector, color is the property, red is the value.",
+     "hi": "h1 सिलेक्टर, color प्रॉपर्टी, red मान।",
+     "hinglish": "h1 selector, color property, red value."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which selector targets <p class=\"note\">?",
+     "hi": "<p class=\"note\"> को कौन-सा सिलेक्टर चुनता है?",
+     "hinglish": "<p class=\"note\"> ko kaunsa selector chunta hai?"
+    },
+    "options": [
+     "#note",
+     "note",
+     ".note"
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "A dot selects by class: .note.",
+     "hi": "बिंदु क्लास से चुनता है: .note।",
+     "hinglish": "Dot class se chunta hai: .note."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "order",
+    "prompt": {
+     "en": "Order the box model from inside to outside.",
+     "hi": "बॉक्स मॉडल को अंदर से बाहर क्रम में लगाओ।",
+     "hinglish": "Box model ko andar se bahar order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Padding",
+      "hi": "पैडिंग",
+      "hinglish": "Padding"
+     },
+     {
+      "en": "Margin",
+      "hi": "मार्जिन",
+      "hinglish": "Margin"
+     },
+     {
+      "en": "Content",
+      "hi": "सामग्री",
+      "hinglish": "Content"
+     },
+     {
+      "en": "Border",
+      "hi": "बॉर्डर",
+      "hinglish": "Border"
+     }
+    ],
+    "answer": [
+     2,
+     0,
+     3,
+     1
+    ],
+    "explain": {
+     "en": "Content → padding → border → margin.",
+     "hi": "सामग्री → पैडिंग → बॉर्डर → मार्जिन।",
+     "hinglish": "Content → padding → border → margin."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "What does @media (max-width: 600px) do?",
+     "hi": "@media (max-width: 600px) क्या करता है?",
+     "hinglish": "@media (max-width: 600px) kya karta hai?"
+    },
+    "options": [
+     {
+      "en": "Applies rules only on small screens",
+      "hi": "केवल छोटी स्क्रीन पर नियम",
+      "hinglish": "Sirf chhoti screens pe rules"
+     },
+     {
+      "en": "Makes images 600 px",
+      "hi": "चित्र 600 px करता है",
+      "hinglish": "Images 600 px karta hai"
+     },
+     {
+      "en": "Plays media",
+      "hi": "मीडिया चलाता है",
+      "hinglish": "Media chalata hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Rules inside apply only on screens 600 px wide or narrower — usually phones.",
+     "hi": "अंदर के नियम केवल 600 px या कम चौड़ी स्क्रीन पर लगते हैं — आमतौर पर फ़ोन।",
+     "hinglish": "Andar ke rules sirf 600 px ya kam chaudi screens pe lagte hain — aam taur pe phones."
+    },
+    "difficulty": 3
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Style the card in the web studio to pass all four checks.",
+     "hi": "वेब स्टूडियो में कार्ड को चारों जाँच पास करने तक सजाओ।",
+     "hinglish": "Web studio mein card ko chaaron checks pass karne tak style karo."
+    },
+    "answer": {
+     "lab": "web-studio",
+     "event": "mission:complete",
+     "tab": "css"
+    },
+    "explain": {
+     "en": "Background, border-radius, padding and a teal heading.",
+     "hi": "पृष्ठभूमि, border-radius, पैडिंग और टील शीर्षक।",
+     "hinglish": "Background, border-radius, padding aur teal heading."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "MDN — CSS basics",
+   "url": "https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/CSS_basics",
+   "licence": "CC BY-SA 2.5 (fact reference only)"
+  },
+  {
+   "title": "W3C — CSS Box Model",
+   "url": "https://www.w3.org/TR/css-box-3/",
+   "licence": "fact reference"
+  }
+ ]
+}

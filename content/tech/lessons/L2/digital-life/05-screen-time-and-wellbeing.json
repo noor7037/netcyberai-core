@@ -1,0 +1,395 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.digital-life.05",
+ "level": 2,
+ "classes": [
+  6,
+  7,
+  8
+ ],
+ "unit": "digital-life",
+ "title": {
+  "en": "Screen time and wellbeing",
+  "hi": "स्क्रीन समय और स्वास्थ्य",
+  "hinglish": "Screen time aur wellbeing"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [
+  "L2.digital-life.04"
+ ],
+ "topics": [
+  "cit.wellbeing",
+  "cit.screen-time"
+ ],
+ "outcomes": [
+  {
+   "en": "Plan a balanced day with enough sleep, activity and family time",
+   "hi": "पूरी नींद, गतिविधि और परिवार समय के साथ संतुलित दिन बना सकते हो",
+   "hinglish": "Poori neend, activity aur family time ke saath balanced day plan kar sakte ho"
+  },
+  {
+   "en": "Explain how apps are designed to keep you scrolling",
+   "hi": "समझा सकते हो कि ऐप तुम्हें स्क्रॉल करते रहने के लिए कैसे बनाए जाते हैं",
+   "hinglish": "Samjha sakte ho apps tumhe scroll karte rehne ke liye kaise design hote hain"
+  },
+  {
+   "en": "Use tools and habits for healthy screen use and know where to get help",
+   "hi": "स्वस्थ स्क्रीन उपयोग के उपकरण और आदतें अपना सकते हो और जानते हो मदद कहाँ मिलती है",
+   "hinglish": "Healthy screen use ke tools aur habits use kar sakte ho aur jaante ho madad kahan milti hai"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Screen time",
+   "hinglish": "Screen ka samay",
+   "en": "Time spent on phones, TV, tablets and computers",
+   "hi": "फ़ोन, टीवी, टैबलेट और कंप्यूटर पर बिताया समय"
+  },
+  {
+   "term": "Wellbeing",
+   "hinglish": "Achhi sehat aur man",
+   "en": "Feeling healthy, rested, connected and happy",
+   "hi": "स्वस्थ, आराम से, जुड़ा और ख़ुश महसूस करना"
+  },
+  {
+   "term": "Infinite scroll",
+   "hinglish": "Kabhi khatam na hone wala feed",
+   "en": "A feed that keeps loading new posts so there is no natural stopping point",
+   "hi": "फ़ीड जो नई पोस्ट लोड करती रहती है ताकि रुकने का स्वाभाविक बिंदु न हो"
+  },
+  {
+   "term": "Digital detox",
+   "hinglish": "Screen se chhutti",
+   "en": "Planned time away from screens",
+   "hi": "स्क्रीन से दूर तय समय"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Not all screen time is the same: video-calling Nani or coding a game is different from 2 hours of endless reels.",
+    "hi": "हर स्क्रीन समय एक जैसा नहीं: नानी से वीडियो कॉल या गेम कोड करना 2 घंटे की अंतहीन रील से अलग है।",
+    "hinglish": "Har screen time same nahi: Nani se video call ya game code karna 2 ghante ki endless reels se alag hai."
+   },
+   "visual": "compare:🎨 Create, learn, connect|🌀 Endless scrolling, autoplay",
+   "narration": {
+    "en": "Ask: is this helping me or just filling time?",
+    "hi": "पूछो: क्या यह मेरी मदद कर रहा है या बस समय भर रहा है?",
+    "hinglish": "Poochho: kya yeh meri madad kar raha hai ya bas time bhar raha hai?"
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Plan a healthy school day in the lab — the hours must add up to exactly 24.",
+    "hi": "लैब में स्वस्थ स्कूल दिन बनाओ — घंटे ठीक 24 होने चाहिए।",
+    "hinglish": "Lab mein healthy school day plan karo — ghante exactly 24 hone chahiye."
+   },
+   "visual": "lab:life-lab#time",
+   "narration": {
+    "en": "Every extra hour of screens comes from sleep, play or family.",
+    "hi": "स्क्रीन का हर अतिरिक्त घंटा नींद, खेल या परिवार से आता है।",
+    "hinglish": "Screen ka har extra ghanta neend, khel ya family se aata hai."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Apps use tricks to keep you hooked. Spot them and fight back with settings.",
+    "hi": "ऐप तुम्हें बाँधे रखने के लिए तरकीबें उपयोग करते हैं। उन्हें पहचानो और सेटिंग से जवाब दो।",
+    "hinglish": "Apps tumhe hooked rakhne ke liye tricks use karte hain. Unhe pehchaano aur settings se jawab do."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "You control the app, not the other way round.",
+    "hi": "ऐप को तुम नियंत्रित करो, उल्टा नहीं।",
+    "hinglish": "App ko tum control karo, ulta nahi."
+   },
+   "code": "trick              → your move\ninfinite scroll     → set a timer / app limit\nautoplay next video → turn autoplay OFF\nred notification    → turn off non-essential alerts\nstreaks             → it’s OK to break a streak"
+  }
+ ],
+ "play": {
+  "lab": "life-lab",
+  "config": {
+   "tab": "time"
+  },
+  "goal": {
+   "en": "Plan a 24-hour school day with 9+ hours of sleep, 1+ hour of active play and 2 hours or less of fun screen time.",
+   "hi": "24 घंटे का स्कूल दिन बनाओ: 9+ घंटे नींद, 1+ घंटा सक्रिय खेल और 2 घंटे या कम मनोरंजन स्क्रीन समय।",
+   "hinglish": "24 ghante ka school day plan karo: 9+ ghante neend, 1+ ghanta active play aur 2 ghante ya kam fun screen time."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "What experts recommend — and why",
+    "hi": "विशेषज्ञ क्या सुझाते हैं — और क्यों",
+    "hinglish": "Experts kya suggest karte hain — aur kyun"
+   },
+   "body": {
+    "en": "Health experts agree on a few daily targets for children your age. The American Academy of Sleep Medicine recommends 9–12 hours of sleep for ages 6–12 and 8–10 hours for teenagers 13–18. The World Health Organization (2020 guidelines) recommends at least 60 minutes a day of moderate-to-vigorous physical activity for ages 5–17. Canada’s 24-Hour Movement Guidelines suggest no more than 2 hours a day of recreational screen time for ages 5–17 (schoolwork is separate). Too much screen time, especially late at night, is linked with poorer sleep, less exercise, eye strain and lower mood; bright screens and exciting content before bed delay sleep. Many apps are designed to hold attention with infinite scroll, autoplay, notifications, likes and streaks. Healthy habits: use Digital Wellbeing (Android) or Screen Time (iPhone) to see your usage and set app limits; keep phones out of the bedroom at night; turn off autoplay and non-essential notifications; follow the 20-20-20 rule for your eyes (every 20 minutes, look at something 20 feet away for 20 seconds); and make screen-free time for meals and play. If you often feel anxious, sad or unable to stop, talk to a parent, teacher or counsellor — India’s free Tele-MANAS mental-health helpline is 14416.",
+    "hi": "स्वास्थ्य विशेषज्ञ तुम्हारी उम्र के बच्चों के लिए कुछ दैनिक लक्ष्यों पर सहमत हैं। अमेरिकन एकेडमी ऑफ़ स्लीप मेडिसिन 6–12 वर्ष के लिए 9–12 घंटे और 13–18 वर्ष के किशोरों के लिए 8–10 घंटे नींद सुझाती है। विश्व स्वास्थ्य संगठन (2020 दिशानिर्देश) 5–17 वर्ष के लिए रोज़ कम से कम 60 मिनट मध्यम-से-तीव्र शारीरिक गतिविधि सुझाता है। कनाडा के 24-घंटे गतिविधि दिशानिर्देश 5–17 वर्ष के लिए रोज़ 2 घंटे से ज़्यादा मनोरंजन स्क्रीन समय न रखने का सुझाव देते हैं (स्कूल का काम अलग है)। बहुत ज़्यादा स्क्रीन समय, ख़ासकर देर रात, ख़राब नींद, कम व्यायाम, आँखों पर ज़ोर और उदास मन से जुड़ा है; सोने से पहले तेज़ स्क्रीन और रोमांचक सामग्री नींद में देर करती है। कई ऐप अंतहीन स्क्रॉल, ऑटोप्ले, सूचनाओं, लाइक और स्ट्रीक से ध्यान बाँधने के लिए बनाए जाते हैं। स्वस्थ आदतें: Digital Wellbeing (Android) या Screen Time (iPhone) से अपना उपयोग देखो और ऐप सीमा तय करो; रात में फ़ोन बेडरूम से बाहर रखो; ऑटोप्ले और ग़ैर-ज़रूरी सूचनाएँ बंद करो; आँखों के लिए 20-20-20 नियम मानो (हर 20 मिनट पर 20 फ़ुट दूर किसी चीज़ को 20 सेकंड देखो); और भोजन और खेल के लिए स्क्रीन-मुक्त समय रखो। अगर तुम अक्सर चिंतित, उदास या रुक न पाने जैसा महसूस करो, माता-पिता, शिक्षक या परामर्शदाता से बात करो — भारत की मुफ़्त टेली-मानस मानसिक स्वास्थ्य हेल्पलाइन 14416 है।",
+    "hinglish": "Health experts tumhari umar ke bachchon ke liye kuch daily targets pe agree karte hain. American Academy of Sleep Medicine 6–12 saal ke liye 9–12 ghante aur 13–18 saal ke teens ke liye 8–10 ghante neend suggest karti hai. World Health Organization (2020 guidelines) 5–17 saal ke liye roz kam se kam 60 minute moderate-to-vigorous physical activity suggest karta hai. Canada ki 24-Hour Movement Guidelines 5–17 saal ke liye roz 2 ghante se zyada recreational screen time na rakhne ka suggestion deti hain (schoolwork alag hai). Bahut zyada screen time, khaaskar der raat, kharaab neend, kam exercise, aankhon pe zor aur low mood se juda hai; sone se pehle bright screens aur exciting content neend mein der karte hain. Kai apps infinite scroll, autoplay, notifications, likes aur streaks se attention baandhne ke liye banaye jaate hain. Healthy habits: Digital Wellbeing (Android) ya Screen Time (iPhone) se apna usage dekho aur app limits set karo; raat mein phone bedroom se bahar rakho; autoplay aur non-essential notifications band karo; aankhon ke liye 20-20-20 rule follow karo (har 20 minute pe 20 feet door kisi cheez ko 20 second dekho); aur khaane aur khel ke liye screen-free time rakho. Agar tum aksar anxious, udaas ya ruk na paane jaisa feel karo, parent, teacher ya counsellor se baat karo — India ki free Tele-MANAS mental-health helpline 14416 hai."
+   },
+   "analogy": {
+    "en": "Screen time = sweets: a little is a treat, but if you eat only sweets there is no room left for meals, play and sleep.",
+    "hi": "स्क्रीन समय = मिठाई: थोड़ी मज़ेदार है, पर केवल मिठाई खाओगे तो भोजन, खेल और नींद की जगह ही नहीं बचेगी।",
+    "hinglish": "Screen time = mithai: thodi si mazedaar hai, par sirf mithai khaoge to khaana, khel aur neend ki jagah hi nahi bachegi."
+   },
+   "realExample": {
+    "en": "Tele-MANAS, launched by India’s Ministry of Health in October 2022, offers free, confidential mental-health support by phone (14416) in many Indian languages, 24×7.",
+    "hi": "टेली-मानस, अक्टूबर 2022 में भारत के स्वास्थ्य मंत्रालय द्वारा शुरू, कई भारतीय भाषाओं में 24×7 फ़ोन (14416) पर मुफ़्त, गोपनीय मानसिक स्वास्थ्य सहायता देता है।",
+    "hinglish": "Tele-MANAS, October 2022 mein India ki Health Ministry ne launch kiya, kai Indian languages mein 24×7 phone (14416) pe free, confidential mental-health support deta hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "For 3 days, track your fun screen time with a parent (or the phone’s Digital Wellbeing). Then make a family “screen plan”: phone-free meals, no screens an hour before bed, and one outdoor activity each day. Review it together after a week.",
+   "hi": "3 दिन तक माता-पिता के साथ (या फ़ोन के Digital Wellbeing से) अपना मनोरंजन स्क्रीन समय दर्ज करो। फिर परिवार की “स्क्रीन योजना” बनाओ: फ़ोन-मुक्त भोजन, सोने से एक घंटा पहले स्क्रीन नहीं, और रोज़ एक बाहरी गतिविधि। एक हफ़्ते बाद साथ में समीक्षा करो।",
+   "hinglish": "3 din tak parent ke saath (ya phone ke Digital Wellbeing se) apna fun screen time track karo. Phir family “screen plan” banao: phone-free meals, sone se ek ghanta pehle screens nahi, aur roz ek outdoor activity. Ek hafte baad saath mein review karo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "How much sleep do experts recommend for ages 6–12?",
+     "hi": "6–12 वर्ष के लिए विशेषज्ञ कितनी नींद सुझाते हैं?",
+     "hinglish": "6–12 saal ke liye experts kitni neend suggest karte hain?"
+    },
+    "options": [
+     {
+      "en": "5–6 hours",
+      "hi": "5–6 घंटे",
+      "hinglish": "5–6 ghante"
+     },
+     {
+      "en": "7 hours",
+      "hi": "7 घंटे",
+      "hinglish": "7 ghante"
+     },
+     {
+      "en": "9–12 hours",
+      "hi": "9–12 घंटे",
+      "hinglish": "9–12 ghante"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "9–12 hours (American Academy of Sleep Medicine); 8–10 hours for teens.",
+     "hi": "9–12 घंटे (अमेरिकन एकेडमी ऑफ़ स्लीप मेडिसिन); किशोरों के लिए 8–10 घंटे।",
+     "hinglish": "9–12 ghante (American Academy of Sleep Medicine); teens ke liye 8–10 ghante."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "match",
+    "prompt": {
+     "en": "Match each app trick to a smart response.",
+     "hi": "हर ऐप तरकीब को समझदार जवाब से मिलाओ।",
+     "hinglish": "Har app trick ko smart response se match karo."
+    },
+    "options": {
+     "left": [
+      {
+       "en": "Infinite scroll",
+       "hi": "अंतहीन स्क्रॉल",
+       "hinglish": "Infinite scroll"
+      },
+      {
+       "en": "Autoplay next video",
+       "hi": "अगला वीडियो ऑटोप्ले",
+       "hinglish": "Autoplay next video"
+      },
+      {
+       "en": "Constant notifications",
+       "hi": "लगातार सूचनाएँ",
+       "hinglish": "Constant notifications"
+      }
+     ],
+     "right": [
+      {
+       "en": "Turn off non-essential alerts",
+       "hi": "ग़ैर-ज़रूरी सूचनाएँ बंद करो",
+       "hinglish": "Non-essential alerts band karo"
+      },
+      {
+       "en": "Set an app time limit",
+       "hi": "ऐप समय सीमा तय करो",
+       "hinglish": "App time limit set karo"
+      },
+      {
+       "en": "Switch autoplay off",
+       "hi": "ऑटोप्ले बंद करो",
+       "hinglish": "Autoplay off karo"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      2
+     ],
+     [
+      2,
+      0
+     ]
+    ],
+    "explain": {
+     "en": "Limits stop endless scrolling; autoplay off stops the next video; fewer alerts stop the pull back to the app.",
+     "hi": "सीमा अंतहीन स्क्रॉल रोकती है; ऑटोप्ले बंद अगला वीडियो रोकता है; कम सूचनाएँ ऐप पर खींचना रोकती हैं।",
+     "hinglish": "Limits endless scrolling rokti hain; autoplay off agla video rokta hai; kam alerts app pe khinchna rokte hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "multi",
+    "prompt": {
+     "en": "Which habits help healthy sleep? Choose all.",
+     "hi": "कौन-सी आदतें अच्छी नींद में मदद करती हैं? सभी चुनो।",
+     "hinglish": "Kaunsi habits achhi neend mein madad karti hain? Saare chuno."
+    },
+    "options": [
+     {
+      "en": "No screens in the hour before bed",
+      "hi": "सोने से एक घंटा पहले स्क्रीन नहीं",
+      "hinglish": "Sone se ek ghanta pehle screens nahi"
+     },
+     {
+      "en": "Watching reels in bed until sleepy",
+      "hi": "नींद आने तक बिस्तर में रील देखना",
+      "hinglish": "Neend aane tak bed mein reels dekhna"
+     },
+     {
+      "en": "Charging the phone outside the bedroom",
+      "hi": "फ़ोन बेडरूम के बाहर चार्ज करना",
+      "hinglish": "Phone bedroom ke bahar charge karna"
+     },
+     {
+      "en": "Active play during the day",
+      "hi": "दिन में सक्रिय खेल",
+      "hinglish": "Din mein active play"
+     }
+    ],
+    "answer": [
+     0,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "No screens before bed, phone outside the room and daytime play help. Watching videos in bed delays sleep.",
+     "hi": "सोने से पहले स्क्रीन नहीं, फ़ोन कमरे से बाहर और दिन में खेल मदद करते हैं। बिस्तर में वीडियो देखना नींद में देर करता है।",
+     "hinglish": "Sone se pehle screens nahi, phone room se bahar aur din mein khel madad karte hain. Bed mein videos dekhna neend mein der karta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "What is the 20-20-20 rule?",
+     "hi": "20-20-20 नियम क्या है?",
+     "hinglish": "20-20-20 rule kya hai?"
+    },
+    "options": [
+     {
+      "en": "Every 20 min, look 20 ft away for 20 s",
+      "hi": "हर 20 मिनट, 20 फ़ुट दूर, 20 सेकंड",
+      "hinglish": "Har 20 min, 20 ft door, 20 s"
+     },
+     {
+      "en": "20 apps, 20 friends, 20 posts",
+      "hi": "20 ऐप, 20 दोस्त, 20 पोस्ट",
+      "hinglish": "20 apps, 20 friends, 20 posts"
+     },
+     {
+      "en": "Sleep at 20:20 every day",
+      "hi": "रोज़ 20:20 पर सोना",
+      "hinglish": "Roz 20:20 pe sona"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Every 20 minutes, look at something 20 feet away for 20 seconds to rest your eyes.",
+     "hi": "हर 20 मिनट पर, आँखों को आराम देने के लिए 20 फ़ुट दूर किसी चीज़ को 20 सेकंड देखो।",
+     "hinglish": "Har 20 minute pe, aankhon ko aaraam dene ke liye 20 feet door kisi cheez ko 20 second dekho."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "short",
+    "prompt": {
+     "en": "What is the number of India’s free Tele-MANAS mental-health helpline?",
+     "hi": "भारत की मुफ़्त टेली-मानस मानसिक स्वास्थ्य हेल्पलाइन का नंबर क्या है?",
+     "hinglish": "India ki free Tele-MANAS mental-health helpline ka number kya hai?"
+    },
+    "answer": [
+     "14416"
+    ],
+    "explain": {
+     "en": "14416 — free, confidential, 24×7.",
+     "hi": "14416 — मुफ़्त, गोपनीय, 24×7।",
+     "hinglish": "14416 — free, confidential, 24×7."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the lab mission.",
+     "hi": "लैब मिशन पूरा करो।",
+     "hinglish": "Lab mission poora karo."
+    },
+    "answer": {
+     "lab": "life-lab",
+     "event": "mission:complete",
+     "tab": "time"
+    },
+    "explain": {
+     "en": "9+ h sleep, 1+ h play, ≤2 h fun screens, total 24 h.",
+     "hi": "9+ घंटे नींद, 1+ घंटा खेल, ≤2 घंटे स्क्रीन, कुल 24 घंटे।",
+     "hinglish": "9+ h neend, 1+ h khel, ≤2 h fun screens, total 24 h."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "WHO — Guidelines on physical activity and sedentary behaviour (2020)",
+   "url": "https://www.who.int/publications/i/item/9789240015128",
+   "licence": "fact reference"
+  },
+  {
+   "title": "American Academy of Sleep Medicine — Recommended amount of sleep for paediatric populations (2016)",
+   "url": "https://jcsm.aasm.org/doi/10.5664/jcsm.5866",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Canadian 24-Hour Movement Guidelines for Children and Youth",
+   "url": "https://csepguidelines.ca/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Tele-MANAS — Ministry of Health and Family Welfare",
+   "url": "https://telemanas.mohfw.gov.in/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

@@ -1,0 +1,277 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.thinking-logic.03",
+ "level": 1,
+ "classes": [
+  1,
+  2,
+  3,
+  4
+ ],
+ "unit": "thinking-logic",
+ "title": {
+  "en": "Loops: do it again!",
+  "hi": "लूप: फिर से करो!",
+  "hinglish": "Loops: phir se karo!"
+ },
+ "minutes": 7,
+ "xp": 30,
+ "prereq": [
+  "L1.thinking-logic.02"
+ ],
+ "topics": [
+  "prog.loops"
+ ],
+ "outcomes": [
+  {
+   "en": "Use a repeat loop instead of writing the same step many times.",
+   "hi": "एक ही कदम बार-बार लिखने की जगह दोहराओ लूप लगा सकते हो।",
+   "hinglish": "Same step baar-baar likhne ki jagah repeat loop use kar sakte ho."
+  },
+  {
+   "en": "Find the repeating part of a task.",
+   "hi": "काम का दोहराने वाला हिस्सा ढूँढ सकते हो।",
+   "hinglish": "Kaam ka repeat hone wala hissa dhoondh sakte ho."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Loop",
+   "en": "A block that repeats instructions a set number of times",
+   "hi": "ब्लॉक जो निर्देश तय बार दोहराता है",
+   "hinglish": "Kuch steps ko baar-baar chalana"
+  },
+  {
+   "term": "Repeat 5",
+   "en": "Run the steps inside five times",
+   "hi": "अंदर के कदम पाँच बार चलाओ",
+   "hinglish": "Andar wale steps 5 baar"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.thinking-logic.03.s1",
+   "caption": {
+    "en": "6 blocks the same? Tiring!",
+    "hi": "6 एक जैसे ब्लॉक? थकाऊ!",
+    "hinglish": "6 same blocks? Thakaau!"
+   },
+   "narration": {
+    "en": "Writing \"forward\" 6 times is long and boring.",
+    "hinglish": "\"Forward\" 6 baar likhna lamba aur boring hai.",
+    "hi": "6 एक जैसे ब्लॉक? थकाऊ!"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.thinking-logic.03.s2",
+   "caption": {
+    "en": "Use a loop: Repeat 6 × forward.",
+    "hi": "लूप लगाओ: दोहराओ 6 × आगे।",
+    "hinglish": "Loop lagao: Repeat 6 × forward."
+   },
+   "narration": {
+    "en": "One loop block does the same job in 2 blocks. Short and neat!",
+    "hinglish": "Ek loop block wahi kaam 2 blocks mein karta hai. Chhota aur saaf!",
+    "hi": "लूप लगाओ: दोहराओ 6 × आगे।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.thinking-logic.03.s3",
+   "caption": {
+    "en": "Loops are everywhere.",
+    "hi": "लूप हर जगह हैं।",
+    "hinglish": "Loops har jagah hain."
+   },
+   "narration": {
+    "en": "Running 3 laps, clapping 10 times, a washing machine spinning — all loops!",
+    "hinglish": "3 chakkar daudna, 10 baar taali, washing machine ka ghoomna — sab loops!",
+    "hi": "लूप हर जगह हैं।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "loop-coder",
+  "config": {
+   "level": 4
+  },
+  "goal": {
+   "en": "Reach the mango using only 2 blocks — a loop!",
+   "hi": "सिर्फ़ 2 ब्लॉक से आम तक पहुँचो — एक लूप!",
+   "hinglish": "Sirf 2 blocks se mango tak pahuncho — ek loop!"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "What a loop does",
+    "hi": "लूप क्या करता है",
+    "hinglish": "Loop kya karta hai"
+   },
+   "body": {
+    "en": "A loop repeats the steps inside it. \"Repeat 6 [forward]\" moves 6 times. Programs use loops to do thousands of steps without writing thousands of lines.",
+    "hi": "लूप अपने अंदर के कदम दोहराता है। \"दोहराओ 6 [आगे]\" 6 बार चलता है। प्रोग्राम लूप से हज़ारों कदम बिना हज़ारों पंक्तियाँ लिखे करते हैं।",
+    "hinglish": "Loop apne andar ke steps repeat karta hai. \"Repeat 6 [forward]\" 6 baar chalta hai. Programs loops se hazaaron steps bina hazaaron lines likhe karte hain."
+   },
+   "analogy": {
+    "en": "The teacher says \"Say the table 10 times\" — she does not say it 10 separate times!",
+    "hi": "टीचर कहती हैं \"पहाड़ा 10 बार बोलो\" — हर बार अलग से नहीं बोलतीं!",
+    "hinglish": "Teacher kehti hain \"Pahada 10 baar bolo\" — har baar alag se nahin bolti!"
+   }
+  },
+  {
+   "heading": {
+    "en": "Find the repeating part",
+    "hi": "दोहराने वाला हिस्सा ढूँढो",
+    "hinglish": "Repeat hone wala hissa dhoondo"
+   },
+   "body": {
+    "en": "To use a loop, first spot the pattern. For stairs: forward, up, forward, up… The repeating part goes inside the loop.",
+    "hi": "लूप लगाने से पहले पैटर्न पहचानो। सीढ़ियों के लिए: आगे, ऊपर, आगे, ऊपर… दोहराने वाला हिस्सा लूप के अंदर जाता है।",
+    "hinglish": "Loop lagane se pehle pattern pehchaano. Seedhiyon ke liye: forward, upar, forward, upar… Repeat hone wala hissa loop ke andar jaata hai."
+   },
+   "realExample": {
+    "en": "A ceiling fan repeats one turn again and again — the motor runs a loop.",
+    "hi": "छत का पंखा एक चक्कर बार-बार घूमता है — मोटर एक लूप चलाती है।",
+    "hinglish": "Pankha ek chakkar baar-baar ghoomta hai — motor ek loop chalata hai."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Do \"Repeat 5 [jump, clap]\" with a friend. Then make up your own loop dance.",
+   "hi": "दोस्त के साथ \"दोहराओ 5 [कूदो, ताली]\" करो। फिर अपना लूप डांस बनाओ।",
+   "hinglish": "Dost ke saath \"Repeat 5 [kood, taali]\" karo. Phir apna loop dance banao."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "\"Repeat 4 [clap]\" — how many claps?",
+     "hi": "\"दोहराओ 4 [ताली]\" — कितनी तालियाँ?",
+     "hinglish": "\"Repeat 4 [taali]\" — kitni taaliyan?"
+    },
+    "options": [
+     {
+      "en": "4",
+      "hi": "4",
+      "hinglish": "4"
+     },
+     {
+      "en": "1",
+      "hi": "1",
+      "hinglish": "1"
+     },
+     {
+      "en": "8",
+      "hi": "8",
+      "hinglish": "8"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "The step inside runs 4 times.",
+     "hi": "अंदर का कदम 4 बार चलता है।",
+     "hinglish": "Andar ka step 4 baar chalta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "\"Repeat 3 [jump, clap]\" — how many claps?",
+     "hi": "\"दोहराओ 3 [कूदो, ताली]\" — कितनी तालियाँ?",
+     "hinglish": "\"Repeat 3 [kood, taali]\" — kitni taaliyan?"
+    },
+    "options": [
+     {
+      "en": "3",
+      "hi": "3",
+      "hinglish": "3"
+     },
+     {
+      "en": "6",
+      "hi": "6",
+      "hinglish": "6"
+     },
+     {
+      "en": "2",
+      "hi": "2",
+      "hinglish": "2"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Each repeat has 1 clap; 3 repeats = 3 claps (and 3 jumps).",
+     "hi": "हर बार 1 ताली; 3 बार = 3 तालियाँ (और 3 कूद)।",
+     "hinglish": "Har baar 1 taali; 3 baar = 3 taaliyan (aur 3 jumps)."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "Which is shorter for 10 steps forward?",
+     "hi": "10 कदम आगे के लिए कौन छोटा है?",
+     "hinglish": "10 steps forward ke liye kaun chhota hai?"
+    },
+    "options": [
+     {
+      "en": "Repeat 10 [forward]",
+      "hi": "दोहराओ 10 [आगे]",
+      "hinglish": "Repeat 10 [forward]"
+     },
+     {
+      "en": "forward ×10 blocks",
+      "hi": "10 अलग आगे ब्लॉक",
+      "hinglish": "10 alag forward blocks"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "A loop does it with 2 blocks instead of 10.",
+     "hi": "लूप 10 की जगह 2 ब्लॉक में करता है।",
+     "hinglish": "Loop 10 ki jagah 2 blocks mein karta hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Climb the stairs in Level 5 with a loop (5 blocks or fewer).",
+     "hi": "स्तर 5 में लूप से सीढ़ियाँ चढ़ो (5 या कम ब्लॉक)।",
+     "hinglish": "Level 5 mein loop se seedhiyan chadho (5 ya kam blocks)."
+    },
+    "answer": {
+     "lab": "loop-coder",
+     "level": 5,
+     "solved": true
+    },
+    "explain": {
+     "en": "Repeat 4 [forward, turn left, forward, turn right].",
+     "hi": "दोहराओ 4 [आगे, बाएँ, आगे, दाएँ]।",
+     "hinglish": "Repeat 4 [forward, left, forward, right]."
+    },
+    "difficulty": 3
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "CS Unplugged – computational thinking ideas (fact reference only)",
+   "url": "https://www.csunplugged.org/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}

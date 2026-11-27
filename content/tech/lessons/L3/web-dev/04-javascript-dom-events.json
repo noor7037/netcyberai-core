@@ -1,0 +1,360 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L3.web-dev.04",
+ "level": 3,
+ "classes": [
+  9,
+  10,
+  11
+ ],
+ "unit": "web-dev",
+ "title": {
+  "en": "JavaScript, the DOM and events",
+  "hi": "JavaScript, DOM और इवेंट",
+  "hinglish": "JavaScript, DOM aur events"
+ },
+ "minutes": 15,
+ "xp": 60,
+ "prereq": [
+  "L3.web-dev.03",
+  "L3.python-pro.01"
+ ],
+ "outcomes": [
+  {
+   "en": "Select and change page elements through the DOM",
+   "hi": "DOM से पेज के तत्व चुनो और बदलो",
+   "hinglish": "DOM se page ke elements chuno aur badlo"
+  },
+  {
+   "en": "Respond to clicks and input with addEventListener",
+   "hi": "addEventListener से क्लिक और इनपुट का जवाब दो",
+   "hinglish": "addEventListener se clicks aur input ka jawab do"
+  },
+  {
+   "en": "Write safe DOM code with textContent and debug with the console",
+   "hi": "textContent से सुरक्षित DOM कोड लिखो और कंसोल से डीबग करो",
+   "hinglish": "textContent se safe DOM code likho aur console se debug karo"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "DOM",
+   "hinglish": "Page ka ped",
+   "en": "Document Object Model: the page as a tree of objects that JavaScript can read and change",
+   "hi": "डॉक्यूमेंट ऑब्जेक्ट मॉडल: पेज वस्तुओं के पेड़ के रूप में जिसे JavaScript पढ़ और बदल सके"
+  },
+  {
+   "term": "Event",
+   "hinglish": "Ghatna",
+   "en": "Something that happens: click, input, submit, keydown, load",
+   "hi": "कुछ जो होता है: click, input, submit, keydown, load"
+  },
+  {
+   "term": "Listener",
+   "hinglish": "Sunne wala",
+   "en": "A function that runs when an event happens",
+   "hi": "फ़ंक्शन जो इवेंट होने पर चले"
+  },
+  {
+   "term": "const / let",
+   "hinglish": "const / let",
+   "en": "const for values that are not reassigned, let for ones that change",
+   "hi": "न बदलने वाले मानों के लिए const, बदलने वालों के लिए let"
+  },
+  {
+   "term": "XSS",
+   "hinglish": "XSS",
+   "en": "Cross-site scripting: an attacker’s text runs as code because it was inserted as HTML",
+   "hi": "क्रॉस-साइट स्क्रिप्टिंग: हमलावर का पाठ HTML की तरह डालने से कोड बनकर चलता है"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "HTML becomes a tree: html › body › main › button#like.",
+    "hi": "HTML एक पेड़ बनता है: html › body › main › button#like।",
+    "hinglish": "HTML ek tree banta hai: html › body › main › button#like."
+   },
+   "visual": "stack:html|body|main|button",
+   "narration": {
+    "en": "HTML becomes a tree: html › body › main › button#like.",
+    "hi": "HTML एक पेड़ बनता है: html › body › main › button#like।",
+    "hinglish": "HTML ek tree banta hai: html › body › main › button#like."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Find it: const btn = document.querySelector(\"#like\")",
+    "hi": "ढूँढो: const btn = document.querySelector(\"#like\")",
+    "hinglish": "Dhoondho: const btn = document.querySelector(\"#like\")"
+   },
+   "visual": "flow:selector|element",
+   "narration": {
+    "en": "Find it: const btn = document.querySelector(\"#like\")",
+    "hi": "ढूँढो: const btn = document.querySelector(\"#like\")",
+    "hinglish": "Dhoondho: const btn = document.querySelector(\"#like\")"
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Listen: btn.addEventListener(\"click\", …) → update the count.",
+    "hi": "सुनो: btn.addEventListener(\"click\", …) → गिनती बदलो।",
+    "hinglish": "Suno: btn.addEventListener(\"click\", …) → count update karo."
+   },
+   "visual": "flow:click|listener|update",
+   "narration": {
+    "en": "Listen: btn.addEventListener(\"click\", …) → update the count.",
+    "hi": "सुनो: btn.addEventListener(\"click\", …) → गिनती बदलो।",
+    "hinglish": "Suno: btn.addEventListener(\"click\", …) → count update karo."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "Show text with textContent, never by pasting user input into innerHTML.",
+    "hi": "पाठ textContent से दिखाओ, उपयोगकर्ता का इनपुट innerHTML में कभी मत डालो।",
+    "hinglish": "Text textContent se dikhao, user input innerHTML mein kabhi mat daalo."
+   },
+   "visual": "compare:textContent|innerHTML",
+   "narration": {
+    "en": "Show text with textContent, never by pasting user input into innerHTML.",
+    "hi": "पाठ textContent से दिखाओ, उपयोगकर्ता का इनपुट innerHTML में कभी मत डालो।",
+    "hinglish": "Text textContent se dikhao, user input innerHTML mein kabhi mat daalo."
+   }
+  }
+ ],
+ "play": {
+  "lab": "web-lab",
+  "config": {
+   "mission": "dom"
+  },
+  "goal": {
+   "en": "Mission 4: make the 👍 Like button count clicks. Use addEventListener in the JS tab and textContent to show the number, and watch the console.",
+   "hi": "मिशन 4: 👍 Like बटन से क्लिक गिनो। JS टैब में addEventListener और संख्या दिखाने के लिए textContent इस्तेमाल करो, और कंसोल देखो।",
+   "hinglish": "Mission 4: 👍 Like button se clicks gino. JS tab mein addEventListener aur number dikhane ke liye textContent use karo, aur console dekho."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "The page is a tree you can change",
+    "hi": "पेज एक पेड़ है जिसे बदल सकते हो",
+    "hinglish": "Page ek tree hai jise badal sakte ho"
+   },
+   "body": {
+    "en": "When the browser reads HTML it builds the DOM: a tree of element objects. JavaScript finds elements with document.querySelector(\".card\") or querySelectorAll, then reads or changes them: el.textContent = \"Done\", el.classList.add(\"on\"), el.setAttribute(\"aria-pressed\", \"true\"), or document.createElement(\"li\") followed by list.appendChild(li). Pages react through events. btn.addEventListener(\"click\", handler) runs handler on every click; other useful events are input (each key typed), submit (a form is sent — call event.preventDefault() to handle it yourself), keydown and DOMContentLoaded. Keep JavaScript in its own file or tab instead of onclick attributes, so HTML stays clean. Use const by default and let only when a value changes. JavaScript was created in 1995 by Brendan Eich; it is standardised as ECMAScript, updated every year.",
+    "hi": "जब ब्राउज़र HTML पढ़ता है तो DOM बनाता है: तत्व वस्तुओं का पेड़। JavaScript document.querySelector(\".card\") या querySelectorAll से तत्व ढूँढता है, फिर उन्हें पढ़ता या बदलता है: el.textContent = \"Done\", el.classList.add(\"on\"), el.setAttribute(\"aria-pressed\", \"true\"), या document.createElement(\"li\") के बाद list.appendChild(li)। पेज इवेंट से प्रतिक्रिया देते हैं। btn.addEventListener(\"click\", handler) हर क्लिक पर handler चलाता है; दूसरे उपयोगी इवेंट हैं input (हर टाइप की कुंजी), submit (फ़ॉर्म भेजा गया — ख़ुद सँभालने को event.preventDefault() बुलाओ), keydown और DOMContentLoaded। JavaScript को onclick गुणों की जगह अपनी फ़ाइल या टैब में रखो, ताकि HTML साफ़ रहे। डिफ़ॉल्ट रूप से const और केवल बदलने वाले मान के लिए let इस्तेमाल करो। JavaScript 1995 में ब्रेंडन आइक ने बनाई; इसका मानक ECMAScript है, जो हर साल अपडेट होता है।",
+    "hinglish": "Jab browser HTML padhta hai to DOM banata hai: element objects ka tree. JavaScript document.querySelector(\".card\") ya querySelectorAll se elements dhoondhta hai, phir unhe padhta ya badalta hai: el.textContent = \"Done\", el.classList.add(\"on\"), el.setAttribute(\"aria-pressed\", \"true\"), ya document.createElement(\"li\") ke baad list.appendChild(li). Pages events se react karte hain. btn.addEventListener(\"click\", handler) har click par handler chalata hai; doosre useful events hain input (har typed key), submit (form bheja gaya — khud handle karne ko event.preventDefault() call karo), keydown aur DOMContentLoaded. JavaScript ko onclick attributes ki jagah apni file ya tab mein rakho, taaki HTML saaf rahe. Default se const aur sirf badalne wali value ke liye let use karo. JavaScript 1995 mein Brendan Eich ne banayi; iska standard ECMAScript hai, jo har saal update hota hai."
+   },
+   "analogy": {
+    "en": "A school bell system: the bell (event) rings, and each class (listener) knows what to do when it hears it.",
+    "hi": "स्कूल की घंटी: घंटी (इवेंट) बजती है, और हर कक्षा (सुनने वाला) जानती है सुनकर क्या करना है।",
+    "hinglish": "School ki ghanti: ghanti (event) bajti hai, aur har class (listener) jaanti hai sunkar kya karna hai."
+   },
+   "realExample": {
+    "en": "const box = document.querySelector(\"#name\"); const hi = document.querySelector(\"#hello\"); box.addEventListener(\"input\", () => { hi.textContent = \"Namaste, \" + box.value; });",
+    "hi": "const box = document.querySelector(\"#name\"); const hi = document.querySelector(\"#hello\"); box.addEventListener(\"input\", () => { hi.textContent = \"नमस्ते, \" + box.value; });",
+    "hinglish": "const box = document.querySelector(\"#name\"); const hi = document.querySelector(\"#hello\"); box.addEventListener(\"input\", () => { hi.textContent = \"Namaste, \" + box.value; });"
+   }
+  },
+  {
+   "heading": {
+    "en": "Safe and debuggable",
+    "hi": "सुरक्षित और डीबग योग्य",
+    "hinglish": "Safe aur debuggable"
+   },
+   "body": {
+    "en": "If you write el.innerHTML = userText and someone types <img src=x onerror=\"stealCookies()\">, the browser runs their code on your page: this is cross-site scripting (XSS), one of the most common web flaws in the OWASP Top 10. The fix is simple: put text in with textContent, which shows < and > as plain characters, and build elements with createElement. Only use innerHTML for HTML you wrote yourself. For debugging, open developer tools: console.log(value) prints values, the red error line tells you the file and line number, and the Sources tab lets you pause on a line with a breakpoint. Read the first error first — later errors are often caused by it. In the lab, your page runs in a sandboxed iframe, the same protection browsers use for ads and embedded widgets.",
+    "hi": "अगर आप el.innerHTML = userText लिखो और कोई <img src=x onerror=\"stealCookies()\"> टाइप करे, तो ब्राउज़र आपके पेज पर उसका कोड चलाता है: यह क्रॉस-साइट स्क्रिप्टिंग (XSS) है, OWASP Top 10 की सबसे आम वेब कमियों में से एक। उपाय सरल है: पाठ textContent से डालो, जो < और > को सादे अक्षरों की तरह दिखाता है, और तत्व createElement से बनाओ। innerHTML केवल ख़ुद लिखे HTML के लिए इस्तेमाल करो। डीबग के लिए डेवलपर टूल खोलो: console.log(value) मान छापता है, लाल त्रुटि पंक्ति फ़ाइल और पंक्ति संख्या बताती है, और Sources टैब ब्रेकपॉइंट से किसी पंक्ति पर रुकने देता है। पहली त्रुटि पहले पढ़ो — बाद की त्रुटियाँ अक्सर उसी से होती हैं। लैब में आपका पेज सैंडबॉक्स iframe में चलता है, वही सुरक्षा जो ब्राउज़र विज्ञापनों और एम्बेड विजेट्स के लिए लगाते हैं।",
+    "hinglish": "Agar tum el.innerHTML = userText likho aur koi <img src=x onerror=\"stealCookies()\"> type kare, to browser tumhare page par uska code chalata hai: yeh cross-site scripting (XSS) hai, OWASP Top 10 ki sabse common web flaws mein se ek. Fix simple hai: text textContent se daalo, jo < aur > ko plain characters ki tarah dikhata hai, aur elements createElement se banao. innerHTML sirf khud likhe HTML ke liye use karo. Debugging ke liye developer tools kholo: console.log(value) values print karta hai, laal error line file aur line number batati hai, aur Sources tab breakpoint se kisi line par rukne deta hai. Pehla error pehle padho — baad ke errors aksar usi se hote hain. Lab mein tumhara page sandboxed iframe mein chalta hai, wahi protection jo browsers ads aur embedded widgets ke liye lagate hain."
+   },
+   "analogy": {
+    "en": "Reading a stranger’s note aloud versus doing whatever the note says: textContent reads it, innerHTML obeys it.",
+    "hi": "अजनबी का पर्चा ज़ोर से पढ़ना बनाम पर्चे में लिखा करना: textContent पढ़ता है, innerHTML मानता है।",
+    "hinglish": "Ajnabi ka parcha zor se padhna vs parche mein likha karna: textContent padhta hai, innerHTML maanta hai."
+   },
+   "realExample": {
+    "en": "Unsafe: out.innerHTML = comment;  Safe: out.textContent = comment;  Console: Uncaught TypeError: Cannot read properties of null (reading \"addEventListener\") at app.js:3 → the selector found nothing.",
+    "hi": "असुरक्षित: out.innerHTML = comment;  सुरक्षित: out.textContent = comment;  कंसोल: Uncaught TypeError: Cannot read properties of null (reading \"addEventListener\") at app.js:3 → सिलेक्टर को कुछ नहीं मिला।",
+    "hinglish": "Unsafe: out.innerHTML = comment;  Safe: out.textContent = comment;  Console: Uncaught TypeError: Cannot read properties of null (reading \"addEventListener\") at app.js:3 → selector ko kuch nahi mila."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Add JavaScript to your Tech Club page: a dark-mode toggle button that adds a class to <body>, a live character counter under a message box, and a \"Show more\" button that reveals a section. Use addEventListener and textContent only, and fix every error the console shows.",
+   "hi": "अपने Tech Club पेज में JavaScript जोड़ो: dark-mode टॉगल बटन जो <body> पर क्लास लगाए, संदेश बॉक्स के नीचे लाइव अक्षर गिनती, और \"Show more\" बटन जो एक खंड दिखाए। केवल addEventListener और textContent इस्तेमाल करो, और कंसोल की हर त्रुटि ठीक करो।",
+   "hinglish": "Apne Tech Club page mein JavaScript jodo: dark-mode toggle button jo <body> par class lagaye, message box ke neeche live character counter, aur \"Show more\" button jo ek section dikhaye. Sirf addEventListener aur textContent use karo, aur console ka har error theek karo."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "order",
+    "prompt": {
+     "en": "Order the steps to make a button work.",
+     "hi": "बटन चलाने के चरण क्रम में लगाओ।",
+     "hinglish": "Button chalane ke steps order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Select the button with querySelector",
+      "hi": "querySelector से बटन चुनो",
+      "hinglish": "querySelector se button chuno"
+     },
+     {
+      "en": "Add a click listener",
+      "hi": "click listener जोड़ो",
+      "hinglish": "Click listener jodo"
+     },
+     {
+      "en": "Update the page in the handler",
+      "hi": "handler में पेज बदलो",
+      "hinglish": "Handler mein page badlo"
+     },
+     {
+      "en": "Test it and read the console",
+      "hi": "जाँचो और कंसोल पढ़ो",
+      "hinglish": "Test karo aur console padho"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "explain": {
+     "en": "Find, listen, change, test.",
+     "hi": "ढूँढो, सुनो, बदलो, जाँचो।",
+     "hinglish": "Dhoondho, suno, badlo, test karo."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "A comment box shows what users type. Which line is safe?",
+     "hi": "टिप्पणी बॉक्स उपयोगकर्ताओं का लिखा दिखाता है। कौन-सी पंक्ति सुरक्षित है?",
+     "hinglish": "Comment box users ka likha dikhata hai. Kaunsi line safe hai?"
+    },
+    "options": [
+     "out.textContent = comment",
+     "out.innerHTML = comment",
+     "document.write(comment)",
+     "out.outerHTML = comment"
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "textContent never runs HTML or scripts.",
+     "hi": "textContent कभी HTML या स्क्रिप्ट नहीं चलाता।",
+     "hinglish": "textContent kabhi HTML ya scripts nahi chalata."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q3",
+    "type": "mcq",
+    "prompt": {
+     "en": "The console says \"Cannot read properties of null (reading addEventListener)\". The most likely cause?",
+     "hi": "कंसोल कहता है \"Cannot read properties of null (reading addEventListener)\"। सबसे संभावित कारण?",
+     "hinglish": "Console kehta hai \"Cannot read properties of null (reading addEventListener)\". Sabse likely kaaran?"
+    },
+    "options": [
+     {
+      "en": "querySelector found no element — wrong selector or script ran too early",
+      "hi": "querySelector को तत्व नहीं मिला — ग़लत सिलेक्टर या स्क्रिप्ट जल्दी चली",
+      "hinglish": "querySelector ko element nahi mila — galat selector ya script jaldi chali"
+     },
+     {
+      "en": "The internet is down",
+      "hi": "इंटरनेट बंद है",
+      "hinglish": "Internet band hai"
+     },
+     {
+      "en": "CSS is missing",
+      "hi": "CSS नहीं है",
+      "hinglish": "CSS nahi hai"
+     },
+     {
+      "en": "The button is too big",
+      "hi": "बटन बहुत बड़ा है",
+      "hinglish": "Button bahut bada hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "null means \"nothing was found\".",
+     "hi": "null का अर्थ \"कुछ नहीं मिला\"।",
+     "hinglish": "null ka matlab \"kuch nahi mila\"."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "short",
+    "prompt": {
+     "en": "Which event fires every time a user types a character in a text box?",
+     "hi": "टेक्स्ट बॉक्स में हर अक्षर टाइप करने पर कौन-सा इवेंट होता है?",
+     "hinglish": "Text box mein har character type karne par kaunsa event hota hai?"
+    },
+    "answer": {
+     "accept": [
+      "input",
+      "\"input\""
+     ]
+    },
+    "explain": {
+     "en": "\"input\" fires on every change; \"change\" fires when you leave the box.",
+     "hi": "\"input\" हर बदलाव पर; \"change\" बॉक्स छोड़ने पर।",
+     "hinglish": "\"input\" har change par; \"change\" box chhodne par."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Pass mission 4 (JS & the DOM) in the Web Dev Lab.",
+     "hi": "वेब डेव लैब में मिशन 4 (JS और DOM) पास करो।",
+     "hinglish": "Web Dev Lab mein mission 4 (JS aur DOM) pass karo."
+    },
+    "answer": {
+     "event": "dom-works",
+     "mission": "dom"
+    },
+    "explain": {
+     "en": "Listener, textContent, two clicks = +2.",
+     "hi": "Listener, textContent, दो क्लिक = +2।",
+     "hinglish": "Listener, textContent, do clicks = +2."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "topics": [
+  "web.js",
+  "cyber.web-vulns-defence",
+  "prog.debugging"
+ ],
+ "sources": [
+  {
+   "title": "Ecma International — ECMAScript language specification (ECMA-262)",
+   "url": "https://tc39.es/ecma262/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "WHATWG — DOM Living Standard",
+   "url": "https://dom.spec.whatwg.org/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "OWASP Top 10",
+   "url": "https://owasp.org/www-project-top-ten/",
+   "licence": "fact reference"
+  }
+ ]
+}

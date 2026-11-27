@@ -1,0 +1,405 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L2.digital-life.03",
+ "level": 2,
+ "classes": [
+  6,
+  7,
+  8
+ ],
+ "unit": "digital-life",
+ "title": {
+  "en": "Fake news and fact-checking",
+  "hi": "फ़र्ज़ी ख़बरें और तथ्य-जाँच",
+  "hinglish": "Fake news aur fact-checking"
+ },
+ "minutes": 12,
+ "xp": 40,
+ "prereq": [
+  "L2.digital-life.02"
+ ],
+ "topics": [
+  "cit.fake-news"
+ ],
+ "outcomes": [
+  {
+   "en": "Explain misinformation and disinformation",
+   "hi": "भ्रामक और दुष्प्रचार सूचना समझा सकते हो",
+   "hinglish": "Misinformation aur disinformation samjha sakte ho"
+  },
+  {
+   "en": "Use the SIFT steps to check a viral message",
+   "hi": "SIFT चरणों से वायरल संदेश जाँच सकते हो",
+   "hinglish": "SIFT steps se viral message check kar sakte ho"
+  },
+  {
+   "en": "Know why forwards spread fast and when to stop them",
+   "hi": "जानते हो कि फ़ॉरवर्ड तेज़ी से क्यों फैलते हैं और कब रोकने चाहिए",
+   "hinglish": "Jaante ho forwards tez kyun failte hain aur kab rokne chahiye"
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Misinformation",
+   "hinglish": "Galti se galat jaankari",
+   "en": "False information shared by people who believe it is true",
+   "hi": "ग़लत जानकारी जिसे लोग सच मानकर साझा करते हैं"
+  },
+  {
+   "term": "Disinformation",
+   "hinglish": "Jaan-boojh kar jhooth",
+   "en": "False information spread on purpose to fool or harm",
+   "hi": "धोखा देने या नुक़सान के लिए जान-बूझकर फैलाई ग़लत जानकारी"
+  },
+  {
+   "term": "Clickbait",
+   "hinglish": "Click karwane wala headline",
+   "en": "A shocking headline made to get clicks, not to inform",
+   "hi": "चौंकाने वाला शीर्षक जो जानकारी के लिए नहीं, क्लिक के लिए बना"
+  },
+  {
+   "term": "SIFT",
+   "hinglish": "Check karne ke 4 kadam",
+   "en": "Stop, Investigate the source, Find better coverage, Trace to the original",
+   "hi": "रुको, स्रोत जाँचो, बेहतर कवरेज खोजो, मूल तक पहुँचो"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "caption": {
+    "en": "Fake news spreads because it is shocking, emotional and urgent: “Share before it is deleted!”",
+    "hi": "फ़र्ज़ी ख़बरें फैलती हैं क्योंकि वे चौंकाने वाली, भावुक और जल्दी वाली होती हैं: “हटने से पहले शेयर करो!”",
+    "hinglish": "Fake news failti hai kyunki woh shocking, emotional aur urgent hoti hai: “Delete hone se pehle share karo!”"
+   },
+   "visual": "compare:😱 Shocking + urgent + no source|✅ Calm + named source + other outlets agree",
+   "narration": {
+    "en": "Strong feelings are a signal to slow down.",
+    "hi": "तेज़ भावनाएँ धीमा होने का संकेत हैं।",
+    "hinglish": "Tez feelings dheere hone ka signal hain."
+   }
+  },
+  {
+   "step": 2,
+   "caption": {
+    "en": "Sort the posts in the lab: the salt-water “cure” and the “flood right now” video both need checking.",
+    "hi": "लैब में पोस्ट छाँटो: नमक-पानी का “इलाज” और “अभी बाढ़” वीडियो दोनों को जाँच चाहिए।",
+    "hinglish": "Lab mein posts sort karo: namak-paani ka “ilaaj” aur “abhi baadh” video dono ko check chahiye."
+   },
+   "visual": "lab:cyber-lab#share",
+   "narration": {
+    "en": "Old videos are often re-shared as if they are new.",
+    "hi": "पुराने वीडियो अक्सर नए बताकर दोबारा शेयर होते हैं।",
+    "hinglish": "Purane videos aksar naye bata kar dobara share hote hain."
+   }
+  },
+  {
+   "step": 3,
+   "caption": {
+    "en": "Use SIFT before you forward anything.",
+    "hi": "कुछ भी फ़ॉरवर्ड करने से पहले SIFT उपयोग करो।",
+    "hinglish": "Kuch bhi forward karne se pehle SIFT use karo."
+   },
+   "visual": "code",
+   "narration": {
+    "en": "Not sure? Don’t forward.",
+    "hi": "पक्का नहीं? फ़ॉरवर्ड मत करो।",
+    "hinglish": "Pakka nahi? Forward mat karo."
+   },
+   "code": "S  Stop: pause, notice your feelings\nI  Investigate the source: who posted it?\nF  Find better coverage: do 2 trusted outlets report it?\nT  Trace to the original: reverse image search, date"
+  }
+ ],
+ "play": {
+  "lab": "cyber-lab",
+  "config": {
+   "tab": "share"
+  },
+  "goal": {
+   "en": "Sort all 8 posts — share, keep private, or check first — and spot the ones that are probably false.",
+   "hi": "सभी 8 पोस्ट छाँटो — शेयर, निजी, या पहले जाँचो — और वे पहचानो जो शायद ग़लत हैं।",
+   "hinglish": "Saare 8 posts sort karo — share, private, ya pehle check — aur woh pehchaano jo shayad galat hain."
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "How falsehoods travel — and how to stop them",
+    "hi": "झूठ कैसे फैलता है — और उसे कैसे रोकें",
+    "hinglish": "Jhooth kaise failta hai — aur use kaise rokein"
+   },
+   "body": {
+    "en": "Misinformation is false information shared by people who believe it; disinformation is false information spread deliberately, for money, politics or mischief. A large 2018 study by MIT researchers (Vosoughi, Roy and Aral) of about 126,000 stories on Twitter found that false news spread farther and faster than true news, mainly because people shared surprising, emotional content. In India, rumours forwarded on messaging apps have caused panic and even violence, which is why WhatsApp in 2019 limited forwarding so a message can be forwarded to only five chats at a time and labels much-forwarded messages with a double arrow. Common types: fake “cures”, old disaster photos re-shared as new, edited screenshots of news channels, fake government schemes asking for personal details, and AI-made images. Check with SIFT: Stop and notice how the post makes you feel; Investigate who posted it; Find better coverage on trusted sources such as PIB Fact Check, official .gov.in websites and established newspapers; Trace the claim, quote or picture to its original source, for example with a reverse image search. If you cannot verify it, do not forward it — and kindly tell family members where to check.",
+    "hi": "भ्रामक सूचना (misinformation) वह ग़लत जानकारी है जिसे लोग सच मानकर साझा करते हैं; दुष्प्रचार (disinformation) पैसे, राजनीति या शरारत के लिए जान-बूझकर फैलाई ग़लत जानकारी है। MIT शोधकर्ताओं (वोसूगी, रॉय और अरल) के 2018 के बड़े अध्ययन ने Twitter पर लगभग 1,26,000 कहानियों में पाया कि ग़लत ख़बरें सच्ची ख़बरों से दूर और तेज़ फैलीं, मुख्यतः क्योंकि लोग चौंकाने वाली, भावुक सामग्री साझा करते हैं। भारत में मैसेजिंग ऐप पर फ़ॉरवर्ड अफ़वाहों से घबराहट और हिंसा तक हुई है, इसीलिए WhatsApp ने 2019 में फ़ॉरवर्डिंग सीमित की ताकि संदेश एक बार में केवल पाँच चैट में फ़ॉरवर्ड हो सके और बहुत फ़ॉरवर्ड हुए संदेशों पर दोहरा तीर लगाया। आम प्रकार: नकली “इलाज”, नई बताकर दोबारा साझा की गई पुरानी आपदा फ़ोटो, समाचार चैनलों के संपादित स्क्रीनशॉट, निजी जानकारी माँगने वाली नकली सरकारी योजनाएँ, और AI-निर्मित चित्र। SIFT से जाँचो: रुको और देखो पोस्ट तुम्हें कैसा महसूस कराती है; जाँचो किसने पोस्ट किया; PIB फ़ैक्ट चेक, आधिकारिक .gov.in वेबसाइटों और स्थापित अख़बारों जैसे विश्वसनीय स्रोतों पर बेहतर कवरेज खोजो; दावे, उद्धरण या चित्र को उसके मूल स्रोत तक पहुँचाओ, जैसे रिवर्स इमेज सर्च से। अगर सत्यापित न कर सको, फ़ॉरवर्ड मत करो — और परिवार को विनम्रता से बताओ कहाँ जाँचें।",
+    "hinglish": "Misinformation woh galat jaankari hai jise log sach maan kar share karte hain; disinformation paise, politics ya shararat ke liye jaan-boojh kar failaayi galat jaankari hai. MIT researchers (Vosoughi, Roy aur Aral) ki 2018 ki badi study ne Twitter pe lagbhag 1,26,000 stories mein paaya ki false news true news se door aur tez faili, mainly kyunki log surprising, emotional content share karte hain. India mein messaging apps pe forward rumours se panic aur violence tak hua hai, isiliye WhatsApp ne 2019 mein forwarding limit ki taaki message ek baar mein sirf paanch chats mein forward ho sake aur bahut forward hue messages pe double arrow label lagaya. Common types: nakli “ilaaj”, naye bata kar dobara share ki gayi purani disaster photos, news channels ke edited screenshots, personal details maangne wali nakli sarkari schemes, aur AI-made images. SIFT se check karo: Stop karo aur dekho post tumhe kaisa feel karati hai; Investigate karo kisne post kiya; PIB Fact Check, official .gov.in websites aur established newspapers jaise trusted sources pe better coverage Find karo; claim, quote ya picture ko uske original source tak Trace karo, jaise reverse image search se. Agar verify na kar sako, forward mat karo — aur family ko politely batao kahan check karein."
+   },
+   "analogy": {
+    "en": "Fake news = a neighbourhood rumour: it grows as it passes each house, and nobody asks “who said it first?”",
+    "hi": "फ़र्ज़ी ख़बर = मोहल्ले की अफ़वाह: हर घर से गुज़रकर बड़ी होती जाती है, और कोई नहीं पूछता “पहले किसने कहा था?”",
+    "hinglish": "Fake news = mohalle ki afwaah: har ghar se guzar kar badi hoti jaati hai, aur koi nahi poochhta “pehle kisne kaha tha?”"
+   },
+   "realExample": {
+    "en": "PIB Fact Check regularly debunks viral messages such as fake “free laptop” or “free recharge” government schemes that ask people to click a link and enter personal details.",
+    "hi": "PIB फ़ैक्ट चेक नियमित रूप से वायरल संदेशों का खंडन करता है जैसे नकली “मुफ़्त लैपटॉप” या “मुफ़्त रिचार्ज” सरकारी योजनाएँ जो लोगों से लिंक क्लिक कर निजी जानकारी डालने को कहती हैं।",
+    "hinglish": "PIB Fact Check regularly viral messages debunk karta hai jaise nakli “free laptop” ya “free recharge” sarkari schemes jo logon se link click karke personal details daalne ko kehti hain."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Pick one forward from a family group (with permission). Run SIFT on it and write what you found. If it is false, draft a kind, short reply with a link to a trusted source.",
+   "hi": "परिवार ग्रुप से एक फ़ॉरवर्ड चुनो (अनुमति से)। उस पर SIFT चलाओ और लिखो क्या मिला। अगर ग़लत है, विश्वसनीय स्रोत के लिंक के साथ एक दयालु, छोटा जवाब लिखो।",
+   "hinglish": "Family group se ek forward chuno (permission ke saath). Uspe SIFT chalao aur likho kya mila. Agar galat hai, ek kind, chhota reply likho trusted source ke link ke saath."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "match",
+    "prompt": {
+     "en": "Match each word to its meaning.",
+     "hi": "हर शब्द को उसके अर्थ से मिलाओ।",
+     "hinglish": "Har word ko uske meaning se match karo."
+    },
+    "options": {
+     "left": [
+      {
+       "en": "Misinformation",
+       "hi": "भ्रामक सूचना",
+       "hinglish": "Misinformation"
+      },
+      {
+       "en": "Disinformation",
+       "hi": "दुष्प्रचार",
+       "hinglish": "Disinformation"
+      },
+      {
+       "en": "Clickbait",
+       "hi": "क्लिकबेट",
+       "hinglish": "Clickbait"
+      }
+     ],
+     "right": [
+      {
+       "en": "A shocking headline made for clicks",
+       "hi": "क्लिक के लिए बना चौंकाने वाला शीर्षक",
+       "hinglish": "Clicks ke liye bana shocking headline"
+      },
+      {
+       "en": "False info shared by people who believe it",
+       "hi": "ग़लत जानकारी जिसे लोग सच मानकर साझा करें",
+       "hinglish": "Galat info jise log sach maan kar share karein"
+      },
+      {
+       "en": "False info spread on purpose",
+       "hi": "जान-बूझकर फैलाई ग़लत जानकारी",
+       "hinglish": "Jaan-boojh kar failaayi galat info"
+      }
+     ]
+    },
+    "answer": [
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      2
+     ],
+     [
+      2,
+      0
+     ]
+    ],
+    "explain": {
+     "en": "Misinformation = honest mistake; disinformation = deliberate lie; clickbait = shocking headline for clicks.",
+     "hi": "भ्रामक = ईमानदार ग़लती; दुष्प्रचार = जान-बूझकर झूठ; क्लिकबेट = क्लिक के लिए चौंकाने वाला शीर्षक।",
+     "hinglish": "Misinformation = honest galti; disinformation = jaan-boojh kar jhooth; clickbait = clicks ke liye shocking headline."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "order",
+    "prompt": {
+     "en": "Put the SIFT steps in order.",
+     "hi": "SIFT चरणों को क्रम में लगाओ।",
+     "hinglish": "SIFT steps ko order mein lagao."
+    },
+    "options": [
+     {
+      "en": "Find better coverage",
+      "hi": "बेहतर कवरेज खोजो",
+      "hinglish": "Better coverage dhoondo"
+     },
+     {
+      "en": "Investigate the source",
+      "hi": "स्रोत जाँचो",
+      "hinglish": "Source investigate karo"
+     },
+     {
+      "en": "Trace to the original",
+      "hi": "मूल तक पहुँचो",
+      "hinglish": "Original tak trace karo"
+     },
+     {
+      "en": "Stop",
+      "hi": "रुको",
+      "hinglish": "Ruko"
+     }
+    ],
+    "answer": [
+     3,
+     1,
+     0,
+     2
+    ],
+    "explain": {
+     "en": "Stop → Investigate the source → Find better coverage → Trace to the original.",
+     "hi": "रुको → स्रोत जाँचो → बेहतर कवरेज खोजो → मूल तक पहुँचो।",
+     "hinglish": "Stop → Investigate source → Find better coverage → Trace to original."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "multi",
+    "prompt": {
+     "en": "Which are warning signs of fake news? Choose all.",
+     "hi": "फ़र्ज़ी ख़बर के चेतावनी संकेत कौन-से हैं? सभी चुनो।",
+     "hinglish": "Fake news ke warning signs kaunse hain? Saare chuno."
+    },
+    "options": [
+     {
+      "en": "“Share before it is deleted!”",
+      "hi": "“हटने से पहले शेयर करो!”",
+      "hinglish": "“Delete hone se pehle share karo!”"
+     },
+     {
+      "en": "No named source or date",
+      "hi": "कोई नामित स्रोत या तारीख़ नहीं",
+      "hinglish": "Koi named source ya date nahi"
+     },
+     {
+      "en": "Reported by several trusted newspapers",
+      "hi": "कई विश्वसनीय अख़बारों में",
+      "hinglish": "Kai trusted newspapers mein report"
+     },
+     {
+      "en": "A “free scheme” asking for your Aadhaar and OTP",
+      "hi": "आधार और OTP माँगने वाली “मुफ़्त योजना”",
+      "hinglish": "Aadhaar aur OTP maangne wali “free scheme”"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     3
+    ],
+    "explain": {
+     "en": "Urgency, no source and asking for personal details are red flags.",
+     "hi": "जल्दी, कोई स्रोत नहीं और निजी जानकारी माँगना ख़तरे के संकेत हैं।",
+     "hinglish": "Urgency, no source aur personal details maangna red flags hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "A 2018 MIT study of Twitter found that false news…",
+     "hi": "2018 के MIT अध्ययन ने Twitter पर पाया कि ग़लत ख़बरें…",
+     "hinglish": "2018 ki MIT study ne Twitter pe paaya ki false news…"
+    },
+    "options": [
+     {
+      "en": "spread more slowly than true news",
+      "hi": "सच्ची ख़बरों से धीमे फैलीं",
+      "hinglish": "true news se slow faili"
+     },
+     {
+      "en": "was shared only by robots",
+      "hi": "केवल रोबोट ने साझा कीं",
+      "hinglish": "sirf robots ne share ki"
+     },
+     {
+      "en": "spread farther and faster than true news",
+      "hi": "सच्ची ख़बरों से दूर और तेज़ फैलीं",
+      "hinglish": "true news se door aur tez faili"
+     }
+    ],
+    "answer": 2,
+    "explain": {
+     "en": "It spread farther and faster than true news, mostly through people sharing surprising content.",
+     "hi": "वे सच्ची ख़बरों से दूर और तेज़ फैलीं, ज़्यादातर लोगों के चौंकाने वाली सामग्री साझा करने से।",
+     "hinglish": "Woh true news se door aur tez faili, zyaadatar logon ke surprising content share karne se."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q5",
+    "type": "short",
+    "prompt": {
+     "en": "Which government unit checks viral claims about government schemes? (PIB ___ Check)",
+     "hi": "कौन-सी सरकारी इकाई सरकारी योजनाओं के वायरल दावे जाँचती है? (PIB ___ Check)",
+     "hinglish": "Kaunsi government unit sarkari schemes ke viral claims check karti hai? (PIB ___ Check)"
+    },
+    "answer": [
+     "Fact",
+     "fact"
+    ],
+    "explain": {
+     "en": "PIB Fact Check.",
+     "hi": "PIB फ़ैक्ट चेक।",
+     "hinglish": "PIB Fact Check."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q6",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Complete the lab mission.",
+     "hi": "लैब मिशन पूरा करो।",
+     "hinglish": "Lab mission poora karo."
+    },
+    "answer": {
+     "lab": "cyber-lab",
+     "event": "mission:complete",
+     "tab": "share"
+    },
+    "explain": {
+     "en": "Sort all 8 posts correctly.",
+     "hi": "सभी 8 पोस्ट सही छाँटो।",
+     "hinglish": "Saare 8 posts sahi sort karo."
+    },
+    "difficulty": 1
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "Vosoughi, Roy & Aral — The spread of true and false news online, Science (2018)",
+   "url": "https://www.science.org/doi/10.1126/science.aap9559",
+   "licence": "fact reference"
+  },
+  {
+   "title": "PIB Fact Check",
+   "url": "https://pib.gov.in/factcheck.aspx",
+   "licence": "fact reference"
+  },
+  {
+   "title": "Mike Caulfield — SIFT (The Four Moves)",
+   "url": "https://hapgood.us/2019/06/19/sift-the-four-moves/",
+   "licence": "fact reference"
+  },
+  {
+   "title": "WhatsApp — About forwarding limits",
+   "url": "https://faq.whatsapp.com/1053543185312573",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab — original lesson text",
+   "url": "",
+   "licence": "own work, CC BY 4.0"
+  }
+ ]
+}

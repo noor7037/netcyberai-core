@@ -1,0 +1,331 @@
+{
+ "schema": "nca-techlab/1",
+ "id": "L1.robots.05",
+ "level": 1,
+ "classes": [
+  3,
+  4,
+  5
+ ],
+ "unit": "robots",
+ "title": {
+  "en": "Robots and smart machines around us",
+  "hi": "हमारे आस-पास रोबोट और स्मार्ट मशीनें",
+  "hinglish": "Hamare aas-paas robots aur smart machines"
+ },
+ "minutes": 8,
+ "xp": 30,
+ "prereq": [
+  "L1.robots.04"
+ ],
+ "topics": [
+  "robo.iot",
+  "robo.what-is-robot",
+  "elec.sensors"
+ ],
+ "outcomes": [
+  {
+   "en": "Describe real robots: Pragyan rover, Vyommitra, factory arms, robot vacuums.",
+   "hi": "असली रोबोट के बारे में बता सकते हो: प्रज्ञान रोवर, व्योममित्र, कारख़ाने की रोबोटिक बाँहें, रोबोट वैक्यूम।",
+   "hinglish": "Asli robots ke baare mein bata sakte ho: Pragyan rover, Vyommitra, factory arms, robot vacuum."
+  },
+  {
+   "en": "Build a light-sensor rule like an automatic street light.",
+   "hi": "अपने आप जलने वाली स्ट्रीट लाइट जैसा लाइट-सेंसर नियम बना सकते हो।",
+   "hinglish": "Automatic street light jaisa light-sensor rule bana sakte ho."
+  },
+  {
+   "en": "Say what jobs robots are good at and what humans still do best.",
+   "hi": "बता सकते हो कि रोबोट किन कामों में अच्छे हैं और इंसान क्या बेहतर करते हैं।",
+   "hinglish": "Bata sakte ho robots kis kaam mein achhe hain aur insaan kya behtar karte hain."
+  }
+ ],
+ "vocab": [
+  {
+   "term": "Rover",
+   "en": "A robot vehicle that explores the Moon or another planet",
+   "hi": "चाँद या दूसरे ग्रह पर घूमने वाली रोबोट गाड़ी",
+   "hinglish": "Doosre grah ya chaand par ghoomne wala robot gaadi"
+  },
+  {
+   "term": "Humanoid",
+   "en": "A robot shaped like a person",
+   "hi": "इंसान जैसा दिखने वाला रोबोट",
+   "hinglish": "Insaan jaisa dikhne wala robot"
+  },
+  {
+   "term": "Light sensor (LDR)",
+   "en": "A sensor that measures how bright it is",
+   "hi": "रोशनी नापने वाला सेंसर",
+   "hinglish": "Roshni naapne wala sensor"
+  }
+ ],
+ "see": [
+  {
+   "step": 1,
+   "visual": "scene:L1.robots.05.s1",
+   "caption": {
+    "en": "Pragyan explored near the Moon's south pole.",
+    "hi": "प्रज्ञान ने चाँद के दक्षिणी ध्रुव के पास खोज की।",
+    "hinglish": "Pragyan ne chaand ke south pole ke paas khoj ki."
+   },
+   "narration": {
+    "en": "Chandrayaan-3 landed near the Moon's south pole on 23 August 2023. Its six-wheeled, solar-powered Pragyan rover travelled about 100 metres and studied the Moon's soil.",
+    "hinglish": "Chandrayaan-3 23 August 2023 ko chaand ke south pole ke paas utra. Uska chhe pahiye wala, solar se chalne wala Pragyan rover lagbhag 100 metre chala aur chaand ki mitti ki jaanch ki.",
+    "hi": "चंद्रयान-3 23 अगस्त 2023 को चाँद के दक्षिणी ध्रुव के पास उतरा। उसका छह पहियों वाला, सौर ऊर्जा से चलने वाला प्रज्ञान रोवर लगभग 100 मीटर चला और चाँद की मिट्टी की जाँच की।"
+   }
+  },
+  {
+   "step": 2,
+   "visual": "scene:L1.robots.05.s2",
+   "caption": {
+    "en": "Robots build, clean and even go to space.",
+    "hi": "रोबोट बनाते हैं, सफ़ाई करते हैं और अंतरिक्ष भी जाते हैं।",
+    "hinglish": "Robots banaate hain, safaai karte hain aur space bhi jaate hain."
+   },
+   "narration": {
+    "en": "Factory robot arms weld cars. Robot vacuums clean floors. ISRO built Vyommitra, a half-humanoid robot, to fly on test missions of the Gaganyaan programme.",
+    "hinglish": "Factory ke robot arms car weld karte hain. Robot vacuum farsh saaf karte hain. ISRO ne Vyommitra banaya, ek aadha-insaan jaisa robot, jo Gaganyaan ke test missions par udega.",
+    "hi": "कारख़ाने की रोबोटिक बाँहें गाड़ियाँ जोड़ती हैं। रोबोट वैक्यूम फ़र्श साफ़ करते हैं। इसरो ने व्योममित्र बनाया, आधा-इंसान जैसा रोबोट, जो गगनयान कार्यक्रम के परीक्षण अभियानों पर उड़ेगा।"
+   }
+  },
+  {
+   "step": 3,
+   "visual": "scene:L1.robots.05.s3",
+   "caption": {
+    "en": "Dark outside? The street light turns on by itself.",
+    "hi": "बाहर अंधेरा? स्ट्रीट लाइट अपने आप जलती है।",
+    "hinglish": "Bahar andhera? Street light apne aap jalti hai."
+   },
+   "narration": {
+    "en": "Some street lights have a light sensor. Its rule is simple: IF it is dark THEN switch on, ELSE switch off.",
+    "hinglish": "Kuch street lights mein light sensor hota hai. Rule simple hai: AGAR andhera hai TOH jalo, WARNA bujho.",
+    "hi": "कुछ स्ट्रीट लाइट में लाइट सेंसर होता है। नियम आसान है: अगर अंधेरा है तो जलो, वरना बुझो।"
+   }
+  }
+ ],
+ "play": {
+  "lab": "robot-sensors",
+  "config": {
+   "mode": "night"
+  },
+  "goal": {
+   "en": "Make a lamp that switches on at night and off in the day. Test both!",
+   "hi": "ऐसा लैंप बनाओ जो रात में जले और दिन में बुझे। दोनों जाँचो!",
+   "hinglish": "Aisa lamp banao jo raat mein jale aur din mein bujhe. Dono test karo!"
+  }
+ },
+ "understand": [
+  {
+   "heading": {
+    "en": "Robots are great at…",
+    "hi": "रोबोट इनमें अच्छे हैं…",
+    "hinglish": "Robots inmein achhe hain…"
+   },
+   "body": {
+    "en": "Robots are great at jobs that are repetitive, heavy, dangerous or far away: welding cars, lifting boxes, checking pipes, exploring the Moon. They do not get tired or bored.",
+    "hi": "रोबोट उन कामों में अच्छे हैं जो दोहराने वाले, भारी, ख़तरनाक या बहुत दूर हों: गाड़ियाँ जोड़ना, डिब्बे उठाना, पाइप जाँचना, चाँद पर खोज करना। वे थकते या ऊबते नहीं।",
+    "hinglish": "Robots un kaamon mein achhe hain jo repeat wale, bhaari, khatarnaak ya bahut door hon: car weld karna, dabbe uthaana, pipe check karna, chaand explore karna. Woh thakte ya bore nahin hote."
+   },
+   "analogy": {
+    "en": "A robot is a hard-working helper — but planning, caring for people and inventing new ideas are still human jobs.",
+    "hi": "रोबोट एक मेहनती सहायक है — पर योजना बनाना, प्यार से बात करना और नए विचार सोचना अभी भी इंसान का काम है।",
+    "hinglish": "Robot ek mehnati helper hai — par plan banana, pyaar se baat karna aur naye idea sochna abhi bhi insaan ka kaam hai."
+   }
+  },
+  {
+   "heading": {
+    "en": "People build and program robots",
+    "hi": "इंसान रोबोट बनाते और प्रोग्राम करते हैं",
+    "hinglish": "Insaan robots banaate aur program karte hain"
+   },
+   "body": {
+    "en": "Every robot's rules were written by people. Robotics engineers design the body, electronics engineers choose sensors and motors, and programmers write the rules. If a robot makes a mistake, people find and fix the bug.",
+    "hi": "हर रोबोट के नियम इंसानों ने लिखे हैं। रोबोटिक्स इंजीनियर शरीर बनाते हैं, इलेक्ट्रॉनिक्स इंजीनियर सेंसर और मोटर चुनते हैं, और प्रोग्रामर नियम लिखते हैं। रोबोट ग़लती करे तो इंसान गड़बड़ी ढूँढकर सुधारते हैं।",
+    "hinglish": "Har robot ke rules insaanon ne likhe hain. Robotics engineers body banaate hain, electronics engineers sensors aur motors chunte hain, aur programmers rules likhte hain. Robot galti kare toh insaan bug dhoondh kar theek karte hain."
+   },
+   "realExample": {
+    "en": "ISRO scientists tested Pragyan on Earth for months, driving it on Moon-like soil, before sending it.",
+    "hi": "इसरो के वैज्ञानिकों ने प्रज्ञान को भेजने से पहले महीनों तक धरती पर चाँद जैसी मिट्टी पर चलाकर जाँचा।",
+    "hinglish": "ISRO scientists ne Pragyan ko bhejne se pehle mahino tak Earth par chaand jaisi mitti par chala kar test kiya."
+   }
+  }
+ ],
+ "try": {
+  "mission": {
+   "en": "Spot 3 machines with sensors on your way to school (automatic doors, street lights, traffic signals with cameras…). Draw one and its rule.",
+   "hi": "स्कूल जाते समय सेंसर वाली 3 मशीनें ढूँढो (अपने आप खुलने वाले दरवाज़े, स्ट्रीट लाइट, कैमरे वाले ट्रैफ़िक सिग्नल…)। एक का चित्र और उसका नियम बनाओ।",
+   "hinglish": "School jaate waqt sensor wali 3 machines dhoondo (automatic doors, street lights, camera wale traffic signals…). Ek ka chitra aur uska rule banao."
+  },
+  "questions": [
+   {
+    "id": "q1",
+    "type": "mcq",
+    "prompt": {
+     "en": "When did Chandrayaan-3 land on the Moon?",
+     "hi": "चंद्रयान-3 चाँद पर कब उतरा?",
+     "hinglish": "Chandrayaan-3 chaand par kab utra?"
+    },
+    "options": [
+     {
+      "en": "23 August 2023",
+      "hi": "23 अगस्त 2023",
+      "hinglish": "23 August 2023"
+     },
+     {
+      "en": "15 August 1947",
+      "hi": "15 अगस्त 1947",
+      "hinglish": "15 August 1947"
+     },
+     {
+      "en": "1 January 2000",
+      "hi": "1 जनवरी 2000",
+      "hinglish": "1 January 2000"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "It landed near the lunar south pole on 23 August 2023 — India now celebrates National Space Day on 23 August.",
+     "hi": "यह 23 अगस्त 2023 को चाँद के दक्षिणी ध्रुव के पास उतरा — भारत अब 23 अगस्त को राष्ट्रीय अंतरिक्ष दिवस मनाता है।",
+     "hinglish": "Yeh 23 August 2023 ko chaand ke south pole ke paas utra — India ab 23 August ko National Space Day manaata hai."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q2",
+    "type": "mcq",
+    "prompt": {
+     "en": "Night lamp rule: IF light is LOW THEN…",
+     "hi": "रात के लैंप का नियम: अगर रोशनी कम है तो…",
+     "hinglish": "Night lamp rule: AGAR light KAM hai TOH…"
+    },
+    "options": [
+     {
+      "en": "lamp ON",
+      "hi": "लैंप चालू",
+      "hinglish": "lamp ON"
+     },
+     {
+      "en": "lamp OFF",
+      "hi": "लैंप बंद",
+      "hinglish": "lamp OFF"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Dark → light needed → lamp on.",
+     "hi": "अंधेरा → रोशनी चाहिए → लैंप चालू।",
+     "hinglish": "Andhera → roshni chahiye → lamp on."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q3",
+    "type": "multi",
+    "prompt": {
+     "en": "Which jobs suit robots well?",
+     "hi": "कौन से काम रोबोट के लिए अच्छे हैं?",
+     "hinglish": "Kaun se kaam robots ke liye achhe hain?"
+    },
+    "options": [
+     {
+      "en": "Welding the same car part all day",
+      "hi": "दिन भर गाड़ी का एक ही हिस्सा जोड़ना",
+      "hinglish": "Din bhar car ka ek hi part weld karna"
+     },
+     {
+      "en": "Exploring the Moon",
+      "hi": "चाँद की खोज करना",
+      "hinglish": "Chaand explore karna"
+     },
+     {
+      "en": "Comforting a crying friend",
+      "hi": "रोते दोस्त को दिलासा देना",
+      "hinglish": "Rote dost ko dilaasa dena"
+     },
+     {
+      "en": "Lifting heavy boxes",
+      "hi": "भारी डिब्बे उठाना",
+      "hinglish": "Bhaari dabbe uthaana"
+     }
+    ],
+    "answer": [
+     0,
+     1,
+     3
+    ],
+    "explain": {
+     "en": "Repetitive, far-away and heavy jobs suit robots. Caring for people is a human strength.",
+     "hi": "दोहराने वाले, दूर के और भारी काम रोबोट के लिए हैं। लोगों की परवाह करना इंसान की ताक़त है।",
+     "hinglish": "Repeat wale, door ke aur bhaari kaam robots ke liye hain. Logon ki parwaah karna insaan ki taakat hai."
+    },
+    "difficulty": 2
+   },
+   {
+    "id": "q4",
+    "type": "mcq",
+    "prompt": {
+     "en": "Who writes a robot's rules?",
+     "hi": "रोबोट के नियम कौन लिखता है?",
+     "hinglish": "Robot ke rules kaun likhta hai?"
+    },
+    "options": [
+     {
+      "en": "People (programmers and engineers)",
+      "hi": "इंसान (प्रोग्रामर और इंजीनियर)",
+      "hinglish": "Insaan (programmers aur engineers)"
+     },
+     {
+      "en": "The robot invents them by magic",
+      "hi": "रोबोट जादू से बना लेता है",
+      "hinglish": "Robot jaadu se bana leta hai"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "People design, build and program robots, and fix their bugs.",
+     "hi": "इंसान रोबोट को डिज़ाइन, तैयार और प्रोग्राम करते हैं, और गड़बड़ी सुधारते हैं।",
+     "hinglish": "Insaan robots design, build aur program karte hain, aur bugs theek karte hain."
+    },
+    "difficulty": 1
+   },
+   {
+    "id": "q5",
+    "type": "lab-check",
+    "prompt": {
+     "en": "Build the night lamp and pass both tests.",
+     "hi": "रात का लैंप बनाओ और दोनों जाँच पास करो।",
+     "hinglish": "Night lamp banao aur dono tests pass karo."
+    },
+    "answer": {
+     "lab": "robot-sensors",
+     "mode": "night",
+     "solved": true
+    },
+    "explain": {
+     "en": "Rule: IF light < 30% THEN lamp ON. Slide to night (lamp on) and to day (lamp off).",
+     "hi": "नियम: अगर रोशनी < 30% तो लैंप चालू। रात तक खिसकाओ (लैंप जले) और दिन तक (लैंप बुझे)।",
+     "hinglish": "Rule: AGAR light < 30% TOH lamp ON. Raat tak slide karo (lamp jale) aur din tak (lamp bujhe)."
+    },
+    "difficulty": 2
+   }
+  ]
+ },
+ "sources": [
+  {
+   "title": "ISRO – Chandrayaan-3 mission (Pragyan rover) (fact reference)",
+   "url": "https://www.isro.gov.in/Chandrayaan3_Details.html",
+   "licence": "fact reference"
+  },
+  {
+   "title": "ISRO – Gaganyaan programme and Vyommitra (fact reference)",
+   "url": "https://www.isro.gov.in/Gaganyaan.html",
+   "licence": "fact reference"
+  },
+  {
+   "title": "NetCyberAI Tech & AI Lab – original lesson text and art",
+   "url": "https://www.netcyberai.com/",
+   "licence": "own work (CC BY 4.0)"
+  }
+ ]
+}
