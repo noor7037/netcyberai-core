@@ -158,17 +158,34 @@ alter table family.tech_days force row level security;
 revoke all on family.tech_lessons_done, family.tech_labs_done, family.tech_badges, family.tech_days from public, anon, authenticated, app_user, nca_super;
 
 -- Own account only, twice; and on a child's own phone, that child only (app.current_child_id, Z1).
-do $$
-declare t text;
-begin
-  foreach t in array array['tech_lessons_done', 'tech_labs_done', 'tech_badges', 'tech_days'] loop
-    execute format('create policy %I on family.%I as permissive for all to family_app using (account_id = family.current_account()) with check (account_id = family.current_account())', t || '_own', t);
-    execute format('create policy %I on family.%I as restrictive for all to family_app using (account_id = family.current_account()) with check (account_id = family.current_account())', t || '_own_only', t);
-    execute format($p$create policy %I on family.%I as restrictive for all to family_app
-      using (nullif(current_setting('app.current_child_id', true), '') is null or child_id = nullif(current_setting('app.current_child_id', true), '')::uuid)
-      with check (nullif(current_setting('app.current_child_id', true), '') is null or child_id = nullif(current_setting('app.current_child_id', true), '')::uuid)$p$, t || '_one_child', t);
-  end loop;
-end $$;
+create policy tech_lessons_done_own on family.tech_lessons_done as permissive for all to family_app
+  using (account_id = family.current_account()) with check (account_id = family.current_account());
+create policy tech_lessons_done_own_only on family.tech_lessons_done as restrictive for all to family_app
+  using (account_id = family.current_account()) with check (account_id = family.current_account());
+create policy tech_lessons_done_one_child on family.tech_lessons_done as restrictive for all to family_app
+  using (nullif(current_setting('app.current_child_id', true), '') is null or child_id = nullif(current_setting('app.current_child_id', true), '')::uuid)
+  with check (nullif(current_setting('app.current_child_id', true), '') is null or child_id = nullif(current_setting('app.current_child_id', true), '')::uuid);
+create policy tech_labs_done_own on family.tech_labs_done as permissive for all to family_app
+  using (account_id = family.current_account()) with check (account_id = family.current_account());
+create policy tech_labs_done_own_only on family.tech_labs_done as restrictive for all to family_app
+  using (account_id = family.current_account()) with check (account_id = family.current_account());
+create policy tech_labs_done_one_child on family.tech_labs_done as restrictive for all to family_app
+  using (nullif(current_setting('app.current_child_id', true), '') is null or child_id = nullif(current_setting('app.current_child_id', true), '')::uuid)
+  with check (nullif(current_setting('app.current_child_id', true), '') is null or child_id = nullif(current_setting('app.current_child_id', true), '')::uuid);
+create policy tech_badges_own on family.tech_badges as permissive for all to family_app
+  using (account_id = family.current_account()) with check (account_id = family.current_account());
+create policy tech_badges_own_only on family.tech_badges as restrictive for all to family_app
+  using (account_id = family.current_account()) with check (account_id = family.current_account());
+create policy tech_badges_one_child on family.tech_badges as restrictive for all to family_app
+  using (nullif(current_setting('app.current_child_id', true), '') is null or child_id = nullif(current_setting('app.current_child_id', true), '')::uuid)
+  with check (nullif(current_setting('app.current_child_id', true), '') is null or child_id = nullif(current_setting('app.current_child_id', true), '')::uuid);
+create policy tech_days_own on family.tech_days as permissive for all to family_app
+  using (account_id = family.current_account()) with check (account_id = family.current_account());
+create policy tech_days_own_only on family.tech_days as restrictive for all to family_app
+  using (account_id = family.current_account()) with check (account_id = family.current_account());
+create policy tech_days_one_child on family.tech_days as restrictive for all to family_app
+  using (nullif(current_setting('app.current_child_id', true), '') is null or child_id = nullif(current_setting('app.current_child_id', true), '')::uuid)
+  with check (nullif(current_setting('app.current_child_id', true), '') is null or child_id = nullif(current_setting('app.current_child_id', true), '')::uuid);
 
 grant select, insert, update on family.tech_lessons_done, family.tech_labs_done, family.tech_days to family_app;
 grant select, insert on family.tech_badges to family_app;
