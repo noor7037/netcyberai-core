@@ -11,7 +11,6 @@ import { writeImpersonationAudit } from '@/lib/audit/log';
 import { membershipToViewAs, viewAsReason } from '@/lib/control/people';
 import { IMPERSONATION_RETURN_COOKIE, IMPERSONATION_TTL_SECONDS, REFRESH_TTL_SECONDS, cookieOptions, sessionCookieOptions } from '@/lib/auth/cookies';
 import { accessCookieOf, refreshCookieOf, surfaceForRole } from '@/lib/auth/surfaces';
-import { decodeJwt } from 'jose';
 
 // Task 5: impersonation resolves to the target's REAL membership row and
 // goes through the exact same withTenantContext choke point as every
@@ -141,9 +140,10 @@ async function refusalReason(claims: SessionClaims, targetUserId: string, member
   return found && !found.is_active ? 'membership_inactive' : 'no_membership';
 }
 
+// The token's payload read as plain JSON (no signature check, no signing library): only to choose a cookie's name.
 function subOf(token: string): string | null {
   try {
-    const sub = decodeJwt(token).sub;
+    const sub = (JSON.parse(Buffer.from(token.split('.')[1] ?? '', 'base64url').toString('utf8')) as { sub?: unknown }).sub;
     return typeof sub === 'string' ? sub : null;
   } catch {
     return null;
