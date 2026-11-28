@@ -11,6 +11,9 @@ import { storageHealth } from '@/lib/observability/storage-health';
 import { StorageAlert } from '@/components/app-shell/StorageAlert';
 import { shellWords } from '@/components/app-shell/shell-words';
 
+// C556: its own installable app with its own sign-in, beside the others on one phone.
+export const metadata = { manifest: '/control.webmanifest' };
+
 // Redundant with middleware.ts's edge gate on purpose -- defense in
 // depth, same principle as RLS remaining the backstop under the app
 // layer (see the B2 report). If middleware's matcher config were ever

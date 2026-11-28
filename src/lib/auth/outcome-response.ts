@@ -1,17 +1,13 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import {
-  ACCESS_COOKIE,
-  REFRESH_COOKIE,
   PENDING_COOKIE,
   DEVICE_COOKIE,
   KEEP_COOKIE,
-  ACCESS_TTL_SECONDS,
-  REFRESH_TTL_SECONDS,
   PENDING_TTL_SECONDS,
   EMAIL_STEP_TTL_SECONDS,
   AUTHENTICATOR_SETUP_TTL_SECONDS,
   cookieOptions,
-  sessionCookieOptions,
+  setSessionCookies,
 } from './cookies';
 import { trustDevice, type DeviceProof } from './devices';
 import { AuthError } from './errors';
@@ -74,8 +70,9 @@ function outcomeResponse(outcome: LoginOutcome, persistent: boolean): NextRespon
     return res;
   }
   const res = NextResponse.json({ status: 'ok', role: outcome.claims.role, schoolId: outcome.claims.schoolId });
-  res.cookies.set(ACCESS_COOKIE, outcome.accessToken, sessionCookieOptions(ACCESS_TTL_SECONDS, persistent));
-  res.cookies.set(REFRESH_COOKIE, outcome.refreshToken, sessionCookieOptions(REFRESH_TTL_SECONDS, persistent));
+  // C556: under the cookies of the session's own area (Control, the parent home or the School app), so a sign-in here
+  // never signs out another area open in this browser.
+  setSessionCookies(res.cookies, outcome.claims.role, outcome.accessToken, outcome.refreshToken, persistent);
   res.cookies.delete(PENDING_COOKIE);
   // A new sign-in asks the account for its language again (C134): a choice
   // made on another device, or by whoever used this browser before, never

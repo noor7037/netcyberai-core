@@ -4,12 +4,13 @@ import { NextRequest, NextResponse } from 'next/server';
 import { requireSuperAdmin } from '@/lib/auth/require-super-admin';
 import { withTenantContext } from '@/lib/auth/db';
 import { fetchActiveMemberships, fetchLiveUser } from '@/lib/auth/resolve';
-import { signAccessToken } from '@/lib/auth/jwt';
+import { signAccessToken, verifyAccessToken } from '@/lib/auth/jwt';
 import type { SessionClaims } from '@/lib/auth/types';
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import { writeImpersonationAudit } from '@/lib/audit/log';
 import { membershipToViewAs, viewAsReason } from '@/lib/control/people';
-import { ACCESS_COOKIE, IMPERSONATION_RETURN_COOKIE, IMPERSONATION_TTL_SECONDS, cookieOptions } from '@/lib/auth/cookies';
+import { IMPERSONATION_RETURN_COOKIE, IMPERSONATION_TTL_SECONDS, REFRESH_TTL_SECONDS, cookieOptions, sessionCookieOptions } from '@/lib/auth/cookies';
+import { accessCookieOf, refreshCookieOf, surfaceForRole } from '@/lib/auth/surfaces';
 
 // Task 5: impersonation resolves to the target's REAL membership row and
 // goes through the exact same withTenantContext choke point as every
@@ -99,7 +100,6 @@ export async function POST(req: NextRequest) {
     IMPERSONATION_TTL_SECONDS
   );
 
-  const currentAccessToken = req.cookies.get(ACCESS_COOKIE)?.value;
   const res = NextResponse.json({
     status: 'ok',
     impersonationId,
@@ -107,10 +107,25 @@ export async function POST(req: NextRequest) {
     school: { id: membership.schoolId, name: membership.schoolName },
     role: membership.role,
   });
-  if (currentAccessToken) {
-    res.cookies.set(IMPERSONATION_RETURN_COOKIE, currentAccessToken, cookieOptions(IMPERSONATION_TTL_SECONDS));
+  // C556: the view goes into the viewed person's own area (the School app), never Control's sign-in, which stays as it
+  // is; End removes the view and Control is still signed in. A founder session from before C556 still in the School
+  // app's cookies is first moved to Control's, so the view does not overwrite it.
+  const get = (name: string) => req.cookies.get(name)?.value;
+  const legacyAccess = get(accessCookieOf('app'));
+  const legacyRefresh = get(refreshCookieOf('app'));
+  const legacy = legacyAccess ? await verifyAccessToken(legacyAccess) : null;
+  // Whose the old cookie is, read from the token itself even when it has run out (only to choose the cookie's name; the
+  // refresh token is still checked in full when it is used).
+  const legacySub = legacy?.sub ?? (legacyAccess ? subOf(legacyAccess) : null);
+  if (!get(refreshCookieOf('control')) && legacyRefresh && (!legacyAccess || legacySub === guard.claims.sub)) {
+    // Session-only (ends with the browser): whether the old sign-in was kept cannot be told here, so it is never made
+    // longer than it may have been; its next renewal sets the real choice (security review, C556).
+    if (legacyAccess && legacy) res.cookies.set(accessCookieOf('control'), legacyAccess, sessionCookieOptions(IMPERSONATION_TTL_SECONDS, false));
+    res.cookies.set(refreshCookieOf('control'), legacyRefresh, sessionCookieOptions(REFRESH_TTL_SECONDS, false));
+    res.cookies.delete(refreshCookieOf('app'));
   }
-  res.cookies.set(ACCESS_COOKIE, impersonatedToken, cookieOptions(IMPERSONATION_TTL_SECONDS));
+  res.cookies.delete(IMPERSONATION_RETURN_COOKIE);
+  res.cookies.set(accessCookieOf(surfaceForRole(membership.role)), impersonatedToken, cookieOptions(IMPERSONATION_TTL_SECONDS));
   return res;
 }
 
@@ -123,4 +138,14 @@ async function refusalReason(claims: SessionClaims, targetUserId: string, member
     return rows[0] as { is_active: boolean } | undefined;
   }).catch(() => undefined);
   return found && !found.is_active ? 'membership_inactive' : 'no_membership';
+}
+
+// The token's payload read as plain JSON (no signature check, no signing library): only to choose a cookie's name.
+function subOf(token: string): string | null {
+  try {
+    const sub = (JSON.parse(Buffer.from(token.split('.')[1] ?? '', 'base64url').toString('utf8')) as { sub?: unknown }).sub;
+    return typeof sub === 'string' ? sub : null;
+  } catch {
+    return null;
+  }
 }

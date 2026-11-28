@@ -91,97 +91,135 @@ describe('starting a view names the real reason it did not start', () => {
   });
 });
 
-describe('ending a view puts the founder back in Control without a new sign-in', () => {
-  it('the founder’s own token from the start had run out: End gives a fresh founder session, and /control opens', async () => {
-    // The founder's access token was issued 15 minutes before the view began: it runs out a second after the start.
-    const stale = await founderAccess(1);
+describe('a view lives in the School app’s sign-in; Control’s is never touched (C556)', () => {
+  it('starting a view sets only the School app’s access cookie; End removes it, and /control still opens', async () => {
+    const founder = await founderAccess();
     const refresh = await founderRefresh();
-    const started = await startView({ nca_access: stale, nca_refresh: refresh });
+    const started = await startView({ nca_control_access: founder, nca_control_refresh: refresh });
     expect(started.status).toBe(200);
     const viewing = started.cookies.get('nca_access')!.value;
-    const returned = started.cookies.get('nca_impersonation_return')!.value;
-    expect(returned).toBe(stale);
-    await new Promise((r) => setTimeout(r, 1100));
+    expect((await (await import('@/lib/auth/jwt')).verifyAccessToken(viewing))).toMatchObject({ sub: ADMIN, role: 'school_admin' });
+    expect(started.cookies.get('nca_control_access')).toBeUndefined();
+    expect(started.cookies.get('nca_control_refresh')).toBeUndefined();
 
     const { POST: end } = await import('@/app/api/control/impersonate/end/route');
-    const res = await end(post('/api/control/impersonate/end', { nca_access: viewing, nca_impersonation_return: returned, nca_refresh: refresh }));
+    const res = await end(post('/api/control/impersonate/end', { nca_access: viewing, nca_control_access: founder, nca_control_refresh: refresh }));
     expect(res.status).toBe(200);
-    const { verifyAccessToken } = await import('@/lib/auth/jwt');
-    const back = await verifyAccessToken(res.cookies.get('nca_access')!.value);
-    expect(back).toMatchObject({ sub: FOUNDER, role: 'super_admin', schoolId: null });
-    expect(res.cookies.get('nca_refresh')?.value).toBeTruthy();
-    expect(res.cookies.get('nca_refresh')!.value).not.toBe(refresh);
+    expect(await res.json()).toEqual({ status: 'ended' });
+    expect(res.cookies.get('nca_access')?.value ?? '').toBe('');
+    expect(res.cookies.get('nca_control_access')).toBeUndefined();
     expect((await db.pg.query(`select ended_at from impersonation_sessions where target_user_id = $1 order by started_at desc limit 1`, [ADMIN])).rows[0].ended_at).not.toBeNull();
 
     const { middleware } = await import('@/middleware');
-    const control = await middleware(new NextRequest('https://www.netcyberai.test/control', { headers: { cookie: cookieHeader({ nca_access: res.cookies.get('nca_access')!.value }) } }));
+    const control = await middleware(new NextRequest('https://www.netcyberai.test/control', { headers: { cookie: cookieHeader({ nca_control_access: founder, nca_control_refresh: refresh }) } }));
     expect(control.status).toBe(200);
   });
 
-  it('W14-A: End after the founder’s access token ran out, while another tab renewed the same refresh token a moment before, still gives a live founder session', async () => {
-    const stale = await founderAccess(1);
+  it('a founder session from before C556, still in the School app’s cookies, moves to Control’s before the view', async () => {
+    const founder = await founderAccess();
     const refresh = await founderRefresh();
-    const started = await startView({ nca_access: stale, nca_refresh: refresh });
+    const started = await startView({ nca_access: founder, nca_refresh: refresh });
     expect(started.status).toBe(200);
-    const viewing = started.cookies.get('nca_access')!.value;
-    await new Promise((r) => setTimeout(r, 1100));
-    // The other tab's page load renews the founder's session first: the refresh cookie End carries is now spent.
-    const { refreshSession } = await import('@/lib/auth/refresh');
-    const otherTab = await refreshSession(refresh);
-    expect(otherTab.ok).toBe(true);
-
-    const { POST: end } = await import('@/app/api/control/impersonate/end/route');
-    const res = await end(post('/api/control/impersonate/end', { nca_access: viewing, nca_impersonation_return: stale, nca_refresh: refresh }));
-    expect(res.status).toBe(200);
-    const { verifyAccessToken } = await import('@/lib/auth/jwt');
-    const back = await verifyAccessToken(res.cookies.get('nca_access')!.value);
-    expect(back).toMatchObject({ sub: FOUNDER, role: 'super_admin', schoolId: null });
-    // The same live session the other tab holds, never a second one and never a sign-out.
-    if (otherTab.ok) {
-      expect(back?.sessionId).toBe(otherTab.claims.sessionId);
-      expect(res.cookies.get('nca_refresh')!.value).toBe(otherTab.refreshToken);
-    }
-    const { middleware } = await import('@/middleware');
-    const control = await middleware(new NextRequest('https://www.netcyberai.test/control', { headers: { cookie: cookieHeader({ nca_access: res.cookies.get('nca_access')!.value }) } }));
-    expect(control.status).toBe(200);
+    expect(started.cookies.get('nca_control_refresh')?.value).toBe(refresh);
+    expect(started.cookies.get('nca_control_refresh')?.maxAge).toBeUndefined();
+    expect(started.cookies.get('nca_control_access')?.value).toBe(founder);
+    expect(started.cookies.get('nca_refresh')?.value ?? '').toBe('');
+    expect((await (await import('@/lib/auth/jwt')).verifyAccessToken(started.cookies.get('nca_access')!.value))?.role).toBe('school_admin');
   });
 
-  it('W14-A: End pressed when the founder’s own session is already back answers ended, not a sign-in', async () => {
+  it('End after the view ran out, or when it was already ended, answers ended while Control is signed in; 401 with nothing', async () => {
     const { POST: end } = await import('@/app/api/control/impersonate/end/route');
-    const res = await end(post('/api/control/impersonate/end', { nca_access: await founderAccess() }));
-    expect(res.status).toBe(200);
-    expect(await res.json()).toEqual({ status: 'ended' });
-  });
-
-  it('a view that ran out before End was pressed still puts the founder back', async () => {
-    const refresh = await founderRefresh();
-    const { POST: end } = await import('@/app/api/control/impersonate/end/route');
-    const res = await end(post('/api/control/impersonate/end', { nca_refresh: refresh }));
-    expect(res.status).toBe(200);
-    expect((await (await import('@/lib/auth/jwt')).verifyAccessToken(res.cookies.get('nca_access')!.value))?.role).toBe('super_admin');
+    expect(await (await end(post('/api/control/impersonate/end', { nca_control_refresh: await founderRefresh() }))).json()).toEqual({ status: 'ended' });
+    expect(await (await end(post('/api/control/impersonate/end', { nca_control_access: await founderAccess() }))).json()).toEqual({ status: 'ended' });
+    expect((await end(post('/api/control/impersonate/end', {}))).status).toBe(401);
   });
 });
 
 describe('the gate keeps a renewed session on every answer', () => {
-  it('an expired access token renewed on a Control page reaches that page’s layout, and a refusal keeps the new refresh token', async () => {
+  it('an expired Control session is renewed on a Control page, reaches its layout, and keeps the new refresh token', async () => {
     const { POST: refreshRoute } = await import('@/app/api/auth/refresh/route');
     vi.stubGlobal('fetch', async (url: URL | string, init?: RequestInit) => refreshRoute(new NextRequest(String(url), init as never)));
     const { middleware } = await import('@/middleware');
     const stale = await founderAccess(-10);
 
-    const page = await middleware(new NextRequest('https://www.netcyberai.test/control/schools', { headers: { cookie: cookieHeader({ nca_access: stale, nca_refresh: await founderRefresh() }) } }));
+    const page = await middleware(new NextRequest('https://www.netcyberai.test/control/schools', { headers: { cookie: cookieHeader({ nca_control_access: stale, nca_control_refresh: await founderRefresh() }) } }));
     expect(page.status).toBe(200);
     // Next hands the cookies set through `cookies` to the same request's server components by this header.
-    expect(page.headers.get('x-middleware-set-cookie') ?? '').toMatch(/nca_access=/);
-    expect(page.cookies.get('nca_refresh')?.value).toBeTruthy();
+    expect(page.headers.get('x-middleware-set-cookie') ?? '').toMatch(/nca_control_access=/);
+    expect(page.cookies.get('nca_control_refresh')?.value).toBeTruthy();
 
-    // The founder on a school-app page (the installed School app shares the browser's sign-in): sent to Control, never a
-    // bare {"error":"forbidden"}, and the rotated refresh token is kept, so the next page needs no sign-in.
+    // A founder session from before C556 (in the School app's cookies) opens Control and moves to Control's cookies.
+    const legacy = await middleware(new NextRequest('https://www.netcyberai.test/control/schools', { headers: { cookie: cookieHeader({ nca_access: stale, nca_refresh: await founderRefresh() }) } }));
+    expect(legacy.status).toBe(200);
+    expect(legacy.cookies.get('nca_control_refresh')?.value).toBeTruthy();
+
+    // The same old session opened on a School app page: sent to Control, never a bare {"error":"forbidden"}, and the
+    // rotated refresh token is kept, so the next page needs no sign-in.
     const refused = await middleware(new NextRequest('https://www.netcyberai.test/app/my-day', { headers: { cookie: cookieHeader({ nca_access: stale, nca_refresh: await founderRefresh() }) } }));
     expect(refused.status).toBe(307);
     expect(new URL(refused.headers.get('location') ?? '').pathname).toBe('/control');
-    expect(refused.cookies.get('nca_refresh')?.value).toBeTruthy();
-    expect(refused.cookies.get('nca_access')?.value).toBeTruthy();
+    expect(refused.cookies.get('nca_control_refresh')?.value).toBeTruthy();
+    expect(refused.cookies.get('nca_control_access')?.value).toBeTruthy();
     vi.unstubAllGlobals();
+  });
+});
+
+describe('one sign-in per area: Control, the School app and the parent home at once (C556)', () => {
+  async function principalAccess() {
+    const { signAccessToken } = await import('@/lib/auth/jwt');
+    return signAccessToken({ sub: ADMIN, role: 'school_admin', schoolId: SCHOOL, membershipId: adminMembership, tokenVersion: 0, aal: 'aal1', sessionId: randomUUID() });
+  }
+
+  it('the founder in Control and a principal in the School app, in one browser, each open as themselves', async () => {
+    const both = cookieHeader({ nca_access: await principalAccess(), nca_control_access: await founderAccess() });
+    const { middleware } = await import('@/middleware');
+    expect((await middleware(new NextRequest('https://www.netcyberai.test/app/my-day', { headers: { cookie: both } }))).status).toBe(200);
+    expect((await middleware(new NextRequest('https://www.netcyberai.test/control/schools', { headers: { cookie: both } }))).status).toBe(200);
+    const { requireSession } = await import('@/lib/auth/require-session');
+    expect((await requireSession(new NextRequest('https://www.netcyberai.test/api/control/schools', { headers: { cookie: both } })))?.role).toBe('super_admin');
+    expect((await requireSession(new NextRequest('https://www.netcyberai.test/api/app/students', { headers: { cookie: both, referer: 'https://www.netcyberai.test/app/students' } })))?.role).toBe('school_admin');
+    expect((await requireSession(new NextRequest('https://www.netcyberai.test/api/auth/tours', { headers: { cookie: both, referer: 'https://www.netcyberai.test/control' } })))?.role).toBe('super_admin');
+  });
+
+  it('a Control page whose sign-in ran out never acts as the School app’s person on a shared route (security review)', async () => {
+    const onlyPrincipal = cookieHeader({ nca_access: await principalAccess() });
+    const { requireSession } = await import('@/lib/auth/require-session');
+    expect(await requireSession(new NextRequest('https://www.netcyberai.test/api/auth/logout-all', { method: 'POST', headers: { cookie: onlyPrincipal, referer: 'https://www.netcyberai.test/control/account' } }))).toBeNull();
+    const { POST: logoutAll } = await import('@/app/api/auth/logout-all/route');
+    expect((await logoutAll(new NextRequest('https://www.netcyberai.test/api/auth/logout-all', { method: 'POST', headers: { cookie: onlyPrincipal, referer: 'https://www.netcyberai.test/control/account' } }))).status).toBe(401);
+    // On Control's own routes the School app's person is still identified, and refused there with 403 by the guard.
+    expect((await requireSession(new NextRequest('https://www.netcyberai.test/api/control/schools', { headers: { cookie: onlyPrincipal } })))?.role).toBe('school_admin');
+  });
+
+  it('a School app session never opens Control or the parent home: those ask for their own sign-in', async () => {
+    const { middleware } = await import('@/middleware');
+    const onlyPrincipal = cookieHeader({ nca_access: await principalAccess() });
+    for (const path of ['/control', '/parent']) {
+      const res = await middleware(new NextRequest(`https://www.netcyberai.test${path}`, { headers: { cookie: onlyPrincipal } }));
+      expect(new URL(res.headers.get('location') ?? '').pathname).toBe('/login');
+    }
+  });
+
+  it('signing out of the School app leaves Control signed in, and the other way round', async () => {
+    const { POST: logout } = await import('@/app/api/auth/logout/route');
+    const jar = { nca_access: await principalAccess(), nca_refresh: 'r1', nca_control_access: await founderAccess(), nca_control_refresh: 'r2' };
+    const fromApp = await logout(new NextRequest('https://www.netcyberai.test/api/auth/logout', { method: 'POST', headers: { cookie: cookieHeader(jar), referer: 'https://www.netcyberai.test/app/my-day' } }));
+    expect(fromApp.cookies.get('nca_access')?.value ?? '').toBe('');
+    expect(fromApp.cookies.get('nca_control_access')).toBeUndefined();
+    expect(fromApp.cookies.get('nca_control_refresh')).toBeUndefined();
+    const fromControl = await logout(new NextRequest('https://www.netcyberai.test/api/auth/logout', { method: 'POST', headers: { cookie: cookieHeader(jar), referer: 'https://www.netcyberai.test/control' } }));
+    expect(fromControl.cookies.get('nca_control_access')?.value ?? '').toBe('');
+    expect(fromControl.cookies.get('nca_access')).toBeUndefined();
+    expect(fromControl.cookies.get('nca_refresh')).toBeUndefined();
+  });
+
+  it('a parent and a platform admin each sign in under their own area’s cookies', async () => {
+    const { setSessionCookies } = await import('@/lib/auth/cookies');
+    const set: string[] = [];
+    const jar = { set: (name: string) => void set.push(name), delete: () => undefined };
+    setSessionCookies(jar, 'parent', 'a', 'r', true);
+    setSessionCookies(jar, 'super_admin', 'a', 'r', true);
+    setSessionCookies(jar, 'teacher', 'a', 'r', true);
+    expect(set).toEqual(['nca_parent_access', 'nca_parent_refresh', 'nca_control_access', 'nca_control_refresh', 'nca_access', 'nca_refresh']);
   });
 });

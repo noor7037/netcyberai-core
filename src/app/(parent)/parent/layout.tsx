@@ -2,6 +2,9 @@ import { redirect } from 'next/navigation';
 import { getServerSession } from '@/lib/auth/server-session';
 import { canAccessFamily } from '@/lib/auth/guards';
 
+// C556: its own installable app with its own sign-in, beside the others on one phone.
+export const metadata = { manifest: '/parent.webmanifest' };
+
 // The school parent home (founder, 2026-10-15, C230-D), at /parent since M1-2 (C248) made /family the Family app;
 // School Link replaces it in M3. Every page under this route group renders through this layout, and the guard below
 // runs first: a parent's school session, and nothing else. Staff sessions are sent to their
