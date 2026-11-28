@@ -38,6 +38,77 @@
    "hinglish": "Confidence samjha sakte ho: AI kitna pakka hai."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you teach a younger cousin which fruits are sweet by letting them taste and telling the name.",
+   "hi": "{{name}}, तुम छोटे चचेरे भाई-बहन को चखाकर और नाम बताकर सिखाते हो कि कौन-से फल मीठे हैं।",
+   "hinglish": "{{name}}, tum chhote cousin ko chakhakar aur naam batakar sikhate ho ki kaun-se fruits meethe hain."
+  },
+  "question": {
+   "en": "Can a computer be taught the same way, and how do we know it learnt?",
+   "hi": "क्या कंप्यूटर को भी ऐसे सिखाया जा सकता है, और कैसे जानें कि उसने सीखा?",
+   "hinglish": "Kya computer ko bhi aise sikhaya ja sakta hai, aur kaise jaanein ki usne seekha?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "We train an AI on 20 fruit examples. How do we fairly check that it learnt?",
+   "hi": "हम AI को 20 फल के उदाहरणों पर ट्रेन करते हैं। कैसे निष्पक्ष जाँच करें कि उसने सीखा?",
+   "hinglish": "Hum AI ko 20 fruit ke examples par train karte hain. Kaise nishpaksh jaanch karein ki usne seekha?"
+  },
+  "options": [
+   {
+    "en": "Test it on the same 20 examples",
+    "hi": "उन्हीं 20 उदाहरणों पर परखें",
+    "hinglish": "Unhi 20 examples par parkhein"
+   },
+   {
+    "en": "Test it on NEW examples it has never seen",
+    "hi": "ऐसे नए उदाहरणों पर परखें जो उसने कभी नहीं देखे",
+    "hinglish": "Aise naye examples par parkhein jo usne kabhi nahi dekhe"
+   },
+   {
+    "en": "Do not test, just trust it",
+    "hi": "परखें नहीं, बस भरोसा करें",
+    "hinglish": "Parkhein nahi, bas bharosa karein"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Testing on examples it already saw is like a quiz where you have seen the answers. New examples show whether it really learnt. The AI also reports how sure it is, called confidence, and it can still be fooled, like by a sour yellow lemon.",
+   "hi": "पहले देखे उदाहरणों पर परखना ऐसा है जैसे जवाब देखकर क्विज़ देना। नए उदाहरण दिखाते हैं कि उसने सच में सीखा या नहीं। AI यह भी बताता है कि वह कितना पक्का है, यानी भरोसा, और खट्टा पीला नींबू जैसी चीज़ उसे धोखा दे सकती है।",
+   "hinglish": "Pehle dekhe examples par parkhna aisa hai jaise jawab dekhkar quiz dena. Naye examples dikhate hain ki usne sach mein seekha ya nahi. AI yeh bhi batata hai ki woh kitna pakka hai, yaani confidence, aur khatta peela nimbu jaisi cheez use dhokha de sakti hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: how do we teach and test an AI?",
+   "hi": "घर पर किसी को समझाओ: AI को कैसे सिखाते और परखते हैं?",
+   "hinglish": "Ghar par kisi ko samjhao: AI ko kaise sikhate aur parakhte hain?"
+  },
+  "checklist": [
+   {
+    "en": "Training means examples WITH the right answer.",
+    "hi": "ट्रेनिंग यानी सही जवाब के साथ उदाहरण।",
+    "hinglish": "Training yaani sahi jawab ke saath examples."
+   },
+   {
+    "en": "It finds the closest examples on the map, and they vote.",
+    "hi": "वह नक्शे पर सबसे पास के उदाहरण देखता है, और वे वोट देते हैं।",
+    "hinglish": "Woh map par sabse paas ke examples dekhta hai, aur woh vote dete hain."
+   },
+   {
+    "en": "Testing uses NEW examples it has not seen.",
+    "hi": "टेस्टिंग में नए उदाहरण होते हैं जो उसने नहीं देखे।",
+    "hinglish": "Testing mein naye examples hote hain jo usne nahi dekhe."
+   },
+   {
+    "en": "Confidence says how sure it is.",
+    "hi": "भरोसा बताता है कि वह कितना पक्का है।",
+    "hinglish": "Confidence batata hai ki woh kitna pakka hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Training",

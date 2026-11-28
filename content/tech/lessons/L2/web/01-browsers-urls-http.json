@@ -37,6 +37,77 @@
    "hinglish": "HTTP request, response aur status codes samjha sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you type ncert.nic.in into a browser, press Enter, and a textbook page appears.",
+   "hi": "{{name}}, तुम ब्राउज़र में ncert.nic.in लिखकर Enter दबाते हो और एक पाठ्यपुस्तक का पन्ना आ जाता है।",
+   "hinglish": "{{name}}, tum browser mein ncert.nic.in likhkar Enter dabate ho aur ek textbook ka page aa jaata hai."
+  },
+  "question": {
+   "en": "What happens between pressing Enter and seeing the page, and is the web the same as the internet?",
+   "hi": "Enter दबाने और पन्ना दिखने के बीच क्या होता है, और क्या वेब और इंटरनेट एक ही हैं?",
+   "hinglish": "Enter dabane aur page dikhne ke beech kya hota hai, aur kya web aur internet ek hi hain?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Is \"the web\" the same thing as \"the internet\"?",
+   "hi": "क्या \"वेब\" और \"इंटरनेट\" एक ही चीज़ हैं?",
+   "hinglish": "Kya \"web\" aur \"internet\" ek hi cheez hain?"
+  },
+  "options": [
+   {
+    "en": "Yes, they are two names for one thing",
+    "hi": "हाँ, एक ही चीज़ के दो नाम",
+    "hinglish": "Haan, ek hi cheez ke do naam"
+   },
+   {
+    "en": "No: the internet is the network of networks, and the web is one service that runs on it, like email or UPI",
+    "hi": "नहीं: इंटरनेट नेटवर्कों का नेटवर्क है, और वेब उस पर चलने वाली एक सेवा, जैसे ईमेल या UPI",
+    "hinglish": "Nahi: internet networks ka network hai, aur web us par chalne wali ek service, jaise email ya UPI"
+   },
+   {
+    "en": "The web is the cables and the internet is the pages",
+    "hi": "वेब तार हैं और इंटरनेट पन्ने",
+    "hinglish": "Web cables hain aur internet pages"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "The internet carries data between devices, like roads. The web is pages and links fetched with HTTP, one of many services using those roads; email, WhatsApp and UPI are others.",
+   "hi": "इंटरनेट उपकरणों के बीच डेटा ले जाता है, सड़कों की तरह। वेब HTTP से लाए जाने वाले पन्ने और लिंक हैं, जो इन सड़कों का इस्तेमाल करने वाली कई सेवाओं में से एक है; ईमेल, WhatsApp और UPI दूसरी हैं।",
+   "hinglish": "Internet devices ke beech data le jaata hai, roads ki tarah. Web HTTP se laaye jaane wale pages aur links hain, jo in roads ko use karne wali kai services mein se ek hai; email, WhatsApp aur UPI doosri hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home what happens when you open a web page.",
+   "hi": "घर पर किसी को समझाओ कि वेब पन्ना खोलने पर क्या होता है।",
+   "hinglish": "Ghar par kisi ko samjhao ki web page kholne par kya hota hai."
+  },
+  "checklist": [
+   {
+    "en": "The internet is the roads; the web is one service on it.",
+    "hi": "इंटरनेट सड़कें हैं; वेब उस पर एक सेवा है।",
+    "hinglish": "Internet roads hain; web us par ek service hai."
+   },
+   {
+    "en": "A URL has a scheme, a domain, a path and a query.",
+    "hi": "URL में स्कीम, डोमेन, पाथ और क्वेरी होती है।",
+    "hinglish": "URL mein scheme, domain, path aur query hoti hai."
+   },
+   {
+    "en": "The browser sends an HTTP request and the server replies with a status code and content.",
+    "hi": "ब्राउज़र HTTP अनुरोध भेजता है और सर्वर स्टेटस कोड व सामग्री से जवाब देता है।",
+    "hinglish": "Browser HTTP request bhejta hai aur server status code aur content se jawab deta hai."
+   },
+   {
+    "en": "The browser reads the HTML, CSS and JavaScript and draws the page.",
+    "hi": "ब्राउज़र HTML, CSS और JavaScript पढ़कर पन्ना बनाता है।",
+    "hinglish": "Browser HTML, CSS aur JavaScript padhkar page banata hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "World Wide Web",

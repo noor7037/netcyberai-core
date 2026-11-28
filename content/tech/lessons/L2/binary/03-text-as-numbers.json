@@ -38,6 +38,77 @@
    "hinglish": "Hindi, Tamil aur emoji ke liye Unicode kyun chahiye samjha sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you type \"Hi!\" in a WhatsApp chat, and it appears on your cousin's phone exactly as typed.",
+   "hi": "{{name}}, तुम WhatsApp चैट में \"Hi!\" लिखते हो, और वह तुम्हारे कज़िन के फ़ोन पर बिल्कुल वैसा ही दिखता है।",
+   "hinglish": "{{name}}, tum WhatsApp chat mein \"Hi!\" likhte ho, aur woh tumhare cousin ke phone par bilkul waisa hi dikhta hai."
+  },
+  "question": {
+   "en": "A computer only stores numbers, so how does it store letters, Hindi and emoji?",
+   "hi": "कंप्यूटर सिर्फ़ संख्याएँ रखता है, तो वह अक्षर, हिंदी और इमोजी कैसे रखता है?",
+   "hinglish": "Computer sirf numbers store karta hai, to woh letters, Hindi aur emoji kaise store karta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "In a computer, how is the letter \"A\" stored?",
+   "hi": "कंप्यूटर में अक्षर \"A\" कैसे रखा जाता है?",
+   "hinglish": "Computer mein letter \"A\" kaise store hota hai?"
+  },
+  "options": [
+   {
+    "en": "As a tiny picture of the letter",
+    "hi": "अक्षर की छोटी तस्वीर के रूप में",
+    "hinglish": "Letter ki chhoti picture ke roop mein"
+   },
+   {
+    "en": "As an agreed code number, 65, kept in binary",
+    "hi": "एक तय कोड संख्या, 65, के रूप में, बाइनरी में",
+    "hinglish": "Ek agreed code number, 65, ke roop mein, binary mein"
+   },
+   {
+    "en": "As a sound",
+    "hi": "आवाज़ के रूप में",
+    "hinglish": "Sound ke roop mein"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "People agreed that each character has a number: A is 65, B is 66, and so on. The computer stores the number in binary; the screen then uses a font to draw the shape when it needs to show it.",
+   "hi": "लोगों ने तय किया कि हर अक्षर की एक संख्या है: A 65, B 66, आदि। कंप्यूटर संख्या को बाइनरी में रखता है; दिखाते समय स्क्रीन फ़ॉन्ट से उसका आकार बनाती है।",
+   "hinglish": "Logon ne tay kiya ki har character ka ek number hai: A 65, B 66, aadi. Computer number ko binary mein rakhta hai; dikhate waqt screen font se uska shape banati hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a computer stores text, including Hindi and emoji.",
+   "hi": "घर पर किसी को समझाओ कि कंप्यूटर टेक्स्ट, हिंदी और इमोजी समेत, कैसे रखता है।",
+   "hinglish": "Ghar par kisi ko samjhao ki computer text, Hindi aur emoji samet, kaise rakhta hai."
+  },
+  "checklist": [
+   {
+    "en": "Every character is stored as an agreed code number, in binary.",
+    "hi": "हर अक्षर एक तय कोड संख्या के रूप में, बाइनरी में रखा जाता है।",
+    "hinglish": "Har character ek agreed code number ke roop mein, binary mein rakha jaata hai."
+   },
+   {
+    "en": "ASCII has 128 codes: A is 65, a is 97, and the digit 7 is code 55.",
+    "hi": "ASCII में 128 कोड हैं: A 65, a 97, और अंक 7 का कोड 55।",
+    "hinglish": "ASCII mein 128 codes hain: A 65, a 97, aur digit 7 ka code 55."
+   },
+   {
+    "en": "ASCII was too small for other scripts, so Unicode gives every character its own number.",
+    "hi": "ASCII दूसरी लिपियों के लिए छोटा था, इसलिए यूनिकोड हर अक्षर को अपनी संख्या देता है।",
+    "hinglish": "ASCII doosri scripts ke liye chhota tha, isliye Unicode har character ko apna number deta hai."
+   },
+   {
+    "en": "UTF-8 stores English in 1 byte and Devanagari in 3, so Hindi text takes more bytes.",
+    "hi": "UTF-8 अंग्रेज़ी को 1 बाइट और देवनागरी को 3 बाइट में रखता है, इसलिए हिंदी टेक्स्ट ज़्यादा बाइट लेता है।",
+    "hinglish": "UTF-8 English ko 1 byte aur Devanagari ko 3 bytes mein rakhta hai, isliye Hindi text zyada bytes leta hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "ASCII",

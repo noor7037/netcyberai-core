@@ -38,6 +38,82 @@
    "hinglish": "Jaante ho kaunse answers ko sabse zyada checking chahiye"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you ask a chatbot for a book by a famous leader, and it gives a title that sounds perfect, but the library has no such book.",
+   "hi": "{{name}}, तुम चैटबॉट से किसी प्रसिद्ध नेता की किताब माँगते हो, और वह एक बिल्कुल सही लगता नाम बताता है, पर पुस्तकालय में ऐसी कोई किताब नहीं है।",
+   "hinglish": "{{name}}, tum chatbot se kisi famous neta ki kitab maangte ho, aur woh ek bilkul sahi lagta naam batata hai, par library mein aisi koi kitab nahi hai."
+  },
+  "question": {
+   "en": "Why would a chatbot invent something and sound so sure about it?",
+   "hi": "चैटबॉट कुछ गढ़कर इतने भरोसे से क्यों बोलेगा?",
+   "hinglish": "Chatbot kuch gadhkar itne bharose se kyon bolega?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "When a chatbot has almost no information about your question, what does it usually do?",
+   "hi": "जब चैटबॉट के पास तुम्हारे सवाल की लगभग कोई जानकारी नहीं होती, तो वह आम तौर पर क्या करता है?",
+   "hinglish": "Jab chatbot ke paas tumhare sawaal ki lagbhag koi jaankari nahi hoti, to woh aam taur par kya karta hai?"
+  },
+  "options": [
+   {
+    "en": "Says \"I don't know\" every time",
+    "hi": "हर बार \"मुझे नहीं पता\" कहता है",
+    "hinglish": "Har baar \"Mujhe nahi pata\" kehta hai"
+   },
+   {
+    "en": "Writes something plausible-sounding anyway",
+    "hi": "फिर भी कोई सुनने में ठीक लगती बात लिख देता है",
+    "hinglish": "Phir bhi kuch plausible-sounding likh deta hai"
+   },
+   {
+    "en": "Checks a library catalogue first",
+    "hi": "पहले पुस्तकालय की सूची देखता है",
+    "hinglish": "Pehle library catalogue dekhta hai"
+   },
+   {
+    "en": "Refuses to answer",
+    "hi": "जवाब देने से मना कर देता है",
+    "hinglish": "Jawab dene se mana kar deta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "A language model is built to produce likely-sounding text, not to check facts or say \"I do not know\". With little to go on it fills the gap with something plausible, which is called a hallucination.",
+   "hi": "भाषा मॉडल सुनने में संभावित पाठ बनाने के लिए बना है, तथ्य जाँचने या \"मुझे नहीं पता\" कहने के लिए नहीं। कम जानकारी में वह ख़ाली जगह किसी मानने-लायक बात से भर देता है, जिसे हैलुसिनेशन कहते हैं।",
+   "hinglish": "Language model likely-sounding text banane ke liye bana hai, facts check karne ya \"Mujhe nahi pata\" kehne ke liye nahi. Kam jaankari mein woh khaali jagah kisi plausible baat se bhar deta hai, jise hallucination kehte hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home why a chatbot sometimes makes things up and how to check it.",
+   "hi": "घर पर किसी को समझाओ कि चैटबॉट कभी-कभी बातें क्यों गढ़ता है और कैसे जाँचें।",
+   "hinglish": "Ghar par kisi ko samjhao ki chatbot kabhi-kabhi baatein kyon gadhta hai aur kaise check karein."
+  },
+  "checklist": [
+   {
+    "en": "A hallucination is a plausible-sounding answer that is false, like a fake book title, quote, date or link.",
+    "hi": "हैलुसिनेशन सुनने में ठीक लगता ग़लत जवाब है, जैसे नक़ली किताब का नाम, उद्धरण, तारीख़ या लिंक।",
+    "hinglish": "Hallucination sunne mein theek lagta galat jawab hai, jaise fake book title, quote, date ya link."
+   },
+   {
+    "en": "It happens because the model picks likely words, not checked facts.",
+    "hi": "यह इसलिए होता है कि मॉडल संभावित शब्द चुनता है, जाँचे हुए तथ्य नहीं।",
+    "hinglish": "Yeh isliye hota hai ki model likely words chunta hai, checked facts nahi."
+   },
+   {
+    "en": "Check with lateral reading: open two trusted sources in new tabs.",
+    "hi": "पार्श्व पठन से जाँचो: नए टैब में दो भरोसेमंद स्रोत खोलो।",
+    "hinglish": "Lateral reading se check karo: naye tabs mein do trusted sources kholo."
+   },
+   {
+    "en": "Check most carefully names, dates, quotes, numbers and links.",
+    "hi": "नाम, तारीख़ें, उद्धरण, संख्याएँ और लिंक सबसे ध्यान से जाँचो।",
+    "hinglish": "Naam, dates, quotes, numbers aur links sabse dhyaan se check karo."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Hallucination",
@@ -100,7 +176,7 @@
     "hi": "पार्श्व पठन से जाँचो: तथ्य उपयोग करने से पहले नए टैब में 2 विश्वसनीय स्रोत खोलो।",
     "hinglish": "Lateral reading se check karo: fact use karne se pehle naye tabs mein 2 trusted sources kholo."
    },
-   "visual": "code",
+   "visual": "flow:🤖 AI answer|📑 Trusted source 1|📑 Trusted source 2|✅ Use if they agree",
    "narration": {
     "en": "Numbers, names, dates, laws, health and links need the most checking.",
     "hi": "संख्याएँ, नाम, तारीख़ें, क़ानून, स्वास्थ्य और लिंक को सबसे ज़्यादा जाँच चाहिए।",

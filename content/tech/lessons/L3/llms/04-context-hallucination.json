@@ -34,6 +34,77 @@
    "hi": "एआई उत्तर को प्राथमिक स्रोत से सत्यापित करना"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you ask a chatbot for the author of a book you made up, and it confidently names one.",
+   "hi": "{{name}}, तुम चैटबॉट से अपनी गढ़ी हुई किताब के लेखक का नाम पूछते हो, और वह पूरे भरोसे से एक नाम बता देता है।",
+   "hinglish": "{{name}}, tum chatbot se apni banayi hui kitab ke author ka naam poochhte ho, aur woh poore bharose se ek naam bata deta hai."
+  },
+  "question": {
+   "en": "Why does a model invent things, and how can you tell when to trust it?",
+   "hi": "मॉडल चीज़ें गढ़ता क्यों है, और कैसे जानें कब भरोसा करना है?",
+   "hinglish": "Model cheezein gadhta kyun hai, aur kaise jaanein kab bharosa karna hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Why can a language model \"hallucinate\" a fake fact in fluent language?",
+   "hi": "भाषा मॉडल प्रवाहपूर्ण भाषा में नकली तथ्य \"हैलुसिनेट\" क्यों कर सकता है?",
+   "hinglish": "Language model fluent language mein fake fact \"hallucinate\" kyun kar sakta hai?"
+  },
+  "options": [
+   {
+    "en": "It is lying on purpose",
+    "hi": "वह जानबूझकर झूठ बोल रहा है",
+    "hinglish": "Woh jaanbujhkar jhooth bol raha hai"
+   },
+   {
+    "en": "It predicts plausible next tokens, and plausible text is not the same as checked fact",
+    "hi": "वह संभावित अगले टोकन अनुमानित करता है, और संभावित टेक्स्ट जाँचा हुआ तथ्य नहीं होता",
+    "hinglish": "Woh plausible next tokens predict karta hai, aur plausible text checked fact nahi hota"
+   },
+   {
+    "en": "Its database has a typing error",
+    "hi": "उसके डेटाबेस में टाइपिंग की ग़लती है",
+    "hinglish": "Uske database mein typing error hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "The model is trained to continue text plausibly, not to look facts up, so when it does not know, a fluent invented answer can still be the most likely continuation. Giving it sources (RAG), asking for citations or \"I don't know\", using tools for maths and checking primary sources reduce the risk.",
+   "hi": "मॉडल टेक्स्ट को संभावित ढंग से आगे बढ़ाने के लिए ट्रेन होता है, तथ्य खोजने के लिए नहीं, इसलिए जब उसे पता न हो तब भी प्रवाहपूर्ण गढ़ा जवाब सबसे संभावित अगला हिस्सा हो सकता है। स्रोत देना (RAG), उद्धरण या \"पता नहीं\" माँगना, गणित के लिए टूल और प्राथमिक स्रोत जाँचना जोखिम घटाते हैं।",
+   "hinglish": "Model text ko plausible tareeke se aage badhane ke liye train hota hai, facts dhoondhne ke liye nahi, isliye jab use pata na ho tab bhi fluent gadha hua answer sabse likely continuation ho sakta hai. Sources dena (RAG), citations ya \"pata nahi\" maangna, maths ke liye tools aur primary sources check karna risk ghatate hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend why a chatbot can sound sure and be wrong, and how you would check an answer.",
+   "hi": "दोस्त को समझाओ कि चैटबॉट पक्का लगकर भी ग़लत क्यों हो सकता है, और तुम जवाब कैसे जाँचोगे।",
+   "hinglish": "Friend ko samjhao ki chatbot sure sunai dekar bhi galat kyun ho sakta hai, aur tum answer kaise check karoge."
+  },
+  "checklist": [
+   {
+    "en": "The context window is everything the model can see at once; when full, older text drops out",
+    "hi": "कॉन्टेक्स्ट विंडो वह सब है जो मॉडल एक साथ देख सकता है; भर जाए तो पुराना टेक्स्ट बाहर हो जाता है",
+    "hinglish": "Context window woh sab hai jo model ek saath dekh sakta hai; bhar jaaye to purana text bahar ho jaata hai"
+   },
+   {
+    "en": "Hallucination comes from predicting plausible text rather than checking facts",
+    "hi": "हैलुसिनेशन तथ्य जाँचने की जगह संभावित टेक्स्ट अनुमानित करने से आता है",
+    "hinglish": "Hallucination facts check karne ki jagah plausible text predict karne se aata hai"
+   },
+   {
+    "en": "Reduce it with sources, citations, tools and \"I don't know\"",
+    "hi": "इसे स्रोत, उद्धरण, टूल और \"पता नहीं\" से घटाओ",
+    "hinglish": "Ise sources, citations, tools aur \"pata nahi\" se ghatao"
+   },
+   {
+    "en": "Verify important claims in a primary source",
+    "hi": "महत्वपूर्ण दावे प्राथमिक स्रोत में जाँचो",
+    "hinglish": "Important claims primary source mein verify karo"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Context window",
@@ -82,7 +153,7 @@
     "hi": "किसी नकली किताब के बारे में पूछो तो मॉडल लेखक और कहानी गढ़ सकता है: वह संभावित पाठ बनाता है, जाँचे हुए तथ्य नहीं।",
     "hinglish": "Kisi nakli kitaab ke baare mein poochho to model author aur plot bana sakta hai: woh plausible text banata hai, checked facts nahi."
    },
-   "visual": "anim:hallucination-book",
+   "visual": "flow:❓ Question about a fake book|🔮 Model predicts plausible text|📕 Invented author and plot",
    "narration": {
     "en": "Ask about a fake book and a model may invent an author and a plot: it predicts plausible text, not checked facts.",
     "hi": "किसी नकली किताब के बारे में पूछो तो मॉडल लेखक और कहानी गढ़ सकता है: वह संभावित पाठ बनाता है, जाँचे हुए तथ्य नहीं।",

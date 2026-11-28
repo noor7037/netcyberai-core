@@ -28,6 +28,72 @@
    "hi": "समझाना कि कई एजेंट कब मदद करते हैं और कब लागत व जोखिम बढ़ाते हैं"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a school newsletter needs news gathering, writing in Hinglish, translation and a date check, and one person doing all of it makes mistakes.",
+   "hi": "{{name}}, स्कूल न्यूज़लेटर में ख़बरें जुटाना, हिंग्लिश में लिखना, अनुवाद और तारीख़ों की जाँच चाहिए, और अकेला इंसान सब करे तो ग़लतियाँ होती हैं।",
+   "hinglish": "{{name}}, school newsletter mein news gathering, Hinglish mein likhna, translation aur dates check chahiye, aur ek insaan sab kare to galtiyan hoti hain."
+  },
+  "question": {
+   "en": "Could a team of AIs split the work, and would that really be better?",
+   "hi": "क्या AI की टीम काम बाँट सकती है, और क्या वह सच में बेहतर होगा?",
+   "hinglish": "Kya AI ki team kaam baant sakti hai, aur kya woh sach mein better hoga?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "When is a multi-agent system worth its extra cost and complexity?",
+   "hi": "मल्टी-एजेंट सिस्टम अपनी अतिरिक्त लागत और जटिलता के लायक कब होता है?",
+   "hinglish": "Multi-agent system apni extra cost aur complexity ke laayak kab hota hai?"
+  },
+  "options": [
+   {
+    "en": "Always, because more agents are always smarter",
+    "hi": "हमेशा, क्योंकि ज़्यादा एजेंट हमेशा ज़्यादा समझदार होते हैं",
+    "hinglish": "Hamesha, kyunki zyada agents hamesha zyada smart hote hain"
+   },
+   {
+    "en": "When the job splits into independent parts or needs an independent check, and the benefit beats extra calls and risks",
+    "hi": "जब काम स्वतंत्र हिस्सों में बँटे या स्वतंत्र जाँच चाहिए, और फ़ायदा अतिरिक्त कॉल और जोखिम से ज़्यादा हो",
+    "hinglish": "Jab kaam independent parts mein bante ya independent check chahiye, aur fayda extra calls aur risks se zyada ho"
+   },
+   {
+    "en": "Never, because one agent can do everything",
+    "hi": "कभी नहीं, क्योंकि एक एजेंट सब कर सकता है",
+    "hinglish": "Kabhi nahi, kyunki ek agent sab kar sakta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Every extra agent adds model calls, latency, cost and new places for errors to pass between agents. Splitting helps when sub-tasks are independent, need different tools or contexts, or a separate reviewer can catch mistakes. A simple task is often better with one agent.",
+   "hi": "हर अतिरिक्त एजेंट मॉडल कॉल, देरी, लागत और एजेंटों के बीच ग़लतियों के नए रास्ते जोड़ता है। बँटवारा तब मदद करता है जब उप-कार्य स्वतंत्र हों, अलग टूल या संदर्भ माँगें, या अलग समीक्षक ग़लती पकड़ सके। सरल काम अक्सर एक एजेंट से बेहतर होता है।",
+   "hinglish": "Har extra agent model calls, latency, cost aur agents ke beech galtiyon ke naye raaste jodta hai. Splitting tab madad karti hai jab sub-tasks independent hon, alag tools ya contexts maangein, ya alag reviewer galti pakad sake. Simple kaam aksar ek agent se behtar hota hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend how an orchestrator and its worker agents would produce the newsletter, and when one agent would be enough.",
+   "hi": "दोस्त को समझाओ कि ऑर्केस्ट्रेटर और उसके वर्कर एजेंट न्यूज़लेटर कैसे बनाएँगे, और कब एक एजेंट काफ़ी होगा।",
+   "hinglish": "Friend ko samjhao ki orchestrator aur uske worker agents newsletter kaise banayenge, aur kab ek agent kaafi hoga."
+  },
+  "checklist": [
+   {
+    "en": "An orchestrator splits the goal and hands parts to worker agents",
+    "hi": "ऑर्केस्ट्रेटर लक्ष्य बाँटकर हिस्से वर्कर एजेंटों को देता है",
+    "hinglish": "Orchestrator goal baantkar parts worker agents ko deta hai"
+   },
+   {
+    "en": "A reviewer agent can check work independently, with a human approving at the end",
+    "hi": "समीक्षक एजेंट स्वतंत्र रूप से जाँच सकता है, अंत में इंसान मंज़ूर करता है",
+    "hinglish": "Reviewer agent independently check kar sakta hai, end mein human approve karta hai"
+   },
+   {
+    "en": "More agents mean more cost, delay and chances for errors to spread",
+    "hi": "ज़्यादा एजेंट यानी ज़्यादा लागत, देरी और ग़लतियाँ फैलने के मौक़े",
+    "hinglish": "Zyada agents matlab zyada cost, delay aur errors failne ke chances"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Orchestrator",
@@ -90,7 +156,7 @@
     "hi": "एक समीक्षक एजेंट हर तारीख को स्रोत सूचनाओं से जाँचता है, फिर मानव शिक्षक मंज़ूरी देता है।",
     "hinglish": "Ek reviewer agent har date ko source notices se check karta hai, phir human teacher approve karta hai."
    },
-   "visual": "anim:reviewer-check",
+   "visual": "flow:✍️ Draft is ready|🧐 Reviewer checks dates against notices|👩‍🏫 Teacher approves",
    "narration": {
     "en": "A reviewer agent checks every date against the source notices before a human teacher approves.",
     "hi": "एक समीक्षक एजेंट हर तारीख को स्रोत सूचनाओं से जाँचता है, फिर मानव शिक्षक मंज़ूरी देता है।",

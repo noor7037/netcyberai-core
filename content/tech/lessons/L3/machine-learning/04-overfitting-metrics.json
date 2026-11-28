@@ -34,6 +34,72 @@
    "hi": "धोखाधड़ी जैसी असंतुलित समस्याओं के लिए सही मापदंड चुनना"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a classmate memorises last year's answers and scores full marks on that paper, then fails when the questions change.",
+   "hi": "{{name}}, एक सहपाठी पिछले साल के जवाब रट लेता है और उस पेपर में पूरे अंक लाता है, फिर सवाल बदलते ही फ़ेल हो जाता है।",
+   "hinglish": "{{name}}, ek classmate pichhle saal ke answers ratt leta hai aur us paper mein poore marks laata hai, phir sawal badalte hi fail ho jaata hai."
+  },
+  "question": {
+   "en": "Can a model do the same, and how do we measure whether it really learned?",
+   "hi": "क्या मॉडल भी यही कर सकता है, और हम कैसे मापें कि उसने सच में सीखा?",
+   "hinglish": "Kya model bhi yahi kar sakta hai, aur hum kaise maapein ki usne sach mein seekha?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Training loss keeps falling, but validation loss starts to rise. What is happening?",
+   "hi": "ट्रेनिंग लॉस घटता रहता है, पर वैलिडेशन लॉस बढ़ने लगता है। क्या हो रहा है?",
+   "hinglish": "Training loss girta rehta hai, par validation loss badhne lagta hai. Kya ho raha hai?"
+  },
+  "options": [
+   {
+    "en": "The model is still learning well",
+    "hi": "मॉडल अब भी अच्छा सीख रहा है",
+    "hinglish": "Model ab bhi achha seekh raha hai"
+   },
+   {
+    "en": "The model is memorising training data, which is overfitting",
+    "hi": "मॉडल ट्रेनिंग डेटा रट रहा है, यानी ओवरफ़िटिंग",
+    "hinglish": "Model training data ratt raha hai, yaani overfitting"
+   },
+   {
+    "en": "The validation set is broken and must be ignored",
+    "hi": "वैलिडेशन सेट ख़राब है और अनदेखा करना चाहिए",
+    "hinglish": "Validation set kharab hai aur ignore karna chahiye"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Validation data is unseen, so rising validation loss means the model is fitting noise in the training set rather than general patterns. Early stopping, more data or a simpler model help. For imbalanced problems such as fraud, accuracy misleads, so precision, recall and F1 from the confusion matrix are used.",
+   "hi": "वैलिडेशन डेटा अनदेखा है, इसलिए बढ़ता वैलिडेशन लॉस बताता है कि मॉडल सामान्य पैटर्न की जगह ट्रेनिंग सेट का शोर पकड़ रहा है। अर्ली स्टॉपिंग, ज़्यादा डेटा या सरल मॉडल मदद करते हैं। फ़्रॉड जैसी असंतुलित समस्याओं में एक्यूरेसी भटकाती है, इसलिए कन्फ़्यूज़न मैट्रिक्स से प्रिसिज़न, रिकॉल और F1 लेते हैं।",
+   "hinglish": "Validation data unseen hai, isliye badhta validation loss batata hai ki model general patterns ki jagah training set ka noise pakad raha hai. Early stopping, zyada data ya simpler model madad karte hain. Fraud jaisi imbalanced problems mein accuracy bhatkati hai, isliye confusion matrix se precision, recall aur F1 lete hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home why 99% accuracy can still be a poor fraud detector.",
+   "hi": "घर पर किसी को समझाओ कि 99% एक्यूरेसी होने पर भी फ़्रॉड डिटेक्टर ख़राब क्यों हो सकता है।",
+   "hinglish": "Ghar par kisi ko samjhao ki 99% accuracy hone par bhi fraud detector kharab kyun ho sakta hai."
+  },
+  "checklist": [
+   {
+    "en": "Overfitting shows as training loss falling while validation loss rises",
+    "hi": "ओवरफ़िटिंग तब दिखती है जब ट्रेनिंग लॉस घटे और वैलिडेशन लॉस बढ़े",
+    "hinglish": "Overfitting tab dikhti hai jab training loss ghate aur validation loss badhe"
+   },
+   {
+    "en": "A confusion matrix counts TP, FP, FN and TN, from which precision, recall and F1 follow",
+    "hi": "कन्फ़्यूज़न मैट्रिक्स TP, FP, FN, TN गिनता है, जिनसे प्रिसिज़न, रिकॉल और F1 निकलते हैं",
+    "hinglish": "Confusion matrix TP, FP, FN, TN ginta hai, jinse precision, recall aur F1 nikalte hain"
+   },
+   {
+    "en": "With rare positives like fraud, accuracy hides misses, so choose metrics by the cost of each mistake",
+    "hi": "फ़्रॉड जैसे दुर्लभ पॉज़िटिव में एक्यूरेसी चूकें छिपाती है, इसलिए हर ग़लती की क़ीमत से मेट्रिक चुनो",
+    "hinglish": "Fraud jaise rare positives mein accuracy misses chhupati hai, isliye har galti ki cost se metric chuno"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Overfitting",
@@ -74,7 +140,7 @@
     "hi": "एक टेढ़ी-मेढ़ी वक्र हर प्रशिक्षण बिंदु से गुज़रती है पर नए बिंदु चूकती है: ओवरफ़िटिंग। सपाट रेखा सब चूकती है: अंडरफ़िटिंग।",
     "hinglish": "Ek tedhi-medhi curve har training point se guzarti hai par naye miss karti hai: overfitting. Flat line sab miss karti hai: underfitting."
    },
-   "visual": "anim:fit-three-curves",
+   "visual": "compare:〰️ Wiggly curve: fits training points, misses new ones (overfit)|➖ Flat line: misses everything (underfit)",
    "narration": {
     "en": "A wiggly curve passes through every training point but misses new ones: overfitting. A flat line misses everything: underfitting.",
     "hi": "एक टेढ़ी-मेढ़ी वक्र हर प्रशिक्षण बिंदु से गुज़रती है पर नए बिंदु चूकती है: ओवरफ़िटिंग। सपाट रेखा सब चूकती है: अंडरफ़िटिंग।",
@@ -88,7 +154,7 @@
     "hi": "प्रशिक्षण लॉस गिरता रहता है, पर वैलिडेशन लॉस ऊपर मुड़ता है: यहीं रुको (अर्ली स्टॉपिंग)।",
     "hinglish": "Training loss girta rehta hai, par validation loss upar mudta hai: yahin ruko (early stopping)."
    },
-   "visual": "anim:val-curve-u",
+   "visual": "compare:📉 Training loss keeps falling|📈 Validation loss turns upward: stop here",
    "narration": {
     "en": "Training loss keeps falling, but validation loss turns upward: stop here (early stopping).",
     "hi": "प्रशिक्षण लॉस गिरता रहता है, पर वैलिडेशन लॉस ऊपर मुड़ता है: यहीं रुको (अर्ली स्टॉपिंग)।",

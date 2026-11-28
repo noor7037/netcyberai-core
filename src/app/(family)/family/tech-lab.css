@@ -175,3 +175,43 @@ button.tl-opt { font: inherit; }
 /* Six dock tabs (Tech Lab sits after English). Names stay visible; the type is a step smaller. */
 .fam-dock[data-count='6'] .fam-tab { font-size: 0.69rem; letter-spacing: -0.01em; }
 .fam-dock[data-count='6'] .fam-tab-ico { width: 2.5rem; }
+
+/* C557: stand-ins and the parts diagram */
+.tl-icon-card { display: grid; justify-items: center; gap: 8px; text-align: center; }
+.tl-icon-card > span { font-size: 64px; line-height: 1; }
+.tl-icon-card p, .tl-standin-main { margin: 0; font-weight: 800; font-size: 1.05rem; line-height: 1.45; max-width: 34ch; }
+.tl-standin { display: grid; gap: 10px; justify-items: start; width: 100%; max-width: 560px; }
+.tl-code { margin: 0; width: 100%; max-width: 560px; padding: 14px; border-radius: 14px; background: #0f172a; color: #e2e8f0; font: 600 0.92rem/1.6 ui-monospace, SFMono-Regular, Menlo, monospace; white-space: pre-wrap; overflow-x: auto; }
+.tl-diagram { margin: 0; width: 100%; display: grid; gap: 10px; }
+.tl-drow { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px 4px; }
+.tl-dcell { display: inline-flex; align-items: center; gap: 4px; min-width: 0; }
+.tl-darrow { font-weight: 800; opacity: 0.6; }
+.tl-dpart { display: inline-grid; justify-items: center; gap: 2px; min-width: 76px; max-width: 150px; padding: 8px 10px; border-radius: 14px; background: #fff; color: #1c1b1a; border: 2px solid #d6cfc4; text-align: center; font-size: 0.86rem; line-height: 1.25; transition: transform 0.25s ease, opacity 0.25s ease, box-shadow 0.25s ease; }
+.tl-stage.dark .tl-dpart { background: #101a44; color: #fff; border-color: #2c3770; }
+.tl-stage.dark .tl-diagram.focusing .tl-dpart.on { background: #1b2a6b; }
+.tl-diagram.focusing .tl-dpart { background: #ece6db; border-style: dashed; }
+.tl-stage.dark .tl-diagram.focusing .tl-dpart { background: #0b1230; }
+.tl-diagram.focusing .tl-dpart.on { background: #fff; border-style: solid; transform: scale(1.08); border-color: #e8702a; box-shadow: 0 0 0 4px rgb(232 112 42 / 0.28); }
+.tl-diagram.still .tl-dpart { transition: none; }
+.tl-diagram.still .tl-dpart.on { transform: none; }
+.tl-dicon { font-size: 22px; line-height: 1; }
+.tl-dval { display: inline-block; margin-top: 2px; padding: 1px 8px; border-radius: 999px; background: #1c1b1a; color: #ffd23f; font: 800 0.82rem/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; }
+.tl-dlinks { margin: 0; padding: 0; list-style: none; display: grid; gap: 2px; font-size: 0.8rem; opacity: 0.85; text-align: center; }
+.tl-dlinks li.on { font-weight: 800; opacity: 1; }
+.tl-dnote { margin: 0; padding: 8px 12px; border-radius: 12px; background: #fff7e0; color: #1c1b1a; font-weight: 700; font-size: 0.9rem; text-align: center; }
+
+/* C557: the guided lesson */
+.tl-guide { position: sticky; bottom: calc(8px + env(safe-area-inset-bottom, 0px)); z-index: 5; display: grid; gap: 8px; padding: 10px 12px; border-radius: 18px; background: #1c1b1a; color: #fff; box-shadow: 0 8px 24px rgb(0 0 0 / 0.25); }
+.tl-guide-caption { margin: 0; font-weight: 700; line-height: 1.45; font-size: 0.98rem; }
+.tl-guide-row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.tl-guide-row button { min-height: 44px; min-width: 44px; padding: 6px 12px; border-radius: 999px; border: 1.5px solid #4b4844; background: #2a2826; color: #fff; font-weight: 800; }
+.tl-guide-row button[aria-pressed='true'] { background: #ffd23f; color: #1c1b1a; border-color: #ffd23f; }
+.tl-guide-progress { font-size: 0.8rem; opacity: 0.8; margin-left: auto; }
+.tl-start { width: 100%; }
+.tl-predict-opts { display: grid; gap: 8px; }
+.tl-teachback textarea { width: 100%; min-height: 96px; border-radius: 14px; border: 1.5px solid var(--tl-line); padding: 10px; font: inherit; }
+.tl-vocab-extra { display: block; font-size: 0.8rem; opacity: 0.85; }
+.tl-limit { margin: 0; padding: 8px 12px; border-radius: 12px; background: #fbe6e3; color: #1c1b1a; font-size: 0.92rem; }
+/* A lesson's sources: each link a full 44 px target. */
+details .tl-outcomes a { display: inline-flex; align-items: center; min-height: 44px; }
+.tl details > summary { display: flex; align-items: center; min-height: 44px; cursor: pointer; font-weight: 800; }

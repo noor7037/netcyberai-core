@@ -39,6 +39,82 @@
    "hinglish": "Samjha sakte ho jaldi report karna kyun zaroori hai"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your uncle realises he sent ₹20,000 to a fraudster only a few minutes ago.",
+   "hi": "{{name}}, तुम्हारे चाचा को समझ आता है कि उन्होंने बस कुछ मिनट पहले एक ठग को ₹20,000 भेज दिए।",
+   "hinglish": "{{name}}, tumhare chacha ko samajh aata hai ki unhone bas kuch minute pehle ek thug ko ₹20,000 bhej diye."
+  },
+  "question": {
+   "en": "What should be done first, and why does every minute count?",
+   "hi": "सबसे पहले क्या करना चाहिए, और हर मिनट क्यों मायने रखता है?",
+   "hinglish": "Sabse pehle kya karna chahiye, aur har minute kyon matter karta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What is the best first step to get a fraud payment frozen?",
+   "hi": "ठगी के भुगतान को रुकवाने के लिए सबसे अच्छा पहला क़दम कौन-सा है?",
+   "hinglish": "Thagi ke payment ko rukwane ke liye sabse achha pehla kadam kaunsa hai?"
+  },
+  "options": [
+   {
+    "en": "Wait a day to see if it comes back",
+    "hi": "एक दिन इंतज़ार करो कि पैसा लौटता है या नहीं",
+    "hinglish": "Ek din intezaar karo ki paisa lautta hai ya nahi"
+   },
+   {
+    "en": "Call 1930 straight away",
+    "hi": "तुरंत 1930 पर फ़ोन करो",
+    "hinglish": "Turant 1930 par call karo"
+   },
+   {
+    "en": "Message the fraudster to ask for it back",
+    "hi": "ठग को संदेश भेजकर पैसे वापस माँगो",
+    "hinglish": "Thug ko message bhejkar paise wapas maango"
+   },
+   {
+    "en": "Post about it on social media",
+    "hi": "सोशल मीडिया पर पोस्ट करो",
+    "hinglish": "Social media par post karo"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Calling 1930 sends the details to a system that alerts the banks involved, which can put a hold on the money before it is withdrawn. Fraudsters move money on quickly, so the first hours matter most.",
+   "hi": "1930 पर फ़ोन करने से विवरण उस प्रणाली में जाता है जो संबंधित बैंकों को सतर्क करती है, और वे पैसे निकलने से पहले उस पर रोक लगा सकते हैं। ठग पैसा जल्दी आगे सरका देते हैं, इसलिए शुरुआती घंटे सबसे अहम हैं।",
+   "hinglish": "1930 par call karne se details us system mein jaati hain jo sambandhit banks ko alert karta hai, aur woh paise nikalne se pehle us par hold laga sakte hain. Thug paisa jaldi aage sarka dete hain, isliye shuruaati ghante sabse ahem hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home what to do after a cyber fraud, and why.",
+   "hi": "घर पर किसी को समझाओ कि साइबर ठगी के बाद क्या करना चाहिए, और क्यों।",
+   "hinglish": "Ghar par kisi ko samjhao ki cyber fraud ke baad kya karna chahiye, aur kyon."
+  },
+  "checklist": [
+   {
+    "en": "Call 1930 at once, because quick reports give the best chance of freezing the money.",
+    "hi": "तुरंत 1930 पर फ़ोन करो, क्योंकि जल्दी रिपोर्ट से पैसा रुकने की सबसे अच्छी संभावना है।",
+    "hinglish": "Turant 1930 par call karo, kyonki jaldi report se paisa rukne ki sabse achhi sambhavna hai."
+   },
+   {
+    "en": "Then file the full complaint on cybercrime.gov.in with the acknowledgement number.",
+    "hi": "फिर पावती संख्या के साथ cybercrime.gov.in पर पूरी शिकायत दर्ज करो।",
+    "hinglish": "Phir acknowledgement number ke saath cybercrime.gov.in par poori complaint darj karo."
+   },
+   {
+    "en": "Save evidence first: screenshots, phone number, link, UPI ID and transaction ID.",
+    "hi": "पहले सबूत सहेजो: स्क्रीनशॉट, फ़ोन नंबर, लिंक, UPI ID और ट्रांज़ैक्शन ID।",
+    "hinglish": "Pehle saboot sahejo: screenshots, phone number, link, UPI ID aur transaction ID."
+   },
+   {
+    "en": "Tell a parent or trusted adult first; you will not be in trouble for reporting.",
+    "hi": "सबसे पहले माता-पिता या भरोसेमंद बड़े को बताओ; रिपोर्ट करने पर तुम मुसीबत में नहीं पड़ोगे।",
+    "hinglish": "Sabse pehle parents ya trusted bade ko batao; report karne par tum musibat mein nahi padoge."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "1930",

@@ -8,6 +8,7 @@ import fs from 'fs';
 import path from 'path';
 import { courseCatalog, lessonById, lessonCount } from '../src/lib/family/tech/catalog';
 import { questionsOf } from '../src/lib/family/tech/score';
+import { lessonProblems } from '../src/lib/family/tech/validate';
 
 const LIVE = 'unodnyyfqhxrbusbkite';
 
@@ -51,6 +52,11 @@ for (const unit of course.units) {
         problems += 1;
         console.error(`question ${lesson.id} ${question.id}`);
       }
+    }
+    // C557: every picture kind has a renderer, and the teaching layer is complete in the three languages.
+    for (const problem of lessonProblems(lesson)) {
+      problems += 1;
+      console.error(problem);
     }
     const lab = lesson.play?.lab;
     if (lab && lab !== 'scene' && !labs.has(lab)) {

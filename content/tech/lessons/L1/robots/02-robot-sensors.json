@@ -40,6 +40,77 @@
    "hinglish": "Samjha sakte ho ki IR sensor kaale aur safed mein farak kaise karta hai."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you walk in a dark room with your eyes closed and clap, and from the echo you can tell the wall is near.",
+   "hi": "{{name}}, तुम अँधेरे कमरे में आँखें बंद करके चलते हो और ताली बजाते हो, और गूँज से समझ जाते हो कि दीवार पास है।",
+   "hinglish": "{{name}}, tum andhere kamre mein aankhein band karke chalte ho aur taali bajate ho, aur goonj se samajh jaate ho ki deewar paas hai."
+  },
+  "question": {
+   "en": "How can a robot use sounds and light to sense things around it?",
+   "hi": "रोबोट आसपास की चीज़ों को पहचानने में आवाज़ और रोशनी का इस्तेमाल कैसे कर सकता है?",
+   "hinglish": "Robot aaspaas ki cheezon ko pehchaanne mein awaaz aur roshni ka use kaise kar sakta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "An ultrasonic sensor sends out a sound ping. How does it tell how far a wall is?",
+   "hi": "अल्ट्रासोनिक सेंसर आवाज़ की पिंग भेजता है। वह दीवार की दूरी कैसे जानता है?",
+   "hinglish": "Ultrasonic sensor awaaz ki ping bhejta hai. Woh deewar ki doori kaise jaanta hai?"
+  },
+  "options": [
+   {
+    "en": "It times how long the echo takes to come back",
+    "hi": "वह गूँज लौटने में लगा समय नापता है",
+    "hinglish": "Woh goonj lautne mein laga samay naapta hai"
+   },
+   {
+    "en": "It looks at the wall with a small eye",
+    "hi": "वह छोटी आँख से दीवार देखता है",
+    "hinglish": "Woh chhoti aankh se deewar dekhta hai"
+   },
+   {
+    "en": "It smells the wall",
+    "hi": "वह दीवार को सूँघता है",
+    "hinglish": "Woh deewar ko soonghta hai"
+   }
+  ],
+  "answer": 0,
+  "explain": {
+   "en": "Sound travels at a known speed, so a longer wait for the echo means a farther object. An IR sensor works differently: white bounces light back and black soaks it up. Sensors only give numbers, and the robot's rules decide what to do.",
+   "hi": "आवाज़ तय गति से चलती है, इसलिए गूँज आने में ज़्यादा समय का मतलब चीज़ ज़्यादा दूर है। IR सेंसर अलग तरह से काम करता है: सफ़ेद रोशनी लौटाता है और काला सोख लेता है। सेंसर सिर्फ़ संख्याएँ देते हैं, और क्या करना है यह रोबोट के नियम तय करते हैं।",
+   "hinglish": "Awaaz tay speed se chalti hai, isliye goonj aane mein zyada samay ka matlab cheez zyada door hai. IR sensor alag tarah se kaam karta hai: safed roshni lautata hai aur kaala sokh leta hai. Sensors sirf numbers dete hain, aur kya karna hai yeh robot ke rules tay karte hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: how do robot sensors work?",
+   "hi": "घर पर किसी को समझाओ: रोबोट के सेंसर कैसे काम करते हैं?",
+   "hinglish": "Ghar par kisi ko samjhao: robot ke sensors kaise kaam karte hain?"
+  },
+  "checklist": [
+   {
+    "en": "Camera is like eyes, microphone like ears, touch sensor like skin.",
+    "hi": "कैमरा आँखों जैसा, माइक्रोफ़ोन कानों जैसा, टच सेंसर त्वचा जैसा।",
+    "hinglish": "Camera aankhon jaisa, microphone kaanon jaisa, touch sensor skin jaisa."
+   },
+   {
+    "en": "Ultrasonic times the echo to find distance.",
+    "hi": "अल्ट्रासोनिक गूँज का समय नापकर दूरी बताता है।",
+    "hinglish": "Ultrasonic goonj ka samay naap kar doori batata hai."
+   },
+   {
+    "en": "IR sees white bounce light back and black soak it up.",
+    "hi": "IR में सफ़ेद रोशनी लौटाता है और काला सोखता है।",
+    "hinglish": "IR mein safed roshni lautata hai aur kaala sokhta hai."
+   },
+   {
+    "en": "Sensors give numbers; the rules decide what to do.",
+    "hi": "सेंसर संख्याएँ देते हैं; नियम तय करते हैं कि क्या करना है।",
+    "hinglish": "Sensors numbers dete hain; rules tay karte hain ki kya karna hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Sensor",

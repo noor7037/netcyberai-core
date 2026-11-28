@@ -36,6 +36,77 @@
    "hinglish": "ORDER BY aur LIMIT se results sort aur limit karo"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you open a school app and ask: show me only Class 10 students from Pune, highest marks first.",
+   "hi": "{{name}}, तुम स्कूल ऐप खोलकर माँगते हो: सिर्फ़ पुणे के कक्षा 10 के विद्यार्थी दिखाओ, सबसे ज़्यादा अंक पहले।",
+   "hinglish": "{{name}}, tum school app kholkar maangte ho: sirf Pune ke Class 10 students dikhao, sabse zyada marks pehle."
+  },
+  "question": {
+   "en": "How do you say that to a database in a few exact words, and in what order does it really do each step?",
+   "hi": "यह डेटाबेस से कुछ सटीक शब्दों में कैसे कहते हैं, और वह हर कदम असल में किस क्रम में करता है?",
+   "hinglish": "Yeh database se kuch exact words mein kaise kehte hain, aur woh har step asal mein kis order mein karta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What does WHERE class = 9 OR class = 10 AND city = 'Pune' return?",
+   "hi": "WHERE class = 9 OR class = 10 AND city = 'Pune' क्या लौटाता है?",
+   "hinglish": "WHERE class = 9 OR class = 10 AND city = 'Pune' kya lautata hai?"
+  },
+  "options": [
+   {
+    "en": "Class 9 or 10 students, all from Pune",
+    "hi": "कक्षा 9 या 10 के विद्यार्थी, सब पुणे के",
+    "hinglish": "Class 9 ya 10 ke students, sab Pune ke"
+   },
+   {
+    "en": "Class 9 students from anywhere, plus Class 10 students from Pune",
+    "hi": "कहीं के भी कक्षा 9 के विद्यार्थी, और पुणे के कक्षा 10 के विद्यार्थी",
+    "hinglish": "Kahin ke bhi Class 9 ke students, aur Pune ke Class 10 ke students"
+   },
+   {
+    "en": "Nothing, the query is an error",
+    "hi": "कुछ नहीं, क्वेरी में त्रुटि है",
+    "hinglish": "Kuch nahi, query mein error hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "AND binds tighter than OR, so the query reads class = 9 OR (class = 10 AND city = 'Pune'). To get both classes in Pune write WHERE (class = 9 OR class = 10) AND city = 'Pune'. Brackets say what you mean. The database also runs the clauses in a different order from how you write them: FROM, WHERE, SELECT, ORDER BY, LIMIT.",
+   "hi": "AND, OR से ज़्यादा कसकर बाँधता है, इसलिए क्वेरी का मतलब class = 9 OR (class = 10 AND city = 'Pune') है। पुणे में दोनों कक्षाएँ पाने के लिए WHERE (class = 9 OR class = 10) AND city = 'Pune' लिखो। कोष्ठक बताते हैं तुम क्या चाहते हो। डेटाबेस खंड भी तुम्हारे लिखे क्रम से अलग चलाता है: FROM, WHERE, SELECT, ORDER BY, LIMIT।",
+   "hinglish": "AND, OR se zyada kasakar bandhta hai, isliye query ka matlab class = 9 OR (class = 10 AND city = 'Pune') hai. Pune mein dono classes paane ke liye WHERE (class = 9 OR class = 10) AND city = 'Pune' likho. Brackets batate hain tum kya chahte ho. Database clauses bhi tumhare likhe order se alag chalata hai: FROM, WHERE, SELECT, ORDER BY, LIMIT."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a SELECT query with WHERE, ORDER BY and LIMIT picks the top three students.",
+   "hi": "घर पर किसी को समझाओ कि WHERE, ORDER BY और LIMIT वाली SELECT क्वेरी शीर्ष तीन विद्यार्थी कैसे चुनती है।",
+   "hinglish": "Ghar par kisi ko samjhao ki WHERE, ORDER BY aur LIMIT wali SELECT query top teen students kaise chunti hai."
+  },
+  "checklist": [
+   {
+    "en": "SELECT chooses columns; * means all columns.",
+    "hi": "SELECT स्तंभ चुनता है; * का मतलब सारे स्तंभ।",
+    "hinglish": "SELECT columns chunta hai; * ka matlab saare columns."
+   },
+   {
+    "en": "WHERE keeps matching rows; text goes in single quotes; use AND, OR, IN, LIKE, BETWEEN.",
+    "hi": "WHERE मेल खाती पंक्तियाँ रखता है; टेक्स्ट एकल उद्धरण में; AND, OR, IN, LIKE, BETWEEN इस्तेमाल करो।",
+    "hinglish": "WHERE matching rows rakhta hai; text single quotes mein; AND, OR, IN, LIKE, BETWEEN use karo."
+   },
+   {
+    "en": "ORDER BY sorts and LIMIT cuts the result, for example the top 3.",
+    "hi": "ORDER BY क्रमबद्ध करता है और LIMIT नतीजा काटता है, जैसे शीर्ष 3।",
+    "hinglish": "ORDER BY sort karta hai aur LIMIT result kaat'ta hai, jaise top 3."
+   },
+   {
+    "en": "AND binds before OR, NULL needs IS NULL, and the real run order differs from the written order.",
+    "hi": "AND, OR से पहले बँधता है, NULL के लिए IS NULL चाहिए, और असली चलने का क्रम लिखे क्रम से अलग है।",
+    "hinglish": "AND, OR se pehle bandhta hai, NULL ke liye IS NULL chahiye, aur real run order likhe order se alag hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "SELECT",
@@ -90,7 +161,7 @@
     "hi": "WHERE class = 10 सिर्फ़ मिलती पंक्तियाँ रखता है। पाठ एकल उद्धरण में: WHERE city = 'Pune'।",
     "hinglish": "WHERE class = 10 sirf matching rows rakhta hai. Text single quotes mein: WHERE city = 'Pune'."
    },
-   "visual": "anim:sql-where-filter",
+   "visual": "flow:📋 All rows|🔎 WHERE class = 10|✅ Matching rows only",
    "narration": {
     "en": "WHERE class = 10 keeps only matching rows. Text goes in single quotes: WHERE city = 'Pune'.",
     "hi": "WHERE class = 10 सिर्फ़ मिलती पंक्तियाँ रखता है। पाठ एकल उद्धरण में: WHERE city = 'Pune'।",
@@ -118,7 +189,7 @@
     "hi": "ORDER BY marks DESC LIMIT 3 शीर्ष तीन देता है। डेटाबेस असल में FROM → WHERE → SELECT → ORDER BY → LIMIT चलाता है।",
     "hinglish": "ORDER BY marks DESC LIMIT 3 top teen deta hai. Database asal mein FROM → WHERE → SELECT → ORDER BY → LIMIT chalata hai."
    },
-   "visual": "anim:sql-pipeline",
+   "visual": "flow:📋 FROM|🔎 WHERE|🎯 SELECT|↕️ ORDER BY|✂️ LIMIT",
    "narration": {
     "en": "ORDER BY marks DESC LIMIT 3 gives the top three. The database actually runs FROM → WHERE → SELECT → ORDER BY → LIMIT.",
     "hi": "ORDER BY marks DESC LIMIT 3 शीर्ष तीन देता है। डेटाबेस असल में FROM → WHERE → SELECT → ORDER BY → LIMIT चलाता है।",

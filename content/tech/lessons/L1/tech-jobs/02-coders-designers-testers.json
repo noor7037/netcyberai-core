@@ -40,6 +40,77 @@
    "hinglish": "Tester ki tarah bug dhoondh kar theek kar sakte ho."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your favourite game suddenly shows the wrong score, and everyone laughs about the \"bug\".",
+   "hi": "{{name}}, तुम्हारे पसंदीदा गेम में अचानक ग़लत स्कोर दिखता है, और सब \"बग\" पर हँसते हैं।",
+   "hinglish": "{{name}}, tumhare favourite game mein achanak galat score dikhta hai, aur sab \"bug\" par hanste hain."
+  },
+  "question": {
+   "en": "Who finds and fixes mistakes like that before we play?",
+   "hi": "हमारे खेलने से पहले ऐसी ग़लतियाँ कौन ढूँढता और ठीक करता है?",
+   "hinglish": "Hamare khelne se pehle aisi galtiyan kaun dhoondta aur theek karta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "In what order is an app usually made?",
+   "hi": "ऐप आम तौर पर किस क्रम में बनता है?",
+   "hinglish": "App aam taur par kis kram mein banta hai?"
+  },
+  "options": [
+   {
+    "en": "Launch, then code, then test, then idea",
+    "hi": "लॉन्च, फिर कोड, फिर टेस्ट, फिर आइडिया",
+    "hinglish": "Launch, phir code, phir test, phir idea"
+   },
+   {
+    "en": "Idea, design, code, test, launch, then improve",
+    "hi": "आइडिया, डिज़ाइन, कोड, टेस्ट, लॉन्च, फिर सुधार",
+    "hinglish": "Idea, design, code, test, launch, phir improve"
+   },
+   {
+    "en": "Test first, because there is nothing to code yet",
+    "hi": "पहले टेस्ट, क्योंकि कोड करने को कुछ नहीं है",
+    "hinglish": "Pehle test, kyunki code karne ko kuch nahi hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Designers sketch the screens, developers turn the design into code, and testers check each \"if I do this, it should do that\" to find bugs before users do. Then the app is launched and improved.",
+   "hi": "डिज़ाइनर स्क्रीन बनाते हैं, डेवलपर डिज़ाइन को कोड में बदलते हैं, और टेस्टर हर \"मैं यह करूँ तो यह होना चाहिए\" जाँचकर बग ढूँढते हैं, उपयोगकर्ताओं से पहले। फिर ऐप लॉन्च और बेहतर किया जाता है।",
+   "hinglish": "Designers screens banate hain, developers design ko code mein badalte hain, aur testers har \"main yeh karoon to yeh hona chahiye\" jaanchkar bugs dhoondte hain, users se pehle. Phir app launch aur behtar kiya jaata hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: how is an app made?",
+   "hi": "घर पर किसी को समझाओ: ऐप कैसे बनता है?",
+   "hinglish": "Ghar par kisi ko samjhao: app kaise banta hai?"
+  },
+  "checklist": [
+   {
+    "en": "Steps: idea, design, code, test, launch, improve.",
+    "hi": "कदम: आइडिया, डिज़ाइन, कोड, टेस्ट, लॉन्च, सुधार।",
+    "hinglish": "Steps: idea, design, code, test, launch, improve."
+   },
+   {
+    "en": "A UX designer sketches how it looks and feels.",
+    "hi": "UX डिज़ाइनर बनाता है कि वह कैसा दिखेगा और लगेगा।",
+    "hinglish": "UX designer banata hai ki woh kaisa dikhega aur lagega."
+   },
+   {
+    "en": "A developer writes the code.",
+    "hi": "डेवलपर कोड लिखता है।",
+    "hinglish": "Developer code likhta hai."
+   },
+   {
+    "en": "A tester finds bugs before users do.",
+    "hi": "टेस्टर उपयोगकर्ताओं से पहले बग ढूँढता है।",
+    "hinglish": "Tester users se pehle bugs dhoondta hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Software developer",

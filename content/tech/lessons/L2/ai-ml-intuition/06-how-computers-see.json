@@ -39,6 +39,82 @@
    "hinglish": "Computer vision ke rozana uses aur limits bata sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your phone unlocks the moment you look at it.",
+   "hi": "{{name}}, फ़ोन को देखते ही वह अनलॉक हो जाता है।",
+   "hinglish": "{{name}}, phone ko dekhte hi woh unlock ho jaata hai."
+  },
+  "question": {
+   "en": "A camera does not see like you do. So how does a computer know that a picture is your face?",
+   "hi": "कैमरा तुम्हारी तरह नहीं देखता। तो कंप्यूटर को कैसे पता चलता है कि तस्वीर तुम्हारा चेहरा है?",
+   "hinglish": "Camera tumhari tarah nahi dekhta. To computer ko kaise pata chalta hai ki picture tumhara chehra hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What is a photo to a computer?",
+   "hi": "कंप्यूटर के लिए फ़ोटो क्या है?",
+   "hinglish": "Computer ke liye photo kya hai?"
+  },
+  "options": [
+   {
+    "en": "A picture it looks at, as we do",
+    "hi": "एक तस्वीर जिसे वह हमारी तरह देखता है",
+    "hinglish": "Ek picture jise woh hamari tarah dekhta hai"
+   },
+   {
+    "en": "A grid of numbers, one or three per pixel",
+    "hi": "संख्याओं का ग्रिड, हर पिक्सेल पर एक या तीन",
+    "hinglish": "Numbers ka grid, har pixel par ek ya teen"
+   },
+   {
+    "en": "A list of colour names",
+    "hi": "रंगों के नामों की सूची",
+    "hinglish": "Colour names ki list"
+   },
+   {
+    "en": "A sentence describing the scene",
+    "hi": "दृश्य का वर्णन करता एक वाक्य",
+    "hinglish": "Scene ka description karta ek sentence"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "A photo is a grid of pixels. Each pixel is a number from 0 (black) to 255 (white), or three numbers (red, green, blue) for colour. Vision AI learns patterns in those numbers, from edges to shapes to whole objects.",
+   "hi": "फ़ोटो पिक्सेलों का ग्रिड है। हर पिक्सेल 0 (काला) से 255 (सफ़ेद) तक की संख्या है, या रंग के लिए तीन संख्याएँ (लाल, हरा, नीला)। विज़न AI इन संख्याओं में पैटर्न सीखता है, किनारों से आकृतियों और पूरी वस्तुओं तक।",
+   "hinglish": "Photo pixels ka grid hai. Har pixel 0 (black) se 255 (white) tak ka number hai, ya colour ke liye teen numbers (red, green, blue). Vision AI in numbers mein patterns seekhta hai, edges se shapes aur poori objects tak."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a computer can recognise a face in a photo.",
+   "hi": "घर पर किसी को समझाओ कि कंप्यूटर फ़ोटो में चेहरा कैसे पहचान सकता है।",
+   "hinglish": "Ghar par kisi ko samjhao ki computer photo mein chehra kaise pehchan sakta hai."
+  },
+  "checklist": [
+   {
+    "en": "An image is a grid of pixel numbers: 0 is black, 255 is white, and colour pixels have three numbers.",
+    "hi": "छवि पिक्सेल संख्याओं का ग्रिड है: 0 काला, 255 सफ़ेद, और रंगीन पिक्सेल में तीन संख्याएँ।",
+    "hinglish": "Image pixel numbers ka grid hai: 0 black, 255 white, aur colour pixels mein teen numbers."
+   },
+   {
+    "en": "A vision AI learns in layers: edges first, then shapes, then whole objects like faces.",
+    "hi": "विज़न AI परतों में सीखता है: पहले किनारे, फिर आकृतियाँ, फिर चेहरे जैसी पूरी वस्तुएँ।",
+    "hinglish": "Vision AI layers mein seekhta hai: pehle edges, phir shapes, phir chehre jaisi poori objects."
+   },
+   {
+    "en": "Everyday uses include face unlock and photo search.",
+    "hi": "रोज़मर्रा के उपयोग: फ़ेस अनलॉक और फ़ोटो खोज।",
+    "hinglish": "Roz ke uses: face unlock aur photo search."
+   },
+   {
+    "en": "Its limits: odd lighting, angles or a few changed pixels can fool it.",
+    "hi": "इसकी सीमाएँ: अजीब रोशनी, कोण या कुछ बदले पिक्सेल इसे धोखा दे सकते हैं।",
+    "hinglish": "Iski limits: odd lighting, angles ya kuch badle pixels ise dhokha de sakte hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Pixel",

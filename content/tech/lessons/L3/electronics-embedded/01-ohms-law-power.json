@@ -33,6 +33,77 @@
    "hinglish": "Power (P = V × I) aur battery energy Wh mein nikaalo"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you plug a phone into a weak old charger and it charges slowly, but a fast charger fills it much quicker.",
+   "hi": "{{name}}, तुम फ़ोन को पुराने कमज़ोर चार्जर से लगाते हो तो वह धीरे चार्ज होता है, पर फ़ास्ट चार्जर से बहुत जल्दी भर जाता है।",
+   "hinglish": "{{name}}, tum phone ko purane kamzor charger se lagate ho toh woh dheere charge hota hai, par fast charger se bahut jaldi bhar jaata hai."
+  },
+  "question": {
+   "en": "What links the push of a battery, the flow of current and what a wire or LED resists, and how do you pick a safe resistor?",
+   "hi": "बैटरी का धक्का, करंट का बहाव और तार या LED का रुकावट डालना आपस में कैसे जुड़े हैं, और सुरक्षित रेज़िस्टर कैसे चुनते हैं?",
+   "hinglish": "Battery ka dhakka, current ka bahaav aur wire ya LED ka rukawat daalna aapas mein kaise jude hain, aur safe resistor kaise chunte hain?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "You connect an LED straight to a 5 V supply with no resistor. What most likely happens?",
+   "hi": "तुम एक LED को बिना रेज़िस्टर सीधे 5 V सप्लाई से जोड़ते हो। सबसे संभावित क्या होगा?",
+   "hinglish": "Tum ek LED ko bina resistor seedhe 5 V supply se jodte ho. Sabse likely kya hoga?"
+  },
+  "options": [
+   {
+    "en": "It glows normally, because 5 V is a safe voltage",
+    "hi": "यह सामान्य जलेगी, क्योंकि 5 V सुरक्षित वोल्टेज है",
+    "hinglish": "Yeh normal jalegi, kyunki 5 V safe voltage hai"
+   },
+   {
+    "en": "It draws far too much current and can burn out, because nothing limits the current",
+    "hi": "यह बहुत ज़्यादा करंट खींचेगी और जल सकती है, क्योंकि करंट को कुछ सीमित नहीं करता",
+    "hinglish": "Yeh bahut zyada current khinchegi aur jal sakti hai, kyunki current ko kuch limit nahi karta"
+   },
+   {
+    "en": "It stays dark, because LEDs need AC",
+    "hi": "यह बुझी रहेगी, क्योंकि LED को AC चाहिए",
+    "hinglish": "Yeh bujhi rahegi, kyunki LED ko AC chahiye"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "An LED drops only about 2 V, so the other 3 V is left to push current through almost no resistance. By V = I × R, the current becomes large. A series resistor takes the extra voltage: R = (5 - 2) ÷ 0.015 = 200 Ω, so a 220 Ω resistor is used.",
+   "hi": "LED पर सिर्फ़ लगभग 2 V गिरता है, इसलिए बचे 3 V लगभग बिना रुकावट के करंट धकेलते हैं। V = I × R के हिसाब से करंट बहुत बड़ा हो जाता है। श्रेणी में लगा रेज़िस्टर अतिरिक्त वोल्टेज सँभालता है: R = (5 - 2) ÷ 0.015 = 200 Ω, इसलिए 220 Ω लगाते हैं।",
+   "hinglish": "LED par sirf lagbhag 2 V girta hai, isliye bache 3 V lagbhag bina rukawat ke current dhakelte hain. V = I × R ke hisaab se current bahut bada ho jaata hai. Series mein laga resistor extra voltage sambhalta hai: R = (5 - 2) ÷ 0.015 = 200 Ω, isliye 220 Ω lagate hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home why an LED needs a resistor and how you would choose its value.",
+   "hi": "घर पर किसी को समझाओ कि LED को रेज़िस्टर क्यों चाहिए और उसका मान कैसे चुनोगे।",
+   "hinglish": "Ghar par kisi ko samjhao ki LED ko resistor kyun chahiye aur uska value kaise chunoge."
+  },
+  "checklist": [
+   {
+    "en": "Voltage is the push, current the flow, resistance what opposes it: V = I × R.",
+    "hi": "वोल्टेज धक्का है, करंट बहाव, रेज़िस्टेंस उसका विरोध: V = I × R।",
+    "hinglish": "Voltage push hai, current flow, resistance uska opposition: V = I × R."
+   },
+   {
+    "en": "The resistor must take the leftover voltage: supply minus LED drop, divided by the wanted current.",
+    "hi": "रेज़िस्टर को बचा वोल्टेज सँभालना है: सप्लाई घटा LED का गिरना, फिर चाहे गए करंट से भाग।",
+    "hinglish": "Resistor ko bacha voltage sambhalna hai: supply minus LED drop, phir wanted current se divide."
+   },
+   {
+    "en": "Pick the next standard value up (200 Ω becomes 220 Ω) so current stays safe.",
+    "hi": "अगला मानक मान लो (200 Ω के लिए 220 Ω) ताकि करंट सुरक्षित रहे।",
+    "hinglish": "Next standard value lo (200 Ω ke liye 220 Ω) taaki current safe rahe."
+   },
+   {
+    "en": "Power is P = V × I, and a resistor turns it into heat, so it needs a power rating.",
+    "hi": "पावर P = V × I है, रेज़िस्टर उसे गर्मी में बदलता है, इसलिए उसकी पावर रेटिंग चाहिए।",
+    "hinglish": "Power P = V × I hai, resistor ise heat mein badalta hai, isliye uski power rating chahiye."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Voltage (V)",

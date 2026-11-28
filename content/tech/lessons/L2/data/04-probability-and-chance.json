@@ -38,6 +38,82 @@
    "hinglish": "Samjha sakte ho zyada trials zyada reliable results kyun dete hain"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, at the start of the match the captain calls \"Heads!\" and the umpire flips the coin.",
+   "hi": "{{name}}, मैच की शुरुआत में कप्तान बोलता है \"हेड्स!\" और अंपायर सिक्का उछालता है।",
+   "hinglish": "{{name}}, match ki shuruaat mein captain bolta hai \"Heads!\" aur umpire coin uchhalta hai."
+  },
+  "question": {
+   "en": "Why do we call a toss fair? How could you put a number on a chance?",
+   "hi": "टॉस को निष्पक्ष क्यों कहते हैं? किसी संभावना को संख्या में कैसे बताया जा सकता है?",
+   "hinglish": "Toss ko fair kyon kehte hain? Kisi chance ko number mein kaise bataya ja sakta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A fair coin has landed heads 5 times in a row. What is the chance of heads on the next toss?",
+   "hi": "एक निष्पक्ष सिक्का लगातार 5 बार हेड्स आया। अगली बार हेड्स आने की संभावना क्या है?",
+   "hinglish": "Ek fair coin lagatar 5 baar heads aaya. Agli baar heads aane ka chance kya hai?"
+  },
+  "options": [
+   {
+    "en": "Less than 1/2, because tails is due",
+    "hi": "1/2 से कम, क्योंकि अब टेल्स की बारी है",
+    "hinglish": "1/2 se kam, kyonki ab tails ki baari hai"
+   },
+   {
+    "en": "More than 1/2, because heads is on a streak",
+    "hi": "1/2 से ज़्यादा, क्योंकि हेड्स चल रहा है",
+    "hinglish": "1/2 se zyada, kyonki heads chal raha hai"
+   },
+   {
+    "en": "Exactly 1/2",
+    "hi": "ठीक 1/2",
+    "hinglish": "Bilkul 1/2"
+   },
+   {
+    "en": "0, because heads cannot come six times",
+    "hi": "0, क्योंकि हेड्स छह बार नहीं आ सकता",
+    "hinglish": "0, kyonki heads chhe baar nahi aa sakta"
+   }
+  ],
+  "answer": 2,
+  "explain": {
+   "en": "Each toss is independent: the coin has no memory. With two equally likely outcomes, P(heads) = 1 ÷ 2 every time. Over many tosses the share of heads settles near 1/2, but not because the coin corrects itself.",
+   "hi": "हर टॉस स्वतंत्र है: सिक्के को कुछ याद नहीं रहता। दो बराबर संभावित नतीजों में हर बार P(हेड्स) = 1 ÷ 2 है। बहुत सारे टॉस में हेड्स का हिस्सा 1/2 के पास टिक जाता है, पर इसलिए नहीं कि सिक्का खुद को सुधारता है।",
+   "hinglish": "Har toss independent hai: coin ko kuch yaad nahi rehta. Do equally likely outcomes mein har baar P(heads) = 1 ÷ 2 hai. Bahut saare tosses mein heads ka share 1/2 ke paas tik jaata hai, par isliye nahi ki coin khud ko sudharta hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how to measure a chance and why more trials give a more reliable answer.",
+   "hi": "घर पर किसी को समझाओ कि संभावना कैसे नापते हैं और ज़्यादा प्रयोग क्यों ज़्यादा भरोसेमंद नतीजा देते हैं।",
+   "hinglish": "Ghar par kisi ko samjhao ki chance kaise naapte hain aur zyada trials zyada reliable result kyon dete hain."
+  },
+  "checklist": [
+   {
+    "en": "Probability is favourable outcomes divided by all equally likely outcomes, between 0 and 1.",
+    "hi": "संभावना अनुकूल नतीजों को सभी बराबर संभावित नतीजों से भाग देने पर मिलती है, 0 से 1 के बीच।",
+    "hinglish": "Probability favourable outcomes ko saare equally likely outcomes se divide karke milti hai, 0 se 1 ke beech."
+   },
+   {
+    "en": "Theoretical probability comes from reasoning; experimental probability comes from actually repeating trials.",
+    "hi": "सैद्धांतिक संभावना तर्क से आती है; प्रायोगिक संभावना असल में प्रयोग दोहराने से।",
+    "hinglish": "Theoretical probability reasoning se aati hai; experimental probability asal mein trials repeat karne se."
+   },
+   {
+    "en": "A few trials can be far from the theory; many trials get closer.",
+    "hi": "कम प्रयोग सिद्धांत से दूर हो सकते हैं; ज़्यादा प्रयोग उसके क़रीब आते हैं।",
+    "hinglish": "Kam trials theory se door ho sakte hain; zyada trials uske kareeb aate hain."
+   },
+   {
+    "en": "A fraction, a decimal and a percentage can all say the same probability.",
+    "hi": "भिन्न, दशमलव और प्रतिशत एक ही संभावना बता सकते हैं।",
+    "hinglish": "Fraction, decimal aur percentage ek hi probability bata sakte hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Probability",

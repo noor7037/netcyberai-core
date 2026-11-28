@@ -38,6 +38,82 @@
    "hinglish": "Virtual micro:bit pe input → decision → output program kar sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, the washing machine at home counts down, changes the water level and beeps when it finishes, yet it has no screen like a laptop.",
+   "hi": "{{name}}, घर की वॉशिंग मशीन उलटी गिनती करती है, पानी का स्तर बदलती है और ख़त्म होने पर बीप करती है, पर उसमें लैपटॉप जैसी स्क्रीन नहीं है।",
+   "hinglish": "{{name}}, ghar ki washing machine countdown karti hai, paani ka level badalti hai aur khatam hone par beep karti hai, par usmein laptop jaisi screen nahi hai."
+  },
+  "question": {
+   "en": "Is there a tiny computer inside, and how is it different from the one in a laptop?",
+   "hi": "क्या उसके अंदर कोई छोटा कंप्यूटर है, और वह लैपटॉप वाले से कैसे अलग है?",
+   "hinglish": "Kya uske andar koi chhota computer hai, aur woh laptop wale se kaise alag hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What does a microcontroller do, all day long?",
+   "hi": "माइक्रोकंट्रोलर दिन भर क्या करता है?",
+   "hinglish": "Microcontroller din bhar kya karta hai?"
+  },
+  "options": [
+   {
+    "en": "Runs many apps at once, like a laptop",
+    "hi": "लैपटॉप की तरह एक साथ कई ऐप चलाता है",
+    "hinglish": "Laptop ki tarah ek saath kai apps chalata hai"
+   },
+   {
+    "en": "Repeats one loop: read inputs, decide, set outputs",
+    "hi": "एक लूप दोहराता है: इनपुट पढ़ो, फ़ैसला लो, आउटपुट सेट करो",
+    "hinglish": "Ek loop repeat karta hai: inputs padho, decide karo, outputs set karo"
+   },
+   {
+    "en": "Waits until it is connected to the internet",
+    "hi": "इंटरनेट से जुड़ने का इंतज़ार करता है",
+    "hinglish": "Internet se judne ka intezaar karta hai"
+   },
+   {
+    "en": "Only stores data and never decides",
+    "hi": "सिर्फ़ डेटा रखता है, फ़ैसला कभी नहीं लेता",
+    "hinglish": "Sirf data rakhta hai, decision kabhi nahi leta"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "A microcontroller packs a processor, memory and input/output pins on one cheap, low-power chip and runs one program in an endless loop. A laptop CPU is much faster and runs many apps, but costs and uses far more.",
+   "hi": "माइक्रोकंट्रोलर एक सस्ती, कम बिजली वाली चिप में प्रोसेसर, मेमोरी और इनपुट/आउटपुट पिन रखता है और एक प्रोग्राम को अंतहीन लूप में चलाता है। लैपटॉप CPU कहीं तेज़ है और कई ऐप चलाता है, पर बहुत ज़्यादा लागत और बिजली लेता है।",
+   "hinglish": "Microcontroller ek sasti, kam bijli wali chip mein processor, memory aur input/output pins rakhta hai aur ek program ko endless loop mein chalata hai. Laptop CPU kahin tez hai aur kai apps chalata hai, par bahut zyada cost aur bijli leta hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home what a microcontroller is and how a gadget uses one.",
+   "hi": "घर पर किसी को समझाओ कि माइक्रोकंट्रोलर क्या है और कोई गैजेट उसे कैसे इस्तेमाल करता है।",
+   "hinglish": "Ghar par kisi ko samjhao ki microcontroller kya hai aur koi gadget use kaise use karta hai."
+  },
+  "checklist": [
+   {
+    "en": "It is a tiny computer: processor, memory and input/output pins on one chip.",
+    "hi": "यह एक छोटा कंप्यूटर है: एक चिप पर प्रोसेसर, मेमोरी और इनपुट/आउटपुट पिन।",
+    "hinglish": "Yeh ek chhota computer hai: ek chip par processor, memory aur input/output pins."
+   },
+   {
+    "en": "It is cheap and uses little power, unlike a laptop CPU with GHz speeds and gigabytes of RAM.",
+    "hi": "यह सस्ता है और कम बिजली लेता है, लैपटॉप CPU की तरह GHz गति और गीगाबाइट RAM वाला नहीं।",
+    "hinglish": "Yeh sasta hai aur kam bijli leta hai, laptop CPU ki tarah GHz speed aur gigabytes RAM wala nahi."
+   },
+   {
+    "en": "It runs one loop forever: read the input pins, decide, set the output pins.",
+    "hi": "यह एक लूप हमेशा चलाता है: इनपुट पिन पढ़ो, फ़ैसला लो, आउटपुट पिन सेट करो।",
+    "hinglish": "Yeh ek loop hamesha chalata hai: input pins padho, decide karo, output pins set karo."
+   },
+   {
+    "en": "micro:bit, Arduino and ESP32 are examples of boards built around them.",
+    "hi": "micro:bit, Arduino और ESP32 इनके आस-पास बने बोर्ड के उदाहरण हैं।",
+    "hinglish": "micro:bit, Arduino aur ESP32 inke aas-paas bane boards ke examples hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Microcontroller",
@@ -86,7 +162,7 @@
     "hi": "यह हमेशा एक लूप चलाता है: इनपुट पिन पढ़ो, निर्णय लो, आउटपुट पिन सेट करो।",
     "hinglish": "Yeh hamesha ek loop chalata hai: input pins padho, decide karo, output pins set karo."
    },
-   "visual": "code",
+   "visual": "cycle:📥 Read input pins|🤔 Decide|📤 Set output pins",
    "narration": {
     "en": "This is what you program on a micro:bit or Arduino.",
     "hi": "यही तुम micro:bit या Arduino पर प्रोग्राम करते हो।",

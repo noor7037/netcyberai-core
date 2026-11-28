@@ -39,6 +39,77 @@
    "hinglish": "Blocks se match karta Python for-loop padh sakte ho."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you want your game character to take 4 steps. You snap forward, forward, forward, forward. The stack is long.",
+   "hi": "{{name}}, तुम चाहते हो कि खेल का किरदार 4 कदम चले। तुम आगे, आगे, आगे, आगे जोड़ते हो। ढेर लंबा हो जाता है।",
+   "hinglish": "{{name}}, tum chahte ho ki game ka character 4 steps chale. Tum forward, forward, forward, forward jodte ho. Stack lamba ho jaata hai."
+  },
+  "question": {
+   "en": "Can a long program be made short without changing what it does?",
+   "hi": "क्या लंबे प्रोग्राम को वही काम करते हुए छोटा किया जा सकता है?",
+   "hinglish": "Kya lambe program ko wahi kaam karte hue chhota kiya ja sakta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What do you think? What does a Repeat 4 [forward] block do?",
+   "hi": "तुम्हें क्या लगता है? Repeat 4 [forward] ब्लॉक क्या करता है?",
+   "hinglish": "Tumhe kya lagta hai? Repeat 4 [forward] block kya karta hai?"
+  },
+  "options": [
+   {
+    "en": "Moves forward 4 times, same as four forward blocks",
+    "hi": "4 बार आगे चलता है, चार आगे ब्लॉक के बराबर",
+    "hinglish": "4 baar aage chalta hai, chaar forward blocks ke barabar"
+   },
+   {
+    "en": "Moves forward 1 step only",
+    "hi": "सिर्फ़ 1 कदम आगे चलता है",
+    "hinglish": "Sirf 1 step aage chalta hai"
+   },
+   {
+    "en": "Moves forward 4 steps, then goes back 4",
+    "hi": "4 कदम आगे, फिर 4 पीछे",
+    "hinglish": "4 steps aage, phir 4 peeche"
+   }
+  ],
+  "answer": 0,
+  "explain": {
+   "en": "Blocks inside a Repeat run in order, then the loop starts again from the top, until it has repeated the set number of times. In Python this is for i in range(4): forward(), and the spaces show forward() is inside the loop.",
+   "hi": "Repeat के अंदर के ब्लॉक क्रम से चलते हैं, फिर लूप ऊपर से दोबारा शुरू होता है, तय बार तक। Python में यह for i in range(4): forward() है, और खाली जगह दिखाती है कि forward() लूप के अंदर है।",
+   "hinglish": "Repeat ke andar ke blocks order mein chalte hain, phir loop upar se dobara shuru hota hai, tay baar tak. Python mein yeh for i in range(4): forward() hai, aur spaces dikhate hain ki forward() loop ke andar hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: how does a Repeat block make a program shorter?",
+   "hi": "घर पर किसी को समझाओ: Repeat ब्लॉक प्रोग्राम को छोटा कैसे बनाता है?",
+   "hinglish": "Ghar par kisi ko samjhao: Repeat block program ko chhota kaise banata hai?"
+  },
+  "checklist": [
+   {
+    "en": "Blocks inside Repeat are nested and run in order.",
+    "hi": "Repeat के अंदर के ब्लॉक नेस्टेड होते हैं और क्रम से चलते हैं।",
+    "hinglish": "Repeat ke andar ke blocks nested hote hain aur order mein chalte hain."
+   },
+   {
+    "en": "The loop then starts again until it has repeated the set number of times.",
+    "hi": "फिर लूप तय बार तक दोबारा शुरू होता है।",
+    "hinglish": "Phir loop tay baar tak dobara shuru hota hai."
+   },
+   {
+    "en": "So one Repeat replaces many copies of the same blocks.",
+    "hi": "इसलिए एक Repeat एक जैसे कई ब्लॉकों की जगह ले लेता है।",
+    "hinglish": "Isliye ek Repeat ek jaise kai blocks ki jagah le leta hai."
+   },
+   {
+    "en": "In Python it is a for loop.",
+    "hi": "Python में यह for लूप है।",
+    "hinglish": "Python mein yeh for loop hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Repeat block",

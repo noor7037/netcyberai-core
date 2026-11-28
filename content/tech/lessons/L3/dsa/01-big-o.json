@@ -34,6 +34,77 @@
    "hinglish": "Simple loops ka Big-O nikalo"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, an app that works instantly for your class of 40 becomes painfully slow when the whole school's 4,000 students use it.",
+   "hi": "{{name}}, एक ऐप तुम्हारी 40 की कक्षा के लिए तुरंत चलता है, पर पूरे स्कूल के 4,000 विद्यार्थी इस्तेमाल करें तो बहुत धीमा हो जाता है।",
+   "hinglish": "{{name}}, ek app tumhari 40 ki class ke liye turant chalta hai, par poore school ke 4,000 students use karein toh bahut slow ho jaata hai."
+  },
+  "question": {
+   "en": "How can you tell, before building it, how a program's running time will grow as the data grows?",
+   "hi": "बनाने से पहले कैसे पता चले कि डेटा बढ़ने पर प्रोग्राम का समय कैसे बढ़ेगा?",
+   "hinglish": "Banane se pehle kaise pata chale ki data badhne par program ka time kaise badhega?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "An algorithm takes 100 steps for 10 items. If it is O(n²), roughly how many steps for 100 items?",
+   "hi": "एक एल्गोरिद्म 10 आइटम पर 100 कदम लेता है। अगर वह O(n²) है, तो 100 आइटम पर लगभग कितने कदम?",
+   "hinglish": "Ek algorithm 10 items par 100 steps leta hai. Agar woh O(n²) hai, toh 100 items par lagbhag kitne steps?"
+  },
+  "options": [
+   {
+    "en": "About 1,000",
+    "hi": "लगभग 1,000",
+    "hinglish": "Lagbhag 1,000"
+   },
+   {
+    "en": "About 10,000",
+    "hi": "लगभग 10,000",
+    "hinglish": "Lagbhag 10,000"
+   },
+   {
+    "en": "About 200",
+    "hi": "लगभग 200",
+    "hinglish": "Lagbhag 200"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "O(n²) means steps grow with the square of n. Ten times more items means 10² = 100 times more work: 100 steps become about 10,000. Counting steps as a function of n, keeping only the fastest-growing term, lets us compare algorithms without depending on any computer's speed.",
+   "hi": "O(n²) का मतलब है कि कदम n के वर्ग के साथ बढ़ते हैं। दस गुना आइटम यानी 10² = 100 गुना काम: 100 कदम लगभग 10,000 बन जाते हैं। कदमों को n के फ़ंक्शन के रूप में गिनना और सिर्फ़ सबसे तेज़ बढ़ने वाला पद रखना हमें किसी कंप्यूटर की गति पर निर्भर हुए बिना एल्गोरिद्म की तुलना देता है।",
+   "hinglish": "O(n²) ka matlab hai ki steps n ke square ke saath badhte hain. Das guna items yaani 10² = 100 guna kaam: 100 steps lagbhag 10,000 ban jaate hain. Steps ko n ke function ke roop mein ginna aur sirf sabse tez badhne wala term rakhna humein kisi computer ki speed par depend kiye bina algorithms ki tulna deta hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home what Big-O tells you and why a better algorithm can beat a faster computer.",
+   "hi": "घर पर किसी को समझाओ कि Big-O क्या बताता है और बेहतर एल्गोरिद्म तेज़ कंप्यूटर को क्यों हरा सकता है।",
+   "hinglish": "Ghar par kisi ko samjhao ki Big-O kya batata hai aur behtar algorithm tez computer ko kyun hara sakta hai."
+  },
+  "checklist": [
+   {
+    "en": "Big-O counts steps as n grows and keeps only the fastest-growing term (3n² + 5n + 20 is O(n²)).",
+    "hi": "Big-O n बढ़ने पर कदम गिनता है और सिर्फ़ सबसे तेज़ बढ़ने वाला पद रखता है (3n² + 5n + 20 यानी O(n²))।",
+    "hinglish": "Big-O n badhne par steps ginta hai aur sirf sabse tez badhne wala term rakhta hai (3n² + 5n + 20 yaani O(n²))."
+   },
+   {
+    "en": "Order from slow-growing to fast: O(1), O(log n), O(n), O(n log n), O(n²), O(2ⁿ).",
+    "hi": "धीमे से तेज़ बढ़ने का क्रम: O(1), O(log n), O(n), O(n log n), O(n²), O(2ⁿ)।",
+    "hinglish": "Dheeme se tez badhne ka order: O(1), O(log n), O(n), O(n log n), O(n²), O(2ⁿ)."
+   },
+   {
+    "en": "One loop is O(n), a loop inside a loop is O(n²), halving each step is O(log n).",
+    "hi": "एक लूप O(n), लूप में लूप O(n²), हर कदम पर आधा करना O(log n)।",
+    "hinglish": "Ek loop O(n), loop ke andar loop O(n²), har step par aadha karna O(log n)."
+   },
+   {
+    "en": "Speed can cost memory (sets, caching), and for big n a better algorithm beats faster hardware.",
+    "hi": "गति की कीमत मेमोरी हो सकती है (सेट, कैशिंग), और बड़े n पर बेहतर एल्गोरिद्म तेज़ हार्डवेयर को हराता है।",
+    "hinglish": "Speed ki keemat memory ho sakti hai (sets, caching), aur bade n par behtar algorithm tez hardware ko hara deta hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Algorithm",
@@ -102,7 +173,7 @@
     "hi": "n वस्तुओं पर एक लूप O(n)। लूप के अंदर लूप O(n²)। हर बार आधा करना O(log n)।",
     "hinglish": "n items par ek loop O(n). Loop ke andar loop O(n²). Har baar aadha karna O(log n)."
    },
-   "visual": "anim:loop-nest",
+   "visual": "compare:➡️ One loop over n items: O(n)|🔁 A loop inside a loop: O(n²)",
    "narration": {
     "en": "One loop over n items is O(n). A loop inside a loop is O(n²). Halving each time is O(log n).",
     "hi": "n वस्तुओं पर एक लूप O(n)। लूप के अंदर लूप O(n²)। हर बार आधा करना O(log n)।",

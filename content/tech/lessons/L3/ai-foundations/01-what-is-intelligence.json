@@ -31,6 +31,72 @@
    "hi": "एआई प्रणाली को सेंसर, मॉडल और कार्यों वाले एजेंट के रूप में समझाना"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you ask Google Maps for the way to your cousin's house and it reroutes the moment a road is jammed.",
+   "hi": "{{name}}, तुम Google Maps से कज़िन के घर का रास्ता पूछते हो और सड़क जाम होते ही वह रास्ता बदल देता है।",
+   "hinglish": "{{name}}, tum Google Maps se cousin ke ghar ka raasta poochhte ho aur sadak jam hote hi woh route badal deta hai."
+  },
+  "question": {
+   "en": "Is that intelligence, and what does a system need to count as an \"AI\"?",
+   "hi": "क्या यह बुद्धिमत्ता है, और किसी सिस्टम को \"AI\" कहलाने के लिए क्या चाहिए?",
+   "hinglish": "Kya yeh intelligence hai, aur kisi system ko \"AI\" kehlane ke liye kya chahiye?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Google Maps is brilliant at routes. Can it also write you a poem or play chess well?",
+   "hi": "Google Maps रास्तों में माहिर है। क्या वह कविता भी लिख सकता है या शतरंज भी अच्छा खेल सकता है?",
+   "hinglish": "Google Maps routes mein maahir hai. Kya woh poem bhi likh sakta hai ya chess bhi achha khel sakta hai?"
+  },
+  "options": [
+   {
+    "en": "Yes, any AI can do any task",
+    "hi": "हाँ, कोई भी AI कोई भी काम कर सकता है",
+    "hinglish": "Haan, koi bhi AI koi bhi kaam kar sakta hai"
+   },
+   {
+    "en": "No, today's AI is narrow: built and trained for one job",
+    "hi": "नहीं, आज का AI संकीर्ण है: एक काम के लिए बना और ट्रेन किया गया",
+    "hinglish": "Nahi, aaj ka AI narrow hai: ek kaam ke liye bana aur train kiya gaya"
+   },
+   {
+    "en": "Yes, but only if you press a hidden button",
+    "hi": "हाँ, पर बस एक छिपा बटन दबाना होगा",
+    "hinglish": "Haan, par bas ek hidden button dabana hoga"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Nearly all AI in use is narrow AI, tuned to one task with the data and goal it was given. An AI system works as an agent: sensors take in the world, a model decides, and actions change it. General AI that does everything a human can does not exist today.",
+   "hi": "आज इस्तेमाल होने वाला लगभग सारा AI संकीर्ण है, जो मिले डेटा और लक्ष्य से एक काम के लिए ढला है। AI सिस्टम एजेंट की तरह चलता है: सेंसर दुनिया को पढ़ते हैं, मॉडल फ़ैसला करता है, और क्रियाएँ उसे बदलती हैं। इंसान जितना हर काम करने वाला जनरल AI आज मौजूद नहीं है।",
+   "hinglish": "Aaj use hone wala lagbhag saara AI narrow hai, jo mile data aur goal se ek task ke liye dhala hai. AI system agent ki tarah chalta hai: sensors duniya ko padhte hain, model decide karta hai, aur actions use badalte hain. Insaan jitna har kaam karne wala general AI aaj maujood nahi hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home what makes a system an AI agent, using Google Maps as the example.",
+   "hi": "घर पर किसी को Google Maps के उदाहरण से समझाओ कि कोई सिस्टम AI एजेंट कब बनता है।",
+   "hinglish": "Ghar par kisi ko Google Maps ke example se samjhao ki koi system AI agent kab banta hai."
+  },
+  "checklist": [
+   {
+    "en": "Intelligence means perceiving, learning, reasoning and acting towards a goal",
+    "hi": "बुद्धिमत्ता यानी लक्ष्य की ओर देखना, सीखना, तर्क करना और काम करना",
+    "hinglish": "Intelligence matlab goal ki taraf perceive, learn, reason aur act karna"
+   },
+   {
+    "en": "An AI agent has sensors, a model and actions in a loop",
+    "hi": "AI एजेंट में सेंसर, मॉडल और क्रियाएँ एक चक्र में होती हैं",
+    "hinglish": "AI agent mein sensors, model aur actions ek loop mein hote hain"
+   },
+   {
+    "en": "Today's AI is narrow: strong at one job, not general",
+    "hi": "आज का AI संकीर्ण है: एक काम में मज़बूत, सामान्य नहीं",
+    "hinglish": "Aaj ka AI narrow hai: ek job mein strong, general nahi"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Artificial Intelligence (AI)",
@@ -71,7 +137,7 @@
     "hi": "इंसान आम देखता है, याद करता है कि पीला और नरम मतलब पका है, और खाने का फ़ैसला करता है: देखना → सोचना → करना।",
     "hinglish": "Insaan aam dekhta hai, yaad karta hai ki peela aur naram matlab pakka hai, aur khaane ka faisla karta hai: perceive → reason → act."
    },
-   "visual": "anim:perceive-reason-act",
+   "visual": "flow:👀 See a mango|💭 Recall: yellow and soft means ripe|🍽️ Eat it",
    "narration": {
     "en": "A human sees a mango, recalls that yellow and soft means ripe, and decides to eat it: perceive → reason → act.",
     "hi": "इंसान आम देखता है, याद करता है कि पीला और नरम मतलब पका है, और खाने का फ़ैसला करता है: देखना → सोचना → करना।",
@@ -85,7 +151,7 @@
     "hi": "एआई एजेंट भी यही चक्र चलाता है: सेंसर (कैमरा, माइक, डेटा) → मॉडल → एक्शन (लेबल, जवाब, पहिये का मोड़)।",
     "hinglish": "AI agent bhi yahi loop chalata hai: sensors (camera, mic, data) → model → action (label, jawab, wheel ka turn)."
    },
-   "visual": "anim:agent-loop-diagram",
+   "visual": "cycle:📡 Sensors|🧮 Model|⚙️ Action|🌍 World changes",
    "narration": {
     "en": "An AI agent does the same loop: sensors (camera, mic, data) → model → action (a label, a reply, a turn of the wheel).",
     "hi": "एआई एजेंट भी यही चक्र चलाता है: सेंसर (कैमरा, माइक, डेटा) → मॉडल → एक्शन (लेबल, जवाब, पहिये का मोड़)।",

@@ -34,6 +34,72 @@
    "hi": "सुधार सुझाना: बेहतर डेटा, ऑडिट, मानव समीक्षा"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a voice assistant understands your city cousin perfectly but keeps mishearing your grandmother's village accent.",
+   "hi": "{{name}}, एक वॉइस असिस्टेंट तुम्हारे शहरी कज़िन को बिल्कुल समझता है पर तुम्हारी दादी के गाँव के लहजे को बार-बार ग़लत सुनता है।",
+   "hinglish": "{{name}}, ek voice assistant tumhare shehri cousin ko bilkul samajhta hai par tumhari dadi ke gaon ke accent ko baar-baar galat sunta hai."
+  },
+  "question": {
+   "en": "Why does an \"objective\" machine work better for some people than others?",
+   "hi": "\"निष्पक्ष\" मशीन कुछ लोगों के लिए दूसरों से बेहतर क्यों चलती है?",
+   "hinglish": "\"Objective\" machine kuch logon ke liye doosron se behtar kyun chalti hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A model has 95% accuracy overall. What should you check before calling it fair?",
+   "hi": "एक मॉडल की कुल एक्यूरेसी 95% है। उसे निष्पक्ष कहने से पहले क्या जाँचना चाहिए?",
+   "hinglish": "Ek model ki overall accuracy 95% hai. Use fair kehne se pehle kya check karna chahiye?"
+  },
+  "options": [
+   {
+    "en": "Nothing, 95% is high enough",
+    "hi": "कुछ नहीं, 95% काफ़ी है",
+    "hinglish": "Kuch nahi, 95% kaafi hai"
+   },
+   {
+    "en": "The error rate for each group, since the average can hide a group with many more errors",
+    "hi": "हर समूह की त्रुटि दर, क्योंकि औसत ज़्यादा ग़लतियों वाले समूह को छिपा सकता है",
+    "hinglish": "Har group ka error rate, kyunki average zyada galtiyon wale group ko chhupa sakta hai"
+   },
+   {
+    "en": "Whether the programmer meant harm",
+    "hi": "क्या प्रोग्रामर की नीयत बुरी थी",
+    "hinglish": "Kya programmer ki niyat buri thi"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "A model learns from its data, so who is missing from the data, how labels were made, which features act as proxies and how it is used can all add bias, even with no bad intent. Measuring errors per group exposes gaps, and fixes include better data, audits and human review.",
+   "hi": "मॉडल अपने डेटा से सीखता है, इसलिए डेटा में कौन ग़ायब है, लेबल कैसे बने, कौन-से फ़ीचर प्रॉक्सी का काम करते हैं और उपयोग कैसे होता है, ये सब बुरी नीयत के बिना भी पक्षपात जोड़ सकते हैं। हर समूह की त्रुटि नापने से कमी दिखती है, और सुधार हैं बेहतर डेटा, ऑडिट और मानवीय समीक्षा।",
+   "hinglish": "Model apne data se seekhta hai, isliye data mein kaun missing hai, labels kaise bane, kaunse features proxy ka kaam karte hain aur use kaise hota hai, yeh sab buri niyat ke bina bhi bias jod sakte hain. Har group ka error naapne se kami dikhti hai, aur fixes hain better data, audits aur human review."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a model can be unfair to a group even if nobody meant it to be.",
+   "hi": "घर पर किसी को समझाओ कि कोई मॉडल किसी समूह के साथ अनुचित कैसे हो सकता है भले किसी की नीयत वैसी न हो।",
+   "hinglish": "Ghar par kisi ko samjhao ki koi model kisi group ke saath unfair kaise ho sakta hai bhale kisi ki niyat waisi na ho."
+  },
+  "checklist": [
+   {
+    "en": "Bias can enter through who is in the data, labels, features and deployment",
+    "hi": "पक्षपात डेटा में कौन है, लेबल, फ़ीचर और तैनाती के रास्ते आ सकता है",
+    "hinglish": "Bias data mein kaun hai, labels, features aur deployment ke raaste aa sakta hai"
+   },
+   {
+    "en": "Overall accuracy can hide a group with a much higher error rate",
+    "hi": "कुल एक्यूरेसी बहुत ज़्यादा त्रुटि वाले समूह को छिपा सकती है",
+    "hinglish": "Overall accuracy bahut zyada error wale group ko chhupa sakti hai"
+   },
+   {
+    "en": "Fixes: measure per group, representative data, remove proxies, humans review big decisions",
+    "hi": "सुधार: समूह-वार नापो, प्रतिनिधि डेटा, प्रॉक्सी हटाओ, बड़े फ़ैसलों में इंसान",
+    "hinglish": "Fixes: group-wise naapo, representative data, proxies hatao, bade decisions mein humans"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Bias (fairness)",
@@ -82,7 +148,7 @@
     "hi": "पक्षपात हर चरण में घुसता है: डेटा में कौन है, लेबल कैसे बने, कौन-से फ़ीचर लगे और मॉडल कैसे तैनात हुआ।",
     "hinglish": "Bias har stage mein ghusta hai: data mein kaun hai, labels kaise bane, kaunse features lage aur model kaise deploy hua."
    },
-   "visual": "anim:bias-pipeline",
+   "visual": "flow:👥 Who is in the data|🏷️ How labels were made|🧩 Which features are used|🚀 How it is deployed",
    "narration": {
     "en": "Bias enters at every stage: who is in the data, how labels were made, which features are used, and how the model is deployed.",
     "hi": "पक्षपात हर चरण में घुसता है: डेटा में कौन है, लेबल कैसे बने, कौन-से फ़ीचर लगे और मॉडल कैसे तैनात हुआ।",
@@ -96,7 +162,7 @@
     "hi": "सुधार: हर समूह की त्रुटि मापो, प्रतिनिधि डेटा जुटाओ, प्रॉक्सी हटाओ, बड़े फ़ैसलों में इंसान रखो।",
     "hinglish": "Fix: har group ka error naapo, representative data jodo, proxies hatao, bade faislon mein insaan rakho."
    },
-   "visual": "anim:bias-fixes",
+   "visual": "flow:📏 Measure error per group|🗂️ Collect representative data|✂️ Remove proxies|🧑‍⚖️ Human review of big decisions",
    "narration": {
     "en": "Fix: measure error per group, collect representative data, remove proxies, keep humans in the loop for big decisions.",
     "hi": "सुधार: हर समूह की त्रुटि मापो, प्रतिनिधि डेटा जुटाओ, प्रॉक्सी हटाओ, बड़े फ़ैसलों में इंसान रखो।",

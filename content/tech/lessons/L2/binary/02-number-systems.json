@@ -37,6 +37,82 @@
    "hinglish": "#FF7A1A jaise hex colour codes padh sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your school website has an orange button with the colour code #FF7A1A.",
+   "hi": "{{name}}, तुम्हारे स्कूल की वेबसाइट पर एक नारंगी बटन है जिसका रंग-कोड #FF7A1A है।",
+   "hinglish": "{{name}}, tumhare school ki website par ek orange button hai jiska colour code #FF7A1A hai."
+  },
+  "question": {
+   "en": "Why do letters and numbers like FF and 1A describe a colour?",
+   "hi": "FF और 1A जैसे अक्षर और अंक किसी रंग को कैसे बताते हैं?",
+   "hinglish": "FF aur 1A jaise letters aur numbers kisi colour ko kaise batate hain?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What is the binary number 1010 in everyday decimal?",
+   "hi": "बाइनरी संख्या 1010 सामान्य दशमलव में क्या है?",
+   "hinglish": "Binary number 1010 normal decimal mein kya hai?"
+  },
+  "options": [
+   {
+    "en": "1010",
+    "hi": "1010",
+    "hinglish": "1010"
+   },
+   {
+    "en": "10",
+    "hi": "10",
+    "hinglish": "10"
+   },
+   {
+    "en": "12",
+    "hi": "12",
+    "hinglish": "12"
+   },
+   {
+    "en": "4",
+    "hi": "4",
+    "hinglish": "4"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Binary places are worth 8, 4, 2, 1 from the left. 1010 means 8 + 0 + 2 + 0 = 10. The digits look like a decimal number but the place values are powers of 2, not 10.",
+   "hi": "बाइनरी में बाईं ओर से स्थानों का मान 8, 4, 2, 1 है। 1010 यानी 8 + 0 + 2 + 0 = 10। अंक दशमलव जैसे दिखते हैं, पर स्थानों के मान 10 नहीं, 2 की घातें हैं।",
+   "hinglish": "Binary mein left se places ki value 8, 4, 2, 1 hai. 1010 matlab 8 + 0 + 2 + 0 = 10. Digits decimal jaise dikhte hain, par place values 10 ki nahi, 2 ki powers hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend how to change a binary number to decimal, and why hex is used.",
+   "hi": "किसी दोस्त को समझाओ कि बाइनरी संख्या को दशमलव में कैसे बदलें, और हेक्स क्यों इस्तेमाल होता है।",
+   "hinglish": "Kisi dost ko samjhao ki binary number ko decimal mein kaise badlein, aur hex kyun use hota hai."
+  },
+  "checklist": [
+   {
+    "en": "Binary place values double: 1, 2, 4, 8, 16 and so on; add the places that have a 1.",
+    "hi": "बाइनरी स्थानों के मान दोगुने होते हैं: 1, 2, 4, 8, 16 आदि; जहाँ 1 है उन्हें जोड़ो।",
+    "hinglish": "Binary place values double hote hain: 1, 2, 4, 8, 16 aadi; jahan 1 hai unhe jodo."
+   },
+   {
+    "en": "To go from decimal to binary, divide by 2 again and again and read the remainders upwards.",
+    "hi": "दशमलव से बाइनरी के लिए बार-बार 2 से भाग दो और शेषफल ऊपर की ओर पढ़ो।",
+    "hinglish": "Decimal se binary ke liye baar-baar 2 se divide karo aur remainders upar ki taraf padho."
+   },
+   {
+    "en": "One hex digit stands for exactly 4 bits, so a byte is two hex digits.",
+    "hi": "एक हेक्स अंक ठीक 4 बिट का होता है, इसलिए एक बाइट दो हेक्स अंक है।",
+    "hinglish": "Ek hex digit theek 4 bits ka hota hai, isliye ek byte do hex digits hai."
+   },
+   {
+    "en": "A colour like #FF7A1A is three bytes: red, green and blue.",
+    "hi": "#FF7A1A जैसा रंग तीन बाइट है: लाल, हरा और नीला।",
+    "hinglish": "#FF7A1A jaisa colour teen bytes hai: red, green aur blue."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Place value",

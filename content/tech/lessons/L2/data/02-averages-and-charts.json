@@ -39,6 +39,82 @@
    "hinglish": "Misleading charts pehchaan sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your friend boasts, \"I average 40 runs!\" But in five matches he scored 5, 8, 7, 10 and 170.",
+   "hi": "{{name}}, तुम्हारा दोस्त शेखी बघारता है, \"मेरा औसत 40 रन है!\" पर पाँच मैचों में उसने 5, 8, 7, 10 और 170 बनाए।",
+   "hinglish": "{{name}}, tumhara dost shekhi bagharta hai, \"Mera average 40 runs hai!\" Par paanch matches mein usne 5, 8, 7, 10 aur 170 banaye."
+  },
+  "question": {
+   "en": "Does 40 describe how he usually plays? Is there a fairer way to say what is typical?",
+   "hi": "क्या 40 बताता है कि वह आम तौर पर कैसा खेलता है? क्या \"आम\" बताने का कोई ज़्यादा सही तरीक़ा है?",
+   "hinglish": "Kya 40 batata hai ki woh aam taur par kaisa khelta hai? Kya \"typical\" batane ka koi zyada sahi tareeka hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "His scores are 5, 8, 7, 10 and 170. Which number best describes a typical innings?",
+   "hi": "उसके स्कोर 5, 8, 7, 10 और 170 हैं। कौन-सी संख्या आम पारी को सबसे अच्छे से बताती है?",
+   "hinglish": "Uske scores 5, 8, 7, 10 aur 170 hain. Kaunsa number typical innings ko sabse achhe se batata hai?"
+  },
+  "options": [
+   {
+    "en": "The mean, 40",
+    "hi": "माध्य (mean), 40",
+    "hinglish": "Mean, 40"
+   },
+   {
+    "en": "The median, 8",
+    "hi": "माध्यिका (median), 8",
+    "hinglish": "Median, 8"
+   },
+   {
+    "en": "The highest score, 170",
+    "hi": "सबसे ज़्यादा स्कोर, 170",
+    "hinglish": "Sabse zyada score, 170"
+   },
+   {
+    "en": "The range, 165",
+    "hi": "परास (range), 165",
+    "hinglish": "Range, 165"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "One huge score pulls the mean up to 40, a number he never came near. The median is the middle value after sorting (5, 7, 8, 10, 170), which is 8, so a few extreme values cannot drag it.",
+   "hi": "एक बहुत बड़ा स्कोर माध्य को 40 तक खींच देता है, जिसके पास वह कभी नहीं पहुँचा। माध्यिका क्रम से लगाने पर बीच की संख्या है (5, 7, 8, 10, 170), यानी 8, इसलिए कुछ अति-मान उसे खींच नहीं पाते।",
+   "hinglish": "Ek bahut bada score mean ko 40 tak kheench deta hai, jiske paas woh kabhi nahi pahuncha. Median sort karne par beech ki value hai (5, 7, 8, 10, 170), yaani 8, isliye kuch extreme values use kheench nahi paati."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how to describe a set of numbers fairly, and how to show them in a chart.",
+   "hi": "घर पर किसी को समझाओ कि संख्याओं के समूह को सही ढंग से कैसे बताएँ और चार्ट में कैसे दिखाएँ।",
+   "hinglish": "Ghar par kisi ko samjhao ki numbers ke group ko sahi tareeke se kaise batayein aur chart mein kaise dikhayein."
+  },
+  "checklist": [
+   {
+    "en": "Mean is the sum divided by the count, and one outlier can pull it away from what is typical.",
+    "hi": "माध्य जोड़ को गिनती से भाग देकर मिलता है, और एक अति-मान उसे आम मान से दूर खींच सकता है।",
+    "hinglish": "Mean sum ko count se divide karke milta hai, aur ek outlier use typical value se door kheench sakta hai."
+   },
+   {
+    "en": "Median is the middle value after sorting; mode is the most common value; range is highest minus lowest.",
+    "hi": "माध्यिका क्रम से लगाने पर बीच का मान है; बहुलक सबसे आम मान है; परास सबसे बड़ा घटा सबसे छोटा है।",
+    "hinglish": "Median sort karne par beech ki value hai; mode sabse common value hai; range highest minus lowest hai."
+   },
+   {
+    "en": "Bars compare categories, lines show change over time, pies show parts of a whole.",
+    "hi": "बार श्रेणियों की तुलना करते हैं, लाइन समय के साथ बदलाव दिखाती है, पाई पूरे के हिस्से दिखाता है।",
+    "hinglish": "Bars categories compare karte hain, line time ke saath change dikhati hai, pie whole ke parts dikhata hai."
+   },
+   {
+    "en": "A bar chart axis that does not start at 0 can make a small difference look huge.",
+    "hi": "जिस बार चार्ट का अक्ष 0 से शुरू नहीं होता, वह छोटे अंतर को बहुत बड़ा दिखा सकता है।",
+    "hinglish": "Jis bar chart ka axis 0 se shuru nahi hota, woh chhote difference ko bahut bada dikha sakta hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Mean",

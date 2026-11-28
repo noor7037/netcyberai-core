@@ -35,6 +35,77 @@
    "hinglish": "Batao BGP networks ko kaise jodta hai aur route hijacks khatarnaak kyun hain"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a request to google.com leaves your home router, which clearly does not know where every website in the world lives.",
+   "hi": "{{name}}, google.com का अनुरोध तुम्हारे घर के राउटर से निकलता है, जो साफ़ तौर पर नहीं जानता कि दुनिया की हर वेबसाइट कहाँ है।",
+   "hinglish": "{{name}}, google.com ki request tumhare ghar ke router se nikalti hai, jo saaf taur par nahi jaanta ki duniya ki har website kahan hai."
+  },
+  "question": {
+   "en": "How does each router decide where to send a packet next, and who stops it from circling forever?",
+   "hi": "हर राउटर कैसे तय करता है कि पैकेट अगला कहाँ भेजे, और उसे हमेशा घूमने से कौन रोकता है?",
+   "hinglish": "Har router kaise tay karta hai ki packet agla kahan bheje, aur use hamesha ghoomne se kaun rokta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A router table has 0.0.0.0/0 and 10.20.5.0/24. A packet for 10.20.5.9 arrives. Which route is used?",
+   "hi": "एक राउटर तालिका में 0.0.0.0/0 और 10.20.5.0/24 हैं। 10.20.5.9 के लिए पैकेट आता है। कौन-सा रास्ता चुना जाता है?",
+   "hinglish": "Ek router table mein 0.0.0.0/0 aur 10.20.5.0/24 hain. 10.20.5.9 ke liye packet aata hai. Kaunsa route use hota hai?"
+  },
+  "options": [
+   {
+    "en": "0.0.0.0/0, because it is listed first",
+    "hi": "0.0.0.0/0, क्योंकि वह पहले लिखा है",
+    "hinglish": "0.0.0.0/0, kyunki woh pehle likha hai"
+   },
+   {
+    "en": "10.20.5.0/24, because the longest matching prefix wins",
+    "hi": "10.20.5.0/24, क्योंकि सबसे लंबा मेल खाने वाला उपसर्ग जीतता है",
+    "hinglish": "10.20.5.0/24, kyunki sabse lamba matching prefix jeetta hai"
+   },
+   {
+    "en": "Neither, it is dropped",
+    "hi": "कोई नहीं, वह गिरा दिया जाता है",
+    "hinglish": "Koi nahi, woh gira diya jaata hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Both entries match, but the router picks the longest prefix, the most specific route. The default route 0.0.0.0/0 is the last resort. Each router only chooses the next hop, and every hop subtracts 1 from the packet's TTL; at 0 the packet is dropped, which stops loops and lets traceroute map the path. Between networks BGP shares routes, built on trust.",
+   "hi": "दोनों प्रविष्टियाँ मेल खाती हैं, पर राउटर सबसे लंबा उपसर्ग, यानी सबसे विशिष्ट रास्ता चुनता है। डिफ़ॉल्ट रास्ता 0.0.0.0/0 आख़िरी सहारा है। हर राउटर सिर्फ़ अगली छलाँग चुनता है, और हर छलाँग पैकेट की TTL में से 1 घटाती है; 0 पर पैकेट गिरा दिया जाता है, जिससे लूप रुकते हैं और traceroute रास्ता नाप पाता है। नेटवर्कों के बीच BGP रास्ते साझा करता है, भरोसे पर बना।",
+   "hinglish": "Dono entries match karti hain, par router sabse lamba prefix, yaani sabse specific route chunta hai. Default route 0.0.0.0/0 aakhri sahara hai. Har router sirf agla hop chunta hai, aur har hop packet ki TTL mein se 1 ghatata hai; 0 par packet gira diya jaata hai, jisse loops rukte hain aur traceroute raasta naap paata hai. Networks ke beech BGP routes share karta hai, bharose par bana."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a packet finds its way across the internet one router at a time.",
+   "hi": "घर पर किसी को समझाओ कि पैकेट इंटरनेट पर एक-एक राउटर करके रास्ता कैसे ढूँढता है।",
+   "hinglish": "Ghar par kisi ko samjhao ki packet internet par ek-ek router karke raasta kaise dhundhta hai."
+  },
+  "checklist": [
+   {
+    "en": "A router looks up the destination in its table and forwards to the next hop; the default route is the fallback.",
+    "hi": "राउटर तालिका में गंतव्य देखकर अगली छलाँग पर भेजता है; डिफ़ॉल्ट रास्ता विकल्प है।",
+    "hinglish": "Router table mein destination dekhkar agle hop par bhejta hai; default route fallback hai."
+   },
+   {
+    "en": "Longest-prefix match: the most specific matching route wins.",
+    "hi": "सबसे लंबा-उपसर्ग मेल: सबसे विशिष्ट मेल खाता रास्ता जीतता है।",
+    "hinglish": "Longest-prefix match: sabse specific matching route jeetta hai."
+   },
+   {
+    "en": "TTL drops by 1 per hop and the packet is discarded at 0, which prevents loops and powers traceroute.",
+    "hi": "TTL हर छलाँग पर 1 घटती है और 0 पर पैकेट छोड़ दिया जाता है, जो लूप रोकता और traceroute चलाता है।",
+    "hinglish": "TTL har hop par 1 ghatti hai aur 0 par packet discard hota hai, jo loops rokta aur traceroute chalata hai."
+   },
+   {
+    "en": "BGP connects autonomous systems and relies on trust, so route leaks and hijacks need filtering and RPKI.",
+    "hi": "BGP स्वायत्त प्रणालियों को जोड़ता है और भरोसे पर चलता है, इसलिए रूट लीक और अपहरण के लिए फ़िल्टर और RPKI चाहिए।",
+    "hinglish": "BGP autonomous systems ko jodta hai aur bharose par chalta hai, isliye route leaks aur hijacks ke liye filtering aur RPKI chahiye."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Router",
@@ -103,7 +174,7 @@
     "hi": "हर पड़ाव TTL से 1 घटाता है। 0 होने पर पैकेट गिरा दिया जाता है और त्रुटि लौटती है — इससे चक्कर रुकते हैं और traceroute रास्ता नापता है।",
     "hinglish": "Har hop TTL se 1 ghatata hai. 0 hone par packet gira diya jaata hai aur error lautta hai — isse loops rukte hain aur traceroute raasta naapta hai."
    },
-   "visual": "anim:ttl-countdown",
+   "visual": "flow:📦 Packet leaves with TTL 64|➖ Each router subtracts 1|⏳ TTL reaches 0|🗑️ Dropped, error comes back",
    "narration": {
     "en": "Every hop subtracts 1 from TTL. At 0 the packet is dropped and an error comes back — that stops loops and lets traceroute map the path.",
     "hi": "हर पड़ाव TTL से 1 घटाता है। 0 होने पर पैकेट गिरा दिया जाता है और त्रुटि लौटती है — इससे चक्कर रुकते हैं और traceroute रास्ता नापता है।",

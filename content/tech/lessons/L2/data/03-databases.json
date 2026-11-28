@@ -39,6 +39,82 @@
    "hinglish": "Apps spreadsheets ki jagah databases kyun use karte hain samjha sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, two students in your class are both called Rahul Sharma, and the school app must mark the right Rahul present.",
+   "hi": "{{name}}, तुम्हारी क्लास में दो बच्चों का नाम राहुल शर्मा है, और स्कूल के ऐप को सही राहुल की उपस्थिति लगानी है।",
+   "hinglish": "{{name}}, tumhari class mein do bachchon ka naam Rahul Sharma hai, aur school app ko sahi Rahul ki attendance lagani hai."
+  },
+  "question": {
+   "en": "How can a computer tell two records apart when their names are identical?",
+   "hi": "जब नाम एक जैसे हों, तो कंप्यूटर दो रिकॉर्ड में फ़र्क़ कैसे करे?",
+   "hinglish": "Jab naam ek jaise hon, to computer do records mein farq kaise kare?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "In a students table, which field would make the safest primary key?",
+   "hi": "छात्रों की टेबल में कौन-सा फ़ील्ड सबसे सुरक्षित प्राइमरी की (primary key) बनेगा?",
+   "hinglish": "Students table mein kaunsa field sabse safe primary key banega?"
+  },
+  "options": [
+   {
+    "en": "name",
+    "hi": "नाम (name)",
+    "hinglish": "name"
+   },
+   {
+    "en": "roll_no, a number given to each student once",
+    "hi": "roll_no, हर बच्चे को एक बार दिया गया नंबर",
+    "hinglish": "roll_no, har bachche ko ek baar diya gaya number"
+   },
+   {
+    "en": "class",
+    "hi": "कक्षा (class)",
+    "hinglish": "class"
+   },
+   {
+    "en": "marks",
+    "hi": "अंक (marks)",
+    "hinglish": "marks"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "A primary key must be unique for every row, so the database can find exactly one record and refuses a second row with the same key. Names, classes and marks can repeat.",
+   "hi": "प्राइमरी की हर पंक्ति के लिए अलग होनी चाहिए, ताकि डेटाबेस ठीक एक रिकॉर्ड ढूँढ सके और वही की दोबारा आने पर दूसरी पंक्ति न जोड़े। नाम, कक्षा और अंक दोहर सकते हैं।",
+   "hinglish": "Primary key har row ke liye alag honi chahiye, taaki database theek ek record dhoondh sake aur wahi key dobara aane par doosri row jodne se mana kar de. Naam, class aur marks repeat ho sakte hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a database keeps records and why an app uses one instead of a spreadsheet.",
+   "hi": "घर पर किसी को समझाओ कि डेटाबेस रिकॉर्ड कैसे रखता है और ऐप स्प्रेडशीट की जगह उसे क्यों इस्तेमाल करता है।",
+   "hinglish": "Ghar par kisi ko samjhao ki database records kaise rakhta hai aur app spreadsheet ki jagah use kyon use karta hai."
+  },
+  "checklist": [
+   {
+    "en": "A table has records (rows) and fields (columns) with fixed types.",
+    "hi": "टेबल में रिकॉर्ड (पंक्तियाँ) और तय प्रकार वाले फ़ील्ड (कॉलम) होते हैं।",
+    "hinglish": "Table mein records (rows) aur fixed type wale fields (columns) hote hain."
+   },
+   {
+    "en": "A primary key is unique for each row, and the database rejects a duplicate.",
+    "hi": "प्राइमरी की हर पंक्ति के लिए अनोखी होती है, और डेटाबेस दोहराव को मना कर देता है।",
+    "hinglish": "Primary key har row ke liye unique hoti hai, aur database duplicate ko reject kar deta hai."
+   },
+   {
+    "en": "A query like SELECT name FROM students WHERE marks > 80 asks a question of the data.",
+    "hi": "SELECT name FROM students WHERE marks > 80 जैसी क्वेरी डेटा से सवाल पूछती है।",
+    "hinglish": "SELECT name FROM students WHERE marks > 80 jaisi query data se sawaal poochti hai."
+   },
+   {
+    "en": "Tables can be linked by keys, which suits apps with lots of data and many users better than a spreadsheet.",
+    "hi": "टेबल कीज़ से जुड़ सकती हैं, जो ढेर सारे डेटा और कई उपयोगकर्ताओं वाले ऐप के लिए स्प्रेडशीट से बेहतर है।",
+    "hinglish": "Tables keys se link ho sakti hain, jo bahut data aur kai users wale app ke liye spreadsheet se behtar hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Database",

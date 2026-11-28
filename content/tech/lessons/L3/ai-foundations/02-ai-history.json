@@ -28,6 +28,77 @@
    "hi": "समझाना कि एआई में \"सर्दियाँ\" क्यों आईं और किसने उन्हें ख़त्म किया (डेटा, कंप्यूट, बेहतर एल्गोरिद्म)"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your grandparent says \"computers that think were promised in the 1960s, and nothing happened\". Yet today your phone talks back.",
+   "hi": "{{name}}, तुम्हारे दादा-दादी कहते हैं \"सोचने वाले कंप्यूटर का वादा 1960 के दशक में हुआ था, कुछ हुआ नहीं\"। फिर भी आज तुम्हारा फ़ोन जवाब देता है।",
+   "hinglish": "{{name}}, tumhare dada-dadi kehte hain \"sochne wale computers ka waada 1960 ke dashak mein hua tha, kuch hua nahi\". Phir bhi aaj tumhara phone jawab deta hai."
+  },
+  "question": {
+   "en": "What went wrong back then, and what changed that made AI work now?",
+   "hi": "तब क्या ग़लत हुआ, और अब क्या बदला कि AI चलने लगा?",
+   "hinglish": "Tab kya galat hua, aur ab kya badla ki AI chalne laga?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What mainly ended the AI winters and started the deep-learning boom?",
+   "hi": "AI की सर्दियाँ मुख्य रूप से किससे ख़त्म हुईं और डीप लर्निंग का उभार कैसे शुरू हुआ?",
+   "hinglish": "AI winters mainly kis se khatam hue aur deep-learning boom kaise shuru hua?"
+  },
+  "options": [
+   {
+    "en": "A single genius invented a thinking machine",
+    "hi": "किसी एक प्रतिभा ने सोचने वाली मशीन बना दी",
+    "hinglish": "Kisi ek genius ne sochne wali machine bana di"
+   },
+   {
+    "en": "Much more data, much faster hardware such as GPUs, and better algorithms together",
+    "hi": "कहीं ज़्यादा डेटा, GPU जैसा तेज़ हार्डवेयर और बेहतर एल्गोरिद्म, तीनों साथ",
+    "hinglish": "Kahin zyada data, GPU jaisa fast hardware aur better algorithms, teeno saath"
+   },
+   {
+    "en": "Governments banned older methods",
+    "hi": "सरकारों ने पुराने तरीक़ों पर रोक लगा दी",
+    "hinglish": "Governments ne purane methods par rok laga di"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Early AI promised more than the data and computers of the time could deliver, so funding dried up in the \"winters\". Around 2012, large labelled datasets, GPUs and improved training methods let deep networks such as AlexNet beat older methods.",
+   "hi": "शुरुआती AI ने उस समय के डेटा और कंप्यूटरों से ज़्यादा का वादा किया, इसलिए \"सर्दियों\" में फ़ंडिंग सूख गई। लगभग 2012 में बड़े लेबल वाले डेटासेट, GPU और बेहतर ट्रेनिंग तरीक़ों से AlexNet जैसे डीप नेटवर्क पुराने तरीक़ों से आगे निकले।",
+   "hinglish": "Early AI ne us samay ke data aur computers se zyada ka waada kiya, isliye \"winters\" mein funding sookh gayi. Lagbhag 2012 mein bade labelled datasets, GPUs aur better training methods se AlexNet jaise deep networks purane methods se aage nikle."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home why AI had two winters and what changed afterwards.",
+   "hi": "घर पर किसी को समझाओ कि AI के दो विंटर क्यों आए और उसके बाद क्या बदला।",
+   "hinglish": "Ghar par kisi ko samjhao ki AI ke do winters kyun aaye aur uske baad kya badla."
+  },
+  "checklist": [
+   {
+    "en": "Turing (1950) and the Dartmouth workshop (1956) started the field",
+    "hi": "ट्यूरिंग (1950) और डार्टमाउथ कार्यशाला (1956) ने क्षेत्र शुरू किया",
+    "hinglish": "Turing (1950) aur Dartmouth workshop (1956) ne field shuru kiya"
+   },
+   {
+    "en": "Promises outran data and computing power, causing winters",
+    "hi": "वादे डेटा और कंप्यूटिंग शक्ति से आगे निकल गए, जिससे सर्दियाँ आईं",
+    "hinglish": "Promises data aur computing power se aage nikal gaye, jisse winters aaye"
+   },
+   {
+    "en": "Data, compute (GPUs) and better algorithms ended the winters",
+    "hi": "डेटा, कंप्यूट (GPU) और बेहतर एल्गोरिद्म ने सर्दियाँ ख़त्म कीं",
+    "hinglish": "Data, compute (GPUs) aur better algorithms ne winters khatam kiye"
+   },
+   {
+    "en": "Milestones like Deep Blue, AlexNet, AlphaGo and the Transformer mark the path",
+    "hi": "Deep Blue, AlexNet, AlphaGo और Transformer रास्ते के पड़ाव हैं",
+    "hinglish": "Deep Blue, AlexNet, AlphaGo aur Transformer raaste ke milestones hain"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Turing Test",

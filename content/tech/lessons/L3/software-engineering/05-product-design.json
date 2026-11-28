@@ -39,6 +39,77 @@
    "hinglish": "Banane se pehle kisi idea ka sasta test plan kar sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you build a fast, pretty app for ordering from the school canteen. After launch, hardly any student uses it.",
+   "hi": "{{name}}, तुम स्कूल कैंटीन से ऑर्डर करने का तेज़, सुंदर ऐप बनाते हो। लॉन्च के बाद बहुत कम छात्र उसे इस्तेमाल करते हैं।",
+   "hinglish": "{{name}}, tum school canteen se order karne ka fast, sundar app banate ho. Launch ke baad bahut kam students use karte hain."
+  },
+  "question": {
+   "en": "What should you have done before writing any code?",
+   "hi": "कोड लिखने से पहले तुम्हें क्या करना चाहिए था?",
+   "hinglish": "Code likhne se pehle tumhe kya karna chahiye tha?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Which is the best way to learn whether canteen staff and students need your app?",
+   "hi": "कैंटीन स्टाफ़ और छात्रों को तुम्हारे ऐप की ज़रूरत है या नहीं, यह जानने का सबसे अच्छा तरीक़ा कौन-सा है?",
+   "hinglish": "Canteen staff aur students ko tumhare app ki zaroorat hai ya nahi, yeh jaanne ka sabse accha tareeka kaunsa hai?"
+  },
+  "options": [
+   {
+    "en": "Build the full app and see if people come",
+    "hi": "पूरा ऐप बनाओ और देखो लोग आते हैं या नहीं",
+    "hinglish": "Poora app banao aur dekho log aate hain ya nahi"
+   },
+   {
+    "en": "Talk to a few of them about the last time they ordered food, and test a paper sketch",
+    "hi": "कुछ से पूछो कि पिछली बार उन्होंने खाना कैसे मँगाया, और काग़ज़ का स्केच टेस्ट करो",
+    "hinglish": "Kuch se poochho ki pichhli baar unhone khana kaise mangaya, aur paper sketch test karo"
+   },
+   {
+    "en": "Ask \"Would you use an app for this?\" and trust the yes",
+    "hi": "पूछो \"क्या इसके लिए ऐप इस्तेमाल करोगे?\" और हाँ पर भरोसा करो",
+    "hinglish": "Poochho \"kya iske liye app use karoge?\" aur yes par bharosa karo"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "People say yes to hypothetical questions to be polite, but what they did last time shows the real problem. A paper sketch costs an hour, so you learn what fails before spending weeks on code.",
+   "hi": "लोग शिष्टाचार में काल्पनिक सवालों पर हाँ कह देते हैं, पर पिछली बार क्या किया यह असली समस्या दिखाता है। काग़ज़ का स्केच एक घंटे का है, इसलिए हफ़्तों के कोड से पहले पता चल जाता है क्या नहीं चलेगा।",
+   "hinglish": "Log polite hone ke liye hypothetical sawalon par yes kah dete hain, par pichhli baar kya kiya yeh asli problem dikhata hai. Paper sketch ek ghante ka hai, isliye hafton ke code se pehle pata chal jaata hai kya nahi chalega."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend how you would decide what to build for a problem at school, without writing code first.",
+   "hi": "दोस्त को समझाओ कि स्कूल की किसी समस्या के लिए, पहले कोड लिखे बिना, तुम कैसे तय करोगे कि क्या बनाना है।",
+   "hinglish": "Friend ko samjhao ki school ki kisi problem ke liye, pehle code likhe bina, tum kaise decide karoge ki kya banana hai."
+  },
+  "checklist": [
+   {
+    "en": "The loop is understand, define, ideate, prototype, test, and it repeats",
+    "hi": "चक्र है समझो, परिभाषित करो, आइडिया, प्रोटोटाइप, टेस्ट, और यह दोहराता है",
+    "hinglish": "Loop hai understand, define, ideate, prototype, test, aur yeh repeat hota hai"
+   },
+   {
+    "en": "Interviews ask what people did last time, not what they would like",
+    "hi": "इंटरव्यू में पूछते हैं कि लोगों ने पिछली बार क्या किया, उन्हें क्या पसंद आएगा नहीं",
+    "hinglish": "Interviews mein poochte hain ki logon ne pichhli baar kya kiya, unhe kya pasand aayega nahi"
+   },
+   {
+    "en": "A problem statement names the user, the need and why it matters",
+    "hi": "समस्या-कथन में यूज़र, ज़रूरत और उसकी अहमियत होती है",
+    "hinglish": "Problem statement mein user, need aur uski ahmiyat hoti hai"
+   },
+   {
+    "en": "Cheap prototypes (sketch, mock-up) test an idea before building it",
+    "hi": "सस्ते प्रोटोटाइप (स्केच, मॉक-अप) बनाने से पहले आइडिया परखते हैं",
+    "hinglish": "Sasti prototypes (sketch, mock-up) banane se pehle idea parakhte hain"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "User research",

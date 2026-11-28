@@ -40,6 +40,77 @@
    "hinglish": "Samjha sakte ho ki har coder bugs banaata aur theek karta hai."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you press play on your block program. The character walks into the wall instead of the door.",
+   "hi": "{{name}}, तुम अपने ब्लॉक प्रोग्राम पर प्ले दबाते हो। किरदार दरवाज़े की जगह दीवार में जा लगता है।",
+   "hinglish": "{{name}}, tum apne block program par play dabate ho. Character darwaaze ki jagah deewar mein ja lagta hai."
+  },
+  "question": {
+   "en": "How do you find the one block that went wrong?",
+   "hi": "ग़लत हुआ वह एक ब्लॉक कैसे ढूँढोगे?",
+   "hinglish": "Galat hua woh ek block kaise dhoondoge?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What do you think? When a program does the wrong thing, what is the best first step?",
+   "hi": "तुम्हें क्या लगता है? प्रोग्राम ग़लत चले तो सबसे अच्छा पहला कदम क्या है?",
+   "hinglish": "Tumhe kya lagta hai? Program galat chale to sabse achha pehla step kya hai?"
+  },
+  "options": [
+   {
+    "en": "Delete everything and start again",
+    "hi": "सब मिटाकर फिर से शुरू करो",
+    "hinglish": "Sab delete karke phir se shuru karo"
+   },
+   {
+    "en": "Run it and read the blocks one by one, imagining what the computer does at each",
+    "hi": "चलाओ और ब्लॉक एक-एक पढ़ो, हर पर सोचो कंप्यूटर क्या करेगा",
+    "hinglish": "Chalao aur blocks ek-ek padho, har par socho computer kya karega"
+   },
+   {
+    "en": "Hope it fixes itself",
+    "hi": "उम्मीद करो कि अपने-आप ठीक हो जाए",
+    "hinglish": "Umeed karo ki apne-aap theek ho jaye"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Even expert programmers make bugs every day. They test often and fix calmly. Most bugs are a block in the wrong place (move it), a missing block (add it) or an extra block (delete it). Fix one, test, repeat.",
+   "hi": "अनुभवी प्रोग्रामर भी रोज़ बग बनाते हैं। वे बार-बार जाँचते हैं और शांति से ठीक करते हैं। ज़्यादातर बग ये होते हैं: ग़लत जगह का ब्लॉक (हटाकर रखो), छूटा ब्लॉक (जोड़ो) या फ़ालतू ब्लॉक (मिटाओ)। एक ठीक करो, जाँचो, दोहराओ।",
+   "hinglish": "Experienced programmers bhi roz bugs banate hain. Woh bar-bar test karte hain aur shaanti se fix karte hain. Zyadatar bugs yeh hote hain: galat jagah ka block (move karo), missing block (add karo) ya extra block (delete karo). Ek fix karo, test karo, repeat karo."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: how do you fix a bug in a block program?",
+   "hi": "घर पर किसी को समझाओ: ब्लॉक प्रोग्राम में बग कैसे ठीक करते हैं?",
+   "hinglish": "Ghar par kisi ko samjhao: block program mein bug kaise fix karte hain?"
+  },
+  "checklist": [
+   {
+    "en": "Run it, watch it and read the blocks one by one.",
+    "hi": "चलाओ, देखो और ब्लॉक एक-एक पढ़ो।",
+    "hinglish": "Chalao, dekho aur blocks ek-ek padho."
+   },
+   {
+    "en": "Find the wrong block: move it, add the missing one or delete the extra one.",
+    "hi": "ग़लत ब्लॉक ढूँढो: उसे हिलाओ, छूटा जोड़ो या फ़ालतू मिटाओ।",
+    "hinglish": "Galat block dhoondo: use move karo, missing add karo ya extra delete karo."
+   },
+   {
+    "en": "Fix one thing, test again, and repeat.",
+    "hi": "एक चीज़ ठीक करो, फिर जाँचो, और दोहराओ।",
+    "hinglish": "Ek cheez fix karo, phir test karo, aur repeat karo."
+   },
+   {
+    "en": "Every coder makes bugs.",
+    "hi": "हर कोडर बग बनाता है।",
+    "hinglish": "Har coder bugs banata hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Bug",

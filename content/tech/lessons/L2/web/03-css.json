@@ -37,6 +37,77 @@
    "hinglish": "Flexible layout se page phone pe chala sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, the same school website looks neat on a phone and spread out on a big computer screen.",
+   "hi": "{{name}}, वही स्कूल वेबसाइट फ़ोन पर सलीके से और बड़ी कंप्यूटर स्क्रीन पर फैली हुई दिखती है।",
+   "hinglish": "{{name}}, wahi school website phone par neat aur bade computer screen par spread out dikhti hai."
+  },
+  "question": {
+   "en": "Who decides the colours, fonts and layout, and how does it adjust to the screen?",
+   "hi": "रंग, फ़ॉन्ट और लेआउट कौन तय करता है, और वह स्क्रीन के हिसाब से कैसे बदलता है?",
+   "hinglish": "Colours, fonts aur layout kaun tay karta hai, aur woh screen ke hisaab se kaise badalta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "In the CSS box model, which layer sits right outside the content?",
+   "hi": "CSS बॉक्स मॉडल में सामग्री के ठीक बाहर कौन-सी परत है?",
+   "hinglish": "CSS box model mein content ke theek bahar kaunsi layer hai?"
+  },
+  "options": [
+   {
+    "en": "Margin",
+    "hi": "मार्जिन",
+    "hinglish": "Margin"
+   },
+   {
+    "en": "Border",
+    "hi": "बॉर्डर",
+    "hinglish": "Border"
+   },
+   {
+    "en": "Padding, the space between the content and the border",
+    "hi": "पैडिंग, यानी सामग्री और बॉर्डर के बीच की जगह",
+    "hinglish": "Padding, yaani content aur border ke beech ki jagah"
+   }
+  ],
+  "answer": 2,
+  "explain": {
+   "en": "From the inside out: content, padding, border, margin. Padding is space inside the border; margin is space outside it, separating one box from the next. Every element is such a box, and flexible units and media queries let the boxes rearrange for a phone.",
+   "hi": "अंदर से बाहर: सामग्री, पैडिंग, बॉर्डर, मार्जिन। पैडिंग बॉर्डर के अंदर की जगह है; मार्जिन बाहर की, जो एक बॉक्स को अगले से अलग करती है। हर एलिमेंट ऐसा बॉक्स है, और लचीली इकाइयाँ व मीडिया क्वेरी बॉक्सों को फ़ोन के लिए ढाल देती हैं।",
+   "hinglish": "Andar se bahar: content, padding, border, margin. Padding border ke andar ki jagah hai; margin bahar ki, jo ek box ko agle se alag karti hai. Har element aisa box hai, aur flexible units aur media queries boxes ko phone ke liye rearrange kar deti hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how CSS styles a page and makes it work on phones.",
+   "hi": "घर पर किसी को समझाओ कि CSS पन्ने को कैसे सजाता है और फ़ोन पर कैसे चलाता है।",
+   "hinglish": "Ghar par kisi ko samjhao ki CSS page ko kaise sajata hai aur phone par kaise chalata hai."
+  },
+  "checklist": [
+   {
+    "en": "A rule picks elements with a selector and sets properties to values.",
+    "hi": "नियम सेलेक्टर से एलिमेंट चुनता है और गुणों को मान देता है।",
+    "hinglish": "Rule selector se elements chunta hai aur properties ko values deta hai."
+   },
+   {
+    "en": "Every element is a box: content, padding, border, margin.",
+    "hi": "हर एलिमेंट एक बॉक्स है: सामग्री, पैडिंग, बॉर्डर, मार्जिन।",
+    "hinglish": "Har element ek box hai: content, padding, border, margin."
+   },
+   {
+    "en": "If rules clash, the more specific or later one wins (the cascade).",
+    "hi": "नियम टकराएँ तो अधिक विशिष्ट या बाद वाला जीतता है (कैस्केड)।",
+    "hinglish": "Rules takraayein to zyada specific ya baad wala jeet-ta hai (cascade)."
+   },
+   {
+    "en": "Flexible units, flex or grid and media queries make layouts fit phones.",
+    "hi": "लचीली इकाइयाँ, flex या grid और मीडिया क्वेरी लेआउट को फ़ोन के अनुकूल बनाती हैं।",
+    "hinglish": "Flexible units, flex ya grid aur media queries layouts ko phone ke anukool banati hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "CSS",

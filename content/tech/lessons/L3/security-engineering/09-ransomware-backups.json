@@ -36,6 +36,77 @@
    "hinglish": "Hashes se backups verify karo aur restore karne ki practice karo"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, one morning every computer in a hospital shows a message that its files are locked, and staff go back to pen and paper.",
+   "hi": "{{name}}, एक सुबह एक अस्पताल के हर कंप्यूटर पर संदेश आता है कि उसकी फ़ाइलें बंद हैं, और कर्मचारी कलम-कागज़ पर लौट आते हैं।",
+   "hinglish": "{{name}}, ek subah ek hospital ke har computer par message aata hai ki uski files lock hain, aur staff pen aur paper par laut aate hain."
+  },
+  "question": {
+   "en": "How does ransomware get in and lock files, and what is the one thing that lets an organisation recover without paying?",
+   "hi": "रैनसमवेयर अंदर कैसे आता है और फ़ाइलें कैसे बंद करता है, और वह कौन-सी एक चीज़ है जो संगठन को बिना भुगतान के उबरने देती है?",
+   "hinglish": "Ransomware andar kaise aata hai aur files kaise lock karta hai, aur woh kaunsi ek cheez hai jo organisation ko bina payment ke ubarne deti hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A school keeps its only backup on a drive that is always plugged into the same server. Why is that risky?",
+   "hi": "एक स्कूल अपना अकेला बैकअप एक ड्राइव पर रखता है जो हमेशा उसी सर्वर से लगी रहती है। यह जोखिम भरा क्यों है?",
+   "hinglish": "Ek school apna akela backup ek drive par rakhta hai jo hamesha usi server se lagi rehti hai. Yeh risky kyun hai?"
+  },
+  "options": [
+   {
+    "en": "It is not risky, a backup is a backup",
+    "hi": "यह जोखिम भरा नहीं, बैकअप तो बैकअप है",
+    "hinglish": "Yeh risky nahi, backup toh backup hai"
+   },
+   {
+    "en": "Ransomware can reach and encrypt or delete a connected backup too, so one copy should be offline or immutable",
+    "hi": "रैनसमवेयर जुड़े बैकअप तक पहुँचकर उसे भी एन्क्रिप्ट या मिटा सकता है, इसलिए एक प्रति ऑफ़लाइन या अपरिवर्तनीय हो",
+    "hinglish": "Ransomware jude backup tak pahunchkar use bhi encrypt ya delete kar sakta hai, isliye ek copy offline ya immutable ho"
+   },
+   {
+    "en": "The drive will wear out in one day",
+    "hi": "ड्राइव एक दिन में घिस जाएगी",
+    "hinglish": "Drive ek din mein ghis jaayegi"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Ransomware typically arrives through phishing, a stolen remote-access password or an unpatched server, then spreads, deletes backups it can reach and encrypts files. A backup the attacker can reach is not safe. The 3-2-1 rule keeps 3 copies on 2 kinds of media with 1 offline or immutable, and a backup only counts once you have practised restoring it. Prevention is patching, MFA and least privilege.",
+   "hi": "रैनसमवेयर आमतौर पर फ़िशिंग, चोरी हुए रिमोट-एक्सेस पासवर्ड या बिना पैच के सर्वर से आता है, फिर फैलता है, पहुँच वाले बैकअप मिटाता और फ़ाइलें एन्क्रिप्ट करता है। जिस बैकअप तक हमलावर पहुँच सके वह सुरक्षित नहीं। 3-2-1 नियम में 3 प्रतियाँ, 2 तरह के माध्यम पर, 1 ऑफ़लाइन या अपरिवर्तनीय होती है, और बैकअप तभी गिना जाता है जब उसे बहाल करने का अभ्यास किया हो। रोकथाम पैच, MFA और न्यूनतम विशेषाधिकार है।",
+   "hinglish": "Ransomware aam taur par phishing, chori hue remote-access password ya unpatched server se aata hai, phir phailta hai, pahunch wale backups delete karta aur files encrypt karta hai. Jis backup tak attacker pahunch sake woh safe nahi. 3-2-1 rule mein 3 copies, 2 tarah ke media par, 1 offline ya immutable hoti hai, aur backup tabhi gina jaata hai jab use restore karne ka practice kiya ho. Prevention patching, MFA aur least privilege hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how ransomware gets in and why a tested offline backup is the best defence.",
+   "hi": "घर पर किसी को समझाओ कि रैनसमवेयर अंदर कैसे आता है और जाँचा हुआ ऑफ़लाइन बैकअप सबसे अच्छा बचाव क्यों है।",
+   "hinglish": "Ghar par kisi ko samjhao ki ransomware andar kaise aata hai aur tested offline backup sabse achha bachav kyun hai."
+  },
+  "checklist": [
+   {
+    "en": "Entry points: phishing, stolen remote-access passwords, unpatched servers.",
+    "hi": "प्रवेश बिंदु: फ़िशिंग, चोरी हुए रिमोट-एक्सेस पासवर्ड, बिना पैच के सर्वर।",
+    "hinglish": "Entry points: phishing, chori hue remote-access passwords, unpatched servers."
+   },
+   {
+    "en": "It spreads, deletes reachable backups, steals data, encrypts files and shows a ransom note.",
+    "hi": "यह फैलता, पहुँच वाले बैकअप मिटाता, डेटा चुराता, फ़ाइलें एन्क्रिप्ट करता और फिरौती का नोट दिखाता है।",
+    "hinglish": "Yeh phailta, pahunch wale backups mitata, data churata, files encrypt karta aur ransom note dikhata hai."
+   },
+   {
+    "en": "3-2-1 backups: 3 copies, 2 media, 1 offline or immutable; verify with hashes and practise restoring.",
+    "hi": "3-2-1 बैकअप: 3 प्रतियाँ, 2 माध्यम, 1 ऑफ़लाइन या अपरिवर्तनीय; हैश से जाँचो और बहाली का अभ्यास करो।",
+    "hinglish": "3-2-1 backups: 3 copies, 2 media, 1 offline ya immutable; hashes se jaancho aur restore ka practice karo."
+   },
+   {
+    "en": "If hit: disconnect devices from the network, alert IT and report to CERT-In; prevent with patches, MFA and least privilege.",
+    "hi": "हमला हो तो: डिवाइस नेटवर्क से अलग करो, IT को बताओ और CERT-In को सूचित करो; रोकथाम पैच, MFA और न्यूनतम विशेषाधिकार।",
+    "hinglish": "Hamla ho toh: devices network se alag karo, IT ko batao aur CERT-In ko report karo; prevention patches, MFA aur least privilege."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Malware",
@@ -90,7 +161,7 @@
     "hi": "यह फैलता है, पहुँच वाले बैकअप मिटाता है, डेटा चुराता है, फिर फ़ाइलें एन्क्रिप्ट कर फिरौती नोट दिखाता है।",
     "hinglish": "Yeh phailta hai, pahunch wale backups mitata hai, data churata hai, phir files encrypt karke ransom note dikhata hai."
    },
-   "visual": "anim:ransom-lock",
+   "visual": "flow:🚪 Gets in|🕸️ Spreads across machines|🗑️ Deletes reachable backups|🔐 Encrypts files and shows a note",
    "narration": {
     "en": "It spreads, deletes backups it can reach, steals data, then encrypts files and shows a ransom note.",
     "hi": "यह फैलता है, पहुँच वाले बैकअप मिटाता है, डेटा चुराता है, फिर फ़ाइलें एन्क्रिप्ट कर फिरौती नोट दिखाता है।",

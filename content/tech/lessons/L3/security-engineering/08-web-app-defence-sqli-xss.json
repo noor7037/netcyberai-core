@@ -36,6 +36,77 @@
    "hinglish": "Output encoding, safe DOM APIs aur CSP se XSS se bachav karo"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a school login box asks for a username, and the code behind it builds a database question by gluing your typing into text.",
+   "hi": "{{name}}, एक स्कूल लॉगिन बॉक्स यूज़रनेम माँगता है, और उसके पीछे का कोड तुम्हारा लिखा टेक्स्ट में चिपकाकर डेटाबेस का सवाल बनाता है।",
+   "hinglish": "{{name}}, ek school login box username maangta hai, aur uske peeche ka code tumhara likha text mein chipkakar database ka sawaal banata hai."
+  },
+  "question": {
+   "en": "Why is gluing user input into a command dangerous, and what is the safe way to build it?",
+   "hi": "उपयोगकर्ता का इनपुट आदेश में चिपकाना खतरनाक क्यों है, और उसे बनाने का सुरक्षित तरीका क्या है?",
+   "hinglish": "User ka input command mein chipkana khatarnak kyun hai, aur use banane ka safe tareeka kya hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Which approach reliably prevents SQL injection?",
+   "hi": "कौन-सा तरीका भरोसे से SQL इंजेक्शन रोकता है?",
+   "hinglish": "Kaunsa tareeka bharose se SQL injection rokta hai?"
+  },
+  "options": [
+   {
+    "en": "Removing a few dangerous characters such as quotes from the input",
+    "hi": "इनपुट से कुछ खतरनाक अक्षर जैसे उद्धरण चिह्न हटाना",
+    "hinglish": "Input se kuch dangerous characters jaise quotes hatana"
+   },
+   {
+    "en": "Parameterised queries, which send the SQL and the value separately so input stays data",
+    "hi": "पैरामीटराइज़्ड क्वेरी, जो SQL और मान अलग भेजती हैं ताकि इनपुट डेटा ही रहे",
+    "hinglish": "Parameterised queries, jo SQL aur value alag bhejti hain taaki input data hi rahe"
+   },
+   {
+    "en": "Hiding the login page",
+    "hi": "लॉगिन पेज छिपाना",
+    "hinglish": "Login page chhupana"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Injection happens when data and code share one string, so the input can decide where the quote ends and add its own commands. Parameterised queries keep them apart: the database receives the SQL structure first and the value separately, so a quote in the value is just a character. XSS is the same mistake in HTML, and the fixes are output encoding, safe DOM APIs such as textContent, and a Content Security Policy.",
+   "hi": "इंजेक्शन तब होता है जब डेटा और कोड एक ही स्ट्रिंग में होते हैं, इसलिए इनपुट तय कर सकता है कि उद्धरण कहाँ खत्म हो और अपने आदेश जोड़ सके। पैरामीटराइज़्ड क्वेरी उन्हें अलग रखती हैं: डेटाबेस को पहले SQL ढाँचा मिलता है और मान अलग, इसलिए मान में उद्धरण बस एक अक्षर है। XSS वही गलती HTML में है, और इलाज आउटपुट एन्कोडिंग, textContent जैसे सुरक्षित DOM API और कंटेंट सिक्योरिटी पॉलिसी हैं।",
+   "hinglish": "Injection tab hota hai jab data aur code ek hi string mein hote hain, isliye input tay kar sakta hai ki quote kahan khatam ho aur apne commands jod sake. Parameterised queries unhe alag rakhti hain: database ko pehle SQL structure milta hai aur value alag, isliye value mein quote bas ek character hai. XSS wahi galti HTML mein hai, aur ilaaj output encoding, textContent jaise safe DOM APIs aur Content Security Policy hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home why mixing user input into code is dangerous and how a parameterised query fixes it.",
+   "hi": "घर पर किसी को समझाओ कि उपयोगकर्ता इनपुट को कोड में मिलाना खतरनाक क्यों है और पैरामीटराइज़्ड क्वेरी इसे कैसे ठीक करती है।",
+   "hinglish": "Ghar par kisi ko samjhao ki user input ko code mein milana khatarnak kyun hai aur parameterised query ise kaise theek karti hai."
+  },
+  "checklist": [
+   {
+    "en": "Injection happens when untrusted input and code share one string.",
+    "hi": "इंजेक्शन तब होता है जब अविश्वसनीय इनपुट और कोड एक स्ट्रिंग में हों।",
+    "hinglish": "Injection tab hota hai jab untrusted input aur code ek string mein hon."
+   },
+   {
+    "en": "Parameterised queries send the SQL and the values separately, so input is always data.",
+    "hi": "पैरामीटराइज़्ड क्वेरी SQL और मान अलग भेजती हैं, इसलिए इनपुट हमेशा डेटा रहता है।",
+    "hinglish": "Parameterised queries SQL aur values alag bhejti hain, isliye input hamesha data rehta hai."
+   },
+   {
+    "en": "XSS is the same mistake in HTML: a script in input runs in other users' browsers.",
+    "hi": "XSS वही गलती HTML में है: इनपुट की स्क्रिप्ट दूसरों के ब्राउज़र में चलती है।",
+    "hinglish": "XSS wahi galti HTML mein hai: input ki script doosron ke browsers mein chalti hai."
+   },
+   {
+    "en": "Defend with output encoding, textContent, validation as a backup, and a Content Security Policy.",
+    "hi": "बचाव: आउटपुट एन्कोडिंग, textContent, सहायक रूप में सत्यापन, और कंटेंट सिक्योरिटी पॉलिसी।",
+    "hinglish": "Bachav: output encoding, textContent, backup ke roop mein validation, aur Content Security Policy."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Injection",
@@ -104,7 +175,7 @@
     "hi": "उपाय: पैरामीटरयुक्त क्वेरी। \"WHERE name = ?\" और मान अलग से। मान में उद्धरण बस अक्षर हैं।",
     "hinglish": "Fix: parameterised query. \"WHERE name = ?\" aur value alag se. Value mein quotes bas characters hain."
    },
-   "visual": "anim:sqli-param",
+   "visual": "compare:🔴 Glued string: input can become code|🟢 Parameterised query: input stays data",
    "narration": {
     "en": "Fix: a parameterised query. \"WHERE name = ?\" with the value sent separately. Quotes in the value are just characters.",
     "hi": "उपाय: पैरामीटरयुक्त क्वेरी। \"WHERE name = ?\" और मान अलग से। मान में उद्धरण बस अक्षर हैं।",

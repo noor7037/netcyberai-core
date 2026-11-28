@@ -36,6 +36,72 @@
    "hinglish": "Aas-paas ke AI helpers ke naam le sakte ho: voice assistant, maps, photo apps."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your family's phone has a voice helper, and you say, \"Play my favourite song.\"",
+   "hi": "{{name}}, तुम्हारे घर के फ़ोन में आवाज़ वाला सहायक है, और तुम कहते हो, \"मेरा पसंदीदा गाना चलाओ।\"",
+   "hinglish": "{{name}}, tumhare ghar ke phone mein awaaz wala helper hai, aur tum kehte ho, \"Mera favourite gaana chalao.\""
+  },
+  "question": {
+   "en": "How did a computer learn to understand you?",
+   "hi": "कंप्यूटर ने तुम्हें समझना कैसे सीखा?",
+   "hinglish": "Computer ne tumhe samajhna kaise seekha?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "How does AI learn what a dog is?",
+   "hi": "AI कुत्ते को पहचानना कैसे सीखता है?",
+   "hinglish": "AI kutte ko pehchaanna kaise seekhta hai?"
+  },
+  "options": [
+   {
+    "en": "Someone types a rule for every dog",
+    "hi": "कोई हर कुत्ते के लिए नियम लिखता है",
+    "hinglish": "Koi har kutte ke liye rule likhta hai"
+   },
+   {
+    "en": "It is shown many examples of dogs and learns from them",
+    "hi": "उसे कुत्तों के बहुत से उदाहरण दिखाए जाते हैं और वह उनसे सीखता है",
+    "hinglish": "Use kutton ke bahut se examples dikhaye jaate hain aur woh unse seekhta hai"
+   },
+   {
+    "en": "It is alive and just knows",
+    "hi": "वह जीवित है और बस जानता है",
+    "hinglish": "Woh jeevit hai aur bas jaanta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "AI learns from many examples, a bit like you did when you saw many dogs. It is a clever program made by people, not alive and with no feelings.",
+   "hi": "AI बहुत से उदाहरणों से सीखता है, कुछ वैसे ही जैसे तुमने बहुत से कुत्ते देखकर सीखा। यह लोगों का बनाया चतुर प्रोग्राम है, जीवित नहीं और उसमें भावनाएँ नहीं।",
+   "hinglish": "AI bahut se examples se seekhta hai, kuch waise hi jaise tumne bahut se kutte dekh kar seekha. Yeh logon ka banaya chatur program hai, jeevit nahi aur usme feelings nahi."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Tell someone at home: what is AI?",
+   "hi": "घर पर किसी को बताओ: AI क्या है?",
+   "hinglish": "Ghar par kisi ko batao: AI kya hai?"
+  },
+  "checklist": [
+   {
+    "en": "AI is a computer program that learns from examples.",
+    "hi": "AI एक कंप्यूटर प्रोग्राम है जो उदाहरणों से सीखता है।",
+    "hinglish": "AI ek computer program hai jo examples se seekhta hai."
+   },
+   {
+    "en": "Then it guesses new ones by itself.",
+    "hi": "फिर वह नए उदाहरण खुद अंदाज़े से बताता है।",
+    "hinglish": "Phir woh naye examples khud guess karta hai."
+   },
+   {
+    "en": "It is a helper made by people, not alive.",
+    "hi": "यह लोगों का बनाया सहायक है, जीवित नहीं।",
+    "hinglish": "Yeh logon ka banaya helper hai, jeevit nahi."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "AI",

@@ -38,6 +38,82 @@
    "hinglish": "Look-alike tricks pehchaan sakte ho: extra words, letters ki jagah digits, ajeeb endings"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you open a shopping site on your parent's phone, see a little padlock beside the address, and think, \"It must be safe.\"",
+   "hi": "{{name}}, तुम अपने माता-पिता के फ़ोन पर एक शॉपिंग साइट खोलते हो, पते के पास छोटा ताला दिखता है, और सोचते हो, \"यह ज़रूर सुरक्षित होगी।\"",
+   "hinglish": "{{name}}, tum apne parents ke phone par ek shopping site kholte ho, address ke paas chhota padlock dikhta hai, aur sochte ho, \"Yeh zaroor safe hogi.\""
+  },
+  "question": {
+   "en": "What does that padlock really promise, and what does it not?",
+   "hi": "वह ताला असल में क्या वादा करता है, और क्या नहीं?",
+   "hinglish": "Woh padlock asal mein kya vaada karta hai, aur kya nahi?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A website shows the padlock. What does that guarantee?",
+   "hi": "एक वेबसाइट पर ताला दिख रहा है। इससे क्या पक्का होता है?",
+   "hinglish": "Ek website par padlock dikh raha hai. Isse kya pakka hota hai?"
+  },
+  "options": [
+   {
+    "en": "The website owner is honest",
+    "hi": "वेबसाइट का मालिक ईमानदार है",
+    "hinglish": "Website ka owner honest hai"
+   },
+   {
+    "en": "Your connection is encrypted, so others on the path cannot read it",
+    "hi": "तुम्हारा कनेक्शन एन्क्रिप्टेड है, इसलिए रास्ते में कोई उसे पढ़ नहीं सकता",
+    "hinglish": "Tumhara connection encrypted hai, isliye raaste mein koi use padh nahi sakta"
+   },
+   {
+    "en": "The government approved the site",
+    "hi": "सरकार ने साइट को मंज़ूरी दी है",
+    "hinglish": "Sarkar ne site ko manzoori di hai"
+   },
+   {
+    "en": "The site is free of viruses",
+    "hi": "साइट में वायरस नहीं हैं",
+    "hinglish": "Site mein virus nahi hain"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "HTTPS scrambles the data between your browser and the server, so people on the same Wi-Fi see nothing useful. But scam sites can get certificates too, so the padlock says nothing about who runs the site.",
+   "hi": "HTTPS तुम्हारे ब्राउज़र और सर्वर के बीच का डेटा उलझा देता है, इसलिए उसी Wi-Fi पर बैठे लोगों को कुछ काम का नहीं दिखता। पर ठग साइटें भी सर्टिफ़िकेट ले सकती हैं, इसलिए ताला नहीं बताता कि साइट कौन चलाता है।",
+   "hinglish": "HTTPS tumhare browser aur server ke beech ka data scramble kar deta hai, isliye usi Wi-Fi par baithe logon ko kuch kaam ka nahi dikhta. Par scam sites bhi certificate le sakti hain, isliye padlock nahi batata ki site kaun chalata hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home what the padlock means and how to check who really owns a link.",
+   "hi": "घर पर किसी को समझाओ कि ताले का क्या मतलब है और कैसे जाँचें कि लिंक असल में किसका है।",
+   "hinglish": "Ghar par kisi ko samjhao ki padlock ka kya matlab hai aur kaise check karein ki link asal mein kiska hai."
+  },
+  "checklist": [
+   {
+    "en": "HTTPS encrypts the connection so others on the way see scrambled data.",
+    "hi": "HTTPS कनेक्शन एन्क्रिप्ट करता है ताकि रास्ते में दूसरों को उलझा हुआ डेटा दिखे।",
+    "hinglish": "HTTPS connection encrypt karta hai taaki raaste mein doosron ko scrambled data dikhe."
+   },
+   {
+    "en": "The padlock does not mean the website is honest.",
+    "hi": "ताले का मतलब यह नहीं कि वेबसाइट ईमानदार है।",
+    "hinglish": "Padlock ka matlab yeh nahi ki website honest hai."
+   },
+   {
+    "en": "Read the address from the right, before the first single \"/\", to find the real domain.",
+    "hi": "असली डोमेन जानने के लिए पता दाएँ से पढ़ो, पहले अकेले \"/\" से पहले तक।",
+    "hinglish": "Asli domain jaanne ke liye address right se padho, pehle akele \"/\" se pehle tak."
+   },
+   {
+    "en": "Look-alike tricks include extra words, digits in place of letters and odd endings.",
+    "hi": "मिलते-जुलते पतों की चालें: अतिरिक्त शब्द, अक्षरों की जगह अंक और अजीब अंत।",
+    "hinglish": "Look-alike tricks mein extra words, letters ki jagah digits aur odd endings hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "HTTPS",

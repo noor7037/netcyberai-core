@@ -39,6 +39,77 @@
    "hinglish": "Chip banane ke main steps order mein laga sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you hold a phone that has billions of tiny parts, and it began as ordinary sand.",
+   "hi": "{{name}}, तुम्हारे हाथ में फ़ोन है जिसमें अरबों छोटे हिस्से हैं, और वह साधारण रेत से शुरू हुआ था।",
+   "hinglish": "{{name}}, tumhare haath mein phone hai jisme billions of tiny parts hain, aur woh normal sand se shuru hua tha."
+  },
+  "question": {
+   "en": "How can sand become a chip that works in 0s and 1s?",
+   "hi": "रेत एक ऐसी चिप कैसे बनती है जो 0 और 1 में काम करती है?",
+   "hinglish": "Sand ek aisi chip kaise banti hai jo 0 aur 1 mein kaam karti hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Why is silicon used to make chips?",
+   "hi": "चिप बनाने के लिए सिलिकॉन क्यों इस्तेमाल होता है?",
+   "hinglish": "Chip banane ke liye silicon kyun use hota hai?"
+  },
+  "options": [
+   {
+    "en": "It is a metal that conducts electricity perfectly",
+    "hi": "यह एक धातु है जो बिजली पूरी तरह चलाती है",
+    "hinglish": "Yeh ek metal hai jo bijli perfectly conduct karti hai"
+   },
+   {
+    "en": "It does not conduct at all",
+    "hi": "यह बिल्कुल बिजली नहीं चलाता",
+    "hinglish": "Yeh bilkul conduct nahi karta"
+   },
+   {
+    "en": "It is a semiconductor, so doping lets us control where current flows",
+    "hi": "यह अर्धचालक है, इसलिए डोपिंग से हम तय कर सकते हैं कि धारा कहाँ बहे",
+    "hinglish": "Yeh semiconductor hai, isliye doping se hum tay kar sakte hain ki current kahan bahe"
+   }
+  ],
+  "answer": 2,
+  "explain": {
+   "en": "Pure silicon barely conducts. Adding a few atoms of phosphorus or boron (doping) lets us decide exactly where current can flow, which is how transistors, the tiny switches in a chip, are made.",
+   "hi": "शुद्ध सिलिकॉन बहुत कम बिजली चलाता है। फ़ॉस्फ़ोरस या बोरॉन के कुछ परमाणु मिलाने (डोपिंग) से हम तय कर सकते हैं कि धारा ठीक कहाँ बहे, और इसी से ट्रांज़िस्टर, यानी चिप के छोटे स्विच, बनते हैं।",
+   "hinglish": "Pure silicon bahut kam bijli chalata hai. Phosphorus ya boron ke kuch atoms milane (doping) se hum tay kar sakte hain ki current theek kahan bahe, aur isi se transistors, yaani chip ke chhote switches, bante hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a chip is made from sand.",
+   "hi": "घर पर किसी को समझाओ कि रेत से चिप कैसे बनती है।",
+   "hinglish": "Ghar par kisi ko samjhao ki sand se chip kaise banti hai."
+  },
+  "checklist": [
+   {
+    "en": "Sand is purified, melted and grown into a crystal, then sliced into thin wafers.",
+    "hi": "रेत को शुद्ध करके पिघलाया जाता है, क्रिस्टल बनाया जाता है, फिर पतले वेफ़र में काटा जाता है।",
+    "hinglish": "Sand ko purify karke melt kiya jaata hai, crystal banaya jaata hai, phir patle wafers mein kaata jaata hai."
+   },
+   {
+    "en": "Doping makes silicon conduct only where we want, so it can act as a switch.",
+    "hi": "डोपिंग से सिलिकॉन वहीं बिजली चलाता है जहाँ हम चाहें, इसलिए वह स्विच बन सकता है।",
+    "hinglish": "Doping se silicon wahin conduct karta hai jahan hum chahein, isliye woh switch ban sakta hai."
+   },
+   {
+    "en": "A transistor is a switch with no moving parts: on is 1, off is 0.",
+    "hi": "ट्रांज़िस्टर बिना हिलने वाले हिस्सों का स्विच है: चालू 1, बंद 0।",
+    "hinglish": "Transistor bina moving parts ka switch hai: on 1, off 0."
+   },
+   {
+    "en": "Light through masks prints billions of transistors in layers.",
+    "hi": "मास्क से गुज़री रोशनी परत-दर-परत अरबों ट्रांज़िस्टर छापती है।",
+    "hinglish": "Masks se guzri light layer-by-layer billions of transistors print karti hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Semiconductor",

@@ -34,6 +34,77 @@
    "hinglish": "Prints, debugger aur rubber-duck explaining se systematically debug karo"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your average function works on your test marks, then crashes the day a class has no marks entered yet.",
+   "hi": "{{name}}, तुम्हारा औसत वाला फ़ंक्शन तुम्हारे परीक्षण अंकों पर चलता है, फिर उस दिन क्रैश होता है जब किसी कक्षा के अंक अभी भरे ही नहीं गए।",
+   "hinglish": "{{name}}, tumhara average wala function tumhare test marks par chalta hai, phir us din crash hota hai jab kisi class ke marks abhi bhare hi nahi gaye."
+  },
+  "question": {
+   "en": "How do you find problems like this before users do, and fix them in a reliable way?",
+   "hi": "उपयोगकर्ताओं से पहले ऐसी गड़बड़ियाँ कैसे पकड़ें और भरोसेमंद तरीके से ठीक कैसे करें?",
+   "hinglish": "Users se pehle aisi gadbadiyan kaise pakdein aur bharosemand tareeke se theek kaise karein?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "average([2, 4, 6]) passes its test. Does that prove average() is correct?",
+   "hi": "average([2, 4, 6]) अपना टेस्ट पास करता है। क्या इससे साबित होता है कि average() सही है?",
+   "hinglish": "average([2, 4, 6]) apna test pass karta hai. Kya isse sabit hota hai ki average() sahi hai?"
+  },
+  "options": [
+   {
+    "en": "Yes, one passing test is proof",
+    "hi": "हाँ, एक पास टेस्ट प्रमाण है",
+    "hinglish": "Haan, ek passing test proof hai"
+   },
+   {
+    "en": "No, it only covers one case; edge cases like an empty list may still fail",
+    "hi": "नहीं, यह सिर्फ़ एक स्थिति जाँचता है; खाली सूची जैसी किनारे की स्थितियाँ अब भी विफल हो सकती हैं",
+    "hinglish": "Nahi, yeh sirf ek case jaanchta hai; empty list jaise edge cases ab bhi fail ho sakte hain"
+   },
+   {
+    "en": "Yes, if the code has no syntax errors",
+    "hi": "हाँ, अगर कोड में सिंटैक्स त्रुटि नहीं है",
+    "hinglish": "Haan, agar code mein syntax error nahi hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "A test can show a bug exists but cannot prove there are none. Good tests cover normal, edge (empty list, one item, zero, negative) and wrong-input cases. Here average([]) divides by zero, the test fails, you fix it with if not nums: return 0, and keep the test so the bug cannot quietly return.",
+   "hi": "टेस्ट दिखा सकता है कि बग है, पर साबित नहीं कर सकता कि कोई नहीं है। अच्छे टेस्ट सामान्य, किनारे (खाली सूची, एक आइटम, शून्य, ऋणात्मक) और गलत इनपुट वाली स्थितियाँ जाँचते हैं। यहाँ average([]) शून्य से भाग देता है, टेस्ट विफल होता है, तुम if not nums: return 0 से ठीक करते हो, और टेस्ट रखते हो ताकि बग चुपचाप वापस न आ सके।",
+   "hinglish": "Test dikha sakta hai ki bug hai, par sabit nahi kar sakta ki koi nahi hai. Achhe tests normal, edge (empty list, ek item, zero, negative) aur wrong-input cases jaanchte hain. Yahan average([]) zero se divide karta hai, test fail hota hai, tum if not nums: return 0 se theek karte ho, aur test rakhte ho taaki bug chupchaap wapas na aa sake."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home why you write a failing test first, then fix the code, then keep the test.",
+   "hi": "घर पर किसी को समझाओ कि तुम पहले विफल होने वाला टेस्ट क्यों लिखते हो, फिर कोड ठीक करते हो, फिर टेस्ट रखते हो।",
+   "hinglish": "Ghar par kisi ko samjhao ki tum pehle fail hone wala test kyun likhte ho, phir code theek karte ho, phir test rakhte ho."
+  },
+  "checklist": [
+   {
+    "en": "assert-based unit tests check normal, edge and wrong-input cases.",
+    "hi": "assert वाले यूनिट टेस्ट सामान्य, किनारे और गलत इनपुट वाली स्थितियाँ जाँचते हैं।",
+    "hinglish": "assert-based unit tests normal, edge aur wrong-input cases jaanchte hain."
+   },
+   {
+    "en": "A failing test reproduces the bug; the fix turns it green.",
+    "hi": "विफल टेस्ट बग दोहराता है; ठीक करने पर वह हरा हो जाता है।",
+    "hinglish": "Failing test bug reproduce karta hai; fix se woh green ho jaata hai."
+   },
+   {
+    "en": "Keeping the test guards against the bug returning (regression); pytest runs every test_ function.",
+    "hi": "टेस्ट रखना बग के लौटने से बचाता है (रिग्रेशन); pytest हर test_ फ़ंक्शन चलाता है।",
+    "hinglish": "Test rakhna bug ke wapas aane se bachata hai (regression); pytest har test_ function chalata hai."
+   },
+   {
+    "en": "Debug in steps: reproduce smallest case, read the traceback, guess, check with print or a debugger, then fix.",
+    "hi": "कदम दर कदम डीबग: सबसे छोटा मामला दोहराओ, ट्रेसबैक पढ़ो, अनुमान लगाओ, print या डीबगर से जाँचो, फिर ठीक करो।",
+    "hinglish": "Step by step debug: sabse chhota case reproduce karo, traceback padho, guess lagao, print ya debugger se check karo, phir fix karo."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Unit test",
@@ -102,7 +173,7 @@
     "hi": "सुधार: if not nums: return 0। अब दोनों परीक्षण पास।",
     "hinglish": "Fix: if not nums: return 0. Ab dono tests pass."
    },
-   "visual": "anim:test-green2",
+   "visual": "cycle:🔴 Test fails|🔧 Fix the code|🟢 Test passes|➕ Add the next test",
    "narration": {
     "en": "The fix: if not nums: return 0. Now both tests pass.",
     "hi": "सुधार: if not nums: return 0। अब दोनों परीक्षण पास।",

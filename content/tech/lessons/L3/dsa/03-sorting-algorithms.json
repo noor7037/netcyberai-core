@@ -34,6 +34,77 @@
    "hinglish": "Jaano Python ka sorted() kya karta hai aur \"stable\" ka matlab"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you arrange a hand of cards by picking each new card and sliding it into its place, and you never thought of it as an algorithm.",
+   "hi": "{{name}}, तुम हाथ के पत्ते हर नया पत्ता उसकी जगह में सरकाकर सजाते हो, और इसे कभी एल्गोरिद्म नहीं समझा।",
+   "hinglish": "{{name}}, tum haath ke patte har naya patta uski jagah mein sarkakar sajate ho, aur ise kabhi algorithm nahi samjha."
+  },
+  "question": {
+   "en": "How do computers sort millions of items, and why do some methods take seconds while others take hours?",
+   "hi": "कंप्यूटर लाखों आइटम कैसे क्रमबद्ध करते हैं, और कुछ तरीके सेकंड में और कुछ घंटों में क्यों होते हैं?",
+   "hinglish": "Computers lakhon items kaise sort karte hain, aur kuch methods seconds mein aur kuch ghanton mein kyun hote hain?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "For 10 lakh items, why is merge sort far faster than bubble sort?",
+   "hi": "10 लाख आइटम के लिए मर्ज सॉर्ट बबल सॉर्ट से इतना तेज़ क्यों है?",
+   "hinglish": "10 lakh items ke liye merge sort bubble sort se itna tez kyun hai?"
+  },
+  "options": [
+   {
+    "en": "Merge sort runs on a faster part of the CPU",
+    "hi": "मर्ज सॉर्ट CPU के तेज़ हिस्से पर चलता है",
+    "hinglish": "Merge sort CPU ke tez hisse par chalta hai"
+   },
+   {
+    "en": "Merge sort does about n log n comparisons, while bubble sort does about n² (around 10¹²)",
+    "hi": "मर्ज सॉर्ट लगभग n log n तुलनाएँ करता है, जबकि बबल सॉर्ट लगभग n² (करीब 10¹²)",
+    "hinglish": "Merge sort lagbhag n log n comparisons karta hai, jabki bubble sort lagbhag n² (kareeb 10¹²)"
+   },
+   {
+    "en": "Bubble sort does not actually sort the list",
+    "hi": "बबल सॉर्ट असल में सूची क्रमबद्ध नहीं करता",
+    "hinglish": "Bubble sort asal mein list sort nahi karta"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Bubble sort only swaps neighbours, so items move one place at a time and the work grows like n². Merge sort splits the list in halves, sorts each and merges them, giving about n log n steps. For 10 lakh items that is roughly 2 crore against 10¹² steps.",
+   "hi": "बबल सॉर्ट सिर्फ़ पड़ोसियों को बदलता है, इसलिए आइटम एक-एक जगह चलते हैं और काम n² की तरह बढ़ता है। मर्ज सॉर्ट सूची को आधा-आधा बाँटता, हर हिस्सा क्रमबद्ध करता और जोड़ देता है, यानी लगभग n log n कदम। 10 लाख आइटम पर यह लगभग 2 करोड़ बनाम 10¹² कदम है।",
+   "hinglish": "Bubble sort sirf padosiyon ko swap karta hai, isliye items ek-ek jagah chalte hain aur kaam n² ki tarah badhta hai. Merge sort list ko aadha-aadha baantta, har hissa sort karta aur jod deta hai, yaani lagbhag n log n steps. 10 lakh items par yeh lagbhag 2 crore banam 10¹² steps hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how merge sort or quicksort sorts a list faster than bubble sort.",
+   "hi": "घर पर किसी को समझाओ कि मर्ज सॉर्ट या क्विकसॉर्ट बबल सॉर्ट से तेज़ क्रमबद्ध कैसे करता है।",
+   "hinglish": "Ghar par kisi ko samjhao ki merge sort ya quicksort bubble sort se tez sort kaise karta hai."
+  },
+  "checklist": [
+   {
+    "en": "Bubble, selection and insertion sort are simple but O(n²).",
+    "hi": "बबल, सिलेक्शन और इंसर्शन सॉर्ट सरल हैं पर O(n²)।",
+    "hinglish": "Bubble, selection aur insertion sort simple hain par O(n²)."
+   },
+   {
+    "en": "Merge sort splits, sorts halves and merges: O(n log n) always, and stable.",
+    "hi": "मर्ज सॉर्ट बाँटता, हिस्से क्रमबद्ध करता और जोड़ता है: हमेशा O(n log n), और स्थिर।",
+    "hinglish": "Merge sort baantta, halves sort karta aur jodta hai: hamesha O(n log n), aur stable."
+   },
+   {
+    "en": "Quicksort picks a pivot, puts smaller items left and bigger right, then recurses; O(n log n) on average.",
+    "hi": "क्विकसॉर्ट पिवट चुनता, छोटे बाएँ और बड़े दाएँ रखता और फिर रिकर्स करता है; औसतन O(n log n)।",
+    "hinglish": "Quicksort pivot chunta, chhote left aur bade right rakhta aur phir recurse karta hai; average O(n log n)."
+   },
+   {
+    "en": "Stable means equal items keep their order; Python's sorted() uses Timsort.",
+    "hi": "स्थिर का मतलब बराबर आइटम अपना क्रम रखते हैं; Python का sorted() टिमसॉर्ट इस्तेमाल करता है।",
+    "hinglish": "Stable ka matlab equal items apna order rakhte hain; Python ka sorted() Timsort use karta hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Comparison",
@@ -102,7 +173,7 @@
     "hi": "मर्ज सॉर्ट आधे-आधे में बाँटता है जब तक एक-एक वस्तु न बचे, फिर क्रमबद्ध आधे जोड़ता है। हमेशा O(n log n)।",
     "hinglish": "Merge sort halves mein baant-ta hai jab tak ek-ek item na bache, phir sorted halves merge karta hai. Hamesha O(n log n)."
    },
-   "visual": "anim:merge-tree",
+   "visual": "flow:✂️ Split into halves|🧩 Down to single items|🔀 Merge sorted pairs|✅ Fully sorted",
    "narration": {
     "en": "Merge sort splits in halves until single items, then merges sorted halves. Always O(n log n).",
     "hi": "मर्ज सॉर्ट आधे-आधे में बाँटता है जब तक एक-एक वस्तु न बचे, फिर क्रमबद्ध आधे जोड़ता है। हमेशा O(n log n)।",
@@ -116,7 +187,7 @@
     "hi": "क्विकसॉर्ट पिवट चुनता है, छोटी वस्तुएँ बाएँ और बड़ी दाएँ रखता है, फिर दोहराता है। औसतन O(n log n)।",
     "hinglish": "Quicksort pivot chunta hai, chhoti items left aur badi right rakhta hai, phir recurse karta hai. Average O(n log n)."
    },
-   "visual": "anim:pivot",
+   "visual": "flow:📍 Pick a pivot|↔️ Smaller left, bigger right|🔁 Sort each side|✅ Fully sorted",
    "narration": {
     "en": "Quicksort picks a pivot, puts smaller items left and bigger right, then recurses. O(n log n) on average.",
     "hi": "क्विकसॉर्ट पिवट चुनता है, छोटी वस्तुएँ बाएँ और बड़ी दाएँ रखता है, फिर दोहराता है। औसतन O(n log n)।",

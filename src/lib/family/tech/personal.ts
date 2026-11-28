@@ -9,7 +9,7 @@
 
 import { nameFiller, withoutName } from '@/lib/family/name-token';
 import { fill, pick, type TechLang } from './text';
-import type { CourseCatalog, Localized, TechProgress, UnitSummary } from './types';
+import type { CourseCatalog, LessonHook, Localized, TechProgress, UnitSummary } from './types';
 
 export type TechPersonal = {
   name: string;
@@ -118,7 +118,19 @@ function end(text: string): string {
 }
 
 // The opening sentences: a greeting by name, a link to the last lesson (or a revision note), and where to look.
-export function introLines(lessonId: string, lang: TechLang, personal: TechPersonal): string[] {
+// C557: a lesson with its own opening (a familiar situation and the question it raises) uses that instead of a general
+// greeting; a revision visit still says so first.
+export function introLines(lessonId: string, lang: TechLang, personal: TechPersonal, hook?: LessonHook): string[] {
+  if (hook) {
+    const prevTitle = personal.prevTitle ? pick(lang, personal.prevTitle) : '';
+    const own = [
+      ...(personal.returning ? [named(one(AGAIN, lang, lessonId), personal.name)] : []),
+      ...(prevTitle && !personal.returning ? [fill(one(LAST_TIME, lang, lessonId), { prev: prevTitle })] : []),
+      named(pick(lang, hook.text), personal.name),
+      pick(lang, hook.question),
+    ];
+    return own.map(end).filter(Boolean);
+  }
   const lines = [named(one(personal.returning ? AGAIN : HELLO, lang, lessonId), personal.name)];
   const prev = personal.prevTitle ? pick(lang, personal.prevTitle) : '';
   if (prev && !personal.returning) lines.push(fill(one(LAST_TIME, lang, lessonId), { prev }));

@@ -38,6 +38,77 @@
    "hinglish": "Cache CPU ko fast kyun banata hai samjha sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you open a cricket game on your phone and it starts in two seconds.",
+   "hi": "{{name}}, तुम फ़ोन पर क्रिकेट गेम खोलते हो और वह दो सेकंड में शुरू हो जाता है।",
+   "hinglish": "{{name}}, tum phone par cricket game kholte ho aur woh do second mein start ho jaata hai."
+  },
+  "question": {
+   "en": "What is the processor actually doing, step by step, to run it so fast?",
+   "hi": "प्रोसेसर असल में कदम-दर-कदम क्या करता है कि वह इतनी तेज़ चलता है?",
+   "hinglish": "Processor asal mein step-by-step kya karta hai ki woh itna fast chalta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A phone says 3 GHz. What does that tell you?",
+   "hi": "एक फ़ोन पर 3 GHz लिखा है। इससे क्या पता चलता है?",
+   "hinglish": "Ek phone par 3 GHz likha hai. Isse kya pata chalta hai?"
+  },
+  "options": [
+   {
+    "en": "It does 3 billion tasks of any size every second",
+    "hi": "यह हर सेकंड 3 अरब कोई भी काम कर लेता है",
+    "hinglish": "Yeh har second 3 billion koi bhi kaam kar leta hai"
+   },
+   {
+    "en": "Its clock ticks 3 billion times a second, and each tiny step takes ticks",
+    "hi": "इसकी घड़ी हर सेकंड 3 अरब बार टिक करती है, और हर छोटा कदम टिक लेता है",
+    "hinglish": "Iski clock har second 3 billion baar tick karti hai, aur har chhota step ticks leta hai"
+   },
+   {
+    "en": "It has 3 cores",
+    "hi": "इसमें 3 कोर हैं",
+    "hinglish": "Ismein 3 cores hain"
+   },
+   {
+    "en": "It uses 3 gigabytes of memory",
+    "hi": "यह 3 गीगाबाइट मेमोरी इस्तेमाल करता है",
+    "hinglish": "Yeh 3 gigabyte memory use karta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "GHz counts clock ticks: 3 GHz is 3 billion per second. An instruction is tiny, so a program is billions of small steps, and clock speed is only one thing that decides speed; cores and cache matter too.",
+   "hi": "GHz घड़ी की टिक गिनता है: 3 GHz यानी हर सेकंड 3 अरब। हर निर्देश बहुत छोटा होता है, इसलिए प्रोग्राम अरबों छोटे कदम होता है, और गति केवल घड़ी से तय नहीं होती; कोर और कैश भी मायने रखते हैं।",
+   "hinglish": "GHz clock ticks ginta hai: 3 GHz matlab har second 3 billion. Har instruction bahut chhota hota hai, isliye program billions of small steps hota hai, aur speed sirf clock se tay nahi hoti; cores aur cache bhi matter karte hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a CPU runs a program.",
+   "hi": "घर पर किसी को समझाओ कि CPU प्रोग्राम कैसे चलाता है।",
+   "hinglish": "Ghar par kisi ko samjhao ki CPU program kaise chalata hai."
+  },
+  "checklist": [
+   {
+    "en": "It repeats fetch, decode, execute for one tiny instruction after another.",
+    "hi": "यह एक-एक छोटे निर्देश के लिए फ़ेच, डिकोड, एक्ज़ीक्यूट दोहराता है।",
+    "hinglish": "Woh ek-ek chhote instruction ke liye fetch, decode, execute repeat karta hai."
+   },
+   {
+    "en": "The clock ticks keep every step in time; more cores can work on different jobs together.",
+    "hi": "घड़ी की टिक हर कदम को समय पर रखती है; ज़्यादा कोर अलग-अलग काम साथ कर सकते हैं।",
+    "hinglish": "Clock ticks har step ko time par rakhti hain; zyada cores alag-alag kaam saath kar sakte hain."
+   },
+   {
+    "en": "Cache is a small, very fast memory close to the CPU, so it waits less for slow RAM.",
+    "hi": "कैश CPU के पास की छोटी, बहुत तेज़ मेमोरी है, इसलिए उसे धीमी RAM का कम इंतज़ार करना पड़ता है।",
+    "hinglish": "Cache CPU ke paas ki chhoti, bahut fast memory hai, isliye use slow RAM ka kam wait karna padta hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Instruction",

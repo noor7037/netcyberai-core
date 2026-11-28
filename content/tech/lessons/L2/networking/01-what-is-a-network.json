@@ -35,6 +35,72 @@
    "hinglish": "Internet = networks ka network samjha sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, at home your phone, laptop and smart TV all use the same Wi-Fi, and you can cast a video from the phone to the TV.",
+   "hi": "{{name}}, घर पर तुम्हारा फ़ोन, लैपटॉप और स्मार्ट टीवी एक ही Wi-Fi इस्तेमाल करते हैं, और तुम फ़ोन से टीवी पर वीडियो कास्ट कर सकते हो।",
+   "hinglish": "{{name}}, ghar par tumhara phone, laptop aur smart TV ek hi Wi-Fi use karte hain, aur tum phone se TV par video cast kar sakte ho."
+  },
+  "question": {
+   "en": "What makes these devices a network, and how does it connect to the whole world?",
+   "hi": "इन उपकरणों को नेटवर्क क्या बनाता है, और वह पूरी दुनिया से कैसे जुड़ता है?",
+   "hinglish": "In devices ko network kya banata hai, aur woh poori duniya se kaise judta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Is the internet one giant network owned by one company?",
+   "hi": "क्या इंटरनेट एक कंपनी का एक विशाल नेटवर्क है?",
+   "hinglish": "Kya internet ek company ka ek vishal network hai?"
+  },
+  "options": [
+   {
+    "en": "Yes, one company runs all of it",
+    "hi": "हाँ, सब कुछ एक कंपनी चलाती है",
+    "hinglish": "Haan, sab kuch ek company chalati hai"
+   },
+   {
+    "en": "No: it is millions of separate networks, such as home LANs and ISPs, joined together",
+    "hi": "नहीं: यह लाखों अलग नेटवर्कों, जैसे घर के LAN और ISP, का आपस में जुड़ना है",
+    "hinglish": "Nahi: yeh lakhon alag networks, jaise ghar ke LAN aur ISP, ka aapas mein judna hai"
+   },
+   {
+    "en": "It is only your Wi-Fi router",
+    "hi": "यह सिर्फ़ तुम्हारा Wi-Fi राउटर है",
+    "hinglish": "Yeh sirf tumhara Wi-Fi router hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "The internet is a network of networks. Your home LAN joins your ISP's network, which joins others, including undersea fibre cables to other countries. Wi-Fi is a local radio link to a router; mobile data is a radio link to a tower.",
+   "hi": "इंटरनेट नेटवर्कों का नेटवर्क है। तुम्हारा घरेलू LAN तुम्हारे ISP के नेटवर्क से जुड़ता है, जो दूसरों से जुड़ता है, जिनमें दूसरे देशों तक जाने वाली समुद्र के नीचे की फ़ाइबर केबलें भी हैं। Wi-Fi राउटर से स्थानीय रेडियो कड़ी है; मोबाइल डेटा टावर से रेडियो कड़ी।",
+   "hinglish": "Internet networks ka network hai. Tumhara home LAN tumhare ISP ke network se judta hai, jo doosron se judta hai, jinme doosre deshon tak jaane wali undersea fibre cables bhi hain. Wi-Fi router se local radio link hai; mobile data tower se radio link."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home what a network is and how Wi-Fi and mobile data connect you to the internet.",
+   "hi": "घर पर किसी को समझाओ कि नेटवर्क क्या है और Wi-Fi व मोबाइल डेटा तुम्हें इंटरनेट से कैसे जोड़ते हैं।",
+   "hinglish": "Ghar par kisi ko samjhao ki network kya hai aur Wi-Fi aur mobile data tumhe internet se kaise jodte hain."
+  },
+  "checklist": [
+   {
+    "en": "A network is devices linked to share data; a LAN is small and local, a WAN is large.",
+    "hi": "नेटवर्क डेटा बाँटने के लिए जुड़े उपकरण हैं; LAN छोटा और स्थानीय, WAN बड़ा।",
+    "hinglish": "Network data share karne ke liye jude devices hain; LAN chhota aur local, WAN bada."
+   },
+   {
+    "en": "Wi-Fi reaches a router a few tens of metres away; mobile data reaches a tower kilometres away.",
+    "hi": "Wi-Fi कुछ दस मीटर दूर के राउटर तक पहुँचता है; मोबाइल डेटा किलोमीटर दूर के टावर तक।",
+    "hinglish": "Wi-Fi kuch das meter door ke router tak pahunchta hai; mobile data kilometres door ke tower tak."
+   },
+   {
+    "en": "The internet is many networks joined together, including undersea cables.",
+    "hi": "इंटरनेट कई नेटवर्कों का जुड़ाव है, समुद्र के नीचे की केबलों समेत।",
+    "hinglish": "Internet kai networks ka judav hai, undersea cables samet."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Network",

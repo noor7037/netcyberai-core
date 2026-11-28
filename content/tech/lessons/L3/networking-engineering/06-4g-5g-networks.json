@@ -35,6 +35,77 @@
    "hinglish": "Frequency, range aur capacity ke beech ka trade-off samjhao"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your phone gets 5G in a metro station but only 4G in a lift, and the speed in each place is very different.",
+   "hi": "{{name}}, मेट्रो स्टेशन पर तुम्हारे फ़ोन को 5G मिलता है पर लिफ़्ट में सिर्फ़ 4G, और हर जगह गति बहुत अलग होती है।",
+   "hinglish": "{{name}}, metro station par tumhare phone ko 5G milta hai par lift mein sirf 4G, aur har jagah speed bahut alag hoti hai."
+  },
+  "question": {
+   "en": "How does your phone join a mobile network, and why do faster signals reach less far?",
+   "hi": "तुम्हारा फ़ोन मोबाइल नेटवर्क से कैसे जुड़ता है, और तेज़ सिग्नल कम दूर क्यों पहुँचते हैं?",
+   "hinglish": "Tumhara phone mobile network se kaise judta hai, aur tez signals kam door kyun pahunchte hain?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Higher radio frequencies carry more data. What is the catch?",
+   "hi": "ऊँची रेडियो आवृत्तियाँ ज़्यादा डेटा ले जाती हैं। इसकी कीमत क्या है?",
+   "hinglish": "Unchi radio frequencies zyada data le jaati hain. Iski keemat kya hai?"
+  },
+  "options": [
+   {
+    "en": "There is no catch, higher is always better",
+    "hi": "कोई कीमत नहीं, ऊँची हमेशा बेहतर",
+    "hinglish": "Koi keemat nahi, unchi hamesha behtar"
+   },
+   {
+    "en": "They fade faster with distance and are blocked by walls and rain, so more towers are needed",
+    "hi": "वे दूरी के साथ जल्दी कमज़ोर होती हैं और दीवारों व बारिश से रुकती हैं, इसलिए ज़्यादा टावर चाहिए",
+    "hinglish": "Woh doori ke saath jaldi kamzor hoti hain aur deewaron aur baarish se rukti hain, isliye zyada towers chahiye"
+   },
+   {
+    "en": "They need a bigger SIM card",
+    "hi": "उन्हें बड़ा सिम कार्ड चाहिए",
+    "hinglish": "Unhe bada SIM card chahiye"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Higher bands have wider blocks of spectrum, so they can carry more data, but they weaken quickly with distance and obstacles. Low bands (700 to 900 MHz) travel far and through walls; mid bands such as 3.3 to 3.6 GHz balance range and speed; millimetre waves are very fast but short-range. That is why networks mix bands and add many small cells.",
+   "hi": "ऊँचे बैंड में स्पेक्ट्रम के चौड़े खंड होते हैं, इसलिए ज़्यादा डेटा ले जा सकते हैं, पर दूरी और रुकावटों से जल्दी कमज़ोर होते हैं। निचले बैंड (700 से 900 MHz) दूर और दीवारों के पार जाते हैं; मध्यम बैंड जैसे 3.3 से 3.6 GHz रेंज और गति का संतुलन रखते हैं; मिलीमीटर तरंगें बहुत तेज़ पर कम दूरी की हैं। इसीलिए नेटवर्क बैंड मिलाते हैं और कई छोटे सेल जोड़ते हैं।",
+   "hinglish": "Unche bands mein spectrum ke chaude blocks hote hain, isliye zyada data le ja sakte hain, par doori aur obstacles se jaldi kamzor hote hain. Low bands (700 se 900 MHz) door aur deewaron ke paar jaate hain; mid bands jaise 3.3 se 3.6 GHz range aur speed ka balance rakhte hain; millimetre waves bahut tez par short-range hain. Isiliye networks bands mix karte hain aur kai chhote cells jodte hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a phone joins a 5G network and why faster bands need more towers.",
+   "hi": "घर पर किसी को समझाओ कि फ़ोन 5G नेटवर्क से कैसे जुड़ता है और तेज़ बैंड को ज़्यादा टावर क्यों चाहिए।",
+   "hinglish": "Ghar par kisi ko samjhao ki phone 5G network se kaise judta hai aur tez bands ko zyada towers kyun chahiye."
+  },
+  "checklist": [
+   {
+    "en": "The phone reaches a tower by radio; the tower connects to the core network over fibre.",
+    "hi": "फ़ोन रेडियो से टावर तक पहुँचता है; टावर फ़ाइबर से कोर नेटवर्क से जुड़ता है।",
+    "hinglish": "Phone radio se tower tak pahunchta hai; tower fibre se core network se judta hai."
+   },
+   {
+    "en": "The SIM's secret key is checked by the core, encryption starts and the phone gets an IP address.",
+    "hi": "कोर SIM की गुप्त कुंजी जाँचता है, एन्क्रिप्शन शुरू होता है और फ़ोन को IP पता मिलता है।",
+    "hinglish": "Core SIM ki secret key jaanchta hai, encryption shuru hota hai aur phone ko IP address milta hai."
+   },
+   {
+    "en": "Low, mid and millimetre bands trade range against speed.",
+    "hi": "निचले, मध्यम और मिलीमीटर बैंड रेंज और गति में समझौता करते हैं।",
+    "hinglish": "Low, mid aur millimetre bands range aur speed mein trade-off karte hain."
+   },
+   {
+    "en": "5G adds lower latency, more devices per area and network slicing, and hides your subscriber ID.",
+    "hi": "5G कम देरी, प्रति क्षेत्र ज़्यादा डिवाइस और नेटवर्क स्लाइसिंग जोड़ता है, और तुम्हारा सब्सक्राइबर ID छिपाता है।",
+    "hinglish": "5G kam latency, per area zyada devices aur network slicing jodta hai, aur tumhara subscriber ID chhupata hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Cell / base station",
@@ -75,7 +146,7 @@
     "hi": "आपका फ़ोन रेडियो से सबसे पास के टावर से बात करता है। 5G में इसे gNB कहते हैं। टावर रेडियो को फ़ाइबर में बदलकर ऑपरेटर के कोर को भेजता है।",
     "hinglish": "Tumhara phone radio se sabse paas ke tower se baat karta hai. 5G mein ise gNB kehte hain. Tower radio ko fibre mein badal ke operator ke core ko bhejta hai."
    },
-   "visual": "anim:tower-to-core",
+   "visual": "flow:📱 Phone|🗼 Tower (gNB)|🏢 Core network|🌐 Internet",
    "narration": {
     "en": "Your phone talks by radio to the nearest tower. In 5G it is called a gNB. The tower turns radio into fibre and sends it to the operator's core.",
     "hi": "आपका फ़ोन रेडियो से सबसे पास के टावर से बात करता है। 5G में इसे gNB कहते हैं। टावर रेडियो को फ़ाइबर में बदलकर ऑपरेटर के कोर को भेजता है।",
@@ -89,7 +160,7 @@
     "hi": "सिम में एक गुप्त कुंजी होती है। कोर उसे जाँचता है (5G-AKA), एन्क्रिप्शन चालू करता है और फ़ोन को आईपी पता देता है — भारत में अक्सर IPv6।",
     "hinglish": "SIM mein ek secret key hoti hai. Core use check karta hai (5G-AKA), encryption chalu karta hai aur phone ko IP address deta hai — India mein aksar IPv6."
    },
-   "visual": "anim:sim-auth",
+   "visual": "flow:🔑 SIM holds a secret key|🏢 Core checks it|🔒 Encryption starts|🌐 Phone gets an IP address",
    "narration": {
     "en": "The SIM holds a secret key. The core checks it (5G-AKA), turns on encryption and gives your phone an IP address — usually IPv6 in India.",
     "hi": "सिम में एक गुप्त कुंजी होती है। कोर उसे जाँचता है (5G-AKA), एन्क्रिप्शन चालू करता है और फ़ोन को आईपी पता देता है — भारत में अक्सर IPv6।",

@@ -38,6 +38,82 @@
    "hinglish": "Rozana machines mein feedback loops pehchaan sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you set the AC to 24 °C. It cools the room, then switches the cooling off by itself, and starts again when the room warms up.",
+   "hi": "{{name}}, तुम AC को 24 °C पर सेट करते हो। वह कमरा ठंडा करता है, फिर ठंडक अपने आप बंद कर देता है, और कमरा गरम होने पर फिर शुरू कर देता है।",
+   "hinglish": "{{name}}, tum AC ko 24 °C par set karte ho. Woh kamra thanda karta hai, phir cooling apne aap band kar deta hai, aur kamra garm hone par phir shuru kar deta hai."
+  },
+  "question": {
+   "en": "How does the AC know when to stop, and how is that different from a toaster that just runs for a set time?",
+   "hi": "AC को कैसे पता चलता है कि कब रुकना है, और यह टोस्टर से कैसे अलग है जो बस तय समय तक चलता है?",
+   "hinglish": "AC ko kaise pata chalta hai ki kab rukna hai, aur yeh toaster se kaise alag hai jo bas tay time tak chalta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A robot is told \"drive straight for 5 seconds\" with no sensors. The floor is slippery. What happens?",
+   "hi": "एक रोबोट को बिना किसी सेंसर के कहा गया \"5 सेकंड सीधा चलो\"। फ़र्श फिसलन भरा है। क्या होगा?",
+   "hinglish": "Ek robot ko bina kisi sensor ke kaha gaya \"5 second seedha chalo\". Floor slippery hai. Kya hoga?"
+  },
+  "options": [
+   {
+    "en": "It still ends exactly where planned",
+    "hi": "फिर भी ठीक वहीं पहुँचेगा जहाँ सोचा था",
+    "hinglish": "Phir bhi theek wahin pahunchega jahan socha tha"
+   },
+   {
+    "en": "It may end up short or off course, and never knows",
+    "hi": "यह कम दूर या भटककर रुक सकता है, और उसे पता भी नहीं चलेगा",
+    "hinglish": "Yeh kam door ya bhatak kar ruk sakta hai, aur use pata bhi nahi chalega"
+   },
+   {
+    "en": "It notices the slip and corrects itself",
+    "hi": "उसे फिसलना पता चलेगा और वह खुद सुधार लेगा",
+    "hinglish": "Use slip pata chalega aur woh khud sudhaar lega"
+   },
+   {
+    "en": "It refuses to move",
+    "hi": "वह चलने से मना कर देगा",
+    "hinglish": "Woh chalne se mana kar dega"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "That is open-loop control: it acts by the clock without checking the result. A closed-loop robot measures, compares with what it wants, and corrects, so a slip gets fixed.",
+   "hi": "यह ओपन-लूप नियंत्रण है: वह घड़ी के हिसाब से काम करता है और नतीजा जाँचता नहीं। क्लोज़्ड-लूप रोबोट नापता है, जो चाहिए उससे तुलना करता है और सुधारता है, इसलिए फिसलन ठीक हो जाती है।",
+   "hinglish": "Yeh open-loop control hai: woh clock ke hisaab se kaam karta hai aur result check nahi karta. Closed-loop robot naapta hai, jo chahiye usse compare karta hai aur correct karta hai, isliye slip theek ho jaata hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home what a feedback loop is, using a machine you know.",
+   "hi": "घर पर किसी को किसी जानी-पहचानी मशीन से समझाओ कि फ़ीडबैक लूप क्या है।",
+   "hinglish": "Ghar par kisi ko kisi jaani-pehchani machine se samjhao ki feedback loop kya hai."
+  },
+  "checklist": [
+   {
+    "en": "Open-loop control acts without checking, like a toaster running for a set time.",
+    "hi": "ओपन-लूप नियंत्रण बिना जाँचे काम करता है, जैसे टोस्टर तय समय तक चलता है।",
+    "hinglish": "Open-loop control bina check kiye kaam karta hai, jaise toaster tay time tak chalta hai."
+   },
+   {
+    "en": "Closed-loop control measures, compares with the set point and corrects.",
+    "hi": "क्लोज़्ड-लूप नियंत्रण नापता है, सेट-पॉइंट से तुलना करता है और सुधारता है।",
+    "hinglish": "Closed-loop control naapta hai, set point se compare karta hai aur correct karta hai."
+   },
+   {
+    "en": "A line follower uses if-then rules on two sensors: if only the left one sees black, turn left.",
+    "hi": "लाइन फ़ॉलोअर दो सेंसरों पर if-then नियम चलाता है: सिर्फ़ बायाँ काला देखे तो बाएँ मुड़ो।",
+    "hinglish": "Line follower do sensors par if-then rules chalata hai: sirf left wala kaala dekhe to left mudo."
+   },
+   {
+    "en": "The same loop is inside an AC, an iron and a car's cruise control.",
+    "hi": "यही लूप AC, इस्त्री और कार के क्रूज़ कंट्रोल में है।",
+    "hinglish": "Yahi loop AC, iron aur car ke cruise control mein hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Feedback loop",
@@ -100,7 +176,7 @@
     "hi": "यही लूप AC, इस्त्री और कार के क्रूज़ कंट्रोल में चलता है: मापो, लक्ष्य से तुलना करो, सुधारो।",
     "hinglish": "Yahi loop AC, iron aur car ke cruise control mein chalta hai: naapo, set point se compare karo, sudhaaro."
    },
-   "visual": "code",
+   "visual": "cycle:📏 Measure|⚖️ Compare with set point|🔧 Correct",
    "narration": {
     "en": "Error = set point − measured value.",
     "hi": "त्रुटि = लक्ष्य मान − मापा गया मान।",

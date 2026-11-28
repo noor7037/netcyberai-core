@@ -37,6 +37,77 @@
    "hinglish": "Simple sorts ko merge sort jaise fast sorts se compare kar sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, the class marks list is shown on the board from highest to lowest, though the teacher entered it in roll-number order.",
+   "hi": "{{name}}, कक्षा के अंकों की सूची बोर्ड पर ऊँचे से नीचे के क्रम में दिखती है, जबकि शिक्षक ने उसे रोल नंबर के क्रम में भरा था।",
+   "hinglish": "{{name}}, class ke marks ki list board par highest se lowest order mein dikhti hai, jabki teacher ne use roll-number order mein bhara tha."
+  },
+  "question": {
+   "en": "How does a program put hundreds of items in order, and why does that make searching faster?",
+   "hi": "प्रोग्राम सैकड़ों आइटम को क्रम में कैसे रखता है, और इससे खोज तेज़ क्यों होती है?",
+   "hinglish": "Program saikdon items ko order mein kaise rakhta hai, aur isse search fast kyun hoti hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "In bubble sort of [5, 2, 9], what does the first pass do?",
+   "hi": "[5, 2, 9] की बबल सॉर्ट में पहली पास क्या करती है?",
+   "hinglish": "[5, 2, 9] ki bubble sort mein pehli pass kya karti hai?"
+  },
+  "options": [
+   {
+    "en": "It compares neighbours and swaps if the left is bigger, moving the largest to the end",
+    "hi": "वह पड़ोसियों की तुलना करती है और बायाँ बड़ा हो तो बदल देती है, सबसे बड़ा अंत में पहुँचता है",
+    "hinglish": "Woh neighbours compare karti hai aur left bada ho to swap karti hai, sabse bada end mein pahunchta hai"
+   },
+   {
+    "en": "It sorts everything in one go",
+    "hi": "वह सब कुछ एक बार में क्रमबद्ध कर देती है",
+    "hinglish": "Woh sab kuch ek baar mein sort kar deti hai"
+   },
+   {
+    "en": "It deletes the smallest number",
+    "hi": "वह सबसे छोटी संख्या हटा देती है",
+    "hinglish": "Woh sabse chhoti number hata deti hai"
+   }
+  ],
+  "answer": 0,
+  "explain": {
+   "en": "Bubble sort compares neighbours and swaps if they are out of order. After one pass the largest item has bubbled to the end, and more passes fix the rest. It is simple but needs about n² comparisons, so merge sort (about n × log₂ n) is far faster on big lists.",
+   "hi": "बबल सॉर्ट पड़ोसियों की तुलना करता है और क्रम गलत हो तो बदल देता है। एक पास के बाद सबसे बड़ा आइटम अंत तक पहुँच जाता है, और बाक़ी पास बचा हुआ ठीक करते हैं। यह सरल है पर लगभग n² तुलना चाहिए, इसलिए बड़ी सूचियों पर मर्ज सॉर्ट (लगभग n × log₂ n) बहुत तेज़ है।",
+   "hinglish": "Bubble sort neighbours compare karta hai aur order galat ho to swap karta hai. Ek pass ke baad sabse bada item end tak pahunch jaata hai, aur baaki passes bacha hua theek karte hain. Yeh simple hai par lagbhag n² comparisons chahiye, isliye badi lists par merge sort (lagbhag n × log₂ n) bahut fast hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how bubble sort works and why we sort at all.",
+   "hi": "घर पर किसी को समझाओ कि बबल सॉर्ट कैसे काम करता है और हम सॉर्ट क्यों करते हैं।",
+   "hinglish": "Ghar par kisi ko samjhao ki bubble sort kaise kaam karta hai aur hum sort kyun karte hain."
+  },
+  "checklist": [
+   {
+    "en": "Bubble sort compares neighbours and swaps them if out of order, pass after pass.",
+    "hi": "बबल सॉर्ट पड़ोसियों की तुलना कर क्रम गलत हो तो बदलता है, पास-दर-पास।",
+    "hinglish": "Bubble sort neighbours compare karke order galat ho to swap karta hai, pass-dar-pass."
+   },
+   {
+    "en": "After each pass the next-largest item is in its place.",
+    "hi": "हर पास के बाद अगला सबसे बड़ा आइटम अपनी जगह पर होता है।",
+    "hinglish": "Har pass ke baad agla sabse bada item apni jagah par hota hai."
+   },
+   {
+    "en": "Sorted data lets us use binary search.",
+    "hi": "क्रमबद्ध डेटा से हम बाइनरी सर्च इस्तेमाल कर सकते हैं।",
+    "hinglish": "Sorted data se hum binary search use kar sakte hain."
+   },
+   {
+    "en": "Merge sort splits and merges, needing far fewer comparisons than bubble sort.",
+    "hi": "मर्ज सॉर्ट बाँटकर जोड़ता है और बबल सॉर्ट से बहुत कम तुलना चाहिए।",
+    "hinglish": "Merge sort baant kar jodta hai aur bubble sort se bahut kam comparisons chahiye."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Sorting",

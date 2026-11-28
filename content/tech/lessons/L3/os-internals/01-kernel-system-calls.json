@@ -32,6 +32,77 @@
    "hinglish": "Drivers, interrupts aur updates kyun zaroori, batao"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you tap Save in a notes app and the file is safely on your phone, but the app itself is never allowed to touch the storage chip directly.",
+   "hi": "{{name}}, तुम नोट्स ऐप में Save दबाते हो और फ़ाइल फ़ोन में सुरक्षित हो जाती है, पर ऐप को स्टोरेज चिप को सीधे छूने की अनुमति कभी नहीं होती।",
+   "hinglish": "{{name}}, tum notes app mein Save dabate ho aur file phone mein safe ho jaati hai, par app ko storage chip ko seedhe chhune ki permission kabhi nahi hoti."
+  },
+  "question": {
+   "en": "Who actually writes the file, and why are apps kept behind a wall?",
+   "hi": "फ़ाइल असल में कौन लिखता है, और ऐप को दीवार के पीछे क्यों रखा जाता है?",
+   "hinglish": "File asal mein kaun likhta hai, aur apps ko wall ke peeche kyun rakha jaata hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "An app wants to read a file. How does it get the data?",
+   "hi": "एक ऐप को फ़ाइल पढ़नी है। उसे डेटा कैसे मिलता है?",
+   "hinglish": "Ek app ko file padhni hai. Use data kaise milta hai?"
+  },
+  "options": [
+   {
+    "en": "It reads the disk blocks itself, as it likes",
+    "hi": "वह डिस्क ब्लॉक खुद अपनी मर्ज़ी से पढ़ता है",
+    "hinglish": "Woh disk blocks khud apni marzi se padhta hai"
+   },
+   {
+    "en": "It asks the kernel with a system call; the CPU switches to kernel mode, the kernel checks permission, reads, and returns",
+    "hi": "वह सिस्टम कॉल से कर्नेल से माँगता है; CPU कर्नेल मोड में जाता है, कर्नेल अनुमति जाँचकर पढ़ता है और लौटा देता है",
+    "hinglish": "Woh system call se kernel se maangta hai; CPU kernel mode mein jaata hai, kernel permission jaanchkar padhta hai aur lauta deta hai"
+   },
+   {
+    "en": "The screen reads it and shows it to the app",
+    "hi": "स्क्रीन उसे पढ़कर ऐप को दिखाती है",
+    "hinglish": "Screen use padhkar app ko dikhati hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Apps run in user mode with limited power. A system call is a controlled doorway: the CPU traps into kernel mode, the kernel checks that the app is allowed, does the hardware work, then returns the result. This wall means one buggy or malicious app cannot read everything or crash the machine.",
+   "hi": "ऐप यूज़र मोड में सीमित शक्ति से चलते हैं। सिस्टम कॉल एक नियंत्रित दरवाज़ा है: CPU कर्नेल मोड में जाता है, कर्नेल जाँचता है कि ऐप को अनुमति है, हार्डवेयर का काम करता है, फिर नतीजा लौटाता है। इस दीवार से कोई एक गड़बड़ या दुर्भावनापूर्ण ऐप सब कुछ पढ़ या मशीन ठप नहीं कर सकता।",
+   "hinglish": "Apps user mode mein limited power se chalte hain. System call ek controlled doorway hai: CPU kernel mode mein jaata hai, kernel check karta hai ki app ko permission hai, hardware ka kaam karta hai, phir result lautata hai. Is wall se koi ek buggy ya malicious app sab kuch padh ya machine crash nahi kar sakta."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home what the kernel does and why apps ask it for help instead of using the hardware themselves.",
+   "hi": "घर पर किसी को समझाओ कि कर्नेल क्या करता है और ऐप हार्डवेयर खुद इस्तेमाल करने के बजाय उससे मदद क्यों माँगते हैं।",
+   "hinglish": "Ghar par kisi ko samjhao ki kernel kya karta hai aur apps hardware khud use karne ke bajay usse madad kyun maangte hain."
+  },
+  "checklist": [
+   {
+    "en": "The kernel runs in kernel mode and controls memory, CPU time and devices; apps run in limited user mode.",
+    "hi": "कर्नेल कर्नेल मोड में चलता है और मेमोरी, CPU समय और डिवाइस नियंत्रित करता है; ऐप सीमित यूज़र मोड में।",
+    "hinglish": "Kernel kernel mode mein chalta hai aur memory, CPU time aur devices control karta hai; apps limited user mode mein."
+   },
+   {
+    "en": "A system call traps into the kernel, which checks permission, does the work and returns.",
+    "hi": "सिस्टम कॉल कर्नेल में जाती है, जो अनुमति जाँचकर काम करता और लौटता है।",
+    "hinglish": "System call kernel mein jaati hai, jo permission check karke kaam karta aur lautata hai."
+   },
+   {
+    "en": "Interrupts let devices announce events such as a key press or a network packet.",
+    "hi": "इंटरप्ट से डिवाइस घटनाएँ बताते हैं, जैसे कुंजी दबना या नेटवर्क पैकेट आना।",
+    "hinglish": "Interrupts se devices events batate hain, jaise key press ya network packet."
+   },
+   {
+    "en": "Drivers run with kernel power, so signed drivers and updates matter for security.",
+    "hi": "ड्राइवर कर्नेल शक्ति से चलते हैं, इसलिए हस्ताक्षरित ड्राइवर और अपडेट सुरक्षा के लिए ज़रूरी हैं।",
+    "hinglish": "Drivers kernel power se chalte hain, isliye signed drivers aur updates security ke liye zaroori hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Kernel",
@@ -72,7 +143,7 @@
     "hi": "ऐप सीमित ताक़त वाले उपयोगकर्ता मोड में चलते हैं। सिर्फ़ कर्नेल कर्नेल मोड में चलता है और हार्डवेयर सीधे छू सकता है।",
     "hinglish": "Apps limited taakat wale user mode mein chalte hain. Sirf kernel, kernel mode mein chalta hai aur hardware seedha chhoo sakta hai."
    },
-   "visual": "anim:rings",
+   "visual": "stack:Apps (user mode)|Kernel (kernel mode)|Hardware",
    "narration": {
     "en": "Apps run in user mode with limited power. Only the kernel runs in kernel mode and can touch hardware directly.",
     "hi": "ऐप सीमित ताक़त वाले उपयोगकर्ता मोड में चलते हैं। सिर्फ़ कर्नेल कर्नेल मोड में चलता है और हार्डवेयर सीधे छू सकता है।",
@@ -86,7 +157,7 @@
     "hi": "फ़ाइल पढ़ने के लिए ऐप सिस्टम कॉल करता है। CPU कर्नेल में ट्रैप करता है, जो अनुमति जाँचकर काम करता है।",
     "hinglish": "File padhne ke liye app system call karta hai. CPU kernel mein trap karta hai, jo permission check karke kaam karta hai."
    },
-   "visual": "anim:syscall-trap",
+   "visual": "flow:📱 App asks to read a file|🚪 CPU traps into kernel|🛡️ Kernel checks permission|💾 Disk read|↩️ Result returns to app",
    "narration": {
     "en": "To read a file, an app makes a system call. The CPU traps into the kernel, which checks permission and does the work.",
     "hi": "फ़ाइल पढ़ने के लिए ऐप सिस्टम कॉल करता है। CPU कर्नेल में ट्रैप करता है, जो अनुमति जाँचकर काम करता है।",
@@ -100,7 +171,7 @@
     "hi": "उपकरण इंटरप्ट से घटनाएँ बताते हैं: कुंजी दबाना, नेटवर्क पैकेट, पूरा हुआ डिस्क पढ़ना।",
     "hinglish": "Devices interrupts se events batate hain: key press, network packet, poora hua disk read."
    },
-   "visual": "anim:irq-bell",
+   "visual": "flow:⌨️ Device has an event|🔔 Interrupt signal|🧠 Kernel handler runs|📱 App continues",
    "narration": {
     "en": "Devices announce events with interrupts: a key press, a network packet, a finished disk read.",
     "hi": "उपकरण इंटरप्ट से घटनाएँ बताते हैं: कुंजी दबाना, नेटवर्क पैकेट, पूरा हुआ डिस्क पढ़ना।",

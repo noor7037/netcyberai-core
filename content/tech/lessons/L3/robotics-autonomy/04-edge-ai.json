@@ -36,6 +36,72 @@
    "hinglish": "Batao models kaise chhote kiye jaate hain: chhoti architectures aur quantisation"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your phone's \"Hey…\" wake word works with no internet at all, but a long chatbot question needs a connection.",
+   "hi": "{{name}}, तुम्हारे फ़ोन का \"Hey…\" वेक वर्ड बिना इंटरनेट के चलता है, पर लंबे चैटबॉट सवाल को कनेक्शन चाहिए।",
+   "hinglish": "{{name}}, tumhare phone ka \"Hey…\" wake word bina internet ke chalta hai, par lambe chatbot sawal ko connection chahiye."
+  },
+  "question": {
+   "en": "Why run some AI on the device itself, and how is a model made small enough to fit?",
+   "hi": "कुछ AI को डिवाइस पर ही क्यों चलाएँ, और मॉडल को इतना छोटा कैसे किया जाता है कि समा जाए?",
+   "hinglish": "Kuch AI ko device par hi kyun chalayein, aur model ko itna chhota kaise kiya jaata hai ki sama jaaye?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What does quantising a model from 32-bit to 8-bit weights do?",
+   "hi": "मॉडल को 32-बिट से 8-बिट वज़न में क्वांटाइज़ करने से क्या होता है?",
+   "hinglish": "Model ko 32-bit se 8-bit weights mein quantise karne se kya hota hai?"
+  },
+  "options": [
+   {
+    "en": "Makes it four times smarter",
+    "hi": "उसे चार गुना समझदार बनाता है",
+    "hinglish": "Use chaar guna smart banata hai"
+   },
+   {
+    "en": "Stores each weight in fewer bits, so the model is about four times smaller, usually with a small accuracy cost",
+    "hi": "हर वज़न कम बिट में रखता है, इसलिए मॉडल लगभग चार गुना छोटा होता है, आम तौर पर थोड़ी सटीकता की क़ीमत पर",
+    "hinglish": "Har weight kam bits mein rakhta hai, isliye model lagbhag chaar guna chhota hota hai, aam taur par thodi accuracy ki cost par"
+   },
+   {
+    "en": "Moves it to the cloud",
+    "hi": "उसे क्लाउड में ले जाता है",
+    "hinglish": "Use cloud mein le jaata hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "32 bits down to 8 bits is a factor of four, so the model needs less memory, power and time, which small chips can afford. Edge AI wins on latency, privacy and working offline; the cloud wins on model size and easy updates. Choosing where to run is a trade-off.",
+   "hi": "32 बिट से 8 बिट चार गुना कमी है, इसलिए मॉडल को कम मेमोरी, बिजली और समय चाहिए, जो छोटी चिप सह सकती है। एज AI विलंब, निजता और ऑफ़लाइन चलने में जीतता है; क्लाउड मॉडल के आकार और आसान अपडेट में। कहाँ चलाना है, यह समझौते का फ़ैसला है।",
+   "hinglish": "32 bits se 8 bits chaar guna kami hai, isliye model ko kam memory, power aur time chahiye, jo chhoti chips afford kar sakti hain. Edge AI latency, privacy aur offline chalne mein jeetta hai; cloud model size aur easy updates mein. Kahan chalana hai, yeh trade-off ka decision hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home why a wake-word detector runs on the phone and a long chat runs in the cloud.",
+   "hi": "घर पर किसी को समझाओ कि वेक-वर्ड डिटेक्टर फ़ोन पर और लंबी चैट क्लाउड में क्यों चलती है।",
+   "hinglish": "Ghar par kisi ko samjhao ki wake-word detector phone par aur lambi chat cloud mein kyun chalti hai."
+  },
+  "checklist": [
+   {
+    "en": "Edge AI runs on the device; cloud AI sends data to a server",
+    "hi": "एज AI डिवाइस पर चलता है; क्लाउड AI डेटा सर्वर को भेजता है",
+    "hinglish": "Edge AI device par chalta hai; cloud AI data server ko bhejta hai"
+   },
+   {
+    "en": "Compare latency, privacy, cost, power, accuracy and offline use",
+    "hi": "विलंब, निजता, लागत, बिजली, सटीकता और ऑफ़लाइन उपयोग की तुलना करो",
+    "hinglish": "Latency, privacy, cost, power, accuracy aur offline use compare karo"
+   },
+   {
+    "en": "Models shrink with small architectures and quantisation",
+    "hi": "मॉडल छोटी संरचनाओं और क्वांटाइज़ेशन से छोटे होते हैं",
+    "hinglish": "Models small architectures aur quantisation se chhote hote hain"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Edge AI",
@@ -104,7 +170,7 @@
     "hi": "मॉडल छोटा करो: कम न्यूरॉन, और 32-बिट के बजाय 8-बिट वज़न — 4 गुना छोटा।",
     "hinglish": "Model chhota karo: kam neurons, aur 32-bit ke bajaye 8-bit weights — 4 guna chhota."
    },
-   "visual": "anim:quantise",
+   "visual": "compare:🧠 Original: 32-bit weights|📦 Quantised: 8-bit weights, about 4× smaller",
    "narration": {
     "en": "Shrink the model: fewer neurons, and 8-bit weights instead of 32-bit — 4× smaller.",
     "hi": "मॉडल छोटा करो: कम न्यूरॉन, और 32-बिट के बजाय 8-बिट वज़न — 4 गुना छोटा।",

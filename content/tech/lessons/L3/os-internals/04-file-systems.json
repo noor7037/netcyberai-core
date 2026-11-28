@@ -34,6 +34,77 @@
    "hinglish": "Common file systems (ext4, NTFS, APFS, FAT32/exFAT) ki tulna karo"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you name a file 'project.docx' and later open it by that name, yet the storage chip only knows numbered blocks.",
+   "hi": "{{name}}, तुम किसी फ़ाइल का नाम 'project.docx' रखते हो और बाद में उसी नाम से खोलते हो, जबकि स्टोरेज चिप सिर्फ़ क्रमांकित ब्लॉक जानती है।",
+   "hinglish": "{{name}}, tum kisi file ka naam 'project.docx' rakhte ho aur baad mein usi naam se kholte ho, jabki storage chip sirf numbered blocks jaanti hai."
+  },
+  "question": {
+   "en": "How does a name turn into the right blocks, and why can a deleted file sometimes be recovered?",
+   "hi": "नाम सही ब्लॉकों में कैसे बदलता है, और मिटाई हुई फ़ाइल कभी-कभी वापस क्यों आ जाती है?",
+   "hinglish": "Naam sahi blocks mein kaise badalta hai, aur mitayi hui file kabhi-kabhi wapas kyun aa jaati hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "When you delete a file, what usually happens on the storage?",
+   "hi": "फ़ाइल मिटाने पर स्टोरेज में आम तौर पर क्या होता है?",
+   "hinglish": "File mitane par storage mein aam taur par kya hota hai?"
+  },
+  "options": [
+   {
+    "en": "Every block of the file is overwritten with zeros immediately",
+    "hi": "फ़ाइल का हर ब्लॉक तुरंत शून्य से लिख दिया जाता है",
+    "hinglish": "File ka har block turant zeros se likh diya jaata hai"
+   },
+   {
+    "en": "The name is removed and the blocks are marked free, but the data stays until overwritten",
+    "hi": "नाम हटता है और ब्लॉक खाली चिह्नित होते हैं, पर डेटा नया लिखे जाने तक रहता है",
+    "hinglish": "Naam hatta hai aur blocks free mark hote hain, par data naya likhe jaane tak rehta hai"
+   },
+   {
+    "en": "The disk physically shrinks",
+    "hi": "डिस्क भौतिक रूप से छोटी हो जाती है",
+    "hinglish": "Disk physically chhoti ho jaati hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "A directory maps names to inode numbers; the inode stores size, owner, permissions and where the blocks are. Deleting normally removes the name and frees the blocks without erasing them, so recovery tools can find data until it is overwritten. That is why old phones and drives should be properly erased or encrypted before sale.",
+   "hi": "डायरेक्टरी नामों को inode संख्याओं से जोड़ती है; inode में आकार, मालिक, अनुमतियाँ और ब्लॉक कहाँ हैं यह रहता है। मिटाने पर आम तौर पर नाम हटता और ब्लॉक खाली होते हैं, मिटाए नहीं जाते, इसलिए रिकवरी टूल डेटा तब तक ढूँढ सकते हैं जब तक वह दोबारा न लिखा जाए। इसीलिए पुराने फ़ोन और ड्राइव बेचने से पहले ठीक से मिटाने या एन्क्रिप्ट करने चाहिए।",
+   "hinglish": "Directory names ko inode numbers se jodti hai; inode mein size, owner, permissions aur blocks kahan hain yeh rehta hai. Delete karne par aam taur par naam hatta aur blocks free hote hain, mitaye nahi jaate, isliye recovery tools data tab tak dhundh sakte hain jab tak woh dobara na likha jaye. Isiliye purane phones aur drives bechne se pehle theek se erase ya encrypt karne chahiye."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a file name leads to the data on the disk, and why deleting is not the same as erasing.",
+   "hi": "घर पर किसी को समझाओ कि फ़ाइल का नाम डिस्क के डेटा तक कैसे पहुँचाता है, और मिटाना और पूरी तरह साफ़ करना एक जैसा क्यों नहीं।",
+   "hinglish": "Ghar par kisi ko samjhao ki file ka naam disk ke data tak kaise pahunchata hai, aur delete karna aur poori tarah erase karna ek jaisa kyun nahi."
+  },
+  "checklist": [
+   {
+    "en": "Storage is numbered blocks (often 4 KB); the file system decides which belong to which file.",
+    "hi": "स्टोरेज क्रमांकित ब्लॉक (अक्सर 4 KB) हैं; फ़ाइल सिस्टम तय करता है कौन-से किस फ़ाइल के हैं।",
+    "hinglish": "Storage numbered blocks (aksar 4 KB) hain; file system tay karta hai kaunse kis file ke hain."
+   },
+   {
+    "en": "A directory maps names to inodes; the inode holds size, owner, permissions, times and block locations.",
+    "hi": "डायरेक्टरी नामों को inode से जोड़ती है; inode में आकार, मालिक, अनुमतियाँ, समय और ब्लॉक की जगहें होती हैं।",
+    "hinglish": "Directory naamon ko inodes se jodti hai; inode mein size, owner, permissions, times aur block locations hoti hain."
+   },
+   {
+    "en": "Journaling writes a note before a change, so a power cut can be replayed or discarded safely.",
+    "hi": "जर्नलिंग बदलाव से पहले नोट लिखती है, ताकि बिजली जाने पर उसे सुरक्षित दोहराया या छोड़ा जा सके।",
+    "hinglish": "Journaling change se pehle note likhti hai, taaki power cut par use safely replay ya discard kiya ja sake."
+   },
+   {
+    "en": "Deleting removes the name and frees blocks but does not erase the data; ext4, NTFS, APFS and exFAT differ in features.",
+    "hi": "मिटाना नाम हटाता और ब्लॉक खाली करता है पर डेटा नहीं मिटाता; ext4, NTFS, APFS और exFAT सुविधाओं में अलग हैं।",
+    "hinglish": "Delete naam hatata aur blocks free karta hai par data nahi mitata; ext4, NTFS, APFS aur exFAT features mein alag hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "File system",
@@ -88,7 +159,7 @@
     "hi": "डायरेक्टरी नाम → inode संख्याओं की सूची है। inode आकार, मालिक, अनुमतियाँ, समय और ब्लॉक कहाँ हैं, रखता है।",
     "hinglish": "Directory naam → inode numbers ki list hai. Inode size, owner, permissions, times aur blocks kahan hain, rakhta hai."
    },
-   "visual": "anim:dir-inode",
+   "visual": "flow:📁 Directory lists a name|🏷️ Inode number|📋 Inode: size, owner, blocks|🧱 Data blocks",
    "narration": {
     "en": "A directory is a list of names → inode numbers. The inode stores size, owner, permissions, times and where the blocks are.",
     "hi": "डायरेक्टरी नाम → inode संख्याओं की सूची है। inode आकार, मालिक, अनुमतियाँ, समय और ब्लॉक कहाँ हैं, रखता है।",
@@ -116,7 +187,7 @@
     "hi": "जर्नलिंग पहले लिखती है \"मैं X करने वाला हूँ\"। बिजली जाने के बाद OS पूरी डिस्क जाँचने की जगह वह नोट दोहराता या छोड़ता है।",
     "hinglish": "Journaling pehle likhti hai \"main X karne wala hoon\". Bijli jaane ke baad OS poori disk scan karne ki jagah woh note replay ya discard karta hai."
    },
-   "visual": "anim:journal",
+   "visual": "flow:📝 Write the plan to the journal|✏️ Make the change|✅ Mark the note done",
    "narration": {
     "en": "Journaling writes \"I am about to do X\" first. After a power cut the OS replays or discards the note instead of scanning the whole disk.",
     "hi": "जर्नलिंग पहले लिखती है \"मैं X करने वाला हूँ\"। बिजली जाने के बाद OS पूरी डिस्क जाँचने की जगह वह नोट दोहराता या छोड़ता है।",

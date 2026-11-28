@@ -37,6 +37,77 @@
    "hinglish": "Nakli domains logon ko kaise phansate hain samjha sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you can remember \"ncert.nic.in\" easily, but you could never remember a long string of numbers for it.",
+   "hi": "{{name}}, तुम \"ncert.nic.in\" आसानी से याद रख लेते हो, पर उसके लिए अंकों की लंबी लड़ी कभी याद नहीं रख पाते।",
+   "hinglish": "{{name}}, tum \"ncert.nic.in\" aasani se yaad rakh lete ho, par uske liye numbers ki lambi string kabhi yaad nahi rakh paate."
+  },
+  "question": {
+   "en": "How does the internet turn a name into the number a computer needs?",
+   "hi": "इंटरनेट नाम को उस संख्या में कैसे बदलता है जो कंप्यूटर को चाहिए?",
+   "hinglish": "Internet naam ko us number mein kaise badalta hai jo computer ko chahiye?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Which is the real domain in login.sbi.verify-now.top?",
+   "hi": "login.sbi.verify-now.top में असली डोमेन कौन-सा है?",
+   "hinglish": "login.sbi.verify-now.top mein asli domain kaunsa hai?"
+  },
+  "options": [
+   {
+    "en": "sbi",
+    "hi": "sbi",
+    "hinglish": "sbi"
+   },
+   {
+    "en": "login",
+    "hi": "login",
+    "hinglish": "login"
+   },
+   {
+    "en": "verify-now.top, because a domain is read from the right",
+    "hi": "verify-now.top, क्योंकि डोमेन दाईं ओर से पढ़ा जाता है",
+    "hinglish": "verify-now.top, kyunki domain right se padha jaata hai"
+   }
+  ],
+  "answer": 2,
+  "explain": {
+   "en": "Read a domain from the right: the part just before the final dot-ending (.top) is the real domain, and everything to its left is a sub-part anyone who owns the domain can add. So \"sbi\" at the front proves nothing. DNS looks the real domain up step by step: root, then .top servers, then that domain's servers.",
+   "hi": "डोमेन दाईं ओर से पढ़ो: अंतिम अंत (.top) से ठीक पहले वाला हिस्सा असली डोमेन है, और उसके बाईं ओर का हर हिस्सा वह जोड़ सकता है जिसके पास वह डोमेन है। इसलिए आगे लिखा \"sbi\" कुछ साबित नहीं करता। DNS असली डोमेन को चरण-दर-चरण खोजता है: रूट, फिर .top सर्वर, फिर उस डोमेन के सर्वर।",
+   "hinglish": "Domain right se padho: aakhri ending (.top) se theek pehle wala hissa asli domain hai, aur uske left ka har hissa woh jod sakta hai jiske paas woh domain hai. Isliye aage likha \"sbi\" kuch prove nahi karta. DNS asli domain ko step-by-step dhoondhta hai: root, phir .top servers, phir us domain ke servers."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home what DNS does and how to spot a fake website name.",
+   "hi": "घर पर किसी को समझाओ कि DNS क्या करता है और नकली वेबसाइट का नाम कैसे पहचानें।",
+   "hinglish": "Ghar par kisi ko samjhao ki DNS kya karta hai aur fake website ka naam kaise pehchaanein."
+  },
+  "checklist": [
+   {
+    "en": "People remember names; computers need IP numbers; DNS turns one into the other.",
+    "hi": "लोग नाम याद रखते हैं; कंप्यूटर को IP संख्याएँ चाहिए; DNS एक को दूसरे में बदलता है।",
+    "hinglish": "Log naam yaad rakhte hain; computers ko IP numbers chahiye; DNS ek ko doosre mein badalta hai."
+   },
+   {
+    "en": "The resolver asks the root, then the top-level domain servers, then the domain's own servers.",
+    "hi": "रिज़ॉल्वर रूट से, फिर टॉप-लेवल डोमेन सर्वर से, फिर डोमेन के अपने सर्वर से पूछता है।",
+    "hinglish": "Resolver root se, phir top-level domain servers se, phir domain ke apne servers se poochta hai."
+   },
+   {
+    "en": "Read a domain from the right to find the real one.",
+    "hi": "असली डोमेन जानने के लिए उसे दाईं ओर से पढ़ो।",
+    "hinglish": "Asli domain jaanne ke liye use right se padho."
+   },
+   {
+    "en": "Look-alike spellings such as rn for m are tricks, so check carefully.",
+    "hi": "m की जगह rn जैसी मिलती-जुलती वर्तनी चालें हैं, इसलिए ध्यान से जाँचो।",
+    "hinglish": "m ki jagah rn jaisi milti-julti spelling tricks hain, isliye dhyan se check karo."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Domain name",

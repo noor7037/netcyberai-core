@@ -36,6 +36,77 @@
    "hinglish": "Common OS ke naam: Android, iOS, Windows, macOS, Linux"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you listen to music, chat on WhatsApp and check a map, all on one phone at once.",
+   "hi": "{{name}}, तुम एक ही फ़ोन पर एक साथ गाना सुनते हो, WhatsApp पर चैट करते हो और मैप देखते हो।",
+   "hinglish": "{{name}}, tum ek hi phone par ek saath music sunte ho, WhatsApp par chat karte ho aur map dekhte ho."
+  },
+  "question": {
+   "en": "Who makes sure these apps share one screen, one CPU and one memory without fighting?",
+   "hi": "कौन यह पक्का करता है कि ये ऐप एक स्क्रीन, एक CPU और एक मेमोरी बिना लड़े बाँटें?",
+   "hinglish": "Kaun yeh pakka karta hai ki yeh apps ek screen, ek CPU aur ek memory bina ladhe baantein?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "When an app wants to use the camera, what happens?",
+   "hi": "जब कोई ऐप कैमरा इस्तेमाल करना चाहता है, तो क्या होता है?",
+   "hinglish": "Jab koi app camera use karna chahta hai, to kya hota hai?"
+  },
+  "options": [
+   {
+    "en": "The app controls the camera hardware directly",
+    "hi": "ऐप कैमरे के हार्डवेयर को सीधे चलाता है",
+    "hinglish": "App camera hardware ko directly control karta hai"
+   },
+   {
+    "en": "The app asks the operating system, which talks to the camera through its driver",
+    "hi": "ऐप ऑपरेटिंग सिस्टम से माँगता है, जो ड्राइवर के ज़रिए कैमरे से बात करता है",
+    "hinglish": "App operating system se maangta hai, jo driver ke zariye camera se baat karta hai"
+   },
+   {
+    "en": "The camera decides on its own",
+    "hi": "कैमरा अपने आप तय करता है",
+    "hinglish": "Camera apne aap tay karta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Apps never touch hardware directly. The OS sits between them, checks permission, and uses a driver (a translator for that device). This is how many apps can share one camera, one CPU and one memory safely.",
+   "hi": "ऐप सीधे हार्डवेयर नहीं छूते। OS बीच में रहकर अनुमति जाँचता है और ड्राइवर (उस डिवाइस का अनुवादक) इस्तेमाल करता है। इसी तरह कई ऐप एक कैमरा, एक CPU और एक मेमोरी सुरक्षित रूप से बाँटते हैं।",
+   "hinglish": "Apps kabhi hardware directly nahi chhoote. OS beech mein rehkar permission check karta hai aur driver (us device ka translator) use karta hai. Isi tarah kai apps ek camera, ek CPU aur ek memory safely share karte hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home what an operating system does and why we need one.",
+   "hi": "घर पर किसी को समझाओ कि ऑपरेटिंग सिस्टम क्या करता है और उसकी ज़रूरत क्यों है।",
+   "hinglish": "Ghar par kisi ko samjhao ki operating system kya karta hai aur uski zaroorat kyun hai."
+  },
+  "checklist": [
+   {
+    "en": "Apps ask the OS, and the OS talks to the hardware through drivers.",
+    "hi": "ऐप OS से माँगते हैं, और OS ड्राइवरों से हार्डवेयर से बात करता है।",
+    "hinglish": "Apps OS se maangte hain, aur OS drivers se hardware se baat karta hai."
+   },
+   {
+    "en": "The OS shares the CPU and gives each app its own memory.",
+    "hi": "OS CPU बाँटता है और हर ऐप को उसकी अपनी मेमोरी देता है।",
+    "hinglish": "OS CPU baantta hai aur har app ko uski apni memory deta hai."
+   },
+   {
+    "en": "It also stores files and shows windows and notifications.",
+    "hi": "वह फ़ाइलें रखता है और विंडो व नोटिफ़िकेशन दिखाता है।",
+    "hinglish": "Woh files rakhta hai aur windows aur notifications dikhata hai."
+   },
+   {
+    "en": "System software (OS) differs from application software (apps).",
+    "hi": "सिस्टम सॉफ़्टवेयर (OS) एप्लिकेशन सॉफ़्टवेयर (ऐप) से अलग है।",
+    "hinglish": "System software (OS) application software (apps) se alag hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Operating system (OS)",

@@ -35,6 +35,72 @@
    "hinglish": "Request aur response samjha sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you open the school app on your phone to see your marks, and they show up in a moment.",
+   "hi": "{{name}}, तुम फ़ोन पर स्कूल ऐप खोलकर अपने अंक देखते हो, और वे पल भर में दिख जाते हैं।",
+   "hinglish": "{{name}}, tum phone par school app kholkar apne marks dekhte ho, aur woh pal bhar mein dikh jaate hain."
+  },
+  "question": {
+   "en": "Where are those marks actually kept, and who answers your phone's request?",
+   "hi": "वे अंक असल में कहाँ रखे हैं, और तुम्हारे फ़ोन के अनुरोध का जवाब कौन देता है?",
+   "hinglish": "Woh marks asal mein kahan rakhe hain, aur tumhare phone ke request ka jawab kaun deta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What is a server?",
+   "hi": "सर्वर क्या है?",
+   "hinglish": "Server kya hai?"
+  },
+  "options": [
+   {
+    "en": "A special magic box that is not a computer",
+    "hi": "एक ख़ास जादुई डिब्बा जो कंप्यूटर नहीं है",
+    "hinglish": "Ek khaas magical box jo computer nahi hai"
+   },
+   {
+    "en": "A computer that runs all day, with no screen needed, answering requests from clients",
+    "hi": "एक कंप्यूटर जो दिन भर चलता है, जिसे स्क्रीन ज़रूरी नहीं, और जो क्लाइंट के अनुरोधों का जवाब देता है",
+    "hinglish": "Ek computer jo din bhar chalta hai, jise screen zaroori nahi, aur jo clients ke requests ka jawab deta hai"
+   },
+   {
+    "en": "Another name for the internet",
+    "hi": "इंटरनेट का दूसरा नाम",
+    "hinglish": "Internet ka doosra naam"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "A server is an ordinary kind of computer, usually without a screen, running programs that wait for requests. Your phone, the client, asks; the server finds the data and sends a response. One server can answer thousands of clients, and big apps use many servers of different kinds.",
+   "hi": "सर्वर एक सामान्य तरह का कंप्यूटर है, आमतौर पर बिना स्क्रीन के, जो अनुरोधों का इंतज़ार करने वाले प्रोग्राम चलाता है। तुम्हारा फ़ोन, यानी क्लाइंट, माँगता है; सर्वर डेटा ढूँढकर जवाब भेजता है। एक सर्वर हज़ारों क्लाइंट को जवाब दे सकता है, और बड़े ऐप कई तरह के कई सर्वर इस्तेमाल करते हैं।",
+   "hinglish": "Server ek normal tarah ka computer hai, aam taur par bina screen ke, jo requests ka wait karne wale programs chalata hai. Tumhara phone, yaani client, maangta hai; server data dhoondhkar response bhejta hai. Ek server hazaron clients ko jawab de sakta hai, aur bade apps kai tarah ke kai servers use karte hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend how the client-server model works using an app you use.",
+   "hi": "किसी दोस्त को अपने इस्तेमाल के किसी ऐप से समझाओ कि क्लाइंट-सर्वर मॉडल कैसे काम करता है।",
+   "hinglish": "Kisi dost ko apne use ke kisi app se samjhao ki client-server model kaise kaam karta hai."
+  },
+  "checklist": [
+   {
+    "en": "The client, such as your phone, sends a request.",
+    "hi": "क्लाइंट, जैसे तुम्हारा फ़ोन, अनुरोध भेजता है।",
+    "hinglish": "Client, jaise tumhara phone, request bhejta hai."
+   },
+   {
+    "en": "A server is a computer that waits for requests and sends back a response.",
+    "hi": "सर्वर एक कंप्यूटर है जो अनुरोधों का इंतज़ार करता है और जवाब भेजता है।",
+    "hinglish": "Server ek computer hai jo requests ka wait karta hai aur response bhejta hai."
+   },
+   {
+    "en": "One server serves many clients, and an app uses different servers for web, database, files and more.",
+    "hi": "एक सर्वर कई क्लाइंट को सेवा देता है, और ऐप वेब, डेटाबेस, फ़ाइलों आदि के लिए अलग सर्वर इस्तेमाल करता है।",
+    "hinglish": "Ek server kai clients ko service deta hai, aur app web, database, files aadi ke liye alag servers use karta hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Server",

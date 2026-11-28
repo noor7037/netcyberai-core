@@ -27,7 +27,7 @@ function Ring({ done, total, colour }: { done: number; total: number; colour: st
 
 // One child's course (C555): their name, their own class (exploring another class never changes it), their progress,
 // and what to do next. `childId` keeps this phone's stars for this child only.
-export function TechCourse({ catalog, progress, classLevel, initialLang, view, childId, name }: { catalog: CourseCatalog; progress: TechProgress; classLevel: number; initialLang: TechLang; view: number | null; childId: string; name: string }) {
+export function TechCourse({ catalog, progress, classLevel, initialLang, view, childId, name, parentChose = false }: { catalog: CourseCatalog; progress: TechProgress; classLevel: number; initialLang: TechLang; view: number | null; childId: string; name: string; parentChose?: boolean }) {
   const [lang, setLang] = useState<TechLang>(initialLang);
   const [cls, setCls] = useState(view != null && CLASSES.includes(view) ? view : classLevel);
   const [strand, setStrand] = useState('all');
@@ -143,6 +143,7 @@ export function TechCourse({ catalog, progress, classLevel, initialLang, view, c
               ))}
             </div>
           )}
+          {parentChose && <p className="tl-quiet" data-parent-chose>{tw(lang, 'parentChose')}</p>}
           {cls !== classLevel && (
             <p className="tl-note">
               {tw(lang, 'exploring')}{' '}

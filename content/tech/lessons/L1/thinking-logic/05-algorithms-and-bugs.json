@@ -39,6 +39,77 @@
    "hinglish": "Do algorithms compare karke tez wala chun sakte ho."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you follow a recipe to make maggi, but you forgot to add water before boiling, and it burns.",
+   "hi": "{{name}}, तुम रेसिपी देखकर मैगी बनाते हो, पर उबालने से पहले पानी डालना भूल गए, और वह जल गई।",
+   "hinglish": "{{name}}, tum recipe dekhkar maggi banate ho, par ubalne se pehle paani daalna bhool gaye, aur woh jal gayi."
+  },
+  "question": {
+   "en": "What makes a list of steps good enough for a computer to follow, and how do we find the wrong step?",
+   "hi": "कदमों की सूची को कंप्यूटर के मानने लायक़ क्या बनाता है, और ग़लत कदम कैसे ढूँढें?",
+   "hinglish": "Steps ki list ko computer ke follow karne layak kya banata hai, aur galat step kaise dhoondein?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What do you think? A program gives the wrong answer. What should a good coder do?",
+   "hi": "तुम्हें क्या लगता है? एक प्रोग्राम ग़लत जवाब देता है। अच्छा कोडर क्या करे?",
+   "hinglish": "Tumhe kya lagta hai? Ek program galat answer deta hai. Achha coder kya kare?"
+  },
+  "options": [
+   {
+    "en": "Give up, because only bad coders make bugs",
+    "hi": "छोड़ दे, क्योंकि बग सिर्फ़ बुरे कोडर बनाते हैं",
+    "hinglish": "Chhod de, kyunki bugs sirf bure coders banate hain"
+   },
+   {
+    "en": "Blame the computer",
+    "hi": "कंप्यूटर को दोष दे",
+    "hinglish": "Computer ko blame kare"
+   },
+   {
+    "en": "Read the steps one by one, imagine what the computer does at each, find the wrong step and fix it",
+    "hi": "कदम एक-एक करके पढ़े, हर कदम पर सोचे कंप्यूटर क्या करेगा, ग़लत कदम ढूँढे और ठीक करे",
+    "hinglish": "Steps ek-ek karke padhe, har step par socho computer kya karega, galat step dhoondhe aur fix kare"
+   }
+  ],
+  "answer": 2,
+  "explain": {
+   "en": "Every programmer writes bugs. A good algorithm has clear steps, in the right order, that always finish with the right answer. To debug, follow the steps one by one like the computer would, until you find the wrong one.",
+   "hi": "हर प्रोग्रामर बग लिखता है। अच्छे एल्गोरिदम के कदम साफ़ होते हैं, सही क्रम में, और हमेशा ख़त्म होकर सही जवाब देते हैं। बग ढूँढने के लिए कंप्यूटर की तरह कदम एक-एक करके चलो, जब तक ग़लत कदम न मिले।",
+   "hinglish": "Har programmer bugs likhta hai. Achhe algorithm ke steps clear hote hain, sahi order mein, aur hamesha khatam hokar sahi answer dete hain. Debug karne ke liye computer ki tarah steps ek-ek karke chalo, jab tak galat step na mile."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Tell someone at home: what is an algorithm, and how do you debug one?",
+   "hi": "घर पर किसी को बताओ: एल्गोरिदम क्या है, और उसमें बग कैसे ढूँढते हैं?",
+   "hinglish": "Ghar par kisi ko batao: algorithm kya hai, aur usme bug kaise dhoondte hain?"
+  },
+  "checklist": [
+   {
+    "en": "An algorithm is clear steps, in the right order, that finish with the right answer.",
+    "hi": "एल्गोरिदम साफ़ कदम हैं, सही क्रम में, जो सही जवाब पर ख़त्म होते हैं।",
+    "hinglish": "Algorithm clear steps hain, sahi order mein, jo sahi answer par khatam hote hain."
+   },
+   {
+    "en": "A bug is a wrong step; every programmer makes them.",
+    "hi": "बग एक ग़लत कदम है; हर प्रोग्रामर बनाता है।",
+    "hinglish": "Bug ek galat step hai; har programmer banata hai."
+   },
+   {
+    "en": "To debug, read the steps one by one and imagine what the computer does.",
+    "hi": "बग ढूँढने के लिए कदम एक-एक पढ़ो और सोचो कंप्यूटर क्या करेगा।",
+    "hinglish": "Debug karne ke liye steps ek-ek padho aur socho computer kya karega."
+   },
+   {
+    "en": "Two algorithms can both work, but one can be faster.",
+    "hi": "दो एल्गोरिदम दोनों चल सकते हैं, पर एक तेज़ हो सकता है।",
+    "hinglish": "Do algorithms dono chal sakte hain, par ek faster ho sakta hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Algorithm",

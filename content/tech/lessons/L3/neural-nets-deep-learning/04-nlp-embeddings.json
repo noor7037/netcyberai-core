@@ -34,6 +34,77 @@
    "hi": "बताना कि एम्बेडिंग खोज, अनुवाद और सुझावों को कैसे चलाते हैं"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you search \"cheap phone for students\" and the shop's site also shows pages that say \"budget mobile for school kids\", though those words never matched.",
+   "hi": "{{name}}, तुम \"cheap phone for students\" खोजते हो और दुकान की साइट वे पेज भी दिखाती है जिन पर \"budget mobile for school kids\" लिखा है, जबकि शब्द मेल नहीं खाते थे।",
+   "hinglish": "{{name}}, tum \"cheap phone for students\" search karte ho aur shop ki site woh pages bhi dikhati hai jin par \"budget mobile for school kids\" likha hai, jabki words match nahi karte the."
+  },
+  "question": {
+   "en": "How can a computer know that different words mean nearly the same thing?",
+   "hi": "कंप्यूटर कैसे जानता है कि अलग शब्दों का मतलब लगभग एक ही है?",
+   "hinglish": "Computer kaise jaanta hai ki alag words ka matlab lagbhag ek hi hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Early NLP counted words. Why did that fail for \"bank\" in \"river bank\" and \"SBI bank\"?",
+   "hi": "शुरुआती NLP शब्द गिनता था। \"river bank\" और \"SBI bank\" में \"bank\" के साथ यह क्यों विफल हुआ?",
+   "hinglish": "Early NLP words ginta tha. \"River bank\" aur \"SBI bank\" mein \"bank\" ke saath yeh kyun fail hua?"
+  },
+  "options": [
+   {
+    "en": "Counting is too slow",
+    "hi": "गिनना बहुत धीमा है",
+    "hinglish": "Counting bahut slow hai"
+   },
+   {
+    "en": "Both uses became the same entry, so meaning and similarity were lost",
+    "hi": "दोनों उपयोग एक ही प्रविष्टि बन गए, इसलिए अर्थ और समानता खो गई",
+    "hinglish": "Dono uses ek hi entry ban gaye, isliye meaning aur similarity kho gayi"
+   },
+   {
+    "en": "Computers cannot store words",
+    "hi": "कंप्यूटर शब्द स्टोर नहीं कर सकते",
+    "hinglish": "Computers words store nahi kar sakte"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Embeddings place words or sentences as vectors so that similar meanings sit close together; cosine similarity measures how close two directions are. This lets search, translation and recommendations match meaning rather than exact letters.",
+   "hi": "एम्बेडिंग शब्दों या वाक्यों को वेक्टर के रूप में रखती है ताकि मिलते-जुलते अर्थ पास रहें; कोसाइन समानता दो दिशाओं की निकटता नापती है। इससे सर्च, अनुवाद और सुझाव सटीक अक्षरों की जगह अर्थ से मेल खा पाते हैं।",
+   "hinglish": "Embeddings words ya sentences ko vectors ke roop mein rakhti hain taaki milte-julte meanings paas rahein; cosine similarity do directions ki nazdeeki naapti hai. Isse search, translation aur recommendations exact letters ki jagah meaning se match kar paate hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home why computers turn words into lists of numbers and how that helps search.",
+   "hi": "घर पर किसी को समझाओ कि कंप्यूटर शब्दों को संख्याओं की सूची में क्यों बदलते हैं और इससे सर्च में कैसे मदद मिलती है।",
+   "hinglish": "Ghar par kisi ko samjhao ki computers words ko numbers ki list mein kyun badalte hain aur isse search mein kaise madad milti hai."
+  },
+  "checklist": [
+   {
+    "en": "Words become vectors, and similar meanings land close together",
+    "hi": "शब्द वेक्टर बनते हैं, और मिलते अर्थ पास आते हैं",
+    "hinglish": "Words vectors bante hain, aur similar meanings paas aate hain"
+   },
+   {
+    "en": "Cosine similarity compares directions of two vectors",
+    "hi": "कोसाइन समानता दो वेक्टरों की दिशाएँ तुलना करती है",
+    "hinglish": "Cosine similarity do vectors ki directions compare karti hai"
+   },
+   {
+    "en": "Counting words loses context; embeddings keep some of it",
+    "hi": "शब्द गिनना संदर्भ खो देता है; एम्बेडिंग कुछ बचाती हैं",
+    "hinglish": "Words ginna context kho deta hai; embeddings kuch bachati hain"
+   },
+   {
+    "en": "Search, translation and recommendations use embeddings to match meaning",
+    "hi": "सर्च, अनुवाद और सुझाव अर्थ मिलाने के लिए एम्बेडिंग इस्तेमाल करते हैं",
+    "hinglish": "Search, translation aur recommendations meaning match karne ke liye embeddings use karte hain"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "NLP",
@@ -74,7 +145,7 @@
     "hi": "शुरुआती एनएलपी शब्द गिनता था। \"नदी का बैंक\" और \"एसबीआई बैंक\" का \"बैंक\" एक जैसा दिखता था।",
     "hinglish": "Early NLP words ginta tha. \"River bank\" aur \"SBI bank\" ka \"bank\" ek jaisa dikhta tha."
    },
-   "visual": "anim:bag-of-words",
+   "visual": "compare:🌊 \"River bank\": counted as the word \"bank\"|🏧 \"SBI bank\": counted as the same word \"bank\"",
    "narration": {
     "en": "Early NLP counted words. \"Bank\" in \"river bank\" and \"SBI bank\" looked identical.",
     "hi": "शुरुआती एनएलपी शब्द गिनता था। \"नदी का बैंक\" और \"एसबीआई बैंक\" का \"बैंक\" एक जैसा दिखता था।",

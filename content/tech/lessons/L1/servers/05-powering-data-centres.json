@@ -39,6 +39,77 @@
    "hinglish": "Data centres ko green banaane ke tareeke bata sakte ho."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your laptop gets warm and the fan whirs when you watch videos for a long time.",
+   "hi": "{{name}}, देर तक वीडियो देखने पर तुम्हारा लैपटॉप गरम हो जाता है और पंखा चलता है।",
+   "hinglish": "{{name}}, der tak videos dekhne par tumhara laptop garam ho jaata hai aur fan chalta hai."
+  },
+  "question": {
+   "en": "Now think of thousands of computers together. How do they stay cool and keep working?",
+   "hi": "अब हज़ारों कंप्यूटरों को साथ सोचो। वे ठंडे कैसे रहते हैं और चलते कैसे रहते हैं?",
+   "hinglish": "Ab hazaron computers ko saath socho. Woh thande kaise rehte hain aur chalte kaise rehte hain?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What happens inside a data centre when the power goes out?",
+   "hi": "बिजली जाने पर डेटा सेंटर के अंदर क्या होता है?",
+   "hinglish": "Bijli jaane par data centre ke andar kya hota hai?"
+  },
+  "options": [
+   {
+    "en": "All the servers switch off until the power returns",
+    "hi": "बिजली लौटने तक सारे सर्वर बंद हो जाते हैं",
+    "hinglish": "Bijli lautne tak saare servers band ho jaate hain"
+   },
+   {
+    "en": "Batteries take over at once, then generators start",
+    "hi": "बैटरियाँ तुरंत सँभाल लेती हैं, फिर जनरेटर चालू होते हैं",
+    "hinglish": "Batteries turant sambhal leti hain, phir generators chaalu hote hain"
+   },
+   {
+    "en": "The servers run on their own with no power",
+    "hi": "सर्वर बिना बिजली के अपने-आप चलते हैं",
+    "hinglish": "Servers bina bijli ke apne-aap chalte hain"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Servers use a lot of electricity and make heat, so cool air is pumped in. For power cuts, batteries take over instantly and generators start soon after, so the service keeps running.",
+   "hi": "सर्वर बहुत बिजली लेते हैं और गर्मी बनाते हैं, इसलिए ठंडी हवा भेजी जाती है। बिजली जाने पर बैटरियाँ तुरंत सँभालती हैं और जनरेटर थोड़ी देर में चालू हो जाते हैं, ताकि सेवा चलती रहे।",
+   "hinglish": "Servers bahut bijli lete hain aur garmi banate hain, isliye thandi hawa bheji jaati hai. Bijli jaane par batteries turant sambhalti hain aur generators thodi der mein chaalu ho jaate hain, taaki service chalti rahe."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: how does a data centre keep running?",
+   "hi": "घर पर किसी को समझाओ: डेटा सेंटर चलता कैसे रहता है?",
+   "hinglish": "Ghar par kisi ko samjhao: data centre chalta kaise rehta hai?"
+  },
+  "checklist": [
+   {
+    "en": "Many servers use a lot of electricity and make heat.",
+    "hi": "कई सर्वर बहुत बिजली लेते हैं और गर्मी बनाते हैं।",
+    "hinglish": "Kai servers bahut bijli lete hain aur garmi banate hain."
+   },
+   {
+    "en": "Cool air is pumped in to stop them overheating.",
+    "hi": "ज़्यादा गरम होने से रोकने को ठंडी हवा भेजी जाती है।",
+    "hinglish": "Zyada garam hone se rokne ko thandi hawa bheji jaati hai."
+   },
+   {
+    "en": "In a power cut, batteries then generators take over.",
+    "hi": "बिजली जाने पर पहले बैटरी, फिर जनरेटर सँभालते हैं।",
+    "hinglish": "Bijli jaane par pehle battery, phir generator sambhalte hain."
+   },
+   {
+    "en": "Sun and wind can make it greener.",
+    "hi": "सूरज और हवा इसे हरा-भरा बना सकते हैं।",
+    "hinglish": "Sooraj aur hawa ise greener bana sakte hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Data centre",

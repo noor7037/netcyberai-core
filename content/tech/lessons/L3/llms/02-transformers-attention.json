@@ -34,6 +34,77 @@
    "hi": "ट्रांसफ़ॉर्मर ब्लॉक का वर्णन और वह समानांतर में क्यों प्रशिक्षित होता है"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, in \"The animal didn't cross the road because it was tired\", you instantly know \"it\" means the animal, not the road.",
+   "hi": "{{name}}, \"The animal didn't cross the road because it was tired\" में तुम तुरंत समझ जाते हो कि \"it\" जानवर है, सड़क नहीं।",
+   "hinglish": "{{name}}, \"The animal didn't cross the road because it was tired\" mein tum turant samajh jaate ho ki \"it\" animal hai, road nahi."
+  },
+  "question": {
+   "en": "How can a model work out which earlier word a word refers to?",
+   "hi": "मॉडल कैसे पता लगाता है कि कोई शब्द पहले के किस शब्द की ओर इशारा करता है?",
+   "hinglish": "Model kaise pata lagata hai ki koi word pehle ke kis word ki taraf ishaara karta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "In self-attention, how does a token decide which other tokens matter to it?",
+   "hi": "सेल्फ़-अटेंशन में कोई टोकन कैसे तय करता है कि कौन-से दूसरे टोकन उसके लिए ज़रूरी हैं?",
+   "hinglish": "Self-attention mein koi token kaise decide karta hai ki kaunse doosre tokens uske liye zaroori hain?"
+  },
+  "options": [
+   {
+    "en": "A programmer lists the important words by hand",
+    "hi": "प्रोग्रामर हाथ से ज़रूरी शब्दों की सूची बनाता है",
+    "hinglish": "Programmer haath se zaroori words ki list banata hai"
+   },
+   {
+    "en": "Its query is compared with every token's key, and the match scores become weights",
+    "hi": "उसकी क्वेरी की तुलना हर टोकन की की से होती है, और मेल के अंक वज़न बन जाते हैं",
+    "hinglish": "Uski query ki comparison har token ki key se hoti hai, aur match scores weights ban jaate hain"
+   },
+   {
+    "en": "It reads only the word right before it",
+    "hi": "वह सिर्फ़ ठीक पिछला शब्द पढ़ता है",
+    "hinglish": "Woh sirf theek pichhla word padhta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Each token makes a query, a key and a value. Query·key gives a score for every token, softmax turns scores into weights that add to 1, and the token's new representation is the weighted mix of the values. All tokens can be processed at once, so transformers train in parallel on GPUs.",
+   "hi": "हर टोकन क्वेरी, की और वैल्यू बनाता है। क्वेरी·की हर टोकन के लिए अंक देता है, सॉफ़्टमैक्स अंकों को ऐसे वज़न बनाता है जिनका जोड़ 1 हो, और टोकन का नया रूप वैल्यूज़ का भारित मिश्रण है। सभी टोकन एक साथ प्रोसेस हो सकते हैं, इसलिए ट्रांसफ़ॉर्मर GPU पर समानांतर ट्रेन होते हैं।",
+   "hinglish": "Har token query, key aur value banata hai. Query·key har token ke liye score deta hai, softmax scores ko aise weights banata hai jinka sum 1 ho, aur token ka naya representation values ka weighted mix hai. Sab tokens ek saath process ho sakte hain, isliye transformers GPUs par parallel train hote hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend how attention lets the word \"it\" find \"animal\" in a sentence.",
+   "hi": "दोस्त को समझाओ कि अटेंशन \"it\" शब्द को वाक्य में \"animal\" तक कैसे पहुँचाता है।",
+   "hinglish": "Friend ko samjhao ki attention \"it\" word ko sentence mein \"animal\" tak kaise pahunchata hai."
+  },
+  "checklist": [
+   {
+    "en": "Query asks what to look for; key says what a token holds; their dot product is the match score",
+    "hi": "क्वेरी बताती है क्या खोजना है; की बताती है टोकन में क्या है; उनका डॉट प्रोडक्ट मेल अंक है",
+    "hinglish": "Query batati hai kya dhoondhna hai; key batati hai token mein kya hai; unka dot product match score hai"
+   },
+   {
+    "en": "Softmax makes weights summing to 1, and the output is a weighted mix of values",
+    "hi": "सॉफ़्टमैक्स जोड़ 1 वाले वज़न बनाता है, और आउटपुट वैल्यूज़ का भारित मिश्रण है",
+    "hinglish": "Softmax sum 1 wale weights banata hai, aur output values ka weighted mix hai"
+   },
+   {
+    "en": "A heatmap shows which tokens attend to which",
+    "hi": "हीटमैप दिखाता है कि कौन-सा टोकन किस पर ध्यान देता है",
+    "hinglish": "Heatmap dikhata hai ki kaunsa token kis par attend karta hai"
+   },
+   {
+    "en": "All tokens are processed in parallel, which is why transformers train fast on GPUs",
+    "hi": "सभी टोकन समानांतर प्रोसेस होते हैं, इसीलिए ट्रांसफ़ॉर्मर GPU पर तेज़ ट्रेन होते हैं",
+    "hinglish": "Sab tokens parallel process hote hain, isiliye transformers GPUs par fast train hote hain"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Attention",
@@ -88,7 +159,7 @@
     "hi": "हर टोकन एक क्वेरी (\"मैं क्या ढूँढ रहा हूँ?\") और एक की (\"मुझमें क्या है?\") बनाता है। क्वेरी · की से मेल स्कोर मिलता है।",
     "hinglish": "Har token ek query (\"main kya dhoondh raha hoon?\") aur ek key (\"mujhmein kya hai?\") banata hai. Query · key se match score milta hai."
    },
-   "visual": "anim:qk-dot",
+   "visual": "flow:❓ Query: what am I looking for?|🔑 Key: what do I contain?|✖️ Query · key: match score",
    "narration": {
     "en": "Each token makes a query (\"what am I looking for?\") and a key (\"what do I contain?\"). Query · key gives a match score.",
     "hi": "हर टोकन एक क्वेरी (\"मैं क्या ढूँढ रहा हूँ?\") और एक की (\"मुझमें क्या है?\") बनाता है। क्वेरी · की से मेल स्कोर मिलता है।",
@@ -102,7 +173,7 @@
     "hi": "सॉफ़्टमैक्स स्कोर को भार में बदलता है; टोकन का नया अर्थ सभी वैल्यू का भारित मिश्रण है। हीटमैप दिखाता है \"it\" ज़ोर से \"animal\" पर ध्यान देता है।",
     "hinglish": "Softmax scores ko weights banata hai; token ka naya matlab saari values ka weighted mix hai. Heatmap dikhata hai \"it\" zor se \"animal\" par dhyaan deta hai."
    },
-   "visual": "anim:attention-heatmap",
+   "visual": "flow:🔢 Match scores|📊 Softmax: weights|🧩 Weighted mix of values",
    "narration": {
     "en": "Softmax turns scores into weights; the token's new meaning is the weighted mix of all values. The heatmap shows \"it\" attending strongly to \"animal\".",
     "hi": "सॉफ़्टमैक्स स्कोर को भार में बदलता है; टोकन का नया अर्थ सभी वैल्यू का भारित मिश्रण है। हीटमैप दिखाता है \"it\" ज़ोर से \"animal\" पर ध्यान देता है।",

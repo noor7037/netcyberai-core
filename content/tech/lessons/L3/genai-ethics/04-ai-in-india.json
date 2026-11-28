@@ -34,6 +34,77 @@
    "hi": "नागरिकों के लिए लाभ और जोखिम आँकना"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you pay a shopkeeper by UPI and the money moves in a couple of seconds, though millions of others are paying at the same time.",
+   "hi": "{{name}}, तुम दुकानदार को UPI से पैसे देते हो और कुछ ही सेकंड में पैसे पहुँच जाते हैं, जबकि लाखों दूसरे लोग उसी समय भुगतान कर रहे हैं।",
+   "hinglish": "{{name}}, tum shopkeeper ko UPI se paise dete ho aur kuch hi second mein paise pahunch jaate hain, jabki lakhon doosre log usi samay payment kar rahe hain."
+  },
+  "question": {
+   "en": "Where does AI work inside systems this large, and what could go wrong for ordinary citizens?",
+   "hi": "इतने बड़े सिस्टमों के भीतर AI कहाँ काम करता है, और आम नागरिकों के लिए क्या ग़लत हो सकता है?",
+   "hinglish": "Itne bade systems ke andar AI kahan kaam karta hai, aur aam citizens ke liye kya galat ho sakta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "At UPI scale, how can fraud checks keep payments fast?",
+   "hi": "UPI के पैमाने पर फ़्रॉड जाँच भुगतान को तेज़ कैसे रख सकती है?",
+   "hinglish": "UPI scale par fraud checks payments ko fast kaise rakh sakti hain?"
+  },
+  "options": [
+   {
+    "en": "A person reads every payment before it goes through",
+    "hi": "हर भुगतान को कोई इंसान पढ़कर आगे जाने देता है",
+    "hinglish": "Har payment ko koi insaan padhkar aage jaane deta hai"
+   },
+   {
+    "en": "A model scores each payment's risk automatically in milliseconds, so only suspicious ones need extra steps",
+    "hi": "मॉडल हर भुगतान का जोखिम मिलीसेकंड में अपने आप आँकता है, इसलिए सिर्फ़ संदिग्ध पर अतिरिक्त क़दम चाहिए",
+    "hinglish": "Model har payment ka risk milliseconds mein apne aap aankta hai, isliye sirf suspicious par extra steps chahiye"
+   },
+   {
+    "en": "Fraud checks are skipped when traffic is high",
+    "hi": "ट्रैफ़िक ज़्यादा हो तो फ़्रॉड जाँच छोड़ दी जाती है",
+    "hinglish": "Traffic zyada ho to fraud checks chhod di jaati hain"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "At millions of payments a day, human review of each one is impossible, so models score every transaction automatically and flag only risky ones. The same pattern-recognition power brings risks: wrong flags can block honest people, and large identity or language systems need privacy, accuracy checks and an appeal path.",
+   "hi": "रोज़ाना लाखों भुगतानों में हर एक की इंसानी जाँच असंभव है, इसलिए मॉडल हर लेनदेन को अपने आप आँकते हैं और सिर्फ़ जोखिम भरे को चिह्नित करते हैं। पैटर्न पहचानने की यही शक्ति जोखिम भी लाती है: ग़लत चिह्न ईमानदार लोगों को रोक सकता है, और बड़े पहचान या भाषा सिस्टमों को निजता, सटीकता जाँच और अपील का रास्ता चाहिए।",
+   "hinglish": "Roz lakhon payments mein har ek ki human review impossible hai, isliye models har transaction ko automatically aankte hain aur sirf risky ko flag karte hain. Pattern recognition ki yahi power risks bhi laati hai: galat flags honest logon ko rok sakte hain, aur bade identity ya language systems ko privacy, accuracy checks aur appeal path chahiye."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home where AI helps in UPI, Aadhaar, Bhashini or farm apps, and one risk to watch.",
+   "hi": "घर पर किसी को समझाओ कि UPI, आधार, भाषिणी या खेती के ऐप में AI कहाँ मदद करता है, और ध्यान देने लायक एक जोखिम।",
+   "hinglish": "Ghar par kisi ko samjhao ki UPI, Aadhaar, Bhashini ya farm apps mein AI kahan madad karta hai, aur dhyan dene layak ek risk."
+  },
+  "checklist": [
+   {
+    "en": "UPI scores each payment for fraud risk automatically",
+    "hi": "UPI हर भुगतान का फ़्रॉड जोखिम अपने आप आँकता है",
+    "hinglish": "UPI har payment ka fraud risk automatically aankta hai"
+   },
+   {
+    "en": "Aadhaar relies on pattern matching of fingerprints and iris at national scale",
+    "hi": "आधार राष्ट्रीय पैमाने पर उँगलियों और आँख की पुतली के पैटर्न मिलान पर टिका है",
+    "hinglish": "Aadhaar national scale par fingerprints aur iris ke pattern matching par tika hai"
+   },
+   {
+    "en": "Bhashini and crop apps use speech and image AI to serve local languages and farmers",
+    "hi": "भाषिणी और फ़सल ऐप स्थानीय भाषाओं और किसानों के लिए बोली और तस्वीर के AI का उपयोग करते हैं",
+    "hinglish": "Bhashini aur crop apps local languages aur farmers ke liye speech aur image AI use karte hain"
+   },
+   {
+    "en": "Benefits come with risks: errors, privacy and exclusion need checks and an appeal path",
+    "hi": "फ़ायदों के साथ जोखिम हैं: त्रुटियों, निजता और बहिष्कार के लिए जाँच और अपील का रास्ता चाहिए",
+    "hinglish": "Benefits ke saath risks hain: errors, privacy aur exclusion ke liye checks aur appeal path chahiye"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Digital Public Infrastructure (DPI)",

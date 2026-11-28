@@ -35,6 +35,77 @@
    "hinglish": "IT Act ke main offences aur report kahan karein pehchaano"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a cricket-score app asks to see your contacts, location and photos before it will show you a single match.",
+   "hi": "{{name}}, एक क्रिकेट-स्कोर ऐप कोई मैच दिखाने से पहले तुम्हारे संपर्क, स्थान और फ़ोटो देखने की अनुमति माँगता है।",
+   "hinglish": "{{name}}, ek cricket-score app koi match dikhane se pehle tumhare contacts, location aur photos dekhne ki permission maangta hai."
+  },
+  "question": {
+   "en": "What does Indian law say about how companies may use your personal data, and what are your rights?",
+   "hi": "भारतीय कानून तुम्हारे निजी डेटा के इस्तेमाल के बारे में कंपनियों से क्या कहता है, और तुम्हारे क्या अधिकार हैं?",
+   "hinglish": "Bharatiya kanoon tumhare personal data ke use ke baare mein companies se kya kehta hai, aur tumhare kya rights hain?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "An app wants to collect data from a 14-year-old user. What does the DPDP Act require?",
+   "hi": "एक ऐप 14 साल के उपयोगकर्ता से डेटा लेना चाहता है। DPDP अधिनियम क्या माँगता है?",
+   "hinglish": "Ek app 14 saal ke user se data lena chahta hai. DPDP Act kya maangta hai?"
+  },
+  "options": [
+   {
+    "en": "Nothing special, the child can click Accept",
+    "hi": "कुछ विशेष नहीं, बच्चा Accept दबा सकता है",
+    "hinglish": "Kuch special nahi, bachcha Accept daba sakta hai"
+   },
+   {
+    "en": "Verifiable parental consent, and no tracking or targeted ads aimed at the child",
+    "hi": "सत्यापन योग्य अभिभावक सहमति, और बच्चे पर कोई ट्रैकिंग या लक्षित विज्ञापन नहीं",
+    "hinglish": "Verifiable parental consent, aur bachche par koi tracking ya targeted ads nahi"
+   },
+   {
+    "en": "Only a school stamp",
+    "hi": "सिर्फ़ स्कूल की मुहर",
+    "hinglish": "Sirf school ki muhar"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "The DPDP Act, 2023 treats anyone under 18 as a child: the company needs verifiable parental consent and must not track or target ads at them. For everyone it requires a clear lawful purpose, only the data needed, security safeguards, consent that is as easy to withdraw as to give, and breach reports to the Board and to affected people. Alongside it, the IT Act makes things like hacking (66) and identity theft (66C) offences.",
+   "hi": "DPDP अधिनियम, 2023 में 18 से कम आयु का हर व्यक्ति बच्चा है: कंपनी को सत्यापन योग्य अभिभावक सहमति चाहिए और उन पर ट्रैकिंग या लक्षित विज्ञापन नहीं कर सकती। सबके लिए स्पष्ट वैध उद्देश्य, सिर्फ़ ज़रूरी डेटा, सुरक्षा उपाय, ऐसी सहमति जो देने जितनी आसानी से वापस ली जा सके, और बोर्ड व प्रभावित लोगों को उल्लंघन की सूचना चाहिए। साथ में IT अधिनियम हैकिंग (66) और पहचान की चोरी (66C) जैसी चीज़ों को अपराध बनाता है।",
+   "hinglish": "DPDP Act, 2023 mein 18 se kam umar ka har vyakti bachcha hai: company ko verifiable parental consent chahiye aur woh un par tracking ya targeted ads nahi kar sakti. Sabke liye clear lawful purpose, sirf zaroori data, security safeguards, aisi consent jo dene jitni aasani se wapas li ja sake, aur Board aur affected logon ko breach ki report chahiye. Saath mein IT Act hacking (66) aur identity theft (66C) jaisi cheezon ko offence banata hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home what the DPDP Act asks of an app and what rights you have over your own data.",
+   "hi": "घर पर किसी को समझाओ कि DPDP अधिनियम किसी ऐप से क्या माँगता है और तुम्हारे अपने डेटा पर तुम्हारे क्या अधिकार हैं।",
+   "hinglish": "Ghar par kisi ko samjhao ki DPDP Act kisi app se kya maangta hai aur tumhare apne data par tumhare kya rights hain."
+  },
+  "checklist": [
+   {
+    "en": "Companies must have a lawful purpose, ask only for needed data and protect it.",
+    "hi": "कंपनियों का वैध उद्देश्य हो, सिर्फ़ ज़रूरी डेटा माँगें और उसे सुरक्षित रखें।",
+    "hinglish": "Companies ka lawful purpose ho, sirf zaroori data maangein aur use surakshit rakhein."
+   },
+   {
+    "en": "Consent must be clear and as easy to withdraw as to give.",
+    "hi": "सहमति स्पष्ट हो और देने जितनी आसानी से वापस ली जा सके।",
+    "hinglish": "Consent clear ho aur dene jitni aasani se wapas li ja sake."
+   },
+   {
+    "en": "Under 18 means verifiable parental consent and no tracking or targeted ads.",
+    "hi": "18 से कम पर सत्यापन योग्य अभिभावक सहमति और कोई ट्रैकिंग या लक्षित विज्ञापन नहीं।",
+    "hinglish": "18 se kam par verifiable parental consent aur koi tracking ya targeted ads nahi."
+   },
+   {
+    "en": "Breaches must be reported to the Board and affected people; the IT Act makes offences such as hacking and identity theft punishable.",
+    "hi": "उल्लंघन बोर्ड और प्रभावित लोगों को बताना होगा; IT अधिनियम हैकिंग और पहचान की चोरी जैसे अपराधों को दंडनीय बनाता है।",
+    "hinglish": "Breach Board aur affected logon ko batana hoga; IT Act hacking aur identity theft jaise offences ko dandniya banata hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Personal data",

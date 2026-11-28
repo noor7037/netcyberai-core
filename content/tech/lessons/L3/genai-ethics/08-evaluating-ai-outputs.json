@@ -35,6 +35,77 @@
    "hinglish": "Benchmarks aur AI ke AI ko judge karne ki limits pehchano"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a chatbot gives you a neat answer with three citations for your history project. One citation looks odd.",
+   "hi": "{{name}}, एक चैटबॉट तुम्हारे इतिहास प्रोजेक्ट के लिए तीन उद्धरणों के साथ साफ़-सुथरा जवाब देता है। एक उद्धरण अजीब लगता है।",
+   "hinglish": "{{name}}, ek chatbot tumhare history project ke liye teen citations ke saath saaf-suthra answer deta hai. Ek citation ajeeb lagta hai."
+  },
+  "question": {
+   "en": "How do you decide whether an AI answer is good, and how do experts score AI systems?",
+   "hi": "तुम कैसे तय करते हो कि AI का जवाब अच्छा है, और विशेषज्ञ AI सिस्टमों को कैसे आँकते हैं?",
+   "hinglish": "Tum kaise decide karte ho ki AI ka answer achha hai, aur experts AI systems ko kaise aankte hain?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "An AI answer includes a link that looks like a real source. What should you do?",
+   "hi": "AI के जवाब में एक लिंक है जो असली स्रोत जैसा दिखता है। तुम्हें क्या करना चाहिए?",
+   "hinglish": "AI ke answer mein ek link hai jo real source jaisa dikhta hai. Tumhe kya karna chahiye?"
+  },
+  "options": [
+   {
+    "en": "Trust it, because a citation means it was checked",
+    "hi": "भरोसा करो, क्योंकि उद्धरण का मतलब जाँचा हुआ है",
+    "hinglish": "Trust karo, kyunki citation ka matlab checked hai"
+   },
+   {
+    "en": "Open it and check that it exists and really says that, since models can invent citations",
+    "hi": "उसे खोलो और जाँचो कि वह है और सच में वही कहता है, क्योंकि मॉडल उद्धरण गढ़ सकते हैं",
+    "hinglish": "Use kholo aur check karo ki woh hai aur sach mein wahi kehta hai, kyunki models citations gadh sakte hain"
+   },
+   {
+    "en": "Delete the answer without reading",
+    "hi": "बिना पढ़े जवाब मिटा दो",
+    "hinglish": "Bina padhe answer delete kar do"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "A citation can be wrong or invented, and a link can exist yet not support the claim. Split the answer into claims and check each against a trusted source. For whole systems, teams score many answers with rubrics on test sets the model has not seen, but benchmarks can leak or saturate, so you test on your own real tasks.",
+   "hi": "उद्धरण ग़लत या गढ़ा हुआ हो सकता है, और लिंक मौजूद होकर भी दावे का समर्थन न कर सके। जवाब को दावों में बाँटकर हर एक को भरोसेमंद स्रोत से मिलाओ। पूरे सिस्टमों के लिए टीमें उन टेस्ट सेट पर रुब्रिक से कई जवाब आँकती हैं जो मॉडल ने नहीं देखे, पर बेंचमार्क लीक या संतृप्त हो सकते हैं, इसलिए अपने असली कार्यों पर परखो।",
+   "hinglish": "Citation galat ya gadha hua ho sakta hai, aur link maujood hokar bhi claim ka support na kare. Answer ko claims mein baantkar har ek ko trusted source se milao. Poore systems ke liye teams un test sets par rubrics se kai answers aankti hain jo model ne nahi dekhe, par benchmarks leak ya saturate ho sakte hain, isliye apne real tasks par parakho."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend how you would check one AI answer, and why a high benchmark score does not prove it suits your task.",
+   "hi": "दोस्त को समझाओ कि एक AI जवाब कैसे जाँचोगे, और ऊँचा बेंचमार्क स्कोर यह क्यों साबित नहीं करता कि वह तुम्हारे काम के लिए ठीक है।",
+   "hinglish": "Friend ko samjhao ki ek AI answer kaise check karoge, aur high benchmark score yeh kyun prove nahi karta ki woh tumhare task ke liye theek hai."
+  },
+  "checklist": [
+   {
+    "en": "Split an answer into claims and check each against a trusted source",
+    "hi": "जवाब को दावों में बाँटो और हर एक को भरोसेमंद स्रोत से जाँचो",
+    "hinglish": "Answer ko claims mein baanto aur har ek ko trusted source se check karo"
+   },
+   {
+    "en": "Open every citation: it must exist and support the claim",
+    "hi": "हर उद्धरण खोलो: वह हो और दावे का समर्थन करे",
+    "hinglish": "Har citation kholo: woh ho aur claim ka support kare"
+   },
+   {
+    "en": "Systems are scored on unseen test sets with rubrics, human rating or AI judges",
+    "hi": "सिस्टम अनदेखे टेस्ट सेट पर रुब्रिक, मानव रेटिंग या AI जज से आँके जाते हैं",
+    "hinglish": "Systems unseen test sets par rubrics, human rating ya AI judges se aanke jaate hain"
+   },
+   {
+    "en": "Benchmarks can leak or saturate, and AI judges have biases, so test your own task",
+    "hi": "बेंचमार्क लीक या संतृप्त हो सकते हैं और AI जजों में पूर्वाग्रह होते हैं, इसलिए अपना कार्य परखो",
+    "hinglish": "Benchmarks leak ya saturate ho sakte hain aur AI judges mein biases hote hain, isliye apna task test karo"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Ground truth",

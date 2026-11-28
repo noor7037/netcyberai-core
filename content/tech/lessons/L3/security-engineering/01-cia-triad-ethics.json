@@ -34,6 +34,77 @@
    "hinglish": "Ethical aur legal line batao: sirf written permission se test karo"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, on results day your school's site must show only your marks to you, show them correctly, and stay up for everyone.",
+   "hi": "{{name}}, नतीजों के दिन तुम्हारे स्कूल की साइट को सिर्फ़ तुम्हें तुम्हारे अंक दिखाने हैं, सही दिखाने हैं, और सबके लिए चालू रहना है।",
+   "hinglish": "{{name}}, results ke din tumhare school ki site ko sirf tumhe tumhare marks dikhane hain, sahi dikhane hain, aur sabke liye chalu rehna hai."
+  },
+  "question": {
+   "en": "What three promises must a secure system keep, and how do defenders decide what to protect first?",
+   "hi": "सुरक्षित सिस्टम को कौन-से तीन वादे निभाने होते हैं, और रक्षक कैसे तय करते हैं कि पहले क्या बचाएँ?",
+   "hinglish": "Secure system ko kaunse teen vaade nibhane hote hain, aur defenders kaise tay karte hain ki pehle kya bachayein?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Someone secretly changes a student's score from 40 to 90 in the database. Which security property was broken?",
+   "hi": "कोई चुपचाप डेटाबेस में एक विद्यार्थी का स्कोर 40 से 90 कर देता है। कौन-सा सुरक्षा गुण टूटा?",
+   "hinglish": "Koi chupchaap database mein ek student ka score 40 se 90 kar deta hai. Kaunsa security property toot gaya?"
+  },
+  "options": [
+   {
+    "en": "Confidentiality, because the score was seen",
+    "hi": "गोपनीयता, क्योंकि स्कोर देखा गया",
+    "hinglish": "Confidentiality, kyunki score dekha gaya"
+   },
+   {
+    "en": "Integrity, because the data was changed without permission",
+    "hi": "अखंडता, क्योंकि डेटा बिना अनुमति बदला गया",
+    "hinglish": "Integrity, kyunki data bina permission badla gaya"
+   },
+   {
+    "en": "Availability, because the site went down",
+    "hi": "उपलब्धता, क्योंकि साइट बंद हो गई",
+    "hinglish": "Availability, kyunki site down ho gayi"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Confidentiality means only the right people can see data, integrity means it cannot be changed without detection or permission, and availability means it is there when needed. A silent edit breaks integrity, and defenders answer with hashes, digital signatures and audit logs. Defenders start with a threat model: assets, who might attack, and what could go wrong, and they test only systems they own or have written permission to test.",
+   "hi": "गोपनीयता का मतलब सिर्फ़ सही लोग डेटा देखें, अखंडता का मतलब डेटा बिना अनुमति या पकड़े बदला न जा सके, और उपलब्धता का मतलब ज़रूरत पर मौजूद हो। चुपचाप बदलाव अखंडता तोड़ता है, और रक्षक हैश, डिजिटल हस्ताक्षर और ऑडिट लॉग से जवाब देते हैं। रक्षक खतरा मॉडल से शुरू करते हैं: संपत्तियाँ, कौन हमला कर सकता है, और क्या गलत हो सकता है, और वे सिर्फ़ उन सिस्टम का परीक्षण करते हैं जिनके वे मालिक हों या जिनकी लिखित अनुमति हो।",
+   "hinglish": "Confidentiality ka matlab sirf sahi log data dekhein, integrity ka matlab data bina permission ya bina pakde badla na ja sake, aur availability ka matlab zaroorat par maujood ho. Chupchaap edit integrity todta hai, aur defenders hashes, digital signatures aur audit logs se jawab dete hain. Defenders threat model se shuru karte hain: assets, kaun attack kar sakta hai, aur kya galat ho sakta hai, aur woh sirf un systems ka test karte hain jinke woh owner hon ya jinki likhit permission ho."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home what confidentiality, integrity and availability mean using results day, and why testing needs permission.",
+   "hi": "घर पर किसी को समझाओ कि नतीजों के दिन के उदाहरण से गोपनीयता, अखंडता और उपलब्धता का क्या मतलब है, और परीक्षण के लिए अनुमति क्यों चाहिए।",
+   "hinglish": "Ghar par kisi ko samjhao ki results day ke example se confidentiality, integrity aur availability ka kya matlab hai, aur testing ke liye permission kyun chahiye."
+  },
+  "checklist": [
+   {
+    "en": "Confidentiality: only the right people see data (encryption, access control).",
+    "hi": "गोपनीयता: सिर्फ़ सही लोग डेटा देखें (एन्क्रिप्शन, एक्सेस कंट्रोल)।",
+    "hinglish": "Confidentiality: sirf sahi log data dekhein (encryption, access control)."
+   },
+   {
+    "en": "Integrity: data is not changed without permission or detection (hashes, signatures, audit logs).",
+    "hi": "अखंडता: डेटा बिना अनुमति या पकड़े न बदले (हैश, हस्ताक्षर, ऑडिट लॉग)।",
+    "hinglish": "Integrity: data bina permission ya detection ke na badle (hashes, signatures, audit logs)."
+   },
+   {
+    "en": "Availability: the service is up when needed (backups, spare servers, DDoS protection).",
+    "hi": "उपलब्धता: ज़रूरत पर सेवा चालू (बैकअप, अतिरिक्त सर्वर, DDoS सुरक्षा)।",
+    "hinglish": "Availability: zaroorat par service up (backups, spare servers, DDoS protection)."
+   },
+   {
+    "en": "A threat model lists assets, attackers and risks; test only with ownership or written permission, as the IT Act makes unauthorised access an offence.",
+    "hi": "खतरा मॉडल संपत्तियाँ, हमलावर और जोखिम गिनता है; सिर्फ़ स्वामित्व या लिखित अनुमति से परीक्षण करो, क्योंकि IT अधिनियम में अनधिकृत पहुँच अपराध है।",
+    "hinglish": "Threat model assets, attackers aur risks ginta hai; sirf ownership ya likhit permission se test karo, kyunki IT Act mein unauthorised access offence hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Confidentiality",

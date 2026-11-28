@@ -43,13 +43,33 @@
    "term": "Program counter",
    "hinglish": "Agla instruction kahan",
    "en": "Register holding the address of the next instruction",
-   "hi": "अगले निर्देश का पता रखने वाला रजिस्टर"
+   "hi": "अगले निर्देश का पता रखने वाला रजिस्टर",
+   "does": {
+    "en": "points at the next instruction to fetch",
+    "hi": "अगले लाए जाने वाले निर्देश की ओर इशारा करता है",
+    "hinglish": "agle fetch hone wale instruction ki taraf ishaara karta hai"
+   },
+   "where": {
+    "en": "inside every CPU core",
+    "hi": "हर CPU कोर के अंदर",
+    "hinglish": "har CPU core ke andar"
+   }
   },
   {
    "term": "ALU",
    "hinglish": "Hisaab karne wala hissa",
    "en": "Arithmetic logic unit: adds, compares, does AND/OR",
-   "hi": "अंकगणित तर्क इकाई: जोड़ती, तुलना करती, AND/OR करती"
+   "hi": "अंकगणित तर्क इकाई: जोड़ती, तुलना करती, AND/OR करती",
+   "does": {
+    "en": "adds, subtracts, compares and does logic",
+    "hi": "जोड़ता, घटाता, तुलना करता और तर्क करता है",
+    "hinglish": "jodta, ghataata, compare karta aur logic karta hai"
+   },
+   "where": {
+    "en": "inside every CPU core",
+    "hi": "हर CPU कोर के अंदर",
+    "hinglish": "har CPU core ke andar"
+   }
   },
   {
    "term": "Bus",
@@ -62,36 +82,385 @@
    "hinglish": "CPU ki bhasha",
    "en": "The list of operations a CPU understands, e.g. x86, ARM, RISC-V",
    "hi": "CPU जो क्रियाएँ समझता है उनकी सूची, जैसे x86, ARM, RISC-V"
+  },
+  {
+   "term": "Register",
+   "en": "A tiny, very fast storage place inside the CPU",
+   "hi": "CPU के अंदर छोटा, बहुत तेज़ भंडार",
+   "hinglish": "CPU ke andar chhota, bahut tez store",
+   "does": {
+    "en": "holds the numbers being worked on right now",
+    "hi": "अभी जिन संख्याओं पर काम हो रहा है उन्हें रखता है",
+    "hinglish": "abhi jin numbers par kaam ho raha hai unhe rakhta hai"
+   },
+   "where": {
+    "en": "R1, R2… in the instruction ADD R1, [100]",
+    "hi": "निर्देश ADD R1, [100] में R1, R2…",
+    "hinglish": "instruction ADD R1, [100] mein R1, R2…"
+   }
   }
  ],
  "see": [
   {
    "step": 1,
    "caption": {
-    "en": "In 1945 John von Neumann described a design still used today: CPU, memory holding both program and data, input and output.",
-    "hi": "1945 में जॉन वॉन न्यूमैन ने एक डिज़ाइन बताया जो आज भी इस्तेमाल होता है: CPU, प्रोग्राम और डेटा दोनों रखने वाली मेमोरी, इनपुट और आउटपुट।",
-    "hinglish": "1945 mein John von Neumann ne ek design bataya jo aaj bhi use hota hai: CPU, program aur data dono rakhne wali memory, input aur output."
+    "en": "In 1945 John von Neumann described a design still used today: a CPU, one memory holding both program and data, input and output, joined by a bus.",
+    "hi": "1945 में जॉन वॉन न्यूमैन ने एक डिज़ाइन बताया जो आज भी चलता है: CPU, एक मेमोरी जिसमें प्रोग्राम और डेटा दोनों हैं, इनपुट और आउटपुट, सब एक बस से जुड़े।",
+    "hinglish": "1945 mein John von Neumann ne ek design bataya jo aaj bhi chalta hai: CPU, ek memory jisme program aur data dono hain, input aur output, sab ek bus se jude."
    },
-   "visual": "anim:vn-blocks",
+   "visual": "diagram",
    "narration": {
-    "en": "In 1945 John von Neumann described a design still used today: CPU, memory holding both program and data, input and output.",
-    "hi": "1945 में जॉन वॉन न्यूमैन ने एक डिज़ाइन बताया जो आज भी इस्तेमाल होता है: CPU, प्रोग्राम और डेटा दोनों रखने वाली मेमोरी, इनपुट और आउटपुट।",
-    "hinglish": "1945 mein John von Neumann ne ek design bataya jo aaj bhi use hota hai: CPU, program aur data dono rakhne wali memory, input aur output."
-   }
+    "en": "Here is the plan of almost every computer since 1945.",
+    "hi": "यह 1945 से लगभग हर कंप्यूटर का नक्शा है।",
+    "hinglish": "Yeh 1945 se lagbhag har computer ka naksha hai."
+   },
+   "diagram": {
+    "parts": [
+     {
+      "id": "input",
+      "label": {
+       "en": "Input",
+       "hi": "इनपुट",
+       "hinglish": "Input"
+      },
+      "icon": "⌨️",
+      "note": {
+       "en": "keys, touch, sensors",
+       "hi": "कुंजियाँ, टच, सेंसर",
+       "hinglish": "keys, touch, sensors"
+      }
+     },
+     {
+      "id": "cpu",
+      "label": {
+       "en": "CPU",
+       "hi": "CPU",
+       "hinglish": "CPU"
+      },
+      "icon": "⚙️",
+      "note": {
+       "en": "control unit, ALU and registers",
+       "hi": "कंट्रोल यूनिट, ALU और रजिस्टर",
+       "hinglish": "control unit, ALU aur registers"
+      }
+     },
+     {
+      "id": "output",
+      "label": {
+       "en": "Output",
+       "hi": "आउटपुट",
+       "hinglish": "Output"
+      },
+      "icon": "🖥️",
+      "note": {
+       "en": "screen, speaker",
+       "hi": "स्क्रीन, स्पीकर",
+       "hinglish": "screen, speaker"
+      }
+     },
+     {
+      "id": "memory",
+      "label": {
+       "en": "Memory: program + data",
+       "hi": "मेमोरी: प्रोग्राम + डेटा",
+       "hinglish": "Memory: program + data"
+      },
+      "icon": "🗄️",
+      "note": {
+       "en": "instructions and numbers, each at an address",
+       "hi": "निर्देश और संख्याएँ, हर एक किसी पते पर",
+       "hinglish": "instructions aur numbers, har ek kisi address par"
+      }
+     }
+    ],
+    "rows": [
+     [
+      "input",
+      "cpu",
+      "output"
+     ],
+     [
+      "memory"
+     ]
+    ],
+    "links": [
+     {
+      "from": "cpu",
+      "to": "memory",
+      "label": {
+       "en": "bus: address, data and control lines",
+       "hi": "बस: पता, डेटा और कंट्रोल लाइनें",
+       "hinglish": "bus: address, data aur control lines"
+      }
+     }
+    ]
+   },
+   "beats": [
+    {
+     "narration": {
+      "en": "Memory holds the program and its data together, each item at a numbered address. That is the stored-program idea.",
+      "hi": "मेमोरी प्रोग्राम और उसका डेटा साथ रखती है, हर चीज़ एक नंबर वाले पते पर। यही स्टोर्ड-प्रोग्राम विचार है।",
+      "hinglish": "Memory program aur uska data saath rakhti hai, har cheez ek numbered address par. Yahi stored-program idea hai."
+     },
+     "focus": "memory"
+    },
+    {
+     "narration": {
+      "en": "The CPU fetches instructions from memory and carries them out.",
+      "hi": "CPU मेमोरी से निर्देश लाता है और उन्हें चलाता है।",
+      "hinglish": "CPU memory se instructions laata hai aur unhe chalata hai."
+     },
+     "focus": "cpu"
+    },
+    {
+     "narration": {
+      "en": "Input brings numbers in, like the 23 and 19 you typed.",
+      "hi": "इनपुट संख्याएँ अंदर लाता है, जैसे तुम्हारा लिखा 23 और 19।",
+      "hinglish": "Input numbers andar laata hai, jaise tumhara likha 23 aur 19."
+     },
+     "focus": "input"
+    },
+    {
+     "narration": {
+      "en": "Output shows the result, 42, on the screen.",
+      "hi": "आउटपुट नतीजा, 42, स्क्रीन पर दिखाता है।",
+      "hinglish": "Output result, 42, screen par dikhata hai."
+     },
+     "focus": "output"
+    }
+   ]
   },
   {
    "step": 2,
    "caption": {
-    "en": "The CPU has a control unit (the conductor), an ALU (the calculator) and registers (tiny, super-fast scratch boxes).",
-    "hi": "CPU में नियंत्रण इकाई (संचालक), ALU (कैलकुलेटर) और रजिस्टर (छोटे, बेहद तेज़ डिब्बे) होते हैं।",
-    "hinglish": "CPU mein control unit (conductor), ALU (calculator) aur registers (chhote, bahut tez dibbe) hote hain."
+    "en": "Trace one instruction, ADD R1, [100]: PC = 200, R1 = 5, and memory address 100 holds 7.",
+    "hi": "एक निर्देश का पीछा करो, ADD R1, [100]: PC = 200, R1 = 5, और मेमोरी पते 100 पर 7 है।",
+    "hinglish": "Ek instruction ko trace karo, ADD R1, [100]: PC = 200, R1 = 5, aur memory address 100 par 7 hai."
    },
-   "visual": "anim:cpu-parts",
+   "visual": "diagram",
    "narration": {
-    "en": "The CPU has a control unit (the conductor), an ALU (the calculator) and registers (tiny, super-fast scratch boxes).",
-    "hi": "CPU में नियंत्रण इकाई (संचालक), ALU (कैलकुलेटर) और रजिस्टर (छोटे, बेहद तेज़ डिब्बे) होते हैं।",
-    "hinglish": "CPU mein control unit (conductor), ALU (calculator) aur registers (chhote, bahut tez dibbe) hote hain."
-   }
+    "en": "Let us run one real instruction, step by step, and watch the values change.",
+    "hi": "चलो एक असली निर्देश को कदम-कदम चलाएँ और संख्याएँ बदलते देखें।",
+    "hinglish": "Chalo ek asli instruction ko step by step chalaayein aur values badalte dekhein."
+   },
+   "diagram": {
+    "parts": [
+     {
+      "id": "pc",
+      "label": {
+       "en": "Program Counter",
+       "hi": "प्रोग्राम काउंटर",
+       "hinglish": "Program Counter"
+      },
+      "icon": "📍",
+      "note": {
+       "en": "the address of the next instruction",
+       "hi": "अगले निर्देश का पता",
+       "hinglish": "agle instruction ka address"
+      }
+     },
+     {
+      "id": "ir",
+      "label": {
+       "en": "Instruction Register",
+       "hi": "इंस्ट्रक्शन रजिस्टर",
+       "hinglish": "Instruction Register"
+      },
+      "icon": "📝",
+      "note": {
+       "en": "holds the instruction being run",
+       "hi": "चल रहा निर्देश रखता है",
+       "hinglish": "chal raha instruction rakhta hai"
+      }
+     },
+     {
+      "id": "cu",
+      "label": {
+       "en": "Control Unit",
+       "hi": "कंट्रोल यूनिट",
+       "hinglish": "Control Unit"
+      },
+      "icon": "🎛️",
+      "note": {
+       "en": "decodes the instruction and sends the signals",
+       "hi": "निर्देश को डिकोड करता है और सिग्नल भेजता है",
+       "hinglish": "instruction ko decode karta hai aur signals bhejta hai"
+      }
+     },
+     {
+      "id": "r1",
+      "label": {
+       "en": "Register R1",
+       "hi": "रजिस्टर R1",
+       "hinglish": "Register R1"
+      },
+      "icon": "🔢",
+      "note": {
+       "en": "a tiny, very fast store inside the CPU",
+       "hi": "CPU के अंदर छोटा, बहुत तेज़ भंडार",
+       "hinglish": "CPU ke andar chhota, bahut tez store"
+      }
+     },
+     {
+      "id": "alu",
+      "label": {
+       "en": "ALU",
+       "hi": "ALU",
+       "hinglish": "ALU"
+      },
+      "icon": "➕",
+      "note": {
+       "en": "does the arithmetic and logic",
+       "hi": "गणित और तर्क का काम करता है",
+       "hinglish": "maths aur logic ka kaam karta hai"
+      }
+     },
+     {
+      "id": "mem",
+      "label": {
+       "en": "Memory",
+       "hi": "मेमोरी",
+       "hinglish": "Memory"
+      },
+      "icon": "🗄️",
+      "note": {
+       "en": "address 200: the instruction; address 100: the number 7",
+       "hi": "पता 200: निर्देश; पता 100: संख्या 7",
+       "hinglish": "address 200: instruction; address 100: number 7"
+      }
+     }
+    ],
+    "rows": [
+     [
+      "pc",
+      "ir",
+      "cu"
+     ],
+     [
+      "r1",
+      "alu"
+     ],
+     [
+      "mem"
+     ]
+    ],
+    "links": [
+     {
+      "from": "mem",
+      "to": "ir",
+      "label": {
+       "en": "bus",
+       "hi": "बस",
+       "hinglish": "bus"
+      }
+     },
+     {
+      "from": "mem",
+      "to": "alu",
+      "label": {
+       "en": "bus",
+       "hi": "बस",
+       "hinglish": "bus"
+      }
+     }
+    ]
+   },
+   "beats": [
+    {
+     "narration": {
+      "en": "Fetch: the program counter says 200, so the CPU asks memory for whatever is at address 200.",
+      "hi": "फ़ेच: प्रोग्राम काउंटर 200 बताता है, तो CPU मेमोरी से पता 200 पर जो है वह माँगता है।",
+      "hinglish": "Fetch: program counter 200 batata hai, to CPU memory se address 200 par jo hai woh maangta hai."
+     },
+     "focus": "pc",
+     "values": {
+      "pc": "200",
+      "r1": "5"
+     }
+    },
+    {
+     "narration": {
+      "en": "The instruction ADD R1, [100] travels over the bus into the instruction register.",
+      "hi": "निर्देश ADD R1, [100] बस से होकर इंस्ट्रक्शन रजिस्टर में आता है।",
+      "hinglish": "Instruction ADD R1, [100] bus se hokar instruction register mein aata hai."
+     },
+     "focus": "ir",
+     "values": {
+      "pc": "200",
+      "ir": "ADD R1, [100]",
+      "r1": "5"
+     }
+    },
+    {
+     "narration": {
+      "en": "Decode: the control unit reads it as: add the number at memory address 100 to register R1.",
+      "hi": "डिकोड: कंट्रोल यूनिट इसे पढ़ती है: मेमोरी पते 100 वाली संख्या को रजिस्टर R1 में जोड़ो।",
+      "hinglish": "Decode: control unit ise padhti hai: memory address 100 wala number register R1 mein jodo."
+     },
+     "focus": "cu",
+     "values": {
+      "pc": "200",
+      "ir": "ADD R1, [100]",
+      "r1": "5"
+     }
+    },
+    {
+     "narration": {
+      "en": "Execute: the CPU reads address 100 from memory and gets 7.",
+      "hi": "एक्ज़िक्यूट: CPU मेमोरी का पता 100 पढ़ता है और 7 पाता है।",
+      "hinglish": "Execute: CPU memory ka address 100 padhta hai aur 7 paata hai."
+     },
+     "focus": "mem",
+     "values": {
+      "pc": "200",
+      "ir": "ADD R1, [100]",
+      "r1": "5",
+      "mem": "[100] = 7"
+     }
+    },
+    {
+     "narration": {
+      "en": "The ALU adds R1's 5 and the 7.",
+      "hi": "ALU, R1 के 5 और 7 को जोड़ता है।",
+      "hinglish": "ALU, R1 ke 5 aur 7 ko jodta hai."
+     },
+     "focus": "alu",
+     "values": {
+      "pc": "200",
+      "ir": "ADD R1, [100]",
+      "r1": "5",
+      "alu": "5 + 7",
+      "mem": "[100] = 7"
+     }
+    },
+    {
+     "narration": {
+      "en": "Write back: the result, 12, is stored in R1.",
+      "hi": "राइट बैक: नतीजा, 12, R1 में रखा जाता है।",
+      "hinglish": "Write back: result, 12, R1 mein rakha jaata hai."
+     },
+     "focus": "r1",
+     "values": {
+      "pc": "200",
+      "ir": "ADD R1, [100]",
+      "r1": "12",
+      "alu": "= 12",
+      "mem": "[100] = 7"
+     }
+    },
+    {
+     "narration": {
+      "en": "The program counter moves on to the next instruction's address, for example 201 when each instruction takes one memory cell, and the cycle starts again.",
+      "hi": "प्रोग्राम काउंटर अगले निर्देश के पते पर बढ़ जाता है, जैसे 201 अगर हर निर्देश एक मेमोरी खाना लेता है, और चक्र फिर शुरू होता है।",
+      "hinglish": "Program counter agle instruction ke address par badh jaata hai, jaise 201 agar har instruction ek memory cell leta hai, aur cycle phir shuru hoti hai."
+     },
+     "focus": "pc",
+     "values": {
+      "pc": "201",
+      "r1": "12"
+     }
+    }
+   ]
   },
   {
    "step": 3,
@@ -100,7 +469,7 @@
     "hi": "हर टिक: प्रोग्राम काउंटर वाला निर्देश लाओ, डिकोड करो, चलाओ, फिर अगले पर जाओ।",
     "hinglish": "Har tick: program counter wala instruction laao, decode karo, chalao, phir agle par jao."
    },
-   "visual": "anim:fde-cycle",
+   "visual": "cycle:📥 Fetch|🔍 Decode|⚡ Execute|✍️ Write back",
    "narration": {
     "en": "Each tick: fetch the instruction at the program counter, decode it, execute it, then move to the next.",
     "hi": "हर टिक: प्रोग्राम काउंटर वाला निर्देश लाओ, डिकोड करो, चलाओ, फिर अगले पर जाओ।",
@@ -110,15 +479,15 @@
   {
    "step": 4,
    "caption": {
-    "en": "Program and data share one path to memory, so the CPU often waits for memory — the von Neumann bottleneck.",
-    "hi": "प्रोग्राम और डेटा मेमोरी तक एक ही रास्ता बाँटते हैं, इसलिए CPU अक्सर मेमोरी का इंतज़ार करता है — वॉन न्यूमैन अड़चन।",
-    "hinglish": "Program aur data memory tak ek hi raasta share karte hain, isliye CPU aksar memory ka intezaar karta hai — von Neumann bottleneck."
+    "en": "Instructions and data share the path to memory, and memory is far slower than the CPU, so the CPU often waits: the von Neumann bottleneck.",
+    "hi": "निर्देश और डेटा मेमोरी तक एक ही रास्ता बाँटते हैं, और मेमोरी CPU से बहुत धीमी है, इसलिए CPU अक्सर इंतज़ार करता है: वॉन न्यूमैन बॉटलनेक।",
+    "hinglish": "Instructions aur data memory tak ek hi raasta share karte hain, aur memory CPU se bahut slow hai, isliye CPU aksar wait karta hai: von Neumann bottleneck."
    },
-   "visual": "anim:bottleneck",
+   "visual": "compare:⚙️ CPU: can do billions of steps a second|🐢 Memory path: shared by instructions and data, and much slower",
    "narration": {
-    "en": "Program and data share one path to memory, so the CPU often waits for memory — the von Neumann bottleneck.",
-    "hi": "प्रोग्राम और डेटा मेमोरी तक एक ही रास्ता बाँटते हैं, इसलिए CPU अक्सर मेमोरी का इंतज़ार करता है — वॉन न्यूमैन अड़चन।",
-    "hinglish": "Program aur data memory tak ek hi raasta share karte hain, isliye CPU aksar memory ka intezaar karta hai — von Neumann bottleneck."
+    "en": "It is a limit on how fast instructions and data can move between the CPU and memory, not one particular wire.",
+    "hi": "यह इस बात की सीमा है कि CPU और मेमोरी के बीच निर्देश और डेटा कितनी तेज़ी से आ-जा सकते हैं, कोई एक ख़ास तार नहीं।",
+    "hinglish": "Yeh is baat ki seema hai ki CPU aur memory ke beech instructions aur data kitni tezi se aa-ja sakte hain, koi ek khaas taar nahi."
    }
   }
  ],
@@ -134,6 +503,33 @@
   }
  },
  "understand": [
+  {
+   "heading": {
+    "en": "Why R1 becomes 12",
+    "hi": "R1 12 क्यों बनता है",
+    "hinglish": "R1 12 kyun banta hai"
+   },
+   "body": {
+    "en": "The CPU never sees \"23 + 19\" as words. The program is a list of instructions in memory. For ADD R1, [100]: the program counter (200) points at the instruction; it is fetched into the instruction register; the control unit decodes it; the operand at address 100 (7) is read over the bus; the ALU adds it to R1 (5); the result 12 is written back to R1; the program counter moves to the next instruction. Every program, from a calculator to a game, is millions of such small steps.",
+    "hi": "CPU \"23 + 19\" को कभी शब्दों की तरह नहीं देखता। प्रोग्राम मेमोरी में निर्देशों की सूची है। ADD R1, [100] के लिए: प्रोग्राम काउंटर (200) निर्देश की ओर इशारा करता है; वह इंस्ट्रक्शन रजिस्टर में लाया जाता है; कंट्रोल यूनिट उसे डिकोड करती है; पते 100 वाली संख्या (7) बस से पढ़ी जाती है; ALU उसे R1 (5) में जोड़ता है; नतीजा 12 वापस R1 में लिखा जाता है; प्रोग्राम काउंटर अगले निर्देश पर जाता है। हर प्रोग्राम, कैलकुलेटर से गेम तक, ऐसे लाखों छोटे कदम है।",
+    "hinglish": "CPU \"23 + 19\" ko kabhi words ki tarah nahi dekhta. Program memory mein instructions ki list hai. ADD R1, [100] ke liye: program counter (200) instruction ki taraf ishaara karta hai; woh instruction register mein laaya jaata hai; control unit use decode karti hai; address 100 wala number (7) bus se padha jaata hai; ALU use R1 (5) mein jodta hai; result 12 wapas R1 mein likha jaata hai; program counter agle instruction par jaata hai. Har program, calculator se game tak, aise laakhon chhote steps hai."
+   },
+   "analogy": {
+    "en": "The control unit is like an orchestra's conductor: it does not play, it tells each part when to act.",
+    "hi": "कंट्रोल यूनिट ऑर्केस्ट्रा के कंडक्टर जैसी है: वह ख़ुद नहीं बजाती, हर हिस्से को बताती है कब काम करना है।",
+    "hinglish": "Control unit orchestra ke conductor jaisi hai: woh khud nahi bajaati, har part ko batati hai kab kaam karna hai."
+   },
+   "limit": {
+    "en": "A conductor reads the music and can change the tempo. The control unit cannot choose anything: the instruction's bits decide exactly which signals it sends.",
+    "hi": "कंडक्टर संगीत पढ़ता है और लय बदल सकता है। कंट्रोल यूनिट कुछ नहीं चुन सकती: निर्देश के बिट ठीक-ठीक तय करते हैं कि वह कौन-से सिग्नल भेजे।",
+    "hinglish": "Conductor music padhta hai aur tempo badal sakta hai. Control unit kuch nahi chun sakti: instruction ke bits theek-theek tay karte hain ki woh kaunse signals bheje."
+   },
+   "realExample": {
+    "en": "A phone's processor runs this cycle billions of times a second, on several cores at once.",
+    "hi": "फ़ोन का प्रोसेसर यह चक्र हर सेकंड अरबों बार, कई कोर पर एक साथ, चलाता है।",
+    "hinglish": "Phone ka processor yeh cycle har second arabon baar, kai cores par ek saath, chalata hai."
+   }
+  },
   {
    "heading": {
     "en": "Instruction sets: x86, ARM, RISC-V",
@@ -176,6 +572,11 @@
     "en": "A 3 GHz CPU waiting ~100 ns for RAM loses about 300 clock cycles — enough time for hundreds of instructions.",
     "hi": "RAM के लिए ~100 ns रुकता 3 GHz CPU लगभग 300 घड़ी-चक्र खोता है — सैकड़ों निर्देशों जितना समय।",
     "hinglish": "RAM ke liye ~100 ns rukta 3 GHz CPU lagbhag 300 clock cycles khota hai — saikdon instructions jitna time."
+   },
+   "advanced": {
+    "en": "Modern chips keep the single shared memory of the von Neumann design, but split the level-1 cache next to each core into an instruction cache and a data cache, so both can be fetched in the same cycle. Designers call this a modified Harvard architecture. The bottleneck is therefore a limit of bandwidth and delay between processor and memory, not one physical wire that every chip has.",
+    "hi": "आधुनिक चिप वॉन न्यूमैन की एक साझा मेमोरी रखती हैं, पर हर कोर के पास वाले लेवल-1 कैश को इंस्ट्रक्शन कैश और डेटा कैश में बाँट देती हैं, ताकि दोनों एक ही चक्र में लाए जा सकें। इसे मॉडिफ़ाइड हार्वर्ड आर्किटेक्चर कहते हैं। इसलिए बॉटलनेक प्रोसेसर और मेमोरी के बीच बैंडविड्थ और देरी की सीमा है, कोई एक तार नहीं जो हर चिप में हो।",
+    "hinglish": "Modern chips von Neumann ki ek shared memory rakhti hain, par har core ke paas wale level-1 cache ko instruction cache aur data cache mein baant deti hain, taaki dono ek hi cycle mein laaye ja sakein. Ise modified Harvard architecture kehte hain. Isliye bottleneck processor aur memory ke beech bandwidth aur delay ki seema hai, koi ek taar nahi jo har chip mein ho."
    }
   }
  ],
@@ -343,6 +744,44 @@
     "difficulty": 2
    },
    {
+    "id": "q6",
+    "type": "mcq",
+    "prompt": {
+     "en": "PC = 300, R2 = 4 and memory address 50 holds 9. The instruction at 300 is ADD R2, [50]. After it runs, R2 is…",
+     "hi": "PC = 300, R2 = 4 और मेमोरी पते 50 पर 9 है। पते 300 पर निर्देश ADD R2, [50] है। इसके चलने के बाद R2 है…",
+     "hinglish": "PC = 300, R2 = 4 aur memory address 50 par 9 hai. Address 300 par instruction ADD R2, [50] hai. Iske chalne ke baad R2 hai…"
+    },
+    "options": [
+     {
+      "en": "9",
+      "hi": "9",
+      "hinglish": "9"
+     },
+     {
+      "en": "13",
+      "hi": "13",
+      "hinglish": "13"
+     },
+     {
+      "en": "54",
+      "hi": "54",
+      "hinglish": "54"
+     },
+     {
+      "en": "300",
+      "hi": "300",
+      "hinglish": "300"
+     }
+    ],
+    "answer": 1,
+    "explain": {
+     "en": "The CPU reads 9 from address 50, the ALU adds it to R2's 4, and 13 is written back to R2. The address (50) is where the number is, not the number itself.",
+     "hi": "CPU पते 50 से 9 पढ़ता है, ALU उसे R2 के 4 में जोड़ता है, और 13 वापस R2 में लिखा जाता है। पता (50) बताता है संख्या कहाँ है, वह ख़ुद संख्या नहीं।",
+     "hinglish": "CPU address 50 se 9 padhta hai, ALU use R2 ke 4 mein jodta hai, aur 13 wapas R2 mein likha jaata hai. Address (50) batata hai number kahan hai, woh khud number nahi."
+    },
+    "difficulty": 3
+   },
+   {
     "id": "q5",
     "type": "lab-check",
     "prompt": {
@@ -378,5 +817,76 @@
    "url": "https://riscv.org/about/",
    "licence": "fact reference"
   }
- ]
+ ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, when you type 23 + 19 into a calculator app, the answer appears almost at once.",
+   "hi": "{{name}}, जब तुम कैलकुलेटर ऐप में 23 + 19 लिखते हो, जवाब लगभग तुरंत आता है।",
+   "hinglish": "{{name}}, jab tum calculator app mein 23 + 19 likhte ho, jawab lagbhag turant aata hai."
+  },
+  "question": {
+   "en": "But how does the computer actually do it? Which part stores the instructions, which part does the adding, and how does the result reach the screen?",
+   "hi": "पर कंप्यूटर असल में यह करता कैसे है? कौन-सा हिस्सा निर्देश रखता है, कौन-सा जोड़ता है, और नतीजा स्क्रीन तक कैसे पहुँचता है?",
+   "hinglish": "Par computer asal mein yeh karta kaise hai? Kaunsa hissa instructions rakhta hai, kaunsa jodta hai, aur result screen tak kaise pahunchta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "While the calculator runs, where is the instruction \"add these two numbers\" kept?",
+   "hi": "कैलकुलेटर चलते समय \"इन दो संख्याओं को जोड़ो\" वाला निर्देश कहाँ रखा होता है?",
+   "hinglish": "Calculator chalte waqt \"in do numbers ko jodo\" wala instruction kahan rakha hota hai?"
+  },
+  "options": [
+   {
+    "en": "Built permanently into the ALU",
+    "hi": "ALU में हमेशा के लिए बना हुआ",
+    "hinglish": "ALU mein hamesha ke liye bana hua"
+   },
+   {
+    "en": "In memory, as numbers, just like the data",
+    "hi": "मेमोरी में, संख्याओं के रूप में, डेटा की तरह ही",
+    "hinglish": "Memory mein, numbers ke roop mein, data ki tarah hi"
+   },
+   {
+    "en": "In the keyboard",
+    "hi": "कीबोर्ड में",
+    "hinglish": "Keyboard mein"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "This is the stored-program idea: instructions are numbers in memory, side by side with the data. The CPU fetches them one by one, which is why the same machine can run any program.",
+   "hi": "यही स्टोर्ड-प्रोग्राम विचार है: निर्देश मेमोरी में संख्याएँ हैं, डेटा के साथ-साथ। CPU उन्हें एक-एक करके लाता है, इसीलिए एक ही मशीन कोई भी प्रोग्राम चला सकती है।",
+   "hinglish": "Yahi stored-program idea hai: instructions memory mein numbers hain, data ke saath-saath. CPU unhe ek-ek karke laata hai, isiliye ek hi machine koi bhi program chala sakti hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain why R1 changes from 5 to 12 when ADD R1, [100] runs.",
+   "hi": "समझाओ कि ADD R1, [100] चलने पर R1 5 से 12 क्यों हो जाता है।",
+   "hinglish": "Samjhao ki ADD R1, [100] chalne par R1 5 se 12 kyun ho jaata hai."
+  },
+  "checklist": [
+   {
+    "en": "The program counter (200) points to the instruction, which is fetched from memory.",
+    "hi": "प्रोग्राम काउंटर (200) निर्देश की ओर इशारा करता है, जो मेमोरी से लाया जाता है।",
+    "hinglish": "Program counter (200) instruction ki taraf ishaara karta hai, jo memory se laaya jaata hai."
+   },
+   {
+    "en": "The control unit decodes it: add what is at address 100 to R1.",
+    "hi": "कंट्रोल यूनिट उसे डिकोड करती है: पते 100 वाली चीज़ को R1 में जोड़ो।",
+    "hinglish": "Control unit use decode karti hai: address 100 wali cheez ko R1 mein jodo."
+   },
+   {
+    "en": "7 is read from address 100 and the ALU adds 5 + 7.",
+    "hi": "पते 100 से 7 पढ़ा जाता है और ALU 5 + 7 जोड़ता है।",
+    "hinglish": "Address 100 se 7 padha jaata hai aur ALU 5 + 7 jodta hai."
+   },
+   {
+    "en": "12 is written back to R1, and the program counter moves on.",
+    "hi": "12 वापस R1 में लिखा जाता है, और प्रोग्राम काउंटर आगे बढ़ता है।",
+    "hinglish": "12 wapas R1 mein likha jaata hai, aur program counter aage badhta hai."
+   }
+  ]
+ }
 }

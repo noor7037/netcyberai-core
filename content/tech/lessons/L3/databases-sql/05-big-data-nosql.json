@@ -34,6 +34,77 @@
    "hinglish": "Sharding, replication aur CAP trade-off batao"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, on a festival day, UPI handles crores of payments, far more than any single computer could store or process.",
+   "hi": "{{name}}, त्योहार के दिन UPI करोड़ों भुगतान सँभालता है, किसी एक कंप्यूटर के रखने या प्रोसेस करने से कहीं ज़्यादा।",
+   "hinglish": "{{name}}, festival ke din UPI crores payments sambhalta hai, kisi ek computer ke store ya process karne se kahin zyada."
+  },
+  "question": {
+   "en": "How do systems spread huge, fast data over many machines, and what do they give up to stay running?",
+   "hi": "सिस्टम विशाल, तेज़ डेटा को कई मशीनों में कैसे बाँटते हैं, और चलते रहने के लिए क्या छोड़ना पड़ता है?",
+   "hinglish": "Systems vishal, tez data ko kai machines mein kaise baantte hain, aur chalte rehne ke liye kya chhodna padta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A database is split across two data centres and the link between them breaks. What choice must a system make?",
+   "hi": "एक डेटाबेस दो डेटा सेंटरों में बँटा है और उनके बीच का संपर्क टूट जाता है। सिस्टम को कौन-सा चुनाव करना पड़ता है?",
+   "hinglish": "Ek database do data centres mein bata hai aur unke beech ka link toot jaata hai. System ko kaunsa choice karna padta hai?"
+  },
+  "options": [
+   {
+    "en": "No choice, both sides keep working and stay identical",
+    "hi": "कोई चुनाव नहीं, दोनों तरफ़ चलती रहती हैं और एक जैसी रहती हैं",
+    "hinglish": "Koi choice nahi, dono taraf chalti rehti hain aur ek jaisi rehti hain"
+   },
+   {
+    "en": "Refuse some writes to stay consistent, or accept them and sync later to stay available",
+    "hi": "सुसंगत रहने के लिए कुछ लेखन मना करो, या उपलब्ध रहने के लिए स्वीकारकर बाद में सिंक करो",
+    "hinglish": "Consistent rehne ke liye kuch writes mana karo, ya available rehne ke liye accept karke baad mein sync karo"
+   },
+   {
+    "en": "Delete one of the data centres",
+    "hi": "एक डेटा सेंटर मिटा दो",
+    "hinglish": "Ek data centre delete kar do"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "This is the CAP trade-off: when the network partitions, a system cannot be fully consistent and fully available at once. A bank balance may prefer consistency; a social feed may prefer availability and fix itself later. Big systems also use sharding (split data across servers) and replication (copies for safety and speed), and choose SQL or NoSQL by the access pattern.",
+   "hi": "यह CAP का समझौता है: नेटवर्क बँटने पर सिस्टम एक साथ पूरी तरह सुसंगत और पूरी तरह उपलब्ध नहीं हो सकता। बैंक बैलेंस सुसंगतता चुन सकता है; सोशल फ़ीड उपलब्धता चुनकर बाद में खुद ठीक हो सकता है। बड़े सिस्टम शार्डिंग (डेटा सर्वरों में बाँटना) और रेप्लिकेशन (सुरक्षा और गति के लिए प्रतियाँ) भी इस्तेमाल करते हैं, और पहुँच के तरीके से SQL या NoSQL चुनते हैं।",
+   "hinglish": "Yeh CAP ka trade-off hai: network partition hone par system ek saath poori tarah consistent aur poori tarah available nahi ho sakta. Bank balance consistency choose kar sakta hai; social feed availability choose karke baad mein khud theek ho sakta hai. Bade systems sharding (data ko servers mein baantna) aur replication (safety aur speed ke liye copies) bhi use karte hain, aur access pattern se SQL ya NoSQL chunte hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home why one computer cannot run something as big as UPI, and what sharding and replication do.",
+   "hi": "घर पर किसी को समझाओ कि UPI जितनी बड़ी चीज़ एक कंप्यूटर क्यों नहीं चला सकता, और शार्डिंग और रेप्लिकेशन क्या करते हैं।",
+   "hinglish": "Ghar par kisi ko samjhao ki UPI jitni badi cheez ek computer kyun nahi chala sakta, aur sharding aur replication kya karte hain."
+  },
+  "checklist": [
+   {
+    "en": "Big data means volume, velocity and variety too much for one machine.",
+    "hi": "बड़े डेटा का मतलब मात्रा, गति और विविधता जो एक मशीन के लिए बहुत हो।",
+    "hinglish": "Big data ka matlab volume, velocity aur variety jo ek machine ke liye bahut ho."
+   },
+   {
+    "en": "Sharding splits data across servers; replication keeps copies for safety and speed.",
+    "hi": "शार्डिंग डेटा सर्वरों में बाँटती है; रेप्लिकेशन सुरक्षा और गति के लिए प्रतियाँ रखती है।",
+    "hinglish": "Sharding data servers mein baantti hai; replication safety aur speed ke liye copies rakhti hai."
+   },
+   {
+    "en": "NoSQL shapes: key-value, document, wide-column, graph; SQL gives joins and ACID for money and marks.",
+    "hi": "NoSQL रूप: की-वैल्यू, डॉक्यूमेंट, वाइड-कॉलम, ग्राफ़; SQL पैसे और अंकों के लिए जॉइन और ACID देता है।",
+    "hinglish": "NoSQL shapes: key-value, document, wide-column, graph; SQL paison aur marks ke liye joins aur ACID deta hai."
+   },
+   {
+    "en": "CAP: when the network splits, choose consistency or availability, not both.",
+    "hi": "CAP: नेटवर्क बँटने पर सुसंगतता या उपलब्धता चुनो, दोनों नहीं।",
+    "hinglish": "CAP: network split hone par consistency ya availability chuno, dono nahi."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "NoSQL",
@@ -116,7 +187,7 @@
     "hi": "नेटवर्क बँटने पर प्रतिकृति को या तो लिखना मना करना होगा (सुसंगत रहे) या स्वीकार कर बाद में मिलाना होगा (उपलब्ध रहे)। यही CAP है।",
     "hinglish": "Network bantne par replica ko ya to writes mana karna hoga (consistent rahe) ya accept karke baad mein sync karna hoga (available rahe). Yahi CAP hai."
    },
-   "visual": "anim:cap-split",
+   "visual": "compare:🔒 Consistent: refuse some writes during the split|🌐 Available: accept writes, sync later",
    "narration": {
     "en": "When the network splits, a replica must either refuse writes (stay consistent) or accept them and sync later (stay available). That is CAP.",
     "hi": "नेटवर्क बँटने पर प्रतिकृति को या तो लिखना मना करना होगा (सुसंगत रहे) या स्वीकार कर बाद में मिलाना होगा (उपलब्ध रहे)। यही CAP है।",

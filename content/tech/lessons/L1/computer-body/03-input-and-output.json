@@ -33,6 +33,77 @@
    "hinglish": "Microphone, camera, screen, speaker jaise devices ko sort kar sakte ho."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you talk into a phone with your voice, and it shows your words on the screen.",
+   "hi": "{{name}}, तुम फ़ोन से अपनी आवाज़ में बात करते हो, और वह तुम्हारे शब्द स्क्रीन पर दिखाता है।",
+   "hinglish": "{{name}}, tum phone se apni awaaz mein baat karte ho, aur woh tumhare words screen par dikhata hai."
+  },
+  "question": {
+   "en": "Which parts send information in, and which parts bring information out?",
+   "hi": "कौन-से हिस्से जानकारी अंदर भेजते हैं और कौन-से बाहर लाते हैं?",
+   "hinglish": "Kaun se parts information andar bhejte hain aur kaun se bahar laate hain?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What do you think? A microphone and a speaker both deal with sound. Are they the same kind of device?",
+   "hi": "तुम्हें क्या लगता है? माइक्रोफ़ोन और स्पीकर दोनों आवाज़ से जुड़े हैं। क्या वे एक ही तरह के डिवाइस हैं?",
+   "hinglish": "Tumhe kya lagta hai? Microphone aur speaker dono sound se jude hain. Kya woh same type ke devices hain?"
+  },
+  "options": [
+   {
+    "en": "Yes, both are input devices",
+    "hi": "हाँ, दोनों इनपुट डिवाइस हैं",
+    "hinglish": "Haan, dono input devices hain"
+   },
+   {
+    "en": "No: the microphone sends sound in (input), the speaker brings sound out (output)",
+    "hi": "नहीं: माइक्रोफ़ोन आवाज़ अंदर भेजता है (इनपुट), स्पीकर बाहर लाता है (आउटपुट)",
+    "hinglish": "Nahin: microphone sound andar bhejta hai (input), speaker bahar laata hai (output)"
+   },
+   {
+    "en": "Yes, both are output devices",
+    "hi": "हाँ, दोनों आउटपुट डिवाइस हैं",
+    "hinglish": "Haan, dono output devices hain"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Input devices send information into the computer: keyboard, mouse, microphone, camera. Output devices bring results out: monitor, speaker, printer. A touchscreen does both.",
+   "hi": "इनपुट डिवाइस जानकारी कंप्यूटर में भेजते हैं: कीबोर्ड, माउस, माइक्रोफ़ोन, कैमरा। आउटपुट डिवाइस नतीजा बाहर लाते हैं: मॉनिटर, स्पीकर, प्रिंटर। टचस्क्रीन दोनों करती है।",
+   "hinglish": "Input devices information computer mein bhejte hain: keyboard, mouse, microphone, camera. Output devices result bahar laate hain: monitor, speaker, printer. Touchscreen dono karti hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: what is the difference between input and output?",
+   "hi": "घर पर किसी को समझाओ: इनपुट और आउटपुट में क्या फ़र्क़ है?",
+   "hinglish": "Ghar par kisi ko samjhao: input aur output mein kya fark hai?"
+  },
+  "checklist": [
+   {
+    "en": "Input devices give information to the computer.",
+    "hi": "इनपुट डिवाइस कंप्यूटर को जानकारी देते हैं।",
+    "hinglish": "Input devices computer ko information dete hain."
+   },
+   {
+    "en": "Output devices give results back so we see, hear or hold them.",
+    "hi": "आउटपुट डिवाइस नतीजा लौटाते हैं ताकि हम देखें, सुनें या हाथ में लें।",
+    "hinglish": "Output devices result lautate hain taaki hum dekhein, sunein ya haath mein lein."
+   },
+   {
+    "en": "Examples: mic and camera are input; screen and speaker are output.",
+    "hi": "उदाहरण: माइक और कैमरा इनपुट हैं; स्क्रीन और स्पीकर आउटपुट हैं।",
+    "hinglish": "Examples: mic aur camera input hain; screen aur speaker output hain."
+   },
+   {
+    "en": "A touchscreen is both.",
+    "hi": "टचस्क्रीन दोनों है।",
+    "hinglish": "Touchscreen dono hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Input",

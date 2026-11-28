@@ -34,6 +34,77 @@
    "hinglish": "Smartphone ke andar input, processing, output aur storage parts pehchaan sakte ho."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you type a message in WhatsApp, press send, and your friend's phone shows it a moment later.",
+   "hi": "{{name}}, तुम WhatsApp में संदेश लिखकर भेजते हो, और थोड़ी देर में तुम्हारे दोस्त के फ़ोन पर दिख जाता है।",
+   "hinglish": "{{name}}, tum WhatsApp mein message likhkar send karte ho, aur thodi der mein tumhare dost ke phone par dikh jaata hai."
+  },
+  "question": {
+   "en": "Can every computer job, even this one, be told in the same three steps?",
+   "hi": "क्या हर कंप्यूटर का काम, यह भी, उन्हीं तीन चरणों में बताया जा सकता है?",
+   "hinglish": "Kya har computer ka kaam, yeh bhi, unhi teen steps mein bataya ja sakta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What do you think? Is a smartphone a real computer, or something different?",
+   "hi": "तुम्हें क्या लगता है? स्मार्टफ़ोन असली कंप्यूटर है या कुछ और?",
+   "hinglish": "Tumhe kya lagta hai? Smartphone asli computer hai ya kuch aur?"
+  },
+  "options": [
+   {
+    "en": "Something different, a phone has no computer parts",
+    "hi": "कुछ और, फ़ोन में कंप्यूटर के हिस्से नहीं होते",
+    "hinglish": "Kuch aur, phone mein computer ke parts nahin hote"
+   },
+   {
+    "en": "A phone is only a calling machine with a screen",
+    "hi": "फ़ोन बस स्क्रीन वाली कॉल करने की मशीन है",
+    "hinglish": "Phone bas screen wali calling machine hai"
+   },
+   {
+    "en": "A real computer: it has input, a CPU for processing, output and storage in a tiny body",
+    "hi": "असली कंप्यूटर: इसमें इनपुट, प्रोसेसिंग वाला CPU, आउटपुट और स्टोरेज छोटे शरीर में हैं",
+    "hinglish": "Asli computer: ismein input, processing wala CPU, output aur storage chhote body mein hain"
+   }
+  ],
+  "answer": 2,
+  "explain": {
+   "en": "Every computer job is input, then process, then output, with storage keeping things for later. A phone has a touchscreen and mic for input, a CPU to process, a screen and speaker for output, and storage. It also runs an operating system.",
+   "hi": "हर कंप्यूटर का काम है इनपुट, फिर प्रोसेस, फिर आउटपुट, और स्टोरेज चीज़ें बाद के लिए रखता है। फ़ोन में टचस्क्रीन और माइक इनपुट हैं, CPU प्रोसेस करता है, स्क्रीन और स्पीकर आउटपुट हैं, और स्टोरेज है। उसमें ऑपरेटिंग सिस्टम भी चलता है।",
+   "hinglish": "Har computer ka kaam hai input, phir process, phir output, aur storage cheezein baad ke liye rakhta hai. Phone mein touchscreen aur mic input hain, CPU process karta hai, screen aur speaker output hain, aur storage hai. Usme operating system bhi chalta hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: how does a phone follow input, process, output?",
+   "hi": "घर पर किसी को समझाओ: फ़ोन इनपुट, प्रोसेस, आउटपुट कैसे करता है?",
+   "hinglish": "Ghar par kisi ko samjhao: phone input, process, output kaise karta hai?"
+  },
+  "checklist": [
+   {
+    "en": "Input: touch, voice or camera sends information in.",
+    "hi": "इनपुट: छूना, आवाज़ या कैमरा जानकारी अंदर भेजते हैं।",
+    "hinglish": "Input: touch, voice ya camera information andar bhejte hain."
+   },
+   {
+    "en": "Process: the CPU works on it.",
+    "hi": "प्रोसेस: CPU उस पर काम करता है।",
+    "hinglish": "Process: CPU us par kaam karta hai."
+   },
+   {
+    "en": "Output: the screen or speaker shows the result.",
+    "hi": "आउटपुट: स्क्रीन या स्पीकर नतीजा दिखाते हैं।",
+    "hinglish": "Output: screen ya speaker result dikhate hain."
+   },
+   {
+    "en": "Storage keeps things for later.",
+    "hi": "स्टोरेज चीज़ें बाद के लिए रखता है।",
+    "hinglish": "Storage cheezein baad ke liye rakhta hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Process",

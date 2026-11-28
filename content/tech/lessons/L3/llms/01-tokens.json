@@ -34,6 +34,77 @@
    "hi": "समझाना कि भारतीय भाषाओं में अधिक टोकन क्यों लग सकते हैं"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you type \"Why is the sky\" in a chat app and the reply starts appearing word by word.",
+   "hi": "{{name}}, तुम चैट ऐप में \"Why is the sky\" लिखते हो और जवाब शब्द-दर-शब्द आने लगता है।",
+   "hinglish": "{{name}}, tum chat app mein \"Why is the sky\" likhte ho aur reply word-by-word aane lagta hai."
+  },
+  "question": {
+   "en": "What is the model doing at each step, and why does the same question sometimes get a different answer?",
+   "hi": "हर चरण पर मॉडल क्या कर रहा है, और एक ही सवाल पर कभी अलग जवाब क्यों आता है?",
+   "hinglish": "Har step par model kya kar raha hai, aur ek hi sawal par kabhi alag answer kyun aata hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "At each step, what does a language model produce?",
+   "hi": "हर चरण पर भाषा मॉडल क्या बनाता है?",
+   "hinglish": "Har step par language model kya banata hai?"
+  },
+  "options": [
+   {
+    "en": "The full finished answer, which it then shows slowly",
+    "hi": "पूरा तैयार जवाब, जिसे वह धीरे-धीरे दिखाता है",
+    "hinglish": "Poora ready answer, jise woh dheere-dheere dikhata hai"
+   },
+   {
+    "en": "A probability for every token in its vocabulary for what comes next",
+    "hi": "आगे क्या आएगा, इसके लिए अपनी शब्दावली के हर टोकन की प्रायिकता",
+    "hinglish": "Aage kya aayega, iske liye apni vocabulary ke har token ki probability"
+   },
+   {
+    "en": "A search result copied from the internet",
+    "hi": "इंटरनेट से कॉपी किया सर्च परिणाम",
+    "hinglish": "Internet se copy kiya search result"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "The model outputs probabilities over the next token, one token is picked (temperature controls how adventurous the pick is), it is appended, and the loop repeats. Random sampling is why answers vary. Tokenizers built mostly on English can split Indian-language text into more tokens, which costs more.",
+   "hi": "मॉडल अगले टोकन पर प्रायिकताएँ देता है, एक टोकन चुना जाता है (टेम्परेचर तय करता है कि चुनाव कितना जोखिम भरा हो), वह जुड़ता है, और चक्र दोहराता है। यादृच्छिक चयन से जवाब बदलते हैं। ज़्यादातर अंग्रेज़ी पर बने टोकनाइज़र भारतीय भाषाओं को ज़्यादा टोकनों में तोड़ सकते हैं, जिससे लागत बढ़ती है।",
+   "hinglish": "Model agle token par probabilities deta hai, ek token chuna jaata hai (temperature decide karta hai ki chunav kitna adventurous ho), woh judta hai, aur loop repeat hota hai. Random sampling se answers badalte hain. Zyada tar English par bane tokenizers Indian languages ko zyada tokens mein tod sakte hain, jisse cost badhti hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend how a chatbot writes an answer one token at a time and why the answer can differ each time.",
+   "hi": "दोस्त को समझाओ कि चैटबॉट एक-एक टोकन करके जवाब कैसे लिखता है और जवाब हर बार अलग क्यों हो सकता है।",
+   "hinglish": "Friend ko samjhao ki chatbot ek-ek token karke answer kaise likhta hai aur answer har baar alag kyun ho sakta hai."
+  },
+  "checklist": [
+   {
+    "en": "Text is split into sub-word tokens, each an ID number",
+    "hi": "टेक्स्ट सब-वर्ड टोकनों में बँटता है, हर एक एक ID संख्या",
+    "hinglish": "Text sub-word tokens mein bantta hai, har ek ek ID number"
+   },
+   {
+    "en": "The model gives a probability for every possible next token",
+    "hi": "मॉडल हर संभव अगले टोकन की प्रायिकता देता है",
+    "hinglish": "Model har possible next token ki probability deta hai"
+   },
+   {
+    "en": "Sampling with temperature picks one; append and repeat",
+    "hi": "टेम्परेचर के साथ सैंपलिंग एक चुनती है; जोड़ो और दोहराओ",
+    "hinglish": "Temperature ke saath sampling ek chunti hai; append aur repeat"
+   },
+   {
+    "en": "Indian-language text may cost more tokens",
+    "hi": "भारतीय भाषा का टेक्स्ट ज़्यादा टोकन ले सकता है",
+    "hinglish": "Indian-language text zyada tokens le sakta hai"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Token",
@@ -74,7 +145,7 @@
     "hi": "\"Unbelievable\" तीन टोकन बनता है: \"Un\", \"belie\", \"vable\"। मॉडल के लिए हर टोकन बस एक आईडी संख्या है।",
     "hinglish": "\"Unbelievable\" teen tokens banta hai: \"Un\", \"belie\", \"vable\". Model ke liye har token bas ek ID number hai."
    },
-   "visual": "anim:token-split",
+   "visual": "flow:📝 \"Unbelievable\"|✂️ Un + belie + vable|🔢 Each piece is an ID number",
    "narration": {
     "en": "\"Unbelievable\" becomes three tokens: \"Un\", \"belie\", \"vable\". Each token is just an ID number for the model.",
     "hi": "\"Unbelievable\" तीन टोकन बनता है: \"Un\", \"belie\", \"vable\"। मॉडल के लिए हर टोकन बस एक आईडी संख्या है।",
@@ -88,7 +159,7 @@
     "hi": "मॉडल अब तक के सारे टोकन पढ़कर अपनी शब्दावली के हर टोकन को अगले के लिए संभावना देता है।",
     "hinglish": "Model ab tak ke saare tokens padh ke apni vocabulary ke har token ko agle ke liye probability deta hai."
    },
-   "visual": "anim:next-token-bars",
+   "visual": "flow:🔤 Tokens so far|📊 Probability for every token|🎲 Pick the next one",
    "narration": {
     "en": "The model reads all tokens so far and outputs a probability for every token in its vocabulary for what comes next.",
     "hi": "मॉडल अब तक के सारे टोकन पढ़कर अपनी शब्दावली के हर टोकन को अगले के लिए संभावना देता है।",
@@ -102,7 +173,7 @@
     "hi": "वह एक चुनता है, जोड़ता है, और दोहराता है। पूरा निबंध एक-एक टोकन करके लिखा जाता है।",
     "hinglish": "Woh ek chunta hai, jodta hai, aur repeat karta hai. Poora essay ek-ek token karke likha jaata hai."
    },
-   "visual": "anim:autoregressive-typing",
+   "visual": "cycle:📖 Read tokens so far|📊 Predict next-token probabilities|🎲 Pick one and append",
    "narration": {
     "en": "It picks one, appends it, and repeats. A whole essay is written one token at a time.",
     "hi": "वह एक चुनता है, जोड़ता है, और दोहराता है। पूरा निबंध एक-एक टोकन करके लिखा जाता है।",

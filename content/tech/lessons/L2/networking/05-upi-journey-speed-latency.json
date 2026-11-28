@@ -38,6 +38,77 @@
    "hinglish": "Download time ka andaaza laga sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you pay a shopkeeper by UPI and, within seconds, both of you get a message.",
+   "hi": "{{name}}, तुम दुकानदार को UPI से भुगतान करते हो और कुछ ही सेकंड में तुम दोनों को संदेश मिल जाता है।",
+   "hinglish": "{{name}}, tum shopkeeper ko UPI se payment karte ho aur kuch hi seconds mein tum dono ko message mil jaata hai."
+  },
+  "question": {
+   "en": "Whose computers does the payment pass through, and why can a call still lag even on a fast connection?",
+   "hi": "भुगतान किन-किन कंप्यूटरों से गुज़रता है, और तेज़ कनेक्शन पर भी कॉल में देरी क्यों हो सकती है?",
+   "hinglish": "Payment kin-kin computers se guzarta hai, aur fast connection par bhi call mein delay kyun ho sakti hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What is the difference between bandwidth and latency?",
+   "hi": "बैंडविड्थ और लेटेंसी में क्या फ़र्क है?",
+   "hinglish": "Bandwidth aur latency mein kya fark hai?"
+  },
+  "options": [
+   {
+    "en": "They are the same, both mean speed",
+    "hi": "दोनों एक ही हैं, दोनों का मतलब गति है",
+    "hinglish": "Dono same hain, dono ka matlab speed hai"
+   },
+   {
+    "en": "Bandwidth is how much data per second; latency is how long one packet takes to travel",
+    "hi": "बैंडविड्थ प्रति सेकंड कितना डेटा है; लेटेंसी एक पैकेट को पहुँचने में कितना समय लगता है",
+    "hinglish": "Bandwidth per second kitna data hai; latency ek packet ko pahunchne mein kitna time lagta hai"
+   },
+   {
+    "en": "Latency is only for satellites",
+    "hi": "लेटेंसी सिर्फ़ सैटेलाइट के लिए है",
+    "hinglish": "Latency sirf satellites ke liye hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Bandwidth is the width of the road, latency is the length of the trip. A big download needs bandwidth (time is about file size divided by bandwidth), while a game or video call feels laggy when latency is high, even on a wide road.",
+   "hi": "बैंडविड्थ सड़क की चौड़ाई है, लेटेंसी सफ़र की लंबाई। बड़े डाउनलोड को बैंडविड्थ चाहिए (समय लगभग फ़ाइल आकार ÷ बैंडविड्थ), जबकि गेम या वीडियो कॉल में लेटेंसी ज़्यादा हो तो चौड़ी सड़क पर भी देरी लगती है।",
+   "hinglish": "Bandwidth road ki chaudai hai, latency safar ki lambai. Bade download ko bandwidth chahiye (time lagbhag file size ÷ bandwidth), jabki game ya video call mein latency zyada ho to chaudi road par bhi lag lagta hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a UPI payment travels and what bandwidth and latency mean.",
+   "hi": "घर पर किसी को समझाओ कि UPI भुगतान कैसे चलता है और बैंडविड्थ व लेटेंसी का क्या मतलब है।",
+   "hinglish": "Ghar par kisi ko samjhao ki UPI payment kaise chalta hai aur bandwidth aur latency ka kya matlab hai."
+  },
+  "checklist": [
+   {
+    "en": "Your app sends an encrypted request to its bank, which passes it to NPCI's UPI switch.",
+    "hi": "तुम्हारा ऐप अपने बैंक को एन्क्रिप्टेड अनुरोध भेजता है, जो उसे NPCI के UPI स्विच तक पहुँचाता है।",
+    "hinglish": "Tumhara app apne bank ko encrypted request bhejta hai, jo use NPCI ke UPI switch tak pahunchata hai."
+   },
+   {
+    "en": "Your bank debits you, the shop's bank credits them, and both get confirmations.",
+    "hi": "तुम्हारा बैंक तुम्हें डेबिट करता है, दुकान का बैंक उन्हें क्रेडिट, और दोनों को पुष्टि मिलती है।",
+    "hinglish": "Tumhara bank tumhe debit karta hai, shop ka bank unhe credit, aur dono ko confirmation milti hai."
+   },
+   {
+    "en": "The UPI PIN is only for sending money; receiving needs no PIN.",
+    "hi": "UPI PIN सिर्फ़ पैसे भेजने के लिए है; पाने के लिए PIN नहीं चाहिए।",
+    "hinglish": "UPI PIN sirf paise bhejne ke liye hai; paane ke liye PIN nahi chahiye."
+   },
+   {
+    "en": "Bandwidth is how much per second; latency is the delay for one packet; download time is size divided by bandwidth.",
+    "hi": "बैंडविड्थ प्रति सेकंड कितना है; लेटेंसी एक पैकेट की देरी; डाउनलोड समय = आकार ÷ बैंडविड्थ।",
+    "hinglish": "Bandwidth per second kitna hai; latency ek packet ki delay; download time = size ÷ bandwidth."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "UPI",

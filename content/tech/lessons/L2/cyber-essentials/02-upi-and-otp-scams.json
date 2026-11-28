@@ -39,6 +39,82 @@
    "hinglish": "Kabhi kisi ko OTP nahi batate"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a \"buyer\" for your family's old cycle says, \"I have sent the money. Just approve the request on your UPI app to receive it.\"",
+   "hi": "{{name}}, तुम्हारे घर की पुरानी साइकिल का एक \"ख़रीदार\" कहता है, \"मैंने पैसे भेज दिए हैं। पाने के लिए बस अपने UPI ऐप में रिक्वेस्ट मंज़ूर कर दो।\"",
+   "hinglish": "{{name}}, tumhare ghar ki purani cycle ka ek \"buyer\" kehta hai, \"Maine paise bhej diye hain. Paane ke liye bas apne UPI app mein request approve kar do.\""
+  },
+  "question": {
+   "en": "Do you ever need to enter a PIN to get money into your account?",
+   "hi": "क्या अपने खाते में पैसे पाने के लिए कभी PIN डालना पड़ता है?",
+   "hinglish": "Kya apne account mein paise paane ke liye kabhi PIN dalna padta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "To receive ₹500 in your UPI account, what do you have to enter?",
+   "hi": "अपने UPI खाते में ₹500 पाने के लिए तुम्हें क्या डालना पड़ता है?",
+   "hinglish": "Apne UPI account mein ₹500 paane ke liye tumhein kya dalna padta hai?"
+  },
+  "options": [
+   {
+    "en": "Your UPI PIN",
+    "hi": "तुम्हारा UPI PIN",
+    "hinglish": "Tumhara UPI PIN"
+   },
+   {
+    "en": "The OTP the sender gives you",
+    "hi": "भेजने वाले का दिया OTP",
+    "hinglish": "Bhejne wale ka diya OTP"
+   },
+   {
+    "en": "Nothing at all",
+    "hi": "कुछ भी नहीं",
+    "hinglish": "Kuch bhi nahi"
+   },
+   {
+    "en": "Scan the sender's QR code",
+    "hi": "भेजने वाले का QR कोड स्कैन करो",
+    "hinglish": "Sender ka QR code scan karo"
+   }
+  ],
+  "answer": 2,
+  "explain": {
+   "en": "Receiving money needs no PIN, no scan and no approval; the sender does the work. If an app asks for your PIN or to approve a request, money is leaving your account.",
+   "hi": "पैसे पाने के लिए PIN, स्कैन या मंज़ूरी की ज़रूरत नहीं होती; काम भेजने वाला करता है। अगर ऐप तुमसे PIN या रिक्वेस्ट की मंज़ूरी माँगे, तो पैसे तुम्हारे खाते से जा रहे हैं।",
+   "hinglish": "Paise paane ke liye PIN, scan ya approval ki zaroorat nahi hoti; kaam bhejne wala karta hai. Agar app tumse PIN ya request ki approval maange, to paise tumhare account se ja rahe hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how UPI scams work and the golden rule that stops them.",
+   "hi": "घर पर किसी को समझाओ कि UPI धोखे कैसे काम करते हैं और कौन-सा सुनहरा नियम उन्हें रोकता है।",
+   "hinglish": "Ghar par kisi ko samjhao ki UPI scams kaise kaam karte hain aur kaunsa golden rule unhein rokta hai."
+  },
+  "checklist": [
+   {
+    "en": "You enter a UPI PIN only to pay, never to receive.",
+    "hi": "UPI PIN सिर्फ़ पैसे देने के लिए डालते हैं, पाने के लिए कभी नहीं।",
+    "hinglish": "UPI PIN sirf paise dene ke liye dalte hain, paane ke liye kabhi nahi."
+   },
+   {
+    "en": "Approving a collect request, or scanning a QR code, means paying.",
+    "hi": "कलेक्ट रिक्वेस्ट मंज़ूर करना या QR कोड स्कैन करना पैसे देना है।",
+    "hinglish": "Collect request approve karna ya QR code scan karna paise dena hai."
+   },
+   {
+    "en": "Screen-sharing apps let a stranger watch your PIN and OTP, so never install them for a caller.",
+    "hi": "स्क्रीन-शेयरिंग ऐप अजनबी को तुम्हारा PIN और OTP देखने देते हैं, इसलिए फ़ोन करने वाले के कहने पर कभी इंस्टॉल न करो।",
+    "hinglish": "Screen-sharing apps ajnabi ko tumhara PIN aur OTP dekhne dete hain, isliye caller ke kehne par kabhi install mat karo."
+   },
+   {
+    "en": "Never share an OTP, and report fast on 1930 if money has gone.",
+    "hi": "OTP किसी को न बताओ, और पैसे चले जाएँ तो जल्दी 1930 पर रिपोर्ट करो।",
+    "hinglish": "OTP kisi ko mat batao, aur paise chale jayein to jaldi 1930 par report karo."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "UPI",

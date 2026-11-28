@@ -38,6 +38,82 @@
    "hinglish": "Jaante ho forwards tez kyun failte hain aur kab rokne chahiye"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a forward lands in the family group: \"Drink salt water to cure fever. Share before it is deleted!\"",
+   "hi": "{{name}}, परिवार के ग्रुप में एक फ़ॉरवर्ड आता है: \"बुखार ठीक करने के लिए नमक का पानी पियो। डिलीट होने से पहले शेयर करो!\"",
+   "hinglish": "{{name}}, family group mein ek forward aata hai: \"Bukhar theek karne ke liye namak ka paani piyo. Delete hone se pehle share karo!\""
+  },
+  "question": {
+   "en": "Should you forward it? How can you check a message like this in a few minutes?",
+   "hi": "क्या इसे आगे भेजना चाहिए? ऐसे संदेश को कुछ मिनटों में कैसे जाँचें?",
+   "hinglish": "Kya ise aage bhejna chahiye? Aise message ko kuch minutes mein kaise check karein?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Which sign most suggests that a viral message may be fake?",
+   "hi": "कौन-सा संकेत सबसे ज़्यादा बताता है कि वायरल संदेश नक़ली हो सकता है?",
+   "hinglish": "Kaunsa sign sabse zyada batata hai ki viral message fake ho sakta hai?"
+  },
+  "options": [
+   {
+    "en": "Many people have already forwarded it",
+    "hi": "बहुत लोग इसे पहले ही आगे भेज चुके हैं",
+    "hinglish": "Bahut log ise pehle hi aage bhej chuke hain"
+   },
+   {
+    "en": "It is shocking and urgent and names no source",
+    "hi": "यह चौंकाने वाला और जल्दबाज़ी वाला है, और कोई स्रोत नहीं बताता",
+    "hinglish": "Yeh chaunkane wala aur urgent hai, aur koi source nahi batata"
+   },
+   {
+    "en": "It includes a photo",
+    "hi": "इसमें एक फ़ोटो है",
+    "hinglish": "Isme ek photo hai"
+   },
+   {
+    "en": "It is written in good language",
+    "hi": "यह अच्छी भाषा में लिखा है",
+    "hinglish": "Yeh achhi language mein likha hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Many forwards do not make something true. False messages spread because they are shocking and emotional, and \"share before it is deleted\" pushes you to forward without checking. A real claim names a source you can look up.",
+   "hi": "बहुत सारे फ़ॉरवर्ड किसी बात को सच नहीं बनाते। झूठे संदेश इसलिए फैलते हैं कि वे चौंकाते और भावुक करते हैं, और \"डिलीट होने से पहले शेयर करो\" बिना जाँचे आगे भेजने को उकसाता है। असली दावा ऐसा स्रोत बताता है जिसे तुम ढूँढ सको।",
+   "hinglish": "Bahut saare forwards kisi baat ko sach nahi banate. Jhoothe messages isliye failte hain ki woh chaunkate aur emotional karte hain, aur \"delete hone se pehle share karo\" bina check kiye aage bhejne ko ukasata hai. Asli claim aisa source batata hai jise tum dhoondh sako."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how to check a viral message before forwarding it.",
+   "hi": "घर पर किसी को समझाओ कि वायरल संदेश को आगे भेजने से पहले कैसे जाँचें।",
+   "hinglish": "Ghar par kisi ko samjhao ki viral message ko aage bhejne se pehle kaise check karein."
+  },
+  "checklist": [
+   {
+    "en": "Misinformation is false and shared by people who believe it; disinformation is spread deliberately.",
+    "hi": "भ्रामक सूचना ग़लत है और विश्वास करने वाले साझा करते हैं; दुष्प्रचार जान-बूझकर फैलाया जाता है।",
+    "hinglish": "Misinformation galat hai aur vishwas karne wale share karte hain; disinformation jaan-boojhkar phailaya jaata hai."
+   },
+   {
+    "en": "Fake news spreads because it is shocking, emotional and urgent.",
+    "hi": "नक़ली ख़बर इसलिए फैलती है कि वह चौंकाती, भावुक करती और जल्दबाज़ी करवाती है।",
+    "hinglish": "Fake news isliye failti hai ki woh chaunkati, emotional karti aur jaldbaazi karwati hai."
+   },
+   {
+    "en": "SIFT: Stop, Investigate the source, Find better coverage, Trace it to the original.",
+    "hi": "SIFT: रुको, स्रोत की जाँच करो, बेहतर कवरेज ढूँढो, मूल तक पहुँचो।",
+    "hinglish": "SIFT: Ruko, source ki jaanch karo, better coverage dhoondho, original tak pahuncho."
+   },
+   {
+    "en": "If you cannot verify it, do not forward it, and kindly tell family where to check.",
+    "hi": "अगर जाँच न सको तो आगे मत भेजो, और परिवार को प्यार से बताओ कि कहाँ जाँचें।",
+    "hinglish": "Agar check na kar sako to aage mat bhejo, aur family ko pyaar se batao ki kahan check karein."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Misinformation",
@@ -100,7 +176,7 @@
     "hi": "कुछ भी फ़ॉरवर्ड करने से पहले SIFT उपयोग करो।",
     "hinglish": "Kuch bhi forward karne se pehle SIFT use karo."
    },
-   "visual": "code",
+   "visual": "flow:✋ Stop|🔍 Investigate source|📰 Find better coverage|🧭 Trace to origin",
    "narration": {
     "en": "Not sure? Don’t forward.",
     "hi": "पक्का नहीं? फ़ॉरवर्ड मत करो।",

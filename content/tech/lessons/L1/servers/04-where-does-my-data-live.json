@@ -40,6 +40,77 @@
    "hinglish": "Jaante ho ki backup copy rakhna kyon samajhdaari hai."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you drop your phone and the screen cracks. Your photos are still on your mother's phone too.",
+   "hi": "{{name}}, तुम्हारा फ़ोन गिरता है और स्क्रीन टूट जाती है। तुम्हारी फ़ोटो माँ के फ़ोन में भी हैं।",
+   "hinglish": "{{name}}, tumhara phone girta hai aur screen toot jaati hai. Tumhari photos Mummy ke phone mein bhi hain."
+  },
+  "question": {
+   "en": "Why is it good to keep a photo in two places?",
+   "hi": "फ़ोटो को दो जगह रखना अच्छा क्यों है?",
+   "hinglish": "Photo ko do jagah rakhna accha kyun hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "If your phone breaks, what happens to photos saved only on that phone?",
+   "hi": "अगर फ़ोन टूट जाए, तो सिर्फ़ उसी फ़ोन में रखी फ़ोटो का क्या होता है?",
+   "hinglish": "Agar phone toot jaye, to sirf usi phone mein rakhi photos ka kya hota hai?"
+  },
+  "options": [
+   {
+    "en": "They can be lost, because there is no other copy",
+    "hi": "वे खो सकती हैं, क्योंकि कोई और कॉपी नहीं है",
+    "hinglish": "Woh kho sakti hain, kyunki koi aur copy nahi hai"
+   },
+   {
+    "en": "They always jump to the cloud by themselves",
+    "hi": "वे अपने-आप हमेशा क्लाउड में पहुँच जाती हैं",
+    "hinglish": "Woh apne-aap hamesha cloud mein pahunch jaati hain"
+   },
+   {
+    "en": "They are safe because phones never lose photos",
+    "hi": "वे सुरक्षित हैं क्योंकि फ़ोन कभी फ़ोटो नहीं खोते",
+    "hinglish": "Woh surakshit hain kyunki phone kabhi photos nahi khote"
+   }
+  ],
+  "answer": 0,
+  "explain": {
+   "en": "Photos saved only on a device are lost if it breaks. Photos uploaded to a server live on someone else's computer, so a second copy can save them.",
+   "hi": "सिर्फ़ डिवाइस में रखी फ़ोटो डिवाइस टूटने पर खो सकती हैं। सर्वर पर अपलोड की गई फ़ोटो किसी और के कंप्यूटर पर रहती हैं, इसलिए दूसरी कॉपी उन्हें बचा सकती है।",
+   "hinglish": "Sirf device mein rakhi photos device tootne par kho sakti hain. Server par upload ki gayi photos kisi aur ke computer par rehti hain, isliye doosri copy unhe bacha sakti hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Tell someone at home: where do saved photos live?",
+   "hi": "घर पर किसी को बताओ: रखी हुई फ़ोटो कहाँ रहती हैं?",
+   "hinglish": "Ghar par kisi ko batao: rakhi hui photos kahan rehti hain?"
+  },
+  "checklist": [
+   {
+    "en": "Some live inside my phone.",
+    "hi": "कुछ मेरे फ़ोन के अंदर रहती हैं।",
+    "hinglish": "Kuch mere phone ke andar rehti hain."
+   },
+   {
+    "en": "Uploaded ones live on a server far away.",
+    "hi": "अपलोड की हुई दूर के सर्वर पर रहती हैं।",
+    "hinglish": "Upload ki hui door ke server par rehti hain."
+   },
+   {
+    "en": "The cloud is someone else's computer.",
+    "hi": "क्लाउड किसी और का कंप्यूटर है।",
+    "hinglish": "Cloud kisi aur ka computer hai."
+   },
+   {
+    "en": "Two copies keep photos safe.",
+    "hi": "दो कॉपी फ़ोटो को सुरक्षित रखती हैं।",
+    "hinglish": "Do copies photos ko surakshit rakhti hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Cloud",

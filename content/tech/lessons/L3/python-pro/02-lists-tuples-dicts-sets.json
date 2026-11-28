@@ -34,6 +34,77 @@
    "hinglish": "Mutable vs immutable samjhao"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you want to count how often each word appears in a school notice, so a plain list of words is not enough.",
+   "hi": "{{name}}, तुम स्कूल की सूचना में हर शब्द कितनी बार आता है यह गिनना चाहते हो, इसलिए शब्दों की सादी सूची काफ़ी नहीं है।",
+   "hinglish": "{{name}}, tum school ki notice mein har word kitni baar aata hai yeh ginna chahte ho, isliye words ki simple list kaafi nahi hai."
+  },
+  "question": {
+   "en": "Which container should hold the words, the counts, the unique words and a fixed pair, and why does the choice matter?",
+   "hi": "शब्दों, गिनतियों, अनूठे शब्दों और एक तय जोड़ी के लिए कौन-सा कंटेनर चुनें, और यह चुनाव क्यों मायने रखता है?",
+   "hinglish": "Words, counts, unique words aur ek fixed pair ke liye kaunsa container chunein, aur yeh choice kyun matter karti hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "After a = [1, 2, 3] and b = a, you run b.append(4). What is a?",
+   "hi": "a = [1, 2, 3] और b = a के बाद तुम b.append(4) चलाते हो। a क्या है?",
+   "hinglish": "a = [1, 2, 3] aur b = a ke baad tum b.append(4) chalate ho. a kya hai?"
+  },
+  "options": [
+   {
+    "en": "[1, 2, 3], because b is a separate copy",
+    "hi": "[1, 2, 3], क्योंकि b अलग प्रति है",
+    "hinglish": "[1, 2, 3], kyunki b alag copy hai"
+   },
+   {
+    "en": "[1, 2, 3, 4], because both names point to the same list",
+    "hi": "[1, 2, 3, 4], क्योंकि दोनों नाम एक ही सूची की ओर हैं",
+    "hinglish": "[1, 2, 3, 4], kyunki dono names ek hi list ki taraf hain"
+   },
+   {
+    "en": "An error, because lists cannot be changed",
+    "hi": "त्रुटि, क्योंकि सूचियाँ बदली नहीं जा सकतीं",
+    "hinglish": "Error, kyunki lists badli nahi ja sakti"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "b = a does not copy; it gives the same list a second name. Lists, dicts and sets are mutable, so a change through either name shows through both. Use b = a.copy() or list(a) for a real copy. Tuples are immutable, so this cannot happen to them.",
+   "hi": "b = a प्रति नहीं बनाता; वह उसी सूची को दूसरा नाम देता है। सूची, डिक्शनरी और सेट परिवर्तनीय हैं, इसलिए किसी भी नाम से बदलाव दोनों में दिखता है। असली प्रति के लिए b = a.copy() या list(a) इस्तेमाल करो। ट्यूपल अपरिवर्तनीय हैं, इसलिए उनके साथ ऐसा नहीं होता।",
+   "hinglish": "b = a copy nahi banata; woh usi list ko doosra naam deta hai. Lists, dicts aur sets mutable hain, isliye kisi bhi naam se change dono mein dikhta hai. Asli copy ke liye b = a.copy() ya list(a) use karo. Tuples immutable hain, isliye unke saath aisa nahi hota."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home when you would pick a list, a dictionary, a set or a tuple.",
+   "hi": "घर पर किसी को समझाओ कि तुम सूची, डिक्शनरी, सेट या ट्यूपल कब चुनोगे।",
+   "hinglish": "Ghar par kisi ko samjhao ki tum list, dictionary, set ya tuple kab chunoge."
+  },
+  "checklist": [
+   {
+    "en": "List: ordered and changeable; tuple: ordered but fixed; dict: key to value; set: unique items only.",
+    "hi": "लिस्ट: क्रमबद्ध और बदलने योग्य; ट्यूपल: क्रमबद्ध पर तय; डिक्शनरी: कुंजी से मान; सेट: सिर्फ़ अनूठे आइटम।",
+    "hinglish": "List: ordered aur changeable; tuple: ordered par fixed; dict: key se value; set: sirf unique items."
+   },
+   {
+    "en": "A dict counts words with count.get(w, 0) + 1, and key lookup is near-instant.",
+    "hi": "डिक्शनरी count.get(w, 0) + 1 से शब्द गिनती है, और कुंजी खोज लगभग तुरंत है।",
+    "hinglish": "Dict count.get(w, 0) + 1 se words ginti hai, aur key lookup lagbhag turant hai."
+   },
+   {
+    "en": "Mutable types can change in place; b = a gives a second name, not a copy.",
+    "hi": "परिवर्तनीय प्रकार जगह पर बदल सकते हैं; b = a दूसरा नाम देता है, प्रति नहीं।",
+    "hinglish": "Mutable types jagah par badal sakte hain; b = a doosra naam deta hai, copy nahi."
+   },
+   {
+    "en": "Tuples are immutable, so they are safe for fixed records and can be dictionary keys.",
+    "hi": "ट्यूपल अपरिवर्तनीय हैं, इसलिए तय रिकॉर्ड के लिए सुरक्षित हैं और डिक्शनरी की कुंजी बन सकते हैं।",
+    "hinglish": "Tuples immutable hain, isliye fixed records ke liye safe hain aur dictionary key ban sakte hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "List",
@@ -102,7 +173,7 @@
     "hi": "set(words) सिर्फ़ अनोखे शब्द रखता है: 4। x in a_set जाँच लाखों पर भी लगभग तुरंत।",
     "hinglish": "set(words) sirf unique words rakhta hai: 4. x in a_set check crore items par bhi lagbhag turant."
    },
-   "visual": "anim:set-dedupe",
+   "visual": "flow:📃 Six words in a list|🧺 set(words)|✅ Four unique words",
    "narration": {
     "en": "set(words) keeps only unique words: 4. Checking x in a_set is near-instant even for millions.",
     "hi": "set(words) सिर्फ़ अनोखे शब्द रखता है: 4। x in a_set जाँच लाखों पर भी लगभग तुरंत।",

@@ -34,6 +34,77 @@
    "hinglish": "Samjhao virtual memory processes ko kaise alag aur protected rakhti hai"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you open a game that needs several gigabytes on a phone with less free memory, and it still runs.",
+   "hi": "{{name}}, तुम एक गेम खोलते हो जिसे कई गीगाबाइट चाहिए, जबकि फ़ोन में खाली मेमोरी कम है, और वह फिर भी चलता है।",
+   "hinglish": "{{name}}, tum ek game kholte ho jise kai gigabytes chahiye, jabki phone mein free memory kam hai, aur woh phir bhi chalta hai."
+  },
+  "question": {
+   "en": "How can every app believe it owns its own huge, private memory?",
+   "hi": "हर ऐप को यह भरोसा कैसे होता है कि उसके पास अपनी बड़ी, निजी मेमोरी है?",
+   "hinglish": "Har app ko yeh bharosa kaise hota hai ki uske paas apni badi, private memory hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Two apps both use the memory address 5000. What happens?",
+   "hi": "दो ऐप दोनों पता 5000 इस्तेमाल करते हैं। क्या होता है?",
+   "hinglish": "Do apps dono address 5000 use karte hain. Kya hota hai?"
+  },
+  "options": [
+   {
+    "en": "They overwrite each other's data",
+    "hi": "वे एक-दूसरे का डेटा मिटा देते हैं",
+    "hinglish": "Woh ek-doosre ka data overwrite kar dete hain"
+   },
+   {
+    "en": "Each sees its own address 5000, which the MMU maps to a different real place in RAM",
+    "hi": "हर एक को अपना पता 5000 दिखता है, जिसे MMU RAM की अलग असली जगह से जोड़ता है",
+    "hinglish": "Har ek ko apna address 5000 dikhta hai, jise MMU RAM ki alag real jagah se jodta hai"
+   },
+   {
+    "en": "The OS refuses to run the second app",
+    "hi": "OS दूसरा ऐप चलाने से मना कर देता है",
+    "hinglish": "OS doosra app chalane se mana kar deta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "These are virtual addresses. The MMU and a page table per process translate each virtual page into a real frame in RAM, so the same number can mean different places. If a page is not in RAM, a page fault lets the kernel load it from disk. A process has no table entry for another's memory, so it cannot even name it.",
+   "hi": "ये आभासी पते हैं। MMU और हर प्रोसेस की पेज टेबल हर आभासी पेज को RAM के असली फ़्रेम में बदलती है, इसलिए वही संख्या अलग जगह हो सकती है। पेज RAM में न हो तो पेज फ़ॉल्ट कर्नेल को उसे डिस्क से लाने देता है। प्रोसेस की टेबल में दूसरे की मेमोरी की प्रविष्टि ही नहीं होती, इसलिए वह उसका नाम भी नहीं ले सकता।",
+   "hinglish": "Yeh virtual addresses hain. MMU aur har process ki page table har virtual page ko RAM ke real frame mein badalti hai, isliye wahi number alag jagah ho sakta hai. Page RAM mein na ho toh page fault kernel ko use disk se laane deta hai. Process ki table mein doosre ki memory ki entry hi nahi hoti, isliye woh uska naam bhi nahi le sakta."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how two apps can use the same memory address without clashing.",
+   "hi": "घर पर किसी को समझाओ कि दो ऐप एक ही मेमोरी पता बिना टकराए कैसे इस्तेमाल कर सकते हैं।",
+   "hinglish": "Ghar par kisi ko samjhao ki do apps ek hi memory address bina takraye kaise use kar sakte hain."
+  },
+  "checklist": [
+   {
+    "en": "Each process uses virtual addresses; memory is cut into pages (often 4 KB).",
+    "hi": "हर प्रोसेस आभासी पते इस्तेमाल करता है; मेमोरी पेज (अक्सर 4 KB) में कटी होती है।",
+    "hinglish": "Har process virtual addresses use karta hai; memory pages (aksar 4 KB) mein kati hoti hai."
+   },
+   {
+    "en": "The MMU uses the page table to map a virtual page to a real frame in RAM.",
+    "hi": "MMU पेज टेबल से आभासी पेज को RAM के असली फ़्रेम से जोड़ता है।",
+    "hinglish": "MMU page table se virtual page ko RAM ke real frame se jodta hai."
+   },
+   {
+    "en": "A page fault makes the kernel load the page from disk and retry; too much of this is thrashing.",
+    "hi": "पेज फ़ॉल्ट पर कर्नेल पेज डिस्क से लाकर फिर कोशिश करता है; इसका बहुत होना थ्रैशिंग है।",
+    "hinglish": "Page fault par kernel page disk se laakar phir koshish karta hai; iska bahut hona thrashing hai."
+   },
+   {
+    "en": "Isolation: a process has no page-table entry for another's memory, and pages can be read-only or no-execute.",
+    "hi": "अलगाव: प्रोसेस की पेज टेबल में दूसरे की मेमोरी नहीं होती, और पेज रीड-ओनली या नो-एक्ज़ीक्यूट हो सकते हैं।",
+    "hinglish": "Isolation: process ki page table mein doosre ki memory nahi hoti, aur pages read-only ya no-execute ho sakte hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Virtual address",
@@ -88,7 +159,7 @@
     "hi": "मेमोरी 4 KB पेजों में कटी है। MMU चिप पेज तालिकाओं से हर वर्चुअल पेज को RAM के असली फ़्रेम से जोड़ता है।",
     "hinglish": "Memory 4 KB pages mein kati hai. MMU chip page tables se har virtual page ko RAM ke asli frame se jodta hai."
    },
-   "visual": "anim:page-map",
+   "visual": "flow:🔢 Virtual address|🗺️ MMU checks page table|🧱 Real frame in RAM",
    "narration": {
     "en": "Memory is cut into 4 KB pages. The MMU chip uses page tables to map each virtual page to a real frame in RAM.",
     "hi": "मेमोरी 4 KB पेजों में कटी है। MMU चिप पेज तालिकाओं से हर वर्चुअल पेज को RAM के असली फ़्रेम से जोड़ता है।",
@@ -102,7 +173,7 @@
     "hi": "अगर पेज RAM में नहीं, पेज फ़ॉल्ट से कर्नेल उसे डिस्क से लाकर दोबारा कोशिश करता है — धीरे, पर बिना दिखे।",
     "hinglish": "Agar page RAM mein nahi, page fault se kernel use disk se laakar dobaara try karta hai — dheere, par bina dikhe."
    },
-   "visual": "anim:fault-load",
+   "visual": "flow:📱 App touches a page|⚠️ Page fault|💾 Kernel loads it from disk|🔁 Access retried",
    "narration": {
     "en": "If a page is not in RAM, a page fault lets the kernel load it from disk and retry — slowly, but invisibly.",
     "hi": "अगर पेज RAM में नहीं, पेज फ़ॉल्ट से कर्नेल उसे डिस्क से लाकर दोबारा कोशिश करता है — धीरे, पर बिना दिखे।",

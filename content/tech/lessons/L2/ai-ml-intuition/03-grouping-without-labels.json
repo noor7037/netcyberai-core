@@ -37,6 +37,82 @@
    "hinglish": "Clustering ke real uses bata sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you come back from a trip with 200 photos and no captions, and your cousin sorts them into piles: beach, temple, food.",
+   "hi": "{{name}}, तुम यात्रा से 200 फ़ोटो लेकर लौटते हो, किसी पर नाम नहीं, और तुम्हारा कज़िन उन्हें ढेरों में बाँट देता है: समुद्र तट, मंदिर, खाना।",
+   "hinglish": "{{name}}, tum trip se 200 photos leke lautte ho, kisi par caption nahi, aur tumhara cousin unhein piles mein baant deta hai: beach, temple, khana."
+  },
+  "question": {
+   "en": "Nobody told him the pile names. How could a computer make groups without any labels?",
+   "hi": "उसे ढेरों के नाम किसी ने नहीं बताए। बिना किसी लेबल के कंप्यूटर समूह कैसे बना सकता है?",
+   "hinglish": "Use piles ke naam kisi ne nahi bataye. Bina kisi label ke computer groups kaise bana sakta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "In k-means with k = 3, how does the computer form its groups?",
+   "hi": "k = 3 वाले k-means में कंप्यूटर अपने समूह कैसे बनाता है?",
+   "hinglish": "k = 3 wale k-means mein computer apne groups kaise banata hai?"
+  },
+  "options": [
+   {
+    "en": "It is told the right group for each point",
+    "hi": "उसे हर बिंदु का सही समूह बताया जाता है",
+    "hinglish": "Use har point ka sahi group bataya jaata hai"
+   },
+   {
+    "en": "It picks 3 centres, each point joins its nearest centre, the centres move to the middle of their points, and this repeats",
+    "hi": "वह 3 केंद्र चुनता है, हर बिंदु अपने सबसे पास के केंद्र से जुड़ता है, केंद्र अपने बिंदुओं के बीच में खिसकते हैं, और यह दोहराया जाता है",
+    "hinglish": "Woh 3 centres chunta hai, har point apne sabse paas ke centre se judta hai, centres apne points ke beech mein khisakte hain, aur yeh repeat hota hai"
+   },
+   {
+    "en": "It sorts the points alphabetically",
+    "hi": "वह बिंदुओं को अक्षर-क्रम में लगाता है",
+    "hinglish": "Woh points ko alphabetically lagata hai"
+   },
+   {
+    "en": "It picks three points at random and stops",
+    "hi": "वह तीन बिंदु यादृच्छिक चुनकर रुक जाता है",
+    "hinglish": "Woh teen points random chunkar ruk jaata hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "k-means repeats two steps: each point joins its nearest centre, then each centre moves to the middle of its points. The groups settle on points that are naturally close, with no labels needed.",
+   "hi": "k-means दो चरण दोहराता है: हर बिंदु अपने सबसे पास के केंद्र से जुड़ता है, फिर हर केंद्र अपने बिंदुओं के बीच में आ जाता है। बिना लेबल के ही समूह उन बिंदुओं पर टिकते हैं जो स्वाभाविक रूप से पास हैं।",
+   "hinglish": "k-means do steps repeat karta hai: har point apne sabse paas ke centre se judta hai, phir har centre apne points ke beech mein aa jaata hai. Bina labels ke hi groups un points par tikte hain jo naturally paas hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a computer can find groups without labels.",
+   "hi": "घर पर किसी को समझाओ कि कंप्यूटर बिना लेबल के समूह कैसे ढूँढ सकता है।",
+   "hinglish": "Ghar par kisi ko samjhao ki computer bina labels ke groups kaise dhoondh sakta hai."
+  },
+  "checklist": [
+   {
+    "en": "Unsupervised learning finds groups in data with no labels, while supervised learning uses labels.",
+    "hi": "अनसुपरवाइज़्ड लर्निंग बिना लेबल के डेटा में समूह ढूँढती है, जबकि सुपरवाइज़्ड लेबल इस्तेमाल करती है।",
+    "hinglish": "Unsupervised learning bina labels ke data mein groups dhoondhti hai, jabki supervised labels use karti hai."
+   },
+   {
+    "en": "k-means: each point joins its nearest centre, then each centre moves to the middle of its points, and the two steps repeat.",
+    "hi": "k-means: हर बिंदु सबसे पास के केंद्र से जुड़ता है, फिर हर केंद्र अपने बिंदुओं के बीच में आता है, और दोनों चरण दोहराते हैं।",
+    "hinglish": "k-means: har point sabse paas ke centre se judta hai, phir har centre apne points ke beech mein aata hai, aur dono steps repeat hote hain."
+   },
+   {
+    "en": "Choosing k matters: too few groups mix different things, too many split real groups.",
+    "hi": "k का चुनाव मायने रखता है: बहुत कम समूह अलग चीज़ें मिला देते हैं, बहुत ज़्यादा असली समूह तोड़ देते हैं।",
+    "hinglish": "k ka chunaav matter karta hai: bahut kam groups alag cheezein mila dete hain, bahut zyada asli groups tod dete hain."
+   },
+   {
+    "en": "Real uses include grouping customers or similar items.",
+    "hi": "असली उपयोगों में ग्राहकों या मिलती-जुलती चीज़ों को समूहों में बाँटना है।",
+    "hinglish": "Real uses mein customers ya milti-julti cheezon ko groups mein baantna hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Unsupervised learning",

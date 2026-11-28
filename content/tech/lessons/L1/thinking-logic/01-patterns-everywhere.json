@@ -33,6 +33,72 @@
    "hinglish": "Rangoli, motiyon aur hafte ke dino mein pattern pehchaan sakte ho."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you see a rangoli at Diwali: red, yellow, red, yellow, all around the door.",
+   "hi": "{{name}}, दिवाली पर तुम रंगोली देखते हो: लाल, पीला, लाल, पीला, पूरे दरवाज़े के चारों ओर।",
+   "hinglish": "{{name}}, Diwali par tum rangoli dekhte ho: laal, peela, laal, peela, poore darwaaze ke charon taraf."
+  },
+  "question": {
+   "en": "How can you tell which colour comes next before you see it?",
+   "hi": "देखने से पहले तुम कैसे बता सकते हो कि अगला रंग कौन-सा आएगा?",
+   "hinglish": "Dekhne se pehle tum kaise bata sakte ho ki agla colour kaun sa aayega?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What do you think? Red, blue, blue, red, blue, blue, red, … What comes next?",
+   "hi": "तुम्हें क्या लगता है? लाल, नीला, नीला, लाल, नीला, नीला, लाल, … अगला क्या आएगा?",
+   "hinglish": "Tumhe kya lagta hai? Laal, neela, neela, laal, neela, neela, laal, … Agla kya aayega?"
+  },
+  "options": [
+   {
+    "en": "Red again",
+    "hi": "फिर लाल",
+    "hinglish": "Phir laal"
+   },
+   {
+    "en": "Blue, because the part red-blue-blue repeats",
+    "hi": "नीला, क्योंकि लाल-नीला-नीला हिस्सा दोहराता है",
+    "hinglish": "Neela, kyunki laal-neela-neela wala part repeat hota hai"
+   },
+   {
+    "en": "Nobody can know",
+    "hi": "कोई नहीं जान सकता",
+    "hinglish": "Koi nahin jaan sakta"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Find the part that repeats: red, blue, blue. After red comes blue. When you know the repeating part, you can guess what comes next.",
+   "hi": "दोहराने वाला हिस्सा ढूँढो: लाल, नीला, नीला। लाल के बाद नीला आता है। जब दोहराने वाला हिस्सा पता हो, तो अगला अंदाज़ा लग जाता है।",
+   "hinglish": "Repeat hone wala part dhoondo: laal, neela, neela. Laal ke baad neela aata hai. Jab repeating part pata ho, to agla guess ho jaata hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Tell someone at home: what is a pattern, and how does it help you?",
+   "hi": "घर पर किसी को बताओ: पैटर्न क्या है, और वह कैसे मदद करता है?",
+   "hinglish": "Ghar par kisi ko batao: pattern kya hai, aur woh kaise help karta hai?"
+  },
+  "checklist": [
+   {
+    "en": "A pattern is something that repeats.",
+    "hi": "पैटर्न वह है जो दोहराता है।",
+    "hinglish": "Pattern woh hai jo repeat hota hai."
+   },
+   {
+    "en": "Find the part that repeats.",
+    "hi": "दोहराने वाला हिस्सा ढूँढो।",
+    "hinglish": "Repeat hone wala part dhoondo."
+   },
+   {
+    "en": "Then you can guess what comes next.",
+    "hi": "फिर तुम अगला अंदाज़ा लगा सकते हो।",
+    "hinglish": "Phir tum agla guess kar sakte ho."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Pattern",

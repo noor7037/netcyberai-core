@@ -38,6 +38,77 @@
    "hinglish": "Samjha sakte ho ki har naya bit ginti ko double kyon kar deta hai."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you count on your fingers: 1, 2, 3... and you run out at ten.",
+   "hi": "{{name}}, तुम उँगलियों पर गिनते हो: 1, 2, 3... और दस पर उँगलियाँ ख़त्म हो जाती हैं।",
+   "hinglish": "{{name}}, tum ungliyon par ginte ho: 1, 2, 3... aur das par ungliyan khatam ho jaati hain."
+  },
+  "question": {
+   "en": "Could you count much higher with the same fingers by using a cleverer idea?",
+   "hi": "क्या किसी चतुर तरीक़े से उन्हीं उँगलियों पर बहुत आगे तक गिन सकते हो?",
+   "hinglish": "Kya kisi smart tareeke se unhi ungliyon par bahut aage tak gin sakte ho?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What do you think? Each finger is either up (1) or down (0). How high can the 5 fingers of one hand count?",
+   "hi": "तुम्हें क्या लगता है? हर उँगली या तो ऊपर (1) है या नीचे (0)। एक हाथ की 5 उँगलियाँ कितनी ऊँचाई तक गिन सकती हैं?",
+   "hinglish": "Tumhe kya lagta hai? Har ungli ya to up (1) hai ya down (0). Ek haath ki 5 ungliyan kitne tak gin sakti hain?"
+  },
+  "options": [
+   {
+    "en": "Up to 5",
+    "hi": "5 तक",
+    "hinglish": "5 tak"
+   },
+   {
+    "en": "Up to 10",
+    "hi": "10 तक",
+    "hinglish": "10 tak"
+   },
+   {
+    "en": "Up to 31, because each finger is worth double the last: 1, 2, 4, 8, 16",
+    "hi": "31 तक, क्योंकि हर उँगली पिछली से दोगुनी है: 1, 2, 4, 8, 16",
+    "hinglish": "31 tak, kyunki har ungli pichhli se double hai: 1, 2, 4, 8, 16"
+   }
+  ],
+  "answer": 2,
+  "explain": {
+   "en": "In binary each place is worth 2 times the one before: 1, 2, 4, 8, 16. Add the fingers that are up. All five up is 1 + 2 + 4 + 8 + 16 = 31. Every new bit doubles how far you can count.",
+   "hi": "बाइनरी में हर स्थान पिछले से 2 गुना है: 1, 2, 4, 8, 16। जो उँगलियाँ ऊपर हैं उन्हें जोड़ो। पाँचों ऊपर हों तो 1 + 2 + 4 + 8 + 16 = 31। हर नया बिट गिनती की सीमा दोगुनी कर देता है।",
+   "hinglish": "Binary mein har place pichhle se 2 guna hai: 1, 2, 4, 8, 16. Jo ungliyan up hain unhe jodo. Paanchon up hon to 1 + 2 + 4 + 8 + 16 = 31. Har naya bit counting ki limit double kar deta hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: how do you show a number on your fingers in binary?",
+   "hi": "घर पर किसी को समझाओ: उँगलियों पर बाइनरी में संख्या कैसे दिखाते हैं?",
+   "hinglish": "Ghar par kisi ko samjhao: ungliyon par binary mein number kaise dikhate hain?"
+  },
+  "checklist": [
+   {
+    "en": "Each finger has a value: 1, 2, 4, 8, 16.",
+    "hi": "हर उँगली का मान है: 1, 2, 4, 8, 16।",
+    "hinglish": "Har ungli ki value hai: 1, 2, 4, 8, 16."
+   },
+   {
+    "en": "Raise the fingers that add up to the number.",
+    "hi": "जिन उँगलियों का जोड़ संख्या के बराबर हो उन्हें उठाओ।",
+    "hinglish": "Jin ungliyon ka jod number ke barabar ho unhe uthao."
+   },
+   {
+    "en": "Up is 1, down is 0, so one hand shows 0 to 31.",
+    "hi": "ऊपर 1, नीचे 0, इसलिए एक हाथ 0 से 31 दिखाता है।",
+    "hinglish": "Up 1, down 0, isliye ek haath 0 se 31 dikhata hai."
+   },
+   {
+    "en": "Each new bit doubles how far you can count.",
+    "hi": "हर नया बिट गिनती की सीमा दोगुनी करता है।",
+    "hinglish": "Har naya bit counting ki limit double karta hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Place value",

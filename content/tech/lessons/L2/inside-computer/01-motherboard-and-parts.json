@@ -42,7 +42,17 @@
    "term": "Motherboard",
    "hinglish": "Main board jis pe sab parts lagte hain",
    "en": "The main circuit board that connects every part",
-   "hi": "मुख्य सर्किट बोर्ड जो हर भाग को जोड़ता है"
+   "hi": "मुख्य सर्किट बोर्ड जो हर भाग को जोड़ता है",
+   "does": {
+    "en": "connects the parts and carries data and power",
+    "hi": "हिस्सों को जोड़ता है और डेटा व बिजली पहुँचाता है",
+    "hinglish": "parts ko jodta hai aur data aur bijli pahunchata hai"
+   },
+   "where": {
+    "en": "desktops and laptops",
+    "hi": "डेस्कटॉप और लैपटॉप",
+    "hinglish": "desktops aur laptops"
+   }
   },
   {
    "term": "Bus",
@@ -61,36 +71,433 @@
    "hinglish": "Bijli dene wala box",
    "en": "Power Supply Unit: turns 230 V AC into low DC voltages",
    "hi": "पावर सप्लाई यूनिट: 230 V AC को कम DC वोल्टेज में बदलती है"
+  },
+  {
+   "term": "CPU",
+   "en": "Central processing unit: executes program instructions",
+   "hi": "सेंट्रल प्रोसेसिंग यूनिट: प्रोग्राम के निर्देश चलाता है",
+   "hinglish": "Central processing unit: program ke instructions chalata hai",
+   "does": {
+    "en": "runs every program, one instruction at a time, very fast",
+    "hi": "हर प्रोग्राम को एक-एक निर्देश करके बहुत तेज़ी से चलाता है",
+    "hinglish": "har program ko ek-ek instruction karke bahut tezi se chalata hai"
+   },
+   "where": {
+    "en": "every computer and phone",
+    "hi": "हर कंप्यूटर और फ़ोन",
+    "hinglish": "har computer aur phone"
+   }
+  },
+  {
+   "term": "RAM",
+   "en": "Fast working memory, emptied when the power goes",
+   "hi": "तेज़ काम की मेमोरी, बिजली जाते ही ख़ाली",
+   "hinglish": "Tez working memory, bijli jaate hi khaali",
+   "does": {
+    "en": "holds what is open right now",
+    "hi": "अभी जो खुला है उसे रखती है",
+    "hinglish": "abhi jo khula hai use rakhti hai"
+   },
+   "where": {
+    "en": "next to the processor",
+    "hi": "प्रोसेसर के पास",
+    "hinglish": "processor ke paas"
+   }
+  },
+  {
+   "term": "Storage",
+   "en": "Keeps files with no power: SSD, hard disk or phone flash",
+   "hi": "बिना बिजली फ़ाइलें रखता है: SSD, हार्ड डिस्क या फ़ोन फ़्लैश",
+   "hinglish": "Bina bijli files rakhta hai: SSD, hard disk ya phone flash",
+   "does": {
+    "en": "keeps photos, apps and documents for later",
+    "hi": "फ़ोटो, ऐप और दस्तावेज़ बाद के लिए रखता है",
+    "hinglish": "photos, apps aur documents baad ke liye rakhta hai"
+   },
+   "where": {
+    "en": "the 128 GB on a phone's box",
+    "hi": "फ़ोन के डिब्बे पर लिखा 128 GB",
+    "hinglish": "phone ke dabbe par likha 128 GB"
+   }
   }
  ],
  "see": [
   {
    "step": 1,
    "caption": {
-    "en": "A computer does four things: takes input, processes it, gives output, and stores data.",
-    "hi": "कंप्यूटर चार काम करता है: इनपुट लेता है, प्रोसेस करता है, आउटपुट देता है, और डेटा रखता है।",
-    "hinglish": "Computer chaar kaam karta hai: input leta hai, process karta hai, output deta hai, aur data store karta hai."
+    "en": "Follow one selfie: camera → processor → RAM → storage → GPU → screen.",
+    "hi": "एक सेल्फ़ी का सफ़र: कैमरा → प्रोसेसर → RAM → स्टोरेज → GPU → स्क्रीन।",
+    "hinglish": "Ek selfie ka safar: camera → processor → RAM → storage → GPU → screen."
    },
-   "visual": "flow:⌨️ Input|🧠 Process|🖥️ Output|💾 Storage",
+   "visual": "diagram",
    "narration": {
-    "en": "Keyboard, touch and mic are inputs; the screen and speaker are outputs.",
-    "hi": "कीबोर्ड, टच और माइक इनपुट हैं; स्क्रीन और स्पीकर आउटपुट हैं।",
-    "hinglish": "Keyboard, touch aur mic inputs hain; screen aur speaker outputs."
-   }
+    "en": "Let us follow your selfie through the phone, one part at a time.",
+    "hi": "चलो तुम्हारी सेल्फ़ी को फ़ोन के अंदर एक-एक हिस्से से गुज़रते देखें।",
+    "hinglish": "Chalo tumhari selfie ko phone ke andar ek-ek hisse se guzarte dekhein."
+   },
+   "diagram": {
+    "parts": [
+     {
+      "id": "camera",
+      "label": {
+       "en": "Camera",
+       "hi": "कैमरा",
+       "hinglish": "Camera"
+      },
+      "icon": "📷",
+      "note": {
+       "en": "turns light into numbers",
+       "hi": "रोशनी को संख्याओं में बदलता है",
+       "hinglish": "roshni ko numbers mein badalta hai"
+      }
+     },
+     {
+      "id": "cpu",
+      "label": {
+       "en": "Processor (CPU)",
+       "hi": "प्रोसेसर (CPU)",
+       "hinglish": "Processor (CPU)"
+      },
+      "icon": "⚙️",
+      "note": {
+       "en": "carries out the instructions that improve the picture",
+       "hi": "तस्वीर सुधारने वाले निर्देश चलाता है",
+       "hinglish": "picture sudhaarne wale instructions chalata hai"
+      }
+     },
+     {
+      "id": "ram",
+      "label": {
+       "en": "RAM",
+       "hi": "RAM",
+       "hinglish": "RAM"
+      },
+      "icon": "📋",
+      "note": {
+       "en": "holds the picture while it is being worked on",
+       "hi": "काम चलते समय तस्वीर रखती है",
+       "hinglish": "kaam chalte waqt picture rakhti hai"
+      }
+     },
+     {
+      "id": "storage",
+      "label": {
+       "en": "Storage",
+       "hi": "स्टोरेज",
+       "hinglish": "Storage"
+      },
+      "icon": "💾",
+      "note": {
+       "en": "keeps the photo even with the power off",
+       "hi": "बिजली बंद होने पर भी फ़ोटो रखता है",
+       "hinglish": "bijli band hone par bhi photo rakhta hai"
+      }
+     },
+     {
+      "id": "gpu",
+      "label": {
+       "en": "GPU",
+       "hi": "GPU",
+       "hinglish": "GPU"
+      },
+      "icon": "🎨",
+      "note": {
+       "en": "works out the colour of every pixel",
+       "hi": "हर पिक्सेल का रंग निकालता है",
+       "hinglish": "har pixel ka colour nikaalta hai"
+      }
+     },
+     {
+      "id": "screen",
+      "label": {
+       "en": "Screen",
+       "hi": "स्क्रीन",
+       "hinglish": "Screen"
+      },
+      "icon": "📱",
+      "note": {
+       "en": "shows the result",
+       "hi": "नतीजा दिखाती है",
+       "hinglish": "result dikhati hai"
+      }
+     }
+    ],
+    "rows": [
+     [
+      "camera",
+      "cpu",
+      "ram"
+     ],
+     [
+      "storage",
+      "gpu",
+      "screen"
+     ]
+    ]
+   },
+   "beats": [
+    {
+     "narration": {
+      "en": "The camera's sensor turns light into millions of numbers: one for each tiny dot of the picture.",
+      "hi": "कैमरे का सेंसर रोशनी को लाखों संख्याओं में बदलता है: तस्वीर के हर छोटे बिंदु के लिए एक।",
+      "hinglish": "Camera ka sensor roshni ko laakhon numbers mein badalta hai: picture ke har chhote dot ke liye ek."
+     },
+     "focus": "camera"
+    },
+    {
+     "narration": {
+      "en": "The processor carries out instructions on those numbers: it sharpens the picture and fixes the colours. It does not think; it follows instructions very fast.",
+      "hi": "प्रोसेसर उन संख्याओं पर निर्देश चलाता है: तस्वीर को साफ़ करता है और रंग ठीक करता है। वह सोचता नहीं; बहुत तेज़ी से निर्देश मानता है।",
+      "hinglish": "Processor un numbers par instructions chalata hai: picture ko sharp karta hai aur colours theek karta hai. Woh sochta nahi; bahut tezi se instructions follow karta hai."
+     },
+     "focus": "cpu"
+    },
+    {
+     "narration": {
+      "en": "While this work goes on, the picture sits in RAM, the fast working memory. RAM forgets everything when the power goes.",
+      "hi": "जब तक यह काम चलता है, तस्वीर RAM में रहती है, जो तेज़ काम वाली मेमोरी है। बिजली जाते ही RAM सब भूल जाती है।",
+      "hinglish": "Jab tak yeh kaam chalta hai, picture RAM mein rehti hai, jo tez working memory hai. Bijli jaate hi RAM sab bhool jaati hai."
+     },
+     "focus": "ram"
+    },
+    {
+     "narration": {
+      "en": "When you press the shutter, the finished photo is saved to storage, which keeps it even when the phone is off.",
+      "hi": "शटर दबाते ही पूरी फ़ोटो स्टोरेज में सेव होती है, जो फ़ोन बंद होने पर भी उसे रखता है।",
+      "hinglish": "Shutter dabaate hi poori photo storage mein save hoti hai, jo phone band hone par bhi use rakhta hai."
+     },
+     "focus": "storage"
+    },
+    {
+     "narration": {
+      "en": "To show it, the GPU works out the colour of every pixel, all at the same time.",
+      "hi": "दिखाने के लिए GPU हर पिक्सेल का रंग एक साथ निकालता है।",
+      "hinglish": "Dikhane ke liye GPU har pixel ka colour ek saath nikaalta hai."
+     },
+     "focus": "gpu"
+    },
+    {
+     "narration": {
+      "en": "And the screen lights up those pixels: there is your selfie.",
+      "hi": "और स्क्रीन उन पिक्सेल को चमकाती है: लो, तुम्हारी सेल्फ़ी।",
+      "hinglish": "Aur screen un pixels ko chamkaati hai: lo, tumhari selfie."
+     },
+     "focus": "screen"
+    }
+   ]
   },
   {
    "step": 2,
    "caption": {
-    "en": "Everything plugs into the motherboard. Copper traces on it are the “roads” (buses) for data and power.",
-    "hi": "सब कुछ मदरबोर्ड में लगता है। उस पर तांबे की रेखाएँ डेटा और बिजली की “सड़कें” (बस) हैं।",
-    "hinglish": "Sab kuch motherboard mein lagta hai. Us pe copper ki lines data aur power ki “sadkein” (buses) hain."
+    "en": "In a desktop computer these parts sit on one big board, the motherboard, joined by copper paths called buses.",
+    "hi": "डेस्कटॉप कंप्यूटर में ये हिस्से एक बड़े बोर्ड, मदरबोर्ड, पर लगे होते हैं, जो बस नाम के ताँबे के रास्तों से जुड़े होते हैं।",
+    "hinglish": "Desktop computer mein yeh parts ek bade board, motherboard, par lage hote hain, jo bus naam ke copper raaston se jude hote hain."
    },
-   "visual": "lab:pc-builder-3d",
+   "visual": "diagram",
    "narration": {
-    "en": "Each part has its own shaped slot so it cannot go in the wrong place.",
-    "hi": "हर भाग का अपने आकार का स्लॉट है ताकि वह ग़लत जगह न लगे।",
-    "hinglish": "Har part ka apna shape wala slot hai taaki galat jagah na lage."
-   }
+    "en": "Now open a desktop computer and look at the board everything plugs into.",
+    "hi": "अब एक डेस्कटॉप कंप्यूटर खोलो और वह बोर्ड देखो जिस पर सब लगता है।",
+    "hinglish": "Ab ek desktop computer kholo aur woh board dekho jis par sab lagta hai."
+   },
+   "diagram": {
+    "parts": [
+     {
+      "id": "board",
+      "label": {
+       "en": "Motherboard",
+       "hi": "मदरबोर्ड",
+       "hinglish": "Motherboard"
+      },
+      "icon": "🟩",
+      "note": {
+       "en": "connects every part and carries data and power between them",
+       "hi": "हर हिस्से को जोड़ता है और उनके बीच डेटा और बिजली पहुँचाता है",
+       "hinglish": "har part ko jodta hai aur unke beech data aur bijli pahunchata hai"
+      }
+     },
+     {
+      "id": "cpu",
+      "label": {
+       "en": "CPU in its socket",
+       "hi": "सॉकेट में CPU",
+       "hinglish": "Socket mein CPU"
+      },
+      "icon": "⚙️",
+      "note": {
+       "en": "executes the program's instructions",
+       "hi": "प्रोग्राम के निर्देश चलाता है",
+       "hinglish": "program ke instructions chalata hai"
+      }
+     },
+     {
+      "id": "ram",
+      "label": {
+       "en": "RAM sticks",
+       "hi": "RAM स्टिक",
+       "hinglish": "RAM sticks"
+      },
+      "icon": "📋",
+      "note": {
+       "en": "working memory, emptied when power goes",
+       "hi": "काम की मेमोरी, बिजली जाते ही ख़ाली",
+       "hinglish": "working memory, bijli jaate hi khaali"
+      }
+     },
+     {
+      "id": "ssd",
+      "label": {
+       "en": "SSD",
+       "hi": "SSD",
+       "hinglish": "SSD"
+      },
+      "icon": "💾",
+      "note": {
+       "en": "storage that keeps files with no power",
+       "hi": "बिना बिजली फ़ाइलें रखने वाला स्टोरेज",
+       "hinglish": "bina bijli files rakhne wala storage"
+      }
+     },
+     {
+      "id": "gpu",
+      "label": {
+       "en": "Graphics card (GPU)",
+       "hi": "ग्राफ़िक्स कार्ड (GPU)",
+       "hinglish": "Graphics card (GPU)"
+      },
+      "icon": "🎨",
+      "note": {
+       "en": "draws the screen; also good at many sums at once",
+       "hi": "स्क्रीन बनाता है; एक साथ कई गणनाओं में भी अच्छा",
+       "hinglish": "screen banata hai; ek saath kai calculations mein bhi achha"
+      }
+     },
+     {
+      "id": "psu",
+      "label": {
+       "en": "Power supply (PSU)",
+       "hi": "पावर सप्लाई (PSU)",
+       "hinglish": "Power supply (PSU)"
+      },
+      "icon": "🔌",
+      "note": {
+       "en": "turns wall power into the steady low voltages the parts need",
+       "hi": "दीवार की बिजली को हिस्सों के लायक़ स्थिर कम वोल्टेज में बदलता है",
+       "hinglish": "deewar ki bijli ko parts ke layak steady low voltage mein badalta hai"
+      }
+     }
+    ],
+    "rows": [
+     [
+      "cpu",
+      "ram"
+     ],
+     [
+      "board"
+     ],
+     [
+      "ssd",
+      "gpu",
+      "psu"
+     ]
+    ],
+    "links": [
+     {
+      "from": "board",
+      "to": "cpu",
+      "label": {
+       "en": "bus",
+       "hi": "बस",
+       "hinglish": "bus"
+      }
+     },
+     {
+      "from": "board",
+      "to": "ram",
+      "label": {
+       "en": "memory bus",
+       "hi": "मेमोरी बस",
+       "hinglish": "memory bus"
+      }
+     },
+     {
+      "from": "board",
+      "to": "ssd",
+      "label": {
+       "en": "storage link",
+       "hi": "स्टोरेज कड़ी",
+       "hinglish": "storage link"
+      }
+     },
+     {
+      "from": "board",
+      "to": "gpu",
+      "label": {
+       "en": "graphics slot",
+       "hi": "ग्राफ़िक्स स्लॉट",
+       "hinglish": "graphics slot"
+      }
+     },
+     {
+      "from": "psu",
+      "to": "board",
+      "label": {
+       "en": "power",
+       "hi": "बिजली",
+       "hinglish": "bijli"
+      }
+     }
+    ]
+   },
+   "beats": [
+    {
+     "narration": {
+      "en": "The motherboard is the big green board. Its copper paths, the buses, carry data between the parts.",
+      "hi": "मदरबोर्ड बड़ा हरा बोर्ड है। इसके ताँबे के रास्ते, यानी बस, हिस्सों के बीच डेटा ले जाते हैं।",
+      "hinglish": "Motherboard bada hara board hai. Iske copper raaste, yaani bus, parts ke beech data le jaate hain."
+     },
+     "focus": "board"
+    },
+    {
+     "narration": {
+      "en": "The CPU sits in its socket and executes the instructions of every program.",
+      "hi": "CPU अपने सॉकेट में बैठता है और हर प्रोग्राम के निर्देश चलाता है।",
+      "hinglish": "CPU apne socket mein baithta hai aur har program ke instructions chalata hai."
+     },
+     "focus": "cpu"
+    },
+    {
+     "narration": {
+      "en": "Next to it are the RAM sticks: fast working memory for whatever is open right now.",
+      "hi": "उसके पास RAM स्टिक हैं: अभी जो खुला है उसके लिए तेज़ काम वाली मेमोरी।",
+      "hinglish": "Uske paas RAM sticks hain: abhi jo khula hai uske liye tez working memory."
+     },
+     "focus": "ram"
+    },
+    {
+     "narration": {
+      "en": "The SSD keeps your files and programs, even with the power off.",
+      "hi": "SSD तुम्हारी फ़ाइलें और प्रोग्राम रखता है, बिजली बंद होने पर भी।",
+      "hinglish": "SSD tumhari files aur programs rakhta hai, bijli band hone par bhi."
+     },
+     "focus": "ssd"
+    },
+    {
+     "narration": {
+      "en": "The graphics card has a GPU with thousands of small cores for drawing pictures.",
+      "hi": "ग्राफ़िक्स कार्ड में GPU है, जिसमें चित्र बनाने के लिए हज़ारों छोटे कोर हैं।",
+      "hinglish": "Graphics card mein GPU hai, jisme pictures banane ke liye hazaaron chhote cores hain."
+     },
+     "focus": "gpu"
+    },
+    {
+     "narration": {
+      "en": "The power supply turns wall power into the steady, low voltages every part needs.",
+      "hi": "पावर सप्लाई दीवार की बिजली को हर हिस्से के लायक़ स्थिर, कम वोल्टेज में बदलती है।",
+      "hinglish": "Power supply deewar ki bijli ko har part ke layak steady, low voltage mein badalti hai."
+     },
+     "focus": "psu"
+    }
+   ]
   },
   {
    "step": 3,
@@ -104,6 +511,20 @@
     "en": "This start-up journey is called booting.",
     "hi": "चालू होने की इस यात्रा को बूटिंग कहते हैं।",
     "hinglish": "Is start-up safar ko booting kehte hain."
+   }
+  },
+  {
+   "step": 4,
+   "caption": {
+    "en": "A phone has the same jobs, but most of them are inside one chip: a system-on-chip.",
+    "hi": "फ़ोन में भी यही काम होते हैं, पर ज़्यादातर एक ही चिप के अंदर: सिस्टम-ऑन-चिप।",
+    "hinglish": "Phone mein bhi yahi kaam hote hain, par zyaadatar ek hi chip ke andar: system-on-chip."
+   },
+   "visual": "compare:🖥️ Desktop: separate CPU, RAM, GPU and SSD on a motherboard|📱 Phone: CPU, GPU and more on one chip (SoC), with memory and storage chips beside it",
+   "narration": {
+    "en": "So a phone is not a tiny desktop with removable parts: it is built tighter, to save space and battery.",
+    "hi": "तो फ़ोन निकाले जा सकने वाले हिस्सों वाला छोटा डेस्कटॉप नहीं है: वह जगह और बैटरी बचाने के लिए कसकर बना है।",
+    "hinglish": "To phone nikaale ja sakne wale parts wala chhota desktop nahi hai: woh jagah aur battery bachaane ke liye kas ke bana hai."
    }
   }
  ],
@@ -124,19 +545,41 @@
     "hinglish": "Kaun kya karta hai"
    },
    "body": {
-    "en": "CPU – thinks (runs instructions). RAM – holds what is open right now; fast but forgets when power goes. Storage (SSD/HDD) – keeps files permanently. GPU – draws images, fast at many small jobs at once. PSU – gives clean power. Motherboard – connects all of them with buses, and holds the firmware chip (BIOS/UEFI) that starts the machine. Ports (USB-C, HDMI, Ethernet) connect the outside world. A laptop has the same parts, just smaller; a phone squeezes most of them into one chip.",
-    "hi": "CPU – सोचता है (निर्देश चलाता है)। RAM – अभी खुला काम रखती है; तेज़ पर बिजली जाने पर भूल जाती है। स्टोरेज (SSD/HDD) – फ़ाइलें स्थायी रूप से रखता है। GPU – चित्र बनाता है, एक साथ कई छोटे काम में तेज़। PSU – साफ़ बिजली देता है। मदरबोर्ड – सबको बस से जोड़ता है, और फ़र्मवेयर चिप (BIOS/UEFI) रखता है जो मशीन शुरू करती है। पोर्ट (USB-C, HDMI, ईथरनेट) बाहरी दुनिया से जोड़ते हैं। लैपटॉप में यही पुर्ज़े छोटे होते हैं; फ़ोन ज़्यादातर को एक चिप में समेट देता है।",
-    "hinglish": "CPU – sochta hai (instructions chalata hai). RAM – abhi jo khula hai rakhti hai; fast par power jaane pe bhool jaati hai. Storage (SSD/HDD) – files hamesha ke liye rakhta hai. GPU – images banata hai, ek saath kai chhote kaam mein fast. PSU – saaf bijli deta hai. Motherboard – sabko buses se jodta hai, aur firmware chip (BIOS/UEFI) rakhta hai jo machine start karti hai. Ports (USB-C, HDMI, Ethernet) bahar ki duniya se jodte hain. Laptop mein yahi parts chhote; phone zyaadatar ko ek chip mein samet deta hai."
+    "en": "CPU: executes instructions, one after another, billions of times a second. RAM: working memory for whatever is open; fast, but emptied when the power goes. Storage (SSD, or flash in a phone): keeps files and programs with no power. GPU: works out pictures, and is fast at many small sums at once. Power supply: gives every part steady, safe voltages. Motherboard: connects them all with buses and holds the firmware that starts the computer.",
+    "hi": "CPU: निर्देश एक के बाद एक, हर सेकंड अरबों बार चलाता है। RAM: जो खुला है उसके लिए काम की मेमोरी; तेज़, पर बिजली जाते ही ख़ाली। स्टोरेज (SSD, या फ़ोन में फ़्लैश): बिना बिजली फ़ाइलें और प्रोग्राम रखता है। GPU: चित्र बनाता है, और एक साथ कई छोटी गणनाओं में तेज़ है। पावर सप्लाई: हर हिस्से को स्थिर, सुरक्षित वोल्टेज देती है। मदरबोर्ड: सबको बस से जोड़ता है और कंप्यूटर शुरू करने वाला फ़र्मवेयर रखता है।",
+    "hinglish": "CPU: instructions ek ke baad ek, har second arabon baar chalata hai. RAM: jo khula hai uske liye working memory; tez, par bijli jaate hi khaali. Storage (SSD, ya phone mein flash): bina bijli files aur programs rakhta hai. GPU: pictures banata hai, aur ek saath kai chhote calculations mein tez hai. Power supply: har part ko steady, safe voltage deti hai. Motherboard: sabko bus se jodta hai aur computer start karne wala firmware rakhta hai."
    },
    "analogy": {
-    "hinglish": "Computer ek school jaisa: CPU = principal jo faisle leti hai, RAM = class ki desk, SSD = library ki almirah, GPU = art teachers ki team, PSU = canteen jo sabko energy deti hai, motherboard = galiyaare jo sab rooms jodte hain.",
-    "en": "A computer is like a school: CPU = the principal who makes decisions, RAM = the class desk, SSD = the library cupboard, GPU = the team of art teachers, PSU = the canteen that gives everyone energy, motherboard = the corridors joining every room.",
-    "hi": "कंप्यूटर एक स्कूल जैसा: CPU = प्रधानाचार्य जो निर्णय लेती हैं, RAM = कक्षा की डेस्क, SSD = पुस्तकालय की अलमारी, GPU = कला शिक्षकों की टीम, PSU = कैंटीन जो सबको ऊर्जा देती है, मदरबोर्ड = गलियारे जो सब कमरे जोड़ते हैं।"
+    "en": "Think of a kitchen: the recipe book on the shelf is storage, the counter where you work is RAM, and the cook following the recipe step by step is the CPU.",
+    "hi": "एक रसोई सोचो: अलमारी पर रखी रेसिपी की किताब स्टोरेज है, जिस काउंटर पर काम होता है वह RAM है, और रेसिपी को कदम-कदम मानने वाला रसोइया CPU है।",
+    "hinglish": "Ek kitchen socho: shelf par rakhi recipe ki kitaab storage hai, jis counter par kaam hota hai woh RAM hai, aur recipe ko step by step follow karne wala cook CPU hai."
+   },
+   "limit": {
+    "en": "A cook decides, tastes and changes the recipe. A CPU does none of that: it only carries out the exact instructions it is given, very fast.",
+    "hi": "रसोइया फ़ैसले लेता है, चखता है और रेसिपी बदलता है। CPU ऐसा कुछ नहीं करता: वह बस दिए गए निर्देश ठीक वैसे ही, बहुत तेज़ी से, चलाता है।",
+    "hinglish": "Cook faisle leta hai, chakhta hai aur recipe badalta hai. CPU aisa kuch nahi karta: woh bas diye gaye instructions theek waise hi, bahut tezi se, chalata hai."
    },
    "realExample": {
-    "en": "India’s PARAM supercomputers (C-DAC) use thousands of CPUs and GPUs connected by very fast networks — the same parts at a giant scale.",
-    "hi": "भारत के PARAM सुपरकंप्यूटर (C-DAC) बहुत तेज़ नेटवर्क से जुड़े हज़ारों CPU और GPU उपयोग करते हैं — वही भाग, विशाल पैमाने पर।",
-    "hinglish": "India ke PARAM supercomputers (C-DAC) hazaaron CPUs aur GPUs fast network se jodkar bane hain — wahi parts, bahut bade scale pe."
+    "en": "When a phone gets slow with many apps open, it is often because RAM is full, not because the storage is.",
+    "hi": "जब बहुत ऐप खुले होने पर फ़ोन धीमा हो, तो अक्सर कारण भरी हुई RAM होती है, स्टोरेज नहीं।",
+    "hinglish": "Jab bahut apps khule hone par phone slow ho, to aksar kaaran bhari hui RAM hoti hai, storage nahi."
+   }
+  },
+  {
+   "heading": {
+    "en": "Phones and desktops: same jobs, different build",
+    "hi": "फ़ोन और डेस्कटॉप: काम वही, बनावट अलग",
+    "hinglish": "Phone aur desktop: kaam wahi, banawat alag"
+   },
+   "body": {
+    "en": "A desktop has separate parts you can take out and upgrade: a CPU in a socket, RAM sticks, a graphics card, an SSD. A phone puts the CPU, GPU, a neural processing unit, the modem and more on one system-on-chip, with memory and storage chips soldered close by. That saves space and battery, but the parts cannot be swapped.",
+    "hi": "डेस्कटॉप में अलग हिस्से होते हैं जिन्हें निकालकर बदला जा सकता है: सॉकेट में CPU, RAM स्टिक, ग्राफ़िक्स कार्ड, SSD। फ़ोन CPU, GPU, न्यूरल प्रोसेसिंग यूनिट, मॉडेम और भी बहुत कुछ एक सिस्टम-ऑन-चिप पर रखता है, और मेमोरी व स्टोरेज चिप पास में सोल्डर होती हैं। इससे जगह और बैटरी बचती है, पर हिस्से बदले नहीं जा सकते।",
+    "hinglish": "Desktop mein alag parts hote hain jinhe nikaal ke upgrade kiya ja sakta hai: socket mein CPU, RAM sticks, graphics card, SSD. Phone CPU, GPU, neural processing unit, modem aur bhi bahut kuch ek system-on-chip par rakhta hai, aur memory aur storage chips paas mein solder hoti hain. Isse jagah aur battery bachti hai, par parts badle nahi ja sakte."
+   },
+   "realExample": {
+    "en": "That is why you can add more RAM to many desktop PCs, but not to a phone.",
+    "hi": "इसीलिए कई डेस्कटॉप में ज़्यादा RAM लगाई जा सकती है, पर फ़ोन में नहीं।",
+    "hinglish": "Isiliye kai desktop PCs mein zyada RAM lagaayi ja sakti hai, par phone mein nahi."
    }
   }
  ],
@@ -329,6 +772,39 @@
     "difficulty": 1
    },
    {
+    "id": "q6",
+    "type": "mcq",
+    "prompt": {
+     "en": "A game freezes when many apps are open, but every saved photo is still safe. Which part ran short?",
+     "hi": "बहुत ऐप खुले होने पर गेम अटक जाता है, पर हर सेव फ़ोटो सुरक्षित है। किस हिस्से में जगह कम पड़ी?",
+     "hinglish": "Bahut apps khule hone par game atak jaata hai, par har saved photo safe hai. Kis part mein jagah kam padi?"
+    },
+    "options": [
+     {
+      "en": "RAM",
+      "hi": "RAM",
+      "hinglish": "RAM"
+     },
+     {
+      "en": "Storage",
+      "hi": "स्टोरेज",
+      "hinglish": "Storage"
+     },
+     {
+      "en": "The screen",
+      "hi": "स्क्रीन",
+      "hinglish": "Screen"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "Open apps live in RAM. When it is full, things slow down or freeze; saved photos are in storage, which is untouched.",
+     "hi": "खुले ऐप RAM में रहते हैं। उसके भर जाने पर चीज़ें धीमी होती हैं या अटकती हैं; सेव फ़ोटो स्टोरेज में हैं, जो अछूता है।",
+     "hinglish": "Khule apps RAM mein rehte hain. Uske bhar jaane par cheezein slow hoti hain ya atakti hain; saved photos storage mein hain, jo achhoota hai."
+    },
+    "difficulty": 2
+   },
+   {
     "id": "q5",
     "type": "lab-check",
     "prompt": {
@@ -360,5 +836,81 @@
    "url": "https://nsmindia.in/",
    "licence": "fact reference"
   }
- ]
+ ],
+ "hook": {
+  "text": {
+   "en": "Imagine, {{name}}, you take a selfie with a phone.",
+   "hi": "सोचो {{name}}, तुम फ़ोन से एक सेल्फ़ी लेते हो।",
+   "hinglish": "Socho {{name}}, tum phone se ek selfie lete ho."
+  },
+  "question": {
+   "en": "The camera captures the picture, but where is it processed? How does the phone still have it after you switch it off? And which part puts it on the screen?",
+   "hi": "कैमरा तस्वीर लेता है, पर उस पर काम कहाँ होता है? फ़ोन बंद करने के बाद भी तस्वीर कैसे बची रहती है? और कौन-सा हिस्सा उसे स्क्रीन पर दिखाता है?",
+   "hinglish": "Camera picture capture karta hai, par us par kaam kahan hota hai? Phone band karne ke baad bhi photo kaise bachi rehti hai? Aur kaunsa hissa use screen par dikhata hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "You click the selfie and switch the phone off. Where is the photo still kept?",
+   "hi": "तुमने सेल्फ़ी ली और फ़ोन बंद कर दिया। तस्वीर अब भी कहाँ रखी है?",
+   "hinglish": "Tumne selfie li aur phone band kar diya. Photo ab bhi kahan rakhi hai?"
+  },
+  "options": [
+   {
+    "en": "In RAM",
+    "hi": "RAM में",
+    "hinglish": "RAM mein"
+   },
+   {
+    "en": "In storage",
+    "hi": "स्टोरेज में",
+    "hinglish": "Storage mein"
+   },
+   {
+    "en": "In the camera",
+    "hi": "कैमरे में",
+    "hinglish": "Camera mein"
+   },
+   {
+    "en": "In the screen",
+    "hi": "स्क्रीन में",
+    "hinglish": "Screen mein"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "RAM is working memory: it loses what it holds when the power goes. Storage (flash memory in a phone, an SSD in a laptop) keeps files with no power, so the selfie is saved there.",
+   "hi": "RAM काम करने वाली मेमोरी है: बिजली जाते ही उसमें रखा सब मिट जाता है। स्टोरेज (फ़ोन में फ़्लैश मेमोरी, लैपटॉप में SSD) बिना बिजली के भी फ़ाइलें रखता है, इसलिए सेल्फ़ी वहीं सेव होती है।",
+   "hinglish": "RAM working memory hai: bijli jaate hi usme rakha sab mit jaata hai. Storage (phone mein flash memory, laptop mein SSD) bina bijli ke bhi files rakhta hai, isliye selfie wahin save hoti hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain your selfie's journey through the phone, from camera to screen.",
+   "hi": "अपनी सेल्फ़ी का फ़ोन के अंदर का सफ़र समझाओ, कैमरे से स्क्रीन तक।",
+   "hinglish": "Apni selfie ka phone ke andar ka safar samjhao, camera se screen tak."
+  },
+  "checklist": [
+   {
+    "en": "The camera turns light into numbers.",
+    "hi": "कैमरा रोशनी को संख्याओं में बदलता है।",
+    "hinglish": "Camera roshni ko numbers mein badalta hai."
+   },
+   {
+    "en": "The CPU carries out instructions on them while they sit in RAM.",
+    "hi": "जब वे RAM में होती हैं, CPU उन पर निर्देश चलाता है।",
+    "hinglish": "Jab woh RAM mein hoti hain, CPU un par instructions chalata hai."
+   },
+   {
+    "en": "The photo is saved to storage, which keeps it without power.",
+    "hi": "फ़ोटो स्टोरेज में सेव होती है, जो बिना बिजली उसे रखता है।",
+    "hinglish": "Photo storage mein save hoti hai, jo bina bijli use rakhta hai."
+   },
+   {
+    "en": "The GPU works out the pixels and the screen shows them.",
+    "hi": "GPU पिक्सेल निकालता है और स्क्रीन उन्हें दिखाती है।",
+    "hinglish": "GPU pixels nikaalta hai aur screen unhe dikhati hai."
+   }
+  ]
+ }
 }

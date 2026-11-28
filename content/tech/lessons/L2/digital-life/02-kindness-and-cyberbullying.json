@@ -39,6 +39,82 @@
    "hinglish": "Upstander bano aur netiquette follow karo"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, in your class WhatsApp group someone posts an edited photo of a classmate to make fun of him, and others laugh.",
+   "hi": "{{name}}, तुम्हारी क्लास के WhatsApp ग्रुप में कोई एक सहपाठी की एडिट की हुई फ़ोटो उसका मज़ाक उड़ाने के लिए डालता है, और बाक़ी हँसते हैं।",
+   "hinglish": "{{name}}, tumhari class ke WhatsApp group mein koi ek classmate ki edited photo uska mazaak udaane ke liye daalta hai, aur baaki hansate hain."
+  },
+  "question": {
+   "en": "Is laughing along harmless, and what could you do instead?",
+   "hi": "क्या साथ में हँसना बेहतर है, और उसकी जगह तुम क्या कर सकते हो?",
+   "hinglish": "Kya saath mein hansna harmless hai, aur uski jagah tum kya kar sakte ho?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What is the best way to respond when you see this?",
+   "hi": "यह देखकर सबसे अच्छा जवाब क्या है?",
+   "hinglish": "Yeh dekhkar sabse achha response kya hai?"
+  },
+  "options": [
+   {
+    "en": "Laugh along, it is only a joke",
+    "hi": "साथ में हँसो, यह बस मज़ाक है",
+    "hinglish": "Saath mein hanso, yeh bas mazaak hai"
+   },
+   {
+    "en": "Reply with a meaner edit of the bully",
+    "hi": "बुली की उससे बुरी एडिट बनाकर जवाब दो",
+    "hinglish": "Bully ki usse buri edit banakar jawab do"
+   },
+   {
+    "en": "Do not join in, save screenshots, block and report, tell a trusted adult, and support the classmate",
+    "hi": "साथ मत दो, स्क्रीनशॉट रखो, ब्लॉक और रिपोर्ट करो, भरोसेमंद बड़े को बताओ और सहपाठी का साथ दो",
+    "hinglish": "Saath mat do, screenshots rakho, block aur report karo, trusted bade ko batao aur classmate ka saath do"
+   },
+   {
+    "en": "Say nothing and leave it alone",
+    "hi": "कुछ मत कहो और छोड़ दो",
+    "hinglish": "Kuch mat kaho aur chhod do"
+   }
+  ],
+  "answer": 2,
+  "explain": {
+   "en": "Laughing along makes the hurt bigger, and answering back with more meanness keeps it going. Screenshots are proof, blocking and reporting stops the harm, and an adult can help. Being an upstander means supporting the person targeted.",
+   "hi": "साथ में हँसने से चोट बढ़ती है, और और बुरा जवाब देने से बात चलती रहती है। स्क्रीनशॉट सबूत हैं, ब्लॉक और रिपोर्ट नुक़सान रोकते हैं, और बड़ा मदद कर सकता है। अपस्टैंडर होने का मतलब निशाना बने व्यक्ति का साथ देना है।",
+   "hinglish": "Saath mein hansne se chot badhti hai, aur aur buri reply se baat chalti rehti hai. Screenshots saboot hain, block aur report nuksaan rokte hain, aur bada madad kar sakta hai. Upstander hone ka matlab nishana bane vyakti ka saath dena hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home what cyberbullying is and what to do about it.",
+   "hi": "घर पर किसी को समझाओ कि साइबरबुलिंग क्या है और उसके बारे में क्या करना चाहिए।",
+   "hinglish": "Ghar par kisi ko samjhao ki cyberbullying kya hai aur uske baare mein kya karna chahiye."
+  },
+  "checklist": [
+   {
+    "en": "Cyberbullying is repeated, deliberate harm through digital means, like mean messages, rumours, mocking edits or leaving someone out.",
+    "hi": "साइबरबुलिंग डिजिटल माध्यम से बार-बार जान-बूझकर पहुँचाया नुक़सान है, जैसे बुरे संदेश, अफ़वाहें, मज़ाक उड़ाती एडिट या किसी को बाहर रखना।",
+    "hinglish": "Cyberbullying digital means se baar-baar jaan-boojhkar pahunchaya nuksaan hai, jaise bure messages, rumours, mazaak udati edits ya kisi ko bahar rakhna."
+   },
+   {
+    "en": "Online grooming is a stranger building trust to harm a child, so tell an adult at once.",
+    "hi": "ऑनलाइन ग्रूमिंग में अजनबी बच्चे को नुक़सान पहुँचाने के लिए भरोसा बनाता है, इसलिए तुरंत किसी बड़े को बताओ।",
+    "hinglish": "Online grooming mein ajnabi bachche ko nuksaan pahunchane ke liye bharosa banata hai, isliye turant kisi bade ko batao."
+   },
+   {
+    "en": "STOP: stop, take screenshots, block and report, tell an adult.",
+    "hi": "STOP: रुको, स्क्रीनशॉट लो, ब्लॉक और रिपोर्ट करो, बड़े को बताओ।",
+    "hinglish": "STOP: ruko, screenshots lo, block aur report karo, bade ko batao."
+   },
+   {
+    "en": "An upstander supports the person targeted instead of laughing along.",
+    "hi": "अपस्टैंडर निशाना बने व्यक्ति का साथ देता है, साथ में हँसता नहीं।",
+    "hinglish": "Upstander nishana bane vyakti ka saath deta hai, saath mein hansta nahi."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Cyberbullying",
@@ -101,7 +177,7 @@
     "hi": "STOP याद रखो।",
     "hinglish": "STOP yaad rakho."
    },
-   "visual": "code",
+   "visual": "flow:✋ Stop|📸 Screenshots|🚫 Block and report|🧑 Tell an adult",
    "narration": {
     "en": "In India you can also report on cybercrime.gov.in or call 1930.",
     "hi": "भारत में cybercrime.gov.in पर रिपोर्ट या 1930 पर कॉल भी कर सकते हो।",

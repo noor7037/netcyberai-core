@@ -34,6 +34,77 @@
    "hinglish": "Latency numbers padho aur socho data kahan rahe"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you open a game on your phone. The first time it takes a while to load, then switching back to it is quick.",
+   "hi": "{{name}}, तुम फ़ोन पर गेम खोलते हो। पहली बार लोड होने में समय लगता है, फिर वापस आने पर वह जल्दी खुलता है।",
+   "hinglish": "{{name}}, tum phone par game kholte ho. Pehli baar load hone mein time lagta hai, phir wapas aane par woh jaldi khulta hai."
+  },
+  "question": {
+   "en": "Why does a computer keep the same data in several kinds of memory, and why not just use the fastest kind for everything?",
+   "hi": "कंप्यूटर एक ही डेटा को कई तरह की मेमोरी में क्यों रखता है, और सब कुछ सबसे तेज़ मेमोरी में क्यों नहीं रखता?",
+   "hinglish": "Computer ek hi data ko kai tarah ki memory mein kyun rakhta hai, aur sab kuch sabse tez memory mein kyun nahi rakhta?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Why can't a computer use only the fastest memory (registers and L1 cache) for everything?",
+   "hi": "कंप्यूटर सब कुछ के लिए सिर्फ़ सबसे तेज़ मेमोरी (रजिस्टर और L1 कैश) क्यों नहीं इस्तेमाल कर सकता?",
+   "hinglish": "Computer sab kuch ke liye sirf sabse tez memory (registers aur L1 cache) kyun nahi use kar sakta?"
+  },
+  "options": [
+   {
+    "en": "It could, but the manufacturers choose not to",
+    "hi": "कर सकता है, पर निर्माता नहीं चाहते",
+    "hinglish": "Kar sakta hai, par manufacturers nahi chahte"
+   },
+   {
+    "en": "Fast memory costs far more per byte and takes more space and power, so it stays tiny while slower memory is bigger and cheaper",
+    "hi": "तेज़ मेमोरी प्रति बाइट बहुत महँगी होती है और ज़्यादा जगह-बिजली लेती है, इसलिए वह छोटी रहती है और धीमी मेमोरी बड़ी और सस्ती",
+    "hinglish": "Tez memory per byte bahut mehengi hoti hai aur zyada jagah-bijli leti hai, isliye woh chhoti rehti hai aur slow memory badi aur sasti"
+   },
+   {
+    "en": "Fast memory forgets everything, so it cannot hold programs",
+    "hi": "तेज़ मेमोरी सब भूल जाती है, इसलिए प्रोग्राम नहीं रख सकती",
+    "hinglish": "Tez memory sab bhool jaati hai, isliye programs nahi rakh sakti"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Speed, size and cost pull in opposite directions. So computers use a hierarchy: a tiny fast layer on top, then larger and slower layers below, and rely on programs reusing recent data so most reads hit the fast layers.",
+   "hi": "गति, आकार और कीमत उलटी दिशा में खींचते हैं। इसलिए कंप्यूटर में परतें होती हैं: ऊपर छोटी तेज़ परत, नीचे बड़ी और धीमी परतें, और यह भरोसा कि प्रोग्राम हाल का डेटा दोबारा इस्तेमाल करेंगे, ताकि ज़्यादातर पढ़ाई तेज़ परतों से हो जाए।",
+   "hinglish": "Speed, size aur cost ulti direction mein khinchte hain. Isliye computer mein hierarchy hoti hai: upar chhoti tez layer, neeche badi aur slow layers, aur bharosa ki programs haal ka data dobara use karenge, taaki zyadatar reads fast layers se ho jayein."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home why unsaved work is lost in a power cut, and why a computer has several kinds of memory.",
+   "hi": "घर पर किसी को समझाओ कि बिजली जाने पर बिना सेव किया काम क्यों खो जाता है, और कंप्यूटर में कई तरह की मेमोरी क्यों होती है।",
+   "hinglish": "Ghar par kisi ko samjhao ki bijli jaane par bina save kiya kaam kyun kho jaata hai, aur computer mein kai tarah ki memory kyun hoti hai."
+  },
+  "checklist": [
+   {
+    "en": "Order: registers, L1 to L3 cache, RAM, SSD, hard disk: each step is bigger, slower and cheaper.",
+    "hi": "क्रम: रजिस्टर, L1 से L3 कैश, RAM, SSD, हार्ड डिस्क: हर कदम बड़ा, धीमा और सस्ता।",
+    "hinglish": "Order: registers, L1 se L3 cache, RAM, SSD, hard disk: har step bada, slow aur sasta."
+   },
+   {
+    "en": "Latency is the wait for the first byte; bandwidth is the flow rate after that.",
+    "hi": "लेटेंसी पहले बाइट का इंतज़ार है; बैंडविड्थ उसके बाद बहाव की दर है।",
+    "hinglish": "Latency pehle byte ka wait hai; bandwidth uske baad flow rate hai."
+   },
+   {
+    "en": "RAM and caches are volatile and forget at power-off; SSDs and disks keep data.",
+    "hi": "RAM और कैश वोलेटाइल हैं और बिजली बंद होने पर भूल जाते हैं; SSD और डिस्क डेटा रखते हैं।",
+    "hinglish": "RAM aur caches volatile hain aur power-off par bhool jaate hain; SSD aur disks data rakhte hain."
+   },
+   {
+    "en": "Apps load from storage into RAM before they run, which is why the first open is slow.",
+    "hi": "ऐप चलने से पहले स्टोरेज से RAM में लोड होते हैं, इसीलिए पहली बार खोलना धीमा होता है।",
+    "hinglish": "Apps chalne se pehle storage se RAM mein load hote hain, isiliye pehli baar kholna slow hota hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Volatile",
@@ -74,7 +145,7 @@
     "hi": "एक पिरामिड: ऊपर रजिस्टर (छोटे, सबसे तेज़), फिर L1, L2, L3 कैश, RAM, SSD, और आधार पर हार्ड डिस्क या क्लाउड भंडारण (विशाल, सबसे धीमा)।",
     "hinglish": "Ek pyramid: upar registers (chhote, sabse tez), phir L1, L2, L3 caches, RAM, SSD, aur base par hard disks ya cloud storage (bahut bade, sabse slow)."
    },
-   "visual": "anim:mem-pyramid",
+   "visual": "stack:Registers|L1 to L3 cache|RAM|SSD|Hard disk or cloud",
    "narration": {
     "en": "A pyramid: registers at the top (tiny, fastest), then L1, L2, L3 caches, RAM, SSD, and hard disks or cloud storage at the base (huge, slowest).",
     "hi": "एक पिरामिड: ऊपर रजिस्टर (छोटे, सबसे तेज़), फिर L1, L2, L3 कैश, RAM, SSD, और आधार पर हार्ड डिस्क या क्लाउड भंडारण (विशाल, सबसे धीमा)।",
@@ -102,7 +173,7 @@
     "hi": "RAM और कैश अस्थिर हैं: बंद करो तो भूल जाते हैं। SSD और डिस्क बिना बिजली डेटा रखते हैं।",
     "hinglish": "RAM aur caches volatile hain: band karo to bhool jaate hain. SSDs aur disks bina bijli data rakhte hain."
    },
-   "visual": "anim:power-off",
+   "visual": "compare:⚡ RAM and cache: forget at power-off|💾 SSD and disk: keep data without power",
    "narration": {
     "en": "RAM and caches are volatile: switch off and they forget. SSDs and disks keep data without power.",
     "hi": "RAM और कैश अस्थिर हैं: बंद करो तो भूल जाते हैं। SSD और डिस्क बिना बिजली डेटा रखते हैं।",
@@ -116,7 +187,7 @@
     "hi": "इसीलिए बिजली जाने पर बिना सहेजा काम खो जाता है, और ऐप चलने से पहले भंडारण से RAM में लोड होते हैं।",
     "hinglish": "Isiliye bijli jaane par bina save kiya kaam kho jaata hai, aur apps chalne se pehle storage se RAM mein load hote hain."
    },
-   "visual": "anim:app-load",
+   "visual": "flow:💾 Storage|🧠 RAM|⚡ CPU cache|🖥️ Running app",
    "narration": {
     "en": "That is why unsaved work is lost in a power cut, and why apps load from storage into RAM before they run.",
     "hi": "इसीलिए बिजली जाने पर बिना सहेजा काम खो जाता है, और ऐप चलने से पहले भंडारण से RAM में लोड होते हैं।",

@@ -37,6 +37,82 @@
    "hinglish": "Common file extensions aur sizes pehchaan sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you save your science project, and next week you must find it among hundreds of files.",
+   "hi": "{{name}}, तुमने अपना साइंस प्रोजेक्ट सेव किया, और अगले हफ़्ते उसे सैकड़ों फ़ाइलों में से ढूँढना है।",
+   "hinglish": "{{name}}, tumne apna science project save kiya, aur agle hafte use sainkdon files mein se dhoondhna hai."
+  },
+  "question": {
+   "en": "How does a computer know exactly where each file is and which app opens it?",
+   "hi": "कंप्यूटर कैसे जानता है कि हर फ़ाइल ठीक कहाँ है और कौन-सा ऐप उसे खोलेगा?",
+   "hinglish": "Computer kaise jaanta hai ki har file theek kahan hai aur kaunsa app use kholega?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A file is called holiday.mp3. What does the .mp3 part mainly tell the system?",
+   "hi": "एक फ़ाइल का नाम holiday.mp3 है। .mp3 हिस्सा सिस्टम को मुख्य रूप से क्या बताता है?",
+   "hinglish": "Ek file ka naam holiday.mp3 hai. .mp3 part system ko mainly kya batata hai?"
+  },
+  "options": [
+   {
+    "en": "How big the file is",
+    "hi": "फ़ाइल कितनी बड़ी है",
+    "hinglish": "File kitni badi hai"
+   },
+   {
+    "en": "What kind of file it is, so the right app opens it",
+    "hi": "फ़ाइल किस तरह की है, ताकि सही ऐप उसे खोले",
+    "hinglish": "File kis type ki hai, taaki sahi app use khole"
+   },
+   {
+    "en": "Who made it",
+    "hi": "किसने बनाई",
+    "hinglish": "Kisne banayi"
+   },
+   {
+    "en": "Where it is stored",
+    "hi": "कहाँ रखी है",
+    "hinglish": "Kahan stored hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "The extension names the file type, so the OS can pick an app to open it. Size and location are different things: location is the path, such as /Documents/Class7/Science/project.pdf. Be careful: a real .apk or .exe is a program, so check before opening.",
+   "hi": "एक्सटेंशन फ़ाइल का प्रकार बताता है, ताकि OS उसे खोलने वाला ऐप चुन सके। आकार और जगह अलग बातें हैं: जगह पाथ से पता चलती है, जैसे /Documents/Class7/Science/project.pdf। सावधान रहो: असली .apk या .exe एक प्रोग्राम होता है, इसलिए खोलने से पहले जाँचो।",
+   "hinglish": "Extension file ka type batata hai, taaki OS use kholne wala app chun sake. Size aur location alag baatein hain: location path se pata chalti hai, jaise /Documents/Class7/Science/project.pdf. Savdhaan raho: asli .apk ya .exe ek program hota hai, isliye kholne se pehle check karo."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend how files and folders are organised and how to read a path.",
+   "hi": "किसी दोस्त को समझाओ कि फ़ाइलें और फ़ोल्डर कैसे व्यवस्थित होते हैं और पाथ कैसे पढ़ें।",
+   "hinglish": "Kisi dost ko samjhao ki files aur folders kaise organised hote hain aur path kaise padhein."
+  },
+  "checklist": [
+   {
+    "en": "Folders sit inside folders like an upside-down tree, starting at the root.",
+    "hi": "फ़ोल्डर फ़ोल्डरों के अंदर उलटे पेड़ की तरह होते हैं, जड़ (रूट) से शुरू होकर।",
+    "hinglish": "Folders folders ke andar ulte ped ki tarah hote hain, root se shuru hokar."
+   },
+   {
+    "en": "A path is the file's full address, read from the root down to the file.",
+    "hi": "पाथ फ़ाइल का पूरा पता है, जड़ से फ़ाइल तक पढ़ा जाता है।",
+    "hinglish": "Path file ka poora address hai, root se file tak padha jaata hai."
+   },
+   {
+    "en": "The extension tells the OS which app opens the file.",
+    "hi": "एक्सटेंशन OS को बताता है कि कौन-सा ऐप फ़ाइल खोलेगा।",
+    "hinglish": "Extension OS ko batata hai ki kaunsa app file kholega."
+   },
+   {
+    "en": "Keep clear names and a backup in a second place.",
+    "hi": "साफ़ नाम रखो और दूसरी जगह बैकअप रखो।",
+    "hinglish": "Clear names rakho aur doosri jagah backup rakho."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "File",

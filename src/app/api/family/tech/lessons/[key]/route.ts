@@ -61,6 +61,13 @@ export async function POST(req: NextRequest, { params }: { params: { key: string
       const right = isRight(question, given, events);
       return NextResponse.json({ right, explain: pick(lang, question.explain), mark: right || question.type !== 'short' ? reveal(question) : null }, { headers: noStore });
     }
+    // C557: the prediction before a lesson is never marked, but its answer still stays here until the child has chosen.
+    if (body.action === 'predict') {
+      const choice = body.choice;
+      const options = lesson.predict?.options ?? [];
+      if (!lesson.predict || !Number.isInteger(choice) || (choice as number) < 0 || (choice as number) >= options.length) return techError('bad_request', 400);
+      return NextResponse.json({ right: choice === lesson.predict.answer, answer: lesson.predict.answer, explain: pick(lang, lesson.predict.explain) }, { headers: noStore });
+    }
     if (body.action !== 'finish') return techError('bad_request', 400);
     const raw = body.answers && typeof body.answers === 'object' && !Array.isArray(body.answers) ? (body.answers as Record<string, unknown>) : {};
     const answers: Record<string, unknown> = {};

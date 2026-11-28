@@ -36,6 +36,82 @@
    "hinglish": "append, len, sorted use kar sakte ho aur dictionary kya hai jaante ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your class marks are in a list: 72, 85, 90, 64, 88, and the teacher wants the highest and the average.",
+   "hi": "{{name}}, तुम्हारी कक्षा के अंक एक सूची में हैं: 72, 85, 90, 64, 88, और शिक्षक को सबसे ज़्यादा और औसत चाहिए।",
+   "hinglish": "{{name}}, tumhari class ke marks ek list mein hain: 72, 85, 90, 64, 88, aur teacher ko highest aur average chahiye."
+  },
+  "question": {
+   "en": "Does a program need a separate variable for every student?",
+   "hi": "क्या प्रोग्राम को हर छात्र के लिए अलग वेरिएबल चाहिए?",
+   "hinglish": "Kya program ko har student ke liye alag variable chahiye?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "marks = [72, 85, 90, 64, 88]. What is marks[0]?",
+   "hi": "marks = [72, 85, 90, 64, 88]। marks[0] क्या है?",
+   "hinglish": "marks = [72, 85, 90, 64, 88]. marks[0] kya hai?"
+  },
+  "options": [
+   {
+    "en": "85, the second item",
+    "hi": "85, दूसरा आइटम",
+    "hinglish": "85, doosra item"
+   },
+   {
+    "en": "72, because positions start at 0",
+    "hi": "72, क्योंकि स्थान 0 से शुरू होते हैं",
+    "hinglish": "72, kyunki positions 0 se shuru hote hain"
+   },
+   {
+    "en": "An error",
+    "hi": "त्रुटि",
+    "hinglish": "Error"
+   },
+   {
+    "en": "5, the length",
+    "hi": "5, लंबाई",
+    "hinglish": "5, length"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "List positions (indexes) start at 0, so marks[0] is the first item, 72, and the last is marks[4]. marks[5] would give an IndexError. Loops can then go through every item to find a total or the maximum.",
+   "hi": "सूची के स्थान (इंडेक्स) 0 से शुरू होते हैं, इसलिए marks[0] पहला आइटम 72 है और आख़िरी marks[4]। marks[5] से IndexError आएगी। फिर लूप हर आइटम से गुज़रकर कुल या अधिकतम निकाल सकता है।",
+   "hinglish": "List ke positions (indexes) 0 se shuru hote hain, isliye marks[0] pehla item 72 hai aur aakhri marks[4]. marks[5] se IndexError aayegi. Phir loop har item se guzar kar total ya maximum nikaal sakta hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend how lists work and what you can do with them.",
+   "hi": "किसी दोस्त को समझाओ कि सूचियाँ कैसे काम करती हैं और उनसे क्या कर सकते हैं।",
+   "hinglish": "Kisi dost ko samjhao ki lists kaise kaam karti hain aur unse kya kar sakte hain."
+  },
+  "checklist": [
+   {
+    "en": "A list holds many values in order, read by index starting at 0.",
+    "hi": "सूची क्रम में कई मान रखती है, जिन्हें 0 से शुरू इंडेक्स से पढ़ते हैं।",
+    "hinglish": "List order mein kai values rakhti hai, jinhe 0 se shuru index se padhte hain."
+   },
+   {
+    "en": "A loop over a list can find a total, an average or the maximum.",
+    "hi": "सूची पर लूप से कुल, औसत या अधिकतम निकलता है।",
+    "hinglish": "List par loop se total, average ya maximum nikalta hai."
+   },
+   {
+    "en": "append adds an item; len, sum, max and sorted help.",
+    "hi": "append आइटम जोड़ता है; len, sum, max और sorted मदद करते हैं।",
+    "hinglish": "append item jodta hai; len, sum, max aur sorted madad karte hain."
+   },
+   {
+    "en": "A dictionary looks up values by name instead of position.",
+    "hi": "डिक्शनरी स्थान की जगह नाम से मान ढूँढती है।",
+    "hinglish": "Dictionary position ki jagah naam se value dhoondhti hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "List",

@@ -35,6 +35,72 @@
    "hinglish": "Samjha sakte ho ki computer ke liye instructions ka order kyun zaroori hai."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you get ready for school: put on shoes, put on socks, tie the laces.",
+   "hi": "{{name}}, तुम स्कूल के लिए तैयार होते हो: जूते पहनना, मोज़े पहनना, फ़ीते बाँधना।",
+   "hinglish": "{{name}}, tum school ke liye ready hote ho: shoes pehenna, socks pehenna, laces baandhna."
+  },
+  "question": {
+   "en": "What goes wrong if you do the steps in the wrong order?",
+   "hi": "अगर ये कदम ग़लत क्रम में करो तो क्या गड़बड़ होगी?",
+   "hinglish": "Agar yeh steps galat order mein karo to kya gadbad hogi?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What do you think? A robot gets steps for making tea in the wrong order. What will it do?",
+   "hi": "तुम्हें क्या लगता है? एक रोबोट को चाय बनाने के कदम ग़लत क्रम में मिले। वह क्या करेगा?",
+   "hinglish": "Tumhe kya lagta hai? Ek robot ko chai banane ke steps galat order mein mile. Woh kya karega?"
+  },
+  "options": [
+   {
+    "en": "It will guess what you meant and fix the order",
+    "hi": "वह समझ जाएगा तुम क्या चाहते थे और क्रम ठीक कर देगा",
+    "hinglish": "Woh samajh jayega tum kya chahte the aur order theek kar dega"
+   },
+   {
+    "en": "It will follow them exactly, and the tea will go wrong",
+    "hi": "वह उन्हें ठीक वैसे ही मानेगा, और चाय बिगड़ जाएगी",
+    "hinglish": "Woh unhe bilkul waise hi maanega, aur chai bigad jayegi"
+   },
+   {
+    "en": "It will stop and refuse to start",
+    "hi": "वह रुक जाएगा और शुरू ही नहीं करेगा",
+    "hinglish": "Woh ruk jayega aur shuru hi nahin karega"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "A computer follows each instruction exactly, in the order given. It cannot guess what you meant. So the order of steps, the sequence, decides the result.",
+   "hi": "कंप्यूटर हर निर्देश ठीक वैसा ही मानता है, जिस क्रम में दिया गया हो। वह अंदाज़ा नहीं लगा सकता कि तुम क्या चाहते थे। इसलिए कदमों का क्रम, यानी सीक्वेंस, नतीजा तय करता है।",
+   "hinglish": "Computer har instruction bilkul waise hi maanta hai, jis order mein diya gaya ho. Woh guess nahin kar sakta ki tum kya chahte the. Isliye steps ka order, yaani sequence, result decide karta hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: why does the order of steps matter to a computer?",
+   "hi": "घर पर किसी को समझाओ: कंप्यूटर के लिए कदमों का क्रम क्यों मायने रखता है?",
+   "hinglish": "Ghar par kisi ko samjhao: computer ke liye steps ka order kyon matter karta hai?"
+  },
+  "checklist": [
+   {
+    "en": "A sequence is steps done one after another.",
+    "hi": "सीक्वेंस एक के बाद एक किए गए कदम हैं।",
+    "hinglish": "Sequence ek ke baad ek kiye gaye steps hain."
+   },
+   {
+    "en": "Change the order and the result can be wrong.",
+    "hi": "क्रम बदलो तो नतीजा ग़लत हो सकता है।",
+    "hinglish": "Order badlo to result galat ho sakta hai."
+   },
+   {
+    "en": "A computer follows each step exactly and cannot guess what I meant.",
+    "hi": "कंप्यूटर हर कदम ठीक वैसा मानता है और अंदाज़ा नहीं लगा सकता।",
+    "hinglish": "Computer har step bilkul waise maanta hai aur guess nahin kar sakta."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Sequence",

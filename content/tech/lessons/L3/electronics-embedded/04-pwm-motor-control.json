@@ -35,6 +35,77 @@
    "hinglish": "Driver se motor safely chalao, aur servo control karo"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a ceiling fan regulator lets you slow the fan, and a phone screen dims smoothly, yet a chip pin can only be fully ON or fully OFF.",
+   "hi": "{{name}}, सीलिंग फ़ैन का रेगुलेटर पंखा धीमा करता है और फ़ोन की स्क्रीन धीरे-धीरे मंद होती है, जबकि चिप का पिन या तो पूरा ON होता है या पूरा OFF।",
+   "hinglish": "{{name}}, ceiling fan ka regulator pankha dheema karta hai aur phone ki screen dheere-dheere dim hoti hai, jabki chip ka pin ya toh poora ON hota hai ya poora OFF."
+  },
+  "question": {
+   "en": "How can a pin that has only 0 V and 5 V make a motor run at half speed?",
+   "hi": "सिर्फ़ 0 V और 5 V वाला पिन मोटर को आधी गति पर कैसे चला सकता है?",
+   "hinglish": "Sirf 0 V aur 5 V wala pin motor ko aadhi speed par kaise chala sakta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A pin switches between 0 V and 5 V very fast, and is ON for 60% of each cycle. What does a motor or LED effectively get?",
+   "hi": "एक पिन 0 V और 5 V के बीच बहुत तेज़ बदलता है और हर चक्र के 60% समय ON रहता है। मोटर या LED को असल में क्या मिलता है?",
+   "hinglish": "Ek pin 0 V aur 5 V ke beech bahut tez badalta hai aur har cycle ke 60% time ON rehta hai. Motor ya LED ko asal mein kya milta hai?"
+  },
+  "options": [
+   {
+    "en": "5 V all the time",
+    "hi": "हर समय 5 V",
+    "hinglish": "Har waqt 5 V"
+   },
+   {
+    "en": "About 3 V on average (0.6 × 5 V)",
+    "hi": "औसतन लगभग 3 V (0.6 × 5 V)",
+    "hinglish": "Average mein lagbhag 3 V (0.6 × 5 V)"
+   },
+   {
+    "en": "0 V, because the OFF time cancels the ON time",
+    "hi": "0 V, क्योंकि OFF का समय ON को मिटा देता है",
+    "hinglish": "0 V, kyunki OFF time ON ko cancel kar deta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "The motor and your eye respond to the average of the fast pulses, so a 60% duty cycle acts like 0.6 × 5 = 3 V. Because the switch is either fully on or fully off, almost no energy is wasted as heat, unlike a resistor. A motor needs a driver, since a pin can supply only about 20 mA.",
+   "hi": "मोटर और तुम्हारी आँख तेज़ पल्स के औसत पर प्रतिक्रिया देते हैं, इसलिए 60% ड्यूटी साइकिल 0.6 × 5 = 3 V जैसा असर करती है। स्विच या तो पूरा ON या पूरा OFF है, इसलिए रेज़िस्टर की तरह गर्मी में ऊर्जा लगभग बर्बाद नहीं होती। मोटर को ड्राइवर चाहिए, क्योंकि पिन सिर्फ़ लगभग 20 mA दे सकता है।",
+   "hinglish": "Motor aur tumhari aankh fast pulses ke average par react karte hain, isliye 60% duty cycle 0.6 × 5 = 3 V jaisa asar karti hai. Switch ya toh poora ON ya poora OFF hai, isliye resistor ki tarah heat mein energy lagbhag waste nahi hoti. Motor ko driver chahiye, kyunki pin sirf lagbhag 20 mA de sakta hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how PWM can dim an LED or slow a motor without wasting energy.",
+   "hi": "घर पर किसी को समझाओ कि PWM ऊर्जा बर्बाद किए बिना LED को कैसे मंद या मोटर को धीमा कर सकता है।",
+   "hinglish": "Ghar par kisi ko samjhao ki PWM energy waste kiye bina LED ko kaise dim ya motor ko slow kar sakta hai."
+  },
+  "checklist": [
+   {
+    "en": "PWM switches the full voltage ON and OFF very fast; the load responds to the average.",
+    "hi": "PWM पूरा वोल्टेज बहुत तेज़ ON और OFF करता है; लोड औसत पर प्रतिक्रिया देता है।",
+    "hinglish": "PWM poora voltage bahut tez ON aur OFF karta hai; load average par react karta hai."
+   },
+   {
+    "en": "Average voltage = duty cycle × supply, so 60% of 5 V is 3 V.",
+    "hi": "औसत वोल्टेज = ड्यूटी साइकिल × सप्लाई, इसलिए 5 V का 60% 3 V।",
+    "hinglish": "Average voltage = duty cycle × supply, isliye 5 V ka 60% 3 V."
+   },
+   {
+    "en": "It wastes less heat than a resistor because the switch is fully on or fully off.",
+    "hi": "यह रेज़िस्टर से कम गर्मी बर्बाद करता है क्योंकि स्विच पूरा ON या पूरा OFF होता है।",
+    "hinglish": "Yeh resistor se kam heat waste karta hai kyunki switch poora ON ya poora OFF hota hai."
+   },
+   {
+    "en": "A motor needs a driver because a pin gives only about 20 mA; a servo reads the pulse width (about 1 to 2 ms).",
+    "hi": "मोटर को ड्राइवर चाहिए क्योंकि पिन लगभग 20 mA ही देता है; सर्वो पल्स की चौड़ाई (लगभग 1 से 2 ms) पढ़ता है।",
+    "hinglish": "Motor ko driver chahiye kyunki pin lagbhag 20 mA hi deta hai; servo pulse width (lagbhag 1 se 2 ms) padhta hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "PWM",
@@ -89,7 +160,7 @@
     "hi": "इसे 60% समय चालू करो, बहुत तेज़ी से: औसत 0.6 × 5 = 3 V।",
     "hinglish": "Ise 60% time on karo, bahut tezi se: average 0.6 × 5 = 3 V."
    },
-   "visual": "anim:pwm",
+   "visual": "flow:⚡ Pin ON 60%|⏸️ Pin OFF 40%|🔁 Repeat 1,000 times a second|📊 Average is 3 V",
    "narration": {
     "en": "Switch it on 60% of the time, very fast: the average is 0.6 × 5 = 3 V.",
     "hi": "इसे 60% समय चालू करो, बहुत तेज़ी से: औसत 0.6 × 5 = 3 V।",

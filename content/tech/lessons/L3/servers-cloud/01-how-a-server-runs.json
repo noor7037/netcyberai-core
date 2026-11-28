@@ -34,6 +34,77 @@
    "hinglish": "Virtual machines aur containers samjhao aur kab kaunsa"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, the website you open at midnight is answered by a computer that nobody is sitting at, in a building you will never see.",
+   "hi": "{{name}}, आधी रात को जो वेबसाइट तुम खोलते हो उसका जवाब एक ऐसा कंप्यूटर देता है जिसके पास कोई बैठा नहीं, ऐसी इमारत में जो तुम कभी नहीं देखोगे।",
+   "hinglish": "{{name}}, aadhi raat ko jo website tum kholte ho uska jawab ek aisa computer deta hai jiske paas koi baitha nahi, aisi building mein jo tum kabhi nahi dekhoge."
+  },
+  "question": {
+   "en": "What makes a server different from your laptop, and how does one program on it answer thousands of visitors?",
+   "hi": "सर्वर तुम्हारे लैपटॉप से अलग कैसे है, और उस पर एक प्रोग्राम हज़ारों आने वालों को जवाब कैसे देता है?",
+   "hinglish": "Server tumhare laptop se alag kaise hai, aur us par ek program hazaron visitors ko jawab kaise deta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What does it mean when nginx 'listens on port 443'?",
+   "hi": "जब कहा जाता है कि nginx 'पोर्ट 443 पर सुन रहा है', तो इसका क्या मतलब है?",
+   "hinglish": "Jab kaha jaata hai ki nginx 'port 443 par sun raha hai', toh iska kya matlab hai?"
+  },
+  "options": [
+   {
+    "en": "It plays audio to the visitor",
+    "hi": "यह आने वाले को आवाज़ सुनाता है",
+    "hinglish": "Yeh visitor ko awaaz sunata hai"
+   },
+   {
+    "en": "The process asked the kernel to hand it the incoming connections for that port, so requests reach it",
+    "hi": "प्रोसेस ने कर्नेल से उस पोर्ट के आने वाले कनेक्शन अपने को देने को कहा है, इसलिए अनुरोध उस तक पहुँचते हैं",
+    "hinglish": "Process ne kernel se us port ke incoming connections apne ko dene ko kaha hai, isliye requests us tak pahunchte hain"
+   },
+   {
+    "en": "The server has 443 CPU cores",
+    "hi": "सर्वर में 443 CPU कोर हैं",
+    "hinglish": "Server mein 443 CPU cores hain"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "A port is a number the kernel uses to deliver incoming connections to the right program. nginx is a service that starts at boot and listens on 80 and 443, decrypts TLS, then serves a file or passes the request to an app. Servers run all day on ECC memory and redundant power, are reached over SSH keys, and are packaged in VMs or containers.",
+   "hi": "पोर्ट एक संख्या है जिससे कर्नेल आने वाले कनेक्शन सही प्रोग्राम तक पहुँचाता है। nginx एक सेवा है जो बूट पर शुरू होती है और 80 और 443 पर सुनती है, TLS खोलती है, फिर फ़ाइल देती है या अनुरोध किसी ऐप को भेजती है। सर्वर दिन भर ECC मेमोरी और दोहरी बिजली पर चलते हैं, SSH कुंजियों से जुड़े जाते हैं, और VM या कंटेनर में पैक होते हैं।",
+   "hinglish": "Port ek number hai jisse kernel incoming connections sahi program tak pahunchata hai. nginx ek service hai jo boot par shuru hoti hai aur 80 aur 443 par sunti hai, TLS kholti hai, phir file deti hai ya request kisi app ko bhejti hai. Servers din bhar ECC memory aur redundant power par chalte hain, SSH keys se jude jaate hain, aur VMs ya containers mein pack hote hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a server handles a visit, and how a container differs from a virtual machine.",
+   "hi": "घर पर किसी को समझाओ कि सर्वर एक विज़िट कैसे सँभालता है, और कंटेनर वर्चुअल मशीन से कैसे अलग है।",
+   "hinglish": "Ghar par kisi ko samjhao ki server ek visit kaise sambhalta hai, aur container virtual machine se kaise alag hai."
+  },
+  "checklist": [
+   {
+    "en": "A server is built to run all day: many cores, ECC memory, redundant power, remote management.",
+    "hi": "सर्वर दिन भर चलने को बना है: कई कोर, ECC मेमोरी, अतिरिक्त बिजली, दूर से प्रबंधन।",
+    "hinglish": "Server din bhar chalne ko bana hai: kai cores, ECC memory, redundant power, remote management."
+   },
+   {
+    "en": "A service starts at boot, listens on a port, and the kernel delivers matching connections to it; logs record what happened.",
+    "hi": "सेवा बूट पर शुरू होकर पोर्ट पर सुनती है, कर्नेल मेल खाते कनेक्शन उसे देता है; लॉग बताते हैं क्या हुआ।",
+    "hinglish": "Service boot par shuru hokar port par sunti hai, kernel matching connections use deta hai; logs batate hain kya hua."
+   },
+   {
+    "en": "A VM has its own OS (strong isolation, heavy); a container shares the host kernel (light, faster to start).",
+    "hi": "VM का अपना OS है (मज़बूत अलगाव, भारी); कंटेनर होस्ट कर्नेल साझा करता है (हल्का, जल्दी शुरू)।",
+    "hinglish": "VM ka apna OS hai (strong isolation, heavy); container host kernel share karta hai (light, jaldi start)."
+   },
+   {
+    "en": "Run safely: SSH keys, low-privilege service users, only needed ports open, logs watched.",
+    "hi": "सुरक्षित चलाओ: SSH कुंजियाँ, कम अधिकार वाले सेवा उपयोगकर्ता, सिर्फ़ ज़रूरी पोर्ट खुले, लॉग पर नज़र।",
+    "hinglish": "Safely chalao: SSH keys, low-privilege service users, sirf zaroori ports open, logs par nazar."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Server",
@@ -102,7 +173,7 @@
     "hi": "एक भौतिक मशीन कई वर्चुअल मशीनें चला सकती है, हर एक का अपना ओएस। कंटेनर हल्के हैं: कर्नेल साझा करते हैं और लगभग एक सेकंड में शुरू होते हैं।",
     "hinglish": "Ek physical machine kai virtual machines chala sakti hai, har ek ka apna OS. Containers halke hain: kernel share karte hain aur lagbhag ek second mein shuru hote hain."
    },
-   "visual": "anim:vm-vs-container",
+   "visual": "compare:🖥️ VM: its own full OS, heavy|📦 Container: shares the host kernel, light",
    "narration": {
     "en": "One physical machine can host many virtual machines, each with its own OS. Containers are lighter: they share the kernel and start in about a second.",
     "hi": "एक भौतिक मशीन कई वर्चुअल मशीनें चला सकती है, हर एक का अपना ओएस। कंटेनर हल्के हैं: कर्नेल साझा करते हैं और लगभग एक सेकंड में शुरू होते हैं।",
@@ -116,7 +187,7 @@
     "hi": "एडमिन पासवर्ड नहीं, SSH कुंजी से लॉगिन करते हैं, समस्या पकड़ने के लिए लॉग पढ़ते हैं, और Kubernetes जैसा ऑर्केस्ट्रेटर गिरे कंटेनर अपने-आप फिर शुरू करता है।",
     "hinglish": "Admins password nahi, SSH keys se login karte hain, problems pakadne ke liye logs padhte hain, aur Kubernetes jaisa orchestrator crashed containers apne-aap restart karta hai."
    },
-   "visual": "anim:self-heal",
+   "visual": "cycle:🔍 Check health|💥 A failure is found|🔄 Start a replacement",
    "narration": {
     "en": "Admins log in with SSH keys, not passwords, read logs to spot problems, and an orchestrator like Kubernetes restarts crashed containers automatically.",
     "hi": "एडमिन पासवर्ड नहीं, SSH कुंजी से लॉगिन करते हैं, समस्या पकड़ने के लिए लॉग पढ़ते हैं, और Kubernetes जैसा ऑर्केस्ट्रेटर गिरे कंटेनर अपने-आप फिर शुरू करता है।",

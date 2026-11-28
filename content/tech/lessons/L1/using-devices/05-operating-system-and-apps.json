@@ -40,6 +40,77 @@
    "hinglish": "Bata sakte ho updates kyon zaroori hain, aur apps sirf official store se, bade ke saath, install karte ho."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your family phone suddenly says, \"A new update is ready.\"",
+   "hi": "{{name}}, तुम्हारे घर के फ़ोन पर अचानक लिखा आता है, \"नया अपडेट तैयार है।\"",
+   "hinglish": "{{name}}, tumhare ghar ke phone par achanak aata hai, \"New update ready hai.\""
+  },
+  "question": {
+   "en": "What is the part of a phone that runs everything, and why does it need updates?",
+   "hi": "फ़ोन का वह हिस्सा क्या है जो सब कुछ चलाता है, और उसे अपडेट क्यों चाहिए?",
+   "hinglish": "Phone ka woh hissa kya hai jo sab kuch chalata hai, aur use updates kyon chahiye?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What do you think? What is the job of an operating system like Android?",
+   "hi": "तुम्हें क्या लगता है? Android जैसे ऑपरेटिंग सिस्टम का काम क्या है?",
+   "hinglish": "Tumhe kya lagta hai? Android jaise operating system ka kaam kya hai?"
+  },
+  "options": [
+   {
+    "en": "It is just a game that comes with the phone",
+    "hi": "यह बस फ़ोन के साथ आने वाला एक गेम है",
+    "hinglish": "Yeh bas phone ke saath aane wala ek game hai"
+   },
+   {
+    "en": "It manages the device: it runs apps, shares memory, saves files and talks to the hardware",
+    "hi": "यह डिवाइस सँभालता है: ऐप चलाता है, मेमोरी बाँटता है, फ़ाइलें सहेजता है और हार्डवेयर से बात करता है",
+    "hinglish": "Yeh device sambhalta hai: apps chalata hai, memory baantta hai, files save karta hai aur hardware se baat karta hai"
+   },
+   {
+    "en": "It only makes the screen bright",
+    "hi": "यह सिर्फ़ स्क्रीन को चमकीला करता है",
+    "hinglish": "Yeh sirf screen ko bright karta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "The OS is the device's manager. Apps ask it for the screen, the camera, memory and storage. Updates fix problems and close security holes, so install them, with a grown-up.",
+   "hi": "OS डिवाइस का प्रबंधक है। ऐप उससे स्क्रीन, कैमरा, मेमोरी और स्टोरेज माँगते हैं। अपडेट गड़बड़ियाँ ठीक करते हैं और सुरक्षा की कमियाँ बंद करते हैं, इसलिए बड़ों के साथ इन्हें लगाओ।",
+   "hinglish": "OS device ka manager hai. Apps usse screen, camera, memory aur storage maangte hain. Updates problems fix karte hain aur security holes band karte hain, isliye grown-up ke saath unhe install karo."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: what does an operating system do, and how is it different from an app?",
+   "hi": "घर पर किसी को समझाओ: ऑपरेटिंग सिस्टम क्या करता है, और वह ऐप से अलग कैसे है?",
+   "hinglish": "Ghar par kisi ko samjhao: operating system kya karta hai, aur woh app se alag kaise hai?"
+  },
+  "checklist": [
+   {
+    "en": "The OS manages the device and runs all the apps.",
+    "hi": "OS डिवाइस सँभालता है और सारे ऐप चलाता है।",
+    "hinglish": "OS device sambhalta hai aur saare apps chalata hai."
+   },
+   {
+    "en": "An app does one job; Android, iOS and Windows are operating systems.",
+    "hi": "ऐप एक काम करता है; Android, iOS और Windows ऑपरेटिंग सिस्टम हैं।",
+    "hinglish": "App ek kaam karta hai; Android, iOS aur Windows operating systems hain."
+   },
+   {
+    "en": "Updates fix problems and close security holes.",
+    "hi": "अपडेट गड़बड़ियाँ ठीक करते हैं और सुरक्षा की कमियाँ बंद करते हैं।",
+    "hinglish": "Updates problems fix karte hain aur security holes band karte hain."
+   },
+   {
+    "en": "Get apps only from the official store, with a grown-up.",
+    "hi": "ऐप सिर्फ़ आधिकारिक स्टोर से लो, बड़ों के साथ।",
+    "hinglish": "Apps sirf official store se lo, grown-up ke saath."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Operating system (OS)",

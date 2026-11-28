@@ -34,6 +34,77 @@
    "hinglish": "Cloud aur AI ke energy aur paani impact, aur India ke data-centre aur data-protection landscape par charcha karo"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you ask an AI assistant a question and a reply appears in seconds, but it came from a building full of machines using a great deal of electricity.",
+   "hi": "{{name}}, तुम एक AI सहायक से सवाल पूछते हो और सेकंड में जवाब आता है, पर वह मशीनों से भरी एक इमारत से आया जो बहुत बिजली इस्तेमाल करती है।",
+   "hinglish": "{{name}}, tum ek AI assistant se sawaal poochhte ho aur seconds mein jawab aata hai, par woh machines se bhari ek building se aaya jo bahut bijli use karti hai."
+  },
+  "question": {
+   "en": "What is inside such a building, and how do engineers measure how wasteful or efficient it is?",
+   "hi": "ऐसी इमारत के अंदर क्या होता है, और इंजीनियर कैसे नापते हैं कि वह कितनी बर्बाद या कुशल है?",
+   "hinglish": "Aisi building ke andar kya hota hai, aur engineers kaise naapte hain ki woh kitni wasteful ya efficient hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A data centre uses 15 GWh in a year, of which servers, storage and network use 10 GWh. What is its PUE?",
+   "hi": "एक डेटा सेंटर साल में 15 GWh इस्तेमाल करता है, जिसमें सर्वर, स्टोरेज और नेटवर्क 10 GWh लेते हैं। उसका PUE क्या है?",
+   "hinglish": "Ek data centre saal mein 15 GWh use karta hai, jisme servers, storage aur network 10 GWh lete hain. Uska PUE kya hai?"
+  },
+  "options": [
+   {
+    "en": "0.67",
+    "hi": "0.67",
+    "hinglish": "0.67"
+   },
+   {
+    "en": "1.5",
+    "hi": "1.5",
+    "hinglish": "1.5"
+   },
+   {
+    "en": "5",
+    "hi": "5",
+    "hinglish": "5"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "PUE is total facility energy divided by IT energy: 15 ÷ 10 = 1.5. For every unit used for computing, half a unit more goes to cooling, power conversion and lighting. A perfect 1.0 is impossible; lower is better. Almost every watt a server uses becomes heat, so cooling is the biggest overhead.",
+   "hi": "PUE कुल सुविधा ऊर्जा को IT ऊर्जा से भाग देना है: 15 ÷ 10 = 1.5। कंप्यूटिंग पर हर इकाई के साथ आधी इकाई और शीतलन, बिजली रूपांतरण और रोशनी में जाती है। पूर्ण 1.0 असंभव है; कम बेहतर है। सर्वर का लगभग हर वाट गर्मी बनता है, इसलिए शीतलन सबसे बड़ा अतिरिक्त खर्च है।",
+   "hinglish": "PUE total facility energy ko IT energy se divide karna hai: 15 ÷ 10 = 1.5. Computing par har unit ke saath aadhi unit aur cooling, power conversion aur lighting mein jaati hai. Perfect 1.0 impossible hai; kam behtar hai. Server ka lagbhag har watt heat banta hai, isliye cooling sabse bada overhead hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home what is inside a data centre and what PUE tells you.",
+   "hi": "घर पर किसी को समझाओ कि डेटा सेंटर के अंदर क्या होता है और PUE क्या बताता है।",
+   "hinglish": "Ghar par kisi ko samjhao ki data centre ke andar kya hota hai aur PUE kya batata hai."
+  },
+  "checklist": [
+   {
+    "en": "Racks of servers, fibre switches, two power feeds, UPS batteries, generators and cooling.",
+    "hi": "सर्वरों के रैक, फ़ाइबर स्विच, दो बिजली स्रोत, UPS बैटरियाँ, जनरेटर और शीतलन।",
+    "hinglish": "Servers ke racks, fibre switches, do power feeds, UPS batteries, generators aur cooling."
+   },
+   {
+    "en": "Power chain: grid, then UPS batteries, then servers, with generators for long outages.",
+    "hi": "बिजली की कड़ी: ग्रिड, फिर UPS बैटरी, फिर सर्वर, लंबे आउटेज के लिए जनरेटर।",
+    "hinglish": "Power chain: grid, phir UPS batteries, phir servers, lambe outage ke liye generators."
+   },
+   {
+    "en": "Nearly all the electricity becomes heat, so hot and cold aisles and other cooling methods matter.",
+    "hi": "लगभग सारी बिजली गर्मी बनती है, इसलिए गर्म और ठंडे गलियारे व अन्य शीतलन तरीके मायने रखते हैं।",
+    "hinglish": "Lagbhag saari bijli heat banti hai, isliye hot aur cold aisles aur doosre cooling methods matter karte hain."
+   },
+   {
+    "en": "PUE = total energy ÷ IT energy; 1.0 is perfect and lower is better.",
+    "hi": "PUE = कुल ऊर्जा ÷ IT ऊर्जा; 1.0 पूर्ण है और कम बेहतर।",
+    "hinglish": "PUE = total energy ÷ IT energy; 1.0 perfect hai aur kam behtar."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Data centre",
@@ -88,7 +159,7 @@
     "hi": "बिजली: ग्रिड → यूपीएस बैटरियाँ → सर्वर। ग्रिड बंद हो तो यूपीएस कुछ मिनट सँभालता है जब तक डीज़ल या गैस जनरेटर चलते हैं।",
     "hinglish": "Power: grid → UPS batteries → servers. Grid band ho to UPS kuch minute sambhalta hai jab tak diesel ya gas generators chalte hain."
    },
-   "visual": "anim:power-chain",
+   "visual": "flow:🔌 Grid power|🔋 UPS batteries|🖥️ Servers",
    "narration": {
     "en": "Power: grid → UPS batteries → servers. If the grid fails, the UPS holds for minutes while diesel or gas generators start.",
     "hi": "बिजली: ग्रिड → यूपीएस बैटरियाँ → सर्वर। ग्रिड बंद हो तो यूपीएस कुछ मिनट सँभालता है जब तक डीज़ल या गैस जनरेटर चलते हैं।",
@@ -116,7 +187,7 @@
     "hi": "PUE = कुल ऊर्जा ÷ आईटी ऊर्जा। 1.0 आदर्श होगा। वैश्विक औसत लगभग 1.5 है; सबसे कुशल हाइपरस्केल साइटें लगभग 1.1 बताती हैं।",
     "hinglish": "PUE = kul energy ÷ IT energy. 1.0 perfect hoga. Global average lagbhag 1.5 hai; sabse efficient hyperscale sites lagbhag 1.1 batati hain."
    },
-   "visual": "anim:pue-meter",
+   "visual": "flow:⚡ Total facility energy|➗ Divide by IT energy|📊 That is the PUE",
    "narration": {
     "en": "PUE = total energy ÷ IT energy. 1.0 would be perfect. The global average is around 1.5; the most efficient hyperscale sites report about 1.1.",
     "hi": "PUE = कुल ऊर्जा ÷ आईटी ऊर्जा। 1.0 आदर्श होगा। वैश्विक औसत लगभग 1.5 है; सबसे कुशल हाइपरस्केल साइटें लगभग 1.1 बताती हैं।",

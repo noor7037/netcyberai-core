@@ -38,6 +38,77 @@
    "hinglish": "Chat message ka poora safar encryption samet trace kar sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you send a long WhatsApp message with a photo and it reaches your friend in full, even when the signal is weak.",
+   "hi": "{{name}}, तुम WhatsApp पर फ़ोटो के साथ लंबा संदेश भेजते हो और कमज़ोर सिग्नल में भी वह पूरा दोस्त तक पहुँचता है।",
+   "hinglish": "{{name}}, tum WhatsApp par photo ke saath lamba message bhejte ho aur weak signal mein bhi woh poora dost tak pahunchta hai."
+  },
+  "question": {
+   "en": "How does a big message cross the internet and still arrive complete?",
+   "hi": "एक बड़ा संदेश इंटरनेट पार करके भी पूरा कैसे पहुँचता है?",
+   "hinglish": "Ek bada message internet paar karke bhi poora kaise pahunchta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A message is sent as 3 packets and packet 2 is lost on the way. What does TCP do?",
+   "hi": "एक संदेश 3 पैकेट में भेजा गया और पैकेट 2 रास्ते में खो गया। TCP क्या करता है?",
+   "hinglish": "Ek message 3 packets mein bheja gaya aur packet 2 raaste mein kho gaya. TCP kya karta hai?"
+  },
+  "options": [
+   {
+    "en": "Delivers the message with a missing piece",
+    "hi": "संदेश को एक टुकड़ा छोड़कर पहुँचा देता है",
+    "hinglish": "Message ko ek tukda chhodkar pahuncha deta hai"
+   },
+   {
+    "en": "Notices no acknowledgement came back, so the sender resends packet 2",
+    "hi": "देखता है कि पावती नहीं आई, इसलिए भेजने वाला पैकेट 2 दोबारा भेजता है",
+    "hinglish": "Dekhta hai ki acknowledgement nahi aayi, isliye sender packet 2 dobara bhejta hai"
+   },
+   {
+    "en": "Cancels the whole message",
+    "hi": "पूरा संदेश रद्द कर देता है",
+    "hinglish": "Poora message cancel kar deta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Packets have sequence numbers and the receiver sends back ACKs. If an ACK does not arrive, the sender sends that packet again, and the receiver puts the packets in order. Messaging apps also encrypt the content, so only the two phones can read it.",
+   "hi": "पैकेटों के क्रम संख्याएँ होती हैं और पाने वाला ACK लौटाता है। ACK न आए तो भेजने वाला वह पैकेट दोबारा भेजता है, और पाने वाला पैकेट क्रम में लगा लेता है। मैसेजिंग ऐप सामग्री एन्क्रिप्ट भी करते हैं, ताकि सिर्फ़ दो फ़ोन उसे पढ़ सकें।",
+   "hinglish": "Packets ke sequence numbers hote hain aur receiver ACK wapas bhejta hai. ACK na aaye to sender woh packet dobara bhejta hai, aur receiver packets ko order mein laga leta hai. Messaging apps content encrypt bhi karte hain, taaki sirf do phones use padh sakein."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend how a message is split into packets and still arrives in order.",
+   "hi": "किसी दोस्त को समझाओ कि संदेश पैकेटों में बँटकर भी क्रम में कैसे पहुँचता है।",
+   "hinglish": "Kisi dost ko samjhao ki message packets mein bantkar bhi order mein kaise pahunchta hai."
+  },
+  "checklist": [
+   {
+    "en": "The message is cut into packets, each with from, to and a sequence number.",
+    "hi": "संदेश पैकेटों में कटता है, हर एक में किससे, किसे और क्रम संख्या होती है।",
+    "hinglish": "Message packets mein katta hai, har ek mein from, to aur sequence number hota hai."
+   },
+   {
+    "en": "Packets can take different routes and arrive out of order, so the receiver sorts them.",
+    "hi": "पैकेट अलग रास्ते ले सकते हैं और क्रम से बाहर पहुँच सकते हैं, इसलिए पाने वाला उन्हें क्रम में लगाता है।",
+    "hinglish": "Packets alag routes le sakte hain aur order se bahar pahunch sakte hain, isliye receiver unhe sort karta hai."
+   },
+   {
+    "en": "If no ACK comes, TCP resends the lost packet.",
+    "hi": "ACK न आए तो TCP खोया पैकेट दोबारा भेजता है।",
+    "hinglish": "Agar ACK na aaye to TCP khoya packet dobara bhejta hai."
+   },
+   {
+    "en": "Layers share the work, and encryption keeps the content private.",
+    "hi": "परतें काम बाँटती हैं, और एन्क्रिप्शन सामग्री को निजी रखता है।",
+    "hinglish": "Layers kaam baantti hain, aur encryption content ko private rakhta hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Packet",
@@ -106,7 +177,7 @@
     "hi": "अगर पैकेट खो जाए, तो “मिल गया” (ACK) वापस नहीं आता, इसलिए भेजने वाला फिर भेजता है।",
     "hinglish": "Agar packet kho jaaye, to “mil gaya” (ACK) wapas nahi aata, isliye sender dobara bhejta hai."
    },
-   "visual": "icon:🔁",
+   "visual": "flow:📤 Send packet|❌ Lost on the way|⏳ No ACK arrives|🔁 Resend it",
    "narration": {
     "en": "This is how your message arrives complete even on a patchy network.",
     "hi": "इसी तरह कमज़ोर नेटवर्क पर भी आपका संदेश पूरा पहुँचता है।",

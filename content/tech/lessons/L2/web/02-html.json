@@ -37,6 +37,77 @@
    "hinglish": "Alt text daal ke page sabke liye accessible bana sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your school website shows a heading, a paragraph, a list of notices and a picture.",
+   "hi": "{{name}}, तुम्हारे स्कूल की वेबसाइट एक शीर्षक, एक अनुच्छेद, सूचनाओं की सूची और एक चित्र दिखाती है।",
+   "hinglish": "{{name}}, tumhare school ki website ek heading, ek paragraph, notices ki list aur ek picture dikhati hai."
+  },
+  "question": {
+   "en": "How does a browser know which text is a heading and which is a list?",
+   "hi": "ब्राउज़र कैसे जानता है कि कौन-सा टेक्स्ट शीर्षक है और कौन-सा सूची?",
+   "hinglish": "Browser kaise jaanta hai ki kaunsa text heading hai aur kaunsa list?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "In HTML, what does a tag like <h1>Welcome</h1> do?",
+   "hi": "HTML में <h1>Welcome</h1> जैसा टैग क्या करता है?",
+   "hinglish": "HTML mein <h1>Welcome</h1> jaisa tag kya karta hai?"
+  },
+  "options": [
+   {
+    "en": "It makes the text red",
+    "hi": "वह टेक्स्ट को लाल करता है",
+    "hinglish": "Woh text ko red karta hai"
+   },
+   {
+    "en": "It marks the text as a top-level heading, a label for its meaning",
+    "hi": "वह टेक्स्ट को शीर्ष स्तर का शीर्षक चिह्नित करता है, यानी उसके अर्थ का लेबल",
+    "hinglish": "Woh text ko top-level heading mark karta hai, yaani uske meaning ka label"
+   },
+   {
+    "en": "It runs a program",
+    "hi": "वह एक प्रोग्राम चलाता है",
+    "hinglish": "Woh ek program chalata hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "HTML describes structure and meaning: heading, paragraph, list, link, image. Looks like red text or big size come from CSS. Alt text on images and headings in order also let screen readers and search engines understand the page.",
+   "hi": "HTML संरचना और अर्थ बताता है: शीर्षक, अनुच्छेद, सूची, लिंक, चित्र। लाल रंग या बड़ा आकार CSS से आता है। चित्रों पर alt टेक्स्ट और क्रम में शीर्षक स्क्रीन रीडर और सर्च इंजन को पन्ना समझने में मदद करते हैं।",
+   "hinglish": "HTML structure aur meaning batata hai: heading, paragraph, list, link, image. Red colour ya bada size CSS se aata hai. Images par alt text aur order mein headings screen readers aur search engines ko page samajhne mein madad karte hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend how an HTML page is built from tags.",
+   "hi": "किसी दोस्त को समझाओ कि HTML पन्ना टैगों से कैसे बनता है।",
+   "hinglish": "Kisi dost ko samjhao ki HTML page tags se kaise banta hai."
+  },
+  "checklist": [
+   {
+    "en": "Tags mark what content is: heading, paragraph, list, link or image.",
+    "hi": "टैग बताते हैं कि सामग्री क्या है: शीर्षक, अनुच्छेद, सूची, लिंक या चित्र।",
+    "hinglish": "Tags batate hain ki content kya hai: heading, paragraph, list, link ya image."
+   },
+   {
+    "en": "An element usually has an opening and closing tag, and elements nest inside each other.",
+    "hi": "एलिमेंट में आमतौर पर खुलने और बंद होने वाले टैग होते हैं, और वे एक-दूसरे में समाते हैं।",
+    "hinglish": "Element mein aam taur par opening aur closing tag hote hain, aur woh ek-doosre ke andar nest hote hain."
+   },
+   {
+    "en": "Attributes add details, like href on a link or alt on an image.",
+    "hi": "एट्रिब्यूट ब्योरा जोड़ते हैं, जैसे लिंक पर href या चित्र पर alt।",
+    "hinglish": "Attributes details jodte hain, jaise link par href ya image par alt."
+   },
+   {
+    "en": "Alt text and ordered headings make a page work for everyone.",
+    "hi": "alt टेक्स्ट और क्रम में शीर्षक पन्ने को सबके लिए उपयोगी बनाते हैं।",
+    "hinglish": "Alt text aur ordered headings page ko sabke liye useful banate hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "HTML",

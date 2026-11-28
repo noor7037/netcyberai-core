@@ -34,6 +34,77 @@
    "hi": "छोटे नेटवर्क के पैरामीटर गिनना"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your phone unlocks with your face even when you wear glasses or stand in dim light.",
+   "hi": "{{name}}, तुम्हारा फ़ोन चश्मा पहनने या कम रोशनी में भी तुम्हारे चेहरे से अनलॉक हो जाता है।",
+   "hinglish": "{{name}}, tumhara phone chashma pehanne ya kam roshni mein bhi tumhare chehre se unlock ho jaata hai."
+  },
+  "question": {
+   "en": "What is inside such a network, and what does one artificial \"neuron\" actually compute?",
+   "hi": "ऐसे नेटवर्क के अंदर क्या होता है, और एक कृत्रिम \"न्यूरॉन\" असल में क्या गणना करता है?",
+   "hinglish": "Aise network ke andar kya hota hai, aur ek artificial \"neuron\" asal mein kya compute karta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "If a network used only linear activations, what would 100 layers be equivalent to?",
+   "hi": "अगर नेटवर्क में सिर्फ़ रैखिक एक्टिवेशन हों, तो 100 परतें किसके बराबर होंगी?",
+   "hinglish": "Agar network mein sirf linear activations hon, to 100 layers kiske barabar hongi?"
+  },
+  "options": [
+   {
+    "en": "A very deep, very powerful model",
+    "hi": "बहुत गहरा, बहुत शक्तिशाली मॉडल",
+    "hinglish": "Bahut deep, bahut powerful model"
+   },
+   {
+    "en": "A single linear layer",
+    "hi": "एक अकेली रैखिक परत",
+    "hinglish": "Ek single linear layer"
+   },
+   {
+    "en": "A network that cannot train",
+    "hi": "ऐसा नेटवर्क जो ट्रेन नहीं हो सकता",
+    "hinglish": "Aisa network jo train nahi ho sakta"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "A neuron computes a weighted sum plus a bias and passes it through an activation. A linear function of a linear function is still linear, so without non-linear activations such as ReLU, stacked layers collapse into one. ReLU lets the network bend, so hidden layers can build complex patterns.",
+   "hi": "न्यूरॉन भारित जोड़ और बायस निकालकर उसे एक्टिवेशन से गुज़ारता है। रैखिक का रैखिक फ़ंक्शन फिर रैखिक ही रहता है, इसलिए ReLU जैसे अरैखिक एक्टिवेशन के बिना जमी हुई परतें एक में सिमट जाती हैं। ReLU नेटवर्क को मोड़ देता है, इसलिए छिपी परतें जटिल पैटर्न बना सकती हैं।",
+   "hinglish": "Neuron weighted sum aur bias nikalkar use activation se guzarta hai. Linear ka linear function phir linear hi rehta hai, isliye ReLU jaise non-linear activations ke bina stacked layers ek mein simat jaati hain. ReLU network ko modta hai, isliye hidden layers complex patterns bana sakti hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend what one neuron computes and why networks need non-linear activations.",
+   "hi": "दोस्त को समझाओ कि एक न्यूरॉन क्या गणना करता है और नेटवर्क को अरैखिक एक्टिवेशन क्यों चाहिए।",
+   "hinglish": "Friend ko samjhao ki ek neuron kya compute karta hai aur network ko non-linear activations kyun chahiye."
+  },
+  "checklist": [
+   {
+    "en": "Output = activation(sum of inputs × weights + bias)",
+    "hi": "आउटपुट = एक्टिवेशन(इनपुट × वज़न का जोड़ + बायस)",
+    "hinglish": "Output = activation(inputs × weights ka sum + bias)"
+   },
+   {
+    "en": "Layers stack: early ones detect simple patterns, deeper ones combine them",
+    "hi": "परतें जमती हैं: शुरुआती सरल पैटर्न पकड़ती हैं, गहरी उन्हें जोड़ती हैं",
+    "hinglish": "Layers stack hoti hain: early simple patterns pakadti hain, deeper unhe jodti hain"
+   },
+   {
+    "en": "Without non-linear activations, many layers collapse into one linear map",
+    "hi": "अरैखिक एक्टिवेशन के बिना कई परतें एक रैखिक मैप में सिमट जाती हैं",
+    "hinglish": "Non-linear activations ke bina kai layers ek linear map mein simat jaati hain"
+   },
+   {
+    "en": "Parameters are the weights and biases, counted layer by layer",
+    "hi": "पैरामीटर वज़न और बायस हैं, परत-दर-परत गिने जाते हैं",
+    "hinglish": "Parameters weights aur biases hain, layer-by-layer ginte jaate hain"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Neuron",
@@ -74,7 +145,7 @@
     "hi": "एक न्यूरॉन हर इनपुट को भार से गुणा करता है, बायस के साथ जोड़ता है, फिर योग को ReLU जैसे एक्टिवेशन से गुज़ारता है।",
     "hinglish": "Neuron har input ko weight se multiply karta hai, bias ke saath jodta hai, phir sum ko ReLU jaise activation se guzaarta hai."
    },
-   "visual": "anim:neuron-sum",
+   "visual": "flow:✖️ Inputs × weights|➕ Add them with a bias|📈 Activation such as ReLU|📤 Output",
    "narration": {
     "en": "A neuron multiplies each input by a weight, adds them with a bias, then passes the sum through an activation such as ReLU.",
     "hi": "एक न्यूरॉन हर इनपुट को भार से गुणा करता है, बायस के साथ जोड़ता है, फिर योग को ReLU जैसे एक्टिवेशन से गुज़ारता है।",
@@ -88,7 +159,7 @@
     "hi": "न्यूरॉन को परतों में लगाओ। परत 1 सरल पैटर्न पकड़ती है, गहरी परतें उन्हें जोड़कर जटिल पैटर्न बनाती हैं।",
     "hinglish": "Neurons ko layers mein lagao. Layer 1 simple patterns pakadti hai, gehri layers unhe jodke complex patterns banati hain."
    },
-   "visual": "anim:layers-stack",
+   "visual": "stack:Deeper layers: complex patterns|Middle layers: combine shapes|First layer: simple patterns",
    "narration": {
     "en": "Stack neurons into layers. Layer 1 detects simple patterns, deeper layers combine them into complex ones.",
     "hi": "न्यूरॉन को परतों में लगाओ। परत 1 सरल पैटर्न पकड़ती है, गहरी परतें उन्हें जोड़कर जटिल पैटर्न बनाती हैं।",
@@ -102,7 +173,7 @@
     "hi": "गैर-रेखीय एक्टिवेशन के बिना 100 परतें एक सीधी रेखा बन जाती हैं। ReLU नेटवर्क को मुड़ने देता है।",
     "hinglish": "Non-linear activation ke bina 100 layers ek seedhi line ban jaati hain. ReLU network ko mudne deta hai."
    },
-   "visual": "anim:relu-bend",
+   "visual": "compare:📏 No non-linearity: 100 layers act like one straight line|🌀 With ReLU: the network can bend",
    "narration": {
     "en": "Without non-linear activations, 100 layers collapse into one straight line. ReLU lets the network bend.",
     "hi": "गैर-रेखीय एक्टिवेशन के बिना 100 परतें एक सीधी रेखा बन जाती हैं। ReLU नेटवर्क को मुड़ने देता है।",

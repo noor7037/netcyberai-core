@@ -39,6 +39,72 @@
    "hinglish": "Bata sakte ho asli robots, jaise Mars rovers, raasta kaise dhoondte hain."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you try a puzzle maze in a magazine, and you trace the way with your finger before using a pencil.",
+   "hi": "{{name}}, तुम पत्रिका की भूलभुलैया हल करते हो और पेंसिल से पहले उँगली से रास्ता देखते हो।",
+   "hinglish": "{{name}}, tum patrika ki bhoolbhulaiya hal karte ho aur pencil se pehle ungli se raasta dekhte ho."
+  },
+  "question": {
+   "en": "Why plan the path before moving, and how do real robots do it?",
+   "hi": "चलने से पहले रास्ता क्यों सोचें, और असली रोबोट यह कैसे करते हैं?",
+   "hinglish": "Chalne se pehle raasta kyun sochein, aur asli robots yeh kaise karte hain?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "There are two paths to the goal: one with 8 steps, one with 12. Which is better and why?",
+   "hi": "लक्ष्य तक दो रास्ते हैं: एक 8 कदम का, एक 12 का। कौन बेहतर है और क्यों?",
+   "hinglish": "Goal tak do raaste hain: ek 8 kadam ka, ek 12 ka. Kaun behtar hai aur kyun?"
+  },
+  "options": [
+   {
+    "en": "The 12-step one, because it takes longer so it is safer",
+    "hi": "12 कदम वाला, क्योंकि वह लंबा है इसलिए सुरक्षित है",
+    "hinglish": "12 kadam wala, kyunki woh lamba hai isliye surakshit hai"
+   },
+   {
+    "en": "The 8-step one, because fewer steps save time and power",
+    "hi": "8 कदम वाला, क्योंकि कम कदम समय और बिजली बचाते हैं",
+    "hinglish": "8 kadam wala, kyunki kam kadam samay aur bijli bachate hain"
+   },
+   {
+    "en": "They are always the same",
+    "hi": "दोनों हमेशा बराबर हैं",
+    "hinglish": "Dono hamesha barabar hain"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Finding a way from start to goal is pathfinding. A robot needs a plan that avoids walls, avoids going in circles and uses few steps. Mars rovers also plan their routes around rocks.",
+   "hi": "शुरू से लक्ष्य तक रास्ता ढूँढना पाथफ़ाइंडिंग है। रोबोट को ऐसी योजना चाहिए जो दीवारों से बचे, चक्कर न लगाए और कम कदम ले। मंगल के रोवर भी चट्टानों से बचकर अपना रास्ता योजनाबद्ध करते हैं।",
+   "hinglish": "Shuru se goal tak raasta dhoondna pathfinding hai. Robot ko aisi plan chahiye jo deewaron se bache, chakkar na lagaye aur kam kadam le. Mars ke rovers bhi chattaanon se bachkar apna raasta plan karte hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: how do you guide a robot through a maze?",
+   "hi": "घर पर किसी को समझाओ: रोबोट को भूलभुलैया में कैसे चलाते हैं?",
+   "hinglish": "Ghar par kisi ko samjhao: robot ko bhoolbhulaiya mein kaise chalate hain?"
+  },
+  "checklist": [
+   {
+    "en": "I plan the path around walls before the robot moves.",
+    "hi": "मैं रोबोट के चलने से पहले दीवारों से बचता रास्ता सोचता/सोचती हूँ।",
+    "hinglish": "Main robot ke chalne se pehle deewaron se bachta raasta sochta/sochti hoon."
+   },
+   {
+    "en": "I compare paths and pick the one with fewer steps.",
+    "hi": "मैं रास्तों की तुलना करके कम कदमों वाला चुनता/चुनती हूँ।",
+    "hinglish": "Main raaston ki tulna karke kam kadmon wala chunta/chunti hoon."
+   },
+   {
+    "en": "Real robots, like Mars rovers, plan around rocks too.",
+    "hi": "असली रोबोट, जैसे मंगल के रोवर, भी चट्टानों से बचकर रास्ता बनाते हैं।",
+    "hinglish": "Asli robots, jaise Mars ke rovers, bhi chattaanon se bachkar raasta banate hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Path",

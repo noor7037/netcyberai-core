@@ -38,6 +38,82 @@
    "hinglish": "Aaj AI mein India ki bhoomika bata sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you ask your phone by voice for the way to your cousin's house, and it answers in a second.",
+   "hi": "{{name}}, तुम फ़ोन से बोलकर अपने कज़िन के घर का रास्ता पूछते हो, और वह एक सेकंड में जवाब देता है।",
+   "hinglish": "{{name}}, tum phone se bolkar apne cousin ke ghar ka raasta poochte ho, aur woh ek second mein jawab deta hai."
+  },
+  "question": {
+   "en": "People first asked whether machines can think over seventy years ago. How did we get from that question to this?",
+   "hi": "लोगों ने सत्तर साल से भी पहले पूछा था कि क्या मशीनें सोच सकती हैं। उस सवाल से यहाँ तक हम कैसे पहुँचे?",
+   "hinglish": "Logon ne sattar saal se bhi pehle poocha tha ki kya machines soch sakti hain. Us sawaal se yahan tak hum kaise pahunche?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Around 2012, AI suddenly improved a lot at tasks like recognising images. What mainly changed?",
+   "hi": "लगभग 2012 में AI छवि पहचान जैसे कामों में अचानक बहुत सुधर गया। मुख्य रूप से क्या बदला?",
+   "hinglish": "Lagbhag 2012 mein AI image recognition jaise kaamon mein achanak bahut sudhar gaya. Mukhya roop se kya badla?"
+  },
+  "options": [
+   {
+    "en": "People wrote far more if-then rules",
+    "hi": "लोगों ने कहीं ज़्यादा if-then नियम लिखे",
+    "hinglish": "Logon ne kahin zyada if-then rules likhe"
+   },
+   {
+    "en": "Lots of data and fast graphics chips (GPUs) let computers learn the patterns themselves",
+    "hi": "ढेर सारे डेटा और तेज़ ग्राफ़िक्स चिप (GPU) से कंप्यूटर पैटर्न खुद सीखने लगे",
+    "hinglish": "Dher saare data aur tez graphics chips (GPUs) se computers patterns khud seekhne lage"
+   },
+   {
+    "en": "AI got its own internet",
+    "hi": "AI को अपना इंटरनेट मिल गया",
+    "hinglish": "AI ko apna internet mil gaya"
+   },
+   {
+    "en": "Computers started to think like people",
+    "hi": "कंप्यूटर इंसान की तरह सोचने लगे",
+    "hinglish": "Computers insaan ki tarah sochne lage"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Early AI mostly followed hand-written rules. Deep learning needed huge amounts of data and fast chips; once those existed, AlexNet (2012) showed that learning from examples could recognise images far better than rules.",
+   "hi": "शुरुआती AI ज़्यादातर हाथ से लिखे नियमों पर चलता था। डीप लर्निंग को बहुत ज़्यादा डेटा और तेज़ चिप चाहिए थे; वे मिलते ही AlexNet (2012) ने दिखाया कि उदाहरणों से सीखना छवियाँ नियमों से कहीं बेहतर पहचान सकता है।",
+   "hinglish": "Shuruaati AI zyadatar haath se likhe rules par chalta tha. Deep learning ko bahut zyada data aur tez chips chahiye the; woh milte hi AlexNet (2012) ne dikhaya ki examples se seekhna images rules se kahin behtar pehchan sakta hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how AI got from 1950 to today.",
+   "hi": "घर पर किसी को समझाओ कि AI 1950 से आज तक कैसे पहुँचा।",
+   "hinglish": "Ghar par kisi ko samjhao ki AI 1950 se aaj tak kaise pahuncha."
+  },
+  "checklist": [
+   {
+    "en": "1950: Turing asked whether machines can think; 1956: the Dartmouth workshop named the field.",
+    "hi": "1950: ट्यूरिंग ने पूछा कि क्या मशीनें सोच सकती हैं; 1956: डार्टमाउथ कार्यशाला ने क्षेत्र को नाम दिया।",
+    "hinglish": "1950: Turing ne poocha ki kya machines soch sakti hain; 1956: Dartmouth workshop ne field ko naam diya."
+   },
+   {
+    "en": "Early AI used rules written by people, and big promises led to AI winters.",
+    "hi": "शुरुआती AI इंसानों के लिखे नियम इस्तेमाल करता था, और बड़े वादों से AI विंटर आए।",
+    "hinglish": "Shuruaati AI insaanon ke likhe rules use karta tha, aur bade vaadon se AI winters aaye."
+   },
+   {
+    "en": "From 2012, learning from data took over: AlexNet, AlphaGo, the Transformer and ChatGPT.",
+    "hi": "2012 से डेटा से सीखना हावी हुआ: AlexNet, AlphaGo, ट्रांसफ़ॉर्मर और ChatGPT।",
+    "hinglish": "2012 se data se seekhna haavi hua: AlexNet, AlphaGo, Transformer aur ChatGPT."
+   },
+   {
+    "en": "India's part: the IndiaAI Mission, Bhashini for Indian languages and AI as a CBSE subject.",
+    "hi": "भारत की भूमिका: IndiaAI मिशन, भारतीय भाषाओं के लिए भाषिणी और CBSE में एक विषय के रूप में AI।",
+    "hinglish": "Bharat ka role: IndiaAI Mission, Indian languages ke liye Bhashini aur CBSE mein ek subject ke roop mein AI."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Turing test",

@@ -36,6 +36,72 @@
    "hinglish": "Bata sakte ho ki computer blocks upar se neeche karta hai."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you tell your little cousin a story: first the boy woke up, next he ate breakfast, last he went to school.",
+   "hi": "{{name}}, तुम अपने छोटे भाई-बहन को कहानी सुनाते हो: पहले लड़का उठा, फिर उसने नाश्ता किया, आख़िर में स्कूल गया।",
+   "hinglish": "{{name}}, tum apne chhote cousin ko kahani sunate ho: pehle ladka utha, phir usne nashta kiya, aakhir mein school gaya."
+  },
+  "question": {
+   "en": "What if a computer shows the story with the blocks in the wrong order?",
+   "hi": "अगर कंप्यूटर कहानी के ब्लॉक ग़लत क्रम में दिखाए तो?",
+   "hinglish": "Agar computer kahani ke blocks galat order mein dikhaye to?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What do you think? Blocks are in the order: eat, wake up, go to school. What does the computer do?",
+   "hi": "तुम्हें क्या लगता है? ब्लॉक इस क्रम में हैं: खाना, उठना, स्कूल जाना। कंप्यूटर क्या करेगा?",
+   "hinglish": "Tumhe kya lagta hai? Blocks is order mein hain: eat, wake up, go to school. Computer kya karega?"
+  },
+  "options": [
+   {
+    "en": "It fixes the order, because it knows how a day goes",
+    "hi": "वह क्रम ठीक कर देगा, क्योंकि उसे दिन का तरीक़ा पता है",
+    "hinglish": "Woh order theek kar dega, kyunki use din ka tareeka pata hai"
+   },
+   {
+    "en": "It does exactly that, from top to bottom, even if the story is silly",
+    "hi": "वह ठीक वही करेगा, ऊपर से नीचे, भले ही कहानी अजीब हो",
+    "hinglish": "Woh bilkul wahi karega, upar se neeche, bhale hi kahani ajeeb ho"
+   },
+   {
+    "en": "It does the last block first",
+    "hi": "वह आख़िरी ब्लॉक पहले करेगा",
+    "hinglish": "Woh aakhri block pehle karega"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "A computer does the blocks you gave, one at a time, from top to bottom. It cannot guess what you meant. Brushing teeth works the same way: paste on the brush first, then brush, then rinse.",
+   "hi": "कंप्यूटर वही ब्लॉक करता है जो तुमने दिए, एक-एक करके, ऊपर से नीचे। वह अंदाज़ा नहीं लगा सकता कि तुम क्या चाहते थे। दाँत साफ़ करना भी ऐसा ही है: पहले ब्रश पर पेस्ट, फिर ब्रश, फिर कुल्ला।",
+   "hinglish": "Computer wahi blocks karta hai jo tumne diye, ek-ek karke, upar se neeche. Woh guess nahin kar sakta ki tum kya chahte the. Daant saaf karna bhi aisa hi hai: pehle brush par paste, phir brush, phir kulla."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Tell someone at home: how does the computer do a story made of blocks?",
+   "hi": "घर पर किसी को बताओ: कंप्यूटर ब्लॉक से बनी कहानी कैसे चलाता है?",
+   "hinglish": "Ghar par kisi ko batao: computer blocks se bani kahani kaise chalata hai?"
+  },
+  "checklist": [
+   {
+    "en": "It does the blocks from top to bottom.",
+    "hi": "वह ब्लॉक ऊपर से नीचे करता है।",
+    "hinglish": "Woh blocks upar se neeche karta hai."
+   },
+   {
+    "en": "It does one block at a time.",
+    "hi": "वह एक बार में एक ब्लॉक करता है।",
+    "hinglish": "Woh ek baar mein ek block karta hai."
+   },
+   {
+    "en": "It cannot guess, so first, next, last must be in the right order.",
+    "hi": "वह अंदाज़ा नहीं लगाता, इसलिए पहले, फिर, आख़िर सही क्रम में हों।",
+    "hinglish": "Woh guess nahin karta, isliye first, next, last sahi order mein hon."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Sequence",

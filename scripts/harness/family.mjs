@@ -267,8 +267,16 @@ export const FAMILY_SCREENS = [
   // class and next lesson; a lesson opens by name and closes with its summary.
   ['full', 'family-tech-asha', '/family/tech', { child: 'f0000000-0000-4000-8000-0000000fc001', settle: '[data-path-for="7"]' }],
   ['full', 'family-tech-kabir', '/family/tech', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-path-for="9"]' }],
-  ['full', 'family-tech-lesson-intro', '/family/tech/lesson/L2.inside-computer.06', { child: 'f0000000-0000-4000-8000-0000000fc001', settle: '[data-intro]' }],
-  ['full', 'family-tech-lesson-summary', '/family/tech/lesson/L2.inside-computer.06', { child: 'f0000000-0000-4000-8000-0000000fc001', settle: '[data-intro]', steps: [{ tap: '.tl-phase:nth-child(3)', wait: '[data-summary]' }, { scroll: '[data-summary]' }] }],
+  ['full', 'family-tech-lesson-intro', '/family/tech/lesson/L2.inside-computer.06', { langs: ['en'], child: 'f0000000-0000-4000-8000-0000000fc001', settle: '[data-intro]' }],
+  ['full', 'family-tech-lesson-summary', '/family/tech/lesson/L2.inside-computer.06', { langs: ['en'], child: 'f0000000-0000-4000-8000-0000000fc001', settle: '[data-intro]', steps: [{ tap: '.tl-phase:nth-child(3)', wait: '[data-summary]' }, { scroll: '[data-summary]' }] }],
+  // C557 (langs: a lesson reads in the child's own lesson language, not the app's, so the Hindi app run is not a test):
+  // the teaching layer: a lesson's own opening and prediction (Level 1), a diagram step lighting the part its beat
+  // explains (Level 3, ADD R1, [100] at write-back), Guided Teacher Mode paused mid-lesson (Level 2), and the parent's
+  // choices page.
+  ['full', 'family-tech-ref-l1', '/family/tech/lesson/L1.using-devices.01', { langs: ['en'], child: 'f0000000-0000-4000-8000-0000000fc001', settle: '[data-predict]', steps: [{ tap: '[data-predict] .tl-opt:nth-child(2)', wait: '[data-predict] .tl-feedback' }] }],
+  ['full', 'family-tech-ref-l3-beat', '/family/tech/lesson/L3.computer-architecture.01', { langs: ['en'], child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-intro]', steps: [{ tap: '.tl-footer .tl-btn-go', wait: '[data-beats]' }, { tap: '[data-beats] li:nth-child(6) button', wait: '.tl-dpart.on' }, { scroll: '.tl-diagram' }] }],
+  ['full', 'family-tech-guided', '/family/tech/lesson/L2.inside-computer.01', { langs: ['en'], child: 'f0000000-0000-4000-8000-0000000fc001', settle: '[data-guide-start]', steps: [{ tap: '[data-guide-start]', wait: '[data-guide]' }, { pause: 2500 }, { tap: '[data-guide-pause]', wait: '[data-guide-resume]' }] }],
+  ['full', 'family-tech-parent', '/family/parent/tech/f0000000-0000-4000-8000-0000000fc001', { parent: true, settle: '[data-tech-parent]' }],
   ['full', 'family-settings', '/family/settings', { settle: '[data-setting="readAloud"]' }],
   ['full', 'family-study', '/family/study', {}],
   // W16-B1: the Quick quiz card on the Study feed and on the home, and the quiz itself.

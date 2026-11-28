@@ -38,6 +38,77 @@
    "hinglish": "AI pictures imaandaari se use kar sakte ho: label lagao aur asli logon ki fake kabhi mat banao."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you type \"a tiger flying a kite over Mumbai\" into an AI app, and a picture appears.",
+   "hi": "{{name}}, तुम AI ऐप में \"मुंबई के ऊपर पतंग उड़ाता बाघ\" लिखते हो, और एक चित्र बन जाता है।",
+   "hinglish": "{{name}}, tum AI app mein \"Mumbai ke upar patang udata baagh\" likhte ho, aur ek picture ban jaata hai."
+  },
+  "question": {
+   "en": "How can a computer draw something it has never seen?",
+   "hi": "कंप्यूटर वह चीज़ कैसे बनाता है जो उसने कभी देखी नहीं?",
+   "hinglish": "Computer woh cheez kaise banata hai jo usne kabhi dekhi nahi?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "How did the picture AI learn to draw from words?",
+   "hi": "चित्र वाले AI ने शब्दों से चित्र बनाना कैसे सीखा?",
+   "hinglish": "Picture wale AI ne shabdon se chitra banana kaise seekha?"
+  },
+  "options": [
+   {
+    "en": "A tiny artist lives inside the app",
+    "hi": "ऐप के अंदर एक छोटा कलाकार रहता है",
+    "hinglish": "App ke andar ek chhota kalakaar rehta hai"
+   },
+   {
+    "en": "It learnt from millions of pictures paired with words, and builds a new one from those patterns",
+    "hi": "उसने शब्दों के साथ लाखों चित्रों से सीखा और उन पैटर्न से नया चित्र बनाता है",
+    "hinglish": "Usne shabdon ke saath laakhon pictures se seekha aur un patterns se naya picture banata hai"
+   },
+   {
+    "en": "It searches the internet and copies one picture",
+    "hi": "वह इंटरनेट में खोजकर एक चित्र की नक़ल करता है",
+    "hinglish": "Woh internet mein khojkar ek picture ki naqal karta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Picture AI is trained on millions of pictures with words and makes something new from the patterns, often cleaning up random dots step by step. It can make mistakes, so label AI pictures \"made with AI\", never fake real people, and ask a grown-up first.",
+   "hi": "चित्र वाला AI शब्दों वाले लाखों चित्रों पर ट्रेन होता है और पैटर्न से कुछ नया बनाता है, अक्सर बेतरतीब बिंदुओं को कदम-दर-कदम साफ़ करके। उसमें ग़लतियाँ हो सकती हैं, इसलिए AI चित्रों पर \"AI से बना\" लिखो, असली लोगों के नक़ली चित्र कभी न बनाओ, और पहले बड़े से पूछो।",
+   "hinglish": "Picture AI shabdon wale laakhon pictures par train hota hai aur patterns se kuch naya banata hai, aksar random dots ko step by step saaf karke. Usme galtiyan ho sakti hain, isliye AI pictures par \"made with AI\" likho, asli logon ke nakli pictures kabhi na banao, aur pehle bade se poochho."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: how does picture AI work, and how do we use it honestly?",
+   "hi": "घर पर किसी को समझाओ: चित्र वाला AI कैसे काम करता है, और ईमानदारी से कैसे इस्तेमाल करें?",
+   "hinglish": "Ghar par kisi ko samjhao: picture AI kaise kaam karta hai, aur imaandaari se kaise use karein?"
+  },
+  "checklist": [
+   {
+    "en": "It learnt from millions of pictures with words.",
+    "hi": "उसने शब्दों वाले लाखों चित्रों से सीखा।",
+    "hinglish": "Usne shabdon wale laakhon pictures se seekha."
+   },
+   {
+    "en": "A clear prompt says what, where and what style.",
+    "hi": "साफ़ प्रॉम्प्ट बताता है क्या, कहाँ और किस शैली में।",
+    "hinglish": "Saaf prompt batata hai kya, kahan aur kis style mein."
+   },
+   {
+    "en": "AI pictures can have mistakes.",
+    "hi": "AI चित्रों में ग़लतियाँ हो सकती हैं।",
+    "hinglish": "AI pictures mein galtiyan ho sakti hain."
+   },
+   {
+    "en": "I label them \"made with AI\" and never fake real people.",
+    "hi": "मैं उन पर \"AI से बना\" लिखता/लिखती हूँ और असली लोगों के नक़ली चित्र नहीं बनाता/बनाती।",
+    "hinglish": "Main un par \"made with AI\" likhta/likhti hoon aur asli logon ke nakli pictures nahi banata/banati."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Prompt",

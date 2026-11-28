@@ -38,6 +38,82 @@
    "hinglish": "LED ki taangein aur resistor ke colour bands padh sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a friend connects a small red LED straight to a 9 V battery to show off. It flashes once and never lights again.",
+   "hi": "{{name}}, एक दोस्त दिखाने के लिए छोटे लाल LED को सीधे 9 V बैटरी से जोड़ता है। वह एक बार चमकता है और फिर कभी नहीं जलता।",
+   "hinglish": "{{name}}, ek dost dikhane ke liye chhote red LED ko seedhe 9 V battery se jodta hai. Woh ek baar chamakta hai aur phir kabhi nahi jalta."
+  },
+  "question": {
+   "en": "What did that LED need in the circuit that the battery alone did not give it?",
+   "hi": "उस LED को सर्किट में क्या चाहिए था जो अकेली बैटरी ने नहीं दिया?",
+   "hinglish": "Us LED ko circuit mein kya chahiye tha jo akeli battery ne nahi diya?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Why do we put a resistor in series with an LED?",
+   "hi": "LED के साथ श्रेणी में प्रतिरोधक क्यों लगाते हैं?",
+   "hinglish": "LED ke saath series mein resistor kyon lagate hain?"
+  },
+  "options": [
+   {
+    "en": "To make the LED brighter",
+    "hi": "LED को ज़्यादा चमकदार बनाने के लिए",
+    "hinglish": "LED ko zyada bright banane ke liye"
+   },
+   {
+    "en": "To limit the current so the LED is not burnt",
+    "hi": "धारा सीमित करने के लिए, ताकि LED जल न जाए",
+    "hinglish": "Current limit karne ke liye, taaki LED jal na jaye"
+   },
+   {
+    "en": "To store energy for later",
+    "hi": "बाद के लिए ऊर्जा जमा करने के लिए",
+    "hinglish": "Baad ke liye energy store karne ke liye"
+   },
+   {
+    "en": "To change the LED's colour",
+    "hi": "LED का रंग बदलने के लिए",
+    "hinglish": "LED ka colour badalne ke liye"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Once an LED lights, it has very little resistance of its own, so the current would shoot up and burn it out. The resistor takes the rest of the battery's voltage and keeps the current near the LED's safe 20 mA.",
+   "hi": "LED जलने के बाद उसका अपना प्रतिरोध बहुत कम होता है, इसलिए धारा तेज़ी से बढ़कर उसे जला देती। प्रतिरोधक बैटरी का बाक़ी वोल्टेज ले लेता है और धारा को LED के सुरक्षित लगभग 20 mA के पास रखता है।",
+   "hinglish": "LED jalne ke baad uska apna resistance bahut kam hota hai, isliye current tezi se badhkar use jala deta. Resistor battery ka baaki voltage le leta hai aur current ko LED ke safe lagbhag 20 mA ke paas rakhta hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how to light an LED safely.",
+   "hi": "घर पर किसी को समझाओ कि LED को सुरक्षित तरीक़े से कैसे जलाएँ।",
+   "hinglish": "Ghar par kisi ko samjhao ki LED ko safely kaise jalayein."
+  },
+  "checklist": [
+   {
+    "en": "An LED lets current pass only one way: long leg to +.",
+    "hi": "LED धारा को एक ही दिशा में जाने देता है: लंबा पैर + की ओर।",
+    "hinglish": "LED current ko ek hi direction mein jaane deta hai: lamba leg + ki taraf."
+   },
+   {
+    "en": "A lit LED has little resistance of its own, so a series resistor must take the rest of the voltage.",
+    "hi": "जलता हुआ LED खुद बहुत कम प्रतिरोध देता है, इसलिए श्रेणी का प्रतिरोधक बाक़ी वोल्टेज लेता है।",
+    "hinglish": "Jalta hua LED khud bahut kam resistance deta hai, isliye series ka resistor baaki voltage leta hai."
+   },
+   {
+    "en": "R = (V − 2) ÷ I: for 9 V and 20 mA that is 350 Ω, so pick the next standard value up, 390 Ω.",
+    "hi": "R = (V − 2) ÷ I: 9 V और 20 mA के लिए 350 Ω, इसलिए अगला मानक मान 390 Ω लो।",
+    "hinglish": "R = (V − 2) ÷ I: 9 V aur 20 mA ke liye 350 Ω, isliye agli standard value 390 Ω lo."
+   },
+   {
+    "en": "A bigger resistor is safe, the LED is just dimmer; resistor values are read from colour bands.",
+    "hi": "बड़ा प्रतिरोधक सुरक्षित है, LED बस मंद होता है; मान रंग पट्टियों से पढ़ते हैं।",
+    "hinglish": "Bada resistor safe hai, LED bas dim hota hai; value colour bands se padhte hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Resistor",
@@ -92,7 +168,7 @@
     "hi": "जलने पर LED का अपना प्रतिरोध लगभग नहीं होता, इसलिए प्रतिरोधक के बिना धारा बहुत बढ़ जाती है और वह जल जाता है।",
     "hinglish": "Jalne ke baad LED ka apna resistance lagbhag nahi hota, isliye resistor ke bina current bahut badh jaata hai aur woh jal jaata hai."
    },
-   "visual": "code",
+   "visual": "flow:🔋 Battery 9 V|🚧 Resistor takes extra|💡 LED needs about 2 V",
    "narration": {
     "en": "Battery volts minus the LED’s 2 V, divided by the current you want.",
     "hi": "बैटरी के वोल्ट घटा LED के 2 V, भाग जितनी धारा चाहिए।",

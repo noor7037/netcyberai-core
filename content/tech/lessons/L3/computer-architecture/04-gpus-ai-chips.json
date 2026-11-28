@@ -34,6 +34,77 @@
    "hinglish": "India ke AI-compute aur semiconductor efforts batao"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a 4K video game redraws about 8 million pixels many times every second, and an AI app edits your photo in a blink.",
+   "hi": "{{name}}, एक 4K गेम हर सेकंड कई बार लगभग 80 लाख पिक्सल दोबारा बनाता है, और एक AI ऐप तुम्हारी फ़ोटो पल भर में बदल देता है।",
+   "hinglish": "{{name}}, ek 4K game har second kai baar lagbhag 80 lakh pixels dobara banata hai, aur ek AI app tumhari photo pal bhar mein badal deta hai."
+  },
+  "question": {
+   "en": "Why are graphics cards, not ordinary CPUs, the chips behind both games and AI?",
+   "hi": "गेम और AI दोनों के पीछे साधारण CPU नहीं, ग्राफ़िक्स चिप क्यों होती हैं?",
+   "hinglish": "Game aur AI dono ke peeche ordinary CPU nahi, graphics chips kyun hoti hain?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "To colour 8 million pixels quickly, which chip design helps most?",
+   "hi": "80 लाख पिक्सल को तेज़ी से रंगने के लिए कौन-सा चिप डिज़ाइन सबसे ज़्यादा काम आता है?",
+   "hinglish": "80 lakh pixels ko tezi se rangne ke liye kaunsa chip design sabse zyada kaam aata hai?"
+  },
+  "options": [
+   {
+    "en": "A few very powerful cores, each handling one pixel after another",
+    "hi": "कुछ बहुत शक्तिशाली कोर, जो एक के बाद एक पिक्सल सँभालें",
+    "hinglish": "Kuch bahut powerful cores, jo ek ke baad ek pixel sambhalein"
+   },
+   {
+    "en": "Thousands of simple cores doing the same kind of maths on different pixels at once",
+    "hi": "हज़ारों सरल कोर, जो अलग-अलग पिक्सल पर एक ही तरह का गणित एक साथ करें",
+    "hinglish": "Hazaron simple cores, jo alag-alag pixels par ek hi tarah ka maths ek saath karein"
+   },
+   {
+    "en": "A faster clock on one core is the only way",
+    "hi": "एक कोर की तेज़ क्लॉक ही एकमात्र तरीका है",
+    "hinglish": "Ek core ki tez clock hi ekmatra tareeka hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Each pixel's colour can be worked out independently, so thousands of simple cores can do it together. Neural networks are mostly big matrix multiplications with the same independent structure, which is why GPUs, and later TPUs and NPUs, suit AI.",
+   "hi": "हर पिक्सल का रंग अलग से निकाला जा सकता है, इसलिए हज़ारों सरल कोर साथ मिलकर कर सकते हैं। न्यूरल नेटवर्क ज़्यादातर बड़े मैट्रिक्स गुणा हैं जिनकी बनावट भी ऐसी ही स्वतंत्र है, इसीलिए GPU, और बाद में TPU और NPU, AI के लिए ठीक बैठते हैं।",
+   "hinglish": "Har pixel ka colour alag se nikala ja sakta hai, isliye hazaron simple cores saath mil kar kar sakte hain. Neural networks zyadatar bade matrix multiplications hain jinki structure bhi aisi hi independent hai, isiliye GPU, aur baad mein TPU aur NPU, AI ke liye theek baithte hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home why a GPU is good at games and AI but a CPU is still needed.",
+   "hi": "घर पर किसी को समझाओ कि GPU गेम और AI के लिए अच्छा क्यों है, फिर भी CPU क्यों ज़रूरी है।",
+   "hinglish": "Ghar par kisi ko samjhao ki GPU game aur AI ke liye achha kyun hai, phir bhi CPU kyun zaroori hai."
+  },
+  "checklist": [
+   {
+    "en": "A CPU has a few powerful flexible cores; a GPU has thousands of simple cores doing the same maths.",
+    "hi": "CPU में कुछ शक्तिशाली लचीले कोर हैं; GPU में हज़ारों सरल कोर एक जैसा गणित करते हैं।",
+    "hinglish": "CPU mein kuch powerful flexible cores hain; GPU mein hazaron simple cores ek jaisa maths karte hain."
+   },
+   {
+    "en": "Pixels and neural-network matrix multiplies are independent pieces, so they can run in parallel.",
+    "hi": "पिक्सल और न्यूरल नेटवर्क के मैट्रिक्स गुणा स्वतंत्र हिस्से हैं, इसलिए समानांतर चल सकते हैं।",
+    "hinglish": "Pixels aur neural network ke matrix multiplies independent pieces hain, isliye parallel chal sakte hain."
+   },
+   {
+    "en": "TPUs and phone NPUs are chips specialised for AI maths; NPUs run smaller models on the device.",
+    "hi": "TPU और फ़ोन के NPU AI गणित के लिए बने विशेष चिप हैं; NPU छोटे मॉडल डिवाइस पर ही चलाते हैं।",
+    "hinglish": "TPU aur phone ke NPU AI maths ke liye bane special chips hain; NPU chhote models device par hi chalate hain."
+   },
+   {
+    "en": "CPUs still handle branching, varied logic and running the OS.",
+    "hi": "CPU अब भी शाखाओं वाला, तरह-तरह का तर्क और OS चलाने का काम सँभालते हैं।",
+    "hinglish": "CPU ab bhi branching, varied logic aur OS chalane ka kaam sambhalte hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "GPU",
@@ -74,7 +145,7 @@
     "hi": "CPU के कुछ शक्तिशाली कोर अलग-अलग कामों के लिए। GPU के हज़ारों सरल कोर अलग डेटा पर एक ही गणित करते हैं।",
     "hinglish": "CPU ke kuch powerful cores alag-alag kaamon ke liye. GPU ke hazaaron simple cores alag data par ek hi maths karte hain."
    },
-   "visual": "anim:cpu-vs-gpu",
+   "visual": "compare:🧠 CPU: few strong cores, varied tasks|🎛️ GPU: thousands of simple cores, same maths",
    "narration": {
     "en": "A CPU has a few powerful cores for varied tasks. A GPU has thousands of simple cores that all do the same maths on different data.",
     "hi": "CPU के कुछ शक्तिशाली कोर अलग-अलग कामों के लिए। GPU के हज़ारों सरल कोर अलग डेटा पर एक ही गणित करते हैं।",

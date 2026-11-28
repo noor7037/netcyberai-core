@@ -38,6 +38,77 @@
    "hinglish": "APIs aur JSON basic level pe samjha sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, on a cricket website the live score changes by itself while you are looking at it.",
+   "hi": "{{name}}, एक क्रिकेट वेबसाइट पर लाइव स्कोर तुम्हारे देखते-देखते अपने आप बदल जाता है।",
+   "hinglish": "{{name}}, ek cricket website par live score tumhare dekhte-dekhte apne aap badal jaata hai."
+  },
+  "question": {
+   "en": "HTML and CSS only show a page, so what makes it change and respond?",
+   "hi": "HTML और CSS सिर्फ़ पन्ना दिखाते हैं, तो उसे बदलने और जवाब देने वाला क्या है?",
+   "hinglish": "HTML aur CSS sirf page dikhate hain, to use badalne aur respond karne wala kya hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A button on a web page should show a message when clicked. What makes this possible?",
+   "hi": "एक वेब पन्ने के बटन को क्लिक करने पर संदेश दिखाना है। यह कौन संभव बनाता है?",
+   "hinglish": "Ek web page ke button ko click karne par message dikhana hai. Yeh kaun possible banata hai?"
+  },
+  "options": [
+   {
+    "en": "HTML alone",
+    "hi": "सिर्फ़ HTML",
+    "hinglish": "Sirf HTML"
+   },
+   {
+    "en": "CSS alone",
+    "hi": "सिर्फ़ CSS",
+    "hinglish": "Sirf CSS"
+   },
+   {
+    "en": "JavaScript, which listens for the click event and then changes the page",
+    "hi": "JavaScript, जो क्लिक घटना सुनता है और फिर पन्ना बदलता है",
+    "hinglish": "JavaScript, jo click event sunta hai aur phir page badalta hai"
+   }
+  ],
+  "answer": 2,
+  "explain": {
+   "en": "HTML gives structure and CSS gives style, but behaviour needs JavaScript: an event listener waits for the click and a function changes the page. For live data, a script calls an API with fetch() and gets JSON back. The browser sandbox keeps a page's script from reading your files.",
+   "hi": "HTML संरचना और CSS शैली देता है, पर व्यवहार के लिए JavaScript चाहिए: इवेंट लिसनर क्लिक का इंतज़ार करता है और फ़ंक्शन पन्ना बदलता है। लाइव डेटा के लिए स्क्रिप्ट fetch() से API को बुलाती है और JSON पाती है। ब्राउज़र का सैंडबॉक्स पन्ने की स्क्रिप्ट को तुम्हारी फ़ाइलें पढ़ने से रोकता है।",
+   "hinglish": "HTML structure aur CSS style deta hai, par behaviour ke liye JavaScript chahiye: event listener click ka wait karta hai aur function page badalta hai. Live data ke liye script fetch() se API ko bulati hai aur JSON paati hai. Browser sandbox page ki script ko tumhari files padhne se rokta hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend what JavaScript adds to a page and how a page gets live data.",
+   "hi": "किसी दोस्त को समझाओ कि JavaScript पन्ने में क्या जोड़ता है और पन्ने को लाइव डेटा कैसे मिलता है।",
+   "hinglish": "Kisi dost ko samjhao ki JavaScript page mein kya jodta hai aur page ko live data kaise milta hai."
+  },
+  "checklist": [
+   {
+    "en": "HTML is structure, CSS is style, JavaScript is behaviour.",
+    "hi": "HTML संरचना है, CSS शैली, JavaScript व्यवहार।",
+    "hinglish": "HTML structure hai, CSS style, JavaScript behaviour."
+   },
+   {
+    "en": "An event listener waits for a click, then a function changes the page.",
+    "hi": "इवेंट लिसनर क्लिक का इंतज़ार करता है, फिर फ़ंक्शन पन्ना बदलता है।",
+    "hinglish": "Event listener click ka wait karta hai, phir function page badalta hai."
+   },
+   {
+    "en": "fetch() asks an API for data, and the reply usually comes as JSON.",
+    "hi": "fetch() API से डेटा माँगता है, और जवाब आमतौर पर JSON में आता है।",
+    "hinglish": "fetch() API se data maangta hai, aur reply aam taur par JSON mein aata hai."
+   },
+   {
+    "en": "Browser JavaScript runs in a sandbox and cannot read your files.",
+    "hi": "ब्राउज़र का JavaScript सैंडबॉक्स में चलता है और तुम्हारी फ़ाइलें नहीं पढ़ सकता।",
+    "hinglish": "Browser JavaScript sandbox mein chalta hai aur tumhari files nahi padh sakta."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "JavaScript",

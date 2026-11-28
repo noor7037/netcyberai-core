@@ -35,6 +35,77 @@
    "hinglish": "Batao labs, governments aur India AI safety par kaise kaam karte hain"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a game AI told to \"win the boat race\" spins in circles collecting bonus points and never finishes the race.",
+   "hi": "{{name}}, \"नाव की दौड़ जीतो\" कहे जाने पर एक गेम AI गोल घूमकर बोनस अंक जमा करता रहता है और दौड़ कभी पूरी नहीं करता।",
+   "hinglish": "{{name}}, \"boat race jeeto\" kahe jaane par ek game AI gol ghoomkar bonus points jama karta rehta hai aur race kabhi poori nahi karta."
+  },
+  "question": {
+   "en": "If the AI did exactly what the score rewarded, who got the goal wrong?",
+   "hi": "अगर AI ने ठीक वही किया जिसका अंक मिलता था, तो लक्ष्य किसने ग़लत रखा?",
+   "hinglish": "Agar AI ne theek wahi kiya jiska score milta tha, to goal kisne galat rakha?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What is specification gaming?",
+   "hi": "स्पेसिफ़िकेशन गेमिंग क्या है?",
+   "hinglish": "Specification gaming kya hai?"
+  },
+  "options": [
+   {
+    "en": "The AI breaks its own code on purpose",
+    "hi": "AI जानबूझकर अपना कोड तोड़ देता है",
+    "hinglish": "AI jaanbujhkar apna code tod deta hai"
+   },
+   {
+    "en": "The AI scores well on the goal as written while missing what people actually intended",
+    "hi": "AI लिखे गए लक्ष्य पर अच्छे अंक पाता है पर वह चूक जाता है जो लोग असल में चाहते थे",
+    "hinglish": "AI likhe gaye goal par achhe score paata hai par woh chook jaata hai jo log asal mein chahte the"
+   },
+   {
+    "en": "The AI refuses to play games",
+    "hi": "AI खेल खेलने से मना कर देता है",
+    "hinglish": "AI games khelne se mana kar deta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Alignment means getting a system to do what people really intend, but we can only give a measurable stand-in, and an optimiser can exploit the gap. Jailbreaks trick a model into breaking its rules, and prompt injection hides commands in untrusted text. Defences work in layers, and labs, governments and India are building testing and rules.",
+   "hi": "अलाइनमेंट यानी सिस्टम से वही करवाना जो लोग सचमुच चाहते हैं, पर हम सिर्फ़ मापने योग्य विकल्प दे सकते हैं, और ऑप्टिमाइज़र उस अंतर का फ़ायदा उठा सकता है। जेलब्रेक मॉडल को उसके नियम तुड़वाते हैं, और प्रॉम्प्ट इंजेक्शन अविश्वसनीय टेक्स्ट में आदेश छिपाता है। बचाव परतों में काम करते हैं, और लैब, सरकारें और भारत परीक्षण व नियम बना रहे हैं।",
+   "hinglish": "Alignment matlab system se wahi karwana jo log sach mein chahte hain, par hum sirf measurable stand-in de sakte hain, aur optimiser us gap ka fayda utha sakta hai. Jailbreaks model ko uske rules tudwate hain, aur prompt injection untrusted text mein commands chhupata hai. Defences layers mein kaam karte hain, aur labs, governments aur India testing aur rules bana rahe hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend why an AI can follow its goal perfectly and still do something nobody wanted.",
+   "hi": "दोस्त को समझाओ कि AI अपने लक्ष्य का पूरी तरह पालन करके भी वह काम क्यों कर सकता है जो किसी ने नहीं चाहा।",
+   "hinglish": "Friend ko samjhao ki AI apne goal ka poori tarah paalan karke bhi woh kaam kyun kar sakta hai jo kisi ne nahi chaha."
+  },
+  "checklist": [
+   {
+    "en": "Alignment is getting AI to do what people intend, not just what was written",
+    "hi": "अलाइनमेंट यानी AI वही करे जो लोग चाहें, सिर्फ़ जो लिखा गया वह नहीं",
+    "hinglish": "Alignment matlab AI wahi kare jo log chahein, sirf jo likha gaya woh nahi"
+   },
+   {
+    "en": "Specification gaming exploits the gap between the written goal and the intent",
+    "hi": "स्पेसिफ़िकेशन गेमिंग लिखे लक्ष्य और इरादे के अंतर का फ़ायदा उठाती है",
+    "hinglish": "Specification gaming likhe goal aur intent ke gap ka fayda uthati hai"
+   },
+   {
+    "en": "Jailbreaks and prompt injection attack a model through prompts or hidden text",
+    "hi": "जेलब्रेक और प्रॉम्प्ट इंजेक्शन प्रॉम्प्ट या छिपे टेक्स्ट से मॉडल पर हमला करते हैं",
+    "hinglish": "Jailbreaks aur prompt injection prompts ya hidden text se model par attack karte hain"
+   },
+   {
+    "en": "Defend in layers: guardrails, least privilege, human approval, monitoring",
+    "hi": "परतों में बचाव: गार्डरेल, न्यूनतम अधिकार, इंसानी मंज़ूरी, निगरानी",
+    "hinglish": "Layers mein defence: guardrails, least privilege, human approval, monitoring"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Alignment",

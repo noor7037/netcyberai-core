@@ -34,6 +34,77 @@
    "hinglish": "Serverless cold starts aur shared-responsibility model samjhao"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a new start-up can run an app for a lakh users without ever buying a single computer.",
+   "hi": "{{name}}, एक नई स्टार्ट-अप बिना एक भी कंप्यूटर खरीदे लाख उपयोगकर्ताओं वाला ऐप चला सकती है।",
+   "hinglish": "{{name}}, ek nayi start-up bina ek bhi computer khareede lakh users wala app chala sakti hai."
+  },
+  "question": {
+   "en": "What is 'the cloud' really, and who looks after what in each kind of cloud service?",
+   "hi": "'क्लाउड' असल में क्या है, और हर तरह की क्लाउड सेवा में किसकी क्या ज़िम्मेदारी है?",
+   "hinglish": "'Cloud' asal mein kya hai, aur har tarah ki cloud service mein kiski kya zimmedari hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "You upload only your code and the provider runs it, patches the operating system and scales it. Which model is that?",
+   "hi": "तुम सिर्फ़ अपना कोड अपलोड करते हो और प्रदाता उसे चलाता है, OS पैच करता है और बढ़ाता है। यह कौन-सा मॉडल है?",
+   "hinglish": "Tum sirf apna code upload karte ho aur provider use chalata hai, OS patch karta hai aur scale karta hai. Yeh kaunsa model hai?"
+  },
+  "options": [
+   {
+    "en": "IaaS, where you manage the OS yourself",
+    "hi": "IaaS, जहाँ OS तुम खुद सँभालते हो",
+    "hinglish": "IaaS, jahan OS tum khud sambhalte ho"
+   },
+   {
+    "en": "PaaS (or serverless), where the provider manages the platform",
+    "hi": "PaaS (या सर्वरलेस), जहाँ प्रदाता प्लेटफ़ॉर्म सँभालता है",
+    "hinglish": "PaaS (ya serverless), jahan provider platform sambhalta hai"
+   },
+   {
+    "en": "SaaS, where you only click buttons",
+    "hi": "SaaS, जहाँ तुम सिर्फ़ बटन दबाते हो",
+    "hinglish": "SaaS, jahan tum sirf buttons dabate ho"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "The models differ in who manages which layer. IaaS gives you a virtual machine, and you manage the OS and app. PaaS manages the OS and runtime, so you upload code. SaaS is the finished app. Serverless functions run your code per request and bill per use, with a possible cold start on the first call. 'The cloud' is rented computing, on demand, by the minute.",
+   "hi": "मॉडल इस बात में अलग हैं कि कौन-सी परत कौन सँभालता है। IaaS वर्चुअल मशीन देता है, और OS और ऐप तुम सँभालते हो। PaaS OS और रनटाइम सँभालता है, इसलिए तुम कोड अपलोड करते हो। SaaS तैयार ऐप है। सर्वरलेस फ़ंक्शन हर अनुरोध पर तुम्हारा कोड चलाते और उपयोग पर बिल देते हैं, पहली कॉल पर कोल्ड स्टार्ट संभव है। 'क्लाउड' किराये का कंप्यूटिंग है, माँग पर, मिनट के हिसाब से।",
+   "hinglish": "Models is baat mein alag hain ki kaunsi layer kaun sambhalta hai. IaaS virtual machine deta hai, aur OS aur app tum sambhalte ho. PaaS OS aur runtime sambhalta hai, isliye tum code upload karte ho. SaaS tayyar app hai. Serverless functions har request par tumhara code chalate aur use par bill dete hain, pehli call par cold start sambhav hai. 'Cloud' kiraye ka computing hai, demand par, minute ke hisaab se."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home what the cloud is and the difference between IaaS, PaaS and SaaS.",
+   "hi": "घर पर किसी को समझाओ कि क्लाउड क्या है और IaaS, PaaS और SaaS में क्या अंतर है।",
+   "hinglish": "Ghar par kisi ko samjhao ki cloud kya hai aur IaaS, PaaS aur SaaS mein kya antar hai."
+  },
+  "checklist": [
+   {
+    "en": "Cloud is on-demand, pooled, network-accessed computing that is measured and billed by use.",
+    "hi": "क्लाउड माँग पर मिलने वाला, साझा, नेटवर्क से पहुँचने योग्य कंप्यूटिंग है जो उपयोग से नापी और बिल की जाती है।",
+    "hinglish": "Cloud demand par milne wali, pooled, network se accessible computing hai jo use se naapi aur bill ki jaati hai."
+   },
+   {
+    "en": "IaaS: you manage OS and app; PaaS: you manage code and data; SaaS: you only use the app.",
+    "hi": "IaaS: OS और ऐप तुम सँभालते हो; PaaS: कोड और डेटा; SaaS: बस ऐप इस्तेमाल।",
+    "hinglish": "IaaS: OS aur app tum sambhalte ho; PaaS: code aur data; SaaS: bas app use."
+   },
+   {
+    "en": "Serverless runs code per request and bills per use; servers still exist, but the provider runs them.",
+    "hi": "सर्वरलेस कोड हर अनुरोध पर चलाता और उपयोग पर बिल देता है; सर्वर होते हैं, पर प्रदाता चलाता है।",
+    "hinglish": "Serverless code har request par chalata aur use par bill deta hai; servers hote hain, par provider chalata hai."
+   },
+   {
+    "en": "A cold start is the extra delay on the first call after a quiet spell; later calls reuse the warm copy.",
+    "hi": "कोल्ड स्टार्ट शांत अवधि के बाद पहली कॉल की अतिरिक्त देरी है; आगे की कॉलें गर्म प्रति दोबारा इस्तेमाल करती हैं।",
+    "hinglish": "Cold start shaant avadhi ke baad pehli call ki extra delay hai; aage ki calls warm copy reuse karti hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Cloud computing",
@@ -102,7 +173,7 @@
     "hi": "सर्वरलेस (फ़ंक्शन) आपका कोड तभी चलाता है जब अनुरोध आता है और हर अनुरोध का बिल बनाता है। सर्वर फिर भी हैं — बस आप उन्हें कभी नहीं देखते।",
     "hinglish": "Serverless (functions) tumhara code tabhi chalata hai jab request aati hai aur har request ka bill banata hai. Servers phir bhi hain — bas tum unhe kabhi nahi dekhte."
    },
-   "visual": "anim:function-wake",
+   "visual": "flow:📨 A request arrives|⚡ Function starts|✅ Reply is sent|💤 Function sleeps",
    "narration": {
     "en": "Serverless (functions) runs your code only when a request arrives and bills per request. There are still servers — you just never see them.",
     "hi": "सर्वरलेस (फ़ंक्शन) आपका कोड तभी चलाता है जब अनुरोध आता है और हर अनुरोध का बिल बनाता है। सर्वर फिर भी हैं — बस आप उन्हें कभी नहीं देखते।",
@@ -116,7 +187,7 @@
     "hi": "शांत समय के बाद पहला अनुरोध: कुछ सौ ms का कोल्ड स्टार्ट। अगले अनुरोध गर्म प्रति दोबारा इस्तेमाल करके दसियों ms में जवाब देते हैं।",
     "hinglish": "Shaant samay ke baad pehli request: kuch sau ms ka cold start. Agli requests warm copy dobaara use karke dasiyon ms mein jawab deti hain."
    },
-   "visual": "anim:cold-warm",
+   "visual": "compare:❄️ Cold: first call, extra delay|🔥 Warm: reuse the copy, fast",
    "narration": {
     "en": "First request after a quiet spell: a cold start of a few hundred ms. Next requests reuse the warm copy and answer in tens of ms.",
     "hi": "शांत समय के बाद पहला अनुरोध: कुछ सौ ms का कोल्ड स्टार्ट। अगले अनुरोध गर्म प्रति दोबारा इस्तेमाल करके दसियों ms में जवाब देते हैं।",

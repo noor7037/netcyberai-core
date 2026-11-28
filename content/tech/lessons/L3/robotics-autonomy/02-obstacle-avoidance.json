@@ -35,6 +35,72 @@
    "hinglish": "Speed, reaction distance aur coverage ke beech trade-off samjhao"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a small robot car rolls across the classroom floor and stops just before the leg of your desk.",
+   "hi": "{{name}}, एक छोटी रोबोट कार क्लासरूम के फ़र्श पर चलती है और तुम्हारी डेस्क के पाए से ठीक पहले रुक जाती है।",
+   "hinglish": "{{name}}, ek chhoti robot car classroom ke farsh par chalti hai aur tumhari desk ke paaye se theek pehle ruk jaati hai."
+  },
+  "question": {
+   "en": "How does it know the desk is there and how far away it is?",
+   "hi": "उसे कैसे पता चलता है कि डेस्क है और कितनी दूर है?",
+   "hinglish": "Use kaise pata chalta hai ki desk hai aur kitni door hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "An ultrasonic sensor sends a ping and hears the echo after a time. How is distance worked out?",
+   "hi": "अल्ट्रासोनिक सेंसर पिंग भेजता है और कुछ समय बाद गूँज सुनता है। दूरी कैसे निकलती है?",
+   "hinglish": "Ultrasonic sensor ping bhejta hai aur kuch time baad echo sunta hai. Distance kaise nikalti hai?"
+  },
+  "options": [
+   {
+    "en": "Distance = time × speed of sound",
+    "hi": "दूरी = समय × ध्वनि की चाल",
+    "hinglish": "Distance = time × speed of sound"
+   },
+   {
+    "en": "Distance = speed of sound × time ÷ 2, because the sound travels there and back",
+    "hi": "दूरी = ध्वनि की चाल × समय ÷ 2, क्योंकि ध्वनि जाकर वापस आती है",
+    "hinglish": "Distance = speed of sound × time ÷ 2, kyunki sound jaakar wapas aati hai"
+   },
+   {
+    "en": "Distance = time ÷ speed of sound",
+    "hi": "दूरी = समय ÷ ध्वनि की चाल",
+    "hinglish": "Distance = time ÷ speed of sound"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "The measured time covers the trip to the obstacle and back, so you halve it. A robot then runs a sense, decide, act loop: if the front distance is below a limit, stop and turn. A bigger limit is safer but makes the robot timid, and a smaller one risks collisions.",
+   "hi": "मापा गया समय बाधा तक जाने और वापस आने का है, इसलिए उसे आधा करते हैं। फिर रोबोट सेंस, डिसाइड, एक्ट का चक्र चलाता है: सामने की दूरी सीमा से कम हो तो रुको और मुड़ो। बड़ी सीमा सुरक्षित पर रोबोट को डरपोक बनाती है, और छोटी सीमा टक्कर का जोखिम लाती है।",
+   "hinglish": "Maapa gaya time obstacle tak jaane aur wapas aane ka hai, isliye use aadha karte hain. Phir robot sense, decide, act ka loop chalata hai: front distance limit se kam ho to ruko aur mudo. Badi limit safer par robot ko timid banati hai, aur chhoti limit collision ka risk laati hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend how a robot measures distance with sound and decides when to turn.",
+   "hi": "दोस्त को समझाओ कि रोबोट आवाज़ से दूरी कैसे नापता है और कब मुड़ना है यह कैसे तय करता है।",
+   "hinglish": "Friend ko samjhao ki robot sound se distance kaise naapta hai aur kab mudna hai yeh kaise decide karta hai."
+  },
+  "checklist": [
+   {
+    "en": "Distance = speed of sound × echo time ÷ 2",
+    "hi": "दूरी = ध्वनि की चाल × गूँज का समय ÷ 2",
+    "hinglish": "Distance = speed of sound × echo time ÷ 2"
+   },
+   {
+    "en": "Sense, decide, act rules turn readings into movement",
+    "hi": "सेंस, डिसाइड, एक्ट नियम रीडिंग को गति में बदलते हैं",
+    "hinglish": "Sense, decide, act rules readings ko movement mein badalte hain"
+   },
+   {
+    "en": "Choose the turn distance by trading off safety, speed and coverage",
+    "hi": "मुड़ने की दूरी सुरक्षा, गति और कवरेज के संतुलन से चुनो",
+    "hinglish": "Turn distance safety, speed aur coverage ke balance se chuno"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Ultrasonic sensor",

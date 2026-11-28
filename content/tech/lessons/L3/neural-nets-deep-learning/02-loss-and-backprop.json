@@ -33,6 +33,72 @@
    "hi": "शृंखला नियम की समझ से देखना कि दोष पीछे की ओर कैसे बहता है"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a photo app says \"70% cat\" for a picture of your pet, but it really is a cat.",
+   "hi": "{{name}}, एक फ़ोटो ऐप तुम्हारे पालतू की तस्वीर पर कहता है \"70% बिल्ली\", जबकि वह सच में बिल्ली है।",
+   "hinglish": "{{name}}, ek photo app tumhare pet ki tasveer par kehta hai \"70% cat\", jabki woh sach mein cat hai."
+  },
+  "question": {
+   "en": "How does the network turn that miss into a better answer next time, across millions of weights?",
+   "hi": "नेटवर्क उस चूक को अगली बार बेहतर जवाब में कैसे बदलता है, लाखों वज़नों के बीच?",
+   "hinglish": "Network us miss ko agli baar better answer mein kaise badalta hai, lakhon weights ke beech?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "In one training step, what is the order of events?",
+   "hi": "एक ट्रेनिंग स्टेप में घटनाओं का क्रम क्या है?",
+   "hinglish": "Ek training step mein events ka order kya hai?"
+  },
+  "options": [
+   {
+    "en": "Update the weights, then predict, then measure the loss",
+    "hi": "पहले वज़न बदलो, फिर अनुमान लगाओ, फिर लॉस नापो",
+    "hinglish": "Pehle weights badlo, phir predict karo, phir loss naapo"
+   },
+   {
+    "en": "Forward pass to predict, loss to measure the miss, backward pass for blame, then update the weights",
+    "hi": "पूर्वानुमान के लिए फ़ॉरवर्ड पास, चूक नापने को लॉस, ज़िम्मेदारी के लिए बैकवर्ड पास, फिर वज़न अपडेट",
+    "hinglish": "Prediction ke liye forward pass, miss naapne ko loss, zimmedari ke liye backward pass, phir weights update"
+   },
+   {
+    "en": "Backward pass first, then forward pass",
+    "hi": "पहले बैकवर्ड पास, फिर फ़ॉरवर्ड पास",
+    "hinglish": "Pehle backward pass, phir forward pass"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "The forward pass produces a prediction, the loss (for cross-entropy, minus log of the probability given to the right class) scores it, and backpropagation uses the chain rule to pass blame back through the layers, telling each weight its effect on the loss. Gradient descent then moves every weight a small step downhill.",
+   "hi": "फ़ॉरवर्ड पास अनुमान बनाता है, लॉस (क्रॉस-एंट्रॉपी में सही वर्ग को दी प्रायिकता का ऋण-लघुगणक) उसे अंक देता है, और बैकप्रोपेगेशन चेन रूल से ज़िम्मेदारी परतों में पीछे भेजता है, हर वज़न को उसका लॉस पर असर बताते हुए। फिर ग्रेडिएंट डिसेंट हर वज़न को ढलान पर नीचे एक छोटा क़दम चलाता है।",
+   "hinglish": "Forward pass prediction banata hai, loss (cross-entropy mein sahi class ko di probability ka minus log) use score deta hai, aur backpropagation chain rule se zimmedari layers mein peeche bhejta hai, har weight ko loss par uska asar batate hue. Phir gradient descent har weight ko dhalan par neeche ek chhota step chalata hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a network uses its mistakes to adjust millions of weights.",
+   "hi": "घर पर किसी को समझाओ कि नेटवर्क अपनी ग़लतियों से लाखों वज़न कैसे बदलता है।",
+   "hinglish": "Ghar par kisi ko samjhao ki network apni galtiyon se lakhon weights kaise badalta hai."
+  },
+  "checklist": [
+   {
+    "en": "Cross-entropy is small when the right class gets high probability",
+    "hi": "क्रॉस-एंट्रॉपी तब छोटी होती है जब सही वर्ग को ऊँची प्रायिकता मिले",
+    "hinglish": "Cross-entropy tab chhoti hoti hai jab sahi class ko high probability mile"
+   },
+   {
+    "en": "A step is forward pass, loss, backward pass, weight update",
+    "hi": "एक स्टेप: फ़ॉरवर्ड पास, लॉस, बैकवर्ड पास, वज़न अपडेट",
+    "hinglish": "Ek step: forward pass, loss, backward pass, weight update"
+   },
+   {
+    "en": "Backprop applies the chain rule to find each weight's effect on the loss",
+    "hi": "बैकप्रॉप चेन रूल से हर वज़न का लॉस पर असर निकालता है",
+    "hinglish": "Backprop chain rule se har weight ka loss par asar nikalta hai"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Loss",
@@ -73,7 +139,7 @@
     "hi": "फ़ॉरवर्ड पास: इनपुट परतों से बहकर अनुमान तक जाते हैं, जैसे 70% बिल्ली।",
     "hinglish": "Forward pass: inputs layers se behkar prediction tak jaate hain, jaise 70% cat."
    },
-   "visual": "anim:forward-flow",
+   "visual": "flow:🖼️ Input photo|🧱 Layers of the network|🔮 Prediction: 70% cat",
    "narration": {
     "en": "Forward pass: inputs flow through the layers to a prediction, e.g. 70% cat.",
     "hi": "फ़ॉरवर्ड पास: इनपुट परतों से बहकर अनुमान तक जाते हैं, जैसे 70% बिल्ली।",
@@ -101,7 +167,7 @@
     "hi": "बैकवर्ड पास: त्रुटि परत दर परत पीछे बहती है, हर भार को बताती है कि उसका कितना योगदान था। फिर हर भार ढलान पर छोटा कदम लेता है।",
     "hinglish": "Backward pass: error layer by layer peeche behta hai, har weight ko batata hai uska kitna contribution tha. Phir har weight dhalaan par chhota step leta hai."
    },
-   "visual": "anim:backprop-glow",
+   "visual": "cycle:➡️ Forward pass|📏 Loss|⬅️ Backward pass|👣 Update weights",
    "narration": {
     "en": "Backward pass: the error flows back layer by layer, telling each weight how much it contributed. Then every weight takes a small step downhill.",
     "hi": "बैकवर्ड पास: त्रुटि परत दर परत पीछे बहती है, हर भार को बताती है कि उसका कितना योगदान था। फिर हर भार ढलान पर छोटा कदम लेता है।",

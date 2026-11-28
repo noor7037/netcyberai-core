@@ -35,6 +35,77 @@
    "hinglish": "Word error rate se accuracy naapo aur Indian languages aur accents mein bias pehchano"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you say \"kal school band hai\" to your phone and it types the words, then reads a reply aloud in a human-sounding voice.",
+   "hi": "{{name}}, तुम फ़ोन से बोलते हो \"कल स्कूल बंद है\" और वह शब्द टाइप कर देता है, फिर इंसान जैसी आवाज़ में जवाब पढ़कर सुनाता है।",
+   "hinglish": "{{name}}, tum phone se bolte ho \"kal school band hai\" aur woh words type kar deta hai, phir insaan jaisi awaaz mein reply padhkar sunata hai."
+  },
+  "question": {
+   "en": "How does sound become text, and text become a voice again?",
+   "hi": "आवाज़ टेक्स्ट कैसे बनती है, और टेक्स्ट फिर आवाज़ कैसे?",
+   "hinglish": "Awaaz text kaise banti hai, aur text phir awaaz kaise?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Why can a speech recogniser work well for one accent and badly for another?",
+   "hi": "स्पीच रिकग्नाइज़र एक लहजे पर अच्छा और दूसरे पर बुरा क्यों चल सकता है?",
+   "hinglish": "Speech recogniser ek accent par achha aur doosre par bura kyun chal sakta hai?"
+  },
+  "options": [
+   {
+    "en": "Some accents are impossible for any machine",
+    "hi": "कुछ लहजे किसी भी मशीन के लिए असंभव हैं",
+    "hinglish": "Kuch accents kisi bhi machine ke liye impossible hain"
+   },
+   {
+    "en": "It learned from the voices in its training data, so under-represented accents get more errors",
+    "hi": "वह ट्रेनिंग डेटा की आवाज़ों से सीखा है, इसलिए कम प्रतिनिधित्व वाले लहजों में ज़्यादा ग़लतियाँ होती हैं",
+    "hinglish": "Woh training data ki awaazon se seekha hai, isliye under-represented accents mein zyada errors hote hain"
+   },
+   {
+    "en": "The microphone is built for one language",
+    "hi": "माइक्रोफ़ोन एक ही भाषा के लिए बना है",
+    "hinglish": "Microphone ek hi language ke liye bana hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Speech recognition samples the sound wave, turns it into a spectrogram and uses a model to predict words. A model learns the sounds, accents and languages it has seen, so word error rate must be measured for each language and accent, not just one average. Neural text-to-speech runs the other way, from text to a spectrogram and then a waveform.",
+   "hi": "स्पीच रिकग्निशन ध्वनि-तरंग का नमूना लेती है, उसे स्पेक्ट्रोग्राम बनाती है और मॉडल से शब्द अनुमानित करती है। मॉडल वही ध्वनियाँ, लहजे और भाषाएँ सीखता है जो उसने देखीं, इसलिए वर्ड एरर रेट हर भाषा और लहजे के लिए अलग नापना चाहिए, सिर्फ़ एक औसत नहीं। न्यूरल टेक्स्ट-टू-स्पीच उल्टी दिशा में चलता है, टेक्स्ट से स्पेक्ट्रोग्राम और फिर तरंग।",
+   "hinglish": "Speech recognition sound wave ka sample leti hai, use spectrogram banati hai aur model se words predict karti hai. Model wahi sounds, accents aur languages seekhta hai jo usne dekhe, isliye word error rate har language aur accent ke liye alag naapna chahiye, sirf ek average nahi. Neural text-to-speech ulti direction mein chalta hai, text se spectrogram aur phir waveform."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend how a phone turns speech into text, how it speaks back, and how to test it fairly.",
+   "hi": "दोस्त को समझाओ कि फ़ोन बोली को टेक्स्ट कैसे बनाता है, वापस कैसे बोलता है, और उसे निष्पक्ष ढंग से कैसे परखें।",
+   "hinglish": "Friend ko samjhao ki phone speech ko text kaise banata hai, wapas kaise bolta hai, aur use fairly kaise parakhein."
+  },
+  "checklist": [
+   {
+    "en": "Sound wave is sampled, turned into a spectrogram and decoded to words by a model",
+    "hi": "ध्वनि-तरंग का नमूना लिया जाता है, स्पेक्ट्रोग्राम बनता है और मॉडल उसे शब्दों में डिकोड करता है",
+    "hinglish": "Sound wave sample hoti hai, spectrogram banta hai aur model use words mein decode karta hai"
+   },
+   {
+    "en": "Text-to-speech goes the other way: text to spectrogram to waveform",
+    "hi": "टेक्स्ट-टू-स्पीच उल्टी दिशा: टेक्स्ट से स्पेक्ट्रोग्राम से तरंग",
+    "hinglish": "Text-to-speech ulti direction: text se spectrogram se waveform"
+   },
+   {
+    "en": "Word error rate counts wrong, missing and extra words",
+    "hi": "वर्ड एरर रेट ग़लत, छूटे और अतिरिक्त शब्द गिनता है",
+    "hinglish": "Word error rate galat, chhute aur extra words ginta hai"
+   },
+   {
+    "en": "Measure per language and accent, because training data decides who is understood",
+    "hi": "भाषा और लहजे के हिसाब से नापो, क्योंकि ट्रेनिंग डेटा तय करता है किसे समझा जाएगा",
+    "hinglish": "Language aur accent ke hisab se naapo, kyunki training data tay karta hai kise samjha jaayega"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "ASR",

@@ -41,7 +41,17 @@
    "term": "Tap",
    "en": "Touching the screen once, lightly",
    "hi": "उँगली से स्क्रीन को एक बार हल्का छूना",
-   "hinglish": "Ungli se ek baar halka chhoona"
+   "hinglish": "Ungli se ek baar halka chhoona",
+   "does": {
+    "en": "chooses or opens one thing",
+    "hi": "एक चीज़ चुनता या खोलता है",
+    "hinglish": "ek cheez chunta ya kholta hai"
+   },
+   "where": {
+    "en": "phones, tablets, touch screens",
+    "hi": "फ़ोन, टैबलेट, टच स्क्रीन",
+    "hinglish": "phone, tablet, touch screen"
+   }
   },
   {
    "term": "Mouse",
@@ -54,6 +64,22 @@
    "en": "Hold and slide something to move it",
    "hi": "पकड़कर खिसकाना",
    "hinglish": "Pakad kar khiskaana"
+  },
+  {
+   "term": "Touch screen",
+   "en": "A screen that notices where you touch it",
+   "hi": "ऐसी स्क्रीन जो पहचानती है कि तुमने कहाँ छुआ",
+   "hinglish": "Aisi screen jo pehchaanti hai ki tumne kahan chhua",
+   "does": {
+    "en": "finds the spot your finger changes",
+    "hi": "वह जगह ढूँढती है जहाँ उँगली बदलाव करती है",
+    "hinglish": "woh jagah dhoondti hai jahan ungli badlaav karti hai"
+   },
+   "where": {
+    "en": "phones, ATMs, ticket machines",
+    "hi": "फ़ोन, एटीएम, टिकट मशीन",
+    "hinglish": "phone, ATM, ticket machine"
+   }
   }
  ],
  "see": [
@@ -73,6 +99,122 @@
   },
   {
    "step": 2,
+   "caption": {
+    "en": "Your finger changes the screen's tiny electric field, and a little chip finds the spot.",
+    "hi": "उँगली स्क्रीन के छोटे विद्युत क्षेत्र को बदलती है, और एक छोटी चिप जगह ढूँढती है।",
+    "hinglish": "Ungli screen ke chhote electric field ko badalti hai, aur ek chhoti chip jagah dhoondti hai."
+   },
+   "visual": "diagram",
+   "narration": {
+    "en": "Let us follow one tap, step by step.",
+    "hi": "चलो एक टैप को कदम-कदम देखते हैं।",
+    "hinglish": "Chalo ek tap ko step by step dekhte hain."
+   },
+   "diagram": {
+    "parts": [
+     {
+      "id": "finger",
+      "label": {
+       "en": "Finger",
+       "hi": "उँगली",
+       "hinglish": "Ungli"
+      },
+      "icon": "👆",
+      "note": {
+       "en": "touches the glass",
+       "hi": "काँच को छूती है",
+       "hinglish": "kaanch ko chhooti hai"
+      }
+     },
+     {
+      "id": "grid",
+      "label": {
+       "en": "See-through grid",
+       "hi": "पारदर्शी जाली",
+       "hinglish": "See-through jaali"
+      },
+      "icon": "🕸️",
+      "note": {
+       "en": "its tiny electric field changes at that spot",
+       "hi": "उस जगह इसका छोटा विद्युत क्षेत्र बदलता है",
+       "hinglish": "us jagah iska chhota electric field badalta hai"
+      }
+     },
+     {
+      "id": "chip",
+      "label": {
+       "en": "Touch chip",
+       "hi": "टच चिप",
+       "hinglish": "Touch chip"
+      },
+      "icon": "🔲",
+      "note": {
+       "en": "works out where: across and down",
+       "hi": "निकालती है कहाँ: आड़ा और खड़ा",
+       "hinglish": "nikaalti hai kahan: aada aur khada"
+      }
+     },
+     {
+      "id": "app",
+      "label": {
+       "en": "App",
+       "hi": "ऐप",
+       "hinglish": "App"
+      },
+      "icon": "📱",
+      "note": {
+       "en": "does what you tapped",
+       "hi": "वही करता है जो तुमने टैप किया",
+       "hinglish": "wahi karta hai jo tumne tap kiya"
+      }
+     }
+    ],
+    "rows": [
+     [
+      "finger",
+      "grid",
+      "chip",
+      "app"
+     ]
+    ]
+   },
+   "beats": [
+    {
+     "narration": {
+      "en": "Your finger touches the glass.",
+      "hi": "तुम्हारी उँगली काँच को छूती है।",
+      "hinglish": "Tumhari ungli kaanch ko chhooti hai."
+     },
+     "focus": "finger"
+    },
+    {
+     "narration": {
+      "en": "Under the glass, a see-through grid keeps a tiny electric field. Your finger changes it right at that spot.",
+      "hi": "काँच के नीचे पारदर्शी जाली छोटा विद्युत क्षेत्र रखती है। उँगली ठीक उसी जगह उसे बदल देती है।",
+      "hinglish": "Kaanch ke neeche see-through jaali chhota electric field rakhti hai. Ungli theek usi jagah use badal deti hai."
+     },
+     "focus": "grid"
+    },
+    {
+     "narration": {
+      "en": "A small chip checks the grid many times every second and works out the spot.",
+      "hi": "एक छोटी चिप हर सेकंड कई बार जाली को जाँचती है और जगह निकाल लेती है।",
+      "hinglish": "Ek chhoti chip har second kai baar jaali ko check karti hai aur jagah nikaal leti hai."
+     },
+     "focus": "chip"
+    },
+    {
+     "narration": {
+      "en": "The app gets that spot and opens what you tapped.",
+      "hi": "ऐप को वह जगह मिलती है और जो तुमने टैप किया वह खुल जाता है।",
+      "hinglish": "App ko woh jagah milti hai aur jo tumne tap kiya woh khul jaata hai."
+     },
+     "focus": "app"
+    }
+   ]
+  },
+  {
+   "step": 3,
    "visual": "scene:L1.using-devices.01.s2",
    "caption": {
     "en": "A mouse click works like a tap.",
@@ -86,7 +228,7 @@
    }
   },
   {
-   "step": 3,
+   "step": 4,
    "visual": "scene:L1.using-devices.01.s3",
    "caption": {
     "en": "Hold, slide, let go: that is drag.",
@@ -100,7 +242,7 @@
    }
   },
   {
-   "step": 4,
+   "step": 5,
    "visual": "scene:L1.using-devices.01.s4",
    "caption": {
     "en": "Two quick taps, or a long press.",
@@ -129,35 +271,67 @@
   {
    "heading": {
     "en": "How does a touch screen feel your finger?",
-    "hi": "टच स्क्रीन उँगली को कैसे महसूस करती है?",
-    "hinglish": "Touch screen ungli ko kaise mehsoos karti hai?"
+    "hi": "टच स्क्रीन तुम्हारी उँगली को कैसे पहचानती है?",
+    "hinglish": "Touch screen tumhari ungli ko kaise pehchaanti hai?"
    },
    "body": {
-    "en": "Most phone and tablet screens have a see-through layer that holds a tiny amount of electricity. Your finger also carries a tiny bit, so when you touch, the screen notices exactly where. That is why a pencil or a normal woollen glove does not work, but your fingertip does.",
-    "hi": "ज़्यादातर फ़ोन और टैबलेट की स्क्रीन पर एक पारदर्शी परत होती है जिसमें बहुत थोड़ी बिजली रहती है। तुम्हारी उँगली में भी ज़रा सी बिजली होती है, इसलिए छूते ही स्क्रीन ठीक जगह पहचान लेती है। इसी वजह से पेंसिल या ऊनी दस्ताने से काम नहीं होता, पर उँगली से होता है।",
-    "hinglish": "Zyaadatar phone aur tablet ki screen par ek see-through layer hoti hai jismein bahut thodi bijli rehti hai. Tumhari ungli mein bhi zara si bijli hoti hai, isliye chhoote hi screen theek jagah pehchaan leti hai. Isi wajah se pencil ya oonee dastaane se kaam nahin hota, par ungli se hota hai."
+    "en": "Most phone and tablet screens have a see-through layer under the glass that keeps a tiny electric field. Your finger changes that field where it touches, and a small chip works out the spot. A pencil's wooden end or a woollen glove does not change it, so the screen does not notice them.",
+    "hi": "ज़्यादातर फ़ोन और टैबलेट की स्क्रीन में काँच के नीचे एक पारदर्शी परत होती है जिसमें छोटा-सा विद्युत क्षेत्र रहता है। उँगली जहाँ छूती है वहाँ यह क्षेत्र बदलता है, और एक छोटी चिप जगह निकाल लेती है। पेंसिल का लकड़ी वाला सिरा या ऊनी दस्ताना इसे नहीं बदलता, इसलिए स्क्रीन उन्हें नहीं पहचानती।",
+    "hinglish": "Zyaadatar phone aur tablet ki screen mein kaanch ke neeche ek see-through layer hoti hai jisme chhota sa electric field rehta hai. Ungli jahan chhooti hai wahan yeh field badalta hai, aur ek chhoti chip jagah nikaal leti hai. Pencil ka lakdi wala sira ya woollen glove ise nahi badalta, isliye screen unhe nahi pehchaanti."
    },
    "analogy": {
-    "en": "Like a doorbell that rings only when the right button is pressed, the screen reacts to the touch of a finger.",
-    "hi": "जैसे दरवाज़े की घंटी तभी बजती है जब सही बटन दबाओ, वैसे स्क्रीन सिर्फ़ उँगली का स्पर्श पहचानती है।",
-    "hinglish": "Jaise doorbell sirf tab bajti hai jab sahi button dabao, waise screen sirf ungli ke touch ko pehchaanti hai."
+    "en": "It is a bit like a still pond: touch the water and you can see exactly where.",
+    "hi": "यह थोड़ा शांत तालाब जैसा है: पानी छुओ तो ठीक जगह दिख जाती है।",
+    "hinglish": "Yeh thoda shaant talaab jaisa hai: paani chhuo to theek jagah dikh jaati hai."
+   },
+   "limit": {
+    "en": "The screen does not feel a push like water or sand. It notices the change in its electric field, so even a light touch works and a hard pencil does not.",
+    "hi": "स्क्रीन पानी या रेत की तरह दबाव महसूस नहीं करती। वह अपने विद्युत क्षेत्र का बदलाव पहचानती है, इसलिए हल्का छूना भी चलता है और सख़्त पेंसिल नहीं।",
+    "hinglish": "Screen paani ya ret ki tarah dabaav feel nahi karti. Woh apne electric field ka badlaav pehchaanti hai, isliye halka chhoona bhi chalta hai aur sakht pencil nahi."
+   },
+   "realExample": {
+    "en": "Some winter gloves have special fingertips with a thread that works like skin, so you can use a phone while wearing them.",
+    "hi": "कुछ सर्दी के दस्तानों की उँगलियों में खास धागा होता है जो त्वचा की तरह काम करता है, ताकि उन्हें पहनकर फ़ोन चल सके।",
+    "hinglish": "Kuch sardi ke gloves ki ungliyon mein khaas dhaaga hota hai jo skin ki tarah kaam karta hai, taaki unhe pehen kar phone chal sake."
+   },
+   "advanced": {
+    "en": "For older learners: most phones use projected capacitive touch. Rows and columns of transparent electrodes (often indium tin oxide) cross under the glass. The touch controller measures the capacitance at each crossing many times a second; a fingertip, which conducts, changes it at the nearest crossings, and the controller calculates the x and y position. Two fingers change two places at once, which is how pinch-to-zoom works.",
+    "hi": "बड़े विद्यार्थियों के लिए: ज़्यादातर फ़ोन प्रोजेक्टेड कैपेसिटिव टच इस्तेमाल करते हैं। काँच के नीचे पारदर्शी इलेक्ट्रोड (अक्सर इंडियम टिन ऑक्साइड) की पंक्तियाँ और स्तंभ एक-दूसरे को काटते हैं। टच कंट्रोलर हर कटान पर कैपेसिटेंस को हर सेकंड कई बार मापता है; उँगली, जो चालक है, पास के कटानों पर उसे बदलती है, और कंट्रोलर x और y स्थिति निकालता है। दो उँगलियाँ एक साथ दो जगह बदलती हैं, इसी से पिंच-टू-ज़ूम चलता है।",
+    "hinglish": "Bade students ke liye: zyaadatar phones projected capacitive touch use karte hain. Kaanch ke neeche transparent electrodes (aksar indium tin oxide) ki rows aur columns ek doosre ko kaat-ti hain. Touch controller har crossing par capacitance ko har second kai baar measure karta hai; ungli, jo conductor hai, paas ki crossings par use badalti hai, aur controller x aur y position nikaalta hai. Do ungliyan ek saath do jagah badalti hain, isi se pinch-to-zoom chalta hai."
    }
   },
   {
    "heading": {
-    "en": "The mouse: an old, clever idea",
-    "hi": "माउस: पुराना पर चतुर विचार",
-    "hinglish": "Mouse: purana par chatur idea"
+    "en": "A mouse click and a tap",
+    "hi": "माउस क्लिक और टैप",
+    "hinglish": "Mouse click aur tap"
    },
    "body": {
-    "en": "Douglas Engelbart and his team in the USA made the first computer mouse in the 1960s — it was a wooden box with wheels! They showed it to the world in 1968. Today most mice use a tiny light and camera underneath to see how far you move them.",
-    "hi": "अमेरिका में डगलस एंगलबार्ट और उनकी टीम ने 1960 के दशक में पहला कंप्यूटर माउस बनाया — वह पहियों वाला लकड़ी का डिब्बा था! 1968 में उन्होंने इसे दुनिया को दिखाया। आज ज़्यादातर माउस के नीचे एक छोटी रोशनी और कैमरा होता है जो देखता है कि तुमने उसे कितना हिलाया।",
-    "hinglish": "America mein Douglas Engelbart aur unki team ne 1960 ke dashak mein pehla computer mouse banaya — woh pahiyon wala lakdi ka dabba tha! 1968 mein unhone ise duniya ko dikhaya. Aaj zyaadatar mouse ke neeche ek chhoti roshni aur camera hota hai jo dekhta hai ki tumne use kitna hilaaya."
+    "en": "On a computer you move the mouse to put the pointer on something, then press its button: click. A tap does both jobs at once: your finger is the pointer and the press. Douglas Engelbart's team made the first mouse in the 1960s, a wooden box with wheels, and showed it in 1968. Today most mice have a small light and sensor underneath that see how far you move.",
+    "hi": "कंप्यूटर पर तुम माउस खिसकाकर पॉइंटर किसी चीज़ पर लाते हो, फिर उसका बटन दबाते हो: क्लिक। टैप दोनों काम एक साथ करता है: तुम्हारी उँगली ही पॉइंटर है और वही दबाव। डगलस एंगलबार्ट की टीम ने 1960 के दशक में पहला माउस बनाया, पहियों वाला लकड़ी का डिब्बा, और 1968 में दिखाया। आज ज़्यादातर माउस के नीचे एक छोटी रोशनी और सेंसर होते हैं जो देखते हैं तुमने कितना खिसकाया।",
+    "hinglish": "Computer par tum mouse khiska ke pointer kisi cheez par laate ho, phir uska button dabaate ho: click. Tap dono kaam ek saath karta hai: tumhari ungli hi pointer hai aur wahi press. Douglas Engelbart ki team ne 1960s mein pehla mouse banaya, pahiyon wala lakdi ka dabba, aur 1968 mein dikhaya. Aaj zyaadatar mouse ke neeche ek chhoti light aur sensor hote hain jo dekhte hain tumne kitna khiskaya."
    },
    "realExample": {
-    "en": "On a laptop, the touchpad does the mouse’s job: slide one finger to move, tap to click.",
-    "hi": "लैपटॉप पर टचपैड माउस का काम करता है: एक उँगली खिसकाओ तो पॉइंटर चलता है, टैप करो तो क्लिक।",
-    "hinglish": "Laptop par touchpad mouse ka kaam karta hai: ek ungli khiskao toh pointer chalta hai, tap karo toh click."
+    "en": "On a laptop, the touchpad works like a small touch screen without a picture: slide to move the pointer, tap to click.",
+    "hi": "लैपटॉप का टचपैड बिना चित्र वाली छोटी टच स्क्रीन जैसा है: पॉइंटर खिसकाने के लिए उँगली सरकाओ, क्लिक के लिए टैप करो।",
+    "hinglish": "Laptop ka touchpad bina picture wali chhoti touch screen jaisa hai: pointer khiskaane ke liye ungli sarkao, click ke liye tap karo."
+   }
+  },
+  {
+   "heading": {
+    "en": "Drag, double-tap and long press",
+    "hi": "ड्रैग, डबल-टैप और लंबा दबाना",
+    "hinglish": "Drag, double-tap aur long press"
+   },
+   "body": {
+    "en": "Drag means press, keep your finger down, slide, then let go: the phone follows your finger the whole way. A double-tap is two quick taps. A long press means pressing and holding; it often shows more choices, but each app decides what its long press does.",
+    "hi": "ड्रैग यानी दबाओ, उँगली टिकाए रखो, सरकाओ, फिर छोड़ो: फ़ोन पूरे रास्ते उँगली के पीछे चलता है। डबल-टैप यानी दो जल्दी टैप। लंबा दबाना यानी दबाकर रखना; अक्सर इससे और विकल्प दिखते हैं, पर हर ऐप खुद तय करता है कि लंबा दबाने पर क्या हो।",
+    "hinglish": "Drag matlab dabaao, ungli tika ke rakho, sarkao, phir chhodo: phone poore raaste ungli ke peeche chalta hai. Double-tap matlab do jaldi taps. Long press matlab daba ke rakhna; aksar isse aur options dikhte hain, par har app khud decide karta hai ki long press par kya ho."
+   },
+   "realExample": {
+    "en": "Long-press a photo in the gallery and many phones let you pick several photos at once.",
+    "hi": "गैलरी में किसी फ़ोटो को देर तक दबाओ, तो कई फ़ोन एक साथ कई फ़ोटो चुनने देते हैं।",
+    "hinglish": "Gallery mein kisi photo ko der tak dabaao, to kai phones ek saath kai photos chunne dete hain."
    }
   }
  ],
@@ -286,6 +460,39 @@
     "difficulty": 2
    },
    {
+    "id": "q6",
+    "type": "mcq",
+    "prompt": {
+     "en": "Riya wears thick woollen gloves and the phone does not answer her taps. Why?",
+     "hi": "रिया ने मोटे ऊनी दस्ताने पहने हैं और फ़ोन उसके टैप का जवाब नहीं देता। क्यों?",
+     "hinglish": "Riya ne mote woollen gloves pehne hain aur phone uske taps ka jawab nahi deta. Kyun?"
+    },
+    "options": [
+     {
+      "en": "Wool does not change the screen's electric field like a fingertip",
+      "hi": "ऊन उँगली की तरह स्क्रीन का विद्युत क्षेत्र नहीं बदलती",
+      "hinglish": "Wool ungli ki tarah screen ka electric field nahi badalti"
+     },
+     {
+      "en": "The phone is too cold to work",
+      "hi": "फ़ोन काम करने के लिए बहुत ठंडा है",
+      "hinglish": "Phone kaam karne ke liye bahut thanda hai"
+     },
+     {
+      "en": "Gloves press too hard",
+      "hi": "दस्ताने बहुत ज़ोर से दबाते हैं",
+      "hinglish": "Gloves bahut zor se dabaate hain"
+     }
+    ],
+    "answer": 0,
+    "explain": {
+     "en": "The screen notices a change in its tiny electric field. A fingertip changes it; thick wool does not.",
+     "hi": "स्क्रीन अपने छोटे विद्युत क्षेत्र का बदलाव पहचानती है। उँगली उसे बदलती है; मोटी ऊन नहीं।",
+     "hinglish": "Screen apne chhote electric field ka badlaav pehchaanti hai. Ungli use badalti hai; moti wool nahi."
+    },
+    "difficulty": 2
+   },
+   {
     "id": "q5",
     "type": "lab-check",
     "prompt": {
@@ -318,5 +525,71 @@
    "url": "https://www.netcyberai.com/",
    "licence": "own work (CC BY 4.0)"
   }
- ]
+ ],
+ "hook": {
+  "text": {
+   "en": "Hey {{name}}! You watch videos and play games on a phone, right?",
+   "hi": "अरे {{name}}! तुम फ़ोन पर वीडियो देखते हो और गेम खेलते हो, है ना?",
+   "hinglish": "Hey {{name}}! Tum phone par videos dekhte ho aur games khelte ho, hai na?"
+  },
+  "question": {
+   "en": "When you touch the screen, how does the phone know exactly where your finger touched?",
+   "hi": "जब तुम स्क्रीन छूते हो, तो फ़ोन को कैसे पता चलता है कि उँगली ठीक कहाँ लगी?",
+   "hinglish": "Jab tum screen chhoote ho, phone ko kaise pata chalta hai ki ungli theek kahan lagi?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What do you think? How does the screen find your finger?",
+   "hi": "तुम्हें क्या लगता है? स्क्रीन तुम्हारी उँगली को कैसे ढूँढती है?",
+   "hinglish": "Tumhe kya lagta hai? Screen tumhari ungli ko kaise dhoondti hai?"
+  },
+  "options": [
+   {
+    "en": "A tiny camera under the glass watches your finger",
+    "hi": "काँच के नीचे एक छोटा कैमरा उँगली को देखता है",
+    "hinglish": "Kaanch ke neeche ek chhota camera ungli ko dekhta hai"
+   },
+   {
+    "en": "Your finger changes the screen's tiny electric field at that spot",
+    "hi": "तुम्हारी उँगली उस जगह स्क्रीन के छोटे-से विद्युत क्षेत्र को बदल देती है",
+    "hinglish": "Tumhari ungli us jagah screen ke chhote se electric field ko badal deti hai"
+   },
+   {
+    "en": "The phone just guesses",
+    "hi": "फ़ोन बस अंदाज़ा लगाता है",
+    "hinglish": "Phone bas guess karta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Under the glass is a see-through grid that keeps a tiny electric field. Your finger changes that field where it touches, and a small chip in the phone works out the exact spot. No electricity flows out of your finger.",
+   "hi": "काँच के नीचे एक पारदर्शी जाली है जिसमें छोटा-सा विद्युत क्षेत्र रहता है। उँगली जहाँ छूती है वहाँ यह क्षेत्र बदलता है, और फ़ोन की एक छोटी चिप सही जगह निकाल लेती है। तुम्हारी उँगली से कोई बिजली बाहर नहीं निकलती।",
+   "hinglish": "Kaanch ke neeche ek see-through jaali hai jisme chhota sa electric field rehta hai. Ungli jahan chhooti hai wahan yeh field badalta hai, aur phone ki ek chhoti chip exact jagah nikaal leti hai. Tumhari ungli se koi bijli bahar nahi nikalti."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Tell someone at home: what happens when you tap the screen?",
+   "hi": "घर पर किसी को बताओ: जब तुम स्क्रीन पर टैप करते हो तो क्या होता है?",
+   "hinglish": "Ghar par kisi ko batao: jab tum screen par tap karte ho to kya hota hai?"
+  },
+  "checklist": [
+   {
+    "en": "My finger changes the screen's tiny electric field at that spot.",
+    "hi": "मेरी उँगली उस जगह स्क्रीन का छोटा विद्युत क्षेत्र बदलती है।",
+    "hinglish": "Meri ungli us jagah screen ka chhota electric field badalti hai."
+   },
+   {
+    "en": "A small chip works out where I touched.",
+    "hi": "एक छोटी चिप निकालती है कि मैंने कहाँ छुआ।",
+    "hinglish": "Ek chhoti chip nikaalti hai ki maine kahan chhua."
+   },
+   {
+    "en": "The app then does what I tapped.",
+    "hi": "फिर ऐप वही करता है जो मैंने टैप किया।",
+    "hinglish": "Phir app wahi karta hai jo maine tap kiya."
+   }
+  ]
+ }
 }

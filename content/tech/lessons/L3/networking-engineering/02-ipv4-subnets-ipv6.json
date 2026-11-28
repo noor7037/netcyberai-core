@@ -35,6 +35,77 @@
    "hinglish": "Private addresses, NAT aur IPv6 kyun hai, samjhao"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your phone and your brother's both show the address 192.168.1.37 style numbers at home, yet websites see only one address for the whole house.",
+   "hi": "{{name}}, घर पर तुम्हारे फ़ोन और भाई के फ़ोन दोनों पर 192.168.1.37 जैसे पते दिखते हैं, फिर भी वेबसाइटों को पूरे घर का सिर्फ़ एक पता दिखता है।",
+   "hinglish": "{{name}}, ghar par tumhare phone aur bhai ke phone dono par 192.168.1.37 jaise addresses dikhte hain, phir bhi websites ko poore ghar ka sirf ek address dikhta hai."
+  },
+  "question": {
+   "en": "How can many devices share one address, and why is the world moving to longer addresses?",
+   "hi": "कई डिवाइस एक पता कैसे साझा कर सकते हैं, और दुनिया लंबे पतों की ओर क्यों बढ़ रही है?",
+   "hinglish": "Kai devices ek address kaise share kar sakte hain, aur duniya lambe addresses ki taraf kyun badh rahi hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What does /26 in 10.0.5.70/26 tell you?",
+   "hi": "10.0.5.70/26 में /26 तुम्हें क्या बताता है?",
+   "hinglish": "10.0.5.70/26 mein /26 tumhe kya batata hai?"
+  },
+  "options": [
+   {
+    "en": "The device number is 26",
+    "hi": "डिवाइस संख्या 26 है",
+    "hinglish": "Device number 26 hai"
+   },
+   {
+    "en": "The first 26 bits name the network, leaving 6 bits (64 addresses) for hosts",
+    "hi": "पहले 26 बिट नेटवर्क का नाम हैं, बाकी 6 बिट (64 पते) होस्ट के लिए",
+    "hinglish": "Pehle 26 bits network ka naam hain, baaki 6 bits (64 addresses) hosts ke liye"
+   },
+   {
+    "en": "The address has 26 digits",
+    "hi": "पते में 26 अंक हैं",
+    "hinglish": "Address mein 26 digits hain"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "CIDR writes the network part as a prefix length. IPv4 has 32 bits, so /26 leaves 6 host bits: 2⁶ = 64 addresses, 62 usable once the network and broadcast addresses are removed. Home devices use private ranges like 192.168.x.x and the router's NAT rewrites them to one public address; IPv6 has 128-bit addresses so every device can have its own.",
+   "hi": "CIDR नेटवर्क वाला हिस्सा उपसर्ग लंबाई के रूप में लिखता है। IPv4 में 32 बिट हैं, इसलिए /26 से 6 होस्ट बिट बचते हैं: 2⁶ = 64 पते, नेटवर्क और ब्रॉडकास्ट पते हटाकर 62 उपयोगी। घर के डिवाइस 192.168.x.x जैसी निजी रेंज लेते हैं और राउटर का NAT उन्हें एक सार्वजनिक पते में बदलता है; IPv6 में 128-बिट पते हैं ताकि हर डिवाइस का अपना पता हो।",
+   "hinglish": "CIDR network wala hissa prefix length ke roop mein likhta hai. IPv4 mein 32 bits hain, isliye /26 se 6 host bits bachte hain: 2⁶ = 64 addresses, network aur broadcast addresses hatakar 62 usable. Ghar ke devices 192.168.x.x jaisi private ranges lete hain aur router ka NAT unhe ek public address mein badalta hai; IPv6 mein 128-bit addresses hain taaki har device ka apna address ho."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how many phones can share one public IP address, and why IPv6 was created.",
+   "hi": "घर पर किसी को समझाओ कि कई फ़ोन एक सार्वजनिक IP पता कैसे साझा कर सकते हैं, और IPv6 क्यों बनाया गया।",
+   "hinglish": "Ghar par kisi ko samjhao ki kai phones ek public IP address kaise share kar sakte hain, aur IPv6 kyun banaya gaya."
+  },
+  "checklist": [
+   {
+    "en": "IPv4 is 32 bits written as four numbers 0 to 255.",
+    "hi": "IPv4 32 बिट है जो 0 से 255 की चार संख्याओं में लिखा जाता है।",
+    "hinglish": "IPv4 32 bits hai jo 0 se 255 ki chaar numbers mein likha jaata hai."
+   },
+   {
+    "en": "Host bits = 32 minus the prefix; addresses = 2^host bits; usable hosts = that minus 2.",
+    "hi": "होस्ट बिट = 32 घटा उपसर्ग; पते = 2^होस्ट बिट; उपयोगी होस्ट = उसमें से 2 कम।",
+    "hinglish": "Host bits = 32 minus prefix; addresses = 2^host bits; usable hosts = usme se 2 kam."
+   },
+   {
+    "en": "Private ranges (10.x, 172.16 to 31.x, 192.168.x) are never routed publicly; NAT shares one public address.",
+    "hi": "निजी रेंज (10.x, 172.16 से 31.x, 192.168.x) सार्वजनिक रूप से रूट नहीं होतीं; NAT एक सार्वजनिक पता साझा कराता है।",
+    "hinglish": "Private ranges (10.x, 172.16 se 31.x, 192.168.x) publicly route nahi hoti; NAT ek public address share karata hai."
+   },
+   {
+    "en": "IPv4 addresses ran out, so IPv6 uses 128 bits for far more addresses.",
+    "hi": "IPv4 पते खत्म हुए, इसलिए IPv6 बहुत ज़्यादा पतों के लिए 128 बिट इस्तेमाल करता है।",
+    "hinglish": "IPv4 addresses khatam hue, isliye IPv6 bahut zyada addresses ke liye 128 bits use karta hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "IP address",
@@ -89,7 +160,7 @@
     "hi": "/24 का मतलब पहले 24 बिट नेटवर्क और आख़िरी 8 बिट होस्ट बताते हैं: 192.168.1.0/24 में 256 पते, 254 उपकरणों के लिए।",
     "hinglish": "/24 matlab pehle 24 bits network aur aakhri 8 bits host batate hain: 192.168.1.0/24 mein 256 addresses, 254 devices ke liye."
    },
-   "visual": "anim:cidr-split",
+   "visual": "compare:🌐 First 24 bits: the network|🖥️ Last 8 bits: the host",
    "narration": {
     "en": "/24 means the first 24 bits name the network and the last 8 bits name the host: 192.168.1.0/24 holds 256 addresses, 254 usable for devices.",
     "hi": "/24 का मतलब पहले 24 बिट नेटवर्क और आख़िरी 8 बिट होस्ट बताते हैं: 192.168.1.0/24 में 256 पते, 254 उपकरणों के लिए।",
@@ -103,7 +174,7 @@
     "hi": "घर 192.168.x.x जैसी निजी श्रेणियाँ इस्तेमाल करते हैं। राउटर NAT से उन्हें एक सार्वजनिक आईपी में बदलता है, तो पूरा परिवार एक पता साझा करता है।",
     "hinglish": "Ghar 192.168.x.x jaisi private ranges use karte hain. Router NAT se unhe ek public IP mein badalta hai, to poora parivaar ek address share karta hai."
    },
-   "visual": "anim:nat-share",
+   "visual": "flow:📱 Phone 192.168.1.37|🔁 Router rewrites with NAT|🌍 One public address|🌐 Internet",
    "narration": {
     "en": "Homes use private ranges such as 192.168.x.x. The router rewrites them to one public IP using NAT, so a whole family shares one address.",
     "hi": "घर 192.168.x.x जैसी निजी श्रेणियाँ इस्तेमाल करते हैं। राउटर NAT से उन्हें एक सार्वजनिक आईपी में बदलता है, तो पूरा परिवार एक पता साझा करता है।",

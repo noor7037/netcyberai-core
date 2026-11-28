@@ -34,6 +34,77 @@
    "hi": "वीडियो और ऑडियो निर्माण के तरीक़ों के नाम बताना"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you type \"a peacock dancing in the rain, Madhubani style\" and an app paints a picture that nobody ever drew.",
+   "hi": "{{name}}, तुम लिखते हो \"बारिश में नाचता मोर, मधुबनी शैली\" और एक ऐप ऐसी तस्वीर बना देता है जो किसी ने कभी नहीं बनाई।",
+   "hinglish": "{{name}}, tum likhte ho \"barish mein nachta mor, Madhubani style\" aur ek app aisi tasveer bana deta hai jo kisi ne kabhi nahi banayi."
+  },
+  "question": {
+   "en": "Where does the new picture come from, if the app never copies one image?",
+   "hi": "अगर ऐप कोई एक तस्वीर कॉपी नहीं करता, तो नई तस्वीर आती कहाँ से है?",
+   "hinglish": "Agar app koi ek tasveer copy nahi karta, to nayi tasveer aati kahan se hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A diffusion model starts generating an image from what?",
+   "hi": "डिफ़्यूज़न मॉडल तस्वीर बनाना किस चीज़ से शुरू करता है?",
+   "hinglish": "Diffusion model tasveer banana kis cheez se shuru karta hai?"
+  },
+  "options": [
+   {
+    "en": "A stored photo that it edits slightly",
+    "hi": "एक संग्रहीत फ़ोटो जिसे वह थोड़ा बदलता है",
+    "hinglish": "Ek stored photo jise woh thoda badalta hai"
+   },
+   {
+    "en": "Pure random noise, which it cleans step by step, guided by your text",
+    "hi": "शुद्ध यादृच्छिक शोर, जिसे वह चरण-दर-चरण साफ़ करता है, तुम्हारे टेक्स्ट के निर्देशन में",
+    "hinglish": "Pure random noise, jise woh step-by-step saaf karta hai, tumhare text ke guidance mein"
+   },
+   {
+    "en": "A blank white canvas that it paints from left to right",
+    "hi": "एक ख़ाली सफ़ेद कैनवास जिसे वह बाएँ से दाएँ रँगता है",
+    "hinglish": "Ek khali white canvas jise woh left se right rangta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "In training, real images are noised step by step and the network learns to predict the noise added. To generate, it starts from fresh random noise and removes a little noise at each step, steered by the text prompt, until an image appears. The picture is newly produced, though it reflects patterns in the training data.",
+   "hi": "ट्रेनिंग में असली तस्वीरों में चरण-दर-चरण शोर जोड़ा जाता है और नेटवर्क जुड़ा शोर अनुमानित करना सीखता है। बनाते समय वह ताज़ा यादृच्छिक शोर से शुरू करके हर चरण में थोड़ा शोर हटाता है, टेक्स्ट प्रॉम्प्ट के निर्देशन में, जब तक तस्वीर न उभरे। तस्वीर नई बनती है, पर उसमें ट्रेनिंग डेटा के पैटर्न झलकते हैं।",
+   "hinglish": "Training mein real images mein step-by-step noise joda jaata hai aur network joda hua noise predict karna seekhta hai. Generate karte samay woh fresh random noise se shuru karke har step mein thoda noise hatata hai, text prompt ke guidance mein, jab tak image na ubhre. Tasveer nayi banti hai, par usme training data ke patterns jhalakte hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how an AI can draw a picture starting from static.",
+   "hi": "घर पर किसी को समझाओ कि AI स्टैटिक से शुरू करके तस्वीर कैसे बना सकता है।",
+   "hinglish": "Ghar par kisi ko samjhao ki AI static se shuru karke tasveer kaise bana sakta hai."
+  },
+  "checklist": [
+   {
+    "en": "Training adds noise to real images and teaches the network to predict that noise",
+    "hi": "ट्रेनिंग असली तस्वीरों में शोर जोड़ती है और नेटवर्क को वह शोर अनुमानित करना सिखाती है",
+    "hinglish": "Training real images mein noise jodti hai aur network ko woh noise predict karna sikhati hai"
+   },
+   {
+    "en": "Generation starts from random noise and denoises step by step",
+    "hi": "निर्माण यादृच्छिक शोर से शुरू होकर चरण-दर-चरण शोर हटाता है",
+    "hinglish": "Generation random noise se shuru hokar step-by-step noise hatata hai"
+   },
+   {
+    "en": "The text prompt steers each denoising step",
+    "hi": "टेक्स्ट प्रॉम्प्ट हर शोर हटाने के चरण को दिशा देता है",
+    "hinglish": "Text prompt har denoising step ko direction deta hai"
+   },
+   {
+    "en": "Video and audio generation use related ideas",
+    "hi": "वीडियो और ऑडियो निर्माण में मिलते-जुलते विचार इस्तेमाल होते हैं",
+    "hinglish": "Video aur audio generation mein milte-julte ideas use hote hain"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Diffusion model",
@@ -74,7 +145,7 @@
     "hi": "प्रशिक्षण: मोर की असली फ़ोटो लो और थोड़ा शोर डालो, फिर और, 1,000 कदमों में जब तक पूरी झिलमिल न हो जाए।",
     "hinglish": "Training: mor ki asli photo lo aur thoda noise daalo, phir aur, 1,000 steps mein jab tak poori jhilmil na ho jaaye."
    },
-   "visual": "anim:forward-noise",
+   "visual": "flow:🖼️ Real peacock photo|➕ Add noise, step by step|📺 Pure static",
    "narration": {
     "en": "Training: take a real photo of a peacock and add a little noise, then more, over 1,000 steps until it is pure static.",
     "hi": "प्रशिक्षण: मोर की असली फ़ोटो लो और थोड़ा शोर डालो, फिर और, 1,000 कदमों में जब तक पूरी झिलमिल न हो जाए।",
@@ -102,7 +173,7 @@
     "hi": "जनरेशन: नए यादृच्छिक शोर से शुरू करो और कदम-दर-कदम शोर हटाओ, पाठ \"बारिश में नाचता मोर, मधुबनी शैली\" से दिशा लेते हुए।",
     "hinglish": "Generation: naye random noise se shuru karo aur step-by-step denoise karo, text \"baarish mein naachta mor, Madhubani style\" se direction lete hue."
    },
-   "visual": "anim:reverse-denoise",
+   "visual": "flow:🎲 Fresh random noise|🧹 Denoise step by step|🦚 Image steered by the text prompt",
    "narration": {
     "en": "Generation: start from fresh random noise and denoise step by step, steered by the text \"a peacock dancing in the rain, Madhubani style\".",
     "hi": "जनरेशन: नए यादृच्छिक शोर से शुरू करो और कदम-दर-कदम शोर हटाओ, पाठ \"बारिश में नाचता मोर, मधुबनी शैली\" से दिशा लेते हुए।",

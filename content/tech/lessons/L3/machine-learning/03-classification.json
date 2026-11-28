@@ -33,6 +33,72 @@
    "hi": "समझाना कि वर्गीकारक संभावना क्यों देता है"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a farmer photographs a tomato leaf with brown spots and an app says \"early blight\".",
+   "hi": "{{name}}, एक किसान टमाटर की भूरे धब्बों वाली पत्ती की फ़ोटो लेता है और ऐप कहता है \"अर्ली ब्लाइट\"।",
+   "hinglish": "{{name}}, ek kisan tamatar ki brown spots wali patti ki photo leta hai aur app kehta hai \"early blight\"."
+  },
+  "question": {
+   "en": "How does a program choose one label out of many, and why does it often say \"92% sure\"?",
+   "hi": "प्रोग्राम कई लेबल में से एक कैसे चुनता है, और वह अक्सर \"92% पक्का\" क्यों कहता है?",
+   "hinglish": "Program kai labels mein se ek kaise chunta hai, aur woh aksar \"92% sure\" kyun kehta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "To label a new point, 3-nearest-neighbours looks at its 3 closest labelled points. What does it do next?",
+   "hi": "नए बिंदु को लेबल देने के लिए 3-नियरेस्ट-नेबर उसके 3 सबसे पास के लेबल वाले बिंदु देखता है। फिर क्या करता है?",
+   "hinglish": "Naye point ko label dene ke liye 3-nearest-neighbours uske 3 sabse paas ke labelled points dekhta hai. Phir kya karta hai?"
+  },
+  "options": [
+   {
+    "en": "Averages their numeric labels",
+    "hi": "उनके संख्यात्मक लेबलों का औसत लेता है",
+    "hinglish": "Unke numeric labels ka average leta hai"
+   },
+   {
+    "en": "Takes a majority vote among those 3",
+    "hi": "उन 3 में बहुमत से चुनता है",
+    "hinglish": "Un 3 mein majority vote leta hai"
+   },
+   {
+    "en": "Picks the neighbour that is furthest away",
+    "hi": "सबसे दूर वाले पड़ोसी को चुनता है",
+    "hinglish": "Sabse door wale neighbour ko chunta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "kNN labels by majority vote of the nearest points, a tree asks a series of questions down to a leaf, and logistic regression squashes a score into a probability between 0 and 1. A classifier outputs a probability so you can see how confident it is and choose the threshold.",
+   "hi": "kNN सबसे पास के बिंदुओं के बहुमत से लेबल देता है, ट्री सवालों की कड़ी से पत्ते तक पहुँचता है, और लॉजिस्टिक रिग्रेशन स्कोर को 0 और 1 के बीच की प्रायिकता में दबाता है। क्लासिफ़ायर प्रायिकता देता है ताकि पता चले वह कितना आश्वस्त है और थ्रेशहोल्ड चुना जा सके।",
+   "hinglish": "kNN sabse paas ke points ke majority vote se label deta hai, tree sawalon ki kadi se leaf tak pahunchta hai, aur logistic regression score ko 0 aur 1 ke beech ki probability mein dabata hai. Classifier probability deta hai taaki pata chale woh kitna confident hai aur threshold chuna ja sake."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend how kNN and a decision tree each decide a label, and why a probability is useful.",
+   "hi": "दोस्त को समझाओ कि kNN और डिसीज़न ट्री हर एक लेबल कैसे तय करता है, और प्रायिकता क्यों काम की है।",
+   "hinglish": "Friend ko samjhao ki kNN aur decision tree har ek label kaise decide karta hai, aur probability kyun kaam ki hai."
+  },
+  "checklist": [
+   {
+    "en": "kNN looks at the k nearest labelled points and takes a majority vote",
+    "hi": "kNN k सबसे पास के लेबल वाले बिंदु देखकर बहुमत लेता है",
+    "hinglish": "kNN k sabse paas ke labelled points dekhkar majority leta hai"
+   },
+   {
+    "en": "A decision tree asks questions along a path that ends in a class",
+    "hi": "डिसीज़न ट्री सवाल पूछते हुए ऐसे रास्ते पर चलता है जो वर्ग पर ख़त्म होता है",
+    "hinglish": "Decision tree sawal poochte hue aise raaste par chalta hai jo class par khatam hota hai"
+   },
+   {
+    "en": "A sigmoid squashes a score into 0 to 1, and a threshold such as 0.5 turns it into a label",
+    "hi": "सिग्मॉयड स्कोर को 0 से 1 में दबाता है, और 0.5 जैसी सीमा उसे लेबल बनाती है",
+    "hinglish": "Sigmoid score ko 0 se 1 mein dabata hai, aur 0.5 jaisa threshold use label banata hai"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Classifier",
@@ -73,7 +139,7 @@
     "hi": "केएनएन: नए बिंदु को लेबल करने के लिए उसके 3 सबसे नज़दीकी पड़ोसी देखो और बहुमत वोट लो।",
     "hinglish": "kNN: naye point ko label karne ke liye uske 3 sabse paas ke padosi dekho aur majority vote lo."
    },
-   "visual": "anim:knn-vote",
+   "visual": "flow:📍 New point|📏 Find its 3 nearest|🗳️ Majority vote",
    "narration": {
     "en": "kNN: to label the new point, look at its 3 nearest neighbours and take a majority vote.",
     "hi": "केएनएन: नए बिंदु को लेबल करने के लिए उसके 3 सबसे नज़दीकी पड़ोसी देखो और बहुमत वोट लो।",
@@ -87,7 +153,7 @@
     "hi": "डिसीज़न ट्री सवाल पूछता है: क्या पत्ती का धब्बा भूरा है? → क्या किनारे पीले हैं? → \"अर्ली ब्लाइट\"। हर रास्ता एक श्रेणी पर खत्म होता है।",
     "hinglish": "Decision tree sawaal poochta hai: Kya patti ka dhabba bhoora hai? → Kya kinaare peele hain? → \"early blight\". Har raasta ek class par khatam hota hai."
    },
-   "visual": "anim:decision-tree-grow",
+   "visual": "flow:🍃 Brown leaf spot?|🟡 Yellow edges?|🏷️ Early blight",
    "narration": {
     "en": "A decision tree asks questions: Is the leaf spot brown? → Are edges yellow? → \"early blight\". Each path ends in a class.",
     "hi": "डिसीज़न ट्री सवाल पूछता है: क्या पत्ती का धब्बा भूरा है? → क्या किनारे पीले हैं? → \"अर्ली ब्लाइट\"। हर रास्ता एक श्रेणी पर खत्म होता है।",
@@ -101,7 +167,7 @@
     "hi": "लॉजिस्टिक रिग्रेशन एक स्कोर निकालता है, उसे सिग्मॉइड से 0–1 में दबाता है, और 0.5 से ऊपर हो तो \"स्पैम\" कहता है।",
     "hinglish": "Logistic regression ek score nikaalta hai, sigmoid se 0-1 mein dabaata hai, aur 0.5 se upar ho to \"spam\" kehta hai."
    },
-   "visual": "anim:sigmoid-squash",
+   "visual": "flow:🧮 Score|🔽 Sigmoid squashes to 0–1|🚦 Above 0.5: spam",
    "narration": {
     "en": "Logistic regression computes a score, squashes it with a sigmoid into 0–1, and calls it \"spam\" if above 0.5.",
     "hi": "लॉजिस्टिक रिग्रेशन एक स्कोर निकालता है, उसे सिग्मॉइड से 0–1 में दबाता है, और 0.5 से ऊपर हो तो \"स्पैम\" कहता है।",

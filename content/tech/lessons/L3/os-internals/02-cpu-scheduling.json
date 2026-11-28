@@ -34,6 +34,77 @@
    "hinglish": "Chhote example ke liye average waiting time nikaalo"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your phone plays music, downloads an update and shows WhatsApp messages all together, but it has only about 8 cores.",
+   "hi": "{{name}}, तुम्हारा फ़ोन संगीत बजाता है, अपडेट उतारता है और WhatsApp संदेश दिखाता है, सब एक साथ, जबकि उसमें सिर्फ़ लगभग 8 कोर हैं।",
+   "hinglish": "{{name}}, tumhara phone music bajata hai, update download karta hai aur WhatsApp messages dikhata hai, sab ek saath, jabki usme sirf lagbhag 8 cores hain."
+  },
+  "question": {
+   "en": "Who decides which of hundreds of tasks gets the CPU next, and how does it feel fair?",
+   "hi": "सैकड़ों कामों में से अगला CPU किसे मिलेगा यह कौन तय करता है, और यह न्यायसंगत कैसे लगता है?",
+   "hinglish": "Saikdon kaamon mein se agla CPU kise milega yeh kaun tay karta hai, aur yeh fair kaise lagta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A long job and a short job arrive together. Which order gives the smallest average waiting time?",
+   "hi": "एक लंबा काम और एक छोटा काम साथ आते हैं। किस क्रम में औसत प्रतीक्षा समय सबसे कम होगा?",
+   "hinglish": "Ek lamba kaam aur ek chhota kaam saath aate hain. Kis order mein average waiting time sabse kam hoga?"
+  },
+  "options": [
+   {
+    "en": "Long job first, because it started first",
+    "hi": "लंबा काम पहले, क्योंकि वह पहले शुरू हुआ",
+    "hinglish": "Lamba kaam pehle, kyunki woh pehle shuru hua"
+   },
+   {
+    "en": "Short job first, so fewer jobs wait behind the long one",
+    "hi": "छोटा काम पहले, ताकि कम काम लंबे के पीछे इंतज़ार करें",
+    "hinglish": "Chhota kaam pehle, taaki kam jobs lambe ke peeche wait karein"
+   },
+   {
+    "en": "The order makes no difference to waiting time",
+    "hi": "क्रम से प्रतीक्षा समय पर कोई फ़र्क नहीं पड़ता",
+    "hinglish": "Order se waiting time par koi fark nahi padta"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "With jobs of 8, 4 and 2 ms, first come first served gives an average wait of 6.67 ms, but shortest job first gives about 2.67 ms because short jobs no longer wait behind a long one. Real schedulers also use time slices (round robin) and priorities so everything stays responsive.",
+   "hi": "8, 4 और 2 ms के कामों में पहले आओ पहले पाओ का औसत इंतज़ार 6.67 ms होता है, पर सबसे छोटा काम पहले करने पर लगभग 2.67 ms, क्योंकि छोटे काम लंबे के पीछे नहीं रुकते। असली शेड्यूलर समय-टुकड़े (राउंड रॉबिन) और प्राथमिकता भी इस्तेमाल करते हैं ताकि सब कुछ जवाबदेह रहे।",
+   "hinglish": "8, 4 aur 2 ms ke kaamon mein first come first served ka average wait 6.67 ms hota hai, par shortest job first mein lagbhag 2.67 ms, kyunki chhote kaam lambe ke peeche nahi rukte. Real schedulers time slices (round robin) aur priorities bhi use karte hain taaki sab kuch responsive rahe."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a phone with few cores seems to run many things at once.",
+   "hi": "घर पर किसी को समझाओ कि कम कोर वाला फ़ोन एक साथ कई काम चलाता कैसे दिखता है।",
+   "hinglish": "Ghar par kisi ko samjhao ki kam cores wala phone ek saath kai kaam chalata kaise dikhta hai."
+  },
+  "checklist": [
+   {
+    "en": "The scheduler gives each ready thread a short time slice, switching so fast it looks simultaneous.",
+    "hi": "शेड्यूलर हर तैयार थ्रेड को छोटा समय-टुकड़ा देता है, इतनी तेज़ बदलकर कि सब एक साथ लगे।",
+    "hinglish": "Scheduler har ready thread ko chhota time slice deta hai, itni tez badalkar ki sab ek saath lage."
+   },
+   {
+    "en": "Threads move between ready, running and blocked (waiting for disk, network or a key).",
+    "hi": "थ्रेड तैयार, चालू और अवरुद्ध (डिस्क, नेटवर्क या कुंजी का इंतज़ार) के बीच घूमते हैं।",
+    "hinglish": "Threads ready, running aur blocked (disk, network ya key ka wait) ke beech ghoomte hain."
+   },
+   {
+    "en": "FCFS, shortest-job-first, round robin and priority trade fairness against waiting time.",
+    "hi": "FCFS, सबसे छोटा काम पहले, राउंड रॉबिन और प्राथमिकता, न्याय और प्रतीक्षा समय के बीच संतुलन हैं।",
+    "hinglish": "FCFS, shortest-job-first, round robin aur priority fairness aur waiting time ke beech trade-off hain."
+   },
+   {
+    "en": "Processes have private memory; threads inside one process share it.",
+    "hi": "प्रोसेस की अपनी निजी मेमोरी है; एक प्रोसेस के थ्रेड उसे साझा करते हैं।",
+    "hinglish": "Processes ki apni private memory hai; ek process ke threads use share karte hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Process",
@@ -88,7 +159,7 @@
     "hi": "अवस्थाएँ: तैयार (CPU का इंतज़ार), चल रहा, रुका (डिस्क, नेटवर्क या कुंजी का इंतज़ार), समाप्त।",
     "hinglish": "States: ready (CPU ka intezaar), running, blocked (disk, network ya key press ka intezaar), finished."
    },
-   "visual": "anim:state-diagram",
+   "visual": "cycle:⏳ Ready|▶️ Running|💤 Blocked",
    "narration": {
     "en": "States: ready (waiting for CPU), running, blocked (waiting for disk, network or a key press), finished.",
     "hi": "अवस्थाएँ: तैयार (CPU का इंतज़ार), चल रहा, रुका (डिस्क, नेटवर्क या कुंजी का इंतज़ार), समाप्त।",
@@ -102,7 +173,7 @@
     "hi": "राउंड रॉबिन हर तैयार थ्रेड को बारी-बारी छोटा खंड देता है। कोई हमेशा इंतज़ार नहीं करता, और सब तुरंत लगता है।",
     "hinglish": "Round robin har ready thread ko baari-baari chhota slice deta hai. Koi hamesha intezaar nahi karta, aur sab responsive lagta hai."
    },
-   "visual": "anim:rr-wheel",
+   "visual": "cycle:1️⃣ Thread 1 gets a slice|2️⃣ Thread 2 gets a slice|3️⃣ Thread 3 gets a slice",
    "narration": {
     "en": "Round robin gives each ready thread a short slice in turn. Nobody waits forever, and everything feels responsive.",
     "hi": "राउंड रॉबिन हर तैयार थ्रेड को बारी-बारी छोटा खंड देता है। कोई हमेशा इंतज़ार नहीं करता, और सब तुरंत लगता है।",
@@ -116,7 +187,7 @@
     "hi": "प्राथमिकताएँ भी मायने रखती हैं: वीडियो कॉल या संगीत कभी न अटके, जबकि बैकअप बचा समय ले सकता है।",
     "hinglish": "Priorities bhi matter karti hain: video call ya music kabhi na atke, jabki backup bacha time le sakta hai."
    },
-   "visual": "anim:priority-lanes",
+   "visual": "compare:📞 Video call: high priority, must not stutter|💾 Backup: low priority, uses leftover time",
    "narration": {
     "en": "Priorities matter too: a video call or music must never stutter, while a backup can use leftover time.",
     "hi": "प्राथमिकताएँ भी मायने रखती हैं: वीडियो कॉल या संगीत कभी न अटके, जबकि बैकअप बचा समय ले सकता है।",

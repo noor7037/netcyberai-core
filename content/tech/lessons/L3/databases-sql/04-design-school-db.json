@@ -35,6 +35,77 @@
    "hinglish": "Constraints aur indexes jodo, aur DPDP Act ke tahat personal data bachao"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a school keeps every teacher's phone number in every student's row, and when one teacher changes number, some rows show the old one.",
+   "hi": "{{name}}, एक स्कूल हर शिक्षक का फ़ोन नंबर हर विद्यार्थी की पंक्ति में रखता है, और एक शिक्षक का नंबर बदलने पर कुछ पंक्तियाँ पुराना दिखाती हैं।",
+   "hinglish": "{{name}}, ek school har teacher ka phone number har student ki row mein rakhta hai, aur ek teacher ka number badalne par kuch rows purana dikhati hain."
+  },
+  "question": {
+   "en": "How do you design tables so each fact lives in one place, and keep children's personal data protected?",
+   "hi": "तालिकाएँ ऐसे कैसे डिज़ाइन करें कि हर तथ्य एक ही जगह रहे, और बच्चों का निजी डेटा सुरक्षित रहे?",
+   "hinglish": "Tables aise kaise design karein ki har fact ek hi jagah rahe, aur bachchon ka personal data protected rahe?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "The teacher's phone number is repeated in 300 rows. What is the best fix?",
+   "hi": "शिक्षक का फ़ोन नंबर 300 पंक्तियों में दोहराया गया है। सबसे अच्छा सुधार क्या है?",
+   "hinglish": "Teacher ka phone number 300 rows mein repeat hai. Sabse achha fix kya hai?"
+  },
+  "options": [
+   {
+    "en": "Update all 300 rows by hand each time",
+    "hi": "हर बार 300 पंक्तियाँ हाथ से अपडेट करो",
+    "hinglish": "Har baar 300 rows haath se update karo"
+   },
+   {
+    "en": "Move teachers to their own table and refer to them by teacher_id, so the number is stored once",
+    "hi": "शिक्षकों को अपनी तालिका में रखो और teacher_id से संदर्भित करो, ताकि नंबर एक बार रखा जाए",
+    "hinglish": "Teachers ko apni table mein rakho aur teacher_id se refer karo, taaki number ek baar rakha jaaye"
+   },
+   {
+    "en": "Delete the phone number column",
+    "hi": "फ़ोन नंबर स्तंभ मिटा दो",
+    "hinglish": "Phone number column delete kar do"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Repeated facts cause update anomalies: change one copy and the others disagree. Normalisation splits data so each fact depends on its own key: students, teachers, subjects, classes and marks(student_id, subject_id, exam, score). Then add constraints such as CHECK (score BETWEEN 0 AND 100) and an index on marks(student_id).",
+   "hi": "दोहराए तथ्य अपडेट विसंगतियाँ बनाते हैं: एक प्रति बदलो तो बाकी असहमत रहती हैं। सामान्यीकरण डेटा को ऐसे बाँटता है कि हर तथ्य अपनी कुंजी पर निर्भर रहे: students, teachers, subjects, classes और marks(student_id, subject_id, exam, score)। फिर CHECK (score BETWEEN 0 AND 100) जैसी बाध्यताएँ और marks(student_id) पर इंडेक्स जोड़ो।",
+   "hinglish": "Repeated facts update anomalies banate hain: ek copy badlo toh baaki disagree karti hain. Normalisation data ko aise baantta hai ki har fact apni key par depend kare: students, teachers, subjects, classes aur marks(student_id, subject_id, exam, score). Phir CHECK (score BETWEEN 0 AND 100) jaise constraints aur marks(student_id) par index jodo."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how you would design a school database so nothing is repeated and personal data stays protected.",
+   "hi": "घर पर किसी को समझाओ कि तुम स्कूल डेटाबेस ऐसे कैसे बनाओगे कि कुछ दोहराया न जाए और निजी डेटा सुरक्षित रहे।",
+   "hinglish": "Ghar par kisi ko samjhao ki tum school database aise kaise banaoge ki kuch repeat na ho aur personal data protected rahe."
+  },
+  "checklist": [
+   {
+    "en": "Underline the nouns in the requirement to find entities, then draw their relationships (ER model).",
+    "hi": "आवश्यकता में संज्ञाएँ रेखांकित करके इकाइयाँ खोजो, फिर उनके संबंध बनाओ (ER मॉडल)।",
+    "hinglish": "Requirement mein nouns underline karke entities dhundho, phir unke relationships banao (ER model)."
+   },
+   {
+    "en": "Repeated data causes update anomalies; normalisation (1NF, 2NF, 3NF) stores each fact once.",
+    "hi": "दोहराया डेटा अपडेट विसंगतियाँ बनाता है; सामान्यीकरण (1NF, 2NF, 3NF) हर तथ्य एक बार रखता है।",
+    "hinglish": "Repeated data update anomalies banata hai; normalisation (1NF, 2NF, 3NF) har fact ek baar rakhta hai."
+   },
+   {
+    "en": "Constraints (CHECK, NOT NULL, foreign keys) and indexes keep data valid and queries fast.",
+    "hi": "बाध्यताएँ (CHECK, NOT NULL, विदेशी कुंजियाँ) और इंडेक्स डेटा वैध और क्वेरी तेज़ रखते हैं।",
+    "hinglish": "Constraints (CHECK, NOT NULL, foreign keys) aur indexes data valid aur queries fast rakhte hain."
+   },
+   {
+    "en": "Under India's DPDP Act, collect only what you need, protect it, and get verifiable parental consent for children.",
+    "hi": "भारत के DPDP अधिनियम के तहत सिर्फ़ ज़रूरी डेटा लो, उसे सुरक्षित रखो, और बच्चों के लिए सत्यापन योग्य अभिभावक सहमति लो।",
+    "hinglish": "India ke DPDP Act ke tahat sirf zaroori data lo, use protect karo, aur bachchon ke liye verifiable parental consent lo."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Entity",
@@ -103,7 +174,7 @@
     "hi": "बाँटो: students, teachers, subjects, classes, और marks(student_id, subject_id, exam, score)। अब हर तथ्य एक जगह रहता है।",
     "hinglish": "Baanto: students, teachers, subjects, classes, aur marks(student_id, subject_id, exam, score). Ab har fact ek jagah rehta hai."
    },
-   "visual": "anim:er-split",
+   "visual": "flow:📄 One giant sheet|✂️ Split by entity|🗂️ Linked tables|🔑 Keys connect them",
    "narration": {
     "en": "Split it: students, teachers, subjects, classes, and marks(student_id, subject_id, exam, score). Each fact now lives in one place.",
     "hi": "बाँटो: students, teachers, subjects, classes, और marks(student_id, subject_id, exam, score)। अब हर तथ्य एक जगह रहता है।",

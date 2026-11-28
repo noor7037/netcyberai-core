@@ -34,6 +34,77 @@
    "hi": "बताना कि स्केलिंग नियम डेटा, पैरामीटर और कंप्यूट के बारे में क्या कहते हैं"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a raw language model can finish \"The capital of India is\" but ignores \"Please write me an essay\". The chatbot you use does both politely.",
+   "hi": "{{name}}, एक कच्चा भाषा मॉडल \"The capital of India is\" पूरा कर देता है पर \"Please write me an essay\" को अनदेखा करता है। जो चैटबॉट तुम इस्तेमाल करते हो वह दोनों शिष्टता से करता है।",
+   "hinglish": "{{name}}, ek raw language model \"The capital of India is\" poora kar deta hai par \"Please write me an essay\" ko ignore karta hai. Jo chatbot tum use karte ho woh dono politely karta hai."
+  },
+  "question": {
+   "en": "What extra training turns a text-predictor into a helpful assistant?",
+   "hi": "कौन-सी अतिरिक्त ट्रेनिंग टेक्स्ट-पूर्वानुमानक को सहायक में बदलती है?",
+   "hinglish": "Kaunsi extra training text-predictor ko helpful assistant mein badalti hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "In RLHF, what do humans actually provide?",
+   "hi": "RLHF में इंसान असल में क्या देते हैं?",
+   "hinglish": "RLHF mein insaan asal mein kya dete hain?"
+  },
+  "options": [
+   {
+    "en": "The correct answer to every possible question",
+    "hi": "हर संभव सवाल का सही जवाब",
+    "hinglish": "Har possible sawal ka sahi answer"
+   },
+   {
+    "en": "Comparisons saying which of two answers they prefer, used to train a reward model",
+    "hi": "तुलनाएँ जो बताती हैं कि दो जवाबों में कौन पसंद है, जिनसे रिवॉर्ड मॉडल ट्रेन होता है",
+    "hinglish": "Comparisons jo batati hain ki do answers mein kaunsa pasand hai, jinse reward model train hota hai"
+   },
+   {
+    "en": "Electric shocks when the model is wrong",
+    "hi": "मॉडल ग़लत हो तो बिजली के झटके",
+    "hinglish": "Model galat ho to bijli ke jhatke"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Pre-training teaches next-token prediction on trillions of tokens. Supervised fine-tuning uses example conversations to teach instruction following. RLHF has people rank answers, trains a reward model on those preferences and then nudges the chat model towards higher-reward answers.",
+   "hi": "प्री-ट्रेनिंग खरबों टोकनों पर अगला टोकन अनुमान सिखाती है। सुपरवाइज़्ड फ़ाइन-ट्यूनिंग उदाहरण बातचीतों से निर्देश मानना सिखाती है। RLHF में लोग जवाबों को क्रम देते हैं, उन पसंदों से रिवॉर्ड मॉडल बनता है, और फिर चैट मॉडल को ज़्यादा इनाम वाले जवाबों की ओर खिसकाया जाता है।",
+   "hinglish": "Pre-training trillions of tokens par next-token prediction sikhati hai. Supervised fine-tuning example conversations se instructions follow karna sikhati hai. RLHF mein log answers ko rank karte hain, un preferences se reward model banta hai, aur phir chat model ko higher-reward answers ki taraf khiskaya jaata hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home the three stages that turn raw text into a helpful chatbot.",
+   "hi": "घर पर किसी को समझाओ कि कच्चे टेक्स्ट को मददगार चैटबॉट बनाने वाले तीन चरण कौन-से हैं।",
+   "hinglish": "Ghar par kisi ko samjhao ki raw text ko helpful chatbot banane wale teen stages kaunse hain."
+  },
+  "checklist": [
+   {
+    "en": "Pre-training learns next-token prediction from huge amounts of text",
+    "hi": "प्री-ट्रेनिंग विशाल टेक्स्ट से अगला टोकन अनुमान सीखती है",
+    "hinglish": "Pre-training huge text se next-token prediction seekhti hai"
+   },
+   {
+    "en": "Fine-tuning on example conversations teaches instruction following",
+    "hi": "उदाहरण बातचीतों पर फ़ाइन-ट्यूनिंग निर्देश मानना सिखाती है",
+    "hinglish": "Example conversations par fine-tuning instruction following sikhati hai"
+   },
+   {
+    "en": "RLHF: people compare answers, a reward model learns the preference, RL nudges the model",
+    "hi": "RLHF: लोग जवाब तुलना करते हैं, रिवॉर्ड मॉडल पसंद सीखता है, RL मॉडल को खिसकाता है",
+    "hinglish": "RLHF: log answers compare karte hain, reward model preference seekhta hai, RL model ko khiskata hai"
+   },
+   {
+    "en": "Scaling laws link performance to data, parameters and compute",
+    "hi": "स्केलिंग नियम प्रदर्शन को डेटा, पैरामीटर और कंप्यूट से जोड़ते हैं",
+    "hinglish": "Scaling laws performance ko data, parameters aur compute se jodte hain"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Pre-training",
@@ -102,7 +173,7 @@
     "hi": "चरण 3, आरएलएचएफ़: लोग दो जवाबों की तुलना करते हैं, एक रिवॉर्ड मॉडल उनकी पसंद सीखता है, और आरएल चैट मॉडल को पसंदीदा जवाबों की ओर ले जाता है।",
     "hinglish": "Stage 3, RLHF: log do jawab compare karte hain, reward model unki pasand seekhta hai, aur RL chat model ko pasandida jawabon ki taraf le jaata hai."
    },
-   "visual": "anim:rlhf-compare",
+   "visual": "flow:🆚 People compare two answers|🏅 Reward model learns the preference|🎯 RL nudges the chat model",
    "narration": {
     "en": "Stage 3, RLHF: people compare two answers, a reward model learns their preferences, and RL nudges the chat model towards preferred answers.",
     "hi": "चरण 3, आरएलएचएफ़: लोग दो जवाबों की तुलना करते हैं, एक रिवॉर्ड मॉडल उनकी पसंद सीखता है, और आरएल चैट मॉडल को पसंदीदा जवाबों की ओर ले जाता है।",

@@ -40,6 +40,77 @@
    "hinglish": "Open-source aur closed-source mein farak bata sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a new game asks to use your contacts and microphone before it will start.",
+   "hi": "{{name}}, एक नया गेम शुरू होने से पहले तुम्हारे कॉन्टैक्ट और माइक्रोफ़ोन का उपयोग माँगता है।",
+   "hinglish": "{{name}}, ek naya game shuru hone se pehle tumhare contacts aur microphone ka use maangta hai."
+  },
+  "question": {
+   "en": "Should you say yes, and why does a phone keep asking for updates too?",
+   "hi": "क्या तुम्हें हाँ कहना चाहिए, और फ़ोन अपडेट के लिए भी क्यों कहता रहता है?",
+   "hinglish": "Kya tumhe haan kehna chahiye, aur phone updates ke liye bhi kyun kehta rehta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Why is it important to install phone updates soon?",
+   "hi": "फ़ोन अपडेट जल्दी इंस्टॉल करना क्यों ज़रूरी है?",
+   "hinglish": "Phone updates jaldi install karna kyun zaroori hai?"
+  },
+  "options": [
+   {
+    "en": "Only to change the look of the icons",
+    "hi": "सिर्फ़ आइकन का रूप बदलने के लिए",
+    "hinglish": "Sirf icons ka look badalne ke liye"
+   },
+   {
+    "en": "They often fix security holes that attackers already know about",
+    "hi": "वे अक्सर उन सुरक्षा छेदों को ठीक करते हैं जिन्हें हमलावर पहले से जानते हैं",
+    "hinglish": "Woh aksar un security holes ko fix karte hain jinhe attackers pehle se jaante hain"
+   },
+   {
+    "en": "They delete your old photos to make space",
+    "hi": "वे जगह बनाने के लिए तुम्हारी पुरानी फ़ोटो मिटा देते हैं",
+    "hinglish": "Woh jagah banane ke liye tumhari purani photos mita dete hain"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Once a security hole is public, anyone can try to use it, so the fix matters. Updates also add features and drivers, but security is the main reason not to wait.",
+   "hi": "जब कोई सुरक्षा छेद सार्वजनिक हो जाता है तो कोई भी उसका फ़ायदा उठाने की कोशिश कर सकता है, इसलिए सुधार ज़रूरी है। अपडेट नई सुविधाएँ और ड्राइवर भी लाते हैं, पर इंतज़ार न करने की मुख्य वजह सुरक्षा है।",
+   "hinglish": "Jab koi security hole public ho jaata hai to koi bhi uska fayda uthane ki koshish kar sakta hai, isliye fix zaroori hai. Updates naye features aur drivers bhi laate hain, par wait na karne ki main wajah security hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how to decide on app permissions and why updates matter.",
+   "hi": "घर पर किसी को समझाओ कि ऐप अनुमतियों पर फ़ैसला कैसे लें और अपडेट क्यों मायने रखते हैं।",
+   "hinglish": "Ghar par kisi ko samjhao ki app permissions par decision kaise lein aur updates kyun matter karte hain."
+  },
+  "checklist": [
+   {
+    "en": "Ask whether the app needs the permission to do its job.",
+    "hi": "पूछो कि क्या ऐप को अपना काम करने के लिए यह अनुमति चाहिए।",
+    "hinglish": "Poocho ki kya app ko apna kaam karne ke liye yeh permission chahiye."
+   },
+   {
+    "en": "Install apps only from the official store.",
+    "hi": "ऐप सिर्फ़ आधिकारिक स्टोर से इंस्टॉल करो।",
+    "hinglish": "Apps sirf official store se install karo."
+   },
+   {
+    "en": "Updates fix security holes, and drivers let the OS talk to devices.",
+    "hi": "अपडेट सुरक्षा छेद ठीक करते हैं, और ड्राइवर OS को डिवाइसों से बात करने देते हैं।",
+    "hinglish": "Updates security holes fix karte hain, aur drivers OS ko devices se baat karne dete hain."
+   },
+   {
+    "en": "Open-source code can be studied and reused under its licence; closed-source cannot.",
+    "hi": "ओपन-सोर्स कोड को उसके लाइसेंस के तहत पढ़ा और दोबारा इस्तेमाल किया जा सकता है; क्लोज़्ड-सोर्स को नहीं।",
+    "hinglish": "Open-source code ko uske licence ke tehat padha aur dobara use kiya ja sakta hai; closed-source ko nahi."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Permission",
@@ -94,7 +165,7 @@
     "hi": "अपडेट उन सुरक्षा छेदों को ठीक करते हैं जिन्हें अपराधी पहले से जानते हैं। जल्दी इंस्टॉल करो।",
     "hinglish": "Updates woh security holes theek karte hain jinke baare mein criminals pehle se jaante hain. Jaldi install karo."
    },
-   "visual": "icon:🔄",
+   "visual": "flow:🕳️ Security hole found|🛠️ Maker writes a fix|🔄 Update released|🔒 You install it",
    "narration": {
     "en": "An unpatched phone is like a house with a known broken lock.",
     "hi": "बिना अपडेट वाला फ़ोन ऐसे घर जैसा है जिसका टूटा ताला सबको पता हो।",

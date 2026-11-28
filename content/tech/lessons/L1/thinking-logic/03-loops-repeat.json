@@ -34,6 +34,72 @@
    "hinglish": "Kaam ka repeat hone wala hissa dhoondh sakte ho."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your teacher says, \"Clap 10 times.\" You do not say \"clap\" ten times in your head. You count.",
+   "hi": "{{name}}, टीचर कहती हैं, \"10 बार ताली बजाओ।\" तुम मन में दस बार \"ताली\" नहीं बोलते। तुम गिनते हो।",
+   "hinglish": "{{name}}, teacher kehti hain, \"10 baar taali bajao.\" Tum mann mein das baar \"taali\" nahin bolte. Tum ginte ho."
+  },
+  "question": {
+   "en": "How can one short instruction make a computer do something a thousand times?",
+   "hi": "एक छोटा निर्देश कंप्यूटर से कोई काम हज़ार बार कैसे करवा सकता है?",
+   "hinglish": "Ek chhota instruction computer se koi kaam hazaar baar kaise karwa sakta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What do you think? A robot must walk 6 steps forward. How should we tell it?",
+   "hi": "तुम्हें क्या लगता है? रोबोट को 6 कदम आगे चलना है। उसे कैसे बताएँ?",
+   "hinglish": "Tumhe kya lagta hai? Robot ko 6 steps aage chalna hai. Use kaise batayein?"
+  },
+  "options": [
+   {
+    "en": "Write \"forward\" six times, there is no other way",
+    "hi": "\"आगे\" छह बार लिखो, और कोई तरीक़ा नहीं",
+    "hinglish": "\"Forward\" chhe baar likho, aur koi tareeka nahin"
+   },
+   {
+    "en": "Write \"Repeat 6 [forward]\", one short loop",
+    "hi": "\"Repeat 6 [forward]\" लिखो, एक छोटा लूप",
+    "hinglish": "\"Repeat 6 [forward]\" likho, ek chhota loop"
+   },
+   {
+    "en": "Say \"walk a lot\"",
+    "hi": "\"बहुत चलो\" कहो",
+    "hinglish": "\"Bahut chalo\" kaho"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "A loop repeats the steps inside it. To use one, first find the part that repeats. \"Repeat 6 [forward]\" does the same as six forward blocks, and the same idea can do thousands of steps.",
+   "hi": "लूप अपने अंदर के कदम दोहराता है। लूप लगाने के लिए पहले दोहराने वाला हिस्सा ढूँढो। \"Repeat 6 [forward]\" छह बार आगे के बराबर है, और यही तरीक़ा हज़ारों कदमों के लिए चलता है।",
+   "hinglish": "Loop apne andar ke steps repeat karta hai. Loop lagane ke liye pehle repeat hone wala part dhoondo. \"Repeat 6 [forward]\" chhe forward ke barabar hai, aur yahi idea hazaaron steps ke liye chalta hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Tell someone at home: what is a loop and why is it useful?",
+   "hi": "घर पर किसी को बताओ: लूप क्या है और वह क्यों काम का है?",
+   "hinglish": "Ghar par kisi ko batao: loop kya hai aur woh kyon kaam ka hai?"
+  },
+  "checklist": [
+   {
+    "en": "A loop repeats the steps inside it.",
+    "hi": "लूप अपने अंदर के कदम दोहराता है।",
+    "hinglish": "Loop apne andar ke steps repeat karta hai."
+   },
+   {
+    "en": "First find the part that repeats, like forward, up, forward, up.",
+    "hi": "पहले दोहराने वाला हिस्सा ढूँढो, जैसे आगे, ऊपर, आगे, ऊपर।",
+    "hinglish": "Pehle repeat hone wala part dhoondo, jaise forward, up, forward, up."
+   },
+   {
+    "en": "It saves writing the same step many times.",
+    "hi": "इससे एक ही कदम बार-बार लिखना नहीं पड़ता।",
+    "hinglish": "Isse ek hi step baar-baar likhna nahin padta."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Loop",

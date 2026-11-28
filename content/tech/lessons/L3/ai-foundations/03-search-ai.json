@@ -34,6 +34,77 @@
    "hi": "समझाना कि स्वीकार्य (admissible) ह्यूरिस्टिक क्या है"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a delivery rider has to reach your house through lanes where some roads are blocked, and the app picks a route in a blink.",
+   "hi": "{{name}}, एक डिलीवरी राइडर को तुम्हारे घर तक गलियों से पहुँचना है जहाँ कुछ रास्ते बंद हैं, और ऐप पलक झपकते रूट चुन लेता है।",
+   "hinglish": "{{name}}, ek delivery rider ko tumhare ghar tak galiyon se pahunchna hai jahan kuch roads blocked hain, aur app palak jhapakte route chun leta hai."
+  },
+  "question": {
+   "en": "How can a program find a good path without trying every possible route?",
+   "hi": "कोई प्रोग्राम हर संभव रास्ता आज़माए बिना अच्छा रास्ता कैसे ढूँढता है?",
+   "hinglish": "Koi program har possible route try kiye bina achha path kaise dhoondhta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "BFS explores a grid in ripples and finds the shortest path. Why would A* often explore fewer cells?",
+   "hi": "BFS ग्रिड को लहरों में खोजता है और सबसे छोटा रास्ता पाता है। A* अक्सर कम सेल क्यों खोजता है?",
+   "hinglish": "BFS grid ko ripples mein explore karta hai aur shortest path paata hai. A* aksar kam cells kyun explore karta hai?"
+  },
+  "options": [
+   {
+    "en": "It skips all walls and guesses the answer",
+    "hi": "वह सब दीवारें छोड़कर जवाब का अंदाज़ा लगाता है",
+    "hinglish": "Woh saari walls chhodkar answer ka guess lagata hai"
+   },
+   {
+    "en": "It uses an estimate of the distance left to explore promising cells first",
+    "hi": "वह बचे फ़ासले के अनुमान से आशाजनक सेल पहले खोजता है",
+    "hinglish": "Woh bache fasle ke estimate se promising cells pehle explore karta hai"
+   },
+   {
+    "en": "It runs on a faster computer",
+    "hi": "वह तेज़ कंप्यूटर पर चलता है",
+    "hinglish": "Woh tez computer par chalta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "A* ranks cells by f = g + h: the cost so far plus an estimated cost to the goal. If h never overestimates (admissible), A* still finds the cheapest path but visits fewer cells than BFS, which treats every direction alike.",
+   "hi": "A* सेल को f = g + h से क्रम देता है: अब तक की लागत और लक्ष्य तक का अनुमानित खर्च। अगर h कभी ज़्यादा अनुमान न लगाए (admissible), A* फिर भी सबसे सस्ता रास्ता पाता है पर BFS से कम सेल देखता है, जो हर दिशा को समान मानता है।",
+   "hinglish": "A* cells ko f = g + h se rank karta hai: ab tak ki cost aur goal tak ki estimated cost. Agar h kabhi overestimate na kare (admissible), A* phir bhi sabse sasta path paata hai par BFS se kam cells dekhta hai, jo har direction ko barabar maanta hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend how A* picks its next cell and why a good heuristic saves work.",
+   "hi": "दोस्त को समझाओ कि A* अगला सेल कैसे चुनता है और अच्छा हीयूरिस्टिक काम कैसे बचाता है।",
+   "hinglish": "Friend ko samjhao ki A* agla cell kaise chunta hai aur achha heuristic kaam kaise bachata hai."
+  },
+  "checklist": [
+   {
+    "en": "A problem is states, actions, a start and a goal",
+    "hi": "समस्या यानी अवस्थाएँ, क्रियाएँ, शुरुआत और लक्ष्य",
+    "hinglish": "Problem matlab states, actions, start aur goal"
+   },
+   {
+    "en": "BFS and Dijkstra explore evenly; DFS dives deep; A* is guided by a heuristic",
+    "hi": "BFS और Dijkstra समान रूप से खोजते हैं; DFS गहराई में जाता है; A* हीयूरिस्टिक से निर्देशित है",
+    "hinglish": "BFS aur Dijkstra evenly explore karte hain; DFS deep jaata hai; A* heuristic se guided hai"
+   },
+   {
+    "en": "f = g + h combines cost so far with the estimate left",
+    "hi": "f = g + h अब तक की लागत और बचे अनुमान को जोड़ता है",
+    "hinglish": "f = g + h ab tak ki cost aur bache estimate ko jodta hai"
+   },
+   {
+    "en": "An admissible heuristic never overestimates, so the path stays optimal",
+    "hi": "admissible हीयूरिस्टिक कभी ज़्यादा अनुमान नहीं लगाता, इसलिए रास्ता सर्वोत्तम रहता है",
+    "hinglish": "Admissible heuristic kabhi overestimate nahi karta, isliye path optimal rehta hai"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "State space",

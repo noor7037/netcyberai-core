@@ -34,6 +34,72 @@
    "hi": "समझाना कि टूल मॉडल नहीं, ऐप चलाता है"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you ask \"Should I carry an umbrella to school in Pune tomorrow?\" A plain chatbot can only guess, but a weather app knows.",
+   "hi": "{{name}}, तुम पूछते हो \"कल पुणे में स्कूल छाता ले जाऊँ?\" सादा चैटबॉट बस अंदाज़ा लगा सकता है, पर वेदर ऐप को पता होता है।",
+   "hinglish": "{{name}}, tum poochhte ho \"Kal Pune mein school umbrella le jaaun?\" Plain chatbot bas andaza laga sakta hai, par weather app ko pata hota hai."
+  },
+  "question": {
+   "en": "How can an AI check the forecast for you and act on it?",
+   "hi": "AI तुम्हारे लिए मौसम का अनुमान कैसे जाँचकर उस पर काम कर सकता है?",
+   "hinglish": "AI tumhare liye weather forecast kaise check karke us par kaam kar sakta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "When an agent \"calls a tool\" like get_weather, what actually runs the weather lookup?",
+   "hi": "जब एजेंट get_weather जैसा \"टूल कॉल\" करता है, तो मौसम खोज असल में कौन चलाता है?",
+   "hinglish": "Jab agent get_weather jaisa \"tool call\" karta hai, to weather lookup asal mein kaun chalata hai?"
+  },
+  "options": [
+   {
+    "en": "The model reaches out to the internet itself",
+    "hi": "मॉडल ख़ुद इंटरनेट तक पहुँचता है",
+    "hinglish": "Model khud internet tak pahunchta hai"
+   },
+   {
+    "en": "The app around the model, which runs the function and returns the result to the model",
+    "hi": "मॉडल के आसपास का ऐप, जो फ़ंक्शन चलाकर नतीजा मॉडल को लौटाता है",
+    "hinglish": "Model ke aaspaas ka app, jo function chalakar result model ko lautata hai"
+   },
+   {
+    "en": "The weather office, directly",
+    "hi": "मौसम विभाग, सीधे",
+    "hinglish": "Weather office, seedhe"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "The model only writes text, here a structured request such as get_weather with city and date. The application validates it, runs the real function or API, and feeds the observation back. This keeps control, permissions and safety checks in the app, outside the model.",
+   "hi": "मॉडल सिर्फ़ टेक्स्ट लिखता है, यहाँ शहर और तारीख़ वाला get_weather जैसा संरचित अनुरोध। एप्लिकेशन उसे जाँचकर असली फ़ंक्शन या API चलाता है और अवलोकन वापस भेजता है। इससे नियंत्रण, अनुमतियाँ और सुरक्षा जाँच मॉडल के बाहर ऐप में रहती हैं।",
+   "hinglish": "Model sirf text likhta hai, yahan city aur date wala get_weather jaisa structured request. Application use validate karke real function ya API chalata hai aur observation wapas bhejta hai. Isse control, permissions aur safety checks model ke bahar app mein rehte hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend how an agent answers the umbrella question and who runs the weather tool.",
+   "hi": "दोस्त को समझाओ कि एजेंट छाते के सवाल का जवाब कैसे देता है और वेदर टूल कौन चलाता है।",
+   "hinglish": "Friend ko samjhao ki agent umbrella ke sawal ka answer kaise deta hai aur weather tool kaun chalata hai."
+  },
+  "checklist": [
+   {
+    "en": "Agent loop: goal, think, act with a tool, observe, repeat, then answer",
+    "hi": "एजेंट चक्र: लक्ष्य, सोचो, टूल से कार्य, अवलोकन, दोहराओ, फिर जवाब",
+    "hinglish": "Agent loop: goal, think, tool se act, observe, repeat, phir answer"
+   },
+   {
+    "en": "A tool is defined in JSON with a name, description and parameters",
+    "hi": "टूल JSON में नाम, विवरण और पैरामीटर के साथ परिभाषित होता है",
+    "hinglish": "Tool JSON mein name, description aur parameters ke saath define hota hai"
+   },
+   {
+    "en": "The model only requests a call; the app runs it and returns the result",
+    "hi": "मॉडल सिर्फ़ कॉल माँगता है; ऐप उसे चलाकर नतीजा लौटाता है",
+    "hinglish": "Model sirf call maangta hai; app use chalakar result lautata hai"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "AI agent",
@@ -74,7 +140,7 @@
     "hi": "लक्ष्य: \"क्या कल पुणे में स्कूल छाता ले जाना ठीक है?\" साधारण चैटबॉट सिर्फ़ अनुमान लगा सकता है।",
     "hinglish": "Goal: \"Kya kal Pune mein school chhaata le jaana theek hai?\" Plain chatbot sirf guess kar sakta hai."
    },
-   "visual": "anim:agent-goal",
+   "visual": "compare:💬 Plain chatbot: can only guess|🛠️ Agent: can call a tool and check the forecast",
    "narration": {
     "en": "Goal: \"Is it worth carrying an umbrella to school tomorrow in Pune?\" A plain chatbot can only guess.",
     "hi": "लक्ष्य: \"क्या कल पुणे में स्कूल छाता ले जाना ठीक है?\" साधारण चैटबॉट सिर्फ़ अनुमान लगा सकता है।",
@@ -88,7 +154,7 @@
     "hi": "एजेंट सोचता है \"मुझे पूर्वानुमान चाहिए\", get_weather({\"city\":\"Pune\",\"date\":\"tomorrow\"}) लिखता है, और ऐप मौसम एपीआई बुलाता है।",
     "hinglish": "Agent sochta hai \"mujhe forecast chahiye\", get_weather({\"city\":\"Pune\",\"date\":\"tomorrow\"}) likhta hai, aur app weather API call karti hai."
    },
-   "visual": "anim:tool-call-json",
+   "visual": "flow:🤔 Think: I need the forecast|📤 Write a get_weather request|🔌 The app calls the weather API",
    "narration": {
     "en": "The agent thinks \"I need the forecast\", outputs get_weather({\"city\":\"Pune\",\"date\":\"tomorrow\"}), and the app calls the weather API.",
     "hi": "एजेंट सोचता है \"मुझे पूर्वानुमान चाहिए\", get_weather({\"city\":\"Pune\",\"date\":\"tomorrow\"}) लिखता है, और ऐप मौसम एपीआई बुलाता है।",
@@ -102,7 +168,7 @@
     "hi": "अवलोकन: 80% बारिश की संभावना। एजेंट जवाब देता है \"हाँ, ले जाओ\" और पूर्वानुमान का हवाला देता है। चक्र: सोचो → करो → देखो → जवाब।",
     "hinglish": "Observation: 80% baarish chance. Agent jawab deta hai \"Haan, le jao\" aur forecast cite karta hai. Loop: socho → karo → dekho → jawab."
    },
-   "visual": "anim:observe-answer",
+   "visual": "cycle:🤔 Think|🛠️ Act with a tool|👀 Observe the result",
    "narration": {
     "en": "Observation: 80% rain chance. The agent answers \"Yes, carry it\" and cites the forecast. Loop: think → act → observe → answer.",
     "hi": "अवलोकन: 80% बारिश की संभावना। एजेंट जवाब देता है \"हाँ, ले जाओ\" और पूर्वानुमान का हवाला देता है। चक्र: सोचो → करो → देखो → जवाब।",

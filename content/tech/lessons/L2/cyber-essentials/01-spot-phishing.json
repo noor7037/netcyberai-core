@@ -35,6 +35,82 @@
    "hinglish": "Click karne ki jagah kya karna hai jaante ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, an SMS arrives: \"Your bank account will be BLOCKED today! Click this link to update your KYC.\"",
+   "hi": "{{name}}, एक SMS आता है: \"आपका बैंक खाता आज ब्लॉक हो जाएगा! KYC अपडेट करने के लिए यह लिंक दबाएँ।\"",
+   "hinglish": "{{name}}, ek SMS aata hai: \"Aapka bank account aaj BLOCK ho jayega! KYC update karne ke liye yeh link dabayein.\""
+  },
+  "question": {
+   "en": "How can you tell whether it is real without clicking anything?",
+   "hi": "बिना कुछ दबाए कैसे पता करें कि यह असली है या नहीं?",
+   "hinglish": "Bina kuch dabaye kaise pata karein ki yeh asli hai ya nahi?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Which is the safest thing to do with that SMS?",
+   "hi": "उस SMS के साथ सबसे सुरक्षित काम कौन-सा है?",
+   "hinglish": "Us SMS ke saath sabse safe kaam kaunsa hai?"
+  },
+  "options": [
+   {
+    "en": "Click quickly, before the account is blocked",
+    "hi": "खाता ब्लॉक होने से पहले जल्दी से लिंक दबाओ",
+    "hinglish": "Account block hone se pehle jaldi se link dabao"
+   },
+   {
+    "en": "Reply asking who they are",
+    "hi": "जवाब देकर पूछो कि वे कौन हैं",
+    "hinglish": "Reply karke poocho ki woh kaun hain"
+   },
+   {
+    "en": "Do not click; open the bank's official app or call the number on your card",
+    "hi": "लिंक मत दबाओ; बैंक का आधिकारिक ऐप खोलो या कार्ड के पीछे के नंबर पर फ़ोन करो",
+    "hinglish": "Link mat dabao; bank ka official app kholo ya card ke peeche ke number par call karo"
+   },
+   {
+    "en": "Forward it to friends to warn them",
+    "hi": "दोस्तों को चेतावनी देने के लिए आगे भेज दो",
+    "hinglish": "Doston ko warn karne ke liye forward kar do"
+   }
+  ],
+  "answer": 2,
+  "explain": {
+   "en": "Phishing makes you hurry so you click without thinking. Even replying tells the scammer your number is active. Checking through the official app, or a number you already trust, shows the truth safely.",
+   "hi": "फ़िशिंग तुम्हें जल्दी में डालती है ताकि तुम बिना सोचे दबाओ। जवाब देने से भी ठग को पता चल जाता है कि नंबर चालू है। आधिकारिक ऐप या भरोसे के नंबर से जाँचना सच सुरक्षित तरीक़े से बताता है।",
+   "hinglish": "Phishing tumhein jaldi mein daalti hai taaki tum bina soche dabao. Reply karne se bhi thug ko pata chal jaata hai ki number active hai. Official app ya bharose ke number se check karna sach safely batata hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how to spot a phishing message and what to do instead of clicking.",
+   "hi": "घर पर किसी को समझाओ कि फ़िशिंग संदेश कैसे पहचानें और दबाने की जगह क्या करें।",
+   "hinglish": "Ghar par kisi ko samjhao ki phishing message kaise pehchanein aur click karne ki jagah kya karein."
+  },
+  "checklist": [
+   {
+    "en": "Red flags: urgency, an unknown sender, a strange link, a request for PIN, OTP or password, and an offer too good to be true.",
+    "hi": "लाल झंडे: जल्दबाज़ी, अनजान भेजने वाला, अजीब लिंक, PIN, OTP या पासवर्ड माँगना, और बहुत अच्छा लगने वाला ऑफ़र।",
+    "hinglish": "Red flags: jaldbaazi, unknown sender, ajeeb link, PIN, OTP ya password maangna, aur bahut achha lagne wala offer."
+   },
+   {
+    "en": "Scammers pretend to be a bank, company, job offer or even family.",
+    "hi": "ठग बैंक, कंपनी, नौकरी के ऑफ़र या परिवार जैसे बनते हैं।",
+    "hinglish": "Thug bank, company, job offer ya family jaise bante hain."
+   },
+   {
+    "en": "Do not click and do not reply.",
+    "hi": "न लिंक दबाओ, न जवाब दो।",
+    "hinglish": "Na link dabao, na reply do."
+   },
+   {
+    "en": "Open the official app or call the number on the back of the card yourself, and tell an adult.",
+    "hi": "आधिकारिक ऐप खोलो या कार्ड के पीछे के नंबर पर खुद फ़ोन करो, और किसी बड़े को बताओ।",
+    "hinglish": "Official app kholo ya card ke peeche ke number par khud call karo, aur kisi bade ko batao."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Phishing",

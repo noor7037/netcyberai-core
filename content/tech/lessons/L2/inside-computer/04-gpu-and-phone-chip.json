@@ -38,6 +38,82 @@
    "hinglish": "Phone ki spec sheet samajh ke padh sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you play a game on a phone and the picture stays smooth as you move.",
+   "hi": "{{name}}, तुम फ़ोन पर गेम खेलते हो और हिलाने पर भी तस्वीर चिकनी बनी रहती है।",
+   "hinglish": "{{name}}, tum phone par game khelte ho aur move karne par bhi picture smooth rehti hai."
+  },
+  "question": {
+   "en": "Why does a phone need a separate graphics chip when it already has a CPU?",
+   "hi": "जब CPU पहले से है तो फ़ोन को अलग ग्राफ़िक्स चिप क्यों चाहिए?",
+   "hinglish": "Jab CPU pehle se hai to phone ko alag graphics chip kyun chahiye?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A screen must update millions of pixels many times a second. Which design handles this best?",
+   "hi": "स्क्रीन को हर सेकंड कई बार लाखों पिक्सेल बदलने होते हैं। कौन-सा डिज़ाइन इसे सबसे अच्छा संभालता है?",
+   "hinglish": "Screen ko har second kai baar lakhon pixels update karne hote hain. Kaunsa design ise sabse achha handle karta hai?"
+  },
+  "options": [
+   {
+    "en": "A few very smart cores, one pixel at a time",
+    "hi": "कुछ बहुत तेज़-दिमाग़ कोर, एक बार में एक पिक्सेल",
+    "hinglish": "Kuch bahut smart cores, ek baar mein ek pixel"
+   },
+   {
+    "en": "Thousands of simple cores that all work on pixels together",
+    "hi": "हज़ारों सरल कोर जो सब साथ पिक्सेल पर काम करते हैं",
+    "hinglish": "Hazaron simple cores jo sab saath pixels par kaam karte hain"
+   },
+   {
+    "en": "A bigger battery",
+    "hi": "बड़ी बैटरी",
+    "hinglish": "Bigger battery"
+   },
+   {
+    "en": "More storage",
+    "hi": "ज़्यादा स्टोरेज",
+    "hinglish": "Zyada storage"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Colouring each pixel is a small, similar sum, and millions can be done at once. A GPU has thousands of simple cores built for exactly this parallel work, while a CPU has a few strong cores built for varied tasks.",
+   "hi": "हर पिक्सेल का रंग निकालना छोटा, मिलता-जुलता हिसाब है और लाखों एक साथ किए जा सकते हैं। GPU में इसी समानांतर काम के लिए बने हज़ारों सरल कोर होते हैं, जबकि CPU में अलग-अलग कामों के लिए कुछ मज़बूत कोर होते हैं।",
+   "hinglish": "Har pixel ka colour nikaalna chhota, milta-julta hisaab hai aur lakhon ek saath ho sakte hain. GPU mein isi parallel kaam ke liye bane hazaron simple cores hote hain, jabki CPU mein alag-alag kaamon ke liye kuch strong cores hote hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home why phones have a GPU and a System-on-Chip.",
+   "hi": "घर पर किसी को समझाओ कि फ़ोन में GPU और सिस्टम-ऑन-चिप क्यों होते हैं।",
+   "hinglish": "Ghar par kisi ko samjhao ki phone mein GPU aur System-on-Chip kyun hote hain."
+  },
+  "checklist": [
+   {
+    "en": "A CPU has a few strong cores; a GPU has thousands of simple cores doing similar maths together.",
+    "hi": "CPU में कुछ मज़बूत कोर होते हैं; GPU में हज़ारों सरल कोर एक जैसा गणित साथ करते हैं।",
+    "hinglish": "CPU mein kuch strong cores hote hain; GPU mein hazaron simple cores milta-julta maths saath karte hain."
+   },
+   {
+    "en": "That parallel maths suits pixels and also AI.",
+    "hi": "यह समानांतर गणित पिक्सेल और AI दोनों के लिए सही है।",
+    "hinglish": "Yeh parallel maths pixels aur AI dono ke liye sahi hai."
+   },
+   {
+    "en": "A phone puts CPU, GPU, NPU, modem and more on one chip to save space and power.",
+    "hi": "फ़ोन जगह और बिजली बचाने के लिए CPU, GPU, NPU, मॉडेम आदि एक चिप पर रखता है।",
+    "hinglish": "Phone jagah aur bijli bachane ke liye CPU, GPU, NPU, modem aadi ek chip par rakhta hai."
+   },
+   {
+    "en": "More RAM or GHz on a spec sheet is not always better.",
+    "hi": "स्पेक शीट में ज़्यादा RAM या GHz हमेशा बेहतर नहीं होता।",
+    "hinglish": "Spec sheet mein zyada RAM ya GHz hamesha better nahi hota."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "GPU",

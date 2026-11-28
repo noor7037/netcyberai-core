@@ -35,6 +35,77 @@
    "hinglish": "Bata sakte ho ki AI ko check karne ke liye log kyon zaroori hain."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a photo app sorts your pictures into \"people\" and \"food\" by itself.",
+   "hi": "{{name}}, एक फ़ोटो ऐप तुम्हारी तस्वीरें अपने-आप \"लोग\" और \"खाना\" में छाँट देता है।",
+   "hinglish": "{{name}}, ek photo app tumhari tasveerein apne-aap \"log\" aur \"khaana\" mein chhaant deta hai."
+  },
+  "question": {
+   "en": "Who taught it, and who checks that it is right?",
+   "hi": "इसे किसने सिखाया, और कौन जाँचता है कि यह सही है?",
+   "hinglish": "Ise kisne sikhaya, aur kaun jaanchta hai ki yeh sahi hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A photo AI learnt from pictures with wrong labels. What will happen?",
+   "hi": "एक फ़ोटो AI ने ग़लत लेबल वाले चित्रों से सीखा। क्या होगा?",
+   "hinglish": "Ek photo AI ne galat label wale pictures se seekha. Kya hoga?"
+  },
+  "options": [
+   {
+    "en": "It will still be perfect, because AI never errs",
+    "hi": "फिर भी वह बिल्कुल सही रहेगा, क्योंकि AI कभी चूकता नहीं",
+    "hinglish": "Phir bhi woh bilkul sahi rahega, kyunki AI kabhi chookta nahi"
+   },
+   {
+    "en": "It will make mistakes, which is why people label data carefully and check the AI",
+    "hi": "वह ग़लतियाँ करेगा, इसीलिए लोग डेटा सावधानी से लेबल करते हैं और AI को जाँचते हैं",
+    "hinglish": "Woh galtiyan karega, isiliye log data saavdhani se label karte hain aur AI ko jaanchte hain"
+   },
+   {
+    "en": "It will fix the labels itself",
+    "hi": "वह लेबल ख़ुद ठीक कर लेगा",
+    "hinglish": "Woh label khud theek kar lega"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "An AI is only as good as the examples it learns from. Data scientists find patterns in data, labellers tag examples, AI engineers train and improve models, and people still check what AI says.",
+   "hi": "AI उतना ही अच्छा है जितने अच्छे उदाहरणों से वह सीखता है। डेटा साइंटिस्ट डेटा में पैटर्न ढूँढते हैं, लेबलर उदाहरणों पर टैग लगाते हैं, AI इंजीनियर मॉडल को ट्रेन और बेहतर करते हैं, और लोग फिर भी AI की बात जाँचते हैं।",
+   "hinglish": "AI utna hi accha hai jitne achhe examples se woh seekhta hai. Data scientists data mein patterns dhoondte hain, labellers examples par tag lagate hain, AI engineers models ko train aur behtar karte hain, aur log phir bhi AI ki baat jaanchte hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: what do AI and data people do?",
+   "hi": "घर पर किसी को समझाओ: AI और डेटा वाले लोग क्या करते हैं?",
+   "hinglish": "Ghar par kisi ko samjhao: AI aur data wale log kya karte hain?"
+  },
+  "checklist": [
+   {
+    "en": "Data scientists find patterns in data.",
+    "hi": "डेटा साइंटिस्ट डेटा में पैटर्न ढूँढते हैं।",
+    "hinglish": "Data scientists data mein patterns dhoondte hain."
+   },
+   {
+    "en": "Labellers tag examples so AI can learn.",
+    "hi": "लेबलर उदाहरणों पर टैग लगाते हैं ताकि AI सीखे।",
+    "hinglish": "Labellers examples par tag lagate hain taaki AI seekhe."
+   },
+   {
+    "en": "AI engineers train and improve models.",
+    "hi": "AI इंजीनियर मॉडल ट्रेन और बेहतर करते हैं।",
+    "hinglish": "AI engineers models train aur behtar karte hain."
+   },
+   {
+    "en": "People still check what AI says.",
+    "hi": "लोग फिर भी जाँचते हैं कि AI क्या कहता है।",
+    "hinglish": "Log phir bhi jaanchte hain ki AI kya kehta hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Data scientist",

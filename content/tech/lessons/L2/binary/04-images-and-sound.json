@@ -38,6 +38,82 @@
    "hinglish": "Sound sampling aur compression kyun samjha sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you record a voice note and take a photo, and both can be sent in a chat.",
+   "hi": "{{name}}, तुम एक वॉइस नोट रिकॉर्ड करते हो और एक फ़ोटो लेते हो, और दोनों चैट में भेजे जा सकते हैं।",
+   "hinglish": "{{name}}, tum ek voice note record karte ho aur ek photo lete ho, aur dono chat mein bheje ja sakte hain."
+  },
+  "question": {
+   "en": "A photo is light and a voice is air moving. How do they become numbers?",
+   "hi": "फ़ोटो रोशनी है और आवाज़ हवा का कंपन। ये संख्याएँ कैसे बनते हैं?",
+   "hinglish": "Photo light hai aur voice hawa ka vibration. Yeh numbers kaise bante hain?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A voice note is a smooth sound wave. How does the phone turn it into numbers?",
+   "hi": "वॉइस नोट एक चिकनी ध्वनि तरंग है। फ़ोन उसे संख्याओं में कैसे बदलता है?",
+   "hinglish": "Voice note ek smooth sound wave hai. Phone use numbers mein kaise badalta hai?"
+  },
+  "options": [
+   {
+    "en": "It measures the wave's height thousands of times every second and stores each measurement",
+    "hi": "वह तरंग की ऊँचाई हर सेकंड हज़ारों बार नापता है और हर माप रखता है",
+    "hinglish": "Woh wave ki height har second hazaron baar naapta hai aur har maap rakhta hai"
+   },
+   {
+    "en": "It stores one number for the whole sound",
+    "hi": "वह पूरी आवाज़ की एक संख्या रखता है",
+    "hinglish": "Woh poori awaaz ka ek number rakhta hai"
+   },
+   {
+    "en": "It writes the words as text",
+    "hi": "वह शब्दों को टेक्स्ट में लिखता है",
+    "hinglish": "Woh words ko text mein likhta hai"
+   },
+   {
+    "en": "It keeps a tiny recording tape inside",
+    "hi": "उसके अंदर छोटा रिकॉर्डिंग टेप होता है",
+    "hinglish": "Uske andar chhota recording tape hota hai"
+   }
+  ],
+  "answer": 0,
+  "explain": {
+   "en": "This is sampling. A CD-quality recording measures the wave 44,100 times a second, and playing the numbers back through a speaker rebuilds the sound. Photos work similarly: a grid of pixels, each stored as numbers.",
+   "hi": "इसे सैंपलिंग कहते हैं। CD-गुणवत्ता की रिकॉर्डिंग तरंग को हर सेकंड 44,100 बार नापती है, और इन संख्याओं को स्पीकर पर चलाने से आवाज़ फिर बन जाती है। फ़ोटो भी ऐसे ही है: पिक्सेल का जाल, जिसका हर पिक्सेल संख्याओं में रखा जाता है।",
+   "hinglish": "Isse sampling kehte hain. CD-quality recording wave ko har second 44,100 baar naapti hai, aur in numbers ko speaker par chalane se sound wapas ban jaati hai. Photo bhi aise hi hai: pixels ka grid, jiska har pixel numbers mein rakha jaata hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a photo and a song are stored as numbers.",
+   "hi": "घर पर किसी को समझाओ कि फ़ोटो और गाना संख्याओं के रूप में कैसे रखे जाते हैं।",
+   "hinglish": "Ghar par kisi ko samjhao ki photo aur song numbers ke roop mein kaise rakhe jaate hain."
+  },
+  "checklist": [
+   {
+    "en": "A photo is a grid of pixels; each pixel stores red, green and blue brightness from 0 to 255.",
+    "hi": "फ़ोटो पिक्सेल का जाल है; हर पिक्सेल लाल, हरे, नीले की चमक 0 से 255 में रखता है।",
+    "hinglish": "Photo pixels ka grid hai; har pixel red, green, blue ki brightness 0 se 255 mein rakhta hai."
+   },
+   {
+    "en": "Size is pixels times bytes per pixel, so uncompressed photos are big.",
+    "hi": "आकार = पिक्सेल गुणा प्रति पिक्सेल बाइट, इसलिए बिना कंप्रेस की फ़ोटो बड़ी होती हैं।",
+    "hinglish": "Size = pixels guna bytes per pixel, isliye uncompressed photos badi hoti hain."
+   },
+   {
+    "en": "Sound is sampled: its height is measured many thousands of times a second.",
+    "hi": "ध्वनि सैंपल की जाती है: उसकी ऊँचाई हर सेकंड हज़ारों बार नापी जाती है।",
+    "hinglish": "Sound sample ki jaati hai: uski height har second hazaron baar naapi jaati hai."
+   },
+   {
+    "en": "Compression removes detail we barely notice to shrink files.",
+    "hi": "कंप्रेशन वह ब्योरा हटाता है जो हमें मुश्किल से दिखता है, ताकि फ़ाइल छोटी हो।",
+    "hinglish": "Compression woh detail hataata hai jo humein mushkil se dikhta hai, taaki file chhoti ho."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Pixel",

@@ -36,6 +36,77 @@
    "hinglish": "Results-day website ke liye caching aur CDN ka plan banao"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, board results go live at 10 am and the results website slows down or stops because lakhs of students open it at the same moment.",
+   "hi": "{{name}}, बोर्ड के नतीजे सुबह 10 बजे आते हैं और नतीजों की वेबसाइट धीमी या ठप हो जाती है क्योंकि लाखों विद्यार्थी एक ही पल में खोलते हैं।",
+   "hinglish": "{{name}}, board results subah 10 baje aate hain aur results ki website slow ya thap ho jaati hai kyunki lakhon students ek hi pal mein kholte hain."
+  },
+  "question": {
+   "en": "How do big sites stay up when traffic suddenly becomes twenty times larger?",
+   "hi": "बड़ी साइटें तब भी कैसे चलती रहती हैं जब ट्रैफ़िक अचानक बीस गुना हो जाता है?",
+   "hinglish": "Badi sites tab bhi kaise chalti rehti hain jab traffic achanak bees guna ho jaata hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Traffic jumps 20×. Why not just buy one much bigger server?",
+   "hi": "ट्रैफ़िक 20 गुना हो जाता है। एक बहुत बड़ा सर्वर क्यों न खरीद लें?",
+   "hinglish": "Traffic 20 guna ho jaata hai. Ek bahut bada server kyun na khareed lein?"
+  },
+  "options": [
+   {
+    "en": "A bigger server is always the best answer",
+    "hi": "बड़ा सर्वर हमेशा सबसे अच्छा जवाब है",
+    "hinglish": "Bada server hamesha sabse achha jawab hai"
+   },
+   {
+    "en": "Machines have a size limit and cost rises steeply, and one server is still one point of failure",
+    "hi": "मशीनों की आकार सीमा है, लागत तेज़ी से बढ़ती है, और एक सर्वर फिर भी विफलता का एक बिंदु है",
+    "hinglish": "Machines ki size limit hai, cost tezi se badhti hai, aur ek server phir bhi failure ka ek point hai"
+   },
+   {
+    "en": "Servers cannot be bigger than laptops",
+    "hi": "सर्वर लैपटॉप से बड़े नहीं हो सकते",
+    "hinglish": "Servers laptops se bade nahi ho sakte"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Scaling up is simple but hits a ceiling and leaves a single point of failure. Scaling out adds many ordinary servers behind a load balancer that sends each request to a healthy one, using health checks to skip a failed server. Autoscaling adds or removes servers by load, and a CDN serves static files so most downloads never reach your servers.",
+   "hi": "ऊपर की ओर बढ़ाना सरल है पर सीमा से टकराता है और विफलता का एक बिंदु छोड़ता है। बाहर की ओर बढ़ाना लोड बैलेंसर के पीछे कई सामान्य सर्वर जोड़ता है जो हर अनुरोध स्वस्थ सर्वर को देता है, और हेल्थ चेक से खराब सर्वर को छोड़ देता है। ऑटोस्केलिंग लोड के हिसाब से सर्वर घटाती-बढ़ाती है, और CDN स्थिर फ़ाइलें देता है ताकि ज़्यादातर डाउनलोड तुम्हारे सर्वरों तक पहुँचें ही नहीं।",
+   "hinglish": "Scale up karna simple hai par ceiling se takrata hai aur failure ka ek point chhodta hai. Scale out load balancer ke peeche kai ordinary servers jodta hai jo har request healthy server ko deta hai, aur health checks se kharab server ko chhod deta hai. Autoscaling load ke hisaab se servers ghatati-badhati hai, aur CDN static files deta hai taaki zyadatar downloads tumhare servers tak pahunche hi nahi."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a results website can survive a sudden rush of lakhs of visitors.",
+   "hi": "घर पर किसी को समझाओ कि नतीजों की वेबसाइट लाखों आने वालों की अचानक भीड़ कैसे झेल सकती है।",
+   "hinglish": "Ghar par kisi ko samjhao ki results ki website lakhon visitors ki achanak bheed kaise jhel sakti hai."
+  },
+  "checklist": [
+   {
+    "en": "Scaling up means a bigger machine; scaling out means more machines, which also removes a single point of failure.",
+    "hi": "ऊपर बढ़ाना यानी बड़ी मशीन; बाहर बढ़ाना यानी ज़्यादा मशीनें, जो विफलता का एक बिंदु भी हटाता है।",
+    "hinglish": "Scale up yaani badi machine; scale out yaani zyada machines, jo failure ka ek point bhi hatata hai."
+   },
+   {
+    "en": "A load balancer spreads requests and health checks keep traffic off failed servers.",
+    "hi": "लोड बैलेंसर अनुरोध बाँटता है और हेल्थ चेक खराब सर्वरों से ट्रैफ़िक दूर रखते हैं।",
+    "hinglish": "Load balancer requests baantta hai aur health checks kharab servers se traffic door rakhte hain."
+   },
+   {
+    "en": "Autoscaling adds servers when load is high and removes them when it is quiet.",
+    "hi": "ऑटोस्केलिंग लोड ज़्यादा होने पर सर्वर जोड़ती और शांत होने पर हटाती है।",
+    "hinglish": "Autoscaling load zyada hone par servers jodti aur shaant hone par hatati hai."
+   },
+   {
+    "en": "Caching at every layer, especially a CDN for static files, keeps repeat work off your servers.",
+    "hi": "हर परत पर कैशिंग, खासकर स्थिर फ़ाइलों के लिए CDN, दोहराया काम तुम्हारे सर्वरों से दूर रखती है।",
+    "hinglish": "Har layer par caching, khaaskar static files ke liye CDN, repeat kaam tumhare servers se door rakhti hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Scale up (vertical)",
@@ -76,7 +147,7 @@
     "hi": "बोर्ड परिणाम सुबह 10 बजे आते हैं और ट्रैफ़िक 20 गुना हो जाता है। एक बड़ा सर्वर (स्केल-अप) छत से टकराता है; कई सर्वर (स्केल-आउट) बोझ बाँटते हैं।",
     "hinglish": "Board results subah 10 baje aate hain aur traffic 20 guna ho jaata hai. Ek bada server (scale up) chhat se takrata hai; kai servers (scale out) bojh baant-te hain."
    },
-   "visual": "anim:up-vs-out",
+   "visual": "compare:⬆️ Scale up: one bigger server|↔️ Scale out: many servers",
    "narration": {
     "en": "Board results go live at 10 am and traffic jumps 20×. One bigger server (scale up) hits a ceiling; many servers (scale out) share the load.",
     "hi": "बोर्ड परिणाम सुबह 10 बजे आते हैं और ट्रैफ़िक 20 गुना हो जाता है। एक बड़ा सर्वर (स्केल-अप) छत से टकराता है; कई सर्वर (स्केल-आउट) बोझ बाँटते हैं।",
@@ -90,7 +161,7 @@
     "hi": "लोड बैलेंसर सामने बैठकर हर अनुरोध अगले स्वस्थ सर्वर को देता है — बारी-बारी (round-robin) या \"सबसे कम कनेक्शन\"।",
     "hinglish": "Load balancer saamne baith ke har request agle healthy server ko deta hai — round-robin ya \"least connections\"."
    },
-   "visual": "anim:lb-fanout",
+   "visual": "flow:👥 Many requests|⚖️ Load balancer|🖥️ Healthy servers answer",
    "narration": {
     "en": "A load balancer sits in front and hands each request to the next healthy server — round-robin or \"least connections\".",
     "hi": "लोड बैलेंसर सामने बैठकर हर अनुरोध अगले स्वस्थ सर्वर को देता है — बारी-बारी (round-robin) या \"सबसे कम कनेक्शन\"।",
@@ -104,7 +175,7 @@
     "hi": "ऑटोस्केलिंग सीपीयू या कतार की लंबाई देखती है। कुछ मिनट 70% से ऊपर? एक और सर्वर शुरू करो। रात में शांत? पैसे बचाने के लिए अतिरिक्त हटाओ।",
     "hinglish": "Autoscaling CPU ya queue length dekhti hai. Kuch minute 70% se upar? Ek aur server shuru karo. Raat mein shaant? Paise bachane ke liye extra hatao."
    },
-   "visual": "anim:autoscale-graph",
+   "visual": "cycle:📈 Watch the load|🔼 Busy: add a server|🔽 Quiet: remove one",
    "narration": {
     "en": "Autoscaling watches CPU or queue length. Above 70% for a few minutes? Start another server. Quiet at night? Remove extras to save money.",
     "hi": "ऑटोस्केलिंग सीपीयू या कतार की लंबाई देखती है। कुछ मिनट 70% से ऊपर? एक और सर्वर शुरू करो। रात में शांत? पैसे बचाने के लिए अतिरिक्त हटाओ।",
@@ -118,7 +189,7 @@
     "hi": "स्थिर फ़ाइलें (लोगो, CSS, PDF) सीडीएन पर जाती हैं, तो करोड़ों डाउनलोड आपके सर्वरों तक पहुँचते ही नहीं।",
     "hinglish": "Static files (logos, CSS, PDFs) CDN par jaati hain, to crore-on downloads tumhare servers tak pahunchte hi nahi."
    },
-   "visual": "anim:cdn-offload",
+   "visual": "flow:👥 Student asks for a file|🌍 CDN edge has it?|✅ Served from the edge|🖥️ If not, ask the origin",
    "narration": {
     "en": "Static files (logos, CSS, PDFs) go to a CDN, so millions of downloads never reach your servers at all.",
     "hi": "स्थिर फ़ाइलें (लोगो, CSS, PDF) सीडीएन पर जाती हैं, तो करोड़ों डाउनलोड आपके सर्वरों तक पहुँचते ही नहीं।",

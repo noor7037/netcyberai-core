@@ -34,6 +34,77 @@
    "hi": "रेड-टीमिंग और मानव-निगरानी स्वीकृति समझाना"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a school help-desk agent can read fee records and send messages to parents. Before launch, someone must decide how to prove it is safe.",
+   "hi": "{{name}}, स्कूल हेल्प-डेस्क एजेंट फ़ीस रिकॉर्ड पढ़ सकता है और अभिभावकों को संदेश भेज सकता है। लॉन्च से पहले किसी को तय करना है कि इसे सुरक्षित कैसे साबित करें।",
+   "hinglish": "{{name}}, school help-desk agent fee records padh sakta hai aur parents ko messages bhej sakta hai. Launch se pehle kisi ko decide karna hai ki ise safe kaise prove karein."
+  },
+  "question": {
+   "en": "How do you test an agent that can take real actions, and what stops it going wrong?",
+   "hi": "जो एजेंट असली काम कर सकता है उसे कैसे जाँचें, और उसे ग़लत जाने से क्या रोकता है?",
+   "hinglish": "Jo agent real actions kar sakta hai use kaise jaanchein, aur use galat jaane se kya rokta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Which action should require a human to approve it first?",
+   "hi": "किस क्रिया के लिए पहले इंसान की मंज़ूरी चाहिए?",
+   "hinglish": "Kis action ke liye pehle insaan ki approval chahiye?"
+  },
+  "options": [
+   {
+    "en": "Reading a public school holiday list",
+    "hi": "स्कूल की सार्वजनिक छुट्टियों की सूची पढ़ना",
+    "hinglish": "School ki public holiday list padhna"
+   },
+   {
+    "en": "Sending a message to all parents or changing a fee record",
+    "hi": "सभी अभिभावकों को संदेश भेजना या फ़ीस रिकॉर्ड बदलना",
+    "hinglish": "Sabhi parents ko message bhejna ya fee record badalna"
+   },
+   {
+    "en": "Showing the school logo",
+    "hi": "स्कूल का लोगो दिखाना",
+    "hinglish": "School logo dikhana"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Guardrails scale with risk: low-risk reads can run freely, but actions that are hard to undo or affect many people need human approval. Layers include input checks, a tool allow-list and output checks. An evaluation set tests the agent before launch, and red-teaming tries to break it.",
+   "hi": "गार्डरेल जोखिम के साथ बढ़ते हैं: कम जोखिम वाले पढ़ने के काम खुलकर चल सकते हैं, पर जिन्हें पलटना कठिन है या जो कई लोगों पर असर डालें उनके लिए इंसानी मंज़ूरी चाहिए। परतों में इनपुट जाँच, टूलों की अनुमत सूची और आउटपुट जाँच हैं। इवैल्यूएशन सेट लॉन्च से पहले एजेंट परखता है, और रेड-टीमिंग उसे तोड़ने की कोशिश करती है।",
+   "hinglish": "Guardrails risk ke saath badhte hain: low-risk reads freely chal sakte hain, par jinhe palatna mushkil hai ya jo kai logon par asar daalein unke liye human approval chahiye. Layers mein input checks, tools ki allow-list aur output checks hain. Evaluation set launch se pehle agent parakhta hai, aur red-teaming use todne ki koshish karti hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how you would test and protect an AI agent before it messages real parents.",
+   "hi": "घर पर किसी को समझाओ कि असली अभिभावकों को संदेश भेजने से पहले AI एजेंट को कैसे जाँचोगे और सुरक्षित रखोगे।",
+   "hinglish": "Ghar par kisi ko samjhao ki real parents ko message bhejne se pehle AI agent ko kaise test aur protect karoge."
+  },
+  "checklist": [
+   {
+    "en": "An evaluation set of real tasks with known answers and actions measures quality before launch",
+    "hi": "ज्ञात जवाबों और क्रियाओं वाले असली कार्यों का इवैल्यूएशन सेट लॉन्च से पहले गुणवत्ता नापता है",
+    "hinglish": "Known answers aur actions wale real tasks ka evaluation set launch se pehle quality naapta hai"
+   },
+   {
+    "en": "Guardrails cover input, allowed actions and output",
+    "hi": "गार्डरेल इनपुट, अनुमत क्रियाओं और आउटपुट को ढकते हैं",
+    "hinglish": "Guardrails input, allowed actions aur output ko cover karte hain"
+   },
+   {
+    "en": "Risky or irreversible actions need human approval",
+    "hi": "जोखिम भरी या न पलटने वाली क्रियाओं के लिए इंसानी मंज़ूरी चाहिए",
+    "hinglish": "Risky ya irreversible actions ke liye human approval chahiye"
+   },
+   {
+    "en": "Red-teaming tries to break the agent, and each failure becomes a new test",
+    "hi": "रेड-टीमिंग एजेंट को तोड़ने की कोशिश करती है, और हर विफलता नया टेस्ट बनती है",
+    "hinglish": "Red-teaming agent ko todne ki koshish karti hai, aur har failure naya test banti hai"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Eval set",
@@ -88,7 +159,7 @@
     "hi": "गार्डरेल मॉडल को घेरते हैं: इनपुट जाँचो, सिर्फ़ सूचीबद्ध टूल की अनुमति, जोखिम वाले कामों से पहले मानव से पूछो, आउटपुट जाँचो।",
     "hinglish": "Guardrails model ko gherte hain: input check karo, sirf listed tools allow, risky actions se pehle human se poochho, output check karo."
    },
-   "visual": "anim:guardrail-rings",
+   "visual": "flow:🛡️ Check the input|🧰 Allow only listed tools|🧑‍⚖️ Human approves risky actions|🔎 Check the output",
    "narration": {
     "en": "Guardrails wrap the model: check the input, allow only listed tools, ask a human before risky actions, check the output.",
     "hi": "गार्डरेल मॉडल को घेरते हैं: इनपुट जाँचो, सिर्फ़ सूचीबद्ध टूल की अनुमति, जोखिम वाले कामों से पहले मानव से पूछो, आउटपुट जाँचो।",
@@ -102,7 +173,7 @@
     "hi": "रेड टीम: परीक्षक तरकीबें आज़माते हैं (नकली शिक्षक संदेश, इंजेक्ट किए पीडीएफ़)। हर विफलता नया परीक्षण बनती है।",
     "hinglish": "Red team: testers tricks try karte hain (nakli teacher messages, injected PDFs). Har failure naya test case banti hai."
    },
-   "visual": "anim:red-team",
+   "visual": "cycle:😈 Testers try tricks|❌ Find a failure|🧪 Add it as a test case|🔧 Fix the agent",
    "narration": {
     "en": "Red team: testers try tricks (fake teacher messages, injected PDFs). Every failure becomes a new test case.",
     "hi": "रेड टीम: परीक्षक तरकीबें आज़माते हैं (नकली शिक्षक संदेश, इंजेक्ट किए पीडीएफ़)। हर विफलता नया परीक्षण बनती है।",

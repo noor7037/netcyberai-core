@@ -38,6 +38,82 @@
    "hinglish": "Battery aur bijli ki safety rules follow kar sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you build an LED circuit on a breadboard, press the battery on, and nothing lights up.",
+   "hi": "{{name}}, तुम ब्रेडबोर्ड पर LED सर्किट बनाते हो, बैटरी जोड़ते हो, और कुछ नहीं जलता।",
+   "hinglish": "{{name}}, tum breadboard par LED circuit banate ho, battery jodte ho, aur kuch nahi jalta."
+  },
+  "question": {
+   "en": "Which holes on a breadboard are secretly joined inside, and which are not?",
+   "hi": "ब्रेडबोर्ड के कौन-से छेद अंदर से चुपचाप जुड़े होते हैं, और कौन-से नहीं?",
+   "hinglish": "Breadboard ke kaunse holes andar se chupchaap jude hote hain, aur kaunse nahi?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "You push a resistor leg into one hole of a short row of five, and an LED leg into another hole of the same row. Are they connected?",
+   "hi": "तुम प्रतिरोधक का पैर पाँच छेदों की एक छोटी पंक्ति के एक छेद में लगाते हो और LED का पैर उसी पंक्ति के दूसरे छेद में। क्या वे जुड़े हैं?",
+   "hinglish": "Tum resistor ka leg paanch holes ki ek chhoti row ke ek hole mein lagate ho aur LED ka leg usi row ke doosre hole mein. Kya woh jude hain?"
+  },
+  "options": [
+   {
+    "en": "No, you need a wire between them",
+    "hi": "नहीं, उनके बीच तार चाहिए",
+    "hinglish": "Nahi, unke beech wire chahiye"
+   },
+   {
+    "en": "Yes, a metal clip joins the whole row of five",
+    "hi": "हाँ, धातु की पट्टी पूरी पाँच छेदों की पंक्ति को जोड़ती है",
+    "hinglish": "Haan, metal clip poori paanch holes ki row ko jodti hai"
+   },
+   {
+    "en": "Only if the battery is attached first",
+    "hi": "तभी जब पहले बैटरी लगी हो",
+    "hinglish": "Tabhi jab pehle battery lagi ho"
+   },
+   {
+    "en": "Only across the centre gap",
+    "hi": "सिर्फ़ बीच की खाली जगह के आर-पार",
+    "hinglish": "Sirf beech ke gap ke aar-paar"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Inside, each short row of five holes is joined by one metal clip, so legs in the same row are connected. The centre gap breaks the two sides apart, and the long side rails carry + and − the whole length.",
+   "hi": "अंदर पाँच छेदों की हर छोटी पंक्ति एक धातु की पट्टी से जुड़ी होती है, इसलिए एक ही पंक्ति के पैर जुड़े होते हैं। बीच की खाली जगह दोनों तरफ़ को अलग करती है, और लंबी साइड रेल पूरी लंबाई में + और − ले जाती हैं।",
+   "hinglish": "Andar paanch holes ki har chhoti row ek metal clip se judi hoti hai, isliye ek hi row ke legs jude hote hain. Beech ka gap dono sides ko alag karta hai, aur lambi side rails poori length mein + aur − le jaati hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a breadboard works and how to fix and stay safe with a circuit.",
+   "hi": "घर पर किसी को समझाओ कि ब्रेडबोर्ड कैसे काम करता है और सर्किट कैसे ठीक करें और सुरक्षित रहें।",
+   "hinglish": "Ghar par kisi ko samjhao ki breadboard kaise kaam karta hai aur circuit kaise theek karein aur safe rahein."
+  },
+  "checklist": [
+   {
+    "en": "Each short row of five holes is joined inside by a metal clip, and the centre gap separates the two sides.",
+    "hi": "पाँच छेदों की हर छोटी पंक्ति अंदर से धातु की पट्टी से जुड़ी है, और बीच की खाली जगह दोनों तरफ़ अलग करती है।",
+    "hinglish": "Paanch holes ki har chhoti row andar se metal clip se judi hai, aur beech ka gap dono sides alag karta hai."
+   },
+   {
+    "en": "The long side rails run the whole length and carry + and −.",
+    "hi": "लंबी साइड रेल पूरी लंबाई में चलती हैं और + व − ले जाती हैं।",
+    "hinglish": "Lambi side rails poori length mein chalti hain aur + aur − le jaati hain."
+   },
+   {
+    "en": "Debug in order: power, polarity, connections, parts.",
+    "hi": "क्रम से जाँचो: बिजली, ध्रुवता, जोड़, पुर्ज़े।",
+    "hinglish": "Order se check karo: power, polarity, connections, parts."
+   },
+   {
+    "en": "Use low-voltage cells only, never short a battery, never touch mains, and unplug before changing wires.",
+    "hi": "सिर्फ़ कम वोल्टेज के सेल, बैटरी कभी शॉर्ट नहीं, मेन्स को कभी नहीं छूना, और तार बदलने से पहले अनप्लग करना।",
+    "hinglish": "Sirf low-voltage cells, battery kabhi short nahi, mains ko kabhi nahi chhoona, aur wires badalne se pehle unplug karna."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Breadboard",

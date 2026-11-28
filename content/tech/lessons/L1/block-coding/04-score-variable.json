@@ -38,6 +38,77 @@
    "hinglish": "Variable se tay kar sakte ho ki game jeeta ya nahin."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, in your cricket game on the phone, the score goes from 0 to 4 when you hit a boundary.",
+   "hi": "{{name}}, फ़ोन पर तुम्हारे क्रिकेट गेम में चौका लगाने पर स्कोर 0 से 4 हो जाता है।",
+   "hinglish": "{{name}}, phone par tumhare cricket game mein chauka lagane par score 0 se 4 ho jaata hai."
+  },
+  "question": {
+   "en": "Where does the game keep the score, and how does it change it?",
+   "hi": "खेल स्कोर कहाँ रखता है, और उसे कैसे बदलता है?",
+   "hinglish": "Game score kahan rakhta hai, aur use kaise badalta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What do you think? A game has stars = 2. Then it runs: stars = stars + 1. What is stars now?",
+   "hi": "तुम्हें क्या लगता है? खेल में stars = 2 है। फिर चलता है: stars = stars + 1। अब stars क्या है?",
+   "hinglish": "Tumhe kya lagta hai? Game mein stars = 2 hai. Phir chalta hai: stars = stars + 1. Ab stars kya hai?"
+  },
+  "options": [
+   {
+    "en": "Nothing, it is a mistake because stars cannot equal stars + 1",
+    "hi": "कुछ नहीं, यह ग़लती है क्योंकि stars, stars + 1 के बराबर नहीं हो सकता",
+    "hinglish": "Kuch nahin, yeh mistake hai kyunki stars, stars + 1 ke barabar nahin ho sakta"
+   },
+   {
+    "en": "3, because it takes what is in stars, adds 1 and puts the answer back",
+    "hi": "3, क्योंकि वह stars की चीज़ में 1 जोड़कर जवाब वापस रखता है",
+    "hinglish": "3, kyunki woh stars mein jo hai usme 1 jodkar answer wapas rakhta hai"
+   },
+   {
+    "en": "1",
+    "hi": "1",
+    "hinglish": "1"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "A variable is a named box in memory that holds a value, and the value can change while the program runs. In code, \"=\" means \"put into the box\". So stars = stars + 1 takes 2, adds 1 and puts 3 back in stars.",
+   "hi": "वेरिएबल मेमोरी में नाम वाला डिब्बा है जिसमें एक मान रहता है, और प्रोग्राम चलते समय वह बदल सकता है। कोड में \"=\" का मतलब है \"डिब्बे में रखो\"। इसलिए stars = stars + 1 में 2 लेकर 1 जोड़ा जाता है और 3 वापस stars में रखा जाता है।",
+   "hinglish": "Variable memory mein naam wala box hai jisme ek value rehti hai, aur program chalte waqt woh badal sakti hai. Code mein \"=\" ka matlab hai \"box mein rakho\". Isliye stars = stars + 1 mein 2 lekar 1 joda jaata hai aur 3 wapas stars mein rakha jaata hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Tell someone at home: what is a variable, and how does a score change?",
+   "hi": "घर पर किसी को बताओ: वेरिएबल क्या है, और स्कोर कैसे बदलता है?",
+   "hinglish": "Ghar par kisi ko batao: variable kya hai, aur score kaise badalta hai?"
+  },
+  "checklist": [
+   {
+    "en": "A variable is a labelled box that holds a value.",
+    "hi": "वेरिएबल नाम वाला डिब्बा है जिसमें मान रहता है।",
+    "hinglish": "Variable naam wala box hai jisme value rehti hai."
+   },
+   {
+    "en": "Its value can change while the program runs.",
+    "hi": "प्रोग्राम चलते समय उसका मान बदल सकता है।",
+    "hinglish": "Program chalte waqt uski value badal sakti hai."
+   },
+   {
+    "en": "stars = stars + 1 takes the old value, adds 1 and puts it back.",
+    "hi": "stars = stars + 1 पुराना मान लेकर 1 जोड़ता है और वापस रखता है।",
+    "hinglish": "stars = stars + 1 purani value lekar 1 jodta hai aur wapas rakhta hai."
+   },
+   {
+    "en": "An IF can check the variable to decide if the game is won.",
+    "hi": "IF वेरिएबल जाँचकर तय कर सकता है कि खेल जीता या नहीं।",
+    "hinglish": "IF variable check karke decide kar sakta hai ki game jeeta ya nahin."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Variable",

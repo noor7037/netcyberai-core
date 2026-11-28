@@ -35,6 +35,77 @@
    "hinglish": "Samjhao server-side checks phir bhi kyun zaroori hain"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you fill in an admission form on your phone, and a screen reader reads it aloud for a visually impaired friend.",
+   "hi": "{{name}}, तुम फ़ोन पर प्रवेश फ़ॉर्म भरते हो, और एक स्क्रीन रीडर उसे दृष्टिहीन दोस्त के लिए बोलकर पढ़ता है।",
+   "hinglish": "{{name}}, tum phone par admission form bharte ho, aur ek screen reader use visually impaired dost ke liye bolkar padhta hai."
+  },
+  "question": {
+   "en": "How can a screen reader tell a heading from a button, or a label from a field, when the page is just text and boxes?",
+   "hi": "जब पेज सिर्फ़ टेक्स्ट और डिब्बे हैं, तब स्क्रीन रीडर शीर्षक और बटन, या लेबल और फ़ील्ड का फ़र्क कैसे जानता है?",
+   "hinglish": "Jab page sirf text aur boxes hai, tab screen reader heading aur button, ya label aur field ka fark kaise jaanta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A form checks an email field in the browser only. Is that enough to keep bad data out?",
+   "hi": "एक फ़ॉर्म सिर्फ़ ब्राउज़र में ईमेल फ़ील्ड जाँचता है। क्या खराब डेटा रोकने के लिए यह काफ़ी है?",
+   "hinglish": "Ek form sirf browser mein email field jaanchta hai. Kya kharab data rokne ke liye yeh kaafi hai?"
+  },
+  "options": [
+   {
+    "en": "Yes, the browser always runs the check",
+    "hi": "हाँ, ब्राउज़र हमेशा जाँच चलाता है",
+    "hinglish": "Haan, browser hamesha check chalata hai"
+   },
+   {
+    "en": "No, anyone can skip the browser and send data directly, so the server must check again",
+    "hi": "नहीं, कोई भी ब्राउज़र छोड़कर सीधे डेटा भेज सकता है, इसलिए सर्वर को फिर जाँचना होगा",
+    "hinglish": "Nahi, koi bhi browser chhodkar seedhe data bhej sakta hai, isliye server ko phir jaanchna hoga"
+   },
+   {
+    "en": "Yes, because forms cannot be edited",
+    "hi": "हाँ, क्योंकि फ़ॉर्म बदले नहीं जा सकते",
+    "hinglish": "Haan, kyunki forms badle nahi ja sakte"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Browser validation helps honest users, but a request is just data anyone can build by hand or with a script. Only checks on the server cannot be skipped. Semantic tags such as header, nav, main, label and button carry meaning, so screen readers and search engines can tell what each part is.",
+   "hi": "ब्राउज़र की जाँच ईमानदार उपयोगकर्ताओं की मदद करती है, पर अनुरोध सिर्फ़ डेटा है जो कोई भी हाथ से या स्क्रिप्ट से बना सकता है। सिर्फ़ सर्वर की जाँच टाली नहीं जा सकती। header, nav, main, label और button जैसे अर्थपूर्ण टैग मतलब रखते हैं, इसलिए स्क्रीन रीडर और सर्च इंजन हर हिस्से को पहचान लेते हैं।",
+   "hinglish": "Browser ki checking honest users ki madad karti hai, par request sirf data hai jo koi bhi haath se ya script se bana sakta hai. Sirf server ki checks skip nahi ho sakti. header, nav, main, label aur button jaise semantic tags meaning rakhte hain, isliye screen readers aur search engines har part ko pehchaan lete hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home why a form needs real labels and why checking input only in the browser is not enough.",
+   "hi": "घर पर किसी को समझाओ कि फ़ॉर्म में असली लेबल क्यों चाहिए और सिर्फ़ ब्राउज़र में इनपुट जाँचना काफ़ी क्यों नहीं।",
+   "hinglish": "Ghar par kisi ko samjhao ki form mein asli labels kyun chahiye aur sirf browser mein input jaanchna kaafi kyun nahi."
+  },
+  "checklist": [
+   {
+    "en": "HTML says what each part is (header, nav, main, footer); CSS says how it looks.",
+    "hi": "HTML बताता है कि हर हिस्सा क्या है (header, nav, main, footer); CSS बताता है कैसा दिखे।",
+    "hinglish": "HTML batata hai ki har part kya hai (header, nav, main, footer); CSS batata hai kaisa dikhe."
+   },
+   {
+    "en": "Semantic tags help screen readers, search engines and translation tools.",
+    "hi": "अर्थपूर्ण टैग स्क्रीन रीडर, सर्च इंजन और अनुवाद औज़ारों की मदद करते हैं।",
+    "hinglish": "Semantic tags screen readers, search engines aur translation tools ki madad karte hain."
+   },
+   {
+    "en": "Every field needs a visible label linked with for and id, and the right input type and required attributes.",
+    "hi": "हर फ़ील्ड को for और id से जुड़ा दिखने वाला लेबल, सही इनपुट प्रकार और required चाहिए।",
+    "hinglish": "Har field ko for aur id se juda dikhne wala label, sahi input type aur required chahiye."
+   },
+   {
+    "en": "Browser checks are a convenience; the server must validate again because anyone can skip the browser.",
+    "hi": "ब्राउज़र जाँच सुविधा है; सर्वर को फिर जाँचना होगा क्योंकि कोई भी ब्राउज़र छोड़ सकता है।",
+    "hinglish": "Browser checks convenience hain; server ko phir validate karna hoga kyunki koi bhi browser chhod sakta hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Element",

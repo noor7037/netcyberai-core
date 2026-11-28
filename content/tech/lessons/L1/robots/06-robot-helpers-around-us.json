@@ -35,6 +35,72 @@
    "hinglish": "Helper ka IF-THEN rule bata sakte ho."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, at the mall, the glass door slides open as you walk near it.",
+   "hi": "{{name}}, मॉल में तुम पास जाते हो और काँच का दरवाज़ा अपने-आप खुल जाता है।",
+   "hinglish": "{{name}}, mall mein tum paas jaate ho aur kaanch ka darwaza apne-aap khul jaata hai."
+  },
+  "question": {
+   "en": "How does the door know you are coming?",
+   "hi": "दरवाज़े को कैसे पता चलता है कि तुम आ रहे हो?",
+   "hinglish": "Darwaze ko kaise pata chalta hai ki tum aa rahe ho?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "An automatic door opens when you walk near. What makes it open?",
+   "hi": "ऑटोमैटिक दरवाज़ा पास जाने पर खुलता है। उसे क्या खोलता है?",
+   "hinglish": "Automatic darwaza paas jaane par khulta hai. Use kya kholta hai?"
+  },
+  "options": [
+   {
+    "en": "A sensor notices you, a rule says IF someone is near THEN open, and a motor opens it",
+    "hi": "सेंसर तुम्हें पहचानता है, नियम कहता है IF कोई पास THEN खोलो, और मोटर खोलती है",
+    "hinglish": "Sensor tumhe pehchaanta hai, rule kehta hai IF koi paas THEN kholo, aur motor kholti hai"
+   },
+   {
+    "en": "The door knows your name",
+    "hi": "दरवाज़ा तुम्हारा नाम जानता है",
+    "hinglish": "Darwaza tumhara naam jaanta hai"
+   },
+   {
+    "en": "A guard pushes a hidden button",
+    "hi": "एक गार्ड छुपा बटन दबाता है",
+    "hinglish": "Ek guard chhupa button dabata hai"
+   }
+  ],
+  "answer": 0,
+  "explain": {
+   "en": "Helper machines work as sense, then rule, then action. The sensor notices, the IF-THEN rule decides, and a motor or light acts. People wrote these rules, including safety ones like lift doors that reopen if something is in the way.",
+   "hi": "सहायक मशीनें सेंस, फिर नियम, फिर काम की तरह चलती हैं। सेंसर देखता है, IF-THEN नियम तय करता है, और मोटर या बत्ती काम करती है। ये नियम लोगों ने लिखे, जिनमें सुरक्षा के भी हैं, जैसे लिफ़्ट के दरवाज़े जो रास्ते में कुछ हो तो फिर खुल जाते हैं।",
+   "hinglish": "Helper machines sense, phir rule, phir action ki tarah chalti hain. Sensor dekhta hai, IF-THEN rule tay karta hai, aur motor ya light kaam karti hai. Yeh rules logon ne likhe, jinme safety ke bhi hain, jaise lift ke darwaze jo raaste mein kuch ho to phir khul jaate hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Tell someone at home: how does an automatic helper work?",
+   "hi": "घर पर किसी को बताओ: ऑटोमैटिक सहायक कैसे काम करता है?",
+   "hinglish": "Ghar par kisi ko batao: automatic helper kaise kaam karta hai?"
+  },
+  "checklist": [
+   {
+    "en": "A sensor notices something.",
+    "hi": "सेंसर कुछ नोटिस करता है।",
+    "hinglish": "Sensor kuch notice karta hai."
+   },
+   {
+    "en": "An IF-THEN rule decides.",
+    "hi": "IF-THEN नियम तय करता है।",
+    "hinglish": "IF-THEN rule tay karta hai."
+   },
+   {
+    "en": "A motor or light does the action.",
+    "hi": "मोटर या बत्ती काम करती है।",
+    "hinglish": "Motor ya light kaam karti hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Automatic",

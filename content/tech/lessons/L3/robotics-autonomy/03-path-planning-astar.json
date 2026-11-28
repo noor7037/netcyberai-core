@@ -36,6 +36,72 @@
    "hinglish": "Explore kiye nodes par A* ki tulna BFS aur Dijkstra se karo"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a map app finds a route across a crowded city and avoids a road with heavy traffic, picking one that takes longer in distance but less in time.",
+   "hi": "{{name}}, एक मैप ऐप भीड़ वाले शहर में रास्ता खोजता है और भारी ट्रैफ़िक वाली सड़क से बचकर ऐसा रास्ता चुनता है जो दूरी में लंबा पर समय में कम है।",
+   "hinglish": "{{name}}, ek map app bheed wale shehar mein route dhoondhta hai aur heavy traffic wali sadak se bachkar aisa route chunta hai jo distance mein lamba par time mein kam hai."
+  },
+  "question": {
+   "en": "How does a robot or app search for the cheapest path, not just any path?",
+   "hi": "रोबोट या ऐप सिर्फ़ कोई रास्ता नहीं, सबसे सस्ता रास्ता कैसे खोजता है?",
+   "hinglish": "Robot ya app sirf koi route nahi, sabse sasta route kaise dhoondhta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "On a grid with slow \"mud\" cells, which method ignores the extra cost of mud?",
+   "hi": "धीमे \"कीचड़\" वाले सेल की ग्रिड पर कौन-सी विधि कीचड़ की अतिरिक्त लागत को अनदेखा करती है?",
+   "hinglish": "Slow \"mud\" cells wali grid par kaunsa method mud ki extra cost ko ignore karta hai?"
+  },
+  "options": [
+   {
+    "en": "Dijkstra",
+    "hi": "Dijkstra",
+    "hinglish": "Dijkstra"
+   },
+   {
+    "en": "A*",
+    "hi": "A*",
+    "hinglish": "A*"
+   },
+   {
+    "en": "BFS, which counts steps and not costs",
+    "hi": "BFS, जो क़दम गिनता है, लागत नहीं",
+    "hinglish": "BFS, jo steps ginta hai, costs nahi"
+   }
+  ],
+  "answer": 2,
+  "explain": {
+   "en": "BFS expands in rings by number of steps, so it ignores costs. Dijkstra expands by lowest cost so far, g, and A* adds a heuristic estimate h so it picks cells by f = g + h and explores fewer nodes. With an admissible h such as Manhattan distance on a grid, A* still finds the cheapest path.",
+   "hi": "BFS क़दमों की संख्या के हिसाब से घेरों में फैलता है, इसलिए लागत अनदेखी करता है। Dijkstra अब तक की सबसे कम लागत g से फैलता है, और A* में अनुमान h जुड़ता है, इसलिए वह f = g + h से सेल चुनता है और कम नोड खोजता है। ग्रिड पर मैनहट्टन दूरी जैसे admissible h के साथ A* फिर भी सबसे सस्ता रास्ता पाता है।",
+   "hinglish": "BFS steps ki sankhya ke hisab se rings mein failta hai, isliye costs ignore karta hai. Dijkstra ab tak ki sabse kam cost g se failta hai, aur A* mein estimate h judta hai, isliye woh f = g + h se cells chunta hai aur kam nodes explore karta hai. Grid par Manhattan distance jaise admissible h ke saath A* phir bhi sabse sasta path paata hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend how A* picks which cell to explore next and how it differs from BFS and Dijkstra.",
+   "hi": "दोस्त को समझाओ कि A* अगला कौन-सा सेल खोजना है यह कैसे चुनता है और वह BFS और Dijkstra से कैसे अलग है।",
+   "hinglish": "Friend ko samjhao ki A* agla kaunsa cell explore karna hai yeh kaise chunta hai aur woh BFS aur Dijkstra se kaise alag hai."
+  },
+  "checklist": [
+   {
+    "en": "A map becomes a grid or graph with costs on moves",
+    "hi": "नक़्शा चालों पर लागत वाला ग्रिड या ग्राफ़ बनता है",
+    "hinglish": "Map moves par cost wala grid ya graph banta hai"
+   },
+   {
+    "en": "BFS counts steps, Dijkstra follows lowest cost so far, A* adds an estimate of what is left",
+    "hi": "BFS क़दम गिनता है, Dijkstra अब तक की न्यूनतम लागत चलता है, A* बचे का अनुमान जोड़ता है",
+    "hinglish": "BFS steps ginta hai, Dijkstra ab tak ki lowest cost chalta hai, A* bache ka estimate jodta hai"
+   },
+   {
+    "en": "f = g + h, and an admissible h keeps the path optimal",
+    "hi": "f = g + h, और admissible h रास्ते को सर्वोत्तम रखता है",
+    "hinglish": "f = g + h, aur admissible h path ko optimal rakhta hai"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Graph",

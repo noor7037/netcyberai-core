@@ -34,6 +34,72 @@
    "hi": "फ़ीचर, लेबल, प्रशिक्षण सेट और परीक्षण सेट का वर्णन करना"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your phone's keyboard suggests the next word and gets better the more you type, though no programmer wrote a rule for your style.",
+   "hi": "{{name}}, तुम्हारे फ़ोन का कीबोर्ड अगला शब्द सुझाता है और जितना लिखते हो उतना बेहतर होता है, जबकि किसी प्रोग्रामर ने तुम्हारी शैली का नियम नहीं लिखा।",
+   "hinglish": "{{name}}, tumhare phone ka keyboard agla word suggest karta hai aur jitna likhte ho utna behtar hota hai, jabki kisi programmer ne tumhari style ka rule nahi likha."
+  },
+  "question": {
+   "en": "How can a computer learn a pattern from examples instead of being told the rules?",
+   "hi": "कंप्यूटर नियम बताए बिना उदाहरणों से पैटर्न कैसे सीखता है?",
+   "hinglish": "Computer rules bataye bina examples se pattern kaise seekhta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "In classic programming we give rules and data and get answers. What do we give and get in machine learning?",
+   "hi": "क्लासिक प्रोग्रामिंग में हम नियम और डेटा देते हैं और जवाब पाते हैं। मशीन लर्निंग में हम क्या देते और क्या पाते हैं?",
+   "hinglish": "Classic programming mein hum rules aur data dete hain aur answers paate hain. Machine learning mein hum kya dete aur kya paate hain?"
+  },
+  "options": [
+   {
+    "en": "Rules and answers, to get data",
+    "hi": "नियम और जवाब, ताकि डेटा मिले",
+    "hinglish": "Rules aur answers, taaki data mile"
+   },
+   {
+    "en": "Data and answers (labels), to get the rules, which we call a model",
+    "hi": "डेटा और जवाब (लेबल), ताकि नियम मिलें, जिन्हें हम मॉडल कहते हैं",
+    "hinglish": "Data aur answers (labels), taaki rules milein, jinhe hum model kehte hain"
+   },
+   {
+    "en": "Only data, and the computer invents the goal",
+    "hi": "सिर्फ़ डेटा, और कंप्यूटर लक्ष्य ख़ुद बनाता है",
+    "hinglish": "Sirf data, aur computer goal khud banata hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "In supervised ML, examples are rows of features with a known label. Training finds a function that maps features to labels. We hide a test set during training so the test score honestly shows how the model handles new data.",
+   "hi": "सुपरवाइज़्ड ML में उदाहरण फ़ीचर और जाने-पहचाने लेबल वाली पंक्तियाँ हैं। ट्रेनिंग वह फ़ंक्शन खोजती है जो फ़ीचर से लेबल बनाए। ट्रेनिंग के दौरान टेस्ट सेट छिपा रखते हैं ताकि टेस्ट स्कोर ईमानदारी से बताए कि मॉडल नए डेटा पर कैसा है।",
+   "hinglish": "Supervised ML mein examples features aur known label wali rows hain. Training woh function dhoondhti hai jo features se label banaye. Training ke dauran test set chhupa rakhte hain taaki test score imaandaari se bataye ki model naye data par kaisa hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how an ML model learns to tell spam from normal messages without anyone writing the rules.",
+   "hi": "घर पर किसी को समझाओ कि कोई ML मॉडल बिना नियम लिखे स्पैम और सामान्य संदेश में फ़र्क करना कैसे सीखता है।",
+   "hinglish": "Ghar par kisi ko samjhao ki ML model bina rules likhe spam aur normal message mein fark karna kaise seekhta hai."
+  },
+  "checklist": [
+   {
+    "en": "ML learns a function from examples, so data and answers produce the rules",
+    "hi": "ML उदाहरणों से फ़ंक्शन सीखता है, यानी डेटा और जवाब से नियम बनते हैं",
+    "hinglish": "ML examples se function seekhta hai, yaani data aur answers se rules bante hain"
+   },
+   {
+    "en": "Features are inputs and the label is the answer; the three kinds are supervised, unsupervised and reinforcement",
+    "hi": "फ़ीचर इनपुट हैं और लेबल जवाब; तीन प्रकार हैं सुपरवाइज़्ड, अनसुपरवाइज़्ड और रीइन्फ़ोर्समेंट",
+    "hinglish": "Features inputs hain aur label answer; teen kinds hain supervised, unsupervised aur reinforcement"
+   },
+   {
+    "en": "A hidden test set gives an honest score on unseen data",
+    "hi": "छिपा टेस्ट सेट अनदेखे डेटा पर ईमानदार स्कोर देता है",
+    "hinglish": "Hidden test set unseen data par honest score deta hai"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Feature",
@@ -74,7 +140,7 @@
     "hi": "पारंपरिक प्रोग्रामिंग: नियम + डेटा → जवाब। मशीन लर्निंग: डेटा + जवाब → नियम (मॉडल)।",
     "hinglish": "Classic programming: rules + data → answers. Machine learning: data + answers → rules (model)."
    },
-   "visual": "anim:rules-vs-ml-flip",
+   "visual": "compare:📜 Classic: rules + data → answers|🤖 ML: data + answers → rules (a model)",
    "narration": {
     "en": "Classic programming: rules + data → answers. Machine learning: data + answers → rules (a model).",
     "hi": "पारंपरिक प्रोग्रामिंग: नियम + डेटा → जवाब। मशीन लर्निंग: डेटा + जवाब → नियम (मॉडल)।",
@@ -102,7 +168,7 @@
     "hi": "हम कुछ पंक्तियाँ टेस्ट सेट के रूप में छिपाते हैं। प्रशिक्षण में मॉडल उन्हें कभी नहीं देखता, इसलिए टेस्ट स्कोर ईमानदार होता है।",
     "hinglish": "Hum kuch rows test set ki tarah chhupate hain. Training mein model unhe kabhi nahi dekhta, isliye test score imaandaar hota hai."
    },
-   "visual": "anim:train-test-split",
+   "visual": "flow:📚 All examples|✂️ Hide some as the test set|🏋️ Train on the rest|📝 Score on the hidden test set",
    "narration": {
     "en": "We hide some rows as a test set. The model never sees them during training, so the test score is honest.",
     "hi": "हम कुछ पंक्तियाँ टेस्ट सेट के रूप में छिपाते हैं। प्रशिक्षण में मॉडल उन्हें कभी नहीं देखता, इसलिए टेस्ट स्कोर ईमानदार होता है।",

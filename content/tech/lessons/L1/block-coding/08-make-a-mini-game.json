@@ -42,6 +42,77 @@
    "hinglish": "Game ko khel kar test aur behtar kar sakte ho."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you play a mango-catching game. Gajju the monkey moves left and right, and the score goes up.",
+   "hi": "{{name}}, तुम आम पकड़ने वाला खेल खेलते हो। बंदर गज्जू बाएँ-दाएँ चलता है और स्कोर बढ़ता है।",
+   "hinglish": "{{name}}, tum aam pakadne wala game khelte ho. Gajju bandar left-right chalta hai aur score badhta hai."
+  },
+  "question": {
+   "en": "Which few rules make a whole game work?",
+   "hi": "कौन-से कुछ नियम मिलकर पूरा खेल चलाते हैं?",
+   "hinglish": "Kaun se kuch rules milkar poora game chalate hain?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What do you think? What happens if the game forgets the rule \"when game starts, set score to 0\"?",
+   "hi": "तुम्हें क्या लगता है? अगर खेल \"खेल शुरू होने पर स्कोर 0 करो\" वाला नियम भूल जाए तो क्या होगा?",
+   "hinglish": "Tumhe kya lagta hai? Agar game \"game shuru hone par score 0 karo\" wala rule bhool jaye to kya hoga?"
+  },
+  "options": [
+   {
+    "en": "Nothing changes, the score is always 0 anyway",
+    "hi": "कुछ नहीं बदलेगा, स्कोर वैसे भी 0 रहता है",
+    "hinglish": "Kuch nahin badlega, score waise bhi 0 rehta hai"
+   },
+   {
+    "en": "The score starts from an unknown or old value and may be wrong",
+    "hi": "स्कोर किसी अनजान या पुराने मान से शुरू होगा और ग़लत हो सकता है",
+    "hinglish": "Score kisi unknown ya purani value se shuru hoga aur galat ho sakta hai"
+   },
+   {
+    "en": "The game will not start at all",
+    "hi": "खेल शुरू ही नहीं होगा",
+    "hinglish": "Game shuru hi nahin hoga"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "A game is built from event rules, a variable and an IF condition. Setting the score to 0 gives the variable a starting value. Without it the score is unknown. Playtest, find what breaks and improve.",
+   "hi": "खेल इवेंट नियमों, एक वेरिएबल और एक IF शर्त से बनता है। स्कोर 0 करने से वेरिएबल को शुरुआती मान मिलता है। इसके बिना स्कोर का पता नहीं रहता। खेलकर जाँचो, देखो क्या बिगड़ता है और सुधारो।",
+   "hinglish": "Game event rules, ek variable aur ek IF condition se banta hai. Score ko 0 set karne se variable ko starting value milti hai. Iske bina score unknown rehta hai. Playtest karo, dekho kya break hota hai aur improve karo."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: how do rules make a mini game?",
+   "hi": "घर पर किसी को समझाओ: नियम मिलकर मिनी गेम कैसे बनाते हैं?",
+   "hinglish": "Ghar par kisi ko samjhao: rules milkar mini game kaise banate hain?"
+  },
+  "checklist": [
+   {
+    "en": "Events like button presses turn my moves into movement.",
+    "hi": "बटन दबाने जैसे इवेंट मेरी चालों को हरकत में बदलते हैं।",
+    "hinglish": "Button press jaise events meri moves ko movement mein badalte hain."
+   },
+   {
+    "en": "A variable keeps the score and starts at 0.",
+    "hi": "वेरिएबल स्कोर रखता है और 0 से शुरू होता है।",
+    "hinglish": "Variable score rakhta hai aur 0 se shuru hota hai."
+   },
+   {
+    "en": "An IF condition decides when the game is won.",
+    "hi": "IF शर्त तय करती है कि खेल कब जीता।",
+    "hinglish": "IF condition decide karti hai ki game kab jeeta."
+   },
+   {
+    "en": "Playtest and fix what breaks.",
+    "hi": "खेलकर जाँचो और जो बिगड़े उसे ठीक करो।",
+    "hinglish": "Playtest karo aur jo break ho use fix karo."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Event",

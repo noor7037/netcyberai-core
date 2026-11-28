@@ -39,6 +39,77 @@
    "hinglish": "Touch screen tumhari ungli kaise dhoondti hai samjha sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you zoom into a photo on your phone until you see tiny coloured squares.",
+   "hi": "{{name}}, तुम फ़ोन पर फ़ोटो को इतना ज़ूम करते हो कि छोटे रंगीन चौकोर दिखने लगते हैं।",
+   "hinglish": "{{name}}, tum phone par photo ko itna zoom karte ho ki chhote coloured squares dikhne lagte hain."
+  },
+  "question": {
+   "en": "How can a screen make every colour, including white, from so few lights?",
+   "hi": "स्क्रीन इतनी कम रोशनियों से सफ़ेद समेत हर रंग कैसे बनाती है?",
+   "hinglish": "Screen itni kam lights se white samet har colour kaise banati hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "How does a phone screen show white?",
+   "hi": "फ़ोन की स्क्रीन सफ़ेद कैसे दिखाती है?",
+   "hinglish": "Phone ki screen white kaise dikhati hai?"
+  },
+  "options": [
+   {
+    "en": "It has a white light for white pixels",
+    "hi": "उसमें सफ़ेद पिक्सेल के लिए सफ़ेद रोशनी होती है",
+    "hinglish": "Usme white pixels ke liye white light hoti hai"
+   },
+   {
+    "en": "It turns on red, green and blue subpixels at full brightness together",
+    "hi": "वह लाल, हरे और नीले सबपिक्सेल को पूरी चमक पर साथ जलाती है",
+    "hinglish": "Woh red, green aur blue subpixels ko full brightness par saath jalati hai"
+   },
+   {
+    "en": "It turns every light off",
+    "hi": "वह सारी रोशनियाँ बंद कर देती है",
+    "hinglish": "Woh saari lights band kar deti hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Each pixel is three tiny lights: red, green and blue. Mixing their brightness makes every colour; all three at full brightness look white, and all off look black.",
+   "hi": "हर पिक्सेल तीन छोटी रोशनियाँ है: लाल, हरी और नीली। उनकी चमक मिलाने से हर रंग बनता है; तीनों पूरी चमक पर सफ़ेद दिखती हैं और तीनों बंद हों तो काला।",
+   "hinglish": "Har pixel teen chhoti lights hai: red, green aur blue. Unki brightness mix karne se har colour banta hai; teeno full brightness par white dikhti hain aur teeno band hon to black."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a phone screen shows colours and notices your touch.",
+   "hi": "घर पर किसी को समझाओ कि फ़ोन की स्क्रीन रंग कैसे दिखाती है और तुम्हारा स्पर्श कैसे पहचानती है।",
+   "hinglish": "Ghar par kisi ko samjhao ki phone ki screen colours kaise dikhati hai aur tumhara touch kaise pehchanti hai."
+  },
+  "checklist": [
+   {
+    "en": "Red, green and blue subpixels mixed at different brightness make every colour.",
+    "hi": "अलग-अलग चमक पर मिले लाल, हरे, नीले सबपिक्सेल हर रंग बनाते हैं।",
+    "hinglish": "Alag-alag brightness par mile red, green, blue subpixels har colour banate hain."
+   },
+   {
+    "en": "LCD uses a backlight with crystal shutters; OLED pixels make their own light.",
+    "hi": "LCD में बैकलाइट और क्रिस्टल शटर होते हैं; OLED के पिक्सेल अपनी रोशनी खुद बनाते हैं।",
+    "hinglish": "LCD mein backlight aur crystal shutters hote hain; OLED ke pixels apni light khud banate hain."
+   },
+   {
+    "en": "A touch screen senses the change in electric charge your finger causes on an invisible grid.",
+    "hi": "टच स्क्रीन अदृश्य जाल पर तुम्हारी उँगली से बदले विद्युत आवेश को महसूस करती है।",
+    "hinglish": "Touch screen invisible grid par tumhari ungli se badle electric charge ko sense karti hai."
+   },
+   {
+    "en": "That is why gloves do not work, and two fingers allow pinch-to-zoom.",
+    "hi": "इसीलिए दस्ताने काम नहीं करते, और दो उँगलियों से पिंच-ज़ूम होता है।",
+    "hinglish": "Isiliye gloves kaam nahi karte, aur do ungliyon se pinch-zoom hota hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Pixel",

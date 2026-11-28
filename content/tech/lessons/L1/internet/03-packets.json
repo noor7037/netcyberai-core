@@ -38,6 +38,77 @@
    "hinglish": "Samjha sakte ho ki cable tootne par bhi internet kaise chalta rehta hai."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you send a big video to your friend. It takes a moment, and the progress bar moves.",
+   "hi": "{{name}}, तुम दोस्त को एक बड़ा वीडियो भेजते हो। थोड़ा समय लगता है, और प्रोग्रेस बार आगे बढ़ता है।",
+   "hinglish": "{{name}}, tum dost ko ek bada video bhejte ho. Thoda time lagta hai, aur progress bar aage badhta hai."
+  },
+  "question": {
+   "en": "Does the whole video travel as one big lump, or in some other way?",
+   "hi": "क्या पूरा वीडियो एक बड़े टुकड़े की तरह जाता है, या किसी और तरह?",
+   "hinglish": "Kya poora video ek bade lump ki tarah jaata hai, ya kisi aur tarah?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What do you think? How does a big video travel over the internet?",
+   "hi": "तुम्हें क्या लगता है? बड़ा वीडियो इंटरनेट पर कैसे जाता है?",
+   "hinglish": "Tumhe kya lagta hai? Bada video internet par kaise jaata hai?"
+  },
+  "options": [
+   {
+    "en": "In one piece, along one fixed road",
+    "hi": "एक टुकड़े में, एक तय सड़क पर",
+    "hinglish": "Ek piece mein, ek fixed road par"
+   },
+   {
+    "en": "Split into small numbered packets that may take different routes",
+    "hi": "छोटे गिने हुए पैकेट में बँटकर, जो अलग-अलग रास्ते ले सकते हैं",
+    "hinglish": "Chhote numbered packets mein bantkar, jo alag-alag routes le sakte hain"
+   },
+   {
+    "en": "The sender and the receiver swap the video by post",
+    "hi": "भेजने और पाने वाले डाक से वीडियो बदलते हैं",
+    "hinglish": "Sender aur receiver post se video badalte hain"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Data is split into small numbered packets. Packets can take different routes, even arrive out of order, and the numbers let the receiver put them back together. If a packet is lost, only that small piece is sent again. If one cable breaks, packets use other paths.",
+   "hi": "डेटा छोटे गिने हुए पैकेटों में बाँटा जाता है। पैकेट अलग-अलग रास्ते ले सकते हैं और क्रम से बाहर भी पहुँच सकते हैं, और नंबर से पाने वाला उन्हें जोड़ लेता है। एक पैकेट खो जाए तो सिर्फ़ वही छोटा टुकड़ा दोबारा भेजा जाता है। एक केबल टूटे तो पैकेट दूसरे रास्ते लेते हैं।",
+   "hinglish": "Data chhote numbered packets mein baanta jaata hai. Packets alag-alag routes le sakte hain aur out of order bhi pahunch sakte hain, aur numbers se receiver unhe wapas jod leta hai. Ek packet kho jaye to sirf wahi chhota piece dobara bheja jaata hai. Ek cable toote to packets doosre raste lete hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Tell someone at home: how do packets carry a big video across the internet?",
+   "hi": "घर पर किसी को बताओ: पैकेट बड़े वीडियो को इंटरनेट पर कैसे ले जाते हैं?",
+   "hinglish": "Ghar par kisi ko batao: packets bade video ko internet par kaise le jaate hain?"
+  },
+  "checklist": [
+   {
+    "en": "The data is split into small numbered packets.",
+    "hi": "डेटा छोटे गिने हुए पैकेटों में बँटता है।",
+    "hinglish": "Data chhote numbered packets mein bantta hai."
+   },
+   {
+    "en": "Packets can take different routes and arrive out of order.",
+    "hi": "पैकेट अलग रास्ते ले सकते हैं और क्रम से बाहर पहुँच सकते हैं।",
+    "hinglish": "Packets alag routes le sakte hain aur out of order pahunch sakte hain."
+   },
+   {
+    "en": "The numbers let the receiver put the pieces back together.",
+    "hi": "नंबर से पाने वाला टुकड़े वापस जोड़ लेता है।",
+    "hinglish": "Numbers se receiver pieces wapas jod leta hai."
+   },
+   {
+    "en": "If one link breaks, packets find another path.",
+    "hi": "एक लिंक टूटे तो पैकेट दूसरा रास्ता ढूँढ लेते हैं।",
+    "hinglish": "Ek link toote to packets doosra raasta dhoond lete hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Packet",

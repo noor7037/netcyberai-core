@@ -36,6 +36,77 @@
    "hinglish": "Modern ciphers (AES, ChaCha20) aur key-sharing problem batao"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a WhatsApp message to your friend is scrambled in transit, so even the network carrying it cannot read it.",
+   "hi": "{{name}}, तुम्हारे दोस्त को WhatsApp संदेश रास्ते में गड्ड-मड्ड कर दिया जाता है, इसलिए उसे ले जाने वाला नेटवर्क भी उसे पढ़ नहीं सकता।",
+   "hinglish": "{{name}}, tumhare dost ko WhatsApp message raaste mein scramble kar diya jaata hai, isliye use le jaane wala network bhi use padh nahi sakta."
+  },
+  "question": {
+   "en": "How does scrambling with a secret key work, and why is sharing that key the hard part?",
+   "hi": "गुप्त कुंजी से गड्ड-मड्ड करना कैसे काम करता है, और उस कुंजी को साझा करना मुश्किल हिस्सा क्यों है?",
+   "hinglish": "Secret key se scramble karna kaise kaam karta hai, aur us key ko share karna mushkil hissa kyun hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A Caesar cipher has only 25 possible keys. What does that mean for security?",
+   "hi": "सीज़र सिफ़र की सिर्फ़ 25 संभावित कुंजियाँ हैं। सुरक्षा के लिए इसका क्या मतलब है?",
+   "hinglish": "Caesar cipher ki sirf 25 possible keys hain. Security ke liye iska kya matlab hai?"
+  },
+  "options": [
+   {
+    "en": "It is secure because the method is secret",
+    "hi": "यह सुरक्षित है क्योंकि तरीका गुप्त है",
+    "hinglish": "Yeh secure hai kyunki tareeka secret hai"
+   },
+   {
+    "en": "It is trivially breakable: try all 25 keys, or count letter frequencies",
+    "hi": "इसे तोड़ना आसान है: सारी 25 कुंजियाँ आज़माओ, या अक्षरों की आवृत्ति गिनो",
+    "hinglish": "Ise todna aasan hai: saari 25 keys try karo, ya letter frequencies gino"
+   },
+   {
+    "en": "It is as strong as AES",
+    "hi": "यह AES जितना मज़बूत है",
+    "hinglish": "Yeh AES jitna strong hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "With so few keys an attacker simply tries them all, and letter counting breaks it even faster. Good ciphers follow Kerckhoffs's principle: they stay safe even if everyone knows the method, because the key space is huge: AES-128 has 2¹²⁸ keys. The remaining problem is key sharing: both sides need the same key, and sending it over the same open network defeats the purpose.",
+   "hi": "इतनी कम कुंजियों के साथ हमलावर सब आज़मा लेता है, और अक्षर गिनना इसे और जल्दी तोड़ देता है। अच्छे सिफ़र केरखॉफ़्स के सिद्धांत पर चलते हैं: तरीका सबको पता हो तब भी सुरक्षित, क्योंकि कुंजी स्थान विशाल है: AES-128 में 2¹²⁸ कुंजियाँ हैं। बचा हुआ सवाल कुंजी साझा करना है: दोनों पक्षों को वही कुंजी चाहिए, और उसे उसी खुले नेटवर्क पर भेजना मक़सद ही हरा देता है।",
+   "hinglish": "Itni kam keys ke saath attacker sab try kar leta hai, aur letter counting ise aur jaldi tod deti hai. Achhe ciphers Kerckhoffs's principle par chalte hain: tareeka sabko pata ho tab bhi safe, kyunki key space vishal hai: AES-128 mein 2¹²⁸ keys hain. Bacha hua sawaal key sharing hai: dono sides ko wahi key chahiye, aur use usi open network par bhejna maqsad hi haraa deta hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a shared secret key locks and unlocks a message, and why a Caesar cipher is weak.",
+   "hi": "घर पर किसी को समझाओ कि साझा गुप्त कुंजी संदेश को कैसे ताला और खोलती है, और सीज़र सिफ़र कमज़ोर क्यों है।",
+   "hinglish": "Ghar par kisi ko samjhao ki shared secret key message ko kaise lock aur unlock karti hai, aur Caesar cipher kamzor kyun hai."
+  },
+  "checklist": [
+   {
+    "en": "Symmetric encryption: the same key locks and unlocks.",
+    "hi": "सममित एन्क्रिप्शन: वही कुंजी ताला लगाती और खोलती है।",
+    "hinglish": "Symmetric encryption: wahi key lock aur unlock karti hai."
+   },
+   {
+    "en": "A Caesar cipher has 25 keys and falls to brute force or letter frequency.",
+    "hi": "सीज़र सिफ़र की 25 कुंजियाँ हैं और वह ब्रूट फ़ोर्स या अक्षर आवृत्ति से टूटता है।",
+    "hinglish": "Caesar cipher ki 25 keys hain aur woh brute force ya letter frequency se tootta hai."
+   },
+   {
+    "en": "Security must rest on the key, not on a secret method; AES-128 has 2¹²⁸ keys.",
+    "hi": "सुरक्षा कुंजी पर टिकनी चाहिए, गुप्त तरीके पर नहीं; AES-128 में 2¹²⁸ कुंजियाँ हैं।",
+    "hinglish": "Security key par tikni chahiye, secret tareeke par nahi; AES-128 mein 2¹²⁸ keys hain."
+   },
+   {
+    "en": "Both sides need the same key, so sharing it safely is the hard part.",
+    "hi": "दोनों पक्षों को वही कुंजी चाहिए, इसलिए उसे सुरक्षित साझा करना मुश्किल हिस्सा है।",
+    "hinglish": "Dono sides ko wahi key chahiye, isliye use safely share karna mushkil hissa hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Plaintext / ciphertext",
@@ -104,7 +175,7 @@
     "hi": "कुंजी से XOR बिट उलझाता है; उसी कुंजी से फिर XOR उन्हें वापस लाता है। ChaCha20 जैसे आधुनिक स्ट्रीम सिफ़र इसी विचार पर बने हैं।",
     "hinglish": "Key se XOR bits uljhata hai; usi key se phir XOR unhe wapas laata hai. ChaCha20 jaise modern stream ciphers isi idea par bane hain."
    },
-   "visual": "anim:xor-bits",
+   "visual": "flow:🔤 Message bits|🔑 XOR with the key|🔒 Scrambled bits|🔑 XOR with the key again|🔤 Original message",
    "narration": {
     "en": "XOR with a key scrambles bits; XOR again with the same key restores them. Modern stream ciphers like ChaCha20 build on this idea.",
     "hi": "कुंजी से XOR बिट उलझाता है; उसी कुंजी से फिर XOR उन्हें वापस लाता है। ChaCha20 जैसे आधुनिक स्ट्रीम सिफ़र इसी विचार पर बने हैं।",

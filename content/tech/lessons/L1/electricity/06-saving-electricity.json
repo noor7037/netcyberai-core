@@ -39,6 +39,77 @@
    "hinglish": "Star label padh sakte ho: zyaada stars, kam bijli."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you leave the room to play, and the light and fan are still on.",
+   "hi": "{{name}}, तुम खेलने के लिए कमरे से निकलते हो, और बत्ती और पंखा चालू रह जाते हैं।",
+   "hinglish": "{{name}}, tum khelne ke liye kamre se nikalte ho, aur light aur fan on reh jaate hain."
+  },
+  "question": {
+   "en": "Does switching off really save electricity, and why does it matter?",
+   "hi": "क्या स्विच बंद करने से सच में बिजली बचती है, और इससे क्या फ़र्क़ पड़ता है?",
+   "hinglish": "Kya switch off karne se sach mein bijli bachti hai, aur isse kya fark padta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What do you think? A phone charger stays plugged in with no phone on it. Does it use any electricity?",
+   "hi": "तुम्हें क्या लगता है? फ़ोन चार्जर प्लग में लगा है, पर उस पर फ़ोन नहीं है। क्या वह कुछ बिजली लेता है?",
+   "hinglish": "Tumhe kya lagta hai? Phone charger plug mein laga hai, par us par phone nahin hai. Kya woh kuch bijli leta hai?"
+  },
+  "options": [
+   {
+    "en": "No, never, without a phone it uses nothing",
+    "hi": "नहीं, कभी नहीं, फ़ोन बिना वह कुछ नहीं लेता",
+    "hinglish": "Nahin, kabhi nahin, phone bina woh kuch nahin leta"
+   },
+   {
+    "en": "Yes, a little all the time, so switch it off at the plug",
+    "hi": "हाँ, हर समय थोड़ी, इसलिए प्लग पर बंद करो",
+    "hinglish": "Haan, har waqt thodi, isliye plug par switch off karo"
+   },
+   {
+    "en": "Yes, as much as a full fan",
+    "hi": "हाँ, पूरे पंखे जितनी",
+    "hinglish": "Haan, poore fan jitni"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "A switch makes a gap in the circuit, so no electricity flows and the bulb or fan uses none. Chargers left plugged in and TVs on standby use a little all the time, so switch them off at the plug. A higher star label means a device uses less power.",
+   "hi": "स्विच सर्किट में खाली जगह बना देता है, इसलिए बिजली नहीं बहती और बल्ब या पंखा कुछ नहीं लेता। प्लग में लगे चार्जर और स्टैंडबाय पर टीवी हर समय थोड़ी बिजली लेते हैं, इसलिए उन्हें प्लग पर बंद करो। ज़्यादा स्टार का मतलब कम बिजली।",
+   "hinglish": "Switch circuit mein gap bana deta hai, isliye bijli nahin behti aur bulb ya fan kuch nahin leta. Plug mein lage chargers aur standby par TV har waqt thodi bijli lete hain, isliye unhe plug par switch off karo. Zyada stars ka matlab kam bijli."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: how can we save electricity?",
+   "hi": "घर पर किसी को समझाओ: हम बिजली कैसे बचा सकते हैं?",
+   "hinglish": "Ghar par kisi ko samjhao: hum bijli kaise bacha sakte hain?"
+  },
+  "checklist": [
+   {
+    "en": "Switch off lights, fans and screens when not in use.",
+    "hi": "काम न हो तो बत्ती, पंखे और स्क्रीन बंद करो।",
+    "hinglish": "Kaam na ho to lights, fans aur screens band karo."
+   },
+   {
+    "en": "A switch makes a gap, so no electricity flows.",
+    "hi": "स्विच खाली जगह बनाता है, इसलिए बिजली नहीं बहती।",
+    "hinglish": "Switch gap banata hai, isliye bijli nahin behti."
+   },
+   {
+    "en": "Chargers and standby TVs still use a little, so switch off at the plug.",
+    "hi": "चार्जर और स्टैंडबाय टीवी थोड़ी बिजली लेते हैं, इसलिए प्लग पर बंद करो।",
+    "hinglish": "Chargers aur standby TV thodi bijli lete hain, isliye plug par off karo."
+   },
+   {
+    "en": "More stars on a label means less power.",
+    "hi": "लेबल पर ज़्यादा स्टार का मतलब कम बिजली।",
+    "hinglish": "Label par zyada stars ka matlab kam bijli."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Switch",

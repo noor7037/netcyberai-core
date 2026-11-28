@@ -38,6 +38,77 @@
    "hinglish": "Jaante ho ki voltage (V) batata hai cell kitna zor se dhakelta hai."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your toy has two cells. When your friend's toy has just one, yours looks brighter and faster.",
+   "hi": "{{name}}, तुम्हारे खिलौने में दो सेल हैं। दोस्त के खिलौने में एक है, तो तुम्हारा ज़्यादा तेज़ चलता या चमकता है।",
+   "hinglish": "{{name}}, tumhare toy mein do cells hain. Dost ke toy mein ek hai, to tumhara zyada tez chalta ya chamakta hai."
+  },
+  "question": {
+   "en": "How do more cells and more bulbs change the light?",
+   "hi": "ज़्यादा सेल और ज़्यादा बल्ब रोशनी को कैसे बदलते हैं?",
+   "hinglish": "Zyada cells aur zyada bulbs light ko kaise badalte hain?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What do you think? In one loop, you add a second bulb to the first. What happens to the brightness?",
+   "hi": "तुम्हें क्या लगता है? एक घेरे में पहले बल्ब के साथ दूसरा बल्ब जोड़ते हो। चमक का क्या होगा?",
+   "hinglish": "Tumhe kya lagta hai? Ek loop mein pehle bulb ke saath doosra bulb jodte ho. Brightness ka kya hoga?"
+  },
+  "options": [
+   {
+    "en": "Both get brighter",
+    "hi": "दोनों ज़्यादा चमकेंगे",
+    "hinglish": "Dono zyada chamkenge"
+   },
+   {
+    "en": "Nothing changes",
+    "hi": "कुछ नहीं बदलेगा",
+    "hinglish": "Kuch nahin badlega"
+   },
+   {
+    "en": "Both get dimmer, because the cell's push is shared between them",
+    "hi": "दोनों मद्धम होंगे, क्योंकि सेल का धक्का दोनों में बँट जाता है",
+    "hinglish": "Dono dheeme honge, kyunki cell ka push dono mein bant jaata hai"
+   }
+  ],
+  "answer": 2,
+  "explain": {
+   "en": "In one loop (a series circuit), cells push and bulbs use up the push to make light. More cells make it brighter; more bulbs share the push and make each dimmer. A short circuit gives electricity an easy shortcut and is dangerous, so homes use fuses and MCBs.",
+   "hi": "एक घेरे (श्रेणी सर्किट) में सेल धक्का देते हैं और बल्ब उस धक्के से रोशनी बनाते हैं। ज़्यादा सेल से चमक बढ़ती है; ज़्यादा बल्ब धक्का बाँट लेते हैं और हर बल्ब मद्धम होता है। शॉर्ट सर्किट बिजली को आसान छोटा रास्ता देता है और ख़तरनाक है, इसलिए घरों में फ़्यूज़ और MCB होते हैं।",
+   "hinglish": "Ek loop (series circuit) mein cells push dete hain aur bulbs us push se light banate hain. Zyada cells se brightness badhti hai; zyada bulbs push baant lete hain aur har bulb dheema hota hai. Short circuit bijli ko aasan chhota raasta deta hai aur khatarnak hai, isliye gharon mein fuse aur MCB hote hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Tell someone at home: how do cells and bulbs change a circuit, and what is a short circuit?",
+   "hi": "घर पर किसी को बताओ: सेल और बल्ब सर्किट को कैसे बदलते हैं, और शॉर्ट सर्किट क्या है?",
+   "hinglish": "Ghar par kisi ko batao: cells aur bulbs circuit ko kaise badalte hain, aur short circuit kya hai?"
+  },
+  "checklist": [
+   {
+    "en": "Cells push; more cells in one loop make bulbs brighter.",
+    "hi": "सेल धक्का देते हैं; एक घेरे में ज़्यादा सेल से बल्ब ज़्यादा चमकते हैं।",
+    "hinglish": "Cells push dete hain; ek loop mein zyada cells se bulbs zyada chamakte hain."
+   },
+   {
+    "en": "More bulbs share the push, so each is dimmer.",
+    "hi": "ज़्यादा बल्ब धक्का बाँटते हैं, इसलिए हर बल्ब मद्धम होता है।",
+    "hinglish": "Zyada bulbs push baantte hain, isliye har bulb dheema hota hai."
+   },
+   {
+    "en": "If one bulb breaks in a series loop, the loop opens and all go dark.",
+    "hi": "श्रेणी घेरे में एक बल्ब टूटे तो घेरा खुल जाता है और सब बुझ जाते हैं।",
+    "hinglish": "Series loop mein ek bulb toote to loop khul jaata hai aur sab bujh jaate hain."
+   },
+   {
+    "en": "A short circuit is dangerous; a fuse or MCB opens the circuit to keep homes safe.",
+    "hi": "शॉर्ट सर्किट ख़तरनाक है; फ़्यूज़ या MCB सर्किट खोलकर घर सुरक्षित रखते हैं।",
+    "hinglish": "Short circuit khatarnak hai; fuse ya MCB circuit kholkar ghar safe rakhte hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Voltage",

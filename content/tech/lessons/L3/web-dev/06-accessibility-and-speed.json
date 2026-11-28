@@ -35,6 +35,77 @@
    "hinglish": "Sasta phones aur slow networks ke liye pages halke banao"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a classmate with a ₹8,000 phone on a weak 4G signal says your school page takes forever to open.",
+   "hi": "{{name}}, ₹8,000 के फ़ोन और कमज़ोर 4G वाला एक सहपाठी कहता है कि तुम्हारा स्कूल पेज खुलने में बहुत समय लेता है।",
+   "hinglish": "{{name}}, ₹8,000 ke phone aur kamzor 4G wale ek classmate kehta hai ki tumhara school page khulne mein bahut time leta hai."
+  },
+  "question": {
+   "en": "How do you measure that, and what makes a page work well for everyone, including people who cannot see the screen?",
+   "hi": "यह कैसे नापोगे, और पेज सबके लिए अच्छा कैसे चलता है, उनके लिए भी जो स्क्रीन देख नहीं सकते?",
+   "hinglish": "Yeh kaise naapoge, aur page sabke liye achha kaise chalta hai, unke liye bhi jo screen dekh nahi sakte?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Light grey text (#bbb) on a white background looks clean. Is it a good design?",
+   "hi": "सफ़ेद पृष्ठभूमि पर हल्का धूसर टेक्स्ट (#bbb) साफ़-सुथरा दिखता है। क्या यह अच्छा डिज़ाइन है?",
+   "hinglish": "Safed background par halka grey text (#bbb) clean dikhta hai. Kya yeh achha design hai?"
+  },
+  "options": [
+   {
+    "en": "Yes, soft colours are easier on the eyes for everyone",
+    "hi": "हाँ, मुलायम रंग सबकी आँखों के लिए आसान हैं",
+    "hinglish": "Haan, soft colours sabki aankhon ke liye aasan hain"
+   },
+   {
+    "en": "No, its contrast is about 1.9 : 1, far below the 4.5 : 1 needed for readable body text",
+    "hi": "नहीं, इसका कंट्रास्ट लगभग 1.9 : 1 है, पढ़ने योग्य मुख्य टेक्स्ट के लिए चाहिए 4.5 : 1 से बहुत कम",
+    "hinglish": "Nahi, iska contrast lagbhag 1.9 : 1 hai, padhne layak body text ke liye chahiye 4.5 : 1 se bahut kam"
+   },
+   {
+    "en": "It depends only on font size",
+    "hi": "यह सिर्फ़ फ़ॉन्ट आकार पर निर्भर है",
+    "hinglish": "Yeh sirf font size par depend karta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "WCAG asks for a contrast ratio of at least 4.5 : 1 for normal text; #bbb on white is about 1.9 : 1, so many people, and anyone in bright sunlight, cannot read it. Accessibility and speed go together: alt text, labels and keyboard use serve everyone, and Core Web Vitals (LCP, INP, CLS) measure what users feel on slow phones.",
+   "hi": "WCAG सामान्य टेक्स्ट के लिए कम से कम 4.5 : 1 कंट्रास्ट माँगता है; सफ़ेद पर #bbb लगभग 1.9 : 1 है, इसलिए कई लोग, और तेज़ धूप में कोई भी, इसे पढ़ नहीं सकता। सुलभता और गति साथ चलती हैं: alt टेक्स्ट, लेबल और कीबोर्ड उपयोग सबके काम आते हैं, और Core Web Vitals (LCP, INP, CLS) धीमे फ़ोन पर उपयोगकर्ता का अनुभव नापते हैं।",
+   "hinglish": "WCAG normal text ke liye kam se kam 4.5 : 1 contrast maangta hai; safed par #bbb lagbhag 1.9 : 1 hai, isliye kai log, aur tez dhoop mein koi bhi, ise padh nahi sakta. Accessibility aur speed saath chalti hain: alt text, labels aur keyboard use sabke kaam aate hain, aur Core Web Vitals (LCP, INP, CLS) slow phone par user ka experience naapte hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home three things that make a web page work for more people, and one way to make it faster.",
+   "hi": "घर पर किसी को समझाओ कि वेब पेज को ज़्यादा लोगों के लिए चलाने वाली तीन बातें कौन-सी हैं, और उसे तेज़ करने का एक तरीका।",
+   "hinglish": "Ghar par kisi ko samjhao ki web page ko zyada logon ke liye chalane wali teen baatein kaunsi hain, aur use tez karne ka ek tareeka."
+  },
+  "checklist": [
+   {
+    "en": "Alt text for images, enough contrast, full keyboard use and labels on every field.",
+    "hi": "इमेज के लिए alt टेक्स्ट, पर्याप्त कंट्रास्ट, पूरा कीबोर्ड उपयोग और हर फ़ील्ड पर लेबल।",
+    "hinglish": "Images ke liye alt text, kaafi contrast, poora keyboard use aur har field par label."
+   },
+   {
+    "en": "Contrast is measured as a ratio; normal text needs 4.5 : 1.",
+    "hi": "कंट्रास्ट अनुपात में नापा जाता है; सामान्य टेक्स्ट को 4.5 : 1 चाहिए।",
+    "hinglish": "Contrast ratio mein naapa jaata hai; normal text ko 4.5 : 1 chahiye."
+   },
+   {
+    "en": "Core Web Vitals: LCP for loading, INP for responsiveness, CLS for layout shift.",
+    "hi": "Core Web Vitals: लोडिंग के लिए LCP, प्रतिक्रिया के लिए INP, लेआउट खिसकने के लिए CLS।",
+    "hinglish": "Core Web Vitals: loading ke liye LCP, responsiveness ke liye INP, layout shift ke liye CLS."
+   },
+   {
+    "en": "Compressed images, set width and height, lazy loading and less JavaScript help low-end phones.",
+    "hi": "संपीड़ित इमेज, चौड़ाई-ऊँचाई तय करना, लेज़ी लोडिंग और कम JavaScript सस्ते फ़ोन की मदद करते हैं।",
+    "hinglish": "Compressed images, width-height set karna, lazy loading aur kam JavaScript low-end phones ki madad karte hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Accessibility (a11y)",

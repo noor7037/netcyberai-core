@@ -39,6 +39,72 @@
    "hinglish": "Operating system aur apps ka fark bata sakte ho."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you want to make a birthday card for your grandmother on a tablet.",
+   "hi": "{{name}}, तुम टैबलेट पर दादी के लिए जन्मदिन का कार्ड बनाना चाहते हो।",
+   "hinglish": "{{name}}, tum tablet par Dadi ke liye birthday card banana chahte ho."
+  },
+  "question": {
+   "en": "Which app would you open, and what is an app on top of?",
+   "hi": "तुम कौन-सा ऐप खोलोगे, और ऐप किसके ऊपर चलता है?",
+   "hinglish": "Tum kaun-sa app khologe, aur app kiske upar chalta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Where does an app, like a drawing app, sit on a device?",
+   "hi": "ड्रॉइंग ऐप जैसा कोई ऐप डिवाइस में कहाँ बैठता है?",
+   "hinglish": "Drawing app jaisa koi app device mein kahan baithta hai?"
+  },
+  "options": [
+   {
+    "en": "Apps run on top of the operating system, which is the boss software of the device",
+    "hi": "ऐप ऑपरेटिंग सिस्टम के ऊपर चलते हैं, जो डिवाइस का मुख्य सॉफ़्टवेयर है",
+    "hinglish": "Apps operating system ke upar chalte hain, jo device ka main software hai"
+   },
+   {
+    "en": "Apps are the operating system",
+    "hi": "ऐप ही ऑपरेटिंग सिस्टम है",
+    "hinglish": "App hi operating system hai"
+   },
+   {
+    "en": "Apps live in the screen glass",
+    "hi": "ऐप स्क्रीन के काँच में रहते हैं",
+    "hinglish": "Apps screen ke kaanch mein rehte hain"
+   }
+  ],
+  "answer": 0,
+  "explain": {
+   "en": "The operating system, like Android or Windows, runs the device. Apps are smaller programs on top of it, each made for one job: drawing, music or stories. Pick the app that fits your job.",
+   "hi": "एंड्रॉइड या विंडोज़ जैसा ऑपरेटिंग सिस्टम डिवाइस को चलाता है। ऐप उसके ऊपर के छोटे प्रोग्राम हैं, हर एक किसी एक काम के लिए: चित्र, संगीत या कहानी। अपने काम के हिसाब से ऐप चुनो।",
+   "hinglish": "Android ya Windows jaisa operating system device ko chalata hai. Apps uske upar ke chhote programs hain, har ek kisi ek kaam ke liye: drawing, music ya stories. Apne kaam ke hisaab se app chuno."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: what are creative apps?",
+   "hi": "घर पर किसी को समझाओ: क्रिएटिव ऐप क्या हैं?",
+   "hinglish": "Ghar par kisi ko samjhao: creative apps kya hain?"
+  },
+  "checklist": [
+   {
+    "en": "There are drawing, music and story apps.",
+    "hi": "चित्र, संगीत और कहानी के ऐप होते हैं।",
+    "hinglish": "Drawing, music aur story apps hote hain."
+   },
+   {
+    "en": "I pick the app that fits my job.",
+    "hi": "मैं अपने काम के हिसाब से ऐप चुनता/चुनती हूँ।",
+    "hinglish": "Main apne kaam ke hisaab se app chunta/chunti hoon."
+   },
+   {
+    "en": "The operating system runs the device and apps sit on top.",
+    "hi": "ऑपरेटिंग सिस्टम डिवाइस चलाता है और ऐप उसके ऊपर होते हैं।",
+    "hinglish": "Operating system device chalata hai aur apps uske upar hote hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "App",

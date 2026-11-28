@@ -29,6 +29,72 @@
    "hi": "विसंगति पहचान और आयाम घटाने को समझाना"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a bank notices one card being used in two cities within minutes, though nobody labelled that as fraud.",
+   "hi": "{{name}}, एक बैंक देखता है कि एक कार्ड कुछ ही मिनट में दो शहरों में इस्तेमाल हुआ, जबकि किसी ने इसे फ़्रॉड का लेबल नहीं दिया था।",
+   "hinglish": "{{name}}, ek bank dekhta hai ki ek card kuch hi minute mein do shehron mein use hua, jabki kisi ne ise fraud ka label nahi diya tha."
+  },
+  "question": {
+   "en": "How can a computer find groups and oddities in data with no labels at all?",
+   "hi": "बिना किसी लेबल के कंप्यूटर डेटा में समूह और अजीब बातें कैसे खोजता है?",
+   "hinglish": "Bina kisi label ke computer data mein groups aur oddities kaise dhoondhta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "In k-means, after every point joins its nearest centre, what happens to each centre?",
+   "hi": "k-means में हर बिंदु के सबसे पास के केंद्र से जुड़ने के बाद हर केंद्र का क्या होता है?",
+   "hinglish": "k-means mein har point ke sabse paas ke centre se judne ke baad har centre ka kya hota hai?"
+  },
+  "options": [
+   {
+    "en": "It stays where it was dropped",
+    "hi": "वह वहीं रहता है जहाँ गिराया गया था",
+    "hinglish": "Woh wahin rehta hai jahan gira diya gaya tha"
+   },
+   {
+    "en": "It moves to the average position of the points that joined it",
+    "hi": "वह अपने से जुड़े बिंदुओं की औसत स्थिति पर चला जाता है",
+    "hinglish": "Woh apne se jude points ki average position par chala jaata hai"
+   },
+   {
+    "en": "It jumps to the furthest point",
+    "hi": "वह सबसे दूर के बिंदु पर कूद जाता है",
+    "hinglish": "Woh sabse door ke point par kood jaata hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "k-means alternates two steps: assign points to the nearest centre, then move each centre to the mean of its points, until nothing changes. A point far from every cluster can be flagged as an anomaly, with no labels needed.",
+   "hi": "k-means दो चरण बारी-बारी चलाता है: बिंदुओं को सबसे पास के केंद्र से जोड़ो, फिर हर केंद्र को अपने बिंदुओं के औसत पर ले जाओ, जब तक कुछ न बदले। जो बिंदु हर समूह से दूर हो उसे बिना लेबल के एनोमली कहा जा सकता है।",
+   "hinglish": "k-means do steps baari-baari chalata hai: points ko sabse paas ke centre se jodo, phir har centre ko apne points ke mean par le jao, jab tak kuch na badle. Jo point har cluster se door ho use bina label ke anomaly kaha ja sakta hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend how k-means finds groups and how the same idea can spot a suspicious transaction.",
+   "hi": "दोस्त को समझाओ कि k-means समूह कैसे खोजता है और वही विचार संदिग्ध लेनदेन कैसे पकड़ सकता है।",
+   "hinglish": "Friend ko samjhao ki k-means groups kaise dhoondhta hai aur wahi idea suspicious transaction kaise pakad sakta hai."
+  },
+  "checklist": [
+   {
+    "en": "Unsupervised learning has no labels; it finds structure in the data",
+    "hi": "अनसुपरवाइज़्ड लर्निंग में लेबल नहीं होते; वह डेटा की बनावट खोजती है",
+    "hinglish": "Unsupervised learning mein labels nahi hote; woh data ka structure dhoondhti hai"
+   },
+   {
+    "en": "k-means alternates assign-to-nearest and move-to-mean until stable",
+    "hi": "k-means सबसे पास से जोड़ना और औसत पर जाना बारी-बारी करता है जब तक स्थिर न हो",
+    "hinglish": "k-means nearest se jodna aur mean par jana baari-baari karta hai jab tak stable na ho"
+   },
+   {
+    "en": "A point far from all clusters is an anomaly; dimensionality reduction squeezes many features into few",
+    "hi": "जो बिंदु सब समूहों से दूर हो वह एनोमली है; डायमेंशनैलिटी रिडक्शन कई फ़ीचर को कुछ में समेटता है",
+    "hinglish": "Jo point sab clusters se door ho woh anomaly hai; dimensionality reduction kai features ko kuch mein sametta hai"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Clustering",
@@ -83,7 +149,7 @@
     "hi": "चरण 1: हर बिंदु सबसे नज़दीकी केंद्र से जुड़ता है। चरण 2: हर केंद्र अपने बिंदुओं के औसत पर जाता है। कुछ न हिले तब तक दोहराओ।",
     "hinglish": "Step 1: har point sabse paas ke centre se judta hai. Step 2: har centre apne points ke average par jaata hai. Kuch na hile tab tak repeat."
    },
-   "visual": "anim:kmeans-iterate",
+   "visual": "cycle:📍 Assign points to the nearest centre|🎯 Move each centre to the average|🔁 Repeat until nothing moves",
    "narration": {
     "en": "Step 1: every point joins its nearest centre. Step 2: each centre moves to the average of its points. Repeat until nothing moves.",
     "hi": "चरण 1: हर बिंदु सबसे नज़दीकी केंद्र से जुड़ता है। चरण 2: हर केंद्र अपने बिंदुओं के औसत पर जाता है। कुछ न हिले तब तक दोहराओ।",

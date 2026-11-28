@@ -34,6 +34,77 @@
    "hinglish": "Cache levels aur locality batao"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your friend's phone says 3.2 GHz and yours says 2.4 GHz, but yours opens the camera faster.",
+   "hi": "{{name}}, तुम्हारे दोस्त के फ़ोन पर 3.2 GHz लिखा है और तुम्हारे पर 2.4 GHz, फिर भी तुम्हारा कैमरा जल्दी खुलता है।",
+   "hinglish": "{{name}}, tumhare dost ke phone par 3.2 GHz likha hai aur tumhare par 2.4 GHz, phir bhi tumhara camera jaldi khulta hai."
+  },
+  "question": {
+   "en": "So what does GHz really measure, and what else decides how fast a processor feels?",
+   "hi": "तो GHz असल में क्या नापता है, और प्रोसेसर कितना तेज़ लगे यह और क्या तय करता है?",
+   "hinglish": "Toh GHz asal mein kya naapta hai, aur processor kitna tez lage yeh aur kya tay karta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A chip's clock speed is doubled but nothing else changes. What happens to a task that needs a fixed number of clock ticks?",
+   "hi": "एक चिप की क्लॉक स्पीड दोगुनी कर दी जाती है, बाकी सब वैसा ही रहता है। जिस काम को तय संख्या में क्लॉक टिक चाहिए, उसका क्या होगा?",
+   "hinglish": "Ek chip ki clock speed double kar di jaati hai, baaki sab waisa hi rehta hai. Jis kaam ko fixed number mein clock ticks chahiye, uska kya hoga?"
+  },
+  "options": [
+   {
+    "en": "It always finishes in exactly half the time",
+    "hi": "हमेशा ठीक आधे समय में पूरा होगा",
+    "hinglish": "Hamesha theek aadhe time mein poora hoga"
+   },
+   {
+    "en": "It can finish sooner, but waiting for memory or heat limits can stop the gain from being a full 2×",
+    "hi": "जल्दी पूरा हो सकता है, पर मेमोरी का इंतज़ार या गर्मी की सीमा पूरा 2× फ़ायदा रोक सकती है",
+    "hinglish": "Jaldi poora ho sakta hai, par memory ka wait ya heat ki limit poora 2× fayda rok sakti hai"
+   },
+   {
+    "en": "Nothing changes, because GHz is only a label",
+    "hi": "कुछ नहीं बदलेगा, क्योंकि GHz सिर्फ़ एक लेबल है",
+    "hinglish": "Kuch nahi badlega, kyunki GHz sirf ek label hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "GHz counts clock ticks per second, not finished work. Real speed also depends on instructions done per tick, how many cores you can use, and how long the chip waits for memory. A faster clock also makes more heat, which is why designers added cores instead.",
+   "hi": "GHz प्रति सेकंड क्लॉक टिक गिनता है, पूरा हुआ काम नहीं। असली गति इस पर भी निर्भर है कि हर टिक में कितने निर्देश होते हैं, कितने कोर काम में आते हैं, और चिप मेमोरी का कितना इंतज़ार करती है। तेज़ क्लॉक ज़्यादा गर्मी भी बनाती है, इसीलिए डिज़ाइनरों ने कोर बढ़ाए।",
+   "hinglish": "GHz per second clock ticks ginta hai, poora hua kaam nahi. Asli speed is par bhi depend karti hai ki har tick mein kitne instructions hote hain, kitne cores kaam mein aate hain, aur chip memory ka kitna wait karti hai. Tez clock zyada heat bhi banati hai, isiliye designers ne cores badhaye."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home why a 2.4 GHz phone can feel faster than a 3.2 GHz one, and why phones have many cores.",
+   "hi": "घर पर किसी को समझाओ कि 2.4 GHz का फ़ोन 3.2 GHz वाले से तेज़ क्यों लग सकता है, और फ़ोन में कई कोर क्यों होते हैं।",
+   "hinglish": "Ghar par kisi ko samjhao ki 2.4 GHz ka phone 3.2 GHz wale se tez kyun lag sakta hai, aur phone mein kai cores kyun hote hain."
+  },
+  "checklist": [
+   {
+    "en": "Performance is roughly clock speed × instructions per clock × cores actually used, so GHz alone misleads.",
+    "hi": "प्रदर्शन लगभग क्लॉक स्पीड × प्रति क्लॉक निर्देश × सच में इस्तेमाल हुए कोर है, इसलिए अकेला GHz भ्रम देता है।",
+    "hinglish": "Performance lagbhag clock speed × instructions per clock × actually use hue cores hai, isliye akela GHz bhram deta hai."
+   },
+   {
+    "en": "Clocks stalled near 3 to 5 GHz because faster chips make too much heat, so designers added cores.",
+    "hi": "क्लॉक 3 से 5 GHz के आसपास रुक गईं क्योंकि तेज़ चिप ज़्यादा गर्मी बनाती है, इसलिए कोर बढ़ाए गए।",
+    "hinglish": "Clocks 3 se 5 GHz ke aaspaas ruk gayin kyunki tez chip zyada heat banati hai, isliye cores badhaye gaye."
+   },
+   {
+    "en": "Extra cores help only if the work splits into parallel parts (Amdahl's law).",
+    "hi": "अतिरिक्त कोर तभी मदद करते हैं जब काम समानांतर हिस्सों में बँट सके (एमडाल का नियम)।",
+    "hinglish": "Extra cores tabhi madad karte hain jab kaam parallel parts mein bant sake (Amdahl's law)."
+   },
+   {
+    "en": "Small L1/L2 caches near the core keep recently used data, so most reads avoid slow RAM.",
+    "hi": "कोर के पास छोटे L1/L2 कैश हाल का डेटा रखते हैं, इसलिए ज़्यादातर पढ़ाई धीमी RAM तक नहीं जाती।",
+    "hinglish": "Core ke paas chhote L1/L2 caches haal ka data rakhte hain, isliye zyadatar reads slow RAM tak nahi jaate."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Clock speed",
@@ -88,7 +159,7 @@
     "hi": "2000 के दशक के मध्य से घड़ी गति 3–5 GHz के आसपास रुकी है क्योंकि तेज़ घड़ी चिप को बहुत गरम करती थी। इसलिए डिज़ाइनरों ने कोर जोड़े।",
     "hinglish": "2000s ke beech se clock speeds 3–5 GHz ke aas-paas ruki hain kyunki tez clock chips ko bahut garam karti thi. Isliye designers ne cores jode."
    },
-   "visual": "anim:heat-wall",
+   "visual": "flow:⏱️ Faster clock|🔥 More heat|🧱 Heat wall|🧩 More cores",
    "narration": {
     "en": "Clock speeds stalled around 3–5 GHz since the mid-2000s because faster clocks made chips too hot. So designers added cores instead.",
     "hi": "2000 के दशक के मध्य से घड़ी गति 3–5 GHz के आसपास रुकी है क्योंकि तेज़ घड़ी चिप को बहुत गरम करती थी। इसलिए डिज़ाइनरों ने कोर जोड़े।",
@@ -116,7 +187,7 @@
     "hi": "हर कोर के छोटे L1/L2 कैश होते हैं और बड़ा L3 साझा। कैश हिट ~1 ns; RAM तक ~100 ns।",
     "hinglish": "Har core ke chhote L1/L2 caches hote hain aur bada L3 shared. Cache hit ~1 ns; RAM tak ~100 ns."
    },
-   "visual": "anim:cache-levels",
+   "visual": "stack:L1 cache (per core)|L2 cache|L3 cache (shared)|RAM",
    "narration": {
     "en": "Each core has small L1/L2 caches and shares a bigger L3. A cache hit takes ~1 ns; going to RAM takes ~100 ns.",
     "hi": "हर कोर के छोटे L1/L2 कैश होते हैं और बड़ा L3 साझा। कैश हिट ~1 ns; RAM तक ~100 ns।",

@@ -34,6 +34,72 @@
    "hinglish": "Samjhao outliers aur skew summaries kaise badalte hain"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your class tells the teacher their pocket money per week. Most say ₹50 to ₹150, but one student says ₹2,500.",
+   "hi": "{{name}}, तुम्हारी क्लास टीचर को हफ़्ते की जेब-ख़र्ची बताती है। ज़्यादातर ₹50 से ₹150 कहते हैं, पर एक छात्र ₹2,500 बताता है।",
+   "hinglish": "{{name}}, tumhari class teacher ko hafte ka pocket money batati hai. Zyada tar ₹50 se ₹150 kehte hain, par ek student ₹2,500 batata hai."
+  },
+  "question": {
+   "en": "Which single number should the teacher quote as \"typical\", and why can the average be misleading?",
+   "hi": "टीचर \"सामान्य\" के रूप में कौन-सा एक अंक बताए, और औसत भ्रामक क्यों हो सकता है?",
+   "hinglish": "Teacher \"typical\" ke roop mein kaunsa ek number bataye, aur average misleading kyun ho sakta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "One very large value is added to a list of 30 numbers. What happens?",
+   "hi": "30 संख्याओं की सूची में एक बहुत बड़ी संख्या जुड़ती है। क्या होता है?",
+   "hinglish": "30 numbers ki list mein ek bahut badi value judti hai. Kya hota hai?"
+  },
+  "options": [
+   {
+    "en": "Mean and median both jump by the same amount",
+    "hi": "माध्य और माध्यिका दोनों बराबर उछलते हैं",
+    "hinglish": "Mean aur median dono barabar jump karte hain"
+   },
+   {
+    "en": "The mean is pulled noticeably; the median barely moves",
+    "hi": "माध्य साफ़ खिंचता है; माध्यिका लगभग नहीं हिलती",
+    "hinglish": "Mean saaf khichta hai; median lagbhag nahi hilta"
+   },
+   {
+    "en": "Neither changes, because one value out of 30 is too small to matter",
+    "hi": "कोई नहीं बदलता, क्योंकि 30 में से एक मान बहुत छोटा है",
+    "hinglish": "Koi nahi badalta, kyunki 30 mein se ek value bahut chhoti hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "The mean uses every value's size, so one huge value drags it. The median depends only on the middle position, so an outlier shifts it by at most one place. That is why skewed data is better summarised by the median and IQR.",
+   "hi": "माध्य हर मान का आकार इस्तेमाल करता है, इसलिए एक विशाल मान उसे खींच लेता है। माध्यिका सिर्फ़ बीच की स्थिति पर निर्भर है, इसलिए आउटलायर उसे ज़्यादा से ज़्यादा एक जगह खिसकाता है। इसीलिए तिरछे डेटा को माध्यिका और IQR से बताना बेहतर है।",
+   "hinglish": "Mean har value ka size use karta hai, isliye ek bahut badi value use kheench leti hai. Median sirf beech ki position par depend karta hai, isliye outlier use zyada se zyada ek jagah khiskata hai. Isiliye skewed data ko median aur IQR se batana behtar hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home why \"average pocket money\" can be a poor summary, and what you would report instead.",
+   "hi": "घर पर किसी को समझाओ कि \"औसत जेब-ख़र्ची\" बुरा सारांश क्यों हो सकता है, और तुम क्या बताओगे।",
+   "hinglish": "Ghar par kisi ko samjhao ki \"average pocket money\" kharab summary kyun ho sakta hai, aur tum kya report karoge."
+  },
+  "checklist": [
+   {
+    "en": "A histogram shows the shape; a box plot shows median, quartiles and outliers",
+    "hi": "हिस्टोग्राम आकार दिखाता है; बॉक्स प्लॉट माध्यिका, चतुर्थक और आउटलायर",
+    "hinglish": "Histogram shape dikhata hai; box plot median, quartiles aur outliers dikhata hai"
+   },
+   {
+    "en": "Mean uses every value so outliers and skew pull it; median does not",
+    "hi": "माध्य हर मान लेता है इसलिए आउटलायर और तिरछापन उसे खींचते हैं; माध्यिका नहीं",
+    "hinglish": "Mean har value leta hai isliye outliers aur skew use kheenchte hain; median nahi"
+   },
+   {
+    "en": "Use mean and SD for symmetric data, median and IQR for skewed data",
+    "hi": "सममित डेटा के लिए माध्य और SD, तिरछे के लिए माध्यिका और IQR",
+    "hinglish": "Symmetric data ke liye mean aur SD, skewed ke liye median aur IQR"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Distribution",
@@ -108,7 +174,7 @@
     "hi": "जेब ख़र्च दाएँ-तिरछा है: कुछ छात्रों को बहुत ज़्यादा मिलता है, जो माध्य को माध्यिका से ऊपर खींचता है।",
     "hinglish": "Pocket money right-skewed hai: kuch students ko bahut zyaada milta hai, jo mean ko median se upar kheenchta hai."
    },
-   "visual": "anim:skew",
+   "visual": "compare:🙂 Symmetric data: mean ≈ median|💸 Right-skewed data: mean above median",
    "narration": {
     "en": "Pocket money is right-skewed: a few students get much more, pulling the mean above the median.",
     "hi": "जेब ख़र्च दाएँ-तिरछा है: कुछ छात्रों को बहुत ज़्यादा मिलता है, जो माध्य को माध्यिका से ऊपर खींचता है।",
@@ -122,7 +188,7 @@
     "hi": "एक ₹2,500 बाहरी मान जोड़ो: माध्य लगभग ₹75 उछलता है, माध्यिका मुश्किल से हिलती है।",
     "hinglish": "Ek ₹2,500 outlier jodo: mean lagbhag ₹75 uchhalta hai, median mushkil se hilta hai."
    },
-   "visual": "anim:outlier",
+   "visual": "compare:📊 Mean: jumps by about ₹75|📍 Median: barely moves",
    "narration": {
     "en": "Add one ₹2,500 outlier: the mean jumps by about ₹75, the median barely moves.",
     "hi": "एक ₹2,500 बाहरी मान जोड़ो: माध्य लगभग ₹75 उछलता है, माध्यिका मुश्किल से हिलती है।",

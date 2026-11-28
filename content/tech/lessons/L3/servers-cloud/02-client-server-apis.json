@@ -34,6 +34,77 @@
    "hinglish": "Authentication tokens, rate limits aur server ko client par kabhi bharosa kyun nahi karna chahiye, samjhao"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you open 'My marks' in the school app, and the same marks show on the website and on your parent's phone.",
+   "hi": "{{name}}, तुम स्कूल ऐप में 'मेरे अंक' खोलते हो, और वही अंक वेबसाइट और तुम्हारे माता-पिता के फ़ोन पर दिखते हैं।",
+   "hinglish": "{{name}}, tum school app mein 'My marks' kholte ho, aur wahi marks website aur tumhare parents ke phone par dikhte hain."
+  },
+  "question": {
+   "en": "How can many different apps ask one server for the same data, and how does the server know who may see what?",
+   "hi": "कई अलग ऐप एक सर्वर से वही डेटा कैसे माँग सकते हैं, और सर्वर कैसे जानता है कि कौन क्या देख सकता है?",
+   "hinglish": "Kai alag apps ek server se wahi data kaise maang sakte hain, aur server kaise jaanta hai ki kaun kya dekh sakta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A request arrives for GET /students/43/marks with a valid token belonging to student 42. What should the server do?",
+   "hi": "GET /students/43/marks का अनुरोध विद्यार्थी 42 के वैध टोकन के साथ आता है। सर्वर को क्या करना चाहिए?",
+   "hinglish": "GET /students/43/marks ki request student 42 ke valid token ke saath aati hai. Server ko kya karna chahiye?"
+  },
+  "options": [
+   {
+    "en": "Return the marks, because the token is valid",
+    "hi": "अंक लौटाओ, क्योंकि टोकन वैध है",
+    "hinglish": "Marks lautao, kyunki token valid hai"
+   },
+   {
+    "en": "Refuse with 403, because a valid login is not permission for that record",
+    "hi": "403 से मना करो, क्योंकि वैध लॉगिन उस रिकॉर्ड की अनुमति नहीं है",
+    "hinglish": "403 se mana karo, kyunki valid login us record ki permission nahi hai"
+   },
+   {
+    "en": "Return 200 with empty data",
+    "hi": "खाली डेटा के साथ 200 लौटाओ",
+    "hinglish": "Khali data ke saath 200 lautao"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "A token proves who is asking (authentication); the server must also check what they may see (authorisation) for that exact record, every time. Anyone can send any request, not just your app, so the server never trusts the client. Status codes tell the client what happened: 401 no or bad token, 403 not allowed, 404 not found.",
+   "hi": "टोकन साबित करता है कौन माँग रहा है (प्रमाणीकरण); सर्वर को उस ठीक रिकॉर्ड के लिए यह भी हर बार जाँचना है कि वह क्या देख सकता है (प्राधिकरण)। कोई भी कोई भी अनुरोध भेज सकता है, सिर्फ़ तुम्हारा ऐप नहीं, इसलिए सर्वर क्लाइंट पर भरोसा नहीं करता। स्टेटस कोड बताते हैं क्या हुआ: 401 टोकन नहीं या गलत, 403 अनुमति नहीं, 404 नहीं मिला।",
+   "hinglish": "Token sabit karta hai kaun maang raha hai (authentication); server ko us exact record ke liye yeh bhi har baar jaanchna hai ki woh kya dekh sakta hai (authorisation). Koi bhi koi bhi request bhej sakta hai, sirf tumhara app nahi, isliye server client par bharosa nahi karta. Status codes batate hain kya hua: 401 token nahi ya galat, 403 permission nahi, 404 nahi mila."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how an app gets your marks from a server and how the server decides you may see them.",
+   "hi": "घर पर किसी को समझाओ कि ऐप सर्वर से तुम्हारे अंक कैसे लेता है और सर्वर कैसे तय करता है कि तुम उन्हें देख सकते हो।",
+   "hinglish": "Ghar par kisi ko samjhao ki app server se tumhare marks kaise leta hai aur server kaise tay karta hai ki tum unhe dekh sakte ho."
+  },
+  "checklist": [
+   {
+    "en": "A request has a method, path, headers (including a token) and sometimes a JSON body; the response has a status and body.",
+    "hi": "अनुरोध में विधि, पथ, हेडर (टोकन सहित) और कभी-कभी JSON बॉडी होती है; उत्तर में स्टेटस और बॉडी।",
+    "hinglish": "Request mein method, path, headers (token sahit) aur kabhi-kabhi JSON body hoti hai; response mein status aur body."
+   },
+   {
+    "en": "A clean REST API uses nouns for resources, methods for actions and a version such as /v1/.",
+    "hi": "साफ़ REST API संसाधनों के लिए संज्ञाएँ, कार्यों के लिए विधियाँ और /v1/ जैसा संस्करण इस्तेमाल करती है।",
+    "hinglish": "Clean REST API resources ke liye nouns, actions ke liye methods aur /v1/ jaisa version use karti hai."
+   },
+   {
+    "en": "The server checks the token and permission for that exact record on every request: 401 or 403 otherwise.",
+    "hi": "सर्वर हर अनुरोध पर टोकन और उस ठीक रिकॉर्ड की अनुमति जाँचता है: वरना 401 या 403।",
+    "hinglish": "Server har request par token aur us exact record ki permission jaanchta hai: warna 401 ya 403."
+   },
+   {
+    "en": "Never trust the client; rate limits and safe database queries protect the API, and one API can serve many apps.",
+    "hi": "क्लाइंट पर भरोसा न करो; दर सीमाएँ और सुरक्षित क्वेरी API बचाती हैं, और एक API कई ऐप चला सकती है।",
+    "hinglish": "Client par bharosa na karo; rate limits aur safe queries API bachati hain, aur ek API kai apps chala sakti hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Client",
@@ -74,7 +145,7 @@
     "hi": "आपका स्कूल ऐप एक क्लाइंट है। \"मेरे अंक\" खोलने पर वह स्कूल सर्वर को GET /api/v1/marks?term=1 भेजता है — एक एपीआई एंडपॉइंट।",
     "hinglish": "Tumhara school app ek client hai. \"My marks\" kholne par woh school server ko GET /api/v1/marks?term=1 bhejta hai — ek API endpoint."
    },
-   "visual": "anim:api-request",
+   "visual": "flow:📱 School app|📨 GET /api/v1/marks|🖥️ School server|📋 JSON reply",
    "narration": {
     "en": "Your school app is a client. When you open \"My marks\" it sends GET /api/v1/marks?term=1 to the school server — an API endpoint.",
     "hi": "आपका स्कूल ऐप एक क्लाइंट है। \"मेरे अंक\" खोलने पर वह स्कूल सर्वर को GET /api/v1/marks?term=1 भेजता है — एक एपीआई एंडपॉइंट।",
@@ -88,7 +159,7 @@
     "hi": "अनुरोध Authorization हेडर में टोकन लेकर जाता है। टोकन नहीं या नक़ली? सर्वर 401 Unauthorized जवाब देता है।",
     "hinglish": "Request Authorization header mein token le kar jaata hai. Token nahi ya nakli? Server 401 Unauthorized jawab deta hai."
    },
-   "visual": "anim:token-check",
+   "visual": "flow:📨 Request with a token|🛡️ Server checks the token|✅ Valid, or 401 Unauthorized",
    "narration": {
     "en": "The request carries a token in the Authorization header. No token or a fake one? The server answers 401 Unauthorized.",
     "hi": "अनुरोध Authorization हेडर में टोकन लेकर जाता है। टोकन नहीं या नक़ली? सर्वर 401 Unauthorized जवाब देता है।",
@@ -102,7 +173,7 @@
     "hi": "सही टोकन के साथ सर्वर जाँचता है कि छात्र ये अंक देख सकता है, डेटाबेस से सुरक्षित पूछता है और JSON के साथ 200 OK लौटाता है।",
     "hinglish": "Sahi token ke saath server check karta hai ki student ye marks dekh sakta hai, database se safely poochta hai aur JSON ke saath 200 OK lautata hai."
    },
-   "visual": "anim:json-reply",
+   "visual": "flow:🛡️ May this student see these?|🗄️ Safe database query|📦 JSON reply",
    "narration": {
     "en": "With a valid token, the server checks the student may see these marks, queries the database safely and replies 200 OK with JSON.",
     "hi": "सही टोकन के साथ सर्वर जाँचता है कि छात्र ये अंक देख सकता है, डेटाबेस से सुरक्षित पूछता है और JSON के साथ 200 OK लौटाता है।",

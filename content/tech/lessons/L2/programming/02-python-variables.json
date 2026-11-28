@@ -38,6 +38,77 @@
    "hinglish": "Line by line variable kaise badalta hai predict kar sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, in a cricket game the score shows 45 and then changes to 49 after a boundary.",
+   "hi": "{{name}}, एक क्रिकेट गेम में स्कोर 45 दिखता है और चौके के बाद 49 हो जाता है।",
+   "hinglish": "{{name}}, ek cricket game mein score 45 dikhta hai aur boundary ke baad 49 ho jaata hai."
+  },
+  "question": {
+   "en": "Where does the program keep that number, and how does it change it?",
+   "hi": "प्रोग्राम वह संख्या कहाँ रखता है, और उसे कैसे बदलता है?",
+   "hinglish": "Program woh number kahan rakhta hai, aur use kaise badalta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "In Python, age = 12 then age = age + 1. What is age now?",
+   "hi": "Python में age = 12 फिर age = age + 1। अब age क्या है?",
+   "hinglish": "Python mein age = 12 phir age = age + 1. Ab age kya hai?"
+  },
+  "options": [
+   {
+    "en": "12, since the first value stays",
+    "hi": "12, क्योंकि पहला मान बना रहता है",
+    "hinglish": "12, kyunki pehla value bana rehta hai"
+   },
+   {
+    "en": "13, because the right side is worked out first and then stored back",
+    "hi": "13, क्योंकि पहले दायाँ भाग निकलता है फिर वापस रखा जाता है",
+    "hinglish": "13, kyunki pehle right side nikalta hai phir wapas store hota hai"
+   },
+   {
+    "en": "An error, since age cannot equal age + 1",
+    "hi": "त्रुटि, क्योंकि age, age + 1 के बराबर नहीं हो सकता",
+    "hinglish": "Error, kyunki age, age + 1 ke barabar nahi ho sakta"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "In Python = means store, not \"is equal to\". Python works out age + 1 = 13 first and stores it in age, replacing the old value. Comparing for equality uses == instead.",
+   "hi": "Python में = का मतलब रखना है, \"बराबर है\" नहीं। Python पहले age + 1 = 13 निकालता है और उसे age में रख देता है, पुराना मान बदल जाता है। बराबरी की जाँच के लिए == होता है।",
+   "hinglish": "Python mein = ka matlab store karna hai, \"barabar hai\" nahi. Python pehle age + 1 = 13 nikalta hai aur use age mein rakh deta hai, purana value badal jaata hai. Barabari check karne ke liye == hota hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend what a variable is and why types matter in Python.",
+   "hi": "किसी दोस्त को समझाओ कि Python में वेरिएबल क्या है और टाइप क्यों मायने रखते हैं।",
+   "hinglish": "Kisi dost ko samjhao ki Python mein variable kya hai aur types kyun matter karte hain."
+  },
+  "checklist": [
+   {
+    "en": "A variable is a named box holding a value, and = stores into it.",
+    "hi": "वेरिएबल नाम वाला डिब्बा है जिसमें मान रहता है, और = उसमें रखता है।",
+    "hinglish": "Variable naam wala box hai jisme value rehti hai, aur = usme rakhta hai."
+   },
+   {
+    "en": "The right side is worked out first, then the old value is replaced.",
+    "hi": "पहले दायाँ भाग निकलता है, फिर पुराना मान बदलता है।",
+    "hinglish": "Pehle right side nikalta hai, phir purana value badalta hai."
+   },
+   {
+    "en": "int, float, str and bool behave differently: \"5\" + \"5\" is \"55\".",
+    "hi": "int, float, str और bool अलग व्यवहार करते हैं: \"5\" + \"5\" होता है \"55\"।",
+    "hinglish": "int, float, str aur bool alag behave karte hain: \"5\" + \"5\" hota hai \"55\"."
+   },
+   {
+    "en": "Python runs line by line from the top.",
+    "hi": "Python ऊपर से एक-एक पंक्ति चलाता है।",
+    "hinglish": "Python upar se ek-ek line chalata hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Variable",

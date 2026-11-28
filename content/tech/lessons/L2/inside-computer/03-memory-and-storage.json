@@ -38,6 +38,77 @@
    "hinglish": "Memory hierarchy samjha sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your phone is full of photos, yet it runs slowly when you open five apps at once.",
+   "hi": "{{name}}, तुम्हारा फ़ोन फ़ोटो से भरा है, फिर भी पाँच ऐप एक साथ खोलने पर धीमा हो जाता है।",
+   "hinglish": "{{name}}, tumhara phone photos se bhara hai, phir bhi paanch apps ek saath kholne par slow ho jaata hai."
+  },
+  "question": {
+   "en": "Is that because storage is full, or because something else is full?",
+   "hi": "क्या ऐसा स्टोरेज भरने से होता है, या कुछ और भर जाता है?",
+   "hinglish": "Kya aisa storage bharne se hota hai, ya kuch aur bhar jaata hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A phone has 128 GB storage and 6 GB RAM. You open many apps and it slows down. Which is running short?",
+   "hi": "एक फ़ोन में 128 GB स्टोरेज और 6 GB RAM है। तुमने कई ऐप खोले और वह धीमा हो गया। क्या कम पड़ रहा है?",
+   "hinglish": "Ek phone mein 128 GB storage aur 6 GB RAM hai. Tumne kai apps khole aur woh slow ho gaya. Kya kam pad raha hai?"
+  },
+  "options": [
+   {
+    "en": "Storage, because open apps are stored files",
+    "hi": "स्टोरेज, क्योंकि खुले ऐप स्टोर की फ़ाइलें हैं",
+    "hinglish": "Storage, kyunki khule apps stored files hain"
+   },
+   {
+    "en": "The battery",
+    "hi": "बैटरी",
+    "hinglish": "Battery"
+   },
+   {
+    "en": "RAM, because open apps need working memory",
+    "hi": "RAM, क्योंकि खुले ऐप को काम की मेमोरी चाहिए",
+    "hinglish": "RAM, kyunki khule apps ko working memory chahiye"
+   },
+   {
+    "en": "The screen",
+    "hi": "स्क्रीन",
+    "hinglish": "Screen"
+   }
+  ],
+  "answer": 2,
+  "explain": {
+   "en": "Apps you are using are loaded into RAM, the fast working memory. When RAM runs short, the phone closes or swaps apps, which feels slow. Storage only keeps files; its size does not change how many apps can run at once.",
+   "hi": "जो ऐप चल रहे हैं वे RAM में लोड होते हैं, जो तेज़ काम की मेमोरी है। RAM कम पड़ने पर फ़ोन ऐप बंद करता है या उन्हें स्टोरेज में हटाता है, जिससे धीमापन लगता है। स्टोरेज सिर्फ़ फ़ाइलें रखता है; उसका आकार तय नहीं करता कि कितने ऐप साथ चलें।",
+   "hinglish": "Jo apps chal rahe hain woh RAM mein load hote hain, jo fast working memory hai. RAM kam padne par phone apps band karta hai ya unhe storage mein hata deta hai, jisse slow lagta hai. Storage sirf files rakhta hai; uska size tay nahi karta ki kitne apps saath chalein."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend the difference between RAM and storage.",
+   "hi": "किसी दोस्त को RAM और स्टोरेज का फ़र्क समझाओ।",
+   "hinglish": "Kisi dost ko RAM aur storage ka fark samjhao."
+  },
+  "checklist": [
+   {
+    "en": "RAM is fast working memory for what is open now, and it is emptied when power goes.",
+    "hi": "RAM अभी खुले काम की तेज़ मेमोरी है, और बिजली जाते ही ख़ाली हो जाती है।",
+    "hinglish": "RAM abhi khule kaam ki fast memory hai, aur bijli jaate hi khaali ho jaati hai."
+   },
+   {
+    "en": "Storage (SSD or flash) is slower but keeps files with no power.",
+    "hi": "स्टोरेज (SSD या फ़्लैश) धीमा है पर बिना बिजली फ़ाइलें रखता है।",
+    "hinglish": "Storage (SSD ya flash) slow hai par bina bijli files rakhta hai."
+   },
+   {
+    "en": "Computers use a little fast memory and a lot of slow memory, because fast memory costs more per GB.",
+    "hi": "कंप्यूटर थोड़ी तेज़ और ज़्यादा धीमी मेमोरी रखते हैं, क्योंकि तेज़ मेमोरी प्रति GB महँगी होती है।",
+    "hinglish": "Computers thodi fast aur zyada slow memory rakhte hain, kyunki fast memory per GB mahngi hoti hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "RAM",
@@ -92,7 +163,7 @@
     "hi": "बंद करो तो मेज़ साफ़ (RAM अस्थायी)। अलमारी सब रखती है (स्टोरेज स्थायी)।",
     "hinglish": "Switch off karo to desk saaf (RAM volatile). Almirah sab rakhti hai (storage non-volatile)."
    },
-   "visual": "icon:🔌",
+   "visual": "compare:🖥️ RAM: wiped when power is off|💾 Storage: kept when power is off",
    "narration": {
     "en": "That is why you save your work before closing an app.",
     "hi": "इसीलिए ऐप बंद करने से पहले काम सहेजते हो।",
