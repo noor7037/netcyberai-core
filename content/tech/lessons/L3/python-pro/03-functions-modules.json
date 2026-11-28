@@ -34,6 +34,77 @@
    "hinglish": "Standard library aur apni files se modules import karo"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, every shop bill you write needs GST added, and you do not want to retype the same steps for each bill.",
+   "hi": "{{name}}, तुम्हारे लिखे हर दुकान के बिल में GST जोड़ना है, और तुम हर बिल के लिए वही कदम दोबारा नहीं लिखना चाहते।",
+   "hinglish": "{{name}}, tumhare likhe har dukaan ke bill mein GST jodna hai, aur tum har bill ke liye wahi steps dobara nahi likhna chahte."
+  },
+  "question": {
+   "en": "How does a function package those steps, and where do its variables live while it runs?",
+   "hi": "फ़ंक्शन उन कदमों को कैसे पैक करता है, और चलते समय उसके वेरिएबल कहाँ रहते हैं?",
+   "hinglish": "Function un steps ko kaise pack karta hai, aur chalte waqt uske variables kahan rehte hain?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A function sets tax = 10 inside itself. After it returns, can the code that called it print tax?",
+   "hi": "एक फ़ंक्शन अपने अंदर tax = 10 सेट करता है। लौटने के बाद, उसे बुलाने वाला कोड tax छाप सकता है?",
+   "hinglish": "Ek function apne andar tax = 10 set karta hai. Lautne ke baad, use bulane wala code tax print kar sakta hai?"
+  },
+  "options": [
+   {
+    "en": "Yes, tax stays in memory for the whole program",
+    "hi": "हाँ, tax पूरे प्रोग्राम में मेमोरी में रहता है",
+    "hinglish": "Haan, tax poore program mein memory mein rehta hai"
+   },
+   {
+    "en": "No, tax was local to the call and disappeared when the call's frame was removed",
+    "hi": "नहीं, tax उस कॉल के लिए स्थानीय था और कॉल का फ़्रेम हटते ही गायब हो गया",
+    "hinglish": "Nahi, tax us call ke liye local tha aur call ka frame hatte hi gayab ho gaya"
+   },
+   {
+    "en": "Yes, but only if the function is called twice",
+    "hi": "हाँ, पर सिर्फ़ तब जब फ़ंक्शन दो बार बुलाया जाए",
+    "hinglish": "Haan, par sirf tab jab function do baar bulaya jaye"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Each call gets its own frame on the call stack holding local variables. When the function returns, the frame is removed, so its locals are gone. That is local scope: it keeps functions from silently changing each other's variables, which is why returning a value is the right way to pass a result out.",
+   "hi": "हर कॉल को कॉल स्टैक पर अपना फ़्रेम मिलता है जिसमें स्थानीय वेरिएबल होते हैं। फ़ंक्शन लौटता है तो फ़्रेम हट जाता है, इसलिए उसके स्थानीय वेरिएबल चले जाते हैं। यही स्थानीय दायरा है: यह फ़ंक्शनों को चुपचाप एक-दूसरे के वेरिएबल बदलने से रोकता है, इसीलिए नतीजा बाहर देने का सही तरीका मान लौटाना है।",
+   "hinglish": "Har call ko call stack par apna frame milta hai jisme local variables hote hain. Function lautta hai toh frame hat jaata hai, isliye uske locals chale jaate hain. Yahi local scope hai: yeh functions ko chupchaap ek-doosre ke variables badalne se rokta hai, isiliye result bahar dene ka sahi tareeka value return karna hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home what happens in memory when a function is called and when it returns.",
+   "hi": "घर पर किसी को समझाओ कि फ़ंक्शन बुलाए जाने और लौटने पर मेमोरी में क्या होता है।",
+   "hinglish": "Ghar par kisi ko samjhao ki function bulaye jaane aur lautne par memory mein kya hota hai."
+  },
+  "checklist": [
+   {
+    "en": "def only defines; nothing runs until the function is called.",
+    "hi": "def सिर्फ़ परिभाषित करता है; फ़ंक्शन बुलाए जाने तक कुछ नहीं चलता।",
+    "hinglish": "def sirf define karta hai; function bulaye jaane tak kuch nahi chalta."
+   },
+   {
+    "en": "Each call gets its own frame for parameters and locals.",
+    "hi": "हर कॉल को पैरामीटर और स्थानीय वेरिएबल के लिए अपना फ़्रेम मिलता है।",
+    "hinglish": "Har call ko parameters aur locals ke liye apna frame milta hai."
+   },
+   {
+    "en": "return sends the result back and the frame disappears, so locals are gone.",
+    "hi": "return नतीजा लौटाता है और फ़्रेम गायब हो जाता है, इसलिए स्थानीय वेरिएबल चले जाते हैं।",
+    "hinglish": "return result lautata hai aur frame gayab ho jaata hai, isliye locals chale jaate hain."
+   },
+   {
+    "en": "Good functions do one job and return a value; modules let you reuse them with import.",
+    "hi": "अच्छे फ़ंक्शन एक काम करते और मान लौटाते हैं; मॉड्यूल import से उन्हें दोबारा इस्तेमाल करने देते हैं।",
+    "hinglish": "Achhe functions ek kaam karte aur value return karte hain; modules import se unhe reuse karne dete hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Function",
@@ -88,7 +159,7 @@
     "hi": "हर कॉल को स्थानीय वेरिएबल price, rate, tax वाला अपना फ़्रेम मिलता है।",
     "hinglish": "Har call ko local variables price, rate, tax wala apna frame milta hai."
    },
-   "visual": "anim:frame-stack",
+   "visual": "stack:with_gst frame: price, rate, tax|Main program frame",
    "narration": {
     "en": "Each call gets its own frame with local variables: price, rate, tax.",
     "hi": "हर कॉल को स्थानीय वेरिएबल price, rate, tax वाला अपना फ़्रेम मिलता है।",
@@ -102,7 +173,7 @@
     "hi": "return 210.0 वापस भेजता है; फ़्रेम ग़ायब, तो tax भी गया।",
     "hinglish": "return 210.0 wapas bhejta hai; frame gayab, to tax bhi gaya."
    },
-   "visual": "anim:return-arrow",
+   "visual": "flow:📞 Call with_gst(200)|🧮 Frame computes tax|↩️ return 210.0|🗑️ Frame is removed",
    "narration": {
     "en": "return sends 210.0 back; the frame disappears, so tax is gone.",
     "hi": "return 210.0 वापस भेजता है; फ़्रेम ग़ायब, तो tax भी गया।",

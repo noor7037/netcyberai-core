@@ -37,6 +37,82 @@
    "hinglish": "SUM, AVERAGE, MAX aur MIN wale formulas likh sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, every morning your class teacher ticks names in the attendance register, and the school office also notes the day's temperature.",
+   "hi": "{{name}}, हर सुबह तुम्हारे क्लास टीचर अटेंडेंस रजिस्टर में नाम पर टिक लगाते हैं, और स्कूल ऑफ़िस उस दिन का तापमान भी लिख लेता है।",
+   "hinglish": "{{name}}, har subah tumhare class teacher attendance register mein naam par tick lagate hain, aur school office us din ka temperature bhi likh leta hai."
+  },
+  "question": {
+   "en": "Are these just scribbles, or something a computer can use? Where does a school get such facts from?",
+   "hi": "क्या ये बस लिखावट है, या कुछ ऐसा जिसे कंप्यूटर इस्तेमाल कर सके? स्कूल ऐसे तथ्य कहाँ से लाता है?",
+   "hinglish": "Kya ye bas likhawat hai, ya kuch aisa jise computer use kar sake? School aise facts kahan se laata hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A spreadsheet holds the marks of 30 students. Where do one student's roll number, name and maths marks sit?",
+   "hi": "एक स्प्रेडशीट में 30 बच्चों के अंक हैं। एक बच्चे का रोल नंबर, नाम और गणित के अंक कहाँ रहते हैं?",
+   "hinglish": "Ek spreadsheet mein 30 bachchon ke marks hain. Ek bachche ka roll number, naam aur maths marks kahan rehte hain?"
+  },
+  "options": [
+   {
+    "en": "All in one row",
+    "hi": "सब एक ही पंक्ति (row) में",
+    "hinglish": "Sab ek hi row mein"
+   },
+   {
+    "en": "All in one column",
+    "hi": "सब एक ही कॉलम में",
+    "hinglish": "Sab ek hi column mein"
+   },
+   {
+    "en": "In one single cell, separated by commas",
+    "hi": "एक ही सेल में, कॉमा से अलग करके",
+    "hinglish": "Ek hi cell mein, comma se alag karke"
+   },
+   {
+    "en": "Each in a different sheet",
+    "hi": "हर एक अलग शीट में",
+    "hinglish": "Har ek alag sheet mein"
+   }
+  ],
+  "answer": 0,
+  "explain": {
+   "en": "A table puts one record (one student) in a row and one kind of fact (marks, name, roll number) in a column. That is why you can add up a whole column of marks in one formula.",
+   "hi": "टेबल में एक रिकॉर्ड (एक बच्चा) एक पंक्ति में होता है और एक तरह का तथ्य (अंक, नाम, रोल नंबर) एक कॉलम में। इसीलिए अंकों के पूरे कॉलम को एक फ़ॉर्मूले से जोड़ा जा सकता है।",
+   "hinglish": "Table mein ek record (ek bachcha) ek row mein hota hai aur ek tarah ka fact (marks, naam, roll number) ek column mein. Isiliye marks ke poore column ko ek formula se jod sakte hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home what data is and how a spreadsheet keeps it.",
+   "hi": "घर पर किसी को समझाओ कि डेटा क्या है और स्प्रेडशीट उसे कैसे रखती है।",
+   "hinglish": "Ghar par kisi ko samjhao ki data kya hai aur spreadsheet use kaise rakhti hai."
+  },
+  "checklist": [
+   {
+    "en": "Data is recorded facts, collected by surveys, observation, measurement or records.",
+    "hi": "डेटा दर्ज किए हुए तथ्य हैं, जो सर्वे, निरीक्षण, माप या रिकॉर्ड से इकट्ठे होते हैं।",
+    "hinglish": "Data recorded facts hain, jo survey, observation, measurement ya records se ikatthe hote hain."
+   },
+   {
+    "en": "One row is one record and one column is one kind of fact.",
+    "hi": "एक पंक्ति एक रिकॉर्ड है और एक कॉलम एक तरह का तथ्य।",
+    "hinglish": "Ek row ek record hai aur ek column ek tarah ka fact."
+   },
+   {
+    "en": "A cell address is column letter plus row number, like B3.",
+    "hi": "सेल का पता कॉलम का अक्षर और पंक्ति की संख्या है, जैसे B3।",
+    "hinglish": "Cell ka address column ka letter aur row number hai, jaise B3."
+   },
+   {
+    "en": "A formula starts with = and updates when the numbers it uses change.",
+    "hi": "फ़ॉर्मूला = से शुरू होता है और उसके नंबर बदलते ही अपने आप अपडेट हो जाता है।",
+    "hinglish": "Formula = se shuru hota hai aur uske numbers badalte hi apne aap update ho jaata hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Data",

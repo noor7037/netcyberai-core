@@ -157,6 +157,12 @@ export function forChild<T>(lesson: T): T {
     delete question.answer;
     delete question.explain;
   }
+  // C557: the prediction's answer and explanation come from the server once the child has chosen.
+  const predict = (copy as { predict?: { answer?: unknown; explain?: unknown } }).predict;
+  if (predict) {
+    delete predict.answer;
+    delete predict.explain;
+  }
   return copy;
 }
 

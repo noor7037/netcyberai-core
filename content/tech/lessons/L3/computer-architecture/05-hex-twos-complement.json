@@ -34,6 +34,82 @@
    "hinglish": "Overflow aur number range limited kyun hai, samjhao"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, the colour #00C2B8 on a website and the address 0x7FFE in an error message both use letters inside numbers.",
+   "hi": "{{name}}, किसी वेबसाइट का रंग #00C2B8 और एरर संदेश में पता 0x7FFE, दोनों में संख्या के अंदर अक्षर हैं।",
+   "hinglish": "{{name}}, kisi website ka colour #00C2B8 aur error message mein address 0x7FFE, dono mein numbers ke andar letters hain."
+  },
+  "question": {
+   "en": "What number system is this, and how does a computer, which only has 0 and 1, store a negative number like -5?",
+   "hi": "यह कौन-सी संख्या प्रणाली है, और सिर्फ़ 0 और 1 वाला कंप्यूटर -5 जैसी ऋणात्मक संख्या कैसे रखता है?",
+   "hinglish": "Yeh kaunsa number system hai, aur sirf 0 aur 1 wala computer -5 jaisa negative number kaise rakhta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "An 8-bit signed number holds 127 and the program adds 1. What is the most likely result?",
+   "hi": "एक 8-बिट साइन वाली संख्या में 127 है और प्रोग्राम उसमें 1 जोड़ता है। सबसे संभावित नतीजा क्या है?",
+   "hinglish": "Ek 8-bit signed number mein 127 hai aur program usme 1 jodta hai. Sabse likely result kya hai?"
+  },
+  "options": [
+   {
+    "en": "128",
+    "hi": "128",
+    "hinglish": "128"
+   },
+   {
+    "en": "It wraps around to -128",
+    "hi": "यह घूमकर -128 हो जाता है",
+    "hinglish": "Yeh ghoomkar -128 ho jaata hai"
+   },
+   {
+    "en": "The computer rounds it to 0",
+    "hi": "कंप्यूटर इसे 0 कर देता है",
+    "hinglish": "Computer ise 0 kar deta hai"
+   },
+   {
+    "en": "The computer always stops with a warning",
+    "hi": "कंप्यूटर हमेशा चेतावनी देकर रुक जाता है",
+    "hinglish": "Computer hamesha warning dekar ruk jaata hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Eight bits have only 256 patterns. In two's complement the top bit has weight -128, so 0111 1111 (127) plus 1 becomes 1000 0000, which is -128. The hardware just adds bits; it does not check for overflow unless the program or language does.",
+   "hi": "आठ बिट के सिर्फ़ 256 पैटर्न होते हैं। टू'ज़ कॉम्प्लिमेंट में ऊपरी बिट का भार -128 होता है, इसलिए 0111 1111 (127) में 1 जोड़ने पर 1000 0000 बनता है, यानी -128। हार्डवेयर बस बिट जोड़ता है; ओवरफ़्लो तब तक नहीं जाँचता जब तक प्रोग्राम या भाषा न जाँचे।",
+   "hinglish": "Eight bits ke sirf 256 patterns hote hain. Two's complement mein top bit ka weight -128 hota hai, isliye 0111 1111 (127) mein 1 jodne par 1000 0000 banta hai, yaani -128. Hardware bas bits jodta hai; overflow tab tak nahi jaanchta jab tak program ya language na jaanche."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a computer stores -5 and what overflow means.",
+   "hi": "घर पर किसी को समझाओ कि कंप्यूटर -5 कैसे रखता है और ओवरफ़्लो का क्या मतलब है।",
+   "hinglish": "Ghar par kisi ko samjhao ki computer -5 kaise rakhta hai aur overflow ka kya matlab hai."
+  },
+  "checklist": [
+   {
+    "en": "Bits have weights 128, 64, ..., 1; hex groups four bits into one digit, so 1100 1000 is C8.",
+    "hi": "बिट के भार 128, 64, ..., 1 हैं; हेक्स चार बिट को एक अंक में बाँधता है, इसलिए 1100 1000 यानी C8।",
+    "hinglish": "Bits ke weights 128, 64, ..., 1 hain; hex chaar bits ko ek digit mein baandhta hai, isliye 1100 1000 yaani C8."
+   },
+   {
+    "en": "In two's complement the top bit weighs -128, so 1111 1111 is -1.",
+    "hi": "टू'ज़ कॉम्प्लिमेंट में ऊपरी बिट का भार -128 है, इसलिए 1111 1111 का मतलब -1।",
+    "hinglish": "Two's complement mein top bit ka weight -128 hai, isliye 1111 1111 ka matlab -1."
+   },
+   {
+    "en": "To negate, flip all bits and add 1; then the same adder also subtracts.",
+    "hi": "ऋणात्मक करने के लिए सारे बिट पलटो और 1 जोड़ो; तब वही जोड़ने वाला सर्किट घटाना भी कर देता है।",
+    "hinglish": "Negate karne ke liye saare bits palto aur 1 jodo; tab wahi adder subtract bhi kar deta hai."
+   },
+   {
+    "en": "A fixed number of bits limits the range, so adding past the top wraps around (overflow).",
+    "hi": "बिट की तय संख्या दायरा सीमित करती है, इसलिए ऊपर से आगे जोड़ने पर संख्या घूम जाती है (ओवरफ़्लो)।",
+    "hinglish": "Bits ki fixed sankhya range limit karti hai, isliye top se aage jodne par number ghoom jaata hai (overflow)."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Bit / byte",
@@ -88,7 +164,7 @@
     "hi": "हेक्स बिट को चार-चार में बाँटता है: 1100 1000 = C8। #00C2B8 (हमारा फ़िरोज़ी) जैसे रंग और मेमोरी पते हेक्स में लिखे जाते हैं।",
     "hinglish": "Hex bits ko chaar-chaar mein baant-ta hai: 1100 1000 = C8. #00C2B8 (hamara turquoise) jaise colours aur memory addresses hex mein likhe jaate hain."
    },
-   "visual": "anim:hex-nibbles",
+   "visual": "flow:🔢 8 bits|✂️ Split into 4 + 4|🔤 Each half is a hex digit|✅ 1100 1000 = C8",
    "narration": {
     "en": "Hex groups bits in fours: 1100 1000 = C8. Colours like #00C2B8 (our turquoise) and memory addresses are written in hex.",
     "hi": "हेक्स बिट को चार-चार में बाँटता है: 1100 1000 = C8। #00C2B8 (हमारा फ़िरोज़ी) जैसे रंग और मेमोरी पते हेक्स में लिखे जाते हैं।",
@@ -116,7 +192,7 @@
     "hi": "ऋण करने के लिए: हर बिट पलटो, फिर 1 जोड़ो। 5 = 0000 0101 → 1111 1010 → 1111 1011 = −5। वही योजक अब घटाना भी करता है।",
     "hinglish": "Negate karne ke liye: har bit palto, phir 1 jodo. 5 = 0000 0101 → 1111 1010 → 1111 1011 = −5. Wahi adder ab subtraction bhi karta hai."
    },
-   "visual": "anim:negate-flip",
+   "visual": "flow:🔢 Start with 5|🔄 Flip every bit|➕ Add 1|➖ You get -5",
    "narration": {
     "en": "To negate: flip every bit, then add 1. 5 = 0000 0101 → 1111 1010 → 1111 1011 = −5. The same adder now does subtraction.",
     "hi": "ऋण करने के लिए: हर बिट पलटो, फिर 1 जोड़ो। 5 = 0000 0101 → 1111 1010 → 1111 1011 = −5। वही योजक अब घटाना भी करता है।",

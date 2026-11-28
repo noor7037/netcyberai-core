@@ -35,6 +35,77 @@
    "hinglish": "Digital signatures aur post-quantum cryptography ki taraf badlav batao"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you open your bank's website for the very first time and it still sets up a private, secret channel with you in a blink.",
+   "hi": "{{name}}, तुम पहली बार अपने बैंक की वेबसाइट खोलते हो और वह पलक झपकते ही तुम्हारे साथ एक निजी, गुप्त चैनल बना लेती है।",
+   "hinglish": "{{name}}, tum pehli baar apne bank ki website kholte ho aur woh palak jhapakte hi tumhare saath ek private, secret channel bana leti hai."
+  },
+  "question": {
+   "en": "How can two strangers agree on a secret key while everyone is listening?",
+   "hi": "दो अजनबी जब सब सुन रहे हों तब एक गुप्त कुंजी पर सहमत कैसे हो सकते हैं?",
+   "hinglish": "Do ajnabi jab sab sun rahe hon tab ek secret key par sehmat kaise ho sakte hain?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What is the private key in a public-private key pair used for?",
+   "hi": "सार्वजनिक-निजी कुंजी जोड़ी में निजी कुंजी किसलिए काम आती है?",
+   "hinglish": "Public-private key pair mein private key kis liye kaam aati hai?"
+  },
+  "options": [
+   {
+    "en": "It is posted publicly so anyone can lock a message",
+    "hi": "यह सार्वजनिक की जाती है ताकि कोई भी संदेश पर ताला लगा सके",
+    "hinglish": "Yeh public ki jaati hai taaki koi bhi message par lock laga sake"
+   },
+   {
+    "en": "It stays secret: it opens what the public key locked and creates signatures",
+    "hi": "यह गुप्त रहती है: जो सार्वजनिक कुंजी ने बंद किया उसे खोलती है और हस्ताक्षर बनाती है",
+    "hinglish": "Yeh secret rehti hai: jo public key ne lock kiya use kholti hai aur signatures banati hai"
+   },
+   {
+    "en": "It is the same as the public key",
+    "hi": "यह सार्वजनिक कुंजी जैसी ही है",
+    "hinglish": "Yeh public key jaisi hi hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "A public key is like an open padlock anyone can snap shut; only the private key opens it, so it never leaves its owner. The same pair makes signatures: sign with the private key, anyone verifies with the public key, and changing one byte makes verification fail. Public-key maths such as Diffie-Hellman lets two parties agree on a secret in public, and real systems use it to agree a fresh symmetric key and then encrypt with AES or ChaCha20.",
+   "hi": "सार्वजनिक कुंजी खुले ताले जैसी है जिसे कोई भी बंद कर सकता है; सिर्फ़ निजी कुंजी उसे खोलती है, इसलिए वह मालिक के पास ही रहती है। वही जोड़ी हस्ताक्षर बनाती है: निजी कुंजी से हस्ताक्षर, सार्वजनिक से कोई भी सत्यापन, और एक बाइट बदलते ही सत्यापन विफल। डिफ़ी-हेलमैन जैसा सार्वजनिक-कुंजी गणित दो पक्षों को खुले में गुप्त पर सहमत कराता है, और असली सिस्टम उससे नई सममित कुंजी तय करके AES या ChaCha20 से एन्क्रिप्ट करते हैं।",
+   "hinglish": "Public key khule padlock jaisi hai jise koi bhi band kar sakta hai; sirf private key use kholti hai, isliye woh owner ke paas hi rehti hai. Wahi pair signatures banati hai: private key se sign, public se koi bhi verify, aur ek byte badalte hi verification fail. Diffie-Hellman jaisa public-key maths do parties ko khule mein secret par sehmat karata hai, aur real systems usse nayi symmetric key tay karke AES ya ChaCha20 se encrypt karte hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a public and private key work together, and how two people can agree on a secret in public.",
+   "hi": "घर पर किसी को समझाओ कि सार्वजनिक और निजी कुंजी साथ कैसे काम करती हैं, और दो लोग खुले में गुप्त पर कैसे सहमत हो सकते हैं।",
+   "hinglish": "Ghar par kisi ko samjhao ki public aur private key saath kaise kaam karti hain, aur do log khule mein secret par kaise sehmat ho sakte hain."
+  },
+  "checklist": [
+   {
+    "en": "Public key: open padlock anyone can use; private key: kept secret, opens it.",
+    "hi": "सार्वजनिक कुंजी: खुला ताला जिसे कोई भी इस्तेमाल करे; निजी कुंजी: गुप्त, खोलने वाली।",
+    "hinglish": "Public key: khula padlock jise koi bhi use kare; private key: secret, kholne wali."
+   },
+   {
+    "en": "Diffie-Hellman lets two parties mix public and private values to reach the same secret.",
+    "hi": "डिफ़ी-हेलमैन दो पक्षों को सार्वजनिक और निजी मान मिलाकर वही गुप्त पाने देता है।",
+    "hinglish": "Diffie-Hellman do parties ko public aur private values milakar wahi secret paane deta hai."
+   },
+   {
+    "en": "RSA relies on factoring being hard; signatures use the private key and are checked with the public key.",
+    "hi": "RSA इस पर टिका है कि गुणनखंड मुश्किल है; हस्ताक्षर निजी कुंजी से बनते और सार्वजनिक से जाँचे जाते हैं।",
+    "hinglish": "RSA is par tika hai ki factoring mushkil hai; signatures private key se bante aur public se jaanche jaate hain."
+   },
+   {
+    "en": "Real protocols are hybrid: key exchange, then fast symmetric encryption; post-quantum methods are being adopted.",
+    "hi": "असली प्रोटोकॉल मिश्रित हैं: कुंजी विनिमय, फिर तेज़ सममित एन्क्रिप्शन; क्वांटम-पश्चात तरीके अपनाए जा रहे हैं।",
+    "hinglish": "Real protocols hybrid hain: key exchange, phir fast symmetric encryption; post-quantum methods apnaye ja rahe hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Public key",
@@ -117,7 +188,7 @@
     "hi": "निजी कुंजी से हस्ताक्षर करो, कोई भी सार्वजनिक कुंजी से जाँचे। एक बाइट बदलो तो जाँच विफल।",
     "hinglish": "Private key se sign karo, koi bhi public key se verify kare. Ek byte badlo to verification fail."
    },
-   "visual": "anim:sign-verify",
+   "visual": "flow:✍️ Sign with the private key|📨 Send message and signature|🔍 Verify with the public key|✅ Valid, or tampered",
    "narration": {
     "en": "Sign with your private key, anyone verifies with your public key. Change one byte and verification fails.",
     "hi": "निजी कुंजी से हस्ताक्षर करो, कोई भी सार्वजनिक कुंजी से जाँचे। एक बाइट बदलो तो जाँच विफल।",

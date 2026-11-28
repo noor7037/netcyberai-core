@@ -35,6 +35,82 @@
    "hinglish": "n bits kitni values store kar sakte hain (2ⁿ) gin sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you send a 3 MB photo on WhatsApp and your data pack drops a little.",
+   "hi": "{{name}}, तुम WhatsApp पर 3 MB की फ़ोटो भेजते हो और तुम्हारा डेटा थोड़ा घट जाता है।",
+   "hinglish": "{{name}}, tum WhatsApp par 3 MB ki photo bhejte ho aur tumhara data thoda kam ho jaata hai."
+  },
+  "question": {
+   "en": "What is an MB, and what is a computer really counting?",
+   "hi": "MB क्या है, और कंप्यूटर असल में क्या गिन रहा है?",
+   "hinglish": "MB kya hai, aur computer asal mein kya gin raha hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "How many different values can 3 bits store?",
+   "hi": "3 बिट कितने अलग-अलग मान रख सकते हैं?",
+   "hinglish": "3 bits kitne alag-alag values store kar sakte hain?"
+  },
+  "options": [
+   {
+    "en": "3",
+    "hi": "3",
+    "hinglish": "3"
+   },
+   {
+    "en": "6",
+    "hi": "6",
+    "hinglish": "6"
+   },
+   {
+    "en": "8",
+    "hi": "8",
+    "hinglish": "8"
+   },
+   {
+    "en": "9",
+    "hi": "9",
+    "hinglish": "9"
+   }
+  ],
+  "answer": 2,
+  "explain": {
+   "en": "Each extra bit doubles the possibilities: 1 bit gives 2, 2 bits give 4, 3 bits give 8. So n bits store 2ⁿ values, and 8 bits (one byte) store 256.",
+   "hi": "हर अतिरिक्त बिट संभावनाएँ दोगुनी कर देता है: 1 बिट से 2, 2 बिट से 4, 3 बिट से 8। इसलिए n बिट 2ⁿ मान रखते हैं, और 8 बिट (एक बाइट) 256।",
+   "hinglish": "Har extra bit possibilities double kar deta hai: 1 bit se 2, 2 bits se 4, 3 bits se 8. Isliye n bits 2ⁿ values store karte hain, aur 8 bits (ek byte) 256."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home what a bit and a byte are and why computers use only 0 and 1.",
+   "hi": "घर पर किसी को समझाओ कि बिट और बाइट क्या हैं और कंप्यूटर सिर्फ़ 0 और 1 क्यों इस्तेमाल करते हैं।",
+   "hinglish": "Ghar par kisi ko samjhao ki bit aur byte kya hain aur computer sirf 0 aur 1 kyun use karte hain."
+  },
+  "checklist": [
+   {
+    "en": "A bit is one switch, off (0) or on (1); 8 bits make a byte.",
+    "hi": "बिट एक स्विच है, बंद (0) या चालू (1); 8 बिट एक बाइट बनाते हैं।",
+    "hinglish": "Bit ek switch hai, off (0) ya on (1); 8 bits ek byte banate hain."
+   },
+   {
+    "en": "Two clear electrical states are hard to confuse, even with some noise.",
+    "hi": "दो साफ़ विद्युत अवस्थाओं को शोर में भी आसानी से गड़बड़ाया नहीं जा सकता।",
+    "hinglish": "Do clear electrical states noise mein bhi aasani se confuse nahi hote."
+   },
+   {
+    "en": "Each extra bit doubles the values: n bits store 2ⁿ.",
+    "hi": "हर अतिरिक्त बिट मान दोगुने करता है: n बिट 2ⁿ रखते हैं।",
+    "hinglish": "Har extra bit values double karta hai: n bits 2ⁿ rakhte hain."
+   },
+   {
+    "en": "KB, MB, GB and TB are steps of about 1,000 bytes each.",
+    "hi": "KB, MB, GB, TB हर बार लगभग 1,000 गुना होते हैं।",
+    "hinglish": "KB, MB, GB, TB har baar lagbhag 1,000 guna hote hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Bit",
@@ -69,7 +145,7 @@
     "hi": "कंप्यूटर चिप में अरबों छोटे स्विच (ट्रांजिस्टर) होते हैं। हर एक या तो बंद (0) है या चालू (1)।",
     "hinglish": "Computer chip mein billions chhote switches (transistors) hote hain. Har ek ya to OFF (0) hai ya ON (1)."
    },
-   "visual": "icon:💡",
+   "visual": "compare:🔴 Switch OFF = 0|🟢 Switch ON = 1",
    "narration": {
     "en": "Think of a light switch. Off is zero, on is one. A computer is built from billions of such switches.",
     "hi": "बिजली के स्विच के बारे में सोचो। बंद यानी शून्य, चालू यानी एक। कंप्यूटर ऐसे अरबों स्विचों से बना है।",

@@ -36,6 +36,77 @@
    "hinglish": "India mein use hone wale robots bata sakte ho, factory se Moon tak"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a robot vacuum in your friend's house stops before a chair leg and turns away, while the ceiling fan above keeps spinning whoever walks in.",
+   "hi": "{{name}}, तुम्हारे दोस्त के घर में रोबोट वैक्यूम कुर्सी के पाए से पहले रुककर मुड़ जाता है, जबकि ऊपर का पंखा कोई भी आए, घूमता रहता है।",
+   "hinglish": "{{name}}, tumhare dost ke ghar mein robot vacuum chair ke paaye se pehle ruk kar mud jaata hai, jabki upar ka pankha koi bhi aaye, ghoomta rehta hai."
+  },
+  "question": {
+   "en": "Both machines move. So what extra does one of them have that makes it a robot?",
+   "hi": "दोनों मशीनें चलती हैं। तो उनमें से एक के पास ऐसा और क्या है जो उसे रोबोट बनाता है?",
+   "hinglish": "Dono machines chalti hain. To unmein se ek ke paas aisa aur kya hai jo use robot banata hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Which of these is a robot?",
+   "hi": "इनमें से कौन-सा रोबोट है?",
+   "hinglish": "Inmein se kaunsa robot hai?"
+  },
+  "options": [
+   {
+    "en": "A ceiling fan on a regulator",
+    "hi": "रेगुलेटर वाला छत का पंखा",
+    "hinglish": "Regulator wala ceiling fan"
+   },
+   {
+    "en": "A remote-controlled toy car that you steer",
+    "hi": "रिमोट से चलने वाली खिलौना कार जिसे तुम चलाते हो",
+    "hinglish": "Remote se chalne wali toy car jise tum chalate ho"
+   },
+   {
+    "en": "A robot vacuum that turns at walls",
+    "hi": "दीवार पर मुड़ने वाला रोबोट वैक्यूम",
+    "hinglish": "Deewar par mudne wala robot vacuum"
+   }
+  ],
+  "answer": 2,
+  "explain": {
+   "en": "A robot senses the world, decides with a program, and acts, again and again. The fan only acts, and in the toy car you do the sensing and deciding. The vacuum senses walls, decides and turns by itself.",
+   "hi": "रोबोट दुनिया को महसूस करता है, प्रोग्राम से फ़ैसला लेता है और काम करता है, बार-बार। पंखा सिर्फ़ चलता है, और खिलौना कार में महसूस करना और फ़ैसला तुम करते हो। वैक्यूम खुद दीवारें महसूस करता है, फ़ैसला लेता है और मुड़ता है।",
+   "hinglish": "Robot duniya ko sense karta hai, program se decide karta hai aur act karta hai, baar-baar. Pankha sirf chalta hai, aur toy car mein sense aur decide tum karte ho. Vacuum khud deewarein sense karta hai, decide karta hai aur mudta hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home what makes a machine a robot.",
+   "hi": "घर पर किसी को समझाओ कि कोई मशीन रोबोट कब कहलाती है।",
+   "hinglish": "Ghar par kisi ko samjhao ki koi machine robot kab kehlati hai."
+  },
+  "checklist": [
+   {
+    "en": "A robot senses, thinks (runs its program) and acts, and then senses again.",
+    "hi": "रोबोट महसूस करता है, सोचता (प्रोग्राम चलाता) है और काम करता है, फिर दोबारा महसूस करता है।",
+    "hinglish": "Robot sense karta hai, 'think' karta (program chalata) hai aur act karta hai, phir dobara sense karta hai."
+   },
+   {
+    "en": "A ceiling fan only acts, so it is not a robot.",
+    "hi": "छत का पंखा सिर्फ़ चलता है, इसलिए वह रोबोट नहीं है।",
+    "hinglish": "Ceiling fan sirf chalta hai, isliye woh robot nahi hai."
+   },
+   {
+    "en": "A robot vacuum senses walls, decides and turns, so it is one.",
+    "hi": "रोबोट वैक्यूम दीवारें महसूस करता है, फ़ैसला लेता है और मुड़ता है, इसलिए वह रोबोट है।",
+    "hinglish": "Robot vacuum deewarein sense karta hai, decide karta hai aur mudta hai, isliye woh robot hai."
+   },
+   {
+    "en": "Robots are used in India in many places, from factories upwards.",
+    "hi": "भारत में रोबोट कई जगह इस्तेमाल होते हैं, फ़ैक्टरियों से लेकर आगे तक।",
+    "hinglish": "Bharat mein robots kai jagah use hote hain, factories se lekar aage tak."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Robot",

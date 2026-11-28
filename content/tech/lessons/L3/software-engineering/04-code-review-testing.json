@@ -35,6 +35,77 @@
    "hinglish": "Madadgaar, vinamra code-review comments do"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your teammate changes one line in the school-fee calculator and the app still opens fine. Next week a parent is charged the wrong amount.",
+   "hi": "{{name}}, तुम्हारा साथी स्कूल-फ़ीस कैलकुलेटर की एक लाइन बदलता है और ऐप ठीक खुलता है। अगले हफ़्ते एक पैरेंट से ग़लत रक़म ले ली जाती है।",
+   "hinglish": "{{name}}, tumhara teammate school-fee calculator ki ek line badalta hai aur app theek khulta hai. Agle hafte ek parent se galat amount charge ho jaata hai."
+  },
+  "question": {
+   "en": "How can a team catch a bug like this before any parent sees it?",
+   "hi": "टीम ऐसी गड़बड़ी किसी पैरेंट के देखने से पहले कैसे पकड़ सकती है?",
+   "hinglish": "Team aisa bug kisi parent ke dekhne se pehle kaise pakad sakti hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Which test suite shape is healthiest for a project?",
+   "hi": "किसी प्रोजेक्ट के लिए टेस्ट का कौन-सा आकार सबसे सेहतमंद है?",
+   "hinglish": "Kisi project ke liye tests ka kaunsa shape sabse healthy hai?"
+  },
+  "options": [
+   {
+    "en": "Mostly slow end-to-end tests that click through the whole app",
+    "hi": "ज़्यादातर धीमे end-to-end टेस्ट जो पूरा ऐप क्लिक करते हैं",
+    "hinglish": "Zyada tar slow end-to-end tests jo poora app click karte hain"
+   },
+   {
+    "en": "Many fast unit tests, fewer integration tests, a few end-to-end tests",
+    "hi": "बहुत से तेज़ unit टेस्ट, कम integration टेस्ट, कुछ end-to-end टेस्ट",
+    "hinglish": "Bahut se fast unit tests, kam integration tests, kuch end-to-end tests"
+   },
+   {
+    "en": "No tests, just careful reading",
+    "hi": "कोई टेस्ट नहीं, बस ध्यान से पढ़ना",
+    "hinglish": "Koi test nahi, bas dhyan se padhna"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Unit tests are quick and pinpoint the broken function, so you can run thousands on every change. End-to-end tests are slow and fragile, so you keep only a few for the main user journeys.",
+   "hi": "Unit टेस्ट तेज़ हैं और टूटा फ़ंक्शन ठीक बताते हैं, इसलिए हर बदलाव पर हज़ारों चल सकते हैं। End-to-end टेस्ट धीमे और नाज़ुक होते हैं, इसलिए मुख्य यूज़र रास्तों के लिए बस कुछ रखते हैं।",
+   "hinglish": "Unit tests quick hote hain aur toota function sahi batate hain, isliye har change par hazaron chal sakte hain. End-to-end tests slow aur fragile hote hain, isliye main user journeys ke liye bas kuch rakhte hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a teammate how you would test a percentage function and how you would phrase a review comment on someone's code.",
+   "hi": "साथी को समझाओ कि प्रतिशत निकालने वाले फ़ंक्शन को कैसे टेस्ट करोगे और किसी के कोड पर रिव्यू कमेंट कैसे लिखोगे।",
+   "hinglish": "Teammate ko samjhao ki percentage function ko kaise test karoge aur kisi ke code par review comment kaise likhoge."
+  },
+  "checklist": [
+   {
+    "en": "Unit, integration and end-to-end tests form a pyramid: many fast ones at the bottom",
+    "hi": "unit, integration और end-to-end टेस्ट पिरामिड बनाते हैं: नीचे बहुत से तेज़ टेस्ट",
+    "hinglish": "Unit, integration aur end-to-end tests pyramid banate hain: neeche bahut se fast tests"
+   },
+   {
+    "en": "Good tests cover edges such as empty input, zero, 100% and negatives",
+    "hi": "अच्छे टेस्ट किनारे वाले मामले जाँचते हैं: ख़ाली इनपुट, शून्य, 100%, ऋणात्मक",
+    "hinglish": "Achhe tests edge cases check karte hain: empty input, zero, 100%, negatives"
+   },
+   {
+    "en": "A failing test is useful because it finds the bug before users do",
+    "hi": "फ़ेल होता टेस्ट काम का है क्योंकि वह यूज़र से पहले बग पकड़ता है",
+    "hinglish": "Failing test kaam ka hai kyunki woh users se pehle bug pakadta hai"
+   },
+   {
+    "en": "Review comments are specific, kind and about the code, with a suggestion",
+    "hi": "रिव्यू कमेंट ख़ास, दयालु, कोड के बारे में और सुझाव सहित हों",
+    "hinglish": "Review comments specific, kind, code ke baare mein aur suggestion ke saath hon"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Unit test",
@@ -103,7 +174,7 @@
     "hi": "विफल परीक्षण अच्छी ख़बर है: उसने उपयोगकर्ताओं से पहले बग पकड़ा।",
     "hinglish": "Failing test achhi khabar hai: usne users se pehle bug pakda."
    },
-   "visual": "anim:red-green",
+   "visual": "cycle:🔴 Test fails|🔧 Fix the code|🟢 Test passes",
    "narration": {
     "en": "A failing test is good news: it found the bug before users did.",
     "hi": "विफल परीक्षण अच्छी ख़बर है: उसने उपयोगकर्ताओं से पहले बग पकड़ा।",

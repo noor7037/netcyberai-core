@@ -36,6 +36,77 @@
    "hinglish": "Personal data leak kiye bina safely publish karo"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you want to apply for a summer coding programme and they ask for \"a link to your work\", but all your projects are in folders on your laptop.",
+   "hi": "{{name}}, तुम समर कोडिंग प्रोग्राम के लिए आवेदन करना चाहते हो और वे \"अपने काम का लिंक\" माँगते हैं, पर तुम्हारे सारे प्रोजेक्ट लैपटॉप के फ़ोल्डरों में हैं।",
+   "hinglish": "{{name}}, tum summer coding programme ke liye apply karna chahte ho aur woh \"apne kaam ka link\" maangte hain, par tumhare saare projects laptop ke folders mein hain."
+  },
+  "question": {
+   "en": "What should that link show so a stranger believes you can build things, and what must you never put in it?",
+   "hi": "उस लिंक में क्या दिखना चाहिए ताकि अजनबी माने कि तुम चीज़ें बना सकते हो, और उसमें क्या कभी नहीं डालना चाहिए?",
+   "hinglish": "Us link mein kya dikhna chahiye taaki ajnabi maane ki tum cheezein bana sakte ho, aur usme kya kabhi nahi daalna chahiye?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Which portfolio is more convincing to a reviewer?",
+   "hi": "समीक्षक के लिए कौन-सा पोर्टफ़ोलियो ज़्यादा विश्वसनीय है?",
+   "hinglish": "Reviewer ke liye kaunsa portfolio zyada convincing hai?"
+  },
+  "options": [
+   {
+    "en": "Thirty small half-finished projects",
+    "hi": "तीस छोटे अधूरे प्रोजेक्ट",
+    "hinglish": "Tees chhote half-finished projects"
+   },
+   {
+    "en": "Three finished projects, each with a clear README and a demo",
+    "hi": "तीन पूरे प्रोजेक्ट, हर एक में साफ़ README और डेमो",
+    "hinglish": "Teen finished projects, har ek mein clear README aur demo"
+   },
+   {
+    "en": "One project with no explanation",
+    "hi": "एक प्रोजेक्ट बिना किसी स्पष्टीकरण के",
+    "hinglish": "Ek project bina kisi explanation ke"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "A reviewer has only minutes, so a few finished projects with a README stating the problem, a demo, how to run it and what you learned prove more than many unfinished ones. Publish through GitHub and Pages, but never include your phone number, address, passwords or keys in the code.",
+   "hi": "समीक्षक के पास बस कुछ मिनट होते हैं, इसलिए समस्या बताने वाले README, डेमो, चलाने का तरीक़ा और सीख वाले कुछ पूरे प्रोजेक्ट बहुत सारे अधूरे प्रोजेक्टों से ज़्यादा साबित करते हैं। GitHub और Pages से प्रकाशित करो, पर कोड में अपना फ़ोन नंबर, पता, पासवर्ड या कुंजियाँ कभी मत डालो।",
+   "hinglish": "Reviewer ke paas bas kuch minute hote hain, isliye problem batane wale README, demo, chalane ka tareeka aur learning wale kuch finished projects bahut saare unfinished projects se zyada prove karte hain. GitHub aur Pages se publish karo, par code mein apna phone number, address, passwords ya keys kabhi mat daalo."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend how you would show three projects to a stranger and what you would keep private.",
+   "hi": "दोस्त को समझाओ कि तुम किसी अजनबी को तीन प्रोजेक्ट कैसे दिखाओगे और क्या निजी रखोगे।",
+   "hinglish": "Friend ko samjhao ki tum kisi ajnabi ko teen projects kaise dikhaoge aur kya private rakhoge."
+  },
+  "checklist": [
+   {
+    "en": "Three finished, well-presented projects beat many half-done ones",
+    "hi": "तीन पूरे, अच्छे ढंग से दिखाए प्रोजेक्ट कई अधूरों से बेहतर हैं",
+    "hinglish": "Teen finished, achhe se dikhaye projects kai half-done se behtar hain"
+   },
+   {
+    "en": "A README covers the problem, a demo, how to run it, what you learned and limits",
+    "hi": "README में समस्या, डेमो, चलाने का तरीक़ा, सीख और सीमाएँ हों",
+    "hinglish": "README mein problem, demo, chalane ka tareeka, learning aur limits hon"
+   },
+   {
+    "en": "GitHub plus Pages gives a free public site",
+    "hi": "GitHub और Pages मुफ़्त सार्वजनिक साइट देते हैं",
+    "hinglish": "GitHub aur Pages free public site dete hain"
+   },
+   {
+    "en": "Never publish phone numbers, addresses, passwords or keys",
+    "hi": "फ़ोन नंबर, पते, पासवर्ड या कुंजियाँ कभी प्रकाशित मत करो",
+    "hinglish": "Phone numbers, addresses, passwords ya keys kabhi publish mat karo"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Portfolio",
@@ -98,7 +169,7 @@
     "hi": "GitHub पर पुश करो और मुफ़्त https साइट के लिए Pages चालू करो।",
     "hinglish": "GitHub par push karo aur free https site ke liye Pages on karo."
    },
-   "visual": "flow:code|push|Pages|live",
+   "visual": "flow:💻 Code on your laptop|⬆️ Push to GitHub|🌐 Switch on Pages|🔗 Live public link",
    "narration": {
     "en": "Push to GitHub and switch on Pages for a free https site.",
     "hi": "GitHub पर पुश करो और मुफ़्त https साइट के लिए Pages चालू करो।",

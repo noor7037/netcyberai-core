@@ -35,6 +35,77 @@
    "hinglish": "Request aur response bata sakte ho (client maangta, server deta)."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you tap play on a cartoon on your phone, and it starts.",
+   "hi": "{{name}}, तुम फ़ोन पर कार्टून का प्ले दबाते हो, और वह चल पड़ता है।",
+   "hinglish": "{{name}}, tum phone par cartoon ka play dabate ho, aur woh chal padta hai."
+  },
+  "question": {
+   "en": "Where does that cartoon come from?",
+   "hi": "वह कार्टून कहाँ से आता है?",
+   "hinglish": "Woh cartoon kahan se aata hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "When you tap play, where does the cartoon come from?",
+   "hi": "प्ले दबाने पर कार्टून कहाँ से आता है?",
+   "hinglish": "Play dabane par cartoon kahan se aata hai?"
+  },
+  "options": [
+   {
+    "en": "It is already inside my phone",
+    "hi": "वह पहले से मेरे फ़ोन के अंदर है",
+    "hinglish": "Woh pehle se mere phone ke andar hai"
+   },
+   {
+    "en": "A faraway computer sends it when my phone asks",
+    "hi": "दूर का एक कंप्यूटर भेजता है जब मेरा फ़ोन माँगता है",
+    "hinglish": "Door ka ek computer bhejta hai jab mera phone maangta hai"
+   },
+   {
+    "en": "The phone makes a new cartoon each time",
+    "hi": "फ़ोन हर बार नया कार्टून बनाता है",
+    "hinglish": "Phone har baar naya cartoon banata hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Your phone asks, and a computer called a server answers by sending the cartoon. The cartoon is kept on the server, not made new each time.",
+   "hi": "तुम्हारा फ़ोन माँगता है, और सर्वर नाम का कंप्यूटर कार्टून भेजकर जवाब देता है। कार्टून सर्वर पर रखा रहता है, हर बार नया नहीं बनता।",
+   "hinglish": "Tumhara phone maangta hai, aur server naam ka computer cartoon bhej kar jawab deta hai. Cartoon server par rakha rehta hai, har baar naya nahi banta."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Tell someone at home: what is a server?",
+   "hi": "घर पर किसी को बताओ: सर्वर क्या होता है?",
+   "hinglish": "Ghar par kisi ko batao: server kya hota hai?"
+  },
+  "checklist": [
+   {
+    "en": "My phone asks. That is a request.",
+    "hi": "मेरा फ़ोन माँगता है। यह रिक्वेस्ट है।",
+    "hinglish": "Mera phone maangta hai. Yeh request hai."
+   },
+   {
+    "en": "A server is a computer that sends things when asked.",
+    "hi": "सर्वर वह कंप्यूटर है जो माँगने पर चीज़ें भेजता है।",
+    "hinglish": "Server woh computer hai jo maangne par cheezein bhejta hai."
+   },
+   {
+    "en": "It answers back. That is a response.",
+    "hi": "वह जवाब भेजता है। यह रिस्पॉन्स है।",
+    "hinglish": "Woh jawab bhejta hai. Yeh response hai."
+   },
+   {
+    "en": "It stays on day and night.",
+    "hi": "वह दिन-रात चालू रहता है।",
+    "hinglish": "Woh din-raat chaalu rehta hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Server",

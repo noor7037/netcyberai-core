@@ -39,6 +39,77 @@
    "hinglish": "Jaante ho kya karna hai: phone kaato, wapas call karo, family code word, bade ko batao."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your phone reads a story aloud in a friendly voice, and it sounds almost like a real person.",
+   "hi": "{{name}}, तुम्हारा फ़ोन दोस्ताना आवाज़ में कहानी पढ़कर सुनाता है, और वह लगभग असली इंसान जैसी लगती है।",
+   "hinglish": "{{name}}, tumhara phone dostana awaaz mein kahani padhkar sunata hai, aur woh lagbhag asli insaan jaisi lagti hai."
+  },
+  "question": {
+   "en": "If a voice can be made by AI, can you trust a voice on a call?",
+   "hi": "अगर आवाज़ AI बना सकता है, तो क्या कॉल की आवाज़ पर भरोसा कर सकते हैं?",
+   "hinglish": "Agar awaaz AI bana sakta hai, to kya call ki awaaz par bharosa kar sakte hain?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A call sounds just like your uncle, but he says \"Hurry, send money and tell no one.\" What do you do?",
+   "hi": "कॉल बिल्कुल तुम्हारे चाचा की आवाज़ जैसी है, पर वह कहते हैं \"जल्दी पैसे भेजो और किसी को मत बताओ।\" तुम क्या करोगे?",
+   "hinglish": "Call bilkul tumhare chacha ki awaaz jaisi hai, par woh kehte hain \"Jaldi paise bhejo aur kisi ko mat batao.\" Tum kya karoge?"
+  },
+  "options": [
+   {
+    "en": "Send the money because it sounds like him",
+    "hi": "पैसे भेज दूँ क्योंकि आवाज़ उन जैसी है",
+    "hinglish": "Paise bhej doon kyunki awaaz unki jaisi hai"
+   },
+   {
+    "en": "Hang up, call him back on his saved number, and tell a grown-up",
+    "hi": "फ़ोन काटूँ, उन्हें सेव किए नंबर पर वापस फ़ोन करूँ और बड़े को बताऊँ",
+    "hinglish": "Phone kaatoon, unhe save kiye number par wapas phone karoon aur bade ko bataoon"
+   },
+   {
+    "en": "Keep it a secret as he asked",
+    "hi": "जैसा कहा, राज़ रखूँ",
+    "hinglish": "Jaisa kaha, raaz rakhoon"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "AI can copy a voice, so a familiar voice is not proof. Hurry, secrecy, OTPs or money are warning signs. Do not share anything, hang up, call back on the saved number, use the family code word, and tell a grown-up.",
+   "hi": "AI आवाज़ की नक़ल कर सकता है, इसलिए जानी-पहचानी आवाज़ सबूत नहीं है। जल्दी, राज़ रखना, OTP या पैसे चेतावनी के संकेत हैं। कुछ मत बताओ, फ़ोन काटो, सेव नंबर पर वापस करो, परिवार का कोड शब्द इस्तेमाल करो और बड़े को बताओ।",
+   "hinglish": "AI awaaz ki naqal kar sakta hai, isliye jaani-pehchaani awaaz saboot nahi hai. Jaldi, raaz rakhna, OTP ya paise warning signs hain. Kuch mat batao, phone kaato, saved number par wapas karo, family code word use karo aur bade ko batao."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: what can AI do with sound, and how do we stay safe?",
+   "hi": "घर पर किसी को समझाओ: AI आवाज़ के साथ क्या कर सकता है, और सुरक्षित कैसे रहें?",
+   "hinglish": "Ghar par kisi ko samjhao: AI awaaz ke saath kya kar sakta hai, aur safe kaise rahein?"
+  },
+  "checklist": [
+   {
+    "en": "AI can read text aloud, make music and copy voices.",
+    "hi": "AI लिखा पढ़ सकता है, संगीत बना सकता है और आवाज़ें नक़ल कर सकता है।",
+    "hinglish": "AI likha padh sakta hai, music bana sakta hai aur awaazein naqal kar sakta hai."
+   },
+   {
+    "en": "Warning signs: hurry, secret, OTP or money.",
+    "hi": "चेतावनी के संकेत: जल्दी, राज़, OTP या पैसे।",
+    "hinglish": "Warning signs: jaldi, raaz, OTP ya paise."
+   },
+   {
+    "en": "I hang up and call back on the saved number.",
+    "hi": "मैं फ़ोन काटकर सेव नंबर पर वापस करता/करती हूँ।",
+    "hinglish": "Main phone kaat kar saved number par wapas karta/karti hoon."
+   },
+   {
+    "en": "I use the family code word and tell a grown-up.",
+    "hi": "मैं परिवार का कोड शब्द इस्तेमाल करता/करती हूँ और बड़े को बताता/बताती हूँ।",
+    "hinglish": "Main family code word use karta/karti hoon aur bade ko bataata/batati hoon."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Text-to-speech",

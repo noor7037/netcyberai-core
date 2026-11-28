@@ -38,6 +38,82 @@
    "hinglish": "Edge AI samjha sakte ho: AI jo device pe hi chalta hai"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a robot vacuum glides around your sofa without ever bumping it, and the next day it remembers which parts of the room it has cleaned.",
+   "hi": "{{name}}, रोबोट वैक्यूम तुम्हारे सोफ़े के चारों ओर बिना टकराए चलता है, और अगले दिन उसे याद रहता है कि कमरे का कौन-सा हिस्सा साफ़ हो चुका है।",
+   "hinglish": "{{name}}, robot vacuum tumhare sofa ke charon or bina takraye chalta hai, aur agle din use yaad rehta hai ki kamre ka kaunsa hissa saaf ho chuka hai."
+  },
+  "question": {
+   "en": "How does it measure how far the sofa is, and how does it keep a picture of the room?",
+   "hi": "उसे कैसे पता चलता है कि सोफ़ा कितनी दूर है, और कमरे की तस्वीर वह कैसे रखता है?",
+   "hinglish": "Use kaise pata chalta hai ki sofa kitni door hai, aur kamre ki picture woh kaise rakhta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "An ultrasonic sensor hears its echo 0.003 s (3 milliseconds) after the ping. Sound travels about 343 m/s. How far is the obstacle?",
+   "hi": "अल्ट्रासोनिक सेंसर को पिंग के 0.003 s (3 मिलीसेकंड) बाद प्रतिध्वनि सुनाई देती है। ध्वनि लगभग 343 m/s चलती है। रुकावट कितनी दूर है?",
+   "hinglish": "Ultrasonic sensor ko ping ke 0.003 s (3 milliseconds) baad echo sunai deta hai. Sound lagbhag 343 m/s chalti hai. Obstacle kitni door hai?"
+  },
+  "options": [
+   {
+    "en": "About 1 metre",
+    "hi": "लगभग 1 मीटर",
+    "hinglish": "Lagbhag 1 metre"
+   },
+   {
+    "en": "About 0.5 metre",
+    "hi": "लगभग 0.5 मीटर",
+    "hinglish": "Lagbhag 0.5 metre"
+   },
+   {
+    "en": "About 0.25 metre",
+    "hi": "लगभग 0.25 मीटर",
+    "hinglish": "Lagbhag 0.25 metre"
+   },
+   {
+    "en": "About 5 metres",
+    "hi": "लगभग 5 मीटर",
+    "hinglish": "Lagbhag 5 metres"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "343 × 0.003 is about 1.03 m, but the sound went to the obstacle and came back. The distance is half of that, about 0.5 m: distance = time × 343 ÷ 2.",
+   "hi": "343 × 0.003 लगभग 1.03 m है, पर ध्वनि रुकावट तक गई और लौटी भी। दूरी उसकी आधी है, लगभग 0.5 m: दूरी = समय × 343 ÷ 2।",
+   "hinglish": "343 × 0.003 lagbhag 1.03 m hai, par sound obstacle tak gayi aur laut bhi aayi. Distance uska aadha hai, lagbhag 0.5 m: distance = time × 343 ÷ 2."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a robot avoids obstacles and finds its way around a room.",
+   "hi": "घर पर किसी को समझाओ कि रोबोट रुकावटों से कैसे बचता है और कमरे में अपना रास्ता कैसे ढूँढता है।",
+   "hinglish": "Ghar par kisi ko samjhao ki robot obstacles se kaise bachta hai aur kamre mein apna raasta kaise dhoondhta hai."
+  },
+  "checklist": [
+   {
+    "en": "An ultrasonic sensor pings and times the echo, then halves it to get distance.",
+    "hi": "अल्ट्रासोनिक सेंसर पिंग भेजकर प्रतिध्वनि का समय नापता है, फिर उसे आधा करके दूरी निकालता है।",
+    "hinglish": "Ultrasonic sensor ping bhejkar echo ka time naapta hai, phir use aadha karke distance nikalta hai."
+   },
+   {
+    "en": "A map is a grid of free squares and blocked squares.",
+    "hi": "नक़्शा खाली और रुके हुए वर्गों का ग्रिड है।",
+    "hinglish": "Map free squares aur blocked squares ka grid hai."
+   },
+   {
+    "en": "Path planning picks a route through the free squares to the goal.",
+    "hi": "पथ-योजना खाली वर्गों में से लक्ष्य तक का रास्ता चुनती है।",
+    "hinglish": "Path planning free squares mein se goal tak ka raasta chunti hai."
+   },
+   {
+    "en": "Edge AI runs on the device itself, so it is quick and works without sending video to the cloud.",
+    "hi": "एज AI डिवाइस पर ही चलता है, इसलिए तेज़ है और वीडियो क्लाउड भेजे बिना काम करता है।",
+    "hinglish": "Edge AI device par hi chalta hai, isliye tez hai aur video cloud bheje bina kaam karta hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Obstacle avoidance",

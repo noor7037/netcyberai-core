@@ -34,6 +34,77 @@
    "hinglish": "Attribution file mein kaam ka sahi credit do"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you find a cool game sprite on a website and want it in your class project. The page has no word about whether you may use it.",
+   "hi": "{{name}}, तुम्हें एक वेबसाइट पर कूल गेम स्प्राइट मिलता है और तुम उसे अपने क्लास प्रोजेक्ट में डालना चाहते हो। पेज पर कहीं नहीं लिखा कि इस्तेमाल कर सकते हो या नहीं।",
+   "hinglish": "{{name}}, tumhe ek website par cool game sprite milta hai aur tum use apne class project mein daalna chahte ho. Page par kahin nahi likha ki use kar sakte ho ya nahi."
+  },
+  "question": {
+   "en": "If it is on the internet, is it free to use, and what does a licence actually change?",
+   "hi": "अगर वह इंटरनेट पर है, तो क्या इस्तेमाल मुफ़्त है, और लाइसेंस असल में क्या बदलता है?",
+   "hinglish": "Agar woh internet par hai, to kya use karna free hai, aur licence asal mein kya badalta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A piece of code on GitHub has no licence file. What are you allowed to do with it?",
+   "hi": "GitHub पर एक कोड में लाइसेंस फ़ाइल नहीं है। तुम उसके साथ क्या कर सकते हो?",
+   "hinglish": "GitHub par ek code mein licence file nahi hai. Tum uske saath kya kar sakte ho?"
+  },
+  "options": [
+   {
+    "en": "Anything, because it is public",
+    "hi": "कुछ भी, क्योंकि वह सार्वजनिक है",
+    "hinglish": "Kuch bhi, kyunki woh public hai"
+   },
+   {
+    "en": "Use it freely but not sell it",
+    "hi": "मुफ़्त इस्तेमाल, पर बेच नहीं सकते",
+    "hinglish": "Free use, par bech nahi sakte"
+   },
+   {
+    "en": "Very little: by default the author keeps all rights, so you need permission",
+    "hi": "बहुत कम: डिफ़ॉल्ट रूप से सारे अधिकार लेखक के पास रहते हैं, इसलिए अनुमति चाहिए",
+    "hinglish": "Bahut kam: by default saare rights author ke paas rehte hain, isliye permission chahiye"
+   }
+  ],
+  "answer": 2,
+  "explain": {
+   "en": "Copyright applies automatically when someone creates a work. A licence is the author's written permission; with none, \"all rights reserved\" applies, even if the code is visible.",
+   "hi": "कॉपीराइट रचना बनते ही अपने आप लागू हो जाता है। लाइसेंस लेखक की लिखित अनुमति है; वह न हो तो \"सभी अधिकार सुरक्षित\" लागू रहता है, भले कोड दिखता हो।",
+   "hinglish": "Copyright rachna banate hi apne aap lagu ho jaata hai. Licence author ki likhi hui permission hai; woh na ho to \"all rights reserved\" lagu rehta hai, chahe code dikhta ho."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend why \"I found it online\" is not permission, and how MIT, GPL and CC BY differ.",
+   "hi": "दोस्त को समझाओ कि \"ऑनलाइन मिला\" अनुमति क्यों नहीं है, और MIT, GPL और CC BY में क्या अंतर है।",
+   "hinglish": "Friend ko samjhao ki \"online mila\" permission kyun nahi hai, aur MIT, GPL aur CC BY mein kya fark hai."
+  },
+  "checklist": [
+   {
+    "en": "No licence means all rights reserved, so you must ask",
+    "hi": "लाइसेंस नहीं तो सभी अधिकार सुरक्षित, इसलिए अनुमति माँगनी होगी",
+    "hinglish": "Licence nahi to all rights reserved, isliye permission maangni hogi"
+   },
+   {
+    "en": "Permissive licences (MIT, Apache) allow reuse, even in paid apps, if you keep the notice",
+    "hi": "permissive लाइसेंस (MIT, Apache) नोटिस रखने पर पुनः उपयोग देते हैं, पैसे वाले ऐप में भी",
+    "hinglish": "Permissive licences (MIT, Apache) notice rakhne par reuse dete hain, paid apps mein bhi"
+   },
+   {
+    "en": "Copyleft (GPL) requires sharing your source if you distribute; CC BY needs credit",
+    "hi": "कॉपीलेफ़्ट (GPL) में बाँटने पर अपना सोर्स साझा करना होता है; CC BY में क्रेडिट चाहिए",
+    "hinglish": "Copyleft (GPL) mein distribute karne par apna source share karna padta hai; CC BY mein credit chahiye"
+   },
+   {
+    "en": "Record title, author, source and licence in an attribution file",
+    "hi": "शीर्षक, लेखक, स्रोत और लाइसेंस attribution फ़ाइल में दर्ज करो",
+    "hinglish": "Title, author, source aur licence attribution file mein likho"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Copyright",

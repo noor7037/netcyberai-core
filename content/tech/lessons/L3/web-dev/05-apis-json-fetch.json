@@ -35,6 +35,77 @@
    "hinglish": "Errors, loading states aur API keys safely handle karo"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a weather app on your phone shows today's forecast, and the same data also appears on a website, without anyone retyping it.",
+   "hi": "{{name}}, तुम्हारे फ़ोन का मौसम ऐप आज का पूर्वानुमान दिखाता है, और वही डेटा किसी वेबसाइट पर भी दिखता है, बिना किसी के दोबारा लिखे।",
+   "hinglish": "{{name}}, tumhare phone ka weather app aaj ka forecast dikhata hai, aur wahi data kisi website par bhi dikhta hai, bina kisi ke dobara likhe."
+  },
+  "question": {
+   "en": "How does a page ask a server for just the data, and what should it do when the network fails?",
+   "hi": "पेज सर्वर से सिर्फ़ डेटा कैसे माँगता है, और नेटवर्क विफल हो तो उसे क्या करना चाहिए?",
+   "hinglish": "Page server se sirf data kaise maangta hai, aur network fail ho toh use kya karna chahiye?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Your page calls an API with fetch and the server replies 500. Does fetch throw an error?",
+   "hi": "तुम्हारा पेज fetch से एक API बुलाता है और सर्वर 500 जवाब देता है। क्या fetch त्रुटि फेंकता है?",
+   "hinglish": "Tumhara page fetch se ek API bulata hai aur server 500 jawab deta hai. Kya fetch error throw karta hai?"
+  },
+  "options": [
+   {
+    "en": "Yes, always, for any non-200 status",
+    "hi": "हाँ, हमेशा, किसी भी गैर-200 स्टेटस पर",
+    "hinglish": "Haan, hamesha, kisi bhi non-200 status par"
+   },
+   {
+    "en": "No, it only fails if the network fails; you must check response.ok yourself",
+    "hi": "नहीं, यह सिर्फ़ नेटवर्क विफल होने पर विफल होता है; response.ok तुम्हें खुद जाँचना होगा",
+    "hinglish": "Nahi, yeh sirf network fail hone par fail hota hai; response.ok tumhe khud jaanchna hoga"
+   },
+   {
+    "en": "No, because 500 means success",
+    "hi": "नहीं, क्योंकि 500 का मतलब सफलता है",
+    "hinglish": "Nahi, kyunki 500 ka matlab success hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "fetch's promise rejects only when the request itself fails, such as no network. A 404 or 500 is still a valid response, so check response.ok before response.json(), and show a friendly error. Also show Loading while waiting, and keep secret API keys on the server, never in browser code.",
+   "hi": "fetch का प्रॉमिस सिर्फ़ तब अस्वीकृत होता है जब अनुरोध खुद विफल हो, जैसे नेटवर्क न हो। 404 या 500 भी वैध जवाब हैं, इसलिए response.json() से पहले response.ok जाँचो और सहज त्रुटि संदेश दिखाओ। इंतज़ार के समय Loading दिखाओ, और गुप्त API कुंजियाँ सर्वर पर रखो, ब्राउज़र कोड में कभी नहीं।",
+   "hinglish": "fetch ka promise sirf tab reject hota hai jab request khud fail ho, jaise network na ho. 404 ya 500 bhi valid response hain, isliye response.json() se pehle response.ok jaancho aur friendly error dikhao. Wait ke time Loading dikhao, aur secret API keys server par rakho, browser code mein kabhi nahi."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a page loads data from an API and what can go wrong.",
+   "hi": "घर पर किसी को समझाओ कि पेज API से डेटा कैसे लोड करता है और क्या गलत हो सकता है।",
+   "hinglish": "Ghar par kisi ko samjhao ki page API se data kaise load karta hai aur kya galat ho sakta hai."
+  },
+  "checklist": [
+   {
+    "en": "An API returns data, usually JSON, instead of a whole page.",
+    "hi": "API पूरे पेज के बजाय डेटा लौटाती है, आमतौर पर JSON।",
+    "hinglish": "API poore page ke bajay data lautati hai, aksar JSON."
+   },
+   {
+    "en": "fetch(url), then response.json(), then build the page from the data, with async and await.",
+    "hi": "fetch(url), फिर response.json(), फिर डेटा से पेज बनाओ, async और await के साथ।",
+    "hinglish": "fetch(url), phir response.json(), phir data se page banao, async aur await ke saath."
+   },
+   {
+    "en": "Check response.ok, show Loading, and catch errors with a friendly message.",
+    "hi": "response.ok जाँचो, Loading दिखाओ, और सहज संदेश के साथ त्रुटियाँ पकड़ो।",
+    "hinglish": "response.ok jaancho, Loading dikhao, aur friendly message ke saath errors pakdo."
+   },
+   {
+    "en": "Keep secret API keys on the server, and know that CORS decides which sites a browser lets call an API.",
+    "hi": "गुप्त API कुंजियाँ सर्वर पर रखो, और जानो कि CORS तय करता है ब्राउज़र किन साइटों को API बुलाने देगा।",
+    "hinglish": "Secret API keys server par rakho, aur jaano ki CORS tay karta hai browser kin sites ko API bulane dega."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "API",

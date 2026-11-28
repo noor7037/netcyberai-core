@@ -36,6 +36,77 @@
    "hinglish": "Caching, TTL aur encrypted DNS se privacy kaise bachti hai, samjhao"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you type www.myschool.in and the page opens, though your phone only understands numbers like 203.0.113.9.",
+   "hi": "{{name}}, तुम www.myschool.in लिखते हो और पेज खुल जाता है, जबकि तुम्हारा फ़ोन सिर्फ़ 203.0.113.9 जैसी संख्याएँ समझता है।",
+   "hinglish": "{{name}}, tum www.myschool.in likhte ho aur page khul jaata hai, jabki tumhara phone sirf 203.0.113.9 jaise numbers samajhta hai."
+  },
+  "question": {
+   "en": "Who turns the name into the number, and why does it feel instant?",
+   "hi": "नाम को संख्या में कौन बदलता है, और यह तुरंत क्यों लगता है?",
+   "hinglish": "Naam ko number mein kaun badalta hai, aur yeh turant kyun lagta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Your resolver has no cached answer for myschool.in. Where does it ask first?",
+   "hi": "तुम्हारे रिज़ॉल्वर के पास myschool.in का कैश्ड उत्तर नहीं है। वह पहले कहाँ पूछता है?",
+   "hinglish": "Tumhare resolver ke paas myschool.in ka cached answer nahi hai. Woh pehle kahan poochta hai?"
+  },
+  "options": [
+   {
+    "en": "It asks the school's own server directly",
+    "hi": "यह स्कूल के अपने सर्वर से सीधे पूछता है",
+    "hinglish": "Yeh school ke apne server se seedhe poochta hai"
+   },
+   {
+    "en": "A root server, which points it to the .in servers, which point it to the school's authoritative server",
+    "hi": "एक रूट सर्वर, जो .in सर्वरों की ओर भेजता है, जो स्कूल के आधिकारिक सर्वर की ओर",
+    "hinglish": "Ek root server, jo .in servers ki taraf bhejta hai, jo school ke authoritative server ki taraf"
+   },
+   {
+    "en": "A random public website",
+    "hi": "कोई बेतरतीब सार्वजनिक वेबसाइट",
+    "hinglish": "Koi random public website"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "DNS is a hierarchy. The resolver asks a root server, which points to the .in TLD servers, which point to the domain's authoritative servers that hold the real A record. The resolver caches the answer for its TTL, so the next lookup is instant. That also means a changed IP can take up to a TTL to spread.",
+   "hi": "DNS एक पदानुक्रम है। रिज़ॉल्वर रूट सर्वर से पूछता है, जो .in TLD सर्वरों की ओर भेजता है, जो डोमेन के आधिकारिक सर्वर की ओर जहाँ असली A रिकॉर्ड है। रिज़ॉल्वर उत्तर को उसके TTL तक कैश करता है, इसलिए अगली खोज तुरंत होती है। इसका मतलब यह भी है कि बदला हुआ IP फैलने में TTL तक लग सकता है।",
+   "hinglish": "DNS ek hierarchy hai. Resolver root server se poochta hai, jo .in TLD servers ki taraf bhejta hai, jo domain ke authoritative servers ki taraf jahan asli A record hai. Resolver answer ko uske TTL tak cache karta hai, isliye agli lookup turant hoti hai. Iska matlab yeh bhi hai ki badla hua IP phailne mein TTL tak lag sakta hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a website name becomes an IP address and why the second visit is faster.",
+   "hi": "घर पर किसी को समझाओ कि वेबसाइट का नाम IP पते में कैसे बदलता है और दूसरी बार जाना तेज़ क्यों होता है।",
+   "hinglish": "Ghar par kisi ko samjhao ki website ka naam IP address mein kaise badalta hai aur doosri baar jaana tez kyun hota hai."
+  },
+  "checklist": [
+   {
+    "en": "The resolver walks root, then TLD, then authoritative servers.",
+    "hi": "रिज़ॉल्वर रूट, फिर TLD, फिर आधिकारिक सर्वर तक जाता है।",
+    "hinglish": "Resolver root, phir TLD, phir authoritative servers tak jaata hai."
+   },
+   {
+    "en": "Records: A (IPv4), AAAA (IPv6), CNAME (alias), MX (mail), NS, TXT.",
+    "hi": "रिकॉर्ड: A (IPv4), AAAA (IPv6), CNAME (उपनाम), MX (मेल), NS, TXT।",
+    "hinglish": "Records: A (IPv4), AAAA (IPv6), CNAME (alias), MX (mail), NS, TXT."
+   },
+   {
+    "en": "Answers are cached for the TTL, which speeds lookups but delays changes.",
+    "hi": "उत्तर TTL तक कैश होते हैं, जिससे खोज तेज़ पर बदलाव देर से फैलते हैं।",
+    "hinglish": "Answers TTL tak cache hote hain, jisse lookups tez par changes der se phailte hain."
+   },
+   {
+    "en": "Classic DNS is unencrypted; DoH and DoT hide your lookups from the network.",
+    "hi": "पारंपरिक DNS एन्क्रिप्टेड नहीं है; DoH और DoT नेटवर्क से तुम्हारी खोजें छिपाते हैं।",
+    "hinglish": "Classic DNS encrypted nahi hai; DoH aur DoT network se tumhari lookups chhupate hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Resolver",
@@ -76,7 +147,7 @@
     "hi": "आप www.myschool.in लिखते हो। फ़ोन एक रिकर्सिव रिज़ॉल्वर (आपके ISP का या 1.1.1.1 जैसा सार्वजनिक) से पूछता है — मेहनत वही करता है।",
     "hinglish": "Tum www.myschool.in likhte ho. Phone ek recursive resolver (tumhare ISP ka ya 1.1.1.1 jaisa public) se poochta hai — mehnat wahi karta hai."
    },
-   "visual": "anim:dns-ask",
+   "visual": "flow:📱 Phone asks the resolver|🌐 Root: ask the .in servers|🏷️ TLD: ask the school's DNS|📒 Authoritative: here is the IP|✅ Resolver caches it",
    "narration": {
     "en": "You type www.myschool.in. Your phone asks a recursive resolver (from your ISP or a public one like 1.1.1.1) — it does the hard work.",
     "hi": "आप www.myschool.in लिखते हो। फ़ोन एक रिकर्सिव रिज़ॉल्वर (आपके ISP का या 1.1.1.1 जैसा सार्वजनिक) से पूछता है — मेहनत वही करता है।",

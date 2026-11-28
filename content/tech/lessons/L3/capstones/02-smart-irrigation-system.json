@@ -35,6 +35,77 @@
    "hinglish": "Safety, power planning aur secure MQTT reporting jodo"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, in a hot week your family's balcony plants dry out because everyone forgets to water them.",
+   "hi": "{{name}}, गर्म हफ़्ते में तुम्हारे परिवार की बालकनी के पौधे सूख जाते हैं क्योंकि सब पानी देना भूल जाते हैं।",
+   "hinglish": "{{name}}, garm hafte mein tumhari family ki balcony ke paudhe sookh jaate hain kyunki sab paani dena bhool jaate hain."
+  },
+  "question": {
+   "en": "How can a small circuit water them only when the soil really needs it?",
+   "hi": "एक छोटा सर्किट उन्हें सिर्फ़ तब पानी कैसे दे जब मिट्टी को सच में ज़रूरत हो?",
+   "hinglish": "Ek chhota circuit unhe sirf tab paani kaise de jab mitti ko sach mein zaroorat ho?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "The pump turns ON below 30% moisture and OFF above 45%. Why not one threshold at 40%?",
+   "hi": "पंप 30% नमी से नीचे ON और 45% से ऊपर OFF होता है। 40% पर एक ही सीमा क्यों नहीं?",
+   "hinglish": "Pump 30% moisture se neeche ON aur 45% se upar OFF hota hai. 40% par ek hi threshold kyun nahi?"
+  },
+  "options": [
+   {
+    "en": "Two thresholds look more professional",
+    "hi": "दो सीमाएँ ज़्यादा पेशेवर लगती हैं",
+    "hinglish": "Do thresholds zyada professional lagte hain"
+   },
+   {
+    "en": "With one threshold, readings near it would flip the pump on and off rapidly, and the gap prevents that",
+    "hi": "एक सीमा हो तो उसके पास की रीडिंग पंप को तेज़ी से ऑन-ऑफ़ करती रहेगी, और अंतराल यह रोकता है",
+    "hinglish": "Ek threshold ho to uske paas ki readings pump ko tezi se on-off karti rahengi, aur gap yeh rokta hai"
+   },
+   {
+    "en": "Soil moisture cannot be measured at 40%",
+    "hi": "40% पर मिट्टी की नमी नापी नहीं जा सकती",
+    "hinglish": "40% par mitti ki nami naapi nahi ja sakti"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Sensor readings fluctuate slightly, so a single threshold would make the pump chatter on and off. Hysteresis uses two thresholds so the pump stays on until the soil is clearly wet. The loop is sense, decide, act, and the soil changing is the feedback.",
+   "hi": "सेंसर की रीडिंग थोड़ी घटती-बढ़ती है, इसलिए एक सीमा पंप को बार-बार ऑन-ऑफ़ करा देगी। हिस्टेरेसिस दो सीमाएँ रखती है ताकि पंप तब तक चले जब तक मिट्टी साफ़ गीली न हो जाए। चक्र है सेंस, डिसाइड, एक्ट, और मिट्टी का बदलना फ़ीडबैक है।",
+   "hinglish": "Sensor readings thodi ghat-badh hoti hain, isliye ek threshold pump ko baar-baar on-off kara dega. Hysteresis do thresholds rakhti hai taaki pump tab tak chale jab tak mitti saaf geeli na ho jaye. Loop hai sense, decide, act, aur mitti ka badalna feedback hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how your irrigation system senses, decides and waters, and why it has two thresholds.",
+   "hi": "घर पर किसी को समझाओ कि तुम्हारा सिंचाई सिस्टम कैसे नापता, तय करता और पानी देता है, और उसमें दो सीमाएँ क्यों हैं।",
+   "hinglish": "Ghar par kisi ko samjhao ki tumhara irrigation system kaise naapta, decide karta aur paani deta hai, aur usme do thresholds kyun hain."
+  },
+  "checklist": [
+   {
+    "en": "Sensor, controller and actuator form a feedback loop",
+    "hi": "सेंसर, कंट्रोलर और एक्चुएटर फ़ीडबैक चक्र बनाते हैं",
+    "hinglish": "Sensor, controller aur actuator feedback loop banate hain"
+   },
+   {
+    "en": "Calibrate the sensor and use two thresholds (hysteresis)",
+    "hi": "सेंसर कैलिब्रेट करो और दो सीमाएँ (हिस्टेरेसिस) इस्तेमाल करो",
+    "hinglish": "Sensor calibrate karo aur do thresholds (hysteresis) use karo"
+   },
+   {
+    "en": "Add safety, such as a maximum run time, and power saving with deep sleep",
+    "hi": "सुरक्षा जोड़ो, जैसे अधिकतम चलने का समय, और डीप स्लीप से बिजली बचत",
+    "hinglish": "Safety jodo, jaise maximum run time, aur deep sleep se power saving"
+   },
+   {
+    "en": "Report readings over MQTT securely",
+    "hi": "रीडिंग MQTT से सुरक्षित रूप से भेजो",
+    "hinglish": "Readings MQTT se securely bhejo"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Capacitive sensor",

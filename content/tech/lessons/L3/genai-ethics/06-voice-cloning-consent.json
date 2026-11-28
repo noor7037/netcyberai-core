@@ -35,6 +35,77 @@
    "hinglish": "Apni family ko voice-clone scam calls se bachao"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, someone calls your family in what sounds exactly like your voice and says \"I'm in trouble, send money now\".",
+   "hi": "{{name}}, कोई तुम्हारे घर फ़ोन करता है तुम्हारी ही आवाज़ जैसी आवाज़ में और कहता है \"मैं मुसीबत में हूँ, अभी पैसे भेजो\"।",
+   "hinglish": "{{name}}, koi tumhare ghar phone karta hai bilkul tumhari awaaz jaisi awaaz mein aur kehta hai \"main musibat mein hoon, abhi paise bhejo\"."
+  },
+  "question": {
+   "en": "How can a machine copy a voice from a short clip, and how do you protect your family?",
+   "hi": "मशीन छोटी क्लिप से आवाज़ की नक़ल कैसे कर सकती है, और परिवार को कैसे बचाएँ?",
+   "hinglish": "Machine chhoti clip se awaaz ki nakal kaise kar sakti hai, aur family ko kaise bachayein?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A caller sounds exactly like your parent and asks for urgent money. What is the safest response?",
+   "hi": "कॉल करने वाला बिल्कुल तुम्हारे माता-पिता जैसा लगता है और जल्दी पैसे माँगता है। सबसे सुरक्षित प्रतिक्रिया क्या है?",
+   "hinglish": "Caller bilkul tumhare parent jaisa lagta hai aur urgently paise maangta hai. Sabse safe response kya hai?"
+  },
+  "options": [
+   {
+    "en": "Send the money first because the voice is clearly theirs",
+    "hi": "पहले पैसे भेज दो क्योंकि आवाज़ साफ़ उन्हीं की है",
+    "hinglish": "Pehle paise bhej do kyunki awaaz clearly unhi ki hai"
+   },
+   {
+    "en": "Hang up and call back on the saved number, and ask the family safe word",
+    "hi": "फ़ोन काटो और सेव किए नंबर पर वापस कॉल करो, और परिवार का सेफ़ वर्ड पूछो",
+    "hinglish": "Phone kaato aur saved number par wapas call karo, aur family ka safe word poochho"
+   },
+   {
+    "en": "Argue with the caller until they confess",
+    "hi": "कॉलर से बहस करो जब तक वह मान न ले",
+    "hinglish": "Caller se behes karo jab tak woh maan na le"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Voice cloning builds a speaker embedding from a short sample and feeds it to a text-to-speech model, so how a voice sounds no longer proves who is speaking. Scams add urgency and secrecy, so slow down, hang up, call back on a number you already have and use a family safe word. Consent, credit and law apply to AI voices and music.",
+   "hi": "वॉइस क्लोनिंग छोटे नमूने से स्पीकर एम्बेडिंग बनाकर उसे टेक्स्ट-टू-स्पीच मॉडल को देती है, इसलिए आवाज़ कैसी लगती है यह अब साबित नहीं करता कि बोल कौन रहा है। ठग जल्दबाज़ी और गोपनीयता जोड़ते हैं, इसलिए रुको, फ़ोन काटो, अपने पास के नंबर पर वापस कॉल करो और परिवार का सेफ़ वर्ड इस्तेमाल करो। AI आवाज़ों और संगीत पर सहमति, श्रेय और क़ानून लागू होते हैं।",
+   "hinglish": "Voice cloning chhote sample se speaker embedding banakar use text-to-speech model ko deti hai, isliye awaaz kaisi lagti hai yeh ab prove nahi karta ki bol kaun raha hai. Scammers urgency aur secrecy jodte hain, isliye ruko, phone kaato, apne paas ke number par wapas call karo aur family safe word use karo. AI voices aur music par consent, credit aur law lagu hote hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to your family how voice-clone scam calls work and the steps to stay safe.",
+   "hi": "अपने परिवार को समझाओ कि वॉइस-क्लोन ठगी कॉल कैसे काम करती हैं और सुरक्षित रहने के क़दम क्या हैं।",
+   "hinglish": "Apni family ko samjhao ki voice-clone scam calls kaise kaam karti hain aur safe rehne ke steps kya hain."
+  },
+  "checklist": [
+   {
+    "en": "A short sample gives a speaker embedding that a TTS model uses to speak new words in that voice",
+    "hi": "छोटा नमूना स्पीकर एम्बेडिंग देता है जिससे TTS मॉडल उस आवाज़ में नए शब्द बोलता है",
+    "hinglish": "Chhota sample speaker embedding deta hai jisse TTS model us awaaz mein naye words bolta hai"
+   },
+   {
+    "en": "Use someone's voice only with consent, and credit and law still apply",
+    "hi": "किसी की आवाज़ सिर्फ़ सहमति से इस्तेमाल करो, और श्रेय व क़ानून लागू रहते हैं",
+    "hinglish": "Kisi ki awaaz sirf consent se use karo, aur credit aur law lagu rehte hain"
+   },
+   {
+    "en": "Scams use urgency, secrecy and money requests",
+    "hi": "ठगी में जल्दबाज़ी, गोपनीयता और पैसे की माँग होती है",
+    "hinglish": "Scams mein urgency, secrecy aur paise ki demand hoti hai"
+   },
+   {
+    "en": "Defence: hang up, call back on the saved number, ask the safe word, report",
+    "hi": "बचाव: फ़ोन काटो, सेव नंबर पर कॉल करो, सेफ़ वर्ड पूछो, रिपोर्ट करो",
+    "hinglish": "Defence: phone kaato, saved number par call karo, safe word poochho, report karo"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Voice clone",

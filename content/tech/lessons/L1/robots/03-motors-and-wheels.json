@@ -38,6 +38,77 @@
    "hinglish": "Left/right sensor rules se line follow karwa sakte ho."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you push a toy cart with two wheels, and when you push one side harder, it turns.",
+   "hi": "{{name}}, तुम दो पहियों वाली खिलौना गाड़ी धकेलते हो, और एक तरफ़ ज़्यादा धकेलने पर वह मुड़ जाती है।",
+   "hinglish": "{{name}}, tum do pahiyon wali khilona gaadi dhakelte ho, aur ek taraf zyada dhakelne par woh mud jaati hai."
+  },
+  "question": {
+   "en": "How can a small robot turn with no steering wheel?",
+   "hi": "बिना स्टीयरिंग व्हील के छोटा रोबोट कैसे मुड़ता है?",
+   "hinglish": "Bina steering wheel ke chhota robot kaise mudta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A two-wheeled robot has no steering wheel. How does it turn left?",
+   "hi": "दो पहियों वाले रोबोट में स्टीयरिंग नहीं है। वह बाएँ कैसे मुड़ता है?",
+   "hinglish": "Do pahiyon wale robot mein steering nahi hai. Woh left kaise mudta hai?"
+  },
+  "options": [
+   {
+    "en": "The left wheel spins slower than the right one",
+    "hi": "बायाँ पहिया दाएँ से धीमा घूमता है",
+    "hinglish": "Baayan pahiya daayein se dheema ghoomta hai"
+   },
+   {
+    "en": "Both wheels spin at the same speed",
+    "hi": "दोनों पहिये बराबर गति से घूमते हैं",
+    "hinglish": "Dono pahiye barabar speed se ghoomte hain"
+   },
+   {
+    "en": "It needs a steering wheel inside",
+    "hi": "उसे अंदर स्टीयरिंग चाहिए",
+    "hinglish": "Use andar steering chahiye"
+   }
+  ],
+  "answer": 0,
+  "explain": {
+   "en": "Each wheel has its own motor. Same speed goes straight, and a slower wheel on one side makes the robot turn toward that side. A motor turns electricity into spinning.",
+   "hi": "हर पहिये की अपनी मोटर होती है। बराबर गति पर सीधा चलता है, और एक तरफ़ धीमा पहिया रोबोट को उसी तरफ़ मोड़ता है। मोटर बिजली को घूमने में बदलती है।",
+   "hinglish": "Har pahiye ki apni motor hoti hai. Barabar speed par seedha chalta hai, aur ek taraf dheema pahiya robot ko usi taraf modta hai. Motor bijli ko ghoomne mein badalti hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: how does a small robot move and turn?",
+   "hi": "घर पर किसी को समझाओ: छोटा रोबोट कैसे चलता और मुड़ता है?",
+   "hinglish": "Ghar par kisi ko samjhao: chhota robot kaise chalta aur mudta hai?"
+  },
+  "checklist": [
+   {
+    "en": "A motor turns electricity into spinning.",
+    "hi": "मोटर बिजली को घूमने में बदलती है।",
+    "hinglish": "Motor bijli ko ghoomne mein badalti hai."
+   },
+   {
+    "en": "Same speed on both wheels goes straight.",
+    "hi": "दोनों पहियों की बराबर गति से सीधा चलता है।",
+    "hinglish": "Dono pahiyon ki barabar speed se seedha chalta hai."
+   },
+   {
+    "en": "A slower wheel on one side makes it turn that way.",
+    "hi": "एक तरफ़ का धीमा पहिया उसे उसी तरफ़ मोड़ता है।",
+    "hinglish": "Ek taraf ka dheema pahiya use usi taraf modta hai."
+   },
+   {
+    "en": "A line follower turns toward the side that sees black.",
+    "hi": "लाइन फ़ॉलोअर उस तरफ़ मुड़ता है जहाँ का सेंसर काला देखता है।",
+    "hinglish": "Line follower us taraf mudta hai jahan ka sensor kaala dekhta hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Motor",

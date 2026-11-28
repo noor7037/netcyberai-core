@@ -33,6 +33,77 @@
    "hinglish": "Samjha sakte ho ki DNS website ke naam ko IP address mein kaise badalta hai."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you type a website name like a school site into your browser, and the page opens.",
+   "hi": "{{name}}, तुम ब्राउज़र में स्कूल की साइट जैसा कोई वेबसाइट नाम लिखते हो, और पेज खुल जाता है।",
+   "hinglish": "{{name}}, tum browser mein school site jaisa koi website naam likhte ho, aur page khul jaata hai."
+  },
+  "question": {
+   "en": "How does the internet find the right computer from just a name?",
+   "hi": "सिर्फ़ नाम से इंटरनेट सही कंप्यूटर कैसे ढूँढता है?",
+   "hinglish": "Sirf naam se internet sahi computer kaise dhoondta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Computers on the internet are found by number addresses. You typed a name. What happens?",
+   "hi": "इंटरनेट पर कंप्यूटर नंबर वाले पते से मिलते हैं। तुमने नाम लिखा। क्या होता है?",
+   "hinglish": "Internet par computers number wale address se milte hain. Tumne naam likha. Kya hota hai?"
+  },
+  "options": [
+   {
+    "en": "The name itself is the address, so it goes straight there",
+    "hi": "नाम ही पता है, इसलिए सीधा वहाँ पहुँचता है",
+    "hinglish": "Naam hi address hai, isliye seedha wahan pahunchta hai"
+   },
+   {
+    "en": "A lookup service called DNS turns the name into the number address",
+    "hi": "DNS नाम की एक खोज-सेवा नाम को नंबर वाले पते में बदलती है",
+    "hinglish": "DNS naam ki ek lookup service naam ko number address mein badalti hai"
+   },
+   {
+    "en": "Your phone knows every website's number already",
+    "hi": "तुम्हारे फ़ोन को हर वेबसाइट का नंबर पहले से पता है",
+    "hinglish": "Tumhare phone ko har website ka number pehle se pata hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Routers only understand numbers. DNS works like a phone book: you give the name and it gives back the number address, and then your request goes there.",
+   "hi": "राउटर सिर्फ़ नंबर समझते हैं। DNS फ़ोन-बुक जैसा है: तुम नाम देते हो और वह नंबर वाला पता लौटाता है, फिर तुम्हारी रिक्वेस्ट वहाँ जाती है।",
+   "hinglish": "Routers sirf numbers samajhte hain. DNS phone book jaisa hai: tum naam dete ho aur woh number address lautata hai, phir tumhari request wahan jaati hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: how does a website name become a place to visit?",
+   "hi": "घर पर किसी को समझाओ: वेबसाइट का नाम मिलने की जगह कैसे बनता है?",
+   "hinglish": "Ghar par kisi ko samjhao: website ka naam milne ki jagah kaise banta hai?"
+  },
+  "checklist": [
+   {
+    "en": "Every device has an IP address made of numbers.",
+    "hi": "हर डिवाइस का IP पता नंबरों से बना होता है।",
+    "hinglish": "Har device ka IP address numbers se bana hota hai."
+   },
+   {
+    "en": "Computers use numbers, people like names.",
+    "hi": "कंप्यूटर नंबर इस्तेमाल करते हैं, लोग नाम पसंद करते हैं।",
+    "hinglish": "Computers numbers use karte hain, log naam pasand karte hain."
+   },
+   {
+    "en": "DNS looks up the name and gives the number.",
+    "hi": "DNS नाम खोजकर नंबर देता है।",
+    "hinglish": "DNS naam dhoondh kar number deta hai."
+   },
+   {
+    "en": "Then the request goes to that number.",
+    "hi": "फिर रिक्वेस्ट उस नंबर पर जाती है।",
+    "hinglish": "Phir request us number par jaati hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "IP address",

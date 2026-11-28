@@ -36,6 +36,82 @@
    "hinglish": "Milliamp aur amp mein badal sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, the two AA cells in your torch are old, and the bulb glows dimmer than it did on the first day.",
+   "hi": "{{name}}, तुम्हारी टॉर्च के दो AA सेल पुराने हो गए हैं, और बल्ब पहले दिन से कम चमकता है।",
+   "hinglish": "{{name}}, tumhari torch ke do AA cells purane ho gaye hain, aur bulb pehle din se kam chamakta hai."
+  },
+  "question": {
+   "en": "What exactly is a cell pushing through the bulb, and what decides how strongly it glows?",
+   "hi": "सेल बल्ब में से असल में क्या धकेलता है, और बल्ब कितना चमकेगा यह कौन तय करता है?",
+   "hinglish": "Cell bulb mein se asal mein kya dhakelta hai, aur bulb kitna chamkega yeh kaun tay karta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A 3 V battery drives a current through a resistor. If you swap in a resistor with double the resistance, same battery, what happens to the current?",
+   "hi": "3 V की बैटरी एक प्रतिरोधक में से धारा चलाती है। उसी बैटरी के साथ दोगुने प्रतिरोध वाला प्रतिरोधक लगाओ तो धारा का क्या होगा?",
+   "hinglish": "3 V ki battery ek resistor mein se current chalati hai. Wahi battery rakhkar double resistance wala resistor lagao to current ka kya hoga?"
+  },
+  "options": [
+   {
+    "en": "It doubles",
+    "hi": "दोगुनी हो जाएगी",
+    "hinglish": "Double ho jayega"
+   },
+   {
+    "en": "It halves",
+    "hi": "आधी हो जाएगी",
+    "hinglish": "Aadha ho jayega"
+   },
+   {
+    "en": "It stays the same, only voltage matters",
+    "hi": "वही रहेगी, सिर्फ़ वोल्टेज मायने रखता है",
+    "hinglish": "Wahi rahega, sirf voltage matter karta hai"
+   },
+   {
+    "en": "It becomes zero",
+    "hi": "शून्य हो जाएगी",
+    "hinglish": "Zero ho jayega"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Ohm's law says I = V ÷ R. The push (V) is unchanged and the squeeze (R) is doubled, so the flow (I) is halved.",
+   "hi": "ओम का नियम कहता है I = V ÷ R। धक्का (V) वही है और रुकावट (R) दोगुनी है, इसलिए बहाव (I) आधा रह जाता है।",
+   "hinglish": "Ohm's law kehta hai I = V ÷ R. Push (V) wahi hai aur squeeze (R) double hai, isliye flow (I) aadha reh jaata hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home what voltage, current and resistance are and how they are linked.",
+   "hi": "घर पर किसी को समझाओ कि वोल्टेज, धारा और प्रतिरोध क्या हैं और आपस में कैसे जुड़े हैं।",
+   "hinglish": "Ghar par kisi ko samjhao ki voltage, current aur resistance kya hain aur aapas mein kaise jude hain."
+  },
+  "checklist": [
+   {
+    "en": "Voltage is the push, in volts; current is the flow, in amperes; resistance is the opposition, in ohms.",
+    "hi": "वोल्टेज धक्का है, वोल्ट में; धारा बहाव है, एम्पियर में; प्रतिरोध रुकावट है, ओम में।",
+    "hinglish": "Voltage push hai, volts mein; current flow hai, amperes mein; resistance opposition hai, ohms mein."
+   },
+   {
+    "en": "V = I × R, so I = V ÷ R and R = V ÷ I.",
+    "hi": "V = I × R, इसलिए I = V ÷ R और R = V ÷ I।",
+    "hinglish": "V = I × R, isliye I = V ÷ R aur R = V ÷ I."
+   },
+   {
+    "en": "More resistance with the same voltage means less current.",
+    "hi": "वही वोल्टेज और ज़्यादा प्रतिरोध यानी कम धारा।",
+    "hinglish": "Wahi voltage aur zyada resistance matlab kam current."
+   },
+   {
+    "en": "1 A is 1000 mA.",
+    "hi": "1 A = 1000 mA।",
+    "hinglish": "1 A = 1000 mA."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Voltage (V)",

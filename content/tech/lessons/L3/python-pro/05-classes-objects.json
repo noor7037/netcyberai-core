@@ -34,6 +34,77 @@
    "hinglish": "Encapsulation aur inheritance samajhdaari se use karo"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a bank app must make sure your balance can never go below zero by accident, no matter which part of the code touches it.",
+   "hi": "{{name}}, एक बैंक ऐप को पक्का करना होता है कि तुम्हारा बैलेंस गलती से कभी शून्य से नीचे न जाए, कोड का कोई भी हिस्सा उसे छुए।",
+   "hinglish": "{{name}}, ek bank app ko pakka karna hota hai ki tumhara balance galti se kabhi zero se neeche na jaye, code ka koi bhi hissa use chhue."
+  },
+  "question": {
+   "en": "How can a program keep data and the rules for changing it together in one place?",
+   "hi": "प्रोग्राम डेटा और उसे बदलने के नियम एक ही जगह साथ कैसे रख सकता है?",
+   "hinglish": "Program data aur use badalne ke rules ek hi jagah saath kaise rakh sakta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "riya = Account(\"Riya\", 500) and later riya.deposit(250) runs. What does self refer to inside deposit?",
+   "hi": "riya = Account(\"Riya\", 500) और बाद में riya.deposit(250) चलता है। deposit के अंदर self किसका संदर्भ है?",
+   "hinglish": "riya = Account(\"Riya\", 500) aur baad mein riya.deposit(250) chalta hai. deposit ke andar self kiska reference hai?"
+  },
+  "options": [
+   {
+    "en": "The Account class itself",
+    "hi": "खुद Account क्लास",
+    "hinglish": "Khud Account class"
+   },
+   {
+    "en": "The particular object riya, passed in automatically as the first argument",
+    "hi": "विशेष ऑब्जेक्ट riya, जो अपने आप पहले तर्क के रूप में आता है",
+    "hinglish": "Particular object riya, jo apne aap pehle argument ke roop mein aata hai"
+   },
+   {
+    "en": "A new empty object",
+    "hi": "एक नया खाली ऑब्जेक्ट",
+    "hinglish": "Ek naya empty object"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "riya.deposit(250) is the same as Account.deposit(riya, 250): Python passes the object before the dot as self. That is how one set of methods works on many separate objects, each with its own balance. Because changes go through methods, deposit and withdraw can enforce rules such as no negative balance.",
+   "hi": "riya.deposit(250) और Account.deposit(riya, 250) एक ही हैं: Python बिंदु से पहले वाला ऑब्जेक्ट self के रूप में भेजता है। इसी तरह एक ही मेथड कई अलग ऑब्जेक्ट पर काम करते हैं, हर एक का अपना बैलेंस। बदलाव मेथड से होते हैं, इसलिए deposit और withdraw नकारात्मक बैलेंस न होने जैसे नियम लागू कर सकते हैं।",
+   "hinglish": "riya.deposit(250) aur Account.deposit(riya, 250) ek hi hain: Python dot se pehle wala object self ke roop mein bhejta hai. Isi tarah ek hi methods kai alag objects par kaam karte hain, har ek ka apna balance. Changes methods se hote hain, isliye deposit aur withdraw negative balance na hone jaise rules enforce kar sakte hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home why a bank account is better as an object than as loose variables.",
+   "hi": "घर पर किसी को समझाओ कि बैंक खाता खुले वेरिएबल की जगह ऑब्जेक्ट के रूप में बेहतर क्यों है।",
+   "hinglish": "Ghar par kisi ko samjhao ki bank account loose variables ke bajay object ke roop mein behtar kyun hai."
+  },
+  "checklist": [
+   {
+    "en": "A class is a blueprint; each object built from it has its own attributes.",
+    "hi": "क्लास एक नक्शा है; उससे बना हर ऑब्जेक्ट अपने गुण रखता है।",
+    "hinglish": "Class ek blueprint hai; usse bana har object apne attributes rakhta hai."
+   },
+   {
+    "en": "__init__ runs on creation and stores self.owner and self.balance.",
+    "hi": "__init__ बनते समय चलता है और self.owner और self.balance रखता है।",
+    "hinglish": "__init__ banate waqt chalta hai aur self.owner aur self.balance rakhta hai."
+   },
+   {
+    "en": "riya.deposit(250) means Account.deposit(riya, 250), so self is riya.",
+    "hi": "riya.deposit(250) का मतलब Account.deposit(riya, 250), इसलिए self riya है।",
+    "hinglish": "riya.deposit(250) ka matlab Account.deposit(riya, 250), isliye self riya hai."
+   },
+   {
+    "en": "Methods guard the data (encapsulation); inheritance reuses a parent class and super() calls it.",
+    "hi": "मेथड डेटा की रक्षा करते हैं (एनकैप्सुलेशन); इनहेरिटेंस पैरेंट क्लास दोबारा इस्तेमाल करती है और super() उसे बुलाता है।",
+    "hinglish": "Methods data ki raksha karte hain (encapsulation); inheritance parent class reuse karti hai aur super() use bulata hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Class",
@@ -88,7 +159,7 @@
     "hi": "__init__ अपने-आप चलता है और नए ऑब्जेक्ट पर self.owner और self.balance रखता है।",
     "hinglish": "__init__ apne aap chalta hai aur naye object par self.owner aur self.balance rakhta hai."
    },
-   "visual": "anim:init",
+   "visual": "flow:🏗️ Account(\"Riya\", 500)|⚙️ __init__ runs|📦 Stores self.owner and self.balance",
    "narration": {
     "en": "__init__ runs automatically and stores self.owner and self.balance on the new object.",
     "hi": "__init__ अपने-आप चलता है और नए ऑब्जेक्ट पर self.owner और self.balance रखता है।",
@@ -102,7 +173,7 @@
     "hi": "riya.deposit(250) का अर्थ Account.deposit(riya, 250): self है riya।",
     "hinglish": "riya.deposit(250) ka matlab Account.deposit(riya, 250): self hai riya."
    },
-   "visual": "anim:self-arrow",
+   "visual": "compare:📞 riya.deposit(250)|📞 Account.deposit(riya, 250), the same call",
    "narration": {
     "en": "riya.deposit(250) means Account.deposit(riya, 250): self is riya.",
     "hi": "riya.deposit(250) का अर्थ Account.deposit(riya, 250): self है riya।",

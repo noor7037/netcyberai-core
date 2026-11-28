@@ -35,6 +35,77 @@
    "hinglish": "Kisi app ke liye TCP ya UDP chuno aur kaaran batao"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a UPI payment must never lose a single digit, but a video call can drop a fraction of a second and carry on.",
+   "hi": "{{name}}, UPI भुगतान में एक भी अंक नहीं खोना चाहिए, पर वीडियो कॉल एक पल का हिस्सा गँवाकर भी चलता रहता है।",
+   "hinglish": "{{name}}, UPI payment mein ek bhi digit nahi khona chahiye, par video call ek pal ka hissa ganwakar bhi chalti rehti hai."
+  },
+  "question": {
+   "en": "What are the two ways to send data over the internet, and why does each app choose the one it does?",
+   "hi": "इंटरनेट पर डेटा भेजने के दो तरीके कौन-से हैं, और हर ऐप अपना वाला क्यों चुनता है?",
+   "hinglish": "Internet par data bhejne ke do tareeke kaunse hain, aur har app apna wala kyun chunta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A TCP packet is lost on the way. What does TCP do?",
+   "hi": "रास्ते में एक TCP पैकेट खो जाता है। TCP क्या करता है?",
+   "hinglish": "Raaste mein ek TCP packet kho jaata hai. TCP kya karta hai?"
+  },
+  "options": [
+   {
+    "en": "Nothing, the data is simply missing",
+    "hi": "कुछ नहीं, डेटा बस गायब रहता है",
+    "hinglish": "Kuch nahi, data bas gayab rehta hai"
+   },
+   {
+    "en": "It notices the missing acknowledgement after a timeout and sends that data again",
+    "hi": "यह टाइमआउट के बाद गायब पावती देखता है और वह डेटा फिर भेजता है",
+    "hinglish": "Yeh timeout ke baad missing acknowledgement dekhta hai aur woh data phir bhejta hai"
+   },
+   {
+    "en": "It ends the connection",
+    "hi": "यह कनेक्शन खत्म कर देता है",
+    "hinglish": "Yeh connection khatam kar deta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "TCP numbers every byte and the receiver acknowledges what it got. If an acknowledgement does not arrive in time, TCP sends the data again and slows down. This reliability costs a handshake and some delay. UDP skips all that, so a live call can ignore a late packet and keep going, while QUIC builds reliability on top of UDP for HTTP/3.",
+   "hi": "TCP हर बाइट को क्रमांक देता है और प्राप्तकर्ता जो मिला उसकी पावती देता है। समय पर पावती न आए तो TCP डेटा फिर भेजता है और गति घटाता है। इस भरोसेमंदी की कीमत हैंडशेक और कुछ देरी है। UDP यह सब छोड़ देता है, इसलिए लाइव कॉल देर से आया पैकेट अनदेखा करके चलती रहती है, जबकि QUIC, HTTP/3 के लिए UDP के ऊपर भरोसेमंदी बनाता है।",
+   "hinglish": "TCP har byte ko number deta hai aur receiver jo mila uski acknowledgement deta hai. Samay par acknowledgement na aaye toh TCP data phir bhejta hai aur speed ghatata hai. Is reliability ki keemat handshake aur kuch delay hai. UDP yeh sab chhod deta hai, isliye live call late aaya packet ignore karke chalti rehti hai, jabki QUIC, HTTP/3 ke liye UDP ke upar reliability banata hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home why a payment uses TCP but a video call often uses UDP.",
+   "hi": "घर पर किसी को समझाओ कि भुगतान TCP क्यों इस्तेमाल करता है पर वीडियो कॉल अक्सर UDP क्यों।",
+   "hinglish": "Ghar par kisi ko samjhao ki payment TCP kyun use karta hai par video call aksar UDP kyun."
+  },
+  "checklist": [
+   {
+    "en": "TCP opens with a three-way handshake: SYN, SYN-ACK, ACK.",
+    "hi": "TCP तीन-तरफ़ा हैंडशेक से शुरू होता है: SYN, SYN-ACK, ACK।",
+    "hinglish": "TCP three-way handshake se shuru hota hai: SYN, SYN-ACK, ACK."
+   },
+   {
+    "en": "Sequence numbers and acknowledgements restore order and spot gaps; a missing ACK triggers retransmission.",
+    "hi": "क्रम संख्या और पावती क्रम लौटाते और खाली जगह पहचानते हैं; पावती न आने पर दोबारा भेजना।",
+    "hinglish": "Sequence numbers aur acknowledgements order wapas laate aur gaps pehchaante hain; ACK na aane par retransmission."
+   },
+   {
+    "en": "UDP has no handshake, ordering or retries: lighter and faster, and the app decides what to do about loss.",
+    "hi": "UDP में हैंडशेक, क्रम या दोबारा भेजना नहीं: हल्का और तेज़, और हानि पर ऐप तय करता है।",
+    "hinglish": "UDP mein handshake, ordering ya retries nahi: halka aur tez, aur loss par app tay karta hai."
+   },
+   {
+    "en": "Pick TCP or QUIC when every byte matters, and UDP when fresh data beats late data.",
+    "hi": "हर बाइट मायने रखे तो TCP या QUIC चुनो, और देर से आए डेटा से ताज़ा डेटा बेहतर हो तो UDP।",
+    "hinglish": "Har byte matter kare toh TCP ya QUIC chuno, aur late data se fresh data behtar ho toh UDP."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Handshake",
@@ -75,7 +146,7 @@
     "hi": "टीसीपी पहले हाथ मिलाता है: SYN → SYN-ACK → ACK। एक राउंड ट्रिप के बाद दोनों पक्ष शुरुआती अनुक्रम संख्याओं पर सहमत होते हैं।",
     "hinglish": "TCP pehle haath milata hai: SYN → SYN-ACK → ACK. Ek round trip ke baad dono taraf starting sequence numbers par sehmat hote hain."
    },
-   "visual": "anim:tcp-handshake",
+   "visual": "flow:📨 SYN|📩 SYN-ACK|✅ ACK|🚀 Data flows",
    "narration": {
     "en": "TCP first shakes hands: SYN → SYN-ACK → ACK. After one round trip both sides agree on starting sequence numbers.",
     "hi": "टीसीपी पहले हाथ मिलाता है: SYN → SYN-ACK → ACK। एक राउंड ट्रिप के बाद दोनों पक्ष शुरुआती अनुक्रम संख्याओं पर सहमत होते हैं।",
@@ -89,7 +160,7 @@
     "hi": "हर बाइट गिनी और स्वीकारी जाती है। समय पर ACK न आए तो टीसीपी डेटा दोबारा भेजता है और भीड़ से बचने के लिए धीमा होता है।",
     "hinglish": "Har byte gini aur acknowledge ki jaati hai. Time par ACK na aaye to TCP data dobaara bhejta hai aur congestion se bachne ke liye dheema hota hai."
    },
-   "visual": "anim:tcp-retransmit",
+   "visual": "cycle:📤 Send numbered data|⏳ Wait for the ACK|🔁 No ACK: send it again",
    "narration": {
     "en": "Every byte is numbered and acknowledged. If an ACK does not come back in time, TCP sends the data again and slows down to avoid congestion.",
     "hi": "हर बाइट गिनी और स्वीकारी जाती है। समय पर ACK न आए तो टीसीपी डेटा दोबारा भेजता है और भीड़ से बचने के लिए धीमा होता है।",
@@ -117,7 +188,7 @@
     "hi": "डाउनलोड, वेब पेज और यूपीआई को हर बाइट चाहिए: TCP (या QUIC)। लाइव कॉल और गेम देर वाले डेटा से ताज़ा डेटा पसंद करते हैं: UDP।",
     "hinglish": "Downloads, web pages aur UPI ko har byte chahiye: TCP (ya QUIC). Live calls aur games late data se fresh data pasand karte hain: UDP."
    },
-   "visual": "anim:tcp-udp-choice",
+   "visual": "compare:📥 Downloads, web pages, UPI: TCP or QUIC|📞 Live calls and games: UDP",
    "narration": {
     "en": "Downloads, web pages and UPI need every byte: TCP (or QUIC). Live calls and games prefer fresh data over late data: UDP.",
     "hi": "डाउनलोड, वेब पेज और यूपीआई को हर बाइट चाहिए: TCP (या QUIC)। लाइव कॉल और गेम देर वाले डेटा से ताज़ा डेटा पसंद करते हैं: UDP।",

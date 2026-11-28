@@ -37,6 +37,77 @@
    "hinglish": "Kaunsi branch chalegi trace kar sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, the school app shows a grade after your exam marks go in: A for 90 and above, B for 75 and above.",
+   "hi": "{{name}}, परीक्षा के अंक डलने पर स्कूल ऐप ग्रेड दिखाता है: 90 और ऊपर पर A, 75 और ऊपर पर B।",
+   "hinglish": "{{name}}, exam ke marks dalne par school app grade dikhata hai: 90 aur upar par A, 75 aur upar par B."
+  },
+  "question": {
+   "en": "How does a program choose just one grade out of many?",
+   "hi": "प्रोग्राम कई में से सिर्फ़ एक ग्रेड कैसे चुनता है?",
+   "hinglish": "Program kai mein se sirf ek grade kaise chunta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A program checks if score >= 75 first, then elif score >= 90. A student scores 95. What grade does it give?",
+   "hi": "एक प्रोग्राम पहले जाँचता है score >= 75, फिर elif score >= 90। एक छात्र के 95 अंक हैं। कौन-सा ग्रेड मिलेगा?",
+   "hinglish": "Ek program pehle check karta hai score >= 75, phir elif score >= 90. Ek student ke 95 marks hain. Kaunsa grade milega?"
+  },
+  "options": [
+   {
+    "en": "The 90 grade, since 95 is at least 90",
+    "hi": "90 वाला ग्रेड, क्योंकि 95, 90 से ज़्यादा है",
+    "hinglish": "90 wala grade, kyunki 95, 90 se zyada hai"
+   },
+   {
+    "en": "The 75 grade, because the first True branch wins and the rest are skipped",
+    "hi": "75 वाला ग्रेड, क्योंकि पहली सही शाखा जीतती है और बाकी छोड़ दी जाती हैं",
+    "hinglish": "75 wala grade, kyunki pehli True branch jeet-ti hai aur baaki skip ho jaati hain"
+   },
+   {
+    "en": "Both grades",
+    "hi": "दोनों ग्रेड",
+    "hinglish": "Dono grades"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "In an if/elif chain, Python stops at the first condition that is True. 95 >= 75 is True, so the elif never runs. Put the strictest test (>= 90) first.",
+   "hi": "if/elif श्रृंखला में Python पहली सही शर्त पर रुक जाता है। 95 >= 75 सही है, इसलिए elif कभी नहीं चलता। सबसे कड़ी जाँच (>= 90) पहले रखो।",
+   "hinglish": "if/elif chain mein Python pehli True condition par ruk jaata hai. 95 >= 75 True hai, isliye elif kabhi nahi chalta. Sabse strict test (>= 90) pehle rakho."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a program makes decisions with if, elif and else.",
+   "hi": "घर पर किसी को समझाओ कि प्रोग्राम if, elif और else से फ़ैसले कैसे लेता है।",
+   "hinglish": "Ghar par kisi ko samjhao ki program if, elif aur else se decisions kaise leta hai."
+  },
+  "checklist": [
+   {
+    "en": "A condition is a yes/no question; if it is True the indented block runs.",
+    "hi": "शर्त हाँ/ना का सवाल है; सही हो तो इंडेंट वाला ब्लॉक चलता है।",
+    "hinglish": "Condition yes/no ka sawaal hai; True ho to indented block chalta hai."
+   },
+   {
+    "en": "The first True branch wins and the rest are skipped, so order matters.",
+    "hi": "पहली सही शाखा जीतती है और बाकी छूट जाती हैं, इसलिए क्रम मायने रखता है।",
+    "hinglish": "Pehli True branch jeet-ti hai aur baaki chhoot jaati hain, isliye order matter karta hai."
+   },
+   {
+    "en": "== compares, but = stores.",
+    "hi": "== तुलना करता है, पर = रखता है।",
+    "hinglish": "== compare karta hai, par = store karta hai."
+   },
+   {
+    "en": "and needs both, or needs one, not flips.",
+    "hi": "and को दोनों चाहिए, or को एक, not पलट देता है।",
+    "hinglish": "and ko dono chahiye, or ko ek, not palat deta hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Condition",

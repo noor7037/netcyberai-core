@@ -303,7 +303,7 @@ function useTabs() {
 export type ParentSlots = { overview?: ReactNode; children?: ReactNode; school?: ReactNode; learning?: ReactNode };
 export type ParentNeed = { kind: 'requests_declined' | 'requests_open' | 'renew' | 'consent' | 'meeting'; n?: number; name?: string };
 
-export function ParentArea({ w, lang, children, states, boards, studyCore, calm, english = null, photo = null, voice = null, offers = null, habit = null, slots = {}, needs = [], schoolNumbers = [], weeks = [] }: { w: Words; lang: Lang; children: Child[]; states: { code: string; name: string }[]; boards?: BoardOption[]; studyCore: boolean; calm: Calm[]; english?: { granted: boolean } | null; photo?: { granted: boolean; renew?: boolean } | null; voice?: { granted: boolean } | null; offers?: { granted: boolean } | null; habit?: ParentHabit[] | null; slots?: ParentSlots; needs?: ParentNeed[]; schoolNumbers?: SchoolOverview[]; weeks?: ParentWeek[] }) {
+export function ParentArea({ w, lang, children, states, boards, studyCore, calm, english = null, tech = false, photo = null, voice = null, offers = null, habit = null, slots = {}, needs = [], schoolNumbers = [], weeks = [] }: { w: Words; lang: Lang; children: Child[]; states: { code: string; name: string }[]; boards?: BoardOption[]; studyCore: boolean; calm: Calm[]; english?: { granted: boolean } | null; tech?: boolean; photo?: { granted: boolean; renew?: boolean } | null; voice?: { granted: boolean } | null; offers?: { granted: boolean } | null; habit?: ParentHabit[] | null; slots?: ParentSlots; needs?: ParentNeed[]; schoolNumbers?: SchoolOverview[]; weeks?: ParentWeek[] }) {
   const router = useRouter();
   const [adding, setAdding] = useState(false);
   const [selected, setSelected] = useState<string | null>(null);
@@ -491,6 +491,15 @@ export function ParentArea({ w, lang, children, states, boards, studyCore, calm,
                   <a href={`/family/parent/english/${selChild.childId}`} data-parent-english className="fam-row fam-lift justify-between bg-white text-base font-semibold text-slate">
                     <span>
                       {w['fam.english.parent.section']} · {w['fam.english.parent.open']}
+                    </span>
+                    <FamIcon name="next" className="h-5 w-5 shrink-0" />
+                  </a>
+                )}
+                {/* C557: the parent's choices for this child's Tech & AI Lab (class, topic areas), like the English course's. */}
+                {tech && selChild && (
+                  <a href={`/family/parent/tech/${selChild.childId}`} data-parent-tech className="fam-row fam-lift justify-between bg-white text-base font-semibold text-slate">
+                    <span>
+                      {w['fam.tech.parent.section']} · {fill(w['fam.tech.parent.open'], { name: selChild.firstName })}
                     </span>
                     <FamIcon name="next" className="h-5 w-5 shrink-0" />
                   </a>

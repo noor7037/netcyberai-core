@@ -34,6 +34,72 @@
    "hinglish": "Incident-response aur awareness plan likho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, one student's infected pen-drive spreads a virus to the school computer lab, and next day even the fee office computer is slow.",
+   "hi": "{{name}}, एक छात्र की संक्रमित पेन-ड्राइव से स्कूल कंप्यूटर लैब में वायरस फैलता है, और अगले दिन फ़ीस ऑफ़िस का कंप्यूटर भी धीमा हो जाता है।",
+   "hinglish": "{{name}}, ek student ki infected pen-drive se school computer lab mein virus phailta hai, aur agle din fee office ka computer bhi slow ho jaata hai."
+  },
+  "question": {
+   "en": "How should a school plan its network so one problem does not become a disaster?",
+   "hi": "स्कूल अपने नेटवर्क की योजना कैसे बनाए कि एक समस्या आपदा न बन जाए?",
+   "hinglish": "School apne network ki planning kaise kare ki ek problem disaster na ban jaaye?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Why separate student, staff, guest and camera networks instead of one flat network?",
+   "hi": "एक सपाट नेटवर्क की जगह छात्र, स्टाफ़, मेहमान और कैमरा नेटवर्क अलग क्यों करें?",
+   "hinglish": "Ek flat network ki jagah student, staff, guest aur camera networks alag kyun karein?"
+  },
+  "options": [
+   {
+    "en": "It makes the Wi-Fi faster for everyone",
+    "hi": "इससे सबके लिए Wi-Fi तेज़ हो जाता है",
+    "hinglish": "Isse sabke liye Wi-Fi tez ho jaata hai"
+   },
+   {
+    "en": "A problem or intruder in one segment cannot freely reach the others",
+    "hi": "एक हिस्से की समस्या या घुसपैठिया दूसरों तक खुलकर नहीं पहुँच सकता",
+    "hinglish": "Ek segment ki problem ya intruder doosron tak freely nahi pahunch sakta"
+   },
+   {
+    "en": "It removes the need for passwords",
+    "hi": "इससे पासवर्ड की ज़रूरत ख़त्म हो जाती है",
+    "hinglish": "Isse passwords ki zaroorat khatam ho jaati hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Segmentation limits the blast radius: a compromised guest device cannot reach the fee system. It is one layer in defence in depth, alongside strong passphrases with MFA, least privilege, updates, 3-2-1 backups and trained people. Plan the incident response before you need it.",
+   "hi": "सेगमेंटेशन नुक़सान का दायरा सीमित करता है: समझौता हुआ मेहमान डिवाइस फ़ीस सिस्टम तक नहीं पहुँच सकता। यह गहराई में रक्षा की एक परत है, साथ में MFA वाले मज़बूत पासफ़्रेज़, न्यूनतम अधिकार, अपडेट, 3-2-1 बैकअप और प्रशिक्षित लोग। घटना-प्रतिक्रिया की योजना ज़रूरत से पहले बनाओ।",
+   "hinglish": "Segmentation nuksaan ka daayra limited karta hai: compromised guest device fee system tak nahi pahunch sakta. Yeh defence in depth ki ek layer hai, saath mein MFA wale strong passphrases, least privilege, updates, 3-2-1 backups aur trained log. Incident response ki planning zaroorat se pehle banao."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to the principal how layered defences would protect the school and what the plan is if something goes wrong.",
+   "hi": "प्रिंसिपल को समझाओ कि परतदार सुरक्षा स्कूल को कैसे बचाएगी और कुछ ग़लत हो तो योजना क्या है।",
+   "hinglish": "Principal ko samjhao ki layered defences school ko kaise bachayengi aur kuch galat ho to plan kya hai."
+  },
+  "checklist": [
+   {
+    "en": "List assets, users and risks first: data, accounts, devices, network",
+    "hi": "पहले संपत्तियाँ, यूज़र और जोखिम सूचीबद्ध करो: डेटा, अकाउंट, डिवाइस, नेटवर्क",
+    "hinglish": "Pehle assets, users aur risks list karo: data, accounts, devices, network"
+   },
+   {
+    "en": "Layer defences: segmentation, MFA and strong passphrases, least privilege, updates, backups",
+    "hi": "परतों में सुरक्षा: सेगमेंटेशन, MFA और मज़बूत पासफ़्रेज़, न्यूनतम अधिकार, अपडेट, बैकअप",
+    "hinglish": "Layers mein defence: segmentation, MFA aur strong passphrases, least privilege, updates, backups"
+   },
+   {
+    "en": "Prepare, detect, respond and recover from incidents, and train people",
+    "hi": "घटनाओं के लिए तैयारी, पहचान, प्रतिक्रिया और पुनर्प्राप्ति करो, और लोगों को प्रशिक्षित करो",
+    "hinglish": "Incidents ke liye prepare, detect, respond aur recover karo, aur logon ko train karo"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Asset inventory",

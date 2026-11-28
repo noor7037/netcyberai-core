@@ -32,6 +32,77 @@
    "hinglish": "Python types jaano: int, float, str, bool"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your class marks sit in a spreadsheet and you want the average and a pass or fail for each student without typing it by hand.",
+   "hi": "{{name}}, तुम्हारी कक्षा के अंक एक स्प्रेडशीट में हैं और तुम बिना हाथ से लिखे औसत और हर विद्यार्थी का पास या फ़ेल निकालना चाहते हो।",
+   "hinglish": "{{name}}, tumhari class ke marks ek spreadsheet mein hain aur tum bina haath se likhe average aur har student ka pass ya fail nikalna chahte ho."
+  },
+  "question": {
+   "en": "What does Python do, line by line, to remember numbers, repeat a step and choose between two paths?",
+   "hi": "Python पंक्ति दर पंक्ति संख्याएँ याद रखने, एक कदम दोहराने और दो रास्तों में से चुनने के लिए क्या करता है?",
+   "hinglish": "Python line by line numbers yaad rakhne, ek step repeat karne aur do raaston mein se chunne ke liye kya karta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What does print(\"4\" + \"2\") show, compared with print(4 + 2)?",
+   "hi": "print(\"4\" + \"2\") क्या दिखाता है, print(4 + 2) की तुलना में?",
+   "hinglish": "print(\"4\" + \"2\") kya dikhata hai, print(4 + 2) ke muqable?"
+  },
+  "options": [
+   {
+    "en": "6 in both cases",
+    "hi": "दोनों में 6",
+    "hinglish": "Dono mein 6"
+   },
+   {
+    "en": "\"42\" for the text version and 6 for the numbers",
+    "hi": "लिखावट वाले में \"42\" और संख्याओं वाले में 6",
+    "hinglish": "Text wale mein \"42\" aur numbers wale mein 6"
+   },
+   {
+    "en": "An error for the text version",
+    "hi": "लिखावट वाले में त्रुटि",
+    "hinglish": "Text wale mein error"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Every value has a type. + on two strings joins them (\"4\" + \"2\" is \"42\"), while + on two ints adds them (6). Many beginner bugs come from a value being the wrong type, for example input() always returns a string.",
+   "hi": "हर मान का एक प्रकार होता है। दो स्ट्रिंग पर + उन्हें जोड़ता है (\"4\" + \"2\" यानी \"42\"), जबकि दो int पर + जोड़ता है (6)। शुरुआती कई गड़बड़ियाँ गलत प्रकार से आती हैं, जैसे input() हमेशा स्ट्रिंग देता है।",
+   "hinglish": "Har value ka ek type hota hai. Do strings par + unhe jodta hai (\"4\" + \"2\" yaani \"42\"), jabki do ints par + add karta hai (6). Beginner ke kai bugs galat type se aate hain, jaise input() hamesha string deta hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a for loop with an accumulator finds a class average.",
+   "hi": "घर पर किसी को समझाओ कि संचायक वाला for लूप कक्षा का औसत कैसे निकालता है।",
+   "hinglish": "Ghar par kisi ko samjhao ki accumulator wala for loop class ka average kaise nikalta hai."
+  },
+  "checklist": [
+   {
+    "en": "A variable is a name for a value; a line-by-line trace shows how it changes.",
+    "hi": "वेरिएबल एक मान का नाम है; पंक्ति दर पंक्ति ट्रेस दिखाता है कि वह कैसे बदलता है।",
+    "hinglish": "Variable ek value ka naam hai; line-by-line trace dikhata hai ki woh kaise badalta hai."
+   },
+   {
+    "en": "total starts at 0 and the loop adds each mark in turn; then divide by len(marks).",
+    "hi": "total 0 से शुरू होता है और लूप हर अंक बारी-बारी जोड़ता है; फिर len(marks) से भाग।",
+    "hinglish": "total 0 se shuru hota hai aur loop har mark baari-baari jodta hai; phir len(marks) se divide."
+   },
+   {
+    "en": "if/elif/else runs only one branch; for suits a known collection, while repeats until a condition changes.",
+    "hi": "if/elif/else सिर्फ़ एक शाखा चलाता है; for ज्ञात संग्रह के लिए है, while शर्त बदलने तक दोहराता है।",
+    "hinglish": "if/elif/else sirf ek branch chalata hai; for known collection ke liye hai, while condition badalne tak repeat karta hai."
+   },
+   {
+    "en": "Types matter: / gives a float, // floors, and text and numbers behave differently.",
+    "hi": "प्रकार मायने रखते हैं: / फ़्लोट देता है, // नीचे गोल करता है, और टेक्स्ट व संख्याएँ अलग व्यवहार करती हैं।",
+    "hinglish": "Types matter karte hain: / float deta hai, // floor karta hai, aur text aur numbers alag behave karte hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Variable",
@@ -86,7 +157,7 @@
     "hi": "for m in marks: हर वस्तु बारी-बारी लेता है; इंडेंट पंक्ति हर वस्तु पर एक बार चलती है।",
     "hinglish": "for m in marks: har item baari-baari leta hai; indented line har item par ek baar chalti hai."
    },
-   "visual": "anim:loop-arrow",
+   "visual": "cycle:📥 Take the next item|⚙️ Run the indented lines|❓ Any items left?",
    "narration": {
     "en": "for m in marks: takes each item in turn; the indented line runs once per item.",
     "hi": "for m in marks: हर वस्तु बारी-बारी लेता है; इंडेंट पंक्ति हर वस्तु पर एक बार चलती है।",

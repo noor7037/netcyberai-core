@@ -40,6 +40,77 @@
    "hinglish": "Bata sakte ho robots kis kaam mein achhe hain aur insaan kya behtar karte hain."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, at night the street light outside your house turns on by itself.",
+   "hi": "{{name}}, रात में तुम्हारे घर के बाहर की स्ट्रीट लाइट अपने-आप जल जाती है।",
+   "hinglish": "{{name}}, raat mein tumhare ghar ke bahar ki street light apne-aap jal jaati hai."
+  },
+  "question": {
+   "en": "Who tells it when to switch on?",
+   "hi": "उसे कौन बताता है कि कब जलना है?",
+   "hinglish": "Use kaun batata hai ki kab jalna hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "An automatic street light switches on at dark. How does it know?",
+   "hi": "ऑटोमैटिक स्ट्रीट लाइट अँधेरा होने पर जलती है। उसे कैसे पता चलता है?",
+   "hinglish": "Automatic street light andhera hone par jalti hai. Use kaise pata chalta hai?"
+  },
+  "options": [
+   {
+    "en": "A light sensor measures brightness, and a rule says IF it is dark THEN switch on",
+    "hi": "लाइट सेंसर रोशनी नापता है, और नियम कहता है IF अँधेरा THEN जलाओ",
+    "hinglish": "Light sensor roshni naapta hai, aur rule kehta hai IF andhera THEN jalao"
+   },
+   {
+    "en": "A tiny person inside switches it on",
+    "hi": "अंदर एक छोटा आदमी जलाता है",
+    "hinglish": "Andar ek chhota aadmi jalata hai"
+   },
+   {
+    "en": "It listens for the evening call to prayer",
+    "hi": "वह शाम की अज़ान सुनती है",
+    "hinglish": "Woh shaam ki azaan sunti hai"
+   }
+  ],
+  "answer": 0,
+  "explain": {
+   "en": "A light sensor feeds a number into a rule: IF dark THEN on. People wrote that rule. Robots like Pragyan on the Moon, factory arms and vacuums are great at repetitive, heavy or far-away jobs, but people still design them and fix their mistakes.",
+   "hi": "लाइट सेंसर एक संख्या नियम तक पहुँचाता है: IF अँधेरा THEN चालू। वह नियम लोगों ने लिखा। चाँद पर प्रज्ञान, फ़ैक्टरी की भुजाएँ और वैक्यूम दोहराव, भारी या दूर के कामों में अच्छे हैं, पर इन्हें लोग ही बनाते और इनकी ग़लतियाँ सुधारते हैं।",
+   "hinglish": "Light sensor ek number rule tak pahunchata hai: IF andhera THEN on. Woh rule logon ne likha. Chaand par Pragyan, factory arms aur vacuums repetitive, bhaari ya door ke kaamon mein achhe hain, par inhe log hi banate aur inki galtiyan sudhaarte hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: what are robots good at, and who is in charge?",
+   "hi": "घर पर किसी को समझाओ: रोबोट किसमें अच्छे हैं, और ज़िम्मेदार कौन है?",
+   "hinglish": "Ghar par kisi ko samjhao: robots kisme achhe hain, aur zimmedaar kaun hai?"
+  },
+  "checklist": [
+   {
+    "en": "Robots are good at repetitive, heavy, dangerous or far-away jobs.",
+    "hi": "रोबोट दोहराव, भारी, ख़तरनाक या दूर के कामों में अच्छे हैं।",
+    "hinglish": "Robots repetitive, bhaari, khatarnaak ya door ke kaamon mein achhe hain."
+   },
+   {
+    "en": "Example: Pragyan explored the Moon.",
+    "hi": "उदाहरण: प्रज्ञान ने चाँद की खोज की।",
+    "hinglish": "Example: Pragyan ne Chaand ki khoj ki."
+   },
+   {
+    "en": "A street light uses a light sensor and an IF-THEN rule.",
+    "hi": "स्ट्रीट लाइट लाइट सेंसर और IF-THEN नियम इस्तेमाल करती है।",
+    "hinglish": "Street light light sensor aur IF-THEN rule use karti hai."
+   },
+   {
+    "en": "People write the rules and fix the bugs.",
+    "hi": "नियम लोग लिखते हैं और गड़बड़ियाँ ठीक करते हैं।",
+    "hinglish": "Rules log likhte hain aur bugs theek karte hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Rover",

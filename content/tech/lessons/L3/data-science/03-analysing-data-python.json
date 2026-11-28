@@ -36,6 +36,77 @@
    "hinglish": "Data clean karo: missing values, duplicates, galat types"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, the school has a spreadsheet with 500 marks rows and the principal asks, \"Which house is doing best?\"",
+   "hi": "{{name}}, स्कूल के पास 500 अंकों की पंक्तियों वाली स्प्रेडशीट है और प्रिंसिपल पूछते हैं, \"कौन-सा हाउस सबसे अच्छा कर रहा है?\"",
+   "hinglish": "{{name}}, school ke paas 500 marks rows wali spreadsheet hai aur principal poochhte hain, \"Kaunsa house sabse accha kar raha hai?\""
+  },
+  "question": {
+   "en": "How do you turn hundreds of rows into one number per house with a few lines of Python?",
+   "hi": "सैकड़ों पंक्तियों को कुछ लाइनों के Python से हर हाउस के एक अंक में कैसे बदलें?",
+   "hinglish": "Saikdon rows ko kuch lines ke Python se har house ke ek number mein kaise badlein?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "To find each house's average marks, what must happen to the rows first?",
+   "hi": "हर हाउस के औसत अंक निकालने के लिए पंक्तियों के साथ पहले क्या होना चाहिए?",
+   "hinglish": "Har house ke average marks nikalne ke liye rows ke saath pehle kya hona chahiye?"
+  },
+  "options": [
+   {
+    "en": "Sort all rows by marks and take the top row",
+    "hi": "सब पंक्तियाँ अंकों से सॉर्ट करो और सबसे ऊपर वाली लो",
+    "hinglish": "Saari rows marks se sort karo aur top row lo"
+   },
+   {
+    "en": "Group the rows by house, then total and count each group",
+    "hi": "पंक्तियों को हाउस से ग्रुप करो, फिर हर ग्रुप का जोड़ और गिनती निकालो",
+    "hinglish": "Rows ko house se group karo, phir har group ka total aur count nikalo"
+   },
+   {
+    "en": "Average the whole marks column once",
+    "hi": "पूरे अंक कॉलम का एक बार औसत लो",
+    "hinglish": "Poore marks column ka ek baar average lo"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "This is split-apply-combine: split rows into groups, compute a total and count for each, then divide. Pandas does it in one line with groupby, but plain dicts show the mechanism. Always report n, because a group of one student gives a shaky average.",
+   "hi": "यह स्प्लिट-अप्लाई-कंबाइन है: पंक्तियों को समूहों में बाँटो, हर समूह का जोड़ और गिनती निकालो, फिर भाग दो। Pandas groupby से एक लाइन में करता है, पर सादे dict तंत्र दिखाते हैं। n हमेशा बताओ, क्योंकि एक छात्र वाले समूह का औसत कमज़ोर होता है।",
+   "hinglish": "Yeh split-apply-combine hai: rows ko groups mein baanto, har group ka total aur count nikalo, phir divide karo. Pandas groupby se ek line mein karta hai, par plain dicts mechanism dikhate hain. n hamesha batao, kyunki ek student wale group ka average shaky hota hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a classmate how code goes from a list of (name, house, marks) rows to one average per house.",
+   "hi": "सहपाठी को समझाओ कि कोड (नाम, हाउस, अंक) पंक्तियों की सूची से हर हाउस के एक औसत तक कैसे पहुँचता है।",
+   "hinglish": "Classmate ko samjhao ki code (name, house, marks) rows ki list se har house ke ek average tak kaise pahunchta hai."
+  },
+  "checklist": [
+   {
+    "en": "Split rows into buckets by key, keeping a total and a count for each",
+    "hi": "पंक्तियों को कुंजी से बकेट में बाँटो, हर में जोड़ और गिनती रखो",
+    "hinglish": "Rows ko key se buckets mein baanto, har mein total aur count rakho"
+   },
+   {
+    "en": "Average is total divided by count; pandas groupby does the same in one line",
+    "hi": "औसत जोड़ ÷ गिनती है; pandas groupby एक लाइन में वही करता है",
+    "hinglish": "Average total ÷ count hai; pandas groupby ek line mein wahi karta hai"
+   },
+   {
+    "en": "Clean first: missing values, duplicates and wrong types",
+    "hi": "पहले सफ़ाई: ग़ायब मान, डुप्लिकेट और ग़लत प्रकार",
+    "hinglish": "Pehle cleaning: missing values, duplicates aur wrong types"
+   },
+   {
+    "en": "Report n beside an average, because small groups mislead",
+    "hi": "औसत के साथ n बताओ, क्योंकि छोटे समूह भ्रमित करते हैं",
+    "hinglish": "Average ke saath n batao, kyunki chhote groups mislead karte hain"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "DataFrame",
@@ -90,7 +161,7 @@
     "hi": "बाँटो: हर पंक्ति अपने हाउस की बाल्टी में — totals और counts दो डिक्ट में बढ़ते हैं।",
     "hinglish": "Split: har row apne house ki bucket mein — totals aur counts do dicts mein badhte hain."
    },
-   "visual": "anim:buckets",
+   "visual": "flow:📋 Rows|🪣 Split by house|➕ Total and count each",
    "narration": {
     "en": "Split: each row goes into its house bucket — totals and counts grow in two dicts.",
     "hi": "बाँटो: हर पंक्ति अपने हाउस की बाल्टी में — totals और counts दो डिक्ट में बढ़ते हैं।",
@@ -104,7 +175,7 @@
     "hi": "लागू करो और जोड़ो: हर हाउस का कुल ÷ गिनती → Red 86.5, Blue 70.5, Green 88.0।",
     "hinglish": "Apply aur combine: har house ka total ÷ count → Red 86.5, Blue 70.5, Green 88.0."
    },
-   "visual": "anim:combine",
+   "visual": "flow:🪣 House buckets|➗ Total ÷ count|📊 Red 86.5, Blue 70.5, Green 88.0",
    "narration": {
     "en": "Apply and combine: total ÷ count per house → Red 86.5, Blue 70.5, Green 88.0.",
     "hi": "लागू करो और जोड़ो: हर हाउस का कुल ÷ गिनती → Red 86.5, Blue 70.5, Green 88.0।",

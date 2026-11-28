@@ -39,6 +39,77 @@
    "hinglish": "Jaante ho ki taala private connection batata hai, yeh nahin ki site achhi hai."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you type a website name into your browser and a page about cricket appears.",
+   "hi": "{{name}}, तुम ब्राउज़र में किसी वेबसाइट का नाम लिखते हो और क्रिकेट का एक पेज खुल जाता है।",
+   "hinglish": "{{name}}, tum browser mein kisi website ka naam likhte ho aur cricket ka ek page khul jaata hai."
+  },
+  "question": {
+   "en": "Are the internet and the web the same thing, and what does a web address tell?",
+   "hi": "क्या इंटरनेट और वेब एक ही चीज़ हैं, और वेब पता क्या बताता है?",
+   "hinglish": "Kya internet aur web ek hi cheez hain, aur web address kya batata hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What do you think? A website shows a padlock 🔒 and https. Does that mean the website is good and safe to trust?",
+   "hi": "तुम्हें क्या लगता है? किसी वेबसाइट पर ताला 🔒 और https दिखता है। क्या इसका मतलब है कि वेबसाइट अच्छी और भरोसे लायक़ है?",
+   "hinglish": "Tumhe kya lagta hai? Kisi website par padlock 🔒 aur https dikhta hai. Kya iska matlab hai ki website achhi aur trust karne layak hai?"
+  },
+  "options": [
+   {
+    "en": "Yes, a padlock means the site is always honest",
+    "hi": "हाँ, ताले का मतलब साइट हमेशा ईमानदार है",
+    "hinglish": "Haan, padlock ka matlab site hamesha honest hai"
+   },
+   {
+    "en": "No, it only means nobody in the middle can read what you send; a fake site can have one too",
+    "hi": "नहीं, इसका मतलब सिर्फ़ यह है कि बीच में कोई तुम्हारा भेजा नहीं पढ़ सकता; नक़ली साइट पर भी ताला हो सकता है",
+    "hinglish": "Nahin, iska matlab sirf yeh hai ki beech mein koi tumhara bheja nahin padh sakta; fake site par bhi padlock ho sakta hai"
+   },
+   {
+    "en": "Yes, only banks can have a padlock",
+    "hi": "हाँ, ताला सिर्फ़ बैंकों के पास होता है",
+    "hinglish": "Haan, padlock sirf banks ke paas hota hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "The internet is the roads; the web is the pages that travel on them. A padlock and https mean the connection is private, not that the site is good, so read the name carefully. Pages link to other pages like a spider's web.",
+   "hi": "इंटरनेट सड़कें हैं; वेब वे पेज हैं जो उन पर चलते हैं। ताला और https का मतलब कनेक्शन निजी है, यह नहीं कि साइट अच्छी है, इसलिए नाम ध्यान से पढ़ो। पेज एक-दूसरे से मकड़ी के जाले की तरह जुड़े हैं।",
+   "hinglish": "Internet roads hain; web woh pages hain jo unpar chalte hain. Padlock aur https ka matlab connection private hai, yeh nahin ki site achhi hai, isliye naam dhyaan se padho. Pages ek-doosre se spider ke jaale ki tarah jude hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: what is the difference between the internet and the web, and what does the padlock mean?",
+   "hi": "घर पर किसी को समझाओ: इंटरनेट और वेब में क्या फ़र्क़ है, और ताले का क्या मतलब है?",
+   "hinglish": "Ghar par kisi ko samjhao: internet aur web mein kya fark hai, aur padlock ka kya matlab hai?"
+  },
+  "checklist": [
+   {
+    "en": "The internet is the roads; the web is the pages travelling on them.",
+    "hi": "इंटरनेट सड़कें हैं; वेब उन पर चलने वाले पेज हैं।",
+    "hinglish": "Internet roads hain; web unpar chalne wale pages hain."
+   },
+   {
+    "en": "A web address (URL) names the site and the page.",
+    "hi": "वेब पता (URL) साइट और पेज का नाम बताता है।",
+    "hinglish": "Web address (URL) site aur page ka naam batata hai."
+   },
+   {
+    "en": "Links join pages like a spider's web.",
+    "hi": "लिंक पेजों को मकड़ी के जाले की तरह जोड़ते हैं।",
+    "hinglish": "Links pages ko spider ke jaale ki tarah jodte hain."
+   },
+   {
+    "en": "The padlock means a private connection, not a good site, so check the name.",
+    "hi": "ताले का मतलब निजी कनेक्शन है, अच्छी साइट नहीं, इसलिए नाम जाँचो।",
+    "hinglish": "Padlock ka matlab private connection hai, achhi site nahin, isliye naam check karo."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "World Wide Web",

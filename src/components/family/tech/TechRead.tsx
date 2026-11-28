@@ -1,9 +1,8 @@
 'use client';
 
 import { useMemo, useRef } from 'react';
-import { blockIds, narrationScript } from '@/lib/family/blocks';
 import type { Words } from '@/lib/family/fill';
-import { INTRO_BLOCK, techlabToBlocks, WRAP_BLOCK } from '@/lib/family/tech/blocks';
+import { readLines } from './read-lines';
 import type { TechPersonal } from '@/lib/family/tech/personal';
 import { voiceLang, type TechLang } from '@/lib/family/tech/text';
 import type { TechLesson } from '@/lib/family/tech/types';
@@ -19,17 +18,7 @@ import { WordTapLayer } from '@/components/family/words/WordTapLayer';
 export function TechRead({ lesson, blockId, lang, label, words, voice, personal, showText = true }: { lesson: TechLesson; blockId: string; lang: TechLang; label: string; words: Words; voice: VoiceMode; personal?: TechPersonal; showText?: boolean }) {
   const root = useRef<HTMLDivElement>(null);
   const mode = useRef<VoiceMode>(voice);
-  const lines = useMemo(() => {
-    const blocks = techlabToBlocks(lesson, lang, personal);
-    const ids = blockIds(blocks);
-    const at = blocks.findIndex((block) => block.id === blockId);
-    if (at < 0) return [];
-    const own = blockId.endsWith(INTRO_BLOCK) || blockId.endsWith(WRAP_BLOCK);
-    const name = personal?.name.trim() ?? '';
-    return narrationScript(blocks)
-      .filter((line) => line.blockId === ids[at])
-      .map((line) => ({ ...line, phoneOnly: own || (!!name && line.text.includes(name)) }));
-  }, [lesson, lang, blockId, personal]);
+  const lines = useMemo(() => readLines(lesson, lang, personal).get(blockId) ?? [], [lesson, lang, blockId, personal]);
 
   const readFrom = (from: number) => {
     stopLine();

@@ -35,6 +35,77 @@
    "hinglish": "Nyquist rule se sampling rate chuno aur sensor padho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, the temperature on a smart thermostat shows 29.4 degrees, but real heat in the room changes smoothly, not in jumps.",
+   "hi": "{{name}}, स्मार्ट थर्मोस्टैट पर तापमान 29.4 डिग्री दिखता है, पर कमरे की असली गर्मी झटकों में नहीं, धीरे-धीरे बदलती है।",
+   "hinglish": "{{name}}, smart thermostat par temperature 29.4 degrees dikhta hai, par kamre ki asli garmi jhatkon mein nahi, dheere-dheere badalti hai."
+  },
+  "question": {
+   "en": "How does a chip that only understands numbers read a smooth, continuous sensor signal?",
+   "hi": "सिर्फ़ संख्याएँ समझने वाली चिप एक सहज, लगातार बदलते सेंसर संकेत को कैसे पढ़ती है?",
+   "hinglish": "Sirf numbers samajhne wali chip ek smooth, continuous sensor signal ko kaise padhti hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A 10-bit ADC with a 5 V reference reads a sensor. What is the smallest voltage change it can tell apart?",
+   "hi": "5 V रेफ़रेंस वाला 10-बिट ADC एक सेंसर पढ़ता है। सबसे छोटा वोल्टेज बदलाव जो वह पहचान सकता है, क्या है?",
+   "hinglish": "5 V reference wala 10-bit ADC ek sensor padhta hai. Sabse chhota voltage change jo woh pehchaan sakta hai, kya hai?"
+  },
+  "options": [
+   {
+    "en": "5 V ÷ 10 = 0.5 V",
+    "hi": "5 V ÷ 10 = 0.5 V",
+    "hinglish": "5 V ÷ 10 = 0.5 V"
+   },
+   {
+    "en": "5 V ÷ 1,024 ≈ 4.9 mV",
+    "hi": "5 V ÷ 1,024 ≈ 4.9 mV",
+    "hinglish": "5 V ÷ 1,024 ≈ 4.9 mV"
+   },
+   {
+    "en": "It can tell apart any change, however small",
+    "hi": "यह कितना भी छोटा बदलाव पहचान सकता है",
+    "hinglish": "Yeh kitna bhi chhota change pehchaan sakta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "An n-bit ADC has 2ⁿ levels, so 10 bits give 1,024 steps across 5 V, about 4.9 mV each. Anything smaller falls inside one step and is rounded. The ADC also samples in time, so it must sample faster than twice the signal's fastest wiggle (Nyquist) or it records a fake slower wave.",
+   "hi": "n-बिट ADC के 2ⁿ स्तर होते हैं, इसलिए 10 बिट 5 V में 1,024 कदम देते हैं, हर कदम लगभग 4.9 mV। इससे छोटा बदलाव एक ही कदम में आ जाता है और गोल हो जाता है। ADC समय में भी नमूने लेता है, इसलिए संकेत की सबसे तेज़ लहर से दुगुनी से ज़्यादा तेज़ नमूने (नाइक्विस्ट) लेने होंगे, वरना नकली धीमी लहर दर्ज होगी।",
+   "hinglish": "n-bit ADC ke 2ⁿ levels hote hain, isliye 10 bits 5 V mein 1,024 steps dete hain, har step lagbhag 4.9 mV. Isse chhota change ek hi step mein aa jaata hai aur round ho jaata hai. ADC time mein bhi samples leta hai, isliye signal ki sabse tez wiggle se double se zyada tez sample (Nyquist) lene honge, warna fake slow wave record hogi."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a microcontroller turns a temperature into a number, and what can go wrong.",
+   "hi": "घर पर किसी को समझाओ कि माइक्रोकंट्रोलर तापमान को संख्या में कैसे बदलता है, और क्या गड़बड़ हो सकती है।",
+   "hinglish": "Ghar par kisi ko samjhao ki microcontroller temperature ko number mein kaise badalta hai, aur kya gadbad ho sakti hai."
+  },
+  "checklist": [
+   {
+    "en": "The sensor makes a voltage; the ADC samples it many times a second and rounds each sample to one of 2ⁿ levels.",
+    "hi": "सेंसर वोल्टेज बनाता है; ADC उसे हर सेकंड कई बार नापकर 2ⁿ स्तरों में से एक पर गोल करता है।",
+    "hinglish": "Sensor voltage banata hai; ADC use har second kai baar naap kar 2ⁿ levels mein se ek par round karta hai."
+   },
+   {
+    "en": "Step size is reference voltage ÷ 2ⁿ, so more bits give finer steps.",
+    "hi": "कदम का आकार रेफ़रेंस वोल्टेज ÷ 2ⁿ है, इसलिए ज़्यादा बिट पर महीन कदम।",
+    "hinglish": "Step size reference voltage ÷ 2ⁿ hai, isliye zyada bits par fine steps."
+   },
+   {
+    "en": "Sample at more than twice the fastest frequency (Nyquist) or aliasing makes a fake wave.",
+    "hi": "सबसे तेज़ आवृत्ति से दुगुनी से ज़्यादा पर नमूने लो (नाइक्विस्ट), वरना एलियासिंग नकली लहर बनाती है।",
+    "hinglish": "Sabse tez frequency se double se zyada par sample lo (Nyquist), warna aliasing fake wave banati hai."
+   },
+   {
+    "en": "A sensor like the LM35 gives 10 mV per °C, so the number maps back to a real value.",
+    "hi": "LM35 जैसा सेंसर 10 mV प्रति °C देता है, इसलिए संख्या को वापस असली मान में बदला जा सकता है।",
+    "hinglish": "LM35 jaisa sensor 10 mV per °C deta hai, isliye number ko wapas real value mein badla ja sakta hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Analog",
@@ -95,7 +166,7 @@
     "hi": "ADC उसे सेकंड में कई बार मापता है और हर पढ़ाई को एक स्तर पर गोल करता है।",
     "hinglish": "ADC use second mein kai baar naapta hai aur har reading ko ek level par round karta hai."
    },
-   "visual": "anim:staircase",
+   "visual": "flow:🌡️ Smooth signal|⏱️ Sample often|📏 Round to a level|🔢 Digital number",
    "narration": {
     "en": "An ADC measures it many times a second and rounds each reading to a level.",
     "hi": "ADC उसे सेकंड में कई बार मापता है और हर पढ़ाई को एक स्तर पर गोल करता है।",

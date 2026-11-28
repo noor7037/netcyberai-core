@@ -35,6 +35,77 @@
    "hinglish": "Samjha sakte ho ki computer ko bilkul exact instructions kyun chahiye"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you ask a friend to make chai but only say \"make chai\".",
+   "hi": "{{name}}, तुम एक दोस्त से चाय बनाने को कहते हो पर सिर्फ़ \"चाय बनाओ\" कहते हो।",
+   "hinglish": "{{name}}, tum ek dost se chai banane ko kehte ho par sirf \"chai banao\" kehte ho."
+  },
+  "question": {
+   "en": "What if the friend were a computer: why would it need every step, exact and in order?",
+   "hi": "अगर दोस्त कंप्यूटर होता, तो उसे हर कदम सटीक और क्रम में क्यों चाहिए होता?",
+   "hinglish": "Agar dost computer hota, to use har step exact aur order mein kyun chahiye hota?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A robot is told: \"Add some sugar, then boil the water.\" What goes wrong?",
+   "hi": "एक रोबोट से कहा गया: \"थोड़ी चीनी डालो, फिर पानी उबालो।\" क्या गड़बड़ होगी?",
+   "hinglish": "Ek robot se kaha gaya: \"Thodi sugar daalo, phir paani ubaalo.\" Kya gadbad hogi?"
+  },
+  "options": [
+   {
+    "en": "Nothing; it works out what \"some\" means",
+    "hi": "कुछ नहीं; वह \"थोड़ी\" का मतलब समझ लेगा",
+    "hinglish": "Kuch nahi; woh \"thodi\" ka matlab samajh lega"
+   },
+   {
+    "en": "\"Some\" is not precise, and the order may be wrong, so the robot cannot follow it correctly",
+    "hi": "\"थोड़ी\" सटीक नहीं है और क्रम गलत हो सकता है, इसलिए रोबोट सही नहीं चल पाएगा",
+    "hinglish": "\"Thodi\" precise nahi hai aur order galat ho sakta hai, isliye robot sahi follow nahi kar paayega"
+   },
+   {
+    "en": "The robot refuses to boil water",
+    "hi": "रोबोट पानी उबालने से मना कर देगा",
+    "hinglish": "Robot paani ubaalne se mana kar dega"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Computers do exactly what the steps say and cannot guess. A good algorithm is precise (\"2 spoons\"), ordered and finite. Blocks and text code are two ways to write the same exact steps.",
+   "hi": "कंप्यूटर वही करता है जो कदम कहते हैं और अनुमान नहीं लगा सकता। अच्छा एल्गोरिदम सटीक (\"2 चम्मच\"), क्रमबद्ध और सीमित होता है। ब्लॉक और टेक्स्ट कोड वही सटीक कदम लिखने के दो तरीके हैं।",
+   "hinglish": "Computer wahi karta hai jo steps kehte hain aur guess nahi kar sakta. Achha algorithm precise (\"2 spoons\"), ordered aur finite hota hai. Blocks aur text code wahi exact steps likhne ke do tareeke hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home what an algorithm is, using chai or another daily job.",
+   "hi": "घर पर किसी को चाय या किसी रोज़ के काम से समझाओ कि एल्गोरिदम क्या है।",
+   "hinglish": "Ghar par kisi ko chai ya kisi roz ke kaam se samjhao ki algorithm kya hai."
+  },
+  "checklist": [
+   {
+    "en": "An algorithm is clear steps in the right order that end.",
+    "hi": "एल्गोरिदम सही क्रम में स्पष्ट कदम हैं जो समाप्त होते हैं।",
+    "hinglish": "Algorithm sahi order mein clear steps hain jo end hote hain."
+   },
+   {
+    "en": "Computers cannot guess, so each step must be exact.",
+    "hi": "कंप्यूटर अनुमान नहीं लगा सकता, इसलिए हर कदम सटीक होना चाहिए।",
+    "hinglish": "Computer guess nahi kar sakta, isliye har step exact hona chahiye."
+   },
+   {
+    "en": "Blocks and text code express the same program.",
+    "hi": "ब्लॉक और टेक्स्ट कोड एक ही प्रोग्राम व्यक्त करते हैं।",
+    "hinglish": "Blocks aur text code ek hi program express karte hain."
+   },
+   {
+    "en": "Big problems are broken into small steps (decomposition).",
+    "hi": "बड़ी समस्याओं को छोटे कदमों में तोड़ा जाता है (डीकंपोज़िशन)।",
+    "hinglish": "Badi problems ko chhote steps mein toda jaata hai (decomposition)."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Algorithm",

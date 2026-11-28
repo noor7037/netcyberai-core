@@ -37,6 +37,82 @@
    "hinglish": "Steps kaise badhte hain compare kar sakte ho (n vs log₂ n)"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you search for one contact among 1,000 in your phone and the name appears at once.",
+   "hi": "{{name}}, तुम फ़ोन के 1,000 कॉन्टैक्ट में एक नाम खोजते हो और वह तुरंत मिल जाता है।",
+   "hinglish": "{{name}}, tum phone ke 1,000 contacts mein ek naam khojte ho aur woh turant mil jaata hai."
+  },
+  "question": {
+   "en": "Does the phone check all 1,000 names, or is there a faster way?",
+   "hi": "क्या फ़ोन सारे 1,000 नाम जाँचता है, या कोई तेज़ तरीका है?",
+   "hinglish": "Kya phone saare 1,000 naam check karta hai, ya koi tez tareeka hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A sorted list has 1,000 items. About how many checks does binary search need at most?",
+   "hi": "एक क्रमबद्ध सूची में 1,000 आइटम हैं। बाइनरी सर्च को अधिकतम लगभग कितनी जाँचें चाहिए?",
+   "hinglish": "Ek sorted list mein 1,000 items hain. Binary search ko maximum lagbhag kitni checks chahiye?"
+  },
+  "options": [
+   {
+    "en": "About 1,000",
+    "hi": "लगभग 1,000",
+    "hinglish": "Lagbhag 1,000"
+   },
+   {
+    "en": "About 500",
+    "hi": "लगभग 500",
+    "hinglish": "Lagbhag 500"
+   },
+   {
+    "en": "About 10, since each check halves what is left",
+    "hi": "लगभग 10, क्योंकि हर जाँच बचे हुए को आधा कर देती है",
+    "hinglish": "Lagbhag 10, kyunki har check bache hue ko aadha kar deti hai"
+   },
+   {
+    "en": "About 100",
+    "hi": "लगभग 100",
+    "hinglish": "Lagbhag 100"
+   }
+  ],
+  "answer": 2,
+  "explain": {
+   "en": "Binary search checks the middle and throws away the half that cannot contain the target. 1,000 halves to 1 in about 10 steps (2¹⁰ = 1,024). It only works when the list is sorted; linear search needs no sorting but may take all 1,000 checks.",
+   "hi": "बाइनरी सर्च बीच का आइटम जाँचकर उस आधे को हटा देती है जिसमें लक्ष्य नहीं हो सकता। 1,000 लगभग 10 कदमों में घटकर 1 रह जाता है (2¹⁰ = 1,024)। यह तभी काम करती है जब सूची क्रमबद्ध हो; लीनियर सर्च को क्रम नहीं चाहिए पर 1,000 जाँचें भी लग सकती हैं।",
+   "hinglish": "Binary search beech ka item check karke us aadhe ko hata deti hai jisme target nahi ho sakta. 1,000 lagbhag 10 steps mein ghatkar 1 reh jaata hai (2¹⁰ = 1,024). Yeh tabhi kaam karti hai jab list sorted ho; linear search ko order nahi chahiye par 1,000 checks bhi lag sakti hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend how linear and binary search work and which is faster.",
+   "hi": "किसी दोस्त को समझाओ कि लीनियर और बाइनरी सर्च कैसे काम करती हैं और कौन तेज़ है।",
+   "hinglish": "Kisi dost ko samjhao ki linear aur binary search kaise kaam karti hain aur kaunsi fast hai."
+  },
+  "checklist": [
+   {
+    "en": "Linear search checks items one by one, up to n steps.",
+    "hi": "लीनियर सर्च आइटम एक-एक करके जाँचती है, अधिकतम n कदम।",
+    "hinglish": "Linear search items ek-ek karke check karti hai, maximum n steps."
+   },
+   {
+    "en": "Binary search checks the middle and keeps only the half that can hold the target.",
+    "hi": "बाइनरी सर्च बीच जाँचती है और सिर्फ़ वह आधा रखती है जिसमें लक्ष्य हो सकता है।",
+    "hinglish": "Binary search beech check karti hai aur sirf woh aadha rakhti hai jisme target ho sakta hai."
+   },
+   {
+    "en": "Binary search needs sorted data.",
+    "hi": "बाइनरी सर्च को क्रमबद्ध डेटा चाहिए।",
+    "hinglish": "Binary search ko sorted data chahiye."
+   },
+   {
+    "en": "Steps grow like n for linear but only like log₂ n for binary.",
+    "hi": "कदम लीनियर में n की तरह बढ़ते हैं पर बाइनरी में सिर्फ़ log₂ n की तरह।",
+    "hinglish": "Steps linear mein n ki tarah badhte hain par binary mein sirf log₂ n ki tarah."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Linear search",

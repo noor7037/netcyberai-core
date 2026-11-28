@@ -32,6 +32,72 @@
    "hinglish": "Events ko unse shuru hone wale kaam se mila sakte ho."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you open a game on the phone and it just waits. Nothing moves until you tap.",
+   "hi": "{{name}}, तुम फ़ोन पर गेम खोलते हो और वह बस इंतज़ार करता है। टैप करने तक कुछ नहीं हिलता।",
+   "hinglish": "{{name}}, tum phone par game kholte ho aur woh bas wait karta hai. Tap karne tak kuch nahin hilta."
+  },
+  "question": {
+   "en": "How does an app know when to start doing something?",
+   "hi": "ऐप को कैसे पता चलता है कि कब कुछ करना शुरू करना है?",
+   "hinglish": "App ko kaise pata chalta hai ki kab kuch karna shuru karna hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What do you think? What do apps do while you are not touching them?",
+   "hi": "तुम्हें क्या लगता है? जब तुम ऐप को नहीं छूते, तब वह क्या करता है?",
+   "hinglish": "Tumhe kya lagta hai? Jab tum app ko nahin chhoote, tab woh kya karta hai?"
+  },
+  "options": [
+   {
+    "en": "It runs every instruction at once, all the time",
+    "hi": "वह हर निर्देश हर समय एक साथ चलाता है",
+    "hinglish": "Woh har instruction har waqt ek saath chalata hai"
+   },
+   {
+    "en": "It waits for an event, like a tap, a key press or a timer, and then runs the matching code",
+    "hi": "वह किसी घटना का इंतज़ार करता है, जैसे टैप, कुंजी या टाइमर, फिर उससे जुड़ा कोड चलाता है",
+    "hinglish": "Woh kisi event ka wait karta hai, jaise tap, key press ya timer, phir usse jude code ko chalata hai"
+   },
+   {
+    "en": "It switches itself off",
+    "hi": "वह खुद बंद हो जाता है",
+    "hinglish": "Woh khud off ho jaata hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Most programs wait for an event. In Scratch, hat blocks such as \"when green flag clicked\" or \"when space key pressed\" start a script. One game can have many scripts, each waiting for its own event.",
+   "hi": "ज़्यादातर प्रोग्राम किसी घटना (इवेंट) का इंतज़ार करते हैं। Scratch में \"when green flag clicked\" या \"when space key pressed\" जैसे हैट ब्लॉक स्क्रिप्ट शुरू करते हैं। एक खेल में कई स्क्रिप्ट हो सकती हैं, हर एक अपनी घटना का इंतज़ार करती है।",
+   "hinglish": "Zyadatar programs event ka wait karte hain. Scratch mein \"when green flag clicked\" ya \"when space key pressed\" jaise hat blocks script shuru karte hain. Ek game mein kai scripts ho sakti hain, har ek apne event ka wait karti hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Tell someone at home: what is an event in a program?",
+   "hi": "घर पर किसी को बताओ: प्रोग्राम में इवेंट क्या होता है?",
+   "hinglish": "Ghar par kisi ko batao: program mein event kya hota hai?"
+  },
+  "checklist": [
+   {
+    "en": "An event is something that happens: a tap, a key press, a timer.",
+    "hi": "इवेंट कुछ होना है: टैप, कुंजी दबना, टाइमर।",
+    "hinglish": "Event kuch hona hai: tap, key press, timer."
+   },
+   {
+    "en": "The program waits until the event happens.",
+    "hi": "प्रोग्राम तब तक इंतज़ार करता है जब तक इवेंट न हो।",
+    "hinglish": "Program tab tak wait karta hai jab tak event na ho."
+   },
+   {
+    "en": "Then the matching blocks run.",
+    "hi": "फिर उससे जुड़े ब्लॉक चलते हैं।",
+    "hinglish": "Phir usse jude blocks chalte hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Event",

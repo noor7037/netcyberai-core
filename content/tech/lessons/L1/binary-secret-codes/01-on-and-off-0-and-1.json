@@ -39,6 +39,77 @@
    "hinglish": "Jaante ho ki ek 0 ya 1 ko bit kehte hain."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you switch a light ON and OFF at home, and the fan too. Just two choices each time.",
+   "hi": "{{name}}, तुम घर में बत्ती चालू और बंद करते हो, पंखा भी। हर बार बस दो विकल्प।",
+   "hinglish": "{{name}}, tum ghar mein light ON aur OFF karte ho, fan bhi. Har baar bas do choices."
+  },
+  "question": {
+   "en": "How can a computer keep photos, songs and games using only ON and OFF?",
+   "hi": "कंप्यूटर सिर्फ़ चालू और बंद से फ़ोटो, गाने और गेम कैसे रखता है?",
+   "hinglish": "Computer sirf ON aur OFF se photos, songs aur games kaise rakhta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What do you think? How does a computer store a letter, a song or a picture inside?",
+   "hi": "तुम्हें क्या लगता है? कंप्यूटर अंदर अक्षर, गाना या चित्र कैसे रखता है?",
+   "hinglish": "Tumhe kya lagta hai? Computer andar letter, song ya picture kaise rakhta hai?"
+  },
+  "options": [
+   {
+    "en": "It keeps tiny letters, tiny songs and tiny pictures inside",
+    "hi": "वह अंदर छोटे अक्षर, छोटे गाने और छोटे चित्र रखता है",
+    "hinglish": "Woh andar chhote letters, chhote songs aur chhote pictures rakhta hai"
+   },
+   {
+    "en": "As patterns of ON and OFF, written 1 and 0",
+    "hi": "चालू और बंद के पैटर्न के रूप में, जिन्हें 1 और 0 लिखते हैं",
+    "hinglish": "ON aur OFF ke patterns ke roop mein, jinhe 1 aur 0 likhte hain"
+   },
+   {
+    "en": "As ten different signs, 0 to 9, like our numbers",
+    "hi": "दस अलग निशानों 0 से 9 के रूप में, हमारी गिनती की तरह",
+    "hinglish": "Das alag signs 0 se 9 ke roop mein, hamari ginti ki tarah"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Tiny switches in a chip are easy to keep in two states, ON (1) or OFF (0). Everything is written with patterns of 1 and 0. One 1 or 0 is a bit. Bulbs worth 4, 2 and 1 can show 0 to 7: ON-ON-ON is 4 + 2 + 1 = 7.",
+   "hi": "चिप के छोटे स्विच को दो अवस्थाओं में रखना आसान है, चालू (1) या बंद (0)। सब कुछ 1 और 0 के पैटर्न से लिखा जाता है। एक 1 या 0 को बिट कहते हैं। 4, 2 और 1 मान वाले बल्ब 0 से 7 दिखा सकते हैं: चालू-चालू-चालू यानी 4 + 2 + 1 = 7।",
+   "hinglish": "Chip ke chhote switches ko do states mein rakhna aasan hai, ON (1) ya OFF (0). Sab kuch 1 aur 0 ke patterns se likha jaata hai. Ek 1 ya 0 ko bit kehte hain. 4, 2 aur 1 value wale bulbs 0 se 7 dikha sakte hain: ON-ON-ON yaani 4 + 2 + 1 = 7."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Tell someone at home: how does a computer use 1 and 0, and how do bulbs make a number?",
+   "hi": "घर पर किसी को बताओ: कंप्यूटर 1 और 0 कैसे इस्तेमाल करता है, और बल्ब से संख्या कैसे बनती है?",
+   "hinglish": "Ghar par kisi ko batao: computer 1 aur 0 kaise use karta hai, aur bulbs se number kaise banta hai?"
+  },
+  "checklist": [
+   {
+    "en": "A switch is easy to keep ON (1) or OFF (0).",
+    "hi": "स्विच को चालू (1) या बंद (0) रखना आसान है।",
+    "hinglish": "Switch ko ON (1) ya OFF (0) rakhna aasan hai."
+   },
+   {
+    "en": "One 1 or 0 is called a bit.",
+    "hi": "एक 1 या 0 को बिट कहते हैं।",
+    "hinglish": "Ek 1 ya 0 ko bit kehte hain."
+   },
+   {
+    "en": "Each bulb is worth double the one on its right: 1, 2, 4.",
+    "hi": "हर बल्ब अपने दाएँ वाले से दोगुना है: 1, 2, 4।",
+    "hinglish": "Har bulb apne right wale se double hai: 1, 2, 4."
+   },
+   {
+    "en": "Add the values of the bulbs that are ON.",
+    "hi": "जो बल्ब चालू हैं उनके मान जोड़ो।",
+    "hinglish": "Jo bulbs ON hain unki values jodo."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Bit",

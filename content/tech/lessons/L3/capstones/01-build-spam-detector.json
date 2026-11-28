@@ -35,6 +35,77 @@
    "hinglish": "Har galti ki keemat taulkar threshold chuno"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your phone gets an SMS: \"You won a prize! Click this link and update KYC now\". You know it is spam, but how would a program know?",
+   "hi": "{{name}}, तुम्हारे फ़ोन पर SMS आता है: \"आप इनाम जीते! इस लिंक पर क्लिक करके अभी KYC अपडेट करें\"। तुम जानते हो कि यह स्पैम है, पर प्रोग्राम कैसे जानेगा?",
+   "hinglish": "{{name}}, tumhare phone par SMS aata hai: \"Aap prize jeete! Is link par click karke abhi KYC update karein\". Tum jaante ho yeh spam hai, par program kaise jaanega?"
+  },
+  "question": {
+   "en": "How can counting words turn into a spam score you can trust?",
+   "hi": "शब्द गिनना भरोसेमंद स्पैम स्कोर में कैसे बदल सकता है?",
+   "hinglish": "Words ginna trustworthy spam score mein kaise badal sakta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "In Naive Bayes, how does a message like \"won prize KYC link\" become a spam probability?",
+   "hi": "Naive Bayes में \"won prize KYC link\" जैसा संदेश स्पैम प्रायिकता कैसे बनता है?",
+   "hinglish": "Naive Bayes mein \"won prize KYC link\" jaisa message spam probability kaise banta hai?"
+  },
+  "options": [
+   {
+    "en": "A person decides after reading it",
+    "hi": "पढ़कर कोई इंसान तय करता है",
+    "hinglish": "Padhkar koi insaan decide karta hai"
+   },
+   {
+    "en": "Each word's frequency in spam versus normal messages is combined with Bayes' rule and the overall spam rate",
+    "hi": "हर शब्द की स्पैम बनाम सामान्य संदेशों में बारंबारता, बेज़ के नियम और कुल स्पैम दर के साथ जोड़ी जाती है",
+    "hinglish": "Har word ki spam versus normal messages mein frequency, Bayes' rule aur overall spam rate ke saath jodi jaati hai"
+   },
+   {
+    "en": "The longest word decides",
+    "hi": "सबसे लंबा शब्द तय करता है",
+    "hinglish": "Sabse lamba word decide karta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Training counts how often each word appears in spam and in normal messages. Naive Bayes assumes words are independent given the class, multiplies their evidence with the prior spam rate and gives P(spam | message). You then pick a threshold by weighing the cost of blocking a real message against letting spam through.",
+   "hi": "ट्रेनिंग गिनती है कि हर शब्द स्पैम और सामान्य संदेशों में कितनी बार आता है। Naive Bayes मानता है कि वर्ग दिए जाने पर शब्द स्वतंत्र हैं, उनके सबूत को पूर्व स्पैम दर से गुणा करता है और P(spam | संदेश) देता है। फिर असली संदेश रोकने और स्पैम निकलने देने की क़ीमत तौलकर थ्रेशहोल्ड चुनते हैं।",
+   "hinglish": "Training ginti hai ki har word spam aur normal messages mein kitni baar aata hai. Naive Bayes maanta hai ki class diye jaane par words independent hain, unke evidence ko prior spam rate se multiply karta hai aur P(spam | message) deta hai. Phir real message rokne aur spam nikalne dene ki cost taulkar threshold chunte hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend how your spam detector decides and why you chose your threshold.",
+   "hi": "दोस्त को समझाओ कि तुम्हारा स्पैम डिटेक्टर कैसे तय करता है और तुमने अपना थ्रेशहोल्ड क्यों चुना।",
+   "hinglish": "Friend ko samjhao ki tumhara spam detector kaise decide karta hai aur tumne apna threshold kyun chuna."
+  },
+  "checklist": [
+   {
+    "en": "Collect labelled messages and split them into training and test sets",
+    "hi": "लेबल वाले संदेश जुटाओ और ट्रेनिंग व टेस्ट सेट में बाँटो",
+    "hinglish": "Labelled messages jutao aur training aur test sets mein baanto"
+   },
+   {
+    "en": "Naive Bayes combines word evidence with the base rate using Bayes' rule",
+    "hi": "Naive Bayes शब्दों के सबूत को बेस रेट के साथ बेज़ के नियम से जोड़ता है",
+    "hinglish": "Naive Bayes word evidence ko base rate ke saath Bayes' rule se jodta hai"
+   },
+   {
+    "en": "Evaluate on unseen messages with precision and recall",
+    "hi": "अनदेखे संदेशों पर प्रिसिज़न और रिकॉल से परखो",
+    "hinglish": "Unseen messages par precision aur recall se parakho"
+   },
+   {
+    "en": "Choose the threshold by the cost of each kind of mistake",
+    "hi": "हर तरह की ग़लती की क़ीमत से थ्रेशहोल्ड चुनो",
+    "hinglish": "Har tarah ki galti ki cost se threshold chuno"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Feature",

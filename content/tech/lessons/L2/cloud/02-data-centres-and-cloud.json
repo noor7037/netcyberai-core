@@ -39,6 +39,77 @@
    "hinglish": "Scaling, CDN aur SaaS/PaaS/IaaS samjha sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you back up your phone photos to the cloud, and later see them on a new phone.",
+   "hi": "{{name}}, तुम अपने फ़ोन की फ़ोटो क्लाउड में बैकअप करते हो, और बाद में नए फ़ोन पर देख लेते हो।",
+   "hinglish": "{{name}}, tum apne phone ki photos cloud mein backup karte ho, aur baad mein naye phone par dekh lete ho."
+  },
+  "question": {
+   "en": "Where is \"the cloud\", really, and how does a cricket final not crash the streaming app?",
+   "hi": "\"क्लाउड\" असल में कहाँ है, और क्रिकेट फ़ाइनल के समय स्ट्रीमिंग ऐप क्रैश क्यों नहीं होता?",
+   "hinglish": "\"Cloud\" asal mein kahan hai, aur cricket final ke time streaming app crash kyun nahi hota?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Where are your cloud photos actually kept?",
+   "hi": "तुम्हारी क्लाउड फ़ोटो असल में कहाँ रखी हैं?",
+   "hinglish": "Tumhari cloud photos asal mein kahan rakhi hain?"
+  },
+  "options": [
+   {
+    "en": "In the sky, in the air",
+    "hi": "आसमान में, हवा में",
+    "hinglish": "Aasmaan mein, hawa mein"
+   },
+   {
+    "en": "On servers in data centres, which you reach over the internet",
+    "hi": "डेटा सेंटर के सर्वरों पर, जिन तक तुम इंटरनेट से पहुँचते हो",
+    "hinglish": "Data centres ke servers par, jinn tak tum internet se pahunchte ho"
+   },
+   {
+    "en": "Only inside your phone",
+    "hi": "सिर्फ़ तुम्हारे फ़ोन के अंदर",
+    "hinglish": "Sirf tumhare phone ke andar"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "\"The cloud\" means renting computers in data centres, big buildings of server racks with backup power and cooling, instead of owning them. Because they are rented, an app can add thousands of servers when a cricket final starts and give them back afterwards.",
+   "hi": "\"क्लाउड\" का मतलब है डेटा सेंटरों के कंप्यूटर किराये पर लेना, जो बैकअप बिजली और ठंडक वाली सर्वर रैकों की बड़ी इमारतें हैं, उन्हें ख़रीदने की जगह। चूँकि वे किराये पर हैं, क्रिकेट फ़ाइनल शुरू होते ही ऐप हज़ारों सर्वर जोड़ सकता है और बाद में लौटा सकता है।",
+   "hinglish": "\"Cloud\" ka matlab hai data centres ke computers kiraye par lena, jo backup bijli aur cooling wali server racks ki badi imaarten hain, unhe kharidne ki jagah. Kyunki woh kiraye par hain, cricket final shuru hote hi app hazaron servers jod sakta hai aur baad mein lauta sakta hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home what the cloud is and why apps use it.",
+   "hi": "घर पर किसी को समझाओ कि क्लाउड क्या है और ऐप उसे क्यों इस्तेमाल करते हैं।",
+   "hinglish": "Ghar par kisi ko samjhao ki cloud kya hai aur apps use kyun use karte hain."
+  },
+  "checklist": [
+   {
+    "en": "A data centre is a building of server racks with backup power and cooling.",
+    "hi": "डेटा सेंटर सर्वर रैकों की इमारत है, जिसमें बैकअप बिजली और ठंडक होती है।",
+    "hinglish": "Data centre server racks ki building hai, jisme backup power aur cooling hoti hai."
+   },
+   {
+    "en": "The cloud means renting those computers and reaching them over the internet.",
+    "hi": "क्लाउड का मतलब उन कंप्यूटरों को किराये पर लेकर इंटरनेट से पहुँचना है।",
+    "hinglish": "Cloud ka matlab un computers ko kiraye par lekar internet se pahunchna hai."
+   },
+   {
+    "en": "Scaling adds servers when demand rises and removes them later.",
+    "hi": "स्केलिंग माँग बढ़ने पर सर्वर जोड़ती है और बाद में हटाती है।",
+    "hinglish": "Scaling demand badhne par servers jodti hai aur baad mein hatati hai."
+   },
+   {
+    "en": "IaaS, PaaS and SaaS rent raw servers, a platform for your code, or ready software.",
+    "hi": "IaaS, PaaS और SaaS कच्चे सर्वर, कोड के लिए प्लेटफ़ॉर्म, या तैयार सॉफ़्टवेयर किराये पर देते हैं।",
+    "hinglish": "IaaS, PaaS aur SaaS raw servers, code ke liye platform, ya ready software kiraye par dete hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Data centre",

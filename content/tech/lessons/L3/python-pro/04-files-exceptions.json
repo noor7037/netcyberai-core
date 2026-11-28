@@ -34,6 +34,77 @@
    "hinglish": "Traceback padhkar line aur kaaran dhoondho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you load a marks file in a script and it crashes because one row has the word 'absent' where a number should be.",
+   "hi": "{{name}}, तुम एक स्क्रिप्ट में अंकों की फ़ाइल लोड करते हो और वह क्रैश हो जाती है क्योंकि एक पंक्ति में संख्या की जगह 'absent' लिखा है।",
+   "hinglish": "{{name}}, tum ek script mein marks ki file load karte ho aur woh crash ho jaati hai kyunki ek row mein number ki jagah 'absent' likha hai."
+  },
+  "question": {
+   "en": "How can a program handle surprises like this and still close the file properly?",
+   "hi": "प्रोग्राम ऐसी आश्चर्यजनक स्थिति सँभालकर फ़ाइल को ठीक से बंद कैसे कर सकता है?",
+   "hinglish": "Program aisi surprising situation sambhalkar file ko theek se band kaise kar sakta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Why is with open(...) as f: preferred over calling open() and close() by hand?",
+   "hi": "हाथ से open() और close() बुलाने के बजाय with open(...) as f: को क्यों बेहतर माना जाता है?",
+   "hinglish": "Haath se open() aur close() bulane ke bajay with open(...) as f: ko kyun behtar maana jaata hai?"
+  },
+  "options": [
+   {
+    "en": "It is shorter, but behaves the same",
+    "hi": "यह छोटा है, पर व्यवहार वही है",
+    "hinglish": "Yeh chhota hai, par behaviour wahi hai"
+   },
+   {
+    "en": "The file is closed automatically even if an error happens inside the block",
+    "hi": "ब्लॉक के अंदर त्रुटि हो तो भी फ़ाइल अपने आप बंद हो जाती है",
+    "hinglish": "Block ke andar error ho tab bhi file apne aap band ho jaati hai"
+   },
+   {
+    "en": "It makes the file read faster",
+    "hi": "यह फ़ाइल को तेज़ पढ़ता है",
+    "hinglish": "Yeh file ko tez padhta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Without with, an error before close() would leave the file open, which can lose data or lock it. The with statement guarantees cleanup, in the same spirit as finally, which always runs after try whether or not an error occurred. Python jumps to the first except that matches the error type.",
+   "hi": "with के बिना, close() से पहले त्रुटि आए तो फ़ाइल खुली रह जाती है, जिससे डेटा खो सकता है या फ़ाइल लॉक हो सकती है। with सफ़ाई की गारंटी देता है, finally की ही भावना में, जो त्रुटि हो या न हो try के बाद हमेशा चलता है। Python त्रुटि के प्रकार से मेल खाने वाले पहले except पर कूदता है।",
+   "hinglish": "with ke bina, close() se pehle error aaye toh file khuli reh jaati hai, jisse data kho sakta hai ya file lock ho sakti hai. with cleanup ki guarantee deta hai, finally ki hi spirit mein, jo error ho ya na ho try ke baad hamesha chalta hai. Python error ke type se match karne wale pehle except par kood jaata hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home what try, except and finally each do, and how to read a traceback.",
+   "hi": "घर पर किसी को समझाओ कि try, except और finally हर एक क्या करता है, और ट्रेसबैक कैसे पढ़ते हैं।",
+   "hinglish": "Ghar par kisi ko samjhao ki try, except aur finally har ek kya karta hai, aur traceback kaise padhte hain."
+  },
+  "checklist": [
+   {
+    "en": "try runs risky code; an error jumps to the first matching except.",
+    "hi": "try जोखिम वाला कोड चलाता है; त्रुटि पहले मिलते except पर कूदती है।",
+    "hinglish": "try risky code chalata hai; error pehle matching except par kood jaati hai."
+   },
+   {
+    "en": "Catch specific errors such as ValueError, not everything silently.",
+    "hi": "विशिष्ट त्रुटियाँ पकड़ो जैसे ValueError, सब कुछ चुपचाप नहीं।",
+    "hinglish": "Specific errors pakdo jaise ValueError, sab kuch chupchaap nahi."
+   },
+   {
+    "en": "finally always runs; with open() closes the file even on error.",
+    "hi": "finally हमेशा चलता है; with open() त्रुटि पर भी फ़ाइल बंद करता है।",
+    "hinglish": "finally hamesha chalta hai; with open() error par bhi file band karta hai."
+   },
+   {
+    "en": "Read a traceback from the bottom: the last line names the error, the lines above show the chain of calls with line numbers.",
+    "hi": "ट्रेसबैक नीचे से पढ़ो: आख़िरी पंक्ति त्रुटि का नाम बताती है, ऊपर की पंक्तियाँ पंक्ति संख्याओं के साथ कॉल की कड़ी दिखाती हैं।",
+    "hinglish": "Traceback neeche se padho: aakhri line error ka naam batati hai, upar ki lines line numbers ke saath calls ki chain dikhati hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Exception",
@@ -88,7 +159,7 @@
     "hi": "try: जोखिम भरा कोड चलाता है; पायथन त्रुटि प्रकार से मेल खाते पहले except पर जाता है।",
     "hinglish": "try: risky code chalata hai; Python error type se match karne wale pehle except par jaata hai."
    },
-   "visual": "anim:jump",
+   "visual": "flow:🧪 try runs risky code|💥 Error is raised|🎯 First matching except|▶️ Program carries on",
    "narration": {
     "en": "try: runs risky code; Python jumps to the first except that matches the error type.",
     "hi": "try: जोखिम भरा कोड चलाता है; पायथन त्रुटि प्रकार से मेल खाते पहले except पर जाता है।",
@@ -102,7 +173,7 @@
     "hi": "finally: हमेशा चलता है — सफलता हो या विफलता — इसलिए सफ़ाई की जगह यही है।",
     "hinglish": "finally: hamesha chalta hai — success ho ya failure — isliye cleanup ki jagah yahi hai."
    },
-   "visual": "anim:always",
+   "visual": "flow:🧪 try block|🛟 except if error|🧹 finally always runs",
    "narration": {
     "en": "finally: always runs — success or failure — so it is the place for cleanup.",
     "hi": "finally: हमेशा चलता है — सफलता हो या विफलता — इसलिए सफ़ाई की जगह यही है।",
@@ -116,7 +187,7 @@
     "hi": "with open(\"marks.csv\", encoding=\"utf-8\") as f: त्रुटि हो तब भी फ़ाइल आपके लिए बंद करता है।",
     "hinglish": "with open(\"marks.csv\", encoding=\"utf-8\") as f: error ho tab bhi file tumhare liye band karta hai."
    },
-   "visual": "anim:file-close",
+   "visual": "flow:📂 with open(...) opens|📖 Block uses the file|🔒 File closes, even on error",
    "narration": {
     "en": "with open(\"marks.csv\", encoding=\"utf-8\") as f: closes the file for you, even if an error happens.",
     "hi": "with open(\"marks.csv\", encoding=\"utf-8\") as f: त्रुटि हो तब भी फ़ाइल आपके लिए बंद करता है।",

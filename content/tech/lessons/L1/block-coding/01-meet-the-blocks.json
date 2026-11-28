@@ -37,6 +37,72 @@
    "hinglish": "Jaante ho ki har block ek instruction hai."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you play a game on a tablet where a little character walks, jumps and talks.",
+   "hi": "{{name}}, तुम टैबलेट पर एक खेल खेलते हो जिसमें एक छोटा किरदार चलता, कूदता और बोलता है।",
+   "hinglish": "{{name}}, tum tablet par ek game khelte ho jisme ek chhota character chalta, kudta aur bolta hai."
+  },
+  "question": {
+   "en": "Who tells the character what to do, and could you make one move yourself?",
+   "hi": "किरदार को कौन बताता है कि क्या करना है, और क्या तुम खुद उसे चला सकते हो?",
+   "hinglish": "Character ko kaun batata hai ki kya karna hai, aur kya tum khud use chala sakte ho?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What do you think? What is one coding block?",
+   "hi": "तुम्हें क्या लगता है? कोडिंग का एक ब्लॉक क्या है?",
+   "hinglish": "Tumhe kya lagta hai? Coding ka ek block kya hai?"
+  },
+  "options": [
+   {
+    "en": "One instruction for the computer, like \"move forward\"",
+    "hi": "कंप्यूटर के लिए एक निर्देश, जैसे \"आगे चलो\"",
+    "hinglish": "Computer ke liye ek instruction, jaise \"move forward\""
+   },
+   {
+    "en": "A toy block that sits on the table",
+    "hi": "मेज़ पर रखा खिलौना ब्लॉक",
+    "hinglish": "Table par rakha toy block"
+   },
+   {
+    "en": "A whole game in one piece",
+    "hi": "एक टुकड़े में पूरा खेल",
+    "hinglish": "Ek piece mein poora game"
+   }
+  ],
+  "answer": 0,
+  "explain": {
+   "en": "Each block is one instruction. You snap blocks in order, and the computer does them from the top, one at a time. Each block matches a line of real code, so there are no spelling mistakes to worry about.",
+   "hi": "हर ब्लॉक एक निर्देश है। तुम ब्लॉक क्रम से जोड़ते हो, और कंप्यूटर उन्हें ऊपर से एक-एक करके करता है। हर ब्लॉक असली कोड की एक पंक्ति जैसा है, इसलिए स्पेलिंग की ग़लती की चिंता नहीं।",
+   "hinglish": "Har block ek instruction hai. Tum blocks order mein jodte ho, aur computer unhe upar se ek-ek karke karta hai. Har block real code ki ek line jaisa hai, isliye spelling mistakes ki tension nahin."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: how do blocks make a program?",
+   "hi": "घर पर किसी को समझाओ: ब्लॉक से प्रोग्राम कैसे बनता है?",
+   "hinglish": "Ghar par kisi ko samjhao: blocks se program kaise banta hai?"
+  },
+  "checklist": [
+   {
+    "en": "Each block is one instruction.",
+    "hi": "हर ब्लॉक एक निर्देश है।",
+    "hinglish": "Har block ek instruction hai."
+   },
+   {
+    "en": "We snap blocks together in order.",
+    "hi": "हम ब्लॉक क्रम से जोड़ते हैं।",
+    "hinglish": "Hum blocks order mein jodte hain."
+   },
+   {
+    "en": "The computer does them one at a time, from the top.",
+    "hi": "कंप्यूटर उन्हें ऊपर से एक-एक करके करता है।",
+    "hinglish": "Computer unhe upar se ek-ek karke karta hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Block",

@@ -37,6 +37,77 @@
    "hinglish": "Servo angle control kar sakte ho aur uska pulse signal samjha sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, the automatic door at a mall opens as you walk up to it, and closes again when you have gone through.",
+   "hi": "{{name}}, मॉल का ऑटोमैटिक दरवाज़ा तुम्हारे पास पहुँचते ही खुल जाता है और तुम्हारे निकलने पर फिर बंद हो जाता है।",
+   "hinglish": "{{name}}, mall ka automatic door tumhare paas pahunchte hi khul jaata hai aur tumhare nikalne par phir band ho jaata hai."
+  },
+  "question": {
+   "en": "What does the door sense you with, and what would a robot need to sense to follow a black line on the floor?",
+   "hi": "दरवाज़ा तुम्हें किससे महसूस करता है, और फ़र्श पर काली लाइन के पीछे चलने के लिए रोबोट को क्या महसूस करना होगा?",
+   "hinglish": "Door tumhein kisse sense karta hai, aur floor par kaali line ke peeche chalne ke liye robot ko kya sense karna hoga?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A robot arm must turn exactly to 90° and stay there. Which part fits best?",
+   "hi": "रोबोट की बाँह को ठीक 90° पर घूमकर वहीं रुकना है। कौन-सा पुर्ज़ा सबसे सही है?",
+   "hinglish": "Robot arm ko theek 90° par ghoom kar wahin rukna hai. Kaunsa part sabse sahi hai?"
+  },
+  "options": [
+   {
+    "en": "A DC motor, because it spins fastest",
+    "hi": "DC मोटर, क्योंकि वह सबसे तेज़ घूमती है",
+    "hinglish": "DC motor, kyonki woh sabse tez ghoomti hai"
+   },
+   {
+    "en": "A servo, which turns to the angle its pulse asks for",
+    "hi": "सर्वो, जो अपने पल्स के बताए कोण तक घूमता है",
+    "hinglish": "Servo, jo apne pulse ke bataye angle tak ghoomta hai"
+   },
+   {
+    "en": "An LDR, because it senses light",
+    "hi": "LDR, क्योंकि वह रोशनी महसूस करता है",
+    "hinglish": "LDR, kyonki woh roshni sense karta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "A DC motor just spins while powered and has no idea of angle. A servo listens to a pulse about 50 times a second: roughly 1 ms means 0°, 1.5 ms means 90° and 2 ms means 180°.",
+   "hi": "DC मोटर बिजली मिलने पर बस घूमती है और उसे कोण का पता नहीं होता। सर्वो हर सेकंड लगभग 50 बार पल्स सुनता है: लगभग 1 ms यानी 0°, 1.5 ms यानी 90° और 2 ms यानी 180°।",
+   "hinglish": "DC motor bijli milne par bas ghoomti hai aur use angle ka pata nahi hota. Servo har second lagbhag 50 baar pulse sunta hai: lagbhag 1 ms matlab 0°, 1.5 ms matlab 90° aur 2 ms matlab 180°."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a robot senses and how it moves.",
+   "hi": "घर पर किसी को समझाओ कि रोबोट कैसे महसूस करता है और कैसे हिलता है।",
+   "hinglish": "Ghar par kisi ko samjhao ki robot kaise sense karta hai aur kaise hilta hai."
+  },
+  "checklist": [
+   {
+    "en": "Each sensor turns something in the world into a number: IR for reflection, LDR for light, ultrasonic for distance, thermistor for heat.",
+    "hi": "हर सेंसर दुनिया की किसी चीज़ को संख्या में बदलता है: IR परावर्तन के लिए, LDR रोशनी के लिए, अल्ट्रासोनिक दूरी के लिए, थर्मिस्टर गर्मी के लिए।",
+    "hinglish": "Har sensor duniya ki kisi cheez ko number mein badalta hai: IR reflection ke liye, LDR light ke liye, ultrasonic distance ke liye, thermistor heat ke liye."
+   },
+   {
+    "en": "Choose the sensor that matches the job, like an IR pair for a line.",
+    "hi": "काम के हिसाब से सेंसर चुनो, जैसे लाइन के लिए IR जोड़ी।",
+    "hinglish": "Kaam ke hisaab se sensor chuno, jaise line ke liye IR pair."
+   },
+   {
+    "en": "DC motors spin wheels, servos turn to an angle, steppers move in exact small steps.",
+    "hi": "DC मोटर पहिए घुमाती हैं, सर्वो एक कोण तक घूमते हैं, स्टेपर सटीक छोटे क़दमों में चलते हैं।",
+    "hinglish": "DC motors wheels ghumati hain, servos ek angle tak ghoomte hain, steppers exact chhote steps mein chalte hain."
+   },
+   {
+    "en": "A servo reads a pulse: about 1 ms for 0°, 1.5 ms for 90°, 2 ms for 180°.",
+    "hi": "सर्वो पल्स पढ़ता है: 0° के लिए लगभग 1 ms, 90° के लिए 1.5 ms, 180° के लिए 2 ms।",
+    "hinglish": "Servo pulse padhta hai: 0° ke liye lagbhag 1 ms, 90° ke liye 1.5 ms, 180° ke liye 2 ms."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "DC motor",

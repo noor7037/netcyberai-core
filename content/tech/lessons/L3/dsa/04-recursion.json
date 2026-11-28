@@ -34,6 +34,77 @@
    "hinglish": "Pehchaano kab recursion slow hai aur memoisation se fix karo"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you search for a file in a folder, and inside it are more folders, each with more folders inside.",
+   "hi": "{{name}}, तुम किसी फ़ोल्डर में फ़ाइल खोजते हो, और उसके अंदर और फ़ोल्डर हैं, हर एक में और फ़ोल्डर।",
+   "hinglish": "{{name}}, tum kisi folder mein file khojte ho, aur uske andar aur folders hain, har ek mein aur folders."
+  },
+  "question": {
+   "en": "How can a function solve a big problem by calling itself on a smaller copy of the same problem, and how does it ever stop?",
+   "hi": "कोई फ़ंक्शन उसी समस्या की छोटी प्रति पर खुद को बुलाकर बड़ी समस्या कैसे हल करता है, और वह रुकता कैसे है?",
+   "hinglish": "Koi function usi problem ki chhoti copy par khud ko bulakar badi problem kaise hal karta hai, aur woh rukta kaise hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What happens if a recursive function has no base case?",
+   "hi": "अगर किसी रिकर्सिव फ़ंक्शन में बेस केस न हो तो क्या होता है?",
+   "hinglish": "Agar kisi recursive function mein base case na ho toh kya hota hai?"
+  },
+  "options": [
+   {
+    "en": "It returns 0",
+    "hi": "यह 0 लौटाता है",
+    "hinglish": "Yeh 0 lautata hai"
+   },
+   {
+    "en": "It keeps calling itself until Python raises RecursionError, when the stack is too deep",
+    "hi": "यह खुद को बुलाता रहता है जब तक स्टैक बहुत गहरा होने पर Python RecursionError नहीं देता",
+    "hinglish": "Yeh khud ko bulata rehta hai jab tak stack bahut gehra hone par Python RecursionError nahi deta"
+   },
+   {
+    "en": "It runs once and stops by itself",
+    "hi": "यह एक बार चलकर खुद रुक जाता है",
+    "hinglish": "Yeh ek baar chalkar khud ruk jaata hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Each call adds a frame to the call stack and waits for the smaller call to finish. Without a base case that returns directly, frames pile up until the limit (about 1,000 in Python) and a RecursionError is raised. With a base case, the stack unwinds: fact(0) = 1, then 1, 2, 6, 24 as each frame finishes.",
+   "hi": "हर कॉल कॉल स्टैक में एक फ़्रेम जोड़ता है और छोटी कॉल के पूरा होने का इंतज़ार करता है। सीधे लौटने वाले बेस केस के बिना फ़्रेम सीमा (Python में लगभग 1,000) तक जमा होते हैं और RecursionError आता है। बेस केस हो तो स्टैक खुलता है: fact(0) = 1, फिर 1, 2, 6, 24 जैसे-जैसे हर फ़्रेम पूरा होता है।",
+   "hinglish": "Har call call stack mein ek frame jodta hai aur chhoti call ke poora hone ka wait karta hai. Seedhe lautne wale base case ke bina frames limit (Python mein lagbhag 1,000) tak jama hote hain aur RecursionError aata hai. Base case ho toh stack unwind hota hai: fact(0) = 1, phir 1, 2, 6, 24 jaise-jaise har frame poora hota hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how fact(4) is worked out by calling fact(3), and how the calls finish.",
+   "hi": "घर पर किसी को समझाओ कि fact(4) को fact(3) बुलाकर कैसे निकाला जाता है, और कॉलें कैसे पूरी होती हैं।",
+   "hinglish": "Ghar par kisi ko samjhao ki fact(4) ko fact(3) bulakar kaise nikala jaata hai, aur calls kaise poori hoti hain."
+  },
+  "checklist": [
+   {
+    "en": "A recursive function needs a base case it answers directly and a recursive case on a smaller input.",
+    "hi": "रिकर्सिव फ़ंक्शन को सीधे हल होने वाला बेस केस और छोटे इनपुट पर रिकर्सिव केस चाहिए।",
+    "hinglish": "Recursive function ko seedhe hal hone wala base case aur chhote input par recursive case chahiye."
+   },
+   {
+    "en": "Calls pile up as frames on the stack going down, one waiting for the next.",
+    "hi": "नीचे जाते समय कॉलें स्टैक पर फ़्रेम के रूप में जमा होती हैं, हर एक अगली का इंतज़ार करती है।",
+    "hinglish": "Neeche jaate waqt calls stack par frames ke roop mein jama hoti hain, har ek agli ka wait karti hai."
+   },
+   {
+    "en": "At the base case the stack unwinds, each frame finishing its multiplication and popping off.",
+    "hi": "बेस केस पर स्टैक खुलता है, हर फ़्रेम अपना गुणा पूरा कर हटता है।",
+    "hinglish": "Base case par stack unwind hota hai, har frame apna multiplication poora kar hat jaata hai."
+   },
+   {
+    "en": "No base case gives RecursionError; naive Fibonacci repeats work and memoisation fixes it.",
+    "hi": "बेस केस न हो तो RecursionError; सीधा फ़िबोनाची काम दोहराता है और मेमोइज़ेशन इसे ठीक करता है।",
+    "hinglish": "Base case na ho toh RecursionError; naive Fibonacci kaam repeat karta hai aur memoisation ise theek karta hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Recursion",
@@ -88,7 +159,7 @@
     "hi": "fact(3), fact(2), fact(1), fact(0) जमा होते हैं — पाँच फ़्रेम गहरे।",
     "hinglish": "fact(3), fact(2), fact(1), fact(0) jama hote hain — paanch frames gehre."
    },
-   "visual": "anim:stack-deep",
+   "visual": "stack:fact(0)|fact(1)|fact(2)|fact(3)|fact(4)",
    "narration": {
     "en": "fact(3), fact(2), fact(1), fact(0) pile up — five frames deep.",
     "hi": "fact(3), fact(2), fact(1), fact(0) जमा होते हैं — पाँच फ़्रेम गहरे।",
@@ -116,7 +187,7 @@
     "hi": "लौटना: 1 → 1 → 2 → 6 → 24। हर फ़्रेम अपना गुणा पूरा करके हटता है।",
     "hinglish": "Unwinding: 1 → 1 → 2 → 6 → 24. Har frame apna multiplication poora karke hat-ta hai."
    },
-   "visual": "anim:stack-unwind",
+   "visual": "flow:🏁 fact(0) returns 1|1️⃣ fact(1) = 1|2️⃣ fact(2) = 2|6️⃣ fact(3) = 6|🏆 fact(4) = 24",
    "narration": {
     "en": "Unwinding: 1 → 1 → 2 → 6 → 24. Each frame finishes its multiplication and pops off.",
     "hi": "लौटना: 1 → 1 → 2 → 6 → 24। हर फ़्रेम अपना गुणा पूरा करके हटता है।",

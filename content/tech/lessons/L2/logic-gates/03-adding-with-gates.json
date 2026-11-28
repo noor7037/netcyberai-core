@@ -37,6 +37,82 @@
    "hinglish": "Full adders jud ke bytes kaise jodte hain samjha sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you type 5 + 3 on the calculator and the answer 8 comes up at once.",
+   "hi": "{{name}}, तुम कैलकुलेटर पर 5 + 3 लिखते हो और उत्तर 8 तुरंत आ जाता है।",
+   "hinglish": "{{name}}, tum calculator par 5 + 3 likhte ho aur answer 8 turant aa jaata hai."
+  },
+  "question": {
+   "en": "Inside, there are only gates. How can gates do arithmetic?",
+   "hi": "अंदर सिर्फ़ गेट हैं। गेट अंकगणित कैसे करते हैं?",
+   "hinglish": "Andar sirf gates hain. Gates arithmetic kaise karte hain?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "In binary, what is 1 + 1?",
+   "hi": "बाइनरी में 1 + 1 क्या होता है?",
+   "hinglish": "Binary mein 1 + 1 kya hota hai?"
+  },
+  "options": [
+   {
+    "en": "2",
+    "hi": "2",
+    "hinglish": "2"
+   },
+   {
+    "en": "11",
+    "hi": "11",
+    "hinglish": "11"
+   },
+   {
+    "en": "10, which is write 0 and carry 1",
+    "hi": "10, यानी 0 लिखो और 1 आगे ले जाओ",
+    "hinglish": "10, yaani 0 likho aur 1 carry karo"
+   },
+   {
+    "en": "0 only",
+    "hi": "सिर्फ़ 0",
+    "hinglish": "Sirf 0"
+   }
+  ],
+  "answer": 2,
+  "explain": {
+   "en": "Binary has no digit 2, so 1 + 1 is written 10: sum bit 0, carry 1 into the next column. The sum bit is what XOR gives and the carry is what AND gives, so XOR plus AND make a half adder.",
+   "hi": "बाइनरी में अंक 2 नहीं होता, इसलिए 1 + 1 को 10 लिखा जाता है: योग-बिट 0, और 1 अगले स्तंभ में कैरी। योग-बिट XOR देता है और कैरी AND, इसलिए XOR और AND मिलकर हाफ़ एडर बनाते हैं।",
+   "hinglish": "Binary mein digit 2 nahi hota, isliye 1 + 1 ko 10 likha jaata hai: sum bit 0, aur 1 agle column mein carry. Sum bit XOR deta hai aur carry AND, isliye XOR aur AND milkar half adder banate hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend how a computer adds two binary numbers using gates.",
+   "hi": "किसी दोस्त को समझाओ कि कंप्यूटर गेटों से दो बाइनरी संख्याएँ कैसे जोड़ता है।",
+   "hinglish": "Kisi dost ko samjhao ki computer gates se do binary numbers kaise jodta hai."
+  },
+  "checklist": [
+   {
+    "en": "Add column by column from the right, carrying 1 when the sum is 10.",
+    "hi": "दाईं ओर से स्तंभ-दर-स्तंभ जोड़ो, योग 10 हो तो 1 कैरी करो।",
+    "hinglish": "Right se column-by-column jodo, sum 10 ho to 1 carry karo."
+   },
+   {
+    "en": "A half adder uses XOR for the sum bit and AND for the carry.",
+    "hi": "हाफ़ एडर योग-बिट के लिए XOR और कैरी के लिए AND इस्तेमाल करता है।",
+    "hinglish": "Half adder sum bit ke liye XOR aur carry ke liye AND use karta hai."
+   },
+   {
+    "en": "A full adder also takes the carry from the column before.",
+    "hi": "फ़ुल एडर पिछले स्तंभ का कैरी भी लेता है।",
+    "hinglish": "Full adder pichhle column ka carry bhi leta hai."
+   },
+   {
+    "en": "Chaining 8 full adders adds two bytes.",
+    "hi": "8 फ़ुल एडर जोड़ने से दो बाइट जुड़ते हैं।",
+    "hinglish": "8 full adders jodne se do bytes judte hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Sum bit",

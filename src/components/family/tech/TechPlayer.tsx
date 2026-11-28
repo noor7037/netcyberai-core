@@ -12,6 +12,8 @@ import { named, rightLine, toPlayLine, type TechPersonal } from '@/lib/family/te
 import type { VoiceMode } from '@/components/family/voice/lineVoice';
 import { stopLine } from '@/components/family/voice/lineVoice';
 import { SeeVisual } from './SeeVisual';
+import { useGuide } from './useGuide';
+import type { GuideSegment } from '@/lib/family/tech/blocks';
 import { TechRead } from './TechRead';
 
 const PHASES = [
@@ -64,6 +66,13 @@ export function TechPlayer({ lesson, strand, nextKey, backHref, initialLang, voi
   const [busy, setBusy] = useState(false);
   const [toast, setToast] = useState('');
   const [burst, setBurst] = useState(0);
+  // C557: the beat of a See step being shown (its part lit), the prediction, teach-back, and the guide's captions.
+  const [beat, setBeat] = useState<number | null>(null);
+  const [predicted, setPredicted] = useState<number | null>(null);
+  const [predictShown, setPredictShown] = useState<{ answer: number; explain: string } | null>(null);
+  const [teachText, setTeachText] = useState('');
+  const [teachChecked, setTeachChecked] = useState(false);
+  const [captions, setCaptions] = useState(true);
   const frame = useRef<HTMLIFrameElement>(null);
   const questions = lesson.try?.questions ?? [];
   const level = lesson.level === 1 || lesson.level === 2 || lesson.level === 3 ? lesson.level : 2;
@@ -97,13 +106,48 @@ export function TechPlayer({ lesson, strand, nextKey, backHref, initialLang, voi
     return () => window.clearTimeout(timer);
   }, [toast]);
 
+  const showSegment = (segment: GuideSegment) => {
+    const next: Phase = segment.phase;
+    setPhase(next);
+    setSeen((current) => current.includes(next) ? current : [...current, next]);
+    if (segment.phase === 'see') {
+      setStep(segment.step);
+      setBeat(segment.beat);
+    } else {
+      window.setTimeout(() => {
+        const target = document.querySelector(`[data-card="${segment.step}"]`) ?? document.querySelector('[data-summary]');
+        const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        target?.scrollIntoView({ behavior: still ? 'auto' : 'smooth', block: 'start' });
+      }, 60);
+    }
+  };
+  const guide = useGuide({ lesson, lang, personal, voice, onSegment: showSegment });
+
   const go = (next: Phase) => {
+    guide.yieldToChild();
     stopLine();
     setPhase(next);
     setSeen((current) => current.includes(next) ? current : [...current, next]);
   };
+  const toStep = (next: number) => {
+    guide.yieldToChild();
+    setBeat(null);
+    setStep(next);
+  };
 
   const note = (text: string) => setToast(text);
+  // The prediction: the child chooses first, then the server says which was right and why (never marked).
+  const predict = async (choice: number) => {
+    setPredicted(choice);
+    const response = await fetch(`/api/family/tech/lessons/${lesson.id}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin', body: JSON.stringify({ action: 'predict', choice, lang }) }).catch(() => null);
+    const body = response?.ok ? ((await response.json().catch(() => null)) as { answer?: number; explain?: string } | null) : null;
+    if (!body || typeof body.answer !== 'number') {
+      setPredicted(null);
+      note(tw(lang, 'couldNot'));
+      return;
+    }
+    setPredictShown({ answer: body.answer, explain: String(body.explain ?? '') });
+  };
   const cheer = () => setBurst((value) => value + 1);
 
   const check = async (question: TechQuestion) => {
@@ -205,10 +249,36 @@ export function TechPlayer({ lesson, strand, nextKey, backHref, initialLang, voi
       <main className="tl-wrap tl-player-main">
         {phase === 'see' && (
           <>
+            {step === 0 && !guide.state.on && (
+              <button type="button" className="tl-btn tl-btn-go tl-start" data-guide-start onClick={guide.start}>{`▶ ${tw(lang, 'guideStart')}`}</button>
+            )}
             {step === 0 && (
               <section className="tl-card tl-pad tl-intro" data-intro>
                 <span className="tl-pill tl-pill-go">{`👋 ${tw(lang, 'hey')}`}</span>
                 <TechRead lesson={lesson} blockId={`${lesson.id}.intro`} lang={lang} label={tw(lang, 'listen')} words={words} voice={voice} personal={personal} />
+              </section>
+            )}
+            {step === 0 && lesson.predict && (
+              <section className="tl-card tl-pad" data-predict>
+                <span className="tl-pill">{`🤔 ${tw(lang, 'predictTitle')}`}</span>
+                <h3>{say(lesson.predict.prompt)}</h3>
+                <div className="tl-predict-opts">
+                  {lesson.predict.options.map((option, index) => {
+                    const right = predictShown != null && index === predictShown.answer;
+                    const wrong = predictShown != null && predicted === index && index !== predictShown.answer;
+                    return (
+                      <button key={index} type="button" className={`tl-opt tl-press${right ? ' right' : wrong ? ' wrong' : ''}`} aria-pressed={predicted === index} disabled={predicted != null} onClick={() => void predict(index)}>
+                        <span className="tl-k">{String.fromCharCode(65 + index)}</span>
+                        <span>{say(option)}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+                {predictShown && (
+                  <div className={`tl-feedback ${predicted === predictShown.answer ? 'ok' : 'no'}`} role="status">
+                    <b>{predicted === predictShown.answer ? tw(lang, 'predictRight') : tw(lang, 'predictWrong')}</b> {named(predictShown.explain, personal.name)}
+                  </div>
+                )}
               </section>
             )}
             {step === 0 && (lesson.outcomes ?? []).length > 0 && (
@@ -218,12 +288,40 @@ export function TechPlayer({ lesson, strand, nextKey, backHref, initialLang, voi
               </section>
             )}
             <div className="tl-see">
-              {current ? <SeeVisual spec={String(current.visual || '')} level={level} strand={strand} lang={lang} /> : <SeeVisual spec="" level={level} strand={strand} lang={lang} />}
+              <SeeVisual
+                spec={String(current?.visual || '')}
+                level={level}
+                strand={strand}
+                lang={lang}
+                extras={{
+                  caption: current ? say(current.caption) : '',
+                  narration: current ? say(current.narration) : '',
+                  terms: (lesson.vocab ?? []).map((word) => word.term),
+                  diagram: current?.diagram,
+                  focus: beat != null ? current?.beats?.[beat]?.focus : undefined,
+                  values: beat != null ? current?.beats?.[beat]?.values : undefined,
+                  labName: lesson.play?.lab ?? undefined,
+                  onLab: lesson.play?.lab && labLevel ? () => { go('play'); setLabOpen(true); } : undefined,
+                }}
+              />
               {current && <TechRead lesson={lesson} blockId={`${lesson.id}.see.${step + 1}`} lang={lang} label={tw(lang, 'listen')} words={words} voice={voice} personal={personal} />}
+              {current && (current.beats ?? []).length > 0 && (
+                <ol className="tl-outcomes" data-beats>
+                  {(current.beats ?? []).map((item, index) => (
+                    <li key={index}>
+                      <button type="button" className={`tl-opt tl-press${beat === index ? ' right' : ''}`} aria-pressed={beat === index} onClick={() => { guide.yieldToChild(); setBeat(index); }}>
+                        <span className="tl-k">{index + 1}</span>
+                        <span>{say(item.narration)}</span>
+                      </button>
+                    </li>
+                  ))}
+                </ol>
+              )}
+              {current && beat != null && <TechRead key={`beat-${step}-${beat}`} lesson={lesson} blockId={`${lesson.id}.see.${step + 1}.b${beat + 1}`} lang={lang} label={tw(lang, 'listen')} words={words} voice={voice} personal={personal} />}
             </div>
             <div className="tl-footer">
-              <button type="button" className="tl-btn tl-btn-soft" disabled={step === 0} onClick={() => setStep((value) => Math.max(0, value - 1))}>{`← ${tw(lang, 'back')}`}</button>
-              <button type="button" className="tl-btn tl-btn-go" onClick={() => { if (step < steps.length - 1) setStep((value) => value + 1); else go('play'); }}>{`${step < steps.length - 1 ? tw(lang, 'next') : tw(lang, 'play')} →`}</button>
+              <button type="button" className="tl-btn tl-btn-soft" disabled={step === 0} onClick={() => toStep(Math.max(0, step - 1))}>{`← ${tw(lang, 'back')}`}</button>
+              <button type="button" className="tl-btn tl-btn-go" onClick={() => { if (step < steps.length - 1) toStep(step + 1); else go('play'); }}>{`${step < steps.length - 1 ? tw(lang, 'next') : tw(lang, 'play')} →`}</button>
             </div>
           </>
         )}
@@ -255,12 +353,22 @@ export function TechPlayer({ lesson, strand, nextKey, backHref, initialLang, voi
         )}
         {phase === 'understand' && (
           <>
+            {!guide.state.on && (
+              <button type="button" className="tl-btn tl-btn-soft tl-start" onClick={() => guide.playFrom(Math.max(0, guide.segments.findIndex((segment) => segment.phase === 'understand')))} data-guide-understand>{`🔊 ${tw(lang, 'guideUnderstand')}`}</button>
+            )}
             {(lesson.understand ?? []).map((card, index) => (
-              <section key={index} className="tl-card tl-pad">
+              <section key={index} className="tl-card tl-pad" data-card={index}>
                 <h3>{say(card.heading)}</h3>
                 {say(card.analogy) && <p className="tl-analogy">{say(card.analogy)}</p>}
                 {say(card.body) && <p>{say(card.body)}</p>}
+                {say(card.limit) && <p className="tl-limit"><b>{`${tw(lang, 'limit')} `}</b>{say(card.limit)}</p>}
                 {say(card.realExample) && <p className="tl-real">{say(card.realExample)}</p>}
+                {say(card.advanced) && (
+                  <details>
+                    <summary>{tw(lang, 'deeper')}</summary>
+                    <p>{say(card.advanced)}</p>
+                  </details>
+                )}
                 <TechRead lesson={lesson} blockId={`${lesson.id}.understand.${index + 1}`} lang={lang} label={tw(lang, 'listen')} words={words} voice={voice} personal={personal} showText={false} />
               </section>
             ))}
@@ -268,6 +376,22 @@ export function TechPlayer({ lesson, strand, nextKey, backHref, initialLang, voi
               <h3>{tw(lang, 'summary')}</h3>
               <TechRead lesson={lesson} blockId={`${lesson.id}.wrap`} lang={lang} label={tw(lang, 'listen')} words={words} voice={voice} personal={personal} />
             </section>
+            {lesson.teachBack && (
+              <section className="tl-card tl-pad tl-teachback" data-teachback>
+                <span className="tl-pill">{`🗣️ ${tw(lang, 'teachBack')}`}</span>
+                <h3>{say(lesson.teachBack.prompt)}</h3>
+                <p className="tl-quiet">{tw(lang, 'teachBackHow')}</p>
+                <textarea value={teachText} onChange={(event) => setTeachText(event.target.value.slice(0, 800))} aria-label={say(lesson.teachBack.prompt)} autoComplete="off" />
+                {!teachChecked ? (
+                  <button type="button" className="tl-btn tl-btn-ink" onClick={() => setTeachChecked(true)}>{tw(lang, 'teachBackCheck')}</button>
+                ) : (
+                  <>
+                    <p><b>{tw(lang, 'teachBackList')}</b></p>
+                    <ul className="tl-outcomes">{lesson.teachBack.checklist.map((item, index) => <li key={index}>{say(item)}</li>)}</ul>
+                  </>
+                )}
+              </section>
+            )}
             {(lesson.vocab ?? []).length > 0 && (
               <section className="tl-card tl-pad">
                 <h3>{tw(lang, 'words')}</h3>
@@ -276,6 +400,8 @@ export function TechPlayer({ lesson, strand, nextKey, backHref, initialLang, voi
                     <button key={word.term} type="button" className="tl-term tl-press" onClick={() => void speak(word.term, voiceLang(lang))}>
                       <b>{word.term}</b>
                       <span>{lang === 'en' ? word.en : lang === 'hi' ? word.hi || word.hinglish : word.hinglish || word.en}</span>
+                      {say(word.does) && <span className="tl-vocab-extra">{`${tw(lang, 'does')} ${say(word.does)}`}</span>}
+                      {say(word.where) && <span className="tl-vocab-extra">{`${tw(lang, 'where')} ${say(word.where)}`}</span>}
                     </button>
                   ))}
                 </div>
@@ -339,6 +465,28 @@ export function TechPlayer({ lesson, strand, nextKey, backHref, initialLang, voi
           </section>
         )}
       </main>
+      {guide.state.on && (
+        <div className="tl-wrap">
+          <section className="tl-guide" aria-label={tw(lang, 'guideStart')} data-guide>
+            {captions && guide.state.caption && <p className="tl-guide-caption" aria-live="polite">{guide.state.caption}</p>}
+            {guide.state.done && <p className="tl-guide-caption">{tw(lang, 'guideDone')}</p>}
+            <div className="tl-guide-row">
+              <button type="button" onClick={guide.previous} aria-label={tw(lang, 'back')}>⏮</button>
+              {guide.state.paused ? (
+                <button type="button" onClick={guide.resume} aria-label={tw(lang, 'guideResume')} data-guide-resume>▶</button>
+              ) : (
+                <button type="button" onClick={guide.pause} aria-label={tw(lang, 'guidePause')} data-guide-pause>⏸</button>
+              )}
+              <button type="button" onClick={guide.replay} aria-label={tw(lang, 'guideReplay')}>↺</button>
+              <button type="button" onClick={guide.next} aria-label={tw(lang, 'next')}>⏭</button>
+              <button type="button" aria-pressed={captions} onClick={() => setCaptions((value) => !value)}>{tw(lang, 'captions')}</button>
+              {guide.state.done && <button type="button" onClick={() => { guide.stop(); go('try'); }}>{`${tw(lang, 'try')} →`}</button>}
+              <button type="button" onClick={guide.stop} data-guide-stop>{tw(lang, 'guideStop')}</button>
+              <span className="tl-guide-progress">{`${Math.min(guide.state.index + 1, guide.state.total)} / ${guide.state.total}`}</span>
+            </div>
+          </section>
+        </div>
+      )}
       {toast && <div className="tl-toast" role="status">{toast}</div>}
       {burst > 0 && <Burst key={burst} />}
     </div>

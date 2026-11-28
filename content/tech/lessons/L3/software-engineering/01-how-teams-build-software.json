@@ -34,6 +34,72 @@
    "hinglish": "Samjhao teams users ke saath test aur stages mein release kyun karti hain"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your class makes a school fest app. One friend says \"plan every screen first\", another says \"build one screen and show it today\".",
+   "hi": "{{name}}, तुम्हारी क्लास स्कूल फेस्ट का ऐप बना रही है। एक दोस्त कहता है \"पहले सारी स्क्रीन प्लान करो\", दूसरा कहता है \"एक स्क्रीन बनाकर आज ही दिखाओ\"।",
+   "hinglish": "{{name}}, tumhari class school fest ka app bana rahi hai. Ek friend kehta hai \"pehle saari screens plan karo\", doosra kehta hai \"ek screen banao aur aaj hi dikhao\"."
+  },
+  "question": {
+   "en": "Which way do real software teams work, and why do most choose to build in small slices?",
+   "hi": "असली सॉफ़्टवेयर टीमें किस तरह काम करती हैं, और ज़्यादातर छोटे-छोटे टुकड़ों में क्यों बनाती हैं?",
+   "hinglish": "Real software teams kaise kaam karti hain, aur zyada tar chhote slices mein build karna kyun chunti hain?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A team plans everything for 6 months, builds, and tests only at the end. What is the biggest risk?",
+   "hi": "एक टीम 6 महीने सब कुछ प्लान करती है, बनाती है और टेस्ट सिर्फ़ अंत में करती है। सबसे बड़ा जोखिम क्या है?",
+   "hinglish": "Ek team 6 mahine sab kuch plan karti hai, build karti hai aur test sirf end mein karti hai. Sabse bada risk kya hai?"
+  },
+  "options": [
+   {
+    "en": "The code will run slower",
+    "hi": "कोड धीमा चलेगा",
+    "hinglish": "Code slow chalega"
+   },
+   {
+    "en": "Users and testers find wrong assumptions only when changing them is most expensive",
+    "hi": "यूज़र और टेस्टर ग़लत मान्यताएँ तब पकड़ते हैं जब उन्हें बदलना सबसे महँगा होता है",
+    "hinglish": "Users aur testers galat assumptions tab pakadte hain jab unhe badalna sabse mehnga hota hai"
+   },
+   {
+    "en": "The programmers will run out of ideas",
+    "hi": "प्रोग्रामरों के आइडिया ख़त्म हो जाएँगे",
+    "hinglish": "Programmers ke ideas khatam ho jayenge"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Feedback arrives late in waterfall, so a wrong guess made in month 1 is found in month 6 after everything depends on it. Agile ships a small slice every couple of weeks, so a wrong guess costs days, not months.",
+   "hi": "वॉटरफ़ॉल में फ़ीडबैक देर से आता है, इसलिए पहले महीने की ग़लत धारणा छठे महीने में पकड़ी जाती है जब सब कुछ उस पर टिका होता है। एजाइल हर दो हफ़्ते में छोटा टुकड़ा देता है, तो ग़लती की क़ीमत दिनों की होती है, महीनों की नहीं।",
+   "hinglish": "Waterfall mein feedback late aata hai, isliye month 1 ki galat assumption month 6 mein pakdi jaati hai jab sab kuch us par tika hota hai. Agile har do hafte mein chhota slice deta hai, to galti ki cost dinon ki hoti hai, mahino ki nahi."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home why a team would ship a small version to 10 users before building the whole app.",
+   "hi": "घर पर किसी को समझाओ कि टीम पूरा ऐप बनाने से पहले 10 यूज़र को छोटा वर्ज़न क्यों देती है।",
+   "hinglish": "Ghar par kisi ko samjhao ki team poora app banane se pehle 10 users ko chhota version kyun deti hai."
+  },
+  "checklist": [
+   {
+    "en": "Waterfall finds mistakes late, when they cost most; agile builds, shows and learns in short cycles",
+    "hi": "वॉटरफ़ॉल ग़लतियाँ देर से पकड़ता है जब वे सबसे महँगी होती हैं; एजाइल छोटे चक्रों में बनाता, दिखाता और सीखता है",
+    "hinglish": "Waterfall galtiyan late pakadta hai jab woh sabse mehngi hoti hain; agile chhote cycles mein build, show aur learn karta hai"
+   },
+   {
+    "en": "A user story says who, what and why, with a clear \"done when\"",
+    "hi": "यूज़र स्टोरी में कौन, क्या और क्यों होता है, साफ़ \"पूरा कब\" के साथ",
+    "hinglish": "User story mein who, what aur why hota hai, saaf \"done when\" ke saath"
+   },
+   {
+    "en": "Testing with a few real users and releasing in stages limits the damage of a wrong guess",
+    "hi": "कुछ असली यूज़र के साथ टेस्ट और चरणों में रिलीज़ ग़लत अंदाज़े का नुक़सान सीमित करता है",
+    "hinglish": "Kuch real users ke saath testing aur stages mein release galat guess ka nuksaan limited rakhta hai"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Requirements",

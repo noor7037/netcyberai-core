@@ -35,6 +35,77 @@
    "hinglish": "Samjhao randomised experiments cause kyun dikha sakte hain"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, in summer both ice-cream sales and drowning news go up in the same months.",
+   "hi": "{{name}}, गर्मियों में आइसक्रीम की बिक्री और डूबने की ख़बरें उन्हीं महीनों में बढ़ती हैं।",
+   "hinglish": "{{name}}, garmiyon mein ice-cream ki sales aur doobne ki khabrein usi mahino mein badhti hain."
+  },
+  "question": {
+   "en": "Does eating ice-cream cause drowning, and how can data tell a real cause from a coincidence?",
+   "hi": "क्या आइसक्रीम खाने से डूबना होता है, और डेटा असली कारण को संयोग से कैसे अलग करता है?",
+   "hinglish": "Kya ice-cream khane se doobna hota hai, aur data asli cause ko coincidence se kaise alag karta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Two things have a correlation of r = 0.8. What can you safely conclude?",
+   "hi": "दो चीज़ों में सहसंबंध r = 0.8 है। तुम सुरक्षित रूप से क्या निष्कर्ष निकाल सकते हो?",
+   "hinglish": "Do cheezon mein correlation r = 0.8 hai. Tum safely kya conclude kar sakte ho?"
+  },
+  "options": [
+   {
+    "en": "One causes the other",
+    "hi": "एक दूसरे का कारण है",
+    "hinglish": "Ek doosre ka cause hai"
+   },
+   {
+    "en": "They move together; the reason could be cause, reverse cause, a third factor or chance",
+    "hi": "वे साथ चलते हैं; कारण असर, उल्टा असर, तीसरा कारक या संयोग हो सकता है",
+    "hinglish": "Woh saath chalte hain; reason cause, reverse cause, teesra factor ya chance ho sakta hai"
+   },
+   {
+    "en": "Nothing, because 0.8 is too low",
+    "hi": "कुछ नहीं, क्योंकि 0.8 बहुत कम है",
+    "hinglish": "Kuch nahi, kyunki 0.8 bahut kam hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "r measures how tightly points follow a line, not why. A confounder such as hot weather can drive both variables. Randomly assigning a treatment breaks such hidden links, which is why randomised experiments can show cause.",
+   "hi": "r बताता है कि बिंदु रेखा के कितने पास हैं, कारण नहीं। गर्म मौसम जैसा कन्फ़ाउंडर दोनों चरों को चला सकता है। इलाज को यादृच्छिक रूप से बाँटने से ऐसे छिपे संबंध टूटते हैं, इसलिए रैंडमाइज़्ड प्रयोग कारण दिखा सकते हैं।",
+   "hinglish": "r batata hai ki points line ke kitne paas hain, reason nahi. Garm mausam jaisa confounder dono variables ko chala sakta hai. Treatment ko random baantne se aise hidden links tootte hain, isliye randomised experiments cause dikha sakte hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend why a strong correlation does not prove one thing causes another, using the ice-cream example.",
+   "hi": "दोस्त को आइसक्रीम के उदाहरण से समझाओ कि मज़बूत सहसंबंध यह साबित नहीं करता कि एक चीज़ दूसरी का कारण है।",
+   "hinglish": "Friend ko ice-cream example se samjhao ki strong correlation yeh prove nahi karta ki ek cheez doosri ka cause hai."
+  },
+  "checklist": [
+   {
+    "en": "r near 1 or -1 means points hug a line; near 0 means a cloud",
+    "hi": "r का 1 या -1 के पास होना यानी बिंदु रेखा के पास; 0 के पास यानी बादल",
+    "hinglish": "r 1 ya -1 ke paas matlab points line ke paas; 0 ke paas matlab cloud"
+   },
+   {
+    "en": "A confounder (like temperature) can drive both variables",
+    "hi": "कन्फ़ाउंडर (जैसे तापमान) दोनों चरों को चला सकता है",
+    "hinglish": "Confounder (jaise temperature) dono variables ko chala sakta hai"
+   },
+   {
+    "en": "Reverse causation is possible: the effect may be the cause",
+    "hi": "उल्टा कारण संभव है: असर ही कारण हो सकता है",
+    "hinglish": "Reverse causation possible hai: effect hi cause ho sakta hai"
+   },
+   {
+    "en": "Random assignment in an experiment breaks hidden links and can show cause",
+    "hi": "प्रयोग में यादृच्छिक बँटवारा छिपे संबंध तोड़ता है और कारण दिखा सकता है",
+    "hinglish": "Experiment mein random assignment hidden links todta hai aur cause dikha sakta hai"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Correlation (r)",
@@ -103,7 +174,7 @@
     "hi": "बिंदुओं को तापमान से रंगो: गर्म दिन (लाल) ऊपर-दाएँ। गर्मी दोनों को चलाती है — भ्रमित करने वाला कारक।",
     "hinglish": "Points ko temperature se rang do: garam din (laal) upar-right. Garmi dono ko chalati hai — confounder."
    },
-   "visual": "anim:heat-colour",
+   "visual": "flow:🌡️ Hot weather|🍦 More ice-cream sales|🏊 More swimming, so more drownings",
    "narration": {
     "en": "Colour the points by temperature: hot days (red) are top-right. Heat drives both — a confounder.",
     "hi": "बिंदुओं को तापमान से रंगो: गर्म दिन (लाल) ऊपर-दाएँ। गर्मी दोनों को चलाती है — भ्रमित करने वाला कारक।",

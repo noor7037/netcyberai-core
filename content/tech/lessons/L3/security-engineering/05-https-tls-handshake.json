@@ -35,6 +35,77 @@
    "hinglish": "Padlock sahi padho: HTTPS kya prove karta hai aur kya nahi"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, the padlock beside a website address appears in an instant, long before the page loads.",
+   "hi": "{{name}}, वेबसाइट के पते के पास ताला तुरंत दिखता है, पेज लोड होने से बहुत पहले।",
+   "hinglish": "{{name}}, website ke address ke paas padlock turant dikhta hai, page load hone se bahut pehle."
+  },
+  "question": {
+   "en": "What steps happen behind that padlock, and how does your phone know it reached the real site?",
+   "hi": "उस ताले के पीछे कौन-से कदम होते हैं, और तुम्हारा फ़ोन कैसे जानता है कि वह असली साइट तक पहुँचा?",
+   "hinglish": "Us padlock ke peeche kaunse steps hote hain, aur tumhara phone kaise jaanta hai ki woh asli site tak pahuncha?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A site shows the HTTPS padlock. What does that tell you?",
+   "hi": "एक साइट HTTPS का ताला दिखाती है। इससे तुम्हें क्या पता चलता है?",
+   "hinglish": "Ek site HTTPS ka padlock dikhati hai. Isse tumhe kya pata chalta hai?"
+  },
+  "options": [
+   {
+    "en": "The site is honest and safe to trust fully",
+    "hi": "साइट ईमानदार है और पूरी तरह भरोसेमंद",
+    "hinglish": "Site honest hai aur poori tarah bharosemand"
+   },
+   {
+    "en": "The connection is encrypted and you are talking to whoever controls that domain, but the site could still be a scam",
+    "hi": "कनेक्शन एन्क्रिप्टेड है और तुम उस डोमेन के नियंत्रक से बात कर रहे हो, पर साइट फिर भी धोखा हो सकती है",
+    "hinglish": "Connection encrypted hai aur tum us domain ke controller se baat kar rahe ho, par site phir bhi scam ho sakti hai"
+   },
+   {
+    "en": "The site has no virus",
+    "hi": "साइट में कोई वायरस नहीं है",
+    "hinglish": "Site mein koi virus nahi hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "In TLS 1.3 the browser sends supported ciphers and a key share, the server answers with its own key share, and both compute the same session key. The server proves identity with a certificate signed through a chain of CAs and a signature on the handshake. Finished messages confirm nothing was tampered with, in one round trip. This proves encryption and domain ownership, not honesty: phishing sites can have valid certificates too.",
+   "hi": "TLS 1.3 में ब्राउज़र समर्थित सिफ़र और कुंजी हिस्सा भेजता है, सर्वर अपने कुंजी हिस्से से जवाब देता है, और दोनों वही सत्र कुंजी निकालते हैं। सर्वर पहचान CA की कड़ी से हस्ताक्षरित प्रमाणपत्र और हैंडशेक पर हस्ताक्षर से साबित करता है। Finished संदेश पुष्टि करते हैं कि कुछ बदला नहीं गया, एक राउंड ट्रिप में। यह एन्क्रिप्शन और डोमेन स्वामित्व साबित करता है, ईमानदारी नहीं: फ़िशिंग साइटों के पास भी वैध प्रमाणपत्र हो सकते हैं।",
+   "hinglish": "TLS 1.3 mein browser supported ciphers aur key share bhejta hai, server apne key share se jawab deta hai, aur dono wahi session key nikalte hain. Server identity CA ki chain se signed certificate aur handshake par signature se sabit karta hai. Finished messages confirm karte hain ki kuch badla nahi gaya, ek round trip mein. Yeh encryption aur domain ownership sabit karta hai, honesty nahi: phishing sites ke paas bhi valid certificates ho sakte hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home what happens when a browser sets up HTTPS, and what the padlock does not promise.",
+   "hi": "घर पर किसी को समझाओ कि ब्राउज़र HTTPS बनाते समय क्या होता है, और ताला किस बात का वादा नहीं करता।",
+   "hinglish": "Ghar par kisi ko samjhao ki browser HTTPS banate samay kya hota hai, aur padlock kis baat ka vaada nahi karta."
+  },
+  "checklist": [
+   {
+    "en": "ClientHello and ServerHello swap key shares so both compute the same session key.",
+    "hi": "ClientHello और ServerHello कुंजी हिस्से बदलते हैं ताकि दोनों वही सत्र कुंजी निकालें।",
+    "hinglish": "ClientHello aur ServerHello key shares badalte hain taaki dono wahi session key nikalein."
+   },
+   {
+    "en": "The server proves who it is with a certificate and a signature on the handshake.",
+    "hi": "सर्वर प्रमाणपत्र और हैंडशेक पर हस्ताक्षर से अपनी पहचान साबित करता है।",
+    "hinglish": "Server certificate aur handshake par signature se apni pehchaan sabit karta hai."
+   },
+   {
+    "en": "The browser checks the chain: site certificate, intermediate CA, trusted root CA.",
+    "hi": "ब्राउज़र कड़ी जाँचता है: साइट प्रमाणपत्र, मध्यवर्ती CA, विश्वसनीय रूट CA।",
+    "hinglish": "Browser chain jaanchta hai: site certificate, intermediate CA, trusted root CA."
+   },
+   {
+    "en": "The padlock means an encrypted link to the domain's owner, not that the site is honest.",
+    "hi": "ताले का मतलब डोमेन के मालिक से एन्क्रिप्टेड कड़ी है, यह नहीं कि साइट ईमानदार है।",
+    "hinglish": "Padlock ka matlab domain ke owner se encrypted link hai, yeh nahi ki site honest hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "TLS",
@@ -103,7 +174,7 @@
     "hi": "सर्वर अपना प्रमाणपत्र भेजता है और निजी कुंजी से हैंडशेक पर हस्ताक्षर करता है। ब्राउज़र CA श्रृंखला, नाम और तारीख़ें जाँचता है।",
     "hinglish": "Server apna certificate bhejta hai aur private key se handshake sign karta hai. Browser CA chain, naam aur dates check karta hai."
    },
-   "visual": "anim:cert-chain",
+   "visual": "stack:Root CA (in your device)|Intermediate CA|Site certificate",
    "narration": {
     "en": "The server sends its certificate and signs the handshake with its private key. The browser checks the CA chain, the name and the dates.",
     "hi": "सर्वर अपना प्रमाणपत्र भेजता है और निजी कुंजी से हैंडशेक पर हस्ताक्षर करता है। ब्राउज़र CA श्रृंखला, नाम और तारीख़ें जाँचता है।",
@@ -117,7 +188,7 @@
     "hi": "Finished संदेश पुष्टि करते हैं कि किसी ने छेड़छाड़ नहीं की। कुल: पहले एन्क्रिप्टेड अनुरोध से पहले एक राउंड ट्रिप (1-RTT)।",
     "hinglish": "Finished messages confirm karte hain ki kisi ne tamper nahi kiya. Total: pehli encrypted request se pehle ek round trip (1-RTT)."
    },
-   "visual": "anim:tls-finished",
+   "visual": "flow:👋 ClientHello and key share|🤝 ServerHello and key share|📜 Certificate and signature|✅ Finished messages|🔒 Encrypted data",
    "narration": {
     "en": "Finished messages confirm nobody tampered. Total: one round trip (1-RTT) before the first encrypted request.",
     "hi": "Finished संदेश पुष्टि करते हैं कि किसी ने छेड़छाड़ नहीं की। कुल: पहले एन्क्रिप्टेड अनुरोध से पहले एक राउंड ट्रिप (1-RTT)।",

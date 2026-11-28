@@ -36,6 +36,77 @@
    "hinglish": "textContent se safe DOM code likho aur console se debug karo"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you tap the like button on a post and the number goes up straight away, without the whole page reloading.",
+   "hi": "{{name}}, तुम किसी पोस्ट पर लाइक बटन दबाते हो और संख्या तुरंत बढ़ जाती है, पूरा पेज दोबारा लोड हुए बिना।",
+   "hinglish": "{{name}}, tum kisi post par like button dabate ho aur number turant badh jaata hai, poora page dobara load hue bina."
+  },
+  "question": {
+   "en": "How does the page notice your tap and change just one number?",
+   "hi": "पेज तुम्हारा टैप कैसे पहचानता है और सिर्फ़ एक संख्या कैसे बदलता है?",
+   "hinglish": "Page tumhara tap kaise pehchaanta hai aur sirf ek number kaise badalta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What is the DOM that JavaScript changes?",
+   "hi": "वह DOM क्या है जिसे JavaScript बदलता है?",
+   "hinglish": "Woh DOM kya hai jise JavaScript badalta hai?"
+  },
+  "options": [
+   {
+    "en": "The HTML file stored on the server",
+    "hi": "सर्वर पर रखी HTML फ़ाइल",
+    "hinglish": "Server par rakhi HTML file"
+   },
+   {
+    "en": "A live tree of element objects the browser builds from the HTML",
+    "hi": "ब्राउज़र का HTML से बनाया तत्व ऑब्जेक्ट का जीवित पेड़",
+    "hinglish": "Browser ka HTML se banaya element objects ka live tree"
+   },
+   {
+    "en": "A copy of the page saved on your phone",
+    "hi": "तुम्हारे फ़ोन में सहेजी पेज की प्रति",
+    "hinglish": "Tumhare phone mein save ki page ki copy"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "The browser reads HTML and builds the DOM, a tree of objects. JavaScript finds an element with querySelector, adds an event listener for a click, and changes the element's text, which updates what you see without a reload. Use textContent for text: pasting user input into innerHTML can run an attacker's script (XSS).",
+   "hi": "ब्राउज़र HTML पढ़कर DOM बनाता है, ऑब्जेक्ट का एक पेड़। JavaScript querySelector से तत्व ढूँढता है, क्लिक पर इवेंट लिसनर जोड़ता है और तत्व का टेक्स्ट बदलता है, जिससे बिना रीलोड के दिखने वाला बदल जाता है। टेक्स्ट के लिए textContent इस्तेमाल करो: उपयोगकर्ता का इनपुट innerHTML में डालने से हमलावर की स्क्रिप्ट चल सकती है (XSS)।",
+   "hinglish": "Browser HTML padhkar DOM banata hai, objects ka ek tree. JavaScript querySelector se element dhundhta hai, click par event listener jodta hai aur element ka text badalta hai, jisse bina reload ke dikhne wala badal jaata hai. Text ke liye textContent use karo: user ka input innerHTML mein daalne se attacker ki script chal sakti hai (XSS)."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how clicking a button can change the page without reloading it, and why textContent is safer than innerHTML.",
+   "hi": "घर पर किसी को समझाओ कि बटन क्लिक करने पर पेज बिना रीलोड हुए कैसे बदलता है, और textContent innerHTML से सुरक्षित क्यों है।",
+   "hinglish": "Ghar par kisi ko samjhao ki button click karne par page bina reload hue kaise badalta hai, aur textContent innerHTML se safe kyun hai."
+  },
+  "checklist": [
+   {
+    "en": "The browser turns HTML into the DOM, a tree of element objects.",
+    "hi": "ब्राउज़र HTML को DOM में बदलता है, तत्व ऑब्जेक्ट का पेड़।",
+    "hinglish": "Browser HTML ko DOM mein badalta hai, element objects ka tree."
+   },
+   {
+    "en": "JavaScript finds elements with querySelector and changes their text or style.",
+    "hi": "JavaScript querySelector से तत्व ढूँढता है और उनका टेक्स्ट या शैली बदलता है।",
+    "hinglish": "JavaScript querySelector se elements dhundhta hai aur unka text ya style badalta hai."
+   },
+   {
+    "en": "addEventListener waits for a click or input, then runs your function.",
+    "hi": "addEventListener क्लिक या इनपुट का इंतज़ार करता है, फिर तुम्हारा फ़ंक्शन चलाता है।",
+    "hinglish": "addEventListener click ya input ka wait karta hai, phir tumhara function chalata hai."
+   },
+   {
+    "en": "Use textContent, not innerHTML, with user input to avoid XSS; debug with the console.",
+    "hi": "उपयोगकर्ता इनपुट के साथ textContent इस्तेमाल करो, innerHTML नहीं, XSS से बचने के लिए; कंसोल से डीबग करो।",
+    "hinglish": "User input ke saath textContent use karo, innerHTML nahi, XSS se bachne ke liye; console se debug karo."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "DOM",

@@ -34,6 +34,77 @@
    "hinglish": "Sahi Python tool chuno: list, collections.deque, heapq"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you press Ctrl+Z in a document and your last change disappears first, and a printer prints jobs in the order they were sent.",
+   "hi": "{{name}}, तुम डॉक्यूमेंट में Ctrl+Z दबाते हो और तुम्हारा आख़िरी बदलाव सबसे पहले हटता है, और प्रिंटर काम उसी क्रम में छापता है जिसमें भेजे गए।",
+   "hinglish": "{{name}}, tum document mein Ctrl+Z dabate ho aur tumhara aakhri change sabse pehle hatta hai, aur printer jobs usi order mein chhapta hai jisme bheje gaye."
+  },
+  "question": {
+   "en": "Why do these two behave in opposite orders, and what data structures are behind them?",
+   "hi": "ये दोनों उलटे क्रम में क्यों चलते हैं, और इनके पीछे कौन-सी डेटा संरचनाएँ हैं?",
+   "hinglish": "Yeh dono ulte order mein kyun chalte hain, aur inke peeche kaunsi data structures hain?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "You push 1, 2, 3 onto a stack, then pop once. Which value comes out?",
+   "hi": "तुम स्टैक में 1, 2, 3 पुश करते हो, फिर एक बार पॉप करते हो। कौन-सा मान निकलता है?",
+   "hinglish": "Tum stack mein 1, 2, 3 push karte ho, phir ek baar pop karte ho. Kaunsa value nikalta hai?"
+  },
+  "options": [
+   {
+    "en": "1, the first one in",
+    "hi": "1, जो पहले अंदर गया",
+    "hinglish": "1, jo pehle andar gaya"
+   },
+   {
+    "en": "3, the last one in",
+    "hi": "3, जो आख़िर में अंदर गया",
+    "hinglish": "3, jo aakhir mein andar gaya"
+   },
+   {
+    "en": "2, the middle one",
+    "hi": "2, बीच वाला",
+    "hinglish": "2, beech wala"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "A stack is last in, first out (LIFO), like a pile of plates: you can only reach the top. A queue is first in, first out (FIFO), like a ticket counter line. The same stack idea checks brackets: push each opener, and for each closer pop and compare; \"([)]\" fails because ) meets [ on top.",
+   "hi": "स्टैक आख़िरी अंदर, पहला बाहर (LIFO) है, प्लेटों के ढेर की तरह: सिर्फ़ ऊपर वाली तक पहुँच सकते हो। क्यू पहला अंदर, पहला बाहर (FIFO) है, टिकट काउंटर की कतार की तरह। वही स्टैक विचार कोष्ठक जाँचता है: हर खुला कोष्ठक पुश करो, हर बंद पर पॉप करके मिलाओ; \"([)]\" विफल होता है क्योंकि ) का सामना ऊपर [ से होता है।",
+   "hinglish": "Stack last in, first out (LIFO) hai, plates ke dher ki tarah: sirf upar wali tak pahunch sakte ho. Queue first in, first out (FIFO) hai, ticket counter ki line ki tarah. Wahi stack idea brackets jaanchta hai: har opener push karo, har closer par pop karke milao; \"([)]\" fail hota hai kyunki ) ka saamna upar [ se hota hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a stack checks that brackets match, and how it differs from a queue.",
+   "hi": "घर पर किसी को समझाओ कि स्टैक कोष्ठकों का मेल कैसे जाँचता है और क्यू से कैसे अलग है।",
+   "hinglish": "Ghar par kisi ko samjhao ki stack brackets ka match kaise jaanchta hai aur queue se kaise alag hai."
+  },
+  "checklist": [
+   {
+    "en": "Stack is LIFO (push, pop); queue is FIFO (enqueue, dequeue).",
+    "hi": "स्टैक LIFO है (push, pop); क्यू FIFO है (enqueue, dequeue)।",
+    "hinglish": "Stack LIFO hai (push, pop); queue FIFO hai (enqueue, dequeue)."
+   },
+   {
+    "en": "Stacks: undo, the browser Back button, the call stack; queues: printer jobs, messages.",
+    "hi": "स्टैक: अनडू, ब्राउज़र का बैक बटन, कॉल स्टैक; क्यू: प्रिंटर काम, संदेश।",
+    "hinglish": "Stacks: undo, browser ka Back button, call stack; queues: printer jobs, messages."
+   },
+   {
+    "en": "Bracket check: push openers, pop and compare at each closer; empty stack at the end means balanced.",
+    "hi": "कोष्ठक जाँच: खुले पुश करो, हर बंद पर पॉप कर मिलाओ; अंत में खाली स्टैक यानी संतुलित।",
+    "hinglish": "Bracket check: openers push karo, har closer par pop karke milao; end mein empty stack yaani balanced."
+   },
+   {
+    "en": "Use list as a stack, collections.deque for a queue, heapq for a priority queue.",
+    "hi": "स्टैक के लिए list, क्यू के लिए collections.deque, प्राथमिकता क्यू के लिए heapq इस्तेमाल करो।",
+    "hinglish": "Stack ke liye list, queue ke liye collections.deque, priority queue ke liye heapq use karo."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Stack",
@@ -88,7 +159,7 @@
     "hi": "कतार: enqueue 1, enqueue 2, dequeue → 1 पहले निकलता है। टिकट काउंटर की लाइन जैसा।",
     "hinglish": "Queue: enqueue 1, enqueue 2, dequeue → 1 pehle nikalta hai. Ticket counter ki line jaisa."
    },
-   "visual": "anim:line",
+   "visual": "compare:🥞 Stack: last in, first out|🎟️ Queue: first in, first out",
    "narration": {
     "en": "Queue: enqueue 1, enqueue 2, dequeue → 1 comes out first. Like a ticket counter line.",
     "hi": "कतार: enqueue 1, enqueue 2, dequeue → 1 पहले निकलता है। टिकट काउंटर की लाइन जैसा।",
@@ -102,7 +173,7 @@
     "hi": "कोष्ठक जाँच: हर खुला push करो; हर बंद पर pop करके मिलाओ। \"{[()]}\" संतुलित है।",
     "hinglish": "Bracket check: har opener push karo; har closer par pop karke milao. \"{[()]}\" balanced hai."
    },
-   "visual": "anim:brackets",
+   "visual": "flow:📥 Push each opener|🔍 At a closer, pop the top|⚖️ Do they match?|✅ Empty stack: balanced",
    "narration": {
     "en": "Bracket check: push every opener; for each closer, pop and compare. \"{[()]}\" is balanced.",
     "hi": "कोष्ठक जाँच: हर खुला push करो; हर बंद पर pop करके मिलाओ। \"{[()]}\" संतुलित है।",

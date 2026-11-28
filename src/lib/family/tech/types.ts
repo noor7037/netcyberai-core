@@ -14,6 +14,23 @@ export type TechQuestion = {
   difficulty?: number;
 };
 
+// ---- the teaching layer (C557): optional, so every older lesson still loads as it is ----------------------------------
+// A part of a diagram (a component, a stage, a node), drawn by the `diagram` template in SeeVisual.
+export type DiagramPart = { id: string; label: Localized; note?: Localized; icon?: string };
+// A diagram: parts in rows (each row a list of part ids, drawn left to right) and the links between them.
+export type TechDiagram = { parts: DiagramPart[]; rows: string[][]; links?: { from: string; to: string; label?: Localized }[] };
+// One beat of a See step: what the teacher says, which part is lit while it is said, and values shown on parts
+// (a register's number, a packet's address). Narrated in order, one beat at a time.
+export type SeeBeat = { narration: Localized; focus?: string; values?: Record<string, string> };
+// The lesson's own opening: a familiar situation (may hold {{name}}) and the question it raises.
+export type LessonHook = { text: Localized; question: Localized };
+// Predict before seeing: a choice, then why. Not marked, never counts toward the lesson.
+// On the phone (forChild) answer and explain are absent: the lesson route gives them once the child has chosen.
+export type LessonPredict = { prompt: Localized; options: Localized[]; answer: number; explain: Localized };
+// Teach-back: the child explains it in their own words (aloud or typed; nothing is kept), then checks against what a
+// good explanation mentions.
+export type LessonTeachBack = { prompt: Localized; checklist: Localized[] };
+
 export type TechLesson = {
   schema: string;
   id: string;
@@ -25,10 +42,16 @@ export type TechLesson = {
   xp: number;
   prereq?: string[];
   outcomes?: Localized[];
-  vocab?: { term: string; en?: string; hi?: string; hinglish?: string }[];
-  see?: { step?: number; caption?: Localized; visual?: string; narration?: Localized }[];
+  hook?: LessonHook;
+  predict?: LessonPredict;
+  teachBack?: LessonTeachBack;
+  // A term is introduced after the idea (stage 6): its meaning (en/hi/hinglish), and optionally what it does and where
+  // it is found.
+  vocab?: { term: string; en?: string; hi?: string; hinglish?: string; does?: Localized; where?: Localized }[];
+  see?: { step?: number; caption?: Localized; visual?: string; narration?: Localized; diagram?: TechDiagram; beats?: SeeBeat[] }[];
   play?: { lab?: string; config?: Record<string, unknown>; goal?: Localized };
-  understand?: { heading?: Localized; body?: Localized; analogy?: Localized; realExample?: Localized }[];
+  // `limit`: where the analogy stops being true (stage 7). `advanced`: an optional deeper paragraph for older classes.
+  understand?: { heading?: Localized; body?: Localized; analogy?: Localized; limit?: Localized; realExample?: Localized; advanced?: Localized }[];
   try?: { mission?: Localized; questions?: TechQuestion[] };
   sources?: { title?: string; url?: string; licence?: string }[];
 };

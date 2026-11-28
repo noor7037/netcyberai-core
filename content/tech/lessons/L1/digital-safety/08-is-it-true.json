@@ -39,6 +39,77 @@
    "hinglish": "Trusted source ya bade se check kar sakte ho."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a message arrives in the family group: \"Forward to 10 people or something bad will happen!\"",
+   "hi": "{{name}}, परिवार के ग्रुप में संदेश आता है: \"10 लोगों को भेजो वरना कुछ बुरा होगा!\"",
+   "hinglish": "{{name}}, family group mein message aata hai: \"10 logon ko bhejo warna kuch bura hoga!\""
+  },
+  "question": {
+   "en": "How do you know if a message is true before you pass it on?",
+   "hi": "आगे भेजने से पहले कैसे जानें कि संदेश सच है?",
+   "hinglish": "Aage bhejne se pehle kaise jaanein ki message sach hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A message is in ALL CAPITALS, says \"Forward to everyone!\" and names no source. What should you do?",
+   "hi": "एक संदेश बड़े अक्षरों में है, \"सबको भेजो!\" कहता है और कोई स्रोत नहीं बताता। क्या करना चाहिए?",
+   "hinglish": "Ek message bade letters mein hai, \"Sabko bhejo!\" kehta hai aur koi source nahi batata. Kya karna chahiye?"
+  },
+  "options": [
+   {
+    "en": "Forward it fast in case it is true",
+    "hi": "जल्दी भेज दूँ, क्या पता सच हो",
+    "hinglish": "Jaldi bhej doon, kya pata sach ho"
+   },
+   {
+    "en": "Stop, check a trusted source, and ask a grown-up",
+    "hi": "रुकूँ, भरोसेमंद स्रोत से जाँचूँ और बड़े से पूछूँ",
+    "hinglish": "Rukoon, bharosemand source se jaanchoon aur bade se poochhoon"
+   },
+   {
+    "en": "Believe it because many people sent it",
+    "hi": "मान लूँ क्योंकि कई लोगों ने भेजा है",
+    "hinglish": "Maan loon kyunki kai logon ne bheja hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Fake news spreads because it is scary or surprising, so people forward it before thinking. Many people sending it does not make it true. Stop, check who said it and whether trusted sites say the same, then ask.",
+   "hi": "फ़र्ज़ी ख़बर इसलिए फैलती है कि वह डरावनी या चौंकाने वाली होती है, और लोग सोचे बिना भेज देते हैं। कई लोगों के भेजने से वह सच नहीं होती। रुको, देखो किसने कहा और भरोसेमंद साइटें भी यही कहती हैं या नहीं, फिर पूछो।",
+   "hinglish": "Fake news isliye phailti hai ki woh darawni ya chaunkane wali hoti hai, aur log soche bina bhej dete hain. Kai logon ke bhejne se woh sach nahi hoti. Ruko, dekho kisne kaha aur bharosemand sites bhi yahi kehti hain ya nahi, phir poochho."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: what do you do before forwarding a message?",
+   "hi": "घर पर किसी को समझाओ: संदेश आगे भेजने से पहले क्या करते हो?",
+   "hinglish": "Ghar par kisi ko samjhao: message aage bhejne se pehle kya karte ho?"
+  },
+  "checklist": [
+   {
+    "en": "Warning signs: scary, too surprising, shouting, no source.",
+    "hi": "चेतावनी के संकेत: डरावना, बहुत चौंकाने वाला, चिल्लाता हुआ, कोई स्रोत नहीं।",
+    "hinglish": "Chetawani ke sanket: darawna, bahut chaunkane wala, chillata hua, koi source nahi."
+   },
+   {
+    "en": "I stop and do not forward yet.",
+    "hi": "मैं रुकता/रुकती हूँ और अभी आगे नहीं भेजता/भेजती।",
+    "hinglish": "Main rukta/rukti hoon aur abhi aage nahi bhejta/bhejti."
+   },
+   {
+    "en": "I check who said it and trusted sites.",
+    "hi": "मैं देखता/देखती हूँ किसने कहा और भरोसेमंद साइटें क्या कहती हैं।",
+    "hinglish": "Main dekhta/dekhti hoon kisne kaha aur bharosemand sites kya kehti hain."
+   },
+   {
+    "en": "If not sure, I ask a grown-up.",
+    "hi": "पक्का न हो तो बड़े से पूछता/पूछती हूँ।",
+    "hinglish": "Pakka na ho to bade se poochta/poochti hoon."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Fake news",

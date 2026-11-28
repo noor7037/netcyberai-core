@@ -35,6 +35,77 @@
    "hinglish": "Samjha sakte ho ki tumhara strong password aur OTP server par tumhare account ko kaise bachaata hai."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you have a password for a game account, and a friend asks, \"Tell me your password, I'll just look.\"",
+   "hi": "{{name}}, तुम्हारे गेम अकाउंट का पासवर्ड है, और दोस्त कहता है, \"अपना पासवर्ड बताओ, मैं बस देखूँगा।\"",
+   "hinglish": "{{name}}, tumhare game account ka password hai, aur dost kehta hai, \"Apna password batao, main bas dekhunga.\""
+  },
+  "question": {
+   "en": "How do companies keep millions of accounts safe on their servers?",
+   "hi": "कंपनियाँ अपने सर्वरों पर लाखों अकाउंट कैसे सुरक्षित रखती हैं?",
+   "hinglish": "Companies apne servers par laakhon accounts kaise surakshit rakhti hain?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "How is a server kept safe?",
+   "hi": "सर्वर को सुरक्षित कैसे रखा जाता है?",
+   "hinglish": "Server ko surakshit kaise rakha jaata hai?"
+  },
+  "options": [
+   {
+    "en": "One very strong lock is enough",
+    "hi": "एक बहुत मज़बूत ताला काफ़ी है",
+    "hinglish": "Ek bahut mazboot taala kaafi hai"
+   },
+   {
+    "en": "Many layers: guards, locks, strong logins, updates, firewalls and backups",
+    "hi": "कई परतें: गार्ड, ताले, मज़बूत लॉगिन, अपडेट, फ़ायरवॉल और बैकअप",
+    "hinglish": "Kai layers: guards, locks, strong logins, updates, firewalls aur backups"
+   },
+   {
+    "en": "Servers need no protection because they are far away",
+    "hi": "सर्वरों को सुरक्षा नहीं चाहिए क्योंकि वे दूर हैं",
+    "hinglish": "Servers ko suraksha nahi chahiye kyunki woh door hain"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Safety works in layers, like a fort, so if one fails the next still protects. You are one layer too: a strong password and a secret OTP.",
+   "hi": "सुरक्षा परतों में काम करती है, किले की तरह, इसलिए एक टूटे तो अगली बचा लेती है। तुम भी एक परत हो: मज़बूत पासवर्ड और गुप्त OTP।",
+   "hinglish": "Suraksha layers mein kaam karti hai, qile ki tarah, isliye ek toote to agli bacha leti hai. Tum bhi ek layer ho: strong password aur secret OTP."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: how do servers stay safe?",
+   "hi": "घर पर किसी को समझाओ: सर्वर सुरक्षित कैसे रहते हैं?",
+   "hinglish": "Ghar par kisi ko samjhao: servers surakshit kaise rehte hain?"
+  },
+  "checklist": [
+   {
+    "en": "They use layers: guards, locks, firewalls and strong logins.",
+    "hi": "वे परतें इस्तेमाल करते हैं: गार्ड, ताले, फ़ायरवॉल और मज़बूत लॉगिन।",
+    "hinglish": "Woh layers use karte hain: guards, locks, firewalls aur strong logins."
+   },
+   {
+    "en": "Updates fix weak spots.",
+    "hi": "अपडेट कमज़ोर जगहें ठीक करते हैं।",
+    "hinglish": "Updates weak spots theek karte hain."
+   },
+   {
+    "en": "Backups in another place save the day.",
+    "hi": "दूसरी जगह के बैकअप काम आते हैं।",
+    "hinglish": "Doosri jagah ke backups kaam aate hain."
+   },
+   {
+    "en": "My strong password and secret OTP protect my account.",
+    "hi": "मेरा मज़बूत पासवर्ड और गुप्त OTP मेरा अकाउंट बचाते हैं।",
+    "hinglish": "Mera strong password aur secret OTP mera account bachate hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Firewall",

@@ -37,6 +37,82 @@
    "hinglish": "Privacy settings aur “kya main teacher ko dikha sakta hoon?” test use kar sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you search for a cricket bat on your parent's phone, and soon every app is showing you bat ads.",
+   "hi": "{{name}}, तुम अपने माता-पिता के फ़ोन पर क्रिकेट बैट खोजते हो, और जल्दी ही हर ऐप तुम्हें बैट के विज्ञापन दिखाने लगता है।",
+   "hinglish": "{{name}}, tum apne parents ke phone par cricket bat search karte ho, aur jaldi hi har app tumhein bat ke ads dikhane lagta hai."
+  },
+  "question": {
+   "en": "You never posted anything, so how does the phone know what you looked at?",
+   "hi": "तुमने कुछ पोस्ट नहीं किया, फिर फ़ोन को कैसे पता कि तुमने क्या देखा?",
+   "hinglish": "Tumne kuch post nahi kiya, phir phone ko kaise pata ki tumne kya dekha?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Which of these is a passive digital footprint, one you did not choose to post?",
+   "hi": "इनमें से कौन-सा निष्क्रिय डिजिटल पदचिह्न है, जिसे तुमने पोस्ट करने के लिए नहीं चुना?",
+   "hinglish": "Inmein se kaunsa passive digital footprint hai, jise tumne post karne ke liye nahi chuna?"
+  },
+  "options": [
+   {
+    "en": "A photo you upload",
+    "hi": "तुम्हारा अपलोड किया फ़ोटो",
+    "hinglish": "Tumhara upload kiya photo"
+   },
+   {
+    "en": "A comment you write",
+    "hi": "तुम्हारा लिखा कमेंट",
+    "hinglish": "Tumhara likha comment"
+   },
+   {
+    "en": "Your phone's location history, collected quietly",
+    "hi": "तुम्हारे फ़ोन का लोकेशन इतिहास, जो चुपचाप जमा होता है",
+    "hinglish": "Tumhare phone ka location history, jo chupchaap jama hota hai"
+   },
+   {
+    "en": "A message you send to a friend",
+    "hi": "दोस्त को भेजा तुम्हारा संदेश",
+    "hinglish": "Dost ko bheja tumhara message"
+   }
+  ],
+  "answer": 2,
+  "explain": {
+   "en": "Your active footprint is what you post. The passive footprint is collected quietly: location history, searches and what you watch. Both can be used to build a picture of you, so check your privacy settings.",
+   "hi": "तुम्हारा सक्रिय पदचिह्न वह है जो तुम पोस्ट करते हो। निष्क्रिय पदचिह्न चुपचाप जमा होता है: लोकेशन इतिहास, खोजें और जो तुम देखते हो। दोनों से तुम्हारी तस्वीर बन सकती है, इसलिए प्राइवेसी सेटिंग जाँचो।",
+   "hinglish": "Tumhara active footprint woh hai jo tum post karte ho. Passive footprint chupchaap jama hota hai: location history, searches aur jo tum dekhte ho. Dono se tumhari picture ban sakti hai, isliye privacy settings check karo."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home what a digital footprint is and how to share wisely.",
+   "hi": "घर पर किसी को समझाओ कि डिजिटल पदचिह्न क्या है और समझदारी से कैसे साझा करें।",
+   "hinglish": "Ghar par kisi ko samjhao ki digital footprint kya hai aur samajhdari se kaise share karein."
+  },
+  "checklist": [
+   {
+    "en": "The active footprint is what you post; the passive footprint is collected quietly, like location history.",
+    "hi": "सक्रिय पदचिह्न वह है जो तुम पोस्ट करते हो; निष्क्रिय चुपचाप जमा होता है, जैसे लोकेशन इतिहास।",
+    "hinglish": "Active footprint woh hai jo tum post karte ho; passive chupchaap jama hota hai, jaise location history."
+   },
+   {
+    "en": "Footprints are hard to erase because screenshots and copies last.",
+    "hi": "पदचिह्न मिटाना मुश्किल है क्योंकि स्क्रीनशॉट और कॉपी बनी रहती हैं।",
+    "hinglish": "Footprints mitana mushkil hai kyonki screenshots aur copies bani rehti hain."
+   },
+   {
+    "en": "Sort what you share into OK, keep private, or check first.",
+    "hi": "जो साझा करना है उसे ठीक, निजी रखो, या पहले जाँचो में बाँटो।",
+    "hinglish": "Jo share karna hai use OK, private rakho, ya pehle check karo mein baanto."
+   },
+   {
+    "en": "Use privacy settings and ask, \"Would I show this to my teacher?\"",
+    "hi": "प्राइवेसी सेटिंग इस्तेमाल करो और पूछो, \"क्या मैं यह अपने टीचर को दिखाऊँगा?\"",
+    "hinglish": "Privacy settings use karo aur poochho, \"Kya main yeh apne teacher ko dikhaunga?\""
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Digital footprint",

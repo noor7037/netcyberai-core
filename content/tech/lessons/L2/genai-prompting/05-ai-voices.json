@@ -38,6 +38,82 @@
    "hinglish": "Code word aur call-back se cloned-voice scams se bach sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your grandmother uses voice typing to send messages in Hindi because typing on the small keyboard is slow.",
+   "hi": "{{name}}, तुम्हारी दादी छोटे कीबोर्ड पर टाइप करना धीमा होने से हिंदी में संदेश वॉइस टाइपिंग से भेजती हैं।",
+   "hinglish": "{{name}}, tumhari dadi chhote keyboard par type karna slow hone se Hindi mein messages voice typing se bhejti hain."
+  },
+  "question": {
+   "en": "How does a phone turn the sound of a voice into written words?",
+   "hi": "फ़ोन आवाज़ की ध्वनि को लिखे शब्दों में कैसे बदलता है?",
+   "hinglish": "Phone awaaz ki sound ko likhe words mein kaise badalta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "How does speech-to-text learn to write what you say?",
+   "hi": "स्पीच-टू-टेक्स्ट बोली हुई बात लिखना कैसे सीखता है?",
+   "hinglish": "Speech-to-text boli hui baat likhna kaise seekhta hai?"
+  },
+  "options": [
+   {
+    "en": "A person types in the background",
+    "hi": "पीछे कोई इंसान टाइप करता है",
+    "hinglish": "Peeche koi insaan type karta hai"
+   },
+   {
+    "en": "It learns patterns from thousands of hours of speech paired with written text",
+    "hi": "वह लिखे पाठ से जोड़ी गई हज़ारों घंटों की बोली से पैटर्न सीखता है",
+    "hinglish": "Woh likhe text se jodi gayi hazaron ghanton ki boli se patterns seekhta hai"
+   },
+   {
+    "en": "It records and replays your sound",
+    "hi": "वह तुम्हारी आवाज़ रिकॉर्ड करके दोबारा बजाता है",
+    "hinglish": "Woh tumhari awaaz record karke dobara bajata hai"
+   },
+   {
+    "en": "It translates to English first",
+    "hi": "वह पहले अंग्रेज़ी में अनुवाद करता है",
+    "hinglish": "Woh pehle English mein translate karta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Speech recognition learns from many hours of speech with the matching text, and text-to-speech does the reverse, learning rhythm and tone from recorded voices. The same ability can also be misused to imitate a voice.",
+   "hi": "स्पीच रिकग्निशन उस बोली और उसके मिलते पाठ के कई घंटों से सीखता है, और टेक्स्ट-टू-स्पीच उलटा करता है, रिकॉर्ड की आवाज़ों से लय और लहजा सीखता है। यही क्षमता किसी की आवाज़ की नक़ल में भी बुरी तरह इस्तेमाल हो सकती है।",
+   "hinglish": "Speech recognition us boli aur uske matching text ke kai ghanton se seekhta hai, aur text-to-speech ulta karta hai, recorded voices se rhythm aur tone seekhta hai. Yahi ability kisi ki awaaz ki nakal mein bhi galat use ho sakti hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how AI voices work, how they help and how to stay safe from fake ones.",
+   "hi": "घर पर किसी को समझाओ कि AI आवाज़ें कैसे काम करती हैं, कैसे मदद करती हैं और नक़ली आवाज़ों से कैसे बचें।",
+   "hinglish": "Ghar par kisi ko samjhao ki AI voices kaise kaam karti hain, kaise madad karti hain aur fake voices se kaise bachein."
+  },
+  "checklist": [
+   {
+    "en": "Speech-to-text turns speech into text; text-to-speech reads text aloud.",
+    "hi": "स्पीच-टू-टेक्स्ट बोली को पाठ बनाता है; टेक्स्ट-टू-स्पीच पाठ को ज़ोर से पढ़ता है।",
+    "hinglish": "Speech-to-text boli ko text banata hai; text-to-speech text ko zor se padhta hai."
+   },
+   {
+    "en": "Helpful uses include voice typing and reading aloud for people who need it.",
+    "hi": "उपयोगी इस्तेमाल: वॉइस टाइपिंग और ज़रूरतमंद लोगों के लिए ज़ोर से पढ़ना।",
+    "hinglish": "Helpful uses: voice typing aur zaroorat-mand logon ke liye zor se padhna."
+   },
+   {
+    "en": "A voice can be imitated from a few seconds of audio.",
+    "hi": "कुछ सेकंड की रिकॉर्डिंग से आवाज़ की नक़ल हो सकती है।",
+    "hinglish": "Kuch seconds ki recording se awaaz ki nakal ho sakti hai."
+   },
+   {
+    "en": "Defence: a family code word and a call-back on the saved number.",
+    "hi": "बचाव: परिवार का कोड शब्द और सेव किए नंबर पर वापस कॉल।",
+    "hinglish": "Defence: family code word aur saved number par call-back."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Speech-to-text",

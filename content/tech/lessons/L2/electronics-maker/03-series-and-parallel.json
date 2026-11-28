@@ -37,6 +37,82 @@
    "hinglish": "Samjha sakte ho ki ghar parallel mein wire kyun hote hain"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, on an old-style string of fairy lights for Diwali, one loose bulb switches off the whole string, yet at home one tube light fusing leaves the fans running.",
+   "hi": "{{name}}, दिवाली की पुराने तरह की झालर में एक ढीला बल्ब पूरी लड़ी बुझा देता है, पर घर में एक ट्यूबलाइट ख़राब होने पर पंखे चलते रहते हैं।",
+   "hinglish": "{{name}}, Diwali ki purane tarah ki jhalar mein ek dheela bulb poori ladi bujha deta hai, par ghar mein ek tube light kharab hone par pankhe chalte rehte hain."
+  },
+  "question": {
+   "en": "Why does one missing part stop everything in one circuit but nothing in the other?",
+   "hi": "एक सर्किट में एक हिस्सा हटने पर सब बंद क्यों हो जाता है और दूसरे में कुछ नहीं?",
+   "hinglish": "Ek circuit mein ek part hatne par sab band kyon ho jaata hai aur doosre mein kuch nahi?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Two identical bulbs are connected in series to a 3 V battery. What voltage does each bulb get?",
+   "hi": "दो एक जैसे बल्ब 3 V बैटरी से श्रेणी में जुड़े हैं। हर बल्ब को कितना वोल्टेज मिलता है?",
+   "hinglish": "Do ek jaise bulb 3 V battery se series mein jude hain. Har bulb ko kitna voltage milta hai?"
+  },
+  "options": [
+   {
+    "en": "3 V each, so both are bright",
+    "hi": "हर एक को 3 V, इसलिए दोनों तेज़ जलते हैं",
+    "hinglish": "Har ek ko 3 V, isliye dono tez jalte hain"
+   },
+   {
+    "en": "1.5 V each, so both glow dimmer",
+    "hi": "हर एक को 1.5 V, इसलिए दोनों मंद जलते हैं",
+    "hinglish": "Har ek ko 1.5 V, isliye dono dim jalte hain"
+   },
+   {
+    "en": "3 V for the first and 0 V for the second",
+    "hi": "पहले को 3 V और दूसरे को 0 V",
+    "hinglish": "Pehle ko 3 V aur doosre ko 0 V"
+   },
+   {
+    "en": "6 V each, so they burn out",
+    "hi": "हर एक को 6 V, इसलिए वे जल जाते हैं",
+    "hinglish": "Har ek ko 6 V, isliye woh jal jaate hain"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "In series there is one path and the battery's voltage is shared between the parts. Identical bulbs split it equally, so each gets half. In parallel every branch gets the full voltage.",
+   "hi": "श्रेणी में एक ही रास्ता होता है और बैटरी का वोल्टेज हिस्सों में बँट जाता है। एक जैसे बल्ब उसे बराबर बाँटते हैं, इसलिए हर एक को आधा मिलता है। समानांतर में हर शाखा को पूरा वोल्टेज मिलता है।",
+   "hinglish": "Series mein ek hi raasta hota hai aur battery ka voltage parts mein bant jaata hai. Ek jaise bulb use barabar baantte hain, isliye har ek ko aadha milta hai. Parallel mein har branch ko poora voltage milta hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home the difference between series and parallel, and why houses use parallel.",
+   "hi": "घर पर किसी को समझाओ कि श्रेणी और समानांतर में क्या फ़र्क़ है और घरों में समानांतर क्यों होता है।",
+   "hinglish": "Ghar par kisi ko samjhao ki series aur parallel mein kya farq hai aur gharon mein parallel kyon hota hai."
+  },
+  "checklist": [
+   {
+    "en": "In series there is one path, the same current flows everywhere and the voltage is shared.",
+    "hi": "श्रेणी में एक रास्ता है, हर जगह वही धारा बहती है और वोल्टेज बँटता है।",
+    "hinglish": "Series mein ek raasta hai, har jagah wahi current behta hai aur voltage bantta hai."
+   },
+   {
+    "en": "Break a series circuit anywhere and the whole thing goes dark.",
+    "hi": "श्रेणी सर्किट में कहीं भी टूट हो तो सब बंद हो जाता है।",
+    "hinglish": "Series circuit mein kahin bhi break ho to sab band ho jaata hai."
+   },
+   {
+    "en": "In parallel each branch has its own path and gets the full battery voltage, so removing one leaves the others on.",
+    "hi": "समानांतर में हर शाखा का अपना रास्ता है और उसे पूरा वोल्टेज मिलता है, इसलिए एक हटाने से बाक़ी चलते रहते हैं।",
+    "hinglish": "Parallel mein har branch ka apna raasta hai aur use poora voltage milta hai, isliye ek hatane se baaki chalte rehte hain."
+   },
+   {
+    "en": "Houses are wired in parallel so every appliance gets full voltage and works on its own.",
+    "hi": "घर समानांतर में जोड़े जाते हैं ताकि हर उपकरण को पूरा वोल्टेज मिले और वह अलग से चले।",
+    "hinglish": "Ghar parallel mein jode jaate hain taaki har appliance ko poora voltage mile aur woh alag se chale."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Series",

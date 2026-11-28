@@ -34,6 +34,77 @@
    "hinglish": "Samjhao unweighted graph mein BFS shortest path kyun paata hai"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a maps app finds the route with the fewest metro stops, and a social app suggests friends of your friends.",
+   "hi": "{{name}}, एक मैप ऐप सबसे कम मेट्रो स्टॉप वाला रास्ता ढूँढता है, और एक सोशल ऐप तुम्हारे दोस्तों के दोस्त सुझाता है।",
+   "hinglish": "{{name}}, ek maps app sabse kam metro stops wala raasta dhundhta hai, aur ek social app tumhare doston ke dost suggest karta hai."
+  },
+  "question": {
+   "en": "What data structure holds places and the links between them, and how does a program search it systematically?",
+   "hi": "जगहों और उनके बीच के संबंधों को कौन-सी डेटा संरचना रखती है, और प्रोग्राम उसे व्यवस्थित ढंग से कैसे खोजता है?",
+   "hinglish": "Jagahon aur unke beech ke links ko kaunsi data structure rakhti hai, aur program use systematically kaise khojta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "In a maze with equal steps, which search is guaranteed to find the path with the fewest steps?",
+   "hi": "बराबर कदमों वाली भूलभुलैया में कौन-सी खोज सबसे कम कदम वाला रास्ता मिलने की गारंटी देती है?",
+   "hinglish": "Barabar steps wali maze mein kaunsi search sabse kam steps wala raasta milne ki guarantee deti hai?"
+  },
+  "options": [
+   {
+    "en": "DFS, because it goes deepest first",
+    "hi": "DFS, क्योंकि वह पहले सबसे गहरा जाता है",
+    "hinglish": "DFS, kyunki woh pehle sabse gehra jaata hai"
+   },
+   {
+    "en": "BFS, because it explores all cells 1 step away, then 2, then 3",
+    "hi": "BFS, क्योंकि वह पहले 1 कदम दूर सब कोशिकाएँ देखता है, फिर 2, फिर 3",
+    "hinglish": "BFS, kyunki woh pehle 1 step door sab cells dekhta hai, phir 2, phir 3"
+   },
+   {
+    "en": "Either one, they always agree",
+    "hi": "दोनों में से कोई, वे हमेशा एक जैसे होते हैं",
+    "hinglish": "Dono mein se koi, woh hamesha ek jaise hote hain"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "BFS uses a queue, so it visits everything one step away before anything two steps away, like ripples in a pond. The first time it reaches the goal is therefore by a shortest path in an unweighted graph. DFS uses a stack and dives down one corridor before backtracking, so it finds a path but not always the shortest.",
+   "hi": "BFS क्यू इस्तेमाल करता है, इसलिए दो कदम दूर की किसी चीज़ से पहले एक कदम दूर सब देखता है, तालाब में लहरों की तरह। इसलिए लक्ष्य पर पहली बार पहुँचना बिना भार वाले ग्राफ़ में सबसे छोटे रास्ते से होता है। DFS स्टैक इस्तेमाल करता है और पीछे लौटने से पहले एक गलियारे में गहरा उतरता है, इसलिए रास्ता मिलता है पर हमेशा सबसे छोटा नहीं।",
+   "hinglish": "BFS queue use karta hai, isliye do step door ki kisi cheez se pehle ek step door sab dekhta hai, talaab mein lehron ki tarah. Isliye goal par pehli baar pahunchna unweighted graph mein sabse chhote raaste se hota hai. DFS stack use karta hai aur peeche lautne se pehle ek corridor mein gehra utarta hai, isliye raasta milta hai par hamesha sabse chhota nahi."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how BFS finds the shortest route and how it differs from DFS.",
+   "hi": "घर पर किसी को समझाओ कि BFS सबसे छोटा रास्ता कैसे ढूँढता है और DFS से कैसे अलग है।",
+   "hinglish": "Ghar par kisi ko samjhao ki BFS sabse chhota raasta kaise dhundhta hai aur DFS se kaise alag hai."
+  },
+  "checklist": [
+   {
+    "en": "A graph is nodes joined by edges; a tree is a graph with no loops.",
+    "hi": "ग्राफ़ किनारों से जुड़े नोड हैं; ट्री बिना लूप का ग्राफ़ है।",
+    "hinglish": "Graph edges se jude nodes hain; tree bina loop ka graph hai."
+   },
+   {
+    "en": "Store a graph as an adjacency list: each node maps to its neighbours.",
+    "hi": "ग्राफ़ को एडजेसेंसी लिस्ट में रखो: हर नोड अपने पड़ोसियों से जुड़ा।",
+    "hinglish": "Graph ko adjacency list mein rakho: har node apne neighbours se juda."
+   },
+   {
+    "en": "BFS uses a queue and spreads outward level by level, so it finds the shortest path when steps are equal.",
+    "hi": "BFS क्यू से परत दर परत फैलता है, इसलिए कदम बराबर हों तो सबसे छोटा रास्ता पाता है।",
+    "hinglish": "BFS queue se layer by layer failta hai, isliye steps barabar hon toh sabse chhota raasta paata hai."
+   },
+   {
+    "en": "DFS uses a stack, dives deep then backtracks, and finds a path but not always the shortest.",
+    "hi": "DFS स्टैक से गहरा जाता, फिर लौटता है, और रास्ता पाता है पर हमेशा सबसे छोटा नहीं।",
+    "hinglish": "DFS stack se gehra jaata, phir lautta hai, aur raasta paata hai par hamesha sabse chhota nahi."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Node / edge",
@@ -88,7 +159,7 @@
     "hi": "BFS शुरुआत को कतार में डालता है, फिर 1 क़दम दूर के सब खाने, फिर 2 क़दम, तालाब की लहरों जैसा।",
     "hinglish": "BFS start ko queue mein daalta hai, phir 1 step door ke saare cells, phir 2 steps, talaab ki lehron jaisa."
    },
-   "visual": "anim:ripples",
+   "visual": "flow:🚩 Start goes in the queue|1️⃣ Visit cells 1 step away|2️⃣ Then cells 2 steps away|🌊 Keep widening",
    "narration": {
     "en": "BFS puts the start in a queue, then visits all cells 1 step away, then 2 steps, like ripples in a pond.",
     "hi": "BFS शुरुआत को कतार में डालता है, फिर 1 क़दम दूर के सब खाने, फिर 2 क़दम, तालाब की लहरों जैसा।",
@@ -102,7 +173,7 @@
     "hi": "DFS स्टैक से एक गलियारे में फँसने तक गहरा जाता है, फिर लौटता है — रास्ता पाता है, हमेशा सबसे छोटा नहीं।",
     "hinglish": "DFS stack se ek corridor mein phansne tak gehra jaata hai, phir lautta hai — raasta paata hai, hamesha sabse chhota nahi."
    },
-   "visual": "anim:dfs-dive",
+   "visual": "compare:🌊 BFS: queue, level by level, shortest path|🕳️ DFS: stack, dives deep, any path",
    "narration": {
     "en": "DFS uses a stack and dives down one corridor until stuck, then backtracks — it finds a path, not always the shortest.",
     "hi": "DFS स्टैक से एक गलियारे में फँसने तक गहरा जाता है, फिर लौटता है — रास्ता पाता है, हमेशा सबसे छोटा नहीं।",

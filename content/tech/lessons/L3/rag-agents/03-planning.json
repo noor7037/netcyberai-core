@@ -34,6 +34,77 @@
    "hi": "समझाना कि लंबी योजनाएँ क्यों विफल होती हैं और जाँच-बिंदु कैसे मदद करते हैं"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you plan a class trip with a ₹3,000 budget for 30 students and one mistake in the cost sheet ruins the whole plan.",
+   "hi": "{{name}}, तुम 30 छात्रों की क्लास ट्रिप ₹3,000 बजट में प्लान करते हो और लागत शीट की एक ग़लती पूरी योजना बिगाड़ देती है।",
+   "hinglish": "{{name}}, tum 30 students ki class trip ₹3,000 budget mein plan karte ho aur cost sheet ki ek galti poora plan bigaad deti hai."
+  },
+  "question": {
+   "en": "How does an AI break a big goal into steps and notice when a step goes wrong?",
+   "hi": "AI बड़े लक्ष्य को क़दमों में कैसे तोड़ता है और ग़लत होते क़दम को कैसे पकड़ता है?",
+   "hinglish": "AI bade goal ko steps mein kaise todta hai aur galat hote step ko kaise pakadta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "An agent's 12-step plan has a small error in step 2 that nobody checks. What is likely?",
+   "hi": "एजेंट की 12-क़दम योजना के क़दम 2 में छोटी ग़लती है जिसे कोई नहीं जाँचता। क्या होने की संभावना है?",
+   "hinglish": "Agent ke 12-step plan ke step 2 mein chhoti galti hai jise koi nahi jaanchta. Kya hone ki sambhavna hai?"
+  },
+  "options": [
+   {
+    "en": "Later steps automatically fix it",
+    "hi": "बाद के क़दम उसे अपने आप ठीक कर देंगे",
+    "hinglish": "Baad ke steps use apne aap theek kar denge"
+   },
+   {
+    "en": "Later steps build on the error, so it grows unless a checkpoint catches it",
+    "hi": "बाद के क़दम उसी ग़लती पर बनते हैं, इसलिए वह बढ़ती है जब तक चेकपॉइंट न पकड़े",
+    "hinglish": "Baad ke steps usi galti par bante hain, isliye woh badhti hai jab tak checkpoint na pakde"
+   },
+   {
+    "en": "The agent refuses to continue",
+    "hi": "एजेंट आगे बढ़ने से मना कर देता है",
+    "hinglish": "Agent aage badhne se mana kar deta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Steps depend on earlier results, so small errors compound over a long plan. Checkpoints, such as verifying a cost against the budget, and reflection let an agent notice a failure and re-plan. ReAct interleaves reasoning and tool use, plan-and-execute writes the whole plan first, and reflection critiques the result.",
+   "hi": "क़दम पहले के नतीजों पर टिके होते हैं, इसलिए लंबी योजना में छोटी ग़लतियाँ जुड़ती जाती हैं। बजट से लागत मिलाने जैसे चेकपॉइंट और रिफ़्लेक्शन एजेंट को विफलता पकड़ने और दोबारा प्लान करने देते हैं। ReAct तर्क और टूल उपयोग को मिलाता है, plan-and-execute पहले पूरी योजना लिखता है, और रिफ़्लेक्शन नतीजे की आलोचना करता है।",
+   "hinglish": "Steps pehle ke results par tike hote hain, isliye lambe plan mein chhoti galtiyan judti jaati hain. Budget se cost milane jaise checkpoints aur reflection agent ko failure pakadne aur re-plan karne dete hain. ReAct reasoning aur tool use ko milata hai, plan-and-execute pehle poora plan likhta hai, aur reflection result ki critique karta hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how an AI plans the class trip and what happens when the cost check fails.",
+   "hi": "घर पर किसी को समझाओ कि AI क्लास ट्रिप कैसे प्लान करता है और लागत जाँच फ़ेल हो तो क्या होता है।",
+   "hinglish": "Ghar par kisi ko samjhao ki AI class trip kaise plan karta hai aur cost check fail ho to kya hota hai."
+  },
+  "checklist": [
+   {
+    "en": "A goal is broken into steps, each a tool call or a decision",
+    "hi": "लक्ष्य क़दमों में टूटता है, हर एक टूल कॉल या फ़ैसला",
+    "hinglish": "Goal steps mein tootta hai, har ek tool call ya decision"
+   },
+   {
+    "en": "ReAct, plan-and-execute and reflection are different planning styles",
+    "hi": "ReAct, plan-and-execute और रिफ़्लेक्शन अलग योजना शैलियाँ हैं",
+    "hinglish": "ReAct, plan-and-execute aur reflection alag planning styles hain"
+   },
+   {
+    "en": "Errors compound over long plans, so add checkpoints",
+    "hi": "लंबी योजनाओं में ग़लतियाँ जुड़ती हैं, इसलिए चेकपॉइंट जोड़ो",
+    "hinglish": "Lambi plans mein galtiyan judti hain, isliye checkpoints jodo"
+   },
+   {
+    "en": "When a check fails, re-plan instead of pretending it fits",
+    "hi": "जाँच फ़ेल हो तो दोबारा प्लान करो, यह मानकर मत चलो कि सब ठीक है",
+    "hinglish": "Check fail ho to re-plan karo, yeh maankar mat chalo ki sab theek hai"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Task decomposition",
@@ -82,7 +153,7 @@
     "hi": "योजनाकार कदम लिखता है: संग्रहालय का समय → स्कूल समूह टिकट दाम → मेट्रो रास्ता → कुल लागत जाँच → अनुमति पत्र का मसौदा।",
     "hinglish": "Planner steps likhta hai: museum timing → school group ticket price → metro route → total cost check → permission letter draft."
    },
-   "visual": "anim:plan-tree",
+   "visual": "flow:🕒 Museum hours|🎟️ Group ticket price|🚇 Metro route|💰 Total cost check|✉️ Permission letter",
    "narration": {
     "en": "The planner writes steps: find museum hours → ticket price for school groups → metro route → total cost check → draft permission letter.",
     "hi": "योजनाकार कदम लिखता है: संग्रहालय का समय → स्कूल समूह टिकट दाम → मेट्रो रास्ता → कुल लागत जाँच → अनुमति पत्र का मसौदा।",
@@ -96,7 +167,7 @@
     "hi": "एक जाँच विफल: लागत ₹4,200। एजेंट दिखावा करने के बजाय फिर योजना बनाता है (कम पेड प्रदर्शनी)। आत्म-समीक्षा गलती पकड़ती है।",
     "hinglish": "Ek check fail: cost ₹4,200. Agent dikhawa karne ki jagah re-plan karta hai (kam paid exhibits). Reflection galti pakadta hai."
    },
-   "visual": "anim:replan",
+   "visual": "flow:💰 Cost check: ₹4,200|🔁 Re-plan with fewer paid exhibits|🔎 Check again against ₹3,000",
    "narration": {
     "en": "A check fails: cost is ₹4,200. The agent re-plans (fewer paid exhibits) instead of pretending it fits. Reflection catches the error.",
     "hi": "एक जाँच विफल: लागत ₹4,200। एजेंट दिखावा करने के बजाय फिर योजना बनाता है (कम पेड प्रदर्शनी)। आत्म-समीक्षा गलती पकड़ती है।",

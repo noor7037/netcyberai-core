@@ -37,6 +37,77 @@
    "hinglish": "Routers aur switches kya karte hain samjha sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your phone and your sister's laptop are on the same Wi-Fi, yet a message sent to the laptop does not go to the neighbour's phone.",
+   "hi": "{{name}}, तुम्हारा फ़ोन और तुम्हारी बहन का लैपटॉप एक ही Wi-Fi पर हैं, फिर भी लैपटॉप को भेजा संदेश पड़ोसी के फ़ोन पर नहीं जाता।",
+   "hinglish": "{{name}}, tumhara phone aur tumhari behen ka laptop ek hi Wi-Fi par hain, phir bhi laptop ko bheja message padosi ke phone par nahi jaata."
+  },
+  "question": {
+   "en": "How does the network know exactly which device to deliver to?",
+   "hi": "नेटवर्क कैसे जानता है कि ठीक किस उपकरण तक पहुँचाना है?",
+   "hinglish": "Network kaise jaanta hai ki theek kis device tak pahunchana hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Your whole home shares one public IP address. How can many devices still work?",
+   "hi": "तुम्हारा पूरा घर एक सार्वजनिक IP पता बाँटता है। फिर भी कई उपकरण कैसे चलते हैं?",
+   "hinglish": "Tumhara poora ghar ek public IP address baantta hai. Phir bhi kai devices kaise chalte hain?"
+  },
+  "options": [
+   {
+    "en": "The router gives each device a private address and uses NAT to share the one public address",
+    "hi": "राउटर हर उपकरण को निजी पता देता है और एक सार्वजनिक पता बाँटने के लिए NAT इस्तेमाल करता है",
+    "hinglish": "Router har device ko private address deta hai aur ek public address share karne ke liye NAT use karta hai"
+   },
+   {
+    "en": "Only one device can be online at a time",
+    "hi": "एक समय में सिर्फ़ एक उपकरण ऑनलाइन हो सकता है",
+    "hinglish": "Ek time mein sirf ek device online ho sakta hai"
+   },
+   {
+    "en": "Every device secretly has its own public address",
+    "hi": "हर उपकरण का चुपके से अपना सार्वजनिक पता होता है",
+    "hinglish": "Har device ka chupke se apna public address hota hai"
+   }
+  ],
+  "answer": 0,
+  "explain": {
+   "en": "IPv4 has only about 4.3 billion addresses, fewer than devices. Routers give home devices private addresses like 192.168.1.7 and use NAT to share one public address. IPv6, with 128-bit addresses, is the long-term fix.",
+   "hi": "IPv4 में सिर्फ़ लगभग 4.3 अरब पते हैं, उपकरणों से कम। राउटर घर के उपकरणों को 192.168.1.7 जैसे निजी पते देता है और एक सार्वजनिक पता बाँटने के लिए NAT इस्तेमाल करता है। 128-बिट पतों वाला IPv6 लंबे समय का समाधान है।",
+   "hinglish": "IPv4 mein sirf lagbhag 4.3 billion addresses hain, devices se kam. Router ghar ke devices ko 192.168.1.7 jaise private addresses deta hai aur ek public address share karne ke liye NAT use karta hai. 128-bit addresses wala IPv6 lambe time ka solution hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend what an IP address is and what routers and switches do.",
+   "hi": "किसी दोस्त को समझाओ कि IP पता क्या है और राउटर व स्विच क्या करते हैं।",
+   "hinglish": "Kisi dost ko samjhao ki IP address kya hai aur routers aur switches kya karte hain."
+  },
+  "checklist": [
+   {
+    "en": "An IP address identifies a device on a network, like a house number.",
+    "hi": "IP पता नेटवर्क पर उपकरण की पहचान है, मकान नंबर की तरह।",
+    "hinglish": "IP address network par device ki pehchaan hai, house number ki tarah."
+   },
+   {
+    "en": "Private addresses plus NAT let a home share one public address; IPv6 adds many more addresses.",
+    "hi": "निजी पते और NAT घर को एक सार्वजनिक पता बाँटने देते हैं; IPv6 कहीं ज़्यादा पते जोड़ता है।",
+    "hinglish": "Private addresses aur NAT ghar ko ek public address share karne dete hain; IPv6 kahin zyada addresses jodta hai."
+   },
+   {
+    "en": "A switch connects devices within one LAN using MAC addresses.",
+    "hi": "स्विच एक LAN के भीतर MAC पतों से उपकरण जोड़ता है।",
+    "hinglish": "Switch ek LAN ke andar MAC addresses se devices jodta hai."
+   },
+   {
+    "en": "A router joins different networks and forwards each packet one hop closer using its IP address.",
+    "hi": "राउटर अलग नेटवर्कों को जोड़ता है और IP पते से हर पैकेट को एक कदम आगे भेजता है।",
+    "hinglish": "Router alag networks ko jodta hai aur IP address se har packet ko ek hop aage bhejta hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "IP address",

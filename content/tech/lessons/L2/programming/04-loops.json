@@ -37,6 +37,82 @@
    "hinglish": "Infinite loops aur off-by-one galtiyon se bach sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a game shows \"loading\" and keeps checking until the download finishes.",
+   "hi": "{{name}}, एक गेम \"लोडिंग\" दिखाता है और डाउनलोड पूरा होने तक जाँचता रहता है।",
+   "hinglish": "{{name}}, ek game \"loading\" dikhata hai aur download poora hone tak check karta rehta hai."
+  },
+  "question": {
+   "en": "How can a program repeat the same job a hundred times without being written a hundred times?",
+   "hi": "प्रोग्राम एक ही काम सौ बार बिना सौ बार लिखे कैसे दोहराता है?",
+   "hinglish": "Program ek hi kaam sau baar bina sau baar likhe kaise dohrata hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What does for i in range(5): print(i) print?",
+   "hi": "for i in range(5): print(i) क्या छापता है?",
+   "hinglish": "for i in range(5): print(i) kya print karta hai?"
+  },
+  "options": [
+   {
+    "en": "1 2 3 4 5",
+    "hi": "1 2 3 4 5",
+    "hinglish": "1 2 3 4 5"
+   },
+   {
+    "en": "0 1 2 3 4",
+    "hi": "0 1 2 3 4",
+    "hinglish": "0 1 2 3 4"
+   },
+   {
+    "en": "0 1 2 3 4 5",
+    "hi": "0 1 2 3 4 5",
+    "hinglish": "0 1 2 3 4 5"
+   },
+   {
+    "en": "5 only",
+    "hi": "सिर्फ़ 5",
+    "hinglish": "Sirf 5"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "range(5) starts at 0 and stops before 5, so it gives five values: 0 to 4. This is a common off-by-one surprise; for loops go through a fixed count, while loops go on until a condition becomes False.",
+   "hi": "range(5) 0 से शुरू होकर 5 से पहले रुकता है, इसलिए पाँच मान देता है: 0 से 4। यह आम off-by-one चौंकाने वाली बात है; for लूप तय गिनती तक चलता है, while लूप शर्त के गलत होने तक।",
+   "hinglish": "range(5) 0 se shuru hokar 5 se pehle rukta hai, isliye paanch values deta hai: 0 se 4. Yeh common off-by-one surprise hai; for loop fixed count tak chalta hai, while loop condition ke False hone tak."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend how for and while loops differ and how to avoid an endless loop.",
+   "hi": "किसी दोस्त को समझाओ कि for और while लूप कैसे अलग हैं और अंतहीन लूप से कैसे बचें।",
+   "hinglish": "Kisi dost ko samjhao ki for aur while loops kaise alag hain aur endless loop se kaise bachein."
+  },
+  "checklist": [
+   {
+    "en": "for repeats a known number of times or over a list; range(n) gives 0 to n-1.",
+    "hi": "for जानी हुई बार या सूची पर दोहराता है; range(n) 0 से n-1 देता है।",
+    "hinglish": "for known number of times ya list par repeat karta hai; range(n) 0 se n-1 deta hai."
+   },
+   {
+    "en": "while repeats until its condition becomes False.",
+    "hi": "while तब तक दोहराता है जब तक शर्त गलत न हो जाए।",
+    "hinglish": "while tab tak repeat karta hai jab tak condition False na ho jaaye."
+   },
+   {
+    "en": "Change something inside a while loop so the condition can end.",
+    "hi": "while लूप के अंदर कुछ बदलो ताकि शर्त ख़त्म हो सके।",
+    "hinglish": "while loop ke andar kuch badlo taaki condition end ho sake."
+   },
+   {
+    "en": "break leaves a loop and continue skips to the next round.",
+    "hi": "break लूप छोड़ता है और continue अगले चक्कर पर जाता है।",
+    "hinglish": "break loop chhodta hai aur continue agle round par jaata hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Loop",

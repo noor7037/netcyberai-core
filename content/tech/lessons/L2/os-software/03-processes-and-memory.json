@@ -37,6 +37,77 @@
    "hinglish": "Phones background apps kyun band karte hain samjha sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you open the Maps app after a while and it starts from the beginning, because the phone closed it.",
+   "hi": "{{name}}, तुम कुछ देर बाद Maps ऐप खोलते हो और वह शुरू से खुलता है, क्योंकि फ़ोन ने उसे बंद कर दिया था।",
+   "hinglish": "{{name}}, tum kuch der baad Maps app kholte ho aur woh shuru se khulta hai, kyunki phone ne use band kar diya tha."
+  },
+  "question": {
+   "en": "Why does a phone close apps by itself, and how does it run so many at once?",
+   "hi": "फ़ोन ऐप अपने आप क्यों बंद करता है, और इतने सारे एक साथ कैसे चलाता है?",
+   "hinglish": "Phone apps apne aap kyun band karta hai, aur itne saare ek saath kaise chalata hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A phone has one CPU core and runs music, chat and maps. How can they all seem to run together?",
+   "hi": "एक फ़ोन में एक CPU कोर है और वह गाना, चैट और मैप चलाता है। ये सब साथ कैसे चलते दिखते हैं?",
+   "hinglish": "Ek phone mein ek CPU core hai aur woh music, chat aur maps chalata hai. Yeh sab saath kaise chalte dikhte hain?"
+  },
+  "options": [
+   {
+    "en": "Each app has its own tiny CPU",
+    "hi": "हर ऐप का अपना छोटा CPU होता है",
+    "hinglish": "Har app ka apna chhota CPU hota hai"
+   },
+   {
+    "en": "The scheduler gives each a turn of a few milliseconds, switching very fast",
+    "hi": "शेड्यूलर हर किसी को कुछ मिलीसेकंड की बारी देता है, बहुत तेज़ी से बदलते हुए",
+    "hinglish": "Scheduler har kisi ko kuch milliseconds ki baari deta hai, bahut tezi se badalte hue"
+   },
+   {
+    "en": "Only one app runs and the others are frozen until you open them",
+    "hi": "सिर्फ़ एक ऐप चलता है और बाकी तब तक जमे रहते हैं जब तक तुम उन्हें न खोलो",
+    "hinglish": "Sirf ek app chalta hai aur baaki tab tak jame rehte hain jab tak tum unhe na kholo"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "The scheduler switches between processes thousands of times a second, so it looks simultaneous. Phones with several cores truly run a few at once, and when RAM runs short the OS closes apps you have not used for a while.",
+   "hi": "शेड्यूलर प्रोसेसों के बीच हर सेकंड हज़ारों बार बदलता है, इसलिए सब साथ चलते लगते हैं। कई कोर वाले फ़ोन कुछ को सच में साथ चलाते हैं, और RAM कम पड़ने पर OS वे ऐप बंद कर देता है जिन्हें तुमने कुछ समय से नहीं छुआ।",
+   "hinglish": "Scheduler processes ke beech har second hazaron baar switch karta hai, isliye sab saath chalte lagte hain. Kai cores wale phones kuch ko sach mein saath chalate hain, aur RAM kam padne par OS woh apps band kar deta hai jinhe tumne kuch time se nahi chhua."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a phone runs many apps and why it closes some.",
+   "hi": "घर पर किसी को समझाओ कि फ़ोन कई ऐप कैसे चलाता है और कुछ को बंद क्यों करता है।",
+   "hinglish": "Ghar par kisi ko samjhao ki phone kai apps kaise chalata hai aur kuch ko band kyun karta hai."
+  },
+  "checklist": [
+   {
+    "en": "A program on storage becomes a process when it runs and gets RAM.",
+    "hi": "स्टोरेज पर रखा प्रोग्राम चलने पर प्रोसेस बनता है और RAM पाता है।",
+    "hinglish": "Storage par rakha program chalne par process banta hai aur RAM paata hai."
+   },
+   {
+    "en": "The scheduler gives each process a short time slice, round and round.",
+    "hi": "शेड्यूलर हर प्रोसेस को छोटी बारी देता है, चक्कर में।",
+    "hinglish": "Scheduler har process ko chhoti baari deta hai, chakkar mein."
+   },
+   {
+    "en": "Each process has private memory, so a crash stays contained.",
+    "hi": "हर प्रोसेस की अपनी निजी मेमोरी होती है, इसलिए क्रैश वहीं तक रहता है।",
+    "hinglish": "Har process ki apni private memory hoti hai, isliye crash wahin tak rehta hai."
+   },
+   {
+    "en": "When RAM is nearly full the OS closes unused apps.",
+    "hi": "RAM लगभग भर जाने पर OS बेकार ऐप बंद करता है।",
+    "hinglish": "RAM lagbhag bhar jaane par OS unused apps band karta hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Process",
@@ -99,7 +170,7 @@
     "hi": "जब RAM लगभग भर जाती है, फ़ोन चुपचाप उन ऐप्स को बंद करता है जो देर से उपयोग नहीं हुए।",
     "hinglish": "Jab RAM lagbhag bhar jaati hai, phone chupchaap un apps ko band karta hai jo der se use nahi hue."
    },
-   "visual": "icon:🧹",
+   "visual": "flow:📦 RAM nearly full|🔍 Find unused apps|🧹 Close them|✅ Space freed",
    "narration": {
     "en": "That is why a game sometimes restarts when you come back to it.",
     "hi": "इसीलिए गेम पर लौटने पर वह कभी-कभी फिर से शुरू होता है।",

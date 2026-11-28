@@ -35,6 +35,77 @@
    "hinglish": "India ke reporting rules batao: CERT-In ko 6 ghante mein, logs 180 din"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, at 2 a.m. your school server logs 50 failed logins for 'admin' in two minutes, then one that succeeds.",
+   "hi": "{{name}}, रात 2 बजे तुम्हारे स्कूल सर्वर के लॉग में 'admin' के लिए दो मिनट में 50 असफल लॉगिन और फिर एक सफल लॉगिन दर्ज होता है।",
+   "hinglish": "{{name}}, raat 2 baje tumhare school server ke logs mein 'admin' ke liye do minute mein 50 failed logins aur phir ek successful login darj hota hai."
+  },
+  "question": {
+   "en": "What should defenders do first, in what order, and who in India must be told, and when?",
+   "hi": "रक्षकों को सबसे पहले क्या करना चाहिए, किस क्रम में, और भारत में किसे और कब बताना है?",
+   "hinglish": "Defenders ko sabse pehle kya karna chahiye, kis order mein, aur India mein kise aur kab batana hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "After spotting that login, what should the team do before cleaning up?",
+   "hi": "उस लॉगिन को पहचानने के बाद, सफ़ाई से पहले टीम को क्या करना चाहिए?",
+   "hinglish": "Us login ko pehchaanne ke baad, safai se pehle team ko kya karna chahiye?"
+  },
+  "options": [
+   {
+    "en": "Delete the logs so the attacker cannot see them",
+    "hi": "लॉग मिटा दो ताकि हमलावर न देख सके",
+    "hinglish": "Logs delete kar do taaki attacker na dekh sake"
+   },
+   {
+    "en": "Preserve evidence, build a timeline from the logs and contain the damage, for example lock the account and isolate the server",
+    "hi": "सबूत सुरक्षित रखो, लॉग से समयरेखा बनाओ और नुकसान सीमित करो, जैसे खाता लॉक करो और सर्वर अलग करो",
+    "hinglish": "Saboot surakshit rakho, logs se timeline banao aur nuksan seemit karo, jaise account lock karo aur server alag karo"
+   },
+   {
+    "en": "Ignore it, one success is probably the owner",
+    "hi": "अनदेखा करो, एक सफलता शायद मालिक की है",
+    "hinglish": "Andekha karo, ek success shayad owner ki hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "The response lifecycle is prepare, detect and analyse, contain, eradicate and recover, then learn. Logs are evidence, so keep them and use grep and timestamps to build a timeline. Contain first (lock the account, block the address, isolate the server), then remove backdoors and reset credentials. Under CERT-In's 2022 directions, listed incidents are reported within 6 hours and logs are kept for 180 days.",
+   "hi": "प्रतिक्रिया चक्र है: तैयारी, पहचान और विश्लेषण, रोकथाम, उन्मूलन और बहाली, फिर सीख। लॉग सबूत हैं, इसलिए उन्हें रखो और grep और समय-चिह्नों से समयरेखा बनाओ। पहले नुकसान सीमित करो (खाता लॉक, पता ब्लॉक, सर्वर अलग), फिर बैकडोर हटाओ और क्रेडेंशियल रीसेट करो। CERT-In के 2022 निर्देशों में सूचीबद्ध घटनाएँ 6 घंटे में रिपोर्ट होती हैं और लॉग 180 दिन रखे जाते हैं।",
+   "hinglish": "Response lifecycle hai: prepare, detect aur analyse, contain, eradicate aur recover, phir learn. Logs saboot hain, isliye unhe rakho aur grep aur timestamps se timeline banao. Pehle contain karo (account lock, address block, server isolate), phir backdoors hatao aur credentials reset karo. CERT-In ke 2022 directions mein listed incidents 6 ghante mein report hote hain aur logs 180 din rakhe jaate hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home the steps a team follows after spotting a suspicious login, and who must be told.",
+   "hi": "घर पर किसी को समझाओ कि संदिग्ध लॉगिन दिखने पर टीम कौन-से कदम उठाती है, और किसे बताना ज़रूरी है।",
+   "hinglish": "Ghar par kisi ko samjhao ki suspicious login dikhne par team kaunse steps uthati hai, aur kise batana zaroori hai."
+  },
+  "checklist": [
+   {
+    "en": "Phases: prepare, detect and analyse, contain, eradicate and recover, then lessons learned.",
+    "hi": "चरण: तैयारी, पहचान और विश्लेषण, रोकथाम, उन्मूलन और बहाली, फिर सीख।",
+    "hinglish": "Phases: prepare, detect aur analyse, contain, eradicate aur recover, phir lessons learned."
+   },
+   {
+    "en": "Use logs as evidence: grep for the address and build a timeline.",
+    "hi": "लॉग को सबूत की तरह इस्तेमाल करो: पते के लिए grep करो और समयरेखा बनाओ।",
+    "hinglish": "Logs ko saboot ki tarah use karo: address ke liye grep karo aur timeline banao."
+   },
+   {
+    "en": "Contain first: lock the account, block the address, isolate the server; then remove backdoors.",
+    "hi": "पहले सीमित करो: खाता लॉक, पता ब्लॉक, सर्वर अलग; फिर बैकडोर हटाओ।",
+    "hinglish": "Pehle contain karo: account lock, address block, server isolate; phir backdoors hatao."
+   },
+   {
+    "en": "Report to CERT-In within 6 hours and keep logs 180 days; write a blameless lessons-learned note.",
+    "hi": "6 घंटे में CERT-In को रिपोर्ट करो और लॉग 180 दिन रखो; बिना दोष-ढूँढे सीख का नोट लिखो।",
+    "hinglish": "6 ghante mein CERT-In ko report karo aur logs 180 din rakho; blameless lessons-learned note likho."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Incident",
@@ -117,7 +188,7 @@
     "hi": "उबरो और सीखो: सेवा बहाल करो, 6 घंटे में CERT-In को रिपोर्ट करो, और बिना दोष वाला सीख-नोट लिखो।",
     "hinglish": "Recover aur seekho: service restore karo, 6 ghante mein CERT-In ko report karo, aur blameless lessons-learned note likho."
    },
-   "visual": "anim:lessons-note",
+   "visual": "cycle:🧰 Prepare|🔍 Detect and analyse|🧯 Contain and recover|📝 Learn and report",
    "narration": {
     "en": "Recover and learn: restore service, report to CERT-In within 6 hours, and write a blameless lessons-learned note.",
     "hi": "उबरो और सीखो: सेवा बहाल करो, 6 घंटे में CERT-In को रिपोर्ट करो, और बिना दोष वाला सीख-नोट लिखो।",

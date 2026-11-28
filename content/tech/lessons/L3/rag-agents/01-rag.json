@@ -35,6 +35,77 @@
    "hi": "RAG उत्तर को निष्ठा और स्रोत-उल्लेख के लिए परखना"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you ask a chatbot \"Is school open tomorrow?\" and it answers confidently, but it has never seen your school's circular.",
+   "hi": "{{name}}, तुम चैटबॉट से पूछते हो \"कल स्कूल खुला है?\" और वह भरोसे से जवाब देता है, पर उसने तुम्हारे स्कूल का सर्कुलर कभी देखा ही नहीं।",
+   "hinglish": "{{name}}, tum chatbot se poochhte ho \"Kal school khula hai?\" aur woh bharose se jawab deta hai, par usne tumhare school ka circular kabhi dekha hi nahi."
+  },
+  "question": {
+   "en": "How can a model answer from documents it was never trained on?",
+   "hi": "मॉडल उन दस्तावेज़ों से जवाब कैसे दे सकता है जिन पर वह कभी ट्रेन नहीं हुआ?",
+   "hinglish": "Model un documents se answer kaise de sakta hai jin par woh kabhi train nahi hua?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "In RAG, how does the model get the facts from the school circulars?",
+   "hi": "RAG में मॉडल को स्कूल सर्कुलर के तथ्य कैसे मिलते हैं?",
+   "hinglish": "RAG mein model ko school circulars ke facts kaise milte hain?"
+  },
+  "options": [
+   {
+    "en": "It is retrained on the circulars every time someone asks",
+    "hi": "हर सवाल पर उसे सर्कुलरों पर दोबारा ट्रेन किया जाता है",
+    "hinglish": "Har sawal par use circulars par dobara train kiya jaata hai"
+   },
+   {
+    "en": "The system finds the closest chunks to the question and pastes them into the prompt",
+    "hi": "सिस्टम सवाल के सबसे पास के हिस्से ढूँढकर प्रॉम्प्ट में चिपका देता है",
+    "hinglish": "System sawal ke sabse paas ke chunks dhoondhkar prompt mein chipka deta hai"
+   },
+   {
+    "en": "It guesses from its memory of the internet",
+    "hi": "वह इंटरनेट की अपनी याद से अंदाज़ा लगाता है",
+    "hinglish": "Woh internet ki apni yaad se andaza lagata hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "RAG chunks documents, embeds each chunk and stores the vectors. At question time it embeds the question, retrieves the nearest chunks and puts them in the prompt so the model answers from them and can cite them. This keeps facts current without retraining.",
+   "hi": "RAG दस्तावेज़ों को टुकड़ों में बाँटता है, हर टुकड़े की एम्बेडिंग बनाकर वेक्टर स्टोर करता है। सवाल के समय वह सवाल की एम्बेडिंग बनाकर सबसे पास के टुकड़े लाता है और प्रॉम्प्ट में रखता है, ताकि मॉडल उन्हीं से जवाब दे और उद्धृत कर सके। इससे बिना दोबारा ट्रेनिंग के तथ्य ताज़ा रहते हैं।",
+   "hinglish": "RAG documents ko chunks mein baantta hai, har chunk ki embedding banakar vectors store karta hai. Question ke samay woh question ki embedding banakar sabse paas ke chunks laata hai aur prompt mein rakhta hai, taaki model unhi se answer de aur cite kar sake. Isse bina retraining ke facts fresh rehte hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a chatbot can answer from your school's circulars without being retrained.",
+   "hi": "घर पर किसी को समझाओ कि चैटबॉट बिना दोबारा ट्रेन हुए तुम्हारे स्कूल के सर्कुलरों से जवाब कैसे दे सकता है।",
+   "hinglish": "Ghar par kisi ko samjhao ki chatbot bina dobara train hue tumhare school ke circulars se answer kaise de sakta hai."
+  },
+  "checklist": [
+   {
+    "en": "Offline: chunk the documents, embed each chunk, store the vectors",
+    "hi": "ऑफ़लाइन: दस्तावेज़ टुकड़ों में बाँटो, हर टुकड़े की एम्बेडिंग बनाओ, वेक्टर स्टोर करो",
+    "hinglish": "Offline: documents ko chunks mein baanto, har chunk ki embedding banao, vectors store karo"
+   },
+   {
+    "en": "Online: embed the question, retrieve nearest chunks, add them to the prompt",
+    "hi": "ऑनलाइन: सवाल की एम्बेडिंग बनाओ, सबसे पास के टुकड़े लाओ, प्रॉम्प्ट में जोड़ो",
+    "hinglish": "Online: question ki embedding banao, nearest chunks lao, prompt mein jodo"
+   },
+   {
+    "en": "The answer must come from the chunks and cite them",
+    "hi": "जवाब टुकड़ों से आए और उन्हें उद्धृत करे",
+    "hinglish": "Answer chunks se aaye aur unhe cite kare"
+   },
+   {
+    "en": "RAG suits changing facts; fine-tuning suits style or skill",
+    "hi": "RAG बदलते तथ्यों के लिए है; फ़ाइन-ट्यूनिंग शैली या कौशल के लिए",
+    "hinglish": "RAG badalte facts ke liye hai; fine-tuning style ya skill ke liye"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "RAG",
@@ -75,7 +146,7 @@
     "hi": "ऑफ़लाइन: स्कूल परिपत्रों को टुकड़ों में बाँटो, हर एक की एम्बेडिंग बनाओ, और वेक्टर डेटाबेस में रखो।",
     "hinglish": "Offline: school circulars ko chunks mein baanto, har ek ka embedding banao, aur vector database mein rakho."
    },
-   "visual": "anim:rag-index",
+   "visual": "flow:✂️ Chunk the circulars|🔢 Embed each chunk|🗄️ Store in a vector database",
    "narration": {
     "en": "Offline: split school circulars into chunks, embed each one, and store the vectors in a vector database.",
     "hi": "ऑफ़लाइन: स्कूल परिपत्रों को टुकड़ों में बाँटो, हर एक की एम्बेडिंग बनाओ, और वेक्टर डेटाबेस में रखो।",
@@ -89,7 +160,7 @@
     "hi": "ऑनलाइन: सवाल \"कल स्कूल खुला है?\" की एम्बेडिंग बनाओ, 3 सबसे पास के टुकड़े लाओ, और प्रॉम्प्ट में डालो।",
     "hinglish": "Online: sawaal \"Kal school khula hai?\" ka embedding banao, 3 sabse paas ke chunks lao, aur prompt mein daalo."
    },
-   "visual": "anim:rag-retrieve",
+   "visual": "flow:❓ Embed the question|🔍 Fetch the 3 closest chunks|📋 Paste into the prompt",
    "narration": {
     "en": "Online: embed the question \"Kal school khula hai?\", fetch the 3 closest chunks, and paste them into the prompt.",
     "hi": "ऑनलाइन: सवाल \"कल स्कूल खुला है?\" की एम्बेडिंग बनाओ, 3 सबसे पास के टुकड़े लाओ, और प्रॉम्प्ट में डालो।",
@@ -103,7 +174,7 @@
     "hi": "एलएलएम सिर्फ़ उन टुकड़ों से जवाब देता है और हवाला देता है: \"दिवाली के लिए बंद, परिपत्र 14 अक्टूबर देखें।\"",
     "hinglish": "LLM sirf un chunks se jawab deta hai aur cite karta hai: \"Diwali ke liye band, circular 14 Oct dekho.\""
    },
-   "visual": "anim:rag-cite",
+   "visual": "flow:📋 Retrieved chunks|🤖 LLM answers only from them|📎 Cites the circular",
    "narration": {
     "en": "The LLM answers only from those chunks and cites them: \"Closed for Diwali, see circular 14 Oct.\"",
     "hi": "एलएलएम सिर्फ़ उन टुकड़ों से जवाब देता है और हवाला देता है: \"दिवाली के लिए बंद, परिपत्र 14 अक्टूबर देखें।\"",

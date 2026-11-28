@@ -35,6 +35,77 @@
    "hinglish": "Rozmarra ki zindagi mein gate logic pehchaan sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your phone unlocks only if the fingerprint matches, or the PIN is right.",
+   "hi": "{{name}}, तुम्हारा फ़ोन तभी खुलता है जब फ़िंगरप्रिंट मिले, या PIN सही हो।",
+   "hinglish": "{{name}}, tumhara phone tabhi khulta hai jab fingerprint match kare, ya PIN sahi ho."
+  },
+  "question": {
+   "en": "How can a chip, made only of switches, make a decision like that?",
+   "hi": "सिर्फ़ स्विचों से बनी चिप ऐसा फ़ैसला कैसे लेती है?",
+   "hinglish": "Sirf switches se bani chip aisa decision kaise leti hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "An AND gate has inputs 1 and 0. What does it output?",
+   "hi": "एक AND गेट के इनपुट 1 और 0 हैं। उसका आउटपुट क्या होगा?",
+   "hinglish": "Ek AND gate ke inputs 1 aur 0 hain. Uska output kya hoga?"
+  },
+  "options": [
+   {
+    "en": "1, because one input is on",
+    "hi": "1, क्योंकि एक इनपुट चालू है",
+    "hinglish": "1, kyunki ek input on hai"
+   },
+   {
+    "en": "0, because AND needs both inputs on",
+    "hi": "0, क्योंकि AND को दोनों इनपुट चालू चाहिए",
+    "hinglish": "0, kyunki AND ko dono inputs on chahiye"
+   },
+   {
+    "en": "It depends on the order",
+    "hi": "यह क्रम पर निर्भर है",
+    "hinglish": "Yeh order par depend karta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "AND outputs 1 only when both inputs are 1. The one that outputs 1 when at least one input is 1 is OR. Mixing these up is the most common mistake, so check with the truth table.",
+   "hi": "AND का आउटपुट तभी 1 होता है जब दोनों इनपुट 1 हों। जो कम से कम एक इनपुट 1 होने पर 1 देता है, वह OR है। यह गड़बड़ आम है, इसलिए ट्रुथ टेबल से जाँचो।",
+   "hinglish": "AND ka output tabhi 1 hota hai jab dono inputs 1 hon. Jo kam se kam ek input 1 hone par 1 deta hai, woh OR hai. Yeh mix-up common hai, isliye truth table se check karo."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend what AND, OR and NOT gates do, using a daily-life example.",
+   "hi": "किसी दोस्त को रोज़ाना के उदाहरण से समझाओ कि AND, OR और NOT गेट क्या करते हैं।",
+   "hinglish": "Kisi dost ko daily-life example se samjhao ki AND, OR aur NOT gates kya karte hain."
+  },
+  "checklist": [
+   {
+    "en": "AND gives 1 only if both inputs are 1.",
+    "hi": "AND तभी 1 देता है जब दोनों इनपुट 1 हों।",
+    "hinglish": "AND tabhi 1 deta hai jab dono inputs 1 hon."
+   },
+   {
+    "en": "OR gives 1 if at least one input is 1.",
+    "hi": "OR कम से कम एक इनपुट 1 होने पर 1 देता है।",
+    "hinglish": "OR kam se kam ek input 1 hone par 1 deta hai."
+   },
+   {
+    "en": "NOT flips its single input.",
+    "hi": "NOT अपने एक इनपुट को पलट देता है।",
+    "hinglish": "NOT apne ek input ko palat deta hai."
+   },
+   {
+    "en": "A truth table lists every input combination and its output.",
+    "hi": "ट्रुथ टेबल हर इनपुट संयोजन और उसका आउटपुट सूचीबद्ध करती है।",
+    "hinglish": "Truth table har input combination aur uska output list karti hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Logic gate",

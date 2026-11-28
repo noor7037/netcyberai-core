@@ -1,12 +1,14 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import type { StrandInfo } from '@/lib/family/tech/types';
-import type { TechLang } from '@/lib/family/tech/text';
+import type { StrandInfo, TechDiagram } from '@/lib/family/tech/types';
+import { pick, type TechLang } from '@/lib/family/tech/text';
 import { tw } from '@/lib/family/tech/words';
 
-// The See-step pictures from the prototype (tl.js visual): flow, cycle, stack, tokens, compare, bits,
-// a Level 1 scene, or a concept card when a custom animation does not exist yet.
+// The See-step pictures from the prototype (tl.js visual): flow, cycle, stack, tokens, compare, bits, a Level 1 scene,
+// and (C557) an emoji, a parts diagram that lights the part being explained, and honest stand-ins: a lab step shows a
+// card that opens its lab, a code step shows the rule in code type, and an animation not drawn yet shows the step's own
+// key idea and terms, marked so (src/lib/family/tech/validate.ts lists every kind).
 
 function motionOn(): boolean {
   if (typeof window === 'undefined') return true;
@@ -108,7 +110,10 @@ function useWideStage() {
   return { ref, wide };
 }
 
-export function SeeVisual({ spec, level, strand, lang }: { spec: string; level: number; strand?: StrandInfo; lang: TechLang }) {
+// `focus` and `values` come from the beat being narrated (guided mode, or the beat the child stepped to).
+export type SeeExtras = { caption?: string; narration?: string; terms?: string[]; diagram?: TechDiagram; focus?: string; values?: Record<string, string>; labName?: string; onLab?: () => void };
+
+export function SeeVisual({ spec, level, strand, lang, extras = {} }: { spec: string; level: number; strand?: StrandInfo; lang: TechLang; extras?: SeeExtras }) {
   const motion = useMotion();
   const stage = useWideStage();
   const visual = String(spec || '');
@@ -116,11 +121,70 @@ export function SeeVisual({ spec, level, strand, lang }: { spec: string; level: 
   const kind = colon < 0 ? '' : visual.slice(0, colon);
   const body = colon < 0 ? '' : visual.slice(colon + 1);
   const dark = level === 3;
+  if (extras.diagram) {
+    return (
+      <div ref={stage.ref} className={`tl-stage${dark ? ' dark' : ''}`}>
+        <Diagram diagram={extras.diagram} lang={lang} focus={extras.focus} values={extras.values} motion={motion} />
+      </div>
+    );
+  }
+  if (kind === 'icon') {
+    return (
+      <div ref={stage.ref} className={`tl-stage${dark ? ' dark' : ''}`} data-visual="icon">
+        <div className="tl-icon-card"><span aria-hidden="true">{body.trim() || '✨'}</span>{extras.caption && <p>{extras.caption}</p>}</div>
+      </div>
+    );
+  }
+  if (kind === 'lab') {
+    return (
+      <div ref={stage.ref} className={`tl-stage${dark ? ' dark' : ''}`} data-visual="lab">
+        <div className="tl-standin">
+          <span className="tl-pill tl-pill-lab">{`🧪 ${extras.labName || body.split('#')[0]}`}</span>
+          {extras.caption && <p className="tl-standin-main">{extras.caption}</p>}
+          {extras.onLab && <button type="button" className="tl-btn tl-btn-go" onClick={extras.onLab}>{tw(lang, 'openLab')}</button>}
+        </div>
+      </div>
+    );
+  }
+  if (visual === 'code') {
+    const lines = (extras.narration || extras.caption || '').split(/(?<=[.:;])\s+/).filter(Boolean);
+    return (
+      <div ref={stage.ref} className={`tl-stage${dark ? ' dark' : ''}`} data-visual="code">
+        <pre className="tl-code" lang="en">{lines.join('\n')}</pre>
+      </div>
+    );
+  }
+  if (kind === 'anim' || !kind) {
+    // An animation not drawn yet: the step's own process when its words give one (a → b → c), else its key idea and
+    // the lesson's terms it uses. Never an unrelated picture.
+    const words = `${extras.caption ?? ''} ${extras.narration ?? ''}`;
+    const chain = words.match(/[^.:;!?]*?(?:\s*→\s*[^.;:!?→]+){2,}/)?.[0];
+    const nodes = chain ? chain.split('→').map((part) => part.trim().split(/[,(]/)[0].trim()).filter((part) => part && part.length <= 40) : [];
+    if (nodes.length >= 3 && nodes.length <= 7) {
+      return (
+        <div ref={stage.ref} className={`tl-stage${dark ? ' dark' : ''}`} data-visual="anim-flow">
+          <Flow nodes={nodes} ring={false} level={level} motion={motion} wide={stage.wide} />
+        </div>
+      );
+    }
+    if (extras.caption) {
+      const terms = (extras.terms ?? []).filter((term) => words.toLowerCase().includes(term.toLowerCase())).slice(0, 4);
+      return (
+        <div ref={stage.ref} className={`tl-stage${dark ? ' dark' : ''}`} data-visual="key-idea">
+          <div className="tl-standin">
+            <span className="tl-pill">{`${strand?.e ?? '💡'} ${tw(lang, 'keyIdea')}`}</span>
+            <p className="tl-standin-main">{extras.caption}</p>
+            {terms.length > 0 && <div className="tl-chips">{terms.map((term) => <span key={term} className="tl-chip">{term}</span>)}</div>}
+          </div>
+        </div>
+      );
+    }
+  }
   if (kind === 'scene' && body.trim()) {
     const src = `/family/tech/labs/L1/scene.html?id=${encodeURIComponent(body.trim())}&lang=${encodeURIComponent(lang)}&cap=0&ui=0`;
     return (
       <div ref={stage.ref} className={`tl-stage${dark ? ' dark' : ''}`}>
-        <iframe className="tl-scene" src={src} title="" loading="lazy" sandbox="allow-scripts allow-same-origin" />
+        <iframe className="tl-scene" src={src} title={extras.caption || tw(lang, 'see')} loading="lazy" sandbox="allow-scripts allow-same-origin" />
       </div>
     );
   }
@@ -197,5 +261,43 @@ export function SeeVisual({ spec, level, strand, lang }: { spec: string; level: 
     <div ref={stage.ref} className={`tl-stage${dark ? ' dark' : ''}`}>
       <Concept emoji={strand?.e || '✨'} level={level} />
     </div>
+  );
+}
+
+// A parts diagram (C557): rows of parts joined left to right, extra links listed under it, the part being explained lit
+// and the rest dimmed, with a value on a part when the beat gives one (a register, a memory cell). Plain HTML, so it
+// reads at any width, stays still under reduced motion, and says the lit part in words for a screen reader.
+function Diagram({ diagram, lang, focus, values = {}, motion }: { diagram: TechDiagram; lang: TechLang; focus?: string; values?: Record<string, string>; motion: boolean }) {
+  const byId = new Map(diagram.parts.map((part) => [part.id, part]));
+  const lit = focus ? byId.get(focus) : undefined;
+  return (
+    <figure className={`tl-diagram${focus ? ' focusing' : ''}${motion ? '' : ' still'}`} aria-label={diagram.parts.map((part) => pick(lang, part.label)).join(', ')}>
+      {diagram.rows.map((row, r) => (
+        <div key={r} className="tl-drow">
+          {row.map((id, i) => {
+            const part = byId.get(id);
+            if (!part) return null;
+            return (
+              <span key={id} className="tl-dcell">
+                {i > 0 && <span className="tl-darrow" aria-hidden="true">→</span>}
+                <span className={`tl-dpart${focus === id ? ' on' : ''}`} data-part={id} aria-current={focus === id ? 'true' : undefined}>
+                  {part.icon && <span className="tl-dicon" aria-hidden="true">{part.icon}</span>}
+                  <b>{pick(lang, part.label)}</b>
+                  {values[id] != null && <span className="tl-dval">{values[id]}</span>}
+                </span>
+              </span>
+            );
+          })}
+        </div>
+      ))}
+      {(diagram.links ?? []).length > 0 && (
+        <ul className="tl-dlinks">
+          {(diagram.links ?? []).map((link, i) => (
+            <li key={i} className={focus && (link.from === focus || link.to === focus) ? 'on' : ''}>{`${pick(lang, byId.get(link.from)?.label)} ↔ ${pick(lang, byId.get(link.to)?.label)}${link.label ? `: ${pick(lang, link.label)}` : ''}`}</li>
+          ))}
+        </ul>
+      )}
+      {lit?.note && <figcaption className="tl-dnote" aria-live="polite">{`${pick(lang, lit.label)}: ${pick(lang, lit.note)}`}</figcaption>}
+    </figure>
   );
 }

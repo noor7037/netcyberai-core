@@ -34,6 +34,77 @@
    "hi": "निजता नियम लागू करना: सहमति, न्यूनीकरण, मिटाना"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you tell a study chatbot yesterday that you prefer Hinglish, and today it still replies in Hinglish.",
+   "hi": "{{name}}, तुम कल स्टडी चैटबॉट को बताते हो कि तुम्हें हिंग्लिश पसंद है, और आज भी वह हिंग्लिश में जवाब देता है।",
+   "hinglish": "{{name}}, tum kal study chatbot ko batate ho ki tumhe Hinglish pasand hai, aur aaj bhi woh Hinglish mein reply karta hai."
+  },
+  "question": {
+   "en": "Does the model really remember you, and who should control what it keeps?",
+   "hi": "क्या मॉडल सच में तुम्हें याद रखता है, और वह क्या रखे यह कौन तय करे?",
+   "hinglish": "Kya model sach mein tumhe yaad rakhta hai, aur woh kya rakhe yeh kaun tay kare?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What lets an agent \"remember\" things between two chats on different days?",
+   "hi": "दो अलग दिनों की चैट के बीच एजेंट को चीज़ें \"याद\" कैसे रहती हैं?",
+   "hinglish": "Do alag dinon ki chats ke beech agent ko cheezein \"yaad\" kaise rehti hain?"
+  },
+  "options": [
+   {
+    "en": "The model's weights change every conversation",
+    "hi": "हर बातचीत में मॉडल के वज़न बदलते हैं",
+    "hinglish": "Har conversation mein model ke weights badalte hain"
+   },
+   {
+    "en": "The app saves notes in a store and retrieves relevant ones into the next prompt",
+    "hi": "ऐप नोट्स स्टोर में सहेजता है और प्रासंगिक नोट्स अगले प्रॉम्प्ट में लाता है",
+    "hinglish": "App notes store mein save karta hai aur relevant notes agle prompt mein laata hai"
+   },
+   {
+    "en": "It stays on in the background all night",
+    "hi": "वह रात भर बैकग्राउंड में चालू रहता है",
+    "hinglish": "Woh raat bhar background mein on rehta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Within one chat, memory is just the context window. Across days, the app writes notes to a store, often with embeddings, and retrieves the relevant ones into the next prompt. Because this holds personal data, it needs consent, minimal storage, user control and deletion.",
+   "hi": "एक चैट के भीतर याददाश्त बस कॉन्टेक्स्ट विंडो है। कई दिनों में ऐप नोट्स स्टोर में लिखता है, अक्सर एम्बेडिंग के साथ, और प्रासंगिक नोट्स अगले प्रॉम्प्ट में लाता है। इसमें निजी डेटा होता है, इसलिए सहमति, न्यूनतम भंडारण, यूज़र का नियंत्रण और मिटाने का अधिकार चाहिए।",
+   "hinglish": "Ek chat ke andar memory bas context window hai. Kai dinon mein app notes store mein likhta hai, aksar embeddings ke saath, aur relevant notes agle prompt mein laata hai. Isme personal data hota hai, isliye consent, minimal storage, user control aur deletion chahiye."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend how an agent remembers your preference across days, and what rules should protect it.",
+   "hi": "दोस्त को समझाओ कि एजेंट कई दिनों तक तुम्हारी पसंद कैसे याद रखता है और उसकी रक्षा के कौन-से नियम होने चाहिए।",
+   "hinglish": "Friend ko samjhao ki agent kai dinon tak tumhari pasand kaise yaad rakhta hai aur uski raksha ke kaunse rules hone chahiye."
+  },
+  "checklist": [
+   {
+    "en": "Short-term memory is the context window; long-term memory is a store",
+    "hi": "अल्पकालिक याददाश्त कॉन्टेक्स्ट विंडो है; दीर्घकालिक एक स्टोर",
+    "hinglish": "Short-term memory context window hai; long-term memory ek store"
+   },
+   {
+    "en": "Notes are saved, embedded and retrieved when relevant",
+    "hi": "नोट्स सहेजे जाते हैं, एम्बेड होते हैं और प्रासंगिक होने पर लाए जाते हैं",
+    "hinglish": "Notes save hote hain, embed hote hain aur relevant hone par laaye jaate hain"
+   },
+   {
+    "en": "Memory must be visible, editable and deletable by the user",
+    "hi": "याददाश्त यूज़र को दिखे, बदली जा सके और मिटाई जा सके",
+    "hinglish": "Memory user ko dikhe, edit ho sake aur delete ho sake"
+   },
+   {
+    "en": "Never store secrets such as OTPs or passwords; keep only what is needed",
+    "hi": "OTP या पासवर्ड जैसे राज़ कभी स्टोर न करो; सिर्फ़ ज़रूरी रखो",
+    "hinglish": "OTPs ya passwords jaise secrets kabhi store na karo; sirf zaroori rakho"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Short-term memory",
@@ -82,7 +153,7 @@
     "hi": "दिनों के पार याद रखने के लिए वह नोट्स (\"आरव कक्षा 10 में है, हिंग्लिश पसंद करता है\") भंडार में लिखता है और अगली बार ज़रूरी वाले लाता है।",
     "hinglish": "Dino ke paar yaad rakhne ke liye woh notes (\"Aarav Class 10 mein hai, Hinglish pasand karta hai\") store mein likhta hai aur agli baar zaroori wale laata hai."
    },
-   "visual": "anim:memory-store",
+   "visual": "flow:📝 Write a note|🗄️ Store it with an embedding|🔍 Retrieve relevant notes next time",
    "narration": {
     "en": "To remember across days, it writes notes (\"Aarav is in Class 10, prefers Hinglish\") to a store and retrieves relevant ones next time.",
     "hi": "दिनों के पार याद रखने के लिए वह नोट्स (\"आरव कक्षा 10 में है, हिंग्लिश पसंद करता है\") भंडार में लिखता है और अगली बार ज़रूरी वाले लाता है।",

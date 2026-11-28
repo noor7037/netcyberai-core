@@ -35,6 +35,77 @@
    "hinglish": "Media queries aur fluid sizes se mobile-first pages banao"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, the same school website looks like one neat column on your phone and like three columns on a laptop.",
+   "hi": "{{name}}, वही स्कूल की वेबसाइट तुम्हारे फ़ोन पर एक सुव्यवस्थित कॉलम और लैपटॉप पर तीन कॉलम की दिखती है।",
+   "hinglish": "{{name}}, wahi school ki website tumhare phone par ek neat column aur laptop par teen columns ki dikhti hai."
+  },
+  "question": {
+   "en": "How can one page of HTML change its layout to fit any screen?",
+   "hi": "HTML का एक ही पेज हर स्क्रीन में फ़िट होने के लिए अपना लेआउट कैसे बदल लेता है?",
+   "hinglish": "HTML ka ek hi page har screen mein fit hone ke liye apna layout kaise badal leta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Two CSS rules both set a heading's colour. Which one wins?",
+   "hi": "दो CSS नियम दोनों एक शीर्षक का रंग तय करते हैं। कौन-सा जीतता है?",
+   "hinglish": "Do CSS rules dono ek heading ka colour tay karte hain. Kaunsa jeetta hai?"
+  },
+  "options": [
+   {
+    "en": "Always the one written first",
+    "hi": "हमेशा जो पहले लिखा गया",
+    "hinglish": "Hamesha jo pehle likha gaya"
+   },
+   {
+    "en": "The more specific selector wins; if equally specific, the later one",
+    "hi": "ज़्यादा विशिष्ट सेलेक्टर जीतता है; बराबर हो तो बाद वाला",
+    "hinglish": "Zyada specific selector jeetta hai; barabar ho toh baad wala"
+   },
+   {
+    "en": "The browser picks randomly",
+    "hi": "ब्राउज़र बेतरतीब चुनता है",
+    "hinglish": "Browser random chunta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "This ordering is the cascade: specificity first (an id beats a class, a class beats a tag), then source order, so a later equal rule overrides an earlier one. Responsive pages build on it: write the phone style first, then add @media (min-width: 600px) rules that change the layout for wider screens using flexbox and grid.",
+   "hi": "यह क्रम कैस्केड है: पहले विशिष्टता (id क्लास को हराती है, क्लास टैग को), फिर स्रोत क्रम, इसलिए बराबर वाला बाद का नियम पहले वाले को बदल देता है। रिस्पॉन्सिव पेज इसी पर बनते हैं: पहले फ़ोन की शैली लिखो, फिर @media (min-width: 600px) नियम जोड़ो जो फ़्लेक्सबॉक्स और ग्रिड से चौड़ी स्क्रीन का लेआउट बदलते हैं।",
+   "hinglish": "Yeh order cascade hai: pehle specificity (id class ko haraati hai, class tag ko), phir source order, isliye barabar wala baad ka rule pehle wale ko override karta hai. Responsive pages isi par bante hain: pehle phone ki style likho, phir @media (min-width: 600px) rules jodo jo flexbox aur grid se wider screens ka layout badalte hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how one web page can look right on both a phone and a laptop.",
+   "hi": "घर पर किसी को समझाओ कि एक वेब पेज फ़ोन और लैपटॉप दोनों पर सही कैसे दिख सकता है।",
+   "hinglish": "Ghar par kisi ko samjhao ki ek web page phone aur laptop dono par sahi kaise dikh sakta hai."
+  },
+  "checklist": [
+   {
+    "en": "A rule is selector { property: value; }; the cascade picks the winner by specificity then order.",
+    "hi": "नियम selector { property: value; } है; कैस्केड विशिष्टता और फिर क्रम से विजेता चुनता है।",
+    "hinglish": "Rule selector { property: value; } hai; cascade specificity aur phir order se winner chunta hai."
+   },
+   {
+    "en": "The box model is content, padding, border, margin from inside out.",
+    "hi": "बॉक्स मॉडल अंदर से बाहर: सामग्री, पैडिंग, बॉर्डर, मार्जिन।",
+    "hinglish": "Box model andar se bahar: content, padding, border, margin."
+   },
+   {
+    "en": "Flexbox lays out items along one line; grid lays out rows and columns.",
+    "hi": "फ़्लेक्सबॉक्स आइटम एक रेखा में सजाता है; ग्रिड पंक्तियों और स्तंभों में।",
+    "hinglish": "Flexbox items ek line mein sajata hai; grid rows aur columns mein."
+   },
+   {
+    "en": "Mobile-first: write the phone style, then widen with media queries and fluid sizes.",
+    "hi": "मोबाइल-फ़र्स्ट: फ़ोन की शैली लिखो, फिर मीडिया क्वेरी और लचीले आकार से चौड़ा करो।",
+    "hinglish": "Mobile-first: phone ki style likho, phir media queries aur fluid sizes se wide karo."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Selector",

@@ -40,6 +40,77 @@
    "hinglish": "Phone ke dabbe par GB jaise size padh sakte ho."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your phone has 6 apps open, and then it gets slow. Mummy says, \"Your phone memory is full.\"",
+   "hi": "{{name}}, तुम्हारे फ़ोन में 6 ऐप खुले हैं, फिर वह धीमा हो जाता है। मम्मी कहती हैं, \"फ़ोन की मेमोरी भर गई है।\"",
+   "hinglish": "{{name}}, tumhare phone mein 6 apps khule hain, phir woh slow ho jaata hai. Mummy kehti hain, \"Phone ki memory full ho gayi hai.\""
+  },
+  "question": {
+   "en": "Does a phone have just one memory, or different parts that remember in different ways?",
+   "hi": "क्या फ़ोन में एक ही मेमोरी होती है, या अलग-अलग हिस्से अलग तरह से याद रखते हैं?",
+   "hinglish": "Kya phone mein ek hi memory hoti hai, ya alag-alag parts alag tarah se yaad rakhte hain?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What do you think? You are playing a game and the power goes off. What happens to the game you were in the middle of, if you did not save?",
+   "hi": "तुम्हें क्या लगता है? तुम गेम खेल रहे हो और बिजली चली जाती है। अगर तुमने सेव नहीं किया, तो बीच के गेम का क्या होगा?",
+   "hinglish": "Tumhe kya lagta hai? Tum game khel rahe ho aur power chali jaati hai. Agar tumne save nahin kiya, to beech ke game ka kya hoga?"
+  },
+  "options": [
+   {
+    "en": "It is kept safely in RAM",
+    "hi": "वह RAM में सुरक्षित रहता है",
+    "hinglish": "Woh RAM mein safe rehta hai"
+   },
+   {
+    "en": "It is lost, because RAM forgets when power goes off; saved things stay in storage",
+    "hi": "वह खो जाता है, क्योंकि बिजली जाने पर RAM भूल जाती है; सेव की चीज़ें स्टोरेज में रहती हैं",
+    "hinglish": "Woh kho jaata hai, kyunki power jaane par RAM bhool jaati hai; saved cheezein storage mein rehti hain"
+   },
+   {
+    "en": "The CPU remembers it",
+    "hi": "CPU उसे याद रखता है",
+    "hinglish": "CPU use yaad rakhta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "RAM is like a study desk: very fast, but it is cleared when power goes off. Storage is like a school bag and almirah: slower, but it keeps files without power. The CPU is the brain that works on what is on the desk.",
+   "hi": "RAM पढ़ने की मेज़ जैसी है: बहुत तेज़, पर बिजली जाते ही साफ़ हो जाती है। स्टोरेज स्कूल बैग और अलमारी जैसा है: धीमा, पर बिना बिजली फ़ाइलें रखता है। CPU दिमाग़ है जो मेज़ की चीज़ों पर काम करता है।",
+   "hinglish": "RAM study desk jaisi hai: bahut fast, par power jaate hi saaf ho jaati hai. Storage school bag aur almirah jaisa hai: slow, par bina power ke files rakhta hai. CPU brain hai jo desk ki cheezon par kaam karta hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Tell someone at home: what do the CPU, RAM and storage each do?",
+   "hi": "घर पर किसी को बताओ: CPU, RAM और स्टोरेज हर एक क्या करता है?",
+   "hinglish": "Ghar par kisi ko batao: CPU, RAM aur storage har ek kya karta hai?"
+  },
+  "checklist": [
+   {
+    "en": "The CPU follows instructions, one after another, very fast.",
+    "hi": "CPU बहुत तेज़ी से एक के बाद एक निर्देश मानता है।",
+    "hinglish": "CPU bahut fast ek ke baad ek instructions follow karta hai."
+   },
+   {
+    "en": "RAM holds what you are using now; it forgets when power goes off.",
+    "hi": "RAM अभी इस्तेमाल की चीज़ें रखती है; बिजली जाने पर भूल जाती है।",
+    "hinglish": "RAM abhi use ki cheezein rakhti hai; power jaane par bhool jaati hai."
+   },
+   {
+    "en": "Storage keeps photos, apps and files even without power.",
+    "hi": "स्टोरेज फ़ोटो, ऐप और फ़ाइलें बिना बिजली भी रखता है।",
+    "hinglish": "Storage photos, apps aur files bina power ke bhi rakhta hai."
+   },
+   {
+    "en": "GB tells how much it can hold.",
+    "hi": "GB बताता है कि वह कितना रख सकता है।",
+    "hinglish": "GB batata hai ki woh kitna rakh sakta hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "CPU (Central Processing Unit)",

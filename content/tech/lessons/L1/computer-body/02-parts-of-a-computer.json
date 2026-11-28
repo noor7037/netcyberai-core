@@ -35,6 +35,77 @@
    "hinglish": "Har part kya karta hai, bata sakte ho."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, in the school computer lab you see a screen, a keyboard, a mouse and a box.",
+   "hi": "{{name}}, स्कूल की कंप्यूटर लैब में तुम्हें स्क्रीन, कीबोर्ड, माउस और एक डिब्बा दिखता है।",
+   "hinglish": "{{name}}, school ki computer lab mein tumhe screen, keyboard, mouse aur ek box dikhta hai."
+  },
+  "question": {
+   "en": "What job does each part do?",
+   "hi": "हर हिस्सा क्या काम करता है?",
+   "hinglish": "Har part kya kaam karta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What do you think? Which part is like the computer's brain?",
+   "hi": "तुम्हें क्या लगता है? कंप्यूटर के दिमाग़ जैसा हिस्सा कौन-सा है?",
+   "hinglish": "Tumhe kya lagta hai? Computer ke brain jaisa part kaun sa hai?"
+  },
+  "options": [
+   {
+    "en": "The monitor, because it is the biggest",
+    "hi": "मॉनिटर, क्योंकि वह सबसे बड़ा है",
+    "hinglish": "Monitor, kyunki woh sabse bada hai"
+   },
+   {
+    "en": "The mouse",
+    "hi": "माउस",
+    "hinglish": "Mouse"
+   },
+   {
+    "en": "The CPU box, which works on the instructions",
+    "hi": "CPU वाला डिब्बा, जो निर्देशों पर काम करता है",
+    "hinglish": "CPU wala box, jo instructions par kaam karta hai"
+   }
+  ],
+  "answer": 2,
+  "explain": {
+   "en": "The CPU is inside the box. It follows the instructions. The monitor shows, the speaker plays sound, and the keyboard and mouse send your wishes in.",
+   "hi": "CPU डिब्बे के अंदर होता है। वह निर्देशों पर काम करता है। मॉनिटर दिखाता है, स्पीकर आवाज़ देता है, और कीबोर्ड-माउस तुम्हारी बात अंदर भेजते हैं।",
+   "hinglish": "CPU box ke andar hota hai. Woh instructions par kaam karta hai. Monitor dikhata hai, speaker awaaz deta hai, aur keyboard-mouse tumhari baat andar bhejte hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Tell someone at home: name the parts of a computer and say what each does.",
+   "hi": "घर पर किसी को बताओ: कंप्यूटर के हिस्सों के नाम और उनके काम बताओ।",
+   "hinglish": "Ghar par kisi ko batao: computer ke parts ke naam aur unke kaam batao."
+  },
+  "checklist": [
+   {
+    "en": "The monitor shows pictures and words.",
+    "hi": "मॉनिटर चित्र और शब्द दिखाता है।",
+    "hinglish": "Monitor pictures aur words dikhata hai."
+   },
+   {
+    "en": "The keyboard and mouse tell the computer what we want.",
+    "hi": "कीबोर्ड और माउस कंप्यूटर को बताते हैं कि हम क्या चाहते हैं।",
+    "hinglish": "Keyboard aur mouse computer ko batate hain ki hum kya chahte hain."
+   },
+   {
+    "en": "The speaker plays sound.",
+    "hi": "स्पीकर आवाज़ सुनाता है।",
+    "hinglish": "Speaker sound sunata hai."
+   },
+   {
+    "en": "The CPU box has the brain that follows instructions.",
+    "hi": "CPU वाले डिब्बे में वह दिमाग़ है जो निर्देश मानता है।",
+    "hinglish": "CPU box mein woh brain hai jo instructions follow karta hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Monitor",

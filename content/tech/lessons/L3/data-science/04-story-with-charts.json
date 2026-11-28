@@ -36,6 +36,77 @@
    "hinglish": "Finding batane wala saaf title likho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a news channel shows two bar charts of the same UPI numbers. In one the bars look nearly equal, in the other one is three times taller.",
+   "hi": "{{name}}, एक न्यूज़ चैनल एक ही UPI आँकड़ों के दो बार चार्ट दिखाता है। एक में बार लगभग बराबर हैं, दूसरे में एक तिगुना ऊँचा।",
+   "hinglish": "{{name}}, ek news channel ek hi UPI numbers ke do bar charts dikhata hai. Ek mein bars lagbhag barabar hain, doosre mein ek teen guna ooncha."
+  },
+  "question": {
+   "en": "How can the same data tell two different stories, and how do you draw an honest one?",
+   "hi": "एक ही डेटा दो अलग कहानियाँ कैसे सुना सकता है, और ईमानदार चार्ट कैसे बनाएँ?",
+   "hinglish": "Ek hi data do alag kahaniyan kaise suna sakta hai, aur honest chart kaise banayein?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A bar chart's axis starts at 18 instead of 0 and two bars differ by 0.9 marks. What does the viewer likely see?",
+   "hi": "बार चार्ट का अक्ष 0 की जगह 18 से शुरू होता है और दो बारों में 0.9 अंक का फ़र्क है। देखने वाले को क्या दिखेगा?",
+   "hinglish": "Bar chart ka axis 0 ki jagah 18 se shuru hota hai aur do bars mein 0.9 marks ka fark hai. Dekhne wale ko kya dikhega?"
+  },
+  "options": [
+   {
+    "en": "A tiny difference, exactly as it is",
+    "hi": "छोटा फ़र्क, जैसा वह है",
+    "hinglish": "Chhota fark, jaisa woh hai"
+   },
+   {
+    "en": "A huge difference, because bar length is read as the value",
+    "hi": "बहुत बड़ा फ़र्क, क्योंकि बार की लंबाई को मान समझा जाता है",
+    "hinglish": "Bahut bada fark, kyunki bar ki length ko value samjha jaata hai"
+   },
+   {
+    "en": "Nothing, because charts are always accurate",
+    "hi": "कुछ नहीं, क्योंकि चार्ट हमेशा सही होते हैं",
+    "hinglish": "Kuch nahi, kyunki charts hamesha sahi hote hain"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Our eyes compare bar lengths, and a cut axis shrinks the shorter bar's length so a small gap looks huge. Bars should start at zero; lines may zoom because we read slope, not length.",
+   "hi": "हमारी आँखें बार की लंबाई की तुलना करती हैं, और कटा अक्ष छोटे बार की लंबाई घटा देता है, इसलिए छोटा अंतर विशाल दिखता है। बार शून्य से शुरू होने चाहिए; लाइन ज़ूम हो सकती है क्योंकि हम ढलान पढ़ते हैं, लंबाई नहीं।",
+   "hinglish": "Hamari aankhein bar ki length compare karti hain, aur cut axis chhote bar ki length ghata deta hai, isliye chhota gap huge dikhta hai. Bars zero se shuru hone chahiye; lines zoom ho sakti hain kyunki hum slope padhte hain, length nahi."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend how you would choose a chart for \"how did UPI grow?\" and how a chart can mislead.",
+   "hi": "दोस्त को समझाओ कि \"UPI कैसे बढ़ा?\" के लिए चार्ट कैसे चुनोगे और चार्ट कैसे भ्रमित कर सकता है।",
+   "hinglish": "Friend ko samjhao ki \"UPI kaise badha?\" ke liye chart kaise chunoge aur chart kaise mislead kar sakta hai."
+  },
+  "checklist": [
+   {
+    "en": "Start from the question: time suggests a line, categories suggest sorted bars",
+    "hi": "सवाल से शुरू करो: समय के लिए लाइन, श्रेणियों के लिए क्रमबद्ध बार",
+    "hinglish": "Sawal se shuru karo: time ke liye line, categories ke liye sorted bars"
+   },
+   {
+    "en": "Bars start at zero; a cut axis exaggerates differences",
+    "hi": "बार शून्य से शुरू हों; कटा अक्ष अंतर बढ़ाकर दिखाता है",
+    "hinglish": "Bars zero se shuru hon; cut axis differences badha kar dikhata hai"
+   },
+   {
+    "en": "Cherry-picked ranges and 3D pies hide the real picture",
+    "hi": "चुनी हुई अवधि और 3D पाई असली तस्वीर छिपाते हैं",
+    "hinglish": "Cherry-picked ranges aur 3D pies asli picture chhupate hain"
+   },
+   {
+    "en": "The title states the finding, not just the topic",
+    "hi": "शीर्षक निष्कर्ष बताए, सिर्फ़ विषय नहीं",
+    "hinglish": "Title finding batata hai, sirf topic nahi"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Bar chart",
@@ -76,7 +147,7 @@
     "hi": "पहले प्रश्न: \"UPI कैसे बढ़ा?\" समय के बारे में है → रेखा चार्ट।",
     "hinglish": "Pehle sawaal: \"UPI kaise badha?\" time ke baare mein hai → line chart."
    },
-   "visual": "anim:line-up",
+   "visual": "flow:❓ How did UPI grow?|⏳ It is about time|📈 Line chart",
    "narration": {
     "en": "Question first: \"How did UPI grow?\" is about time → a line chart.",
     "hi": "पहले प्रश्न: \"UPI कैसे बढ़ा?\" समय के बारे में है → रेखा चार्ट।",
@@ -104,7 +175,7 @@
     "hi": "\"सबसे लोकप्रिय विषय कौन-सा?\" श्रेणियों की तुलना → पट्टियाँ, क्रमबद्ध।",
     "hinglish": "\"Sabse popular subject kaunsa?\" categories compare karta hai → bars, sorted."
    },
-   "visual": "anim:bars",
+   "visual": "flow:❓ Which subject is most popular?|🗂️ Compares categories|📊 Sorted bars",
    "narration": {
     "en": "\"Which subject is most popular?\" compares categories → bars, sorted.",
     "hi": "\"सबसे लोकप्रिय विषय कौन-सा?\" श्रेणियों की तुलना → पट्टियाँ, क्रमबद्ध।",
@@ -118,7 +189,7 @@
     "hi": "पट्टियाँ 0 की जगह 18 से शुरू करो और 0.9 अंक का अंतर भारी जीत लगता है।",
     "hinglish": "Bars 0 ki jagah 18 se shuru karo aur 0.9 marks ka gap bhaari jeet lagta hai."
    },
-   "visual": "anim:trunc",
+   "visual": "compare:✅ Axis from 0: a small gap looks small|⚠️ Axis from 18: the same gap looks like a landslide",
    "narration": {
     "en": "Start the bars at 18 instead of 0 and a 0.9-mark gap looks like a landslide.",
     "hi": "पट्टियाँ 0 की जगह 18 से शुरू करो और 0.9 अंक का अंतर भारी जीत लगता है।",

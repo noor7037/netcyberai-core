@@ -38,6 +38,82 @@
    "hinglish": "Rules follow kar sakte ho: consent, label, share se pehle check"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you type \"an elephant painting a portrait\" into an image app, and a picture appears in seconds.",
+   "hi": "{{name}}, तुम इमेज ऐप में \"एक हाथी जो पोर्ट्रेट बना रहा है\" लिखते हो, और कुछ सेकंड में तस्वीर आ जाती है।",
+   "hinglish": "{{name}}, tum image app mein \"an elephant painting a portrait\" likhte ho, aur kuch seconds mein picture aa jaati hai."
+  },
+  "question": {
+   "en": "Nobody drew it and no such photo exists. So how can an app make a picture from just words?",
+   "hi": "इसे किसी ने नहीं बनाया और ऐसी कोई फ़ोटो है ही नहीं। तो ऐप सिर्फ़ शब्दों से तस्वीर कैसे बना सकता है?",
+   "hinglish": "Ise kisi ne nahi banaya aur aisi koi photo hai hi nahi. To app sirf words se picture kaise bana sakta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "How does a diffusion image model start making your picture?",
+   "hi": "डिफ़्यूज़न इमेज मॉडल तुम्हारी तस्वीर बनाना कैसे शुरू करता है?",
+   "hinglish": "Diffusion image model tumhari picture banana kaise shuru karta hai?"
+  },
+  "options": [
+   {
+    "en": "It finds the closest photo in a library and copies it",
+    "hi": "वह पुस्तकालय में सबसे मिलती फ़ोटो ढूँढकर कॉपी करता है",
+    "hinglish": "Woh library mein sabse milti photo dhoondhkar copy karta hai"
+   },
+   {
+    "en": "It starts from random noise and removes the noise step by step, guided by your words",
+    "hi": "वह यादृच्छिक शोर से शुरू करता है और तुम्हारे शब्दों के मार्गदर्शन में क़दम-दर-क़दम शोर हटाता है",
+    "hinglish": "Woh random noise se shuru karta hai aur tumhare words ke guidance mein step-by-step noise hataata hai"
+   },
+   {
+    "en": "A human artist draws it very quickly",
+    "hi": "एक इंसानी कलाकार बहुत तेज़ी से बनाता है",
+    "hinglish": "Ek insaani kalakaar bahut tezi se banata hai"
+   },
+   {
+    "en": "It pastes pieces cut from other photos",
+    "hi": "वह दूसरी फ़ोटो से काटे टुकड़े चिपकाता है",
+    "hinglish": "Woh doosri photos se kaate tukde chipkata hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "The model learned from millions of captioned pictures what things look like. To create, it starts from pure noise and removes it step by step, steering towards a picture that matches your words.",
+   "hi": "मॉडल ने कैप्शन वाली लाखों तस्वीरों से सीखा कि चीज़ें कैसी दिखती हैं। बनाते समय वह शुद्ध शोर से शुरू करता है और क़दम-दर-क़दम उसे हटाता है, तुम्हारे शब्दों से मेल खाती तस्वीर की ओर बढ़ते हुए।",
+   "hinglish": "Model ne captions wali lakhon pictures se seekha ki cheezein kaisi dikhti hain. Banate samay woh pure noise se shuru karta hai aur step-by-step use hataata hai, tumhare words se mel khati picture ki or badhte hue."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how an AI makes a picture and how to share such pictures responsibly.",
+   "hi": "घर पर किसी को समझाओ कि AI तस्वीर कैसे बनाता है और ऐसी तस्वीरें ज़िम्मेदारी से कैसे साझा करें।",
+   "hinglish": "Ghar par kisi ko samjhao ki AI picture kaise banata hai aur aisi pictures responsibly kaise share karein."
+  },
+  "checklist": [
+   {
+    "en": "It learns from millions of captioned pictures.",
+    "hi": "वह कैप्शन वाली लाखों तस्वीरों से सीखता है।",
+    "hinglish": "Woh captions wali lakhon pictures se seekhta hai."
+   },
+   {
+    "en": "It starts from random noise and removes noise step by step, guided by your words.",
+    "hi": "वह यादृच्छिक शोर से शुरू करके तुम्हारे शब्दों के मार्गदर्शन में क़दम-दर-क़दम शोर हटाता है।",
+    "hinglish": "Woh random noise se shuru karke tumhare words ke guidance mein step-by-step noise hataata hai."
+   },
+   {
+    "en": "Signs of AI images: odd hands or teeth, gibberish text, inconsistent lighting, and labels.",
+    "hi": "AI तस्वीरों के संकेत: अजीब हाथ या दाँत, बेमतलब लिखावट, असंगत रोशनी, और लेबल।",
+    "hinglish": "AI images ke signs: odd hands ya teeth, gibberish text, inconsistent lighting, aur labels."
+   },
+   {
+    "en": "Rules: get consent, label AI images, and check before sharing.",
+    "hi": "नियम: सहमति लो, AI तस्वीरों पर लेबल लगाओ, और साझा करने से पहले जाँचो।",
+    "hinglish": "Rules: consent lo, AI images par label lagao, aur share karne se pehle check karo."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Generative AI",

@@ -37,6 +37,72 @@
    "hinglish": "Simple logic expressions bana sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, at home, a staircase light can be switched on or off from both the top and the bottom.",
+   "hi": "{{name}}, घर में सीढ़ी की लाइट ऊपर और नीचे, दोनों जगह के स्विच से जलाई-बुझाई जा सकती है।",
+   "hinglish": "{{name}}, ghar mein staircase ki light upar aur neeche, dono jagah ke switch se on-off ho sakti hai."
+  },
+  "question": {
+   "en": "Which kind of logic makes the light change whenever either switch is flipped?",
+   "hi": "कौन-सा तर्क लाइट को तब बदलता है जब कोई भी एक स्विच पलटा जाए?",
+   "hinglish": "Kaunsa logic light ko tab badalta hai jab koi bhi ek switch palte?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "An XOR gate gets inputs 1 and 1. What does it output?",
+   "hi": "एक XOR गेट को इनपुट 1 और 1 मिलते हैं। उसका आउटपुट क्या है?",
+   "hinglish": "Ek XOR gate ko inputs 1 aur 1 milte hain. Uska output kya hai?"
+  },
+  "options": [
+   {
+    "en": "1, like OR",
+    "hi": "1, OR की तरह",
+    "hinglish": "1, OR ki tarah"
+   },
+   {
+    "en": "0, because XOR gives 1 only when the inputs are different",
+    "hi": "0, क्योंकि XOR तभी 1 देता है जब इनपुट अलग हों",
+    "hinglish": "0, kyunki XOR tabhi 1 deta hai jab inputs alag hon"
+   },
+   {
+    "en": "2",
+    "hi": "2",
+    "hinglish": "2"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "XOR means exclusive or: output 1 only when the two inputs differ. Equal inputs (00 or 11) give 0, which is why XOR can compare bits and run a two-switch staircase light.",
+   "hi": "XOR यानी एक्सक्लूसिव OR: आउटपुट 1 तभी जब दोनों इनपुट अलग हों। बराबर इनपुट (00 या 11) पर 0 आता है, इसीलिए XOR बिट की तुलना कर सकता है और दो-स्विच वाली सीढ़ी की लाइट चला सकता है।",
+   "hinglish": "XOR matlab exclusive or: output 1 tabhi jab dono inputs alag hon. Barabar inputs (00 ya 11) par 0 aata hai, isiliye XOR bits compare kar sakta hai aur do-switch staircase light chala sakta hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home what NAND and XOR do and why NAND is called universal.",
+   "hi": "घर पर किसी को समझाओ कि NAND और XOR क्या करते हैं और NAND को यूनिवर्सल क्यों कहते हैं।",
+   "hinglish": "Ghar par kisi ko samjhao ki NAND aur XOR kya karte hain aur NAND ko universal kyun kehte hain."
+  },
+  "checklist": [
+   {
+    "en": "NAND is AND followed by NOT: it gives 0 only when both inputs are 1.",
+    "hi": "NAND, AND के बाद NOT है: दोनों इनपुट 1 होने पर ही 0 देता है।",
+    "hinglish": "NAND, AND ke baad NOT hai: dono inputs 1 hone par hi 0 deta hai."
+   },
+   {
+    "en": "XOR gives 1 only when the inputs differ.",
+    "hi": "XOR तभी 1 देता है जब इनपुट अलग हों।",
+    "hinglish": "XOR tabhi 1 deta hai jab inputs alag hon."
+   },
+   {
+    "en": "Joining NAND gates can make NOT, AND and OR, so NAND alone can build any circuit.",
+    "hi": "NAND गेट जोड़कर NOT, AND और OR बन सकते हैं, इसलिए अकेला NAND कोई भी सर्किट बना सकता है।",
+    "hinglish": "NAND gates jodkar NOT, AND aur OR ban sakte hain, isliye akela NAND koi bhi circuit bana sakta hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "NAND",

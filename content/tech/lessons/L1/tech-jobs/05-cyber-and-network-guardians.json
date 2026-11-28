@@ -40,6 +40,77 @@
    "hinglish": "Network engineer ki tarah server fail hone par website chalu rakh sakte ho."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you open a ticket-booking app, and it works even when many people book at the same time.",
+   "hi": "{{name}}, तुम टिकट बुकिंग ऐप खोलते हो, और बहुत लोगों के एक साथ बुक करने पर भी वह चलता है।",
+   "hinglish": "{{name}}, tum ticket booking app kholte ho, aur bahut logon ke ek saath book karne par bhi woh chalta hai."
+  },
+  "question": {
+   "en": "Who keeps it running and keeps it safe?",
+   "hi": "इसे चालू और सुरक्षित कौन रखता है?",
+   "hinglish": "Ise chaalu aur surakshit kaun rakhta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "One server of a website suddenly stops working. How can the website keep running?",
+   "hi": "एक वेबसाइट का एक सर्वर अचानक बंद हो जाता है। वेबसाइट चलती कैसे रहती है?",
+   "hinglish": "Ek website ka ek server achanak band ho jaata hai. Website chalti kaise rehti hai?"
+  },
+  "options": [
+   {
+    "en": "It cannot, so the site must go down",
+    "hi": "नहीं चल सकती, साइट बंद होगी ही",
+    "hinglish": "Nahi chal sakti, site band hogi hi"
+   },
+   {
+    "en": "Engineers keep backup servers, so another one takes over",
+    "hi": "इंजीनियर बैकअप सर्वर रखते हैं, ताकि दूसरा सँभाल ले",
+    "hinglish": "Engineers backup servers rakhte hain, taaki doosra sambhal le"
+   },
+   {
+    "en": "People take turns typing the pages by hand",
+    "hi": "लोग बारी-बारी हाथ से पेज लिखते हैं",
+    "hinglish": "Log baari-baari haath se page likhte hain"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Network engineers keep data moving, cloud engineers run big data centres, and cybersecurity analysts spot and stop attacks. Backup servers let a service stay up, and defenders protect people. In India, report cyber fraud on 1930.",
+   "hi": "नेटवर्क इंजीनियर डेटा चलाते रहते हैं, क्लाउड इंजीनियर बड़े डेटा सेंटर चलाते हैं, और साइबर सुरक्षा विश्लेषक हमलों को पहचानकर रोकते हैं। बैकअप सर्वर सेवा को चालू रखते हैं, और रक्षक लोगों को बचाते हैं। भारत में साइबर धोखाधड़ी की रिपोर्ट 1930 पर करो।",
+   "hinglish": "Network engineers data chalate rehte hain, cloud engineers bade data centres chalate hain, aur cybersecurity analysts attacks pehchaan kar rokte hain. Backup servers service ko chaalu rakhte hain, aur defenders logon ko bachate hain. India mein cyber fraud ki report 1930 par karo."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: who keeps the internet running and safe?",
+   "hi": "घर पर किसी को समझाओ: इंटरनेट को चालू और सुरक्षित कौन रखता है?",
+   "hinglish": "Ghar par kisi ko samjhao: internet ko chaalu aur surakshit kaun rakhta hai?"
+  },
+  "checklist": [
+   {
+    "en": "Network engineers keep data moving.",
+    "hi": "नेटवर्क इंजीनियर डेटा को चलाते रहते हैं।",
+    "hinglish": "Network engineers data ko chalate rehte hain."
+   },
+   {
+    "en": "Cloud engineers run big data centres with backups.",
+    "hi": "क्लाउड इंजीनियर बैकअप के साथ बड़े डेटा सेंटर चलाते हैं।",
+    "hinglish": "Cloud engineers backups ke saath bade data centres chalate hain."
+   },
+   {
+    "en": "Cyber analysts spot and stop attacks.",
+    "hi": "साइबर विश्लेषक हमले पहचानकर रोकते हैं।",
+    "hinglish": "Cyber analysts attacks pehchaan kar rokte hain."
+   },
+   {
+    "en": "In India, cyber fraud is reported on 1930.",
+    "hi": "भारत में साइबर धोखाधड़ी की रिपोर्ट 1930 पर होती है।",
+    "hinglish": "India mein cyber fraud ki report 1930 par hoti hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Network engineer",

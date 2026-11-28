@@ -35,6 +35,77 @@
    "hi": "प्रशिक्षण डेटा और एआई आउटपुट के कॉपीराइट प्रश्न समझाना"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a company launches an AI that writes essays and draws art in the style of living artists, and some of them are upset.",
+   "hi": "{{name}}, एक कंपनी AI लॉन्च करती है जो निबंध लिखता है और जीवित कलाकारों की शैली में चित्र बनाता है, और कुछ कलाकार नाराज़ हैं।",
+   "hinglish": "{{name}}, ek company AI launch karti hai jo essays likhta hai aur living artists ki style mein art banata hai, aur kuch artists naraz hain."
+  },
+  "question": {
+   "en": "Who is responsible when AI causes harm, and who owns what it learned from and what it makes?",
+   "hi": "AI से नुक़सान हो तो ज़िम्मेदार कौन है, और जिससे उसने सीखा और जो वह बनाता है, उसका मालिक कौन है?",
+   "hinglish": "AI se nuksaan ho to zimmedar kaun hai, aur jisse usne seekha aur jo woh banata hai, uska maalik kaun hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Is it settled law that training an AI on people's books and art is always allowed or always forbidden?",
+   "hi": "क्या यह तय क़ानून है कि लोगों की किताबों और कला पर AI ट्रेन करना हमेशा जायज़ है या हमेशा मना है?",
+   "hinglish": "Kya yeh settled law hai ki logon ki books aur art par AI train karna hamesha allowed hai ya hamesha forbidden?"
+  },
+  "options": [
+   {
+    "en": "Yes, it is always allowed because the data is public",
+    "hi": "हाँ, हमेशा जायज़ है क्योंकि डेटा सार्वजनिक है",
+    "hinglish": "Haan, hamesha allowed hai kyunki data public hai"
+   },
+   {
+    "en": "Yes, it is always forbidden",
+    "hi": "हाँ, हमेशा मना है",
+    "hinglish": "Haan, hamesha forbidden hai"
+   },
+   {
+    "en": "No, courts and lawmakers in many countries are still deciding, so it is an open question",
+    "hi": "नहीं, कई देशों की अदालतें और क़ानून-निर्माता अभी तय कर रहे हैं, इसलिए यह खुला सवाल है",
+    "hinglish": "Nahi, kai deshon ki courts aur lawmakers abhi decide kar rahe hain, isliye yeh open question hai"
+   }
+  ],
+  "answer": 2,
+  "explain": {
+   "en": "Training-data copyright is being argued in courts and legislatures worldwide, including in India, so no single answer is settled. Responsible AI uses principles such as fairness, transparency, privacy, safety and accountability, and honest use means crediting sources and disclosing AI help.",
+   "hi": "प्रशिक्षण-डेटा का कॉपीराइट भारत समेत दुनिया भर की अदालतों और विधायिकाओं में बहस में है, इसलिए कोई एक उत्तर तय नहीं है। ज़िम्मेदार AI निष्पक्षता, पारदर्शिता, निजता, सुरक्षा और जवाबदेही जैसे सिद्धांत अपनाता है, और ईमानदार उपयोग का मतलब स्रोतों को श्रेय देना और AI की मदद बताना है।",
+   "hinglish": "Training-data copyright India samet duniya bhar ki courts aur legislatures mein behes mein hai, isliye koi ek answer settled nahi hai. Responsible AI fairness, transparency, privacy, safety aur accountability jaise principles apnata hai, aur honest use ka matlab sources ko credit dena aur AI ki madad batana hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend the five responsible-AI principles with one example, and why AI copyright is still debated.",
+   "hi": "दोस्त को एक उदाहरण के साथ ज़िम्मेदार AI के पाँच सिद्धांत समझाओ, और AI कॉपीराइट पर बहस अब भी क्यों है।",
+   "hinglish": "Friend ko ek example ke saath responsible AI ke paanch principles samjhao, aur AI copyright par behes ab bhi kyun hai."
+  },
+  "checklist": [
+   {
+    "en": "Five principles: fairness, transparency, privacy, safety, accountability",
+    "hi": "पाँच सिद्धांत: निष्पक्षता, पारदर्शिता, निजता, सुरक्षा, जवाबदेही",
+    "hinglish": "Paanch principles: fairness, transparency, privacy, safety, accountability"
+   },
+   {
+    "en": "Safety ranges from present misuse to keeping very capable systems aligned",
+    "hi": "सुरक्षा आज के दुरुपयोग से लेकर बहुत सक्षम सिस्टमों को संरेखित रखने तक फैली है",
+    "hinglish": "Safety aaj ke misuse se lekar bahut capable systems ko aligned rakhne tak phaili hai"
+   },
+   {
+    "en": "Copyright for training data and outputs is still being decided by courts and lawmakers",
+    "hi": "प्रशिक्षण डेटा और आउटपुट का कॉपीराइट अभी अदालतें और क़ानून-निर्माता तय कर रहे हैं",
+    "hinglish": "Training data aur outputs ka copyright abhi courts aur lawmakers decide kar rahe hain"
+   },
+   {
+    "en": "Credit your sources and say when AI helped",
+    "hi": "स्रोतों को श्रेय दो और बताओ कि AI ने मदद की",
+    "hinglish": "Apne sources ko credit do aur batao ki AI ne madad ki"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Transparency",

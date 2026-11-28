@@ -35,6 +35,77 @@
    "hinglish": "Chips kaise banti hain aur India ke semiconductor plans batao"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your phone chip has billions of tiny parts, yet each part is just a very simple switch.",
+   "hi": "{{name}}, तुम्हारे फ़ोन की चिप में अरबों छोटे हिस्से हैं, फिर भी हर हिस्सा बस एक बहुत साधारण स्विच है।",
+   "hinglish": "{{name}}, tumhare phone ki chip mein arabon chhote parts hain, phir bhi har part bas ek bahut simple switch hai."
+  },
+  "question": {
+   "en": "How does a switch with no moving parts become a logic gate, and then a whole processor?",
+   "hi": "बिना हिलने वाले हिस्से का स्विच लॉजिक गेट और फिर पूरा प्रोसेसर कैसे बन जाता है?",
+   "hinglish": "Bina hilne wale part ka switch logic gate aur phir poora processor kaise ban jaata hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What does the small voltage on a transistor's gate do?",
+   "hi": "ट्रांज़िस्टर के गेट पर छोटा वोल्टेज क्या करता है?",
+   "hinglish": "Transistor ke gate par chhota voltage kya karta hai?"
+  },
+  "options": [
+   {
+    "en": "It supplies the power that runs the chip",
+    "hi": "यह चिप चलाने की बिजली देता है",
+    "hinglish": "Yeh chip chalane ki bijli deta hai"
+   },
+   {
+    "en": "It controls whether current can flow between source and drain, like a switch",
+    "hi": "यह तय करता है कि सोर्स और ड्रेन के बीच करंट बह सके या नहीं, स्विच की तरह",
+    "hinglish": "Yeh tay karta hai ki source aur drain ke beech current bah sake ya nahi, switch ki tarah"
+   },
+   {
+    "en": "It stores one bit permanently",
+    "hi": "यह एक बिट हमेशा के लिए रखता है",
+    "hinglish": "Yeh ek bit hamesha ke liye rakhta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "The gate voltage opens or closes a channel, so a tiny signal controls a larger current with no moving parts. Wire two switches the right way and you get NOT; four give NAND, and every other gate can be built from NANDs. Gates make adders, adders make ALUs, ALUs make CPUs.",
+   "hi": "गेट वोल्टेज चैनल खोलता या बंद करता है, इसलिए एक छोटा संकेत बिना हिलने वाले हिस्से के बड़ा करंट नियंत्रित करता है। दो स्विच सही ढंग से जोड़ो तो NOT मिलता है; चार से NAND, और बाकी हर गेट NAND से बन सकता है। गेट से एडर, एडर से ALU, ALU से CPU बनते हैं।",
+   "hinglish": "Gate voltage channel kholta ya band karta hai, isliye ek chhota signal bina moving parts ke bada current control karta hai. Do switches sahi tarah jodo toh NOT milta hai; chaar se NAND, aur baaki har gate NAND se ban sakta hai. Gates se adders, adders se ALU, ALU se CPU bante hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a transistor works and how billions of them make a processor.",
+   "hi": "घर पर किसी को समझाओ कि ट्रांज़िस्टर कैसे काम करता है और अरबों मिलकर प्रोसेसर कैसे बनाते हैं।",
+   "hinglish": "Ghar par kisi ko samjhao ki transistor kaise kaam karta hai aur arabon milkar processor kaise banate hain."
+  },
+  "checklist": [
+   {
+    "en": "A transistor is an electrically controlled switch: gate voltage lets current flow from source to drain.",
+    "hi": "ट्रांज़िस्टर बिजली से नियंत्रित स्विच है: गेट वोल्टेज सोर्स से ड्रेन तक करंट बहने देता है।",
+    "hinglish": "Transistor bijli se controlled switch hai: gate voltage source se drain tak current bahne deta hai."
+   },
+   {
+    "en": "Two transistors build NOT and four build NAND; NAND is universal.",
+    "hi": "दो ट्रांज़िस्टर NOT और चार NAND बनाते हैं; NAND सार्वभौमिक है।",
+    "hinglish": "Do transistors NOT aur chaar NAND banate hain; NAND universal hai."
+   },
+   {
+    "en": "Gates combine into adders, then ALUs, then CPUs, layer by layer.",
+    "hi": "गेट मिलकर एडर, फिर ALU, फिर CPU बनते हैं, परत दर परत।",
+    "hinglish": "Gates milkar adders, phir ALU, phir CPU bante hain, layer by layer."
+   },
+   {
+    "en": "Chips are printed on silicon wafers with light, etching and testing in a fab.",
+    "hi": "चिप सिलिकॉन वेफ़र पर प्रकाश, एचिंग और जाँच से फ़ैब में बनाई जाती है।",
+    "hinglish": "Chips silicon wafers par light, etching aur testing se fab mein banayi jaati hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Transistor",
@@ -103,7 +174,7 @@
     "hi": "गेट से योजक, योजक से ALU, ALU से CPU। iPhone 15 Pro की चिप में लगभग 1,900 करोड़ ट्रांजिस्टर हैं।",
     "hinglish": "Gates se adders, adders se ALU, ALU se CPU. iPhone 15 Pro ki chip mein lagbhag 19 billion transistors hain."
    },
-   "visual": "anim:zoom-chip",
+   "visual": "stack:CPU|ALU|Adders|Logic gates|Transistors",
    "narration": {
     "en": "Gates make adders, adders make ALUs, ALUs make CPUs. An iPhone 15 Pro chip has about 19 billion transistors.",
     "hi": "गेट से योजक, योजक से ALU, ALU से CPU। iPhone 15 Pro की चिप में लगभग 1,900 करोड़ ट्रांजिस्टर हैं।",

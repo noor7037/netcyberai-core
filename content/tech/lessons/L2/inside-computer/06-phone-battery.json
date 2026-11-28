@@ -39,6 +39,82 @@
    "hinglish": "Battery charge aur use karne ki safe aadatein bata sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your phone reaches 100 percent overnight, and by evening it is down to 20.",
+   "hi": "{{name}}, तुम्हारा फ़ोन रात भर में 100 प्रतिशत हो जाता है और शाम तक 20 पर आ जाता है।",
+   "hinglish": "{{name}}, tumhara phone raat bhar mein 100 percent ho jaata hai aur shaam tak 20 par aa jaata hai."
+  },
+  "question": {
+   "en": "What is really moving inside the battery when it charges and when it runs down?",
+   "hi": "चार्ज होते और ख़ाली होते समय बैटरी के अंदर असल में क्या चलता है?",
+   "hinglish": "Charge hote aur khaali hote waqt battery ke andar asal mein kya chalta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What is stored inside a charged phone battery?",
+   "hi": "चार्ज हुई फ़ोन बैटरी के अंदर क्या जमा होता है?",
+   "hinglish": "Charge hui phone battery ke andar kya jama hota hai?"
+  },
+  "options": [
+   {
+    "en": "Electricity, like water in a tank",
+    "hi": "बिजली, टंकी में पानी की तरह",
+    "hinglish": "Electricity, tank mein paani ki tarah"
+   },
+   {
+    "en": "Energy held as lithium ions packed on the graphite side, ready to move back",
+    "hi": "ऊर्जा, जो ग्रेफ़ाइट की ओर भरे लिथियम आयनों में है और वापस जाने को तैयार है",
+    "hinglish": "Energy, jo graphite side par bhare lithium ions mein hai aur wapas jaane ko ready hai"
+   },
+   {
+    "en": "Tiny sparks",
+    "hi": "छोटी चिंगारियाँ",
+    "hinglish": "Tiny sparks"
+   },
+   {
+    "en": "Heat",
+    "hi": "गर्मी",
+    "hinglish": "Heat"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Charging pushes lithium ions into the graphite layer, storing energy chemically. When you use the phone, the ions move back through the liquid to the metal oxide, and electrons travel the long way through the phone's circuits, which powers it.",
+   "hi": "चार्जिंग लिथियम आयनों को ग्रेफ़ाइट परत में धकेलती है, यानी ऊर्जा रासायनिक रूप में जमा होती है। फ़ोन चलाने पर आयन द्रव से होकर धातु-ऑक्साइड की ओर लौटते हैं, और इलेक्ट्रॉन फ़ोन के सर्किट से लंबा रास्ता तय करते हैं, जिससे वह चलता है।",
+   "hinglish": "Charging lithium ions ko graphite layer mein dhakelti hai, yaani energy chemical form mein jama hoti hai. Phone use karne par ions liquid se hokar metal oxide ki taraf lautte hain, aur electrons phone ke circuits se lamba raasta tay karte hain, jisse woh chalta hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a phone battery works and how to look after it.",
+   "hi": "घर पर किसी को समझाओ कि फ़ोन की बैटरी कैसे काम करती है और उसका ध्यान कैसे रखें।",
+   "hinglish": "Ghar par kisi ko samjhao ki phone ki battery kaise kaam karti hai aur uska dhyan kaise rakhein."
+  },
+  "checklist": [
+   {
+    "en": "Ions move one way while charging and back while using; electrons power the phone on the way.",
+    "hi": "चार्जिंग में आयन एक ओर जाते हैं और उपयोग में लौटते हैं; इलेक्ट्रॉन रास्ते में फ़ोन को चलाते हैं।",
+    "hinglish": "Charging mein ions ek taraf jaate hain aur use mein lautte hain; electrons raaste mein phone ko chalate hain."
+   },
+   {
+    "en": "mAh times volts gives watt-hours, the real energy.",
+    "hi": "mAh गुणा वोल्ट से वॉट-घंटे मिलते हैं, यानी असली ऊर्जा।",
+    "hinglish": "mAh guna volts se watt-hours milte hain, yaani asli energy."
+   },
+   {
+    "en": "Each charge cycle and heat slowly reduce how much the battery holds.",
+    "hi": "हर चार्ज चक्र और गर्मी बैटरी की क्षमता धीरे-धीरे घटाते हैं।",
+    "hinglish": "Har charge cycle aur heat battery ki capacity dheere-dheere ghataate hain."
+   },
+   {
+    "en": "Use a certified charger and keep it away from heat and pillows.",
+    "hi": "प्रमाणित चार्जर इस्तेमाल करो और उसे गर्मी और तकिये से दूर रखो।",
+    "hinglish": "Certified charger use karo aur use heat aur pillow se door rakho."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Lithium-ion",

@@ -40,6 +40,77 @@
    "hinglish": "Jaante ho ki deshon ke beech zyaadatar data samundar ke neeche ki cables le jaati hain."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you send a WhatsApp photo from your phone to your cousin in Pune. You are in your room, with no wire attached.",
+   "hi": "{{name}}, तुम अपने कमरे से, बिना किसी तार के, पुणे में रहने वाले कज़िन को WhatsApp पर फ़ोटो भेजते हो।",
+   "hinglish": "{{name}}, tum apne kamre se, bina kisi wire ke, Pune mein rehne wale cousin ko WhatsApp par photo bhejte ho."
+  },
+  "question": {
+   "en": "What path does the photo take to get there?",
+   "hi": "फ़ोटो वहाँ पहुँचने के लिए कौन-सा रास्ता लेती है?",
+   "hinglish": "Photo wahan pahunchne ke liye kaun sa raasta leti hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What do you think? Is a message sent through the air the whole way from your phone to Pune?",
+   "hi": "तुम्हें क्या लगता है? क्या तुम्हारे फ़ोन से पुणे तक संदेश पूरे रास्ते हवा से जाता है?",
+   "hinglish": "Tumhe kya lagta hai? Kya tumhare phone se Pune tak message poore raste hawa se jaata hai?"
+  },
+  "options": [
+   {
+    "en": "Yes, radio waves carry it all the way",
+    "hi": "हाँ, रेडियो तरंगें इसे पूरे रास्ते ले जाती हैं",
+    "hinglish": "Haan, radio waves ise poore raste le jaati hain"
+   },
+   {
+    "en": "No, radio waves only reach the router or tower; after that it goes through cables",
+    "hi": "नहीं, रेडियो तरंगें सिर्फ़ राउटर या टॉवर तक जाती हैं; उसके बाद केबल से",
+    "hinglish": "Nahin, radio waves sirf router ya tower tak jaati hain; uske baad cables se"
+   },
+   {
+    "en": "It goes by a post van",
+    "hi": "वह डाक की गाड़ी से जाता है",
+    "hinglish": "Woh post van se jaata hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Wi-Fi reaches only around your home, and mobile signals a few kilometres from a tower. After that, almost every message travels through cables, copper wires and glass fibres, across cities and under oceans. Routers pass it on toward its place.",
+   "hi": "वाई-फ़ाई सिर्फ़ तुम्हारे घर के आसपास पहुँचता है, और मोबाइल सिग्नल टॉवर से कुछ किलोमीटर तक। उसके बाद लगभग हर संदेश केबलों, यानी ताँबे के तारों और काँच के रेशों, से शहरों के बीच और समुद्र के नीचे जाता है। राउटर उसे उसकी जगह की ओर आगे भेजते हैं।",
+   "hinglish": "Wi-Fi sirf tumhare ghar ke aaspaas pahunchta hai, aur mobile signal tower se kuch kilometres tak. Uske baad lagbhag har message cables, yaani copper wires aur glass fibres, se shehron ke beech aur samundar ke neeche jaata hai. Routers use uski jagah ki taraf aage bhejte hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: how does a message get from your phone to a far place?",
+   "hi": "घर पर किसी को समझाओ: संदेश तुम्हारे फ़ोन से दूर जगह तक कैसे पहुँचता है?",
+   "hinglish": "Ghar par kisi ko samjhao: message tumhare phone se door jagah tak kaise pahunchta hai?"
+  },
+  "checklist": [
+   {
+    "en": "Wi-Fi and mobile data use invisible radio waves for the first part.",
+    "hi": "वाई-फ़ाई और मोबाइल डेटा पहले हिस्से में अदृश्य रेडियो तरंगें इस्तेमाल करते हैं।",
+    "hinglish": "Wi-Fi aur mobile data pehle hisse mein invisible radio waves use karte hain."
+   },
+   {
+    "en": "Then it goes phone → router or tower → cables → far away.",
+    "hi": "फिर फ़ोन → राउटर या टॉवर → केबल → दूर जगह।",
+    "hinglish": "Phir phone → router ya tower → cables → door jagah."
+   },
+   {
+    "en": "Routers read where it is going and send it to the next router.",
+    "hi": "राउटर पढ़ते हैं कि वह कहाँ जा रहा है और अगले राउटर को भेजते हैं।",
+    "hinglish": "Routers padhte hain ki woh kahan ja raha hai aur agle router ko bhejte hain."
+   },
+   {
+    "en": "Undersea cables carry most data between countries.",
+    "hi": "समुद्र के नीचे की केबलें देशों के बीच ज़्यादातर डेटा ले जाती हैं।",
+    "hinglish": "Undersea cables countries ke beech zyadatar data le jaati hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Wi-Fi",

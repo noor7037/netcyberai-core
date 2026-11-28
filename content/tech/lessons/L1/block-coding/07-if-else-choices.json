@@ -40,6 +40,72 @@
    "hinglish": "Roz ke apps mein IF/ELSE pehchaan sakte ho."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your phone brightness goes down at night and up in the day on its own.",
+   "hi": "{{name}}, तुम्हारे फ़ोन की चमक रात में अपने-आप कम और दिन में ज़्यादा हो जाती है।",
+   "hinglish": "{{name}}, tumhare phone ki brightness raat mein apne-aap kam aur din mein zyada ho jaati hai."
+  },
+  "question": {
+   "en": "How can one rule do one thing when the answer is yes and another when it is no?",
+   "hi": "एक नियम हाँ पर एक काम और ना पर दूसरा काम कैसे कर सकता है?",
+   "hinglish": "Ek rule haan par ek kaam aur na par doosra kaam kaise kar sakta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What do you think? The rule is IF raining THEN open umbrella ELSE wear cap. It is sunny. What happens?",
+   "hi": "तुम्हें क्या लगता है? नियम है IF बारिश THEN छाता खोलो ELSE टोपी पहनो। आज धूप है। क्या होगा?",
+   "hinglish": "Tumhe kya lagta hai? Rule hai IF raining THEN open umbrella ELSE wear cap. Aaj dhoop hai. Kya hoga?"
+  },
+  "options": [
+   {
+    "en": "Open umbrella",
+    "hi": "छाता खोलेगा",
+    "hinglish": "Umbrella kholega"
+   },
+   {
+    "en": "Wear cap, because the condition is false so ELSE runs",
+    "hi": "टोपी पहनेगा, क्योंकि शर्त ग़लत है इसलिए ELSE चलता है",
+    "hinglish": "Cap pehnega, kyunki condition false hai isliye ELSE chalta hai"
+   },
+   {
+    "en": "Nothing, because there is no rain",
+    "hi": "कुछ नहीं, क्योंकि बारिश नहीं है",
+    "hinglish": "Kuch nahin, kyunki baarish nahin hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "A plain IF only does something when the condition is true. IF / ELSE always does one of two things: THEN when true, ELSE when false. Good coders test both cases, a yes day and a no day.",
+   "hi": "सादा IF तभी कुछ करता है जब शर्त सही हो। IF / ELSE हमेशा दो में से एक काम करता है: सही हो तो THEN, ग़लत हो तो ELSE। अच्छे कोडर दोनों हालात जाँचते हैं, हाँ वाला दिन और ना वाला दिन।",
+   "hinglish": "Plain IF tabhi kuch karta hai jab condition true ho. IF / ELSE hamesha do mein se ek kaam karta hai: true ho to THEN, false ho to ELSE. Achhe coders dono cases test karte hain, ek yes day aur ek no day."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Tell someone at home: how does an IF / ELSE rule work, and how do you test it?",
+   "hi": "घर पर किसी को बताओ: IF / ELSE नियम कैसे काम करता है, और उसे कैसे जाँचते हैं?",
+   "hinglish": "Ghar par kisi ko batao: IF / ELSE rule kaise kaam karta hai, aur use kaise test karte hain?"
+  },
+  "checklist": [
+   {
+    "en": "IF checks a condition that is true or false.",
+    "hi": "IF ऐसी शर्त जाँचता है जो सही या ग़लत होती है।",
+    "hinglish": "IF aisi condition check karta hai jo true ya false hoti hai."
+   },
+   {
+    "en": "True runs THEN; false runs ELSE.",
+    "hi": "सही पर THEN चलता है; ग़लत पर ELSE।",
+    "hinglish": "True par THEN chalta hai; false par ELSE."
+   },
+   {
+    "en": "Test both a yes case and a no case.",
+    "hi": "हाँ वाला और ना वाला, दोनों हालात जाँचो।",
+    "hinglish": "Yes case aur no case, dono test karo."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Condition",

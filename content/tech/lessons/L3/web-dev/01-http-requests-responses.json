@@ -33,6 +33,77 @@
    "hinglish": "Samjhao HTTPS, caching aur HTTP/2 aur HTTP/3 kyun zaroori hain"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you open your school's results page on café Wi-Fi and a padlock appears next to the address.",
+   "hi": "{{name}}, तुम कैफ़े के वाई-फ़ाई पर अपने स्कूल का रिज़ल्ट पेज खोलते हो और पते के पास एक ताला दिखता है।",
+   "hinglish": "{{name}}, tum café ke Wi-Fi par apne school ka results page kholte ho aur address ke paas ek padlock dikhta hai."
+  },
+  "question": {
+   "en": "What exactly is sent between your browser and the server, and what does the padlock change?",
+   "hi": "तुम्हारे ब्राउज़र और सर्वर के बीच असल में क्या भेजा जाता है, और ताला क्या बदलता है?",
+   "hinglish": "Tumhare browser aur server ke beech asal mein kya bheja jaata hai, aur padlock kya badalta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A browser asks for a page and the server replies 404. What does that mean?",
+   "hi": "ब्राउज़र एक पेज माँगता है और सर्वर 404 जवाब देता है। इसका क्या मतलब है?",
+   "hinglish": "Browser ek page maangta hai aur server 404 jawab deta hai. Iska kya matlab hai?"
+  },
+  "options": [
+   {
+    "en": "The server crashed",
+    "hi": "सर्वर क्रैश हो गया",
+    "hinglish": "Server crash ho gaya"
+   },
+   {
+    "en": "The server worked but has nothing at that address: a 4xx, the request's mistake",
+    "hi": "सर्वर चला पर उस पते पर कुछ नहीं है: 4xx, अनुरोध की गलती",
+    "hinglish": "Server chala par us address par kuch nahi hai: 4xx, request ki galti"
+   },
+   {
+    "en": "The page is blocked by the Wi-Fi",
+    "hi": "पेज वाई-फ़ाई ने रोक दिया",
+    "hinglish": "Page Wi-Fi ne rok diya"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "The server is working: it received the request and answered, but found nothing at that path. Status families tell you who is at fault: 2xx fine, 3xx moved, 4xx the request was wrong or not allowed, 5xx the server failed (a crash would be 500). HTTPS puts all of this inside TLS so others on the Wi-Fi cannot read or change it.",
+   "hi": "सर्वर चल रहा है: उसे अनुरोध मिला और जवाब दिया, पर उस रास्ते पर कुछ नहीं मिला। स्टेटस परिवार बताते हैं गलती किसकी है: 2xx ठीक, 3xx स्थानांतरित, 4xx अनुरोध गलत या अनुमति नहीं, 5xx सर्वर विफल (क्रैश 500 होगा)। HTTPS यह सब TLS के अंदर रखता है ताकि वाई-फ़ाई पर बाकी लोग न पढ़ सकें न बदल सकें।",
+   "hinglish": "Server chal raha hai: use request mili aur jawab diya, par us path par kuch nahi mila. Status families batati hain galti kiski hai: 2xx theek, 3xx moved, 4xx request galat ya permission nahi, 5xx server fail (crash 500 hoga). HTTPS yeh sab TLS ke andar rakhta hai taaki Wi-Fi par baaki log na padh sakein na badal sakein."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home what happens between typing a web address and seeing the page, and what the padlock adds.",
+   "hi": "घर पर किसी को समझाओ कि वेब पता लिखने और पेज दिखने के बीच क्या होता है, और ताला क्या जोड़ता है।",
+   "hinglish": "Ghar par kisi ko samjhao ki web address likhne aur page dikhne ke beech kya hota hai, aur padlock kya jodta hai."
+  },
+  "checklist": [
+   {
+    "en": "The browser sends a request with a method, URL, headers and sometimes a body; the server sends a status, headers and a body.",
+    "hi": "ब्राउज़र विधि, URL, हेडर और कभी-कभी बॉडी के साथ अनुरोध भेजता है; सर्वर स्टेटस, हेडर और बॉडी भेजता है।",
+    "hinglish": "Browser method, URL, headers aur kabhi-kabhi body ke saath request bhejta hai; server status, headers aur body bhejta hai."
+   },
+   {
+    "en": "Status families: 2xx ok, 3xx moved, 4xx the request's mistake (404, 401/403), 5xx the server's mistake.",
+    "hi": "स्टेटस परिवार: 2xx ठीक, 3xx स्थानांतरित, 4xx अनुरोध की गलती (404, 401/403), 5xx सर्वर की गलती।",
+    "hinglish": "Status families: 2xx ok, 3xx moved, 4xx request ki galti (404, 401/403), 5xx server ki galti."
+   },
+   {
+    "en": "Plain HTTP is readable text; HTTPS runs HTTP inside TLS so others cannot read or change it.",
+    "hi": "सादा HTTP पढ़ने योग्य टेक्स्ट है; HTTPS, HTTP को TLS के अंदर चलाता है ताकि बाकी न पढ़ सकें न बदल सकें।",
+    "hinglish": "Plain HTTP readable text hai; HTTPS, HTTP ko TLS ke andar chalata hai taaki baaki na padh sakein na badal sakein."
+   },
+   {
+    "en": "Caching and HTTP/2 or HTTP/3 reduce repeat work and waiting.",
+    "hi": "कैशिंग और HTTP/2 या HTTP/3 दोहराया काम और इंतज़ार घटाते हैं।",
+    "hinglish": "Caching aur HTTP/2 ya HTTP/3 repeat kaam aur wait kam karte hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Method",

@@ -35,6 +35,77 @@
    "hinglish": "HAVING se groups chhaanto aur use WHERE se alag pehchaano"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a marks table lists student numbers only, and the principal wants names beside the scores and each house's average.",
+   "hi": "{{name}}, अंकों की तालिका में सिर्फ़ विद्यार्थी क्रमांक हैं, और प्रधानाचार्य को अंकों के साथ नाम और हर हाउस का औसत चाहिए।",
+   "hinglish": "{{name}}, marks table mein sirf student numbers hain, aur principal ko scores ke saath naam aur har house ka average chahiye."
+  },
+  "question": {
+   "en": "How can a database combine two tables and then squeeze many rows into one summary per house?",
+   "hi": "डेटाबेस दो तालिकाएँ जोड़कर कई पंक्तियों को हर हाउस के एक सारांश में कैसे समेटता है?",
+   "hinglish": "Database do tables jodkar kai rows ko har house ke ek summary mein kaise sametta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A student has no marks yet. Which join still shows that student with empty marks?",
+   "hi": "एक विद्यार्थी के अभी अंक नहीं हैं। कौन-सा जॉइन फिर भी उस विद्यार्थी को खाली अंकों के साथ दिखाता है?",
+   "hinglish": "Ek student ke abhi marks nahi hain. Kaunsa join phir bhi us student ko empty marks ke saath dikhata hai?"
+  },
+  "options": [
+   {
+    "en": "INNER JOIN, because it keeps everything",
+    "hi": "INNER JOIN, क्योंकि वह सब रखता है",
+    "hinglish": "INNER JOIN, kyunki woh sab rakhta hai"
+   },
+   {
+    "en": "LEFT JOIN from students, because it keeps every student even without a match",
+    "hi": "students से LEFT JOIN, क्योंकि वह मेल न होने पर भी हर विद्यार्थी रखता है",
+    "hinglish": "students se LEFT JOIN, kyunki woh match na hone par bhi har student rakhta hai"
+   },
+   {
+    "en": "No join can show a student without marks",
+    "hi": "कोई जॉइन बिना अंक वाले विद्यार्थी को नहीं दिखा सकता",
+    "hinglish": "Koi join bina marks wale student ko nahi dikha sakta"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "INNER JOIN keeps only pairs whose keys match, so a student with no marks disappears. LEFT JOIN keeps every row of the left table and fills the missing side with NULL. For summaries, GROUP BY puts rows into buckets and aggregates like AVG give one number per bucket; WHERE filters rows before grouping, HAVING filters whole groups after.",
+   "hi": "INNER JOIN सिर्फ़ वे जोड़े रखता है जिनकी कुंजियाँ मिलें, इसलिए बिना अंक वाला विद्यार्थी गायब हो जाता है। LEFT JOIN बाएँ तालिका की हर पंक्ति रखता है और गायब हिस्से को NULL से भरता है। सारांश के लिए GROUP BY पंक्तियों को खानों में रखता है और AVG जैसे समेकन हर खाने का एक अंक देते हैं; WHERE समूह बनने से पहले पंक्तियाँ छानता है, HAVING बाद में पूरे समूह।",
+   "hinglish": "INNER JOIN sirf woh pairs rakhta hai jinki keys match karein, isliye bina marks wala student gayab ho jaata hai. LEFT JOIN left table ki har row rakhta hai aur missing side ko NULL se bharta hai. Summaries ke liye GROUP BY rows ko buckets mein rakhta hai aur AVG jaise aggregates har bucket ka ek number dete hain; WHERE grouping se pehle rows chhanta hai, HAVING baad mein poore groups."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home what a JOIN does and why GROUP BY gives one row per group.",
+   "hi": "घर पर किसी को समझाओ कि JOIN क्या करता है और GROUP BY हर समूह की एक पंक्ति क्यों देता है।",
+   "hinglish": "Ghar par kisi ko samjhao ki JOIN kya karta hai aur GROUP BY har group ki ek row kyun deta hai."
+  },
+  "checklist": [
+   {
+    "en": "JOIN ... ON glues rows from two tables where the keys match.",
+    "hi": "JOIN ... ON दो तालिकाओं की पंक्तियाँ वहाँ जोड़ता है जहाँ कुंजियाँ मिलें।",
+    "hinglish": "JOIN ... ON do tables ki rows wahan jodta hai jahan keys match karein."
+   },
+   {
+    "en": "INNER JOIN keeps matches only; LEFT JOIN keeps all left rows and fills gaps with NULL.",
+    "hi": "INNER JOIN सिर्फ़ मेल रखता है; LEFT JOIN बाएँ की सब पंक्तियाँ रखता और खाली जगह NULL से भरता है।",
+    "hinglish": "INNER JOIN sirf matches rakhta hai; LEFT JOIN left ki sab rows rakhta aur khali jagah NULL se bharta hai."
+   },
+   {
+    "en": "GROUP BY makes one bucket per value and aggregates (COUNT, AVG, SUM, MIN, MAX) summarise each bucket.",
+    "hi": "GROUP BY हर मान का एक खाना बनाता है और COUNT, AVG, SUM, MIN, MAX हर खाने का सारांश देते हैं।",
+    "hinglish": "GROUP BY har value ka ek bucket banata hai aur COUNT, AVG, SUM, MIN, MAX har bucket ka summary dete hain."
+   },
+   {
+    "en": "WHERE filters rows before grouping; HAVING filters groups after.",
+    "hi": "WHERE समूह से पहले पंक्तियाँ छानता है; HAVING बाद में समूह।",
+    "hinglish": "WHERE grouping se pehle rows chhanta hai; HAVING baad mein groups."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "JOIN",
@@ -75,7 +146,7 @@
     "hi": "marks में student_id है पर नाम नहीं। JOIN students ON students.id = marks.student_id मिलती पंक्तियों को साथ-साथ चिपका देता है।",
     "hinglish": "marks mein student_id hai par naam nahi. JOIN students ON students.id = marks.student_id matching rows ko saath-saath chipka deta hai."
    },
-   "visual": "anim:join-zip",
+   "visual": "flow:🎓 students (names)|🔗 JOIN ON the id|📝 marks (scores)|📋 Combined rows",
    "narration": {
     "en": "marks has student_id but no names. JOIN students ON students.id = marks.student_id glues the matching rows side by side.",
     "hi": "marks में student_id है पर नाम नहीं। JOIN students ON students.id = marks.student_id मिलती पंक्तियों को साथ-साथ चिपका देता है।",
@@ -103,7 +174,7 @@
     "hi": "GROUP BY house पंक्तियों को बाल्टियों में बाँटता है — हर सदन की एक — और AVG(marks) हर बाल्टी का एक अंक देता है।",
     "hinglish": "GROUP BY house rows ko buckets mein baant-ta hai — har house ki ek — aur AVG(marks) har bucket ka ek number deta hai."
    },
-   "visual": "anim:group-buckets",
+   "visual": "flow:📋 All rows|🪣 GROUP BY house|🧮 AVG(marks) per bucket|📊 One row per house",
    "narration": {
     "en": "GROUP BY house sorts rows into buckets — one per house — and AVG(marks) gives one number per bucket.",
     "hi": "GROUP BY house पंक्तियों को बाल्टियों में बाँटता है — हर सदन की एक — और AVG(marks) हर बाल्टी का एक अंक देता है।",
@@ -117,7 +188,7 @@
     "hi": "WHERE समूह बनने से पहले पंक्तियाँ छाँटता है; HAVING बाद में पूरे समूह। \"जिन सदनों का औसत 70 से ऊपर\" के लिए HAVING चाहिए।",
     "hinglish": "WHERE grouping se pehle rows chhaant-ta hai; HAVING baad mein poore groups. \"Jin houses ka average 70 se upar\" ke liye HAVING chahiye."
    },
-   "visual": "anim:where-vs-having",
+   "visual": "flow:📋 All rows|🔎 WHERE filters rows|🪣 GROUP BY|🔎 HAVING filters groups",
    "narration": {
     "en": "WHERE filters rows before grouping; HAVING filters whole groups after. \"Houses whose average is above 70\" needs HAVING.",
     "hi": "WHERE समूह बनने से पहले पंक्तियाँ छाँटता है; HAVING बाद में पूरे समूह। \"जिन सदनों का औसत 70 से ऊपर\" के लिए HAVING चाहिए।",

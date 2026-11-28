@@ -35,6 +35,77 @@
    "hinglish": "Ghar, factory aur space mein madad karne wale robots ke naam le sakte ho."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a ceiling fan spins at home, and a robot vacuum zooms around and turns when it meets a chair.",
+   "hi": "{{name}}, घर में छत का पंखा घूमता है, और रोबोट वैक्यूम घूमता हुआ कुर्सी मिलने पर मुड़ जाता है।",
+   "hinglish": "{{name}}, ghar mein ceiling fan ghoomta hai, aur robot vacuum ghoomta hua chair milne par mud jaata hai."
+  },
+  "question": {
+   "en": "Both move. Which one is a robot, and why?",
+   "hi": "दोनों चलते हैं। कौन रोबोट है, और क्यों?",
+   "hinglish": "Dono chalte hain. Kaun robot hai, aur kyun?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Which is a robot?",
+   "hi": "कौन रोबोट है?",
+   "hinglish": "Kaun robot hai?"
+  },
+  "options": [
+   {
+    "en": "The fan, because it moves",
+    "hi": "पंखा, क्योंकि वह चलता है",
+    "hinglish": "Fan, kyunki woh chalta hai"
+   },
+   {
+    "en": "The robot vacuum, because it senses a chair and decides to turn",
+    "hi": "रोबोट वैक्यूम, क्योंकि वह कुर्सी महसूस करके मुड़ने का फ़ैसला करता है",
+    "hinglish": "Robot vacuum, kyunki woh chair mehsoos karke mudne ka faisla karta hai"
+   },
+   {
+    "en": "Both, because both have motors",
+    "hi": "दोनों, क्योंकि दोनों में मोटर है",
+    "hinglish": "Dono, kyunki dono mein motor hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "A robot senses, thinks (follows rules) and moves by itself. A fan only spins when switched on: it does not sense or decide, so it is a machine but not a robot.",
+   "hi": "रोबोट महसूस करता है, सोचता है (नियम मानता है) और खुद चलता है। पंखा बस स्विच दबाने पर घूमता है: वह न महसूस करता है न तय करता है, इसलिए वह मशीन है पर रोबोट नहीं।",
+   "hinglish": "Robot sense karta hai, sochta hai (rules follow karta hai) aur khud chalta hai. Fan bas switch dabane par ghoomta hai: woh na sense karta hai na tay karta hai, isliye woh machine hai par robot nahi."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Tell someone at home: what makes a machine a robot?",
+   "hi": "घर पर किसी को बताओ: मशीन रोबोट कब बनती है?",
+   "hinglish": "Ghar par kisi ko batao: machine robot kab banti hai?"
+  },
+  "checklist": [
+   {
+    "en": "A robot senses the world.",
+    "hi": "रोबोट दुनिया को महसूस करता है।",
+    "hinglish": "Robot duniya ko sense karta hai."
+   },
+   {
+    "en": "It follows rules to decide.",
+    "hi": "वह फ़ैसले के लिए नियम मानता है।",
+    "hinglish": "Woh faisle ke liye rules maanta hai."
+   },
+   {
+    "en": "It moves by itself.",
+    "hi": "वह खुद चलता है।",
+    "hinglish": "Woh khud chalta hai."
+   },
+   {
+    "en": "Robots help at home, in factories and in space.",
+    "hi": "रोबोट घर, कारख़ाने और अंतरिक्ष में मदद करते हैं।",
+    "hinglish": "Robots ghar, factory aur space mein madad karte hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Robot",

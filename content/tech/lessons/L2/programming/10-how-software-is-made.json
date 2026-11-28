@@ -39,6 +39,72 @@
    "hinglish": "Samjha sakte ho teams Git jaisa version control kyun use karti hain"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your favourite app updates every few weeks and adds a new feature or fixes something.",
+   "hi": "{{name}}, तुम्हारा पसंदीदा ऐप हर कुछ हफ़्तों में अपडेट होता है और कोई नई सुविधा जोड़ता है या कुछ ठीक करता है।",
+   "hinglish": "{{name}}, tumhara favourite app har kuch hafton mein update hota hai aur koi naya feature jodta hai ya kuch fix karta hai."
+  },
+  "question": {
+   "en": "How do teams build and check an app so it works for millions of people?",
+   "hi": "टीमें ऐप कैसे बनाती और जाँचती हैं कि वह लाखों लोगों के लिए चले?",
+   "hinglish": "Teams app kaise banati aur check karti hain ki woh millions of logon ke liye chale?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A function should accept marks from 0 to 100. Which inputs should a tester try?",
+   "hi": "एक फ़ंक्शन को 0 से 100 तक के अंक लेने हैं। टेस्टर को कौन-से इनपुट आज़माने चाहिए?",
+   "hinglish": "Ek function ko 0 se 100 tak ke marks lene hain. Tester ko kaunse inputs try karne chahiye?"
+  },
+  "options": [
+   {
+    "en": "Only a normal value like 50",
+    "hi": "सिर्फ़ 50 जैसा सामान्य मान",
+    "hinglish": "Sirf 50 jaisa normal value"
+   },
+   {
+    "en": "Normal values, edges like 0 and 100, and wrong ones like -5 or 101",
+    "hi": "सामान्य मान, 0 और 100 जैसे किनारे, और -5 या 101 जैसे गलत मान",
+    "hinglish": "Normal values, 0 aur 100 jaise edges, aur -5 ya 101 jaise wrong values"
+   },
+   {
+    "en": "Only the biggest number",
+    "hi": "सिर्फ़ सबसे बड़ी संख्या",
+    "hinglish": "Sirf sabse badi number"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Bugs hide at the edges and in wrong inputs, not in the easy middle. A good test compares the real result with what you expected for normal, edge and invalid cases, and a version-control tool such as Git records every change so a mistake can be undone.",
+   "hi": "बग किनारों और गलत इनपुट में छिपते हैं, आसान बीच के मान में नहीं। अच्छा टेस्ट सामान्य, किनारे और अमान्य मामलों में असली नतीजे की तुलना अपेक्षित नतीजे से करता है, और Git जैसा वर्ज़न कंट्रोल हर बदलाव दर्ज करता है ताकि गलती पलटी जा सके।",
+   "hinglish": "Bugs edges aur wrong inputs mein chhipte hain, easy beech ke value mein nahi. Achha test normal, edge aur invalid cases mein real result ko expected result se compare karta hai, aur Git jaisa version control har change record karta hai taaki galti undo ho sake."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend how software is built, tested and improved.",
+   "hi": "किसी दोस्त को समझाओ कि सॉफ़्टवेयर कैसे बनता, जाँचा और सुधारा जाता है।",
+   "hinglish": "Kisi dost ko samjhao ki software kaise banta, test hota aur improve hota hai."
+  },
+  "checklist": [
+   {
+    "en": "Teams repeat a cycle: plan, design, build, test, release, collect feedback.",
+    "hi": "टीमें एक चक्र दोहराती हैं: योजना, डिज़ाइन, निर्माण, परीक्षण, रिलीज़, फ़ीडबैक।",
+    "hinglish": "Teams ek cycle repeat karti hain: plan, design, build, test, release, feedback."
+   },
+   {
+    "en": "Tests use normal, edge and wrong inputs and compare with the expected result.",
+    "hi": "टेस्ट सामान्य, किनारे और गलत इनपुट लेते हैं और अपेक्षित नतीजे से तुलना करते हैं।",
+    "hinglish": "Tests normal, edge aur wrong inputs lete hain aur expected result se compare karte hain."
+   },
+   {
+    "en": "Version control like Git records changes so teams can work together and undo mistakes.",
+    "hi": "Git जैसा वर्ज़न कंट्रोल बदलाव दर्ज करता है ताकि टीम साथ काम करे और गलतियाँ पलट सके।",
+    "hinglish": "Git jaisa version control changes record karta hai taaki team saath kaam kare aur galtiyan undo kar sake."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Requirement",

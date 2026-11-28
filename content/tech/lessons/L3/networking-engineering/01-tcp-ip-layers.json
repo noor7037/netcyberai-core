@@ -33,6 +33,77 @@
    "hinglish": "OSI ke 7-layer model ko TCP/IP se milao"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you send 'hi' on a chat app and it reaches a friend on another network, whatever Wi-Fi or SIM either of you uses.",
+   "hi": "{{name}}, तुम चैट ऐप पर 'hi' भेजते हो और वह दूसरे नेटवर्क पर दोस्त तक पहुँच जाता है, चाहे दोनों कोई भी वाई-फ़ाई या सिम इस्तेमाल करें।",
+   "hinglish": "{{name}}, tum chat app par 'hi' bhejte ho aur woh doosre network par dost tak pahunch jaata hai, chahe dono koi bhi Wi-Fi ya SIM use karein."
+  },
+  "question": {
+   "en": "How can one message cross so many different kinds of networks and still arrive intact?",
+   "hi": "एक संदेश इतने अलग तरह के नेटवर्क पार करके भी सही-सलामत कैसे पहुँचता है?",
+   "hinglish": "Ek message itne alag tarah ke networks paar karke bhi sahi-salamat kaise pahunchta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "On the way to the server, what happens to your message at each layer?",
+   "hi": "सर्वर तक जाते समय हर परत पर तुम्हारे संदेश के साथ क्या होता है?",
+   "hinglish": "Server tak jaate samay har layer par tumhare message ke saath kya hota hai?"
+  },
+  "options": [
+   {
+    "en": "Each layer rewrites the message into a new language",
+    "hi": "हर परत संदेश को नई भाषा में दोबारा लिखती है",
+    "hinglish": "Har layer message ko nayi language mein dobara likhti hai"
+   },
+   {
+    "en": "Each layer wraps the data with its own header, like envelopes inside envelopes",
+    "hi": "हर परत डेटा को अपने हेडर में लपेटती है, लिफ़ाफ़े के अंदर लिफ़ाफ़े की तरह",
+    "hinglish": "Har layer data ko apne header mein lapetti hai, lifafe ke andar lifafe ki tarah"
+   },
+   {
+    "en": "Only the top layer touches the message",
+    "hi": "सिर्फ़ ऊपरी परत संदेश को छूती है",
+    "hinglish": "Sirf upri layer message ko chhooti hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "This is encapsulation. The application adds meaning, TCP or UDP adds port numbers, IP adds source and destination addresses, and the link layer adds what the local hop needs. At the server each layer removes its own header and passes the rest up, and each layer talks only to the same layer on the other side, so Wi-Fi can change without breaking your chat app.",
+   "hi": "यह एनकैप्सुलेशन है। एप्लिकेशन अर्थ जोड़ता है, TCP या UDP पोर्ट संख्याएँ, IP स्रोत और गंतव्य पते, और लिंक परत वह जो स्थानीय छलाँग को चाहिए। सर्वर पर हर परत अपना हेडर हटाकर बाकी ऊपर भेजती है, और हर परत दूसरी ओर की उसी परत से बात करती है, इसलिए वाई-फ़ाई बदले तो भी तुम्हारा चैट ऐप नहीं टूटता।",
+   "hinglish": "Yeh encapsulation hai. Application meaning jodta hai, TCP ya UDP port numbers, IP source aur destination addresses, aur link layer woh jo local hop ko chahiye. Server par har layer apna header hatakar baaki upar bhejti hai, aur har layer doosri taraf ki usi layer se baat karti hai, isliye Wi-Fi badle toh bhi tumhara chat app nahi tootta."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a message gets wrapped on the way out and unwrapped at the server.",
+   "hi": "घर पर किसी को समझाओ कि संदेश जाते समय कैसे लपेटा जाता है और सर्वर पर कैसे खोला जाता है।",
+   "hinglish": "Ghar par kisi ko samjhao ki message jaate samay kaise lapeta jaata hai aur server par kaise khola jaata hai."
+  },
+  "checklist": [
+   {
+    "en": "Four TCP/IP layers: Application, Transport, Internet, Link, each with one job.",
+    "hi": "चार TCP/IP परतें: एप्लिकेशन, ट्रांसपोर्ट, इंटरनेट, लिंक, हर एक का एक काम।",
+    "hinglish": "Chaar TCP/IP layers: Application, Transport, Internet, Link, har ek ka ek kaam."
+   },
+   {
+    "en": "Going down, each layer adds its header (ports, then IP addresses, then link details).",
+    "hi": "नीचे जाते समय हर परत अपना हेडर जोड़ती है (पोर्ट, फिर IP पते, फिर लिंक विवरण)।",
+    "hinglish": "Neeche jaate samay har layer apna header jodti hai (ports, phir IP addresses, phir link details)."
+   },
+   {
+    "en": "Going up at the server, each layer strips its own header.",
+    "hi": "सर्वर पर ऊपर जाते समय हर परत अपना हेडर हटाती है।",
+    "hinglish": "Server par upar jaate samay har layer apna header hatati hai."
+   },
+   {
+    "en": "Layers let one part change without breaking the others; OSI has seven layers, TCP/IP folds them into four.",
+    "hi": "परतें एक हिस्सा बदलने देती हैं बिना बाकी तोड़े; OSI में सात परतें हैं, TCP/IP उन्हें चार में समेटता है।",
+    "hinglish": "Layers ek part badalne deti hain bina baaki tode; OSI mein saat layers hain, TCP/IP unhe chaar mein sametta hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Protocol",
@@ -73,7 +144,7 @@
     "hi": "आप चैट ऐप पर \"hi\" भेजते हो। फ़ोन छोड़ने से पहले चार परतें अपना-अपना लेबल जोड़ती हैं, जैसे लिफ़ाफ़े के अंदर लिफ़ाफ़ा।",
     "hinglish": "Tum chat app par \"hi\" bhejte ho. Phone chhodne se pehle chaar layers apna-apna label jodti hain, jaise liffafe ke andar liffafa."
    },
-   "visual": "anim:layer-envelopes",
+   "visual": "flow:💬 Application: the message|📦 Transport: ports|🌍 Internet: IP addresses|📡 Link: local hop",
    "narration": {
     "en": "You send \"hi\" on a chat app. Before it leaves your phone, four layers each add their own label, like envelopes inside envelopes.",
     "hi": "आप चैट ऐप पर \"hi\" भेजते हो। फ़ोन छोड़ने से पहले चार परतें अपना-अपना लेबल जोड़ती हैं, जैसे लिफ़ाफ़े के अंदर लिफ़ाफ़ा।",
@@ -87,7 +158,7 @@
     "hi": "एप्लिकेशन परत (HTTP, DNS, SMTP): संदेश का अर्थ। ट्रांसपोर्ट (TCP/UDP): कौन-सा ऐप, पोर्ट संख्या से, और विश्वसनीयता।",
     "hinglish": "Application layer (HTTP, DNS, SMTP): message ka matlab. Transport (TCP/UDP): kaunsa app, port numbers se, aur reliability."
    },
-   "visual": "anim:layer-stack-top",
+   "visual": "stack:Application (HTTP, DNS)|Transport (TCP, UDP)|Internet (IP)|Link (Wi-Fi, Ethernet)",
    "narration": {
     "en": "Application layer (HTTP, DNS, SMTP): what the message means. Transport (TCP/UDP): which app, using port numbers, and reliability.",
     "hi": "एप्लिकेशन परत (HTTP, DNS, SMTP): संदेश का अर्थ। ट्रांसपोर्ट (TCP/UDP): कौन-सा ऐप, पोर्ट संख्या से, और विश्वसनीयता।",
@@ -115,7 +186,7 @@
     "hi": "सर्वर पर हर परत अपना हेडर हटाकर बाक़ी ऊपर भेजती है। हर परत दूसरी तरफ़ की उसी परत से ही बात करती है।",
     "hinglish": "Server par har layer apna header hata ke baaki upar bhejti hai. Har layer doosri taraf ki usi layer se hi baat karti hai."
    },
-   "visual": "anim:layer-unwrap",
+   "visual": "flow:📡 Link header removed|🌍 IP header removed|📦 TCP header removed|💬 App gets the message",
    "narration": {
     "en": "At the server each layer peels off its own header and passes the rest up. Every layer only talks to the same layer on the other side.",
     "hi": "सर्वर पर हर परत अपना हेडर हटाकर बाक़ी ऊपर भेजती है। हर परत दूसरी तरफ़ की उसी परत से ही बात करती है।",

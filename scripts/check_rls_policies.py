@@ -535,6 +535,8 @@ ALLOWED_PERMISSIVE = (
         ("family.tech_labs_done", "tech_labs_done_own"),
         ("family.tech_badges", "tech_badges_own"),
         ("family.tech_days", "tech_days_own"),
+        # C557: the parent's Tech Lab choices for a child, own account only (restrictive twins below).
+        ("family.tech_settings", "tech_settings_own"),
         ("content.tech_versions", "tech_versions_family_read"),
         ("content.tech_units", "tech_units_family_read"),
         ("content.tech_lessons", "tech_lessons_family_read"),
@@ -1161,6 +1163,8 @@ REQUIRED_RESTRICTIVE = {
     ("family.tech_badges", "tech_badges_one_child"),
     ("family.tech_days", "tech_days_own_only"),
     ("family.tech_days", "tech_days_one_child"),
+    ("family.tech_settings", "tech_settings_own_only"),
+    ("family.tech_settings", "tech_settings_one_child"),
     ("content.tech_versions", "tech_versions_family_only"),
     ("content.tech_units", "tech_units_family_only"),
     ("content.tech_lessons", "tech_lessons_family_only"),

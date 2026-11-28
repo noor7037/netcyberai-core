@@ -33,6 +33,77 @@
    "hi": "दृष्टि कार्यों के नाम: वर्गीकरण, पहचान, विभाजन, OCR"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a crop app looks at a photo of a tomato leaf and names the disease.",
+   "hi": "{{name}}, एक फ़सल ऐप टमाटर की पत्ती की फ़ोटो देखकर बीमारी का नाम बताता है।",
+   "hinglish": "{{name}}, ek crop app tamatar ki patti ki photo dekhkar bimari ka naam batata hai."
+  },
+  "question": {
+   "en": "How can a program \"see\" a picture when all it has is a grid of numbers?",
+   "hi": "जब प्रोग्राम के पास सिर्फ़ संख्याओं का ग्रिड है, तो वह तस्वीर को \"देखता\" कैसे है?",
+   "hinglish": "Jab program ke paas sirf numbers ka grid hai, to woh tasveer ko \"dekhta\" kaise hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What does a 3×3 filter do as it slides across an image?",
+   "hi": "3×3 फ़िल्टर तस्वीर पर खिसकते हुए क्या करता है?",
+   "hinglish": "3×3 filter tasveer par khiskte hue kya karta hai?"
+  },
+  "options": [
+   {
+    "en": "Blurs the picture for privacy",
+    "hi": "निजता के लिए तस्वीर धुँधली करता है",
+    "hinglish": "Privacy ke liye picture blur karta hai"
+   },
+   {
+    "en": "At each position multiplies the 9 pixels by 9 weights and adds them, giving a number that marks where its pattern appears",
+    "hi": "हर स्थान पर 9 पिक्सल को 9 वज़न से गुणा करके जोड़ता है, जिससे वह संख्या बनती है जो बताती है कि उसका पैटर्न कहाँ है",
+    "hinglish": "Har position par 9 pixels ko 9 weights se multiply karke jodta hai, jisse woh number banta hai jo batata hai ki uska pattern kahan hai"
+   },
+   {
+    "en": "Counts the colours in the whole image",
+    "hi": "पूरी तस्वीर के रंग गिनता है",
+    "hinglish": "Poori tasveer ke colours ginta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "A convolution slides a small filter over the image and records how strongly each patch matches it, giving a feature map. Early layers find edges, later ones combine them into textures and shapes, and the final layers name the class. Pooling shrinks maps while keeping the strongest signals.",
+   "hi": "कन्वोल्यूशन छोटे फ़िल्टर को तस्वीर पर खिसकाता है और हर हिस्से के मेल की ताक़त नोट करता है, जिससे फ़ीचर मैप बनता है। शुरुआती परतें किनारे खोजती हैं, बाद वाली उन्हें बनावट और आकार में जोड़ती हैं, और अंतिम परतें वर्ग का नाम देती हैं। पूलिंग मैप छोटे करती है पर सबसे मज़बूत संकेत रखती है।",
+   "hinglish": "Convolution chhote filter ko tasveer par khiskata hai aur har patch ke match ki taqat note karta hai, jisse feature map banta hai. Early layers edges dhoondhti hain, baad wali unhe textures aur shapes mein jodti hain, aur final layers class ka naam deti hain. Pooling maps chhote karti hai par sabse strong signals rakhti hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend how a CNN goes from raw pixel numbers to the words \"early blight\".",
+   "hi": "दोस्त को समझाओ कि CNN कच्चे पिक्सल अंकों से \"अर्ली ब्लाइट\" शब्दों तक कैसे पहुँचता है।",
+   "hinglish": "Friend ko samjhao ki CNN raw pixel numbers se \"early blight\" words tak kaise pahunchta hai."
+  },
+  "checklist": [
+   {
+    "en": "An image is a grid of numbers per colour channel",
+    "hi": "तस्वीर हर रंग चैनल के लिए संख्याओं का ग्रिड है",
+    "hinglish": "Image har colour channel ke liye numbers ka grid hai"
+   },
+   {
+    "en": "A filter slides, multiplies and adds to make a feature map",
+    "hi": "फ़िल्टर खिसकता, गुणा और जोड़ करके फ़ीचर मैप बनाता है",
+    "hinglish": "Filter khisakta, multiply aur add karke feature map banata hai"
+   },
+   {
+    "en": "Early layers find edges, deeper ones combine them into shapes and objects",
+    "hi": "शुरुआती परतें किनारे खोजती हैं, गहरी उन्हें आकार और वस्तुओं में जोड़ती हैं",
+    "hinglish": "Early layers edges dhoondhti hain, deeper unhe shapes aur objects mein jodti hain"
+   },
+   {
+    "en": "Tasks include classification, detection, segmentation and OCR",
+    "hi": "कार्यों में वर्गीकरण, डिटेक्शन, सेगमेंटेशन और OCR शामिल हैं",
+    "hinglish": "Tasks mein classification, detection, segmentation aur OCR shamil hain"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Pixel",
@@ -101,7 +172,7 @@
     "hi": "परत दर परत: किनारे → कोने और बनावट → पत्ती के धब्बे → \"टमाटर अर्ली ब्लाइट, 92%\"।",
     "hinglish": "Layer dar layer: edges → corners aur textures → leaf spots → \"tomato early blight, 92%\"."
    },
-   "visual": "anim:cnn-hierarchy",
+   "visual": "flow:〰️ Edges|🔷 Corners and textures|🍃 Leaf spots|🏷️ Early blight",
    "narration": {
     "en": "Layer after layer: edges → corners and textures → leaf spots → \"tomato early blight, 92%\".",
     "hi": "परत दर परत: किनारे → कोने और बनावट → पत्ती के धब्बे → \"टमाटर अर्ली ब्लाइट, 92%\"।",

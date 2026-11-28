@@ -36,6 +36,77 @@
    "hinglish": "Batao passkey public-key cryptography se kaise kaam karti hai"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you get a text saying 'Your OTP is 482913. Do not share it', and a caller then asks you to read it out.",
+   "hi": "{{name}}, तुम्हें एक संदेश आता है 'आपका OTP 482913 है। किसी को न बताएँ', और फिर कोई फ़ोन करके उसे पढ़कर सुनाने को कहता है।",
+   "hinglish": "{{name}}, tumhe ek message aata hai 'Aapka OTP 482913 hai. Kisi ko na batayein', aur phir koi phone karke use padhkar sunane ko kehta hai."
+  },
+  "question": {
+   "en": "Why do accounts ask for more than a password, and why are some second steps much safer than others?",
+   "hi": "खाते पासवर्ड से ज़्यादा क्यों माँगते हैं, और कुछ दूसरे कदम बाकियों से कहीं ज़्यादा सुरक्षित क्यों हैं?",
+   "hinglish": "Accounts password se zyada kyun maangte hain, aur kuch doosre steps baakiyon se kahin zyada safe kyun hain?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Why does a passkey resist phishing when an SMS code does not?",
+   "hi": "पासकी फ़िशिंग का सामना क्यों कर पाती है जबकि SMS कोड नहीं?",
+   "hinglish": "Passkey phishing ka saamna kyun kar paati hai jabki SMS code nahi?"
+  },
+  "options": [
+   {
+    "en": "Passkeys are longer than codes",
+    "hi": "पासकी कोड से लंबी होती हैं",
+    "hinglish": "Passkeys codes se lambi hoti hain"
+   },
+   {
+    "en": "The passkey signs a challenge for the exact website domain, so a look-alike site gets nothing usable",
+    "hi": "पासकी सटीक वेबसाइट डोमेन के लिए चुनौती पर हस्ताक्षर करती है, इसलिए मिलती-जुलती साइट को कुछ काम का नहीं मिलता",
+    "hinglish": "Passkey exact website domain ke liye challenge par sign karti hai, isliye milti-julti site ko kuch kaam ka nahi milta"
+   },
+   {
+    "en": "Passkeys are stored on the website",
+    "hi": "पासकी वेबसाइट पर रखी जाती हैं",
+    "hinglish": "Passkeys website par rakhi jaati hain"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "An SMS code is a secret you can be tricked into typing on a fake site, which then replays it at once. A passkey is a key pair made for one site: the site stores only the public key, and your device signs a login challenge tied to the real domain after you unlock it with a fingerprint or PIN. There is no shared secret to type or leak, so phishing gets nothing.",
+   "hi": "SMS कोड एक गुप्त है जिसे तुम नकली साइट पर लिखने को बहकाए जा सकते हो, और वह उसे तुरंत दोहरा देती है। पासकी एक साइट के लिए बनी कुंजी जोड़ी है: साइट सिर्फ़ सार्वजनिक कुंजी रखती है, और फ़िंगरप्रिंट या PIN से खोलने के बाद तुम्हारा डिवाइस असली डोमेन से बँधी लॉगिन चुनौती पर हस्ताक्षर करता है। लिखने या लीक होने वाला कोई साझा गुप्त नहीं, इसलिए फ़िशिंग को कुछ नहीं मिलता।",
+   "hinglish": "SMS code ek secret hai jise tum fake site par likhne ko bahkaye ja sakte ho, aur woh use turant replay kar deti hai. Passkey ek site ke liye bani key pair hai: site sirf public key rakhti hai, aur fingerprint ya PIN se unlock karne ke baad tumhara device asli domain se bandhi login challenge par sign karta hai. Likhne ya leak hone wala koi shared secret nahi, isliye phishing ko kuch nahi milta."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home why a stolen password is not enough with MFA, and why a passkey is stronger than an SMS code.",
+   "hi": "घर पर किसी को समझाओ कि MFA होने पर चोरी हुआ पासवर्ड काफ़ी क्यों नहीं, और पासकी SMS कोड से मज़बूत क्यों है।",
+   "hinglish": "Ghar par kisi ko samjhao ki MFA hone par chori hua password kaafi kyun nahi, aur passkey SMS code se strong kyun hai."
+  },
+  "checklist": [
+   {
+    "en": "Three factors: something you know, have and are; MFA combines at least two.",
+    "hi": "तीन कारक: जो तुम जानते हो, रखते हो और हो; MFA कम से कम दो मिलाता है।",
+    "hinglish": "Teen factors: jo tum jaante ho, rakhte ho aur ho; MFA kam se kam do milata hai."
+   },
+   {
+    "en": "A second factor means a stolen password alone no longer opens the account.",
+    "hi": "दूसरा कारक होने पर अकेला चोरी हुआ पासवर्ड खाता नहीं खोलता।",
+    "hinglish": "Doosra factor hone par akela chori hua password account nahi kholta."
+   },
+   {
+    "en": "Ranking: SMS OTP weakest, then authenticator app, then passkeys and security keys; codes can be phished, so never share an OTP.",
+    "hi": "क्रम: SMS OTP सबसे कमज़ोर, फिर ऑथेंटिकेटर ऐप, फिर पासकी और सुरक्षा कुंजियाँ; कोड फ़िशिंग से लिए जा सकते हैं, इसलिए OTP कभी साझा न करो।",
+    "hinglish": "Order: SMS OTP sabse kamzor, phir authenticator app, phir passkeys aur security keys; codes phish ho sakte hain, isliye OTP kabhi share na karo."
+   },
+   {
+    "en": "A passkey is a key pair per site; the device signs a challenge for that exact domain.",
+    "hi": "पासकी हर साइट की कुंजी जोड़ी है; डिवाइस उसी सटीक डोमेन की चुनौती पर हस्ताक्षर करता है।",
+    "hinglish": "Passkey har site ki key pair hai; device usi exact domain ki challenge par sign karta hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "MFA",
@@ -90,7 +161,7 @@
     "hi": "अकेला चोरी पासवर्ड अब काफ़ी नहीं — हमलावर को आपका फ़ोन भी चाहिए। इससे ज़्यादातर खाता-कब्ज़े रुकते हैं।",
     "hinglish": "Akela chori password ab kaafi nahi — attacker ko tumhara phone bhi chahiye. Isse zyaadatar account takeovers rukte hain."
    },
-   "visual": "anim:mfa-gate",
+   "visual": "flow:🔑 Password is right|📱 A second factor is needed|✅ Access only if both pass",
    "narration": {
     "en": "A stolen password alone is no longer enough — the attacker also needs your phone. That blocks most account takeovers.",
     "hi": "अकेला चोरी पासवर्ड अब काफ़ी नहीं — हमलावर को आपका फ़ोन भी चाहिए। इससे ज़्यादातर खाता-कब्ज़े रुकते हैं।",
@@ -118,7 +189,7 @@
     "hi": "पासकी ठीक उसी वेबसाइट डोमेन की चुनौती पर हस्ताक्षर करती है। नक़ली दिखती साइट को कुछ काम का नहीं मिलता, इसलिए पासकी फ़िशिंग से बचाती है।",
     "hinglish": "Passkey bilkul usi website domain ke challenge ko sign karti hai. Look-alike site ko kuch kaam ka nahi milta, isliye passkeys phishing se bachati hain."
    },
-   "visual": "anim:passkey-domain",
+   "visual": "flow:🌐 Real site sends a challenge|🔏 Device signs it for that domain|✅ Site checks the public key",
    "narration": {
     "en": "A passkey signs a challenge for the exact website domain. A look-alike site gets nothing useful, so passkeys resist phishing.",
     "hi": "पासकी ठीक उसी वेबसाइट डोमेन की चुनौती पर हस्ताक्षर करती है। नक़ली दिखती साइट को कुछ काम का नहीं मिलता, इसलिए पासकी फ़िशिंग से बचाती है।",

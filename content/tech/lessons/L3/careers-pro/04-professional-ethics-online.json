@@ -36,6 +36,77 @@
    "hinglish": "Indian law ke tahat privacy, consent aur credit ka samman karo"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, while testing your school's result website for fun, you notice that changing a number in the web address shows another student's marks.",
+   "hi": "{{name}}, मज़े में अपने स्कूल की रिज़ल्ट वेबसाइट देखते हुए तुम्हें दिखता है कि वेब पते में एक संख्या बदलने से दूसरे छात्र के अंक दिख जाते हैं।",
+   "hinglish": "{{name}}, mazaak mein apne school ki result website dekhte hue tumhe dikhta hai ki web address mein ek number badalne se doosre student ke marks dikh jaate hain."
+  },
+  "question": {
+   "en": "What should a responsible person do next, and what rules apply to people's data online?",
+   "hi": "ज़िम्मेदार इंसान को आगे क्या करना चाहिए, और ऑनलाइन लोगों के डेटा पर कौन-से नियम लागू हैं?",
+   "hinglish": "Zimmedar insaan ko aage kya karna chahiye, aur online logon ke data par kaunse rules lagu hain?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "You have found a security flaw in a school website. What is the responsible next step?",
+   "hi": "तुम्हें स्कूल की वेबसाइट में सुरक्षा खामी मिली है। ज़िम्मेदार अगला क़दम क्या है?",
+   "hinglish": "Tumhe school website mein security flaw mili hai. Zimmedar agla step kya hai?"
+  },
+  "options": [
+   {
+    "en": "Look at more students' marks to prove it works",
+    "hi": "साबित करने के लिए और छात्रों के अंक देखो",
+    "hinglish": "Prove karne ke liye aur students ke marks dekho"
+   },
+   {
+    "en": "Post it on social media so everyone knows",
+    "hi": "सोशल मीडिया पर डाल दो ताकि सबको पता चले",
+    "hinglish": "Social media par daal do taaki sabko pata chale"
+   },
+   {
+    "en": "Stop testing, note what you saw, and report it privately to the school or the site owner",
+    "hi": "जाँच रोको, जो देखा नोट करो, और स्कूल या साइट के मालिक को निजी तौर पर बताओ",
+    "hinglish": "Testing roko, jo dekha note karo, aur school ya site owner ko privately batao"
+   }
+  ],
+  "answer": 2,
+  "explain": {
+   "en": "Responsible disclosure means not going further than needed, not viewing or sharing other people's data, and telling the owner privately so it can be fixed before anyone abuses it. Professionals also ask who could be harmed, are honest, follow the law, and respect privacy, consent and credit.",
+   "hi": "ज़िम्मेदार प्रकटीकरण का मतलब है ज़रूरत से आगे न जाना, दूसरों का डेटा न देखना या बाँटना, और मालिक को निजी तौर पर बताना ताकि किसी के दुरुपयोग से पहले ठीक हो सके। पेशेवर यह भी पूछते हैं कि किसे नुक़सान हो सकता है, ईमानदार रहते हैं, क़ानून मानते हैं, और निजता, सहमति और श्रेय का सम्मान करते हैं।",
+   "hinglish": "Responsible disclosure ka matlab hai zaroorat se aage na jaana, doosron ka data na dekhna ya baantna, aur owner ko privately batana taaki kisi ke misuse se pehle theek ho sake. Professionals yeh bhi poochte hain ki kise nuksaan ho sakta hai, honest rehte hain, law maante hain, aur privacy, consent aur credit ka samman karte hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home what to do after finding a flaw in a website, and why you should not keep poking.",
+   "hi": "घर पर किसी को समझाओ कि वेबसाइट में खामी मिलने पर क्या करें, और और जाँचते क्यों नहीं रहना चाहिए।",
+   "hinglish": "Ghar par kisi ko samjhao ki website mein flaw milne par kya karein, aur aur poke karte kyun nahi rehna chahiye."
+  },
+  "checklist": [
+   {
+    "en": "Professionals ask who could be harmed, whether it is honest and legal, and whether it is public-minded",
+    "hi": "पेशेवर पूछते हैं किसे नुक़सान हो सकता है, क्या यह ईमानदार और वैध है, और क्या जनहित में है",
+    "hinglish": "Professionals poochte hain kise nuksaan ho sakta hai, kya yeh honest aur legal hai, aur kya public-minded hai"
+   },
+   {
+    "en": "Found a flaw: notice, stop, report privately, wait for the fix",
+    "hi": "खामी मिले: ध्यान दो, रुको, निजी तौर पर बताओ, सुधार का इंतज़ार करो",
+    "hinglish": "Flaw mile: notice karo, ruko, privately report karo, fix ka wait karo"
+   },
+   {
+    "en": "Personal data needs consent, a purpose, minimum collection and deletion",
+    "hi": "निजी डेटा के लिए सहमति, उद्देश्य, न्यूनतम संग्रह और मिटाना चाहिए",
+    "hinglish": "Personal data ke liye consent, purpose, minimum collection aur deletion chahiye"
+   },
+   {
+    "en": "Credit others and disclose AI help",
+    "hi": "दूसरों को श्रेय दो और AI की मदद बताओ",
+    "hinglish": "Doosron ko credit do aur AI ki madad batao"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Code of ethics",

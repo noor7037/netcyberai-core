@@ -37,6 +37,82 @@
    "hinglish": "AI ko aise samjha sakte ho: computer jo insaan jaisi soch wale kaam karte hain"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, at the fruit stall your mother says, \"Yellow means ripe,\" but the Langra mango in the basket is ripe and still green.",
+   "hi": "{{name}}, फल की दुकान पर तुम्हारी माँ कहती हैं, \"पीला मतलब पका,\" पर टोकरी का लंगड़ा आम पका होकर भी हरा है।",
+   "hinglish": "{{name}}, fruit stall par tumhari mummy kehti hain, \"Yellow matlab ripe,\" par basket ka Langra mango ripe hokar bhi green hai."
+  },
+  "question": {
+   "en": "If a rule like that can fail, how could a computer learn to tell ripe from raw?",
+   "hi": "अगर ऐसा नियम फ़ेल हो सकता है, तो कंप्यूटर पके और कच्चे में फ़र्क़ करना कैसे सीख सकता है?",
+   "hinglish": "Agar aisa rule fail ho sakta hai, to computer ripe aur raw mein farq karna kaise seekh sakta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "To make a computer spot ripe mangoes by learning, rather than by rules, what would you give it?",
+   "hi": "कंप्यूटर को नियमों के बजाय सीखकर पके आम पहचानना सिखाना हो, तो तुम उसे क्या दोगे?",
+   "hinglish": "Computer ko rules ki jagah seekhkar pake aam pehchanna sikhana ho, to tum use kya doge?"
+  },
+  "options": [
+   {
+    "en": "Many more if-then rules written by hand",
+    "hi": "हाथ से लिखे ढेर सारे और if-then नियम",
+    "hinglish": "Haath se likhe dher saare aur if-then rules"
+   },
+   {
+    "en": "Many examples of mangoes, each labelled ripe or raw",
+    "hi": "आमों के ढेर सारे उदाहरण, हर एक पर पका या कच्चा लिखा",
+    "hinglish": "Aamon ke dher saare examples, har ek par ripe ya raw likha"
+   },
+   {
+    "en": "A bigger screen",
+    "hi": "बड़ी स्क्रीन",
+    "hinglish": "Badi screen"
+   },
+   {
+    "en": "One perfect mango",
+    "hi": "एक आदर्श आम",
+    "hinglish": "Ek perfect aam"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "In machine learning a person does not write the rule. The computer is shown many labelled examples and finds the pattern itself, which can catch cases the simple rule misses, like a green ripe mango.",
+   "hi": "मशीन लर्निंग में इंसान नियम नहीं लिखता। कंप्यूटर को लेबल लगे ढेर सारे उदाहरण दिखाए जाते हैं और वह पैटर्न खुद ढूँढता है, जो सरल नियम की छूटी बातें पकड़ सकता है, जैसे हरा पका आम।",
+   "hinglish": "Machine learning mein insaan rule nahi likhta. Computer ko label lage dher saare examples dikhaye jaate hain aur woh pattern khud dhoondhta hai, jo simple rule ki chhooti baatein pakad sakta hai, jaise green ripe aam."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home the difference between a rule and a learned model.",
+   "hi": "घर पर किसी को समझाओ कि नियम और सीखे हुए मॉडल में क्या फ़र्क़ है।",
+   "hinglish": "Ghar par kisi ko samjhao ki rule aur learned model mein kya farq hai."
+  },
+  "checklist": [
+   {
+    "en": "A rule is written by a person, like \"if yellow, then ripe\": clear but sometimes wrong.",
+    "hi": "नियम इंसान लिखता है, जैसे \"पीला हो तो पका\": साफ़ पर कभी-कभी ग़लत।",
+    "hinglish": "Rule insaan likhta hai, jaise \"yellow ho to ripe\": clear par kabhi-kabhi galat."
+   },
+   {
+    "en": "A learned model finds the pattern itself from many labelled examples.",
+    "hi": "सीखा मॉडल ढेर सारे लेबल वाले उदाहरणों से पैटर्न खुद ढूँढता है।",
+    "hinglish": "Learned model dher saare labelled examples se pattern khud dhoondhta hai."
+   },
+   {
+    "en": "Rules suit simple, known logic; learning is better when the pattern is hard to write down.",
+    "hi": "नियम सरल, जाने हुए तर्क के लिए ठीक हैं; सीखना तब बेहतर है जब पैटर्न लिखना मुश्किल हो।",
+    "hinglish": "Rules simple, jaane hue logic ke liye theek hain; learning tab behtar hai jab pattern likhna mushkil ho."
+   },
+   {
+    "en": "AI means computers doing tasks that seem to need human-like thinking.",
+    "hi": "AI यानी कंप्यूटर ऐसे काम करते हैं जिनमें इंसान जैसी सोच लगती है।",
+    "hinglish": "AI yaani computers aise kaam karte hain jinmein insaan jaisi soch lagti hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Artificial intelligence (AI)",
@@ -85,7 +161,7 @@
     "hi": "मशीन लर्निंग इसे उलट देती है: कंप्यूटर को कई लेबल वाले उदाहरण दो और उसे ख़ुद पैटर्न खोजने दो।",
     "hinglish": "Machine learning ise ulat deti hai: computer ko kai labelled examples do aur use khud pattern dhoondhne do."
    },
-   "visual": "code",
+   "visual": "flow:🏷️ Labelled examples|🧠 Computer finds pattern|✅ Model predicts",
    "narration": {
     "en": "Traditional programming: rules + data → answers. Machine learning: data + answers → rules.",
     "hi": "पारंपरिक प्रोग्रामिंग: नियम + डेटा → उत्तर। मशीन लर्निंग: डेटा + उत्तर → नियम।",

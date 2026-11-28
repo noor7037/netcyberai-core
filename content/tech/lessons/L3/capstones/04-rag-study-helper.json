@@ -34,6 +34,77 @@
    "hinglish": "Faithfulness evaluate karo aur \"I don’t know\" kehlwao"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, the night before the exam you ask a chatbot about a chapter, and it mixes in things your textbook never says.",
+   "hi": "{{name}}, परीक्षा की पिछली रात तुम चैटबॉट से किसी अध्याय के बारे में पूछते हो और वह ऐसी बातें मिला देता है जो तुम्हारी पाठ्यपुस्तक में कभी नहीं थीं।",
+   "hinglish": "{{name}}, exam ki pichhli raat tum chatbot se kisi chapter ke baare mein poochhte ho aur woh aisi baatein mila deta hai jo tumhari textbook mein kabhi nahi thi."
+  },
+  "question": {
+   "en": "How can you build a helper that answers only from your own notes and admits when it does not know?",
+   "hi": "ऐसा सहायक कैसे बनाएँ जो सिर्फ़ तुम्हारे अपने नोट्स से जवाब दे और न पता हो तो मान ले?",
+   "hinglish": "Aisa helper kaise banayein jo sirf tumhare apne notes se answer de aur na pata ho to maan le?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Your RAG helper is asked a question your notes do not cover. What should it do?",
+   "hi": "तुम्हारे RAG सहायक से ऐसा सवाल पूछा जाता है जो तुम्हारे नोट्स में नहीं है। उसे क्या करना चाहिए?",
+   "hinglish": "Tumhare RAG helper se aisa sawal poochha jaata hai jo tumhare notes mein nahi hai. Use kya karna chahiye?"
+  },
+  "options": [
+   {
+    "en": "Answer from its general memory anyway",
+    "hi": "फिर भी अपनी सामान्य याददाश्त से जवाब दे",
+    "hinglish": "Phir bhi apni general memory se answer de"
+   },
+   {
+    "en": "Say it does not know, because the prompt tells it to answer only from the retrieved sources",
+    "hi": "कहे कि उसे नहीं पता, क्योंकि प्रॉम्प्ट कहता है कि सिर्फ़ मिले स्रोतों से जवाब दे",
+    "hinglish": "Kahe ki use nahi pata, kyunki prompt kehta hai ki sirf retrieved sources se answer de"
+   },
+   {
+    "en": "Pick the closest chunk and present it as the answer",
+    "hi": "सबसे पास का टुकड़ा चुनकर उसे जवाब बताए",
+    "hinglish": "Sabse paas ka chunk chunkar use answer bataye"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "The prompt tells the model to use only the retrieved chunks, cite them, and say \"I don't know\" when they do not contain the answer. Test with questions the notes can answer and some they cannot, and check that cited chunks really support the answer (faithfulness).",
+   "hi": "प्रॉम्प्ट मॉडल को कहता है कि सिर्फ़ मिले टुकड़ों का उपयोग करे, उन्हें उद्धृत करे, और जवाब न हो तो \"मुझे नहीं पता\" कहे। ऐसे सवालों से परखो जिनका जवाब नोट्स में है और कुछ जिनका नहीं, और जाँचो कि उद्धृत टुकड़े सच में जवाब का समर्थन करते हैं (faithfulness)।",
+   "hinglish": "Prompt model ko kehta hai ki sirf retrieved chunks use kare, unhe cite kare, aur answer na ho to \"mujhe nahi pata\" kahe. Aise sawalon se parakho jinka answer notes mein hai aur kuch jinka nahi, aur check karo ki cited chunks sach mein answer ka support karte hain (faithfulness)."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a classmate how your study helper finds an answer in your notes and what it does when the notes do not have one.",
+   "hi": "सहपाठी को समझाओ कि तुम्हारा स्टडी सहायक नोट्स में जवाब कैसे ढूँढता है और नोट्स में न हो तो क्या करता है।",
+   "hinglish": "Classmate ko samjhao ki tumhara study helper notes mein answer kaise dhoondhta hai aur notes mein na ho to kya karta hai."
+  },
+  "checklist": [
+   {
+    "en": "Load, chunk, embed and store the notes",
+    "hi": "नोट्स लोड करो, टुकड़े करो, एम्बेड करो और स्टोर करो",
+    "hinglish": "Notes load karo, chunk karo, embed karo aur store karo"
+   },
+   {
+    "en": "At question time embed the question and retrieve the top chunks",
+    "hi": "सवाल के समय सवाल एम्बेड करो और शीर्ष टुकड़े लाओ",
+    "hinglish": "Question ke samay question embed karo aur top chunks lao"
+   },
+   {
+    "en": "The prompt says answer only from sources, cite them, or say \"I don't know\"",
+    "hi": "प्रॉम्प्ट कहता है सिर्फ़ स्रोतों से जवाब दो, उद्धृत करो, या \"पता नहीं\" कहो",
+    "hinglish": "Prompt kehta hai sirf sources se answer do, cite karo, ya \"pata nahi\" kaho"
+   },
+   {
+    "en": "Test with answerable and unanswerable questions and check faithfulness",
+    "hi": "जवाब वाले और बिना जवाब वाले सवालों से परखो और faithfulness जाँचो",
+    "hinglish": "Answerable aur unanswerable sawalon se parakho aur faithfulness check karo"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Chunk",

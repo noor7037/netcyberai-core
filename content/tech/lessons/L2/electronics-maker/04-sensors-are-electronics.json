@@ -38,6 +38,82 @@
    "hinglish": "Threshold se reading ko decision mein badal sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, the street light outside your building switches on by itself as soon as evening turns dark.",
+   "hi": "{{name}}, तुम्हारी बिल्डिंग के बाहर की स्ट्रीट लाइट शाम के अँधेरा होते ही अपने आप जल जाती है।",
+   "hinglish": "{{name}}, tumhari building ke bahar ki street light shaam ke andhera hote hi apne aap jal jaati hai."
+  },
+  "question": {
+   "en": "A plain circuit has no eyes. How can it notice that it has become dark?",
+   "hi": "साधारण सर्किट की आँखें नहीं होतीं। उसे कैसे पता चलता है कि अँधेरा हो गया?",
+   "hinglish": "Ek simple circuit ki aankhein nahi hoti. Use kaise pata chalta hai ki andhera ho gaya?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "An LDR (light-dependent resistor) is sitting in a dark room. What is its resistance like?",
+   "hi": "एक LDR (प्रकाश-निर्भर प्रतिरोधक) अँधेरे कमरे में रखा है। उसका प्रतिरोध कैसा होगा?",
+   "hinglish": "Ek LDR (light-dependent resistor) andhere kamre mein rakha hai. Uska resistance kaisa hoga?"
+  },
+  "options": [
+   {
+    "en": "Very low, nearly zero",
+    "hi": "बहुत कम, लगभग शून्य",
+    "hinglish": "Bahut kam, lagbhag zero"
+   },
+   {
+    "en": "Very high, about a million ohms",
+    "hi": "बहुत ज़्यादा, लगभग दस लाख ओम",
+    "hinglish": "Bahut zyada, lagbhag das lakh ohms"
+   },
+   {
+    "en": "The same as in bright light",
+    "hi": "तेज़ रोशनी जितना ही",
+    "hinglish": "Tez roshni jitna hi"
+   },
+   {
+    "en": "It has no resistance, it makes light",
+    "hi": "कोई प्रतिरोध नहीं, वह रोशनी बनाता है",
+    "hinglish": "Koi resistance nahi, woh roshni banata hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "An LDR's resistance falls as more light falls on it, from about a million ohms in the dark to a few hundred in bright light. That change shifts a voltage the microcontroller can read.",
+   "hi": "LDR पर जितनी ज़्यादा रोशनी पड़ती है उसका प्रतिरोध उतना घटता है, अँधेरे में लगभग दस लाख ओम से तेज़ रोशनी में कुछ सौ ओम तक। इस बदलाव से एक वोल्टेज बदलता है जिसे माइक्रोकंट्रोलर पढ़ सकता है।",
+   "hinglish": "LDR par jitni zyada roshni padti hai uska resistance utna ghatta hai, andhere mein lagbhag das lakh ohms se tez roshni mein kuch sau ohms tak. Is change se ek voltage badalta hai jo microcontroller padh sakta hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a sensor lets a circuit sense the world and make a decision.",
+   "hi": "घर पर किसी को समझाओ कि सेंसर सर्किट को दुनिया महसूस करने और फ़ैसला लेने में कैसे मदद करता है।",
+   "hinglish": "Ghar par kisi ko samjhao ki sensor circuit ko duniya sense karne aur decision lene mein kaise madad karta hai."
+  },
+  "checklist": [
+   {
+    "en": "A sensor turns something physical, like light, heat or distance, into an electrical signal.",
+    "hi": "सेंसर रोशनी, गर्मी या दूरी जैसी भौतिक चीज़ को बिजली के संकेत में बदलता है।",
+    "hinglish": "Sensor roshni, garmi ya doori jaisi physical cheez ko electrical signal mein badalta hai."
+   },
+   {
+    "en": "An LDR's resistance falls in light and an NTC thermistor's falls as it warms.",
+    "hi": "LDR का प्रतिरोध रोशनी में घटता है और NTC थर्मिस्टर का गर्म होने पर।",
+    "hinglish": "LDR ka resistance roshni mein ghatta hai aur NTC thermistor ka garm hone par."
+   },
+   {
+    "en": "An ultrasonic sensor times an echo: distance = time × 343 ÷ 2.",
+    "hi": "अल्ट्रासोनिक सेंसर प्रतिध्वनि का समय नापता है: दूरी = समय × 343 ÷ 2।",
+    "hinglish": "Ultrasonic sensor echo ka time naapta hai: distance = time × 343 ÷ 2."
+   },
+   {
+    "en": "A threshold turns a reading into a decision, like beep if distance is under 20 cm.",
+    "hi": "सीमा-मान एक रीडिंग को फ़ैसले में बदलता है, जैसे दूरी 20 cm से कम हो तो बीप।",
+    "hinglish": "Threshold ek reading ko decision mein badalta hai, jaise distance 20 cm se kam ho to beep."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Sensor",
@@ -92,7 +168,7 @@
     "hi": "अल्ट्रासोनिक सेंसर 40 kHz की ध्वनि भेजकर गूँज का समय मापता है। ध्वनि लगभग 343 m/s चलती है, इसलिए दूरी = समय × 343 ÷ 2।",
     "hinglish": "Ultrasonic sensor 40 kHz ping bhejkar echo ka time naapta hai. Sound lagbhag 343 m/s chalti hai, isliye distance = time × 343 ÷ 2."
    },
-   "visual": "code",
+   "visual": "flow:🔊 Send 40 kHz ping|🧱 Echo bounces back|⏱️ Time the echo|📏 Work out distance",
    "narration": {
     "en": "Divide by 2 because the sound goes there and back.",
     "hi": "2 से भाग क्योंकि ध्वनि जाती है और वापस आती है।",

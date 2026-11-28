@@ -38,6 +38,77 @@
    "hinglish": "Step by step debug kar sakte ho: reproduce, trace, fix, retest"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your game crashes right when you reach the last level.",
+   "hi": "{{name}}, तुम्हारा गेम ठीक आख़िरी लेवल पर पहुँचते ही क्रैश हो जाता है।",
+   "hinglish": "{{name}}, tumhara game theek aakhri level par pahunchte hi crash ho jaata hai."
+  },
+  "question": {
+   "en": "How do programmers find out which line is wrong among thousands?",
+   "hi": "प्रोग्रामर हज़ारों पंक्तियों में गलत पंक्ति कैसे ढूँढते हैं?",
+   "hinglish": "Programmers hazaron lines mein galat line kaise dhoondhte hain?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A program runs without any error, but prints 90 instead of the right answer 100. What kind of error is this?",
+   "hi": "एक प्रोग्राम बिना किसी त्रुटि के चलता है पर सही उत्तर 100 की जगह 90 छापता है। यह किस तरह की त्रुटि है?",
+   "hinglish": "Ek program bina kisi error ke chalta hai par sahi answer 100 ki jagah 90 print karta hai. Yeh kis tarah ka error hai?"
+  },
+  "options": [
+   {
+    "en": "A syntax error",
+    "hi": "सिंटैक्स त्रुटि",
+    "hinglish": "Syntax error"
+   },
+   {
+    "en": "A runtime error",
+    "hi": "रनटाइम त्रुटि",
+    "hinglish": "Runtime error"
+   },
+   {
+    "en": "A logic error: no crash, just a wrong answer",
+    "hi": "लॉजिक त्रुटि: क्रैश नहीं, बस गलत उत्तर",
+    "hinglish": "Logic error: crash nahi, bas galat answer"
+   }
+  ],
+  "answer": 2,
+  "explain": {
+   "en": "Syntax errors stop the program from starting and runtime errors crash it midway, so Python tells you. A logic error is sneaky because nothing complains. Trace with small inputs you can check by hand, change one thing at a time and retest.",
+   "hi": "सिंटैक्स त्रुटि प्रोग्राम को शुरू नहीं होने देती और रनटाइम त्रुटि बीच में क्रैश करती है, इसलिए Python बता देता है। लॉजिक त्रुटि चुपके से आती है क्योंकि कोई शिकायत नहीं करता। छोटे इनपुट से ट्रेस करो जिन्हें हाथ से जाँच सको, एक बार में एक बदलाव करो और फिर जाँचो।",
+   "hinglish": "Syntax error program ko shuru nahi hone deti aur runtime error beech mein crash karti hai, isliye Python bata deta hai. Logic error chupke se aati hai kyunki koi complain nahi karta. Chhote inputs se trace karo jinhe haath se check kar sako, ek baar mein ek change karo aur phir check karo."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how to find and fix a bug in a program.",
+   "hi": "घर पर किसी को समझाओ कि प्रोग्राम में बग कैसे ढूँढें और ठीक करें।",
+   "hinglish": "Ghar par kisi ko samjhao ki program mein bug kaise dhoondhein aur theek karein."
+  },
+  "checklist": [
+   {
+    "en": "Read the error: its type and line number are clues.",
+    "hi": "त्रुटि पढ़ो: उसका प्रकार और पंक्ति संख्या सुराग हैं।",
+    "hinglish": "Error padho: uska type aur line number clues hain."
+   },
+   {
+    "en": "Syntax errors stop the start, runtime errors crash midway, logic errors give wrong answers.",
+    "hi": "सिंटैक्स त्रुटि शुरू होने से रोकती है, रनटाइम बीच में क्रैश करती है, लॉजिक गलत उत्तर देती है।",
+    "hinglish": "Syntax errors start hone se rokti hain, runtime beech mein crash karti hai, logic galat answer deti hai."
+   },
+   {
+    "en": "Reproduce, trace with print or small inputs, change one thing, retest.",
+    "hi": "दोहराओ, print या छोटे इनपुट से ट्रेस करो, एक चीज़ बदलो, फिर जाँचो।",
+    "hinglish": "Reproduce karo, print ya chhote inputs se trace karo, ek cheez badlo, phir check karo."
+   },
+   {
+    "en": "Test edge cases such as 0, negatives and an empty list.",
+    "hi": "0, ऋणात्मक और ख़ाली सूची जैसे किनारे के मामले जाँचो।",
+    "hinglish": "Edge cases jaise 0, negatives aur empty list test karo."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Bug",

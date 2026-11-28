@@ -38,6 +38,72 @@
    "hinglish": "Bata sakte ho ki AI pixels mein patterns dhoondh kar cheezein kaise pehchaanta hai."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you zoom into a photo on your phone until it turns into tiny coloured squares.",
+   "hi": "{{name}}, तुम फ़ोन पर फ़ोटो को इतना ज़ूम करते हो कि वह छोटे रंगीन चौकोरों में बदल जाती है।",
+   "hinglish": "{{name}}, tum phone par photo ko itna zoom karte ho ki woh chhote rangeen chaukoron mein badal jaati hai."
+  },
+  "question": {
+   "en": "What are those squares, and how can a computer use them to know it is a tiger?",
+   "hi": "वे चौकोर क्या हैं, और कंप्यूटर उनसे कैसे जानता है कि यह बाघ है?",
+   "hinglish": "Woh chaukor kya hain, aur computer unse kaise jaanta hai ki yeh baagh hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A computer looks at a tiger photo. What does it actually work with?",
+   "hi": "कंप्यूटर बाघ की फ़ोटो देखता है। असल में वह किससे काम करता है?",
+   "hinglish": "Computer baagh ki photo dekhta hai. Asal mein woh kisse kaam karta hai?"
+  },
+  "options": [
+   {
+    "en": "It sees a tiger the way you do",
+    "hi": "वह बाघ को वैसे ही देखता है जैसे तुम",
+    "hinglish": "Woh baagh ko waise hi dekhta hai jaise tum"
+   },
+   {
+    "en": "Only numbers: each pixel is 3 numbers for red, green and blue",
+    "hi": "सिर्फ़ संख्याएँ: हर पिक्सेल लाल, हरे और नीले की 3 संख्याएँ है",
+    "hinglish": "Sirf numbers: har pixel red, green aur blue ke 3 numbers hai"
+   },
+   {
+    "en": "A short word describing the picture",
+    "hi": "तस्वीर का वर्णन करने वाला एक छोटा शब्द",
+    "hinglish": "Tasveer ka varnan karne wala ek chhota shabd"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "A picture is a grid of pixels, and each pixel is stored as three numbers. AI finds patterns in those numbers, like stripes, and matches them to what it learnt. It never sees a tiger the way you do.",
+   "hi": "तस्वीर पिक्सेल की जाली है, और हर पिक्सेल तीन संख्याओं में रखा जाता है। AI उन संख्याओं में धारियों जैसे पैटर्न ढूँढता है और सीखी हुई चीज़ों से मिलाता है। वह बाघ को तुम्हारी तरह नहीं देखता।",
+   "hinglish": "Tasveer pixels ki jaali hai, aur har pixel teen numbers mein rakha jaata hai. AI un numbers mein stripes jaise patterns dhoondta hai aur seekhi hui cheezon se milata hai. Woh baagh ko tumhari tarah nahi dekhta."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: how does a computer \"see\" a picture?",
+   "hi": "घर पर किसी को समझाओ: कंप्यूटर तस्वीर कैसे \"देखता\" है?",
+   "hinglish": "Ghar par kisi ko samjhao: computer tasveer kaise \"dekhta\" hai?"
+  },
+  "checklist": [
+   {
+    "en": "A picture is a grid of tiny squares called pixels.",
+    "hi": "तस्वीर पिक्सेल नाम के छोटे चौकोरों की जाली है।",
+    "hinglish": "Tasveer pixels naam ke chhote chaukoron ki jaali hai."
+   },
+   {
+    "en": "Each pixel is 3 numbers: red, green, blue.",
+    "hi": "हर पिक्सेल 3 संख्याएँ है: लाल, हरा, नीला।",
+    "hinglish": "Har pixel 3 numbers hai: red, green, blue."
+   },
+   {
+    "en": "AI finds patterns in the numbers, like stripes.",
+    "hi": "AI संख्याओं में पैटर्न ढूँढता है, जैसे धारियाँ।",
+    "hinglish": "AI numbers mein patterns dhoondta hai, jaise stripes."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Pixel",

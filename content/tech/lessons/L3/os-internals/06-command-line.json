@@ -34,6 +34,77 @@
    "hinglish": "Package manager se system updated rakho aur commands safely use karo"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, most websites you use run on computers that have no screen, mouse or desktop at all.",
+   "hi": "{{name}}, तुम जो वेबसाइटें इस्तेमाल करते हो, ज़्यादातर ऐसे कंप्यूटरों पर चलती हैं जिनमें स्क्रीन, माउस या डेस्कटॉप है ही नहीं।",
+   "hinglish": "{{name}}, tum jo websites use karte ho, zyadatar aise computers par chalti hain jinme screen, mouse ya desktop hai hi nahi."
+  },
+  "question": {
+   "en": "How do engineers control such machines, and why is typing commands often faster than clicking?",
+   "hi": "इंजीनियर ऐसी मशीनों को कैसे चलाते हैं, और कमांड लिखना अक्सर क्लिक करने से तेज़ क्यों होता है?",
+   "hinglish": "Engineers aisi machines ko kaise chalate hain, aur commands likhna aksar click karne se tez kyun hota hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What does the command cat log.txt | grep ERROR | wc -l do?",
+   "hi": "कमांड cat log.txt | grep ERROR | wc -l क्या करता है?",
+   "hinglish": "Command cat log.txt | grep ERROR | wc -l kya karta hai?"
+  },
+  "options": [
+   {
+    "en": "Deletes every line containing ERROR",
+    "hi": "ERROR वाली हर पंक्ति मिटा देता है",
+    "hinglish": "ERROR wali har line delete kar deta hai"
+   },
+   {
+    "en": "Counts how many lines of log.txt contain ERROR",
+    "hi": "गिनता है कि log.txt की कितनी पंक्तियों में ERROR है",
+    "hinglish": "Ginta hai ki log.txt ki kitni lines mein ERROR hai"
+   },
+   {
+    "en": "Prints the file name three times",
+    "hi": "फ़ाइल का नाम तीन बार छापता है",
+    "hinglish": "File ka naam teen baar chhapta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "The pipe | sends one command's output into the next command's input. cat prints the file, grep keeps only lines containing ERROR, and wc -l counts the lines. Small tools that each do one job can be chained and scripted, which is why servers are managed this way.",
+   "hi": "पाइप | एक कमांड का आउटपुट अगले कमांड के इनपुट में भेजता है। cat फ़ाइल छापता है, grep सिर्फ़ ERROR वाली पंक्तियाँ रखता है, और wc -l पंक्तियाँ गिनता है। हर एक काम करने वाले छोटे औज़ार जोड़े और स्क्रिप्ट किए जा सकते हैं, इसीलिए सर्वर ऐसे सँभाले जाते हैं।",
+   "hinglish": "Pipe | ek command ka output agle command ke input mein bhejta hai. cat file chhapta hai, grep sirf ERROR wali lines rakhta hai, aur wc -l lines ginta hai. Har ek kaam karne wale chhote tools jode aur script kiye ja sakte hain, isiliye servers aise sambhale jaate hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home what a pipe does and why you should be careful before pasting a command.",
+   "hi": "घर पर किसी को समझाओ कि पाइप क्या करता है और कमांड पेस्ट करने से पहले सावधान क्यों रहना चाहिए।",
+   "hinglish": "Ghar par kisi ko samjhao ki pipe kya karta hai aur command paste karne se pehle savdhaan kyun rehna chahiye."
+  },
+  "checklist": [
+   {
+    "en": "pwd, ls, cd and mkdir let you find your place and move around the folder tree.",
+    "hi": "pwd, ls, cd और mkdir से तुम अपनी जगह जान और फ़ोल्डर पेड़ में घूम सकते हो।",
+    "hinglish": "pwd, ls, cd aur mkdir se tum apni jagah jaan aur folder tree mein ghoom sakte ho."
+   },
+   {
+    "en": "grep filters lines; a pipe feeds one command's output into the next.",
+    "hi": "grep पंक्तियाँ छानता है; पाइप एक कमांड का आउटपुट अगले में देता है।",
+    "hinglish": "grep lines chhanta hai; pipe ek command ka output agle mein deta hai."
+   },
+   {
+    "en": "Commands can be repeated and scripted, which suits servers with no screen, reached over SSH.",
+    "hi": "कमांड दोहराए और स्क्रिप्ट किए जा सकते हैं, जो बिना स्क्रीन वाले, SSH से जुड़े सर्वर के लिए ठीक है।",
+    "hinglish": "Commands repeat aur script kiye ja sakte hain, jo bina screen wale, SSH se jude servers ke liye theek hai."
+   },
+   {
+    "en": "Commands run with your rights at once: read before running, check pwd, and beware rm and sudo from strangers.",
+    "hi": "कमांड तुरंत तुम्हारे अधिकारों से चलते हैं: चलाने से पहले पढ़ो, pwd देखो, और अजनबी के rm और sudo से सावधान रहो।",
+    "hinglish": "Commands turant tumhare rights se chalte hain: chalane se pehle padho, pwd dekho, aur ajnabi ke rm aur sudo se savdhaan raho."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Shell",
@@ -88,7 +159,7 @@
     "hi": "cat notice.txt फ़ाइल छापता है। grep exam notice.txt सिर्फ़ \"exam\" वाली पंक्तियाँ छापता है।",
     "hinglish": "cat notice.txt file print karta hai. grep exam notice.txt sirf \"exam\" wali lines print karta hai."
    },
-   "visual": "anim:grep-filter",
+   "visual": "compare:📄 cat notice.txt: prints every line|🔎 grep exam notice.txt: only lines with exam",
    "narration": {
     "en": "cat notice.txt prints a file. grep exam notice.txt prints only lines containing \"exam\".",
     "hi": "cat notice.txt फ़ाइल छापता है। grep exam notice.txt सिर्फ़ \"exam\" वाली पंक्तियाँ छापता है।",
@@ -102,7 +173,7 @@
     "hi": "पाइप छोटे टूल जोड़ते हैं: cat log.txt | grep ERROR | wc -l त्रुटि पंक्तियाँ गिनता है। हर टूल एक काम अच्छे से करता है।",
     "hinglish": "Pipes chhote tools jodte hain: cat log.txt | grep ERROR | wc -l error lines ginta hai. Har tool ek kaam achhe se karta hai."
    },
-   "visual": "anim:pipe-chain",
+   "visual": "flow:📄 cat log.txt|🔎 grep ERROR|🔢 wc -l|✅ Number of error lines",
    "narration": {
     "en": "Pipes chain small tools: cat log.txt | grep ERROR | wc -l counts error lines. Each tool does one job well.",
     "hi": "पाइप छोटे टूल जोड़ते हैं: cat log.txt | grep ERROR | wc -l त्रुटि पंक्तियाँ गिनता है। हर टूल एक काम अच्छे से करता है।",

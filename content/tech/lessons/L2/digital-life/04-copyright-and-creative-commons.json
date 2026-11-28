@@ -38,6 +38,82 @@
    "hinglish": "Sahi credit de sakte ho aur free-to-use images dhoondh sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you need a picture of a monument for a school project, so you copy the first one from a web search.",
+   "hi": "{{name}}, स्कूल प्रोजेक्ट के लिए तुम्हें किसी स्मारक की तस्वीर चाहिए, इसलिए तुम वेब खोज की पहली तस्वीर कॉपी कर लेते हो।",
+   "hinglish": "{{name}}, school project ke liye tumhein kisi monument ki picture chahiye, isliye tum web search ki pehli picture copy kar lete ho."
+  },
+  "question": {
+   "en": "Is a picture free to use just because it is on the internet?",
+   "hi": "क्या कोई तस्वीर सिर्फ़ इंटरनेट पर होने से इस्तेमाल के लिए मुफ़्त हो जाती है?",
+   "hinglish": "Kya koi picture sirf internet par hone se use ke liye free ho jaati hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A photo on a website has no © sign anywhere. Who owns its copyright?",
+   "hi": "एक वेबसाइट की फ़ोटो पर कहीं © चिह्न नहीं है। उसका कॉपीराइट किसके पास है?",
+   "hinglish": "Ek website ki photo par kahin © sign nahi hai. Uska copyright kiske paas hai?"
+  },
+  "options": [
+   {
+    "en": "Nobody, so anyone may copy it",
+    "hi": "किसी के पास नहीं, इसलिए कोई भी कॉपी कर सकता है",
+    "hinglish": "Kisi ke paas nahi, isliye koi bhi copy kar sakta hai"
+   },
+   {
+    "en": "Whoever copies it first",
+    "hi": "जो उसे पहले कॉपी करे",
+    "hinglish": "Jo use pehle copy kare"
+   },
+   {
+    "en": "The person who made it, automatically",
+    "hi": "जिसने उसे बनाया, अपने आप",
+    "hinglish": "Jisne use banaya, apne aap"
+   },
+   {
+    "en": "The search engine that showed it",
+    "hi": "जिस सर्च इंजन ने दिखाया",
+    "hinglish": "Jis search engine ne dikhaya"
+   }
+  ],
+  "answer": 2,
+  "explain": {
+   "en": "Copyright starts the moment someone creates the work, with no registration and no © needed. Being online does not make it free, so ask permission or use work with a licence that allows it, like Creative Commons.",
+   "hi": "कॉपीराइट काम बनते ही शुरू हो जाता है, पंजीकरण या © की ज़रूरत नहीं। ऑनलाइन होने से वह मुफ़्त नहीं हो जाता, इसलिए अनुमति लो या ऐसा काम इस्तेमाल करो जिसका लाइसेंस इजाज़त दे, जैसे क्रिएटिव कॉमन्स।",
+   "hinglish": "Copyright kaam bante hi shuru ho jaata hai, registration ya © ki zaroorat nahi. Online hone se woh free nahi ho jaata, isliye permission lo ya aisa kaam use karo jiska licence ijaazat de, jaise Creative Commons."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home who owns a picture online and how to use one properly.",
+   "hi": "घर पर किसी को समझाओ कि ऑनलाइन तस्वीर का मालिक कौन है और उसे ठीक से कैसे इस्तेमाल करें।",
+   "hinglish": "Ghar par kisi ko samjhao ki online picture ka maalik kaun hai aur use theek se kaise use karein."
+  },
+  "checklist": [
+   {
+    "en": "Creative work is copyrighted automatically, and being on the internet does not make it free.",
+    "hi": "रचनात्मक काम पर कॉपीराइट अपने आप होता है, और इंटरनेट पर होने से वह मुफ़्त नहीं होता।",
+    "hinglish": "Creative kaam par copyright apne aap hota hai, aur internet par hone se woh free nahi hota."
+   },
+   {
+    "en": "Creative Commons blocks: BY needs credit, NC no commercial use, ND no changes, SA share alike; CC0 gives it all away.",
+    "hi": "क्रिएटिव कॉमन्स के ब्लॉक: BY में श्रेय देना, NC में व्यावसायिक उपयोग नहीं, ND में बदलाव नहीं, SA में समान शर्तों पर साझा; CC0 सब छोड़ देता है।",
+    "hinglish": "Creative Commons blocks: BY mein credit dena, NC mein commercial use nahi, ND mein changes nahi, SA mein same terms par share; CC0 sab chhod deta hai."
+   },
+   {
+    "en": "Give credit with TASL: Title, Author, Source, Licence.",
+    "hi": "TASL से श्रेय दो: शीर्षक, लेखक, स्रोत, लाइसेंस।",
+    "hinglish": "TASL se credit do: Title, Author, Source, Licence."
+   },
+   {
+    "en": "Search for free-to-use images, or ask permission.",
+    "hi": "मुफ़्त इस्तेमाल की तस्वीरें खोजो, या अनुमति माँगो।",
+    "hinglish": "Free-to-use images search karo, ya permission maango."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Copyright",
@@ -100,7 +176,7 @@
     "hi": "अच्छे श्रेय में TASL होता है: शीर्षक, लेखक, स्रोत, लाइसेंस।",
     "hinglish": "Achhe credit mein TASL hota hai: Title, Author, Source, Licence."
    },
-   "visual": "code",
+   "visual": "flow:📖 Title|✍️ Author|🔗 Source|📜 Licence",
    "narration": {
     "en": "Put credits under the picture or at the end of your work.",
     "hi": "श्रेय चित्र के नीचे या काम के अंत में लगाओ।",

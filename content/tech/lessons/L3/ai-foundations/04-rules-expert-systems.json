@@ -29,6 +29,77 @@
    "hi": "समझाना कि नियम कहाँ मशीन लर्निंग से बेहतर हैं और कहाँ विफल होते हैं"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a pharmacy kiosk asks \"fever? rash?\" and then says \"possible measles, see a doctor\", with no learning involved.",
+   "hi": "{{name}}, एक फ़ार्मेसी कियोस्क पूछता है \"बुखार? दाने?\" और फिर कहता है \"शायद खसरा, डॉक्टर को दिखाओ\", बिना किसी सीखने के।",
+   "hinglish": "{{name}}, ek pharmacy kiosk poochhta hai \"fever? rash?\" aur phir kehta hai \"possible measles, doctor ko dikhao\", bina kisi learning ke."
+  },
+  "question": {
+   "en": "How can a machine reach such answers using only rules written by people?",
+   "hi": "मशीन सिर्फ़ इंसानों के लिखे नियमों से ऐसे जवाब तक कैसे पहुँचती है?",
+   "hinglish": "Machine sirf logon ke likhe rules se aise answers tak kaise pahunchti hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "In forward chaining, what happens after one rule fires and adds a new fact?",
+   "hi": "फ़ॉरवर्ड चेनिंग में एक नियम चलकर नया तथ्य जोड़े तो क्या होता है?",
+   "hinglish": "Forward chaining mein ek rule fire hokar naya fact jode to kya hota hai?"
+  },
+  "options": [
+   {
+    "en": "The system stops, because it found an answer",
+    "hi": "सिस्टम रुक जाता है, क्योंकि जवाब मिल गया",
+    "hinglish": "System ruk jaata hai, kyunki answer mil gaya"
+   },
+   {
+    "en": "The new fact is added to the facts, and other rules may now match and fire",
+    "hi": "नया तथ्य तथ्यों में जुड़ता है और दूसरे नियम अब मिलकर चल सकते हैं",
+    "hinglish": "Naya fact facts mein judta hai, aur doosre rules ab match hokar fire ho sakte hain"
+   },
+   {
+    "en": "The rules rewrite themselves",
+    "hi": "नियम ख़ुद को दोबारा लिख लेते हैं",
+    "hinglish": "Rules khud ko dobara likh lete hain"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "The inference engine repeatedly matches rules against the facts. Each new fact can unlock more rules, until nothing new appears. The rules are transparent, but people must write each one, and real life has endless exceptions.",
+   "hi": "इन्फ़रेंस इंजन बार-बार नियमों को तथ्यों से मिलाता है। हर नया तथ्य और नियम खोल सकता है, जब तक कुछ नया न आए। नियम पारदर्शी हैं, पर हर नियम इंसान को लिखना पड़ता है, और असली ज़िंदगी में अपवाद अनगिनत हैं।",
+   "hinglish": "Inference engine baar-baar rules ko facts se match karta hai. Har naya fact aur rules khol sakta hai, jab tak kuch naya na aaye. Rules transparent hain, par har rule insaan ko likhna padta hai, aur real life mein exceptions anginat hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend how a rule-based system reaches a conclusion, and one case where ML would be better.",
+   "hi": "दोस्त को समझाओ कि नियम-आधारित सिस्टम निष्कर्ष तक कैसे पहुँचता है, और एक मामला जहाँ ML बेहतर होगा।",
+   "hinglish": "Friend ko samjhao ki rule-based system conclusion tak kaise pahunchta hai, aur ek case jahan ML behtar hoga."
+  },
+  "checklist": [
+   {
+    "en": "A rule is IF conditions THEN conclusion, matched against known facts",
+    "hi": "नियम है IF शर्तें THEN निष्कर्ष, जो ज्ञात तथ्यों से मिलाया जाता है",
+    "hinglish": "Rule hai IF conditions THEN conclusion, jo known facts se match kiya jaata hai"
+   },
+   {
+    "en": "Forward chaining repeats: new facts fire more rules until nothing new appears",
+    "hi": "फ़ॉरवर्ड चेनिंग दोहराती है: नए तथ्य और नियम चलाते हैं जब तक कुछ नया न आए",
+    "hinglish": "Forward chaining repeat karti hai: naye facts aur rules fire karte hain jab tak kuch naya na aaye"
+   },
+   {
+    "en": "Rules are transparent and explainable, good for clear-cut domains",
+    "hi": "नियम पारदर्शी और समझाने लायक हैं, साफ़ क्षेत्रों के लिए अच्छे",
+    "hinglish": "Rules transparent aur explainable hain, clear-cut domains ke liye achhe"
+   },
+   {
+    "en": "Rules fail when exceptions are endless or hard to write down",
+    "hi": "जब अपवाद अनगिनत या लिखने में कठिन हों तो नियम विफल होते हैं",
+    "hinglish": "Rules tab fail hote hain jab exceptions anginat ya likhne mein mushkil hon"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Rule",
@@ -63,7 +134,7 @@
     "hi": "एक नियम: अगर बुखार और दाने तो खसरे का शक। तथ्य अंदर जाते हैं, इन्फ़रेंस इंजन मेल खाने वाले नियम चलाता है।",
     "hinglish": "Ek rule: IF bukhaar AND daane THEN khasre ka shak. Facts andar jaate hain, inference engine matching rules chalata hai."
    },
-   "visual": "anim:rule-fire",
+   "visual": "flow:📋 Known facts|⚙️ Inference engine matches rules|✅ Rule fires: new fact",
    "narration": {
     "en": "A rule: IF fever AND rash THEN suspect measles. Facts go in, the inference engine fires matching rules.",
     "hi": "एक नियम: अगर बुखार और दाने तो खसरे का शक। तथ्य अंदर जाते हैं, इन्फ़रेंस इंजन मेल खाने वाले नियम चलाता है।",
@@ -77,7 +148,7 @@
     "hi": "फ़ॉरवर्ड चेनिंग दोहराती है: हर नया तथ्य और नियम चला सकता है, जब तक कुछ नया न आए।",
     "hinglish": "Forward chaining repeat hoti hai: har naya fact aur rules chala sakta hai, jab tak kuch naya na aaye."
    },
-   "visual": "anim:forward-chain",
+   "visual": "cycle:📋 Facts|🔎 Match rules|🔥 Fire a rule|➕ Add new fact",
    "narration": {
     "en": "Forward chaining repeats: each new fact can fire more rules, until nothing new appears.",
     "hi": "फ़ॉरवर्ड चेनिंग दोहराती है: हर नया तथ्य और नियम चला सकता है, जब तक कुछ नया न आए।",
@@ -91,7 +162,7 @@
     "hi": "नियम पारदर्शी और समझाने योग्य हैं, पर हर नियम किसी को लिखना पड़ता है, और असल ज़िंदगी में अनगिनत अपवाद हैं।",
     "hinglish": "Rules transparent aur explainable hain, par har rule kisi ko likhna padta hai, aur real life mein anginat exceptions hain."
    },
-   "visual": "anim:rules-exceptions",
+   "visual": "compare:✅ Rules: transparent and explainable|⚠️ Rules: written by hand, endless exceptions",
    "narration": {
     "en": "Rules are transparent and explainable, but someone must write every rule, and real life has endless exceptions.",
     "hi": "नियम पारदर्शी और समझाने योग्य हैं, पर हर नियम किसी को लिखना पड़ता है, और असल ज़िंदगी में अनगिनत अपवाद हैं।",

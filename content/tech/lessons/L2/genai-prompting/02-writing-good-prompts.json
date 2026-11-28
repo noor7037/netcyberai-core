@@ -38,6 +38,77 @@
    "hinglish": "Follow-up prompts se answer sudhaar sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you type \"tell me about water\" into a chatbot, and it writes a long answer far above your class level.",
+   "hi": "{{name}}, तुम चैटबॉट में \"पानी के बारे में बताओ\" लिखते हो, और वह तुम्हारी कक्षा के स्तर से कहीं ऊपर का लंबा जवाब लिख देता है।",
+   "hinglish": "{{name}}, tum chatbot mein \"paani ke baare mein batao\" likhte ho, aur woh tumhari class ke level se kahin upar ka lamba jawab likh deta hai."
+  },
+  "question": {
+   "en": "What did the chatbot have to guess, and how can you make it guess less?",
+   "hi": "चैटबॉट को क्या अंदाज़ा लगाना पड़ा, और तुम उसे कम अंदाज़ा लगाने पर कैसे मजबूर कर सकते हो?",
+   "hinglish": "Chatbot ko kya andaza lagana pada, aur tum use kam andaza lagane par kaise majboor kar sakte ho?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Which prompt is most likely to get a useful answer?",
+   "hi": "किस प्रॉम्प्ट से उपयोगी जवाब मिलने की सबसे ज़्यादा संभावना है?",
+   "hinglish": "Kis prompt se useful jawab milne ki sabse zyada sambhavna hai?"
+  },
+  "options": [
+   {
+    "en": "water",
+    "hi": "water",
+    "hinglish": "water"
+   },
+   {
+    "en": "Tell me everything about water, very long",
+    "hi": "पानी के बारे में सब कुछ बताओ, बहुत लंबा",
+    "hinglish": "Paani ke baare mein sab kuch batao, bahut lamba"
+   },
+   {
+    "en": "You are a patient science teacher. Explain in 5 short points how rain forms, for a Class 6 student, with one example from India.",
+    "hi": "तुम एक धैर्यवान विज्ञान शिक्षक हो। कक्षा 6 के छात्र को बारिश कैसे बनती है, 5 छोटे बिंदुओं में समझाओ, भारत का एक उदाहरण देकर।",
+    "hinglish": "Tum ek patient science teacher ho. Class 6 ke student ko baarish kaise banti hai, 5 chhote points mein samjhao, Bharat ka ek example dekar."
+   }
+  ],
+  "answer": 2,
+  "explain": {
+   "en": "A language model continues from what you give it. The third prompt gives a role, a task, context, a format and a limit, so there is little left to guess. The others leave it to guess your level, topic and length.",
+   "hi": "भाषा मॉडल उसी से आगे बढ़ता है जो तुम देते हो। तीसरे प्रॉम्प्ट में भूमिका, काम, संदर्भ, रूप और सीमा है, इसलिए अंदाज़े के लिए कम बचता है। बाक़ी में उसे तुम्हारा स्तर, विषय और लंबाई अंदाज़े से तय करनी पड़ती है।",
+   "hinglish": "Language model usi se aage badhta hai jo tum dete ho. Teesre prompt mein role, task, context, format aur limit hai, isliye andaze ke liye kam bachta hai. Baaki mein use tumhara level, topic aur length andaze se tay karni padti hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how to write a good prompt.",
+   "hi": "घर पर किसी को समझाओ कि अच्छा प्रॉम्प्ट कैसे लिखें।",
+   "hinglish": "Ghar par kisi ko samjhao ki achha prompt kaise likhein."
+  },
+  "checklist": [
+   {
+    "en": "A weak prompt makes the AI guess who you are, what you need and how long the answer should be.",
+    "hi": "कमज़ोर प्रॉम्प्ट AI को अंदाज़ा लगाने पर मजबूर करता है कि तुम कौन हो, तुम्हें क्या चाहिए और जवाब कितना लंबा हो।",
+    "hinglish": "Kamzor prompt AI ko andaza lagane par majboor karta hai ki tum kaun ho, tumhein kya chahiye aur jawab kitna lamba ho."
+   },
+   {
+    "en": "A strong prompt has five parts: role, task, context, format and limits.",
+    "hi": "मज़बूत प्रॉम्प्ट के पाँच हिस्से हैं: भूमिका, काम, संदर्भ, रूप और सीमाएँ।",
+    "hinglish": "Strong prompt ke paanch parts hain: role, task, context, format aur limits."
+   },
+   {
+    "en": "Improve a weak prompt one part at a time.",
+    "hi": "कमज़ोर प्रॉम्प्ट को एक-एक हिस्सा जोड़कर सुधारो।",
+    "hinglish": "Kamzor prompt ko ek-ek part jodkar sudharo."
+   },
+   {
+    "en": "Use follow-up prompts to refine the answer.",
+    "hi": "जवाब निखारने के लिए फ़ॉलो-अप प्रॉम्प्ट इस्तेमाल करो।",
+    "hinglish": "Jawab nikharne ke liye follow-up prompts use karo."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Prompt",

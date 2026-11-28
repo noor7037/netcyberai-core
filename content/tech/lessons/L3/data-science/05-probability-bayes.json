@@ -35,6 +35,77 @@
    "hinglish": "Medical aur spam tests ke liye natural frequencies ke saath Bayes' rule lagao"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a test for a rare disease is \"90% accurate\" and your uncle tests positive. Everyone at home panics.",
+   "hi": "{{name}}, एक दुर्लभ बीमारी का टेस्ट \"90% सही\" है और तुम्हारे चाचा का रिज़ल्ट पॉज़िटिव आता है। घर में सब घबरा जाते हैं।",
+   "hinglish": "{{name}}, ek rare disease ka test \"90% accurate\" hai aur tumhare uncle ka result positive aata hai. Ghar mein sab ghabra jaate hain."
+  },
+  "question": {
+   "en": "How likely is it that he is actually sick?",
+   "hi": "असल में उनके बीमार होने की कितनी संभावना है?",
+   "hinglish": "Asal mein unke sick hone ki kitni probability hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A disease affects 1 in 100 people. A test catches 90% of sick people and falsely flags 5% of healthy ones. Someone tests positive. About how likely are they to be sick?",
+   "hi": "एक बीमारी 100 में से 1 को होती है। टेस्ट 90% बीमारों को पकड़ता है और 5% स्वस्थ को ग़लत से बीमार बताता है। कोई पॉज़िटिव आता है। उसके बीमार होने की संभावना लगभग कितनी है?",
+   "hinglish": "Ek bimari 100 mein se 1 ko hoti hai. Test 90% bimaaron ko pakadta hai aur 5% healthy ko galat se sick batata hai. Koi positive aata hai. Uske sick hone ki probability lagbhag kitni hai?"
+  },
+  "options": [
+   {
+    "en": "About 90%",
+    "hi": "लगभग 90%",
+    "hinglish": "Lagbhag 90%"
+   },
+   {
+    "en": "About 50%",
+    "hi": "लगभग 50%",
+    "hinglish": "Lagbhag 50%"
+   },
+   {
+    "en": "About 15%",
+    "hi": "लगभग 15%",
+    "hinglish": "Lagbhag 15%"
+   }
+  ],
+  "answer": 2,
+  "explain": {
+   "en": "Out of 1,000 people, 10 are sick and the test catches 9. Of the 990 healthy, 5% are falsely flagged, about 50. So only 9 of the 59 positives are really sick, roughly 15%. When a disease is rare, false alarms from the many healthy outnumber true detections.",
+   "hi": "1,000 लोगों में 10 बीमार हैं और टेस्ट 9 को पकड़ता है। 990 स्वस्थ में 5% ग़लत पॉज़िटिव, यानी लगभग 50। तो 59 पॉज़िटिव में सिर्फ़ 9 सच में बीमार हैं, लगभग 15%। बीमारी दुर्लभ हो तो बहुत से स्वस्थ लोगों के झूठे अलार्म असली पहचानों से ज़्यादा होते हैं।",
+   "hinglish": "1,000 logon mein 10 sick hain aur test 9 ko pakadta hai. 990 healthy mein 5% galat positive, yaani lagbhag 50. To 59 positives mein sirf 9 sach mein sick hain, lagbhag 15%. Bimari rare ho to bahut se healthy logon ke false alarms asli detections se zyada hote hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home why a positive result from a good test may still mean they are probably healthy.",
+   "hi": "घर पर किसी को समझाओ कि अच्छे टेस्ट का पॉज़िटिव रिज़ल्ट होने पर भी वे शायद स्वस्थ क्यों हो सकते हैं।",
+   "hinglish": "Ghar par kisi ko samjhao ki achhe test ka positive result hone par bhi woh shayad healthy kyun ho sakte hain."
+  },
+  "checklist": [
+   {
+    "en": "Count natural frequencies: out of 1,000 people, how many sick, how many caught, how many false alarms",
+    "hi": "प्राकृतिक आवृत्तियाँ गिनो: 1,000 में कितने बीमार, कितने पकड़े गए, कितने झूठे अलार्म",
+    "hinglish": "Natural frequencies gino: 1,000 mein kitne sick, kitne caught, kitne false alarms"
+   },
+   {
+    "en": "The base rate (how common the disease is) matters as much as test accuracy",
+    "hi": "बेस रेट (बीमारी कितनी आम है) उतना ही मायने रखता है जितनी टेस्ट की सटीकता",
+    "hinglish": "Base rate (bimari kitni common hai) utna hi matter karta hai jitni test ki accuracy"
+   },
+   {
+    "en": "Share of positives who are truly sick is true positives divided by all positives",
+    "hi": "पॉज़िटिव में सच में बीमारों का हिस्सा = सही पॉज़िटिव ÷ कुल पॉज़िटिव",
+    "hinglish": "Positives mein sach mein sick ka share = true positives ÷ all positives"
+   },
+   {
+    "en": "More flips make the share settle near the true chance, but a coin has no memory",
+    "hi": "ज़्यादा उछाल से हिस्सा असली संभावना के पास बसता है, पर सिक्के को कुछ याद नहीं रहता",
+    "hinglish": "Zyada flips se share asli chance ke paas settle hota hai, par coin ko kuch yaad nahi rehta"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Probability",
@@ -75,7 +146,7 @@
     "hi": "सिक्का 10 बार उछालो: 7 चित आ सकते हैं। 1,000 बार उछालो: हिस्सा 50% के पास टिकता है।",
     "hinglish": "Coin 10 baar uchhalo: 7 heads aa sakte hain. 1,000 baar uchhalo: share 50% ke paas tikta hai."
    },
-   "visual": "anim:lln",
+   "visual": "compare:🪙 10 flips: 7 heads is quite possible|🪙 1,000 flips: the share settles near 50%",
    "narration": {
     "en": "Flip a coin 10 times: you might get 7 heads. Flip 1,000 times: the share settles near 50%.",
     "hi": "सिक्का 10 बार उछालो: 7 चित आ सकते हैं। 1,000 बार उछालो: हिस्सा 50% के पास टिकता है।",
@@ -103,7 +174,7 @@
     "hi": "1,000 लोग, 1% बीमार: 10 बीमार। 90% संवेदनशील परीक्षण 9 पकड़ता है। 990 स्वस्थ में 5% ग़लत चेतावनी = लगभग 50।",
     "hinglish": "1,000 log, 1% bimaar: 10 bimaar. 90% sensitive test 9 pakadta hai. 990 swasth mein 5% galat alarm = lagbhag 50."
    },
-   "visual": "anim:dot-grid",
+   "visual": "flow:👥 1,000 people|🤒 10 sick, test catches 9|🧑 990 healthy, about 50 false alarms",
    "narration": {
     "en": "1,000 people, 1% sick: 10 sick. A 90%-sensitive test catches 9. 5% false alarms among 990 healthy = about 50.",
     "hi": "1,000 लोग, 1% बीमार: 10 बीमार। 90% संवेदनशील परीक्षण 9 पकड़ता है। 990 स्वस्थ में 5% ग़लत चेतावनी = लगभग 50।",
@@ -117,7 +188,7 @@
     "hi": "तो पॉज़िटिव परिणाम का अर्थ सिर्फ़ 59 में 9 ≈ 15% बीमार होने की संभावना। मूल दर मायने रखती है!",
     "hinglish": "To positive result ka matlab sirf 59 mein 9 ≈ 15% bimaar hone ki sambhavna. Base rate matter karta hai!"
    },
-   "visual": "anim:ppv",
+   "visual": "flow:✅ 9 true positives|⚠️ About 50 false alarms|📉 9 of 59 is about 15% sick",
    "narration": {
     "en": "So a positive result means only 9 out of 59 ≈ 15% chance of being sick. The base rate matters!",
     "hi": "तो पॉज़िटिव परिणाम का अर्थ सिर्फ़ 59 में 9 ≈ 15% बीमार होने की संभावना। मूल दर मायने रखती है!",

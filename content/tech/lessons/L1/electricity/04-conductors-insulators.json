@@ -39,6 +39,77 @@
    "hinglish": "Pehle andaaza, phir test — scientist ki tarah."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, an electrician's screwdriver has a metal rod and a plastic handle.",
+   "hi": "{{name}}, बिजली मिस्त्री के पेचकस में धातु की छड़ और प्लास्टिक का हैंडल होता है।",
+   "hinglish": "{{name}}, electrician ke screwdriver mein metal ki rod aur plastic ka handle hota hai."
+  },
+  "question": {
+   "en": "Why are wires metal inside but plastic outside?",
+   "hi": "तारों के अंदर धातु और बाहर प्लास्टिक क्यों होता है?",
+   "hinglish": "Taaron ke andar metal aur bahar plastic kyon hota hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What do you think? You test a steel spoon, a plastic ruler and a rubber in a circuit. Which will let the bulb glow?",
+   "hi": "तुम्हें क्या लगता है? तुम सर्किट में स्टील का चम्मच, प्लास्टिक का स्केल और रबर जाँचते हो। किससे बल्ब जलेगा?",
+   "hinglish": "Tumhe kya lagta hai? Tum circuit mein steel ka chammach, plastic ka scale aur rubber test karte ho. Kisse bulb jalega?"
+  },
+  "options": [
+   {
+    "en": "All three",
+    "hi": "तीनों से",
+    "hinglish": "Teeno se"
+   },
+   {
+    "en": "Only the steel spoon, because metals let electricity pass and plastic and rubber do not",
+    "hi": "सिर्फ़ स्टील का चम्मच, क्योंकि धातु बिजली जाने देती है और प्लास्टिक-रबर नहीं",
+    "hinglish": "Sirf steel ka chammach, kyunki metals bijli jaane dete hain aur plastic-rubber nahin"
+   },
+   {
+    "en": "Only the plastic ruler",
+    "hi": "सिर्फ़ प्लास्टिक का स्केल",
+    "hinglish": "Sirf plastic ka scale"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Metals are conductors: their electrons can move about freely, so electricity passes. Plastic and rubber are insulators: their electrons are held tightly. So wires are metal inside and plastic outside. Tap water and sweat conduct too, so wet hands are dangerous.",
+   "hi": "धातुएँ चालक हैं: उनके इलेक्ट्रॉन आसानी से घूम सकते हैं, इसलिए बिजली गुज़रती है। प्लास्टिक और रबर कुचालक हैं: उनके इलेक्ट्रॉन कसकर बँधे होते हैं। इसीलिए तार अंदर से धातु और बाहर से प्लास्टिक के होते हैं। नल का पानी और पसीना भी चालक हैं, इसलिए गीले हाथ ख़तरनाक हैं।",
+   "hinglish": "Metals conductors hain: unke electrons aasani se ghoom sakte hain, isliye bijli guzarti hai. Plastic aur rubber insulators hain: unke electrons kasakar bandhe hote hain. Isiliye wires andar se metal aur bahar se plastic ke hote hain. Tap water aur sweat bhi conduct karte hain, isliye geele haath khatarnak hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: what are conductors and insulators, and why do we need both in a wire?",
+   "hi": "घर पर किसी को समझाओ: चालक और कुचालक क्या हैं, और तार में दोनों क्यों चाहिए?",
+   "hinglish": "Ghar par kisi ko samjhao: conductors aur insulators kya hain, aur wire mein dono kyon chahiye?"
+  },
+  "checklist": [
+   {
+    "en": "Conductors, like metals, have electrons that move freely, so electricity passes.",
+    "hi": "चालक, जैसे धातुएँ, में इलेक्ट्रॉन आसानी से घूमते हैं, इसलिए बिजली गुज़रती है।",
+    "hinglish": "Conductors, jaise metals, mein electrons aasani se ghoomte hain, isliye bijli guzarti hai."
+   },
+   {
+    "en": "Insulators, like plastic and rubber, hold electrons tightly, so electricity cannot pass.",
+    "hi": "कुचालक, जैसे प्लास्टिक और रबर, इलेक्ट्रॉन कसकर पकड़ते हैं, इसलिए बिजली नहीं गुज़रती।",
+    "hinglish": "Insulators, jaise plastic aur rubber, electrons kasakar pakadte hain, isliye bijli nahin guzarti."
+   },
+   {
+    "en": "Metal inside carries electricity; plastic outside keeps us safe.",
+    "hi": "अंदर की धातु बिजली ले जाती है; बाहर का प्लास्टिक हमें सुरक्षित रखता है।",
+    "hinglish": "Andar ka metal bijli le jaata hai; bahar ka plastic hamein safe rakhta hai."
+   },
+   {
+    "en": "Wet hands are dangerous because tap water conducts.",
+    "hi": "गीले हाथ ख़तरनाक हैं क्योंकि नल का पानी चालक है।",
+    "hinglish": "Geele haath khatarnak hain kyunki tap water conductor hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Conductor",

@@ -38,6 +38,77 @@
    "hinglish": "Recursion pehchaan sakte ho: khud ko call karne wala function"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a shopping app works out GST on hundreds of different prices.",
+   "hi": "{{name}}, एक शॉपिंग ऐप सैकड़ों अलग कीमतों पर GST निकालता है।",
+   "hinglish": "{{name}}, ek shopping app saikdon alag prices par GST nikaalta hai."
+  },
+  "question": {
+   "en": "Does the programmer write that calculation hundreds of times?",
+   "hi": "क्या प्रोग्रामर वह गणना सैकड़ों बार लिखता है?",
+   "hinglish": "Kya programmer woh calculation saikdon baar likhta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A function is defined with def and a parameter. What happens when it is called?",
+   "hi": "एक फ़ंक्शन def और पैरामीटर से बना है। उसे बुलाने पर क्या होता है?",
+   "hinglish": "Ek function def aur parameter se bana hai. Use bulane par kya hota hai?"
+  },
+  "options": [
+   {
+    "en": "The code inside runs with the value you pass in, and its variables vanish when it returns",
+    "hi": "अंदर का कोड तुम्हारे दिए मान के साथ चलता है, और लौटने पर उसके वेरिएबल मिट जाते हैं",
+    "hinglish": "Andar ka code tumhare diye value ke saath chalta hai, aur return par uske variables mit jaate hain"
+   },
+   {
+    "en": "The function is copied into the main program permanently",
+    "hi": "फ़ंक्शन स्थायी रूप से मुख्य प्रोग्राम में कॉपी हो जाता है",
+    "hinglish": "Function permanently main program mein copy ho jaata hai"
+   },
+   {
+    "en": "Nothing runs until the program ends",
+    "hi": "प्रोग्राम ख़त्म होने तक कुछ नहीं चलता",
+    "hinglish": "Program end hone tak kuch nahi chalta"
+   }
+  ],
+  "answer": 0,
+  "explain": {
+   "en": "Each call makes a fresh frame of local variables for the parameters, runs the body, and return sends the answer back. Write the logic once, use it everywhere, and fix a bug in one place.",
+   "hi": "हर कॉल पैरामीटरों के लिए लोकल वेरिएबल का नया फ़्रेम बनाता है, बॉडी चलाता है, और return उत्तर वापस भेजता है। तर्क एक बार लिखो, हर जगह इस्तेमाल करो, और बग एक जगह ठीक करो।",
+   "hinglish": "Har call parameters ke liye local variables ka naya frame banata hai, body chalata hai, aur return answer wapas bhejta hai. Logic ek baar likho, har jagah use karo, aur bug ek jagah fix karo."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home why programmers write functions.",
+   "hi": "घर पर किसी को समझाओ कि प्रोग्रामर फ़ंक्शन क्यों लिखते हैं।",
+   "hinglish": "Ghar par kisi ko samjhao ki programmers functions kyun likhte hain."
+  },
+  "checklist": [
+   {
+    "en": "def names a reusable mini-program; parameters are its inputs and return its output.",
+    "hi": "def दोबारा इस्तेमाल होने वाला छोटा प्रोग्राम नाम देता है; पैरामीटर इनपुट हैं और return आउटपुट।",
+    "hinglish": "def reusable mini-program ko naam deta hai; parameters inputs hain aur return output."
+   },
+   {
+    "en": "Each call gets its own local variables, which disappear on return.",
+    "hi": "हर कॉल के अपने लोकल वेरिएबल होते हैं जो return पर मिट जाते हैं।",
+    "hinglish": "Har call ke apne local variables hote hain jo return par mit jaate hain."
+   },
+   {
+    "en": "Do not repeat yourself: fix a bug once and every use is fixed.",
+    "hi": "खुद को न दोहराओ: बग एक बार ठीक करो और हर उपयोग ठीक हो जाता है।",
+    "hinglish": "Khud ko repeat mat karo: bug ek baar fix karo aur har use fix ho jaata hai."
+   },
+   {
+    "en": "Recursion is a function calling a smaller version of itself, with a stopping case.",
+    "hi": "रिकर्शन में फ़ंक्शन खुद का छोटा रूप बुलाता है, रुकने की शर्त के साथ।",
+    "hinglish": "Recursion mein function khud ka chhota roop bulata hai, stopping case ke saath."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Function",

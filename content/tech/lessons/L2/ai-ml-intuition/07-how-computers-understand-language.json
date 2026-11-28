@@ -38,6 +38,82 @@
    "hinglish": "Samjha sakte ho fluent AI text bhi galat kyun ho sakta hai"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, while you type a WhatsApp message, the keyboard suggests the next word before you tap it.",
+   "hi": "{{name}}, WhatsApp का संदेश टाइप करते हुए, कीबोर्ड तुम्हारे टैप करने से पहले अगला शब्द सुझा देता है।",
+   "hinglish": "{{name}}, WhatsApp ka message type karte hue, keyboard tumhare tap karne se pehle agla word suggest kar deta hai."
+  },
+  "question": {
+   "en": "A computer only handles numbers. So how does it read your words, and how does it guess what comes next?",
+   "hi": "कंप्यूटर सिर्फ़ संख्याएँ सँभालता है। तो वह तुम्हारे शब्द कैसे पढ़ता है, और आगे क्या आएगा यह कैसे अंदाज़ा लगाता है?",
+   "hinglish": "Computer sirf numbers sambhalta hai. To woh tumhare words kaise padhta hai, aur aage kya aayega yeh kaise andaza lagata hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "How does a language model decide what word to write next?",
+   "hi": "भाषा मॉडल कैसे तय करता है कि अगला शब्द क्या लिखे?",
+   "hinglish": "Language model kaise tay karta hai ki agla word kya likhe?"
+  },
+  "options": [
+   {
+    "en": "It understands the meaning like a person and looks up the facts",
+    "hi": "वह इंसान की तरह अर्थ समझता है और तथ्य ढूँढता है",
+    "hinglish": "Woh insaan ki tarah meaning samajhta hai aur facts dhoondhta hai"
+   },
+   {
+    "en": "It picks a likely next word from patterns counted in lots of text",
+    "hi": "वह बहुत सारे पाठ में गिने पैटर्न से संभावित अगला शब्द चुनता है",
+    "hinglish": "Woh bahut saare text mein gine patterns se likely agla word chunta hai"
+   },
+   {
+    "en": "It searches the live internet each time",
+    "hi": "वह हर बार लाइव इंटरनेट खोजता है",
+    "hinglish": "Woh har baar live internet khojta hai"
+   },
+   {
+    "en": "It picks any word at random",
+    "hi": "वह कोई भी शब्द यादृच्छिक चुनता है",
+    "hinglish": "Woh koi bhi word random chunta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "The text is cut into tokens, each with a number. The model scores which token most likely comes next, based on patterns in its training text. That makes the sentence fluent, but fluent is not the same as true.",
+   "hi": "पाठ को टोकन में काटा जाता है, हर एक की एक संख्या। मॉडल अपने ट्रेनिंग पाठ के पैटर्न के आधार पर आँकता है कि कौन-सा टोकन सबसे संभावित अगला है। इससे वाक्य सहज बनता है, पर सहज होना सच होना नहीं है।",
+   "hinglish": "Text ko tokens mein kaata jaata hai, har ek ka ek number. Model apne training text ke patterns ke aadhaar par aankta hai ki kaunsa token sabse likely agla hai. Isse sentence fluent banta hai, par fluent hona true hona nahi hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a computer reads text and writes the next word.",
+   "hi": "घर पर किसी को समझाओ कि कंप्यूटर पाठ कैसे पढ़ता है और अगला शब्द कैसे लिखता है।",
+   "hinglish": "Ghar par kisi ko samjhao ki computer text kaise padhta hai aur agla word kaise likhta hai."
+  },
+  "checklist": [
+   {
+    "en": "Text is cut into tokens and each token gets a number ID.",
+    "hi": "पाठ टोकन में कटता है और हर टोकन को एक संख्या-ID मिलती है।",
+    "hinglish": "Text tokens mein katta hai aur har token ko ek number ID milti hai."
+   },
+   {
+    "en": "A language model predicts the next token from patterns in lots of text.",
+    "hi": "भाषा मॉडल बहुत सारे पाठ के पैटर्न से अगला टोकन अनुमानित करता है।",
+    "hinglish": "Language model bahut saare text ke patterns se agla token predict karta hai."
+   },
+   {
+    "en": "Repeating that step builds whole sentences.",
+    "hi": "यही क़दम दोहराकर पूरे वाक्य बनते हैं।",
+    "hinglish": "Wahi step repeat karke poore sentences bante hain."
+   },
+   {
+    "en": "Fluent text can still be false, because the model follows word patterns, not facts, so check.",
+    "hi": "सहज पाठ फिर भी ग़लत हो सकता है, क्योंकि मॉडल शब्द-पैटर्न मानता है, तथ्य नहीं, इसलिए जाँचो।",
+    "hinglish": "Fluent text phir bhi galat ho sakta hai, kyonki model word patterns follow karta hai, facts nahi, isliye check karo."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "NLP",
@@ -72,7 +148,7 @@
     "hi": "पहले पाठ टोकन में काटा जाता है और हर टोकन को एक संख्या ID मिलती है। “unbelievable” बन सकता है “un” + “believ” + “able”।",
     "hinglish": "Pehle text tokens mein kaata jaata hai aur har token ko ek number ID milti hai. “unbelievable” ban sakta hai “un” + “believ” + “able”."
    },
-   "visual": "code",
+   "visual": "flow:✂️ Cut into tokens|🔢 Token numbers|🔮 Predict next token|📝 Write the reply",
    "narration": {
     "en": "Computers only do maths, so words must become numbers.",
     "hi": "कंप्यूटर केवल गणित करते हैं, इसलिए शब्दों को संख्याएँ बनना पड़ता है।",

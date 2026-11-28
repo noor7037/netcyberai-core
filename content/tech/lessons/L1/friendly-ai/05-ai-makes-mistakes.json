@@ -38,6 +38,77 @@
    "hinglish": "Jaante ho ki chat AI pakka lag kar bhi galat ho sakta hai, isliye facts hamesha trusted source aur bade ke saath check karo."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a fruit-sorting AI was shown only red fruits and green vegetables, then it sees a red chilli.",
+   "hi": "{{name}}, फल छाँटने वाले AI को सिर्फ़ लाल फल और हरी सब्ज़ियाँ दिखाई गईं, फिर वह लाल मिर्च देखता है।",
+   "hinglish": "{{name}}, fruit sort karne wale AI ko sirf laal fruits aur hari sabziyan dikhayi gayin, phir woh laal mirch dekhta hai."
+  },
+  "question": {
+   "en": "Will it get the chilli right, and why or why not?",
+   "hi": "क्या वह मिर्च सही पहचानेगा, और क्यों या क्यों नहीं?",
+   "hinglish": "Kya woh mirch sahi pehchanega, aur kyun ya kyun nahi?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "The AI saw only red fruits and green vegetables. What does it say about a red chilli?",
+   "hi": "AI ने सिर्फ़ लाल फल और हरी सब्ज़ियाँ देखीं। लाल मिर्च के बारे में वह क्या कहेगा?",
+   "hinglish": "AI ne sirf laal fruits aur hari sabziyan dekhin. Laal mirch ke baare mein woh kya kahega?"
+  },
+  "options": [
+   {
+    "en": "Chilli, because AI always knows",
+    "hi": "मिर्च, क्योंकि AI सब जानता है",
+    "hinglish": "Mirch, kyunki AI sab jaanta hai"
+   },
+   {
+    "en": "Fruit, because its examples were unfair and missing",
+    "hi": "फल, क्योंकि उसके उदाहरण एकतरफ़ा और अधूरे थे",
+    "hinglish": "Fruit, kyunki uske examples ekatarfa aur adhure the"
+   },
+   {
+    "en": "It breaks and switches off",
+    "hi": "वह बिगड़कर बंद हो जाता है",
+    "hinglish": "Woh bigadkar band ho jaata hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "AI learns only from its training examples, so unfair or missing examples make a biased AI. Adding varied examples fixes it. Chat AI can also sound sure and be wrong, so check facts with a trusted source and a grown-up.",
+   "hi": "AI सिर्फ़ अपने ट्रेनिंग उदाहरणों से सीखता है, इसलिए एकतरफ़ा या छूटे उदाहरण पक्षपाती AI बनाते हैं। अलग-अलग उदाहरण जोड़ने से सुधरता है। चैट AI भी पक्का लगकर ग़लत हो सकता है, इसलिए तथ्य भरोसेमंद स्रोत और बड़े से जाँचो।",
+   "hinglish": "AI sirf apne training examples se seekhta hai, isliye ekatarfa ya chhoote examples biased AI banate hain. Alag-alag examples jodne se sudharta hai. Chat AI bhi pakka lagkar galat ho sakta hai, isliye facts bharosemand source aur bade se jaancho."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: why can AI be unfair or wrong?",
+   "hi": "घर पर किसी को समझाओ: AI अन्यायपूर्ण या ग़लत क्यों हो सकता है?",
+   "hinglish": "Ghar par kisi ko samjhao: AI unfair ya galat kyun ho sakta hai?"
+  },
+  "checklist": [
+   {
+    "en": "AI learns only from the examples it was given.",
+    "hi": "AI सिर्फ़ दिए गए उदाहरणों से सीखता है।",
+    "hinglish": "AI sirf diye gaye examples se seekhta hai."
+   },
+   {
+    "en": "Unfair or missing examples make a biased AI.",
+    "hi": "एकतरफ़ा या छूटे उदाहरण पक्षपाती AI बनाते हैं।",
+    "hinglish": "Ekatarfa ya chhoote examples biased AI banate hain."
+   },
+   {
+    "en": "Adding varied examples helps fix it.",
+    "hi": "अलग-अलग उदाहरण जोड़ने से सुधार होता है।",
+    "hinglish": "Alag-alag examples jodne se sudhaar hota hai."
+   },
+   {
+    "en": "Chat AI can sound sure but be wrong, so I check facts.",
+    "hi": "चैट AI पक्का लगकर भी ग़लत हो सकता है, इसलिए मैं तथ्य जाँचता/जाँचती हूँ।",
+    "hinglish": "Chat AI pakka lagkar bhi galat ho sakta hai, isliye main facts jaanchta/jaanchti hoon."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Bias",

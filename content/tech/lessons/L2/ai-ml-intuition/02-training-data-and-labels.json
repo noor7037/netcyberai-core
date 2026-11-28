@@ -39,6 +39,77 @@
    "hinglish": "Model ke kabhi na dekhe data pe accuracy naap sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, before the class test your teacher gives practice questions, and the real paper has new questions you have not seen.",
+   "hi": "{{name}}, क्लास टेस्ट से पहले टीचर अभ्यास के सवाल देते हैं, और असली पेपर में ऐसे नए सवाल होते हैं जो तुमने नहीं देखे।",
+   "hinglish": "{{name}}, class test se pehle teacher practice questions dete hain, aur asli paper mein naye questions hote hain jo tumne nahi dekhe."
+  },
+  "question": {
+   "en": "What if the paper repeated the practice questions? Would the marks show that you understood?",
+   "hi": "अगर पेपर में वही अभ्यास के सवाल आ जाएँ, तो क्या अंक दिखाएँगे कि तुमने समझा?",
+   "hinglish": "Agar paper mein wahi practice questions aa jayein, to kya marks dikhayenge ki tumne samjha?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A model gets every training mango right. Does that show it is good at judging new mangoes?",
+   "hi": "एक मॉडल ट्रेनिंग के हर आम को सही बताता है। क्या इससे पता चलता है कि वह नए आमों को परखने में अच्छा है?",
+   "hinglish": "Ek model training ke har aam ko sahi batata hai. Kya isse pata chalta hai ki woh naye aamon ko parakhne mein achha hai?"
+  },
+  "options": [
+   {
+    "en": "Yes, 100% on training means it is perfect",
+    "hi": "हाँ, ट्रेनिंग में 100% यानी वह परफ़ेक्ट है",
+    "hinglish": "Haan, training mein 100% matlab woh perfect hai"
+   },
+   {
+    "en": "Not yet; it may only have memorised, so we must test it on mangoes it has never seen",
+    "hi": "अभी नहीं; उसने बस रट लिया हो सकता है, इसलिए उसे ऐसे आमों पर परखना होगा जो उसने कभी नहीं देखे",
+    "hinglish": "Abhi nahi; usne bas rat liya ho sakta hai, isliye use aise aamon par parakhna hoga jo usne kabhi nahi dekhe"
+   },
+   {
+    "en": "No, a model can never be accurate",
+    "hi": "नहीं, मॉडल कभी सटीक नहीं हो सकता",
+    "hinglish": "Nahi, model kabhi accurate nahi ho sakta"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Training accuracy only shows it fits examples it has already seen. We keep some labelled examples aside as test data and measure accuracy on those, like a surprise test with new questions.",
+   "hi": "ट्रेनिंग की सटीकता सिर्फ़ यह दिखाती है कि वह देखे हुए उदाहरणों पर फ़िट है। हम कुछ लेबल वाले उदाहरण टेस्ट डेटा के रूप में अलग रखते हैं और उन पर सटीकता नापते हैं, नए सवालों वाले सरप्राइज़ टेस्ट की तरह।",
+   "hinglish": "Training accuracy sirf yeh dikhati hai ki woh dekhe hue examples par fit hai. Hum kuch labelled examples test data ke roop mein alag rakhte hain aur un par accuracy naapte hain, naye questions wale surprise test ki tarah."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a computer is taught from examples and how we check that it learned.",
+   "hi": "घर पर किसी को समझाओ कि कंप्यूटर को उदाहरणों से कैसे सिखाया जाता है और कैसे जाँचते हैं कि उसने सीखा।",
+   "hinglish": "Ghar par kisi ko samjhao ki computer ko examples se kaise sikhaya jaata hai aur kaise check karte hain ki usne seekha."
+  },
+  "checklist": [
+   {
+    "en": "Features are what we measure and the label is the right answer; labels act like a teacher.",
+    "hi": "फ़ीचर वह है जो हम नापते हैं और लेबल सही उत्तर है; लेबल शिक्षक की तरह काम करते हैं।",
+    "hinglish": "Features woh hain jo hum naapte hain aur label sahi answer hai; labels teacher ki tarah kaam karte hain."
+   },
+   {
+    "en": "3-nearest-neighbours finds the 3 closest training examples to a new one and takes a vote.",
+    "hi": "3-नियरेस्ट-नेबर नए उदाहरण के सबसे पास के 3 ट्रेनिंग उदाहरण ढूँढकर वोट लेता है।",
+    "hinglish": "3-nearest-neighbours naye example ke sabse paas ke 3 training examples dhoondhkar vote leta hai."
+   },
+   {
+    "en": "Training data teaches the model and test data checks it.",
+    "hi": "ट्रेनिंग डेटा मॉडल को सिखाता है और टेस्ट डेटा उसे जाँचता है।",
+    "hinglish": "Training data model ko sikhata hai aur test data use check karta hai."
+   },
+   {
+    "en": "Accuracy must be measured on data the model never saw, like a surprise test.",
+    "hi": "सटीकता उस डेटा पर नापो जो मॉडल ने कभी नहीं देखा, सरप्राइज़ टेस्ट की तरह।",
+    "hinglish": "Accuracy us data par naapo jo model ne kabhi nahi dekha, surprise test ki tarah."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Feature",
@@ -107,7 +178,7 @@
     "hi": "मॉडल को हमेशा ऐसे डेटा पर जाँचो जिस पर उसने प्रशिक्षण नहीं लिया — नए प्रश्नों वाली अचानक परीक्षा की तरह।",
     "hinglish": "Model ko hamesha aise data pe test karo jis pe usne training nahi li — naye questions wale surprise test ki tarah."
    },
-   "visual": "code",
+   "visual": "flow:📚 Train on examples|🧪 Test on new ones|📊 Measure accuracy",
    "narration": {
     "en": "Testing on training data is like giving the exam paper before the exam.",
     "hi": "प्रशिक्षण डेटा पर जाँचना परीक्षा से पहले प्रश्नपत्र देने जैसा है।",

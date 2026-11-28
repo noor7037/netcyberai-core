@@ -39,6 +39,77 @@
    "hinglish": "\"Free to use\" licences jaise CC BY aur CC0 pehchaan sakte ho."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you find a lovely peacock picture online and want to use it in your school project.",
+   "hi": "{{name}}, तुम्हें इंटरनेट पर मोर की सुंदर तस्वीर मिलती है और तुम उसे स्कूल प्रोजेक्ट में लगाना चाहते हो।",
+   "hinglish": "{{name}}, tumhe internet par mor ki sundar tasveer milti hai aur tum use school project mein lagana chahte ho."
+  },
+  "question": {
+   "en": "Is it fine to just copy it, and what should you do?",
+   "hi": "क्या बस कॉपी कर लेना ठीक है, और क्या करना चाहिए?",
+   "hinglish": "Kya bas copy kar lena theek hai, aur kya karna chahiye?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Meena drew a peacock. A friend copies it and says \"I made it!\" What is wrong?",
+   "hi": "मीना ने मोर बनाया। एक दोस्त उसे कॉपी करके कहता है \"मैंने बनाया!\" क्या ग़लत है?",
+   "hinglish": "Meena ne mor banaya. Ek dost use copy karke kehta hai \"Maine banaya!\" Kya galat hai?"
+  },
+  "options": [
+   {
+    "en": "Nothing, because anything online is free",
+    "hi": "कुछ नहीं, क्योंकि ऑनलाइन सब मुफ़्त है",
+    "hinglish": "Kuch nahi, kyunki online sab muft hai"
+   },
+   {
+    "en": "The drawing belongs to Meena who made it, so it needs her permission or a licence, and credit",
+    "hi": "चित्र मीना का है जिसने बनाया, इसलिए उसकी इजाज़त या लाइसेंस और श्रेय चाहिए",
+    "hinglish": "Chitra Meena ka hai jisne banaya, isliye uski ijaazat ya licence aur credit chahiye"
+   },
+   {
+    "en": "Only paintings in museums belong to anyone",
+    "hi": "सिर्फ़ संग्रहालय की पेंटिंग किसी की होती हैं",
+    "hinglish": "Sirf museum ki paintings kisi ki hoti hain"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Whoever makes a drawing, song or story owns it. Use others' work only if they say yes or a licence like CC BY or CC0 allows it, and write credit: title, maker, where you found it, and the licence.",
+   "hi": "चित्र, गाना या कहानी जो बनाए, वही उसका मालिक है। दूसरों का काम तभी लो जब वे हाँ कहें या CC BY, CC0 जैसा लाइसेंस इजाज़त दे, और श्रेय लिखो: नाम, बनाने वाला, कहाँ मिला और लाइसेंस।",
+   "hinglish": "Drawing, song ya story jo banaye, wahi uska malik hai. Doosron ka kaam tabhi lo jab woh haan kahein ya CC BY, CC0 jaisa licence ijaazat de, aur credit likho: title, maker, kahan mila aur licence."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: how do we use other people's creations fairly?",
+   "hi": "घर पर किसी को समझाओ: दूसरों की रचनाएँ निष्पक्ष तरीक़े से कैसे इस्तेमाल करें?",
+   "hinglish": "Ghar par kisi ko samjhao: doosron ki creations fairly kaise use karein?"
+  },
+  "checklist": [
+   {
+    "en": "The maker owns what they make.",
+    "hi": "जो बनाता है वही मालिक है।",
+    "hinglish": "Jo banata hai wahi malik hai."
+   },
+   {
+    "en": "Copying and saying \"I made it\" is not fair.",
+    "hi": "कॉपी करके \"मैंने बनाया\" कहना ठीक नहीं।",
+    "hinglish": "Copy karke \"Maine banaya\" kehna theek nahi."
+   },
+   {
+    "en": "I write credit: the maker's name and where I found it.",
+    "hi": "मैं श्रेय लिखता/लिखती हूँ: बनाने वाले का नाम और कहाँ मिला।",
+    "hinglish": "Main credit likhta/likhti hoon: maker ka naam aur kahan mila."
+   },
+   {
+    "en": "CC BY means use it with credit; CC0 means free to use.",
+    "hi": "CC BY का मतलब श्रेय के साथ इस्तेमाल; CC0 का मतलब मुफ़्त इस्तेमाल।",
+    "hinglish": "CC BY ka matlab credit ke saath use; CC0 ka matlab free to use."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Copyright",

@@ -34,6 +34,77 @@
    "hi": "भारतीय नियम और रिपोर्ट करने की जगह जानना"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a video goes viral on WhatsApp showing a famous cricketer promoting a betting app. His lips seem a little off.",
+   "hi": "{{name}}, WhatsApp पर एक वीडियो वायरल होता है जिसमें मशहूर क्रिकेटर एक सट्टा ऐप का प्रचार कर रहा है। उसके होंठ थोड़े अजीब लगते हैं।",
+   "hinglish": "{{name}}, WhatsApp par ek video viral hota hai jisme mashhoor cricketer ek betting app ka promotion kar raha hai. Uske hont thode ajeeb lagte hain."
+  },
+  "question": {
+   "en": "How can you tell whether it is real, and what should you do if it is not?",
+   "hi": "तुम कैसे जानोगे कि वह असली है, और नकली हो तो क्या करना चाहिए?",
+   "hinglish": "Tum kaise jaanoge ki woh asli hai, aur nakli ho to kya karna chahiye?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "You cannot spot any visual clue in a suspicious video. What is the most reliable next step?",
+   "hi": "संदिग्ध वीडियो में तुम्हें कोई दृश्य सुराग़ नहीं दिखता। सबसे भरोसेमंद अगला क़दम क्या है?",
+   "hinglish": "Suspicious video mein tumhe koi visual clue nahi dikhta. Sabse reliable agla step kya hai?"
+  },
+  "options": [
+   {
+    "en": "Decide it is real because it looks perfect",
+    "hi": "यह मान लो कि असली है क्योंकि बिल्कुल सही दिखता है",
+    "hinglish": "Maan lo ki asli hai kyunki bilkul sahi dikhta hai"
+   },
+   {
+    "en": "Trace the source: who posted first, the person's verified account, news sites, a reverse image search",
+    "hi": "स्रोत खोजो: पहले किसने डाला, व्यक्ति का सत्यापित अकाउंट, समाचार साइटें, रिवर्स इमेज सर्च",
+    "hinglish": "Source trace karo: pehle kisne daala, person ka verified account, news sites, reverse image search"
+   },
+   {
+    "en": "Forward it to ten friends to ask what they think",
+    "hi": "दस दोस्तों को भेजकर पूछो उनकी क्या राय है",
+    "hinglish": "Das friends ko forward karke poochho unki kya raay hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Deepfakes are getting good enough that visual clues like lip sync or missing breaths are not reliable. Verifying the source and context is more dependable: who posted it first, whether trusted accounts or news sites carry it, and whether an older original exists. Do not share a fake; report it.",
+   "hi": "डीपफ़ेक इतने अच्छे होते जा रहे हैं कि होंठ-तालमेल या साँस की कमी जैसे दृश्य सुराग़ भरोसेमंद नहीं रहे। स्रोत और संदर्भ जाँचना ज़्यादा भरोसेमंद है: पहले किसने डाला, क्या भरोसेमंद अकाउंट या समाचार साइटें दिखाती हैं, और क्या पुराना मूल मौजूद है। नकली को शेयर मत करो; रिपोर्ट करो।",
+   "hinglish": "Deepfakes itne achhe hote ja rahe hain ki lip sync ya missing breaths jaise visual clues reliable nahi rahe. Source aur context verify karna zyada reliable hai: pehle kisne daala, kya trusted accounts ya news sites dikha rahi hain, aur kya purana original maujood hai. Fake ko share mat karo; report karo."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how to check a shocking viral video before believing or forwarding it.",
+   "hi": "घर पर किसी को समझाओ कि चौंकाने वाले वायरल वीडियो को मानने या आगे भेजने से पहले कैसे जाँचें।",
+   "hinglish": "Ghar par kisi ko samjhao ki chaunkane wale viral video ko maanne ya forward karne se pehle kaise check karein."
+  },
+  "checklist": [
+   {
+    "en": "Look for clues but do not rely on them; verify the source and context",
+    "hi": "सुराग़ देखो पर उन पर निर्भर मत रहो; स्रोत और संदर्भ जाँचो",
+    "hinglish": "Clues dekho par un par depend mat raho; source aur context verify karo"
+   },
+   {
+    "en": "Check who posted first, trusted accounts and news sites, and a reverse image search",
+    "hi": "देखो पहले किसने डाला, भरोसेमंद अकाउंट और समाचार साइटें, और रिवर्स इमेज सर्च",
+    "hinglish": "Dekho pehle kisne daala, trusted accounts aur news sites, aur reverse image search"
+   },
+   {
+    "en": "Content credentials and watermarks help but do not prove every fake",
+    "hi": "कंटेंट क्रेडेंशियल और वॉटरमार्क मदद करते हैं पर हर नकली को साबित नहीं करते",
+    "hinglish": "Content credentials aur watermarks madad karte hain par har fake ko prove nahi karte"
+   },
+   {
+    "en": "Do not share; report on the platform and at cybercrime.gov.in",
+    "hi": "शेयर मत करो; प्लेटफ़ॉर्म पर और cybercrime.gov.in पर रिपोर्ट करो",
+    "hinglish": "Share mat karo; platform par aur cybercrime.gov.in par report karo"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Deepfake",
@@ -82,7 +153,7 @@
     "hi": "जाँचो: सबसे पहले किसने पोस्ट किया, क्या यह व्यक्ति के सत्यापित खाते या बड़ी समाचार साइट पर है, क्या रिवर्स इमेज सर्च पुराना असली ढूँढती है?",
     "hinglish": "Check karo: sabse pehle kisne post kiya, kya yeh us insaan ke verified account ya badi news site par hai, kya reverse image search purana original dhoondhta hai?"
    },
-   "visual": "anim:verify-chain",
+   "visual": "flow:👤 Who posted it first?|✅ Verified account or news site?|🔍 Reverse image search",
    "narration": {
     "en": "Check: who posted first, is it on the person's verified account or a major news site, does a reverse image search find an older original?",
     "hi": "जाँचो: सबसे पहले किसने पोस्ट किया, क्या यह व्यक्ति के सत्यापित खाते या बड़ी समाचार साइट पर है, क्या रिवर्स इमेज सर्च पुराना असली ढूँढती है?",
@@ -96,7 +167,7 @@
     "hi": "अगर नकली है, शेयर मत करो। प्लेटफ़ॉर्म पर और cybercrime.gov.in पर रिपोर्ट करो।",
     "hinglish": "Agar nakli hai, share mat karo. Platform par aur cybercrime.gov.in par report karo."
    },
-   "visual": "anim:report-flow",
+   "visual": "flow:🚫 Do not share|📣 Report on the platform|🚔 Report at cybercrime.gov.in",
    "narration": {
     "en": "If it is fake, do not share. Report it on the platform and at cybercrime.gov.in.",
     "hi": "अगर नकली है, शेयर मत करो। प्लेटफ़ॉर्म पर और cybercrime.gov.in पर रिपोर्ट करो।",

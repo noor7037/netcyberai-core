@@ -38,6 +38,77 @@
    "hinglish": "Bata sakte ho average kya batata hai aur kya chhupata hai."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, five friends read 2, 4, 3, 5 and 1 books this month, and someone asks, \"How many does a friend read, usually?\"",
+   "hi": "{{name}}, पाँच दोस्तों ने इस महीने 2, 4, 3, 5 और 1 किताबें पढ़ीं, और कोई पूछता है, \"एक दोस्त आम तौर पर कितनी पढ़ता है?\"",
+   "hinglish": "{{name}}, paanch doston ne is mahine 2, 4, 3, 5 aur 1 books padhin, aur koi poochta hai, \"Ek dost aam taur par kitni padhta hai?\""
+  },
+  "question": {
+   "en": "Is there one fair number that stands for everyone?",
+   "hi": "क्या कोई एक सही संख्या है जो सबका प्रतिनिधित्व करे?",
+   "hinglish": "Kya koi ek sahi number hai jo sabka pratinidhitva kare?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "The friends read 2, 4, 3, 5 and 1 books. How do we find the average?",
+   "hi": "दोस्तों ने 2, 4, 3, 5 और 1 किताबें पढ़ीं। औसत कैसे निकालें?",
+   "hinglish": "Doston ne 2, 4, 3, 5 aur 1 books padhin. Average kaise nikaalein?"
+  },
+  "options": [
+   {
+    "en": "Pick the biggest number, 5",
+    "hi": "सबसे बड़ी संख्या, 5, चुन लो",
+    "hinglish": "Sabse badi number, 5, chun lo"
+   },
+   {
+    "en": "Share the total equally: 15 ÷ 5 = 3",
+    "hi": "कुल बराबर बाँट दो: 15 ÷ 5 = 3",
+    "hinglish": "Total barabar baant do: 15 ÷ 5 = 3"
+   },
+   {
+    "en": "Pick the middle bar on the chart",
+    "hi": "चार्ट की बीच वाली बार चुन लो",
+    "hinglish": "Chart ki beech wali bar chun lo"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "The average is what everyone would get if the total were shared equally: total ÷ how many. It sums up the group in one number, but hides differences: Zoya still read only 1.",
+   "hi": "औसत वह है जो हर किसी को मिलता अगर कुल बराबर बाँटा जाता: कुल ÷ कितने। यह समूह को एक संख्या में बताता है, पर अंतर छुपा देता है: ज़ोया ने फिर भी सिर्फ़ 1 पढ़ी।",
+   "hinglish": "Average woh hai jo har kisi ko milta agar total barabar baanta jaata: total ÷ kitne. Yeh group ko ek number mein batata hai, par antar chhupa deta hai: Zoya ne phir bhi sirf 1 padhi."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: what is an average?",
+   "hi": "घर पर किसी को समझाओ: औसत क्या है?",
+   "hinglish": "Ghar par kisi ko samjhao: average kya hai?"
+  },
+  "checklist": [
+   {
+    "en": "Most is the biggest value, fewest is the smallest.",
+    "hi": "सबसे ज़्यादा सबसे बड़ा मान है, सबसे कम सबसे छोटा।",
+    "hinglish": "Most sabse bada value hai, fewest sabse chhota."
+   },
+   {
+    "en": "Average is the total shared equally.",
+    "hi": "औसत कुल का बराबर बँटवारा है।",
+    "hinglish": "Average total ka barabar bantwara hai."
+   },
+   {
+    "en": "Add them up, then divide by how many.",
+    "hi": "सबको जोड़ो, फिर कितने हैं उससे भाग दो।",
+    "hinglish": "Sabko jodo, phir kitne hain usse bhaag do."
+   },
+   {
+    "en": "One average can hide big differences.",
+    "hi": "एक औसत बड़े अंतर छुपा सकता है।",
+    "hinglish": "Ek average bade antar chhupa sakta hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Average",

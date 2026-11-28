@@ -38,6 +38,82 @@
    "hinglish": "Safe-use rules follow kar sakte ho: age limit, grown-up saath, personal details nahi"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you ask a chatbot to explain fractions using pizza slices, and a clear answer appears in seconds.",
+   "hi": "{{name}}, तुम चैटबॉट से पिज़्ज़ा के टुकड़ों से भिन्न समझाने को कहते हो, और कुछ सेकंड में साफ़ जवाब आ जाता है।",
+   "hinglish": "{{name}}, tum chatbot se pizza slices se fractions samjhane ko kehte ho, aur kuch seconds mein saaf jawab aa jaata hai."
+  },
+  "question": {
+   "en": "How did it learn to answer, and what can it not do?",
+   "hi": "उसने जवाब देना कैसे सीखा, और वह क्या नहीं कर सकता?",
+   "hinglish": "Usne jawab dena kaise seekha, aur woh kya nahi kar sakta?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What is the main skill a chatbot's model learns first, by reading a huge library of text?",
+   "hi": "विशाल पाठ-पुस्तकालय पढ़कर चैटबॉट का मॉडल सबसे पहले मुख्य रूप से कौन-सा हुनर सीखता है?",
+   "hinglish": "Bahut bade text library ko padhkar chatbot ka model sabse pehle mukhya roop se kaunsa hunar seekhta hai?"
+  },
+  "options": [
+   {
+    "en": "Storing every fact like an encyclopedia",
+    "hi": "विश्वकोश की तरह हर तथ्य जमा करना",
+    "hinglish": "Encyclopedia ki tarah har fact store karna"
+   },
+   {
+    "en": "Predicting the next word",
+    "hi": "अगला शब्द अनुमानित करना",
+    "hinglish": "Agla word predict karna"
+   },
+   {
+    "en": "Browsing the internet for answers",
+    "hi": "जवाबों के लिए इंटरनेट खँगालना",
+    "hinglish": "Jawabon ke liye internet khangalna"
+   },
+   {
+    "en": "Feeling what the user wants",
+    "hi": "महसूस करना कि उपयोगकर्ता क्या चाहता है",
+    "hinglish": "Feel karna ki user kya chahta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Stage 1 teaches one skill: predict the next word from patterns in huge amounts of text. In stage 2 people write example answers and rate replies, so the model is tuned towards helpful, polite and safe ones.",
+   "hi": "चरण 1 में एक हुनर सिखाया जाता है: बहुत सारे पाठ के पैटर्न से अगला शब्द अनुमानित करना। चरण 2 में लोग उदाहरण-उत्तर लिखते और जवाबों को रेट करते हैं, जिससे मॉडल मददगार, विनम्र और सुरक्षित जवाबों की ओर ढलता है।",
+   "hinglish": "Stage 1 mein ek hunar sikhaya jaata hai: bahut saare text ke patterns se agla word predict karna. Stage 2 mein log example answers likhte aur replies ko rate karte hain, jisse model helpful, polite aur safe jawabon ki or dhalta hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a chatbot works and how to use it safely.",
+   "hi": "घर पर किसी को समझाओ कि चैटबॉट कैसे काम करता है और उसे सुरक्षित कैसे इस्तेमाल करें।",
+   "hinglish": "Ghar par kisi ko samjhao ki chatbot kaise kaam karta hai aur use safely kaise use karein."
+  },
+  "checklist": [
+   {
+    "en": "Stage 1: it reads lots of text and learns to predict the next word.",
+    "hi": "चरण 1: वह बहुत सारा पाठ पढ़कर अगला शब्द अनुमानित करना सीखता है।",
+    "hinglish": "Stage 1: woh bahut saara text padhkar agla word predict karna seekhta hai."
+   },
+   {
+    "en": "Stage 2: people write example answers and rate replies to make it helpful and safe.",
+    "hi": "चरण 2: लोग उदाहरण-उत्तर लिखते और जवाब रेट करते हैं ताकि वह मददगार और सुरक्षित बने।",
+    "hinglish": "Stage 2: log example answers likhte aur replies rate karte hain taaki woh helpful aur safe bane."
+   },
+   {
+    "en": "Your message becomes tokens and it predicts a reply token by token; it can be wrong.",
+    "hi": "तुम्हारा संदेश टोकन बनता है और वह जवाब टोकन-दर-टोकन अनुमानित करता है; वह ग़लत हो सकता है।",
+    "hinglish": "Tumhara message tokens banta hai aur woh reply token-by-token predict karta hai; woh galat ho sakta hai."
+   },
+   {
+    "en": "Safe use: follow age limits, use it with a grown-up, and share no personal details.",
+    "hi": "सुरक्षित उपयोग: आयु सीमा मानो, किसी बड़े के साथ इस्तेमाल करो, और निजी जानकारी मत दो।",
+    "hinglish": "Safe use: age limits maano, kisi bade ke saath use karo, aur personal details mat do."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Chatbot",
@@ -100,7 +176,7 @@
     "hi": "जब तुम बात करते हो, तुम्हारा संदेश टोकन बनता है, मॉडल टोकन-दर-टोकन जवाब अनुमानित करता है, और ऐप उसे दिखाता है।",
     "hinglish": "Jab tum chat karte ho, tumhara message tokens banta hai, model token-by-token reply predict karta hai, aur app use dikhata hai."
    },
-   "visual": "code",
+   "visual": "flow:💬 Your message|🔤 Tokens|🔮 Predict reply|📱 App shows it",
    "narration": {
     "en": "It does not think or feel; it calculates likely words.",
     "hi": "वह सोचता या महसूस नहीं करता; संभावित शब्द गणना करता है।",

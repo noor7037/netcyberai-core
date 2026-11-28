@@ -40,6 +40,72 @@
    "hinglish": "Cell ke + aur − sire jaante ho."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your torch has a cell, a bulb and a button. When you press, it glows. When the cell is not in, it does not.",
+   "hi": "{{name}}, तुम्हारी टॉर्च में सेल, बल्ब और बटन है। दबाने पर वह जलती है। सेल न हो तो नहीं जलती।",
+   "hinglish": "{{name}}, tumhari torch mein cell, bulb aur button hai. Dabane par woh jalti hai. Cell na ho to nahin jalti."
+  },
+  "question": {
+   "en": "What does electricity need before the bulb will glow?",
+   "hi": "बल्ब जलने के लिए बिजली को क्या चाहिए?",
+   "hinglish": "Bulb jalne ke liye bijli ko kya chahiye?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What do you think? You join a bulb to only one end of a cell with one wire. Does it glow?",
+   "hi": "तुम्हें क्या लगता है? तुम एक तार से बल्ब को सेल के सिर्फ़ एक सिरे से जोड़ते हो। क्या वह जलेगा?",
+   "hinglish": "Tumhe kya lagta hai? Tum ek wire se bulb ko cell ke sirf ek end se jodte ho. Kya woh jalega?"
+  },
+  "options": [
+   {
+    "en": "Yes, electricity just flows into the bulb",
+    "hi": "हाँ, बिजली बस बल्ब में बह जाती है",
+    "hinglish": "Haan, bijli bas bulb mein beh jaati hai"
+   },
+   {
+    "en": "No, electricity needs a complete loop from + through the bulb and back to −",
+    "hi": "नहीं, बिजली को पूरा घेरा चाहिए: + से बल्ब होते हुए − तक वापस",
+    "hinglish": "Nahin, bijli ko poora loop chahiye: + se bulb hote hue − tak wapas"
+   },
+   {
+    "en": "It glows dimly",
+    "hi": "वह धीमा जलेगा",
+    "hinglish": "Woh dheema jalega"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Electricity moves only in a closed circuit, a loop. It leaves one end (+) of the cell and must come back to the other (−). With a gap, an open circuit, nothing moves, not even through the bulb.",
+   "hi": "बिजली सिर्फ़ बंद सर्किट, यानी घेरे, में चलती है। वह सेल के एक सिरे (+) से निकलती है और दूसरे (−) पर लौटनी चाहिए। बीच में खाली जगह हो, यानी खुला सर्किट, तो कुछ नहीं चलता, बल्ब से भी नहीं।",
+   "hinglish": "Bijli sirf closed circuit, yaani loop, mein chalti hai. Woh cell ke ek end (+) se nikalti hai aur doosre (−) par wapas aani chahiye. Beech mein gap ho, yaani open circuit, to kuch nahin chalta, bulb se bhi nahin."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: why does a bulb need a closed circuit?",
+   "hi": "घर पर किसी को समझाओ: बल्ब को बंद सर्किट क्यों चाहिए?",
+   "hinglish": "Ghar par kisi ko samjhao: bulb ko closed circuit kyon chahiye?"
+  },
+  "checklist": [
+   {
+    "en": "Electricity leaves + of the cell and must return to −.",
+    "hi": "बिजली सेल के + से निकलती है और − पर लौटनी चाहिए।",
+    "hinglish": "Bijli cell ke + se nikalti hai aur − par wapas aani chahiye."
+   },
+   {
+    "en": "A closed circuit is a complete loop; an open circuit has a gap.",
+    "hi": "बंद सर्किट पूरा घेरा है; खुले सर्किट में खाली जगह है।",
+    "hinglish": "Closed circuit poora loop hai; open circuit mein gap hai."
+   },
+   {
+    "en": "With a gap, nothing flows, so the bulb stays dark.",
+    "hi": "खाली जगह हो तो कुछ नहीं बहता, इसलिए बल्ब नहीं जलता।",
+    "hinglish": "Gap ho to kuch nahin behta, isliye bulb nahin jalta."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Circuit",

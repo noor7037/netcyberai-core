@@ -39,6 +39,77 @@
    "hinglish": "Jaante ho ki AI mazaak, taana aur accent galat samajh sakta hai."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you say \"Hey speaker, what is the weather?\" and it answers in a clear voice.",
+   "hi": "{{name}}, तुम कहते हो \"हे स्पीकर, मौसम कैसा है?\" और वह साफ़ आवाज़ में जवाब देता है।",
+   "hinglish": "{{name}}, tum kehte ho \"Hey speaker, mausam kaisa hai?\" aur woh saaf awaaz mein jawab deta hai."
+  },
+  "question": {
+   "en": "What does the speaker do between your voice and its answer?",
+   "hi": "तुम्हारी आवाज़ और उसके जवाब के बीच स्पीकर क्या करता है?",
+   "hinglish": "Tumhari awaaz aur uske jawab ke beech speaker kya karta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What happens after you say the wake word and a question?",
+   "hi": "वेक वर्ड और सवाल बोलने के बाद क्या होता है?",
+   "hinglish": "Wake word aur sawal bolne ke baad kya hota hai?"
+  },
+  "options": [
+   {
+    "en": "The speaker understands like a person, with feelings",
+    "hi": "स्पीकर इंसान की तरह भावनाओं से समझता है",
+    "hinglish": "Speaker insaan ki tarah feelings se samajhta hai"
+   },
+   {
+    "en": "Sound becomes words, then meaning, then an answer that is spoken back",
+    "hi": "आवाज़ शब्द बनती है, फिर अर्थ, फिर जवाब जो बोलकर सुनाया जाता है",
+    "hinglish": "Awaaz shabd banti hai, phir matlab, phir jawab jo bolkar sunaya jaata hai"
+   },
+   {
+    "en": "It copies your question and repeats it",
+    "hi": "वह तुम्हारा सवाल दोहरा देता है",
+    "hinglish": "Woh tumhara sawal dohra deta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "The steps are: wake word, sound to text, work out the meaning, find and speak an answer. It learns patterns of words, not feelings, so jokes, sarcasm and unusual accents can confuse it.",
+   "hi": "कदम ये हैं: वेक वर्ड, आवाज़ से टेक्स्ट, अर्थ निकालना, जवाब ढूँढकर बोलना। वह शब्दों के पैटर्न सीखता है, भावनाएँ नहीं, इसलिए मज़ाक, व्यंग्य और अलग लहज़े उसे उलझा सकते हैं।",
+   "hinglish": "Steps yeh hain: wake word, sound se text, meaning nikaalna, jawab dhoondkar bolna. Woh words ke patterns seekhta hai, feelings nahi, isliye jokes, sarcasm aur alag accents use uljha sakte hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: how does a smart speaker answer?",
+   "hi": "घर पर किसी को समझाओ: स्मार्ट स्पीकर जवाब कैसे देता है?",
+   "hinglish": "Ghar par kisi ko samjhao: smart speaker jawab kaise deta hai?"
+  },
+  "checklist": [
+   {
+    "en": "A wake word wakes it up.",
+    "hi": "वेक वर्ड उसे जगाता है।",
+    "hinglish": "Wake word use jagata hai."
+   },
+   {
+    "en": "Sound turns into words, then meaning, then an answer.",
+    "hi": "आवाज़ शब्द बनती है, फिर अर्थ, फिर जवाब।",
+    "hinglish": "Awaaz shabd banti hai, phir matlab, phir jawab."
+   },
+   {
+    "en": "It learns which words go with which meaning.",
+    "hi": "वह सीखता है कि कौन-से शब्द किस अर्थ के साथ आते हैं।",
+    "hinglish": "Woh seekhta hai ki kaun-se words kis meaning ke saath aate hain."
+   },
+   {
+    "en": "Jokes, sarcasm and accents can confuse it.",
+    "hi": "मज़ाक, व्यंग्य और लहज़े उसे उलझा सकते हैं।",
+    "hinglish": "Jokes, sarcasm aur accents use uljha sakte hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Wake word",

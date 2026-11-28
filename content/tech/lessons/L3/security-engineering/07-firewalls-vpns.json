@@ -35,6 +35,77 @@
    "hinglish": "Batao VPN kya bachata hai, kya nahi, aur zero-trust access"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your home router lets your phone reach YouTube but blocks strangers from walking into your laptop.",
+   "hi": "{{name}}, तुम्हारा घर का राउटर तुम्हारे फ़ोन को YouTube तक जाने देता है पर अजनबियों को तुम्हारे लैपटॉप में घुसने से रोकता है।",
+   "hinglish": "{{name}}, tumhara ghar ka router tumhare phone ko YouTube tak jaane deta hai par ajnabiyon ko tumhare laptop mein ghusne se rokta hai."
+  },
+  "question": {
+   "en": "How does a firewall decide which traffic gets in, and what does a VPN protect and not protect?",
+   "hi": "फ़ायरवॉल कैसे तय करता है कि कौन-सा ट्रैफ़िक अंदर आए, और VPN क्या बचाता है और क्या नहीं?",
+   "hinglish": "Firewall kaise tay karta hai ki kaunsa traffic andar aaye, aur VPN kya bachata hai aur kya nahi?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What is the safest default for a firewall rule set?",
+   "hi": "फ़ायरवॉल नियम सेट के लिए सबसे सुरक्षित डिफ़ॉल्ट क्या है?",
+   "hinglish": "Firewall rule set ke liye sabse safe default kya hai?"
+  },
+  "options": [
+   {
+    "en": "Allow everything, then block known bad addresses",
+    "hi": "सब कुछ अनुमत, फिर ज्ञात खराब पते रोको",
+    "hinglish": "Sab kuch allow, phir known bad addresses roko"
+   },
+   {
+    "en": "Deny everything, then allow only the specific traffic you need",
+    "hi": "सब कुछ रोको, फिर सिर्फ़ ज़रूरी ट्रैफ़िक अनुमत करो",
+    "hinglish": "Sab kuch deny, phir sirf zaroori traffic allow karo"
+   },
+   {
+    "en": "No firewall is needed if you have antivirus",
+    "hi": "एंटीवायरस हो तो फ़ायरवॉल की ज़रूरत नहीं",
+    "hinglish": "Antivirus ho toh firewall ki zaroorat nahi"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "A firewall compares each packet's source, destination, port and protocol with a rule list, top to bottom. Default deny is safest because you must name what is allowed, for example TCP 443 from anywhere and SSH 22 only from the IT room. A stateful firewall also tracks connections, letting replies in. A VPN encrypts traffic to the VPN server, which helps on public Wi-Fi, but it does not make you anonymous or fix a malicious site; zero trust means checking every request.",
+   "hi": "फ़ायरवॉल हर पैकेट का स्रोत, गंतव्य, पोर्ट और प्रोटोकॉल नियम सूची से ऊपर से नीचे मिलाता है। डिफ़ॉल्ट इनकार सबसे सुरक्षित है क्योंकि जो अनुमत है उसे नाम देना पड़ता है, जैसे कहीं से भी TCP 443 और SSH 22 सिर्फ़ IT कमरे से। स्टेटफुल फ़ायरवॉल कनेक्शन भी ट्रैक करता है और जवाब अंदर आने देता है। VPN ट्रैफ़िक को VPN सर्वर तक एन्क्रिप्ट करता है, जो सार्वजनिक वाई-फ़ाई पर काम आता है, पर वह तुम्हें गुमनाम नहीं बनाता न दुर्भावनापूर्ण साइट ठीक करता है; ज़ीरो ट्रस्ट का मतलब हर अनुरोध की जाँच।",
+   "hinglish": "Firewall har packet ka source, destination, port aur protocol rule list se upar se neeche milata hai. Default deny sabse safe hai kyunki jo allowed hai use naam dena padta hai, jaise kahin se bhi TCP 443 aur SSH 22 sirf IT room se. Stateful firewall connections bhi track karta hai aur replies andar aane deta hai. VPN traffic ko VPN server tak encrypt karta hai, jo public Wi-Fi par kaam aata hai, par woh tumhe anonymous nahi banata na malicious site theek karta hai; zero trust ka matlab har request ki jaanch."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home what a firewall rule list does and what a VPN does and does not protect.",
+   "hi": "घर पर किसी को समझाओ कि फ़ायरवॉल नियम सूची क्या करती है और VPN क्या बचाता है और क्या नहीं।",
+   "hinglish": "Ghar par kisi ko samjhao ki firewall rule list kya karti hai aur VPN kya bachata hai aur kya nahi."
+  },
+  "checklist": [
+   {
+    "en": "A firewall checks source, destination, port and protocol against rules, top to bottom.",
+    "hi": "फ़ायरवॉल स्रोत, गंतव्य, पोर्ट और प्रोटोकॉल को नियमों से ऊपर से नीचे जाँचता है।",
+    "hinglish": "Firewall source, destination, port aur protocol ko rules se upar se neeche jaanchta hai."
+   },
+   {
+    "en": "Stateful firewalls track connections; NAT plus stateful rules protect a home network.",
+    "hi": "स्टेटफुल फ़ायरवॉल कनेक्शन ट्रैक करते हैं; NAT और स्टेटफुल नियम घर का नेटवर्क बचाते हैं।",
+    "hinglish": "Stateful firewalls connections track karte hain; NAT aur stateful rules ghar ka network bachate hain."
+   },
+   {
+    "en": "Default deny with a short allow list: for example HTTPS from anywhere, SSH from the IT room only.",
+    "hi": "छोटी अनुमत सूची के साथ डिफ़ॉल्ट इनकार: जैसे कहीं से HTTPS, SSH सिर्फ़ IT कमरे से।",
+    "hinglish": "Chhoti allow list ke saath default deny: jaise kahin se HTTPS, SSH sirf IT room se."
+   },
+   {
+    "en": "A VPN encrypts your link to the VPN server; it does not give anonymity or stop malware.",
+    "hi": "VPN तुम्हारी VPN सर्वर तक की कड़ी एन्क्रिप्ट करता है; वह गुमनामी या मैलवेयर से बचाव नहीं देता।",
+    "hinglish": "VPN tumhari VPN server tak ki link encrypt karta hai; woh anonymity ya malware se bachav nahi deta."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Firewall",
@@ -75,7 +146,7 @@
     "hi": "हर पैकेट में स्रोत, गंतव्य, पोर्ट और प्रोटोकॉल होता है। फ़ायरवॉल इन्हें ऊपर से नीचे अपनी नियम सूची से मिलाता है।",
     "hinglish": "Har packet mein source, destination, port aur protocol hota hai. Firewall inhe upar se neeche apni rule list se milata hai."
    },
-   "visual": "anim:fw-rules",
+   "visual": "flow:📦 A packet arrives|📋 Rules checked top to bottom|✅ Allow or ⛔ deny",
    "narration": {
     "en": "Every packet has a source, destination, port and protocol. A firewall compares these with its rule list, top to bottom.",
     "hi": "हर पैकेट में स्रोत, गंतव्य, पोर्ट और प्रोटोकॉल होता है। फ़ायरवॉल इन्हें ऊपर से नीचे अपनी नियम सूची से मिलाता है।",
@@ -117,7 +188,7 @@
     "hi": "VPN आपका ट्रैफ़िक VPN सर्वर तक एन्क्रिप्टेड सुरंग में लपेटता है। कैफ़े वाई-फ़ाई को सिर्फ़ एक पते पर जाता उलझा डेटा दिखता है।",
     "hinglish": "VPN tumhara traffic VPN server tak encrypted tunnel mein lapet-ta hai. Cafe Wi-Fi ko sirf ek address par jaata uljha data dikhta hai."
    },
-   "visual": "anim:vpn-tunnel",
+   "visual": "flow:📱 Your phone|🔒 Encrypted tunnel|🏢 VPN server|🌐 Website",
    "narration": {
     "en": "A VPN wraps your traffic in an encrypted tunnel to the VPN server. The café Wi-Fi sees only scrambled data going to one address.",
     "hi": "VPN आपका ट्रैफ़िक VPN सर्वर तक एन्क्रिप्टेड सुरंग में लपेटता है। कैफ़े वाई-फ़ाई को सिर्फ़ एक पते पर जाता उलझा डेटा दिखता है।",

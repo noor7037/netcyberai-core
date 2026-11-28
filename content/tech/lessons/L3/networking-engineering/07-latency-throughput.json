@@ -36,6 +36,77 @@
    "hinglish": "Samjhao CDN aur caching latency kaise ghatate hain"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you start a 1.5 GB game download on a 50 Mbit/s plan, but you also see a video call lag even when the speed test looks fine.",
+   "hi": "{{name}}, तुम 50 Mbit/s प्लान पर 1.5 GB का गेम डाउनलोड शुरू करते हो, और स्पीड टेस्ट ठीक दिखने पर भी वीडियो कॉल अटकती है।",
+   "hinglish": "{{name}}, tum 50 Mbit/s plan par 1.5 GB ka game download shuru karte ho, aur speed test theek dikhne par bhi video call atakti hai."
+  },
+  "question": {
+   "en": "What is the difference between a fast connection and a responsive one, and how long will the download really take?",
+   "hi": "तेज़ कनेक्शन और तुरंत जवाब देने वाले कनेक्शन में क्या अंतर है, और डाउनलोड असल में कितना समय लेगा?",
+   "hinglish": "Tez connection aur turant jawab dene wale connection mein kya antar hai, aur download asal mein kitna time lega?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A 100 Mbit/s line is advertised. About how many megabytes per second can it move at best?",
+   "hi": "एक 100 Mbit/s लाइन का विज्ञापन है। वह अधिकतम लगभग कितने मेगाबाइट प्रति सेकंड ले जा सकती है?",
+   "hinglish": "Ek 100 Mbit/s line ka advertisement hai. Woh maximum lagbhag kitne megabytes per second le ja sakti hai?"
+  },
+  "options": [
+   {
+    "en": "100 MB/s",
+    "hi": "100 MB/s",
+    "hinglish": "100 MB/s"
+   },
+   {
+    "en": "About 12.5 MB/s, since 8 bits make a byte",
+    "hi": "लगभग 12.5 MB/s, क्योंकि 8 बिट का एक बाइट होता है",
+    "hinglish": "Lagbhag 12.5 MB/s, kyunki 8 bits ka ek byte hota hai"
+   },
+   {
+    "en": "About 1 MB/s",
+    "hi": "लगभग 1 MB/s",
+    "hinglish": "Lagbhag 1 MB/s"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Network speeds are in bits, file sizes in bytes: 100 ÷ 8 = 12.5 MB/s at best. Bandwidth is how wide the pipe is; latency is how long one bit takes to travel, set by distance (light in fibre covers about 200,000 km per second), queues and handshakes. A big download needs throughput; a video call needs low latency and little jitter, which is why a CDN keeps copies nearby.",
+   "hi": "नेटवर्क की गति बिट में और फ़ाइल का आकार बाइट में होता है: 100 ÷ 8 = अधिकतम 12.5 MB/s। बैंडविड्थ पाइप की चौड़ाई है; लेटेंसी एक बिट के सफ़र का समय है, जो दूरी (फ़ाइबर में प्रकाश लगभग 200,000 किमी प्रति सेकंड), कतारों और हैंडशेक से तय होता है। बड़े डाउनलोड को थ्रूपुट चाहिए; वीडियो कॉल को कम लेटेंसी और कम जिटर, इसीलिए CDN पास में प्रतियाँ रखता है।",
+   "hinglish": "Network speeds bits mein aur file size bytes mein hota hai: 100 ÷ 8 = maximum 12.5 MB/s. Bandwidth pipe ki chaudai hai; latency ek bit ke safar ka time hai, jo doori (fibre mein light lagbhag 200,000 km per second), queues aur handshakes se tay hota hai. Bade download ko throughput chahiye; video call ko kam latency aur kam jitter, isiliye CDN paas mein copies rakhta hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home the difference between bandwidth and latency, and how a CDN helps.",
+   "hi": "घर पर किसी को समझाओ कि बैंडविड्थ और लेटेंसी में क्या अंतर है, और CDN कैसे मदद करता है।",
+   "hinglish": "Ghar par kisi ko samjhao ki bandwidth aur latency mein kya antar hai, aur CDN kaise madad karta hai."
+  },
+  "checklist": [
+   {
+    "en": "Bandwidth is capacity, throughput is what you actually get, latency is delay, jitter is its variation, loss is dropped packets.",
+    "hi": "बैंडविड्थ क्षमता है, थ्रूपुट जो असल में मिले, लेटेंसी देरी, जिटर उसका उतार-चढ़ाव, लॉस छूटे पैकेट।",
+    "hinglish": "Bandwidth capacity hai, throughput jo asal mein mile, latency delay, jitter uska utaar-chadhaav, loss dropped packets."
+   },
+   {
+    "en": "Download time = size in bits ÷ throughput; remember 8 bits = 1 byte.",
+    "hi": "डाउनलोड समय = आकार बिट में ÷ थ्रूपुट; याद रखो 8 बिट = 1 बाइट।",
+    "hinglish": "Download time = size bits mein ÷ throughput; yaad rakho 8 bits = 1 byte."
+   },
+   {
+    "en": "Distance sets a minimum delay: light in fibre is about 5 µs per km.",
+    "hi": "दूरी न्यूनतम देरी तय करती है: फ़ाइबर में प्रकाश लगभग 5 µs प्रति किमी।",
+    "hinglish": "Doori minimum delay tay karti hai: fibre mein light lagbhag 5 µs per km."
+   },
+   {
+    "en": "CDNs, caching and fewer round trips (TLS 1.3, QUIC) cut latency.",
+    "hi": "CDN, कैशिंग और कम राउंड ट्रिप (TLS 1.3, QUIC) लेटेंसी घटाते हैं।",
+    "hinglish": "CDNs, caching aur kam round trips (TLS 1.3, QUIC) latency ghatate hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Bandwidth",
@@ -76,7 +147,7 @@
     "hi": "बैंडविड्थ पाइप की चौड़ाई है (Mbit/s)। विलंब एक बूँद को उसमें से गुज़रने का समय है (ms)। चौड़ा पाइप भी जवाब देने में धीमा हो सकता है।",
     "hinglish": "Bandwidth pipe ki chaudai hai (Mbit/s). Latency ek boond ko usmein se guzarne ka samay hai (ms). Chauda pipe bhi jawab dene mein dheema ho sakta hai."
    },
-   "visual": "anim:pipe-width-length",
+   "visual": "compare:📏 Bandwidth: how wide the pipe is|⏱️ Latency: how long a bit takes",
    "narration": {
     "en": "Bandwidth is how wide the pipe is (Mbit/s). Latency is how long one drop takes to travel through it (ms). A wide pipe can still be slow to respond.",
     "hi": "बैंडविड्थ पाइप की चौड़ाई है (Mbit/s)। विलंब एक बूँद को उसमें से गुज़रने का समय है (ms)। चौड़ा पाइप भी जवाब देने में धीमा हो सकता है।",
@@ -118,7 +189,7 @@
     "hi": "सीडीएन प्रतियाँ आपके पास रखता है, तो चेन्नई का छात्र वीडियो अमेरिका के बजाय चेन्नई के सर्वर से पाता है, राउंड ट्रिप लगभग 200 ms से 10 ms से कम हो जाता है।",
     "hinglish": "CDN copies tumhare paas rakhta hai, to Chennai ka student video USA ke bajaye Chennai ke server se paata hai, round trip lagbhag 200 ms se 10 ms se kam ho jaata hai."
    },
-   "visual": "anim:cdn-near",
+   "visual": "compare:🐢 Far origin server: long trip|⚡ Nearby CDN copy: short trip",
    "narration": {
     "en": "A CDN keeps copies close to you, so a Chennai student gets the video from a Chennai server instead of one in the USA, cutting the round trip from about 200 ms to under 10 ms.",
     "hi": "सीडीएन प्रतियाँ आपके पास रखता है, तो चेन्नई का छात्र वीडियो अमेरिका के बजाय चेन्नई के सर्वर से पाता है, राउंड ट्रिप लगभग 200 ms से 10 ms से कम हो जाता है।",

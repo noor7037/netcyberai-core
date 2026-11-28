@@ -4,6 +4,7 @@ import { WORD_MENU_KEYS } from '@/lib/family/word-menu-words';
 import { courseCatalog, LESSON_KEY, lessonForChild } from '@/lib/family/tech/catalog';
 import { isTechLang, langForChild } from '@/lib/family/tech/text';
 import { passPercent, readProgress } from '@/lib/family/tech/progress';
+import { readTechSettings, visibleCatalog } from '@/lib/family/tech/settings';
 import { readFamilySwitches, switchOn } from '@/lib/family/flags';
 import { familyPageRead, firstStepsNext, requireFamilyPage } from '@/lib/family/server';
 import { familyWords } from '@/lib/family/words';
@@ -22,13 +23,15 @@ export default async function FamilyTechLessonPage({ params, searchParams }: { p
   const open = await familyPageRead(page, async (db) => {
     const switches = await readFamilySwitches(db, page.session.accountId);
     if (!switchOn(switches, 'tech_lab')) return { on: false as const };
-    return { on: true as const, voice: await serverVoiceReady(db, page.session.accountId), progress: await readProgress(db, child.childId), pass: await passPercent(db) };
+    return { on: true as const, voice: await serverVoiceReady(db, page.session.accountId), progress: await readProgress(db, child.childId), pass: await passPercent(db), settings: await readTechSettings(db, child.childId) };
   });
   if (!open.on) redirect('/family');
   const lesson = lessonForChild(params.key);
   if (!lesson) notFound();
-  const catalog = courseCatalog();
+  const catalog = visibleCatalog(courseCatalog(), open.settings);
   const unit = catalog.units.find((item) => item.lessons.some((row) => row.key === lesson.id));
+  // C557: a topic area the parent switched off is hidden, its lessons too.
+  if (!unit) redirect('/family/tech');
   const index = unit?.lessons.findIndex((row) => row.key === lesson.id) ?? -1;
   const nextKey = unit && index >= 0 ? unit.lessons[index + 1]?.key ?? null : null;
   const prev = unit && index > 0 ? unit.lessons[index - 1] : null;

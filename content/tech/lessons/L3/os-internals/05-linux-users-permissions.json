@@ -34,6 +34,77 @@
    "hinglish": "Least privilege lagu karo: root, sudo aur app permissions"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, on a shared school computer you can open your own folder but not a classmate's, and you cannot install software.",
+   "hi": "{{name}}, स्कूल के साझा कंप्यूटर पर तुम अपना फ़ोल्डर खोल सकते हो पर साथी का नहीं, और सॉफ़्टवेयर इंस्टॉल भी नहीं कर सकते।",
+   "hinglish": "{{name}}, school ke shared computer par tum apna folder khol sakte ho par saathi ka nahi, aur software install bhi nahi kar sakte."
+  },
+  "question": {
+   "en": "How does the operating system decide who may read, change or run what?",
+   "hi": "ऑपरेटिंग सिस्टम कैसे तय करता है कि कौन क्या पढ़, बदल या चला सकता है?",
+   "hinglish": "Operating system kaise tay karta hai ki kaun kya padh, badal ya chala sakta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A file shows -rw-r--r-- and is owned by riya. Who can change it?",
+   "hi": "एक फ़ाइल -rw-r--r-- दिखाती है और riya की है। इसे कौन बदल सकता है?",
+   "hinglish": "Ek file -rw-r--r-- dikhati hai aur riya ki hai. Ise kaun badal sakta hai?"
+  },
+  "options": [
+   {
+    "en": "Everyone, because everyone can read it",
+    "hi": "सब, क्योंकि सब पढ़ सकते हैं",
+    "hinglish": "Sab, kyunki sab padh sakte hain"
+   },
+   {
+    "en": "Only the owner (and root); the group and others can only read",
+    "hi": "सिर्फ़ मालिक (और root); समूह और बाकी सिर्फ़ पढ़ सकते हैं",
+    "hinglish": "Sirf owner (aur root); group aur others sirf padh sakte hain"
+   },
+   {
+    "en": "Nobody, because it is locked",
+    "hi": "कोई नहीं, क्योंकि वह लॉक है",
+    "hinglish": "Koi nahi, kyunki woh lock hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "The string has three triplets: owner rw-, group r--, others r--. Only the owner has w (write), so only riya, or root who ignores permissions, can change it. In octal that is 644, and chmod 600 would make it owner-only.",
+   "hi": "स्ट्रिंग में तीन त्रय हैं: मालिक rw-, समूह r--, बाकी r--। सिर्फ़ मालिक के पास w (लिखना) है, इसलिए केवल riya, या अनुमतियाँ न मानने वाला root, इसे बदल सकता है। अष्टाधारी में यह 644 है, और chmod 600 इसे सिर्फ़ मालिक तक सीमित कर देता।",
+   "hinglish": "String mein teen triplets hain: owner rw-, group r--, others r--. Sirf owner ke paas w (write) hai, isliye sirf riya, ya permissions na maanne wala root, ise badal sakta hai. Octal mein yeh 644 hai, aur chmod 600 ise owner-only kar deta."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how to read -rw-r--r-- and why programs should get only the permissions they need.",
+   "hi": "घर पर किसी को समझाओ कि -rw-r--r-- कैसे पढ़ते हैं और प्रोग्राम को सिर्फ़ ज़रूरी अनुमतियाँ ही क्यों मिलनी चाहिए।",
+   "hinglish": "Ghar par kisi ko samjhao ki -rw-r--r-- kaise padhte hain aur programs ko sirf zaroori permissions hi kyun milni chahiye."
+  },
+  "checklist": [
+   {
+    "en": "First character is the type; then three rwx groups for owner, group and others.",
+    "hi": "पहला अक्षर प्रकार है; फिर मालिक, समूह और बाकी के लिए तीन rwx समूह।",
+    "hinglish": "Pehla character type hai; phir owner, group aur others ke liye teen rwx groups."
+   },
+   {
+    "en": "In octal r = 4, w = 2, x = 1, so rw-r--r-- is 644.",
+    "hi": "अष्टाधारी में r = 4, w = 2, x = 1, इसलिए rw-r--r-- का मतलब 644।",
+    "hinglish": "Octal mein r = 4, w = 2, x = 1, isliye rw-r--r-- ka matlab 644."
+   },
+   {
+    "en": "chmod changes permissions; on directories x means you may enter it.",
+    "hi": "chmod अनुमतियाँ बदलता है; डायरेक्टरी पर x का मतलब उसमें जा सकना।",
+    "hinglish": "chmod permissions badalta hai; directories par x ka matlab usme ja sakna."
+   },
+   {
+    "en": "Least privilege: use sudo only when needed and run services as low-privilege users.",
+    "hi": "न्यूनतम विशेषाधिकार: sudo ज़रूरत पर ही और सेवाएँ कम अधिकार वाले उपयोगकर्ता के रूप में चलाओ।",
+    "hinglish": "Least privilege: sudo sirf zaroorat par aur services low-privilege user ke roop mein chalao."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "User / group",
@@ -102,7 +173,7 @@
     "hi": "अष्टाधारी: r = 4, w = 2, x = 1। rw- = 6, r-- = 4, तो फ़ाइल 644 है। chmod 600 marks.csv उसे सिर्फ़ मालिक का बनाता है।",
     "hinglish": "Octal: r = 4, w = 2, x = 1. rw- = 6, r-- = 4, to file 644 hai. chmod 600 marks.csv use sirf owner ka banata hai."
    },
-   "visual": "anim:octal-calc",
+   "visual": "flow:🔤 rw-r--r--|🔢 Add r=4, w=2, x=1|✅ Mode is 644",
    "narration": {
     "en": "Octal: r = 4, w = 2, x = 1. rw- = 6, r-- = 4, so the file is 644. chmod 600 marks.csv makes it owner-only.",
     "hi": "अष्टाधारी: r = 4, w = 2, x = 1। rw- = 6, r-- = 4, तो फ़ाइल 644 है। chmod 600 marks.csv उसे सिर्फ़ मालिक का बनाता है।",

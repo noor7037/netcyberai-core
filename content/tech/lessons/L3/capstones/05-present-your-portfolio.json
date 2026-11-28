@@ -38,6 +38,77 @@
    "hinglish": "Backup plan ke saath live demo chalao aur questions ke jawab do"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you must present your project to a panel in five minutes, and your last practice run took twelve and ended with \"so yeah, that's it\".",
+   "hi": "{{name}}, तुम्हें पाँच मिनट में अपना प्रोजेक्ट पैनल के सामने पेश करना है, और तुम्हारा पिछला अभ्यास बारह मिनट चला और \"तो बस, यही है\" पर ख़त्म हुआ।",
+   "hinglish": "{{name}}, tumhe paanch minute mein apna project panel ke saamne present karna hai, aur tumhara pichhla practice run barah minute chala aur \"to bas, yehi hai\" par khatam hua."
+  },
+  "question": {
+   "en": "How do you turn a project into a story that a panel remembers and trusts?",
+   "hi": "प्रोजेक्ट को ऐसी कहानी कैसे बनाएँ जिसे पैनल याद रखे और जिस पर भरोसा करे?",
+   "hinglish": "Project ko aisi kahani kaise banayein jise panel yaad rakhe aur jis par bharosa kare?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What builds the most trust when you present a result?",
+   "hi": "नतीजा पेश करते समय सबसे ज़्यादा भरोसा किससे बनता है?",
+   "hinglish": "Result present karte samay sabse zyada bharosa kisse banta hai?"
+  },
+  "options": [
+   {
+    "en": "Showing only what worked perfectly",
+    "hi": "सिर्फ़ वह दिखाना जो बिल्कुल सही चला",
+    "hinglish": "Sirf woh dikhana jo bilkul sahi chala"
+   },
+   {
+    "en": "Comparing with a baseline and saying plainly what does not work yet",
+    "hi": "बेसलाइन से तुलना करना और साफ़ कहना कि क्या अभी नहीं चलता",
+    "hinglish": "Baseline se comparison karna aur saaf kehna ki kya abhi nahi chalta"
+   },
+   {
+    "en": "Using as many animations as possible",
+    "hi": "जितने हो सकें उतने एनिमेशन इस्तेमाल करना",
+    "hinglish": "Jitne ho sakein utne animations use karna"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "A result means little without a baseline to compare against, and naming limits shows you understand your own work. A clear story goes problem, approach, demo, results, next step, within the time given. Record a backup of the live demo in case it fails.",
+   "hi": "बेसलाइन के बिना नतीजे का मतलब कम है, और सीमाएँ बताना दिखाता है कि तुम अपना काम समझते हो। साफ़ कहानी का क्रम है समस्या, तरीक़ा, डेमो, नतीजे, अगला क़दम, दिए समय में। लाइव डेमो फ़ेल होने की स्थिति के लिए उसकी बैकअप रिकॉर्डिंग रखो।",
+   "hinglish": "Baseline ke bina result ka matlab kam hai, aur limits batana dikhata hai ki tum apna kaam samajhte ho. Saaf kahani ka order hai problem, approach, demo, results, next step, diye gaye time mein. Live demo fail hone ki condition ke liye uski backup recording rakho."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend how you would structure a five-minute project talk and what you would do if the demo fails.",
+   "hi": "दोस्त को समझाओ कि पाँच मिनट के प्रोजेक्ट भाषण का ढाँचा कैसे बनाओगे और डेमो फ़ेल हो तो क्या करोगे।",
+   "hinglish": "Friend ko samjhao ki paanch minute ke project talk ka structure kaise banaoge aur demo fail ho to kya karoge."
+  },
+  "checklist": [
+   {
+    "en": "Tell the story: problem, approach, demo, results, next step",
+    "hi": "कहानी सुनाओ: समस्या, तरीक़ा, डेमो, नतीजे, अगला क़दम",
+    "hinglish": "Kahani sunao: problem, approach, demo, results, next step"
+   },
+   {
+    "en": "Show results against a baseline with an honest, clear chart",
+    "hi": "बेसलाइन के मुक़ाबले नतीजे ईमानदार, साफ़ चार्ट से दिखाओ",
+    "hinglish": "Baseline ke muqabale results honest, clear chart se dikhao"
+   },
+   {
+    "en": "Record a backup video in case the live demo fails",
+    "hi": "लाइव डेमो फ़ेल होने पर बैकअप वीडियो रखो",
+    "hinglish": "Live demo fail hone par backup video rakho"
+   },
+   {
+    "en": "Say what does not work yet and credit others",
+    "hi": "बताओ कि क्या अभी नहीं चलता और दूसरों को श्रेय दो",
+    "hinglish": "Batao ki kya abhi nahi chalta aur doosron ko credit do"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Pitch",

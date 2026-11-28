@@ -35,6 +35,72 @@
    "hinglish": "Switch ko computer se jod sakte ho: ON/OFF 1 aur 0 jaisa hai."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you press the switch and the room light comes on. You press again and it goes off.",
+   "hi": "{{name}}, तुम स्विच दबाते हो और कमरे की बत्ती जल जाती है। फिर दबाते हो तो बुझ जाती है।",
+   "hinglish": "{{name}}, tum switch dabate ho aur kamre ki light jal jaati hai. Phir dabate ho to bujh jaati hai."
+  },
+  "question": {
+   "en": "What does the switch do inside the wall?",
+   "hi": "स्विच दीवार के अंदर क्या करता है?",
+   "hinglish": "Switch deewar ke andar kya karta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What do you think? Does a switch make the electricity?",
+   "hi": "तुम्हें क्या लगता है? क्या स्विच बिजली बनाता है?",
+   "hinglish": "Tumhe kya lagta hai? Kya switch bijli banata hai?"
+  },
+  "options": [
+   {
+    "en": "Yes, pressing it makes electricity",
+    "hi": "हाँ, दबाने से बिजली बनती है",
+    "hinglish": "Haan, dabane se bijli banti hai"
+   },
+   {
+    "en": "No, it closes or opens a gap in the circuit, letting electricity pass or stopping it",
+    "hi": "नहीं, वह सर्किट की खाली जगह को बंद या खोलता है, और बिजली को जाने देता या रोकता है",
+    "hinglish": "Nahin, woh circuit ke gap ko close ya open karta hai, aur bijli ko jaane deta ya rokta hai"
+   },
+   {
+    "en": "It stores electricity like a cell",
+    "hi": "वह सेल की तरह बिजली जमा रखता है",
+    "hinglish": "Woh cell ki tarah bijli store rakhta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "A switch is like a drawbridge over a gap in the circuit. Bridge down (ON): electricity crosses. Bridge up (OFF): it cannot. A computer's chips have billions of tiny switches, and their ON and OFF are the 1 and 0 of binary.",
+   "hi": "स्विच सर्किट की खाली जगह पर बने पुल जैसा है। पुल नीचे (ON): बिजली पार करती है। पुल ऊपर (OFF): नहीं कर सकती। कंप्यूटर की चिप में अरबों छोटे स्विच होते हैं, और उनका ON और OFF बाइनरी के 1 और 0 हैं।",
+   "hinglish": "Switch circuit ke gap par bane bridge jaisa hai. Bridge neeche (ON): bijli paar karti hai. Bridge upar (OFF): nahin kar sakti. Computer ki chip mein billions chhote switches hote hain, aur unka ON aur OFF binary ke 1 aur 0 hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Tell someone at home: what does a switch do, and how does it link to computers?",
+   "hi": "घर पर किसी को बताओ: स्विच क्या करता है, और कंप्यूटर से इसका क्या संबंध है?",
+   "hinglish": "Ghar par kisi ko batao: switch kya karta hai, aur computers se iska kya link hai?"
+  },
+  "checklist": [
+   {
+    "en": "A switch opens or closes the circuit.",
+    "hi": "स्विच सर्किट को खोलता या बंद करता है।",
+    "hinglish": "Switch circuit ko open ya close karta hai."
+   },
+   {
+    "en": "ON lets electricity pass; OFF stops it; the switch does not make electricity.",
+    "hi": "ON बिजली को जाने देता है; OFF रोकता है; स्विच बिजली नहीं बनाता।",
+    "hinglish": "ON bijli ko jaane deta hai; OFF rokta hai; switch bijli nahin banata."
+   },
+   {
+    "en": "Computers use many tiny switches: ON is 1, OFF is 0.",
+    "hi": "कंप्यूटर कई छोटे स्विच इस्तेमाल करते हैं: ON 1 है, OFF 0।",
+    "hinglish": "Computers bahut saare chhote switches use karte hain: ON 1 hai, OFF 0."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Switch",

@@ -34,6 +34,72 @@
    "hi": "Q-लर्निंग नियम से एक Q-मान अद्यतन करना"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you learn to ride a cycle with no manual: you wobble, fall, and slowly find what keeps you up.",
+   "hi": "{{name}}, तुम बिना किसी किताब के साइकिल चलाना सीखते हो: डगमगाते हो, गिरते हो, और धीरे-धीरे समझते हो कि क्या सँभाले रखता है।",
+   "hinglish": "{{name}}, tum bina kisi manual ke cycle chalana seekhte ho: wobble karte ho, girte ho, aur dheere-dheere samajhte ho ki kya sambhale rakhta hai."
+  },
+  "question": {
+   "en": "How can a program learn what to do just from rewards and mistakes?",
+   "hi": "कोई प्रोग्राम सिर्फ़ इनाम और ग़लतियों से क्या करना है, कैसे सीखता है?",
+   "hinglish": "Koi program sirf rewards aur mistakes se kya karna hai, kaise seekhta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A robot always takes the best move it knows so far. What can go wrong?",
+   "hi": "रोबोट हमेशा अब तक की सबसे अच्छी चाल चलता है। क्या ग़लत हो सकता है?",
+   "hinglish": "Robot hamesha ab tak ki sabse achhi chaal chalta hai. Kya galat ho sakta hai?"
+  },
+  "options": [
+   {
+    "en": "Nothing, the best known move is always best",
+    "hi": "कुछ नहीं, ज्ञात सबसे अच्छी चाल हमेशा सबसे अच्छी है",
+    "hinglish": "Kuch nahi, best known move hamesha best hai"
+   },
+   {
+    "en": "It may never discover a better path it never tried",
+    "hi": "वह कभी बेहतर रास्ता नहीं खोज पाएगा जिसे उसने आज़माया ही नहीं",
+    "hinglish": "Woh kabhi better path nahi dhoondh paayega jise usne try hi nahi kiya"
+   },
+   {
+    "en": "It will forget all rewards",
+    "hi": "वह सारे इनाम भूल जाएगा",
+    "hinglish": "Woh saare rewards bhool jayega"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Early rewards may point to a mediocre route. Exploration (sometimes a random action, as in epsilon-greedy) lets the agent find better ones; exploitation uses what it knows. Q-learning updates a state-action value towards reward plus the best future value.",
+   "hi": "शुरुआती इनाम औसत रास्ते की ओर इशारा कर सकते हैं। एक्सप्लोरेशन (कभी-कभी यादृच्छिक क्रिया, जैसे epsilon-greedy) एजेंट को बेहतर रास्ते खोजने देता है; एक्सप्लॉइटेशन जो पता है वही इस्तेमाल करता है। Q-लर्निंग स्टेट-एक्शन मान को इनाम और सबसे अच्छे भविष्य मान की ओर खिसकाता है।",
+   "hinglish": "Shuruaati rewards average route ki taraf ishaara kar sakte hain. Exploration (kabhi-kabhi random action, jaise epsilon-greedy) agent ko better routes dhoondhne deta hai; exploitation jo pata hai wahi use karta hai. Q-learning state-action value ko reward aur best future value ki taraf khiskata hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend how a robot in a grid learns to reach the charger without being told the way.",
+   "hi": "दोस्त को समझाओ कि ग्रिड में रोबोट बिना रास्ता बताए चार्जर तक पहुँचना कैसे सीखता है।",
+   "hinglish": "Friend ko samjhao ki grid mein robot bina raasta bataye charger tak pahunchna kaise seekhta hai."
+  },
+  "checklist": [
+   {
+    "en": "Agent acts in an environment, sees a state, gets a reward, and follows a policy",
+    "hi": "एजेंट वातावरण में कार्य करता है, अवस्था देखता है, इनाम पाता है और नीति पर चलता है",
+    "hinglish": "Agent environment mein act karta hai, state dekhta hai, reward paata hai aur policy follow karta hai"
+   },
+   {
+    "en": "Exploration tries new things; exploitation uses the best known; epsilon-greedy mixes both",
+    "hi": "एक्सप्लोरेशन नया आज़माता है; एक्सप्लॉइटेशन सबसे अच्छे ज्ञात को इस्तेमाल करता है; epsilon-greedy दोनों मिलाता है",
+    "hinglish": "Exploration naya try karta hai; exploitation best known use karta hai; epsilon-greedy dono milata hai"
+   },
+   {
+    "en": "Q-learning nudges the value of a state-action pair towards reward plus best future value",
+    "hi": "Q-लर्निंग स्टेट-एक्शन जोड़ी का मान इनाम और सबसे अच्छे भविष्य मान की ओर खिसकाता है",
+    "hinglish": "Q-learning state-action pair ki value ko reward aur best future value ki taraf khiskata hai"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Reward",
@@ -102,7 +168,7 @@
     "hi": "वह नए रास्ते खोजने और सबसे अच्छे ज्ञात रास्ते का फ़ायदा उठाने में संतुलन रखता है: एप्सिलॉन-ग्रीडी 10% बार यादृच्छिक चाल आज़माता है।",
     "hinglish": "Woh naye raste explore karne aur best known raste ko exploit karne mein balance rakhta hai: epsilon-greedy 10% baar random move try karta hai."
    },
-   "visual": "anim:explore-exploit",
+   "visual": "compare:🧭 Explore: try new paths|🏆 Exploit: use the best-known path",
    "narration": {
     "en": "It balances exploring new paths with exploiting the best-known one: epsilon-greedy tries a random move 10% of the time.",
     "hi": "वह नए रास्ते खोजने और सबसे अच्छे ज्ञात रास्ते का फ़ायदा उठाने में संतुलन रखता है: एप्सिलॉन-ग्रीडी 10% बार यादृच्छिक चाल आज़माता है।",

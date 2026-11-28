@@ -39,6 +39,77 @@
    "hinglish": "Rule test karke theek kar sakte ho (sahi safe doori chunna)."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you play a game where you must stop when the teacher claps and walk when she does not.",
+   "hi": "{{name}}, तुम ऐसा खेल खेलते हो जिसमें टीचर ताली बजाए तो रुकना है, वरना चलना है।",
+   "hinglish": "{{name}}, tum aisa khel khelte ho jisme teacher taali bajaye to rukna hai, warna chalna hai."
+  },
+  "question": {
+   "en": "How can a robot follow a rule like that, again and again?",
+   "hi": "रोबोट ऐसा नियम बार-बार कैसे मानता है?",
+   "hinglish": "Robot aisa rule baar-baar kaise maanta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A robot checks its distance sensor only once at the start. What can go wrong?",
+   "hi": "रोबोट अपना दूरी सेंसर सिर्फ़ शुरू में एक बार जाँचता है। क्या गड़बड़ हो सकती है?",
+   "hinglish": "Robot apna doori sensor sirf shuru mein ek baar jaanchta hai. Kya gadbad ho sakti hai?"
+  },
+  "options": [
+   {
+    "en": "Nothing, since the world stays the same",
+    "hi": "कुछ नहीं, क्योंकि दुनिया वैसी ही रहती है",
+    "hinglish": "Kuch nahi, kyunki duniya waisi hi rehti hai"
+   },
+   {
+    "en": "It cannot react when something new, like a cat, walks in front of it",
+    "hi": "जब कोई नई चीज़, जैसे बिल्ली, सामने आती है तो वह प्रतिक्रिया नहीं दे पाता",
+    "hinglish": "Jab koi nayi cheez, jaise billi, saamne aati hai to woh pratikriya nahi de paata"
+   },
+   {
+    "en": "It will go faster",
+    "hi": "वह तेज़ चलेगा",
+    "hinglish": "Woh tez chalega"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "The world keeps changing, so a robot repeats Sense, Think, Act many times a second. A rule like IF distance is less than 25 cm THEN turn ELSE go forward is tested and fixed, for example by choosing a safer distance.",
+   "hi": "दुनिया बदलती रहती है, इसलिए रोबोट सेंस, थिंक, एक्ट को हर सेकंड कई बार दोहराता है। IF दूरी 25 सेमी से कम THEN मुड़ो ELSE आगे चलो जैसे नियम को परखा और सुधारा जाता है, जैसे सुरक्षित दूरी चुनकर।",
+   "hinglish": "Duniya badalti rehti hai, isliye robot Sense, Think, Act ko har second kai baar dohraata hai. IF doori 25 cm se kam THEN mudo ELSE aage chalo jaise rule ko parkha aur sudhaara jaata hai, jaise surakshit doori chunkar."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: how does a robot decide what to do?",
+   "hi": "घर पर किसी को समझाओ: रोबोट कैसे तय करता है कि क्या करना है?",
+   "hinglish": "Ghar par kisi ko samjhao: robot kaise tay karta hai ki kya karna hai?"
+  },
+  "checklist": [
+   {
+    "en": "It senses with a sensor.",
+    "hi": "वह सेंसर से महसूस करता है।",
+    "hinglish": "Woh sensor se sense karta hai."
+   },
+   {
+    "en": "A rule decides: IF this THEN that ELSE other.",
+    "hi": "नियम तय करता है: IF यह THEN वह ELSE कुछ और।",
+    "hinglish": "Rule tay karta hai: IF yeh THEN woh ELSE kuch aur."
+   },
+   {
+    "en": "It acts, then repeats many times a second.",
+    "hi": "वह करता है, फिर हर सेकंड कई बार दोहराता है।",
+    "hinglish": "Woh karta hai, phir har second kai baar dohraata hai."
+   },
+   {
+    "en": "If it crashes, we test and fix the rule.",
+    "hi": "टकराए तो हम नियम परखकर सुधारते हैं।",
+    "hinglish": "Takraye to hum rule parakh kar sudhaarte hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Rule",

@@ -34,6 +34,77 @@
    "hinglish": "Half adder, full adder aur 4-bit ripple-carry adder banao"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, when you press 7 + 5 on a phone calculator, a tiny circuit made only of switches gives you 12.",
+   "hi": "{{name}}, फ़ोन के कैलकुलेटर में 7 + 5 दबाते ही सिर्फ़ स्विचों से बना एक छोटा सर्किट 12 देता है।",
+   "hinglish": "{{name}}, phone ke calculator mein 7 + 5 dabate hi sirf switches se bana ek chhota circuit 12 deta hai."
+  },
+  "question": {
+   "en": "How can switches that only know ON and OFF add numbers?",
+   "hi": "सिर्फ़ ON और OFF जानने वाले स्विच संख्याएँ कैसे जोड़ सकते हैं?",
+   "hinglish": "Sirf ON aur OFF jaanne wale switches numbers kaise jod sakte hain?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "You add two single bits, 1 + 1. In binary, what do the two output wires (sum and carry) show?",
+   "hi": "तुम दो एक-एक बिट जोड़ते हो, 1 + 1। बाइनरी में दो आउटपुट तार (योग और कैरी) क्या दिखाएँगे?",
+   "hinglish": "Tum do single bits jodte ho, 1 + 1. Binary mein do output wires (sum aur carry) kya dikhayenge?"
+  },
+  "options": [
+   {
+    "en": "Sum 2, carry 0",
+    "hi": "योग 2, कैरी 0",
+    "hinglish": "Sum 2, carry 0"
+   },
+   {
+    "en": "Sum 0, carry 1, which is 10 in binary",
+    "hi": "योग 0, कैरी 1, यानी बाइनरी में 10",
+    "hinglish": "Sum 0, carry 1, yaani binary mein 10"
+   },
+   {
+    "en": "Sum 1, carry 1",
+    "hi": "योग 1, कैरी 1",
+    "hinglish": "Sum 1, carry 1"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "A bit can only be 0 or 1, so 1 + 1 = 10 in binary: sum bit 0 and a carry of 1 to the next column. The sum bit is XOR of the inputs and the carry is AND, so two gates make a half adder. Chain full adders and the carry ripples across the bits.",
+   "hi": "बिट सिर्फ़ 0 या 1 हो सकता है, इसलिए बाइनरी में 1 + 1 = 10: योग बिट 0 और अगले कॉलम को कैरी 1। योग बिट इनपुट का XOR है और कैरी AND, इसलिए दो गेट मिलकर हाफ़ एडर बनाते हैं। फ़ुल एडर जोड़ दो तो कैरी बिटों में आगे बढ़ती जाती है।",
+   "hinglish": "Bit sirf 0 ya 1 ho sakta hai, isliye binary mein 1 + 1 = 10: sum bit 0 aur agle column ko carry 1. Sum bit inputs ka XOR hai aur carry AND, isliye do gates milkar half adder banate hain. Full adders jod do toh carry bits mein aage badhti jaati hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how logic gates can add two numbers.",
+   "hi": "घर पर किसी को समझाओ कि लॉजिक गेट दो संख्याएँ कैसे जोड़ सकते हैं।",
+   "hinglish": "Ghar par kisi ko samjhao ki logic gates do numbers kaise jod sakte hain."
+  },
+  "checklist": [
+   {
+    "en": "AND is 1 only if both inputs are 1, OR if either is, XOR if they differ, NOT flips; NAND is AND then NOT.",
+    "hi": "AND तभी 1 जब दोनों इनपुट 1, OR जब कोई भी, XOR जब अलग हों, NOT पलटता है; NAND यानी AND फिर NOT।",
+    "hinglish": "AND tabhi 1 jab dono inputs 1, OR jab koi bhi, XOR jab alag hon, NOT palta hai; NAND yaani AND phir NOT."
+   },
+   {
+    "en": "A half adder: sum = A XOR B, carry = A AND B.",
+    "hi": "हाफ़ एडर: योग = A XOR B, कैरी = A AND B।",
+    "hinglish": "Half adder: sum = A XOR B, carry = A AND B."
+   },
+   {
+    "en": "A full adder also takes a carry-in; chaining n of them gives an n-bit ripple-carry adder.",
+    "hi": "फ़ुल एडर कैरी-इन भी लेता है; n को जोड़ने से n-बिट रिपल-कैरी एडर बनता है।",
+    "hinglish": "Full adder carry-in bhi leta hai; n ko jodne se n-bit ripple-carry adder banta hai."
+   },
+   {
+    "en": "Laws like De Morgan's simplify circuits, and the same adders grow into the CPU's ALU.",
+    "hi": "डी मॉर्गन जैसे नियम सर्किट सरल करते हैं, और यही एडर बढ़कर CPU का ALU बनते हैं।",
+    "hinglish": "De Morgan jaise laws circuits simple karte hain, aur yahi adders badhkar CPU ka ALU banate hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Boolean algebra",
@@ -102,7 +173,7 @@
     "hi": "दो बिट जोड़ो: बाइनरी में 1 + 1 = 10। योग बिट XOR (0) और कैरी बिट AND (1)। यही अर्ध योजक है।",
     "hinglish": "Do bits jodo: binary mein 1 + 1 = 10. Sum bit XOR (0) aur carry bit AND (1). Yahi half adder hai."
    },
-   "visual": "anim:half-adder",
+   "visual": "compare:➕ Sum bit = A XOR B|🚩 Carry bit = A AND B",
    "narration": {
     "en": "Add two bits: 1 + 1 = 10 in binary. The sum bit is XOR (0) and the carry bit is AND (1). That is a half adder.",
     "hi": "दो बिट जोड़ो: बाइनरी में 1 + 1 = 10। योग बिट XOR (0) और कैरी बिट AND (1)। यही अर्ध योजक है।",
@@ -116,7 +187,7 @@
     "hi": "चार पूर्ण योजक जोड़ो और कैरी बिट 0 से बिट 3 तक बहता है। आपके CPU का ALU 64 बिट के लिए यही करता है, बहाव का इंतज़ार टालने की तरकीबों के साथ।",
     "hinglish": "Chaar full adders jodo aur carry bit 0 se bit 3 tak behta hai. Tumhare CPU ka ALU 64 bits ke liye yahi karta hai, ripple ka intezaar taalne ki tricks ke saath."
    },
-   "visual": "anim:ripple",
+   "visual": "flow:➕ Bit 0 adds|➡️ Carry to bit 1|➡️ Carry to bit 2|➡️ Carry to bit 3",
    "narration": {
     "en": "Chain four full adders and the carry ripples from bit 0 to bit 3. Your CPU's ALU does this for 64 bits, with tricks to avoid waiting for the ripple.",
     "hi": "चार पूर्ण योजक जोड़ो और कैरी बिट 0 से बिट 3 तक बहता है। आपके CPU का ALU 64 बिट के लिए यही करता है, बहाव का इंतज़ार टालने की तरकीबों के साथ।",

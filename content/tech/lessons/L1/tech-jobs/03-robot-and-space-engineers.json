@@ -40,6 +40,77 @@
    "hinglish": "Engineer ki tarah robot rule program kar sakte ho."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you watch the news about India's Moon mission, and a small robot rover rolls on the Moon.",
+   "hi": "{{name}}, तुम भारत के चंद्र मिशन की ख़बर देखते हो, और एक छोटा रोबोट रोवर चाँद पर चलता है।",
+   "hinglish": "{{name}}, tum India ke Moon mission ki khabar dekhte ho, aur ek chhota robot rover Chaand par chalta hai."
+  },
+  "question": {
+   "en": "Which people planned and built it?",
+   "hi": "इसे किन लोगों ने योजना बनाकर बनाया?",
+   "hinglish": "Ise kin logon ne plan banakar banaya?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Before a rover like Pragyan goes to the Moon, what do engineers do?",
+   "hi": "प्रज्ञान जैसे रोवर के चाँद पर जाने से पहले इंजीनियर क्या करते हैं?",
+   "hinglish": "Pragyan jaise rover ke Chaand par jaane se pehle engineers kya karte hain?"
+  },
+  "options": [
+   {
+    "en": "They send it without testing, to save time",
+    "hi": "समय बचाने को बिना जाँचे भेज देते हैं",
+    "hinglish": "Samay bachane ko bina jaanche bhej dete hain"
+   },
+   {
+    "en": "They test it again and again on ground that looks like the Moon, fixing what fails",
+    "hi": "वे उसे चाँद जैसी ज़मीन पर बार-बार जाँचते हैं और जो विफल हो उसे ठीक करते हैं",
+    "hinglish": "Woh use Chaand jaisi zameen par baar-baar jaanchte hain aur jo fail ho use theek karte hain"
+   },
+   {
+    "en": "They ask the rover to design itself",
+    "hi": "वे रोवर से ख़ुद को डिज़ाइन करने को कहते हैं",
+    "hinglish": "Woh rover se khud ko design karne ko kehte hain"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Engineers try, measure, find what failed, fix and try again. Robotics engineers design the body, electronics engineers choose circuits and sensors, space engineers plan the mission, and programmers write the sense, think, act rules.",
+   "hi": "इंजीनियर कोशिश करते हैं, नापते हैं, देखते हैं क्या विफल हुआ, ठीक करते हैं और फिर कोशिश करते हैं। रोबोटिक्स इंजीनियर ढाँचा बनाते हैं, इलेक्ट्रॉनिक्स इंजीनियर सर्किट और सेंसर चुनते हैं, अंतरिक्ष इंजीनियर मिशन की योजना बनाते हैं, और प्रोग्रामर सेंस, थिंक, एक्ट के नियम लिखते हैं।",
+   "hinglish": "Engineers koshish karte hain, naapte hain, dekhte hain kya fail hua, theek karte hain aur phir koshish karte hain. Robotics engineers dhaancha banate hain, electronics engineers circuits aur sensors chunte hain, space engineers mission plan karte hain, aur programmers sense, think, act ke rules likhte hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: what do robot, electronics and space engineers do?",
+   "hi": "घर पर किसी को समझाओ: रोबोट, इलेक्ट्रॉनिक्स और अंतरिक्ष इंजीनियर क्या करते हैं?",
+   "hinglish": "Ghar par kisi ko samjhao: robot, electronics aur space engineers kya karte hain?"
+  },
+  "checklist": [
+   {
+    "en": "Robotics engineers build robot bodies.",
+    "hi": "रोबोटिक्स इंजीनियर रोबोट का ढाँचा बनाते हैं।",
+    "hinglish": "Robotics engineers robot ka dhaancha banate hain."
+   },
+   {
+    "en": "Electronics engineers design circuits and chips.",
+    "hi": "इलेक्ट्रॉनिक्स इंजीनियर सर्किट और चिप डिज़ाइन करते हैं।",
+    "hinglish": "Electronics engineers circuits aur chips design karte hain."
+   },
+   {
+    "en": "ISRO space engineers planned Pragyan's Moon trip.",
+    "hi": "ISRO के अंतरिक्ष इंजीनियरों ने प्रज्ञान की चाँद यात्रा की योजना बनाई।",
+    "hinglish": "ISRO ke space engineers ne Pragyan ki Chaand yatra ki plan banayi."
+   },
+   {
+    "en": "They test, fix and try again.",
+    "hi": "वे जाँचते हैं, सुधारते हैं और फिर कोशिश करते हैं।",
+    "hinglish": "Woh jaanchte hain, sudhaarte hain aur phir koshish karte hain."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Robotics engineer",

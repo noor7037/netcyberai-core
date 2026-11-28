@@ -38,6 +38,82 @@
    "hinglish": "Fixes suggest kar sakte ho: varied data, har group ke liye test, insaani check"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a voice-typing app understands one of your friends perfectly but keeps mishearing another who speaks with a different accent.",
+   "hi": "{{name}}, एक वॉइस-टाइपिंग ऐप तुम्हारे एक दोस्त को पूरी तरह समझता है, पर दूसरे की, जो अलग लहजे में बोलता है, बात बार-बार ग़लत सुनता है।",
+   "hinglish": "{{name}}, ek voice-typing app tumhare ek dost ko poori tarah samajhta hai, par doosre ki, jo alag accent mein bolta hai, baat baar-baar galat sunta hai."
+  },
+  "question": {
+   "en": "The app does not dislike anyone. So why does it make more mistakes for one person?",
+   "hi": "ऐप किसी को नापसंद नहीं करता। तो एक व्यक्ति के लिए ज़्यादा ग़लतियाँ क्यों?",
+   "hinglish": "App kisi ko pasand-napasand nahi karta. To ek vyakti ke liye zyada galtiyan kyon?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Why does the app make more mistakes for the second friend?",
+   "hi": "ऐप दूसरे दोस्त के लिए ज़्यादा ग़लतियाँ क्यों करता है?",
+   "hinglish": "App doosre dost ke liye zyada galtiyan kyon karta hai?"
+  },
+  "options": [
+   {
+    "en": "The computer dislikes that accent",
+    "hi": "कंप्यूटर को वह लहजा पसंद नहीं",
+    "hinglish": "Computer ko woh accent pasand nahi"
+   },
+   {
+    "en": "It was trained on very little speech in that accent",
+    "hi": "उसे उस लहजे की बहुत कम बोली पर ट्रेन किया गया था",
+    "hinglish": "Use us accent ki bahut kam bolchaal par train kiya gaya tha"
+   },
+   {
+    "en": "The friend is speaking wrongly",
+    "hi": "दोस्त ग़लत बोल रहा है",
+    "hinglish": "Dost galat bol raha hai"
+   },
+   {
+    "en": "The microphone only works for one voice",
+    "hi": "माइक्रोफ़ोन सिर्फ़ एक आवाज़ पर चलता है",
+    "hinglish": "Microphone sirf ek awaaz par chalta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "AI only knows what its training data showed it. If one group is missing or rare in the data, the model is less accurate for them. The cause is the data, not dislike.",
+   "hi": "AI उतना ही जानता है जितना उसके ट्रेनिंग डेटा ने दिखाया। अगर किसी समूह की कमी या कम मौजूदगी है, तो मॉडल उनके लिए कम सटीक होता है। कारण डेटा है, नापसंद नहीं।",
+   "hinglish": "AI utna hi jaanta hai jitna uske training data ne dikhaya. Agar kisi group ki kami ya kam maujoodgi hai, to model unke liye kam accurate hota hai. Kaaran data hai, napasand nahi."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how an AI can be unfair and what can be done.",
+   "hi": "घर पर किसी को समझाओ कि AI अनुचित कैसे हो सकता है और क्या किया जा सकता है।",
+   "hinglish": "Ghar par kisi ko samjhao ki AI unfair kaise ho sakta hai aur kya kiya ja sakta hai."
+  },
+  "checklist": [
+   {
+    "en": "Bias usually comes from the training data, not because a computer dislikes anyone.",
+    "hi": "पक्षपात आमतौर पर ट्रेनिंग डेटा से आता है, इसलिए नहीं कि कंप्यूटर किसी को नापसंद करता है।",
+    "hinglish": "Bias aamtaur par training data se aata hai, isliye nahi ki computer kisi ko napasand karta hai."
+   },
+   {
+    "en": "If a group is missing or rare in the data, the AI works worse for that group.",
+    "hi": "अगर किसी समूह की डेटा में कमी है, तो AI उसके लिए ख़राब चलता है।",
+    "hinglish": "Agar kisi group ki data mein kami hai, to AI uske liye kharab chalta hai."
+   },
+   {
+    "en": "A good overall score can hide failure for one group, so test each group separately.",
+    "hi": "अच्छा कुल स्कोर किसी एक समूह की नाकामी छिपा सकता है, इसलिए हर समूह को अलग से जाँचो।",
+    "hinglish": "Achha overall score kisi ek group ki naakaami chhipa sakta hai, isliye har group ko alag se jaancho."
+   },
+   {
+    "en": "Fixes: more varied data, testing every group, and human checks for important decisions.",
+    "hi": "उपाय: ज़्यादा विविध डेटा, हर समूह की जाँच, और अहम फ़ैसलों में इंसानी जाँच।",
+    "hinglish": "Upaay: zyada varied data, har group ki jaanch, aur ahem faislon mein human checks."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Bias",

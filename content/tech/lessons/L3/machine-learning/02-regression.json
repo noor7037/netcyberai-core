@@ -34,6 +34,72 @@
    "hi": "ग्रेडिएंट डिसेंट को त्रुटि की ढलान पर नीचे उतरने के रूप में समझाना"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you notice that students who revise more hours tend to score more marks, and you want to guess a friend's marks from the hours they studied.",
+   "hi": "{{name}}, तुम देखते हो कि ज़्यादा घंटे पढ़ने वाले छात्र ज़्यादा अंक लाते हैं, और तुम दोस्त के पढ़ने के घंटों से उसके अंकों का अंदाज़ा लगाना चाहते हो।",
+   "hinglish": "{{name}}, tum dekhte ho ki zyada ghante padhne wale students zyada marks laate hain, aur tum friend ke padhne ke ghanto se uske marks ka andaza lagana chahte ho."
+  },
+  "question": {
+   "en": "How does a computer find the best straight line through scattered points?",
+   "hi": "कंप्यूटर बिखरे बिंदुओं के बीच से सबसे अच्छी सीधी रेखा कैसे खोजता है?",
+   "hinglish": "Computer bikhre points ke beech se sabse achhi seedhi line kaise dhoondhta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "To find the best line y = wx + b, what does gradient descent do?",
+   "hi": "सबसे अच्छी रेखा y = wx + b खोजने के लिए ग्रेडिएंट डिसेंट क्या करता है?",
+   "hinglish": "Sabse achhi line y = wx + b dhoondhne ke liye gradient descent kya karta hai?"
+  },
+  "options": [
+   {
+    "en": "Tries every possible w and b until one works",
+    "hi": "हर संभव w और b आज़माता है जब तक एक चल जाए",
+    "hinglish": "Har possible w aur b try karta hai jab tak ek chal jaye"
+   },
+   {
+    "en": "Repeatedly nudges w and b in the direction that lowers the error",
+    "hi": "बार-बार w और b को उस दिशा में खिसकाता है जिससे त्रुटि घटे",
+    "hinglish": "Baar-baar w aur b ko us direction mein khiskata hai jisse error ghate"
+   },
+   {
+    "en": "Draws a line through the first two points",
+    "hi": "पहले दो बिंदुओं से रेखा खींचता है",
+    "hinglish": "Pehle do points se line kheenchta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Mean squared error measures how far the line is from the points, squaring so big misses count more. The slope of the error tells which way to move w and b, and small repeated steps walk down to a low-error line, like walking downhill in fog.",
+   "hi": "माध्य वर्ग त्रुटि बताती है कि रेखा बिंदुओं से कितनी दूर है; वर्ग करने से बड़ी चूकें ज़्यादा गिनी जाती हैं। त्रुटि की ढलान बताती है कि w और b किधर खिसकाएँ, और छोटे दोहराए क़दम कम-त्रुटि वाली रेखा तक उतार लाते हैं, जैसे कोहरे में ढलान से उतरना।",
+   "hinglish": "Mean squared error batata hai ki line points se kitni door hai; square karne se badi chookein zyada gini jaati hain. Error ki slope batati hai ki w aur b kidhar khiskayein, aur chhote repeated steps low-error line tak utaar laate hain, jaise kohre mein dhalan se utarna."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend how a computer finds the best line through study-hours and marks data.",
+   "hi": "दोस्त को समझाओ कि कंप्यूटर पढ़ाई के घंटे और अंकों के डेटा के बीच सबसे अच्छी रेखा कैसे खोजता है।",
+   "hinglish": "Friend ko samjhao ki computer study-hours aur marks data ke beech sabse achhi line kaise dhoondhta hai."
+  },
+  "checklist": [
+   {
+    "en": "w is the slope and b the intercept of the line y = wx + b",
+    "hi": "w रेखा y = wx + b की ढलान और b अंतःखंड है",
+    "hinglish": "w line y = wx + b ki slope aur b intercept hai"
+   },
+   {
+    "en": "MSE is the average of squared gaps between points and the line",
+    "hi": "MSE बिंदुओं और रेखा के बीच के अंतर के वर्गों का औसत है",
+    "hinglish": "MSE points aur line ke beech ke gaps ke squares ka average hai"
+   },
+   {
+    "en": "Gradient descent nudges w and b downhill on the error, again and again",
+    "hi": "ग्रेडिएंट डिसेंट w और b को त्रुटि की ढलान पर नीचे खिसकाता है, बार-बार",
+    "hinglish": "Gradient descent w aur b ko error ki dhalan par neeche khiskata hai, baar-baar"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Linear regression",
@@ -88,7 +154,7 @@
     "hi": "बिंदु और रेखा के बीच हर खड़ा अंतर एक त्रुटि है। उनका वर्ग करो, औसत लो: यही एमएसई है।",
     "hinglish": "Point aur line ke beech har vertical gap ek error hai. Unka square karo, average lo: yahi MSE hai."
    },
-   "visual": "anim:residual-squares",
+   "visual": "flow:📏 Gap from point to line|🔲 Square each gap|➗ Average them: MSE",
    "narration": {
     "en": "Each vertical gap between a point and the line is an error. Square them, average them: that is MSE.",
     "hi": "बिंदु और रेखा के बीच हर खड़ा अंतर एक त्रुटि है। उनका वर्ग करो, औसत लो: यही एमएसई है।",
@@ -102,7 +168,7 @@
     "hi": "ग्रेडिएंट डिसेंट w और b को थोड़ा-थोड़ा उस दिशा में खिसकाता है जिससे एमएसई घटे, बार-बार, जैसे कोहरे में घाटी से नीचे उतरना।",
     "hinglish": "Gradient descent w aur b ko thoda-thoda us direction mein khiskaata hai jisse MSE ghate, baar-baar, jaise kohre mein ghaati se neeche utarna."
    },
-   "visual": "anim:loss-valley",
+   "visual": "cycle:📉 Compute the error|🧭 Find the downhill direction|👣 Nudge w and b|🔁 Repeat",
    "narration": {
     "en": "Gradient descent nudges w and b a little in the direction that lowers MSE, again and again, like walking down a valley in fog.",
     "hi": "ग्रेडिएंट डिसेंट w और b को थोड़ा-थोड़ा उस दिशा में खिसकाता है जिससे एमएसई घटे, बार-बार, जैसे कोहरे में घाटी से नीचे उतरना।",

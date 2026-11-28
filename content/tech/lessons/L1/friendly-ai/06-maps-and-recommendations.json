@@ -39,6 +39,77 @@
    "hinglish": "Autoplay ke bajaay khud chun sakte ho."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you use a maps app to ride with your family, and it says, \"Take the left road, it is faster.\"",
+   "hi": "{{name}}, तुम परिवार के साथ जाने के लिए मैप्स ऐप इस्तेमाल करते हो, और वह कहता है, \"बाएँ वाली सड़क लो, वह तेज़ है।\"",
+   "hinglish": "{{name}}, tum family ke saath jaane ke liye maps app use karte ho, aur woh kehta hai, \"Left wali sadak lo, woh tez hai.\""
+  },
+  "question": {
+   "en": "How does it know where you are and which road is faster?",
+   "hi": "उसे कैसे पता कि तुम कहाँ हो और कौन-सी सड़क तेज़ है?",
+   "hinglish": "Use kaise pata ki tum kahan ho aur kaun-si sadak tez hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "How does a maps app find the faster road?",
+   "hi": "मैप्स ऐप तेज़ सड़क कैसे ढूँढता है?",
+   "hinglish": "Maps app tez sadak kaise dhoondta hai?"
+  },
+  "options": [
+   {
+    "en": "It guesses by looking at the road names",
+    "hi": "वह सड़कों के नाम देखकर अंदाज़ा लगाता है",
+    "hinglish": "Woh sadkon ke naam dekhkar andaaza lagata hai"
+   },
+   {
+    "en": "Satellites help find your spot, and traffic data shows which road is quicker",
+    "hi": "सैटेलाइट तुम्हारी जगह ढूँढने में मदद करते हैं, और ट्रैफ़िक डेटा बताता है कि कौन-सी सड़क तेज़ है",
+    "hinglish": "Satellites tumhari jagah dhoondne mein madad karte hain, aur traffic data batata hai ki kaun-si sadak tez hai"
+   },
+   {
+    "en": "A person at the app company chooses by hand",
+    "hi": "ऐप कंपनी का कोई व्यक्ति हाथ से चुनता है",
+    "hinglish": "App company ka koi vyakti haath se chunta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "GPS uses satellites to find where the phone is, and traffic data shows the quicker road. Video apps similarly suggest things close to what you liked, and autoplay keeps going unless you stop it. You choose.",
+   "hi": "GPS सैटेलाइट से फ़ोन की जगह ढूँढता है, और ट्रैफ़िक डेटा तेज़ सड़क बताता है। वीडियो ऐप भी तुम्हारी पसंद के क़रीब चीज़ें सुझाते हैं, और ऑटोप्ले रोके बिना चलता रहता है। चुनाव तुम्हारा है।",
+   "hinglish": "GPS satellites se phone ki jagah dhoondta hai, aur traffic data tez sadak batata hai. Video apps bhi tumhari pasand ke qareeb cheezein sujhate hain, aur autoplay roke bina chalta rehta hai. Chunav tumhara hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: how do maps and \"you may also like\" work?",
+   "hi": "घर पर किसी को समझाओ: मैप्स और \"आपको यह भी पसंद आएगा\" कैसे काम करते हैं?",
+   "hinglish": "Ghar par kisi ko samjhao: maps aur \"you may also like\" kaise kaam karte hain?"
+  },
+  "checklist": [
+   {
+    "en": "Satellites help the phone find where it is.",
+    "hi": "सैटेलाइट फ़ोन को उसकी जगह ढूँढने में मदद करते हैं।",
+    "hinglish": "Satellites phone ko uski jagah dhoondne mein madad karte hain."
+   },
+   {
+    "en": "Traffic data helps pick the faster road.",
+    "hi": "ट्रैफ़िक डेटा तेज़ सड़क चुनने में मदद करता है।",
+    "hinglish": "Traffic data tez sadak chunne mein madad karta hai."
+   },
+   {
+    "en": "Recommendations pick things similar to what I liked before.",
+    "hi": "सुझाव वैसी चीज़ें चुनते हैं जो मेरी पहले की पसंद जैसी हों।",
+    "hinglish": "Recommendations waisi cheezein chunte hain jo meri pehle ki pasand jaisi hon."
+   },
+   {
+    "en": "I can choose myself, not let autoplay decide.",
+    "hi": "मैं खुद चुन सकता/सकती हूँ, ऑटोप्ले को तय नहीं करने देता/देती।",
+    "hinglish": "Main khud chun sakta/sakti hoon, autoplay ko tay nahi karne deta/deti."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "GPS",

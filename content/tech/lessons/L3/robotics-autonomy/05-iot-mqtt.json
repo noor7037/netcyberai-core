@@ -36,6 +36,77 @@
    "hinglish": "IoT device secure karo: unique passwords, TLS, least privilege aur updates"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a farm's soil sensor sends moisture readings every few minutes, and a phone app and a pump both react to them.",
+   "hi": "{{name}}, खेत का मिट्टी सेंसर हर कुछ मिनट पर नमी की रीडिंग भेजता है, और फ़ोन ऐप और पंप दोनों उन पर प्रतिक्रिया देते हैं।",
+   "hinglish": "{{name}}, khet ka mitti sensor har kuch minute par nami ki reading bhejta hai, aur phone app aur pump dono un par react karte hain."
+  },
+  "question": {
+   "en": "How can one sensor talk to many things without knowing who is listening?",
+   "hi": "एक सेंसर बिना जाने कि कौन सुन रहा है, कई चीज़ों से कैसे बात कर सकता है?",
+   "hinglish": "Ek sensor bina jaane ki kaun sun raha hai, kai cheezon se kaise baat kar sakta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "In MQTT, how does the sensor's reading reach both the app and the pump?",
+   "hi": "MQTT में सेंसर की रीडिंग ऐप और पंप दोनों तक कैसे पहुँचती है?",
+   "hinglish": "MQTT mein sensor ki reading app aur pump dono tak kaise pahunchti hai?"
+  },
+  "options": [
+   {
+    "en": "The sensor sends a separate private message to each device",
+    "hi": "सेंसर हर डिवाइस को अलग निजी संदेश भेजता है",
+    "hinglish": "Sensor har device ko alag private message bhejta hai"
+   },
+   {
+    "en": "It publishes to a topic on a broker, and everything subscribed to that topic gets a copy",
+    "hi": "वह ब्रोकर पर एक टॉपिक पर प्रकाशित करता है, और उस टॉपिक के सब सब्सक्राइबर को प्रति मिलती है",
+    "hinglish": "Woh broker par ek topic par publish karta hai, aur us topic ke sab subscribers ko copy milti hai"
+   },
+   {
+    "en": "The app polls the sensor directly all day",
+    "hi": "ऐप दिन भर सेंसर से सीधे पूछता रहता है",
+    "hinglish": "App din bhar sensor se seedhe poochta rehta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Publish/subscribe decouples senders from receivers: the sensor publishes once to a topic on the broker and the broker forwards to all subscribers, so devices can be added without changing the sensor. QoS, retained messages and last will handle unreliable networks, and TLS, unique logins, access control and updates secure it.",
+   "hi": "पब्लिश/सब्सक्राइब भेजने वाले और पाने वालों को अलग रखता है: सेंसर ब्रोकर पर टॉपिक पर एक बार प्रकाशित करता है और ब्रोकर सभी सब्सक्राइबरों को भेजता है, इसलिए सेंसर बदले बिना डिवाइस जुड़ सकते हैं। QoS, रिटेंड संदेश और लास्ट विल अस्थिर नेटवर्क सँभालते हैं, और TLS, अलग लॉगिन, एक्सेस नियंत्रण और अपडेट उसे सुरक्षित करते हैं।",
+   "hinglish": "Publish/subscribe senders aur receivers ko alag rakhta hai: sensor broker par topic par ek baar publish karta hai aur broker sabhi subscribers ko forward karta hai, isliye sensor badle bina devices jud sakte hain. QoS, retained messages aur last will unreliable networks sambhalte hain, aur TLS, unique logins, access control aur updates use secure karte hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend how MQTT lets one sensor feed an app and a pump, and how you would secure the device.",
+   "hi": "दोस्त को समझाओ कि MQTT एक सेंसर से ऐप और पंप को कैसे डेटा देता है, और डिवाइस को कैसे सुरक्षित करोगे।",
+   "hinglish": "Friend ko samjhao ki MQTT ek sensor se app aur pump ko data kaise deta hai, aur device ko kaise secure karoge."
+  },
+  "checklist": [
+   {
+    "en": "An IoT system has devices, connectivity, a broker or cloud, and apps",
+    "hi": "IoT सिस्टम में डिवाइस, कनेक्टिविटी, ब्रोकर या क्लाउड और ऐप होते हैं",
+    "hinglish": "IoT system mein devices, connectivity, broker ya cloud aur apps hote hain"
+   },
+   {
+    "en": "MQTT publishes to topics; subscribers receive copies from the broker",
+    "hi": "MQTT टॉपिक पर प्रकाशित करता है; सब्सक्राइबर ब्रोकर से प्रतियाँ पाते हैं",
+    "hinglish": "MQTT topics par publish karta hai; subscribers broker se copies paate hain"
+   },
+   {
+    "en": "QoS, retained messages and last will cope with unreliable links",
+    "hi": "QoS, रिटेंड संदेश और लास्ट विल अस्थिर कड़ियों से निपटते हैं",
+    "hinglish": "QoS, retained messages aur last will unreliable links se nipatte hain"
+   },
+   {
+    "en": "Secure with TLS, unique passwords, least privilege and updates",
+    "hi": "TLS, अलग पासवर्ड, न्यूनतम अधिकार और अपडेट से सुरक्षित करो",
+    "hinglish": "TLS, unique passwords, least privilege aur updates se secure karo"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "IoT",
@@ -90,7 +161,7 @@
     "hi": "विषय पर प्रकाशित करो; जिसने सदस्यता ली उसे प्रति मिलती है।",
     "hinglish": "Topic par publish karo; jisne subscribe kiya use copy milti hai."
    },
-   "visual": "anim:pubsub",
+   "visual": "flow:📡 Sensor publishes to a topic|🏢 Broker|📱 Every subscriber gets a copy",
    "narration": {
     "en": "Publish to a topic; everyone subscribed to it gets a copy.",
     "hi": "विषय पर प्रकाशित करो; जिसने सदस्यता ली उसे प्रति मिलती है।",

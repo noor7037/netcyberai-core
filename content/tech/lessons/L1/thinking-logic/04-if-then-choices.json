@@ -33,6 +33,77 @@
    "hinglish": "Samjha sakte ho ki condition (sach/jhooth) kaise tay karti hai kya hoga."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, Mummy says, \"If it rains, take the umbrella. Otherwise, wear your cap.\"",
+   "hi": "{{name}}, मम्मी कहती हैं, \"अगर बारिश हो तो छाता ले जाना, नहीं तो टोपी पहनना।\"",
+   "hinglish": "{{name}}, Mummy kehti hain, \"Agar baarish ho to umbrella le jaana, nahin to cap pehenna.\""
+  },
+  "question": {
+   "en": "How does a computer choose between two things the way you do?",
+   "hi": "कंप्यूटर तुम्हारी तरह दो चीज़ों में से एक कैसे चुनता है?",
+   "hinglish": "Computer tumhari tarah do cheezon mein se ek kaise chunta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "What do you think? A robot vacuum meets a sofa. How does it know to turn?",
+   "hi": "तुम्हें क्या लगता है? रोबोट वैक्यूम के सामने सोफ़ा आ जाता है। उसे मुड़ना कैसे पता चलता है?",
+   "hinglish": "Tumhe kya lagta hai? Robot vacuum ke saamne sofa aa jaata hai. Use mudna kaise pata chalta hai?"
+  },
+  "options": [
+   {
+    "en": "It sees the sofa like a person and decides",
+    "hi": "वह इंसान की तरह सोफ़ा देखकर तय करता है",
+    "hinglish": "Woh insaan ki tarah sofa dekhkar decide karta hai"
+   },
+   {
+    "en": "It turns at random every second",
+    "hi": "वह हर सेकंड बेतरतीब मुड़ता है",
+    "hinglish": "Woh har second random mudta hai"
+   },
+   {
+    "en": "Its program has a rule: IF bumped, THEN turn; and it checks again at every step",
+    "hi": "उसके प्रोग्राम में नियम है: IF टकराया, THEN मुड़ो; और वह हर कदम पर जाँचता है",
+    "hinglish": "Uske program mein rule hai: IF bumped, THEN turn; aur woh har step par check karta hai"
+   }
+  ],
+  "answer": 2,
+  "explain": {
+   "en": "A condition is either true or false. If it is true, the THEN part runs; if false, the ELSE part runs. Put the IF inside a loop and the robot checks again at every step.",
+   "hi": "शर्त या तो सही होती है या ग़लत। सही हो तो THEN वाला हिस्सा चलता है; ग़लत हो तो ELSE वाला। IF को लूप के अंदर रखो तो रोबोट हर कदम पर फिर जाँचता है।",
+   "hinglish": "Condition ya to true hoti hai ya false. True ho to THEN wala part chalta hai; false ho to ELSE wala. IF ko loop ke andar rakho to robot har step par dobara check karta hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: how does an IF … THEN … ELSE rule work?",
+   "hi": "घर पर किसी को समझाओ: IF … THEN … ELSE नियम कैसे काम करता है?",
+   "hinglish": "Ghar par kisi ko samjhao: IF … THEN … ELSE rule kaise kaam karta hai?"
+  },
+  "checklist": [
+   {
+    "en": "A condition is either true or false.",
+    "hi": "शर्त या तो सही है या ग़लत।",
+    "hinglish": "Condition ya to true hai ya false."
+   },
+   {
+    "en": "If true, the THEN part runs.",
+    "hi": "सही हो तो THEN वाला हिस्सा चलता है।",
+    "hinglish": "True ho to THEN wala part chalta hai."
+   },
+   {
+    "en": "If false, the ELSE part runs.",
+    "hi": "ग़लत हो तो ELSE वाला हिस्सा चलता है।",
+    "hinglish": "False ho to ELSE wala part chalta hai."
+   },
+   {
+    "en": "An IF inside a loop checks again every time.",
+    "hi": "लूप के अंदर IF हर बार फिर जाँचता है।",
+    "hinglish": "Loop ke andar IF har baar dobara check karta hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Condition",

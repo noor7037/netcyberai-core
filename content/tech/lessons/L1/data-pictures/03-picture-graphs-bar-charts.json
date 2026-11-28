@@ -39,6 +39,72 @@
    "hinglish": "Chart padh sakte ho: sabse ooncha bar = sabse zyaada."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your class table says 6 friends like mango, 3 like banana and 2 like apple.",
+   "hi": "{{name}}, तुम्हारी क्लास की तालिका बताती है कि 6 दोस्तों को आम पसंद है, 3 को केला और 2 को सेब।",
+   "hinglish": "{{name}}, tumhari class ki table batati hai ki 6 doston ko aam pasand hai, 3 ko kela aur 2 ko seb."
+  },
+  "question": {
+   "en": "How can one picture show the most-liked fruit at a glance?",
+   "hi": "एक तस्वीर सबसे पसंद का फल एक नज़र में कैसे दिखा सकती है?",
+   "hinglish": "Ek tasveer sabse pasand ka fruit ek nazar mein kaise dikha sakti hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "In a bar chart, how do you find the most popular fruit?",
+   "hi": "बार चार्ट में सबसे लोकप्रिय फल कैसे ढूँढते हैं?",
+   "hinglish": "Bar chart mein sabse popular fruit kaise dhoondte hain?"
+  },
+  "options": [
+   {
+    "en": "Find the tallest bar",
+    "hi": "सबसे ऊँची बार ढूँढो",
+    "hinglish": "Sabse oonchi bar dhoondo"
+   },
+   {
+    "en": "Find the bar with the longest name",
+    "hi": "सबसे लंबे नाम वाली बार ढूँढो",
+    "hinglish": "Sabse lambe naam wali bar dhoondo"
+   },
+   {
+    "en": "Find the bar on the left, always",
+    "hi": "हमेशा बाईं ओर वाली बार ढूँढो",
+    "hinglish": "Hamesha left wali bar dhoondo"
+   }
+  ],
+  "answer": 0,
+  "explain": {
+   "en": "Every bar starts from the same line, and its height shows the number. So the tallest bar means the most and the shortest the fewest. The left-right order does not matter.",
+   "hi": "हर बार एक ही रेखा से शुरू होती है, और उसकी ऊँचाई संख्या दिखाती है। इसलिए सबसे ऊँची बार सबसे ज़्यादा और सबसे छोटी सबसे कम दिखाती है। बाएँ-दाएँ का क्रम मायने नहीं रखता।",
+   "hinglish": "Har bar ek hi line se shuru hoti hai, aur uski oonchai number dikhati hai. Isliye sabse oonchi bar sabse zyada aur sabse chhoti sabse kam dikhati hai. Left-right ka order matter nahi karta."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: how do you draw and read a chart?",
+   "hi": "घर पर किसी को समझाओ: चार्ट कैसे बनाते और पढ़ते हैं?",
+   "hinglish": "Ghar par kisi ko samjhao: chart kaise banate aur padhte hain?"
+  },
+  "checklist": [
+   {
+    "en": "In a picture graph, one picture stands for one thing.",
+    "hi": "पिक्चर ग्राफ़ में एक तस्वीर एक चीज़ के लिए होती है।",
+    "hinglish": "Picture graph mein ek tasveer ek cheez ke liye hoti hai."
+   },
+   {
+    "en": "In a bar chart, bars start at the same line and their height shows the number.",
+    "hi": "बार चार्ट में बारें एक ही रेखा से शुरू होती हैं और ऊँचाई संख्या दिखाती है।",
+    "hinglish": "Bar chart mein bars ek hi line se shuru hoti hain aur oonchai number dikhati hai."
+   },
+   {
+    "en": "Tallest bar means most, shortest means fewest.",
+    "hi": "सबसे ऊँची बार का मतलब सबसे ज़्यादा, सबसे छोटी का सबसे कम।",
+    "hinglish": "Sabse oonchi bar ka matlab sabse zyada, sabse chhoti ka sabse kam."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Picture graph",

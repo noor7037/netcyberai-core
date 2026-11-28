@@ -39,6 +39,72 @@
    "hinglish": "Samjha sakte ho ki backup server service ko chaalu kaise rakhta hai."
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your uncle says, \"I saved your birthday photos in the cloud.\"",
+   "hi": "{{name}}, तुम्हारे चाचा कहते हैं, \"मैंने तुम्हारे जन्मदिन की फ़ोटो क्लाउड में रखी हैं।\"",
+   "hinglish": "{{name}}, tumhare chacha kehte hain, \"Maine tumhare birthday ki photos cloud mein rakhi hain.\""
+  },
+  "question": {
+   "en": "Is the cloud really up in the sky?",
+   "hi": "क्या क्लाउड सच में आसमान में है?",
+   "hinglish": "Kya cloud sach mein aasmaan mein hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Where are photos \"in the cloud\" really kept?",
+   "hi": "\"क्लाउड\" में रखी फ़ोटो असल में कहाँ रहती हैं?",
+   "hinglish": "\"Cloud\" mein rakhi photos asal mein kahan rehti hain?"
+  },
+  "options": [
+   {
+    "en": "On floating computers in the sky",
+    "hi": "आसमान में तैरते कंप्यूटरों पर",
+    "hinglish": "Aasmaan mein tairte computers par"
+   },
+   {
+    "en": "On nothing: they just exist on the internet",
+    "hi": "कहीं नहीं: वे बस इंटरनेट पर होती हैं",
+    "hinglish": "Kahin nahi: woh bas internet par hoti hain"
+   },
+   {
+    "en": "On servers in a big building called a data centre",
+    "hi": "डेटा सेंटर नाम की बड़ी इमारत के सर्वरों पर",
+    "hinglish": "Data centre naam ki badi imaarat ke servers par"
+   }
+  ],
+  "answer": 2,
+  "explain": {
+   "en": "The cloud is other people's computers in data centres. They need power, cooling and a backup copy elsewhere, so one problem does not stop everything.",
+   "hi": "क्लाउड यानी डेटा सेंटर में रखे दूसरे लोगों के कंप्यूटर। उन्हें बिजली, ठंडक और कहीं और एक बैकअप कॉपी चाहिए, ताकि एक दिक़्क़त से सब न रुके।",
+   "hinglish": "Cloud matlab data centres mein rakhe doosre logon ke computers. Unhe power, cooling aur kahin aur ek backup copy chahiye, taaki ek problem se sab na ruke."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home: what is \"the cloud\"?",
+   "hi": "घर पर किसी को समझाओ: \"क्लाउड\" क्या है?",
+   "hinglish": "Ghar par kisi ko samjhao: \"cloud\" kya hai?"
+  },
+  "checklist": [
+   {
+    "en": "The cloud is other people's computers in data centres.",
+    "hi": "क्लाउड डेटा सेंटर में दूसरों के कंप्यूटर हैं।",
+    "hinglish": "Cloud data centres mein doosron ke computers hain."
+   },
+   {
+    "en": "Servers need power and cooling all day and night.",
+    "hi": "सर्वरों को दिन-रात बिजली और ठंडक चाहिए।",
+    "hinglish": "Servers ko din-raat power aur cooling chahiye."
+   },
+   {
+    "en": "A backup server elsewhere keeps the service running.",
+    "hi": "कहीं और का बैकअप सर्वर सेवा चालू रखता है।",
+    "hinglish": "Kahin aur ka backup server service chaalu rakhta hai."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Cloud",

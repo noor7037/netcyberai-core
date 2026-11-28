@@ -35,6 +35,72 @@
    "hinglish": "Overshoot, settling time aur steady-state error padhkar PID tune karo"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a water tank in your building fills until the float rises and shuts the valve, but a timer-based pump keeps running even when the tank is full.",
+   "hi": "{{name}}, तुम्हारी इमारत की पानी की टंकी तब तक भरती है जब तक फ़्लोट उठकर वाल्व बंद न कर दे, पर टाइमर वाला पंप टंकी भरने पर भी चलता रहता है।",
+   "hinglish": "{{name}}, tumhari building ki water tank tab tak bharti hai jab tak float uthkar valve band na kar de, par timer wala pump tank bharne par bhi chalta rehta hai."
+  },
+  "question": {
+   "en": "What makes one of them correct itself, and how does a drone hold its height in wind?",
+   "hi": "उनमें से एक ख़ुद को सुधारता कैसे है, और ड्रोन हवा में अपनी ऊँचाई कैसे थामता है?",
+   "hinglish": "Unme se ek khud ko sudharta kaise hai, aur drone hawa mein apni height kaise thamta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "In a PID controller, what does the D (derivative) term respond to?",
+   "hi": "PID कंट्रोलर में D (डेरिवेटिव) पद किस पर प्रतिक्रिया देता है?",
+   "hinglish": "PID controller mein D (derivative) term kis par response deta hai?"
+  },
+  "options": [
+   {
+    "en": "The total error added up over the past",
+    "hi": "अतीत में जमा हुई कुल त्रुटि",
+    "hinglish": "Past mein jama hui total error"
+   },
+   {
+    "en": "The size of the error right now",
+    "hi": "अभी की त्रुटि का आकार",
+    "hinglish": "Abhi ki error ka size"
+   },
+   {
+    "en": "How fast the error is changing, which damps overshoot",
+    "hi": "त्रुटि कितनी तेज़ बदल रही है, जो ओवरशूट घटाता है",
+    "hinglish": "Error kitni tez badal rahi hai, jo overshoot ghatata hai"
+   }
+  ],
+  "answer": 2,
+  "explain": {
+   "en": "P pushes in proportion to the present error, I accumulates past error to remove what is left over, and D reacts to the rate of change to calm overshoot. Closed-loop control measures, compares and corrects, while open-loop just runs without checking.",
+   "hi": "P वर्तमान त्रुटि के अनुपात में धक्का देता है, I पिछली त्रुटि जोड़कर बची हुई त्रुटि हटाता है, और D बदलाव की दर पर प्रतिक्रिया देकर ओवरशूट शांत करता है। क्लोज़्ड-लूप नियंत्रण नापता, तुलना करता और सुधारता है, जबकि ओपन-लूप बिना जाँचे बस चलता रहता है।",
+   "hinglish": "P present error ke anupaat mein dhakka deta hai, I past error jodkar bachi hui error hataata hai, aur D change ki rate par response dekar overshoot shaant karta hai. Closed-loop control measure, compare aur correct karta hai, jabki open-loop bina check kiye bas chalta rehta hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend the difference between open-loop and closed-loop control and what P, I and D each do.",
+   "hi": "दोस्त को समझाओ कि ओपन-लूप और क्लोज़्ड-लूप नियंत्रण में क्या अंतर है और P, I, D हर एक क्या करता है।",
+   "hinglish": "Friend ko samjhao ki open-loop aur closed-loop control mein kya fark hai aur P, I, D har ek kya karta hai."
+  },
+  "checklist": [
+   {
+    "en": "Open loop acts without checking; closed loop measures, compares and corrects",
+    "hi": "ओपन लूप बिना जाँचे काम करता है; क्लोज़्ड लूप नापता, तुलना करता और सुधारता है",
+    "hinglish": "Open loop bina check kiye kaam karta hai; closed loop measure, compare aur correct karta hai"
+   },
+   {
+    "en": "P is the present error, I the accumulated past error, D the rate of change",
+    "hi": "P वर्तमान त्रुटि, I जमा हुई पिछली त्रुटि, D बदलाव की दर",
+    "hinglish": "P present error, I accumulated past error, D rate of change"
+   },
+   {
+    "en": "Tune by watching overshoot, settling time and steady-state error",
+    "hi": "ओवरशूट, सेटलिंग टाइम और स्थायी त्रुटि देखकर ट्यून करो",
+    "hinglish": "Overshoot, settling time aur steady-state error dekhkar tune karo"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Setpoint",

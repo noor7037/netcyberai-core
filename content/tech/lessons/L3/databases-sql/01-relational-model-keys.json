@@ -34,6 +34,77 @@
    "hinglish": "Samjhao shared, badhte data ke liye database spreadsheet se behtar kyun"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your school keeps students' names, classes and houses in a sheet, and two teachers editing it together overwrite each other's changes.",
+   "hi": "{{name}}, तुम्हारा स्कूल विद्यार्थियों के नाम, कक्षाएँ और हाउस एक शीट में रखता है, और दो शिक्षक साथ संपादित करें तो एक-दूसरे के बदलाव मिटा देते हैं।",
+   "hinglish": "{{name}}, tumhara school students ke naam, classes aur houses ek sheet mein rakhta hai, aur do teachers saath edit karein toh ek-doosre ke changes overwrite kar dete hain."
+  },
+  "question": {
+   "en": "How does a database keep the same data safe, correct and shared, and how does it tell two students named Aanya apart?",
+   "hi": "डेटाबेस वही डेटा सुरक्षित, सही और साझा कैसे रखता है, और 'आन्या' नाम की दो छात्राओं में फ़र्क कैसे करता है?",
+   "hinglish": "Database wahi data safe, correct aur shared kaise rakhta hai, aur 'Aanya' naam ki do students mein fark kaise karta hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Two students are both called Aanya Sharma. What should identify each row uniquely?",
+   "hi": "दो विद्यार्थियों का नाम आन्या शर्मा है। हर पंक्ति को अनूठे ढंग से क्या पहचानेगा?",
+   "hinglish": "Do students ka naam Aanya Sharma hai. Har row ko uniquely kya pehchanega?"
+  },
+  "options": [
+   {
+    "en": "Their name, because names are unique enough",
+    "hi": "उनका नाम, क्योंकि नाम काफ़ी अनूठे होते हैं",
+    "hinglish": "Unka naam, kyunki naam kaafi unique hote hain"
+   },
+   {
+    "en": "A primary key such as a generated id that is unique, never empty and never changes",
+    "hi": "प्राथमिक कुंजी जैसे बनाई गई id जो अनूठी हो, कभी खाली न हो और न बदले",
+    "hinglish": "Primary key jaise generated id jo unique ho, kabhi empty na ho aur na badle"
+   },
+   {
+    "en": "Their phone number, because it never changes",
+    "hi": "उनका फ़ोन नंबर, क्योंकि वह कभी नहीं बदलता",
+    "hinglish": "Unka phone number, kyunki woh kabhi nahi badalta"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Names repeat and phone numbers change, so neither is safe as a key. A primary key is a value that is unique, never empty and stable, usually a generated number. Other tables then refer to the row with a foreign key, for example students.house_id points to houses.id, so the house name is stored once instead of being copied into every student row.",
+   "hi": "नाम दोहराते हैं और फ़ोन नंबर बदलते हैं, इसलिए कुंजी के रूप में दोनों सुरक्षित नहीं। प्राथमिक कुंजी ऐसा मान है जो अनूठा, कभी खाली नहीं और स्थिर हो, आमतौर पर बनाई गई संख्या। दूसरी तालिकाएँ पंक्ति को विदेशी कुंजी से संदर्भित करती हैं, जैसे students.house_id, houses.id की ओर इशारा करता है, इसलिए हाउस का नाम एक बार रखा जाता है, हर विद्यार्थी की पंक्ति में नहीं।",
+   "hinglish": "Naam repeat hote hain aur phone numbers badalte hain, isliye key ke roop mein dono safe nahi. Primary key aisi value hai jo unique, kabhi empty nahi aur stable ho, aam taur par generated number. Doosri tables row ko foreign key se refer karti hain, jaise students.house_id, houses.id ki taraf point karta hai, isliye house ka naam ek baar rakha jaata hai, har student ki row mein nahi."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home why a school uses a database instead of one big spreadsheet, and what keys do.",
+   "hi": "घर पर किसी को समझाओ कि स्कूल एक बड़ी स्प्रेडशीट की जगह डेटाबेस क्यों इस्तेमाल करता है, और कुंजियाँ क्या करती हैं।",
+   "hinglish": "Ghar par kisi ko samjhao ki school ek badi spreadsheet ke bajay database kyun use karta hai, aur keys kya karti hain."
+  },
+  "checklist": [
+   {
+    "en": "A table has rows (one record each) and typed columns (fields).",
+    "hi": "तालिका में पंक्तियाँ (हर एक रिकॉर्ड) और प्रकार वाले स्तंभ (फ़ील्ड) होते हैं।",
+    "hinglish": "Table mein rows (har ek record) aur typed columns (fields) hote hain."
+   },
+   {
+    "en": "A primary key identifies each row: unique, never empty, never changing.",
+    "hi": "प्राथमिक कुंजी हर पंक्ति पहचानती है: अनूठी, कभी खाली नहीं, कभी नहीं बदलती।",
+    "hinglish": "Primary key har row pehchanti hai: unique, kabhi empty nahi, kabhi nahi badalti."
+   },
+   {
+    "en": "A foreign key points to another table's primary key, so facts are stored once.",
+    "hi": "विदेशी कुंजी दूसरी तालिका की प्राथमिक कुंजी की ओर इशारा करती है, इसलिए तथ्य एक बार रखे जाते हैं।",
+    "hinglish": "Foreign key doosri table ki primary key ki taraf point karti hai, isliye facts ek baar rakhe jaate hain."
+   },
+   {
+    "en": "A database enforces rules, handles many users at once and grows, which a shared spreadsheet cannot.",
+    "hi": "डेटाबेस नियम लागू करता है, कई उपयोगकर्ताओं को एक साथ सँभालता और बढ़ता है, जो साझा स्प्रेडशीट नहीं कर पाती।",
+    "hinglish": "Database rules enforce karta hai, kai users ko ek saath sambhalta aur badhta hai, jo shared spreadsheet nahi kar paati."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Table",
@@ -102,7 +173,7 @@
     "hi": "students.house_id एक विदेशी कुंजी है जो houses.id की ओर इशारा करती है। सदन का नाम एक बार रखा जाता है, हर छात्र पंक्ति में कॉपी नहीं।",
     "hinglish": "students.house_id ek foreign key hai jo houses.id ki taraf ishaara karti hai. House ka naam ek baar rakha jaata hai, har student row mein copy nahi."
    },
-   "visual": "anim:fk-arrow",
+   "visual": "flow:🎓 students.house_id|➡️ Points to|🏠 houses.id|🏷️ House name stored once",
    "narration": {
     "en": "students.house_id is a foreign key pointing to houses.id. The house name is stored once, not copied into every student row.",
     "hi": "students.house_id एक विदेशी कुंजी है जो houses.id की ओर इशारा करती है। सदन का नाम एक बार रखा जाता है, हर छात्र पंक्ति में कॉपी नहीं।",

@@ -37,6 +37,82 @@
    "hinglish": "IoT devices secure kar sakte ho: default passwords badlo aur update karo"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, a farmer far from his village checks on his phone whether the field is dry and starts the water pump with one tap.",
+   "hi": "{{name}}, गाँव से दूर बैठा एक किसान अपने फ़ोन पर देखता है कि खेत सूखा है या नहीं, और एक टैप से पानी का पंप चालू कर देता है।",
+   "hinglish": "{{name}}, gaon se door baitha ek kisan apne phone par dekhta hai ki khet sookha hai ya nahi, aur ek tap se paani ka pump chalu kar deta hai."
+  },
+  "question": {
+   "en": "How does a reading from a field travel to a phone, and how does the \"start\" command travel back?",
+   "hi": "खेत की रीडिंग फ़ोन तक कैसे पहुँचती है, और \"चालू करो\" का आदेश वापस कैसे जाता है?",
+   "hinglish": "Khet ki reading phone tak kaise pahunchti hai, aur \"start\" ka command wapas kaise jaata hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "Which path does a soil-moisture reading most likely take to reach the farmer's app?",
+   "hi": "मिट्टी की नमी की रीडिंग किसान के ऐप तक किस रास्ते से पहुँचने की सबसे ज़्यादा संभावना है?",
+   "hinglish": "Mitti ki nami ki reading kisan ke app tak kis raaste se pahunchne ki sabse zyada sambhavna hai?"
+  },
+  "options": [
+   {
+    "en": "Sensor straight to the phone through the air",
+    "hi": "सेंसर से सीधे हवा के रास्ते फ़ोन तक",
+    "hinglish": "Sensor se seedhe hawa ke raaste phone tak"
+   },
+   {
+    "en": "Sensor, then a microcontroller with Wi-Fi or 4G, then the cloud, then the app",
+    "hi": "सेंसर, फिर Wi-Fi या 4G वाला माइक्रोकंट्रोलर, फिर क्लाउड, फिर ऐप",
+    "hinglish": "Sensor, phir Wi-Fi ya 4G wala microcontroller, phir cloud, phir app"
+   },
+   {
+    "en": "Sensor to the pump only, nothing is sent anywhere",
+    "hi": "सेंसर से सिर्फ़ पंप तक, कहीं कुछ नहीं भेजा जाता",
+    "hinglish": "Sensor se sirf pump tak, kahin kuch nahi bheja jaata"
+   },
+   {
+    "en": "Sensor to the TV station",
+    "hi": "सेंसर से टीवी स्टेशन तक",
+    "hinglish": "Sensor se TV station tak"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "A sensor gives only a number. A small computer such as an ESP32 sends it over the network to a cloud service, and the farmer's app reads it from there. A command to start the pump travels the same way back.",
+   "hi": "सेंसर सिर्फ़ एक संख्या देता है। ESP32 जैसा छोटा कंप्यूटर उसे नेटवर्क से क्लाउड सेवा तक भेजता है, और किसान का ऐप वहीं से पढ़ता है। पंप चालू करने का आदेश इसी रास्ते से वापस जाता है।",
+   "hinglish": "Sensor sirf ek number deta hai. ESP32 jaisa chhota computer use network se cloud service tak bhejta hai, aur kisan ka app wahin se padhta hai. Pump chalu karne ka command isi raaste se wapas jaata hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a smart farm works and how to keep such devices safe.",
+   "hi": "घर पर किसी को समझाओ कि स्मार्ट फ़ार्म कैसे काम करता है और ऐसे उपकरण सुरक्षित कैसे रखें।",
+   "hinglish": "Ghar par kisi ko samjhao ki smart farm kaise kaam karta hai aur aise devices safe kaise rakhein."
+  },
+  "checklist": [
+   {
+    "en": "IoT is sensors and devices connected to the internet.",
+    "hi": "IoT इंटरनेट से जुड़े सेंसर और उपकरण हैं।",
+    "hinglish": "IoT internet se jude sensors aur devices hain."
+   },
+   {
+    "en": "Data goes from the sensor to a microcontroller with a network link, to the cloud, to the app.",
+    "hi": "डेटा सेंसर से नेटवर्क वाले माइक्रोकंट्रोलर तक, फिर क्लाउड, फिर ऐप तक जाता है।",
+    "hinglish": "Data sensor se network wale microcontroller tak, phir cloud, phir app tak jaata hai."
+   },
+   {
+    "en": "Commands travel back the same way to switch the pump on.",
+    "hi": "आदेश उसी रास्ते से लौटकर पंप चालू करते हैं।",
+    "hinglish": "Commands usi raaste se lautkar pump chalu karte hain."
+   },
+   {
+    "en": "Change default passwords and keep devices updated.",
+    "hi": "डिफ़ॉल्ट पासवर्ड बदलो और उपकरण अपडेट रखो।",
+    "hinglish": "Default passwords badlo aur devices updated rakho."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "IoT",

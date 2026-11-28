@@ -34,6 +34,77 @@
    "hinglish": "Bina off-by-one bugs ke Python mein binary search likho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you look for one name in a printed list of 1,000 students, and a dictionary lookup in a phone book feels much faster than that.",
+   "hi": "{{name}}, तुम 1,000 विद्यार्थियों की छपी सूची में एक नाम ढूँढते हो, और फ़ोन-बुक में शब्द खोजना उससे कहीं तेज़ लगता है।",
+   "hinglish": "{{name}}, tum 1,000 students ki chhapi list mein ek naam dhundhte ho, aur phone book mein dhundhna usse kahin tez lagta hai."
+  },
+  "question": {
+   "en": "What makes a phone-book search so much faster, and what must be true of the list for the trick to work?",
+   "hi": "फ़ोन-बुक की खोज इतनी तेज़ क्यों है, और यह तरकीब चलने के लिए सूची के बारे में क्या सच होना चाहिए?",
+   "hinglish": "Phone-book ki search itni tez kyun hai, aur yeh trick chalne ke liye list ke baare mein kya sach hona chahiye?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "About how many checks does binary search need in a sorted list of 10 lakh items, at most?",
+   "hi": "10 लाख आइटम की क्रमबद्ध सूची में बाइनरी सर्च को अधिकतम लगभग कितनी जाँचें चाहिए?",
+   "hinglish": "10 lakh items ki sorted list mein binary search ko maximum lagbhag kitni checks chahiye?"
+  },
+  "options": [
+   {
+    "en": "About 5 lakh",
+    "hi": "लगभग 5 लाख",
+    "hinglish": "Lagbhag 5 lakh"
+   },
+   {
+    "en": "About 1,000",
+    "hi": "लगभग 1,000",
+    "hinglish": "Lagbhag 1,000"
+   },
+   {
+    "en": "About 20",
+    "hi": "लगभग 20",
+    "hinglish": "Lagbhag 20"
+   }
+  ],
+  "answer": 2,
+  "explain": {
+   "en": "Each check throws away half of what is left, so the number of checks is log₂ of the size: 2²⁰ is about 10.5 lakh, so 20 checks. It works only because the list is sorted: when the middle is too small, everything to its left is too small too. Linear search checks one item at a time and needs up to 10 lakh.",
+   "hi": "हर जाँच बची हुई सूची का आधा हटा देती है, इसलिए जाँचों की संख्या आकार का log₂ है: 2²⁰ लगभग 10.5 लाख है, यानी 20 जाँचें। यह सूची के क्रमबद्ध होने की वजह से ही चलता है: बीच वाला छोटा हो तो उसके बाईं ओर सब छोटे हैं। लीनियर सर्च एक-एक आइटम जाँचता है और 10 लाख तक चाहिए।",
+   "hinglish": "Har check bachi hui list ka aadha hata deti hai, isliye checks ki sankhya size ka log₂ hai: 2²⁰ lagbhag 10.5 lakh hai, yaani 20 checks. Yeh list ke sorted hone ki wajah se hi chalta hai: beech wala chhota ho toh uske left mein sab chhote hain. Linear search ek-ek item jaanchta hai aur 10 lakh tak chahiye."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how binary search finds a name so quickly and why the list must be sorted.",
+   "hi": "घर पर किसी को समझाओ कि बाइनरी सर्च नाम इतनी जल्दी कैसे ढूँढती है और सूची क्रमबद्ध क्यों होनी चाहिए।",
+   "hinglish": "Ghar par kisi ko samjhao ki binary search naam itni jaldi kaise dhundhti hai aur list sorted kyun honi chahiye."
+  },
+  "checklist": [
+   {
+    "en": "Linear search checks items one by one: O(n).",
+    "hi": "लीनियर सर्च आइटम एक-एक करके जाँचती है: O(n)।",
+    "hinglish": "Linear search items ek-ek karke jaanchti hai: O(n)."
+   },
+   {
+    "en": "Binary search checks the middle and drops the half that cannot hold the target: O(log n).",
+    "hi": "बाइनरी सर्च बीच वाला जाँचती है और वह आधा हटा देती है जिसमें लक्ष्य नहीं हो सकता: O(log n)।",
+    "hinglish": "Binary search beech wala jaanchti hai aur woh aadha hata deti hai jisme target nahi ho sakta: O(log n)."
+   },
+   {
+    "en": "It needs sorted data; sorting costs O(n log n), so for one search on unsorted data linear is cheaper.",
+    "hi": "इसे क्रमबद्ध डेटा चाहिए; क्रमबद्ध करने में O(n log n) लगता है, इसलिए बेतरतीब डेटा पर एक खोज के लिए लीनियर सस्ती है।",
+    "hinglish": "Ise sorted data chahiye; sort karne mein O(n log n) lagta hai, isliye unsorted data par ek search ke liye linear sasti hai."
+   },
+   {
+    "en": "In code, take care with lo, hi and mid to avoid off-by-one bugs.",
+    "hi": "कोड में lo, hi और mid सँभालकर रखो ताकि एक-चूक (off-by-one) की गड़बड़ियाँ न हों।",
+    "hinglish": "Code mein lo, hi aur mid sambhalkar rakho taaki off-by-one bugs na hon."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Linear search",
@@ -88,7 +159,7 @@
     "hi": "द्विआधारी खोज बीच (सूचकांक 15 = 56) जाँचती है। 56 < 88, तो पूरा बायाँ आधा हटा।",
     "hinglish": "Binary search beech (index 15 = 56) check karta hai. 56 < 88, to poora left half hata."
    },
-   "visual": "anim:halve",
+   "visual": "cycle:🎯 Check the middle|⚖️ Compare with the target|✂️ Drop the other half",
    "narration": {
     "en": "Binary search checks the middle (index 15 = 56). 56 < 88, so the whole left half is dropped.",
     "hi": "द्विआधारी खोज बीच (सूचकांक 15 = 56) जाँचती है। 56 < 88, तो पूरा बायाँ आधा हटा।",
@@ -102,7 +173,7 @@
     "hi": "हर जाँच दायरा आधा करती है: 32 → 16 → 8 → 4 → 2 → 1। 88 पाँच जाँच में मिला।",
     "hinglish": "Har check range aadhi karta hai: 32 → 16 → 8 → 4 → 2 → 1. 88 paanch checks mein mila."
    },
-   "visual": "anim:halving-bars",
+   "visual": "flow:📚 32 items|✂️ 16 left|✂️ 8 left|✂️ 4 left|✂️ 2 left|🎯 Found in 5 checks",
    "narration": {
     "en": "Each check halves the range: 32 → 16 → 8 → 4 → 2 → 1. 88 is found in 5 checks.",
     "hi": "हर जाँच दायरा आधा करती है: 32 → 16 → 8 → 4 → 2 → 1। 88 पाँच जाँच में मिला।",

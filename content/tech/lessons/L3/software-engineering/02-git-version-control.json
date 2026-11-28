@@ -34,6 +34,72 @@
    "hinglish": "CI aur review ke saath pull-request workflow batao"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you and a friend both edit the same school-project file and, at night, both save it. In the morning one set of changes is gone.",
+   "hi": "{{name}}, तुम और तुम्हारा दोस्त एक ही स्कूल-प्रोजेक्ट फ़ाइल बदलते हो और रात को दोनों सेव करते हो। सुबह एक के बदलाव ग़ायब हैं।",
+   "hinglish": "{{name}}, tum aur tumhara friend ek hi school-project file edit karte ho aur raat ko dono save karte ho. Subah ek ke changes gayab hain."
+  },
+  "question": {
+   "en": "How do software teams let dozens of people change the same code without losing anyone's work?",
+   "hi": "सॉफ़्टवेयर टीमें दर्जनों लोगों को एक ही कोड बदलने देती हैं और किसी का काम नहीं खोता, यह कैसे होता है?",
+   "hinglish": "Software teams kai logon ko ek hi code badalne deti hain aur kisi ka kaam nahi khota, yeh kaise hota hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "In Git, what is a commit?",
+   "hi": "Git में कमिट क्या है?",
+   "hinglish": "Git mein commit kya hai?"
+  },
+  "options": [
+   {
+    "en": "A copy of only the lines that changed, with no link to earlier work",
+    "hi": "सिर्फ़ बदली हुई लाइनों की कॉपी, पहले के काम से बिना जुड़ाव",
+    "hinglish": "Sirf badli hui lines ki copy, pehle ke kaam se bina link"
+   },
+   {
+    "en": "A snapshot of the project with a message, an author and a unique ID, linked to the commit before it",
+    "hi": "प्रोजेक्ट का स्नैपशॉट, संदेश, लेखक और अनोखी ID के साथ, पिछले कमिट से जुड़ा हुआ",
+    "hinglish": "Project ka snapshot, message, author aur unique ID ke saath, pichhle commit se linked"
+   },
+   {
+    "en": "A message sent to the server asking permission to edit",
+    "hi": "सर्वर को भेजा संदेश जो एडिट की अनुमति माँगता है",
+    "hinglish": "Server ko bheja message jo edit ki permission maangta hai"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Each commit records the whole project state with a hash and points to its parent, forming a history. Because history is kept, branches can work separately and be merged, and any change can be found or undone.",
+   "hi": "हर कमिट पूरे प्रोजेक्ट की स्थिति को हैश के साथ दर्ज करता है और अपने पैरेंट की ओर इशारा करता है, जिससे इतिहास बनता है। इतिहास रहता है, इसलिए ब्रांच अलग काम करके मर्ज हो सकती हैं और कोई भी बदलाव खोजा या वापस किया जा सकता है।",
+   "hinglish": "Har commit poore project ki state ko hash ke saath record karta hai aur apne parent ki taraf point karta hai, isse history banti hai. History rehti hai, isliye branches alag kaam karke merge ho sakti hain aur koi bhi change dhoondha ya undo kiya ja sakta hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to a friend what happens between typing git commit and the change landing on main.",
+   "hi": "किसी दोस्त को समझाओ कि git commit लिखने से लेकर बदलाव main में पहुँचने तक क्या होता है।",
+   "hinglish": "Kisi friend ko samjhao ki git commit likhne se change ke main par pahunchne tak kya hota hai."
+  },
+  "checklist": [
+   {
+    "en": "A commit is a snapshot with a message, author and hash",
+    "hi": "कमिट संदेश, लेखक और हैश वाला स्नैपशॉट है",
+    "hinglish": "Commit message, author aur hash wala snapshot hai"
+   },
+   {
+    "en": "A branch lets you try changes without touching main, and merge joins it back",
+    "hi": "ब्रांच से main को छुए बिना बदलाव आज़माते हैं, और मर्ज उसे वापस जोड़ता है",
+    "hinglish": "Branch se main ko chhue bina changes try karte hain, aur merge use wapas jodta hai"
+   },
+   {
+    "en": "A pull request runs automated tests (CI) and a review before merging",
+    "hi": "पुल रिक्वेस्ट मर्ज से पहले स्वचालित टेस्ट (CI) और रिव्यू चलाती है",
+    "hinglish": "Pull request merge se pehle automated tests (CI) aur review chalati hai"
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Repository",
@@ -88,7 +154,7 @@
     "hi": "शाखाएँ main तोड़े बिना बदलाव आज़माने देती हैं।",
     "hinglish": "Branches main tode bina changes try karne deti hain."
    },
-   "visual": "anim:branch",
+   "visual": "flow:🌿 Branch from main|✏️ Commit changes|🔀 Merge back",
    "narration": {
     "en": "Branches let you try changes without breaking main.",
     "hi": "शाखाएँ main तोड़े बिना बदलाव आज़माने देती हैं।",

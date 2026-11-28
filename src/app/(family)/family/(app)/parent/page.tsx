@@ -85,7 +85,7 @@ const AREA_KEYS: MessageKey[] = [
   ...SUBJECT_IDS.map((id) => `fam.subject.${id}` as MessageKey), 'fam.parent.ov.title', 'fam.parent.ov.from', 'fam.parent.ov.attendance', 'fam.parent.ov.attendanceNone', 'fam.parent.ov.fees', 'fam.parent.ov.feesNone', 'fam.parent.ov.results', 'fam.parent.ov.resultsNone', 'fam.parent.ov.homework', 'fam.parent.ov.homeworkNone',
   'fam.err.confirm', 'fam.err.bad_request', 'fam.parent.freeSubject', 'fam.parent.freeSubjectTooSoon',
   'fam.calm.title', 'fam.calm.nothingYet', 'fam.calm.week', 'fam.calm.mastered', 'fam.calm.recent', 'fam.profile.title',
-  'fam.consent.purpose.english_programme', 'fam.english.parent.section', 'fam.english.parent.open', 'fam.consent.purpose.photo_input', 'fam.consent.changed.photo_input', 'fam.consent.purpose.voice_practice', 'fam.consent.purpose.offers',
+  'fam.consent.purpose.english_programme', 'fam.english.parent.section', 'fam.english.parent.open', 'fam.tech.parent.section', 'fam.tech.parent.open', 'fam.consent.purpose.photo_input', 'fam.consent.changed.photo_input', 'fam.consent.purpose.voice_practice', 'fam.consent.purpose.offers',
   // m2-3: the habit section.
   'fam.habit.parent.title', 'fam.habit.parent.goal', 'fam.habit.parent.goalHelp', 'fam.habit.parent.goalOption', 'fam.habit.parent.jarTitle', 'fam.habit.parent.jarNone',
   'fam.habit.parent.reward', 'fam.habit.parent.target', 'fam.habit.parent.jarSet', 'fam.habit.parent.jarProgress', 'fam.habit.parent.jarFullNote', 'fam.habit.parent.given',
@@ -267,6 +267,7 @@ export default async function FamilyParentPage() {
     <div lang={lang} className="flex min-h-screen flex-col">
       <ParentArea
         english={english}
+        tech={!!switches && switchOn(switches, 'tech_lab')}
         photo={photo}
         voice={voice}
         offers={{ granted: page.consents.offers }}

@@ -38,6 +38,82 @@
    "hinglish": "Family code word aur call-back check use kar sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, your phone rings with an unknown number. A voice that sounds exactly like Papa says, \"I am in trouble, send money right now!\"",
+   "hi": "{{name}}, तुम्हारे फ़ोन पर अनजान नंबर से कॉल आती है। पापा जैसी ही आवाज़ कहती है, \"मैं मुसीबत में हूँ, अभी पैसे भेजो!\"",
+   "hinglish": "{{name}}, tumhare phone par unknown number se call aati hai. Papa jaisi hi awaaz kehti hai, \"Main musibat mein hoon, abhi paise bhejo!\""
+  },
+  "question": {
+   "en": "If it sounds exactly like Papa, how can you be sure it really is him?",
+   "hi": "अगर आवाज़ बिल्कुल पापा जैसी है, तो कैसे पक्का करें कि वे ही हैं?",
+   "hinglish": "Agar awaaz bilkul Papa jaisi hai, to kaise pakka karein ki woh hi hain?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A caller's voice matches your parent's voice perfectly. Is that proof it is your parent?",
+   "hi": "फ़ोन करने वाले की आवाज़ तुम्हारे माता या पिता से पूरी तरह मिलती है। क्या यह सबूत है कि वे ही हैं?",
+   "hinglish": "Call karne wale ki awaaz tumhare parent se poori tarah milti hai. Kya yeh saboot hai ki woh hi hain?"
+  },
+  "options": [
+   {
+    "en": "Yes, nobody can copy a voice",
+    "hi": "हाँ, आवाज़ की नक़ल कोई नहीं कर सकता",
+    "hinglish": "Haan, awaaz ki nakal koi nahi kar sakta"
+   },
+   {
+    "en": "No, AI can copy a voice from a few seconds of audio",
+    "hi": "नहीं, AI कुछ सेकंड की रिकॉर्डिंग से आवाज़ की नक़ल कर सकता है",
+    "hinglish": "Nahi, AI kuch seconds ki recording se awaaz ki nakal kar sakta hai"
+   },
+   {
+    "en": "Yes, if the caller knows your name",
+    "hi": "हाँ, अगर फ़ोन करने वाला तुम्हारा नाम जानता है",
+    "hinglish": "Haan, agar caller tumhara naam jaanta hai"
+   },
+   {
+    "en": "Only on a video call",
+    "hi": "सिर्फ़ वीडियो कॉल पर",
+    "hinglish": "Sirf video call par"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Voice-cloning tools learn a person's voice from a short recording, and faces can be swapped in video too, so hearing or seeing is no longer proof. A call-back on a saved number and a family code word are.",
+   "hi": "वॉइस-क्लोनिंग टूल किसी की आवाज़ छोटी रिकॉर्डिंग से सीख लेते हैं, और वीडियो में चेहरे भी बदले जा सकते हैं, इसलिए सुनना या देखना अब सबूत नहीं। सेव किए नंबर पर वापस कॉल और परिवार का कोड शब्द सबूत हैं।",
+   "hinglish": "Voice-cloning tools kisi ki awaaz chhoti recording se seekh lete hain, aur video mein chehre bhi badle ja sakte hain, isliye sunna ya dekhna ab saboot nahi. Saved number par call-back aur family code word saboot hain."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how fake voices and \"digital arrest\" calls work and how the family can stay safe.",
+   "hi": "घर पर किसी को समझाओ कि नक़ली आवाज़ें और \"डिजिटल अरेस्ट\" कॉल कैसे काम करती हैं और परिवार सुरक्षित कैसे रहे।",
+   "hinglish": "Ghar par kisi ko samjhao ki fake voices aur \"digital arrest\" calls kaise kaam karti hain aur family safe kaise rahe."
+  },
+  "checklist": [
+   {
+    "en": "Deepfakes and voice clones are made by AI models trained on a person's images or recordings.",
+    "hi": "डीपफ़ेक और वॉइस क्लोन AI मॉडल बनाते हैं जो किसी के चित्रों या रिकॉर्डिंग से सीखते हैं।",
+    "hinglish": "Deepfakes aur voice clones AI models banate hain jo kisi ke images ya recordings se seekhte hain."
+   },
+   {
+    "en": "Seeing or hearing someone is no longer proof.",
+    "hi": "किसी को देखना या सुनना अब सबूत नहीं है।",
+    "hinglish": "Kisi ko dekhna ya sunna ab saboot nahi hai."
+   },
+   {
+    "en": "\"Digital arrest\" does not exist; real police never arrest over a video call or ask for money.",
+    "hi": "\"डिजिटल अरेस्ट\" जैसा कुछ नहीं होता; असली पुलिस वीडियो कॉल पर गिरफ़्तार नहीं करती या पैसे नहीं माँगती।",
+    "hinglish": "\"Digital arrest\" jaisa kuch nahi hota; asli police video call par arrest nahi karti ya paise nahi maangti."
+   },
+   {
+    "en": "Pause, hang up, call back on a saved number and ask the family code word.",
+    "hi": "रुको, फ़ोन काटो, सेव किए नंबर पर वापस कॉल करो और परिवार का कोड शब्द पूछो।",
+    "hinglish": "Ruko, phone kaato, saved number par call back karo aur family code word poochho."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Deepfake",
@@ -100,7 +176,7 @@
     "hi": "बचाव: रुको, फ़ोन रखो, पहले से सहेजे नंबर पर वापस कॉल करो, और पारिवारिक कोड शब्द पूछो।",
     "hinglish": "Defence: ruko, phone rakho, pehle se saved number pe call back karo, aur family code word poocho."
    },
-   "visual": "code",
+   "visual": "flow:⏸️ Pause|📵 Hang up|📞 Call saved number|🔑 Ask code word",
    "narration": {
     "en": "A clone can copy a voice, not a secret it never heard.",
     "hi": "नक़ल आवाज़ कॉपी कर सकती है, वह राज़ नहीं जो उसने कभी सुना नहीं।",

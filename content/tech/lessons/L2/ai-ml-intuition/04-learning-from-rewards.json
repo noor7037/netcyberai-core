@@ -38,6 +38,77 @@
    "hinglish": "Reward-based learning ke real uses aur risks bata sakte ho"
   }
  ],
+ "hook": {
+  "text": {
+   "en": "{{name}}, you teach a puppy to sit by giving a biscuit each time it does it right, and nothing when it does not.",
+   "hi": "{{name}}, तुम एक पिल्ले को बैठना सिखाते हो: सही करने पर हर बार बिस्कुट, और न करने पर कुछ नहीं।",
+   "hinglish": "{{name}}, tum ek puppy ko baithna sikhate ho: sahi karne par har baar biscuit, aur na karne par kuch nahi."
+  },
+  "question": {
+   "en": "Nobody shows the puppy the exact moves. So how does it learn what to do?",
+   "hi": "पिल्ले को सटीक चालें कोई नहीं दिखाता। तो वह सीखता कैसे है कि क्या करना है?",
+   "hinglish": "Puppy ko exact moves koi nahi dikhata. To woh seekhta kaise hai ki kya karna hai?"
+  }
+ },
+ "predict": {
+  "prompt": {
+   "en": "A robot gets +10 at the charger, −10 in a pit and −1 for each step. After thousands of tries, what will it tend to learn?",
+   "hi": "एक रोबोट को चार्जर पर +10, गड्ढे में −10 और हर क़दम पर −1 मिलता है। हज़ारों कोशिशों के बाद वह क्या सीखेगा?",
+   "hinglish": "Ek robot ko charger par +10, pit mein −10 aur har step par −1 milta hai. Hazaron koshishon ke baad woh kya seekhega?"
+  },
+  "options": [
+   {
+    "en": "To move randomly forever",
+    "hi": "हमेशा यादृच्छिक चलना",
+    "hinglish": "Hamesha random chalna"
+   },
+   {
+    "en": "A short route to the charger that avoids the pit",
+    "hi": "चार्जर तक का छोटा रास्ता जो गड्ढे से बचे",
+    "hinglish": "Charger tak ka chhota raasta jo pit se bache"
+   },
+   {
+    "en": "To walk into the pit as fast as possible",
+    "hi": "जितनी जल्दी हो सके गड्ढे में जाना",
+    "hinglish": "Jitni jaldi ho sake pit mein jaana"
+   }
+  ],
+  "answer": 1,
+  "explain": {
+   "en": "Moves that lead to higher total reward get remembered and repeated, and moves that lead to the pit or waste steps get dropped. Its policy, the choice of move in each place, improves with every try.",
+   "hi": "जिन चालों से कुल इनाम ज़्यादा मिलता है वे याद रहती हैं और दोहराई जाती हैं, और जो गड्ढे में ले जाती हैं या क़दम बर्बाद करती हैं वे छूट जाती हैं। उसकी नीति, यानी हर जगह चाल का चुनाव, हर कोशिश के साथ सुधरती है।",
+   "hinglish": "Jin chaalon se total reward zyada milta hai woh yaad rehti hain aur repeat hoti hain, aur jo pit mein le jaati hain ya steps barbaad karti hain woh chhoot jaati hain. Uski policy, yaani har jagah chaal ka chunaav, har koshish ke saath sudharti hai."
+  }
+ },
+ "teachBack": {
+  "prompt": {
+   "en": "Explain to someone at home how a machine can learn by trial and reward.",
+   "hi": "घर पर किसी को समझाओ कि मशीन कोशिश और इनाम से कैसे सीख सकती है।",
+   "hinglish": "Ghar par kisi ko samjhao ki machine trial aur reward se kaise seekh sakti hai."
+  },
+  "checklist": [
+   {
+    "en": "An agent in a situation picks an action and gets a reward, and its policy is how it chooses actions.",
+    "hi": "एजेंट किसी स्थिति में कोई क्रिया चुनता है और इनाम पाता है, और नीति उसके क्रिया चुनने का तरीक़ा है।",
+    "hinglish": "Agent kisi situation mein koi action chunta hai aur reward paata hai, aur policy uske action chunne ka tareeka hai."
+   },
+   {
+    "en": "Trial and error improves the choices: moves that earned reward are remembered.",
+    "hi": "कोशिश और चूक से चुनाव सुधरते हैं: जिन चालों से इनाम मिला वे याद रखी जाती हैं।",
+    "hinglish": "Trial aur error se choices sudharte hain: jin chaalon se reward mila woh yaad rakhi jaati hain."
+   },
+   {
+    "en": "It balances exploring new moves with exploiting the best move it knows.",
+    "hi": "वह नई चालें आज़माने और जानी हुई सबसे अच्छी चाल इस्तेमाल करने में संतुलन रखता है।",
+    "hinglish": "Woh nayi chaalein aazmane aur jaani hui sabse achhi chaal use karne mein balance rakhta hai."
+   },
+   {
+    "en": "It has real uses, and risks if the reward is badly chosen.",
+    "hi": "इसके असली उपयोग हैं, और इनाम ग़लत चुना जाए तो ख़तरे।",
+    "hinglish": "Iske asli uses hain, aur reward galat chuna jaaye to risks."
+   }
+  ]
+ },
  "vocab": [
   {
    "term": "Agent",
